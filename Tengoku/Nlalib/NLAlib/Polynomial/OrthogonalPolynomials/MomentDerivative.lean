@@ -17,7 +17,9 @@ namespace NLAlib
 /-- The derivative of a varying polynomial pairing is the sum of the functional
 variation and the polynomial variation. No representing measures are needed.
 Source: AQ26.
-atlas: recurrence-coefficient-moment-sensitivity (partial)-/
+atlas: recurrence-coefficient-moment-sensitivity (partial)
+@isnad1 id=hasderiv.4h6v.s9.ced6d23fa05a from=translated src=- shape=049d0819 vocab=47a6ec2a
+-/
 theorem hasDerivAt_functional_polynomial
     {L : ℝ → (ℝ[X] →ₗ[ℝ] ℝ)} {D : ℝ[X] →ₗ[ℝ] ℝ}
     {p : ℝ → ℝ[X]} {p' : ℝ[X]} {x : ℝ} {d : ℕ}
@@ -38,7 +40,9 @@ theorem hasDerivAt_functional_polynomial
     (hc i.val).mul (hL i.val)) using 1
   all_goals first | rfl | simp [Finset.sum_add_distrib, add_comm]
 
-/-- An affine finite-moment perturbation has the given moment derivative.-/
+/-- An affine finite-moment perturbation has the given moment derivative.
+@isnad1 id=hasderiv.0h5v.s9.f577ae3cd483 from=translated src=- shape=d9a1651a vocab=d55e9b08
+-/
 theorem hasDerivAt_finiteMomentFunctional_apply {d : ℕ} (m v : Fin d → ℝ)
     (p : ℝ[X]) (x : ℝ) :
     HasDerivAt (fun t => finiteMomentFunctional (m + t • v) p)

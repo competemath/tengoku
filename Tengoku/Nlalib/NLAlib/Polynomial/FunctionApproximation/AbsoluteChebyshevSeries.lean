@@ -21,14 +21,18 @@ open scoped Topology
 namespace NLAlib
 
 /-- Integrating a nonzero cosine frequency over the positive half period.
-Source: elementary trigonometric integration; helper for `chebyshev-series-abs-sign`.-/
+Source: elementary trigonometric integration; helper for `chebyshev-series-abs-sign`.
+@isnad1 id=eq.1h1v.s6.8e963df1dbe9 from=translated src=- shape=bf728f59 vocab=f29b709d
+-/
 theorem integral_cos_mul_half_pi (c : ℝ) (hc : c ≠ 0) :
     (∫ θ in 0..Real.pi / 2, Real.cos (c * θ)) = Real.sin (c * (Real.pi / 2)) / c := by
   rw [intervalIntegral.integral_comp_mul_left _ hc, integral_cos]
   simp [div_eq_mul_inv, mul_comm]
 
 /-- Reflecting the absolute-cosine coefficient integral reduces it to half a period.
-Source: Trefethen, ATAP, Exercise 3.6; helper for `chebyshev-series-abs-sign`.-/
+Source: Trefethen, ATAP, Exercise 3.6; helper for `chebyshev-series-abs-sign`.
+@isnad1 id=eq.0h1v.s7.c3bbef18c1bb from=translated src=- shape=ab9278c3 vocab=330e56af
+-/
 theorem chebyshevCoeff_abs_eq_half_integral (k : ℕ) :
     chebyshevCoeff (fun x : ℝ => |x|) k =
       (if k = 0 then 1 else 2) / Real.pi * (1 + (-1 : ℝ) ^ k) *
@@ -66,7 +70,9 @@ theorem chebyshevCoeff_abs_eq_half_integral (k : ℕ) :
 
 /-- The constant Chebyshev coefficient of absolute value is `2/π`.
 Source: Trefethen, ATAP, Exercise 3.6.
-atlas: chebyshev-series-abs-sign (partial)-/
+atlas: chebyshev-series-abs-sign (partial)
+@isnad1 id=eq.0h0v.s5.59cf24182349 from=translated src=- shape=552ba151 vocab=702e2d7a
+-/
 @[simp] theorem chebyshevCoeff_abs_zero : chebyshevCoeff (fun x : ℝ => |x|) 0 = 2 / Real.pi := by
   rw [chebyshevCoeff_abs_eq_half_integral]
   simp [integral_cos]
@@ -74,14 +80,18 @@ atlas: chebyshev-series-abs-sign (partial)-/
 
 /-- Every odd Chebyshev coefficient of absolute value vanishes.
 Source: Trefethen, ATAP, Exercise 3.6.
-atlas: chebyshev-series-abs-sign (partial)-/
+atlas: chebyshev-series-abs-sign (partial)
+@isnad1 id=eq.0h1v.s5.39f95f5d4e8c from=translated src=- shape=fb88fca9 vocab=06a79f7d
+-/
 @[simp] theorem chebyshevCoeff_abs_odd (j : ℕ) :
     chebyshevCoeff (fun x : ℝ => |x|) (2 * j + 1) = 0 := by
   rw [chebyshevCoeff_abs_eq_half_integral]
   simp [pow_add, pow_mul]
 
 /-- Product-to-sum integrates the positive even absolute-value frequency explicitly.
-Source: Trefethen, ATAP, Exercise 3.6; helper for `chebyshev-series-abs-sign`.-/
+Source: Trefethen, ATAP, Exercise 3.6; helper for `chebyshev-series-abs-sign`.
+@isnad1 id=eq.1h1v.s7.ec3cc106b036 from=translated src=- shape=c08287b4 vocab=dbd3148f
+-/
 theorem integral_cos_mul_cos_even_half_pi {j : ℕ} (hj : 0 < j) :
     (∫ θ in 0..Real.pi / 2, Real.cos θ * Real.cos ((2 * j : ℕ) * θ)) =
       -((-1 : ℝ) ^ j) / (4 * (j : ℝ) ^ 2 - 1) := by
@@ -115,7 +125,9 @@ theorem integral_cos_mul_cos_even_half_pi {j : ℕ} (hj : 0 < j) :
 
 /-- The positive even Chebyshev coefficients of absolute value are the exact classical fractions.
 Source: Trefethen, ATAP, Exercise 3.6.
-atlas: chebyshev-series-abs-sign (partial)-/
+atlas: chebyshev-series-abs-sign (partial)
+@isnad1 id=eq.1h1v.s7.feb94089792e from=translated src=- shape=15b5c85a vocab=3af9c409
+-/
 theorem chebyshevCoeff_abs_even {j : ℕ} (hj : 0 < j) :
     chebyshevCoeff (fun x : ℝ => |x|) (2 * j) =
       4 / Real.pi * (-1 : ℝ) ^ (j + 1) / (4 * (j : ℝ) ^ 2 - 1) := by
@@ -125,35 +137,45 @@ theorem chebyshevCoeff_abs_even {j : ℕ} (hj : 0 < j) :
   ring
 
 /-- Absolute value is one-Lipschitz, including its nondifferentiable origin.
-Source: reverse triangle inequality; helper for `chebyshev-series-abs-sign`.-/
+Source: reverse triangle inequality; helper for `chebyshev-series-abs-sign`.
+@isnad1 id=lipschit.0h0v.s4.17494bb56656 from=translated src=- shape=5c40d08b vocab=755ab271
+-/
 theorem lipschitzWith_abs : LipschitzWith 1 (fun x : ℝ => |x|) := by
   apply LipschitzWith.of_dist_le_mul
   intro x y
   simpa only [Real.dist_eq, NNReal.coe_one, one_mul] using abs_abs_sub_abs_le_abs_sub x y
 
 /-- The genuine absolute-value coefficients are absolutely summable.
-Source: Trefethen, ATAP, Exercise 3.6; helper for `chebyshev-series-abs-sign`.-/
+Source: Trefethen, ATAP, Exercise 3.6; helper for `chebyshev-series-abs-sign`.
+@isnad1 id=summable.0h0v.s4.2ff7dded7bb4 from=translated src=- shape=24b8c551 vocab=570b3af3
+-/
 theorem summable_abs_chebyshevCoeff_abs :
     Summable (fun k => |chebyshevCoeff (fun x : ℝ => |x|) k|) :=
   summable_abs_chebyshevCoeff_of_lipschitzOnWith lipschitzWith_abs.lipschitzOnWith
 
 /-- Absolute value has its genuine absolute Chebyshev expansion.
 Source: Trefethen, ATAP, Exercise 3.6.
-atlas: chebyshev-series-abs-sign (partial)-/
+atlas: chebyshev-series-abs-sign (partial)
+@isnad1 id=hassum.1h1v.s6.02eb29043edf from=translated src=- shape=836cad2a vocab=5499f54d
+-/
 theorem hasSum_chebyshevCoeff_abs_mul_eval_T {x : ℝ} (hx : x ∈ Icc (-1 : ℝ) 1) :
     HasSum (fun k => chebyshevCoeff (fun x : ℝ => |x|) k * (T ℝ (k : ℤ)).eval x) |x| :=
   hasSum_chebyshevCoeff_mul_eval_T (by fun_prop) summable_abs_chebyshevCoeff_abs hx
 
 /-- The absolute-value Chebyshev expansion converges uniformly on the entire closed interval.
 Source: Trefethen, ATAP, Exercise 3.6.
-atlas: chebyshev-series-abs-sign (partial)-/
+atlas: chebyshev-series-abs-sign (partial)
+@isnad1 id=tendstou.0h0v.s5.5fa95132ee43 from=translated src=- shape=59bf2a9d vocab=9fca3fb9
+-/
 theorem tendstoUniformlyOn_chebyshevTrunc_abs :
     TendstoUniformlyOn (fun n x => (chebyshevTrunc (fun x : ℝ => |x|) n).eval x)
       (fun x : ℝ => |x|) atTop (Icc (-1 : ℝ) 1) :=
   tendstoUniformlyOn_chebyshevTrunc (by fun_prop) summable_abs_chebyshevCoeff_abs
 
 /-- Absolute values of the positive even coefficients are exact positive fractions.
-Source: Trefethen, ATAP, Exercise 3.6; helper for `chebyshev-series-abs-sign`.-/
+Source: Trefethen, ATAP, Exercise 3.6; helper for `chebyshev-series-abs-sign`.
+@isnad1 id=eq.1h1v.s6.9bffb8b76ff1 from=translated src=- shape=8585cb5f vocab=f9493706
+-/
 theorem abs_chebyshevCoeff_abs_even {j : ℕ} (hj : 0 < j) :
     |chebyshevCoeff (fun x : ℝ => |x|) (2 * j)| =
       4 / Real.pi / (4 * (j : ℝ) ^ 2 - 1) := by
@@ -165,7 +187,9 @@ theorem abs_chebyshevCoeff_abs_even {j : ℕ} (hj : 0 < j) :
   norm_num
 
 /-- Every positive even coefficient norm is a two-term telescope.
-Source: Trefethen, ATAP, Exercise 3.6; helper for `chebyshev-series-abs-sign`.-/
+Source: Trefethen, ATAP, Exercise 3.6; helper for `chebyshev-series-abs-sign`.
+@isnad1 id=eq.0h1v.s7.946171b54c11 from=translated src=- shape=34683992 vocab=f86070b3
+-/
 theorem abs_chebyshevCoeff_abs_even_eq_sub (j : ℕ) :
     |chebyshevCoeff (fun x : ℝ => |x|) (2 * (j + 1))| =
       2 / Real.pi * (1 / (2 * (j : ℝ) + 1) - 1 / (2 * (j : ℝ) + 3)) := by
@@ -179,7 +203,9 @@ theorem abs_chebyshevCoeff_abs_even_eq_sub (j : ℕ) :
 
 /-- Summing the positive even coefficient telescope gives the exact omitted tail.
 Source: Trefethen, ATAP, Exercise 3.6; operator rederivations `polyseries:abstail`.
-atlas: chebyshev-series-abs-sign (partial)-/
+atlas: chebyshev-series-abs-sign (partial)
+@isnad1 id=hassum.0h1v.s6.20d096a20b17 from=translated src=- shape=063ba47d vocab=626df5ea
+-/
 theorem hasSum_abs_chebyshevCoeff_abs_even_tail (m : ℕ) :
     HasSum (fun j => |chebyshevCoeff (fun x : ℝ => |x|) (2 * (j + m + 1))|)
       (2 / (Real.pi * (2 * m + 1))) := by
@@ -226,7 +252,9 @@ theorem hasSum_abs_chebyshevCoeff_abs_even_tail (m : ℕ) :
 
 /-- The complete coefficient tail after degree `2m` is exactly `2/(π(2m+1))`.
 Source: Trefethen, ATAP, Exercise 3.6; odd coefficients vanish.
-atlas: chebyshev-series-abs-sign (partial)-/
+atlas: chebyshev-series-abs-sign (partial)
+@isnad1 id=eq.0h1v.s6.ef6536e3ae58 from=translated src=- shape=7aeac811 vocab=4842f0c6
+-/
 theorem tsum_abs_chebyshevCoeff_abs_tail (m : ℕ) :
     (∑' j, |chebyshevCoeff (fun x : ℝ => |x|) (j + (2 * m + 1))|) =
       2 / (Real.pi * (2 * m + 1)) := by
@@ -255,7 +283,9 @@ theorem tsum_abs_chebyshevCoeff_abs_tail (m : ℕ) :
 
 /-- The degree-`2m` Chebyshev truncation approximates absolute value with its exact tail constant.
 Source: Trefethen, ATAP, Exercise 3.6.
-atlas: chebyshev-series-abs-sign (partial)-/
+atlas: chebyshev-series-abs-sign (partial)
+@isnad1 id=le.1h2v.s7.611dad557f1c from=translated src=- shape=76880cab vocab=c0c5a61d
+-/
 theorem abs_abs_sub_eval_chebyshevTrunc_le (m : ℕ) {x : ℝ} (hx : x ∈ Icc (-1 : ℝ) 1) :
     |(|x|) - (chebyshevTrunc (fun x : ℝ => |x|) (2 * m)).eval x| ≤
       2 / (Real.pi * (2 * m + 1)) := by

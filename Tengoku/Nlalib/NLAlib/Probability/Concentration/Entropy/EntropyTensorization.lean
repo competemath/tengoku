@@ -48,7 +48,9 @@ private lemma young_scaled {Z U m : ℝ} (hZ : 0 < Z) (hm : 0 < m) :
 `∫ e^U ≤ 1`, `∫ Z U ≤ ∫ Z log Z - (∫ Z) log ∫ Z` (the duality formula for entropy).
 Source: Ledoux, *The Concentration of Measure Phenomenon*, (5.13); Boucheron–Lugosi–Massart
 2013, Cor 4.14. Atlas: `entropy-tensorization` (helper). Ported from Prove2me solution
-`GaussianMatrix.entropy_tensorization`.-/
+`GaussianMatrix.entropy_tensorization`.
+@isnad1 id=le.6h4v.s8.6b8c4f3c5a96 from=translated src=- shape=294f24e8 vocab=9ce2d983
+-/
 theorem integral_mul_le_entropy_of_integral_exp_le_one {α : Type*} [MeasurableSpace α]
     (ν : Measure α) [IsProbabilityMeasure ν]
     (Z U : α → ℝ) (hZ : ∀ t, 0 < Z t) (hZi : Integrable Z ν)
@@ -389,7 +391,9 @@ measurable `h > 0` with `h, h log h ∈ L¹(μ)`,
 Source: Ledoux, *The Concentration of Measure Phenomenon*, Prop 5.6; Boucheron–Lugosi–Massart
 2013, Thm 4.10. Atlas: `entropy-tensorization`. Ported from Prove2me solution
 `GaussianMatrix.entropy_tensorization`.
-atlas: entropy-tensorization-/
+atlas: entropy-tensorization
+@isnad1 id=le.4h4v.s8.cf344605c147 from=translated src=- shape=e7eebc27 vocab=d5188c4e
+-/
 theorem entropy_pi_le_sum_integral_entropy_update {ι : Type*} [Fintype ι] [DecidableEq ι]
     {Ω : Type*} [MeasurableSpace Ω] (μ : ι → Measure Ω) [∀ i, IsProbabilityMeasure (μ i)]
     (h : (ι → Ω) → ℝ) (hmeas : Measurable h) (hpos : ∀ x, 0 < h x)

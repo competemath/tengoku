@@ -18,13 +18,17 @@ open scoped Matrix
 
 namespace NLAlib
 
-/-- The leading part of the actual moment Jacobi matrix is its smaller-order matrix.-/
+/-- The leading part of the actual moment Jacobi matrix is its smaller-order matrix.
+@isnad1 id=eq.0h2v.s6.5f03767adabc from=translated src=- shape=45d2519c vocab=a407b45a
+-/
 theorem orthogonalPolynomialJacobiMatrix_leading (L : ℝ[X] →ₗ[ℝ] ℝ) (q : ℕ) :
     (orthogonalPolynomialJacobiMatrix L (q + 1)).submatrix Fin.castSucc Fin.castSucc =
       orthogonalPolynomialJacobiMatrix L q := rfl
 
 /-- The actual moment Jacobi matrix is tridiagonal throughout its defined positive
-moment hierarchy.-/
+moment hierarchy.
+@isnad1 id=istridia.1h2v.s5.30b6a4555215 from=translated src=- shape=07ac029c vocab=f042f803
+-/
 theorem isTridiagonal_orthogonalPolynomialJacobiMatrix (L : ℝ[X] →ₗ[ℝ] ℝ) (q : ℕ)
     (hL : ∀ k ≤ q, hankelMomentDet L k ≠ 0) :
     IsTridiagonal (orthogonalPolynomialJacobiMatrix L q) := by
@@ -45,7 +49,9 @@ def momentJacobiLastCoupling (L : ℝ[X] →ₗ[ℝ] ℝ) (q : ℕ) : Fin q → 
   fun i => orthogonalPolynomialJacobiMatrix L (q + 1) i.castSucc (Fin.last q)
 
 /-- The actual moment Jacobi matrix is exactly its leading block with its actual
-last coupling and corner.-/
+last coupling and corner.
+@isnad1 id=eq.0h2v.s6.56e237310709 from=translated src=- shape=64a6d0ed vocab=7ecb5e3c
+-/
 theorem orthogonalPolynomialJacobiMatrix_eq_finSymmetricBorder
     (L : ℝ[X] →ₗ[ℝ] ℝ) (q : ℕ) :
     orthogonalPolynomialJacobiMatrix L (q + 1) =
@@ -79,7 +85,9 @@ def rightRadauJacobiMatrix (L : ℝ[X] →ₗ[ℝ] ℝ) (q : ℕ) (c : ℝ) :
 /-- Replacing the actual order-`q+1` moment Jacobi corner by either endpoint Schur
 corner preserves moments through `2q`. No exactness hypothesis is imposed on either
 constructed output. Source: focused reroutes, Section 3 (BL5).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=other.3h5v.s9.06c7a3b2c050 from=translated src=- shape=cab45dc2 vocab=7f5e522a
+-/
 theorem integral_pow_eq_mass_mul_radauJacobiMatrix_pow {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) (q : ℕ) (hs : (q + 1 : ℕ∞) ≤ μ.support.encard)
     (a c : ℝ) {k : ℕ} (hk : k ≤ 2 * q) :
@@ -116,7 +124,9 @@ def lobattoJacobiMatrix (L : ℝ[X] →ₗ[ℝ] ℝ) (q : ℕ) (a c : ℝ) :
 /-- Adjoining the actual Lobatto Schur coupling to the canonical `(q+1)`-block
 preserves moments through `2q+1`, requiring no original coefficient after index `q`.
 Source: focused reroutes, Section 3 (BL10).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=other.3h5v.s8.59460ba5ebfa from=translated src=- shape=1eb16a86 vocab=1fa79a5b
+-/
 theorem integral_pow_eq_mass_mul_lobattoJacobiMatrix_pow {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) (q : ℕ) (hs : (q + 1 : ℕ∞) ≤ μ.support.encard)
     (a c : ℝ) {k : ℕ} (hk : k ≤ 2 * q + 1) :

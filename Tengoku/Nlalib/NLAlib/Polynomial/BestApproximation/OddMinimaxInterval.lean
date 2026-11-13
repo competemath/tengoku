@@ -11,7 +11,9 @@ noncomputable section
 open Polynomial Finset Set
 namespace NLAlib
 
-/-- The constant-plus-odd coefficient convention includes every linear update.-/
+/-- The constant-plus-odd coefficient convention includes every linear update.
+@isnad1 id=eq.0h3v.s5.6f81eca003ae from=translated src=- shape=09e4fdcf vocab=43555569
+-/
 theorem oddScalarUpdate_single_zero (q : ℕ) (t x : ℝ) :
     oddScalarUpdate q (Pi.single 0 t) x = t * x := by
   unfold oddScalarUpdate
@@ -21,7 +23,9 @@ theorem oddScalarUpdate_single_zero (q : ℕ) (t x : ℝ) :
   · simp
 
 /-- Scaling a positive interval to be centered at one has exact uniform
-relative-width error. The estimate also holds for singleton intervals.-/
+relative-width error. The estimate also holds for singleton intervals.
+@isnad1 id=le.3h3v.s6.a789bf290f72 from=translated src=- shape=64987956 vocab=65384ecc
+-/
 theorem abs_one_sub_two_div_mul_le {a b x : ℝ} (ha : 0 < a) (hab : a ≤ b)
     (hx : x ∈ Icc a b) :
     |1 - (2 / (a + b)) * x| ≤ (b - a) / (a + b) := by
@@ -34,7 +38,9 @@ theorem abs_one_sub_two_div_mul_le {a b x : ℝ} (ha : 0 < a) (hab : a ≤ b)
     mul_le_mul_of_nonneg_left hx.2 (by positivity)
   exact abs_le.mpr ⟨by linarith, by linarith⟩
 
-/-- Every genuine positive-interval odd minimax error is less than one.-/
+/-- Every genuine positive-interval odd minimax error is less than one.
+@isnad1 id=lt.3h4v.s5.e8b08b2d0ff9 from=translated src=- shape=05105f4d vocab=7ed75a6e
+-/
 theorem IsOddMinimaxOn.error_lt_one {q : ℕ} {c : ℕ → ℝ} {a b : ℝ}
     (h : IsOddMinimaxOn q c a b) (ha : 0 < a) (hab : a ≤ b) :
     oddUniformError q c a b < 1 := by
@@ -47,7 +53,9 @@ theorem IsOddMinimaxOn.error_lt_one {q : ℕ} {c : ℕ → ℝ} {a b : ℝ}
     exact abs_one_sub_two_div_mul_le ha hab hx
   exact ((h _).trans he).trans_lt ((div_lt_one hs).mpr (by linarith))
 
-/-- Actual minimum and maximum values of a continuous interval update.-/
+/-- Actual minimum and maximum values of a continuous interval update.
+@isnad1 id=ex.1h4v.s6.175c84c0d30d from=translated src=- shape=089976d7 vocab=a32ce6b4
+-/
 theorem exists_oddScalarUpdate_interval_bounds (q : ℕ) (c : ℕ → ℝ) {a b : ℝ}
     (hab : a ≤ b) :
     ∃ m M : ℝ, (∀ x ∈ Icc a b, m ≤ oddScalarUpdate q c x ∧ oddScalarUpdate q c x ≤ M) ∧
@@ -62,7 +70,9 @@ theorem exists_oddScalarUpdate_interval_bounds (q : ℕ) (c : ℕ → ℝ) {a b 
 
 /-- A genuine minimax interval image is positive, centered at one, and
 its uniform error equals one minus its lower endpoint. No strict-length
-assumption is needed; a singleton minimax image is exactly `{1}`.-/
+assumption is needed; a singleton minimax image is exactly `{1}`.
+@isnad1 id=and.6h6v.s7.a19c5dbe65c9 from=translated src=- shape=8ece6673 vocab=a3f7dfc0
+-/
 theorem IsOddMinimaxOn.interval_image_normalized {q : ℕ} {c : ℕ → ℝ} {a b m M : ℝ}
     (h : IsOddMinimaxOn q c a b) (ha : 0 < a) (hab : a ≤ b)
     (hbounds : ∀ x ∈ Icc a b, m ≤ oddScalarUpdate q c x ∧ oddScalarUpdate q c x ≤ M)

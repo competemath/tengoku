@@ -17,13 +17,17 @@ open Polynomial Polynomial.Chebyshev Real Finset MeasureTheory
 
 namespace NLAlib
 
-/-- Every polynomial is integrable against the first-kind Chebyshev measure.-/
+/-- Every polynomial is integrable against the first-kind Chebyshev measure.
+@isnad1 id=haspolyn.0h0v.s1.3028de94e7f0 from=translated src=- shape=49959d42 vocab=fccf0968
+-/
 theorem hasPolynomialMoments_measureT : HasPolynomialMoments measureT :=
   fun p => integrable_measureT p.continuous.continuousOn
 
 /-- The actual extrema cardinal integral against the first-kind Chebyshev measure is
 the explicit endpoint-half weight. Source: Gautschi (2004), Example 1.50.
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.1h2v.s6.9d7a5693a1df from=translated src=- shape=0e09671d vocab=2f25a36c
+-/
 theorem integral_lobattoCardinal_measureT {N : ℕ} (hN : 0 < N) (j : ℕ) :
     (∫ x, (lobattoCardinal N j).eval x ∂measureT) = π * lobattoEndpointWeight N j / N := by
   let L := polynomialIntegral measureT hasPolynomialMoments_measureT
@@ -38,7 +42,9 @@ theorem integral_lobattoCardinal_measureT {N : ℕ} (hN : 0 < N) (j : ℕ) :
 
 /-- The explicit Chebyshev Lobatto weights are positive, including both half-weight
 endpoints. Source: Gautschi (2004), Example 1.50.
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=lt.1h2v.s5.8d0d696fe953 from=translated src=- shape=9f149c68 vocab=e5e58430
+-/
 theorem chebyshevLobattoWeight_pos {N : ℕ} (hN : 0 < N) (j : ℕ) :
     0 < π * lobattoEndpointWeight N j / N := by
   apply div_pos _ (by exact_mod_cast hN)
@@ -49,7 +55,9 @@ theorem chebyshevLobattoWeight_pos {N : ℕ} (hN : 0 < N) (j : ℕ) :
 /-- The actual Chebyshev Gauss–Lobatto rule has `N+1` extrema nodes and the explicit
 endpoint-half weights, and integrates every polynomial through degree `2N−1`.
 The case `N=1` is the two-endpoint rule. Source: Gautschi (2004), Example 1.50.
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.2h2v.s7.faa97ca8b7b7 from=translated src=- shape=02d48c5f vocab=0ecb0171
+-/
 theorem integral_eval_measureT_eq_chebyshevLobattoRule {N : ℕ} (hN : 0 < N)
     {p : ℝ[X]} (hp : p.degree < (2 * N : ℕ)) :
     (∫ x, p.eval x ∂measureT) =
@@ -106,7 +114,9 @@ theorem integral_eval_measureT_eq_chebyshevLobattoRule {N : ℕ} (hN : 0 < N)
 
 /-- The explicit endpoint-half Chebyshev Lobatto weights sum to the measure mass `π`.
 Source: Gautschi (2004), Example 1.50.
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.1h1v.s5.9ac2c1f0e808 from=translated src=- shape=ea1629a1 vocab=f99aad59
+-/
 theorem sum_chebyshevLobattoWeight {N : ℕ} (hN : 0 < N) :
     (∑ j ∈ range (N + 1), π * lobattoEndpointWeight N j / N) = π := by
   have h := integral_eval_measureT_eq_chebyshevLobattoRule hN (p := 1) (by
@@ -118,7 +128,9 @@ theorem sum_chebyshevLobattoWeight {N : ℕ} (hN : 0 < N) :
 /-- Chebyshev polynomials through degree `N` are discretely orthogonal in the actual
 Chebyshev Lobatto rule. The two boundary modes have squared norm `π`; the other modes
 have squared norm `π/2`. Source: Gautschi (2004), Theorem 1.23 and Example 1.50.
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.3h3v.s7.9c0ee669de09 from=translated src=- shape=eef6e309 vocab=2e63a26a
+-/
 theorem sum_chebyshevLobattoWeight_mul_eval_T_mul_eval_T {N : ℕ} (hN : 0 < N)
     (i k : ℕ) (hi : i ≤ N) (hk : k ≤ N) :
     (∑ j ∈ range (N + 1), (π * lobattoEndpointWeight N j / N) *

@@ -18,7 +18,9 @@ set_option backward.isDefEq.respectTransparency false
 open Polynomial MeasureTheory Set Finset
 namespace NLAlib
 
-/-- Strictly positive denominator density preserves the topological support.-/
+/-- Strictly positive denominator density preserves the topological support.
+@isnad1 id=eq.1h2v.s5.bf986d0b7ce9 from=translated src=- shape=3b6bf9c9 vocab=96fa3e45
+-/
 theorem support_dividedPolynomialMeasure_eq {μ : Measure ℝ} {ω : ℝ[X]}
     (hω : ∀ᵐ x ∂μ, 0 < ω.eval x) : (dividedPolynomialMeasure μ ω).support = μ.support := by
   apply Set.Subset.antisymm
@@ -28,7 +30,9 @@ theorem support_dividedPolynomialMeasure_eq {μ : Measure ℝ} {ω : ℝ[X]}
     exact (ENNReal.ofReal_pos.mpr (inv_pos.mpr hx)).ne'
 
 /-- A positive denominator on the compact support enclosure gives all actual
-polynomial moments of the reciprocal-density measure.-/
+polynomial moments of the reciprocal-density measure.
+@isnad1 id=haspolyn.2h4v.s6.7b09ad033b93 from=translated src=- shape=b4856993 vocab=cf7a1454
+-/
 theorem hasPolynomialMoments_dividedPolynomialMeasure_of_ae_mem_Icc
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {ω : ℝ[X]}
@@ -47,7 +51,9 @@ theorem hasPolynomialMoments_dividedPolynomialMeasure_of_ae_mem_Icc
 rule for the original measure, with real nodes in its support enclosure and
 strictly positive multiplied weights. No polynomial-exact rule is assumed.
 Source: Gautschi (2004), rational Gauss construction AQ36.
-atlas: rational-gauss-quadrature (partial)-/
+atlas: rational-gauss-quadrature (partial)
+@isnad1 id=other.4h5v.s8.da4eb007fea4 from=translated src=- shape=2bdef261 vocab=e65eb12f
+-/
 theorem rational_gauss_rule_of_positive_denominator
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {ω : ℝ[X]}
@@ -80,7 +86,9 @@ theorem rational_gauss_rule_of_positive_denominator
 /-- Any distinct-node rational rule of the full numerator degree range is the
 actual Gauss rule of the reciprocal-density measure after dividing its weights.
 Source: Gautschi (2004), rational Gauss converse AQ36.
-atlas: rational-gauss-quadrature (partial)-/
+atlas: rational-gauss-quadrature (partial)
+@isnad1 id=other.6h7v.s8.bd0a5501cb9d from=translated src=- shape=060333ab vocab=03f6332f
+-/
 theorem rational_rule_eq_divided_measure_gauss_of_exactness
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {ω : ℝ[X]}

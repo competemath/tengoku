@@ -16,7 +16,9 @@ open Polynomial MeasureTheory Set Finset
 namespace NLAlib
 
 /-- Any uniform complex polynomial approximation bounds the actual canonical
-Gauss error by twice the original mass times its error.-/
+Gauss error by twice the original mass times its error.
+@isnad1 id=le.7h7v.s8.2cf3537dbc73 from=translated src=- shape=0add3256 vocab=e2948347
+-/
 theorem norm_integral_sub_sum_gaussWeights_le_of_polynomial_approx
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {n : ℕ} (hn0 : 0 < n)
@@ -61,7 +63,9 @@ theorem norm_integral_sub_sum_gaussWeights_le_of_polynomial_approx
 /-- Outside a radius enclosing the real interval, the native Stieltjes
 transform differs from its actual second-kind ratio by the explicit finite
 moment-matching bound. Source: Gautschi (2004), Markov theorem, AQ20.
-atlas: jacobi-fraction-second-kind (partial)-/
+atlas: jacobi-fraction-second-kind (partial)
+@isnad1 id=le.7h6v.s8.3355571b2b3c from=translated src=- shape=8f44247b vocab=fd487f7d
+-/
 theorem norm_stieltjesTransform_sub_secondKind_div_le_geometric
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {n : ℕ} (hn0 : 0 < n)

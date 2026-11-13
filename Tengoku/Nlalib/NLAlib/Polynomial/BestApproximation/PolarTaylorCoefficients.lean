@@ -18,7 +18,9 @@ namespace NLAlib
 def polarTaylorCoefficientPolynomial (q : ℕ) : ℝ[X] :=
   ∑ j ∈ range (q + 1), C (polarTaylorCoeff j) * (1 - X) ^ j
 
-/-- Its degree bound is finite and applies also to `q=0`.-/
+/-- Its degree bound is finite and applies also to `q=0`.
+@isnad1 id=le.0h1v.s3.21ab31d85cc4 from=translated src=- shape=c3f7ecf6 vocab=486ac3c1
+-/
 theorem natDegree_polarTaylorCoefficientPolynomial_le (q : ℕ) :
     (polarTaylorCoefficientPolynomial q).natDegree ≤ q := by
   apply Polynomial.natDegree_sum_le_of_forall_le
@@ -31,7 +33,9 @@ theorem natDegree_polarTaylorCoefficientPolynomial_le (q : ℕ) :
   exact (Nat.mul_le_mul_left j hd).trans (by simpa using hjq)
 
 /-- The ordinary coefficients realize the Taylor competitor in exactly the
-same coefficient model used by the minimax problem and the matrix algorithm.-/
+same coefficient model used by the minimax problem and the matrix algorithm.
+@isnad1 id=eq.0h2v.s4.e4b0deba9583 from=translated src=- shape=091b8126 vocab=2d5d0b87
+-/
 theorem oddScalarUpdate_polarTaylor_coeff (q : ℕ) (x : ℝ) :
     oddScalarUpdate q (polarTaylorCoefficientPolynomial q).coeff x = polarTaylorUpdate q x := by
   have he := Polynomial.eval_eq_sum_range'
@@ -48,7 +52,9 @@ theorem oddScalarUpdate_polarTaylor_coeff (q : ℕ) (x : ℝ) :
   ring
 
 /-- The finite Taylor competitor is an actual member of the allowed odd
-polynomial coefficient class.-/
+polynomial coefficient class.
+@isnad1 id=ex.0h1v.s4.3074ebc6812c from=translated src=- shape=ad6b14bb vocab=26de35d2
+-/
 theorem exists_oddScalarUpdate_eq_polarTaylorUpdate (q : ℕ) :
     ∃ c : ℕ → ℝ, ∀ x, oddScalarUpdate q c x = polarTaylorUpdate q x :=
   ⟨(polarTaylorCoefficientPolynomial q).coeff, oddScalarUpdate_polarTaylor_coeff q⟩
@@ -56,7 +62,9 @@ theorem exists_oddScalarUpdate_eq_polarTaylorUpdate (q : ℕ) :
 /-- A genuine admissible odd coefficient competitor with the exact squared-gap
 lower envelope on an arbitrary positive interval.
 Source: Polar Express, Appendix D, finite Taylor competitor route.
-atlas: polar-minimax-polynomial-iteration (partial)-/
+atlas: polar-minimax-polynomial-iteration (partial)
+@isnad1 id=ex.2h3v.s7.da98127f25db from=translated src=- shape=10cea65e vocab=dea05a49
+-/
 theorem exists_oddScalarUpdate_interval_competitor (q : ℕ) {a b : ℝ}
     (ha : 0 < a) (hab : a ≤ b) :
     ∃ c : ℕ → ℝ, ∀ x ∈ Icc a b,

@@ -20,7 +20,9 @@ open Polynomial Set
 namespace NLAlib
 
 /-- A pole-free polynomial fraction defines a rational function of the same or smaller type.
-Source: Trefethen, ATAP, Chapter 23; normalization divides out the polynomial gcd.-/
+Source: Trefethen, ATAP, Chapter 23; normalization divides out the polynomial gcd.
+@isnad1 id=ispolefr.4h5v.s8.a139b221bb61 from=translated src=- shape=1a36ad15 vocab=31276cb9
+-/
 theorem isPoleFreeRationalApproximation_div {s : Set ℝ} {m n : ℕ} (p q : ℝ[X])
     (hp : p.degree ≤ m) (hq : q.degree ≤ n) (hq0 : q ≠ 0)
     (hpole : ∀ x ∈ s, q.eval x ≠ 0) :
@@ -36,7 +38,9 @@ theorem isPoleFreeRationalApproximation_div {s : Set ℝ} {m n : ℕ} (p q : ℝ
     rw [ha, eval_mul, hzero, zero_mul]
 
 /-- Canonical rational-function evaluation equals the original pole-free polynomial ratio.
-Source: Trefethen, ATAP, Chapter 23.-/
+Source: Trefethen, ATAP, Chapter 23.
+@isnad1 id=eq.4h6v.s8.93c4b3964dd7 from=translated src=- shape=6ecc18e4 vocab=4e58f5de
+-/
 theorem rationalContinuousMap_div_apply_eq {s : Set ℝ} {m n : ℕ} (p q : ℝ[X])
     (hp : p.degree ≤ m) (hq : q.degree ≤ n) (hq0 : q ≠ 0)
     (hpole : ∀ x ∈ s, q.eval x ≠ 0) (x : s) :
@@ -54,7 +58,9 @@ theorem rationalContinuousMap_div_apply_eq {s : Set ℝ} {m n : ℕ} (p q : ℝ[
   change r.num.eval (x : ℝ) / r.denom.eval (x : ℝ) = _
   exact (div_eq_div_iff (hr.2.2 x x.property) (hpole x x.property)).mpr hev
 
-/-- Zero is a pole-free rational approximant of every type. Source: ATAP, Chapter 23.-/
+/-- Zero is a pole-free rational approximant of every type. Source: ATAP, Chapter 23.
+@isnad1 id=ispolefr.0h3v.s4.8b5d2b55c759 from=translated src=- shape=2dea2d3e vocab=3a436005
+-/
 theorem isPoleFreeRationalApproximation_zero (s : Set ℝ) (m n : ℕ) :
     IsPoleFreeRationalApproximation s m n 0 := by
   refine ⟨?_, ?_, ?_⟩
@@ -63,18 +69,24 @@ theorem isPoleFreeRationalApproximation_zero (s : Set ℝ) (m n : ℕ) :
     exact_mod_cast Nat.zero_le n
   · simp
 
-/-- The rational approximation set is nonempty. Source: ATAP, Chapter 23.-/
+/-- The rational approximation set is nonempty. Source: ATAP, Chapter 23.
+@isnad1 id=nonempty.0h3v.s5.35d9e876f54a from=translated src=- shape=151980e9 vocab=7b23ae3e
+-/
 theorem rationalApproximationSpace_nonempty (s : Set ℝ) (m n : ℕ) :
     (rationalApproximationSpace s m n).Nonempty :=
   ⟨rationalContinuousMap s 0 (isPoleFreeRationalApproximation_zero s m n).2.2,
     0, isPoleFreeRationalApproximation_zero s m n, rfl⟩
 
-/-- Rational minimax error is nonnegative. Source: ATAP, Chapter 24.-/
+/-- Rational minimax error is nonnegative. Source: ATAP, Chapter 24.
+@isnad1 id=le.0h4v.s6.e83175c7dfc6 from=translated src=- shape=36c1cf50 vocab=aad39aee
+-/
 theorem rationalMinimaxError_nonneg {s : Set ℝ} [CompactSpace s]
     (m n : ℕ) (f : C(s, ℝ)) : 0 ≤ rationalMinimaxError m n f := Metric.infDist_nonneg
 
 /-- Every pole-free rational competitor bounds the best uniform rational error.
-Source: ATAP, Chapter 24.-/
+Source: ATAP, Chapter 24.
+@isnad1 id=le.1h5v.s8.0cdd9f97da1c from=translated src=- shape=285b30e9 vocab=5abd0cfa
+-/
 theorem rationalMinimaxError_le_norm_sub {s : Set ℝ} [CompactSpace s] (m n : ℕ)
     (f : C(s, ℝ)) {g : C(s, ℝ)} (hg : g ∈ rationalApproximationSpace s m n) :
     rationalMinimaxError m n f ≤ ‖f - g‖ := by
@@ -83,7 +95,9 @@ theorem rationalMinimaxError_le_norm_sub {s : Set ℝ} [CompactSpace s] (m n : �
 /-- Best real type-`(m,n)` uniform rational approximation is attained on every nondegenerate
 real interval. Source: Trefethen, ATAP, Theorem 24.1; joint coefficient compactness and
 iterative real-pole cancellation. The output is Mathlib's canonical `RatFunc`.
-atlas: rational-equioscillation (partial)-/
+atlas: rational-equioscillation (partial)
+@isnad1 id=ex.1h5v.s8.4b83615da8e5 from=translated src=- shape=d5c5cd4d vocab=049626f3
+-/
 theorem exists_norm_sub_eq_rationalMinimaxError {a b : ℝ} (hab : a < b) (m n : ℕ)
     (f : C(Icc a b, ℝ)) :
     ∃ (r : RatFunc ℝ) (hr : IsPoleFreeRationalApproximation (Icc a b) m n r),

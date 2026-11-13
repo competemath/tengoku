@@ -40,7 +40,9 @@ def diagonalCenteredQuadraticForm {n : ℕ} (μ : Measure Ω)
 
 open scoped Matrix.Norms.L2Operator in
 /-- Source-transport helper `diagonalCenteredQuadraticForm_cgf_le` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=le.8h8v.s8.0bc90c5d49fe from=translated src=- shape=7b5f4c7b vocab=26678ca5
+-/
 lemma diagonalCenteredQuadraticForm_cgf_le {μ : Measure Ω} [IsProbabilityMeasure μ]
     {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ} {X : Fin n → Ω → ℝ}
     {K C θ : ℝ} (hK : 0 < K) (hC : 0 < C)

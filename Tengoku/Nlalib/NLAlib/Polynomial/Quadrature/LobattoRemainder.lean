@@ -17,7 +17,9 @@ namespace NLAlib
 /-- The actual two-endpoint Hermite interpolant has the order-`2q+2` Lobatto remainder.
 The case `q=0` is ordinary two-endpoint linear interpolation; node evaluations are exact.
 Source: Gautschi (2004), Theorem 3.7; operator derivations (AQ11).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=ex.6h6v.s8.12f5981e1ada from=translated src=- shape=b5d6f70a vocab=224e2d97
+-/
 theorem exists_sub_eval_hermiteTwoEndpointInterpolate_eq {q : ℕ}
     {a b x : ℝ} (hab : a < b) {v : Fin q → ℝ} (hv : Function.Injective v)
     (hva : ∀ i, v i ∈ Ioo a b) (hx : x ∈ Icc a b) {f : ℝ → ℝ}

@@ -21,7 +21,9 @@ namespace NLAlib
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
   {L : E → (ℝ[X] →ₗ[ℝ] ℝ)} {x : E} {n : ℕ}
 
-/-- Coefficients of normalized moment polynomials are smooth at positive norm.-/
+/-- Coefficients of normalized moment polynomials are smooth at positive norm.
+@isnad1 id=contdiff.3h5v.s8.d1dc93859890 from=translated src=- shape=b864a4ad vocab=ccc1f982
+-/
 theorem contDiffAt_coeff_orthonormalMomentPolynomial
     (hL : ∀ k, ContDiffAt ℝ 1 (fun y => L y (X ^ k)) x)
     (hn : hankelMomentDet (L x) n ≠ 0)
@@ -32,7 +34,9 @@ theorem contDiffAt_coeff_orthonormalMomentPolynomial
     (Real.sqrt_pos.mpr hh).ne' |>.mul (contDiffAt_coeff_monicOrthogonalPolynomial hL hn k)
 
 /-- Each actual finite moment Jacobi entry is continuous at a nonsingular,
-positive-norm system.-/
+positive-norm system.
+@isnad1 id=continuo.3h6v.s8.0b066bd25045 from=translated src=- shape=8543dc55 vocab=247b1b22
+-/
 theorem continuousAt_orthogonalPolynomialJacobiMatrix_apply
     (hL : ∀ k, ContDiffAt ℝ 1 (fun y => L y (X ^ k)) x)
     (hn : ∀ k < n, hankelMomentDet (L x) k ≠ 0)
@@ -62,7 +66,9 @@ theorem continuousAt_orthogonalPolynomialJacobiMatrix_apply
 
 /-- The canonically indexed real nodes of a finite moment Jacobi matrix are
 continuous at each nonsingular positive-norm system. Source: AQ22–AQ23.
-atlas: recurrence-coefficient-continuity (partial)-/
+atlas: recurrence-coefficient-continuity (partial)
+@isnad1 id=continuo.3h5v.s8.17d82963641c from=translated src=- shape=2340a9f1 vocab=aba99ce2
+-/
 theorem continuousAt_eigenvalues_orthogonalPolynomialJacobiMatrix
     (hL : ∀ k, ContDiffAt ℝ 1 (fun y => L y (X ^ k)) x)
     (hn : ∀ k < n, hankelMomentDet (L x) k ≠ 0)

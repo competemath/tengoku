@@ -37,7 +37,9 @@ def rankOneCovarianceMoment (y : Ω → Fin r → ℝ) (μ : Measure Ω) (n p : 
   (∫ ω : Fin n → Ω, (rankOneCovarianceSum y ω ^ (2 * p)).trace
     ∂Measure.pi fun _ : Fin n => μ) / r
 
-/-- A centered rank-one covariance matrix is real symmetric.-/
+/-- A centered rank-one covariance matrix is real symmetric.
+@isnad1 id=ishermit.0h2v.s5.3338121dbf19 from=translated src=- shape=128be85d vocab=df83343c
+-/
 theorem isHermitian_centeredRankOneCovariance (y : Fin r → ℝ) :
     (centeredRankOneCovariance y).IsHermitian := by
   unfold centeredRankOneCovariance
@@ -46,7 +48,9 @@ theorem isHermitian_centeredRankOneCovariance (y : Fin r → ℝ) :
   simp [vecMulVec_apply, Matrix.one_apply, mul_comm, eq_comm]
 
 omit [MeasurableSpace Ω] in
-/-- Every centered covariance sum is real symmetric.-/
+/-- Every centered covariance sum is real symmetric.
+@isnad1 id=ishermit.0h5v.s5.244a8192bd44 from=translated src=- shape=c413b1f2 vocab=321e986f
+-/
 theorem isHermitian_rankOneCovarianceSum (y : Ω → Fin r → ℝ) {n : ℕ} (ω : Fin n → Ω) :
     (rankOneCovarianceSum y ω).IsHermitian := by
   unfold rankOneCovarianceSum
@@ -56,7 +60,9 @@ theorem isHermitian_rankOneCovarianceSum (y : Ω → Fin r → ℝ) {n : ℕ} (�
   exact Finset.sum_congr rfl fun a _ => (isHermitian_centeredRankOneCovariance (y (ω a))).apply i j
 
 omit [MeasurableSpace Ω] in
-/-- Prepending one sample adds its centered covariance matrix to the sum.-/
+/-- Prepending one sample adds its centered covariance matrix to the sum.
+@isnad1 id=eq.0h6v.s6.6b47264e064f from=translated src=- shape=8a2c9873 vocab=83d845db
+-/
 theorem rankOneCovarianceSum_cons (y : Ω → Fin r → ℝ) {n : ℕ} (ω : Fin n → Ω) (v : Ω) :
     rankOneCovarianceSum y (Fin.cons v ω) =
       rankOneCovarianceSum y ω + centeredRankOneCovariance (y v) := by
@@ -85,7 +91,9 @@ private theorem measurableEmbedding_sampleCons (n : ℕ) :
   exact MeasurableEquiv.measurableEmbedding _
 
 /-- Finite moments of the squared vector norm imply finite natural moments of each scalar
-coordinate, including odd powers.-/
+coordinate, including odd powers.
+@isnad1 id=hasfinit.2h5v.s6.d12ba0f50513 from=translated src=- shape=51382f1d vocab=a6aa348a
+-/
 theorem hasFiniteNatMoments_coordinate_of_dotProduct {μ : Measure Ω} [IsProbabilityMeasure μ]
     {y : Ω → Fin r → ℝ} (hy : Measurable y)
     (hmom : ∀ p : ℕ, Integrable (fun ω => (y ω ⬝ᵥ y ω) ^ p) μ) (a : Fin r) :
@@ -112,7 +120,9 @@ theorem hasFiniteNatMoments_coordinate_of_dotProduct {μ : Measure Ω} [IsProbab
   nlinarith [sq_nonneg (|y ω a ^ p| - 1)]
 
 /-- Centered iid covariance sums have integrable polynomial trace moments whenever the sample
-has finite moments of its squared norm.-/
+has finite moments of its squared norm.
+@isnad1 id=integrab.2h6v.s7.abf7d3033c4f from=translated src=- shape=e36c85df vocab=db0b7ce3
+-/
 theorem integrable_trace_pow_rankOneCovarianceSum {μ : Measure Ω} [IsProbabilityMeasure μ]
     {y : Ω → Fin r → ℝ} (hy : Measurable y)
     (hmom : ∀ p : ℕ, Integrable (fun ω => (y ω ⬝ᵥ y ω) ^ p) μ) (n p : ℕ) :
@@ -150,7 +160,9 @@ private theorem integral_trace_pow_covarianceSum_succ {μ : Measure Ω} [IsProba
   filter_upwards [] with v
   rw [rankOneCovarianceSum_cons]
 
-/-- Normalized covariance moments are nonnegative, without an integrability side condition.-/
+/-- Normalized covariance moments are nonnegative, without an integrability side condition.
+@isnad1 id=le.0h6v.s5.eaeeabddf709 from=translated src=- shape=461d500a vocab=f27bd109
+-/
 theorem rankOneCovarianceMoment_nonneg (y : Ω → Fin r → ℝ) (μ : Measure Ω) (n p : ℕ) :
     0 ≤ rankOneCovarianceMoment y μ n p := by
   unfold rankOneCovarianceMoment
@@ -158,13 +170,17 @@ theorem rankOneCovarianceMoment_nonneg (y : Ω → Fin r → ℝ) (μ : Measure 
     trace_pow_nonneg_of_even (isHermitian_rankOneCovarianceSum y ω) (even_two_mul p))
     (Nat.cast_nonneg r)
 
-/-- The zeroth normalized trace moment is one for a positive target dimension.-/
+/-- The zeroth normalized trace moment is one for a positive target dimension.
+@isnad1 id=eq.1h5v.s5.c8729ab250a9 from=translated src=- shape=5faae86e vocab=c47e1e7a
+-/
 theorem rankOneCovarianceMoment_zero {μ : Measure Ω} [IsProbabilityMeasure μ]
     (y : Ω → Fin r → ℝ) (hr : 0 < r) (n : ℕ) :
     rankOneCovarianceMoment y μ n 0 = 1 := by
   simp [rankOneCovarianceMoment, Matrix.trace_one, ne_of_gt hr]
 
-/-- Before drawing any samples every positive-order centered moment vanishes.-/
+/-- Before drawing any samples every positive-order centered moment vanishes.
+@isnad1 id=eq.1h5v.s5.4d688be604ae from=translated src=- shape=1554a92b vocab=bf096bdf
+-/
 theorem rankOneCovarianceMoment_zero_samples (y : Ω → Fin r → ℝ) (μ : Measure Ω)
     {p : ℕ} (hp : 0 < p) : rankOneCovarianceMoment y μ 0 p = 0 := by
   simp [rankOneCovarianceMoment, rankOneCovarianceSum, Nat.ne_of_gt hp]
@@ -202,7 +218,9 @@ private theorem integral_covarianceMomentEnvelope_le {μ : Measure Ω} [IsProbab
 
 /-- A one-sample centered matrix trace estimate implies the factorial recurrence for the
 actual iid covariance process. All sample integrability follows from finite squared-norm
-moments; no eigenvector measurability is required.-/
+moments; no eigenvector measurability is required.
+@isnad1 id=le.6h8v.s9.ff0893864154 from=translated src=- shape=fc9792ba vocab=58b6658d
+-/
 theorem rankOneCovarianceMoment_succ_le {μ : Measure Ω} [IsProbabilityMeasure μ]
     {y : Ω → Fin r → ℝ} (hy : Measurable y)
     (hmom : ∀ p : ℕ, Integrable (fun ω => (y ω ⬝ᵥ y ω) ^ p) μ)
@@ -268,7 +286,9 @@ theorem rankOneCovarianceMoment_succ_le {μ : Measure Ω} [IsProbabilityMeasure 
 
 /-- The iid covariance moment bound obtained from the actual one-step trace estimate and
 the finite factorial recurrence. The constants retain the square-root variance scale and
-the linear radius scale.-/
+the linear radius scale.
+@isnad1 id=le.8h8v.s9.21c7681b42bf from=translated src=- shape=64efc42b vocab=18f2d14d
+-/
 theorem rankOneCovarianceMoment_le_sqrt_add_mul_pow {μ : Measure Ω} [IsProbabilityMeasure μ]
     {y : Ω → Fin r → ℝ} (hy : Measurable y)
     (hmom : ∀ p : ℕ, Integrable (fun ω => (y ω ⬝ᵥ y ω) ^ p) μ)
@@ -290,7 +310,9 @@ theorem rankOneCovarianceMoment_le_sqrt_add_mul_pow {μ : Measure Ω} [IsProbabi
     exact rankOneCovarianceMoment_succ_le hy hmom hr hν.le hR n p (hstep p hp hpq)
 
 /-- Markov's inequality for the spectral norm of an iid centered covariance sum, given its
-normalized trace moment.-/
+normalized trace moment.
+@isnad1 id=le.4h7v.s7.3cb8e9d707df from=translated src=- shape=ea5bb91b vocab=379cac0c
+-/
 theorem measureReal_lt_specNorm_rankOneCovarianceSum_le {μ : Measure Ω} [IsProbabilityMeasure μ]
     {y : Ω → Fin r → ℝ} (hy : Measurable y)
     (hmom : ∀ p : ℕ, Integrable (fun ω => (y ω ⬝ᵥ y ω) ^ p) μ)
@@ -325,7 +347,9 @@ theorem measureReal_lt_specNorm_rankOneCovarianceSum_le {μ : Measure Ω} [IsPro
 open scoped Matrix.Norms.L2Operator in
 /-- A finite-moment concentration bound for the empirical covariance of actual iid vector
 samples. A source one-step trace estimate yields a spectral failure probability with the
-variance and radius scales `2√(qνm)+2qR`.-/
+variance and radius scales `2√(qνm)+2qR`.
+@isnad1 id=le.9h9v.s9.1e9d9a62227b from=translated src=- shape=74e7dbe8 vocab=7ec09bf2
+-/
 theorem measureReal_lt_specNorm_smul_rankOneCovarianceSum_le {μ : Measure Ω} [IsProbabilityMeasure μ]
     {y : Ω → Fin r → ℝ} (hy : Measurable y)
     (hmom : ∀ p : ℕ, Integrable (fun ω => (y ω ⬝ᵥ y ω) ^ p) μ)

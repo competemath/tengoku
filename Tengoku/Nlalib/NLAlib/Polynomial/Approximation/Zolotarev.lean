@@ -55,7 +55,9 @@ def one (E F : Set ℂ) (k : ℕ) : ZolotarevPair E F k where
   denominator_ne_zero := by simp
   numerator_ne_zero := by simp
 
-/-- The constant competitor never costs more than one, including empty sets.-/
+/-- The constant competitor never costs more than one, including empty sets.
+@isnad1 id=le.0h3v.s4.94415c4a5b5a from=translated src=- shape=cfbfd851 vocab=74d9328f
+-/
 theorem cost_one_le (E F : Set ℂ) (k : ℕ) : (one E F k).cost ≤ 1 := by
   unfold cost
   have h₁ : (⨆ z : E, (‖(one E F k).numerator.eval (z : ℂ) /
@@ -95,7 +97,9 @@ def mul (P : ZolotarevPair E F k) (Q : ZolotarevPair E F l) : ZolotarevPair E F 
   numerator_ne_zero := fun z hz => by
     simpa using mul_ne_zero (P.numerator_ne_zero z hz) (Q.numerator_ne_zero z hz)
 
-/-- Restricting sets cannot increase a competitor's separation cost.-/
+/-- Restricting sets cannot increase a competitor's separation cost.
+@isnad1 id=le.2h6v.s5.3642f7704710 from=translated src=- shape=37713bd2 vocab=3103fdc8
+-/
 theorem cost_restrict_le (P : ZolotarevPair E F k) (hE : E' ⊆ E) (hF : F' ⊆ F) :
     (P.restrict hE hF).cost ≤ P.cost := by
   unfold cost
@@ -105,7 +109,9 @@ theorem cost_restrict_le (P : ZolotarevPair E F k) (hE : E' ⊆ E) (hF : F' ⊆ 
   · apply iSup_le; intro z
     exact le_iSup_of_le (⟨z, hF z.property⟩ : F) le_rfl
 
-/-- The cost of a product is at most the product of the costs.-/
+/-- The cost of a product is at most the product of the costs.
+@isnad1 id=le.0h6v.s6.7916dc9918c0 from=translated src=- shape=24c37ed3 vocab=6650f1e5
+-/
 theorem cost_mul_le (P : ZolotarevPair E F k) (Q : ZolotarevPair E F l) :
     (P.mul Q).cost ≤ P.cost * Q.cost := by
   let a := ⨆ z : E, (‖P.numerator.eval (z : ℂ) / P.denominator.eval (z : ℂ)‖₊ : ℝ≥0∞)
@@ -131,7 +137,9 @@ theorem cost_mul_le (P : ZolotarevPair E F k) (Q : ZolotarevPair E F l) :
   exact (mul_le_mul' hleft hright).trans_eq (by dsimp [cost, mul, a, b, c, d]; ac_rfl)
 
 /-- Compactness and the nonvanishing conditions make each scalar supremum
-finite, and consequently make every admissible cost finite.-/
+finite, and consequently make every admissible cost finite.
+@isnad1 id=ne.2h4v.s5.1fac78ce1aae from=translated src=- shape=fde3cccf vocab=109d1612
+-/
 theorem cost_ne_top (P : ZolotarevPair E F k) (hE : IsCompact E) (hF : IsCompact F) :
     P.cost ≠ ⊤ := by
   have hleft : (⨆ z : E, (‖P.numerator.eval (z : ℂ) /
@@ -154,7 +162,9 @@ theorem cost_ne_top (P : ZolotarevPair E F k) (hE : IsCompact E) (hF : IsCompact
     exact hc ⟨z, z.property, rfl⟩
   exact ENNReal.mul_ne_top hleft.ne hright.ne
 
-/-- The left supremum is finite on a compact set.-/
+/-- The left supremum is finite on a compact set.
+@isnad1 id=ne.1h4v.s5.668ae947edd7 from=translated src=- shape=8ffe0c35 vocab=dfe372aa
+-/
 theorem leftSup_ne_top (P : ZolotarevPair E F k) (hE : IsCompact E) : P.leftSup ≠ ⊤ := by
   apply ne_of_lt
   apply ENNReal.iSup_coe_lt_top.mpr
@@ -165,23 +175,31 @@ theorem leftSup_ne_top (P : ZolotarevPair E F k) (hE : IsCompact E) : P.leftSup 
   rintro _ ⟨z, rfl⟩
   exact hc ⟨z, z.property, rfl⟩
 
-/-- The reciprocal supremum is finite on a compact set.-/
+/-- The reciprocal supremum is finite on a compact set.
+@isnad1 id=ne.1h4v.s5.083ef2f62782 from=translated src=- shape=04012b59 vocab=034b2deb
+-/
 theorem rightSup_ne_top (P : ZolotarevPair E F k) (hF : IsCompact F) : P.rightSup ≠ ⊤ :=
   P.swap.leftSup_ne_top hF
 
-/-- The finite supremum bounds the scalar rational modulus.-/
+/-- The finite supremum bounds the scalar rational modulus.
+@isnad1 id=le.2h5v.s6.97f9316f764b from=translated src=- shape=a4256914 vocab=be7ee873
+-/
 theorem norm_div_le_leftSup_toReal (P : ZolotarevPair E F k) (hE : IsCompact E)
     {z : ℂ} (hz : z ∈ E) : ‖P.numerator.eval z / P.denominator.eval z‖ ≤ P.leftSup.toReal := by
   have h := ENNReal.toReal_mono (P.leftSup_ne_top hE)
     (le_iSup (fun w : E => (‖P.numerator.eval (w : ℂ) / P.denominator.eval (w : ℂ)‖₊ : ℝ≥0∞)) ⟨z, hz⟩)
   simpa using h
 
-/-- The right supremum bounds the scalar reciprocal modulus.-/
+/-- The right supremum bounds the scalar reciprocal modulus.
+@isnad1 id=le.2h5v.s6.a3b89ccf2408 from=translated src=- shape=52f33213 vocab=36fa76fb
+-/
 theorem norm_div_le_rightSup_toReal (P : ZolotarevPair E F k) (hF : IsCompact F)
     {z : ℂ} (hz : z ∈ F) : ‖P.denominator.eval z / P.numerator.eval z‖ ≤ P.rightSup.toReal :=
   P.swap.norm_div_le_leftSup_toReal hF hz
 
-/-- Every admissible degree-zero competitor has cost one on nonempty sets.-/
+/-- Every admissible degree-zero competitor has cost one on nonempty sets.
+@isnad1 id=eq.2h3v.s5.5009f8984107 from=translated src=- shape=5d828895 vocab=1c7db02a
+-/
 theorem cost_degree_zero (P : ZolotarevPair E F 0) (hE : E.Nonempty) (hF : F.Nonempty) :
     P.cost = 1 := by
   let : Nonempty E := hE.to_subtype
@@ -210,14 +228,20 @@ pairs, never over hypothesized approximation errors. The extended nonnegative
 representation has no infinity value, by `zolotarevNumber_le_one`.-/
 def zolotarevNumber (E F : Set ℂ) (k : ℕ) : ℝ≥0∞ := ⨅ P : ZolotarevPair E F k, P.cost
 
-/-- A Zolotarev number is nonnegative.-/
+/-- A Zolotarev number is nonnegative.
+@isnad1 id=le.0h3v.s4.10d3fdc6ef54 from=translated src=- shape=e40ad01b vocab=5f387dbc
+-/
 theorem zolotarevNumber_nonneg (E F : Set ℂ) (k : ℕ) : 0 ≤ zolotarevNumber E F k := bot_le
 
-/-- Constant competitors bound every Zolotarev number by one.-/
+/-- Constant competitors bound every Zolotarev number by one.
+@isnad1 id=le.0h3v.s4.cc49bc93a7eb from=translated src=- shape=a3ea5fd5 vocab=5f387dbc
+-/
 theorem zolotarevNumber_le_one (E F : Set ℂ) (k : ℕ) : zolotarevNumber E F k ≤ 1 :=
   (iInf_le _ (ZolotarevPair.one E F k)).trans (ZolotarevPair.cost_one_le E F k)
 
-/-- The infimum represents a finite real number.-/
+/-- The infimum represents a finite real number.
+@isnad1 id=ne.0h3v.s4.46434ae9c7cc from=translated src=- shape=003fca0d vocab=cd2d0bab
+-/
 theorem zolotarevNumber_ne_top (E F : Set ℂ) (k : ℕ) : zolotarevNumber E F k ≠ ⊤ :=
   ne_top_of_le_ne_top (by simp) (zolotarevNumber_le_one E F k)
 
@@ -225,7 +249,9 @@ theorem zolotarevNumber_ne_top (E F : Set ℂ) (k : ℕ) : zolotarevNumber E F k
 Together with the pole-aware admissible-pair definition, monotonicity,
 symmetry and submultiplicativity this realizes the defining Zolotarev API.
 Source: user derivations, Zolotarev-number definition.
-atlas: zolotarev-number-def-/
+atlas: zolotarev-number-def
+@isnad1 id=eq.2h2v.s4.44c67ac9b934 from=translated src=- shape=8a8806fa vocab=f3a3affa
+-/
 theorem zolotarevNumber_zero (E F : Set ℂ) (hE : E.Nonempty) (hF : F.Nonempty) :
     zolotarevNumber E F 0 = 1 := by
   apply le_antisymm (zolotarevNumber_le_one E F 0)
@@ -233,19 +259,25 @@ theorem zolotarevNumber_zero (E F : Set ℂ) (hE : E.Nonempty) (hF : F.Nonempty)
   intro P
   exact (P.cost_degree_zero hE hF).ge
 
-/-- Enlarging the degree budget improves the best separation.-/
+/-- Enlarging the degree budget improves the best separation.
+@isnad1 id=antitone.0h2v.s4.78c1910f1bfd from=translated src=- shape=ec0da01b vocab=99f2a44c
+-/
 theorem zolotarevNumber_antitone (E F : Set ℂ) : Antitone (zolotarevNumber E F) := by
   intro k l h
   apply le_iInf; intro P
   exact iInf_le_of_le (P.enlarge h) le_rfl
 
-/-- Enlarging either set can only increase the Zolotarev number.-/
+/-- Enlarging either set can only increase the Zolotarev number.
+@isnad1 id=le.2h5v.s5.c07ab35cb82b from=translated src=- shape=e31b154f vocab=5f387dbc
+-/
 theorem zolotarevNumber_mono_sets {E F E' F' : Set ℂ} (hE : E' ⊆ E) (hF : F' ⊆ F) (k : ℕ) :
     zolotarevNumber E' F' k ≤ zolotarevNumber E F k := by
   apply le_iInf; intro P
   exact (iInf_le _ (P.restrict hE hF)).trans (P.cost_restrict_le hE hF)
 
-/-- Exchanging the two sets reciprocates every admissible rational function.-/
+/-- Exchanging the two sets reciprocates every admissible rational function.
+@isnad1 id=eq.0h3v.s4.70000b31e4db from=translated src=- shape=12d79cb5 vocab=972ff07f
+-/
 theorem zolotarevNumber_symm (E F : Set ℂ) (k : ℕ) :
     zolotarevNumber E F k = zolotarevNumber F E k := by
   have h (E F : Set ℂ) : zolotarevNumber E F k ≤ zolotarevNumber F E k := by
@@ -255,7 +287,9 @@ theorem zolotarevNumber_symm (E F : Set ℂ) (k : ℕ) :
 
 /-- Submultiplicativity follows from actual products of admissible competitors;
 no minimizing pair is assumed to exist. Source: user derivations, Zolotarev numbers.
-atlas: zolotarev-number-def (partial)-/
+atlas: zolotarev-number-def (partial)
+@isnad1 id=le.0h4v.s5.2d6ff5e88a3f from=translated src=- shape=30a4b490 vocab=cfe68c15
+-/
 theorem zolotarevNumber_add_le (E F : Set ℂ) (k l : ℕ) :
     zolotarevNumber E F (k + l) ≤ zolotarevNumber E F k * zolotarevNumber E F l := by
   apply ENNReal.le_iInf_mul_iInf

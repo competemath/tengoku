@@ -28,7 +28,9 @@ namespace NLAlib
 
 /-- Integrability of a nonnegative function follows from integrability of
 `f log f` on a finite measure space. Source: Mathlib's
-`Real.self_sub_one_le_mul_log`. Atlas: `entropy-tensorization`.-/
+`Real.self_sub_one_le_mul_log`. Atlas: `entropy-tensorization`.
+@isnad1 id=integrab.3h3v.s6.bbd6e5f6272d from=translated src=- shape=70d8ef38 vocab=8cf78e15
+-/
 theorem integrable_of_nonneg_mul_log_integrable {α : Type*} [MeasurableSpace α]
     {ν : Measure α} [IsFiniteMeasure ν] {f : α → ℝ} (hfm : Measurable f)
     (hf : ∀ x, 0 ≤ f x) (hlog : Integrable (fun x => f x * Real.log (f x)) ν) :
@@ -42,7 +44,9 @@ theorem integrable_of_nonneg_mul_log_integrable {α : Type*} [MeasurableSpace α
 
 /-- Jensen's inequality for `x log x`, with zero values allowed. Source:
 Mathlib's `Real.convexOn_mul_log` and `ConvexOn.map_integral_le`.
-Atlas: `entropy-tensorization`.-/
+Atlas: `entropy-tensorization`.
+@isnad1 id=le.3h3v.s7.0fcbf0111463 from=translated src=- shape=e5c90681 vocab=1f6e985d
+-/
 theorem mul_log_integral_le_integral_mul_log_of_nonneg {α : Type*}
     [MeasurableSpace α] {ν : Measure α} [IsProbabilityMeasure ν]
     {f : α → ℝ} (hf : ∀ x, 0 ≤ f x) (hint : Integrable f ν)
@@ -53,7 +57,9 @@ theorem mul_log_integral_le_integral_mul_log_of_nonneg {α : Type*}
 
 /-- Positive regularization preserves integrability of `f log f`, with a
 dominating function independent of `0 < δ ≤ 1`. Source: NLAlib's
-`abs_add_mul_log_add_le`. Atlas: `entropy-tensorization`.-/
+`abs_add_mul_log_add_le`. Atlas: `entropy-tensorization`.
+@isnad1 id=integrab.6h4v.s7.1b44c24d75ec from=translated src=- shape=1e324f89 vocab=1eb05853
+-/
 theorem integrable_mul_log_add_of_nonneg {α : Type*} [MeasurableSpace α]
     {ν : Measure α} [IsFiniteMeasure ν] {f : α → ℝ} (hfm : Measurable f)
     (hf : ∀ x, 0 ≤ f x) (hint : Integrable f ν)
@@ -74,7 +80,9 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι] {Ω : Type*} [MeasurableSpac
 /-- `E_i f log(E_i f)` is integrable whenever a nonnegative `f` and its
 entropy integrand are integrable. The proof uses conditional Jensen and
 the lower bound `x log x ≥ -1`. Source: Jensen's inequality and NLAlib's
-one-coordinate Fubini lemmas. Atlas: `entropy-tensorization`.-/
+one-coordinate Fubini lemmas. Atlas: `entropy-tensorization`.
+@isnad1 id=integrab.4h5v.s8.c991ff15edb1 from=translated src=- shape=b4aea03b vocab=c31d48dc
+-/
 theorem integrable_mul_log_integral_update_of_nonneg (i : ι)
     {f : (ι → Ω) → ℝ} (hfm : Measurable f) (hf : ∀ x, 0 ≤ f x)
     (hint : Integrable f (Measure.pi μ))
@@ -104,7 +112,9 @@ theorem integrable_mul_log_integral_update_of_nonneg (i : ι)
 
 /-- The actual one-coordinate entropy is integrable, also when `f` has
 zeros. Source: conditional Jensen and one-coordinate Fubini.
-Atlas: `entropy-tensorization`.-/
+Atlas: `entropy-tensorization`.
+@isnad1 id=integrab.4h5v.s8.677f38023bdf from=translated src=- shape=fe7c60fc vocab=07604dd0
+-/
 theorem integrable_entropy_update_of_nonneg (i : ι) {f : (ι → Ω) → ℝ}
     (hfm : Measurable f) (hf : ∀ x, 0 ≤ f x)
     (hint : Integrable f (Measure.pi μ))
@@ -119,7 +129,9 @@ theorem integrable_entropy_update_of_nonneg (i : ι) {f : (ι → Ω) → ℝ}
 /-- Integrated local entropy equals global `E[f log f]` minus the entropy
 integrand of the conditional mean. All integrability requirements are
 proved from the nonnegative-function hypotheses. Source: conditional
-Jensen and one-coordinate Fubini. Atlas: `entropy-tensorization`.-/
+Jensen and one-coordinate Fubini. Atlas: `entropy-tensorization`.
+@isnad1 id=eq.4h5v.s8.450389f47e27 from=translated src=- shape=16009e21 vocab=07604dd0
+-/
 theorem integral_entropy_update_eq_sub_integral_mul_log_mean (i : ι)
     {f : (ι → Ω) → ℝ} (hfm : Measurable f) (hf : ∀ x, 0 ≤ f x)
     (hint : Integrable f (Measure.pi μ))

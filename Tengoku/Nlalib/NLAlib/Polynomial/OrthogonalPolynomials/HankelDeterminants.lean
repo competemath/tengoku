@@ -29,6 +29,9 @@ def shiftedHankelMomentDet (L : 𝕜[X] →ₗ[𝕜] 𝕜) : ℕ → 𝕜
   | n+1 => ((hankelMomentMatrix L (n+1)).updateCol (Fin.last n)
       (fun i => L (X ^ ((n+1) + i.val)))).det
 
+/--
+@isnad1 id=eq.0h2v.s7.8a978771d949 from=translated src=- shape=42e977f7 vocab=4e367adf
+-/
 @[simp] theorem shiftedHankelMomentDet_zero (L : 𝕜[X] →ₗ[𝕜] 𝕜) :
     shiftedHankelMomentDet L 0 = 0 := rfl
 
@@ -43,7 +46,9 @@ private theorem coeff_monicOrthogonalPolynomial_below (L : 𝕜[X] →ₗ[𝕜] 
 shifted determinant quotient. Order zero uses `E_0=0` and `nextCoeff 1=0`.
 Only the order-`n` Hankel system must be nonsingular.
 Source: operator derivations (OF4)--(OF6).
-atlas: formal-orthogonal-polynomials (partial), monic-orthogonal-recurrence (partial), hankel-moment-positivity (partial)-/
+atlas: formal-orthogonal-polynomials (partial), monic-orthogonal-recurrence (partial), hankel-moment-positivity (partial)
+@isnad1 id=eq.1h3v.s7.ec91ad432e89 from=translated src=- shape=519570ab vocab=90bf4f69
+-/
 theorem nextCoeff_monicOrthogonalPolynomial_eq_neg_shiftedHankelMomentDet_div
     (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) (hn : hankelMomentDet L n ≠ 0) :
     (monicOrthogonalPolynomial L n).nextCoeff =
@@ -77,7 +82,9 @@ theorem nextCoeff_monicOrthogonalPolynomial_eq_neg_shiftedHankelMomentDet_div
 shifted Hankel determinant quotients. The finite leading systems through `n+1`
 are assumed nonsingular, so every displayed denominator is nonzero.
 Source: operator derivations (OF6).
-atlas: monic-orthogonal-recurrence (partial), hankel-moment-positivity (partial)-/
+atlas: monic-orthogonal-recurrence (partial), hankel-moment-positivity (partial)
+@isnad1 id=eq.1h3v.s7.4c85462ca8c1 from=translated src=- shape=e0290352 vocab=d117db8e
+-/
 theorem orthogonalRecurrenceAlpha_eq_shiftedHankelMomentDet_sub
     (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ)
     (hL : ∀ k ≤ n+1, hankelMomentDet L k ≠ 0) :
@@ -103,7 +110,9 @@ def borderedHankelMatrix (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) :
 /-- The bordered Hankel determinant equals the ordinary Hankel determinant
 times its monic moment-system polynomial, including the empty order-zero system.
 Source: operator derivations (OF4).
-atlas: formal-orthogonal-polynomials (partial), hankel-moment-positivity (partial)-/
+atlas: formal-orthogonal-polynomials (partial), hankel-moment-positivity (partial)
+@isnad1 id=eq.1h3v.s8.665778aa64a2 from=translated src=- shape=9043bb40 vocab=56f762e6
+-/
 theorem det_borderedHankelMatrix_eq (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ)
     (hn : hankelMomentDet L n ≠ 0) :
     (borderedHankelMatrix L n).det =
@@ -143,7 +152,9 @@ theorem det_borderedHankelMatrix_eq (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ)
 divided by the ordinary Hankel determinant. This includes order zero, where
 the bordered determinant and the monic polynomial are both one.
 Source: operator derivations (OF4).
-atlas: formal-orthogonal-polynomials (partial), hankel-moment-positivity (partial)-/
+atlas: formal-orthogonal-polynomials (partial), hankel-moment-positivity (partial)
+@isnad1 id=eq.1h3v.s8.cb2c7caf59de from=translated src=- shape=5daf0ff0 vocab=ad2ccb17
+-/
 theorem monicOrthogonalPolynomial_eq_inv_smul_det_borderedHankelMatrix
     (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) (hn : hankelMomentDet L n ≠ 0) :
     monicOrthogonalPolynomial L n =
@@ -151,6 +162,9 @@ theorem monicOrthogonalPolynomial_eq_inv_smul_det_borderedHankelMatrix
   rw [det_borderedHankelMatrix_eq L n hn, smul_eq_C_mul, ← mul_assoc,
     ← map_mul, inv_mul_cancel₀ hn, map_one, one_mul]
 
+/--
+@isnad1 id=eq.0h2v.s8.05a165baee9b from=translated src=- shape=06188c6c vocab=c55f3605
+-/
 @[simp] theorem det_borderedHankelMatrix_zero (L : 𝕜[X] →ₗ[𝕜] 𝕜) :
     (borderedHankelMatrix L 0).det = 1 := by
   rw [det_borderedHankelMatrix_eq L 0 (by simp), hankelMomentDet_zero,

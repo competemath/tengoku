@@ -17,7 +17,9 @@ open scoped Topology
 namespace NLAlib
 
 /-- A bounded evaluation point controls the monic-polynomial difference by its
-finitely many lower coefficient differences.-/
+finitely many lower coefficient differences.
+@isnad1 id=le.1h5v.s7.f33708577137 from=translated src=- shape=b1c45a0c vocab=c0e368ac
+-/
 theorem abs_eval_monicOrthogonalPolynomial_sub_le
     (L M : ℝ[X] →ₗ[ℝ] ℝ) (n : ℕ) {t R : ℝ} (ht : |t| ≤ R) :
     |(monicOrthogonalPolynomial L n).eval t - (monicOrthogonalPolynomial M n).eval t| ≤
@@ -40,7 +42,9 @@ theorem abs_eval_monicOrthogonalPolynomial_sub_le
 
 /-- Canonical monic moment polynomials converge uniformly on every bounded
 real set at a nonsingular limiting moment system.
-atlas: recurrence-coefficient-continuity (partial)-/
+atlas: recurrence-coefficient-continuity (partial)
+@isnad1 id=tendstou.3h6v.s8.af640dfd2bf0 from=translated src=- shape=285d4281 vocab=329b705c
+-/
 theorem tendstoUniformlyOn_monicOrthogonalPolynomial
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {L : E → (ℝ[X] →ₗ[ℝ] ℝ)} {x : E} {n : ℕ} {s : Set ℝ} {R : ℝ}

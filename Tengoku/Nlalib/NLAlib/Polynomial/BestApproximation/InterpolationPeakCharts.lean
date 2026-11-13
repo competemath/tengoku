@@ -30,7 +30,9 @@ private theorem isInvertible_smulRight_one {c : ℝ} (hc : c ≠ 0) :
 /-- The unique critical point of each actual node gap admits a local `C¹`
 implicit chart, and the actual peak equals its polynomial value on that chart.
 Source: ordinary implicit function theorem at a nondegenerate scalar maximum;
-focused reroutes, peak charts.-/
+focused reroutes, peak charts.
+@isnad1 id=ex.2h3v.s9.7ef6208ab976 from=translated src=- shape=fc01aae2 vocab=28d756fc
+-/
 theorem exists_contDiffAt_interpolationGapPeak_chart {n : ℕ} (hn : 0 < n)
     {t : Fin n → ℝ} (ht : t ∈ interiorNodeSimplex n) (i : Fin (n + 1)) :
     ∃ τ : (Fin n → ℝ) → ℝ, ContDiffAt ℝ 1 τ t ∧
@@ -78,7 +80,9 @@ theorem exists_contDiffAt_interpolationGapPeak_chart {n : ℕ} (hn : 0 < n)
 
 /-- Each actual interpolation gap peak is `C¹` on the ordered node simplex.
 Source: the unique nondegenerate critical-point chart and the smooth signed
-cardinal formula; focused reroutes, the peak map.-/
+cardinal formula; focused reroutes, the peak map.
+@isnad1 id=contdiff.2h3v.s7.1b86ceb208ed from=translated src=- shape=70138ba4 vocab=3569167f
+-/
 theorem contDiffAt_interpolationGapPeak {n : ℕ} (hn : 0 < n) {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (i : Fin (n + 1)) :
     ContDiffAt ℝ 1 (fun s => interpolationGapPeak n s i) t := by

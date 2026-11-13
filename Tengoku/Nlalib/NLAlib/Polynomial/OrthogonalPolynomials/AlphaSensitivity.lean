@@ -30,7 +30,9 @@ def orthogonalRecurrenceAlphaSensitivityPolynomial (L : ℝ[X] →ₗ[ℝ] ℝ) 
 /-- The equivalent adjacent-polynomial form of the diagonal sensitivity uses
 no normalization of the next order. Source: AQ30; the previous term is omitted
 at order zero.
-atlas: recurrence-coefficient-moment-sensitivity (partial)-/
+atlas: recurrence-coefficient-moment-sensitivity (partial)
+@isnad1 id=eq.3h2v.s8.5fa8ceadba21 from=translated src=- shape=43180d04 vocab=67abb4c4
+-/
 theorem orthogonalRecurrenceAlphaSensitivityPolynomial_eq_adjacent
     (L : ℝ[X] →ₗ[ℝ] ℝ) {n : ℕ}
     (hn : ∀ k ≤ n + 1, hankelMomentDet L k ≠ 0)
@@ -97,7 +99,9 @@ private theorem functional_X_mul_monic_mul_variation_eq
 
 /-- The actual first derivative of the diagonal recurrence coefficient is the
 moment variation evaluated at its sensitivity polynomial. Source: AQ29–AQ30.
-atlas: recurrence-coefficient-moment-sensitivity (partial)-/
+atlas: recurrence-coefficient-moment-sensitivity (partial)
+@isnad1 id=hasderiv.4h4v.s9.c0bfb743ab08 from=translated src=- shape=ef0f0cae vocab=dd59d293
+-/
 theorem hasDerivAt_orthogonalRecurrenceAlpha
     {L : ℝ → (ℝ[X] →ₗ[ℝ] ℝ)} {D : ℝ[X] →ₗ[ℝ] ℝ} {n : ℕ} {x : ℝ}
     (hL : ∀ k, ContDiffAt ℝ 1 (fun y => L y (X ^ k)) x)
@@ -161,7 +165,9 @@ theorem hasDerivAt_orthogonalRecurrenceAlpha
 directional derivative, without smoothness or derivative hypotheses for the
 perturbation itself. A coordinate derivative follows by taking `D` to be the
 fixed-basis dual coordinate functional. Source: AQ29–AQ31.
-atlas: recurrence-coefficient-moment-sensitivity (partial)-/
+atlas: recurrence-coefficient-moment-sensitivity (partial)
+@isnad1 id=hasderiv.2h3v.s9.ed6b2350878c from=translated src=- shape=6081ceb7 vocab=9a12c5ee
+-/
 theorem hasDerivAt_orthogonalRecurrenceAlpha_affine
     (L D : ℝ[X] →ₗ[ℝ] ℝ) (n : ℕ)
     (hn : ∀ k ≤ n + 1, hankelMomentDet L k ≠ 0)

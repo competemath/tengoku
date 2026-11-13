@@ -26,7 +26,9 @@ namespace NLAlib
 /-- Starting at an extremum, either there are `n+2` alternating extrema or a degree-`n`
 polynomial matches every extremal sign. The polynomial also keeps the initial sign to the
 left of the initial point; this makes the compact sign-block induction compositional.
-Source: Cheney (1966), Chapter 3, alternation-theorem proof.-/
+Source: Cheney (1966), Chapter 3, alternation-theorem proof.
+@isnad1 id=or.4h5v.s8.1e290f58d06a from=translated src=- shape=42b62fe9 vocab=9c276c1d
+-/
 theorem exists_polynomial_extremal_sign_or_alternation (n : ℕ) :
     ∀ (e : ℝ → ℝ) (E a b : ℝ), Continuous e → 0 < E → a ≤ b → |e a| = E →
       (∃ p : ℝ[X], p.degree ≤ n ∧

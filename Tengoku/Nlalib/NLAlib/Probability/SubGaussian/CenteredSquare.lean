@@ -32,7 +32,9 @@ variable {Ω : Type*} [MeasurableSpace Ω]
 
 /-- MGF of a centred square at a nonnegative parameter:
 `𝔼 e^{θ (X² - 𝔼 X²)} ≤ e^{2e (θ C₀ e)²}` for `0 ≤ θ`, `θ C₀ e ≤ 1/2`. Atlas `hanson-wright`
-(helper).-/
+(helper).
+@isnad1 id=le.5h6v.s8.f1e997a038f1 from=translated src=- shape=66acff7f vocab=05ced90b
+-/
 theorem integral_exp_centered_sq_le_exp_quadratic_nonneg {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ C0 : ℝ} (hθ : 0 ≤ θ)
@@ -123,7 +125,9 @@ theorem integral_exp_centered_sq_le_exp_quadratic_nonneg {μ : Measure Ω}
 
 /-- MGF of a centred square at a nonpositive parameter:
 `𝔼 e^{θ (X² - 𝔼 X²)} ≤ e^{2e (-θ C₀ e)²}` for `θ ≤ 0` (no smallness needed). Atlas
-`hanson-wright` (helper).-/
+`hanson-wright` (helper).
+@isnad1 id=le.4h6v.s7.f382795d126a from=translated src=- shape=b0203d49 vocab=2bb51c6f
+-/
 theorem integral_exp_centered_sq_le_exp_quadratic_nonpos {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ C0 : ℝ} (hθ : θ ≤ 0)
@@ -231,7 +235,9 @@ theorem integral_exp_centered_sq_le_exp_quadratic_nonpos {μ : Measure Ω}
         ring_nf
 
 /-- Local exponential integrability of a centred square: `e^{θ (X² - 𝔼 X²)}` is integrable for
-`|θ| C₀ e < 1`. Atlas `hanson-wright` (helper).-/
+`|θ| C₀ e < 1`. Atlas `hanson-wright` (helper).
+@isnad1 id=integrab.4h6v.s7.306b3a5b16f9 from=translated src=- shape=60aede8c vocab=7dc333c4
+-/
 theorem integrable_exp_centered_sq_of_hasSubgaussianMGF_of_le {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ C0 : ℝ}
@@ -271,7 +277,9 @@ theorem integrable_exp_centered_sq_of_hasSubgaussianMGF_of_le {μ : Measure Ω}
 
 /-- CGF of a centred square: `cgf (X² - 𝔼 X²) θ ≤ 2e (θ C₀ e)²` for `|θ| C₀ e ≤ 1/2`.
 Vershynin 2018, Lemma 2.7.6 (sub-exponentiality of `X² - 𝔼 X²`); atlas `hanson-wright`
-(helper).-/
+(helper).
+@isnad1 id=le.4h6v.s7.4c7cf96b226d from=translated src=- shape=5c083975 vocab=216f159f
+-/
 theorem centered_sq_cgf_le_of_hasSubgaussianMGF_of_le {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ C0 : ℝ}
@@ -309,13 +317,17 @@ theorem centered_sq_cgf_le_of_hasSubgaussianMGF_of_le {μ : Measure Ω}
         log_le_log hmgf_pos hmgf_le
     _ = 2 * exp 1 * (θ * C0 * exp 1) ^ 2 := by rw [log_exp]
 
-/-- Scaling inside the CGF: `cgf (a • Y) θ = cgf Y (a θ)`. Atlas `hanson-wright` (helper).-/
+/-- Scaling inside the CGF: `cgf (a • Y) θ = cgf Y (a θ)`. Atlas `hanson-wright` (helper).
+@isnad1 id=eq.0h5v.s5.5ada9278912b from=translated src=- shape=92646de7 vocab=b8e34207
+-/
 theorem cgf_const_mul {μ : Measure Ω} {Y : Ω → ℝ} (a θ : ℝ) :
     cgf (fun ω => a * Y ω) μ θ = cgf Y μ (a * θ) := by
   rw [cgf, cgf, mgf_const_mul]
 
 /-- Centring the squares of independent variables keeps them independent. Atlas
-`hanson-wright` (helper).-/
+`hanson-wright` (helper).
+@isnad1 id=iindepfu.1h4v.s6.52a828e881c9 from=translated src=- shape=a19a65b1 vocab=3d9ebd42
+-/
 theorem iIndepFun_centered_sq {μ : Measure Ω} {ι : Type*} {X : ι → Ω → ℝ}
     (hind : iIndepFun X μ) :
     iIndepFun (fun i => fun ω => X i ω ^ 2 - ∫ ω, X i ω ^ 2 ∂μ) μ := by
@@ -327,7 +339,9 @@ theorem iIndepFun_centered_sq {μ : Measure Ω} {ι : Type*} {X : ι → Ω → 
 /-! ### Products of independent sub-Gaussian variables -/
 
 /-- For sub-Gaussian laws `νX`, `νY` on `ℝ` (proxies `≤ C₀`), `(y, x) ↦ e^{θ x y}` is integrable
-for the product law `νY ⊗ νX` when `(C₀ θ²/2) C₀ e ≤ 1/2`. Atlas `hanson-wright` (helper).-/
+for the product law `νY ⊗ νX` when `(C₀ θ²/2) C₀ e ≤ 1/2`. Atlas `hanson-wright` (helper).
+@isnad1 id=integrab.6h6v.s7.b49b10d21a1f from=translated src=- shape=a009a430 vocab=434ebf1a
+-/
 theorem integrable_exp_mul_snd_fst_prod_of_hasSubgaussianMGF_of_le
     {νX νY : Measure ℝ} [IsProbabilityMeasure νX] [IsProbabilityMeasure νY]
     {cX cY : ℝ≥0} (hX : HasSubgaussianMGF id cX νX)
@@ -385,7 +399,9 @@ theorem integrable_exp_mul_snd_fst_prod_of_hasSubgaussianMGF_of_le
 
 /-- For sub-Gaussian laws `νX`, `νY` on `ℝ` (proxies `≤ C₀`),
 `∫ e^{θ x y} d(νY ⊗ νX) ≤ e^{e² C₀² θ²}` when `(C₀ θ²/2) C₀ e ≤ 1/2`. Atlas `hanson-wright`
-(helper).-/
+(helper).
+@isnad1 id=le.6h6v.s8.d0bb6bd28015 from=translated src=- shape=cbfcafe2 vocab=be16ba5d
+-/
 theorem integral_exp_mul_snd_fst_prod_le_of_hasSubgaussianMGF_of_le
     {νX νY : Measure ℝ} [IsProbabilityMeasure νX] [IsProbabilityMeasure νY]
     {cX cY : ℝ≥0} (hX : HasSubgaussianMGF id cX νX)
@@ -443,7 +459,9 @@ theorem integral_exp_mul_snd_fst_prod_le_of_hasSubgaussianMGF_of_le
           ring_nf
 
 /-- For independent sub-Gaussian `X`, `Y` (proxies `≤ C₀`), `e^{θ X Y}` is integrable when
-`(C₀ θ²/2) C₀ e ≤ 1/2`. Atlas `hanson-wright` (helper).-/
+`(C₀ θ²/2) C₀ e ≤ 1/2`. Atlas `hanson-wright` (helper).
+@isnad1 id=integrab.7h8v.s7.f3bc4c157cba from=translated src=- shape=70079cd8 vocab=a4d0458b
+-/
 theorem integrable_exp_mul_prod_of_indepFun_hasSubgaussianMGF_of_le
     {μ : Measure Ω} [IsProbabilityMeasure μ] {X Y : Ω → ℝ}
     (hind : X ⟂ᵢ[μ] Y)
@@ -482,7 +500,9 @@ theorem integrable_exp_mul_prod_of_indepFun_hasSubgaussianMGF_of_le
   rfl
 
 /-- For independent sub-Gaussian `X`, `Y` (proxies `≤ C₀`), `𝔼 e^{θ X Y} ≤ e^{e² C₀² θ²}` when
-`(C₀ θ²/2) C₀ e ≤ 1/2`. Vershynin 2018, §6.2 (decoupled step); atlas `hanson-wright` (helper).-/
+`(C₀ θ²/2) C₀ e ≤ 1/2`. Vershynin 2018, §6.2 (decoupled step); atlas `hanson-wright` (helper).
+@isnad1 id=le.7h8v.s8.a43a3ebaca58 from=translated src=- shape=eadae9cf vocab=bc3c5817
+-/
 theorem integral_exp_mul_prod_le_of_indepFun_hasSubgaussianMGF_of_le
     {μ : Measure Ω} [IsProbabilityMeasure μ] {X Y : Ω → ℝ}
     (hind : X ⟂ᵢ[μ] Y)

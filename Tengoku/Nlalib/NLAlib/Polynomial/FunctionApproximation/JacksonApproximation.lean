@@ -21,7 +21,9 @@ namespace NLAlib
 def chebyshevJacksonApprox (f : ℝ → ℝ) (M : ℕ) : ℝ[X] :=
   ∑ j ∈ range (M + 1), C (chebyshevJacksonDamping M j * chebyshevCoeff f j) * T ℝ (j : ℤ)
 
-/-- Its degree is at most the cutoff.-/
+/-- Its degree is at most the cutoff.
+@isnad1 id=le.0h2v.s4.e558fa860ede from=translated src=- shape=e3082467 vocab=91be99a3
+-/
 theorem degree_chebyshevJacksonApprox_le (f : ℝ → ℝ) (M : ℕ) :
     (chebyshevJacksonApprox f M).degree ≤ M := by
   refine (degree_sum_le _ _).trans (Finset.sup_le fun j hj => ?_)
@@ -31,7 +33,9 @@ theorem degree_chebyshevJacksonApprox_le (f : ℝ → ℝ) (M : ℕ) :
     exact_mod_cast (by have := mem_range.mp hj; omega : j ≤ M)
   exact (add_le_add degree_C_le hT).trans_eq (zero_add _)
 
-/-- The finite Jackson polynomial is integration against the actual positive kernel.-/
+/-- The finite Jackson polynomial is integration against the actual positive kernel.
+@isnad1 id=eq.1h3v.s6.866a3b69487a from=translated src=- shape=3f1c9b95 vocab=4df98778
+-/
 theorem eval_chebyshevJacksonApprox_eq_integral {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1 : ℝ) 1)) (M : ℕ) (r : ℝ) :
     (chebyshevJacksonApprox f M).eval r =
@@ -54,7 +58,9 @@ theorem eval_chebyshevJacksonApprox_eq_integral {f : ℝ → ℝ}
   unfold chebyshevCoeff
   ring
 
-/-- Positivity of the finite polynomial follows from positivity of its kernel.-/
+/-- Positivity of the finite polynomial follows from positivity of its kernel.
+@isnad1 id=le.3h3v.s6.e3dbb07a032f from=translated src=- shape=3fb36f36 vocab=0582f97a
+-/
 theorem eval_chebyshevJacksonApprox_nonneg {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1 : ℝ) 1)) (hpos : ∀ x ∈ Icc (-1 : ℝ) 1, 0 ≤ f x)
     (M : ℕ) {r : ℝ} (hr : r ∈ Icc (-1 : ℝ) 1) :
@@ -64,7 +70,9 @@ theorem eval_chebyshevJacksonApprox_nonneg {f : ℝ → ℝ}
   filter_upwards [ae_mem_Icc_measureT] with x hx
   exact mul_nonneg (chebyshevJacksonKernel_nonneg M hx hr) (hpos x hx)
 
-/-- Positive Jackson approximation contracts every uniform bound on the closed interval.-/
+/-- Positive Jackson approximation contracts every uniform bound on the closed interval.
+@isnad1 id=le.3h4v.s6.24678e9a8dc8 from=translated src=- shape=3ae2af22 vocab=0ecf9110
+-/
 theorem abs_eval_chebyshevJacksonApprox_le {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1 : ℝ) 1)) {B : ℝ}
     (hB : ∀ x ∈ Icc (-1 : ℝ) 1, |f x| ≤ B) (M : ℕ)
@@ -81,7 +89,9 @@ theorem abs_eval_chebyshevJacksonApprox_le {f : ℝ → ℝ}
   · rw [integral_const_mul, integral_chebyshevJacksonKernel, mul_one]
 
 /-- Uniform Jackson approximation with the explicit coefficient multipliers:
-the hypothesis is Lipschitz continuity only on the approximation interval.-/
+the hypothesis is Lipschitz continuity only on the approximation interval.
+@isnad1 id=le.3h4v.s7.51cf7c3467fb from=translated src=- shape=2bc247e5 vocab=59cb22ee
+-/
 theorem abs_eval_chebyshevJacksonApprox_sub_le {f : ℝ → ℝ} {L : NNReal}
     (hf : LipschitzOnWith L f (Icc (-1 : ℝ) 1)) {M : ℕ} (hM : 1 ≤ M)
     {r : ℝ} (hr : r ∈ Icc (-1 : ℝ) 1) :

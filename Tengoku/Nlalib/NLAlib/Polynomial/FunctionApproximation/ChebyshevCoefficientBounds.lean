@@ -22,7 +22,9 @@ open scoped NLAlib.TwoPi
 
 /-- A finite set of Fourier coefficients of a bounded continuous cosine pullback has
 square sum at most the squared function bound.
-Source: Mathlib Parseval identity; helper for `chebyshev-series-convergence`.-/
+Source: Mathlib Parseval identity; helper for `chebyshev-series-convergence`.
+@isnad1 id=le.3h3v.s7.9a6c8b2cb376 from=translated src=- shape=1ec464b0 vocab=138bd217
+-/
 theorem sum_norm_sq_fourierCoeff_realChebyshevCircleFunction_le {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1 : ℝ) 1)) {M : ℝ} (_hM0 : 0 ≤ M)
     (hM : ∀ x ∈ Icc (-1 : ℝ) 1, |f x| ≤ M) (s : Finset ℕ) :
@@ -53,7 +55,9 @@ theorem sum_norm_sq_fourierCoeff_realChebyshevCircleFunction_le {f : ℝ → ℝ
 
 /-- The sum of absolute values of any finite set of Chebyshev coefficients is at most
 `2√card * M` when the function is bounded by `M` on the interval.
-Source: finite Cauchy--Schwarz and Parseval; helper for `chebyshev-series-convergence`.-/
+Source: finite Cauchy--Schwarz and Parseval; helper for `chebyshev-series-convergence`.
+@isnad1 id=le.3h3v.s7.ed472a315ebe from=translated src=- shape=0872a264 vocab=3811317d
+-/
 theorem sum_abs_chebyshevCoeff_le_sqrt_card_mul {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1 : ℝ) 1)) {M : ℝ} (hM0 : 0 ≤ M)
     (hM : ∀ x ∈ Icc (-1 : ℝ) 1, |f x| ≤ M) (s : Finset ℕ) :

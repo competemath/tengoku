@@ -33,7 +33,9 @@ namespace NLAlib
 variable {Ω : Type*} [MeasurableSpace Ω]
 
 open scoped Matrix.Norms.L2Operator in
-/-- Hanson-Wright MGF certificate from independent sub-Gaussian coordinates.-/
+/-- Hanson-Wright MGF certificate from independent sub-Gaussian coordinates.
+@isnad1 id=hashanso.9h7v.s8.809a32a953f1 from=translated src=- shape=b15476ac vocab=31b0fa9a
+-/
 theorem hasHansonWrightMGF_of_subgaussian {μ : Measure Ω} [IsProbabilityMeasure μ]
     {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ} {X : Fin n → Ω → ℝ}
     {K C : ℝ} (hK : 0 < K) (hC : 0 < C)
@@ -205,7 +207,9 @@ If each coordinate satisfies `|Xᵢ| ≤ K` almost surely, then the quadratic fo
 in the interval `[-K²‖A‖₁, K²‖A‖₁]`.  The centered quadratic form is therefore
 bounded by `2K²‖A‖₁`; the local bounded MGF lemma above gives a quadratic CGF
 estimate.  The explicit side condition compares this bounded-coordinate constant
-with the Frobenius-scale constant used by the Hanson-Wright tail statement.-/
+with the Frobenius-scale constant used by the Hanson-Wright tail statement.
+@isnad1 id=hashanso.4h7v.s7.1b0d7354fdd3 from=translated src=- shape=42d75991 vocab=23563b64
+-/
 theorem hasHansonWrightMGF_of_bounded {μ : Measure Ω} [IsProbabilityMeasure μ]
     {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ} {X : Fin n → Ω → ℝ}
     {K C : ℝ} (hK : 0 ≤ K) (hX_meas : ∀ i, AEMeasurable (X i) μ)

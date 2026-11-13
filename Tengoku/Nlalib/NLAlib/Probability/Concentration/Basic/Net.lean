@@ -27,7 +27,9 @@ assumed), then for `t ≥ 0`,
 The inequality is strict: with `≤` the statement fails for `c = 0`.
 Vershynin 2018, Thm 4.4.5 (with explicit constants: 1/4-nets of size `9ⁿ`, `9ᵐ`, the bilinear
 net lemma and a union bound). No measurability hypothesis is needed (outer measure).
-atlas: subgaussian-spec-norm-/
+atlas: subgaussian-spec-norm
+@isnad1 id=le.2h7v.s8.00a5d536df0d from=translated src=- shape=7083066d vocab=9d1a2e52
+-/
 theorem measureReal_lt_specNorm_le_of_hasSubgaussianMGF {Ω : Type*} [MeasurableSpace Ω]
     {μ : Measure Ω} [IsProbabilityMeasure μ] {m n : Type*} [Fintype m] [Fintype n]
     [DecidableEq m] [DecidableEq n] (A : Ω → Matrix m n ℝ) (c : ℝ≥0)

@@ -31,7 +31,9 @@ private theorem functional_comp_X_sq_mul_X_pow_eq_zero_of_odd
 /-- Even monic polynomials of a symmetric measure are the monic polynomials
 of the native square-map pushforward composed with `X²`, including termination.
 Source: Gautschi (2004), Theorem 1.18.
-atlas: symmetric-measure-even-odd-reduction (partial)-/
+atlas: symmetric-measure-even-odd-reduction (partial)
+@isnad1 id=eq.3h2v.s7.d23dc763249e from=translated src=- shape=ead237ef vocab=3750e3f7
+-/
 theorem monicOrthogonalPolynomial_two_mul_eq_comp_X_sq
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ)
     (hs : Measure.map (fun x : ℝ => -x) μ = μ) (k : ℕ)
@@ -70,7 +72,9 @@ theorem monicOrthogonalPolynomial_two_mul_eq_comp_X_sq
 /-- Odd monic polynomials of a symmetric measure are `X` times the polynomials
 of the native square-map pushforward of `x² dμ`, composed with `X²`.
 Source: Gautschi (2004), Theorem 1.18.
-atlas: symmetric-measure-even-odd-reduction (partial)-/
+atlas: symmetric-measure-even-odd-reduction (partial)
+@isnad1 id=eq.3h2v.s8.806d8ab0c818 from=translated src=- shape=2a3b6934 vocab=e24f23dd
+-/
 theorem monicOrthogonalPolynomial_two_mul_add_one_eq_X_mul_comp_X_sq
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ)
     (hs : Measure.map (fun x : ℝ => -x) μ = μ) (k : ℕ)

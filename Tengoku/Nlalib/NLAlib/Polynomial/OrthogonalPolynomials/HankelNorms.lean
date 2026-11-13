@@ -26,7 +26,9 @@ def monicOrthogonalCoefficientMatrix (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) :
     Matrix (Fin n) (Fin n) 𝕜 := fun i j => (monicOrthogonalPolynomial L j.val).coeff i.val
 
 /-- The monic coefficient change of basis has determinant one, regardless
-of moment-system singularities.-/
+of moment-system singularities.
+@isnad1 id=eq.0h3v.s7.23418263e408 from=translated src=- shape=4f349e8a vocab=eed6c9de
+-/
 theorem det_monicOrthogonalCoefficientMatrix (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) :
     (monicOrthogonalCoefficientMatrix L n).det = 1 := by
   have htri : (monicOrthogonalCoefficientMatrix L n).IsUpperTriangular := by
@@ -57,7 +59,9 @@ private theorem functional_sum_monomial_mul_eq (L : 𝕜[X] →ₗ[𝕜] 𝕜) (
 
 /-- Monic coefficient congruence diagonalizes the finite bilinear Hankel
 matrix whenever the lower-degree orthogonality systems are nonsingular.
-Source: Gautschi (2004), Chapter 1.-/
+Source: Gautschi (2004), Chapter 1.
+@isnad1 id=eq.1h3v.s8.060f0095baaf from=translated src=- shape=067068d2 vocab=7c3ce136
+-/
 theorem transpose_coefficientMatrix_mul_hankel_mul_coefficientMatrix
     (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ)
     (hL : ∀ k < n, hankelMomentDet L k ≠ 0) :
@@ -91,7 +95,9 @@ theorem transpose_coefficientMatrix_mul_hankel_mul_coefficientMatrix
 /-- A nonsingular finite orthogonality hierarchy has Hankel determinant
 equal to the product of its monic squared bilinear norms.
 Source: Gautschi (2004), Chapter 1, OF5.
-atlas: hankel-moment-positivity (partial), monic-orthogonal-recurrence (partial)-/
+atlas: hankel-moment-positivity (partial), monic-orthogonal-recurrence (partial)
+@isnad1 id=eq.1h3v.s7.4d29c421541a from=translated src=- shape=48ac82c7 vocab=2bed6447
+-/
 theorem hankelMomentDet_eq_prod_orthogonalPolynomialNorm (L : 𝕜[X] →ₗ[𝕜] 𝕜)
     (n : ℕ) (hL : ∀ k < n, hankelMomentDet L k ≠ 0) :
     hankelMomentDet L n = ∏ i : Fin n, orthogonalPolynomialNorm L i.val := by
@@ -102,7 +108,9 @@ theorem hankelMomentDet_eq_prod_orthogonalPolynomialNorm (L : 𝕜[X] →ₗ[�
 
 /-- Consecutive Hankel determinants recover each monic squared norm.
 Source: Gautschi (2004), Chapter 1, OF5.
-atlas: hankel-moment-positivity (partial), monic-orthogonal-recurrence (partial)-/
+atlas: hankel-moment-positivity (partial), monic-orthogonal-recurrence (partial)
+@isnad1 id=eq.1h3v.s7.f0fa4cc0d864 from=translated src=- shape=2f4c9396 vocab=cb47eaca
+-/
 theorem orthogonalPolynomialNorm_eq_div_hankelMomentDet
     (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ)
     (hL : ∀ k ≤ n, hankelMomentDet L k ≠ 0) :
@@ -117,7 +125,9 @@ theorem orthogonalPolynomialNorm_eq_div_hankelMomentDet
 
 /-- The positive-order monic recurrence subdiagonal is the ratio of three
 consecutive Hankel determinants. Source: Gautschi (2004), Chapter 1, OF6.
-atlas: hankel-moment-positivity (partial), monic-orthogonal-recurrence (partial)-/
+atlas: hankel-moment-positivity (partial), monic-orthogonal-recurrence (partial)
+@isnad1 id=eq.2h3v.s7.0e82b5474cf1 from=translated src=- shape=0d8d0314 vocab=15a2e9b1
+-/
 theorem orthogonalRecurrenceBeta_eq_hankelMomentDet_ratio
     (L : 𝕜[X] →ₗ[𝕜] 𝕜) {n : ℕ} (hn : 0 < n)
     (hL : ∀ k ≤ n, hankelMomentDet L k ≠ 0) :

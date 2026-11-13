@@ -52,7 +52,9 @@ namespace NLAlib
 /-! ### Laplace transform of a chi-square variable -/
 
 /-- One-dimensional Gaussian integral: `E[exp(-((u-1)/2) Y²)] = u^{-1/2}` for `Y ∼ N(0,1)`
-and `u > 0`. Atlas: `chi-square-lower-tail` (helper).-/
+and `u > 0`. Atlas: `chi-square-lower-tail` (helper).
+@isnad1 id=eq.1h1v.s7.62b27fa144d0 from=translated src=- shape=200444ba vocab=80b938a0
+-/
 theorem integral_exp_neg_mul_sq_gaussianReal_eq_rpow (u : ℝ) (hu : 0 < u) :
     ∫ y, Real.exp (-((u - 1) / 2) * y ^ 2) ∂(gaussianReal 0 1) = u ^ (-(1 / 2 : ℝ)) := by
   rw [integral_gaussianReal_eq_integral_smul (by norm_num)]
@@ -69,7 +71,9 @@ theorem integral_exp_neg_mul_sq_gaussianReal_eq_rpow (u : ℝ) (hu : 0 < u) :
 
 /-- **Laplace transform of `χ²_d`.** For a standard Gaussian vector indexed by a finite type of
 cardinality `d` and `u > 0`, `E[exp(-((u-1)/2) ∑ⱼ Xⱼ²)] = u^{-d/2}`.
-Atlas: `chi-square-lower-tail` (helper).-/
+Atlas: `chi-square-lower-tail` (helper).
+@isnad1 id=eq.1h2v.s7.0576d9fd19e6 from=translated src=- shape=cbd14440 vocab=07829f05
+-/
 theorem integral_exp_neg_mul_sum_sq_gaussianVector {ι : Type*} [Fintype ι] (u : ℝ)
     (hu : 0 < u) :
     ∫ x : ι → ℝ, Real.exp (-((u - 1) / 2) * ∑ j, x j ^ 2)
@@ -85,7 +89,9 @@ theorem integral_exp_neg_mul_sum_sq_gaussianVector {ι : Type*} [Fintype ι] (u 
   congr 1; ring
 
 /-- A standard Gaussian vector of positive dimension is almost surely nonzero:
-`∑ⱼ Xⱼ² > 0` a.s. Atlas: `chi-square-neg-moment` (helper).-/
+`∑ⱼ Xⱼ² > 0` a.s. Atlas: `chi-square-neg-moment` (helper).
+@isnad1 id=eventual.1h1v.s6.a5be54475f7d from=translated src=- shape=ed78891d vocab=5c3a1be5
+-/
 theorem ae_sum_sq_pos_gaussianVector {ι : Type*} [Fintype ι] (hd : 1 ≤ Fintype.card ι) :
     ∀ᵐ x ∂(gaussianVector ι), 0 < ∑ j, x j ^ 2 := by
   have : NullSingletonClass (gaussianReal 0 1) := nullSingletonClass_gaussianReal (by norm_num)
@@ -105,7 +111,9 @@ theorem ae_sum_sq_pos_gaussianVector {ι : Type*} [Fintype ι] (hd : 1 ≤ Finty
 every `u` and `s ≥ 0`. Chernoff's method with the Laplace transform
 `integral_exp_neg_mul_sum_sq_gaussianVector`; Laurent–Massart 2000, proof of Lem 1;
 Dasgupta–Gupta 2003, proof of Lem 2.2(a). Atlas: `chi-square-lower-tail`.
-atlas: chi-square-lower-tail-/
+atlas: chi-square-lower-tail
+@isnad1 id=le.1h3v.s7.a633ce9f74b8 from=translated src=- shape=902e51e1 vocab=fe276a14
+-/
 theorem measureReal_sum_sq_le_le_exp_mul_rpow {d : ℕ} (u s : ℝ) (hs : 0 ≤ s) :
     (gaussianVector (Fin d)).real {g | ∑ i, g i ^ 2 ≤ u}
       ≤ Real.exp (s * u) * (1 + 2 * s) ^ (-((d : ℝ) / 2)) := by
@@ -134,7 +142,9 @@ theorem measureReal_sum_sq_le_le_exp_mul_rpow {d : ℕ} (u s : ℝ) (hs : 0 ≤ 
 Chernoff bound with the optimal parameter `s = (d/u - 1)/2`; Davidson–Szarek 2001 / Vershynin
 2012 (small-ball step for `σ_min`); Laurent–Massart 2000 give the sharper form.
 Atlas: `chi-square-lower-tail`.
-atlas: chi-square-lower-tail-/
+atlas: chi-square-lower-tail
+@isnad1 id=le.3h2v.s7.737713db53ec from=translated src=- shape=45e94819 vocab=596de038
+-/
 theorem measureReal_sum_sq_le_le_gaussianVector {d : ℕ} (hd : 1 ≤ d) (u : ℝ) (hu : 0 ≤ u)
     (hud : u ≤ d) :
     (gaussianVector (Fin d)).real {g | ∑ i, g i ^ 2 ≤ u}
@@ -173,7 +183,9 @@ theorem measureReal_sum_sq_le_le_gaussianVector {d : ℕ} (hd : 1 ≤ d) (u : �
 Dasgupta–Gupta 2003, proof of Lem 2.2(a) (the Chernoff computation; Lem 2.2 itself is stated for
 the projection of a random unit vector), with the parameter `s = ε / (2(1 − ε))` in
 `measureReal_sum_sq_le_le_exp_mul_rpow`. Atlas: `chi-square-lower-tail` (sharp variant).
-atlas: chi-square-lower-tail-/
+atlas: chi-square-lower-tail
+@isnad1 id=le.2h2v.s7.a0dac6217444 from=translated src=- shape=159a7ef5 vocab=3e4621b4
+-/
 theorem measureReal_sum_sq_le_one_sub_mul_le_gaussianVector {d : ℕ} {ε : ℝ} (hε0 : 0 ≤ ε)
     (hε1 : ε < 1) :
     (gaussianVector (Fin d)).real {g | ∑ i, g i ^ 2 ≤ (1 - ε) * d}
@@ -193,7 +205,9 @@ theorem measureReal_sum_sq_le_one_sub_mul_le_gaussianVector {d : ℕ} {ε : ℝ}
 for every `u` and `0 ≤ t < 1/2`. Chernoff's method (Mathlib `measure_ge_le_exp_mul_mgf`) with the
 Laplace transform `integral_exp_neg_mul_sum_sq_gaussianVector` at `1 − 2t`; Laurent–Massart 2000,
 proof of Lem 1. Atlas: `chi-square-upper-tail`.
-atlas: chi-square-upper-tail-/
+atlas: chi-square-upper-tail
+@isnad1 id=le.2h3v.s7.189cecb7b526 from=translated src=- shape=f2ae794b vocab=03d7b745
+-/
 theorem measureReal_le_sum_sq_le_exp_mul_rpow {d : ℕ} (u t : ℝ) (ht0 : 0 ≤ t)
     (ht1 : t < 1 / 2) :
     (gaussianVector (Fin d)).real {g | u ≤ ∑ i, g i ^ 2}
@@ -217,7 +231,9 @@ theorem measureReal_le_sum_sq_le_exp_mul_rpow {d : ℕ} (u t : ℝ) (ht0 : 0 ≤
 Dasgupta–Gupta 2003, proof of Lem 2.2(b) (the Chernoff computation), with
 `t = ε / (2(1 + ε))` in `measureReal_le_sum_sq_le_exp_mul_rpow`. Atlas:
 `chi-square-upper-tail`.
-atlas: chi-square-upper-tail-/
+atlas: chi-square-upper-tail
+@isnad1 id=le.1h2v.s7.4fbc6270ebc1 from=translated src=- shape=cb62b84d vocab=f8b75eba
+-/
 theorem measureReal_le_sum_sq_le_gaussianVector {d : ℕ} {ε : ℝ} (hε : 0 ≤ ε) :
     (gaussianVector (Fin d)).real {g | (1 + ε) * d ≤ ∑ i, g i ^ 2}
       ≤ Real.exp (-((d : ℝ) / 2) * (ε - Real.log (1 + ε))) := by
@@ -247,7 +263,9 @@ private lemma sqrt_mul_eq_mul_sqrt_div {d x : ℝ} (hd : 0 < d) :
 Laurent–Massart 2000, Lem 1 (first inequality, with all weights `aᵢ = 1`). Proof: the Chernoff
 form `measureReal_le_sum_sq_le_gaussianVector` at `ε = 2a + 2a²`, `a = √(x/d)`, and
 `log(1 + 2a + 2a²) ≤ 2a`. The case `d = 0` is direct. Atlas: `chi-square-upper-tail`.
-atlas: chi-square-upper-tail-/
+atlas: chi-square-upper-tail
+@isnad1 id=le.1h2v.s7.896f7b389d27 from=translated src=- shape=a9e7ba58 vocab=b2746f10
+-/
 theorem measureReal_add_two_sqrt_mul_add_le_sum_sq_le_gaussianVector {d : ℕ} {x : ℝ}
     (hx : 0 ≤ x) :
     (gaussianVector (Fin d)).real {g | d + 2 * Real.sqrt (d * x) + 2 * x ≤ ∑ i, g i ^ 2}
@@ -289,7 +307,9 @@ Laurent–Massart 2000, Lem 1 (second inequality, with all weights `aᵢ = 1`). 
 `u < 1` use `measureReal_sum_sq_le_one_sub_mul_le_gaussianVector` and `log(1 − u) ≤ −u − u²/2`.
 The hypothesis `1 ≤ d` is needed: for `d = 0` the event is everything. Atlas:
 `chi-square-lower-tail`.
-atlas: chi-square-lower-tail-/
+atlas: chi-square-lower-tail
+@isnad1 id=le.2h2v.s7.dae70ce7be9d from=translated src=- shape=bc443278 vocab=0abae271
+-/
 theorem measureReal_sum_sq_le_sub_two_sqrt_mul_le_gaussianVector {d : ℕ} (hd : 1 ≤ d) {x : ℝ}
     (hx : 0 ≤ x) :
     (gaussianVector (Fin d)).real {g | ∑ i, g i ^ 2 ≤ d - 2 * Real.sqrt (d * x)}
@@ -484,7 +504,9 @@ private theorem integrable_and_integral_rpow_inv_sum_sq_aux {d : ℕ} (q : ℝ) 
 
 /-- **Negative moments of a chi-square variable are finite.** For `0 ≤ q < d/2`, `(χ²_d)^{-q}` is
 integrable. HMT 2011, proof of Lemma A.10; Johnson–Kotz–Balakrishnan, ch. 18.
-atlas: chi-square-neg-moment (partial)-/
+atlas: chi-square-neg-moment (partial)
+@isnad1 id=integrab.2h2v.s7.e0e0a69ee83a from=translated src=- shape=70565d3a vocab=7c877b61
+-/
 theorem integrable_rpow_inv_sum_sq_gaussianVector {d : ℕ} (q : ℝ) (hq : 0 ≤ q)
     (hqd : q < (d : ℝ) / 2) :
     Integrable (fun x : Fin d → ℝ => ((∑ j, x j ^ 2)⁻¹) ^ q) (gaussianVector (Fin d)) :=
@@ -496,7 +518,9 @@ theorem integrable_rpow_inv_sum_sq_gaussianVector {d : ℕ} (q : ℝ) (hq : 0 �
 Standard Gamma-integral computation (e.g. HMT 2011, proof of Lemma A.10; Johnson–Kotz–
 Balakrishnan, ch. 18). Proof: Euler representation of `S^{-q}` and of `(1 + 2v)^{-d/2}`, Tonelli,
 and the Laplace transform of `χ²_d`.
-atlas: chi-square-neg-moment (partial)-/
+atlas: chi-square-neg-moment (partial)
+@isnad1 id=eq.2h2v.s7.57daa0d93155 from=translated src=- shape=34f093bb vocab=07981044
+-/
 theorem integral_rpow_inv_sum_sq_gaussianVector {d : ℕ} (q : ℝ) (hq : 0 ≤ q)
     (hqd : q < (d : ℝ) / 2) :
     ∫ x, ((∑ j, x j ^ 2)⁻¹) ^ q ∂(gaussianVector (Fin d))
@@ -612,7 +636,9 @@ private lemma sqrt_pi_div_lt_rpow {n : ℕ} (hn : 5 ≤ n) :
 HMT 2011, Lemma A.10 (the moment step of the pseudoinverse Frobenius tail bound): the negative
 moment formula with `q = (d-1)/2`, then `Γ(1/2) = √π`, the duplication formula, log-convexity
 of `Γ` and Stirling.
-atlas: chi-square-neg-moment (partial)-/
+atlas: chi-square-neg-moment (partial)
+@isnad1 id=lt.1h1v.s7.63690bf66ca3 from=translated src=- shape=b84d4140 vocab=21b3ae6c
+-/
 theorem integral_rpow_inv_sum_sq_gaussianVector_lt {d : ℕ} (hd : 5 ≤ d) :
     ∫ x, ((∑ j, x j ^ 2)⁻¹) ^ (((d : ℝ) - 1) / 2) ∂(gaussianVector (Fin d))
       < (3 / (d : ℝ)) ^ (((d : ℝ) - 1) / 2) := by
@@ -624,7 +650,9 @@ theorem integral_rpow_inv_sum_sq_gaussianVector_lt {d : ℕ} (hd : 5 ≤ d) :
 /-! ### The second inverse moment -/
 
 /-- For `d ≥ 5`, `(χ²_d)^{-2}` is integrable. HMT 2011, Prop A.6 / Lemma A.9.
-atlas: chi-square-neg-moment (partial)-/
+atlas: chi-square-neg-moment (partial)
+@isnad1 id=integrab.1h1v.s6.e5a0e5255216 from=translated src=- shape=a93b6e41 vocab=61f9eb72
+-/
 theorem integrable_inv_sum_sq_pow_two_gaussianVector {d : ℕ} (hd : 5 ≤ d) :
     Integrable (fun x : Fin d → ℝ => ((∑ j, x j ^ 2)⁻¹) ^ 2) (gaussianVector (Fin d)) := by
   have hd' : (5 : ℝ) ≤ d := by exact_mod_cast hd
@@ -638,7 +666,9 @@ Used for the inverse-Wishart second moments (Tropp–Webber 2023, App. B; HMT 20
 Lemma A.9). The sources prove it by a separate Laplace-transform computation; here it is the case
 `q = 2` of `integral_rpow_inv_sum_sq_gaussianVector`, using
 `Γ(d/2) = (d/2 - 1)(d/2 - 2) Γ(d/2 - 2)`.
-atlas: chi-square-neg-moment (partial)-/
+atlas: chi-square-neg-moment (partial)
+@isnad1 id=eq.1h1v.s7.0e22df569c21 from=translated src=- shape=ea481c18 vocab=d880aaec
+-/
 theorem integral_inv_sum_sq_pow_two_gaussianVector {d : ℕ} (hd : 5 ≤ d) :
     ∫ x, ((∑ j, x j ^ 2)⁻¹) ^ 2 ∂(gaussianVector (Fin d))
       = 1 / (((d : ℝ) - 2) * ((d : ℝ) - 4)) := by
@@ -739,7 +769,9 @@ private lemma lintegral_inv_sum_sq_gaussianVector {ι : Type*} [Fintype ι]
 
 /-- If `X` is a standard Gaussian vector indexed by a finite type `ι` with `|ι| ≥ 3`, then
 `1/‖X‖²` is integrable. Tropp–Webber 2023, Lemma B.2 (scalar step); HMT 2011, Prop A.5.
-atlas: inverse-chi-square-moment-/
+atlas: inverse-chi-square-moment
+@isnad1 id=integrab.1h1v.s6.02d1d5c0090a from=translated src=- shape=a9859e24 vocab=ded77343
+-/
 theorem integrable_inv_sum_sq_gaussianVector {ι : Type*} [Fintype ι]
     (hd : 3 ≤ Fintype.card ι) :
     Integrable (fun x : ι → ℝ => (∑ j, x j ^ 2)⁻¹) (gaussianVector ι) := by
@@ -757,7 +789,9 @@ theorem integrable_inv_sum_sq_gaussianVector {ι : Type*} [Fintype ι]
 Tropp–Webber 2023, Lemma B.2 (scalar step); HMT 2011, proof of Prop 10.2 / Prop A.5
 (`E[1/χ²_d] = 1/(d-2)`). The sources state it for `ι = Fin d`. Proof by the Laplace-transform
 representation of `1/S`.
-atlas: inverse-chi-square-moment-/
+atlas: inverse-chi-square-moment
+@isnad1 id=eq.1h1v.s6.f012484722e7 from=translated src=- shape=d380044a vocab=10e83e72
+-/
 theorem integral_inv_sum_sq_gaussianVector {ι : Type*} [Fintype ι]
     (hd : 3 ≤ Fintype.card ι) :
     ∫ x, (∑ j, x j ^ 2)⁻¹ ∂(gaussianVector ι) = 1 / ((Fintype.card ι : ℝ) - 2) := by

@@ -30,7 +30,9 @@ private theorem rooted_inverse_chiSquare_moment_mono {d : ℕ} {q r : ℝ}
 
 /-- Every admissible positive negative moment has rooted size at most `3/d`
 in dimension at least five. Source: HMT 2011, Lemma A.10, by endpoint interpolation.
-atlas: chi-square-neg-moment (partial)-/
+atlas: chi-square-neg-moment (partial)
+@isnad1 id=le.3h2v.s7.d8863779ef44 from=translated src=- shape=c9cfda11 vocab=53b072ff
+-/
 theorem integral_rpow_inv_sum_sq_gaussianVector_root_le_three_div {d : ℕ}
     (hd : 5 ≤ d) {q : ℝ} (hq : 0 < q) (hqd : 2 * q + 1 ≤ (d : ℝ)) :
     (∫ x : Fin d → ℝ, (∑ j, x j ^ 2)⁻¹ ^ q ∂gaussianVector (Fin d)) ^ (1 / q) ≤
@@ -78,7 +80,9 @@ private theorem inverse_chiSquare_four_endpoint_le_one :
 /-- The uniform `4/d` rooted negative-moment bound holds in every admissible
 dimension, including dimensions two, three and four. Source: HMT 2011,
 Lemma A.10 and supplied reroute W2.
-atlas: chi-square-neg-moment (partial)-/
+atlas: chi-square-neg-moment (partial)
+@isnad1 id=le.2h2v.s7.4eb145e1318e from=translated src=- shape=b458be0c vocab=53b072ff
+-/
 theorem integral_rpow_inv_sum_sq_gaussianVector_root_le_four_div {d : ℕ}
     {q : ℝ} (hq : 0 < q) (hqd : 2 * q + 1 ≤ (d : ℝ)) :
     (∫ x : Fin d → ℝ, (∑ j, x j ^ 2)⁻¹ ^ q ∂gaussianVector (Fin d)) ^ (1 / q) ≤
@@ -116,7 +120,9 @@ theorem integral_rpow_inv_sum_sq_gaussianVector_root_le_four_div {d : ℕ}
 /-- Transport the uniform rooted negative-moment bound to a random vector with
 the standard Gaussian law on an arbitrary probability space.
 Source: HMT 2011, Lemma A.10, and law transport.
-atlas: chi-square-neg-moment (partial)-/
+atlas: chi-square-neg-moment (partial)
+@isnad1 id=le.3h5v.s7.ffdd37968f4d from=translated src=- shape=9445ef80 vocab=58658ce8
+-/
 theorem integral_rpow_inv_sum_sq_root_le_four_div_of_hasLaw {Ω : Type*}
     [MeasurableSpace Ω] {μ : Measure Ω} {d : ℕ} {X : Ω → Fin d → ℝ}
     (hX : HasLaw X (gaussianVector (Fin d)) μ) {q : ℝ}

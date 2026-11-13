@@ -19,7 +19,9 @@ namespace NLAlib
 /-- The actual left Radau Schur matrix has the single-point odd-derivative remainder,
 including original finite-support termination and an opposite endpoint node.
 Source: operator derivations (AQ9); focused reroutes, Section 3 (BL4)–(BL11).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=other.7h5v.s10.bdc2b01372a4 from=translated src=- shape=c49c3a57 vocab=5de5fc43
+-/
 theorem exists_integral_sub_leftRadauJacobiRule_eq_iteratedDeriv_mul
     {μ : Measure ℝ} [IsFiniteMeasure μ] (hμ : HasPolynomialMoments μ) {a c : ℝ}
     (hac : a < c) (hμac : ∀ᵐ x ∂μ, x ∈ Icc a c) (q : ℕ)
@@ -53,7 +55,9 @@ theorem exists_integral_sub_leftRadauJacobiRule_eq_iteratedDeriv_mul
 /-- The actual right Radau Schur matrix has the single-point odd-derivative remainder,
 including the exact terminal boundary branch.
 Source: operator derivations (AQ10); focused reroutes, Section 3 (BL4)–(BL11).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=other.7h5v.s10.2ad06806d9d6 from=translated src=- shape=474e8b06 vocab=b8830bf5
+-/
 theorem exists_integral_sub_rightRadauJacobiRule_eq_iteratedDeriv_mul
     {μ : Measure ℝ} [IsFiniteMeasure μ] (hμ : HasPolynomialMoments μ) {a c : ℝ}
     (hac : a < c) (hμac : ∀ᵐ x ∂μ, x ∈ Icc a c) (q : ℕ)
@@ -86,7 +90,9 @@ theorem exists_integral_sub_rightRadauJacobiRule_eq_iteratedDeriv_mul
 
 /-- A nonnegative odd derivative makes the actual left Radau matrix rule a lower
 bound, including terminal exactness. Source: Gautschi (2004), Theorem 3.7; (AQ9).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=le.8h5v.s9.2f65ac9d44a8 from=translated src=- shape=5c647308 vocab=be636af2
+-/
 theorem mass_mul_cfc_leftRadauJacobiMatrix_le_integral_of_iteratedDeriv_nonneg
     {μ : Measure ℝ} [IsFiniteMeasure μ] (hμ : HasPolynomialMoments μ) {a c : ℝ}
     (hac : a < c) (hμac : ∀ᵐ x ∂μ, x ∈ Icc a c) (q : ℕ)
@@ -109,7 +115,9 @@ theorem mass_mul_cfc_leftRadauJacobiMatrix_le_integral_of_iteratedDeriv_nonneg
 
 /-- A nonnegative odd derivative makes the actual right Radau matrix rule an upper
 bound, including terminal exactness. Source: Gautschi (2004), Theorem 3.7; (AQ10).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=le.8h5v.s9.fd5a0ee89928 from=translated src=- shape=69ce6509 vocab=e55bab61
+-/
 theorem integral_le_mass_mul_cfc_rightRadauJacobiMatrix_of_iteratedDeriv_nonneg
     {μ : Measure ℝ} [IsFiniteMeasure μ] (hμ : HasPolynomialMoments μ) {a c : ℝ}
     (hac : a < c) (hμac : ∀ᵐ x ∂μ, x ∈ Icc a c) (q : ℕ)

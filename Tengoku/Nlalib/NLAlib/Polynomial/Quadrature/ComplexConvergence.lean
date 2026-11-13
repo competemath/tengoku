@@ -19,7 +19,9 @@ open scoped Topology
 namespace NLAlib
 
 /-- Actual canonical Gauss rules of increasing order converge for every
-continuous complex function on the compact support interval.-/
+continuous complex function on the compact support interval.
+@isnad1 id=tendsto.4h4v.s7.eb8af681fe45 from=translated src=- shape=4d528794 vocab=ae4a6729
+-/
 theorem tendsto_sum_gaussWeights_mul_of_continuousOn
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) (hinf : μ.support.Infinite) {f : ℝ → ℂ}
@@ -52,7 +54,9 @@ theorem tendsto_sum_gaussWeights_mul_of_continuousOn
 at every complex point outside the real support interval. The infinite-support
 hypothesis ensures the canonical polynomials exist in every degree.
 Source: Gautschi (2004), Markov theorem, AQ20.
-atlas: jacobi-fraction-second-kind (partial)-/
+atlas: jacobi-fraction-second-kind (partial)
+@isnad1 id=tendsto.4h4v.s7.7ce716414c52 from=translated src=- shape=2b3eb573 vocab=cade7500
+-/
 theorem tendsto_secondKindPolynomial_div_stieltjesTransform
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) (hinf : μ.support.Infinite) {z : ℂ}

@@ -17,7 +17,9 @@ def HasRootSchedule : ℕ → ℂ → Prop
   | 0, _ => True
   | s + 1, ζ => ζ ^ size s = -1 ∧ HasRootSchedule s (ζ ^ 2)
 
-/-- Every primitive root of power-of-two order supplies all butterfly roots.-/
+/-- Every primitive root of power-of-two order supplies all butterfly roots.
+@isnad1 id=hasroots.1h2v.s4.787049471632 from=translated src=- shape=39b849e0 vocab=0ea11384
+-/
 theorem hasRootSchedule_of_isPrimitiveRoot (s : ℕ) {ζ : ℂ}
     (hζ : IsPrimitiveRoot ζ (size s)) : HasRootSchedule s ζ := by
   induction s generalizing ζ with
@@ -34,7 +36,9 @@ theorem hasRootSchedule_of_isPrimitiveRoot (s : ℕ) {ζ : ℂ}
     have hprod : size (s + 1) = 2 * size s := by simp only [size]; omega
     exact ⟨hhalf, ih (IsPrimitiveRoot.pow (size_pos (s + 1)) hζ hprod)⟩
 
-/-- Powers of the supplied negative character root are exactly character values.-/
+/-- Powers of the supplied negative character root are exactly character values.
+@isnad1 id=eq.0h2v.s7.846cf22bdcfe from=translated src=- shape=8370483c vocab=27484d24
+-/
 theorem standardRoot_pow {n : ℕ} [NeZero n] (k : ℕ) :
     ZMod.stdAddChar (-1 : ZMod n) ^ k = ZMod.stdAddChar (-(k : ZMod n)) := by
   rw [← AddChar.map_nsmul_eq_pow]
@@ -42,7 +46,9 @@ theorem standardRoot_pow {n : ℕ} [NeZero n] (k : ℕ) :
   simp only [nsmul_eq_mul, mul_neg, mul_one]
 
 /-- The negative standard character at one is a primitive root of the actual
-transform length. No root property is assumed by the final transform theorem.-/
+transform length. No root property is assumed by the final transform theorem.
+@isnad1 id=isprimit.0h1v.s6.ee5374451f9e from=translated src=- shape=98830f6f vocab=ce3daadf
+-/
 theorem isPrimitiveRoot_standardRoot {n : ℕ} [NeZero n] :
     IsPrimitiveRoot (ZMod.stdAddChar (-1 : ZMod n)) n := by
   constructor
@@ -56,7 +62,9 @@ theorem isPrimitiveRoot_standardRoot {n : ℕ} [NeZero n] :
 
 /-- The concrete roots used by the negative-exponent DFT satisfy every recursive
 butterfly identity. Source: Golub–Van Loan, §1.4.
-atlas: radix-two-fft-realization (partial)-/
+atlas: radix-two-fft-realization (partial)
+@isnad1 id=hasroots.0h1v.s7.2fc5d4ca2aa3 from=translated src=- shape=8112f3da vocab=54bbb79c
+-/
 theorem hasRootSchedule_standardRoot (s : ℕ) :
     HasRootSchedule s (ZMod.stdAddChar (-1 : ZMod (size s))) :=
   hasRootSchedule_of_isPrimitiveRoot s isPrimitiveRoot_standardRoot

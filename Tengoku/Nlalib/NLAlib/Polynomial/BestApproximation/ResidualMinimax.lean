@@ -34,7 +34,9 @@ def residualMinimaxError (s : Set ℂ) (k : ℕ) : ℝ≥0∞ :=
   ⨅ (p : ℝ[X]) (_ : p.degree ≤ k) (_ : p.eval 0 = 1), polynomialSupNorm s p
 
 /-- Enlarging the complex domain increases every polynomial's extended uniform modulus.
-Source: operator derivations, Section 7.-/
+Source: operator derivations, Section 7.
+@isnad1 id=le.1h3v.s4.260786ea2f4f from=translated src=- shape=b279e3bf vocab=0eac6769
+-/
 theorem polynomialSupNorm_mono {s t : Set ℂ} (hst : s ⊆ t) (p : ℝ[X]) :
     polynomialSupNorm s p ≤ polynomialSupNorm t p := by
   apply iSup_le
@@ -44,7 +46,9 @@ theorem polynomialSupNorm_mono {s t : Set ℂ} (hst : s ⊆ t) (p : ℝ[X]) :
   exact le_iSup_of_le z (le_iSup_of_le (hst hz) le_rfl)
 
 /-- Every admissible residual polynomial bounds the minimax error.
-Source: operator derivations, Section 7.-/
+Source: operator derivations, Section 7.
+@isnad1 id=le.2h3v.s5.8be59032e016 from=translated src=- shape=2b3c42ad vocab=690c6e4a
+-/
 theorem residualMinimaxError_le {s : Set ℂ} {k : ℕ} {p : ℝ[X]}
     (hp : p.degree ≤ k) (hp0 : p.eval 0 = 1) :
     residualMinimaxError s k ≤ polynomialSupNorm s p :=
@@ -52,7 +56,9 @@ theorem residualMinimaxError_le {s : Set ℂ} {k : ℕ} {p : ℝ[X]}
 
 /-- Allowing a larger degree can only decrease residual minimax error.
 Source: operator derivations, Section 7.
-atlas: residual-polynomial (partial)-/
+atlas: residual-polynomial (partial)
+@isnad1 id=antitone.0h1v.s3.522c2d3c3ff4 from=translated src=- shape=ed1bc477 vocab=b031c2d6
+-/
 theorem residualMinimaxError_antitone (s : Set ℂ) :
     Antitone (residualMinimaxError s) := by
   intro k l hkl
@@ -66,7 +72,9 @@ theorem residualMinimaxError_antitone (s : Set ℂ) :
 
 /-- Enlarging the domain increases residual minimax error, without boundedness assumptions.
 Source: operator derivations, Section 7.
-atlas: residual-polynomial (partial)-/
+atlas: residual-polynomial (partial)
+@isnad1 id=le.1h3v.s4.ffc4e04e7a8a from=translated src=- shape=23617870 vocab=afb45bf7
+-/
 theorem residualMinimaxError_mono {s t : Set ℂ} (hst : s ⊆ t) (k : ℕ) :
     residualMinimaxError s k ≤ residualMinimaxError t k := by
   apply le_iInf
@@ -79,7 +87,9 @@ theorem residualMinimaxError_mono {s t : Set ℂ} (hst : s ⊆ t) (k : ℕ) :
 
 /-- The constant residual polynomial one gives the universal upper bound one.
 Source: operator derivations, Section 7.
-atlas: residual-polynomial (partial)-/
+atlas: residual-polynomial (partial)
+@isnad1 id=le.0h2v.s4.595b2bd036fa from=translated src=- shape=1a68ef72 vocab=afb45bf7
+-/
 theorem residualMinimaxError_le_one (s : Set ℂ) (k : ℕ) :
     residualMinimaxError s k ≤ 1 := by
   apply (residualMinimaxError_le (p := (1 : ℝ[X])) (by simp) (by simp)).trans
@@ -91,7 +101,9 @@ theorem residualMinimaxError_le_one (s : Set ℂ) (k : ℕ) :
 
 /-- The empty-domain residual minimax problem has value zero.
 Source: operator derivations, Section 7.
-atlas: residual-polynomial (partial)-/
+atlas: residual-polynomial (partial)
+@isnad1 id=eq.0h1v.s4.b7ae5f02bc57 from=translated src=- shape=1368939f vocab=ed4cb3d1
+-/
 @[simp] theorem residualMinimaxError_empty (k : ℕ) :
     residualMinimaxError ∅ k = 0 := by
   apply le_antisymm _ bot_le
@@ -105,7 +117,9 @@ def complexPolynomialRestriction (s : Set ℂ) : ℝ[X] →ₗ[ℝ] C(s, ℂ) wh
   map_add' p q := by ext z; simp
   map_smul' a p := by ext z; simp [Polynomial.smul_eq_C_mul]
 
-/-- Restriction is the usual real-coefficient algebra evaluation at a complex point.-/
+/-- Restriction is the usual real-coefficient algebra evaluation at a complex point.
+@isnad1 id=eq.0h3v.s9.6347e6864f50 from=translated src=- shape=ad6386f2 vocab=9dc5d2a9
+-/
 @[simp] theorem complexPolynomialRestriction_apply (s : Set ℂ) (p : ℝ[X]) (z : s) :
     complexPolynomialRestriction s p z = aeval (z : ℂ) p := by
   simp [complexPolynomialRestriction, eval_map, aeval_def]
@@ -115,7 +129,9 @@ space of the affine residual-polynomial constraint.-/
 def residualPolynomialDirections (k : ℕ) : Submodule ℝ ℝ[X] :=
   degreeLE ℝ k ⊓ LinearMap.ker (aeval (0 : ℝ)).toLinearMap
 
-/-- The direction space has exactly the degree and zero-evaluation conditions.-/
+/-- The direction space has exactly the degree and zero-evaluation conditions.
+@isnad1 id=iff.0h2v.s6.21f0c3b4965e from=translated src=- shape=8536962a vocab=31ad4b53
+-/
 theorem mem_residualPolynomialDirections_iff (k : ℕ) (p : ℝ[X]) :
     p ∈ residualPolynomialDirections k ↔ p.degree ≤ k ∧ p.eval 0 = 0 := by
   simp [residualPolynomialDirections, mem_degreeLE, aeval_def, coeff_zero_eq_eval_zero]
@@ -125,7 +141,9 @@ def residualEvaluationDirections (s : Set ℂ) (k : ℕ) : Submodule ℝ C(s, �
   (residualPolynomialDirections k).map (complexPolynomialRestriction s)
 
 /-- Restricted residual directions are finite dimensional even when evaluation is
-not injective, for example when the set has fewer than `k` points.-/
+not injective, for example when the set has fewer than `k` points.
+@isnad1 id=finitedi.0h2v.s10.5c3f352f334c from=translated src=- shape=9e0ae0f4 vocab=f3cd071c
+-/
 instance residualEvaluationDirections_finiteDimensional (s : Set ℂ) (k : ℕ) :
     FiniteDimensional ℝ (residualEvaluationDirections s k) := by
   have : FiniteDimensional ℝ (degreeLT ℝ (k + 1)) :=
@@ -137,7 +155,9 @@ instance residualEvaluationDirections_finiteDimensional (s : Set ℂ) (k : ℕ) 
   unfold residualEvaluationDirections residualPolynomialDirections
   infer_instance
 
-/-- The extended polynomial supremum is the continuous-map uniform norm on a compact set.-/
+/-- The extended polynomial supremum is the continuous-map uniform norm on a compact set.
+@isnad1 id=eq.0h2v.s9.dedc0a961ab6 from=translated src=- shape=1df511c3 vocab=5fb8890b
+-/
 theorem polynomialSupNorm_eq_enorm {s : Set ℂ} [CompactSpace s] (p : ℝ[X]) :
     polynomialSupNorm s p = ‖complexPolynomialRestriction s p‖ₑ := by
   rw [ContinuousMap.enorm_eq_iSup_enorm]
@@ -148,7 +168,9 @@ theorem polynomialSupNorm_eq_enorm {s : Set ℂ} [CompactSpace s] (p : ℝ[X]) :
 set, including finite and empty sets. Invisible coefficient directions are removed
 by taking the evaluation image, rather than assuming bounded coefficient sublevels.
 Source: operator derivations, (S6)–(S8).
-atlas: residual-polynomial (partial)-/
+atlas: residual-polynomial (partial)
+@isnad1 id=ex.0h2v.s6.dd4d951c68bf from=translated src=- shape=7324e56e vocab=c375f9b0
+-/
 theorem exists_polynomialSupNorm_eq_residualMinimaxError {s : Set ℂ} [CompactSpace s]
     (k : ℕ) : ∃ p : ℝ[X], p.degree ≤ k ∧ p.eval 0 = 1 ∧
       polynomialSupNorm s p = residualMinimaxError s k := by
@@ -187,7 +209,9 @@ theorem exists_polynomialSupNorm_eq_residualMinimaxError {s : Set ℂ} [CompactS
 /-- On a positive real interval, embedded in the complex plane, residual minimax
 error is the sharp reciprocal Chebyshev value, including degree zero.
 Source: operator derivations, (S9); Trefethen–Bau, Theorem 38.5.
-atlas: residual-polynomial (partial)-/
+atlas: residual-polynomial (partial)
+@isnad1 id=eq.2h3v.s7.2d1d2ebc2623 from=translated src=- shape=4e79fe01 vocab=9aa47628
+-/
 theorem residualMinimaxError_real_interval {a b : ℝ} (ha : 0 < a) (hab : a < b)
     (k : ℕ) :
     residualMinimaxError ((algebraMap ℝ ℂ) '' Set.Icc a b) k =

@@ -50,7 +50,9 @@ def lebesgueConstant {ι : Type*} [Fintype ι] [DecidableEq ι]
     by unfold lebesgueFunction; fun_prop⟩ : C(s, ℝ))‖
 
 /-- A continuous function belongs to the degree-bounded polynomial space exactly when it
-is the restriction of a polynomial of the required degree. Source: ATAP, Chapter 10.-/
+is the restriction of a polynomial of the required degree. Source: ATAP, Chapter 10.
+@isnad1 id=iff.0h3v.s8.8b54344e0cde from=translated src=- shape=5439cec4 vocab=8c0430ef
+-/
 theorem mem_polynomialApproximationSpace_iff {s : Set ℝ} {n : ℕ} {f : C(s, ℝ)} :
     f ∈ polynomialApproximationSpace s n ↔
       ∃ p : ℝ[X], p.degree ≤ n ∧ p.toContinuousMapOn s = f := by
@@ -67,7 +69,9 @@ def interpolationLinearMap {ι : Type*} [Fintype ι] [DecidableEq ι]
         map_smul' := by intros; rfl }
 
 /-- Interpolation is the restriction of Mathlib's Lagrange interpolating polynomial.
-Source: Trefethen, ATAP, Chapter 15.-/
+Source: Trefethen, ATAP, Chapter 15.
+@isnad1 id=eq.0h4v.s9.cdffde224d45 from=translated src=- shape=9abf45ab vocab=133ff0b4
+-/
 @[simp] theorem interpolationLinearMap_apply {ι : Type*} [Fintype ι] [DecidableEq ι]
     (s : Set ℝ) (v : ι → s) (f : C(s, ℝ)) :
     interpolationLinearMap s v f =
@@ -90,7 +94,9 @@ def rationalContinuousMap (s : Set ℝ) (r : RatFunc ℝ)
       (r.denom.continuous.comp continuous_subtype_val) (fun x => hpole (x : ℝ) x.property)⟩
 
 /-- The restricted rational map uses Mathlib's canonical rational-function evaluation.
-Source: Trefethen, ATAP, Chapter 23.-/
+Source: Trefethen, ATAP, Chapter 23.
+@isnad1 id=eq.1h3v.s7.8525a7677de9 from=translated src=- shape=80deeb58 vocab=474a2718
+-/
 @[simp] theorem rationalContinuousMap_apply_eq_eval (s : Set ℝ) (r : RatFunc ℝ)
     (hpole : ∀ x ∈ s, r.denom.eval x ≠ 0) (x : s) :
     rationalContinuousMap s r hpole x = r.eval (RingHom.id ℝ) x := by

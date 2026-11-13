@@ -18,7 +18,9 @@ noncomputable section
 open Polynomial MeasureTheory Set
 namespace NLAlib
 
-/-- A strictly positive rational density preserves the topological support.-/
+/-- A strictly positive rational density preserves the topological support.
+@isnad1 id=eq.1h3v.s6.bec2152c5868 from=translated src=- shape=671bffb1 vocab=c3551aed
+-/
 theorem support_rationalPolynomialModifiedMeasure_eq {μ : Measure ℝ} {u v : ℝ[X]}
     (hpos : ∀ᵐ x ∂μ, 0 < u.eval x/v.eval x) :
     (rationalPolynomialModifiedMeasure μ u v).support = μ.support := by
@@ -30,7 +32,9 @@ theorem support_rationalPolynomialModifiedMeasure_eq {μ : Measure ℝ} {u v : �
 
 /-- The finite modified Hankel system is nonsingular as a consequence of
 strict positivity and enough support, with the exact native measure functional.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=ne.3h4v.s6.9b0651431e79 from=translated src=- shape=61135cab vocab=98016087
+-/
 theorem hankelMomentDet_rationalPolynomialModifiedMeasure_ne_zero
     {μ : Measure ℝ} (u v : ℝ[X]) (hdiv : HasDividedPolynomialMoments μ v)
     (hpos : ∀ᵐ x ∂μ, 0 < u.eval x/v.eval x) {n : ℕ}
@@ -46,7 +50,9 @@ theorem hankelMomentDet_rationalPolynomialModifiedMeasure_ne_zero
 determinant divided by its proved nonzero normalization and by `u`. The minimal
 uniform support bound is `n+degree u`; equality and denominator degree above `n`
 are both retained.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=other.6h6v.s10.7d32aa2e9411 from=translated src=- shape=7fc1d3ef vocab=2f93dddd
+-/
 theorem monicOrthogonalPolynomial_rationalPolynomialModifiedMeasure_eq_det_div
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) (u v : ℝ[X]) (hu : u ≠ 0) (hv : v ≠ 0)

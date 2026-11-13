@@ -18,7 +18,9 @@ namespace NLAlib
 /-- The actual terminal Gauss nodes and weights integrate every function. They
 supply the finite-support fallback when a nondegenerate endpoint Schur border is
 unavailable. Source: focused mathematical reroutes, Section 3, terminal branch.
-atlas: gauss-radau-lobatto (partial), gauss-quadrature-derivative-remainder (partial)-/
+atlas: gauss-radau-lobatto (partial), gauss-quadrature-derivative-remainder (partial)
+@isnad1 id=other.3h5v.s7.7bee142ecefb from=translated src=- shape=d5252aff vocab=14fb6f44
+-/
 theorem integral_eq_gaussRule_of_support_encard {μ : Measure ℝ} [IsFiniteMeasure μ]
     {a b : ℝ} (hμ : ∀ᵐ x ∂μ, x ∈ Icc a b) {n : ℕ} (hn0 : 0 < n)
     (hn : μ.support.encard = (n : ℕ∞)) (f : ℝ → ℝ) :

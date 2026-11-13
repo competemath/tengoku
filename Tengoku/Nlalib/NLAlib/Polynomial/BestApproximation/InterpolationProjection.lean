@@ -19,12 +19,16 @@ namespace NLAlib
 
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
-/-- The Lebesgue function is nonnegative. Source: ATAP, Chapter 15.-/
+/-- The Lebesgue function is nonnegative. Source: ATAP, Chapter 15.
+@isnad1 id=le.0h3v.s4.39b23939d736 from=translated src=- shape=e40b8d8e vocab=25488cb5
+-/
 theorem lebesgueFunction_nonneg (v : ι → ℝ) (x : ℝ) : 0 ≤ lebesgueFunction v x :=
   Finset.sum_nonneg fun _ _ => abs_nonneg _
 
 /-- The partition of unity makes the Lebesgue function at least one everywhere.
-Source: the Lagrange cardinal sum; helper for `lebesgue-constant-lower-bound`.-/
+Source: the Lagrange cardinal sum; helper for `lebesgue-constant-lower-bound`.
+@isnad1 id=le.1h3v.s5.6edc42cf6da3 from=translated src=- shape=632bd669 vocab=69b56ec0
+-/
 theorem one_le_lebesgueFunction [Nonempty ι] (v : ι → ℝ) (hv : Function.Injective v)
     (x : ℝ) : 1 ≤ lebesgueFunction v x := by
   have hsum := congrArg (fun p : ℝ[X] => p.eval x)
@@ -35,7 +39,9 @@ theorem one_le_lebesgueFunction [Nonempty ι] (v : ι → ℝ) (hv : Function.In
     _ ≤ _ := Finset.abs_sum_le_sum_abs _ _
 
 /-- A pointwise nonnegative bound on the Lebesgue function bounds its canonical norm.
-Source: the supremum norm definition; helper for `lebesgue-constant-lower-bound`.-/
+Source: the supremum norm definition; helper for `lebesgue-constant-lower-bound`.
+@isnad1 id=le.2h4v.s6.f17f9863909a from=translated src=- shape=eb6a9678 vocab=c0c32242
+-/
 theorem lebesgueConstant_le_of_forall {s : Set ℝ} [CompactSpace s] (v : ι → ℝ)
     {L : ℝ} (hL : 0 ≤ L) (hbound : ∀ x ∈ s, lebesgueFunction v x ≤ L) :
     lebesgueConstant s v ≤ L := by
@@ -47,7 +53,9 @@ theorem lebesgueConstant_le_of_forall {s : Set ℝ} [CompactSpace s] (v : ι →
   exact hbound x x.property
 
 /-- The Lebesgue function is bounded by the Lebesgue constant on the compact domain.
-Source: ATAP, Chapter 15.-/
+Source: ATAP, Chapter 15.
+@isnad1 id=le.1h4v.s6.3d6e72371580 from=translated src=- shape=72d80250 vocab=c0c32242
+-/
 theorem lebesgueFunction_le_lebesgueConstant {s : Set ℝ} [CompactSpace s]
     (v : ι → ℝ) {x : ℝ} (hx : x ∈ s) :
     lebesgueFunction v x ≤ lebesgueConstant s v := by
@@ -56,7 +64,9 @@ theorem lebesgueFunction_le_lebesgueConstant {s : Set ℝ} [CompactSpace s]
   exact g.apply_le_norm ⟨x, hx⟩
 
 /-- Evaluation of the interpolation map is the usual sum of cardinal polynomials.
-Source: ATAP, Chapter 15.-/
+Source: ATAP, Chapter 15.
+@isnad1 id=eq.0h5v.s9.56afaf9a4449 from=translated src=- shape=303b623c vocab=b7728f66
+-/
 theorem interpolationLinearMap_apply_eq_sum {s : Set ℝ} (v : ι → s)
     (f : C(s, ℝ)) (x : s) :
     interpolationLinearMap s v f x =
@@ -65,7 +75,9 @@ theorem interpolationLinearMap_apply_eq_sum {s : Set ℝ} (v : ι → s)
 
 /-- The cardinal-function sum bounds interpolation pointwise by a bound on its samples.
 Source: Trefethen, ATAP, Theorem 15.1.
-atlas: lebesgue-constant-def (partial)-/
+atlas: lebesgue-constant-def (partial)
+@isnad1 id=le.1h6v.s9.4f9ff095f53c from=translated src=- shape=d92e6bc6 vocab=47955540
+-/
 theorem abs_interpolationLinearMap_apply_le {s : Set ℝ} (v : ι → s)
     (f : C(s, ℝ)) (x : s) (M : ℝ) (hM : ∀ i, |f (v i)| ≤ M) :
     |interpolationLinearMap s v f x| ≤ lebesgueFunction (fun i => (v i : ℝ)) x * M := by
@@ -84,7 +96,9 @@ theorem abs_interpolationLinearMap_apply_le {s : Set ℝ} (v : ι → s)
 
 /-- The Lebesgue constant bounds the norm of interpolation.
 Source: Trefethen, ATAP, Theorem 15.1.
-atlas: lebesgue-constant-def (partial)-/
+atlas: lebesgue-constant-def (partial)
+@isnad1 id=le.0h4v.s9.af9905d8ae74 from=translated src=- shape=4657e3cc vocab=9a4a0802
+-/
 theorem norm_interpolationLinearMap_le {s : Set ℝ} [CompactSpace s]
     (v : ι → s) (f : C(s, ℝ)) :
     ‖interpolationLinearMap s v f‖ ≤ lebesgueConstant s (fun i => (v i : ℝ)) * ‖f‖ := by
@@ -104,14 +118,18 @@ def interpolationOperator {s : Set ℝ} [CompactSpace s] (v : ι → s) :
     (lebesgueConstant s (fun i => (v i : ℝ))) (norm_interpolationLinearMap_le v)
 
 /-- The interpolation operator agrees with its algebraic linear map.
-Source: Trefethen, ATAP, Chapter 15.-/
+Source: Trefethen, ATAP, Chapter 15.
+@isnad1 id=eq.0h4v.s10.d344b1e7cace from=translated src=- shape=6f007eeb vocab=41fc7792
+-/
 @[simp] theorem interpolationOperator_apply {s : Set ℝ} [CompactSpace s]
     (v : ι → s) (f : C(s, ℝ)) :
     interpolationOperator v f = interpolationLinearMap s v f := rfl
 
 /-- Prescribed cardinal signs at a fixed point are attained by a continuous function of
 norm at most one. Source: ATAP, proof of Theorem 15.1. The extension is obtained by
-clipping the polynomial interpolating the signs, which is valid on any compact real set.-/
+clipping the polynomial interpolating the signs, which is valid on any compact real set.
+@isnad1 id=ex.1h4v.s9.dbf421b7eb36 from=translated src=- shape=5e31b2a5 vocab=21ff332f
+-/
 theorem exists_norm_le_one_interpolation_apply_eq_lebesgueFunction
     {s : Set ℝ} [CompactSpace s] (v : ι → s) (hv : Function.Injective v) (x : s) :
     ∃ f : C(s, ℝ), ‖f‖ ≤ 1 ∧
@@ -144,7 +162,9 @@ theorem exists_norm_le_one_interpolation_apply_eq_lebesgueFunction
     · rw [abs_of_nonneg (le_of_not_gt h), one_mul]
 
 /-- The norm of interpolation is exactly its Lebesgue constant.
-Source: Trefethen, ATAP, Theorem 15.1.-/
+Source: Trefethen, ATAP, Theorem 15.1.
+@isnad1 id=eq.1h3v.s9.02df7689c49b from=translated src=- shape=7cbbee57 vocab=05fbe301
+-/
 theorem norm_interpolationOperator_eq_lebesgueConstant {s : Set ℝ} [CompactSpace s]
     (v : ι → s) (hv : Function.Injective v) :
     ‖interpolationOperator v‖ = lebesgueConstant s (fun i => (v i : ℝ)) := by
@@ -167,7 +187,9 @@ theorem norm_interpolationOperator_eq_lebesgueConstant {s : Set ℝ} [CompactSpa
         simpa using mul_le_mul_of_nonneg_left hf (norm_nonneg (interpolationOperator v))
 
 /-- A nonempty interpolation grid has Lebesgue constant at least one.
-Source: Trefethen, ATAP, Theorem 15.1.-/
+Source: Trefethen, ATAP, Theorem 15.1.
+@isnad1 id=le.1h3v.s6.fe84cad89607 from=translated src=- shape=15c8af4a vocab=dc0e017c
+-/
 theorem one_le_lebesgueConstant {s : Set ℝ} [CompactSpace s] [Nonempty ι]
     (v : ι → s) (hv : Function.Injective v) :
     1 ≤ lebesgueConstant s (fun i => (v i : ℝ)) := by
@@ -184,7 +206,9 @@ theorem one_le_lebesgueConstant {s : Set ℝ} [CompactSpace s] [Nonempty ι]
       lebesgueFunction_le_lebesgueConstant _ (v i).property
 
 /-- Interpolation reproduces every polynomial of degree less than the number of nodes.
-Source: Trefethen, ATAP, Chapter 15.-/
+Source: Trefethen, ATAP, Chapter 15.
+@isnad1 id=eq.2h4v.s9.b026adec5f7a from=translated src=- shape=492a4ea7 vocab=0832d288
+-/
 theorem interpolationLinearMap_eq_of_mem {s : Set ℝ} [Nonempty ι]
     (v : ι → s) (hv : Function.Injective v) {f : C(s, ℝ)}
     (hf : f ∈ polynomialApproximationSpace s (Fintype.card ι - 1)) :
@@ -199,7 +223,9 @@ theorem interpolationLinearMap_eq_of_mem {s : Set ℝ} [Nonempty ι]
 
 /-- Interpolation is within `1+Λ` of best degree-bounded uniform approximation.
 Source: Trefethen, ATAP, Theorem 15.1.
-atlas: lebesgue-constant-def-/
+atlas: lebesgue-constant-def
+@isnad1 id=le.1h4v.s9.99ff50606859 from=translated src=- shape=0bceb5a6 vocab=a865b211
+-/
 theorem norm_sub_interpolationLinearMap_le_minimaxError {s : Set ℝ} [CompactSpace s]
     [Nonempty ι] (v : ι → s) (hv : Function.Injective v) (f : C(s, ℝ)) :
     ‖f - interpolationLinearMap s v f‖ ≤

@@ -53,7 +53,9 @@ private theorem norm_sum_gaussWeights_div_sub_le
 complex points outside the real support enclosure. Infinite support makes all
 orders available; finite-support terminal rules are already exactly atomic.
 Source: Gautschi (2004), Markov theorem; operator derivations AQ20.
-atlas: jacobi-fraction-second-kind (partial)-/
+atlas: jacobi-fraction-second-kind (partial)
+@isnad1 id=tendstou.5h4v.s7.53e1ab7d2fb8 from=translated src=- shape=1669e0b0 vocab=ff26e763
+-/
 theorem tendstoUniformlyOn_secondKindPolynomial_div_stieltjesTransform
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) (hinf : μ.support.Infinite) {K : Set ℂ}

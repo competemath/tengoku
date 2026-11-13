@@ -24,7 +24,9 @@ variable {Ω E : Type*} [MeasurableSpace Ω] [NormedAddCommGroup E]
 
 /-- A finite higher norm moment bounds every rooted positive lower norm moment.
 No lower bound of one on the exponents is needed. Source: the positive-real-moment
-route in the supplied operator derivations; Mathlib's probability-space Lp comparison.-/
+route in the supplied operator derivations; Mathlib's probability-space Lp comparison.
+@isnad1 id=le.4h6v.s7.c00b5fa6a5cf from=translated src=- shape=a3a47b01 vocab=65b3b1af
+-/
 theorem integral_norm_rpow_inv_le {f : Ω → E} (hf : AEStronglyMeasurable f μ)
     {p q : ℝ} (hp : 0 < p) (hpq : p ≤ q)
     (hq : Integrable (fun ω => ‖f ω‖ ^ q) μ) :
@@ -44,7 +46,9 @@ theorem integral_norm_rpow_inv_le {f : Ω → E} (hf : AEStronglyMeasurable f μ
 /-- On a probability space, a nonnegative function with finite q moment has finite
 p moment and the rooted moments satisfy Lyapunov's inequality for every 0 < p ≤ q.
 Source: `open_mathematical_items_operator_derivations`, §1.
-atlas: positive-real-moment-comparison-/
+atlas: positive-real-moment-comparison
+@isnad1 id=and.5h5v.s7.d77794be486b from=translated src=- shape=f16c07ab vocab=683047b1
+-/
 theorem integrable_rpow_and_integral_rpow_inv_le {f : Ω → ℝ}
     (hf : AEStronglyMeasurable f μ) (hnonneg : ∀ᵐ ω ∂μ, 0 ≤ f ω)
     {p q : ℝ} (hp : 0 < p) (hpq : p ≤ q) (hq : Integrable (fun ω => f ω ^ q) μ) :

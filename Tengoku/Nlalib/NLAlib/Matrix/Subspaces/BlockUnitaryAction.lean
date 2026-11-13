@@ -25,7 +25,9 @@ private theorem orthogonal_complement_conjTranspose {U : Matrix n r K} {V : Matr
   have h := congrArg Matrix.conjTranspose hUV
   simpa only [Matrix.conjTranspose_mul,Matrix.conjTranspose_conjTranspose,Matrix.conjTranspose_zero] using h
 
-/-- The lifted action is a genuine ambient unitary.-/
+/-- The lifted action is a genuine ambient unitary.
+@isnad1 id=hasortho.4h7v.s9.8bd9fd51e4f0 from=translated src=- shape=9e375b74 vocab=313eed67
+-/
 theorem hasOrthonormalCols_blockUnitaryAction
     (U : Matrix n r K) (V : Matrix n q K) (hU : HasOrthonormalCols U)
     (hV : HasOrthonormalCols V) (hUV : Uᴴ*V=0) (hcomp : U*Uᴴ+V*Vᴴ=1)
@@ -59,7 +61,9 @@ theorem hasOrthonormalCols_blockUnitaryAction
     h₁,h₂,h₃,h₄,add_zero,zero_add,hcomp]
 
 omit [DecidableEq n] in
-/-- The adjoint ambient action fixes every retained frame vector.-/
+/-- The adjoint ambient action fixes every retained frame vector.
+@isnad1 id=eq.2h7v.s8.ccca483aebcc from=translated src=- shape=44cd00bf vocab=da76d312
+-/
 theorem blockUnitaryAction_conjTranspose_mul_left
     (U : Matrix n r K) (V : Matrix n q K) (hU : HasOrthonormalCols U) (hUV : Uᴴ*V=0)
     (W : Matrix.unitaryGroup q K) : (blockUnitaryAction U V W)ᴴ*U=U := by
@@ -71,7 +75,9 @@ theorem blockUnitaryAction_conjTranspose_mul_left
     _ = U := by rw [hU,hVU];simp
 
 omit [DecidableEq n] [DecidableEq r] in
-/-- On the complementary frame, the adjoint action is the requested right unitary.-/
+/-- On the complementary frame, the adjoint action is the requested right unitary.
+@isnad1 id=eq.2h7v.s9.a8b1920584ab from=translated src=- shape=804f76b2 vocab=961e835c
+-/
 theorem blockUnitaryAction_conjTranspose_mul_right
     (U : Matrix n r K) (V : Matrix n q K) (hV : HasOrthonormalCols V) (hUV : Uᴴ*V=0)
     (W : Matrix.unitaryGroup q K) : (blockUnitaryAction U V W)ᴴ*V=V*(W : Matrix q q K) := by

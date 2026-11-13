@@ -33,7 +33,9 @@ def profileHeavyNeighbors (A : Matrix (Fin n) (Fin n) ℝ) (a : ℝ)
   Finset.univ.filter fun i => a / Real.sqrt (profilePreviousCutoff k) < A i j
 
 /-- A logarithmic entry envelope bounds the number of heavy rows at every
-level by the preceding double-exponential cutoff.-/
+level by the preceding double-exponential cutoff.
+@isnad1 id=le.2h4v.s6.60285f246329 from=translated src=- shape=b8d04919 vocab=b189364c
+-/
 theorem card_profileHeavyRows_le (A : Matrix (Fin n) (Fin n) ℝ) {b : ℝ}
     (hA : ∀ i j, 0 ≤ A i j)
     (hb : ∀ i j, A i j * Real.sqrt (Real.log (i.val + 1)) ≤ b) (k : ℕ) :
@@ -50,7 +52,9 @@ theorem card_profileHeavyRows_le (A : Matrix (Fin n) (Fin n) ℝ) {b : ℝ}
     i (Nat.le_of_not_gt hn))) hj
 
 /-- A column energy bound controls all heavy-neighbor sets, with a strict
-cardinality inequality at the source's strict threshold.-/
+cardinality inequality at the source's strict threshold.
+@isnad1 id=lt.2h5v.s6.08c31d8fd817 from=translated src=- shape=d9c65b47 vocab=11f10cd2
+-/
 theorem card_profileHeavyNeighbors_lt (A : Matrix (Fin n) (Fin n) ℝ) {a : ℝ}
     (ha : 0 ≤ a) (hcol : ∀ j, ∑ i, A i j ^ 2 ≤ a ^ 2) (k : ℕ) (j : Fin n) :
     (profileHeavyNeighbors A a k j).card < profilePreviousCutoff k :=
@@ -62,7 +66,9 @@ bounded by a logarithmic envelope, and late cross entries are bounded by the
 column energy. The construction is finite, includes zero/empty profiles, and
 works at every cutoff, including cutoffs past the dimension. Source:
 Latała--van Handel--Youssef (2018), Lemma 3.10; zero-based positions and
-`profileCutoff 0 = 4` fix the boundary conventions explicitly.-/
+`profileCutoff 0 = 4` fix the boundary conventions explicitly.
+@isnad1 id=ex.4h4v.s8.13054750a5c4 from=translated src=- shape=efd15d29 vocab=24630edc
+-/
 theorem exists_equiv_entry_le_div_sqrt_log_and_div_sqrt
     (A : Matrix (Fin n) (Fin n) ℝ) {a b : ℝ} (ha : 0 ≤ a)
     (hA : ∀ i j, 0 ≤ A i j) (hcol : ∀ j, ∑ i, A i j ^ 2 ≤ a ^ 2)

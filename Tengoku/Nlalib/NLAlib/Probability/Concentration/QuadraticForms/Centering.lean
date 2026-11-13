@@ -33,7 +33,9 @@ variable {Ω : Type*} [MeasurableSpace Ω]
 
 open scoped Matrix.Norms.L2Operator in
 /-- Source-transport helper `diagonalCenteredQuadraticForm_integrable_exp` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=integrab.7h8v.s8.9e8f7f2905d3 from=translated src=- shape=c72c7358 vocab=5947ff22
+-/
 lemma diagonalCenteredQuadraticForm_integrable_exp {μ : Measure Ω} [IsProbabilityMeasure μ]
     {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ} {X : Fin n → Ω → ℝ}
     {K C θ : ℝ} (hK : 0 < K) (hC : 0 < C)
@@ -116,7 +118,9 @@ lemma diagonalCenteredQuadraticForm_integrable_exp {μ : Measure Ω} [IsProbabil
   simp only [diagonalCenteredQuadraticForm, Z, Y, Finset.sum_apply]
 
 /-- Source-transport helper `quadraticForm_eq_sum_diag_of_offdiag_eq_zero` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=eq.1h3v.s6.173dfa7d94b2 from=translated src=- shape=90504987 vocab=9eb3804c
+-/
 lemma quadraticForm_eq_sum_diag_of_offdiag_eq_zero {n : ℕ}
     {A : Matrix (Fin n) (Fin n) ℝ} {x : Fin n → ℝ}
     (hA_diag : ∀ i j, i ≠ j → A i j = 0) :
@@ -134,7 +138,9 @@ lemma quadraticForm_eq_sum_diag_of_offdiag_eq_zero {n : ℕ}
     _ = A i i * x i ^ 2 := by ring_nf
 
 /-- Source-transport helper `centeredQuadraticForm_eq_diagonalCentered_of_offdiag_eq_zero` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=eq.2h6v.s6.891b38f9667a from=translated src=- shape=545c7bef vocab=af170e26
+-/
 lemma centeredQuadraticForm_eq_diagonalCentered_of_offdiag_eq_zero
     {μ : Measure Ω} [IsProbabilityMeasure μ]
     {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ} {X : Fin n → Ω → ℝ}
@@ -176,7 +182,9 @@ lemma centeredQuadraticForm_eq_diagonalCentered_of_offdiag_eq_zero
         ring_nf
 
 open scoped Matrix.Norms.L2Operator in
-/-- Hanson-Wright MGF certificate for diagonal quadratic forms with sub-Gaussian coordinates.-/
+/-- Hanson-Wright MGF certificate for diagonal quadratic forms with sub-Gaussian coordinates.
+@isnad1 id=hashanso.8h7v.s7.07a90ead76c1 from=translated src=- shape=4d78761a vocab=31b0fa9a
+-/
 theorem hasHansonWrightMGF_diagonal_of_subgaussian {μ : Measure Ω} [IsProbabilityMeasure μ]
     {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ} {X : Fin n → Ω → ℝ}
     {K C : ℝ} (hK : 0 < K) (hC : 0 < C)
@@ -198,7 +206,9 @@ theorem hasHansonWrightMGF_diagonal_of_subgaussian {μ : Measure Ω} [IsProbabil
     exact diagonalCenteredQuadraticForm_integrable_exp hK hC hC_domain hOp hind hmgf hl
 
 /-- Source-transport helper `quadraticForm_eq_diag_add_offDiagonal` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=eq.0h3v.s6.485b20f7f874 from=translated src=- shape=a03452ac vocab=269dc4c0
+-/
 lemma quadraticForm_eq_diag_add_offDiagonal {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) (x : Fin n → ℝ) :
     quadForm A x =
@@ -243,7 +253,9 @@ lemma quadraticForm_eq_diag_add_offDiagonal {n : ℕ}
           rw [Finset.sum_add_distrib]
 
 /-- Source-transport helper `integrable_randomQuadraticForm_offDiagonal_of_subgaussian` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=integrab.2h6v.s6.c4b4d5622e85 from=translated src=- shape=d725b920 vocab=98d6ee21
+-/
 lemma integrable_randomQuadraticForm_offDiagonal_of_subgaussian {μ : Measure Ω}
     [IsProbabilityMeasure μ] {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     {X : Fin n → Ω → ℝ} {K : ℝ}
@@ -270,7 +282,9 @@ lemma integrable_randomQuadraticForm_offDiagonal_of_subgaussian {μ : Measure Ω
     MeasureTheory.integrable_finsetSum _ fun j _ => hterm i j
 
 /-- Source-transport helper `integral_randomQuadraticForm_offDiagonal_eq_zero` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=eq.2h6v.s7.c80398345275 from=translated src=- shape=4b64fa8e vocab=aaac1a3e
+-/
 lemma integral_randomQuadraticForm_offDiagonal_eq_zero {μ : Measure Ω}
     [IsProbabilityMeasure μ] {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     {X : Fin n → Ω → ℝ} {K : ℝ}

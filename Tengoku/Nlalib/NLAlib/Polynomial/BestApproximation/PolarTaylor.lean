@@ -24,7 +24,9 @@ def polarTaylorCoeff : ℕ → ℝ
   | 0 => 1
   | j + 1 => ((2 * j + 1 : ℕ) : ℝ) / (2 * j + 2 : ℕ) * polarTaylorCoeff j
 
-/-- Every finite inverse-square-root coefficient is strictly positive.-/
+/-- Every finite inverse-square-root coefficient is strictly positive.
+@isnad1 id=lt.0h1v.s3.ce8ac2e23c6e from=translated src=- shape=b9369acb vocab=12794842
+-/
 theorem polarTaylorCoeff_pos (j : ℕ) : 0 < polarTaylorCoeff j := by
   induction j with
   | zero => norm_num [polarTaylorCoeff]
@@ -32,7 +34,9 @@ theorem polarTaylorCoeff_pos (j : ℕ) : 0 < polarTaylorCoeff j := by
     simp only [polarTaylorCoeff]
     exact mul_pos (div_pos (by positivity) (by positivity)) ih
 
-/-- The coefficient recurrence without division.-/
+/-- The coefficient recurrence without division.
+@isnad1 id=eq.0h1v.s6.d3adec4030e1 from=translated src=- shape=2b05ea03 vocab=d34cb945
+-/
 theorem polarTaylorCoeff_recurrence (j : ℕ) :
     (2 * (j : ℝ) + 2) * polarTaylorCoeff (j + 1) =
       (2 * (j : ℝ) + 1) * polarTaylorCoeff j := by
@@ -46,10 +50,15 @@ def polarTaylorSum (q : ℕ) (u : ℝ) : ℝ :=
 /-- The actual odd polynomial competitor `x C_q(1-x²)`.-/
 def polarTaylorUpdate (q : ℕ) (x : ℝ) : ℝ := x * polarTaylorSum q (1 - x ^ 2)
 
-/-- Endpoint values of the finite competitor.-/
+/-- Endpoint values of the finite competitor.
+@isnad1 id=eq.0h1v.s4.8de7b8d88288 from=translated src=- shape=9b4d794a vocab=cf3a5f68
+-/
 @[simp] theorem polarTaylorUpdate_zero (q : ℕ) : polarTaylorUpdate q 0 = 0 := by
   simp [polarTaylorUpdate]
 
+/--
+@isnad1 id=eq.0h1v.s4.546eda3ed4f0 from=translated src=- shape=9b4d794a vocab=cf3a5f68
+-/
 @[simp] theorem polarTaylorUpdate_one (q : ℕ) : polarTaylorUpdate q 1 = 1 := by
   simp only [polarTaylorUpdate, polarTaylorSum, one_pow, sub_self, one_mul]
   rw [Finset.sum_eq_single 0]
@@ -58,14 +67,18 @@ def polarTaylorUpdate (q : ℕ) (x : ℝ) : ℝ := x * polarTaylorSum q (1 - x ^
     rw [zero_pow hj0, mul_zero]
   · simp
 
-/-- Adding the last retained term.-/
+/-- Adding the last retained term.
+@isnad1 id=eq.0h2v.s6.87ed4b6d1e98 from=translated src=- shape=7ac93edc vocab=4547f81e
+-/
 theorem polarTaylorUpdate_succ (q : ℕ) (x : ℝ) :
     polarTaylorUpdate (q + 1) x = polarTaylorUpdate q x +
       polarTaylorCoeff (q + 1) * x * (1 - x ^ 2) ^ (q + 1) := by
   simp only [polarTaylorUpdate, polarTaylorSum, Finset.sum_range_succ]
   ring
 
-/-- The derivative telescopes to one nonnegative monomial on `[0,1]`.-/
+/-- The derivative telescopes to one nonnegative monomial on `[0,1]`.
+@isnad1 id=hasderiv.0h2v.s6.43d0179b2816 from=translated src=- shape=47392e52 vocab=b0b6e32d
+-/
 theorem hasDerivAt_polarTaylorUpdate (q : ℕ) (x : ℝ) :
     HasDerivAt (polarTaylorUpdate q)
       ((2 * (q : ℝ) + 1) * polarTaylorCoeff q * (1 - x ^ 2) ^ q) x := by
@@ -97,11 +110,15 @@ theorem hasDerivAt_polarTaylorUpdate (q : ℕ) (x : ℝ) :
     have hc := polarTaylorCoeff_recurrence q
     linear_combination (1 - x ^ 2) ^ q * hc
 
-/-- Continuity of the finite competitor follows from its checked derivative.-/
+/-- Continuity of the finite competitor follows from its checked derivative.
+@isnad1 id=continuo.0h1v.s4.ecda409e0955 from=translated src=- shape=8735051e vocab=49b1b9cc
+-/
 theorem continuous_polarTaylorUpdate (q : ℕ) : Continuous (polarTaylorUpdate q) :=
   continuous_iff_continuousAt.mpr fun x => (hasDerivAt_polarTaylorUpdate q x).continuousAt
 
-/-- The finite Taylor sum is monotone for nonnegative arguments.-/
+/-- The finite Taylor sum is monotone for nonnegative arguments.
+@isnad1 id=monotone.0h1v.s4.336367f83f6b from=translated src=- shape=b1024e6d vocab=2db47a3d
+-/
 theorem polarTaylorSum_monotoneOn (q : ℕ) : MonotoneOn (polarTaylorSum q) (Ici 0) := by
   intro u hu v hv huv
   apply Finset.sum_le_sum
@@ -109,7 +126,9 @@ theorem polarTaylorSum_monotoneOn (q : ℕ) : MonotoneOn (polarTaylorSum q) (Ici
   exact mul_le_mul_of_nonneg_left (pow_le_pow_left₀ hu huv j) (polarTaylorCoeff_pos j).le
 
 /-- The Taylor competitor is positive and at most one on the positive
-unit interval.-/
+unit interval.
+@isnad1 id=and.2h2v.s5.fd296c19f72f from=translated src=- shape=755d8139 vocab=9664ceae
+-/
 theorem polarTaylorUpdate_pos_le_one (q : ℕ) {x : ℝ} (hx : 0 < x) (hx1 : x ≤ 1) :
     0 < polarTaylorUpdate q x ∧ polarTaylorUpdate q x ≤ 1 := by
   have hu : 0 ≤ 1 - x ^ 2 := by nlinarith
@@ -133,7 +152,9 @@ theorem polarTaylorUpdate_pos_le_one (q : ℕ) {x : ℝ} (hx : 0 < x) (hx1 : x �
 /-- The squared finite Taylor competitor loses at most the `(q+1)`st
 power of the input squared gap. This is the scalar contraction needed
 for the sharp polar minimax iteration rate.
-atlas: polar-minimax-polynomial-iteration (partial)-/
+atlas: polar-minimax-polynomial-iteration (partial)
+@isnad1 id=le.1h2v.s6.365397096ad6 from=translated src=- shape=8249bdef vocab=d0173147
+-/
 theorem one_sub_pow_le_polarTaylorUpdate_sq (q : ℕ) {x : ℝ} (hx : x ∈ Icc (0 : ℝ) 1) :
     1 - (1 - x ^ 2) ^ (q + 1) ≤ polarTaylorUpdate q x ^ 2 := by
   let K := (2 * (q : ℝ) + 1) * polarTaylorCoeff q

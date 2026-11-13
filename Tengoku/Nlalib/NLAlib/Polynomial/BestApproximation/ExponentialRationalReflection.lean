@@ -81,7 +81,9 @@ private theorem exists_reflected_type_zero_rational {s t : Set ℝ} (ht : 0 ∈ 
 /-- Reflection gives exact equality of the attainable native rational error
 bound sets on the two half-lines, including the zero rational function.
 Source: operator re-derivations, half-line reflection.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=eq.0h1v.s3.066d7372a549 from=translated src=- shape=ffc59986 vocab=c928e2df
+-/
 theorem negativeHalfLineExponentialUniformErrorBounds_eq (n : ℕ) :
     negativeHalfLineExponentialUniformErrorBounds n = reciprocalExponentialUniformErrorBounds n := by
   ext E
@@ -105,7 +107,9 @@ theorem negativeHalfLineExponentialUniformErrorBounds_eq (n : ℕ) :
 
 /-- The actual best native rational errors on the reflected half-lines agree
 exactly in every degree. Source: operator re-derivations, half-line reflection.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=eq.0h1v.s3.5bbfbdc69e10 from=translated src=- shape=b70c6bb1 vocab=93a46065
+-/
 theorem negativeHalfLineExponentialMinimaxError_eq (n : ℕ) :
     negativeHalfLineExponentialMinimaxError n = reciprocalExponentialMinimaxError n := by
   rw [negativeHalfLineExponentialMinimaxError, reciprocalExponentialMinimaxError,
@@ -113,7 +117,9 @@ theorem negativeHalfLineExponentialMinimaxError_eq (n : ℕ) :
 
 /-- The actual best rational error for `exp x` on the negative half-line has the
 finite geometric Laguerre lower bound. Source: reciprocal exponential certificate.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=le.0h1v.s6.2be60c01ebe3 from=translated src=- shape=554b6574 vocab=2bf1455f
+-/
 theorem negativeHalfLineExponentialMinimaxError_ge_geometric_lower_bound (n : ℕ) :
     1 / (6 * Real.sqrt (reciprocalExponentialLowerCutoff n) * 3^n) ≤
       negativeHalfLineExponentialMinimaxError n := by
@@ -122,7 +128,9 @@ theorem negativeHalfLineExponentialMinimaxError_ge_geometric_lower_bound (n : �
 
 /-- The explicit reciprocal construction bounds the actual best error for
 `exp x` on the negative half-line in every degree. Source: focused reciprocal reroute.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=le.0h1v.s5.6286c6c1223a from=translated src=- shape=68ce44f4 vocab=21d793b5
+-/
 theorem negativeHalfLineExponentialMinimaxError_le_geometric_upper_bound (n : ℕ) :
     negativeHalfLineExponentialMinimaxError n ≤ Real.sqrt (40 / 21) / 3^n := by
   rw [negativeHalfLineExponentialMinimaxError_eq]
@@ -131,7 +139,9 @@ theorem negativeHalfLineExponentialMinimaxError_le_geometric_upper_bound (n : �
 /-- The actual best pole-free real type-`(0,n)` rational error for `exp x` on the
 negative half-line has exact `n`th-root limit `1/3`.
 Source: operator re-derivations and focused reciprocal reroute.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=tendsto.0h0v.s6.845004f77fdb from=translated src=- shape=a6df7ce9 vocab=b3992eef
+-/
 theorem tendsto_rpow_negativeHalfLineExponentialMinimaxError_inv_nat :
     Tendsto (fun n => (negativeHalfLineExponentialMinimaxError n) ^ (1 / (n : ℝ)))
       atTop (𝓝 (1 / 3 : ℝ)) := by

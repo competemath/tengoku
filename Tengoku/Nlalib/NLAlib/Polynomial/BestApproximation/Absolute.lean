@@ -25,16 +25,22 @@ def absoluteValueOnUnitInterval : C(Icc (-1 : ℝ) 1, ℝ) :=
 of degree at most `n` on the unit interval.-/
 def absoluteMinimaxError (n : ℕ) : ℝ := minimaxError n absoluteValueOnUnitInterval
 
-/-- The best absolute-value approximation error is nonnegative.-/
+/-- The best absolute-value approximation error is nonnegative.
+@isnad1 id=le.0h1v.s3.2911af41076e from=translated src=- shape=b9369acb vocab=0ecdb91e
+-/
 theorem absoluteMinimaxError_nonneg (n : ℕ) : 0 ≤ absoluteMinimaxError n :=
   minimaxError_nonneg n absoluteValueOnUnitInterval
 
-/-- The best absolute-value approximation error decreases with degree.-/
+/-- The best absolute-value approximation error decreases with degree.
+@isnad1 id=antitone.0h0v.s2.162af26bebcc from=translated src=- shape=54c8eceb vocab=03f6c132
+-/
 theorem absoluteMinimaxError_antitone : Antitone absoluteMinimaxError :=
   minimaxError_antitone absoluteValueOnUnitInterval
 
 /-- An actual degree-bounded polynomial attains the absolute-value approximation
-error, and thus supplies its pointwise uniform bound.-/
+error, and thus supplies its pointwise uniform bound.
+@isnad1 id=ex.0h1v.s6.1988a5bc1f4a from=translated src=- shape=95a7099f vocab=7799a91f
+-/
 theorem exists_degree_le_absoluteMinimaxError (n : ℕ) :
     ∃ p : ℝ[X], p.degree ≤ n ∧ ∀ x ∈ Icc (-1 : ℝ) 1,
       |(|x|) - p.eval x| ≤ absoluteMinimaxError n := by
@@ -45,14 +51,18 @@ theorem exists_degree_le_absoluteMinimaxError (n : ℕ) :
     ⟨x, hx⟩).trans_eq heq
 
 /-- Every degree-bounded real polynomial competitor gives an upper bound for
-the best absolute-value approximation error.-/
+the best absolute-value approximation error.
+@isnad1 id=le.2h3v.s6.33154724733d from=translated src=- shape=64683dd9 vocab=7799a91f
+-/
 theorem absoluteMinimaxError_le_of_degree_le {n : ℕ} {p : ℝ[X]} {E : ℝ}
     (hp : p.degree ≤ n) (hE : ∀ x ∈ Icc (-1 : ℝ) 1, |(|x|) - p.eval x| ≤ E) :
     absoluteMinimaxError n ≤ E := by
   exact (isLeast_minimaxError_pointwise (by norm_num : (-1 : ℝ) ≤ 1) n
     absoluteValueOnUnitInterval).2 ⟨p, hp, fun x => hE x x.property⟩
 
-/-- The exact absolute Chebyshev tail gives the degree-`2m` comparison bound.-/
+/-- The exact absolute Chebyshev tail gives the degree-`2m` comparison bound.
+@isnad1 id=le.0h1v.s6.36e29ac5cd43 from=translated src=- shape=a59408b1 vocab=8f906021
+-/
 theorem absoluteMinimaxError_even_le (m : ℕ) :
     absoluteMinimaxError (2 * m) ≤ 2 / (Real.pi * (2 * m + 1)) := by
   exact absoluteMinimaxError_le_of_degree_le
@@ -76,7 +86,9 @@ private theorem coeff_comp_neg_X (p : ℝ[X]) (k : ℕ) :
 best uniform approximation of absolute value. Symmetrization cancels its leading
 odd coefficient and cannot increase the error.
 Source: focused polynomial Bernstein reroute, finite parity reduction.
-atlas: abs-best-approx-asymptotics (partial)-/
+atlas: abs-best-approx-asymptotics (partial)
+@isnad1 id=eq.0h1v.s5.422721aaef19 from=translated src=- shape=a5d129ff vocab=0b8fd64b
+-/
 theorem absoluteMinimaxError_odd_eq_even (m : ℕ) :
     absoluteMinimaxError (2*m+1) = absoluteMinimaxError (2*m) := by
   apply le_antisymm (absoluteMinimaxError_antitone (by omega))

@@ -53,7 +53,9 @@ private theorem integral_eval_T_add_two (k : ℕ) :
 /-- The unweighted integral of a first-kind Chebyshev polynomial is `2/(1-k²)`
 for even `k`, and zero for odd `k`. Source: Trefethen, ATAP, Theorem 19.2.
 The cases `k=0,1` are included without a division by zero in the even branch.
-atlas: chebyshev-integral-formula-/
+atlas: chebyshev-integral-formula
+@isnad1 id=eq.0h1v.s6.75546f272e39 from=translated src=- shape=1aa14bed vocab=b8bf4934
+-/
 theorem integral_eval_T (k : ℕ) :
     (∫ x in (-1 : ℝ)..1, (T ℝ k).eval x) =
       if Even k then 2 / (1 - (k : ℝ) ^ 2) else 0 := by
@@ -80,7 +82,9 @@ theorem integral_eval_T (k : ℕ) :
 
 /-- Integrating a finite Chebyshev expansion amounts to summing its even moments.
 Source: Trefethen, ATAP, Theorem 19.2.
-atlas: chebyshev-integral-formula-/
+atlas: chebyshev-integral-formula
+@isnad1 id=eq.0h4v.s7.b75d6b4d8254 from=translated src=- shape=a2447a70 vocab=19d16fb4
+-/
 theorem integral_sum_mul_eval_T {ι : Type*} (s : Finset ι) (c : ι → ℝ) (k : ι → ℕ) :
     (∫ x in (-1 : ℝ)..1, ∑ i ∈ s, c i * (T ℝ (k i)).eval x) =
       ∑ i ∈ s, if Even (k i) then 2 * c i / (1 - (k i : ℝ) ^ 2) else 0 := by

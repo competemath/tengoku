@@ -14,12 +14,16 @@ Explicit coarse constants suffice for the universal row-comparison bound.
 noncomputable section
 namespace NLAlib
 
-/-- Exact logarithm of a previous cutoff.-/
+/-- Exact logarithm of a previous cutoff.
+@isnad1 id=eq.0h1v.s5.e24aa5a79c21 from=translated src=- shape=95550e22 vocab=6f1afdd7
+-/
 theorem log_profilePreviousCutoff (k : ℕ) :
     Real.log (profilePreviousCutoff k : ℝ) = (2 : ℝ) ^ k * Real.log 2 := by
   simp [profilePreviousCutoff, Real.log_pow]
 
-/-- The logarithm of every previous cutoff is positive.-/
+/-- The logarithm of every previous cutoff is positive.
+@isnad1 id=lt.0h1v.s4.a7d6278e7bdf from=translated src=- shape=5157d5e1 vocab=4d38341e
+-/
 theorem log_profilePreviousCutoff_pos (k : ℕ) :
     0 < Real.log (profilePreviousCutoff k : ℝ) := by
   apply Real.log_pos
@@ -31,7 +35,9 @@ private theorem half_le_log_two : (1 / 2 : ℝ) ≤ Real.log 2 := by
   exact h
 
 /-- The block Schatten factor times the logarithmic threshold is uniformly
-bounded; equivalently the displayed quotient is at most four.-/
+bounded; equivalently the displayed quotient is at most four.
+@isnad1 id=le.0h1v.s5.06b8624033f9 from=translated src=- shape=dd9102ec vocab=49817b65
+-/
 theorem sqrt_two_pow_div_sqrt_log_previous_le_four (k : ℕ) :
     Real.sqrt ((2 ^ (k + 2) : ℕ) : ℝ) /
       Real.sqrt (Real.log (profilePreviousCutoff k : ℝ)) ≤ 4 := by
@@ -48,7 +54,9 @@ theorem sqrt_two_pow_div_sqrt_log_previous_le_four (k : ℕ) :
   exact h
 
 /-- The dimension of a supporting block is absorbed by the even moment
-parameter `p = 2^(t+1)`.-/
+parameter `p = 2^(t+1)`.
+@isnad1 id=eq.0h1v.s6.81cf93dfd56a from=translated src=- shape=869a5eac vocab=17c40d16
+-/
 theorem profileCutoff_succ_eq_two_pow_two_mul (t : ℕ) :
     profileCutoff (t + 1) = 2 ^ (2 * 2 ^ (t + 1)) := by
   unfold profileCutoff
@@ -56,7 +64,9 @@ theorem profileCutoff_succ_eq_two_pow_two_mul (t : ℕ) :
   congr 1
   omega
 
-/-- Logarithmic thresholds decay geometrically with ratio at most `3/4`.-/
+/-- Logarithmic thresholds decay geometrically with ratio at most `3/4`.
+@isnad1 id=le.0h1v.s6.e6d4669b94f9 from=translated src=- shape=e6816e37 vocab=90690aef
+-/
 theorem one_div_sqrt_log_previous_le_two_mul_pow (k : ℕ) :
     1 / Real.sqrt (Real.log (profilePreviousCutoff k : ℝ)) ≤ 2 * (3 / 4 : ℝ) ^ k := by
   have hroot : (1 / 2 : ℝ) ≤ Real.sqrt (Real.log 2) :=
@@ -82,7 +92,9 @@ theorem one_div_sqrt_log_previous_le_two_mul_pow (k : ℕ) :
         _ = 2 * (3 / 4 : ℝ) ^ (k + 1) := by rw [pow_succ]; ring
 
 /-- The sum of all block threshold factors is bounded independently of the
-finite truncation level.-/
+finite truncation level.
+@isnad1 id=le.0h1v.s5.ba63e4c6fcca from=translated src=- shape=da1a19bf vocab=a2793bbb
+-/
 theorem sum_one_div_sqrt_log_previous_le_eight (L : ℕ) :
     (∑ k ∈ Finset.range L, 1 / Real.sqrt (Real.log (profilePreviousCutoff k : ℝ))) ≤ 8 := by
   have hgeom : (∑ k ∈ Finset.range L, (3 / 4 : ℝ) ^ k) ≤ 4 := by

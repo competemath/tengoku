@@ -20,7 +20,9 @@ open Set Filter
 namespace NLAlib
 
 /-- A positive lower bound on every canonical gap implies strict node ordering.
-Source: strict monotonicity from adjacent steps; properness helper.-/
+Source: strict monotonicity from adjacent steps; properness helper.
+@isnad1 id=mem.2h3v.s6.c581e5e80b97 from=translated src=- shape=77370ee9 vocab=c12a0e22
+-/
 theorem mem_interiorNodeSimplex_of_gap_ge {n : ℕ} {t : Fin n → ℝ} {ε : ℝ}
     (hε : 0 < ε) (ht : ∀ i : Fin (n + 1), ε ≤
       canonicalIntervalNodes n t i.succ - canonicalIntervalNodes n t i.castSucc) :
@@ -31,7 +33,9 @@ theorem mem_interiorNodeSimplex_of_gap_ge {n : ℕ} {t : Fin n → ℝ} {ε : �
 
 /-- Node configurations with a fixed positive minimum gap form a compact set.
 Source: closed linear inequalities inside the finite unit-interval box;
-properness helper for `lebesgue-constant-lower-bound`.-/
+properness helper for `lebesgue-constant-lower-bound`.
+@isnad1 id=iscompac.1h2v.s6.92e40bc38c24 from=translated src=- shape=77be5bc0 vocab=835d77ff
+-/
 theorem isCompact_setOf_canonical_gap_ge (n : ℕ) {ε : ℝ} (hε : 0 < ε) :
     IsCompact {t : Fin n → ℝ | ∀ i : Fin (n + 1), ε ≤
       canonicalIntervalNodes n t i.succ - canonicalIntervalNodes n t i.castSucc} := by
@@ -61,7 +65,9 @@ theorem isCompact_setOf_canonical_gap_ge (n : ℕ) {ε : ℝ} (hε : 0 < ε) :
 
 /-- Every bounded peak-difference sublevel is compact in the ambient coordinate space.
 Source: the exact collision estimate and compact separated-node sets;
-helper for `lebesgue-constant-lower-bound`.-/
+helper for `lebesgue-constant-lower-bound`.
+@isnad1 id=iscompac.2h2v.s7.79fd1356900c from=translated src=- shape=9891bea1 vocab=db8f1282
+-/
 theorem isCompact_setOf_norm_interpolationPeakDifference_le {n : ℕ}
     (hc : ContinuousOn (interpolationPeakDifference n) (interiorNodeSimplex n))
     {R : ℝ} (hR : 0 ≤ R) :
@@ -91,7 +97,9 @@ theorem isCompact_setOf_norm_interpolationPeakDifference_le {n : ℕ}
 /-- The actual peak-difference restriction is proper when its peak charts give continuity.
 Source: compact sublevels from finite cardinal products; this discharges the properness
 input of the global peak-comparison theorem for the concrete interpolation map.
-Helper for `lebesgue-constant-lower-bound`.-/
+Helper for `lebesgue-constant-lower-bound`.
+@isnad1 id=isproper.1h1v.s7.29ce327a341b from=translated src=- shape=05a3cf70 vocab=c321d032
+-/
 theorem isProperMap_interpolationPeakDifference {n : ℕ}
     (hc : ContinuousOn (interpolationPeakDifference n) (interiorNodeSimplex n)) :
     IsProperMap (fun t : interiorNodeSimplex n => interpolationPeakDifference n t) := by

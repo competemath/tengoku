@@ -62,7 +62,9 @@ private theorem nextCoeff_christoffelPolynomial (L : 𝕜[X] →ₗ[𝕜] 𝕜) 
 /-- Evaluation of the original recurrence gives the quotient/elimination
 diagonal identity. The order-zero elimination boundary is explicitly zero.
 Source: Gautschi (2004), Theorem 1.33.
-atlas: kernel-polynomials-christoffel (partial)-/
+atlas: kernel-polynomials-christoffel (partial)
+@isnad1 id=eq.2h4v.s7.ca91fe938ba7 from=translated src=- shape=eca1d48f vocab=97bf7fb6
+-/
 theorem orthogonalRecurrenceAlpha_eq_add_christoffelQuotient_christoffelElimination
     {L : 𝕜[X] →ₗ[𝕜] 𝕜} (hL : QuasiDefinitePolynomialFunctional L) {z : 𝕜}
     (hz : ∀ n, (monicOrthogonalPolynomial L n).eval z ≠ 0) (n : ℕ) :
@@ -84,7 +86,9 @@ theorem orthogonalRecurrenceAlpha_eq_add_christoffelQuotient_christoffelEliminat
 
 /-- The monic diagonal after a linear modification is `z+q_n+e_n`.
 Source: Gautschi (2004), Theorem 1.33.
-atlas: kernel-polynomials-christoffel (partial), christoffel-uvarov-modification (partial)-/
+atlas: kernel-polynomials-christoffel (partial), christoffel-uvarov-modification (partial)
+@isnad1 id=eq.2h4v.s8.e02838b4bb5b from=translated src=- shape=6774c8c1 vocab=51d794c3
+-/
 theorem orthogonalRecurrenceAlpha_polynomialWeightedFunctional_X_sub_C
     {L : 𝕜[X] →ₗ[𝕜] 𝕜} (hL : QuasiDefinitePolynomialFunctional L) {z : 𝕜}
     (hz : ∀ n, (monicOrthogonalPolynomial L n).eval z ≠ 0) (n : ℕ) :
@@ -103,7 +107,9 @@ theorem orthogonalRecurrenceAlpha_polynomialWeightedFunctional_X_sub_C
 
 /-- The positive-order monic subdiagonal after a linear modification is
 `q_n e_(n−1)`. Source: Gautschi (2004), Theorem 1.33.
-atlas: kernel-polynomials-christoffel (partial), christoffel-uvarov-modification (partial)-/
+atlas: kernel-polynomials-christoffel (partial), christoffel-uvarov-modification (partial)
+@isnad1 id=eq.3h4v.s8.4f5dd9301dc2 from=translated src=- shape=9ed33034 vocab=8782569f
+-/
 theorem orthogonalRecurrenceBeta_polynomialWeightedFunctional_X_sub_C
     {L : 𝕜[X] →ₗ[𝕜] 𝕜} (hL : QuasiDefinitePolynomialFunctional L) {z : 𝕜}
     (hz : ∀ n, (monicOrthogonalPolynomial L n).eval z ≠ 0) {n : ℕ} (hn : 0 < n) :

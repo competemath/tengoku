@@ -19,7 +19,9 @@ namespace NLAlib
 
 /-- The actual interpolation peak Jacobian has a strictly positive normalized left nullvector.
 Source: positive Laplacian cofactors and the alternating nodal-product sign.
-atlas: lebesgue-constant-lower-bound (partial)-/
+atlas: lebesgue-constant-lower-bound (partial)
+@isnad1 id=ex.2h2v.s7.c0af57a584c4 from=translated src=- shape=28f634ae vocab=82bd22d0
+-/
 theorem exists_pos_vecMul_interpolationGapJacobian_eq_zero {n : ℕ} (hn : 0 < n) {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) :
     ∃ w : Fin (n + 1) → ℝ, (∀ i, 0 < w i) ∧ (∑ i, w i) = 1 ∧
@@ -64,7 +66,9 @@ theorem exists_pos_vecMul_interpolationGapJacobian_eq_zero {n : ℕ} (hn : 0 < n
 
 /-- The actual peak-difference Jacobian has nonzero determinant.
 Source: full actual Jacobian rank and its normalized positive left normal.
-atlas: lebesgue-constant-lower-bound (partial)-/
+atlas: lebesgue-constant-lower-bound (partial)
+@isnad1 id=ne.2h2v.s6.e5c4c4b16c93 from=translated src=- shape=1b768f46 vocab=d117903d
+-/
 theorem det_interpolationGapJacobian_difference_ne_zero {n : ℕ} (hn : 0 < n) {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) :
     Matrix.det (fun i j : Fin n => interpolationGapJacobian n t i.succ j - interpolationGapJacobian n t 0 j) ≠ 0 := by

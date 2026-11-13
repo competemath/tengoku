@@ -16,7 +16,9 @@ namespace NLAlib
 
 /-- Clearing one denominator factor in the normalized actual divided-moment
 functional gives the actual source Cauchy integral.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=eq.4h7v.s8.0e420d8336e4 from=translated src=- shape=9f1b6e62 vocab=51d24a48
+-/
 theorem smul_complexDividedPolynomialIntegral_rootCofactor_eq_cauchy
     {μ : Measure ℝ} {m : ℕ} {v : ℂ[X]} {cv : ℂ} (hcv : cv ≠ 0)
     (z : Fin m → ℂ) (hv : v = C cv * Lagrange.nodal Finset.univ z)

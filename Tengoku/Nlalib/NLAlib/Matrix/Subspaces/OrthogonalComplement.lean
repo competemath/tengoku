@@ -14,7 +14,9 @@ open scoped Matrix
 namespace NLAlib
 
 /-- Every orthonormal frame has an orthonormal, mutually orthogonal complement
-whose projector completes the identity. Empty complements are included.-/
+whose projector completes the identity. Empty complements are included.
+@isnad1 id=ex.1h4v.s9.f5639b64380f from=translated src=- shape=908badb4 vocab=140832c8
+-/
 theorem exists_unitary_complement_orthogonal
     {𝕜 m q : Type*} [RCLike 𝕜] [Fintype m] [Fintype q] [DecidableEq m] [DecidableEq q]
     (E : Matrix m q 𝕜) (hE : HasOrthonormalCols E) :

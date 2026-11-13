@@ -20,7 +20,9 @@ variable {𝕜 : Type*} [Field 𝕜]
 diagonal formula. Only the moment systems and nonzero evaluations through
 order `n+1` are needed.
 Source: Gautschi (2004), Theorem 1.57; AQ14.
-atlas: kernel-polynomials-christoffel (partial)-/
+atlas: kernel-polynomials-christoffel (partial)
+@isnad1 id=eq.2h4v.s8.8654d914b86f from=translated src=- shape=1d169455 vocab=a0cc5427
+-/
 theorem orthogonalRecurrenceAlpha_eq_add_christoffelQuotient_christoffelElimination_of_finite
     {L : 𝕜[X] →ₗ[𝕜] 𝕜} {n : ℕ} {z : 𝕜}
     (hL : ∀ k ≤ n+1, hankelMomentDet L k ≠ 0)
@@ -44,7 +46,9 @@ theorem orthogonalRecurrenceAlpha_eq_add_christoffelQuotient_christoffelEliminat
 /-- The modified diagonal is `z+q_n+e_n` under finite-order hypotheses, even
 when the original norm at order `n+1` vanishes at finite termination.
 Source: Gautschi (2004), Theorem 1.57; AQ14.
-atlas: kernel-polynomials-christoffel (partial), christoffel-uvarov-modification (partial)-/
+atlas: kernel-polynomials-christoffel (partial), christoffel-uvarov-modification (partial)
+@isnad1 id=eq.3h4v.s8.8af4d3b53e75 from=translated src=- shape=f4b7e893 vocab=107ebedc
+-/
 theorem orthogonalRecurrenceAlpha_polynomialWeightedFunctional_X_sub_C_of_finite
     {L : 𝕜[X] →ₗ[𝕜] 𝕜} {n : ℕ} {z : 𝕜}
     (hL : ∀ k ≤ n+1, hankelMomentDet L k ≠ 0)
@@ -104,7 +108,9 @@ theorem orthogonalRecurrenceAlpha_polynomialWeightedFunctional_X_sub_C_of_finite
 /-- The modified positive-order monic subdiagonal is `q_n e_(n-1)` using only
 the finite original systems and evaluations through order `n+1`.
 Source: Gautschi (2004), Theorem 1.57; AQ14.
-atlas: kernel-polynomials-christoffel (partial), christoffel-uvarov-modification (partial)-/
+atlas: kernel-polynomials-christoffel (partial), christoffel-uvarov-modification (partial)
+@isnad1 id=eq.3h4v.s8.c97be8edf892 from=translated src=- shape=7146af2b vocab=beedb64b
+-/
 theorem orthogonalRecurrenceBeta_polynomialWeightedFunctional_X_sub_C_of_finite
     {L : 𝕜[X] →ₗ[𝕜] 𝕜} {n : ℕ} {z : 𝕜} (hn : 0<n)
     (hL : ∀ k ≤ n+1, hankelMomentDet L k ≠ 0)

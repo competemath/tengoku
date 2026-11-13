@@ -20,7 +20,9 @@ namespace NLAlib
 at finite-support termination. The remaining nodes are in the closed interval; whenever
 one is the opposite endpoint, its signed nodal norm and the error are both zero.
 Source: operator derivations (AQ9)–(AQ10); focused reroutes, Section 3 (BL11).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=ex.10h8v.s10.8f3afb10c93c from=translated src=- shape=804d812e vocab=809098f7
+-/
 theorem exists_integral_sub_radau_degree_rule_eq_iteratedDeriv_mul
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b t : ℝ} (hab : a < b)
     (hμ : ∀ᵐ x ∂μ, x ∈ Icc a b) (ht : t = a ∨ t = b) {q : ℕ}

@@ -23,7 +23,9 @@ the matrix exponential. This is a genuine conditional Jensen theorem, not the ex
 unconditional inequality or an assumed conditional-mgf certificate. Its conditional-mean
 positivity and trace integrability premises are supplied by the subsequent martingale bounds.
 Source: Tropp 2011, Freedman's inequality; operator rederivations `eq:condlieb`.
-atlas: matrix-freedman (partial)-/
+atlas: matrix-freedman (partial)
+@isnad1 id=eventual.6h7v.s8.c0b7f543e431 from=translated src=- shape=85e9d32a vocab=fb7e1220
+-/
 theorem condExp_traceExp_add_le_traceExp_add_matrixLog_of_ae_posDef_condExp
     {Ω n : Type*} {m mΩ : MeasurableSpace Ω} [Fintype n] [DecidableEq n] [Nonempty n]
     {μ : Measure Ω} (hm : m ≤ mΩ) [SigmaFinite (μ.trim hm)]

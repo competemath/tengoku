@@ -20,7 +20,9 @@ namespace NLAlib
 /-- A canonical monic measure polynomial is nonzero at every real point
 strictly outside a closed support interval, including finite-support termination.
 Source: Gautschi (2004), real zero location and Lemma 1.56.
-atlas: kernel-polynomials-christoffel (partial)-/
+atlas: kernel-polynomials-christoffel (partial)
+@isnad1 id=ne.4h5v.s6.cc8fb6069a10 from=translated src=- shape=17dff2ac vocab=6525dbc3
+-/
 theorem eval_monicOrthogonalPolynomial_ne_zero_of_outside_support_interval
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {a b z : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {n : ℕ} (hn : (n : ℕ∞) ≤ μ.support.encard)
@@ -34,7 +36,9 @@ theorem eval_monicOrthogonalPolynomial_ne_zero_of_outside_support_interval
 
 /-- The real diagonal reproducing kernel is strictly positive whenever its
 included squared norms are positive. The constant summand proves strictness,
-independently of whether higher polynomials vanish at the evaluation point.-/
+independently of whether higher polynomials vanish at the evaluation point.
+@isnad1 id=lt.1h3v.s6.cd31f5e82139 from=translated src=- shape=bfaa44a3 vocab=b02a51a8
+-/
 theorem eval_monicOrthogonalKernelPolynomial_self_pos
     (L : ℝ[X] →ₗ[ℝ] ℝ) (n : ℕ)
     (hh : ∀ k ≤ n, 0 < orthogonalPolynomialNorm L k) (z : ℝ) :
@@ -56,7 +60,9 @@ theorem eval_monicOrthogonalKernelPolynomial_self_pos
 at its modification point when its original degree-`n` value is nonzero.
 The false arbitrary-complex nonvanishing assertion is not used.
 Source: Gautschi (2004), Lemma 1.56, real reproducing-kernel proof.
-atlas: kernel-polynomials-christoffel (partial)-/
+atlas: kernel-polynomials-christoffel (partial)
+@isnad1 id=ne.3h3v.s6.44c1df55ef5a from=translated src=- shape=f1689bb8 vocab=70cba702
+-/
 theorem eval_christoffelPolynomial_ne_zero_of_real
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {n : ℕ}
     (hn : (n+1 : ℕ∞) ≤ μ.support.encard) {z : ℝ}
@@ -77,7 +83,9 @@ theorem eval_christoffelPolynomial_ne_zero_of_real
 the transformed polynomial value nonzero. The limiting terminal modified
 degree is allowed when the original support has exactly `n+1` points.
 Source: Gautschi (2004), Lemma 1.56; corrected operator re-derivations.
-atlas: kernel-polynomials-christoffel (partial)-/
+atlas: kernel-polynomials-christoffel (partial)
+@isnad1 id=ne.4h5v.s6.5f902aeee2ff from=translated src=- shape=a5e8d5b6 vocab=d1f18947
+-/
 theorem eval_christoffelPolynomial_ne_zero_of_outside_support_interval
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {a b z : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {n : ℕ} (hn : (n+1 : ℕ∞) ≤ μ.support.encard)

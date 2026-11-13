@@ -20,7 +20,9 @@ times the two actual maximum norms, divided by `2 pi`. Compact-support kernel
 continuity and finiteness of these maxima are proved rather than supplied.
 Corners and vanishing parameter derivatives are permitted.
 Source: Gautschi (2004), Theorem 2.48, null-homologous-cycle alternative.
-atlas: gauss-remainder-contour-kernel (partial)-/
+atlas: gauss-remainder-contour-kernel (partial)
+@isnad1 id=other.9h7v.s10.0c5ff1834d43 from=translated src=- shape=95515ece vocab=9aab0dfb
+-/
 theorem norm_integral_sub_gauss_le_cubicalLength_mul_maxNorm
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {n : ℕ} (hn : (n : ℕ∞) ≤ μ.support.encard)

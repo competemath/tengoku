@@ -21,7 +21,9 @@ namespace NLAlib
 
 /-- A nonzero polynomial of degree at most `n` cannot alternate strictly in sign at
 `n+2` ordered points. Source: Cheney (1966), Chapter 3, the root-counting step of
-the de la Vallée Poussin theorem.-/
+the de la Vallée Poussin theorem.
+@isnad1 id=not.2h3v.s7.49fe36455aca from=translated src=- shape=ad0c7f4e vocab=7bc0633a
+-/
 theorem not_forall_eval_mul_eval_neg_of_degree_le {n : ℕ} {p : ℝ[X]}
     (hp : p.degree ≤ n) {v : Fin (n + 2) → ℝ} (hv : StrictMono v) :
     ¬ ∀ i : Fin (n + 1), p.eval (v i.castSucc) * p.eval (v i.succ) < 0 := by
@@ -40,7 +42,9 @@ theorem not_forall_eval_mul_eval_neg_of_degree_le {n : ℕ} {p : ℝ[X]}
 for every degree-`n` competitor. Source: Cheney (1966), Chapter 3; ATAP, Exercise 10.3.
 The target function can be completely arbitrary, and `ε` is any common lower bound on
 the absolute values of the alternating errors.
-atlas: de-la-vallee-poussin-/
+atlas: de-la-vallee-poussin
+@isnad1 id=ex.5h6v.s8.45b8f9de2a6f from=translated src=- shape=bf308b42 vocab=2b3d7931
+-/
 theorem exists_abs_sub_eval_ge_of_alternation {n : ℕ} (f : ℝ → ℝ) {p : ℝ[X]}
     (hp : p.degree ≤ n) {v : Fin (n + 2) → ℝ} (hv : StrictMono v)
     (hsign : ∀ i : Fin (n + 1),
@@ -60,7 +64,9 @@ theorem exists_abs_sub_eval_ge_of_alternation {n : ℕ} (f : ℝ → ℝ) {p : �
 
 /-- A polynomial with alternating sample errors certifies a lower bound on the minimax
 error on any compact real domain. Source: Cheney (1966), Chapter 3; ATAP, Exercise 10.3.
-atlas: de-la-vallee-poussin-/
+atlas: de-la-vallee-poussin
+@isnad1 id=le.4h6v.s9.074a6d15568d from=translated src=- shape=b60861b7 vocab=43574aa4
+-/
 theorem le_minimaxError_of_alternation {s : Set ℝ} [CompactSpace s] {n : ℕ}
     (f : C(s, ℝ)) {p : ℝ[X]} (hp : p.degree ≤ n) {v : Fin (n + 2) → s}
     (hv : StrictMono (fun i => (v i : ℝ)))

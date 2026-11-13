@@ -61,7 +61,9 @@ private theorem continuous_eval_coefficientPolynomial (k : ℕ) (x : ℝ) :
 /-- The class of attainable cross-multiplied rational error bounds is closed from above.
 Source: the rational existence derivation `polybest:rational-limit`, joint coefficient
 normalization and iterative pole cancellation. The approximating denominators need only
-be nonzero polynomials; removable interval zeros are allowed in this general closure lemma.-/
+be nonzero polynomials; removable interval zeros are allowed in this general closure lemma.
+@isnad1 id=ex.3h6v.s8.eb82f9e346ff from=translated src=- shape=edf0bf4c vocab=b40d3469
+-/
 theorem exists_cross_error_le_of_forall_pos {m n : ℕ} {a b E : ℝ}
     (hab : a < b) (f : ℝ → ℝ) (hf : Continuous f)
     (happrox : ∀ ε > 0, ∃ p q : ℝ[X], p.degree ≤ m ∧ q.degree ≤ n ∧ q ≠ 0 ∧

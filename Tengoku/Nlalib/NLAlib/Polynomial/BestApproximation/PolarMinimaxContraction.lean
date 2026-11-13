@@ -15,7 +15,9 @@ noncomputable section
 open Set
 namespace NLAlib
 
-/-- Positive interval squared-ratio gaps lie in `[0,1)`.-/
+/-- Positive interval squared-ratio gaps lie in `[0,1)`.
+@isnad1 id=mem.2h2v.s6.e3a2d319b585 from=translated src=- shape=92d6dc3b vocab=d62d02a0
+-/
 theorem interval_squared_ratio_gap_mem {a b : ℝ} (ha : 0 < a) (hab : a ≤ b) :
     1 - (a / b) ^ 2 ∈ Ico (0 : ℝ) 1 := by
   have hb : 0 < b := ha.trans_le hab
@@ -26,7 +28,9 @@ theorem interval_squared_ratio_gap_mem {a b : ℝ} (ha : 0 < a) (hab : a ≤ b) 
 /-- Genuine odd minimax optimality implies the squared-ratio contraction
 and a matching bound on the actual uniform error. No recurrence estimate
 is assumed in the hypotheses.
-atlas: polar-minimax-polynomial-iteration (partial)-/
+atlas: polar-minimax-polynomial-iteration (partial)
+@isnad1 id=and.6h6v.s8.a955272a3527 from=translated src=- shape=c0d9c676 vocab=5e5ced64
+-/
 theorem IsOddMinimaxOn.squared_ratio_contraction {q : ℕ} {c : ℕ → ℝ} {a b m M : ℝ}
     (h : IsOddMinimaxOn q c a b) (ha : 0 < a) (hab : a ≤ b)
     (hbounds : ∀ x ∈ Icc a b, m ≤ oddScalarUpdate q c x ∧ oddScalarUpdate q c x ≤ M)
@@ -66,7 +70,9 @@ theorem IsOddMinimaxOn.squared_ratio_contraction {q : ℕ} {c : ℕ → ℝ} {a 
     nlinarith
 
 /-- The true squared-ratio gaps of every genuine greedy minimax sequence
-obey the iterated power estimate.-/
+obey the iterated power estimate.
+@isnad1 id=le.3h6v.s7.5e169669202a from=translated src=- shape=8cfc8eae vocab=5dc586ba
+-/
 theorem IsGreedyOddMinimax.squared_ratio_gap_le {q : ℕ} {ell : ℝ}
     {c : ℕ → ℕ → ℝ} {l u : ℕ → ℝ} (h : IsGreedyOddMinimax q ell c l u)
     (hell : 0 < ell) (hell1 : ell ≤ 1) (k : ℕ) :
@@ -83,7 +89,9 @@ theorem IsGreedyOddMinimax.squared_ratio_gap_le {q : ℕ} {ell : ℝ}
       _ ≤ ((1 - ell ^ 2) ^ ((q + 1) ^ k)) ^ (q + 1) := pow_le_pow_left₀ hgap ih _
       _ = (1 - ell ^ 2) ^ ((q + 1) ^ (k + 1)) := by rw [← pow_mul, Nat.pow_succ]
 
-/-- The actual per-step uniform error has the final iterated power rate.-/
+/-- The actual per-step uniform error has the final iterated power rate.
+@isnad1 id=le.3h6v.s7.f36ad5bc4faa from=translated src=- shape=7530709f vocab=cf96e9e3
+-/
 theorem IsGreedyOddMinimax.uniform_error_le {q : ℕ} {ell : ℝ}
     {c : ℕ → ℕ → ℝ} {l u : ℕ → ℝ} (h : IsGreedyOddMinimax q ell c l u)
     (hell : 0 < ell) (hell1 : ell ≤ 1) (k : ℕ) :
@@ -100,7 +108,9 @@ theorem IsGreedyOddMinimax.uniform_error_le {q : ℕ} {ell : ℝ}
 
 /-- Every genuine greedy odd minimax scalar composition has the sharp
 polar iteration rate, via its actual next lower interval endpoint.
-atlas: polar-minimax-polynomial-iteration (partial)-/
+atlas: polar-minimax-polynomial-iteration (partial)
+@isnad1 id=and.5h7v.s7.ab44d9efce32 from=translated src=- shape=1efe7a05 vocab=54ade368
+-/
 theorem IsGreedyOddMinimax.composition_error_le {q : ℕ} {ell : ℝ}
     {c : ℕ → ℕ → ℝ} {l u : ℕ → ℝ} (h : IsGreedyOddMinimax q ell c l u)
     (hell : 0 < ell) (hell1 : ell ≤ 1) {T : ℕ} (hT : 1 ≤ T)

@@ -30,7 +30,9 @@ private theorem abs_prod_eq_neg_one_pow_filter_mul {ι : Type*} [DecidableEq ι]
   simp only [prod_const, one_pow, mul_one]
 
 /-- The actual Lagrange cardinal is the finite product of node-difference ratios.
-Source: Lagrange's cardinal formula; helper for node derivatives and interval peaks.-/
+Source: Lagrange's cardinal formula; helper for node derivatives and interval peaks.
+@isnad1 id=eq.0h4v.s6.4dbbc670c7c3 from=translated src=- shape=34ca7a63 vocab=de683efb
+-/
 theorem eval_lagrange_basis_eq_prod_div {m : ℕ} (v : Fin m → ℝ) (j : Fin m) (x : ℝ) :
     (Lagrange.basis univ v j).eval x =
       ∏ k ∈ univ.erase j, (x - v k) / (v j - v k) := by
@@ -41,7 +43,9 @@ theorem eval_lagrange_basis_eq_prod_div {m : ℕ} (v : Fin m → ℝ) (j : Fin m
 
 /-- The actual Lagrange cardinal has the specified fixed sign on an ordered
 grid's open gap.
-Source: cardinal products; focused reroutes, interval peak polynomial.-/
+Source: cardinal products; focused reroutes, interval peak polynomial.
+@isnad1 id=eq.2h5v.s8.450a179047e6 from=translated src=- shape=3877e101 vocab=b9b09c5b
+-/
 theorem interpolationGapSign_mul_eval_basis_eq_abs {n : ℕ}
     {v : Fin (n + 2) → ℝ} (hv : StrictMono v) (i : Fin (n + 1)) (j : Fin (n + 2))
     {x : ℝ} (hx : x ∈ Ioo (v i.castSucc) (v i.succ)) :
@@ -112,7 +116,9 @@ theorem interpolationGapSign_mul_eval_basis_eq_abs {n : ℕ}
 
 /-- The actual finite gap polynomial equals the Lebesgue function throughout
 the open gap of a canonical ordered node configuration.
-Source: signed Lagrange cardinals; focused reroutes, interval peak polynomial.-/
+Source: signed Lagrange cardinals; focused reroutes, interval peak polynomial.
+@isnad1 id=eq.2h4v.s7.be3b32800d14 from=translated src=- shape=ab47673e vocab=aeab6b3a
+-/
 theorem eval_interpolationGapPolynomial_eq_lebesgueFunction {n : ℕ} {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (i : Fin (n + 1)) {x : ℝ}
     (hx : x ∈ Ioo (canonicalIntervalNodes n t i.castSucc) (canonicalIntervalNodes n t i.succ)) :
@@ -124,7 +130,9 @@ theorem eval_interpolationGapPolynomial_eq_lebesgueFunction {n : ℕ} {t : Fin n
   exact interpolationGapSign_mul_eval_basis_eq_abs ht i j hx
 
 /-- Every cardinal is nonzero inside an ordered grid gap.
-Source: its finite product of nonzero node differences; interval peak argument.-/
+Source: its finite product of nonzero node differences; interval peak argument.
+@isnad1 id=ne.2h5v.s7.0a7d7b0f258c from=translated src=- shape=7eaaa526 vocab=c5e74c08
+-/
 theorem eval_basis_ne_zero_on_gap {n : ℕ} {v : Fin (n + 2) → ℝ} (hv : StrictMono v)
     (i : Fin (n + 1)) (j : Fin (n + 2)) {x : ℝ} (hx : x ∈ Ioo (v i.castSucc) (v i.succ)) :
     (Lagrange.basis univ v j).eval x ≠ 0 := by
@@ -140,7 +148,9 @@ theorem eval_basis_ne_zero_on_gap {n : ℕ} {v : Fin (n + 2) → ℝ} (hv : Stri
   · exact sub_ne_zero.mpr (fun h => hkj (hv.injective h.symm))
 
 /-- With at least one interior node, every gap has a negative cardinal.
-Source: alternating cardinal-product signs; focused reroutes, strict interval peaks.-/
+Source: alternating cardinal-product signs; focused reroutes, strict interval peaks.
+@isnad1 id=ex.3h4v.s7.bc2f6b8d0a2b from=translated src=- shape=8233dc67 vocab=4ccabf19
+-/
 theorem exists_negative_eval_basis_on_gap {n : ℕ} (hn : 0 < n)
     {v : Fin (n + 2) → ℝ} (hv : StrictMono v) (i : Fin (n + 1)) {x : ℝ}
     (hx : x ∈ Ioo (v i.castSucc) (v i.succ)) :
@@ -163,7 +173,9 @@ theorem exists_negative_eval_basis_on_gap {n : ℕ} (hn : 0 < n)
 
 /-- The actual Lebesgue function is strictly above one in every open gap
 when there are at least three interpolation nodes.
-Source: partition of unity and a negative cardinal; focused reroutes.-/
+Source: partition of unity and a negative cardinal; focused reroutes.
+@isnad1 id=lt.3h4v.s7.d532049de245 from=translated src=- shape=cc3d624c vocab=9f5ad020
+-/
 theorem one_lt_lebesgueFunction_on_gap {n : ℕ} (hn : 0 < n)
     {v : Fin (n + 2) → ℝ} (hv : StrictMono v) (i : Fin (n + 1)) {x : ℝ}
     (hx : x ∈ Ioo (v i.castSucc) (v i.succ)) : 1 < lebesgueFunction v x := by
@@ -176,7 +188,9 @@ theorem one_lt_lebesgueFunction_on_gap {n : ℕ} (hn : 0 < n)
   linarith
 
 /-- The gap polynomial takes its prescribed signs at the actual canonical nodes.
-Source: interpolation at distinct nodes; focused reroutes.-/
+Source: interpolation at distinct nodes; focused reroutes.
+@isnad1 id=eq.1h4v.s6.d51315ec17a8 from=translated src=- shape=98b6c58b vocab=fe680f86
+-/
 theorem eval_interpolationGapPolynomial_node {n : ℕ} {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (i : Fin (n + 1)) (j : Fin (n + 2)) :
     (interpolationGapPolynomial n t i).eval (canonicalIntervalNodes n t j) =
@@ -184,7 +198,9 @@ theorem eval_interpolationGapPolynomial_node {n : ℕ} {t : Fin n → ℝ}
   exact Lagrange.eval_interpolate_at_node _ (ht.injective.injOn) (mem_univ j)
 
 /-- Both endpoints of a gap have gap-polynomial value one.
-Source: prescribed nodal signs; focused reroutes.-/
+Source: prescribed nodal signs; focused reroutes.
+@isnad1 id=and.1h3v.s6.38b7e5abbeb8 from=translated src=- shape=144c86d5 vocab=afd91f8a
+-/
 theorem eval_interpolationGapPolynomial_gap_endpoints {n : ℕ} {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (i : Fin (n + 1)) :
     (interpolationGapPolynomial n t i).eval (canonicalIntervalNodes n t i.castSucc) = 1 ∧
@@ -195,7 +211,9 @@ theorem eval_interpolationGapPolynomial_gap_endpoints {n : ℕ} {t : Fin n → �
   norm_num
 
 /-- The actual gap polynomial is strictly greater than one inside its own gap.
-Source: signed cardinal identity; focused reroutes, strict interval peaks.-/
+Source: signed cardinal identity; focused reroutes, strict interval peaks.
+@isnad1 id=lt.3h4v.s6.83116451c997 from=translated src=- shape=020c0c55 vocab=9b70af5b
+-/
 theorem one_lt_eval_interpolationGapPolynomial {n : ℕ} (hn : 0 < n) {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (i : Fin (n + 1)) {x : ℝ}
     (hx : x ∈ Ioo (canonicalIntervalNodes n t i.castSucc) (canonicalIntervalNodes n t i.succ)) :
@@ -204,7 +222,9 @@ theorem one_lt_eval_interpolationGapPolynomial {n : ℕ} (hn : 0 < n) {t : Fin n
   exact one_lt_lebesgueFunction_on_gap hn ht i hx
 
 /-- The actual gap polynomial is nonconstant for every positive interior dimension.
-Source: endpoint value one and strictly larger interior values; focused reroutes.-/
+Source: endpoint value one and strictly larger interior values; focused reroutes.
+@isnad1 id=ne.2h3v.s7.c4c176817d94 from=translated src=- shape=6c5a0b0a vocab=57503a88
+-/
 theorem derivative_interpolationGapPolynomial_ne_zero {n : ℕ} (hn : 0 < n)
     {t : Fin n → ℝ} (ht : t ∈ interiorNodeSimplex n) (i : Fin (n + 1)) :
     (interpolationGapPolynomial n t i).derivative ≠ 0 := by

@@ -19,7 +19,9 @@ namespace NLAlib
 lower-degree polynomial is the negative variation of its moment pairing.
 This follows from the actual orthogonality equations on an open nonsingular
 neighborhood. Source: AQ27.
-atlas: recurrence-coefficient-moment-sensitivity (partial)-/
+atlas: recurrence-coefficient-moment-sensitivity (partial)
+@isnad1 id=eq.4h5v.s9.839e392fbca9 from=translated src=- shape=413d400e vocab=c45edd74
+-/
 theorem functional_monicOrthogonalPolynomialDeriv_mul_eq_neg
     {L : ℝ → (ℝ[X] →ₗ[ℝ] ℝ)} {D : ℝ[X] →ₗ[ℝ] ℝ} {n : ℕ} {x : ℝ}
     (hL : ∀ k, ContDiffAt ℝ 1 (fun y => L y (X ^ k)) x)
@@ -56,7 +58,9 @@ theorem functional_monicOrthogonalPolynomialDeriv_mul_eq_neg
 
 /-- The actual first variation expands in the lower monic orthogonal basis with
 the differentiated moment pairings as coefficients. Source: AQ27.
-atlas: recurrence-coefficient-moment-sensitivity (partial)-/
+atlas: recurrence-coefficient-moment-sensitivity (partial)
+@isnad1 id=eq.4h4v.s9.fc9b53093961 from=translated src=- shape=60cc145d vocab=d1c37a2b
+-/
 theorem monicOrthogonalPolynomialDeriv_eq_sum
     {L : ℝ → (ℝ[X] →ₗ[ℝ] ℝ)} {D : ℝ[X] →ₗ[ℝ] ℝ} {n : ℕ} {x : ℝ}
     (hL : ∀ k, ContDiffAt ℝ 1 (fun y => L y (X ^ k)) x)

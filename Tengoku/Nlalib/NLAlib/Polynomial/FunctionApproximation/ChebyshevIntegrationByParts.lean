@@ -18,7 +18,9 @@ namespace NLAlib
 
 /-- AC integration by parts expresses a positive Chebyshev coefficient using its derivative.
 Source: focused reroutes, Lemma `lem:ip`; helper for `chebyshev-coeff-bv-decay`.
-The derivative representative is specified almost everywhere on the interval.-/
+The derivative representative is specified almost everywhere on the interval.
+@isnad1 id=eq.3h3v.s7.5769b3d23e99 from=translated src=- shape=a0c9d537 vocab=1ecb31f4
+-/
 theorem chebyshevCoeff_eq_integral_derivative {u v : ℝ → ℝ}
     (hu : AbsolutelyContinuousOnInterval u (-1) 1)
     (huv : ∀ᵐ x : ℝ, x ∈ Icc (-1 : ℝ) 1 → deriv u x = v x)
@@ -56,7 +58,9 @@ theorem chebyshevCoeff_eq_integral_derivative {u v : ℝ → ℝ}
   ring
 
 /-- Cosine substitution turns the derivative integral into a finite trigonometric identity.
-Source: focused reroutes, Lemma `lem:ip`; helper for `chebyshev-coeff-bv-decay`.-/
+Source: focused reroutes, Lemma `lem:ip`; helper for `chebyshev-coeff-bv-decay`.
+@isnad1 id=eq.0h2v.s6.1c6adb89519c from=translated src=- shape=45468511 vocab=9581e36c
+-/
 theorem integral_mul_sin_arccos_eq (v : ℝ → ℝ) (k : ℕ) :
     (∫ x in -1..1, v x * sin ((k : ℝ) * arccos x)) =
       ∫ θ in 0..Real.pi, v (cos θ) * (sin ((k : ℝ) * θ) * sin θ) := by

@@ -37,7 +37,9 @@ initial interval `[ell,1]`, including the singleton endpoint `ell=1`.
 Every recorded interval endpoint is attained by the corresponding actual
 coefficient-defined polynomial; no rate certificate is assumed.
 Source: Polar Express, §3; finite-dimensional minimax existence.
-atlas: polar-minimax-polynomial-iteration (partial)-/
+atlas: polar-minimax-polynomial-iteration (partial)
+@isnad1 id=ex.2h2v.s5.dec1fc32de6a from=translated src=- shape=14dd1a53 vocab=5893a696
+-/
 theorem exists_isGreedyOddMinimax (q : ℕ) {ell : ℝ} (hell : 0 < ell) (hell1 : ell ≤ 1) :
     ∃ (c : ℕ → ℕ → ℝ) (l u : ℕ → ℝ), IsGreedyOddMinimax q ell c l u := by
   classical

@@ -22,7 +22,9 @@ open Polynomial Set
 namespace NLAlib
 
 /-- A best polynomial with positive error has `n+2` alternating extremal samples.
-Source: Trefethen, ATAP, Theorem 10.1, the compact sign-block perturbation proof.-/
+Source: Trefethen, ATAP, Theorem 10.1, the compact sign-block perturbation proof.
+@isnad1 id=ex.4h5v.s10.016581289a43 from=translated src=- shape=ef8e3dec vocab=fb54cf45
+-/
 theorem exists_alternating_extrema_of_norm_sub_eq_minimaxError {n : ℕ} {a b : ℝ}
     (hab : a < b) (f : C(Icc a b, ℝ)) {p : ℝ[X]} (hp : p.degree ≤ n)
     (hbest : ‖f - p.toContinuousMapOn (Icc a b)‖ = minimaxError n f)
@@ -98,7 +100,9 @@ private lemma eq_neg_of_abs_eq_abs_of_mul_neg {x y : ℝ}
 
 /-- A best degree-`n` polynomial has an equal-magnitude alternating extremal list, including
 the zero-error case. Source: Trefethen, ATAP, Theorem 10.1.
-atlas: equioscillation-/
+atlas: equioscillation
+@isnad1 id=ex.3h5v.s9.20f60dc13269 from=translated src=- shape=ffe8e78f vocab=b84d909a
+-/
 theorem exists_equioscillation_of_norm_sub_eq_minimaxError {n : ℕ} {a b : ℝ}
     (hab : a < b) (f : C(Icc a b, ℝ)) {p : ℝ[X]} (hp : p.degree ≤ n)
     (hbest : ‖f - p.toContinuousMapOn (Icc a b)‖ = minimaxError n f) :
@@ -155,7 +159,9 @@ theorem exists_equioscillation_of_norm_sub_eq_minimaxError {n : ℕ} {a b : ℝ}
 
 /-- A degree-`n` polynomial is best if and only if it equioscillates at `n+2` ordered points.
 Source: Trefethen, ATAP, Theorem 10.1.
-atlas: equioscillation-/
+atlas: equioscillation
+@isnad1 id=iff.2h5v.s9.d6d6a9369ddb from=translated src=- shape=31baf6f2 vocab=b84d909a
+-/
 theorem norm_sub_eq_minimaxError_iff_equioscillation {n : ℕ} {a b : ℝ}
     (hab : a < b) (f : C(Icc a b, ℝ)) {p : ℝ[X]} (hp : p.degree ≤ n) :
     ‖f - p.toContinuousMapOn (Icc a b)‖ = minimaxError n f ↔

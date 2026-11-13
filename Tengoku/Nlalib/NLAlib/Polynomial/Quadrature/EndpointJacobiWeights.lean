@@ -51,7 +51,9 @@ private theorem radau_border_shape_and_superdiagonal {μ : Measure ℝ}
 /-- The actual left and right Radau rules have distinct nodes and strictly positive
 weights throughout the original moment hierarchy, including the one-node case.
 Source: focused mathematical reroutes, Section 3 (BL11).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=other.2h4v.s7.ce527d0f5ff0 from=translated src=- shape=6f4dbe19 vocab=3acde875
+-/
 theorem radauNodes_injective_and_weights_pos {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) (q : ℕ) (hs : (q + 1 : ℕ∞) ≤ μ.support.encard)
     (a c : ℝ) :
@@ -76,7 +78,9 @@ theorem radauNodes_injective_and_weights_pos {μ : Measure ℝ}
 /-- The actual Lobatto rule has distinct nodes and strictly positive weights under
 the exact positive endpoint-shift hypotheses. The original measure only needs the
 displayed `(q+1)` moment hierarchy. Source: focused reroutes, Section 3 (BL7), (BL11).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=other.5h4v.s9.49c90f96b5dc from=translated src=- shape=5eff3ce5 vocab=15f08998
+-/
 theorem lobattoNodes_injective_and_weights_pos {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) (q : ℕ) (hs : (q + 1 : ℕ∞) ≤ μ.support.encard)
     (a c : ℝ) (hac : a < c)

@@ -33,7 +33,9 @@ variable {Ω : Type*} [MeasurableSpace Ω]
 
 open scoped Matrix.Norms.L2Operator in
 /-- Source-transport helper `four_mul_card_powerset_filter_mem_notMem` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=eq.1h3v.s7.672fed23b6ab from=translated src=- shape=a9620bec vocab=49f3c634
+-/
 lemma four_mul_card_powerset_filter_mem_notMem {n : ℕ} {i j : Fin n} (hij : i ≠ j) :
     4 * (((Finset.univ : Finset (Fin n)).powerset.filter
       (fun s => i ∈ s ∧ j ∉ s)).card) =
@@ -65,7 +67,9 @@ lemma four_mul_card_powerset_filter_mem_notMem {n : ℕ} {i j : Fin n} (hij : i 
   rw [Nat.mul_comm]
 
 /-- Source-transport helper `sum_powerset_cut_indicator` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=eq.0h4v.s8.61f921ed9098 from=translated src=- shape=bedd57af vocab=0997aad9
+-/
 lemma sum_powerset_cut_indicator {n : ℕ} (i j : Fin n) (a : ℝ) :
     (∑ s ∈ (Finset.univ : Finset (Fin n)).powerset,
       (if i ∈ s ∧ j ∉ s then a else 0)) =
@@ -76,7 +80,9 @@ lemma sum_powerset_cut_indicator {n : ℕ} (i j : Fin n) (a : ℝ) :
   simp
 
 /-- Source-transport helper `four_mul_sum_cut_quadraticForm_eq_card_mul_offDiagonal` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=eq.0h3v.s6.87ef93a6f95f from=translated src=- shape=583d8422 vocab=edf0625d
+-/
 lemma four_mul_sum_cut_quadraticForm_eq_card_mul_offDiagonal {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) (x : Fin n → ℝ) :
     4 * (∑ s ∈ (Finset.univ : Finset (Fin n)).powerset,
@@ -156,7 +162,9 @@ lemma four_mul_sum_cut_quadraticForm_eq_card_mul_offDiagonal {n : ℕ}
             ring
 
 /-- Source-transport helper `quadraticForm_offDiagonal_eq_average_cut` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=eq.0h3v.s6.15f27c87e672 from=translated src=- shape=e57f87cc vocab=70fc321f
+-/
 lemma quadraticForm_offDiagonal_eq_average_cut {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) (x : Fin n → ℝ) :
     quadForm (offDiagonalMatrix A) x =
@@ -183,7 +191,9 @@ lemma quadraticForm_offDiagonal_eq_average_cut {n : ℕ}
 
 open scoped Matrix.Norms.L2Operator in
 /-- Source-transport helper `exp_mul_quadraticForm_offDiagonal_le_average_cut` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=le.0h4v.s6.1bbd112295d9 from=translated src=- shape=15e8aa5a vocab=1fe444f9
+-/
 lemma exp_mul_quadraticForm_offDiagonal_le_average_cut {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) (x : Fin n → ℝ) (l : ℝ) :
     exp (l * quadForm (offDiagonalMatrix A) x) ≤
@@ -227,7 +237,9 @@ lemma exp_mul_quadraticForm_offDiagonal_le_average_cut {n : ℕ}
 
 open scoped Matrix.Norms.L2Operator in
 /-- Source-transport helper `quadraticForm_eq_inner_toEuclideanCLM` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=eq.0h3v.s12.d8e82c555dc0 from=translated src=- shape=036a7d7c vocab=2e80c11d
+-/
 lemma quadraticForm_eq_inner_toEuclideanCLM {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) (x : Fin n → ℝ) :
     quadForm A x =
@@ -247,7 +259,9 @@ lemma quadraticForm_eq_inner_toEuclideanCLM {n : ℕ}
 
 open scoped Matrix.Norms.L2Operator in
 /-- Source-transport helper `abs_quadraticForm_le` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=le.2h4v.s6.34aa3f380e2a from=translated src=- shape=6d00e293 vocab=d46ec57d
+-/
 lemma abs_quadraticForm_le {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     {x : Fin n → ℝ} {K : ℝ} (hK : 0 ≤ K) (hx : ∀ i, |x i| ≤ K) :
     |quadForm A x| ≤ K ^ 2 * entrywiseL1Norm A := by
@@ -280,7 +294,9 @@ lemma abs_quadraticForm_le {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
         ring
 
 /-- Source-transport helper `randomQuadraticForm_aemeasurable` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=aemeasur.1h5v.s5.c2da26ca9580 from=translated src=- shape=b16738a3 vocab=6dd61b1f
+-/
 lemma randomQuadraticForm_aemeasurable {μ : Measure Ω} {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) {X : Fin n → Ω → ℝ}
     (hX_meas : ∀ i, AEMeasurable (X i) μ) :
@@ -296,7 +312,9 @@ lemma randomQuadraticForm_aemeasurable {μ : Measure Ω} {n : ℕ}
 
 open scoped Matrix.Norms.L2Operator in
 /-- Source-transport helper `randomQuadraticForm_mem_Icc_of_ae_coord_bound` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=eventual.2h6v.s7.376122b2901e from=translated src=- shape=286fdb7b vocab=6e892d52
+-/
 lemma randomQuadraticForm_mem_Icc_of_ae_coord_bound {μ : Measure Ω} {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) {X : Fin n → Ω → ℝ} {K : ℝ}
     (hK : 0 ≤ K) (hX_bound : ∀ i, ∀ᵐ ω ∂μ, |X i ω| ≤ K) :
@@ -309,7 +327,9 @@ lemma randomQuadraticForm_mem_Icc_of_ae_coord_bound {μ : Measure Ω} {n : ℕ}
 
 open scoped Matrix.Norms.L2Operator in
 /-- Source-transport helper `bounded_hansonWright_cgf_constant_le` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=le.1h5v.s8.0e42ec953e81 from=translated src=- shape=2131cdac vocab=6b1f1261
+-/
 lemma bounded_hansonWright_cgf_constant_le {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) {K C : ℝ}
     (hC_bound : 2 * entrywiseL1Norm A ^ 2 ≤ C * frobNorm A ^ 2) (l : ℝ) :

@@ -27,7 +27,9 @@ namespace NLAlib
 
 /-- A numerator direction matching every extremal error sign produces a positive rational
 step with no poles and uniformly smaller error. Source: the rational alternation derivation,
-`polybest:rational-linear-map`. No denominator sign normalization is required.-/
+`polybest:rational-linear-map`. No denominator sign normalization is required.
+@isnad1 id=ex.4h7v.s9.56242bf4f5c6 from=translated src=- shape=20ed0c5b vocab=2d3459ae
+-/
 theorem exists_pos_rational_perturbation_error_lt {s : Set ℝ} [CompactSpace s]
     (f : C(s, ℝ)) (p q P Q : ℝ[X])
     (hq : ∀ x : s, q.eval (x : ℝ) ≠ 0) {E : ℝ} (hE : 0 < E)

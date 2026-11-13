@@ -29,7 +29,9 @@ def quadraticDivisorCoefficients (L T : 𝕜[X] →ₗ[𝕜] 𝕜) (v : 𝕜[X])
 
 /-- A size-one inverse-moment system gives the actual linear divisor update,
 also covering the first step of a higher-degree divisor.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=eq.5h5v.s10.e861e6231b62 from=translated src=- shape=f4b62c28 vocab=7d27ebdd
+-/
 theorem monicOrthogonalPolynomial_eq_linearDivisor
     (L T : 𝕜[X] →ₗ[𝕜] 𝕜) {v : 𝕜[X]} (hv : v ≠ 0)
     (hTv : ∀ p, T (v*p) = L p) {n : ℕ} (hsize : min n v.natDegree = 1)
@@ -52,7 +54,9 @@ theorem monicOrthogonalPolynomial_eq_linearDivisor
 /-- A size-two inverse-moment system gives the advertised quadratic divisor
 formula with the coefficients produced by the actual algorithm. Nonsingularity
 has already been derived from the finite measure-functional hypotheses.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=eq.5h5v.s10.ab8c33312320 from=translated src=- shape=ce776d25 vocab=9adbcdbf
+-/
 theorem monicOrthogonalPolynomial_eq_quadraticDivisor
     (L T : 𝕜[X] →ₗ[𝕜] 𝕜) {v : 𝕜[X]} (hv : v ≠ 0)
     (hTv : ∀ p, T (v*p) = L p) {n : ℕ} (hsize : min n v.natDegree = 2)

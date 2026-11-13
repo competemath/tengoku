@@ -21,7 +21,9 @@ namespace NLAlib
 single-interior-point derivative remainder. The positive definite endpoint shifts are
 the exact border hypotheses; the moment system may terminate at its displayed order.
 Source: focused mathematical reroutes, Section 3 (BL7)–(BL11); operator derivations (AQ11).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=other.9h5v.s11.3cd34fd23037 from=translated src=- shape=5b2a11c9 vocab=2eb30b83
+-/
 theorem exists_integral_sub_lobattoJacobiRule_eq_iteratedDeriv_mul
     {μ : Measure ℝ} [IsFiniteMeasure μ] (hμ : HasPolynomialMoments μ) {a c : ℝ}
     (hac : a < c) (hμac : ∀ᵐ x ∂μ, x ∈ Icc a c) (q : ℕ)
@@ -64,7 +66,9 @@ theorem exists_integral_sub_lobattoJacobiRule_eq_iteratedDeriv_mul
 
 /-- A nonnegative even derivative makes the actual constructed Lobatto matrix rule
 an upper bound on the measure integral. Source: Gautschi (2004), Theorem 3.7; (AQ11).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=le.10h5v.s10.2f7e484c0dda from=translated src=- shape=0e6bd9ba vocab=3eea3502
+-/
 theorem integral_le_mass_mul_cfc_lobattoJacobiMatrix_of_iteratedDeriv_nonneg
     {μ : Measure ℝ} [IsFiniteMeasure μ] (hμ : HasPolynomialMoments μ) {a c : ℝ}
     (hac : a < c) (hμac : ∀ᵐ x ∂μ, x ∈ Icc a c) (q : ℕ)

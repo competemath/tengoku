@@ -26,7 +26,9 @@ def polynomialWeightedFunctional (L : 𝕜[X] →ₗ[𝕜] 𝕜) (w : 𝕜[X]) :
   map_smul' c p := by simp only [mul_smul_comm, map_smul, RingHom.id_apply]
 
 /-- Applying the polynomial-weighted functional is multiplication before applying
-the original functional.-/
+the original functional.
+@isnad1 id=eq.0h4v.s9.8f4d56bd8b60 from=translated src=- shape=88570daf vocab=071705bb
+-/
 @[simp] theorem polynomialWeightedFunctional_apply (L : 𝕜[X] →ₗ[𝕜] 𝕜) (w p : 𝕜[X]) :
     polynomialWeightedFunctional L w p = L (w * p) := rfl
 
@@ -68,7 +70,9 @@ private theorem weighted_lower_nondegenerate (L : 𝕜[X] →ₗ[𝕜] 𝕜) {n 
 /-- The linear modification quotient is exact: multiplying it by `X-z` recovers
 the numerator, without an analytic division operation.
 Source: Gautschi (2004), Theorem 1.33.
-atlas: kernel-polynomials-christoffel (partial), christoffel-uvarov-modification (partial)-/
+atlas: kernel-polynomials-christoffel (partial), christoffel-uvarov-modification (partial)
+@isnad1 id=eq.1h4v.s9.e05f25f3e177 from=translated src=- shape=d9a902ef vocab=67889796
+-/
 theorem X_sub_C_mul_christoffelPolynomial (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) {z : 𝕜}
     (hz : (monicOrthogonalPolynomial L n).eval z ≠ 0) :
     (X - C z) * christoffelPolynomial L z n =
@@ -90,7 +94,9 @@ theorem X_sub_C_mul_christoffelPolynomial (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : �
 
 /-- The exact quotient is a monic degree-`n` polynomial orthogonal for the
 `X-z` weighted functional. Source: Gautschi (2004), Theorem 1.33.
-atlas: kernel-polynomials-christoffel (partial), christoffel-uvarov-modification (partial)-/
+atlas: kernel-polynomials-christoffel (partial), christoffel-uvarov-modification (partial)
+@isnad1 id=ismonico.2h4v.s8.c9406e8d80d6 from=translated src=- shape=40aadb93 vocab=49753c18
+-/
 theorem isMonicOrthogonalPolynomial_christoffelPolynomial
     (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) {z : 𝕜}
     (hL : ∀ k ≤ n + 1, hankelMomentDet L k ≠ 0)
@@ -132,7 +138,9 @@ theorem isMonicOrthogonalPolynomial_christoffelPolynomial
 
 /-- Nonzero degree-`n` evaluation at the modification point makes the modified
 order-`n` Hankel system nonsingular. Source: Gautschi (2004), Theorem 1.33.
-atlas: kernel-polynomials-christoffel (partial), christoffel-uvarov-modification (partial)-/
+atlas: kernel-polynomials-christoffel (partial), christoffel-uvarov-modification (partial)
+@isnad1 id=ne.2h4v.s8.79ac1c16ab83 from=translated src=- shape=a4d75c90 vocab=61b8831a
+-/
 theorem hankelMomentDet_polynomialWeightedFunctional_X_sub_C_ne_zero
     (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) {z : 𝕜}
     (hL : ∀ k ≤ n + 1, hankelMomentDet L k ≠ 0)
@@ -146,7 +154,9 @@ theorem hankelMomentDet_polynomialWeightedFunctional_X_sub_C_ne_zero
 
 /-- The canonical monic polynomials of the linear modified functional are exactly
 the Christoffel quotients. Source: Gautschi (2004), Theorem 1.33.
-atlas: kernel-polynomials-christoffel (partial), christoffel-uvarov-modification (partial)-/
+atlas: kernel-polynomials-christoffel (partial), christoffel-uvarov-modification (partial)
+@isnad1 id=eq.2h4v.s8.d9d0fd14d796 from=translated src=- shape=66dcb4ed vocab=1411b22a
+-/
 theorem monicOrthogonalPolynomial_polynomialWeightedFunctional_X_sub_C
     (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) {z : 𝕜}
     (hL : ∀ k ≤ n + 1, hankelMomentDet L k ≠ 0)
@@ -162,7 +172,9 @@ theorem monicOrthogonalPolynomial_polynomialWeightedFunctional_X_sub_C
 negative polynomial-evaluation ratio times the original norm. This formula is
 valid over the complex numbers as a bilinear identity.
 Source: Gautschi (2004), Theorem 1.33.
-atlas: kernel-polynomials-christoffel (partial), christoffel-uvarov-modification (partial)-/
+atlas: kernel-polynomials-christoffel (partial), christoffel-uvarov-modification (partial)
+@isnad1 id=eq.2h4v.s8.17fc5562f877 from=translated src=- shape=0b15c74f vocab=08e5c47b
+-/
 theorem orthogonalPolynomialNorm_polynomialWeightedFunctional_X_sub_C
     (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) {z : 𝕜}
     (hL : ∀ k ≤ n + 1, hankelMomentDet L k ≠ 0)
@@ -191,7 +203,9 @@ theorem orthogonalPolynomialNorm_polynomialWeightedFunctional_X_sub_C
 /-- A quasi-definite functional remains quasi-definite after multiplication by
 `X-z` whenever every original monic polynomial is nonzero at `z`.
 Source: Gautschi (2004), Theorem 1.33.
-atlas: kernel-polynomials-christoffel (partial), christoffel-uvarov-modification (partial)-/
+atlas: kernel-polynomials-christoffel (partial), christoffel-uvarov-modification (partial)
+@isnad1 id=quasidef.2h3v.s8.ddfe83610b96 from=translated src=- shape=14f80b91 vocab=59dc720b
+-/
 theorem quasiDefinitePolynomialWeightedFunctional_X_sub_C
     {L : 𝕜[X] →ₗ[𝕜] 𝕜} (hL : QuasiDefinitePolynomialFunctional L) {z : 𝕜}
     (hz : ∀ n, (monicOrthogonalPolynomial L n).eval z ≠ 0) :

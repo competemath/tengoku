@@ -21,7 +21,9 @@ namespace NLAlib
 open scoped NLAlib.TwoPi
 
 /-- The real Fourier coefficient of the cosine pullback is the normalized cosine integral.
-Source: Trefethen, ATAP, Theorem 3.1; helper for `chebyshev-series-convergence`.-/
+Source: Trefethen, ATAP, Theorem 3.1; helper for `chebyshev-series-convergence`.
+@isnad1 id=eq.1h2v.s7.b87b44190ffd from=translated src=- shape=f588cac1 vocab=ac57e6b4
+-/
 theorem re_fourierCoeff_realChebyshevCircleFunction {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1 : ℝ) 1)) (k : ℕ) :
     (fourierCoeff (fun t => (realChebyshevCircleFunction f t : ℂ)) (k : ℤ)).re =
@@ -70,7 +72,9 @@ theorem re_fourierCoeff_realChebyshevCircleFunction {f : ℝ → ℝ}
   ring
 
 /-- The actual Chebyshev coefficient is the real Fourier coefficient, doubled except at zero.
-Source: Trefethen, ATAP, Theorem 3.1; helper for `chebyshev-series-convergence`.-/
+Source: Trefethen, ATAP, Theorem 3.1; helper for `chebyshev-series-convergence`.
+@isnad1 id=eq.1h2v.s7.ef7e09946c55 from=translated src=- shape=3e72cb8e vocab=502067df
+-/
 theorem chebyshevCoeff_eq_re_fourierCoeff {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1 : ℝ) 1)) (k : ℕ) :
     chebyshevCoeff f k = (if k = 0 then 1 else 2) *
@@ -79,7 +83,9 @@ theorem chebyshevCoeff_eq_re_fourierCoeff {f : ℝ → ℝ}
   ring
 
 /-- Fourier coefficients of the even real cosine pullback are invariant under frequency negation.
-Source: Trefethen, ATAP, Theorem 3.1; helper for `chebyshev-series-convergence`.-/
+Source: Trefethen, ATAP, Theorem 3.1; helper for `chebyshev-series-convergence`.
+@isnad1 id=eq.0h2v.s6.840e537ef5ce from=translated src=- shape=5d22b494 vocab=3ac6c9c4
+-/
 theorem fourierCoeff_realChebyshevCircleFunction_neg (f : ℝ → ℝ) (k : ℤ) :
     fourierCoeff (fun t => (realChebyshevCircleFunction f t : ℂ)) (-k) =
       fourierCoeff (fun t => (realChebyshevCircleFunction f t : ℂ)) k := by

@@ -30,7 +30,9 @@ variable {Ω E F G : Type*}
 bilinear discrete integration by parts. The conditioning sigma algebra may be
 any sub-sigma algebra making `f ∘ X` measurable. This includes conditioning on
 `X` itself. Source: Tropp (2026), §6.3; atlas `exchangeable-matrix-covariance`.
-atlas: exchangeable-matrix-covariance (partial)-/
+atlas: exchangeable-matrix-covariance (partial)
+@isnad1 id=eq.8h12v.s11.b1f551b34234 from=translated src=- shape=0e75f9f3 vocab=0a173f44
+-/
 theorem integral_bilin_exchangeable
     {m mΩ : MeasurableSpace Ω} {μ : @Measure Ω mΩ} [IsProbabilityMeasure μ] {X X' : Ω → E}
     (hex : IdentDistrib (fun ω => (X ω, X' ω)) (fun ω => (X' ω, X ω)) μ μ)
@@ -101,7 +103,9 @@ tensor identity. Taking the coordinates of any finite real basis gives the
 entire bilinear real covariance tensor, including mixed real/imaginary entry
 coordinates for complex Hermitian matrices. Source: Tropp (2026), §6.3; atlas
 `exchangeable-matrix-covariance`.
-atlas: exchangeable-matrix-covariance (partial)-/
+atlas: exchangeable-matrix-covariance (partial)
+@isnad1 id=eq.6h10v.s9.d4890bd51d03 from=translated src=- shape=37647aca vocab=0cb1c3c5
+-/
 theorem integral_coordinate_covariance_exchangeable
     {m mΩ : MeasurableSpace Ω} {μ : @Measure Ω mΩ} [IsProbabilityMeasure μ]
     {X X' : Ω → E}

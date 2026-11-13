@@ -56,7 +56,9 @@ private theorem cusp_integrable {f : ℝ → ℝ} (hf : ContinuousOn f (Icc (-1 
     ((continuous_realChebyshevCircleFunction hf).comp (continuous_const.sub continuous_id))).integrable_of_hasCompactSupport
       (HasCompactSupport.of_compactSpace _)
 
-/-- The actual dual has its finite band-frequency expression.-/
+/-- The actual dual has its finite band-frequency expression.
+@isnad1 id=eq.1h2v.s7.79071638194c from=translated src=- shape=cdd3636c vocab=81b68b7b
+-/
 theorem absoluteFejerDual_eq_sum {f : ℝ → ℝ} (hf : ContinuousOn f (Icc (-1 : ℝ) 1)) (K : ℕ) :
     absoluteFejerDual K f = (K + 1 : ℝ)⁻¹ * ∑ m ∈ range (K + 1),
       (cuspCosineMoment f (4 * K) + ∑ j ∈ range m,
@@ -102,7 +104,9 @@ theorem absoluteFejerDual_eq_sum {f : ℝ → ℝ} (hf : ContinuousOn f (Icc (-1
 
 /-- The genuine finite Fejér dual annihilates every polynomial below its frequency
 band. Source: focused reroutes, Section 2, finite positivity certificate.
-atlas: abs-best-approx-asymptotics (partial)-/
+atlas: abs-best-approx-asymptotics (partial)
+@isnad1 id=eq.2h3v.s6.696c248fdd76 from=translated src=- shape=af7a5b2c vocab=28b4446f
+-/
 theorem absoluteFejerDual_eval_eq_zero {n K : ℕ} (hK : n < 2 * K)
     {p : ℝ[X]} (hp : p.degree ≤ n) : absoluteFejerDual K p.eval = 0 := by
   have hmoment (k : ℕ) (hk : n < k) : cuspCosineMoment p.eval k = 0 := by
@@ -125,7 +129,9 @@ theorem absoluteFejerDual_eval_eq_zero {n K : ℕ} (hK : n < 2 * K)
 /-- The actual dual is a contraction for every continuous function bounded on the
 unit interval. The bound follows from a positive kernel of normalized integral one.
 Source: focused reroutes, Section 2, finite positivity certificate.
-atlas: abs-best-approx-asymptotics (partial)-/
+atlas: abs-best-approx-asymptotics (partial)
+@isnad1 id=le.2h3v.s6.1b7794e1c6df from=translated src=- shape=ff6c405e vocab=07b03f76
+-/
 theorem abs_absoluteFejerDual_le {f : ℝ → ℝ} (hf : ContinuousOn f (Icc (-1 : ℝ) 1))
     (K : ℕ) {E : ℝ} (hbound : ∀ x ∈ Icc (-1 : ℝ) 1, |f x| ≤ E) :
     |absoluteFejerDual K f| ≤ E := by
@@ -174,7 +180,9 @@ private theorem cuspCosineMoment_abs_even_le_neg {K j : ℕ}
 
 /-- The actual modulated positive Fejér integral of absolute value has a quantitative
 negative value of order `1/K`. Source: focused reroutes, Section 2, finite dual certificate.
-atlas: abs-best-approx-asymptotics (partial)-/
+atlas: abs-best-approx-asymptotics (partial)
+@isnad1 id=le.1h1v.s6.f99b0b4e85d8 from=translated src=- shape=53511ab7 vocab=6988e7ae
+-/
 theorem div_le_neg_absoluteFejerDual_abs {K : ℕ} (hK : 0 < K) :
     (K + 1 : ℝ) / (18 * Real.pi * (K : ℝ) ^ 2) ≤ -absoluteFejerDual K (fun x : ℝ => |x|) := by
   let c : ℝ := 1 / (18 * Real.pi * (K : ℝ) ^ 2)
@@ -228,7 +236,9 @@ private theorem absoluteFejerDual_sub {f g : ℝ → ℝ}
 /-- Every degree-`n` polynomial competitor leaves absolute-value error at least
 `1/(18π(n+1))`. The bound follows from the actual finite integral certificate.
 Source: focused mathematical reroutes, Section 2, finite dual positivity bound.
-atlas: abs-best-approx-asymptotics (partial)-/
+atlas: abs-best-approx-asymptotics (partial)
+@isnad1 id=le.0h1v.s5.1b88386784c0 from=translated src=- shape=e76628aa vocab=8f906021
+-/
 theorem one_div_eighteen_pi_mul_succ_le_absoluteMinimaxError (n : ℕ) :
     1 / (18 * Real.pi * (n + 1)) ≤ absoluteMinimaxError n := by
   let K := n / 2 + 1

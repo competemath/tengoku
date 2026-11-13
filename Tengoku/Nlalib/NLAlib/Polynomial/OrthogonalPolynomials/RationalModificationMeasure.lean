@@ -22,7 +22,9 @@ def HasDividedPolynomialMoments (μ : Measure ℝ) (v : ℝ[X]) : Prop :=
   ∀ p : ℝ[X], Integrable (fun x => p.eval x / v.eval x) μ
 
 /-- The compact-support and pole-free source hypotheses imply all divided
-polynomial moments, irrespective of the denominator degree.-/
+polynomial moments, irrespective of the denominator degree.
+@isnad1 id=hasdivid.2h4v.s6.b13232c4afcf from=translated src=- shape=7d286089 vocab=63556272
+-/
 theorem hasDividedPolynomialMoments_of_ae_mem_Icc {μ : Measure ℝ} [IsFiniteMeasure μ]
     {a b : ℝ} (hμ : ∀ᵐ x ∂μ, x ∈ Icc a b) {v : ℝ[X]}
     (hv : ∀ x ∈ Icc a b, v.eval x ≠ 0) : HasDividedPolynomialMoments μ v := by
@@ -46,14 +48,18 @@ def dividedPolynomialIntegral (μ : Measure ℝ) (v : ℝ[X])
     simp only [eval_smul, smul_eq_mul, RingHom.id_apply, mul_div_assoc]
     exact integral_const_mul c (fun x => p.eval x/v.eval x)
 
-/-- The inverse-weight functional evaluates to the actual divided integral.-/
+/-- The inverse-weight functional evaluates to the actual divided integral.
+@isnad1 id=eq.1h3v.s7.91c46a6d92c8 from=translated src=- shape=1310fa6c vocab=ea0b1516
+-/
 @[simp] theorem dividedPolynomialIntegral_apply (μ : Measure ℝ) (v : ℝ[X])
     (hμ : HasDividedPolynomialMoments μ v) (p : ℝ[X]) :
     dividedPolynomialIntegral μ v hμ p = ∫ x, p.eval x/v.eval x ∂μ := rfl
 
 /-- The modified functional used by the finite algebraic construction is exactly
 the original measure integral weighted by the given rational function.
-Source: focused rational-modification reroute, definition of modified L.-/
+Source: focused rational-modification reroute, definition of modified L.
+@isnad1 id=eq.1h4v.s8.f75db2dc0a8b from=translated src=- shape=c4e47f4a vocab=c6a1e09b
+-/
 theorem polynomialWeightedFunctional_dividedPolynomialIntegral_apply
     (μ : Measure ℝ) (u v : ℝ[X]) (hμ : HasDividedPolynomialMoments μ v) (p : ℝ[X]) :
     polynomialWeightedFunctional (dividedPolynomialIntegral μ v hμ) u p =
@@ -67,7 +73,9 @@ def rationalPolynomialModifiedMeasure (μ : Measure ℝ) (u v : ℝ[X]) : Measur
   μ.withDensity (fun x => ENNReal.ofReal (u.eval x/v.eval x))
 
 /-- The native modified measure integrates by the actual numerator/denominator
-ratio on its full measure domain. Source: rational modification in Section 4.-/
+ratio on its full measure domain. Source: rational modification in Section 4.
+@isnad1 id=eq.1h4v.s7.c17d78e8f493 from=translated src=- shape=4e3775e0 vocab=49a851b7
+-/
 theorem integral_rationalPolynomialModifiedMeasure (μ : Measure ℝ) (u v : ℝ[X])
     (hpos : ∀ᵐ x ∂μ, 0 ≤ u.eval x/v.eval x) (f : ℝ → ℝ) :
     (∫ x, f x ∂rationalPolynomialModifiedMeasure μ u v) =
@@ -82,7 +90,9 @@ theorem integral_rationalPolynomialModifiedMeasure (μ : Measure ℝ) (u v : ℝ
 /-- The finite construction's functional and the actual positive modified
 measure have identical polynomial moments.
 Source: focused rational-modification reroute, measure/function correspondence.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=eq.2h4v.s8.0048665074b1 from=translated src=- shape=3e4abff3 vocab=1a2c258f
+-/
 theorem polynomialWeightedFunctional_dividedPolynomialIntegral_eq_integral_modified
     (μ : Measure ℝ) (u v : ℝ[X]) (hμ : HasDividedPolynomialMoments μ v)
     (hpos : ∀ᵐ x ∂μ, 0 ≤ u.eval x/v.eval x) (p : ℝ[X]) :
@@ -92,7 +102,9 @@ theorem polynomialWeightedFunctional_dividedPolynomialIntegral_eq_integral_modif
     integral_rationalPolynomialModifiedMeasure μ u v hpos]
 
 /-- Multiplication by the pole-free denominator recovers the original actual
-polynomial moment functional. This is the identity used to compress CU7.-/
+polynomial moment functional. This is the identity used to compress CU7.
+@isnad1 id=eq.3h3v.s7.de2dafe18f46 from=translated src=- shape=20c429f2 vocab=cd472a86
+-/
 theorem dividedPolynomialIntegral_denominator_mul
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) (v : ℝ[X])
     (hdiv : HasDividedPolynomialMoments μ v)
@@ -104,7 +116,9 @@ theorem dividedPolynomialIntegral_denominator_mul
   rw [eval_mul, mul_div_cancel_left₀ _ hx]
 
 /-- Finite divided polynomial moments and a nonnegative rational density give
-all polynomial moments of the actual positive modified measure.-/
+all polynomial moments of the actual positive modified measure.
+@isnad1 id=haspolyn.2h3v.s6.d0c07c522532 from=translated src=- shape=9981d13a vocab=367dd352
+-/
 theorem hasPolynomialMoments_rationalPolynomialModifiedMeasure
     (μ : Measure ℝ) (u v : ℝ[X]) (hdiv : HasDividedPolynomialMoments μ v)
     (hpos : ∀ᵐ x ∂μ, 0 ≤ u.eval x/v.eval x) :
@@ -120,7 +134,9 @@ theorem hasPolynomialMoments_rationalPolynomialModifiedMeasure
 /-- The canonical native modified measure functional is the exact weighted
 divided functional used by the proved finite coefficient and determinant systems.
 Source: focused mathematical reroutes, definition of modified L in CU1.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=eq.2h3v.s6.8d11c5385e59 from=translated src=- shape=8d4282c0 vocab=cebe2e29
+-/
 theorem polynomialIntegral_rationalPolynomialModifiedMeasure_eq
     (μ : Measure ℝ) (u v : ℝ[X]) (hdiv : HasDividedPolynomialMoments μ v)
     (hpos : ∀ᵐ x ∂μ, 0 ≤ u.eval x/v.eval x) :

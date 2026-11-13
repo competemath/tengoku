@@ -26,7 +26,9 @@ def independentResamplingMeasure (ν : ι → Measure E) :
     Measure ((ι → E) × (ι × (ι → E))) :=
   (Measure.pi ν).prod ((PMF.uniformOfFintype ι).toMeasure.prod (Measure.pi ν))
 
-/-- The independent resampling construction is a probability measure.-/
+/-- The independent resampling construction is a probability measure.
+@isnad1 id=isprobab.0h3v.s6.399b367a0bf2 from=translated src=- shape=85cdd2b6 vocab=ab7d598a
+-/
 instance isProbabilityMeasure_independentResamplingMeasure
     (ν : ι → Measure E) [∀ i, IsProbabilityMeasure (ν i)] :
     IsProbabilityMeasure (independentResamplingMeasure ν) := by
@@ -60,7 +62,9 @@ private theorem measurePreserving_resamplingReorder
 /-- Uniform independent-coordinate replacement is an actual exchangeable pair,
 even when the summand laws differ. Source: Tropp (2026), §6.3; atlas
 `exchangeable-matrix-covariance`.
-atlas: exchangeable-matrix-covariance (partial)-/
+atlas: exchangeable-matrix-covariance (partial)
+@isnad1 id=identdis.0h3v.s7.6ec5a3934a6c from=translated src=- shape=3547e39a vocab=11ef376c
+-/
 theorem identDistrib_independentResampling_pair
     (ν : ι → Measure E) [∀ i, IsProbabilityMeasure (ν i)] :
     IdentDistrib (fun p => (independentResamplingOriginal p, independentResamplingPartner p))
@@ -91,7 +95,9 @@ theorem identDistrib_independentResampling_pair
     resamplingOriginal, resamplingPartner, independentResamplingOriginal,
     independentResamplingPartner] using h
 
-/-- Exact selected-coordinate difference in the canonical resampling space.-/
+/-- Exact selected-coordinate difference in the canonical resampling space.
+@isnad1 id=eq.0h3v.s7.c32043fb6d53 from=translated src=- shape=baedf392 vocab=25112398
+-/
 theorem independentResamplingOriginal_sub_partner (p : (ι → E) × (ι × (ι → E))) :
     independentResamplingOriginal p - independentResamplingPartner p = p.1 p.2.1 - p.2.2 p.2.1 := by
   exact resamplingOriginal_sub_partner (resamplingReorder p)
@@ -146,7 +152,9 @@ private theorem integral_selected_difference
 regression. This is a genuine conditional expectation, with no assumption that
 the summands have equal laws. Source: Tropp (2026), §6.3; atlas
 `exchangeable-matrix-covariance`.
-atlas: exchangeable-matrix-covariance (partial)-/
+atlas: exchangeable-matrix-covariance (partial)
+@isnad1 id=eventual.1h3v.s9.5e06656c9681 from=translated src=- shape=055bfe03 vocab=a240de1e
+-/
 theorem condExp_independentResampling_originals
     (ν : ι → Measure E) [∀ i, IsProbabilityMeasure (ν i)]
     (hν : ∀ i, Integrable (id : E → E) (ν i)) :
@@ -169,7 +177,9 @@ theorem condExp_independentResampling_originals
 
 /-- The original independent sum is square-integrable when all summands are.
 The resampled sum has the same second moments by exchangeability.
-atlas: exchangeable-matrix-covariance (partial)-/
+atlas: exchangeable-matrix-covariance (partial)
+@isnad1 id=memlp.1h3v.s7.f41b567dc028 from=translated src=- shape=7d802653 vocab=e0457dbe
+-/
 theorem memLp_independentResamplingOriginal
     (ν : ι → Measure E) [∀ i, IsProbabilityMeasure (ν i)]
     (hν : ∀ i, MemLp (id : E → E) 2 (ν i)) :
@@ -187,7 +197,9 @@ theorem memLp_independentResamplingOriginal
 
 /-- The mean of the canonical independent sum is the sum of its individual
 means; identical distributions are unnecessary.
-atlas: exchangeable-matrix-covariance (partial)-/
+atlas: exchangeable-matrix-covariance (partial)
+@isnad1 id=eq.1h3v.s7.1006eb46db3c from=translated src=- shape=6a7bc25d vocab=6e1f510c
+-/
 theorem integral_independentResamplingOriginal
     (ν : ι → Measure E) [∀ i, IsProbabilityMeasure (ν i)]
     (hν : ∀ i, Integrable (id : E → E) (ν i)) :
@@ -209,7 +221,9 @@ theorem integral_independentResamplingOriginal
 this verifies every hypothesis of the covariance identities for independent
 nonidentical summands. Source: Tropp (2026), §6.3; atlas
 `exchangeable-matrix-covariance`.
-atlas: exchangeable-matrix-covariance (partial)-/
+atlas: exchangeable-matrix-covariance (partial)
+@isnad1 id=eventual.1h3v.s9.12b28fd0ac1a from=translated src=- shape=cc077a98 vocab=61104018
+-/
 theorem condExp_independentResampling_sum
     (ν : ι → Measure E) [∀ i, IsProbabilityMeasure (ν i)]
     (hν : ∀ i, Integrable (id : E → E) (ν i)) :

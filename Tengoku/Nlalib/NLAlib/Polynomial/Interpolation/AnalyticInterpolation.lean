@@ -23,7 +23,9 @@ def chebyshevAnalyticInterpolant (F : ℂ → ℂ) (N : ℕ) : ℝ[X] :=
   Lagrange.interpolate (range (N + 1)) (node N) (fun j => (F (node N j)).re)
 
 /-- The canonical grid interpolant has degree at most `N`.
-Source: Trefethen, ATAP, Chapters 2 and 8 (`chebyshev-approx-analytic`, helper).-/
+Source: Trefethen, ATAP, Chapters 2 and 8 (`chebyshev-approx-analytic`, helper).
+@isnad1 id=le.0h2v.s4.f0c2880eb656 from=translated src=- shape=2a06e51d vocab=2552bbb8
+-/
 theorem degree_chebyshevAnalyticInterpolant_le (F : ℂ → ℂ) (N : ℕ) :
     (chebyshevAnalyticInterpolant F N).degree ≤ N := by
   have h := Lagrange.degree_interpolate_lt (fun j => (F (node N j)).re) (chebyshev_node_injOn N)
@@ -35,13 +37,17 @@ theorem degree_chebyshevAnalyticInterpolant_le (F : ℂ → ℂ) (N : ℕ) :
     exact Nat.le_of_lt_succ hn
 
 /-- The canonical polynomial takes the original function's values at every grid point.
-Source: Trefethen, ATAP, Chapters 2 and 8 (`chebyshev-approx-analytic`, helper).-/
+Source: Trefethen, ATAP, Chapters 2 and 8 (`chebyshev-approx-analytic`, helper).
+@isnad1 id=eq.1h3v.s5.22a3284abc7e from=translated src=- shape=6657da0d vocab=7fd92716
+-/
 theorem eval_chebyshevAnalyticInterpolant_node (F : ℂ → ℂ) (N j : ℕ) (hj : j ≤ N) :
     (chebyshevAnalyticInterpolant F N).eval (node N j) = (F (node N j)).re := by
   exact Lagrange.eval_interpolate_at_node _ (chebyshev_node_injOn N) (mem_range.mpr (by omega))
 
 /-- Low frequencies are interpolated exactly on the canonical grid.
-Source: Trefethen, ATAP, Theorem 4.1 (`chebyshev-approx-analytic`, helper).-/
+Source: Trefethen, ATAP, Theorem 4.1 (`chebyshev-approx-analytic`, helper).
+@isnad1 id=eq.1h2v.s8.110fcfc77555 from=translated src=- shape=99f8b697 vocab=2b95a7fe
+-/
 theorem interpolate_eval_T_node_eq_T_of_le {N k : ℕ} (hk : k ≤ N) :
     Lagrange.interpolate (range (N + 1)) (node N)
       (fun j => (T ℝ (k : ℤ)).eval (node N j)) = T ℝ (k : ℤ) := by
@@ -51,7 +57,9 @@ theorem interpolate_eval_T_node_eq_T_of_le {N k : ℕ} (hk : k ≤ N) :
   exact_mod_cast Nat.lt_succ_of_le hk
 
 /-- Interpolated Chebyshev frequencies are bounded by one, including the totalized zero grid.
-Source: Trefethen, ATAP, Theorem 4.1 (`chebyshev-approx-analytic`, helper).-/
+Source: Trefethen, ATAP, Theorem 4.1 (`chebyshev-approx-analytic`, helper).
+@isnad1 id=le.1h3v.s8.e1e8a288642e from=translated src=- shape=bf687770 vocab=d1038781
+-/
 theorem abs_eval_interpolate_eval_T_node_le_one_all (N k : ℕ) {x : ℝ}
     (hx : x ∈ Set.Icc (-1 : ℝ) 1) :
     |(Lagrange.interpolate (range (N + 1)) (node N)
@@ -62,7 +70,9 @@ theorem abs_eval_interpolate_eval_T_node_le_one_all (N k : ℕ) {x : ℝ}
 
 /-- The interpolant is obtained by interpolating the genuinely reconstructed
 Chebyshev series term by term; there are only finitely many nodal values.
-Source: Trefethen, ATAP, Theorems 3.1(a) and 4.2 (`chebyshev-approx-analytic`, helper).-/
+Source: Trefethen, ATAP, Theorems 3.1(a) and 4.2 (`chebyshev-approx-analytic`, helper).
+@isnad1 id=hassum.3h5v.s8.efad438a2155 from=translated src=- shape=22324437 vocab=8ce5eb2c
+-/
 theorem hasSum_chebyshevAnalyticCoeff_mul_eval_interpolate_T_of_open_ellipse
     {F : ℂ → ℂ} {ρ M : ℝ} (hρ : 1 < ρ)
     (hFd : DifferentiableOn ℂ F (openBernsteinEllipse ρ))
@@ -89,7 +99,9 @@ theorem hasSum_chebyshevAnalyticCoeff_mul_eval_interpolate_T_of_open_ellipse
 /-- The canonical Chebyshev-grid interpolant has the sharp analytic factor-four
 geometric error bound, from original open-ellipse holomorphy without a boundary extension.
 Source: Trefethen, ATAP, Theorem 8.2; the finite frequency folding is Theorem 4.1.
-atlas: chebyshev-approx-analytic (partial)-/
+atlas: chebyshev-approx-analytic (partial)
+@isnad1 id=le.4h5v.s7.a9958d5f5985 from=translated src=- shape=5f9ab4bd vocab=1a760f4b
+-/
 theorem abs_re_sub_eval_chebyshevAnalyticInterpolant_le_of_open_ellipse
     {F : ℂ → ℂ} {ρ M : ℝ} (hρ : 1 < ρ)
     (hFd : DifferentiableOn ℂ F (openBernsteinEllipse ρ))
@@ -156,7 +168,9 @@ the coefficient truncation has error `2Mρ⁻ᴺ/(ρ-1)`, and the `(N+1)`-point 
 interpolant has error `4Mρ⁻ᴺ/(ρ-1)`. Both polynomials have degree at most `N`.
 Source: Trefethen, ATAP, Theorem 8.2; original open-ellipse assumptions, with the `N=0`
 grid convention inherited explicitly from Mathlib's `node`.
-atlas: chebyshev-approx-analytic-/
+atlas: chebyshev-approx-analytic
+@isnad1 id=and.4h5v.s8.8fccfc68865b from=translated src=- shape=91689fd9 vocab=8a7d8d9f
+-/
 theorem degree_le_and_abs_sub_chebyshev_approximations_le_of_open_ellipse
     {f : ℝ → ℝ} {F : ℂ → ℂ} {ρ M : ℝ} (hρ : 1 < ρ)
     (hFd : DifferentiableOn ℂ F (openBernsteinEllipse ρ))

@@ -40,7 +40,9 @@ private theorem eval_joukowskiReversePoly {p : ℂ[X]} {n : ℕ} (hp : p.degree 
 /-- Bernstein–Walsh growth in the Joukowski coordinate: a degree-`n` complex
 polynomial bounded by `M` on the real unit interval grows by at most `|w|^n`.
 Source: Trefethen, ATAP, Ch. 8; operator derivations §5.
-atlas: bernstein-walsh-ellipse-/
+atlas: bernstein-walsh-ellipse
+@isnad1 id=le.3h4v.s6.7543592c5516 from=translated src=- shape=b0ab7578 vocab=48b0848a
+-/
 theorem norm_eval_joukowski_le_mul_pow {p : ℂ[X]} {n : ℕ} {M : ℝ}
     (hp : p.degree ≤ n) (hM : ∀ x ∈ Icc (-1 : ℝ) 1, ‖p.eval (x : ℂ)‖ ≤ M)
     {w : ℂ} (hw : 1 ≤ ‖w‖) : ‖p.eval (joukowski w)‖ ≤ M * ‖w‖ ^ n := by
@@ -74,7 +76,9 @@ theorem norm_eval_joukowski_le_mul_pow {p : ℂ[X]} {n : ℕ} {M : ℝ}
 /-- A degree-`n` complex polynomial bounded on the real unit interval is at most
 `Mρ^n` throughout the filled Bernstein ellipse, including its boundary.
 Source: Trefethen, ATAP, Ch. 8; operator derivations §5.
-atlas: bernstein-walsh-ellipse-/
+atlas: bernstein-walsh-ellipse
+@isnad1 id=le.3h5v.s6.c0e696f26196 from=translated src=- shape=d5d6411d vocab=a9ba793a
+-/
 theorem norm_eval_le_mul_pow_of_mem_filledBernsteinEllipse {p : ℂ[X]} {n : ℕ}
     {M ρ : ℝ} (hp : p.degree ≤ n)
     (hM : ∀ x ∈ Icc (-1 : ℝ) 1, ‖p.eval (x : ℂ)‖ ≤ M)

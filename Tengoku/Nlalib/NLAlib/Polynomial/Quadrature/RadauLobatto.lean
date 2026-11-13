@@ -23,7 +23,9 @@ def endpointNodeFamily {q : ℕ} (a : ℝ) (v : Fin q → ℝ) : Fin (q + 1) →
 def twoEndpointNodeFamily {q : ℕ} (a b : ℝ) (v : Fin q → ℝ) : Fin (q + 2) → ℝ :=
   endpointNodeFamily a (endpointNodeFamily b v)
 
-/-- Adjoining an endpoint preserves distinctness when it is absent from the other nodes.-/
+/-- Adjoining an endpoint preserves distinctness when it is absent from the other nodes.
+@isnad1 id=injectiv.2h3v.s5.2e91e2f3dfc4 from=translated src=- shape=5a6c4873 vocab=bfb1d182
+-/
 theorem endpointNodeFamily_injective {q : ℕ} {a : ℝ} {v : Fin q → ℝ}
     (hv : Function.Injective v) (ha : ∀ i, a ≠ v i) :
     Function.Injective (endpointNodeFamily a v) := by
@@ -38,12 +40,16 @@ theorem endpointNodeFamily_injective {q : ℕ} {a : ℝ} {v : Fin q → ℝ}
     exact congrArg Fin.succ (hv h)
 
 /-- The nodal polynomial of the endpoint-augmented family is its endpoint factor times
-the interior nodal polynomial.-/
+the interior nodal polynomial.
+@isnad1 id=eq.0h3v.s7.c5fba8119f38 from=translated src=- shape=1526737e vocab=aeacbd60
+-/
 theorem nodal_endpointNodeFamily {q : ℕ} (a : ℝ) (v : Fin q → ℝ) :
     Lagrange.nodal univ (endpointNodeFamily a v) = (X - C a) * Lagrange.nodal univ v := by
   simp [Lagrange.nodal_eq, Fin.prod_univ_succ, endpointNodeFamily]
 
-/-- The two-endpoint nodal polynomial has both prescribed factors.-/
+/-- The two-endpoint nodal polynomial has both prescribed factors.
+@isnad1 id=eq.0h4v.s7.dc85e6c77977 from=translated src=- shape=416e8df5 vocab=b3ae1f61
+-/
 theorem nodal_twoEndpointNodeFamily {q : ℕ} (a b : ℝ) (v : Fin q → ℝ) :
     Lagrange.nodal univ (twoEndpointNodeFamily a b v) =
       (X - C a) * (X - C b) * Lagrange.nodal univ v := by
@@ -53,7 +59,9 @@ theorem nodal_twoEndpointNodeFamily {q : ℕ} (a b : ℝ) (v : Fin q → ℝ) :
 for the actual endpoint-augmented interpolatory rule. The case `q=0` is the one-endpoint
 constant rule. Source: Gautschi (2004), Theorem 3.2; operator derivations (AQ1), (AQ7).
 This proves intrinsic polynomial exactness, before constructing a Jacobi border.
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.5h5v.s8.b508c7b3726c from=translated src=- shape=472c3c99 vocab=7d99006c
+-/
 theorem integral_eval_eq_endpoint_quadrature_of_modified_orthogonality
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {q : ℕ} (a : ℝ) (v : Fin q → ℝ)
     (hv : Function.Injective v) (ha : ∀ i, a ≠ v i)
@@ -79,7 +87,9 @@ theorem integral_eval_eq_endpoint_quadrature_of_modified_orthogonality
 for the actual two-endpoint interpolatory rule. The case `q=0` is the two-endpoint linear
 rule. Source: Gautschi (2004), Theorem 3.6; operator derivations (AQ1), (AQ8).
 This proves intrinsic polynomial exactness; positivity and border realization are separate.
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.7h6v.s8.4835fa9af8ba from=translated src=- shape=512566c4 vocab=7bc036ce
+-/
 theorem integral_eval_eq_twoEndpoint_quadrature_of_modified_orthogonality
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {q : ℕ} (a b : ℝ) (hab : a ≠ b)
     (v : Fin q → ℝ) (hv : Function.Injective v) (ha : ∀ i, a ≠ v i) (hb : ∀ i, b ≠ v i)

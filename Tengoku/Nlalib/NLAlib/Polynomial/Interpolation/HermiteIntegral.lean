@@ -16,7 +16,9 @@ namespace NLAlib
 
 /-- The finite resolvent identity for arbitrary distinct interpolation nodes.
 Source: Trefethen, ATAP, proof of Theorem 11.1; the algebraic ingredient of
-`hermite-integral-formula`. The empty interpolation set is included.-/
+`hermite-integral-formula`. The empty interpolation set is included.
+@isnad1 id=eq.3h6v.s7.c01c1002941d from=translated src=- shape=1739736c vocab=c1fca2c1
+-/
 theorem nodal_resolvent_eq_sum_basis_div {F : Type*} [Field F] {ι : Type*} [DecidableEq ι]
     (s : Finset ι) (v : ι → F) (hv : Set.InjOn v s) {t x : F}
     (ht : ∀ i ∈ s, t ≠ v i) (hx : t ≠ x) :
@@ -73,7 +75,9 @@ private theorem circleIntegrable_div_sub {f : ℂ → ℂ} {c x : ℂ} {R : ℝ}
 Source: Trefethen, ATAP, Theorem 11.1. It suffices that `f` is holomorphic in the
 open disc and continuous on its closure; all nodes and the evaluation point are interior.
 The empty set of nodes is included.
-atlas: hermite-integral-formula-/
+atlas: hermite-integral-formula
+@isnad1 id=eq.5h7v.s9.292401068fa7 from=translated src=- shape=cd3cc5e1 vocab=0c68625b
+-/
 theorem eval_interpolate_eq_circleIntegral {ι : Type*} [DecidableEq ι]
     (s : Finset ι) (v : ι → ℂ) (hv : Set.InjOn v s) {f : ℂ → ℂ} {c x : ℂ} {R : ℝ}
     (hR : 0 < R) (hf : DiffContOnCl ℂ f (Metric.ball c R))
@@ -118,7 +122,9 @@ theorem eval_interpolate_eq_circleIntegral {ι : Type*} [DecidableEq ι]
 /-- Hermite's interpolation error formula holds also when the evaluation point is a node.
 Source: Trefethen, ATAP, Theorem 11.1. A circle contour is used, matching Mathlib's
 Cauchy formula; no interpolation remainder theorem is needed.
-atlas: hermite-integral-formula-/
+atlas: hermite-integral-formula
+@isnad1 id=eq.5h7v.s9.bce0f69440a7 from=translated src=- shape=c3dd7675 vocab=0c68625b
+-/
 theorem sub_eval_interpolate_eq_circleIntegral {ι : Type*} [DecidableEq ι]
     (s : Finset ι) (v : ι → ℂ) (hv : Set.InjOn v s) {f : ℂ → ℂ} {c x : ℂ} {R : ℝ}
     (hR : 0 < R) (hf : DiffContOnCl ℂ f (Metric.ball c R))

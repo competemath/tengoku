@@ -25,7 +25,9 @@ namespace NLAlib
 /-- The equal-peak configuration compares to every actual canonical node grid
 through a finite convex combination of its gap peaks.
 Source: focused reroutes, the proper peak-difference inverse and positive normal.
-Helper for the universal sharp Lebesgue lower bound.-/
+Helper for the universal sharp Lebesgue lower bound.
+@isnad1 id=ex.1h1v.s8.da11bb58535e from=translated src=- shape=3bb9df1d vocab=d92fbb13
+-/
 theorem exists_equal_interpolation_peaks_with_convex_combination {n : ℕ} (hn : 0 < n) :
     ∃ t ∈ interiorNodeSimplex n,
       (∀ i, interpolationGapPeak n t i = interpolationGapPeak n t 0) ∧

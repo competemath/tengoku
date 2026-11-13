@@ -17,7 +17,9 @@ open scoped Topology
 namespace NLAlib
 
 /-- A polynomial with finite uniform error against the decaying exponential on
-the positive half-line is constant. Source: ATAP, Theorem 25.2, polynomial subcase.-/
+the positive half-line is constant. Source: ATAP, Theorem 25.2, polynomial subcase.
+@isnad1 id=le.1h2v.s6.9d8a0fed6c19 from=translated src=- shape=5d474cf9 vocab=73ea4c39
+-/
 theorem degree_le_zero_of_uniform_exp_neg_error {p : ℝ[X]} {E : ℝ}
     (hE : ∀ x : ℝ, 0 ≤ x → |Real.exp (-x) - p.eval x| ≤ E) : p.degree ≤ 0 := by
   apply (p.isBoundedUnder_abs_atTop_iff).mp
@@ -31,7 +33,9 @@ theorem degree_le_zero_of_uniform_exp_neg_error {p : ℝ[X]} {E : ℝ}
 /-- Every polynomial approximation of `exp (-x)` on the positive half-line has
 uniform error at least one half, independently of its degree.
 Source: Trefethen, ATAP, Theorem 25.2.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=le.1h2v.s6.a6cae7734efb from=translated src=- shape=0917b7bc vocab=31e9eb9a
+-/
 theorem one_half_le_uniform_exp_neg_error {p : ℝ[X]} {E : ℝ}
     (hE : ∀ x : ℝ, 0 ≤ x → |Real.exp (-x) - p.eval x| ≤ E) : 1 / 2 ≤ E := by
   have hp := p.eq_C_of_degree_le_zero (degree_le_zero_of_uniform_exp_neg_error hE)
@@ -52,7 +56,9 @@ theorem one_half_le_uniform_exp_neg_error {p : ℝ[X]} {E : ℝ}
   linarith
 
 /-- The constant polynomial one half attains error one half against `exp (-x)`
-on the positive half-line. Source: ATAP, Theorem 25.2.-/
+on the positive half-line. Source: ATAP, Theorem 25.2.
+@isnad1 id=le.1h1v.s6.0c814736625e from=translated src=- shape=4732c881 vocab=faf32841
+-/
 theorem abs_exp_neg_sub_one_half_le {x : ℝ} (hx : 0 ≤ x) :
     |Real.exp (-x) - 1 / 2| ≤ 1 / 2 := by
   have hpos := Real.exp_pos (-x)
@@ -63,7 +69,9 @@ theorem abs_exp_neg_sub_one_half_le {x : ℝ} (hx : 0 ≤ x) :
 exactly one half at every degree, expressed as the least attainable uniform bound.
 This includes degree zero; it is independent of the excluded Halphen asymptotic.
 Source: Trefethen, ATAP, Theorem 25.2.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=isleast.0h1v.s6.fd4920a80291 from=translated src=- shape=b9ba1259 vocab=800fae6e
+-/
 theorem isLeast_uniform_polynomial_exp_neg_error (n : ℕ) :
     IsLeast {E : ℝ | ∃ p : ℝ[X], p.degree ≤ n ∧
       ∀ x : ℝ, 0 ≤ x → |Real.exp (-x) - p.eval x| ≤ E} (1 / 2) := by
@@ -76,7 +84,9 @@ theorem isLeast_uniform_polynomial_exp_neg_error (n : ℕ) :
 /-- Every polynomial approximation of `exp x` on the negative half-line has
 uniform error at least one half. This is the reflected orientation of the
 half-line polynomial clause in ATAP, Theorem 25.2.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=le.1h2v.s6.b97263d3e375 from=translated src=- shape=1c27d9c9 vocab=a419945c
+-/
 theorem one_half_le_uniform_exp_error_negative_halfLine {p : ℝ[X]} {E : ℝ}
     (hE : ∀ x : ℝ, x ≤ 0 → |Real.exp x - p.eval x| ≤ E) : 1/2 ≤ E := by
   apply one_half_le_uniform_exp_neg_error (p := p.comp (-X))
@@ -87,7 +97,9 @@ theorem one_half_le_uniform_exp_error_negative_halfLine {p : ℝ[X]} {E : ℝ}
 exactly one half at every degree, in the original atlas orientation. The
 constant one half attains the bound.
 Source: Trefethen, ATAP, Theorem 25.2, reflected polynomial subcase.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=isleast.0h1v.s6.9aead3303220 from=translated src=- shape=1b3b848c vocab=4440dd08
+-/
 theorem isLeast_uniform_polynomial_exp_error_negative_halfLine (n : ℕ) :
     IsLeast {E : ℝ | ∃ p : ℝ[X], p.degree ≤ n ∧
       ∀ x : ℝ, x ≤ 0 → |Real.exp x - p.eval x| ≤ E} (1/2) := by

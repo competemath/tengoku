@@ -23,7 +23,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 /-- The actual cardinal weight is continuous in the moments whenever the
 limiting finite moment system is nonsingular with positive included norms.
 Source: AQ23, equivalently the cardinal form of the Vandermonde solve.
-atlas: recurrence-coefficient-continuity (partial)-/
+atlas: recurrence-coefficient-continuity (partial)
+@isnad1 id=continuo.3h5v.s8.e81b77fe6652 from=translated src=- shape=2cd74829 vocab=b26526c4
+-/
 theorem continuousAt_momentGaussWeights
     (hL : ∀ k, ContDiffAt ℝ 1 (fun y => L y (X ^ k)) x)
     (hn : ∀ k ≤ n, hankelMomentDet (L x) k ≠ 0)

@@ -21,7 +21,9 @@ namespace NLAlib
 /-- Equispaced interpolation has the strict exponential Lebesgue lower bound.
 Source: Trefethen, ATAP, Thm 15.2; operator reroutes, equispaced finite proof.
 The equivalent expression `2^n/(4n²)` retains the printed negative exponent when `n=1`.
-atlas: lebesgue-constant-lower-bound (partial)-/
+atlas: lebesgue-constant-lower-bound (partial)
+@isnad1 id=lt.1h1v.s7.4e53b63f5d1d from=translated src=- shape=785b65d9 vocab=94a21ad8
+-/
 theorem pow_two_div_four_mul_sq_lt_lebesgueConstant_equispaced {n : ℕ} (hn : 0 < n) :
     (2 : ℝ) ^ n / (4 * (n : ℝ) ^ 2) < lebesgueConstant (Icc (-1 : ℝ) 1)
       (fun j : Fin (n + 1) => -1 + 2 * (j : ℝ) / n) := by

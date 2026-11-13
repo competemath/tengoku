@@ -120,7 +120,9 @@ private theorem mgf_le_of_remainder_bound {Ω : Type*} [MeasurableSpace Ω]
 /-- **Orlicz square-exponential bound implies a centered sub-Gaussian MGF.** If `K>0`,
 `EX=0` and the nonnegative expectation of `exp((X/K)²)` is at most two, then every
 exponential tilt is integrable and `E exp(tX) ≤ exp(9K²t²/2)`, for all real `t`.
-Vershynin 2018, Proposition 2.5.2; atlas `subgaussian-def` (Orlicz-to-MGF bridge).-/
+Vershynin 2018, Proposition 2.5.2; atlas `subgaussian-def` (Orlicz-to-MGF bridge).
+@isnad1 id=hassubga.4h4v.s7.90cd078e707d from=translated src=- shape=e1f986e0 vocab=a63bec0a
+-/
 theorem hasSubgaussianMGF_of_lintegral_exp_sq_le_two {Ω : Type*} [MeasurableSpace Ω]
     {μ : Measure Ω} [IsProbabilityMeasure μ] {X : Ω → ℝ}
     (hX : AEMeasurable X μ) (K : ℝ) (hK : 0 < K)
@@ -174,7 +176,9 @@ theorem hasSubgaussianMGF_of_lintegral_exp_sq_le_two {Ω : Type*} [MeasurableSpa
 
 /-- If `K > 0` and the nonnegative expectation of `exp(|X|/K)` is at most two, then `X` is
 integrable. Vershynin 2018, Proposition 2.7.1.
-atlas: bernstein-scalar-/
+atlas: bernstein-scalar
+@isnad1 id=integrab.3h4v.s6.e7e3e82b6e21 from=translated src=- shape=45be395b vocab=68c59463
+-/
 theorem integrable_of_lintegral_exp_abs_le_two {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
     {X : Ω → ℝ} (hX : AEMeasurable X μ) (K : ℝ) (hK : 0 < K)
     (hpsi : ∫⁻ ω, ENNReal.ofReal (Real.exp (|X ω| / K)) ∂μ ≤ 2) :
@@ -192,7 +196,9 @@ theorem integrable_of_lintegral_exp_abs_le_two {Ω : Type*} [MeasurableSpace Ω]
 
 /-- If `K > 0` and the nonnegative expectation of `exp(|X|/K)` is at most two, then every tilt
 `exp(tX)` with `|t| ≤ 1/(2K)` is integrable. Vershynin 2018, Proposition 2.7.1.
-atlas: bernstein-scalar-/
+atlas: bernstein-scalar
+@isnad1 id=integrab.4h5v.s7.0be6b9e2b44b from=translated src=- shape=c4804b89 vocab=a89d43d4
+-/
 theorem integrable_exp_mul_of_lintegral_exp_abs_le_two {Ω : Type*} [MeasurableSpace Ω]
     {μ : Measure Ω} {X : Ω → ℝ} (hX : AEMeasurable X μ) (K : ℝ) (hK : 0 < K)
     (hpsi : ∫⁻ ω, ENNReal.ofReal (Real.exp (|X ω| / K)) ∂μ ≤ 2) {t : ℝ}
@@ -217,7 +223,9 @@ theorem integrable_exp_mul_of_lintegral_exp_abs_le_two {Ω : Type*} [MeasurableS
 `E exp(tX)≤exp(16K²t²)` for `|t|≤1/(2K)` (integrability of `X` and of the tilts:
 `integrable_of_lintegral_exp_abs_le_two`, `integrable_exp_mul_of_lintegral_exp_abs_le_two`).
 Vershynin 2018, Proposition 2.7.1 (Orlicz-to-local-MGF bridge).
-atlas: bernstein-scalar-/
+atlas: bernstein-scalar
+@isnad1 id=le.5h5v.s7.fd13b94a820b from=translated src=- shape=3b22b7e5 vocab=3f9ae340
+-/
 theorem mgf_le_of_lintegral_exp_abs_le_two {Ω : Type*}
     [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ] {X : Ω → ℝ}
     (hX : AEMeasurable X μ) (K : ℝ) (hK : 0 < K)

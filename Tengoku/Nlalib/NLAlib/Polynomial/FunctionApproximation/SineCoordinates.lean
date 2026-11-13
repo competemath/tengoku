@@ -20,7 +20,9 @@ namespace NLAlib
 
 /-- A complex sine value belongs to the filled Bernstein ellipse whose parameter
 is the exponential of the absolute imaginary coordinate. This includes real
-coordinates and ellipse parameter one.-/
+coordinates and ellipse parameter one.
+@isnad1 id=mem.0h1v.s4.4d4c04e2b740 from=translated src=- shape=1b1114cd vocab=bb3773c9
+-/
 theorem sin_mem_filledBernsteinEllipse (u : ℂ) :
     Complex.sin u ∈ filledBernsteinEllipse (Real.exp |u.im|) := by
   let w := Complex.I * Complex.exp (-u * Complex.I)
@@ -49,7 +51,9 @@ theorem sin_mem_filledBernsteinEllipse (u : ℂ) :
     · rw [joukowski_inv, hwJ]
 
 /-- A degree-bounded polynomial evaluated at a complex sine coordinate grows by
-at most `exp (n |Im u|)` from its bound on the real unit interval.-/
+at most `exp (n |Im u|)` from its bound on the real unit interval.
+@isnad1 id=le.2h4v.s6.882fcff6c7ee from=translated src=- shape=c8ffca38 vocab=6b57668e
+-/
 theorem norm_eval_sin_le_mul_exp_abs_im {p : ℂ[X]} {n : ℕ} {M : ℝ}
     (hp : p.degree ≤ n)
     (hM : ∀ x ∈ Icc (-1 : ℝ) 1, ‖p.eval (x : ℂ)‖ ≤ M) (u : ℂ) :
@@ -59,7 +63,9 @@ theorem norm_eval_sin_le_mul_exp_abs_im {p : ℂ[X]} {n : ℕ} {M : ℝ}
   simpa only [Real.exp_nat_mul] using h
 
 /-- A polynomial bounded on the real unit interval has a quantitative complex
-growth bound on the disk of radius one half.-/
+growth bound on the disk of radius one half.
+@isnad1 id=le.3h4v.s7.f9eb7bc8edd3 from=translated src=- shape=7bdb3caa vocab=c5538b46
+-/
 theorem norm_eval_le_mul_exp_of_norm_le_half {p : ℂ[X]} {n : ℕ} {M : ℝ}
     (hp : p.degree ≤ n)
     (hM : ∀ x ∈ Icc (-1 : ℝ) 1, ‖p.eval (x : ℂ)‖ ≤ M)

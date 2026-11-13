@@ -25,7 +25,9 @@ def stieltjesTransform (μ : Measure ℝ) (z : ℂ) : ℂ :=
   ∫ x : ℝ, (z - (x : ℂ))⁻¹ ∂μ
 
 /-- A compactly supported finite measure integrates every complex polynomial
-divided by a pole-free linear denominator.-/
+divided by a pole-free linear denominator.
+@isnad1 id=integrab.2h5v.s6.2f0d5f9a1791 from=translated src=- shape=889a11da vocab=469893bd
+-/
 theorem integrable_complex_eval_div_sub_of_ae_mem_Icc
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ}
     (hμ : ∀ᵐ x ∂μ, x ∈ Icc a b) {z : ℂ}
@@ -51,7 +53,9 @@ private theorem gauss_poly_complex_eval_eq_zero {μ : Measure ℝ}
   rw [h, map_zero]
 
 /-- The canonical monic polynomial has no complex zero outside the closed
-real support enclosure, including at finite-support termination.-/
+real support enclosure, including at finite-support termination.
+@isnad1 id=ne.4h5v.s6.63350d86f3dd from=translated src=- shape=1c50d32f vocab=a9e6228b
+-/
 theorem eval_map_monicOrthogonalPolynomial_ne_zero_of_off_Icc
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {n : ℕ}
@@ -69,7 +73,9 @@ theorem eval_map_monicOrthogonalPolynomial_ne_zero_of_off_Icc
 /-- The mapped second-kind polynomial is the integral of the actual complex
 divided difference of the canonical real monic polynomial.
 Source: Gautschi (2004), Chapter 1, AQ16.
-atlas: jacobi-fraction-second-kind (partial)-/
+atlas: jacobi-fraction-second-kind (partial)
+@isnad1 id=eq.3h3v.s6.f5f21d0616dc from=translated src=- shape=e334ceb6 vocab=f34e50ee
+-/
 theorem eval_map_secondKindPolynomial_eq_integral_dividedDifference
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {n : ℕ} (hn0 : 0 < n)
     (hn : (n : ℕ∞) ≤ μ.support.encard) (z : ℂ) :
@@ -109,7 +115,9 @@ theorem eval_map_secondKindPolynomial_eq_integral_dividedDifference
 /-- At every point outside the support enclosure, the actual second-kind
 ratio is the Stieltjes transform of the canonical Gauss atomic rule.
 Source: Gautschi (2004), Chapter 1, AQ18.
-atlas: jacobi-fraction-second-kind (partial)-/
+atlas: jacobi-fraction-second-kind (partial)
+@isnad1 id=eq.5h5v.s7.4adc1995e606 from=translated src=- shape=f8923893 vocab=d9b95fac
+-/
 theorem eval_map_secondKindPolynomial_div_eq_sum_gaussWeights_div
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {n : ℕ} (hn0 : 0 < n)
@@ -134,7 +142,9 @@ theorem eval_map_secondKindPolynomial_div_eq_sum_gaussWeights_div
 /-- Subtracting the finite second-kind ratio from the native transform is the
 native Cauchy transform of the monic polynomial divided by its value at `z`.
 Source: Gautschi (2004), Chapter 1, first equality in AQ19.
-atlas: jacobi-fraction-second-kind (partial), gauss-remainder-contour-kernel (partial)-/
+atlas: jacobi-fraction-second-kind (partial), gauss-remainder-contour-kernel (partial)
+@isnad1 id=eq.5h5v.s7.b61633ca419a from=translated src=- shape=053c3ee7 vocab=692d3e5a
+-/
 theorem stieltjesTransform_sub_secondKind_div_eq_integral
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {n : ℕ} (hn0 : 0 < n)
@@ -168,7 +178,9 @@ theorem stieltjesTransform_sub_secondKind_div_eq_integral
 
 /-- Polynomial orthogonality turns the native Stieltjes error into the exact
 positive-norm numerator integral. Source: Gautschi (2004), Chapter 1, AQ19.
-atlas: jacobi-fraction-second-kind (partial), gauss-remainder-contour-kernel (partial)-/
+atlas: jacobi-fraction-second-kind (partial), gauss-remainder-contour-kernel (partial)
+@isnad1 id=eq.5h5v.s8.bd7f87bae64c from=translated src=- shape=42e6d615 vocab=a407d0ad
+-/
 theorem stieltjesTransform_sub_secondKind_div_eq_integral_sq
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {n : ℕ} (hn0 : 0 < n)
@@ -229,7 +241,9 @@ theorem stieltjesTransform_sub_secondKind_div_eq_integral_sq
 divided by a positive support distance and the squared denominator value.
 `δ` is any positive lower bound for the distance to the support enclosure.
 Source: Gautschi (2004), Chapter 1, AQ19 and AQ25.
-atlas: jacobi-fraction-second-kind (partial), gauss-remainder-contour-kernel (partial)-/
+atlas: jacobi-fraction-second-kind (partial), gauss-remainder-contour-kernel (partial)
+@isnad1 id=le.6h6v.s7.686b392ddf68 from=translated src=- shape=cf0dcc4a vocab=4f3e6b56
+-/
 theorem norm_stieltjesTransform_sub_secondKind_div_le
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {n : ℕ} (hn0 : 0 < n)
@@ -270,7 +284,9 @@ theorem norm_stieltjesTransform_sub_secondKind_div_le
 /-- At finite-support termination, the second-kind ratio equals the native
 Stieltjes transform exactly. It is the atomic terminal case of Markov's theorem.
 Source: Gautschi (2004), Chapter 1, finite-support termination.
-atlas: jacobi-fraction-second-kind (partial)-/
+atlas: jacobi-fraction-second-kind (partial)
+@isnad1 id=eq.5h5v.s7.f1ac0595e1c3 from=translated src=- shape=8efe40a7 vocab=2ab546ff
+-/
 theorem secondKindPolynomial_div_eq_stieltjesTransform_of_encard_eq
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {n : ℕ} (hn0 : 0 < n)

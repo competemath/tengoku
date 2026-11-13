@@ -21,7 +21,9 @@ namespace NLAlib
 
 /-- Reflection reduces the sign-function coefficient integral to the positive half period.
 Source: Trefethen, ATAP, Exercise 3.6; helper for `chebyshev-series-abs-sign`.
-Endpoint values and the value at the central jump do not affect the integral.-/
+Endpoint values and the value at the central jump do not affect the integral.
+@isnad1 id=eq.0h1v.s7.40c273af82db from=translated src=- shape=0bae0712 vocab=adfbd2d5
+-/
 theorem chebyshevCoeff_sign_eq_half_integral (k : ℕ) :
     chebyshevCoeff Real.sign k = (if k = 0 then 1 else 2) / Real.pi * (1 - (-1 : ℝ) ^ k) *
       ∫ θ in 0..Real.pi / 2, Real.cos ((k : ℝ) * θ) := by
@@ -64,14 +66,18 @@ theorem chebyshevCoeff_sign_eq_half_integral (k : ℕ) :
 
 /-- Every even Chebyshev coefficient of the real sign function vanishes.
 Source: Trefethen, ATAP, Exercise 3.6.
-atlas: chebyshev-series-abs-sign (partial)-/
+atlas: chebyshev-series-abs-sign (partial)
+@isnad1 id=eq.0h1v.s4.a3bc5a7eb55a from=translated src=- shape=9c504ad3 vocab=12a482e5
+-/
 @[simp] theorem chebyshevCoeff_sign_even (j : ℕ) : chebyshevCoeff Real.sign (2 * j) = 0 := by
   rw [chebyshevCoeff_sign_eq_half_integral]
   simp [pow_mul]
 
 /-- The exact odd sign coefficients have the corrected alternating sign `(-1)^j`.
 Source: Trefethen, ATAP, Exercise 3.6; the coefficient at frequency `2j+1` is `4(-1)^j/(π(2j+1))`.
-atlas: chebyshev-series-abs-sign (partial)-/
+atlas: chebyshev-series-abs-sign (partial)
+@isnad1 id=eq.0h1v.s6.192eb705b7a1 from=translated src=- shape=c186963b vocab=6499ad31
+-/
 theorem chebyshevCoeff_sign_odd (j : ℕ) :
     chebyshevCoeff Real.sign (2 * j + 1) = 4 * (-1 : ℝ) ^ j / (Real.pi * (2 * j + 1)) := by
   rw [chebyshevCoeff_sign_eq_half_integral, ite_eq_right (by omega),
@@ -85,7 +91,9 @@ theorem chebyshevCoeff_sign_odd (j : ℕ) :
   ring
 
 /-- Odd Chebyshev polynomials at a sine argument become odd sine frequencies after alternation.
-Source: the Chebyshev cosine identity; helper for `chebyshev-series-abs-sign`.-/
+Source: the Chebyshev cosine identity; helper for `chebyshev-series-abs-sign`.
+@isnad1 id=eq.0h2v.s6.a40eb6301fcb from=translated src=- shape=5c476037 vocab=ca185d26
+-/
 theorem neg_one_pow_mul_eval_T_odd_sin (j : ℕ) (φ : ℝ) :
     (-1 : ℝ) ^ j * (T ℝ ((2 * j + 1 : ℕ) : ℤ)).eval (Real.sin φ) =
       Real.sin (((2 * j + 1 : ℕ) : ℝ) * φ) := by
@@ -105,7 +113,9 @@ the proved odd-sine Dirichlet/Abel theorem, not absolute summability.
 Source: Trefethen, ATAP, Exercise 3.6; operator rederivations `polyseries:abs-sign`.
 Together with the exact absolute-value tail and both coefficient formulas, this realizes
 the original absolute-value/sign series item.
-atlas: chebyshev-series-abs-sign-/
+atlas: chebyshev-series-abs-sign
+@isnad1 id=tendsto.1h1v.s7.fde1f50472c4 from=translated src=- shape=29afeae9 vocab=8590c9df
+-/
 theorem tendsto_sum_sign_chebyshevSeries {x : ℝ} (hx : x ∈ Icc (-1 : ℝ) 1) :
     Tendsto (fun m => 4 / Real.pi * ∑ j ∈ range m,
       ((-1 : ℝ) ^ j / (2 * (j : ℝ) + 1)) * (T ℝ ((2 * j + 1 : ℕ) : ℤ)).eval x)

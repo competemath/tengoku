@@ -32,7 +32,9 @@ def expQuarterWeightedError (a : ℝ) (p : ℝ[X]) : ℝ :=
 
 /-- A positive weighted minimizer for the growing exponential exists, and its
 extrapolated values stay positive and below that exponential after the interval.
-Source: retained lower-bound appendix, weighted minimax and Rolle interpolation.-/
+Source: retained lower-bound appendix, weighted minimax and Rolle interpolation.
+@isnad1 id=ex.1h2v.s7.3aafec5fd4d7 from=translated src=- shape=590378e1 vocab=dc9c686d
+-/
 theorem exists_expQuarterWeightedError_minimizer {a : ℝ} (ha : 0 < a) (n : ℕ) :
     ∃ q : ℝ[X], q.degree ≤ n ∧
       (∀ p : ℝ[X], p.degree ≤ n → expQuarterWeightedError a q ≤ expQuarterWeightedError a p) ∧
@@ -179,7 +181,9 @@ private theorem integral_exp_quarter_sub_eval_sq_le {a M : ℝ} (ha : 0 < a)
 certificate whenever its uniform error is small on the truncation interval.
 The degree and uniform-error hypotheses refer to the actual reciprocal.
 Source: retained reciprocal lower-bound appendix.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=le.5h4v.s8.13cd65cb25b3 from=translated src=- shape=f532a2dd vocab=ab4ff321
+-/
 theorem laguerreResidual_le_reciprocal_error_truncation_bound
     {n : ℕ} {p : ℝ[X]} (hp : p.degree ≤ n) {a E : ℝ} (ha : 0 < a)
     (hpole : ∀ x : ℝ, 0 ≤ x → p.eval x ≠ 0)
@@ -217,7 +221,9 @@ def reciprocalExponentialLowerCutoff (n : ℕ) : ℝ :=
   (4*(n : ℝ)+4)*Real.log 3 + Real.log 4
 
 /-- The explicit reciprocal lower-bound truncation length exceeds two in every
-degree, including order zero. Source: focused reciprocal reroute appendix.-/
+degree, including order zero. Source: focused reciprocal reroute appendix.
+@isnad1 id=lt.0h1v.s3.27e839547e36 from=translated src=- shape=b9369acb vocab=51ad3d13
+-/
 theorem reciprocalExponentialLowerCutoff_gt_two (n : ℕ) :
     2 < reciprocalExponentialLowerCutoff n := by
   have h3 : 1 < Real.log 3 :=
@@ -242,7 +248,9 @@ private theorem exp_half_reciprocalExponentialLowerCutoff (n : ℕ) :
 /-- Every actual pole-free reciprocal degree-`n` polynomial has uniform
 half-line error at least the geometric Laguerre lower certificate.
 Source: retained reciprocal lower-bound appendix.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=le.3h3v.s7.c13afbd71b3d from=translated src=- shape=97391671 vocab=8b115fa6
+-/
 theorem reciprocal_exp_quarter_error_ge_laguerre_lower_bound
     {n : ℕ} {p : ℝ[X]} (hp : p.degree ≤ n) {E : ℝ}
     (hpole : ∀ x : ℝ, 0 ≤ x → p.eval x ≠ 0)
@@ -295,7 +303,9 @@ theorem reciprocal_exp_quarter_error_ge_laguerre_lower_bound
 uniform error at least `3^(-n)/(6*sqrt((4n+4)log 3+log 4))` against the
 decaying exponential on the positive half-line.
 Source: retained reciprocal lower-bound appendix.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=le.3h3v.s7.eb8dbed7cc08 from=translated src=- shape=7b693438 vocab=8afd4e33
+-/
 theorem reciprocal_exp_neg_error_ge_geometric_lower_bound
     {n : ℕ} {p : ℝ[X]} (hp : p.degree ≤ n) {E : ℝ}
     (hpole : ∀ x : ℝ, 0 ≤ x → p.eval x ≠ 0)

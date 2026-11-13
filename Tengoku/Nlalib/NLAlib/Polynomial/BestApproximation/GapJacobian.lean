@@ -27,14 +27,18 @@ def interpolationGapJacobian (n : ℕ) (t : Fin n → ℝ) : Matrix (Fin (n + 1)
       (interpolationGapDividedDerivative n t i).eval (t j)
 
 /-- The nodal row factor of the actual peak Jacobian is nonzero.
-Source: the actual critical point lies strictly inside its own node gap.-/
+Source: the actual critical point lies strictly inside its own node gap.
+@isnad1 id=ne.2h3v.s6.1307f50fded5 from=translated src=- shape=3ade840a vocab=d0de5550
+-/
 theorem eval_nodal_interpolationGapCriticalPoint_ne_zero {n : ℕ} (hn : 0 < n) {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (i : Fin (n + 1)) :
     (Lagrange.nodal univ (canonicalIntervalNodes n t)).eval (interpolationGapCriticalPoint n t i) ≠ 0 :=
   eval_nodal_in_gap_ne_zero ht i (interpolationGapCriticalPoint_spec hn ht i).1
 
 /-- The explicit factored peak Jacobian equals the exact derivative of the nodal equations.
-Source: the cardinal barycentric formula and critical-factor identity.-/
+Source: the cardinal barycentric formula and critical-factor identity.
+@isnad1 id=eq.2h4v.s8.bae9a0c102c3 from=translated src=- shape=da25eb8d vocab=f50bfd08
+-/
 theorem interpolationGapJacobian_eq_nodal_derivative {n : ℕ} (hn : 0 < n) {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (i : Fin (n + 1)) (j : Fin n) :
     interpolationGapJacobian n t i j = -(interpolationGapPolynomial n t i).derivative.eval (t j) *
@@ -60,7 +64,9 @@ theorem interpolationGapJacobian_eq_nodal_derivative {n : ℕ} (hn : 0 < n) {t :
   ring
 
 /-- The explicit actual Jacobian rows are the Frechet derivatives of the actual gap peaks.
-Source: the smooth implicit peak chart and exact nodal derivative.-/
+Source: the smooth implicit peak chart and exact nodal derivative.
+@isnad1 id=hasfderi.2h3v.s9.9336cf4e1b63 from=translated src=- shape=4bedc736 vocab=8dbddad7
+-/
 theorem hasFDerivAt_interpolationGapPeak_jacobian {n : ℕ} (hn : 0 < n) {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (i : Fin (n + 1)) :
     HasFDerivAt (fun s => interpolationGapPeak n s i)
@@ -71,7 +77,9 @@ theorem hasFDerivAt_interpolationGapPeak_jacobian {n : ℕ} (hn : 0 < n) {t : Fi
 
 /-- Every actual peak-Jacobian maximal minor is nonsingular.
 Source: nonzero diagonal scalings of the actual divided-derivative evaluation matrix.
-atlas: lebesgue-constant-lower-bound (partial)-/
+atlas: lebesgue-constant-lower-bound (partial)
+@isnad1 id=ne.2h3v.s6.e72b913b5e1d from=translated src=- shape=67e2835a vocab=31e38731
+-/
 theorem det_interpolationGapJacobian_minor_ne_zero {n : ℕ} (hn : 0 < n) {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (k : Fin (n + 1)) :
     ((interpolationGapJacobian n t).submatrix k.succAbove id).det ≠ 0 := by

@@ -20,7 +20,9 @@ open Polynomial Set
 namespace NLAlib
 
 /-- A weighted polynomial minimizer exists on every compact real set, even for
-a weight that vanishes. Source: finite-dimensional minimax attainment, RC10.-/
+a weight that vanishes. Source: finite-dimensional minimax attainment, RC10.
+@isnad1 id=ex.0h4v.s9.b31a594e1404 from=translated src=- shape=de5ed4fc vocab=70bb701b
+-/
 theorem exists_degree_le_weighted_norm_sub_minimal {s : Set ℝ} [CompactSpace s]
     (n : ℕ) (f w : C(s, ℝ)) :
     ∃ p : ℝ[X], p.degree ≤ n ∧ ∀ q : ℝ[X], q.degree ≤ n →
@@ -45,7 +47,9 @@ theorem exists_degree_le_weighted_norm_sub_minimal {s : Set ℝ} [CompactSpace s
 
 /-- A positive-error weighted minimizer has `n+2` alternating extrema. The
 unweighted error has the same alternating signs because the weight is positive.
-Source: weighted Chebyshev alternation, reciprocal exponential certificate (RC10).-/
+Source: weighted Chebyshev alternation, reciprocal exponential certificate (RC10).
+@isnad1 id=ex.5h6v.s11.0b25632e3175 from=translated src=- shape=038de5cb vocab=5c170792
+-/
 theorem exists_alternating_extrema_of_weighted_norm_sub_minimal {n : ℕ} {a b : ℝ}
     (hab : a < b) (f w : C(Icc a b, ℝ)) (hw : ∀ x, 0 < w x)
     {p : ℝ[X]} (hp : p.degree ≤ n)
@@ -126,7 +130,9 @@ theorem exists_alternating_extrema_of_weighted_norm_sub_minimal {n : ℕ} {a b :
 
 /-- A polynomial minimizing a positive weighted uniform error interpolates the
 target at `n+1` ordered interior nodes, including the zero-error case.
-Source: weighted Chebyshev alternation, reciprocal exponential certificate (RC10).-/
+Source: weighted Chebyshev alternation, reciprocal exponential certificate (RC10).
+@isnad1 id=ex.4h6v.s11.3e6ca49d2116 from=translated src=- shape=a4fb85cd vocab=6af4f2a5
+-/
 theorem exists_interpolate_eq_of_weighted_norm_sub_minimal {n : ℕ} {a b : ℝ}
     (hab : a < b) (f w : C(Icc a b, ℝ)) (hw : ∀ x, 0 < w x)
     {p : ℝ[X]} (hp : p.degree ≤ n)

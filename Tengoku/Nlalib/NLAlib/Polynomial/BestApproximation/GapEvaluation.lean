@@ -26,7 +26,9 @@ def interpolationGapEvaluationLaplacian (n : ℕ) (t : Fin n → ℝ) :
       (interpolationGapDividedDerivative n t i).eval (interpolationGapCriticalPoint n t r))
 
 /-- The actual weighted gap-evaluation matrix has strictly positive off-diagonals.
-Source: the strict nodal Wronskian certificate.-/
+Source: the strict nodal Wronskian certificate.
+@isnad1 id=lt.3h4v.s6.1afc9bcb1535 from=translated src=- shape=d3aacf66 vocab=152d9181
+-/
 theorem interpolationGapEvaluationLaplacian_offdiag_pos {n : ℕ} (hn : 0 < n) {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (r i : Fin (n + 1)) (hri : r ≠ i) :
     0 < interpolationGapEvaluationLaplacian n t r i := by
@@ -36,7 +38,9 @@ theorem interpolationGapEvaluationLaplacian_offdiag_pos {n : ℕ} (hn : 0 < n) {
   · simpa only [Nat.add_comm] using eval_interpolationGapDividedDerivative_offdiag_pos hn ht i r (Ne.symm hri)
 
 /-- Each column of the actual gap-evaluation matrix sums to zero.
-Source: the vanishing top coefficient of each degree-bounded divided derivative.-/
+Source: the vanishing top coefficient of each degree-bounded divided derivative.
+@isnad1 id=eq.2h3v.s6.935e40122bb4 from=translated src=- shape=8c179efe vocab=b962b8f6
+-/
 theorem sum_interpolationGapEvaluationLaplacian_col {n : ℕ} (hn : 0 < n) {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (i : Fin (n + 1)) :
     (∑ r, interpolationGapEvaluationLaplacian n t r i) = 0 := by
@@ -59,7 +63,9 @@ theorem sum_interpolationGapEvaluationLaplacian_col {n : ℕ} (hn : 0 < n) {t : 
   rw [← mul_sum, heval, mul_zero]
 
 /-- Every deleted principal minor of the actual gap-evaluation matrix is nonsingular.
-Source: the strict-column-Laplacian finite certificate.-/
+Source: the strict-column-Laplacian finite certificate.
+@isnad1 id=ne.2h3v.s6.bfab7571f0cb from=translated src=- shape=8e0ab626 vocab=06651ec3
+-/
 theorem det_interpolationGapEvaluationLaplacian_minor_ne_zero {n : ℕ} (hn : 0 < n) {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (k : Fin (n + 1)) :
     ((interpolationGapEvaluationLaplacian n t).submatrix k.succAbove k.succAbove).det ≠ 0 :=
@@ -77,7 +83,9 @@ private theorem degree_sum_smul_gapDirection_lt {n : ℕ} (hn : 0 < n) {t : Fin 
 /-- The actual divided gap derivatives have a strictly positive alternating polynomial relation.
 The positive coefficients are normalized principal cofactors of the actual evaluation matrix.
 Source: focused rederivations, `polyretry:positive-q-relation`.
-atlas: lebesgue-constant-lower-bound (partial)-/
+atlas: lebesgue-constant-lower-bound (partial)
+@isnad1 id=ex.2h2v.s8.d3b19640d2ee from=translated src=- shape=27f48587 vocab=c9b01bee
+-/
 theorem exists_pos_sum_smul_gapDirection_eq_zero {n : ℕ} (hn : 0 < n) {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) :
     ∃ π : Fin (n + 1) → ℝ, (∀ i, 0 < π i) ∧ (∑ i, π i) = 1 ∧

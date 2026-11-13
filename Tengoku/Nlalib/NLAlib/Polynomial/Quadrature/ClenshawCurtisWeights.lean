@@ -15,7 +15,9 @@ open Polynomial Polynomial.Chebyshev Real Finset MeasureTheory Set
 namespace NLAlib
 
 /-- Clenshaw–Curtis is the finite weighted sum with its actual cardinal integrals.
-Source: integrating Lagrange's formula; ATAP, Chapter 19.-/
+Source: integrating Lagrange's formula; ATAP, Chapter 19.
+@isnad1 id=eq.0h2v.s5.a4d82481e218 from=translated src=- shape=50fc577e vocab=9bcca4a6
+-/
 theorem clenshawCurtisRule_eq_sum_weights (n : ℕ) (f : ℝ → ℝ) :
     clenshawCurtisRule n f = ∑ j ∈ range (n + 1), clenshawCurtisWeight n j * f (node n j) := by
   simp only [clenshawCurtisRule, Lagrange.interpolate_apply, eval_finsetSum, eval_mul,
@@ -29,7 +31,9 @@ theorem clenshawCurtisRule_eq_sum_weights (n : ℕ) (f : ℝ → ℝ) :
 
 /-- Integrating the finite endpoint-half cosine cardinal gives an explicit
 formula for every actual Clenshaw–Curtis weight.
-Source: finite DCT cardinal formula; focused rederivations `thm:lobatto`.-/
+Source: finite DCT cardinal formula; focused rederivations `thm:lobatto`.
+@isnad1 id=eq.2h2v.s7.af11c53ad093 from=translated src=- shape=3ac98153 vocab=3ce68946
+-/
 theorem clenshawCurtisWeight_eq_cosine_sum {n j : ℕ} (hn : 0 < n) (hj : j ≤ n) :
     clenshawCurtisWeight n j = (lobattoEndpointWeight n j / n) *
       (2 + ∑ k ∈ range (n - 1),
@@ -55,7 +59,9 @@ theorem clenshawCurtisWeight_eq_cosine_sum {n j : ℕ} (hn : 0 < n) (hj : j ≤ 
   norm_num
 
 /-- Odd Lebesgue Chebyshev moments vanish.
-Source: ATAP, Theorem 19.2; helper for positivity of actual quadrature weights.-/
+Source: ATAP, Theorem 19.2; helper for positivity of actual quadrature weights.
+@isnad1 id=eq.0h1v.s5.8dbdf534d3f4 from=translated src=- shape=2df47cae vocab=27166d86
+-/
 @[simp] theorem chebyshevMoment_two_mul_add_one (j : ℕ) :
     chebyshevMoment (2 * j + 1) = 0 := by
   unfold chebyshevMoment
@@ -63,7 +69,9 @@ Source: ATAP, Theorem 19.2; helper for positivity of actual quadrature weights.-
 
 /-- Pairing odd and even moments reduces any even-length natural sum to the
 positive-even telescope.
-Source: finite pairing; helper for actual Clenshaw–Curtis positivity.-/
+Source: finite pairing; helper for actual Clenshaw–Curtis positivity.
+@isnad1 id=eq.0h1v.s6.3de312fbf8f9 from=translated src=- shape=232fef17 vocab=edb1303b
+-/
 theorem sum_abs_chebyshevMoment_succ_two_mul (m : ℕ) :
     (∑ k ∈ range (2 * m), |chebyshevMoment (k + 1)|) =
       ∑ j ∈ range m, |chebyshevMoment (2 * (j + 1))| := by
@@ -77,7 +85,9 @@ theorem sum_abs_chebyshevMoment_succ_two_mul (m : ℕ) :
 
 /-- A finite natural sum of positive-degree absolute Chebyshev moments is
 strictly below one, with an explicit telescoping margin.
-Source: the even-moment telescope; focused quadrature reroutes.-/
+Source: the even-moment telescope; focused quadrature reroutes.
+@isnad1 id=le.0h1v.s6.65f6637d38d1 from=translated src=- shape=a3285a1a vocab=08446e85
+-/
 theorem sum_abs_chebyshevMoment_succ_le (n : ℕ) :
     (∑ k ∈ range n, |chebyshevMoment (k + 1)|) ≤ 1 - 1 / (2 * (n : ℝ) + 1) := by
   calc
@@ -87,7 +97,9 @@ theorem sum_abs_chebyshevMoment_succ_le (n : ℕ) :
 
 /-- A cosine coefficient times any real moment is bounded below by minus
 the absolute moment.
-Source: `|cos| ≤ 1`; helper for actual Clenshaw–Curtis positivity.-/
+Source: `|cos| ≤ 1`; helper for actual Clenshaw–Curtis positivity.
+@isnad1 id=le.0h2v.s4.0e9ef60c8e9d from=translated src=- shape=5dfc3482 vocab=0d93b81c
+-/
 theorem neg_abs_le_cos_mul (t u : ℝ) : -|u| ≤ cos t * u := by
   have h : |cos t * u| ≤ |u| := by
     rw [abs_mul]
@@ -96,7 +108,9 @@ theorem neg_abs_le_cos_mul (t u : ℝ) : -|u| ≤ cos t * u := by
 
 /-- Every actual Clenshaw–Curtis weight is strictly positive on its endpoint grid.
 Source: integrated endpoint-half DCT cardinals and the finite moment telescope;
-focused rederivations `thm:lobatto`.-/
+focused rederivations `thm:lobatto`.
+@isnad1 id=lt.2h2v.s5.4d6e43e3bc64 from=translated src=- shape=9a7a9682 vocab=7222fdb1
+-/
 theorem clenshawCurtisWeight_pos {n j : ℕ} (hn : 0 < n) (hj : j ≤ n) :
     0 < clenshawCurtisWeight n j := by
   rw [clenshawCurtisWeight_eq_cosine_sum hn hj]
@@ -122,7 +136,9 @@ theorem clenshawCurtisWeight_pos {n j : ℕ} (hn : 0 < n) (hj : j ≤ n) :
     nlinarith [abs_nonneg (chebyshevMoment n)]
 
 /-- The actual quadrature weights sum to the interval length two.
-Source: Lagrange partition of unity; ATAP, Chapter 19.-/
+Source: Lagrange partition of unity; ATAP, Chapter 19.
+@isnad1 id=eq.0h1v.s5.83e9070b66e2 from=translated src=- shape=4110ba4e vocab=862af5ee
+-/
 theorem sum_clenshawCurtisWeight (n : ℕ) :
     (∑ j ∈ range (n + 1), clenshawCurtisWeight n j) = 2 := by
   simp only [clenshawCurtisWeight]
@@ -135,12 +151,16 @@ theorem sum_clenshawCurtisWeight (n : ℕ) :
   norm_num
 
 /-- The one-node convention has its single quadrature weight equal to two.
-Source: the constant cardinal polynomial; ATAP, Chapter 19.-/
+Source: the constant cardinal polynomial; ATAP, Chapter 19.
+@isnad1 id=eq.0h0v.s4.3976169e074e from=translated src=- shape=8640e5ff vocab=fe1efdbe
+-/
 @[simp] theorem clenshawCurtisWeight_zero_zero : clenshawCurtisWeight 0 0 = 2 := by
   norm_num [clenshawCurtisWeight, range_one, Lagrange.basis_singleton]
 
 /-- Every actual grid weight is nonnegative, including the one-node convention.
-Source: the integrated DCT cardinals; ATAP, Chapter 19.-/
+Source: the integrated DCT cardinals; ATAP, Chapter 19.
+@isnad1 id=le.1h2v.s4.3505e4cf8322 from=translated src=- shape=7c81aa35 vocab=1ac46c2b
+-/
 theorem clenshawCurtisWeight_nonneg (n j : ℕ) (hj : j ≤ n) :
     0 ≤ clenshawCurtisWeight n j := by
   by_cases hn : n = 0
@@ -153,7 +173,9 @@ theorem clenshawCurtisWeight_nonneg (n j : ℕ) (hj : j ≤ n) :
 
 /-- Positivity and mass two make the actual Clenshaw–Curtis rule contract
 every unit-interval uniform bound by the interval length.
-Source: positive quadrature weights; ATAP, Chapter 19.-/
+Source: positive quadrature weights; ATAP, Chapter 19.
+@isnad1 id=le.0h2v.s9.3c0eefae9ecc from=translated src=- shape=7d214d30 vocab=85760c61
+-/
 theorem abs_clenshawCurtisLinearMap_le (n : ℕ) (f : C(Icc (-1 : ℝ) 1, ℝ)) :
     |clenshawCurtisLinearMap n f| ≤ 2 * ‖f‖ := by
   change |∑ j ∈ range (n + 1), clenshawCurtisWeight n j * f ⟨node n j, node_mem_Icc⟩| ≤ _

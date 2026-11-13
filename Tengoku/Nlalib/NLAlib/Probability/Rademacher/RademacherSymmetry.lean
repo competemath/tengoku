@@ -17,7 +17,9 @@ open scoped ENNReal
 namespace NLAlib
 
 /-- Negation preserves the exact two-atom Rademacher measure.
-Source: interchange of its two atoms; supports `noncommutative-khintchine`.-/
+Source: interchange of its two atoms; supports `noncommutative-khintchine`.
+@isnad1 id=measurep.0h0v.s3.dea71650efd4 from=translated src=- shape=c7fa091b vocab=cd04e306
+-/
 theorem measurePreserving_neg_rademacherMeasure :
     MeasurePreserving (fun x : ℝ => -x) rademacherMeasure rademacherMeasure := by
   refine ⟨measurable_neg, ?_⟩
@@ -31,7 +33,9 @@ variable {κ : Type*} [Fintype κ] [DecidableEq κ]
 
 /-- An individual coordinate sign flip preserves the finite product
 Rademacher law. Source: product invariance under a coordinate reflection;
-supports `noncommutative-khintchine`.-/
+supports `noncommutative-khintchine`.
+@isnad1 id=measurep.0h2v.s5.b5e3fca69713 from=translated src=- shape=8935178c vocab=c3fff3fe
+-/
 theorem measurePreserving_update_neg_rademacherVector (i : κ) :
     MeasurePreserving (fun x : κ → ℝ => Function.update x i (-x i))
       (rademacherVector _)
@@ -53,7 +57,9 @@ theorem measurePreserving_update_neg_rademacherVector (i : κ) :
 
 /-- Integrals under the finite Rademacher product law are unchanged by an
 individual coordinate sign flip. Source: measure preservation;
-supports `noncommutative-khintchine`.-/
+supports `noncommutative-khintchine`.
+@isnad1 id=eq.1h3v.s6.234c5a42a61c from=translated src=- shape=b37e4720 vocab=5d9cdab6
+-/
 theorem integral_update_neg_rademacherVector
     (i : κ) (f : (κ → ℝ) → ℝ) (hf : Measurable f) :
     (∫ x, f (Function.update x i (-x i)) ∂(rademacherVector _)) =
@@ -66,7 +72,9 @@ theorem integral_update_neg_rademacherVector
 
 /-- The two-coordinate second moment of the product Rademacher law
 is the Kronecker delta. Source: individual sign-flip symmetry and the
-two-sign support; supports the exact order-one Khintchine identity.-/
+two-sign support; supports the exact order-one Khintchine identity.
+@isnad1 id=eq.0h3v.s6.1d1e008f8c20 from=translated src=- shape=8dc0fcc7 vocab=7c07f0f8
+-/
 theorem integral_coordinate_mul_coordinate_rademacherVector (i j : κ) :
     (∫ x : κ → ℝ, x i * x j ∂(rademacherVector _)) =
       if i = j then 1 else 0 := by
@@ -90,7 +98,9 @@ theorem integral_coordinate_mul_coordinate_rademacherVector (i j : κ) :
 omit [DecidableEq κ] in
 /-- Almost every vector under the finite product Rademacher law has norm
 at most one, including the empty coefficient family. Source: the two-atom
-support; supports `noncommutative-khintchine`.-/
+support; supports `noncommutative-khintchine`.
+@isnad1 id=eventual.0h1v.s6.e48494153d2d from=translated src=- shape=058e3720 vocab=660277d6
+-/
 theorem ae_norm_le_one_rademacherVector :
     ∀ᵐ x : κ → ℝ ∂(rademacherVector _), ‖x‖ ≤ 1 := by
   have hcoord : ∀ j : κ, ∀ᵐ x : κ → ℝ ∂(rademacherVector _),
@@ -105,7 +115,9 @@ theorem ae_norm_le_one_rademacherVector :
 omit [DecidableEq κ] in
 /-- Products of two coordinates of the product Rademacher law are
 absolutely integrable. Source: sign support; supports the exact second-moment
-endpoint of `noncommutative-khintchine`.-/
+endpoint of `noncommutative-khintchine`.
+@isnad1 id=integrab.0h3v.s5.4374ed6a82b3 from=translated src=- shape=3350bb94 vocab=33af3b19
+-/
 theorem integrable_coordinate_mul_coordinate_rademacherVector (i j : κ) :
     Integrable (fun x : κ → ℝ => x i * x j)
       (rademacherVector _) := by
@@ -119,7 +131,9 @@ theorem integrable_coordinate_mul_coordinate_rademacherVector (i j : κ) :
 omit [DecidableEq κ] in
 /-- A measurable polynomial-growth scalar function is integrable under the
 finite product Rademacher law. Source: bounded sign support;
-supports `noncommutative-khintchine`.-/
+supports `noncommutative-khintchine`.
+@isnad1 id=integrab.2h4v.s7.2015f43478d2 from=translated src=- shape=2dff3101 vocab=ceffe788
+-/
 theorem integrable_rademacherVector_of_polynomial_growth
     (f : (κ → ℝ) → ℝ) (hf : Measurable f) (C : ℝ) (d : ℕ)
     (hbound : ∀ x, |f x| ≤ C * (1 + ‖x‖) ^ d) :

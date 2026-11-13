@@ -23,7 +23,9 @@ variable {𝕜 : Type*} [Field 𝕜] {l m : ℕ}
 def rootCofactor (z : Fin m → 𝕜) (i : Fin m) : 𝕜[X] :=
   ∏ j ∈ (Finset.univ : Finset (Fin m)).erase i, (X-C (z j))
 
-/-- Vanishing at every distinct node is exactly divisibility by its nodal polynomial.-/
+/-- Vanishing at every distinct node is exactly divisibility by its nodal polynomial.
+@isnad1 id=iff.1h4v.s7.fe5e37aea0e8 from=translated src=- shape=6f421631 vocab=20f9e3c9
+-/
 theorem nodal_dvd_iff_forall_eval_eq_zero (z : Fin l → 𝕜) (hz : Function.Injective z)
     (P : 𝕜[X]) :
     Lagrange.nodal Finset.univ z ∣ P ↔ ∀ i, P.eval (z i) = 0 := by
@@ -51,7 +53,9 @@ theorem eq_sum_C_mul_rootCofactor (z : Fin m → 𝕜) (hz : Function.Injective 
   simpa only [rootCofactor, eval_prod, eval_sub, eval_X, eval_C] using h
 
 /-- Vanishing of the cofactor moments is exactly orthogonality against every
-polynomial below the denominator degree.-/
+polynomial below the denominator degree.
+@isnad1 id=iff.1h5v.s9.f1947c2d18af from=translated src=- shape=633c75ed vocab=1ebe37e4
+-/
 theorem forall_rootCofactor_moment_eq_zero_iff (T : 𝕜[X] →ₗ[𝕜] 𝕜)
     (z : Fin m → 𝕜) (hz : Function.Injective z) (P : 𝕜[X]) :
     (∀ i, T (P * rootCofactor z i) = 0) ↔
@@ -73,7 +77,9 @@ theorem forall_rootCofactor_moment_eq_zero_iff (T : 𝕜[X] →ₗ[𝕜] 𝕜)
 
 /-- The source evaluation/Cauchy rows and the native coefficient/moment rows
 have precisely the same kernel. No assumption that roots are real is used.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=iff.2h7v.s9.8d6132701d78 from=translated src=- shape=9516f4a9 vocab=1ba96f00
+-/
 theorem rationalModification_root_constraints_iff (T : 𝕜[X] →ₗ[𝕜] 𝕜)
     (x : Fin l → 𝕜) (z : Fin m → 𝕜) (hx : Function.Injective x)
     (hz : Function.Injective z) (P : 𝕜[X]) :

@@ -31,7 +31,9 @@ private theorem tendsto_eval_mul_exp_neg (p : ℝ[X]) :
 
 /-- The finite derivative sum is the exact exponential tail integral of a
 polynomial, for every nonnegative starting point.
-Source: reciprocal exponential certificate (RC9), finite integration by parts.-/
+Source: reciprocal exponential certificate (RC9), finite integration by parts.
+@isnad1 id=eq.1h2v.s7.252263a41da8 from=translated src=- shape=299fb65f vocab=0d84f0ba
+-/
 theorem sumIDeriv_eval_mul_exp_neg_eq_integral_Ioi (p : ℝ[X]) {x : ℝ} (hx : 0 ≤ x) :
     (sumIDeriv p).eval x * Real.exp (-x) =
       ∫ t : ℝ in Ioi x, p.eval t * Real.exp (-t) := by
@@ -117,7 +119,9 @@ private theorem resolvent_error_eq_tail_integral (n : ℕ) {x : ℝ} (hx : 0 ≤
     _ = _ := by ring
 
 /-- The finite Laguerre derivative resolvent has degree at most `n`.
-Source: reciprocal exponential certificate (RC9).-/
+Source: reciprocal exponential certificate (RC9).
+@isnad1 id=le.0h1v.s4.b6e04ebe85ee from=translated src=- shape=95ba4981 vocab=7d60c7bc
+-/
 theorem degree_laguerreExponentialResolvent_le (n : ℕ) :
     (laguerreExponentialResolvent n).degree ≤ n := by
   have hdeg : (sumIDeriv (laguerreExponentialProjection n)).degree ≤ n := by
@@ -140,7 +144,9 @@ theorem degree_laguerreExponentialResolvent_le (n : ℕ) :
 /-- The explicit finite Laguerre derivative resolvent attains the geometric
 weighted error bound `sqrt 2 / (4*3^n)` on the full positive half-line.
 Source: reciprocal exponential certificate (RC9).
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=le.1h2v.s7.3bc5dfbfa750 from=translated src=- shape=f9835489 vocab=df0b13e1
+-/
 theorem abs_exp_quarter_sub_laguerreExponentialResolvent_le (n : ℕ)
     {x : ℝ} (hx : 0 ≤ x) :
     |Real.exp (x/4) - (laguerreExponentialResolvent n).eval x| ≤

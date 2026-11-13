@@ -19,7 +19,9 @@ variable {𝕜 : Type*} [Field 𝕜] {l m n : ℕ}
 
 /-- Cauchy values equal to a polynomial of degree below `m-n` annihilate all
 the divided moments below `n`. This includes `n=0` and empty auxiliary spaces.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=eq.5h8v.s9.3442692ccad0 from=translated src=- shape=a6591d3e vocab=74e11e34
+-/
 theorem moments_eq_zero_of_rootCofactor_eq_low_polynomial
     (T : 𝕜[X] →ₗ[𝕜] 𝕜) (z : Fin m → 𝕜) (hz : Function.Injective z)
     (hm : n ≤ m) (P a : 𝕜[X]) (ha : a.degree < (m-n : ℕ))
@@ -71,7 +73,9 @@ def rationalModificationAuxiliaryRow (T : 𝕜[X] →ₗ[𝕜] 𝕜)
         (LinearMap.snd 𝕜 𝕜[X] 𝕜[X])
 
 /-- Source auxiliary rows imply the native numerator and `n` moment constraints.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=eq.5h10v.s10.efac29628cfd from=translated src=- shape=96a49c7b vocab=9ea4a9fd
+-/
 theorem rationalModificationConstraint_of_auxiliary_rows
     (T : 𝕜[X] →ₗ[𝕜] 𝕜) (x : Fin l → 𝕜) (z : Fin m → 𝕜)
     (hx : Function.Injective x) (hz : Function.Injective z) (hm : n ≤ m)

@@ -22,14 +22,18 @@ def monicOrthogonalPolynomialDeriv
     (deriv (fun y => orthogonalPolynomialCoefficients (L y) n i) x)
 
 /-- The variation of a monic order-`n` polynomial has degree below `n`, also at
-order zero, where it is the zero polynomial.-/
+order zero, where it is the zero polynomial.
+@isnad1 id=lt.0h3v.s5.24f632cf0037 from=translated src=- shape=07ed4df7 vocab=2d2e3e79
+-/
 theorem degree_monicOrthogonalPolynomialDeriv_lt
     (L : ℝ → (ℝ[X] →ₗ[ℝ] ℝ)) (n : ℕ) (x : ℝ) :
     (monicOrthogonalPolynomialDeriv L n x).degree < n :=
   degree_sum_monomial_fin_lt _
 
 /-- The actual canonical moment-system family has the coefficient derivative
-given by the lower coefficient variations.-/
+given by the lower coefficient variations.
+@isnad1 id=hascoeff.2h3v.s7.f9a7bf74dd04 from=translated src=- shape=9448900d vocab=ef233d6e
+-/
 theorem hasPolynomialDerivAt_monicOrthogonalPolynomial
     {L : ℝ → (ℝ[X] →ₗ[ℝ] ℝ)} {n : ℕ} {x : ℝ}
     (hL : ∀ k, ContDiffAt ℝ 1 (fun y => L y (X ^ k)) x)
@@ -55,7 +59,9 @@ theorem hasPolynomialDerivAt_monicOrthogonalPolynomial
 /-- The first variation of the canonical squared monic norm is the functional
 variation evaluated on its squared polynomial. The coefficient variations cancel
 by lower-degree orthogonality. Source: AQ27.
-atlas: recurrence-coefficient-moment-sensitivity (partial)-/
+atlas: recurrence-coefficient-moment-sensitivity (partial)
+@isnad1 id=hasderiv.3h4v.s9.08298b3f53fb from=translated src=- shape=4efe0dbc vocab=eeb230dd
+-/
 theorem hasDerivAt_orthogonalPolynomialNorm
     {L : ℝ → (ℝ[X] →ₗ[ℝ] ℝ)} {D : ℝ[X] →ₗ[ℝ] ℝ} {n : ℕ} {x : ℝ}
     (hL : ∀ k, ContDiffAt ℝ 1 (fun y => L y (X ^ k)) x)

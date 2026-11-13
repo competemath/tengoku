@@ -34,7 +34,9 @@ def rationalModificationConstraint (T : 𝕜[X] →ₗ[𝕜] 𝕜) (u : 𝕜[X])
     (Polynomial.lcoeff 𝕜 i.val).comp (Polynomial.modByMonicHom (u * C u.leadingCoeff⁻¹))
   else polynomialWeightedFunctional T (X ^ (i.val - u.natDegree))
 
-/-- Applying a constraint gives the displayed native remainder or moment row.-/
+/-- Applying a constraint gives the displayed native remainder or moment row.
+@isnad1 id=eq.0h6v.s9.6f07641b5bb4 from=translated src=- shape=a6bd315c vocab=be0ccf85
+-/
 @[simp] theorem rationalModificationConstraint_apply (T : 𝕜[X] →ₗ[𝕜] 𝕜)
     (u P : 𝕜[X]) (n : ℕ) (i : Fin (u.natDegree + n)) :
     rationalModificationConstraint T u n i P =
@@ -66,7 +68,9 @@ def rationalModificationNumerator (T : 𝕜[X] →ₗ[𝕜] 𝕜) (u : 𝕜[X]) 
     ∑ j : Fin (u.natDegree + n), monomial j.val (rationalModificationCoefficients T u n j)
 
 /-- Vanishing of every remainder and inverse-moment row is exactly divisibility
-by the original numerator polynomial and the first `n` monomial moment tests.-/
+by the original numerator polynomial and the first `n` monomial moment tests.
+@isnad1 id=iff.1h5v.s9.f53bfbba7e4d from=translated src=- shape=e3b0df1b vocab=7a1b9f3f
+-/
 theorem rationalModificationConstraint_eq_zero_iff (T : 𝕜[X] →ₗ[𝕜] 𝕜)
     {u : 𝕜[X]} (hu : u ≠ 0) (n : ℕ) (P : 𝕜[X]) :
     (∀ i : Fin (u.natDegree + n), rationalModificationConstraint T u n i P = 0) ↔
@@ -99,7 +103,9 @@ theorem rationalModificationConstraint_eq_zero_iff (T : 𝕜[X] →ₗ[𝕜] �
       simpa only [r, mul_comm] using hmoment r
 
 /-- The constraint matrix applied to lower monomial coefficients gives exactly
-the constraints of their polynomial.-/
+the constraints of their polynomial.
+@isnad1 id=eq.0h6v.s9.44d1104d4e29 from=translated src=- shape=8825884a vocab=b49e7567
+-/
 theorem rationalModificationConstraint_sum_monomial_eq_mulVec
     (T : 𝕜[X] →ₗ[𝕜] 𝕜) (u : 𝕜[X]) (n : ℕ)
     (c : Fin (u.natDegree + n) → 𝕜) (i : Fin (u.natDegree + n)) :
@@ -139,7 +145,9 @@ theorem eq_zero_of_rationalModificationConstraint_eq_zero
 
 /-- The actual square coefficient matrix is nonsingular whenever the modified
 order-`n` moment form is nondegenerate. The empty system is included.
-Source: focused rational-modification reroute, normalization matrix (CU3).-/
+Source: focused rational-modification reroute, normalization matrix (CU3).
+@isnad1 id=ne.2h4v.s8.c7ec4ae74fde from=translated src=- shape=199af0f2 vocab=915dbf3e
+-/
 theorem det_rationalModificationConstraintMatrix_ne_zero
     (T : 𝕜[X] →ₗ[𝕜] 𝕜) {u : 𝕜[X]} (hu : u ≠ 0) {n : ℕ}
     (hn : hankelMomentDet (polynomialWeightedFunctional T u) n ≠ 0) :
@@ -154,7 +162,9 @@ theorem det_rationalModificationConstraintMatrix_ne_zero
 /-- The source positivity hypothesis proves nonvanishing of the actual
 normalization determinant. It is vacuous in modified order zero.
 Source: focused rational-modification reroute, normalization matrix (CU3).
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=ne.2h3v.s8.244c049b371e from=translated src=- shape=4ba01e5b vocab=1943a731
+-/
 theorem det_rationalModificationConstraintMatrix_ne_zero_of_sq_pos
     (T : ℝ[X] →ₗ[ℝ] ℝ) {u : ℝ[X]} (hu : u ≠ 0) {n : ℕ}
     (hpos : ∀ p : ℝ[X], p.degree < n → p ≠ 0 →
@@ -165,7 +175,9 @@ theorem det_rationalModificationConstraintMatrix_ne_zero_of_sq_pos
     ((posDef_hankelMomentMatrix_iff_functional_sq_pos _ _).mpr hpos) le_rfl
 
 /-- The computed lower coefficients solve the actual finite source system with
-right-hand side the negative leading coefficient times the leading column.-/
+right-hand side the negative leading coefficient times the leading column.
+@isnad1 id=eq.2h4v.s8.c2dfea3ef78f from=translated src=- shape=18e4596a vocab=8cf7819e
+-/
 theorem rationalModificationConstraintMatrix_mulVec_coefficients
     (T : 𝕜[X] →ₗ[𝕜] 𝕜) {u : 𝕜[X]} (hu : u ≠ 0) {n : ℕ}
     (hn : hankelMomentDet (polynomialWeightedFunctional T u) n ≠ 0) :
@@ -176,7 +188,9 @@ theorem rationalModificationConstraintMatrix_mulVec_coefficients
     Matrix.mul_nonsing_inv _ (isUnit_iff_ne_zero.mpr hdet), one_mulVec]
 
 /-- The actually computed numerator satisfies all native divisibility and
-inverse-moment constraints.-/
+inverse-moment constraints.
+@isnad1 id=eq.2h5v.s8.b0b970014758 from=translated src=- shape=29986b7f vocab=32b206e5
+-/
 theorem rationalModificationConstraint_numerator_eq_zero
     (T : 𝕜[X] →ₗ[𝕜] 𝕜) {u : 𝕜[X]} (hu : u ≠ 0) {n : ℕ}
     (hn : hankelMomentDet (polynomialWeightedFunctional T u) n ≠ 0)
@@ -189,14 +203,18 @@ theorem rationalModificationConstraint_numerator_eq_zero
   simp only [rationalModificationLeadingConstraints, smul_eq_mul]
   ring
 
-/-- The computed numerator has its prescribed top coefficient.-/
+/-- The computed numerator has its prescribed top coefficient.
+@isnad1 id=eq.0h4v.s7.e2655d5216a5 from=translated src=- shape=7bf0f2ce vocab=fcd02470
+-/
 @[simp] theorem coeff_rationalModificationNumerator_self
     (T : 𝕜[X] →ₗ[𝕜] 𝕜) (u : 𝕜[X]) (n : ℕ) :
     (rationalModificationNumerator T u n).coeff (u.natDegree + n) = u.leadingCoeff := by
   rw [rationalModificationNumerator, coeff_add, coeff_monomial, ite_eq_left rfl,
     coeff_eq_zero_of_degree_lt (degree_sum_monomial_fin_lt _), add_zero]
 
-/-- The computed numerator has degree at most the total numerator degree.-/
+/-- The computed numerator has degree at most the total numerator degree.
+@isnad1 id=le.0h4v.s7.86a2e4341e7c from=translated src=- shape=ec175669 vocab=0ecc6687
+-/
 theorem degree_rationalModificationNumerator_le
     (T : 𝕜[X] →ₗ[𝕜] 𝕜) (u : 𝕜[X]) (n : ℕ) :
     (rationalModificationNumerator T u n).degree ≤ (u.natDegree + n : ℕ) := by
@@ -204,7 +222,9 @@ theorem degree_rationalModificationNumerator_le
     (degree_sum_monomial_fin_lt _).le)
 
 /-- For a nonzero original numerator polynomial, the computed numerator has
-exactly the prescribed degree.-/
+exactly the prescribed degree.
+@isnad1 id=eq.1h4v.s7.3208970e9997 from=translated src=- shape=926d86c2 vocab=a074cefa
+-/
 theorem degree_rationalModificationNumerator_eq
     (T : 𝕜[X] →ₗ[𝕜] 𝕜) {u : 𝕜[X]} (hu : u ≠ 0) (n : ℕ) :
     (rationalModificationNumerator T u n).degree = (u.natDegree + n : ℕ) := by
@@ -216,7 +236,9 @@ theorem degree_rationalModificationNumerator_eq
 /-- The coefficient system computes exactly the original numerator polynomial
 times the canonical modified monic orthogonal polynomial, including order zero.
 Source: focused rational-modification reroute, finite computation (CU2)--(CU3).
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=eq.2h4v.s8.e11b7b6b26cb from=translated src=- shape=6a6904f4 vocab=928e956d
+-/
 theorem rationalModificationNumerator_eq_mul_monicOrthogonalPolynomial
     (T : 𝕜[X] →ₗ[𝕜] 𝕜) {u : 𝕜[X]} (hu : u ≠ 0) {n : ℕ}
     (hn : hankelMomentDet (polynomialWeightedFunctional T u) n ≠ 0) :

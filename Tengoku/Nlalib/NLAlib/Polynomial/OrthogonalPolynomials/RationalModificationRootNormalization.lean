@@ -17,7 +17,9 @@ namespace NLAlib
 variable {𝕜 : Type*} [Field 𝕜] {l m : ℕ}
 
 /-- Leading-coefficient normalization recovers the original functional when
-the monic nodal denominator is cleared.-/
+the monic nodal denominator is cleared.
+@isnad1 id=eq.2h8v.s10.b75e048404d6 from=translated src=- shape=9030b550 vocab=b0867bbf
+-/
 theorem smul_dividedFunctional_nodal_mul
     (L T : 𝕜[X] →ₗ[𝕜] 𝕜) {v : 𝕜[X]} {cv : 𝕜} (z : Fin m → 𝕜)
     (hv : v = C cv * Lagrange.nodal Finset.univ z)
@@ -28,7 +30,9 @@ theorem smul_dividedFunctional_nodal_mul
   exact h
 
 /-- Normalizing numerator and denominator scales the modified functional by
-their leading-coefficient ratio.-/
+their leading-coefficient ratio.
+@isnad1 id=eq.2h7v.s10.013467155f99 from=translated src=- shape=630af64d vocab=01bb069d
+-/
 theorem polynomialWeightedFunctional_smul_nodal
     (T : 𝕜[X] →ₗ[𝕜] 𝕜) {u : 𝕜[X]} {cu : 𝕜} (hcu : cu ≠ 0)
     (cv : 𝕜) (x : Fin l → 𝕜) (hu : u = C cu * Lagrange.nodal Finset.univ x) :
@@ -43,7 +47,9 @@ theorem polynomialWeightedFunctional_smul_nodal
 /-- The source root/Cauchy first-row determinant for arbitrary nonzero leading
 coefficients is exactly a nonzero scalar times `u πhat_n`. No monicity of the
 modifying polynomials or reality of their simple roots is imposed.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=other.10h12v.s11.293e960f21c8 from=translated src=- shape=e4f7788f vocab=17d409da
+-/
 theorem det_rationalModificationRootFirstRowMatrix_nonmonic
     (L T : 𝕜[X] →ₗ[𝕜] 𝕜) {u v : 𝕜[X]} {cu cv : 𝕜}
     (hcu : cu ≠ 0) (hcv : cv ≠ 0) (x : Fin l → 𝕜) (z : Fin m → 𝕜)

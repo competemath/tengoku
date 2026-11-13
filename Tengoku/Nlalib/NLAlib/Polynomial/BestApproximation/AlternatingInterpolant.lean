@@ -20,7 +20,9 @@ namespace NLAlib
 /-- The zeros between alternating errors are distinct interior interpolation nodes.
 Source: Trefethen, ATAP, Exercise 10.12. This isolates the intermediate-value step, with
 an alternating sample certificate as the hypothesis.
-atlas: best-approximant-interpolates (partial)-/
+atlas: best-approximant-interpolates (partial)
+@isnad1 id=ex.5h6v.s9.9f05d3283e50 from=translated src=- shape=623dfa28 vocab=fd013c77
+-/
 theorem exists_interpolate_eq_of_alternation {n : ℕ} {a b : ℝ} (f : ℝ → ℝ)
     (hf : ContinuousOn f (Set.Icc a b)) {p : ℝ[X]} (hp : p.degree ≤ n)
     {v : Fin (n + 2) → ℝ} (hv : StrictMono v) (hvab : ∀ i, v i ∈ Set.Icc a b)

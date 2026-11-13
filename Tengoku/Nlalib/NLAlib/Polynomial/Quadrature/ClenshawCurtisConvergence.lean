@@ -17,7 +17,9 @@ namespace NLAlib
 
 /-- The finite weighted continuous-function rule is the actual integrated
 interpolant of the function's canonical extension.
-Source: integrating Lagrange's formula; ATAP, Chapter 19.-/
+Source: integrating Lagrange's formula; ATAP, Chapter 19.
+@isnad1 id=eq.0h2v.s9.e9a3c034a6a5 from=translated src=- shape=291794fd vocab=7ced47d3
+-/
 theorem clenshawCurtisLinearMap_apply_eq_rule (n : ℕ) (f : C(Icc (-1 : ℝ) 1, ℝ)) :
     clenshawCurtisLinearMap n f =
       clenshawCurtisRule n (IccExtend (by norm_num : (-1 : ℝ) ≤ 1) f) := by
@@ -29,7 +31,9 @@ theorem clenshawCurtisLinearMap_apply_eq_rule (n : ℕ) (f : C(Icc (-1 : ℝ) 1,
   rw [IccExtend_of_mem _ _ node_mem_Icc]
 
 /-- The actual rule integrates every polynomial through its degree cutoff exactly.
-Source: uniqueness of degree-bounded Lagrange interpolation; ATAP, Chapter 19.-/
+Source: uniqueness of degree-bounded Lagrange interpolation; ATAP, Chapter 19.
+@isnad1 id=eq.1h2v.s6.4d0d73f96295 from=translated src=- shape=417ba9fb vocab=360eb8d2
+-/
 theorem clenshawCurtisRule_polynomial_exact {p : ℝ[X]} {n : ℕ} (hp : p.natDegree ≤ n) :
     clenshawCurtisRule n p.eval = ∫ x in (-1 : ℝ)..1, p.eval x := by
   have hdeg : p.degree < (Finset.range (n + 1)).card := by
@@ -42,7 +46,9 @@ theorem clenshawCurtisRule_polynomial_exact {p : ℝ[X]} {n : ℕ} (hp : p.natDe
 
 /-- The actual continuous-function Clenshaw–Curtis functional is eventually
 exact on every polynomial restriction.
-Source: polynomial exactness and the finite weight formula; ATAP, Chapter 19.-/
+Source: polynomial exactness and the finite weight formula; ATAP, Chapter 19.
+@isnad1 id=eq.1h2v.s9.e4295b7b44d0 from=translated src=- shape=1d79e4ad vocab=59cec85a
+-/
 theorem clenshawCurtisLinearMap_polynomial_exact (p : ℝ[X]) (n : ℕ) (hp : p.natDegree ≤ n) :
     clenshawCurtisLinearMap n (p.toContinuousMapOn (Icc (-1 : ℝ) 1)) =
       ∫ x in (-1 : ℝ)..1, p.eval x := by
@@ -53,7 +59,9 @@ theorem clenshawCurtisLinearMap_polynomial_exact (p : ℝ[X]) (n : ℕ) (hp : p.
 on the unit interval.
 Source: positive actual weights, polynomial exactness, and Weierstrass density;
 Trefethen, ATAP, Chapter 19.
-atlas: gauss-clenshaw-curtis-quadrature-error (partial)-/
+atlas: gauss-clenshaw-curtis-quadrature-error (partial)
+@isnad1 id=tendsto.0h1v.s10.47521e359cc4 from=translated src=- shape=825c195c vocab=ee54776b
+-/
 theorem tendsto_clenshawCurtisLinearMap (f : C(Icc (-1 : ℝ) 1, ℝ)) :
     Tendsto (fun n => clenshawCurtisLinearMap n f) atTop (𝓝 (unitIntervalIntegralLinearMap f)) :=
   tendsto_quadrature_of_bound_and_polynomial_exact clenshawCurtisLinearMap 2 (by norm_num)
@@ -62,7 +70,9 @@ theorem tendsto_clenshawCurtisLinearMap (f : C(Icc (-1 : ℝ) 1, ℝ)) :
 /-- Actual Clenshaw–Curtis quadrature converges to the interval integral for
 every continuous unit-interval real function.
 Source: positive actual weights and polynomial density; Trefethen, ATAP, Chapter 19.
-atlas: gauss-clenshaw-curtis-quadrature-error (partial)-/
+atlas: gauss-clenshaw-curtis-quadrature-error (partial)
+@isnad1 id=tendsto.1h1v.s6.f2633c5af9af from=translated src=- shape=26fe8d22 vocab=e3c8de2b
+-/
 theorem tendsto_clenshawCurtisRule_of_continuousOn {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1 : ℝ) 1)) :
     Tendsto (fun n => clenshawCurtisRule n f) atTop (𝓝 (∫ x in (-1 : ℝ)..1, f x)) := by

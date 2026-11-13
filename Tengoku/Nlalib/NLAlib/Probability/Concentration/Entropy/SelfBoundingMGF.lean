@@ -27,7 +27,9 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι] {Ω : Type*} [MeasurableSpac
 omit [MeasurableSpace Ω] in
 /-- Deletion lower bounds yield the actual independent-copy positive-gradient
 bound. No measurability of the auxiliary deletion functions is needed, since
-only their pointwise comparison and coordinate independence are used.-/
+only their pointwise comparison and coordinate independence are used.
+@isnad1 id=le.3h7v.s7.70c781ba0111 from=translated src=- shape=4c534639 vocab=ef327e09
+-/
 theorem sum_resampling_posPart_sq_le_of_deletions
     (W : (ι → Ω) → ℝ) (Wi : ι → (ι → Ω) → ℝ)
     (hlower : ∀ i x, Wi i x ≤ W x)
@@ -46,7 +48,9 @@ theorem sum_resampling_posPart_sq_le_of_deletions
 
 /-- Actual self-bounding exponential entropy from coordinate deletions.
 Boundedness proves every displayed integrability statement; the entropy
-inequality is derived from the actual product law.-/
+inequality is derived from the actual product law.
+@isnad1 id=le.7h8v.s8.ae05034b66f5 from=translated src=- shape=d0ad52c2 vocab=99abeb8a
+-/
 theorem entropy_exp_mul_pi_le_of_bounded_deletions
     (W : (ι → Ω) → ℝ) (hWm : Measurable W) (M : ℝ) (hM : 0 ≤ M)
     (hbound : ∀ x, |W x| ≤ M) (Wi : ι → (ι → Ω) → ℝ)
@@ -96,7 +100,9 @@ theorem entropy_exp_mul_pi_le_of_bounded_deletions
 /-- A genuine MGF bound from bounded coordinate deletions. The radius is
 `a*s<1` and the statement includes `a=0`, `s=0`, and an empty index family.
 This is a weaker-constant form of the self-bounding MGF step used in source
-arXiv:2201.05142v3, Proposition5.6, and does not claim literal equation(5.1).-/
+arXiv:2201.05142v3, Proposition5.6, and does not claim literal equation(5.1).
+@isnad1 id=le.9h8v.s8.39cc241e64e3 from=translated src=- shape=bf57669d vocab=33de4d58
+-/
 theorem log_integral_exp_mul_pi_le_of_bounded_deletions
     (W : (ι → Ω) → ℝ) (hWm : Measurable W) (M : ℝ) (hM : 0 ≤ M)
     (hbound : ∀ x, |W x| ≤ M) (Wi : ι → (ι → Ω) → ℝ)
@@ -142,7 +148,9 @@ theorem log_integral_exp_mul_pi_le_of_bounded_deletions
   exact h
 
 /-- An explicit weaker-radius substitute for source equation(5.1).
-Only the exact bounded-deletion assumptions above are used.-/
+Only the exact bounded-deletion assumptions above are used.
+@isnad1 id=le.7h7v.s8.e48cf9ef8f58 from=translated src=- shape=420ef30a vocab=33de4d58
+-/
 theorem log_integral_exp_div_two_mul_pi_le_of_bounded_deletions
     (W : (ι → Ω) → ℝ) (hWm : Measurable W) (M : ℝ) (hM : 0 ≤ M)
     (hbound : ∀ x, |W x| ≤ M) (Wi : ι → (ι → Ω) → ℝ)
@@ -173,7 +181,9 @@ end Product
 /-- A variable-coefficient Herbst argument from actual native MGF derivatives.
 The exponential integrability assumption concerns finiteness only, and the
 entropy hypothesis is integrated here rather than assuming the desired MGF
-bound. In bounded-observable applications all finiteness is automatic.-/
+bound. In bounded-observable applications all finiteness is automatic.
+@isnad1 id=le.5h6v.s8.8e342e7a5611 from=translated src=- shape=2a978c6b vocab=b0a65793
+-/
 theorem integral_exp_mul_le_exp_of_rational_entropy_le
     {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
     (f : Ω → ℝ) {c C : ℝ} (hc : 0 ≤ c)

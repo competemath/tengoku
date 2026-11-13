@@ -17,7 +17,9 @@ namespace NLAlib
 function on `[-1,1]`. Each rule is supplied by distinct interior nodes whose nodal
 polynomial is orthogonal to lower degrees; its weights are the actual cardinal
 integrals. Source: Stieltjes' theorem, Trefethen, ATAP, Chapter 19.
-atlas: gauss-clenshaw-curtis-quadrature-error (partial)-/
+atlas: gauss-clenshaw-curtis-quadrature-error (partial)
+@isnad1 id=tendsto.5h3v.s8.4cc43c7cbdf1 from=translated src=- shape=fdc6b9f9 vocab=ad746750
+-/
 theorem tendsto_gauss_lebesgue_of_continuousOn
     {ι : ℕ → Type*} [∀ n, Fintype (ι n)] [∀ n, DecidableEq (ι n)]
     (hcard : ∀ n, Fintype.card (ι n) = n + 1)

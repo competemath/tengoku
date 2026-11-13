@@ -24,7 +24,9 @@ structure IsGreedyOddMinimax (q : ℕ) (ell : ℝ) (c : ℕ → ℕ → ℝ) (l 
   attain_upper : ∀ k, ∃ x ∈ Icc (l k) (u k), oddScalarUpdate q (c k) x = u (k + 1)
 
 /-- Every successive actual image remains a positive interval, even if
-it collapses to the singleton `{1}`.-/
+it collapses to the singleton `{1}`.
+@isnad1 id=and.3h6v.s6.83fac0ab6536 from=translated src=- shape=2e5fa021 vocab=5893a696
+-/
 theorem IsGreedyOddMinimax.positive_intervals {q : ℕ} {ell : ℝ}
     {c : ℕ → ℕ → ℝ} {l u : ℕ → ℝ} (h : IsGreedyOddMinimax q ell c l u)
     (hell : 0 < ell) (hell1 : ell ≤ 1) (k : ℕ) : 0 < l k ∧ l k ≤ u k := by
@@ -36,7 +38,9 @@ theorem IsGreedyOddMinimax.positive_intervals {q : ℕ} {ell : ℝ}
     exact ⟨hh.1, hh.2.1⟩
 
 /-- Actual interval images are centered at one; their lower endpoint
-therefore records the genuine uniform minimax error.-/
+therefore records the genuine uniform minimax error.
+@isnad1 id=and.3h6v.s7.aae5eb7acf9b from=translated src=- shape=9a40dcd1 vocab=75e5cb11
+-/
 theorem IsGreedyOddMinimax.normalized_images {q : ℕ} {ell : ℝ}
     {c : ℕ → ℕ → ℝ} {l u : ℕ → ℝ} (h : IsGreedyOddMinimax q ell c l u)
     (hell : 0 < ell) (hell1 : ell ≤ 1) (k : ℕ) :
@@ -46,7 +50,9 @@ theorem IsGreedyOddMinimax.normalized_images {q : ℕ} {ell : ℝ}
     (h.bounds k) (h.attain_lower k) (h.attain_upper k)).2.2
 
 /-- Every intermediate scalar iterate lies in the actual interval used
-by the next minimax problem.-/
+by the next minimax problem.
+@isnad1 id=mem.2h7v.s6.1b78dd1cd6e6 from=translated src=- shape=287a74a6 vocab=40698eb1
+-/
 theorem IsGreedyOddMinimax.composition_mem_interval {q : ℕ} {ell : ℝ}
     {c : ℕ → ℕ → ℝ} {l u : ℕ → ℝ} (h : IsGreedyOddMinimax q ell c l u)
     {x : ℝ} (hx : x ∈ Icc ell 1) (k : ℕ) :

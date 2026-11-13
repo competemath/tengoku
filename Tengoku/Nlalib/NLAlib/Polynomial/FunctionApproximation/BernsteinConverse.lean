@@ -69,7 +69,9 @@ private theorem norm_eval_converseDifference_succ_le {q : ℕ → ℂ[X]} {f : �
 the open Bernstein ellipse, with locally uniform convergence of the supplied sequence.
 Source: Trefethen, ATAP, Thm 8.3 (Bernstein); operator derivations §5.
 Deviation: complex interval values and complex polynomial coefficients are permitted.
-atlas: bernstein-converse-/
+atlas: bernstein-converse
+@isnad1 id=ex.4h4v.s8.fc8306b05987 from=translated src=- shape=b390a5a1 vocab=6788d8f7
+-/
 theorem exists_holomorphic_extension_of_geometric_polynomial_approximation
     {f : ℝ → ℂ} {q : ℕ → ℂ[X]} {C ρ : ℝ} (hC : 0 ≤ C) (hρ : 1 < ρ)
     (hq : ∀ n, (q n).degree ≤ n)
@@ -132,7 +134,9 @@ theorem exists_holomorphic_extension_of_geometric_polynomial_approximation
 extension on the whole open ellipse. The same telescoping series works on every
 compact subset, with its geometric majorant chosen for that subset.
 Source: ATAP, Thm 8.3 and Ex 8.11; operator derivations §5.
-Helper for `bernstein-converse`.-/
+Helper for `bernstein-converse`.
+@isnad1 id=ex.3h3v.s8.742fc103ac1f from=translated src=- shape=2c22cd1b vocab=6788d8f7
+-/
 theorem exists_holomorphic_extension_of_polynomial_approximation_rates
     {f : ℝ → ℂ} {q : ℕ → ℂ[X]} {ρ : ℝ} (hρ : 1 < ρ)
     (hq : ∀ n, (q n).degree ≤ n)
@@ -199,7 +203,9 @@ theorem exists_holomorphic_extension_of_polynomial_approximation_rates
 /-- A finite upper root-limsup yields geometric bounds at every smaller radius.
 The extended nonnegative codomain records the usual limsup even for initially
 unbounded root sequences, without the default values of a conditional supremum.
-Source: the root test; operator derivations §5, limsup variant of Bernstein's theorem.-/
+Source: the root test; operator derivations §5, limsup variant of Bernstein's theorem.
+@isnad1 id=ex.5h3v.s7.e87fd2a01255 from=translated src=- shape=3914449d vocab=8f89fed5
+-/
 theorem geometric_bound_of_root_limsup_le {e : ℕ → ℝ} {ρ s : ℝ}
     (he : ∀ n, 0 ≤ e n) (hρ : 1 < ρ) (hs : 1 < s) (hsρ : s < ρ)
     (hlim : limsup (fun n => ENNReal.ofReal (e n ^ ((n : ℝ)⁻¹))) atTop ≤
@@ -235,7 +241,9 @@ uniform-error bounds. No single geometric constant at the limiting radius is
 required: the rates on each smaller radius suffice.
 Source: Trefethen, ATAP, Thm 8.3 and Ex 8.11; operator derivations §5.
 Deviation: complex interval values and complex polynomial coefficients are permitted.
-atlas: bernstein-converse-/
+atlas: bernstein-converse
+@isnad1 id=ex.5h4v.s8.73dc767c5ff4 from=translated src=- shape=2da036d1 vocab=63fc53bc
+-/
 theorem exists_holomorphic_extension_of_polynomial_approximation_limsup
     {f : ℝ → ℂ} {q : ℕ → ℂ[X]} {e : ℕ → ℝ} {ρ : ℝ} (hρ : 1 < ρ)
     (hq : ∀ n, (q n).degree ≤ n) (he : ∀ n, 0 ≤ e n)
@@ -254,7 +262,9 @@ theorem exists_holomorphic_extension_of_polynomial_approximation_limsup
 Its extended root-limsup formulation is the usual finite limsup condition, and
 also excludes unbounded error-root sequences without an auxiliary boundedness hypothesis.
 Source: Trefethen, ATAP, Thm 8.3 and Ex 8.11; operator derivations §5.
-atlas: bernstein-converse-/
+atlas: bernstein-converse
+@isnad1 id=ex.3h3v.s10.2dca6848ae85 from=translated src=- shape=909e1ebb vocab=849384ad
+-/
 theorem exists_holomorphic_extension_of_polynomial_approximation_norm_limsup
     (f : C(Icc (-1 : ℝ) 1, ℂ)) {q : ℕ → ℂ[X]} {ρ : ℝ} (hρ : 1 < ρ)
     (hq : ∀ n, (q n).degree ≤ n)

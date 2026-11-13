@@ -15,7 +15,9 @@ open Real Set Polynomial Polynomial.Chebyshev Finset
 namespace NLAlib
 
 /-- The actual Chebyshev-root extremum sample equals its finite cotangent prefix.
-Source: focused reroutes, equation `polyretry:sample-C`.-/
+Source: focused reroutes, equation `polyretry:sample-C`.
+@isnad1 id=eq.2h2v.s5.193cf95eef55 from=translated src=- shape=92306820 vocab=9f8fc556
+-/
 theorem lebesgueFunction_chebyshevZero_eq_rootCotangentSample {N k : ℕ}
     (hk0 : 0 < k) (hkN : k < N) :
     lebesgueFunction (chebyshevZero N) (cos ((k : ℝ) * π / N)) = rootCotangentSample N k := by
@@ -33,7 +35,9 @@ theorem lebesgueFunction_chebyshevZero_eq_rootCotangentSample {N k : ℕ}
   exact sum_sin_div_abs_cos_sub_eq_rootCotangentSample hk0 hkN
 
 /-- Every interior Chebyshev-root extremum sample exceeds the sharp universal
-logarithmic constant. Source: focused reroutes, equation `polyretry:all-intervals`.-/
+logarithmic constant. Source: focused reroutes, equation `polyretry:all-intervals`.
+@isnad1 id=lt.3h2v.s7.033786e945b8 from=translated src=- shape=d96a1204 vocab=561d9fa7
+-/
 theorem logarithmic_lower_lt_lebesgueFunction_chebyshevZero_sample {N k : ℕ}
     (hN : 2 ≤ N) (hk0 : 1 ≤ k) (hkN : k < N) :
     (2 / π) * (log (N : ℝ) + eulerMascheroniConstant + log (4 / π)) <
@@ -44,7 +48,9 @@ theorem logarithmic_lower_lt_lebesgueFunction_chebyshevZero_sample {N k : ℕ}
   exact h.trans_le (rootCotangentSample_center_le hN hk0 hkN)
 
 /-- The `k`th sampling extremum lies strictly between its consecutive Chebyshev roots.
-Source: the explicit cosine grid and strict cosine monotonicity.-/
+Source: the explicit cosine grid and strict cosine monotonicity.
+@isnad1 id=mem.2h2v.s6.2c7b49eb8a9a from=translated src=- shape=6cde8bc4 vocab=96c41eee
+-/
 theorem cos_nat_mul_pi_div_mem_chebyshevZero_gap {N k : ℕ} (hk0 : 1 ≤ k) (hkN : k < N) :
     cos ((k : ℝ) * π / N) ∈
       Ioo (chebyshevZero N ⟨k, hkN⟩) (chebyshevZero N ⟨k - 1, by omega⟩) := by
@@ -71,7 +77,9 @@ theorem cos_nat_mul_pi_div_mem_chebyshevZero_gap {N k : ℕ} (hk0 : 1 ≤ k) (hk
 
 /-- Each consecutive Chebyshev-root gap has a strict logarithmic lower witness.
 Source: focused reroutes, equation `polyretry:all-intervals`. This finite certificate
-is the reference-grid input to the arbitrary-node peak comparison.-/
+is the reference-grid input to the arbitrary-node peak comparison.
+@isnad1 id=ex.3h2v.s7.63ba5e02230a from=translated src=- shape=a6afac94 vocab=1c7b43d2
+-/
 theorem exists_mem_chebyshevZero_gap_logarithmic_lower_lt {N k : ℕ} (hN : 2 ≤ N)
     (hk0 : 1 ≤ k) (hkN : k < N) :
     ∃ x ∈ Ioo (chebyshevZero N ⟨k, hkN⟩) (chebyshevZero N ⟨k - 1, by omega⟩),

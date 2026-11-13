@@ -26,7 +26,9 @@ namespace NLAlib
 variable {Ω ι : Type*} [MeasurableSpace Ω] [Fintype ι] [DecidableEq ι]
 variable {μ : Measure Ω} [IsProbabilityMeasure μ]
 
-/-- A matrix insertion word in a measurable vector has measurable trace.-/
+/-- A matrix insertion word in a measurable vector has measurable trace.
+@isnad1 id=measurab.1h5v.s6.cfc4146e7274 from=translated src=- shape=708ca53d vocab=b9394cfe
+-/
 theorem measurable_trace_insertionWord_vecMulVec_sub_one
     (y : Ω → ι → ℝ) (hy : Measurable y) (A : Matrix ι ι ℝ) (w : List Bool) :
     Measurable (fun ω => (insertionWord A (vecMulVec (y ω) (y ω) - 1) w).trace) := by
@@ -50,7 +52,9 @@ theorem measurable_trace_insertionWord_vecMulVec_sub_one
 
 omit [IsProbabilityMeasure μ] in
 /-- A uniform bound on the positive rank-one moments bounds any centered
-insertion word, with one factor of two for each expanded insertion.-/
+insertion word, with one factor of two for each expanded insertion.
+@isnad1 id=and.3h7v.s10.83dfe7627891 from=translated src=- shape=28c5e673 vocab=6383c66b
+-/
 theorem integrable_and_integral_trace_insertionWord_sub_one_le
     (y : Ω → ι → ℝ) (hy : Measurable y)
     {A : Matrix ι ι ℝ} (hA : A.IsHermitian) (w : List Bool) {B : ℝ}
@@ -107,7 +111,9 @@ theorem integrable_and_integral_trace_insertionWord_sub_one_le
 omit [IsProbabilityMeasure μ] in
 /-- An isotropic vector integrates a rank-one trace test to the test trace.
 Source: the isotropic quadratic-form identity.
-Atlas: `khatri-rao-sharp-growth`.-/
+Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=and.2h5v.s7.7e06a053bc35 from=translated src=- shape=03ce72fa vocab=d8eeb7b1
+-/
 theorem integrable_and_integral_trace_mul_vecMulVec_eq
     (y : Ω → ι → ℝ) (hy : Measurable y)
     (hsecond : ∀ i j, (∫ ω, y ω i * y ω j ∂μ) = if i = j then 1 else 0)
@@ -124,7 +130,9 @@ theorem integrable_and_integral_trace_mul_vecMulVec_eq
     exact integral_quadForm_eq_trace_of_second_moments C hm hsecond
 
 /-- Centering an isotropic rank-one covariance sample kills every linear trace test.
-Source: isotropy. Atlas: `khatri-rao-sharp-growth`.-/
+Source: isotropy. Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=and.2h5v.s8.839835b55081 from=translated src=- shape=b6c1bd78 vocab=776fd0c6
+-/
 theorem integrable_and_integral_trace_mul_vecMulVec_sub_one_eq_zero
     (y : Ω → ι → ℝ) (hy : Measurable y)
     (hsecond : ∀ i j, (∫ ω, y ω i * y ω j ∂μ) = if i = j then 1 else 0)
@@ -138,7 +146,9 @@ theorem integrable_and_integral_trace_mul_vecMulVec_sub_one_eq_zero
 /-- The variance of a centered isotropic rank-one covariance sample is bounded
 by its raw second moment, retaining each positive trace test.
 Source: `E(H-I)^2=E H^2-I`.
-Atlas: `khatri-rao-sharp-growth`.-/
+Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=and.4h6v.s9.28a45db1304c from=translated src=- shape=38bb7dd7 vocab=17f42ca5
+-/
 theorem integrable_and_integral_trace_mul_vecMulVec_sub_one_sq_le
     (y : Ω → ι → ℝ) (hy : Measurable y)
     (hsecond : ∀ i j, (∫ ω, y ω i * y ω j ∂μ) = if i = j then 1 else 0)
@@ -179,7 +189,9 @@ theorem integrable_and_integral_trace_mul_vecMulVec_sub_one_sq_le
 /-- A factorial raw rank-one moment profile bounds every centered word with
 at least two insertions, with explicit centering constants `4v` and `2R`.
 Source: the rank-one word expansion in Heidary, Lemma `closed:lem:step`.
-Atlas: `khatri-rao-sharp-growth`.-/
+Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=and.7h8v.s9.03c360676204 from=translated src=- shape=2c6ba2bb vocab=356ed6e8
+-/
 theorem integrable_and_integral_trace_centered_insertionWord_le_factorial
     (y : Ω → ι → ℝ) (hy : Measurable y)
     (hsecond : ∀ i j, (∫ ω, y ω i * y ω j ∂μ) = if i = j then 1 else 0)
@@ -247,7 +259,9 @@ theorem integrable_and_integral_trace_centered_insertionWord_le_factorial
 trace-moment update used by the sharp Khatri--Rao embedding bound.
 Source: Heidary, Lemma `closed:lem:step`; the explicit centering factors here
 are `4v` and `2R` rather than the manuscript's optimized shift.
-Atlas: `khatri-rao-sharp-growth`.-/
+Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=and.7h8v.s10.c20e02612aab from=translated src=- shape=1f967b33 vocab=c7b91b2e
+-/
 theorem integrable_and_integral_trace_add_centered_rankOne_pow_le
     (y : Ω → ι → ℝ) (hy : Measurable y)
     (hsecond : ∀ i j, (∫ ω, y ω i * y ω j ∂μ) = if i = j then 1 else 0)

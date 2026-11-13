@@ -21,7 +21,9 @@ range give the exact block form `[I T; 0 0]`, with identity size equal to
 its actual rank. Both coordinate Gram identities are supplied.
 Horn–Johnson 2013, Corollary 3.4.3.3; includes rank zero, full rank and
 empty dimension.
-atlas: cs-decomposition (partial)-/
+atlas: cs-decomposition (partial)
+@isnad1 id=ex.1h2v.s10.77f100c18cfd from=translated src=- shape=e28b3e80 vocab=68c9dfa6
+-/
 theorem exists_unitary_idempotent_range_blocks {n : Type*}
     [Fintype n] [DecidableEq n] (P : Matrix n n ℂ) (hP : IsIdempotentElem P) :
     ∃ H : Matrix n (Fin P.rank ⊕ Fin (Fintype.card n - P.rank)) ℂ,

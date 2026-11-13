@@ -17,7 +17,9 @@ namespace NLAlib
 /-- The actual Gauss weight is the second-kind numerator divided by the
 derivative of the actual monic denominator at its simple node. The derivative's
 nonvanishing is proved from the constructed distinct nodes. Source: AQ18.
-atlas: jacobi-fraction-second-kind (partial)-/
+atlas: jacobi-fraction-second-kind (partial)
+@isnad1 id=eq.2h3v.s8.d0cc5f671a1c from=translated src=- shape=f6687ece vocab=429e38f2
+-/
 theorem gaussWeights_eq_secondKindPolynomial_div_derivative
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {n : ℕ}
     (hn : (n : ℕ∞) ≤ μ.support.encard) (i : Fin n) :

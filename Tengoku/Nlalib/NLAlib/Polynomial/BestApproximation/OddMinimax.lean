@@ -26,16 +26,22 @@ def oddUniformError (q : ℕ) (c : ℕ → ℝ) (a b : ℝ) : ℝ :=
 def IsOddMinimaxOn (q : ℕ) (c : ℕ → ℝ) (a b : ℝ) : Prop :=
   ∀ d : ℕ → ℝ, oddUniformError q c a b ≤ oddUniformError q d a b
 
-/-- The uniform error is nonnegative, including degenerate intervals.-/
+/-- The uniform error is nonnegative, including degenerate intervals.
+@isnad1 id=le.0h4v.s4.8a05f32ab26c from=translated src=- shape=256e0595 vocab=6accf4f3
+-/
 theorem oddUniformError_nonneg (q : ℕ) (c : ℕ → ℝ) (a b : ℝ) :
     0 ≤ oddUniformError q c a b := norm_nonneg _
 
-/-- The uniform error bounds every actual point of the interval.-/
+/-- The uniform error bounds every actual point of the interval.
+@isnad1 id=le.1h5v.s5.c6443492aee4 from=translated src=- shape=edc27748 vocab=9412bae3
+-/
 theorem abs_one_sub_oddScalarUpdate_le (q : ℕ) (c : ℕ → ℝ) (a b x : ℝ)
     (hx : x ∈ Icc a b) : |1 - oddScalarUpdate q c x| ≤ oddUniformError q c a b := by
   exact ((1 : C(Icc a b, ℝ)) - oddUpdateOn q c a b).norm_coe_le_norm ⟨x, hx⟩
 
-/-- Pointwise bounds imply the corresponding uniform bound.-/
+/-- Pointwise bounds imply the corresponding uniform bound.
+@isnad1 id=le.2h5v.s6.8a814a9109d4 from=translated src=- shape=7c65df53 vocab=9412bae3
+-/
 theorem oddUniformError_le_of_forall {q : ℕ} {c : ℕ → ℝ} {a b E : ℝ}
     (hE : 0 ≤ E) (h : ∀ x ∈ Icc a b, |1 - oddScalarUpdate q c x| ≤ E) :
     oddUniformError q c a b ≤ E := by
@@ -44,7 +50,9 @@ theorem oddUniformError_le_of_forall {q : ℕ} {c : ℕ → ℝ} {a b E : ℝ}
   exact h x x.property
 
 /-- Every compact interval has an actual odd minimax update, including a
-singleton interval. The chosen coefficients are ordinary scalar data.-/
+singleton interval. The chosen coefficients are ordinary scalar data.
+@isnad1 id=ex.0h3v.s4.75c918501470 from=translated src=- shape=c724d5ac vocab=78131ca7
+-/
 theorem exists_isOddMinimaxOn (q : ℕ) (a b : ℝ) : ∃ c : ℕ → ℝ, IsOddMinimaxOn q c a b := by
   let L : (Fin (q + 1) → ℝ) →ₗ[ℝ] C(Icc a b, ℝ) :=
     { toFun := fun c =>
@@ -78,12 +86,16 @@ theorem exists_isOddMinimaxOn (q : ℕ) (a b : ℝ) : ∃ c : ℕ → ℝ, IsOdd
     (Metric.infDist_le_dist_of_mem (x := (1 : C(Icc a b, ℝ)))
       (show L (fun j : Fin (q + 1) => d j) ∈ LinearMap.range L from ⟨_, rfl⟩))
 
-/-- Scaling all coefficients scales the actual update.-/
+/-- Scaling all coefficients scales the actual update.
+@isnad1 id=eq.0h4v.s5.3148c3470c3a from=translated src=- shape=7b4ff48e vocab=294a5680
+-/
 theorem oddScalarUpdate_smul_coeff (q : ℕ) (c : ℕ → ℝ) (t x : ℝ) :
     oddScalarUpdate q (fun j => t * c j) x = t * oddScalarUpdate q c x := by
   simp [oddScalarUpdate, Finset.mul_sum, mul_assoc]
 
-/-- Rescaling input and output stays inside the same odd polynomial class.-/
+/-- Rescaling input and output stays inside the same odd polynomial class.
+@isnad1 id=eq.0h5v.s6.adcb91d7aa62 from=translated src=- shape=cb0d3fa1 vocab=30a25349
+-/
 theorem oddScalarUpdate_rescale (q : ℕ) (c : ℕ → ℝ) (t b x : ℝ) :
     oddScalarUpdate q (fun j => t * c j / b ^ (2 * j + 1)) x =
       t * oddScalarUpdate q c (x / b) := by

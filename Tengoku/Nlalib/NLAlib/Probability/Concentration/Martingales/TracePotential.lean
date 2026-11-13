@@ -47,14 +47,18 @@ def matrixCompensatedTracePotential (θ c : ℝ) (X V : ℕ → Ω → Matrix n 
 open scoped Matrix.Norms.L2Operator in
 omit [MeasurableSpace Ω] [Fintype n] [DecidableEq n] in
 /-- A cumulative matrix increment sum starts at zero.
-Source: the finite-sum convention in Section 3; helper for `matrix-freedman` (partial).-/
+Source: the finite-sum convention in Section 3; helper for `matrix-freedman` (partial).
+@isnad1 id=eq.0h4v.s5.37757c98f36c from=translated src=- shape=5371a8ad vocab=d2b506d9
+-/
 @[simp] theorem matrixIncrementSum_zero (X : ℕ → Ω → Matrix n n ℂ) (ω : Ω) :
     matrixIncrementSum X 0 ω = 0 := by simp [matrixIncrementSum]
 
 open scoped Matrix.Norms.L2Operator in
 omit [MeasurableSpace Ω] [Fintype n] [DecidableEq n] in
 /-- Adding one actual increment updates the cumulative matrix sum.
-Source: the finite-sum convention in Section 3; helper for `matrix-freedman` (partial).-/
+Source: the finite-sum convention in Section 3; helper for `matrix-freedman` (partial).
+@isnad1 id=eq.0h5v.s6.70b24063cc86 from=translated src=- shape=d2791c95 vocab=959eb220
+-/
 theorem matrixIncrementSum_succ (X : ℕ → Ω → Matrix n n ℂ) (k : ℕ) (ω : Ω) :
     matrixIncrementSum X (k + 1) ω = matrixIncrementSum X k ω + X k ω := by
   exact Finset.sum_range_succ _ _
@@ -62,7 +66,9 @@ theorem matrixIncrementSum_succ (X : ℕ → Ω → Matrix n n ℂ) (k : ℕ) (�
 open scoped Matrix.Norms.L2Operator in
 omit [MeasurableSpace Ω] in
 /-- The actual compensated trace potential starts at the ambient dimension.
-Source: operator rederivations Section 3.3, `S_0=d`; helper for `matrix-freedman` (partial).-/
+Source: operator rederivations Section 3.3, `S_0=d`; helper for `matrix-freedman` (partial).
+@isnad1 id=eq.0h7v.s5.1159c989d1c1 from=translated src=- shape=5d4edc08 vocab=247951b8
+-/
 @[simp] theorem matrixCompensatedTracePotential_zero (θ c : ℝ)
     (X V : ℕ → Ω → Matrix n n ℂ) (ω : Ω) :
     matrixCompensatedTracePotential θ c X V 0 ω = Fintype.card n := by

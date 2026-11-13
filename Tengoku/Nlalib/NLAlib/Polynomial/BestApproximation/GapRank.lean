@@ -64,7 +64,9 @@ private theorem degree_sum_smul_deleted_gapDirection_lt {n : ℕ} (hn : 0 < n) {
   exact (degree_smul_le _ _).trans_lt (degree_interpolationGapDividedDerivative_lt hn ht _)
 
 /-- Evaluating any deleted actual gap-direction family at `n` distinct points gives a
-nonsingular square matrix. Source: finite polynomial interpolation and the Laplacian minor.-/
+nonsingular square matrix. Source: finite polynomial interpolation and the Laplacian minor.
+@isnad1 id=ne.3h4v.s6.8c193abeb62b from=translated src=- shape=31c80205 vocab=3fe5db2b
+-/
 theorem det_eval_gapDirection_ne_zero {n : ℕ} (hn : 0 < n) {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (k : Fin (n + 1)) (v : Fin n → ℝ)
     (hv : Function.Injective v) :
@@ -83,7 +85,9 @@ theorem det_eval_gapDirection_ne_zero {n : ℕ} (hn : 0 < n) {t : Fin n → ℝ}
 
 /-- Every maximal row minor of the actual divided-derivative evaluation Jacobian is nonzero.
 Source: focused rederivations, `polyretry:peak-jacobian`.
-atlas: lebesgue-constant-lower-bound (partial)-/
+atlas: lebesgue-constant-lower-bound (partial)
+@isnad1 id=ne.3h4v.s6.932a5f145bb7 from=translated src=- shape=70a52ef8 vocab=3fe5db2b
+-/
 theorem det_gapDirection_eval_ne_zero {n : ℕ} (hn : 0 < n) {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (k : Fin (n + 1)) (v : Fin n → ℝ)
     (hv : Function.Injective v) :

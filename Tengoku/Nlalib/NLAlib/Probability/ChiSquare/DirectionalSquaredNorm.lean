@@ -23,7 +23,9 @@ open scoped Matrix ENNReal NNReal
 namespace NLAlib
 
 /-- The exponential integral of a standard Gaussian linear form: `𝔼 e^{a ⬝ g} = e^{‖a‖₂² / 2}`
-for `g ∼ gaussianVector (Fin d)`.-/
+for `g ∼ gaussianVector (Fin d)`.
+@isnad1 id=eq.0h2v.s7.977945b24bfc from=translated src=- shape=5a4440e1 vocab=f23a4d06
+-/
 theorem integral_exp_dotProduct_gaussianVector {d : ℕ} (a : Fin d → ℝ) :
     ∫ g : Fin d → ℝ, Real.exp (a ⬝ᵥ g) ∂(gaussianVector (Fin d)) =
       Real.exp (‖WithLp.toLp 2 a‖ ^ 2 / 2) := by
@@ -41,7 +43,9 @@ theorem integral_exp_dotProduct_gaussianVector {d : ℕ} (a : Fin d → ℝ) :
   simp only [pow_two]
 
 /-- Gaussian linearization: `e^{θ ‖v‖₂²} = 𝔼 e^{√(2θ) (g ⬝ v)}` for `g ∼ gaussianVector (Fin d)`,
-including `θ = 0`.-/
+including `θ = 0`.
+@isnad1 id=eq.1h3v.s7.39618d9ce7e5 from=translated src=- shape=126ee430 vocab=f692b737
+-/
 theorem integral_exp_sqrt_mul_dotProduct_gaussianVector {d : ℕ}
     (v : Fin d → ℝ) {θ : ℝ} (hθ : 0 ≤ θ) :
     ∫ g : Fin d → ℝ, Real.exp (Real.sqrt (2 * θ) * (g ⬝ᵥ v))
@@ -58,7 +62,9 @@ theorem integral_exp_sqrt_mul_dotProduct_gaussianVector {d : ℕ}
   ring
 
 /-- Directional sub-Gaussian hypotheses imply almost-everywhere measurability of the vector.
-It suffices to evaluate them in the coordinate directions.-/
+It suffices to evaluate them in the coordinate directions.
+@isnad1 id=aemeasur.1h4v.s7.8071ab37adad from=translated src=- shape=e6c25965 vocab=41373839
+-/
 theorem aemeasurable_of_directional_hasSubgaussianMGF {Ω : Type*} [MeasurableSpace Ω]
     {μ : Measure Ω} {d : ℕ} {X : Ω → Fin d → ℝ}
     (hmgf : ∀ u : Fin d → ℝ, HasSubgaussianMGF (fun ω => X ω ⬝ᵥ u)
@@ -69,7 +75,9 @@ theorem aemeasurable_of_directional_hasSubgaussianMGF {Ω : Type*} [MeasurableSp
 
 /-- Nonnegative Gaussian linearization and Tonelli bound the squared-norm exponential
 integral under an arbitrary probability measure by the chi-square MGF.
-Source: Tropp (2011), Lemma 3.3, directional sub-Gaussian version.-/
+Source: Tropp (2011), Lemma 3.3, directional sub-Gaussian version.
+@isnad1 id=le.3h5v.s8.5f87b277b5ae from=translated src=- shape=c5617690 vocab=f24047f5
+-/
 theorem lintegral_exp_sq_norm_le_chi_square_mgf {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
     [IsProbabilityMeasure μ] {d : ℕ} (X : Ω → Fin d → ℝ)
     (hmgf : ∀ u : Fin d → ℝ, HasSubgaussianMGF (fun ω => X ω ⬝ᵥ u)
@@ -151,7 +159,9 @@ theorem lintegral_exp_sq_norm_le_chi_square_mgf {Ω : Type*} [MeasurableSpace Ω
         (Filter.Eventually.of_forall fun g => (Real.exp_pos _).le), hgauss]
 
 /-- The finite Gaussian MGF bound implies integrability of the squared-norm exponential.
-Source: Tropp (2011), Lemma 3.3, Gaussian linearization.-/
+Source: Tropp (2011), Lemma 3.3, Gaussian linearization.
+@isnad1 id=integrab.3h5v.s8.6134aae00725 from=translated src=- shape=ffef665a vocab=ae39eba0
+-/
 theorem integrable_exp_sq_norm_of_directional_hasSubgaussianMGF {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
     [IsProbabilityMeasure μ] {d : ℕ} (X : Ω → Fin d → ℝ)
     (hmgf : ∀ u : Fin d → ℝ, HasSubgaussianMGF (fun ω => X ω ⬝ᵥ u)
@@ -172,7 +182,9 @@ theorem integrable_exp_sq_norm_of_directional_hasSubgaussianMGF {Ω : Type*} [Me
 
 /-- A random vector with directional sub-Gaussian proxy `‖u‖₂²` has squared-norm MGF
 at most `(1−2θ)^(-d/2)` for `0 ≤ θ < 1/2`, on any probability space.
-Source: Tropp (2011), Lemma 3.3, directional sub-Gaussian version.-/
+Source: Tropp (2011), Lemma 3.3, directional sub-Gaussian version.
+@isnad1 id=le.3h5v.s8.69f91418aaff from=translated src=- shape=71af2689 vocab=35e42737
+-/
 theorem integral_exp_sq_norm_le_chi_square_mgf {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
     [IsProbabilityMeasure μ] {d : ℕ} (X : Ω → Fin d → ℝ)
     (hmgf : ∀ u : Fin d → ℝ, HasSubgaussianMGF (fun ω => X ω ⬝ᵥ u)
@@ -187,7 +199,9 @@ theorem integral_exp_sq_norm_le_chi_square_mgf {Ω : Type*} [MeasurableSpace Ω]
   exact lintegral_exp_sq_norm_le_chi_square_mgf μ X hmgf hθ0 hθ1
 
 /-- The squared-norm tail of a random vector with directional sub-Gaussian proxies has
-the chi-square Chernoff bound `P(‖X‖² ≥ u) ≤ e^{-θ u} (1 − 2θ)^{-d/2}`. Tropp 2011, Lemma 3.3.-/
+the chi-square Chernoff bound `P(‖X‖² ≥ u) ≤ e^{-θ u} (1 − 2θ)^{-d/2}`. Tropp 2011, Lemma 3.3.
+@isnad1 id=le.3h6v.s8.c9c9892e4872 from=translated src=- shape=daee6505 vocab=e95bd029
+-/
 theorem measureReal_sq_norm_ge_le_chi_square_mgf
     {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] {d : ℕ} (X : Ω → Fin d → ℝ)
@@ -203,7 +217,9 @@ theorem measureReal_sq_norm_ge_le_chi_square_mgf
   exact integral_exp_sq_norm_le_chi_square_mgf μ X hmgf hθ0 hθ1
 
 /-- Optimised Chernoff tail for a random vector with directional sub-Gaussian proxies:
-`P(‖X‖² ≥ (1 + ε) d) ≤ exp(−(d/2)(ε − log(1 + ε)))`. Dasgupta–Gupta 2003, Lemma 2.2(b) form.-/
+`P(‖X‖² ≥ (1 + ε) d) ≤ exp(−(d/2)(ε − log(1 + ε)))`. Dasgupta–Gupta 2003, Lemma 2.2(b) form.
+@isnad1 id=le.2h5v.s8.0d2dc9ca2ac8 from=translated src=- shape=96c08378 vocab=a301f067
+-/
 theorem measureReal_sq_norm_ge_one_add_mul_le
     {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] {d : ℕ} (X : Ω → Fin d → ℝ)
@@ -231,7 +247,9 @@ theorem measureReal_sq_norm_ge_one_add_mul_le
 
 /-- Laurent–Massart's additive upper tail `P(‖X‖² ≥ d + 2√(d x) + 2x) ≤ e^{-x}` for a
 random vector with directional sub-Gaussian proxies, by Gaussian linearization.
-Laurent–Massart 2000, Lemma 1.-/
+Laurent–Massart 2000, Lemma 1.
+@isnad1 id=le.2h5v.s8.55a12b25808f from=translated src=- shape=3f60ce48 vocab=bc4b67fb
+-/
 theorem measureReal_sq_norm_ge_add_two_sqrt_mul_add_le
     {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] {d : ℕ} (X : Ω → Fin d → ℝ)
@@ -278,7 +296,9 @@ theorem measureReal_sq_norm_ge_add_two_sqrt_mul_add_le
   rw [hx']
   nlinarith
 
-/-- The squared-norm MGF comparison specializes to a PMF on any sample type.-/
+/-- The squared-norm MGF comparison specializes to a PMF on any sample type.
+@isnad1 id=le.3h5v.s8.0a49cd708fdd from=translated src=- shape=f2aacd9e vocab=3b779218
+-/
 theorem integral_exp_sq_norm_le_chi_square_mgf_pmf
     {Ω : Type*} [MeasurableSpace Ω] (p : PMF Ω) {d : ℕ} (X : Ω → Fin d → ℝ)
     (hmgf : ∀ u : Fin d → ℝ, HasSubgaussianMGF (fun ω => X ω ⬝ᵥ u)
@@ -288,7 +308,9 @@ theorem integral_exp_sq_norm_le_chi_square_mgf_pmf
       (1 - 2 * θ) ^ (-((d : ℝ) / 2)) :=
   integral_exp_sq_norm_le_chi_square_mgf p.toMeasure X hmgf hθ0 hθ1
 
-/-- The squared-norm Chernoff bound specializes to a PMF on any sample type.-/
+/-- The squared-norm Chernoff bound specializes to a PMF on any sample type.
+@isnad1 id=le.3h6v.s8.db4f10ba7f43 from=translated src=- shape=4fb41c68 vocab=fb27b6f8
+-/
 theorem measureReal_sq_norm_ge_le_chi_square_mgf_pmf
     {Ω : Type*} [MeasurableSpace Ω] (p : PMF Ω) {d : ℕ} (X : Ω → Fin d → ℝ)
     (hmgf : ∀ u : Fin d → ℝ, HasSubgaussianMGF (fun ω => X ω ⬝ᵥ u)
@@ -298,7 +320,9 @@ theorem measureReal_sq_norm_ge_le_chi_square_mgf_pmf
       Real.exp (-θ * u) * (1 - 2 * θ) ^ (-((d : ℝ) / 2)) :=
   measureReal_sq_norm_ge_le_chi_square_mgf p.toMeasure X hmgf u θ hθ0 hθ1
 
-/-- The optimized squared-norm Chernoff bound specializes to a PMF on any sample type.-/
+/-- The optimized squared-norm Chernoff bound specializes to a PMF on any sample type.
+@isnad1 id=le.2h5v.s8.c6c4453125a4 from=translated src=- shape=4ea98932 vocab=2455b6da
+-/
 theorem measureReal_sq_norm_ge_one_add_mul_le_pmf
     {Ω : Type*} [MeasurableSpace Ω] (p : PMF Ω) {d : ℕ} (X : Ω → Fin d → ℝ)
     (hmgf : ∀ u : Fin d → ℝ, HasSubgaussianMGF (fun ω => X ω ⬝ᵥ u)
@@ -308,7 +332,9 @@ theorem measureReal_sq_norm_ge_one_add_mul_le_pmf
       Real.exp (-((d : ℝ) / 2) * (ε - Real.log (1 + ε))) :=
   measureReal_sq_norm_ge_one_add_mul_le p.toMeasure X hmgf hε
 
-/-- Laurent–Massart's additive upper tail specializes to a PMF on any sample type.-/
+/-- Laurent–Massart's additive upper tail specializes to a PMF on any sample type.
+@isnad1 id=le.2h5v.s8.03e19b562057 from=translated src=- shape=1e318b87 vocab=2210a789
+-/
 theorem measureReal_sq_norm_ge_add_two_sqrt_mul_add_le_pmf
     {Ω : Type*} [MeasurableSpace Ω] (p : PMF Ω) {d : ℕ} (X : Ω → Fin d → ℝ)
     (hmgf : ∀ u : Fin d → ℝ, HasSubgaussianMGF (fun ω => X ω ⬝ᵥ u)

@@ -144,7 +144,9 @@ private theorem integral_exp_mul_le_exp_of_fin_coordinate_oscillation
 
 /-- Bounded-differences MGF bound on a finite product with arbitrary finite coordinate labels
 and heterogeneous spaces: `𝔼 e^{θ f} ≤ exp (θ 𝔼 f + θ² ∑ cᵢ² / 8)` for a bounded measurable `f`
-with coordinate oscillations `cᵢ`. McDiarmid 1989, Lemma 3.3.-/
+with coordinate oscillations `cᵢ`. McDiarmid 1989, Lemma 3.3.
+@isnad1 id=le.4h7v.s8.45e2e819f091 from=translated src=- shape=6f805055 vocab=8f3d3266
+-/
 theorem integral_exp_mul_le_exp_of_coordinate_oscillation
     {ι : Type*} [Fintype ι] [DecidableEq ι] {S : ι → Type*}
     [∀ i, MeasurableSpace (S i)] (μ : ∀ i, Measure (S i))
@@ -176,7 +178,9 @@ bounded coordinate oscillations give the centred MGF proxy `∑ cᵢ²/4`, with 
 integrability hypotheses. All coordinate spaces may differ; no standard-Borel
 assumption is used, and an empty product is included.
 McDiarmid 1989, Lemma 3.3; Boucheron–Lugosi–Massart 2013, Theorem 6.2.
-atlas: mcdiarmid (partial)-/
+atlas: mcdiarmid (partial)
+@isnad1 id=hassubga.3h5v.s7.d441fa002224 from=translated src=- shape=bb19fa0f vocab=e7cca588
+-/
 theorem hasSubgaussianMGF_pi_of_coordinate_oscillation
     {ι : Type*} [Fintype ι] [DecidableEq ι] {S : ι → Type*}
     [∀ i, MeasurableSpace (S i)] (μ : ∀ i, Measure (S i))
@@ -216,7 +220,9 @@ theorem hasSubgaussianMGF_pi_of_coordinate_oscillation
 independent measurable coordinates on an arbitrary probability space.
 The original space and the coordinate spaces need no standard-Borel instances.
 McDiarmid 1989, Theorem 3.1 (transport along the joint law).
-atlas: mcdiarmid (partial)-/
+atlas: mcdiarmid (partial)
+@isnad1 id=hassubga.5h7v.s8.be44bc19dc69 from=translated src=- shape=21c11efe vocab=b32243f7
+-/
 theorem hasSubgaussianMGF_of_independent_coordinate_oscillation
     {Ω ι : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     [Fintype ι] [DecidableEq ι] {S : ι → Type*} [∀ i, MeasurableSpace (S i)]
@@ -247,7 +253,9 @@ def mcdiarmidTail (C t : ℝ) : ℝ :=
   if C = 0 then (if 0 < t then 0 else 1) else Real.exp (-2 * t ^ 2 / C)
 
 /-- A variable with sub-Gaussian proxy `C/4` has the McDiarmid tail `mcdiarmidTail C t`,
-including the zero-proxy branch. McDiarmid 1989, Theorem 3.1 (helper).-/
+including the zero-proxy branch. McDiarmid 1989, Theorem 3.1 (helper).
+@isnad1 id=le.3h5v.s6.0316df126462 from=translated src=- shape=5615b2b3 vocab=513eb516
+-/
 theorem measure_ge_le_mcdiarmidTail
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {Z : Ω → ℝ} {C : ℝ} (hC : 0 ≤ C)
@@ -279,7 +287,9 @@ coordinates and global coordinate bounds give `P(f(X)-E f(X)≥t)≤exp(-2t²/�
 For zero total oscillation and a positive threshold the probability is zero.
 No integrability assumptions are required. McDiarmid 1989, Theorem 3.1;
 Boucheron–Lugosi–Massart 2013, Theorem 6.2.
-atlas: mcdiarmid-/
+atlas: mcdiarmid
+@isnad1 id=le.6h8v.s7.105a8ce5b9cb from=translated src=- shape=9fcb5010 vocab=3507f2a3
+-/
 theorem mcdiarmid_upper_tail
     {Ω ι : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     [Fintype ι] [DecidableEq ι] {S : ι → Type*} [∀ i, MeasurableSpace (S i)]
@@ -295,7 +305,9 @@ theorem mcdiarmid_upper_tail
 /-- **McDiarmid's matching lower tail.** The same explicit tail controls
 `P(E f(X)-f(X)≥t)`, including zero total oscillation. McDiarmid 1989, Theorem 3.1, applied to
 the negative centred variable.
-atlas: mcdiarmid-/
+atlas: mcdiarmid
+@isnad1 id=le.6h8v.s7.43e7cb8a041f from=translated src=- shape=d74086a3 vocab=3507f2a3
+-/
 theorem mcdiarmid_lower_tail
     {Ω ι : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     [Fintype ι] [DecidableEq ι] {S : ι → Type*} [∀ i, MeasurableSpace (S i)]

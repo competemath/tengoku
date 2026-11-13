@@ -26,11 +26,15 @@ def complexPolynomialIntegral (μ : Measure ℝ) (hμ : HasPolynomialMoments μ)
     simp only [eval_smul, smul_eq_mul, RingHom.id_apply]
     exact integral_const_mul c _
 
-/-- The complex moment functional is the actual Bochner integral.-/
+/-- The complex moment functional is the actual Bochner integral.
+@isnad1 id=eq.1h2v.s6.3be78e6c6359 from=translated src=- shape=c9690e36 vocab=e649903f
+-/
 @[simp] theorem complexPolynomialIntegral_apply (μ : Measure ℝ) (hμ : HasPolynomialMoments μ)
     (p : ℂ[X]) : complexPolynomialIntegral μ hμ p = ∫ x : ℝ, p.eval (x : ℂ) ∂μ := rfl
 
-/-- Real polynomial moments are unchanged under scalar extension.-/
+/-- Real polynomial moments are unchanged under scalar extension.
+@isnad1 id=eq.1h2v.s7.101420bb2770 from=translated src=- shape=e164c6ca vocab=56918e27
+-/
 theorem complexPolynomialIntegral_apply_map (μ : Measure ℝ) (hμ : HasPolynomialMoments μ)
     (p : ℝ[X]) :
     complexPolynomialIntegral μ hμ (p.map Complex.ofRealHom) = (polynomialIntegral μ hμ p : ℂ) := by
@@ -39,7 +43,9 @@ theorem complexPolynomialIntegral_apply_map (μ : Measure ℝ) (hμ : HasPolynom
   exact integral_complex_ofReal
 
 /-- The finite complex Hankel system is exactly the scalar extension of the
-real Hankel system, without higher-moment assumptions.-/
+real Hankel system, without higher-moment assumptions.
+@isnad1 id=eq.1h2v.s5.6a22b889810b from=translated src=- shape=94a3da5f vocab=793b1095
+-/
 theorem hankelMomentMatrix_complexPolynomialIntegral (μ : Measure ℝ)
     (hμ : HasPolynomialMoments μ) (n : ℕ) :
     hankelMomentMatrix (complexPolynomialIntegral μ hμ) n =
@@ -49,7 +55,9 @@ theorem hankelMomentMatrix_complexPolynomialIntegral (μ : Measure ℝ)
   simpa only [Polynomial.map_pow, Polynomial.map_X, Matrix.map_apply, hankelMomentMatrix,
     Complex.ofRealHom_eq_coe] using h
 
-/-- The complex Hankel determinant is the real determinant viewed in `ℂ`.-/
+/-- The complex Hankel determinant is the real determinant viewed in `ℂ`.
+@isnad1 id=eq.1h2v.s4.aa43fbb90a54 from=translated src=- shape=c10ed532 vocab=36a7bc9e
+-/
 theorem hankelMomentDet_complexPolynomialIntegral (μ : Measure ℝ)
     (hμ : HasPolynomialMoments μ) (n : ℕ) :
     hankelMomentDet (complexPolynomialIntegral μ hμ) n =
@@ -57,7 +65,9 @@ theorem hankelMomentDet_complexPolynomialIntegral (μ : Measure ℝ)
   rw [hankelMomentDet, hankelMomentMatrix_complexPolynomialIntegral]
   exact (Complex.ofRealHom.map_det (hankelMomentMatrix (polynomialIntegral μ hμ) n)).symm
 
-/-- Complex Hankel nondegeneracy follows from the actual real support count.-/
+/-- Complex Hankel nondegeneracy follows from the actual real support count.
+@isnad1 id=ne.2h2v.s5.ea28efb23370 from=translated src=- shape=fb0d43fd vocab=d85b2751
+-/
 theorem hankelMomentDet_complexPolynomialIntegral_ne_zero {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) {n : ℕ} (hs : (n : ℕ∞) ≤ μ.support.encard) :
     hankelMomentDet (complexPolynomialIntegral μ hμ) n ≠ 0 := by
@@ -65,7 +75,9 @@ theorem hankelMomentDet_complexPolynomialIntegral_ne_zero {μ : Measure ℝ}
   exact Complex.ofReal_ne_zero.mpr (hankelMomentDet_ne_zero_of_le_support_encard μ hμ hs)
 
 /-- Complex scalar extension preserves the canonical finite monic polynomial.
-The nondegeneracy assumption is only at its requested order.-/
+The nondegeneracy assumption is only at its requested order.
+@isnad1 id=eq.2h2v.s5.e455959eaab9 from=translated src=- shape=7954dbe8 vocab=cef2f110
+-/
 theorem monicOrthogonalPolynomial_complexPolynomialIntegral_eq_map
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {n : ℕ}
     (hn : hankelMomentDet (polynomialIntegral μ hμ) n ≠ 0) :

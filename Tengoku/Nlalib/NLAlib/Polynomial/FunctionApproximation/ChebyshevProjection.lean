@@ -21,7 +21,9 @@ open scoped NLAlib.TwoPi
 namespace NLAlib
 
 /-- Chebyshev coefficients depend only on the unit-interval restriction.
-Source: the actual cosine integral; helper for `chebyshev-projection-lebesgue-constant`.-/
+Source: the actual cosine integral; helper for `chebyshev-projection-lebesgue-constant`.
+@isnad1 id=eq.1h3v.s5.fb1508c37b3f from=translated src=- shape=89bc3776 vocab=98cd58b5
+-/
 theorem chebyshevCoeff_congr {f g : ℝ → ℝ} (hfg : EqOn f g (Icc (-1 : ℝ) 1)) (k : ℕ) :
     chebyshevCoeff f k = chebyshevCoeff g k := by
   simp only [chebyshevCoeff_eq_cosine_integral]
@@ -30,7 +32,9 @@ theorem chebyshevCoeff_congr {f g : ℝ → ℝ} (hfg : EqOn f g (Icc (-1 : ℝ)
       (hfg ⟨neg_one_le_cos θ, cos_le_one θ⟩))]
 
 /-- Genuine Chebyshev truncations depend only on the unit-interval restriction.
-Source: the actual coefficient integrals; helper for `chebyshev-projection-lebesgue-constant`.-/
+Source: the actual coefficient integrals; helper for `chebyshev-projection-lebesgue-constant`.
+@isnad1 id=eq.1h3v.s5.b17dc992c4b1 from=translated src=- shape=837cf358 vocab=da801858
+-/
 theorem chebyshevTrunc_congr {f g : ℝ → ℝ} (hfg : EqOn f g (Icc (-1 : ℝ) 1)) (n : ℕ) :
     chebyshevTrunc f n = chebyshevTrunc g n := by
   simp only [chebyshevTrunc, chebyshevCoeff_congr hfg]
@@ -61,7 +65,9 @@ def chebyshevProjectionLinearMap (n : ℕ) :
       toContinuousMapOn_apply, toContinuousMap_apply, mul_assoc, mul_sum, RingHom.id_apply]
 
 /-- The coefficient projection fixes every polynomial of degree at most its cutoff.
-Source: exact finite Chebyshev reconstruction; ATAP, Chapter 15.-/
+Source: exact finite Chebyshev reconstruction; ATAP, Chapter 15.
+@isnad1 id=eq.1h2v.s10.ed44e8d0ccb2 from=translated src=- shape=109fb009 vocab=5f85d3a7
+-/
 theorem chebyshevProjectionLinearMap_eq_self (n : ℕ)
     (p : C(Icc (-1 : ℝ) 1, ℝ)) (hp : p ∈ polynomialApproximationSpace (Icc (-1 : ℝ) 1) n) :
     chebyshevProjectionLinearMap n p = p := by
@@ -75,7 +81,9 @@ theorem chebyshevProjectionLinearMap_eq_self (n : ℕ)
   rw [chebyshevTrunc_congr hcongr, chebyshevTrunc_eval_eq_of_degree_le hq]
 
 /-- The absolute Dirichlet kernel bounds every actual Chebyshev truncation.
-Source: finite convolution; focused rederivations `thm:projection`.-/
+Source: finite convolution; focused rederivations `thm:projection`.
+@isnad1 id=le.3h4v.s7.49131c3befc7 from=translated src=- shape=dc91e7a0 vocab=2258a304
+-/
 theorem abs_eval_chebyshevTrunc_le_dirichletIntegral {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1 : ℝ) 1)) {M : ℝ}
     (hM : ∀ x ∈ Icc (-1 : ℝ) 1, |f x| ≤ M) (n : ℕ) {x : ℝ} (hx : x ∈ Icc (-1 : ℝ) 1) :
@@ -97,7 +105,9 @@ theorem abs_eval_chebyshevTrunc_le_dirichletIntegral {f : ℝ → ℝ}
   · rw [integral_const_mul, mul_comm]
 
 /-- The actual coefficient projection has norm bounded by the absolute Dirichlet integral.
-Source: finite convolution; focused rederivations `thm:projection`.-/
+Source: finite convolution; focused rederivations `thm:projection`.
+@isnad1 id=le.0h2v.s10.f3cc7be906ab from=translated src=- shape=1bfcbd12 vocab=1379cb1b
+-/
 theorem norm_chebyshevProjectionLinearMap_le_dirichletIntegral (n : ℕ)
     (f : C(Icc (-1 : ℝ) 1, ℝ)) :
     ‖chebyshevProjectionLinearMap n f‖ ≤
@@ -121,13 +131,17 @@ def chebyshevProjectionOperator (n : ℕ) :
     (norm_chebyshevProjectionLinearMap_le_dirichletIntegral n)
 
 /-- The bounded Chebyshev projection is the genuine algebraic coefficient projection.
-Source: Trefethen, ATAP, Chapters 3 and 15.-/
+Source: Trefethen, ATAP, Chapters 3 and 15.
+@isnad1 id=eq.0h2v.s11.0d86db49bf6f from=translated src=- shape=5af60ae0 vocab=c167e808
+-/
 @[simp] theorem chebyshevProjectionOperator_apply (n : ℕ) (f : C(Icc (-1 : ℝ) 1, ℝ)) :
     chebyshevProjectionOperator n f = chebyshevProjectionLinearMap n f := rfl
 
 /-- A continuous smoothed sign has magnitude at most one and its product
 approximates absolute value to within the smoothing parameter.
-Source: the extremizing kernel test; focused rederivations `thm:projection`.-/
+Source: the extremizing kernel test; focused rederivations `thm:projection`.
+@isnad1 id=and.1h2v.s7.2e6496c49248 from=translated src=- shape=d9ea4e5a vocab=2352b025
+-/
 theorem abs_sub_mul_smoothedSign_le (u ε : ℝ) (hε : 0 < ε) :
     |u / sqrt (u ^ 2 + ε ^ 2)| ≤ 1 ∧
       |u| ≤ u * (u / sqrt (u ^ 2 + ε ^ 2)) + ε := by
@@ -151,7 +165,9 @@ theorem abs_sub_mul_smoothedSign_le (u ε : ℝ) (hε : 0 < ε) :
 
 /-- The norm of actual Chebyshev projection equals the normalized absolute
 Dirichlet integral. Continuous smoothed signs attain its norm in the limit.
-Source: Trefethen, ATAP, Chapter 15; focused rederivations `thm:projection`.-/
+Source: Trefethen, ATAP, Chapter 15; focused rederivations `thm:projection`.
+@isnad1 id=eq.0h1v.s10.bd8dceb7d341 from=translated src=- shape=d2205e98 vocab=8a43c379
+-/
 theorem norm_chebyshevProjectionOperator_eq_dirichletIntegral (n : ℕ) :
     ‖chebyshevProjectionOperator n‖ =
       ∫ t : AddCircle (2 * π), |dirichletCircleKernel n t| ∂AddCircle.haarAddCircle := by
@@ -219,7 +235,9 @@ theorem norm_chebyshevProjectionOperator_eq_dirichletIntegral (n : ℕ) :
     linarith
 
 /-- Projection onto constants has norm exactly one.
-Source: normalized constant coefficient; focused rederivations `thm:projection`.-/
+Source: normalized constant coefficient; focused rederivations `thm:projection`.
+@isnad1 id=eq.0h0v.s9.5f662a747e64 from=translated src=- shape=1a849fc1 vocab=09f59b28
+-/
 @[simp] theorem norm_chebyshevProjectionOperator_zero :
     ‖chebyshevProjectionOperator 0‖ = 1 := by
   rw [norm_chebyshevProjectionOperator_eq_dirichletIntegral]
@@ -227,7 +245,9 @@ Source: normalized constant coefficient; focused rederivations `thm:projection`.
 
 /-- The exact Chebyshev projection norm is the standard symmetric-period
 Dirichlet integral.
-Source: Trefethen, ATAP, Chapter 15; focused rederivations `thm:projection`.-/
+Source: Trefethen, ATAP, Chapter 15; focused rederivations `thm:projection`.
+@isnad1 id=eq.0h1v.s10.267f624e2d4c from=translated src=- shape=aa687dab vocab=176b4b39
+-/
 theorem norm_chebyshevProjectionOperator_eq_intervalIntegral (n : ℕ) :
     ‖chebyshevProjectionOperator n‖ = (1 / (2 * π)) *
       ∫ t in -π..π, |dirichletCircleKernel n (t : AddCircle (2 * π))| := by
@@ -240,7 +260,9 @@ theorem norm_chebyshevProjectionOperator_eq_intervalIntegral (n : ℕ) :
 /-- Chebyshev projection has the matching harmonic lower bound, so its
 logarithmic coefficient `4/π²` is sharp.
 Source: complete-period Dirichlet estimates; focused rederivations `thm:projection`.
-atlas: chebyshev-projection-lebesgue-constant (partial)-/
+atlas: chebyshev-projection-lebesgue-constant (partial)
+@isnad1 id=le.0h1v.s9.9f36c8fb0eb1 from=translated src=- shape=91b56bba vocab=01e22881
+-/
 theorem harmonic_le_norm_chebyshevProjectionOperator (n : ℕ) :
     (4 / π ^ 2) * (harmonic n : ℝ) ≤ ‖chebyshevProjectionOperator n‖ := by
   rw [norm_chebyshevProjectionOperator_eq_dirichletIntegral]
@@ -248,7 +270,9 @@ theorem harmonic_le_norm_chebyshevProjectionOperator (n : ℕ) :
 
 /-- Chebyshev projection has the sharp logarithmic norm coefficient `4/π²`.
 Source: Trefethen, ATAP, Chapter 15; focused rederivations `thm:projection`.
-atlas: chebyshev-projection-lebesgue-constant (partial)-/
+atlas: chebyshev-projection-lebesgue-constant (partial)
+@isnad1 id=le.0h1v.s10.5ca9ae8c87eb from=translated src=- shape=3b77b5c6 vocab=a3144e27
+-/
 theorem norm_chebyshevProjectionOperator_le_log (n : ℕ) :
     ‖chebyshevProjectionOperator n‖ ≤ 3 + (4 / π ^ 2) * log (n + 1 : ℕ) := by
   apply le_trans _ (integral_abs_dirichletCircleKernel_le_log n)
@@ -257,7 +281,9 @@ theorem norm_chebyshevProjectionOperator_le_log (n : ℕ) :
 
 /-- Genuine Chebyshev truncation is near-best with the sharp logarithmic coefficient.
 Source: Trefethen, ATAP, Theorem 15.1; focused rederivations operator consequences.
-atlas: chebyshev-projection-lebesgue-constant-/
+atlas: chebyshev-projection-lebesgue-constant
+@isnad1 id=le.0h2v.s10.803b146400a0 from=translated src=- shape=7c4e4b96 vocab=6c689ffa
+-/
 theorem norm_sub_chebyshevProjection_le_minimaxError (n : ℕ) (f : C(Icc (-1 : ℝ) 1, ℝ)) :
     ‖f - chebyshevProjectionOperator n f‖ ≤
       (4 + (4 / π ^ 2) * log (n + 1 : ℕ)) * minimaxError n f := by

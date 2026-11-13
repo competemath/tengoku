@@ -24,7 +24,9 @@ namespace NLAlib
 
 /-- Every polynomial numerator within the exact rational tangent degree has a direction
 within the original type budgets. The zero function has degree parameter `m`.
-Source: focused rederivations, Lemma `lem:rank`.-/
+Source: focused rederivations, Lemma `lem:rank`.
+@isnad1 id=ex.2h5v.s7.d8321b4d6a40 from=translated src=- shape=fef47ce7 vocab=6311e046
+-/
 theorem exists_rational_direction {s : Set ℝ} {m n : ℕ} (r : RatFunc ℝ)
     (hr : IsPoleFreeRationalApproximation s m n r) {H : ℝ[X]}
     (hH : H.degree ≤ rationalAlternationDegree m n r) :
@@ -38,7 +40,9 @@ theorem exists_rational_direction {s : Set ℝ} {m n : ℕ} (r : RatFunc ℝ)
 
 /-- A best rational approximant with positive error has the full defect-adjusted number
 of alternating extrema. Source: ATAP, Theorem 24.1; focused rederivations, Lemmas
-`lem:rank`, `lem:signs`, and `lem:descent`.-/
+`lem:rank`, `lem:signs`, and `lem:descent`.
+@isnad1 id=ex.4h6v.s10.3238cc3f4952 from=translated src=- shape=b8e71d04 vocab=0384516a
+-/
 theorem exists_alternating_extrema_of_norm_sub_eq_rationalMinimaxError {a b : ℝ}
     (hab : a < b) {m n : ℕ} (f : C(Icc a b, ℝ)) (r : RatFunc ℝ)
     (hr : IsPoleFreeRationalApproximation (Icc a b) m n r)
@@ -128,7 +132,9 @@ theorem exists_alternating_extrema_of_norm_sub_eq_rationalMinimaxError {a b : �
 /-- Every best real rational approximant has the exact defect-adjusted equioscillation
 certificate, including the zero function and zero error. Source: ATAP, Theorem 24.1;
 focused rederivations, Theorem `thm:rational`.
-atlas: rational-equioscillation (partial)-/
+atlas: rational-equioscillation (partial)
+@isnad1 id=ex.3h6v.s10.e8dec888dd19 from=translated src=- shape=22f42982 vocab=249f9f3e
+-/
 theorem exists_equioscillation_of_norm_sub_eq_rationalMinimaxError {a b : ℝ}
     (hab : a < b) {m n : ℕ} (f : C(Icc a b, ℝ)) (r : RatFunc ℝ)
     (hr : IsPoleFreeRationalApproximation (Icc a b) m n r)
@@ -157,7 +163,9 @@ theorem exists_equioscillation_of_norm_sub_eq_rationalMinimaxError {a b : ℝ}
 
 /-- An exact defect-adjusted rational equioscillation certificate implies optimality.
 Source: ATAP, Theorem 24.1; focused rederivations, Theorem `thm:rational`.
-atlas: rational-equioscillation (partial)-/
+atlas: rational-equioscillation (partial)
+@isnad1 id=eq.5h8v.s9.4119025fb745 from=translated src=- shape=8d9342f8 vocab=249f9f3e
+-/
 theorem norm_sub_eq_rationalMinimaxError_of_equioscillation {a b : ℝ}
     (hab : a < b) {m n : ℕ} (f : C(Icc a b, ℝ)) (r : RatFunc ℝ)
     (hr : IsPoleFreeRationalApproximation (Icc a b) m n r)
@@ -193,7 +201,9 @@ theorem norm_sub_eq_rationalMinimaxError_of_equioscillation {a b : ℝ}
 /-- A pole-free real rational function is best exactly when it equioscillates at the
 defect-adjusted number of ordered points. The zero function has `m+2` points.
 Source: ATAP, Theorem 24.1; focused rederivations, Theorem `thm:rational`.
-atlas: rational-equioscillation-/
+atlas: rational-equioscillation
+@isnad1 id=iff.2h6v.s10.ab31a6c90b12 from=translated src=- shape=f1691f4f vocab=249f9f3e
+-/
 theorem norm_sub_eq_rationalMinimaxError_iff_equioscillation {a b : ℝ}
     (hab : a < b) {m n : ℕ} (f : C(Icc a b, ℝ)) (r : RatFunc ℝ)
     (hr : IsPoleFreeRationalApproximation (Icc a b) m n r) :

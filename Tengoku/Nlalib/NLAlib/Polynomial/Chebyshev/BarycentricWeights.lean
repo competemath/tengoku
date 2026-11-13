@@ -29,7 +29,9 @@ private theorem eval_U_node_succ_eq_zero {k j : ℕ} (hj0 : 0 < j) (hj : j < k +
 /-- The monic endpoint-grid node polynomial is the scaled `(X²−1)U_{n−1}`.
 Source: Trefethen, ATAP, Exercise 4.1; equivalent form of the node-polynomial
 identity in `chebyshev-barycentric-weights`.
-atlas: chebyshev-barycentric-weights (partial)-/
+atlas: chebyshev-barycentric-weights (partial)
+@isnad1 id=eq.0h1v.s8.f509c9718e17 from=translated src=- shape=ee74658f vocab=452ba3d9
+-/
 theorem nodal_node_succ (k : ℕ) :
     Lagrange.nodal (range (k + 2)) (node (k + 1)) =
       C (1 / 2 ^ k : ℝ) * ((X ^ 2 - 1) * U ℝ k) := by
@@ -100,7 +102,9 @@ private theorem eval_derivative_nodal_node_succ (k j : ℕ) (hj : j ∈ range (k
 /-- The endpoint-grid barycentric weights are `2^(n−1)/n` times alternating signs,
 with the first and last weights halved. Source: Trefethen, ATAP, Theorem 5.2
 (Salzer's formula). The grid has `n=k+1≥1`, so its denominator is nonzero.
-atlas: chebyshev-barycentric-weights-/
+atlas: chebyshev-barycentric-weights
+@isnad1 id=eq.1h2v.s7.f5178385eb37 from=translated src=- shape=e7850423 vocab=61ab3c47
+-/
 theorem nodalWeight_node_succ (k j : ℕ) (hj : j ∈ range (k + 2)) :
     Lagrange.nodalWeight (range (k + 2)) (node (k + 1)) j =
       (2 ^ k / (k + 1) : ℝ) * (-1) ^ j * (if j = 0 ∨ j = k + 1 then 1 / 2 else 1) := by
@@ -112,7 +116,9 @@ theorem nodalWeight_node_succ (k j : ℕ) (hj : j ∈ range (k + 2)) :
 
 /-- The endpoint-grid nodal polynomial is `2^(-n)(T_{n+1}−T_{n−1})`.
 Source: Trefethen, ATAP, Exercise 4.1. The degree-one case is included with `n=k+1`.
-atlas: chebyshev-barycentric-weights-/
+atlas: chebyshev-barycentric-weights
+@isnad1 id=eq.0h1v.s7.683d92700cbd from=translated src=- shape=37d12f6e vocab=7ccd5757
+-/
 theorem nodal_node_succ_eq_sub_T (k : ℕ) :
     Lagrange.nodal (range (k + 2)) (node (k + 1)) =
       C (1 / 2 ^ (k + 1) : ℝ) * (T ℝ ((k : ℤ) + 2) - T ℝ k) := by
@@ -131,7 +137,9 @@ theorem nodal_node_succ_eq_sub_T (k : ℕ) :
 /-- The Chebyshev endpoint-grid interpolant has the barycentric formula with
 alternating endpoint-halved weights. Source: Trefethen, ATAP, Theorem 5.2.
 At grid nodes the interpolant is instead evaluated by its interpolation property.
-atlas: chebyshev-barycentric-weights-/
+atlas: chebyshev-barycentric-weights
+@isnad1 id=eq.1h3v.s9.17788642a66c from=translated src=- shape=d1967351 vocab=2966a0c5
+-/
 theorem eval_interpolate_node_succ_eq_barycentric (k : ℕ) (f : ℕ → ℝ) {x : ℝ}
     (hx : ∀ j ∈ range (k + 2), x ≠ node (k + 1) j) :
     (Lagrange.interpolate (range (k + 2)) (node (k + 1)) f).eval x =

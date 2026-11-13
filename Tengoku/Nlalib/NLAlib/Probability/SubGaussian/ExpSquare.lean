@@ -29,7 +29,9 @@ namespace NLAlib
 variable {Ω : Type*} [MeasurableSpace Ω]
 
 /-- The Taylor integrals `𝔼 θᵐ X^{2m} / m!` of `𝔼 e^{θ X²}` are summable for
-`0 ≤ θ` and `θ (c + 1) e < 1`. Atlas `hanson-wright` (helper).-/
+`0 ≤ θ` and `θ (c + 1) e < 1`. Atlas `hanson-wright` (helper).
+@isnad1 id=summable.3h5v.s7.033b67e95b05 from=translated src=- shape=615c2b98 vocab=445a3daf
+-/
 theorem summable_integral_exp_sq_series_of_hasSubgaussianMGF {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ : ℝ} (hθ : 0 ≤ θ)
@@ -53,7 +55,9 @@ theorem summable_integral_exp_sq_series_of_hasSubgaussianMGF {μ : Measure Ω}
     simpa only [hr_def] using integral_exp_sq_series_term_le_of_hasSubgaussianMGF h hθ m
 
 /-- The Taylor integrals `𝔼 θᵐ X^{2m} / m!` of `𝔼 e^{θ X²}` are summable for
-`0 ≤ θ` and `θ C₀ e < 1`, where `C₀ ≥ c` is a positive proxy. Atlas `hanson-wright` (helper).-/
+`0 ≤ θ` and `θ C₀ e < 1`, where `C₀ ≥ c` is a positive proxy. Atlas `hanson-wright` (helper).
+@isnad1 id=summable.5h6v.s7.3fe7dd348fb4 from=translated src=- shape=98b74c0e vocab=97bd1791
+-/
 theorem summable_integral_exp_sq_series_of_hasSubgaussianMGF_of_le {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ C0 : ℝ} (hθ : 0 ≤ θ)
@@ -79,7 +83,9 @@ theorem summable_integral_exp_sq_series_of_hasSubgaussianMGF_of_le {μ : Measure
       integral_exp_sq_series_term_le_of_hasSubgaussianMGF_of_le h hθ hC0 hc_le m
 
 /-- Integral form of the Taylor expansion: `𝔼 e^{θ X²} = ∑ₘ 𝔼 θᵐ X^{2m} / m!` whenever the
-right side is summable. Atlas `hanson-wright` (helper).-/
+right side is summable. Atlas `hanson-wright` (helper).
+@isnad1 id=eq.3h5v.s8.febd61bdda25 from=translated src=- shape=aaf2ccb7 vocab=3e17eaf2
+-/
 theorem integral_exp_mul_sq_eq_tsum_integrals {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ : ℝ} (hθ : 0 ≤ θ)
@@ -122,7 +128,9 @@ theorem integral_exp_mul_sq_eq_tsum_integrals {μ : Measure Ω}
 
 /-- Exponential-square bound: if `X` is sub-Gaussian with proxy `c ≤ C₀` and
 `θ C₀ e < 1`, then `𝔼 e^{θ X²} ≤ e (1 - θ C₀ e)⁻¹`. Vershynin 2018, Prop 2.5.2 (iii);
-atlas `hanson-wright` (helper).-/
+atlas `hanson-wright` (helper).
+@isnad1 id=le.5h6v.s7.46cd796039fb from=translated src=- shape=0948afc5 vocab=45402c9d
+-/
 theorem integral_exp_mul_sq_le_of_hasSubgaussianMGF {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ C0 : ℝ} (hθ : 0 ≤ θ)
@@ -150,7 +158,9 @@ theorem integral_exp_mul_sq_le_of_hasSubgaussianMGF {μ : Measure Ω}
     _ = exp 1 * (1 - θ * C0 * exp 1)⁻¹ := by rw [hr_def]
 
 /-- Sharper exponential-square bound isolating the zeroth Taylor term:
-`𝔼 e^{θ X²} ≤ 1 + e · r (1 - r)⁻¹` with `r = θ C₀ e < 1`. Atlas `hanson-wright` (helper).-/
+`𝔼 e^{θ X²} ≤ 1 + e · r (1 - r)⁻¹` with `r = θ C₀ e < 1`. Atlas `hanson-wright` (helper).
+@isnad1 id=le.5h6v.s7.aa11acd3da69 from=translated src=- shape=b5e225cb vocab=c1d1585c
+-/
 theorem integral_exp_mul_sq_le_one_add_tail_of_hasSubgaussianMGF_of_le {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ C0 : ℝ} (hθ : 0 ≤ θ)
@@ -211,7 +221,9 @@ theorem integral_exp_mul_sq_le_one_add_tail_of_hasSubgaussianMGF_of_le {μ : Mea
 
 /-- Exponential-square bound isolating the zeroth and first Taylor terms:
 `𝔼 e^{θ X²} ≤ 1 + θ 𝔼 X² + e · r² (1 - r)⁻¹` with `r = θ C₀ e < 1`. Atlas `hanson-wright`
-(helper).-/
+(helper).
+@isnad1 id=le.5h6v.s8.7ea3ead6ce30 from=translated src=- shape=7c7993f0 vocab=c1d1585c
+-/
 theorem integral_exp_mul_sq_le_one_add_linear_add_tail_of_hasSubgaussianMGF_of_le
     {μ : Measure Ω} [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ C0 : ℝ} (hθ : 0 ≤ θ)
@@ -285,7 +297,9 @@ theorem integral_exp_mul_sq_le_one_add_linear_add_tail_of_hasSubgaussianMGF_of_l
         ring]
 
 /-- Linear-in-`θ` exponential-square bound at half the radius: `𝔼 e^{θ X²} ≤ e^{2e r}` with
-`r = θ C₀ e ≤ 1/2`. Atlas `hanson-wright` (helper).-/
+`r = θ C₀ e ≤ 1/2`. Atlas `hanson-wright` (helper).
+@isnad1 id=le.5h6v.s7.cdb6a9a24ced from=translated src=- shape=6e0488a7 vocab=2a72b7fe
+-/
 theorem integral_exp_mul_sq_le_exp_linear_of_hasSubgaussianMGF_of_le {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ C0 : ℝ} (hθ : 0 ≤ θ)
@@ -323,7 +337,9 @@ theorem integral_exp_mul_sq_le_exp_linear_of_hasSubgaussianMGF_of_le {μ : Measu
 /-! ### Integrability -/
 
 /-- `e^{θ X²}` is integrable as soon as its Taylor integrals `𝔼 θᵐ X^{2m} / m!` are summable
-(`θ ≥ 0`). Atlas `hanson-wright` (helper).-/
+(`θ ≥ 0`). Atlas `hanson-wright` (helper).
+@isnad1 id=integrab.3h5v.s7.b2e09f691a6c from=translated src=- shape=8dcf2990 vocab=7300c4da
+-/
 theorem integrable_exp_mul_sq_of_summable_integrals {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ : ℝ} (hθ : 0 ≤ θ)
@@ -395,7 +411,9 @@ theorem integrable_exp_mul_sq_of_summable_integrals {μ : Measure Ω}
     (ae_of_all _ fun ω => (exp_pos _).le)).mp h_exp_lintegral_ne_top
 
 /-- `e^{θ X²}` is integrable for a sub-Gaussian `X` when `0 ≤ θ` and `θ (c + 1) e < 1`.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=integrab.3h5v.s7.35d40bb8fcb5 from=translated src=- shape=30ca9a4f vocab=fa315e22
+-/
 theorem integrable_exp_mul_sq_of_hasSubgaussianMGF {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ : ℝ} (hθ : 0 ≤ θ)
@@ -405,7 +423,9 @@ theorem integrable_exp_mul_sq_of_hasSubgaussianMGF {μ : Measure Ω}
     (summable_integral_exp_sq_series_of_hasSubgaussianMGF h hθ hθ_small)
 
 /-- `e^{θ X²}` is integrable for a sub-Gaussian `X` when `0 ≤ θ` and `θ C₀ e < 1` for a positive
-proxy `C₀ ≥ c`. Atlas `hanson-wright` (helper).-/
+proxy `C₀ ≥ c`. Atlas `hanson-wright` (helper).
+@isnad1 id=integrab.5h6v.s7.db5fc1384a5f from=translated src=- shape=54fc0c54 vocab=66b291e3
+-/
 theorem integrable_exp_mul_sq_of_hasSubgaussianMGF_of_le {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ C0 : ℝ} (hθ : 0 ≤ θ)

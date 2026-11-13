@@ -55,7 +55,9 @@ private theorem jacobi_expansion_forms (L : ℝ[X] →ₗ[ℝ] ℝ) {N : ℕ}
 /-- The actual measure Jacobi matrix lies between support interval endpoints in
 matrix order, including finite-support termination.
 Source: focused mathematical reroutes, Section 3 (BL2).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=other.3h4v.s8.4948c233d84b from=translated src=- shape=1ee59ceb vocab=e264339f
+-/
 theorem orthogonalPolynomialJacobiMatrix_endpoint_shifts_posSemidef {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) {a c : ℝ} (hμac : ∀ᵐ x ∂μ, x ∈ Icc a c)
     (N : ℕ) (hs : (N : ℕ∞) ≤ μ.support.encard) :
@@ -104,7 +106,9 @@ theorem orthogonalPolynomialJacobiMatrix_endpoint_shifts_posSemidef {μ : Measur
 /-- One extra original support point makes both actual Jacobi endpoint shifts positive
 definite. This is the clean sufficient nondegeneracy for Radau/Lobatto Schur inverses.
 Source: focused mathematical reroutes, Section 3 (BL4), (BL7).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=other.3h4v.s8.c6c7f571f176 from=translated src=- shape=e851a3e9 vocab=ad488ada
+-/
 theorem orthogonalPolynomialJacobiMatrix_endpoint_shifts_posDef {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) {a c : ℝ} (hμac : ∀ᵐ x ∂μ, x ∈ Icc a c)
     (N : ℕ) (hs : (N + 1 : ℕ∞) ≤ μ.support.encard) :

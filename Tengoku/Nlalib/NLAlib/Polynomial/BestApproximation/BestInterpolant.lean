@@ -21,7 +21,9 @@ namespace NLAlib
 /-- Every best degree-`n` uniform polynomial approximant interpolates the target at `n+1`
 distinct interior points. Source: Trefethen, ATAP, Exercise 10.12. Generalized from
 `[-1,1]` to every nondegenerate real interval; the zero-error case is included.
-atlas: best-approximant-interpolates-/
+atlas: best-approximant-interpolates
+@isnad1 id=ex.3h5v.s10.b708e091e418 from=translated src=- shape=b504db01 vocab=8cce7b2f
+-/
 theorem exists_interpolate_eq_of_norm_sub_eq_minimaxError {n : ℕ} {a b : ℝ}
     (hab : a < b) (f : C(Icc a b, ℝ)) {p : ℝ[X]} (hp : p.degree ≤ n)
     (hbest : ‖f - p.toContinuousMapOn (Icc a b)‖ = minimaxError n f) :

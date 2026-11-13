@@ -50,7 +50,9 @@ private theorem natDegree_hermiteInterpolate_le {q : ℕ} {v : Fin q → ℝ}
     subst q
     simp [hermiteInterpolate]
 
-/-- The one-endpoint corrected interpolant has degree below `2q+1`, including `q=0`.-/
+/-- The one-endpoint corrected interpolant has degree below `2q+1`, including `q=0`.
+@isnad1 id=lt.1h6v.s6.6319a87d1ff6 from=translated src=- shape=415b0d01 vocab=7dceae7d
+-/
 theorem degree_hermiteEndpointInterpolate_lt {q : ℕ} (a ya : ℝ) {v : Fin q → ℝ}
     (hv : Function.Injective v) (y d : Fin q → ℝ) :
     (hermiteEndpointInterpolate a ya v y d).degree < (2 * q + 1 : ℕ) := by
@@ -62,7 +64,9 @@ theorem degree_hermiteEndpointInterpolate_lt {q : ℕ} (a ya : ℝ) {v : Fin q �
     simp [natDegree_pow, natDegree_nodal, mul_comm]
   exact degree_le_natDegree.trans_lt (by exact_mod_cast (Nat.lt_succ_of_le hd))
 
-/-- The two-endpoint corrected interpolant has degree below `2q+2`, including `q=0`.-/
+/-- The two-endpoint corrected interpolant has degree below `2q+2`, including `q=0`.
+@isnad1 id=lt.1h8v.s6.a076f387ee3f from=translated src=- shape=e2cd599b vocab=cdb13417
+-/
 theorem degree_hermiteTwoEndpointInterpolate_lt {q : ℕ} (a b ya yb : ℝ) {v : Fin q → ℝ}
     (hv : Function.Injective v) (y d : Fin q → ℝ) :
     (hermiteTwoEndpointInterpolate a b ya yb v y d).degree < (2 * q + 2 : ℕ) := by
@@ -81,7 +85,9 @@ theorem degree_hermiteTwoEndpointInterpolate_lt {q : ℕ} (a b ya yb : ℝ) {v :
       omega
   exact degree_le_natDegree.trans_lt (by exact_mod_cast (Nat.lt_succ_of_le hd))
 
-/-- The one-endpoint correction retains the interior function values.-/
+/-- The one-endpoint correction retains the interior function values.
+@isnad1 id=eq.1h7v.s5.dc453a6e7c95 from=translated src=- shape=3b63435e vocab=ef9033d8
+-/
 theorem eval_hermiteEndpointInterpolate_at_node {q : ℕ} (a ya : ℝ) {v : Fin q → ℝ}
     (hv : Function.Injective v) (y d : Fin q → ℝ) (i : Fin q) :
     (hermiteEndpointInterpolate a ya v y d).eval (v i) = y i := by
@@ -89,7 +95,9 @@ theorem eval_hermiteEndpointInterpolate_at_node {q : ℕ} (a ya : ℝ) {v : Fin 
     eval_nodal_at_node (mem_univ i), eval_hermiteInterpolate_at_node hv.injOn y d (mem_univ i)]
   ring
 
-/-- The one-endpoint correction retains the interior first derivatives.-/
+/-- The one-endpoint correction retains the interior first derivatives.
+@isnad1 id=eq.1h7v.s7.ec3d173c6af5 from=translated src=- shape=9bcd8ab3 vocab=b44424a0
+-/
 theorem eval_derivative_hermiteEndpointInterpolate_at_node {q : ℕ} (a ya : ℝ)
     {v : Fin q → ℝ} (hv : Function.Injective v) (y d : Fin q → ℝ) (i : Fin q) :
     (hermiteEndpointInterpolate a ya v y d).derivative.eval (v i) = d i := by
@@ -97,7 +105,9 @@ theorem eval_derivative_hermiteEndpointInterpolate_at_node {q : ℕ} (a ya : ℝ
     eval_nodal_at_node (mem_univ i),
     eval_derivative_hermiteInterpolate_at_node hv.injOn y d (mem_univ i)]
 
-/-- The one-endpoint correction matches its prescribed endpoint value.-/
+/-- The one-endpoint correction matches its prescribed endpoint value.
+@isnad1 id=eq.1h6v.s5.d77ccf4bd682 from=translated src=- shape=3fee2199 vocab=8c4abce0
+-/
 theorem eval_hermiteEndpointInterpolate_endpoint {q : ℕ} (a ya : ℝ) (v y d : Fin q → ℝ)
     (ha : ∀ i, a ≠ v i) : (hermiteEndpointInterpolate a ya v y d).eval a = ya := by
   have hπ := nodal_eval_ne_zero_of_forall_ne v ha
@@ -105,14 +115,18 @@ theorem eval_hermiteEndpointInterpolate_endpoint {q : ℕ} (a ya : ℝ) (v y d :
   field_simp
   ring
 
-/-- The two-endpoint correction retains the interior function values.-/
+/-- The two-endpoint correction retains the interior function values.
+@isnad1 id=eq.1h9v.s5.df365827842a from=translated src=- shape=7b608c47 vocab=9ea26af0
+-/
 theorem eval_hermiteTwoEndpointInterpolate_at_node {q : ℕ} (a b ya yb : ℝ)
     {v : Fin q → ℝ} (hv : Function.Injective v) (y d : Fin q → ℝ) (i : Fin q) :
     (hermiteTwoEndpointInterpolate a b ya yb v y d).eval (v i) = y i := by
   simp [hermiteTwoEndpointInterpolate, eval_nodal_at_node (mem_univ i),
     eval_hermiteInterpolate_at_node hv.injOn y d (mem_univ i)]
 
-/-- The two-endpoint correction retains the interior first derivatives.-/
+/-- The two-endpoint correction retains the interior first derivatives.
+@isnad1 id=eq.1h9v.s7.297cd45ad961 from=translated src=- shape=1809a052 vocab=42f87012
+-/
 theorem eval_derivative_hermiteTwoEndpointInterpolate_at_node {q : ℕ} (a b ya yb : ℝ)
     {v : Fin q → ℝ} (hv : Function.Injective v) (y d : Fin q → ℝ) (i : Fin q) :
     (hermiteTwoEndpointInterpolate a b ya yb v y d).derivative.eval (v i) = d i := by
@@ -120,7 +134,9 @@ theorem eval_derivative_hermiteTwoEndpointInterpolate_at_node {q : ℕ} (a b ya 
     derivative_pow, eval_nodal_at_node (mem_univ i),
     eval_derivative_hermiteInterpolate_at_node hv.injOn y d (mem_univ i)]
 
-/-- The two-endpoint correction matches its left prescribed value.-/
+/-- The two-endpoint correction matches its left prescribed value.
+@isnad1 id=eq.1h8v.s5.b7b2ef0db9a1 from=translated src=- shape=36875158 vocab=dc8cea8b
+-/
 theorem eval_hermiteTwoEndpointInterpolate_left {q : ℕ} (a b ya yb : ℝ)
     (v y d : Fin q → ℝ) (ha : ∀ i, a ≠ v i) :
     (hermiteTwoEndpointInterpolate a b ya yb v y d).eval a = ya := by
@@ -130,7 +146,9 @@ theorem eval_hermiteTwoEndpointInterpolate_left {q : ℕ} (a b ya yb : ℝ)
   field_simp
   ring
 
-/-- The two-endpoint correction matches its right prescribed value.-/
+/-- The two-endpoint correction matches its right prescribed value.
+@isnad1 id=eq.3h8v.s6.b1a66244d63b from=translated src=- shape=c796f670 vocab=dc8cea8b
+-/
 theorem eval_hermiteTwoEndpointInterpolate_right {q : ℕ} (a b ya yb : ℝ)
     (v y d : Fin q → ℝ) (hab : a ≠ b) (ha : ∀ i, a ≠ v i) (hb : ∀ i, b ≠ v i) :
     (hermiteTwoEndpointInterpolate a b ya yb v y d).eval b = yb := by

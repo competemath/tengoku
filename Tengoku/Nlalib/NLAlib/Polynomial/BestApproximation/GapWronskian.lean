@@ -101,7 +101,9 @@ private theorem gap_pair_cross_coefficient_pos {n : ℕ} {t : Fin n → ℝ}
 
 /-- The actual gap polynomials have the strict pairwise Wronskian sign at every real point.
 Source: focused rederivations, `polyretry:wronskian-sos`, via a finite nodal square certificate.
-atlas: lebesgue-constant-lower-bound (partial)-/
+atlas: lebesgue-constant-lower-bound (partial)
+@isnad1 id=lt.2h5v.s8.620bc18ebcbd from=translated src=- shape=e7976651 vocab=98f26cad
+-/
 theorem interpolationGapPolynomial_wronskian_sign {n : ℕ} {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (i j : Fin (n + 1)) (hij : i < j) (x : ℝ) :
     0 < (-1 : ℝ) ^ (j.val - i.val) *

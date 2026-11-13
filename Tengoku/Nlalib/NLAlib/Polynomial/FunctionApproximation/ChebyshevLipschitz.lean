@@ -23,7 +23,9 @@ namespace NLAlib
 Source: Trefethen, ATAP, Theorem 3.1(b). The proof uses the already proved sharp Jackson
 polynomial approximation and finite Parseval/Cauchy--Schwarz on dyadic blocks, rather
 than differentiating the Lipschitz function.
-atlas: chebyshev-series-convergence (partial)-/
+atlas: chebyshev-series-convergence (partial)
+@isnad1 id=summable.1h2v.s5.d82f44c599f9 from=translated src=- shape=e767190f vocab=ca39c309
+-/
 theorem summable_abs_chebyshevCoeff_of_lipschitzOnWith {f : ℝ → ℝ} {L : NNReal}
     (hf : LipschitzOnWith L f (Icc (-1 : ℝ) 1)) :
     Summable (fun k => |chebyshevCoeff f k|) := by
@@ -92,7 +94,9 @@ theorem summable_abs_chebyshevCoeff_of_lipschitzOnWith {f : ℝ → ℝ} {L : NN
 
 /-- Lipschitz functions have their genuine Chebyshev expansion at every point of `[-1,1]`.
 Source: Trefethen, ATAP, Theorem 3.1.
-atlas: chebyshev-series-convergence (partial)-/
+atlas: chebyshev-series-convergence (partial)
+@isnad1 id=hassum.2h3v.s6.058adb9a9317 from=translated src=- shape=6a034d4d vocab=8870ddac
+-/
 theorem hasSum_chebyshevCoeff_mul_eval_T_of_lipschitzOnWith {f : ℝ → ℝ} {L : NNReal}
     (hf : LipschitzOnWith L f (Icc (-1 : ℝ) 1)) {x : ℝ} (hx : x ∈ Icc (-1 : ℝ) 1) :
     HasSum (fun k => chebyshevCoeff f k * (T ℝ (k : ℤ)).eval x) (f x) :=
@@ -100,7 +104,9 @@ theorem hasSum_chebyshevCoeff_mul_eval_T_of_lipschitzOnWith {f : ℝ → ℝ} {L
 
 /-- The genuine Chebyshev truncations of any Lipschitz interval function converge uniformly.
 Source: Trefethen, ATAP, Theorem 3.1.
-atlas: chebyshev-series-convergence-/
+atlas: chebyshev-series-convergence
+@isnad1 id=tendstou.1h2v.s6.c45e32cdff5d from=translated src=- shape=5039f756 vocab=2dedc6b5
+-/
 theorem tendstoUniformlyOn_chebyshevTrunc_of_lipschitzOnWith {f : ℝ → ℝ} {L : NNReal}
     (hf : LipschitzOnWith L f (Icc (-1 : ℝ) 1)) :
     TendstoUniformlyOn (fun n x => (chebyshevTrunc f n).eval x) f atTop (Icc (-1 : ℝ) 1) :=

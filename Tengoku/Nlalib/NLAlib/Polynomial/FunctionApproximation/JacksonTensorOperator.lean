@@ -24,7 +24,9 @@ def tensorChebyshevJacksonOperator {ι : Type*} [Fintype ι]
   ∫ x, tensorChebyshevJacksonKernel M x (WithLp.ofLp r) * f (WithLp.toLp 2 x)
     ∂Measure.pi (fun _ => measureT)
 
-/-- Only the observable's values on the closed cube affect its kernel integral.-/
+/-- Only the observable's values on the closed cube affect its kernel integral.
+@isnad1 id=eq.1h5v.s5.d830a44ad421 from=translated src=- shape=e8a83f31 vocab=09d69d53
+-/
 theorem tensorChebyshevJacksonOperator_congr {ι : Type*} [Fintype ι]
     {f g : EuclideanSpace ℝ ι → ℝ} (hfg : EqOn f g (chebyshevCube ι))
     (M : ℕ) (r : EuclideanSpace ℝ ι) :
@@ -35,7 +37,9 @@ theorem tensorChebyshevJacksonOperator_congr {ι : Type*} [Fintype ι]
 
 /-- Positivity of the actual tensor kernel operator on the whole closed cube.
 Source: Musco--Musco--Shah--Urschel--West, Section 2.2.
-atlas: tensor-chebyshev-kernel-measure (partial)-/
+atlas: tensor-chebyshev-kernel-measure (partial)
+@isnad1 id=le.2h4v.s6.6979644cea6e from=translated src=- shape=901af5cc vocab=b4999377
+-/
 theorem tensorChebyshevJacksonOperator_nonneg {ι : Type*} [Fintype ι]
     {f : EuclideanSpace ℝ ι → ℝ} (hf : ∀ x ∈ chebyshevCube ι, 0 ≤ f x)
     (M : ℕ) {r : EuclideanSpace ℝ ι} (hr : r ∈ chebyshevCube ι) :
@@ -46,7 +50,9 @@ theorem tensorChebyshevJacksonOperator_nonneg {ι : Type*} [Fintype ι]
 
 /-- The actual tensor Jackson operator contracts every uniform bound.
 Source: Musco--Musco--Shah--Urschel--West, Section 2.2.
-atlas: tensor-chebyshev-kernel-measure (partial)-/
+atlas: tensor-chebyshev-kernel-measure (partial)
+@isnad1 id=le.2h5v.s6.992d37664d02 from=translated src=- shape=6a7f87ef vocab=c95534c4
+-/
 theorem abs_tensorChebyshevJacksonOperator_le {ι : Type*} [Fintype ι]
     {f : EuclideanSpace ℝ ι → ℝ} {B : ℝ}
     (hB : ∀ x ∈ chebyshevCube ι, |f x| ≤ B) (M : ℕ)
@@ -64,7 +70,9 @@ theorem abs_tensorChebyshevJacksonOperator_le {ι : Type*} [Fintype ι]
 
 /-- The positive operator fixes every constant, so its norm is exactly one.
 Source: Musco--Musco--Shah--Urschel--West, Section 2.2.
-atlas: tensor-chebyshev-kernel-measure (partial)-/
+atlas: tensor-chebyshev-kernel-measure (partial)
+@isnad1 id=eq.0h4v.s4.389abccadbd7 from=translated src=- shape=448de0b9 vocab=3e9b2b3f
+-/
 theorem tensorChebyshevJacksonOperator_const {ι : Type*} [Fintype ι]
     (c : ℝ) (M : ℕ) (r : EuclideanSpace ℝ ι) :
     tensorChebyshevJacksonOperator (fun _ => c) M r = c := by
@@ -72,14 +80,18 @@ theorem tensorChebyshevJacksonOperator_const {ι : Type*} [Fintype ι]
     one_mul]
 
 /-- For continuous inputs, the actual integral operator is exactly the finite
-polynomial with damped normalized tensor coefficients.-/
+polynomial with damped normalized tensor coefficients.
+@isnad1 id=eq.1h4v.s6.487065a7049a from=translated src=- shape=b900255c vocab=ddf55c90
+-/
 theorem tensorChebyshevJacksonOperator_eq_approx {ι : Type*} [Fintype ι] [DecidableEq ι]
     {f : EuclideanSpace ℝ ι → ℝ} (hf : Continuous f) (M : ℕ) (r : EuclideanSpace ℝ ι) :
     tensorChebyshevJacksonOperator f M r = tensorChebyshevJacksonApprox f M r :=
   (tensorChebyshevJacksonApprox_eq_integral hf M r).symm
 
 /-- The same exact coefficient formula applies when continuity is obtained
-only by extending a cube-Lipschitz observable.-/
+only by extending a cube-Lipschitz observable.
+@isnad1 id=eq.1h5v.s6.1fa41e694d13 from=translated src=- shape=4c09fe67 vocab=6751b87b
+-/
 theorem tensorChebyshevJacksonOperator_eq_approx_of_lipschitzOnWith
     {ι : Type*} [Fintype ι] [DecidableEq ι] {f : EuclideanSpace ℝ ι → ℝ} {L : NNReal}
     (hf : LipschitzOnWith L f (chebyshevCube ι)) (M : ℕ) (r : EuclideanSpace ℝ ι) :
@@ -91,7 +103,9 @@ theorem tensorChebyshevJacksonOperator_eq_approx_of_lipschitzOnWith
 /-- The actual positive kernel operator obeys the coordinate Lipschitz error
 bound on the closed cube with the exact source constant.
 Source: Musco--Musco--Shah--Urschel--West, Theorem 2.5.
-atlas: tensor-chebyshev-kernel-measure (partial)-/
+atlas: tensor-chebyshev-kernel-measure (partial)
+@isnad1 id=le.3h5v.s8.dab5d5aaf109 from=translated src=- shape=10092844 vocab=6ec66816
+-/
 theorem abs_tensorChebyshevJacksonOperator_sub_le_of_coordinate_lipschitz
     {ι : Type*} [Fintype ι] [DecidableEq ι] {f : EuclideanSpace ℝ ι → ℝ} (L : ι → NNReal)
     (hf : ∀ i, ∀ x ∈ chebyshevCube ι, ∀ y ∈ chebyshevCube ι,

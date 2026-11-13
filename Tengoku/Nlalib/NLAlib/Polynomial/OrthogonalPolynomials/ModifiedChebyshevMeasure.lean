@@ -18,7 +18,9 @@ open Polynomial MeasureTheory
 namespace NLAlib
 
 /-- Included canonical norms from the finite measure functional are actual
-squared polynomial integrals.-/
+squared polynomial integrals.
+@isnad1 id=eq.2h3v.s7.9fb6d5e61843 from=translated src=- shape=f77e0d5f vocab=ab072d5c
+-/
 theorem orthogonalPolynomialNorm_finiteMeasureMomentFunctional_eq
     {μ : Measure ℝ} {n k : ℕ}
     (hμ : ∀ j < 2 * n, Integrable (fun x : ℝ => |x| ^ j) μ) (hk : k < n) :
@@ -32,7 +34,9 @@ theorem orthogonalPolynomialNorm_finiteMeasureMomentFunctional_eq
     exact_mod_cast (show 2 * k < 2 * n by omega)
 
 /-- Included canonical diagonals from the finite measure functional are the
-usual monic measure coefficients, with exactly the required integrals.-/
+usual monic measure coefficients, with exactly the required integrals.
+@isnad1 id=eq.2h3v.s7.fedccddf6601 from=translated src=- shape=75f6d2b4 vocab=a6d9f211
+-/
 theorem orthogonalRecurrenceAlpha_finiteMeasureMomentFunctional_eq
     {μ : Measure ℝ} {n k : ℕ}
     (hμ : ∀ j < 2 * n, Integrable (fun x : ℝ => |x| ^ j) μ) (hk : k < n) :
@@ -52,7 +56,9 @@ theorem orthogonalRecurrenceAlpha_finiteMeasureMomentFunctional_eq
 its canonical monic coefficients at every requested order. No higher moments or
 precomputed target coefficients are inputs. The source's stronger condition
 `n < support.encard` implies the displayed support bound.
-atlas: modified-chebyshev-algorithm (partial)-/
+atlas: modified-chebyshev-algorithm (partial)
+@isnad1 id=eq.5h6v.s8.3ab5c9cf3648 from=translated src=- shape=e738fcd8 vocab=0064a2d4
+-/
 theorem modifiedChebyshevCoefficients_integral_eq {μ : Measure ℝ} {n : ℕ}
     (hμ : ∀ j < 2 * n, Integrable (fun x : ℝ => |x| ^ j) μ)
     (hs : (n : ℕ∞) ≤ μ.support.encard) (p : ℕ → ℝ[X]) (a b : ℕ → ℝ)
@@ -82,7 +88,9 @@ theorem modifiedChebyshevCoefficients_integral_eq {μ : Measure ℝ} {n : ℕ}
 form. Its `beta₀` is the mass; all later `beta` values are ratios of successive
 squared norms. The polynomials here satisfy actual measure orthogonality by
 `integral_monicOrthogonalPolynomial_finiteMeasure_mul_eq_zero`.
-atlas: modified-chebyshev-algorithm (partial)-/
+atlas: modified-chebyshev-algorithm (partial)
+@isnad1 id=other.5h6v.s9.33cbc21d9978 from=translated src=- shape=087409c2 vocab=12d2c8dd
+-/
 theorem modifiedChebyshevCoefficients_integral_formula {μ : Measure ℝ} {n : ℕ}
     (hμ : ∀ j < 2 * n, Integrable (fun x : ℝ => |x| ^ j) μ)
     (hs : (n : ℕ∞) ≤ μ.support.encard) (p : ℕ → ℝ[X]) (a b : ℕ → ℝ)

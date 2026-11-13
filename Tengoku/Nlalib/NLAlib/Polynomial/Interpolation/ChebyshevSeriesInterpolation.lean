@@ -32,7 +32,9 @@ def chebyshevFoldPolynomial (a : ℕ → ℝ) (n : ℕ) : ℝ[X] :=
   ∑ j ∈ range (n + 1), C (chebyshevFoldCoeff a n j) * T ℝ (j : ℤ)
 
 /-- A single frequency fiber of an absolutely summable sequence is absolutely summable.
-Source: finite partition of an absolute series; helper for `chebyshev-aliasing`.-/
+Source: finite partition of an absolute series; helper for `chebyshev-aliasing`.
+@isnad1 id=summable.1h3v.s6.f31bf1137381 from=translated src=- shape=68d76d94 vocab=3370e800
+-/
 theorem summable_chebyshevFoldFiber {a : ℕ → ℝ} (hs : Summable (fun k => |a k|))
     (n j : ℕ) : Summable (fun k => if chebyshevAliasIndex n k = j then a k else 0) := by
   apply Summable.of_norm
@@ -41,7 +43,9 @@ theorem summable_chebyshevFoldFiber {a : ℕ → ℝ} (hs : Summable (fun k => |
   by_cases h : chebyshevAliasIndex n k = j <;> simp [h, Real.norm_eq_abs]
 
 /-- A folded polynomial has degree at most the grid degree.
-Source: Trefethen, ATAP, Theorem 4.2; helper for `chebyshev-aliasing`.-/
+Source: Trefethen, ATAP, Theorem 4.2; helper for `chebyshev-aliasing`.
+@isnad1 id=le.0h2v.s4.38c749549844 from=translated src=- shape=d87ed36c vocab=8da23ae6
+-/
 theorem degree_chebyshevFoldPolynomial_le (a : ℕ → ℝ) (n : ℕ) :
     (chebyshevFoldPolynomial a n).degree ≤ n := by
   unfold chebyshevFoldPolynomial
@@ -52,7 +56,9 @@ theorem degree_chebyshevFoldPolynomial_le (a : ℕ → ℝ) (n : ℕ) :
   exact_mod_cast Nat.le_of_lt_succ (mem_range.mp hk)
 
 /-- The folded finite polynomial evaluates to the series of folded frequencies.
-Source: finite partition of an absolute series; helper for `chebyshev-aliasing`.-/
+Source: finite partition of an absolute series; helper for `chebyshev-aliasing`.
+@isnad1 id=hassum.2h3v.s6.bc8a498fce26 from=translated src=- shape=902116b4 vocab=c05b8da5
+-/
 theorem hasSum_mul_eval_T_alias {a : ℕ → ℝ} (hs : Summable (fun k => |a k|))
     {n : ℕ} (hn : 0 < n) (x : ℝ) :
     HasSum (fun k => a k * (T ℝ (chebyshevAliasIndex n k : ℤ)).eval x)
@@ -76,7 +82,9 @@ theorem hasSum_mul_eval_T_alias {a : ℕ → ℝ} (hs : Summable (fun k => |a k|
 /-- The actual interpolant of a continuous function with absolute Chebyshev coefficients
 is its finite folded-coefficient polynomial.
 Source: Trefethen, ATAP, Theorems 4.1 and 4.2.
-atlas: chebyshev-aliasing (partial)-/
+atlas: chebyshev-aliasing (partial)
+@isnad1 id=eq.3h2v.s6.27f2ed85c34d from=translated src=- shape=e9ae0332 vocab=3da8acea
+-/
 theorem chebyshevInterpolant_eq_foldPolynomial {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1 : ℝ) 1))
     (hs : Summable (fun k => |chebyshevCoeff f k|)) {n : ℕ} (hn : 0 < n) :
@@ -99,7 +107,9 @@ theorem chebyshevInterpolant_eq_foldPolynomial {f : ℝ → ℝ}
 /-- The interpolant's genuine Chebyshev coefficient is exactly its folded frequency fiber.
 This is the aliasing coefficient formula for every index, including both endpoint fibers.
 Source: Trefethen, ATAP, Theorem 4.2; operator rederivations `polyseries:aliasing`.
-atlas: chebyshev-aliasing (partial)-/
+atlas: chebyshev-aliasing (partial)
+@isnad1 id=eq.3h3v.s6.896759b5c571 from=translated src=- shape=f2f00738 vocab=5d7ad076
+-/
 theorem chebyshevCoeff_eval_interpolant_eq_foldCoeff {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1 : ℝ) 1))
     (hs : Summable (fun k => |chebyshevCoeff f k|)) {n : ℕ} (hn : 0 < n) (j : ℕ) :
@@ -110,7 +120,9 @@ theorem chebyshevCoeff_eval_interpolant_eq_foldCoeff {f : ℝ → ℝ}
   exact chebyshevCoeff_eval_sum_smul_T _ _ _
 
 /-- Interpolation leaves low Chebyshev frequencies unchanged.
-Source: Trefethen, ATAP, Theorem 4.1; helper for `chebyshev-aliasing`.-/
+Source: Trefethen, ATAP, Theorem 4.1; helper for `chebyshev-aliasing`.
+@isnad1 id=eq.2h2v.s4.3893ba205dd1 from=translated src=- shape=9474e4c0 vocab=dddcf333
+-/
 theorem chebyshevAliasIndex_eq_self_of_le {n k : ℕ} (hn : 0 < n) (hk : k ≤ n) :
     chebyshevAliasIndex n k = k := by
   unfold chebyshevAliasIndex
@@ -120,7 +132,9 @@ theorem chebyshevAliasIndex_eq_self_of_le {n k : ℕ} (hn : 0 < n) (hk : k ≤ n
 /-- The grid interpolant error is bounded by twice the absolute Chebyshev coefficient tail.
 Source: Trefethen, ATAP, Theorem 4.2. Together with the fiber formula this proves the
 summable-coefficient aliasing assertion, including its endpoint normalization.
-atlas: chebyshev-aliasing-/
+atlas: chebyshev-aliasing
+@isnad1 id=le.4h3v.s7.c957e5f1a703 from=translated src=- shape=c5deb45f vocab=26dcc2cf
+-/
 theorem abs_sub_eval_chebyshevInterpolant_le_two_mul_tsum {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1 : ℝ) 1))
     (hs : Summable (fun k => |chebyshevCoeff f k|)) {n : ℕ} (hn : 0 < n)

@@ -26,7 +26,9 @@ open scoped NLAlib.TwoPi
 /-- The genuine Cesàro mean has the triangular Chebyshev coefficient weights
 `1-k/(n+1)`, including the constant coefficient with weight one.
 Source: Trefethen, ATAP, Exercise 6.6; the finite Cesàro sum.
-atlas: fejer-chebyshev-means (partial)-/
+atlas: fejer-chebyshev-means (partial)
+@isnad1 id=eq.0h2v.s7.b3908e3abcef from=translated src=- shape=7431b85a vocab=98b44748
+-/
 theorem fejerChebyshevMean_eq_sum_smul_T (f : ℝ → ℝ) (n : ℕ) :
     fejerChebyshevMean f n = ∑ k ∈ range (n + 1),
       (1 - (k : ℝ) / (n + 1)) • (C (chebyshevCoeff f k) * T ℝ (k : ℤ)) := by
@@ -71,7 +73,9 @@ theorem fejerChebyshevMean_eq_sum_smul_T (f : ℝ → ℝ) (n : ℕ) :
   field_simp
 
 /-- Every Fejér Chebyshev mean has degree at most its cutoff.
-Source: Trefethen, ATAP, Exercise 6.6; helper for `fejer-chebyshev-means`.-/
+Source: Trefethen, ATAP, Exercise 6.6; helper for `fejer-chebyshev-means`.
+@isnad1 id=le.0h2v.s4.9d93e1d906e2 from=translated src=- shape=e3082467 vocab=b17a4be3
+-/
 theorem degree_fejerChebyshevMean_le (f : ℝ → ℝ) (n : ℕ) :
     (fejerChebyshevMean f n).degree ≤ n := by
   unfold fejerChebyshevMean
@@ -80,7 +84,9 @@ theorem degree_fejerChebyshevMean_le (f : ℝ → ℝ) (n : ℕ) :
 
 /-- Fejér means preserve every constant function, so the contraction bound has norm exactly one.
 Source: Trefethen, ATAP, Exercise 6.6.
-atlas: fejer-chebyshev-means (partial)-/
+atlas: fejer-chebyshev-means (partial)
+@isnad1 id=eq.0h2v.s5.5b118a009f06 from=translated src=- shape=19bdff30 vocab=a40ad072
+-/
 @[simp] theorem fejerChebyshevMean_const (c : ℝ) (n : ℕ) :
     fejerChebyshevMean (fun _ => c) n = C c := by
   have htrunc : ∀ m, chebyshevTrunc (fun _ => c) m = C c := by
@@ -96,7 +102,9 @@ atlas: fejer-chebyshev-means (partial)-/
 
 /-- Dirichlet-kernel convolution is the genuine finite Chebyshev truncation.
 Source: Trefethen, ATAP, Exercise 6.6; finite Fourier convolution.
-Helper for `fejer-chebyshev-means`.-/
+Helper for `fejer-chebyshev-means`.
+@isnad1 id=eq.1h3v.s9.c92320b832b4 from=translated src=- shape=3f86376d vocab=58d0ffa8
+-/
 theorem integral_dirichletCircleKernel_mul_realChebyshevCircleFunction {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1 : ℝ) 1)) (n : ℕ) (a : AddCircle (2 * Real.pi)) :
     (∫ t : AddCircle (2 * Real.pi), dirichletCircleKernel n t * realChebyshevCircleFunction f (a - t)
@@ -143,7 +151,9 @@ theorem integral_dirichletCircleKernel_mul_realChebyshevCircleFunction {f : ℝ 
 
 /-- Fejér Chebyshev means are convolution with the actual positive Fejér kernel.
 Source: Trefethen, ATAP, Exercise 6.6; operator rederivations `polyseries:fejeroperator`.
-atlas: fejer-chebyshev-means (partial)-/
+atlas: fejer-chebyshev-means (partial)
+@isnad1 id=eq.1h3v.s9.76c1476078f9 from=translated src=- shape=3fe81f0a vocab=080beb2d
+-/
 theorem eval_fejerChebyshevMean_eq_integral {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1 : ℝ) 1)) (n : ℕ) (a : AddCircle (2 * Real.pi)) :
     (fejerChebyshevMean f n).eval ((fourier 1 a).re) =
@@ -167,7 +177,9 @@ theorem eval_fejerChebyshevMean_eq_integral {f : ℝ → ℝ}
 
 /-- Fejér means preserve nonnegativity throughout the unit interval.
 Source: Trefethen, ATAP, Exercise 6.6; positive Fejér convolution.
-atlas: fejer-chebyshev-means (partial)-/
+atlas: fejer-chebyshev-means (partial)
+@isnad1 id=le.3h3v.s6.d1dc6042cc04 from=translated src=- shape=3fb36f36 vocab=efc615ca
+-/
 theorem eval_fejerChebyshevMean_nonneg {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1 : ℝ) 1))
     (hpos : ∀ x ∈ Icc (-1 : ℝ) 1, 0 ≤ f x) (n : ℕ) {x : ℝ} (hx : x ∈ Icc (-1 : ℝ) 1) :
@@ -183,7 +195,9 @@ theorem eval_fejerChebyshevMean_nonneg {f : ℝ → ℝ}
 
 /-- Fejér means contract every uniform bound on the unit interval.
 Source: Trefethen, ATAP, Exercise 6.6; positive normalized Fejér convolution.
-atlas: fejer-chebyshev-means (partial)-/
+atlas: fejer-chebyshev-means (partial)
+@isnad1 id=le.3h4v.s6.dc62adf0bf5f from=translated src=- shape=3ae2af22 vocab=e8d35dae
+-/
 theorem abs_eval_fejerChebyshevMean_le {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1 : ℝ) 1)) {M : ℝ}
     (hM : ∀ x ∈ Icc (-1 : ℝ) 1, |f x| ≤ M) (n : ℕ) {x : ℝ} (hx : x ∈ Icc (-1 : ℝ) 1) :
@@ -203,7 +217,9 @@ theorem abs_eval_fejerChebyshevMean_le {f : ℝ → ℝ}
   · rw [integral_const_mul, integral_fejerCircleKernel_eq_one, mul_one]
 
 /-- Fejér means preserve subtraction of continuous functions.
-Source: finite Chebyshev coefficient linearity; helper for `fejer-chebyshev-means`.-/
+Source: finite Chebyshev coefficient linearity; helper for `fejer-chebyshev-means`.
+@isnad1 id=eq.2h3v.s6.627751cc0df8 from=translated src=- shape=b74845a8 vocab=bf3495b0
+-/
 theorem fejerChebyshevMean_sub {f g : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1 : ℝ) 1)) (hg : ContinuousOn g (Icc (-1 : ℝ) 1)) (n : ℕ) :
     fejerChebyshevMean (fun x => f x - g x) n = fejerChebyshevMean f n - fejerChebyshevMean g n := by
@@ -212,7 +228,9 @@ theorem fejerChebyshevMean_sub {f g : ℝ → ℝ}
 
 /-- The Fejér means of every polynomial converge uniformly to that polynomial.
 Source: finite exact Chebyshev projection and Cesàro convergence;
-helper for `fejer-chebyshev-means`.-/
+helper for `fejer-chebyshev-means`.
+@isnad1 id=tendstou.0h1v.s5.43d4ae50e6ea from=translated src=- shape=cc625910 vocab=159b8576
+-/
 theorem tendstoUniformlyOn_fejerChebyshevMean_eval (p : ℝ[X]) :
     TendstoUniformlyOn (fun n x => (fejerChebyshevMean p.eval n).eval x) p.eval atTop
       (Icc (-1 : ℝ) 1) := by
@@ -248,7 +266,9 @@ theorem tendstoUniformlyOn_fejerChebyshevMean_eval (p : ℝ[X]) :
 continuous function on the full closed interval. Together with the positive contraction
 and exact normalization, this proves the original Fejér assertion.
 Source: Trefethen, ATAP, Exercise 6.6; positive contractions and polynomial density.
-atlas: fejer-chebyshev-means-/
+atlas: fejer-chebyshev-means
+@isnad1 id=tendstou.1h1v.s6.fae9d0afd7c9 from=translated src=- shape=e7376294 vocab=0df70a12
+-/
 theorem tendstoUniformlyOn_fejerChebyshevMean {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1 : ℝ) 1)) :
     TendstoUniformlyOn (fun n x => (fejerChebyshevMean f n).eval x) f atTop

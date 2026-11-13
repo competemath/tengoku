@@ -35,7 +35,9 @@ variable {Ω : Type*} [MeasurableSpace Ω]
 /-! ### Basic API -/
 
 /-- Monotonicity in the variance proxy: `HasSubgaussianMGF X c μ` and `c ≤ d` give
-`HasSubgaussianMGF X d μ`. Atlas `hanson-wright` (helper).-/
+`HasSubgaussianMGF X d μ`. Atlas `hanson-wright` (helper).
+@isnad1 id=hassubga.2h5v.s5.147bf622856b from=translated src=- shape=b90a323e vocab=4edfee3a
+-/
 theorem hasSubgaussianMGF_mono {μ : Measure Ω} {X : Ω → ℝ} {c d : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) (hcd : (c : ℝ) ≤ d) :
     HasSubgaussianMGF X d μ where
@@ -50,7 +52,9 @@ theorem hasSubgaussianMGF_mono {μ : Measure Ω} {X : Ω → ℝ} {c d : ℝ≥0
 
 /-- A finite linear combination `∑_{i ∈ s} aᵢ Xᵢ` of independent sub-Gaussian variables is
 sub-Gaussian with proxy `∑_{i ∈ s} aᵢ² cᵢ`. Vershynin 2018, Prop 2.6.1; atlas `hanson-wright`
-(helper).-/
+(helper).
+@isnad1 id=hassubga.2h7v.s7.9df5daeff1dc from=translated src=- shape=678e33cb vocab=2ecee99c
+-/
 theorem hasSubgaussianMGF_finset_sum_mul_of_iIndepFun {ι : Type*} {μ : Measure Ω}
     {X : ι → Ω → ℝ} (hind : iIndepFun X μ) {c : ι → ℝ≥0}
     {s : Finset ι} (hmgf : ∀ i ∈ s, HasSubgaussianMGF (X i) (c i) μ)
@@ -71,7 +75,9 @@ theorem hasSubgaussianMGF_finset_sum_mul_of_iIndepFun {ι : Type*} {μ : Measure
   exact HasSubgaussianMGF.sum_of_iIndepFun hind_mul hmgf_mul
 
 /-- Jensen's inequality for the exponential, in logarithmic form: `𝔼 X ≤ t⁻¹ log 𝔼 e^{tX}` for
-`t > 0` when `X` and `e^{tX}` are integrable. Atlas `hanson-wright` (helper).-/
+`t > 0` when `X` and `e^{tX}` are integrable. Atlas `hanson-wright` (helper).
+@isnad1 id=le.3h4v.s7.721e95e82276 from=translated src=- shape=85e02e53 vocab=d9640538
+-/
 theorem integral_le_one_div_mul_log_integral_exp_mul {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} (hX_int : Integrable X μ) {t : ℝ} (ht : 0 < t)
     (hexpX_int : Integrable (fun ω => exp (t * X ω)) μ) :
@@ -96,7 +102,9 @@ theorem integral_le_one_div_mul_log_integral_exp_mul {μ : Measure Ω} [IsProbab
     _ = (1 / t) * log (∫ ω, exp (t * X ω) ∂μ) := by ring
 
 /-- A variable with a sub-Gaussian MGF bound has nonpositive mean, `𝔼 X ≤ 0` (apply
-`integral_le_one_div_mul_log_integral_exp_mul` and let `t → 0`). Atlas `hanson-wright` (helper).-/
+`integral_le_one_div_mul_log_integral_exp_mul` and let `t → 0`). Atlas `hanson-wright` (helper).
+@isnad1 id=le.1h4v.s5.3cb33b043d60 from=translated src=- shape=50c5986f vocab=071fea44
+-/
 theorem integral_nonpos_of_hasSubgaussianMGF {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} {c : ℝ≥0} (h : HasSubgaussianMGF X c μ) :
     ∫ ω, X ω ∂μ ≤ 0 := by
@@ -131,7 +139,9 @@ theorem integral_nonpos_of_hasSubgaussianMGF {μ : Measure Ω} [IsProbabilityMea
     _ = 0 + ε := by ring
 
 /-- A random variable with a sub-Gaussian MGF bound (for every real `t`) is centred:
-`𝔼 X = 0`. Vershynin 2018, Prop 2.5.2 (v) ⇒ mean zero; atlas `hanson-wright` (helper).-/
+`𝔼 X = 0`. Vershynin 2018, Prop 2.5.2 (v) ⇒ mean zero; atlas `hanson-wright` (helper).
+@isnad1 id=eq.1h4v.s5.997ef35fcb82 from=translated src=- shape=50c5986f vocab=74231ee6
+-/
 theorem integral_eq_zero_of_hasSubgaussianMGF {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} {c : ℝ≥0} (h : HasSubgaussianMGF X c μ) :
     ∫ ω, X ω ∂μ = 0 := by
@@ -144,7 +154,9 @@ theorem integral_eq_zero_of_hasSubgaussianMGF {μ : Measure Ω} [IsProbabilityMe
 
 /-- Bounded centred variables are sub-Gaussian: if `|Y| ≤ R` a.e. and `𝔼 Y = 0`, then
 `HasSubgaussianMGF Y R²`. Hoeffding's lemma on `[-R, R]` (Mathlib
-`hasSubgaussianMGF_of_mem_Icc_of_integral_eq_zero`). Atlas `hanson-wright` (helper).-/
+`hasSubgaussianMGF_of_mem_Icc_of_integral_eq_zero`). Atlas `hanson-wright` (helper).
+@isnad1 id=hassubga.4h4v.s7.b0a0eb92eba4 from=translated src=- shape=99149748 vocab=518b246a
+-/
 theorem hasSubgaussianMGF_of_abs_le_of_integral_eq_zero {μ : Measure Ω}
     [IsProbabilityMeasure μ] {Y : Ω → ℝ} {R : ℝ}
     (hY_meas : AEMeasurable Y μ) (hR : 0 ≤ R)
@@ -165,7 +177,9 @@ theorem hasSubgaussianMGF_of_abs_le_of_integral_eq_zero {μ : Measure Ω}
 /-! ### Even moments -/
 
 /-- Two-sided consequence of a sub-Gaussian MGF bound: `𝔼 cosh (t X) ≤ e^{c t²/2}`.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=le.1h5v.s6.02cb7a596eb1 from=translated src=- shape=2c3ff134 vocab=20706c0e
+-/
 theorem integral_cosh_mul_le_of_hasSubgaussianMGF {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} {c : ℝ≥0} (h : HasSubgaussianMGF X c μ) (t : ℝ) :
     ∫ ω, cosh (t * X ω) ∂μ ≤ exp ((c : ℝ) * t ^ 2 / 2) := by
@@ -198,7 +212,9 @@ theorem integral_cosh_mul_le_of_hasSubgaussianMGF {μ : Measure Ω} [IsProbabili
   nlinarith [hpos_le, hneg_le]
 
 /-- Sub-Gaussian MGF control bounds every integrated even Taylor term:
-`𝔼 (tX)^{2m} / (2m)! ≤ e^{c t²/2}`. Atlas `hanson-wright` (helper).-/
+`𝔼 (tX)^{2m} / (2m)! ≤ e^{c t²/2}`. Atlas `hanson-wright` (helper).
+@isnad1 id=le.1h6v.s7.2b72e0a75058 from=translated src=- shape=fe0553b1 vocab=feeedbfd
+-/
 theorem integral_even_taylor_term_le_of_hasSubgaussianMGF {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) (t : ℝ) (m : ℕ) :
@@ -241,7 +257,9 @@ theorem integral_even_taylor_term_le_of_hasSubgaussianMGF {μ : Measure Ω}
 
 /-- Even moments of a sub-Gaussian variable: for every scale `s > 0`,
 `𝔼 X^{2m} ≤ (2m)!/s^{2m} · e^{c s²/2}`. Vershynin 2018, Prop 2.5.2 (moment step);
-atlas `hanson-wright` (helper).-/
+atlas `hanson-wright` (helper).
+@isnad1 id=le.2h6v.s7.96139ae329ed from=translated src=- shape=4e161cce vocab=9da64e31
+-/
 theorem integral_pow_two_mul_le_of_hasSubgaussianMGF {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {s : ℝ} (hs : 0 < s) (m : ℕ) :
@@ -281,7 +299,9 @@ theorem integral_pow_two_mul_le_of_hasSubgaussianMGF {μ : Measure Ω}
         field_simp [ne_of_gt hs, Nat.cast_ne_zero.mpr (Nat.factorial_ne_zero (2 * m))]
 
 /-- Geometric bound for each integrated Taylor term of `e^{θ X²}`:
-`𝔼 θᵐ X^{2m} / m! ≤ e · (θ (c + 1) e)ᵐ`. Atlas `hanson-wright` (helper).-/
+`𝔼 θᵐ X^{2m} / m! ≤ e · (θ (c + 1) e)ᵐ`. Atlas `hanson-wright` (helper).
+@isnad1 id=le.2h6v.s7.4e2ec8531bb9 from=translated src=- shape=385531a1 vocab=045c9f0e
+-/
 theorem integral_exp_sq_series_term_le_of_hasSubgaussianMGF {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ : ℝ} (hθ : 0 ≤ θ) (m : ℕ) :
@@ -378,7 +398,9 @@ theorem integral_exp_sq_series_term_le_of_hasSubgaussianMGF {μ : Measure Ω}
         ring
 
 /-- Geometric Taylor-term bound with any real proxy `C₀ ≥ c`, `C₀ > 0`:
-`𝔼 θᵐ X^{2m} / m! ≤ e · (θ C₀ e)ᵐ`. Atlas `hanson-wright` (helper).-/
+`𝔼 θᵐ X^{2m} / m! ≤ e · (θ C₀ e)ᵐ`. Atlas `hanson-wright` (helper).
+@isnad1 id=le.4h7v.s7.d01fd825f2f4 from=translated src=- shape=eb2b4547 vocab=9da64e31
+-/
 theorem integral_exp_sq_series_term_le_of_hasSubgaussianMGF_of_le {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {θ C0 : ℝ} (hθ : 0 ≤ θ)
@@ -475,7 +497,9 @@ theorem integral_exp_sq_series_term_le_of_hasSubgaussianMGF_of_le {μ : Measure 
         ring
 
 /-- Second moment of a sub-Gaussian variable: `𝔼 X² ≤ e · (C₀ e)` for a proxy `C₀ ≥ c`, `C₀ > 0`.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=le.3h5v.s6.0a14517c3fb7 from=translated src=- shape=1244c1aa vocab=947bedb3
+-/
 theorem integral_sq_le_of_hasSubgaussianMGF_of_le {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {C0 : ℝ}
@@ -487,7 +511,9 @@ theorem integral_sq_le_of_hasSubgaussianMGF_of_le {μ : Measure Ω}
   convert hterm using 1 <;> ring_nf
 
 /-- Fourth moment of a sub-Gaussian variable: `𝔼 X⁴ ≤ 2e · (C₀ e)²` for a proxy `C₀ ≥ c`,
-`C₀ > 0`. Atlas `hanson-wright` (helper).-/
+`C₀ > 0`. Atlas `hanson-wright` (helper).
+@isnad1 id=le.3h5v.s7.7de75474d1e3 from=translated src=- shape=5c195e21 vocab=947bedb3
+-/
 theorem integral_pow_four_le_of_hasSubgaussianMGF_of_le {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {c : ℝ≥0}
     (h : HasSubgaussianMGF X c μ) {C0 : ℝ}

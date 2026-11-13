@@ -22,7 +22,9 @@ private theorem degree_monic_eq (L : ℝ[X] →ₗ[ℝ] ℝ) (k : ℕ) :
 
 /-- Alpha sensitivity uses degree at most `2k+1`, without normalization of the
 next orthogonal polynomial. Source: AQ29--AQ31.
-atlas: recurrence-coefficient-moment-sensitivity (partial)-/
+atlas: recurrence-coefficient-moment-sensitivity (partial)
+@isnad1 id=le.0h2v.s6.3d9e386b14c2 from=translated src=- shape=58739f97 vocab=2924a522
+-/
 theorem degree_orthogonalRecurrenceAlphaSensitivityPolynomial_le
     (L : ℝ[X] →ₗ[ℝ] ℝ) (k : ℕ) :
     (orthogonalRecurrenceAlphaSensitivityPolynomial L k).degree ≤ ((2*k+1 : ℕ) : WithBot ℕ) := by
@@ -41,7 +43,9 @@ theorem degree_orthogonalRecurrenceAlphaSensitivityPolynomial_le
 
 /-- Beta sensitivity uses degree at most `2k`, including the total zero-order
 boundary. Source: AQ28--AQ31.
-atlas: recurrence-coefficient-moment-sensitivity (partial)-/
+atlas: recurrence-coefficient-moment-sensitivity (partial)
+@isnad1 id=le.0h2v.s6.a65ab8ebc0be from=translated src=- shape=c1df50ea vocab=f6c5624b
+-/
 theorem degree_orthogonalRecurrenceBetaSensitivityPolynomial_le
     (L : ℝ[X] →ₗ[ℝ] ℝ) (k : ℕ) :
     (orthogonalRecurrenceBetaSensitivityPolynomial L k).degree ≤ ((2*k : ℕ) : WithBot ℕ) := by

@@ -27,7 +27,9 @@ def singularDirectionProjector {p : ℕ} (U : Matrix m (Fin p) 𝕜) (keep : Fin
     Matrix m m 𝕜 := U * Matrix.diagonal (fun i => if keep i then (1 : 𝕜) else 0) * Uᴴ
 
 omit [DecidableEq m] [Fintype m] in
-/-- Every selected-coordinate Gram projector is Hermitian.-/
+/-- Every selected-coordinate Gram projector is Hermitian.
+@isnad1 id=ishermit.0h5v.s6.f4f1bc768297 from=translated src=- shape=5d01aa43 vocab=aaff83d8
+-/
 theorem singularDirectionProjector_isHermitian {p : ℕ}
     (U : Matrix m (Fin p) 𝕜) (keep : Fin p → Bool) :
     (singularDirectionProjector U keep).IsHermitian := by
@@ -38,7 +40,9 @@ theorem singularDirectionProjector_isHermitian {p : ℕ}
       split_ifs <;> simp))
 
 omit [DecidableEq m] in
-/-- Selecting columns of an orthonormal frame produces an idempotent projector.-/
+/-- Selecting columns of an orthonormal frame produces an idempotent projector.
+@isnad1 id=isidempo.1h5v.s6.2709ee6fb7b1 from=translated src=- shape=31f4c548 vocab=e587d121
+-/
 theorem HasOrthonormalCols.isIdempotentElem_singularDirectionProjector {p : ℕ}
     {U : Matrix m (Fin p) 𝕜} (hU : HasOrthonormalCols U) (keep : Fin p → Bool) :
     IsIdempotentElem (singularDirectionProjector U keep) := by
@@ -55,7 +59,9 @@ theorem HasOrthonormalCols.isIdempotentElem_singularDirectionProjector {p : ℕ}
     _ = _ := by rw [hU.conjTranspose_mul_self, Matrix.mul_one, hD]
 
 omit [DecidableEq m] in
-/-- In frame coordinates, the selected projector is the diagonal Boolean mask.-/
+/-- In frame coordinates, the selected projector is the diagonal Boolean mask.
+@isnad1 id=eq.1h5v.s8.071135fe8059 from=translated src=- shape=e464c3cc vocab=2b75291a
+-/
 theorem HasOrthonormalCols.conjTranspose_mul_singularDirectionProjector_mul {p : ℕ}
     {U : Matrix m (Fin p) 𝕜} (hU : HasOrthonormalCols U) (keep : Fin p → Bool) :
     Uᴴ * singularDirectionProjector U keep * U =

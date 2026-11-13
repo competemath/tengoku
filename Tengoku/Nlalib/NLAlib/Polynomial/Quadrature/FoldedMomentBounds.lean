@@ -13,7 +13,9 @@ open Finset
 namespace NLAlib
 
 /-- Positive even Chebyshev moments have a telescoping reciprocal form in modulus.
-Source: Trefethen, ATAP, Theorem 19.2 and focused quadrature block proof.-/
+Source: Trefethen, ATAP, Theorem 19.2 and focused quadrature block proof.
+@isnad1 id=eq.0h1v.s7.80017bafbf0d from=translated src=- shape=f575d963 vocab=1bf84e8c
+-/
 theorem abs_chebyshevMoment_two_mul_succ (j : ℕ) :
     |chebyshevMoment (2 * (j + 1))| = 1 / (2 * (j : ℝ) + 1) - 1 / (2 * j + 3) := by
   unfold chebyshevMoment
@@ -29,7 +31,9 @@ theorem abs_chebyshevMoment_two_mul_succ (j : ℕ) :
   ring
 
 /-- The finite absolute positive-even moment sum is exactly `1−1/(2m+1)`.
-Source: focused quadrature reroute, finite telescoping moment proof.-/
+Source: focused quadrature reroute, finite telescoping moment proof.
+@isnad1 id=eq.0h1v.s6.caf5a8c2b825 from=translated src=- shape=252387a9 vocab=d4c403a3
+-/
 theorem sum_abs_chebyshevMoment_two_mul_succ (m : ℕ) :
     (∑ j ∈ range m, |chebyshevMoment (2 * (j + 1))|) = 1 - 1 / (2 * (m : ℝ) + 1) := by
   simp_rw [abs_chebyshevMoment_two_mul_succ]
@@ -45,7 +49,9 @@ theorem sum_abs_chebyshevMoment_two_mul_succ (m : ℕ) :
 
 /-- A full period of even folded Chebyshev moments has absolute mass at most four.
 Source: focused quadrature reroute, finite block lemma.
-atlas: gauss-clenshaw-curtis-quadrature-error (partial)-/
+atlas: gauss-clenshaw-curtis-quadrature-error (partial)
+@isnad1 id=le.1h1v.s5.9c4cb4335e34 from=translated src=- shape=2f4b217a vocab=008b732a
+-/
 theorem sum_abs_chebyshevMoment_alias_two_mul_le_four {n : ℕ} (hn : 0 < n) :
     (∑ j ∈ range n, |chebyshevMoment (chebyshevAliasIndex n (2 * j))|) ≤ 4 := by
   let f := fun j => |chebyshevMoment (chebyshevAliasIndex n (2 * j))|

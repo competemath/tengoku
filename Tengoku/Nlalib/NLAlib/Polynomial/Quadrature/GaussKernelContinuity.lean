@@ -19,7 +19,9 @@ open Polynomial MeasureTheory Set Finset
 namespace NLAlib
 
 /-- The actual Stieltjes transform is continuous on any compact set disjoint
-from the finite measure's compact support enclosure.-/
+from the finite measure's compact support enclosure.
+@isnad1 id=continuo.3h4v.s6.be6a3b308b74 from=translated src=- shape=7bf84936 vocab=bc249f06
+-/
 theorem continuousOn_stieltjesTransform_of_compact_off_Icc
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {K : Set ℂ} (hK : IsCompact K)
@@ -33,7 +35,9 @@ theorem continuousOn_stieltjesTransform_of_compact_off_Icc
       (fun p hp => sub_ne_zero.mpr (hoff p.1 hp.1 p.2 (hsupport hp.2)))
 
 /-- The actual `rho_n/pi_n` remainder kernel is continuous on each compact
-set disjoint from the support interval, including the zero-order rule.-/
+set disjoint from the support interval, including the zero-order rule.
+@isnad1 id=continuo.5h5v.s7.bb7569015015 from=translated src=- shape=6b21922d vocab=30d26c12
+-/
 theorem continuousOn_gaussRemainderKernel_of_compact_off_Icc
     {μ : Measure ℝ} [IsFiniteMeasure μ] (hμ : HasPolynomialMoments μ) {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {n : ℕ} (hn : (n : ℕ∞) ≤ μ.support.encard)

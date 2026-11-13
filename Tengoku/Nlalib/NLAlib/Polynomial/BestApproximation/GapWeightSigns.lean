@@ -20,7 +20,9 @@ namespace NLAlib
 
 /-- Multiplying a gap cardinal sign by its ordered nodal weight leaves a common sign and
 an absolute weight, with the expected sign reversal across the gap.
-Source: the alternating sign of ordered Lagrange nodal weights.-/
+Source: the alternating sign of ordered Lagrange nodal weights.
+@isnad1 id=eq.1h4v.s8.e07a8f1d097f from=translated src=- shape=b9f4c9b1 vocab=a04efb88
+-/
 theorem interpolationGapSign_mul_nodalWeight {n : ℕ} {v : Fin (n + 2) → ℝ}
     (hv : StrictMono v) (i : Fin (n + 1)) (k : Fin (n + 2)) :
     interpolationGapSign n i k * Lagrange.nodalWeight univ v k =
@@ -57,7 +59,9 @@ theorem interpolationGapSign_mul_nodalWeight {n : ℕ} {v : Fin (n + 2) → ℝ}
 
 /-- Two gap sign vectors agree up to one common sign outside the intervening nodes,
 and have the opposite sign on the intervening nodes.
-Source: the finite nodal decomposition of the gap-polynomial pair.-/
+Source: the finite nodal decomposition of the gap-polynomial pair.
+@isnad1 id=eq.2h5v.s8.b1124ac29c38 from=translated src=- shape=9d8e61b3 vocab=75fb5703
+-/
 theorem interpolationGapSign_relative {n : ℕ} {v : Fin (n + 2) → ℝ}
     (hv : StrictMono v) (i j : Fin (n + 1)) (hij : i ≤ j) (k : Fin (n + 2)) :
     (-1 : ℝ) ^ (j.val - i.val) * interpolationGapSign n j k =

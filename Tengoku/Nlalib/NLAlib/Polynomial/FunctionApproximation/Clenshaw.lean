@@ -33,7 +33,9 @@ backward Clenshaw recursion. This includes polynomial and matrix-vector evaluati
 without spectral or invertibility hypotheses.
 Source: Gautschi, Orthogonal Polynomials (2004), Algorithms 2.2 and 2.3;
 operator rederivations, equation `polyseries:clenshawidentity`.
-atlas: clenshaw-recurrence (partial)-/
+atlas: clenshaw-recurrence (partial)
+@isnad1 id=eq.1h8v.s9.ba2d4483e620 from=translated src=- shape=849e8433 vocab=c4954ed0
+-/
 theorem sum_smul_eq_clenshawState {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     (α β c : ℕ → R) (y : ℕ → M)
     (hy : ∀ k, y (k + 2) = α (k + 1) • y (k + 1) - β (k + 1) • y k)
@@ -59,7 +61,9 @@ theorem sum_smul_eq_clenshawState {R M : Type*} [CommRing R] [AddCommGroup M] [M
 /-- A finite Chebyshev series is evaluated by the standard `u₀ − t u₁` Clenshaw formula.
 Source: Gautschi, Orthogonal Polynomials (2004), Algorithm 2.2;
 operator rederivations, `polyseries:clenshaw`.
-atlas: clenshaw-recurrence (partial)-/
+atlas: clenshaw-recurrence (partial)
+@isnad1 id=eq.0h4v.s8.0b4f15ec1132 from=translated src=- shape=b0095410 vocab=cff99585
+-/
 theorem sum_mul_eval_T_eq_clenshawState {R : Type*} [CommRing R] (c : ℕ → R) (t : R) (n : ℕ) :
     (∑ j ∈ range (n + 1), c j * (Polynomial.Chebyshev.T R (j : ℤ)).eval t) =
       (clenshawState (fun _ => 2 * t) (fun _ => 1) c 0 (n + 1)).1 -

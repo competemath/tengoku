@@ -23,7 +23,9 @@ def HasComplexDividedPolynomialMoments (μ : Measure ℝ) (v : ℂ[X]) : Prop :=
   ∀ p : ℂ[X], Integrable (fun x : ℝ => p.eval (x : ℂ)/v.eval (x : ℂ)) μ
 
 /-- Finite compact support and a pole-free denominator imply every required
-complex divided moment.-/
+complex divided moment.
+@isnad1 id=hascompl.2h4v.s6.fe0e9a9f3245 from=translated src=- shape=278cb74e vocab=31a02329
+-/
 theorem hasComplexDividedPolynomialMoments_of_ae_mem_Icc
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {v : ℂ[X]}
@@ -48,13 +50,17 @@ def complexDividedPolynomialIntegral (μ : Measure ℝ) (v : ℂ[X])
     simp only [eval_smul, smul_eq_mul, RingHom.id_apply, mul_div_assoc]
     exact integral_const_mul c _
 
-/-- Evaluation of the divided functional is its actual Bochner integral.-/
+/-- Evaluation of the divided functional is its actual Bochner integral.
+@isnad1 id=eq.1h3v.s7.3ed91b619597 from=translated src=- shape=abcd4a41 vocab=fa6cb103
+-/
 @[simp] theorem complexDividedPolynomialIntegral_apply (μ : Measure ℝ) (v : ℂ[X])
     (hdiv : HasComplexDividedPolynomialMoments μ v) (p : ℂ[X]) :
     complexDividedPolynomialIntegral μ v hdiv p =
       ∫ x : ℝ, p.eval (x : ℂ)/v.eval (x : ℂ) ∂μ := rfl
 
-/-- Clearing the actual denominator recovers the original measure functional.-/
+/-- Clearing the actual denominator recovers the original measure functional.
+@isnad1 id=eq.3h3v.s7.d2c8ee8dc9a8 from=translated src=- shape=277849b1 vocab=d76875f4
+-/
 theorem complexDividedPolynomialIntegral_denominator_mul
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) (v : ℂ[X])
     (hdiv : HasComplexDividedPolynomialMoments μ v)
@@ -67,7 +73,9 @@ theorem complexDividedPolynomialIntegral_denominator_mul
 
 /-- The polynomial cofactor row is the source's actual Cauchy integral; it has
 no spurious real-root restriction. The denominator convention is `t-z_i`.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=eq.2h5v.s7.9a024141ab86 from=translated src=- shape=52e12e66 vocab=349bb19c
+-/
 theorem complexDividedPolynomialIntegral_rootCofactor_eq_cauchy
     {μ : Measure ℝ} {m : ℕ} (z : Fin m → ℂ)
     (hdiv : HasComplexDividedPolynomialMoments μ (Lagrange.nodal Finset.univ z))
@@ -90,7 +98,9 @@ theorem complexDividedPolynomialIntegral_rootCofactor_eq_cauchy
 /-- The positive modified real measure gives exactly the weighted complex
 divided functional used by the root determinant, rather than an assumed moment
 adapter. Nonreal roots of the real denominator are allowed.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=eq.3h3v.s7.a080c4d5922f from=translated src=- shape=7a79bc2d vocab=ce159cd2
+-/
 theorem complexPolynomialIntegral_rationalPolynomialModifiedMeasure_eq
     {μ : Measure ℝ} (u v : ℝ[X]) (hr : HasDividedPolynomialMoments μ v)
     (hc : HasComplexDividedPolynomialMoments μ (v.map Complex.ofRealHom))

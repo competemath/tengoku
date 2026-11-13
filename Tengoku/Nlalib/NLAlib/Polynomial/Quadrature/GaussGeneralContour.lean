@@ -30,7 +30,9 @@ region and one positive-orientation normalization. Only the individual
 pieces are C1; arbitrary corners and zero velocities are allowed. The
 canonical rule includes order zero and exact support termination.
 Source: Gautschi (2004), Theorem 2.48.
-atlas: gauss-remainder-contour-kernel (partial)-/
+atlas: gauss-remainder-contour-kernel (partial)
+@isnad1 id=other.10h10v.s10.61ec0f1377d8 from=translated src=- shape=db73bde2 vocab=973f0191
+-/
 theorem integral_sub_gauss_eq_curveIntegral_concat_of_positive_orientation
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {n : ℕ} (hn : (n : ℕ∞) ≤ μ.support.encard)
@@ -67,7 +69,9 @@ same geometric filled-region and one-point orientation data as the native
 formula. The length is the actual sum of piece-speed integrals through the
 native finite path chain.
 Source: Gautschi (2004), Theorem 2.48.
-atlas: gauss-remainder-contour-kernel (partial)-/
+atlas: gauss-remainder-contour-kernel (partial)
+@isnad1 id=other.10h10v.s10.1f432f81bb9a from=translated src=- shape=7c1ac955 vocab=1765d973
+-/
 theorem norm_integral_sub_gauss_le_length_mul_maxNorm_of_positive_orientation
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {n : ℕ} (hn : (n : ℕ∞) ≤ μ.support.encard)

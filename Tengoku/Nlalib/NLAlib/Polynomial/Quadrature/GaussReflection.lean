@@ -14,7 +14,9 @@ open Polynomial MeasureTheory Set Finset
 namespace NLAlib
 
 /-- A Lebesgue-orthogonal monic nodal polynomial has its degree's reflection parity.
-Source: Trefethen, ATAP, Theorem 19.4; monic orthogonal-polynomial uniqueness.-/
+Source: Trefethen, ATAP, Theorem 19.4; monic orthogonal-polynomial uniqueness.
+@isnad1 id=eq.3h3v.s8.c071676be1b4 from=translated src=- shape=1b3c4546 vocab=2fcf2835
+-/
 theorem nodal_eq_neg_one_pow_mul_comp_neg_X_of_orthogonal
     {ι : Type*} [DecidableEq ι] (s : Finset ι) (v : ι → ℝ) (hv : InjOn v s)
     (hvI : ∀ i ∈ s, v i ∈ Ioo (-1 : ℝ) 1)
@@ -77,7 +79,9 @@ theorem nodal_eq_neg_one_pow_mul_comp_neg_X_of_orthogonal
   exact sub_eq_zero.mp heq
 
 /-- Reflection permutes the actual Lebesgue Gauss nodes and preserves their
-integrated cardinal weights. Source: Trefethen, ATAP, Theorem 19.4.-/
+integrated cardinal weights. Source: Trefethen, ATAP, Theorem 19.4.
+@isnad1 id=ex.3h2v.s8.e8b40a82f18c from=translated src=- shape=a14dc75b vocab=0edb8ce9
+-/
 theorem exists_reflection_equiv_of_orthogonal_nodal
     {ι : Type*} [Fintype ι] [DecidableEq ι] (v : ι → ℝ) (hv : Function.Injective v)
     (hvI : ∀ i, v i ∈ Ioo (-1 : ℝ) 1)

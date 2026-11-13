@@ -21,7 +21,9 @@ namespace NLAlib
 def finiteMomentVector (L : ℝ[X] →ₗ[ℝ] ℝ) (n : ℕ) : Fin (2 * n) → ℝ :=
   fun i => L (X ^ i.val)
 
-/-- Truncating above degree `2n-1` preserves each lower-order Hankel matrix.-/
+/-- Truncating above degree `2n-1` preserves each lower-order Hankel matrix.
+@isnad1 id=eq.1h3v.s6.181f34d35e3a from=translated src=- shape=9307e037 vocab=41fd92b1
+-/
 theorem hankelMomentMatrix_finiteMomentVector_eq (L : ℝ[X] →ₗ[ℝ] ℝ) {n k : ℕ} (hk : k ≤ n) :
     hankelMomentMatrix (finiteMomentFunctional (finiteMomentVector L n)) k = hankelMomentMatrix L k := by
   ext i j
@@ -29,7 +31,9 @@ theorem hankelMomentMatrix_finiteMomentVector_eq (L : ℝ[X] →ₗ[ℝ] ℝ) {n
   rw [degree_X_pow]
   exact_mod_cast (show i.val + j.val < 2 * n by have := i.isLt; have := j.isLt; omega)
 
-/-- Every canonical polynomial through order `n` depends only on `2n` moments.-/
+/-- Every canonical polynomial through order `n` depends only on `2n` moments.
+@isnad1 id=eq.1h3v.s6.36030ca45da0 from=translated src=- shape=c0bc6a8a vocab=0cfb7e34
+-/
 theorem monicOrthogonalPolynomial_finiteMomentVector_eq
     (L : ℝ[X] →ₗ[ℝ] ℝ) {n k : ℕ} (hk : k ≤ n) :
     monicOrthogonalPolynomial (finiteMomentFunctional (finiteMomentVector L n)) k =
@@ -40,7 +44,9 @@ theorem monicOrthogonalPolynomial_finiteMomentVector_eq
   rw [degree_X_pow]
   exact_mod_cast (show j < 2 * n by omega)
 
-/-- Included squared monic norms depend only on the same finite moments.-/
+/-- Included squared monic norms depend only on the same finite moments.
+@isnad1 id=eq.1h3v.s6.b866b6698a18 from=translated src=- shape=787e1608 vocab=0ee6722f
+-/
 theorem orthogonalPolynomialNorm_finiteMomentVector_eq
     (L : ℝ[X] →ₗ[ℝ] ℝ) {n k : ℕ} (hk : k < n) :
     orthogonalPolynomialNorm (finiteMomentFunctional (finiteMomentVector L n)) k =
@@ -52,7 +58,9 @@ theorem orthogonalPolynomialNorm_finiteMomentVector_eq
     natDegree_monicOrthogonalPolynomial, nsmul_eq_mul]
   exact_mod_cast (show 2 * k < 2 * n by omega)
 
-/-- Included diagonal coefficients are exactly those of the finite moment vector.-/
+/-- Included diagonal coefficients are exactly those of the finite moment vector.
+@isnad1 id=eq.1h3v.s6.66e70d1a9f39 from=translated src=- shape=787e1608 vocab=0dd6e0ae
+-/
 theorem orthogonalRecurrenceAlpha_finiteMomentVector_eq
     (L : ℝ[X] →ₗ[ℝ] ℝ) {n k : ℕ} (hk : k < n) :
     orthogonalRecurrenceAlpha (finiteMomentFunctional (finiteMomentVector L n)) k =
@@ -68,7 +76,9 @@ theorem orthogonalRecurrenceAlpha_finiteMomentVector_eq
   exact_mod_cast (show 1 + 2 * k < 2 * n by omega)
 
 /-- Included subdiagonal coefficients, including the zero-order boundary,
-are exactly those determined by the finite moment vector.-/
+are exactly those determined by the finite moment vector.
+@isnad1 id=eq.1h3v.s6.40ea3d7bd33c from=translated src=- shape=787e1608 vocab=1903d423
+-/
 theorem orthogonalRecurrenceBeta_finiteMomentVector_eq
     (L : ℝ[X] →ₗ[ℝ] ℝ) {n k : ℕ} (hk : k < n) :
     orthogonalRecurrenceBeta (finiteMomentFunctional (finiteMomentVector L n)) k =
@@ -79,7 +89,9 @@ theorem orthogonalRecurrenceBeta_finiteMomentVector_eq
   · rw [orthogonalPolynomialNorm_finiteMomentVector_eq L hk,
       orthogonalPolynomialNorm_finiteMomentVector_eq L (by omega : k - 1 < n)]
 
-/-- Included normalized polynomials are preserved, even when their norms vanish.-/
+/-- Included normalized polynomials are preserved, even when their norms vanish.
+@isnad1 id=eq.1h3v.s6.52ced65ea1e8 from=translated src=- shape=061db611 vocab=212ff988
+-/
 theorem orthonormalMomentPolynomial_finiteMomentVector_eq
     (L : ℝ[X] →ₗ[ℝ] ℝ) {n k : ℕ} (hk : k < n) :
     orthonormalMomentPolynomial (finiteMomentFunctional (finiteMomentVector L n)) k =
@@ -94,7 +106,9 @@ private theorem degree_orthonormalMomentPolynomial_le (L : ℝ[X] →ₗ[ℝ] �
   rw [degree_eq_natDegree (monic_monicOrthogonalPolynomial L k).ne_zero,
     natDegree_monicOrthogonalPolynomial]
 
-/-- The actual normalized multiplication matrix is determined by `2n` moments.-/
+/-- The actual normalized multiplication matrix is determined by `2n` moments.
+@isnad1 id=eq.0h2v.s6.aa6dd6f13820 from=translated src=- shape=3ff12929 vocab=b882fbc6
+-/
 theorem orthogonalPolynomialJacobiMatrix_finiteMomentVector_eq (L : ℝ[X] →ₗ[ℝ] ℝ) (n : ℕ) :
     orthogonalPolynomialJacobiMatrix (finiteMomentFunctional (finiteMomentVector L n)) n =
       orthogonalPolynomialJacobiMatrix L n := by
@@ -109,7 +123,9 @@ theorem orthogonalPolynomialJacobiMatrix_finiteMomentVector_eq (L : ℝ[X] →�
     (degree_orthonormalMomentPolynomial_le L i.val)).trans_lt
   exact_mod_cast (show 1 + j.val + i.val < 2 * n by have := i.isLt; have := j.isLt; omega)
 
-/-- The canonical nodes are determined by `2n` moments, with their fixed indexing.-/
+/-- The canonical nodes are determined by `2n` moments, with their fixed indexing.
+@isnad1 id=eq.0h2v.s6.81ad8cba1027 from=translated src=- shape=f566a48b vocab=efcddd78
+-/
 theorem momentGaussNodes_finiteMomentVector_eq (L : ℝ[X] →ₗ[ℝ] ℝ) (n : ℕ) :
     momentGaussNodes (finiteMomentFunctional (finiteMomentVector L n)) n = momentGaussNodes L n := by
   funext i
@@ -119,7 +135,9 @@ theorem momentGaussNodes_finiteMomentVector_eq (L : ℝ[X] →ₗ[ℝ] ℝ) (n :
     (orthogonalPolynomialJacobiMatrix_finiteMomentVector_eq L n)
     ((Fintype.equivOfCardEq (Fintype.card_fin _)).symm i)
 
-/-- The canonical integrated-cardinal weights are determined by `2n` moments.-/
+/-- The canonical integrated-cardinal weights are determined by `2n` moments.
+@isnad1 id=eq.0h2v.s6.f0202e8f453d from=translated src=- shape=f566a48b vocab=df920768
+-/
 theorem momentGaussWeights_finiteMomentVector_eq (L : ℝ[X] →ₗ[ℝ] ℝ) (n : ℕ) :
     momentGaussWeights (finiteMomentFunctional (finiteMomentVector L n)) n = momentGaussWeights L n := by
   funext i

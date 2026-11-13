@@ -18,7 +18,9 @@ namespace NLAlib
 total degree is at most `2q+1`. In particular, original orthogonal polynomial
 pairs have the same discrete orthogonality whenever their degree sum lies in
 this range. Source: Gautschi (2004), Theorem 1.23; operator derivations (AQ11).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.3h6v.s8.39fc435f15c9 from=translated src=- shape=b13d9980 vocab=730f48a5
+-/
 theorem sum_lobattoWeights_mul_eval_mul_eval_eq_integral {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) (q : ℕ) (hs : (q + 1 : ℕ∞) ≤ μ.support.encard)
     (a c : ℝ) {p r : ℝ[X]} (hpr : p.degree + r.degree < (2 * q + 2 : ℕ)) :

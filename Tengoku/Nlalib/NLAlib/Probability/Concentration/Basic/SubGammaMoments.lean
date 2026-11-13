@@ -132,7 +132,9 @@ private theorem lpNorm_two_mul_le_four_mul_scale
 Lp bound. The variables, measure, exponential integrals, and moment norm
 are native objects; both zero variance and zero scale are included.
 The constants are obtained from the cosh Taylor term and a factorial
-bound, as in the scalar moment step for resolvent concentration.-/
+bound, as in the scalar moment step for resolvent concentration.
+@isnad1 id=le.6h6v.s8.c8448571960b from=translated src=- shape=4d982bf7 vocab=ea53913f
+-/
 theorem lpNorm_two_mul_le_sqrt_add_of_subgamma_mgf
     {X : Ω → ℝ} {p : ℕ} (hp : 0<p) (hX : MemLp X ((2*p : ℕ) : ℝ≥0∞) μ)
     {V c : ℝ} (hV : 0≤V) (hc : 0≤c)

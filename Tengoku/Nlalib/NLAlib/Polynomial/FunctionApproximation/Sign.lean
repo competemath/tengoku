@@ -18,7 +18,9 @@ namespace NLAlib
 
 /-- Sign equals `x` times the inverse square root of `x²` away from zero.
 Source: elementary real arithmetic; operator derivations §6,
-helper for `sign-polynomial-approx`.-/
+helper for `sign-polynomial-approx`.
+@isnad1 id=eq.1h1v.s6.fe85615a52be from=translated src=- shape=3770d0dd vocab=3412ca8c
+-/
 theorem sign_eq_mul_sq_rpow_neg_half {x : ℝ} (hx : x ≠ 0) :
     Real.sign x = x * (x ^ 2) ^ (-(1 / 2 : ℝ)) := by
   rw [Real.rpow_neg (sq_nonneg x), ← sqrt_eq_rpow, sqrt_sq_eq_abs]
@@ -29,7 +31,9 @@ theorem sign_eq_mul_sq_rpow_neg_half {x : ℝ} (hx : x ≠ 0) :
 
 /-- Inverse-square-root approximation provides the exact Bernstein-ellipse sign filter.
 Source: Trefethen, ATAP, Thm 8.2; operator derivations §6.
-atlas: sign-polynomial-approx-/
+atlas: sign-polynomial-approx
+@isnad1 id=ex.4h3v.s8.4021da984c1d from=translated src=- shape=123a49bf vocab=4a6b1ab7
+-/
 theorem exists_sign_polynomial_of_bernstein_radius {γ ρ : ℝ} (hγ : 0 < γ)
     (hγone : γ < 1) (hρ : 1 < ρ) (hr : ρ < (1 + γ) / (1 - γ)) (n : ℕ) :
     ∃ q : ℝ[X], q.degree ≤ n ∧
@@ -73,7 +77,9 @@ theorem exists_sign_polynomial_of_bernstein_radius {γ ρ : ℝ} (hγ : 0 < γ)
       (mul_le_of_le_one_left (by positivity) hxhi)
 
 /-- At radius `1+γ`, the positive ellipse margin is exactly `γ²(3+γ)/4`.
-Source: operator derivations §6; helper for `sign-polynomial-approx`.-/
+Source: operator derivations §6; helper for `sign-polynomial-approx`.
+@isnad1 id=eq.1h1v.s6.a7b9987a5eb2 from=translated src=- shape=ba524c9a vocab=4e08286b
+-/
 theorem bernsteinIntervalLower_sq_one_add {γ : ℝ} (hγ : 0 < γ) :
     bernsteinIntervalLower (γ ^ 2) 1 (1 + γ) = γ ^ 2 * (3 + γ) / 4 := by
   dsimp [bernsteinIntervalLower]
@@ -83,7 +89,9 @@ theorem bernsteinIntervalLower_sq_one_add {γ : ℝ} (hγ : 0 < γ) :
 /-- The elementary radius `1+γ` gives a sign polynomial with error
 `4/(√3 γ²) (1+γ)⁻ⁿ` and degree at most `2n+1`.
 Source: operator derivations §6; Trefethen, ATAP, Thm 8.2 applied to the inverse square root.
-atlas: sign-polynomial-approx-/
+atlas: sign-polynomial-approx
+@isnad1 id=ex.2h2v.s8.95f5b31c53de from=translated src=- shape=789e5a6a vocab=6bcee7e0
+-/
 theorem exists_sign_polynomial_abs_sub_eval_le {γ : ℝ} (hγ : 0 < γ)
     (hγone : γ < 1) (n : ℕ) :
     ∃ q : ℝ[X], q.degree ≤ n ∧

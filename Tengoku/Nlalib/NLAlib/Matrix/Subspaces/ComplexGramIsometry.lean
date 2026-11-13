@@ -14,7 +14,9 @@ open scoped InnerProductSpace Matrix
 namespace NLAlib
 
 /-- A complex linear isometry has an isometric-column matrix in standard
-Euclidean coordinates. Horn–Johnson 2013, Section 2.1; complex CS helper.-/
+Euclidean coordinates. Horn–Johnson 2013, Section 2.1; complex CS helper.
+@isnad1 id=eq.0h3v.s13.abf88f89599e from=translated src=- shape=bcc683c8 vocab=05c30152
+-/
 theorem conjTranspose_mul_self_toEuclideanLin_symm {m n : Type*}
     [Fintype m] [Fintype n] [DecidableEq n]
     (L : EuclideanSpace ℂ n →ₗᵢ[ℂ] EuclideanSpace ℂ m) :
@@ -33,7 +35,9 @@ theorem conjTranspose_mul_self_toEuclideanLin_symm {m n : Type*}
       simp only [Matrix.toEuclideanLin, Matrix.toLpLin_one]
 
 /-- Equal complex Gram matrices give identical lengths at every vector.
-Horn–Johnson 2013, Section 2.1; complex CS equal-Gram helper.-/
+Horn–Johnson 2013, Section 2.1; complex CS equal-Gram helper.
+@isnad1 id=eq.1h6v.s13.3621575ae5a6 from=translated src=- shape=0431f505 vocab=e67a0788
+-/
 theorem norm_toEuclideanLin_apply_eq_of_complex_gram_eq {m n p : Type*}
     [Fintype m] [Fintype n] [Fintype p] [DecidableEq n] (A : Matrix m n ℂ) (B : Matrix p n ℂ)
     (hGram : Aᴴ * A = Bᴴ * B) (x : EuclideanSpace ℂ n) :
@@ -55,7 +59,9 @@ theorem norm_toEuclideanLin_apply_eq_of_complex_gram_eq {m n p : Type*}
 
 /-- Two complex matrices of the same shape and with equal Gram matrices
 differ by an ambient left unitary factor. Singular and empty matrices are
-included. Horn–Johnson 2013, Section 2.1; complex CS completion helper.-/
+included. Horn–Johnson 2013, Section 2.1; complex CS completion helper.
+@isnad1 id=ex.1h4v.s8.5ae1883de235 from=translated src=- shape=968fd210 vocab=81190429
+-/
 theorem exists_unitary_mul_eq_of_gram_eq {m n : Type*}
     [Fintype m] [Fintype n] [DecidableEq m] (A B : Matrix m n ℂ)
     (hGram : Aᴴ * A = Bᴴ * B) :

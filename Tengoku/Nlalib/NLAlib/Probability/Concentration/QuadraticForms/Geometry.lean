@@ -36,7 +36,9 @@ namespace NLAlib
 variable {Ω : Type*} [MeasurableSpace Ω]
 open scoped Matrix.Norms.L2Operator in
 /-- Source-transport helper `mgf_innerSL_stdGaussian` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=eq.0h3v.s7.8120f0f03d34 from=translated src=- shape=8a070499 vocab=79f0fef2
+-/
 lemma mgf_innerSL_stdGaussian {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E] (v : E) (t : ℝ) :
     mgf (fun x : E => inner ℝ v x) (stdGaussian E) t =
@@ -55,7 +57,9 @@ lemma mgf_innerSL_stdGaussian {E : Type*} [NormedAddCommGroup E] [InnerProductSp
   ring_nf
 
 /-- Source-transport helper `integrable_exp_innerSL_stdGaussian` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=integrab.0h3v.s6.fd7626b41612 from=translated src=- shape=61ec910d vocab=adf257f3
+-/
 lemma integrable_exp_innerSL_stdGaussian {E : Type*} [NormedAddCommGroup E]
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
     (v : E) (t : ℝ) :
@@ -66,7 +70,9 @@ lemma integrable_exp_innerSL_stdGaussian {E : Type*} [NormedAddCommGroup E]
 
 open scoped Matrix.Norms.L2Operator in
 /-- Source-transport helper `integral_exp_innerSL_stdGaussian` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=eq.0h3v.s7.5d3b7f1d2f13 from=translated src=- shape=188c7358 vocab=3ddde641
+-/
 lemma integral_exp_innerSL_stdGaussian {E : Type*} [NormedAddCommGroup E]
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
     (v : E) (t : ℝ) :
@@ -76,7 +82,9 @@ lemma integral_exp_innerSL_stdGaussian {E : Type*} [NormedAddCommGroup E]
 
 open scoped Matrix.Norms.L2Operator in
 /-- Source-transport helper `symmetric_inner_apply_eq_sum_eigenvalues_repr` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=eq.1h3v.s11.b22848c4caed from=translated src=- shape=ed606ed9 vocab=500fc424
+-/
 lemma symmetric_inner_apply_eq_sum_eigenvalues_repr {E : Type*} [NormedAddCommGroup E]
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
     (T : E →ₗ[ℝ] E) (hT : T.IsSymmetric) (x : E) :
@@ -104,7 +112,9 @@ lemma symmetric_inner_apply_eq_sum_eigenvalues_repr {E : Type*} [NormedAddCommGr
       simp only [Real.norm_eq_abs, sq_abs, b]
 
 /-- Source-transport helper `orthonormalBasis_repr_sum_smul` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=eq.0h4v.s11.19df1df08e29 from=translated src=- shape=96654b90 vocab=6c4dfcf4
+-/
 lemma orthonormalBasis_repr_sum_smul {E : Type*} [NormedAddCommGroup E]
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
     (b : OrthonormalBasis (Fin (Module.finrank ℝ E)) ℝ E)
@@ -130,13 +140,17 @@ def randomVector {n : ℕ} (X : Fin n → Ω → ℝ) : Ω → EuclideanSpace �
 
 omit [MeasurableSpace Ω] in
 /-- Source-transport helper `randomVector_apply` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=eq.0h5v.s5.5698b352ea81 from=translated src=- shape=0087a9b0 vocab=09fb77e3
+-/
 @[simp]
 lemma randomVector_apply {n : ℕ} (X : Fin n → Ω → ℝ) (ω : Ω) (i : Fin n) :
     randomVector X ω i = X i ω := rfl
 
 /-- Source-transport helper `randomVector_aemeasurable` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=aemeasur.1h4v.s6.ef6b203242f6 from=translated src=- shape=3b6b38e4 vocab=43bca587
+-/
 lemma randomVector_aemeasurable {μ : Measure Ω} {n : ℕ} {X : Fin n → Ω → ℝ}
     (hX_meas : ∀ i, AEMeasurable (X i) μ) :
     AEMeasurable (randomVector X) μ := by
@@ -169,7 +183,9 @@ def coordinateMask {n : ℕ} (s : Finset (Fin n))
   WithLp.toLp 2 fun i => if i ∈ s then x i else 0
 
 /-- Source-transport helper `coordinateMask_apply` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=eq.0h4v.s6.ab7a7beade80 from=translated src=- shape=8df1c64f vocab=3327ebb2
+-/
 @[simp]
 lemma coordinateMask_apply {n : ℕ} (s : Finset (Fin n))
     (x : EuclideanSpace ℝ (Fin n)) (i : Fin n) :
@@ -181,13 +197,17 @@ def subtypeMask {n : ℕ} (s : Finset (Fin n)) (x : s → ℝ) :
   WithLp.toLp 2 fun i => if h : i ∈ s then x ⟨i, h⟩ else 0
 
 /-- Source-transport helper `subtypeMask_apply` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=eq.0h4v.s7.7cd94944abb5 from=translated src=- shape=9e360639 vocab=3f8d7bfd
+-/
 @[simp]
 lemma subtypeMask_apply {n : ℕ} (s : Finset (Fin n)) (x : s → ℝ) (i : Fin n) :
     subtypeMask s x i = if h : i ∈ s then x ⟨i, h⟩ else 0 := rfl
 
 /-- Source-transport helper `measurable_subtypeMask` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=measurab.0h2v.s7.0579145c5f52 from=translated src=- shape=1d334c38 vocab=d0127dff
+-/
 lemma measurable_subtypeMask {n : ℕ} (s : Finset (Fin n)) :
     Measurable (subtypeMask (n := n) s) := by
   exact (MeasurableEquiv.toLp 2 (Fin n → ℝ)).measurable.comp
@@ -199,7 +219,9 @@ lemma measurable_subtypeMask {n : ℕ} (s : Finset (Fin n)) :
 
 omit [MeasurableSpace Ω] in
 /-- Source-transport helper `subtypeMask_subtype_randomVector` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=eq.0h4v.s6.9684005aae6c from=translated src=- shape=7fb0f6c3 vocab=c3b7e9f4
+-/
 lemma subtypeMask_subtype_randomVector {n : ℕ} (s : Finset (Fin n))
     (X : Fin n → Ω → ℝ) :
     (fun ω => subtypeMask s (fun i : s => X i ω)) =
@@ -210,7 +232,9 @@ lemma subtypeMask_subtype_randomVector {n : ℕ} (s : Finset (Fin n))
   · simp [hi]
 
 /-- Source-transport helper `coordinateMask_aemeasurable` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=aemeasur.1h5v.s6.c8aaf517a9f8 from=translated src=- shape=94632e81 vocab=d23669ee
+-/
 lemma coordinateMask_aemeasurable {μ : Measure Ω} {n : ℕ} (s : Finset (Fin n))
     {X : Fin n → Ω → ℝ} (hX_meas : ∀ i, AEMeasurable (X i) μ) :
     AEMeasurable (fun ω => coordinateMask s (randomVector X ω)) μ := by
@@ -219,7 +243,9 @@ lemma coordinateMask_aemeasurable {μ : Measure Ω} {n : ℕ} (s : Finset (Fin n
     (aemeasurable_pi_lambda _ fun i => hX_meas i)
 
 /-- Source-transport helper `coordinateMask_indepFun_compl` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=indepfun.2h5v.s7.6f98d94bd7b7 from=translated src=- shape=809f4f40 vocab=b93322d4
+-/
 lemma coordinateMask_indepFun_compl {μ : Measure Ω} {n : ℕ} {X : Fin n → Ω → ℝ}
     (hind : iIndepFun X μ) (hX_meas : ∀ i, AEMeasurable (X i) μ)
     (s : Finset (Fin n)) :
@@ -252,7 +278,9 @@ lemma coordinateMask_indepFun_compl {μ : Measure Ω} {n : ℕ} {X : Fin n → �
 
 open scoped Matrix.Norms.L2Operator in
 /-- Source-transport helper `entrywiseL1Norm_nonneg` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=le.0h2v.s4.82859502bffa from=translated src=- shape=11b054b7 vocab=ffa212f1
+-/
 lemma entrywiseL1Norm_nonneg {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
     0 ≤ entrywiseL1Norm A := by
   unfold entrywiseL1Norm
@@ -260,7 +288,9 @@ lemma entrywiseL1Norm_nonneg {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
 
 open scoped Matrix.Norms.L2Operator in
 /-- Source-transport helper `coordinateMask_norm_le` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=le.0h3v.s6.ed8c0a94562f from=translated src=- shape=ac441963 vocab=b3d8b3f9
+-/
 lemma coordinateMask_norm_le {n : ℕ} (s : Finset (Fin n))
     (x : EuclideanSpace ℝ (Fin n)) :
     ‖coordinateMask s x‖ ≤ ‖x‖ := by
@@ -279,7 +309,9 @@ lemma coordinateMask_norm_le {n : ℕ} (s : Finset (Fin n))
 
 open scoped Matrix.Norms.L2Operator in
 /-- Source-transport helper `toEuclideanCLM_cutMatrix_apply` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=eq.0h4v.s13.bb417f7654e2 from=translated src=- shape=9df4c9fc vocab=01b63407
+-/
 lemma toEuclideanCLM_cutMatrix_apply {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     (s : Finset (Fin n)) (x : EuclideanSpace ℝ (Fin n)) :
     Matrix.toEuclideanCLM (𝕜 := ℝ) (cutMatrix A s) x =
@@ -293,7 +325,9 @@ lemma toEuclideanCLM_cutMatrix_apply {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
 
 open scoped Matrix.Norms.L2Operator in
 /-- Source-transport helper `inner_toEuclideanCLM_cutMatrix_eq_inner_masks` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=eq.0h5v.s13.61d14e208905 from=translated src=- shape=7ecd946b vocab=98a5d1fe
+-/
 lemma inner_toEuclideanCLM_cutMatrix_eq_inner_masks {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) (s : Finset (Fin n))
     (x y : EuclideanSpace ℝ (Fin n)) :
@@ -313,7 +347,9 @@ lemma inner_toEuclideanCLM_cutMatrix_eq_inner_masks {n : ℕ}
 
 open scoped Matrix.Norms.L2Operator in
 /-- Source-transport helper `specNorm_cutMatrix_le` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=le.0h3v.s5.8cd7dc369a6d from=translated src=- shape=d675d888 vocab=2dbb2340
+-/
 lemma specNorm_cutMatrix_le {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     (s : Finset (Fin n)) :
     specNorm (cutMatrix A s) ≤ specNorm A := by
@@ -334,7 +370,9 @@ lemma specNorm_cutMatrix_le {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
             (coordinateMask_norm_le ((Finset.univ : Finset (Fin n)) \ s) x) (norm_nonneg T)
 
 /-- Source-transport helper `frobSq_cutMatrix_le` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=le.0h3v.s5.b72028f66f88 from=translated src=- shape=d675d888 vocab=d7cd9ce3
+-/
 lemma frobSq_cutMatrix_le {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     (s : Finset (Fin n)) :
     frobSq (cutMatrix A s) ≤ frobSq A := by
@@ -347,7 +385,9 @@ lemma frobSq_cutMatrix_le {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
 
 open scoped Matrix.Norms.L2Operator in
 /-- Source-transport helper `frobNorm_cutMatrix_sq_le` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=le.0h3v.s6.3071e6b7609e from=translated src=- shape=44037653 vocab=1753d89f
+-/
 lemma frobNorm_cutMatrix_sq_le {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     (s : Finset (Fin n)) :
     frobNorm (cutMatrix A s) ^ 2 ≤ frobNorm A ^ 2 := by
@@ -355,7 +395,9 @@ lemma frobNorm_cutMatrix_sq_le {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
   exact frobSq_cutMatrix_le A s
 
 /-- Source-transport helper `card_powerset_filter_mem_notMem_eq` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=eq.1h3v.s7.88d513bc00d2 from=translated src=- shape=ad08bfee vocab=44e2abb9
+-/
 lemma card_powerset_filter_mem_notMem_eq {n : ℕ} {i j : Fin n} (hij : i ≠ j) :
     (((Finset.univ : Finset (Fin n)).powerset.filter
       (fun s => i ∈ s ∧ j ∉ s)).card) =

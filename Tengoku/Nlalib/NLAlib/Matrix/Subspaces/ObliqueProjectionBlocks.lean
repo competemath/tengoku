@@ -16,7 +16,9 @@ namespace NLAlib
 set_option backward.isDefEq.respectTransparency false
 
 /-- An idempotent fixes every matrix whose range lies in its range.
-Horn–Johnson 2013, Section 1.3; oblique projection helper.-/
+Horn–Johnson 2013, Section 1.3; oblique projection helper.
+@isnad1 id=eq.2h4v.s8.8328157f783d from=translated src=- shape=71ab7c25 vocab=fcfd2dbf
+-/
 theorem mul_eq_of_range_le_of_isIdempotentElem {n r : Type*}
     [Fintype n] [Fintype r] {P : Matrix n n ℝ} {Q : Matrix n r ℝ}
     (hP : IsIdempotentElem P)
@@ -31,7 +33,9 @@ theorem mul_eq_of_range_le_of_isIdempotentElem {n r : Type*}
 give the exact block form `[I T; 0 0]`. Both coordinate Gram identities are
 supplied; the first block has `rank P` coordinates, so zero and full rank
 are included. Horn–Johnson 2013, Corollary 3.4.3.3.
-atlas: cs-decomposition (partial)-/
+atlas: cs-decomposition (partial)
+@isnad1 id=ex.1h2v.s10.af7e9797fccd from=translated src=- shape=4878e1a8 vocab=263da72f
+-/
 theorem exists_orthogonal_idempotent_range_blocks {n : Type*}
     [Fintype n] [DecidableEq n] (P : Matrix n n ℝ) (hP : IsIdempotentElem P) :
     ∃ H : Matrix n (Fin P.rank ⊕ Fin (Fintype.card n - P.rank)) ℝ,

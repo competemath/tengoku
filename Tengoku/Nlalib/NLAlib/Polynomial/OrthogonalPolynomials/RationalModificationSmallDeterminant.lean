@@ -33,7 +33,9 @@ private theorem base_add_small_size (u v : 𝕜[X]) (n : ℕ) :
     n-v.natDegree+(u.natDegree+min n v.natDegree) = u.natDegree+n := by omega
 
 /-- Moving the actual small determinant's polynomial row from last to first
-introduces exactly `(-1)^(degree u+min(n,m))`.-/
+introduces exactly `(-1)^(degree u+min(n,m))`.
+@isnad1 id=eq.0h6v.s9.b8cb96b30dd3 from=translated src=- shape=e971e84c vocab=076e7657
+-/
 theorem det_rationalModificationSmallFirstRowMatrix_eq
     (L T : 𝕜[X] →ₗ[𝕜] 𝕜) (u v : 𝕜[X]) (n : ℕ) :
     (rationalModificationSmallFirstRowMatrix L T u v n).det =
@@ -74,7 +76,9 @@ theorem det_rationalModificationSmallFirstRowMatrix_eq
   simp [sign_finRotate, k]
 
 /-- The top coefficient of the actual compressed last-row determinant is
-exactly its native normalization minor.-/
+exactly its native normalization minor.
+@isnad1 id=eq.5h6v.s10.aab2cfc8cf01 from=translated src=- shape=480fd6e6 vocab=4167df3b
+-/
 theorem coeff_det_rationalModificationSmallBorderMatrix_self
     (L T : 𝕜[X] →ₗ[𝕜] 𝕜) {u v : 𝕜[X]} (hu : u ≠ 0) (hv : v ≠ 0)
     (hTv : ∀ p, T (v*p) = L p) {n : ℕ}
@@ -93,7 +97,9 @@ theorem coeff_det_rationalModificationSmallBorderMatrix_self
 
 /-- The actual source normalization is `(-1)^k det M`, where
 `k=degree u+min(n,degree v)`, and therefore is nonzero. Source: CU8.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=ne.5h6v.s10.4e92dba2eb2a from=translated src=- shape=66714b74 vocab=cfd7b80c
+-/
 theorem coeff_det_rationalModificationSmallFirstRowMatrix_self_ne_zero
     (L T : 𝕜[X] →ₗ[𝕜] 𝕜) {u v : 𝕜[X]} (hu : u ≠ 0) (hv : v ≠ 0)
     (hTv : ∀ p, T (v*p) = L p) {n : ℕ}
@@ -111,7 +117,9 @@ theorem coeff_det_rationalModificationSmallFirstRowMatrix_self_ne_zero
 normalization and by `u` is the canonical modified monic polynomial. All
 denominator degrees are allowed, and division by `u` is exact polynomial
 division even at its roots. Source: focused mathematical reroutes CU6--CU8.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=eq.5h6v.s10.42fe040db829 from=translated src=- shape=d3062fa7 vocab=96ded54a
+-/
 theorem monicOrthogonalPolynomial_eq_rationalModification_small_det_div
     (L T : 𝕜[X] →ₗ[𝕜] 𝕜) {u v : 𝕜[X]} (hu : u ≠ 0) (hv : v ≠ 0)
     (hTv : ∀ p, T (v*p) = L p) {n : ℕ}

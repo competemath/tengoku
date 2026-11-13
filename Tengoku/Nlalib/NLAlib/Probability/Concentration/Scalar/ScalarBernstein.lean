@@ -24,7 +24,9 @@ open scoped ENNReal
 namespace NLAlib
 
 /-- Independent `ψ₁` bounds give exponential integrability of the sum for tilts of radius
-`1/(2B)`, where `B` dominates the scales. Vershynin 2018, proof of Theorem 2.8.4.-/
+`1/(2B)`, where `B` dominates the scales. Vershynin 2018, proof of Theorem 2.8.4.
+@isnad1 id=integrab.6h7v.s7.1056962934ef from=translated src=- shape=1c49bc54 vocab=03ae2863
+-/
 theorem integrable_exp_mul_sum_of_lintegral_exp_abs_le_two
     {ι Ω : Type*} [Fintype ι] [MeasurableSpace Ω] {μ : Measure Ω}
     [IsProbabilityMeasure μ] (X : ι → Ω → ℝ) (K : ι → ℝ)
@@ -41,7 +43,9 @@ theorem integrable_exp_mul_sum_of_lintegral_exp_abs_le_two
 /-- Independent centered `ψ₁` bounds give the local MGF bound for the sum, with quadratic
 proxy `16ΣKᵢ²` and radius `1/(2B)` (integrability:
 `integrable_exp_mul_sum_of_lintegral_exp_abs_le_two`).
-Vershynin 2018, proof of Theorem 2.8.4; atlas `bernstein-scalar` (MGF assembly).-/
+Vershynin 2018, proof of Theorem 2.8.4; atlas `bernstein-scalar` (MGF assembly).
+@isnad1 id=le.7h7v.s8.b31007a2e689 from=translated src=- shape=f6ca10bd vocab=e4364462
+-/
 theorem mgf_sum_le_of_lintegral_exp_abs_le_two
     {ι Ω : Type*} [Fintype ι] [MeasurableSpace Ω] {μ : Measure Ω}
     [IsProbabilityMeasure μ] (X : ι → Ω → ℝ) (K : ι → ℝ)
@@ -74,7 +78,9 @@ theorem mgf_sum_le_of_lintegral_exp_abs_le_two
 `e^{lY}` is integrable for `|l| ≤ (2Cb)⁻¹`, then for `t ≥ 0`
 `P(Y ≥ t) ≤ exp(-(1/(4C)) min(t²/v, t/b))`. Vershynin 2018, proof of Theorem 2.8.1 (Chernoff
 step, sub-exponential regime); atlas `hanson-wright`, `bernstein-scalar` (tail step). Ported from
-Ported from HighDimProb (Zhang–Lee–Liu, Apache-2.0).-/
+Ported from HighDimProb (Zhang–Lee–Liu, Apache-2.0).
+@isnad1 id=le.6h7v.s8.b223ab7e867d from=translated src=- shape=30dfa672 vocab=86ee35e4
+-/
 theorem measureReal_ge_le_exp_of_cgf_le {Ω : Type*} [MeasurableSpace Ω]
     {μ : Measure Ω} [IsProbabilityMeasure μ] {Y : Ω → ℝ} {v b C t : ℝ} (hC : 0 < C) (hv : 0 < v)
     (hb : 0 < b)
@@ -145,7 +151,9 @@ theorem measureReal_ge_le_exp_of_cgf_le {Ω : Type*} [MeasurableSpace Ω]
 /-- **Two-sided Chernoff bound from a local quadratic CGF estimate.** Under the hypotheses of
 `measureReal_ge_le_exp_of_cgf_le`, `P(|Y| ≥ t) ≤ 2 exp(-(1/(4C)) min(t²/v, t/b))` for `t ≥ 0`.
 Vershynin 2018, proof of Theorem 2.8.1; atlas `hanson-wright`, `bernstein-scalar` (tail step).
-Ported from HighDimProb (Zhang–Lee–Liu, Apache-2.0).-/
+Ported from HighDimProb (Zhang–Lee–Liu, Apache-2.0).
+@isnad1 id=le.6h7v.s8.809e965056a0 from=translated src=- shape=6add6eab vocab=86ee35e4
+-/
 theorem measureReal_abs_ge_le_two_mul_exp_of_cgf_le {Ω : Type*} [MeasurableSpace Ω]
     {μ : Measure Ω} [IsProbabilityMeasure μ]
     {Y : Ω → ℝ} {v b C t : ℝ} (hC : 0 < C) (hv : 0 < v) (hb : 0 < b)
@@ -204,7 +212,9 @@ independent centered real coordinates with positive scales satisfying
 `P(|ΣXᵢ|≥t)≤2exp(-min(t²/ΣKᵢ²,t/B)/64)` for `t≥0`.
 The family may be empty; all moment and exponential-integrability conditions are derived.
 Vershynin 2018, Theorem 2.8.4; atlas `bernstein-scalar`.
-atlas: bernstein-scalar-/
+atlas: bernstein-scalar
+@isnad1 id=le.8h7v.s8.fe7c0fcfb383 from=translated src=- shape=4faa313c vocab=f6ee76d4
+-/
 theorem bernstein_sum_of_lintegral_exp_abs_le_two
     {ι Ω : Type*} [Fintype ι] [MeasurableSpace Ω] {μ : Measure Ω}
     [IsProbabilityMeasure μ] (X : ι → Ω → ℝ) (K : ι → ℝ)
@@ -257,7 +267,9 @@ theorem bernstein_sum_of_lintegral_exp_abs_le_two
 /-- Uniform-scale scalar Bernstein bound from `ψ₁` exponential moments:
 `P(|ΣXᵢ|≥t)≤2exp(-min(t²/(N K²),t/K)/64)` for independent centered coordinates.
 The bound also covers the empty family. Vershynin 2018, Theorem 2.8.4 (common-scale
-corollary of `bernstein_sum_of_lintegral_exp_abs_le_two`).-/
+corollary of `bernstein_sum_of_lintegral_exp_abs_le_two`).
+@isnad1 id=le.6h6v.s8.652c872a394c from=translated src=- shape=aaaeaee3 vocab=7f2a2884
+-/
 theorem bernstein_sum_of_lintegral_exp_abs_le_two_uniform
     {ι Ω : Type*} [Fintype ι] [MeasurableSpace Ω] {μ : Measure Ω}
     [IsProbabilityMeasure μ] (X : ι → Ω → ℝ) (K : ℝ)

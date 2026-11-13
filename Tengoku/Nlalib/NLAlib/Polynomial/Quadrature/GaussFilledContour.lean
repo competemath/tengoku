@@ -28,7 +28,9 @@ namespace NLAlib
 hypothesis. The finite cubical filling and Cauchy formula are proved from
 the compact filled trace, rather than supplied as assumptions.
 Source: Gautschi (2004), Theorem 2.48.
-atlas: gauss-remainder-contour-kernel (partial)-/
+atlas: gauss-remainder-contour-kernel (partial)
+@isnad1 id=other.10h7v.s11.49d4915ffc37 from=translated src=- shape=9fc2d628 vocab=7ea606ed
+-/
 theorem integral_sub_gauss_eq_cubicalCurveIntegral_of_boundedComplementFill_subset
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {n : ℕ} (hn : (n : ℕ∞) ≤ μ.support.encard)
@@ -51,7 +53,9 @@ theorem integral_sub_gauss_eq_cubicalCurveIntegral_of_boundedComplementFill_subs
 under the geometric filled-trace hypothesis. The theorem constructs the
 filling and proves compact-support kernel continuity.
 Source: Gautschi (2004), Theorem 2.48.
-atlas: gauss-remainder-contour-kernel (partial)-/
+atlas: gauss-remainder-contour-kernel (partial)
+@isnad1 id=other.10h7v.s11.c7180421d2df from=translated src=- shape=10d959f9 vocab=1a62e25e
+-/
 theorem norm_integral_sub_gauss_le_cubicalLength_mul_maxNorm_of_boundedComplementFill_subset
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {n : ℕ} (hn : (n : ℕ∞) ≤ μ.support.encard)
@@ -74,7 +78,9 @@ of a finite concatenation of C1 pieces. Endpoint closure gives a cycle;
 actual filled-trace geometry constructs its filling. Smoothness at the joins
 is not required.
 Source: Gautschi (2004), Theorem 2.48.
-atlas: gauss-remainder-contour-kernel (partial)-/
+atlas: gauss-remainder-contour-kernel (partial)
+@isnad1 id=other.10h9v.s10.fb92975a355e from=translated src=- shape=c0d6531e vocab=77751893
+-/
 theorem integral_sub_gauss_eq_curveIntegral_concat_of_boundedComplementFill_subset
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {n : ℕ} (hn : (n : ℕ∞) ≤ μ.support.encard)

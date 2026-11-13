@@ -26,7 +26,9 @@ variable {𝕜 E : Type*} [NontriviallyNormedField 𝕜]
 
 /-- A polynomial family with bounded degree and smooth coefficients can be
 paired smoothly with a family of monomial moments. Only moments below `d`
-are used.-/
+are used.
+@isnad1 id=contdiff.3h7v.s10.7a92a23e2522 from=translated src=- shape=72596ae7 vocab=1e42c691
+-/
 theorem contDiffAt_functional_polynomial_of_degree_lt {p : E → 𝕜[X]} {d : ℕ}
     (hp : ∀ y, (p y).degree < d)
     (hc : ∀ i : Fin d, ContDiffAt 𝕜 r (fun y => (p y).coeff i.val) x)
@@ -41,7 +43,9 @@ theorem contDiffAt_functional_polynomial_of_degree_lt {p : E → 𝕜[X]} {d : �
   exact ContDiffAt.sum (fun i _ => (hc i).mul (hL i))
 
 /-- Smooth monomial moments give smooth finite-system polynomial coefficients
-at every nonsingular order.-/
+at every nonsingular order.
+@isnad1 id=contdiff.2h7v.s9.9e74058d854b from=translated src=- shape=b85aeaad vocab=8429ae93
+-/
 theorem contDiffAt_orthogonalPolynomialCoefficients {n : ℕ}
     (hL : ∀ k, ContDiffAt 𝕜 r (fun y => L y (X ^ k)) x)
     (hn : hankelMomentDet (L x) n ≠ 0) (i : Fin n) :
@@ -56,7 +60,9 @@ theorem contDiffAt_orthogonalPolynomialCoefficients {n : ℕ}
   · exact (hL (n + j.val)).neg
 
 /-- Every coefficient of the canonical monic polynomial is smooth at a
-nonsingular moment system, including its constant leading coefficient.-/
+nonsingular moment system, including its constant leading coefficient.
+@isnad1 id=contdiff.2h7v.s9.a451df5a7fc7 from=translated src=- shape=e0d99aa2 vocab=ff5ab99f
+-/
 theorem contDiffAt_coeff_monicOrthogonalPolynomial {n : ℕ}
     (hL : ∀ k, ContDiffAt 𝕜 r (fun y => L y (X ^ k)) x)
     (hn : hankelMomentDet (L x) n ≠ 0) (k : ℕ) :
@@ -71,7 +77,9 @@ theorem contDiffAt_coeff_monicOrthogonalPolynomial {n : ℕ}
   · exact contDiffAt_const
 
 /-- The bilinear squared norm of the canonical monic polynomial is smooth at
-each nonsingular finite moment system.-/
+each nonsingular finite moment system.
+@isnad1 id=contdiff.2h6v.s9.fb5ad5f02e34 from=translated src=- shape=7c355734 vocab=f2fc1eb6
+-/
 theorem contDiffAt_orthogonalPolynomialNorm {n : ℕ}
     (hL : ∀ k, ContDiffAt 𝕜 r (fun y => L y (X ^ k)) x)
     (hn : hankelMomentDet (L x) n ≠ 0) :
@@ -91,7 +99,9 @@ theorem contDiffAt_orthogonalPolynomialNorm {n : ℕ}
 
 /-- The monic diagonal recurrence coefficient is smooth wherever its finite
 Hankel system and squared norm are nonzero. Source: AQ22 and the norm quotient.
-atlas: recurrence-coefficient-continuity (partial), recurrence-coefficient-moment-sensitivity (partial)-/
+atlas: recurrence-coefficient-continuity (partial), recurrence-coefficient-moment-sensitivity (partial)
+@isnad1 id=contdiff.3h6v.s9.b2523652a43b from=translated src=- shape=4f13d10a vocab=aeef1efa
+-/
 theorem contDiffAt_orthogonalRecurrenceAlpha {n : ℕ}
     (hL : ∀ k, ContDiffAt 𝕜 r (fun y => L y (X ^ k)) x)
     (hn : hankelMomentDet (L x) n ≠ 0)
@@ -116,7 +126,9 @@ theorem contDiffAt_orthogonalRecurrenceAlpha {n : ℕ}
 
 /-- Positive-order monic subdiagonal recurrence coefficients depend smoothly on
 the moments. The boundary coefficient at order zero is constantly zero.
-atlas: recurrence-coefficient-continuity (partial), recurrence-coefficient-moment-sensitivity (partial)-/
+atlas: recurrence-coefficient-continuity (partial), recurrence-coefficient-moment-sensitivity (partial)
+@isnad1 id=contdiff.4h6v.s9.627ef6a1caa2 from=translated src=- shape=7b31ce1a vocab=9604878a
+-/
 theorem contDiffAt_orthogonalRecurrenceBeta {n : ℕ}
     (hL : ∀ k, ContDiffAt 𝕜 r (fun y => L y (X ^ k)) x)
     (hn : hankelMomentDet (L x) n ≠ 0)
@@ -134,7 +146,9 @@ end NLAlib
 namespace NLAlib
 
 /-- Bounded-degree polynomial pairings are continuous when their finitely many
-coefficients and monomial moments are continuous.-/
+coefficients and monomial moments are continuous.
+@isnad1 id=continuo.3h5v.s8.60a55c1d31d5 from=translated src=- shape=c4cff29f vocab=a0836050
+-/
 theorem continuousAt_functional_polynomial_of_degree_lt
     {T : Type*} [TopologicalSpace T] {a : T}
     {L : T → (ℝ[X] →ₗ[ℝ] ℝ)} {p : T → ℝ[X]} {d : ℕ}

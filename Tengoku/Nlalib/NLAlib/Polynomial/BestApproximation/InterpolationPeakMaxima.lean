@@ -16,7 +16,9 @@ open scoped Topology
 namespace NLAlib
 
 /-- The actual Lebesgue function has value one at each distinct interpolation node.
-Source: the Kronecker cardinal values; focused reroutes, interval peaks.-/
+Source: the Kronecker cardinal values; focused reroutes, interval peaks.
+@isnad1 id=eq.1h3v.s5.cd6482d34e65 from=translated src=- shape=e1fe5634 vocab=d285a09f
+-/
 theorem lebesgueFunction_at_node {ι : Type*} [Fintype ι] [DecidableEq ι]
     {v : ι → ℝ} (hv : Function.Injective v) (j : ι) : lebesgueFunction v (v j) = 1 := by
   have hterm : ∀ k : ι, |(Lagrange.basis univ v k).eval (v j)| = if k = j then 1 else 0 := by
@@ -32,7 +34,9 @@ theorem lebesgueFunction_at_node {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 /-- The actual gap polynomial agrees with the Lebesgue function on the closed gap,
 including both endpoint values one.
-Source: signed cardinal products and nodal values; focused reroutes.-/
+Source: signed cardinal products and nodal values; focused reroutes.
+@isnad1 id=eq.2h4v.s7.5ad9c916d8e8 from=translated src=- shape=ab47673e vocab=d11251b4
+-/
 theorem eval_interpolationGapPolynomial_eq_lebesgueFunction_closed {n : ℕ} {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (i : Fin (n + 1)) {x : ℝ}
     (hx : x ∈ Icc (canonicalIntervalNodes n t i.castSucc) (canonicalIntervalNodes n t i.succ)) :
@@ -47,7 +51,9 @@ theorem eval_interpolationGapPolynomial_eq_lebesgueFunction_closed {n : ℕ} {t 
 
 /-- The actual Lebesgue peak equals the value at any maximizing point of its
 signed polynomial on the closed gap.
-Source: the canonical supremum norm and the signed cardinal identity; focused reroutes.-/
+Source: the canonical supremum norm and the signed cardinal identity; focused reroutes.
+@isnad1 id=eq.3h4v.s7.f794ea038d64 from=translated src=- shape=60d4e98a vocab=293702d5
+-/
 theorem interpolationGapPeak_eq_eval_of_isMaxOn {n : ℕ} {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (i : Fin (n + 1)) {τ : ℝ}
     (hτ : τ ∈ Icc (canonicalIntervalNodes n t i.castSucc) (canonicalIntervalNodes n t i.succ))
@@ -67,7 +73,9 @@ theorem interpolationGapPeak_eq_eval_of_isMaxOn {n : ℕ} {t : Fin n → ℝ}
 /-- Each actual gap has a unique interior critical point. It realizes its actual
 Lebesgue peak, has value above one, and has strictly negative second derivative.
 Source: real-rootedness, strict Laguerre inequality and compactness;
-focused reroutes, interval peak nondegeneracy.-/
+focused reroutes, interval peak nondegeneracy.
+@isnad1 id=ex.2h3v.s9.d0176d2307db from=translated src=- shape=71d7aefc vocab=728afc48
+-/
 theorem exists_interpolationGapPeak_nondegenerate {n : ℕ} (hn : 0 < n) {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (i : Fin (n + 1)) :
     ∃ τ ∈ Ioo (canonicalIntervalNodes n t i.castSucc) (canonicalIntervalNodes n t i.succ),

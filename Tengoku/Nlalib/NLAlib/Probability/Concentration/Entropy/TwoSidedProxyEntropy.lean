@@ -41,7 +41,9 @@ private theorem integrable_exp_mul_proxy_of_abs_bound
 
 /-- Positive exponential entropy is controlled by the actual random proxy.
 The gradient comparison need only hold almost everywhere on the actual
-joint law of the original and independent-copy product samples.-/
+joint law of the original and independent-copy product samples.
+@isnad1 id=le.6h7v.s9.eb6fede1cb55 from=translated src=- shape=f3def0a6 vocab=857b566f
+-/
 theorem entropy_exp_mul_pi_le_integral_proxy_of_bounded
     (f : (ι → Ω) → ℝ) (hfm : Measurable f) (M : ℝ) (hM : 0 ≤ M)
     (hbound : ∀ x, |f x| ≤ M)
@@ -75,7 +77,9 @@ theorem entropy_exp_mul_pi_le_integral_proxy_of_bounded
 
 /-- Orienting each coordinate replacement gives the actual negative
 exponential entropy bound. The cost is `exp(s*b)` for increments bounded by
-`b`; the proxy itself is never swapped or required to be invariant.-/
+`b`; the proxy itself is never swapped or required to be invariant.
+@isnad1 id=le.7h8v.s9.46a7767a62c1 from=translated src=- shape=66903817 vocab=ae5ecf67
+-/
 theorem entropy_exp_neg_mul_pi_le_exp_mul_integral_proxy_of_bounded
     (f : (ι → Ω) → ℝ) (hfm : Measurable f) (M : ℝ) (hM : 0 ≤ M)
     (hbound : ∀ x, |f x| ≤ M)
@@ -169,7 +173,9 @@ theorem entropy_exp_neg_mul_pi_le_exp_mul_integral_proxy_of_bounded
 
 /-- Either exponential orientation is bounded by three times the same
 actual random proxy when `s*b≤1`. Only the individual negative replacement
-terms are swapped; no invariance property of `W` is assumed.-/
+terms are swapped; no invariance property of `W` is assumed.
+@isnad1 id=le.9h9v.s10.7e9b58b9b056 from=translated src=- shape=453bc67d vocab=ae5ecf67
+-/
 theorem entropy_exp_sign_mul_pi_le_three_integral_proxy_of_bounded
     (f : (ι → Ω) → ℝ) (hfm : Measurable f) (M : ℝ) (hM : 0 ≤ M)
     (hbound : ∀ x, |f x| ≤ M)

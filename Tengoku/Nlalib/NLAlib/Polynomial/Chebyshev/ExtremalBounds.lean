@@ -17,7 +17,9 @@ namespace NLAlib
 /-- A uniformly unit-bounded polynomial's every exterior derivative is
 dominated in absolute value by the corresponding Chebyshev derivative.
 Source: Rivlin (1990), §2.7; Mathlib's one-sided extremal theorem.
-atlas: chebyshev-extremal (partial)-/
+atlas: chebyshev-extremal (partial)
+@isnad1 id=le.3h4v.s8.9fdd3d537121 from=translated src=- shape=faaaebdc vocab=8d8d7473
+-/
 theorem abs_eval_iterate_derivative_le_of_forall_abs_le_one {q k : ℕ}
     {p : ℝ[X]} {x : ℝ} (hdeg : p.degree ≤ q)
     (hb : ∀ t ∈ Set.Icc (-1 : ℝ) 1, |p.eval t| ≤ 1) (hx : 1 ≤ x) :
@@ -31,7 +33,9 @@ theorem abs_eval_iterate_derivative_le_of_forall_abs_le_one {q k : ℕ}
 /-- Scaling the uniform bound scales every absolute exterior derivative bound.
 Zero uniform bound and derivative orders above the degree are included.
 Source: Rivlin (1990), §2.7.
-atlas: chebyshev-extremal (partial)-/
+atlas: chebyshev-extremal (partial)
+@isnad1 id=le.3h5v.s8.bfb690a5937a from=translated src=- shape=66a212bb vocab=2981a064
+-/
 theorem abs_eval_iterate_derivative_le_mul_of_forall_abs_le {q k : ℕ}
     {p : ℝ[X]} {M x : ℝ} (hdeg : p.degree ≤ q)
     (hb : ∀ t ∈ Set.Icc (-1 : ℝ) 1, |p.eval t| ≤ M) (hx : 1 ≤ x) :
@@ -55,7 +59,9 @@ theorem abs_eval_iterate_derivative_le_mul_of_forall_abs_le {q k : ℕ}
 
 /-- The leading coefficient's absolute value has the sharp degree-budget bound,
 also at degree zero. Source: Rivlin (1990), §2.1; Mathlib's leading-coefficient theorem.
-atlas: chebyshev-extremal (partial)-/
+atlas: chebyshev-extremal (partial)
+@isnad1 id=le.2h2v.s6.ce5741b97173 from=translated src=- shape=815e0b90 vocab=e849ba78
+-/
 theorem abs_leadingCoeff_le_of_forall_abs_le_one {q : ℕ} {p : ℝ[X]}
     (hdeg : p.degree ≤ q) (hb : ∀ t ∈ Set.Icc (-1 : ℝ) 1, |p.eval t| ≤ 1) :
     |p.leadingCoeff| ≤ (2 : ℝ) ^ (q - 1) := by
@@ -68,7 +74,9 @@ theorem abs_leadingCoeff_le_of_forall_abs_le_one {q : ℕ} {p : ℝ[X]}
 /-- Scaling the uniform bound scales the sharp absolute leading-coefficient
 bound, including degree zero and a zero uniform bound.
 Source: Rivlin (1990), §2.1.
-atlas: chebyshev-extremal (partial)-/
+atlas: chebyshev-extremal (partial)
+@isnad1 id=le.2h3v.s6.e6a7c28393e3 from=translated src=- shape=8cbb6b0e vocab=53d4e248
+-/
 theorem abs_leadingCoeff_le_mul_of_forall_abs_le {q : ℕ} {p : ℝ[X]} {M : ℝ}
     (hdeg : p.degree ≤ q) (hb : ∀ t ∈ Set.Icc (-1 : ℝ) 1, |p.eval t| ≤ M) :
     |p.leadingCoeff| ≤ M * (2 : ℝ) ^ (q - 1) := by
@@ -92,7 +100,9 @@ theorem abs_leadingCoeff_le_mul_of_forall_abs_le {q : ℕ} {p : ℝ[X]} {M : ℝ
 /-- The coefficient at the degree budget has the same sharp absolute bound;
 when the polynomial's degree is smaller that coefficient is zero.
 Source: Rivlin (1990), §2.1.
-atlas: chebyshev-extremal (partial)-/
+atlas: chebyshev-extremal (partial)
+@isnad1 id=le.2h3v.s6.053fe6555d2f from=translated src=- shape=281f9ee5 vocab=ca620e81
+-/
 theorem abs_coeff_le_mul_of_forall_abs_le {q : ℕ} {p : ℝ[X]} {M : ℝ}
     (hdeg : p.degree ≤ q) (hb : ∀ t ∈ Set.Icc (-1 : ℝ) 1, |p.eval t| ≤ M) :
     |p.coeff q| ≤ M * (2 : ℝ) ^ (q - 1) := by

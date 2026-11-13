@@ -43,7 +43,9 @@ private theorem sin_lobatto_step_lower {n : ℕ} (hn : 0 < n) :
   linarith
 
 /-- Midpoint convexity bounds the finite Lobatto cotangent sum by the log-sine integral.
-Source: focused rederivations, the integral comparison in `thm:lobatto`.-/
+Source: focused rederivations, the integral comparison in `thm:lobatto`.
+@isnad1 id=le.1h1v.s6.77bbee42d53d from=translated src=- shape=739b7037 vocab=4cd9dfab
+-/
 theorem lobattoCotangentConstant_le_log_sin {n : ℕ} (hn : 0 < n) :
     lobattoCotangentConstant n ≤ (2 / π) * (2 - log (sin (π / (2 * n)))) := by
   let h : ℝ := π / (2 * n)
@@ -122,7 +124,9 @@ theorem lobattoCotangentConstant_le_log_sin {n : ℕ} (hn : 0 < n) :
 
 /-- The finite Lobatto cotangent sum has the sharp logarithmic coefficient `2/π`.
 Source: focused polynomial-approximation rederivations, Theorem `thm:lobatto`.
-atlas: lebesgue-constant-chebyshev (partial)-/
+atlas: lebesgue-constant-chebyshev (partial)
+@isnad1 id=le.1h1v.s6.2c6bd881eb7c from=translated src=- shape=eac1b4c9 vocab=5948eb3f
+-/
 theorem lobattoCotangentConstant_le_log {n : ℕ} (hn : 0 < n) :
     lobattoCotangentConstant n ≤ 1 + (2 / π) * log ((n : ℝ) + 1) := by
   have hn0 : (0 : ℝ) < n := by positivity

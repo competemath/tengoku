@@ -13,7 +13,9 @@ open Real Set Polynomial Polynomial.Chebyshev Finset
 namespace NLAlib
 
 /-- The Chebyshev root angles lie strictly between zero and pi.
-Source: Trefethen, ATAP, Chapter 2, the explicit root grid.-/
+Source: Trefethen, ATAP, Chapter 2, the explicit root grid.
+@isnad1 id=mem.0h2v.s6.a57f3ddf514b from=translated src=- shape=dea5bfda vocab=3dc85574
+-/
 theorem chebyshev_root_angle_mem_Ioo {N : ℕ} (j : Fin N) :
     ((j : ℝ) + 1 / 2) * π / N ∈ Ioo 0 π := by
   have hN : (0 : ℝ) < N := by exact_mod_cast (Nat.zero_lt_of_lt j.isLt)
@@ -24,7 +26,9 @@ theorem chebyshev_root_angle_mem_Ioo {N : ℕ} (j : Fin N) :
     nlinarith [pi_pos]
 
 /-- The actual Chebyshev zero uses the half-index root angle.
-Source: the equivalent forms of the standard Chebyshev root formula.-/
+Source: the equivalent forms of the standard Chebyshev root formula.
+@isnad1 id=eq.0h2v.s6.3e6188939718 from=translated src=- shape=73bfb29c vocab=fa453173
+-/
 theorem chebyshevZero_eq_cos_half_index {N : ℕ} (j : Fin N) :
     chebyshevZero N j = cos (((j : ℝ) + 1 / 2) * π / N) := by
   unfold chebyshevZero
@@ -32,7 +36,9 @@ theorem chebyshevZero_eq_cos_half_index {N : ℕ} (j : Fin N) :
   ring
 
 /-- The derivative modulus at a Chebyshev zero times its root-angle sine is `N`.
-Source: the differentiated Chebyshev cosine identity; shared Markov helper.-/
+Source: the differentiated Chebyshev cosine identity; shared Markov helper.
+@isnad1 id=eq.0h2v.s8.69423ba18023 from=translated src=- shape=82e1d1fb vocab=447b3b71
+-/
 theorem abs_eval_derivative_T_zero_mul_sin {N : ℕ} (j : Fin N) :
     |(derivative (T ℝ N)).eval (chebyshevZero N j)| *
       sin (((j : ℝ) + 1 / 2) * π / N) = N := by
@@ -44,7 +50,9 @@ theorem abs_eval_derivative_T_zero_mul_sin {N : ℕ} (j : Fin N) :
   exact Markov.abs_eval_derivative_T_zero_mul_sqrt j
 
 /-- A Chebyshev-root cardinal polynomial at an extremum has the exact sine-over-
-distance modulus. Source: focused reroutes, equation `polyretry:sample`.-/
+distance modulus. Source: focused reroutes, equation `polyretry:sample`.
+@isnad1 id=eq.1h3v.s7.22858bf25d89 from=translated src=- shape=2ecd6ecf vocab=bac03872
+-/
 theorem abs_eval_basis_chebyshevZero_cos_nat_mul_pi_div {N : ℕ} (hN : 0 < N)
     (k : ℕ) (j : Fin N) :
     |(Lagrange.basis univ (chebyshevZero N) j).eval (cos ((k : ℝ) * π / N))| =
@@ -80,7 +88,9 @@ theorem abs_eval_basis_chebyshevZero_cos_nat_mul_pi_div {N : ℕ} (hN : 0 < N)
   exact hf _ _ _ hd0 hdiff hd
 
 /-- The actual Chebyshev-root Lebesgue function at an extremum is its finite sine-
-distance sum. Source: focused reroutes, equation `polyretry:sample`.-/
+distance sum. Source: focused reroutes, equation `polyretry:sample`.
+@isnad1 id=eq.1h2v.s7.dcb3ef74ff57 from=translated src=- shape=4d4e8113 vocab=103b9e64
+-/
 theorem lebesgueFunction_chebyshevZero_cos_nat_mul_pi_div {N : ℕ} (hN : 0 < N) (k : ℕ) :
     lebesgueFunction (chebyshevZero N) (cos ((k : ℝ) * π / N)) =
       (1 / (N : ℝ)) * ∑ j : Fin N, sin (((j : ℝ) + 1 / 2) * π / N) /

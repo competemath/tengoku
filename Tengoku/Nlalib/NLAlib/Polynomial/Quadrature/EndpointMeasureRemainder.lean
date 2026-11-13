@@ -22,7 +22,9 @@ namespace NLAlib
 order-`2q+1` integral derivative remainder. The factor is `x−t`, so it is nonnegative at
 the left endpoint and nonpositive at the right. The case `q=0` is included.
 Source: Gautschi (2004), Theorems 3.3 and 3.7; operator derivations (AQ9)–(AQ10).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=ex.9h8v.s9.bafbb5ac409e from=translated src=- shape=b1e5d814 vocab=538a74b3
+-/
 theorem exists_integral_sub_endpoint_quadrature_eq_iteratedDeriv_mul
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b t : ℝ} (hab : a < b)
     (hμ : ∀ᵐ x ∂μ, x ∈ Icc a b) (ht : t = a ∨ t = b) {q : ℕ}
@@ -83,7 +85,9 @@ theorem exists_integral_sub_endpoint_quadrature_eq_iteratedDeriv_mul
 the order-`2q+2` derivative remainder with the nonpositive factor `(x−a)(x−b)`.
 The case `q=0` is the two-endpoint linear rule. Source: Gautschi (2004), Theorem 3.7;
 operator derivations (AQ11).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=ex.8h7v.s9.9cff20cecc26 from=translated src=- shape=9e63c681 vocab=97459b8b
+-/
 theorem exists_integral_sub_twoEndpoint_quadrature_eq_iteratedDeriv_mul
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ} (hab : a < b)
     (hμ : ∀ᵐ x ∂μ, x ∈ Icc a b) {q : ℕ}

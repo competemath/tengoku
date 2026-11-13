@@ -33,7 +33,9 @@ def rationalModificationBorderMatrix (T : 𝕜[X] →ₗ[𝕜] 𝕜) (u : 𝕜[X
     (fun _ j => X ^ j.val) (fun _ _ => X ^ (u.natDegree + n))
 
 /-- Multiplying the bordered determinant by the original leading coefficient
-gives the normalization determinant times the actually computed numerator.-/
+gives the normalization determinant times the actually computed numerator.
+@isnad1 id=eq.2h4v.s9.1393346d58b3 from=translated src=- shape=edc2cef3 vocab=fe791191
+-/
 theorem C_leadingCoeff_mul_det_rationalModificationBorderMatrix
     (T : 𝕜[X] →ₗ[𝕜] 𝕜) {u : 𝕜[X]} (hu : u ≠ 0) {n : ℕ}
     (hn : hankelMomentDet (polynomialWeightedFunctional T u) n ≠ 0) :
@@ -77,7 +79,9 @@ theorem C_leadingCoeff_mul_det_rationalModificationBorderMatrix
   ring
 
 /-- The bordered determinant is the actual computed numerator times the exact
-scalar normalization, including the empty lower system.-/
+scalar normalization, including the empty lower system.
+@isnad1 id=eq.2h4v.s9.e0b0c413275f from=translated src=- shape=54e90f85 vocab=23f749ba
+-/
 theorem det_rationalModificationBorderMatrix_eq
     (T : 𝕜[X] →ₗ[𝕜] 𝕜) {u : 𝕜[X]} (hu : u ≠ 0) {n : ℕ}
     (hn : hankelMomentDet (polynomialWeightedFunctional T u) n ≠ 0) :
@@ -92,7 +96,9 @@ theorem det_rationalModificationBorderMatrix_eq
   rw [← mul_div_assoc, mul_div_cancel_left₀ _ hlc]
 
 /-- The bordered determinant's leading coefficient is exactly the finite
-constraint matrix determinant.-/
+constraint matrix determinant.
+@isnad1 id=eq.2h4v.s8.73428d1236ad from=translated src=- shape=96f38072 vocab=6d989889
+-/
 @[simp] theorem coeff_det_rationalModificationBorderMatrix_self
     (T : 𝕜[X] →ₗ[𝕜] 𝕜) {u : 𝕜[X]} (hu : u ≠ 0) {n : ℕ}
     (hn : hankelMomentDet (polynomialWeightedFunctional T u) n ≠ 0) :
@@ -110,13 +116,17 @@ def rationalModificationFirstRowMatrix (T : 𝕜[X] →ₗ[𝕜] 𝕜) (u : 𝕜
     C (rationalModificationConstraint T u n
       ⟨i.val - 1, by have := i.isLt; omega⟩ (X ^ j.val))
 
-/-- The first row is exactly the increasing monomial row from the source.-/
+/-- The first row is exactly the increasing monomial row from the source.
+@isnad1 id=eq.0h5v.s8.a229d6dad6c2 from=translated src=- shape=55a3ff46 vocab=bd574171
+-/
 @[simp] theorem rationalModificationFirstRowMatrix_zero_apply
     (T : 𝕜[X] →ₗ[𝕜] 𝕜) (u : 𝕜[X]) (n : ℕ) (j : Fin (u.natDegree + n + 1)) :
     rationalModificationFirstRowMatrix T u n 0 j = X ^ j.val := by
   simp [rationalModificationFirstRowMatrix]
 
-/-- Each row after the first is exactly the corresponding native constraint.-/
+/-- Each row after the first is exactly the corresponding native constraint.
+@isnad1 id=eq.0h6v.s9.fbc5f6dca5b2 from=translated src=- shape=a80321e7 vocab=6992444a
+-/
 @[simp] theorem rationalModificationFirstRowMatrix_succ_apply
     (T : 𝕜[X] →ₗ[𝕜] 𝕜) (u : 𝕜[X]) (n : ℕ)
     (i : Fin (u.natDegree + n)) (j : Fin (u.natDegree + n + 1)) :
@@ -142,7 +152,9 @@ private theorem rationalModificationBorderMatrix_constraintRow
   · simp [rationalModificationBorderMatrix, rationalModificationConstraintMatrix]
 
 /-- Moving the polynomial row from last to first gives exactly the source sign
-`(-1)^d`, including the one-by-one empty-constraint case.-/
+`(-1)^d`, including the one-by-one empty-constraint case.
+@isnad1 id=eq.0h4v.s9.497173f25250 from=translated src=- shape=74e3be3f vocab=29be0d53
+-/
 theorem det_rationalModificationFirstRowMatrix_eq
     (T : 𝕜[X] →ₗ[𝕜] 𝕜) (u : 𝕜[X]) (n : ℕ) :
     (rationalModificationFirstRowMatrix T u n).det =
@@ -163,7 +175,9 @@ theorem det_rationalModificationFirstRowMatrix_eq
   rw [hrows, Matrix.det_permute, Matrix.det_submatrix_equiv_self]
   simp
 
-/-- The exact source normalization coefficient is `(-1)^d det M`.-/
+/-- The exact source normalization coefficient is `(-1)^d det M`.
+@isnad1 id=eq.2h4v.s8.da3f8f94c4df from=translated src=- shape=009f2311 vocab=6ad6cb06
+-/
 theorem coeff_det_rationalModificationFirstRowMatrix_self
     (T : 𝕜[X] →ₗ[𝕜] 𝕜) {u : 𝕜[X]} (hu : u ≠ 0) {n : ℕ}
     (hn : hankelMomentDet (polynomialWeightedFunctional T u) n ≠ 0) :
@@ -175,7 +189,9 @@ theorem coeff_det_rationalModificationFirstRowMatrix_self
 
 /-- The actual first-row normalization minor is nonzero, proved from finite
 modified nondegeneracy. Source: focused rational-modification reroute (CU4)--(CU5).
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=ne.2h4v.s8.9079582f2bab from=translated src=- shape=bfac6852 vocab=cdd3c5fe
+-/
 theorem coeff_det_rationalModificationFirstRowMatrix_self_ne_zero
     (T : 𝕜[X] →ₗ[𝕜] 𝕜) {u : 𝕜[X]} (hu : u ≠ 0) {n : ℕ}
     (hn : hankelMomentDet (polynomialWeightedFunctional T u) n ≠ 0) :
@@ -185,7 +201,9 @@ theorem coeff_det_rationalModificationFirstRowMatrix_self_ne_zero
     (det_rationalModificationConstraintMatrix_ne_zero T hu hn)
 
 /-- Normalizing the actual first-row determinant computes exactly the finite
-source numerator. Its normalization coefficient has already been proved nonzero.-/
+source numerator. Its normalization coefficient has already been proved nonzero.
+@isnad1 id=eq.2h4v.s9.5e2892a18af2 from=translated src=- shape=c8873ddc vocab=2aef5b15
+-/
 theorem rationalModificationNumerator_eq_smul_det_firstRowMatrix
     (T : 𝕜[X] →ₗ[𝕜] 𝕜) {u : 𝕜[X]} (hu : u ≠ 0) {n : ℕ}
     (hn : hankelMomentDet (polynomialWeightedFunctional T u) n ≠ 0) :
@@ -213,7 +231,9 @@ theorem rationalModificationNumerator_eq_smul_det_firstRowMatrix
 normalization and the original numerator polynomial, is the canonical modified
 monic orthogonal polynomial. The division is polynomial, including zeros of `u`.
 Source: focused rational-modification reroute, determinant formula (CU4)--(CU5).
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=eq.2h4v.s9.ab4ce9b66f92 from=translated src=- shape=61d84e19 vocab=c39476ab
+-/
 theorem monicOrthogonalPolynomial_eq_rationalModification_det_div
     (T : 𝕜[X] →ₗ[𝕜] 𝕜) {u : 𝕜[X]} (hu : u ≠ 0) {n : ℕ}
     (hn : hankelMomentDet (polynomialWeightedFunctional T u) n ≠ 0) :

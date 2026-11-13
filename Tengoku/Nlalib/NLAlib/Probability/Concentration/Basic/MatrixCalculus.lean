@@ -25,7 +25,9 @@ section Reindex
 variable {ι κ : Type*} [Fintype ι] [Fintype κ] [DecidableEq ι] [DecidableEq κ]
 
 open scoped Matrix.Norms.L2Operator in
-/-- The Bochner integral of a random square matrix commutes with reindexing.-/
+/-- The Bochner integral of a random square matrix commutes with reindexing.
+@isnad1 id=eq.0h6v.s8.dcdc90947d8d from=translated src=- shape=66d28bab vocab=0ff7a016
+-/
 theorem integral_reindex {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω) (e : ι ≃ κ)
     (X : Ω → Matrix ι ι ℂ) :
     ∫ ω, Matrix.reindex e e (X ω) ∂μ = Matrix.reindex e e (∫ ω, X ω ∂μ) := by
@@ -62,7 +64,9 @@ private lemma integral_prodMk {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω
 
 open scoped Matrix.Norms.L2Operator in
 /-- The Bochner integral of a random block-diagonal matrix is block diagonal with the integrated
-blocks.-/
+blocks.
+@isnad1 id=eq.2h6v.s8.d0e9b9b59950 from=translated src=- shape=b300cc25 vocab=9a863984
+-/
 theorem integral_fromBlocks_diag {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
     (P : Ω → Matrix m m ℂ) (Q : Ω → Matrix n n ℂ) (hP : Integrable P μ) (hQ : Integrable Q μ) :
     ∫ ω, fromBlocks (P ω) 0 0 (Q ω) ∂μ = fromBlocks (∫ ω, P ω ∂μ) 0 0 (∫ ω, Q ω ∂μ) := by
@@ -79,7 +83,9 @@ variable {d : Type*} [Fintype d] [DecidableEq d]
 open scoped Matrix.Norms.L2Operator in
 /-- For a Hermitian `A` and a scalar random variable `s` with all exponential moments,
 `matrixExp (s • A)` is integrable and `𝔼 matrixExp (s • A) = cfc (mgf s μ) A`.
-Tropp 2015, §4.6 (helper for Lemmas 4.6.2–4.6.3).-/
+Tropp 2015, §4.6 (helper for Lemmas 4.6.2–4.6.3).
+@isnad1 id=and.2h5v.s8.592df8319103 from=translated src=- shape=da770089 vocab=3d4ea422
+-/
 theorem integrable_and_integral_matrixExp_smul_eq_cfc_mgf {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
     (A : Matrix d d ℂ) (hA : A.IsHermitian) (s : Ω → ℝ)
     (hs : ∀ t, Integrable (fun ω => Real.exp (t * s ω)) μ) :

@@ -22,7 +22,9 @@ namespace NLAlib
 exactly the roots of the canonical left modified polynomial. The original measure
 may terminate and the other endpoint may be a remaining root.
 Source: Gautschi (2004), Theorem 3.2; operator derivations (AQ7).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=other.3h4v.s8.3c9e6d076067 from=translated src=- shape=9f568636 vocab=561637c4
+-/
 theorem exists_leftRadauNodes_eq_endpoint_modified_roots {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) {a c : ℝ} (hμac : ∀ᵐ x ∂μ, x ∈ Icc a c)
     (q : ℕ) (hs : (q + 1 : ℕ∞) ≤ μ.support.encard) :
@@ -54,7 +56,9 @@ theorem exists_leftRadauNodes_eq_endpoint_modified_roots {μ : Measure ℝ}
 /-- The actual right Radau nodes are the roots of the canonical positive right
 modified polynomial together with their prescribed endpoint.
 Source: Gautschi (2004), Theorem 3.2; operator derivations (AQ7).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=other.3h4v.s8.76f9421ef625 from=translated src=- shape=b123baa7 vocab=d227dc2e
+-/
 theorem exists_rightRadauNodes_eq_endpoint_modified_roots {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) {a c : ℝ} (hμac : ∀ᵐ x ∂μ, x ∈ Icc a c)
     (q : ℕ) (hs : (q + 1 : ℕ∞) ≤ μ.support.encard) :
@@ -86,7 +90,9 @@ theorem exists_rightRadauNodes_eq_endpoint_modified_roots {μ : Measure ℝ}
 /-- Under the clean original support condition, the actual Lobatto interior nodes
 are precisely the roots of the canonical positive two-endpoint modified polynomial.
 Source: Gautschi (2004), Theorem 3.6; operator derivations (AQ8).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=other.4h4v.s9.8416703d8657 from=translated src=- shape=0635652f vocab=fb6faa4c
+-/
 theorem exists_lobattoNodes_eq_twoEndpoint_modified_roots {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) {a c : ℝ} (hac : a < c)
     (hμac : ∀ᵐ x ∂μ, x ∈ Icc a c) (q : ℕ) (hs : (q + 2 : ℕ∞) ≤ μ.support.encard) :

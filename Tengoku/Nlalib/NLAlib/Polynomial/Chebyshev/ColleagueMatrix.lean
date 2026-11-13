@@ -54,7 +54,9 @@ def chebyshevQuotientBasis (p : ℝ[X]) (hp : p ≠ 0) :
     (by rw [Fintype.card_fin, (AdjoinRoot.powerBasis hp).finrank]; rfl)
 
 /-- Each quotient Chebyshev basis vector is the residue of its Chebyshev polynomial.
-Source: the basis construction for ATAP Theorem 18.1.-/
+Source: the basis construction for ATAP Theorem 18.1.
+@isnad1 id=eq.1h2v.s8.d5666ce148c9 from=translated src=- shape=e13a9995 vocab=1ed0388f
+-/
 @[simp] theorem chebyshevQuotientBasis_apply (p : ℝ[X]) (hp : p ≠ 0) (i : Fin p.natDegree) :
     chebyshevQuotientBasis p hp i = aeval (AdjoinRoot.root p) (T ℝ i) := by
   simp [chebyshevQuotientBasis]
@@ -68,7 +70,9 @@ def colleagueMatrix (p : ℝ[X]) (hp : p ≠ 0) : Matrix (Fin p.natDegree) (Fin 
 /-- The characteristic polynomial of the colleague matrix is the monic normalization
 of its polynomial, with root multiplicities preserved. Source: Trefethen, ATAP,
 Theorem 18.1; proved by quotient multiplication and basis invariance.
-atlas: colleague-matrix (partial)-/
+atlas: colleague-matrix (partial)
+@isnad1 id=eq.1h1v.s6.eacc05bc7e30 from=translated src=- shape=9e5f95e7 vocab=3c442e80
+-/
 theorem charpoly_colleagueMatrix (p : ℝ[X]) (hp : p ≠ 0) :
     (colleagueMatrix p hp).charpoly = p * C p.leadingCoeff⁻¹ := by
   let : Module.Finite ℝ (AdjoinRoot p) := Module.Finite.of_basis (AdjoinRoot.powerBasis hp).basis
@@ -81,14 +85,18 @@ theorem charpoly_colleagueMatrix (p : ℝ[X]) (hp : p ≠ 0) :
   exact h
 
 /-- Entries of the evaluation-recurrence colleague matrix are Chebyshev coordinates
-of multiplication by the residue of `X`. Source: ATAP Theorem 18.1.-/
+of multiplication by the residue of `X`. Source: ATAP Theorem 18.1.
+@isnad1 id=eq.1h3v.s9.4769b00d16e4 from=translated src=- shape=795e679d vocab=24bd87a6
+-/
 theorem colleagueMatrix_apply (p : ℝ[X]) (hp : p ≠ 0) (j k : Fin p.natDegree) :
     colleagueMatrix p hp j k = (chebyshevQuotientBasis p hp).repr
       (AdjoinRoot.root p * chebyshevQuotientBasis p hp j) k := by
   rw [colleagueMatrix, Matrix.transpose_apply, leftMulMatrix_eq_repr_mul]
 
 /-- In degrees at least two, the first colleague row has its single entry `1`
-in column one. Source: ATAP (18.1); the special first-kind Chebyshev recurrence.-/
+in column one. Source: ATAP (18.1); the special first-kind Chebyshev recurrence.
+@isnad1 id=eq.2h2v.s6.9f08d5c390d0 from=translated src=- shape=99aa6c16 vocab=cdef8435
+-/
 theorem colleagueMatrix_zero_row (p : ℝ[X]) (hp : p ≠ 0) (hn : 2 ≤ p.natDegree)
     (k : Fin p.natDegree) : colleagueMatrix p hp ⟨0, by omega⟩ k =
       if k.val = 1 then 1 else 0 := by
@@ -101,7 +109,9 @@ theorem colleagueMatrix_zero_row (p : ℝ[X]) (hp : p ≠ 0) (hn : 2 ≤ p.natDe
   simp only [Finsupp.single_apply, Fin.ext_iff, eq_comm]
 
 /-- Every interior colleague row has one-half in its two neighboring columns.
-Source: Trefethen, ATAP (18.1), from the first-kind Chebyshev recurrence.-/
+Source: Trefethen, ATAP (18.1), from the first-kind Chebyshev recurrence.
+@isnad1 id=eq.3h3v.s7.73a85f988c48 from=translated src=- shape=530ca14e vocab=a725f31a
+-/
 theorem colleagueMatrix_interior_row (p : ℝ[X]) (hp : p ≠ 0)
     (j k : Fin p.natDegree) (hj0 : 0 < j.val) (hjn : j.val + 1 < p.natDegree) :
     colleagueMatrix p hp j k = (1 / 2 : ℝ) *
@@ -135,7 +145,9 @@ theorem colleagueMatrix_interior_row (p : ℝ[X]) (hp : p ≠ 0)
     smul_eq_mul, prev, next]
 
 /-- The leading coefficient of a finite degree-indexed Chebyshev expansion is its
-last coefficient times `2^(n−1)`. Source: ATAP Theorem 18.1.-/
+last coefficient times `2^(n−1)`. Source: ATAP Theorem 18.1.
+@isnad1 id=eq.1h2v.s7.207dc3595e63 from=translated src=- shape=2106685f vocab=34b39ede
+-/
 theorem leadingCoeff_eq_pow_mul_of_chebyshev_expansion (p : ℝ[X]) (a : ℕ → ℝ)
     (ha : p = ∑ j ∈ Finset.range (p.natDegree + 1), a j • T ℝ (j : ℤ)) :
     p.leadingCoeff = 2 ^ (p.natDegree - 1) * a p.natDegree := by
@@ -182,7 +194,9 @@ private theorem repr_aeval_T_natDegree (p : ℝ[X]) (hp : p ≠ 0) (a : ℕ → 
 
 /-- In degree at least two, the last colleague row is the half-scaled penultimate
 basis coordinate minus `a_k/(2a_n)`. Source: Trefethen, ATAP (18.1).
-atlas: colleague-matrix (partial)-/
+atlas: colleague-matrix (partial)
+@isnad1 id=eq.4h3v.s8.eabd8b39863e from=translated src=- shape=14397035 vocab=1f36132d
+-/
 theorem colleagueMatrix_last_row (p : ℝ[X]) (hp : p ≠ 0) (a : ℕ → ℝ)
     (ha : p = ∑ j ∈ Finset.range (p.natDegree + 1), a j • T ℝ (j : ℤ))
     (han : a p.natDegree ≠ 0) (hn : 2 ≤ p.natDegree) (k : Fin p.natDegree) :
@@ -213,7 +227,9 @@ theorem colleagueMatrix_last_row (p : ℝ[X]) (hp : p ≠ 0) (a : ℕ → ℝ)
 /-- For a degree-one polynomial `a₀+a₁X`, the colleague matrix is the single entry
 `−a₀/a₁`. Source: Trefethen, ATAP, Theorem 18.1. This degree-one branch is distinct
 from the half-scaled last-row recurrence, which requires degree at least two.
-atlas: colleague-matrix-/
+atlas: colleague-matrix
+@isnad1 id=eq.4h4v.s7.e28c73f26888 from=translated src=- shape=d716e404 vocab=188e001c
+-/
 theorem colleagueMatrix_degree_one (p : ℝ[X]) (hp : p ≠ 0) (a : ℕ → ℝ)
     (ha : p = ∑ j ∈ Finset.range (p.natDegree + 1), a j • T ℝ (j : ℤ))
     (han : a p.natDegree ≠ 0) (hn : p.natDegree = 1) (j k : Fin p.natDegree) :
@@ -230,7 +246,9 @@ theorem colleagueMatrix_degree_one (p : ℝ[X]) (hp : p ≠ 0) (a : ℕ → ℝ)
 /-- The characteristic polynomial of a colleague matrix for a Chebyshev expansion
 is `p/(2^(n−1)a_n)`. Source: Trefethen, ATAP, Theorem 18.1. This identity preserves
 multiplicities; the explicit recurrence rows are supplied by the adjacent lemmas.
-atlas: colleague-matrix-/
+atlas: colleague-matrix
+@isnad1 id=eq.2h2v.s8.bdffc83c2daa from=translated src=- shape=0f4648a8 vocab=f4c4cfda
+-/
 theorem charpoly_colleagueMatrix_of_chebyshev_expansion (p : ℝ[X]) (hp : p ≠ 0) (a : ℕ → ℝ)
     (ha : p = ∑ j ∈ Finset.range (p.natDegree + 1), a j • T ℝ (j : ℤ)) :
     (colleagueMatrix p hp).charpoly = C (1 / (2 ^ (p.natDegree - 1) * a p.natDegree)) * p := by

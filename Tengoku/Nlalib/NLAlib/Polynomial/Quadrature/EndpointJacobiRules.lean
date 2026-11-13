@@ -16,14 +16,23 @@ open scoped Matrix
 
 namespace NLAlib
 
+/--
+@isnad1 id=ishermit.0h3v.s6.01cdf2b1175d from=translated src=- shape=4c2de3af vocab=d4a64ef8
+-/
 theorem isHermitian_leftRadauJacobiMatrix (L : ℝ[X] →ₗ[ℝ] ℝ) (q : ℕ) (a : ℝ) :
     (leftRadauJacobiMatrix L q a).IsHermitian :=
   isHermitian_finSymmetricBorder (isHermitian_orthogonalPolynomialJacobiMatrix L q) _ _
 
+/--
+@isnad1 id=ishermit.0h3v.s6.eb321c022b78 from=translated src=- shape=4c2de3af vocab=6e8ebad6
+-/
 theorem isHermitian_rightRadauJacobiMatrix (L : ℝ[X] →ₗ[ℝ] ℝ) (q : ℕ) (c : ℝ) :
     (rightRadauJacobiMatrix L q c).IsHermitian :=
   isHermitian_finSymmetricBorder (isHermitian_orthogonalPolynomialJacobiMatrix L q) _ _
 
+/--
+@isnad1 id=ishermit.0h4v.s6.e6d3834adef0 from=translated src=- shape=6521a76a vocab=4796a83b
+-/
 theorem isHermitian_lobattoJacobiMatrix (L : ℝ[X] →ₗ[ℝ] ℝ) (q : ℕ) (a c : ℝ) :
     (lobattoJacobiMatrix L q a c).IsHermitian :=
   isHermitian_finSymmetricBorder (isHermitian_orthogonalPolynomialJacobiMatrix L (q + 1)) _ _
@@ -31,7 +40,9 @@ theorem isHermitian_lobattoJacobiMatrix (L : ℝ[X] →ₗ[ℝ] ℝ) (q : ℕ) (
 /-- The actual left Radau Schur matrix rule integrates every polynomial through
 degree `2q`; its exactness follows from construction, including the `q=0` rule.
 Source: focused mathematical reroutes, Section 3 (BL5), (BL11).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.3h4v.s9.8c3e0329e2b8 from=translated src=- shape=b3e7117d vocab=af449c77
+-/
 theorem integral_eval_eq_mass_mul_cfc_leftRadauJacobiMatrix {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) (q : ℕ) (hs : (q + 1 : ℕ∞) ≤ μ.support.encard)
     (a : ℝ) {p : ℝ[X]} (hp : p.degree < (2 * q + 1 : ℕ)) :
@@ -44,7 +55,9 @@ theorem integral_eval_eq_mass_mul_cfc_leftRadauJacobiMatrix {μ : Measure ℝ}
 
 /-- The actual right Radau Schur matrix rule integrates every polynomial through
 degree `2q`. Source: focused mathematical reroutes, Section 3 (BL5), (BL11).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.3h4v.s9.29a82390fc97 from=translated src=- shape=b3e7117d vocab=44c04310
+-/
 theorem integral_eval_eq_mass_mul_cfc_rightRadauJacobiMatrix {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) (q : ℕ) (hs : (q + 1 : ℕ∞) ≤ μ.support.encard)
     (c : ℝ) {p : ℝ[X]} (hp : p.degree < (2 * q + 1 : ℕ)) :
@@ -57,7 +70,9 @@ theorem integral_eval_eq_mass_mul_cfc_rightRadauJacobiMatrix {μ : Measure ℝ}
 
 /-- The actual Lobatto Schur matrix rule integrates every polynomial through
 degree `2q+1`, including `q=0`. Source: focused reroutes, Section 3 (BL10), (BL11).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.3h5v.s9.2ba71496b844 from=translated src=- shape=68bf02c6 vocab=81ca5222
+-/
 theorem integral_eval_eq_mass_mul_cfc_lobattoJacobiMatrix {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) (q : ℕ) (hs : (q + 1 : ℕ∞) ≤ μ.support.encard)
     (a c : ℝ) {p : ℝ[X]} (hp : p.degree < (2 * q + 2 : ℕ)) :

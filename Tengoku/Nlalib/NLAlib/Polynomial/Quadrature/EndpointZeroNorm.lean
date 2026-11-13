@@ -17,7 +17,9 @@ namespace NLAlib
 
 /-- A zero Radau signed nodal integral gives exactness for every function, including
 terminal nodes at the opposite endpoint. Source: focused reroutes, Section 3, termination.
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.6h8v.s8.c3ac95121c3d from=translated src=- shape=6354abf5 vocab=f91c5502
+-/
 theorem integral_eq_endpoint_quadrature_of_integral_nodal_eq_zero
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b t : ℝ}
     (hμ : ∀ᵐ x ∂μ, x ∈ Icc a b) (ht : t = a ∨ t = b) {q : ℕ}
@@ -68,7 +70,9 @@ theorem integral_eq_endpoint_quadrature_of_integral_nodal_eq_zero
 
 /-- A zero Lobatto signed nodal integral gives exactness for every function, including
 terminal finite atomic measures. Source: focused reroutes, Section 3, termination.
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.7h7v.s8.a246fe04f838 from=translated src=- shape=448e06e8 vocab=e6f07226
+-/
 theorem integral_eq_twoEndpoint_quadrature_of_integral_nodal_eq_zero
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ} (hab : a < b)
     (hμ : ∀ᵐ x ∂μ, x ∈ Icc a b) {q : ℕ}

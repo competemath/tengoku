@@ -22,7 +22,9 @@ namespace NLAlib
 
 /-- Approximating `exp(-x)` on `[0,b]` forces the exact Markov degree lower bound.
 Source: Sachdeva–Vishnoi (2014), §4; operator derivations §7.
-atlas: exp-approx-lower-bound-/
+atlas: exp-approx-lower-bound
+@isnad1 id=le.4h4v.s7.f32ebe067c2f from=translated src=- shape=36ae9ad6 vocab=c9ef955b
+-/
 theorem sq_degree_ge_of_abs_eval_sub_exp_neg_le {p : ℝ[X]} {q : ℕ} {b δ : ℝ}
     (hb : 1 ≤ b) (hδ : 0 ≤ δ) (hp : p.degree ≤ q)
     (herr : ∀ x ∈ Icc 0 b, |p.eval x - exp (-x)| ≤ δ) :
@@ -54,7 +56,9 @@ theorem sq_degree_ge_of_abs_eval_sub_exp_neg_le {p : ℝ[X]} {q : ℕ} {b δ : �
 
 /-- Error at most `1/8` for `exp(-x)` on `[0,b]`, `b≥1`, requires degree at least `√(b/6)`.
 Source: Sachdeva–Vishnoi (2014), §4; operator derivations §7.
-atlas: exp-approx-lower-bound-/
+atlas: exp-approx-lower-bound
+@isnad1 id=le.5h4v.s7.45e2ae53ad07 from=translated src=- shape=de7668de vocab=9d1f1c72
+-/
 theorem sqrt_div_six_le_degree_of_abs_eval_sub_exp_neg_le {p : ℝ[X]} {q : ℕ} {b δ : ℝ}
     (hb : 1 ≤ b) (hδ : 0 ≤ δ) (hδsmall : δ ≤ 1 / 8) (hp : p.degree ≤ q)
     (herr : ∀ x ∈ Icc 0 b, |p.eval x - exp (-x)| ≤ δ) :
@@ -74,7 +78,9 @@ theorem sqrt_div_six_le_degree_of_abs_eval_sub_exp_neg_le {p : ℝ[X]} {q : ℕ}
 the two outer intervals satisfies the sharp Bernstein degree obstruction.
 Source: Sachdeva–Vishnoi (2014), sign approximation lower bound;
 operator derivations §7. The bound on the full interval is explicit.
-atlas: sign-approx-lower-bound-/
+atlas: sign-approx-lower-bound
+@isnad1 id=le.6h5v.s7.2e545866b262 from=translated src=- shape=90439436 vocab=3726a6d6
+-/
 theorem degree_mul_bound_ge_of_abs_eval_sub_sign_le {p : ℝ[X]} {q : ℕ} {γ ε M : ℝ}
     (hγ : 0 < γ) (hγone : γ < 1) (hε : ε < 1) (hp : p.degree ≤ q)
     (hM : ∀ x ∈ Icc (-1 : ℝ) 1, |p.eval x| ≤ M)
@@ -113,7 +119,9 @@ theorem degree_mul_bound_ge_of_abs_eval_sub_sign_le {p : ℝ[X]} {q : ℕ} {γ �
 /-- Approximation of `1/x` gives a residual polynomial, so its error is bounded
 below by the reciprocal Chebyshev minimax value divided by `b`.
 Source: Golub–Meurant (2010), Ch. 8; operator derivations §7.
-atlas: inverse-approx-lower-bound-/
+atlas: inverse-approx-lower-bound
+@isnad1 id=le.4h5v.s7.0c78ded2da1d from=translated src=- shape=42e92940 vocab=70d10bb3
+-/
 theorem inv_mul_eval_T_le_of_abs_eval_sub_inv_le {a b ε : ℝ} {q : ℕ} {p : ℝ[X]}
     (ha : 0 < a) (hab : a < b) (hp : p.degree < q)
     (herr : ∀ x ∈ Icc a b, |p.eval x - 1 / x| ≤ ε) :
@@ -148,7 +156,9 @@ theorem inv_mul_eval_T_le_of_abs_eval_sub_inv_le {a b ε : ℝ} {q : ℕ} {p : �
 
 /-- The inverse approximation obstruction also has the explicit condition-number form.
 Source: Golub–Meurant (2010), Ch. 8; operator derivations §7.
-atlas: inverse-approx-lower-bound-/
+atlas: inverse-approx-lower-bound
+@isnad1 id=le.4h5v.s7.e7697154265e from=translated src=- shape=313421e7 vocab=b489d640
+-/
 theorem sqrt_ratio_pow_div_le_of_abs_eval_sub_inv_le {a b ε : ℝ} {q : ℕ} {p : ℝ[X]}
     (ha : 0 < a) (hab : a < b) (hp : p.degree < q)
     (herr : ∀ x ∈ Icc a b, |p.eval x - 1 / x| ≤ ε) :

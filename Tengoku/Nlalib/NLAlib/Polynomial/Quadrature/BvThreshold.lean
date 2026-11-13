@@ -21,7 +21,9 @@ private theorem cast_half_mul_succ (ν : ℕ) :
   linarith
 
 /-- The exact integer threshold dominates its real-valued expression with the
-ceiling removed. Source: focused reroutes, eventual quadrature threshold theorem.-/
+ceiling removed. Source: focused reroutes, eventual quadrature threshold theorem.
+@isnad1 id=le.1h2v.s7.81324dc70973 from=translated src=- shape=96bb3798 vocab=4480be64
+-/
 theorem mul_pow_le_sub_of_quadratureBvThreshold_le {ν n : ℕ}
     (hn : quadratureBvThreshold ν ≤ n) :
     (105 / 16 : ℝ) * ν * 2 ^ ν ≤ (n : ℝ) - (ν : ℝ) * (ν + 1) / 2 := by
@@ -39,7 +41,9 @@ theorem mul_pow_le_sub_of_quadratureBvThreshold_le {ν n : ℕ}
 
 /-- A coefficient bounded by the exact descending-factorial BV denominator has
 the sharper finite-product power envelope beyond a cutoff. Source: focused reroutes,
-finite product replaces an exponential loss lemma.-/
+finite product replaces an exponential loss lemma.
+@isnad1 id=le.5h5v.s8.7cdc3a88b8e0 from=translated src=- shape=7d36ab09 vocab=525352c3
+-/
 theorem abs_le_power_envelope_of_descFactorial {ν n k : ℕ} {V a : ℝ}
     (hV : 0 ≤ V) (hnν : ν ≤ n) (hk : n < k)
     (hs : (ν : ℝ) * (ν + 1) / 2 < n + 1)
@@ -69,7 +73,9 @@ theorem abs_le_power_envelope_of_descFactorial {ν n k : ℕ} {V a : ℝ}
 /-- At the explicit smaller cutoff, the stronger finite-block error constant is
 bounded by the corrected eventual constant. Source: focused reroutes, eventual
 quadrature threshold theorem. The comparison does not divide by `V`.
-atlas: gauss-clenshaw-curtis-quadrature-error (partial)-/
+atlas: gauss-clenshaw-curtis-quadrature-error (partial)
+@isnad1 id=le.3h3v.s8.65be3f5009cc from=translated src=- shape=6968c8b5 vocab=2f78c133
+-/
 theorem bv_stronger_rate_le_eventual_of_quadratureBvThreshold_le {ν n : ℕ} {V : ℝ}
     (hν : 1 ≤ ν) (hn : quadratureBvThreshold ν ≤ n) (hV : 0 ≤ V) :
     14 * V / (Real.pi * (1 - ((ν : ℝ) * (ν + 1) / 2) / (n + 1)) * (n : ℝ) ^ (ν + 1)) ≤

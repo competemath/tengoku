@@ -15,7 +15,9 @@ namespace NLAlib
 
 /-- An actual absolutely convergent Chebyshev expansion whose coefficients obey
 `|c k|≤A/k^p` beyond the cutoff has Clenshaw–Curtis error at most `7A/n^p`.
-Source: focused quadrature reroute, finite alias-block estimate.-/
+Source: focused quadrature reroute, finite alias-block estimate.
+@isnad1 id=le.6h5v.s8.b39b06fd7e32 from=translated src=- shape=f613ac7f vocab=1fa45454
+-/
 theorem abs_integral_sub_clenshawCurtisRule_le_power_envelope
     {c : ℕ → ℝ} {f : ℝ → ℝ} (hcS : Summable (fun k => |c k|))
     (hf : ∀ x ∈ Icc (-1 : ℝ) 1, HasSum (fun k => c k * (T ℝ k).eval x) (f x))

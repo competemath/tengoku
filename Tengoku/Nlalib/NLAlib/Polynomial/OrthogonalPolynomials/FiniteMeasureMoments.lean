@@ -17,7 +17,9 @@ noncomputable section
 open Polynomial MeasureTheory Finset
 namespace NLAlib
 
-/-- A finite list of absolute moments gives the corresponding ordinary moments.-/
+/-- A finite list of absolute moments gives the corresponding ordinary moments.
+@isnad1 id=integrab.2h3v.s6.6695d83b2cd9 from=translated src=- shape=4a0d6955 vocab=badd0f25
+-/
 theorem integrable_pow_of_integrable_abs_pow {μ : Measure ℝ} {d : ℕ}
     (hμ : ∀ j < d, Integrable (fun x : ℝ => |x| ^ j) μ) {j : ℕ} (hj : j < d) :
     Integrable (fun x : ℝ => x ^ j) μ := by
@@ -25,7 +27,9 @@ theorem integrable_pow_of_integrable_abs_pow {μ : Measure ℝ} {d : ℕ}
   simpa only [Real.norm_eq_abs, abs_pow] using hμ j hj
 
 /-- Finite absolute moments imply integrability throughout the finite polynomial
-degree space, without assuming any higher moment.-/
+degree space, without assuming any higher moment.
+@isnad1 id=integrab.2h3v.s6.d0449f4b598d from=translated src=- shape=e2e06728 vocab=6dca6249
+-/
 theorem integrable_eval_of_degree_lt_of_abs_moments {μ : Measure ℝ} {d : ℕ}
     (hμ : ∀ j < d, Integrable (fun x : ℝ => |x| ^ j) μ)
     {p : ℝ[X]} (hp : p.degree < d) : Integrable p.eval μ := by
@@ -38,7 +42,9 @@ theorem integrable_eval_of_degree_lt_of_abs_moments {μ : Measure ℝ} {d : ℕ}
     (integrable_pow_of_integrable_abs_pow hμ i.isLt).const_mul _
 
 /-- The zero extension of a finite measure moment vector agrees with integration
-on its entire degree range. This explicitly pays every integrability obligation.-/
+on its entire degree range. This explicitly pays every integrability obligation.
+@isnad1 id=eq.2h3v.s8.6e740c4f2b95 from=translated src=- shape=c26f90e8 vocab=ddfaa802
+-/
 theorem finiteMomentFunctional_integral_apply {μ : Measure ℝ} {d : ℕ}
     (hμ : ∀ j < d, Integrable (fun x : ℝ => |x| ^ j) μ)
     {p : ℝ[X]} (hp : p.degree < d) :
@@ -60,7 +66,9 @@ def finiteMeasureMomentFunctional (μ : Measure ℝ) (n : ℕ) : ℝ[X] →ₗ[�
   finiteMomentFunctional (fun i : Fin (2 * n) => ∫ x, x ^ i.val ∂μ)
 
 /-- The finite measure moment functional evaluates every required polynomial by
-its actual integral.-/
+its actual integral.
+@isnad1 id=eq.2h3v.s7.862c300c4437 from=translated src=- shape=89aa1c29 vocab=da8371d8
+-/
 theorem finiteMeasureMomentFunctional_apply {μ : Measure ℝ} {n : ℕ}
     (hμ : ∀ j < 2 * n, Integrable (fun x : ℝ => |x| ^ j) μ)
     {p : ℝ[X]} (hp : p.degree < 2 * n) :
@@ -70,7 +78,9 @@ theorem finiteMeasureMomentFunctional_apply {μ : Measure ℝ} {n : ℕ}
 /-- The actual finite measure/support hypotheses imply positive definiteness of
 the finite Hankel system. Only moments through degree `2n-1` are assumed; the
 empty `n=0` system is also covered.
-atlas: modified-chebyshev-algorithm (partial)-/
+atlas: modified-chebyshev-algorithm (partial)
+@isnad1 id=posdef.2h2v.s6.b67946096512 from=translated src=- shape=b350c796 vocab=c5c481e6
+-/
 theorem posDef_hankelMomentMatrix_finiteMeasureMomentFunctional {μ : Measure ℝ} {n : ℕ}
     (hμ : ∀ j < 2 * n, Integrable (fun x : ℝ => |x| ^ j) μ)
     (hs : (n : ℕ∞) ≤ μ.support.encard) :
@@ -88,7 +98,9 @@ theorem posDef_hankelMomentMatrix_finiteMeasureMomentFunctional {μ : Measure �
 
 /-- Canonical polynomials from the finite moment vector satisfy actual measure
 orthogonality at every included order, including the terminal order `n`.
-atlas: modified-chebyshev-algorithm (partial)-/
+atlas: modified-chebyshev-algorithm (partial)
+@isnad1 id=eq.4h4v.s7.06013cd139bf from=translated src=- shape=4853af14 vocab=a1dec088
+-/
 theorem integral_monicOrthogonalPolynomial_finiteMeasure_mul_eq_zero
     {μ : Measure ℝ} {n k : ℕ}
     (hμ : ∀ j < 2 * n, Integrable (fun x : ℝ => |x| ^ j) μ)

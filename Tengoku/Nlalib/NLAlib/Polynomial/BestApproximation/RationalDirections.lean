@@ -25,7 +25,9 @@ namespace NLAlib
 
 /-- On the `m+deg q` side of the degree maximum, a Bézout remainder gives every numerator
 direction within the original type bounds. Source: the rational alternation derivation,
-`polybest:rational-linear-map`, constructive Euclidean-division variant.-/
+`polybest:rational-linear-map`, constructive Euclidean-division variant.
+@isnad1 id=ex.5h5v.s7.8dca05fdd7a8 from=translated src=- shape=a6631722 vocab=f53da500
+-/
 theorem exists_mul_sub_mul_eq_of_degree_le_add_natDegree {m n : ℕ} {p q H : ℝ[X]}
     (hcop : IsCoprime p q) (hq : q ≠ 0) (hpdeg : p.degree ≤ m) (hqdeg : q.degree ≤ n)
     (hH : H.degree ≤ ↑(m + q.natDegree)) :
@@ -60,7 +62,9 @@ theorem exists_mul_sub_mul_eq_of_degree_le_add_natDegree {m n : ℕ} {p q H : �
 /-- The full polynomial tangent-numerator map of a reduced nonzero rational function is
 surjective, with the exact defect-adjusted degree bound.
 Source: operator rederivations, `polybest:rational-linear-map`; the constructive proof
-uses Bézout remainders on the larger side of the degree maximum.-/
+uses Bézout remainders on the larger side of the degree maximum.
+@isnad1 id=ex.6h5v.s8.a105e6d8e87c from=translated src=- shape=0b5ab792 vocab=01538baa
+-/
 theorem exists_degree_le_mul_sub_mul_eq_of_isCoprime {m n : ℕ} {p q H : ℝ[X]}
     (hp : p ≠ 0) (hq : q ≠ 0) (hcop : IsCoprime p q)
     (hpdeg : p.degree ≤ m) (hqdeg : q.degree ≤ n)
@@ -76,7 +80,9 @@ theorem exists_degree_le_mul_sub_mul_eq_of_isCoprime {m n : ℕ} {p q H : ℝ[X]
     linear_combination -hrel
 
 /-- The rational tangent degree agrees with the customary defect formula for nonzero
-reduced fractions. Source: Trefethen, ATAP, Chapter 24, the defect definition.-/
+reduced fractions. Source: Trefethen, ATAP, Chapter 24, the defect definition.
+@isnad1 id=eq.2h4v.s6.2b4640bcc052 from=translated src=- shape=88684f40 vocab=10b012c8
+-/
 theorem add_sub_min_sub_eq_max_add {m n μ ν : ℕ} (hμ : μ ≤ m) (hν : ν ≤ n) :
     m + n - min (m - μ) (n - ν) = max (m + ν) (n + μ) := by omega
 

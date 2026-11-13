@@ -18,7 +18,9 @@ variable {𝕜 : Type*} [Field 𝕜] {l m n : ℕ}
 /-- The source first-row determinant below the denominator degree, with the
 actual nonzero normalization for arbitrary numerator/denominator leading
 coefficients. Source: Gautschi (2004), Theorem 2.53.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=other.7h11v.s10.d47388f499db from=translated src=- shape=3ba6302b vocab=22998145
+-/
 theorem det_rationalModificationAuxiliaryFirstRowMatrix_nonmonic
     (L T : 𝕜[X] →ₗ[𝕜] 𝕜) {u : 𝕜[X]} {cu cv : 𝕜}
     (hcu : cu ≠ 0) (hcv : cv ≠ 0) (x : Fin l → 𝕜) (z : Fin m → 𝕜)

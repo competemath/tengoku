@@ -20,7 +20,9 @@ variable {ι d : Type*} [Fintype ι] [Fintype d] [DecidableEq ι] [DecidableEq d
 
 omit [Fintype d] [DecidableEq ι] in
 /-- Column cross-products of a real orthonormal frame form the identity.
-Source: the Gram identity; supports `sparse-ose` fourth-order contractions.-/
+Source: the Gram identity; supports `sparse-ose` fourth-order contractions.
+@isnad1 id=eq.1h5v.s6.1da8d9bbb748 from=translated src=- shape=ed725f11 vocab=a7fea4e3
+-/
 theorem sum_mul_columns_eq_one_apply (U : Matrix ι d ℝ) (hU : HasOrthonormalCols U)
     (a b : d) : ∑ i, U i a * U i b = (1 : Matrix d d ℝ) a b := by
   have h := congrFun (congrFun (show Uᵀ * U = 1 from hU) a) b
@@ -28,7 +30,9 @@ theorem sum_mul_columns_eq_one_apply (U : Matrix ι d ℝ) (hU : HasOrthonormalC
 
 omit [Fintype d] [DecidableEq ι] in
 /-- The independent row-energy contraction of two columns is one.
-Source: the orthonormal-column identity; supports `sparse-ose`.-/
+Source: the orthonormal-column identity; supports `sparse-ose`.
+@isnad1 id=eq.1h5v.s6.47ca711af9e9 from=translated src=- shape=3a3c24e5 vocab=c5777a21
+-/
 theorem sum_sum_sq_mul_columns_eq_one (U : Matrix ι d ℝ) (hU : HasOrthonormalCols U)
     (a b : d) : ∑ i, ∑ j, (U i a * U j b) ^ 2 = 1 := by
   have hcol (c : d) : ∑ i, U i c ^ 2 = 1 := by
@@ -39,7 +43,9 @@ theorem sum_sum_sq_mul_columns_eq_one (U : Matrix ι d ℝ) (hU : HasOrthonormal
 omit [Fintype d] [DecidableEq ι] in
 /-- The crossed fourth-order contraction of two columns equals the square
 of the identity's corresponding Gram entry. Source: the frame Gram identity;
-supports CountSketch `sparse-ose`.-/
+supports CountSketch `sparse-ose`.
+@isnad1 id=eq.1h5v.s6.c23429541964 from=translated src=- shape=0ce4ad59 vocab=c5777a21
+-/
 theorem sum_sum_mul_cross_columns_eq_one_sq
     (U : Matrix ι d ℝ) (hU : HasOrthonormalCols U) (a b : d) :
     (∑ i, ∑ j, (U i a * U j b) * (U j a * U i b)) =
@@ -54,7 +60,9 @@ theorem sum_sum_mul_cross_columns_eq_one_sq
 omit [DecidableEq ι] [DecidableEq d] in
 /-- Summing the equal-row fourth powers over the column pair gives the
 sum of squared row energies. Source: finite products of sums in manuscript
-`sh:count-second`; supports `sparse-ose`.-/
+`sh:count-second`; supports `sparse-ose`.
+@isnad1 id=eq.0h3v.s7.ddccac3544b3 from=translated src=- shape=642abcfb vocab=c43079ef
+-/
 theorem sum_sum_sum_sq_row_mul_eq_sum_row_energy_sq (U : Matrix ι d ℝ) :
     (∑ a, ∑ b, ∑ i, (U i a * U i b) ^ 2) =
       ∑ i, (∑ a, U i a ^ 2) ^ 2 := by
@@ -69,7 +77,9 @@ theorem sum_sum_sum_sq_row_mul_eq_sum_row_energy_sq (U : Matrix ι d ℝ) :
 
 /-- The two off-diagonal fourth-order frame contractions total exactly
 `d²+d−2∑ rowEnergy²`. Source: manuscript `sh:count-second`;
-supports the sharp CountSketch second moment in `sparse-ose`.-/
+supports the sharp CountSketch second moment in `sparse-ose`.
+@isnad1 id=eq.1h3v.s8.a73c9449db93 from=translated src=- shape=9ccb26e1 vocab=14cb5028
+-/
 theorem sum_offDiagonal_frame_contractions_eq
     (U : Matrix ι d ℝ) (hU : HasOrthonormalCols U) :
     (∑ a, ∑ b, ∑ i, ∑ j, if i = j then 0 else

@@ -31,7 +31,9 @@ def reciprocalExponentialMinimaxError (n : ℕ) : ℝ :=
   sInf (reciprocalExponentialUniformErrorBounds n)
 
 /-- A reciprocal polynomial has the allowed native rational degree budgets and
-inherits the polynomial's pole-free domain, even after canonical reduction.-/
+inherits the polynomial's pole-free domain, even after canonical reduction.
+@isnad1 id=ispolefr.2h2v.s7.986832226af3 from=translated src=- shape=aad8bef5 vocab=58bd8b29
+-/
 theorem isPoleFreeRationalApproximation_inv_polynomial {n : ℕ} {p : ℝ[X]}
     (hp : p.degree ≤ n) (hpole : ∀ x : ℝ, 0 ≤ x → p.eval x ≠ 0) :
     IsPoleFreeRationalApproximation (Ici 0) 0 n
@@ -47,7 +49,9 @@ theorem isPoleFreeRationalApproximation_inv_polynomial {n : ℕ} {p : ℝ[X]}
     exact hpole x hx (eval_eq_zero_of_dvd_of_eval_eq_zero hden hzero)
 
 /-- Canonical rational evaluation of a pole-free reciprocal polynomial agrees
-with the reciprocal of its polynomial evaluation.-/
+with the reciprocal of its polynomial evaluation.
+@isnad1 id=eq.1h2v.s7.77d5ebff6cc4 from=translated src=- shape=efe3e2d5 vocab=3d93878a
+-/
 theorem eval_inv_polynomial_of_eval_ne_zero {p : ℝ[X]} {x : ℝ} (hp : p.eval x ≠ 0) :
     ((algebraMap ℝ[X] (RatFunc ℝ) p)⁻¹).eval (RingHom.id ℝ) x = (p.eval x)⁻¹ := by
   have hp0 : p ≠ 0 := by intro h; simp [h] at hp
@@ -71,7 +75,9 @@ theorem eval_inv_polynomial_of_eval_ne_zero {p : ℝ[X]} {x : ℝ} (hp : p.eval 
 /-- Every actual pole-free type-`(0,n)` rational function satisfies the geometric
 lower certificate, including the zero-numerator branch.
 Source: retained reciprocal lower-bound appendix.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=le.2h3v.s7.4bf160be3e1c from=translated src=- shape=91761168 vocab=775c46d1
+-/
 theorem type_zero_rational_exp_error_ge_geometric_lower_bound
     {n : ℕ} {r : RatFunc ℝ} (hr : IsPoleFreeRationalApproximation (Ici 0) 0 n r)
     {E : ℝ} (herr : ∀ x : ℝ, 0 ≤ x → |Real.exp (-x)-r.eval (RingHom.id ℝ) x| ≤ E) :
@@ -109,7 +115,9 @@ theorem type_zero_rational_exp_error_ge_geometric_lower_bound
     simpa only [← heval x] using herr x hx
 
 /-- The error-bound set is nonempty in every degree. The zero rational function
-has uniform exponential error at most one.-/
+has uniform exponential error at most one.
+@isnad1 id=nonempty.0h1v.s2.b48aaefb36a7 from=translated src=- shape=1a6c1393 vocab=876b02ff
+-/
 theorem reciprocalExponentialUniformErrorBounds_nonempty (n : ℕ) :
     (reciprocalExponentialUniformErrorBounds n).Nonempty := by
   refine ⟨1, 0, ?_, ?_⟩
@@ -120,7 +128,9 @@ theorem reciprocalExponentialUniformErrorBounds_nonempty (n : ℕ) :
     simp only [RatFunc.eval_zero, sub_zero, abs_of_pos (Real.exp_pos _)]
     simpa using Real.exp_le_exp.mpr (neg_nonpos.mpr hx)
 
-/-- Every attainable uniform error is nonnegative, so its infimum is finite.-/
+/-- Every attainable uniform error is nonnegative, so its infimum is finite.
+@isnad1 id=bddbelow.0h1v.s2.d569a2a50564 from=translated src=- shape=1a6c1393 vocab=d5f5a445
+-/
 theorem reciprocalExponentialUniformErrorBounds_bddBelow (n : ℕ) :
     BddBelow (reciprocalExponentialUniformErrorBounds n) := by
   refine ⟨0, ?_⟩
@@ -130,7 +140,9 @@ theorem reciprocalExponentialUniformErrorBounds_bddBelow (n : ℕ) :
 /-- The actual rational minimax error has the finite Laguerre geometric lower
 bound. No minimizer or polynomial certificate is assumed.
 Source: focused reciprocal reroute and retained lower-bound appendix.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=le.0h1v.s6.a437879b5e85 from=translated src=- shape=554b6574 vocab=72f368fd
+-/
 theorem reciprocalExponentialMinimaxError_ge_geometric_lower_bound (n : ℕ) :
     1/(6*Real.sqrt (reciprocalExponentialLowerCutoff n)*3^n) ≤
       reciprocalExponentialMinimaxError n := by
@@ -140,7 +152,9 @@ theorem reciprocalExponentialMinimaxError_ge_geometric_lower_bound (n : ℕ) :
 
 /-- The explicit denominator bounds the actual rational minimax error in every
 degree, with the sharper constant `√(40/21)` from the focused reroute.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=le.0h1v.s5.353c10c7d36c from=translated src=- shape=68ce44f4 vocab=6a072b56
+-/
 theorem reciprocalExponentialMinimaxError_le_geometric_upper_bound (n : ℕ) :
     reciprocalExponentialMinimaxError n ≤ Real.sqrt (40/21)/3^n := by
   apply csInf_le (reciprocalExponentialUniformErrorBounds_bddBelow n)

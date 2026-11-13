@@ -20,7 +20,9 @@ namespace NLAlib
 variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} {d : Type*} [Fintype d] [DecidableEq d]
 
 open scoped Matrix.Norms.L2Operator in
-/-- The matrix mgf of `θ g • A` is `cfc (mgf g μ (θ ·)) A` for a sub-Gaussian `g`.-/
+/-- The matrix mgf of `θ g • A` is `cfc (mgf g μ (θ ·)) A` for a sub-Gaussian `g`.
+@isnad1 id=eq.2h7v.s8.c11e2ad3d089 from=translated src=- shape=3ff8cffb vocab=4917570f
+-/
 theorem integral_matrixExp_smul_eq_cfc_of_hasSubgaussianMGF (A : Matrix d d ℂ) (hA : A.IsHermitian)
     {g : Ω → ℝ} {c : NNReal} (hg : HasSubgaussianMGF g c μ) (θ : ℝ) :
     (∫ ω, matrixExp ((θ * g ω) • A) ∂μ) = cfc (fun x => mgf g μ (θ * x)) A := by
@@ -35,7 +37,9 @@ theorem integral_matrixExp_smul_eq_cfc_of_hasSubgaussianMGF (A : Matrix d d ℂ)
 open scoped Matrix.Norms.L2Operator in
 /-- **Matrix mgf bound for a sub-Gaussian coefficient**: for `HasSubgaussianMGF g 1 μ` and
 Hermitian `A`, `𝔼 matrixExp (θ g • A) ≼ matrixExp (θ²/2 • A²)`. Tropp 2015, Lemmas 4.6.2–4.6.3
-(the Gaussian and Rademacher cases).-/
+(the Gaussian and Rademacher cases).
+@isnad1 id=le.2h6v.s8.729947ed7cdb from=translated src=- shape=fcf999b9 vocab=94a52323
+-/
 theorem integral_matrixExp_smul_le_of_hasSubgaussianMGF (A : Matrix d d ℂ) (hA : A.IsHermitian)
     {g : Ω → ℝ} (hg : HasSubgaussianMGF g 1 μ) (θ : ℝ) :
     (∫ ω, matrixExp ((θ * g ω) • A) ∂μ) ≤ matrixExp ((θ ^ 2 / 2) • A ^ 2) := by
@@ -48,7 +52,9 @@ theorem integral_matrixExp_smul_le_of_hasSubgaussianMGF (A : Matrix d d ℂ) (hA
 
 open scoped Matrix.Norms.L2Operator in
 /-- **Matrix cgf bound for a sub-Gaussian coefficient**: for `HasSubgaussianMGF g 1 μ`, `μ ≠ 0` and
-Hermitian `A`, `matrixLog (𝔼 matrixExp (θ g • A)) ≼ θ²/2 • A²`. Tropp 2015, Lemmas 4.6.2–4.6.3.-/
+Hermitian `A`, `matrixLog (𝔼 matrixExp (θ g • A)) ≼ θ²/2 • A²`. Tropp 2015, Lemmas 4.6.2–4.6.3.
+@isnad1 id=le.2h6v.s8.4296e7b78ab0 from=translated src=- shape=cf85fc3e vocab=bc1ea18f
+-/
 theorem matrixLog_integral_matrixExp_smul_le_of_hasSubgaussianMGF [NeZero μ]
     (A : Matrix d d ℂ) (hA : A.IsHermitian) {g : Ω → ℝ} (hg : HasSubgaussianMGF g 1 μ) (θ : ℝ) :
     matrixLog (∫ ω, matrixExp ((θ * g ω) • A) ∂μ) ≤ (θ ^ 2 / 2) • A ^ 2 := by

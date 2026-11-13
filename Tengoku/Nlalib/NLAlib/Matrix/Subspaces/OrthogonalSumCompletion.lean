@@ -16,7 +16,9 @@ namespace NLAlib
 /-- Complete an orthonormal frame `Q : m × p` to a unitary matrix `H : m × (p ⊕ q)` whose
 `inl` block is `Q`, whenever `card p + card q = card m`; both Gram identities `HᴴH = I`,
 `HHᴴ = I` are supplied, including empty blocks. Horn–Johnson 2013, Thm 2.1.4; supports the
-oblique-projector part of `cs-decomposition`.-/
+oblique-projector part of `cs-decomposition`.
+@isnad1 id=ex.2h5v.s8.8193693e4d78 from=translated src=- shape=9d49fe53 vocab=f12aa3d4
+-/
 theorem exists_unitary_sum_completion {𝕜 : Type*} [RCLike 𝕜] {m p q : Type*}
     [Fintype m] [Fintype p] [Fintype q]
     [DecidableEq m] [DecidableEq p] [DecidableEq q]

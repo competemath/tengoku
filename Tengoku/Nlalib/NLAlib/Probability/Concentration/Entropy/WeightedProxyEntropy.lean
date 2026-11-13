@@ -21,7 +21,9 @@ namespace NLAlib
 
 /-- The actual weighted proxy integral is bounded by entropy plus its actual
 logarithmic exponential moment. This is Gibbs variational duality with
-`U = θ*V-log(E exp(θ*V))`, whose exponential has integral exactly one.-/
+`U = θ*V-log(E exp(θ*V))`, whose exponential has integral exactly one.
+@isnad1 id=le.5h5v.s8.5c90f566caaa from=translated src=- shape=2ac744b4 vocab=203f34b1
+-/
 theorem mul_integral_mul_le_entropy_add_mul_log_integral_exp
     {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
     (Y V : Ω → ℝ) (hY : ∀ x, 0 < Y x)
@@ -70,7 +72,9 @@ theorem mul_integral_mul_le_entropy_add_mul_log_integral_exp
 
 /-- Solving the actual random-proxy entropy inequality by Gibbs duality.
 The only proxy information used on the right is its actual exponential
-integral; a separate self-bounding theorem can estimate this quantity.-/
+integral; a separate self-bounding theorem can estimate this quantity.
+@isnad1 id=le.8h6v.s8.b9cd4f4b8afc from=translated src=- shape=583839e1 vocab=ee7d3b58
+-/
 theorem entropy_le_mul_log_integral_exp_of_weighted_proxy
     {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
     (Y V : Ω → ℝ) (hY : ∀ x, 0 < Y x)

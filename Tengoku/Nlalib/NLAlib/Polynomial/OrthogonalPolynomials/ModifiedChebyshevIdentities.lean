@@ -22,12 +22,16 @@ Only the product's moment is used; no infinite orthogonal expansion is involved.
 def orthogonalMixedMoment (L : ℝ[X] →ₗ[ℝ] ℝ) (p : ℕ → ℝ[X]) (k l : ℕ) : ℝ :=
   L (monicOrthogonalPolynomial L k * p l)
 
-/-- Row zero of the mixed table is exactly the supplied modified moments.-/
+/-- Row zero of the mixed table is exactly the supplied modified moments.
+@isnad1 id=eq.0h3v.s7.91973b61d65d from=translated src=- shape=4956b43f vocab=983a42a8
+-/
 @[simp] theorem orthogonalMixedMoment_zero (L : ℝ[X] →ₗ[ℝ] ℝ) (p : ℕ → ℝ[X]) (l : ℕ) :
     orthogonalMixedMoment L p 0 l = L (p l) := by
   simp [orthogonalMixedMoment]
 
-/-- The mixed table vanishes below its diagonal.-/
+/-- The mixed table vanishes below its diagonal.
+@isnad1 id=eq.3h4v.s6.dbf2ad54a3b2 from=translated src=- shape=12ce222e vocab=1903a4d1
+-/
 theorem orthogonalMixedMoment_eq_zero {L : ℝ[X] →ₗ[ℝ] ℝ} {p : ℕ → ℝ[X]}
     {k l : ℕ} (hL : hankelMomentDet L k ≠ 0) (hp : (p l).degree = l) (hl : l < k) :
     orthogonalMixedMoment L p k l = 0 := by
@@ -35,7 +39,9 @@ theorem orthogonalMixedMoment_eq_zero {L : ℝ[X] →ₗ[ℝ] ℝ} {p : ℕ → 
   rw [hp]
   exact_mod_cast hl
 
-/-- Monicity makes each diagonal mixed moment the canonical squared norm.-/
+/-- Monicity makes each diagonal mixed moment the canonical squared norm.
+@isnad1 id=eq.3h3v.s6.07e7b75fcaaf from=translated src=- shape=bf83ec28 vocab=046c8611
+-/
 theorem orthogonalMixedMoment_diag {L : ℝ[X] →ₗ[ℝ] ℝ} {p : ℕ → ℝ[X]} {k : ℕ}
     (hL : hankelMomentDet L k ≠ 0) (hp : (p k).Monic) (hdeg : (p k).natDegree = k) :
     orthogonalMixedMoment L p k k = orthogonalPolynomialNorm L k :=
@@ -45,7 +51,9 @@ theorem orthogonalMixedMoment_diag {L : ℝ[X] →ₗ[ℝ] ℝ} {p : ℕ → ℝ
 /-- The mixed table obeys the finite modified Chebyshev recurrence. At column
 zero the previous reference polynomial is absent; the native orthogonal `beta`
 is zero at row zero.
-atlas: modified-chebyshev-algorithm (partial)-/
+atlas: modified-chebyshev-algorithm (partial)
+@isnad1 id=eq.2h6v.s8.829b5aa5e12c from=translated src=- shape=09a9161d vocab=09416c60
+-/
 theorem orthogonalMixedMoment_succ (L : ℝ[X] →ₗ[ℝ] ℝ) (p : ℕ → ℝ[X])
     (a b : ℕ → ℝ) (k l : ℕ)
     (hL : ∀ j ≤ k + 1, hankelMomentDet L j ≠ 0)
@@ -68,7 +76,9 @@ theorem orthogonalMixedMoment_succ (L : ℝ[X] →ₗ[ℝ] ℝ) (p : ℕ → ℝ
       map_smul, smul_eq_mul] <;> ring
 
 /-- Positive finite moment data make the mixed table's included diagonal entries
-positive, so the algorithm's divisions are justified by the input data.-/
+positive, so the algorithm's divisions are justified by the input data.
+@isnad1 id=lt.4h4v.s6.0d6c9ca983d7 from=translated src=- shape=2d8c1479 vocab=e47a5063
+-/
 theorem orthogonalMixedMoment_diag_pos {L : ℝ[X] →ₗ[ℝ] ℝ} {p : ℕ → ℝ[X]} {n k : ℕ}
     (hL : (hankelMomentMatrix L n).PosDef) (hk : k < n)
     (hp : (p k).Monic) (hdeg : (p k).natDegree = k) :
@@ -76,7 +86,9 @@ theorem orthogonalMixedMoment_diag_pos {L : ℝ[X] →ₗ[ℝ] ℝ} {p : ℕ →
   rw [orthogonalMixedMoment_diag (hankelMomentDet_ne_zero_of_posDef_of_le hL hk.le) hp hdeg]
   exact orthogonalPolynomialNorm_pos_of_posDef hL hk
 
-/-- The positive-order monic subdiagonal is the ratio of mixed diagonal entries.-/
+/-- The positive-order monic subdiagonal is the ratio of mixed diagonal entries.
+@isnad1 id=eq.5h4v.s7.f1c29c5384bd from=translated src=- shape=cc1e2587 vocab=26b6e6c3
+-/
 theorem orthogonalRecurrenceBeta_eq_mixed_ratio {L : ℝ[X] →ₗ[ℝ] ℝ} {p : ℕ → ℝ[X]}
     {n k : ℕ} (hL : (hankelMomentMatrix L n).PosDef) (hk : k < n) (hk0 : k ≠ 0)
     (hp : ∀ j, (p j).Monic) (hdeg : ∀ j, (p j).natDegree = j) :
@@ -90,7 +102,9 @@ theorem orthogonalRecurrenceBeta_eq_mixed_ratio {L : ℝ[X] →ₗ[ℝ] ℝ} {p 
 
 /-- The mixed table recovers the actual monic diagonal coefficient at positive
 orders, using only finite positive moment data.
-atlas: modified-chebyshev-algorithm (partial)-/
+atlas: modified-chebyshev-algorithm (partial)
+@isnad1 id=eq.6h6v.s8.2a8e3ae80691 from=translated src=- shape=3e477351 vocab=5d202eff
+-/
 theorem orthogonalRecurrenceAlpha_eq_mixed_ratio {L : ℝ[X] →ₗ[ℝ] ℝ} {p : ℕ → ℝ[X]}
     {a b : ℕ → ℝ} {n k : ℕ} (hL : (hankelMomentMatrix L n).PosDef)
     (hk : k < n) (hk0 : k ≠ 0) (hp : ∀ j, (p j).Monic)
@@ -115,7 +129,9 @@ theorem orthogonalRecurrenceAlpha_eq_mixed_ratio {L : ℝ[X] →ₗ[ℝ] ℝ} {p
   field_simp [hc, hpv]
   nlinarith
 
-/-- The initial diagonal is `a₀ + m₁/m₀`.-/
+/-- The initial diagonal is `a₀ + m₁/m₀`.
+@isnad1 id=eq.4h4v.s8.503daeacf926 from=translated src=- shape=caf366c2 vocab=f7e11ddf
+-/
 theorem orthogonalRecurrenceAlpha_zero_eq_modified_moments {L : ℝ[X] →ₗ[ℝ] ℝ}
     {p : ℕ → ℝ[X]} {a : ℝ} {n : ℕ} (hL : (hankelMomentMatrix L n).PosDef)
     (hn : 0 < n) (hp0 : p 0 = 1) (hrec : X * p 0 = p 1 + C a * p 0) :

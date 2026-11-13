@@ -23,7 +23,9 @@ variable {Ω ι : Type*} [MeasurableSpace Ω] [Fintype ι] [DecidableEq ι]
 variable {μ : Measure Ω}
 
 /-- Directional rank-one moment control lifts to every PSD trace test,
-including integrability of the tested matrix moment.-/
+including integrability of the tested matrix moment.
+@isnad1 id=and.2h7v.s8.fe5d73672f82 from=translated src=- shape=309554e3 vocab=ae7c443b
+-/
 theorem integrable_and_integral_trace_mul_vecMulVec_pow_succ_le
     (y : Ω → ι → ℝ) (p : ℕ) {a : ℝ}
     (hmoment : ∀ x : ι → ℝ,

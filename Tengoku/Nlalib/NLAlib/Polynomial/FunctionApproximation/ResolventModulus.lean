@@ -22,7 +22,9 @@ namespace NLAlib
 
 /-- On every centered compact interval, the scalar nonreal resolvent
 modulus has an actual degree-`r` polynomial approximant with the sharp
-Jackson interval constant, including a zero-radius interval.-/
+Jackson interval constant, including a zero-radius interval.
+@isnad1 id=ex.2h3v.s7.2318b387cea9 from=translated src=- shape=b2e4329f vocab=3493b122
+-/
 theorem exists_degree_le_resolvent_modulus_jackson {z : ℂ} (hz : 0 < z.im)
     (M : ℝ) (hM : 0 ≤ M) (r : ℕ) :
     ∃ Q : Polynomial ℝ, Q.degree ≤ r ∧ ∀ x ∈ Set.Icc (-M) M,
@@ -55,7 +57,9 @@ theorem exists_degree_le_resolvent_modulus_jackson {z : ℂ} (hz : 0 < z.im)
   rwa [hc] at h
 
 /-- The actual degree-`r` Jackson approximant has the source's simpler
-`6M/(rη²)` bound when `r` is positive.-/
+`6M/(rη²)` bound when `r` is positive.
+@isnad1 id=ex.3h3v.s7.a5a75d7b65ea from=translated src=- shape=0651538e vocab=8e3760ee
+-/
 theorem exists_degree_le_resolvent_modulus_approximation {z : ℂ} (hz : 0 < z.im)
     (M : ℝ) (hM : 0 ≤ M) (r : ℕ) (hr : 0 < r) :
     ∃ Q : Polynomial ℝ, Q.degree ≤ r ∧ ∀ x ∈ Set.Icc (-M) M,

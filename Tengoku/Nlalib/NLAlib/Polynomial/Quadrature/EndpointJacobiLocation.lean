@@ -20,7 +20,9 @@ namespace NLAlib
 /-- Original interval support and `q+1` support points put the actual Radau matrices
 in the interval and retain their designated endpoint eigenvalues, including original
 finite-support termination. Source: focused reroutes, Section 3 (BL2)–(BL5).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=other.3h4v.s10.1e133b0abbed from=translated src=- shape=90851731 vocab=9462615e
+-/
 theorem radauJacobiMatrices_bounds_and_endpoints {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) {a c : ℝ} (hμac : ∀ᵐ x ∂μ, x ∈ Icc a c)
     (q : ℕ) (hs : (q + 1 : ℕ∞) ≤ μ.support.encard) :
@@ -52,7 +54,9 @@ theorem radauJacobiMatrices_bounds_and_endpoints {μ : Measure ℝ}
 /-- `q+2` original support points prove the endpoint positive definite shifts for
 the actual Lobatto matrix, hence interval bounds and both endpoint eigenvalues.
 Source: focused reroutes, Section 3 (BL7)–(BL9).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=other.4h4v.s9.48d7154a8695 from=translated src=- shape=c53b3d3b vocab=34a50b19
+-/
 theorem lobattoJacobiMatrix_bounds_and_endpoints {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) {a c : ℝ} (hac : a < c)
     (hμac : ∀ᵐ x ∂μ, x ∈ Icc a c) (q : ℕ)

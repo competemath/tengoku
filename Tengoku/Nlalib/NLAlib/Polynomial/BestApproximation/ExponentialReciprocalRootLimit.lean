@@ -20,7 +20,9 @@ namespace NLAlib
 /-- The actual half-line minimax error is strictly positive at every finite
 order, by the finite lower certificate.
 Source: reciprocal lower-bound appendix.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=lt.0h1v.s3.d093bf0643a8 from=translated src=- shape=b9369acb vocab=b19a6de7
+-/
 theorem reciprocalExponentialMinimaxError_pos (n : ℕ) :
     0 < reciprocalExponentialMinimaxError n := by
   have ha := reciprocalExponentialLowerCutoff_gt_two n
@@ -41,7 +43,9 @@ private theorem tendsto_log_reciprocalExponentialLowerCutoff_div_nat :
 /-- The logarithmic slope of the actual best error equals `−log 3`.
 The polynomial prefactor in the lower bound disappears on the linear scale.
 Source: focused reciprocal reroute, geometric sandwich.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=tendsto.0h0v.s5.aecc0ae648e7 from=translated src=- shape=a3ecbc9b vocab=0b95dd54
+-/
 theorem tendsto_log_reciprocalExponentialMinimaxError_div_nat :
     Tendsto (fun n => Real.log (reciprocalExponentialMinimaxError n)/(n:ℝ))
       atTop (𝓝 (-Real.log 3)) := by
@@ -93,7 +97,9 @@ theorem tendsto_log_reciprocalExponentialMinimaxError_div_nat :
 `exp (−x)` on `x≥0` has exact `n`th-root limit `1/3`.
 This endpoint uses actual canonical rational-function degree/pole constraints.
 Source: focused reciprocal reroute, exact retained root limit.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=tendsto.0h0v.s6.c3f6ccda89f6 from=translated src=- shape=a6df7ce9 vocab=6c537d84
+-/
 theorem tendsto_rpow_reciprocalExponentialMinimaxError_inv_nat :
     Tendsto (fun n => (reciprocalExponentialMinimaxError n) ^ (1/(n:ℝ)))
       atTop (𝓝 (1/3:ℝ)) := by

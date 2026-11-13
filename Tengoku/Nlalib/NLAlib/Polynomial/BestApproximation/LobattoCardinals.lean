@@ -30,7 +30,9 @@ def lobattoCardinal (n j : ℕ) : ℝ[X] :=
       cos ((n : ℝ) * (j * π / n)) • T ℝ n)
 
 /-- The DCT cardinal expansion has degree at most the interpolation cutoff.
-Source: the degrees of the individual Chebyshev terms.-/
+Source: the degrees of the individual Chebyshev terms.
+@isnad1 id=le.0h2v.s4.c2c19f3cc705 from=translated src=- shape=048b5bd6 vocab=a0ac626b
+-/
 theorem degree_lobattoCardinal_le (n j : ℕ) : (lobattoCardinal n j).degree ≤ n := by
   apply (degree_smul_le _ _).trans
   refine (degree_add_le _ _).trans (max_le ?_ ?_)
@@ -46,7 +48,9 @@ theorem degree_lobattoCardinal_le (n j : ℕ) : (lobattoCardinal n j).degree ≤
     rw [degree_T, Int.natAbs_natCast]
 
 /-- At a cosine point, the polynomial cardinal is the paired finite trigonometric kernel.
-Source: finite product-to-sum.-/
+Source: finite product-to-sum.
+@isnad1 id=eq.0h3v.s6.bddcc49e62ac from=translated src=- shape=06872524 vocab=c0924864
+-/
 theorem eval_lobattoCardinal_cos (n j : ℕ) (t : ℝ) :
     (lobattoCardinal n j).eval (cos t) = lobattoEndpointWeight n j *
       (lobattoKernel n (t - j * π / n) + lobattoKernel n (t + j * π / n)) := by
@@ -99,7 +103,9 @@ private theorem kernel_grid_add {n i j : ℕ} (hn : 0 < n) (hi : i ≤ n) (hj : 
     simp [hne]
 
 /-- The DCT expansion has the exact cardinal nodal values.
-Source: the cardinal finite trigonometric kernel.-/
+Source: the cardinal finite trigonometric kernel.
+@isnad1 id=eq.3h3v.s5.3fba85777c83 from=translated src=- shape=0ab9f9be vocab=8df1c7ea
+-/
 theorem eval_lobattoCardinal_node {n i j : ℕ} (hn : 0 < n) (hi : i ≤ n) (hj : j ≤ n) :
     (lobattoCardinal n j).eval (node n i) = if i = j then 1 else 0 := by
   rw [node, eval_lobattoCardinal_cos, kernel_grid_sub hn hi hj, kernel_grid_add hn hi hj]
@@ -111,7 +117,9 @@ theorem eval_lobattoCardinal_node {n i j : ℕ} (hn : 0 < n) (hi : i ≤ n) (hj 
 
 /-- The finite endpoint-half DCT expression is exactly Mathlib's Lagrange cardinal polynomial.
 Source: focused rederivations, Theorem `thm:lobatto`.
-atlas: lebesgue-constant-chebyshev (partial)-/
+atlas: lebesgue-constant-chebyshev (partial)
+@isnad1 id=eq.2h2v.s5.b416766da437 from=translated src=- shape=9ac0c590 vocab=04e531d6
+-/
 theorem lobattoCardinal_eq_basis {n j : ℕ} (hn : 0 < n) (hj : j ≤ n) :
     lobattoCardinal n j = Lagrange.basis (range (n + 1)) (node n) j := by
   apply Polynomial.eq_of_degrees_lt_of_eval_index_eq (range (n + 1)) (chebyshev_node_injOn n)
@@ -126,7 +134,9 @@ theorem lobattoCardinal_eq_basis {n j : ℕ} (hn : 0 < n) (hj : j ≤ n) :
     · exact (Lagrange.eval_basis_of_ne (Ne.symm hij) hi).symm
 
 /-- The canonical extrema grid indexed by `Fin` has distinct nodes.
-Source: Mathlib `strictAntiOn_node`.-/
+Source: Mathlib `strictAntiOn_node`.
+@isnad1 id=injectiv.0h1v.s5.a6db3511d5ce from=translated src=- shape=65d059c7 vocab=8a1d310e
+-/
 theorem injective_chebyshev_extrema_fin (n : ℕ) :
     Function.Injective (fun j : Fin (n + 1) => node n j) := by
   intro i j hij
@@ -134,7 +144,9 @@ theorem injective_chebyshev_extrema_fin (n : ℕ) :
   exact chebyshev_node_injOn n (by simpa using i.isLt) (by simpa using j.isLt) hij
 
 /-- The finite cosine expression also identifies the bundled finite-index cardinal basis.
-Source: the exact DCT cardinal expansion.-/
+Source: the exact DCT cardinal expansion.
+@isnad1 id=eq.1h2v.s7.58cda1287384 from=translated src=- shape=3f599bfc vocab=602e12a7
+-/
 theorem lobattoCardinal_eq_basis_fin {n : ℕ} (hn : 0 < n) (j : Fin (n + 1)) :
     lobattoCardinal n j = Lagrange.basis univ (fun i : Fin (n + 1) => node n i) j := by
   have hv := (injective_chebyshev_extrema_fin n).injOn (s := (univ : Finset (Fin (n + 1))))

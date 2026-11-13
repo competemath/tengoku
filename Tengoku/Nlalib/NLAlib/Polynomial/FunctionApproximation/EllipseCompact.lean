@@ -17,7 +17,9 @@ namespace NLAlib
 
 /-- Every compact subset of an open Bernstein ellipse lies in a smaller filled ellipse.
 Source: Trefethen, ATAP, Thm 8.3; operator derivations §5,
-helper for `bernstein-converse`.-/
+helper for `bernstein-converse`.
+@isnad1 id=ex.3h2v.s6.6d3bf7d6ec44 from=translated src=- shape=d89e9525 vocab=490af90a
+-/
 theorem exists_lt_radius_subset_filledBernsteinEllipse {ρ : ℝ} (hρ : 1 < ρ)
     {K : Set ℂ} (hK : IsCompact K) (hsub : K ⊆ openBernsteinEllipse ρ) :
     ∃ r : ℝ, 1 < r ∧ r < ρ ∧ K ⊆ filledBernsteinEllipse r := by

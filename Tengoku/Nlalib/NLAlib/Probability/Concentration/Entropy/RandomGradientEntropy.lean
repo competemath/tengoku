@@ -30,7 +30,9 @@ law. Only measurability and boundedness of the observable are assumed. Each
 coordinate is independently replaced with its own original marginal law;
 the random squared differences stay inside the exponentially weighted expectation.
 The finite index type may be empty and `s = 0` is included.
-Source: Boucheron--Lugosi--Massart 2013, Chapter 6, by entropy tensorization.-/
+Source: Boucheron--Lugosi--Massart 2013, Chapter 6, by entropy tensorization.
+@isnad1 id=le.4h6v.s8.f94abb45f0dc from=translated src=- shape=5fdf263f vocab=20b86c15
+-/
 theorem entropy_exp_mul_pi_le_sum_integral_update_posPart_sq_of_bounded
     (f : (ι → Ω) → ℝ) (hfm : Measurable f) (M : ℝ) (hM : 0 ≤ M)
     (hbound : ∀ x, |f x| ≤ M) {s : ℝ} (hs : 0 ≤ s) :
@@ -105,7 +107,9 @@ theorem entropy_exp_mul_pi_le_sum_integral_update_posPart_sq_of_bounded
 
 /-- The random-gradient entropy inequality written with two actual independent
 full product samples. The replacement coordinate of the second sample has
-exactly the original marginal law, and all integrability is derived.-/
+exactly the original marginal law, and all integrability is derived.
+@isnad1 id=le.4h6v.s8.42f80204c599 from=translated src=- shape=6f8797cb vocab=1bb99cad
+-/
 theorem entropy_exp_mul_pi_le_integral_resampling_posPart_sq_of_bounded
     (f : (ι → Ω) → ℝ) (hfm : Measurable f) (M : ℝ) (hM : 0 ≤ M)
     (hbound : ∀ x, |f x| ≤ M) {s : ℝ} (hs : 0 ≤ s) :

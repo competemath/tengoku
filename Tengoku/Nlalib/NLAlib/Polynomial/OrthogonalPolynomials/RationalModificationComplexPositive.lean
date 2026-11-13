@@ -23,7 +23,9 @@ namespace NLAlib
 measure's canonical polynomial. The roots are complete simple-root lists of the
 given real polynomials, and their leading coefficients need not be positive.
 The scalar is the actual nonzero root/Cauchy minor normalization.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=other.11h8v.s9.8ab38b0e5b94 from=translated src=- shape=9829f52f vocab=85918e4b
+-/
 theorem exists_det_rootFirstRow_eq_rationalPolynomialModifiedMeasure
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ}
     (hs : ∀ᵐ t ∂μ, t ∈ Icc a b) (u v : ℝ[X]) (hu : u ≠ 0) (hv : v ≠ 0)

@@ -57,7 +57,9 @@ and the proxy's actual finite exponential integral. Gibbs and Herbst are proved
 inside the argument; no desired entropy or centered-MGF conclusion is assumed.
 
 The case `a>0` is deliberate. A generic zero self-bounding coefficient permits
-nonzero constant proxies and is not identified with a zero random variable.-/
+nonzero constant proxies and is not identified with a zero random variable.
+@isnad1 id=le.14h10v.s10.168b87074cfa from=translated src=- shape=55301580 vocab=edec43d7
+-/
 theorem integral_exp_sign_mul_sub_integral_pi_le_of_random_proxy
     {ι Ω : Type*} [Fintype ι] [DecidableEq ι] [MeasurableSpace Ω]
     (ν : ι → Measure Ω) [∀ i, IsProbabilityMeasure (ν i)]

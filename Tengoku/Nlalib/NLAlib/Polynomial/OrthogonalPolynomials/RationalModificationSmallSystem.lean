@@ -27,7 +27,9 @@ def rationalModificationSmallMatrix (L T : 𝕜[X] →ₗ[𝕜] 𝕜) (u v : �
 
 /-- On the original lower-orthogonal subspace, the smaller inverse-moment
 test set is equivalent to all `n` tests. This includes `degree v>n` without
-negative indices or additional pole equations. Source: CU7.-/
+negative indices or additional pole equations. Source: CU7.
+@isnad1 id=iff.4h7v.s10.4c1641ef5e44 from=translated src=- shape=bd659333 vocab=ca0b720a
+-/
 theorem rationalModificationConstraint_small_iff_full
     (L T : 𝕜[X] →ₗ[𝕜] 𝕜) {u v : 𝕜[X]} (hu : u ≠ 0) (hv : v ≠ 0)
     (hTv : ∀ p, T (v*p) = L p) (n : ℕ) (P : 𝕜[X])
@@ -72,7 +74,9 @@ theorem rationalModificationConstraint_small_iff_full
 /-- The actual compressed normalization minor is nonzero, including empty
 systems and denominator degree greater than the orthogonal order.
 Source: focused mathematical reroutes, compressed normalization (CU8).
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=ne.5h6v.s10.fd23bba16a8a from=translated src=- shape=8f07921a vocab=2d117287
+-/
 theorem det_rationalModificationSmallMatrix_ne_zero
     (L T : 𝕜[X] →ₗ[𝕜] 𝕜) {u v : 𝕜[X]} (hu : u ≠ 0) (hv : v ≠ 0)
     (hTv : ∀ p, T (v*p) = L p) {n : ℕ}
@@ -179,7 +183,9 @@ private theorem small_border_det_eq
 monic polynomial, with exact scalar `det M/leadingCoeff u`. Its normalization
 has already been proved nonzero, and `degree v>n` is included.
 Source: focused mathematical reroutes, CU6--CU8.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=eq.5h6v.s10.87f3ba2c59fa from=translated src=- shape=f3eeb21e vocab=0ded50c6
+-/
 theorem det_rationalModificationSmallBorderMatrix_eq
     (L T : 𝕜[X] →ₗ[𝕜] 𝕜) {u v : 𝕜[X]} (hu : u ≠ 0) (hv : v ≠ 0)
     (hTv : ∀ p, T (v*p) = L p) {n : ℕ}
@@ -272,7 +278,9 @@ theorem det_rationalModificationSmallBorderMatrix_eq
 expansion of the modified numerator. In particular a quadratic denominator
 and constant numerator involve exactly the last three original polynomials
 when `n≥2`, and the initial bordered cases otherwise. Source: CU6--CU8.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=eq.5h6v.s10.d6121b585b95 from=translated src=- shape=2602e5a3 vocab=e1cadd4d
+-/
 theorem mul_monicOrthogonalPolynomial_eq_small_expansion
     (L T : 𝕜[X] →ₗ[𝕜] 𝕜) {u v : 𝕜[X]} (hu : u ≠ 0) (hv : v ≠ 0)
     (hTv : ∀ p, T (v*p) = L p) {n : ℕ}

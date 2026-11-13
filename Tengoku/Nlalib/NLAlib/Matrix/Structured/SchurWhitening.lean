@@ -18,7 +18,9 @@ variable {𝕜 m n : Type*} [RCLike 𝕜] [Fintype m] [Fintype n]
   [DecidableEq m] [DecidableEq n]
 
 open scoped Matrix.Norms.L2Operator in
-/-- Full row rank gives a positive-definite whitened Schur matrix.-/
+/-- Full row rank gives a positive-definite whitened Schur matrix.
+@isnad1 id=other.3h6v.s9.712ae17a9545 from=translated src=- shape=d2f8a821 vocab=0e833e66
+-/
 theorem posDef_saddle_coupling_gram {A : Matrix n n 𝕜} {Shat : Matrix m m 𝕜}
     (hA : A.PosDef) (hShat : Shat.PosDef)
     {B : Matrix m n 𝕜} (hB : B.rank = Fintype.card m) :
@@ -34,7 +36,9 @@ theorem posDef_saddle_coupling_gram {A : Matrix n n 𝕜} {Shat : Matrix m m �
     (Matrix.mulVec_injective_iff_isUnit.mpr hu)
 
 open scoped Matrix.Norms.L2Operator in
-/-- Exact Schur whitening gives orthonormal rows of the coupling.-/
+/-- Exact Schur whitening gives orthonormal rows of the coupling.
+@isnad1 id=other.2h5v.s9.f6c538051a6e from=translated src=- shape=30742326 vocab=fcd1f47a
+-/
 theorem saddle_coupling_gram_eq_one {A : Matrix n n 𝕜} (hA : A.PosDef)
     {B : Matrix m n 𝕜} (hB : B.rank = Fintype.card m) :
     let C := cfc (fun x => (Real.sqrt x)⁻¹) (saddleSchurComplement A B) * B *
@@ -45,7 +49,9 @@ theorem saddle_coupling_gram_eq_one {A : Matrix n n 𝕜} (hA : A.PosDef)
     cfc_inv_sqrt_mul_self_mul_inv_sqrt (posDef_saddleSchurComplement hA hB)]
 
 open scoped Matrix.Norms.L2Operator in
-/-- Relative Schur bounds give the same scalar bounds on the whitened Gram matrix.-/
+/-- Relative Schur bounds give the same scalar bounds on the whitened Gram matrix.
+@isnad1 id=other.4h8v.s10.8ae6db3c7a8e from=translated src=- shape=bbee064e vocab=07aa196e
+-/
 theorem saddle_coupling_gram_order {A : Matrix n n 𝕜} {Shat : Matrix m m 𝕜}
     (hA : A.PosDef) (hShat : Shat.PosDef) (B : Matrix m n 𝕜) {a b : ℝ}
     (ha : a • Shat ≤ saddleSchurComplement A B)
@@ -82,7 +88,9 @@ private theorem eigenvalues_mem_Icc_of_order {G : Matrix m m 𝕜} (hG : G.IsHer
   exact ⟨by linarith, by linarith⟩
 
 open scoped Matrix.Norms.L2Operator in
-/-- Every Gram eigenvalue lies between the native relative Schur bounds.-/
+/-- Every Gram eigenvalue lies between the native relative Schur bounds.
+@isnad1 id=other.4h8v.s9.02860fd4aee2 from=translated src=- shape=7b80ab06 vocab=75092001
+-/
 theorem saddle_coupling_eigenvalues_mem_Icc {A : Matrix n n 𝕜} {Shat : Matrix m m 𝕜}
     (hA : A.PosDef) (hShat : Shat.PosDef) (B : Matrix m n 𝕜) {a b : ℝ}
     (ha : a • Shat ≤ saddleSchurComplement A B)

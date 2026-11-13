@@ -54,7 +54,9 @@ private theorem monicJacobiMatrix_eq_of_coefficients {n : ℕ} {a a' b b' : ℕ 
 exactly its lower/upper bidiagonal Darboux product, from finite-prefix hypotheses
 through its dimension. Finite-support terminal matrices are included.
 Source: Gautschi (2004), Theorem 1.33; operator derivations OP24.
-atlas: kernel-polynomials-christoffel (partial)-/
+atlas: kernel-polynomials-christoffel (partial)
+@isnad1 id=eq.2h4v.s8.918039bdcc61 from=translated src=- shape=e597f318 vocab=5f615d3b
+-/
 theorem monicJacobiMatrix_sub_scalar_one_eq_christoffel_factors_of_finite
     {L : 𝕜[X] →ₗ[𝕜] 𝕜} {z : 𝕜} (n : ℕ)
     (hL : ∀ k ≤ n, hankelMomentDet L k ≠ 0)
@@ -82,7 +84,9 @@ theorem monicJacobiMatrix_sub_scalar_one_eq_christoffel_factors_of_finite
 Jacobi matrix with its exact last-coordinate correction, using only finite
 nondegeneracy through the dimension. Empty and terminal atomic dimensions are
 included. Source: Gautschi (2004), Theorem 1.33; operator derivations OP24.
-atlas: kernel-polynomials-christoffel (partial), christoffel-uvarov-modification (partial)-/
+atlas: kernel-polynomials-christoffel (partial), christoffel-uvarov-modification (partial)
+@isnad1 id=eq.2h4v.s9.fbf288413430 from=translated src=- shape=fb03ac44 vocab=e1286079
+-/
 theorem monicJacobiMatrix_christoffel_eq_reversed_factors_add_boundary_of_finite
     {L : 𝕜[X] →ₗ[𝕜] 𝕜} {z : 𝕜} (n : ℕ)
     (hL : ∀ k ≤ n, hankelMomentDet L k ≠ 0)
@@ -114,7 +118,9 @@ theorem monicJacobiMatrix_christoffel_eq_reversed_factors_add_boundary_of_finite
 /-- The globally quasi-definite original recurrence has the finite Darboux
 factorization at every truncation size.
 Source: Gautschi (2004), Theorem 1.33; AQ15.
-atlas: kernel-polynomials-christoffel (partial)-/
+atlas: kernel-polynomials-christoffel (partial)
+@isnad1 id=eq.2h4v.s8.3331adaa142b from=translated src=- shape=21777e55 vocab=abb5afc5
+-/
 theorem monicJacobiMatrix_sub_scalar_one_eq_christoffel_factors
     {L : 𝕜[X] →ₗ[𝕜] 𝕜} (hL : QuasiDefinitePolynomialFunctional L) {z : 𝕜}
     (hz : ∀ n, (monicOrthogonalPolynomial L n).eval z ≠ 0) (n : ℕ) :
@@ -127,7 +133,9 @@ theorem monicJacobiMatrix_sub_scalar_one_eq_christoffel_factors
 /-- The globally quasi-definite modified recurrence has the finite reversed
 Darboux factorization with its exact terminal-coordinate correction.
 Source: Gautschi (2004), Theorem 1.33; AQ15.
-atlas: kernel-polynomials-christoffel (partial), christoffel-uvarov-modification (partial)-/
+atlas: kernel-polynomials-christoffel (partial), christoffel-uvarov-modification (partial)
+@isnad1 id=eq.2h4v.s9.fca29a2dceb2 from=translated src=- shape=7ba71fd9 vocab=64c17e7e
+-/
 theorem monicJacobiMatrix_christoffel_eq_reversed_factors_add_boundary
     {L : 𝕜[X] →ₗ[𝕜] 𝕜} (hL : QuasiDefinitePolynomialFunctional L) {z : 𝕜}
     (hz : ∀ n, (monicOrthogonalPolynomial L n).eval z ≠ 0) (n : ℕ) :

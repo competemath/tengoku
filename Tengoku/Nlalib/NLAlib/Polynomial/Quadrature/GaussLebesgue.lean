@@ -15,7 +15,9 @@ namespace NLAlib
 
 /-- The actual integrated cardinal rule at `(n+1)` interior orthogonal nodes has
 positive weights, mass two, exact degree `2n+1`, and paired equal weights.
-Source: Trefethen, ATAP, Theorems 19.1 and 19.4.-/
+Source: Trefethen, ATAP, Theorems 19.1 and 19.4.
+@isnad1 id=and.4h3v.s9.a0647e60b391 from=translated src=- shape=bcf0f098 vocab=6c737ad4
+-/
 theorem gauss_lebesgue_quadrature_of_orthogonal_nodal
     {ι : Type*} [Fintype ι] [DecidableEq ι] {n : ℕ} (hcard : Fintype.card ι = n + 1)
     (v : ι → ℝ) (hv : Function.Injective v) (hvI : ∀ i, v i ∈ Ioo (-1 : ℝ) 1)
@@ -64,7 +66,9 @@ theorem gauss_lebesgue_quadrature_of_orthogonal_nodal
 /-- The actual Lebesgue Gauss cardinal weights have the sharp analytic error
 `64M/[15ρ^(2n)(ρ²−1)]`. Positivity, reflection and exactness follow from nodal
 orthogonality. Source: Trefethen, ATAP, Theorem 19.4.
-atlas: gauss-clenshaw-curtis-quadrature-error (partial)-/
+atlas: gauss-clenshaw-curtis-quadrature-error (partial)
+@isnad1 id=le.8h6v.s9.a84739952eed from=translated src=- shape=f9bfd43e vocab=8122ed23
+-/
 theorem abs_integral_re_sub_gauss_lebesgue_le_of_open_ellipse
     {ι : Type*} [Fintype ι] [DecidableEq ι] {n : ℕ} (hn : 1 ≤ n)
     (hcard : Fintype.card ι = n + 1) (v : ι → ℝ) (hv : Function.Injective v)

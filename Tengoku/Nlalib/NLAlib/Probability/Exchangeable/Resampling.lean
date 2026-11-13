@@ -93,7 +93,9 @@ private theorem resampling_swap (p : ι × (ι → E × E)) :
 /-- Replacing a separately selected coordinate by an independent copy produces
 an actual exchangeable pair of sums. The summand laws need not be identical;
 even the index law may be nonuniform. Source: Tropp (2026), §6.3; atlas
-`exchangeable-matrix-covariance` (realized pair).-/
+`exchangeable-matrix-covariance` (realized pair).
+@isnad1 id=identdis.0h4v.s8.2bce96f6e764 from=translated src=- shape=29f356d7 vocab=eca627ba
+-/
 theorem identDistrib_resampling_pair
     (ν : ι → Measure E) [∀ i, IsProbabilityMeasure (ν i)]
     (ρ : Measure ι) [IsProbabilityMeasure ρ] :
@@ -111,7 +113,9 @@ theorem identDistrib_resampling_pair
   simpa only [Function.comp_def, resampling_swap, id_eq] using h.symm
 
 /-- The resampled pair differs by the original selected coordinate minus its
-independent copy, with no ordering assumptions on the index type.-/
+independent copy, with no ordering assumptions on the index type.
+@isnad1 id=eq.0h3v.s7.4d28673b85bc from=translated src=- shape=31cd5b5e vocab=484a0b9b
+-/
 theorem resamplingOriginal_sub_partner (p : ι × (ι → E × E)) :
     resamplingOriginal p - resamplingPartner p = (p.2 p.1).1 - (p.2 p.1).2 := by
   unfold resamplingOriginal resamplingPartner

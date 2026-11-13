@@ -33,7 +33,9 @@ namespace NLAlib
 variable {Ω : Type*} [MeasurableSpace Ω]
 
 /-- Source-transport helper `centeredQuadraticForm_eq_diagonal_add_offDiagonal` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=eq.2h6v.s7.90f8b25fb79a from=translated src=- shape=6d47df74 vocab=536714e7
+-/
 lemma centeredQuadraticForm_eq_diagonal_add_offDiagonal {μ : Measure Ω}
     [IsProbabilityMeasure μ] {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     {X : Fin n → Ω → ℝ} {K : ℝ}
@@ -103,7 +105,9 @@ lemma centeredQuadraticForm_eq_diagonal_add_offDiagonal {μ : Measure Ω}
     exact hdiag_term_int i
 
 open scoped Matrix.Norms.L2Operator in
-/-- Fixed linear forms of an independent sub-Gaussian coordinate vector are sub-Gaussian.-/
+/-- Fixed linear forms of an independent sub-Gaussian coordinate vector are sub-Gaussian.
+@isnad1 id=hassubga.2h6v.s8.a31532dd88d2 from=translated src=- shape=1706ee9f vocab=56cd351a
+-/
 lemma inner_randomVector_hasSubgaussianMGF_of_iIndepFun {μ : Measure Ω}
     {n : ℕ} {X : Fin n → Ω → ℝ} {K : ℝ}
     (hind : iIndepFun X μ)
@@ -149,7 +153,9 @@ lemma inner_randomVector_hasSubgaussianMGF_of_iIndepFun {μ : Measure Ω}
 
 open scoped Matrix.Norms.L2Operator in
 /-- Gaussian-comparison square-exponential bound for a linear image of an independent
-sub-Gaussian vector.-/
+sub-Gaussian vector.
+@isnad1 id=le.4h7v.s12.3245978b4417 from=translated src=- shape=7818a2c0 vocab=e0efe41f
+-/
 lemma integral_exp_norm_toEuclideanCLM_randomVector_sq_le {μ : Measure Ω}
     [IsProbabilityMeasure μ] {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     {X : Fin n → Ω → ℝ} {K θ : ℝ} (hθ : 0 ≤ θ)

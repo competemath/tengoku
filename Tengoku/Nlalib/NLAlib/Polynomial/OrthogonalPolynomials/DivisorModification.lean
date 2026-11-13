@@ -48,7 +48,9 @@ private theorem divisor_constraints_full
 
 /-- Finite modified nondegeneracy proves that the actual divisor system is
 nonsingular, including order zero and orders below the denominator degree.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=ne.4h5v.s9.8f0b956a9fa4 from=translated src=- shape=90b7bb52 vocab=f5603c52
+-/
 theorem det_divisorModificationMatrix_ne_zero
     (L T : 𝕜[X] →ₗ[𝕜] 𝕜) {v : 𝕜[X]} (hv : v ≠ 0)
     (hTv : ∀ p, T (v * p) = L p) {n : ℕ}
@@ -89,7 +91,9 @@ theorem det_divisorModificationMatrix_ne_zero
   exact hc (funext (Fintype.linearIndependent_iff.mp hlin c hzero))
 
 /-- The computed coefficients solve the actual inverse-moment equations.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=eq.4h5v.s9.2da71a0e0b6d from=translated src=- shape=12e00ecd vocab=09c4756e
+-/
 theorem divisorModificationMatrix_mulVec_coefficients
     (L T : 𝕜[X] →ₗ[𝕜] 𝕜) {v : 𝕜[X]} (hv : v ≠ 0)
     (hTv : ∀ p, T (v * p) = L p) {n : ℕ}
@@ -103,7 +107,9 @@ theorem divisorModificationMatrix_mulVec_coefficients
 /-- The explicit finite inverse-moment algorithm produces the canonical modified
 monic polynomial. A quadratic denominator uses the last three original polynomials
 for `n≥2`; orders zero and one automatically use their smaller systems.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=eq.4h5v.s10.c32630aa693c from=translated src=- shape=75ce7c5e vocab=957db5ef
+-/
 theorem monicOrthogonalPolynomial_eq_divisorModification
     (L T : 𝕜[X] →ₗ[𝕜] 𝕜) {v : 𝕜[X]} (hv : v ≠ 0)
     (hTv : ∀ p, T (v * p) = L p) {n : ℕ}
@@ -161,7 +167,9 @@ theorem monicOrthogonalPolynomial_eq_divisorModification
     ⟨hPmonic, hPdeg, divisor_constraints_full L T hv hTv n P horth hsmall⟩ hn
 
 /-- The divisor coefficient solution is unique; singular normalization is ruled
-out by the input functional hypotheses rather than assumed of the output.-/
+out by the input functional hypotheses rather than assumed of the output.
+@isnad1 id=eq.5h6v.s10.5534efc745fe from=translated src=- shape=4ddc8550 vocab=09c4756e
+-/
 theorem divisorModificationCoefficients_unique
     (L T : 𝕜[X] →ₗ[𝕜] 𝕜) {v : 𝕜[X]} (hv : v ≠ 0)
     (hTv : ∀ p, T (v * p) = L p) {n : ℕ}

@@ -20,7 +20,9 @@ variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} {d : Type*} [Fintyp
 
 open scoped Matrix.Norms.L2Operator in
 /-- For a standard Gaussian `g` and Hermitian `A`, `𝔼 matrixExp (θ g • A) = matrixExp (θ²/2 • A²)`.
-Tropp 2015, Lemma 4.6.2.-/
+Tropp 2015, Lemma 4.6.2.
+@isnad1 id=eq.2h6v.s8.f51f668ca825 from=translated src=- shape=fa5c2160 vocab=fb6882d7
+-/
 theorem integral_matrixExp_smul_of_hasLaw_gaussianReal (A : Matrix d d ℂ) (hA : A.IsHermitian)
     {g : Ω → ℝ} (hg : HasLaw g (gaussianReal 0 1) μ) (θ : ℝ) :
     (∫ ω, matrixExp ((θ * g ω) • A) ∂μ) = matrixExp ((θ ^ 2 / 2) • A ^ 2) := by
@@ -35,7 +37,9 @@ theorem integral_matrixExp_smul_of_hasLaw_gaussianReal (A : Matrix d d ℂ) (hA 
 
 open scoped Matrix.Norms.L2Operator in
 /-- For a standard Gaussian `g` and Hermitian `A`, `matrixLog (𝔼 matrixExp (θ g • A)) = θ²/2 • A²`.
-Tropp 2015, Lemma 4.6.2.-/
+Tropp 2015, Lemma 4.6.2.
+@isnad1 id=eq.2h6v.s8.8bcd1fe02321 from=translated src=- shape=1785d173 vocab=93c10f2a
+-/
 theorem matrixLog_integral_matrixExp_smul_of_hasLaw_gaussianReal (A : Matrix d d ℂ)
     (hA : A.IsHermitian) {g : Ω → ℝ} (hg : HasLaw g (gaussianReal 0 1) μ) (θ : ℝ) :
     matrixLog (∫ ω, matrixExp ((θ * g ω) • A) ∂μ) = (θ ^ 2 / 2) • A ^ 2 := by

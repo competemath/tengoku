@@ -17,7 +17,9 @@ namespace NLAlib
 /-- The modified diagonal recurrence coefficient is the difference of successive
 modified monic next coefficients, including the order-zero convention.
 Source: focused mathematical reroutes, recurrence recovery after CU9.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=eq.2h4v.s7.fa7f7aa96a44 from=translated src=- shape=62f58a36 vocab=4a9c2af4
+-/
 theorem orthogonalRecurrenceAlpha_weightedDivided_eq_sub_nextCoeff
     (μ : Measure ℝ) (u v : ℝ[X]) (hdiv : HasDividedPolynomialMoments μ v) (n : ℕ)
     (hn : ∀ k ≤ n+1, hankelMomentDet
@@ -31,7 +33,9 @@ theorem orthogonalRecurrenceAlpha_weightedDivided_eq_sub_nextCoeff
 its original-measure rationally weighted squared norms. At valid modified
 orders source positivity makes the denominator positive.
 Source: focused mathematical reroutes, recurrence recovery after CU9.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=other.1h4v.s8.8848e8bd1557 from=translated src=- shape=12841aac vocab=2ed5b080
+-/
 theorem orthogonalRecurrenceBeta_weightedDivided_eq_integral_ratio
     (μ : Measure ℝ) (u v : ℝ[X]) (hdiv : HasDividedPolynomialMoments μ v) (n : ℕ) :
     let L := polynomialWeightedFunctional (dividedPolynomialIntegral μ v hdiv) u

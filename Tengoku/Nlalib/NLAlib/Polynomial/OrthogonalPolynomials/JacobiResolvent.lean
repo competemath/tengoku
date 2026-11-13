@@ -23,7 +23,9 @@ namespace NLAlib
 complex point outside the actual Gauss-node spectrum, including real gaps in the
 support enclosure. Its final denominator is proved nonzero from the nodal product.
 Source: operator derivations (AQ18).
-atlas: jacobi-matrix-identities (partial), jacobi-fraction-second-kind (partial)-/
+atlas: jacobi-matrix-identities (partial), jacobi-fraction-second-kind (partial)
+@isnad1 id=eq.4h3v.s7.d9f6c6befb88 from=translated src=- shape=d0c673ff vocab=eb8dbce0
+-/
 theorem eval_map_secondKindPolynomial_div_eq_sum_gaussWeights_div_of_ne_gaussNodes
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {n : ℕ} (hn0 : 0 < n)
     (hn : (n : ℕ∞) ≤ μ.support.encard) {z : ℂ}
@@ -51,7 +53,9 @@ theorem eval_map_secondKindPolynomial_div_eq_sum_gaussWeights_div_of_ne_gaussNod
 /-- The second-kind ratio is the original mass times the actual complex moment
 Jacobi resolvent entry at every point outside its actual node spectrum. No assumed
 resolvent or quadrature certificate is used. Source: operator derivations (OF27), (AQ18).
-atlas: jacobi-matrix-identities (partial), jacobi-fraction-second-kind (partial)-/
+atlas: jacobi-matrix-identities (partial), jacobi-fraction-second-kind (partial)
+@isnad1 id=eq.4h3v.s8.ade2cd2fe3ad from=translated src=- shape=0018cc5a vocab=07e2b780
+-/
 theorem eval_map_secondKindPolynomial_div_eq_mass_mul_jacobi_resolvent
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {n : ℕ} (hn0 : 0 < n)
     (hn : (n : ℕ∞) ≤ μ.support.encard) {z : ℂ}
@@ -78,7 +82,9 @@ theorem eval_map_secondKindPolynomial_div_eq_mass_mul_jacobi_resolvent
   ring
 
 /-- An off-enclosure point in particular satisfies the exact off-node hypothesis
-of the actual complex second-kind/Jacobi resolvent bridge.-/
+of the actual complex second-kind/Jacobi resolvent bridge.
+@isnad1 id=eq.5h5v.s8.e0d30a940691 from=translated src=- shape=d40fa945 vocab=01d1a868
+-/
 theorem eval_map_secondKindPolynomial_div_eq_mass_mul_jacobi_resolvent_of_off_Icc
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {n : ℕ} (hn0 : 0 < n)
@@ -96,7 +102,9 @@ theorem eval_map_secondKindPolynomial_div_eq_mass_mul_jacobi_resolvent_of_off_Ic
 /-- The actual canonical moment Jacobi matrix has its ordinary finite complex
 continued fraction at every nonreal shift. Its coefficient realization is proved
 from the constructed orthogonal polynomials. Source: operator derivations (OF25).
-atlas: jacobi-matrix-identities (partial)-/
+atlas: jacobi-matrix-identities (partial)
+@isnad1 id=eq.4h3v.s8.f1598f6df474 from=translated src=- shape=778a0d94 vocab=e4ae8696
+-/
 theorem inv_smul_one_sub_map_orthogonalPolynomialJacobiMatrix_apply_zero_zero
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {n : ℕ} (hn0 : 0 < n)
     (hn : (n : ℕ∞) ≤ μ.support.encard) {z : ℂ} (hz : z.im ≠ 0) :
@@ -117,7 +125,9 @@ theorem inv_smul_one_sub_map_orthogonalPolynomialJacobiMatrix_apply_zero_zero
 /-- The actual second-kind rational approximant is its original mass times the
 ordinary complex Jacobi fraction away from the real axis. Source: operator
 derivations (OF25), (OF27), (AQ18).
-atlas: jacobi-matrix-identities (partial), jacobi-fraction-second-kind (partial)-/
+atlas: jacobi-matrix-identities (partial), jacobi-fraction-second-kind (partial)
+@isnad1 id=eq.4h3v.s7.d6ec36c24908 from=translated src=- shape=3e479ddf vocab=427b5c9f
+-/
 theorem eval_map_secondKindPolynomial_div_eq_mass_mul_jacobiFraction
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {n : ℕ} (hn0 : 0 < n)
     (hn : (n : ℕ∞) ≤ μ.support.encard) {z : ℂ} (hz : z.im ≠ 0) :

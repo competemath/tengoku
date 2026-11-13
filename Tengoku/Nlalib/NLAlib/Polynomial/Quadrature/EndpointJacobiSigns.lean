@@ -18,7 +18,9 @@ namespace NLAlib
 
 /-- A nonpositive odd derivative makes the actual left Radau matrix rule an upper
 bound, including terminal exactness. Source: Gautschi (2004), Theorem 3.7; (AQ9).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=le.8h5v.s9.bb8857c3f593 from=translated src=- shape=a789b376 vocab=be636af2
+-/
 theorem integral_le_mass_mul_cfc_leftRadauJacobiMatrix_of_iteratedDeriv_nonpos
     {μ : Measure ℝ} [IsFiniteMeasure μ] (hμ : HasPolynomialMoments μ) {a c : ℝ}
     (hac : a < c) (hμac : ∀ᵐ x ∂μ, x ∈ Icc a c) (q : ℕ)
@@ -42,7 +44,9 @@ theorem integral_le_mass_mul_cfc_leftRadauJacobiMatrix_of_iteratedDeriv_nonpos
 
 /-- A nonpositive odd derivative makes the actual right Radau matrix rule a lower
 bound, including terminal exactness. Source: Gautschi (2004), Theorem 3.7; (AQ10).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=le.8h5v.s9.6189c685b018 from=translated src=- shape=9e6563fc vocab=e55bab61
+-/
 theorem mass_mul_cfc_rightRadauJacobiMatrix_le_integral_of_iteratedDeriv_nonpos
     {μ : Measure ℝ} [IsFiniteMeasure μ] (hμ : HasPolynomialMoments μ) {a c : ℝ}
     (hac : a < c) (hμac : ∀ᵐ x ∂μ, x ∈ Icc a c) (q : ℕ)
@@ -66,7 +70,9 @@ theorem mass_mul_cfc_rightRadauJacobiMatrix_le_integral_of_iteratedDeriv_nonpos
 
 /-- A nonpositive even derivative makes the actual constructed Lobatto matrix
 rule a lower bound. Source: Gautschi (2004), Theorem 3.7; (AQ11).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=le.10h5v.s10.e6081a68f4e1 from=translated src=- shape=d540f7f5 vocab=3eea3502
+-/
 theorem mass_mul_cfc_lobattoJacobiMatrix_le_integral_of_iteratedDeriv_nonpos
     {μ : Measure ℝ} [IsFiniteMeasure μ] (hμ : HasPolynomialMoments μ) {a c : ℝ}
     (hac : a < c) (hμac : ∀ᵐ x ∂μ, x ∈ Icc a c) (q : ℕ)

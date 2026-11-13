@@ -21,7 +21,9 @@ def walshIndexEquivFin (b : ℕ) : WalshIndex b ≃ Fin (2 ^ b) :=
 def walshMatrixFin (b : ℕ) : Matrix (Fin (2 ^ b)) (Fin (2 ^ b)) ℝ :=
   fun i j => walshMatrix b ((walshIndexEquivFin b).symm i) ((walshIndexEquivFin b).symm j)
 
-/-- The finite-label Walsh transform is orthogonal.-/
+/-- The finite-label Walsh transform is orthogonal.
+@isnad1 id=eq.0h1v.s8.50228dd3c0ff from=translated src=- shape=a647c0dd vocab=4c89f9ba
+-/
 theorem walshMatrixFin_transpose_mul_self (b : ℕ) :
     (walshMatrixFin b)ᵀ * walshMatrixFin b = 1 := by
   ext a c
@@ -37,7 +39,9 @@ theorem walshMatrixFin_transpose_mul_self (b : ℕ) :
     _ = (1 : Matrix (WalshIndex b) (WalshIndex b) ℝ) (e.symm a) (e.symm c) := hh
     _ = _ := by simp only [Matrix.one_apply, e.symm.injective.eq_iff]
 
-/-- Every finite-label Walsh entry is flat.-/
+/-- Every finite-label Walsh entry is flat.
+@isnad1 id=eq.0h3v.s6.9e364ea3e34d from=translated src=- shape=84cc92d1 vocab=d177e157
+-/
 theorem walshMatrixFin_apply_sq (b : ℕ) (i j : Fin (2 ^ b)) :
     walshMatrixFin b i j ^ 2 = 1 / ((2 ^ b : ℕ) : ℝ) := by
   simpa only [walshMatrixFin, Nat.cast_pow, Nat.cast_ofNat] using

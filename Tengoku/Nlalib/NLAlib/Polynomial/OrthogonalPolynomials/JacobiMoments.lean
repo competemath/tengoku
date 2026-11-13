@@ -23,7 +23,9 @@ def orthonormalMomentCoordinates (L : ℝ[X] →ₗ[ℝ] ℝ) (n : ℕ) (p : ℝ
   fun i => L (p * orthonormalMomentPolynomial L i.val)
 
 /-- Every lower-degree polynomial is recovered by its orthonormal moment
-coordinates.-/
+coordinates.
+@isnad1 id=eq.3h3v.s7.c938e06ff737 from=translated src=- shape=04ee1978 vocab=c0bae464
+-/
 theorem sum_C_mul_orthonormalMomentCoordinates_eq (L : ℝ[X] →ₗ[ℝ] ℝ) {n : ℕ}
     (hL : ∀ k ≤ n, hankelMomentDet L k ≠ 0)
     (hH : ∀ k < n, 0 < orthogonalPolynomialNorm L k)
@@ -48,7 +50,9 @@ theorem sum_C_mul_orthonormalMomentCoordinates_eq (L : ℝ[X] →ₗ[ℝ] ℝ) {
   exact hv
 
 /-- The coordinate vector of `X*p` is the Jacobi matrix applied to the
-coordinate vector of `p` whenever `p` lies in the compressed space.-/
+coordinate vector of `p` whenever `p` lies in the compressed space.
+@isnad1 id=eq.3h3v.s7.bbba6fff4f8b from=translated src=- shape=e791d2b8 vocab=4c6bb6f7
+-/
 theorem jacobi_mulVec_orthonormalMomentCoordinates (L : ℝ[X] →ₗ[ℝ] ℝ) {n : ℕ}
     (hL : ∀ k ≤ n, hankelMomentDet L k ≠ 0)
     (hH : ∀ k < n, 0 < orthogonalPolynomialNorm L k)
@@ -73,7 +77,9 @@ theorem jacobi_mulVec_orthonormalMomentCoordinates (L : ℝ[X] →ₗ[ℝ] ℝ) 
 
 /-- Pairing one lower-degree polynomial with any polynomial is the dot
 product of their moment coordinates; the second polynomial may have the first
-omitted degree.-/
+omitted degree.
+@isnad1 id=eq.3h4v.s7.b5c8970ba8f4 from=translated src=- shape=7e34453f vocab=63a5ab9e
+-/
 theorem functional_mul_eq_dotProduct_orthonormalMomentCoordinates (L : ℝ[X] →ₗ[ℝ] ℝ) {n : ℕ}
     (hL : ∀ k ≤ n, hankelMomentDet L k ≠ 0)
     (hH : ∀ k < n, 0 < orthogonalPolynomialNorm L k)
@@ -87,7 +93,9 @@ theorem functional_mul_eq_dotProduct_orthonormalMomentCoordinates (L : ℝ[X] �
   rw [mul_assoc, C_mul', map_smul, smul_eq_mul, mul_comm (orthonormalMomentPolynomial L i.val) r]
 
 /-- Matrix powers through the compressed order recover the coordinates of
-`X^k*p₀`, including the first projected omitted degree.-/
+`X^k*p₀`, including the first projected omitted degree.
+@isnad1 id=eq.4h3v.s8.20ef33d86cea from=translated src=- shape=3ad57aa7 vocab=7b22b06d
+-/
 theorem pow_jacobi_mulVec_single_eq_orthonormalMomentCoordinates
     (L : ℝ[X] →ₗ[ℝ] ℝ) {n : ℕ} (hn : 0 < n)
     (hL : ∀ j ≤ n, hankelMomentDet L j ≠ 0)
@@ -117,7 +125,9 @@ theorem pow_jacobi_mulVec_single_eq_orthonormalMomentCoordinates
 /-- The mass-scaled first-coordinate powers reproduce all moments below
 degree twice the finite Jacobi order. No positive norm at the terminal degree
 is required. Source: Golub–Meurant (2010), Chapter 2, BL3.
-atlas: gauss-radau-lobatto (partial), jacobi-fraction-second-kind (partial), jacobi-matrix-identities (partial)-/
+atlas: gauss-radau-lobatto (partial), jacobi-fraction-second-kind (partial), jacobi-matrix-identities (partial)
+@isnad1 id=eq.4h3v.s8.7b5a3b5ece69 from=translated src=- shape=1c40252c vocab=9993d2bf
+-/
 theorem functional_X_pow_eq_mass_mul_jacobi_pow_apply_zero_zero
     (L : ℝ[X] →ₗ[ℝ] ℝ) {n : ℕ} (hn : 0 < n)
     (hL : ∀ j ≤ n, hankelMomentDet L j ≠ 0)
@@ -163,7 +173,9 @@ theorem functional_X_pow_eq_mass_mul_jacobi_pow_apply_zero_zero
   rw [← hpair, ← mul_assoc, hcancel, one_mul]
 
 /-- The first-coordinate functional calculus of the finite Jacobi matrix
-reproduces every polynomial below twice its order.-/
+reproduces every polynomial below twice its order.
+@isnad1 id=eq.4h3v.s8.53aee5e89721 from=translated src=- shape=ab84db95 vocab=b62056b2
+-/
 theorem functional_eq_mass_mul_aeval_jacobi_apply_zero_zero
     (L : ℝ[X] →ₗ[ℝ] ℝ) {n : ℕ} (hn : 0 < n)
     (hL : ∀ j ≤ n, hankelMomentDet L j ≠ 0)
@@ -183,7 +195,9 @@ theorem functional_eq_mass_mul_aeval_jacobi_apply_zero_zero
 
 /-- The actual measure moment Jacobi matrix reproduces moments through
 `2n-1`, including finite-support termination.
-atlas: gauss-radau-lobatto (partial), jacobi-matrix-identities (partial)-/
+atlas: gauss-radau-lobatto (partial), jacobi-matrix-identities (partial)
+@isnad1 id=eq.4h3v.s7.a9995e325497 from=translated src=- shape=32af4543 vocab=deca4e38
+-/
 theorem integral_pow_eq_mass_mul_orthogonalPolynomialJacobiMatrix_pow
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {n : ℕ} (hn : 0 < n)
     (hs : (n : ℕ∞) ≤ μ.support.encard) {k : ℕ} (hk : k < 2 * n) :

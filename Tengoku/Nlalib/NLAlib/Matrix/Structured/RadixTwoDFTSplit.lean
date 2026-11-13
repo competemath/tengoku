@@ -30,7 +30,9 @@ private theorem sum_even_odd {N : ℕ} {R : Type*} [AddCommMonoid R]
 def polynomialDFT {N : ℕ} (ζ : ℂ) (x : Fin N → ℂ) (k : ℕ) : ℂ :=
   ∑ j : Fin N, ζ ^ (j.val * k) * x j
 
-/-- Exact even/odd splitting of a finite root-power sum, for any complex root.-/
+/-- Exact even/odd splitting of a finite root-power sum, for any complex root.
+@isnad1 id=eq.0h4v.s6.31466c5ae53c from=translated src=- shape=20b286a9 vocab=70ebe060
+-/
 theorem polynomialDFT_even_odd {N : ℕ} (ζ : ℂ) (x : Fin (N + N) → ℂ) (k : ℕ) :
     polynomialDFT ζ x k = polynomialDFT (ζ ^ 2) (fun j => x (evenIndex j)) k +
       ζ ^ k * polynomialDFT (ζ ^ 2) (fun j => x (oddIndex j)) k := by
@@ -49,7 +51,9 @@ theorem polynomialDFT_even_odd {N : ℕ} (ζ : ℂ) (x : Fin (N + N) → ℂ) (k
   rw [he, ho]
   ring
 
-/-- Fourier root-power sums are periodic in frequency with the transform length.-/
+/-- Fourier root-power sums are periodic in frequency with the transform length.
+@isnad1 id=eq.1h4v.s5.c7211b11d410 from=translated src=- shape=9659f533 vocab=22dcefeb
+-/
 theorem polynomialDFT_add_period {N : ℕ} {ζ : ℂ} (hζ : ζ ^ N = 1)
     (x : Fin N → ℂ) (k : ℕ) : polynomialDFT ζ x (k + N) = polynomialDFT ζ x k := by
   apply Finset.sum_congr rfl
@@ -61,7 +65,9 @@ theorem polynomialDFT_add_period {N : ℕ} {ζ : ℂ} (hζ : ζ ^ N = 1)
 under exactly its supplied-root identities. Concrete DFT roots are discharged
 by `hasRootSchedule_standardRoot`.
 Source: Golub–Van Loan, §1.4.
-atlas: radix-two-fft-realization (partial)-/
+atlas: radix-two-fft-realization (partial)
+@isnad1 id=eq.1h4v.s5.afa2421c64c7 from=translated src=- shape=9af17534 vocab=689a2304
+-/
 theorem run_value_eq_polynomialDFT (s : ℕ) (ζ : ℂ) (x : Fin (size s) → ℂ)
     (hζ : HasRootSchedule s ζ) (k : Fin (size s)) :
     (run s ζ x).value k = polynomialDFT ζ x k.val := by

@@ -21,7 +21,9 @@ namespace NLAlib
 /-- The actual cardinal weight of a general positive measure has the
 Golub–Welsch formula with the original measure mass included.
 Source: Gautschi (2004), Theorem 1.46.
-atlas: gauss-christoffel-numbers (partial), jacobi-fraction-second-kind (partial)-/
+atlas: gauss-christoffel-numbers (partial), jacobi-fraction-second-kind (partial)
+@isnad1 id=eq.3h3v.s8.f86320822544 from=translated src=- shape=384126c8 vocab=48f0b443
+-/
 theorem gaussWeights_eq_mass_mul_sq_eigenvectorBasis_apply_zero
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {n : ℕ} (hn : 0 < n)
     (hs : (n : ℕ∞) ≤ μ.support.encard) (i : Fin n) :

@@ -51,7 +51,9 @@ private theorem le_on_Icc_of_le_ne {F G : ℝ → ℝ} (hF : Continuous F) (hG :
 /-- A uniformly bounded rational limit has an equivalent representation whose denominator
 has no zeros in the interval, with degrees no larger and the same cross-multiplied error
 bound. Source: operator rederivations, `polybest:rational-limit`; iterative linear-factor
-cancellation replaces the multiplicity/unboundedness argument and includes interval endpoints.-/
+cancellation replaces the multiplicity/unboundedness argument and includes interval endpoints.
+@isnad1 id=ex.4h6v.s8.43083272d5bc from=translated src=- shape=0d8cad67 vocab=9c234fde
+-/
 theorem exists_denominator_ne_zero_of_cross_error_le {a b E : ℝ} (hab : a < b)
     (f : ℝ → ℝ) (hf : Continuous f) (p q : ℝ[X]) (hq : q ≠ 0)
     (herror : ∀ x ∈ Icc a b, |f x * q.eval x - p.eval x| ≤ E * |q.eval x|) :

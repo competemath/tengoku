@@ -34,7 +34,9 @@ def unitIntervalIntegralLinearMap : C(Icc (-1 : ℝ) 1, ℝ) →ₗ[ℝ] ℝ whe
     rfl
 
 /-- Interval integration has operator bound two on the unit interval.
-Source: the interval integral norm estimate; quadrature convergence.-/
+Source: the interval integral norm estimate; quadrature convergence.
+@isnad1 id=le.0h1v.s9.3d292d18c138 from=translated src=- shape=0358590b vocab=964ca4e6
+-/
 theorem abs_unitIntervalIntegralLinearMap_le (f : C(Icc (-1 : ℝ) 1, ℝ)) :
     |unitIntervalIntegralLinearMap f| ≤ 2 * ‖f‖ := by
   have h := intervalIntegral.norm_integral_le_of_norm_le_const (a := (-1 : ℝ)) (b := 1)
@@ -48,7 +50,9 @@ theorem abs_unitIntervalIntegralLinearMap_le (f : C(Icc (-1 : ℝ) 1, ℝ)) :
     mul_comm] using h
 
 /-- Integration of a polynomial restriction is its ordinary interval integral.
-Source: clamping is the identity on the interval; quadrature convergence.-/
+Source: clamping is the identity on the interval; quadrature convergence.
+@isnad1 id=eq.0h1v.s9.3ca50f35d65e from=translated src=- shape=e719b2d8 vocab=0847abcc
+-/
 theorem unitIntervalIntegralLinearMap_polynomial (p : ℝ[X]) :
     unitIntervalIntegralLinearMap (p.toContinuousMapOn (Icc (-1 : ℝ) 1)) =
       ∫ x in (-1 : ℝ)..1, p.eval x := by
@@ -61,7 +65,9 @@ theorem unitIntervalIntegralLinearMap_polynomial (p : ℝ[X]) :
 /-- Uniformly bounded rules which eventually integrate every polynomial exactly
 converge on every continuous unit-interval function.
 Source: Weierstrass density and the positive-rule argument in ATAP, Chapter 19.
-Helper for `gauss-clenshaw-curtis-quadrature-error`.-/
+Helper for `gauss-clenshaw-curtis-quadrature-error`.
+@isnad1 id=tendsto.3h3v.s11.5f95adaa2ab3 from=translated src=- shape=13e68499 vocab=a54e0332
+-/
 theorem tendsto_quadrature_of_bound_and_polynomial_exact
     (Q : ℕ → (C(Icc (-1 : ℝ) 1, ℝ) →ₗ[ℝ] ℝ)) (B : ℝ) (hB : 0 ≤ B)
     (hbound : ∀ n f, |Q n f| ≤ B * ‖f‖)

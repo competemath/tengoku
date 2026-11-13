@@ -14,7 +14,9 @@ open Finset Set
 namespace NLAlib
 
 /-- An injective `(q+1)`-node family containing `a` can be permuted to the endpoint
-family `a,v₀,…,v_{q−1}`.-/
+family `a,v₀,…,v_{q−1}`.
+@isnad1 id=ex.2h3v.s8.cb445a68ead3 from=translated src=- shape=46ec9a12 vocab=9885da8b
+-/
 theorem exists_perm_endpointNodeFamily {q : ℕ} (t : Fin (q + 1) → ℝ)
     (ht : Function.Injective t) {a : ℝ} (ha : a ∈ Set.range t) :
     ∃ e : Equiv.Perm (Fin (q + 1)), ∃ v : Fin q → ℝ,
@@ -31,7 +33,9 @@ theorem exists_perm_endpointNodeFamily {q : ℕ} (t : Fin (q + 1) → ℝ)
 
 /-- An injective `(q+2)`-node family containing both distinct interval endpoints can
 be permuted to a two-endpoint family, with all the remaining nodes interior.
-Source: finite spectral node reindexing for Gauss–Lobatto rules.-/
+Source: finite spectral node reindexing for Gauss–Lobatto rules.
+@isnad1 id=ex.5h4v.s8.68da340a2efe from=translated src=- shape=fb0d3030 vocab=fd4beb25
+-/
 theorem exists_perm_twoEndpointNodeFamily {q : ℕ} (t : Fin (q + 2) → ℝ)
     (ht : Function.Injective t) {a b : ℝ} (hab : a < b)
     (htab : ∀ i, t i ∈ Icc a b) (ha : a ∈ Set.range t) (hb : b ∈ Set.range t) :
@@ -82,7 +86,9 @@ theorem exists_perm_twoEndpointNodeFamily {q : ℕ} (t : Fin (q + 2) → ℝ)
   · rfl
 
 /-- A designated endpoint permutation retains closed-interval location and proves
-that the remaining distinct nodes exclude that endpoint.-/
+that the remaining distinct nodes exclude that endpoint.
+@isnad1 id=ex.3h5v.s8.134ded10eb13 from=translated src=- shape=b5ade35a vocab=22508dce
+-/
 theorem exists_perm_endpointNodeFamily_mem_Icc {q : ℕ} {a b t : ℝ}
     (v : Fin (q + 1) → ℝ) (hv : Function.Injective v)
     (hvi : ∀ i, v i ∈ Icc a b) (hvt : t ∈ Set.range v) :

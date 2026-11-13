@@ -15,14 +15,18 @@ open Polynomial Real Finset Set
 namespace NLAlib
 
 /-- Gap signs have magnitude one.
-Source: fixed alternating cardinal signs; focused reroutes.-/
+Source: fixed alternating cardinal signs; focused reroutes.
+@isnad1 id=eq.0h3v.s5.c2a187b536a4 from=translated src=- shape=36459607 vocab=344e6479
+-/
 theorem abs_interpolationGapSign (n : ℕ) (i : Fin (n + 1)) (j : Fin (n + 2)) :
     |interpolationGapSign n i j| = 1 := by
   unfold interpolationGapSign
   split_ifs <;> simp
 
 /-- The fixed signs alternate across every gap except their own gap.
-Source: the explicit alternating nodal sign formula; focused reroutes.-/
+Source: the explicit alternating nodal sign formula; focused reroutes.
+@isnad1 id=eq.1h3v.s6.dae3b942f3cf from=translated src=- shape=9cbbf5d0 vocab=1ab35392
+-/
 theorem interpolationGapSign_succ_eq_neg {n : ℕ} (i k : Fin (n + 1)) (hki : k ≠ i) :
     interpolationGapSign n i k.succ = -interpolationGapSign n i k.castSucc := by
   unfold interpolationGapSign
@@ -45,7 +49,9 @@ theorem interpolationGapSign_succ_eq_neg {n : ℕ} (i k : Fin (n + 1)) (hki : k 
     ring
 
 /-- Every other nodal gap contains a real root of the actual gap polynomial.
-Source: alternating nodal signs and the intermediate value theorem; focused reroutes.-/
+Source: alternating nodal signs and the intermediate value theorem; focused reroutes.
+@isnad1 id=ex.2h4v.s7.83076c4b50b9 from=translated src=- shape=c5249d0e vocab=a57f85cd
+-/
 theorem exists_root_interpolationGapPolynomial_other_gap {n : ℕ} {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (i k : Fin (n + 1)) (hki : k ≠ i) :
     ∃ r ∈ Ioo (canonicalIntervalNodes n t k.castSucc) (canonicalIntervalNodes n t k.succ),
@@ -76,7 +82,9 @@ theorem exists_root_interpolationGapPolynomial_other_gap {n : ℕ} {t : Fin n �
   exact ⟨r, ⟨hra, hrb⟩, hroot⟩
 
 /-- The actual gap polynomial splits over the reals.
-Source: roots in the other nodal gaps and the degree bound; focused reroutes.-/
+Source: roots in the other nodal gaps and the degree bound; focused reroutes.
+@isnad1 id=splits.2h3v.s5.768f77dfe613 from=translated src=- shape=dbbbd2c4 vocab=dd43e4f4
+-/
 theorem interpolationGapPolynomial_splits {n : ℕ} (hn : 0 < n) {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (i : Fin (n + 1)) :
     (interpolationGapPolynomial n t i).Splits := by

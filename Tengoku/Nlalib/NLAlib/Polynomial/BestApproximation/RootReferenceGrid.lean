@@ -16,7 +16,9 @@ open Real Set Polynomial Finset
 namespace NLAlib
 
 /-- Reindexing a finite grid preserves its actual Lebesgue function.
-Source: the finite Lagrange cardinal product; reference-grid helper.-/
+Source: the finite Lagrange cardinal product; reference-grid helper.
+@isnad1 id=eq.0h5v.s5.f7af5057212c from=translated src=- shape=94edaf22 vocab=7dd11f8b
+-/
 theorem lebesgueFunction_comp_equiv {ι κ : Type*} [Fintype ι] [Fintype κ]
     [DecidableEq ι] [DecidableEq κ] (v : ι → ℝ) (e : κ ≃ ι) (x : ℝ) :
     lebesgueFunction (v ∘ e) x = lebesgueFunction v x := by
@@ -25,7 +27,9 @@ theorem lebesgueFunction_comp_equiv {ι κ : Type*} [Fintype ι] [Fintype κ]
   exact e.sum_comp (fun i => |(Lagrange.basis univ v i).eval x|)
 
 /-- The actual Chebyshev zeros strictly decrease with their indices.
-Source: the root-angle formula and strict cosine monotonicity.-/
+Source: the root-angle formula and strict cosine monotonicity.
+@isnad1 id=strictan.0h1v.s3.118c26b49c6d from=translated src=- shape=64d36d98 vocab=f134e096
+-/
 theorem strictAnti_chebyshevZero (N : ℕ) : StrictAnti (chebyshevZero N) := by
   intro i j hij
   have hNR : (0 : ℝ) < N := by exact_mod_cast (Nat.zero_lt_of_lt i.isLt)
@@ -41,7 +45,9 @@ theorem strictAnti_chebyshevZero (N : ℕ) : StrictAnti (chebyshevZero N) := by
 /-- A stretched, increasing Chebyshev-root grid is a concrete canonical node
 configuration whose every gap peak exceeds the sharp universal logarithmic constant.
 Source: focused reroutes, the reference-grid input to Bernstein–Erdős peak comparison.
-The construction includes the zero-dimensional two-node case.-/
+The construction includes the zero-dimensional two-node case.
+@isnad1 id=ex.0h1v.s7.91a4085909f2 from=translated src=- shape=5b9324a8 vocab=776ce977
+-/
 theorem exists_canonical_reference_grid_logarithmic_lower_lt_peaks (n : ℕ) :
     ∃ t ∈ interiorNodeSimplex n, ∀ i : Fin (n + 1),
       (2 / π) * (log (n + 2 : ℕ) + eulerMascheroniConstant + log (4 / π)) <

@@ -21,7 +21,9 @@ variable {𝕜 : Type*} [Field 𝕜]
 
 /-- The Christoffel quotient is the monic reproducing kernel scaled by
 `h_n / π_n(z)`. Source: Gautschi (2004), Theorem 1.33.
-atlas: kernel-polynomials-christoffel (partial)-/
+atlas: kernel-polynomials-christoffel (partial)
+@isnad1 id=eq.2h4v.s8.415a88871591 from=translated src=- shape=18e0abe3 vocab=1f5cbc8b
+-/
 theorem christoffelPolynomial_eq_C_mul_monicOrthogonalKernelPolynomial
     (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) (hL : ∀ k ≤ n + 1, hankelMomentDet L k ≠ 0)
     {z : 𝕜} (hz : (monicOrthogonalPolynomial L n).eval z ≠ 0) :

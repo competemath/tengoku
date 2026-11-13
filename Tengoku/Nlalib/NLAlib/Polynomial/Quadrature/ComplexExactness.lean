@@ -17,7 +17,9 @@ open Polynomial MeasureTheory Finset
 namespace NLAlib
 
 /-- Finite real polynomial moments integrate complex polynomial evaluations
-on the same real variable.-/
+on the same real variable.
+@isnad1 id=integrab.1h2v.s5.d19e201a5f55 from=translated src=- shape=42a39c5c vocab=2dffd111
+-/
 theorem HasPolynomialMoments.integrable_complex_eval {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) (p : ℂ[X]) :
     Integrable (fun x : ℝ => p.eval (x : ℂ)) μ := by
@@ -32,7 +34,9 @@ theorem HasPolynomialMoments.integrable_complex_eval {μ : Measure ℝ}
   exact hm.const_mul _
 
 /-- A real polynomial-exact rule is exact for the same degree range with
-complex coefficients.-/
+complex coefficients.
+@isnad1 id=eq.3h6v.s7.b5375398605e from=translated src=- shape=416938ac vocab=ef4c13c6
+-/
 theorem integral_complex_eval_eq_sum_of_real_exact {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) {ι : Type*} [Fintype ι] (v w : ι → ℝ) (m : ℕ)
     (hexact : ∀ p : ℝ[X], p.degree < m → (∫ x, p.eval x ∂μ) = ∑ i, w i * p.eval (v i))
@@ -69,7 +73,9 @@ theorem integral_complex_eval_eq_sum_of_real_exact {μ : Measure ℝ}
       ring
 
 /-- The actual real moment Gauss rule integrates every complex polynomial
-below degree twice its node count.-/
+below degree twice its node count.
+@isnad1 id=eq.4h3v.s7.6652db619cc2 from=translated src=- shape=017387bc vocab=79485114
+-/
 theorem integral_complex_eval_eq_sum_gaussWeights_mul_eval {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) {n : ℕ} (hn0 : 0 < n)
     (hn : (n : ℕ∞) ≤ μ.support.encard) {p : ℂ[X]} (hp : p.degree < (2 * n : ℕ)) :

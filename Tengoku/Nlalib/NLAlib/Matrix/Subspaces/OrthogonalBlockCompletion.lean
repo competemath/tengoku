@@ -18,7 +18,9 @@ set_option backward.isDefEq.respectTransparency false
 by a block-diagonal right multiplier fixing those columns. The remaining
 block is itself orthogonal; empty first or second blocks are allowed.
 Horn–Johnson 2013, Theorem 2.7.1, completion step.
-atlas: cs-decomposition (partial)-/
+atlas: cs-decomposition (partial)
+@isnad1 id=ex.3h4v.s8.f85b19443713 from=translated src=- shape=20261d97 vocab=e114c94a
+-/
 theorem exists_orthogonal_right_block_of_first_columns_eq {p q : Type*}
     [Fintype p] [Fintype q] [DecidableEq p] [DecidableEq q]
     (X Y : Matrix (p ⊕ q) (p ⊕ q) ℝ) (hX : HasOrthonormalCols X)

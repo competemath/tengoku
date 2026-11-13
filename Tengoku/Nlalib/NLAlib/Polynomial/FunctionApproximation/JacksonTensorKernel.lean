@@ -18,7 +18,9 @@ open Real MeasureTheory Set Finset Polynomial.Chebyshev
 namespace NLAlib
 
 /-- Every continuous real function is integrable for the finite product
-Chebyshev measure, whose support is compact.-/
+Chebyshev measure, whose support is compact.
+@isnad1 id=integrab.1h2v.s6.55a295a5a275 from=translated src=- shape=8803c997 vocab=50bc2d05
+-/
 theorem integrable_pi_measureT_of_continuous {ι : Type*} [Fintype ι]
     {F : (ι → ℝ) → ℝ} (hF : Continuous F) :
     Integrable F (Measure.pi (fun _ => measureT)) := by
@@ -38,7 +40,9 @@ def tensorNormalizedChebyshev {ι : Type*} [Fintype ι] (α : ι → ℕ) (x : �
 def tensorChebyshevJacksonKernel {ι : Type*} [Fintype ι]
     (M : ℕ) (x r : ι → ℝ) : ℝ := ∏ i, chebyshevJacksonKernel M (x i) (r i)
 
-/-- All retained tensor multipliers are coefficient contractions.-/
+/-- All retained tensor multipliers are coefficient contractions.
+@isnad1 id=mem.1h3v.s5.81e282b9cad3 from=translated src=- shape=42eae896 vocab=1443e2e1
+-/
 theorem tensorChebyshevJacksonDamping_mem_Icc {ι : Type*} [Fintype ι]
     {M : ℕ} {α : ι → ℕ} (hα : ∀ i, α i ≤ M + 1) :
     tensorChebyshevJacksonDamping M α ∈ Icc (0 : ℝ) 1 := by
@@ -46,14 +50,18 @@ theorem tensorChebyshevJacksonDamping_mem_Icc {ι : Type*} [Fintype ι]
     prod_le_one (fun i _ => (chebyshevJacksonDamping_mem_Icc (hα i)).1)
       (fun i _ => (chebyshevJacksonDamping_mem_Icc (hα i)).2)⟩
 
-/-- The actual tensor kernel is nonnegative on the closed cube.-/
+/-- The actual tensor kernel is nonnegative on the closed cube.
+@isnad1 id=le.2h4v.s6.22a2f8d179bc from=translated src=- shape=d13c3fdb vocab=bcb798df
+-/
 theorem tensorChebyshevJacksonKernel_nonneg {ι : Type*} [Fintype ι]
     (M : ℕ) {x r : ι → ℝ} (hx : ∀ i, x i ∈ Icc (-1 : ℝ) 1)
     (hr : ∀ i, r i ∈ Icc (-1 : ℝ) 1) :
     0 ≤ tensorChebyshevJacksonKernel M x r :=
   prod_nonneg (fun i _ => chebyshevJacksonKernel_nonneg M (hx i) (hr i))
 
-/-- The tensor Jackson kernel has mass one, also for the empty coordinate family.-/
+/-- The tensor Jackson kernel has mass one, also for the empty coordinate family.
+@isnad1 id=eq.0h3v.s6.58071033ed3d from=translated src=- shape=21123030 vocab=0b3bf965
+-/
 theorem integral_tensorChebyshevJacksonKernel {ι : Type*} [Fintype ι]
     (M : ℕ) (r : ι → ℝ) :
     (∫ x, tensorChebyshevJacksonKernel M x r ∂Measure.pi (fun _ => measureT)) = 1 := by
@@ -61,7 +69,9 @@ theorem integral_tensorChebyshevJacksonKernel {ι : Type*} [Fintype ι]
   rw [integral_fintype_prod_eq_prod (fun i x => chebyshevJacksonKernel M x (r i))]
   simp only [integral_chebyshevJacksonKernel, prod_const_one]
 
-/-- The tensor kernel is continuous in both coordinate vectors.-/
+/-- The tensor kernel is continuous in both coordinate vectors.
+@isnad1 id=continuo.0h2v.s6.6914ce0cd784 from=translated src=- shape=b5fb4b76 vocab=626fc75f
+-/
 @[fun_prop] theorem continuous_tensorChebyshevJacksonKernel {ι : Type*} [Fintype ι]
     (M : ℕ) : Continuous (fun p : (ι → ℝ) × (ι → ℝ) =>
       tensorChebyshevJacksonKernel M p.1 p.2) := by
@@ -69,7 +79,9 @@ theorem integral_tensorChebyshevJacksonKernel {ι : Type*} [Fintype ι]
   fun_prop
 
 /-- The tensor kernel is exactly the finite diagonal expansion with the
-explicit product damping, rather than an assumed positive kernel.-/
+explicit product damping, rather than an assumed positive kernel.
+@isnad1 id=eq.0h4v.s6.cc6a050a2e09 from=translated src=- shape=8988e4f7 vocab=f03fa8dc
+-/
 theorem tensorChebyshevJacksonKernel_eq_sum {ι : Type*} [Fintype ι] [DecidableEq ι]
     (M : ℕ) (x r : ι → ℝ) :
     tensorChebyshevJacksonKernel M x r =
@@ -82,7 +94,9 @@ theorem tensorChebyshevJacksonKernel_eq_sum {ι : Type*} [Fintype ι] [Decidable
   intro α _
   simp only [tensorChebyshevJacksonDamping, tensorNormalizedChebyshev, prod_mul_distrib]
 
-/-- A single-coordinate displacement integrates to its scalar counterpart.-/
+/-- A single-coordinate displacement integrates to its scalar counterpart.
+@isnad1 id=eq.0h4v.s7.697732479357 from=translated src=- shape=e0a26016 vocab=09faa588
+-/
 theorem integral_tensorChebyshevJacksonKernel_mul_abs_sub {ι : Type*} [Fintype ι]
     (M : ℕ) (r : ι → ℝ) (i : ι) :
     (∫ x, tensorChebyshevJacksonKernel M x r * |x i - r i|
@@ -106,7 +120,9 @@ theorem integral_tensorChebyshevJacksonKernel_mul_abs_sub {ι : Type*} [Fintype 
   simp_rw [hint]
   simp
 
-/-- The actual product kernel has total coordinate displacement at most `6d/M`.-/
+/-- The actual product kernel has total coordinate displacement at most `6d/M`.
+@isnad1 id=le.2h3v.s7.558daf6061ce from=translated src=- shape=c98e2c40 vocab=d8006830
+-/
 theorem integral_tensorChebyshevJacksonKernel_mul_sum_abs_sub_le {ι : Type*} [Fintype ι]
     {M : ℕ} (hM : 1 ≤ M) {r : ι → ℝ} (hr : ∀ i, r i ∈ Icc (-1 : ℝ) 1) :
     (∫ x, tensorChebyshevJacksonKernel M x r * ∑ i, |x i - r i|

@@ -50,7 +50,9 @@ private theorem sum_cos_gaussChebyshev_eq_zero {L k : ℕ}
   dsimp [a]
   ring
 
-/-- All nonconstant frequencies below the first alias have zero quadrature sum.-/
+/-- All nonconstant frequencies below the first alias have zero quadrature sum.
+@isnad1 id=eq.2h2v.s6.97594948743e from=translated src=- shape=49bd3320 vocab=9133cc90
+-/
 theorem gaussChebyshevRule_eval_T {L k : ℕ} (hL : 0 < L) (hkL : k < 2*L) :
     gaussChebyshevRule L (T ℝ (k : ℤ)).eval = if k=0 then π else 0 := by
   by_cases hk : k=0
@@ -66,7 +68,9 @@ theorem gaussChebyshevRule_eval_T {L k : ℕ} (hL : 0 < L) (hkL : k < 2*L) :
   rw [he,mul_zero]
 
 /-- The explicit positive root-grid rule integrates every polynomial of degree
-strictly less than `2L`, with no assumed quadrature exactness.-/
+strictly less than `2L`, with no assumed quadrature exactness.
+@isnad1 id=eq.2h2v.s6.139f167eade1 from=translated src=- shape=4c49c5a1 vocab=c3bf1cf6
+-/
 theorem integral_eval_measureT_eq_gaussChebyshevRule {L : ℕ} (hL : 0 < L)
     {p : ℝ[X]} (hp : p.degree < (2*L : ℕ)) :
     (∫ x,p.eval x ∂measureT) = gaussChebyshevRule L p.eval := by
@@ -99,12 +103,16 @@ theorem integral_eval_measureT_eq_gaussChebyshevRule {L : ℕ} (hL : 0 < L)
   intro k hk
   rw [map_smul,map_smul,hT k (by have := mem_range.mp hk;omega)]
 
-/-- Positive equal weights sum to the actual Chebyshev measure mass.-/
+/-- Positive equal weights sum to the actual Chebyshev measure mass.
+@isnad1 id=eq.1h1v.s4.ea21776b39fc from=translated src=- shape=c21b76cc vocab=1389c60f
+-/
 theorem gaussChebyshevRule_one {L : ℕ} (hL : 0 < L) :
     gaussChebyshevRule L (fun _ => 1) = π := by
   simpa using gaussChebyshevRule_eval_T hL (k := 0) (by omega)
 
-/-- The finite root-grid basis is orthonormal through degree `L-1`.-/
+/-- The finite root-grid basis is orthonormal through degree `L-1`.
+@isnad1 id=eq.3h3v.s6.8916f644cc1e from=translated src=- shape=0d5a9f01 vocab=c8f031f5
+-/
 theorem gaussChebyshevRule_normalized_mul {L j k : ℕ} (hL : 0 < L)
     (hj : j<L) (hk : k<L) :
     gaussChebyshevRule L (fun x => normalizedChebyshev j x * normalizedChebyshev k x) =

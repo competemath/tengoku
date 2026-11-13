@@ -22,17 +22,23 @@ def associatedMonicPolynomial (α β : ℕ → 𝕜) (s : ℕ) : ℕ → 𝕜[X]
   | n+2 => (X-C (α (s+n+1))) * associatedMonicPolynomial α β s (n+1) -
       C (β (s+n+1)) * associatedMonicPolynomial α β s n
 
-/-- Associated order zero is the constant one.-/
+/-- Associated order zero is the constant one.
+@isnad1 id=eq.0h4v.s6.4660c00e49fe from=translated src=- shape=8324e15d vocab=d3b6c524
+-/
 @[simp] theorem associatedMonicPolynomial_zero (α β : ℕ → 𝕜) (s : ℕ) :
     associatedMonicPolynomial α β s 0 = 1 := rfl
 
-/-- Associated order one uses the diagonal coefficient at the shifted start.-/
+/-- Associated order one uses the diagonal coefficient at the shifted start.
+@isnad1 id=eq.0h4v.s7.27951a7f0d5d from=translated src=- shape=69464d47 vocab=62388a50
+-/
 @[simp] theorem associatedMonicPolynomial_one (α β : ℕ → 𝕜) (s : ℕ) :
     associatedMonicPolynomial α β s 1 = X-C (α s) := rfl
 
 /-- Associated polynomials obey the original recurrence with every coefficient
 shifted by the same amount. Source: Gautschi (2004), Chapter 1, AQ17.
-atlas: jacobi-fraction-second-kind (partial)-/
+atlas: jacobi-fraction-second-kind (partial)
+@isnad1 id=eq.0h5v.s8.e9043971fa13 from=translated src=- shape=82846809 vocab=c3a15388
+-/
 theorem associatedMonicPolynomial_add_two (α β : ℕ → 𝕜) (s n : ℕ) :
     associatedMonicPolynomial α β s (n+2) =
       (X-C (α (s+n+1))) * associatedMonicPolynomial α β s (n+1) -
@@ -40,7 +46,9 @@ theorem associatedMonicPolynomial_add_two (α β : ℕ → 𝕜) (s n : ℕ) :
 
 /-- Every associated polynomial is monic and has exactly its order as degree,
 regardless of signs or vanishing recurrence coefficients.
-atlas: jacobi-fraction-second-kind (partial)-/
+atlas: jacobi-fraction-second-kind (partial)
+@isnad1 id=and.0h5v.s5.dc42c4af1dd3 from=translated src=- shape=27b99081 vocab=68ad1840
+-/
 theorem monic_and_natDegree_associatedMonicPolynomial (α β : ℕ → 𝕜) (s n : ℕ) :
     (associatedMonicPolynomial α β s n).Monic ∧
       (associatedMonicPolynomial α β s n).natDegree = n := by
@@ -71,7 +79,9 @@ theorem monic_and_natDegree_associatedMonicPolynomial (α β : ℕ → 𝕜) (s 
 /-- The actual second-kind numerator is original mass times the first
 associated monic sequence, including mass zero as a total algebraic identity.
 Source: Gautschi (2004), Chapter 1, AQ17.
-atlas: jacobi-fraction-second-kind (partial)-/
+atlas: jacobi-fraction-second-kind (partial)
+@isnad1 id=eq.0h3v.s9.477dacd8f621 from=translated src=- shape=ef39c40d vocab=245df85d
+-/
 theorem secondKindPolynomial_eq_mass_mul_associatedMonicPolynomial
     (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) :
     secondKindPolynomial L (n+1) = C (L 1) *

@@ -22,7 +22,9 @@ namespace NLAlib
 
 /-- The focal-distance sum of a Joukowski image is the radius plus its reciprocal.
 Source: Trefethen, ATAP, Ch. 8; operator derivations §4.
-Helper for `bernstein-ellipse-def`.-/
+Helper for `bernstein-ellipse-def`.
+@isnad1 id=eq.1h1v.s6.937379179c71 from=translated src=- shape=4830ce05 vocab=35c484b7
+-/
 theorem norm_joukowski_sub_one_add_norm_joukowski_add_one {w : ℂ} (hw : w ≠ 0) :
     ‖joukowski w - 1‖ + ‖joukowski w + 1‖ = ‖w‖ + ‖w‖⁻¹ := by
   have hm : joukowski w - 1 = (w - 1) ^ 2 / (2 * w) := by
@@ -44,7 +46,9 @@ theorem norm_joukowski_sub_one_add_norm_joukowski_add_one {w : ℂ} (hw : w ≠ 
 
 /-- Every complex point is a Joukowski image with radius at least one.
 Source: the quadratic equation `w²-2zw+1=0`; operator derivations §4.
-Helper for `bernstein-ellipse-def`.-/
+Helper for `bernstein-ellipse-def`.
+@isnad1 id=ex.0h1v.s4.6b3706b3adb4 from=translated src=- shape=43260694 vocab=a454697d
+-/
 theorem exists_one_le_norm_joukowski_eq (z : ℂ) :
     ∃ w : ℂ, 1 ≤ ‖w‖ ∧ joukowski w = z := by
   let p : ℂ[X] := X ^ 2 - C (2 * z) * X + 1
@@ -64,7 +68,9 @@ theorem exists_one_le_norm_joukowski_eq (z : ℂ) :
 
 /-- The canonical open ellipse consists exactly of Joukowski images with radius
 in `[1,ρ)`. Source: Trefethen, ATAP, Ch. 8; operator derivations §4.
-Helper for `bernstein-ellipse-def`.-/
+Helper for `bernstein-ellipse-def`.
+@isnad1 id=eq.1h1v.s5.ed5be3f70747 from=translated src=- shape=46e9c500 vocab=b34a2ad5
+-/
 theorem openBernsteinEllipse_eq_image_one_le_norm {ρ : ℝ} (hρ : 1 < ρ) :
     openBernsteinEllipse ρ = joukowski '' {w : ℂ | 1 ≤ ‖w‖ ∧ ‖w‖ < ρ} := by
   apply Subset.antisymm
@@ -83,7 +89,9 @@ theorem openBernsteinEllipse_eq_image_one_le_norm {ρ : ℝ} (hρ : 1 < ρ) :
 
 /-- The open Bernstein ellipse has the usual focal-distance description.
 Source: Trefethen, ATAP, Ch. 8; operator derivations §4.
-atlas: bernstein-ellipse-def-/
+atlas: bernstein-ellipse-def
+@isnad1 id=iff.1h2v.s6.0d13f2c29178 from=translated src=- shape=f47533ba vocab=4f4cd217
+-/
 theorem mem_openBernsteinEllipse_iff {ρ : ℝ} (hρ : 1 < ρ) (z : ℂ) :
     z ∈ openBernsteinEllipse ρ ↔ ‖z - 1‖ + ‖z + 1‖ < ρ + ρ⁻¹ := by
   obtain ⟨w, hw, rfl⟩ := exists_one_le_norm_joukowski_eq z
@@ -109,7 +117,9 @@ theorem mem_openBernsteinEllipse_iff {ρ : ℝ} (hρ : 1 < ρ) (z : ℂ) :
 
 /-- Bernstein ellipse interiors are open in the complex plane.
 Source: Trefethen, ATAP, Ch. 8; focal-distance characterisation.
-atlas: bernstein-ellipse-def-/
+atlas: bernstein-ellipse-def
+@isnad1 id=isopen.1h1v.s4.edcd2a0b0573 from=translated src=- shape=238e953f vocab=fba55833
+-/
 theorem isOpen_openBernsteinEllipse {ρ : ℝ} (hρ : 1 < ρ) :
     IsOpen (openBernsteinEllipse ρ) := by
   have heq : openBernsteinEllipse ρ = {z : ℂ | ‖z - 1‖ + ‖z + 1‖ < ρ + ρ⁻¹} := by
@@ -120,7 +130,9 @@ theorem isOpen_openBernsteinEllipse {ρ : ℝ} (hρ : 1 < ρ) :
 
 /-- Bernstein ellipse interiors increase with their radius.
 Source: Trefethen, ATAP, Ch. 8; operator derivations §4.
-atlas: bernstein-ellipse-def-/
+atlas: bernstein-ellipse-def
+@isnad1 id=le.2h2v.s4.1423bb648a93 from=translated src=- shape=e7d78117 vocab=5ed1f40a
+-/
 theorem openBernsteinEllipse_mono {r ρ : ℝ} (hr : 1 < r) (hrρ : r ≤ ρ) :
     openBernsteinEllipse r ⊆ openBernsteinEllipse ρ := by
   intro z hz
@@ -130,7 +142,9 @@ theorem openBernsteinEllipse_mono {r ρ : ℝ} (hr : 1 < r) (hrρ : r ≤ ρ) :
 
 /-- Every open Bernstein ellipse of radius greater than one contains the real unit interval.
 Source: Trefethen, ATAP, Ch. 8; operator derivations §4.
-atlas: bernstein-ellipse-def-/
+atlas: bernstein-ellipse-def
+@isnad1 id=mem.2h2v.s5.45a19ff45417 from=translated src=- shape=89e87f48 vocab=37f3bac6
+-/
 theorem ofReal_mem_openBernsteinEllipse {ρ x : ℝ} (hρ : 1 < ρ)
     (hx : x ∈ Icc (-1 : ℝ) 1) : (x : ℂ) ∈ openBernsteinEllipse ρ :=
   filledBernsteinEllipse_subset_openBernsteinEllipse hρ hρ
@@ -138,7 +152,9 @@ theorem ofReal_mem_openBernsteinEllipse {ρ x : ℝ} (hρ : 1 < ρ)
 
 /-- The filled Bernstein ellipse has the closed focal-distance description.
 Source: Trefethen, ATAP, Ch. 8; operator derivations §4.
-Helper for `bernstein-ellipse-def`.-/
+Helper for `bernstein-ellipse-def`.
+@isnad1 id=iff.1h2v.s6.26507f794c57 from=translated src=- shape=f47533ba vocab=b86f05d9
+-/
 theorem mem_filledBernsteinEllipse_iff {ρ : ℝ} (hρ : 1 ≤ ρ) (z : ℂ) :
     z ∈ filledBernsteinEllipse ρ ↔ ‖z - 1‖ + ‖z + 1‖ ≤ ρ + ρ⁻¹ := by
   obtain ⟨w, hw, rfl⟩ := exists_one_le_norm_joukowski_eq z
@@ -161,7 +177,9 @@ theorem mem_filledBernsteinEllipse_iff {ρ : ℝ} (hρ : 1 ≤ ρ) (z : ℂ) :
 
 /-- The complex Chebyshev polynomial has the exact Laurent form after Joukowski substitution.
 Source: Trefethen, ATAP, Ch. 8; operator derivations §4.
-Helper for `bernstein-ellipse-def` and `bernstein-walsh-ellipse`.-/
+Helper for `bernstein-ellipse-def` and `bernstein-walsh-ellipse`.
+@isnad1 id=eq.1h2v.s6.17ebfd9ffdef from=translated src=- shape=7440f9b7 vocab=d756a91c
+-/
 theorem eval_T_complex_joukowski {w : ℂ} (hw : w ≠ 0) (n : ℕ) :
     (T ℂ (n : ℤ)).eval (joukowski w) = (w ^ n + (w⁻¹) ^ n) / 2 := by
   have hJ : joukowski w = Complex.cosh (Complex.log w) := by
@@ -172,7 +190,9 @@ theorem eval_T_complex_joukowski {w : ℂ} (hw : w ≠ 0) (n : ℕ) :
 
 /-- Every point in the filled Bernstein ellipse has modulus at most its major semiaxis.
 Source: Trefethen, ATAP, Ch. 8; operator derivations §4.
-atlas: bernstein-ellipse-def-/
+atlas: bernstein-ellipse-def
+@isnad1 id=le.2h2v.s5.773f43079512 from=translated src=- shape=fbdad010 vocab=96e9f7d6
+-/
 theorem norm_le_of_mem_filledBernsteinEllipse {ρ : ℝ} (hρ : 1 ≤ ρ) {z : ℂ}
     (hz : z ∈ filledBernsteinEllipse ρ) : ‖z‖ ≤ (ρ + ρ⁻¹) / 2 := by
   obtain ⟨w, hw, rfl⟩ := hz
@@ -184,7 +204,9 @@ theorem norm_le_of_mem_filledBernsteinEllipse {ρ : ℝ} (hρ : 1 ≤ ρ) {z : �
 
 /-- The real part in a filled Bernstein ellipse is bounded below by minus the major semiaxis.
 Source: Trefethen, ATAP, Ch. 8; operator derivations §4.
-atlas: bernstein-ellipse-def-/
+atlas: bernstein-ellipse-def
+@isnad1 id=le.2h2v.s5.e07404bafa1f from=translated src=- shape=cd9d9898 vocab=481fefeb
+-/
 theorem neg_semiaxis_le_re_of_mem_filledBernsteinEllipse {ρ : ℝ} (hρ : 1 ≤ ρ) {z : ℂ}
     (hz : z ∈ filledBernsteinEllipse ρ) : -(ρ + ρ⁻¹) / 2 ≤ z.re := by
   have hn := norm_le_of_mem_filledBernsteinEllipse hρ hz
@@ -193,7 +215,9 @@ theorem neg_semiaxis_le_re_of_mem_filledBernsteinEllipse {ρ : ℝ} (hρ : 1 ≤
 
 /-- Complex Chebyshev polynomials have their sharp radius bound on the filled ellipse.
 Source: Trefethen, ATAP, Ch. 8; operator derivations §4.
-atlas: bernstein-ellipse-def-/
+atlas: bernstein-ellipse-def
+@isnad1 id=le.2h3v.s6.a21487416161 from=translated src=- shape=d6b769a1 vocab=6def323c
+-/
 theorem norm_eval_T_complex_le_of_mem_filledBernsteinEllipse {ρ : ℝ}
     (hρ : 1 ≤ ρ) {z : ℂ} (hz : z ∈ filledBernsteinEllipse ρ) (n : ℕ) :
     ‖(T ℂ (n : ℤ)).eval z‖ ≤ (ρ ^ n + (ρ⁻¹) ^ n) / 2 := by
@@ -212,7 +236,9 @@ theorem norm_eval_T_complex_le_of_mem_filledBernsteinEllipse {ρ : ℝ}
 
 /-- The filled ellipse is the topological closure of the open ellipse.
 Source: Trefethen, ATAP, Ch. 8; operator derivations §4.
-atlas: bernstein-ellipse-def-/
+atlas: bernstein-ellipse-def
+@isnad1 id=eq.1h1v.s5.f0440b3d55d0 from=translated src=- shape=50b9e3c4 vocab=471a2d2a
+-/
 theorem closure_openBernsteinEllipse {ρ : ℝ} (hρ : 1 < ρ) :
     closure (openBernsteinEllipse ρ) = filledBernsteinEllipse ρ := by
   have hclosed : IsClosed (filledBernsteinEllipse ρ) := by
@@ -270,7 +296,9 @@ theorem closure_openBernsteinEllipse {ρ : ℝ} (hρ : 1 < ρ) :
 
 /-- The affine image of a filled ellipse has the explicit right-half-plane enclosure.
 Source: Trefethen, ATAP, Ch. 8; operator derivations §4.
-atlas: bernstein-ellipse-def-/
+atlas: bernstein-ellipse-def
+@isnad1 id=le.3h4v.s7.b2e8984992c3 from=translated src=- shape=135d2b25 vocab=f7a5ccbd
+-/
 theorem re_affine_ge_of_mem_filledBernsteinEllipse {a b ρ : ℝ} (hab : a ≤ b)
     (hρ : 1 ≤ ρ) {z : ℂ} (hz : z ∈ filledBernsteinEllipse ρ) :
     (b + a - (b - a) * ((ρ + ρ⁻¹) / 2)) / 2 ≤
@@ -282,7 +310,9 @@ theorem re_affine_ge_of_mem_filledBernsteinEllipse {a b ρ : ℝ} (hab : a ≤ b
 
 /-- The affine image of a filled ellipse has the explicit modulus enclosure.
 Source: Trefethen, ATAP, Ch. 8; operator derivations §4.
-atlas: bernstein-ellipse-def-/
+atlas: bernstein-ellipse-def
+@isnad1 id=le.3h4v.s7.4153b8a53985 from=translated src=- shape=9b38665e vocab=42ea9052
+-/
 theorem norm_affine_le_of_mem_filledBernsteinEllipse {a b ρ : ℝ} (hab : a ≤ b)
     (hρ : 1 ≤ ρ) {z : ℂ} (hz : z ∈ filledBernsteinEllipse ρ) :
     ‖(((b - a : ℝ) : ℂ) * z + (b + a : ℝ)) / 2‖ ≤

@@ -23,7 +23,9 @@ open scoped NLAlib.TwoPi
 
 /-- Absolute summability of genuine Chebyshev coefficients implies summability of the
 full Fourier coefficient sequence of the cosine-circle pullback.
-Source: Trefethen, ATAP, Theorem 3.1; helper for `chebyshev-series-convergence`.-/
+Source: Trefethen, ATAP, Theorem 3.1; helper for `chebyshev-series-convergence`.
+@isnad1 id=summable.2h1v.s7.37bbcb6537a4 from=translated src=- shape=9e65c598 vocab=259ff4dd
+-/
 theorem summable_fourierCoeff_realChebyshevCircleFunction {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1 : ℝ) 1))
     (hs : Summable (fun k => |chebyshevCoeff f k|)) :
@@ -55,7 +57,9 @@ theorem summable_fourierCoeff_realChebyshevCircleFunction {f : ℝ → ℝ}
   exact Summable.of_nat_of_neg_add_one hs_nat hs_neg
 
 /-- Opposite Fourier frequencies combine to one positive Chebyshev term.
-Source: Trefethen, ATAP, Theorem 3.1; helper for `chebyshev-series-convergence`.-/
+Source: Trefethen, ATAP, Theorem 3.1; helper for `chebyshev-series-convergence`.
+@isnad1 id=eq.2h3v.s9.2e2ddbd65c4d from=translated src=- shape=675fd803 vocab=d593ab87
+-/
 theorem re_fourier_pair_eq_chebyshevCoeff_mul_eval_T {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1 : ℝ) 1)) {k : ℕ} (hk : 0 < k) (θ : ℝ) :
     ((fourierCoeff (fun t => (realChebyshevCircleFunction f t : ℂ)) (k : ℤ) *
@@ -73,7 +77,9 @@ theorem re_fourier_pair_eq_chebyshevCoeff_mul_eval_T {f : ℝ → ℝ}
 /-- Absolutely summable genuine Chebyshev coefficients reconstruct a continuous function
 at every cosine argument.
 Source: Trefethen, ATAP, Theorem 3.1(a); Mathlib continuous Fourier reconstruction.
-Helper for `chebyshev-series-convergence`.-/
+Helper for `chebyshev-series-convergence`.
+@isnad1 id=hassum.2h2v.s6.c89a1e970ee9 from=translated src=- shape=3ef75c17 vocab=dcfcec40
+-/
 theorem hasSum_chebyshevCoeff_mul_eval_T_cos {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1 : ℝ) 1))
     (hs : Summable (fun k => |chebyshevCoeff f k|)) (θ : ℝ) :
@@ -128,7 +134,9 @@ theorem hasSum_chebyshevCoeff_mul_eval_T_cos {f : ℝ → ℝ}
 /-- Continuous functions with absolutely summable genuine Chebyshev coefficients have
 an absolute Chebyshev expansion at every point of the unit interval.
 Source: Trefethen, ATAP, Theorem 3.1(a).
-atlas: chebyshev-series-convergence (partial)-/
+atlas: chebyshev-series-convergence (partial)
+@isnad1 id=hassum.3h2v.s6.66800c4c1ad9 from=translated src=- shape=ecd5faeb vocab=7d72d2fb
+-/
 theorem hasSum_chebyshevCoeff_mul_eval_T {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1 : ℝ) 1))
     (hs : Summable (fun k => |chebyshevCoeff f k|)) {x : ℝ} (hx : x ∈ Icc (-1 : ℝ) 1) :
@@ -138,7 +146,9 @@ theorem hasSum_chebyshevCoeff_mul_eval_T {f : ℝ → ℝ}
 
 /-- The Chebyshev truncation error is bounded by the absolute coefficient tail.
 Source: Trefethen, ATAP, Theorem 3.1(a).
-atlas: chebyshev-series-convergence (partial)-/
+atlas: chebyshev-series-convergence (partial)
+@isnad1 id=le.3h3v.s7.6f6248f43a55 from=translated src=- shape=b685e3f9 vocab=ec665d52
+-/
 theorem abs_sub_eval_chebyshevTrunc_le_tsum {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1 : ℝ) 1))
     (hs : Summable (fun k => |chebyshevCoeff f k|)) (n : ℕ)
@@ -166,7 +176,9 @@ theorem abs_sub_eval_chebyshevTrunc_le_tsum {f : ℝ → ℝ}
 
 /-- Absolutely summable Chebyshev series converge uniformly on the full closed interval.
 Source: Trefethen, ATAP, Theorem 3.1(a).
-atlas: chebyshev-series-convergence (partial)-/
+atlas: chebyshev-series-convergence (partial)
+@isnad1 id=tendstou.2h1v.s6.7fcee2601823 from=translated src=- shape=277f5bcc vocab=fec7b135
+-/
 theorem tendstoUniformlyOn_chebyshevTrunc {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1 : ℝ) 1))
     (hs : Summable (fun k => |chebyshevCoeff f k|)) :

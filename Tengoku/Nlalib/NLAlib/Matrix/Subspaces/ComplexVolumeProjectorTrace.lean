@@ -18,7 +18,9 @@ open scoped Classical Matrix Matrix.Norms.Frobenius ComplexOrder
 namespace NLAlib
 
 /-- Real squared Frobenius mass splits over complementary complex
-orthogonal projectors on the right. Source: `sa:volume-theorem`.-/
+orthogonal projectors on the right. Source: `sa:volume-theorem`.
+@isnad1 id=eq.2h4v.s8.6feb1980b561 from=translated src=- shape=fd9ad792 vocab=675452c3
+-/
 theorem frobenius_norm_sq_eq_right_projection_add_residual
     {m n : Type*} [Fintype m] [Fintype n] [DecidableEq n]
     (P : Matrix n n ℂ) (hs : P.IsHermitian) (hp : IsIdempotentElem P)

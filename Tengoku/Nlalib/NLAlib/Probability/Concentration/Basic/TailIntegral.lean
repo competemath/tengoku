@@ -34,7 +34,9 @@ is needed for this extended nonnegative integral inequality.
 
 Standard layer-cake estimate; Vershynin 2018, Lemma 1.2.1; HMT 2011, proof of
 Thm 10.8. Uses Mathlib's `lintegral_eq_lintegral_meas_lt`.
-atlas: tail-integral-/
+atlas: tail-integral
+@isnad1 id=le.4h5v.s7.91ded5dd6b0b from=translated src=- shape=b8743c43 vocab=edd0e112
+-/
 theorem lintegral_le_of_tail_le {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (f : Ω → ℝ) (hf : AEMeasurable f μ)
     (hnn : 0 ≤ᵐ[μ] f) {a : ℝ} (ha : 0 ≤ a) (F : ℝ → ℝ)
@@ -116,7 +118,9 @@ private theorem integrable_and_integral_le_of_tail_le_rpow {Ω : Type*} [Measura
 
 /-- Integrability from a nonnegative integrable tail envelope.
 Source: Vershynin 2018, Lemma 1.2.1; HMT 2011, proof of Thm 10.8.
-atlas: tail-integral-/
+atlas: tail-integral
+@isnad1 id=integrab.6h5v.s7.bc5449362cd5 from=translated src=- shape=451eccd9 vocab=34d9a3cb
+-/
 theorem integrable_of_tail_le {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (f : Ω → ℝ) (hf : AEMeasurable f μ)
     (hnn : 0 ≤ᵐ[μ] f) {a : ℝ} (ha : 0 ≤ a) (F : ℝ → ℝ)
@@ -127,7 +131,9 @@ theorem integrable_of_tail_le {Ω : Type*} [MeasurableSpace Ω]
 
 /-- The expectation bound from a nonnegative integrable tail envelope.
 Source: Vershynin 2018, Lemma 1.2.1; HMT 2011, proof of Thm 10.8.
-atlas: tail-integral-/
+atlas: tail-integral
+@isnad1 id=le.6h5v.s7.687691003fc0 from=translated src=- shape=81ebfa51 vocab=67ad14eb
+-/
 theorem integral_le_of_tail_le {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (f : Ω → ℝ) (hf : AEMeasurable f μ)
     (hnn : 0 ≤ᵐ[μ] f) {a : ℝ} (ha : 0 ≤ a) (F : ℝ → ℝ)
@@ -138,7 +144,9 @@ theorem integral_le_of_tail_le {Ω : Type*} [MeasurableSpace Ω]
 
 /-- Integrability from a polynomial tail envelope.
 Source: Vershynin 2018, Lemma 1.2.1; HMT 2011, proof of Thm 10.8.
-atlas: tail-integral-/
+atlas: tail-integral
+@isnad1 id=integrab.5h5v.s7.97a206b99166 from=translated src=- shape=c2ee8bf7 vocab=5d7828bf
+-/
 theorem integrable_of_tail_le_rpow {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (f : Ω → ℝ) (hf : AEMeasurable f μ)
     (hnn : 0 ≤ᵐ[μ] f) (C m : ℝ) (hC : 0 < C) (hm : 1 < m)
@@ -148,7 +156,9 @@ theorem integrable_of_tail_le_rpow {Ω : Type*} [MeasurableSpace Ω]
 
 /-- The expectation bound from a polynomial tail envelope.
 Source: Vershynin 2018, Lemma 1.2.1; HMT 2011, proof of Thm 10.8.
-atlas: tail-integral-/
+atlas: tail-integral
+@isnad1 id=le.5h5v.s7.20e9e8eb6329 from=translated src=- shape=e94185c8 vocab=71be5852
+-/
 theorem integral_le_of_tail_le_rpow {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (f : Ω → ℝ) (hf : AEMeasurable f μ)
     (hnn : 0 ≤ᵐ[μ] f) (C m : ℝ) (hC : 0 < C) (hm : 1 < m)

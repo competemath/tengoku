@@ -23,7 +23,9 @@ namespace NLAlib
 /-- A Bernstein radius below the inverse-approximation threshold has a positive
 transplanted ellipse lower bound.
 Source: Trefethen, ATAP, Ch. 8; operator derivations §6.
-atlas: slit-plane-analytic-approx-/
+atlas: slit-plane-analytic-approx
+@isnad1 id=lt.4h3v.s6.8a75db50adc0 from=translated src=- shape=8acf20b3 vocab=db9f6e4e
+-/
 theorem bernsteinIntervalLower_pos {a b ρ : ℝ} (ha : 0 < a) (hab : a < b)
     (hρ : 1 < ρ) (hr : ρ < (√b + √a) / (√b - √a)) :
     0 < bernsteinIntervalLower a b ρ := by
@@ -49,7 +51,9 @@ theorem bernsteinIntervalLower_pos {a b ρ : ℝ} (ha : 0 < a) (hab : a < b)
 
 /-- The affine Bernstein ellipse stays in its explicit real-part and modulus enclosure.
 Source: Trefethen, ATAP, Ch. 8; operator derivations §6.
-Helper for `slit-plane-analytic-approx`.-/
+Helper for `slit-plane-analytic-approx`.
+@isnad1 id=and.4h4v.s6.6603522dee94 from=translated src=- shape=3ea26dbe vocab=90cc6504
+-/
 theorem bernsteinIntervalMap_mem_enclosure {a b ρ : ℝ} (ha : 0 < a) (hab : a < b)
     (hρ : 1 < ρ) {z : ℂ} (hz : z ∈ openBernsteinEllipse ρ) :
     bernsteinIntervalLower a b ρ ≤ (bernsteinIntervalMap a b z).re ∧
@@ -66,7 +70,9 @@ theorem bernsteinIntervalMap_mem_enclosure {a b ρ : ℝ} (ha : 0 < a) (hab : a 
 /-- A function holomorphic in the right half-plane, bounded on the explicit ellipse
 enclosure, admits a real polynomial with the exact Bernstein rate on `[a,b]`.
 Source: Trefethen, ATAP, Thm 8.2; operator derivations §6.
-atlas: slit-plane-analytic-approx-/
+atlas: slit-plane-analytic-approx
+@isnad1 id=ex.7h7v.s8.f900ca8fce3d from=translated src=- shape=5601cdd9 vocab=04a46f8a
+-/
 theorem exists_degree_le_abs_sub_eval_le_of_rightHalfPlane
     {a b ρ M : ℝ} {f : ℝ → ℝ} {F : ℂ → ℂ}
     (ha : 0 < a) (hab : a < b) (hρ : 1 < ρ)
@@ -102,7 +108,9 @@ theorem exists_degree_le_abs_sub_eval_le_of_rightHalfPlane
 
 /-- Principal real powers have the stated enclosure bound on a right-half-plane ellipse.
 Source: Trefethen, ATAP, Ch. 8; operator derivations §6.
-atlas: slit-plane-analytic-approx-/
+atlas: slit-plane-analytic-approx
+@isnad1 id=ex.4h5v.s7.977e71e07644 from=translated src=- shape=e7ac1fa0 vocab=e877b7cb
+-/
 theorem exists_degree_le_abs_rpow_sub_eval_le {a b ρ : ℝ}
     (ha : 0 < a) (hab : a < b) (hρ : 1 < ρ)
     (hr : ρ < (√b + √a) / (√b - √a)) (α : ℝ) (n : ℕ) :
@@ -127,7 +135,9 @@ theorem exists_degree_le_abs_rpow_sub_eval_le {a b ρ : ℝ}
 
 /-- The principal logarithm has the stated enclosure bound on a right-half-plane ellipse.
 Source: Trefethen, ATAP, Ch. 8; operator derivations §6.
-atlas: slit-plane-analytic-approx-/
+atlas: slit-plane-analytic-approx
+@isnad1 id=ex.4h4v.s7.42ec9c0c59ba from=translated src=- shape=10f55019 vocab=c857f1e5
+-/
 theorem exists_degree_le_abs_log_sub_eval_le {a b ρ : ℝ}
     (ha : 0 < a) (hab : a < b) (hρ : 1 < ρ)
     (hr : ρ < (√b + √a) / (√b - √a)) (n : ℕ) :

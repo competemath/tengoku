@@ -21,7 +21,9 @@ variable {κ : Type*} [Fintype κ]
 
 /-- The second moment of a quadratic form under the Rademacher vector law:
 `𝔼 (xᵀ A x)² = (tr A)² + ∑ Aᵢⱼ² + ∑ Aᵢⱼ Aⱼᵢ − 2 ∑ Aᵢᵢ²`. Hutchinson 1989; Avron–Toledo 2011,
-Lemma 6.-/
+Lemma 6.
+@isnad1 id=eq.0h2v.s7.13db2a84c934 from=translated src=- shape=e27cc0f9 vocab=82916766
+-/
 theorem integral_quadForm_sq_rademacherVector [DecidableEq κ]
     (A : Matrix κ κ ℝ) :
     (∫ x : κ → ℝ, quadForm A x ^ 2 ∂(rademacherVector κ)) =
@@ -39,7 +41,9 @@ theorem integral_quadForm_sq_rademacherVector [DecidableEq κ]
   ring
 
 /-- The Rademacher vector law is isotropic, so every quadratic form has expectation equal to
-its trace: `𝔼 (xᵀ A x) = tr A`. Hutchinson 1989 (atlas `hutchinson-unbiased`).-/
+its trace: `𝔼 (xᵀ A x) = tr A`. Hutchinson 1989 (atlas `hutchinson-unbiased`).
+@isnad1 id=eq.0h2v.s5.5405c3eec1a7 from=translated src=- shape=0bf0b547 vocab=129dae17
+-/
 theorem integral_quadForm_rademacherVector
     (A : Matrix κ κ ℝ) :
     (∫ x : κ → ℝ, quadForm A x ∂(rademacherVector κ)) = A.trace := by
@@ -54,7 +58,9 @@ theorem integral_quadForm_rademacherVector
     (fun i => integral_sq_eq_one_of_hasLaw_rademacherMeasure (hasLaw_eval_rademacherVector i))
 
 /-- A zero-diagonal quadratic form has the two off-diagonal contractions as its Rademacher
-second moment: `𝔼 (xᵀ A x)² = ∑ Aᵢⱼ² + ∑ Aᵢⱼ Aⱼᵢ`. Hutchinson 1989.-/
+second moment: `𝔼 (xᵀ A x)² = ∑ Aᵢⱼ² + ∑ Aᵢⱼ Aⱼᵢ`. Hutchinson 1989.
+@isnad1 id=eq.1h2v.s7.578eb374997e from=translated src=- shape=3e026d80 vocab=f24bcbc8
+-/
 theorem integral_quadForm_sq_rademacherVector_of_diag_zero [DecidableEq κ]
     (A : Matrix κ κ ℝ) (hdiag : ∀ i, A i i = 0) :
     (∫ x : κ → ℝ, quadForm A x ^ 2 ∂(rademacherVector κ)) =
@@ -64,7 +70,9 @@ theorem integral_quadForm_sq_rademacherVector_of_diag_zero [DecidableEq κ]
     zero_add, mul_zero, sub_zero]
 
 /-- Polynomial growth of a quadratic form in the sup norm of its argument:
-`|xᵀ A x| ≤ (∑ |Aᵢⱼ|) (1 + ‖x‖)²`.-/
+`|xᵀ A x| ≤ (∑ |Aᵢⱼ|) (1 + ‖x‖)²`.
+@isnad1 id=le.0h3v.s6.0e26d08a09a2 from=translated src=- shape=7cbe48d5 vocab=46869a8a
+-/
 theorem abs_quadForm_le_sum_abs_mul_one_add_norm_sq
     (A : Matrix κ κ ℝ) (x : κ → ℝ) :
     |quadForm A x| ≤ (∑ i, ∑ j, |A i j|) * (1 + ‖x‖) ^ 2 := by
@@ -88,7 +96,9 @@ theorem abs_quadForm_le_sum_abs_mul_one_add_norm_sq
     _ = _ := by simp only [Finset.sum_mul]
 
 /-- Squared quadratic forms are integrable under the Rademacher vector law (polynomial growth
-and bounded support).-/
+and bounded support).
+@isnad1 id=integrab.0h2v.s6.c8236397167e from=translated src=- shape=fdb844ce vocab=ba0d36a2
+-/
 theorem integrable_quadForm_sq_rademacherVector
     (A : Matrix κ κ ℝ) :
     Integrable (fun x : κ → ℝ => quadForm A x ^ 2)

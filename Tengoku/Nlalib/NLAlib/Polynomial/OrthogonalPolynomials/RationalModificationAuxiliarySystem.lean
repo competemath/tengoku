@@ -48,7 +48,9 @@ def rationalModificationAuxiliaryMatrix (L T : 𝕜[X] →ₗ[𝕜] 𝕜)
 
 /-- The actual source normalization minor is nonzero for `n≤m`, including
 orders below the denominator degree. No nondegeneracy of the output is assumed.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=ne.4h8v.s8.b40292833a6f from=translated src=- shape=f8843524 vocab=69e22793
+-/
 theorem det_rationalModificationAuxiliaryMatrix_ne_zero
     (L T : 𝕜[X] →ₗ[𝕜] 𝕜) (x : Fin l → 𝕜) (z : Fin m → 𝕜)
     (hx : Function.Injective x) (hz : Function.Injective z) (hm : n ≤ m)

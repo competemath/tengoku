@@ -19,7 +19,9 @@ open Real Set Polynomial Polynomial.Chebyshev MeasureTheory Filter
 namespace NLAlib
 
 /-- On the interval interior, the sine primitive has the weighted Chebyshev derivative.
-Source: focused reroutes, Lemma `lem:FkAC`; helper for `chebyshev-coeff-bv-decay`.-/
+Source: focused reroutes, Lemma `lem:FkAC`; helper for `chebyshev-coeff-bv-decay`.
+@isnad1 id=hasderiv.1h2v.s7.400e9dcf55fb from=translated src=- shape=0a852afe vocab=0d95485d
+-/
 theorem hasDerivAt_sin_mul_arccos (k : ℕ) {x : ℝ} (hx : x ∈ Ioo (-1 : ℝ) 1) :
     HasDerivAt (fun t => sin ((k : ℝ) * arccos t))
       (-(k : ℝ) * (T ℝ (k : ℤ)).eval x * √(1 - x ^ 2)⁻¹) x := by
@@ -39,7 +41,9 @@ theorem hasDerivAt_sin_mul_arccos (k : ℕ) {x : ℝ} (hx : x ∈ Ioo (-1 : ℝ)
   simpa only [Function.comp_def] using h
 
 /-- The derivative of the sine primitive is integrable despite its endpoint singularity.
-Source: focused reroutes, Lemma `lem:FkAC`; helper for `chebyshev-coeff-bv-decay`.-/
+Source: focused reroutes, Lemma `lem:FkAC`; helper for `chebyshev-coeff-bv-decay`.
+@isnad1 id=interval.0h1v.s6.7b68ef3e9787 from=translated src=- shape=d9739e7a vocab=63269dd1
+-/
 theorem intervalIntegrable_sin_mul_arccos_deriv (k : ℕ) :
     IntervalIntegrable (fun x => -(k : ℝ) * (T ℝ (k : ℤ)).eval x * √(1 - x ^ 2)⁻¹)
       volume (-1) 1 := by
@@ -48,7 +52,9 @@ theorem intervalIntegrable_sin_mul_arccos_deriv (k : ℕ) :
   simpa only [mul_assoc] using h.const_mul (-(k : ℝ))
 
 /-- Integrating the weighted derivative recovers the sine primitive, including endpoints.
-Source: focused reroutes, Lemma `lem:FkAC`; helper for `chebyshev-coeff-bv-decay`.-/
+Source: focused reroutes, Lemma `lem:FkAC`; helper for `chebyshev-coeff-bv-decay`.
+@isnad1 id=eq.1h2v.s7.3e6d4a5db33c from=translated src=- shape=bfb3469d vocab=fe5b4abe
+-/
 theorem integral_sin_mul_arccos_deriv (k : ℕ) {x : ℝ} (hx : x ∈ Icc (-1 : ℝ) 1) :
     (∫ t in -1..x, -(k : ℝ) * (T ℝ (k : ℤ)).eval t * √(1 - t ^ 2)⁻¹) =
       sin ((k : ℝ) * arccos x) := by
@@ -61,7 +67,9 @@ theorem integral_sin_mul_arccos_deriv (k : ℕ) {x : ℝ} (hx : x ∈ Icc (-1 : 
   simpa only [arccos_neg_one, sin_nat_mul_pi, sub_zero] using h
 
 /-- The weighted sine primitive is absolutely continuous on `[-1,1]`.
-Source: focused reroutes, Lemma `lem:FkAC`; helper for `chebyshev-coeff-bv-decay`.-/
+Source: focused reroutes, Lemma `lem:FkAC`; helper for `chebyshev-coeff-bv-decay`.
+@isnad1 id=absolute.0h1v.s5.85248018279e from=translated src=- shape=dce6704c vocab=e52adf56
+-/
 theorem absolutelyContinuousOnInterval_sin_mul_arccos (k : ℕ) :
     AbsolutelyContinuousOnInterval (fun x => sin ((k : ℝ) * arccos x)) (-1) 1 := by
   have h := (intervalIntegrable_sin_mul_arccos_deriv k).absolutelyContinuousOnInterval_intervalIntegral

@@ -22,7 +22,9 @@ private local instance : DecidableEq (RatFunc ℝ) := Classical.decEq _
 
 /-- The numerator of the difference from a baseline rational function has degree at most
 the baseline's exact tangent degree. The zero baseline uses the competitor numerator.
-Source: ATAP, Chapter 24, the defect-adjusted cross-numerator bound.-/
+Source: ATAP, Chapter 24, the defect-adjusted cross-numerator bound.
+@isnad1 id=le.1h5v.s7.5c828cf72c19 from=translated src=- shape=05f29d74 vocab=4fd79bce
+-/
 theorem degree_rational_difference_numerator_le {s : Set ℝ} {m n : ℕ}
     (r u : RatFunc ℝ) (hu : IsPoleFreeRationalApproximation s m n u) :
     (if r = 0 then u.num else u.num * r.denom - r.num * u.denom).degree ≤
@@ -46,7 +48,9 @@ theorem degree_rational_difference_numerator_le {s : Set ℝ} {m n : ℕ}
           norm_cast; omega
 
 /-- Vanishing of the difference cross numerator is equality of rational functions.
-Source: the fraction identity used in the rational alternation theorem.-/
+Source: the fraction identity used in the rational alternation theorem.
+@isnad1 id=eq.1h2v.s7.511f7323ea42 from=translated src=- shape=0aa45c99 vocab=8a75a18a
+-/
 theorem ratFunc_eq_of_difference_numerator_eq_zero (r u : RatFunc ℝ)
     (hzero : (if r = 0 then u.num else u.num * r.denom - r.num * u.denom) = 0) : u = r := by
   classical
@@ -59,7 +63,9 @@ theorem ratFunc_eq_of_difference_numerator_eq_zero (r u : RatFunc ℝ)
     exact heq.trans (RatFunc.num_div_denom r)
 
 /-- The difference cross numerator vanishes at every point where two pole-free rational
-functions agree. Source: the fraction identity used in rational root-counting.-/
+functions agree. Source: the fraction identity used in rational root-counting.
+@isnad1 id=eq.3h4v.s8.c404ef422530 from=translated src=- shape=2810cb21 vocab=cbbbcbac
+-/
 theorem difference_numerator_eval_eq_zero_of_rationalContinuousMap_eq {s : Set ℝ}
     (r u : RatFunc ℝ) (hr : ∀ x ∈ s, r.denom.eval x ≠ 0)
     (hu : ∀ x ∈ s, u.denom.eval x ≠ 0) (x : s)
@@ -79,7 +85,9 @@ theorem difference_numerator_eval_eq_zero_of_rationalContinuousMap_eq {s : Set �
 /-- Alternating baseline errors of magnitude at least `ε` force every rational competitor
 of the same type to have magnitude at least `ε` at one sample. Source: ATAP, Exercise 24.5.
 The sample count is the exact defect-adjusted count, and the zero baseline is included.
-atlas: rational-equioscillation (partial)-/
+atlas: rational-equioscillation (partial)
+@isnad1 id=ex.6h9v.s10.db7da5c7c7ee from=translated src=- shape=5eb77b20 vocab=ebc5fdce
+-/
 theorem exists_abs_sub_rationalContinuousMap_ge_of_alternation {a b : ℝ}
     (hab : a < b) {m n : ℕ} (f : C(Icc a b, ℝ)) (r : RatFunc ℝ)
     (hr : IsPoleFreeRationalApproximation (Icc a b) m n r)
@@ -130,7 +138,9 @@ theorem exists_abs_sub_rationalContinuousMap_ge_of_alternation {a b : ℝ}
 
 /-- The rational alternation certificate is a lower bound on best type-`(m,n)` error.
 Source: ATAP, Exercise 24.5.
-atlas: rational-equioscillation (partial)-/
+atlas: rational-equioscillation (partial)
+@isnad1 id=le.5h8v.s9.9d37e6619d6a from=translated src=- shape=abead4ee vocab=7e10758d
+-/
 theorem le_rationalMinimaxError_of_alternation {a b : ℝ} (hab : a < b) {m n : ℕ}
     (f : C(Icc a b, ℝ)) (r : RatFunc ℝ)
     (hr : IsPoleFreeRationalApproximation (Icc a b) m n r)

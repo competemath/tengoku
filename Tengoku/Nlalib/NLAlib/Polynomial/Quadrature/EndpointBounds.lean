@@ -16,7 +16,9 @@ namespace NLAlib
 
 /-- A nonnegative derivative of order `2q+1` gives a left Radau lower bound.
 Source: Gautschi (2004), Theorems 3.3 and 3.7; operator derivations (AQ9).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=le.9h7v.s9.554a61e0e800 from=translated src=- shape=c1e8030e vocab=32b7aada
+-/
 theorem endpoint_quadrature_le_integral_of_iteratedDeriv_nonneg
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ} (hab : a < b)
     (hμ : ∀ᵐ x ∂μ, x ∈ Icc a b) {q : ℕ}
@@ -42,7 +44,9 @@ theorem endpoint_quadrature_le_integral_of_iteratedDeriv_nonneg
 
 /-- A nonnegative derivative of order `2q+1` gives a right Radau upper bound.
 Source: Gautschi (2004), Theorems 3.3 and 3.7; operator derivations (AQ10).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=le.9h7v.s9.28164003b2cd from=translated src=- shape=3d7d0a07 vocab=32b7aada
+-/
 theorem integral_le_endpoint_quadrature_of_iteratedDeriv_nonneg
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ} (hab : a < b)
     (hμ : ∀ᵐ x ∂μ, x ∈ Icc a b) {q : ℕ}
@@ -68,7 +72,9 @@ theorem integral_le_endpoint_quadrature_of_iteratedDeriv_nonneg
 
 /-- A nonnegative derivative of order `2q+2` gives a Lobatto upper bound.
 Source: Gautschi (2004), Theorem 3.7; operator derivations (AQ11).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=le.9h7v.s9.adc4351751d7 from=translated src=- shape=3a94bd64 vocab=dd0c2f0b
+-/
 theorem integral_le_twoEndpoint_quadrature_of_iteratedDeriv_nonneg
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ} (hab : a < b)
     (hμ : ∀ᵐ x ∂μ, x ∈ Icc a b) {q : ℕ}

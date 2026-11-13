@@ -24,7 +24,9 @@ def polynomialBasisCoordinate (b : Basis (Fin d) 𝕜 (degreeLT 𝕜 d)) (i : Fi
     𝕜[X] →ₗ[𝕜] 𝕜 := (b.coord i).comp (degreeLTProjection d)
 
 /-- The extended basis coefficient equals the native basis representation
-coefficient of each polynomial already below the degree bound.-/
+coefficient of each polynomial already below the degree bound.
+@isnad1 id=eq.0h5v.s11.1ac0a5416154 from=translated src=- shape=45f2a2c0 vocab=58fbd453
+-/
 @[simp] theorem polynomialBasisCoordinate_apply_coe
     (b : Basis (Fin d) 𝕜 (degreeLT 𝕜 d)) (i : Fin d) (p : degreeLT 𝕜 d) :
     polynomialBasisCoordinate b i (p : 𝕜[X]) = b.repr p i := by
@@ -32,14 +34,18 @@ coefficient of each polynomial already below the degree bound.-/
     degreeLTProjection_coe, Basis.coord_apply]
 
 /-- The constructed coordinate of an actual bounded-degree polynomial is its
-native basis representation coefficient.-/
+native basis representation coefficient.
+@isnad1 id=eq.1h5v.s11.ebad7b75dcdc from=translated src=- shape=1f9351ec vocab=fa68cbd9
+-/
 theorem polynomialBasisCoordinate_apply_of_degree_lt
     (b : Basis (Fin d) 𝕜 (degreeLT 𝕜 d)) (i : Fin d) (p : 𝕜[X]) (hp : p.degree < d) :
     polynomialBasisCoordinate b i p = b.repr ⟨p, mem_degreeLT.mpr hp⟩ i :=
   polynomialBasisCoordinate_apply_coe b i ⟨p, mem_degreeLT.mpr hp⟩
 
 /-- The constructed coefficient functionals are dual to the actual fixed
-polynomial basis.-/
+polynomial basis.
+@isnad1 id=eq.0h5v.s10.385afd76d093 from=translated src=- shape=64812ab2 vocab=9e97e279
+-/
 @[simp] theorem polynomialBasisCoordinate_apply_basis
     (b : Basis (Fin d) 𝕜 (degreeLT 𝕜 d)) (i j : Fin d) :
     polynomialBasisCoordinate b i (b j : 𝕜[X]) = if i = j then 1 else 0 := by
@@ -54,7 +60,9 @@ def polynomialBasisMomentVector (b : Basis (Fin d) 𝕜 (degreeLT 𝕜 d))
 /-- The actual native polynomial basis's modified moment coordinates equal
 the original functional on every polynomial below the degree bound, not only
 on the individual basis vectors. Source: AQ26--AQ31 fixed-basis chart.
-atlas: recurrence-coefficient-moment-sensitivity (partial)-/
+atlas: recurrence-coefficient-moment-sensitivity (partial)
+@isnad1 id=eq.1h5v.s9.7ee191046f87 from=translated src=- shape=1258dae4 vocab=a715a8dd
+-/
 theorem coordinateMomentFunctional_polynomialBasis_eq_of_degree_lt
     (b : Basis (Fin d) 𝕜 (degreeLT 𝕜 d)) (L : 𝕜[X] →ₗ[𝕜] 𝕜)
     {p : 𝕜[X]} (hp : p.degree < d) :
@@ -74,7 +82,9 @@ theorem coordinateMomentFunctional_polynomialBasis_eq_of_degree_lt
   exact mul_comm _ _
 
 /-- An arbitrary moment vector in the fixed basis has precisely the prescribed
-actual modified moments at every basis polynomial.-/
+actual modified moments at every basis polynomial.
+@isnad1 id=eq.0h5v.s10.189a82f48130 from=translated src=- shape=34f42806 vocab=b7506814
+-/
 theorem coordinateMomentFunctional_polynomialBasis_apply_basis
     (b : Basis (Fin d) 𝕜 (degreeLT 𝕜 d)) (m : Fin d → 𝕜) (j : Fin d) :
     coordinateMomentFunctional (polynomialBasisCoordinate b) m (b j : 𝕜[X]) = m j :=
@@ -84,7 +94,9 @@ theorem coordinateMomentFunctional_polynomialBasis_apply_basis
 canonical order-`n` polynomial whenever the coordinate degree is at least
 `2n`. Thus no extra moment beyond the declared chart enters the construction.
 Source: AQ22 and AQ31.
-atlas: recurrence-coefficient-moment-sensitivity (partial)-/
+atlas: recurrence-coefficient-moment-sensitivity (partial)
+@isnad1 id=eq.1h5v.s9.c522ad250aed from=translated src=- shape=fe0f63a8 vocab=6ab95b13
+-/
 theorem monicOrthogonalPolynomial_coordinate_polynomialBasis_eq
     (b : Basis (Fin d) 𝕜 (degreeLT 𝕜 d)) (L : 𝕜[X] →ₗ[𝕜] 𝕜) {n : ℕ} (hd : 2*n ≤ d) :
     monicOrthogonalPolynomial

@@ -23,7 +23,9 @@ namespace NLAlib
 variable {Ω ι : Type*} [MeasurableSpace Ω] [Fintype ι] [DecidableEq ι]
 variable {μ : Measure Ω} [IsProbabilityMeasure μ]
 
-/-- Integrating a list sum of trace words commutes with both finite sums.-/
+/-- Integrating a list sum of trace words commutes with both finite sums.
+@isnad1 id=and.1h6v.s8.964e82a8c3d8 from=translated src=- shape=8140ff86 vocab=47152d7a
+-/
 theorem integrable_and_integral_sum_trace_words (A : Matrix ι ι ℝ)
     (X : Ω → Matrix ι ι ℝ) (ws : List (List Bool))
     (hi : ∀ w ∈ ws, Integrable (fun ω => (insertionWord A (X ω) w).trace) μ) :
@@ -40,7 +42,9 @@ theorem integrable_and_integral_sum_trace_words (A : Matrix ι ι ℝ)
     rw [integral_add hiw hit, het]
 
 /-- The integral of a matrix trace power is the sum of the integrated
-insertion coefficients.-/
+insertion coefficients.
+@isnad1 id=and.1h6v.s8.788e3510f353 from=translated src=- shape=9eaa14d6 vocab=48792901
+-/
 theorem integrable_and_integral_trace_add_pow_eq_sum_insertionWords
     (A : Matrix ι ι ℝ) (X : Ω → Matrix ι ι ℝ) (n : ℕ)
     (hi : ∀ j ≤ n, ∀ w ∈ insertionWords n j,
@@ -65,7 +69,9 @@ theorem integrable_and_integral_trace_add_pow_eq_sum_insertionWords
     intro j hj'
     exact (hj j (by simpa using Finset.mem_range.mp hj')).2
 
-/-- Uniform per-word budgets sum to binomial coefficient budgets.-/
+/-- Uniform per-word budgets sum to binomial coefficient budgets.
+@isnad1 id=le.2h7v.s8.b9908de8b8dc from=translated src=- shape=080d9ed9 vocab=ceaec150
+-/
 theorem integral_trace_add_pow_le_sum_choose
     (A : Matrix ι ι ℝ) (X : Ω → Matrix ι ι ℝ) (n : ℕ) (b : ℕ → ℝ)
     (hi : ∀ j ≤ n, ∀ w ∈ insertionWords n j,
@@ -93,7 +99,9 @@ theorem integral_trace_add_pow_le_sum_choose
   simpa only [length_insertionWords] using hs _ (fun _ h => h)
 
 /-- Removing the centered linear term leaves the factorial coefficient
-recurrence used by the covariance moment comparison.-/
+recurrence used by the covariance moment comparison.
+@isnad1 id=le.4h9v.s9.f6fddb875c2c from=translated src=- shape=e933d0e4 vocab=7b029df3
+-/
 theorem integral_trace_add_pow_le_of_centered_word_budgets
     (A : Matrix ι ι ℝ) (X : Ω → Matrix ι ι ℝ) {n : ℕ} (hn : 2 ≤ n)
     (ν R : ℝ) (T : ℕ → ℝ)

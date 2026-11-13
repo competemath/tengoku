@@ -17,7 +17,9 @@ open Polynomial Polynomial.Chebyshev MeasureTheory Finset Set
 namespace NLAlib
 
 /-- Frequency folding on the endpoint grid preserves parity.
-Source: Trefethen, ATAP, aliasing identity used in Theorems 19.3–19.5.-/
+Source: Trefethen, ATAP, aliasing identity used in Theorems 19.3–19.5.
+@isnad1 id=iff.1h2v.s4.a9e1a53e81b0 from=translated src=- shape=e6bf855f vocab=ba2f6686
+-/
 theorem even_chebyshevAliasIndex_iff {n : ℕ} (hn : 0 < n) (k : ℕ) :
     Even (chebyshevAliasIndex n k) ↔ Even k := by
   have hmod : (k % (2 * n)) % 2 = k % 2 := Nat.mod_mod_of_dvd k (by omega)
@@ -32,7 +34,9 @@ theorem even_chebyshevAliasIndex_iff {n : ℕ} (hn : 0 < n) (k : ℕ) :
 
 /-- Clenshaw–Curtis integrates a Chebyshev frequency to the moment of its folded
 frequency. Source: Trefethen, ATAP, Chapter 19, finite aliasing proof.
-atlas: gauss-clenshaw-curtis-quadrature-error (partial)-/
+atlas: gauss-clenshaw-curtis-quadrature-error (partial)
+@isnad1 id=eq.1h2v.s5.368625ee6390 from=translated src=- shape=6066dfb4 vocab=86ad0448
+-/
 theorem clenshawCurtisRule_eval_T {n : ℕ} (hn : 0 < n) (k : ℕ) :
     clenshawCurtisRule n (T ℝ k).eval = chebyshevMoment (chebyshevAliasIndex n k) := by
   rw [clenshawCurtisRule]
@@ -43,7 +47,9 @@ theorem clenshawCurtisRule_eval_T {n : ℕ} (hn : 0 < n) (k : ℕ) :
   rfl
 
 /-- Every Lebesgue Chebyshev moment has absolute value at most two.
-Source: Trefethen, ATAP, Theorem 19.2; quadrature-error helper.-/
+Source: Trefethen, ATAP, Theorem 19.2; quadrature-error helper.
+@isnad1 id=le.0h1v.s4.e744782deea5 from=translated src=- shape=562e4a6d vocab=843665a7
+-/
 theorem abs_chebyshevMoment_le_two (k : ℕ) : |chebyshevMoment k| ≤ 2 := by
   unfold chebyshevMoment
   by_cases hk : Even k
@@ -60,7 +66,9 @@ theorem abs_chebyshevMoment_le_two (k : ℕ) : |chebyshevMoment k| ≤ 2 := by
   · simp [hk]
 
 /-- Starting at degree four, the Lebesgue moments are at most `2/15` in modulus.
-Source: Trefethen, ATAP, Theorems 19.3–19.4, sharp scalar-moment estimate.-/
+Source: Trefethen, ATAP, Theorems 19.3–19.4, sharp scalar-moment estimate.
+@isnad1 id=le.1h1v.s5.7c8cfe193a19 from=translated src=- shape=575463be vocab=2f8893f4
+-/
 theorem abs_chebyshevMoment_le_two_div_fifteen {k : ℕ} (hk : 4 ≤ k) :
     |chebyshevMoment k| ≤ 2 / 15 := by
   unfold chebyshevMoment
@@ -74,7 +82,9 @@ theorem abs_chebyshevMoment_le_two_div_fifteen {k : ℕ} (hk : 4 ≤ k) :
 
 /-- All odd Chebyshev frequencies have zero Clenshaw–Curtis error.
 Source: Trefethen, ATAP, Theorems 19.3–19.4; parity-preserving aliasing.
-atlas: gauss-clenshaw-curtis-quadrature-error (partial)-/
+atlas: gauss-clenshaw-curtis-quadrature-error (partial)
+@isnad1 id=eq.2h2v.s6.b41b115576df from=translated src=- shape=1b3c4471 vocab=d0a3e4b3
+-/
 theorem integral_eval_T_sub_clenshawCurtisRule_eq_zero_of_odd {n k : ℕ}
     (hn : 0 < n) (hk : Odd k) :
     (∫ x in (-1 : ℝ)..1, (T ℝ k).eval x) - clenshawCurtisRule n (T ℝ k).eval = 0 := by
@@ -84,7 +94,9 @@ theorem integral_eval_T_sub_clenshawCurtisRule_eq_zero_of_odd {n k : ℕ}
 
 /-- Above an endpoint-grid cutoff at least two, a single even Chebyshev frequency
 has Clenshaw–Curtis error at most `32/15`. Source: Trefethen, ATAP, Theorem 19.3.
-atlas: gauss-clenshaw-curtis-quadrature-error (partial)-/
+atlas: gauss-clenshaw-curtis-quadrature-error (partial)
+@isnad1 id=le.3h2v.s7.8d6b498c3af1 from=translated src=- shape=da234532 vocab=39e29a9b
+-/
 theorem abs_integral_eval_T_sub_clenshawCurtisRule_le {n k : ℕ}
     (hn : 2 ≤ n) (hk : n < k) (hke : Even k) :
     |(∫ x in (-1 : ℝ)..1, (T ℝ k).eval x) - clenshawCurtisRule n (T ℝ k).eval| ≤ 32 / 15 := by
@@ -100,7 +112,9 @@ theorem abs_integral_eval_T_sub_clenshawCurtisRule_le {n k : ℕ}
 
 /-- An absolutely convergent Chebyshev expansion integrates term by term against
 Lebesgue measure. Source: Trefethen, ATAP, Theorem 19.2 and dominated convergence.
-This general coefficient form is used by the sharp quadrature tail bounds.-/
+This general coefficient form is used by the sharp quadrature tail bounds.
+@isnad1 id=hassum.2h2v.s7.b99b7a64f126 from=translated src=- shape=52f5cd2a vocab=f2f2c9ef
+-/
 theorem hasSum_mul_chebyshevMoment_of_hasSum {c : ℕ → ℝ} {f : ℝ → ℝ}
     (hs : Summable (fun k => |c k|))
     (hf : ∀ x ∈ Icc (-1 : ℝ) 1, HasSum (fun k => c k * (T ℝ k).eval x) (f x)) :
@@ -123,7 +137,9 @@ theorem hasSum_mul_chebyshevMoment_of_hasSum {c : ℕ → ℝ} {f : ℝ → ℝ}
   simpa only [intervalIntegral.integral_const_mul, integral_eval_T, chebyshevMoment] using h
 
 /-- Integrating the actual endpoint-grid interpolant term by term gives the folded
-moment series. Source: Trefethen, ATAP, Chapter 19; finite interpolation and aliasing.-/
+moment series. Source: Trefethen, ATAP, Chapter 19; finite interpolation and aliasing.
+@isnad1 id=hassum.3h3v.s7.5834ca7c50e8 from=translated src=- shape=50dcf501 vocab=4b4c4d48
+-/
 theorem hasSum_mul_chebyshevMoment_alias_of_hasSum {c : ℕ → ℝ} {f : ℝ → ℝ}
     (hs : Summable (fun k => |c k|))
     (hf : ∀ x ∈ Icc (-1 : ℝ) 1, HasSum (fun k => c k * (T ℝ k).eval x) (f x))
@@ -164,7 +180,9 @@ theorem hasSum_mul_chebyshevMoment_alias_of_hasSum {c : ℕ → ℝ} {f : ℝ �
 /-- Clenshaw–Curtis error is bounded by `32/15` times the absolute even Chebyshev
 coefficient tail beyond the grid cutoff. Source: Trefethen, ATAP, Theorem 19.3;
 finite aliasing plus the exact Lebesgue moments.
-atlas: gauss-clenshaw-curtis-quadrature-error (partial)-/
+atlas: gauss-clenshaw-curtis-quadrature-error (partial)
+@isnad1 id=le.3h3v.s7.914952458ced from=translated src=- shape=a982c2a3 vocab=8545e83a
+-/
 theorem abs_integral_sub_clenshawCurtisRule_le_even_tail {c : ℕ → ℝ} {f : ℝ → ℝ}
     (hs : Summable (fun k => |c k|))
     (hf : ∀ x ∈ Icc (-1 : ℝ) 1, HasSum (fun k => c k * (T ℝ k).eval x) (f x))
@@ -212,7 +230,9 @@ theorem abs_integral_sub_clenshawCurtisRule_le_even_tail {c : ℕ → ℝ} {f : 
 /-- Geometric Chebyshev coefficient decay gives the sharp analytic Clenshaw–Curtis
 constant. Source: Trefethen, ATAP, Theorem 19.3. The hypotheses describe an actual
 absolutely convergent expansion; open-ellipse holomorphy supplies these hypotheses.
-atlas: gauss-clenshaw-curtis-quadrature-error (partial)-/
+atlas: gauss-clenshaw-curtis-quadrature-error (partial)
+@isnad1 id=le.7h5v.s8.d4b66b14f9fd from=translated src=- shape=23e25b59 vocab=8de54d78
+-/
 theorem abs_integral_sub_clenshawCurtisRule_le_geometric {c : ℕ → ℝ} {f : ℝ → ℝ}
     (hs : Summable (fun k => |c k|))
     (hf : ∀ x ∈ Icc (-1 : ℝ) 1, HasSum (fun k => c k * (T ℝ k).eval x) (f x))
@@ -228,7 +248,9 @@ theorem abs_integral_sub_clenshawCurtisRule_le_geometric {c : ℕ → ℝ} {f : 
 /-- The actual Clenshaw–Curtis rule has error at most
 `(64/15)Mρ^(1−n)/(ρ²−1)` under open-ellipse holomorphy and boundedness.
 Source: Trefethen, ATAP, Theorem 19.3. No continuity on the ellipse boundary is required.
-atlas: gauss-clenshaw-curtis-quadrature-error (partial)-/
+atlas: gauss-clenshaw-curtis-quadrature-error (partial)
+@isnad1 id=le.4h4v.s8.afd052f3e1ad from=translated src=- shape=beef4406 vocab=3e5efdd6
+-/
 theorem abs_integral_re_sub_clenshawCurtisRule_le_of_open_ellipse
     {F : ℂ → ℂ} {ρ M : ℝ} (hρ : 1 < ρ)
     (hFd : DifferentiableOn ℂ F (openBernsteinEllipse ρ))

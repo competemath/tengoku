@@ -29,7 +29,9 @@ def gaussRemainderKernel (μ : Measure ℝ) (hμ : HasPolynomialMoments μ) (n :
       ((monicOrthogonalPolynomial (polynomialIntegral μ hμ) n).map Complex.ofRealHom).eval z
 
 /-- The actual Gauss remainder kernel equals the native transform error at
-every point outside the support interval, including the zero-order rule.-/
+every point outside the support interval, including the zero-order rule.
+@isnad1 id=eq.4h5v.s7.9eab63c34092 from=translated src=- shape=7f271d1b vocab=388f2fc0
+-/
 theorem stieltjesTransform_sub_sum_gaussWeights_eq_gaussRemainderKernel
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {n : ℕ} (hn : (n : ℕ∞) ≤ μ.support.encard)
@@ -43,7 +45,9 @@ theorem stieltjesTransform_sub_sum_gaussWeights_eq_gaussRemainderKernel
 
 /-- The canonical Gauss transform-error formula on an actual finite
 null-homologous C1 contour. Its winding and domain hypotheses supply Cauchy;
-the Cauchy formula itself is not a premise.-/
+the Cauchy formula itself is not a premise.
+@isnad1 id=eq.10h7v.s11.66517f0f982a from=translated src=- shape=ecf8e9f6 vocab=49bb975d
+-/
 theorem integral_sub_gauss_eq_cubicalCurveIntegral_transform_kernel
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {n : ℕ} (hn : (n : ℕ∞) ≤ μ.support.encard)
@@ -148,7 +152,9 @@ moments follow from the stated compact support and finite mass. The actual
 continuous filling, scalar Cauchy formula and Fubini interchange are all
 proved, and no simple-connectedness is required of the holomorphy domain.
 Source: Gautschi (2004), Theorem 2.48, null-homologous-cycle alternative.
-atlas: gauss-remainder-contour-kernel (partial)-/
+atlas: gauss-remainder-contour-kernel (partial)
+@isnad1 id=other.9h7v.s11.2a3382cb3832 from=translated src=- shape=3897e4e2 vocab=c8bf1ccf
+-/
 theorem integral_sub_gauss_eq_cubicalCurveIntegral_gaussRemainderKernel
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {n : ℕ} (hn : (n : ℕ∞) ≤ μ.support.encard)
@@ -175,7 +181,9 @@ theorem integral_sub_gauss_eq_cubicalCurveIntegral_gaussRemainderKernel
 bound with any nonnegative uniform bounds for the kernel and integrand.
 In particular, their actual maxima on the compact contour may be used.
 Source: Gautschi (2004), Theorem 2.48, null-homologous-cycle alternative.
-atlas: gauss-remainder-contour-kernel (partial)-/
+atlas: gauss-remainder-contour-kernel (partial)
+@isnad1 id=other.12h9v.s11.b4ab2a9e577e from=translated src=- shape=7841fcbe vocab=7b52225b
+-/
 theorem norm_integral_sub_gauss_le_cubicalLength_mul_bounds
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {n : ℕ} (hn : (n : ℕ∞) ≤ μ.support.encard)

@@ -36,7 +36,9 @@ private theorem phase_cot_pair_le {h u α : ℝ} (hh : 0 < h) (hhπ : h ≤ π /
     exact cos_mul_cot_pair_le hh hhπ hu huπ hs
 
 /-- The sum of absolute Lobatto kernel translates is bounded by its midpoint cotangent sum
-at every open-cell phase. Source: focused rederivations, equation `eq:cotpair`.-/
+at every open-cell phase. Source: focused rederivations, equation `eq:cotpair`.
+@isnad1 id=le.2h2v.s6.9b30e39a3037 from=translated src=- shape=17fd0025 vocab=d14dccdf
+-/
 theorem lobattoKernelSum_phase_le {n : ℕ} (hn : 0 < n) {α : ℝ}
     (hα : α ∈ Ioo (0 : ℝ) 1) :
     lobattoKernelSum n (α * π / n) ≤ lobattoCotangentConstant n := by
@@ -71,7 +73,9 @@ theorem lobattoKernelSum_phase_le {n : ℕ} (hn : 0 < n) {α : ℝ}
   exact hb
 
 /-- Every translated finite-cardinal sum has the sharp logarithmic Lobatto bound.
-Source: focused polynomial-approximation rederivations, Theorem `thm:lobatto`.-/
+Source: focused polynomial-approximation rederivations, Theorem `thm:lobatto`.
+@isnad1 id=le.1h2v.s6.9b5fc195ccce from=translated src=- shape=7d142ebe vocab=a318c100
+-/
 theorem lobattoKernelSum_le_log {n : ℕ} (hn : 0 < n) (t : ℝ) :
     lobattoKernelSum n t ≤ 1 + (2 / π) * log ((n : ℝ) + 1) := by
   have hn0 : (0 : ℝ) < n := by positivity

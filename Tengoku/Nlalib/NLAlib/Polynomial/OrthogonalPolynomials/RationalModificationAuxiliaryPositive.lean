@@ -20,7 +20,9 @@ namespace NLAlib
 /-- The source auxiliary-power determinant equals a nonzero constant times the
 actual modified measure polynomial. Its normalized denominator rows are the
 actual original measure's Cauchy integrals. Nonreal simple roots are permitted.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=other.11h8v.s10.15da97437497 from=translated src=- shape=d74c5695 vocab=e1dcc51a
+-/
 theorem exists_det_auxiliaryFirstRow_eq_rationalPolynomialModifiedMeasure
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ}
     (hs : ∀ᵐ t ∂μ, t ∈ Icc a b) (u v : ℝ[X]) (hu : u ≠ 0) (hv : v ≠ 0)

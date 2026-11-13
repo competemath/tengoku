@@ -17,7 +17,9 @@ open Complex Set
 namespace NLAlib
 
 /-- The absolute imaginary part of a filled Bernstein-ellipse point is at most
-the minor semiaxis, including the degenerate parameter-one interval.-/
+the minor semiaxis, including the degenerate parameter-one interval.
+@isnad1 id=le.2h2v.s5.5248389a24b2 from=translated src=- shape=b565aba8 vocab=c3ac32f8
+-/
 theorem abs_im_le_of_mem_filledBernsteinEllipse {ρ : ℝ} (hρ : 1 ≤ ρ)
     {z : ℂ} (hz : z ∈ filledBernsteinEllipse ρ) : |z.im| ≤ (ρ - ρ⁻¹) / 2 := by
   obtain ⟨w, hw, rfl⟩ := hz
@@ -46,7 +48,9 @@ theorem abs_im_le_of_mem_filledBernsteinEllipse {ρ : ℝ} (hρ : 1 ≤ ρ)
     _ ≤ (ρ - ρ⁻¹) / 2 := div_le_div_of_nonneg_right hrange (by norm_num)
 
 /-- The open Bernstein ellipse with parameter `exp t` has modulus at most
-`cosh t` and imaginary-coordinate modulus at most `sinh t`.-/
+`cosh t` and imaginary-coordinate modulus at most `sinh t`.
+@isnad1 id=and.2h2v.s5.51c2b5f3733f from=translated src=- shape=373bf4f8 vocab=ea8e37c9
+-/
 theorem norm_le_cosh_and_abs_im_le_sinh_of_mem_openBernsteinEllipse {t : ℝ}
     (ht : 0 < t) {z : ℂ} (hz : z ∈ openBernsteinEllipse (Real.exp t)) :
     ‖z‖ ≤ Real.cosh t ∧ |z.im| ≤ Real.sinh t := by

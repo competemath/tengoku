@@ -81,7 +81,9 @@ private theorem auxiliary_border_det_eq (L T : 𝕜[X] →ₗ[𝕜] 𝕜)
 
 /-- The source auxiliary-power determinant is its actual nonzero normalization
 times `u πhat_n`, including all orders below the divisor degree.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=eq.4h8v.s9.d1e7618b4ab5 from=translated src=- shape=275cebfb vocab=311bf836
+-/
 theorem det_rationalModificationAuxiliaryBorderMatrix_eq
     (L T : 𝕜[X] →ₗ[𝕜] 𝕜) (x : Fin l → 𝕜) (z : Fin m → 𝕜)
     (hx : Function.Injective x) (hz : Function.Injective z) (hm : n ≤ m)
@@ -185,7 +187,9 @@ def rationalModificationAuxiliaryFirstRowMatrix (L T : 𝕜[X] →ₗ[𝕜] 𝕜
 
 /-- The first-row source matrix with auxiliary powers gives the modified
 polynomial and a proved nonzero actual source normalization.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=and.4h8v.s9.3cee448ea38e from=translated src=- shape=b8b30888 vocab=22858225
+-/
 theorem det_rationalModificationAuxiliaryFirstRowMatrix_eq
     (L T : 𝕜[X] →ₗ[𝕜] 𝕜) (x : Fin l → 𝕜) (z : Fin m → 𝕜)
     (hx : Function.Injective x) (hz : Function.Injective z) (hm : n ≤ m)

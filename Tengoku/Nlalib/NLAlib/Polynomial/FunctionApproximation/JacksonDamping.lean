@@ -32,28 +32,45 @@ def chebyshevJacksonDamping (M j : ℕ) : ℝ :=
 def chebyshevJacksonSineWeight (M l : ℕ) : ℝ :=
   sin (((l + 1 : ℕ) : ℝ) * chebyshevJacksonAngle M)
 
+/--
+@isnad1 id=lt.0h1v.s3.bcec9c9c475a from=translated src=- shape=b9369acb vocab=ddf655a9
+-/
 theorem chebyshevJacksonAngle_pos (M : ℕ) : 0 < chebyshevJacksonAngle M :=
   div_pos pi_pos (by positivity)
 
+/--
+@isnad1 id=lt.0h1v.s3.a33ad4183004 from=translated src=- shape=f0bb1bdd vocab=f0f473ed
+-/
 theorem chebyshevJacksonAngle_lt_pi (M : ℕ) : chebyshevJacksonAngle M < π := by
   unfold chebyshevJacksonAngle
   rw [div_lt_iff₀ (show (0 : ℝ) < M + 2 by positivity)]
   nlinarith [show (0 : ℝ) ≤ M from Nat.cast_nonneg M, pi_pos]
 
+/--
+@isnad1 id=le.1h1v.s5.d7298c61385a from=translated src=- shape=57bba0c1 vocab=712a01df
+-/
 theorem chebyshevJacksonAngle_le_pi_div_three {M : ℕ} (hM : 1 ≤ M) :
     chebyshevJacksonAngle M ≤ π / 3 := by
   unfold chebyshevJacksonAngle
   apply div_le_div_of_nonneg_left pi_pos.le (by norm_num)
   exact_mod_cast (by omega : 3 ≤ M + 2)
 
+/--
+@isnad1 id=eq.0h1v.s5.1fb24a561ec4 from=translated src=- shape=ea2afee9 vocab=8fcbdae3
+-/
 theorem chebyshevJacksonAngle_mul (M : ℕ) : (M + 2 : ℝ) * chebyshevJacksonAngle M = π := by
   unfold chebyshevJacksonAngle
   field_simp
 
+/--
+@isnad1 id=lt.0h1v.s3.09b3a34fb6b6 from=translated src=- shape=25e12683 vocab=915c8303
+-/
 theorem sin_chebyshevJacksonAngle_pos (M : ℕ) : 0 < sin (chebyshevJacksonAngle M) :=
   sin_pos_of_pos_of_lt_pi (chebyshevJacksonAngle_pos M) (chebyshevJacksonAngle_lt_pi M)
 
-/-- The exact sine autocorrelation identity, including the vanishing next frequency.-/
+/-- The exact sine autocorrelation identity, including the vanishing next frequency.
+@isnad1 id=eq.1h2v.s7.10d196085082 from=translated src=- shape=8d93a587 vocab=5b742b55
+-/
 theorem sum_chebyshevJacksonSineWeight_mul (M j : ℕ) (hj : j ≤ M + 1) :
     2 * (∑ l ∈ range (M + 1 - j),
       chebyshevJacksonSineWeight M l * chebyshevJacksonSineWeight M (l + j)) =
@@ -110,24 +127,32 @@ theorem sum_chebyshevJacksonSineWeight_mul (M j : ℕ) (hj : j ≤ M + 1) :
   field_simp [hs]
   ring
 
-/-- The displayed closed damping formula is its normalized sine autocorrelation.-/
+/-- The displayed closed damping formula is its normalized sine autocorrelation.
+@isnad1 id=eq.1h2v.s6.17b44bcdf076 from=translated src=- shape=fe3e436e vocab=79e91256
+-/
 theorem chebyshevJacksonDamping_eq_autocorrelation (M j : ℕ) (hj : j ≤ M + 1) :
     chebyshevJacksonDamping M j = (2 / (M + 2 : ℝ)) *
       ∑ l ∈ range (M + 1 - j), chebyshevJacksonSineWeight M l * chebyshevJacksonSineWeight M (l + j) := by
   rw [chebyshevJacksonDamping, ← sum_chebyshevJacksonSineWeight_mul M j hj]
   ring
 
-/-- The zeroth Jackson damping coefficient preserves constants exactly.-/
+/-- The zeroth Jackson damping coefficient preserves constants exactly.
+@isnad1 id=eq.0h1v.s4.79ed8d00b5f4 from=translated src=- shape=8fc7241c vocab=dbb71a5b
+-/
 @[simp] theorem chebyshevJacksonDamping_zero (M : ℕ) : chebyshevJacksonDamping M 0 = 1 := by
   have hN : (M + 2 : ℝ) ≠ 0 := by positivity
   simp [chebyshevJacksonDamping, hN]
 
-/-- The next frequency after the cutoff has zero sine autocorrelation.-/
+/-- The next frequency after the cutoff has zero sine autocorrelation.
+@isnad1 id=eq.0h1v.s4.dae246412e56 from=translated src=- shape=c2460743 vocab=4aca90d3
+-/
 @[simp] theorem chebyshevJacksonDamping_succ (M : ℕ) : chebyshevJacksonDamping M (M + 1) = 0 := by
   rw [chebyshevJacksonDamping_eq_autocorrelation M (M + 1) le_rfl]
   simp
 
-/-- The finite sine vector has the exact squared normalization `(M+2)/2`.-/
+/-- The finite sine vector has the exact squared normalization `(M+2)/2`.
+@isnad1 id=eq.0h1v.s6.f42dd17f365a from=translated src=- shape=a5ae98b8 vocab=6699e2a2
+-/
 theorem sum_chebyshevJacksonSineWeight_sq (M : ℕ) :
     (∑ l ∈ range (M + 1), chebyshevJacksonSineWeight M l ^ 2) = (M + 2 : ℝ) / 2 := by
   have h := sum_chebyshevJacksonSineWeight_mul M 0 (by omega)
@@ -136,7 +161,9 @@ theorem sum_chebyshevJacksonSineWeight_sq (M : ℕ) :
   simp_rw [← sq] at h
   linarith
 
-/-- Every weight in the finite Jackson sine vector is nonnegative.-/
+/-- Every weight in the finite Jackson sine vector is nonnegative.
+@isnad1 id=le.1h2v.s4.998abdd26a93 from=translated src=- shape=7c81aa35 vocab=d0ab8705
+-/
 theorem chebyshevJacksonSineWeight_nonneg {M l : ℕ} (hl : l ≤ M) :
     0 ≤ chebyshevJacksonSineWeight M l := by
   apply sin_nonneg_of_nonneg_of_le_pi (by
@@ -145,7 +172,9 @@ theorem chebyshevJacksonSineWeight_nonneg {M l : ℕ} (hl : l ≤ M) :
   exact (mul_le_mul_of_nonneg_right h (chebyshevJacksonAngle_pos M).le).trans_eq
     (chebyshevJacksonAngle_mul M)
 
-/-- The exact Jackson damping coefficients are nonnegative, including the next zero mode.-/
+/-- The exact Jackson damping coefficients are nonnegative, including the next zero mode.
+@isnad1 id=le.1h2v.s5.18aa6bc91d6e from=translated src=- shape=0fa7259f vocab=88719c1b
+-/
 theorem chebyshevJacksonDamping_nonneg {M j : ℕ} (hj : j ≤ M + 1) :
     0 ≤ chebyshevJacksonDamping M j := by
   rw [chebyshevJacksonDamping_eq_autocorrelation M j hj]
@@ -156,7 +185,9 @@ theorem chebyshevJacksonDamping_nonneg {M j : ℕ} (hj : j ≤ M + 1) :
   exact mul_nonneg (chebyshevJacksonSineWeight_nonneg (by omega))
     (chebyshevJacksonSineWeight_nonneg (by omega))
 
-/-- The first damping coefficient is the cosine of the Jackson angle.-/
+/-- The first damping coefficient is the cosine of the Jackson angle.
+@isnad1 id=eq.0h1v.s3.e2db71f0be7d from=translated src=- shape=e372e3f4 vocab=e1eaca6c
+-/
 @[simp] theorem chebyshevJacksonDamping_one (M : ℕ) :
     chebyshevJacksonDamping M 1 = cos (chebyshevJacksonAngle M) := by
   have hs := (sin_chebyshevJacksonAngle_pos M).ne'
@@ -165,7 +196,9 @@ theorem chebyshevJacksonDamping_nonneg {M j : ℕ} (hj : j ≤ M + 1) :
   ring
 
 /-- The second coefficient has a simple formula also valid at the first cutoff,
-where the second frequency is zero.-/
+where the second frequency is zero.
+@isnad1 id=eq.0h1v.s6.53f560b200dd from=translated src=- shape=8db3f022 vocab=135ceb46
+-/
 theorem chebyshevJacksonDamping_two (M : ℕ) :
     chebyshevJacksonDamping M 2 =
       (((M : ℝ) + 1) * cos (2 * chebyshevJacksonAngle M) + 1) / (M + 2) := by

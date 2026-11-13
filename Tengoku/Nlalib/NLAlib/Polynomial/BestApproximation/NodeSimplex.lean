@@ -18,25 +18,33 @@ open Set Finset
 namespace NLAlib
 
 /-- The left endpoint of the canonical grid is fixed.
-Source: the definition; helper for `lebesgue-constant-lower-bound`.-/
+Source: the definition; helper for `lebesgue-constant-lower-bound`.
+@isnad1 id=eq.0h2v.s5.dd362619c411 from=translated src=- shape=fc945d8d vocab=51d2003b
+-/
 @[simp] theorem canonicalIntervalNodes_zero (n : ℕ) (t : Fin n → ℝ) :
     canonicalIntervalNodes n t 0 = -1 := rfl
 
 /-- The right endpoint of the canonical grid is fixed.
-Source: the definition; helper for `lebesgue-constant-lower-bound`.-/
+Source: the definition; helper for `lebesgue-constant-lower-bound`.
+@isnad1 id=eq.0h2v.s5.5c14e610dd53 from=translated src=- shape=c6859ccf vocab=26a02a3c
+-/
 @[simp] theorem canonicalIntervalNodes_last (n : ℕ) (t : Fin n → ℝ) :
     canonicalIntervalNodes n t (Fin.last (n + 1)) = 1 := by
   rw [show Fin.last (n + 1) = (Fin.last n).succ by rfl]
   simp only [canonicalIntervalNodes, Fin.cases_succ, Fin.lastCases_last]
 
 /-- Each supplied interior coordinate is the corresponding canonical grid node.
-Source: the definition; helper for `lebesgue-constant-lower-bound`.-/
+Source: the definition; helper for `lebesgue-constant-lower-bound`.
+@isnad1 id=eq.0h3v.s5.ed7825a0fb60 from=translated src=- shape=0826a095 vocab=2cf7855a
+-/
 @[simp] theorem canonicalIntervalNodes_interior (n : ℕ) (t : Fin n → ℝ) (j : Fin n) :
     canonicalIntervalNodes n t j.castSucc.succ = t j := by
   simp [canonicalIntervalNodes]
 
 /-- Each canonical node is a continuous function of the interior coordinates.
-Source: the affine node parametrization; helper for `lebesgue-constant-lower-bound`.-/
+Source: the affine node parametrization; helper for `lebesgue-constant-lower-bound`.
+@isnad1 id=continuo.0h2v.s5.b93286a7de8d from=translated src=- shape=528a39dc vocab=e44984c2
+-/
 theorem continuous_canonicalIntervalNodes (n : ℕ) (i : Fin (n + 2)) :
     Continuous (fun t : Fin n → ℝ => canonicalIntervalNodes n t i) := by
   refine Fin.cases (by simp only [canonicalIntervalNodes_zero]; fun_prop) (fun j => ?_) i
@@ -45,7 +53,9 @@ theorem continuous_canonicalIntervalNodes (n : ℕ) (i : Fin (n + 2)) :
   simpa only [canonicalIntervalNodes_interior] using (continuous_apply k : Continuous (fun t : Fin n → ℝ => t k))
 
 /-- The strict-order constraints define an open node simplex.
-Source: finite open half spaces; helper for `lebesgue-constant-lower-bound`.-/
+Source: finite open half spaces; helper for `lebesgue-constant-lower-bound`.
+@isnad1 id=isopen.0h1v.s4.4463beefe340 from=translated src=- shape=fe6f4f64 vocab=0c32a341
+-/
 theorem isOpen_interiorNodeSimplex (n : ℕ) : IsOpen (interiorNodeSimplex n) := by
   have heq : interiorNodeSimplex n = ⋂ i : Fin (n + 2), ⋂ j : Fin (n + 2),
       ⋂ (_ : i < j), {t | canonicalIntervalNodes n t i < canonicalIntervalNodes n t j} := by
@@ -61,7 +71,9 @@ theorem isOpen_interiorNodeSimplex (n : ℕ) : IsOpen (interiorNodeSimplex n) :=
   exact isOpen_lt (continuous_canonicalIntervalNodes n i) (continuous_canonicalIntervalNodes n j)
 
 /-- Canonical nodes preserve convex combinations of the interior coordinates.
-Source: affine parametrization; helper for `lebesgue-constant-lower-bound`.-/
+Source: affine parametrization; helper for `lebesgue-constant-lower-bound`.
+@isnad1 id=eq.1h6v.s7.8f18ec08a887 from=translated src=- shape=5bcc44db vocab=d3f168ee
+-/
 theorem canonicalIntervalNodes_convex_combination (n : ℕ) (t u : Fin n → ℝ)
     (a b : ℝ) (hab : a + b = 1) (i : Fin (n + 2)) :
     canonicalIntervalNodes n (a • t + b • u) i =
@@ -72,7 +84,9 @@ theorem canonicalIntervalNodes_convex_combination (n : ℕ) (t u : Fin n → ℝ
 
 /-- The strict-order node simplex is convex.
 Source: positive convex combinations preserve strict inequalities;
-helper for `lebesgue-constant-lower-bound`.-/
+helper for `lebesgue-constant-lower-bound`.
+@isnad1 id=convex.0h1v.s4.86512916b44e from=translated src=- shape=c70bf99f vocab=254f4fcd
+-/
 theorem convex_interiorNodeSimplex (n : ℕ) : Convex ℝ (interiorNodeSimplex n) := by
   intro t ht u hu a b ha hb hab i j hij
   rw [canonicalIntervalNodes_convex_combination n t u a b hab i,
@@ -89,7 +103,9 @@ theorem convex_interiorNodeSimplex (n : ℕ) : Convex ℝ (interiorNodeSimplex n
     linarith
 
 /-- The canonical grid at equally spaced interior coordinates is exactly the equally spaced grid.
-Source: affine parametrization; helper for `lebesgue-constant-lower-bound`.-/
+Source: affine parametrization; helper for `lebesgue-constant-lower-bound`.
+@isnad1 id=eq.0h2v.s7.3a0a2dd73a49 from=translated src=- shape=a2636845 vocab=52806451
+-/
 theorem canonicalIntervalNodes_equispaced (n : ℕ) (j : Fin (n + 2)) :
     canonicalIntervalNodes n (fun i => -1 + 2 * ((i : ℝ) + 1) / (n + 1)) j =
       -1 + 2 * (j : ℝ) / (n + 1) := by
@@ -99,7 +115,9 @@ theorem canonicalIntervalNodes_equispaced (n : ℕ) (j : Fin (n + 2)) :
   simp only [canonicalIntervalNodes_interior, Fin.val_succ, Fin.val_castSucc, Nat.cast_add, Nat.cast_one]
 
 /-- The canonical node simplex is nonempty, including the zero-dimensional case.
-Source: the equally spaced grid; helper for `lebesgue-constant-lower-bound`.-/
+Source: the equally spaced grid; helper for `lebesgue-constant-lower-bound`.
+@isnad1 id=nonempty.0h1v.s3.59ebe8716ee8 from=translated src=- shape=fe6f4f64 vocab=d38be014
+-/
 theorem nonempty_interiorNodeSimplex (n : ℕ) : (interiorNodeSimplex n).Nonempty := by
   refine ⟨fun i => -1 + 2 * ((i : ℝ) + 1) / (n + 1), ?_⟩
   intro i j hij

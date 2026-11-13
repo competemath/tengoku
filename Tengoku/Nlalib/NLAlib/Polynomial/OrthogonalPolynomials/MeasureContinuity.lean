@@ -26,7 +26,9 @@ variable {ι : Type*} {l : Filter ι} {μs : ι → Measure ℝ} {μ : Measure �
   {n : ℕ}
 
 /-- Convergence of the finitely many monomial moments is exactly convergence
-of the finite moment coordinate vector; higher moments need not converge.-/
+of the finite moment coordinate vector; higher moments need not converge.
+@isnad1 id=tendsto.3h5v.s7.95e897760297 from=translated src=- shape=fb52ace2 vocab=b040fa1b
+-/
 theorem tendsto_finiteMomentVector_polynomialIntegral
     (hμs : ∀ N, HasPolynomialMoments (μs N)) (hμ : HasPolynomialMoments μ)
     (hm : ∀ k < 2*n, Tendsto (fun N => ∫ x : ℝ, x^k ∂μs N) l
@@ -49,7 +51,9 @@ private theorem finiteMomentFunctional_measure_posDef (hμ : HasPolynomialMoment
 converges from just the first `2n` moments. The limiting support may have
 exactly `n` points, including the terminal atomic polynomial.
 Source: AQ22, finite Hankel inversion.
-atlas: recurrence-coefficient-continuity (partial)-/
+atlas: recurrence-coefficient-continuity (partial)
+@isnad1 id=tendsto.5h7v.s7.2b27278a4ac7 from=translated src=- shape=9e684fd4 vocab=c331dc7b
+-/
 theorem tendsto_coeff_monicOrthogonalPolynomial_of_moment_convergence
     (hμs : ∀ N, HasPolynomialMoments (μs N)) (hμ : HasPolynomialMoments μ)
     (hm : ∀ j < 2*n, Tendsto (fun N => ∫ x : ℝ, x^j ∂μs N) l
@@ -68,7 +72,9 @@ theorem tendsto_coeff_monicOrthogonalPolynomial_of_moment_convergence
 /-- Included squared monic norms converge under finite moment convergence.
 No positivity is imposed on early approximating moment systems.
 Source: AQ22, finite polynomial moment pairing.
-atlas: recurrence-coefficient-continuity (partial)-/
+atlas: recurrence-coefficient-continuity (partial)
+@isnad1 id=tendsto.5h6v.s7.86099046ea20 from=translated src=- shape=5805d27e vocab=8f245464
+-/
 theorem tendsto_orthogonalPolynomialNorm_of_moment_convergence
     (hμs : ∀ N, HasPolynomialMoments (μs N)) (hμ : HasPolynomialMoments μ)
     (hm : ∀ j < 2*n, Tendsto (fun N => ∫ x : ℝ, x^j ∂μs N) l
@@ -88,7 +94,9 @@ theorem tendsto_orthogonalPolynomialNorm_of_moment_convergence
 /-- Included monic diagonal recurrence coefficients of actual measures
 converge from the first `2n` moments.
 Source: AQ22, positive-norm moment quotient.
-atlas: recurrence-coefficient-continuity (partial)-/
+atlas: recurrence-coefficient-continuity (partial)
+@isnad1 id=tendsto.5h6v.s7.718eca7cbc33 from=translated src=- shape=5805d27e vocab=4e3d8ce8
+-/
 theorem tendsto_orthogonalRecurrenceAlpha_of_moment_convergence
     (hμs : ∀ N, HasPolynomialMoments (μs N)) (hμ : HasPolynomialMoments μ)
     (hm : ∀ j < 2*n, Tendsto (fun N => ∫ x : ℝ, x^j ∂μs N) l
@@ -108,7 +116,9 @@ theorem tendsto_orthogonalRecurrenceAlpha_of_moment_convergence
 converge from finitely many moments. The library's order-zero coefficient is
 the constant zero boundary; the zeroth moment is covered by the moment hypothesis.
 Source: AQ22, successive positive-norm quotient.
-atlas: recurrence-coefficient-continuity (partial)-/
+atlas: recurrence-coefficient-continuity (partial)
+@isnad1 id=tendsto.5h6v.s7.ffdfbc7ba16f from=translated src=- shape=5805d27e vocab=f8d117b0
+-/
 theorem tendsto_orthogonalRecurrenceBeta_of_moment_convergence
     (hμs : ∀ N, HasPolynomialMoments (μs N)) (hμ : HasPolynomialMoments μ)
     (hm : ∀ j < 2*n, Tendsto (fun N => ∫ x : ℝ, x^j ∂μs N) l
@@ -129,7 +139,9 @@ theorem tendsto_orthogonalRecurrenceBeta_of_moment_convergence
 /-- Canonical measure monic polynomials through order `n` converge uniformly
 on every bounded real set, using only the first `2n` moments.
 Source: AQ22, the finite coefficient majorant on bounded evaluation sets.
-atlas: recurrence-coefficient-continuity (partial)-/
+atlas: recurrence-coefficient-continuity (partial)
+@isnad1 id=tendstou.6h8v.s7.1b8c293e6c6b from=translated src=- shape=b963dfdf vocab=6a47cddb
+-/
 theorem tendstoUniformlyOn_monicOrthogonalPolynomial_of_moment_convergence
     (hμs : ∀ N, HasPolynomialMoments (μs N)) (hμ : HasPolynomialMoments μ)
     (hm : ∀ j < 2*n, Tendsto (fun N => ∫ x : ℝ, x^j ∂μs N) l
@@ -152,7 +164,9 @@ theorem tendstoUniformlyOn_monicOrthogonalPolynomial_of_moment_convergence
 /-- In particular, finite moment convergence gives uniform convergence of the
 canonical order-`n` measure polynomial on each fixed compact real interval.
 Source: AQ22, the compact interval statement of Gautschi's continuity theorem.
-atlas: recurrence-coefficient-continuity (partial)-/
+atlas: recurrence-coefficient-continuity (partial)
+@isnad1 id=tendstou.4h7v.s7.4ea09e514119 from=translated src=- shape=6a02e572 vocab=344976ca
+-/
 theorem tendstoUniformlyOn_monicOrthogonalPolynomial_Icc_of_moment_convergence
     (hμs : ∀ N, HasPolynomialMoments (μs N)) (hμ : HasPolynomialMoments μ)
     (hm : ∀ j < 2*n, Tendsto (fun N => ∫ x : ℝ, x^j ∂μs N) l
@@ -172,7 +186,9 @@ theorem tendstoUniformlyOn_monicOrthogonalPolynomial_Icc_of_moment_convergence
 /-- Canonically indexed Gauss nodes of actual positive measures converge
 under finite moment convergence. The indexing uses ordered Hermitian eigenvalues.
 Source: AQ23, ordered Jacobi eigenvalue continuity.
-atlas: recurrence-coefficient-continuity (partial)-/
+atlas: recurrence-coefficient-continuity (partial)
+@isnad1 id=tendsto.4h6v.s7.bcfc571f673e from=translated src=- shape=a7934de2 vocab=db483484
+-/
 theorem tendsto_gaussNodes_of_moment_convergence
     (hμs : ∀ N, HasPolynomialMoments (μs N)) (hμ : HasPolynomialMoments μ)
     (hm : ∀ j < 2*n, Tendsto (fun N => ∫ x : ℝ, x^j ∂μs N) l
@@ -194,7 +210,9 @@ theorem tendsto_gaussNodes_of_moment_convergence
 /-- Canonical integrated-cardinal Gauss weights of actual positive measures
 converge from the first `2n` moments. No continuous eigenvector choice is assumed.
 Source: AQ23, continuous cardinal polynomials at distinct limiting nodes.
-atlas: recurrence-coefficient-continuity (partial)-/
+atlas: recurrence-coefficient-continuity (partial)
+@isnad1 id=tendsto.4h6v.s7.e2c4256d55d3 from=translated src=- shape=a7934de2 vocab=f734359f
+-/
 theorem tendsto_gaussWeights_of_moment_convergence
     (hμs : ∀ N, HasPolynomialMoments (μs N)) (hμ : HasPolynomialMoments μ)
     (hm : ∀ j < 2*n, Tendsto (fun N => ∫ x : ℝ, x^j ∂μs N) l
@@ -212,7 +230,9 @@ theorem tendsto_gaussWeights_of_moment_convergence
 
 /-- The finite Hankel determinant of actual measures converges from their first
 `2n` moments, including singular limiting systems and the empty determinant.
-atlas: recurrence-coefficient-continuity (partial)-/
+atlas: recurrence-coefficient-continuity (partial)
+@isnad1 id=tendsto.3h5v.s7.c0a21de59a85 from=translated src=- shape=b74f822d vocab=d82f1463
+-/
 theorem tendsto_hankelMomentDet_of_moment_convergence
     (hμs : ∀ N, HasPolynomialMoments (μs N)) (hμ : HasPolynomialMoments μ)
     (hm : ∀ j < 2*n, Tendsto (fun N => ∫ x : ℝ, x^j ∂μs N) l
@@ -236,7 +256,9 @@ theorem tendsto_hankelMomentDet_of_moment_convergence
 Hankel systems eventually positive definite. Early measures may have too few
 support points; this conclusion is derived from moment convergence.
 Source: AQ22, openness of finite moment nondegeneracy within positive measures.
-atlas: recurrence-coefficient-continuity (partial)-/
+atlas: recurrence-coefficient-continuity (partial)
+@isnad1 id=eventual.4h5v.s7.ddf7f6d4a604 from=translated src=- shape=14b206f9 vocab=854e6a18
+-/
 theorem eventually_posDef_hankelMomentMatrix_of_moment_convergence
     (hμs : ∀ N, HasPolynomialMoments (μs N)) (hμ : HasPolynomialMoments μ)
     (hm : ∀ j < 2*n, Tendsto (fun N => ∫ x : ℝ, x^j ∂μs N) l
@@ -251,7 +273,9 @@ theorem eventually_posDef_hankelMomentMatrix_of_moment_convergence
 /-- The actual normalized measure Jacobi matrices converge in spectral distance
 from just the first `2n` moments.
 Source: AQ23, entrywise continuity in finite dimension and named norm continuity.
-atlas: recurrence-coefficient-continuity (partial)-/
+atlas: recurrence-coefficient-continuity (partial)
+@isnad1 id=tendsto.4h5v.s7.74ba8b7e2122 from=translated src=- shape=f703646d vocab=61023b0a
+-/
 theorem tendsto_specNorm_orthogonalPolynomialJacobiMatrix_sub_of_moment_convergence
     (hμs : ∀ N, HasPolynomialMoments (μs N)) (hμ : HasPolynomialMoments μ)
     (hm : ∀ j < 2*n, Tendsto (fun N => ∫ x : ℝ, x^j ∂μs N) l

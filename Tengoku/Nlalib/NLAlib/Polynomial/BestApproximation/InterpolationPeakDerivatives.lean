@@ -18,7 +18,9 @@ namespace NLAlib
 
 /-- Evaluation at a fixed spatial point is differentiable in the actual ordered
 node coordinates.
-Source: the rational cardinal formula; focused reroutes, peak Jacobian.-/
+Source: the rational cardinal formula; focused reroutes, peak Jacobian.
+@isnad1 id=differen.1h4v.s7.07ec4b481f6a from=translated src=- shape=10a1f5cc vocab=7fe288d9
+-/
 theorem differentiableAt_eval_interpolationGapPolynomial {n : ℕ} {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (i : Fin (n + 1)) (x : ℝ) :
     DifferentiableAt ℝ (fun s => (interpolationGapPolynomial n s i).eval x) t := by
@@ -29,7 +31,9 @@ theorem differentiableAt_eval_interpolationGapPolynomial {n : ℕ} {t : Fin n �
 /-- The derivative of the actual maximum is the node derivative of its polynomial
 with the spatial critical point held fixed.
 Source: the nondegenerate implicit chart and the vanishing spatial derivative;
-focused reroutes, peak Jacobian.-/
+focused reroutes, peak Jacobian.
+@isnad1 id=hasfderi.2h3v.s8.8dfbc136f82c from=translated src=- shape=7572af87 vocab=0cda56a5
+-/
 theorem hasFDerivAt_interpolationGapPeak_fixed_criticalPoint {n : ℕ} (hn : 0 < n)
     {t : Fin n → ℝ} (ht : t ∈ interiorNodeSimplex n) (i : Fin (n + 1)) :
     HasFDerivAt (fun s => interpolationGapPeak n s i)
@@ -66,7 +70,9 @@ theorem hasFDerivAt_interpolationGapPeak_fixed_criticalPoint {n : ℕ} (hn : 0 <
 /-- Differentiating the actual fixed nodal equations gives the corresponding
 node functional derivative of the gap polynomial.
 Source: the chain rule applied to the nodal interpolation equations;
-focused reroutes, peak Jacobian.-/
+focused reroutes, peak Jacobian.
+@isnad1 id=eq.1h5v.s9.b68734c098cc from=translated src=- shape=36782936 vocab=4c94bb15
+-/
 theorem fderiv_eval_interpolationGapPolynomial_node_apply {n : ℕ} {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (i : Fin (n + 1)) (j : Fin (n + 2)) (h : Fin n → ℝ) :
     fderiv ℝ (fun s => (interpolationGapPolynomial n s i).eval (canonicalIntervalNodes n t j)) t h =
@@ -110,7 +116,9 @@ theorem fderiv_eval_interpolationGapPolynomial_node_apply {n : ℕ} {t : Fin n �
 /-- At a fixed grid, the node derivative of a gap polynomial is reconstructed
 from its actual nodal derivatives by Lagrange cardinals.
 Source: differentiating degree-bounded interpolation uniqueness;
-focused reroutes, peak Jacobian.-/
+focused reroutes, peak Jacobian.
+@isnad1 id=eq.1h5v.s9.f5b37a8e2512 from=translated src=- shape=47297b96 vocab=5d089c96
+-/
 theorem fderiv_eval_interpolationGapPolynomial_apply_eq_sum {n : ℕ} {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (i : Fin (n + 1)) (x : ℝ) (h : Fin n → ℝ) :
     fderiv ℝ (fun s => (interpolationGapPolynomial n s i).eval x) t h =
@@ -135,19 +143,25 @@ theorem fderiv_eval_interpolationGapPolynomial_apply_eq_sum {n : ℕ} {t : Fin n
   simpa only [v, _root_.sum_apply, smul_apply, smul_eq_mul] using heq
 
 /-- The fixed left canonical endpoint has zero node derivative.
-Source: endpoint-fixed parametrization; focused reroutes, peak Jacobian.-/
+Source: endpoint-fixed parametrization; focused reroutes, peak Jacobian.
+@isnad1 id=eq.0h2v.s9.b005fa210360 from=translated src=- shape=c7b560ac vocab=ae22c703
+-/
 theorem fderiv_canonicalIntervalNodes_zero (n : ℕ) (t : Fin n → ℝ) :
     fderiv ℝ (fun s => canonicalIntervalNodes n s 0) t = 0 := by
   simp
 
 /-- The fixed right canonical endpoint has zero node derivative.
-Source: endpoint-fixed parametrization; focused reroutes, peak Jacobian.-/
+Source: endpoint-fixed parametrization; focused reroutes, peak Jacobian.
+@isnad1 id=eq.0h2v.s9.39688ecc21ff from=translated src=- shape=03ea08e5 vocab=ba8d71b1
+-/
 theorem fderiv_canonicalIntervalNodes_last (n : ℕ) (t : Fin n → ℝ) :
     fderiv ℝ (fun s => canonicalIntervalNodes n s (Fin.last (n + 1))) t = 0 := by
   simp
 
 /-- Each actual interior node has its coordinate projection as derivative.
-Source: endpoint-fixed parametrization; focused reroutes, peak Jacobian.-/
+Source: endpoint-fixed parametrization; focused reroutes, peak Jacobian.
+@isnad1 id=eq.0h3v.s8.8016389b1340 from=translated src=- shape=9d5c91aa vocab=5bf16c08
+-/
 theorem fderiv_canonicalIntervalNodes_interior (n : ℕ) (t : Fin n → ℝ) (j : Fin n) :
     fderiv ℝ (fun s => canonicalIntervalNodes n s j.castSucc.succ) t =
       ContinuousLinearMap.proj j := by
@@ -157,7 +171,9 @@ theorem fderiv_canonicalIntervalNodes_interior (n : ℕ) (t : Fin n → ℝ) (j 
 /-- The actual node derivative of the signed gap polynomial is the cardinal
 reconstruction of the differentiated nodal equations, with endpoints fixed.
 Source: interpolation uniqueness and the chain rule;
-focused reroutes, the exact peak Jacobian.-/
+focused reroutes, the exact peak Jacobian.
+@isnad1 id=eq.1h5v.s9.0bf5890042ab from=translated src=- shape=183b6a0b vocab=bea204a2
+-/
 theorem fderiv_eval_interpolationGapPolynomial_apply {n : ℕ} {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (i : Fin (n + 1)) (x : ℝ) (h : Fin n → ℝ) :
     fderiv ℝ (fun s => (interpolationGapPolynomial n s i).eval x) t h =
@@ -178,7 +194,9 @@ theorem fderiv_eval_interpolationGapPolynomial_apply {n : ℕ} {t : Fin n → �
 /-- The actual Lebesgue gap peak has the exact node-coordinate derivative
 `−F_i'(t_j) ℓ_j(τ_i)`, assembled as a continuous linear functional.
 Source: differentiated nodal equations and the ordinary implicit peak chart;
-focused reroutes, `polyretry:peak-jacobian`.-/
+focused reroutes, `polyretry:peak-jacobian`.
+@isnad1 id=hasfderi.2h3v.s9.68f8e48d8202 from=translated src=- shape=fe11585a vocab=266c144c
+-/
 theorem hasFDerivAt_interpolationGapPeak {n : ℕ} (hn : 0 < n) {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (i : Fin (n + 1)) :
     HasFDerivAt (fun s => interpolationGapPeak n s i)

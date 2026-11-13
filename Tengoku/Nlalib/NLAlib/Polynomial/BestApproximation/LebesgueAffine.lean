@@ -19,7 +19,9 @@ open Set Finset
 namespace NLAlib
 
 /-- Applying the same nondegenerate affine map to nodes and point preserves the Lebesgue function.
-Source: cancellation in each finite cardinal product; universal-bound helper.-/
+Source: cancellation in each finite cardinal product; universal-bound helper.
+@isnad1 id=eq.1h5v.s6.ad8019c29cfb from=translated src=- shape=d662193e vocab=dd53851b
+-/
 theorem lebesgueFunction_affine {ι : Type*} [Fintype ι] [DecidableEq ι]
     (v : ι → ℝ) (x α β : ℝ) (hα : α ≠ 0) :
     lebesgueFunction (fun j => α * v j + β) (α * x + β) = lebesgueFunction v x := by
@@ -29,7 +31,9 @@ theorem lebesgueFunction_affine {ι : Type*} [Fintype ι] [DecidableEq ι]
   rw [eval_lagrange_basis_affine univ v j x α β hα]
 
 /-- Restricting the approximation interval can only decrease the Lebesgue constant.
-Source: the supremum norm on a subset; universal-bound helper.-/
+Source: the supremum norm on a subset; universal-bound helper.
+@isnad1 id=le.1h4v.s6.bcfe15a251fa from=translated src=- shape=76538688 vocab=b7d300f8
+-/
 theorem lebesgueConstant_subset_le {ι : Type*} [Fintype ι] [DecidableEq ι]
     {s t : Set ℝ} [CompactSpace s] [CompactSpace t] (v : ι → ℝ) (hst : s ⊆ t) :
     lebesgueConstant s v ≤ lebesgueConstant t v :=
@@ -37,7 +41,9 @@ theorem lebesgueConstant_subset_le {ι : Type*} [Fintype ι] [DecidableEq ι]
     (fun _ hx => lebesgueFunction_le_lebesgueConstant v (hst hx))
 
 /-- Positive affine transplantation preserves the interval Lebesgue constant.
-Source: the exact affine cardinal identity; universal-bound helper.-/
+Source: the exact affine cardinal identity; universal-bound helper.
+@isnad1 id=eq.1h6v.s6.87f593247f5e from=translated src=- shape=a281b069 vocab=fcb93106
+-/
 theorem lebesgueConstant_affine_interval {ι : Type*} [Fintype ι] [DecidableEq ι]
     (v : ι → ℝ) (a b α β : ℝ) (hα : 0 < α) :
     lebesgueConstant (Icc (α * a + β) (α * b + β)) (fun j => α * v j + β) =
@@ -64,7 +70,9 @@ theorem lebesgueConstant_affine_interval {ι : Type*} [Fintype ι] [DecidableEq 
     exact lebesgueFunction_le_lebesgueConstant _ hy
 
 /-- An ordered grid with at least two nodes is a positive affine image of a
-canonical grid. Source: focused reroutes, stretching the node hull.-/
+canonical grid. Source: focused reroutes, stretching the node hull.
+@isnad1 id=ex.1h2v.s7.c480e46efc36 from=translated src=- shape=f76018ca vocab=b8d3e190
+-/
 theorem exists_canonical_nodes_affine {n : ℕ} (v : Fin (n + 2) → ℝ)
     (hv : StrictMono v) :
     ∃ t ∈ interiorNodeSimplex n, ∃ α > 0, ∃ β : ℝ,
@@ -110,7 +118,9 @@ theorem exists_canonical_nodes_affine {n : ℕ} (v : Fin (n + 2) → ℝ)
 
 /-- Every ordered grid with at least two nodes has a canonical stretched grid
 whose unit-interval Lebesgue constant is no larger than the original one.
-Source: focused reroutes, reduction to canonical node hulls; universal-bound helper.-/
+Source: focused reroutes, reduction to canonical node hulls; universal-bound helper.
+@isnad1 id=ex.2h2v.s8.0955bb26c66d from=translated src=- shape=5c30c90b vocab=8364852a
+-/
 theorem exists_canonical_nodes_le_lebesgueConstant {n : ℕ} (v : Fin (n + 2) → ℝ)
     (hv : StrictMono v) (hvI : ∀ j, v j ∈ Icc (-1 : ℝ) 1) :
     ∃ t ∈ interiorNodeSimplex n,

@@ -53,7 +53,9 @@ def modifiedChebyshevState (a b m : ℕ → ℝ) : ℕ → ModifiedChebyshevStat
 /-- The computed table and coefficients are exactly the canonical finite moment
 data. This proves the algorithm itself, allowing arbitrary input extensions above
 degree `2n-1` and including an empty requested output when `n=0`.
-atlas: modified-chebyshev-algorithm (partial)-/
+atlas: modified-chebyshev-algorithm (partial)
+@isnad1 id=and.6h7v.s9.634c9330323d from=translated src=- shape=b55898f3 vocab=239de7da
+-/
 theorem modifiedChebyshevState_correct (L : ℝ[X] →ₗ[ℝ] ℝ) (p : ℕ → ℝ[X])
     (a b m : ℕ → ℝ) (n : ℕ) (hL : (hankelMomentMatrix L n).PosDef)
     (hp : ∀ j, (p j).Monic) (hdeg : ∀ j, (p j).natDegree = j)
@@ -134,7 +136,9 @@ theorem modifiedChebyshevState_correct (L : ℝ[X] →ₗ[ℝ] ℝ) (p : ℕ →
 
 /-- Every diagonal used as a denominator by the requested finite execution is
 strictly positive, as a consequence of the supplied moments.
-atlas: modified-chebyshev-algorithm (partial)-/
+atlas: modified-chebyshev-algorithm (partial)
+@isnad1 id=lt.6h7v.s8.6d05503f0020 from=translated src=- shape=a53eb692 vocab=c7eaee8b
+-/
 theorem modifiedChebyshevState_diagonal_pos (L : ℝ[X] →ₗ[ℝ] ℝ) (p : ℕ → ℝ[X])
     (a b m : ℕ → ℝ) (n : ℕ) (hL : (hankelMomentMatrix L n).PosDef)
     (hp : ∀ j, (p j).Monic) (hdeg : ∀ j, (p j).natDegree = j)
@@ -154,7 +158,9 @@ def modifiedChebyshevCoefficients (a b : ℕ → ℝ) {n : ℕ} (m : Fin (2 * n)
 
 /-- The finite algorithm returns precisely the canonical recurrence coefficients,
 with the source convention that the zeroth `beta` is total mass.
-atlas: modified-chebyshev-algorithm (partial)-/
+atlas: modified-chebyshev-algorithm (partial)
+@isnad1 id=eq.4h6v.s9.0f141912d299 from=translated src=- shape=8f1b8feb vocab=43fad643
+-/
 theorem modifiedChebyshevCoefficients_eq (L : ℝ[X] →ₗ[ℝ] ℝ) (p : ℕ → ℝ[X])
     (a b : ℕ → ℝ) (n : ℕ) (hL : (hankelMomentMatrix L n).PosDef)
     (hp : ∀ j, (p j).Monic) (hdeg : ∀ j, (p j).natDegree = j)

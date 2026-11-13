@@ -19,7 +19,9 @@ open Set Finset Polynomial
 namespace NLAlib
 
 /-- Every strictly ordered canonical node lies in the unit interval.
-Source: the fixed endpoint ordering; helper for `lebesgue-constant-lower-bound`.-/
+Source: the fixed endpoint ordering; helper for `lebesgue-constant-lower-bound`.
+@isnad1 id=mem.1h3v.s6.56045adf7441 from=translated src=- shape=28fedce2 vocab=affbf5fe
+-/
 theorem canonicalIntervalNodes_mem_Icc {n : ℕ} {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (j : Fin (n + 2)) :
     canonicalIntervalNodes n t j ∈ Icc (-1 : ℝ) 1 := by
@@ -29,7 +31,9 @@ theorem canonicalIntervalNodes_mem_Icc {n : ℕ} {t : Fin n → ℝ}
 
 /-- A small canonical gap controls the Lebesgue function by its value at any far point.
 Source: focused reroutes, quantitative boundary estimate, with
-`C=2^n(n+1)^(n+1)` for `n` interior nodes.-/
+`C=2^n(n+1)^(n+1)` for `n` interior nodes.
+@isnad1 id=le.3h5v.s8.abe77de187da from=translated src=- shape=3815f87f vocab=878a8f3b
+-/
 theorem lebesgueFunction_le_gap_mul_of_far {n : ℕ} {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (i : Fin (n + 1)) {x y : ℝ}
     (hx : x ∈ Icc (canonicalIntervalNodes n t i.castSucc) (canonicalIntervalNodes n t i.succ))
@@ -74,7 +78,9 @@ theorem lebesgueFunction_le_gap_mul_of_far {n : ℕ} {t : Fin n → ℝ}
     show n + 2 - 1 = n + 1 by omega, hfactor, v, δ] using h
 
 /-- The lengths of the canonical node gaps telescope to two.
-Source: finite telescoping; helper for `lebesgue-constant-lower-bound`.-/
+Source: finite telescoping; helper for `lebesgue-constant-lower-bound`.
+@isnad1 id=eq.0h2v.s6.31a5799be6b4 from=translated src=- shape=f6ef3661 vocab=ffc9122d
+-/
 theorem sum_canonicalIntervalNodes_gaps (n : ℕ) (t : Fin n → ℝ) :
     (∑ i : Fin (n + 1), (canonicalIntervalNodes n t i.succ -
       canonicalIntervalNodes n t i.castSucc)) = 2 := by
@@ -86,7 +92,9 @@ theorem sum_canonicalIntervalNodes_gaps (n : ℕ) (t : Fin n → ℝ) :
 
 /-- Some canonical gap midpoint is at least `1/(n+1)` from every node.
 Source: a largest gap has length at least the average gap; helper for
-`lebesgue-constant-lower-bound`.-/
+`lebesgue-constant-lower-bound`.
+@isnad1 id=ex.1h2v.s7.eaefc60be1c3 from=translated src=- shape=5fb064fb vocab=a0e11b06
+-/
 theorem exists_gap_midpoint_far {n : ℕ} {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) :
     ∃ i : Fin (n + 1), ∃ y ∈ Icc (canonicalIntervalNodes n t i.castSucc)
@@ -126,7 +134,9 @@ theorem exists_gap_midpoint_far {n : ℕ} {t : Fin n → ℝ}
     exact hfar.trans hdist
 
 /-- Every canonical gap peak is at least one.
-Source: the cardinal partition of unity; helper for `lebesgue-constant-lower-bound`.-/
+Source: the cardinal partition of unity; helper for `lebesgue-constant-lower-bound`.
+@isnad1 id=le.1h3v.s5.02b81ad0c44b from=translated src=- shape=7a51b3d3 vocab=b5d62c3b
+-/
 theorem one_le_interpolationGapPeak {n : ℕ} {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (i : Fin (n + 1)) :
     1 ≤ interpolationGapPeak n t i := by
@@ -136,7 +146,9 @@ theorem one_le_interpolationGapPeak {n : ℕ} {t : Fin n → ℝ}
     (lebesgueFunction_le_lebesgueConstant _ (left_mem_Icc.mpr hi))
 
 /-- A single far-gap peak controls every small-gap peak with the explicit cardinal constant.
-Source: focused reroutes, quantitative boundary estimate.-/
+Source: focused reroutes, quantitative boundary estimate.
+@isnad1 id=ex.1h2v.s7.d25f3064c27c from=translated src=- shape=97ff4959 vocab=74b8e5c2
+-/
 theorem exists_gap_peak_ratio {n : ℕ} {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) :
     ∃ l : Fin (n + 1), ∀ i : Fin (n + 1), interpolationGapPeak n t i ≤
@@ -156,7 +168,9 @@ theorem exists_gap_peak_ratio {n : ℕ} {t : Fin n → ℝ}
     (mul_le_mul_of_nonneg_left (lebesgueFunction_le_lebesgueConstant _ hy) hcoef)
 
 /-- Bounded first-gap differences bound every pairwise peak difference by `2R`.
-Source: the supremum norm on the finite peak-difference vector; boundary helper.-/
+Source: the supremum norm on the finite peak-difference vector; boundary helper.
+@isnad1 id=le.2h5v.s6.d99c4d1a96d8 from=translated src=- shape=5eb5fc7c vocab=d99c10c5
+-/
 theorem interpolationGapPeak_sub_le_of_norm_difference_le {n : ℕ} {t : Fin n → ℝ}
     {R : ℝ} (hR : 0 ≤ R) (hbound : ‖interpolationPeakDifference n t‖ ≤ R)
     (i j : Fin (n + 1)) :
@@ -170,7 +184,9 @@ theorem interpolationGapPeak_sub_le_of_norm_difference_le {n : ℕ} {t : Fin n �
 
 /-- Bounded peak differences keep every node gap quantitatively away from collision.
 Source: focused reroutes, properness estimate, in first-gap difference coordinates.
-The denominator is `2^n(n+1)^(n+1)(2R+1)` for `n` interior nodes.-/
+The denominator is `2^n(n+1)^(n+1)(2R+1)` for `n` interior nodes.
+@isnad1 id=le.3h4v.s7.7a99782f94f2 from=translated src=- shape=0c20b6e1 vocab=29b7b754
+-/
 theorem canonicalIntervalNodes_gap_ge_of_norm_difference_le {n : ℕ} {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) {R : ℝ} (hR : 0 ≤ R)
     (hbound : ‖interpolationPeakDifference n t‖ ≤ R) (i : Fin (n + 1)) :

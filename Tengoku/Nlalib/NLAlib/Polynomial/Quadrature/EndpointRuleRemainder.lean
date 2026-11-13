@@ -18,7 +18,9 @@ namespace NLAlib
 interior has the single-point integral derivative remainder, regardless of enumeration.
 The conclusion also supplies the interior nodes and their exact finite permutation.
 Source: operator derivations (AQ9)–(AQ10); focused reroutes, Section 3 (BL11).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=ex.10h8v.s10.47ddaa148a0a from=translated src=- shape=6c69e092 vocab=809098f7
+-/
 theorem exists_integral_sub_rule_eq_iteratedDeriv_mul_endpoint
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b t : ℝ} (hab : a < b)
     (hμ : ∀ᵐ x ∂μ, x ∈ Icc a b) (ht : t = a ∨ t = b) {q : ℕ}
@@ -57,7 +59,9 @@ theorem exists_integral_sub_rule_eq_iteratedDeriv_mul_endpoint
 both endpoints has the classical single-point derivative remainder. Every remaining
 node is proved interior from distinctness; enumeration is immaterial.
 Source: operator derivations (AQ11); focused reroutes, Section 3 (BL11).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=ex.10h7v.s10.d26771401447 from=translated src=- shape=1d45f4b9 vocab=64fe6dee
+-/
 theorem exists_integral_sub_rule_eq_iteratedDeriv_mul_twoEndpoint
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ} (hab : a < b)
     (hμ : ∀ᵐ x ∂μ, x ∈ Icc a b) {q : ℕ}

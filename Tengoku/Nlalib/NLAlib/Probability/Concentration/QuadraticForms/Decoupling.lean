@@ -33,7 +33,9 @@ variable {Ω : Type*} [MeasurableSpace Ω]
 
 open scoped Matrix.Norms.L2Operator in
 /-- Source-transport helper `integrable_exp_quadraticForm_cutMatrix` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=integrab.3h8v.s8.673b8ef0fe2e from=translated src=- shape=ed255a76 vocab=4cdf29c8
+-/
 lemma integrable_exp_quadraticForm_cutMatrix {μ : Measure Ω}
     [IsProbabilityMeasure μ] {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     (s : Finset (Fin n)) {X : Fin n → Ω → ℝ} {K l : ℝ}
@@ -118,7 +120,9 @@ lemma integrable_exp_quadraticForm_cutMatrix {μ : Measure Ω}
 
 open scoped Matrix.Norms.L2Operator in
 /-- Source-transport helper `integral_exp_quadraticForm_cutMatrix_le` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=le.3h8v.s8.3460fb4b079d from=translated src=- shape=8a0c2324 vocab=74975449
+-/
 lemma integral_exp_quadraticForm_cutMatrix_le {μ : Measure Ω}
     [IsProbabilityMeasure μ] {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     (s : Finset (Fin n)) {X : Fin n → Ω → ℝ} {K l : ℝ}
@@ -145,7 +149,9 @@ lemma integral_exp_quadraticForm_cutMatrix_le {μ : Measure Ω}
 
 open scoped Matrix.Norms.L2Operator in
 /-- Source-transport helper `integrable_exp_quadraticForm_offDiagonal` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=integrab.3h7v.s8.a3f54a1e0b12 from=translated src=- shape=4219a693 vocab=e50b507e
+-/
 lemma integrable_exp_quadraticForm_offDiagonal {μ : Measure Ω}
     [IsProbabilityMeasure μ] {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     {X : Fin n → Ω → ℝ} {K l : ℝ}
@@ -206,7 +212,9 @@ lemma integrable_exp_quadraticForm_offDiagonal {μ : Measure Ω}
 
 open scoped Matrix.Norms.L2Operator in
 /-- Source-transport helper `integral_exp_quadraticForm_offDiagonal_le` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=le.3h7v.s8.942d94689b15 from=translated src=- shape=ad35f403 vocab=d53ba771
+-/
 lemma integral_exp_quadraticForm_offDiagonal_le {μ : Measure Ω}
     [IsProbabilityMeasure μ] {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     {X : Fin n → Ω → ℝ} {K l : ℝ}
@@ -308,7 +316,9 @@ lemma integral_exp_quadraticForm_offDiagonal_le {μ : Measure Ω}
 
 open scoped Matrix.Norms.L2Operator in
 /-- Source-transport helper `abs_two_mul_le_inv_quarter_of_abs_le` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=le.3h3v.s7.cb15dc12ec38 from=translated src=- shape=15d0edd0 vocab=476d6a88
+-/
 lemma abs_two_mul_le_inv_quarter_of_abs_le {a C l : ℝ}
     (ha : 0 < a) (hC : 0 < C)
     (hl : |l| ≤ (2 * C * a)⁻¹) :
@@ -330,7 +340,9 @@ lemma abs_two_mul_le_inv_quarter_of_abs_le {a C l : ℝ}
     _ = (2 * (C / 4) * a)⁻¹ := hright.symm
 
 /-- Source-transport helper `abs_mul_le_inv_two_of_abs_le` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=le.3h3v.s6.f9778226a5a3 from=translated src=- shape=78b15ebc vocab=476d6a88
+-/
 lemma abs_mul_le_inv_two_of_abs_le {a C l : ℝ}
     (ha : 0 < a) (hC : 0 < C)
     (hl : |l| ≤ (2 * C * a)⁻¹) :
@@ -342,7 +354,9 @@ lemma abs_mul_le_inv_two_of_abs_le {a C l : ℝ}
       field_simp [hC.ne', ha.ne']
 
 /-- Source-transport helper `offDiagonal_small_two_mul_of_abs_le` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=le.5h4v.s8.027d376a8061 from=translated src=- shape=4bacb51f vocab=4e456b77
+-/
 lemma offDiagonal_small_two_mul_of_abs_le {K C op l : ℝ}
     (hK : 0 < K) (hC : 0 < C) (hop : 0 < op)
     (hC_sq : 16 * exp 1 ≤ C ^ 2)
@@ -384,7 +398,9 @@ lemma offDiagonal_small_two_mul_of_abs_le {K C op l : ℝ}
       nlinarith [hC_sq]
 
 /-- Source-transport helper `offDiagonal_exponent_two_mul_le` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=le.1h4v.s8.d6aea505134d from=translated src=- shape=52b65e5b vocab=fc917557
+-/
 lemma offDiagonal_exponent_two_mul_le {K C F l : ℝ}
     (hC_offdiag_quad : 64 * exp 1 ^ 2 ≤ C) :
     exp 1 ^ 2 * (4 * (2 * l)) ^ 2 * K ^ 4 * F ^ 2 ≤

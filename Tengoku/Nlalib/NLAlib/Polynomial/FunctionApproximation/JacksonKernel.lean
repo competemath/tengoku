@@ -34,12 +34,16 @@ def chebyshevJacksonCircleKernel (M : ℕ) (t : AddCircle (2 * π)) : ℝ :=
   (2 / (M + 2 : ℝ)) * Complex.normSq
     (∑ l ∈ range (M + 1), (chebyshevJacksonSineWeight M l : ℂ) * fourier (l : ℤ) t)
 
-/-- The circle kernel is nonnegative by its actual squared-norm construction.-/
+/-- The circle kernel is nonnegative by its actual squared-norm construction.
+@isnad1 id=le.0h2v.s5.116ecab5be4e from=translated src=- shape=20feb81d vocab=010cc567
+-/
 theorem chebyshevJacksonCircleKernel_nonneg (M : ℕ) (t : AddCircle (2 * π)) :
     0 ≤ chebyshevJacksonCircleKernel M t :=
   mul_nonneg (by positivity) (Complex.normSq_nonneg _)
 
-/-- Autocorrelation gives the exact finite cosine expansion of the circle kernel.-/
+/-- Autocorrelation gives the exact finite cosine expansion of the circle kernel.
+@isnad1 id=eq.0h2v.s8.2930909d8817 from=translated src=- shape=fd9a6067 vocab=eaba933d
+-/
 theorem chebyshevJacksonCircleKernel_eq_sum (M : ℕ) (t : AddCircle (2 * π)) :
     chebyshevJacksonCircleKernel M t = 1 + 2 * ∑ j ∈ range M,
       chebyshevJacksonDamping M (j + 1) * (fourier ((j + 1 : ℕ) : ℤ) t).re := by
@@ -59,14 +63,18 @@ theorem chebyshevJacksonCircleKernel_eq_sum (M : ℕ) (t : AddCircle (2 * π)) :
     omega)]
   ring_nf
 
-/-- Evaluating the circle kernel at a real angle gives its ordinary cosine expansion.-/
+/-- Evaluating the circle kernel at a real angle gives its ordinary cosine expansion.
+@isnad1 id=eq.0h2v.s6.ea4d623232dc from=translated src=- shape=e1aef588 vocab=eee5e265
+-/
 theorem chebyshevJacksonCircleKernel_coe_eq_sum (M : ℕ) (t : ℝ) :
     chebyshevJacksonCircleKernel M (t : AddCircle (2 * π)) =
       1 + 2 * ∑ j ∈ range M, chebyshevJacksonDamping M (j + 1) * cos (((j + 1 : ℕ) : ℝ) * t) := by
   rw [chebyshevJacksonCircleKernel_eq_sum]
   simp_rw [re_fourier_nat_coe_eq_cos]
 
-/-- The normalized polynomial kernel has the usual finite cosine-product expansion.-/
+/-- The normalized polynomial kernel has the usual finite cosine-product expansion.
+@isnad1 id=eq.0h3v.s7.9a16454785ea from=translated src=- shape=14323432 vocab=d3ce6e0e
+-/
 theorem chebyshevJacksonKernel_cos_eq_sum (M : ℕ) (a b : ℝ) :
     chebyshevJacksonKernel M (cos a) (cos b) =
       1 / π + (2 / π) * ∑ j ∈ range M,
@@ -91,7 +99,9 @@ theorem chebyshevJacksonKernel_cos_eq_sum (M : ℕ) (a b : ℝ) :
   rw [add_comm]
 
 /-- The Chebyshev kernel is the sum of two translates of the positive circle
-kernel. This is an equality of the actual finite kernels.-/
+kernel. This is an equality of the actual finite kernels.
+@isnad1 id=eq.0h3v.s6.cd22e0665db6 from=translated src=- shape=956cf371 vocab=a5a75541
+-/
 theorem chebyshevJacksonKernel_cos_eq_circle (M : ℕ) (a b : ℝ) :
     chebyshevJacksonKernel M (cos a) (cos b) =
       (chebyshevJacksonCircleKernel M ((a - b : ℝ) : AddCircle (2 * π)) +
@@ -116,7 +126,9 @@ theorem chebyshevJacksonKernel_cos_eq_circle (M : ℕ) (a b : ℝ) :
   field_simp
   nlinarith [hs]
 
-/-- The explicit finite Jackson kernel is nonnegative on the entire closed square.-/
+/-- The explicit finite Jackson kernel is nonnegative on the entire closed square.
+@isnad1 id=le.2h3v.s6.0f0746e42c37 from=translated src=- shape=38e76181 vocab=1725070c
+-/
 theorem chebyshevJacksonKernel_nonneg (M : ℕ) {x r : ℝ}
     (hx : x ∈ Set.Icc (-1 : ℝ) 1) (hr : r ∈ Set.Icc (-1 : ℝ) 1) :
     0 ≤ chebyshevJacksonKernel M x r := by
@@ -124,25 +136,33 @@ theorem chebyshevJacksonKernel_nonneg (M : ℕ) {x r : ℝ}
   exact div_nonneg (add_nonneg (chebyshevJacksonCircleKernel_nonneg M _)
     (chebyshevJacksonCircleKernel_nonneg M _)) (by positivity)
 
-/-- The explicit Jackson kernel is symmetric.-/
+/-- The explicit Jackson kernel is symmetric.
+@isnad1 id=eq.0h3v.s4.2b50182cff62 from=translated src=- shape=5866a0ea vocab=7b0f77c7
+-/
 theorem chebyshevJacksonKernel_symm (M : ℕ) (x r : ℝ) :
     chebyshevJacksonKernel M x r = chebyshevJacksonKernel M r x := by
   apply sum_congr rfl
   intro j _
   ring
 
-/-- Every normalized Chebyshev basis function is continuous on the real line.-/
+/-- Every normalized Chebyshev basis function is continuous on the real line.
+@isnad1 id=continuo.0h1v.s4.b7fb0bcd3ea1 from=translated src=- shape=8735051e vocab=5d069fad
+-/
 @[fun_prop] theorem continuous_normalizedChebyshev (j : ℕ) : Continuous (normalizedChebyshev j) :=
   continuous_const.mul (T ℝ (j : ℤ)).continuous
 
-/-- The normalized Chebyshev basis is orthonormal for the actual arcsine measure.-/
+/-- The normalized Chebyshev basis is orthonormal for the actual arcsine measure.
+@isnad1 id=eq.0h2v.s5.4fea98037d1c from=translated src=- shape=7ccea597 vocab=a5f41baf
+-/
 theorem integral_normalizedChebyshev_mul (j k : ℕ) :
     (∫ x, normalizedChebyshev j x * normalizedChebyshev k x ∂measureT) =
       if j = k then 1 else 0 := by
   rw [integral_measureT_eq_integral_cos, intervalIntegral.integral_of_le pi_pos.le]
   exact integral_normalizedChebyshev_cos_mul j k
 
-/-- The finite Jackson kernel is continuous in its integrated variable.-/
+/-- The finite Jackson kernel is continuous in its integrated variable.
+@isnad1 id=continuo.0h2v.s4.d81daa3f399e from=translated src=- shape=f8002754 vocab=d9d54c56
+-/
 @[fun_prop] theorem continuous_chebyshevJacksonKernel (M : ℕ) (r : ℝ) :
     Continuous (fun x => chebyshevJacksonKernel M x r) := by
   unfold chebyshevJacksonKernel
@@ -150,7 +170,9 @@ theorem integral_normalizedChebyshev_mul (j k : ℕ) :
     (continuous_const.mul (continuous_normalizedChebyshev j)).mul continuous_const)
 
 /-- The kernel acts diagonally on the normalized basis, including the first
-vanishing frequency just beyond its degree.-/
+vanishing frequency just beyond its degree.
+@isnad1 id=eq.1h3v.s6.6f2a8e3ffd39 from=translated src=- shape=cdc1d182 vocab=a52476a9
+-/
 theorem integral_chebyshevJacksonKernel_mul_normalizedChebyshev
     (M k : ℕ) (hk : k ≤ M + 1) (r : ℝ) :
     (∫ x, chebyshevJacksonKernel M x r * normalizedChebyshev k x ∂measureT) =
@@ -181,7 +203,9 @@ theorem integral_chebyshevJacksonKernel_mul_normalizedChebyshev
     have hne : j ≠ M + 1 := by have := mem_range.mp hj; omega
     simp [hne]
 
-/-- The explicit positive Jackson kernel has total mass exactly one.-/
+/-- The explicit positive Jackson kernel has total mass exactly one.
+@isnad1 id=eq.0h2v.s5.c4017d4b4f55 from=translated src=- shape=5277ce41 vocab=9c1cf8d9
+-/
 theorem integral_chebyshevJacksonKernel (M : ℕ) (r : ℝ) :
     (∫ x, chebyshevJacksonKernel M x r ∂measureT) = 1 := by
   have h := integral_chebyshevJacksonKernel_mul_normalizedChebyshev M 0 (by omega) r
@@ -191,13 +215,17 @@ theorem integral_chebyshevJacksonKernel (M : ℕ) (r : ℝ) :
   field_simp at h
   exact h
 
-/-- The normalization of every Chebyshev mode is strictly positive.-/
+/-- The normalization of every Chebyshev mode is strictly positive.
+@isnad1 id=lt.0h1v.s3.b2b49d11fcab from=translated src=- shape=b9369acb vocab=18fe6a9b
+-/
 theorem normalizedChebyshevWeight_pos (k : ℕ) : 0 < normalizedChebyshevWeight k := by
   unfold normalizedChebyshevWeight
   apply sqrt_pos.2
   split_ifs <;> positivity
 
-/-- The kernel acts diagonally also in the ordinary, unnormalized Chebyshev basis.-/
+/-- The kernel acts diagonally also in the ordinary, unnormalized Chebyshev basis.
+@isnad1 id=eq.1h3v.s6.f350c79cbea7 from=translated src=- shape=1b994351 vocab=2e99c263
+-/
 theorem integral_chebyshevJacksonKernel_mul_T (M k : ℕ) (hk : k ≤ M + 1) (r : ℝ) :
     (∫ x, chebyshevJacksonKernel M x r * (T ℝ (k : ℤ)).eval x ∂measureT) =
       chebyshevJacksonDamping M k * (T ℝ (k : ℤ)).eval r := by
@@ -211,13 +239,17 @@ theorem integral_chebyshevJacksonKernel_mul_T (M k : ℕ) (hk : k ≤ M + 1) (r 
   apply mul_left_cancel₀ (ne_of_gt (normalizedChebyshevWeight_pos k))
   exact h.trans (by ring)
 
-/-- The first moment of the explicit Jackson kernel is its first damping coefficient.-/
+/-- The first moment of the explicit Jackson kernel is its first damping coefficient.
+@isnad1 id=eq.0h2v.s5.a9deede3bad2 from=translated src=- shape=f9f3cd29 vocab=ed04672d
+-/
 theorem integral_chebyshevJacksonKernel_mul_id (M : ℕ) (r : ℝ) :
     (∫ x, chebyshevJacksonKernel M x r * x ∂measureT) =
       chebyshevJacksonDamping M 1 * r := by
   simpa using integral_chebyshevJacksonKernel_mul_T M 1 (by omega) r
 
-/-- The second moment of the explicit Jackson kernel, valid also at cutoff one.-/
+/-- The second moment of the explicit Jackson kernel, valid also at cutoff one.
+@isnad1 id=eq.1h2v.s7.c821b54576d8 from=translated src=- shape=b80118fa vocab=5017a443
+-/
 theorem integral_chebyshevJacksonKernel_mul_sq {M : ℕ} (hM : 1 ≤ M) (r : ℝ) :
     (∫ x, chebyshevJacksonKernel M x r * x ^ 2 ∂measureT) =
       (1 + chebyshevJacksonDamping M 2 * (2 * r ^ 2 - 1)) / 2 := by
@@ -231,7 +263,9 @@ theorem integral_chebyshevJacksonKernel_mul_sq {M : ℕ} (hM : 1 ≤ M) (r : ℝ
     integral_const_mul, integral_chebyshevJacksonKernel] at h
   linarith
 
-/-- The exact centered second moment of the finite Jackson kernel.-/
+/-- The exact centered second moment of the finite Jackson kernel.
+@isnad1 id=eq.1h2v.s7.dcc7398b2b96 from=translated src=- shape=026ca601 vocab=5017a443
+-/
 theorem integral_chebyshevJacksonKernel_mul_sub_sq {M : ℕ} (hM : 1 ≤ M) (r : ℝ) :
     (∫ x, chebyshevJacksonKernel M x r * (x - r) ^ 2 ∂measureT) =
       (1 - chebyshevJacksonDamping M 2) / 2 +
@@ -247,7 +281,9 @@ theorem integral_chebyshevJacksonKernel_mul_sub_sq {M : ℕ} (hM : 1 ≤ M) (r :
   ring
 
 /-- The quadratic displacement of the positive Jackson kernel is at most the
-square of the sine of its defining angle.-/
+square of the sine of its defining angle.
+@isnad1 id=le.1h2v.s6.8fd04956be8c from=translated src=- shape=1130ab2e vocab=35db4282
+-/
 theorem integral_chebyshevJacksonKernel_mul_sub_sq_le {M : ℕ} (hM : 1 ≤ M) (r : ℝ) :
     (∫ x, chebyshevJacksonKernel M x r * (x - r) ^ 2 ∂measureT) ≤
       sin (chebyshevJacksonAngle M) ^ 2 := by
@@ -287,7 +323,9 @@ theorem integral_chebyshevJacksonKernel_mul_sub_sq_le {M : ℕ} (hM : 1 ≤ M) (
   rw [hconstant]
   linarith
 
-/-- The arcsine measure is supported on the closed approximation interval.-/
+/-- The arcsine measure is supported on the closed approximation interval.
+@isnad1 id=eventual.0h0v.s5.5cb865df314a from=translated src=- shape=46569457 vocab=92206858
+-/
 theorem ae_mem_Icc_measureT : ∀ᵐ x ∂measureT, x ∈ Set.Icc (-1 : ℝ) 1 := by
   have h : ∀ᵐ x ∂measureT, x ∈ Set.Ioc (-1 : ℝ) 1 := by
     unfold measureT
@@ -295,7 +333,9 @@ theorem ae_mem_Icc_measureT : ∀ᵐ x ∂measureT, x ∈ Set.Icc (-1 : ℝ) 1 :
   exact h.mono fun _ hx => ⟨hx.1.le, hx.2⟩
 
 /-- The first absolute displacement is bounded by the Jackson angle's sine.
-This follows from the exact second moment and positivity, without any boundary limits.-/
+This follows from the exact second moment and positivity, without any boundary limits.
+@isnad1 id=le.2h2v.s6.b26fac3aa0e0 from=translated src=- shape=66a54ca9 vocab=34dc2a09
+-/
 theorem integral_chebyshevJacksonKernel_mul_abs_sub_le_sin {M : ℕ} (hM : 1 ≤ M)
     {r : ℝ} (hr : r ∈ Set.Icc (-1 : ℝ) 1) :
     (∫ x, chebyshevJacksonKernel M x r * |x - r| ∂measureT) ≤
@@ -319,7 +359,9 @@ theorem integral_chebyshevJacksonKernel_mul_abs_sub_le_sin {M : ℕ} (hM : 1 ≤
   change _ ≤ S
   nlinarith
 
-/-- The positive kernel satisfies the advertised explicit `6/M` displacement bound.-/
+/-- The positive kernel satisfies the advertised explicit `6/M` displacement bound.
+@isnad1 id=le.2h2v.s6.cd699b6d3b7d from=translated src=- shape=456a8acd vocab=b4629c46
+-/
 theorem integral_chebyshevJacksonKernel_mul_abs_sub_le {M : ℕ} (hM : 1 ≤ M)
     {r : ℝ} (hr : r ∈ Set.Icc (-1 : ℝ) 1) :
     (∫ x, chebyshevJacksonKernel M x r * |x - r| ∂measureT) ≤ 6 / M := by
@@ -331,7 +373,9 @@ theorem integral_chebyshevJacksonKernel_mul_abs_sub_le {M : ℕ} (hM : 1 ≤ M)
   nlinarith [pi_lt_four]
 
 /-- Every retained damping coefficient lies below one; positivity and normalization
-of the actual kernel prove this bound, including its first zero frequency.-/
+of the actual kernel prove this bound, including its first zero frequency.
+@isnad1 id=le.1h2v.s5.e077f94dfaf6 from=translated src=- shape=a818f0d2 vocab=88719c1b
+-/
 theorem chebyshevJacksonDamping_le_one {M j : ℕ} (hj : j ≤ M + 1) :
     chebyshevJacksonDamping M j ≤ 1 := by
   have h : ∀ᵐ x ∂measureT, chebyshevJacksonKernel M x 1 * (T ℝ (j : ℤ)).eval x ≤
@@ -345,7 +389,9 @@ theorem chebyshevJacksonDamping_le_one {M j : ℕ} (hj : j ≤ M + 1) :
   simpa only [integral_chebyshevJacksonKernel_mul_T M j hj 1, T_eval_one,
     mul_one, integral_chebyshevJacksonKernel] using hi
 
-/-- The explicit Jackson multipliers are genuine coefficient contractions.-/
+/-- The explicit Jackson multipliers are genuine coefficient contractions.
+@isnad1 id=mem.1h2v.s5.4065fabd255f from=translated src=- shape=9b887049 vocab=f10dc1ca
+-/
 theorem chebyshevJacksonDamping_mem_Icc {M j : ℕ} (hj : j ≤ M + 1) :
     chebyshevJacksonDamping M j ∈ Set.Icc (0 : ℝ) 1 :=
   ⟨chebyshevJacksonDamping_nonneg hj, chebyshevJacksonDamping_le_one hj⟩

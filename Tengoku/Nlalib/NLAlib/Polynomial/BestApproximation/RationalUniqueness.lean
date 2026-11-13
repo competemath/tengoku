@@ -158,7 +158,9 @@ theorem eq_of_norm_sub_eq_rationalMinimaxError {a b : ℝ} (hab : a < b) {m n : 
 /-- Every continuous real function has a unique best pole-free rational approximant of
 type `(m,n)`. Source: ATAP, Theorem 24.1. Uniqueness is of Mathlib `RatFunc` elements,
 so representations differing by common scalar factors are automatically identified.
-atlas: rational-equioscillation-/
+atlas: rational-equioscillation
+@isnad1 id=existsun.1h5v.s8.b514dc87fff9 from=translated src=- shape=980e876e vocab=bf0c6d8b
+-/
 theorem exists_unique_norm_sub_eq_rationalMinimaxError {a b : ℝ} (hab : a < b) (m n : ℕ)
     (f : C(Icc a b, ℝ)) :
     ∃! r : RatFunc ℝ, ∃ hr : IsPoleFreeRationalApproximation (Icc a b) m n r,

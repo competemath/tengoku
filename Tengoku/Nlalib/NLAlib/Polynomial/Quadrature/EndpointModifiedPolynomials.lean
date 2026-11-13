@@ -18,7 +18,9 @@ namespace NLAlib
 
 /-- A nonnegative polynomial weight preserves a nonsingular order-`q` moment system
 when the original measure has at least `q+degree(weight)` support points.
-The displayed degree bound also permits weights with roots at interval endpoints.-/
+The displayed degree bound also permits weights with roots at interval endpoints.
+@isnad1 id=ne.5h4v.s7.425e72310bec from=translated src=- shape=a8527ac5 vocab=673d02c7
+-/
 theorem hankelMomentDet_polynomialWeightedFunctional_ne_zero_of_le_support_encard
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {q d : ℕ}
     (hs : (q + d : ℕ∞) ≤ μ.support.encard) {w : ℝ[X]} (hw : w ≠ 0)
@@ -38,7 +40,9 @@ theorem hankelMomentDet_polynomialWeightedFunctional_ne_zero_of_le_support_encar
 /-- The remaining nodal polynomial of a Radau-degree rule is monic orthogonal for
 the endpoint-modified functional, even when an opposite endpoint occurs at termination.
 Source: Gautschi (2004), Theorem 3.2; operator derivations (AQ7).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=ismonico.4h5v.s8.2c49bad0964f from=translated src=- shape=c00e2a8e vocab=e6e3d3d5
+-/
 theorem isMonicOrthogonalPolynomial_nodal_of_endpoint_exact
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {q : ℕ} (t : ℝ)
     (v : Fin q → ℝ) (w : Fin (q + 1) → ℝ) (hv : Function.Injective v) (htv : ∀ i, t ≠ v i)
@@ -57,7 +61,9 @@ theorem isMonicOrthogonalPolynomial_nodal_of_endpoint_exact
 /-- The remaining nodal polynomial of a Lobatto-degree rule is monic orthogonal for
 the positive two-endpoint modified functional.
 Source: Gautschi (2004), Theorem 3.6; operator derivations (AQ8).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=ismonico.6h6v.s8.7672629c087a from=translated src=- shape=1fadac5a vocab=eb72515c
+-/
 theorem isMonicOrthogonalPolynomial_nodal_of_twoEndpoint_exact
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {q : ℕ} (a b : ℝ) (hab : a ≠ b)
     (v : Fin q → ℝ) (w : Fin (q + 2) → ℝ) (hv : Function.Injective v)
@@ -87,7 +93,9 @@ theorem isMonicOrthogonalPolynomial_nodal_of_twoEndpoint_exact
 /-- The actual left endpoint rule's remaining node product equals the canonical
 monic polynomial for the positive left endpoint modification.
 Source: Gautschi (2004), Theorem 3.2; operator derivations (AQ7).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.6h6v.s8.8a840fdad5d5 from=translated src=- shape=7d912e24 vocab=7f79cfec
+-/
 theorem nodal_eq_monicOrthogonalPolynomial_of_leftEndpoint_exact
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {a b : ℝ}
     (hμab : ∀ᵐ x ∂μ, x ∈ Icc a b) {q : ℕ} (hs : (q + 1 : ℕ∞) ≤ μ.support.encard)
@@ -106,7 +114,9 @@ theorem nodal_eq_monicOrthogonalPolynomial_of_leftEndpoint_exact
 /-- The actual right endpoint rule's remaining node product equals the canonical
 monic polynomial for the positive right endpoint modification.
 Source: Gautschi (2004), Theorem 3.2; operator derivations (AQ7).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.6h6v.s8.53238bf17cab from=translated src=- shape=85fafbf2 vocab=7f79cfec
+-/
 theorem nodal_eq_monicOrthogonalPolynomial_of_rightEndpoint_exact
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {a b : ℝ}
     (hμab : ∀ᵐ x ∂μ, x ∈ Icc a b) {q : ℕ} (hs : (q + 1 : ℕ∞) ≤ μ.support.encard)
@@ -140,7 +150,9 @@ theorem nodal_eq_monicOrthogonalPolynomial_of_rightEndpoint_exact
 /-- The actual two-endpoint rule's remaining node product is the canonical monic
 polynomial for the positive two-endpoint modified functional.
 Source: Gautschi (2004), Theorem 3.6; operator derivations (AQ8).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.8h6v.s8.28b4e7c8cff2 from=translated src=- shape=3b904199 vocab=13d59e96
+-/
 theorem nodal_eq_monicOrthogonalPolynomial_of_twoEndpoint_exact
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {a b : ℝ} (hab : a < b)
     (hμab : ∀ᵐ x ∂μ, x ∈ Icc a b) {q : ℕ} (hs : (q + 2 : ℕ∞) ≤ μ.support.encard)

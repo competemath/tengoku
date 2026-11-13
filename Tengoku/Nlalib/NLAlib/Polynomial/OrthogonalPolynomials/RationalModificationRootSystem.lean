@@ -23,7 +23,9 @@ def rationalModificationRootConstraint (T : 𝕜[X] →ₗ[𝕜] 𝕜)
   if hi : i.val < l then Polynomial.leval (x ⟨i.val, hi⟩) else
     polynomialWeightedFunctional T (rootCofactor z ⟨i.val-l, by have := i.isLt; omega⟩)
 
-/-- Kernel of the concatenated root/Cauchy row vector.-/
+/-- Kernel of the concatenated root/Cauchy row vector.
+@isnad1 id=iff.0h7v.s9.e1391213585f from=translated src=- shape=08fc0252 vocab=7dc95e97
+-/
 theorem forall_rationalModificationRootConstraint_eq_zero_iff
     (T : 𝕜[X] →ₗ[𝕜] 𝕜) (x : Fin l → 𝕜) (z : Fin m → 𝕜) (P : 𝕜[X]) :
     (∀ i, rationalModificationRootConstraint T x z i P = 0) ↔
@@ -46,7 +48,9 @@ theorem forall_rationalModificationRootConstraint_eq_zero_iff
         hz ⟨i.val-l, by have := i.isLt; omega⟩
 
 /-- The source rows and original lower orthogonality imply all native
-modified orthogonality constraints, including orders above the denominator degree.-/
+modified orthogonality constraints, including orders above the denominator degree.
+@isnad1 id=eq.5h10v.s10.7b201874f69b from=translated src=- shape=15ff8edf vocab=a5184d32
+-/
 theorem rationalModificationConstraint_full_of_root_rows
     (L T : 𝕜[X] →ₗ[𝕜] 𝕜) (x : Fin l → 𝕜) (z : Fin m → 𝕜)
     (hx : Function.Injective x) (hz : Function.Injective z)
@@ -92,7 +96,9 @@ def rationalModificationRootMatrix (L T : 𝕜[X] →ₗ[𝕜] 𝕜)
 /-- The root/Cauchy normalization minor is nonzero under the native source
 functional assumptions, including empty root lists and repeated eigenvalues of
 the underlying Jacobi system. The modification roots themselves are distinct.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=ne.6h8v.s9.17deaa0e2794 from=translated src=- shape=ad5da797 vocab=aabb171c
+-/
 theorem det_rationalModificationRootMatrix_ne_zero
     (L T : 𝕜[X] →ₗ[𝕜] 𝕜) (x : Fin l → 𝕜) (z : Fin m → 𝕜)
     (hx : Function.Injective x) (hz : Function.Injective z)

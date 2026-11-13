@@ -18,7 +18,9 @@ open Real MeasureTheory Set Finset Polynomial.Chebyshev
 
 namespace NLAlib
 
-/-- The tensor kernel has the weighted coordinate displacement bound.-/
+/-- The tensor kernel has the weighted coordinate displacement bound.
+@isnad1 id=le.2h4v.s7.883bf9cb2833 from=translated src=- shape=ec5eeba5 vocab=cce8331c
+-/
 theorem integral_tensorChebyshevJacksonKernel_mul_sum_weighted_abs_sub_le
     {ι : Type*} [Fintype ι] {M : ℕ} (hM : 1 ≤ M) (L : ι → NNReal)
     {r : ι → ℝ} (hr : ∀ i, r i ∈ Icc (-1 : ℝ) 1) :
@@ -41,7 +43,9 @@ theorem integral_tensorChebyshevJacksonKernel_mul_sum_weighted_abs_sub_le
       mul_le_mul_of_nonneg_left (integral_chebyshevJacksonKernel_mul_abs_sub_le hM (hr i)) (L i).coe_nonneg
     _ = _ := by rw [← sum_mul]; ring
 
-/-- An actual summed coordinate modulus controls the tensor Jackson error.-/
+/-- An actual summed coordinate modulus controls the tensor Jackson error.
+@isnad1 id=le.4h5v.s8.539d29cddc7f from=translated src=- shape=e057c39c vocab=9fa4dbe8
+-/
 theorem abs_tensorChebyshevJacksonApprox_sub_le_of_modulus
     {ι : Type*} [Fintype ι] [DecidableEq ι] {f : EuclideanSpace ℝ ι → ℝ}
     (hf : Continuous f) (L : ι → NNReal)
@@ -74,7 +78,9 @@ theorem abs_tensorChebyshevJacksonApprox_sub_le_of_modulus
     exact mul_le_mul_of_nonneg_left (hmod _ hx _ hr) hpos)
   exact hbound.trans (integral_tensorChebyshevJacksonKernel_mul_sum_weighted_abs_sub_le hM L hr)
 
-/-- Coordinate Lipschitz hypotheses telescope on the actual closed cube.-/
+/-- Coordinate Lipschitz hypotheses telescope on the actual closed cube.
+@isnad1 id=le.3h5v.s8.8e8d7a9b40dc from=translated src=- shape=1757e4af vocab=1bac0004
+-/
 theorem abs_sub_le_sum_of_coordinate_chebyshevCube
     {ι : Type*} [Fintype ι] [DecidableEq ι] {f : EuclideanSpace ℝ ι → ℝ} (L : ι → NNReal)
     (hf : ∀ i, ∀ x ∈ chebyshevCube ι, ∀ y ∈ chebyshevCube ι,
@@ -86,7 +92,9 @@ theorem abs_sub_le_sum_of_coordinate_chebyshevCube
     (fun i z hz w hw hzw => hf i (WithLp.toLp 2 z) hz (WithLp.toLp 2 w) hw hzw) hx hy
 
 /-- Separate coordinate Lipschitz control implies Euclidean Lipschitz
-continuity on the cube, so real Lipschitz extension is available.-/
+continuity on the cube, so real Lipschitz extension is available.
+@isnad1 id=lipschit.1h3v.s8.0a9d26a28fdb from=translated src=- shape=269367a2 vocab=03bc2643
+-/
 theorem lipschitzOnWith_sum_of_coordinate_chebyshevCube
     {ι : Type*} [Fintype ι] [DecidableEq ι] {f : EuclideanSpace ℝ ι → ℝ} (L : ι → NNReal)
     (hf : ∀ i, ∀ x ∈ chebyshevCube ι, ∀ y ∈ chebyshevCube ι,
@@ -103,7 +111,9 @@ theorem lipschitzOnWith_sum_of_coordinate_chebyshevCube
     _ = _ := by rw [← sum_mul]; simp
 
 /-- The source's coordinate Lipschitz hypotheses imply the exact `6/M` times
-the sum of the coordinate constants on the closed cube.-/
+the sum of the coordinate constants on the closed cube.
+@isnad1 id=le.3h5v.s8.76e270776e82 from=translated src=- shape=10092844 vocab=c17b3d67
+-/
 theorem abs_tensorChebyshevJacksonApprox_sub_le_of_coordinate_lipschitz
     {ι : Type*} [Fintype ι] [DecidableEq ι] {f : EuclideanSpace ℝ ι → ℝ} (L : ι → NNReal)
     (hf : ∀ i, ∀ x ∈ chebyshevCube ι, ∀ y ∈ chebyshevCube ι,

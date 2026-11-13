@@ -18,7 +18,9 @@ namespace NLAlib
 
 /-- One degree beyond Lobatto exactness forces the endpoint nodal norm to zero and
 gives exactness for every function. Source: focused reroutes, Section 3, termination.
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.6h7v.s8.e6eb400423ca from=translated src=- shape=b65f0a2d vocab=98d939f8
+-/
 theorem integral_eq_twoEndpoint_quadrature_of_one_extra_exact
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ} (hab : a < b)
     (hμ : ∀ᵐ x ∂μ, x ∈ Icc a b) {q : ℕ} (v : Fin q → ℝ)
@@ -57,7 +59,9 @@ theorem integral_eq_twoEndpoint_quadrature_of_one_extra_exact
 it integrates every function exactly. This follows from its existing polynomial
 exactness and interval support, with no smoothness or finite-support premise added.
 Source: focused reroutes, Section 3, termination.
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.7h7v.s8.41ab6a4a4a1b from=translated src=- shape=2c09811d vocab=59c74591
+-/
 theorem integral_eq_radau_degree_rule_of_both_endpoints
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ} (hab : a < b)
     (hμ : ∀ᵐ x ∂μ, x ∈ Icc a b) {q : ℕ} (v w : Fin (q + 1) → ℝ)

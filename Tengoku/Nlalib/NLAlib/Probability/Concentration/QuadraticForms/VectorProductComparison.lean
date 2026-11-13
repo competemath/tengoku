@@ -34,7 +34,9 @@ variable {Ω : Type*} [MeasurableSpace Ω]
 
 open scoped Matrix.Norms.L2Operator in
 /-- Source-transport helper `integrable_exp_norm_toEuclideanCLM_randomVector_sq` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=integrab.4h7v.s12.93ab5a16a32e from=translated src=- shape=774126f2 vocab=8f706c2a
+-/
 lemma integrable_exp_norm_toEuclideanCLM_randomVector_sq {μ : Measure Ω}
     [IsProbabilityMeasure μ] {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     {X : Fin n → Ω → ℝ} {K θ : ℝ} (hθ : 0 ≤ θ)
@@ -152,7 +154,9 @@ lemma integrable_exp_norm_toEuclideanCLM_randomVector_sq {μ : Measure Ω}
 
 open scoped Matrix.Norms.L2Operator in
 /-- Source-transport helper `integrable_exp_inner_toEuclideanCLM_randomVector_prod` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=integrab.3h7v.s12.c6978d86029d from=translated src=- shape=e7e6fd2e vocab=d5dbac14
+-/
 lemma integrable_exp_inner_toEuclideanCLM_randomVector_prod {μ : Measure Ω}
     [IsProbabilityMeasure μ] {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     {X : Fin n → Ω → ℝ} {K l : ℝ}
@@ -241,7 +245,9 @@ lemma integrable_exp_inner_toEuclideanCLM_randomVector_prod {μ : Measure Ω}
 
 open scoped Matrix.Norms.L2Operator in
 /-- Source-transport helper `integral_exp_inner_toEuclideanCLM_randomVector_prod_le` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=le.3h7v.s12.c5fdba233982 from=translated src=- shape=42dcf483 vocab=4d7becf4
+-/
 lemma integral_exp_inner_toEuclideanCLM_randomVector_prod_le {μ : Measure Ω}
     [IsProbabilityMeasure μ] {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     {X : Fin n → Ω → ℝ} {K l : ℝ}
@@ -314,7 +320,9 @@ lemma integral_exp_inner_toEuclideanCLM_randomVector_prod_le {μ : Measure Ω}
 
 open scoped Matrix.Norms.L2Operator in
 /-- Source-transport helper `integral_exp_quadraticForm_cutMatrix_eq_prod` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=eq.3h7v.s13.93a10881c811 from=translated src=- shape=ae044ab8 vocab=024cf0bb
+-/
 lemma integral_exp_quadraticForm_cutMatrix_eq_prod {μ : Measure Ω}
     [IsProbabilityMeasure μ] {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     (s : Finset (Fin n)) {X : Fin n → Ω → ℝ} {l : ℝ}

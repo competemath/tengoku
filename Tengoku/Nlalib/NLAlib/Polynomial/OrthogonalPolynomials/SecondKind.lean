@@ -29,25 +29,33 @@ def secondKindPolynomial (L : 𝕜[X] →ₗ[𝕜] 𝕜) : ℕ → 𝕜[X]
       C (orthogonalRecurrenceBeta L (n + 1)) * secondKindPolynomial L n
 
 /-- The second-kind numerator at order zero is zero.
-atlas: jacobi-fraction-second-kind (partial)-/
+atlas: jacobi-fraction-second-kind (partial)
+@isnad1 id=eq.0h2v.s7.d7a6205b3c2a from=translated src=- shape=14ba2ab7 vocab=4becc070
+-/
 @[simp] theorem secondKindPolynomial_zero (L : 𝕜[X] →ₗ[𝕜] 𝕜) :
     secondKindPolynomial L 0 = 0 := rfl
 
 /-- The first second-kind numerator is the constant mass.
-atlas: jacobi-fraction-second-kind (partial)-/
+atlas: jacobi-fraction-second-kind (partial)
+@isnad1 id=eq.0h2v.s8.7bf62c530503 from=translated src=- shape=fd23e62b vocab=22591034
+-/
 @[simp] theorem secondKindPolynomial_one (L : 𝕜[X] →ₗ[𝕜] 𝕜) :
     secondKindPolynomial L 1 = C (L 1) := rfl
 
 /-- Positive-order second-kind numerators satisfy the original monic
 recurrence. Source: Gautschi (2004), Chapter 1, AQ17.
-atlas: jacobi-fraction-second-kind (partial)-/
+atlas: jacobi-fraction-second-kind (partial)
+@isnad1 id=eq.0h3v.s9.6b3feb85ed8f from=translated src=- shape=c61d720e vocab=90df7aa5
+-/
 theorem secondKindPolynomial_add_two (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) :
     secondKindPolynomial L (n + 2) =
       (X - C (orthogonalRecurrenceAlpha L (n + 1))) * secondKindPolynomial L (n + 1) -
         C (orthogonalRecurrenceBeta L (n + 1)) * secondKindPolynomial L n := rfl
 
 /-- The second-kind numerator has degree at most one less than its order.
-atlas: jacobi-fraction-second-kind (partial)-/
+atlas: jacobi-fraction-second-kind (partial)
+@isnad1 id=le.0h3v.s7.3716eb81df8d from=translated src=- shape=bdf24ce0 vocab=6d19d930
+-/
 theorem natDegree_secondKindPolynomial_le (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) :
     (secondKindPolynomial L n).natDegree ≤ n - 1 := by
   induction n using Nat.twoStepInduction with
@@ -97,7 +105,9 @@ private theorem functional_dividedDifference_recurrence
 /-- The second-kind numerator is exactly the moment-functional divided
 difference, including diagonal values interpreted polynomially.
 Source: Gautschi (2004), Chapter 1, AQ16–AQ17.
-atlas: jacobi-fraction-second-kind (partial)-/
+atlas: jacobi-fraction-second-kind (partial)
+@isnad1 id=eq.1h4v.s8.203493b6e006 from=translated src=- shape=baf13258 vocab=8f6926cd
+-/
 theorem eval_secondKindPolynomial_eq_functional_dividedDifference
     (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) (hL : ∀ k ≤ n, hankelMomentDet L k ≠ 0) (z : 𝕜) :
     (secondKindPolynomial L n).eval z =
@@ -119,7 +129,9 @@ theorem eval_secondKindPolynomial_eq_functional_dividedDifference
 polynomial gives the finite second-kind partial fraction. The numerator/denominator
 ratio needs only its final denominator and the stated node differences nonzero.
 Source: Gautschi (2004), Chapter 1, AQ18.
-atlas: jacobi-fraction-second-kind (partial)-/
+atlas: jacobi-fraction-second-kind (partial)
+@isnad1 id=eq.6h7v.s9.c4e5451a6f78 from=translated src=- shape=72c1e563 vocab=4f21e887
+-/
 theorem eval_secondKindPolynomial_div_eq_sum_weight_div
     {ι : Type*} [Fintype ι] (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) (hn : 0 < n)
     (hL : ∀ k ≤ n, hankelMomentDet L k ≠ 0) (v w : ι → 𝕜)
@@ -139,7 +151,9 @@ theorem eval_secondKindPolynomial_div_eq_sum_weight_div
   ring
 
 /-- Applying an exact rule to the divided difference gives a polynomial
-identity for the numerator, including all diagonal values.-/
+identity for the numerator, including all diagonal values.
+@isnad1 id=eq.3h6v.s9.d13a21f2c96a from=translated src=- shape=7420383e vocab=b36f824a
+-/
 theorem secondKindPolynomial_eq_sum_weight_mul_dividedDifference
     [Infinite 𝕜] {ι : Type*} [Fintype ι] (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) (hn : 0 < n)
     (hL : ∀ k ≤ n, hankelMomentDet L k ≠ 0) (v w : ι → 𝕜)
@@ -158,7 +172,9 @@ theorem secondKindPolynomial_eq_sum_weight_mul_dividedDifference
 
 /-- At a simple rule node the second-kind numerator is its weight times the
 derivative of the monic denominator. Source: Gautschi (2004), Chapter 1, AQ18.
-atlas: jacobi-fraction-second-kind (partial)-/
+atlas: jacobi-fraction-second-kind (partial)
+@isnad1 id=eq.5h7v.s9.6d2a2c82678d from=translated src=- shape=e40d4544 vocab=37745fb7
+-/
 theorem eval_secondKindPolynomial_at_node
     {ι : Type*} [Fintype ι] [DecidableEq ι] (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) (hn : 0 < n)
     (hL : ∀ k ≤ n, hankelMomentDet L k ≠ 0) (v w : ι → 𝕜) (hv : Function.Injective v)
@@ -180,7 +196,9 @@ theorem eval_secondKindPolynomial_at_node
 real moment functional gives the same ratio at complex arguments without
 replacing its bilinear convention by a Hermitian inner product.
 Source: Gautschi (2004), Chapter 1, AQ18.
-atlas: jacobi-fraction-second-kind (partial)-/
+atlas: jacobi-fraction-second-kind (partial)
+@isnad1 id=eq.6h9v.s9.13941245f1f5 from=translated src=- shape=63a3131f vocab=8217c21a
+-/
 theorem eval_map_secondKindPolynomial_div_eq_sum_weight_div
     [Infinite 𝕜] {𝕜' : Type*} [Field 𝕜'] {ι : Type*} [Fintype ι]
     (f : 𝕜 →+* 𝕜') (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) (hn : 0 < n)

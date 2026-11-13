@@ -26,7 +26,9 @@ open scoped NLAlib.TwoPi
 /-- The exponential's Chebyshev coefficients are the modified Bessel coefficients,
 with the constant coefficient undoubled.
 Source: Trefethen, ATAP, Exercise 3.15.
-atlas: chebyshev-series-exp-bessel (partial)-/
+atlas: chebyshev-series-exp-bessel (partial)
+@isnad1 id=eq.0h2v.s5.8591254f1c77 from=translated src=- shape=b5899f07 vocab=7d758ed9
+-/
 theorem chebyshevCoeff_exp_eq_modifiedBesselCoeff (a : ℝ) (k : ℕ) :
     chebyshevCoeff (fun x => Real.exp (a * x)) k = (if k = 0 then 1 else 2) * modifiedBesselCoeff a k := by
   rw [chebyshevCoeff_eq_cosine_integral]
@@ -39,7 +41,9 @@ def circleExponential (b : ℝ) (t : AddCircle (2 * Real.pi)) : ℂ :=
   Complex.exp ((b : ℂ) * fourier 1 t)
 
 /-- Factorial coefficient norms form a summable majorant.
-Source: scalar exponential power series; helper for `chebyshev-series-exp-bessel`.-/
+Source: scalar exponential power series; helper for `chebyshev-series-exp-bessel`.
+@isnad1 id=summable.0h1v.s5.32f79d353a1e from=translated src=- shape=8410ef30 vocab=b88050c0
+-/
 theorem summable_abs_pow_div_factorial (b : ℝ) :
     Summable (fun n : ℕ => |b| ^ n / (n.factorial : ℝ)) := by
   have habs : ∀ n : ℕ, |(n.factorial : ℝ)| = (n.factorial : ℝ) :=
@@ -48,7 +52,9 @@ theorem summable_abs_pow_div_factorial (b : ℝ) :
     NormedSpace.norm_expSeries_div_summable b
 
 /-- The positive-circle exponential has its genuine uniformly dominated character expansion.
-Source: scalar exponential power series; helper for `chebyshev-series-exp-bessel`.-/
+Source: scalar exponential power series; helper for `chebyshev-series-exp-bessel`.
+@isnad1 id=hassum.0h2v.s8.d3f66c4f8c26 from=translated src=- shape=46eb7c7a vocab=5e382c0e
+-/
 theorem hasSum_circleExponential (b : ℝ) (t : AddCircle (2 * Real.pi)) :
     HasSum (fun n : ℕ => ((b ^ n / (n.factorial : ℝ) : ℝ) : ℂ) * fourier (n : ℤ) t)
       (circleExponential b t) := by
@@ -65,7 +71,9 @@ theorem hasSum_circleExponential (b : ℝ) (t : AddCircle (2 * Real.pi)) :
   exact h
 
 /-- The positive-circle exponential is uniformly bounded by `exp |b|`.
-Source: the norm of the complex exponential; helper for `chebyshev-series-exp-bessel`.-/
+Source: the norm of the complex exponential; helper for `chebyshev-series-exp-bessel`.
+@isnad1 id=le.0h2v.s5.46be916f62bc from=translated src=- shape=204dce70 vocab=76a96842
+-/
 theorem norm_circleExponential_le (b : ℝ) (t : AddCircle (2 * Real.pi)) :
     ‖circleExponential b t‖ ≤ Real.exp |b| := by
   rw [circleExponential, Complex.norm_exp, Complex.mul_re, Complex.ofReal_re,
@@ -79,7 +87,9 @@ theorem norm_circleExponential_le (b : ℝ) (t : AddCircle (2 * Real.pi)) :
 
 /-- Positive Fourier coefficients of the positive-circle exponential are factorial monomials.
 Source: termwise integration of its uniformly dominated power series;
-helper for `chebyshev-series-exp-bessel`.-/
+helper for `chebyshev-series-exp-bessel`.
+@isnad1 id=eq.0h2v.s6.26563b2705d5 from=translated src=- shape=4bf317aa vocab=072f6ce5
+-/
 theorem fourierCoeff_circleExponential_nat (b : ℝ) (k : ℕ) :
     fourierCoeff (circleExponential b) (k : ℤ) = ((b ^ k / (k.factorial : ℝ) : ℝ) : ℂ) := by
   let F : ℕ → AddCircle (2 * Real.pi) → ℂ := fun n t =>
@@ -117,7 +127,9 @@ theorem fourierCoeff_circleExponential_nat (b : ℝ) (k : ℕ) :
 
 /-- The actual Fourier coefficient of `exp(a cos θ)` has the modified Bessel power series.
 Source: Trefethen, ATAP, Exercise 3.15; two scalar exponential power series.
-Helper for `chebyshev-series-exp-bessel`.-/
+Helper for `chebyshev-series-exp-bessel`.
+@isnad1 id=hassum.0h2v.s6.bdc3262b46f1 from=translated src=- shape=708216c6 vocab=4f8622ab
+-/
 theorem hasSum_pow_div_factorial_modifiedBesselCoeff (a : ℝ) (k : ℕ) :
     HasSum (fun j : ℕ => (a / 2) ^ (2 * j + k) /
       ((j.factorial : ℝ) * ((j + k).factorial : ℝ))) (modifiedBesselCoeff a k) := by
@@ -185,7 +197,9 @@ theorem hasSum_pow_div_factorial_modifiedBesselCoeff (a : ℝ) (k : ℕ) :
 
 /-- Modified Bessel coefficients are nonnegative for nonnegative arguments.
 Source: Trefethen, ATAP, Exercise 3.15; the genuine factorial power series.
-atlas: chebyshev-series-exp-bessel (partial)-/
+atlas: chebyshev-series-exp-bessel (partial)
+@isnad1 id=le.1h2v.s4.1d1281124d2b from=translated src=- shape=9141f3a7 vocab=33c86b12
+-/
 theorem modifiedBesselCoeff_nonneg {a : ℝ} (ha : 0 ≤ a) (k : ℕ) :
     0 ≤ modifiedBesselCoeff a k := by
   rw [← (hasSum_pow_div_factorial_modifiedBesselCoeff a k).tsum_eq]
@@ -195,7 +209,9 @@ theorem modifiedBesselCoeff_nonneg {a : ℝ} (ha : 0 ≤ a) (k : ℕ) :
 
 /-- The sharp elementary factorial bound on nonnegative modified Bessel coefficients.
 Source: Trefethen, ATAP, Exercise 3.15; `(j+k)! ≥ k!` in the genuine power series.
-atlas: chebyshev-series-exp-bessel (partial)-/
+atlas: chebyshev-series-exp-bessel (partial)
+@isnad1 id=le.1h2v.s6.26c8077614ac from=translated src=- shape=28d75e14 vocab=cd526f39
+-/
 theorem modifiedBesselCoeff_le_pow_div_factorial_mul_exp {a : ℝ} (ha : 0 ≤ a) (k : ℕ) :
     modifiedBesselCoeff a k ≤ (a / 2) ^ k / (k.factorial : ℝ) * Real.exp (a ^ 2 / 4) := by
   let b : ℝ := a / 2
@@ -228,7 +244,9 @@ theorem modifiedBesselCoeff_le_pow_div_factorial_mul_exp {a : ℝ} (ha : 0 ≤ a
 
 /-- Absolute modified Bessel coefficients obey the same factorial bound for every real argument.
 Source: Trefethen, ATAP, Exercise 3.15; absolute majorization of the factorial power series.
-atlas: chebyshev-series-exp-bessel (partial)-/
+atlas: chebyshev-series-exp-bessel (partial)
+@isnad1 id=le.0h2v.s6.96e74df14420 from=translated src=- shape=3bbbf3c3 vocab=7701d3d8
+-/
 theorem abs_modifiedBesselCoeff_le_pow_div_factorial_mul_exp (a : ℝ) (k : ℕ) :
     |modifiedBesselCoeff a k| ≤ (|a| / 2) ^ k / (k.factorial : ℝ) * Real.exp (a ^ 2 / 4) := by
   have hs := hasSum_pow_div_factorial_modifiedBesselCoeff a k
@@ -253,7 +271,9 @@ theorem abs_modifiedBesselCoeff_le_pow_div_factorial_mul_exp (a : ℝ) (k : ℕ)
 
 /-- The entire sequence of modified Bessel coefficients is absolutely summable.
 Source: Trefethen, ATAP, Exercise 3.15; the factorial bound and scalar exponential series.
-Helper for `chebyshev-series-exp-bessel`.-/
+Helper for `chebyshev-series-exp-bessel`.
+@isnad1 id=summable.0h1v.s4.501492018c92 from=translated src=- shape=7ebc25e0 vocab=141952a1
+-/
 theorem summable_abs_modifiedBesselCoeff (a : ℝ) :
     Summable (fun k => |modifiedBesselCoeff a k|) := by
   have hmajor : Summable (fun k : ℕ =>
@@ -264,7 +284,9 @@ theorem summable_abs_modifiedBesselCoeff (a : ℝ) :
     (abs_modifiedBesselCoeff_le_pow_div_factorial_mul_exp a) hmajor
 
 /-- The genuine Chebyshev coefficients of an exponential are absolutely summable.
-Source: Trefethen, ATAP, Exercise 3.15; helper for `chebyshev-series-exp-bessel`.-/
+Source: Trefethen, ATAP, Exercise 3.15; helper for `chebyshev-series-exp-bessel`.
+@isnad1 id=summable.0h1v.s5.038d413e6295 from=translated src=- shape=85f93dfa vocab=9bf8702f
+-/
 theorem summable_abs_chebyshevCoeff_exp (a : ℝ) :
     Summable (fun k => |chebyshevCoeff (fun x => Real.exp (a * x)) k|) := by
   apply Summable.of_nonneg_of_le (fun _ => abs_nonneg _) _ ((summable_abs_modifiedBesselCoeff a).mul_left 2)
@@ -279,7 +301,9 @@ theorem summable_abs_chebyshevCoeff_exp (a : ℝ) :
 /-- The exponential has the genuine absolute Chebyshev expansion with modified Bessel coefficients.
 Source: Trefethen, ATAP, Exercise 3.15. The integral coefficients, their factorial power series,
 nonnegativity and sharp factorial bound are proved in this module.
-atlas: chebyshev-series-exp-bessel-/
+atlas: chebyshev-series-exp-bessel
+@isnad1 id=hassum.1h2v.s6.3027c89edb1c from=translated src=- shape=ab3456b4 vocab=b192c4bc
+-/
 theorem hasSum_modifiedBesselCoeff_mul_eval_T (a : ℝ) {x : ℝ} (hx : x ∈ Icc (-1 : ℝ) 1) :
     HasSum (fun k => (if k = 0 then 1 else 2) * modifiedBesselCoeff a k * (T ℝ (k : ℤ)).eval x)
       (Real.exp (a * x)) := by
@@ -289,7 +313,9 @@ theorem hasSum_modifiedBesselCoeff_mul_eval_T (a : ℝ) {x : ℝ} (hx : x ∈ Ic
 
 /-- Exponential Chebyshev truncations converge uniformly with their modified Bessel coefficients.
 Source: Trefethen, ATAP, Exercise 3.15.
-atlas: chebyshev-series-exp-bessel (partial)-/
+atlas: chebyshev-series-exp-bessel (partial)
+@isnad1 id=tendstou.0h1v.s6.2f5cfe8bfbb1 from=translated src=- shape=6c661536 vocab=e7dc71b6
+-/
 theorem tendstoUniformlyOn_chebyshevTrunc_exp (a : ℝ) :
     TendstoUniformlyOn (fun n x => (chebyshevTrunc (fun x => Real.exp (a * x)) n).eval x)
       (fun x => Real.exp (a * x)) Filter.atTop (Icc (-1 : ℝ) 1) :=
@@ -297,7 +323,9 @@ theorem tendstoUniformlyOn_chebyshevTrunc_exp (a : ℝ) :
 
 /-- The exponential truncation error is at most twice the omitted absolute Bessel coefficients.
 Source: Trefethen, ATAP, Exercise 3.15.
-atlas: chebyshev-series-exp-bessel (partial)-/
+atlas: chebyshev-series-exp-bessel (partial)
+@isnad1 id=le.1h3v.s7.0a2e327e4ea8 from=translated src=- shape=be951513 vocab=4f53b71d
+-/
 theorem abs_exp_sub_eval_chebyshevTrunc_le_modifiedBesselCoeff_tail (a : ℝ) (n : ℕ)
     {x : ℝ} (hx : x ∈ Icc (-1 : ℝ) 1) :
     |Real.exp (a * x) - (chebyshevTrunc (fun x => Real.exp (a * x)) n).eval x| ≤

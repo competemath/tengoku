@@ -17,7 +17,9 @@ namespace NLAlib
 /-- The actual one-endpoint Hermite interpolant has the order-`2q+1` remainder, including
 `q=0` and evaluation at any node. The factor `x−t` determines the left/right Radau signs.
 Source: Gautschi (2004), Theorems 3.3 and 3.7; operator derivations (AQ9)–(AQ10).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=ex.8h7v.s8.fc87ef762d2d from=translated src=- shape=8dace522 vocab=3113f652
+-/
 theorem exists_sub_eval_hermiteEndpointInterpolate_eq {q : ℕ}
     {a b t x : ℝ} (hab : a < b) (ht : t ∈ Icc a b) {v : Fin q → ℝ}
     (hv : Function.Injective v) (hva : ∀ i, v i ∈ Ioo a b) (htv : ∀ i, t ≠ v i)

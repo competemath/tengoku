@@ -26,7 +26,9 @@ def orthogonalRecurrenceBetaSensitivityPolynomial (L : ℝ[X] →ₗ[ℝ] ℝ) (
 
 /-- The actual derivative of the monic subdiagonal norm quotient is evaluation
 of the sensitivity polynomial by the moment variation. Source: AQ28.
-atlas: recurrence-coefficient-moment-sensitivity (partial)-/
+atlas: recurrence-coefficient-moment-sensitivity (partial)
+@isnad1 id=hasderiv.7h4v.s9.ab1e3f8ba7d9 from=translated src=- shape=32e1e76c vocab=60d3e672
+-/
 theorem hasDerivAt_orthogonalRecurrenceBeta
     {L : ℝ → (ℝ[X] →ₗ[ℝ] ℝ)} {D : ℝ[X] →ₗ[ℝ] ℝ} {n : ℕ} {x : ℝ}
     (hn0 : 0 < n)
@@ -53,7 +55,9 @@ theorem hasDerivAt_orthogonalRecurrenceBeta
 
 /-- The mass coordinate's moment derivative is `D(1)`, independently of the
 zero order recurrence-boundary convention. Source: AQ31.
-atlas: recurrence-coefficient-moment-sensitivity (partial)-/
+atlas: recurrence-coefficient-moment-sensitivity (partial)
+@isnad1 id=hasderiv.1h3v.s9.a0e3f0705c2c from=translated src=- shape=08ee024d vocab=754790d9
+-/
 theorem hasDerivAt_mass_of_moment_derivatives
     {L : ℝ → (ℝ[X] →ₗ[ℝ] ℝ)} {D : ℝ[X] →ₗ[ℝ] ℝ} {x : ℝ}
     (hD : ∀ k, HasDerivAt (fun y => L y (X ^ k)) (D (X ^ k)) x) :
@@ -63,7 +67,9 @@ theorem hasDerivAt_mass_of_moment_derivatives
 /-- An arbitrary affine moment perturbation has the exact positive-order
 subdiagonal directional derivative. Fixed-basis dual functionals specialize
 this to the partial derivatives in AQ31.
-atlas: recurrence-coefficient-moment-sensitivity (partial)-/
+atlas: recurrence-coefficient-moment-sensitivity (partial)
+@isnad1 id=hasderiv.5h3v.s9.db8a43a76fc1 from=translated src=- shape=c5baac97 vocab=38ef3b13
+-/
 theorem hasDerivAt_orthogonalRecurrenceBeta_affine
     (L D : ℝ[X] →ₗ[ℝ] ℝ) {n : ℕ} (hn0 : 0 < n)
     (hn : hankelMomentDet L n ≠ 0)

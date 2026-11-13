@@ -47,7 +47,9 @@ namespace NLAlib
 /-- The binary group indexing a Walsh matrix of order `2^b`.-/
 abbrev WalshIndex (b : ℕ) := Fin b → ZMod 2
 
-/-- The Walsh row and column index set has `2^b` elements.-/
+/-- The Walsh row and column index set has `2^b` elements.
+@isnad1 id=eq.0h1v.s5.b6fad659b757 from=translated src=- shape=5b09d1d5 vocab=a474ea92
+-/
 @[simp] theorem card_walshIndex (b : ℕ) : Fintype.card (WalshIndex b) = 2 ^ b := by
   simp [WalshIndex]
 
@@ -56,7 +58,9 @@ Source: Walsh character construction; supports `srht-ose`.-/
 def walshBitSign (a : ZMod 2) : ℝ := if a = 0 then 1 else -1
 
 /-- Addition of bits multiplies their real signs.
-Source: Walsh character construction; supports `srht-ose`.-/
+Source: Walsh character construction; supports `srht-ose`.
+@isnad1 id=eq.0h2v.s6.44b344d20c01 from=translated src=- shape=b67944bb vocab=a85950cd
+-/
 theorem walshBitSign_add (a b : ZMod 2) :
     walshBitSign (a + b) = walshBitSign a * walshBitSign b := by
   have hc : ∀ a : ZMod 2, a = 0 ∨ a = 1 := by decide
@@ -65,13 +69,17 @@ theorem walshBitSign_add (a b : ZMod 2) :
     simp [walshBitSign, hone]
 
 /-- Every bit sign has squared value one.
-Source: Walsh character construction; supports `srht-ose`.-/
+Source: Walsh character construction; supports `srht-ose`.
+@isnad1 id=eq.0h1v.s5.17527519cc95 from=translated src=- shape=1bb5949c vocab=2194eafa
+-/
 @[simp] theorem walshBitSign_sq (a : ZMod 2) : walshBitSign a ^ 2 = 1 := by
   unfold walshBitSign
   split_ifs <;> norm_num
 
 /-- Summing a Walsh bit character vanishes unless its frequency is zero.
-Source: Walsh character orthogonality; supports `srht-ose`.-/
+Source: Walsh character orthogonality; supports `srht-ose`.
+@isnad1 id=eq.0h1v.s7.c6a4996709f5 from=translated src=- shape=3073a9d1 vocab=24675185
+-/
 theorem sum_walshBitSign_mul (a : ZMod 2) :
     (∑ b : ZMod 2, walshBitSign (a * b)) = if a = 0 then 2 else 0 := by
   have hc : ∀ a : ZMod 2, a = 0 ∨ a = 1 := by decide
@@ -85,23 +93,31 @@ def walshCharacter {b : ℕ} (a c : WalshIndex b) : ℝ :=
   ∏ i, walshBitSign (a i * c i)
 
 /-- Walsh characters are symmetric in the row and column labels.
-Source: Walsh construction; supports `srht-ose`.-/
+Source: Walsh construction; supports `srht-ose`.
+@isnad1 id=eq.0h3v.s4.930132e256fc from=translated src=- shape=7a5478ec vocab=d6ae7e16
+-/
 theorem walshCharacter_comm {b : ℕ} (a c : WalshIndex b) :
     walshCharacter a c = walshCharacter c a := by simp [walshCharacter, mul_comm]
 
 /-- Addition of row labels multiplies Walsh characters.
-Source: Walsh construction; supports `srht-ose`.-/
+Source: Walsh construction; supports `srht-ose`.
+@isnad1 id=eq.0h4v.s6.f4fda663543b from=translated src=- shape=6a42c977 vocab=9b48ecde
+-/
 theorem walshCharacter_add_left {b : ℕ} (a c z : WalshIndex b) :
     walshCharacter (a + c) z = walshCharacter a z * walshCharacter c z := by
   simp only [walshCharacter, Pi.add_apply, add_mul, walshBitSign_add, Finset.prod_mul_distrib]
 
 /-- Every Walsh character has squared value one.
-Source: Walsh construction; supports `srht-ose`.-/
+Source: Walsh construction; supports `srht-ose`.
+@isnad1 id=eq.0h3v.s5.8298d596182a from=translated src=- shape=f8527af6 vocab=cd6de7ff
+-/
 @[simp] theorem walshCharacter_sq {b : ℕ} (a c : WalshIndex b) : walshCharacter a c ^ 2 = 1 := by
   simp [walshCharacter, ← Finset.prod_pow]
 
 /-- Binary-vector addition is zero precisely when its two inputs agree.
-Source: Walsh character orthogonality; supports `srht-ose`.-/
+Source: Walsh character orthogonality; supports `srht-ose`.
+@isnad1 id=iff.0h3v.s7.5bed527c6842 from=translated src=- shape=99cfb232 vocab=7461c00c
+-/
 theorem walshIndex_add_eq_zero_iff {b : ℕ} (a c : WalshIndex b) : a + c = 0 ↔ a = c := by
   have hc : ∀ z : WalshIndex b, z + z = 0 := by
     intro z
@@ -115,7 +131,9 @@ theorem walshIndex_add_eq_zero_iff {b : ℕ} (a c : WalshIndex b) : a + c = 0 �
     exact hc a
 
 /-- The sum of a Walsh character is zero at every nonzero frequency.
-Source: Walsh character orthogonality; supports `srht-ose`.-/
+Source: Walsh character orthogonality; supports `srht-ose`.
+@isnad1 id=eq.0h2v.s7.aa0b96181cef from=translated src=- shape=f493944d vocab=2ddc3fb3
+-/
 theorem sum_walshCharacter {b : ℕ} (a : WalshIndex b) :
     (∑ c, walshCharacter a c) = if a = 0 then (Fintype.card (WalshIndex b) : ℝ) else 0 := by
   classical
@@ -133,7 +151,9 @@ theorem sum_walshCharacter {b : ℕ} (a : WalshIndex b) :
     exact Finset.prod_eq_zero (Finset.mem_univ i) (ite_eq_right hi)
 
 /-- Distinct Walsh characters are orthogonal over the binary group.
-Source: Walsh construction; supports `srht-ose`.-/
+Source: Walsh construction; supports `srht-ose`.
+@isnad1 id=eq.0h3v.s7.d7e40b1076f3 from=translated src=- shape=f1c8f5b0 vocab=435f47ac
+-/
 theorem sum_mul_walshCharacter {b : ℕ} (a c : WalshIndex b) :
     (∑ z, walshCharacter a z * walshCharacter c z) =
       if a = c then (Fintype.card (WalshIndex b) : ℝ) else 0 := by
@@ -146,13 +166,17 @@ def walshMatrix (b : ℕ) : Matrix (WalshIndex b) (WalshIndex b) ℝ := fun a c 
   (Real.sqrt (Fintype.card (WalshIndex b) : ℝ))⁻¹ * walshCharacter a c
 
 /-- The normalized Walsh matrix is symmetric.
-Source: Walsh construction; supports `srht-ose`.-/
+Source: Walsh construction; supports `srht-ose`.
+@isnad1 id=eq.0h1v.s4.a3eefde9648b from=translated src=- shape=ba899254 vocab=5cbb34e9
+-/
 @[simp] theorem walshMatrix_transpose (b : ℕ) : (walshMatrix b)ᵀ = walshMatrix b := by
   ext a c
   exact congrArg ((Real.sqrt (Fintype.card (WalshIndex b) : ℝ))⁻¹ * ·) (walshCharacter_comm c a)
 
 /-- The normalized Walsh matrix is an involution.
-Source: Walsh orthogonality; supports `srht-ose`.-/
+Source: Walsh orthogonality; supports `srht-ose`.
+@isnad1 id=eq.0h1v.s6.c273435350bb from=translated src=- shape=097af835 vocab=76e950a5
+-/
 theorem walshMatrix_mul_self (b : ℕ) : walshMatrix b * walshMatrix b = 1 := by
   classical
   have hn : (0 : ℝ) < Fintype.card (WalshIndex b) := by exact_mod_cast Fintype.card_pos
@@ -176,11 +200,15 @@ theorem walshMatrix_mul_self (b : ℕ) : walshMatrix b * walshMatrix b = 1 := by
     exact hs2.symm
   · simp
 
-/-- The normalized Walsh matrix has orthonormal columns.-/
+/-- The normalized Walsh matrix has orthonormal columns.
+@isnad1 id=eq.0h1v.s6.9a822f019410 from=translated src=- shape=adeff4e9 vocab=9e3430b0
+-/
 @[simp] theorem walshMatrix_transpose_mul_self (b : ℕ) : (walshMatrix b)ᵀ * walshMatrix b = 1 := by
   rw [walshMatrix_transpose, walshMatrix_mul_self]
 
-/-- Every normalized Walsh entry has squared magnitude `1/2^b`. the literal flatness hypothesis.-/
+/-- Every normalized Walsh entry has squared magnitude `1/2^b`. the literal flatness hypothesis.
+@isnad1 id=eq.0h3v.s6.57d46728a33f from=translated src=- shape=138061f3 vocab=71c29a53
+-/
 theorem walshMatrix_apply_sq (b : ℕ) (a c : WalshIndex b) :
     walshMatrix b a c ^ 2 = 1 / (2 ^ b : ℝ) := by
   rw [walshMatrix, mul_pow, walshCharacter_sq, mul_one, inv_pow,

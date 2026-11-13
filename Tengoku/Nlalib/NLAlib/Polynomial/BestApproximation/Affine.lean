@@ -17,7 +17,9 @@ open Polynomial
 namespace NLAlib
 
 /-- Pullback by an affine map cannot increase the minimax error.
-Source: ATAP, Chapter 10.-/
+Source: ATAP, Chapter 10.
+@isnad1 id=le.1h7v.s8.4bcd819f6a74 from=translated src=- shape=14d32c96 vocab=ed77e9e5
+-/
 theorem minimaxError_comp_le_of_affine {s t : Set ℝ} [CompactSpace s] [CompactSpace t]
     (n : ℕ) (f : C(t, ℝ)) (h : C(s, t)) (α β : ℝ)
     (haff : ∀ x : s, (h x : ℝ) = α * (x : ℝ) + β) :
@@ -42,7 +44,9 @@ theorem minimaxError_comp_le_of_affine {s t : Set ℝ} [CompactSpace s] [Compact
 
 /-- An affine homeomorphism preserves the best uniform polynomial approximation error.
 Source: ATAP, Chapter 10.
-atlas: minimax-error-def (partial)-/
+atlas: minimax-error-def (partial)
+@isnad1 id=eq.2h7v.s9.5322fba0eddf from=translated src=- shape=5f398a30 vocab=f23a2894
+-/
 theorem minimaxError_comp_homeomorph_of_affine {s t : Set ℝ}
     [CompactSpace s] [CompactSpace t] (n : ℕ) (f : C(t, ℝ)) (h : s ≃ₜ t)
     (α β : ℝ) (hα : α ≠ 0) (haff : ∀ x : s, (h x : ℝ) = α * (x : ℝ) + β) :
@@ -62,7 +66,9 @@ theorem minimaxError_comp_homeomorph_of_affine {s t : Set ℝ}
 /-- Rescaling `[-1,1]` affinely onto `[a,b]` preserves the degree-`n` best uniform error.
 The map is `x ↦ ((b-a)x+a+b)/2`. Source: Trefethen, ATAP, Chapter 10.
 Together with the other minimax-error declarations this supplies the complete defining API.
-atlas: minimax-error-def-/
+atlas: minimax-error-def
+@isnad1 id=eq.1h4v.s10.a1be0c3364c5 from=translated src=- shape=e140cca3 vocab=1de02e7d
+-/
 theorem minimaxError_comp_affine_interval (n : ℕ) {a b : ℝ} (hab : a < b)
     (f : C(Set.Icc a b, ℝ)) :
     minimaxError n

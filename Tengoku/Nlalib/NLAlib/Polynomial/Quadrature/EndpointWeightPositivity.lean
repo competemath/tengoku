@@ -16,7 +16,9 @@ namespace NLAlib
 
 /-- A nonnegative polynomial integral is positive if its zeros imply the zeros of a
 nonzero polynomial below the support-cardinality threshold. This allows nonnegative
-interval factors in quadrature positivity tests without square-root measurability.-/
+interval factors in quadrature positivity tests without square-root measurability.
+@isnad1 id=lt.6h4v.s7.1d485e2672ad from=translated src=- shape=8bbfa04a vocab=7c1b9a0f
+-/
 theorem integral_eval_pos_of_zero_imp_eval_zero {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) {n : ℕ} (hn : (n : ℕ∞) ≤ μ.support.encard)
     {p r : ℝ[X]} (hp0 : p ≠ 0) (hp : p.degree < n)
@@ -37,7 +39,9 @@ theorem integral_eval_pos_of_zero_imp_eval_zero {μ : Measure ℝ}
 rule strictly positive when the original positive measure has at least `q+1` support
 points. Endpoint location is not needed for this squared-cardinal argument.
 Source: Gautschi (2004), Theorems 3.3 and 3.7; operator derivations (AQ8).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=lt.4h5v.s8.802f1e144142 from=translated src=- shape=f81ad3d3 vocab=81eb1bbb
+-/
 theorem endpoint_quadrature_weight_pos_of_exact {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) {q : ℕ} (hn : (q + 1 : ℕ∞) ≤ μ.support.encard)
     (v w : Fin (q + 1) → ℝ) (hv : Function.Injective v)
@@ -66,7 +70,9 @@ theorem endpoint_quadrature_weight_pos_of_exact {μ : Measure ℝ}
   exact_mod_cast Nat.lt_succ_self q
 
 /-- A nonnegative polynomial factor times a square has positive integral when its
-product with the unsquared polynomial is below the support threshold and nonzero.-/
+product with the unsquared polynomial is below the support threshold and nonzero.
+@isnad1 id=lt.6h4v.s7.9aa521689803 from=translated src=- shape=c220c35b vocab=c0277671
+-/
 theorem integral_eval_mul_sq_pos_of_le_support_encard {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) {n : ℕ} (hn : (n : ℕ∞) ≤ μ.support.encard)
     {l p : ℝ[X]} (hl0 : l ≠ 0) (hp0 : p ≠ 0) (hp : (l * p).degree < n)
@@ -88,7 +94,9 @@ theorem integral_eval_mul_sq_pos_of_le_support_encard {μ : Measure ℝ}
 interior weights for `q+2` distinct nodes when the original measure has at least
 `q+2` support points. This support premise also handles a terminal atomic rule.
 Source: Gautschi (2004), Theorem 3.7; operator derivations (AQ8), (AQ11).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=lt.7h7v.s8.520c9c5eabea from=translated src=- shape=b8ca5e45 vocab=8c7e1e25
+-/
 theorem twoEndpoint_quadrature_weight_pos_of_exact {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) {a b : ℝ} (hab : a < b)
     (hμab : ∀ᵐ x ∂μ, x ∈ Icc a b) {q : ℕ}

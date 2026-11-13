@@ -21,7 +21,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- Actual upper bounds on two Hermitian random matrices give integrability of their
 trace-exponential sum. The offsets may have arbitrarily negative eigenvalues.
 Source: operator rederivations `eq:potentialbound` and `eq:condlieb` domination;
-atlas `matrix-freedman` (partial).-/
+atlas `matrix-freedman` (partial).
+@isnad1 id=integrab.6h7v.s8.0fa5a40ecb05 from=translated src=- shape=4ec68fad vocab=51c17ba0
+-/
 theorem integrable_traceExp_add_of_ae_le_algebraMap {Ω : Type*} [MeasurableSpace Ω]
     {μ : Measure Ω} [IsFiniteMeasure μ] [Nonempty n]
     {H X : Ω → Matrix n n ℂ} (hHMeas : AEStronglyMeasurable H μ)

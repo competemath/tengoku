@@ -69,13 +69,17 @@ def chebyshevExtrema (n : ℕ) (j : Fin (n + 1)) : Icc (-1 : ℝ) 1 :=
   ⟨node n j, node_mem_Icc⟩
 
 /-- Bundling the extrema does not change their injectivity.
-Source: Mathlib `strictAntiOn_node`.-/
+Source: Mathlib `strictAntiOn_node`.
+@isnad1 id=injectiv.0h1v.s5.7c5c318a17a6 from=translated src=- shape=0da689e5 vocab=701cdf4c
+-/
 theorem injective_chebyshevExtrema (n : ℕ) : Function.Injective (chebyshevExtrema n) := by
   intro i j hij
   exact injective_chebyshev_extrema_fin n (congrArg Subtype.val hij)
 
 /-- The Lobatto Lebesgue function is bounded by the translated finite angular kernel sum.
-Source: the endpoint-half DCT cardinal expansion.-/
+Source: the endpoint-half DCT cardinal expansion.
+@isnad1 id=le.1h2v.s6.503db8f16876 from=translated src=- shape=28c8d44b vocab=054240c8
+-/
 theorem lebesgueFunction_chebyshev_le_kernelSum {n : ℕ} (hn : 0 < n) (t : ℝ) :
     lebesgueFunction (fun j : Fin (n + 1) => node n j) (cos t) ≤ lobattoKernelSum n t := by
   unfold lebesgueFunction
@@ -95,7 +99,9 @@ theorem lebesgueFunction_chebyshev_le_kernelSum {n : ℕ} (hn : 0 < n) (t : ℝ)
 
 /-- Interpolation at Chebyshev extrema has the sharp logarithmic pointwise Lebesgue bound.
 Source: Trefethen, ATAP, Theorem 15.2; focused rederivations, Theorem `thm:lobatto`.
-atlas: lebesgue-constant-chebyshev (partial)-/
+atlas: lebesgue-constant-chebyshev (partial)
+@isnad1 id=le.2h2v.s7.e31e2b7a5de6 from=translated src=- shape=54a32b7c vocab=578b211b
+-/
 theorem lebesgueFunction_chebyshev_le_log {n : ℕ} (hn : 0 < n) {x : ℝ}
     (hx : x ∈ Icc (-1 : ℝ) 1) :
     lebesgueFunction (fun j : Fin (n + 1) => node n j) x ≤
@@ -105,7 +111,9 @@ theorem lebesgueFunction_chebyshev_le_log {n : ℕ} (hn : 0 < n) {x : ℝ}
 
 /-- The Lebesgue constant of Chebyshev-extrema interpolation is at most `1+(2/π)log(n+1)`.
 Source: Trefethen, ATAP, Theorem 15.2.
-atlas: lebesgue-constant-chebyshev-/
+atlas: lebesgue-constant-chebyshev
+@isnad1 id=le.1h1v.s7.ff4ae09d6de6 from=translated src=- shape=b864e50b vocab=f9eb0e43
+-/
 theorem lebesgueConstant_chebyshev_le_log {n : ℕ} (hn : 0 < n) :
     lebesgueConstant (Icc (-1 : ℝ) 1) (fun j : Fin (n + 1) => node n j) ≤
       1 + (2 / π) * log ((n : ℝ) + 1) := by
@@ -121,7 +129,9 @@ theorem lebesgueConstant_chebyshev_le_log {n : ℕ} (hn : 0 < n) :
 
 /-- The Chebyshev-extrema interpolation operator has the sharp logarithmic norm bound.
 Source: Trefethen, ATAP, Theorem 15.2.
-atlas: lebesgue-constant-chebyshev-/
+atlas: lebesgue-constant-chebyshev
+@isnad1 id=le.1h1v.s10.0420141b0a19 from=translated src=- shape=0b106d2e vocab=b7287a84
+-/
 theorem norm_chebyshev_interpolationOperator_le_log {n : ℕ} (hn : 0 < n) :
     ‖interpolationOperator (chebyshevExtrema n)‖ ≤ 1 + (2 / π) * log ((n : ℝ) + 1) := by
   rw [norm_interpolationOperator_eq_lebesgueConstant _ (injective_chebyshevExtrema n)]
@@ -129,7 +139,9 @@ theorem norm_chebyshev_interpolationOperator_le_log {n : ℕ} (hn : 0 < n) :
 
 /-- Chebyshev interpolation is within `2+(2/π)log(n+1)` of best uniform degree-`n` approximation.
 Source: Trefethen, ATAP, Theorem 15.2 with Theorem 15.1.
-atlas: lebesgue-constant-chebyshev-/
+atlas: lebesgue-constant-chebyshev
+@isnad1 id=le.1h2v.s10.fcd5845f9d66 from=translated src=- shape=0bc1cee1 vocab=56affa32
+-/
 theorem norm_sub_chebyshev_interpolation_le_minimaxError {n : ℕ} (hn : 0 < n)
     (f : C(Icc (-1 : ℝ) 1, ℝ)) :
     ‖f - interpolationLinearMap (Icc (-1 : ℝ) 1) (chebyshevExtrema n) f‖ ≤

@@ -73,7 +73,9 @@ private theorem root_border_det_eq (L T : 𝕜[X] →ₗ[𝕜] 𝕜)
 
 /-- The exact source root/Cauchy determinant is a proved nonzero scalar times
 the numerator polynomial times the canonical modified monic polynomial.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=eq.6h8v.s10.09a1f09fec17 from=translated src=- shape=053c7aed vocab=d3e0370c
+-/
 theorem det_rationalModificationRootBorderMatrix_eq
     (L T : 𝕜[X] →ₗ[𝕜] 𝕜) (x : Fin l → 𝕜) (z : Fin m → 𝕜)
     (hx : Function.Injective x) (hz : Function.Injective z)
@@ -167,7 +169,9 @@ def rationalModificationRootFirstRowMatrix (L T : 𝕜[X] →ₗ[𝕜] 𝕜)
       ⟨i.val-1, by have := i.isLt; omega⟩ (monicOrthogonalPolynomial L (n-m+j.val)))
 
 /-- Moving the source polynomial row to the first position contributes the
-explicit sign, including empty numerator or denominator root lists.-/
+explicit sign, including empty numerator or denominator root lists.
+@isnad1 id=eq.1h8v.s9.3e90a2892783 from=translated src=- shape=eb38303d vocab=177b9665
+-/
 theorem det_rationalModificationRootFirstRowMatrix_eq
     (L T : 𝕜[X] →ₗ[𝕜] 𝕜) (x : Fin l → 𝕜) (z : Fin m → 𝕜)
     {n : ℕ} (hm : m ≤ n) :
@@ -209,7 +213,9 @@ theorem det_rationalModificationRootFirstRowMatrix_eq
 
 /-- The source's first-row determinant is its proved nonzero normalization
 times `u πhat_n`, with the exact row-permutation sign.
-atlas: christoffel-uvarov-modification (partial)-/
+atlas: christoffel-uvarov-modification (partial)
+@isnad1 id=and.6h8v.s10.463e065d06b1 from=translated src=- shape=b0c2363b vocab=32f70f12
+-/
 theorem det_rationalModificationRootFirstRowMatrix_eq_mul_monicOrthogonalPolynomial
     (L T : 𝕜[X] →ₗ[𝕜] 𝕜) (x : Fin l → 𝕜) (z : Fin m → 𝕜)
     (hx : Function.Injective x) (hz : Function.Injective z)

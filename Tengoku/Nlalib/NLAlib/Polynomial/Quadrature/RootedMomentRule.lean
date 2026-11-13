@@ -18,7 +18,9 @@ open scoped Matrix
 namespace NLAlib
 
 /-- The diagonal entry of the actual functional calculus is its first-coordinate
-spectral rule, without any regularity requirement on the sampled function.-/
+spectral rule, without any regularity requirement on the sampled function.
+@isnad1 id=eq.2h3v.s9.f1bccf99f1e5 from=translated src=- shape=15d32af2 vocab=ed6807bd
+-/
 theorem cfc_apply_zero_zero_eq_sum {N : ℕ} (hn : 0 < N)
     {J : Matrix (Fin N) (Fin N) ℝ} (hJ : J.IsHermitian) (f : ℝ → ℝ) :
     cfc f J ⟨0, hn⟩ ⟨0, hn⟩ =
@@ -30,7 +32,9 @@ theorem cfc_apply_zero_zero_eq_sum {N : ℕ} (hn : 0 < N)
 /-- Rooted matrix moments imply polynomial exactness of the actual Hermitian matrix
 rule, rather than being assumptions of polynomial exactness themselves.
 Source: focused mathematical reroutes, Section 3 (BL3), (BL5), (BL10).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.5h5v.s8.25e044e33868 from=translated src=- shape=76106a60 vocab=84d6b6b4
+-/
 theorem integral_eval_eq_mass_mul_cfc_of_rooted_moments {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) {N : ℕ} (hn : 0 < N)
     {J : Matrix (Fin N) (Fin N) ℝ} (hJ : J.IsHermitian) (d : ℕ)
@@ -57,7 +61,9 @@ theorem integral_eval_eq_mass_mul_cfc_of_rooted_moments {μ : Measure ℝ}
 /-- The actual rooted spectral rule of an unreduced real Hermitian tridiagonal
 matrix has distinct nodes and positive mass-scaled first-coordinate weights.
 Source: focused mathematical reroutes, Section 3 (BL11).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=and.5h3v.s8.cbe831287282 from=translated src=- shape=c689c9e3 vocab=9b05d050
+-/
 theorem rootedMatrixRule_nodes_injective_and_weights_pos {N : ℕ} (hn : 0 < N)
     {J : Matrix (Fin N) (Fin N) ℝ} (hJ : J.IsHermitian) (htri : IsTridiagonal J)
     (hsub : ∀ i j : Fin N, i.val + 1 = j.val → J i j ≠ 0)
@@ -67,7 +73,9 @@ theorem rootedMatrixRule_nodes_injective_and_weights_pos {N : ℕ} (hn : 0 < N)
   exact ⟨hJ.eigenvalues_injective_of_unreduced htri.2 hsub,
     fun i => mul_pos hmass (sq_pos_of_ne_zero (hJ.eigenvectorBasis_apply_zero_ne_zero htri.2 hsub hn i))⟩
 
-/-- The actual normalized first-coordinate spectral weights sum to one.-/
+/-- The actual normalized first-coordinate spectral weights sum to one.
+@isnad1 id=eq.2h2v.s8.a5a9ba7aa805 from=translated src=- shape=cb8feb63 vocab=b7f9b651
+-/
 theorem sum_sq_eigenvectorBasis_apply_zero {N : ℕ} (hn : 0 < N)
     {J : Matrix (Fin N) (Fin N) ℝ} (hJ : J.IsHermitian) :
     (∑ i, (hJ.eigenvectorBasis i ⟨0, hn⟩) ^ 2) = 1 := by
@@ -76,7 +84,9 @@ theorem sum_sq_eigenvectorBasis_apply_zero {N : ℕ} (hn : 0 < N)
     one_mul, one_pow] using h
 
 /-- A positive measure with at least one support point has strictly positive mass.
-Every polynomial moment is finite in the stated moment interface.-/
+Every polynomial moment is finite in the stated moment interface.
+@isnad1 id=lt.2h1v.s5.e554e3a9b96e from=translated src=- shape=d386be70 vocab=a0922652
+-/
 theorem integral_one_pos_of_one_le_support_encard {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) (hs : (1 : ℕ∞) ≤ μ.support.encard) :
     0 < ∫ _ : ℝ, (1 : ℝ) ∂μ := by

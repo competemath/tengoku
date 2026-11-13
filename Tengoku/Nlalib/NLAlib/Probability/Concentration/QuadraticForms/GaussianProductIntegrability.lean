@@ -34,7 +34,9 @@ namespace NLAlib
 
 open scoped Matrix.Norms.L2Operator in
 /-- Source-transport helper `toEuclideanCLM_adjoint` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=eq.0h2v.s14.ffcffde5fa25 from=translated src=- shape=995b3d0a vocab=25611d74
+-/
 lemma toEuclideanCLM_adjoint {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
     ContinuousLinearMap.adjoint (Matrix.toEuclideanCLM (𝕜 := ℝ) A) =
       Matrix.toEuclideanCLM (𝕜 := ℝ) A.conjTranspose := by
@@ -45,7 +47,9 @@ lemma toEuclideanCLM_adjoint {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
 
 open scoped Matrix.Norms.L2Operator in
 /-- Source-transport helper `trace_adjoint_comp_toEuclideanCLM_eq_frobSq` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=eq.0h2v.s14.b27ce73d9c4e from=translated src=- shape=a00208e2 vocab=2a69434e
+-/
 lemma trace_adjoint_comp_toEuclideanCLM_eq_frobSq {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) :
     (LinearMap.trace ℝ (EuclideanSpace ℝ (Fin n)))
@@ -134,7 +138,9 @@ lemma trace_adjoint_comp_toEuclideanCLM_eq_frobSq {n : ℕ}
 
 open scoped Matrix.Norms.L2Operator in
 /-- Source-transport helper `eigenvalue_adjoint_comp_le_opNorm_sq` for Hanson–Wright.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=other.0h3v.s11.c69039261e4b from=translated src=- shape=10989050 vocab=2f74c79b
+-/
 lemma eigenvalue_adjoint_comp_le_opNorm_sq {E : Type*} [NormedAddCommGroup E]
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
     (T : E →L[ℝ] E) (i : Fin (Module.finrank ℝ E)) :
@@ -167,7 +173,9 @@ lemma eigenvalue_adjoint_comp_le_opNorm_sq {E : Type*} [NormedAddCommGroup E]
 
 open scoped Matrix.Norms.L2Operator in
 /-- Gaussian square-form bound for a positive symmetric operator, proved by spectral
-diagonalization and one-dimensional square-exponential estimates.-/
+diagonalization and one-dimensional square-exponential estimates.
+@isnad1 id=le.3h3v.s9.a528ce4a306d from=translated src=- shape=3ac3cb42 vocab=547d69ef
+-/
 lemma integral_exp_quadratic_stdGaussian_le {E : Type*} [NormedAddCommGroup E]
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
     (T : E →L[ℝ] E) (hTpos : T.toLinearMap.IsPositive) {θ : ℝ} (hθ : 0 ≤ θ)
@@ -262,7 +270,9 @@ lemma integral_exp_quadratic_stdGaussian_le {E : Type*} [NormedAddCommGroup E]
 
 open scoped Matrix.Norms.L2Operator in
 /-- Gaussian square-form integrability for a positive symmetric operator, under the
-strict version of the same coordinate smallness condition.-/
+strict version of the same coordinate smallness condition.
+@isnad1 id=integrab.3h3v.s9.32b3d18e6410 from=translated src=- shape=438018d6 vocab=f50f3fa1
+-/
 lemma integrable_exp_quadratic_stdGaussian {E : Type*} [NormedAddCommGroup E]
     [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
     (T : E →L[ℝ] E) (hTpos : T.toLinearMap.IsPositive) {θ : ℝ} (hθ : 0 ≤ θ)
@@ -330,7 +340,9 @@ lemma integrable_exp_quadratic_stdGaussian {E : Type*} [NormedAddCommGroup E]
     exact (hpoint z).symm
 
 open scoped Matrix.Norms.L2Operator in
-/-- Integrability of the exponential of a Gaussian bilinear form.-/
+/-- Integrability of the exponential of a Gaussian bilinear form.
+@isnad1 id=integrab.1h3v.s12.bf4481556731 from=translated src=- shape=5d94f42f vocab=8e8b6dde
+-/
 lemma integrable_exp_inner_toEuclideanCLM_prod_stdGaussian {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) {l : ℝ}
     (hsmall : (l ^ 2 / 2) * specNorm A ^ 2 * exp 1 < 1) :
@@ -392,7 +404,9 @@ lemma integrable_exp_inner_toEuclideanCLM_prod_stdGaussian {n : ℕ}
     exact hquad_int.congr houter_eq.symm
 
 open scoped Matrix.Norms.L2Operator in
-/-- A Frobenius-scale bound for the exponential moment of a Gaussian bilinear form.-/
+/-- A Frobenius-scale bound for the exponential moment of a Gaussian bilinear form.
+@isnad1 id=le.1h3v.s12.fd591829ed8c from=translated src=- shape=920ebf1f vocab=e7d908c1
+-/
 lemma integral_exp_inner_toEuclideanCLM_prod_stdGaussian_le {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) {l : ℝ}
     (hsmall : (l ^ 2 / 2) * specNorm A ^ 2 * exp 1 ≤ 1 / 2) :

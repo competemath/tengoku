@@ -37,7 +37,9 @@ private theorem abs_sum_mul_eval_T_le_two {ι : Type*} [Fintype ι]
 /-- Every symmetric positive quadrature rule of mass two, exact through degree
 `2n+1`, has the sharp Gauss even-coefficient-tail error bound. Source: Trefethen,
 ATAP, Theorem 19.4. Reflection is stated by the actual node-and-weight permutation.
-atlas: gauss-clenshaw-curtis-quadrature-error (partial)-/
+atlas: gauss-clenshaw-curtis-quadrature-error (partial)
+@isnad1 id=le.9h7v.s9.d8eae887f578 from=translated src=- shape=98f22ebe vocab=54423a54
+-/
 theorem abs_integral_sub_symmetric_quadrature_le_even_tail
     {ι : Type*} [Fintype ι] (v w : ι → ℝ) (hv : ∀ i, v i ∈ Icc (-1 : ℝ) 1)
     (hw : ∀ i, 0 ≤ w i) (hmass : ∑ i, w i = 2)
@@ -106,7 +108,9 @@ theorem abs_integral_sub_symmetric_quadrature_le_even_tail
 /-- A symmetric positive rule exact through degree `2n+1` has the sharp analytic
 Gauss constant when its actual Chebyshev coefficients decay geometrically.
 Source: Trefethen, ATAP, Theorem 19.4.
-atlas: gauss-clenshaw-curtis-quadrature-error (partial)-/
+atlas: gauss-clenshaw-curtis-quadrature-error (partial)
+@isnad1 id=le.13h9v.s9.a799d0833a7f from=translated src=- shape=684127a3 vocab=55cf2214
+-/
 theorem abs_integral_sub_symmetric_quadrature_le_geometric
     {ι : Type*} [Fintype ι] (v w : ι → ℝ) (hv : ∀ i, v i ∈ Icc (-1 : ℝ) 1)
     (hw : ∀ i, 0 ≤ w i) (hmass : ∑ i, w i = 2)
@@ -130,7 +134,9 @@ theorem abs_integral_sub_symmetric_quadrature_le_geometric
 Gauss analytic error `(64/15)Mρ^(-2n)/(ρ²−1)` for an open-ellipse analytic function.
 Source: Trefethen, ATAP, Theorem 19.4. All structural hypotheses refer to the rule's
 actual nodes and weights.
-atlas: gauss-clenshaw-curtis-quadrature-error (partial)-/
+atlas: gauss-clenshaw-curtis-quadrature-error (partial)
+@isnad1 id=le.10h8v.s9.0abf7d0d867b from=translated src=- shape=461e3c62 vocab=1e0730ba
+-/
 theorem abs_integral_re_sub_symmetric_quadrature_le_of_open_ellipse
     {ι : Type*} [Fintype ι] (v w : ι → ℝ) (hv : ∀ i, v i ∈ Icc (-1 : ℝ) 1)
     (hw : ∀ i, 0 ≤ w i) (hmass : ∑ i, w i = 2)

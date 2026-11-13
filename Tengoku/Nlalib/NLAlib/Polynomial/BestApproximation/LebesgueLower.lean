@@ -21,7 +21,9 @@ namespace NLAlib
 
 /-- Every nontrivial canonical node grid exceeds the sharp universal logarithmic
 constant. Source: Bernstein–Erdős peak comparison and the finite reference-grid
-cotangent bounds in the focused reroutes.-/
+cotangent bounds in the focused reroutes.
+@isnad1 id=lt.2h2v.s7.d91af82842c7 from=translated src=- shape=3f56c361 vocab=1c81289d
+-/
 theorem logarithmic_lower_lt_lebesgueConstant_canonical {n : ℕ} (hn : 0 < n)
     {u : Fin n → ℝ} (hu : u ∈ interiorNodeSimplex n) :
     (2 / π) * (log (n + 2 : ℕ) + eulerMascheroniConstant + log (4 / π)) <
@@ -55,7 +57,9 @@ theorem logarithmic_lower_lt_lebesgueConstant_canonical {n : ℕ} (hn : 0 < n)
     _ = _ := by rw [← sum_mul, has, one_mul]
 
 /-- Every ordered grid with at least two nodes exceeds the sharp universal
-logarithmic constant. Source: ATAP Theorem 15.2 and the canonical node-hull reduction.-/
+logarithmic constant. Source: ATAP Theorem 15.2 and the canonical node-hull reduction.
+@isnad1 id=lt.2h2v.s7.e4bc6613aeac from=translated src=- shape=23a70e0f vocab=9146972a
+-/
 theorem logarithmic_lower_lt_lebesgueConstant_ordered_add_two {n : ℕ}
     (v : Fin (n + 2) → ℝ) (hv : StrictMono v) (hvI : ∀ j, v j ∈ Icc (-1 : ℝ) 1) :
     (2 / π) * (log (n + 2 : ℕ) + eulerMascheroniConstant + log (4 / π)) <
@@ -72,7 +76,9 @@ theorem logarithmic_lower_lt_lebesgueConstant_ordered_add_two {n : ℕ}
 
 /-- The sharp logarithmic lower bound for every ordered interpolation grid,
 including a single node. Source: ATAP Theorem 15.2.
-atlas: lebesgue-constant-lower-bound (partial)-/
+atlas: lebesgue-constant-lower-bound (partial)
+@isnad1 id=lt.2h2v.s7.5a46a2f62671 from=translated src=- shape=23a70e0f vocab=9146972a
+-/
 theorem logarithmic_lower_lt_lebesgueConstant_ordered {n : ℕ}
     (v : Fin (n + 1) → ℝ) (hv : StrictMono v) (hvI : ∀ j, v j ∈ Icc (-1 : ℝ) 1) :
     (2 / π) * (log (n + 1 : ℕ) + eulerMascheroniConstant + log (4 / π)) <
@@ -88,7 +94,9 @@ theorem logarithmic_lower_lt_lebesgueConstant_ordered {n : ℕ}
 /-- The universal sharp logarithmic bound and strict equispaced exponential
 bound, with their exact constants. Source: Trefethen, ATAP, Theorem 15.2,
 equations (15.7) and (15.9); focused reroutes.
-atlas: lebesgue-constant-lower-bound-/
+atlas: lebesgue-constant-lower-bound
+@isnad1 id=and.0h0v.s8.88f368466e8f from=translated src=- shape=40584913 vocab=3fa0f14e
+-/
 theorem lebesgueConstant_logarithmic_and_equispaced_lower_bounds :
     (∀ (n : ℕ) (v : Fin (n + 1) → ℝ), StrictMono v →
       (∀ j, v j ∈ Icc (-1 : ℝ) 1) →

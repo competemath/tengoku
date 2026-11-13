@@ -25,7 +25,9 @@ def interpolationGapCriticalPoint (n : ℕ) (t : Fin n → ℝ) (i : Fin (n + 1)
     Classical.choose (exists_interpolationGapPeak_nondegenerate h.1 h.2 i) else 0
 
 /-- The chosen actual critical point has all the nondegenerate peak properties.
-Source: the actual compact gap maximum theorem.-/
+Source: the actual compact gap maximum theorem.
+@isnad1 id=other.2h3v.s9.4ab5fdf346e8 from=translated src=- shape=4aa73b78 vocab=74df5e57
+-/
 theorem interpolationGapCriticalPoint_spec {n : ℕ} (hn : 0 < n) {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (i : Fin (n + 1)) :
     let τ := interpolationGapCriticalPoint n t i
@@ -41,7 +43,9 @@ theorem interpolationGapCriticalPoint_spec {n : ℕ} (hn : 0 < n) {t : Fin n →
   exact Classical.choose_spec (exists_interpolationGapPeak_nondegenerate hn ht i)
 
 /-- The actual gap critical points are strictly ordered.
-Source: each lies strictly inside its own ordered node gap.-/
+Source: each lies strictly inside its own ordered node gap.
+@isnad1 id=strictmo.2h2v.s6.27cb1e227079 from=translated src=- shape=40766488 vocab=1d96429a
+-/
 theorem strictMono_interpolationGapCriticalPoint {n : ℕ} (hn : 0 < n) {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) : StrictMono (interpolationGapCriticalPoint n t) := by
   intro i j hij
@@ -56,7 +60,9 @@ def interpolationGapDividedDerivative (n : ℕ) (t : Fin n → ℝ) (i : Fin (n 
   (interpolationGapPolynomial n t i).derivative /ₘ (X - C (interpolationGapCriticalPoint n t i))
 
 /-- The critical-point factor divides the actual gap derivative exactly.
-Source: the polynomial factor theorem.-/
+Source: the polynomial factor theorem.
+@isnad1 id=eq.2h3v.s7.39b355d0946b from=translated src=- shape=ba8946b9 vocab=61e53745
+-/
 theorem mul_interpolationGapDividedDerivative {n : ℕ} (hn : 0 < n) {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (i : Fin (n + 1)) :
     (X - C (interpolationGapCriticalPoint n t i)) * interpolationGapDividedDerivative n t i =
@@ -64,7 +70,9 @@ theorem mul_interpolationGapDividedDerivative {n : ℕ} (hn : 0 < n) {t : Fin n 
   exact mul_divByMonic_eq_iff_isRoot.mpr (interpolationGapCriticalPoint_spec hn ht i).2.1
 
 /-- Dividing the gap derivative by its critical factor leaves degree strictly below `n`.
-Source: the derivative and monic division degree bounds.-/
+Source: the derivative and monic division degree bounds.
+@isnad1 id=lt.2h3v.s6.8569d359856d from=translated src=- shape=43a5188e vocab=d2bf7198
+-/
 theorem degree_interpolationGapDividedDerivative_lt {n : ℕ} (hn : 0 < n) {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (i : Fin (n + 1)) :
     (interpolationGapDividedDerivative n t i).degree < n := by
@@ -79,7 +87,9 @@ theorem degree_interpolationGapDividedDerivative_lt {n : ℕ} (hn : 0 < n) {t : 
     (by rw [degree_X_sub_C]; exact_mod_cast (show 0 < 1 by omega))).trans_le hder
 
 /-- At its own critical point, the divided derivative is the strictly negative second derivative.
-Source: differentiation of the exact critical-factor identity.-/
+Source: differentiation of the exact critical-factor identity.
+@isnad1 id=eq.2h3v.s8.fe6983e119a0 from=translated src=- shape=3b289a66 vocab=2b3b6eaf
+-/
 theorem eval_interpolationGapDividedDerivative_self {n : ℕ} (hn : 0 < n) {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (i : Fin (n + 1)) :
     (interpolationGapDividedDerivative n t i).eval (interpolationGapCriticalPoint n t i) =
@@ -90,7 +100,9 @@ theorem eval_interpolationGapDividedDerivative_self {n : ℕ} (hn : 0 < n) {t : 
     eval_add, eval_mul, eval_sub, eval_X, eval_C, sub_self, zero_mul, eval_one, one_mul, add_zero] using h
 
 /-- The actual divided derivatives are negative on the diagonal of the peak evaluation grid.
-Source: nondegeneracy of each actual gap maximum.-/
+Source: nondegeneracy of each actual gap maximum.
+@isnad1 id=lt.2h3v.s6.1364179095c6 from=translated src=- shape=6b431113 vocab=b44427c7
+-/
 theorem eval_interpolationGapDividedDerivative_self_neg {n : ℕ} (hn : 0 < n) {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (i : Fin (n + 1)) :
     (interpolationGapDividedDerivative n t i).eval (interpolationGapCriticalPoint n t i) < 0 := by
@@ -99,7 +111,9 @@ theorem eval_interpolationGapDividedDerivative_self_neg {n : ℕ} (hn : 0 < n) {
 
 /-- The actual divided derivatives have strict alternating off-diagonal signs at the peak points.
 Source: the strict pairwise Wronskian certificate.
-atlas: lebesgue-constant-lower-bound (partial)-/
+atlas: lebesgue-constant-lower-bound (partial)
+@isnad1 id=lt.3h4v.s7.c044d4425806 from=translated src=- shape=bca64a45 vocab=8a2a5611
+-/
 theorem eval_interpolationGapDividedDerivative_offdiag_pos {n : ℕ} (hn : 0 < n) {t : Fin n → ℝ}
     (ht : t ∈ interiorNodeSimplex n) (i j : Fin (n + 1)) (hij : i ≠ j) :
     0 < (-1 : ℝ) ^ (i.val + j.val) *

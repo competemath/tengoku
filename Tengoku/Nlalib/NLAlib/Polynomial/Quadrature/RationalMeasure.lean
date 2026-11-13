@@ -25,7 +25,9 @@ def dividedPolynomialMeasure (μ : Measure ℝ) (ω : ℝ[X]) : Measure ℝ :=
   μ.withDensity (fun x => ENNReal.ofReal ((ω.eval x)⁻¹))
 
 /-- Integration against the reciprocal-density measure is division by the
-polynomial inside the actual original integral.-/
+polynomial inside the actual original integral.
+@isnad1 id=eq.1h3v.s6.a35499c6f82b from=translated src=- shape=b00a5262 vocab=648b027c
+-/
 theorem integral_dividedPolynomialMeasure (μ : Measure ℝ) (ω : ℝ[X])
     (hω : ∀ᵐ x ∂μ, 0 < ω.eval x) (f : ℝ → ℝ) :
     (∫ x, f x ∂dividedPolynomialMeasure μ ω) = ∫ x, f x / ω.eval x ∂μ := by
@@ -39,7 +41,9 @@ theorem integral_dividedPolynomialMeasure (μ : Measure ℝ) (ω : ℝ[X])
 of all fixed-denominator rational functions of the same numerator degree,
 after multiplying each quadrature weight by its denominator value.
 Source: Gautschi (2004), rational Gauss quadrature; operator derivations AQ36.
-atlas: rational-gauss-quadrature (partial)-/
+atlas: rational-gauss-quadrature (partial)
+@isnad1 id=iff.2h7v.s8.0e195d326f2f from=translated src=- shape=60155269 vocab=f5084097
+-/
 theorem polynomial_exactness_iff_rational_exactness (μ : Measure ℝ) (ω : ℝ[X])
     (hω : ∀ᵐ x ∂μ, 0 < ω.eval x) {ι : Type*} [DecidableEq ι]
     (s : Finset ι) (v w : ι → ℝ) (hv : ∀ i ∈ s, ω.eval (v i) ≠ 0) (d : ℕ) :
@@ -58,7 +62,9 @@ theorem polynomial_exactness_iff_rational_exactness (μ : Measure ℝ) (ω : ℝ
 /-- A prescribed rational rule is exact if and only if the weights divided
 by the denominator are polynomial-exact for the reciprocal-density measure.
 Source: the converse rational Gauss implication; operator derivations AQ36.
-atlas: rational-gauss-quadrature (partial)-/
+atlas: rational-gauss-quadrature (partial)
+@isnad1 id=iff.2h7v.s8.4bd1a2ed5cdb from=translated src=- shape=b1428b9f vocab=f5084097
+-/
 theorem rational_exactness_iff_divided_weights_exactness (μ : Measure ℝ) (ω : ℝ[X])
     (hω : ∀ᵐ x ∂μ, 0 < ω.eval x) {ι : Type*} [DecidableEq ι]
     (s : Finset ι) (v w : ι → ℝ) (hv : ∀ i ∈ s, ω.eval (v i) ≠ 0) (d : ℕ) :

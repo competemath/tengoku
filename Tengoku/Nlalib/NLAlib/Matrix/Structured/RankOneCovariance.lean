@@ -19,7 +19,9 @@ namespace Matrix
 variable {𝕜 : Type*} [RCLike 𝕜] {d : Type*} [Fintype d]
 
 /-- Applying a linear map to a vector transforms its rank-one covariance
-by congruence, including rectangular and singular maps.-/
+by congruence, including rectangular and singular maps.
+@isnad1 id=eq.0h5v.s8.c941825fe70f from=translated src=- shape=4cef395f vocab=5b5da746
+-/
 theorem vecMulVec_mulVec_star_mulVec {m : Type*} [Fintype m]
     (S : Matrix m d 𝕜) (x : d → 𝕜) :
     vecMulVec (S *ᵥ x) (star (S *ᵥ x)) = S * vecMulVec x (star x) * Sᴴ := by
@@ -28,14 +30,18 @@ theorem vecMulVec_mulVec_star_mulVec {m : Type*} [Fintype m]
 variable [DecidableEq d]
 
 /-- A rank-one covariance minus the identity is bounded below by minus the
-identity, without any bound on the vector norm.-/
+identity, without any bound on the vector norm.
+@isnad1 id=le.0h3v.s8.e8a944ef08c3 from=translated src=- shape=f533cad3 vocab=2978df60
+-/
 theorem neg_one_le_vecMulVec_sub_one (x : d → 𝕜) :
     -(1 : Matrix d d 𝕜) ≤ vecMulVec x (star x) - 1 := by
   simpa only [zero_sub] using sub_le_sub_right
     (posSemidef_vecMulVec_self_star x).nonneg (1 : Matrix d d 𝕜)
 
 /-- The negative centered rank-one covariance is bounded above by the
-identity, without any bound on the vector norm.-/
+identity, without any bound on the vector norm.
+@isnad1 id=le.0h3v.s7.3b51a4f1f545 from=translated src=- shape=d04d9a56 vocab=93991eaf
+-/
 theorem one_sub_vecMulVec_le_one (x : d → 𝕜) :
     (1 : Matrix d d 𝕜) - vecMulVec x (star x) ≤ 1 :=
   sub_le_self _ (posSemidef_vecMulVec_self_star x).nonneg

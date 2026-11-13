@@ -25,7 +25,9 @@ def endpointLinearWeights (μ : Measure ℝ) (a c : ℝ) : Fin 2 → ℝ :=
 /-- The two-endpoint linear weights are nonnegative on the supporting interval;
 no moment nondegeneracy is needed, so either weight may vanish.
 Source: focused mathematical reroutes, Section 3, zero-order Lobatto branch.
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=le.2h4v.s5.f80160aca43c from=translated src=- shape=99e535be vocab=7b9b5f2e
+-/
 theorem endpointLinearWeights_nonneg {μ : Measure ℝ} {a c : ℝ} (hac : a < c)
     (hμ : ∀ᵐ x ∂μ, x ∈ Icc a c) (i : Fin 2) : 0 ≤ endpointLinearWeights μ a c i := by
   fin_cases i
@@ -53,7 +55,9 @@ private theorem integrable_endpointCardinals {μ : Measure ℝ} [IsFiniteMeasure
 /-- The actual zero-order Lobatto rule integrates every affine polynomial, including
 one-point measures and the zero measure. Source: focused mathematical reroutes,
 Section 3, zero-order Lobatto branch.
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.3h4v.s7.0df91e7286cf from=translated src=- shape=e4474135 vocab=70bfde04
+-/
 theorem integral_eval_eq_endpointLinearWeights_mul_eval {μ : Measure ℝ}
     [IsFiniteMeasure μ] {a c : ℝ} (hac : a < c)
     (hμ : ∀ᵐ x ∂μ, x ∈ Icc a c) {p : ℝ[X]} (hp : p.degree ≤ 1) :
@@ -73,7 +77,9 @@ theorem integral_eval_eq_endpointLinearWeights_mul_eval {μ : Measure ℝ}
 
 /-- The zero-order two-endpoint weights sum to the original mass, including a
 vanishing endpoint weight and the zero measure. Source: focused reroutes, Section 3.
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.2h3v.s6.b8ceb1282358 from=translated src=- shape=23ee7f5b vocab=eac9a002
+-/
 theorem sum_endpointLinearWeights {μ : Measure ℝ} [IsFiniteMeasure μ] {a c : ℝ}
     (hac : a < c) (hμ : ∀ᵐ x ∂μ, x ∈ Icc a c) :
     (∑ i, endpointLinearWeights μ a c i) = ∫ _ : ℝ, (1 : ℝ) ∂μ := by
@@ -83,7 +89,9 @@ theorem sum_endpointLinearWeights {μ : Measure ℝ} [IsFiniteMeasure μ] {a c :
 
 /-- Both explicit zero-order endpoint weights vanish for the zero measure.
 Source: focused mathematical reroutes, Section 3, zero-measure branch.
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.0h2v.s6.a776d981e6f7 from=translated src=- shape=6def840e vocab=3299e08b
+-/
 theorem endpointLinearWeights_zero (a c : ℝ) : endpointLinearWeights 0 a c = 0 := by
   ext i
   fin_cases i <;> simp [endpointLinearWeights]
@@ -91,7 +99,9 @@ theorem endpointLinearWeights_zero (a c : ℝ) : endpointLinearWeights 0 a c = 0
 /-- A measure concentrated on a coincident-endpoint interval is integrated by its
 one-point mass rule for every function; no two-distinct-endpoint rule is asserted.
 Source: focused mathematical reroutes, Section 3, coincident-endpoint branch.
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.1h3v.s6.37db318eab57 from=translated src=- shape=91eec11c vocab=26081fa3
+-/
 theorem integral_eq_mass_mul_of_ae_mem_singleton_interval {μ : Measure ℝ}
     [IsFiniteMeasure μ] {a : ℝ} (hμ : ∀ᵐ x ∂μ, x ∈ Icc a a) (f : ℝ → ℝ) :
     (∫ x, f x ∂μ) = (∫ _ : ℝ, (1 : ℝ) ∂μ) * f a := by

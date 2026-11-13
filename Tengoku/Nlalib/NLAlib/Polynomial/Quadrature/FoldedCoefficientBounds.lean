@@ -13,7 +13,9 @@ open Finset
 namespace NLAlib
 
 /-- Folding an even frequency depends only on its index modulo the grid size.
-Source: the finite-block proof in the focused quadrature reroute.-/
+Source: the finite-block proof in the focused quadrature reroute.
+@isnad1 id=eq.1h3v.s6.683c18f4fa1f from=translated src=- shape=bd4d8555 vocab=f804fc9a
+-/
 theorem chebyshevAliasIndex_two_mul_add_mul {n : ℕ} (_hn : 0 < n) (l r : ℕ) :
     chebyshevAliasIndex n (2 * (l * n + r)) = chebyshevAliasIndex n (2 * r) := by
   unfold chebyshevAliasIndex
@@ -23,7 +25,9 @@ theorem chebyshevAliasIndex_two_mul_add_mul {n : ℕ} (_hn : 0 < n) (l r : ℕ) 
   rw [hmod]
 
 /-- The positive even Lebesgue moments have total absolute mass at most one.
-Source: the finite telescope in the focused quadrature reroute.-/
+Source: the finite telescope in the focused quadrature reroute.
+@isnad1 id=le.0h0v.s5.e7b7aa6aa03d from=translated src=- shape=86c273eb vocab=96d60e66
+-/
 theorem tsum_abs_chebyshevMoment_two_mul_succ_le_one :
     (∑' j : ℕ, |chebyshevMoment (2 * (j + 1))|) ≤ 1 := by
   apply Real.tsum_le_of_sum_range_le (fun j => abs_nonneg _)
@@ -32,7 +36,9 @@ theorem tsum_abs_chebyshevMoment_two_mul_succ_le_one :
   exact sub_le_self _ (by positivity)
 
 /-- The positive even moment sequence is absolutely summable.
-Source: the finite telescope in the focused quadrature reroute.-/
+Source: the finite telescope in the focused quadrature reroute.
+@isnad1 id=summable.0h0v.s5.c4eb2e4c7510 from=translated src=- shape=06d99bac vocab=7430f096
+-/
 theorem summable_abs_chebyshevMoment_two_mul_succ :
     Summable (fun j : ℕ => |chebyshevMoment (2 * (j + 1))|) := by
   apply summable_of_sum_range_le (c := 1) (fun j => abs_nonneg _)
@@ -41,7 +47,9 @@ theorem summable_abs_chebyshevMoment_two_mul_succ :
   exact sub_le_self _ (by positivity)
 
 /-- The unfurled even tail under an inverse-power coefficient envelope is at most
-`A/n^p`. Source: focused quadrature reroute; the positive even moment mass is one.-/
+`A/n^p`. Source: focused quadrature reroute; the positive even moment mass is one.
+@isnad1 id=le.4h4v.s7.f753191da5c5 from=translated src=- shape=cdf00c23 vocab=e0c46d81
+-/
 theorem tsum_abs_mul_chebyshevMoment_even_tail_le
     {c : ℕ → ℝ} (hcS : Summable (fun k => |c k|)) {n p : ℕ}
     (hn : 0 < n) {A : ℝ} (hA : 0 ≤ A)
@@ -79,7 +87,9 @@ theorem tsum_abs_mul_chebyshevMoment_even_tail_le
   exact h.trans (by simpa only [mul_one] using hmass)
 
 /-- The folded even tail under an inverse-power coefficient envelope is at most
-`6A/n^p`, for `p≥2`. Source: focused quadrature reroute, finite alias-block estimate.-/
+`6A/n^p`, for `p≥2`. Source: focused quadrature reroute, finite alias-block estimate.
+@isnad1 id=le.5h4v.s7.d63bd7091b14 from=translated src=- shape=16626e89 vocab=15401df2
+-/
 theorem tsum_abs_mul_chebyshevMoment_alias_even_tail_le
     {c : ℕ → ℝ} (hcS : Summable (fun k => |c k|)) {n p : ℕ}
     (hn : 2 ≤ n) (hp : 2 ≤ p) {A : ℝ} (hA : 0 ≤ A)

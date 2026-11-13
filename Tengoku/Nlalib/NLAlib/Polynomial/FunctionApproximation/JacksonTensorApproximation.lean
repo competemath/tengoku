@@ -18,7 +18,9 @@ open Real MeasureTheory Set Finset Polynomial.Chebyshev
 
 namespace NLAlib
 
-/-- The tensor basis is continuous in the coordinate vector.-/
+/-- The tensor basis is continuous in the coordinate vector.
+@isnad1 id=continuo.0h2v.s5.67d48274a432 from=translated src=- shape=0ac4adeb vocab=584eaaf5
+-/
 @[fun_prop] theorem continuous_tensorNormalizedChebyshev {ι : Type*} [Fintype ι]
     (α : ι → ℕ) : Continuous (tensorNormalizedChebyshev α) := by
   unfold tensorNormalizedChebyshev
@@ -30,20 +32,26 @@ def tensorChebyshevJacksonApprox {ι : Type*} [Fintype ι] [DecidableEq ι]
   ∑ α ∈ Fintype.piFinset (fun _ : ι => range (M + 1)), tensorChebyshevJacksonDamping M α *
     tensorChebyshevCoeff f α * tensorNormalizedChebyshev α (WithLp.ofLp r)
 
-/-- Every finite tensor Jackson approximant is a continuous polynomial function.-/
+/-- Every finite tensor Jackson approximant is a continuous polynomial function.
+@isnad1 id=continuo.0h3v.s5.6bf72fe43f96 from=translated src=- shape=ae871874 vocab=f15c2caa
+-/
 @[fun_prop] theorem continuous_tensorChebyshevJacksonApprox {ι : Type*} [Fintype ι] [DecidableEq ι]
     (f : EuclideanSpace ℝ ι → ℝ) (M : ℕ) : Continuous (tensorChebyshevJacksonApprox f M) := by
   unfold tensorChebyshevJacksonApprox
   exact continuous_finsetSum _ (fun α _ => continuous_const.mul
     ((continuous_tensorNormalizedChebyshev α).comp (PiLp.continuous_ofLp 2 _)))
 
-/-- Tensor approximation depends only on values on the closed cube.-/
+/-- Tensor approximation depends only on values on the closed cube.
+@isnad1 id=eq.1h5v.s5.40072d1b6644 from=translated src=- shape=ef185884 vocab=34d6b4f3
+-/
 theorem tensorChebyshevJacksonApprox_congr {ι : Type*} [Fintype ι] [DecidableEq ι]
     {f g : EuclideanSpace ℝ ι → ℝ} (hfg : EqOn f g (chebyshevCube ι)) (M : ℕ)
     (r : EuclideanSpace ℝ ι) : tensorChebyshevJacksonApprox f M r = tensorChebyshevJacksonApprox g M r := by
   simp_rw [tensorChebyshevJacksonApprox, tensorChebyshevCoeff_congr hfg]
 
-/-- The finite tensor polynomial is the actual product-kernel integral.-/
+/-- The finite tensor polynomial is the actual product-kernel integral.
+@isnad1 id=eq.1h4v.s7.14eaec7d56a7 from=translated src=- shape=2c7f84d4 vocab=a39c318f
+-/
 theorem tensorChebyshevJacksonApprox_eq_integral {ι : Type*} [Fintype ι] [DecidableEq ι]
     {f : EuclideanSpace ℝ ι → ℝ} (hf : Continuous f) (M : ℕ) (r : EuclideanSpace ℝ ι) :
     tensorChebyshevJacksonApprox f M r =
@@ -67,7 +75,9 @@ theorem tensorChebyshevJacksonApprox_eq_integral {ι : Type*} [Fintype ι] [Deci
   ring
 
 /-- In finite Euclidean space, the Euclidean norm is bounded by the sum of
-absolute coordinate values.-/
+absolute coordinate values.
+@isnad1 id=le.0h2v.s6.58dac0dfdb3b from=translated src=- shape=9a9ebc90 vocab=b75748e5
+-/
 theorem euclidean_norm_le_sum_abs {ι : Type*} [Fintype ι] (x : EuclideanSpace ℝ ι) :
     ‖x‖ ≤ ∑ i, |x i| := by
   classical
@@ -80,7 +90,9 @@ theorem euclidean_norm_le_sum_abs {ι : Type*} [Fintype ι] (x : EuclideanSpace 
     _ = _ := by simp only [PiLp.norm_single, Real.norm_eq_abs]
 
 /-- Euclidean Lipschitz functions have the explicit tensor Jackson uniform
-error `6dL/M`. This global form is the intermediate extension theorem.-/
+error `6dL/M`. This global form is the intermediate extension theorem.
+@isnad1 id=le.3h5v.s7.c2f3c3f2ee9b from=translated src=- shape=e437d9e8 vocab=8af01753
+-/
 theorem abs_tensorChebyshevJacksonApprox_sub_le_of_lipschitzWith
     {ι : Type*} [Fintype ι] [DecidableEq ι] {f : EuclideanSpace ℝ ι → ℝ}
     {L : NNReal} (hf : LipschitzWith L f) {M : ℕ} (hM : 1 ≤ M)
@@ -119,7 +131,9 @@ theorem abs_tensorChebyshevJacksonApprox_sub_le_of_lipschitzWith
     (integral_tensorChebyshevJacksonKernel_mul_sum_abs_sub_le hM hr) L.coe_nonneg).trans_eq (by ring))
 
 /-- The full tensor Jackson error requires Lipschitz continuity only on the
-closed Euclidean cube, as in the informal approximation theorem.-/
+closed Euclidean cube, as in the informal approximation theorem.
+@isnad1 id=le.3h5v.s7.56d52b9007b9 from=translated src=- shape=a3e0d860 vocab=0a1baba0
+-/
 theorem abs_tensorChebyshevJacksonApprox_sub_le_of_lipschitzOnWith
     {ι : Type*} [Fintype ι] [DecidableEq ι] {f : EuclideanSpace ℝ ι → ℝ}
     {L : NNReal} (hf : LipschitzOnWith L f (chebyshevCube ι)) {M : ℕ} (hM : 1 ≤ M)

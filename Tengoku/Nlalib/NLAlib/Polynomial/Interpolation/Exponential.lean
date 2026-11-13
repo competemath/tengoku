@@ -37,7 +37,9 @@ private theorem hasDerivAt_scaled_exp (A B x : ℝ) :
 /-- A degree-`n` polynomial interpolating a positive growing exponential at
 `n+1` ordered nodes is positive and has nonnegative derivative to the right
 of the last node. Source: the retained reciprocal lower-bound appendix,
-finite Rolle proof of positive divided differences.-/
+finite Rolle proof of positive divided differences.
+@isnad1 id=and.6h6v.s8.60e8532e1499 from=translated src=- shape=236a591d vocab=1f2ac98c
+-/
 theorem eval_pos_and_derivative_nonneg_of_exp_interpolation (n : ℕ) :
     ∀ (p : ℝ[X]) (_hp : p.degree ≤ n) (v : Fin (n+1) → ℝ), StrictMono v →
       ∀ (A B : ℝ), 0 < A → 0 < B →
@@ -87,7 +89,9 @@ theorem eval_pos_and_derivative_nonneg_of_exp_interpolation (n : ℕ) :
 /-- To the right of all interpolation nodes, an exponential interpolant is
 positive, increasing, and bounded above by the target exponential.
 Source: the retained reciprocal lower-bound appendix, interpolation remainder.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=and.6h6v.s8.1e23e8943d88 from=translated src=- shape=27f9d12d vocab=36b20fb9
+-/
 theorem eval_pos_le_exp_and_derivative_nonneg_of_interpolation {n : ℕ}
     {p : ℝ[X]} (hp : p.degree ≤ n) {v : Fin (n+1) → ℝ} (hv : StrictMono v)
     {a x B : ℝ} (hB : 0 < B) (hva : ∀ i, v i ∈ Ioo 0 a)

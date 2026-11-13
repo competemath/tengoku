@@ -21,7 +21,9 @@ namespace NLAlib
 /-- Equal-magnitude alternating extrema certify a best degree-`n` polynomial.
 Source: Trefethen, ATAP, Theorem 10.1, the sufficient direction. The sign is represented
 by `|σ|=1`, equivalent to `σ∈{1,-1}`, and zero-error certificates are included.
-atlas: equioscillation (partial)-/
+atlas: equioscillation (partial)
+@isnad1 id=eq.4h6v.s9.3af860e86fdf from=translated src=- shape=226cd12d vocab=b85c9cec
+-/
 theorem norm_sub_eq_minimaxError_of_equioscillation {s : Set ℝ} [CompactSpace s]
     {n : ℕ} (f : C(s, ℝ)) {p : ℝ[X]} (hp : p.degree ≤ n)
     {v : Fin (n + 2) → s} (hv : StrictMono (fun i => (v i : ℝ)))

@@ -22,7 +22,9 @@ variable {𝕜 ι : Type*} [Field 𝕜] [Fintype ι] [DecidableEq ι]
 part and the repeated-pole principal parts, with unique coefficients. At pole
 degree `d` the polynomial part is zero, and at pole degree zero it is ordinary
 polynomial approximation. Source: Gautschi (2004), rational space AQ37.
-atlas: rational-gauss-quadrature (partial)-/
+atlas: rational-gauss-quadrature (partial)
+@isnad1 id=existsun.3h6v.s8.808787ee38fd from=translated src=- shape=8ca51b90 vocab=063a460d
+-/
 theorem existsUnique_fixed_denominator_partial_fractions
     (v : ι → 𝕜) (hv : Function.Injective v) (s : ι → ℕ)
     {d : ℕ} (hmd : (∑ i, s i) ≤ d) {p : 𝕜[X]} (hp : p.degree < d) :
@@ -38,7 +40,9 @@ theorem existsUnique_fixed_denominator_partial_fractions
 bounded numerator degree exactly when its polynomial part has the advertised
 degree bound. This includes a zero polynomial part when the pole degree is
 the full degree budget. Source: rational space AQ37.
-atlas: rational-gauss-quadrature (partial)-/
+atlas: rational-gauss-quadrature (partial)
+@isnad1 id=iff.1h7v.s7.0ef48caa3a29 from=translated src=- shape=07863e8f vocab=09ba2f33
+-/
 theorem degree_fixed_denominator_partial_fractions_lt_iff
     (v : ι → 𝕜) (s : ι → ℕ) {d : ℕ} (hmd : (∑ i, s i) ≤ d)
     (q : 𝕜[X]) (c : (i : ι) → Fin (s i) → 𝕜) :
@@ -48,7 +52,9 @@ theorem degree_fixed_denominator_partial_fractions_lt_iff
 
 /-- Evaluating the cleared principal-part expansion recovers the actual
 rational functions at every pole-free point. Source: rational space AQ37.
-atlas: rational-gauss-quadrature (partial)-/
+atlas: rational-gauss-quadrature (partial)
+@isnad1 id=eq.1h7v.s8.626c8eb85fd9 from=translated src=- shape=75d5601e vocab=9a4bea65
+-/
 theorem eval_div_linearPoleProduct_eq_partial_fractions
     (v : ι → 𝕜) (s : ι → ℕ) (q : 𝕜[X])
     (c : (i : ι) → Fin (s i) → 𝕜) {t : 𝕜} (ht : ∀ i, t ≠ v i) :
@@ -78,7 +84,9 @@ theorem eval_div_linearPoleProduct_eq_partial_fractions
   field_simp [herase, sub_ne_zero.mpr (ht i)]
 
 /-- A source factor `1+ζX` differs from its monic pole factor by the nonzero
-scalar `ζ`. This identifies the pole-space convention with AQ37.-/
+scalar `ζ`. This identifies the pole-space convention with AQ37.
+@isnad1 id=eq.1h2v.s9.99f9f8118a16 from=translated src=- shape=0f3fe98a vocab=e49d41c3
+-/
 theorem one_add_C_mul_X_eq_C_mul_pole {ζ : 𝕜} (hζ : ζ ≠ 0) :
     1 + C ζ*X = C ζ*(X-C (-ζ⁻¹)) := by
   rw [mul_sub, ← map_mul, mul_neg, mul_inv_cancel₀ hζ, map_neg, C_1]
@@ -88,7 +96,9 @@ omit [DecidableEq ι] in
 /-- The prescribed repeated `1+ζX` denominator is a nonzero scalar times the
 monic linear-pole denominator. All pole multiplicities, including zero, are
 retained. Source: rational Gauss space AQ37.
-atlas: rational-gauss-quadrature (partial)-/
+atlas: rational-gauss-quadrature (partial)
+@isnad1 id=eq.1h4v.s9.bbdff07e9428 from=translated src=- shape=4dc4317c vocab=532cd1cf
+-/
 theorem prod_one_add_C_mul_X_pow_eq_C_mul_linearPoleProduct
     (ζ : ι → 𝕜) (hζ : ∀ i, ζ i ≠ 0) (s : ι → ℕ) :
     (∏ i, (1+C (ζ i)*X)^(s i)) =
@@ -99,7 +109,9 @@ theorem prod_one_add_C_mul_X_pow_eq_C_mul_linearPoleProduct
 
 /-- Each monic pole power is exactly the prescribed source rational basis
 function times its explicit nonzero scalar. Source: rational Gauss space AQ37.
-atlas: rational-gauss-quadrature (partial)-/
+atlas: rational-gauss-quadrature (partial)
+@isnad1 id=eq.1h5v.s7.fbf53d377b61 from=translated src=- shape=65b8fecd vocab=e93e3686
+-/
 theorem div_pole_pow_eq_mul_div_one_add_mul_pow {ζ t c : 𝕜}
     (hζ : ζ ≠ 0) (s : ℕ) :
     c/(t-(-ζ⁻¹))^s = (c*ζ^s)/(1+ζ*t)^s := by

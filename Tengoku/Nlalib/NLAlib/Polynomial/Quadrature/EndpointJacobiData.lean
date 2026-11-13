@@ -38,7 +38,9 @@ def lobattoNodes (L : ℝ[X] →ₗ[ℝ] ℝ) (q : ℕ) (a c : ℝ) : Fin (q + 2
 def lobattoWeights (L : ℝ[X] →ₗ[ℝ] ℝ) (q : ℕ) (a c : ℝ) : Fin (q + 2) → ℝ :=
   fun i => L 1 * ((isHermitian_lobattoJacobiMatrix L q a c).eigenvectorBasis i 0) ^ 2
 
-/-- The actual left Radau cfc estimate is its explicit Golub–Welsch node sum.-/
+/-- The actual left Radau cfc estimate is its explicit Golub–Welsch node sum.
+@isnad1 id=eq.0h4v.s9.ffe17855754b from=translated src=- shape=01875757 vocab=247c723f
+-/
 theorem mass_mul_cfc_leftRadauJacobiMatrix_eq_sum (L : ℝ[X] →ₗ[ℝ] ℝ) (q : ℕ)
     (a : ℝ) (f : ℝ → ℝ) :
     L 1 * cfc f (leftRadauJacobiMatrix L q a) 0 0 =
@@ -50,7 +52,9 @@ theorem mass_mul_cfc_leftRadauJacobiMatrix_eq_sum (L : ℝ[X] →ₗ[ℝ] ℝ) (
   rw [mul_sum]
   exact sum_congr rfl fun _ _ => by dsimp [leftRadauWeights, leftRadauNodes]; ring
 
-/-- The actual right Radau cfc estimate is its explicit Golub–Welsch node sum.-/
+/-- The actual right Radau cfc estimate is its explicit Golub–Welsch node sum.
+@isnad1 id=eq.0h4v.s9.ba882ec7399a from=translated src=- shape=01875757 vocab=8f1a1a7f
+-/
 theorem mass_mul_cfc_rightRadauJacobiMatrix_eq_sum (L : ℝ[X] →ₗ[ℝ] ℝ) (q : ℕ)
     (c : ℝ) (f : ℝ → ℝ) :
     L 1 * cfc f (rightRadauJacobiMatrix L q c) 0 0 =
@@ -62,7 +66,9 @@ theorem mass_mul_cfc_rightRadauJacobiMatrix_eq_sum (L : ℝ[X] →ₗ[ℝ] ℝ) 
   rw [mul_sum]
   exact sum_congr rfl fun _ _ => by dsimp [rightRadauWeights, rightRadauNodes]; ring
 
-/-- The actual Lobatto cfc estimate is its explicit Golub–Welsch node sum.-/
+/-- The actual Lobatto cfc estimate is its explicit Golub–Welsch node sum.
+@isnad1 id=eq.0h5v.s9.340c0755350b from=translated src=- shape=87ac0d2b vocab=794c7133
+-/
 theorem mass_mul_cfc_lobattoJacobiMatrix_eq_sum (L : ℝ[X] →ₗ[ℝ] ℝ) (q : ℕ)
     (a c : ℝ) (f : ℝ → ℝ) :
     L 1 * cfc f (lobattoJacobiMatrix L q a c) 0 0 =
@@ -76,7 +82,9 @@ theorem mass_mul_cfc_lobattoJacobiMatrix_eq_sum (L : ℝ[X] →ₗ[ℝ] ℝ) (q 
 
 /-- The actual left Radau node sum integrates all polynomials through degree `2q`.
 Source: focused mathematical reroutes, Section 3 (BL5), (BL11).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.3h4v.s7.7ae2cb480c2c from=translated src=- shape=b1639c07 vocab=9379c3dc
+-/
 theorem integral_eval_eq_sum_leftRadauWeights_mul_eval {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) (q : ℕ) (hs : (q + 1 : ℕ∞) ≤ μ.support.encard)
     (a : ℝ) {p : ℝ[X]} (hp : p.degree < (2 * q + 1 : ℕ)) :
@@ -88,7 +96,9 @@ theorem integral_eval_eq_sum_leftRadauWeights_mul_eval {μ : Measure ℝ}
 
 /-- The actual right Radau node sum integrates all polynomials through degree `2q`.
 Source: focused mathematical reroutes, Section 3 (BL5), (BL11).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.3h4v.s7.2b6870b83cab from=translated src=- shape=b1639c07 vocab=b558f200
+-/
 theorem integral_eval_eq_sum_rightRadauWeights_mul_eval {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) (q : ℕ) (hs : (q + 1 : ℕ∞) ≤ μ.support.encard)
     (c : ℝ) {p : ℝ[X]} (hp : p.degree < (2 * q + 1 : ℕ)) :
@@ -100,7 +110,9 @@ theorem integral_eval_eq_sum_rightRadauWeights_mul_eval {μ : Measure ℝ}
 
 /-- The actual Lobatto node sum integrates all polynomials through degree `2q+1`.
 Source: focused mathematical reroutes, Section 3 (BL10), (BL11).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.3h5v.s7.ae5cfd65c74a from=translated src=- shape=0a175c73 vocab=730f48a5
+-/
 theorem integral_eval_eq_sum_lobattoWeights_mul_eval {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) (q : ℕ) (hs : (q + 1 : ℕ∞) ≤ μ.support.encard)
     (a c : ℝ) {p : ℝ[X]} (hp : p.degree < (2 * q + 2 : ℕ)) :
@@ -112,7 +124,9 @@ theorem integral_eval_eq_sum_lobattoWeights_mul_eval {μ : Measure ℝ}
 
 /-- Each actual endpoint rule has total weight equal to the original measure mass,
 before any interval or nondegeneracy hypothesis is imposed.
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=and.0h4v.s8.85c4afbb2aae from=translated src=- shape=e4babed9 vocab=65b8bddf
+-/
 theorem sum_endpointJacobiWeights (L : ℝ[X] →ₗ[ℝ] ℝ) (q : ℕ) (a c : ℝ) :
     (∑ i, leftRadauWeights L q a i) = L 1 ∧
       (∑ i, rightRadauWeights L q c i) = L 1 ∧ (∑ i, lobattoWeights L q a c i) = L 1 := by

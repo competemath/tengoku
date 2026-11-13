@@ -22,7 +22,9 @@ open scoped Topology
 namespace NLAlib
 
 /-- The degree-bounded polynomial restriction space is finite dimensional.
-Source: the coefficient coordinates of polynomials of bounded degree, ATAP, Chapter 10.-/
+Source: the coefficient coordinates of polynomials of bounded degree, ATAP, Chapter 10.
+@isnad1 id=finitedi.0h2v.s9.4c0500ab004c from=translated src=- shape=bae45581 vocab=ad84c8b9
+-/
 instance polynomialApproximationSpace_finiteDimensional (s : Set ℝ) (n : ℕ) :
     FiniteDimensional ℝ (polynomialApproximationSpace s n) := by
   have : FiniteDimensional ℝ (degreeLT ℝ (n + 1)) :=
@@ -33,18 +35,24 @@ instance polynomialApproximationSpace_finiteDimensional (s : Set ℝ) (n : ℕ) 
   infer_instance
 
 /-- Increasing the degree enlarges the polynomial approximation space.
-Source: ATAP, Chapter 10.-/
+Source: ATAP, Chapter 10.
+@isnad1 id=le.1h3v.s8.e21025684d28 from=translated src=- shape=33379a74 vocab=e59603af
+-/
 theorem polynomialApproximationSpace_mono {s : Set ℝ} {m n : ℕ} (hmn : m ≤ n) :
     polynomialApproximationSpace s m ≤ polynomialApproximationSpace s n := by
   exact Submodule.map_mono (degreeLE_mono (by exact_mod_cast hmn))
 
 /-- The best uniform error is nonnegative. Source: ATAP, Chapter 10.
-atlas: minimax-error-def (partial)-/
+atlas: minimax-error-def (partial)
+@isnad1 id=le.0h3v.s6.9b202b31c600 from=translated src=- shape=985249e3 vocab=68d74bfd
+-/
 theorem minimaxError_nonneg {s : Set ℝ} [CompactSpace s] (n : ℕ) (f : C(s, ℝ)) :
     0 ≤ minimaxError n f := Metric.infDist_nonneg
 
 /-- Any degree-bounded competitor gives an upper bound on best uniform error.
-Source: ATAP, Chapter 10.-/
+Source: ATAP, Chapter 10.
+@isnad1 id=le.1h4v.s9.e8dd31c2950c from=translated src=- shape=4b36e7e6 vocab=e123fb65
+-/
 theorem minimaxError_le_norm_sub {s : Set ℝ} [CompactSpace s] {n : ℕ}
     (f : C(s, ℝ)) {p : C(s, ℝ)} (hp : p ∈ polynomialApproximationSpace s n) :
     minimaxError n f ≤ ‖f - p‖ := by
@@ -52,13 +60,17 @@ theorem minimaxError_le_norm_sub {s : Set ℝ} [CompactSpace s] {n : ℕ}
 
 /-- The zero polynomial bounds best approximation by the norm of the function.
 Source: ATAP, Chapter 10.
-atlas: minimax-error-def (partial)-/
+atlas: minimax-error-def (partial)
+@isnad1 id=le.0h3v.s6.6aea6303363b from=translated src=- shape=013b0b0b vocab=083ac850
+-/
 theorem minimaxError_le_norm {s : Set ℝ} [CompactSpace s] (n : ℕ) (f : C(s, ℝ)) :
     minimaxError n f ≤ ‖f‖ := by
   simpa using minimaxError_le_norm_sub f (polynomialApproximationSpace s n).zero_mem
 
 /-- Best approximation error decreases with the allowed degree. Source: ATAP, Chapter 10.
-atlas: minimax-error-def (partial)-/
+atlas: minimax-error-def (partial)
+@isnad1 id=antitone.0h2v.s6.1255c07c2000 from=translated src=- shape=a9f5e68e vocab=7ccbc75a
+-/
 theorem minimaxError_antitone {s : Set ℝ} [CompactSpace s] (f : C(s, ℝ)) :
     Antitone (fun n => minimaxError n f) := by
   intro m n hmn
@@ -68,7 +80,9 @@ theorem minimaxError_antitone {s : Set ℝ} [CompactSpace s] (f : C(s, ℝ)) :
 /-- A polynomial of degree at most `n` attains the best uniform approximation error.
 Source: Cheney (1966), Chapter 2; ATAP, Chapter 10. The compact set may be any compact
 subset of the real line, including empty sets.
-atlas: minimax-error-def (partial)-/
+atlas: minimax-error-def (partial)
+@isnad1 id=ex.0h3v.s8.a39c40f75fd0 from=translated src=- shape=468d6fbe vocab=aa4a29a8
+-/
 theorem exists_degree_le_norm_sub_eq_minimaxError {s : Set ℝ} [CompactSpace s]
     (n : ℕ) (f : C(s, ℝ)) :
     ∃ p : ℝ[X], p.degree ≤ n ∧ ‖f - p.toContinuousMapOn s‖ = minimaxError n f := by
@@ -79,7 +93,9 @@ theorem exists_degree_le_norm_sub_eq_minimaxError {s : Set ℝ} [CompactSpace s]
 
 /-- The minimax error is the least uniform bound attainable by a degree-bounded polynomial.
 Source: Cheney (1966), Chapter 2; Trefethen, ATAP, Chapter 10.
-atlas: minimax-error-def (partial)-/
+atlas: minimax-error-def (partial)
+@isnad1 id=isleast.0h3v.s8.cf4de5e3e347 from=translated src=- shape=8cd8c8d0 vocab=89cbd9b4
+-/
 theorem isLeast_minimaxError {s : Set ℝ} [CompactSpace s] (n : ℕ) (f : C(s, ℝ)) :
     IsLeast {E : ℝ | ∃ p : ℝ[X], p.degree ≤ n ∧ ‖f - p.toContinuousMapOn s‖ ≤ E}
       (minimaxError n f) := by
@@ -90,7 +106,9 @@ theorem isLeast_minimaxError {s : Set ℝ} [CompactSpace s] (n : ℕ) (f : C(s, 
     (mem_polynomialApproximationSpace_iff.mpr ⟨q, hq, rfl⟩)).trans hE
 
 /-- Distance to the polynomial space equals the infimum of its attainable uniform bounds.
-Source: Trefethen, ATAP, Chapter 10.-/
+Source: Trefethen, ATAP, Chapter 10.
+@isnad1 id=eq.0h3v.s8.3b2996b4be8a from=translated src=- shape=489a51f1 vocab=05fcf83f
+-/
 theorem minimaxError_eq_sInf {s : Set ℝ} [CompactSpace s] (n : ℕ) (f : C(s, ℝ)) :
     minimaxError n f =
       sInf {E : ℝ | ∃ p : ℝ[X], p.degree ≤ n ∧ ‖f - p.toContinuousMapOn s‖ ≤ E} :=
@@ -98,7 +116,9 @@ theorem minimaxError_eq_sInf {s : Set ℝ} [CompactSpace s] (n : ℕ) (f : C(s, 
 
 /-- The minimax error is the least pointwise uniform error bound attained by a polynomial.
 Source: Trefethen, ATAP, Chapter 10, the existential uniform-bound convention.
-atlas: minimax-error-def (partial)-/
+atlas: minimax-error-def (partial)
+@isnad1 id=isleast.1h4v.s7.aa580db66f5e from=translated src=- shape=75a71557 vocab=0d2c84e1
+-/
 theorem isLeast_minimaxError_pointwise {a b : ℝ} (hab : a ≤ b) (n : ℕ)
     (f : C(Set.Icc a b, ℝ)) :
     IsLeast {E : ℝ | ∃ p : ℝ[X], p.degree ≤ n ∧
@@ -119,7 +139,9 @@ theorem isLeast_minimaxError_pointwise {a b : ℝ} (hab : a ≤ b) (n : ℕ)
 
 /-- Adding a degree-bounded polynomial does not change the best approximation error.
 Source: Cheney (1966), Chapter 2; ATAP, Chapter 10.
-atlas: minimax-error-def (partial)-/
+atlas: minimax-error-def (partial)
+@isnad1 id=eq.1h4v.s9.0484c5a7ae8a from=translated src=- shape=d430bdb1 vocab=590dbe76
+-/
 theorem minimaxError_add_of_mem {s : Set ℝ} [CompactSpace s] {n : ℕ}
     (f : C(s, ℝ)) {p : C(s, ℝ)} (hp : p ∈ polynomialApproximationSpace s n) :
     minimaxError n (f + p) = minimaxError n f := by
@@ -135,7 +157,9 @@ theorem minimaxError_add_of_mem {s : Set ℝ} [CompactSpace s] {n : ℕ}
 
 /-- Uniform polynomial approximation error is subadditive.
 Source: Cheney (1966), Chapter 2; ATAP, Chapter 10.
-atlas: minimax-error-def (partial)-/
+atlas: minimax-error-def (partial)
+@isnad1 id=le.0h4v.s7.689122056edd from=translated src=- shape=f4e442e3 vocab=8b9ac286
+-/
 theorem minimaxError_add_le {s : Set ℝ} [CompactSpace s] (n : ℕ) (f g : C(s, ℝ)) :
     minimaxError n (f + g) ≤ minimaxError n f + minimaxError n g := by
   let S := polynomialApproximationSpace s n
@@ -150,7 +174,9 @@ theorem minimaxError_add_le {s : Set ℝ} [CompactSpace s] (n : ℕ) (f g : C(s,
 
 /-- Scaling a function scales its minimax error by the absolute value of the scalar.
 Source: Cheney (1966), Chapter 2; ATAP, Chapter 10.
-atlas: minimax-error-def (partial)-/
+atlas: minimax-error-def (partial)
+@isnad1 id=eq.0h4v.s7.0a753f787a30 from=translated src=- shape=bf59f24e vocab=0ce884be
+-/
 theorem minimaxError_smul {s : Set ℝ} [CompactSpace s] (n : ℕ) (c : ℝ) (f : C(s, ℝ)) :
     minimaxError n (c • f) = |c| * minimaxError n f := by
   let S := polynomialApproximationSpace s n
@@ -176,7 +202,9 @@ theorem minimaxError_smul {s : Set ℝ} [CompactSpace s] (n : ℕ) (c : ℝ) (f 
 
 /-- Best uniform polynomial errors tend to zero on a real interval.
 Source: Weierstrass approximation, as used in ATAP, Chapter 10.
-atlas: minimax-error-def (partial)-/
+atlas: minimax-error-def (partial)
+@isnad1 id=tendsto.0h3v.s6.1c6a5a6e4bf2 from=translated src=- shape=d0b67c05 vocab=68b3d8c2
+-/
 theorem tendsto_minimaxError_atTop {a b : ℝ} (f : C(Set.Icc a b, ℝ)) :
     Filter.Tendsto (fun n => minimaxError n f) Filter.atTop (𝓝 0) := by
   apply Metric.tendsto_atTop.mpr
@@ -191,7 +219,9 @@ theorem tendsto_minimaxError_atTop {a b : ℝ} (f : C(Set.Icc a b, ℝ)) :
       (by simpa [norm_sub_rev] using hp)
 
 /-- A linear projection with bound `B` is within `1+B` of the best uniform polynomial error.
-Source: Trefethen, ATAP, Theorem 15.1.-/
+Source: Trefethen, ATAP, Theorem 15.1.
+@isnad1 id=le.2h5v.s11.be380bd86eb4 from=translated src=- shape=14889fb7 vocab=941efe8f
+-/
 theorem norm_sub_projection_le_minimaxError {s : Set ℝ} [CompactSpace s]
     (n : ℕ) (L : C(s, ℝ) →ₗ[ℝ] C(s, ℝ)) (B : ℝ)
     (hL : ∀ p ∈ polynomialApproximationSpace s n, L p = p)

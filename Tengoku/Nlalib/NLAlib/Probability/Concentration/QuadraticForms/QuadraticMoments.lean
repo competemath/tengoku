@@ -76,7 +76,9 @@ private lemma integrable_coord_mul_coord {z : Ω → n → ℝ} (hz : ∀ i, Mem
 
 omit [Fintype n] in
 /-- Second moments of an isotropic vector with pairwise independent coordinates:
-`𝔼[z_i z_j] = δ_ij`. Atlas: `hutchinson-unbiased` (helper).-/
+`𝔼[z_i z_j] = δ_ij`. Atlas: `hutchinson-unbiased` (helper).
+@isnad1 id=eq.4h6v.s8.d6e5f5031c22 from=translated src=- shape=9b9f30bf vocab=e6635266
+-/
 theorem integral_coord_mul_coord [DecidableEq n] {z : Ω → n → ℝ}
     (hz : ∀ i, MemLp (fun ω => z ω i) 2 μ)
     (hind : ∀ i j, i ≠ j → IndepFun (fun ω => z ω i) (fun ω => z ω j) μ)
@@ -105,7 +107,9 @@ private lemma integrable_coord_mul_coord_of_second_moments [DecidableEq n] {z : 
 square matrix. The diagonal second moments force square integrability; independence and zero
 means are unnecessary, and arbitrary measures and empty index types are included.
 Hutchinson 1989; Avron–Toledo 2011, §2.
-atlas: hutchinson-unbiased-/
+atlas: hutchinson-unbiased
+@isnad1 id=integrab.2h5v.s7.d232d48284f1 from=translated src=- shape=8cc70f3d vocab=a0894330
+-/
 theorem integrable_quadForm_of_second_moments [DecidableEq n]
     (A : Matrix n n ℝ) {z : Ω → n → ℝ}
     (hmeas : ∀ i, AEMeasurable (fun ω => z ω i) μ)
@@ -121,7 +125,9 @@ theorem integrable_quadForm_of_second_moments [DecidableEq n]
 zero means are unnecessary; arbitrary measures and empty index types are included
 (integrability: `integrable_quadForm_of_second_moments`).
 Hutchinson 1989; Avron–Toledo 2011, §2.
-atlas: hutchinson-unbiased-/
+atlas: hutchinson-unbiased
+@isnad1 id=eq.2h5v.s7.f3f2fc87ee10 from=translated src=- shape=5aeb4820 vocab=404190de
+-/
 theorem integral_quadForm_eq_trace_of_second_moments [DecidableEq n]
     (A : Matrix n n ℝ) {z : Ω → n → ℝ}
     (hmeas : ∀ i, AEMeasurable (fun ω => z ω i) μ)
@@ -144,7 +150,9 @@ Source: Hutchinson (1989) [`hutch89`]; Avron–Toledo (2011) [`at11`].
 Atlas: `hutchinson-unbiased`.
 Deviation: stated for any isotropic vector with pairwise independent coordinates (only
 `𝔼[z_i z_j] = δ_ij` is used); the source states it for Rademacher `z`.
-atlas: hutchinson-unbiased-/
+atlas: hutchinson-unbiased
+@isnad1 id=eq.4h5v.s7.46bc47c73e83 from=translated src=- shape=78da2f2f vocab=2aa030ce
+-/
 theorem integral_quadForm_eq_trace [IsProbabilityMeasure μ] (A : Matrix n n ℝ)
     {z : Ω → n → ℝ} (hz : ∀ i, MemLp (fun ω => z ω i) 2 μ)
     (hind : ∀ i j, i ≠ j → IndepFun (fun ω => z ω i) (fun ω => z ω j) μ)
@@ -189,7 +197,9 @@ private lemma mul_mul_mul_eq_prod_pow [DecidableEq n] (x : n → ℝ) (i j k l :
 /-- Fourth mixed moments of a vector with independent, centred coordinates of unit variance and
 common fourth moment `m₄`:
 `𝔼[z_i z_j z_k z_l] = δ_ij δ_kl + δ_ik δ_jl + δ_il δ_jk + (m₄ − 3) δ_ijkl`.
-Atlas: `hutchinson-variance` (helper).-/
+Atlas: `hutchinson-variance` (helper).
+@isnad1 id=eq.5h9v.s9.273c18c3090e from=translated src=- shape=b7004855 vocab=b63d28b4
+-/
 theorem integral_coord_mul_coord_mul_coord_mul_coord [IsProbabilityMeasure μ] [DecidableEq n]
     {z : Ω → n → ℝ}
     (hmeas : ∀ i, AEMeasurable (fun ω => z ω i) μ)
@@ -255,7 +265,9 @@ end Probability
 /-- The index sum behind the Hutchinson variance:
 `∑ᵢⱼₖₗ A_ij A_kl (δ_ij δ_kl + δ_ik δ_jl + δ_il δ_jk + (m₄ − 3) δ_ijkl)
   = (tr A)² + ∑ᵢⱼ A_ij² + ∑ᵢⱼ A_ij A_ji + (m₄ − 3) ∑ᵢ A_ii²`.
-Atlas: `hutchinson-variance` (helper).-/
+Atlas: `hutchinson-variance` (helper).
+@isnad1 id=eq.0h3v.s9.dac59903c98e from=translated src=- shape=eafa7b6a vocab=fd5762c4
+-/
 theorem sum_fourth_moment_contraction [DecidableEq n] (A : Matrix n n ℝ) (m₄ : ℝ) :
     ∑ i, ∑ j, ∑ k, ∑ l, A i j * A k l *
       ((if i = j then 1 else 0) * (if k = l then 1 else 0) +
@@ -284,7 +296,9 @@ variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasu
 coordinates of unit variance and common fourth moment `m₄`,
 `𝔼[(zᵀ A z)²] = (tr A)² + ∑ᵢⱼ A_ij² + ∑ᵢⱼ A_ij A_ji + (m₄ − 3) ∑ᵢ A_ii²`.
 Source: Avron–Toledo (2011) [`at11`], proofs of Lem 5, 6; Hutchinson (1989) [`hutch89`].
-Atlas: `hutchinson-variance`.-/
+Atlas: `hutchinson-variance`.
+@isnad1 id=eq.6h6v.s8.833f1cf7fc30 from=translated src=- shape=64d8c5c2 vocab=62f17b37
+-/
 theorem integral_quadForm_sq [DecidableEq n] (A : Matrix n n ℝ) {z : Ω → n → ℝ}
     (hmeas : ∀ i, AEMeasurable (fun ω => z ω i) μ)
     (hindep : iIndepFun (fun i ω => z ω i) μ)
@@ -319,7 +333,9 @@ Source: Hutchinson (1989) [`hutch89`] (Rademacher case); Avron–Toledo (2011) [
 Lem 5 (Gaussian), Lem 6 (Rademacher). Atlas: `hutchinson-variance`.
 Deviation: no symmetry of `A` assumed; general fourth moment `m₄` (`m₄ = 1` Rademacher,
 `m₄ = 3` Gaussian).
-atlas: hutchinson-variance-/
+atlas: hutchinson-variance
+@isnad1 id=eq.6h6v.s8.7cc866ef702d from=translated src=- shape=ec585b22 vocab=b69385ab
+-/
 theorem variance_quadForm [DecidableEq n] (A : Matrix n n ℝ) {z : Ω → n → ℝ}
     (hmeas : ∀ i, AEMeasurable (fun ω => z ω i) μ)
     (hindep : iIndepFun (fun i ω => z ω i) μ)
@@ -353,7 +369,9 @@ theorem variance_quadForm [DecidableEq n] (A : Matrix n n ℝ) {z : Ω → n →
 `Var[zᵀ A z] = 2‖A‖_F² + (m₄ − 3) ∑ᵢ A_ii² = 2(‖A‖_F² − ∑ᵢ A_ii²) + (m₄ − 1) ∑ᵢ A_ii²`.
 Source: Avron–Toledo (2011) [`at11`], Lem 5, 6; Hutchinson (1989) [`hutch89`].
 Atlas: `hutchinson-variance`.
-atlas: hutchinson-variance-/
+atlas: hutchinson-variance
+@isnad1 id=eq.7h6v.s8.4d66aad7769a from=translated src=- shape=de479cb8 vocab=6ce5effa
+-/
 theorem variance_quadForm_of_isHermitian [DecidableEq n] {A : Matrix n n ℝ} (hA : A.IsHermitian)
     {z : Ω → n → ℝ}
     (hmeas : ∀ i, AEMeasurable (fun ω => z ω i) μ)
@@ -378,7 +396,9 @@ theorem variance_quadForm_of_isHermitian [DecidableEq n] {A : Matrix n n ℝ} (h
 `Var[zᵀ A z] = 2‖A‖_F²`. Source: Avron–Toledo (2011) [`at11`], Lem 5.
 Deviation: only `m₄ = 3` is assumed of the coordinates, not Gaussianity.
 Atlas: `hutchinson-variance`.
-atlas: hutchinson-variance-/
+atlas: hutchinson-variance
+@isnad1 id=eq.7h5v.s8.bbc7f1ac3449 from=translated src=- shape=637a4832 vocab=c1816e37
+-/
 theorem variance_quadForm_of_isHermitian_of_fourth_moment_eq_three [DecidableEq n]
     {A : Matrix n n ℝ} (hA : A.IsHermitian) {z : Ω → n → ℝ}
     (hmeas : ∀ i, AEMeasurable (fun ω => z ω i) μ)
@@ -395,7 +415,9 @@ theorem variance_quadForm_of_isHermitian_of_fourth_moment_eq_three [DecidableEq 
 Avron–Toledo (2011) [`at11`], Lem 6.
 Deviation: only `m₄ = 1` is assumed of the coordinates, not the Rademacher law.
 Atlas: `hutchinson-variance`.
-atlas: hutchinson-variance-/
+atlas: hutchinson-variance
+@isnad1 id=eq.7h5v.s8.29bc1bea7be6 from=translated src=- shape=353d4a39 vocab=ba4b3029
+-/
 theorem variance_quadForm_of_isHermitian_of_fourth_moment_eq_one [DecidableEq n]
     {A : Matrix n n ℝ} (hA : A.IsHermitian) {z : Ω → n → ℝ}
     (hmeas : ∀ i, AEMeasurable (fun ω => z ω i) μ)

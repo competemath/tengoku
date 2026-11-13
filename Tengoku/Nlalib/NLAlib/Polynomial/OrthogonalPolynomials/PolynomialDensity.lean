@@ -16,7 +16,9 @@ open Polynomial MeasureTheory
 
 namespace NLAlib
 
-/-- A nonnegative polynomial density preserves all finite polynomial moments.-/
+/-- A nonnegative polynomial density preserves all finite polynomial moments.
+@isnad1 id=haspolyn.2h2v.s5.2625f14bb50b from=translated src=- shape=c3c81d8a vocab=123f4bde
+-/
 theorem hasPolynomialMoments_withDensity_polynomial {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) (w : ℝ[X]) (hw : ∀ᵐ x ∂μ, 0 ≤ w.eval x) :
     HasPolynomialMoments (μ.withDensity (fun x => ENNReal.ofReal (w.eval x))) := by
@@ -29,7 +31,9 @@ theorem hasPolynomialMoments_withDensity_polynomial {μ : Measure ℝ}
 
 /-- The native nonnegative polynomial-density measure has exactly the existing
 polynomial-weighted integral functional.
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.2h2v.s6.0e24d84cdaa4 from=translated src=- shape=442add51 vocab=b3eb2945
+-/
 theorem polynomialIntegral_withDensity_polynomial {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) (w : ℝ[X]) (hw : ∀ᵐ x ∂μ, 0 ≤ w.eval x) :
     polynomialIntegral (μ.withDensity (fun x => ENNReal.ofReal (w.eval x)))

@@ -31,7 +31,9 @@ bound, as given by a log-Sobolev inequality), then
 Source: Ledoux, *The Concentration of Measure Phenomenon*, Thm 5.3 (Herbst's argument);
 Boucheron–Lugosi–Massart 2013, Prop 6.1. Atlas: `herbst`. Ported from Prove2me solution
 `GaussianMatrix.herbst_argument`.
-atlas: herbst-/
+atlas: herbst
+@isnad1 id=le.3h5v.s8.95815cd40776 from=translated src=- shape=aa0c5e79 vocab=5740f07b
+-/
 theorem integral_exp_mul_le_exp_of_entropy_le {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
     [IsProbabilityMeasure μ] (f : Ω → ℝ) (c : ℝ)
     (hint : ∀ s : ℝ, Integrable (fun ω => Real.exp (s * f ω)) μ)
