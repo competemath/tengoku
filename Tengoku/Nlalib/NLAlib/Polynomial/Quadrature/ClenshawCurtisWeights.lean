@@ -1,0 +1,193 @@
+import Tengoku.Nlalib.NLAlib.Polynomial.Quadrature.FoldedMomentBounds
+import Tengoku.Nlalib.NLAlib.Polynomial.BestApproximation.LobattoCardinals
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Actual Clenshaw–Curtis weights
+
+Integrating the endpoint-half discrete cosine expansion of the genuine Lagrange
+cardinals gives the weights. A finite moment telescope proves strict positivity.
+-/
+
+noncomputable section
+open Polynomial Polynomial.Chebyshev Real Finset MeasureTheory Set
+namespace NLAlib
+
+/-- Clenshaw–Curtis is the finite weighted sum with its actual cardinal integrals.
+Source: integrating Lagrange's formula; ATAP, Chapter 19.
+@isnad1 id=eq.0h2v.s5.a4d82481e218 from=translated src=- shape=50fc577e vocab=9bcca4a6
+-/
+theorem clenshawCurtisRule_eq_sum_weights (n : ℕ) (f : ℝ → ℝ) :
+    clenshawCurtisRule n f = ∑ j ∈ range (n + 1), clenshawCurtisWeight n j * f (node n j) := by
+  simp only [clenshawCurtisRule, Lagrange.interpolate_apply, eval_finsetSum, eval_mul,
+    eval_C, Function.comp_apply]
+  rw [intervalIntegral.integral_finsetSum]
+  · apply sum_congr rfl
+    intro j _
+    rw [intervalIntegral.integral_const_mul, clenshawCurtisWeight, mul_comm]
+  · intro j _
+    exact (continuous_const.mul (Lagrange.basis (range (n + 1)) (node n) j).continuous).intervalIntegrable _ _
+
+/-- Integrating the finite endpoint-half cosine cardinal gives an explicit
+formula for every actual Clenshaw–Curtis weight.
+Source: finite DCT cardinal formula; focused rederivations `thm:lobatto`.
+@isnad1 id=eq.2h2v.s7.af11c53ad093 from=translated src=- shape=3ac98153 vocab=3ce68946
+-/
+theorem clenshawCurtisWeight_eq_cosine_sum {n j : ℕ} (hn : 0 < n) (hj : j ≤ n) :
+    clenshawCurtisWeight n j = (lobattoEndpointWeight n j / n) *
+      (2 + ∑ k ∈ range (n - 1),
+        (2 * cos ((k + 1 : ℕ) * (j * π / n))) * chebyshevMoment (k + 1) +
+        cos ((n : ℝ) * (j * π / n)) * chebyshevMoment n) := by
+  rw [clenshawCurtisWeight, ← lobattoCardinal_eq_basis hn hj]
+  simp only [lobattoCardinal, eval_smul, eval_add, eval_one, eval_finsetSum, smul_eq_mul]
+  rw [intervalIntegral.integral_const_mul,
+    intervalIntegral.integral_add (by
+      exact (show Continuous (fun x : ℝ => 1 + ∑ k ∈ range (n - 1),
+        (2 * cos ((k + 1 : ℕ) * (j * π / n))) * (T ℝ (k + 1 : ℕ)).eval x) by fun_prop).intervalIntegrable _ _)
+      (by exact (continuous_const.mul (T ℝ n).continuous).intervalIntegrable _ _),
+    intervalIntegral.integral_add (continuous_const.intervalIntegrable _ _) (by
+      exact (show Continuous (fun x : ℝ => ∑ k ∈ range (n - 1),
+        (2 * cos ((k + 1 : ℕ) * (j * π / n))) * (T ℝ (k + 1 : ℕ)).eval x) by fun_prop).intervalIntegrable _ _),
+    intervalIntegral.integral_finsetSum (f := fun k x =>
+      (2 * cos ((k + 1 : ℕ) * (j * π / n))) * (T ℝ (k + 1 : ℕ)).eval x) (fun k _ =>
+      (continuous_const.mul (T ℝ (k + 1 : ℕ)).continuous).intervalIntegrable _ _),
+    intervalIntegral.integral_const_mul]
+  simp only [intervalIntegral.integral_const, smul_eq_mul]
+  simp_rw [intervalIntegral.integral_const_mul, integral_eval_T]
+  simp only [chebyshevMoment]
+  norm_num
+
+/-- Odd Lebesgue Chebyshev moments vanish.
+Source: ATAP, Theorem 19.2; helper for positivity of actual quadrature weights.
+@isnad1 id=eq.0h1v.s5.8dbdf534d3f4 from=translated src=- shape=2df47cae vocab=27166d86
+-/
+@[simp] theorem chebyshevMoment_two_mul_add_one (j : ℕ) :
+    chebyshevMoment (2 * j + 1) = 0 := by
+  unfold chebyshevMoment
+  rw [ite_eq_right (by simp : ¬ Even (2 * j + 1))]
+
+/-- Pairing odd and even moments reduces any even-length natural sum to the
+positive-even telescope.
+Source: finite pairing; helper for actual Clenshaw–Curtis positivity.
+@isnad1 id=eq.0h1v.s6.3de312fbf8f9 from=translated src=- shape=232fef17 vocab=edb1303b
+-/
+theorem sum_abs_chebyshevMoment_succ_two_mul (m : ℕ) :
+    (∑ k ∈ range (2 * m), |chebyshevMoment (k + 1)|) =
+      ∑ j ∈ range m, |chebyshevMoment (2 * (j + 1))| := by
+  induction m with
+  | zero => simp
+  | succ m ih =>
+    rw [show 2 * (m + 1) = (2 * m + 1) + 1 by omega, sum_range_succ, sum_range_succ,
+      sum_range_succ, ih, chebyshevMoment_two_mul_add_one]
+    simp only [abs_zero, add_zero]
+    congr 2
+
+/-- A finite natural sum of positive-degree absolute Chebyshev moments is
+strictly below one, with an explicit telescoping margin.
+Source: the even-moment telescope; focused quadrature reroutes.
+@isnad1 id=le.0h1v.s6.65f6637d38d1 from=translated src=- shape=a3285a1a vocab=08446e85
+-/
+theorem sum_abs_chebyshevMoment_succ_le (n : ℕ) :
+    (∑ k ∈ range n, |chebyshevMoment (k + 1)|) ≤ 1 - 1 / (2 * (n : ℝ) + 1) := by
+  calc
+    _ ≤ ∑ k ∈ range (2 * n), |chebyshevMoment (k + 1)| :=
+      sum_le_sum_of_subset_of_nonneg (range_mono (by omega)) (fun _ _ _ => abs_nonneg _)
+    _ = _ := by rw [sum_abs_chebyshevMoment_succ_two_mul, sum_abs_chebyshevMoment_two_mul_succ]
+
+/-- A cosine coefficient times any real moment is bounded below by minus
+the absolute moment.
+Source: `|cos| ≤ 1`; helper for actual Clenshaw–Curtis positivity.
+@isnad1 id=le.0h2v.s4.0e9ef60c8e9d from=translated src=- shape=5dfc3482 vocab=0d93b81c
+-/
+theorem neg_abs_le_cos_mul (t u : ℝ) : -|u| ≤ cos t * u := by
+  have h : |cos t * u| ≤ |u| := by
+    rw [abs_mul]
+    simpa only [one_mul] using mul_le_mul_of_nonneg_right (abs_cos_le_one t) (abs_nonneg u)
+  linarith [neg_abs_le (cos t * u)]
+
+/-- Every actual Clenshaw–Curtis weight is strictly positive on its endpoint grid.
+Source: integrated endpoint-half DCT cardinals and the finite moment telescope;
+focused rederivations `thm:lobatto`.
+@isnad1 id=lt.2h2v.s5.4d6e43e3bc64 from=translated src=- shape=9a7a9682 vocab=7222fdb1
+-/
+theorem clenshawCurtisWeight_pos {n j : ℕ} (hn : 0 < n) (hj : j ≤ n) :
+    0 < clenshawCurtisWeight n j := by
+  rw [clenshawCurtisWeight_eq_cosine_sum hn hj]
+  apply mul_pos
+  · apply div_pos _ (by exact_mod_cast hn)
+    unfold lobattoEndpointWeight
+    split_ifs <;> norm_num
+  · have hsum : -2 * (∑ k ∈ range (n - 1), |chebyshevMoment (k + 1)|) ≤
+        ∑ k ∈ range (n - 1),
+          (2 * cos ((k + 1 : ℕ) * (j * π / n))) * chebyshevMoment (k + 1) := by
+      rw [mul_sum]
+      apply sum_le_sum
+      intro k _
+      nlinarith [neg_abs_le_cos_mul ((k + 1 : ℕ) * (j * π / n)) (chebyshevMoment (k + 1))]
+    have hend := neg_abs_le_cos_mul ((n : ℝ) * (j * π / n)) (chebyshevMoment n)
+    have hfull : (∑ k ∈ range n, |chebyshevMoment (k + 1)|) =
+        (∑ k ∈ range (n - 1), |chebyshevMoment (k + 1)|) + |chebyshevMoment n| := by
+      conv_lhs => rw [← Nat.sub_add_cancel (show 1 ≤ n by omega), sum_range_succ]
+      simp only [Nat.sub_add_cancel (show 1 ≤ n by omega)]
+    have hbound := sum_abs_chebyshevMoment_succ_le n
+    rw [hfull] at hbound
+    have hmargin : 0 < 1 / (2 * (n : ℝ) + 1) := by positivity
+    nlinarith [abs_nonneg (chebyshevMoment n)]
+
+/-- The actual quadrature weights sum to the interval length two.
+Source: Lagrange partition of unity; ATAP, Chapter 19.
+@isnad1 id=eq.0h1v.s5.83e9070b66e2 from=translated src=- shape=4110ba4e vocab=862af5ee
+-/
+theorem sum_clenshawCurtisWeight (n : ℕ) :
+    (∑ j ∈ range (n + 1), clenshawCurtisWeight n j) = 2 := by
+  simp only [clenshawCurtisWeight]
+  rw [← intervalIntegral.integral_finsetSum (f := fun j x =>
+    (Lagrange.basis (range (n + 1)) (node n) j).eval x) (fun j _ =>
+      (Lagrange.basis (range (n + 1)) (node n) j).continuous.intervalIntegrable _ _)]
+  have hp := Lagrange.sum_basis (chebyshev_node_injOn n)
+    (show (range (n + 1)).Nonempty from ⟨0, by simp⟩)
+  simp_rw [← eval_finsetSum, hp, eval_one]
+  norm_num
+
+/-- The one-node convention has its single quadrature weight equal to two.
+Source: the constant cardinal polynomial; ATAP, Chapter 19.
+@isnad1 id=eq.0h0v.s4.3976169e074e from=translated src=- shape=8640e5ff vocab=fe1efdbe
+-/
+@[simp] theorem clenshawCurtisWeight_zero_zero : clenshawCurtisWeight 0 0 = 2 := by
+  norm_num [clenshawCurtisWeight, range_one, Lagrange.basis_singleton]
+
+/-- Every actual grid weight is nonnegative, including the one-node convention.
+Source: the integrated DCT cardinals; ATAP, Chapter 19.
+@isnad1 id=le.1h2v.s4.3505e4cf8322 from=translated src=- shape=7c81aa35 vocab=1ac46c2b
+-/
+theorem clenshawCurtisWeight_nonneg (n j : ℕ) (hj : j ≤ n) :
+    0 ≤ clenshawCurtisWeight n j := by
+  by_cases hn : n = 0
+  · subst n
+    have hj0 : j = 0 := by omega
+    subst j
+    rw [clenshawCurtisWeight_zero_zero]
+    norm_num
+  · exact (clenshawCurtisWeight_pos (Nat.pos_of_ne_zero hn) hj).le
+
+/-- Positivity and mass two make the actual Clenshaw–Curtis rule contract
+every unit-interval uniform bound by the interval length.
+Source: positive quadrature weights; ATAP, Chapter 19.
+@isnad1 id=le.0h2v.s9.3c0eefae9ecc from=translated src=- shape=7d214d30 vocab=85760c61
+-/
+theorem abs_clenshawCurtisLinearMap_le (n : ℕ) (f : C(Icc (-1 : ℝ) 1, ℝ)) :
+    |clenshawCurtisLinearMap n f| ≤ 2 * ‖f‖ := by
+  change |∑ j ∈ range (n + 1), clenshawCurtisWeight n j * f ⟨node n j, node_mem_Icc⟩| ≤ _
+  calc
+    _ ≤ ∑ j ∈ range (n + 1), |clenshawCurtisWeight n j * f ⟨node n j, node_mem_Icc⟩| :=
+      abs_sum_le_sum_abs _ _
+    _ ≤ ∑ j ∈ range (n + 1), clenshawCurtisWeight n j * ‖f‖ := by
+      apply sum_le_sum
+      intro j hj
+      have hw := clenshawCurtisWeight_nonneg n j (Nat.le_of_lt_succ (mem_range.mp hj))
+      rw [abs_mul, abs_of_nonneg hw]
+      exact mul_le_mul_of_nonneg_left (f.norm_coe_le_norm ⟨node n j, node_mem_Icc⟩) hw
+    _ = 2 * ‖f‖ := by rw [← sum_mul, sum_clenshawCurtisWeight]
+
+end NLAlib
