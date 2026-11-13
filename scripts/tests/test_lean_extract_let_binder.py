@@ -12,8 +12,8 @@ Invariants:
   1. Nothing is lost: for every real record the new statement plus the new proof is the old statement plus the old proof, up to whitespace.
   2. Every real record that ended in a let/have binder (615 of the 758) now ends its statement after the claim. The new and the old statement are one a prefix of the other: the new one is longer when the old
      one stopped inside the type, and shorter when the old one had swallowed the arms of a theorem defined by match arms.
-  3. A real record the old code split right is split the same way (3,904 of the 3,944 sampled; 6 cannot be split from the 200 characters of proof the fixture keeps; the 34 others were wrong before:
-     11 cut at a binder, 23 that had swallowed their match arms).
+  3. A real record the old code split right is split the same way (3,904 of the 3,944 sampled; 6 cannot be split from the 200 characters of proof the fixture keeps; the 35 others were wrong before:
+     11 cut at a binder, 24 that had swallowed their match arms).
   4. 5,000 generated declarations with 0 to 4 binders of the four kinds, nested brackets, default arguments, comments and identifiers that contain the keywords: the statement is exactly the text before the
      declaration's own `:=`.
   5. Mutants: the pattern that finds binders removed, the arm pattern removed, and the proof-end pattern as it was (a match arm at column 0 ended the proof) each fail a real check."""
@@ -113,7 +113,7 @@ class RealRecords(unittest.TestCase):
             self.assertTrue(a.startswith(b) or b.startswith(a), r["name"])
             last = r["statement"].rstrip().splitlines()[-1]
             self.assertTrue(BINDER_LINE.match(last) or MATCH_ARM.search(r["statement"]), r["name"])  # it was a truncation too
-        self.assertEqual((same, changed), (3904, 34))
+        self.assertEqual((same, changed), (3904, 35))
 
     def test_gitars_example(self):
         (d,) = le.extract_declarations(
@@ -177,6 +177,23 @@ class Cases(unittest.TestCase):
             d = self.one(f"theorem t : ∀ n : Nat, n + 0 = n\n  | 0 => rfl\n  | n + 1 => by\n      {body}\n")
             self.assertEqual(d.statement, "theorem t : ∀ n : Nat, n + 0 = n", body)
             self.assertIn(body.splitlines()[0], d.proof, body)
+
+    def test_a_fun_that_ends_on_its_own_line_does_not_turn_the_theorems_own_arms_off(self):
+        """Gitar on #811: a `fun`/`match` of the type whose body ends on its line must not turn off the arms of the theorem itself (one holding an `obtain ... := e`)"""
+        for typ in (
+            "∀ n, (List.range n).map (fun i => i) = List.range n",
+            "∀ n, (List.range n).map fun i => i = List.range n",
+            "∀ n, (fun i => i) n = n",
+            "∀ n, id (λ i => i) n = n",
+            "∀ n, (match n with | 0 => 0 | _ => n) = n",
+        ):
+            d = self.one(f"theorem t : {typ}\n  | 0 => rfl\n  | n + 1 => by\n      obtain ⟨a, b⟩ := foo n\n      simp\n")
+            self.assertEqual(d.statement, f"theorem t : {typ}", typ)
+            self.assertIn("obtain", d.proof, typ)
+
+    def test_a_fun_with_its_first_arm_on_the_same_line_owns_the_arms_that_follow(self):
+        d = self.one("theorem t : f = fun | 0 => 1\n  | _ => 2 := by\n  rfl\n")
+        self.assertEqual(d.statement, "theorem t : f = fun | 0 => 1\n  | _ => 2")
 
     def test_arms_that_belong_to_the_type_do_not_end_the_statement(self):
         d = self.one("theorem t : f = fun\n  | 0 => 1\n  | _ => 2 := by\n  rfl\n")
@@ -308,6 +325,21 @@ class Mutants(unittest.TestCase):
             )  # what the harvest did (7 records of batch 7, about 90 of the 758 sampled)
         finally:
             le._MATCH_ARM_RE = original
+
+    def test_with_every_fun_turning_the_arms_off_the_theorems_own_arms_are_lost_again(self):
+        """the code of the commit before Gitar's last finding: the flag was set for any fun/λ/match at depth 0"""
+        import inspect
+
+        src = inspect.getsource(le._find_statement_end)
+        line = 'if not rest or rest.endswith("with") or rest.startswith("|"):'
+        self.assertEqual(src.count(line), 1)
+        ns = dict(vars(le))
+        exec(src.replace(line, "if True:"), ns)
+        text = "theorem t : ∀ n, (List.range n).map fun i => i = List.range n\n  | 0 => rfl\n  | n + 1 => by\n      obtain ⟨a, b⟩ := foo n\n      simp\n"
+        start = le._DECL_KEYWORD_RE.search(text).end()
+        mutant_end = ns["_find_statement_end"](text, start)
+        self.assertTrue(text[:mutant_end].rstrip().endswith("obtain ⟨a, b⟩"))  # the arms in the statement
+        self.assertTrue(text[: le._find_statement_end(text, start)].rstrip().endswith("= List.range n"))
 
     def test_without_the_arm_fallback_an_arm_theorem_with_a_let_is_skipped(self):
         src = "theorem t : ∀ p : Nat,\n    let a := p\n    a = p\n  | 0 => rfl\n  | p + 1 => rfl\n"
