@@ -144,6 +144,8 @@ ROOT_DECL = re.compile(
 NAMESPACE_NAME = re.compile(rf"^(?P<pre>\s*(?:(?:public|noncomputable)\s+)*namespace\s+)(?P<name>(?:{QUOTED}|[^\s«»])+)\s*$")
 END_NAME = re.compile(rf"^(?P<pre>\s*end\s+)(?P<name>(?:{QUOTED}|[^\s«»])+)\s*$")
 OPEN_MARK = "namespace {ns} end {ns} open {ns} "
+ROOT_PREFIX = re.compile(r"(?<![\w.'«])_root_\.")  # an explicit root-namespace prefix
+TOKEN_HEAD = re.compile(r"(?:«[^»]*»|[^\s.«»(){}\[\]⟨⟩,:;])+")  # the first component of the name that follows it
 OPEN_HEADS = (  # `open scoped …` first; when that leaves no valid ending, `scoped` is an argument (the order a backtracking match would try)
     re.compile(r"^(?P<pre>\s*(?:@\[[^\]]*\]\s*)?open\s+scoped\s+)"),
     re.compile(r"^(?P<pre>\s*(?:@\[[^\]]*\]\s*)?open\s+)"),
@@ -187,6 +189,35 @@ def _uses_roots(f: Lines, roots: set[str]) -> bool:
     return any(pat.search(c) for c in f.code)
 
 
+def head_of_token(text: str) -> str:
+    """the first component of the name at the start of `text` (empty when there is none)"""
+    m = TOKEN_HEAD.match(text)
+    return m.group(0) if m else ""
+
+
+def qualify_explicit_roots(f: Lines, heads: set[str], ns: str) -> dict:
+    """`_root_.R…` spells a name from the root: it does not move with a namespace block, so the prefix is followed by `ns.` when R is a root that some module of the library actually renamed
+    (`heads`: a root no text declares, an anonymous instance, keeps its name, and `_root_.R` must keep naming it). Code only (comments and strings are masked). A `def _root_.R.x` or
+    `def _root_.R` is counted as the declaration it is; a use is not."""
+    done: dict = {"declared": [], "dotted": 0, "heads": set()}
+    if not heads:
+        return done
+    for i, code in enumerate(f.code):
+        decl = ROOT_DECL.match(code)
+        for t in reversed(list(ROOT_PREFIX.finditer(code))):
+            head = head_of_token(code[t.end() :])
+            if head not in heads:
+                continue
+            f.insert(i, t.end(), ns + ".")
+            done["heads"].add(head)
+            if decl and t.start() == decl.start("name"):
+                if code[t.end() + len(head) : t.end() + len(head) + 1] == ".":
+                    done["dotted"] += 1
+                else:
+                    done["declared"].append(head)
+    return done
+
+
 def qualify_roots_in_file(f: Lines, roots: set[str], ns: str, mark_open: bool = True) -> dict:
     """The edits of one module: a declaration whose name is a root of the library, a `namespace R` block of a root R (with its `end`), and a dotted `R.x` declaration get `<ns>.`
     in front; the first body line gets `namespace NS end NS open NS` when the module declares or still uses a root. All of it goes INSIDE existing lines (no line moves)."""
@@ -199,6 +230,11 @@ def qualify_roots_in_file(f: Lines, roots: set[str], ns: str, mark_open: bool = 
     }
     open_at, end_of = scope_info(f.code)
     for i, code in enumerate(f.code):
+        spelled = ROOT_DECL.match(code)
+        if spelled and spelled.group("name").startswith("_root_.") and head_of_token(spelled.group("name")[len("_root_.") :]) in roots:
+            done["heads"].add(
+                head_of_token(spelled.group("name")[len("_root_.") :])
+            )  # declared from the root, wherever it stands: qualify_explicit_roots renames it
         if any(NAMESPACE.match(f.code[o]) for o in open_at[i]):
             continue  # inside a namespace a declaration is `N.x`, not a root; the block itself is handled at its own `namespace` line
         if m := NAMESPACE_NAME.match(code):
@@ -272,18 +308,6 @@ MANIFEST_PATH = re.compile(r"data/intake/[^/]+/manifest\.jsonl")
 NOTE = "-- Tengoku: root names of this library moved to {ns} so they do not collide with other libraries (generated)\n"
 
 
-def qualify_module_text(text: str, roots: set[str], ns: str) -> tuple[str | None, dict]:
-    """qualify_roots_in_file on the text of one module: the new text (with the generated note) and the edits; None when nothing changed"""
-    f = Lines(text)
-    d = qualify_roots_in_file(f, roots, ns)
-    if not f.edited:
-        return None, d
-    new = "\n".join(f.text)
-    if not new.endswith("\n"):
-        new += "\n"
-    return new + NOTE.format(ns=ns), d
-
-
 def manifest_namespace_text(text: str) -> str | None:
     """`Tengoku.<Library>` of an intake manifest: the first two components of the module of its first record"""
     for ln in text.splitlines():
@@ -309,17 +333,26 @@ def qualify_files(files: dict[str, str], reports: dict[str, str]) -> tuple[dict[
         rep: dict = {"qualified": 0, "namespaces": 0, "dotted": 0, "modules_opened": 0, "unresolved": []}
         seen: set[str] = set()
         renamed: set[str] = set()
-        for path in modules:
-            new, d = qualify_module_text(files[path], roots, ns)
-            if new is None:
+        edited: dict[str, tuple[Lines, dict]] = {}
+        for path in modules:  # first the declarations and namespace blocks, over every module: which roots are renamed
+            f = Lines(files[path])
+            edited[path] = (f, qualify_roots_in_file(f, roots, ns))
+            renamed |= edited[path][1]["heads"]
+        for path, (f, d) in edited.items():  # then the names spelled from the root, for those roots only
+            e = qualify_explicit_roots(f, renamed, ns)
+            d["declared"] += e["declared"]
+            d["dotted"] += e["dotted"]
+            if not f.edited:
                 continue
-            changed[path] = new
+            new = "\n".join(f.text)
+            if not new.endswith("\n"):
+                new += "\n"
+            changed[path] = new + NOTE.format(ns=ns)
             rep["qualified"] += len(d["declared"])
             rep["namespaces"] += d["namespaces"]
             rep["dotted"] += d["dotted"]
             rep["modules_opened"] += 1 if d["opened"] else 0
             seen.update(d["declared"])
-            renamed |= d["heads"]
         rep["unresolved"] = sorted(roots - seen)
         rep["renamed"] = sorted(renamed)  # the roots the module pass renamed: what the manifest follows
         for path in manifests:

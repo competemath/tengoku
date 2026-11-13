@@ -216,5 +216,65 @@ class Mask(unittest.TestCase):
             self.assertEqual([i for i, ch in enumerate(text) if ch == "\n"], [i for i, ch in enumerate(masked) if ch == "\n"], text)
 
 
+class ExplicitRoot(unittest.TestCase):
+    """`_root_.R…` spells a name from the root: it does not move with a namespace block, so the prefix follows (found by the merge queue on Hironaka: `def _root_.AnalyticManifold.transportChartedSpace`)"""
+
+    def run_text(self, text, roots):
+        files = {"Tengoku/Foo/A.lean": text}
+        report = f"roots: {len(roots)} declarations\n" + "".join(f"root: {r}\n" for r in roots)
+        changed, rep = rt.qualify_files(files, {"Foo": report})
+        return changed.get("Tengoku/Foo/A.lean", text), rep
+
+    def test_a_declaration_spelled_from_the_root_follows_its_structure(self):
+        text = "module\n\npublic section\n\nstructure Mfd where\n  x : Nat\n\ndef _root_.Mfd.transport (M : Mfd) : Nat := M.x\n"
+        out, rep = self.run_text(text, ["Mfd"])
+        self.assertIn("structure Tengoku.Foo.Mfd where", out)
+        self.assertIn("def _root_.Tengoku.Foo.Mfd.transport", out)
+        self.assertEqual(rep["Foo"]["renamed"], ["Mfd"])
+
+    def test_a_use_spelled_from_the_root_follows_too(self):
+        text = "module\n\npublic section\n\ndef X : Nat := 1\n\ntheorem t : _root_.X = 1 := rfl\n"
+        out, _ = self.run_text(text, ["X"])
+        self.assertIn("theorem t : _root_.Tengoku.Foo.X = 1", out)
+
+    def test_a_root_that_no_declaration_renamed_keeps_its_prefix(self):
+        # instAddFoo is in the report (an anonymous instance) but nothing declares it: `_root_.instAddFoo` must keep naming it, and its manifest record must not move
+        text = "module\n\npublic section\n\ndef X : Nat := 1\n\ntheorem t : _root_.instAddFoo = _root_.X := rfl\n"
+        out, rep = self.run_text(text, ["X", "instAddFoo"])
+        self.assertIn("_root_.instAddFoo = _root_.Tengoku.Foo.X", out)
+        self.assertEqual(rep["Foo"]["renamed"], ["X"])
+
+    def test_a_single_component_declaration_from_the_root_counts_as_declared(self):
+        text = "module\n\npublic section\n\nnamespace Bar\ndef _root_.X : Nat := 1\nend Bar\n"
+        out, rep = self.run_text(text, ["X"])
+        self.assertIn("def _root_.Tengoku.Foo.X :", out)
+        self.assertEqual(rep["Foo"]["unresolved"], [])
+
+    def test_a_use_on_a_declaration_line_is_not_counted_as_a_declaration(self):
+        text = "module\n\npublic section\n\nstructure Mfd where\n  x : Nat\n\ntheorem t : _root_.Mfd.foo = _root_.Mfd.foo := rfl\n"
+        _, rep = self.run_text(text, ["Mfd"])
+        self.assertEqual(rep["Foo"]["dotted"], 0)
+
+    def test_the_roots_are_renamed_in_a_later_module_than_the_use(self):
+        files = {
+            "Tengoku/Foo/A.lean": "module\n\npublic section\n\ntheorem t : _root_.X = 1 := rfl\n",
+            "Tengoku/Foo/B.lean": "module\n\npublic section\n\ndef X : Nat := 1\n",
+        }
+        changed, _ = rt.qualify_files(files, {"Foo": "roots: 1 declarations\nroot: X\n"})
+        self.assertIn("_root_.Tengoku.Foo.X = 1", changed["Tengoku/Foo/A.lean"])
+
+    def test_other_root_names_and_comments_are_left_alone(self):
+        text = "module\n\npublic section\n\ndef X : Nat := 1\n\n-- uses _root_.Valuation and _root_.X in a comment\ntheorem t : _root_.Valuation = _root_.Valuation := rfl\n"
+        out, _ = self.run_text(text, ["X"])
+        self.assertIn("-- uses _root_.Valuation and _root_.X in a comment", out)
+        self.assertIn("_root_.Valuation = _root_.Valuation", out)
+
+    def test_it_is_idempotent(self):
+        text = "module\n\npublic section\n\nstructure Mfd where\n  x : Nat\n\ndef _root_.Mfd.transport (M : Mfd) : Nat := M.x\n"
+        once, _ = self.run_text(text, ["Mfd"])
+        twice, _ = self.run_text(once, ["Mfd"])
+        self.assertEqual(once, twice)
+
+
 if __name__ == "__main__":
     unittest.main()
