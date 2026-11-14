@@ -519,5 +519,41 @@ class Dependents(unittest.TestCase):
         self.assertEqual(out["Tengoku/LeanPool/B.lean"], files["Tengoku/LeanPool/B.lean"])
 
 
+class SectionScope(unittest.TestCase):
+    """An `open` inside a section stops at its `end`: a section that closes before the module does must not hold the commands (merge queue, wave 4: Leanslt/SLT/CoveringNumber.lean, `noncomputable section`
+    closed at line 182 and `section EuclideanBall` after it, where `euclideanBall` no longer resolved)."""
+
+    MARK = "namespace Tengoku.Foo end Tengoku.Foo open Tengoku.Foo"
+    TAIL = "def zeta : Nat := 1\n\nsection Later\n\ntheorem t : zeta = 1 := rfl\n\nend Later\n"
+
+    def run_text(self, text):
+        changed, _ = rt.qualify_files({"Tengoku/Foo/A.lean": text}, {"Foo": "roots: 1 declarations\nroot: zeta\n"})
+        return changed.get("Tengoku/Foo/A.lean", text).split("\n")
+
+    def test_a_section_that_closes_before_the_end_does_not_hold_the_commands(self):
+        out = self.run_text("module\n\nimport Tengoku\n\nnoncomputable section\n\ndef early : Nat := 0\n\nend\n\n" + self.TAIL)
+        at = next(i for i, ln in enumerate(out) if self.MARK in ln)
+        opener = next(i for i, ln in enumerate(out) if ln.rstrip() == "noncomputable section")
+        self.assertLess(at, opener)  # before the section: it lasts to the end of the file
+
+    def test_a_section_that_stays_open_keeps_them_inside(self):
+        out = self.run_text("module\n\nimport Tengoku\n\npublic section\n\n" + self.TAIL)
+        at = next(i for i, ln in enumerate(out) if self.MARK in ln)
+        opener = next(i for i, ln in enumerate(out) if ln.rstrip() == "public section")
+        self.assertGreater(at, opener)
+
+    def test_a_section_with_nothing_after_its_end_keeps_them_inside(self):
+        out = self.run_text("module\n\nimport Tengoku\n\nnoncomputable section\n\ndef zeta : Nat := 1\n\nend\n")
+        at = next(i for i, ln in enumerate(out) if self.MARK in ln)
+        opener = next(i for i, ln in enumerate(out) if ln.rstrip() == "noncomputable section")
+        self.assertGreater(at, opener)
+
+    def test_no_line_is_added_and_it_is_idempotent(self):
+        text = "module\n\nimport Tengoku\n\nnoncomputable section\n\ndef early : Nat := 0\n\nend\n\n" + self.TAIL
+        once = self.run_text(text)
+        self.assertEqual(len(once), len(text.split("\n")) + 1)  # the footer line only
+        self.assertEqual("\n".join(once), "\n".join(self.run_text("\n".join(once))))
+
+
 if __name__ == "__main__":
     unittest.main()

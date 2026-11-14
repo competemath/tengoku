@@ -317,6 +317,13 @@ def place_mark(f: Lines, mark: str) -> bool:
     first = body_start(f.text)
     if first >= len(f.text) or mark.strip() in "\n".join(f.text):
         return False
+    if first > 0 and SECTION.match(f.text[first - 1]):
+        # The section that opens the body ends before the module does: an `open` inside it stops at that `end`, and what follows would no longer see the renamed names the root
+        # declaration showed everywhere (merge queue, wave 4: Leanslt/SLT/CoveringNumber.lean:207, `noncomputable section` … `end` at line 182, `section EuclideanBall` after it).
+        # Then the commands go in front of the section, where they last to the end of the file.
+        end = scope_info(f.code)[1].get(first - 1)
+        if end is not None and any(c.strip() for c in f.code[end + 1 :]):
+            first -= 1
     # On the blank line in front of the first body line when there is one: Lean keeps the column where a declaration starts (a doc comment, or `def`) and an application on a
     # LATER line must stand to the right of it, so `namespace … open … def x` / `… /-- doc -/` on one line breaks `(-1) ^ k * bernoulli (k + 1)` in a term body (merge queue,
     # PadicLFunctions/KubotaLeopoldt/ZetaValues.lean:20; Leak IV: same line fails, own line passes). Tactic blocks restart the column, which is why most modules never noticed.
