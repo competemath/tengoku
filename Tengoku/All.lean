@@ -130,6 +130,7 @@ import Tengoku.FormalMath
 import Tengoku.Formalslt
 import Tengoku.CkHopfFormalization
 import Tengoku.Physlib
+import Tengoku.Twinprime
 import Tengoku.TaoAnalysis
 import Tengoku.Tautology
 import Tengoku.Absorptioncutoff
