@@ -1,0 +1,1 @@
+-- SandronesLibrary: a factory bundle (data/intake/sandrones-library). This file only marks the library for Tengoku/All.lean.
