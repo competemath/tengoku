@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "6bc5da87c20b8af0086dd1f34f867475eae5e1f3ebce045e4dac1840f5e09c52",
+ "factory_changes": {
+  "inert lines removed": 3,
+  "modules changed": 2
+ },
+ "gate2_unjudged": [],
+ "library": "sandrones-library",
+ "lint_mode": "proposed",
+ "modules": 190,
+ "part": 2,
+ "theorems": 1489
+}
