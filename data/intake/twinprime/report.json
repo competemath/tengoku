@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "f787fc797625cf033c513709304b4e1e1ec9293dbe982152c7a58c17ebcb10d1",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "twinprime",
+ "lint_mode": "proposed",
+ "modules": 276,
+ "part": 1,
+ "theorems": 1806
+}

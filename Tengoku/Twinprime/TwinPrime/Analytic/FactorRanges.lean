@@ -1,0 +1,105 @@
+import Tengoku.Twinprime.TwinPrime.Analytic.Decomposition
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# The exact bilinear factor range
+
+The remaining correlation is a finite sum over positive factors `d,r` with
+`d > U`, `r > V`, and `X < d*r ≤ 2X`. This file identifies that sum with the
+Dirichlet-convolution definition and records its elementary hyperbolic support.
+All coefficients retain their signs and the von Mangoldt argument is `d*r + 2`.
+-/
+
+noncomputable section
+
+open Finset ArithmeticFunction
+open scoped ArithmeticFunction.Moebius
+
+namespace TwinPrime.Analytic
+
+/-- The complete finite factor domain of the bilinear term.-/
+def bilinearPairs (U V X : ℕ) : Finset (ℕ × ℕ) :=
+  ((Icc 1 (2 * X)).product (Icc 1 (2 * X))).filter
+    (fun dr => U < dr.1 ∧ V < dr.2 ∧ X < dr.1 * dr.2 ∧ dr.1 * dr.2 ≤ 2 * X)
+
+/-- Exact reindexing by the unique product `n = d*r`.
+@isnad1 id=eq.0h3v.s6.8eafe8cb0aef from=translated src=- shape=faafba68 vocab=f1897812
+-/
+theorem bilinearTerm_eq_pair_sum (U V X : ℕ) :
+    bilinearTerm U V X = ∑ dr ∈ bilinearPairs U V X,
+      (μ dr.1 : ℝ) * vaughanBeta V dr.2 * vonMangoldt (dr.1 * dr.2 + 2) := by
+  have hexpand : bilinearTerm U V X =
+      ∑ n ∈ Ioc X (2 * X),
+        ∑ dr ∈ n.divisorsAntidiagonal with U < dr.1 ∧ V < dr.2,
+          (μ dr.1 : ℝ) * vaughanBeta V dr.2 * vonMangoldt (n + 2) := by
+    unfold bilinearTerm
+    apply sum_congr rfl
+    intro n _
+    rw [vaughanBilinear_apply, mul_sum, sum_filter]
+    apply sum_congr rfl
+    intro dr _
+    split_ifs <;> ring
+  rw [hexpand, sum_sigma']
+  apply sum_bij (fun nr _ => nr.2)
+  · rintro ⟨n, dr⟩ hnr
+    obtain ⟨hnI, hdr⟩ := mem_sigma.mp hnr
+    obtain ⟨hanti, hU, hV⟩ := mem_filter.mp hdr
+    have hprod := (Nat.mem_divisorsAntidiagonal.mp hanti).1
+    change dr.1 * dr.2 = n at hprod
+    have hdpos : 0 < dr.1 := Nat.pos_of_ne_zero
+      (Nat.left_ne_zero_of_mem_divisorsAntidiagonal hanti)
+    have hrpos : 0 < dr.2 := Nat.pos_of_ne_zero
+      (Nat.right_ne_zero_of_mem_divisorsAntidiagonal hanti)
+    have hdle : dr.1 ≤ n := hprod ▸ Nat.le_mul_of_pos_right dr.1 hrpos
+    have hrle : dr.2 ≤ n := hprod ▸ Nat.le_mul_of_pos_left dr.2 hdpos
+    have hn := mem_Ioc.mp hnI
+    apply mem_filter.mpr
+    refine ⟨mem_product.mpr ⟨mem_Icc.mpr ⟨hdpos, hdle.trans hn.2⟩,
+      mem_Icc.mpr ⟨hrpos, hrle.trans hn.2⟩⟩, hU, hV, ?_⟩
+    simpa only [hprod] using hn
+  · rintro ⟨n, dr⟩ hnr ⟨m, er⟩ hmr h
+    dsimp only at h
+    subst er
+    have hnprod := (Nat.mem_divisorsAntidiagonal.mp
+      (mem_filter.mp (mem_sigma.mp hnr).2).1).1
+    have hmprod := (Nat.mem_divisorsAntidiagonal.mp
+      (mem_filter.mp (mem_sigma.mp hmr).2).1).1
+    have hnm : n = m := hnprod.symm.trans hmprod
+    subst m
+    rfl
+  · intro dr hdr
+    obtain ⟨_, hU, hV, hlow, hupp⟩ := mem_filter.mp hdr
+    refine ⟨⟨dr.1 * dr.2, dr⟩, ?_, rfl⟩
+    apply mem_sigma.mpr
+    refine ⟨mem_Ioc.mpr ⟨hlow, hupp⟩, mem_filter.mpr ⟨?_, hU, hV⟩⟩
+    exact Nat.mem_divisorsAntidiagonal.mpr
+      ⟨rfl, Nat.ne_of_gt ((Nat.zero_le X).trans_lt hlow)⟩
+  · rintro ⟨n, dr⟩ hnr
+    have hprod := (Nat.mem_divisorsAntidiagonal.mp
+      (mem_filter.mp (mem_sigma.mp hnr).2).1).1
+    dsimp only
+    rw [hprod]
+
+/-- The opposite cutoff bounds the first factor throughout the complete range.
+@isnad1 id=le.1h4v.s6.c13dc06e479a from=translated src=- shape=11421601 vocab=a2949314
+-/
+theorem bilinearPairs_left_le_div {U V X : ℕ} {dr : ℕ × ℕ}
+    (hdr : dr ∈ bilinearPairs U V X) : dr.1 ≤ 2 * X / (V + 1) := by
+  obtain ⟨_, _, hV, _, hupp⟩ := mem_filter.mp hdr
+  rw [Nat.le_div_iff_mul_le (Nat.succ_pos V)]
+  exact (Nat.mul_le_mul_left dr.1 (Nat.succ_le_of_lt hV)).trans hupp
+
+/-- The opposite cutoff bounds the second factor throughout the complete range.
+@isnad1 id=le.1h4v.s6.040b3cfe2da0 from=translated src=- shape=7b21fdb7 vocab=4d8eb0cd
+-/
+theorem bilinearPairs_right_le_div {U V X : ℕ} {dr : ℕ × ℕ}
+    (hdr : dr ∈ bilinearPairs U V X) : dr.2 ≤ 2 * X / (U + 1) := by
+  obtain ⟨_, hU, _, _, hupp⟩ := mem_filter.mp hdr
+  rw [Nat.le_div_iff_mul_le (Nat.succ_pos U)]
+  calc
+    dr.2 * (U + 1) ≤ dr.2 * dr.1 := Nat.mul_le_mul_left dr.2 (Nat.succ_le_of_lt hU)
+    _ = dr.1 * dr.2 := Nat.mul_comm _ _
+    _ ≤ 2 * X := hupp
+
+end TwinPrime.Analytic
