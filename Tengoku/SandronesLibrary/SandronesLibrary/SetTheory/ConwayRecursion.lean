@@ -108,7 +108,9 @@ def ConwayArrowTerm.toChain (c : ConwayArrowTerm) (hc : c.Positive) :
 > **Entry**: settheory.googology.conway-recursion
 > **一句话**: 一般有限正整数 Conway 链由三个基础规则和一个嵌套递推规则总地求值。
 > **依赖**: settheory.googology.conway-chain
-> **mathlib**: `Prod.Lex`（仅用于递归终止性）-/
+> **mathlib**: `Prod.Lex`（仅用于递归终止性）
+@isnad1 id=and.0h3v.s5.f611fd640b5e from=translated src=- shape=0883d6cb vocab=42c507d7
+-/
 theorem conwayEval_equations (a b : ℕ) (c : ConwayArrowTerm) :
     (ConwayArrowTerm.singleton a).eval = a ∧
       (ConwayArrowTerm.snoc (ConwayArrowTerm.singleton a) b).eval = a ^ b ∧
@@ -125,7 +127,9 @@ theorem conwayEval_equations (a b : ℕ) (c : ConwayArrowTerm) :
         intro a h
         cases h
 
-/-- 倒数第二项为一时，这个一及其右侧尾部一起删去。-/
+/-- 倒数第二项为一时，这个一及其右侧尾部一起删去。
+@isnad1 id=eq.0h2v.s4.88ecd4f84f4a from=translated src=- shape=99aeff81 vocab=6e3322cc
+-/
 theorem conwayEval_penultimate_one (c : ConwayArrowTerm) (b : ℕ) :
     (ConwayArrowTerm.snoc (ConwayArrowTerm.snoc c 1) b).eval =
       c.eval := by
@@ -139,7 +143,9 @@ theorem conwayEval_penultimate_one (c : ConwayArrowTerm) (b : ℕ) :
   · apply ConwayArrowTerm.eval.eq_4
     omega
 
-/-- 最小的非平凡三项例子核对了递推方向：`2→2→2 = 4`。-/
+/-- 最小的非平凡三项例子核对了递推方向：`2→2→2 = 4`。
+@isnad1 id=eq.0h0v.s4.23b539eb3ada from=translated src=- shape=66553728 vocab=9e54a413
+-/
 theorem conwayEval_two_two_two :
     (ConwayArrowTerm.snoc (ConwayArrowTerm.snoc (.singleton 2) 2) 2).eval = 4 := by
   rw [ConwayArrowTerm.eval.eq_7]
@@ -148,7 +154,9 @@ theorem conwayEval_two_two_two :
   rw [ConwayArrowTerm.eval.eq_3 _ (by intro a h; cases h)]
   rw [ConwayArrowTerm.eval.eq_2]
 
-/-- Conway 的一般递推方程；`a+2`、`b+2` 明示末两项均大于一。-/
+/-- Conway 的一般递推方程；`a+2`、`b+2` 明示末两项均大于一。
+@isnad1 id=eq.0h3v.s6.c89d2d2d547b from=translated src=- shape=48acaf34 vocab=855031e0
+-/
 theorem conwayEval_recursive (c : ConwayArrowTerm) (a b : ℕ) :
     (ConwayArrowTerm.snoc (ConwayArrowTerm.snoc c (a + 2)) (b + 2)).eval =
       (ConwayArrowTerm.snoc

@@ -27,19 +27,25 @@ open MeasureTheory
 open scoped ENNReal Interval BigOperators
 
 /-- 常值函数在非退化闭区间上黎曼可积。
-> **Entry**: real-analysis.riemann.algebra-/
+> **Entry**: real-analysis.riemann.algebra
+@isnad1 id=riemanni.1h3v.s4.1053d1659b2d from=translated src=- shape=2a2c4b1e vocab=4203c4dd
+-/
 theorem riemannIntegrable_const_lt {a b c : ℝ} (hab : a < b) :
     RiemannIntegrable (fun _ : ℝ => c) a b := by
   exact continuous_on_riemannIntegrable_lt hab continuousOn_const
 
-/-- 常值函数的黎曼积分等于常数乘区间长度。-/
+/-- 常值函数的黎曼积分等于常数乘区间长度。
+@isnad1 id=eq.1h3v.s5.c108f60ee2b7 from=translated src=- shape=3fa77af2 vocab=74b2ac46
+-/
 theorem riemannIntegral_const {a b c : ℝ} (hab : a < b) :
     riemannIntegral (fun _ : ℝ => c) a b = c * (b - a) := by
   rw [riemannIntegral_eq_interval hab continuousOn_const]
   rw [integral_const]
   simp [hab.le, mul_comm]
 
-/-- 连续函数之和的黎曼积分满足线性。-/
+/-- 连续函数之和的黎曼积分满足线性。
+@isnad1 id=eq.3h4v.s6.d20abfcb7313 from=translated src=- shape=918519ee vocab=4543129c
+-/
 theorem riemannIntegral_add {f g : ℝ → ℝ} {a b : ℝ} (hab : a < b)
     (hf : ContinuousOn f (Set.Icc a b)) (hg : ContinuousOn g (Set.Icc a b)) :
     riemannIntegral (fun x => f x + g x) a b =
@@ -51,7 +57,9 @@ theorem riemannIntegral_add {f g : ℝ → ℝ} {a b : ℝ} (hab : a < b)
   simpa only [intervalIntegral.integral_of_le hab.le] using
     intervalIntegral.integral_add hfi hgi
 
-/-- 连续函数之差的黎曼积分满足线性。-/
+/-- 连续函数之差的黎曼积分满足线性。
+@isnad1 id=eq.3h4v.s6.2ddc1750d915 from=translated src=- shape=918519ee vocab=a58d342b
+-/
 theorem riemannIntegral_sub {f g : ℝ → ℝ} {a b : ℝ} (hab : a < b)
     (hf : ContinuousOn f (Set.Icc a b)) (hg : ContinuousOn g (Set.Icc a b)) :
     riemannIntegral (fun x => f x - g x) a b =
@@ -63,7 +71,9 @@ theorem riemannIntegral_sub {f g : ℝ → ℝ} {a b : ℝ} (hab : a < b)
   simpa only [intervalIntegral.integral_of_le hab.le] using
     intervalIntegral.integral_sub hfi hgi
 
-/-- 连续函数乘常数后，常数可提出黎曼积分号。-/
+/-- 连续函数乘常数后，常数可提出黎曼积分号。
+@isnad1 id=eq.2h4v.s6.72e78f5581f4 from=translated src=- shape=71c7fe39 vocab=c5b91b70
+-/
 theorem riemannIntegral_const_mul {f : ℝ → ℝ} {a b c : ℝ} (hab : a < b)
     (hf : ContinuousOn f (Set.Icc a b)) :
     riemannIntegral (fun x => c * f x) a b = c * riemannIntegral f a b := by
@@ -72,14 +82,18 @@ theorem riemannIntegral_const_mul {f : ℝ → ℝ} {a b c : ℝ} (hab : a < b)
   simpa only [intervalIntegral.integral_of_le hab.le] using
     intervalIntegral.integral_const_mul c f (a := a) (b := b) (μ := volume)
 
-/-- 区间上非负的连续函数具有非负黎曼积分。-/
+/-- 区间上非负的连续函数具有非负黎曼积分。
+@isnad1 id=le.3h3v.s6.37656a7cd189 from=translated src=- shape=43150976 vocab=3f0da031
+-/
 theorem riemannIntegral_nonneg {f : ℝ → ℝ} {a b : ℝ} (hab : a < b)
     (hf : ContinuousOn f (Set.Icc a b)) (h0 : ∀ x ∈ Set.Icc a b, 0 ≤ f x) :
     0 ≤ riemannIntegral f a b := by
   rw [riemannIntegral_eq_interval hab hf, ← intervalIntegral.integral_of_le hab.le]
   exact intervalIntegral.integral_nonneg hab.le h0
 
-/-- 连续函数逐点有序时，其黎曼积分保持该顺序。-/
+/-- 连续函数逐点有序时，其黎曼积分保持该顺序。
+@isnad1 id=le.4h4v.s6.713766cc6758 from=translated src=- shape=1df5203e vocab=3f0da031
+-/
 theorem riemannIntegral_mono {f g : ℝ → ℝ} {a b : ℝ} (hab : a < b)
     (hf : ContinuousOn f (Set.Icc a b)) (hg : ContinuousOn g (Set.Icc a b))
     (hfg : ∀ x ∈ Set.Icc a b, f x ≤ g x) :
@@ -89,7 +103,9 @@ theorem riemannIntegral_mono {f g : ℝ → ℝ} {a b : ℝ} (hab : a < b)
   exact intervalIntegral.integral_mono_on hab.le
     (continuous_intervalIntegrable hab.le hf) (continuous_intervalIntegrable hab.le hg) hfg
 
-/-- 连续函数黎曼积分的绝对值不超过其绝对值函数的黎曼积分。-/
+/-- 连续函数黎曼积分的绝对值不超过其绝对值函数的黎曼积分。
+@isnad1 id=le.2h3v.s5.6fa09ee215e7 from=translated src=- shape=0c36bd9d vocab=d36b2330
+-/
 theorem abs_riemannIntegral_le_riemannIntegral_abs {f : ℝ → ℝ} {a b : ℝ} (hab : a < b)
     (hf : ContinuousOn f (Set.Icc a b)) :
     |riemannIntegral f a b| ≤ riemannIntegral (fun x => |f x|) a b := by
@@ -98,7 +114,9 @@ theorem abs_riemannIntegral_le_riemannIntegral_abs {f : ℝ → ℝ} {a b : ℝ}
     ← intervalIntegral.integral_of_le hab.le, ← intervalIntegral.integral_of_le hab.le]
   exact intervalIntegral.abs_integral_le_integral_abs hab.le
 
-/-- 连续函数的黎曼积分对相邻区间可加。-/
+/-- 连续函数的黎曼积分对相邻区间可加。
+@isnad1 id=eq.3h4v.s5.cfbd6ed5aef6 from=translated src=- shape=df64fba5 vocab=4543129c
+-/
 theorem riemannIntegral_add_adjacent {f : ℝ → ℝ} {a b c : ℝ}
     (hab : a < b) (hbc : b < c) (hf : ContinuousOn f (Set.Icc a c)) :
     riemannIntegral f a b + riemannIntegral f b c = riemannIntegral f a c := by
@@ -118,7 +136,9 @@ theorem riemannIntegral_add_adjacent {f : ℝ → ℝ} {a b c : ℝ}
 
 /-- 第一积分中值定理：连续函数的积分等于某个函数值乘以区间长度。
 
-> **Entry**: real-analysis.riemann.mean-value-/
+> **Entry**: real-analysis.riemann.mean-value
+@isnad1 id=ex.2h3v.s6.dbcb7116e57a from=translated src=- shape=5c30a178 vocab=c5b735a2
+-/
 theorem riemannIntegral_mean_value {f : ℝ → ℝ} {a b : ℝ} (hab : a < b)
     (hf : ContinuousOn f (Set.Icc a b)) :
     ∃ ξ ∈ Set.Icc a b, riemannIntegral f a b = f ξ * (b - a) := by
@@ -150,7 +170,9 @@ theorem riemannIntegral_mean_value {f : ℝ → ℝ} {a b : ℝ} (hab : a < b)
   dsimp [A]
   rw [div_mul_cancel₀ _ (ne_of_gt (sub_pos.mpr hab))]
 
-/-- 连续周期函数在任意一个完整周期上的黎曼积分与起点无关。-/
+/-- 连续周期函数在任意一个完整周期上的黎曼积分与起点无关。
+@isnad1 id=eq.3h4v.s6.77fd8edf8400 from=translated src=- shape=b8a60a94 vocab=c9159254
+-/
 theorem riemannIntegral_periodic_one_period {f : ℝ → ℝ} {T : ℝ}
     (hT : 0 < T) (hfcont : Continuous f) (hfper : Function.Periodic f T) (s t : ℝ) :
     riemannIntegral f t (t + T) = riemannIntegral f s (s + T) := by

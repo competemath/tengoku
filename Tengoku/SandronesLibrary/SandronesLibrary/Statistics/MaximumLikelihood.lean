@@ -43,7 +43,9 @@ open scoped ENNReal
 
 /-- 严格单调变换不改变最大值点。`Real.log` 在 `Set.Ioi 0` 上严格单调，正是这条引理的教材原型
 （"最大化似然等价于最大化对数似然"）；这里把订单层事实抽成对任意严格单调 `φ` 的一般引理，
-不为对数单独复制一份 argmax 论证。-/
+不为对数单独复制一份 argmax 论证。
+@isnad1 id=iff.1h6v.s6.862910554309 from=translated src=- shape=6fecfbf3 vocab=88c1c414
+-/
 theorem isMaxOn_univ_comp_strictMono_iff {α β γ : Type*} [LinearOrder β] [Preorder γ]
     (φ : β → γ) (hφ : StrictMono φ) (f : α → β) (a : α) :
     IsMaxOn (fun x => φ (f x)) Set.univ a ↔ IsMaxOn f Set.univ a := by
@@ -51,7 +53,9 @@ theorem isMaxOn_univ_comp_strictMono_iff {α β γ : Type*} [LinearOrder β] [Pr
   exact ⟨fun h x => (hφ.le_iff_le).mp (h x), fun h x => (hφ.le_iff_le).mpr (h x)⟩
 
 /-- 参数双射下最大值点按逆像对应：`θhat'` 最大化 `θ' ↦ p (e θ')` 当且仅当 `e θhat'` 最大化
-`p`。这是最大似然估计在换参数下保持不变的订单层核心。-/
+`p`。这是最大似然估计在换参数下保持不变的订单层核心。
+@isnad1 id=iff.0h6v.s6.852074eb778e from=translated src=- shape=f4093e9d vocab=06afe7f9
+-/
 theorem isMaxOn_univ_comp_equiv_iff {Θ Θ' 𝓧 : Type*} [Preorder 𝓧]
     (e : Θ' ≃ Θ) (p : Θ → 𝓧) (θ' : Θ') :
     IsMaxOn (fun θ' => p (e θ')) Set.univ θ' ↔
@@ -92,20 +96,26 @@ def IsMaximumLikelihoodEstimator (P : Kernel Θ 𝓧) (ν : Measure 𝓧)
     (θhat : 𝓧 → Θ) : Prop :=
   Measurable θhat ∧ ∀ᵐ x ∂ν, IsMaxOn (fun θ => likelihood P ν θ x) Set.univ (θhat x)
 
-/-- 似然作为 `(θ,x)` 的函数联合可测。-/
+/-- 似然作为 `(θ,x)` 的函数联合可测。
+@isnad1 id=measurab.0h4v.s5.3e3e457b78d1 from=translated src=- shape=5ee6fdea vocab=3c3ea812
+-/
 theorem likelihood_jointlyMeasurable (P : Kernel Θ 𝓧) (ν : Measure 𝓧) :
     Measurable (fun p : Θ × 𝓧 => likelihood P ν p.1 p.2) := by
   simpa [likelihood] using Kernel.measurable_rnDeriv P (Kernel.const Θ ν)
 
 /-- 支配概率模型的似然关于参考测度的总积分为一。这条结论把 `likelihood` 与
-`statistics.model.density` 的归一化事实锁在一起，说明它不是自由的任意函数。-/
+`statistics.model.density` 的归一化事实锁在一起，说明它不是自由的任意函数。
+@isnad1 id=eq.1h5v.s6.4997345bf7c0 from=translated src=- shape=d64d1484 vocab=bf5b5bdd
+-/
 theorem likelihood_lintegral_eq_one
     (P : Kernel Θ 𝓧) [IsMarkovKernel P] (ν : Measure 𝓧) [IsFiniteMeasure ν]
     (θ : Θ) (hPν : P θ ≪ ν) :
     ∫⁻ x, likelihood P ν θ x ∂ν = 1 := by
   simpa [likelihood] using statisticalModel_lintegral_density_eq_one P ν θ hPν
 
-/-- 最大似然估计的定义展开：`θhat` 可测，且几乎处处 `∀ θ, likelihood θ ≤ likelihood (θhat x)`。-/
+/-- 最大似然估计的定义展开：`θhat` 可测，且几乎处处 `∀ θ, likelihood θ ≤ likelihood (θhat x)`。
+@isnad1 id=iff.0h5v.s6.2cafeb456086 from=translated src=- shape=5f3d094a vocab=f0a459f8
+-/
 theorem isMaximumLikelihoodEstimator_iff
     (P : Kernel Θ 𝓧) (ν : Measure 𝓧) (θhat : 𝓧 → Θ) :
     IsMaximumLikelihoodEstimator P ν θhat ↔
@@ -117,7 +127,9 @@ theorem isMaximumLikelihoodEstimator_iff
 `statistics.estimator.definition` 的随机化估计量接口。
 
 本引理只使用定义中的可测性分量 `h.1`，argmax 分量不参与证明；它唯一的职责是把 MLE 送进
-`Kernel`/`IsMarkovKernel` 接口，而不是产生新的数学内容。-/
+`Kernel`/`IsMarkovKernel` 接口，而不是产生新的数学内容。
+@isnad1 id=ismarkov.1h5v.s5.e588d35bfb7d from=translated src=- shape=68deba20 vocab=f11f24fe
+-/
 theorem maximumLikelihoodEstimator_isMarkov
     (P : Kernel Θ 𝓧) (ν : Measure 𝓧) (θhat : 𝓧 → Θ)
     (h : IsMaximumLikelihoodEstimator P ν θhat) :
@@ -127,7 +139,9 @@ theorem maximumLikelihoodEstimator_isMarkov
 /-- 两个最大似然估计的似然值几乎处处相等。
 
 存在多个 argmax 时，逐点取值可能不同，但它们给出的最大似然值在 `ν` 下一致；这正是"最大似然
-估计在似然值层面几乎处处唯一"的正式陈述。-/
+估计在似然值层面几乎处处唯一"的正式陈述。
+@isnad1 id=eventual.2h6v.s6.96c1fd1b61d5 from=translated src=- shape=77046758 vocab=6235ff6d
+-/
 theorem maximumLikelihoodEstimator_likelihood_eq_ae
     (P : Kernel Θ 𝓧) (ν : Measure 𝓧) {θhat θhat' : 𝓧 → Θ}
     (h : IsMaximumLikelihoodEstimator P ν θhat)
@@ -139,7 +153,9 @@ theorem maximumLikelihoodEstimator_likelihood_eq_ae
     ((isMaxOn_univ_iff.mp hx) (θhat' x))
 
 /-- 支配模型的似然加权参考测度恰好重建每个参数纤维。这是似然相对密度的消费者：它证明
-`likelihood` 确实承载 `statistics.model.density` 的概率重建语义。-/
+`likelihood` 确实承载 `statistics.model.density` 的概率重建语义。
+@isnad1 id=eq.1h5v.s6.dc4098aa7543 from=translated src=- shape=4c9b00ea vocab=92373c53
+-/
 theorem withDensity_likelihood_eq
     (P : Kernel Θ 𝓧) [IsMarkovKernel P] (ν : Measure 𝓧) [IsFiniteMeasure ν]
     (hPν : ∀ θ, P θ ≪ ν) (θ : Θ) :
@@ -148,7 +164,9 @@ theorem withDensity_likelihood_eq
   exact statisticalModel_withDensity_eq P ν θ (hPν θ)
 
 /-- 似然不依赖参数时，任何可测映射都是最大似然估计。这是定义的退化解压：常数模型下不存在
-唯一的最大似然估计，接口不会伪造唯一性。-/
+唯一的最大似然估计，接口不会伪造唯一性。
+@isnad1 id=ismaximu.2h5v.s6.3e97bd3f7485 from=translated src=- shape=0857a6c4 vocab=c709a5a1
+-/
 theorem isMaximumLikelihoodEstimator_of_const_likelihood
     (P : Kernel Θ 𝓧) (ν : Measure 𝓧) {θhat : 𝓧 → Θ}
     (hconst : ∀ θ θ' x, likelihood P ν θ x = likelihood P ν θ' x)
@@ -171,7 +189,9 @@ variable {Θ Θ' 𝓧 : Type*} [MeasurableSpace Θ] [MeasurableSpace Θ'] [Measu
 `e.symm ∘ θhat` 可测且最大化换元后的似然 `θ' ↦ likelihood P ν (e θ')`。
 
 右端用换元后的似然函数（而不是某个重参数化 kernel）表述，因为本库尚未冻结一般参数 comap 的
-kernel 载体；把订单层结论与 kernel 层构造分开，避免在载体未定时伪造等价。-/
+kernel 载体；把订单层结论与 kernel 层构造分开，避免在载体未定时伪造等价。
+@isnad1 id=iff.0h7v.s7.194067f8d26a from=translated src=- shape=34700287 vocab=14838f7e
+-/
 theorem maximumLikelihoodEstimator_reparametrize
     (P : Kernel Θ 𝓧) (ν : Measure 𝓧) (e : Θ' ≃ᵐ Θ) (θhat : 𝓧 → Θ) :
     IsMaximumLikelihoodEstimator P ν θhat ↔
@@ -203,7 +223,9 @@ variable {Θ 𝓧 : Type*} [MeasurableSpace Θ] [MeasurableSpace 𝓧]
 /-- 有限参数空间上，逐点最大值一定可取到。
 
 这是"有限集合上数值函数有最大值"的 `ℝ≥0∞` 版本，不涉及可测选择；可测性在下一个定理中另行
-处理。-/
+处理。
+@isnad1 id=ex.0h5v.s5.07d4e6c34645 from=translated src=- shape=d6408761 vocab=72693b9e
+-/
 theorem exists_maxOn_likelihood_of_finite [Finite Θ] [Nonempty Θ]
     [MeasurableSpace.CountableOrCountablyGenerated Θ 𝓧]
     (P : Kernel Θ 𝓧) (ν : Measure 𝓧) (x : 𝓧) :
@@ -222,7 +244,9 @@ noncomputable def maximumLikelihoodMapOfFinite [Finite Θ] [Nonempty Θ]
 /-- 有限参数、可数样本空间上，上述 argmax 映射是最大似然估计。
 
 可数样本空间是"任意样本空间上可测 argmax"这一未解问题的真实代价：当 `𝓧` 可数且单点可测时，
-任何从 `𝓧` 出发的映射都可测，于是经典选择给出的 argmax 映射自动合法。-/
+任何从 `𝓧` 出发的映射都可测，于是经典选择给出的 argmax 映射自动合法。
+@isnad1 id=ismaximu.0h4v.s5.a152aabf5783 from=translated src=- shape=0b3fb306 vocab=b0de5ac8
+-/
 theorem maximumLikelihoodEstimator_of_finite [Finite Θ] [Nonempty Θ]
     [Countable 𝓧] [MeasurableSingletonClass 𝓧]
     (P : Kernel Θ 𝓧) (ν : Measure 𝓧) :

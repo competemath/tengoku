@@ -133,7 +133,9 @@ private noncomputable def rightAnchoredFramedLeftBoundaryCellEdge
       (A.subdivision.gridCellBasedVerticalEdgeInPiece hxU hxV hU hV col row 0))
 
 /-- Each named actual left-boundary fine edge is precisely the left edge stored
-by the right-anchored full-row state at its global grid row.-/
+by the right-anchored full-row state at its global grid row.
+@isnad1 id=other.5h9v.s10.a348bc3f41df from=translated src=- shape=e9053f3f vocab=bd1ec230
+-/
 theorem rightAnchoredFramedLeftBoundaryCellEdge_eq_rowLeftEdge
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))
@@ -194,7 +196,9 @@ noncomputable def leftBoundaryFramedCellEdgeChain
       pathConcatSegmentGridLength letters.reverse.length A.factor i := by
   simp [PathConcatAlignedSquareSubdivision.leftBoundaryBlockEdgeChain]
 
-/-- 相邻 block 因子的组合终点／起点 frames 严格相同。-/
+/-- 相邻 block 因子的组合终点／起点 frames 严格相同。
+@isnad1 id=eq.6h10v.s9.9293302ef7cf from=translated src=- shape=6e853388 vocab=327ba245
+-/
 theorem leftBoundaryCombinedFrames_adjacent
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))
@@ -213,7 +217,9 @@ theorem leftBoundaryCombinedFrames_adjacent
     hxU hxV hUV hU hV letters Fhom i s t hshared
 
 /-- The combined transition-times-grid frames at the end and start of adjacent
-input-letter blocks agree strictly.-/
+input-letter blocks agree strictly.
+@isnad1 id=other.6h9v.s9.425cd4ebe0d2 from=translated src=- shape=fcb2a4b8 vocab=1177860c
+-/
 theorem leftBoundaryCombinedBlockFrames_adjacent
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))
@@ -467,7 +473,9 @@ private theorem leftBoundaryFramedCellEdges_eq_rebaseBlockWord
   exact rebasedEdgeChainProduct_eq_rebaseEdge _ _
 
 /-- 一个 block 内真实右锚定左边界 cell 边的总乘积，是原输入 Pushout 字母在该 block 首末
-组合 frame 之间的一次整体 rebase。-/
+组合 frame 之间的一次整体 rebase。
+@isnad1 id=other.5h8v.s12.86e63ede1e25 from=translated src=- shape=f319f5cb vocab=bdffea7f
+-/
 theorem leftBoundaryFramedCellEdges_eq_rebaseLetter
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))
@@ -495,7 +503,9 @@ theorem leftBoundaryFramedCellEdges_eq_rebaseLetter
   rw [A.reverseLeftBoundaryBlockEdgeChain_eq_of_letter
     hxU hxV hUV hU hV letters Fhom i]
 
-/-- 上一定理的显式首末 frame 版本；不再把 block 终点隐藏在 `edgeChainEnd` 中。-/
+/-- 上一定理的显式首末 frame 版本；不再把 block 终点隐藏在 `edgeChainEnd` 中。
+@isnad1 id=other.5h8v.s12.6e3e47ea8ecb from=translated src=- shape=a6e5f92f vocab=64b7c5bc
+-/
 theorem leftBoundaryFramedCellEdges_eq_rebaseLetter_explicit
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))

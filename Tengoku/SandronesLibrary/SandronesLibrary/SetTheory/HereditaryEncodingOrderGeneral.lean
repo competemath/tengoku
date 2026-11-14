@@ -59,7 +59,9 @@ private theorem div_mul_add_mod_eq (c Q r : ℕ) (hr : r < c) :
 
 这是换底正规化的普适桥：编码只依赖底数与数值，而把旧树放到更高底数下重新读取数值、再重新编码，
 不会改变它在 `ω` 处的序数解释。证明对 `n` 强归纳，正数情形把新底数下的求值写成 `c * Q + n%b`，
-于是重编码的商余方程与旧底数的商余方程逐项对齐。-/
+于是重编码的商余方程与旧底数的商余方程逐项对齐。
+@isnad1 id=eq.2h3v.s5.fdc7c5f85af6 from=translated src=- shape=244bc91a vocab=f1d777df
+-/
 theorem hereditaryNatEncode_baseChange_omegaValue {b c : ℕ} (hb : 2 ≤ b) (hbc : b ≤ c)
     (n : ℕ) :
     (hereditaryNatEncode c (le_trans hb hbc) ((hereditaryNatEncode b hb n).eval c)).omegaValue =
@@ -86,7 +88,9 @@ theorem hereditaryNatEncode_baseChange_omegaValue {b c : ℕ} (hb : 2 ≤ b) (hb
           ihq]
 
 /-- `CanonicalGoodsteinState.lean` 命名的换底兼容义务现在无条件成立：规范状态在后继底数下
-重新编码旧树的求值，所得序数度量与旧度量相同。-/
+重新编码旧树的求值，所得序数度量与旧度量相同。
+@isnad1 id=canonica.0h1v.s2.4fb3f8c688e4 from=translated src=- shape=5c11bb93 vocab=00b2f5a4
+-/
 theorem canonicalBaseChangeReencoding_preserves (s : CanonicalGoodsteinState) :
     CanonicalBaseChangeOmegaCompatible s := by
   simpa only [CanonicalBaseChangeOmegaCompatible, CanonicalGoodsteinState.baseChangeReencodingMeasure,

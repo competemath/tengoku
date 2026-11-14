@@ -35,7 +35,9 @@ private theorem haltedAt_iff_exists_tape (machine : BinaryMachine (n + 1)) (time
   unfold HaltedAt
   cases haltedTape? (runSteps machine time (blankStart machine)) <;> simp
 
-/-- 已有无时间界停机关系恰好等于“存在某个停机时刻”。-/
+/-- 已有无时间界停机关系恰好等于“存在某个停机时刻”。
+@isnad1 id=iff.0h2v.s4.1a5e15b05dc0 from=translated src=- shape=ae2f7b72 vocab=ffe6f658
+-/
 theorem eventuallyHalts_iff_exists_haltedAt (machine : BinaryMachine (n + 1)) :
     EventuallyHalts machine ↔ ∃ time, HaltedAt machine time := by
   constructor
@@ -55,7 +57,9 @@ noncomputable def machineHaltingTime (machine : BinaryMachine (n + 1)) : ℕ := 
   exact if h : EventuallyHalts machine then
     Nat.find ((eventuallyHalts_iff_exists_haltedAt machine).mp h) else 0
 
-/-- 对最终停机的机器，`machineHaltingTime` 确实是首次停机时间。-/
+/-- 对最终停机的机器，`machineHaltingTime` 确实是首次停机时间。
+@isnad1 id=isfirsth.1h2v.s4.55b4ea9b75ce from=translated src=- shape=e821bdb9 vocab=98fdd550
+-/
 theorem machineHaltingTime_spec {machine : BinaryMachine (n + 1)}
     (h : EventuallyHalts machine) :
     IsFirstHaltingTime machine (machineHaltingTime machine) := by
@@ -63,7 +67,9 @@ theorem machineHaltingTime_spec {machine : BinaryMachine (n + 1)}
   let witness := (eventuallyHalts_iff_exists_haltedAt machine).mp h
   exact ⟨Nat.find_spec witness, fun earlier hearlier => Nat.find_min witness hearlier⟩
 
-/-- 一台确定机器的首次停机时间是唯一的。-/
+/-- 一台确定机器的首次停机时间是唯一的。
+@isnad1 id=eq.2h4v.s5.f089d73853f9 from=translated src=- shape=aa43a9ac vocab=d4e0b08a
+-/
 theorem isFirstHaltingTime_unique {machine : BinaryMachine (n + 1)} {x y : ℕ}
     (hx : IsFirstHaltingTime machine x) (hy : IsFirstHaltingTime machine y) : x = y := by
   apply Nat.le_antisymm
@@ -80,7 +86,9 @@ private theorem machineHaltingTime_eq {machine : BinaryMachine (n + 1)} {time : 
     (eventuallyHalts_iff_exists_haltedAt machine).mpr ⟨time, htime.1⟩
   exact isFirstHaltingTime_unique (machineHaltingTime_spec hhalts) htime
 
-/-- 立即停机机器的首次停机时间为一步。-/
+/-- 立即停机机器的首次停机时间为一步。
+@isnad1 id=isfirsth.0h1v.s3.677a179ab5c4 from=translated src=- shape=54d56512 vocab=9fab052f
+-/
 theorem immediateHaltMachine_first_time (n : ℕ) :
     IsFirstHaltingTime (immediateHaltMachine n) 1 := by
   constructor
@@ -106,7 +114,9 @@ noncomputable def classicalBusyBeaverTimeValue (n : ℕ) : ℕ :=
 > **一句话**: 固定状态数的最终停机机器具有唯一最大首次停机时间，而且该最大值由机器实际取得。
 > **依赖**: `settheory.googology.unbounded-halting-relation`,
 > `settheory.googology.busy-beaver-existence`
-> **mathlib**: `Nat.find`, `Finset.sup`-/
+> **mathlib**: `Nat.find`, `Finset.sup`
+@isnad1 id=isbusybe.0h1v.s2.a5ce73342291 from=translated src=- shape=9d44d080 vocab=837657bb
+-/
 theorem classicalBusyBeaverTimeValue_spec (n : ℕ) :
     IsBusyBeaverTimeValue n (classicalBusyBeaverTimeValue n) := by
   obtain ⟨machine, _, hmax⟩ :=
@@ -133,12 +143,16 @@ theorem classicalBusyBeaverTimeValue_spec (n : ℕ) :
     rw [classicalBusyBeaverTimeValue, hmax]
     exact machineHaltingTime_spec hmachine
 
-/-- 每个固定状态数都有一个时间型 Busy Beaver 值。-/
+/-- 每个固定状态数都有一个时间型 Busy Beaver 值。
+@isnad1 id=ex.0h1v.s3.8916a2d74f79 from=translated src=- shape=7d4b0599 vocab=ef178b15
+-/
 theorem exists_isBusyBeaverTimeValue (n : ℕ) :
     ∃ value, IsBusyBeaverTimeValue n value :=
   ⟨classicalBusyBeaverTimeValue n, classicalBusyBeaverTimeValue_spec n⟩
 
-/-- 时间型 Busy Beaver 最大值由其最大值规格唯一确定。-/
+/-- 时间型 Busy Beaver 最大值由其最大值规格唯一确定。
+@isnad1 id=eq.2h3v.s4.11b62adf5b7d from=translated src=- shape=920a25f1 vocab=ef178b15
+-/
 theorem isBusyBeaverTimeValue_unique {n x y : ℕ}
     (hx : IsBusyBeaverTimeValue n x) (hy : IsBusyBeaverTimeValue n y) : x = y := by
   rcases hx.2 with ⟨machineX, hmachineX⟩

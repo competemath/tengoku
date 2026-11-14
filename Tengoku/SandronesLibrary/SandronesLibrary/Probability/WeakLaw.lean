@@ -33,7 +33,9 @@ namespace SandronesLibrary.Probability
 open Filter MeasureTheory ProbabilityTheory Finset
 open scoped ProbabilityTheory Topology ENNReal BigOperators
 
-/-- 同分布把基准随机变量的二次可积性传递给序列的每一项。-/
+/-- 同分布把基准随机变量的二次可积性传递给序列的每一项。
+@isnad1 id=memlp.2h4v.s7.bac5d5f2a5fe from=translated src=- shape=a457eaf7 vocab=69ff20c4
+-/
 theorem iid_memLp_of_memLp_zero
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
     (X : ℕ → Ω → ℝ) (hX : MemLp (X 0) 2 μ)
@@ -41,7 +43,9 @@ theorem iid_memLp_of_memLp_zero
     MemLp (X i) 2 μ := by
   exact (hident i).memLp_iff.mpr hX
 
-/-- iid 序列的前 `n` 项和仍然二次可积。-/
+/-- iid 序列的前 `n` 项和仍然二次可积。
+@isnad1 id=memlp.2h4v.s7.eadd154636bb from=translated src=- shape=7f9afe9e vocab=2cf5fce7
+-/
 theorem iid_sum_memLp
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
     (X : ℕ → Ω → ℝ) (hX : MemLp (X 0) 2 μ)
@@ -52,7 +56,9 @@ theorem iid_sum_memLp
   ext ω
   simp
 
-/-- 独立同分布序列的前 `n` 项和的方差是单项方差的 `n` 倍。-/
+/-- 独立同分布序列的前 `n` 项和的方差是单项方差的 `n` 倍。
+@isnad1 id=eq.3h4v.s7.c0413404710b from=translated src=- shape=cd064685 vocab=72fd1d1b
+-/
 theorem iid_sum_variance
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
     (X : ℕ → Ω → ℝ) (hX : MemLp (X 0) 2 μ)
@@ -70,7 +76,9 @@ theorem iid_sum_variance
   · intro i hi j hj hij
     exact hindep.indepFun hij
 
-/-- iid 样本均值二次可积，因而可以应用 Chebyshev 不等式。-/
+/-- iid 样本均值二次可积，因而可以应用 Chebyshev 不等式。
+@isnad1 id=memlp.2h4v.s7.ebbcdbfb54a9 from=translated src=- shape=b22d2b61 vocab=9ab049a2
+-/
 theorem iid_sampleMean_memLp
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
     (X : ℕ → Ω → ℝ) (hX : MemLp (X 0) 2 μ)
@@ -78,7 +86,9 @@ theorem iid_sampleMean_memLp
     MemLp (fun ω ↦ (n : ℝ)⁻¹ * ∑ i ∈ range n, X i ω) 2 μ := by
   exact (iid_sum_memLp X hX hident n).const_mul _
 
-/-- 在概率空间上，iid 序列前 `n` 项和的期望是共同期望的 `n` 倍。-/
+/-- 在概率空间上，iid 序列前 `n` 项和的期望是共同期望的 `n` 倍。
+@isnad1 id=eq.2h4v.s7.e6a6670fcf7a from=translated src=- shape=1e8eafcc vocab=0696794c
+-/
 theorem iid_sum_integral
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     (X : ℕ → Ω → ℝ) (hX : MemLp (X 0) 2 μ)
@@ -90,7 +100,9 @@ theorem iid_sum_integral
   · intro i hi
     exact (iid_memLp_of_memLp_zero X hX hident i).integrable (by norm_num)
 
-/-- 对正样本量，iid 样本均值的期望等于每一项的共同期望。-/
+/-- 对正样本量，iid 样本均值的期望等于每一项的共同期望。
+@isnad1 id=eq.3h4v.s7.c58f20c8b624 from=translated src=- shape=738fe67d vocab=e6cb22c1
+-/
 theorem iid_sampleMean_integral
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     (X : ℕ → Ω → ℝ) (hX : MemLp (X 0) 2 μ)
@@ -100,7 +112,9 @@ theorem iid_sampleMean_integral
   rw [integral_const_mul, iid_sum_integral X hX hident]
   field_simp
 
-/-- 对正样本量，iid 样本均值的方差等于单项方差除以样本量。-/
+/-- 对正样本量，iid 样本均值的方差等于单项方差除以样本量。
+@isnad1 id=eq.4h4v.s7.47919a22d69d from=translated src=- shape=eb8e9b36 vocab=1380ce98
+-/
 theorem iid_sampleMean_variance
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
     (X : ℕ → Ω → ℝ) (hX : MemLp (X 0) 2 μ)
@@ -114,7 +128,9 @@ theorem iid_sampleMean_variance
 /-- **弱大数律**：二次可积的 iid 实值随机变量的样本均值依概率收敛到共同期望。
 
 证明在正样本量尾部应用 Chebyshev 不等式，并以
-`Var[X 0; μ] / ε² * n⁻¹` 控制偏差事件的实测度。该上界趋于零。-/
+`Var[X 0; μ] / ε² * n⁻¹` 控制偏差事件的实测度。该上界趋于零。
+@isnad1 id=tendstoi.3h3v.s7.30dd127a2c08 from=translated src=- shape=bba3eb43 vocab=13250ebf
+-/
 theorem weakLaw_of_iid_finiteVariance
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     (X : ℕ → Ω → ℝ)

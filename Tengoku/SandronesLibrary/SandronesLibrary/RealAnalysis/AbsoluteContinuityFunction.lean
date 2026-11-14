@@ -61,7 +61,9 @@ variable {F : Type*} [SeminormedAddCommGroup F]
 `E ↦ ∑ᵢ dist (f (aᵢ)) (f (bᵢ))` 沿长度滤子 `totalLengthFilter`（限制到不交区间族
 `disjWithin a b`）趋于 `0`”。这是 Mathlib 的定义体本身，故为 `Iff.rfl`；它把教材的
 “总长度 → 0 时振幅和 → 0”写成 `Tendsto`。
-> **Entry**: real-analysis.absolute-continuity-function-/
+> **Entry**: real-analysis.absolute-continuity-function
+@isnad1 id=iff.0h4v.s7.db1c3f1c9dc2 from=translated src=- shape=a65221fa vocab=4e688c0a
+-/
 theorem absolutelyContinuousOnInterval_iff_tendsto (f : ℝ → X) (a b : ℝ) :
     AbsolutelyContinuousOnInterval f a b ↔
       Tendsto (fun E : ℕ × (ℕ → ℝ × ℝ) =>
@@ -74,7 +76,9 @@ theorem absolutelyContinuousOnInterval_iff_tendsto (f : ℝ → X) (a b : ℝ) :
 `∀ ε > 0, ∃ δ > 0`，使得对任意有限个两两不交、端点都落在 `uIcc a b` 中的区间
 `(aᵢ, bᵢ)`（`i < n`），只要 `∑ᵢ dist aᵢ bᵢ < δ` 就有 `∑ᵢ dist (f aᵢ) (f bᵢ) < ε`。
 这是教材量词与 Lean 承载之间的等价刻画（Mathlib 已证）。
-> **Entry**: real-analysis.absolute-continuity-function-/
+> **Entry**: real-analysis.absolute-continuity-function
+@isnad1 id=iff.0h4v.s7.4cd0bc6373a4 from=translated src=- shape=b5cad9e7 vocab=d7714b7f
+-/
 theorem absolutelyContinuousOnInterval_iff_epsilon_delta (f : ℝ → X) (a b : ℝ) :
     AbsolutelyContinuousOnInterval f a b ↔
       ∀ ε > (0 : ℝ), ∃ δ > (0 : ℝ), ∀ E,
@@ -86,7 +90,9 @@ theorem absolutelyContinuousOnInterval_iff_epsilon_delta (f : ℝ → X) (a b : 
 /-- **有限不交区间族的对象层级**：`E ∈ disjWithin a b` 展开为“`E.1 = n` 个区间
 `(E.2 i).1, (E.2 i).2`（`i < n`）端点都在 `uIcc a b` 中，且对应的 `uIoc` 两两不交”。
 这条把教材“有限个两两不交的区间”精确对应到 Lean 的 `ℕ × (ℕ → ℝ × ℝ)` 编码。
-> **Entry**: real-analysis.absolute-continuity-function-/
+> **Entry**: real-analysis.absolute-continuity-function
+@isnad1 id=iff.0h3v.s7.4ae45c0796e1 from=translated src=- shape=0e5e1eb1 vocab=defbcc36
+-/
 theorem mem_disjWithin_iff {a b : ℝ} {E : ℕ × (ℕ → ℝ × ℝ)} :
     E ∈ AbsolutelyContinuousOnInterval.disjWithin a b ↔
       (∀ i ∈ Finset.range E.1, (E.2 i).1 ∈ uIcc a b ∧ (E.2 i).2 ∈ uIcc a b) ∧
@@ -98,7 +104,9 @@ theorem mem_disjWithin_iff {a b : ℝ} {E : ℕ × (ℕ → ℝ × ℝ)} :
 /-- **Lipschitz ⟹ 绝对连续（教材定理）**：若 `f` 在 `uIcc a b` 上以常数 `K` Lipschitz 连续，
 则 `f` 在 `uIcc a b` 上绝对连续。教材证明取 `δ = ε / (K + 1)`：不交区间族的总长度乘以 `K`
 控制振幅和。反向不成立（AC 不必 Lipschitz）。
-> **Entry**: real-analysis.absolute-continuity-function-/
+> **Entry**: real-analysis.absolute-continuity-function
+@isnad1 id=absolute.1h5v.s5.1fc9b152796b from=translated src=- shape=2949878e vocab=200878d6
+-/
 theorem lipschitzOnWith_absolutelyContinuousOnInterval {f : ℝ → X} {a b : ℝ} {K : ℝ≥0}
     (h : LipschitzOnWith K f (uIcc a b)) : AbsolutelyContinuousOnInterval f a b :=
   h.absolutelyContinuousOnInterval
@@ -107,7 +115,9 @@ theorem lipschitzOnWith_absolutelyContinuousOnInterval {f : ℝ → X} {a b : �
 则 `f` 绝对连续。这是“更强正则性 ⟹ AC”的又一条入口；它同时说明 AC 类严格大于 `C¹` 类：
 AC 只保证**几乎处处**可导，不保证处处可导，例如 `x ↦ max x 0` 在 `[-1,1]` 上是区间可积函数
 `1_{[0,∞)}` 的变上限积分，因而绝对连续，但在 `x = 0` 处不可导。
-> **Entry**: real-analysis.absolute-continuity-function-/
+> **Entry**: real-analysis.absolute-continuity-function
+@isnad1 id=absolute.1h4v.s6.6dc3de052a27 from=translated src=- shape=32278185 vocab=6c59caff
+-/
 theorem contDiffOn_one_absolutelyContinuousOnInterval {E : Type*} [NormedAddCommGroup E]
     [NormedSpace ℝ E] {f : ℝ → E} {a b : ℝ} (h : ContDiffOn ℝ 1 f (uIcc a b)) :
     AbsolutelyContinuousOnInterval f a b :=
@@ -118,7 +128,9 @@ theorem contDiffOn_one_absolutelyContinuousOnInterval {E : Type*} [NormedAddComm
 /-- **绝对连续 ⟹ 有界变差（教材定理）**：若 `f` 在 `uIcc a b` 上绝对连续，则 `f` 在 `uIcc a b` 上
 有界变差。教材证明把 `[a,b]` 切成若干长度 `< δ` 的小区间（`δ` 取 AC 定义中对 `ε = 1` 的那一个），
 每段变差 `< 1`，故总变差有限。
-> **Entry**: real-analysis.absolute-continuity-function-/
+> **Entry**: real-analysis.absolute-continuity-function
+@isnad1 id=boundedv.1h4v.s5.f9a6ccda843f from=translated src=- shape=c8a85aab vocab=a51dc372
+-/
 theorem absolutelyContinuousOnInterval_boundedVariationOn {f : ℝ → F} {a b : ℝ}
     (h : AbsolutelyContinuousOnInterval f a b) : BoundedVariationOn f (uIcc a b) :=
   h.boundedVariationOn
@@ -129,7 +141,9 @@ theorem absolutelyContinuousOnInterval_boundedVariationOn {f : ℝ → F} {a b :
 `BoundedVariationOn.ae_differentiableAt_of_mem_uIcc`。
 > **诚实边界**：这是 a.e. 结论，**不是**逐点结论——零测例外集可以非空。也不含
 > `∫ f' = f(b) - f(a)`（RA-F6）。
-> **Entry**: real-analysis.absolute-continuity-function-/
+> **Entry**: real-analysis.absolute-continuity-function
+@isnad1 id=eventual.1h3v.s6.ce407c51f718 from=translated src=- shape=1bb59696 vocab=74a57fdc
+-/
 theorem absolutelyContinuousOnInterval_ae_differentiableAt {f : ℝ → ℝ} {a b : ℝ}
     (h : AbsolutelyContinuousOnInterval f a b) :
     ∀ᵐ x : ℝ, x ∈ uIcc a b → DifferentiableAt ℝ f x :=
@@ -139,19 +153,25 @@ theorem absolutelyContinuousOnInterval_ae_differentiableAt {f : ℝ → ℝ} {a 
 
 /-- **AC ⟹ 一致连续（教材定理）**：绝对连续比一致连续更强。教材中 AC 定义里的 ε-δ 对**所有**
 有限不交区间族一致成立，取单区间族即得一致连续性。
-> **Entry**: real-analysis.absolute-continuity-function-/
+> **Entry**: real-analysis.absolute-continuity-function
+@isnad1 id=uniformc.1h4v.s5.71211ef74808 from=translated src=- shape=c8a85aab vocab=24ab8143
+-/
 theorem absolutelyContinuousOnInterval_uniformContinuousOn {f : ℝ → F} {a b : ℝ}
     (h : AbsolutelyContinuousOnInterval f a b) : UniformContinuousOn f (uIcc a b) :=
   h.uniformContinuousOn
 
 /-- **AC ⟹ 连续**：由一致连续推出（`uIcc a b` 上的一致连续函数连续）。
-> **Entry**: real-analysis.absolute-continuity-function-/
+> **Entry**: real-analysis.absolute-continuity-function
+@isnad1 id=continuo.1h4v.s5.54bc90327b26 from=translated src=- shape=c8a85aab vocab=91f3e986
+-/
 theorem absolutelyContinuousOnInterval_continuousOn {f : ℝ → F} {a b : ℝ}
     (h : AbsolutelyContinuousOnInterval f a b) : ContinuousOn f (uIcc a b) :=
   h.continuousOn
 
 /-- **AC ⟹ 有界**：`uIcc a b` 紧，连续函数在其上有界。
-> **Entry**: real-analysis.absolute-continuity-function-/
+> **Entry**: real-analysis.absolute-continuity-function
+@isnad1 id=ex.1h4v.s5.afe8012bbcff from=translated src=- shape=d3447e64 vocab=3bbfe8fa
+-/
 theorem absolutelyContinuousOnInterval_exists_bound {f : ℝ → F} {a b : ℝ}
     (h : AbsolutelyContinuousOnInterval f a b) :
     ∃ C : ℝ, ∀ x ∈ uIcc a b, ‖f x‖ ≤ C :=
@@ -160,34 +180,44 @@ theorem absolutelyContinuousOnInterval_exists_bound {f : ℝ → F} {a b : ℝ}
 /-! ## 5. 代数封闭性 -/
 
 /-- **AC 对加法封闭**。
-> **Entry**: real-analysis.absolute-continuity-function-/
+> **Entry**: real-analysis.absolute-continuity-function
+@isnad1 id=absolute.2h5v.s6.e3f0743b4e2d from=translated src=- shape=92228fc4 vocab=7ebc0dd5
+-/
 theorem absolutelyContinuousOnInterval_add {f g : ℝ → F} {a b : ℝ}
     (hf : AbsolutelyContinuousOnInterval f a b) (hg : AbsolutelyContinuousOnInterval g a b) :
     AbsolutelyContinuousOnInterval (f + g) a b :=
   hf.add hg
 
 /-- **AC 对减法封闭**。
-> **Entry**: real-analysis.absolute-continuity-function-/
+> **Entry**: real-analysis.absolute-continuity-function
+@isnad1 id=absolute.2h5v.s6.dd1ff4580bf1 from=translated src=- shape=92228fc4 vocab=e45f1038
+-/
 theorem absolutelyContinuousOnInterval_sub {f g : ℝ → F} {a b : ℝ}
     (hf : AbsolutelyContinuousOnInterval f a b) (hg : AbsolutelyContinuousOnInterval g a b) :
     AbsolutelyContinuousOnInterval (f - g) a b :=
   hf.sub hg
 
 /-- **AC 对取负封闭**。
-> **Entry**: real-analysis.absolute-continuity-function-/
+> **Entry**: real-analysis.absolute-continuity-function
+@isnad1 id=absolute.1h4v.s5.28e25387cfcb from=translated src=- shape=9453ee81 vocab=3b37fbb2
+-/
 theorem absolutelyContinuousOnInterval_neg {f : ℝ → F} {a b : ℝ}
     (hf : AbsolutelyContinuousOnInterval f a b) : AbsolutelyContinuousOnInterval (-f) a b :=
   hf.neg
 
 /-- **AC 对实数数乘封闭**（实值情形）。
-> **Entry**: real-analysis.absolute-continuity-function-/
+> **Entry**: real-analysis.absolute-continuity-function
+@isnad1 id=absolute.1h4v.s5.4c069c230caa from=translated src=- shape=1ee9f4b3 vocab=88d65813
+-/
 theorem absolutelyContinuousOnInterval_const_mul {f : ℝ → ℝ} {a b : ℝ} (c : ℝ)
     (hf : AbsolutelyContinuousOnInterval f a b) :
     AbsolutelyContinuousOnInterval (fun x => c * f x) a b :=
   hf.const_mul c
 
 /-- **AC 对标量乘法封闭**（`M` 为半范数环、`F` 为 `M`-模，且范数与标量乘法相容）。
-> **Entry**: real-analysis.absolute-continuity-function-/
+> **Entry**: real-analysis.absolute-continuity-function
+@isnad1 id=absolute.1h6v.s7.8da03a521128 from=translated src=- shape=11f0b20d vocab=00db4d14
+-/
 theorem absolutelyContinuousOnInterval_const_smul {M : Type*} [SeminormedRing M] [Module M F]
     [NormSMulClass M F] (c : M) {f : ℝ → F} {a b : ℝ}
     (hf : AbsolutelyContinuousOnInterval f a b) :
@@ -196,14 +226,18 @@ theorem absolutelyContinuousOnInterval_const_smul {M : Type*} [SeminormedRing M]
 
 /-- **AC 对乘积封闭**（实值情形）：两个绝对连续实值函数的乘积绝对连续。证明用“AC ⟹ 有界”
 把乘积的振幅和拆成 `C · ∑ dist g + D · ∑ dist f`。
-> **Entry**: real-analysis.absolute-continuity-function-/
+> **Entry**: real-analysis.absolute-continuity-function
+@isnad1 id=absolute.2h4v.s5.ed5e049d55fc from=translated src=- shape=54e2b444 vocab=88d65813
+-/
 theorem absolutelyContinuousOnInterval_mul {f g : ℝ → ℝ} {a b : ℝ}
     (hf : AbsolutelyContinuousOnInterval f a b) (hg : AbsolutelyContinuousOnInterval g a b) :
     AbsolutelyContinuousOnInterval (f * g) a b :=
   hf.mul hg
 
 /-- **AC 对逐点标量积封闭**（`M` 值函数与 `F` 值函数）。
-> **Entry**: real-analysis.absolute-continuity-function-/
+> **Entry**: real-analysis.absolute-continuity-function
+@isnad1 id=absolute.2h6v.s7.278b4aa33f72 from=translated src=- shape=b39d73fe vocab=00db4d14
+-/
 theorem absolutelyContinuousOnInterval_smul {M : Type*} [SeminormedRing M] [Module M F]
     [NormSMulClass M F] {f : ℝ → M} {g : ℝ → F} {a b : ℝ}
     (hf : AbsolutelyContinuousOnInterval f a b) (hg : AbsolutelyContinuousOnInterval g a b) :
@@ -211,13 +245,17 @@ theorem absolutelyContinuousOnInterval_smul {M : Type*} [SeminormedRing M] [Modu
   hf.smul hg
 
 /-- **端点顺序对称**：`AC` 在 `uIcc a b` 上等价于在 `uIcc b a` 上（`uIcc` 对端点对称）。
-> **Entry**: real-analysis.absolute-continuity-function-/
+> **Entry**: real-analysis.absolute-continuity-function
+@isnad1 id=absolute.1h4v.s4.475407dea65a from=translated src=- shape=18787fcc vocab=06b24545
+-/
 theorem absolutelyContinuousOnInterval_symm {f : ℝ → X} {a b : ℝ}
     (hf : AbsolutelyContinuousOnInterval f a b) : AbsolutelyContinuousOnInterval f b a :=
   hf.symm
 
 /-- **单调性（限制到子区间）**：`AC` 在较大区间上成立则在子区间上成立。
-> **Entry**: real-analysis.absolute-continuity-function-/
+> **Entry**: real-analysis.absolute-continuity-function
+@isnad1 id=absolute.2h6v.s5.4e2441068108 from=translated src=- shape=d3c0daaa vocab=92d13a95
+-/
 theorem absolutelyContinuousOnInterval_mono {f : ℝ → X} {a b c d : ℝ}
     (hf : AbsolutelyContinuousOnInterval f a b) (habcd : uIcc c d ⊆ uIcc a b) :
     AbsolutelyContinuousOnInterval f c d :=
@@ -228,7 +266,9 @@ theorem absolutelyContinuousOnInterval_mono {f : ℝ → X} {a b c d : ℝ}
 **Mathlib 没有这条引理**，本库按教材思路自证：取 AC 定义中对 `ε / (K + 1)` 的 `δ`，逐项用
 `dist (g x) (g y) ≤ K · dist x y` 控制，再做算术
 `K · (ε/(K+1)) < (K+1) · (ε/(K+1)) = ε`。
-> **Entry**: real-analysis.absolute-continuity-function-/
+> **Entry**: real-analysis.absolute-continuity-function
+@isnad1 id=absolute.3h5v.s6.9346fa45eb61 from=translated src=- shape=e5ff99d0 vocab=e35b4552
+-/
 theorem lipschitzOnWith_comp_absolutelyContinuousOnInterval {f g : ℝ → ℝ} {a b : ℝ} {K : ℝ≥0}
     (hf : AbsolutelyContinuousOnInterval f a b) (hg : LipschitzOnWith K g (uIcc a b))
     (hmaps : MapsTo f (uIcc a b) (uIcc a b)) :
@@ -260,7 +300,9 @@ theorem lipschitzOnWith_comp_absolutelyContinuousOnInterval {f g : ℝ → ℝ} 
 > **诚实边界**：这里只交付 **AC 这一侧**。反方向——AC ⟹ 导数可积且
 > `∫ x in a..b, deriv f x = f b - f a`（FTC 的 a.e. 版本，即 Newton–Leibniz 表示）——
 > 属于 **RA-F6，本窗不交付**；它依赖 RA-F4 的 Lebesgue 微分定理。
-> **Entry**: real-analysis.absolute-continuity-function-/
+> **Entry**: real-analysis.absolute-continuity-function
+@isnad1 id=absolute.2h4v.s6.18a6bf825c8c from=translated src=- shape=0689bd29 vocab=580933f5
+-/
 theorem intervalIntegrable_absolutelyContinuousOnInterval_intervalIntegral {f : ℝ → ℝ} {a b c : ℝ}
     (h : IntervalIntegrable f volume a b) (hc : c ∈ uIcc a b) :
     AbsolutelyContinuousOnInterval (fun x => ∫ v in c..x, f v) a b :=

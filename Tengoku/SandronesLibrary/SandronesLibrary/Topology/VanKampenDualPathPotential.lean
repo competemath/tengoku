@@ -32,7 +32,9 @@ omit [TopologicalSpace X] in
 /-- 若同一几何点同时属于两个不同标签的二开集成员，则它属于交集。这个小接口把后续逐边
 比较中的 Bool 分支集中在一处。
 
-> **Entry**: topology.fundamental-group.van-kampen-dual-path-potential-/
+> **Entry**: topology.fundamental-group.van-kampen-dual-path-potential
+@isnad1 id=mem.3h6v.s5.a0013979cd46 from=translated src=- shape=d64a2dac vocab=36075a0e
+-/
 theorem mem_intersection_of_mem_binaryOpenCoverPieces_of_ne
     {U V : Set X} {x : X} {b c : Bool}
     (hb : x ∈ binaryOpenCoverPiece U V b)
@@ -56,6 +58,9 @@ def binaryOpenCoverDualPathInIntersection
   source' := Subtype.ext q.source
   target' := Subtype.ext q.target
 
+/--
+@isnad1 id=eq.3h9v.s8.20de2a8a6cf6 from=translated src=- shape=064ba069 vocab=987211a3
+-/
 @[simp] theorem coe_binaryOpenCoverDualPathInIntersection
     {U V : Set X} {z w : X} {b c : Bool} (q : Path z w)
     (hb : ∀ t, q t ∈ binaryOpenCoverPiece U V b)
@@ -76,6 +81,9 @@ def binaryOpenCoverPathInPiece
   source' := Subtype.ext q.source
   target' := Subtype.ext q.target
 
+/--
+@isnad1 id=eq.1h8v.s8.9c9a67bc45e1 from=translated src=- shape=0b695b59 vocab=fe8e9238
+-/
 @[simp] theorem coe_binaryOpenCoverPathInPiece
     {U V : Set X} {z w : X} {b : Bool} (q : Path z w)
     (hb : ∀ t, q t ∈ binaryOpenCoverPiece U V b) (t : unitInterval) :
@@ -180,7 +188,9 @@ private theorem binaryVanKampenPushout_of_intersection_eq_of_ne
   · exact (binaryVanKampenPushout_of_intersection_eq hxU hxV g).symm
   · exact False.elim (hne rfl)
 
-/-- 同一双标签道路的两个交集归一化成员像，经各自 Pushout 注入后严格相等。-/
+/-- 同一双标签道路的两个交集归一化成员像，经各自 Pushout 注入后严格相等。
+@isnad1 id=eq.6h9v.s12.41f454f44438 from=translated src=- shape=a8ba3a01 vocab=c2b93b75
+-/
 theorem binaryOpenCoverDualPathPieceElements_pushout_eq
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V)) {z w : X} {b c : Bool}
@@ -310,7 +320,9 @@ private theorem binaryOpenCoverDualPathConnectorComparison_leftElement
       ((binaryOpenCoverIntersectionConnector hxU hxV hUV wUV).map f.continuous)
       hbase hbase hz hz hw hw)
 
-/-- 任意局部 connector 版本由交集规范元素及两个端点变化因子精确给出。-/
+/-- 任意局部 connector 版本由交集规范元素及两个端点变化因子精确给出。
+@isnad1 id=other.7h12v.s10.c53d3143d930 from=translated src=- shape=e8f0d5b1 vocab=edc41148
+-/
 theorem binaryOpenCoverDualPathConnectorComparison_relation
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V)) {z w : X} {b c d : Bool}
@@ -332,7 +344,9 @@ theorem binaryOpenCoverDualPathConnectorComparison_relation
   exact (binaryOpenCoverDualPathConnectorComparison hxU hxV hUV
     q hb hc hne hd localStart localEnd).rightElement_eq
 
-/-- 方格角 potential 是坐标无关 vertex potential 在实际单格标签与规范角 connector 上的特例。-/
+/-- 方格角 potential 是坐标无关 vertex potential 在实际单格标签与规范角 connector 上的特例。
+@isnad1 id=eq.6h11v.s8.4c94f300995f from=translated src=- shape=07278417 vocab=8d421e5b
+-/
 theorem BinaryOpenCoverSquareSubdivision.gridCellVertexPotentialFromIntersection_eq_vertexPotential
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -348,7 +362,9 @@ theorem BinaryOpenCoverSquareSubdivision.gridCellVertexPotentialFromIntersection
         (D.gridCellVertexConnectorInPiece hxU hxV hU hV i j a b) hz := by
   rfl
 
-/-- vertex potential 不依赖把同一个交集像识别为局部端点时所用的等式证明。-/
+/-- vertex potential 不依赖把同一个交集像识别为局部端点时所用的等式证明。
+@isnad1 id=eq.5h8v.s8.390d725766ba from=translated src=- shape=dc117a26 vocab=bcf7863c
+-/
 theorem binaryOpenCoverVertexPotentialFromIntersection_proof_irrel
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V)) (z : ↥(U ∩ V)) (d : Bool)
@@ -359,7 +375,9 @@ theorem binaryOpenCoverVertexPotentialFromIntersection_proof_irrel
       binaryOpenCoverVertexPotentialFromIntersection hxU hxV hUV z d w localConnector hz₂ := by
   rw [Subsingleton.elim hz₁ hz₂]
 
-/-- 把交集点、成员端点和局部 connector 同时沿相等搬运，不改变 vertex potential。-/
+/-- 把交集点、成员端点和局部 connector 同时沿相等搬运，不改变 vertex potential。
+@isnad1 id=eq.8h11v.s9.5e83addc6df4 from=translated src=- shape=3ddcb74e vocab=e4c24e88
+-/
 theorem binaryOpenCoverVertexPotentialFromIntersection_cast
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V)) (d : Bool)
@@ -382,7 +400,9 @@ theorem binaryOpenCoverVertexPotentialFromIntersection_cast
     hxU hxV hUV z₁ d w₁ local₁ h₁ h₂
 
 /-- `cast` 的标签变化版本：两个标签已知相等时，只需比较交集点、成员端点和 connector 的底层
-函数，即可跨越整个 dependent transport 比较 vertex potentials。-/
+函数，即可跨越整个 dependent transport 比较 vertex potentials。
+@isnad1 id=eq.9h12v.s9.4bb4d8183a06 from=translated src=- shape=3665bcf8 vocab=98414eb2
+-/
 theorem binaryOpenCoverVertexPotentialFromIntersection_cast_label
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))
@@ -493,7 +513,9 @@ private theorem binaryOpenCoverVertexPotentialFromIntersection_eq_of_intersectio
 
 /-- At the distinguished intersection basepoint, any two member connectors that
 are constant after coercion to the ambient space define the same pushout
-potential, independently of their cover labels.-/
+potential, independently of their cover labels.
+@isnad1 id=eq.7h10v.s9.1c20d412b0bc from=translated src=- shape=34318ce3 vocab=8cf977fd
+-/
 theorem binaryOpenCoverVertexPotentialFromIntersection_basepoint_eq_of_coe
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V)) (d₁ d₂ : Bool)
@@ -523,7 +545,9 @@ theorem binaryOpenCoverVertexPotentialFromIntersection_basepoint_eq_of_coe
     exact (hlocal₂ u).trans rfl
 
 /-- A point of either cover member whose ambient value is the distinguished
-basepoint is the image of the intersection basepoint.-/
+basepoint is the image of the intersection basepoint.
+@isnad1 id=eq.3h6v.s7.51925fccd3b8 from=translated src=- shape=d2c58185 vocab=ae0bafe0
+-/
 theorem binaryOpenCoverIntersectionToPiece_basepoint_eq_of_coe
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (d : Bool) (w : binaryOpenCoverPiece U V d) (hw : (w : X) = x₀) :
@@ -533,7 +557,9 @@ theorem binaryOpenCoverIntersectionToPiece_basepoint_eq_of_coe
   simpa only [coe_binaryOpenCoverIntersectionToPiece] using hw.symm
 
 /-- 共同成员 connector potential 的跨标签 transport：标签相等时，比较底层端点及两条 connector
-函数即可。-/
+函数即可。
+@isnad1 id=eq.6h12v.s9.ce2bc8272ba0 from=translated src=- shape=acd12d49 vocab=f320b00b
+-/
 theorem binaryOpenCoverConnectorPotential_cast_label
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (d₁ d₂ : Bool) (hd : d₁ = d₂)
@@ -571,7 +597,9 @@ theorem binaryOpenCoverConnectorPotential_cast_label
     _ = connectorChange reference₂ local₂ := by rw [href', hlocal']
 
 /-- 任意共同成员 comparison 的起点逆变化，在该点已知属于交集时，等于两套局部 connectors 的
-统一 vertex potentials 之比。-/
+统一 vertex potentials 之比。
+@isnad1 id=eq.4h7v.s12.9bb0ea839467 from=translated src=- shape=1a0a46de vocab=d466f9ef
+-/
 theorem CommonEdgeConnectorComparison.pushout_startChange_inv_eq_vertexPotentials
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V)) (d : Bool)
@@ -595,7 +623,9 @@ theorem CommonEdgeConnectorComparison.pushout_startChange_inv_eq_vertexPotential
   rw [C.map_startChange_inv_eq_potentials f reference]
   rfl
 
-/-- 上一结论的终点版本。-/
+/-- 上一结论的终点版本。
+@isnad1 id=eq.4h7v.s12.cdffc84ac1ee from=translated src=- shape=1a0a46de vocab=0f5e7d36
+-/
 theorem CommonEdgeConnectorComparison.pushout_endChange_inv_eq_vertexPotentials
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V)) (d : Bool)
@@ -619,7 +649,9 @@ theorem CommonEdgeConnectorComparison.pushout_endChange_inv_eq_vertexPotentials
   rw [C.map_endChange_inv_eq_potentials f reference]
   rfl
 
-/-- 双标签道路在起点的 comparison potential，正是坐标无关的交集 vertex potential。-/
+/-- 双标签道路在起点的 comparison potential，正是坐标无关的交集 vertex potential。
+@isnad1 id=other.7h12v.s12.8dda6b23fe91 from=translated src=- shape=c8f8ce7e vocab=b313d9f5
+-/
 theorem binaryOpenCoverDualPathConnectorComparison_startPotential_eq
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V)) {z w : X} {b c d : Bool}
@@ -649,7 +681,9 @@ theorem binaryOpenCoverDualPathConnectorComparison_startPotential_eq
   rw [C.map_startChange_inv]
   rfl
 
-/-- 双标签道路在终点的 comparison potential，同样是该终点的交集 vertex potential。-/
+/-- 双标签道路在终点的 comparison potential，同样是该终点的交集 vertex potential。
+@isnad1 id=other.7h12v.s12.b12796637bcd from=translated src=- shape=1bd43671 vocab=8f4c886b
+-/
 theorem binaryOpenCoverDualPathConnectorComparison_endPotential_eq
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V)) {z w : X} {b c d : Bool}
@@ -681,7 +715,9 @@ theorem binaryOpenCoverDualPathConnectorComparison_endPotential_eq
 
 /-- 两个双标签道路 comparison 在同一共享环境顶点使用同一个局部 connector 时，前一条的终点
 potential 与后一条的起点 potential 严格相同。所有成员性 proof transport 都由统一 vertex
-potential 消去。-/
+potential 消去。
+@isnad1 id=other.12h20v.s13.21da235b5b0d from=translated src=- shape=bdf5eebf vocab=b3fbd0ef
+-/
 theorem binaryOpenCoverDualPathConnectorComparison_sharedPotential
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V)) {a v₁ v₂ w : X} (hv : v₁ = v₂)

@@ -78,20 +78,26 @@ open scoped ENNReal MeasureTheory
 /-- **单调函数（Folland §3.5 教材量词）**：`f : ℝ → ℝ` 单调，当且仅当
 `∀ x y, x ≤ y → f x ≤ f y`。Mathlib 的 `Monotone` 定义体即为该量词，故为 `Iff.rfl`；
 本定理只把教材量词显式写出，供上层以展开形式使用。
-> **Entry**: real-analysis.monotone-function-/
+> **Entry**: real-analysis.monotone-function
+@isnad1 id=iff.0h1v.s4.36a533af47ba from=translated src=- shape=63ff7a0c vocab=a507717f
+-/
 theorem monotone_iff_forall_le {f : ℝ → ℝ} : Monotone f ↔ ∀ x y, x ≤ y → f x ≤ f y :=
   Iff.rfl
 
 /-- **集合上的单调（教材量词）**：`MonotoneOn f s ↔ ∀ x ∈ s, ∀ y ∈ s, x ≤ y → f x ≤ f y`。
 教材通常只关心区间 `s = Icc a b` 或 `s = univ`；这里给出一般集合上的显式量词展开。
-> **Entry**: real-analysis.monotone-function-/
+> **Entry**: real-analysis.monotone-function
+@isnad1 id=iff.0h2v.s5.00145b1b27af from=translated src=- shape=774e50ee vocab=d0a97924
+-/
 theorem monotoneOn_iff_forall_le {f : ℝ → ℝ} {s : Set ℝ} :
     MonotoneOn f s ↔ ∀ x ∈ s, ∀ y ∈ s, x ≤ y → f x ≤ f y :=
   Iff.rfl
 
 /-- **全局单调与全空间上单调等价**：`Monotone f ↔ MonotoneOn f univ`。这是教材「`f` 在
 `ℝ` 上单调」与 Mathlib 两种承载（`Monotone`、`MonotoneOn`）之间的精确对照。
-> **Entry**: real-analysis.monotone-function-/
+> **Entry**: real-analysis.monotone-function
+@isnad1 id=iff.0h1v.s4.d4fd53b91db0 from=translated src=- shape=0e159c24 vocab=3b088093
+-/
 theorem monotone_iff_monotoneOn_univ {f : ℝ → ℝ} : Monotone f ↔ MonotoneOn f univ :=
   ⟨fun h => h.monotoneOn univ, fun h x y hxy => h (mem_univ x) (mem_univ y) hxy⟩
 
@@ -100,21 +106,27 @@ theorem monotone_iff_monotoneOn_univ {f : ℝ → ℝ} : Monotone f ↔ Monotone
 /-- **左极限不超过函数值**：单调函数的左极限 `f(x⁻) = Function.leftLim f x` 满足
 `f(x⁻) ≤ f x`（教材夹逼 `f(x⁻) ≤ f(x) ≤ f(x⁺)` 的左半）。Mathlib 只有
 `Monotone.leftLim_le`（`x ≤ y ⟹ f(x⁻) ≤ f y`），本定理取 `y = x` 的教材特化。
-> **Entry**: real-analysis.monotone-function-/
+> **Entry**: real-analysis.monotone-function
+@isnad1 id=le.1h2v.s4.d2a15a9383cb from=translated src=- shape=10d3df22 vocab=dd31f5a2
+-/
 theorem leftLim_le_self {f : ℝ → ℝ} (hf : Monotone f) (x : ℝ) :
     Function.leftLim f x ≤ f x :=
   hf.leftLim_le le_rfl
 
 /-- **函数值不超过右极限**：单调函数满足 `f x ≤ f(x⁺) = Function.rightLim f x`
 （教材夹逼 `f(x⁻) ≤ f(x) ≤ f(x⁺)` 的右半）。
-> **Entry**: real-analysis.monotone-function-/
+> **Entry**: real-analysis.monotone-function
+@isnad1 id=le.1h2v.s4.b25657a995af from=translated src=- shape=816cebea vocab=cc142c94
+-/
 theorem self_le_rightLim {f : ℝ → ℝ} (hf : Monotone f) (x : ℝ) :
     f x ≤ Function.rightLim f x :=
   hf.le_rightLim le_rfl
 
 /-- **跳跃非负**：单调函数的单侧极限满足 `f(x⁻) ≤ f(x⁺)`，即跳跃量 `f(x⁺) - f(x⁻) ≥ 0`。
 这是 `Monotone.leftLim_le_rightLim`（`x ≤ y ⟹ f(x⁻) ≤ f(y⁺)`）在 `y = x` 的教材特化。
-> **Entry**: real-analysis.monotone-function-/
+> **Entry**: real-analysis.monotone-function
+@isnad1 id=le.1h2v.s5.a83f881f0074 from=translated src=- shape=812b9072 vocab=524aaa25
+-/
 theorem leftLim_le_rightLim_self {f : ℝ → ℝ} (hf : Monotone f) (x : ℝ) :
     Function.leftLim f x ≤ Function.rightLim f x :=
   hf.leftLim_le_rightLim le_rfl
@@ -124,7 +136,9 @@ theorem leftLim_le_rightLim_self {f : ℝ → ℝ} (hf : Monotone f) (x : ℝ) :
 `Monotone.continuousAt_iff_leftLim_eq_rightLim` 只断言 `f(x⁻) = f(x⁺)`；由夹逼
 `f(x⁻) ≤ f x ≤ f(x⁺)`（本文件 `leftLim_le_self`、`self_le_rightLim`）可补上「等于函数值」，
 这正是教材对间断点（跳跃点）的定义形式。
-> **Entry**: real-analysis.monotone-function-/
+> **Entry**: real-analysis.monotone-function
+@isnad1 id=iff.1h2v.s5.591fbd12df09 from=translated src=- shape=850bc991 vocab=030d41ff
+-/
 theorem continuousAt_iff_leftLim_eq_self_and_rightLim_eq_self {f : ℝ → ℝ}
     (hf : Monotone f) (x : ℝ) :
     ContinuousAt f x ↔ Function.leftLim f x = f x ∧ Function.rightLim f x = f x := by
@@ -137,7 +151,9 @@ theorem continuousAt_iff_leftLim_eq_self_and_rightLim_eq_self {f : ℝ → ℝ}
 /-- **单调函数的间断点至多可数（`ℝ → ℝ` 教材形式）**：`{x | ¬ ContinuousAt f x}` 可数。
 Mathlib 的正式承载是 `Monotone.countable_not_continuousAt`，其假设为第二可数的值域空间；
 本定理是 `ℝ → ℝ` 的教材特化（Folland §3.5 中「单调函数的间断点集至多可数」的原文情形）。
-> **Entry**: real-analysis.monotone-function-/
+> **Entry**: real-analysis.monotone-function
+@isnad1 id=countabl.1h1v.s5.0a4d01723ade from=translated src=- shape=aa01e6de vocab=1d858eff
+-/
 theorem countable_not_continuousAt_real {f : ℝ → ℝ} (hf : Monotone f) :
     {x : ℝ | ¬ ContinuousAt f x}.Countable :=
   hf.countable_not_continuousAt
@@ -146,7 +162,9 @@ theorem countable_not_continuousAt_real {f : ℝ → ℝ} (hf : Monotone f) :
 `{x | f(x⁻) < f(x⁺)}` 至多可数。由 `continuousAt_iff_leftLim_eq_self_and_rightLim_eq_self`
 的判据，跳跃点恰是间断点，再用 `countable_not_continuousAt_real` 得证；这是教材「单调函数
 只有可多个跳跃」的精确 Lean 形式（严格小于，而非 `≠`，用到了跳跃非负）。
-> **Entry**: real-analysis.monotone-function-/
+> **Entry**: real-analysis.monotone-function
+@isnad1 id=countabl.1h1v.s5.d8a5fdb448a8 from=translated src=- shape=12129ab6 vocab=018f2b8e
+-/
 theorem countable_jumpPoints {f : ℝ → ℝ} (hf : Monotone f) :
     {x : ℝ | Function.leftLim f x < Function.rightLim f x}.Countable := by
   refine Set.Countable.mono ?_ (countable_not_continuousAt_real hf)
@@ -163,7 +181,9 @@ theorem countable_jumpPoints {f : ℝ → ℝ} (hf : Monotone f) :
 
 Mathlib 已有 `Monotone.ae_hasDerivAt`（同一命题，a.e. 滤子的测度由实例隐式给出）；本定理把
 测度写成显式 `volume`，作为本 Entry 的桥头陈述与下一层 `ae_differentiableAt_volume` 的前提。
-> **Entry**: real-analysis.monotone-function-/
+> **Entry**: real-analysis.monotone-function
+@isnad1 id=eventual.1h1v.s6.53ddec48e2af from=translated src=- shape=34b66d7b vocab=090b3572
+-/
 theorem ae_hasDerivAt_volume {f : ℝ → ℝ} (hf : Monotone f) :
     ∀ᵐ x ∂(volume : Measure ℝ),
       HasDerivAt f (hf.stieltjesFunction.measure.rnDeriv volume x).toReal x :=
@@ -172,7 +192,9 @@ theorem ae_hasDerivAt_volume {f : ℝ → ℝ} (hf : Monotone f) :
 /-- **单调函数 Lebesgue-a.e. 可导（显式测度形式）**：`∀ᵐ x ∂volume, DifferentiableAt ℝ f x`。
 由 `ae_hasDerivAt_volume` 取 `HasDerivAt.differentiableAt` 得到。**这是 a.e. 结论，不得读成
 逐点可导**；Mathlib 的对应承载是 `Monotone.ae_differentiableAt`。
-> **Entry**: real-analysis.monotone-function-/
+> **Entry**: real-analysis.monotone-function
+@isnad1 id=eventual.1h1v.s6.e7696965ba81 from=translated src=- shape=6312ffa5 vocab=2952e3cb
+-/
 theorem ae_differentiableAt_volume {f : ℝ → ℝ} (hf : Monotone f) :
     ∀ᵐ x ∂(volume : Measure ℝ), DifferentiableAt ℝ f x := by
   filter_upwards [ae_hasDerivAt_volume hf] with x hx using hx.differentiableAt
@@ -183,7 +205,9 @@ theorem ae_differentiableAt_volume {f : ℝ → ℝ} (hf : Monotone f) :
 Lebesgue–Stieltjes 测度 `hf.stieltjesFunction.measure` 是 `ℝ` 上的局部有限 Borel 测度。
 Mathlib 的实例是 `StieltjesFunction.instIsLocallyFiniteMeasure`；本定理把它作为教材命题
 （「Stieltjes 测度在每个紧区间上有限」）暴露出来，供 Radon–Nikodym 与 a.e. 导数使用。
-> **Entry**: real-analysis.monotone-function-/
+> **Entry**: real-analysis.monotone-function
+@isnad1 id=islocall.1h1v.s5.fb492d6c97e4 from=translated src=- shape=e95f41fd vocab=0181a95a
+-/
 theorem stieltjesFunction_measure_isLocallyFinite {f : ℝ → ℝ} (hf : Monotone f) :
     IsLocallyFiniteMeasure hf.stieltjesFunction.measure :=
   inferInstance
@@ -193,7 +217,9 @@ theorem stieltjesFunction_measure_isLocallyFinite {f : ℝ → ℝ} (hf : Monoto
 `leftLim (↑hf.stieltjesFunction)` 换回 `f` 自己的左极限，是下面五个区间测度公式的关键引理。
 证明用左右极限的 `sSup`/`sInf` 刻画（`Monotone.leftLim_eq_sSup`、`Monotone.rightLim_eq_sInf`）
 与 `csSup_le`、`le_csSup`、`le_csInf` 的夹逼。
-> **Entry**: real-analysis.monotone-function-/
+> **Entry**: real-analysis.monotone-function
+@isnad1 id=eq.1h2v.s5.edb820ea5ad2 from=translated src=- shape=0c2f6aea vocab=e2d14919
+-/
 theorem leftLim_stieltjesFunction {f : ℝ → ℝ} (hf : Monotone f) (a : ℝ) :
     Function.leftLim (hf.stieltjesFunction : ℝ → ℝ) a = Function.leftLim f a := by
   change Function.leftLim (Function.rightLim f) a = Function.leftLim f a
@@ -214,7 +240,9 @@ theorem leftLim_stieltjesFunction {f : ℝ → ℝ} (hf : Monotone f) (a : ℝ) 
 （`∀ x, ContinuousWithinAt f (Ici x) x`），则 `hf.stieltjesFunction = ⟨f, hf, hrc⟩`，
 即右连续化不再改变 `f`。这是「教材里 `μ_f((a,b]) = f(b) - f(a)`」成立的**充分条件**；
 一般单调函数只有右连续化后的版本。
-> **Entry**: real-analysis.monotone-function-/
+> **Entry**: real-analysis.monotone-function
+@isnad1 id=eq.2h1v.s6.4d969ed81808 from=translated src=- shape=f2357f2d vocab=33772365
+-/
 theorem stieltjesFunction_eq_self {f : ℝ → ℝ} (hf : Monotone f)
     (hrc : ∀ x, ContinuousWithinAt f (Ici x) x) : hf.stieltjesFunction = ⟨f, hf, hrc⟩ := by
   ext x
@@ -225,7 +253,9 @@ theorem stieltjesFunction_eq_self {f : ℝ → ℝ} (hf : Monotone f)
 `μ_f((a,b]) = f(b⁺) - f(a⁺)`，其中 `μ_f = hf.stieltjesFunction.measure`。
 Mathlib 的 `StieltjesFunction.measure_Ioc` 给出 `μ_f((a,b]) = f(b) - f(a)`（对
 `StieltjesFunction` 自身），本定理把它翻译回原单调函数 `f` 的右极限。
-> **Entry**: real-analysis.monotone-function-/
+> **Entry**: real-analysis.monotone-function
+@isnad1 id=eq.1h3v.s6.a7d3c097f677 from=translated src=- shape=b9d6deca vocab=ec416425
+-/
 theorem stieltjesFunction_measure_Ioc {f : ℝ → ℝ} (hf : Monotone f) (a b : ℝ) :
     hf.stieltjesFunction.measure (Ioc a b) =
       ENNReal.ofReal (Function.rightLim f b - Function.rightLim f a) := by
@@ -233,7 +263,9 @@ theorem stieltjesFunction_measure_Ioc {f : ℝ → ℝ} (hf : Monotone f) (a b :
 
 /-- **Lebesgue–Stieltjes 测度的闭区间公式**：`μ_f([a,b]) = f(b⁺) - f(a⁻)`。
 教材里写作 `μ_f([a,b]) = f(b) - f(a-)`（右连续约定下 `f(b⁺) = f(b)`）。
-> **Entry**: real-analysis.monotone-function-/
+> **Entry**: real-analysis.monotone-function
+@isnad1 id=eq.1h3v.s6.e305e1cd3706 from=translated src=- shape=b9d6deca vocab=5e975c79
+-/
 theorem stieltjesFunction_measure_Icc {f : ℝ → ℝ} (hf : Monotone f) (a b : ℝ) :
     hf.stieltjesFunction.measure (Icc a b) =
       ENNReal.ofReal (Function.rightLim f b - Function.leftLim f a) := by
@@ -242,7 +274,9 @@ theorem stieltjesFunction_measure_Icc {f : ℝ → ℝ} (hf : Monotone f) (a b :
 
 /-- **Lebesgue–Stieltjes 测度的开区间公式**：`μ_f((a,b)) = f(b⁻) - f(a⁺)`。
 开区间排除了两端点，故两端都取与区间内部一致的单侧极限。
-> **Entry**: real-analysis.monotone-function-/
+> **Entry**: real-analysis.monotone-function
+@isnad1 id=eq.1h3v.s6.e584c48396a9 from=translated src=- shape=b9d6deca vocab=568b8a78
+-/
 theorem stieltjesFunction_measure_Ioo {f : ℝ → ℝ} (hf : Monotone f) (a b : ℝ) :
     hf.stieltjesFunction.measure (Ioo a b) =
       ENNReal.ofReal (Function.leftLim f b - Function.rightLim f a) := by
@@ -250,7 +284,9 @@ theorem stieltjesFunction_measure_Ioo {f : ℝ → ℝ} (hf : Monotone f) (a b :
   simp only [Monotone.stieltjesFunction_eq]
 
 /-- **Lebesgue–Stieltjes 测度的左闭右开区间公式**：`μ_f([a,b)) = f(b⁻) - f(a⁻)`。
-> **Entry**: real-analysis.monotone-function-/
+> **Entry**: real-analysis.monotone-function
+@isnad1 id=eq.1h3v.s6.9045e0dbdccc from=translated src=- shape=b9d6deca vocab=de3c35f4
+-/
 theorem stieltjesFunction_measure_Ico {f : ℝ → ℝ} (hf : Monotone f) (a b : ℝ) :
     hf.stieltjesFunction.measure (Ico a b) =
       ENNReal.ofReal (Function.leftLim f b - Function.leftLim f a) := by
@@ -259,7 +295,9 @@ theorem stieltjesFunction_measure_Ico {f : ℝ → ℝ} (hf : Monotone f) (a b :
 /-- **Lebesgue–Stieltjes 测度的单点公式（跳跃量）**：`μ_f({a}) = f(a⁺) - f(a⁻)`，
 即单点测度恰为 `f` 在 `a` 处的跳跃量；由跳跃非负（`leftLim_le_rightLim_self`）知右端非负。
 这是教材把「跳跃」与「Stieltjes 测度的原子部分」对应起来的关键等式。
-> **Entry**: real-analysis.monotone-function-/
+> **Entry**: real-analysis.monotone-function
+@isnad1 id=eq.1h2v.s6.263f823cd7cf from=translated src=- shape=903e4a36 vocab=2189de86
+-/
 theorem stieltjesFunction_measure_singleton {f : ℝ → ℝ} (hf : Monotone f) (a : ℝ) :
     hf.stieltjesFunction.measure {a} =
       ENNReal.ofReal (Function.rightLim f a - Function.leftLim f a) := by
@@ -271,7 +309,9 @@ theorem stieltjesFunction_measure_singleton {f : ℝ → ℝ} (hf : Monotone f) 
 `hf.stieltjesFunction.measure (Ioc a b) = ENNReal.ofReal (f b - f a)`。
 这正是 Folland §3.5 构造 Lebesgue–Stieltjes 测度时的定义式；一般单调函数必须先右连续化
 （见 `stieltjesFunction_measure_Ioc`）。
-> **Entry**: real-analysis.monotone-function-/
+> **Entry**: real-analysis.monotone-function
+@isnad1 id=eq.2h3v.s6.19569db411c1 from=translated src=- shape=d8d7e3ea vocab=3695057c
+-/
 theorem stieltjesFunction_measure_Ioc_of_rightContinuous {f : ℝ → ℝ} (hf : Monotone f)
     (hrc : ∀ x, ContinuousWithinAt f (Ici x) x) (a b : ℝ) :
     hf.stieltjesFunction.measure (Ioc a b) = ENNReal.ofReal (f b - f a) := by

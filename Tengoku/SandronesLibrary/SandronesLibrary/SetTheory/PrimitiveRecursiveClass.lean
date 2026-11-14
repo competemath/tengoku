@@ -52,7 +52,9 @@ private theorem primrec_stepSum {n : ℕ} {f : List.Vector ℕ (n + 1) → ℕ}
 > **一句话**: 原始递归函数类是含初始函数并对复合、原始递归封闭的最小函数类；本库直接采用
 > mathlib 的教科书版 `Nat.Primrec'`，并证明它关于有界求和、有界求积与有限迭代封闭。
 > **依赖**: `settheory.googology.primitive-recursion`
-> **mathlib**: `Nat.Primrec'`, `Nat.Primrec'.prim_iff`-/
+> **mathlib**: `Nat.Primrec'`, `Nat.Primrec'.prim_iff`
+@isnad1 id=primrec.2h3v.s6.4a74af294635 from=translated src=- shape=97c9b3cb vocab=ae6c875e
+-/
 theorem primrec_boundedSum {n : ℕ} {b : List.Vector ℕ n → ℕ}
     {f : List.Vector ℕ (n + 1) → ℕ}
     (hb : @Nat.Primrec' n b) (hf : @Nat.Primrec' (n + 1) f) :
@@ -65,7 +67,9 @@ theorem primrec_boundedSum {n : ℕ} {b : List.Vector ℕ n → ℕ}
   | zero => simp
   | succ k ih => simp [ih, Finset.sum_range_succ]
 
-/-- 有界求和的乘积版本：递归步骤为 `IH * f y`。-/
+/-- 有界求和的乘积版本：递归步骤为 `IH * f y`。
+@isnad1 id=primrec.2h3v.s6.267c85b62086 from=translated src=- shape=97c9b3cb vocab=8391003c
+-/
 theorem primrec_boundedProd {n : ℕ} {b : List.Vector ℕ n → ℕ}
     {f : List.Vector ℕ (n + 1) → ℕ}
     (hb : @Nat.Primrec' n b) (hf : @Nat.Primrec' (n + 1) f) :
@@ -84,7 +88,9 @@ theorem primrec_boundedProd {n : ℕ} {b : List.Vector ℕ n → ℕ}
 
 /--
 有限迭代：给定原始递归的初值 `base`、单步 `step` 与迭代次数 `count`，反复施加 `count v` 次
-`step` 得到的函数仍属类。这是 ST3 中「带燃料增长」模板的闭包基础。-/
+`step` 得到的函数仍属类。这是 ST3 中「带燃料增长」模板的闭包基础。
+@isnad1 id=primrec.3h4v.s6.93f303a748df from=translated src=- shape=2a68b7b9 vocab=80136425
+-/
 theorem primrec_iterated {n : ℕ} {base : List.Vector ℕ n → ℕ}
     {step : List.Vector ℕ (n + 1) → ℕ} {count : List.Vector ℕ n → ℕ}
     (hbase : @Nat.Primrec' n base) (hstep : @Nat.Primrec' (n + 1) step)
@@ -104,7 +110,9 @@ private theorem primrec_primitiveRecursion_eq_rec (z : ℕ) (step : ℕ → ℕ 
 /--
 本库 `primitiveRecursion` 的接入：若更新规则 `step` 作为二元函数属于类，则
 `fun v => primitiveRecursion z step v.head` 也属于类。这样 `Googology` 的一元递归模板
-不再是类外的孤立构造。-/
+不再是类外的孤立构造。
+@isnad1 id=primrec.1h2v.s6.3ccf8388b4c9 from=translated src=- shape=a415bdf0 vocab=ec6d9032
+-/
 theorem primrec_primitiveRecursion {z : ℕ} {step : ℕ → ℕ → ℕ}
     (hstep : @Nat.Primrec' 2 (fun v : List.Vector ℕ 2 => step v.head v.tail.head)) :
     @Nat.Primrec' 1 (fun v : List.Vector ℕ 1 => primitiveRecursion z step v.head) := by

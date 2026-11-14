@@ -34,7 +34,9 @@ variable {p : E → X}
 
 /-- 给定基道路和其起点上方的一个点，存在唯一以该点为初值的连续提升。
 
-> **Entry**: topology.covering.path-lifting-standard-/
+> **Entry**: topology.covering.path-lifting-standard
+@isnad1 id=existsun.2h7v.s7.f0987878f6f5 from=translated src=- shape=c2024dee vocab=ba000154
+-/
 theorem existsUnique_coveringMap_pathLift
     (cov : IsCoveringMap p) {x y : X} (gamma : Path x y)
     (e : E) (he : p e = x) :
@@ -56,14 +58,18 @@ noncomputable def coveringMapPathLift
   source' := cov.liftPath_zero gamma e (gamma.source.trans he.symm)
   target' := rfl
 
-/-- 标准道路视图经覆盖映射逐点投影回原基道路。-/
+/-- 标准道路视图经覆盖映射逐点投影回原基道路。
+@isnad1 id=eq.2h8v.s8.1190f7aa74ab from=translated src=- shape=964d10f0 vocab=568a8793
+-/
 theorem coveringMapPathLift_lifts
     (cov : IsCoveringMap p) {x y : X} (gamma : Path x y)
     (e : E) (he : p e = x) (t : unitInterval) :
     p (coveringMapPathLift cov gamma e he t) = gamma t :=
   congr_fun (cov.liftPath_lifts gamma e (gamma.source.trans he.symm)) t
 
-/-- 道路提升所决定的终点位于基道路终点的 fiber 中。-/
+/-- 道路提升所决定的终点位于基道路终点的 fiber 中。
+@isnad1 id=eq.2h7v.s8.90a6e7176eea from=translated src=- shape=f3ac5d0b vocab=568a8793
+-/
 theorem coveringMapPathLift_endpoint_mem_fiber
     (cov : IsCoveringMap p) {x y : X} (gamma : Path x y)
     (e : E) (he : p e = x) :

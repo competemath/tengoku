@@ -54,7 +54,9 @@ def NatComputable (f : ℕ → ℕ) : Prop :=
 > **Entry**: settheory.computability.nat-computable
 > **一句话**: 自然数函数可计算，是指存在一台有限二符号机器在每个一元输入上最终停机并输出函数值。
 > **依赖**: `settheory.googology.unbounded-halting-relation`
-> **mathlib**: `Finset.range`, `Finset.map`-/
+> **mathlib**: `Finset.range`, `Finset.map`
+@isnad1 id=iff.0h1v.s4.6bc4606d63ce from=translated src=- shape=025e7dcb vocab=9a9d7022
+-/
 theorem natComputable_iff_exists_program (f : ℕ → ℕ) :
     NatComputable f ↔
       ∃ program : NatProgram, ∀ input, ∃ fuel,
@@ -77,7 +79,9 @@ private theorem runSteps_halted (machine : BinaryMachine n) (steps : ℕ) (tape 
   | zero => rfl
   | succ steps ih => simpa [runSteps, executeStep] using ih
 
-/-- 确定程序在同一输入上若两次观察到输出，则两个自然数输出必相同。-/
+/-- 确定程序在同一输入上若两次观察到输出，则两个自然数输出必相同。
+@isnad1 id=eq.2h6v.s5.c9aa18299094 from=translated src=- shape=63697ef1 vocab=f4b0b460
+-/
 theorem interpretWithin_output_unique {program : NatProgram} {input fuel₁ fuel₂ x y : ℕ}
     (hx : interpretWithin program fuel₁ input = some x)
     (hy : interpretWithin program fuel₂ input = some y) : x = y := by
@@ -120,7 +124,9 @@ def characteristicFunction (P : ℕ → Prop) [DecidablePred P] (input : ℕ) : 
 > **Entry**: settheory.computability.machine-decidable
 > **一句话**: 机器判定谓词等价于同一程序计算它的零一特征函数。
 > **依赖**: `settheory.computability.nat-computable`
-> **mathlib**: 无（本库输入、输出与判定规格）-/
+> **mathlib**: 无（本库输入、输出与判定规格）
+@isnad1 id=iff.0h2v.s4.954788a2fad1 from=translated src=- shape=c9249b7e vocab=07717298
+-/
 theorem decidesPredicate_iff_computes_characteristic (program : NatProgram)
     (P : ℕ → Prop) [DecidablePred P] :
     DecidesPredicate program P ↔ ComputesNatFunction program (characteristicFunction P) := by

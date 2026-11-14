@@ -32,7 +32,9 @@ private theorem coe_binaryOpenCoverBasepoint_for_residualGauge
 /-- 若边 transition 是两端 potential 的比，而两端 frame 与该 transition 相容，则右余规范
 `potential⁻¹ * frame` 穿过这条边保持不变。这是比较左边界 telescope 两端 frame 的代数传播步骤。
 
-> **Entry**: topology.fundamental-group.van-kampen-residual-gauge-/
+> **Entry**: topology.fundamental-group.van-kampen-residual-gauge
+@isnad1 id=eq.2h6v.s6.6618d5084426 from=translated src=- shape=5cf9608c vocab=ed901023
+-/
 theorem potentialNormalizedFrame_eq_of_compatible
     {G : Type*} [Group G]
     (sourcePotential targetPotential sourceFrame targetFrame transition : G)
@@ -45,7 +47,9 @@ theorem potentialNormalizedFrame_eq_of_compatible
 
 /-- 若同一条边分别被一对 potential 和一对 frame 换基为单位元，则两端的右余规范相等。
 
-> **Entry**: topology.fundamental-group.van-kampen-residual-gauge-/
+> **Entry**: topology.fundamental-group.van-kampen-residual-gauge
+@isnad1 id=eq.2h6v.s6.199f08843351 from=translated src=- shape=661b18fb vocab=4a305f90
+-/
 theorem potentialNormalizedFrame_eq_of_two_rebases
     {G : Type*} [Group G]
     (sourcePotential targetPotential sourceFrame targetFrame edge : G)
@@ -395,7 +399,9 @@ private theorem transitionFromPotentials_mul_frame
 
 /-- 若目标 potential 相等，且按 cell potential 归一化后的 frame 相等，则两组 combined frame 相等。
 
-> **Entry**: topology.fundamental-group.van-kampen-residual-gauge-/
+> **Entry**: topology.fundamental-group.van-kampen-residual-gauge
+@isnad1 id=eq.2h7v.s7.7e3e3c3b8c61 from=translated src=- shape=5cf3c43b vocab=ed901023
+-/
 theorem combinedFrame_eq_of_target_and_normalized
     {G : Type*} [Group G]
     (cellPotential₁ cellPotential₂ targetPotential₁ targetPotential₂
@@ -805,7 +811,9 @@ private theorem BinaryOpenCoverSquareSubdivision.topResidualGauge_first_eq_last
 
 /-- 依次组合下边、右边和上边的 telescope，证明整个方形左下角与左上角的 cell 余规范相等。
 
-> **Entry**: topology.fundamental-group.van-kampen-residual-gauge-/
+> **Entry**: topology.fundamental-group.van-kampen-residual-gauge
+@isnad1 id=other.5h7v.s10.daf63990adea from=translated src=- shape=934cb4a6 vocab=aa271ec8
+-/
 theorem BinaryOpenCoverSquareSubdivision.leftResidualGauge_bottom_eq_top
     {x₀ : X} {p : Path x₀ x₀}
     (Fhom : Path.Homotopy p (Path.refl x₀)) {U V : Set X}

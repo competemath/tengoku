@@ -24,7 +24,9 @@ namespace SandronesLibrary.Probability
 open MeasureTheory ProbabilityTheory
 open scoped ProbabilityTheory
 
-/-- 随机变量独立的事件原像刻画。-/
+/-- 随机变量独立的事件原像刻画。
+@isnad1 id=iff.0h6v.s7.0f2b401e0b10 from=translated src=- shape=3975aa74 vocab=82b0504b
+-/
 theorem independentRandomVariables_iff
     {Ω E F : Type*} [MeasurableSpace Ω] [MeasurableSpace E] [MeasurableSpace F]
     {μ : Measure Ω} {X : Ω → E} {Y : Ω → F} :
@@ -33,7 +35,9 @@ theorem independentRandomVariables_iff
         μ (X ⁻¹' A ∩ Y ⁻¹' B) = μ (X ⁻¹' A) * μ (Y ⁻¹' B) :=
   indepFun_iff_measure_inter_preimage_eq_mul
 
-/-- 分别对两个独立随机变量施加可测变换后仍独立。-/
+/-- 分别对两个独立随机变量施加可测变换后仍独立。
+@isnad1 id=indepfun.3h10v.s6.0affeab68d15 from=translated src=- shape=fd492aee vocab=7a54a52b
+-/
 theorem independentRandomVariables_comp
     {Ω E F G H : Type*} [MeasurableSpace Ω] [MeasurableSpace E] [MeasurableSpace F]
     [MeasurableSpace G] [MeasurableSpace H] {μ : Measure Ω}
@@ -42,14 +46,18 @@ theorem independentRandomVariables_comp
     (g ∘ X) ⟂ᵢ[μ] (h ∘ Y) :=
   hXY.comp hg hh
 
-/-- 两个独立且可积的实值随机变量之积仍可积。-/
+/-- 两个独立且可积的实值随机变量之积仍可积。
+@isnad1 id=integrab.3h4v.s6.cd43489d0708 from=translated src=- shape=e044fd7a vocab=da172d6e
+-/
 theorem independent_integrable_mul
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} {X Y : Ω → ℝ}
     (hXY : X ⟂ᵢ[μ] Y) (hX : Integrable X μ) (hY : Integrable Y μ) :
     Integrable (X * Y) μ :=
   hXY.integrable_mul hX hY
 
-/-- 独立可积实值随机变量的乘积期望等于期望乘积。-/
+/-- 独立可积实值随机变量的乘积期望等于期望乘积。
+@isnad1 id=eq.3h4v.s7.841e3a57a704 from=translated src=- shape=62eabe4b vocab=66e64929
+-/
 theorem expectation_mul_eq_mul_expectation_of_independent
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} {X Y : Ω → ℝ}
     (hXY : X ⟂ᵢ[μ] Y) (hX : Integrable X μ) (hY : Integrable Y μ) :

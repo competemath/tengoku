@@ -31,7 +31,9 @@ variable {X : Type u} {Y : Type v} [TopologicalSpace X] [TopologicalSpace Y]
 /-- 若连续映射把基点 `x` 送到一个命题上相等的指定基点 `y`，则诱导同态在道路商视角中先映射
 环路，再沿端点等式作 transport。
 
-> **Entry**: topology.fundamental-group.invariance-standard-/
+> **Entry**: topology.fundamental-group.invariance-standard
+@isnad1 id=eq.1h6v.s7.da358ace00ac from=translated src=- shape=7cc3b098 vocab=999eb44d
+-/
 theorem fundamentalGroup_mapOfEq_toPath
     (f : C(X, Y)) {x : X} {y : Y} (h : f x = y) (p : FundamentalGroup X x) :
     FundamentalGroup.toPath ((FundamentalGroup.mapOfEq f h) p) =
@@ -39,7 +41,9 @@ theorem fundamentalGroup_mapOfEq_toPath
   FundamentalGroup.mapOfEq_apply f h p
 
 /-- 沿道路 `p : x₀ ⟶ x₁` 改变基点时，一个 `x₀` 基本群元素变成先走 `p` 的逆道路、再走原环路、
-最后走 `p` 的共轭类。等式发生在道路同伦商上。-/
+最后走 `p` 的共轭类。等式发生在道路同伦商上。
+@isnad1 id=eq.0h5v.s7.cfb782282f43 from=translated src=- shape=05ed81e0 vocab=132a4efa
+-/
 theorem fundamentalGroup_changeBasepoint_toPath
     {x₀ x₁ : X} (p : Path x₀ x₁) (g : FundamentalGroup X x₀) :
     FundamentalGroup.toPath (FundamentalGroup.fundamentalGroupMulEquivOfPath p g) =
@@ -57,7 +61,9 @@ noncomputable def fundamentalGroupMulEquivOfHomotopyEquiv
   let E := FundamentalGroupoidFunctor.equivOfHomotopyEquiv e
   E.fullyFaithfulFunctor.mulEquivEnd (FundamentalGroupoid.mk x)
 
-/-- 同伦等价所诱导基本群等价的正向作用，就是其正向连续映射诱导的基本群同态。-/
+/-- 同伦等价所诱导基本群等价的正向作用，就是其正向连续映射诱导的基本群同态。
+@isnad1 id=eq.0h5v.s9.bc38b35d84e5 from=translated src=- shape=bcdac65c vocab=0b227808
+-/
 theorem fundamentalGroupMulEquivOfHomotopyEquiv_apply
     (e : X ≃ₕ Y) (x : X) (g : FundamentalGroup X x) :
     fundamentalGroupMulEquivOfHomotopyEquiv e x g = FundamentalGroup.map e.toFun x g :=

@@ -42,7 +42,9 @@ Mathlib 的 `Real.convergent` 作为正式承载，但对本课程公开的仍�
 noncomputable def continuedFractionConvergent (ξ : ℝ) (n : ℕ) : ℚ :=
   Real.convergent ξ n
 
-/-- 第零个渐近分数就是 `ξ` 的整数部分 `⌊ξ⌋`。这是连分数递归展开的起点。-/
+/-- 第零个渐近分数就是 `ξ` 的整数部分 `⌊ξ⌋`。这是连分数递归展开的起点。
+@isnad1 id=eq.0h1v.s4.9c006c7ead20 from=translated src=- shape=c81d1e4e vocab=8286103b
+-/
 @[simp]
 theorem continuedFractionConvergent_zero (ξ : ℝ) :
     continuedFractionConvergent ξ 0 = (⌊ξ⌋ : ℤ) := by
@@ -53,7 +55,9 @@ theorem continuedFractionConvergent_zero (ξ : ℝ) :
 因此，第 `n + 1` 个渐近分数等于整数部分，加上“倒数后所得实数的第 `n` 个渐近分数”的倒数。
 这个公式把连分数算法的一步直接翻译成了有理数等式。
 
-> **Entry**: number-theory.elementary.continued-fraction-recursion-/
+> **Entry**: number-theory.elementary.continued-fraction-recursion
+@isnad1 id=eq.0h2v.s5.223f66f03765 from=translated src=- shape=c7185958 vocab=32d5eb8b
+-/
 @[simp]
 theorem continuedFractionConvergent_succ (ξ : ℝ) (n : ℕ) :
     continuedFractionConvergent ξ (n + 1) =
@@ -75,7 +79,9 @@ def IsBestRationalApproximation (ξ : ℝ) (q : ℚ) : Prop :=
   ∀ r : ℚ, r.den ≤ q.den →
     rationalApproximationError ξ q ≤ rationalApproximationError ξ r
 
-/-- 若被逼近的实数本来就是有理数 `q`，那么用 `q` 自身逼近时误差为零，所以它自动是最佳逼近。-/
+/-- 若被逼近的实数本来就是有理数 `q`，那么用 `q` 自身逼近时误差为零，所以它自动是最佳逼近。
+@isnad1 id=isbestra.0h1v.s3.2c9322502995 from=translated src=- shape=c811f807 vocab=4d28dc91
+-/
 theorem exact_rational_isBestApproximation (q : ℚ) :
     IsBestRationalApproximation (q : ℝ) q := by
   intro r _
@@ -89,7 +95,9 @@ def IsBestApproximationIn (ξ : ℝ) (s : Finset ℚ) (q : ℚ) : Prop :=
 
 这里的结论只是有限集合取最小值，并没有声称所得有理数是按所有分母受限候选比较的全局最佳逼近。
 
-> **Entry**: number-theory.elementary.finite-best-approximation-/
+> **Entry**: number-theory.elementary.finite-best-approximation
+@isnad1 id=ex.1h2v.s4.527c8c6aac9f from=translated src=- shape=1354c80a vocab=6c478ea8
+-/
 theorem exists_bestApproximationIn (ξ : ℝ) {s : Finset ℚ} (hs : s.Nonempty) :
     ∃ q, IsBestApproximationIn ξ s q := by
   obtain ⟨q, hqs, hq⟩ := s.exists_min_image (rationalApproximationError ξ) hs
@@ -105,7 +113,9 @@ def IsLegendreApproximation (ξ : ℝ) (q : ℚ) : Prop :=
 这是一个充分条件：它从“小误差”推出“是渐近分数”。它不是反方向的陈述，也没有证明每个渐近
 分数都是最佳有理逼近。
 
-> **Entry**: number-theory.elementary.legendre-criterion-/
+> **Entry**: number-theory.elementary.legendre-criterion
+@isnad1 id=ex.1h2v.s4.a3dd288bdb93 from=translated src=- shape=fbccddcd vocab=dc8691f9
+-/
 theorem legendreApproximation_is_convergent {ξ : ℝ} {q : ℚ}
     (hq : IsLegendreApproximation ξ q) :
     ∃ n, q = continuedFractionConvergent ξ n := by

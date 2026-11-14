@@ -28,7 +28,9 @@ variable {x y : X}
 /-- 两条道路代表同一个道路同伦商类，当且仅当它们之间存在连续的端点固定变形。第一坐标是
 同伦时间，第二坐标是道路参数。
 
-> **Entry**: topology.homotopy.path-homotopy-quotient-standard-/
+> **Entry**: topology.homotopy.path-homotopy-quotient-standard
+@isnad1 id=iff.0h5v.s8.661f4d38458f from=translated src=- shape=a2e3f529 vocab=30e150b5
+-/
 theorem pathHomotopyQuotient_mk_eq_iff_exists_fixed_endpoint_deformation
     {p q : Path x y} :
     Path.Homotopic.Quotient.mk p = Path.Homotopic.Quotient.mk q ↔
@@ -40,12 +42,16 @@ theorem pathHomotopyQuotient_mk_eq_iff_exists_fixed_endpoint_deformation
   rw [Path.Homotopic.Quotient.eq]
   exact nonempty_pathHomotopy_iff_exists_fixed_endpoint_deformation
 
-/-- Mathlib 的简洁关系接口与道路同伦商的判等完全一致。-/
+/-- Mathlib 的简洁关系接口与道路同伦商的判等完全一致。
+@isnad1 id=iff.0h5v.s5.0e1f37ad94a9 from=translated src=- shape=3d78e88c vocab=3c4a9b9d
+-/
 theorem pathHomotopyQuotient_mk_eq_iff_homotopic {p q : Path x y} :
     Path.Homotopic.Quotient.mk p = Path.Homotopic.Quotient.mk q ↔ p.Homotopic q :=
   Path.Homotopic.Quotient.eq
 
-/-- 每个道路同伦商类都有一条实际道路作为代表。代表一般不唯一，恰由道路同伦关系判等。-/
+/-- 每个道路同伦商类都有一条实际道路作为代表。代表一般不唯一，恰由道路同伦关系判等。
+@isnad1 id=ex.0h4v.s5.a4acaad1e2d4 from=translated src=- shape=376b26c7 vocab=88e1a5f6
+-/
 theorem pathHomotopyQuotient_exists_representative
     (P : Path.Homotopic.Quotient x y) :
     ∃ p : Path x y, Path.Homotopic.Quotient.mk p = P := by

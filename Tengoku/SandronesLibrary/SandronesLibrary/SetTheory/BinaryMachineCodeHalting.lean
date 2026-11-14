@@ -42,25 +42,33 @@ noncomputable def CodeEventuallyHalts (code : MachineCode n) : Prop :=
 noncomputable def codeHaltsByFuel (fuel : ℕ) (code : MachineCode n) : Bool :=
   haltsByFuel fuel (decodeMachine code)
 
-/-- 代码检查返回真，恰好表示解码后的机器在该燃料时已经停机。-/
+/-- 代码检查返回真，恰好表示解码后的机器在该燃料时已经停机。
+@isnad1 id=iff.0h3v.s4.9fdb910ec01b from=translated src=- shape=8a9c864b vocab=d6479a7e
+-/
 theorem codeHaltsByFuel_eq_true_iff (fuel : ℕ) (code : MachineCode n) :
     codeHaltsByFuel fuel code = true ↔ CodeHaltedAt code fuel := by
   exact haltsByFuel_eq_true_iff fuel (decodeMachine code)
 
-/-- 若使用者给出固定状态数机器类的正确统一界，代码检查便精确刻画最终停机。-/
+/-- 若使用者给出固定状态数机器类的正确统一界，代码检查便精确刻画最终停机。
+@isnad1 id=iff.1h3v.s4.15eed0962974 from=translated src=- shape=221e268b vocab=8315e024
+-/
 theorem codeHaltsByFuel_decides_of_uniform_bound {n bound : ℕ}
     (hbound : IsUniformHaltingBound n bound) (code : MachineCode n) :
     codeHaltsByFuel bound code = true ↔ CodeEventuallyHalts code := by
   exact haltsByFuel_decides_of_uniform_bound hbound (decodeMachine code)
 
-/-- 代入经典最大停机时间后，代码检查在命题上等价于解码机器最终停机。-/
+/-- 代入经典最大停机时间后，代码检查在命题上等价于解码机器最终停机。
+@isnad1 id=iff.0h2v.s4.121c11ca3fa1 from=translated src=- shape=8b86fb15 vocab=013f1367
+-/
 theorem codeHaltsBy_classical_time_iff (code : MachineCode n) :
     codeHaltsByFuel (classicalBusyBeaverTimeValue n) code = true ↔
       CodeEventuallyHalts code := by
   exact codeHaltsByFuel_decides_of_uniform_bound
     (classicalBusyBeaverTime_is_uniform_bound n) code
 
-/-- 固定状态数代码在正确统一界下精确判定最终停机的汇总规格。-/
+/-- 固定状态数代码在正确统一界下精确判定最终停机的汇总规格。
+@isnad1 id=iff.1h3v.s4.15eed0962974 from=translated src=- shape=221e268b vocab=8315e024
+-/
 theorem binaryMachineCode_halting_specification {n bound : ℕ}
     (hbound : IsUniformHaltingBound n bound) (code : MachineCode n) :
     codeHaltsByFuel bound code = true ↔ CodeEventuallyHalts code := by

@@ -39,7 +39,9 @@ def IsIntegerSquare (d : ℤ) : Prop :=
 /-- 上述整数坐标定义与 Mathlib 的乘法谓词 `IsSquare` 等价。
 
 这条桥说明后续存在性定理可以安全复用 Mathlib：在整数上，“某数等于一个整数的平方”与
-“某数可写成某元素自乘”表达的是同一个概念。-/
+“某数可写成某元素自乘”表达的是同一个概念。
+@isnad1 id=iff.0h1v.s3.57dcf0829633 from=translated src=- shape=1efddc98 vocab=2ead6f8a
+-/
 theorem isIntegerSquare_iff_isSquare (d : ℤ) : IsIntegerSquare d ↔ IsSquare d := by
   simpa [IsIntegerSquare, eq_comm] using (isSquare_iff_exists_sq d).symm
 
@@ -75,13 +77,17 @@ def PellSolution.comp (a b : PellSolution d) : PellSolution d where
         (a.x ^ 2 - d * a.y ^ 2) * (b.x ^ 2 - d * b.y ^ 2) := by ring
       _ = 1 := by rw [a.equation, b.equation, one_mul]
 
-/-- 展开 Brahmagupta 复合所得解的第一坐标。-/
+/-- 展开 Brahmagupta 复合所得解的第一坐标。
+@isnad1 id=eq.0h3v.s5.1938678b01fb from=translated src=- shape=c77414c9 vocab=575ca1a3
+-/
 @[simp]
 theorem pell_comp_x (a b : PellSolution d) :
     (a.comp b).x = a.x * b.x + d * (a.y * b.y) := by
   rfl
 
-/-- 展开 Brahmagupta 复合所得解的第二坐标。-/
+/-- 展开 Brahmagupta 复合所得解的第二坐标。
+@isnad1 id=eq.0h3v.s5.e1e5f71c69fc from=translated src=- shape=38ab1e56 vocab=575ca1a3
+-/
 @[simp]
 theorem pell_comp_y (a b : PellSolution d) :
     (a.comp b).y = a.x * b.y + a.y * b.x := by
@@ -92,7 +98,9 @@ theorem pell_comp_y (a b : PellSolution d) :
 这排除了对所有 `d` 都存在的平凡解 `(1, 0)`，所以结论给出的确实是非平凡正解。此处的非平方
 条件采用 Mathlib 的 `IsSquare` 表述。
 
-> **Entry**: number-theory.elementary.pell-positive-existence-/
+> **Entry**: number-theory.elementary.pell-positive-existence
+@isnad1 id=ex.2h1v.s5.b2857efb36bd from=translated src=- shape=dfdaa293 vocab=49bcf430
+-/
 theorem exists_positive_pellSolution {d : ℤ} (hd : 0 < d) (hns : ¬IsSquare d) :
     ∃ a : PellSolution d, 1 < a.x ∧ 0 < a.y := by
   obtain ⟨a, hax, hay⟩ := Pell.Solution₁.exists_pos_of_not_isSquare hd hns
@@ -101,7 +109,9 @@ theorem exists_positive_pellSolution {d : ℤ} (hd : 0 < d) (hns : ¬IsSquare d)
 /-- 若正整数参数不是本文件坐标定义下的平方数，则它具有一个非平凡正 Pell 解。
 
 这一定理与上一条数学内容相同，只是通过 `isIntegerSquare_iff_isSquare` 把假设改写成读者更直观的
-“不存在整数 `z` 使 `z² = d`”。-/
+“不存在整数 `z` 使 `z² = d`”。
+@isnad1 id=ex.2h1v.s5.5c28d482c686 from=translated src=- shape=b22a71cc vocab=d4e78c67
+-/
 theorem exists_positive_pellSolution_of_not_integerSquare {d : ℤ} (hd : 0 < d)
     (hns : ¬IsIntegerSquare d) :
     ∃ a : PellSolution d, 1 < a.x ∧ 0 < a.y := by
@@ -124,7 +134,9 @@ Mathlib 还会把其打包表示中的全部解分类为基本解的带符号整
 整数坐标与 Brahmagupta 复合，因此这里不重述那一群论化分类，也不暗示已经在当前接口上证明了
 “所有解都是基本解的幂”。
 
-> **Entry**: number-theory.elementary.pell-fundamental-solution-/
+> **Entry**: number-theory.elementary.pell-fundamental-solution
+@isnad1 id=ex.2h1v.s4.7dac8acd016d from=translated src=- shape=fb808488 vocab=b29bad2b
+-/
 theorem exists_fundamentalPellSolution {d : ℤ} (hd : 0 < d) (hns : ¬IsSquare d) :
     ∃ a : PellSolution d, IsFundamentalPellSolution a := by
   obtain ⟨a, ha⟩ := Pell.IsFundamental.exists_of_not_isSquare hd hns
@@ -136,7 +148,9 @@ theorem exists_fundamentalPellSolution {d : ℤ} (hd : 0 < d) (hns : ¬IsSquare 
 
 /-- 若正整数参数不是本文件定义的整数平方数，则它存在基本 Pell 解。
 
-这是上一条存在性定理的教材表述版本；证明通过平方概念的等价桥把假设转换给 Mathlib。-/
+这是上一条存在性定理的教材表述版本；证明通过平方概念的等价桥把假设转换给 Mathlib。
+@isnad1 id=ex.2h1v.s4.3a519eb0e2b2 from=translated src=- shape=8ff852d8 vocab=639ddad8
+-/
 theorem exists_fundamentalPellSolution_of_not_integerSquare {d : ℤ} (hd : 0 < d)
     (hns : ¬IsIntegerSquare d) :
     ∃ a : PellSolution d, IsFundamentalPellSolution a := by

@@ -37,19 +37,25 @@ namespace LinearAlgebra.LinearMap
 
 /-! ## 核、像与线性同构 -/
 
-/-- 线性映射单射当且仅当其核是零子空间。-/
+/-- 线性映射单射当且仅当其核是零子空间。
+@isnad1 id=iff.0h4v.s8.c87467a52ec7 from=translated src=- shape=2862ab16 vocab=b4986c7e
+-/
 theorem injective_iff_kernel_trivial {K V W : Type*} [Field K]
     [AddCommGroup V] [LinearSpace K V] [AddCommGroup W] [LinearSpace K W]
     (f : V →ₗ[K] W) : Function.Injective f ↔ f.ker = ⊥ := by
   exact LinearMap.ker_eq_bot.symm
 
-/-- 线性映射满射当且仅当其像是整个陪域。-/
+/-- 线性映射满射当且仅当其像是整个陪域。
+@isnad1 id=iff.0h4v.s8.bfcb4590b1a6 from=translated src=- shape=e92da866 vocab=7977ab3c
+-/
 theorem surjective_iff_image_whole {K V W : Type*} [Field K]
     [AddCommGroup V] [LinearSpace K V] [AddCommGroup W] [LinearSpace K W]
     (f : V →ₗ[K] W) : Function.Surjective f ↔ f.range = ⊤ := by
   exact LinearMap.range_eq_top.symm
 
-/-- 有限维向量空间线性同构时维数相等。-/
+/-- 有限维向量空间线性同构时维数相等。
+@isnad1 id=eq.0h4v.s6.67e5b08d5a97 from=translated src=- shape=1d2a7f2d vocab=de5193d6
+-/
 theorem dim_eq_of_linearEquiv {K V W : Type*} [Field K]
     [AddCommGroup V] [LinearSpace K V] [AddCommGroup W] [LinearSpace K W]
     [IsFiniteDimensional K V] [IsFiniteDimensional K W]
@@ -80,7 +86,9 @@ noncomputable abbrev quotientKernelDimension (K : Type*) {V W : Type*} [Field K]
     (f : V →ₗ[K] W) : ℕ :=
   Module.finrank K (V ⧸ f.ker)
 
-/-- 第一同构定理的维数推论：`dim(V/ker f)=rank f`。-/
+/-- 第一同构定理的维数推论：`dim(V/ker f)=rank f`。
+@isnad1 id=eq.0h4v.s6.ef4826897e95 from=translated src=- shape=1c256864 vocab=e11ea179
+-/
 theorem quotientKer_dim_eq_rank {K V W : Type*} [Field K]
     [AddCommGroup V] [LinearSpace K V] [IsFiniteDimensional K V]
     [AddCommGroup W] [LinearSpace K W]
@@ -89,7 +97,9 @@ theorem quotientKer_dim_eq_rank {K V W : Type*} [Field K]
 
 /-- **秩-零度定理**：线性映射 f: V → W 满足 rank f + nullity f = dim V。
   （像的维数加核的维数等于定义域维数。） 
-> **Entry**: linear-algebra.maps.rank-nullity-/
+> **Entry**: linear-algebra.maps.rank-nullity
+@isnad1 id=eq.0h4v.s6.c25dda5aa682 from=translated src=- shape=ba1efb42 vocab=4edd4006
+-/
 theorem rank_add_nullity {K : Type*} {V W : Type*} [Field K]
     [AddCommGroup V] [LinearSpace K V] [IsFiniteDimensional K V]
     [AddCommGroup W] [LinearSpace K W] (f : V →ₗ[K] W) :
@@ -103,7 +113,9 @@ noncomputable abbrev columnRank (K : Type*) {m n : Type*} [Field K]
     [Fintype m] [Fintype n] (A : Matrix m n K) : ℕ :=
   Module.finrank K (Submodule.span K (Set.range A.col))
 
-/-- 矩阵的秩等于列空间的维数。-/
+/-- 矩阵的秩等于列空间的维数。
+@isnad1 id=eq.0h4v.s5.6895322ef4a9 from=translated src=- shape=c2a90166 vocab=ea229aec
+-/
 lemma matrix_rank_eq_columnRank {K : Type*} {m n : Type*} [Field K]
     [Fintype m] [Fintype n] (A : Matrix m n K) :
     A.rank = columnRank K A :=
@@ -111,7 +123,9 @@ lemma matrix_rank_eq_columnRank {K : Type*} {m n : Type*} [Field K]
 
 /-- 矩阵乘法的秩的界：rank(A·B) ≤ min rank A rank B。
   （线性方程组解空间维数的又一来源。） 
-> **Entry**: linear-algebra.maps.rank-mul-/
+> **Entry**: linear-algebra.maps.rank-mul
+@isnad1 id=le.0h6v.s6.188124655487 from=translated src=- shape=a51f21cc vocab=29c612e1
+-/
 lemma rank_mul_le {K : Type*} {m n o : Type*} [Field K]
     [Fintype m] [Fintype n] [Fintype o] (A : Matrix m n K) (B : Matrix n o K) :
     (A * B).rank ≤ min A.rank B.rank :=
@@ -119,7 +133,9 @@ lemma rank_mul_le {K : Type*} {m n o : Type*} [Field K]
 
 /-- **行秩 = 列秩**：矩阵的秩不因转置改变（行秩即 Aᵀ 的秩，等于 A 的列秩）。
   教材"秩 = 行秩 = 列秩"即由此给出。 
-> **Entry**: linear-algebra.maps.row-rank-/
+> **Entry**: linear-algebra.maps.row-rank
+@isnad1 id=eq.0h4v.s5.fe60cea76743 from=translated src=- shape=b865fb87 vocab=a981be53
+-/
 theorem rank_transpose_eq {K : Type*} {m n : Type*} [Field K] [Fintype m] [Fintype n]
     (A : Matrix m n K) : A.transpose.rank = A.rank :=
   Matrix.rank_transpose A

@@ -21,7 +21,9 @@ open Nat ZMod
 
 /-- **二次互反律（乘积形式）**：不同奇素数 `p,q` 满足
 `(p/q)(q/p) = (-1)^((p/2)(q/2))`。
-> **Entry**: number-theory.elementary.quadratic-reciprocity-/
+> **Entry**: number-theory.elementary.quadratic-reciprocity
+@isnad1 id=eq.3h2v.s6.de5a978c7230 from=translated src=- shape=c385e48e vocab=50e1f8bf
+-/
 theorem legendre_quadratic_reciprocity_product {p q : ℕ} [Fact p.Prime] [Fact q.Prime]
     (hp : p ≠ 2) (hq : q ≠ 2) (hpq : p ≠ q) :
     legendreSym q p * legendreSym p q = (-1 : ℤ) ^ (p / 2 * (q / 2)) := by
@@ -29,7 +31,9 @@ theorem legendre_quadratic_reciprocity_product {p q : ℕ} [Fact p.Prime] [Fact 
 
 /-- 二次互反律的等式形式。它不是再次包装底层定理：证明将乘积形式乘上
 `(q/p)`，再用非零 Legendre 符号的平方等于 `1` 消去该因子。
-> **Entry**: number-theory.elementary.quadratic-reciprocity-/
+> **Entry**: number-theory.elementary.quadratic-reciprocity
+@isnad1 id=eq.3h2v.s6.49e387f90216 from=translated src=- shape=ce27cc64 vocab=50e1f8bf
+-/
 theorem legendre_quadratic_reciprocity {p q : ℕ} [Fact p.Prime] [Fact q.Prime]
     (hp : p ≠ 2) (hq : q ≠ 2) (hpq : p ≠ q) :
     legendreSym q p = (-1 : ℤ) ^ (p / 2 * (q / 2)) * legendreSym p q := by
@@ -46,7 +50,9 @@ theorem legendre_quadratic_reciprocity {p q : ℕ} [Fact p.Prime] [Fact q.Prime]
 
 /-- 若一个素数模 `4` 余 `1`，交换两个奇素数时 Legendre 符号不变。
 相等素数单独由自反性处理；不同情形由本库互反律等式形式和符号指数化简推出。
-> **Entry**: number-theory.elementary.quadratic-reciprocity-/
+> **Entry**: number-theory.elementary.quadratic-reciprocity
+@isnad1 id=eq.2h2v.s5.9ee4e1d0109f from=translated src=- shape=d3bf8a42 vocab=103e2cd3
+-/
 theorem legendre_reciprocity_one_mod_four {p q : ℕ} [Fact p.Prime] [Fact q.Prime]
     (hp : p % 4 = 1) (hq : q ≠ 2) :
     legendreSym q p = legendreSym p q := by
@@ -62,7 +68,9 @@ theorem legendre_reciprocity_one_mod_four {p q : ℕ} [Fact p.Prime] [Fact q.Pri
 
 /-- 若两个素数都模 `4` 余 `3`，交换它们时 Legendre 符号变号。
 素数相等时两边都为零；不同时互反律中的符号指数为奇数。
-> **Entry**: number-theory.elementary.quadratic-reciprocity-/
+> **Entry**: number-theory.elementary.quadratic-reciprocity
+@isnad1 id=eq.2h2v.s6.2f3605d5cbb4 from=translated src=- shape=dabb8c2c vocab=2915a984
+-/
 theorem legendre_reciprocity_three_mod_four {p q : ℕ} [Fact p.Prime] [Fact q.Prime]
     (hp : p % 4 = 3) (hq : q % 4 = 3) :
     legendreSym q p = -legendreSym p q := by
@@ -84,7 +92,9 @@ theorem legendre_reciprocity_three_mod_four {p q : ℕ} [Fact p.Prime] [Fact q.P
 
 /-- 二次互反律的剩余形式之一：若 `p ≡ 1 (mod 4)`，则 `q` 模 `p` 为平方
 当且仅当 `p` 模 `q` 为平方。
-> **Entry**: number-theory.elementary.quadratic-reciprocity-/
+> **Entry**: number-theory.elementary.quadratic-reciprocity
+@isnad1 id=iff.2h2v.s5.758a5434daee from=translated src=- shape=0e24a6ae vocab=2c09c068
+-/
 theorem quadraticResidue_reciprocity_one_mod_four {p q : ℕ}
     [Fact p.Prime] [Fact q.Prime] (hp : p % 4 = 1) (hq : q ≠ 2) :
     IsQuadraticResidue p q ↔ IsQuadraticResidue q p := by
@@ -103,7 +113,9 @@ theorem quadraticResidue_reciprocity_one_mod_four {p q : ℕ}
 
 /-- 二次互反律的剩余形式之二：不同素数 `p,q` 都模 `4` 余 `3` 时，`q` 模 `p`
 为二次剩余，当且仅当 `p` 模 `q` 为二次非剩余。
-> **Entry**: number-theory.elementary.quadratic-reciprocity-/
+> **Entry**: number-theory.elementary.quadratic-reciprocity
+@isnad1 id=iff.3h2v.s6.7f0a7f9e7d4b from=translated src=- shape=091232f7 vocab=9ee6a631
+-/
 theorem quadraticResidue_reciprocity_three_mod_four {p q : ℕ}
     [Fact p.Prime] [Fact q.Prime] (hp : p % 4 = 3) (hq : q % 4 = 3) (hpq : p ≠ q) :
     IsQuadraticResidue p q ↔ IsQuadraticNonresidue q p := by
@@ -117,21 +129,27 @@ theorem quadraticResidue_reciprocity_three_mod_four {p q : ℕ}
 
 /-- **Jacobi 二次互反律**：对任意奇自然数 `a,b`，互换分子分母时出现同一个
 `(-1)^((a/2)(b/2))` 符号。它将素数互反律乘法地推广到奇合数。
-> **Entry**: number-theory.elementary.quadratic-reciprocity-/
+> **Entry**: number-theory.elementary.quadratic-reciprocity
+@isnad1 id=eq.2h2v.s6.13bfa854300f from=translated src=- shape=784527c4 vocab=7df27f8e
+-/
 theorem jacobi_quadratic_reciprocity {a b : ℕ} (ha : Odd a) (hb : Odd b) :
     jacobiSym a b = (-1 : ℤ) ^ (a / 2 * (b / 2)) * jacobiSym b a := by
   exact jacobiSym.quadratic_reciprocity ha hb
 
 /-- Jacobi 互反律的模 `4` 余 `1` 特化：此时交换参数不变号。该结论由上一条一般式
 化简符号指数得到。
-> **Entry**: number-theory.elementary.quadratic-reciprocity-/
+> **Entry**: number-theory.elementary.quadratic-reciprocity
+@isnad1 id=eq.2h2v.s5.6ec7cbd29f6c from=translated src=- shape=4f040e2c vocab=5800b54f
+-/
 theorem jacobi_reciprocity_one_mod_four {a b : ℕ} (ha : a % 4 = 1) (hb : Odd b) :
     jacobiSym a b = jacobiSym b a := by
   rw [jacobi_quadratic_reciprocity (odd_iff.mpr (odd_of_mod_four_eq_one ha)) hb,
     pow_mul, neg_one_pow_div_two_of_one_mod_four ha, one_pow, one_mul]
 
 /-- Jacobi 互反律的模 `4` 余 `3` 特化：两个参数均属此类时，交换参数恰好变号。
-> **Entry**: number-theory.elementary.quadratic-reciprocity-/
+> **Entry**: number-theory.elementary.quadratic-reciprocity
+@isnad1 id=eq.2h2v.s5.78bd1f69e05c from=translated src=- shape=62664e5c vocab=4273a6d9
+-/
 theorem jacobi_reciprocity_three_mod_four {a b : ℕ} (ha : a % 4 = 3) (hb : b % 4 = 3) :
     jacobiSym a b = -jacobiSym b a := by
   rw [jacobi_quadratic_reciprocity (odd_iff.mpr (odd_of_mod_four_eq_three ha))

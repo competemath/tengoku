@@ -39,7 +39,9 @@ def connectorChange {x₀ z : X} (fromConnector toConnector : Path x₀ z) :
   FundamentalGroup.fromPath
     ⟦Path.correctedLoop fromConnector (Path.refl z) toConnector⟧
 
-/-- connector 变化满足严格 cocycle：经中间 connector 的两次变化等于直接变化。-/
+/-- connector 变化满足严格 cocycle：经中间 connector 的两次变化等于直接变化。
+@isnad1 id=eq.0h6v.s6.248ffd45b7b1 from=translated src=- shape=54d86ae9 vocab=bdb45714
+-/
 theorem connectorChange_mul {x₀ z : X}
     (first middle last : Path x₀ z) :
     connectorChange middle last * connectorChange first middle =
@@ -49,6 +51,9 @@ theorem connectorChange_mul {x₀ z : X}
   unfold Path.correctedLoop FundamentalGroup.fromPath FundamentalGroup.fromArrow
   simp
 
+/--
+@isnad1 id=eq.0h4v.s5.ede389a8bf08 from=translated src=- shape=fe3245e6 vocab=c876a92b
+-/
 @[simp] theorem connectorChange_self {x₀ z : X} (q : Path x₀ z) :
     connectorChange q q = 1 := by
   rw [FundamentalGroup.one_def]
@@ -56,13 +61,18 @@ theorem connectorChange_mul {x₀ z : X}
     FundamentalGroup.fromArrow
   simp
 
+/--
+@isnad1 id=eq.0h5v.s6.eecab3a5893d from=translated src=- shape=054b43f0 vocab=8ae35343
+-/
 theorem connectorChange_reverse {x₀ z : X} (p q : Path x₀ z) :
     connectorChange q p = (connectorChange p q)⁻¹ := by
   apply eq_inv_of_mul_eq_one_left
   rw [connectorChange_mul]
   exact connectorChange_self p
 
-/-- 连续映射把 connector 变化元素送到映射后 connector 的变化元素。-/
+/-- 连续映射把 connector 变化元素送到映射后 connector 的变化元素。
+@isnad1 id=eq.0h7v.s8.bc5ee8d16aa5 from=translated src=- shape=0da7755f vocab=df7df78f
+-/
 theorem fundamentalGroup_map_connectorChange
     {S T : Type*} [TopologicalSpace S] [TopologicalSpace T]
     (f : C(S, T)) {base z : S} (p q : Path base z) :
@@ -72,7 +82,9 @@ theorem fundamentalGroup_map_connectorChange
   rw [fundamentalGroup_map_correctedLoop]
   congr 1
 
-/-- 任意群同态保持 connector cocycle。-/
+/-- 任意群同态保持 connector cocycle。
+@isnad1 id=eq.0h8v.s8.a0c4decf8918 from=translated src=- shape=b00f29ac vocab=c7e3f6fe
+-/
 theorem map_connectorChange_mul
     {S G : Type*} [TopologicalSpace S] [Group G] {base z : S}
     (f : FundamentalGroup S base →* G)
@@ -81,17 +93,25 @@ theorem map_connectorChange_mul
       f (connectorChange first last) := by
   rw [← map_mul, connectorChange_mul]
 
+/--
+@isnad1 id=eq.0h3v.s5.21165b69672b from=translated src=- shape=00d5af03 vocab=27826c65
+-/
 theorem CommonEdgeConnectorComparison.startChange_eq_connectorChange
     {S : Type*} [TopologicalSpace S] {base : S}
     (C : CommonEdgeConnectorComparison S base) :
     C.startChange = connectorChange C.rightStart C.leftStart := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.812d11491688 from=translated src=- shape=00d5af03 vocab=debf35b2
+-/
 theorem CommonEdgeConnectorComparison.endChange_eq_connectorChange
     {S : Type*} [TopologicalSpace S] {base : S}
     (C : CommonEdgeConnectorComparison S base) :
     C.endChange = connectorChange C.rightEnd C.leftEnd := rfl
 
-/-- 四条 connector 构成的方块中，两条两步变化路径给出同一元素。-/
+/-- 四条 connector 构成的方块中，两条两步变化路径给出同一元素。
+@isnad1 id=eq.0h7v.s7.8dcd3de9e1f0 from=translated src=- shape=3ebf041c vocab=bdb45714
+-/
 theorem connectorChange_square {x₀ z : X}
     (bottomLeft bottomRight topLeft topRight : Path x₀ z) :
     connectorChange topLeft topRight * connectorChange bottomLeft topLeft =
@@ -113,7 +133,9 @@ def transitionFromPotentials {G : Type*} [Group G]
     (sourcePotential targetPotential : G) : G :=
   targetPotential * sourcePotential⁻¹
 
-/-- 一条边本身就是两端 potentials 的变化比时，在这两个 frames 下规范化为单位元。-/
+/-- 一条边本身就是两端 potentials 的变化比时，在这两个 frames 下规范化为单位元。
+@isnad1 id=eq.0h3v.s5.88b1280c900d from=translated src=- shape=5d8a8716 vocab=1600469a
+-/
 @[simp] theorem rebaseEdge_transitionFromPotentials
     {G : Type*} [Group G] (sourcePotential targetPotential : G) :
     rebaseEdge sourcePotential targetPotential
@@ -121,7 +143,9 @@ def transitionFromPotentials {G : Type*} [Group G]
   simp [rebaseEdge, transitionFromPotentials]
 
 /-- 相对同一参考 connector 的两个 potentials 之比，正是两条目标 connector
-之间的变化元素。-/
+之间的变化元素。
+@isnad1 id=eq.0h6v.s6.f3e80c15d333 from=translated src=- shape=9e061d1d vocab=7f68cb04
+-/
 theorem connectorChange_eq_transitionFromPotentials
     {x₀ z : X} (reference startConnector endConnector : Path x₀ z) :
     connectorChange startConnector endConnector =
@@ -146,7 +170,9 @@ theorem connectorChange_eq_transitionFromPotentials
         exact connectorChange_mul reference startConnector endConnector
 
 /-- 常值中间边的修正环路，使用相对同一参考 connector 的两端 potentials
-作为 frames 后严格规范化为单位元。-/
+作为 frames 后严格规范化为单位元。
+@isnad1 id=eq.0h6v.s6.021b2e4fc0e7 from=translated src=- shape=9af0fb37 vocab=a90cec55
+-/
 theorem rebase_correctedLoop_refl_eq_one
     {x₀ z : X} (reference startConnector endConnector : Path x₀ z) :
     rebaseEdge
@@ -165,14 +191,18 @@ theorem rebase_correctedLoop_refl_eq_one
     (connectorChange reference startConnector)
     (connectorChange reference endConnector)
 
-/-- 群同态保持 potential 比值。-/
+/-- 群同态保持 potential 比值。
+@isnad1 id=eq.0h5v.s7.2cd8152d3a47 from=translated src=- shape=42932c09 vocab=33808ace
+-/
 theorem map_transitionFromPotentials
     {G K : Type*} [Group G] [Group K] (f : G →* K) (source target : G) :
     f (transitionFromPotentials source target) =
       transitionFromPotentials (f source) (f target) := by
   simp [transitionFromPotentials]
 
-/-- 群同态保持边的 frame 规范化。-/
+/-- 群同态保持边的 frame 规范化。
+@isnad1 id=eq.0h6v.s7.1afa7e7850e8 from=translated src=- shape=64a005d2 vocab=8859e0cc
+-/
 theorem map_rebaseEdge
     {G K : Type*} [Group G] [Group K] (f : G →* K)
     (startChange endChange edge : G) :
@@ -181,7 +211,9 @@ theorem map_rebaseEdge
   simp [rebaseEdge]
 
 /-- 上述常值边规范化结论在任意目标群中仍成立；特别可取为进入
-`Monoid.PushoutI` 的单侧生成元同态。-/
+`Monoid.PushoutI` 的单侧生成元同态。
+@isnad1 id=eq.0h8v.s8.fcf35e6bb4fc from=translated src=- shape=47393dd4 vocab=b3f3a7bb
+-/
 theorem map_rebase_correctedLoop_refl_eq_one
     {x₀ z : X} {G : Type*} [Group G]
     (f : FundamentalGroup X x₀ →* G)
@@ -195,7 +227,9 @@ theorem map_rebase_correctedLoop_refl_eq_one
   rw [rebase_correctedLoop_refl_eq_one, map_one]
 
 /-- 应用时的稳定版本：中间边只需在 `Path` 类型中证明等于常值道路，
-端点 cast 的证明对象可以由 proof irrelevance 消去。-/
+端点 cast 的证明对象可以由 proof irrelevance 消去。
+@isnad1 id=eq.1h9v.s8.a1485bed18a1 from=translated src=- shape=6a3bb829 vocab=b3f3a7bb
+-/
 theorem map_rebase_correctedLoop_eq_one_of_segment_eq_refl
     {x₀ z : X} {G : Type*} [Group G]
     (f : FundamentalGroup X x₀ →* G)
@@ -211,7 +245,9 @@ theorem map_rebase_correctedLoop_eq_one_of_segment_eq_refl
     f reference startConnector endConnector
 
 /-- 原始边的两端只要都能 cast 到同一参考端点，且 cast 后的边是常值道路，
-则可直接对原始修正环路应用 potential-frame 规范化。-/
+则可直接对原始修正环路应用 potential-frame 规范化。
+@isnad1 id=eq.3h11v.s8.bbaafa63c6f8 from=translated src=- shape=45eae8b5 vocab=f13e3715
+-/
 theorem map_rebase_correctedLoop_eq_one_of_cast_eq_refl
     {x₀ z w r : X} {G : Type*} [Group G]
     (f : FundamentalGroup X x₀ →* G)
@@ -230,19 +266,26 @@ theorem map_rebase_correctedLoop_eq_one_of_cast_eq_refl
   rw [correctedLoop_cast startConnector segment endConnector hz hw] at h
   exact h
 
+/--
+@isnad1 id=eq.0h2v.s4.b304ee780575 from=translated src=- shape=acc2d0a4 vocab=b9215bad
+-/
 @[simp] theorem transitionFromPotentials_self
     {G : Type*} [Group G] (p : G) :
     transitionFromPotentials p p = 1 := by
   simp [transitionFromPotentials]
 
-/-- potential 给出的 transition 严格复合。-/
+/-- potential 给出的 transition 严格复合。
+@isnad1 id=eq.0h4v.s5.5a99d6cc5d00 from=translated src=- shape=a9ae4d04 vocab=f3e4804e
+-/
 theorem transitionFromPotentials_mul
     {G : Type*} [Group G] (a b c : G) :
     transitionFromPotentials b c * transitionFromPotentials a b =
       transitionFromPotentials a c := by
   simp [transitionFromPotentials, mul_assoc]
 
-/-- 四个格角 connector potential 自动给出横后竖与竖后横相同的 frame 传播。-/
+/-- 四个格角 connector potential 自动给出横后竖与竖后横相同的 frame 传播。
+@isnad1 id=eq.0h5v.s6.3562b982b317 from=translated src=- shape=5952ec16 vocab=f3e4804e
+-/
 theorem transitionFromPotentials_square
     {G : Type*} [Group G]
     (bottomLeft bottomRight topLeft topRight : G) :
@@ -252,7 +295,9 @@ theorem transitionFromPotentials_square
         transitionFromPotentials bottomLeft topLeft := by
   rw [transitionFromPotentials_mul, transitionFromPotentials_mul]
 
-/-- 一条边的 transition 若由端点两侧的 potentials 比值给出，则任意 source frame 可一致传播。-/
+/-- 一条边的 transition 若由端点两侧的 potentials 比值给出，则任意 source frame 可一致传播。
+@isnad1 id=eq.0h6v.s6.c5d5d48662e0 from=translated src=- shape=8388912f vocab=5732e722
+-/
 theorem rebaseEdge_potential_transition
     {G : Type*} [Group G]
     (sourceStart sourceEnd targetStart targetEnd edge : G) :
@@ -264,7 +309,9 @@ theorem rebaseEdge_potential_transition
   rfl
 
 /-- 一个内部网格顶点处，四条相邻边 transition 若来自四个格 connector potentials，
-则横后竖与竖后横的 frame 传播相同。-/
+则横后竖与竖后横的 frame 传播相同。
+@isnad1 id=eq.4h9v.s6.c3cc996b99f2 from=translated src=- shape=3ceef8ba vocab=f15ebd06
+-/
 theorem edgeTransitions_gridVertex_square
     {G : Type*} [Group G]
     (horizontalBottom verticalRight verticalLeft horizontalTop : EdgeTransitions G)
@@ -282,7 +329,9 @@ theorem edgeTransitions_gridVertex_square
   rw [hHorizontalBottom, hVerticalRight, hVerticalLeft, hHorizontalTop]
   exact transitionFromPotentials_square bottomLeft bottomRight topLeft topRight
 
-/-- 水平异标签边起点 transition 由交集参考 connector 的两侧 potentials 给出。-/
+/-- 水平异标签边起点 transition 由交集参考 connector 的两侧 potentials 给出。
+@isnad1 id=other.7h9v.s13.976fd0d650c7 from=translated src=- shape=1dea7fdd vocab=39c5928f
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchEdgeTransitions_start_potential
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -305,7 +354,9 @@ theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchEdgeTransitions_start_p
   unfold BinaryOpenCoverSquareSubdivision.horizontalSwitchEdgeTransitions
   simp [transitionFromPotentials]
 
-/-- 水平异标签边终点 transition 的 potential 表示。-/
+/-- 水平异标签边终点 transition 的 potential 表示。
+@isnad1 id=other.7h9v.s13.3be534c75311 from=translated src=- shape=1dea7fdd vocab=fccdcc77
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchEdgeTransitions_end_potential
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -328,7 +379,9 @@ theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchEdgeTransitions_end_pot
   unfold BinaryOpenCoverSquareSubdivision.horizontalSwitchEdgeTransitions
   simp [transitionFromPotentials]
 
-/-- 竖直异标签边起点 transition 由交集参考 connector 的两侧 potentials 给出。-/
+/-- 竖直异标签边起点 transition 由交集参考 connector 的两侧 potentials 给出。
+@isnad1 id=other.7h9v.s13.745668360c79 from=translated src=- shape=994de97b vocab=d14b3011
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalSwitchEdgeTransitions_start_potential
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -351,7 +404,9 @@ theorem BinaryOpenCoverSquareSubdivision.verticalSwitchEdgeTransitions_start_pot
   unfold BinaryOpenCoverSquareSubdivision.verticalSwitchEdgeTransitions
   simp [transitionFromPotentials]
 
-/-- 竖直异标签边终点 transition 的 potential 表示。-/
+/-- 竖直异标签边终点 transition 的 potential 表示。
+@isnad1 id=other.7h9v.s13.2bed279109b4 from=translated src=- shape=994de97b vocab=612f7d4a
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalSwitchEdgeTransitions_end_potential
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -374,7 +429,9 @@ theorem BinaryOpenCoverSquareSubdivision.verticalSwitchEdgeTransitions_end_poten
   unfold BinaryOpenCoverSquareSubdivision.verticalSwitchEdgeTransitions
   simp [transitionFromPotentials]
 
-/-- 相对于任意共同参考 connector 的两个 potentials，其比值就是两 connector 的直接变化。-/
+/-- 相对于任意共同参考 connector 的两个 potentials，其比值就是两 connector 的直接变化。
+@isnad1 id=eq.0h6v.s6.3e4e8b8fed41 from=translated src=- shape=ac26b7e5 vocab=7f68cb04
+-/
 theorem transitionFromConnectorPotentials
     {x₀ z : X} (reference source target : Path x₀ z) :
     transitionFromPotentials
@@ -385,7 +442,9 @@ theorem transitionFromConnectorPotentials
   unfold transitionFromPotentials
   rw [inv_inv, connectorChange_mul]
 
-/-- 上述参考 connector 公式在任意目标群同态中的版本。-/
+/-- 上述参考 connector 公式在任意目标群同态中的版本。
+@isnad1 id=eq.0h8v.s8.ceeb9a6d93b6 from=translated src=- shape=84901ddf vocab=f52bfb43
+-/
 theorem map_transitionFromConnectorPotentials
     {S G : Type*} [TopologicalSpace S] [Group G] {base z : S}
     (f : FundamentalGroup S base →* G)
@@ -398,6 +457,9 @@ theorem map_transitionFromConnectorPotentials
   rw [← map_inv, ← map_mul]
   rw [← transitionFromPotentials, transitionFromConnectorPotentials]
 
+/--
+@isnad1 id=eq.0h5v.s8.dad19184a904 from=translated src=- shape=88615d1d vocab=0af48436
+-/
 theorem CommonEdgeConnectorComparison.map_startChange_inv
     {S G : Type*} [TopologicalSpace S] [Group G] {base : S}
     (C : CommonEdgeConnectorComparison S base)
@@ -406,6 +468,9 @@ theorem CommonEdgeConnectorComparison.map_startChange_inv
   rw [C.startChange_eq_connectorChange, ← map_inv,
     ← connectorChange_reverse]
 
+/--
+@isnad1 id=eq.0h5v.s8.e39c78cb5b76 from=translated src=- shape=88615d1d vocab=218f267a
+-/
 theorem CommonEdgeConnectorComparison.map_endChange_inv
     {S G : Type*} [TopologicalSpace S] [Group G] {base : S}
     (C : CommonEdgeConnectorComparison S base)
@@ -414,6 +479,9 @@ theorem CommonEdgeConnectorComparison.map_endChange_inv
   rw [C.endChange_eq_connectorChange, ← map_inv,
     ← connectorChange_reverse]
 
+/--
+@isnad1 id=eq.0h6v.s8.757d7eb99317 from=translated src=- shape=ef59c2cd vocab=13b498f9
+-/
 theorem CommonEdgeConnectorComparison.map_startChange_inv_eq_potentials
     {S G : Type*} [TopologicalSpace S] [Group G] {base : S}
     (C : CommonEdgeConnectorComparison S base)
@@ -426,6 +494,9 @@ theorem CommonEdgeConnectorComparison.map_startChange_inv_eq_potentials
   symm
   exact map_transitionFromConnectorPotentials f reference C.leftStart C.rightStart
 
+/--
+@isnad1 id=eq.0h6v.s8.dca2ff6c0f28 from=translated src=- shape=ef59c2cd vocab=6e294239
+-/
 theorem CommonEdgeConnectorComparison.map_endChange_inv_eq_potentials
     {S G : Type*} [TopologicalSpace S] [Group G] {base : S}
     (C : CommonEdgeConnectorComparison S base)
@@ -438,14 +509,18 @@ theorem CommonEdgeConnectorComparison.map_endChange_inv_eq_potentials
   symm
   exact map_transitionFromConnectorPotentials f reference C.leftEnd C.rightEnd
 
-/-- 同时把两条 connector transport 到相等端点，不改变 connector change。-/
+/-- 同时把两条 connector transport 到相等端点，不改变 connector change。
+@isnad1 id=eq.1h6v.s6.e091f9e18ae5 from=translated src=- shape=43f01c8d vocab=92b308fe
+-/
 theorem connectorChange_cast {x₀ z z' : X}
     (p q : Path x₀ z) (hz : z' = z) :
     connectorChange (p.cast rfl hz) (q.cast rfl hz) = connectorChange p q := by
   cases hz
   rfl
 
-/-- 两条 connector 使用不同的 proof-irrelevant 终点 transport 证明时，change 仍不变。-/
+/-- 两条 connector 使用不同的 proof-irrelevant 终点 transport 证明时，change 仍不变。
+@isnad1 id=eq.2h6v.s6.3b0f0fc9b161 from=translated src=- shape=e16a17bf vocab=92b308fe
+-/
 theorem connectorChange_cast_proof_irrel {x₀ z z' : X}
     (p q : Path x₀ z) (hp hq : z' = z) :
     connectorChange (p.cast rfl hp) (q.cast rfl hq) = connectorChange p q := by
@@ -877,7 +952,9 @@ private theorem BinaryOpenCoverSquareSubdivision.commonCentralConnectorOfLabel_r
         unitInterval → binaryOpenCoverPiece U V b) :=
       (Path.cast_coe _ _ _).symm
 
-/-- 四个相邻小格具有同一标签时，中央顶点的四个换连接因子满足方块关系。-/
+/-- 四个相邻小格具有同一标签时，中央顶点的四个换连接因子满足方块关系。
+@isnad1 id=other.10h11v.s12.71846ed57eb1 from=translated src=- shape=4c282bbd vocab=717a393a
+-/
 theorem BinaryOpenCoverSquareSubdivision.commonCentralTransition_square_of_label
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)

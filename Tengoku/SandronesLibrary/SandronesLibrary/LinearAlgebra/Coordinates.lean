@@ -43,7 +43,9 @@ noncomputable def transitionMatrix (b b' : ι → V) (hb : IsBasis K b)
   let B' := Module.Basis.mk hb'.1 (by simpa [hb'.2])
   exact B'.toMatrix B
 
-/-- **坐标换基公式**：左乘过渡矩阵，把 `x` 的旧坐标变为新坐标。-/
+/-- **坐标换基公式**：左乘过渡矩阵，把 `x` 的旧坐标变为新坐标。
+@isnad1 id=eq.2h6v.s6.d3f2e9dad89d from=translated src=- shape=d71d034d vocab=91fae11e
+-/
 theorem transitionMatrix_mulVec_coordinates (b b' : ι → V) (hb : IsBasis K b)
     (hb' : IsBasis K b') (x : V) :
     Matrix.mulVec (transitionMatrix b b' hb hb') (coordinates b hb x) =
@@ -53,7 +55,9 @@ theorem transitionMatrix_mulVec_coordinates (b b' : ι → V) (hb : IsBasis K b)
   simpa [coordinates, transitionMatrix, B, B'] using
     (Module.Basis.toMatrix_mulVec_repr B B' x)
 
-/-- 反向换基矩阵是正向换基矩阵的右逆。-/
+/-- 反向换基矩阵是正向换基矩阵的右逆。
+@isnad1 id=eq.2h5v.s7.7b08a2336122 from=translated src=- shape=85fe8d47 vocab=f5d061d3
+-/
 theorem transitionMatrix_mul_reverse (b b' : ι → V) (hb : IsBasis K b)
     (hb' : IsBasis K b') :
     transitionMatrix b b' hb hb' * transitionMatrix b' b hb' hb = 1 := by
@@ -63,7 +67,9 @@ theorem transitionMatrix_mul_reverse (b b' : ι → V) (hb : IsBasis K b)
   simpa [transitionMatrix, B, B'] using
     (Module.Basis.toMatrix_mul_toMatrix_flip B' B)
 
-/-- 反向换基矩阵也是正向换基矩阵的左逆。-/
+/-- 反向换基矩阵也是正向换基矩阵的左逆。
+@isnad1 id=eq.2h5v.s7.162274ad0d62 from=translated src=- shape=323396db vocab=f5d061d3
+-/
 theorem reverse_mul_transitionMatrix (b b' : ι → V) (hb : IsBasis K b)
     (hb' : IsBasis K b') :
     transitionMatrix b' b hb' hb * transitionMatrix b b' hb hb' = 1 := by
@@ -83,7 +89,9 @@ noncomputable def operatorMatrix (b : ι → V) (hb : IsBasis K b)
 /-- **算子矩阵换基公式**：同一线性算子在两组基下的矩阵相似。
 
 若 `P` 把 `b`-坐标变为 `b'`-坐标，则 `[T]_{b'} = P [T]_b P⁻¹`；
-这里反方向的过渡矩阵直接充当 `P⁻¹`，无需另行引入矩阵求逆。-/
+这里反方向的过渡矩阵直接充当 `P⁻¹`，无需另行引入矩阵求逆。
+@isnad1 id=eq.2h6v.s7.59e99498f620 from=translated src=- shape=6ec228ba vocab=6f94d78e
+-/
 theorem operatorMatrix_change_basis (b b' : ι → V) (hb : IsBasis K b)
     (hb' : IsBasis K b') (T : V →ₗ[K] V) :
     operatorMatrix b' hb' T = transitionMatrix b b' hb hb' * operatorMatrix b hb T *

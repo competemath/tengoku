@@ -36,7 +36,9 @@ variable {p : E → X}
 
 /-- 基同伦及其时间零切片的连续提升，唯一决定整个参数柱上的连续提升。
 
-> **Entry**: topology.covering.homotopy-lifting-standard-/
+> **Entry**: topology.covering.homotopy-lifting-standard
+@isnad1 id=existsun.2h6v.s9.cbd7fe327fc3 from=translated src=- shape=0b7fdb58 vocab=7a0f53d0
+-/
 theorem existsUnique_coveringMap_homotopyLift
     (cov : IsCoveringMap p) (H : C(unitInterval × A, X))
     (f0Lift : C(A, E)) (H0 : ∀ a, H (0, a) = p (f0Lift a)) :
@@ -70,7 +72,9 @@ noncomputable def coveringMapHomotopyLift
     map_one_left := fun _ => rfl
   }
 
-/-- 标准提升同伦经覆盖映射逐点投影回原同伦。-/
+/-- 标准提升同伦经覆盖映射逐点投影回原同伦。
+@isnad1 id=eq.2h9v.s7.421de6dcf2c3 from=translated src=- shape=7b30a6d4 vocab=9f29d472
+-/
 theorem coveringMapHomotopyLift_lifts
     (cov : IsCoveringMap p) {f0 f1 : C(A, X)} (F : f0.Homotopy f1)
     (f0Lift : C(A, E)) (hf0 : p ∘ f0Lift = f0)
@@ -80,7 +84,9 @@ theorem coveringMapHomotopyLift_lifts
     fun a => (F.apply_zero a).trans (congr_fun hf0 a).symm
   exact congr_fun (cov.liftHomotopy_lifts F f0Lift H0) z
 
-/-- 提升同伦的时间一切片经覆盖映射投影为原同伦的时间一映射。-/
+/-- 提升同伦的时间一切片经覆盖映射投影为原同伦的时间一映射。
+@isnad1 id=eq.2h9v.s7.8b6f2dcf4974 from=translated src=- shape=68671dfa vocab=c20f16e7
+-/
 theorem coveringMapHomotopyLiftEndpoint_lifts
     (cov : IsCoveringMap p) {f0 f1 : C(A, X)} (F : f0.Homotopy f1)
     (f0Lift : C(A, E)) (hf0 : p ∘ f0Lift = f0) (a : A) :

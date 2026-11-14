@@ -22,14 +22,18 @@ namespace SandronesLibrary.Probability
 
 open MeasureTheory ProbabilityTheory
 
-/-- 可测事件独立，当且仅当交事件概率等于概率乘积。-/
+/-- 可测事件独立，当且仅当交事件概率等于概率乘积。
+@isnad1 id=iff.2h4v.s6.6a0416386afd from=translated src=- shape=63a78092 vocab=381b9afd
+-/
 theorem independentEvents_iff
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {A B : Set Ω} (hA : MeasurableSet A) (hB : MeasurableSet B) :
     IndepSet A B μ ↔ μ (A ∩ B) = μ A * μ B :=
   indepSet_iff_measure_inter_eq_mul hA hB μ
 
-/-- 可测事件的独立性具有对称性。-/
+/-- 可测事件的独立性具有对称性。
+@isnad1 id=indepset.3h4v.s5.655d44de7876 from=translated src=- shape=a73b3650 vocab=9b15bd19
+-/
 theorem independentEvents_symm
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {A B : Set Ω} (hA : MeasurableSet A) (hB : MeasurableSet B)

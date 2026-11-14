@@ -34,7 +34,9 @@ def BaseExponentOneNormalForm.expression {base : ℕ}
 
 /--
 指数协议的三项基本事实：它在原底数下合法，在新底数下求值为
-`base+1`，并且把底数换成 `ω` 后的序数值为 `ω`。-/
+`base+1`，并且把底数换成 `ω` 后的序数值为 `ω`。
+@isnad1 id=and.1h1v.s5.f9a7cca791bb from=translated src=- shape=d07d1b9c vocab=4a31b1c7
+-/
 theorem BaseExponentOneNormalForm.protocol {base : ℕ}
     (e : BaseExponentOneNormalForm base) :
     e.expression.Valid base ∧

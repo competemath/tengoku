@@ -39,6 +39,9 @@ def binaryVanKampenLetterBlockGridVertex
     (unitIntervalMeshPoint (pathConcatSegmentGridLength letters.reverse.length k i)
       (pathConcatSegmentGridLength_pos letters.reverse.length k hk i) r)
 
+/--
+@isnad1 id=eq.3h7v.s8.310683f896f1 from=translated src=- shape=052e03a1 vocab=0e2e4831
+-/
 @[simp] theorem binaryVanKampenLetterBlockGridVertex_zero
     {U V : Set X} {x₀ : X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (letters : List (BinaryVanKampenLetter U V hxU hxV))
@@ -48,6 +51,9 @@ def binaryVanKampenLetterBlockGridVertex
   apply Subtype.ext
   simp [binaryVanKampenLetterBlockGridVertex]
 
+/--
+@isnad1 id=eq.3h7v.s7.537d622899ac from=translated src=- shape=17648997 vocab=f6970910
+-/
 @[simp] theorem binaryVanKampenLetterBlockGridVertex_last
     {U V : Set X} {x₀ : X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (letters : List (BinaryVanKampenLetter U V hxU hxV))
@@ -96,6 +102,9 @@ noncomputable def binaryVanKampenLetterBlockGridConnector
     (letters.reverse.get i).1
     (binaryVanKampenLetterBlockGridVertex hxU hxV letters k hk i r)
 
+/--
+@isnad1 id=eq.5h7v.s10.ab1cb1b83887 from=translated src=- shape=ecd7b68a vocab=edeabec8
+-/
 @[simp] theorem binaryVanKampenLetterBlockGridConnector_zero
     {U V : Set X} {x₀ : X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hU : IsPathConnected U) (hV : IsPathConnected V)
@@ -107,6 +116,9 @@ noncomputable def binaryVanKampenLetterBlockGridConnector
           (binaryVanKampenLetterBlockGridVertex_zero hxU hxV letters k hk i) := by
   rw [binaryVanKampenLetterBlockGridConnector, dite_eq_left rfl]
 
+/--
+@isnad1 id=eq.5h7v.s9.6a7b997a8b02 from=translated src=- shape=06f47a4a vocab=aede7f5c
+-/
 @[simp] theorem binaryVanKampenLetterBlockGridConnector_last
     {U V : Set X} {x₀ : X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hU : IsPathConnected U) (hV : IsPathConnected V)
@@ -187,7 +199,9 @@ def binaryVanKampenLetterBlockGridEdgeInPiece
     (unitIntervalMeshPoint (pathConcatSegmentGridLength letters.reverse.length k i)
       (pathConcatSegmentGridLength_pos letters.reverse.length k hk i) s.succ)
 
-/-- 字母成员内的每条细网格边，严格等于提升后的 dyadic segment 在局部一致网格上的子道路。-/
+/-- 字母成员内的每条细网格边，严格等于提升后的 dyadic segment 在局部一致网格上的子道路。
+@isnad1 id=eq.3h8v.s9.7b063aa6fb27 from=translated src=- shape=5ad9c385 vocab=242373ff
+-/
 theorem binaryVanKampenLetterBlockGridEdgeInPiece_eq_subpath
     {U V : Set X} {x₀ : X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (letters : List (BinaryVanKampenLetter U V hxU hxV))
@@ -213,7 +227,9 @@ def binaryVanKampenLetterBlockGridWord
     (binaryVanKampenLetterBlockGridEdgeInPiece hxU hxV letters k hk i)
     (binaryVanKampenLetterBlockGridConnector hxU hxV hU hV letters k hk i)
 
-/-- 上述 block word 等于首末规范 connector 围住的整块网格边拼接类。-/
+/-- 上述 block word 等于首末规范 connector 围住的整块网格边拼接类。
+@isnad1 id=eq.5h7v.s10.52d324f93aeb from=translated src=- shape=55637751 vocab=621d15d7
+-/
 theorem binaryVanKampenLetterBlockGridWord_eq_concat
     {U V : Set X} {x₀ : X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hU : IsPathConnected U) (hV : IsPathConnected V)
@@ -233,7 +249,9 @@ theorem binaryVanKampenLetterBlockGridWord_eq_concat
     (binaryVanKampenLetterBlockGridEdgeInPiece hxU hxV letters k hk i)
     (binaryVanKampenLetterBlockGridConnector hxU hxV hU hV letters k hk i)
 
-/-- 固定字母成员中的完整 dyadic block 细网格词，严格等于该输入字母的基本群元素。-/
+/-- 固定字母成员中的完整 dyadic block 细网格词，严格等于该输入字母的基本群元素。
+@isnad1 id=eq.5h7v.s8.24177b9f900b from=translated src=- shape=2ae323a9 vocab=85269d48
+-/
 theorem binaryVanKampenLetterBlockGridWord_eq_letter
     {U V : Set X} {x₀ : X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hU : IsPathConnected U) (hV : IsPathConnected V)

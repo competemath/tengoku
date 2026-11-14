@@ -34,7 +34,9 @@ open MeasureTheory
 open ProbabilityTheory
 open scoped ENNReal
 
-/-- Kernel RN 密度作为 `(θ,x)` 的函数联合可测。-/
+/-- Kernel RN 密度作为 `(θ,x)` 的函数联合可测。
+@isnad1 id=measurab.0h4v.s5.44de98224191 from=translated src=- shape=22e4587b vocab=a438be7c
+-/
 theorem statisticalModel_density_jointlyMeasurable
     {Θ 𝓧 : Type*} [MeasurableSpace Θ] [MeasurableSpace 𝓧]
     [MeasurableSpace.CountableOrCountablyGenerated Θ 𝓧]
@@ -42,7 +44,9 @@ theorem statisticalModel_density_jointlyMeasurable
     Measurable (fun p : Θ × 𝓧 ↦ P.rnDeriv (Kernel.const Θ ν) p.1 p.2) :=
   Kernel.measurable_rnDeriv P (Kernel.const Θ ν)
 
-/-- 固定参数后，kernel 密度与普通测度 RN 导数 `ν`-几乎处处相等。-/
+/-- 固定参数后，kernel 密度与普通测度 RN 导数 `ν`-几乎处处相等。
+@isnad1 id=eventual.0h5v.s6.7e57762de773 from=translated src=- shape=b2221488 vocab=ceb012dc
+-/
 theorem statisticalModel_density_ae_eq_measure_rnDeriv
     {Θ 𝓧 : Type*} [MeasurableSpace Θ] [MeasurableSpace 𝓧]
     [MeasurableSpace.CountableOrCountablyGenerated Θ 𝓧]
@@ -53,7 +57,9 @@ theorem statisticalModel_density_ae_eq_measure_rnDeriv
     (Kernel.rnDeriv_eq_rnDeriv_measure
       (κ := P) (η := Kernel.const Θ ν) (a := θ))
 
-/-- 若参数纤维 `P θ` 被 `ν` 支配，则以联合可测密度加权 `ν` 恰好重建 `P θ`。-/
+/-- 若参数纤维 `P θ` 被 `ν` 支配，则以联合可测密度加权 `ν` 恰好重建 `P θ`。
+@isnad1 id=eq.1h5v.s6.f708f029dfd4 from=translated src=- shape=9357f4da vocab=17ddf40c
+-/
 theorem statisticalModel_withDensity_eq
     {Θ 𝓧 : Type*} [MeasurableSpace Θ] [MeasurableSpace 𝓧]
     [MeasurableSpace.CountableOrCountablyGenerated Θ 𝓧]
@@ -65,7 +71,9 @@ theorem statisticalModel_withDensity_eq
   rw [Kernel.withDensity_apply _ (Kernel.measurable_rnDeriv P (Kernel.const Θ ν))] at h
   simpa only [Kernel.const_apply] using h
 
-/-- 在可测集合 `s` 上积分模型密度，得到参数 `θ` 下事件 `s` 的概率。-/
+/-- 在可测集合 `s` 上积分模型密度，得到参数 `θ` 下事件 `s` 的概率。
+@isnad1 id=eq.2h6v.s7.243a18e0ee3d from=translated src=- shape=0ec4850c vocab=bb4c7f81
+-/
 theorem statisticalModel_setLIntegral_density
     {Θ 𝓧 : Type*} [MeasurableSpace Θ] [MeasurableSpace 𝓧]
     [MeasurableSpace.CountableOrCountablyGenerated Θ 𝓧]
@@ -76,7 +84,9 @@ theorem statisticalModel_setLIntegral_density
     (Kernel.setLIntegral_rnDeriv
       (κ := P) (η := Kernel.const Θ ν) (a := θ) hPν hs)
 
-/-- 概率模型的密度关于支配测度的总积分为一。-/
+/-- 概率模型的密度关于支配测度的总积分为一。
+@isnad1 id=eq.1h5v.s6.0013b302187a from=translated src=- shape=519b24eb vocab=ad8a77c9
+-/
 theorem statisticalModel_lintegral_density_eq_one
     {Θ 𝓧 : Type*} [MeasurableSpace Θ] [MeasurableSpace 𝓧]
     [MeasurableSpace.CountableOrCountablyGenerated Θ 𝓧]
@@ -89,7 +99,9 @@ theorem statisticalModel_lintegral_density_eq_one
 
 /-- 有限 kernel 的联合密度关于参考测度几乎处处不是无穷。
 
-这一步是日后安全转成实值密度所需的边界之一；本条目不直接把 `ℝ≥0∞` 密度静默 `.toReal`。-/
+这一步是日后安全转成实值密度所需的边界之一；本条目不直接把 `ℝ≥0∞` 密度静默 `.toReal`。
+@isnad1 id=eventual.0h5v.s6.7f9adf179ba0 from=translated src=- shape=3c2fba52 vocab=d3f8a298
+-/
 theorem statisticalModel_density_ne_top_ae
     {Θ 𝓧 : Type*} [MeasurableSpace Θ] [MeasurableSpace 𝓧]
     [MeasurableSpace.CountableOrCountablyGenerated Θ 𝓧]

@@ -29,6 +29,9 @@ structure CholeskyFactorization {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) where
   lower_diagonal_pos : ∀ i, 0 < lower i i
   eq_mul_transpose : A = lower * lowerᵀ
 
+/--
+@isnad1 id=and.1h2v.s6.730fe3e4aa36 from=translated src=- shape=30be89a8 vocab=ba83522c
+-/
 theorem LDL_lowerInv_unitLower {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ}
     (hA : A.PosDef) :
     (LDL.lowerInv hA).IsLowerTriangular ∧ ∀ i, LDL.lowerInv hA i i = 1 := by
@@ -50,6 +53,9 @@ theorem LDL_lowerInv_unitLower {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ}
     rw [hz]
     simp
 
+/--
+@isnad1 id=lt.1h3v.s5.379be0774e68 from=translated src=- shape=5a4363ce vocab=0f3125fa
+-/
 theorem LDL_diagEntries_pos {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ}
     (hA : A.PosDef) : ∀ i, 0 < LDL.diagEntries hA i := by
   intro i
@@ -62,6 +68,9 @@ theorem LDL_diagEntries_pos {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ}
   rw [(LDL_lowerInv_unitLower hA).2 i] at hii
   exact one_ne_zero hii
 
+/--
+@isnad1 id=and.1h2v.s6.ec234dba33de from=translated src=- shape=30be89a8 vocab=226f1673
+-/
 theorem LDL_lower_unitLower {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ}
     (hA : A.PosDef) :
     (LDL.lower hA).IsLowerTriangular ∧ ∀ i, LDL.lower hA i i = 1 := by
@@ -115,6 +124,9 @@ noncomputable def choleskyLower {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ}
     (hA : A.PosDef) : Matrix (Fin n) (Fin n) ℝ :=
   LDL.lower hA * choleskyDiagonal hA
 
+/--
+@isnad1 id=eq.1h2v.s6.3e048b4b5950 from=translated src=- shape=3724f5e9 vocab=3d161559
+-/
 theorem choleskyDiagonal_sq {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ}
     (hA : A.PosDef) :
     choleskyDiagonal hA * choleskyDiagonal hA = LDL.diag hA := by
@@ -123,6 +135,9 @@ theorem choleskyDiagonal_sq {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ}
   funext i
   simpa [pow_two] using Real.sq_sqrt (le_of_lt (LDL_diagEntries_pos hA i))
 
+/--
+@isnad1 id=and.1h2v.s5.1f9eee8c8bf2 from=translated src=- shape=5ba05e6b vocab=073d1417
+-/
 theorem choleskyLower_properties {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ}
     (hA : A.PosDef) :
     (choleskyLower hA).IsLowerTriangular ∧
@@ -136,6 +151,9 @@ theorem choleskyLower_properties {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ}
     rw [choleskyLower, choleskyDiagonal, Matrix.mul_diagonal, hL.2 i, one_mul]
     exact Real.sqrt_pos.2 (LDL_diagEntries_pos hA i)
 
+/--
+@isnad1 id=eq.1h2v.s6.c2eee4f514c9 from=translated src=- shape=3d4eaf26 vocab=1335dbe4
+-/
 theorem choleskyLower_mul_transpose {n : ℕ}
     {A : Matrix (Fin n) (Fin n) ℝ} (hA : A.PosDef) :
     choleskyLower hA * (choleskyLower hA)ᵀ = A := by
@@ -158,6 +176,9 @@ theorem choleskyLower_mul_transpose {n : ℕ}
       rw [choleskyDiagonal_sq hA]
     _ = A := LDL.lower_conj_diag hA
 
+/--
+@isnad1 id=nonempty.1h2v.s4.96011a8a9e81 from=translated src=- shape=c4d8f97a vocab=78e7c744
+-/
 theorem exists_cholesky {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     (hA : A.PosDef) : Nonempty (CholeskyFactorization A) := by
   obtain ⟨hlow, hdiag⟩ := choleskyLower_properties hA
@@ -167,6 +188,9 @@ theorem exists_cholesky {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     lower_diagonal_pos := hdiag
     eq_mul_transpose := (choleskyLower_mul_transpose hA).symm }⟩
 
+/--
+@isnad1 id=ex.3h3v.s7.51d29eb307e2 from=translated src=- shape=0147acf2 vocab=2823228f
+-/
 theorem cholesky_cross_factor {n : ℕ}
     (L₁ L₂ : Matrix (Fin n) (Fin n) ℝ)
     (hL₁ : L₁.IsLowerTriangular) (hdL₁ : ∀ i, 0 < L₁ i i)
@@ -203,6 +227,9 @@ theorem cholesky_cross_factor {n : ℕ}
     exact (Matrix.mem_orthogonalGroup_iff (Fin n) ℝ).mpr hSright
   exact ⟨S, hSorth, hSR.symm⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.ab7c30173d99 from=translated src=- shape=ab6671be vocab=b7aff0e8
+-/
 theorem cholesky_unique {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ}
     (fac₁ fac₂ : CholeskyFactorization A) : fac₁.lower = fac₂.lower := by
   have hprod : fac₁.lower * fac₁.lowerᵀ = fac₂.lower * fac₂.lowerᵀ :=

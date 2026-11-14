@@ -94,6 +94,9 @@ def binaryOpenCoverPieceMaps (U V : Set X) {x₀ : X}
   · exact FundamentalGroup.map (binaryOpenCoverPieceToSpace U V false) ⟨x₀, hxU⟩
   · exact FundamentalGroup.map (binaryOpenCoverPieceToSpace U V true) ⟨x₀, hxV⟩
 
+/--
+@isnad1 id=eq.2h5v.s9.b24e85070665 from=translated src=- shape=a554b659 vocab=bf9182d3
+-/
 theorem binaryOpenCoverPieceMaps_compat (U V : Set X) {x₀ : X}
     (hxU : x₀ ∈ U) (hxV : x₀ ∈ V) :
     ∀ b, (binaryOpenCoverPieceMaps U V hxU hxV b).comp
@@ -137,6 +140,9 @@ def basedPieceLoop {x₀ z w : X} (S : Set X)
       ((pathCodRestrict S segment hz hw hsegment).trans
         (pathCodRestrict S right hx₀ hw hright).symm)⟧
 
+/--
+@isnad1 id=eq.6h8v.s10.9e11fdb23a04 from=translated src=- shape=03d0cb74 vocab=28853df2
+-/
 theorem map_basedPieceLoop_subtypeVal {x₀ z w : X} (S : Set X)
     (hx₀ : x₀ ∈ S) (hz : z ∈ S) (hw : w ∈ S)
     (left : Path x₀ z) (segment : Path z w) (right : Path x₀ w)
@@ -173,6 +179,9 @@ structure BinaryOpenCoverSubdivision.BasedConnectors {x₀ : X} {p : Path x₀ x
   connector_zero : connector 0 = D.firstReflConnector p
   connector_last : connector (Fin.last D.steps) = D.lastReflConnector p
 
+/--
+@isnad1 id=nonempty.5h6v.s6.adb58110eb1c from=translated src=- shape=3fc9fac0 vocab=515baeaa
+-/
 theorem BinaryOpenCoverSubdivision.exists_basedConnectors {x₀ : X} {p : Path x₀ x₀}
     {U V : Set X} (D : BinaryOpenCoverSubdivision p U V)
     (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
@@ -326,6 +335,9 @@ def BinaryOpenCoverSubdivision.segmentPieceLoop {x₀ : X} {p : Path x₀ x₀}
       (binaryOpenCoverBasepoint hxU hxV (D.label i)) :=
   D.segmentPieceLoopOfLabel C hxU hxV i (D.label i) rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.8a091fae1fbb from=translated src=- shape=4cace9e8 vocab=a7a355c5
+-/
 theorem map_reverseDfoldl {M N : Type*} [Monoid M] [Monoid N]
     (φ : M →* N) {n : ℕ} (a : Fin n → M) :
     φ (Fin.dfoldl n (fun _ => M) (fun i acc => a i * acc) 1) =
@@ -346,6 +358,9 @@ def BinaryOpenCoverSubdivision.pushoutSegmentWord
   Fin.dfoldl D.steps (fun _ => binaryVanKampenPushout U V hxU hxV)
     (fun i acc => Monoid.PushoutI.of (D.label i) (D.segmentPieceLoop C hxU hxV i) * acc) 1
 
+/--
+@isnad1 id=eq.3h9v.s11.96594f82f879 from=translated src=- shape=2ee81d6e vocab=0430ffca
+-/
 theorem BinaryOpenCoverSubdivision.canonicalMap_of_segmentPieceLoopOfLabel
     {x₀ : X} {p : Path x₀ x₀} {U V : Set X}
     (D : BinaryOpenCoverSubdivision p U V) (C : D.BasedConnectors)
@@ -383,6 +398,9 @@ theorem BinaryOpenCoverSubdivision.canonicalMap_of_segmentPieceLoopOfLabel
       (by simpa [binaryOpenCoverPiece, hb] using D.subpath_mem i)
       (by simpa [binaryOpenCoverPiece, hb] using C.right_mem i)
 
+/--
+@isnad1 id=eq.2h8v.s11.0b946f7a2b67 from=translated src=- shape=9eed284b vocab=ba5a53c7
+-/
 theorem BinaryOpenCoverSubdivision.canonicalMap_of_segmentPieceLoop
     {x₀ : X} {p : Path x₀ x₀} {U V : Set X}
     (D : BinaryOpenCoverSubdivision p U V) (C : D.BasedConnectors)
@@ -396,6 +414,9 @@ theorem BinaryOpenCoverSubdivision.canonicalMap_of_segmentPieceLoop
         (C.connector i.succ)⟧ :=
   D.canonicalMap_of_segmentPieceLoopOfLabel C hxU hxV i (D.label i) rfl
 
+/--
+@isnad1 id=eq.2h7v.s9.5a858fb2f15f from=translated src=- shape=dbf5e2e8 vocab=8dfbcdee
+-/
 theorem BinaryOpenCoverSubdivision.canonicalMap_pushoutSegmentWord
     {x₀ : X} {p : Path x₀ x₀} {U V : Set X}
     (D : BinaryOpenCoverSubdivision p U V) (C : D.BasedConnectors)
@@ -416,7 +437,9 @@ theorem BinaryOpenCoverSubdivision.canonicalMap_pushoutSegmentWord
   funext i
   exact D.canonicalMap_of_segmentPieceLoop C hxU hxV i
 
-/-- 在道路同伦商中，transport 后的首末常连接在道路两侧抵消。-/
+/-- 在道路同伦商中，transport 后的首末常连接在道路两侧抵消。
+@isnad1 id=eq.2h5v.s6.2f33ab392388 from=translated src=- shape=f58f005a vocab=27013154
+-/
 theorem quotient_reflCast_trans_trans_reflCast_symm
     {x z w : X} (hz : z = x) (hw : w = x)
     (q : Path.Homotopic.Quotient z w) :
@@ -435,7 +458,9 @@ theorem quotient_reflCast_trans_trans_reflCast_symm
         (by simpa using (show (q.trans (Path.refl x)).Homotopic q from
           ⟨Path.Homotopy.transRefl q⟩))
 
-/-- 把全区间子道路 transport 回环路端点后，得到原环路的道路同伦类。-/
+/-- 把全区间子道路 transport 回环路端点后，得到原环路的道路同伦类。
+@isnad1 id=eq.4h5v.s7.051120ea1836 from=translated src=- shape=af6475a3 vocab=d884deec
+-/
 theorem quotient_subpath_cast_eq_loop {x : X} (p : Path x x)
     (t₀ t₁ : unitInterval) (ht₀ : t₀ = 0) (ht₁ : t₁ = 1)
     (hz : p t₀ = x) (hw : p t₁ = x) :
@@ -445,7 +470,9 @@ theorem quotient_subpath_cast_eq_loop {x : X} (p : Path x x)
   subst t₁
   simp [Path.subpath_zero_one]
 
-/-- 带基点连接的有限细分所给出的修正环路词代表原环境环路。-/
+/-- 带基点连接的有限细分所给出的修正环路词代表原环境环路。
+@isnad1 id=eq.0h7v.s7.faf0a2874c72 from=translated src=- shape=d80e7ae4 vocab=9db3ead9
+-/
 theorem BinaryOpenCoverSubdivision.correctedLoopWord_eq_loop
     {x₀ : X} {p : Path x₀ x₀} {U V : Set X}
     (D : BinaryOpenCoverSubdivision p U V) (C : D.BasedConnectors) :
@@ -499,7 +526,9 @@ theorem BinaryOpenCoverSubdivision.correctedLoopWord_eq_loop
         (unitIntervalMeshPoint_last D.steps D.steps_pos) hz hw
 
 /-- 对道路连通的二开集覆盖，两个覆盖成员基本群沿交集基本群的 amalgamated free product 到环境
-基本群的规范同态是满射。-/
+基本群的规范同态是满射。
+@isnad1 id=surjecti.8h4v.s9.da4bc3023c88 from=translated src=- shape=4e3bd7f6 vocab=2ef2bcde
+-/
 theorem surjective_binaryVanKampenCanonicalMap
     {x₀ : X} (U V : Set X) (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUopen : IsOpen U) (hVopen : IsOpen V) (hcover : U ∪ V = Set.univ)

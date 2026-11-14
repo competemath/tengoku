@@ -40,13 +40,17 @@ def CertifiedTransitivePredecessor (after before : Hydra) : Prop :=
   CertifiedTransitiveStep before after
 
 /-- A zero-step trajectory has equal endpoints, and endpoint equality always
-gives the zero-step trajectory.-/
+gives the zero-step trajectory.
+@isnad1 id=iff.0h2v.s4.ca27f432af51 from=translated src=- shape=1a15ae62 vocab=a87121bb
+-/
 theorem certifiedExactSteps_zero_iff {before after : Hydra} :
     CertifiedExactSteps 0 before after ↔ before = after := by
   rfl
 
 /-- Every predecessor in the library's nonempty finite closure belongs to the
-standard transitive closure of the one-step predecessor relation.-/
+standard transitive closure of the one-step predecessor relation.
+@isnad1 id=transgen.1h2v.s3.735d3ff21609 from=translated src=- shape=715d55c2 vocab=21512abc
+-/
 theorem certifiedTransitivePredecessor_to_transGen {after before : Hydra}
     (steps : CertifiedTransitivePredecessor after before) :
     Relation.TransGen CertifiedPredecessor after before := by

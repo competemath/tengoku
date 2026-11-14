@@ -75,7 +75,9 @@ noncomputable def PathConcatAlignedSquareSubdivision.leftBoundaryCellToLetterTra
         endChange := (Monoid.PushoutI.of c CC.endChange)⁻¹ *
           Monoid.PushoutI.of b CB.endChange }
 
-/-- cell 与 letter 标签不同时，逐边起点 transition 是两侧统一 vertex potentials 之比。-/
+/-- cell 与 letter 标签不同时，逐边起点 transition 是两侧统一 vertex potentials 之比。
+@isnad1 id=other.6h9v.s14.a6a294f4dda0 from=translated src=- shape=9c3dccd3 vocab=e727a699
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundaryCellToLetterTransitions_start_potential_of_ne
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))
@@ -121,7 +123,9 @@ theorem PathConcatAlignedSquareSubdivision.leftBoundaryCellToLetterTransitions_s
     dite_eq_right hne]
   simp [transitionFromPotentials]
 
-/-- cell 与 letter 标签不同时，逐边终点 transition 是对应终点 potentials 之比。-/
+/-- cell 与 letter 标签不同时，逐边终点 transition 是对应终点 potentials 之比。
+@isnad1 id=other.6h9v.s14.44d5b60b423c from=translated src=- shape=9c3dccd3 vocab=a99b406a
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundaryCellToLetterTransitions_end_potential_of_ne
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))
@@ -170,7 +174,9 @@ theorem PathConcatAlignedSquareSubdivision.leftBoundaryCellToLetterTransitions_e
 namespace PathConcatAlignedSquareSubdivision
 
 /-- 若一条左边界细边的终点已知属于交集，则其 cell-to-letter 终点 transition 可无条件统一写成
-该交集顶点处 cell connector potential 与 letter connector potential 的比值。-/
+该交集顶点处 cell connector potential 与 letter connector potential 的比值。
+@isnad1 id=other.7h10v.s12.40862cb46dd4 from=translated src=- shape=a242f2f6 vocab=75e91ea5
+-/
 theorem leftBoundaryCellToLetterTransitions_end_eq_intersectionPotentials
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))
@@ -314,7 +320,9 @@ theorem leftBoundaryCellToLetterTransitions_end_eq_intersectionPotentials
         exact hzval.symm
       | rfl
 
-/-- 上一定理的起点版本。-/
+/-- 上一定理的起点版本。
+@isnad1 id=other.7h10v.s12.dac898191197 from=translated src=- shape=a242f2f6 vocab=9f5c14a3
+-/
 theorem leftBoundaryCellToLetterTransitions_start_eq_intersectionPotentials
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))
@@ -461,7 +469,9 @@ theorem leftBoundaryCellToLetterTransitions_start_eq_intersectionPotentials
 end PathConcatAlignedSquareSubdivision
 
 /-- 左边界细边实际 cell 终点 connector 的交集 potential，就是该格左上角的标准 grid-cell
-potential；该桥不要求 cell 与 letter 标签不同。-/
+potential；该桥不要求 cell 与 letter 标签不同。
+@isnad1 id=eq.7h10v.s12.ad4ef3b38473 from=translated src=- shape=353c956d vocab=4b6223fa
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundaryCellEndPotential_eq_gridCellPotential
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))
@@ -514,7 +524,9 @@ theorem PathConcatAlignedSquareSubdivision.leftBoundaryCellEndPotential_eq_gridC
       hxU hxV letters Fhom i s
 
 /-- 起点对称版本：实际 cell 起点 connector 的交集 potential 等于该格左下角标准 grid-cell
-potential。-/
+potential。
+@isnad1 id=eq.7h10v.s12.82c99f823f8f from=translated src=- shape=353c956d vocab=2a70b35d
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundaryCellStartPotential_eq_gridCellPotential
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))
@@ -629,7 +641,9 @@ private theorem binaryOpenCoverSamePathComparison_right_pushout_eq
       CommonEdgeConnectorComparison.rightElement]
 
 /-- 统一逐边关系：cell-label 的真实局部元素等于 letter-label 真实局部元素按上述 transitions
-换连接后的结果。-/
+换连接后的结果。
+@isnad1 id=other.5h9v.s12.175d54667230 from=translated src=- shape=535d2c6d vocab=516b1657
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundaryCellToLetter_relation
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))
@@ -720,7 +734,9 @@ theorem PathConcatAlignedSquareSubdivision.leftBoundaryCellToLetter_relation
     dsimp only at h
     rw [← hL, h, hR]
 
-/-- 上述统一关系改写到两套现有有限词真正使用的生成元。-/
+/-- 上述统一关系改写到两套现有有限词真正使用的生成元。
+@isnad1 id=other.5h9v.s12.7809bfcdf924 from=translated src=- shape=42ac8549 vocab=34a4e4c8
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundaryCellEdgeToBlockFactor_relation
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))

@@ -77,6 +77,9 @@ instance (C : PointedCovering X x0) : TopologicalSpace C.Total := C.topology
 def projectionContinuousMap (C : PointedCovering X x0) : C(C.Total, X) :=
   ⟨C.projection, C.isCoveringMap.continuous⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.96d0c0696f5f from=translated src=- shape=8fd877db vocab=5c266168
+-/
 theorem projectionContinuousMap_point (C : PointedCovering X x0) :
     C.projectionContinuousMap C.point = x0 := C.projection_point
 
@@ -106,9 +109,15 @@ def refl (C : PointedCovering X x0) : C.Equiv C where
 
 def totalContinuousMap (e : C.Equiv D) : C(C.Total, D.Total) := e.toHomeomorph
 
+/--
+@isnad1 id=eq.0h5v.s7.c3e9806afd8f from=translated src=- shape=74908990 vocab=7c2f00f8
+-/
 theorem totalContinuousMap_point (e : C.Equiv D) :
     e.totalContinuousMap C.point = D.point := e.point_eq
 
+/--
+@isnad1 id=eq.0h5v.s6.8fc1a5e2d31b from=translated src=- shape=71888af5 vocab=7568fd11
+-/
 theorem projectionContinuousMap_comp (e : C.Equiv D) :
     D.projectionContinuousMap.comp e.totalContinuousMap = C.projectionContinuousMap := by
   ext z
@@ -146,7 +155,9 @@ private theorem recoveredSubgroup_le_of_equiv {C D : PointedCovering X x0} (e : 
 
 /-- pointed-cover equivalence 保持由投影恢复的子群。
 
-> **Entry**: topology.covering.pointed-recovered-subgroup-/
+> **Entry**: topology.covering.pointed-recovered-subgroup
+@isnad1 id=eq.0h5v.s5.53b9fe3802d9 from=translated src=- shape=aaf27a80 vocab=7f1613dd
+-/
 theorem recoveredSubgroup_eq_of_equiv {C D : PointedCovering X x0} (e : Equiv C D) :
     recoveredSubgroup C = recoveredSubgroup D :=
   le_antisymm (recoveredSubgroup_le_of_equiv e)

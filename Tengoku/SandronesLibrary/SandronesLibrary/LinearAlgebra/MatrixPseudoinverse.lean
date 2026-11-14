@@ -44,7 +44,9 @@ noncomputable def pseudoinverseWith (T : E →ₗ[𝕜] F)
           (Fin.castLE (LinearMap.finrank_range_le T) ⟨j.val, hj⟩)
     else 0
 
-/-- 第一条 Penrose 方程 `TT⁺T = T`。证明在右奇异基上逐方向计算。-/
+/-- 第一条 Penrose 方程 `TT⁺T = T`。证明在右奇异基上逐方向计算。
+@isnad1 id=eq.1h5v.s11.31d50178ad84 from=translated src=- shape=bf2ff1a2 vocab=083a546e
+-/
 theorem pseudoinverseWith_penrose_one (T : E →ₗ[𝕜] F)
     (b : OrthonormalBasis (Fin (finrank 𝕜 F)) 𝕜 F)
     (hb : ∀ i : Fin (finrank 𝕜 T.range),
@@ -82,7 +84,9 @@ theorem pseudoinverseWith_penrose_one (T : E →ₗ[𝕜] F)
       (Nat.le_of_not_gt hi)
     simp [hT]
 
-/-- 第二条 Penrose 方程 `T⁺TT⁺ = T⁺`。正奇异值及其倒数相消，零方向保持为零。-/
+/-- 第二条 Penrose 方程 `T⁺TT⁺ = T⁺`。正奇异值及其倒数相消，零方向保持为零。
+@isnad1 id=eq.1h5v.s11.4cb3a257064c from=translated src=- shape=b69f0612 vocab=083a546e
+-/
 theorem pseudoinverseWith_penrose_two (T : E →ₗ[𝕜] F)
     (b : OrthonormalBasis (Fin (finrank 𝕜 F)) 𝕜 F)
     (hb : ∀ i : Fin (finrank 𝕜 T.range),
@@ -128,7 +132,9 @@ theorem pseudoinverseWith_penrose_two (T : E →ₗ[𝕜] F)
     simp
 
 /-- 从一组正交基向量选出的秩一投影之和，在被选中的基向量上为恒等，
-在未选中的基向量上为零。-/
+在未选中的基向量上为零。
+@isnad1 id=eq.0h7v.s12.d9d1096f9e25 from=translated src=- shape=9735e078 vocab=e1ec1a1b
+-/
 theorem orthonormalBasis_sum_rankOne_apply
     {G : Type*} [NormedAddCommGroup G] [InnerProductSpace 𝕜 G]
     {m r : ℕ} (b : OrthonormalBasis (Fin m) 𝕜 G)
@@ -153,7 +159,9 @@ theorem orthonormalBasis_sum_rankOne_apply
     rw [orthonormal_iff_ite.mp b.orthonormal]
     simp [he]
 
-/-- `TT⁺` 在扩充左奇异基上的作用：值域方向保持不变，其余方向归零。-/
+/-- `TT⁺` 在扩充左奇异基上的作用：值域方向保持不变，其余方向归零。
+@isnad1 id=eq.1h6v.s12.e811e4aa7313 from=translated src=- shape=a3382f31 vocab=9de1de28
+-/
 theorem rangeProjection_apply_leftBasis (T : E →ₗ[𝕜] F)
     (b : OrthonormalBasis (Fin (finrank 𝕜 F)) 𝕜 F)
     (hb : ∀ i : Fin (finrank 𝕜 T.range),
@@ -182,7 +190,9 @@ theorem rangeProjection_apply_leftBasis (T : E →ₗ[𝕜] F)
   · rw [dite_eq_right hj, dite_eq_right hj]
     simp
 
-/-- `T⁺T` 在右奇异基上的作用：正奇异方向保持不变，核方向归零。-/
+/-- `T⁺T` 在右奇异基上的作用：正奇异方向保持不变，核方向归零。
+@isnad1 id=eq.1h6v.s12.9a2214b29200 from=translated src=- shape=3dd9a51a vocab=bfbff530
+-/
 theorem kernelProjection_apply_rightBasis (T : E →ₗ[𝕜] F)
     (b : OrthonormalBasis (Fin (finrank 𝕜 F)) 𝕜 F)
     (hb : ∀ i : Fin (finrank 𝕜 T.range),
@@ -216,7 +226,9 @@ theorem kernelProjection_apply_rightBasis (T : E →ₗ[𝕜] F)
       (Nat.le_of_not_gt hj)
     simp [hT]
 
-/-- `TT⁺` 是由左奇异向量生成的秩一正交投影之和。-/
+/-- `TT⁺` 是由左奇异向量生成的秩一正交投影之和。
+@isnad1 id=eq.1h5v.s14.77c42b2916fd from=translated src=- shape=2c003fc0 vocab=e0c1cfe0
+-/
 theorem pseudoinverseWith_rangeProjection_eq_sum_rankOne (T : E →ₗ[𝕜] F)
     (b : OrthonormalBasis (Fin (finrank 𝕜 F)) 𝕜 F)
     (hb : ∀ i : Fin (finrank 𝕜 T.range),
@@ -247,7 +259,9 @@ theorem pseudoinverseWith_rangeProjection_eq_sum_rankOne (T : E →ₗ[𝕜] F)
   · rw [dite_eq_left hj, dite_eq_left (hiff.mp hj)]
   · rw [dite_eq_right hj, dite_eq_right (fun h => hj (hiff.mpr h))]
 
-/-- `T⁺T` 是由正奇异值对应的右奇异向量生成的秩一正交投影之和。-/
+/-- `T⁺T` 是由正奇异值对应的右奇异向量生成的秩一正交投影之和。
+@isnad1 id=eq.1h5v.s13.229ad126065a from=translated src=- shape=0d07a544 vocab=50cdf392
+-/
 theorem pseudoinverseWith_kernelProjection_eq_sum_rankOne (T : E →ₗ[𝕜] F)
     (b : OrthonormalBasis (Fin (finrank 𝕜 F)) 𝕜 F)
     (hb : ∀ i : Fin (finrank 𝕜 T.range),
@@ -283,7 +297,9 @@ theorem pseudoinverseWith_kernelProjection_eq_sum_rankOne (T : E →ₗ[𝕜] F)
   · rw [dite_eq_left hj, dite_eq_left (hiff.mp hj)]
   · rw [dite_eq_right hj, dite_eq_right (fun h => hj (hiff.mpr h))]
 
-/-- 第三条 Penrose 方程：`TT⁺` 是对称算子。-/
+/-- 第三条 Penrose 方程：`TT⁺` 是对称算子。
+@isnad1 id=issymmet.1h5v.s11.055cd2002fe3 from=translated src=- shape=7ceaf0ea vocab=17787d83
+-/
 theorem pseudoinverseWith_rangeProjection_symmetric (T : E →ₗ[𝕜] F)
     (b : OrthonormalBasis (Fin (finrank 𝕜 F)) 𝕜 F)
     (hb : ∀ i : Fin (finrank 𝕜 T.range),
@@ -293,7 +309,9 @@ theorem pseudoinverseWith_rangeProjection_symmetric (T : E →ₗ[𝕜] F)
   exact (ContinuousLinearMap.isPositive_sum Finset.univ fun i hi =>
     InnerProductSpace.isPositive_rankOne_self _).toLinearMap.isSymmetric
 
-/-- 第四条 Penrose 方程：`T⁺T` 是对称算子。-/
+/-- 第四条 Penrose 方程：`T⁺T` 是对称算子。
+@isnad1 id=issymmet.1h5v.s11.11f63b73675a from=translated src=- shape=1f5a25d6 vocab=17787d83
+-/
 theorem pseudoinverseWith_kernelProjection_symmetric (T : E →ₗ[𝕜] F)
     (b : OrthonormalBasis (Fin (finrank 𝕜 F)) 𝕜 F)
     (hb : ∀ i : Fin (finrank 𝕜 T.range),
@@ -311,7 +329,9 @@ structure MoorePenrosePseudoinverse (T : E →ₗ[𝕜] F) where
   rangeProjection_symmetric : (T.comp inverse).IsSymmetric
   kernelProjection_symmetric : (inverse.comp T).IsSymmetric
 
-/-- 每个有限维实或复内积空间之间的线性映射都存在 Moore–Penrose 伪逆。-/
+/-- 每个有限维实或复内积空间之间的线性映射都存在 Moore–Penrose 伪逆。
+@isnad1 id=nonempty.0h4v.s7.da5a5f509dc6 from=translated src=- shape=739f8803 vocab=dd929702
+-/
 theorem exists_moorePenrosePseudoinverse (T : E →ₗ[𝕜] F) :
     Nonempty (MoorePenrosePseudoinverse T) := by
   obtain ⟨b, hb⟩ := exists_leftSingularBasis T
@@ -332,7 +352,9 @@ omit [FiniteDimensional 𝕜 F] in
 
 证明把任意像中向量 `z` 的误差分解成
 `z - y = (z - Py) + (Py - y)`。前一项仍在 `P` 的像中，后一项被 `P`
-消去；对称性说明两项正交，因此结论由勾股恒等式得到。-/
+消去；对称性说明两项正交，因此结论由勾股恒等式得到。
+@isnad1 id=le.3h5v.s9.9daae00e1dbb from=translated src=- shape=e7b10763 vocab=a8c9d3bf
+-/
 theorem symmetric_idempotent_residual_minimal (P : F →ₗ[𝕜] F)
     (hsym : P.IsSymmetric) (hidem : P.comp P = P)
     (y z : F) (hz : P z = z) :
@@ -364,7 +386,9 @@ theorem symmetric_idempotent_residual_minimal (P : F →ₗ[𝕜] F)
   exact le_add_of_nonneg_left (mul_self_nonneg ‖a‖)
 
 omit [FiniteDimensional 𝕜 E] [FiniteDimensional 𝕜 F] in
-/-- Moore–Penrose 伪逆给出的 `T⁺y` 是 `Tx = y` 的最小二乘解。-/
+/-- Moore–Penrose 伪逆给出的 `T⁺y` 是 `Tx = y` 的最小二乘解。
+@isnad1 id=isleasts.0h6v.s8.9397e77a67d6 from=translated src=- shape=1d6cd8cf vocab=1692259a
+-/
 theorem MoorePenrosePseudoinverse.isLeastSquaresSolution
     {T : E →ₗ[𝕜] F} (G : MoorePenrosePseudoinverse T) (y : F) :
     IsLeastSquaresSolution T y (G.inverse y) := by
@@ -380,7 +404,9 @@ theorem MoorePenrosePseudoinverse.isLeastSquaresSolution
     rw [h]
   · exact LinearMap.congr_fun G.penrose_one x
 
-/-- 每个有限维最小二乘问题都有解；一个规范选择是 Moore–Penrose 解 `T⁺y`。-/
+/-- 每个有限维最小二乘问题都有解；一个规范选择是 Moore–Penrose 解 `T⁺y`。
+@isnad1 id=ex.0h5v.s7.92b4a3be9f2b from=translated src=- shape=2cac59f7 vocab=594d5264
+-/
 theorem exists_leastSquaresSolution (T : E →ₗ[𝕜] F) (y : F) :
     ∃ x₀, IsLeastSquaresSolution T y x₀ := by
   obtain ⟨G⟩ := exists_moorePenrosePseudoinverse T

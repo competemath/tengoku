@@ -31,7 +31,9 @@ namespace SandronesLibrary.Statistics
 open Filter MeasureTheory ProbabilityTheory
 open scoped Topology ENNReal
 
-/-- 固定参数 `θ` 时，依概率相合等价于每个正误差阈值的偏差概率趋于零。-/
+/-- 固定参数 `θ` 时，依概率相合等价于每个正误差阈值的偏差概率趋于零。
+@isnad1 id=iff.0h6v.s7.d18f0ae94800 from=translated src=- shape=ab4fb6d0 vocab=04a15551
+-/
 theorem pointwiseConsistency_iff
     {Θ 𝓧 : Type*} [MeasurableSpace Θ] [MeasurableSpace 𝓧]
     (P : Kernel Θ 𝓧) [IsMarkovKernel P]
@@ -46,7 +48,9 @@ theorem pointwiseConsistency_iff
 /-- 固定参数下，`L²` 误差趋零蕴含估计量依概率相合。
 
 条件使用扩展 `L²` 半范数，避免在定义阶段把函数打包成 `Lp` 商空间。每个 `T n` 的 a.e. 强可测性
-是 `TendstoInMeasure` 与 `eLpNorm` 桥所需的真实条件。-/
+是 `TendstoInMeasure` 与 `eLpNorm` 桥所需的真实条件。
+@isnad1 id=tendstoi.2h6v.s7.aba1c2e0ecc0 from=translated src=- shape=e422714c vocab=5d48958c
+-/
 theorem pointwiseConsistent_of_L2
     {Θ 𝓧 : Type*} [MeasurableSpace Θ] [MeasurableSpace 𝓧]
     (P : Kernel Θ 𝓧) [IsMarkovKernel P]

@@ -21,7 +21,9 @@ namespace SandronesLibrary.Probability
 open MeasureTheory
 open scoped ProbabilityTheory
 
-/-- 塔式性质：`m₁ ≤ m₂` 时，`E[E[X|m₂]|m₁] = E[X|m₁]` a.e.-/
+/-- 塔式性质：`m₁ ≤ m₂` 时，`E[E[X|m₂]|m₁] = E[X|m₁]` a.e.
+@isnad1 id=eventual.2h7v.s6.d85b3c19b927 from=translated src=- shape=692cb280 vocab=e248ee67
+-/
 theorem conditionalExpectation_tower
     {Ω E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
     {m₁ m₂ m₀ : MeasurableSpace Ω} {μ : @Measure Ω m₀} {X : Ω → E}

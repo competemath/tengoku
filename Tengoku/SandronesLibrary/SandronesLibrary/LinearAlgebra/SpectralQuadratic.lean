@@ -32,7 +32,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 local instance : LinearSpace ℝ E where
   toModule := inferInstance
 
-/-- 有限维实谱定理的教材形式：自伴算子存在标准正交特征基。-/
+/-- 有限维实谱定理的教材形式：自伴算子存在标准正交特征基。
+@isnad1 id=ex.2h3v.s8.a5885a9d5e46 from=translated src=- shape=0162caaa vocab=e4daa53e
+-/
 theorem spectral_theorem {n : ℕ} [FiniteDimensional ℝ E]
     (hn : dim ℝ E = n) (T : E →ₗ[ℝ] E)
     (hT : IsSelfAdjointOperator T) :
@@ -50,7 +52,9 @@ theorem spectral_theorem {n : ℕ} [FiniteDimensional ℝ E]
 def operatorQuadraticForm (T : E →ₗ[ℝ] E) (x : E) : ℝ :=
   inner ℝ (T x) x
 
-/-- 在标准正交特征基下，二次型没有交叉项。-/
+/-- 在标准正交特征基下，二次型没有交叉项。
+@isnad1 id=eq.2h6v.s8.77c82f9a1dcc from=translated src=- shape=c89e4f60 vocab=234b10ca
+-/
 theorem operatorQuadraticForm_diagonal {n : ℕ} (T : E →ₗ[ℝ] E)
     (b : Fin n → E) (μ c : Fin n → ℝ)
     (hb : Orthonormal ℝ b) (hTb : ∀ i, T (b i) = μ i • b i) :
@@ -87,7 +91,9 @@ noncomputable def negativeIndex (Q : QuadraticForm ℝ V) : ℕ :=
   sigNeg Q
 
 /-- Sylvester 惯性定律的存在部分：任意有限维实二次型都等价于系数仅为
-`-1, 0, 1` 的平方和。-/
+`-1, 0, 1` 的平方和。
+@isnad1 id=ex.0h2v.s6.1a8d6be7f85e from=translated src=- shape=8b3cdda6 vocab=33466d1d
+-/
 theorem inertia_normal_form (Q : QuadraticForm ℝ V) :
     ∃ w : Fin (dim ℝ V) → ℝ,
       (∀ i, w i = -1 ∨ w i = 0 ∨ w i = 1) ∧ IsDiagonalForm Q w := by
@@ -95,7 +101,9 @@ theorem inertia_normal_form (Q : QuadraticForm ℝ V) :
     Q.equivalent_one_zero_neg_one_weighted_sum_squared
 
 /-- Sylvester 惯性定律的唯一性部分：任何对角表示中正系数和负系数的个数
-只由二次型本身决定。-/
+只由二次型本身决定。
+@isnad1 id=and.1h3v.s7.945c03913dd9 from=translated src=- shape=91169d89 vocab=1c02b55f
+-/
 theorem inertia_indices_unique (Q : QuadraticForm ℝ V)
     (w : Fin (dim ℝ V) → ℝ) (hw : IsDiagonalForm Q w) :
     positiveIndex Q = Set.ncard {i | 0 < w i} ∧

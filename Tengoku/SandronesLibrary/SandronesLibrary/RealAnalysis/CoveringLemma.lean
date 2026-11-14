@@ -82,41 +82,60 @@ noncomputable def center (I : OpenInterval) : ℝ := (I.l + I.u) / 2
 > **Entry**: real-analysis.covering-lemma-/
 noncomputable def radius (I : OpenInterval) : ℝ := (I.u - I.l) / 2
 
+/--
+@isnad1 id=eq.0h1v.s4.fed1fe7de043 from=translated src=- shape=93a81373 vocab=aaad34f4
+-/
 @[simp]
 theorem center_sub_radius (I : OpenInterval) : I.center - I.radius = I.l := by
   simp only [center, radius]; ring
 
+/--
+@isnad1 id=eq.0h1v.s4.8f461f0d2cb8 from=translated src=- shape=93a81373 vocab=eb440142
+-/
 @[simp]
 theorem center_add_radius (I : OpenInterval) : I.center + I.radius = I.u := by
   simp only [center, radius]; ring
 
 /-- 半径严格为正（因为端点严格有序）。测度形式中用它把区间识别为非空开集。
-> **Entry**: real-analysis.covering-lemma-/
+> **Entry**: real-analysis.covering-lemma
+@isnad1 id=lt.0h1v.s3.3f577afffa65 from=translated src=- shape=b9369acb vocab=79b61da5
+-/
 theorem radius_pos (I : OpenInterval) : 0 < I.radius := by
   simp only [radius]; linarith [I.lt]
 
 /-- **区间 = 开球**：`(l, u)` 恰是以中点为心、半长为半径的开球。这是本文件把 "区间族"
 交给 Mathlib 球族覆盖定理（`Vitali.exists_disjoint_subfamily_covering_enlargement_ball`）
 的桥，也是下游把极大函数写成球平均时的换算。
-> **Entry**: real-analysis.covering-lemma-/
+> **Entry**: real-analysis.covering-lemma
+@isnad1 id=eq.0h1v.s3.41bdf32ebe80 from=translated src=- shape=9bb5979c vocab=694f900f
+-/
 theorem ball_center_radius (I : OpenInterval) : ball I.center I.radius = I.toSet := by
   rw [Real.ball_eq_Ioo, center_sub_radius, center_add_radius, toSet]
 
+/--
+@isnad1 id=iff.0h2v.s4.6f4becb9c14c from=translated src=- shape=5bb38095 vocab=b99d3954
+-/
 theorem mem_toSet_iff {I : OpenInterval} {x : ℝ} :
     x ∈ I.toSet ↔ I.l < x ∧ x < I.u := Iff.rfl
 
 /-- 中点属于区间（区间非空）。
-> **Entry**: real-analysis.covering-lemma-/
+> **Entry**: real-analysis.covering-lemma
+@isnad1 id=mem.0h1v.s3.5bf47a05fe12 from=translated src=- shape=b5ca9b95 vocab=baae203d
+-/
 theorem center_mem_toSet (I : OpenInterval) : I.center ∈ I.toSet := by
   rw [mem_toSet_iff, center]
   constructor <;> linarith [I.lt]
 
 /-- 区间是开集。
-> **Entry**: real-analysis.covering-lemma-/
+> **Entry**: real-analysis.covering-lemma
+@isnad1 id=isopen.0h1v.s3.98a968b72dba from=translated src=- shape=1a6c1393 vocab=f48afe29
+-/
 theorem isOpen_toSet (I : OpenInterval) : IsOpen I.toSet := isOpen_Ioo
 
 /-- 区间可测。
-> **Entry**: real-analysis.covering-lemma-/
+> **Entry**: real-analysis.covering-lemma
+@isnad1 id=measurab.0h1v.s2.19e2a727729e from=translated src=- shape=1a6c1393 vocab=d6e39a34
+-/
 theorem measurableSet_toSet (I : OpenInterval) : MeasurableSet I.toSet :=
   measurableSet_Ioo
 
@@ -136,7 +155,9 @@ variable {ι : Type*}
 （下游取 `τ = 4`）。**证明后端**是 Mathlib 的
 `Vitali.exists_disjoint_subfamily_covering_enlargement_ball`（Zorn 式抽象覆盖定理），
 本库只做"区间 ↔ 球"的换算，不重证组合核心。
-> **Entry**: real-analysis.covering-lemma-/
+> **Entry**: real-analysis.covering-lemma
+@isnad1 id=ex.2h5v.s7.cacf946194f9 from=translated src=- shape=568c24ff vocab=b7b09a2c
+-/
 theorem exists_disjoint_interval_subfamily_covering_enlargement
     (t : Set ι) (I : ι → OpenInterval) (R : ℝ) (hR : ∀ a ∈ t, (I a).radius ≤ R)
     {τ : ℝ} (hτ : 3 < τ) :
@@ -162,7 +183,9 @@ theorem exists_disjoint_interval_subfamily_covering_enlargement
 
 这正是弱型 `(1,1)` 估计中 "坏集测度控制" 那一步：把坏集塞进不交区间族，再用每个区间的
 测度换积分。`u` 的至多可数性来自 "可分空间中不交非空开集族至多可数"。
-> **Entry**: real-analysis.covering-lemma-/
+> **Entry**: real-analysis.covering-lemma
+@isnad1 id=le.4h5v.s7.c3254cb898ad from=translated src=- shape=770ee5a7 vocab=43af45f0
+-/
 theorem volume_iUnion_le_mul_tsum
     (t : Set ι) (I : ι → OpenInterval) (u : Set ι) (_hut : u ⊆ t)
     (hdisj : u.PairwiseDisjoint fun a => (I a).toSet)
@@ -211,7 +234,9 @@ noncomputable def vitaliFamilyVolume : VitaliFamily (volume : Measure ℝ) :=
 覆盖论证的抽象形式，也是弱型估计里 "坏集测度控制" 的可复用接口。
 
 本库**本窗不交付** Lebesgue 微分定理（RA-F4），此声明只是把接口暴露出来。
-> **Entry**: real-analysis.covering-lemma-/
+> **Entry**: real-analysis.covering-lemma
+@isnad1 id=le.2h5v.s7.c4224d593e3e from=translated src=- shape=5af347cd vocab=6b9f1565
+-/
 theorem measure_le_of_frequently_le_vitali
     {μ : Measure ℝ} (v : VitaliFamily μ) {ρ : Measure ℝ}
     (ν : Measure ℝ) [IsLocallyFiniteMeasure ν] (hρ : ρ ≪ μ) (s : Set ℝ)
@@ -220,7 +245,9 @@ theorem measure_le_of_frequently_le_vitali
 
 /-- **细族的不交覆盖控制自身测度**：`v.FineSubfamilyOn f s` 时，`s` 的 `μ`-测度被抽出的
 不交覆盖 `h.covering` 的测度级数控制。这是覆盖引理在 "a.e. 覆盖" 一面的直接测度形式。
-> **Entry**: real-analysis.covering-lemma-/
+> **Entry**: real-analysis.covering-lemma
+@isnad1 id=le.1h4v.s7.780f865552b0 from=translated src=- shape=dfde7923 vocab=9beb9103
+-/
 theorem fineSubfamilyOn_measure_le_tsum
     {μ : Measure ℝ} {v : VitaliFamily μ} {f : ℝ → Set (Set ℝ)} {s : Set ℝ}
     (h : v.FineSubfamilyOn f s) : μ s ≤ ∑' x : h.index, μ (h.covering x) :=

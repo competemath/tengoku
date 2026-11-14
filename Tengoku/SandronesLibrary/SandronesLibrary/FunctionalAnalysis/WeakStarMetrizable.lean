@@ -23,17 +23,23 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 /-- 可分赋范空间的任意弱星紧子集都是可度量化的。
 
-> **Entry**: functional-analysis.weak.metrizable-separable-/
+> **Entry**: functional-analysis.weak.metrizable-separable
+@isnad1 id=metrizab.1h2v.s8.3c46261ae55a from=translated src=- shape=156d585a vocab=4cb536c7
+-/
 theorem weakStar_metrizable_of_isCompact (K : Set (WeakDual ℝ E)) (hK : IsCompact K) :
     TopologicalSpace.MetrizableSpace K := by
   exact WeakDual.metrizable_of_isCompact ℝ E K hK
 
-/-- 可分赋范空间连续对偶的每个范数闭球都是弱星序列紧的。-/
+/-- 可分赋范空间连续对偶的每个范数闭球都是弱星序列紧的。
+@isnad1 id=isseqcom.0h3v.s10.10bd5c1523ca from=translated src=- shape=200117a0 vocab=9e9074cc
+-/
 theorem weakStar_isSeqCompact_closedBall (f : StrongDual ℝ E) (r : ℝ) :
     IsSeqCompact (WeakDual.toStrongDual ⁻¹' Metric.closedBall f r) := by
   exact WeakDual.isSeqCompact_closedBall ℝ E f r
 
-/-- 对偶闭单位球中每个序列都有弱星收敛子列，且极限仍在闭单位球中。-/
+/-- 对偶闭单位球中每个序列都有弱星收敛子列，且极限仍在闭单位球中。
+@isnad1 id=ex.1h2v.s11.ffe9903f72c1 from=translated src=- shape=9c67b548 vocab=e6bc676d
+-/
 theorem exists_weakStar_convergent_subsequence_of_norm_le_one
     (u : ℕ → StrongDual ℝ E) (hu : ∀ n, ‖u n‖ ≤ 1) :
     ∃ f : StrongDual ℝ E, ‖f‖ ≤ 1 ∧ ∃ φ : ℕ → ℕ, StrictMono φ ∧

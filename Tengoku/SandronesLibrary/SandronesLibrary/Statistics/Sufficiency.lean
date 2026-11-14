@@ -55,7 +55,9 @@ def ReconstructsFromStatistic
   ∃ Q : Kernel 𝓨 𝓧,
     IsMarkovKernel Q ∧ Q ∘ₖ (Kernel.deterministic S hS ∘ₖ P) = P
 
-/-- 共同的参数无关条件分布 kernel 能够从统计量分布重建每个原始样本分布。-/
+/-- 共同的参数无关条件分布 kernel 能够从统计量分布重建每个原始样本分布。
+@isnad1 id=reconstr.1h5v.s5.4fef077ec444 from=translated src=- shape=3460c172 vocab=ac38ca58
+-/
 theorem sufficientStatistic_reconstructs
     {Θ 𝓧 𝓨 : Type*} [MeasurableSpace Θ] [MeasurableSpace 𝓧] [MeasurableSpace 𝓨]
     [StandardBorelSpace 𝓧] [Nonempty 𝓧]
@@ -109,7 +111,9 @@ def FiniteReconstruction (p : Θ → 𝓧 → ℝ≥0) (S : 𝓧 → 𝓨) : Pro
     (∀ y, ∑ x, q y x = 1) ∧
       ∀ θ x, p θ x = ∑ y, finiteStatisticMass p S θ y * q y x
 
-/-- 有限离散归一化因子分解显式给出参数无关的纤维重构概率。-/
+/-- 有限离散归一化因子分解显式给出参数无关的纤维重构概率。
+@isnad1 id=finitere.1h5v.s5.db674cc457cc from=translated src=- shape=7ee1a84b vocab=457603eb
+-/
 theorem finite_normalizedFactorization_implies_reconstruction
     (p : Θ → 𝓧 → ℝ≥0) (S : 𝓧 → 𝓨)
     (hfac : FiniteNormalizedFactorization p S) :

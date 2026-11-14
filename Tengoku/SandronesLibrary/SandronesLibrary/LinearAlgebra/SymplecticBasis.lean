@@ -38,17 +38,23 @@ instance : CoeFun (SymplecticForm E) (fun _ => E → E → ℝ) := ⟨Symplectic
 
 variable (ω : SymplecticForm E)
 
-/-- 辛形式对第二个变量也满足加法性。-/
+/-- 辛形式对第二个变量也满足加法性。
+@isnad1 id=eq.0h5v.s6.a5e61ac69125 from=translated src=- shape=fbf1515b vocab=694bb72d
+-/
 theorem add_right (x y z : E) : ω x (y + z) = ω x y + ω x z := by
   rw [ω.skew, ω.add_left, ω.skew y x, ω.skew z x]
   ring
 
-/-- 辛形式对第二个变量也满足齐次性。-/
+/-- 辛形式对第二个变量也满足齐次性。
+@isnad1 id=eq.0h5v.s6.cbe09ccea568 from=translated src=- shape=c4cc53a8 vocab=365e7af7
+-/
 theorem smul_right (a : ℝ) (x y : E) : ω x (a • y) = a * ω x y := by
   rw [ω.skew, ω.smul_left, ω.skew y x]
   ring
 
-/-- 交替性：任意向量与自身的辛配对为零。-/
+/-- 交替性：任意向量与自身的辛配对为零。
+@isnad1 id=eq.0h3v.s5.10b749698e8c from=translated src=- shape=412f213f vocab=6ca54a2c
+-/
 theorem self_eq_zero (x : E) : ω x x = 0 := by
   have h := ω.skew x x
   linarith
@@ -57,7 +63,9 @@ theorem self_eq_zero (x : E) : ω x x = 0 := by
 def symplecticOrthogonal (S : Set E) : Set E :=
   {x | ∀ y ∈ S, ω x y = 0}
 
-/-- 零向量属于每个集合的辛正交补。-/
+/-- 零向量属于每个集合的辛正交补。
+@isnad1 id=mem.0h3v.s5.4a57cb1ec273 from=translated src=- shape=dfe2348b vocab=3dfed920
+-/
 theorem zero_mem_symplecticOrthogonal (S : Set E) :
     0 ∈ symplecticOrthogonal ω S := by
   intro y hy
@@ -75,6 +83,9 @@ def IsSymplecticBasis {n : ℕ} (p q : Fin n → E) : Prop :=
 def SymplecticForm.toBilin : LinearMap.BilinForm ℝ E :=
   LinearMap.mk₂ ℝ ω.form ω.add_left ω.smul_left (add_right ω) (smul_right ω)
 
+/--
+@isnad1 id=eq.0h4v.s8.4a01b474f74c from=translated src=- shape=500854ff vocab=f79a276f
+-/
 @[simp] theorem SymplecticForm.toBilin_apply (x y : E) : ω.toBilin x y = ω x y := rfl
 
 private theorem bilin_self_eq_zero (B : LinearMap.BilinForm ℝ E)
@@ -382,7 +393,9 @@ private theorem exists_darbouxBasis_core [IsFiniteDimensional ℝ E] :
   simpa only [SymplecticForm.toBilin_apply] using
     exists_darbouxBasis_bilin ω.toBilin ω.skew hnd
 
-/-- 有限维线性 Darboux 定理：每个辛空间都存在辛基。-/
+/-- 有限维线性 Darboux 定理：每个辛空间都存在辛基。
+@isnad1 id=ex.0h2v.s6.9a49c422904e from=translated src=- shape=8304f977 vocab=6967e66f
+-/
 theorem exists_symplecticBasis [IsFiniteDimensional ℝ E] :
     ∃ (n : ℕ) (p q : Fin n → E),
       dim ℝ E = 2 * n ∧ IsSymplecticBasis ω p q := by
@@ -399,7 +412,9 @@ theorem exists_symplecticBasis [IsFiniteDimensional ℝ E] :
   · exact b.linearIndependent
   · exact b.span_eq
 
-/-- 有限维辛空间的维数必为偶数。-/
+/-- 有限维辛空间的维数必为偶数。
+@isnad1 id=even.0h2v.s5.70801be20a2a from=translated src=- shape=7c8ab7f4 vocab=8396777a
+-/
 theorem even_dim (ω : SymplecticForm E) [IsFiniteDimensional ℝ E] : Even (dim ℝ E) := by
   obtain ⟨n, p, q, hdim, hb⟩ := exists_symplecticBasis ω
   refine ⟨n, ?_⟩

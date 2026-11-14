@@ -65,7 +65,9 @@ noncomputable def complexQRR {n : ℕ} (A : Matrix (Fin n) (Fin n) ℂ) :
     Matrix (Fin n) (Fin n) ℂ :=
   (complexQRBasis A).toBasis.toMatrix (complexQRColumns A)
 
-/-- 任意复方阵存在 QR 分解。-/
+/-- 任意复方阵存在 QR 分解。
+@isnad1 id=nonempty.0h2v.s3.bd03b9e63362 from=translated src=- shape=09bb2451 vocab=74589699
+-/
 theorem exists_complex_qr {n : ℕ} (A : Matrix (Fin n) (Fin n) ℂ) :
     Nonempty (ComplexQRFactorization A) := by
   have hU : IsUnitaryMatrix (complexQRQ A) := by
@@ -85,7 +87,9 @@ theorem exists_complex_qr {n : ℕ} (A : Matrix (Fin n) (Fin n) ℂ) :
     upper_triangular := hR
     eq_mul := hmul.symm }⟩
 
-/-- 任意复方阵都相似于一个上三角矩阵。-/
+/-- 任意复方阵都相似于一个上三角矩阵。
+@isnad1 id=isuppert.0h1v.s6.69598f4982a9 from=translated src=- shape=86d27193 vocab=ed40b1b3
+-/
 theorem jordanNormalMatrix_upper (d : JordanFormData ℂ)
     [LinearOrder d.Block] [DecidableEq d.Block] :
     (jordanNormalMatrix d).IsUpperTriangular := by
@@ -101,6 +105,9 @@ theorem jordanNormalMatrix_upper (d : JordanFormData ℂ)
       ne_of_gt hlk, hsucc]
   · simp [jordanNormalMatrix, Matrix.blockDiagonal'_apply, hij]
 
+/--
+@isnad1 id=isuppert.0h1v.s9.79fb48955147 from=translated src=- shape=9ee11873 vocab=d4db2ed1
+-/
 theorem jordanNormalMatrix_lex_upper (d : JordanFormData ℂ)
     [LinearOrder d.Block] [DecidableEq d.Block] :
     (Matrix.reindex
@@ -121,6 +128,9 @@ theorem jordanNormalMatrix_lex_upper (d : JordanFormData ℂ)
     simp [jordanNormalMatrix, Matrix.blockDiagonal'_apply, hne]
   · exact jordanNormalMatrix_upper d (Sigma.LT.fiber _ _ _ hfiber)
 
+/--
+@isnad1 id=eq.2h7v.s7.01031971b9a7 from=translated src=- shape=d954c57a vocab=5349a4b3
+-/
 theorem operatorMatrix_reindex_basis_schur
     {K V ι κ : Type*} [Field K] [AddCommGroup V]
     [SandronesLibrary.LinearAlgebra.VectorSpace.LinearSpace K V]
@@ -154,6 +164,9 @@ theorem operatorMatrix_reindex_basis_schur
   ext i j
   simp [LinearMap.toMatrix_apply, B', Matrix.reindex_apply]
 
+/--
+@isnad1 id=ex.0h2v.s8.38a08fb1f484 from=translated src=- shape=2a0193ac vocab=f9243f98
+-/
 theorem exists_ordered_jordan_similar {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℂ) :
     ∃ (B P Q : Matrix (Fin n) (Fin n) ℂ),
@@ -241,12 +254,17 @@ theorem exists_ordered_jordan_similar {n : ℕ}
   · rw [← hJ, SandronesLibrary.LinearAlgebra.Coordinates.operatorMatrix_change_basis
       std b' hstd hb' T, hstandard]
 
+/--
+@isnad1 id=ex.0h2v.s8.38a08fb1f484 from=translated src=- shape=2a0193ac vocab=f9243f98
+-/
 theorem exists_upper_similar {n : ℕ} (A : Matrix (Fin n) (Fin n) ℂ) :
     ∃ (B P Q : Matrix (Fin n) (Fin n) ℂ),
       B.IsUpperTriangular ∧ P * Q = 1 ∧ Q * P = 1 ∧ B = P * A * Q := by
   exact exists_ordered_jordan_similar A
 
-/-- 复数域版本的“乘积反推左因子上三角”。-/
+/-- 复数域版本的“乘积反推左因子上三角”。
+@isnad1 id=eq.2h5v.s6.fc93759fbe0c from=translated src=- shape=d56a377d vocab=0ab51666
+-/
 theorem complex_mul_apply_of_upper_of_left_prefix_zero {n : ℕ}
     (S R : Matrix (Fin n) (Fin n) ℂ) (i j : Fin n)
     (hR : R.IsUpperTriangular) (hprev : ∀ k, k < j → S i k = 0) :
@@ -264,6 +282,9 @@ theorem complex_mul_apply_of_upper_of_left_prefix_zero {n : ℕ}
       rw [hz, mul_zero]
   · simp
 
+/--
+@isnad1 id=isuppert.4h4v.s6.5918c24a0365 from=translated src=- shape=c6e99803 vocab=f9243f98
+-/
 theorem complex_upper_left_factor_of_mul {n : ℕ}
     (S R₁ R₂ : Matrix (Fin n) (Fin n) ℂ)
     (hR₁ : R₁.IsUpperTriangular) (hR₂ : R₂.IsUpperTriangular)
@@ -285,7 +306,9 @@ theorem complex_upper_left_factor_of_mul {n : ℕ}
     exact hij
   exact (mul_eq_zero.mp heq).resolve_right (hdR₂ j)
 
-/-- 任意复方阵存在酉 Schur 分解。-/
+/-- 任意复方阵存在酉 Schur 分解。
+@isnad1 id=nonempty.0h2v.s3.c448a7bab25c from=translated src=- shape=09bb2451 vocab=156eb426
+-/
 theorem exists_complex_schur {n : ℕ} (A : Matrix (Fin n) (Fin n) ℂ) :
     Nonempty (ComplexSchurFactorization A) := by
   obtain ⟨B, P, Q, hBup, hPQ, hQP, hB⟩ := exists_upper_similar A
@@ -337,7 +360,9 @@ theorem exists_complex_schur {n : ℕ} (A : Matrix (Fin n) (Fin n) ℂ) :
     _ = (U * Uᴴ) * A * (U * Uᴴ) := by rw [hUright]
     _ = U * T * Uᴴ := by simp only [T, Matrix.mul_assoc]
 
-/-- 复特征向量的实部、虚部张成一个至多二维的实不变子空间。-/
+/-- 复特征向量的实部、虚部张成一个至多二维的实不变子空间。
+@isnad1 id=ex.0h2v.s9.9771cb130c7e from=translated src=- shape=47665109 vocab=3e7e55bf
+-/
 theorem exists_real_invariant_pair {n : ℕ}
     (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ) :
     ∃ (a b : ℝ) (x y : Fin (n + 1) → ℝ),
@@ -640,7 +665,9 @@ private theorem RealSchurDecomposition.toExplicit
               T W tailExplicit.basis)]
             exact tailExplicit.blockUpper) }⟩
 
-/-- 任意有限维实内积空间上的算子都有显式实 Schur 块上三角化。-/
+/-- 任意有限维实内积空间上的算子都有显式实 Schur 块上三角化。
+@isnad1 id=nonempty.0h2v.s6.72f1c1daf5df from=translated src=- shape=550f4138 vocab=4a5333dc
+-/
 theorem exists_explicitRealSchur
     {E : Type u} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [FiniteDimensional ℝ E] (T : E →ₗ[ℝ] E) :

@@ -34,7 +34,9 @@ def primitiveRecursion (z : ℕ) (step : ℕ → ℕ → ℕ) : ℕ → ℕ
 > **Entry**: settheory.googology.primitive-recursion
 > **一句话**: 原始递归用一个零点值和一个只调用前一步的更新规则定义自然数函数。
 > **依赖**: 无
-> **mathlib**: `Nat.rec`-/
+> **mathlib**: `Nat.rec`
+@isnad1 id=and.0h3v.s5.fa414ee85345 from=translated src=- shape=1a044056 vocab=cf1ed962
+-/
 theorem primitiveRecursion_zero_succ (z : ℕ) (step : ℕ → ℕ → ℕ) (n : ℕ) :
     primitiveRecursion z step 0 = z ∧
       primitiveRecursion z step (n + 1) = step n (primitiveRecursion z step n) := by
@@ -73,6 +75,9 @@ private theorem hyperOperation_three (a b : ℕ) : hyperOperation 3 a b = a ^ b 
   | succ b ih =>
       rw [hyperOperation, hyperOperation_two, ih, pow_succ, Nat.mul_comm]
 
+/--
+@isnad1 id=and.0h2v.s6.696f2cf00728 from=translated src=- shape=553a3a88 vocab=8808dfeb
+-/
 theorem hyperOperation_first_levels (a b : ℕ) :
     hyperOperation 0 a b = b + 1 ∧
       hyperOperation 1 a b = a + b ∧
@@ -91,7 +96,9 @@ def ackermann : ℕ → ℕ → ℕ
 > **Entry**: settheory.googology.ackermann
 > **一句话**: Ackermann 函数由双重递归定义，并满足三条可直接计算的递归方程。
 > **依赖**: `settheory.googology.primitive-recursion`
-> **mathlib**: `Nat.ack`-/
+> **mathlib**: `Nat.ack`
+@isnad1 id=and.0h2v.s6.061923fc04de from=translated src=- shape=ab793e15 vocab=25ab360e
+-/
 theorem ackermann_equations (m n : ℕ) :
     ackermann 0 n = n + 1 ∧
       ackermann (m + 1) 0 = ackermann m 1 ∧
@@ -106,10 +113,15 @@ def knuthArrow (a arrows b : ℕ) : ℕ :=
 > **Entry**: settheory.googology.knuth-arrow
 > **一句话**: 一支上箭头表示幂，每多一支箭头就把前一级运算再迭代一层。
 > **依赖**: `settheory.googology.hyperoperation`
-> **mathlib**: `Nat.hyperoperation`-/
+> **mathlib**: `Nat.hyperoperation`
+@isnad1 id=eq.0h2v.s4.29aafb2cd7b0 from=translated src=- shape=1ce3ec95 vocab=29be8f8f
+-/
 theorem knuthArrow_one (a b : ℕ) : knuthArrow a 1 b = a ^ b := by
   exact (hyperOperation_first_levels a b).2.2.2
 
+/--
+@isnad1 id=eq.0h3v.s5.283c02004127 from=translated src=- shape=ae0b4c79 vocab=ad0f1e73
+-/
 theorem knuthArrow_succ_succ (a arrows b : ℕ) :
     knuthArrow a (arrows + 1) (b + 1) =
       knuthArrow a arrows (knuthArrow a (arrows + 1) b) := by
@@ -128,12 +140,17 @@ def grahamNumber : ℕ :=
 > **Entry**: settheory.googology.graham-number
 > **一句话**: Graham 数由 64 个有限阶段定义，每一步把前一项变成下一步的箭头数量。
 > **依赖**: `settheory.googology.knuth-arrow`
-> **mathlib**: 无（本库显式定义）-/
+> **mathlib**: 无（本库显式定义）
+@isnad1 id=and.0h1v.s5.0fb271dbfd30 from=translated src=- shape=b146430d vocab=139e1b63
+-/
 theorem grahamSequence_equations (n : ℕ) :
     grahamSequence 0 = knuthArrow 3 4 3 ∧
       grahamSequence (n + 1) = knuthArrow 3 (grahamSequence n) 3 := by
   exact ⟨rfl, rfl⟩
 
+/--
+@isnad1 id=eq.0h0v.s3.f924875e1d43 from=translated src=- shape=e75ac6ed vocab=3ef0c1e5
+-/
 theorem grahamNumber_is_64th_stage : grahamNumber = grahamSequence 63 := rfl
 
 /--
@@ -166,7 +183,9 @@ def HereditaryBaseExpr.Valid (base : ℕ) : HereditaryBaseExpr → Prop
 > **Entry**: settheory.googology.hereditary-base
 > **一句话**: 遗传基表示不仅展开原数，也把指数递归写成同一底数的表达式。
 > **依赖**: `settheory.googology.primitive-recursion`
-> **mathlib**: 无（本库显式语法与求值）-/
+> **mathlib**: 无（本库显式语法与求值）
+@isnad1 id=other.0h0v.s5.1db04f540d96 from=translated src=- shape=da67b7e7 vocab=bc0d9f6f
+-/
 theorem hereditary_four_example :
     let four := HereditaryBaseExpr.basePow (.basePow (.digit 1))
     four.Valid 2 ∧ four.eval 2 = 4 ∧ four.eval 3 = 27 := by
@@ -184,7 +203,9 @@ def goodsteinStep (base : ℕ) (expr : HereditaryBaseExpr) : ℕ :=
 > **Entry**: settheory.googology.goodstein-step
 > **一句话**: Goodstein 单步先统一提高遗传表示中的底数，再对得到的自然数减一。
 > **依赖**: `settheory.googology.hereditary-base`
-> **mathlib**: 无（本库显式定义）-/
+> **mathlib**: 无（本库显式定义）
+@isnad1 id=other.0h0v.s4.3c7b023bf71e from=translated src=- shape=9b76bd34 vocab=7e527121
+-/
 theorem goodsteinStep_four_base_two :
     let four := HereditaryBaseExpr.basePow (.basePow (.digit 1))
     goodsteinStep 2 four = 26 := by

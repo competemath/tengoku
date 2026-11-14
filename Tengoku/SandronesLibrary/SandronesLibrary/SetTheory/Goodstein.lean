@@ -35,7 +35,9 @@ structure CertifiedGoodsteinState where
 > **Entry**: settheory.googology.goodstein-certified-state
 > **一句话**: Goodstein 状态同时保存自然数值与对该数值的合法遗传基表示证书。
 > **依赖**: `settheory.googology.hereditary-base`
-> **mathlib**: 无（本库显式证书结构）-/
+> **mathlib**: 无（本库显式证书结构）
+@isnad1 id=and.0h1v.s4.b0110a17889b from=translated src=- shape=760f4b7c vocab=70cb6e8e
+-/
 theorem certifiedGoodsteinState_specification (s : CertifiedGoodsteinState) :
     2 ≤ s.base ∧ s.expression.Valid s.base ∧
       s.expression.eval s.base = s.value := by
@@ -55,7 +57,9 @@ def IsCertifiedGoodsteinSequence (states : ℕ → CertifiedGoodsteinState) : Pr
 > **Entry**: settheory.googology.goodstein-reencoding
 > **一句话**: 完整 Goodstein 单步不仅换底减一，还要为新数值携带下一底数下的新合法表示。
 > **依赖**: `settheory.googology.goodstein-certified-state`、`settheory.googology.goodstein-step`
-> **mathlib**: 无（本库显式迁移关系）-/
+> **mathlib**: 无（本库显式迁移关系）
+@isnad1 id=and.1h2v.s5.fae4d6590a0e from=translated src=- shape=5e09c955 vocab=c8e22f72
+-/
 theorem goodsteinReencodingStep_specification {s t : CertifiedGoodsteinState}
     (h : GoodsteinReencodingStep s t) :
     t.base = s.base + 1 ∧
@@ -66,7 +70,9 @@ theorem goodsteinReencodingStep_specification {s t : CertifiedGoodsteinState}
 > **Entry**: settheory.googology.goodstein-sequence
 > **一句话**: 带证书 Goodstein 序列把“每步重编码”表达为所有相邻状态都满足同一迁移关系。
 > **依赖**: `settheory.googology.goodstein-reencoding`
-> **mathlib**: 无-/
+> **mathlib**: 无
+@isnad1 id=and.1h2v.s6.579951980845 from=translated src=- shape=255e86b1 vocab=4c3fe49e
+-/
 theorem certifiedGoodsteinSequence_step {states : ℕ → CertifiedGoodsteinState}
     (h : IsCertifiedGoodsteinSequence states) (n : ℕ) :
     (states (n + 1)).base = (states n).base + 1 ∧
@@ -89,7 +95,9 @@ def CertifiedGoodsteinState.ordinalMeasure (s : CertifiedGoodsteinState) : Ordin
 > **Entry**: settheory.googology.goodstein-ordinal-measure
 > **一句话**: 将遗传表达式中每个底数位置换成 `ω`，得到后续下降论证所需的序数度量。
 > **依赖**: `settheory.googology.goodstein-certified-state`、`settheory.ordinal.exponentiation`
-> **mathlib**: `Ordinal.omega0`-/
+> **mathlib**: `Ordinal.omega0`
+@isnad1 id=and.0h4v.s6.39091a17e957 from=translated src=- shape=5fe38ccf vocab=6fe31d63
+-/
 theorem omegaValue_equations (left right exponent : HereditaryBaseExpr) (n : ℕ) :
     HereditaryBaseExpr.zero.omegaValue = 0 ∧
       (HereditaryBaseExpr.digit n).omegaValue = n ∧
@@ -101,6 +109,9 @@ theorem omegaValue_equations (left right exponent : HereditaryBaseExpr) (n : ℕ
         ordinalPow Ordinal.omega0 exponent.omegaValue := by
   exact ⟨rfl, rfl, rfl, rfl, rfl⟩
 
+/--
+@isnad1 id=eq.1h2v.s4.0d3fd7aecd64 from=translated src=- shape=295e1fe5 vocab=a7098c05
+-/
 theorem equal_expressions_have_equal_ordinalMeasure {s t : CertifiedGoodsteinState}
     (h : s.expression = t.expression) : s.ordinalMeasure = t.ordinalMeasure := by
   simp only [CertifiedGoodsteinState.ordinalMeasure, h]

@@ -30,7 +30,9 @@ variable {K V : Type*} [Field K] [AddCommGroup V] [LinearSpace K V]
 def generalizedEigenspace (T : V →ₗ[K] V) (μ : K) (k : ℕ) : Set V :=
   {x | ((T - μ • (LinearMap.id : V →ₗ[K] V)) ^ k) x = 0}
 
-/-- 广义特征子空间确实是子空间。-/
+/-- 广义特征子空间确实是子空间。
+@isnad1 id=issubspa.0h5v.s6.9dbc1afbfc25 from=translated src=- shape=dc0a5dc8 vocab=8f9337d8
+-/
 theorem generalizedEigenspace_isSubspace (T : V →ₗ[K] V) (μ : K) (k : ℕ) :
     IsSubspace K (generalizedEigenspace T μ k) := by
   let A := T - μ • (LinearMap.id : V →ₗ[K] V)
@@ -45,13 +47,17 @@ theorem generalizedEigenspace_isSubspace (T : V →ₗ[K] V) (μ : K) (k : ℕ) 
     change (A ^ k) (c • x) = 0
     rw [map_smul, hx, smul_zero]
 
-/-- 一级广义特征子空间就是通常的特征子空间。-/
+/-- 一级广义特征子空间就是通常的特征子空间。
+@isnad1 id=eq.0h4v.s6.4be3f2ea09a4 from=translated src=- shape=d15f5e74 vocab=8e1da1cf
+-/
 theorem generalizedEigenspace_one (T : V →ₗ[K] V) (μ : K) :
     generalizedEigenspace T μ 1 = eigenspace K T μ := by
   ext x
   simp [generalizedEigenspace, eigenspace, LinearMap.sub_apply, sub_eq_zero]
 
-/-- 广义特征子空间随阶数增加而扩大。-/
+/-- 广义特征子空间随阶数增加而扩大。
+@isnad1 id=le.1h6v.s6.42293aca76b2 from=translated src=- shape=2a05b29d vocab=cf4ce503
+-/
 theorem generalizedEigenspace_mono (T : V →ₗ[K] V) (μ : K) {k l : ℕ}
     (hkl : k ≤ l) : generalizedEigenspace T μ k ⊆ generalizedEigenspace T μ l := by
   intro x hx
@@ -62,7 +68,9 @@ theorem generalizedEigenspace_mono (T : V →ₗ[K] V) (μ : K) {k l : ℕ}
   rw [add_comm k d, pow_add, Module.End.mul_apply, hx, map_zero]
 
 /-- **广义特征子空间稳定定理**：有限维空间中，到 `dim V` 阶时广义特征子空间
-已经稳定；任何更高阶都不会再产生新向量。-/
+已经稳定；任何更高阶都不会再产生新向量。
+@isnad1 id=eq.1h5v.s6.cc27a45b7e10 from=translated src=- shape=2090aeb7 vocab=77611d94
+-/
 theorem generalizedEigenspace_stabilizes [IsFiniteDimensional K V]
     (T : V →ₗ[K] V) (μ : K) {k : ℕ} (hk : dim K V ≤ k) :
     generalizedEigenspace T μ k = generalizedEigenspace T μ (dim K V) := by
@@ -76,7 +84,9 @@ theorem generalizedEigenspace_stabilizes [IsFiniteDimensional K V]
 特征子空间共同张成整个有限维空间。
 
 这里“最大”可统一取 `dim V` 阶。这个集合式陈述避免在教材接口中暴露子模上确界，
-并为后续在每个广义特征子空间内构造 Jordan 链基提供全空间组装入口。-/
+并为后续在每个广义特征子空间内构造 Jordan 链基提供全空间组装入口。
+@isnad1 id=eq.0h3v.s6.01df3b930e27 from=translated src=- shape=459e5054 vocab=e7f312f0
+-/
 theorem span_generalizedEigenvectors_eq_univ [IsFiniteDimensional K V] [IsAlgClosed K]
     (T : V →ₗ[K] V) :
     span K {x : V | ∃ μ : K, x ∈ generalizedEigenspace T μ (dim K V)} =
@@ -112,7 +122,9 @@ def IsJordanChainBasis (T : V →ₗ[K] V) (μ : K) {m : ℕ}
 def jordanBlock (μ : K) (m : ℕ) : Matrix (Fin (m + 1)) (Fin (m + 1)) K :=
   fun i j => if i = j then μ else if i.val + 1 = j.val then 1 else 0
 
-/-- Jordan 块是上三角矩阵。非零的非对角元只可能位于紧邻主对角线的上方。-/
+/-- Jordan 块是上三角矩阵。非零的非对角元只可能位于紧邻主对角线的上方。
+@isnad1 id=isuppert.0h3v.s5.1bb0f6411150 from=translated src=- shape=786b0a63 vocab=33e94d33
+-/
 theorem jordanBlock_isUpperTriangular (μ : K) (m : ℕ) :
     (jordanBlock μ m).IsUpperTriangular := by
   intro i j hji
@@ -125,14 +137,18 @@ theorem jordanBlock_isUpperTriangular (μ : K) (m : ℕ) :
     · rfl
 
 /-- **Jordan 块的特征多项式**：大小为 `m+1`、特征值为 `μ` 的 Jordan 块满足
-`χ(X)=(X-μ)^(m+1)`。因此单个块只贡献一个特征值，其代数重数等于块大小。-/
+`χ(X)=(X-μ)^(m+1)`。因此单个块只贡献一个特征值，其代数重数等于块大小。
+@isnad1 id=eq.0h3v.s8.35c2efdb3be2 from=translated src=- shape=79843839 vocab=1dac178f
+-/
 theorem charpoly_jordanBlock (μ : K) (m : ℕ) :
     (jordanBlock μ m).charpoly =
       (Polynomial.X - Polynomial.C μ) ^ (m + 1) := by
   rw [Matrix.charpoly_of_isUpperTriangular _ (jordanBlock_isUpperTriangular μ m)]
   simp [jordanBlock]
 
-/-- Jordan 链基下算子的矩阵就是相应 Jordan 块。-/
+/-- Jordan 链基下算子的矩阵就是相应 Jordan 块。
+@isnad1 id=eq.1h6v.s7.508210cb08ef from=translated src=- shape=dc0aa1b8 vocab=3f387747
+-/
 theorem operatorMatrix_eq_jordanBlock (T : V →ₗ[K] V) (μ : K) {m : ℕ}
     (b : Fin (m + 1) → V) (hb : IsJordanChainBasis T μ b) :
     operatorMatrix b hb.1 T = jordanBlock μ m := by
@@ -166,7 +182,9 @@ theorem operatorMatrix_eq_jordanBlock (T : V →ₗ[K] V) (μ : K) {m : ℕ}
 /-- 若整个有限维空间由一条长度 `m+1`、属于 `μ` 的 Jordan 链构成，则算子的
 特征多项式为 `(X-μ)^(m+1)`。
 
-证明先把算子写成该链基下的 Jordan 块，再使用矩阵表示不改变特征多项式。-/
+证明先把算子写成该链基下的 Jordan 块，再使用矩阵表示不改变特征多项式。
+@isnad1 id=eq.1h6v.s8.c73aaf3de91e from=translated src=- shape=ebbd1dcd vocab=df71f839
+-/
 theorem characteristicPolynomial_eq_pow_of_jordanChainBasis
     [IsFiniteDimensional K V] (T : V →ₗ[K] V) (μ : K) {m : ℕ}
     (b : Fin (m + 1) → V) (hb : IsJordanChainBasis T μ b) :
@@ -184,7 +202,9 @@ theorem characteristicPolynomial_eq_pow_of_jordanChainBasis
       rw [operatorMatrix_eq_jordanBlock T μ b hb]
     _ = (Polynomial.X - Polynomial.C μ) ^ (m + 1) := charpoly_jordanBlock μ m
 
-/-- Jordan 链中的第 `j` 个向量被 `(T-μI)^(j+1)` 湮灭。-/
+/-- Jordan 链中的第 `j` 个向量被 `(T-μI)^(j+1)` 湮灭。
+@isnad1 id=eq.1h7v.s9.6164448bb26d from=translated src=- shape=139e2b97 vocab=c3a689ae
+-/
 theorem jordanChain_power_annihilates (T : V →ₗ[K] V) (μ : K) {m : ℕ}
     (b : Fin (m + 1) → V) (hb : IsJordanChainBasis T μ b) (j : Fin (m + 1)) :
     ((T - μ • (LinearMap.id : V →ₗ[K] V)) ^ (j.val + 1)) (b j) = 0 := by
@@ -224,7 +244,9 @@ def IsJordanBasisFamily (T : V →ₗ[K] V) (r : ℕ)
 /-- 任意 Jordan 链中的第 `j` 个向量被 `(T-μI)^(j+1)` 湮灭。
 
 与前面的链基版本不同，这里只假设局部 Jordan 链关系，不要求这些向量已经张成整个
-空间。这是从局部链证明线性无关并最终组装 Jordan 基所需的形式。-/
+空间。这是从局部链证明线性无关并最终组装 Jordan 基所需的形式。
+@isnad1 id=eq.1h7v.s9.04b5fdcedf39 from=translated src=- shape=139e2b97 vocab=1bcd1fc6
+-/
 theorem jordanChain_power_annihilates_general (T : V →ₗ[K] V) (μ : K) {m : ℕ}
     (b : Fin (m + 1) → V) (hb : IsJordanChain T μ b) (j : Fin (m + 1)) :
     ((T - μ • (LinearMap.id : V →ₗ[K] V)) ^ (j.val + 1)) (b j) = 0 := by
@@ -239,7 +261,9 @@ theorem jordanChain_power_annihilates_general (T : V →ₗ[K] V) (μ : K) {m : 
     rw [pow_succ, Module.End.mul_apply, hshift q]
     exact ih
 
-/-- 删除 Jordan 链的最后一个向量，仍得到 Jordan 链。-/
+/-- 删除 Jordan 链的最后一个向量，仍得到 Jordan 链。
+@isnad1 id=isjordan.1h6v.s7.3028fed4f549 from=translated src=- shape=573cfcff vocab=ef113901
+-/
 theorem jordanChain_init (T : V →ₗ[K] V) (μ : K) {m : ℕ}
     (b : Fin (m + 2) → V) (hb : IsJordanChain T μ b) :
     IsJordanChain T μ (fun i : Fin (m + 1) => b i.castSucc) := by
@@ -253,7 +277,9 @@ theorem jordanChain_init (T : V →ₗ[K] V) (μ : K) {m : ℕ}
 
 证明对链长归纳。对一条线性关系施加 `A=T-μI`：链首项被杀掉，其余项整体向前
 移动一格。由短一阶链的归纳假设，所有后继项系数均为零；原关系便只剩链首项，
-再由链首非零得到首系数也为零。-/
+再由链首非零得到首系数也为零。
+@isnad1 id=islinear.1h6v.s6.86a86aa21ecf from=translated src=- shape=a6a941a8 vocab=88e0a09e
+-/
 theorem jordanChain_linearIndependent (T : V →ₗ[K] V) (μ : K) {m : ℕ}
     (b : Fin (m + 1) → V) (hb : IsJordanChain T μ b) :
     IsLinearIndependent K b := by
@@ -289,7 +315,9 @@ theorem jordanChain_linearIndependent (T : V →ₗ[K] V) (μ : K) {m : ℕ}
         simpa [Fin.sum_univ_succ, hcoeff] using hsum
       exact (smul_eq_zero.mp hfirst).resolve_right hb.1
 
-/-- **链顶下降公式**：长度 `m+1` 的 Jordan 链顶经 `m` 次 `T-μI` 恰好降到链首。-/
+/-- **链顶下降公式**：长度 `m+1` 的 Jordan 链顶经 `m` 次 `T-μI` 恰好降到链首。
+@isnad1 id=eq.1h6v.s9.dfd2e7c04a81 from=translated src=- shape=d9e9addf vocab=0b785b97
+-/
 theorem jordanChain_power_top_eq_first (T : V →ₗ[K] V) (μ : K) {m : ℕ}
     (b : Fin (m + 1) → V) (hb : IsJordanChain T μ b) :
     ((T - μ • (LinearMap.id : V →ₗ[K] V)) ^ m) (b (Fin.last m)) = b 0 := by
@@ -309,7 +337,9 @@ theorem jordanChain_power_top_eq_first (T : V →ₗ[K] V) (μ : K) {m : ℕ}
       rw [pow_succ, Module.End.mul_apply, hshift]
       simpa [binit] using ih binit hbinit
 
-/-- 因链首非零，长度 `m+1` 的 Jordan 链保证 `(T-μI)^m` 还不是零算子。-/
+/-- 因链首非零，长度 `m+1` 的 Jordan 链保证 `(T-μI)^m` 还不是零算子。
+@isnad1 id=ne.1h6v.s10.4fbd5e895321 from=translated src=- shape=6e1f9938 vocab=1e75d5bc
+-/
 theorem jordanChain_shifted_power_ne_zero (T : V →ₗ[K] V) (μ : K) {m : ℕ}
     (b : Fin (m + 1) → V) (hb : IsJordanChain T μ b) :
     (T - μ • (LinearMap.id : V →ₗ[K] V)) ^ m ≠ 0 := by
@@ -318,7 +348,9 @@ theorem jordanChain_shifted_power_ne_zero (T : V →ₗ[K] V) (μ : K) {m : ℕ}
   rw [jordanChain_power_top_eq_first T μ b hb] at happ
   exact hb.1 (by simpa using happ)
 
-/-- 若一条长度 `m+1` 的 Jordan 链已经是全空间基，则 `(T-μI)^(m+1)` 是零算子。-/
+/-- 若一条长度 `m+1` 的 Jordan 链已经是全空间基，则 `(T-μI)^(m+1)` 是零算子。
+@isnad1 id=eq.1h6v.s10.3ddaa750da16 from=translated src=- shape=3220ae69 vocab=babee757
+-/
 theorem jordanChainBasis_shifted_power_eq_zero (T : V →ₗ[K] V) (μ : K) {m : ℕ}
     (b : Fin (m + 1) → V) (hb : IsJordanChainBasis T μ b) :
     (T - μ • (LinearMap.id : V →ₗ[K] V)) ^ (m + 1) = 0 := by
@@ -335,19 +367,25 @@ theorem jordanChainBasis_shifted_power_eq_zero (T : V →ₗ[K] V) (μ : K) {m :
   change (A ^ (m + 1)) (b j) = 0
   rw [hd, add_comm, pow_add, Module.End.mul_apply, hj, map_zero]
 
-/-- Jordan 链基首先是一条 Jordan 链。链首非零由基的线性无关性保证。-/
+/-- Jordan 链基首先是一条 Jordan 链。链首非零由基的线性无关性保证。
+@isnad1 id=isjordan.1h6v.s6.df53877ea736 from=translated src=- shape=7fc6a722 vocab=5f576ac4
+-/
 theorem jordanChain_of_chainBasis (T : V →ₗ[K] V) (μ : K) {m : ℕ}
     (b : Fin (m + 1) → V) (hb : IsJordanChainBasis T μ b) :
     IsJordanChain T μ b := by
   exact ⟨LinearIndependent.ne_zero 0 hb.1.1, hb.2.1, hb.2.2⟩
 
-/-- Jordan 链基中的向量线性无关。-/
+/-- Jordan 链基中的向量线性无关。
+@isnad1 id=islinear.1h6v.s6.55073e94632c from=translated src=- shape=a6a941a8 vocab=5ecf9651
+-/
 theorem jordanChainBasis_linearIndependent (T : V →ₗ[K] V) (μ : K) {m : ℕ}
     (b : Fin (m + 1) → V) (hb : IsJordanChainBasis T μ b) :
     IsLinearIndependent K b := by
   exact hb.1.1
 
-/-- Jordan 链基张成整个空间。-/
+/-- Jordan 链基张成整个空间。
+@isnad1 id=eq.1h6v.s6.519da84961b0 from=translated src=- shape=1894bb41 vocab=f6a9fea6
+-/
 theorem jordanChainBasis_spans (T : V →ₗ[K] V) (μ : K) {m : ℕ}
     (b : Fin (m + 1) → V) (hb : IsJordanChainBasis T μ b) :
     span K (Set.range b) = Set.univ := by
@@ -358,7 +396,9 @@ theorem jordanChainBasis_spans (T : V →ₗ[K] V) (μ : K) {m : ℕ}
 /-- Jordan 链基等价于“既是基又是一条 Jordan 链”。
 
 这个拆分把局部链构造与全空间张成条件分离，避免后续链基存在性证明循环使用
-“已经是一组基”的过强前提。-/
+“已经是一组基”的过强前提。
+@isnad1 id=iff.0h6v.s7.7b2af09ec2fd from=translated src=- shape=fc2bc5fc vocab=cb990127
+-/
 theorem jordanChainBasis_iff (T : V →ₗ[K] V) (μ : K) {m : ℕ}
     (b : Fin (m + 1) → V) :
     IsJordanChainBasis T μ b ↔ IsBasis K b ∧ IsJordanChain T μ b := by
@@ -371,7 +411,9 @@ theorem jordanChainBasis_iff (T : V →ₗ[K] V) (μ : K) {m : ℕ}
 /-! ## 单 Jordan 块的最小多项式 -/
 
 /-- **链顶的逐级下降公式**：从链顶开始施加 `i` 次 `T-μI`，得到逆序编号的
-第 `i` 个链向量。特别地，`i=m` 时回到链首；这里给出的是此前链顶公式的逐次版本。-/
+第 `i` 个链向量。特别地，`i=m` 时回到链首；这里给出的是此前链顶公式的逐次版本。
+@isnad1 id=eq.1h7v.s9.47279f514817 from=translated src=- shape=7c32d327 vocab=5a0efedc
+-/
 theorem jordanChain_power_top_eq_rev (T : V →ₗ[K] V) (μ : K) {m : ℕ}
     (b : Fin (m + 1) → V) (hb : IsJordanChain T μ b) (i : Fin (m + 1)) :
     ((T - μ • (LinearMap.id : V →ₗ[K] V)) ^ i.val) (b (Fin.last m)) = b i.rev := by
@@ -400,7 +442,9 @@ theorem jordanChain_power_top_eq_rev (T : V →ₗ[K] V) (μ : K) {m : ℕ}
 `1,(T-μI),…,(T-μI)^m` 作为线性算子线性无关。
 
 证明只需把一条算子线性关系作用到链顶；由上一条下降公式，它立刻变成逆序 Jordan
-链向量之间的线性关系，而 Jordan 链已经证明为线性无关。-/
+链向量之间的线性关系，而 Jordan 链已经证明为线性无关。
+@isnad1 id=linearin.1h6v.s10.d81430083ae0 from=translated src=- shape=57b5ec92 vocab=c4caf133
+-/
 theorem jordanChain_shifted_powers_linearIndependent
     (T : V →ₗ[K] V) (μ : K) {m : ℕ}
     (b : Fin (m + 1) → V) (hb : IsJordanChain T μ b) :
@@ -421,7 +465,9 @@ theorem jordanChain_shifted_powers_linearIndependent
 链构成，则平移算子 `T-μI` 的最小多项式恰为 `X^(m+1)`。
 
 上界来自链基保证的 `(T-μI)^(m+1)=0`；下界来自前一条结论中前 `m+1` 个算子幂
-线性无关。因此幂次数不能再降低。-/
+线性无关。因此幂次数不能再降低。
+@isnad1 id=eq.1h6v.s9.45ce665143d3 from=translated src=- shape=d505038a vocab=e8b5f188
+-/
 theorem minimalPolynomial_shifted_eq_pow [IsFiniteDimensional K V]
     (T : V →ₗ[K] V) (μ : K) {m : ℕ}
     (b : Fin (m + 1) → V) (hb : IsJordanChainBasis T μ b) :
@@ -440,7 +486,9 @@ theorem minimalPolynomial_shifted_eq_pow [IsFiniteDimensional K V]
 
 mathlib 的同名一般结论要求目标代数交换，不能用于通常并不交换的线性算子环。
 这里利用标量恒等算子处于中心这一事实，直接重复最小多项式的最小次数论证：正向
-代入 `X-a`，反向代入 `X+a`，两次平移互相抵消且保持多项式次数。-/
+代入 `X-a`，反向代入 `X+a`，两次平移互相抵消且保持多项式次数。
+@isnad1 id=eq.0h4v.s9.cd539af5759e from=translated src=- shape=f3fde1d9 vocab=914188cb
+-/
 theorem minimalPolynomial_add_scalar_identity [IsFiniteDimensional K V]
     (A : V →ₗ[K] V) (a : K) :
     Diagonalization.minimalPolynomial
@@ -471,7 +519,9 @@ theorem minimalPolynomial_add_scalar_identity [IsFiniteDimensional K V]
 `(X-μ)^(m+1)`。
 
 证明先把算子平移为幂零算子 `T-μI`，使用其最小多项式 `X^(m+1)`，再由上一条
-标量平移公式把变量平移回来。-/
+标量平移公式把变量平移回来。
+@isnad1 id=eq.1h6v.s8.345eee5cef24 from=translated src=- shape=ebbd1dcd vocab=0fb8242e
+-/
 theorem minimalPolynomial_eq_pow_of_jordanChainBasis
     [IsFiniteDimensional K V] (T : V →ₗ[K] V) (μ : K) {m : ℕ}
     (b : Fin (m + 1) → V) (hb : IsJordanChainBasis T μ b) :
@@ -491,7 +541,9 @@ theorem minimalPolynomial_eq_pow_of_jordanChainBasis
 零算子。
 
 证明使用核空间链稳定定理：某个幂已经为零时，其核是全空间；所有幂的核都包含在
-`dim V` 次幂的核中，故后者也只能是全空间。-/
+`dim V` 次幂的核中，故后者也只能是全空间。
+@isnad1 id=eq.1h3v.s9.64ff8415bfe6 from=translated src=- shape=3a6f73f3 vocab=b6133785
+-/
 theorem nilpotent_power_dim_eq_zero [IsFiniteDimensional K V]
     (N : V →ₗ[K] V) (hN : IsNilpotent N) : N ^ (dim K V) = 0 := by
   obtain ⟨n, hn⟩ := hN
@@ -507,7 +559,9 @@ theorem nilpotent_power_dim_eq_zero [IsFiniteDimensional K V]
 非零向量。
 
 否则算子便是单射，继而它的所有幂都是单射；但 `dim V` 次幂已经是零算子，零算子
-在非平凡空间上不可能单射。这个核向量将作为后续构造 Jordan 链的链首。-/
+在非平凡空间上不可能单射。这个核向量将作为后续构造 Jordan 链的链首。
+@isnad1 id=ex.1h3v.s8.c205a269e7f8 from=translated src=- shape=d9d0b62b vocab=b582f20f
+-/
 theorem nilpotent_exists_nonzero_kernel_vector
     [IsFiniteDimensional K V] [Nontrivial V]
     (N : V →ₗ[K] V) (hN : IsNilpotent N) : ∃ v : V, v ≠ 0 ∧ N v = 0 := by
@@ -543,7 +597,9 @@ theorem nilpotent_exists_nonzero_kernel_vector
 换言之，`N^(m+1)=0`，而前一次幂 `N^m` 仍非零。
 
 这里用自然数良序直接取满足 `N^k=0` 的最小 `k`。非平凡性排除 `k=0`，因为
-零次幂是恒等算子。-/
+零次幂是恒等算子。
+@isnad1 id=ex.1h3v.s10.196b72137548 from=translated src=- shape=7a374c35 vocab=0305eff0
+-/
 theorem nilpotent_exact_index_exists [Nontrivial V]
     (N : V →ₗ[K] V) (hN : IsNilpotent N) :
     ∃ m : ℕ, N ^ (m + 1) = 0 ∧ N ^ m ≠ 0 := by
@@ -567,7 +623,9 @@ theorem nilpotent_exact_index_exists [Nontrivial V]
 
 从某个满足 `N^m v≠0` 的向量 `v` 出发，按逆序定义
 `b_i=N^(m-i)v`。链首非零，下一次作用被 `N^(m+1)=0` 杀掉；其余链关系只是幂
-指数下降一格。-/
+指数下降一格。
+@isnad1 id=ex.2h4v.s10.15ceef116f36 from=translated src=- shape=0818e7dd vocab=fa2e5fd6
+-/
 theorem jordanChain_exists_of_exact_nilpotency_index
     (N : V →ₗ[K] V) {m : ℕ}
     (hzero : N ^ (m + 1) = 0) (hne : N ^ m ≠ 0) :
@@ -591,7 +649,9 @@ theorem jordanChain_exists_of_exact_nilpotency_index
 其幂零指数的 Jordan 链。
 
 这条链不一定已经张成全空间；它是后续取不变补空间并递归分解其余 Jordan 块的
-第一条链。-/
+第一条链。
+@isnad1 id=ex.1h3v.s10.283e7d73230f from=translated src=- shape=bba82d0f vocab=57f2db0f
+-/
 theorem nilpotent_exists_maximal_jordanChain [Nontrivial V]
     (N : V →ₗ[K] V) (hN : IsNilpotent N) :
     ∃ (m : ℕ) (b : Fin (m + 1) → V),
@@ -604,7 +664,9 @@ theorem nilpotent_exists_maximal_jordanChain [Nontrivial V]
 `m+1 ≤ dim V`。
 
 达到该指数的向量生成一条长度 `m+1` 的 Jordan 链，而 Jordan 链线性无关；有限维
-空间中的线性无关组不可能含有超过空间维数的向量。-/
+空间中的线性无关组不可能含有超过空间维数的向量。
+@isnad1 id=le.2h4v.s10.d9367feebcc5 from=translated src=- shape=5a423395 vocab=fbc86fc7
+-/
 theorem nilpotency_index_le_dim [IsFiniteDimensional K V]
     (N : V →ₗ[K] V) {m : ℕ}
     (hzero : N ^ (m + 1) = 0) (hne : N ^ m ≠ 0) :

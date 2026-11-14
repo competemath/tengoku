@@ -446,7 +446,9 @@ Jordan 链，其全部链向量合在一起构成空间的一组基。
 
 证明在固定环境空间内，对不变子空间的维数归纳。归纳步骤先分解像空间 `N(S)`，
 再把每条链向上提升一个向量；这些提升向量与核空间的一组基共同构成 `S` 的基。
-核基中尚未作为旧链首向量的部分各自形成长度为一的新链。取 `S = V` 即得结论。-/
+核基中尚未作为旧链首向量的部分各自形成长度为一的新链。取 `S = V` 即得结论。
+@isnad1 id=ex.1h3v.s8.678fedcb8592 from=translated src=- shape=bbe975a7 vocab=296f7bbd
+-/
 theorem nilpotent_exists_jordanBasisFamily
     [IsFiniteDimensional K V] (N : V →ₗ[K] V) (hN : IsNilpotent N) :
     ∃ (r : ℕ) (length : Fin r → ℕ)

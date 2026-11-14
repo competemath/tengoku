@@ -30,7 +30,9 @@ private theorem ordinalAdd_eq_native (a b : Ordinal.{u}) :
   simp [ordinalAdd]
 
 /-- The library's ordinal addition is strictly increasing in its right
-argument.  The statement uses only the public library operation.-/
+argument.  The statement uses only the public library operation.
+@isnad1 id=lt.1h3v.s4.ac3dd6be7bba from=translated src=- shape=804ed1de vocab=b7b7fc09
+-/
 theorem ordinalAdd_lt_of_lt_right {left right : Ordinal.{u}} (h : left < right)
     (initial : Ordinal.{u}) :
     ordinalAdd initial left < ordinalAdd initial right := by
@@ -38,7 +40,9 @@ theorem ordinalAdd_lt_of_lt_right {left right : Ordinal.{u}} (h : left < right)
   exact add_lt_add_right h initial
 
 /-- Adding the same ordered forest on the left preserves a strict comparison
-between two suffix forests.-/
+between two suffix forests.
+@isnad1 id=lt.1h3v.s5.fc0c6bdbe0a2 from=translated src=- shape=4ad7bd43 vocab=a539dffb
+-/
 theorem forestOrdinal_append_lt (initial : List Hydra) {left right : List Hydra}
     (h : forestOrdinal.{u} left < forestOrdinal.{u} right) :
     forestOrdinal.{u} (initial ++ left) <
@@ -69,6 +73,9 @@ def RightmostBranchReplicatedCut (stage : Nat) (siblings : List Hydra)
   before = .node (siblings ++ [.node [Hydra.head]]) ∧
     after = .node (siblings ++ List.replicate (stage + 1) (.node []))
 
+/--
+@isnad1 id=step.1h4v.s4.ed2cf8429f21 from=translated src=- shape=e831450f vocab=83021c94
+-/
 theorem rightmostBranchReplicatedCut_isStep {stage : Nat} {siblings : List Hydra}
     {before after : Hydra}
     (cut : RightmostBranchReplicatedCut stage siblings before after) :

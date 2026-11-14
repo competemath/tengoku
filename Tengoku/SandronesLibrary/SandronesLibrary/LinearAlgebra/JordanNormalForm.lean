@@ -43,7 +43,9 @@ def HasJordanNormalBasis (T : V →ₗ[K] V) (d : JordanFormData K) : Prop := by
   exact ∃ (b : (p : Σ i : d.Block, Fin (d.length i + 1)) → V)
     (hb : IsBasis K b), operatorMatrix b hb T = jordanNormalMatrix d
 
-/-- 代数闭域上，有限维线性算子存在 Jordan 标准基。-/
+/-- 代数闭域上，有限维线性算子存在 Jordan 标准基。
+@isnad1 id=ex.0h3v.s6.0e5295ed75da from=translated src=- shape=5900860b vocab=b4e0db36
+-/
 theorem exists_jordan_normal_basis [IsAlgClosed K] [IsFiniteDimensional K V]
     (T : V →ₗ[K] V) :
     ∃ d : JordanFormData K, HasJordanNormalBasis T d := by

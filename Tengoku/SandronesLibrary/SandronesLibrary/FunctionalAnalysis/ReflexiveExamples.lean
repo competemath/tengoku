@@ -25,7 +25,9 @@ namespace SandronesLibrary.FunctionalAnalysis
 
 /-- 每个有限维实赋范空间都是自反的。
 
-> **Entry**: functional-analysis.bidual.reflexive-examples-/
+> **Entry**: functional-analysis.bidual.reflexive-examples
+@isnad1 id=surjecti.0h1v.s12.b6404719c517 from=translated src=- shape=b2b8adcb vocab=4a868679
+-/
 theorem finiteDimensional_reflexive {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E] :
     Function.Surjective (NormedSpace.inclusionInDoubleDual ℝ E) := by
@@ -44,7 +46,9 @@ theorem finiteDimensional_reflexive {E : Type*} [NormedAddCommGroup E] [NormedSp
     _ = finrank ℝ (Module.Dual ℝ (StrongDual ℝ E)) := Subspace.dual_finrank_eq.symm
     _ = finrank ℝ (StrongDual ℝ (StrongDual ℝ E)) := e₂.finrank_eq
 
-/-- 每个完备实内积空间都是自反的。-/
+/-- 每个完备实内积空间都是自反的。
+@isnad1 id=surjecti.0h1v.s12.821721fca925 from=translated src=- shape=96a264fa vocab=13665832
+-/
 theorem realHilbert_reflexive {E : Type*} [NormedAddCommGroup E]
     [InnerProductSpace ℝ E] [CompleteSpace E] :
     Function.Surjective (NormedSpace.inclusionInDoubleDual ℝ E) := by

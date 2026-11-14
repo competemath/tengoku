@@ -54,7 +54,9 @@ structure BinaryOpenCoverSquareSubdivision (H : C(unitInterval × unitInterval, 
     H (unitSquareCellPoint steps steps_pos i j u v) ∈
       binaryOpenCoverPiece U V (label i j)
 
-/-- 连续方形逐点落在二开集之一时，存在每个闭方格都落在单个覆盖成员中的一致有限细分。-/
+/-- 连续方形逐点落在二开集之一时，存在每个闭方格都落在单个覆盖成员中的一致有限细分。
+@isnad1 id=nonempty.3h4v.s8.72b67e442357 from=translated src=- shape=957777a8 vocab=94d9a8a6
+-/
 theorem exists_binaryOpenCoverSquareSubdivision
     (H : C(unitInterval × unitInterval, X)) {U V : Set X}
     (hU : IsOpen U) (hV : IsOpen V)
@@ -120,7 +122,9 @@ theorem exists_binaryOpenCoverSquareSubdivision
   cases hlabel : label i j <;>
     simpa [label, C, binaryOpenCoverPiece, hlabel] using hmem
 
-/-- 水平相邻方格标签不同时，它们的整条公共竖边都映入交集。-/
+/-- 水平相邻方格标签不同时，它们的整条公共竖边都映入交集。
+@isnad1 id=mem.2h9v.s8.e744442c11f3 from=translated src=- shape=73b2bf1e vocab=1f36677e
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchEdge_mem_intersection
     {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -136,7 +140,9 @@ theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchEdge_mem_intersection
   cases hli : D.label i j <;> cases hlk : D.label k j <;>
     simp_all [binaryOpenCoverPiece]
 
-/-- 竖直相邻方格标签不同时，它们的整条公共横边都映入交集。-/
+/-- 竖直相邻方格标签不同时，它们的整条公共横边都映入交集。
+@isnad1 id=mem.2h9v.s8.a0b7a3fe2834 from=translated src=- shape=0e603426 vocab=1f36677e
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalSwitchEdge_mem_intersection
     {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)

@@ -43,7 +43,9 @@ def PositiveDigitNormalForm.predecessorExpression {base : ℕ}
 > **Entry**: settheory.googology.goodstein-positive-digit-descent
 > **一句话**: 非零数字正规形换底减一后可显式重编码，且其 `ω` 度量严格下降。
 > **依赖**: `settheory.googology.goodstein-step`、`settheory.googology.goodstein-ordinal-measure`
-> **mathlib**: `Nat.sub_one_lt`-/
+> **mathlib**: `Nat.sub_one_lt`
+@isnad1 id=and.0h2v.s6.febce02af5b7 from=translated src=- shape=6a896b29 vocab=9a83bd61
+-/
 theorem positiveDigit_goodstein_descent {base : ℕ}
     (d : PositiveDigitNormalForm base) :
     goodsteinStep base d.expression = d.digit - 1 ∧

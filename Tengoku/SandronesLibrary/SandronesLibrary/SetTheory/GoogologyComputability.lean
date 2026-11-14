@@ -93,7 +93,9 @@ def moveHead (head : ℤ) : HeadMove → ℤ
 > **Entry**: settheory.googology.binary-machine
 > **一句话**: 二符号有限状态机用有限指令表作用在一条初始全零的双向纸带上。
 > **依赖**: 无
-> **mathlib**: `Fin`, `Finset`-/
+> **mathlib**: `Fin`, `Finset`
+@isnad1 id=eq.0h2v.s4.4b5e11bfa62c from=translated src=- shape=3726f24e vocab=e8d9e3bb
+-/
 theorem readSymbol_initially_blank (state : Fin n) :
     readSymbol ({ state := state, head := 0, ones := ∅ } : Configuration n) = false := by
   simp [readSymbol]
@@ -125,7 +127,9 @@ def blankStart (_machine : BinaryMachine (n + 1)) : ExecutionStatus (n + 1) :=
 > **Entry**: settheory.googology.machine-execution
 > **一句话**: 单步执行先读、再写、再移动，并由指令决定进入下一状态还是停机。
 > **依赖**: `settheory.googology.binary-machine`
-> **mathlib**: 无（本库显式执行器）-/
+> **mathlib**: 无（本库显式执行器）
+@isnad1 id=and.0h4v.s5.02958f36a523 from=translated src=- shape=ec25c75f vocab=6ffd5a0e
+-/
 theorem runSteps_zero_succ (machine : BinaryMachine n) (status : ExecutionStatus n)
     (steps : ℕ) :
     runSteps machine 0 status = status ∧
@@ -148,7 +152,9 @@ def HaltsWithin (fuel : ℕ) (machine : BinaryMachine (n + 1)) : Prop :=
 > **Entry**: settheory.googology.bounded-halting
 > **一句话**: 限定步数停机只问给定有限燃料是否足以到达停机状态，因此可以判定。
 > **依赖**: `settheory.googology.machine-execution`
-> **mathlib**: 无（本库显式有限迭代）-/
+> **mathlib**: 无（本库显式有限迭代）
+@isnad1 id=iff.0h3v.s6.c767b1de1e9d from=translated src=- shape=0bfb3dc6 vocab=5fb938eb
+-/
 theorem haltsWithin_iff_exists_tape (fuel : ℕ) (machine : BinaryMachine (n + 1)) :
     HaltsWithin fuel machine ↔
       ∃ tape, haltedTape? (runSteps machine fuel (blankStart machine)) = some tape := by
@@ -173,7 +179,9 @@ def busyBeaverCandidate (n fuel : ℕ) : ℕ :=
 > **Entry**: settheory.googology.busy-beaver-candidate
 > **一句话**: 固定状态数与搜索步数后，可以穷举全部机器并取得停机输出的最大值。
 > **依赖**: `settheory.googology.bounded-halting`
-> **mathlib**: `Finset.sup`-/
+> **mathlib**: `Finset.sup`
+@isnad1 id=le.0h3v.s4.706c4ec0d54c from=translated src=- shape=8f2a8191 vocab=4ba9f367
+-/
 theorem boundedOnesScore_le_candidate (fuel : ℕ) (machine : BinaryMachine (n + 1)) :
     boundedOnesScore fuel machine ≤ busyBeaverCandidate n fuel := by
   exact Finset.le_sup (s := Finset.univ) (f := boundedOnesScore (n := n) fuel)

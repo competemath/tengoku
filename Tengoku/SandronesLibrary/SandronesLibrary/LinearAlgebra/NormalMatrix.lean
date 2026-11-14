@@ -34,13 +34,17 @@ def IsHermitianMatrix (A : Matrix n n ℂ) : Prop := Aᴴ = A
 /-- 斜 Hermitian 矩阵：共轭转置等于自身的负。-/
 def IsSkewHermitianMatrix (A : Matrix n n ℂ) : Prop := Aᴴ = -A
 
-/-- Hermitian 矩阵必为正规矩阵。-/
+/-- Hermitian 矩阵必为正规矩阵。
+@isnad1 id=isnormal.1h2v.s4.0d0a203330be from=translated src=- shape=b30d904c vocab=dd3ecb03
+-/
 theorem hermitian_is_normal {A : Matrix n n ℂ}
     (hA : IsHermitianMatrix A) : IsNormalMatrix A := by
   simp only [IsHermitianMatrix] at hA
   simp [IsNormalMatrix, hA]
 
-/-- 斜 Hermitian 矩阵必为正规矩阵。-/
+/-- 斜 Hermitian 矩阵必为正规矩阵。
+@isnad1 id=isnormal.1h2v.s4.4d21726a6b55 from=translated src=- shape=b30d904c vocab=42e8f276
+-/
 theorem skewHermitian_is_normal {A : Matrix n n ℂ}
     (hA : IsSkewHermitianMatrix A) : IsNormalMatrix A := by
   simp only [IsSkewHermitianMatrix] at hA
@@ -54,25 +58,33 @@ noncomputable def hermitianPart (A : Matrix n n ℂ) : Matrix n n ℂ :=
 noncomputable def skewHermitianPart (A : Matrix n n ℂ) : Matrix n n ℂ :=
   (2 : ℂ)⁻¹ • (A - Aᴴ)
 
-/-- Hermitian 部分确实是 Hermitian 矩阵。-/
+/-- Hermitian 部分确实是 Hermitian 矩阵。
+@isnad1 id=ishermit.0h2v.s4.7b7864032156 from=translated src=- shape=f5f1e705 vocab=90dd0380
+-/
 theorem hermitianPart_isHermitian (A : Matrix n n ℂ) :
     IsHermitianMatrix (hermitianPart A) := by
   simp [IsHermitianMatrix, hermitianPart, Matrix.conjTranspose_add]
   module
 
-/-- 斜 Hermitian 部分确实是斜 Hermitian 矩阵。-/
+/-- 斜 Hermitian 部分确实是斜 Hermitian 矩阵。
+@isnad1 id=isskewhe.0h2v.s4.1718ffbab515 from=translated src=- shape=f5f1e705 vocab=44bdbc28
+-/
 theorem skewHermitianPart_isSkewHermitian (A : Matrix n n ℂ) :
     IsSkewHermitianMatrix (skewHermitianPart A) := by
   simp [IsSkewHermitianMatrix, skewHermitianPart, Matrix.conjTranspose_sub]
   module
 
-/-- 每个复方阵等于其 Hermitian 部分与斜 Hermitian 部分之和。-/
+/-- 每个复方阵等于其 Hermitian 部分与斜 Hermitian 部分之和。
+@isnad1 id=eq.0h2v.s5.8a7ab7abefe5 from=translated src=- shape=b9338aeb vocab=b4274d7e
+-/
 theorem hermitian_add_skewHermitian (A : Matrix n n ℂ) :
     hermitianPart A + skewHermitianPart A = A := by
   simp [hermitianPart, skewHermitianPart]
   module
 
-/-- Hermitian 矩阵可由酉矩阵对角化，且所有对角元都是实数。-/
+/-- Hermitian 矩阵可由酉矩阵对角化，且所有对角元都是实数。
+@isnad1 id=ex.1h2v.s7.a3db9333c8aa from=translated src=- shape=ca07ac76 vocab=ac8f7473
+-/
 theorem hermitian_unitary_diagonalization {A : Matrix n n ℂ}
     (hA : IsHermitianMatrix A) :
     ∃ (U : Matrix n n ℂ) (μ : n → ℝ),

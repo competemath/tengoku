@@ -49,7 +49,9 @@ def PathConcatAlignedSquareSubdivision.leftBoundaryAlignedGridEdge
   squareGridVerticalEdge (pathHomotopySquare Fhom) A.subdivision.steps
     A.subdivision.steps_pos 0 (A.segmentGridEdgeIndex i s)
 
-/-- 该真实左边界细边属于其所在第零列小格的标签成员。-/
+/-- 该真实左边界细边属于其所在第零列小格的标签成员。
+@isnad1 id=mem.2h10v.s10.4fe6d77cc6cd from=translated src=- shape=40696917 vocab=12cf0ebf
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundaryAlignedGridEdge_mem_cellPiece
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (letters : List (BinaryVanKampenLetter U V hxU hxV))
@@ -80,7 +82,9 @@ theorem PathConcatAlignedSquareSubdivision.leftBoundaryAlignedGridEdge_mem_cellP
     A.subdivision.cell_mem ⟨0, A.subdivision.steps_pos⟩
       (A.segmentGridEdgeIndex i s) 0 t
 
-/-- 同一真实左边界细边也属于输入字母指定的标签成员。-/
+/-- 同一真实左边界细边也属于输入字母指定的标签成员。
+@isnad1 id=mem.2h10v.s10.22d93425440d from=translated src=- shape=8eab5b4c vocab=2e098d87
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundaryAlignedGridEdge_mem_letterPiece
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (letters : List (BinaryVanKampenLetter U V hxU hxV))
@@ -95,7 +99,9 @@ theorem PathConcatAlignedSquareSubdivision.leftBoundaryAlignedGridEdge_mem_lette
       binaryOpenCoverPiece U V (letters.reverse.get i).1 :=
   A.leftBoundarySegmentGridEdge_mem_letterPiece hxU hxV letters Fhom i s t
 
-/-- 第零列真实细边的起点提升，等于对应小格的左下角提升。-/
+/-- 第零列真实细边的起点提升，等于对应小格的左下角提升。
+@isnad1 id=eq.2h9v.s10.ba9d2961d0f6 from=translated src=- shape=18521fd8 vocab=032ce92c
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundaryAlignedGridEdge_cellSource_eq
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (letters : List (BinaryVanKampenLetter U V hxU hxV))
@@ -120,7 +126,9 @@ theorem PathConcatAlignedSquareSubdivision.leftBoundaryAlignedGridEdge_cellSourc
     unitSquareGridVertex, squareGridVertex,
     unitSquareCellPoint]
 
-/-- 第零列真实细边的终点提升，等于对应小格的左上角提升。-/
+/-- 第零列真实细边的终点提升，等于对应小格的左上角提升。
+@isnad1 id=eq.2h9v.s10.cd1589dcc43e from=translated src=- shape=18521fd8 vocab=dfec6757
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundaryAlignedGridEdge_cellTarget_eq
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (letters : List (BinaryVanKampenLetter U V hxU hxV))
@@ -303,7 +311,9 @@ def PathConcatAlignedSquareSubdivision.leftBoundaryAlignedGridEdgeLetterEnd
       (A.leftBoundaryAlignedGridEdge_letterTarget_eq hxU hxV letters Fhom i s)
 
 /-- 同一 block 中相邻真实细边在固定 letter 成员中使用同一条共享顶点 connector；端点 proof
-transport 不产生额外 gauge。-/
+transport 不产生额外 gauge。
+@isnad1 id=other.5h10v.s11.72aba5218932 from=translated src=- shape=e662ad11 vocab=5b53c556
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundaryAlignedGridEdgeLetterConnector_adjacent
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hU : IsPathConnected U) (hV : IsPathConnected V)
@@ -345,7 +355,9 @@ theorem PathConcatAlignedSquareSubdivision.leftBoundaryAlignedGridEdgeLetterConn
       A.factor_pos i r u : binaryOpenCoverPiece U V (letters.reverse.get i).1) : X))
     hshared
 
-/-- 下方细边的 cell 终点 connector 与真实竖直切换边下格 comparison 使用的左端 connector 相同。-/
+/-- 下方细边的 cell 终点 connector 与真实竖直切换边下格 comparison 使用的左端 connector 相同。
+@isnad1 id=other.7h10v.s12.5992f98cbcc1 from=translated src=- shape=fcf68dfc vocab=8b4bbe4c
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundaryCellEnd_eq_verticalSwitchBottomStart
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))
@@ -406,7 +418,9 @@ theorem PathConcatAlignedSquareSubdivision.leftBoundaryCellEnd_eq_verticalSwitch
     (A.subdivision.label ⟨0, A.subdivision.steps_pos⟩
       (A.segmentGridEdgeIndex i s)) rfl _ u
 
-/-- 上方细边的 cell 起点 connector 与同一真实竖直切换边上格 comparison 的左端 connector 相同。-/
+/-- 上方细边的 cell 起点 connector 与同一真实竖直切换边上格 comparison 的左端 connector 相同。
+@isnad1 id=other.7h10v.s12.af36a6f21683 from=translated src=- shape=443d62db vocab=822b7090
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundaryCellStart_eq_verticalSwitchTopStart
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))
@@ -467,7 +481,9 @@ theorem PathConcatAlignedSquareSubdivision.leftBoundaryCellStart_eq_verticalSwit
     (A.subdivision.label ⟨0, A.subdivision.steps_pos⟩
       (A.segmentGridEdgeIndex i t)) rfl _ u
 
-/-- 两行同标签时，下方细边 cell 终点 connector 与竖直 common comparison 的下格 connector 相同。-/
+/-- 两行同标签时，下方细边 cell 终点 connector 与竖直 common comparison 的下格 connector 相同。
+@isnad1 id=other.6h10v.s12.97e22f666ad2 from=translated src=- shape=1d10b3ab vocab=53e24ab0
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundaryCellEnd_eq_verticalCommonLeftStart
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hU : IsPathConnected U) (hV : IsPathConnected V)
@@ -516,7 +532,9 @@ theorem PathConcatAlignedSquareSubdivision.leftBoundaryCellEnd_eq_verticalCommon
       (A.segmentGridEdgeIndex i s)) rfl _ u
 
 /-- 两行同标签时，竖直 common comparison 的上格 connector 与上方细边 cell 起点 connector
-送回环境空间后逐点相同。底层函数形式避免显式搬运两个 Bool 标签的基点类型。-/
+送回环境空间后逐点相同。底层函数形式避免显式搬运两个 Bool 标签的基点类型。
+@isnad1 id=other.6h11v.s12.981ee1662aa7 from=translated src=- shape=9193e7df vocab=76094e3f
+-/
 theorem PathConcatAlignedSquareSubdivision.coe_leftBoundaryCellStart_eq_verticalCommonRightStart
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hU : IsPathConnected U) (hV : IsPathConnected V)
@@ -559,7 +577,9 @@ theorem PathConcatAlignedSquareSubdivision.coe_leftBoundaryCellStart_eq_vertical
       (A.segmentGridEdgeIndex i t)) hlabel.symm _ u
 
 /-- 任一左边界细边在 cell 与 letter 标签不同时，其 dual comparison 的 cell 终点 potential 正是
-该格左上角的实际 `gridCellVertexPotentialFromIntersection`。-/
+该格左上角的实际 `gridCellVertexPotentialFromIntersection`。
+@isnad1 id=other.6h9v.s14.eecf2a23a052 from=translated src=- shape=c023ab28 vocab=9aa1737f
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundaryDualCellEndPotential_eq_gridCellPotential
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))
@@ -628,7 +648,9 @@ theorem PathConcatAlignedSquareSubdivision.leftBoundaryDualCellEndPotential_eq_g
   · exact A.leftBoundaryAlignedGridEdge_cellTarget_eq
       hxU hxV letters Fhom i s
 
-/-- 上方逐边 dual comparison 的 cell 起点 potential，可统一改用相邻细边共享的交集顶点作为参考。-/
+/-- 上方逐边 dual comparison 的 cell 起点 potential，可统一改用相邻细边共享的交集顶点作为参考。
+@isnad1 id=other.7h10v.s14.5778d95f32fe from=translated src=- shape=15b8bb0f vocab=002d987e
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundaryDualCellStartPotential_at_sharedVertex
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))
@@ -708,7 +730,9 @@ theorem PathConcatAlignedSquareSubdivision.leftBoundaryDualCellStartPotential_at
       hxU hxV letters Fhom i t
 
 /-- 下方细边的双标签 comparison cell potential，与真实竖直切换 transition 的下格 potential
-严格相同。-/
+严格相同。
+@isnad1 id=other.8h10v.s14.edf3fa337fa8 from=translated src=- shape=89c5e200 vocab=f56e6026
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundaryDualCellEndPotential_eq_verticalSwitchBottom
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))
@@ -782,7 +806,9 @@ theorem PathConcatAlignedSquareSubdivision.leftBoundaryDualCellEndPotential_eq_v
     rfl
 
 /-- 上方细边的双标签 comparison cell potential，与同一真实竖直切换 transition 的上格 potential
-严格相同。-/
+严格相同。
+@isnad1 id=other.8h10v.s14.56185f5983d7 from=translated src=- shape=14a63e2e vocab=afa84070
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundaryDualCellStartPotential_eq_verticalSwitchTop
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))
@@ -856,7 +882,9 @@ theorem PathConcatAlignedSquareSubdivision.leftBoundaryDualCellStartPotential_eq
     exact A.leftBoundary_segmentGridEdgeIndex_shared_vertex i s t hshared |>.symm
 
 /-- 若相邻两条细边的 cell 标签都不同于固定 letter 标签，则两次双标签 comparison 在共享顶点
-给出的 letter-side potential 严格一致。-/
+给出的 letter-side potential 严格一致。
+@isnad1 id=other.8h10v.s14.0a92c9a44043 from=translated src=- shape=0ba7a17b vocab=6206d783
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundaryDualLetterPotential_adjacent
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))
@@ -995,7 +1023,9 @@ private theorem PathConcatAlignedSquareSubdivision.leftBoundaryAlignedGridEdgeIn
   simp [PathConcatAlignedSquareSubdivision.leftBoundaryAlignedGridEdge,
     squareGridVerticalEdge, unitSquareCellPoint, hone]
 
-/-- 因而 cell-label 版本正是原单格四边词中的真实左竖边生成元。-/
+/-- 因而 cell-label 版本正是原单格四边词中的真实左竖边生成元。
+@isnad1 id=eq.4h9v.s10.fa5a439c836d from=translated src=- shape=a09a1f02 vocab=2205018c
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundaryAlignedGridEdgeCellElement_eq
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hU : IsPathConnected U) (hV : IsPathConnected V)
@@ -1106,7 +1136,9 @@ private theorem PathConcatAlignedSquareSubdivision.leftBoundaryAlignedGridEdgeIn
   unfold binaryVanKampenLetterConcatLoop
   rw [pathConcatSegmentFineInterval_eq_convexComb]
 
-/-- 因而 letter-label 版本正是 block word 中的真实细边 corrected-loop 因子。-/
+/-- 因而 letter-label 版本正是 block word 中的真实细边 corrected-loop 因子。
+@isnad1 id=eq.4h9v.s10.79a1d4d3dfee from=translated src=- shape=867f9d60 vocab=13add06b
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundaryAlignedGridEdgeLetterElement_eq
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hU : IsPathConnected U) (hV : IsPathConnected V)

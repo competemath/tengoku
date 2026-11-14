@@ -38,7 +38,9 @@ open scoped ProbabilityTheory Topology BigOperators
 到共同期望。
 
 相比标准 iid 假设，两两独立是更弱且已足够的独立性条件。相比弱大数律的方差证明，这里只要求
-一阶可积，不要求二次矩存在。-/
+一阶可积，不要求二次矩存在。
+@isnad1 id=eventual.3h3v.s7.a81278289938 from=translated src=- shape=60d2ec47 vocab=546e66a3
+-/
 theorem strongLaw_of_pairwise_independent_integrable
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     (X : ℕ → Ω → ℝ) (hint : Integrable (X 0) μ)
@@ -51,7 +53,9 @@ theorem strongLaw_of_pairwise_independent_integrable
 
 /-- **iid 强大数律**：一阶可积的 iid 实值随机变量样本均值几乎必然收敛到共同期望。
 
-`iIndepFun` 表达标准教材中的全族独立；证明仅提取其两两独立后调用 Etemadi 版本。-/
+`iIndepFun` 表达标准教材中的全族独立；证明仅提取其两两独立后调用 Etemadi 版本。
+@isnad1 id=eventual.3h3v.s7.a1bf5e8e118a from=translated src=- shape=120eb8e3 vocab=761b05de
+-/
 theorem strongLaw_of_iid_integrable
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     (X : ℕ → Ω → ℝ) (hint : Integrable (X 0) μ)

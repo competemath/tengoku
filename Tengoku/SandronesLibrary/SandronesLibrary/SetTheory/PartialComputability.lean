@@ -36,7 +36,9 @@ def ComputesPartialFunction (program : NatProgram) (graph : ℕ → ℕ → Prop
 def PartialNatComputable (graph : ℕ → ℕ → Prop) : Prop :=
   SingleValued graph ∧ ∃ program, ComputesPartialFunction program graph
 
-/-- 具体确定程序的停机输出关系必定单值。-/
+/-- 具体确定程序的停机输出关系必定单值。
+@isnad1 id=singleva.0h1v.s2.0335131e1ca2 from=translated src=- shape=76a08d12 vocab=82c8edd9
+-/
 theorem programOutput_singleValued (program : NatProgram) :
     SingleValued (ProgramOutput program) := by
   intro input x y hx hy
@@ -52,7 +54,9 @@ def totalFunctionGraph (f : ℕ → ℕ) (input output : ℕ) : Prop :=
 > **Entry**: settheory.computability.partial-nat-computable
 > **一句话**: 部分可计算函数是由程序停机输出精确实现的单值输入输出关系，未停机输入没有输出。
 > **依赖**: `settheory.computability.nat-computable`
-> **mathlib**: 无（本库解释器诱导的关系）-/
+> **mathlib**: 无（本库解释器诱导的关系）
+@isnad1 id=partialn.1h1v.s3.e8f76a68240c from=translated src=- shape=aef97f5f vocab=014f39fe
+-/
 theorem natComputable_implies_partial {f : ℕ → ℕ} :
     NatComputable f → PartialNatComputable (totalFunctionGraph f) := by
   rintro ⟨program, hprogram⟩
@@ -72,7 +76,9 @@ theorem natComputable_implies_partial {f : ℕ → ℕ} :
 def PredicateCharacteristicGraph (P : ℕ → Prop) (input output : ℕ) : Prop :=
   (P input ∧ output = 1) ∨ (¬P input ∧ output = 0)
 
-/-- 一份程序判定 `P`，当且仅当它精确计算 `P` 的零一部分函数图像。-/
+/-- 一份程序判定 `P`，当且仅当它精确计算 `P` 的零一部分函数图像。
+@isnad1 id=iff.0h2v.s3.4d930b470bcb from=translated src=- shape=ec0c023b vocab=d99225a4
+-/
 theorem decidesPredicate_iff_computesPartial (program : NatProgram) (P : ℕ → Prop) :
     DecidesPredicate program P ↔
       ComputesPartialFunction program (PredicateCharacteristicGraph P) := by
@@ -123,7 +129,9 @@ def UniversalNatInterpreter.Outputs (universal : UniversalNatInterpreter)
 > **Entry**: settheory.computability.universal-interpreter-spec
 > **一句话**: 通用解释器必须为程序提供单射自然数编码，并逐燃料精确模拟本库现有解释器。
 > **依赖**: `settheory.computability.partial-nat-computable`
-> **mathlib**: `Function.Injective`-/
+> **mathlib**: `Function.Injective`
+@isnad1 id=iff.0h4v.s4.a470cbd87477 from=translated src=- shape=9176bff4 vocab=dc417cf0
+-/
 theorem universal_outputs_encode_iff (universal : UniversalNatInterpreter)
     (program : NatProgram) (input output : ℕ) :
     universal.Outputs (universal.encode program) input output ↔

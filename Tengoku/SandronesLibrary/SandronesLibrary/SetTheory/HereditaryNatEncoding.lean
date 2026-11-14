@@ -27,11 +27,17 @@ def hereditaryNatEncode (base : ℕ) (hbase : 2 ≤ base) (n : ℕ) : Hereditary
         (rec (n / base) (Nat.div_lt_self (Nat.pos_of_ne_zero hn)
           (lt_of_lt_of_le Nat.one_lt_two hbase)))) (.digit (n % base))) n
 
+/--
+@isnad1 id=eq.1h1v.s4.6c7eb2aba074 from=translated src=- shape=76292773 vocab=760db1a9
+-/
 theorem hereditaryNatEncode_zero (base : ℕ) (hbase : 2 ≤ base) :
     hereditaryNatEncode base hbase 0 = .zero := by
   rw [hereditaryNatEncode, Nat.strongRec_eq]
   simp
 
+/--
+@isnad1 id=eq.2h2v.s5.611817b3255d from=translated src=- shape=97032ad5 vocab=69b1a92e
+-/
 theorem hereditaryNatEncode_of_pos (base : ℕ) (hbase : 2 ≤ base)
     {n : ℕ} (hn : 0 < n) :
     hereditaryNatEncode base hbase n =
@@ -45,7 +51,9 @@ theorem hereditaryNatEncode_of_pos (base : ℕ) (hbase : 2 ≤ base)
 > **Entry**: settheory.googology.hereditary-natural-encoding
 > **一句话**: 对任意 `base≥2` 和自然数 `n`，商余递归构造合法遗传基表达式，且其求值精确等于 `n`。
 > **依赖**: `settheory.googology.hereditary-base`
-> **mathlib**: `Nat.strongRec`、`Nat.div_add_mod`-/
+> **mathlib**: `Nat.strongRec`、`Nat.div_add_mod`
+@isnad1 id=and.1h2v.s4.462479ea50d8 from=translated src=- shape=e7d4ab09 vocab=9661fb89
+-/
 theorem hereditaryNatEncode_valid_eval (base : ℕ) (hbase : 2 ≤ base) :
     ∀ n, (hereditaryNatEncode base hbase n).Valid base ∧
       (hereditaryNatEncode base hbase n).eval base = n := by
@@ -70,6 +78,9 @@ comparison information about different inputs and is insufficient for a general 
 def hereditaryNatEncodeOmegaCeiling (base : ℕ) (hbase : 2 ≤ base) (n : ℕ) : Ordinal :=
   Order.succ (hereditaryNatEncode base hbase n).omegaValue
 
+/--
+@isnad1 id=lt.1h2v.s4.18b3ead5946f from=translated src=- shape=1b4d2069 vocab=40c60552
+-/
 theorem hereditaryNatEncode_omega_lt_ceiling (base : ℕ) (hbase : 2 ≤ base) (n : ℕ) :
     (hereditaryNatEncode base hbase n).omegaValue <
       hereditaryNatEncodeOmegaCeiling base hbase n :=

@@ -54,7 +54,9 @@ noncomputable def quotientDim (K : Type*) {V : Type*} [Field K] [AddCommGroup V]
       smul_mem' := by intro c x hx; exact hW.2.2 c hx }
   exact Module.finrank K (V ⧸ S)
 
-/-- `W` 与 `U` 的和是子空间。-/
+/-- `W` 与 `U` 的和是子空间。
+@isnad1 id=issubspa.2h4v.s5.2303a8d45aaa from=translated src=- shape=188b375a vocab=edf74100
+-/
 theorem subspaceSum_isSubspace {W U : Set V} (hW : IsSubspace K W)
     (hU : IsSubspace K U) : IsSubspace K (subspaceSum W U) := by
   refine ⟨?_, ?_, ?_⟩
@@ -64,7 +66,9 @@ theorem subspaceSum_isSubspace {W U : Set V} (hW : IsSubspace K W)
   · rintro c x ⟨w, hw, u, hu, rfl⟩
     exact ⟨c • w, hW.2.2 c hw, c • u, hU.2.2 c hu, by simp [smul_add]⟩
 
-/-- `W` 与 `U` 的交是子空间。-/
+/-- `W` 与 `U` 的交是子空间。
+@isnad1 id=issubspa.2h4v.s5.e4bc5ae02793 from=translated src=- shape=188b375a vocab=9eb35b71
+-/
 theorem subspaceIntersection_isSubspace {W U : Set V} (hW : IsSubspace K W)
     (hU : IsSubspace K U) : IsSubspace K (subspaceIntersection W U) := by
   refine ⟨⟨0, subspace_zero_mem hW, subspace_zero_mem hU⟩, ?_, ?_⟩
@@ -76,7 +80,9 @@ theorem subspaceIntersection_isSubspace {W U : Set V} (hW : IsSubspace K W)
 /-- 两个子空间直和，当且仅当它们的公共向量只有零向量。-/
 def IsDirectSum (W U : Set V) : Prop := ∀ x, x ∈ W → x ∈ U → x = 0
 
-/-- 子空间维数公式：`dim W + dim U = dim(W+U) + dim(W∩U)`。-/
+/-- 子空间维数公式：`dim W + dim U = dim(W+U) + dim(W∩U)`。
+@isnad1 id=eq.2h4v.s6.31a62aab0ef7 from=translated src=- shape=0a14cea6 vocab=56f46b1d
+-/
 theorem subspaceDim_add_subspaceDim {W U : Set V} (hW : IsSubspace K W)
     (hU : IsSubspace K U) [IsFiniteDimensional K V] :
     subspaceDim K W hW + subspaceDim K U hU =
@@ -113,7 +119,9 @@ theorem subspaceDim_add_subspaceDim {W U : Set V} (hW : IsSubspace K W)
   rw [hP, hQ]
   exact (Submodule.finrank_sup_add_finrank_inf_eq S T).symm
 
-/-- 直和的维数等于两个子空间维数之和。-/
+/-- 直和的维数等于两个子空间维数之和。
+@isnad1 id=eq.3h4v.s6.41d4eda619dd from=translated src=- shape=275526b3 vocab=d0b9f46d
+-/
 theorem subspaceDim_directSum {W U : Set V} (hW : IsSubspace K W)
     (hU : IsSubspace K U) [IsFiniteDimensional K V] (hdir : IsDirectSum W U) :
     subspaceDim K (subspaceSum W U) (subspaceSum_isSubspace hW hU) =
@@ -141,7 +149,9 @@ theorem subspaceDim_directSum {W U : Set V} (hW : IsSubspace K W)
   have hdim := subspaceDim_add_subspaceDim hW hU
   omega
 
-/-- 商空间维数公式：`dim(V/W) + dim W = dim V`。-/
+/-- 商空间维数公式：`dim(V/W) + dim W = dim V`。
+@isnad1 id=eq.1h3v.s6.2b6b00002d2f from=translated src=- shape=dfd2ef06 vocab=5d57bc72
+-/
 theorem quotientDim_add_subspaceDim (W : Set V) (hW : IsSubspace K W)
     [IsFiniteDimensional K V] :
     quotientDim K W hW + subspaceDim K W hW = dim K V := by

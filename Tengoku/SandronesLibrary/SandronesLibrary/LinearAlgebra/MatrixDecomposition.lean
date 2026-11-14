@@ -65,21 +65,27 @@ def pluZero : PLUFactorization (0 : Matrix (Fin 0) (Fin 0) K) where
   lower_diagonal_one := by intro i; exact Fin.elim0 i
   eq_mul := by ext i; exact Fin.elim0 i
 
-/-- 可逆非空方阵的首列必含非零元，因而可以选取首个消元主元。-/
+/-- 可逆非空方阵的首列必含非零元，因而可以选取首个消元主元。
+@isnad1 id=ex.1h3v.s7.9a5b25d75377 from=translated src=- shape=819b7c3f vocab=4d5f7101
+-/
 theorem firstColumn_nonzero {n : ℕ} (A : Matrix (Fin (n + 1)) (Fin (n + 1)) K)
     (hA : IsUnit A.det) : ∃ i, A i 0 ≠ 0 := by
   by_contra h
   push Not at h
   exact hA.ne_zero (Matrix.det_eq_zero_of_column_eq_zero 0 h)
 
-/-- 交换第零行与第 `i` 行后，新的左上元正是原矩阵中选定的主元。-/
+/-- 交换第零行与第 `i` 行后，新的左上元正是原矩阵中选定的主元。
+@isnad1 id=eq.0h4v.s8.9016bca0ea23 from=translated src=- shape=ece552db vocab=7b399633
+-/
 theorem pivotPermutation_entry {n : ℕ} (A : Matrix (Fin (n + 1)) (Fin (n + 1)) K)
     (i : Fin (n + 1)) :
     ((Equiv.swap 0 i).permMatrix K * A) 0 0 = A i 0 := by
   change (Matrix.swap K 0 i * A) 0 0 = A i 0
   exact Matrix.swap_mul_apply_left 0 i 0 A
 
-/-- 置换行不改变可逆性。-/
+/-- 置换行不改变可逆性。
+@isnad1 id=isunit.1h4v.s8.1f5e62d7d4c4 from=translated src=- shape=3b349972 vocab=2210fc1c
+-/
 theorem pivotPermutation_isUnit_det {n : ℕ}
     (A : Matrix (Fin (n + 1)) (Fin (n + 1)) K) (hA : IsUnit A.det)
     (i : Fin (n + 1)) :
@@ -92,20 +98,32 @@ theorem pivotPermutation_isUnit_det {n : ℕ}
 def headTailEquiv (n : ℕ) : Fin 1 ⊕ Fin n ≃ Fin (n + 1) :=
   (finSumFinEquiv : Fin 1 ⊕ Fin n ≃ Fin (1 + n)).trans (finCongr (Nat.add_comm 1 n))
 
+/--
+@isnad1 id=eq.0h1v.s7.0b07857840ff from=translated src=- shape=f4dd044c vocab=0b5c7f76
+-/
 @[simp] theorem headTailEquiv_inl_zero (n : ℕ) :
     headTailEquiv n (Sum.inl 0) = 0 := by
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.c6089c480ef7 from=translated src=- shape=71b0ecfe vocab=21e3a687
+-/
 @[simp] theorem headTailEquiv_inr (n : ℕ) (i : Fin n) :
     headTailEquiv n (Sum.inr i) = i.succ := by
   apply Fin.ext
   simp [headTailEquiv, finSumFinEquiv_apply_right]
 
+/--
+@isnad1 id=eq.0h1v.s7.6ab4fd707213 from=translated src=- shape=85161d95 vocab=f714956f
+-/
 @[simp] theorem headTailEquiv_symm_zero (n : ℕ) :
     (headTailEquiv n).symm 0 = Sum.inl 0 := by
   apply (headTailEquiv n).injective
   simp
 
+/--
+@isnad1 id=eq.0h2v.s7.fedb1d77cfc1 from=translated src=- shape=b71256f0 vocab=a1cd165a
+-/
 @[simp] theorem headTailEquiv_symm_succ (n : ℕ) (i : Fin n) :
     (headTailEquiv n).symm i.succ = Sum.inr i := by
   apply (headTailEquiv n).injective
@@ -116,17 +134,24 @@ def leadingBlock {n : ℕ} (S : Matrix (Fin (n + 1)) (Fin (n + 1)) K) :
     Matrix (Fin 1) (Fin 1) K :=
   fun i j => S (headTailEquiv n (Sum.inl i)) (headTailEquiv n (Sum.inl j))
 
+/--
+@isnad1 id=eq.0h3v.s7.8fa1a1fed532 from=translated src=- shape=999c4b0f vocab=994abd1b
+-/
 @[simp] theorem leadingBlock_entry {n : ℕ}
     (S : Matrix (Fin (n + 1)) (Fin (n + 1)) K) : leadingBlock S 0 0 = S 0 0 := rfl
 
-/-- 非零标量主元给出可逆的 `1 × 1` 主元块。-/
+/-- 非零标量主元给出可逆的 `1 × 1` 主元块。
+@isnad1 id=isunit.1h3v.s7.fc32a89d31c5 from=translated src=- shape=5cf7d02f vocab=b54e6236
+-/
 theorem leadingBlock_isUnit_det {n : ℕ}
     (S : Matrix (Fin (n + 1)) (Fin (n + 1)) K) (h : S 0 0 ≠ 0) :
     IsUnit (leadingBlock S).det := by
   rw [Matrix.det_fin_one]
   exact isUnit_iff_ne_zero.mpr h
 
-/-- 若整个块矩阵可逆且左上块可逆，则对应 Schur 补也可逆。-/
+/-- 若整个块矩阵可逆且左上块可逆，则对应 Schur 补也可逆。
+@isnad1 id=isunit.1h7v.s8.d8f9e8b5c9d8 from=translated src=- shape=d6e55ba2 vocab=aa1bca31
+-/
 theorem schurComplement_isUnit_det {m n : Type*} [Fintype m] [Fintype n]
     [DecidableEq m] [DecidableEq n]
     (A : Matrix m m K) (B : Matrix m n K) (C : Matrix n m K) (D : Matrix n n K)
@@ -149,7 +174,9 @@ def bottomLeftBlock {n : ℕ} (S : Matrix (Fin (n + 1)) (Fin (n + 1)) K) :
 def trailingBlock {n : ℕ} (S : Matrix (Fin (n + 1)) (Fin (n + 1)) K) :
     Matrix (Fin n) (Fin n) K := fun i j => S i.succ j.succ
 
-/-- 首坐标—剩余坐标重索引与四块矩阵表示完全一致。-/
+/-- 首坐标—剩余坐标重索引与四块矩阵表示完全一致。
+@isnad1 id=eq.0h3v.s8.069988f1377a from=translated src=- shape=151a3bda vocab=4c075ff1
+-/
 theorem reindex_eq_fromBlocks {n : ℕ}
     (S : Matrix (Fin (n + 1)) (Fin (n + 1)) K) :
     S.submatrix (headTailEquiv n) (headTailEquiv n) =
@@ -167,7 +194,9 @@ theorem reindex_eq_fromBlocks {n : ℕ}
       | inr j => simp [trailingBlock]
 
 /-- 一次完整的选主元步：可逆方阵可经一次换行得到可逆的
-`1 × 1` 主元块，且消元后的 Schur 补仍可逆，因此可对其递归。-/
+`1 × 1` 主元块，且消元后的 Schur 补仍可逆，因此可对其递归。
+@isnad1 id=ex.1h3v.s9.b2469456e602 from=translated src=- shape=67eec587 vocab=124ddf86
+-/
 theorem pivotStep_schur_isUnit {n : ℕ}
     (A : Matrix (Fin (n + 1)) (Fin (n + 1)) K) (hA : IsUnit A.det) :
     ∃ i : Fin (n + 1),
@@ -193,29 +222,46 @@ def liftTrailing {n : ℕ} (M : Matrix (Fin n) (Fin n) K) :
     Matrix (Fin (n + 1)) (Fin (n + 1)) K :=
   Matrix.reindexAlgEquiv K K (headTailEquiv n) (Matrix.fromBlocks 1 0 0 M)
 
+/--
+@isnad1 id=eq.0h3v.s6.b93b20fffaaa from=translated src=- shape=864ac9d2 vocab=a76054ac
+-/
 @[simp] theorem liftTrailing_zero_zero {n : ℕ} (M : Matrix (Fin n) (Fin n) K) :
     liftTrailing M 0 0 = 1 := by
   simp [liftTrailing, Matrix.reindexAlgEquiv, Matrix.reindex_apply]
 
+/--
+@isnad1 id=eq.0h4v.s6.0e076df67525 from=translated src=- shape=52e2e015 vocab=858d409e
+-/
 @[simp] theorem liftTrailing_zero_succ {n : ℕ} (M : Matrix (Fin n) (Fin n) K)
     (j : Fin n) : liftTrailing M 0 j.succ = 0 := by
   simp [liftTrailing, Matrix.reindexAlgEquiv, Matrix.reindex_apply]
 
+/--
+@isnad1 id=eq.0h4v.s6.006c56c35094 from=translated src=- shape=10ea32eb vocab=858d409e
+-/
 @[simp] theorem liftTrailing_succ_zero {n : ℕ} (M : Matrix (Fin n) (Fin n) K)
     (i : Fin n) : liftTrailing M i.succ 0 = 0 := by
   simp [liftTrailing, Matrix.reindexAlgEquiv, Matrix.reindex_apply]
 
+/--
+@isnad1 id=eq.0h5v.s5.dbe9434e0a64 from=translated src=- shape=d6745427 vocab=6d9ead89
+-/
 @[simp] theorem liftTrailing_succ_succ {n : ℕ} (M : Matrix (Fin n) (Fin n) K)
     (i j : Fin n) : liftTrailing M i.succ j.succ = M i j := by
   simp [liftTrailing, Matrix.reindexAlgEquiv, Matrix.reindex_apply]
 
-/-- 右下嵌入保持乘法。-/
+/-- 右下嵌入保持乘法。
+@isnad1 id=eq.0h4v.s8.65beeb6b95d3 from=translated src=- shape=8fefc014 vocab=30f33a1b
+-/
 theorem liftTrailing_mul {n : ℕ} (M N : Matrix (Fin n) (Fin n) K) :
     liftTrailing (M * N) = liftTrailing M * liftTrailing N := by
   rw [liftTrailing, liftTrailing, liftTrailing, ← map_mul]
   congr 1
   simp [Matrix.fromBlocks_multiply]
 
+/--
+@isnad1 id=islowert.1h3v.s6.e0e6e635d1dd from=translated src=- shape=abe6e749 vocab=571544a5
+-/
 theorem liftTrailing_lower {n : ℕ} {M : Matrix (Fin n) (Fin n) K}
     (hM : M.IsLowerTriangular) : (liftTrailing M).IsLowerTriangular := by
   intro i j hij
@@ -233,6 +279,9 @@ theorem liftTrailing_lower {n : ℕ} {M : Matrix (Fin n) (Fin n) K}
           rw [liftTrailing_succ_succ]
           exact hM (Fin.succ_lt_succ_iff.mp hij)
 
+/--
+@isnad1 id=isuppert.1h3v.s6.3c687637a2a0 from=translated src=- shape=abe6e749 vocab=0fa55bdf
+-/
 theorem liftTrailing_upper {n : ℕ} {M : Matrix (Fin n) (Fin n) K}
     (hM : M.IsUpperTriangular) : (liftTrailing M).IsUpperTriangular := by
   intro i j hij
@@ -245,6 +294,9 @@ theorem liftTrailing_upper {n : ℕ} {M : Matrix (Fin n) (Fin n) K}
           rw [liftTrailing_succ_succ]
           exact hM (Fin.succ_lt_succ_iff.mp hij)
 
+/--
+@isnad1 id=eq.1h4v.s6.0a8e41976285 from=translated src=- shape=0ca9c373 vocab=a76054ac
+-/
 theorem liftTrailing_diag_one {n : ℕ} {M : Matrix (Fin n) (Fin n) K}
     (hM : ∀ i, M i i = 1) : ∀ i, liftTrailing M i i = 1 := by
   intro i
@@ -257,15 +309,23 @@ def liftPermutation {n : ℕ} (p : Equiv.Perm (Fin n)) : Equiv.Perm (Fin (n + 1)
   (headTailEquiv n).symm.trans
     ((Equiv.sumCongr (Equiv.refl (Fin 1)) p).trans (headTailEquiv n))
 
+/--
+@isnad1 id=eq.0h2v.s7.3cb499ab59f9 from=translated src=- shape=c9c1a9cd vocab=a2ddf2a6
+-/
 @[simp] theorem liftPermutation_zero {n : ℕ} (p : Equiv.Perm (Fin n)) :
     liftPermutation p 0 = 0 := by
   simp [liftPermutation]
 
+/--
+@isnad1 id=eq.0h3v.s7.d7330a92fec5 from=translated src=- shape=bb4e08c5 vocab=3a7ea35e
+-/
 @[simp] theorem liftPermutation_succ {n : ℕ} (p : Equiv.Perm (Fin n)) (i : Fin n) :
     liftPermutation p i.succ = (p i).succ := by
   simp [liftPermutation]
 
-/-- 置换的函数提升与置换矩阵的右下嵌入一致。-/
+/-- 置换的函数提升与置换矩阵的右下嵌入一致。
+@isnad1 id=eq.0h3v.s7.f6251a1d556d from=translated src=- shape=3b5dd70c vocab=5d224749
+-/
 theorem liftPermutation_permMatrix {n : ℕ} (p : Equiv.Perm (Fin n)) :
     (liftPermutation p).permMatrix K = liftTrailing (p.permMatrix K) := by
   ext i j
@@ -291,16 +351,25 @@ def assembleUpper {n : ℕ} (a : Matrix (Fin 1) (Fin 1) K)
     Matrix (Fin (n + 1)) (Fin (n + 1)) K :=
   Matrix.reindexAlgEquiv K K (headTailEquiv n) (Matrix.fromBlocks a B 0 U)
 
+/--
+@isnad1 id=eq.0h6v.s5.36e5f8a406bd from=translated src=- shape=ddd52a8b vocab=b4d062b5
+-/
 @[simp] theorem assembleLower_succ_succ {n : ℕ} (M : Matrix (Fin n) (Fin 1) K)
     (L : Matrix (Fin n) (Fin n) K) (i j : Fin n) :
     assembleLower M L i.succ j.succ = L i j := by
   simp [assembleLower, Matrix.reindexAlgEquiv, Matrix.reindex_apply]
 
+/--
+@isnad1 id=eq.0h7v.s6.5f130392f733 from=translated src=- shape=ab85cde4 vocab=66a21bc7
+-/
 @[simp] theorem assembleUpper_succ_succ {n : ℕ} (a : Matrix (Fin 1) (Fin 1) K)
     (B : Matrix (Fin 1) (Fin n) K) (U : Matrix (Fin n) (Fin n) K) (i j : Fin n) :
     assembleUpper a B U i.succ j.succ = U i j := by
   simp [assembleUpper, Matrix.reindexAlgEquiv, Matrix.reindex_apply]
 
+/--
+@isnad1 id=islowert.1h4v.s6.9d2642712988 from=translated src=- shape=95656b13 vocab=5f9c9b34
+-/
 theorem assembleLower_lower {n : ℕ} (M : Matrix (Fin n) (Fin 1) K)
     {L : Matrix (Fin n) (Fin n) K} (hL : L.IsLowerTriangular) :
     (assembleLower M L).IsLowerTriangular := by
@@ -319,6 +388,9 @@ theorem assembleLower_lower {n : ℕ} (M : Matrix (Fin n) (Fin 1) K)
           rw [assembleLower_succ_succ]
           exact hL (Fin.succ_lt_succ_iff.mp hij)
 
+/--
+@isnad1 id=eq.1h5v.s6.d8f7708c96c5 from=translated src=- shape=0dc42112 vocab=52e4fb08
+-/
 theorem assembleLower_diag_one {n : ℕ} (M : Matrix (Fin n) (Fin 1) K)
     {L : Matrix (Fin n) (Fin n) K} (hL : ∀ i, L i i = 1) :
     ∀ i, assembleLower M L i i = 1 := by
@@ -328,6 +400,9 @@ theorem assembleLower_diag_one {n : ℕ} (M : Matrix (Fin n) (Fin 1) K)
   | succ i =>
       simpa [assembleLower, Matrix.reindexAlgEquiv, Matrix.reindex_apply] using hL i
 
+/--
+@isnad1 id=isuppert.1h5v.s6.96be87335bf1 from=translated src=- shape=9fb5568e vocab=004ad834
+-/
 theorem assembleUpper_upper {n : ℕ} (a : Matrix (Fin 1) (Fin 1) K)
     (B : Matrix (Fin 1) (Fin n) K) {U : Matrix (Fin n) (Fin n) K}
     (hU : U.IsUpperTriangular) : (assembleUpper a B U).IsUpperTriangular := by
@@ -341,12 +416,17 @@ theorem assembleUpper_upper {n : ℕ} (a : Matrix (Fin 1) (Fin 1) K)
           rw [assembleUpper_succ_succ]
           exact hU (Fin.succ_lt_succ_iff.mp hij)
 
+/--
+@isnad1 id=eq.0h5v.s7.46ed022dcaba from=translated src=- shape=0c1e5b8b vocab=e78df0db
+-/
 @[simp] theorem assembleUpper_zero_zero {n : ℕ} (a : Matrix (Fin 1) (Fin 1) K)
     (B : Matrix (Fin 1) (Fin n) K) (U : Matrix (Fin n) (Fin n) K) :
     assembleUpper a B U 0 0 = a 0 0 := by
   simp [assembleUpper, Matrix.reindexAlgEquiv, Matrix.reindex_apply]
 
-/-- 组装上三角块时，首主元和递归对角均非零则整个对角非零。-/
+/-- 组装上三角块时，首主元和递归对角均非零则整个对角非零。
+@isnad1 id=ne.2h6v.s7.90dbe048d61d from=translated src=- shape=17f808c9 vocab=e78df0db
+-/
 theorem assembleUpper_diag_ne_zero {n : ℕ} (a : Matrix (Fin 1) (Fin 1) K)
     (B : Matrix (Fin 1) (Fin n) K) {U : Matrix (Fin n) (Fin n) K}
     (ha : a 0 0 ≠ 0) (hU : ∀ i, U i i ≠ 0) :
@@ -356,7 +436,9 @@ theorem assembleUpper_diag_ne_zero {n : ℕ} (a : Matrix (Fin 1) (Fin 1) K)
   | zero => simpa using ha
   | succ i => simpa using hU i
 
-/-- 若 Schur 补已有 `P'Q=L'U'`，则块乘法给出整个矩阵的递归乘积等式。-/
+/-- 若 Schur 补已有 `P'Q=L'U'`，则块乘法给出整个矩阵的递归乘积等式。
+@isnad1 id=eq.1h9v.s11.6c96b7c226d5 from=translated src=- shape=7f8b7dc3 vocab=22bd6a57
+-/
 theorem recursive_block_product {n : ℕ}
     (a : Matrix (Fin 1) (Fin 1) K) (B : Matrix (Fin 1) (Fin n) K)
     (C : Matrix (Fin n) (Fin 1) K) (D P L U : Matrix (Fin n) (Fin n) K)
@@ -389,14 +471,18 @@ theorem recursive_block_product {n : ℕ}
     rw [hassoc]
     abel
 
-/-- 首次换行与递归置换的乘法方向。-/
+/-- 首次换行与递归置换的乘法方向。
+@isnad1 id=eq.0h5v.s9.f55f32090752 from=translated src=- shape=272bb00c vocab=a2375f36
+-/
 theorem combinedPermutation_mul {n : ℕ} (A : Matrix (Fin (n + 1)) (Fin (n + 1)) K)
     (i : Fin (n + 1)) (p : Equiv.Perm (Fin n)) :
     (((Equiv.swap 0 i) * liftPermutation p).permMatrix K) * A =
       liftTrailing (p.permMatrix K) * ((Equiv.swap 0 i).permMatrix K * A) := by
   rw [Matrix.permMatrix_mul, liftPermutation_permMatrix, Matrix.mul_assoc]
 
-/-- 把四个块重新组装并返回原来的 `Fin (n+1)` 矩阵。-/
+/-- 把四个块重新组装并返回原来的 `Fin (n+1)` 矩阵。
+@isnad1 id=eq.0h3v.s9.8472133438f6 from=translated src=- shape=d2d833bc vocab=d79ef77c
+-/
 theorem reassembleBlocks {n : ℕ} (S : Matrix (Fin (n + 1)) (Fin (n + 1)) K) :
     Matrix.reindexAlgEquiv K K (headTailEquiv n)
         (Matrix.fromBlocks (leadingBlock S) (topRightBlock S)
@@ -409,7 +495,9 @@ theorem reassembleBlocks {n : ℕ} (S : Matrix (Fin (n + 1)) (Fin (n + 1)) K) :
 /-- 任意可逆方阵都有单位下三角规范的 PLU 分解。
 
 证明对阶数归纳。每次在首列选非零主元并换到首行，对 Schur 补
-递归分解，再用 `recursive_block_product` 组装。-/
+递归分解，再用 `recursive_block_product` 组装。
+@isnad1 id=nonempty.1h3v.s5.640926e13162 from=translated src=- shape=ffc17d5e vocab=cad438da
+-/
 theorem existsPLU (n : ℕ) (A : Matrix (Fin n) (Fin n) K)
     (hA : IsUnit A.det) : Nonempty (PLUFactorization A) := by
   induction n with
@@ -450,6 +538,9 @@ theorem existsPLU (n : ℕ) (A : Matrix (Fin n) (Fin n) K)
       exact recursive_block_product a B C D (rec.permutation.permMatrix K)
         rec.lower rec.upper rec.eq_mul
 
+/--
+@isnad1 id=eq.1h3v.s7.1d644dc65256 from=translated src=- shape=bf3b840b vocab=a563d970
+-/
 theorem lower_topRight_zero {n : ℕ} {L : Matrix (Fin (n + 1)) (Fin (n + 1)) K}
     (hL : L.IsLowerTriangular) : topRightBlock L = 0 := by
   ext i j
@@ -458,6 +549,9 @@ theorem lower_topRight_zero {n : ℕ} {L : Matrix (Fin (n + 1)) (Fin (n + 1)) K}
   change L 0 j.succ = 0
   exact hL (Fin.succ_pos j)
 
+/--
+@isnad1 id=eq.1h3v.s7.347197cc3d47 from=translated src=- shape=91e93ea7 vocab=4037a1a7
+-/
 theorem upper_bottomLeft_zero {n : ℕ} {U : Matrix (Fin (n + 1)) (Fin (n + 1)) K}
     (hU : U.IsUpperTriangular) : bottomLeftBlock U = 0 := by
   ext i j
@@ -466,16 +560,25 @@ theorem upper_bottomLeft_zero {n : ℕ} {U : Matrix (Fin (n + 1)) (Fin (n + 1)) 
   change U i.succ 0 = 0
   exact hU (Fin.succ_pos i)
 
+/--
+@isnad1 id=islowert.1h3v.s6.d797fc6444e6 from=translated src=- shape=694f5d29 vocab=03788b51
+-/
 theorem trailing_lower {n : ℕ} {L : Matrix (Fin (n + 1)) (Fin (n + 1)) K}
     (hL : L.IsLowerTriangular) : (trailingBlock L).IsLowerTriangular := by
   intro i j hij
   exact hL (Fin.succ_lt_succ_iff.mpr hij)
 
+/--
+@isnad1 id=isuppert.1h3v.s6.9b75a15df490 from=translated src=- shape=694f5d29 vocab=c57b6977
+-/
 theorem trailing_upper {n : ℕ} {U : Matrix (Fin (n + 1)) (Fin (n + 1)) K}
     (hU : U.IsUpperTriangular) : (trailingBlock U).IsUpperTriangular := by
   intro i j hij
   exact hU (Fin.succ_lt_succ_iff.mpr hij)
 
+/--
+@isnad1 id=eq.1h3v.s7.131793e023fa from=translated src=- shape=40ef3ac0 vocab=994abd1b
+-/
 theorem leadingBlock_eq_one {n : ℕ} {L : Matrix (Fin (n + 1)) (Fin (n + 1)) K}
     (hd : ∀ i, L i i = 1) : leadingBlock L = 1 := by
   ext i j
@@ -483,14 +586,18 @@ theorem leadingBlock_eq_one {n : ℕ} {L : Matrix (Fin (n + 1)) (Fin (n + 1)) K}
   fin_cases j
   exact hd 0
 
-/-- 矩阵的首坐标四块分解，写成重索引等价的逆像。-/
+/-- 矩阵的首坐标四块分解，写成重索引等价的逆像。
+@isnad1 id=eq.0h3v.s10.1a39563cc6a9 from=translated src=- shape=ec3862d4 vocab=f7684a28
+-/
 theorem blockDecompose {n : ℕ} (M : Matrix (Fin (n + 1)) (Fin (n + 1)) K) :
     (Matrix.reindexAlgEquiv K K (headTailEquiv n)).symm M =
       Matrix.fromBlocks (leadingBlock M) (topRightBlock M)
         (bottomLeftBlock M) (trailingBlock M) := by
   exact reindex_eq_fromBlocks M
 
-/-- 两个规范 LU 乘积相等时，比较四个块得到递归唯一性所需的方程。-/
+/-- 两个规范 LU 乘积相等时，比较四个块得到递归唯一性所需的方程。
+@isnad1 id=and.7h6v.s10.6913a7299936 from=translated src=- shape=0d9c3fc8 vocab=905da43f
+-/
 theorem lu_block_equations {n : ℕ}
     (L₁ U₁ L₂ U₂ : Matrix (Fin (n + 1)) (Fin (n + 1)) K)
     (hL₁ : L₁.IsLowerTriangular) (hL₂ : L₂.IsLowerTriangular)
@@ -518,7 +625,9 @@ theorem lu_block_equations {n : ℕ}
 /-- 单位下三角规范下的 LU 分解唯一。
 
 对阶数归纳：首行确定上三角因子的首行，非零首主元再确定
-下三角因子的首列，剩余右下块应用归纳假设。-/
+下三角因子的首列，剩余右下块应用归纳假设。
+@isnad1 id=and.8h6v.s8.0ce0ef8041a6 from=translated src=- shape=d145027b vocab=60e7ed6f
+-/
 theorem lu_unique {n : ℕ}
     (L₁ U₁ L₂ U₂ : Matrix (Fin n) (Fin n) K)
     (hL₁ : L₁.IsLowerTriangular) (hL₂ : L₂.IsLowerTriangular)
@@ -568,7 +677,9 @@ theorem lu_unique {n : ℕ}
         rw [blockDecompose, blockDecompose, upper_bottomLeft_zero hU₁,
           upper_bottomLeft_zero hU₂, ha, hB, hUt]
 
-/-- 对角矩阵左乘上三角矩阵后仍为上三角。-/
+/-- 对角矩阵左乘上三角矩阵后仍为上三角。
+@isnad1 id=isuppert.1h4v.s6.5a8885497b72 from=translated src=- shape=ad608c7d vocab=9e58663f
+-/
 theorem diagonal_mul_upper {n : ℕ} (d : Fin n → K)
     {U : Matrix (Fin n) (Fin n) K} (hU : U.IsUpperTriangular) :
     (Matrix.diagonal d * U).IsUpperTriangular := by
@@ -576,12 +687,17 @@ theorem diagonal_mul_upper {n : ℕ} (d : Fin n → K)
   rw [Matrix.diagonal_mul]
   rw [hU hij, mul_zero]
 
+/--
+@isnad1 id=eq.0h5v.s6.801b28fac2b5 from=translated src=- shape=c24d30fb vocab=c64a99e1
+-/
 @[simp] theorem diagonal_mul_diag {n : ℕ} (d : Fin n → K)
     (U : Matrix (Fin n) (Fin n) K) (i : Fin n) :
     (Matrix.diagonal d * U) i i = d i * U i i := by
   rw [Matrix.diagonal_mul]
 
-/-- 对角元全部非零时，左乘该对角矩阵可消去。-/
+/-- 对角元全部非零时，左乘该对角矩阵可消去。
+@isnad1 id=eq.2h5v.s7.2f75c8ca8bc4 from=translated src=- shape=8601188b vocab=c64a99e1
+-/
 theorem diagonal_mul_injective {n : ℕ} {d : Fin n → K}
     (hd : ∀ i, d i ≠ 0) {A B : Matrix (Fin n) (Fin n) K}
     (h : Matrix.diagonal d * A = Matrix.diagonal d * B) : A = B := by
@@ -590,7 +706,9 @@ theorem diagonal_mul_injective {n : ℕ} {d : Fin n → K}
   simp only [Matrix.diagonal_mul] at hij
   exact mul_left_cancel₀ (hd i) hij
 
-/-- 单位上、下三角规范下的 LDU 分解唯一。-/
+/-- 单位上、下三角规范下的 LDU 分解唯一。
+@isnad1 id=and.10h8v.s9.e78bee80bc74 from=translated src=- shape=af3f559f vocab=cc47e89c
+-/
 theorem ldu_unique {n : ℕ}
     (L₁ U₁ L₂ U₂ : Matrix (Fin n) (Fin n) K) (d₁ d₂ : Fin n → K)
     (hL₁ : L₁.IsLowerTriangular) (hL₂ : L₂.IsLowerTriangular)
@@ -643,7 +761,9 @@ def normalizedLUZero : NormalizedLUFactorization (0 : Matrix (Fin 0) (Fin 0) K) 
   upper_diagonal_ne_zero := by intro i; exact Fin.elim0 i
   eq_mul := by ext i; exact Fin.elim0 i
 
-/-- 满足递归非零主元条件的方阵存在无换行的规范 LU 分解。-/
+/-- 满足递归非零主元条件的方阵存在无换行的规范 LU 分解。
+@isnad1 id=nonempty.1h3v.s4.f76cea0d42e0 from=translated src=- shape=894b9a91 vocab=218db909
+-/
 theorem exists_normalizedLU_of_noPivot (n : ℕ) (A : Matrix (Fin n) (Fin n) K)
     (hA : NoPivotCondition n A) : Nonempty (NormalizedLUFactorization A) := by
   induction n with
@@ -685,7 +805,9 @@ theorem exists_normalizedLU_of_noPivot (n : ℕ) (A : Matrix (Fin n) (Fin n) K)
       rw [hlift, Matrix.one_mul] at hr
       simpa [a, B, C, D] using hr
 
-/-- 规范 LU 分解中上三角因子对角非零，因而原矩阵非奇异。-/
+/-- 规范 LU 分解中上三角因子对角非零，因而原矩阵非奇异。
+@isnad1 id=ne.0h4v.s5.196ef1a47e17 from=translated src=- shape=4fcb8e1a vocab=5792e35e
+-/
 theorem NormalizedLUFactorization.det_ne_zero {n : ℕ}
     {A : Matrix (Fin n) (Fin n) K} (fac : NormalizedLUFactorization A) : A.det ≠ 0 := by
   rw [fac.eq_mul, Matrix.det_mul,
@@ -694,7 +816,9 @@ theorem NormalizedLUFactorization.det_ne_zero {n : ℕ}
   simp only [fac.lower_diagonal_one, Finset.prod_const_one, one_mul]
   exact Finset.prod_ne_zero_iff.mpr (fun i _ => fac.upper_diagonal_ne_zero i)
 
-/-- 递归非零主元条件特别推出整个矩阵非奇异。-/
+/-- 递归非零主元条件特别推出整个矩阵非奇异。
+@isnad1 id=ne.1h3v.s5.20d5775c696a from=translated src=- shape=4fcb8e1a vocab=0b306977
+-/
 theorem det_ne_zero_of_noPivot {n : ℕ} (A : Matrix (Fin n) (Fin n) K)
     (hA : NoPivotCondition n A) : A.det ≠ 0 := by
   obtain ⟨fac⟩ := exists_normalizedLU_of_noPivot n A hA
@@ -719,7 +843,9 @@ def leadingBottomLeft {n k : ℕ} (A : Matrix (Fin (n + 1)) (Fin (n + 1)) K)
     (hk : k ≤ n) : Matrix (Fin k) (Fin 1) K :=
   (bottomLeftBlock A).submatrix (Fin.castLE hk) id
 
-/-- `(k+1)` 阶顺序主子矩阵的四块表示。-/
+/-- `(k+1)` 阶顺序主子矩阵的四块表示。
+@isnad1 id=eq.1h4v.s8.214ea77ab995 from=translated src=- shape=01fadae4 vocab=add0c72d
+-/
 theorem leadingPrincipal_succ_blocks {n k : ℕ}
     (A : Matrix (Fin (n + 1)) (Fin (n + 1)) K) (hk : k ≤ n) :
     (leadingPrincipal A (Nat.succ_le_succ hk)).submatrix
@@ -740,7 +866,9 @@ theorem leadingPrincipal_succ_blocks {n k : ℕ}
           simp [leadingPrincipal, leadingBottomLeft, bottomLeftBlock]
       | inr j => simp [leadingPrincipal, trailingBlock]
 
-/-- 取顺序主子矩阵与取首主元的 Schur 补可交换。-/
+/-- 取顺序主子矩阵与取首主元的 Schur 补可交换。
+@isnad1 id=eq.1h4v.s9.c534764b1223 from=translated src=- shape=be4d4eee vocab=8a6b669a
+-/
 theorem leadingPrincipal_schur {n k : ℕ}
     (A : Matrix (Fin (n + 1)) (Fin (n + 1)) K) (hk : k ≤ n) :
     leadingPrincipal
@@ -751,7 +879,9 @@ theorem leadingPrincipal_schur {n k : ℕ}
   simp [leadingPrincipal, leadingBottomLeft, leadingTopRight, Matrix.mul_apply]
 
 /-- 顺序主子式的 Schur 递推式：
-`Δ_(k+1)(A) = a₁₁ · Δ_k(Schur(A))`。-/
+`Δ_(k+1)(A) = a₁₁ · Δ_k(Schur(A))`。
+@isnad1 id=eq.2h4v.s8.64f6073cbbb9 from=translated src=- shape=08f17e36 vocab=b5e0bd83
+-/
 theorem leadingPrincipal_succ_det {n k : ℕ}
     (A : Matrix (Fin (n + 1)) (Fin (n + 1)) K) (hk : k ≤ n)
     (ha : A 0 0 ≠ 0) :
@@ -767,7 +897,9 @@ theorem leadingPrincipal_succ_det {n k : ℕ}
   rw [hb, Matrix.det_fin_one, leadingBlock_entry, leadingPrincipal_schur]
   rw [Matrix.invOf_eq_nonsing_inv]
 
-/-- 教材中的主子式条件与递归无换行主元条件等价。-/
+/-- 教材中的主子式条件与递归无换行主元条件等价。
+@isnad1 id=iff.0h3v.s4.7dbd708c4507 from=translated src=- shape=7b0d2ff4 vocab=4a92da78
+-/
 theorem noPivot_iff_leadingPrincipalNonzero {n : ℕ}
     (A : Matrix (Fin n) (Fin n) K) :
     NoPivotCondition n A ↔ LeadingPrincipalNonzero A := by
@@ -805,13 +937,17 @@ theorem noPivot_iff_leadingPrincipalNonzero {n : ℕ}
         exact (mul_ne_zero_iff.mp hbig).2
 
 /-- 教材版无换行 LU 存在定理：若所有非空顺序主子式非零，
-则存在单位下三角 `L` 与对角非零的上三角 `U`，使 `A = LU`。-/
+则存在单位下三角 `L` 与对角非零的上三角 `U`，使 `A = LU`。
+@isnad1 id=nonempty.1h3v.s4.c5b8e1179508 from=translated src=- shape=894b9a91 vocab=aa7d0123
+-/
 theorem exists_normalizedLU_of_leadingPrincipalNonzero {n : ℕ}
     (A : Matrix (Fin n) (Fin n) K) (hA : LeadingPrincipalNonzero A) :
     Nonempty (NormalizedLUFactorization A) :=
   exists_normalizedLU_of_noPivot n A ((noPivot_iff_leadingPrincipalNonzero A).mpr hA)
 
-/-- 若一个有限和在下标 `k` 以后恒为零，则可把求和域截断为 `Fin k`。-/
+/-- 若一个有限和在下标 `k` 以后恒为零，则可把求和域截断为 `Fin k`。
+@isnad1 id=eq.2h4v.s6.cfbbb9ded4f6 from=translated src=- shape=e5fbaa49 vocab=ef994dda
+-/
 theorem sum_fin_eq_sum_castLE {n k : ℕ} (hk : k ≤ n) (f : Fin n → K)
     (hz : ∀ x : Fin n, k ≤ x.val → f x = 0) :
     ∑ x : Fin n, f x = ∑ x : Fin k, f (Fin.castLE hk x) := by
@@ -837,7 +973,9 @@ theorem sum_fin_eq_sum_castLE {n k : ℕ} (hk : k ≤ n) (f : Fin n → K)
 /-- 三角矩阵乘积的左上顺序主子块等于两个对应主子块的乘积。
 
 证明的关键是：对主子块中的一行，求和下标超出该主子块时，
-下三角因子的对应元素恒为零。-/
+下三角因子的对应元素恒为零。
+@isnad1 id=eq.2h5v.s7.0d98ae976f14 from=translated src=- shape=cf8394f1 vocab=d44ca86a
+-/
 theorem leadingPrincipal_mul_of_triangular {n k : ℕ}
     (L U : Matrix (Fin n) (Fin n) K) (hk : k ≤ n)
     (hL : L.IsLowerTriangular) :
@@ -853,7 +991,9 @@ theorem leadingPrincipal_mul_of_triangular {n k : ℕ}
     omega
   rw [hzero, zero_mul]
 
-/-- 下三角矩阵的顺序主子矩阵仍为下三角矩阵。-/
+/-- 下三角矩阵的顺序主子矩阵仍为下三角矩阵。
+@isnad1 id=islowert.2h4v.s6.8e67fd3b883e from=translated src=- shape=d298084a vocab=aadc5ccf
+-/
 theorem leadingPrincipal_isLowerTriangular {n k : ℕ}
     (L : Matrix (Fin n) (Fin n) K) (hk : k ≤ n) (hL : L.IsLowerTriangular) :
     (leadingPrincipal L hk).IsLowerTriangular := by
@@ -863,7 +1003,9 @@ theorem leadingPrincipal_isLowerTriangular {n k : ℕ}
   change Fin.castLE hk i < Fin.castLE hk j
   exact hij
 
-/-- 上三角矩阵的顺序主子矩阵仍为上三角矩阵。-/
+/-- 上三角矩阵的顺序主子矩阵仍为上三角矩阵。
+@isnad1 id=isuppert.2h4v.s6.061206601355 from=translated src=- shape=d298084a vocab=b60ed895
+-/
 theorem leadingPrincipal_isUpperTriangular {n k : ℕ}
     (U : Matrix (Fin n) (Fin n) K) (hk : k ≤ n) (hU : U.IsUpperTriangular) :
     (leadingPrincipal U hk).IsUpperTriangular := by
@@ -873,7 +1015,9 @@ theorem leadingPrincipal_isUpperTriangular {n k : ℕ}
   change Fin.castLE hk j < Fin.castLE hk i
   exact hij
 
-/-- 任何单位下三角规范 LU 分解都迫使所有非空顺序主子式非零。-/
+/-- 任何单位下三角规范 LU 分解都迫使所有非空顺序主子式非零。
+@isnad1 id=leadingp.0h4v.s4.b9bbb533026b from=translated src=- shape=5f4831eb vocab=e206f0ab
+-/
 theorem NormalizedLUFactorization.leadingPrincipalNonzero {n : ℕ}
     {A : Matrix (Fin n) (Fin n) K} (fac : NormalizedLUFactorization A) :
     LeadingPrincipalNonzero A := by
@@ -889,7 +1033,9 @@ theorem NormalizedLUFactorization.leadingPrincipalNonzero {n : ℕ}
   exact Finset.prod_ne_zero_iff.mpr (fun i _ => fac.upper_diagonal_ne_zero _)
 
 /-- 教材中的 LU 存在性判据：方阵存在单位下三角规范 LU 分解，
-当且仅当它的每个非空顺序主子式都非零。-/
+当且仅当它的每个非空顺序主子式都非零。
+@isnad1 id=iff.0h3v.s4.207d0cca2df7 from=translated src=- shape=33d48140 vocab=aa7d0123
+-/
 theorem leadingPrincipalNonzero_iff_exists_normalizedLU {n : ℕ}
     (A : Matrix (Fin n) (Fin n) K) :
     LeadingPrincipalNonzero A ↔ Nonempty (NormalizedLUFactorization A) := by
@@ -898,7 +1044,9 @@ theorem leadingPrincipalNonzero_iff_exists_normalizedLU {n : ℕ}
   · rintro ⟨fac⟩
     exact fac.leadingPrincipalNonzero
 
-/-- 单位下三角规范的 LU 分解在两个矩阵因子的层面唯一。-/
+/-- 单位下三角规范的 LU 分解在两个矩阵因子的层面唯一。
+@isnad1 id=and.0h5v.s6.016e685dbcb4 from=translated src=- shape=438c1555 vocab=1f7e1bf8
+-/
 theorem normalizedLU_unique {n : ℕ} {A : Matrix (Fin n) (Fin n) K}
     (fac₁ fac₂ : NormalizedLUFactorization A) :
     fac₁.lower = fac₂.lower ∧ fac₁.upper = fac₂.upper :=
@@ -934,33 +1082,48 @@ def blockLDU (A : Matrix m m K) (B : Matrix m n K)
   upper := Matrix.fromBlocks 1 (⅟A * B) 0 1
   eq_mul := Matrix.fromBlocks_eq_of_invertible₁₁ A B C D
 
+/--
+@isnad1 id=eq.0h7v.s8.be88e057bcf9 from=translated src=- shape=f87044e1 vocab=ec034f8d
+-/
 @[simp] theorem blockLDU_lower (A : Matrix m m K) (B : Matrix m n K)
     (C : Matrix n m K) (D : Matrix n n K) [Invertible A] :
     (blockLDU A B C D).lower = Matrix.fromBlocks 1 0 (C * ⅟A) 1 := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.3cb8352e8273 from=translated src=- shape=c2dfe943 vocab=dba77117
+-/
 @[simp] theorem blockLDU_diagonal (A : Matrix m m K) (B : Matrix m n K)
     (C : Matrix n m K) (D : Matrix n n K) [Invertible A] :
     (blockLDU A B C D).diagonal =
       Matrix.fromBlocks A 0 0 (D - C * ⅟A * B) := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.95f09eeb6ff3 from=translated src=- shape=4b20022c vocab=31a6299c
+-/
 @[simp] theorem blockLDU_upper (A : Matrix m m K) (B : Matrix m n K)
     (C : Matrix n m K) (D : Matrix n n K) [Invertible A] :
     (blockLDU A B C D).upper = Matrix.fromBlocks 1 (⅟A * B) 0 1 := rfl
 
-/-- Schur 补构造的第一个因子确为块下三角矩阵。-/
+/-- Schur 补构造的第一个因子确为块下三角矩阵。
+@isnad1 id=isblockl.0h7v.s7.d94c8bb9b892 from=translated src=- shape=8248df15 vocab=0051a060
+-/
 theorem blockLDU_isBlockLowerTriangular (A : Matrix m m K) (B : Matrix m n K)
     (C : Matrix n m K) (D : Matrix n n K) [Invertible A] :
     IsBlockLowerTriangular (blockLDU A B C D).lower := by
   intro i j
   rfl
 
-/-- Schur 补构造的中间因子确为块对角矩阵。-/
+/-- Schur 补构造的中间因子确为块对角矩阵。
+@isnad1 id=isblockd.0h7v.s7.392937e3a67a from=translated src=- shape=8248df15 vocab=59aa18ef
+-/
 theorem blockLDU_isBlockDiagonal (A : Matrix m m K) (B : Matrix m n K)
     (C : Matrix n m K) (D : Matrix n n K) [Invertible A] :
     IsBlockDiagonal (blockLDU A B C D).diagonal := by
   constructor <;> intro i j <;> rfl
 
-/-- Schur 补构造的第三个因子确为块上三角矩阵。-/
+/-- Schur 补构造的第三个因子确为块上三角矩阵。
+@isnad1 id=isblocku.0h7v.s7.bb321b2686dd from=translated src=- shape=8248df15 vocab=44220ca9
+-/
 theorem blockLDU_isBlockUpperTriangular (A : Matrix m m K) (B : Matrix m n K)
     (C : Matrix n m K) (D : Matrix n n K) [Invertible A] :
     IsBlockUpperTriangular (blockLDU A B C D).upper := by
@@ -982,6 +1145,9 @@ def blockLU (A : Matrix m m K) (B : Matrix m n K)
           ((blockLDU A B C D).diagonal * (blockLDU A B C D).upper) :=
         Matrix.mul_assoc _ _ _
 
+/--
+@isnad1 id=eq.0h7v.s8.5f5d75ae856d from=translated src=- shape=f87044e1 vocab=f8cf6372
+-/
 @[simp] theorem blockLU_lower (A : Matrix m m K) (B : Matrix m n K)
     (C : Matrix n m K) (D : Matrix n n K) [Invertible A] :
     (blockLU A B C D).lower = Matrix.fromBlocks 1 0 (C * ⅟A) 1 := rfl

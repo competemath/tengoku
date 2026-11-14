@@ -25,7 +25,9 @@ variable {X : Type*} [TopologicalSpace X]
 
 /-- 对非空字母词，第二层 block chain 的终点是最后一个 block 最后一条细边的 combined frame。
 
-> **Entry**: topology.fundamental-group.van-kampen-kernel-word-/
+> **Entry**: topology.fundamental-group.van-kampen-kernel-word
+@isnad1 id=other.6h7v.s9.0a0b3c1ef468 from=translated src=- shape=4873fbec vocab=6fe1d9a6
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundaryLetterBlockChain_end
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))
@@ -60,7 +62,9 @@ theorem PathConcatAlignedSquareSubdivision.leftBoundaryLetterBlockChain_end
 /-- 非空左边界词的全局起点 frame 与终点 frame 相等。证明把公共的 letter-side 基点 potential 与
 沿同伦方形其余三边传播的 cell 余规范分开比较。
 
-> **Entry**: topology.fundamental-group.van-kampen-kernel-word-/
+> **Entry**: topology.fundamental-group.van-kampen-kernel-word
+@isnad1 id=other.6h7v.s9.29e790a576c0 from=translated src=- shape=883ade84 vocab=21bdb02e
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundaryGlobalCombinedFrames_eq
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))
@@ -233,7 +237,9 @@ theorem PathConcatAlignedSquareSubdivision.leftBoundaryGlobalCombinedFrames_eq
 
 /-- 若非空 Pushout 字母词对应的环境拼接环路零伦，则该字母词已经是 Pushout 的单位元。
 
-> **Entry**: topology.fundamental-group.van-kampen-kernel-word-/
+> **Entry**: topology.fundamental-group.van-kampen-kernel-word
+@isnad1 id=eq.6h7v.s8.c621bb2a82ef from=translated src=- shape=0be83648 vocab=19afaf67
+-/
 theorem PathConcatAlignedSquareSubdivision.letterWord_eq_one_of_homotopy_of_nonempty
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))
@@ -271,7 +277,9 @@ theorem PathConcatAlignedSquareSubdivision.letterWord_eq_one_of_homotopy_of_none
 
 /-- 两端使用常 connector 不改变环路的基本群类；这是最终规范同态计算使用的桥。
 
-> **Entry**: topology.fundamental-group.van-kampen-kernel-word-/
+> **Entry**: topology.fundamental-group.van-kampen-kernel-word
+@isnad1 id=eq.0h3v.s6.260ea29a6e7b from=translated src=- shape=e7634bde vocab=6dbed66f
+-/
 @[simp] theorem fundamentalGroup_fromPath_correctedLoop_refl
     {Y : Type*} [TopologicalSpace Y] {y : Y} (p : Path y y) :
     FundamentalGroup.fromPath

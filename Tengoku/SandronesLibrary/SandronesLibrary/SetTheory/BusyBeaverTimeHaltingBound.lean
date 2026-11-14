@@ -37,7 +37,9 @@ private theorem runSteps_halted (machine : BinaryMachine n) (steps : ℕ) (tape 
   | zero => rfl
   | succ steps ih => simpa [runSteps, executeStep] using ih
 
-/-- 机器在某时刻已经停机，则在任意更晚时刻仍处于同一停机状态。-/
+/-- 机器在某时刻已经停机，则在任意更晚时刻仍处于同一停机状态。
+@isnad1 id=monotone.0h2v.s4.3382c35f5f93 from=translated src=- shape=abbd4ad6 vocab=5e467308
+-/
 theorem haltedAt_mono (machine : BinaryMachine (n + 1)) :
     Monotone (HaltedAt machine) := by
   intro first later hle hhalted
@@ -58,7 +60,9 @@ def IsUniformHaltingBound (n bound : ℕ) : Prop :=
 > **Entry**: settheory.googology.busy-beaver-time-halting-bound
 > **一句话**: 固定状态数的经典最大首次停机时间是统一界，最终停机等价于在该有限时刻已经停机。
 > **依赖**: `settheory.googology.busy-beaver-time`
-> **mathlib**: 无（复用本库确定执行与最大时间规格）-/
+> **mathlib**: 无（复用本库确定执行与最大时间规格）
+@isnad1 id=isunifor.0h1v.s2.5f06679664ff from=translated src=- shape=9d44d080 vocab=b70d6e4f
+-/
 theorem classicalBusyBeaverTime_is_uniform_bound (n : ℕ) :
     IsUniformHaltingBound n (classicalBusyBeaverTimeValue n) := by
   intro machine
@@ -76,19 +80,25 @@ theorem classicalBusyBeaverTime_is_uniform_bound (n : ℕ) :
 def haltsByFuel (fuel : ℕ) (machine : BinaryMachine (n + 1)) : Bool :=
   (haltedTape? (runSteps machine fuel (blankStart machine))).isSome
 
-/-- 布尔检查返回真，恰好表示机器在该燃料界时已经停机。-/
+/-- 布尔检查返回真，恰好表示机器在该燃料界时已经停机。
+@isnad1 id=iff.0h3v.s4.3fad3c91fa48 from=translated src=- shape=cb8ec3c2 vocab=54c9d877
+-/
 theorem haltsByFuel_eq_true_iff (fuel : ℕ) (machine : BinaryMachine (n + 1)) :
     haltsByFuel fuel machine = true ↔ HaltedAt machine fuel := by
   rfl
 
-/-- 若使用者给出统一停机界，有限布尔检查便精确判定该固定状态数机器是否最终停机。-/
+/-- 若使用者给出统一停机界，有限布尔检查便精确判定该固定状态数机器是否最终停机。
+@isnad1 id=iff.1h3v.s5.315dd8d91012 from=translated src=- shape=71f4b4a8 vocab=48e71259
+-/
 theorem haltsByFuel_decides_of_uniform_bound {n bound : ℕ}
     (hbound : IsUniformHaltingBound n bound)
     (machine : BinaryMachine (n + 1)) :
     haltsByFuel bound machine = true ↔ EventuallyHalts machine := by
   rw [haltsByFuel_eq_true_iff, ← hbound machine]
 
-/-- 代入经典最大时间后，有限检查在命题上等价于最终停机。-/
+/-- 代入经典最大时间后，有限检查在命题上等价于最终停机。
+@isnad1 id=iff.0h2v.s4.2478bdc7a590 from=translated src=- shape=64d1e80d vocab=c02f4b7e
+-/
 theorem haltsBy_classical_time_iff (machine : BinaryMachine (n + 1)) :
     haltsByFuel (classicalBusyBeaverTimeValue n) machine = true ↔
       EventuallyHalts machine := by

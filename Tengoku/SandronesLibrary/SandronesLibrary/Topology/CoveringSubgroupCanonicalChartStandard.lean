@@ -44,6 +44,9 @@ variable {x0} (H : Subgroup (FundamentalGroup X x0))
 
 namespace CoveringSubgroupCanonicalChart
 
+/--
+@isnad1 id=eq.0h8v.s7.e35b315c9850 from=translated src=- shape=381960f0 vocab=751b6ebb
+-/
 theorem quotient_map_trans {A B : Type*} [TopologicalSpace A] [TopologicalSpace B]
     {a b c : A} (p : Path.Homotopic.Quotient a b)
     (q : Path.Homotopic.Quotient b c) (f : C(A, B)) :
@@ -54,6 +57,9 @@ theorem quotient_map_trans {A B : Type*} [TopologicalSpace A] [TopologicalSpace 
   intro q
   exact congrArg Quotient.mk'' (Path.map_trans p q f.continuous)
 
+/--
+@isnad1 id=eq.0h6v.s6.d5e9376e1f5a from=translated src=- shape=d0b3ca6c vocab=0a602a38
+-/
 theorem quotient_map_symm {A B : Type*} [TopologicalSpace A] [TopologicalSpace B]
     {a b : A} (p : Path.Homotopic.Quotient a b) (f : C(A, B)) :
     p.symm.map f = (p.map f).symm := by
@@ -61,6 +67,9 @@ theorem quotient_map_symm {A B : Type*} [TopologicalSpace A] [TopologicalSpace B
   intro p
   exact congrArg Quotient.mk'' (Path.map_symm p f.continuous).symm
 
+/--
+@isnad1 id=eq.0h6v.s5.52fa2b7a3ad4 from=translated src=- shape=76b4010e vocab=50fe4900
+-/
 theorem quotient_symm_trans {A : Type*} [TopologicalSpace A]
     {a b c : A} (p : Path.Homotopic.Quotient a b)
     (q : Path.Homotopic.Quotient b c) :
@@ -75,12 +84,18 @@ theorem quotient_symm_trans {A : Type*} [TopologicalSpace A]
 def FixedRelated (y : X) (a b : Path.Homotopic.Quotient x0 y) : Prop :=
   ∃ h : H, h.1.trans a = b
 
+/--
+@isnad1 id=fixedrel.0h5v.s5.24332fd2ca9d from=translated src=- shape=39bc510d vocab=90e7ceb6
+-/
 theorem fixedRelated_refl (y : X) (a : Path.Homotopic.Quotient x0 y) :
     FixedRelated H y a a := by
   refine ⟨1, ?_⟩
   change (Path.Homotopic.Quotient.refl x0).trans a = a
   exact Path.Homotopic.Quotient.refl_trans a
 
+/--
+@isnad1 id=fixedrel.1h6v.s5.40e6a25a6b59 from=translated src=- shape=8668549f vocab=90e7ceb6
+-/
 theorem fixedRelated_symm (y : X) {a b : Path.Homotopic.Quotient x0 y} :
     FixedRelated H y a b → FixedRelated H y b a := by
   rintro ⟨h, rfl⟩
@@ -90,6 +105,9 @@ theorem fixedRelated_symm (y : X) {a b : Path.Homotopic.Quotient x0 y} :
     Path.Homotopic.Quotient.symm_trans,
     Path.Homotopic.Quotient.refl_trans]
 
+/--
+@isnad1 id=fixedrel.2h7v.s6.b15882711bc8 from=translated src=- shape=0c370f26 vocab=90e7ceb6
+-/
 theorem fixedRelated_trans (y : X) {a b c : Path.Homotopic.Quotient x0 y} :
     FixedRelated H y a b → FixedRelated H y b c → FixedRelated H y a c := by
   rintro ⟨h, rfl⟩ ⟨k, rfl⟩
@@ -139,7 +157,9 @@ noncomputable def localSegmentClass {a b : U.carrier} (delta : Path a b) :
     (Path.Homotopic.Quotient.mk delta)
     (⟨Subtype.val, continuous_subtype_val⟩ : C(U.carrier, X))
 
-/-- Chosen center paths are coherent with every path lying in the admissible neighborhood.-/
+/-- Chosen center paths are coherent with every path lying in the admissible neighborhood.
+@isnad1 id=eq.0h6v.s7.c1b1a0cbac4f from=translated src=- shape=c38a09dc vocab=dcc1baa0
+-/
 theorem localPathClass_trans_localSegmentClass {a b : U.carrier} (delta : Path a b) :
     (U.localPathClass a).trans (U.localSegmentClass delta) = U.localPathClass b := by
   let iUX : C(U.carrier, X) := ⟨Subtype.val, continuous_subtype_val⟩
@@ -177,6 +197,9 @@ def append {z : X} (a : CoveringSubgroupBasedPath x0)
   endpoint := z
   path := a.path.trans delta
 
+/--
+@isnad1 id=related.1h7v.s6.5d8a34aa81e0 from=translated src=- shape=71feaa0a vocab=bd584a07
+-/
 theorem related_append {z : X} {a b : CoveringSubgroupBasedPath x0}
     (hab : CoveringSubgroupBasedPath.Related H a b)
     (delta : Path.Homotopic.Quotient a.endpoint z) :
@@ -229,6 +252,9 @@ noncomputable def chartToRepresentative [PathConnectedSpace X] {y : X}
       (y, Quotient.mk _
         (Path.Homotopic.Quotient.mk (PathConnectedSpace.somePath x0 y)))
 
+/--
+@isnad1 id=eq.0h8v.s7.a7bfe39e90a4 from=translated src=- shape=976579fc vocab=c91f0287
+-/
 theorem chartToRepresentative_prepend [PathConnectedSpace X] {y z : X}
     (U : SmallNeighborhood y) (h : H) (alpha : Path.Homotopic.Quotient x0 z) :
     chartToRepresentative H U z (h.1.trans alpha) =
@@ -262,6 +288,9 @@ noncomputable def chartToRaw [PathConnectedSpace X] {y : X} (U : SmallNeighborho
   simpa [CoveringSubgroupBasedPath.prepend] using
     (chartToRepresentative_prepend H U h a.path).symm
 
+/--
+@isnad1 id=eq.1h6v.s6.5dc47f4e188e from=translated src=- shape=6ea5d7e1 vocab=00101cba
+-/
 theorem chartToRaw_fst_of_mem [PathConnectedSpace X] {y : X} (U : SmallNeighborhood y)
     (q : CoveringSubgroupPathClass x0 H)
     (hq : CoveringSubgroupPathClass.projection H q ∈ U.carrier) :
@@ -282,12 +311,18 @@ noncomputable def chartTo [PathConnectedSpace X] {y : X} (U : SmallNeighborhood 
   rw [chartToRaw_fst_of_mem H U q.1 q.2]
   exact q.2
 
+/--
+@isnad1 id=eq.0h6v.s6.f644016fe64f from=translated src=- shape=b27d4b95 vocab=07a67d9a
+-/
 theorem chartTo_fst [PathConnectedSpace X] {y : X} (U : SmallNeighborhood y)
     (q : ProjectionPreimage H U.carrier) :
     (chartTo H U q).1.1 = CoveringSubgroupPathClass.projection H q.1 := by
   unfold chartTo
   exact chartToRaw_fst_of_mem H U q.1 q.2
 
+/--
+@isnad1 id=eq.0h7v.s7.3781c5d09254 from=translated src=- shape=cea2b9c7 vocab=946b4dd7
+-/
 theorem chartInv_mk {y : X} (U : SmallNeighborhood y) (z : U.carrier)
     (alpha : Path.Homotopic.Quotient x0 y) :
     chartInv H U (z, Quotient.mk _ alpha) =
@@ -296,12 +331,18 @@ theorem chartInv_mk {y : X} (U : SmallNeighborhood y) (z : U.carrier)
           CoveringSubgroupBasedPath x0), z.2⟩ := by
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.3ea91888cd2d from=translated src=- shape=e5b4e729 vocab=173fcbe5
+-/
 theorem chartToRaw_mk [PathConnectedSpace X] {y : X} (U : SmallNeighborhood y)
     (a : CoveringSubgroupBasedPath x0) :
     chartToRaw H U (Quotient.mk _ a) =
       chartToRepresentative H U a.endpoint a.path := by
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s8.1aec8d010edd from=translated src=- shape=9f6c6fbe vocab=336ae06a
+-/
 theorem chartTo_mk [PathConnectedSpace X] {y : X} (U : SmallNeighborhood y)
     (a : CoveringSubgroupBasedPath x0)
     (ha : CoveringSubgroupPathClass.projection H (Quotient.mk _ a) ∈ U.carrier) :
@@ -319,6 +360,9 @@ theorem chartTo_mk [PathConnectedSpace X] {y : X} (U : SmallNeighborhood y)
     unfold chartToRepresentative
     rw [dite_eq_left ha']
 
+/--
+@isnad1 id=eq.0h7v.s7.561db5ea4527 from=translated src=- shape=9aa0526f vocab=90d9d598
+-/
 theorem chartTo_chartInv_mk [PathConnectedSpace X] {y : X}
     (U : SmallNeighborhood y) (z : U.carrier)
     (alpha : Path.Homotopic.Quotient x0 y) :
@@ -352,6 +396,9 @@ theorem chartTo_chartInv_mk [PathConnectedSpace X] {y : X}
       Path.Homotopic.Quotient.trans_symm,
       Path.Homotopic.Quotient.trans_refl]
 
+/--
+@isnad1 id=eq.0h6v.s6.dcb83471f04b from=translated src=- shape=7571bb42 vocab=94ce360d
+-/
 theorem chartTo_chartInv [PathConnectedSpace X] {y : X} (U : SmallNeighborhood y)
     (q : U.carrier × FixedPathClass H y) :
     chartTo H U (chartInv H U q) = q := by
@@ -360,6 +407,9 @@ theorem chartTo_chartInv [PathConnectedSpace X] {y : X} (U : SmallNeighborhood y
   intro alpha
   exact chartTo_chartInv_mk H U z alpha
 
+/--
+@isnad1 id=eq.0h6v.s6.d7c863118ac7 from=translated src=- shape=92d8e6c5 vocab=06d9d71f
+-/
 theorem chartInv_chartTo [PathConnectedSpace X] {y : X} (U : SmallNeighborhood y)
     (q : ProjectionPreimage H U.carrier) :
     chartInv H U (chartTo H U q) = q := by
@@ -393,6 +443,9 @@ noncomputable def chartEquiv [PathConnectedSpace X] {y : X} (U : SmallNeighborho
   left_inv := chartInv_chartTo H U
   right_inv := chartTo_chartInv H U
 
+/--
+@isnad1 id=eq.0h6v.s6.5a69f96f2397 from=translated src=- shape=46955c77 vocab=99424c34
+-/
 theorem projection_chartInv {y : X} (U : SmallNeighborhood y)
     (q : U.carrier × FixedPathClass H y) :
     CoveringSubgroupPathClass.projection H (chartInv H U q).1 = q.1.1 := by
@@ -423,6 +476,9 @@ noncomputable def chartTransition [PathConnectedSpace X] {y z : X}
   let c := chartTo H V ⟨total.1, hV⟩
   exact (c.1, WithTopology.toTopology ⊥ c.2)
 
+/--
+@isnad1 id=eq.0h8v.s7.ff751c8a40cc from=translated src=- shape=e9f12446 vocab=91dc551e
+-/
 theorem chartTransition_fst [PathConnectedSpace X] {y z : X}
     (U : SmallNeighborhood y) (V : SmallNeighborhood z) (q : ChartOverlap H U V) :
     (chartTransition H U V q).1 = (⟨q.1.1, q.1.2.2⟩ : V.carrier) := by
@@ -431,6 +487,9 @@ theorem chartTransition_fst [PathConnectedSpace X] {y z : X}
   dsimp only
   rw [chartTo_fst, projection_chartInv]
 
+/--
+@isnad1 id=continuo.0h7v.s8.d56f1e675216 from=translated src=- shape=34f97387 vocab=6e390d55
+-/
 theorem continuous_chartTransition_fst [PathConnectedSpace X] {y z : X}
     (U : SmallNeighborhood y) (V : SmallNeighborhood z) :
     Continuous (fun q : ChartOverlap H U V => (chartTransition H U V q).1) := by
@@ -447,6 +506,9 @@ noncomputable def chartTransitionFiber [PathConnectedSpace X] {y z : X}
     ChartOverlap H U V → WithDiscreteTopology (FixedPathClass H z) :=
   fun q => (chartTransition H U V q).2
 
+/--
+@isnad1 id=eq.0h9v.s9.63367ee294e2 from=translated src=- shape=531881ed vocab=91adc49e
+-/
 theorem chartTransitionFiber_mk [PathConnectedSpace X] {y z : X}
     (U : SmallNeighborhood y) (V : SmallNeighborhood z)
     (a : BaseOverlap U V) (alpha : Path.Homotopic.Quotient x0 y) :
@@ -462,6 +524,9 @@ theorem chartTransitionFiber_mk [PathConnectedSpace X] {y z : X}
   unfold chartToRepresentative
   rw [dite_eq_left a.2.2]
 
+/--
+@isnad1 id=eq.1h10v.s8.d9c397719391 from=translated src=- shape=dfe254f5 vocab=91f8af24
+-/
 theorem chartTransitionFiber_mk_eq_of_joined [PathConnectedSpace X]
     {y z : X} (U : SmallNeighborhood y) (V : SmallNeighborhood z)
     {a b : BaseOverlap U V} (hab : Joined a b)
@@ -531,6 +596,9 @@ theorem chartTransitionFiber_mk_eq_of_joined [PathConnectedSpace X]
   exact congrArg
     (fun q : FixedPathClass H z => WithTopology.toTopology ⊥ q) hquot
 
+/--
+@isnad1 id=eq.1h10v.s7.e341e2a2622d from=translated src=- shape=53477780 vocab=dfb88aeb
+-/
 theorem chartTransitionFiber_eq_of_joined [PathConnectedSpace X]
     {y z : X} (U : SmallNeighborhood y) (V : SmallNeighborhood z)
     {a b : BaseOverlap U V} (hab : Joined a b)
@@ -574,6 +642,9 @@ noncomputable def chartInvDiscrete {y : X} (U : SmallNeighborhood y) :
       ProjectionPreimage H U.carrier := fun q =>
   chartInv H U (q.1, WithTopology.ofTopology q.2)
 
+/--
+@isnad1 id=eq.0h6v.s6.ae28b7922835 from=translated src=- shape=7594cb86 vocab=e9ff55cf
+-/
 theorem chartToDiscrete_chartInvDiscrete [PathConnectedSpace X] {y : X}
     (U : SmallNeighborhood y)
     (q : U.carrier × WithDiscreteTopology (FixedPathClass H y)) :
@@ -582,6 +653,9 @@ theorem chartToDiscrete_chartInvDiscrete [PathConnectedSpace X] {y : X}
   unfold chartToDiscrete chartInvDiscrete
   rw [chartTo_chartInv]
 
+/--
+@isnad1 id=eq.0h6v.s6.05f3f347df9a from=translated src=- shape=92d8e6c5 vocab=ef274aca
+-/
 theorem chartInvDiscrete_chartToDiscrete [PathConnectedSpace X] {y : X}
     (U : SmallNeighborhood y) (q : ProjectionPreimage H U.carrier) :
     chartInvDiscrete H U (chartToDiscrete H U q) = q := by
@@ -598,6 +672,9 @@ noncomputable def chartEquivDiscrete [PathConnectedSpace X] {y : X}
   left_inv := chartInvDiscrete_chartToDiscrete H U
   right_inv := chartToDiscrete_chartInvDiscrete H U
 
+/--
+@isnad1 id=continuo.0h5v.s8.b3b3d88d179e from=translated src=- shape=5a7e9459 vocab=8c1833a2
+-/
 theorem continuous_chartToDiscrete [PathConnectedSpace X] {y : X}
     (U : SmallNeighborhood y) :
     @Continuous
@@ -630,7 +707,9 @@ theorem continuous_chartToDiscrete [PathConnectedSpace X] {y : X}
     · intro hqw
       exact ⟨q.2, hqw⟩
 
-/-- Semilocal simple connectivity and local path connectivity supply an admissible chart.-/
+/-- Semilocal simple connectivity and local path connectivity supply an admissible chart.
+@isnad1 id=nonempty.0h2v.s4.36c23aa675ad from=translated src=- shape=4a5719de vocab=71c231be
+-/
 theorem exists_smallNeighborhood [SemilocallySimplyConnectedSpace X]
     [LocallyPathConnectedSpace X] (y : X) : Nonempty (SmallNeighborhood y) := by
   obtain ⟨U, hUopen, hyU, hloops⟩ :=
@@ -658,7 +737,9 @@ theorem exists_smallNeighborhood [SemilocallySimplyConnectedSpace X]
   rw [← hcomp, fundamentalGroup_map_comp]
   exact hqU
 
-/-- Core overlap mechanism: the discrete fiber coordinate is locally constant.-/
+/-- Core overlap mechanism: the discrete fiber coordinate is locally constant.
+@isnad1 id=islocall.0h7v.s8.0c46a49fcd66 from=translated src=- shape=0496d93a vocab=4e038a07
+-/
 theorem isLocallyConstant_chartTransitionFiber
     [PathConnectedSpace X] [LocallyPathConnectedSpace X]
     {y z : X} (U : SmallNeighborhood y) (V : SmallNeighborhood z) :
@@ -676,13 +757,18 @@ theorem isLocallyConstant_chartTransitionFiber
     subst rfiber
     exact (chartTransitionFiber_eq_of_joined H U V hj q.2).symm
 
-/-- Transition functions between canonical product charts are continuous.-/
+/-- Transition functions between canonical product charts are continuous.
+@isnad1 id=continuo.0h7v.s8.e081e89bbe14 from=translated src=- shape=7edc0a35 vocab=4a75cd14
+-/
 theorem continuous_chartTransition [PathConnectedSpace X] [LocallyPathConnectedSpace X]
     {y z : X} (U : SmallNeighborhood y) (V : SmallNeighborhood z) :
     Continuous (chartTransition H U V) := by
   exact (continuous_chartTransition_fst H U V).prodMk
     (isLocallyConstant_chartTransitionFiber H U V).continuous
 
+/--
+@isnad1 id=continuo.0h5v.s8.e2cf652f0e28 from=translated src=- shape=86ac8c92 vocab=34e04a5b
+-/
 theorem continuous_chartInvDiscrete [PathConnectedSpace X] [LocallyPathConnectedSpace X]
     {y : X} (U : SmallNeighborhood y) :
     @Continuous
@@ -739,7 +825,9 @@ theorem continuous_chartInvDiscrete [PathConnectedSpace X] [LocallyPathConnected
       ⟨(chartInvDiscrete H U oq.1).1, ?_⟩ ∈ w
     simpa [t, toOverlap, chartTransition, chartInvDiscrete, chartToDiscrete] using hoqw
 
-/-- Each canonical set chart becomes a homeomorphism for the atlas-generated topology.-/
+/-- Each canonical set chart becomes a homeomorphism for the atlas-generated topology.
+@isnad1 id=nonempty.0h5v.s8.e9d4f4e6487e from=translated src=- shape=953ab7e0 vocab=74b0d822
+-/
 theorem chart_homeomorph [PathConnectedSpace X] [LocallyPathConnectedSpace X]
     {y : X} (U : SmallNeighborhood y) :
     Nonempty
@@ -757,6 +845,9 @@ theorem chart_homeomorph [PathConnectedSpace X] [LocallyPathConnectedSpace X]
     continuous_toFun := continuous_chartToDiscrete H U
     continuous_invFun := continuous_chartInvDiscrete H U }⟩
 
+/--
+@isnad1 id=isopen.0h5v.s5.995cfebdf55e from=translated src=- shape=d429b22d vocab=88e7ec6c
+-/
 theorem isOpen_projection_preimage_smallNeighborhood [PathConnectedSpace X]
     {y : X} (U : SmallNeighborhood y) :
     @IsOpen
@@ -775,7 +866,9 @@ theorem isOpen_projection_preimage_smallNeighborhood [PathConnectedSpace X]
 
 /-- 子群道路类商在 canonical chart topology 下的终点投影是覆盖映射。
 
-> **Entry**: topology.covering.subgroup-canonical-chart-standard-/
+> **Entry**: topology.covering.subgroup-canonical-chart-standard
+@isnad1 id=iscoveri.0h3v.s5.2258d07f1413 from=translated src=- shape=04339b9d vocab=e282fbcb
+-/
 theorem coveringSubgroupProjection_isCoveringMap [SemilocallySimplyConnectedSpace X]
     [PathConnectedSpace X] [LocallyPathConnectedSpace X] :
     @IsCoveringMap

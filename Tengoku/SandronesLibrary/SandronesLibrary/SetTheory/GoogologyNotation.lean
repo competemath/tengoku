@@ -72,7 +72,9 @@ def ConwayShortChain.eval : ConwayShortChain → ℕ
 > **Entry**: settheory.googology.conway-chain
 > **一句话**: Conway 链式箭头先由有限正整数链组成；本条只对一项与两项链给出总求值。
 > **依赖**: 无
-> **mathlib**: 无（本库显式语法与受限求值）-/
+> **mathlib**: 无（本库显式语法与受限求值）
+@isnad1 id=and.0h2v.s4.7620eb9b9f5d from=translated src=- shape=ef9beafb vocab=4a7af76e
+-/
 theorem conwayShortChain_equations (a b : ℕ) :
     ConwayShortChain.eval (.singleton a) = a ∧
       ConwayShortChain.eval (.pair a b) = a ^ b := by
@@ -130,7 +132,9 @@ def IsTREEValue (colors value : ℕ) : Prop :=
 > **Entry**: settheory.googology.tree-function
 > **一句话**: TREE 值是满足逐项大小限制且不含向后拓扑嵌入的有限标号树序列的最大长度。
 > **依赖**: 无
-> **mathlib**: 无（本库显式有限树、嵌入与坏序列定义）-/
+> **mathlib**: 无（本库显式有限树、嵌入与坏序列定义）
+@isnad1 id=iff.0h2v.s4.1b5e6f05db02 from=translated src=- shape=039a4e2f vocab=18d671c8
+-/
 theorem treeValue_iff (colors value : ℕ) :
     IsTREEValue colors value ↔
       IsTREEAdmissible colors value ∧

@@ -22,14 +22,18 @@ namespace SandronesLibrary.Probability
 
 open MeasureTheory
 
-/-- 可测随机变量的分布仍是概率测度。-/
+/-- 可测随机变量的分布仍是概率测度。
+@isnad1 id=isprobab.1h4v.s5.89068aef61a4 from=translated src=- shape=831bdb68 vocab=cd26596f
+-/
 theorem distribution_isProbabilityMeasure
     {Ω E : Type*} [MeasurableSpace Ω] [MeasurableSpace E]
     (μ : Measure Ω) [IsProbabilityMeasure μ] {X : Ω → E} (hX : Measurable X) :
     IsProbabilityMeasure (μ.map X) :=
   Measure.isProbabilityMeasure_map hX.aemeasurable
 
-/-- 分布的事件公式：`P(X ∈ B)` 等于目标事件 `B` 在推前测度下的质量。-/
+/-- 分布的事件公式：`P(X ∈ B)` 等于目标事件 `B` 在推前测度下的质量。
+@isnad1 id=eq.2h5v.s6.9c54708df581 from=translated src=- shape=2a346a80 vocab=5e45ed3b
+-/
 theorem distribution_apply
     {Ω E : Type*} [MeasurableSpace Ω] [MeasurableSpace E]
     (μ : Measure Ω) {X : Ω → E} (hX : Measurable X)
@@ -37,7 +41,9 @@ theorem distribution_apply
     μ.map X B = μ (X ⁻¹' B) :=
   Measure.map_apply hX hB
 
-/-- 常随机变量的分布集中在该常值点的原像上。-/
+/-- 常随机变量的分布集中在该常值点的原像上。
+@isnad1 id=eq.1h5v.s6.8acca605a067 from=translated src=- shape=51f3922f vocab=55d66237
+-/
 theorem distribution_const_apply
     {Ω E : Type*} [MeasurableSpace Ω] [MeasurableSpace E]
     (μ : Measure Ω) (c : E) {B : Set E} (hB : MeasurableSet B) :

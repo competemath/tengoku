@@ -36,27 +36,35 @@ def fromMathlib (τ : TopologicalSpace X) : TextbookTopology X where
   isOpen_inter := fun s t ↦ @_root_.IsOpen.inter X τ s t
   isOpen_sUnion := @_root_.isOpen_sUnion X τ
 
-/-- 反向桥在定义层面保持开集谓词不变。-/
+/-- 反向桥在定义层面保持开集谓词不变。
+@isnad1 id=iff.0h3v.s4.77aa74ffdc51 from=translated src=- shape=9f4602fa vocab=2a918ef3
+-/
 @[simp]
 theorem isOpen_fromMathlib (τ : TopologicalSpace X) (s : Set X) :
     (fromMathlib τ).IsOpen s ↔ @_root_.IsOpen X τ s :=
   Iff.rfl
 
-/-- Mathlib 拓扑转到旧载体再转回后，拓扑不变。-/
+/-- Mathlib 拓扑转到旧载体再转回后，拓扑不变。
+@isnad1 id=eq.0h2v.s3.77568208f089 from=translated src=- shape=efbf31f7 vocab=91a0c5d1
+-/
 @[simp]
 theorem toMathlib_fromMathlib (τ : TopologicalSpace X) :
     (fromMathlib τ).toMathlib = τ := by
   apply TopologicalSpace.ext
   rfl
 
-/-- 旧拓扑转到 Mathlib 再转回后，旧拓扑不变。-/
+/-- 旧拓扑转到 Mathlib 再转回后，旧拓扑不变。
+@isnad1 id=eq.0h2v.s3.983c64daaf4b from=translated src=- shape=efbf31f7 vocab=a2b64e09
+-/
 @[simp]
 theorem fromMathlib_toMathlib (τ : TextbookTopology X) :
     fromMathlib τ.toMathlib = τ := by
   cases τ
   rfl
 
-/-- 该桥也保持闭集：两侧的“闭”都表示补集是开集。-/
+/-- 该桥也保持闭集：两侧的“闭”都表示补集是开集。
+@isnad1 id=iff.0h3v.s4.e411d3b3e036 from=translated src=- shape=238e1b69 vocab=79afd90e
+-/
 @[simp]
 theorem isClosed_toMathlib (τ : TextbookTopology X) (s : Set X) :
     @_root_.IsClosed X τ.toMathlib s ↔ τ.IsClosed s := by
@@ -66,7 +74,9 @@ theorem isClosed_toMathlib (τ : TextbookTopology X) (s : Set X) :
   · intro h
     exact @IsClosed.mk X τ.toMathlib s h
 
-/-- 安装同一个拓扑后，旧邻域谓词等价于属于 Mathlib 的邻域滤子。-/
+/-- 安装同一个拓扑后，旧邻域谓词等价于属于 Mathlib 的邻域滤子。
+@isnad1 id=iff.0h4v.s4.0008669884ab from=translated src=- shape=fc87ffb7 vocab=0f96cd01
+-/
 theorem isNeighborhood_iff_mem_nhds (τ : TextbookTopology X) (x : X) (s : Set X) :
     τ.IsNeighborhood x s ↔ s ∈ @nhds X τ.toMathlib x := by
   rw [@SandronesLibrary.Topology.mem_nhds_iff_exists_open X τ.toMathlib x s]
@@ -81,19 +91,25 @@ def equivMathlib : TextbookTopology X ≃ TopologicalSpace X where
   left_inv := fromMathlib_toMathlib
   right_inv := toMathlib_fromMathlib
 
-/-- 旧诱导拓扑转到 Mathlib 后，严格等于 Mathlib 的规范诱导拓扑。-/
+/-- 旧诱导拓扑转到 Mathlib 后，严格等于 Mathlib 的规范诱导拓扑。
+@isnad1 id=eq.0h4v.s4.28d0d757c637 from=translated src=- shape=2049033c vocab=184f1da0
+-/
 theorem toMathlib_induced (f : X → Y) (τY : TextbookTopology Y) :
     (induced f τY).toMathlib = TopologicalSpace.induced f τY.toMathlib := by
   apply TopologicalSpace.ext
   rfl
 
-/-- 旧子空间拓扑转到 Mathlib 后，严格等于 subtype 的规范拓扑实例。-/
+/-- 旧子空间拓扑转到 Mathlib 后，严格等于 subtype 的规范拓扑实例。
+@isnad1 id=eq.0h3v.s4.0abaa75e175a from=translated src=- shape=da605417 vocab=2c159ff8
+-/
 theorem toMathlib_subspace (s : Set X) (τX : TextbookTopology X) :
     (subspace s τX).toMathlib = @instTopologicalSpaceSubtype X s τX.toMathlib := by
   apply TopologicalSpace.ext
   rfl
 
-/-- 旧积拓扑转到 Mathlib 后，严格等于积类型的规范拓扑实例。-/
+/-- 旧积拓扑转到 Mathlib 后，严格等于积类型的规范拓扑实例。
+@isnad1 id=eq.0h4v.s5.0d8a66a5b386 from=translated src=- shape=7ebf9757 vocab=b045a084
+-/
 theorem toMathlib_product (τX : TextbookTopology X) (τY : TextbookTopology Y) :
     (product τX τY).toMathlib = @instTopologicalSpaceProd X Y τX.toMathlib τY.toMathlib := by
   apply TopologicalSpace.ext
@@ -110,7 +126,9 @@ theorem toMathlib_product (τX : TextbookTopology X) (τY : TextbookTopology Y) 
     obtain ⟨u, v, hu, hv, hpu, hpv, hsub⟩ := h p.1 p.2 hp
     exact ⟨u, v, hu, hv, ⟨hpu, hpv⟩, hsub⟩
 
-/-- 旧 ε 邻域实拓扑转到 Mathlib 后，严格等于标准实数拓扑实例。-/
+/-- 旧 ε 邻域实拓扑转到 Mathlib 后，严格等于标准实数拓扑实例。
+@isnad1 id=eq.0h0v.s3.fa34161a2fab from=translated src=- shape=687008b2 vocab=5fd70b53
+-/
 theorem toMathlib_realLine :
     realLine.toMathlib = (inferInstance : TopologicalSpace ℝ) := by
   apply TopologicalSpace.ext
@@ -119,7 +137,9 @@ theorem toMathlib_realLine :
   rw [SandronesLibrary.Topology.real_isOpen_iff_abs]
   rfl
 
-/-- 旧单位区间拓扑转到 Mathlib 后，严格等于闭区间 subtype 的规范拓扑实例。-/
+/-- 旧单位区间拓扑转到 Mathlib 后，严格等于闭区间 subtype 的规范拓扑实例。
+@isnad1 id=eq.0h0v.s5.bc1a40805d5b from=translated src=- shape=53886065 vocab=d80589ac
+-/
 theorem toMathlib_unitInterval :
     unitInterval.toMathlib =
       @instTopologicalSpaceSubtype ℝ (fun t ↦ 0 ≤ t ∧ t ≤ 1)
@@ -151,7 +171,9 @@ def fromMathlib {τX : TextbookTopology X} {a b : X}
     source := γ.source
     target := γ.target }
 
-/-- 旧道路转到 Mathlib 再转回后不变。-/
+/-- 旧道路转到 Mathlib 再转回后不变。
+@isnad1 id=eq.0h5v.s5.f5f79c0971f2 from=translated src=- shape=e4d00c35 vocab=d323f455
+-/
 @[simp]
 theorem fromMathlib_toMathlib {τX : TextbookTopology X} {a b : X} (γ : Path τX a b) :
     fromMathlib (toMathlib γ) = γ := by
@@ -160,7 +182,9 @@ theorem fromMathlib_toMathlib {τX : TextbookTopology X} {a b : X} (γ : Path τ
   change γ t = γ t
   rfl
 
-/-- Mathlib 道路转到旧载体再转回后不变。-/
+/-- Mathlib 道路转到旧载体再转回后不变。
+@isnad1 id=eq.0h5v.s5.2106113be360 from=translated src=- shape=5759a1be vocab=cfa16a7f
+-/
 @[simp]
 theorem toMathlib_fromMathlib {τX : TextbookTopology X} {a b : X}
     (γ : @_root_.Path X τX.toMathlib a b) :
@@ -170,7 +194,9 @@ theorem toMathlib_fromMathlib {τX : TextbookTopology X} {a b : X}
   change (γ : UnitInterval → X) = γ
   rfl
 
-/-- 旧道路转到 Mathlib 的转换与道路反向交换。-/
+/-- 旧道路转到 Mathlib 的转换与道路反向交换。
+@isnad1 id=eq.0h5v.s5.e0c54231184a from=translated src=- shape=f22ed424 vocab=6fcfe132
+-/
 theorem toMathlib_symm {τX : TextbookTopology X} {a b : X} (γ : Path τX a b) :
     toMathlib γ.symm =
       @_root_.Path.symm X τX.toMathlib a b (toMathlib γ) := by
@@ -179,7 +205,9 @@ theorem toMathlib_symm {τX : TextbookTopology X} {a b : X} (γ : Path τX a b) 
   funext t
   rfl
 
-/-- 旧道路转到 Mathlib 的转换与道路拼接交换。-/
+/-- 旧道路转到 Mathlib 的转换与道路拼接交换。
+@isnad1 id=eq.0h7v.s6.859324be7c4e from=translated src=- shape=f4f32452 vocab=c84d8226
+-/
 theorem toMathlib_trans {τX : TextbookTopology X} {a b c : X}
     (γ : Path τX a b) (δ : Path τX b c) :
     toMathlib (γ.trans δ) =
@@ -196,7 +224,9 @@ namespace Homeomorphism
 
 variable {Y : Type*}
 
-/-- 底层集合等价相同的两个旧同胚相等。-/
+/-- 底层集合等价相同的两个旧同胚相等。
+@isnad1 id=eq.1h6v.s5.4bbc267d21e0 from=translated src=- shape=21eea939 vocab=99e10abc
+-/
 theorem ext {τX : TextbookTopology X} {τY : TextbookTopology Y}
     {e e' : Homeomorphism τX τY} (h : e.toEquiv = e'.toEquiv) : e = e' := by
   cases e
@@ -223,14 +253,18 @@ def fromMathlib {τX : TextbookTopology X} {τY : TextbookTopology Y}
     continuous_toFun := (continuous_iff_mathlib τX τY _).mpr e.continuous
     continuous_invFun := (continuous_iff_mathlib τY τX _).mpr e.symm.continuous }
 
-/-- 旧同胚转到 Mathlib 再转回后，数据不变。-/
+/-- 旧同胚转到 Mathlib 再转回后，数据不变。
+@isnad1 id=eq.0h5v.s5.79e19e07a59c from=translated src=- shape=b40cf5f3 vocab=2304ab80
+-/
 @[simp]
 theorem fromMathlib_toMathlib {τX : TextbookTopology X} {τY : TextbookTopology Y}
     (e : Homeomorphism τX τY) : fromMathlib (toMathlib e) = e := by
   apply ext
   rfl
 
-/-- Mathlib 同胚转到旧载体再转回后，数据不变。-/
+/-- Mathlib 同胚转到旧载体再转回后，数据不变。
+@isnad1 id=eq.0h5v.s5.6b9d57ed6dd5 from=translated src=- shape=f9365c53 vocab=dd0273b3
+-/
 @[simp]
 theorem toMathlib_fromMathlib {τX : TextbookTopology X} {τY : TextbookTopology Y}
     (e : @Homeomorph X Y τX.toMathlib τY.toMathlib) :

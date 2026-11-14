@@ -69,7 +69,9 @@ open GenContFract
 （`exists_int_eq_of_partDen`）；continuants 由 `⟨1, 0⟩`、`⟨⌊ξ⌋, 1⟩` 出发按这两个数递推，
 故每一步都保持整数性。
 
-> **Entry**: number-theory.elementary.convergent-best-/
+> **Entry**: number-theory.elementary.convergent-best
+@isnad1 id=ex.0h2v.s5.3e4a7ec62496 from=translated src=- shape=4b028adf vocab=29e7166c
+-/
 theorem exists_int_contsAux (ξ : ℝ) (n : ℕ) :
     ∃ a b : ℤ, (GenContFract.of ξ).contsAux n = ⟨(a : ℝ), (b : ℝ)⟩ := by
   induction n using Nat.twoStepInduction with
@@ -91,7 +93,9 @@ theorem exists_int_contsAux (ξ : ℝ) (n : ℕ) :
 
 /-- 结构引理（整数性）：`of ξ` 的第 `n` 个分子 `Aₙ` 是某个整数的像。
 
-> **Entry**: number-theory.elementary.convergent-best-/
+> **Entry**: number-theory.elementary.convergent-best
+@isnad1 id=ex.0h2v.s4.312aa14804d5 from=translated src=- shape=dff55127 vocab=5b7c61c6
+-/
 theorem exists_int_nums (ξ : ℝ) (n : ℕ) :
     ∃ z : ℤ, (GenContFract.of ξ).nums n = (z : ℝ) := by
   obtain ⟨a, bb, h⟩ := exists_int_contsAux ξ (n + 1)
@@ -100,7 +104,9 @@ theorem exists_int_nums (ξ : ℝ) (n : ℕ) :
 
 /-- 结构引理（整数性）：`of ξ` 的第 `n` 个分母 `Bₙ` 是某个整数的像。
 
-> **Entry**: number-theory.elementary.convergent-best-/
+> **Entry**: number-theory.elementary.convergent-best
+@isnad1 id=ex.0h2v.s4.b932adc62f14 from=translated src=- shape=dff55127 vocab=5d1b6c66
+-/
 theorem exists_int_dens (ξ : ℝ) (n : ℕ) :
     ∃ z : ℤ, (GenContFract.of ξ).dens n = (z : ℝ) := by
   obtain ⟨a, bb, h⟩ := exists_int_contsAux ξ (n + 1)
@@ -113,7 +119,9 @@ theorem exists_int_dens (ξ : ℝ) (n : ℕ) :
 在第 `m` 个收敛子处精确等于原值，而收敛子是实数（由 `Real.convs_eq_convergent` 等于
 `↑(ξ.convergent m)`），与 `Irrational ξ` 矛盾。
 
-> **Entry**: number-theory.elementary.convergent-best-/
+> **Entry**: number-theory.elementary.convergent-best
+@isnad1 id=not.1h2v.s4.721f64e65eec from=translated src=- shape=6e24495c vocab=7a50ed90
+-/
 theorem of_irrational_not_terminatedAt {ξ : ℝ} (hξ : Irrational ξ) (n : ℕ) :
     ¬(GenContFract.of ξ).TerminatedAt n := by
   intro h
@@ -127,7 +135,9 @@ theorem of_irrational_not_terminatedAt {ξ : ℝ} (hξ : Irrational ξ) (n : ℕ
 由 `succ_nth_fib_le_of_nth_den` 得 `fib (n+1) ≤ Bₙ`，而 `fib (n+1) > 0`。
 非终止性由此处第一次被用到（`n ≥ 1` 时要排除终止分支）。
 
-> **Entry**: number-theory.elementary.convergent-best-/
+> **Entry**: number-theory.elementary.convergent-best
+@isnad1 id=lt.1h2v.s4.68fe5735f973 from=translated src=- shape=f73e952b vocab=326386fa
+-/
 theorem dens_pos {ξ : ℝ} (hξ : Irrational ξ) (n : ℕ) :
     0 < (GenContFract.of ξ).dens n := by
   have h : (Nat.fib (n + 1) : ℝ) ≤ (GenContFract.of ξ).dens n := by
@@ -142,7 +152,9 @@ theorem dens_pos {ξ : ℝ} (hξ : Irrational ξ) (n : ℕ) :
 
 直接来自 `contsAux_recurrence`（此时部分分子为 `1`）。
 
-> **Entry**: number-theory.elementary.convergent-best-/
+> **Entry**: number-theory.elementary.convergent-best
+@isnad1 id=eq.1h3v.s6.37a8c344af7c from=translated src=- shape=240cbc67 vocab=41d5b8b0
+-/
 theorem dens_add_two (ξ : ℝ) (n : ℕ) {gp : GenContFract.Pair ℝ}
     (h : (GenContFract.of ξ).s.get? (n + 1) = some gp) :
     (GenContFract.of ξ).dens (n + 2) =
@@ -159,7 +171,9 @@ theorem dens_add_two (ξ : ℝ) (n : ℕ) {gp : GenContFract.Pair ℝ}
 递推给出 `Qₙ₊₁ = bₙ Qₙ + Qₙ₋₁`，其中 `bₙ ≥ 1`、`Qₙ₋₁ > 0`，故 `Qₙ₊₁ > Qₙ`。
 **`n = 0` 时不成立**（`Q₀ = Q₁ = 1` 可能出现，例如 `ξ = 1.7`），这正是主定理必须假设 `1 ≤ n` 的原因。
 
-> **Entry**: number-theory.elementary.convergent-best-/
+> **Entry**: number-theory.elementary.convergent-best
+@isnad1 id=lt.2h2v.s5.9af41d7f72e3 from=translated src=- shape=f95164b2 vocab=8014ee14
+-/
 theorem dens_lt_dens_succ {ξ : ℝ} (hξ : Irrational ξ) {n : ℕ} (hn : 1 ≤ n) :
     (GenContFract.of ξ).dens n < (GenContFract.of ξ).dens (n + 1) := by
   obtain ⟨m, rfl⟩ : ∃ m, n = m + 1 := ⟨n - 1, by omega⟩
@@ -187,7 +201,9 @@ noncomputable def continuantNumerator (ξ : ℝ) (n : ℕ) : ℤ := (exists_int_
 
 /-- `continuantNumerator` 的选取性质：`Pₙ = ↑(continuantNumerator ξ n)`。
 
-> **Entry**: number-theory.elementary.convergent-best-/
+> **Entry**: number-theory.elementary.convergent-best
+@isnad1 id=eq.0h2v.s4.c7bc779b5c85 from=translated src=- shape=dab02e07 vocab=26cddd54
+-/
 theorem nums_eq_continuantNumerator (ξ : ℝ) (n : ℕ) :
     (GenContFract.of ξ).nums n = (continuantNumerator ξ n : ℝ) :=
   (exists_int_nums ξ n).choose_spec
@@ -199,7 +215,9 @@ noncomputable def continuantDenominator (ξ : ℝ) (n : ℕ) : ℤ := (exists_in
 
 /-- `continuantDenominator` 的选取性质：`Qₙ = ↑(continuantDenominator ξ n)`。
 
-> **Entry**: number-theory.elementary.convergent-best-/
+> **Entry**: number-theory.elementary.convergent-best
+@isnad1 id=eq.0h2v.s4.e2899408aa17 from=translated src=- shape=dab02e07 vocab=a0ed7dc1
+-/
 theorem dens_eq_continuantDenominator (ξ : ℝ) (n : ℕ) :
     (GenContFract.of ξ).dens n = (continuantDenominator ξ n : ℝ) :=
   (exists_int_dens ξ n).choose_spec
@@ -210,7 +228,9 @@ theorem dens_eq_continuantDenominator (ξ : ℝ) (n : ℕ) :
 `(pₙ, qₙ)` 与 `(pₙ₊₁, qₙ₊₁)` 构成 `ℤ²` 的一组基（行列式是单位），
 从而任何有理数都能用它们线性表示——这是主证明的代数支点。
 
-> **Entry**: number-theory.elementary.convergent-best-/
+> **Entry**: number-theory.elementary.convergent-best
+@isnad1 id=eq.1h2v.s6.197504f0e34b from=translated src=- shape=d2377707 vocab=29ab2926
+-/
 theorem continuant_determinant (ξ : ℝ) (hξ : Irrational ξ) (n : ℕ) :
     continuantNumerator ξ n * continuantDenominator ξ (n + 1)
       - continuantDenominator ξ n * continuantNumerator ξ (n + 1) = (-1 : ℤ) ^ (n + 1) := by
@@ -227,7 +247,9 @@ theorem continuant_determinant (ξ : ℝ) (hξ : Irrational ξ) (n : ℕ) :
 `sub_convs_eq` 需要「`stream ξ n = some ifp` 且 `ifp.fr ≠ 0`」这个假设，
 本引理从 `stream ξ (n+1) ≠ none` 反推出它（`succ_nth_stream_eq_some_iff` 的第二项正是 `fr ≠ 0`）。
 
-> **Entry**: number-theory.elementary.convergent-best-/
+> **Entry**: number-theory.elementary.convergent-best
+@isnad1 id=ex.1h2v.s5.91fe7a231ca2 from=translated src=- shape=50aeb232 vocab=c51d8858
+-/
 theorem exists_stream_fr_ne_zero (ξ : ℝ) (hξ : Irrational ξ) (n : ℕ) :
     ∃ ifp : GenContFract.IntFractPair ℝ,
       GenContFract.IntFractPair.stream ξ n = some ifp ∧ ifp.fr ≠ 0 := by
@@ -244,7 +266,9 @@ theorem exists_stream_fr_ne_zero (ξ : ℝ) (hξ : Irrational ξ) (n : ℕ) :
 这是 `sub_convs_eq` 的直接改写：分母 `B (fr⁻¹ B + B')` 由 `B > 0`、`fr > 0`、`B' ≥ 0` 保证为正。
 本文件对 `ξ` 的误差符号只此一个来源。
 
-> **Entry**: number-theory.elementary.convergent-best-/
+> **Entry**: number-theory.elementary.convergent-best
+@isnad1 id=ex.1h2v.s6.cf16c20891af from=translated src=- shape=23b19c06 vocab=8fbd7ef9
+-/
 theorem sub_convs_eq_neg_one_pow_div (ξ : ℝ) (hξ : Irrational ξ) (n : ℕ) :
     ∃ D : ℝ, 0 < D ∧ ξ - (GenContFract.of ξ).convs n = (-1) ^ n / D := by
   obtain ⟨ifp, hstream, hfr⟩ := exists_stream_fr_ne_zero ξ hξ n
@@ -267,7 +291,9 @@ theorem sub_convs_eq_neg_one_pow_div (ξ : ℝ) (hξ : Irrational ξ) (n : ℕ) 
 由 `δₙ = Qₙ (ξ - convs n)`（`Qₙ > 0`）与 `ξ - convs n = (-1)ⁿ / D`（`D > 0`）相乘得到。
 几何含义：收敛子交替地从 `ξ` 的两侧逼近。
 
-> **Entry**: number-theory.elementary.convergent-best-/
+> **Entry**: number-theory.elementary.convergent-best
+@isnad1 id=lt.1h2v.s6.dfd58a4ab0ff from=translated src=- shape=c345ddbe vocab=c9a3996a
+-/
 theorem delta_mul_delta_succ_neg (ξ : ℝ) (hξ : Irrational ξ) (n : ℕ) :
     ((GenContFract.of ξ).dens n * ξ - (GenContFract.of ξ).nums n) *
       ((GenContFract.of ξ).dens (n + 1) * ξ - (GenContFract.of ξ).nums (n + 1)) < 0 := by
@@ -304,7 +330,9 @@ theorem delta_mul_delta_succ_neg (ξ : ℝ) (hξ : Irrational ξ) (n : ℕ) :
 由 `Real.convs_eq_convergent` 与 `conv_eq_num_div_den` 复合而成。这里 `continuedFractionConvergent`
 是前置文件里 `Real.convergent` 的别名，`rw` 不展开它，故证明先 `change`。
 
-> **Entry**: number-theory.elementary.convergent-best-/
+> **Entry**: number-theory.elementary.convergent-best
+@isnad1 id=eq.0h2v.s5.d718ace1d7ec from=translated src=- shape=d90af01d vocab=f5d17fdf
+-/
 theorem convergent_cast_eq (ξ : ℝ) (n : ℕ) :
     ((continuedFractionConvergent ξ n : ℚ) : ℝ) =
       (continuantNumerator ξ n : ℝ) / (continuantDenominator ξ n : ℝ) := by
@@ -318,7 +346,9 @@ theorem convergent_cast_eq (ξ : ℝ) (n : ℕ) :
 `Rat.den_dvd` 给出 `(conv n).den ∣ qₙ`，再用 `qₙ > 0` 与 `Int.le_of_dvd` 转成不等式。
 这一步把「主证明里的整数分母预算」与「公开定义里的 `Rat.den`」接上。
 
-> **Entry**: number-theory.elementary.convergent-best-/
+> **Entry**: number-theory.elementary.convergent-best
+@isnad1 id=le.1h2v.s4.e8c7d696ee9f from=translated src=- shape=c73fc09b vocab=426b90f1
+-/
 theorem convergent_den_le_continuantDenominator (ξ : ℝ) (hξ : Irrational ξ) (n : ℕ) :
     ((continuedFractionConvergent ξ n).den : ℤ) ≤ continuantDenominator ξ n := by
   have hpos : 0 < continuantDenominator ξ n := by
@@ -340,7 +370,9 @@ theorem convergent_den_le_continuantDenominator (ξ : ℝ) (hξ : Irrational ξ)
 
 这是教材中比主定理更强的「第二类」陈述；主定理只需把它除以分母预算。
 
-> **Entry**: number-theory.elementary.convergent-best-/
+> **Entry**: number-theory.elementary.convergent-best
+@isnad1 id=le.5h6v.s7.9c82626193e5 from=translated src=- shape=184d823e vocab=c6db5489
+-/
 theorem abs_sub_convergent_le_of_decomposition (ξ : ℝ) (hξ : Irrational ξ) (n : ℕ)
     {p q a b : ℤ}
     (hp : (p : ℝ) = (a : ℝ) * (continuantNumerator ξ n : ℝ)
@@ -452,7 +484,9 @@ theorem abs_sub_convergent_le_of_decomposition (ξ : ℝ) (hξ : Irrational ξ) 
 
 **边界**：`n = 0` 时命题为假（`ξ = 1.7`，第 0 个收敛子 `1` 被 `2/1` 击败），`1 ≤ n` 不可去。
 
-> **Entry**: number-theory.elementary.convergent-best-/
+> **Entry**: number-theory.elementary.convergent-best
+@isnad1 id=isbestra.2h2v.s4.98b1be969413 from=translated src=- shape=38d05ad2 vocab=4b314356
+-/
 theorem convergent_isBestRationalApproximation {ξ : ℝ} (hξ : Irrational ξ) {n : ℕ} (hn : 1 ≤ n) :
     IsBestRationalApproximation ξ (continuedFractionConvergent ξ n) := by
   intro r hr

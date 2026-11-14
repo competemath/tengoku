@@ -31,7 +31,9 @@ variable {X : Type*} [TopologicalSpace X]
 
 /-- 先做内层 connector 变化、再做外层 frame 变化，等于一次使用端点 frame 乘积的 rebase。
 
-> **Entry**: topology.fundamental-group.van-kampen-left-boundary-cocycle-/
+> **Entry**: topology.fundamental-group.van-kampen-left-boundary-cocycle
+@isnad1 id=eq.0h6v.s6.b8fc699afb09 from=translated src=- shape=fdc8697e vocab=12a71d4f
+-/
 theorem rebaseEdge_rebaseEdge
     {G : Type*} [Group G]
     (outerStart outerEnd innerStart innerEnd edge : G) :
@@ -41,7 +43,9 @@ theorem rebaseEdge_rebaseEdge
   simp [rebaseEdge, mul_assoc]
 
 /-- 若逐边标签变化在共享顶点满足 cocycle，并且二维 cell frames 沿真实公共横边竖直相容，
-则两者相乘得到的组合 frames 也在该顶点严格相容。-/
+则两者相乘得到的组合 frames 也在该顶点严格相容。
+@isnad1 id=eq.2h6v.s6.a777b7d4c348 from=translated src=- shape=9ca54e1d vocab=25a06362
+-/
 theorem combinedVertexFrames_compatible
     {G : Type*} [Group G]
     (vertical lowerToTarget upperToTarget : EdgeTransitions G)
@@ -54,7 +58,9 @@ theorem combinedVertexFrames_compatible
   rw [hFrames.left, hTransitions, mul_assoc]
 
 /-- 三组 edge transitions 若分别由“下 cell → target”、“上 cell → target”和
-“下 cell → 上 cell”的同一套 vertex potentials 给出，则它们自动满足共享顶点 cocycle。-/
+“下 cell → 上 cell”的同一套 vertex potentials 给出，则它们自动满足共享顶点 cocycle。
+@isnad1 id=eq.3h7v.s6.f0cdd5ec1802 from=translated src=- shape=ce6c6db7 vocab=f15ebd06
+-/
 theorem edgeTransitions_cocycle_of_potentials
     {G : Type*} [Group G]
     (lowerPotential upperPotential targetPotential : G)
@@ -1208,7 +1214,9 @@ private theorem leftBoundaryCellToLetterTransitions_adjacent_of_both_eq
     Cv.leftStart Cv.rightStart targetConnector).symm
 
 /-- 任意相邻两条左边界细边的 cell-to-letter transitions，与两格之间真实内部横边 transition
-满足统一共享顶点 cocycle。四种 Bool 标签情形全部由前述 potential／connector 结果覆盖。-/
+满足统一共享顶点 cocycle。四种 Bool 标签情形全部由前述 potential／connector 结果覆盖。
+@isnad1 id=other.6h10v.s10.22ecd9e3a2b8 from=translated src=- shape=fa6c0d34 vocab=99141594
+-/
 theorem leftBoundaryCellToLetterTransitions_adjacent
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))

@@ -38,7 +38,9 @@ def correctedLoop {x₀ z w : X}
     Path x₀ x₀ :=
   left.trans (segment.trans right.symm)
 
-/-- 相邻修正环路在基本群中的乘积消去公共连接道路。-/
+/-- 相邻修正环路在基本群中的乘积消去公共连接道路。
+@isnad1 id=eq.0h10v.s7.de6453574026 from=translated src=- shape=7fe6b8b2 vocab=68c0dc9d
+-/
 theorem correctedLoop_product {x₀ z w v : X}
     (left : Path x₀ z) (first : Path z w) (middle : Path x₀ w)
     (second : Path w v) (right : Path x₀ v) :
@@ -71,7 +73,9 @@ def correctedLoopWord {x₀ : X} {n : ℕ} (q : Fin (n + 1) → X)
     (fun i acc => FundamentalGroup.fromPath
       ⟦correctedLoop (connector i.castSucc) (F i) (connector i.succ)⟧ * acc) 1
 
-/-- 有限修正环路词望远镜化为整条拼接道路的修正环路。-/
+/-- 有限修正环路词望远镜化为整条拼接道路的修正环路。
+@isnad1 id=eq.0h6v.s7.bdfd17751089 from=translated src=- shape=0c53690c vocab=5c2fb8f0
+-/
 theorem correctedLoopWord_eq_concat {x₀ : X} {n : ℕ}
     (q : Fin (n + 1) → X)
     (F : (i : Fin n) → Path (q i.castSucc) (q i.succ))

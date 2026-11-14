@@ -31,7 +31,9 @@ variable {X : Type*} [TopologicalSpace X]
 
 /-- 相邻细边的逐边 transitions 与二维右锚定 cell frames 合成后，在共享顶点严格相容。
 
-> **Entry**: topology.fundamental-group.van-kampen-combined-frames-/
+> **Entry**: topology.fundamental-group.van-kampen-combined-frames
+@isnad1 id=other.6h10v.s10.0a2984fa75cf from=translated src=- shape=20cd1a9a vocab=e337a8df
+-/
 theorem PathConcatAlignedSquareSubdivision.combinedLeftBoundaryFrames_adjacent
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))
@@ -92,7 +94,9 @@ theorem PathConcatAlignedSquareSubdivision.combinedLeftBoundaryFrames_adjacent
       rw [mul_assoc]
     _ = upperT.startChange * upperF.bottomLeft := by rw [← hframe]
 
-/-- 相邻 concat blocks 的最后一条与第一条细网格边在全局网格中严格相邻。-/
+/-- 相邻 concat blocks 的最后一条与第一条细网格边在全局网格中严格相邻。
+@isnad1 id=other.2h4v.s7.611aa18b427e from=translated src=- shape=17e4c746 vocab=939e7440
+-/
 theorem pathConcatSegmentGridEdgeIndex_block_adjacent
     (n k : ℕ) (hk : 0 < k) (i j : Fin n)
     (hshared : i.succ = j.castSucc) :
@@ -123,7 +127,9 @@ theorem pathConcatSegmentGridEdgeIndex_block_adjacent
     _ = (pathConcatSegmentGridEdgeIndex n k j ⟨0, hj⟩).castSucc :=
       (pathConcatSegmentGridEdgeIndex_castSucc n k j ⟨0, hj⟩).symm
 
-/-- 上一全局索引关系 transport 到 concat 对齐方形细分的真实行索引。-/
+/-- 上一全局索引关系 transport 到 concat 对齐方形细分的真实行索引。
+@isnad1 id=other.1h8v.s7.dd14c667fb49 from=translated src=- shape=68c34577 vocab=39af8f7b
+-/
 theorem PathConcatAlignedSquareSubdivision.segmentGridEdgeIndex_block_adjacent
     {H : C(unitInterval × unitInterval, X)} {U V : Set X} {n : ℕ}
     (A : PathConcatAlignedSquareSubdivision H U V n) (i j : Fin n)
@@ -141,7 +147,9 @@ theorem PathConcatAlignedSquareSubdivision.segmentGridEdgeIndex_block_adjacent
     (pathConcatSegmentGridEdgeIndex_block_adjacent
       n A.factor A.factor_pos i j hshared)
 
-/-- 相邻 concat blocks 的二维右锚定 frames 在共享断点处满足同一 vertical transition 关系。-/
+/-- 相邻 concat blocks 的二维右锚定 frames 在共享断点处满足同一 vertical transition 关系。
+@isnad1 id=other.6h9v.s10.9d171738ec93 from=translated src=- shape=238c1a53 vocab=dfd81d29
+-/
 theorem PathConcatAlignedSquareSubdivision.rightAnchoredBlockFrames_adjacent
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))
@@ -397,7 +405,9 @@ private theorem verticalSwitchTop_endPotential_eq_gridCellPotential
       D.coe_gridCellVertexInPieceOfLabel] using hs
 
 /-- 只要共享右端点另知属于交集，真实竖直内部边的终点 transition 无论两格标签是否相同，都由
-该交集点处下格右上角与上格右下角的标准 grid-cell potentials 给出。-/
+该交集点处下格右上角与上格右下角的标准 grid-cell potentials 给出。
+@isnad1 id=other.8h10v.s9.a09583379cec from=translated src=- shape=9213f146 vocab=0df710fc
+-/
 theorem verticalInternalEdgeTransitions_end_eq_gridCellPotentials
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -612,7 +622,9 @@ private theorem horizontalSwitchRight_startPotential_eq_gridCellPotential
       D.coe_gridCellVertexInPieceOfLabel] using hs
 
 /-- 只要共享下端点另知属于交集，真实水平内部边的起点 transition 无论两格标签是否相同，都由
-该交集点处左格右下角与右格左下角的标准 grid-cell potentials 给出。-/
+该交集点处左格右下角与右格左下角的标准 grid-cell potentials 给出。
+@isnad1 id=other.8h10v.s9.dbe40ae22882 from=translated src=- shape=a4158cb6 vocab=88fa245f
+-/
 theorem horizontalInternalEdgeTransitions_start_eq_gridCellPotentials
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -824,7 +836,9 @@ private theorem horizontalSwitchRight_endPotential_eq_gridCellPotential
       D.coe_gridCellVertexInPieceOfLabel] using hs
 
 /-- 只要共享上端点另知属于交集，真实水平内部边的终点 transition 无论两格标签是否相同，都由
-该交集点处左格右上角与右格左上角的标准 grid-cell potentials 给出。-/
+该交集点处左格右上角与右格左上角的标准 grid-cell potentials 给出。
+@isnad1 id=other.8h10v.s9.418f16b32745 from=translated src=- shape=a4158cb6 vocab=b9438a0d
+-/
 theorem horizontalInternalEdgeTransitions_end_eq_gridCellPotentials
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -957,7 +971,9 @@ private theorem verticalSwitchTop_startPotential_eq_gridCellPotential
       D.coe_gridCellVertexInPieceOfLabel] using hs
 
 /-- 只要共享左端点另知属于交集，真实竖直内部边的起点 transition 无论两格标签是否相同，都由
-该交集点处下格左上角与上格左下角的标准 grid-cell potentials 给出。-/
+该交集点处下格左上角与上格左下角的标准 grid-cell potentials 给出。
+@isnad1 id=other.8h10v.s9.4e4d655cb9e5 from=translated src=- shape=9213f146 vocab=751cd9e9
+-/
 theorem verticalInternalEdgeTransitions_start_eq_gridCellPotentials
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -994,7 +1010,9 @@ theorem verticalInternalEdgeTransitions_start_eq_gridCellPotentials
 end BinaryOpenCoverSquareSubdivision
 
 /-- 一个 letter block 的最后一条细边所用 letter 终点 connector，送回环境空间后是公共基点常值
-道路。-/
+道路。
+@isnad1 id=other.4h9v.s10.1b82ef2642dc from=translated src=- shape=9bb80d8b vocab=10116104
+-/
 @[simp] theorem PathConcatAlignedSquareSubdivision.coe_leftBoundaryBlockLastLetterEnd
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hU : IsPathConnected U) (hV : IsPathConnected V)
@@ -1024,7 +1042,9 @@ end BinaryOpenCoverSquareSubdivision
   cases h : (letters.reverse.get i).1 <;> rfl
 
 /-- 一个 letter block 的第一条细边所用 letter 起点 connector，送回环境空间后同样是公共基点
-常值道路。-/
+常值道路。
+@isnad1 id=other.4h9v.s10.b695247af4b3 from=translated src=- shape=057d6d60 vocab=ee8c11c8
+-/
 @[simp] theorem PathConcatAlignedSquareSubdivision.coe_leftBoundaryBlockFirstLetterStart
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hU : IsPathConnected U) (hV : IsPathConnected V)

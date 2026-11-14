@@ -28,13 +28,17 @@ def toMathlib (τ : TextbookTopology X) : TopologicalSpace X where
   isOpen_inter := τ.isOpen_inter
   isOpen_sUnion := τ.isOpen_sUnion
 
-/-- The Mathlib bridge preserves the predicate of being open definitionally.-/
+/-- The Mathlib bridge preserves the predicate of being open definitionally.
+@isnad1 id=iff.0h3v.s4.0c8d0aecf356 from=translated src=- shape=238e1b69 vocab=567e4788
+-/
 @[simp]
 theorem isOpen_toMathlib (τ : TextbookTopology X) (s : Set X) :
     @_root_.IsOpen X τ.toMathlib s ↔ τ.IsOpen s :=
   Iff.rfl
 
-/-- Textbook continuity is exactly Mathlib continuity after installing the two explicit bridges.-/
+/-- Textbook continuity is exactly Mathlib continuity after installing the two explicit bridges.
+@isnad1 id=iff.0h5v.s4.a2fc76f6640a from=translated src=- shape=8773f0bb vocab=1509c5e8
+-/
 theorem continuous_iff_mathlib (τX : TextbookTopology X) (τY : TextbookTopology Y) (f : X → Y) :
     Continuous τX τY f ↔ @_root_.Continuous X Y τX.toMathlib τY.toMathlib f := by
   rw [_root_.continuous_def]

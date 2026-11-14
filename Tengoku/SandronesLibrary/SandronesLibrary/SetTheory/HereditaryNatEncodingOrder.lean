@@ -21,6 +21,9 @@ private theorem ordinalPow_omega_one :
   rw [ordinalPow_succ, ordinalPow_zero]
   simp [ordinalMul]
 
+/--
+@isnad1 id=eq.1h2v.s6.9961b49e73bd from=translated src=- shape=f568c3f4 vocab=92566eaf
+-/
 theorem hereditaryNatEncode_omega_equation (base : ℕ) (hbase : 2 ≤ base) (n : ℕ) :
     (hereditaryNatEncode base hbase n).omegaValue =
       Ordinal.omega0 * (hereditaryNatEncode base hbase (n / base)).omegaValue +
@@ -43,7 +46,9 @@ theorem hereditaryNatEncode_omega_equation (base : ℕ) (hbase : 2 ≤ base) (n 
 > **Entry**: settheory.googology.hereditary-natural-encoding-same-block-order
 > **一句话**: 修正后的编码在商相同的同一底数块内严格保序，并具有 `ω·商序数+余数` 的精确方程。
 > **依赖**: `settheory.googology.hereditary-natural-encoding`
-> **mathlib**: `add_lt_add_iff_left`、`Nat.div_add_mod`-/
+> **mathlib**: `add_lt_add_iff_left`、`Nat.div_add_mod`
+@isnad1 id=lt.3h3v.s5.e39f18e73c59 from=translated src=- shape=74ff3eb3 vocab=b67e806b
+-/
 theorem hereditaryNatEncode_omega_lt_of_div_eq {base : ℕ} (hbase : 2 ≤ base)
     {n m : ℕ} (hnm : n < m) (hdiv : n / base = m / base) :
     (hereditaryNatEncode base hbase n).omegaValue <
@@ -79,7 +84,9 @@ private theorem omega_blocks_strictly_separated {a b : Ordinal} {r s : ℕ}
 > **Entry**: settheory.googology.hereditary-natural-encoding-strict-order
 > **一句话**: 修正 Horner 乘法方向后，固定底数的遗传自然数编码在 `omegaValue` 下全局严格保序。
 > **依赖**: `settheory.googology.hereditary-natural-encoding-same-block-order`
-> **mathlib**: `Ordinal.mul_succ`、`Ordinal.natCast_lt_omega0`-/
+> **mathlib**: `Ordinal.mul_succ`、`Ordinal.natCast_lt_omega0`
+@isnad1 id=strictmo.1h1v.s4.2f9140bc9309 from=translated src=- shape=330ef0ad vocab=e7899a8b
+-/
 theorem hereditaryNatEncode_omega_strictMono (base : ℕ) (hbase : 2 ≤ base) :
     StrictMono (fun n ↦ (hereditaryNatEncode base hbase n).omegaValue) := by
   intro n m hnm

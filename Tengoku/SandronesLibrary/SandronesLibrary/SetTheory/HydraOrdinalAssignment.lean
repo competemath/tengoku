@@ -48,10 +48,16 @@ noncomputable def ordinalRepeat (term : Ordinal) : Nat → Ordinal
 def RightmostRootHeadCut (before after : Hydra) : Prop :=
   ∃ children, before = .node (children ++ [Hydra.head]) ∧ after = .node children
 
+/--
+@isnad1 id=eq.0h0v.s3.7fc69db57eba from=translated src=- shape=b0ae1d2b vocab=db3703ad
+-/
 @[simp]
 theorem hydraOrdinal_head : hydraOrdinal Hydra.head = 0 := by
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.9146e92f8fee from=translated src=- shape=c599704d vocab=90668f0e
+-/
 theorem forestOrdinal_append_head (children : List Hydra) :
     forestOrdinal (children ++ [Hydra.head]) = Order.succ (forestOrdinal children) := by
   induction children with
@@ -64,7 +70,9 @@ theorem forestOrdinal_append_head (children : List Hydra) :
       simp only [List.cons_append, forestOrdinal]
       rw [ih, ordinalAdd_succ]
 
-/-- Every rightmost root-head cut strictly lowers the structural assignment.-/
+/-- Every rightmost root-head cut strictly lowers the structural assignment.
+@isnad1 id=lt.1h2v.s4.583432162052 from=translated src=- shape=0069f895 vocab=5e9f3541
+-/
 theorem rightmostRootHeadCut_decreases {before after : Hydra}
     (cut : RightmostRootHeadCut before after) :
     hydraOrdinal after < hydraOrdinal before := by
@@ -74,7 +82,9 @@ theorem rightmostRootHeadCut_decreases {before after : Hydra}
 
 /-- Replicating one pruned parent produces exactly a finite repeated ordinal
 sum of its contribution.  This is the algebraic interface needed for later
-analysis of the stage-dependent regrowth clause.-/
+analysis of the stage-dependent regrowth clause.
+@isnad1 id=eq.0h2v.s4.d06eddd0a5d9 from=translated src=- shape=123a7454 vocab=a8e90e7f
+-/
 theorem forestOrdinal_replicate (copies : Nat) (parent : Hydra) :
     forestOrdinal (List.replicate copies parent) =
       ordinalRepeat (ordinalPow Ordinal.omega0 (hydraOrdinal parent)) copies := by
@@ -92,7 +102,9 @@ theorem forestOrdinal_replicate (copies : Nat) (parent : Hydra) :
 > **mathlib**: `Order.lt_succ`
 
 This theorem packages the two verified interfaces; it does not assert that the
-assignment decreases under every hydra step.-/
+assignment decreases under every hydra step.
+@isnad1 id=and.0h0v.s5.757d451ce7ce from=translated src=- shape=f16f24a7 vocab=35969a9d
+-/
 theorem hydraOrdinal_verified_interfaces :
     (∀ {before after}, RightmostRootHeadCut before after →
       hydraOrdinal after < hydraOrdinal before) ∧

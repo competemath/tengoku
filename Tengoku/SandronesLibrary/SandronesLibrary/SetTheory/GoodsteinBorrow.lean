@@ -62,7 +62,9 @@ private theorem ordinalPow_omega_one :
 > **一句话**: `head + B¹` 换底减一后可借位展开为 `head + base`，且 `ω` 度量从末项 `ω` 严格降到有限末项。
 > **依赖**: `settheory.googology.goodstein-positive-tail-no-borrow`、
 >   `settheory.googology.goodstein-ordinal-measure`
-> **mathlib**: `Ordinal.natCast_lt_omega0`、`add_lt_add_iff_left`-/
+> **mathlib**: `Ordinal.natCast_lt_omega0`、`add_lt_add_iff_left`
+@isnad1 id=and.0h2v.s6.e601d54d104e from=translated src=- shape=5ed7c955 vocab=3c50215f
+-/
 theorem basePowerOneTail_goodstein_borrow_descent {base : ℕ}
     (f : BasePowerOneTailBorrowForm base) :
     f.expression.Valid base ∧

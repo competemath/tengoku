@@ -53,25 +53,33 @@ noncomputable def qrR {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
     Matrix (Fin n) (Fin n) ℝ :=
   (qrBasis A).toBasis.toMatrix (qrColumns A)
 
-/-- Gram–Schmidt 所得基的坐标矩阵是正交矩阵。-/
+/-- Gram–Schmidt 所得基的坐标矩阵是正交矩阵。
+@isnad1 id=isorthog.0h2v.s4.28e8e06ef241 from=translated src=- shape=e3c89cab vocab=8ea661c9
+-/
 theorem qrQ_orthogonal {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
     IsOrthogonalMatrix (qrQ A) := by
   rw [qrQ, isOrthogonalMatrix_iff_mem]
   exact (EuclideanSpace.basisFun (Fin n) ℝ).toMatrix_orthonormalBasis_mem_orthogonal (qrBasis A)
 
-/-- 原列向量在 Gram–Schmidt 基下的坐标矩阵为上三角矩阵。-/
+/-- 原列向量在 Gram–Schmidt 基下的坐标矩阵为上三角矩阵。
+@isnad1 id=isuppert.0h2v.s4.6a30030ef23f from=translated src=- shape=e91b6013 vocab=4d888313
+-/
 theorem qrR_upper {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
     (qrR A).IsUpperTriangular := by
   exact InnerProductSpace.gramSchmidtOrthonormalBasis_inv_isUpperTriangular
     finrank_euclideanSpace (qrColumns A)
 
-/-- 两次换基矩阵相乘恢复原矩阵。-/
+/-- 两次换基矩阵相乘恢复原矩阵。
+@isnad1 id=eq.0h2v.s5.21c6ad6dbf4d from=translated src=- shape=30aead5a vocab=8085ee67
+-/
 theorem qr_mul {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
     qrQ A * qrR A = A := by
   rw [qrQ, qrR, Module.Basis.toMatrix_mul_toMatrix]
   rfl
 
-/-- 任意实方阵都存在方 QR 分解。-/
+/-- 任意实方阵都存在方 QR 分解。
+@isnad1 id=nonempty.0h2v.s3.777d951ce110 from=translated src=- shape=09bb2451 vocab=95ffd380
+-/
 theorem exists_qr {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
     Nonempty (QRFactorization A) := by
   exact ⟨{
@@ -88,7 +96,9 @@ structure PositiveQRFactorization {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     extends QRFactorization A where
   upper_diagonal_pos : ∀ i, 0 < upper i i
 
-/-- 非零行列式保证矩阵的欧氏列族线性无关。-/
+/-- 非零行列式保证矩阵的欧氏列族线性无关。
+@isnad1 id=linearin.1h2v.s6.88b764f750cd from=translated src=- shape=aca28702 vocab=cb59a1d2
+-/
 theorem qrColumns_linearIndependent_of_det_ne_zero {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) (hA : A.det ≠ 0) :
     LinearIndependent ℝ (qrColumns A) := by
@@ -100,7 +110,9 @@ theorem qrColumns_linearIndependent_of_det_ne_zero {n : ℕ}
   exact h
 
 /-- 规范化的第 `i` 个 Gram–Schmidt 向量与第 `i` 个原向量的内积，
-等于未规范化残差的范数。-/
+等于未规范化残差的范数。
+@isnad1 id=eq.1h3v.s8.bd6043b10a2a from=translated src=- shape=57096f64 vocab=b0bd44ae
+-/
 theorem inner_gramSchmidtNormed_input {n : ℕ}
     (f : Fin n → EuclideanSpace ℝ (Fin n))
     (hf : LinearIndependent ℝ f) (i : Fin n) :
@@ -126,7 +138,9 @@ theorem inner_gramSchmidtNormed_input {n : ℕ}
   rw [pow_two]
   exact inv_mul_cancel_left₀ (norm_ne_zero_iff.mpr hg) _
 
-/-- 非奇异矩阵的 Gram–Schmidt 上三角因子具有严格正的对角元。-/
+/-- 非奇异矩阵的 Gram–Schmidt 上三角因子具有严格正的对角元。
+@isnad1 id=lt.1h3v.s5.8bdd25ca6ff0 from=translated src=- shape=8aa13aba vocab=b5de7ba0
+-/
 theorem qrR_diagonal_pos_of_det_ne_zero {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) (hA : A.det ≠ 0) :
     ∀ i, 0 < qrR A i i := by
@@ -144,7 +158,9 @@ theorem qrR_diagonal_pos_of_det_ne_zero {n : ℕ}
   rw [inner_gramSchmidtNormed_input (qrColumns A) hf i]
   exact norm_pos_iff.mpr hg
 
-/-- 每个非奇异实方阵都存在正对角规范 QR 分解。-/
+/-- 每个非奇异实方阵都存在正对角规范 QR 分解。
+@isnad1 id=nonempty.1h2v.s5.811e868133da from=translated src=- shape=517b904a vocab=45b33f07
+-/
 theorem exists_positive_qr {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     (hA : A.det ≠ 0) : Nonempty (PositiveQRFactorization A) := by
   exact ⟨{
@@ -155,13 +171,17 @@ theorem exists_positive_qr {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     eq_mul := (qr_mul A).symm
     upper_diagonal_pos := qrR_diagonal_pos_of_det_ne_zero A hA }⟩
 
-/-- 方正交矩阵的转置也是右逆。-/
+/-- 方正交矩阵的转置也是右逆。
+@isnad1 id=eq.1h2v.s6.a2f94b9ebda3 from=translated src=- shape=01a8a108 vocab=7e0d5fa2
+-/
 theorem orthogonal_mul_transpose {n : ℕ} {Q : Matrix (Fin n) (Fin n) ℝ}
     (hQ : IsOrthogonalMatrix Q) : Q * Qᵀ = 1 := by
   have hmem := (isOrthogonalMatrix_iff_mem Q).mp hQ
   exact (Matrix.mem_orthogonalGroup_iff (Fin n) ℝ).mp hmem
 
-/-- 两个正交矩阵的交叉因子 `Q₁ᵀQ₂` 仍然正交。-/
+/-- 两个正交矩阵的交叉因子 `Q₁ᵀQ₂` 仍然正交。
+@isnad1 id=isorthog.2h3v.s6.cd3eadeac462 from=translated src=- shape=654ef7ef vocab=7e0d5fa2
+-/
 theorem qr_cross_orthogonal {n : ℕ} {Q₁ Q₂ : Matrix (Fin n) (Fin n) ℝ}
     (hQ₁ : IsOrthogonalMatrix Q₁) (hQ₂ : IsOrthogonalMatrix Q₂) :
     IsOrthogonalMatrix (Q₁ᵀ * Q₂) := by
@@ -171,7 +191,9 @@ theorem qr_cross_orthogonal {n : ℕ} {Q₁ Q₂ : Matrix (Fin n) (Fin n) ℝ}
     Matrix.one_mul, hQ₂]
 
 /-- 若右因子上三角，且左因子某行在 `j` 以前为零，则乘积的 `(i,j)` 元素
-只剩两个对角位置元素的乘积。-/
+只剩两个对角位置元素的乘积。
+@isnad1 id=eq.2h5v.s6.bcda548f28a8 from=translated src=- shape=d56a377d vocab=336be73c
+-/
 theorem mul_apply_of_upper_of_left_prefix_zero {n : ℕ}
     (S R : Matrix (Fin n) (Fin n) ℝ) (i j : Fin n)
     (hR : R.IsUpperTriangular) (hprev : ∀ k, k < j → S i k = 0) :
@@ -189,7 +211,9 @@ theorem mul_apply_of_upper_of_left_prefix_zero {n : ℕ}
       rw [hz, mul_zero]
   · simp
 
-/-- 若 `S R₂ = R₁`，两个 `R` 都上三角且 `R₂` 对角非零，则 `S` 也上三角。-/
+/-- 若 `S R₂ = R₁`，两个 `R` 都上三角且 `R₂` 对角非零，则 `S` 也上三角。
+@isnad1 id=isuppert.4h4v.s6.f18845fcfe82 from=translated src=- shape=c6e99803 vocab=18c7b2ef
+-/
 theorem upper_left_factor_of_mul {n : ℕ}
     (S R₁ R₂ : Matrix (Fin n) (Fin n) ℝ)
     (hR₁ : R₁.IsUpperTriangular) (hR₂ : R₂.IsUpperTriangular)
@@ -211,7 +235,9 @@ theorem upper_left_factor_of_mul {n : ℕ}
     exact hij
   exact (mul_eq_zero.mp heq).resolve_right (hdR₂ j)
 
-/-- 在上一引理的三角情形中，若两个右侧因子的对角均为正，则左因子的对角也为正。-/
+/-- 在上一引理的三角情形中，若两个右侧因子的对角均为正，则左因子的对角也为正。
+@isnad1 id=lt.5h5v.s7.99ec367d2138 from=translated src=- shape=8359efb7 vocab=336be73c
+-/
 theorem upper_left_factor_diagonal_pos {n : ℕ}
     (S R₁ R₂ : Matrix (Fin n) (Fin n) ℝ)
     (hS : S.IsUpperTriangular) (hR₂ : R₂.IsUpperTriangular)
@@ -230,7 +256,9 @@ theorem upper_left_factor_diagonal_pos {n : ℕ}
   · exact h.1
   · linarith [h.2, hdR₂ i]
 
-/-- 正对角的上三角正交矩阵只能是单位矩阵。-/
+/-- 正对角的上三角正交矩阵只能是单位矩阵。
+@isnad1 id=eq.3h2v.s6.568d8057de18 from=translated src=- shape=f489f123 vocab=66009fa8
+-/
 theorem orthogonal_upper_pos_eq_one {n : ℕ} (S : Matrix (Fin n) (Fin n) ℝ)
     (hSorth : IsOrthogonalMatrix S) (hSup : S.IsUpperTriangular)
     (hSpos : ∀ i, 0 < S i i) : S = 1 := by
@@ -270,7 +298,9 @@ theorem orthogonal_upper_pos_eq_one {n : ℕ} (S : Matrix (Fin n) (Fin n) ℝ)
       exact hij
     simpa [Matrix.one_apply, ne_of_gt hij] using hz
 
-/-- 非奇异实方阵的正对角规范 QR 分解唯一。-/
+/-- 非奇异实方阵的正对角规范 QR 分解唯一。
+@isnad1 id=and.0h4v.s5.0d0043d27db0 from=translated src=- shape=e59297f2 vocab=cec0d2d8
+-/
 theorem positive_qr_unique {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ}
     (fac₁ fac₂ : PositiveQRFactorization A) :
     fac₁.orthogonal = fac₂.orthogonal ∧ fac₁.upper = fac₂.upper := by
@@ -348,7 +378,9 @@ noncomputable def thinR {m n : ℕ} (A : Matrix (Fin m) (Fin n) ℝ) :
     Matrix (Fin n) (Fin n) ℝ :=
   fun i j => inner ℝ (thinQRVectors A i) (thinQRColumns A j)
 
-/-- 不同数量的向量与环境维数下，规范化 Gram–Schmidt 对角系数仍等于残差范数。-/
+/-- 不同数量的向量与环境维数下，规范化 Gram–Schmidt 对角系数仍等于残差范数。
+@isnad1 id=eq.1h4v.s8.df4dd858c8bc from=translated src=- shape=343b4684 vocab=b0bd44ae
+-/
 theorem inner_thin_gramSchmidtNormed_input {m n : ℕ}
     (f : Fin n → EuclideanSpace ℝ (Fin m))
     (hf : LinearIndependent ℝ f) (i : Fin n) :
@@ -374,7 +406,9 @@ theorem inner_thin_gramSchmidtNormed_input {m n : ℕ}
   rw [pow_two]
   exact inv_mul_cancel_left₀ (norm_ne_zero_iff.mpr hg) _
 
-/-- 满列秩时，薄因子的列标准正交。-/
+/-- 满列秩时，薄因子的列标准正交。
+@isnad1 id=eq.1h3v.s7.6188182605ea from=translated src=- shape=ddd2cf85 vocab=ca871d11
+-/
 theorem thinQ_orthonormal {m n : ℕ} (A : Matrix (Fin m) (Fin n) ℝ)
     (hA : LinearIndependent ℝ (thinQRColumns A)) :
     (thinQ A)ᵀ * thinQ A = 1 := by
@@ -388,7 +422,9 @@ theorem thinQ_orthonormal {m n : ℕ} (A : Matrix (Fin m) (Fin n) ℝ)
     simp [PiLp.inner_apply, mul_comm]]
   simpa [Matrix.one_apply] using (orthonormal_iff_ite.mp hq i j)
 
-/-- 满列秩时，薄 QR 的第二因子上三角且对角严格为正。-/
+/-- 满列秩时，薄 QR 的第二因子上三角且对角严格为正。
+@isnad1 id=and.1h3v.s7.e1add6c2060c from=translated src=- shape=b29599a2 vocab=d4d2f689
+-/
 theorem thinR_upper_and_pos {m n : ℕ} (A : Matrix (Fin m) (Fin n) ℝ)
     (hA : LinearIndependent ℝ (thinQRColumns A)) :
     (thinR A).IsUpperTriangular ∧ ∀ i, 0 < thinR A i i := by
@@ -404,7 +440,9 @@ theorem thinR_upper_and_pos {m n : ℕ} (A : Matrix (Fin m) (Fin n) ℝ)
     rw [inner_thin_gramSchmidtNormed_input (thinQRColumns A) hA i]
     exact norm_pos_iff.mpr (InnerProductSpace.gramSchmidt_ne_zero i hA)
 
-/-- 线性无关向量族中，每个原向量都由规范化 Gram–Schmidt 族按其内积系数重构。-/
+/-- 线性无关向量族中，每个原向量都由规范化 Gram–Schmidt 族按其内积系数重构。
+@isnad1 id=eq.1h4v.s8.72073afe7e4a from=translated src=- shape=3a7ada1c vocab=7859db10
+-/
 theorem gramSchmidtNormed_reconstruction {m n : ℕ}
     (f : Fin n → EuclideanSpace ℝ (Fin m))
     (hf : LinearIndependent ℝ f) (j : Fin n) :
@@ -434,7 +472,9 @@ theorem gramSchmidtNormed_reconstruction {m n : ℕ}
           rw [hci]
     _ = f j := hc
 
-/-- 薄 QR 两个因子的乘积恢复原矩形矩阵。-/
+/-- 薄 QR 两个因子的乘积恢复原矩形矩阵。
+@isnad1 id=eq.1h3v.s7.f06a19f1d3b5 from=translated src=- shape=4e319113 vocab=1fccb66f
+-/
 theorem thinQR_mul {m n : ℕ} (A : Matrix (Fin m) (Fin n) ℝ)
     (hA : LinearIndependent ℝ (thinQRColumns A)) :
     thinQ A * thinR A = A := by
@@ -445,7 +485,9 @@ theorem thinQR_mul {m n : ℕ} (A : Matrix (Fin m) (Fin n) ℝ)
     mul_comm] using h
 
 /-- 任意满列秩实矩形矩阵都存在薄 QR 分解。列线性无关本身已经推出 `n ≤ m`，
-因此无需另列尺寸不等式。-/
+因此无需另列尺寸不等式。
+@isnad1 id=nonempty.1h3v.s6.ee94c4b59507 from=translated src=- shape=54d9f805 vocab=a560334a
+-/
 theorem exists_thin_qr {m n : ℕ} (A : Matrix (Fin m) (Fin n) ℝ)
     (hA : LinearIndependent ℝ (thinQRColumns A)) :
     Nonempty (ThinQRFactorization A) := by

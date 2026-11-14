@@ -52,14 +52,18 @@ noncomputable def polarPartialIsometry (T : E →ₗ[𝕜] F)
       b (rangeIndexEmbedding T ⟨i.val, hi⟩)
     else 0
 
-/-- `|T|` 在第 `i` 个右奇异向量上的作用是乘以第 `i` 个奇异值。-/
+/-- `|T|` 在第 `i` 个右奇异向量上的作用是乘以第 `i` 个奇异值。
+@isnad1 id=eq.0h5v.s10.4303bb636740 from=translated src=- shape=1dd67cba vocab=523aa600
+-/
 theorem absoluteValue_apply_rightBasis (T : E →ₗ[𝕜] F)
     (i : Fin (finrank 𝕜 E)) :
     absoluteValue T (rightSingularBasis T i) =
       (T.singularValues i : 𝕜) • rightSingularBasis T i := by
   exact (rightSingularBasis T).toBasis.constr_basis 𝕜 _ i
 
-/-- `|T|` 是沿右奇异方向的非负秩一算子之和。这个表示式直接给出正半定性。-/
+/-- `|T|` 是沿右奇异方向的非负秩一算子之和。这个表示式直接给出正半定性。
+@isnad1 id=eq.0h4v.s13.73dc0edf4978 from=translated src=- shape=34bb1625 vocab=acc3cbab
+-/
 theorem absoluteValue_eq_sum_rankOne (T : E →ₗ[𝕜] F) :
     absoluteValue T = (∑ i : Fin (finrank 𝕜 E),
       (T.singularValues i : 𝕜) •
@@ -83,7 +87,9 @@ theorem absoluteValue_eq_sum_rankOne (T : E →ₗ[𝕜] F) :
     simp
   · simp
 
-/-- 映射的模 `|T|` 是正半定算子。-/
+/-- 映射的模 `|T|` 是正半定算子。
+@isnad1 id=ispositi.0h4v.s7.de82952da798 from=translated src=- shape=25be2fea vocab=e8f2a853
+-/
 theorem absoluteValue_isPositive (T : E →ₗ[𝕜] F) :
     (absoluteValue T).IsPositive := by
   rw [absoluteValue_eq_sum_rankOne T]
@@ -93,7 +99,9 @@ theorem absoluteValue_isPositive (T : E →ₗ[𝕜] F) :
   apply (InnerProductSpace.isPositive_rankOne_self (rightSingularBasis T i)).smul_of_nonneg
   exact_mod_cast T.singularValues_nonneg i
 
-/-- 映射的模是 `T†T` 的正半定平方根：`|T|² = T†T`。-/
+/-- 映射的模是 `T†T` 的正半定平方根：`|T|² = T†T`。
+@isnad1 id=eq.0h4v.s11.7a4c94fefcdd from=translated src=- shape=c8fe6723 vocab=09ead989
+-/
 theorem absoluteValue_sq (T : E →ₗ[𝕜] F) :
     (absoluteValue T).comp (absoluteValue T) = T.adjoint.comp T := by
   apply (rightSingularBasis T).toBasis.ext
@@ -109,6 +117,9 @@ theorem absoluteValue_sq (T : E →ₗ[𝕜] F) :
   rw [heig, ← T.sq_singularValues_fin rfl i]
   simp [rightSingularBasis, pow_two]
 
+/--
+@isnad1 id=eq.2h7v.s12.247effb06704 from=translated src=- shape=80d1bd7d vocab=3ef5cf86
+-/
 theorem tail_coordinates_zero_of_orthogonal_kernel (T : E →ₗ[𝕜] F)
     (b : OrthonormalBasis (Fin (finrank 𝕜 F)) 𝕜 F) (x : E)
     (hx : ∀ z, polarPartialIsometry T b z = 0 → inner 𝕜 x z = 0) :
@@ -132,6 +143,9 @@ private def rankIndexSubtypeEquiv {r n : ℕ} (h : r ≤ n) :
   left_inv i := by ext; rfl
   right_inv i := by ext; rfl
 
+/--
+@isnad1 id=eq.0h6v.s14.67386e1966b6 from=translated src=- shape=0914e7fa vocab=90259f07
+-/
 theorem polarPartialIsometry_apply_eq_rank_sum (T : E →ₗ[𝕜] F)
     (b : OrthonormalBasis (Fin (finrank 𝕜 F)) 𝕜 F) (x : E) :
     polarPartialIsometry T b x =
@@ -173,6 +187,9 @@ theorem polarPartialIsometry_apply_eq_rank_sum (T : E →ₗ[𝕜] F)
       dsimp [f, p, rankIndexSubtypeEquiv]
       rw [dite_eq_left i.property]
 
+/--
+@isnad1 id=eq.1h6v.s14.85cea0cd88e1 from=translated src=- shape=f2a57ad0 vocab=97ece559
+-/
 theorem rank_sum_norm_eq_of_tail_coordinates_zero (T : E →ₗ[𝕜] F)
     (b : OrthonormalBasis (Fin (finrank 𝕜 F)) 𝕜 F) (x : E)
     (hx : ∀ i : Fin (finrank 𝕜 E), finrank 𝕜 T.range ≤ i.val →
@@ -227,6 +244,9 @@ theorem rank_sum_norm_eq_of_tail_coordinates_zero (T : E →ₗ[𝕜] F)
       rw [← (rightSingularBasis T).repr.norm_map x,
         EuclideanSpace.norm_sq_eq]
 
+/--
+@isnad1 id=eq.1h6v.s12.da0969c829cf from=translated src=- shape=975fd076 vocab=1edba040
+-/
 theorem polarPartialIsometry_norm_eq_of_tail_coordinates_zero (T : E →ₗ[𝕜] F)
     (b : OrthonormalBasis (Fin (finrank 𝕜 F)) 𝕜 F) (x : E)
     (hx : ∀ i : Fin (finrank 𝕜 E), finrank 𝕜 T.range ≤ i.val →
@@ -235,7 +255,9 @@ theorem polarPartialIsometry_norm_eq_of_tail_coordinates_zero (T : E →ₗ[𝕜
   rw [polarPartialIsometry_apply_eq_rank_sum]
   exact rank_sum_norm_eq_of_tail_coordinates_zero T b x hx
 
-/-- 由左右奇异方向配对得到的线性映射确实是部分等距。-/
+/-- 由左右奇异方向配对得到的线性映射确实是部分等距。
+@isnad1 id=ispartia.0h5v.s8.53901cc1cd0f from=translated src=- shape=b08c89d0 vocab=8cd8c7ab
+-/
 theorem polarPartialIsometry_isPartialIsometry (T : E →ₗ[𝕜] F)
     (b : OrthonormalBasis (Fin (finrank 𝕜 F)) 𝕜 F) :
     IsPartialIsometry (polarPartialIsometry T b) := by
@@ -243,7 +265,9 @@ theorem polarPartialIsometry_isPartialIsometry (T : E →ₗ[𝕜] F)
   exact polarPartialIsometry_norm_eq_of_tail_coordinates_zero T b x
     (tail_coordinates_zero_of_orthogonal_kernel T b x hx)
 
-/-- 部分等距因子与正因子的乘积还原原映射：`U |T| = T`。-/
+/-- 部分等距因子与正因子的乘积还原原映射：`U |T| = T`。
+@isnad1 id=eq.1h5v.s11.f7d6838d7906 from=translated src=- shape=4d78c9a4 vocab=b668b103
+-/
 theorem polarPartialIsometry_comp_absoluteValue (T : E →ₗ[𝕜] F)
     (b : OrthonormalBasis (Fin (finrank 𝕜 F)) 𝕜 F)
     (hb : ∀ i : Fin (finrank 𝕜 T.range),
@@ -277,7 +301,9 @@ structure PolarDecomposition (T : E →ₗ[𝕜] F) where
   isPartialIsometry : IsPartialIsometry partialIsometry
   factorization : partialIsometry.comp positivePart = T
 
-/-- 任意有限维实或复内积空间之间的线性映射都存在极分解。-/
+/-- 任意有限维实或复内积空间之间的线性映射都存在极分解。
+@isnad1 id=nonempty.0h4v.s7.aff2a84ea544 from=translated src=- shape=739f8803 vocab=73e048a1
+-/
 theorem exists_polarDecomposition (T : E →ₗ[𝕜] F) :
     Nonempty (PolarDecomposition T) := by
   obtain ⟨b, hb⟩ := exists_leftSingularBasis T

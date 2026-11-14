@@ -52,7 +52,9 @@ private noncomputable def decodeProgramPair (offset index : ℕ) : NatProgram :=
 noncomputable def decodeNatProgram (code : ℕ) : NatProgram :=
   decodeProgramPair code.unpair.1 code.unpair.2
 
-/-- 配对拆分后解码得到原程序，所以解码是编码的左逆。-/
+/-- 配对拆分后解码得到原程序，所以解码是编码的左逆。
+@isnad1 id=eq.0h2v.s7.26ae08c11a65 from=translated src=- shape=72ce6bd8 vocab=70682aaf
+-/
 theorem decodeNatProgram_pair (offset : ℕ) (machine : BinaryMachine (offset + 1)) :
     decodeNatProgram (Nat.pair offset (encodeMachine machine).val) = ⟨offset, machine⟩ := by
   have h : Nat.unpair (Nat.pair offset (encodeMachine machine).val) =
@@ -61,13 +63,17 @@ theorem decodeNatProgram_pair (offset : ℕ) (machine : BinaryMachine (offset + 
   rw [h]
   simp only [decodeProgramPair, decodeMachineNat_encodeMachine]
 
-/-- 先编码再解码得到原程序。-/
+/-- 先编码再解码得到原程序。
+@isnad1 id=eq.0h1v.s3.4b17a33bf730 from=translated src=- shape=47dcad53 vocab=28e951c8
+-/
 theorem decodeNatProgram_encodeNatProgram (program : NatProgram) :
     decodeNatProgram (encodeNatProgram program) = program := by
   obtain ⟨offset, machine⟩ := program
   exact decodeNatProgram_pair offset machine
 
-/-- 编码是单射：它由自然数配对与机器代码的有限编码复合而成。-/
+/-- 编码是单射：它由自然数配对与机器代码的有限编码复合而成。
+@isnad1 id=injectiv.0h0v.s2.f0d8d1c42c1d from=translated src=- shape=54c8eceb vocab=11a7a40a
+-/
 theorem encodeNatProgram_injective : Function.Injective encodeNatProgram := by
   intro p q hp
   rw [← decodeNatProgram_encodeNatProgram p, hp, decodeNatProgram_encodeNatProgram q]
@@ -81,7 +87,9 @@ noncomputable def universalNatInterpreter : UniversalNatInterpreter where
     intro program fuel input
     simp only [decodeNatProgram_encodeNatProgram]
 
-/-- 实例在每个编码后的程序上产生的输出关系，与原程序的停机输出关系完全一致。-/
+/-- 实例在每个编码后的程序上产生的输出关系，与原程序的停机输出关系完全一致。
+@isnad1 id=iff.0h3v.s4.b0863ddc7040 from=translated src=- shape=5e5d20f5 vocab=0dcbc4c6
+-/
 theorem universalNatInterpreter_outputs_encode_iff (program : NatProgram)
     (input output : ℕ) :
     universalNatInterpreter.Outputs (encodeNatProgram program) input output ↔

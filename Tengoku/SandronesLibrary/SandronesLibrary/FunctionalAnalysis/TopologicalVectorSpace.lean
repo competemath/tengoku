@@ -22,18 +22,24 @@ variable {E : Type*} [AddCommGroup E] [TopologicalSpace E] [IsTopologicalAddGrou
 omit [Module ℝ E] [ContinuousSMul ℝ E] in
 /-- 拓扑向量空间的向量加法是联合连续的。
 
-> **Entry**: functional-analysis.topological-vector-space.foundation-/
+> **Entry**: functional-analysis.topological-vector-space.foundation
+@isnad1 id=continuo.0h1v.s5.2a0138b163c7 from=translated src=- shape=78180ec1 vocab=9f7ac1c5
+-/
 theorem topologicalVectorSpace_add_continuous :
     Continuous fun p : E × E ↦ p.1 + p.2 := by
   exact continuous_add
 
 omit [Module ℝ E] [ContinuousSMul ℝ E] in
-/-- 拓扑向量空间的取负映射连续。-/
+/-- 拓扑向量空间的取负映射连续。
+@isnad1 id=continuo.0h1v.s5.db95f3bf4388 from=translated src=- shape=997987b9 vocab=3b1b33d1
+-/
 theorem topologicalVectorSpace_neg_continuous : Continuous fun x : E ↦ -x := by
   exact continuous_neg
 
 omit [IsTopologicalAddGroup E] in
-/-- 拓扑向量空间的标量乘法是标量与向量的联合连续映射。-/
+/-- 拓扑向量空间的标量乘法是标量与向量的联合连续映射。
+@isnad1 id=continuo.0h1v.s7.d03499c2241a from=translated src=- shape=70488f6d vocab=59fb437e
+-/
 theorem topologicalVectorSpace_smul_continuous :
     Continuous fun p : ℝ × E ↦ p.1 • p.2 := by
   exact continuous_smul

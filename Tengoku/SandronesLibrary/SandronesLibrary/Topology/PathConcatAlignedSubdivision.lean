@@ -57,7 +57,9 @@ def pathConcatBreakpointGridIndex (n k : ℕ) (r : Fin (n + 1)) :
     ⟨pathConcatBreakpointNumerator n r,
       Nat.lt_succ_of_le (pathConcatBreakpointNumerator_le_scale n r)⟩
 
-/-- `2^n*k` 一致网格中上述索引的网格点严格等于相应 concat dyadic 断点。-/
+/-- `2^n*k` 一致网格中上述索引的网格点严格等于相应 concat dyadic 断点。
+@isnad1 id=eq.1h3v.s5.d380a9107f8e from=translated src=- shape=f6f2b01b vocab=643c2d03
+-/
 theorem unitIntervalMeshPoint_pathConcatBreakpointGridIndex
     (n k : ℕ) (hk : 0 < k) (r : Fin (n + 1)) :
     unitIntervalMeshPoint (pathConcatDyadicScale n * k)
@@ -75,6 +77,9 @@ def pathConcatSegmentGridLength (n k : ℕ) (i : Fin n) : ℕ :=
   (pathConcatBreakpointNumerator n i.succ -
       pathConcatBreakpointNumerator n i.castSucc) * k
 
+/--
+@isnad1 id=lt.1h3v.s4.d9d14ededbc4 from=translated src=- shape=00fce002 vocab=49b2b9df
+-/
 @[simp] theorem pathConcatSegmentGridLength_pos
     (n k : ℕ) (hk : 0 < k) (i : Fin n) :
     0 < pathConcatSegmentGridLength n k i := by
@@ -166,7 +171,9 @@ private theorem contiguousRanges_ofFn
 
 /-- The dyadic concat blocks, each internally listed in increasing fine-grid
 edge order, flatten to every global fine-grid edge index exactly once and in
-order.-/
+order.
+@isnad1 id=eq.1h2v.s6.fd6dd75c1406 from=translated src=- shape=ecbadc6c vocab=27673d56
+-/
 theorem pathConcatSegmentGridEdgeIndices_flatten
     (n k : ℕ) (hn : 0 < n) :
     (List.ofFn fun i : Fin n =>
@@ -229,6 +236,9 @@ theorem pathConcatSegmentGridEdgeIndices_flatten
     rw [List.getElem_range'_1, List.getElem_ofFn]
     simp
 
+/--
+@isnad1 id=eq.0h4v.s5.558043304501 from=translated src=- shape=3f93675b vocab=4c39a16d
+-/
 @[simp] theorem pathConcatSegmentGridEdgeIndex_castSucc
     (n k : ℕ) (i : Fin n) (s : Fin (pathConcatSegmentGridLength n k i)) :
     (pathConcatSegmentGridEdgeIndex n k i s).castSucc =
@@ -236,6 +246,9 @@ theorem pathConcatSegmentGridEdgeIndices_flatten
   apply Fin.ext
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.2a014befb6a5 from=translated src=- shape=3f93675b vocab=1201205a
+-/
 @[simp] theorem pathConcatSegmentGridEdgeIndex_succ
     (n k : ℕ) (i : Fin n) (s : Fin (pathConcatSegmentGridLength n k i)) :
     (pathConcatSegmentGridEdgeIndex n k i s).succ =
@@ -243,6 +256,9 @@ theorem pathConcatSegmentGridEdgeIndices_flatten
   apply Fin.ext
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.6887ccb14300 from=translated src=- shape=a73be8d9 vocab=760bc090
+-/
 @[simp] theorem pathConcatSegmentGridIndex_zero
     (n k : ℕ) (i : Fin n) :
     pathConcatSegmentGridIndex n k i 0 =
@@ -250,6 +266,9 @@ theorem pathConcatSegmentGridEdgeIndices_flatten
   apply Fin.ext
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.c9cabfa54515 from=translated src=- shape=569c47ca vocab=8823a381
+-/
 @[simp] theorem pathConcatSegmentGridIndex_last
     (n k : ℕ) (i : Fin n) :
     pathConcatSegmentGridIndex n k i
@@ -274,6 +293,9 @@ def pathConcatSegmentMeshPoint
     (Nat.mul_pos (pathConcatDyadicScale_pos n) hk)
     (pathConcatSegmentGridIndex n k i s)
 
+/--
+@isnad1 id=eq.1h3v.s6.c65eea4e1e83 from=translated src=- shape=ad8f4e62 vocab=b0aa8863
+-/
 @[simp] theorem pathConcatSegmentMeshPoint_zero
     (n k : ℕ) (hk : 0 < k) (i : Fin n) :
     pathConcatSegmentMeshPoint n k hk i 0 =
@@ -281,6 +303,9 @@ def pathConcatSegmentMeshPoint
   rw [pathConcatSegmentMeshPoint, pathConcatSegmentGridIndex_zero,
     unitIntervalMeshPoint_pathConcatBreakpointGridIndex n k hk i.castSucc]
 
+/--
+@isnad1 id=eq.1h3v.s5.6b140508b525 from=translated src=- shape=67e7a03b vocab=a1fb9589
+-/
 @[simp] theorem pathConcatSegmentMeshPoint_last
     (n k : ℕ) (hk : 0 < k) (i : Fin n) :
     pathConcatSegmentMeshPoint n k hk i
@@ -289,7 +314,9 @@ def pathConcatSegmentMeshPoint
   rw [pathConcatSegmentMeshPoint, pathConcatSegmentGridIndex_last,
     unitIntervalMeshPoint_pathConcatBreakpointGridIndex n k hk i.succ]
 
-/-- block 内的全局细网格点，严格等于整个 dyadic segment 在相应局部一致网格参数处的仿射点。-/
+/-- block 内的全局细网格点，严格等于整个 dyadic segment 在相应局部一致网格参数处的仿射点。
+@isnad1 id=eq.1h4v.s6.4b43741cf7fb from=translated src=- shape=b838279e vocab=b1b1c31d
+-/
 theorem pathConcatSegmentMeshPoint_eq_convexComb
     (n k : ℕ) (hk : 0 < k) (i : Fin n)
     (s : Fin (pathConcatSegmentGridLength n k i + 1)) :
@@ -320,7 +347,9 @@ theorem pathConcatSegmentMeshPoint_eq_convexComb
   nlinarith
 
 /-- 一个 block 内相邻两个细网格点之间的仿射参数，等于先在该 dyadic segment 的局部网格中取
-相邻参数、再映回全局 dyadic 区间。-/
+相邻参数、再映回全局 dyadic 区间。
+@isnad1 id=eq.1h5v.s7.41fd175b0671 from=translated src=- shape=208c8f73 vocab=843dc00a
+-/
 theorem pathConcatSegmentFineInterval_eq_convexComb
     (n k : ℕ) (hk : 0 < k) (i : Fin n)
     (s : Fin (pathConcatSegmentGridLength n k i)) (t : unitInterval) :
@@ -365,7 +394,9 @@ private theorem Path.concatSegmentFineInterval_mem
   rw [pathConcatSegmentFineInterval_eq_convexComb n k hk i s t]
   exact hmem
 
-/-- 一个 concat segment 覆盖的全部连续细网格子道路，按顺序拼接后同伦于该网格块的整段子道路。-/
+/-- 一个 concat segment 覆盖的全部连续细网格子道路，按顺序拼接后同伦于该网格块的整段子道路。
+@isnad1 id=homotopi.1h7v.s8.99502ed0c2da from=translated src=- shape=98340f22 vocab=3c9a5d27
+-/
 theorem Path.concatSegmentMeshSubpaths_homotopic
     {Y : Type*} [TopologicalSpace Y] {a b : Y} (p : Path a b)
     (n k : ℕ) (hk : 0 < k) (i : Fin n) :
@@ -404,7 +435,9 @@ def Path.concatDyadicGridSegment
       rw [pathConcatSegmentMeshPoint_last,
       Path.concat_breakpoint_apply p F i.succ])
 
-/-- 一个 dyadic block 中所有细网格子道路的拼接，同伦于该输入 concat segment。-/
+/-- 一个 dyadic block 中所有细网格子道路的拼接，同伦于该输入 concat segment。
+@isnad1 id=homotopi.1h6v.s6.26922670af3d from=translated src=- shape=ba91d81c vocab=3dcef665
+-/
 theorem Path.concatDyadicGridSegment_homotopic
     {Y : Type*} [TopologicalSpace Y] {n : ℕ}
     (p : Fin (n + 1) → Y)
@@ -461,7 +494,9 @@ structure PathConcatAlignedSquareSubdivision
   factor_pos : 0 < factor
   steps_eq : subdivision.steps = pathConcatDyadicScale n * factor
 
-/-- 受约束 Lebesgue 方格细分总能提升为带正加细因子的 concat 对齐证书。-/
+/-- 受约束 Lebesgue 方格细分总能提升为带正加细因子的 concat 对齐证书。
+@isnad1 id=nonempty.3h5v.s8.7c42c1dfadad from=translated src=- shape=18d0c76e vocab=be216b4f
+-/
 theorem exists_pathConcatAlignedSquareSubdivision
     (H : C(unitInterval × unitInterval, X)) {U V : Set X}
     (hU : IsOpen U) (hV : IsOpen V)
@@ -487,7 +522,9 @@ def breakpointGridIndex
   Fin.cast (congrArg (· + 1) A.steps_eq.symm)
     (pathConcatBreakpointGridIndex n A.factor r)
 
-/-- 对齐证书中的真实网格点严格就是相应 concat dyadic 断点。-/
+/-- 对齐证书中的真实网格点严格就是相应 concat dyadic 断点。
+@isnad1 id=eq.0h7v.s6.576de0d1ab27 from=translated src=- shape=becf2b47 vocab=7171c8f1
+-/
 theorem unitIntervalMeshPoint_breakpointGridIndex
     {H : C(unitInterval × unitInterval, X)} {U V : Set X} {n : ℕ}
     (A : PathConcatAlignedSquareSubdivision H U V n) (r : Fin (n + 1)) :
@@ -510,7 +547,9 @@ def segmentGridEdgeIndex
     (pathConcatSegmentGridEdgeIndex n A.factor i s)
 
 /-- The aligned subdivision's block-local edge indices flatten to the complete
-global row index list.-/
+global row index list.
+@isnad1 id=eq.1h6v.s7.83767f5d7dfc from=translated src=- shape=1a749cb9 vocab=a24c3bc8
+-/
 theorem segmentGridEdgeIndices_flatten
     {H : C(unitInterval × unitInterval, X)} {U V : Set X} {n : ℕ}
     (A : PathConcatAlignedSquareSubdivision H U V n) (hn : 0 < n) :
@@ -526,7 +565,9 @@ theorem segmentGridEdgeIndices_flatten
     pathConcatSegmentGridEdgeIndices_flatten n k hn
 
 /-- The first fine edge of the first concat block is the first global grid
-edge.-/
+edge.
+@isnad1 id=eq.1h6v.s7.15b7cccb1462 from=translated src=- shape=a4dc0d38 vocab=32a8ed87
+-/
 theorem segmentGridEdgeIndex_first
     {H : C(unitInterval × unitInterval, X)} {U V : Set X} {n : ℕ}
     (A : PathConcatAlignedSquareSubdivision H U V n) (hn : 0 < n) :
@@ -537,7 +578,9 @@ theorem segmentGridEdgeIndex_first
   unfold segmentGridEdgeIndex pathConcatSegmentGridEdgeIndex
   simp
 
-/-- The last fine edge of the last concat block is the last global grid edge.-/
+/-- The last fine edge of the last concat block is the last global grid edge.
+@isnad1 id=other.1h6v.s7.1feddd95cc3f from=translated src=- shape=e1884889 vocab=2c811d55
+-/
 theorem segmentGridEdgeIndex_last
     {H : C(unitInterval × unitInterval, X)} {U V : Set X} {n : ℕ}
     (A : PathConcatAlignedSquareSubdivision H U V n) (hn : 0 < n) :
@@ -580,7 +623,9 @@ theorem segmentGridEdgeIndex_last
   exact (Nat.add_sub_assoc (Nat.one_le_iff_ne_zero.mpr
     (Nat.ne_of_gt hpositive)) _).symm
 
-/-- 同一 concat segment 中相邻的局部细边，对应原方形细分中的相邻全局行。-/
+/-- 同一 concat segment 中相邻的局部细边，对应原方形细分中的相邻全局行。
+@isnad1 id=eq.1h9v.s7.193edb48a70c from=translated src=- shape=a5b24a09 vocab=3359c219
+-/
 theorem segmentGridEdgeIndex_succ_eq_castSucc
     {H : C(unitInterval × unitInterval, X)} {U V : Set X} {n : ℕ}
     (A : PathConcatAlignedSquareSubdivision H U V n) (i : Fin n)
@@ -596,7 +641,9 @@ theorem segmentGridEdgeIndex_succ_eq_castSucc
   simp only [Fin.val_succ, Fin.val_castSucc] at hs
   omega
 
-/-- 上述相邻索引桥在同伦方形最左边界给出同一个真实网格顶点。-/
+/-- 上述相邻索引桥在同伦方形最左边界给出同一个真实网格顶点。
+@isnad1 id=eq.1h9v.s8.459abfde4e68 from=translated src=- shape=3a1c2417 vocab=c533c536
+-/
 theorem leftBoundary_segmentGridEdgeIndex_shared_vertex
     {H : C(unitInterval × unitInterval, X)} {U V : Set X} {n : ℕ}
     (A : PathConcatAlignedSquareSubdivision H U V n) (i : Fin n)
@@ -608,6 +655,9 @@ theorem leftBoundary_segmentGridEdgeIndex_shared_vertex
         (A.segmentGridEdgeIndex i t).castSucc := by
   rw [A.segmentGridEdgeIndex_succ_eq_castSucc i s t hshared]
 
+/--
+@isnad1 id=eq.0h8v.s7.20054a03f88d from=translated src=- shape=d9dd1379 vocab=e18806f6
+-/
 @[simp] theorem unitIntervalMeshPoint_segmentGridEdgeIndex_castSucc
     {H : C(unitInterval × unitInterval, X)} {U V : Set X} {n : ℕ}
     (A : PathConcatAlignedSquareSubdivision H U V n) (i : Fin n)
@@ -621,6 +671,9 @@ theorem leftBoundary_segmentGridEdgeIndex_shared_vertex
   subst steps
   simp [segmentGridEdgeIndex, pathConcatSegmentMeshPoint]
 
+/--
+@isnad1 id=eq.0h8v.s7.3bfc11205443 from=translated src=- shape=d9dd1379 vocab=90bbb6c4
+-/
 @[simp] theorem unitIntervalMeshPoint_segmentGridEdgeIndex_succ
     {H : C(unitInterval × unitInterval, X)} {U V : Set X} {n : ℕ}
     (A : PathConcatAlignedSquareSubdivision H U V n) (i : Fin n)
@@ -637,7 +690,9 @@ theorem leftBoundary_segmentGridEdgeIndex_shared_vertex
 end PathConcatAlignedSquareSubdivision
 
 /-- 对齐同伦方形中一个 concat block 的每条真实左边界竖边，逐点就是输入环路在对应细网格
-子区间上的限制。-/
+子区间上的限制。
+@isnad1 id=eq.0h13v.s10.a30c473e0efb from=translated src=- shape=8c70c669 vocab=2b99fd94
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundarySegmentGridEdge_apply
     {x₀ x₁ : X} {p q : Path x₀ x₁} (Fhom : Path.Homotopy p q)
     {U V : Set X} {n : ℕ}
@@ -655,7 +710,9 @@ theorem PathConcatAlignedSquareSubdivision.leftBoundarySegmentGridEdge_apply
     A.unitIntervalMeshPoint_segmentGridEdgeIndex_succ]
 
 /-- 对 kernel 字母 concat loop 的对齐同伦方形，每个 dyadic block 内的真实最左网格边逐点位于该
-输入字母指定的覆盖成员中，无论方格细分给该行选择了哪个标签。-/
+输入字母指定的覆盖成员中，无论方格细分给该行选择了哪个标签。
+@isnad1 id=mem.2h10v.s11.8abec1e6be06 from=translated src=- shape=15ef397a vocab=f05a389d
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundarySegmentGridEdge_mem_letterPiece
     {U V : Set X} {x₀ : X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (letters : List (BinaryVanKampenLetter U V hxU hxV))
@@ -681,7 +738,9 @@ theorem PathConcatAlignedSquareSubdivision.leftBoundarySegmentGridEdge_mem_lette
     (binaryVanKampenLetterConcatLoop_segment_mem hxU hxV letters i) s t
 
 /-- 同一结论按 VK2 `Path.BinaryOpenCoverSubdivision` 的标准 `Path.subpath` 表示：block 内对应全局
-行索引的 segment 除了属于 cell 标签成员，也属于输入字母标签成员。-/
+行索引的 segment 除了属于 cell 标签成员，也属于输入字母标签成员。
+@isnad1 id=mem.2h10v.s10.92e9a9225068 from=translated src=- shape=a4266007 vocab=9fdf3d18
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundarySubdivision_subpath_mem_letterPiece
     {U V : Set X} {x₀ : X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (letters : List (BinaryVanKampenLetter U V hxU hxV))

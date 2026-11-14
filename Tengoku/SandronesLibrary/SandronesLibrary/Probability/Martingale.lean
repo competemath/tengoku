@@ -31,7 +31,9 @@ namespace SandronesLibrary.Probability
 
 open MeasureTheory
 
-/-- 鞅的定义性展开：强适应，并且未来值关于当前信息的条件期望等于当前值。-/
+/-- 鞅的定义性展开：强适应，并且未来值关于当前信息的条件期望等于当前值。
+@isnad1 id=iff.0h7v.s6.9a7a4b0105a2 from=translated src=- shape=2482ab50 vocab=1050ff85
+-/
 theorem martingale_iff_stronglyAdapted_conditionalExpectation
     {Ω E ι : Type*} [Preorder ι] {m : MeasurableSpace Ω}
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -41,7 +43,9 @@ theorem martingale_iff_stronglyAdapted_conditionalExpectation
         ∀ i j, i ≤ j → μ[X j | 𝓕 i] =ᵐ[μ] X i :=
   Iff.rfl
 
-/-- 上鞅的定义性展开；与鞅不同，逐时刻可积性是定义的显式组成部分。-/
+/-- 上鞅的定义性展开；与鞅不同，逐时刻可积性是定义的显式组成部分。
+@isnad1 id=iff.0h7v.s7.5ac3e6ee76aa from=translated src=- shape=339ce279 vocab=11b9cebf
+-/
 theorem supermartingale_iff_stronglyAdapted_conditionalExpectation
     {Ω E ι : Type*} [Preorder ι] {m : MeasurableSpace Ω}
     [NormedAddCommGroup E] [NormedSpace ℝ E] [LE E]
@@ -52,7 +56,9 @@ theorem supermartingale_iff_stronglyAdapted_conditionalExpectation
           ∀ i, Integrable (X i) μ :=
   Iff.rfl
 
-/-- 下鞅的定义性展开；当前值几乎处处不超过未来值的当前条件期望。-/
+/-- 下鞅的定义性展开；当前值几乎处处不超过未来值的当前条件期望。
+@isnad1 id=iff.0h7v.s7.323b6d811aa2 from=translated src=- shape=49fbc447 vocab=6e5e3462
+-/
 theorem submartingale_iff_stronglyAdapted_conditionalExpectation
     {Ω E ι : Type*} [Preorder ι] {m : MeasurableSpace Ω}
     [NormedAddCommGroup E] [NormedSpace ℝ E] [LE E]
@@ -63,7 +69,9 @@ theorem submartingale_iff_stronglyAdapted_conditionalExpectation
           ∀ i, Integrable (X i) μ :=
   Iff.rfl
 
-/-- Banach 空间值鞅的每个时刻取值都可积。可积性由 `i = j` 时的鞅等式推出。-/
+/-- Banach 空间值鞅的每个时刻取值都可积。可积性由 `i = j` 时的鞅等式推出。
+@isnad1 id=integrab.1h8v.s6.546a734ede23 from=translated src=- shape=51f13aff vocab=3d9e90be
+-/
 theorem martingale_integrable
     {Ω E ι : Type*} [Preorder ι] {m : MeasurableSpace Ω}
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
@@ -72,7 +80,9 @@ theorem martingale_integrable
     Integrable (X i) μ :=
   hX.integrable i
 
-/-- 在偏序 Banach 空间中，鞅恰好是同时为上鞅和下鞅的过程。-/
+/-- 在偏序 Banach 空间中，鞅恰好是同时为上鞅和下鞅的过程。
+@isnad1 id=iff.0h7v.s6.67cf97164de0 from=translated src=- shape=f8529d3b vocab=40926a4c
+-/
 theorem martingale_iff_supermartingale_and_submartingale
     {Ω E ι : Type*} [Preorder ι] {m : MeasurableSpace Ω}
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
@@ -84,7 +94,9 @@ theorem martingale_iff_supermartingale_and_submartingale
 /-- 沿过滤逐层观察同一函数所得的条件期望过程是鞅。
 
 这是定义层的首个实际消费者：过滤的单调性给出塔式条件期望，从而把已有的过滤与条件期望
-接口组装成一个鞅。`SigmaFiniteFiltration` 保证每层条件期望所需的 trim 测度均为 σ-有限。-/
+接口组装成一个鞅。`SigmaFiniteFiltration` 保证每层条件期望所需的 trim 测度均为 σ-有限。
+@isnad1 id=martinga.0h7v.s6.77043ea5bccc from=translated src=- shape=8a1eb348 vocab=1aca6170
+-/
 theorem conditionalExpectation_process_isMartingale
     {Ω E ι : Type*} [Preorder ι] {m : MeasurableSpace Ω}
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]

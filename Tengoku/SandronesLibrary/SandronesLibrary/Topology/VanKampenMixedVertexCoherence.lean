@@ -32,7 +32,9 @@ variable {X : Type*} [TopologicalSpace X]
 
 /-- 若中央顶点周围四格不全同标签，则该中央顶点落在覆盖交集。
 
-> **Entry**: topology.fundamental-group.van-kampen-mixed-vertex-coherence-/
+> **Entry**: topology.fundamental-group.van-kampen-mixed-vertex-coherence
+@isnad1 id=mem.3h9v.s8.c11745a15a23 from=translated src=- shape=2532884f vocab=b61882a5
+-/
 theorem BinaryOpenCoverSquareSubdivision.centralVertex_mem_intersection_of_not_all_eq
     {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -65,6 +67,9 @@ def BinaryOpenCoverSquareSubdivision.centralIntersectionVertex
     D.centralVertex_mem_intersection_of_not_all_eq
       i k j l hHorizontal hVertical hmixed⟩
 
+/--
+@isnad1 id=eq.3h9v.s8.3643e2bab1ec from=translated src=- shape=9c3bc3d7 vocab=5c94b649
+-/
 @[simp] theorem BinaryOpenCoverSquareSubdivision.coe_centralIntersectionVertex
     {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -267,7 +272,9 @@ private theorem binaryOpenCoverIntersectionConnectorInPiece_cast_eq
   subst w
   rw [Subsingleton.elim hz hw]
 
-/-- 同时规范 source 与 target transport，并选第二条 connector 的两个端点。-/
+/-- 同时规范 source 与 target transport，并选第二条 connector 的两个端点。
+@isnad1 id=eq.4h8v.s6.5043128bf128 from=translated src=- shape=71a1894f vocab=7cde2107
+-/
 theorem connectorChange_cast_four_endpoints_right
     {a z w x v : X} (p : Path a z) (q : Path x w)
     (hxa : x = a) (hzw : z = w)
@@ -785,7 +792,9 @@ def BinaryOpenCoverSquareSubdivision.gridCellVertexPotentialFromIntersectionOfLa
       (D.gridCellVertexConnectorInPieceOfLabel hxU hxV hU hV
         i j a b label hlabel))
 
-/-- 显式标签 potential 与标签等式证明无关。-/
+/-- 显式标签 potential 与标签等式证明无关。
+@isnad1 id=eq.9h13v.s9.792fa87d7468 from=translated src=- shape=3525ee3b vocab=e2da2663
+-/
 theorem BinaryOpenCoverSquareSubdivision.gridCellVertexPotentialFromIntersectionOfLabel_eq
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -1453,7 +1462,9 @@ private theorem BinaryOpenCoverSquareSubdivision.allCommonCentralInternalTransit
     dite_eq_left hRight, dite_eq_left hLeft]
   exact h
 
-/-- 任意四个相邻小格的真实内部边 transitions 都在中央顶点满足方块 coherence。-/
+/-- 任意四个相邻小格的真实内部边 transitions 都在中央顶点满足方块 coherence。
+@isnad1 id=other.7h10v.s9.9641f55e7a44 from=translated src=- shape=076ae05b vocab=bd02bad4
+-/
 theorem BinaryOpenCoverSquareSubdivision.centralInternalTransitions_square
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)

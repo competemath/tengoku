@@ -53,7 +53,9 @@ def prepend (h : H) (a : CoveringSubgroupBasedPath x0) :
 def Related (a b : CoveringSubgroupBasedPath x0) : Prop :=
   ∃ h : H, prepend H h a = b
 
-/-- 单位环路在起点前拼接不改变 based path。-/
+/-- 单位环路在起点前拼接不改变 based path。
+@isnad1 id=eq.0h4v.s7.23f3a78cf5b3 from=translated src=- shape=fd891daf vocab=598f7380
+-/
 theorem prepend_one (a : CoveringSubgroupBasedPath x0) :
     prepend H 1 a = a := by
   rcases a with ⟨y, gamma⟩
@@ -65,7 +67,9 @@ theorem prepend_one (a : CoveringSubgroupBasedPath x0) :
 /-- `prepend` 遵循由 Mathlib 基本群乘法次序产生的反作用律。
 
 Mathlib 中 `h * k` 的道路代表是先走 `k`、再走 `h`，所以一次拼接 `h * k` 等于先作用 `h`、
-再作用 `k`。-/
+再作用 `k`。
+@isnad1 id=eq.0h6v.s8.ae74d65db42b from=translated src=- shape=aed35809 vocab=9b3efee4
+-/
 theorem prepend_mul (h k : H) (a : CoveringSubgroupBasedPath x0) :
     prepend H (h * k) a = prepend H k (prepend H h a) := by
   rcases a with ⟨y, gamma⟩
@@ -74,11 +78,15 @@ theorem prepend_mul (h k : H) (a : CoveringSubgroupBasedPath x0) :
   change (k.1.trans h.1).trans gamma = k.1.trans (h.1.trans gamma)
   exact Path.Homotopic.Quotient.trans_assoc k.1 h.1 gamma
 
-/-- 每个 based path 与自身相关。-/
+/-- 每个 based path 与自身相关。
+@isnad1 id=related.0h4v.s5.b0ba9e87f9e4 from=translated src=- shape=2ee0929a vocab=4d31d8ec
+-/
 theorem related_refl (a : CoveringSubgroupBasedPath x0) : Related H a a :=
   ⟨1, prepend_one H a⟩
 
-/-- 子群轨道关系是对称的。-/
+/-- 子群轨道关系是对称的。
+@isnad1 id=related.1h5v.s5.7534654dcf8d from=translated src=- shape=d618a354 vocab=4d31d8ec
+-/
 theorem related_symm {a b : CoveringSubgroupBasedPath x0} :
     Related H a b → Related H b a := by
   rintro ⟨h, rfl⟩
@@ -86,13 +94,17 @@ theorem related_symm {a b : CoveringSubgroupBasedPath x0} :
   rw [← prepend_mul]
   simpa using prepend_one H a
 
-/-- 子群轨道关系是传递的。-/
+/-- 子群轨道关系是传递的。
+@isnad1 id=related.2h6v.s5.8aab6731c37e from=translated src=- shape=8ed3e52f vocab=4d31d8ec
+-/
 theorem related_trans {a b c : CoveringSubgroupBasedPath x0} :
     Related H a b → Related H b c → Related H a c := by
   rintro ⟨h, rfl⟩ ⟨k, rfl⟩
   exact ⟨h * k, prepend_mul H h k a⟩
 
-/-- 子群轨道关系构成等价关系。-/
+/-- 子群轨道关系构成等价关系。
+@isnad1 id=equivale.0h3v.s5.dbcb7531cba9 from=translated src=- shape=b0773581 vocab=147d9e82
+-/
 theorem related_equivalence : Equivalence (Related H) :=
   ⟨related_refl H, related_symm H, related_trans H⟩
 
@@ -101,7 +113,9 @@ def orbitSetoid : Setoid (CoveringSubgroupBasedPath x0) where
   r := Related H
   iseqv := related_equivalence H
 
-/-- 相关的 based paths 具有相同终点。-/
+/-- 相关的 based paths 具有相同终点。
+@isnad1 id=eq.1h5v.s5.6ee30d9ecfe7 from=translated src=- shape=2d455793 vocab=75e0d1ef
+-/
 theorem endpoint_eq_of_related {a b : CoveringSubgroupBasedPath x0}
     (hab : Related H a b) : a.endpoint = b.endpoint := by
   obtain ⟨h, rfl⟩ := hab

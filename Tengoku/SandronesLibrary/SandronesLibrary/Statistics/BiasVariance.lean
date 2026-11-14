@@ -34,7 +34,9 @@ namespace SandronesLibrary.Statistics
 open MeasureTheory ProbabilityTheory
 open scoped ENNReal
 
-/-- 若实值目标 `τ` 可测，则平方损失 `(θ,y) ↦ (y-τ θ)²` 作为 `ℝ≥0∞` 值函数联合可测。-/
+/-- 若实值目标 `τ` 可测，则平方损失 `(θ,y) ↦ (y-τ θ)²` 作为 `ℝ≥0∞` 值函数联合可测。
+@isnad1 id=measurab.1h2v.s6.e36dac63cf6d from=translated src=- shape=635be326 vocab=cfc94f1b
+-/
 theorem squaredLoss_jointlyMeasurable
     {Θ : Type*} [MeasurableSpace Θ] (τ : Θ → ℝ) (hτ : Measurable τ) :
     Measurable
@@ -44,7 +46,9 @@ theorem squaredLoss_jointlyMeasurable
 /-- 概率测度上的均方误差等于方差加偏差平方。
 
 这里 `a` 是要估计的真实值，`∫ Y - a` 是偏差。二次可积性同时保证展开中所有一阶和二阶积分
-合法。-/
+合法。
+@isnad1 id=eq.1h4v.s7.e179a0293179 from=translated src=- shape=9d1ff7c1 vocab=7d923ff7
+-/
 theorem squaredError_integral_eq_variance_add_bias_sq
     {Ω : Type*} [MeasurableSpace Ω] (ν : Measure Ω) [IsProbabilityMeasure ν]
     (Y : Ω → ℝ) (hY : MemLp Y 2 ν) (a : ℝ) :
@@ -71,7 +75,9 @@ theorem squaredError_integral_eq_variance_add_bias_sq
 /-- 实值随机化估计量在固定参数下的平方损失风险分解。
 
 `(κ ∘ₖ P) θ` 是估计输出的概率分布。左端保持 estimator 定义条目采用的原生 `lintegral` 风险；
-右端第一项是输出方差，第二项是输出均值相对目标 `τ θ` 的偏差平方。-/
+右端第一项是输出方差，第二项是输出均值相对目标 `τ θ` 的偏差平方。
+@isnad1 id=eq.1h6v.s8.de35d501d1e8 from=translated src=- shape=c4d7b692 vocab=53db2714
+-/
 theorem estimator_squaredLossRisk_eq_variance_add_bias_sq
     {Θ 𝓧 : Type*} [MeasurableSpace Θ] [MeasurableSpace 𝓧]
     (P : Kernel Θ 𝓧) [IsMarkovKernel P]

@@ -76,15 +76,21 @@ private theorem filter_add_filter_not_eq (f : Ordinal →₀ Ordinal) (p : Ordin
   · rw [ite_eq_right h]
     simp [h]
 
-/-- 自然和的右零元。-/
+/-- 自然和的右零元。
+@isnad1 id=eq.0h1v.s3.843d0ea571e3 from=translated src=- shape=1fa26838 vocab=623decd8
+-/
 theorem ordNadd_zero_right (a : Ordinal) : ordNadd a 0 = a := by
   rw [ordNadd, Ordinal.CNF.coeff_zero_right, add_zero, Ordinal.CNF.eval_coeff]
 
-/-- 自然和的左零元。-/
+/-- 自然和的左零元。
+@isnad1 id=eq.0h1v.s3.dca0e0e61479 from=translated src=- shape=a60e91e3 vocab=623decd8
+-/
 theorem ordNadd_zero_left (b : Ordinal) : ordNadd 0 b = b := by
   rw [ordNadd, Ordinal.CNF.coeff_zero_right, zero_add, Ordinal.CNF.eval_coeff]
 
-/-- 自然和可交换：系数都是有限序数，逐点转成自然数加法后交换。-/
+/-- 自然和可交换：系数都是有限序数，逐点转成自然数加法后交换。
+@isnad1 id=eq.0h2v.s3.3d0fb54f6874 from=translated src=- shape=1013c0ce vocab=623decd8
+-/
 theorem ordNadd_comm (a b : Ordinal) : ordNadd a b = ordNadd b a := by
   have h : Ordinal.CNF.coeff Ordinal.omega0 a + Ordinal.CNF.coeff Ordinal.omega0 b =
       Ordinal.CNF.coeff Ordinal.omega0 b + Ordinal.CNF.coeff Ordinal.omega0 a := by
@@ -95,7 +101,9 @@ theorem ordNadd_comm (a b : Ordinal) : ordNadd a b = ordNadd b a := by
     rw [hm, hn, ← Nat.cast_add, ← Nat.cast_add, Nat.add_comm]
   rw [ordNadd, ordNadd, h]
 
-/-- 自然和可结合。-/
+/-- 自然和可结合。
+@isnad1 id=eq.0h3v.s4.4506368b18b6 from=translated src=- shape=b8c031c3 vocab=623decd8
+-/
 theorem ordNadd_assoc (a b c : Ordinal) :
     ordNadd (ordNadd a b) c = ordNadd a (ordNadd b c) := by
   have h₁ : Ordinal.CNF.coeff Ordinal.omega0 (ordNadd a b) =
@@ -258,7 +266,9 @@ private theorem exists_agree_above_of_ne {f g : Ordinal →₀ Ordinal} (h : f �
     change s.max' hs ∈ (f.support ∪ g.support).filter (fun e => f e ≠ g e) at hmax
     exact (Finset.mem_filter.mp hmax).2
 
-/-- 自然和在第二个自变量上严格单调（固定第一个自变量）。-/
+/-- 自然和在第二个自变量上严格单调（固定第一个自变量）。
+@isnad1 id=lt.1h3v.s4.97647d2db8dd from=translated src=- shape=dc7ae3e3 vocab=ef735757
+-/
 theorem ordNadd_lt_ordNadd_right {a b c : Ordinal} (h : a < b) :
     ordNadd c a < ordNadd c b := by
   have hne : Ordinal.CNF.coeff Ordinal.omega0 a ≠ Ordinal.CNF.coeff Ordinal.omega0 b := by
@@ -286,7 +296,9 @@ theorem ordNadd_lt_ordNadd_right {a b c : Ordinal} (h : a < b) :
   · rw [Finsupp.add_apply, Finsupp.add_apply]
     exact add_lt_add_right hlt' _
 
-/-- 自然和在第一个自变量上严格单调（固定第二个自变量）。-/
+/-- 自然和在第一个自变量上严格单调（固定第二个自变量）。
+@isnad1 id=lt.1h3v.s4.30b2d7cd4938 from=translated src=- shape=11958600 vocab=ef735757
+-/
 theorem ordNadd_lt_ordNadd_left {a b c : Ordinal} (h : a < b) :
     ordNadd a c < ordNadd b c := by
   rw [ordNadd_comm a c, ordNadd_comm b c]
@@ -305,7 +317,9 @@ private theorem coeff_omega_one :
         exact Ordinal.omega0_pos)
   rwa [Ordinal.CNF.eval_single, Ordinal.opow_zero, one_mul] at h
 
-/-- 自然和加一：`ordNadd a 1 = a + 1`，因为系数 `0` 是最小指数，`1` 永远排在末尾。-/
+/-- 自然和加一：`ordNadd a 1 = a + 1`，因为系数 `0` 是最小指数，`1` 永远排在末尾。
+@isnad1 id=eq.0h1v.s4.c201c5c5774b from=translated src=- shape=c809089b vocab=fb5a5ae5
+-/
 theorem ordNadd_one (a : Ordinal) : ordNadd a 1 = a + 1 := by
   rw [ordNadd, coeff_omega_one, Ordinal.CNF.eval_add]
   · rw [Ordinal.CNF.eval_coeff, Ordinal.CNF.eval_single, Ordinal.opow_zero, one_mul]
@@ -333,18 +347,33 @@ mutual
           (forestGeneralOrdinal rest)
 end
 
+/--
+@isnad1 id=eq.0h1v.s3.05f7579a6015 from=translated src=- shape=e3322fec vocab=74469973
+-/
 @[simp] theorem hydraGeneralOrdinal_node (children : List Hydra) :
     hydraGeneralOrdinal.{u} (.node children) = forestGeneralOrdinal.{u} children := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.5290f4790b4c from=translated src=- shape=059f3f86 vocab=a51ee91a
+-/
 @[simp] theorem forestGeneralOrdinal_cons (child : Hydra) (rest : List Hydra) :
     forestGeneralOrdinal.{u} (child :: rest) =
       ordNadd (ordinalPow Ordinal.omega0 (hydraGeneralOrdinal.{u} child))
         (forestGeneralOrdinal.{u} rest) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.0a1640e4613c from=translated src=- shape=35225b15 vocab=78636bbd
+-/
 @[simp] theorem forestGeneralOrdinal_nil : forestGeneralOrdinal.{u} [] = 0 := rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.5c1f724c1b65 from=translated src=- shape=b0ae1d2b vocab=eefbe7a7
+-/
 @[simp] theorem hydraGeneralOrdinal_head : hydraGeneralOrdinal.{u} Hydra.head = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.5cbb7c253af5 from=translated src=- shape=c63989eb vocab=5c877fb3
+-/
 theorem forestGeneralOrdinal_append (l₁ l₂ : List Hydra) :
     forestGeneralOrdinal.{u} (l₁ ++ l₂) =
       ordNadd (forestGeneralOrdinal.{u} l₁) (forestGeneralOrdinal.{u} l₂) := by
@@ -355,7 +384,9 @@ theorem forestGeneralOrdinal_append (l₁ l₂ : List Hydra) :
         ← ordNadd_assoc]
 
 /-- Removing a head from a forest strictly decreases its measure, at an
-arbitrary position.-/
+arbitrary position.
+@isnad1 id=lt.0h2v.s5.0c3fd8ef938c from=translated src=- shape=7940c130 vocab=5624b9a1
+-/
 theorem forestGeneralOrdinal_remove_head (L R : List Hydra) :
     forestGeneralOrdinal.{u} (L ++ R) <
       forestGeneralOrdinal.{u} (L ++ Hydra.head :: R) := by

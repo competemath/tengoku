@@ -210,7 +210,9 @@ def CellVertexFrames.liftAcrossVertical
   topLeft := upperTopLeft
 
 /-- 下行 frames 水平相容、中央 transition 方块相容且上行顶部 frames 相容时，
-逐列竖直提升得到的上行四角 frames 也水平相容。-/
+逐列竖直提升得到的上行四角 frames 也水平相容。
+@isnad1 id=horizont.3h11v.s7.caf0a08fb1c3 from=translated src=- shape=ca3d3e71 vocab=e6576cea
+-/
 theorem horizontalCellFramesCompatible_liftAcrossVertical
     {G : Type*} [Group G]
     (horizontalBottom horizontalTop verticalLeft verticalRight : EdgeTransitions G)
@@ -389,7 +391,9 @@ private theorem BinaryOpenCoverSquareSubdivision.framedHorizontalRowPrefixState_
 
 /-- The left edge of a completed framed row is the framed left edge of its
 first cell.  This is the public projection; the prefix recursion remains an
-implementation detail of the completed-row constructor.-/
+implementation detail of the completed-row constructor.
+@isnad1 id=eq.6h8v.s11.db0503dc1e03 from=translated src=- shape=31bb98a9 vocab=7407308f
+-/
 theorem BinaryOpenCoverSquareSubdivision.framedHorizontalFullRowState_leftEdge
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -413,7 +417,9 @@ theorem BinaryOpenCoverSquareSubdivision.framedHorizontalFullRowState_leftEdge
     hxU hxV hUV hU hV j frames hcompat
     (D.steps - 1) (Nat.sub_lt D.steps_pos Nat.zero_lt_one)
 
-/-- 任意水平相容 frames 上，完整单行仍满足标准矩形外边界关系。-/
+/-- 任意水平相容 frames 上，完整单行仍满足标准矩形外边界关系。
+@isnad1 id=other.6h8v.s11.0d74bde99e96 from=translated src=- shape=2d5d15d5 vocab=8c353537
+-/
 theorem BinaryOpenCoverSquareSubdivision.framedHorizontalFullRowState_standard_relation
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -927,7 +933,9 @@ private theorem BinaryOpenCoverSquareSubdivision.gridRowPrefixStateAt_bottomWord
       exact D.gridRowPrefixStateAt_bottomWord hxU hxV hUV hU hV p hp'
 
 /-- 完整方格的四侧词版边界关系。这里的 top 是最高一行，bottom 是第零行，left/right
-分别是沿所有行累积的两条外侧。-/
+分别是沿所有行累积的两条外侧。
+@isnad1 id=other.5h6v.s10.87fb03632d1d from=translated src=- shape=bbf3f1f7 vocab=0f354aff
+-/
 theorem BinaryOpenCoverSquareSubdivision.gridPerimeterWords_standard_relation
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -950,7 +958,9 @@ theorem BinaryOpenCoverSquareSubdivision.gridPerimeterWords_standard_relation
   exact S.relation
 
 /-- 整张有限方格在递归 frames 上满足单一的四边外边界关系；所有内部横边和竖边
-均已在构造状态的过程中消去。-/
+均已在构造状态的过程中消去。
+@isnad1 id=other.5h6v.s10.87fb03632d1d from=translated src=- shape=bbf3f1f7 vocab=0f354aff
+-/
 theorem BinaryOpenCoverSquareSubdivision.gridFullBoundary_standard_relation
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)

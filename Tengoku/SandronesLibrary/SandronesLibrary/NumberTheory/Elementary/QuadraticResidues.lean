@@ -37,19 +37,25 @@ def IsQuadraticNonresidue (n : ℕ) (a : ℤ) : Prop :=
 
 /-- 本库的二次剩余定义等价于 Mathlib 的环论谓词 `IsSquare`。公开课程接口使用前者，
 后者只作为进入有限域理论的实现桥。
-> **Entry**: number-theory.elementary.quadratic-residues-/
+> **Entry**: number-theory.elementary.quadratic-residues
+@isnad1 id=iff.0h2v.s5.795a04bbc173 from=translated src=- shape=86475482 vocab=da680955
+-/
 theorem quadraticResidue_iff_isSquare (n : ℕ) (a : ℤ) :
     IsQuadraticResidue n a ↔ IsSquare (a : ZMod n) := by
   simp only [IsQuadraticResidue, isSquare_iff_exists_sq, eq_comm]
 
 /-- 零总是二次剩余，因为 `0² = 0`。
-> **Entry**: number-theory.elementary.quadratic-residues-/
+> **Entry**: number-theory.elementary.quadratic-residues
+@isnad1 id=isquadra.0h1v.s3.19d262a20bb5 from=translated src=- shape=8ba9e24c vocab=060f90e9
+-/
 theorem quadraticResidue_zero (n : ℕ) : IsQuadraticResidue n 0 := by
   exact ⟨0, by simp⟩
 
 /-- 两个二次剩余的乘积仍是二次剩余：若 `x² = a`、`y² = b`，则
 `(xy)² = ab`。这个结论直接从见证元构造，而不是调用平方闭包的包装定理。
-> **Entry**: number-theory.elementary.quadratic-residues-/
+> **Entry**: number-theory.elementary.quadratic-residues
+@isnad1 id=isquadra.2h3v.s4.c8a992fdf319 from=translated src=- shape=d203bb48 vocab=c80e173f
+-/
 theorem quadraticResidue_mul {n : ℕ} {a b : ℤ}
     (ha : IsQuadraticResidue n a) (hb : IsQuadraticResidue n b) :
     IsQuadraticResidue n (a * b) := by
@@ -60,7 +66,9 @@ theorem quadraticResidue_mul {n : ℕ} {a b : ℤ}
   norm_cast
 
 /-- 对素数模 `p` 和非零剩余类，Legendre 符号等于 `1` 当且仅当它是二次剩余。
-> **Entry**: number-theory.elementary.quadratic-residues-/
+> **Entry**: number-theory.elementary.quadratic-residues
+@isnad1 id=iff.1h2v.s6.a2cb483c2ccc from=translated src=- shape=4d72b590 vocab=67fe1746
+-/
 theorem legendre_eq_one_iff_quadraticResidue {p : ℕ} [Fact p.Prime] {a : ℤ}
     (ha : (a : ZMod p) ≠ 0) :
     legendreSym p a = 1 ↔ IsQuadraticResidue p a := by
@@ -69,7 +77,9 @@ theorem legendre_eq_one_iff_quadraticResidue {p : ℕ} [Fact p.Prime] {a : ℤ}
 
 /-- 对素数模 `p`，Legendre 符号等于 `-1` 当且仅当 `a` 是非零二次非剩余。
 非零性在正向证明中由“零本身是平方”推出，而不是额外假设。
-> **Entry**: number-theory.elementary.quadratic-residues-/
+> **Entry**: number-theory.elementary.quadratic-residues
+@isnad1 id=iff.0h2v.s4.7044d0119cc7 from=translated src=- shape=f1ddf79a vocab=d9d7a064
+-/
 theorem legendre_eq_neg_one_iff_quadraticNonresidue {p : ℕ} [Fact p.Prime] {a : ℤ} :
     legendreSym p a = -1 ↔ IsQuadraticNonresidue p a := by
   rw [legendreSym.eq_neg_one_iff, IsQuadraticNonresidue, quadraticResidue_iff_isSquare]
@@ -84,7 +94,9 @@ theorem legendre_eq_neg_one_iff_quadraticNonresidue {p : ℕ} [Fact p.Prime] {a 
 
 /-- **Euler 判别法**：非零整数 `a` 模素数 `p` 是二次剩余，当且仅当
 `a^(p/2) = 1` 于 `ZMod p` 中成立。
-> **Entry**: number-theory.elementary.quadratic-residues-/
+> **Entry**: number-theory.elementary.quadratic-residues
+@isnad1 id=iff.1h2v.s7.3a64007f186b from=translated src=- shape=1ff735ee vocab=3a25c7b3
+-/
 theorem quadraticResidue_iff_eulerCriterion {p : ℕ} [Fact p.Prime] {a : ℤ}
     (ha : (a : ZMod p) ≠ 0) :
     IsQuadraticResidue p a ↔ (a : ZMod p) ^ (p / 2) = 1 := by
@@ -99,7 +111,9 @@ def gaussUpperHalfCount (p : ℕ) (a : ℤ) : ℕ :=
 
 /-- **Gauss 引理**：对奇素数 `p` 和 `p ∤ a`，Legendre 符号等于
 `(-1)` 的“越过半程”次数次幂。
-> **Entry**: number-theory.elementary.quadratic-residues-/
+> **Entry**: number-theory.elementary.quadratic-residues
+@isnad1 id=eq.2h2v.s6.6613054d3e4f from=translated src=- shape=1b617456 vocab=26cc73b3
+-/
 theorem legendre_eq_neg_one_pow_gaussUpperHalfCount {p : ℕ} [Fact p.Prime] {a : ℤ}
     (hp : p ≠ 2) (ha : (a : ZMod p) ≠ 0) :
     legendreSym p a = (-1 : ℤ) ^ gaussUpperHalfCount p a := by
@@ -107,7 +121,9 @@ theorem legendre_eq_neg_one_pow_gaussUpperHalfCount {p : ℕ} [Fact p.Prime] {a 
 
 /-- Gauss 引理的二次剩余形式：非零 `a` 是二次剩余，当且仅当越过半程的次数为偶数。
 这由 Legendre 的 `1`-分类和 `(-1)^k = 1 ⇔ k` 偶逐层推出。
-> **Entry**: number-theory.elementary.quadratic-residues-/
+> **Entry**: number-theory.elementary.quadratic-residues
+@isnad1 id=iff.2h2v.s6.6d52c3dce0df from=translated src=- shape=5fa37f01 vocab=217841cc
+-/
 theorem quadraticResidue_iff_gaussUpperHalfCount_even {p : ℕ} [Fact p.Prime] {a : ℤ}
     (hp : p ≠ 2) (ha : (a : ZMod p) ≠ 0) :
     IsQuadraticResidue p a ↔ Even (gaussUpperHalfCount p a) := by
@@ -116,7 +132,9 @@ theorem quadraticResidue_iff_gaussUpperHalfCount_even {p : ℕ} [Fact p.Prime] {
     neg_one_pow_eq_one_iff_even (by norm_num : (-1 : ℤ) ≠ 1)]
 
 /-- Gauss 引理的二次非剩余形式：非零 `a` 是二次非剩余，当且仅当越过半程的次数为奇数。
-> **Entry**: number-theory.elementary.quadratic-residues-/
+> **Entry**: number-theory.elementary.quadratic-residues
+@isnad1 id=iff.2h2v.s6.7e9c455b1a00 from=translated src=- shape=5fa37f01 vocab=6e8361f8
+-/
 theorem quadraticNonresidue_iff_gaussUpperHalfCount_odd {p : ℕ} [Fact p.Prime] {a : ℤ}
     (hp : p ≠ 2) (ha : (a : ZMod p) ≠ 0) :
     IsQuadraticNonresidue p a ↔ Odd (gaussUpperHalfCount p a) := by
@@ -126,14 +144,18 @@ theorem quadraticNonresidue_iff_gaussUpperHalfCount_odd {p : ℕ} [Fact p.Prime]
 
 /-- Jacobi 符号在素数分母处退化为 Legendre 符号。这是从素数模理论进入合数模乘法
 推广的接口。
-> **Entry**: number-theory.elementary.quadratic-residues-/
+> **Entry**: number-theory.elementary.quadratic-residues
+@isnad1 id=eq.0h2v.s4.1bbc69371c04 from=translated src=- shape=221861ce vocab=7786ec28
+-/
 theorem jacobi_prime_denominator (p : ℕ) [Fact p.Prime] (a : ℤ) :
     jacobiSym a p = legendreSym p a := by
   exact (jacobiSym.legendreSym.to_jacobiSym p a).symm
 
 /-- 若 `a` 与 `n` 互素，则平方 `a²` 的 Jacobi 符号为 `1`。证明先用 Jacobi 对
 分子的乘法性拆开，再用其 `±1` 二分，而不是直接调用现成平方结论。
-> **Entry**: number-theory.elementary.quadratic-residues-/
+> **Entry**: number-theory.elementary.quadratic-residues
+@isnad1 id=eq.1h2v.s5.e46b3fadeb19 from=translated src=- shape=a46b3fd7 vocab=8c356643
+-/
 theorem jacobi_square_of_coprime {a : ℤ} {n : ℕ} (hcop : a.gcd n = 1) :
     jacobiSym (a ^ 2) n = 1 := by
   rw [pow_two, jacobiSym.mul_left]
@@ -141,7 +163,9 @@ theorem jacobi_square_of_coprime {a : ℤ} {n : ℕ} (hcop : a.gcd n = 1) :
 
 /-- Jacobi 符号等于 `1` 在合数模下并不充分：`J(2 | 15) = 1`，但模 `15` 没有
 平方等于 `2` 的剩余类。第二部分穷举有限环的十五个元素，因而是可核验的具体反例。
-> **Entry**: number-theory.elementary.quadratic-residues-/
+> **Entry**: number-theory.elementary.quadratic-residues
+@isnad1 id=and.0h0v.s4.8b173c6eba76 from=translated src=- shape=48af6517 vocab=6c077318
+-/
 theorem jacobi_one_not_sufficient_for_quadraticResidue :
     jacobiSym 2 15 = 1 ∧ ¬IsQuadraticResidue 15 2 := by
   constructor

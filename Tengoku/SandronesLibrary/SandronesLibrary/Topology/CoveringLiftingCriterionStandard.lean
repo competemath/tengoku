@@ -34,7 +34,9 @@ variable {p : E → X}
 set_option backward.isDefEq.respectTransparency.types false in
 /-- 若 `f` 已有保持指定基点的连续提升，则 `f` 的基本群像包含在覆盖投影的基本群像中。
 
-> **Entry**: topology.covering.lifting-criterion-standard-/
+> **Entry**: topology.covering.lifting-criterion-standard
+@isnad1 id=le.3h7v.s8.c9ae3e9ce149 from=translated src=- shape=5e69dfa0 vocab=123857f8
+-/
 theorem coveringMap_lift_range_le_of_exists
     (cov : IsCoveringMap p) {f : C(A, X)} {a0 : A} {e0 : E} (he : p e0 = f a0)
     (hex : ∃ F : C(A, E), F a0 = e0 ∧ p ∘ F = f) :
@@ -57,7 +59,9 @@ theorem coveringMap_lift_range_le_of_exists
     Path.Homotopic.Quotient.map_comp
   simpa using hcomp.symm
 
-/-- 对道路连通且局部道路连通的定义域，保持指定基点的连续提升存在，当且仅当基本群像满足包含条件。-/
+/-- 对道路连通且局部道路连通的定义域，保持指定基点的连续提升存在，当且仅当基本群像满足包含条件。
+@isnad1 id=iff.2h7v.s8.0bb5241da7a0 from=translated src=- shape=1022b774 vocab=55840b0a
+-/
 theorem exists_coveringMap_lift_iff_range_le
     (cov : IsCoveringMap p) [PathConnectedSpace A] [LocallyPathConnectedSpace A]
     {f : C(A, X)} {a0 : A} {e0 : E} (he : p e0 = f a0) :
@@ -68,7 +72,9 @@ theorem exists_coveringMap_lift_iff_range_le
   · exact coveringMap_lift_range_le_of_exists cov he
   · exact fun h => (cov.existsUnique_continuousMap_lifts_of_range_le he h).exists
 
-/-- 在相同假设下，唯一连续提升的存在也恰好等价于基本群像包含条件。-/
+/-- 在相同假设下，唯一连续提升的存在也恰好等价于基本群像包含条件。
+@isnad1 id=iff.2h7v.s8.0c7fc0bfa3c6 from=translated src=- shape=1022b774 vocab=64b3d769
+-/
 theorem existsUnique_coveringMap_lift_iff_range_le
     (cov : IsCoveringMap p) [PathConnectedSpace A] [LocallyPathConnectedSpace A]
     {f : C(A, X)} {a0 : A} {e0 : E} (he : p e0 = f a0) :

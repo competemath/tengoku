@@ -84,7 +84,9 @@ noncomputable def maximalFunction (f : ℝ → ℝ) (x : ℝ) : ℝ≥0∞ :=
 /-! ## 2. 基本性质 -/
 
 /-- **极大函数非负**：`0 ≤ Mf x`。由 `ℝ≥0∞` 的序结构直接得到。
-> **Entry**: real-analysis.maximal-function-/
+> **Entry**: real-analysis.maximal-function
+@isnad1 id=le.0h2v.s4.dae151342756 from=translated src=- shape=7544a74c vocab=d28b8179
+-/
 theorem maximalFunction_nonneg (f : ℝ → ℝ) (x : ℝ) : 0 ≤ maximalFunction f x :=
   zero_le
 
@@ -92,7 +94,9 @@ theorem maximalFunction_nonneg (f : ℝ → ℝ) (x : ℝ) : 0 ≤ maximalFuncti
 
 注意假设是**绝对值**的逐点控制而非 `f ≤ g`：实值函数的 `f ≤ g` 不蕴含 `|f| ≤ |g|`
 （取 `f = -5`、`g = 1` 即反例）。非负情形见 `maximalFunction_mono_of_nonneg`。
-> **Entry**: real-analysis.maximal-function-/
+> **Entry**: real-analysis.maximal-function
+@isnad1 id=le.1h2v.s5.1c5af1feefce from=translated src=- shape=a1bfc494 vocab=91162b66
+-/
 theorem maximalFunction_mono {f g : ℝ → ℝ} (h : ∀ y, |f y| ≤ |g y|) :
     maximalFunction f ≤ maximalFunction g := by
   intro x
@@ -102,7 +106,9 @@ theorem maximalFunction_mono {f g : ℝ → ℝ} (h : ∀ y, |f y| ≤ |g y|) :
 
 /-- **非负函数的极大函数单调**：`0 ≤ f` 且 `f ≤ g` 时 `Mf ≤ Mg`。
 这是教材中「`f ≤ g` 蕴含 `Hf ≤ Hg`」在实值函数上的**正确**表述（需要非负性）。
-> **Entry**: real-analysis.maximal-function-/
+> **Entry**: real-analysis.maximal-function
+@isnad1 id=le.2h2v.s6.4004ec559190 from=translated src=- shape=09879aea vocab=d28b8179
+-/
 theorem maximalFunction_mono_of_nonneg {f g : ℝ → ℝ} (hf : 0 ≤ f) (h : f ≤ g) :
     maximalFunction f ≤ maximalFunction g :=
   maximalFunction_mono fun y => by
@@ -128,7 +134,9 @@ private theorem inv_mul_lintegral_const (I : OpenInterval) (a : ℝ≥0∞) :
 
 教材事实「常函数的平均就是它自己」在极大函数上的体现：每个含 `x` 的开区间给出同一个平均值
 `ofReal |a|`，而含 `x` 的开区间非空（如 `(x-1, x+1)`），故上确界就是它。
-> **Entry**: real-analysis.maximal-function-/
+> **Entry**: real-analysis.maximal-function
+@isnad1 id=eq.0h2v.s4.555e011464e7 from=translated src=- shape=244e1ad0 vocab=b6ca2bd7
+-/
 theorem maximalFunction_const (a x : ℝ) :
     maximalFunction (fun _ => a) x = ENNReal.ofReal |a| := by
   refine le_antisymm ?_ ?_
@@ -144,7 +152,9 @@ theorem maximalFunction_const (a x : ℝ) :
 
 这是「极大函数尊重 a.e. 相等」的桥：`f = g` a.e. 意味着对每个区间（有限测度集）限制后仍 a.e. 相等，
 而 `lintegral` 不区分 a.e. 相等的被积函数。
-> **Entry**: real-analysis.maximal-function-/
+> **Entry**: real-analysis.maximal-function
+@isnad1 id=eq.1h3v.s6.15d21db7a61e from=translated src=- shape=7c41622f vocab=8455680f
+-/
 theorem lintegral_abs_congr_ae {f g : ℝ → ℝ} (h : f =ᵐ[volume] g) (I : OpenInterval) :
     ∫⁻ y in I.toSet, ENNReal.ofReal |f y| = ∫⁻ y in I.toSet, ENNReal.ofReal |g y| := by
   refine lintegral_congr_ae ?_
@@ -155,7 +165,9 @@ theorem lintegral_abs_congr_ae {f g : ℝ → ℝ} (h : f =ᵐ[volume] g) (I : O
 
 比名称暗示的更强：因为每个开区间的平均都相等（`lintegral_abs_congr_ae`），
 两个上确界在**每个** `x` 处相等，不只是 a.e.。a.e. 版本见 `maximalFunction_congr_ae`。
-> **Entry**: real-analysis.maximal-function-/
+> **Entry**: real-analysis.maximal-function
+@isnad1 id=eq.1h2v.s5.43e67a30c81e from=translated src=- shape=a32c70db vocab=3c629f81
+-/
 theorem maximalFunction_congr_of_ae_eq {f g : ℝ → ℝ} (h : f =ᵐ[volume] g) :
     maximalFunction f = maximalFunction g := by
   funext x
@@ -165,7 +177,9 @@ theorem maximalFunction_congr_of_ae_eq {f g : ℝ → ℝ} (h : f =ᵐ[volume] g
 
 /-- **极大函数尊重 a.e. 相等（a.e. 形式）**：`f =ᵐ[volume] g` 时
 `Mf =ᵐ[volume] Mg`。由更强的逐点版本 `maximalFunction_congr_of_ae_eq` 立即得到。
-> **Entry**: real-analysis.maximal-function-/
+> **Entry**: real-analysis.maximal-function
+@isnad1 id=eventual.1h2v.s5.2b8b8bba92e8 from=translated src=- shape=6e1ec944 vocab=3c629f81
+-/
 theorem maximalFunction_congr_ae {f g : ℝ → ℝ} (h : f =ᵐ[volume] g) :
     maximalFunction f =ᵐ[volume] maximalFunction g := by
   rw [maximalFunction_congr_of_ae_eq h]
@@ -181,7 +195,9 @@ theorem maximalFunction_congr_ae {f g : ℝ → ℝ} (h : f =ᵐ[volume] g) :
 
 右边是开区间的并（任意并保持开性）。方向 `⊆` 用两次 `lt_iSup_iff` 取出见证区间与其平均值下界；
 方向 `⊇` 用 `le_iSup_of_le` 把区间平均值放回上确界。这正是教材「`Hf` 下半连续」的证明。
-> **Entry**: real-analysis.maximal-function-/
+> **Entry**: real-analysis.maximal-function
+@isnad1 id=isopen.0h2v.s4.4a47673fde67 from=translated src=- shape=ec17953f vocab=fbf738c4
+-/
 theorem isOpen_lt_maximalFunction (f : ℝ → ℝ) (c : ℝ≥0∞) :
     IsOpen {x : ℝ | c < maximalFunction f x} := by
   have hset : {x : ℝ | c < maximalFunction f x} =
@@ -202,7 +218,9 @@ theorem isOpen_lt_maximalFunction (f : ℝ → ℝ) (c : ℝ≥0∞) :
   exact isOpen_iUnion fun I => isOpen_iUnion fun _ => OpenInterval.isOpen_toSet I
 
 /-- **水平集 `{c < Mf}` 是 Borel 集**（对任意 `f`）。由开性直接得到。
-> **Entry**: real-analysis.maximal-function-/
+> **Entry**: real-analysis.maximal-function
+@isnad1 id=measurab.0h2v.s4.9e8352287ffb from=translated src=- shape=ec17953f vocab=2731a6a6
+-/
 theorem measurableSet_lt_maximalFunction (f : ℝ → ℝ) (c : ℝ≥0∞) :
     MeasurableSet {x : ℝ | c < maximalFunction f x} :=
   (isOpen_lt_maximalFunction f c).measurableSet
@@ -211,7 +229,9 @@ theorem measurableSet_lt_maximalFunction (f : ℝ → ℝ) (c : ℝ≥0∞) :
 
 Mathlib 的 `LowerSemicontinuous` 就是「每个 `Ioi c` 的原像是开集」，与
 `isOpen_lt_maximalFunction` 逐字对应。
-> **Entry**: real-analysis.maximal-function-/
+> **Entry**: real-analysis.maximal-function
+@isnad1 id=lowersem.0h1v.s4.aa65fc174c6c from=translated src=- shape=e849ac45 vocab=833253c7
+-/
 theorem lowerSemicontinuous_maximalFunction (f : ℝ → ℝ) :
     LowerSemicontinuous (maximalFunction f) :=
   lowerSemicontinuous_iff_isOpen_preimage.2 fun c =>
@@ -221,13 +241,17 @@ theorem lowerSemicontinuous_maximalFunction (f : ℝ → ℝ) :
 
 由 `measurable_of_Ioi`：`ℝ≥0∞` 是第二可数线性序拓扑，`{x | c < f x}` 对每个 `c` 可测
 即可测。注意这里**没有**任何关于 `f` 的正则性假设。
-> **Entry**: real-analysis.maximal-function-/
+> **Entry**: real-analysis.maximal-function
+@isnad1 id=measurab.0h1v.s3.8df68bc4c8a8 from=translated src=- shape=e849ac45 vocab=c9d71d1b
+-/
 theorem measurable_maximalFunction (f : ℝ → ℝ) : Measurable (maximalFunction f) :=
   measurable_of_Ioi (f := maximalFunction f) fun c => measurableSet_lt_maximalFunction f c
 
 /-- **极大函数 a.e. 可测**（对任意 `f`）：`AEMeasurable (maximalFunction f) volume`。
 由 `Measurable.aemeasurable` 得到。
-> **Entry**: real-analysis.maximal-function-/
+> **Entry**: real-analysis.maximal-function
+@isnad1 id=aemeasur.0h1v.s4.15f12290598c from=translated src=- shape=2558d969 vocab=887c040a
+-/
 theorem aemeasurable_maximalFunction (f : ℝ → ℝ) :
     AEMeasurable (maximalFunction f) volume :=
   (measurable_maximalFunction f).aemeasurable
@@ -239,7 +263,9 @@ theorem aemeasurable_maximalFunction (f : ℝ → ℝ) :
 
 证明：把 `c < (volume I)⁻¹ * ∫_I` 经 `ENNReal.lt_div_iff_mul_lt` 化为
 `c * |I| < ∫_I`，两边左乘 `c⁻¹`（`c ≠ 0, c ≠ ∞`）并用 `c⁻¹ * c = 1` 化简。
-> **Entry**: real-analysis.maximal-function-/
+> **Entry**: real-analysis.maximal-function
+@isnad1 id=le.2h3v.s7.97cf800a8407 from=translated src=- shape=7a1d0e5a vocab=bfbee331
+-/
 theorem volume_le_inv_mul_lintegral_of_lt_average {f : ℝ → ℝ} {c : ℝ≥0} (hc : 0 < c)
     {I : OpenInterval}
     (havg : (c : ℝ≥0∞) < (volume I.toSet)⁻¹ * ∫⁻ y in I.toSet, ENNReal.ofReal |f y|) :
@@ -266,7 +292,9 @@ theorem volume_le_inv_mul_lintegral_of_lt_average {f : ℝ → ℝ} {c : ℝ≥0
 这是把坏集塞进覆盖引理的**关键一步**：先由单区间不等式得 `c * |I| < ∫_I |f| ≤ ∫_ℝ |f| < ∞`，
 取 `toReal` 并用 `|I| = u - l = 2 * radius` 与 `volume I = ofReal (u - l)` 换算，
 最后除以 `2c`。可积性只用来保证 `∫⁻ y, ofReal |f y| ≠ ∞`。
-> **Entry**: real-analysis.maximal-function-/
+> **Entry**: real-analysis.maximal-function
+@isnad1 id=le.3h3v.s7.8af50ae50978 from=translated src=- shape=0bfd642a vocab=b92720fc
+-/
 theorem radius_le_of_lt_average {f : ℝ → ℝ} (hf : Integrable f volume) {c : ℝ≥0} (hc : 0 < c)
     {I : OpenInterval}
     (havg : (c : ℝ≥0∞) < (volume I.toSet)⁻¹ * ∫⁻ y in I.toSet, ENNReal.ofReal |f y|) :
@@ -324,7 +352,9 @@ theorem radius_le_of_lt_average {f : ℝ → ℝ} (hf : Integrable f volume) {c 
 
 **常数 4 的来源**：Mathlib 的 Vitali 放大覆盖只保证 `τ > 3`，本库取 `τ = 4`。
 Folland 在 ℝⁿ 上用球／方体陈述、常数 `3ⁿ`（`n = 1` 时为 3）；**本库不声称复刻该常数**。
-> **Entry**: real-analysis.maximal-function-/
+> **Entry**: real-analysis.maximal-function
+@isnad1 id=le.2h2v.s7.0dbaa05310d8 from=translated src=- shape=6ffe9e48 vocab=4e3d039d
+-/
 theorem maximalFunction_weak_type (f : ℝ → ℝ) (hf : Integrable f volume)
     (c : ℝ≥0) (hc : 0 < c) :
     volume {x : ℝ | (c : ℝ≥0∞) < maximalFunction f x} ≤
@@ -409,7 +439,9 @@ theorem maximalFunction_weak_type (f : ℝ → ℝ) (hf : Integrable f volume)
 
 **诚实边界**：Lebesgue 点与 Lebesgue 微分定理本身（RA-F4）**不在**本 Entry 范围内，
 本窗只交付上述坏集控制；Folland Theorem 3.21 的 a.e. 结论既未陈述也未证明。
-> **Entry**: real-analysis.maximal-function-/
+> **Entry**: real-analysis.maximal-function
+@isnad1 id=le.2h3v.s7.978c131c3f57 from=translated src=- shape=f949f376 vocab=1601c38f
+-/
 theorem maximalFunction_weak_type_sub {f g : ℝ → ℝ}
     (h : Integrable (fun y => f y - g y) volume) (c : ℝ≥0) (hc : 0 < c) :
     volume {x : ℝ | (c : ℝ≥0∞) < maximalFunction (fun y => f y - g y) x} ≤

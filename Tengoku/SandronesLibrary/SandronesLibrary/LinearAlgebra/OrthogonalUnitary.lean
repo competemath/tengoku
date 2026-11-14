@@ -30,38 +30,50 @@ def IsUnitaryMatrix (A : Matrix n n ℂ) : Prop := Aᴴ * A = 1
 /-- 实正交矩阵：转置乘自身等于单位矩阵。-/
 def IsOrthogonalMatrix (A : Matrix n n ℝ) : Prop := Aᵀ * A = 1
 
-/-- 教材酉矩阵谓词等价于属于酉群。-/
+/-- 教材酉矩阵谓词等价于属于酉群。
+@isnad1 id=iff.0h2v.s6.1b7f0796f9af from=translated src=- shape=ef0a3454 vocab=3674b637
+-/
 theorem isUnitaryMatrix_iff_mem (A : Matrix n n ℂ) :
     IsUnitaryMatrix A ↔ A ∈ Matrix.unitaryGroup n ℂ := by
   simpa [IsUnitaryMatrix, Matrix.star_eq_conjTranspose] using
     (Matrix.mem_unitaryGroup_iff' (A := A)).symm
 
-/-- 教材正交矩阵谓词等价于属于正交群。-/
+/-- 教材正交矩阵谓词等价于属于正交群。
+@isnad1 id=iff.0h2v.s6.3a1265b21a44 from=translated src=- shape=ef0a3454 vocab=31e7a97e
+-/
 theorem isOrthogonalMatrix_iff_mem (A : Matrix n n ℝ) :
     IsOrthogonalMatrix A ↔ A ∈ Matrix.orthogonalGroup n ℝ := by
   simpa [IsOrthogonalMatrix] using
     (Matrix.mem_orthogonalGroup_iff' (A := A)).symm
 
-/-- 两个酉矩阵的乘积仍为酉矩阵。-/
+/-- 两个酉矩阵的乘积仍为酉矩阵。
+@isnad1 id=isunitar.2h3v.s5.e0ade4a31295 from=translated src=- shape=ec081636 vocab=d6bcf3c3
+-/
 theorem unitary_mul {A B : Matrix n n ℂ}
     (hA : IsUnitaryMatrix A) (hB : IsUnitaryMatrix B) :
     IsUnitaryMatrix (A * B) := by
   rw [isUnitaryMatrix_iff_mem] at hA hB ⊢
   exact (Matrix.unitaryGroup n ℂ).mul_mem hA hB
 
-/-- 酉矩阵的共轭转置仍为酉矩阵。-/
+/-- 酉矩阵的共轭转置仍为酉矩阵。
+@isnad1 id=isunitar.1h2v.s5.059cda9cf0b7 from=translated src=- shape=4e466a31 vocab=b214dca5
+-/
 theorem unitary_conjTranspose {A : Matrix n n ℂ}
     (hA : IsUnitaryMatrix A) : IsUnitaryMatrix Aᴴ := by
   rw [isUnitaryMatrix_iff_mem] at hA ⊢
   simpa [Matrix.star_eq_conjTranspose] using Unitary.star_mem hA
 
-/-- 酉矩阵的行列式绝对值等于一。-/
+/-- 酉矩阵的行列式绝对值等于一。
+@isnad1 id=eq.1h2v.s5.b700064efcde from=translated src=- shape=470f62f2 vocab=5b3a487a
+-/
 theorem unitary_det_norm {A : Matrix n n ℂ}
     (hA : IsUnitaryMatrix A) : ‖A.det‖ = 1 := by
   apply CStarRing.norm_of_mem_unitary
   exact Matrix.det_of_mem_unitary ((isUnitaryMatrix_iff_mem A).mp hA)
 
-/-- 实正交矩阵的行列式只能为 `1` 或 `-1`。-/
+/-- 实正交矩阵的行列式只能为 `1` 或 `-1`。
+@isnad1 id=or.1h2v.s5.74ca9df9e64b from=translated src=- shape=9407a535 vocab=f6b764aa
+-/
 theorem orthogonal_det {A : Matrix n n ℝ}
     (hA : IsOrthogonalMatrix A) : A.det = 1 ∨ A.det = -1 := by
   rw [← sq_eq_one_iff]

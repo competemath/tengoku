@@ -182,7 +182,9 @@ private theorem negI_smul_skewHermitian_isHermitian
   rw [IsHermitianMatrix, Matrix.conjTranspose_smul, hK]
   simp
 
-/-- 一般复正规矩阵的酉谱定理。-/
+/-- 一般复正规矩阵的酉谱定理。
+@isnad1 id=ex.1h2v.s6.705a435462f6 from=translated src=- shape=600c6e74 vocab=c61f6d0c
+-/
 theorem normal_unitary_diagonalization {A : Matrix n n ℂ}
     (hA : IsNormalMatrix A) :
     ∃ (U : Matrix n n ℂ) (eig : n → ℂ),

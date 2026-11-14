@@ -79,6 +79,9 @@ def BinaryOpenCoverSquareSubdivision.verticalSwitchEdgeInIntersection
         using D.verticalSwitchEdge_mem_intersection i j l hshared hswitch 1)
     (D.verticalSwitchEdge_mem_intersection i j l hshared hswitch)
 
+/--
+@isnad1 id=eq.2h9v.s9.2da268d02cf0 from=translated src=- shape=31a9ad72 vocab=555ea71f
+-/
 @[simp] theorem BinaryOpenCoverSquareSubdivision.coe_horizontalSwitchEdgeInIntersection
     {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -87,6 +90,9 @@ def BinaryOpenCoverSquareSubdivision.verticalSwitchEdgeInIntersection
     ((D.horizontalSwitchEdgeInIntersection i k j hshared hswitch t : ↥(U ∩ V)) : X) =
       squareGridVerticalEdge H D.steps D.steps_pos i.succ j t := rfl
 
+/--
+@isnad1 id=eq.2h9v.s9.d40350b0e2b7 from=translated src=- shape=2fff9685 vocab=01406c06
+-/
 @[simp] theorem BinaryOpenCoverSquareSubdivision.coe_verticalSwitchEdgeInIntersection
     {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -109,6 +115,9 @@ def binaryOpenCoverIntersectionConnector
       exact pathCodRestrict (U ∩ V) q ⟨hxU, hxV⟩ z.2
         (hUV.joinedIn x₀ ⟨hxU, hxV⟩ z.1 z.2).somePath_mem
 
+/--
+@isnad1 id=eq.3h4v.s7.cc6feee9f2f9 from=translated src=- shape=bc13983e vocab=7077ef03
+-/
 @[simp] theorem binaryOpenCoverIntersectionConnector_basepoint
     {x₀ : X} {U V : Set X}
     (hxU : x₀ ∈ U) (hxV : x₀ ∈ V) (hUV : IsPathConnected (U ∩ V)) :
@@ -125,6 +134,9 @@ def binaryOpenCoverIntersectionPathToPiece
       (binaryOpenCoverIntersectionToPiece U V b w) :=
   p.map (binaryOpenCoverIntersectionToPiece U V b).continuous
 
+/--
+@isnad1 id=eq.0h8v.s9.43948127afa5 from=translated src=- shape=3098076a vocab=84891495
+-/
 @[simp] theorem coe_binaryOpenCoverIntersectionPathToPiece
     {U V : Set X} (b : Bool) {z w : ↥(U ∩ V)} (p : Path z w)
     (t : unitInterval) :
@@ -144,6 +156,9 @@ def binaryOpenCoverIntersectionConnectorInPiece
   binaryOpenCoverIntersectionPathToPiece b
     (binaryOpenCoverIntersectionConnector hxU hxV hUV z)
 
+/--
+@isnad1 id=eq.3h7v.s9.6eb729dbcb7d from=translated src=- shape=8e3bb18b vocab=61e5a3c0
+-/
 @[simp] theorem coe_binaryOpenCoverIntersectionConnectorInPiece
     {x₀ : X} {U V : Set X}
     (hxU : x₀ ∈ U) (hxV : x₀ ∈ V) (hUV : IsPathConnected (U ∩ V))
@@ -153,6 +168,9 @@ def binaryOpenCoverIntersectionConnectorInPiece
       binaryOpenCoverIntersectionConnector hxU hxV hUV z t := by
   exact coe_binaryOpenCoverIntersectionPathToPiece b _ t
 
+/--
+@isnad1 id=eq.2h5v.s7.a45f68f62e66 from=translated src=- shape=34955f71 vocab=855cf3a8
+-/
 theorem binaryOpenCoverBasepoint_eq_intersectionToPiece
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V) (b : Bool) :
     binaryOpenCoverBasepoint hxU hxV b =
@@ -161,7 +179,9 @@ theorem binaryOpenCoverBasepoint_eq_intersectionToPiece
   cases b <;> rfl
 
 /-- The normalized intersection connector at the distinguished basepoint maps
-to the constant connector in either cover member.-/
+to the constant connector in either cover member.
+@isnad1 id=eq.3h5v.s8.7bfa07463e84 from=translated src=- shape=24bff487 vocab=ebb73381
+-/
 theorem binaryOpenCoverIntersectionConnectorInPiece_basepoint
     {x₀ : X} {U V : Set X}
     (hxU : x₀ ∈ U) (hxV : x₀ ∈ V) (hUV : IsPathConnected (U ∩ V))
@@ -179,6 +199,9 @@ theorem binaryOpenCoverIntersectionConnectorInPiece_basepoint
     binaryOpenCoverIntersectionConnector_basepoint, Path.refl_apply]
   cases b <;> rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.dbb8d5bf2c12 from=translated src=- shape=874427b7 vocab=cbbf00f6
+-/
 @[simp] theorem coe_binaryOpenCoverIntersectionToPiece
     {U V : Set X} (b : Bool) (z : ↥(U ∩ V)) :
     ((binaryOpenCoverIntersectionToPiece U V b z :
@@ -203,6 +226,9 @@ def BinaryOpenCoverSquareSubdivision.verticalSwitchEdgeInPiece
   binaryOpenCoverIntersectionPathToPiece b
     (D.verticalSwitchEdgeInIntersection i j l hshared hswitch)
 
+/--
+@isnad1 id=eq.2h10v.s10.e453bfca3a09 from=translated src=- shape=5ad8a345 vocab=dcf0a051
+-/
 @[simp] theorem BinaryOpenCoverSquareSubdivision.coe_horizontalSwitchEdgeInPiece
     {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -215,6 +241,9 @@ def BinaryOpenCoverSquareSubdivision.verticalSwitchEdgeInPiece
     coe_binaryOpenCoverIntersectionPathToPiece,
     D.coe_horizontalSwitchEdgeInIntersection]
 
+/--
+@isnad1 id=eq.2h10v.s10.8a4bb03ad0f1 from=translated src=- shape=20f891ab vocab=206e6fc6
+-/
 @[simp] theorem BinaryOpenCoverSquareSubdivision.coe_verticalSwitchEdgeInPiece
     {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -227,7 +256,9 @@ def BinaryOpenCoverSquareSubdivision.verticalSwitchEdgeInPiece
     coe_binaryOpenCoverIntersectionPathToPiece,
     D.coe_verticalSwitchEdgeInIntersection]
 
-/-- 任意交集基本群元素经两个覆盖成员送入二元推送后相等。-/
+/-- 任意交集基本群元素经两个覆盖成员送入二元推送后相等。
+@isnad1 id=eq.2h5v.s12.a4331dbcf229 from=translated src=- shape=316166ca vocab=4dddc1f2
+-/
 theorem binaryVanKampenPushout_of_intersection_eq
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (g : FundamentalGroup (↥(U ∩ V))
@@ -282,7 +313,9 @@ def BinaryOpenCoverSquareSubdivision.verticalSwitchEdgeIntersectionElement
     (D.verticalSwitchEdgeInIntersection i j l hshared hswitch)
     (binaryOpenCoverIntersectionConnector hxU hxV hUV w)⟧
 
-/-- 水平异标签公共边的交集元素从两侧进入推送所得元素相等。-/
+/-- 水平异标签公共边的交集元素从两侧进入推送所得元素相等。
+@isnad1 id=other.5h9v.s12.204a9a5d1cb2 from=translated src=- shape=01c99bfb vocab=68a92f6a
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchEdge_pushout_images_eq
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -299,7 +332,9 @@ theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchEdge_pushout_images_eq
       binaryVanKampenPushout U V hxU hxV) := by
   exact binaryVanKampenPushout_of_intersection_eq hxU hxV _
 
-/-- 竖直异标签公共边的交集元素从两侧进入推送所得元素相等。-/
+/-- 竖直异标签公共边的交集元素从两侧进入推送所得元素相等。
+@isnad1 id=other.5h9v.s12.93bfd5f562be from=translated src=- shape=3954d239 vocab=3d8afa42
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalSwitchEdge_pushout_images_eq
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -316,7 +351,9 @@ theorem BinaryOpenCoverSquareSubdivision.verticalSwitchEdge_pushout_images_eq
       binaryVanKampenPushout U V hxU hxV) := by
   exact binaryVanKampenPushout_of_intersection_eq hxU hxV _
 
-/-- 基本群映射把修正环路类送到逐条映射后的修正环路类。-/
+/-- 基本群映射把修正环路类送到逐条映射后的修正环路类。
+@isnad1 id=eq.0h9v.s9.818931c8c2cd from=translated src=- shape=d8136baa vocab=0064f53e
+-/
 theorem fundamentalGroup_map_correctedLoop
     {S T : Type*} [TopologicalSpace S] [TopologicalSpace T]
     (f : C(S, T)) {base z w : S}
@@ -363,7 +400,9 @@ def BinaryOpenCoverSquareSubdivision.horizontalSwitchEdgePieceImage
       ((D.horizontalSwitchEdgeInIntersection i k j hshared hswitch).map f.continuous)
       ((binaryOpenCoverIntersectionConnector hxU hxV hUV w).map f.continuous)⟧
 
-/-- 水平切换边的显式覆盖成员像就是 `binaryOpenCoverIntersectionMaps` 的值。-/
+/-- 水平切换边的显式覆盖成员像就是 `binaryOpenCoverIntersectionMaps` 的值。
+@isnad1 id=eq.5h10v.s10.83c416d68a1e from=translated src=- shape=0471a906 vocab=2604427d
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchEdgePieceImage_eq_map
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -410,7 +449,9 @@ def BinaryOpenCoverSquareSubdivision.verticalSwitchEdgePieceImage
       ((D.verticalSwitchEdgeInIntersection i j l hshared hswitch).map f.continuous)
       ((binaryOpenCoverIntersectionConnector hxU hxV hUV w).map f.continuous)⟧
 
-/-- 竖直切换边的显式覆盖成员像就是 `binaryOpenCoverIntersectionMaps` 的值。-/
+/-- 竖直切换边的显式覆盖成员像就是 `binaryOpenCoverIntersectionMaps` 的值。
+@isnad1 id=eq.5h10v.s10.80b30dcb3df3 from=translated src=- shape=1a783b62 vocab=66073940
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalSwitchEdgePieceImage_eq_map
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -428,7 +469,9 @@ theorem BinaryOpenCoverSquareSubdivision.verticalSwitchEdgePieceImage_eq_map
     symm <;>
     exact fundamentalGroup_map_correctedLoop _ _ _ _
 
-/-- 水平异标签公共边的两个显式覆盖成员像进入推送后相等。-/
+/-- 水平异标签公共边的两个显式覆盖成员像进入推送后相等。
+@isnad1 id=eq.5h9v.s12.30faa75172e8 from=translated src=- shape=1ef5079f vocab=7e922ee3
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchEdge_pieceImages_pushout_eq
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -448,7 +491,9 @@ theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchEdge_pieceImages_pushou
   exact D.horizontalSwitchEdge_pushout_images_eq hxU hxV hUV
     i k j hshared hswitch
 
-/-- 竖直异标签公共边的两个显式覆盖成员像进入推送后相等。-/
+/-- 竖直异标签公共边的两个显式覆盖成员像进入推送后相等。
+@isnad1 id=eq.5h9v.s12.4f061efcbb5c from=translated src=- shape=f1fafeaa vocab=f4b80ace
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalSwitchEdge_pieceImages_pushout_eq
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -468,7 +513,9 @@ theorem BinaryOpenCoverSquareSubdivision.verticalSwitchEdge_pieceImages_pushout_
   exact D.verticalSwitchEdge_pushout_images_eq hxU hxV hUV
     i j l hshared hswitch
 
-/-- 水平异标签交集边起点映入左格标签成员后等于左格右下角。-/
+/-- 水平异标签交集边起点映入左格标签成员后等于左格右下角。
+@isnad1 id=eq.2h8v.s8.43e987e341e2 from=translated src=- shape=570e5493 vocab=17346914
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchEdge_left_source_eq
     {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -489,7 +536,9 @@ theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchEdge_left_source_eq
     BinaryOpenCoverSquareSubdivision.gridCellMapInPiece, squareGridVertex,
     unitSquareCellPoint, hone]
 
-/-- 水平异标签交集边终点映入左格标签成员后等于左格右上角。-/
+/-- 水平异标签交集边终点映入左格标签成员后等于左格右上角。
+@isnad1 id=eq.2h8v.s8.12c7876161bf from=translated src=- shape=7454ffa5 vocab=75d2b420
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchEdge_left_target_eq
     {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -547,7 +596,9 @@ def BinaryOpenCoverSquareSubdivision.horizontalSwitchLeftConnectorComparison
         i j 1 1 b rfl).cast rfl
           (D.horizontalSwitchEdge_left_target_eq i k j hshared hswitch) }
 
-/-- 水平异标签左格中，交集连接版本与单格连接版本满足换连接关系。-/
+/-- 水平异标签左格中，交集连接版本与单格连接版本满足换连接关系。
+@isnad1 id=other.7h9v.s10.2463005c3258 from=translated src=- shape=4a20dc8a vocab=d95f42e9
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchLeftConnectorComparison_relation
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -560,7 +611,9 @@ theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchLeftConnectorComparison
     C.endChange⁻¹ * C.leftElement * C.startChange = C.rightElement := by
   exact CommonEdgeConnectorComparison.rightElement_eq _
 
-/-- 水平异标签交集边起点映入右格标签成员后等于右格左下角。-/
+/-- 水平异标签交集边起点映入右格标签成员后等于右格左下角。
+@isnad1 id=eq.2h8v.s8.3324686b7299 from=translated src=- shape=fc68551a vocab=17346914
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchEdge_right_source_eq
     {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -579,7 +632,9 @@ theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchEdge_right_source_eq
     BinaryOpenCoverSquareSubdivision.gridCellMapInPiece, squareGridVertex,
     unitSquareCellPoint, hshared]
 
-/-- 水平异标签交集边终点映入右格标签成员后等于右格左上角。-/
+/-- 水平异标签交集边终点映入右格标签成员后等于右格左上角。
+@isnad1 id=eq.2h8v.s8.16965e4f17d7 from=translated src=- shape=f900ddf9 vocab=75d2b420
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchEdge_right_target_eq
     {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -637,7 +692,9 @@ def BinaryOpenCoverSquareSubdivision.horizontalSwitchRightConnectorComparison
         k j 0 1 b rfl).cast rfl
           (D.horizontalSwitchEdge_right_target_eq i k j hshared hswitch) }
 
-/-- 水平异标签右格中，交集连接版本与单格连接版本满足换连接关系。-/
+/-- 水平异标签右格中，交集连接版本与单格连接版本满足换连接关系。
+@isnad1 id=other.7h9v.s10.52a66783e366 from=translated src=- shape=9b2f6fe8 vocab=d3d108b6
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchRightConnectorComparison_relation
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -673,7 +730,9 @@ def BinaryOpenCoverSquareSubdivision.horizontalSwitchEdgePieceImageNormalized
     (D.horizontalSwitchEdgeInPiece i k j hshared hswitch b)
     ((binaryOpenCoverIntersectionConnectorInPiece hxU hxV hUV b w).cast hb rfl)⟧
 
-/-- 左侧比较对象的交集连接元素就是统一基点表示的左覆盖成员像。-/
+/-- 左侧比较对象的交集连接元素就是统一基点表示的左覆盖成员像。
+@isnad1 id=eq.7h9v.s8.ea409394b1c5 from=translated src=- shape=00198635 vocab=dce8c98e
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchLeftComparison_leftElement_normalized
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -687,7 +746,9 @@ theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchLeftComparison_leftElem
         i k j hshared hswitch (D.label i j) := by
   rfl
 
-/-- 右侧比较对象的交集连接元素就是统一基点表示的右覆盖成员像。-/
+/-- 右侧比较对象的交集连接元素就是统一基点表示的右覆盖成员像。
+@isnad1 id=eq.7h9v.s8.f66a3e420dde from=translated src=- shape=6e3bedfb vocab=3047dd10
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchRightComparison_leftElement_normalized
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -701,7 +762,9 @@ theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchRightComparison_leftEle
         i k j hshared hswitch (D.label k j) := by
   rfl
 
-/-- 统一基点表示与按 Bool 分支定义的显式覆盖成员像一致。-/
+/-- 统一基点表示与按 Bool 分支定义的显式覆盖成员像一致。
+@isnad1 id=eq.5h10v.s8.86344411258b from=translated src=- shape=b4b76e08 vocab=959b3e7e
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchEdgePieceImageNormalized_eq
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -714,7 +777,9 @@ theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchEdgePieceImageNormalize
         i k j hshared hswitch b := by
   cases b <;> rfl
 
-/-- 水平异标签公共边在左格成员中的像等于左格局部右竖边经端点 transport。-/
+/-- 水平异标签公共边在左格成员中的像等于左格局部右竖边经端点 transport。
+@isnad1 id=eq.2h8v.s11.7277a0837a2f from=translated src=- shape=859113c1 vocab=f108c50a
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchEdgeInLeftPiece_eq_cellEdge
     {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -751,7 +816,9 @@ theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchEdgeInLeftPiece_eq_cell
     _ = (q.cast hs ht : unitInterval → binaryOpenCoverPiece U V (D.label i j)) :=
       (Path.cast_coe q hs ht).symm
 
-/-- 左侧比较对象的单格连接元素就是左格原四边词中的右竖边。-/
+/-- 左侧比较对象的单格连接元素就是左格原四边词中的右竖边。
+@isnad1 id=eq.7h9v.s8.e66ab0db5c50 from=translated src=- shape=2f171545 vocab=acf089b0
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchLeftComparison_rightElement
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -781,7 +848,9 @@ theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchLeftComparison_rightEle
   rw [D.horizontalSwitchEdgeInLeftPiece_eq_cellEdge i k j hshared hswitch]
   exact congrArg Path.Homotopic.Quotient.mk hp
 
-/-- 水平异标签左格真实边由交集公共边像经端点换连接得到。-/
+/-- 水平异标签左格真实边由交集公共边像经端点换连接得到。
+@isnad1 id=other.7h9v.s10.96f55d4b5b54 from=translated src=- shape=72a56aa2 vocab=65dc97f6
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchLeft_pieceElement_relation
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -804,7 +873,9 @@ theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchLeft_pieceElement_relat
   exact D.horizontalSwitchLeftComparison_rightElement
     hxU hxV hUV hU hV i k j hshared hswitch
 
-/-- 水平异标签公共边在右格成员中的像等于右格局部左竖边经端点 transport。-/
+/-- 水平异标签公共边在右格成员中的像等于右格局部左竖边经端点 transport。
+@isnad1 id=eq.2h8v.s11.7683bd5b85ba from=translated src=- shape=7f0f30ca vocab=e50ed34d
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchEdgeInRightPiece_eq_cellEdge
     {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -840,7 +911,9 @@ theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchEdgeInRightPiece_eq_cel
     _ = (q.cast hs ht : unitInterval → binaryOpenCoverPiece U V (D.label k j)) :=
       (Path.cast_coe q hs ht).symm
 
-/-- 右侧比较对象的单格连接元素就是右格原四边词中的左竖边。-/
+/-- 右侧比较对象的单格连接元素就是右格原四边词中的左竖边。
+@isnad1 id=eq.7h9v.s8.903c0df77987 from=translated src=- shape=3e81e9b4 vocab=a0508aad
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchRightComparison_rightElement
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -870,7 +943,9 @@ theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchRightComparison_rightEl
   rw [D.horizontalSwitchEdgeInRightPiece_eq_cellEdge i k j hshared hswitch]
   exact congrArg Path.Homotopic.Quotient.mk hp
 
-/-- 水平异标签右格真实边由交集公共边像经端点换连接得到。-/
+/-- 水平异标签右格真实边由交集公共边像经端点换连接得到。
+@isnad1 id=other.7h9v.s10.44a41f8505f9 from=translated src=- shape=2fb4b1f1 vocab=759aa150
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchRight_pieceElement_relation
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -893,7 +968,9 @@ theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchRight_pieceElement_rela
   exact D.horizontalSwitchRightComparison_rightElement
     hxU hxV hUV hU hV i k j hshared hswitch
 
-/-- 水平异标签公共边的 normalized 两侧像按两格实际标签进入推送后相等。-/
+/-- 水平异标签公共边的 normalized 两侧像按两格实际标签进入推送后相等。
+@isnad1 id=eq.5h9v.s12.8438d36c24f5 from=translated src=- shape=de3f907b vocab=6aed3f7c
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchEdge_normalized_pushout_eq
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -924,7 +1001,9 @@ theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchEdge_normalized_pushout
       i k j hshared hswitch).symm
   · exact False.elim (hswitch (hli.trans hlk.symm))
 
-/-- 两套换连接关系及公共边相等，推出两侧单格边元素的精确非交换关系。-/
+/-- 两套换连接关系及公共边相等，推出两侧单格边元素的精确非交换关系。
+@isnad1 id=eq.3h9v.s7.261760409e3e from=translated src=- shape=f718242a vocab=9f72dee7
+-/
 theorem edgeElements_eq_of_change_relations
     {G : Type*} [Group G] (endL startL commonL cellL : G)
     (endR startR commonR cellR : G)
@@ -942,7 +1021,9 @@ theorem edgeElements_eq_of_change_relations
     _ = endL⁻¹ * commonR * startL := by rw [hcommon]
     _ = endL⁻¹ * (endR * cellR * startR⁻¹) * startL := by rw [hsolve]
 
-/-- 水平异标签内部边在推送中的最终换连接关系。-/
+/-- 水平异标签内部边在推送中的最终换连接关系。
+@isnad1 id=other.7h9v.s14.bcd6897052cd from=translated src=- shape=275067c2 vocab=54daae3b
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchEdge_pushout_relation
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -998,7 +1079,9 @@ theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchEdge_pushout_relation
     (fR (D.gridCellBasedVerticalEdgeInPiece hxU hxV hU hV k j 0))
     hL hR hcommon
 
-/-- 竖直异标签交集边起点映入下格标签成员后等于下格左上角。-/
+/-- 竖直异标签交集边起点映入下格标签成员后等于下格左上角。
+@isnad1 id=eq.2h8v.s8.bd0712eefb5b from=translated src=- shape=4e20efc6 vocab=5f28be29
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalSwitchEdge_bottom_source_eq
     {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -1019,7 +1102,9 @@ theorem BinaryOpenCoverSquareSubdivision.verticalSwitchEdge_bottom_source_eq
     BinaryOpenCoverSquareSubdivision.gridCellMapInPiece, squareGridVertex,
     unitSquareCellPoint, hone]
 
-/-- 竖直异标签交集边终点映入下格标签成员后等于下格右上角。-/
+/-- 竖直异标签交集边终点映入下格标签成员后等于下格右上角。
+@isnad1 id=eq.2h8v.s8.30ba8fa43337 from=translated src=- shape=082718a7 vocab=eaf62a60
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalSwitchEdge_bottom_target_eq
     {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -1040,7 +1125,9 @@ theorem BinaryOpenCoverSquareSubdivision.verticalSwitchEdge_bottom_target_eq
     BinaryOpenCoverSquareSubdivision.gridCellMapInPiece, squareGridVertex,
     unitSquareCellPoint, hone]
 
-/-- 竖直异标签交集边起点映入上格标签成员后等于上格左下角。-/
+/-- 竖直异标签交集边起点映入上格标签成员后等于上格左下角。
+@isnad1 id=eq.2h8v.s8.cdc23e5f64d3 from=translated src=- shape=99da96d7 vocab=5f28be29
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalSwitchEdge_top_source_eq
     {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -1059,7 +1146,9 @@ theorem BinaryOpenCoverSquareSubdivision.verticalSwitchEdge_top_source_eq
     BinaryOpenCoverSquareSubdivision.gridCellMapInPiece, squareGridVertex,
     unitSquareCellPoint, hshared]
 
-/-- 竖直异标签交集边终点映入上格标签成员后等于上格右下角。-/
+/-- 竖直异标签交集边终点映入上格标签成员后等于上格右下角。
+@isnad1 id=eq.2h8v.s8.64b706ee525a from=translated src=- shape=c53d9e72 vocab=eaf62a60
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalSwitchEdge_top_target_eq
     {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -1117,6 +1206,9 @@ def BinaryOpenCoverSquareSubdivision.verticalSwitchBottomConnectorComparison
         i j 1 1 b rfl).cast rfl
           (D.verticalSwitchEdge_bottom_target_eq i j l hshared hswitch) }
 
+/--
+@isnad1 id=other.7h9v.s10.166be31c662b from=translated src=- shape=29a42372 vocab=e160c2ca
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalSwitchBottomConnectorComparison_relation
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -1166,6 +1258,9 @@ def BinaryOpenCoverSquareSubdivision.verticalSwitchTopConnectorComparison
         i l 1 0 b rfl).cast rfl
           (D.verticalSwitchEdge_top_target_eq i j l hshared hswitch) }
 
+/--
+@isnad1 id=other.7h9v.s10.c30a9a5c678f from=translated src=- shape=f7b94db9 vocab=9e3f386c
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalSwitchTopConnectorComparison_relation
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -1201,6 +1296,9 @@ def BinaryOpenCoverSquareSubdivision.verticalSwitchEdgePieceImageNormalized
     (D.verticalSwitchEdgeInPiece i j l hshared hswitch b)
     ((binaryOpenCoverIntersectionConnectorInPiece hxU hxV hUV b w).cast hb rfl)⟧
 
+/--
+@isnad1 id=eq.7h9v.s8.1ca68f9aa134 from=translated src=- shape=7813451f vocab=9f63ef6d
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalSwitchBottomComparison_leftElement_normalized
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -1214,6 +1312,9 @@ theorem BinaryOpenCoverSquareSubdivision.verticalSwitchBottomComparison_leftElem
         i j l hshared hswitch (D.label i j) := by
   rfl
 
+/--
+@isnad1 id=eq.7h9v.s8.9b16dc83e0e9 from=translated src=- shape=a77627c5 vocab=6e116f08
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalSwitchTopComparison_leftElement_normalized
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -1227,6 +1328,9 @@ theorem BinaryOpenCoverSquareSubdivision.verticalSwitchTopComparison_leftElement
         i j l hshared hswitch (D.label i l) := by
   rfl
 
+/--
+@isnad1 id=eq.5h10v.s8.7c635315c4f0 from=translated src=- shape=3096af66 vocab=9e9f0b3a
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalSwitchEdgePieceImageNormalized_eq
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -1239,7 +1343,9 @@ theorem BinaryOpenCoverSquareSubdivision.verticalSwitchEdgePieceImageNormalized_
         i j l hshared hswitch b := by
   cases b <;> rfl
 
-/-- 竖直异标签公共边在下格成员中的像等于下格局部上横边经端点 transport。-/
+/-- 竖直异标签公共边在下格成员中的像等于下格局部上横边经端点 transport。
+@isnad1 id=eq.2h8v.s11.5178be23c449 from=translated src=- shape=1db2826e vocab=be0a8e1b
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalSwitchEdgeInBottomPiece_eq_cellEdge
     {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -1276,6 +1382,9 @@ theorem BinaryOpenCoverSquareSubdivision.verticalSwitchEdgeInBottomPiece_eq_cell
     _ = (q.cast hs ht : unitInterval → binaryOpenCoverPiece U V (D.label i j)) :=
       (Path.cast_coe q hs ht).symm
 
+/--
+@isnad1 id=eq.7h9v.s8.6b0211e3e9fb from=translated src=- shape=cc22b655 vocab=cc15e84d
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalSwitchBottomComparison_rightElement
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -1305,6 +1414,9 @@ theorem BinaryOpenCoverSquareSubdivision.verticalSwitchBottomComparison_rightEle
   rw [D.verticalSwitchEdgeInBottomPiece_eq_cellEdge i j l hshared hswitch]
   exact congrArg Path.Homotopic.Quotient.mk hp
 
+/--
+@isnad1 id=other.7h9v.s10.5eca7541646b from=translated src=- shape=b77a2d05 vocab=0647549c
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalSwitchBottom_pieceElement_relation
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -1326,7 +1438,9 @@ theorem BinaryOpenCoverSquareSubdivision.verticalSwitchBottom_pieceElement_relat
   exact D.verticalSwitchBottomComparison_rightElement
     hxU hxV hUV hU hV i j l hshared hswitch
 
-/-- 竖直异标签公共边在上格成员中的像等于上格局部下横边经端点 transport。-/
+/-- 竖直异标签公共边在上格成员中的像等于上格局部下横边经端点 transport。
+@isnad1 id=eq.2h8v.s11.68792e149a07 from=translated src=- shape=9b2ef5fe vocab=6a7745bc
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalSwitchEdgeInTopPiece_eq_cellEdge
     {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -1362,6 +1476,9 @@ theorem BinaryOpenCoverSquareSubdivision.verticalSwitchEdgeInTopPiece_eq_cellEdg
     _ = (q.cast hs ht : unitInterval → binaryOpenCoverPiece U V (D.label i l)) :=
       (Path.cast_coe q hs ht).symm
 
+/--
+@isnad1 id=eq.7h9v.s8.fde5a68fe630 from=translated src=- shape=28f46b5e vocab=f1d59772
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalSwitchTopComparison_rightElement
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -1391,6 +1508,9 @@ theorem BinaryOpenCoverSquareSubdivision.verticalSwitchTopComparison_rightElemen
   rw [D.verticalSwitchEdgeInTopPiece_eq_cellEdge i j l hshared hswitch]
   exact congrArg Path.Homotopic.Quotient.mk hp
 
+/--
+@isnad1 id=other.7h9v.s10.bb5b847f1f9c from=translated src=- shape=ffffa3bd vocab=ff3464f7
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalSwitchTop_pieceElement_relation
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -1412,7 +1532,9 @@ theorem BinaryOpenCoverSquareSubdivision.verticalSwitchTop_pieceElement_relation
   exact D.verticalSwitchTopComparison_rightElement
     hxU hxV hUV hU hV i j l hshared hswitch
 
-/-- 竖直异标签公共边的 normalized 两侧像按两格实际标签进入推送后相等。-/
+/-- 竖直异标签公共边的 normalized 两侧像按两格实际标签进入推送后相等。
+@isnad1 id=eq.5h9v.s12.218d14c5eab2 from=translated src=- shape=12f2e3dd vocab=5f9fc744
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalSwitchEdge_normalized_pushout_eq
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -1443,7 +1565,9 @@ theorem BinaryOpenCoverSquareSubdivision.verticalSwitchEdge_normalized_pushout_e
       i j l hshared hswitch).symm
   · exact False.elim (hswitch (hij.trans hil.symm))
 
-/-- 竖直异标签内部边在推送中的最终换连接关系。-/
+/-- 竖直异标签内部边在推送中的最终换连接关系。
+@isnad1 id=other.7h9v.s14.9c9eb92bbaf0 from=translated src=- shape=ac100818 vocab=448e4e0a
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalSwitchEdge_pushout_relation
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)

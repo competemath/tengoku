@@ -76,7 +76,9 @@ private theorem replaceAtWith_prefix_length {α : Type*}
       rfl
 
 /-- Following the certified spine and then a local path reaches the same
-subtree as following the local path inside the focus.-/
+subtree as following the local path inside the focus.
+@isnad1 id=eq.0h3v.s4.cfd86c85aad3 from=translated src=- shape=706add07 vocab=3cc8e859
+-/
 theorem subtreeAt_plugRightmostSpine (ancestors : List (List Hydra))
     (focus : Hydra) (localPath : List Nat) :
     Hydra.subtreeAt (plugRightmostSpine ancestors focus)
@@ -92,7 +94,9 @@ theorem subtreeAt_plugRightmostSpine (ancestors : List (List Hydra))
 
 /-- A successful cut whose path already has at least two indices can be lifted
 through every certified rightmost ancestor without causing extra replication
-at those higher levels.-/
+at those higher levels.
+@isnad1 id=eq.1h7v.s5.f9149ccb45c9 from=translated src=- shape=e5461144 vocab=2b67854a
+-/
 theorem chop_plugRightmostSpine (stage : Nat) (ancestors : List (List Hydra))
     (before after : Hydra) (first second : Nat) (rest : List Nat)
     (cut : Hydra.chop stage before (first :: second :: rest) = some after) :
@@ -120,6 +124,9 @@ def RightmostSpineReplicatedCut (stage : Nat) (ancestors : List (List Hydra))
     (.node (grandparentSiblings ++
       List.replicate (stage + 1) (.node parentSiblings)))
 
+/--
+@isnad1 id=step.1h6v.s4.0fc0f31a6dbe from=translated src=- shape=82b78934 vocab=31ed7bdd
+-/
 theorem rightmostSpineReplicatedCut_isStep {stage : Nat}
     {ancestors : List (List Hydra)} {grandparentSiblings parentSiblings : List Hydra}
     {before after : Hydra}

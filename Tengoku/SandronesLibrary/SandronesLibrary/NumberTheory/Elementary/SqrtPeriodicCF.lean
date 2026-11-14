@@ -54,25 +54,41 @@ noncomputable def cfDigit (ξ : ℝ) (n : ℕ) : ℤ := ⌊cfCompleteQuotient ξ
 def IsEventuallyPeriodic (a : ℕ → ℤ) : Prop :=
   ∃ N L : ℕ, 0 < L ∧ ∀ n, N ≤ n → a (n + L) = a n
 
+/--
+@isnad1 id=eq.0h1v.s3.07251301da5c from=translated src=- shape=bb0110a5 vocab=32f32864
+-/
 @[simp]
 theorem cfCompleteQuotient_zero (ξ : ℝ) : cfCompleteQuotient ξ 0 = ξ := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.70270d45f7db from=translated src=- shape=03e1b239 vocab=69f5eba3
+-/
 @[simp]
 theorem cfCompleteQuotient_succ (ξ : ℝ) (n : ℕ) :
     cfCompleteQuotient ξ (n + 1) = (Int.fract (cfCompleteQuotient ξ n))⁻¹ := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.c643f938ea25 from=translated src=- shape=4c6643d4 vocab=42e15742
+-/
 theorem cfCompleteQuotient_one (ξ : ℝ) : cfCompleteQuotient ξ 1 = (Int.fract ξ)⁻¹ := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.5bd69549e4bd from=translated src=- shape=a28a88cd vocab=02ac4df6
+-/
 @[simp]
 theorem cfDigit_zero (ξ : ℝ) : cfDigit ξ 0 = ⌊ξ⌋ := rfl
 
-/-- 最终周期性可以从更晚的起点重新陈述。-/
+/-- 最终周期性可以从更晚的起点重新陈述。
+@isnad1 id=iseventu.3h4v.s5.fba3a05129a5 from=translated src=- shape=41d272eb vocab=b386e884
+-/
 theorem IsEventuallyPeriodic.mono {a : ℕ → ℤ} {N L : ℕ} (hL : 0 < L)
     (h : ∀ n, N ≤ n → a (n + L) = a n) {N' : ℕ} (hN : N ≤ N') :
     IsEventuallyPeriodic a :=
   ⟨N', L, hL, fun n hn => h n (le_trans hN hn)⟩
 
-/-- 周期 `L` 蕴含周期 `k * L`（`k` 任意）。-/
+/-- 周期 `L` 蕴含周期 `k * L`（`k` 任意）。
+@isnad1 id=ex.1h2v.s5.f6026ee6bff4 from=translated src=- shape=0c8d20fe vocab=6a6a794f
+-/
 theorem IsEventuallyPeriodic.mul_period {a : ℕ → ℤ} (h : IsEventuallyPeriodic a) (k : ℕ) :
     ∃ N L : ℕ, 0 < L ∧ ∀ n, N ≤ n → a (n + k * L) = a n := by
   obtain ⟨N, L, hL, hper⟩ := h
@@ -90,7 +106,9 @@ theorem IsEventuallyPeriodic.mul_period {a : ℕ → ℤ} (h : IsEventuallyPerio
 /-- 完全商与前置 Entry 的收敛子递推的连接：第 `n + 1` 个收敛子等于 `⌊ξ⌋` 加上
 “以第一个完全商 `ξ₁ = (fract ξ)⁻¹` 为起点展开的第 `n` 个收敛子”的倒数。
 
-> **Entry**: number-theory.elementary.sqrt-periodic-cf-/
+> **Entry**: number-theory.elementary.sqrt-periodic-cf
+@isnad1 id=eq.0h2v.s5.1c5adf3b7038 from=translated src=- shape=2de27a5a vocab=c869e4c8
+-/
 theorem continuedFractionConvergent_succ_eq (ξ : ℝ) (n : ℕ) :
     continuedFractionConvergent ξ (n + 1) =
       (⌊ξ⌋ : ℤ) + (continuedFractionConvergent (cfCompleteQuotient ξ 1) n)⁻¹ :=
@@ -101,10 +119,15 @@ section GaussMap
 /-- 连分数算法的 Gauss 映射：去掉整数部分再取倒数。-/
 noncomputable def cfGaussMap (x : ℝ) : ℝ := (Int.fract x)⁻¹
 
+/--
+@isnad1 id=eq.0h2v.s4.0be6a86fc4ad from=translated src=- shape=8ad2ba2d vocab=737a3bc4
+-/
 theorem cfCompleteQuotient_succ_eq_gaussMap (ξ : ℝ) (n : ℕ) :
     cfCompleteQuotient ξ (n + 1) = cfGaussMap (cfCompleteQuotient ξ n) := rfl
 
-/-- 完全商的加法公式：从第 `m` 个完全商出发再迭代 `k` 次 Gauss 映射，得到第 `m + k` 个完全商。-/
+/-- 完全商的加法公式：从第 `m` 个完全商出发再迭代 `k` 次 Gauss 映射，得到第 `m + k` 个完全商。
+@isnad1 id=eq.0h3v.s4.f699eeda7ac3 from=translated src=- shape=86b1740b vocab=8f49fd70
+-/
 theorem cfCompleteQuotient_add (ξ : ℝ) (m k : ℕ) :
     cfCompleteQuotient ξ (m + k) = (cfGaussMap^[k]) (cfCompleteQuotient ξ m) := by
   induction k with
@@ -118,7 +141,9 @@ theorem cfCompleteQuotient_add (ξ : ℝ) (m k : ℕ) :
 以 `L` 为周期。这是"完全商重复 ⇒ 数位周期"的一般陈述，不限于 `√d`；`√d` 的周期性正是
 把这条判据用在整数状态递推给出的重复上。
 
-> **Entry**: number-theory.elementary.sqrt-periodic-cf-/
+> **Entry**: number-theory.elementary.sqrt-periodic-cf
+@isnad1 id=iseventu.2h3v.s5.c807e0d1a57f from=translated src=- shape=d8a0d415 vocab=5e3f6e7e
+-/
 theorem cfDigit_eventuallyPeriodic_of_completeQuotient_eq {ξ : ℝ} {N L : ℕ} (hL : 0 < L)
     (h : cfCompleteQuotient ξ (N + L) = cfCompleteQuotient ξ N) :
     IsEventuallyPeriodic (cfDigit ξ) := by
@@ -176,14 +201,23 @@ noncomputable def sqrtCFStep (d : ℕ) (s : ℤ × ℤ) : ℤ × ℤ :=
 noncomputable def sqrtCFState (d : ℕ) (n : ℕ) : ℤ × ℤ :=
   (sqrtCFStep d)^[n] (0, 1)
 
+/--
+@isnad1 id=eq.0h2v.s4.1499d0b162d9 from=translated src=- shape=4beb2f64 vocab=8a06141b
+-/
 theorem sqrtCFState_eq_iterate (d : ℕ) (n : ℕ) :
     sqrtCFState d n = (sqrtCFStep d)^[n] (0, 1) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.a2ea732ef8d0 from=translated src=- shape=49293df4 vocab=526391e7
+-/
 theorem sqrtCFStep_apply (d : ℕ) (s : ℤ × ℤ) :
     sqrtCFStep d s =
       (sqrtCFPartialQuotient d s * s.2 - s.1,
         ((d : ℤ) - (sqrtCFPartialQuotient d s * s.2 - s.1) ^ 2) / s.2) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.55fa0e3535d8 from=translated src=- shape=461e3f75 vocab=341e6356
+-/
 theorem sqrtCFState_succ (d : ℕ) (n : ℕ) :
     sqrtCFState d (n + 1) = sqrtCFStep d (sqrtCFState d n) := by
   simp only [sqrtCFState_eq_iterate, Function.iterate_succ_apply']
@@ -549,7 +583,9 @@ private theorem sqrtCF_period_of_state_eq (d : ℕ) (hd : 0 < d) (hns : ¬ IsSqu
 `Pₙ₊₁ = aₙQₙ - Pₙ`、`Qₙ₊₁ = (d - Pₙ₊₁²)/Qₙ` 递推；对 `n ≥ 1` 有 `0 < Pₙ < √d`、
 `0 < Qₙ < 2√d`，故状态只落在有限多个整数点上，鸽笼给出重复，而递推的确定性把重复提升为周期。
 
-> **Entry**: number-theory.elementary.sqrt-periodic-cf-/
+> **Entry**: number-theory.elementary.sqrt-periodic-cf
+@isnad1 id=iseventu.2h1v.s4.4ab7d83137f9 from=translated src=- shape=a9a2f348 vocab=8949ccf6
+-/
 theorem cfDigit_sqrt_eventuallyPeriodic (d : ℕ) (hd : 0 < d) (hns : ¬ IsSquare (d : ℤ)) :
     IsEventuallyPeriodic (cfDigit (√(d : ℝ))) := by
   obtain ⟨N, L, hL, -, hstate⟩ := exists_sqrtCFState_repetition d hd hns
@@ -563,7 +599,9 @@ theorem cfDigit_sqrt_eventuallyPeriodic (d : ℕ) (hd : 0 < d) (hns : ¬ IsSquar
 `L ≤ 2d ≤ 2·disc`；对一般的非平方 `d`，本条只主张 `L ≤ 2d`。周期长度与判别式的精确关系
 （与基本单位、类数、负 Pell 方程可解性的联系）在本库中尚未形式化。
 
-> **Entry**: number-theory.elementary.sqrt-periodic-cf-/
+> **Entry**: number-theory.elementary.sqrt-periodic-cf
+@isnad1 id=ex.2h1v.s6.0b58789838f9 from=translated src=- shape=3bbebe85 vocab=f791cb1c
+-/
 theorem exists_cfDigit_sqrt_period_le (d : ℕ) (hd : 0 < d) (hns : ¬ IsSquare (d : ℤ)) :
     ∃ N L : ℕ, 0 < L ∧ L ≤ 2 * d ∧
       ∀ n, N ≤ n → cfDigit (√(d : ℝ)) (n + L) = cfDigit (√(d : ℝ)) n := by
@@ -602,7 +640,9 @@ theorem exists_cfDigit_sqrt_period_le (d : ℕ) (hd : 0 < d) (hns : ¬ IsSquare 
 因子部分决定，与 `d` 本身可能相差一个平方因子（如 `a = 7` 时 `d = 50 = 2·5²`，判别式为 `8`），
 故这里不把周期长度与 `2d` 或判别式直接挂钩。
 
-> **Entry**: number-theory.elementary.sqrt-periodic-cf-/
+> **Entry**: number-theory.elementary.sqrt-periodic-cf
+@isnad1 id=eq.2h2v.s6.c29242f3f310 from=translated src=- shape=e61722b4 vocab=4eaea031
+-/
 theorem cfDigit_sqrt_sq_add_one (a : ℕ) (ha : 1 ≤ a) {n : ℕ} (hn : 1 ≤ n) :
     cfDigit (√(((a ^ 2 + 1 : ℕ) : ℝ))) n = 2 * (a : ℤ) := by
   set d : ℕ := a ^ 2 + 1 with hd

@@ -35,16 +35,22 @@ variable {𝕜 : Type*} [RCLike 𝕜]
 noncomputable def operatorNorm (T : E →ₗ[𝕜] F) : ℝ :=
   ‖T.toContinuousLinearMap‖
 
-/-- 有限维线性映射的算子范数非负。-/
+/-- 有限维线性映射的算子范数非负。
+@isnad1 id=le.0h4v.s7.d2979a415e68 from=translated src=- shape=47639602 vocab=ace2c342
+-/
 theorem operatorNorm_nonneg (T : E →ₗ[𝕜] F) : 0 ≤ operatorNorm T := by
   exact ContinuousLinearMap.opNorm_nonneg _
 
-/-- 算子范数控制每个向量的像的范数。-/
+/-- 算子范数控制每个向量的像的范数。
+@isnad1 id=le.0h5v.s8.a22ab83a5880 from=translated src=- shape=154ed9c4 vocab=b9255314
+-/
 theorem norm_apply_le_operatorNorm_mul_norm (T : E →ₗ[𝕜] F) (x : E) :
     ‖T x‖ ≤ operatorNorm T * ‖x‖ := by
   exact T.toContinuousLinearMap.le_opNorm x
 
-/-- 算子范数为零，当且仅当线性映射为零。-/
+/-- 算子范数为零，当且仅当线性映射为零。
+@isnad1 id=iff.0h4v.s9.3ff60ac6b6d7 from=translated src=- shape=1bd8bc59 vocab=b37516fe
+-/
 theorem operatorNorm_eq_zero_iff (T : E →ₗ[𝕜] F) : operatorNorm T = 0 ↔ T = 0 := by
   rw [operatorNorm, norm_eq_zero]
   constructor
@@ -56,7 +62,9 @@ theorem operatorNorm_eq_zero_iff (T : E →ₗ[𝕜] F) : operatorNorm T = 0 ↔
     subst T
     rfl
 
-/-- 有限维线性映射的算子范数对复合满足次乘性。-/
+/-- 有限维线性映射的算子范数对复合满足次乘性。
+@isnad1 id=le.0h6v.s9.a6efffe5d389 from=translated src=- shape=e3383144 vocab=d0a6d081
+-/
 theorem operatorNorm_comp_le
     {G : Type*} [NormedAddCommGroup G] [InnerProductSpace 𝕜 G]
     (S : F →ₗ[𝕜] G) (T : E →ₗ[𝕜] F) :
@@ -72,7 +80,9 @@ theorem operatorNorm_comp_le
 
 /-- 正算子的最大特征值不超过算子范数。
 
-取最大特征值对应的单位特征向量，将算子范数的逐点估计应用于该向量即可。-/
+取最大特征值对应的单位特征向量，将算子范数的逐点估计应用于该向量即可。
+@isnad1 id=le.2h3v.s8.a3ff2082f681 from=translated src=- shape=8fa317dd vocab=8e03c84c
+-/
 theorem first_eigenvalue_le_operatorNorm
     (S : E →ₗ[𝕜] E) (hS : S.IsPositive)
     (hE : 0 < finrank 𝕜 E) :
@@ -87,7 +97,9 @@ theorem first_eigenvalue_le_operatorNorm
 /-- 正算子的算子范数不超过其最大特征值。
 
 在按特征值降序排列的正交特征基中，正算子逐坐标乘以非负特征值；每个特征值都
-不超过第一个特征值。对各坐标模长的平方求和便得到所需范数估计。-/
+不超过第一个特征值。对各坐标模长的平方求和便得到所需范数估计。
+@isnad1 id=le.2h3v.s8.8f18b736349f from=translated src=- shape=503c751d vocab=8e03c84c
+-/
 theorem operatorNorm_le_first_eigenvalue
     (S : E →ₗ[𝕜] E) (hS : S.IsPositive)
     (hE : 0 < finrank 𝕜 E) :
@@ -118,7 +130,9 @@ theorem operatorNorm_le_first_eigenvalue
   exact mul_le_mul_of_nonneg_right
     ((sq_le_sq₀ hμi0 hμ).mpr hμi) (sq_nonneg ‖b.repr x i‖)
 
-/-- 正算子的算子范数等于其按降序排列的第一个特征值。-/
+/-- 正算子的算子范数等于其按降序排列的第一个特征值。
+@isnad1 id=eq.2h3v.s8.290b9029d7f8 from=translated src=- shape=503c751d vocab=4fb49e9a
+-/
 theorem operatorNorm_positive_eq_first_eigenvalue
     (S : E →ₗ[𝕜] E) (hS : S.IsPositive)
     (hE : 0 < finrank 𝕜 E) :
@@ -126,7 +140,9 @@ theorem operatorNorm_positive_eq_first_eigenvalue
   exact le_antisymm (operatorNorm_le_first_eigenvalue S hS hE)
     (first_eigenvalue_le_operatorNorm S hS hE)
 
-/-- 正维定义域上，线性映射的算子范数等于第一奇异值。-/
+/-- 正维定义域上，线性映射的算子范数等于第一奇异值。
+@isnad1 id=eq.1h4v.s8.6ecb29ef4952 from=translated src=- shape=1687c199 vocab=26acf2bc
+-/
 theorem operatorNorm_eq_first_singularValue_of_pos_finrank (T : E →ₗ[𝕜] F)
     (hE : 0 < finrank 𝕜 E) :
     operatorNorm T = T.singularValues 0 := by
@@ -146,7 +162,9 @@ theorem operatorNorm_eq_first_singularValue_of_pos_finrank (T : E →ₗ[𝕜] F
 /-- 任意有限维线性映射的算子范数等于第一奇异值。
 
 若定义域维数为正，这就是正算子 `T†T` 的最大特征值公式；零维时定义域只有零向量，
-因而映射及其全部奇异值均为零。-/
+因而映射及其全部奇异值均为零。
+@isnad1 id=eq.0h4v.s7.cc54e9bd3627 from=translated src=- shape=8e2594af vocab=caafb999
+-/
 theorem operatorNorm_eq_first_singularValue (T : E →ₗ[𝕜] F) :
     operatorNorm T = T.singularValues 0 := by
   by_cases hE : 0 < finrank 𝕜 E
@@ -175,7 +193,9 @@ noncomputable def leftSingularVector (T : E →ₗ[𝕜] F)
   ((T.singularValues i : 𝕜)⁻¹) •
     T (rightSingularBasis T (Fin.castLE (LinearMap.finrank_range_le T) i))
 
-/-- 正奇异值对应的左右奇异向量满足 `T vᵢ = σᵢ uᵢ`。-/
+/-- 正奇异值对应的左右奇异向量满足 `T vᵢ = σᵢ uᵢ`。
+@isnad1 id=eq.0h5v.s11.b006cc9f6d7b from=translated src=- shape=21adda6c vocab=ffe80e74
+-/
 theorem map_rightSingularBasis_eq_smul_leftSingularVector (T : E →ₗ[𝕜] F)
     (i : Fin (finrank 𝕜 T.range)) :
     T (rightSingularBasis T (Fin.castLE (LinearMap.finrank_range_le T) i)) =
@@ -184,7 +204,9 @@ theorem map_rightSingularBasis_eq_smul_leftSingularVector (T : E →ₗ[𝕜] F)
     T.singularValues_pos_iff_lt_finrank_range.mpr i.isLt
   simp [leftSingularVector, smul_smul, hσ]
 
-/-- 归一化后的正奇异向量族在值域中正交归一。-/
+/-- 归一化后的正奇异向量族在值域中正交归一。
+@isnad1 id=orthonor.0h4v.s9.b689b6569868 from=translated src=- shape=ff056566 vocab=3199f369
+-/
 theorem orthonormal_leftSingularVector (T : E →ₗ[𝕜] F) :
     Orthonormal 𝕜 (leftSingularVector T) := by
   classical
@@ -237,7 +259,9 @@ noncomputable def rangeIndexEmbedding (T : E →ₗ[𝕜] F) :
     Fin (finrank 𝕜 T.range) ↪ Fin (finrank 𝕜 F) :=
   Fin.castLEEmb (Submodule.finrank_le T.range)
 
-/-- 正左奇异向量可扩充为整个值域空间的一组正交归一基。-/
+/-- 正左奇异向量可扩充为整个值域空间的一组正交归一基。
+@isnad1 id=ex.0h4v.s11.a11af32777aa from=translated src=- shape=e155b621 vocab=f1978863
+-/
 theorem exists_leftSingularBasis (T : E →ₗ[𝕜] F) :
     ∃ b : OrthonormalBasis (Fin (finrank 𝕜 F)) 𝕜 F,
       ∀ i : Fin (finrank 𝕜 T.range),
@@ -263,7 +287,9 @@ theorem exists_leftSingularBasis (T : E →ₗ[𝕜] F) :
   change (if h : i.val < r then leftSingularVector T ⟨i.val, h⟩ else 0) = _
   rw [dite_eq_left i.isLt]
 
-/-- 排在秩之后的右奇异向量属于核。-/
+/-- 排在秩之后的右奇异向量属于核。
+@isnad1 id=eq.1h5v.s10.d2351f69d4ac from=translated src=- shape=558d5bfd vocab=b97ad557
+-/
 theorem map_rightSingularBasis_eq_zero_of_finrank_range_le
     (T : E →ₗ[𝕜] F) (i : Fin (finrank 𝕜 E))
     (hi : finrank 𝕜 T.range ≤ i.val) :
@@ -292,7 +318,9 @@ structure SingularValueDecomposition (T : E →ₗ[𝕜] F) where
         leftBasis (rangeIndexEmbedding T ⟨i.val, hi⟩)
     else T (rightBasis i) = 0
 
-/-- 任意有限维实或复内积空间之间的线性映射都有 SVD。-/
+/-- 任意有限维实或复内积空间之间的线性映射都有 SVD。
+@isnad1 id=nonempty.0h4v.s7.21e6af275ca9 from=translated src=- shape=739f8803 vocab=a82bd993
+-/
 theorem exists_singularValueDecomposition (T : E →ₗ[𝕜] F) :
     Nonempty (SingularValueDecomposition T) := by
   obtain ⟨u, hu⟩ := exists_leftSingularBasis T
@@ -314,7 +342,9 @@ noncomputable def singularDiagonal (T : E →ₗ[𝕜] F) :
     if i.val = j.val then (T.singularValues j : 𝕜) else 0
   else 0
 
-/-- SVD 证书给出的左右奇异基下，`T` 的矩阵就是矩形奇异值对角矩阵。-/
+/-- SVD 证书给出的左右奇异基下，`T` 的矩阵就是矩形奇异值对角矩阵。
+@isnad1 id=eq.0h5v.s11.cae9275ec8d7 from=translated src=- shape=a9900896 vocab=65034302
+-/
 theorem SingularValueDecomposition.toMatrix_eq_singularDiagonal
     {T : E →ₗ[𝕜] F} (d : SingularValueDecomposition T) :
     LinearMap.toMatrix d.rightBasis.toBasis d.leftBasis.toBasis T =
@@ -347,19 +377,25 @@ noncomputable def SingularValueDecomposition.rightMatrix
     Matrix (Fin (finrank 𝕜 E)) (Fin (finrank 𝕜 E)) 𝕜 :=
   (stdOrthonormalBasis 𝕜 E).toBasis.toMatrix d.rightBasis.toBasis
 
-/-- 左换基矩阵为酉矩阵。-/
+/-- 左换基矩阵为酉矩阵。
+@isnad1 id=mem.0h5v.s10.037f7a48d97d from=translated src=- shape=a47ebb6b vocab=2ac28b56
+-/
 theorem SingularValueDecomposition.leftMatrix_unitary
     {T : E →ₗ[𝕜] F} (d : SingularValueDecomposition T) :
     d.leftMatrix ∈ Matrix.unitaryGroup (Fin (finrank 𝕜 F)) 𝕜 := by
   exact (stdOrthonormalBasis 𝕜 F).toMatrix_orthonormalBasis_mem_unitary d.leftBasis
 
-/-- 右换基矩阵为酉矩阵。-/
+/-- 右换基矩阵为酉矩阵。
+@isnad1 id=mem.0h5v.s10.766a2377d158 from=translated src=- shape=532b6933 vocab=76c51625
+-/
 theorem SingularValueDecomposition.rightMatrix_unitary
     {T : E →ₗ[𝕜] F} (d : SingularValueDecomposition T) :
     d.rightMatrix ∈ Matrix.unitaryGroup (Fin (finrank 𝕜 E)) 𝕜 := by
   exact (stdOrthonormalBasis 𝕜 E).toMatrix_orthonormalBasis_mem_unitary d.rightBasis
 
-/-- 右奇异基的逆换基矩阵是右换基矩阵的共轭转置。-/
+/-- 右奇异基的逆换基矩阵是右换基矩阵的共轭转置。
+@isnad1 id=eq.0h5v.s9.ddf9c3567240 from=translated src=- shape=86c0d4de vocab=28e82d83
+-/
 theorem SingularValueDecomposition.rightBasis_toMatrix_standard_eq_conjTranspose
     {T : E →ₗ[𝕜] F} (d : SingularValueDecomposition T) :
     d.rightBasis.toBasis.toMatrix (stdOrthonormalBasis 𝕜 E).toBasis =
@@ -369,7 +405,9 @@ theorem SingularValueDecomposition.rightBasis_toMatrix_standard_eq_conjTranspose
   simp [SingularValueDecomposition.rightMatrix, Basis.toMatrix_apply,
     OrthonormalBasis.repr_apply_apply, inner_conj_symm]
 
-/-- 标准正交基下的矩阵满足经典乘积形式 `U Σ Vᴴ`。-/
+/-- 标准正交基下的矩阵满足经典乘积形式 `U Σ Vᴴ`。
+@isnad1 id=eq.0h5v.s12.36990a4167ef from=translated src=- shape=67807eea vocab=dc113712
+-/
 theorem SingularValueDecomposition.standardMatrix_eq_mul_singularDiagonal_mul_conjTranspose
     {T : E →ₗ[𝕜] F} (d : SingularValueDecomposition T) :
     LinearMap.toMatrix (stdOrthonormalBasis 𝕜 E).toBasis
@@ -381,24 +419,32 @@ theorem SingularValueDecomposition.standardMatrix_eq_mul_singularDiagonal_mul_co
     (stdOrthonormalBasis 𝕜 E).toBasis d.rightBasis.toBasis
     (stdOrthonormalBasis 𝕜 F).toBasis d.leftBasis.toBasis T).symm
 
-/-- 任意矩形实或复矩阵（视作坐标线性映射）都有 SVD。-/
+/-- 任意矩形实或复矩阵（视作坐标线性映射）都有 SVD。
+@isnad1 id=nonempty.0h4v.s12.35721ec67025 from=translated src=- shape=973f1700 vocab=2f63a792
+-/
 theorem exists_matrixSingularValueDecomposition
     {m n : Type*} [Fintype m] [DecidableEq m] [Fintype n] [DecidableEq n]
     (A : Matrix m n 𝕜) :
     Nonempty (SingularValueDecomposition (Matrix.toEuclideanLin A)) := by
   exact exists_singularValueDecomposition (Matrix.toEuclideanLin A)
 
-/-- 非零奇异值的个数等于映射的秩。-/
+/-- 非零奇异值的个数等于映射的秩。
+@isnad1 id=eq.0h4v.s9.54722a84b02d from=translated src=- shape=f01a0f8c vocab=12ba4890
+-/
 theorem card_support_singularValues_eq_rank (T : E →ₗ[𝕜] F) :
     T.singularValues.support.card = finrank 𝕜 T.range := by
   exact T.card_support_singularValues
 
-/-- 第 `i` 个奇异值为正，当且仅当 `i` 小于映射的秩。-/
+/-- 第 `i` 个奇异值为正，当且仅当 `i` 小于映射的秩。
+@isnad1 id=iff.0h5v.s9.d6e5e968e5c3 from=translated src=- shape=51824123 vocab=cbedc602
+-/
 theorem singularValue_pos_iff_lt_rank (T : E →ₗ[𝕜] F) (i : ℕ) :
     0 < T.singularValues i ↔ i < finrank 𝕜 T.range := by
   exact T.singularValues_pos_iff_lt_finrank_range
 
-/-- 映射单射，当且仅当其定义域维数范围内的奇异值全部严格为正。-/
+/-- 映射单射，当且仅当其定义域维数范围内的奇异值全部严格为正。
+@isnad1 id=iff.0h4v.s8.b6789779bb3c from=translated src=- shape=8f3967c5 vocab=e9e204c2
+-/
 theorem injective_iff_singularValues_pos (T : E →ₗ[𝕜] F) :
     Function.Injective T ↔ ∀ i < finrank 𝕜 E, 0 < T.singularValues i := by
   exact T.injective_iff_forall_lt_finrank_singularValues_pos

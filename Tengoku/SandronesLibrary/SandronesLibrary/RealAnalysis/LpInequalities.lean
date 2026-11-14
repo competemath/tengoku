@@ -35,7 +35,9 @@ variable {α E 𝕜 : Type*} [MeasurableSpace α] (μ : Measure α)
 /-- **Hölder 不等式（范数形式）**：共轭指数下，范数乘积的积分不超过两个幂积分
 所定义的 `Lᵖ` 与 `Lᑫ` 半范数之积。
 
-> **Entry**: real-analysis.lp.holder-/
+> **Entry**: real-analysis.lp.holder
+@isnad1 id=le.3h7v.s8.ceb7e213d2db from=translated src=- shape=b208ad0e vocab=8ada777a
+-/
 theorem holder_norm {E : Type*} [NormedAddCommGroup E]
     {f g : α → E} {p q : ℝ} (hpq : p.HolderConjugate q)
     (hf : MemLp f (ENNReal.ofReal p) μ) (hg : MemLp g (ENNReal.ofReal q) μ) :
@@ -43,7 +45,9 @@ theorem holder_norm {E : Type*} [NormedAddCommGroup E]
       (∫ x, ‖f x‖ ^ p ∂μ) ^ (1 / p) * (∫ x, ‖g x‖ ^ q ∂μ) ^ (1 / q) := by
   exact integral_mul_norm_le_Lp_mul_Lq hpq hf hg
 
-/-- **Hölder 不等式（非负实函数形式）**：几乎处处非负时可去掉绝对值。-/
+/-- **Hölder 不等式（非负实函数形式）**：几乎处处非负时可去掉绝对值。
+@isnad1 id=le.5h6v.s8.0ab6bc4febf3 from=translated src=- shape=64a1a39a vocab=67ff2766
+-/
 theorem holder_nonneg {f g : α → ℝ} {p q : ℝ} (hpq : p.HolderConjugate q)
     (hf0 : 0 ≤ᵐ[μ] f) (hg0 : 0 ≤ᵐ[μ] g)
     (hf : MemLp f (ENNReal.ofReal p) μ) (hg : MemLp g (ENNReal.ofReal q) μ) :
@@ -52,7 +56,9 @@ theorem holder_nonneg {f g : α → ℝ} {p q : ℝ} (hpq : p.HolderConjugate q)
   exact integral_mul_le_Lp_mul_Lq_of_nonneg hpq hf0 hg0 hf hg
 
 /-- **`Lᵖ · Lᑫ ⊆ L¹`**：满足 `HolderTriple p q 1` 时，两个函数的逐点乘积可积。
-该接口也覆盖端点指数 `1` 与 `∞`。-/
+该接口也覆盖端点指数 `1` 与 `∞`。
+@isnad1 id=integrab.2h7v.s7.84cfdbc580ec from=translated src=- shape=ff87bb45 vocab=eb50b59d
+-/
 theorem holder_product_integrable [NormedRing 𝕜] {p q : ENNReal}
     [ENNReal.HolderTriple p q 1] {f g : α → 𝕜}
     (hf : MemLp f p μ) (hg : MemLp g q μ) : Integrable (f * g) μ := by
@@ -66,7 +72,9 @@ theorem holder_product_integrable [NormedRing 𝕜] {p q : ENNReal}
 有限且非零的指数条件分别由 `hp_top` 与 `hp0` 表达；强可测性保证半范数和水平集
 之间的标准 Chebyshev 估计可以应用。
 
-> **Entry**: real-analysis.lp.chebyshev-/
+> **Entry**: real-analysis.lp.chebyshev
+@isnad1 id=le.3h6v.s7.352e5a7d12c8 from=translated src=- shape=0b161157 vocab=f30ad976
+-/
 theorem chebyshev_markov [NormedAddCommGroup E] {p : ℝ≥0∞}
     (hp0 : p ≠ 0) (hp_top : p ≠ ∞) {f : α → E}
     (hf : AEStronglyMeasurable f μ) (ε : ℝ≥0∞) :
@@ -79,7 +87,9 @@ theorem chebyshev_markov [NormedAddCommGroup E] {p : ℝ≥0∞}
 该形式不要求 `f`、`g` 已经具有有限半范数；等式两边均在 `ℝ≥0∞` 中比较，故也
 自然涵盖无穷值。取 `p = ∞` 时，它同时表达本质上确界范数的三角不等式。
 
-> **Entry**: real-analysis.lp.minkowski-/
+> **Entry**: real-analysis.lp.minkowski
+@isnad1 id=le.3h6v.s7.470563f5dd18 from=translated src=- shape=db64f3b8 vocab=4a410865
+-/
 theorem minkowski [NormedAddCommGroup E] {p : ℝ≥0∞}
     {f g : α → E} (hf : AEStronglyMeasurable f μ)
     (hg : AEStronglyMeasurable g μ) (hp : 1 ≤ p) :
@@ -92,7 +102,9 @@ theorem minkowski [NormedAddCommGroup E] {p : ℝ≥0∞}
 `(∫ (f+g)^p)^(1/p) ≤ (∫ f^p)^(1/p) + (∫ g^p)^(1/p)`。
 
 函数值域为 `ℝ≥0∞`，所以不需要额外写非负性假设；`lintegral` 也允许积分为无穷。
-这个版本把上一条抽象半范数不等式展开成可直接用于非负函数估计的公式。-/
+这个版本把上一条抽象半范数不等式展开成可直接用于非负函数估计的公式。
+@isnad1 id=le.3h5v.s7.de58f88ce6a2 from=translated src=- shape=9abae3cb vocab=ded4ce3b
+-/
 theorem minkowski_nonneg {p : ℝ} {f g : α → ℝ≥0∞}
     (hf : AEMeasurable f μ) (hg : AEMeasurable g μ) (hp : 1 ≤ p) :
     (∫⁻ x, (f + g) x ^ p ∂μ) ^ (1 / p) ≤

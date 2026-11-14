@@ -32,7 +32,9 @@ def HasHaltingOnesScore (machine : BinaryMachine (n + 1)) (score : ℕ) : Prop :
 > **Entry**: settheory.googology.unbounded-halting-relation
 > **一句话**: 无时间界停机不是给机器预设统一燃料，而是断言存在某个有限时刻到达停机纸带。
 > **依赖**: `settheory.googology.bounded-halting`
-> **mathlib**: 无（本库显式执行器）-/
+> **mathlib**: 无（本库显式执行器）
+@isnad1 id=iff.0h2v.s4.fa8cedf640c3 from=translated src=- shape=ae2f7b72 vocab=fb6f3a3e
+-/
 theorem eventuallyHalts_iff_exists_score (machine : BinaryMachine (n + 1)) :
     EventuallyHalts machine ↔ ∃ score, HasHaltingOnesScore machine score := by
   constructor
@@ -41,7 +43,9 @@ theorem eventuallyHalts_iff_exists_score (machine : BinaryMachine (n + 1)) :
   · rintro ⟨score, steps, tape, halted, _⟩
     exact ⟨steps, tape, halted⟩
 
-/-- 限定燃料内停机必然蕴含无时间界意义下最终停机。-/
+/-- 限定燃料内停机必然蕴含无时间界意义下最终停机。
+@isnad1 id=eventual.1h3v.s4.3f50ae685ffe from=translated src=- shape=a26e48ec vocab=ec09bc13
+-/
 theorem haltsWithin_implies_eventuallyHalts (fuel : ℕ)
     (machine : BinaryMachine (n + 1)) :
     HaltsWithin fuel machine → EventuallyHalts machine := by
@@ -62,7 +66,9 @@ def IsBusyBeaverValue (n value : ℕ) : Prop :=
 > **一句话**: 经典 Busy Beaver 值用“支配全部停机输出且被某台停机机器取得”的最大值关系表达。
 > **依赖**: `settheory.googology.unbounded-halting-relation`,
 > `settheory.googology.busy-beaver-candidate`
-> **mathlib**: `Finset.sup`-/
+> **mathlib**: `Finset.sup`
+@isnad1 id=le.1h3v.s4.bfdc376cea2c from=translated src=- shape=70209c55 vocab=c2d64237
+-/
 theorem busyBeaverCandidate_le_of_isValue {n value : ℕ}
     (hvalue : IsBusyBeaverValue n value)
     (fuel : ℕ) :
@@ -78,7 +84,9 @@ theorem busyBeaverCandidate_le_of_isValue {n value : ℕ}
 
 /--
 若 `value` 满足经典最大值关系，那么冠军机器在某个有限时刻已经停机；取那个时刻为燃料，有限
-搜索候选值便恰好等于 `value`。-/
+搜索候选值便恰好等于 `value`。
+@isnad1 id=ex.1h2v.s4.ec403f4cc793 from=translated src=- shape=07dacbe2 vocab=bbc35f3a
+-/
 theorem exists_candidate_eq_of_isValue {n value : ℕ}
     (hvalue : IsBusyBeaverValue n value) :
     ∃ fuel, busyBeaverCandidate n fuel = value := by
@@ -98,7 +106,9 @@ theorem exists_candidate_eq_of_isValue {n value : ℕ}
   rw [← score_eq]
   exact boundedOnesScore_le_candidate fuel machine
 
-/-- 满足最大值关系的自然数唯一。-/
+/-- 满足最大值关系的自然数唯一。
+@isnad1 id=eq.2h3v.s4.026c06eea62a from=translated src=- shape=920a25f1 vocab=3f586c47
+-/
 theorem isBusyBeaverValue_unique {n x y : ℕ} (hx : IsBusyBeaverValue n x)
     (hy : IsBusyBeaverValue n y) : x = y := by
   rcases hx.2 with ⟨machineX, hmachineX⟩

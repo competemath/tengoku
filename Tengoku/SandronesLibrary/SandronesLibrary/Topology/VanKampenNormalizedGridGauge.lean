@@ -32,7 +32,9 @@ variable {X : Type*} [TopologicalSpace X]
 
 /-- 在道路同伦方形的最下行，每个单格的两个下顶点在其标签 piece 中都严格等于公共基点。
 
-> **Entry**: topology.fundamental-group.van-kampen-normalized-grid-gauge-/
+> **Entry**: topology.fundamental-group.van-kampen-normalized-grid-gauge
+@isnad1 id=eq.2h11v.s7.1ff803c5e6f1 from=translated src=- shape=30d85e34 vocab=abcbcac6
+-/
 theorem BinaryOpenCoverSquareSubdivision.gridCellVertexInPiece_bottom_eq_basepoint
     {x₀ x₁ : X} {p q : Path x₀ x₁} (F : Path.Homotopy p q)
     {U V : Set X}
@@ -49,7 +51,9 @@ theorem BinaryOpenCoverSquareSubdivision.gridCellVertexInPiece_bottom_eq_basepoi
   cases D.label i ⟨0, D.steps_pos⟩ <;> rfl
 
 /-- 当道路同伦的两端都是基点环路时，最上行单格的两个上顶点在其标签 piece 中也严格等于公共
-基点。-/
+基点。
+@isnad1 id=other.2h10v.s7.a2bc657cacdc from=translated src=- shape=f32edd97 vocab=06b56818
+-/
 theorem BinaryOpenCoverSquareSubdivision.gridCellVertexInPiece_top_eq_basepoint
     {x₀ : X} {p q : Path x₀ x₀} (F : Path.Homotopy p q)
     {U V : Set X}
@@ -92,7 +96,9 @@ theorem BinaryOpenCoverSquareSubdivision.gridCellVertexInPiece_top_eq_basepoint
   rw [hlocal, Set.Icc.convexComb_one, hmesh]
   exact pathHomotopySquare_top F _
 
-/-- 最上行单格的局部上边送回环境空间后逐点恒为公共基点。-/
+/-- 最上行单格的局部上边送回环境空间后逐点恒为公共基点。
+@isnad1 id=other.0h10v.s11.d73598f7b3b9 from=translated src=- shape=5be81177 vocab=ee5a5381
+-/
 theorem BinaryOpenCoverSquareSubdivision.coe_gridCellTopEdge_eq
     {x₀ : X} {p q : Path x₀ x₀} (F : Path.Homotopy p q)
     {U V : Set X}
@@ -125,7 +131,9 @@ theorem BinaryOpenCoverSquareSubdivision.coe_gridCellTopEdge_eq
   unfold BinaryOpenCoverSquareSubdivision.gridCellMapInPiece
   simp [squareGridHorizontalEdge, unitSquareCellPoint, hmesh, hone]
 
-/-- 若同伦终道路是基点常值道路，则最右列每个单格的两个右顶点在其标签 piece 中都是公共基点。-/
+/-- 若同伦终道路是基点常值道路，则最右列每个单格的两个右顶点在其标签 piece 中都是公共基点。
+@isnad1 id=other.2h9v.s7.f09b6a358b92 from=translated src=- shape=39a365df vocab=803673d9
+-/
 theorem BinaryOpenCoverSquareSubdivision.gridCellVertexInPiece_right_eq_basepoint
     {x₀ : X} {p : Path x₀ x₀}
     (F : Path.Homotopy p (Path.refl x₀)) {U V : Set X}
@@ -168,7 +176,9 @@ theorem BinaryOpenCoverSquareSubdivision.gridCellVertexInPiece_right_eq_basepoin
   rw [hlocal, Set.Icc.convexComb_one, hmesh]
   exact pathHomotopySquare_one_left F _
 
-/-- 最右列单格的局部右边送回环境空间后逐点恒为公共基点。-/
+/-- 最右列单格的局部右边送回环境空间后逐点恒为公共基点。
+@isnad1 id=other.0h9v.s11.f47244e48805 from=translated src=- shape=ad979cfc vocab=1f650a04
+-/
 theorem BinaryOpenCoverSquareSubdivision.coe_gridCellRightEdge_eq
     {x₀ : X} {p : Path x₀ x₀}
     (F : Path.Homotopy p (Path.refl x₀)) {U V : Set X}
@@ -203,7 +213,9 @@ theorem BinaryOpenCoverSquareSubdivision.coe_gridCellRightEdge_eq
 
 namespace BinaryOpenCoverSquareSubdivision
 
-/-- 将“某个单格顶点就是公共 piece 基点”统一转成 grid-cell potential 接口需要的交集基点像等式。-/
+/-- 将“某个单格顶点就是公共 piece 基点”统一转成 grid-cell potential 接口需要的交集基点像等式。
+@isnad1 id=eq.3h10v.s8.bbd0bd90491d from=translated src=- shape=3b64df87 vocab=2762d02d
+-/
 theorem intersectionBasepoint_eq_gridCellVertexInPiece_of_eq_basepoint
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -312,7 +324,9 @@ noncomputable def BinaryOpenCoverSquareSubdivision.gridCellBottomBoundaryPotenti
   Monoid.PushoutI.of (D.label i j)
     (connectorChange (Path.refl base) (connector.cast rfl hvertex))
 
-/-- 每个真实最下行 piece 边，在其两个 boundary potentials 下送入 Pushout 后严格为单位元。-/
+/-- 每个真实最下行 piece 边，在其两个 boundary potentials 下送入 Pushout 后严格为单位元。
+@isnad1 id=eq.4h10v.s12.7e859cad9384 from=translated src=- shape=be2cdd4e vocab=4527ec1a
+-/
 theorem BinaryOpenCoverSquareSubdivision.gridCellBottomEdge_rebase_eq_one
     {x₀ x₁ : X} {p q : Path x₀ x₁} (F : Path.Homotopy p q)
     {U V : Set X}
@@ -412,7 +426,9 @@ noncomputable def BinaryOpenCoverSquareSubdivision.gaugeNormalizedRowFrames
     Fin D.steps → CellVertexFrames (binaryVanKampenPushout U V hxU hxV) :=
   fun i => D.gaugeNormalizedRowFramesAt hxU hxV hUV hU hV j i.val i.isLt
 
-/-- gauge-normalized frames 对每条真实水平 internal transition 相容。-/
+/-- gauge-normalized frames 对每条真实水平 internal transition 相容。
+@isnad1 id=horizont.6h9v.s8.d9e12796d47a from=translated src=- shape=43b02cab vocab=4204c339
+-/
 theorem BinaryOpenCoverSquareSubdivision.gaugeNormalizedRowFrames_compatible
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -430,7 +446,9 @@ theorem BinaryOpenCoverSquareSubdivision.gaugeNormalizedRowFrames_compatible
   subst kv
   constructor <;> rfl
 
-/-- gauge-normalized frames 下，每格的下横边与上横边都严格归一化为单位元。-/
+/-- gauge-normalized frames 下，每格的下横边与上横边都严格归一化为单位元。
+@isnad1 id=other.5h8v.s12.5cef771fc263 from=translated src=- shape=504075ac vocab=2d3256ff
+-/
 theorem BinaryOpenCoverSquareSubdivision.gaugeNormalizedRowFrames_horizontal_edges
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -832,7 +850,9 @@ noncomputable def BinaryOpenCoverSquareSubdivision.gaugeGridRightBoundaryWordAt
       (D.gaugeGridFramedFullRowStateAt hxU hxV hUV hU hV (p + 1) hp).boundary.focus *
         D.gaugeGridRightBoundaryWordAt hxU hxV hUV hU hV p hp'
 
-/-- 每行左右外边相等沿行号累积后，任意高度前缀的左右整侧词严格相等。-/
+/-- 每行左右外边相等沿行号累积后，任意高度前缀的左右整侧词严格相等。
+@isnad1 id=eq.6h7v.s7.e80c484ea147 from=translated src=- shape=574dc720 vocab=f592df0d
+-/
 theorem BinaryOpenCoverSquareSubdivision.gaugeGridBoundaryWordsAt_left_eq_right
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -857,7 +877,9 @@ theorem BinaryOpenCoverSquareSubdivision.gaugeGridBoundaryWordsAt_left_eq_right
         hrow,
         D.gaugeGridBoundaryWordsAt_left_eq_right hxU hxV hUV hU hV p hp']
 
-/-- 整张有限方格在二维 gauge 下只剩左右外侧 holonomy，且两者严格相等。-/
+/-- 整张有限方格在二维 gauge 下只剩左右外侧 holonomy，且两者严格相等。
+@isnad1 id=eq.5h6v.s7.a3b760ffe30f from=translated src=- shape=bd6203fe vocab=0100b368
+-/
 theorem BinaryOpenCoverSquareSubdivision.gaugeGridFullBoundary_left_eq_right
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -935,7 +957,9 @@ private theorem BinaryOpenCoverSquareSubdivision.framedRowPrefix_horizontal_word
       rw [htop, hbottom, hedge.2, hedge.1, ih.1, ih.2]
       simp
 
-/-- 上述逐格归一化假设下，完整单行的左右外边 framed 元素严格相等。-/
+/-- 上述逐格归一化假设下，完整单行的左右外边 framed 元素严格相等。
+@isnad1 id=other.7h8v.s12.4423c63e3fef from=translated src=- shape=ecd12e8a vocab=667cef59
+-/
 theorem BinaryOpenCoverSquareSubdivision.framedFullRow_leftEdge_eq_rightEdge
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)

@@ -29,7 +29,9 @@ variable {X : Type u}
 
 /-- 基本群胚的对象只是空间点的包装；标准等价把由 `x` 构造的对象严格还原为 `x`。
 
-> **Entry**: topology.fundamental-group.carrier-standard-/
+> **Entry**: topology.fundamental-group.carrier-standard
+@isnad1 id=eq.0h2v.s5.ade007332538 from=translated src=- shape=e15682cb vocab=0f41849c
+-/
 theorem fundamentalGroupoid_equiv_mk_apply (x : X) :
     FundamentalGroupoid.equiv X (FundamentalGroupoid.mk x) = x :=
   rfl
@@ -37,24 +39,32 @@ theorem fundamentalGroupoid_equiv_mk_apply (x : X) :
 variable [TopologicalSpace X]
 variable {x y : X}
 
-/-- 基本群胚中从 `x` 到 `y` 的态射类型定义性地就是从 `x` 到 `y` 的道路同伦商。-/
+/-- 基本群胚中从 `x` 到 `y` 的态射类型定义性地就是从 `x` 到 `y` 的道路同伦商。
+@isnad1 id=eq.0h3v.s5.320d75a2285d from=translated src=- shape=ea3c3459 vocab=ba5f0933
+-/
 theorem fundamentalGroupoid_hom_eq_pathHomotopyQuotient :
     (FundamentalGroupoid.mk x ⟶ FundamentalGroupoid.mk y) =
       Path.Homotopic.Quotient x y :=
   rfl
 
-/-- 基点 `x` 处基本群的底层类型定义性地就是基点环路的道路同伦商。-/
+/-- 基点 `x` 处基本群的底层类型定义性地就是基点环路的道路同伦商。
+@isnad1 id=eq.0h2v.s4.8dcaec875604 from=translated src=- shape=eef40eb5 vocab=3f580351
+-/
 theorem fundamentalGroup_eq_loopHomotopyQuotient :
     FundamentalGroup X x = Path.Homotopic.Quotient x x :=
   rfl
 
-/-- 把环路同伦商类视为基本群元素后再转回道路视角，严格得到原商类。-/
+/-- 把环路同伦商类视为基本群元素后再转回道路视角，严格得到原商类。
+@isnad1 id=eq.0h3v.s4.0a10d7ebb188 from=translated src=- shape=cdd7bf66 vocab=8bbdd829
+-/
 theorem fundamentalGroup_toPath_fromPath
     (p : Path.Homotopic.Quotient x x) :
     FundamentalGroup.toPath (FundamentalGroup.fromPath p) = p :=
   rfl
 
-/-- 把基本群元素转成环路同伦商类后再恢复，严格得到原元素。-/
+/-- 把基本群元素转成环路同伦商类后再恢复，严格得到原元素。
+@isnad1 id=eq.0h3v.s4.f300fd075367 from=translated src=- shape=25c58e3b vocab=60e6f972
+-/
 theorem fundamentalGroup_fromPath_toPath (g : FundamentalGroup X x) :
     FundamentalGroup.fromPath (FundamentalGroup.toPath g) = g :=
   rfl

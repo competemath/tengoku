@@ -54,7 +54,9 @@ private theorem operatorMatrix_reindex_basis
   ext i j
   simp [LinearMap.toMatrix_apply, B', Matrix.reindex_apply]
 
-/-- 代数闭域上的每个方阵都相似于一个 Jordan 标准矩阵。-/
+/-- 代数闭域上的每个方阵都相似于一个 Jordan 标准矩阵。
+@isnad1 id=ex.0h3v.s8.be3b33805513 from=translated src=- shape=c22f505c vocab=0e32ef7b
+-/
 theorem matrix_is_similar_to_jordan [IsAlgClosed K] {n : ℕ}
     (A : Matrix (Fin n) (Fin n) K) :
     ∃ (d : JordanFormData K)
@@ -120,7 +122,9 @@ theorem matrix_is_similar_to_jordan [IsAlgClosed K] {n : ℕ}
 /-- **代数学基本定理的矩阵应用**：每个复方阵都相似于 Jordan 标准矩阵。
 
 `FundamentalTheoremAlgebra` 先证明复数域代数闭；一般的代数闭域 Jordan 定理随后给出
-有限个 Jordan 块、将这些块重编号为原矩阵下标的等价，以及实现相似变换的互逆矩阵。-/
+有限个 Jordan 块、将这些块重编号为原矩阵下标的等价，以及实现相似变换的互逆矩阵。
+@isnad1 id=ex.0h2v.s8.f151a436b1ff from=translated src=- shape=c592eabe vocab=b00392c7
+-/
 theorem complex_matrix_is_similar_to_jordan {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℂ) :
     ∃ (d : JordanFormData ℂ)

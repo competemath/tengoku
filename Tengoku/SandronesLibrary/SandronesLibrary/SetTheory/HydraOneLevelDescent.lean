@@ -28,6 +28,9 @@ def OneLevelReplicatedCut (stage : Nat) (before after : Hydra) : Prop :=
   before = .node [.node [Hydra.head]] ∧
     after = .node (List.replicate (stage + 1) (.node []))
 
+/--
+@isnad1 id=step.1h3v.s3.a6b24378a949 from=translated src=- shape=1802f65d vocab=11ded60a
+-/
 theorem oneLevelReplicatedCut_isStep {stage : Nat} {before after : Hydra}
     (cut : OneLevelReplicatedCut stage before after) :
     Hydra.Step stage before after := by

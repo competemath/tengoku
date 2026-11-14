@@ -81,7 +81,9 @@ variable {𝓧 : Type*} [MeasurableSpace 𝓧]
 noncomputable def modelMeasure (ν : Measure 𝓧) (p : ℝ → 𝓧 → ℝ) (θ : ℝ) : Measure 𝓧 :=
   ν.withDensity fun x => ENNReal.ofReal (p θ x)
 
-/-- 模型测度在可测集上的取值就是密度的 Lebesgue 积分。-/
+/-- 模型测度在可测集上的取值就是密度的 Lebesgue 积分。
+@isnad1 id=eq.1h5v.s5.64e15f9c70c7 from=translated src=- shape=8f127108 vocab=6d529c1a
+-/
 theorem modelMeasure_apply (ν : Measure 𝓧) (p : ℝ → 𝓧 → ℝ) (θ : ℝ) {s : Set 𝓧}
     (hs : MeasurableSet s) :
     modelMeasure ν p θ s = ∫⁻ x in s, ENNReal.ofReal (p θ x) ∂ν :=
@@ -108,7 +110,9 @@ structure IsRegularDominatedFamily (ν : Measure 𝓧) (p : ℝ → 𝓧 → ℝ
   deriv_integral_swap : ∀ θ,
     HasDerivAt (fun θ' => ∫ x, p θ' x ∂ν) (∫ x, s θ x * p θ x ∂ν) θ
 
-/-- 归一化密度给出的模型测度是概率测度。-/
+/-- 归一化密度给出的模型测度是概率测度。
+@isnad1 id=isprobab.1h5v.s5.ae18bd290033 from=translated src=- shape=c1d8851b vocab=f273009d
+-/
 theorem isProbabilityMeasure_modelMeasure {ν : Measure 𝓧} {p : ℝ → 𝓧 → ℝ}
     {s : ℝ → 𝓧 → ℝ} (h : IsRegularDominatedFamily ν p s) (θ : ℝ) :
     IsProbabilityMeasure (modelMeasure ν p θ) := by
@@ -119,7 +123,9 @@ theorem isProbabilityMeasure_modelMeasure {ν : Measure 𝓧} {p : ℝ → 𝓧 
 /-- **得分函数均值为零**：微分与积分可交换的直接推论。
 
 `θ' ↦ ∫ x, p θ' x ∂ν` 恒等于常数一，其导数为零；由 `deriv_integral_swap` 与导数唯一性，
-`∫ x, s θ x * p θ x ∂ν = 0`。这是 Cramér–Rao 证明中"协方差等于 `g'(θ)`"的一半。-/
+`∫ x, s θ x * p θ x ∂ν = 0`。这是 Cramér–Rao 证明中"协方差等于 `g'(θ)`"的一半。
+@isnad1 id=eq.1h5v.s6.1ce172c361a1 from=translated src=- shape=98f85e9e vocab=52a638f5
+-/
 theorem score_integral_eq_zero {ν : Measure 𝓧} {p : ℝ → 𝓧 → ℝ} {s : ℝ → 𝓧 → ℝ}
     (h : IsRegularDominatedFamily ν p s) (θ : ℝ) :
     ∫ x, s θ x * p θ x ∂ν = 0 := by
@@ -130,7 +136,9 @@ theorem score_integral_eq_zero {ν : Measure 𝓧} {p : ℝ → 𝓧 → ℝ} {s
   exact h₁.unique (hasDerivAt_const θ 1)
 
 /-- 关于模型测度的积分等于密度加权积分。这是 `withDensity` 与 Bochner 积分之间的桥，
-把"密度的期望"与"密度的加权积分"两种写法锁在一起。-/
+把"密度的期望"与"密度的加权积分"两种写法锁在一起。
+@isnad1 id=eq.1h6v.s6.47e205b786ad from=translated src=- shape=e0622e3b vocab=5849a358
+-/
 theorem integral_modelMeasure {ν : Measure 𝓧} {p : ℝ → 𝓧 → ℝ} {s : ℝ → 𝓧 → ℝ}
     (h : IsRegularDominatedFamily ν p s) (θ : ℝ) (F : 𝓧 → ℝ) :
     ∫ x, F x ∂(modelMeasure ν p θ) = ∫ x, F x * p θ x ∂ν := by
@@ -150,7 +158,9 @@ noncomputable def fisherInformation (ν : Measure 𝓧) (p : ℝ → 𝓧 → �
     (s : ℝ → 𝓧 → ℝ) (θ : ℝ) : ℝ :=
   ∫ x, (s θ x) ^ 2 * p θ x ∂ν
 
-/-- Fisher 信息的模型测度形式：它就是 `E_θ[s_θ²]`。-/
+/-- Fisher 信息的模型测度形式：它就是 `E_θ[s_θ²]`。
+@isnad1 id=eq.1h5v.s6.b79a8d57d688 from=translated src=- shape=a531cccf vocab=1597b726
+-/
 theorem fisherInformation_eq_integral_modelMeasure {ν : Measure 𝓧} {p : ℝ → 𝓧 → ℝ}
     {s : ℝ → 𝓧 → ℝ} (h : IsRegularDominatedFamily ν p s) (θ : ℝ) :
     fisherInformation ν p s θ = ∫ x, (s θ x) ^ 2 ∂(modelMeasure ν p θ) := by
@@ -161,13 +171,17 @@ noncomputable def densityMean (ν : Measure 𝓧) (p : ℝ → 𝓧 → ℝ) (T 
     (θ : ℝ) : ℝ :=
   ∫ x, T x * p θ x ∂ν
 
-/-- 均值函数的模型测度形式。-/
+/-- 均值函数的模型测度形式。
+@isnad1 id=eq.1h6v.s6.e72c4bbf15db from=translated src=- shape=49e38272 vocab=6f09dc2b
+-/
 theorem densityMean_eq_integral_modelMeasure {ν : Measure 𝓧} {p : ℝ → 𝓧 → ℝ}
     {s : ℝ → 𝓧 → ℝ} (h : IsRegularDominatedFamily ν p s) (T : 𝓧 → ℝ) (θ : ℝ) :
     densityMean ν p T θ = ∫ x, T x ∂(modelMeasure ν p θ) := by
   rw [densityMean, ← integral_modelMeasure h θ T]
 
-/-- Fisher 信息非负：它是得分函数平方的模型期望。-/
+/-- Fisher 信息非负：它是得分函数平方的模型期望。
+@isnad1 id=le.1h5v.s5.3d74b78db18c from=translated src=- shape=8f56b186 vocab=2c5ba5cd
+-/
 theorem fisherInformation_nonneg {ν : Measure 𝓧} {p : ℝ → 𝓧 → ℝ} {s : ℝ → 𝓧 → ℝ}
     (h : IsRegularDominatedFamily ν p s) (θ : ℝ) :
     0 ≤ fisherInformation ν p s θ := by
@@ -179,7 +193,9 @@ theorem fisherInformation_nonneg {ν : Measure 𝓧} {p : ℝ → 𝓧 → ℝ} 
 
 右端的实值密度族 `fun θ x => (P.rnDeriv (Kernel.const ℝ ν) θ x).toReal` 就是本条目
 `p` 在 kernel 模型上的标准取值；两个 `withDensity` 只在 `ν`-零测集上不同（`ℝ≥0∞` 密度可能
-取无穷的点），由 `statisticalModel_density_ne_top_ae` 排除。-/
+取无穷的点），由 `statisticalModel_density_ne_top_ae` 排除。
+@isnad1 id=eq.1h4v.s6.128f7c941860 from=translated src=- shape=8c9dafaa vocab=2db2fac3
+-/
 theorem modelMeasure_kernelDensity_eq (P : Kernel ℝ 𝓧) [IsMarkovKernel P] (ν : Measure 𝓧)
     [IsFiniteMeasure ν] [MeasurableSpace.CountableOrCountablyGenerated ℝ 𝓧]
     (hPν : ∀ θ, P θ ≪ ν) (θ : ℝ) :
@@ -193,7 +209,9 @@ theorem modelMeasure_kernelDensity_eq (P : Kernel ℝ 𝓧) [IsMarkovKernel P] (
 `(∫ f g)² ≤ (∫ f²)(∫ g²)`。
 
 这是 Cramér–Rao 证明的纯分析核心，用 Mathlib 的 Hölder 不等式
-`integral_mul_norm_le_Lp_mul_Lq`（`p = q = 2`）证明，不经过 `Lp` 商空间。-/
+`integral_mul_norm_le_Lp_mul_Lq`（`p = q = 2`）证明，不经过 `Lp` 商空间。
+@isnad1 id=le.2h4v.s8.ac00113ee23e from=translated src=- shape=773ebad7 vocab=1508ab5a
+-/
 theorem sq_integral_mul_le_integral_sq_mul_integral_sq {μ : Measure 𝓧} {f g : 𝓧 → ℝ}
     (hf : MemLp f 2 μ) (hg : MemLp g 2 μ) :
     (∫ x, f x * g x ∂μ) ^ 2 ≤ (∫ x, (f x) ^ 2 ∂μ) * (∫ x, (g x) ^ 2 ∂μ) := by
@@ -228,7 +246,9 @@ theorem sq_integral_mul_le_integral_sq_mul_integral_sq {μ : Measure 𝓧} {f g 
 
 左端 `deriv (densityMean ν p T) θ` 就是 `g'(θ)`（`g = E_θ[T]`）。`hswap` 是**显式**的
 微分与积分可交换假设，它在证明中被 `HasDerivAt.deriv` 用来把 `g'(θ)` 识别为
-`∫ x, T x * s θ x * p θ x ∂ν`，随后柯西–施瓦茨与得分均值为零给出结论。-/
+`∫ x, T x * s θ x * p θ x ∂ν`，随后柯西–施瓦茨与得分均值为零给出结论。
+@isnad1 id=le.4h6v.s8.4496e50a04d4 from=translated src=- shape=5adfa6f8 vocab=c9e56bdc
+-/
 theorem cramerRao_lower_bound {ν : Measure 𝓧} {p : ℝ → 𝓧 → ℝ} {s : ℝ → 𝓧 → ℝ}
     (h : IsRegularDominatedFamily ν p s) (T : 𝓧 → ℝ) (θ : ℝ)
     (hT : MemLp T 2 (modelMeasure ν p θ))
@@ -263,7 +283,9 @@ theorem cramerRao_lower_bound {ν : Measure 𝓧} {p : ℝ → 𝓧 → ℝ} {s 
   exact hcs.trans_eq (mul_comm (variance T (modelMeasure ν p θ)) (fisherInformation ν p s θ))
 
 /-- **Cramér–Rao 下界的教材形式**：Fisher 信息为正时，
-`g'(θ)² / I(θ) ≤ Var_θ(T)`。-/
+`g'(θ)² / I(θ) ≤ Var_θ(T)`。
+@isnad1 id=le.5h6v.s8.12c76e700ffc from=translated src=- shape=185b287d vocab=6f215950
+-/
 theorem cramerRao_variance_ge {ν : Measure 𝓧} {p : ℝ → 𝓧 → ℝ} {s : ℝ → 𝓧 → ℝ}
     (h : IsRegularDominatedFamily ν p s) (T : 𝓧 → ℝ) (θ : ℝ)
     (hT : MemLp T 2 (modelMeasure ν p θ))
@@ -281,7 +303,9 @@ theorem cramerRao_variance_ge {ν : Measure 𝓧} {p : ℝ → 𝓧 → ℝ} {s 
 /-- **无偏估计量的 Cramér–Rao 下界**：均值函数就是参数本身（`E_θ[T] = θ`，即 `T` 无偏估计
 恒等参数）时，`Var_θ(T) ≥ 1 / I(θ)`。
 
-这是主定理在 `g = id` 时的直接推论：`g'(θ) = 1`。-/
+这是主定理在 `g = id` 时的直接推论：`g'(θ) = 1`。
+@isnad1 id=le.6h6v.s8.c01e3ddb9d7a from=translated src=- shape=2a899751 vocab=0ca04a5e
+-/
 theorem cramerRao_variance_ge_inv_of_unbiased {ν : Measure 𝓧} {p : ℝ → 𝓧 → ℝ}
     {s : ℝ → 𝓧 → ℝ} (h : IsRegularDominatedFamily ν p s) (T : 𝓧 → ℝ) (θ : ℝ)
     (hT : MemLp T 2 (modelMeasure ν p θ))

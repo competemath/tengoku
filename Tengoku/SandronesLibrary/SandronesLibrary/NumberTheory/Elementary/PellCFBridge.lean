@@ -50,7 +50,9 @@ namespace SandronesLibrary.NumberTheory.Elementary
 已经不可满足，所以结论是空真的。保留 `hns` 是为了与前置 Entry
 `number-theory.elementary.pell-positive-existence` 的 `(0 < d, ¬IsSquare d)` 口径一致。
 
-> **Entry**: number-theory.elementary.pell-cf-bridge-/
+> **Entry**: number-theory.elementary.pell-cf-bridge
+@isnad1 id=ex.4h2v.s6.fa8d5827c401 from=translated src=- shape=e2a25c64 vocab=9e3eeb8f
+-/
 theorem pellSolution_ratio_isConvergent {d : ℤ} (hd : 0 < d) (hns : ¬IsSquare d)
     {a : PellSolution d} (hx : 1 < a.x) (hy : 0 < a.y) :
     ∃ n, ((a.x : ℚ) / (a.y : ℚ)) = continuedFractionConvergent (√(d : ℝ)) n := by
@@ -206,7 +208,9 @@ private theorem rat_num_eq_mul_den (q : ℚ) :
 放缩链是 `|q.num² - d q.den²| ≤ 2√d + 1/q.den² ≤ 2√d + 1`，两条都是非严格不等式，
 所以陈述如实写成 `≤`。
 
-> **Entry**: number-theory.elementary.pell-cf-bridge-/
+> **Entry**: number-theory.elementary.pell-cf-bridge
+@isnad1 id=le.2h2v.s7.9594872236ab from=translated src=- shape=f7fd4916 vocab=b4e91143
+-/
 theorem convergent_pellForm_bounded {d : ℤ} (hd : 0 < d) {q : ℚ}
     (hq : ∃ n, q = continuedFractionConvergent (√(d : ℝ)) n) :
     |(q.num : ℝ) ^ 2 - (d : ℝ) * (q.den : ℝ) ^ 2| ≤ 2 * √(d : ℝ) + 1 := by

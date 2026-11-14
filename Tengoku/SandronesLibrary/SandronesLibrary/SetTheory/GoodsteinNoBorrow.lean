@@ -58,7 +58,9 @@ private theorem HereditaryBaseExpr.valid_of_base_le {e : HereditaryBaseExpr}
 > **一句话**: 对“合法复合前缀加正数字末项”，Goodstein 减一无需借位，显式重编码的 `ω` 度量严格下降。
 > **依赖**: `settheory.googology.goodstein-positive-digit-descent`、
 >   `settheory.googology.goodstein-ordinal-measure`
-> **mathlib**: `Nat.add_sub_assoc`、`Order.lt_succ`-/
+> **mathlib**: `Nat.add_sub_assoc`、`Order.lt_succ`
+@isnad1 id=and.0h2v.s6.5d4993912101 from=translated src=- shape=aefe4478 vocab=96d1dbf6
+-/
 theorem positiveTail_goodstein_descent {base : ℕ}
     (f : PositiveTailNoBorrowForm base) :
     goodsteinStep base f.expression =

@@ -37,12 +37,16 @@ namespace SandronesLibrary.NumberTheory.Elementary
 def PellSolution.toMathlib {d : ℤ} (a : PellSolution d) : Pell.Solution₁ d :=
   Pell.Solution₁.mk a.x a.y a.equation
 
-/-- 桥保持第一坐标。-/
+/-- 桥保持第一坐标。
+@isnad1 id=eq.0h2v.s3.0263ff3dd10b from=translated src=- shape=74148a6e vocab=16302710
+-/
 @[simp]
 theorem PellSolution.toMathlib_x {d : ℤ} (a : PellSolution d) :
     a.toMathlib.x = a.x := rfl
 
-/-- 桥保持第二坐标。-/
+/-- 桥保持第二坐标。
+@isnad1 id=eq.0h2v.s3.357f7873b570 from=translated src=- shape=74148a6e vocab=c3761f3e
+-/
 @[simp]
 theorem PellSolution.toMathlib_y {d : ℤ} (a : PellSolution d) :
     a.toMathlib.y = a.y := rfl
@@ -51,7 +55,9 @@ theorem PellSolution.toMathlib_y {d : ℤ} (a : PellSolution d) :
 
 因此 Mathlib 侧关于 `Pell.Solution₁` 的等式可以搬回本库的整数坐标陈述。
 
-> **Entry**: number-theory.elementary.pell-all-positive-/
+> **Entry**: number-theory.elementary.pell-all-positive
+@isnad1 id=injectiv.0h1v.s3.6ad49b4e1b80 from=translated src=- shape=ca92e646 vocab=36e5f2c0
+-/
 theorem PellSolution.toMathlib_injective {d : ℤ} :
     Function.Injective (PellSolution.toMathlib (d := d)) := by
   intro a b h
@@ -59,7 +65,9 @@ theorem PellSolution.toMathlib_injective {d : ℤ} :
   have hy : a.y = b.y := by simpa using congrArg Pell.Solution₁.y h
   cases a; cases b; simp_all
 
-/-- 桥把平凡解 `(1, 0)` 送到群的单位元。-/
+/-- 桥把平凡解 `(1, 0)` 送到群的单位元。
+@isnad1 id=eq.0h1v.s5.d80653891884 from=translated src=- shape=ec1778f2 vocab=cd8af94b
+-/
 theorem PellSolution.toMathlib_one (d : ℤ) :
     (PellSolution.one d).toMathlib = 1 := by
   apply Pell.Solution₁.ext <;> simp [PellSolution.one]
@@ -69,7 +77,9 @@ theorem PellSolution.toMathlib_one (d : ℤ) :
 本库的 `PellSolution.comp` 与 `Pell.Solution₁` 的乘法逐坐标给出同一个公式
 `(x₁x₂ + d y₁y₂, x₁y₂ + y₁x₂)`，所以教材接口上的“复合”就是二次整数环中的乘法。
 
-> **Entry**: number-theory.elementary.pell-all-positive-/
+> **Entry**: number-theory.elementary.pell-all-positive
+@isnad1 id=eq.0h3v.s5.dc9acfd6439d from=translated src=- shape=649dce7d vocab=73a1da91
+-/
 theorem PellSolution.toMathlib_comp {d : ℤ} (a b : PellSolution d) :
     (a.comp b).toMathlib = a.toMathlib * b.toMathlib := by
   apply Pell.Solution₁.ext <;> simp [PellSolution.comp]
@@ -84,17 +94,23 @@ def PellSolution.pow {d : ℤ} (a : PellSolution d) : ℕ → PellSolution d
   | 0 => PellSolution.one d
   | n + 1 => (PellSolution.pow a n).comp a
 
-/-- 第零次幂是平凡解。-/
+/-- 第零次幂是平凡解。
+@isnad1 id=eq.0h2v.s4.e62b2f3baa2f from=translated src=- shape=ce150b78 vocab=a792eab9
+-/
 @[simp]
 theorem PellSolution.pow_zero {d : ℤ} (a : PellSolution d) :
     a.pow 0 = PellSolution.one d := rfl
 
-/-- 幂的递推：`a^(n+1) = a^n ∘ a`。-/
+/-- 幂的递推：`a^(n+1) = a^n ∘ a`。
+@isnad1 id=eq.0h3v.s5.8515e82e5236 from=translated src=- shape=a3d77dca vocab=56b826be
+-/
 @[simp]
 theorem PellSolution.pow_succ {d : ℤ} (a : PellSolution d) (n : ℕ) :
     a.pow (n + 1) = (a.pow n).comp a := rfl
 
-/-- 桥把本库的幂送到 Mathlib 侧的幂。-/
+/-- 桥把本库的幂送到 Mathlib 侧的幂。
+@isnad1 id=eq.0h3v.s5.c9c85e9c78d1 from=translated src=- shape=edcc5553 vocab=5aa98f2c
+-/
 theorem PellSolution.toMathlib_pow {d : ℤ} (a : PellSolution d) (n : ℕ) :
     (a.pow n).toMathlib = a.toMathlib ^ n := by
   induction n with
@@ -105,7 +121,9 @@ theorem PellSolution.toMathlib_pow {d : ℤ} (a : PellSolution d) (n : ℕ) :
 
 两个“基本”定义逐字相同：`1 < x`、`0 < y`，且第一坐标在所有 `x > 1` 的解中最小。
 
-> **Entry**: number-theory.elementary.pell-all-positive-/
+> **Entry**: number-theory.elementary.pell-all-positive
+@isnad1 id=isfundam.1h2v.s3.8e9f339d1f76 from=translated src=- shape=08ded1e7 vocab=6531284b
+-/
 theorem PellSolution.isFundamental_toMathlib {d : ℤ} {a : PellSolution d}
     (ha : IsFundamentalPellSolution a) : Pell.IsFundamental a.toMathlib := by
   refine ⟨?_, ?_, ?_⟩
@@ -119,7 +137,9 @@ theorem PellSolution.isFundamental_toMathlib {d : ℤ} {a : PellSolution d}
 证明走桥：Mathlib 已经证明基本解唯一，搬回整数坐标即可。这条定理说明“分类”里的“基本解”
 是良定义的，也说明上一条单射桥确实在两类结论之间双向搬运。
 
-> **Entry**: number-theory.elementary.pell-all-positive-/
+> **Entry**: number-theory.elementary.pell-all-positive
+@isnad1 id=eq.2h3v.s4.ecf17493b2e6 from=translated src=- shape=13b462d4 vocab=5c64cea7
+-/
 theorem IsFundamentalPellSolution.subsingleton {d : ℤ} {a b : PellSolution d}
     (ha : IsFundamentalPellSolution a) (hb : IsFundamentalPellSolution b) : a = b := by
   apply PellSolution.toMathlib_injective
@@ -133,7 +153,9 @@ theorem IsFundamentalPellSolution.subsingleton {d : ℤ} {a b : PellSolution d}
 “每个正解都落在幂序列上”，两者合起来才是完整的分类。证明把解搬到 Mathlib 的
 `Pell.Solution₁`，调用已经形式化的 `Pell.IsFundamental.eq_pow_of_nonneg`，再用单射桥搬回。
 
-> **Entry**: number-theory.elementary.pell-all-positive-/
+> **Entry**: number-theory.elementary.pell-all-positive
+@isnad1 id=ex.3h3v.s5.9f882d9152bb from=translated src=- shape=3b15ef16 vocab=031325f0
+-/
 theorem exists_pow_eq_of_fundamental {d : ℤ} {a : PellSolution d}
     (ha : IsFundamentalPellSolution a) {b : PellSolution d} (hx : 0 < b.x) (hy : 0 ≤ b.y) :
     ∃ n : ℕ, b = a.pow n := by
@@ -149,7 +171,9 @@ theorem exists_pow_eq_of_fundamental {d : ℤ} {a : PellSolution d}
 向左是上一条定理；向右只需要注意基本解的坐标严格为正，而复合保持坐标为正，所以幂的坐标
 仍然非负。
 
-> **Entry**: number-theory.elementary.pell-all-positive-/
+> **Entry**: number-theory.elementary.pell-all-positive
+@isnad1 id=iff.1h3v.s5.b267622082e8 from=translated src=- shape=28d61921 vocab=031325f0
+-/
 theorem pos_iff_exists_pow {d : ℤ} {a : PellSolution d} (ha : IsFundamentalPellSolution a)
     (b : PellSolution d) : (0 < b.x ∧ 0 ≤ b.y) ↔ ∃ n : ℕ, b = a.pow n := by
   constructor
@@ -174,7 +198,9 @@ theorem pos_iff_exists_pow {d : ℤ} {a : PellSolution d} (ha : IsFundamentalPel
 与 `exists_pow_eq_of_fundamental` 相比，这里把结论中的指数加强为 `0 < n`：指数为零只会给出
 平凡解 `(1, 0)`，与 `1 < x` 矛盾。
 
-> **Entry**: number-theory.elementary.pell-all-positive-/
+> **Entry**: number-theory.elementary.pell-all-positive
+@isnad1 id=ex.3h3v.s5.b4d78eac1c45 from=translated src=- shape=66883163 vocab=67bffe94
+-/
 theorem exists_pos_pow_eq_of_fundamental {d : ℤ} {a : PellSolution d}
     (ha : IsFundamentalPellSolution a) {b : PellSolution d} (hx : 1 < b.x) (hy : 0 < b.y) :
     ∃ n : ℕ, 0 < n ∧ b = a.pow n := by
@@ -193,7 +219,9 @@ theorem exists_pos_pow_eq_of_fundamental {d : ℤ} {a : PellSolution d}
 是本条目对“全体正解由基本解幂生成”的完整陈述。注意它只谈正方程 `x² - d y² = 1`：
 负 Pell 的可解性是另一条独立的边界，不由本定理暗示。
 
-> **Entry**: number-theory.elementary.pell-all-positive-/
+> **Entry**: number-theory.elementary.pell-all-positive
+@isnad1 id=ex.2h1v.s6.4f345acd953f from=translated src=- shape=cdca0c51 vocab=24011b29
+-/
 theorem exists_fundamental_pellSolution_pow_classification {d : ℤ} (hd : 0 < d)
     (hns : ¬IsSquare d) :
     ∃ a : PellSolution d, IsFundamentalPellSolution a ∧

@@ -85,13 +85,17 @@ def chop (stage : Nat) : Hydra → List Nat → Option Hydra
 def Step (stage : Nat) (before after : Hydra) : Prop :=
   ∃ path, IsHeadPosition before path ∧ chop stage before path = some after
 
-/-- Cutting the sole head attached to the root leaves the root alone.-/
+/-- Cutting the sole head attached to the root leaves the root alone.
+@isnad1 id=eq.0h1v.s4.9dbb707acc0c from=translated src=- shape=e63427ed vocab=d6786f18
+-/
 theorem chop_single_head (stage : Nat) :
     chop stage (.node [head]) [0] = some (.node []) := by
   rfl
 
 /-- At stage two, cutting one of two heads below a non-root parent leaves the
-other head in the pruned parent and makes three copies of that parent.-/
+other head in the pruned parent and makes three copies of that parent.
+@isnad1 id=eq.0h0v.s6.83c06415dc74 from=translated src=- shape=8e172d84 vocab=d6786f18
+-/
 theorem chop_regrows_three :
     chop 2 (.node [.node [head, head]]) [0, 1] =
       some (.node [.node [head], .node [head], .node [head]]) := by
@@ -104,7 +108,9 @@ theorem chop_regrows_three :
 > **mathlib**: 无（本库显式有限树、路径和可执行单步）
 
 The preceding computation is also a certified legal game step.  This entry
-does not assert that every play terminates.-/
+does not assert that every play terminates.
+@isnad1 id=step.0h0v.s5.af007e9e1ec8 from=translated src=- shape=4f5fb059 vocab=289cce07
+-/
 theorem regrows_three_step :
     Step 2 (.node [.node [head, head]])
       (.node [.node [head], .node [head], .node [head]]) := by

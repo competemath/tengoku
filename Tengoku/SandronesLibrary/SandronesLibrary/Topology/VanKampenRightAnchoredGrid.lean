@@ -372,7 +372,9 @@ private theorem BinaryOpenCoverSquareSubdivision.rightAnchoredRowFrames_reanchor
   dsimp only
   rw [hlast]
 
-/-- 二维右锚定递归生成的每一行都与该行全部真实水平 transitions 相容。-/
+/-- 二维右锚定递归生成的每一行都与该行全部真实水平 transitions 相容。
+@isnad1 id=horizont.7h9v.s8.22680147cce8 from=translated src=- shape=a05c7552 vocab=119bcc51
+-/
 theorem BinaryOpenCoverSquareSubdivision.rightAnchoredGridRowFramesAt_compatible
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -401,7 +403,9 @@ theorem BinaryOpenCoverSquareSubdivision.rightAnchoredGridRowFramesAt_compatible
             ⟨D.steps - 1, Nat.sub_lt D.steps_pos Nat.zero_lt_one⟩).topRight)
         i k hHorizontal
 
-/-- 二维右锚定递归中，每对相邻行在全部列上满足竖直 frame 相容性。-/
+/-- 二维右锚定递归中，每对相邻行在全部列上满足竖直 frame 相容性。
+@isnad1 id=other.6h8v.s8.b2d4724752bd from=translated src=- shape=aa87cce0 vocab=90a1c3cc
+-/
 theorem BinaryOpenCoverSquareSubdivision.rightAnchoredGridRowFramesAt_vertical_compatible
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -451,7 +455,9 @@ theorem BinaryOpenCoverSquareSubdivision.rightAnchoredGridRowFramesAt_vertical_c
   simpa [BinaryOpenCoverSquareSubdivision.rightAnchoredGridRowFramesAt,
     hp', j, l, hVertical, last, lower, vertical] using hi
 
-/-- 二维右锚定递归中，每行每格的上下横边都严格归一化为单位元。-/
+/-- 二维右锚定递归中，每行每格的上下横边都严格归一化为单位元。
+@isnad1 id=other.6h8v.s12.b30d3e5c577b from=translated src=- shape=d2a223dd vocab=c154be75
+-/
 theorem BinaryOpenCoverSquareSubdivision.rightAnchoredGridRowFramesAt_horizontal_edges
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -473,7 +479,9 @@ theorem BinaryOpenCoverSquareSubdivision.rightAnchoredGridRowFramesAt_horizontal
       exact D.rightAnchoredRowFrames_horizontal_edges hxU hxV hUV hU hV
         ⟨p + 1, hp⟩ _ i
 
-/-- 二维右锚定递归的每一行最右真实竖边都严格归一化为单位元。-/
+/-- 二维右锚定递归的每一行最右真实竖边都严格归一化为单位元。
+@isnad1 id=other.6h7v.s11.0c6a4f0d8824 from=translated src=- shape=0da5a0e7 vocab=2dc5c17e
+-/
 theorem BinaryOpenCoverSquareSubdivision.rightAnchoredGridRowFramesAt_right_edge_eq_one
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -497,7 +505,9 @@ theorem BinaryOpenCoverSquareSubdivision.rightAnchoredGridRowFramesAt_right_edge
 /-- The left edge exposed by a right-anchored full-row state is the actual
 leftmost vertical cell edge, rebased by the frames at the first column.  This
 is the public projection theorem for downstream users of a completed row; they
-do not need to unfold the prefix recursion used to construct that row.-/
+do not need to unfold the prefix recursion used to construct that row.
+@isnad1 id=other.6h7v.s12.d8ad241a0154 from=translated src=- shape=41858b66 vocab=8c253633
+-/
 theorem BinaryOpenCoverSquareSubdivision.rightAnchoredGridFullRow_leftEdge_eq_leftmost
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -612,7 +622,9 @@ private theorem BinaryOpenCoverSquareSubdivision.rightAnchoredGridLeftBoundaryWo
       simp
 
 /-- Full-height specialization of the preceding row enumeration, indexed
-directly by `Fin D.steps`.-/
+directly by `Fin D.steps`.
+@isnad1 id=eq.5h6v.s10.5fd9991fc0a2 from=translated src=- shape=6d6ce0bd vocab=e0cbbd63
+-/
 theorem BinaryOpenCoverSquareSubdivision.rightAnchoredGridFullLeftBoundary_eq_reverseRows
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -656,7 +668,9 @@ private theorem BinaryOpenCoverSquareSubdivision.rightAnchoredGridLeftBoundaryWo
         D.rightAnchoredGridLeftBoundaryWordAt_eq_one hxU hxV hUV hU hV p hp']
       exact one_mul 1
 
-/-- 整张有限方格在右锚定二维 frame 下的左边界 holonomy 为单位元。-/
+/-- 整张有限方格在右锚定二维 frame 下的左边界 holonomy 为单位元。
+@isnad1 id=eq.5h6v.s8.caa3bdca5ec4 from=translated src=- shape=5e096210 vocab=4f70158b
+-/
 theorem BinaryOpenCoverSquareSubdivision.rightAnchoredGridFullLeftBoundary_eq_one
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)

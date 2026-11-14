@@ -31,7 +31,9 @@ variable {X : Type*} [TopologicalSpace X]
 /-- 水平异标签公共边在左格下端的 comparison potential，是共享交集顶点处左格 connector 的统一
 vertex potential。
 
-> **Entry**: topology.fundamental-group.van-kampen-path-gauge-comparison-/
+> **Entry**: topology.fundamental-group.van-kampen-path-gauge-comparison
+@isnad1 id=other.7h9v.s12.8c0a02c53bb1 from=translated src=- shape=48e3596f vocab=544ed945
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchLeft_startPotential_eq_vertexPotential
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -58,7 +60,9 @@ theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchLeft_startPotential_eq_
   rfl
 
 /-- 水平异标签公共边在右格下端的 comparison potential，是同一共享交集顶点处右格 connector
-的统一 vertex potential。-/
+的统一 vertex potential。
+@isnad1 id=other.7h9v.s12.2f6c175e1d02 from=translated src=- shape=e38b5924 vocab=81ab3ffc
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchRight_startPotential_eq_vertexPotential
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -86,7 +90,9 @@ theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchRight_startPotential_eq
 
 namespace BinaryOpenCoverSquareSubdivision
 
-/-- 水平异标签公共边的真实起点 transition 已经是左右 comparison potentials 的比值。-/
+/-- 水平异标签公共边的真实起点 transition 已经是左右 comparison potentials 的比值。
+@isnad1 id=other.7h9v.s13.976fd0d650c7 from=translated src=- shape=1dea7fdd vocab=39c5928f
+-/
 theorem horizontalSwitchEdgeTransitions_start_eq_comparisonPotentials
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -111,7 +117,9 @@ theorem horizontalSwitchEdgeTransitions_start_eq_comparisonPotentials
 end BinaryOpenCoverSquareSubdivision
 
 /-- 水平异标签公共边在左格上端的 comparison potential，是共享交集顶点处左格 connector 的统一
-vertex potential。-/
+vertex potential。
+@isnad1 id=other.7h9v.s12.dbf703e3b482 from=translated src=- shape=c5affc6a vocab=ce2b6a7e
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchLeft_endPotential_eq_vertexPotential
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -138,7 +146,9 @@ theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchLeft_endPotential_eq_ve
   rfl
 
 /-- 水平异标签公共边在右格上端的 comparison potential，是同一共享交集顶点处右格 connector
-的统一 vertex potential。-/
+的统一 vertex potential。
+@isnad1 id=other.7h9v.s12.649a451f9bc0 from=translated src=- shape=c7af8ed6 vocab=a63e43f4
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchRight_endPotential_eq_vertexPotential
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -164,7 +174,9 @@ theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchRight_endPotential_eq_v
   rw [C.map_endChange_inv]
   rfl
 
-/-- 水平异标签公共边的真实终点 transition 是左右 comparison end potentials 的比值。-/
+/-- 水平异标签公共边的真实终点 transition 是左右 comparison end potentials 的比值。
+@isnad1 id=other.7h9v.s13.3be534c75311 from=translated src=- shape=1dea7fdd vocab=fccdcc77
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchEdgeTransitions_end_eq_comparisonPotentials
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -187,7 +199,9 @@ theorem BinaryOpenCoverSquareSubdivision.horizontalSwitchEdgeTransitions_end_eq_
     transitionFromPotentials]
 
 /-- 竖直异标签公共边在下格右端的 comparison potential，是共享交集顶点处下格 connector 的统一
-vertex potential。-/
+vertex potential。
+@isnad1 id=other.7h9v.s12.547d9b77e262 from=translated src=- shape=4079d49c vocab=d304a795
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalSwitchBottom_endPotential_eq_vertexPotential
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -213,7 +227,9 @@ theorem BinaryOpenCoverSquareSubdivision.verticalSwitchBottom_endPotential_eq_ve
   rw [C.map_endChange_inv]
   rfl
 
-/-- 上格右端的对称版本。-/
+/-- 上格右端的对称版本。
+@isnad1 id=other.7h9v.s12.7b4296b33d5c from=translated src=- shape=da3c0d33 vocab=84df7cc5
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalSwitchTop_endPotential_eq_vertexPotential
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -240,7 +256,9 @@ theorem BinaryOpenCoverSquareSubdivision.verticalSwitchTop_endPotential_eq_verte
   rfl
 
 /-- 竖直异标签公共边在下格左端的 comparison potential，是共享交集顶点处下格 connector 的统一
-vertex potential。-/
+vertex potential。
+@isnad1 id=other.7h9v.s12.67e7ce69934e from=translated src=- shape=d79c3d9e vocab=951bdba1
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalSwitchBottom_startPotential_eq_vertexPotential
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -267,7 +285,9 @@ theorem BinaryOpenCoverSquareSubdivision.verticalSwitchBottom_startPotential_eq_
   rfl
 
 /-- 竖直异标签公共边在上格左端的 comparison potential，是同一交集顶点处上格 connector 的统一
-vertex potential。-/
+vertex potential。
+@isnad1 id=other.7h9v.s12.0cd35cb1e76d from=translated src=- shape=4ecb6d06 vocab=6f9f9c46
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalSwitchTop_startPotential_eq_vertexPotential
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -294,7 +314,9 @@ theorem BinaryOpenCoverSquareSubdivision.verticalSwitchTop_startPotential_eq_ver
   rfl
 
 /-- 上一定理的实际单格角版本：若任意交集点分别识别为下格左上角与上格左下角，则同标签竖直
-transition 是两格各自实际标签 vertex potentials 之比。-/
+transition 是两格各自实际标签 vertex potentials 之比。
+@isnad1 id=other.9h10v.s10.47b0f490b47f from=translated src=- shape=489b17a3 vocab=cb96c233
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalCommonEdgeTransitions_start_eq_gridCellPotentials
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -376,7 +398,9 @@ theorem BinaryOpenCoverSquareSubdivision.verticalCommonEdgeTransitions_start_eq_
           z i l 0 0 hzTop := rfl
 
 /-- 同一异标签几何边配上两侧任意局部 connectors 后，其两侧 Pushout 元素满足统一端点 gauge
-关系。方格左边界比较只需实例化这一个定理。-/
+关系。方格左边界比较只需实例化这一个定理。
+@isnad1 id=other.6h13v.s14.c20a27878bc9 from=translated src=- shape=66ef364e vocab=e6a042b5
+-/
 theorem binaryOpenCoverDualPath_localElements_pushout_rebase
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V)) {z w : X} {b c : Bool}
@@ -455,7 +479,9 @@ noncomputable def binaryOpenCoverSamePathConnectorComparison
       rightEnd := cEnd }
 
 /-- 同标签 comparison 的终点就是由左侧成员性证明给出的道路终点。把这一投影公式显式冻结，
-避免具体 Bool 标签等式在调用点留下 `Eq.rec`。-/
+避免具体 Bool 标签等式在调用点留下 `Eq.rec`。
+@isnad1 id=eq.5h13v.s8.d8757001f2e8 from=translated src=- shape=6e3bb74a vocab=270947bc
+-/
 theorem binaryOpenCoverSamePathConnectorComparison_edgeTarget
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     {z w : X} {b c : Bool} (q : Path z w)
@@ -475,7 +501,9 @@ theorem binaryOpenCoverSamePathConnectorComparison_edgeTarget
   subst c
   rfl
 
-/-- 同标签 comparison 的起点就是由左侧成员性证明给出的道路起点。-/
+/-- 同标签 comparison 的起点就是由左侧成员性证明给出的道路起点。
+@isnad1 id=eq.5h13v.s8.eaeda92512a4 from=translated src=- shape=2f44a956 vocab=1ebd311b
+-/
 theorem binaryOpenCoverSamePathConnectorComparison_edgeSource
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     {z w : X} {b c : Bool} (q : Path z w)
@@ -495,7 +523,9 @@ theorem binaryOpenCoverSamePathConnectorComparison_edgeSource
   subst c
   rfl
 
-/-- same-path comparison 的左起点 connector 送回环境空间后就是输入的左 connector。-/
+/-- same-path comparison 的左起点 connector 送回环境空间后就是输入的左 connector。
+@isnad1 id=eq.5h14v.s9.8eb70f53515b from=translated src=- shape=8a3952b9 vocab=5ad2367f
+-/
 @[simp] theorem coe_binaryOpenCoverSamePathConnectorComparison_leftStart
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     {z w : X} {b c : Bool} (q : Path z w)
@@ -515,7 +545,9 @@ theorem binaryOpenCoverSamePathConnectorComparison_edgeSource
   subst c
   rfl
 
-/-- same-path comparison 的右起点 connector 送回环境空间后就是输入的右 connector。-/
+/-- same-path comparison 的右起点 connector 送回环境空间后就是输入的右 connector。
+@isnad1 id=eq.5h14v.s9.3768c94a0eb2 from=translated src=- shape=e29fea47 vocab=ceba2c4b
+-/
 @[simp] theorem coe_binaryOpenCoverSamePathConnectorComparison_rightStart
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     {z w : X} {b c : Bool} (q : Path z w)
@@ -535,7 +567,9 @@ theorem binaryOpenCoverSamePathConnectorComparison_edgeSource
   subst c
   rfl
 
-/-- same-path comparison 的左终点 connector 送回环境空间后就是输入的左 connector。-/
+/-- same-path comparison 的左终点 connector 送回环境空间后就是输入的左 connector。
+@isnad1 id=eq.5h14v.s9.26fe8d6229f5 from=translated src=- shape=2e960e25 vocab=1066e194
+-/
 @[simp] theorem coe_binaryOpenCoverSamePathConnectorComparison_leftEnd
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     {z w : X} {b c : Bool} (q : Path z w)
@@ -556,7 +590,9 @@ theorem binaryOpenCoverSamePathConnectorComparison_edgeSource
   rfl
 
 /-- same-path comparison 的右终点 connector 送回环境空间后就是输入的右 connector；该形式越过
-标签等式 transport，正适合后续 `Path.ext`。-/
+标签等式 transport，正适合后续 `Path.ext`。
+@isnad1 id=eq.5h14v.s9.a7a19b2f324d from=translated src=- shape=35c2c8c8 vocab=6ebd3f6a
+-/
 @[simp] theorem coe_binaryOpenCoverSamePathConnectorComparison_rightEnd
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     {z w : X} {b c : Bool} (q : Path z w)
@@ -576,7 +612,9 @@ theorem binaryOpenCoverSamePathConnectorComparison_edgeSource
   subst c
   rfl
 
-/-- 同标签道路两套局部元素进入 Pushout 后的端点 gauge 关系。-/
+/-- 同标签道路两套局部元素进入 Pushout 后的端点 gauge 关系。
+@isnad1 id=other.5h13v.s13.f6a0b3c3155a from=translated src=- shape=4bf53d2c vocab=838f165f
+-/
 theorem binaryOpenCoverSamePath_localElements_pushout_rebase
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     {z w : X} {b c : Bool} (q : Path z w)

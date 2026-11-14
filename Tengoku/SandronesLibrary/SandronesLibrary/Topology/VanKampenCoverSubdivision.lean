@@ -64,7 +64,9 @@ structure BinaryOpenCoverSubdivision {x y : X} (p : Path x y) (U V : Set X) wher
         (unitIntervalMeshPoint steps steps_pos i.succ) u ∈
       binaryOpenCoverPiece U V (label i)
 
-/-- 两个相邻子道路的标签发生切换时，它们共享的网格顶点同时属于两个覆盖成员。-/
+/-- 两个相邻子道路的标签发生切换时，它们共享的网格顶点同时属于两个覆盖成员。
+@isnad1 id=mem.2h9v.s7.0def42813cec from=translated src=- shape=eb450e12 vocab=d10fbdb3
+-/
 theorem BinaryOpenCoverSubdivision.switchVertex_mem_intersection
     {x y : X} {p : Path x y} {U V : Set X}
     (D : BinaryOpenCoverSubdivision p U V) (i j : Fin D.steps)
@@ -78,7 +80,9 @@ theorem BinaryOpenCoverSubdivision.switchVertex_mem_intersection
   cases hli : D.label i <;> cases hlj : D.label j <;>
     simp_all [binaryOpenCoverPiece]
 
-/-- 每条带标签子道路的值域，正是原道路在相应闭网格区间上的像。-/
+/-- 每条带标签子道路的值域，正是原道路在相应闭网格区间上的像。
+@isnad1 id=eq.0h8v.s8.e55ecc6c3b9b from=translated src=- shape=5cd99913 vocab=27f59bbf
+-/
 theorem BinaryOpenCoverSubdivision.subpath_range
     {x y : X} {p : Path x y} {U V : Set X}
     (D : BinaryOpenCoverSubdivision p U V) (i : Fin D.steps) :
@@ -89,7 +93,9 @@ theorem BinaryOpenCoverSubdivision.subpath_range
   exact Path.range_subpath_of_le _ _ _
     (unitIntervalMeshPoint_castSucc_le_succ D.steps D.steps_pos i)
 
-/-- 按网格次序拼接全部 Mathlib 子道路，得到与原道路全区间子道路端点相对同伦的道路。-/
+/-- 按网格次序拼接全部 Mathlib 子道路，得到与原道路全区间子道路端点相对同伦的道路。
+@isnad1 id=homotopi.0h7v.s8.2477c4bca900 from=translated src=- shape=1948af2b vocab=d69b0ab6
+-/
 theorem BinaryOpenCoverSubdivision.concatSubpaths_homotopic
     {x y : X} {p : Path x y} {U V : Set X}
     (D : BinaryOpenCoverSubdivision p U V) :
@@ -105,7 +111,9 @@ theorem BinaryOpenCoverSubdivision.concatSubpaths_homotopic
   exact Path.Homotopic.concat_subpath p (unitIntervalMeshPoint D.steps D.steps_pos)
 
 /-- 若道路逐点落在两个开集之一，则它具有一个有限一致细分，使每条 Mathlib 子道路完整落在某个
-选定的覆盖成员中。-/
+选定的覆盖成员中。
+@isnad1 id=nonempty.3h6v.s6.b685d234ab5f from=translated src=- shape=fff062d6 vocab=aa7a705c
+-/
 theorem exists_binaryOpenCoverSubdivision
     {x y : X} (p : Path x y) {U V : Set X}
     (hU : IsOpen U) (hV : IsOpen V) (hp : ∀ t, p t ∈ U ∨ p t ∈ V) :

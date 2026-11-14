@@ -36,6 +36,9 @@ def pathCodRestrict {x y : X} (S : Set X) (p : Path x y)
   source' := by ext; exact p.source
   target' := by ext; exact p.target
 
+/--
+@isnad1 id=eq.3h6v.s7.3e6d8ccdf2c7 from=translated src=- shape=619e310d vocab=be76a432
+-/
 @[simp] theorem pathCodRestrict_coe {x y : X} (S : Set X) (p : Path x y)
     (hx : x ∈ S) (hy : y ∈ S) (hp : ∀ t, p t ∈ S)
     (t : unitInterval) :

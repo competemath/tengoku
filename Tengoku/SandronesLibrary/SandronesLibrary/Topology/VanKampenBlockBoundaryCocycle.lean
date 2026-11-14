@@ -31,7 +31,9 @@ variable {X : Type*} [TopologicalSpace X]
 
 /-- 一个 block 最后一条左边界边的环境空间终点就是指定基点。
 
-> **Entry**: topology.fundamental-group.van-kampen-block-boundary-cocycle-/
+> **Entry**: topology.fundamental-group.van-kampen-block-boundary-cocycle
+@isnad1 id=other.4h8v.s9.ee45f284dceb from=translated src=- shape=30cf041c vocab=c603175e
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundaryBlockLastVertex_eq_basepoint
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hU : IsPathConnected U) (hV : IsPathConnected V)
@@ -57,7 +59,9 @@ theorem PathConcatAlignedSquareSubdivision.leftBoundaryBlockLastVertex_eq_basepo
     Path.cast_coe] using h
 
 /-- The ambient endpoint vertex of a block's first left-boundary edge is the
-distinguished basepoint.-/
+distinguished basepoint.
+@isnad1 id=other.4h8v.s9.112cc1606406 from=translated src=- shape=a9691fa1 vocab=eb20a2ed
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundaryBlockFirstVertex_eq_basepoint
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hU : IsPathConnected U) (hV : IsPathConnected V)
@@ -79,7 +83,9 @@ theorem PathConcatAlignedSquareSubdivision.leftBoundaryBlockFirstVertex_eq_basep
     Path.cast_coe] using h
 
 /-- Across two adjacent input-letter blocks, the two cell-to-letter transitions
-and the actual vertical grid transition satisfy the shared-vertex cocycle.-/
+and the actual vertical grid transition satisfy the shared-vertex cocycle.
+@isnad1 id=other.6h9v.s10.8d6860533dd0 from=translated src=- shape=97ea8cc8 vocab=1f8382a9
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundaryBlockTransitions_cocycle
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))
@@ -251,7 +257,9 @@ theorem PathConcatAlignedSquareSubdivision.leftBoundaryBlockTransitions_cocycle
   · exact hvertical
 
 /-- 相邻 blocks 在共享断点使用的两条 letter connector 即使标签不同，送回环境空间后仍逐点
-相同；两者都是公共基点常值道路。-/
+相同；两者都是公共基点常值道路。
+@isnad1 id=other.5h10v.s11.385ee9466e29 from=translated src=- shape=0c74d139 vocab=fafaefb6
+-/
 theorem PathConcatAlignedSquareSubdivision.coe_leftBoundaryBlockLetterConnectors_adjacent
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hU : IsPathConnected U) (hV : IsPathConnected V)

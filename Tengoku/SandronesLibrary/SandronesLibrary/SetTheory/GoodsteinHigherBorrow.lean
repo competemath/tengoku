@@ -84,7 +84,9 @@ private theorem omega_mul_nat_add_nat_lt_omega_squared (base : ℕ) :
 > **依赖**: `settheory.googology.goodstein-base-power-one-borrow`、
 >   `settheory.googology.goodstein-ordinal-measure`
 > **mathlib**: `Ordinal.mul_succ`、`Ordinal.natCast_lt_omega0`、
->   `mul_lt_mul_of_pos_left`-/
+>   `mul_lt_mul_of_pos_left`
+@isnad1 id=and.0h2v.s7.696521583935 from=translated src=- shape=418d3c25 vocab=13744f5a
+-/
 theorem basePowerTwoTail_goodstein_borrow_descent {base : ℕ}
     (f : BasePowerTwoTailBorrowForm base) :
     f.expression.Valid base ∧

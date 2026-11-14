@@ -35,7 +35,9 @@ open Polynomial
 这就是教材对「整元素 / 代数整数」的定义本身：右端是可直接操作的判据，左端 `IsIntegral R x`
 是 Mathlib 正式承载。两个命题按定义相等。
 
-> **Entry**: number-theory.algebraic.algebraic-integer-/
+> **Entry**: number-theory.algebraic.algebraic-integer
+@isnad1 id=iff.0h3v.s6.01d449b3fc58 from=translated src=- shape=2a616186 vocab=c66251b2
+-/
 theorem isIntegral_iff_monic {R A : Type*} [CommRing R] [CommRing A] [Algebra R A] {x : A} :
     IsIntegral R x ↔
       ∃ p : R[X], p.Monic ∧ Polynomial.eval₂ (algebraMap R A) x p = 0 :=
@@ -46,7 +48,9 @@ theorem isIntegral_iff_monic {R A : Type*} [CommRing R] [CommRing A] [Algebra R 
 整闭包在 Lean 中是一个 `Subalgebra R A`（子代数），本定理把「子代数的成员关系」和
 「整元素谓词」这两个公开接口连接起来，是使用整闭包的入口桥。
 
-> **Entry**: number-theory.algebraic.algebraic-integer-/
+> **Entry**: number-theory.algebraic.algebraic-integer
+@isnad1 id=iff.0h3v.s6.9a72b15dce9c from=translated src=- shape=2e0cbe5f vocab=356699b1
+-/
 theorem isIntegral_iff_mem_integralClosure {R A : Type*} [CommRing R] [CommRing A]
     [Algebra R A] {x : A} :
     x ∈ integralClosure R A ↔ IsIntegral R x :=
@@ -55,7 +59,9 @@ theorem isIntegral_iff_mem_integralClosure {R A : Type*} [CommRing R] [CommRing 
 /-- **基环元素的像是整的。** 对任意 `x : R`，它在 `A` 中的像 `algebraMap R A x` 是整的：
 它是以 `X - C x` 为零点的首一多项式零点。
 
-> **Entry**: number-theory.algebraic.algebraic-integer-/
+> **Entry**: number-theory.algebraic.algebraic-integer
+@isnad1 id=isintegr.0h3v.s6.f00dbe7121ae from=translated src=- shape=041c47de vocab=7d42970d
+-/
 theorem algebraMap_isIntegral {R A : Type*} [CommRing R] [CommRing A] [Algebra R A] {x : R} :
     IsIntegral R (algebraMap R A x) :=
   _root_.isIntegral_algebraMap
@@ -63,35 +69,45 @@ theorem algebraMap_isIntegral {R A : Type*} [CommRing R] [CommRing A] [Algebra R
 /-- **整数在任意 `R`-代数中是整的。** 整数 `n` 在 `A` 中的像是整元素；取 `R = ℤ` 时，
 这表示整数都是代数整数。
 
-> **Entry**: number-theory.algebraic.algebraic-integer-/
+> **Entry**: number-theory.algebraic.algebraic-integer
+@isnad1 id=isintegr.0h3v.s5.63e13291bd9d from=translated src=- shape=16688245 vocab=840b6c14
+-/
 theorem intCast_isIntegral {R A : Type*} [CommRing R] [CommRing A] [Algebra R A] (n : ℤ) :
     IsIntegral R (n : A) :=
   _root_.isIntegral_intCast n
 
 /-- **整元素对加法封闭。** 两个整元素之和仍是整元素，这是整闭包构成子环的关键一步。
 
-> **Entry**: number-theory.algebraic.algebraic-integer-/
+> **Entry**: number-theory.algebraic.algebraic-integer
+@isnad1 id=isintegr.2h4v.s6.4cf63a26c4ce from=translated src=- shape=3fa3e14d vocab=4a991b95
+-/
 theorem isIntegral_add {R A : Type*} [CommRing R] [CommRing A] [Algebra R A] {x y : A}
     (hx : IsIntegral R x) (hy : IsIntegral R y) : IsIntegral R (x + y) :=
   hx.add hy
 
 /-- **整元素对乘法封闭。** 两个整元素之积仍是整元素，与加法封闭一起说明整元素集合是子环。
 
-> **Entry**: number-theory.algebraic.algebraic-integer-/
+> **Entry**: number-theory.algebraic.algebraic-integer
+@isnad1 id=isintegr.2h4v.s6.69b6090f3452 from=translated src=- shape=3fa3e14d vocab=7402e5d4
+-/
 theorem isIntegral_mul {R A : Type*} [CommRing R] [CommRing A] [Algebra R A] {x y : A}
     (hx : IsIntegral R x) (hy : IsIntegral R y) : IsIntegral R (x * y) :=
   hx.mul hy
 
 /-- **整元素对取负封闭。** 与加法、乘法封闭合并，整元素的加群结构成立。
 
-> **Entry**: number-theory.algebraic.algebraic-integer-/
+> **Entry**: number-theory.algebraic.algebraic-integer
+@isnad1 id=isintegr.1h3v.s5.b3f37366a6aa from=translated src=- shape=c2774877 vocab=a8dabaf9
+-/
 theorem isIntegral_neg {R A : Type*} [CommRing R] [CommRing A] [Algebra R A] {x : A}
     (hx : IsIntegral R x) : IsIntegral R (-x) :=
   hx.neg
 
 /-- **整元素对减法封闭。** 这是「整闭包是子环」所需减法封闭的直接形式。
 
-> **Entry**: number-theory.algebraic.algebraic-integer-/
+> **Entry**: number-theory.algebraic.algebraic-integer
+@isnad1 id=isintegr.2h4v.s6.169df62a3e41 from=translated src=- shape=3fa3e14d vocab=7a56f6cb
+-/
 theorem isIntegral_sub {R A : Type*} [CommRing R] [CommRing A] [Algebra R A] {x y : A}
     (hx : IsIntegral R x) (hy : IsIntegral R y) : IsIntegral R (x - y) :=
   hx.sub hy
@@ -101,7 +117,9 @@ theorem isIntegral_sub {R A : Type*} [CommRing R] [CommRing A] [Algebra R A] {x 
 
 这是「唯一分解整环（更一般地 GCD 整环）是整闭的」的实例。
 
-> **Entry**: number-theory.algebraic.algebraic-integer-/
+> **Entry**: number-theory.algebraic.algebraic-integer
+@isnad1 id=isintegr.0h0v.s1.a8aef0cb99d0 from=translated src=- shape=49959d42 vocab=e1ef91f6
+-/
 theorem int_isIntegrallyClosed : IsIntegrallyClosed ℤ :=
   inferInstance
 
@@ -111,7 +129,9 @@ theorem int_isIntegrallyClosed : IsIntegrallyClosed ℤ :=
 证明思路：由 `int_isIntegrallyClosed`，`ℚ` 中在 `ℤ` 上整的元素必须来自 `algebraMap ℤ ℚ`；
 反向由 `isIntegral_intCast` 给出。教材里「有理数若是代数整数则必为整数」的精确形式即此。
 
-> **Entry**: number-theory.algebraic.algebraic-integer-/
+> **Entry**: number-theory.algebraic.algebraic-integer
+@isnad1 id=iff.0h1v.s4.795b519b33b1 from=translated src=- shape=fb898ef6 vocab=3c7564ea
+-/
 theorem isIntegral_rat_iff (q : ℚ) : IsIntegral ℤ q ↔ ∃ n : ℤ, (n : ℚ) = q := by
   constructor
   · intro h

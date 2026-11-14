@@ -62,7 +62,9 @@ def hardyApprox (system : FundamentalSystem ι) : ℕ → ι → ℕ → ℕ
 > **Entry**: settheory.googology.fundamental-sequence-system
 > **一句话**: 增长层级的记号必须显式说明零、后继和极限，并在极限处提供可检查的基本列。
 > **依赖**: 无
-> **mathlib**: 无（本库显式接口）-/
+> **mathlib**: 无（本库显式接口）
+@isnad1 id=match1.1h3v.s5.60c19047dc62 from=translated src=- shape=df512849 vocab=faa68446
+-/
 theorem fundamentalSystem_legal_rules (system : FundamentalSystem ι)
     (legal : system.Legal) (a : ι) :
     match system.stage a with
@@ -75,7 +77,9 @@ theorem fundamentalSystem_legal_rules (system : FundamentalSystem ι)
 > **Entry**: settheory.googology.hardy-hierarchy
 > **一句话**: Hardy 层级近似按零、后继、极限三类记号计算，极限步由基本列选择下标。
 > **依赖**: `settheory.googology.fundamental-sequence-system`
-> **mathlib**: 无（本库显式递归）-/
+> **mathlib**: 无（本库显式递归）
+@isnad1 id=and.0h4v.s7.9d08bfee5ba1 from=translated src=- shape=54a0c5d4 vocab=8295f324
+-/
 theorem hardyApprox_rules (system : FundamentalSystem ι) (fuel n : ℕ) :
     (∀ a, system.stage a = .zero → hardyApprox system (fuel + 1) a n = n) ∧
     (∀ a previous, system.stage a = .successor previous →
@@ -107,7 +111,9 @@ def fastGrowingApprox (system : FundamentalSystem ι) : ℕ → ι → ℕ → �
 > **Entry**: settheory.googology.fast-growing-hierarchy
 > **一句话**: 快速增长层级近似在后继处迭代前一级函数，在极限处沿基本列下降。
 > **依赖**: `settheory.googology.fundamental-sequence-system`
-> **mathlib**: 无（本库显式递归）-/
+> **mathlib**: 无（本库显式递归）
+@isnad1 id=and.0h4v.s7.ad156542b3e6 from=translated src=- shape=9013ab2a vocab=30f24a28
+-/
 theorem fastGrowingApprox_rules (system : FundamentalSystem ι) (fuel n : ℕ) :
     (∀ a, system.stage a = .zero → fastGrowingApprox system (fuel + 1) a n = n + 1) ∧
     (∀ a previous, system.stage a = .successor previous →

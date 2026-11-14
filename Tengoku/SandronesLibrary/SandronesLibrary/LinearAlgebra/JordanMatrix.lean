@@ -22,7 +22,9 @@ open SandronesLibrary.LinearAlgebra.Coordinates
 
 variable {K V : Type*} [Field K] [AddCommGroup V] [LinearSpace K V]
 
-/-- Jordan 链族按 `(链号, 链内位置)` 排列时，算子矩阵是相应 Jordan 块的块对角矩阵。-/
+/-- Jordan 链族按 `(链号, 链内位置)` 排列时，算子矩阵是相应 Jordan 块的块对角矩阵。
+@isnad1 id=eq.1h7v.s9.b5909ee416f3 from=translated src=- shape=a2df9f18 vocab=e78ba22a
+-/
 theorem operatorMatrix_eq_blockDiagonal_jordan
     (T : V →ₗ[K] V) {ι : Type*} [Fintype ι] [DecidableEq ι]
     (μ : ι → K) (length : ι → ℕ)
@@ -81,7 +83,9 @@ theorem operatorMatrix_eq_blockDiagonal_jordan
             hsucc, hprev, hvalSucc, hvalPrev]
     · simp [Matrix.blockDiagonal'_apply, jordanBlock, Finsupp.single_apply, hij]
 
-/-- 幂零算子在某组基下的矩阵是零特征值 Jordan 块的块对角矩阵。-/
+/-- 幂零算子在某组基下的矩阵是零特征值 Jordan 块的块对角矩阵。
+@isnad1 id=ex.1h3v.s9.af8ba38efb95 from=translated src=- shape=18f38d22 vocab=4f524891
+-/
 theorem nilpotent_operator_has_jordan_matrix [IsFiniteDimensional K V]
     (N : V →ₗ[K] V) (hN : IsNilpotent N) :
     ∃ (r : ℕ) (length : Fin r → ℕ)

@@ -45,7 +45,9 @@ def squareGridCellBoundary (H : C(unitInterval × unitInterval, X))
       ((squareGridHorizontalEdge H N hN i j.succ).symm.trans
         (squareGridVerticalEdge H N hN i.castSucc j).symm))
 
-/-- 单格边界的每一点位于该格标签指定的覆盖成员。-/
+/-- 单格边界的每一点位于该格标签指定的覆盖成员。
+@isnad1 id=mem.0h8v.s8.8ec3b99e8e46 from=translated src=- shape=0b8a815d vocab=53712e33
+-/
 theorem BinaryOpenCoverSquareSubdivision.gridCellBoundary_mem
     {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V) (i j : Fin D.steps)
@@ -96,7 +98,9 @@ def BinaryOpenCoverSquareSubdivision.gridCellMapToSpace
   (⟨Subtype.val, continuous_subtype_val⟩ :
     C(binaryOpenCoverPiece U V (D.label i j), X)).comp (D.gridCellMapInPiece i j)
 
-/-- 标准单位方形的逆时针边界参数环路。-/
+/-- 标准单位方形的逆时针边界参数环路。
+@isnad1 id=lt.0h0v.s3.a369faea5e76 from=translated src=- shape=91ed63c4 vocab=7f9bb019
+-/
 theorem unitSquareOnePos : 0 < (1 : ℕ) := by omega
 
 def unitSquareBoundaryLoop :=
@@ -121,7 +125,9 @@ def contractUnitSquareLoop {c : unitInterval × unitInterval} (P : Path c c) :
       subst t
       simp [P.target]
 
-/-- 全局四边定义的单格边界等于标准方形边界经该格映射后的像。-/
+/-- 全局四边定义的单格边界等于标准方形边界经该格映射后的像。
+@isnad1 id=eq.0h8v.s10.65d035b9cccd from=translated src=- shape=ebb4857f vocab=3cf384aa
+-/
 theorem BinaryOpenCoverSquareSubdivision.gridCellBoundary_eq_map_unitSquareBoundary
     {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V) (i j : Fin D.steps)
@@ -150,7 +156,9 @@ def BinaryOpenCoverSquareSubdivision.gridCellBoundaryHomotopyInPiece
     (D : BinaryOpenCoverSquareSubdivision H U V) (i j : Fin D.steps) :=
   (contractUnitSquareLoop unitSquareBoundaryLoop).map (D.gridCellMapInPiece i j)
 
-/-- 每个全局四边单格关系在相应覆盖成员基本群中等于单位元。-/
+/-- 每个全局四边单格关系在相应覆盖成员基本群中等于单位元。
+@isnad1 id=eq.0h7v.s11.1020145ea8e1 from=translated src=- shape=c4a6a2bb vocab=9a7560ec
+-/
 theorem BinaryOpenCoverSquareSubdivision.gridCellBoundaryInPiece_eq_one
     {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V) (i j : Fin D.steps) :
@@ -169,6 +177,9 @@ theorem BinaryOpenCoverSquareSubdivision.gridCellBoundaryInPiece_eq_one
       rfl
     _ = Path.Homotopic.Quotient.refl _ := Path.Homotopic.Quotient.mk_refl _
 
+/--
+@isnad1 id=eq.0h7v.s6.b367ae8ed37d from=translated src=- shape=7065d413 vocab=cf30e8f9
+-/
 theorem correctedLoop_reverse_eq_inv {x₀ z w : X}
     (left : Path x₀ z) (segment : Path z w) (right : Path x₀ w) :
     FundamentalGroup.fromPath ⟦Path.correctedLoop right segment.symm left⟧ =
@@ -228,7 +239,9 @@ def BinaryOpenCoverSquareSubdivision.gridCellVertexConnectorInPiece
   D.gridCellVertexConnectorInPieceOfLabel hxU hxV hU hV i j a b
     (D.label i j) rfl
 
-/-- 同一格角 connector 使用任意两个显式标签证明时，送回底层空间后的道路函数相同。-/
+/-- 同一格角 connector 使用任意两个显式标签证明时，送回底层空间后的道路函数相同。
+@isnad1 id=eq.6h13v.s8.40cba4fad097 from=translated src=- shape=83d04831 vocab=ed1346e1
+-/
 theorem BinaryOpenCoverSquareSubdivision.coe_gridCellVertexConnectorInPieceOfLabel_eq
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -275,6 +288,9 @@ def BinaryOpenCoverSquareSubdivision.gridCellBasedVerticalEdgeInPiece
       1 unitSquareOnePos column 0).map (D.gridCellMapInPiece i j).continuous)
     (D.gridCellVertexConnectorInPiece hxU hxV hU hV i j column 1)⟧
 
+/--
+@isnad1 id=eq.0h7v.s13.d8af59389ec8 from=translated src=- shape=e1ef79ad vocab=0f6aabee
+-/
 theorem BinaryOpenCoverSquareSubdivision.gridCellBoundaryInPiece_decompose
     {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V) (i j : Fin D.steps) :
@@ -306,6 +322,9 @@ def BinaryOpenCoverSquareSubdivision.gridCellBasedBoundaryViaCorners
     (D.gridCellBoundaryInPiece i j)
     (D.gridCellVertexConnectorInPiece hxU hxV hU hV i j 0 0)⟧
 
+/--
+@isnad1 id=eq.4h8v.s8.f73d7d0ebc43 from=translated src=- shape=aaa2710e vocab=a8210d76
+-/
 theorem BinaryOpenCoverSquareSubdivision.gridCellBasedBoundaryViaCorners_eq_one
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -326,7 +345,9 @@ theorem BinaryOpenCoverSquareSubdivision.gridCellBasedBoundaryViaCorners_eq_one
   rw [hs]
   simp
 
-/-- 单格四条 piece 内修正边的反序乘积等于搬基点后的整条单格边界。-/
+/-- 单格四条 piece 内修正边的反序乘积等于搬基点后的整条单格边界。
+@isnad1 id=eq.4h8v.s11.8cb707b3ca5b from=translated src=- shape=438491b8 vocab=29253fed
+-/
 theorem BinaryOpenCoverSquareSubdivision.gridCellPieceEdgeWord_eq_boundary
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -355,7 +376,9 @@ theorem BinaryOpenCoverSquareSubdivision.gridCellPieceEdgeWord_eq_boundary
     Path.correctedLoop_product, Path.correctedLoop_product]
   rw [D.gridCellBoundaryInPiece_decompose i j]
 
-/-- 单格四条 piece 内修正边的反序乘积为单位元。-/
+/-- 单格四条 piece 内修正边的反序乘积为单位元。
+@isnad1 id=eq.4h8v.s11.38f45bfb6513 from=translated src=- shape=ca6967c6 vocab=39b9f976
+-/
 theorem BinaryOpenCoverSquareSubdivision.gridCellPieceEdgeWord_eq_one
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -385,7 +408,9 @@ def BinaryOpenCoverSquareSubdivision.gridCellPushoutEdgeWord
     Monoid.PushoutI.of (D.label i j)
       (D.gridCellBasedHorizontalEdgeInPiece hxU hxV hU hV i j 0)
 
-/-- 展开成四条边后的每个单格关系在合并自由积中为单位元。-/
+/-- 展开成四条边后的每个单格关系在合并自由积中为单位元。
+@isnad1 id=eq.4h8v.s8.725c78ac336e from=translated src=- shape=4acd8163 vocab=2d50a66b
+-/
 theorem BinaryOpenCoverSquareSubdivision.gridCellPushoutEdgeWord_eq_one
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)

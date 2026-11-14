@@ -105,7 +105,9 @@ private theorem reverse_flatten_prod {G : Type*} [Group G] (blocks : List (List 
       rw [ih]
 
 /-- Reversing and multiplying the flattened fine-edge chain is the same as
-first multiplying within each block and then reversing the block chain.-/
+first multiplying within each block and then reversing the block chain.
+@isnad1 id=eq.5h7v.s9.77dcf78c8eba from=translated src=- shape=e1f269c2 vocab=a26afbf4
+-/
 theorem reverseAllFramedCellEdges_eq_framedBlocks
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))
@@ -134,7 +136,9 @@ theorem reverseAllFramedCellEdges_eq_framedBlocks
           hxU hxV hUV hU hV letters Fhom i).map Prod.snd))
 
 /-- For a nonempty aligned input word, the flattened block-local fine-edge chain
-is exactly the full right-anchored grid left-boundary word.-/
+is exactly the full right-anchored grid left-boundary word.
+@isnad1 id=eq.6h7v.s9.98bb85bbbbc2 from=translated src=- shape=239bab70 vocab=0416cdd7
+-/
 theorem reverseAllFramedCellEdges_eq_gridLeftBoundaryWord
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))
@@ -250,7 +254,9 @@ private theorem rebasedLetterBlockChain_eq_framedBlocks
       hxU hxV hUV hU hV letters Fhom i j hij
 
 /-- The second telescope removes every intermediate whole-block frame, leaving
-only one rebase around the complete reverse product of input-letter factors.-/
+only one rebase around the complete reverse product of input-letter factors.
+@isnad1 id=other.6h7v.s10.96aed3562a82 from=translated src=- shape=7e61e80b vocab=b1f741d6
+-/
 theorem leftBoundaryFramedBlocks_eq_rebaseLetterChain
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))

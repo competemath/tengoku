@@ -42,14 +42,18 @@ def CellVertexFrames.mulRight
   topRight := F.topRight * topGauge
   topLeft := F.topLeft * topGauge
 
-/-- 同时右移一条边两端的 frame，只把规范化边元素整体共轭。-/
+/-- 同时右移一条边两端的 frame，只把规范化边元素整体共轭。
+@isnad1 id=eq.0h5v.s6.31bf52d65c0c from=translated src=- shape=b379dbe5 vocab=4a305f90
+-/
 theorem rebaseEdge_mulRight
     {G : Type*} [Group G] (startFrame endFrame edge gauge : G) :
     rebaseEdge (startFrame * gauge) (endFrame * gauge) edge =
       gauge⁻¹ * rebaseEdge startFrame endFrame edge * gauge := by
   simp [rebaseEdge, mul_assoc]
 
-/-- 已归一化为单位元的边在两端统一右乘任意 gauge 后仍归一化为单位元。-/
+/-- 已归一化为单位元的边在两端统一右乘任意 gauge 后仍归一化为单位元。
+@isnad1 id=eq.1h5v.s6.005711a813a3 from=translated src=- shape=480afcac vocab=12a71d4f
+-/
 theorem rebaseEdge_mulRight_eq_one
     {G : Type*} [Group G] (startFrame endFrame edge gauge : G)
     (h : rebaseEdge startFrame endFrame edge = 1) :
@@ -57,7 +61,9 @@ theorem rebaseEdge_mulRight_eq_one
   rw [rebaseEdge_mulRight, h]
   simp
 
-/-- 水平相邻 cell frames 的相容性在底部和顶部各自统一右乘 gauge 后保持。-/
+/-- 水平相邻 cell frames 的相容性在底部和顶部各自统一右乘 gauge 后保持。
+@isnad1 id=horizont.1h6v.s5.24bdc0925dea from=translated src=- shape=a55fa652 vocab=6e8f775e
+-/
 theorem HorizontalCellFramesCompatible.mulRight
     {G : Type*} [Group G] {T : EdgeTransitions G}
     {left right : CellVertexFrames G}
@@ -156,7 +162,9 @@ noncomputable def BinaryOpenCoverSquareSubdivision.rightAnchoredRowFrames
     (D.gaugeNormalizedRowFrames hxU hxV hUV hU hV j)
     D.steps_pos desiredBottomRight (rightEdge * desiredBottomRight)
 
-/-- 右锚定行仍与全部真实水平 internal transitions 相容。-/
+/-- 右锚定行仍与全部真实水平 internal transitions 相容。
+@isnad1 id=horizont.6h10v.s8.82b1edb0c5ed from=translated src=- shape=46ef4141 vocab=4465afcf
+-/
 theorem BinaryOpenCoverSquareSubdivision.rightAnchoredRowFrames_compatible
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -174,7 +182,9 @@ theorem BinaryOpenCoverSquareSubdivision.rightAnchoredRowFrames_compatible
     (D.gaugeNormalizedRowFrames hxU hxV hUV hU hV j)
     (D.gaugeNormalizedRowFrames_compatible hxU hxV hUV hU hV j)
 
-/-- 右锚定保持每格上下横边的单位元归一化。-/
+/-- 右锚定保持每格上下横边的单位元归一化。
+@isnad1 id=other.5h9v.s12.c05a2c480e8f from=translated src=- shape=c0fe5c5c vocab=0427a0d2
+-/
 theorem BinaryOpenCoverSquareSubdivision.rightAnchoredRowFrames_horizontal_edges
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -213,7 +223,9 @@ theorem BinaryOpenCoverSquareSubdivision.rightAnchoredRowFrames_horizontal_edges
   exact ⟨rebaseEdge_mulRight_eq_one _ _ _ bottomGauge hbase.1,
     rebaseEdge_mulRight_eq_one _ _ _ topGauge hbase.2⟩
 
-/-- 右锚定行的最右真实竖边严格归一化为单位元。-/
+/-- 右锚定行的最右真实竖边严格归一化为单位元。
+@isnad1 id=other.5h8v.s11.afa5bf8237f7 from=translated src=- shape=65e75898 vocab=9dd35229
+-/
 theorem BinaryOpenCoverSquareSubdivision.rightAnchoredRowFrames_right_edge_eq_one
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -238,7 +250,9 @@ theorem BinaryOpenCoverSquareSubdivision.rightAnchoredRowFrames_right_edge_eq_on
   change rebaseEdge desiredBottomRight (rightEdge * desiredBottomRight) rightEdge = 1
   exact rebaseEdge_mul_start_eq_one desiredBottomRight rightEdge
 
-/-- 同一条边在相同右端 frame 下有两个单位元归一化时，两个左端 frames 必须相等。-/
+/-- 同一条边在相同右端 frame 下有两个单位元归一化时，两个左端 frames 必须相等。
+@isnad1 id=eq.2h5v.s5.7f519013efd9 from=translated src=- shape=688472ac vocab=b450d500
+-/
 theorem rebaseEdge_startFrame_unique
     {G : Type*} [Group G] (firstStart secondStart endFrame edge : G)
     (hfirst : rebaseEdge firstStart endFrame edge = 1)
@@ -249,7 +263,9 @@ theorem rebaseEdge_startFrame_unique
     simpa [rebaseEdge, mul_assoc] using hfirst.trans hsecond.symm
   exact mul_left_cancel h
 
-/-- 同一条边在相同左端 frame 下有两个单位元归一化时，两个右端 frames 必须相等。-/
+/-- 同一条边在相同左端 frame 下有两个单位元归一化时，两个右端 frames 必须相等。
+@isnad1 id=eq.2h5v.s5.3c480ffa0abe from=translated src=- shape=2c90da8f vocab=b450d500
+-/
 theorem rebaseEdge_endFrame_unique
     {G : Type*} [Group G] (startFrame firstEnd secondEnd edge : G)
     (hfirst : rebaseEdge startFrame firstEnd edge = 1)

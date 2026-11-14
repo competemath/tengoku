@@ -37,7 +37,9 @@ variable (μ : Measure α) (p : ℝ≥0∞)
 abbrev LpSpace (E : Type*) [NormedAddCommGroup E] (p : ℝ≥0∞) (μ : Measure α) :=
   MeasureTheory.Lp E p μ
 
-/-- 普通函数属于 `Lᵖ` 的判据：它几乎处处强可测，并且扩展实数值 `p`-半范数有限。-/
+/-- 普通函数属于 `Lᵖ` 的判据：它几乎处处强可测，并且扩展实数值 `p`-半范数有限。
+@isnad1 id=iff.0h5v.s6.1e14b9976ae2 from=translated src=- shape=e83c3f81 vocab=27ae80e2
+-/
 theorem memLp_iff (f : α → E) :
     MemLp f p μ ↔ AEStronglyMeasurable f μ ∧ eLpNorm f p μ < ∞ := by
   rfl
@@ -46,29 +48,39 @@ theorem memLp_iff (f : α → E) :
 noncomputable def ofFunction (f : α → E) (hf : MemLp f p μ) : LpSpace E p μ :=
   hf.toLp f
 
-/-- `ofFunction` 所选出的代表元与原函数几乎处处相等。-/
+/-- `ofFunction` 所选出的代表元与原函数几乎处处相等。
+@isnad1 id=eventual.1h5v.s8.6d914e7412a9 from=translated src=- shape=9e361b60 vocab=4e05548f
+-/
 theorem ofFunction_ae_eq (f : α → E) (hf : MemLp f p μ) :
     ofFunction μ p f hf =ᵐ[μ] f := by
   exact hf.coeFn_toLp
 
 /-- 两个普通函数给出同一个 `Lᵖ` 元素，当且仅当它们几乎处处相等。
 
-这条定理明确表达了 `Lᵖ` 的商空间本质，而不是把 `Lᵖ` 误认为逐点函数空间。-/
+这条定理明确表达了 `Lᵖ` 的商空间本质，而不是把 `Lᵖ` 误认为逐点函数空间。
+@isnad1 id=iff.2h6v.s8.b240b4838a4b from=translated src=- shape=653ec24b vocab=c047e3a0
+-/
 theorem ofFunction_eq_iff {f g : α → E} (hf : MemLp f p μ) (hg : MemLp g p μ) :
     ofFunction μ p f hf = ofFunction μ p g hg ↔ f =ᵐ[μ] g := by
   exact MemLp.toLp_eq_toLp_iff hf hg
 
-/-- 从普通函数构造的 `Lᵖ` 元素，其实数范数是 `eLpNorm` 的有限实数值。-/
+/-- 从普通函数构造的 `Lᵖ` 元素，其实数范数是 `eLpNorm` 的有限实数值。
+@isnad1 id=eq.1h5v.s8.365646b4a2c0 from=translated src=- shape=b1727bc0 vocab=cd8e974e
+-/
 theorem norm_ofFunction (f : α → E) (hf : MemLp f p μ) :
     ‖ofFunction μ p f hf‖ = ENNReal.toReal (eLpNorm f p μ) := by
   exact MeasureTheory.Lp.norm_toLp f hf
 
-/-- `Lᵖ` 加法由代表元逐点相加给出，但等式只能在几乎处处意义下陈述。-/
+/-- `Lᵖ` 加法由代表元逐点相加给出，但等式只能在几乎处处意义下陈述。
+@isnad1 id=eventual.0h6v.s10.a2704cd837cf from=translated src=- shape=c227c56b vocab=14dd3613
+-/
 theorem add_ae_eq (f g : LpSpace E p μ) :
     ⇑(f + g) =ᵐ[μ] fun x => f x + g x := by
   exact MeasureTheory.Lp.coeFn_add f g
 
-/-- `Lᵖ` 元素等于零，当且仅当它的任意函数代表几乎处处为零。-/
+/-- `Lᵖ` 元素等于零，当且仅当它的任意函数代表几乎处处为零。
+@isnad1 id=iff.0h5v.s9.55304e340af0 from=translated src=- shape=84440fc0 vocab=7635b558
+-/
 theorem zero_iff_ae_zero (f : LpSpace E p μ) :
     f = 0 ↔ f =ᵐ[μ] (0 : α → E) := by
   exact MeasureTheory.Lp.eq_zero_iff_ae_eq_zero
@@ -82,7 +94,9 @@ theorem zero_iff_ae_zero (f : LpSpace E p μ) :
 在类型类搜索阶段知道 `p ≥ 1`。在具体应用中可用
 `letI : Fact (1 ≤ p) := ⟨hp⟩` 把普通不等式假设安装为局部实例。
 
-> **Entry**: real-analysis.lp.complete-/
+> **Entry**: real-analysis.lp.complete
+@isnad1 id=complete.0h4v.s9.602617ea045b from=translated src=- shape=76b583b3 vocab=3bd8e97a
+-/
 theorem completeSpace_lp [CompleteSpace E] [Fact (1 ≤ p)] :
     CompleteSpace (LpSpace E p μ) := by
   infer_instance
@@ -91,7 +105,9 @@ theorem completeSpace_lp [CompleteSpace E] [Fact (1 ≤ p)] :
 元素。这是完备性的教材展开式，便于后续直接构造极限函数时引用。
 
 极限元素是几乎处处等价类，而不是预先指定的逐点函数；因此结论使用 `LpSpace`
-中的范数拓扑收敛。-/
+中的范数拓扑收敛。
+@isnad1 id=ex.1h5v.s11.8abdba28accf from=translated src=- shape=397d4336 vocab=cf8aa168
+-/
 theorem cauchySeq_tendsto_lp [CompleteSpace E] [Fact (1 ≤ p)]
     {u : ℕ → LpSpace E p μ} (hu : CauchySeq u) :
     ∃ f : LpSpace E p μ, Tendsto u atTop (𝓝 f) := by

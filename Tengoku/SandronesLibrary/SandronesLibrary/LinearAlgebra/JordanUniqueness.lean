@@ -35,7 +35,9 @@ def JordanFormData.Equivalent (d₁ d₂ : JordanFormData K) : Prop :=
   ∃ e : d₁.Block ≃ d₂.Block,
     ∀ i, d₂.blockLabel (e i) = d₁.blockLabel i
 
-/-- 每种“特征值—块长度”标签的重数确定 Jordan 数据，不计块的排列顺序。-/
+/-- 每种“特征值—块长度”标签的重数确定 Jordan 数据，不计块的排列顺序。
+@isnad1 id=equivale.1h3v.s5.89a81f23a1ae from=translated src=- shape=68889249 vocab=2eac7d86
+-/
 theorem jordanFormData_equivalent_of_fiber_card_eq
     (d₁ d₂ : JordanFormData K)
     (h : ∀ c : K × ℕ,
@@ -71,7 +73,9 @@ noncomputable def JordanFormData.blockMultiplicity
   exact (Finset.univ.filter fun i : d.Block =>
     d.eigenvalue i = μ ∧ d.length i = m).card
 
-/-- 尾计数的相邻差给出大小恰为 `m+1` 的块数。-/
+/-- 尾计数的相邻差给出大小恰为 `m+1` 的块数。
+@isnad1 id=eq.0h4v.s5.facc76e6a752 from=translated src=- shape=e88f0be6 vocab=b5e86e59
+-/
 theorem blockTailCount_eq_multiplicity_add_succ
     (d : JordanFormData K) (μ : K) (m : ℕ) :
     d.blockTailCount μ m =
@@ -107,7 +111,9 @@ theorem blockTailCount_eq_multiplicity_add_succ
   rw [hA]
   exact Finset.card_union_of_disjoint hdisjoint
 
-/-- 若两份 Jordan 数据的全部尾计数相同，则每种块标签的重数相同。-/
+/-- 若两份 Jordan 数据的全部尾计数相同，则每种块标签的重数相同。
+@isnad1 id=eq.1h5v.s5.3b8212d804db from=translated src=- shape=534acd0f vocab=3a2dfa5d
+-/
 theorem blockMultiplicity_eq_of_tailCount_eq
     (d₁ d₂ : JordanFormData K)
     (h : ∀ μ k, d₁.blockTailCount μ k = d₂.blockTailCount μ k) :
@@ -118,7 +124,9 @@ theorem blockMultiplicity_eq_of_tailCount_eq
   rw [h μ m, h μ (m + 1)] at h₁
   omega
 
-/-- `blockMultiplicity` 就是相应标签纤维的基数。-/
+/-- `blockMultiplicity` 就是相应标签纤维的基数。
+@isnad1 id=eq.0h4v.s5.bd7de57a7a58 from=translated src=- shape=76ffa08c vocab=5de9315c
+-/
 theorem natCard_blockLabel_fiber
     (d : JordanFormData K) (μ : K) (m : ℕ) :
     Nat.card {i : d.Block // d.blockLabel i = (μ, m)} =
@@ -129,7 +137,9 @@ theorem natCard_blockLabel_fiber
   simp only [JordanFormData.blockMultiplicity, JordanFormData.blockLabel,
     Prod.mk.injEq]
 
-/-- 全部尾计数确定 Jordan 标准形的块数据，唯一性只差块排列。-/
+/-- 全部尾计数确定 Jordan 标准形的块数据，唯一性只差块排列。
+@isnad1 id=equivale.1h3v.s4.173a3dbf7aa6 from=translated src=- shape=455bf9e2 vocab=b6e5a61e
+-/
 theorem jordanFormData_equivalent_of_tailCount_eq
     (d₁ d₂ : JordanFormData K)
     (h : ∀ μ k, d₁.blockTailCount μ k = d₂.blockTailCount μ k) :
@@ -148,7 +158,9 @@ noncomputable def JordanFormData.kernelProfile
   exact ∑ i : d.Block,
     if d.eigenvalue i = μ then min k (d.length i + 1) else 0
 
-/-- 块公式的相邻增量是大小超过 `k` 的块数。-/
+/-- 块公式的相邻增量是大小超过 `k` 的块数。
+@isnad1 id=eq.0h4v.s5.a27538dd5d16 from=translated src=- shape=4f51cdd1 vocab=c0c531b9
+-/
 theorem kernelProfile_succ_sub_eq_blockTailCount
     (d : JordanFormData K) (μ : K) (k : ℕ) :
     d.kernelProfile μ (k + 1) - d.kernelProfile μ k =
@@ -195,7 +207,9 @@ noncomputable def matrixGeneralizedKernelDimension
     (A : Matrix ι ι K) (μ : K) (k : ℕ) : ℕ :=
   Fintype.card ι - Matrix.rank ((A - Matrix.scalar ι μ) ^ k)
 
-/-- 换到任意一组基不改变广义核维数。-/
+/-- 换到任意一组基不改变广义核维数。
+@isnad1 id=eq.1h7v.s7.30a928fcdbc7 from=translated src=- shape=c69d8bb6 vocab=0d7faf96
+-/
 theorem generalizedKernelDimension_eq_matrix
     {V : Type*} [Field K] [AddCommGroup V] [LinearSpace K V]
     [IsFiniteDimensional K V]
@@ -232,7 +246,9 @@ theorem generalizedKernelDimension_eq_matrix
     Fintype.card ι - Module.finrank K (LinearMap.range F)
   omega
 
-/-- Jordan 标准矩阵减去标量矩阵并取幂，仍逐块计算。-/
+/-- Jordan 标准矩阵减去标量矩阵并取幂，仍逐块计算。
+@isnad1 id=eq.0h4v.s11.5f66f2e5b6d5 from=translated src=- shape=660b6bb2 vocab=f52945f2
+-/
 theorem jordanNormalMatrix_shift_pow_eq_blockDiagonal
     [Field K] (d : JordanFormData K) [Fintype d.Block] [DecidableEq d.Block]
     (μ : K) (k : ℕ) :
@@ -264,7 +280,9 @@ theorem jordanNormalMatrix_shift_pow_eq_blockDiagonal
           Matrix.scalar (Fin (d.length i + 1)) μ)) ^ k := congrArg (· ^ k) hbase
     _ = _ := (Matrix.blockDiagonal'_pow _ k).symm
 
-/-- 若移去的标量不同于 Jordan 块特征值，则移位块及其任意幂都可逆，因而秩满。-/
+/-- 若移去的标量不同于 Jordan 块特征值，则移位块及其任意幂都可逆，因而秩满。
+@isnad1 id=eq.1h5v.s9.f9ee14015d2f from=translated src=- shape=25f2d2ef vocab=a181f1ba
+-/
 theorem jordanBlock_shift_pow_rank_of_ne
     [Field K] (lam μ : K) (m k : ℕ) (h : lam ≠ μ) :
     Matrix.rank ((jordanBlock lam m - Matrix.scalar (Fin (m + 1)) μ) ^ k) =
@@ -289,7 +307,9 @@ theorem jordanBlock_shift_pow_rank_of_ne
     exact pow_ne_zero _ hdet
   simpa [A] using Matrix.rank_of_det_ne_zero hdetpow
 
-/-- 纯幂零 Jordan 移位块的 `k` 次幂只在第 `k` 条上对角线上取值一。-/
+/-- 纯幂零 Jordan 移位块的 `k` 次幂只在第 `k` 条上对角线上取值一。
+@isnad1 id=eq.0h6v.s9.18a9882696e4 from=translated src=- shape=c35df951 vocab=3227e8eb
+-/
 theorem jordanBlock_nilpotent_shift_pow_apply
     [Field K] (μ : K) (m k : ℕ) (i j : Fin (m + 1)) :
     ((jordanBlock μ m - Matrix.scalar (Fin (m + 1)) μ) ^ k) i j =
@@ -325,7 +345,9 @@ theorem jordanBlock_nilpotent_shift_pow_apply
         have hsucczero : i.val + (k + 1) ≠ j.val := by omega
         simp [hzero, hsucczero]
 
-/-- 只有第 `k` 条上对角线为一的移位矩阵的秩为 `n-min(k,n)`。-/
+/-- 只有第 `k` 条上对角线为一的移位矩阵的秩为 `n-min(k,n)`。
+@isnad1 id=eq.1h4v.s6.4f206e817111 from=translated src=- shape=ecc0a006 vocab=c85de12c
+-/
 theorem rank_eq_card_sub_min_of_shift_entries
     [Field K] {n k : ℕ} (A : Matrix (Fin n) (Fin n) K)
     (hA : ∀ i j, A i j = if i.val + k = j.val then 1 else 0) :
@@ -387,7 +409,9 @@ theorem rank_eq_card_sub_min_of_shift_entries
   rw [hrank, hcard]
   omega
 
-/-- 纯幂零 Jordan 移位块的 `k` 次幂秩。-/
+/-- 纯幂零 Jordan 移位块的 `k` 次幂秩。
+@isnad1 id=eq.0h4v.s9.6998ac219169 from=translated src=- shape=68629053 vocab=e65547e8
+-/
 theorem jordanBlock_nilpotent_shift_pow_rank
     [Field K] [DecidableEq K] (μ : K) (m k : ℕ) :
     Matrix.rank ((jordanBlock μ m - Matrix.scalar (Fin (m + 1)) μ) ^ k) =
@@ -395,7 +419,9 @@ theorem jordanBlock_nilpotent_shift_pow_rank
   apply rank_eq_card_sub_min_of_shift_entries
   exact jordanBlock_nilpotent_shift_pow_apply μ m k
 
-/-- 单 Jordan 块移去标量后取幂的完整秩公式。-/
+/-- 单 Jordan 块移去标量后取幂的完整秩公式。
+@isnad1 id=eq.0h5v.s9.7e4c0c5289ec from=translated src=- shape=dd8103e1 vocab=a0e49bd8
+-/
 theorem jordanBlock_shift_pow_rank
     [Field K] [DecidableEq K] (lam μ : K) (m k : ℕ) :
     Matrix.rank ((jordanBlock lam m - Matrix.scalar (Fin (m + 1)) μ) ^ k) =
@@ -407,7 +433,9 @@ theorem jordanBlock_shift_pow_rank
   · rw [ite_eq_right h]
     exact jordanBlock_shift_pow_rank_of_ne lam μ m k h
 
-/-- 块对角矩阵作用在向量上的第 `(i,j)` 个坐标，只由第 `i` 块决定。-/
+/-- 块对角矩阵作用在向量上的第 `(i,j)` 个坐标，只由第 `i` 块决定。
+@isnad1 id=eq.0h7v.s12.0913ecc9d6c8 from=translated src=- shape=ef11624a vocab=f5225208
+-/
 theorem blockDiagonal_toLin_apply
     [Field K] {ι : Type*} [Fintype ι] [DecidableEq ι]
     {n : ι → Type*} [∀ i, Fintype (n i)] [∀ i, DecidableEq (n i)]
@@ -420,7 +448,9 @@ theorem blockDiagonal_toLin_apply
     ← Finset.univ_sigma_univ, Finset.sum_sigma]
   simp [Matrix.blockDiagonal'_apply]
 
-/-- 块对角矩阵的秩是各对角块秩之和。-/
+/-- 块对角矩阵的秩是各对角块秩之和。
+@isnad1 id=eq.0h4v.s6.e2fd5faa8918 from=translated src=- shape=3875a1ec vocab=7331cfeb
+-/
 theorem rank_blockDiagonal'
     [Field K] {ι : Type*} [Fintype ι] [DecidableEq ι]
     {n : ι → Type*} [∀ i, Fintype (n i)] [∀ i, DecidableEq (n i)]
@@ -466,7 +496,9 @@ theorem rank_blockDiagonal'
     ∑ i, Module.finrank K (LinearMap.range (f i))
   rw [E.finrank_eq, Module.finrank_pi_fintype]
 
-/-- Jordan 块对角矩阵的广义核维数由逐块的 `min k size` 求和给出。-/
+/-- Jordan 块对角矩阵的广义核维数由逐块的 `min k size` 求和给出。
+@isnad1 id=eq.0h4v.s7.cbe8a502fcb3 from=translated src=- shape=7337a936 vocab=3370840f
+-/
 theorem jordanNormalMatrix_generalizedKernelDimension
     [Field K] (d : JordanFormData K) [Fintype d.Block] [DecidableEq d.Block]
     (μ : K) (k : ℕ) :
@@ -518,7 +550,9 @@ theorem jordanNormalMatrix_generalizedKernelDimension
   cases hF
   rfl
 
-/-- 换到一组 Jordan 标准基后，内禀广义核维数等于块公式。-/
+/-- 换到一组 Jordan 标准基后，内禀广义核维数等于块公式。
+@isnad1 id=eq.1h6v.s6.6a8b4f71a1f3 from=translated src=- shape=34c2dfca vocab=7512e823
+-/
 theorem generalizedKernelDimension_eq_kernelProfile
     {V : Type*} [Field K] [AddCommGroup V] [LinearSpace K V]
     [IsFiniteDimensional K V]
@@ -531,7 +565,9 @@ theorem generalizedKernelDimension_eq_kernelProfile
   rw [generalizedKernelDimension_eq_matrix T b hb μ k, hmatrix]
   exact jordanNormalMatrix_generalizedKernelDimension d μ k
 
-/-- 一份 Jordan 基中大小超过 `k` 的 `μ`-块数，是相邻广义核维数之差。-/
+/-- 一份 Jordan 基中大小超过 `k` 的 `μ`-块数，是相邻广义核维数之差。
+@isnad1 id=eq.1h6v.s7.c15e904c41b8 from=translated src=- shape=64574d19 vocab=56982db2
+-/
 theorem blockTailCount_eq_generalizedKernelDimension_sub
     {V : Type*} [Field K] [AddCommGroup V] [LinearSpace K V]
     [IsFiniteDimensional K V]
@@ -544,7 +580,9 @@ theorem blockTailCount_eq_generalizedKernelDimension_sub
     generalizedKernelDimension_eq_kernelProfile T d hd μ k,
     kernelProfile_succ_sub_eq_blockTailCount]
 
-/-- 同一算子的任意两份 Jordan 标准基给出相同的全部块尾计数。-/
+/-- 同一算子的任意两份 Jordan 标准基给出相同的全部块尾计数。
+@isnad1 id=eq.2h7v.s6.3449ea6660b4 from=translated src=- shape=3071c3ad vocab=ae0620cf
+-/
 theorem blockTailCount_eq_of_hasJordanNormalBasis
     {V : Type*} [Field K] [AddCommGroup V] [LinearSpace K V]
     [IsFiniteDimensional K V]
@@ -556,7 +594,9 @@ theorem blockTailCount_eq_of_hasJordanNormalBasis
   rw [blockTailCount_eq_generalizedKernelDimension_sub T d₁ h₁ μ k,
     blockTailCount_eq_generalizedKernelDimension_sub T d₂ h₂ μ k]
 
-/-- **Jordan 标准形唯一性**：同一算子的两份 Jordan 块数据仅相差块的排列。-/
+/-- **Jordan 标准形唯一性**：同一算子的两份 Jordan 块数据仅相差块的排列。
+@isnad1 id=equivale.2h5v.s6.1a3b86b6c286 from=translated src=- shape=0ccb1db7 vocab=24e3a636
+-/
 theorem jordan_normal_basis_unique
     {V : Type*} [Field K] [AddCommGroup V] [LinearSpace K V]
     [IsFiniteDimensional K V]

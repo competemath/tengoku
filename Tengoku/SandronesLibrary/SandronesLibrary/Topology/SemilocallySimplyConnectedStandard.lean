@@ -42,7 +42,9 @@ def SemilocallySimplyConnectedAt (x : X) : Prop :=
 class SemilocallySimplyConnectedSpace (X : Type u) [TopologicalSpace X] : Prop where
   semilocallySimplyConnectedAt : ∀ x : X, SemilocallySimplyConnectedAt x
 
-/-- 点态主定义等价于：某个开邻域中的每个基环路映入全空间后都为平凡类。-/
+/-- 点态主定义等价于：某个开邻域中的每个基环路映入全空间后都为平凡类。
+@isnad1 id=iff.0h2v.s10.c4f16f886644 from=translated src=- shape=a23b572f vocab=c75510f3
+-/
 theorem semilocallySimplyConnectedAt_iff_exists_open_loops (x : X) :
     SemilocallySimplyConnectedAt x ↔
       ∃ (U : Set X) (_hU : IsOpen U) (hx : x ∈ U),
@@ -64,7 +66,9 @@ theorem semilocallySimplyConnectedAt_iff_exists_open_loops (x : X) :
     rintro g ⟨q, rfl⟩
     simp [hloops q]
 
-/-- 全局 class 等价于逐点取得开邻域，并使其中所有基环路映入全空间后平凡。-/
+/-- 全局 class 等价于逐点取得开邻域，并使其中所有基环路映入全空间后平凡。
+@isnad1 id=iff.0h1v.s10.09e4af1af4f5 from=translated src=- shape=3392acde vocab=4f9cb134
+-/
 theorem semilocallySimplyConnectedSpace_iff_forall_exists_open_loops :
     SemilocallySimplyConnectedSpace X ↔
       ∀ x : X, ∃ (U : Set X) (_hU : IsOpen U) (hx : x ∈ U),
@@ -78,7 +82,9 @@ theorem semilocallySimplyConnectedSpace_iff_forall_exists_open_loops :
   · intro h
     exact ⟨fun x => (semilocallySimplyConnectedAt_iff_exists_open_loops x).mpr (h x)⟩
 
-/-- 强局部可缩空间半局部单连通；该推导暂不注册为 instance。-/
+/-- 强局部可缩空间半局部单连通；该推导暂不注册为 instance。
+@isnad1 id=semiloca.0h1v.s3.42e3ff817cf6 from=translated src=- shape=c612a321 vocab=99739ff9
+-/
 theorem semilocallySimplyConnectedSpace_of_stronglyLocallyContractible
     [StronglyLocallyContractibleSpace X] :
     SemilocallySimplyConnectedSpace X := by
@@ -105,7 +111,9 @@ theorem semilocallySimplyConnectedSpace_of_stronglyLocallyContractible
   rw [← hi, FundamentalGroup.map_apply, hcomp, ← FundamentalGroup.map_apply, hq']
   rfl
 
-/-- 单连通空间半局部单连通；该推导暂不注册为 instance。-/
+/-- 单连通空间半局部单连通；该推导暂不注册为 instance。
+@isnad1 id=semiloca.0h1v.s3.69054ca938e8 from=translated src=- shape=c612a321 vocab=cbf957e6
+-/
 theorem semilocallySimplyConnectedSpace_of_simplyConnected
     [SimplyConnectedSpace X] :
     SemilocallySimplyConnectedSpace X := by

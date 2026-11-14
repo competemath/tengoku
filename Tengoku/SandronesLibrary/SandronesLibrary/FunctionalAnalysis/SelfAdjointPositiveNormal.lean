@@ -62,7 +62,9 @@ variable [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] [CompleteSpace E]
 这是教材“`⟪T x, y⟫ = ⟪x, T y⟫`” 陈述对全部向量的精确量词展开；教材的 `T = T*` 即
 `IsSelfAdjoint T`（在 `E →L[𝕜] E` 上 `star T = T†`）。
 
-> **Entry**: functional-analysis.operator.selfadjoint-positive-normal-/
+> **Entry**: functional-analysis.operator.selfadjoint-positive-normal
+@isnad1 id=iff.0h3v.s9.e059b5b00db5 from=translated src=- shape=65a8db7b vocab=ea05baae
+-/
 theorem isSelfAdjoint_iff_inner_symm (T : E →L[𝕜] E) :
     IsSelfAdjoint T ↔ ∀ x y : E, inner 𝕜 (T x) y = inner 𝕜 x (T y) := by
   rw [ContinuousLinearMap.isSelfAdjoint_iff_isSymmetric]
@@ -72,18 +74,24 @@ theorem isSelfAdjoint_iff_inner_symm (T : E →L[𝕜] E) :
 
 /-- 正算子的等价刻画：正算子是自伴算子，且其二次型取非负值。
 
-反向把“自伴 + 二次型非负”组装为正算子，正是教材对正算子的定义。-/
+反向把“自伴 + 二次型非负”组装为正算子，正是教材对正算子的定义。
+@isnad1 id=iff.0h3v.s9.2f0164d8987c from=translated src=- shape=88de9559 vocab=31d5c141
+-/
 theorem isPositive_iff_selfAdjoint_inner_nonneg (T : E →L[𝕜] E) :
     T.IsPositive ↔ IsSelfAdjoint T ∧ ∀ x : E, 0 ≤ inner 𝕜 (T x) x :=
   isPositive_iff' T
 
-/-- 正算子是自伴算子。-/
+/-- 正算子是自伴算子。
+@isnad1 id=isselfad.1h3v.s8.151d3283b813 from=translated src=- shape=3211b798 vocab=e07ed975
+-/
 theorem positive_isSelfAdjoint {T : E →L[𝕜] E} (hT : T.IsPositive) : IsSelfAdjoint T :=
   hT.isSelfAdjoint
 
 /-! ## 正规算子 -/
 
-/-- 正规算子的交换刻画：`T` 正规当且仅当它与自己的伴随相乘可交换。-/
+/-- 正规算子的交换刻画：`T` 正规当且仅当它与自己的伴随相乘可交换。
+@isnad1 id=iff.0h3v.s12.b2dd79898dc6 from=translated src=- shape=1b8b2bc2 vocab=1d0302a6
+-/
 theorem isStarNormal_iff_adjoint_commute (T : E →L[𝕜] E) :
     IsStarNormal T ↔ T.adjoint * T = T * T.adjoint := by
   rw [isStarNormal_iff]
@@ -95,33 +103,45 @@ theorem isStarNormal_iff_adjoint_commute (T : E →L[𝕜] E) :
     have hh : star T * T = T * star T := by rwa [← star_eq_adjoint] at h
     exact hh
 
-/-- 正规算子的范数刻画：`T` 正规当且仅当 `T` 与 `T†` 在每个向量上范数相同。-/
+/-- 正规算子的范数刻画：`T` 正规当且仅当 `T` 与 `T†` 在每个向量上范数相同。
+@isnad1 id=iff.0h3v.s11.667e3e4b7161 from=translated src=- shape=81e69309 vocab=8f8d324b
+-/
 theorem isStarNormal_iff_norm_adjoint (T : E →L[𝕜] E) :
     IsStarNormal T ↔ ∀ x : E, ‖T x‖ = ‖T.adjoint x‖ :=
   isStarNormal_iff_norm_eq_adjoint
 
-/-- 正规算子的核与伴随的核相同。-/
+/-- 正规算子的核与伴随的核相同。
+@isnad1 id=eq.1h3v.s11.93a4178d29db from=translated src=- shape=576b38c7 vocab=794d3ea7
+-/
 theorem isStarNormal_ker_adjoint {T : E →L[𝕜] E} (hT : IsStarNormal T) :
     T.adjoint.ker = T.ker :=
   hT.ker_adjoint_eq_ker
 
-/-- 正规算子的值域与核正交（值域的正交补等于核）。-/
+/-- 正规算子的值域与核正交（值域的正交补等于核）。
+@isnad1 id=eq.1h3v.s9.020b65c98cf8 from=translated src=- shape=fc2d87ef vocab=286a49b8
+-/
 theorem isStarNormal_range_orthogonal_ker {T : E →L[𝕜] E} (hT : IsStarNormal T) :
     T.rangeᗮ = T.ker :=
   hT.orthogonal_range
 
-/-- 自伴算子是正规算子。-/
+/-- 自伴算子是正规算子。
+@isnad1 id=isstarno.1h3v.s8.e6115890d5a6 from=translated src=- shape=0924046f vocab=0589ba06
+-/
 theorem selfAdjoint_isStarNormal {T : E →L[𝕜] E} (hT : IsSelfAdjoint T) : IsStarNormal T :=
   hT.isStarNormal
 
-/-- 正算子是正规算子（经“正 ⟹ 自伴 ⟹ 正规”的关系链）。-/
+/-- 正算子是正规算子（经“正 ⟹ 自伴 ⟹ 正规”的关系链）。
+@isnad1 id=isstarno.1h3v.s8.0616169f113a from=translated src=- shape=3211b798 vocab=41b72671
+-/
 theorem positive_isStarNormal {T : E →L[𝕜] E} (hT : T.IsPositive) : IsStarNormal T :=
   hT.isSelfAdjoint.isStarNormal
 
 /-- 幂等算子：自伴当且仅当正规。
 
 这是教材中正交投影与一般幂等算子区别的精确表述：在幂等性之外，
-“自伴”与“正规”互相推出。-/
+“自伴”与“正规”互相推出。
+@isnad1 id=iff.1h3v.s9.643b82df960e from=translated src=- shape=b20eb03b vocab=0192a56e
+-/
 theorem idempotent_selfAdjoint_iff_isStarNormal {T : E →L[𝕜] E}
     (hT : IsIdempotentElem T) : IsSelfAdjoint T ↔ IsStarNormal T :=
   ContinuousLinearMap.IsIdempotentElem.isSelfAdjoint_iff_isStarNormal hT
@@ -130,12 +150,16 @@ theorem idempotent_selfAdjoint_iff_isStarNormal {T : E →L[𝕜] E}
 
 /-- 酉算子是正规算子。
 
-酉算子满足 `U* U = U U* = 1`，因此 `U` 与 `U*` 交换；这是教材“酉 ⟹ 正规”的精确形式。-/
+酉算子满足 `U* U = U U* = 1`，因此 `U` 与 `U*` 交换；这是教材“酉 ⟹ 正规”的精确形式。
+@isnad1 id=isstarno.1h3v.s10.7dfa870dfbb7 from=translated src=- shape=62bffce7 vocab=166e9159
+-/
 theorem unitary_isStarNormal {U : E →L[𝕜] E} (hU : U ∈ unitary (E →L[𝕜] E)) :
     IsStarNormal U :=
   isStarNormal_of_mem_unitary hU
 
-/-- 酉算子的伴随等于它的逆（在 `unitary` 子群中）。-/
+/-- 酉算子的伴随等于它的逆（在 `unitary` 子群中）。
+@isnad1 id=eq.0h3v.s14.9798d4fc86ca from=translated src=- shape=c3e1cf54 vocab=0cd0bad3
+-/
 theorem unitary_adjoint_eq_inv (U : unitary (E →L[𝕜] E)) :
     (U : E →L[𝕜] E).adjoint = (U⁻¹ : unitary (E →L[𝕜] E)) := by
   rw [← star_eq_adjoint (U : E →L[𝕜] E)]
@@ -143,7 +167,9 @@ theorem unitary_adjoint_eq_inv (U : unitary (E →L[𝕜] E)) :
 
 /-- 自伴的酉算子是幂等的对合：`U * U = 1`。
 
-这给出教材中“同时自伴且酉”的算子的精确含义。-/
+这给出教材中“同时自伴且酉”的算子的精确含义。
+@isnad1 id=eq.2h3v.s11.69af306698f6 from=translated src=- shape=72279e9e vocab=6d09e09f
+-/
 theorem isSelfAdjoint_unitary_mul_self {U : E →L[𝕜] E}
     (hU : U ∈ unitary (E →L[𝕜] E)) (hU' : IsSelfAdjoint U) : U * U = 1 := by
   have h : U * star U = 1 := Unitary.mul_star_self_of_mem hU
@@ -152,7 +178,9 @@ theorem isSelfAdjoint_unitary_mul_self {U : E →L[𝕜] E}
 /-- 线性等距等价是酉算子：`E ≃ₗᵢ[𝕜] E` 的承载算子属于 `unitary (E →L[𝕜] E)`。
 
 这把 F3.5 的 `LinearIsometryEquiv` 承载与本章的 `unitary` 子群显式连接起来，
-说明两个接口描述的是同一类算子。-/
+说明两个接口描述的是同一类算子。
+@isnad1 id=mem.0h3v.s11.028c626fd481 from=translated src=- shape=872b39ad vocab=07a5cb33
+-/
 theorem linearIsometryEquiv_mem_unitary (e : E ≃ₗᵢ[𝕜] E) :
     (e : E →L[𝕜] E) ∈ unitary (E →L[𝕜] E) := by
   have h := (Unitary.linearIsometryEquiv.symm e : unitary (E →L[𝕜] E)).property

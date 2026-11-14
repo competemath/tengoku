@@ -26,7 +26,9 @@ variable {X : Type u} [TopologicalSpace X] {x : X}
 
 /-- 基本群的单位元在道路同伦商视角中就是基点处恒等道路的同伦类。
 
-> **Entry**: topology.fundamental-group.operations-standard-/
+> **Entry**: topology.fundamental-group.operations-standard
+@isnad1 id=eq.0h2v.s5.43b5687bec16 from=translated src=- shape=182cacf8 vocab=772a1984
+-/
 theorem fundamentalGroup_one_toPath :
     FundamentalGroup.toPath (1 : FundamentalGroup X x) =
       Path.Homotopic.Quotient.refl x :=
@@ -34,20 +36,26 @@ theorem fundamentalGroup_one_toPath :
 
 /-- Mathlib 的乘法来自自同态的范畴复合，因此 `p * q` 对应先走 `q`、再走 `p`。
 
-等式发生在道路同伦商上；它没有断言原始 `Path` 的拼接满足严格群律。-/
+等式发生在道路同伦商上；它没有断言原始 `Path` 的拼接满足严格群律。
+@isnad1 id=eq.0h4v.s6.783a8823eb05 from=translated src=- shape=22903302 vocab=3eedcb85
+-/
 theorem fundamentalGroup_mul_toPath (p q : FundamentalGroup X x) :
     FundamentalGroup.toPath (p * q) =
       (FundamentalGroup.toPath q).trans (FundamentalGroup.toPath p) :=
   rfl
 
-/-- 基本群中的逆元在道路同伦商视角中由道路反向给出。-/
+/-- 基本群中的逆元在道路同伦商视角中由道路反向给出。
+@isnad1 id=eq.0h3v.s6.37847dcee59a from=translated src=- shape=b6d68cdf vocab=846c368c
+-/
 theorem fundamentalGroup_inv_toPath (p : FundamentalGroup X x) :
     FundamentalGroup.toPath p⁻¹ = (FundamentalGroup.toPath p).symm :=
   rfl
 
 /-- 对具体代表道路，基本群乘法仍按范畴复合的次序对应于“先 `q`、再 `p`”的拼接类。
 
-两边都是基本群元素；右边先把拼接道路送进同伦商，所以这不是原始道路的严格等式。-/
+两边都是基本群元素；右边先把拼接道路送进同伦商，所以这不是原始道路的严格等式。
+@isnad1 id=eq.0h4v.s6.48edcfe42b9c from=translated src=- shape=50492d49 vocab=c035cb09
+-/
 theorem fundamentalGroup_mk_mul_mk (p q : Path x x) :
     FundamentalGroup.fromPath (Path.Homotopic.Quotient.mk p) *
         FundamentalGroup.fromPath (Path.Homotopic.Quotient.mk q) =

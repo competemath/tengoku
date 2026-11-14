@@ -23,7 +23,9 @@ namespace SandronesLibrary.Probability
 open MeasureTheory ProbabilityTheory
 open scoped ProbabilityTheory
 
-/-- 若 `X` 关于 `mX` 强可测，且 `mX` 与条件 σ-代数 `mC` 独立，则条件期望退化为常期望。-/
+/-- 若 `X` 关于 `mX` 强可测，且 `mX` 与条件 σ-代数 `mC` 独立，则条件期望退化为常期望。
+@isnad1 id=eventual.4h7v.s6.3e8ee5cd0ba2 from=translated src=- shape=ca4d0ea7 vocab=2113f057
+-/
 theorem conditionalExpectation_eq_expectation_of_indep
     {Ω E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
     {mX mC m₀ : MeasurableSpace Ω} {μ : @Measure Ω m₀} {X : Ω → E}
@@ -33,7 +35,9 @@ theorem conditionalExpectation_eq_expectation_of_indep
     μ[X | mC] =ᵐ[μ] fun _ => ∫ ω, X ω ∂μ :=
   condExp_indep_eq hmX hmC hX hIndep
 
-/-- 独立随机变量版本：给定 `Y` 的信息后，`X` 的条件期望仍等于 `X` 的普通期望。-/
+/-- 独立随机变量版本：给定 `Y` 的信息后，`X` 的条件期望仍等于 `X` 的普通期望。
+@isnad1 id=eventual.3h6v.s7.757df9963e11 from=translated src=- shape=d6224b5f vocab=e8842d25
+-/
 theorem conditionalExpectation_comap_eq_expectation_of_indepFun
     {Ω E S : Type*} [m₀ : MeasurableSpace Ω]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]

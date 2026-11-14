@@ -54,7 +54,9 @@ private theorem replaceAtWith_erase_count {α : Type*} (weight : α → Nat)
 
 /-- Every successful cut of a head immediately below the root strictly lowers
 the elementary ordinal measure.  The theorem covers an arbitrary root child
-index, not only the one-head example.-/
+index, not only the one-head example.
+@isnad1 id=lt.1h4v.s5.a7e4bcbed67e from=translated src=- shape=8b1b828c vocab=c7b825c3
+-/
 theorem ordinalMeasure_decreases_root_cut (stage i : Nat) (before after : Hydra)
     (hcut : chop stage before [i] = some after) :
     ordinalMeasure after < ordinalMeasure before := by
@@ -92,7 +94,9 @@ theorem ordinalMeasure_decreases_root_cut (stage i : Nat) (before after : Hydra)
 
 This is a local descent theorem for non-regrowing root cuts.  It does not say
 that deeper regrowing cuts decrease this elementary measure, nor does it claim
-termination of every play.-/
+termination of every play.
+@isnad1 id=lt.0h1v.s4.56e17f96c7c6 from=translated src=- shape=b322a921 vocab=a30b0c13
+-/
 theorem single_head_ordinal_descent (stage : Nat) :
     ordinalMeasure (.node []) < ordinalMeasure (.node [head]) := by
   exact ordinalMeasure_decreases_root_cut stage 0 (.node [head]) (.node [])

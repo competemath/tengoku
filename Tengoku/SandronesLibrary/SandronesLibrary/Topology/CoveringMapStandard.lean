@@ -31,7 +31,9 @@ variable {E : Type u} {X : Type v} [TopologicalSpace E] [TopologicalSpace X]
 
 /-- Mathlib 的均匀覆盖点承载展开为离散 fiber 类型，以及该点某个开邻域上的乘积同胚图。
 
-> **Entry**: topology.covering.definition-standard-/
+> **Entry**: topology.covering.definition-standard
+@isnad1 id=iff.0h5v.s8.1fd0984d0e77 from=translated src=- shape=23d9573d vocab=f16aea40
+-/
 theorem isEvenlyCovered_iff_exists_open_product
     (p : E → X) (x : X) (I : Type w) [TopologicalSpace I] :
     IsEvenlyCovered p x I ↔
@@ -41,31 +43,41 @@ theorem isEvenlyCovered_iff_exists_open_product
   Iff.rfl
 
 /-- Mathlib 的覆盖映射承载恰好要求每个基点都被均匀覆盖，并以该点的实际集合论 fiber 作为离散
-索引。-/
+索引。
+@isnad1 id=iff.0h3v.s6.c26f5516f801 from=translated src=- shape=c1c7b3c7 vocab=bba097fe
+-/
 theorem isCoveringMap_iff_every_point_evenlyCovered (p : E → X) :
     IsCoveringMap p ↔ ∀ x, IsEvenlyCovered p x (p ⁻¹' {x}) :=
   Iff.rfl
 
-/-- 覆盖映射在每个基点提供显式开乘积邻域；Mathlib carrier 允许 fiber 为空。-/
+/-- 覆盖映射在每个基点提供显式开乘积邻域；Mathlib carrier 允许 fiber 为空。
+@isnad1 id=ex.1h4v.s9.d70ea9be91d7 from=translated src=- shape=001ce0cf vocab=60d88e04
+-/
 theorem coveringMap_exists_open_product_neighborhood
     {p : E → X} (hp : IsCoveringMap p) (x : X) :
     ∃ U : Set X, x ∈ U ∧ IsOpen U ∧ IsOpen (p ⁻¹' U) ∧
       ∃ H : p ⁻¹' U ≃ₜ U × (p ⁻¹' {x}), ∀ e, (H e).1.1 = p e :=
   (hp x).2
 
-/-- 覆盖映射的每个 fiber 都带离散拓扑。-/
+/-- 覆盖映射的每个 fiber 都带离散拓扑。
+@isnad1 id=discrete.1h4v.s5.8f429eb30feb from=translated src=- shape=fba098bf vocab=2f7d9c74
+-/
 theorem coveringMap_discreteTopology_fiber
     {p : E → X} (hp : IsCoveringMap p) (x : X) :
     DiscreteTopology (p ⁻¹' {x}) :=
   (hp x).discreteTopology_fiber
 
-/-- 标准覆盖映射承载同时推出连续性、开映射性和局部同胚性质。-/
+/-- 标准覆盖映射承载同时推出连续性、开映射性和局部同胚性质。
+@isnad1 id=and.1h3v.s5.2b7db174b609 from=translated src=- shape=aa93dad2 vocab=5e2e53ca
+-/
 theorem coveringMap_continuous_and_isOpenMap_and_isLocalHomeomorph
     {p : E → X} (hp : IsCoveringMap p) :
     Continuous p ∧ IsOpenMap p ∧ IsLocalHomeomorph p :=
   ⟨hp.continuous, hp.isOpenMap, hp.isLocalHomeomorph⟩
 
-/-- 在许多教材额外采用的满射约定下，覆盖映射还是商映射。-/
+/-- 在许多教材额外采用的满射约定下，覆盖映射还是商映射。
+@isnad1 id=isquotie.2h3v.s5.a6ca993d3bad from=translated src=- shape=007dce15 vocab=21b4ba65
+-/
 theorem coveringMap_isQuotientMap_of_surjective
     {p : E → X} (hp : IsCoveringMap p) (hsurj : Function.Surjective p) :
     IsQuotientMap p :=

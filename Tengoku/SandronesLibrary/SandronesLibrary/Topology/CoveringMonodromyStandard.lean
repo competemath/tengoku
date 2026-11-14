@@ -34,7 +34,9 @@ variable {p : E → X}
 
 /-- 代表道路的 monodromy 值就是从指定 fiber 点出发的标准提升终点。
 
-> **Entry**: topology.covering.monodromy-standard-/
+> **Entry**: topology.covering.monodromy-standard
+@isnad1 id=eq.1h7v.s8.9630c70282f9 from=translated src=- shape=58b252f9 vocab=18ec61cb
+-/
 theorem coveringMap_monodromy_mk_eq_pathLift_endpoint
     (cov : IsCoveringMap p) {x y : X} (gamma : Path x y) (e : p ⁻¹' {x}) :
     cov.monodromy ⟦gamma⟧ e =
@@ -42,7 +44,9 @@ theorem coveringMap_monodromy_mk_eq_pathLift_endpoint
         coveringMapPathLift_endpoint_mem_fiber cov gamma e.1 e.2⟩ := by
   rfl
 
-/-- 基环路的标准提升闭合，当且仅当 monodromy 固定指定的初始 fiber 点。-/
+/-- 基环路的标准提升闭合，当且仅当 monodromy 固定指定的初始 fiber 点。
+@isnad1 id=iff.1h6v.s8.24f3069e14b9 from=translated src=- shape=ee132b36 vocab=7f7e80b5
+-/
 theorem coveringMap_pathLift_closed_iff_monodromy_fixed
     (cov : IsCoveringMap p) {x : X} (gamma : Path x x) (e : p ⁻¹' {x}) :
     coveringMapPathLift cov gamma e.1 e.2 1 = e.1 ↔

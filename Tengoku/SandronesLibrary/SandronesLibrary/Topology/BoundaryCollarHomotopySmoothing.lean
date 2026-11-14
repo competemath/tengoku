@@ -37,7 +37,9 @@ def closedUnitSquareBoundary : Set (ℝ × ℝ) :=
   ({0} ×ˢ Icc 0 1) ∪ ({1} ×ˢ Icc 0 1) ∪
     (Icc 0 1 ×ˢ {0}) ∪ (Icc 0 1 ×ˢ {1})
 
-/-- 闭单位方形的四边是闭集，因此可以作为相对平滑逼近中必须逐点保持的集合。-/
+/-- 闭单位方形的四边是闭集，因此可以作为相对平滑逼近中必须逐点保持的集合。
+@isnad1 id=isclosed.0h0v.s4.6b58adc9946c from=translated src=- shape=0b0a4f6e vocab=3d0575c0
+-/
 theorem isClosed_closedUnitSquareBoundary : IsClosed closedUnitSquareBoundary := by
   exact (((isClosed_singleton.prod isClosed_Icc).union
     (isClosed_singleton.prod isClosed_Icc)).union
@@ -45,7 +47,9 @@ theorem isClosed_closedUnitSquareBoundary : IsClosed closedUnitSquareBoundary :=
     (isClosed_Icc.prod isClosed_singleton)
 
 /-- 若连续函数在闭集 `S` 的某个邻域已经 `C²`，且闭方形像位于开集 `U`，则存在全局 `C²`
-逼近：它在 `S` 上与原函数严格相等，并且闭方形像仍位于 `U`。-/
+逼近：它在 `S` 上与原函数严格相等，并且闭方形像仍位于 `U`。
+@isnad1 id=ex.6h5v.s8.6eb3823a52c2 from=translated src=- shape=a94574c2 vocab=b0faee40
+-/
 theorem exists_contDiffTwo_approx_eqOn_mapsTo_open
     (f : ℝ × ℝ → E) (hf : Continuous f) {S V : Set (ℝ × ℝ)} {U : Set E}
     (hS : IsClosed S) (hV : V ∈ nhdsSet S) (hfV : ContDiffOn ℝ 2 f V)
@@ -96,7 +100,9 @@ def pathHomotopyOfEqOnSquareBoundary
         f (t, 1) = F (t, 1) := by simpa using hfF (t, 1)
         _ = p 1 := by simp
 
-/-- 上述限制所得同伦的标准双重钳位延拓，在闭单位方形上继承全局函数 `g` 的 `C²` 正则性。-/
+/-- 上述限制所得同伦的标准双重钳位延拓，在闭单位方形上继承全局函数 `g` 的 `C²` 正则性。
+@isnad1 id=other.3h8v.s10.b092980235e5 from=translated src=- shape=59c9a20f vocab=d17eb07a
+-/
 theorem pathHomotopyOfEqOnSquareBoundary_standardExtension_contDiffOn
     {x y : E} {p q : Path x y} (F : p.Homotopy q)
     (f g : ℝ × ℝ → E) (hg : ContDiff ℝ 2 g)
@@ -118,7 +124,9 @@ theorem pathHomotopyOfEqOnSquareBoundary_standardExtension_contDiffOn
 /-- 边界 collar 相对平滑化：若道路同伦的一个全局连续延拓在方形四边某邻域已 `C²`，且原同伦
 像位于开集 `U`，则存在保持四边和开域像的标准道路同伦，其双重 `IccExtend` 在闭方形上 `C²`。
 
-该结论不适用于任意连续或仅分段 `C¹` 的边界道路。-/
+该结论不适用于任意连续或仅分段 `C¹` 的边界道路。
+@isnad1 id=ex.6h9v.s11.e16d150c6083 from=translated src=- shape=08ba2085 vocab=7f311088
+-/
 theorem exists_contDiffTwo_pathHomotopy_of_boundaryCollar
     {x y : E} {p q : Path x y} (F : p.Homotopy q)
     (f : ℝ × ℝ → E) (hf : Continuous f)

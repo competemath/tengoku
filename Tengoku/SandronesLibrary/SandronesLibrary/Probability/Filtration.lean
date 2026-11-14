@@ -26,21 +26,27 @@ namespace SandronesLibrary.Probability
 
 open MeasureTheory
 
-/-- 过滤所含的信息随时间单调增加。-/
+/-- 过滤所含的信息随时间单调增加。
+@isnad1 id=le.1h6v.s5.32187af38844 from=translated src=- shape=f5efec31 vocab=f9b94677
+-/
 theorem filtration_mono
     {Ω ι : Type*} {m : MeasurableSpace Ω} [Preorder ι]
     (𝓕 : Filtration ι m) {i j : ι} (hij : i ≤ j) :
     𝓕 i ≤ 𝓕 j :=
   𝓕.mono hij
 
-/-- 过滤的每一层都是环境 σ-代数的子 σ-代数。-/
+/-- 过滤的每一层都是环境 σ-代数的子 σ-代数。
+@isnad1 id=le.0h5v.s4.eff8aa4b0119 from=translated src=- shape=7a687711 vocab=f9b94677
+-/
 theorem filtration_le
     {Ω ι : Type*} {m : MeasurableSpace Ω} [Preorder ι]
     (𝓕 : Filtration ι m) (i : ι) :
     𝓕 i ≤ m :=
   𝓕.le i
 
-/-- 适应性的定义性展开：过程在每个时刻都关于当时的信息可测。-/
+/-- 适应性的定义性展开：过程在每个时刻都关于当时的信息可测。
+@isnad1 id=iff.0h6v.s6.3614a24d725a from=translated src=- shape=4a0259c8 vocab=e379ad12
+-/
 theorem adapted_iff_measurable
     {Ω ι : Type*} {m : MeasurableSpace Ω} [Preorder ι]
     {β : ι → Type*} [∀ i, MeasurableSpace (β i)]
@@ -48,7 +54,9 @@ theorem adapted_iff_measurable
     Adapted 𝓕 X ↔ ∀ i, Measurable[𝓕 i] (X i) :=
   Iff.rfl
 
-/-- 适应过程的过去取值关于任一未来时刻的信息可测。-/
+/-- 适应过程的过去取值关于任一未来时刻的信息可测。
+@isnad1 id=measurab.2h8v.s6.b52e46645d71 from=translated src=- shape=facbc52e vocab=7a6e54ae
+-/
 theorem adapted_measurable_later
     {Ω ι : Type*} {m : MeasurableSpace Ω} [Preorder ι]
     {β : ι → Type*} [∀ i, MeasurableSpace (β i)]
@@ -57,7 +65,9 @@ theorem adapted_measurable_later
     Measurable[𝓕 j] (X i) := by
   exact (hX i).mono (filtration_mono 𝓕 hij) le_rfl
 
-/-- 适应过程的每个时刻取值也关于环境 σ-代数可测。-/
+/-- 适应过程的每个时刻取值也关于环境 σ-代数可测。
+@isnad1 id=measurab.1h7v.s5.5fd479fa7b56 from=translated src=- shape=575a74f3 vocab=412653f3
+-/
 theorem adapted_measurable
     {Ω ι : Type*} {m : MeasurableSpace Ω} [Preorder ι]
     {β : ι → Type*} [∀ i, MeasurableSpace (β i)]

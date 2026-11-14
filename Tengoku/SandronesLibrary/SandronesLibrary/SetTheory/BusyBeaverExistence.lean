@@ -24,6 +24,9 @@ open GoogologyComputability BusyBeaver
 def immediateHaltMachine (n : ℕ) : BinaryMachine (n + 1) :=
   fun _ _ => { writeOne := false, move := .right, nextState := none }
 
+/--
+@isnad1 id=hashalti.0h1v.s3.b3d23d31b8ab from=translated src=- shape=54d56512 vocab=01da5834
+-/
 theorem immediateHaltMachine_has_zero_score (n : ℕ) :
     HasHaltingOnesScore (immediateHaltMachine n) 0 := by
   refine ⟨1, ∅, ?_, rfl⟩
@@ -45,7 +48,9 @@ private theorem runSteps_halted (machine : BinaryMachine n) (steps : ℕ) (tape 
   | zero => rfl
   | succ steps ih => simpa [runSteps, executeStep] using ih
 
-/-- 确定机器若最终停机，则不同停机时刻观察到的 `1` 数相同。-/
+/-- 确定机器若最终停机，则不同停机时刻观察到的 `1` 数相同。
+@isnad1 id=eq.2h4v.s5.f91343d59ff8 from=translated src=- shape=aa43a9ac vocab=4eb5aea0
+-/
 theorem hasHaltingOnesScore_unique {machine : BinaryMachine (n + 1)} {x y : ℕ}
     (hx : HasHaltingOnesScore machine x) (hy : HasHaltingOnesScore machine y) : x = y := by
   rcases hx with ⟨stepsX, tapeX, hrunX, rfl⟩
@@ -96,7 +101,9 @@ noncomputable def classicalBusyBeaverValue (n : ℕ) : ℕ :=
 > **一句话**: 每个固定正工作状态数的机器类都有一个由停机机器达到的最大最终输出。
 > **依赖**: `settheory.googology.unbounded-halting-relation`,
 > `settheory.googology.busy-beaver-value-relation`
-> **mathlib**: `Finset.sup`, `Classical.choose`-/
+> **mathlib**: `Finset.sup`, `Classical.choose`
+@isnad1 id=ex.0h1v.s3.f83cd87dd5f5 from=translated src=- shape=7d4b0599 vocab=3f586c47
+-/
 theorem exists_isBusyBeaverValue (n : ℕ) : ∃ value, IsBusyBeaverValue n value := by
   let value := classicalBusyBeaverValue n
   have hupper : ∀ machine : BinaryMachine (n + 1), eventualOnesScore machine ≤ value := by
@@ -121,7 +128,9 @@ theorem exists_isBusyBeaverValue (n : ℕ) : ∃ value, IsBusyBeaverValue n valu
       rw [hvalue]
       exact ⟨immediateHaltMachine n, immediateHaltMachine_has_zero_score n⟩
 
-/-- 本文件定义的经典值满足 `BusyBeaver` 模块已经公开的最大值关系。-/
+/-- 本文件定义的经典值满足 `BusyBeaver` 模块已经公开的最大值关系。
+@isnad1 id=isbusybe.0h1v.s2.3fe7f65cde5b from=translated src=- shape=9d44d080 vocab=86240f79
+-/
 theorem classicalBusyBeaverValue_spec (n : ℕ) :
     IsBusyBeaverValue n (classicalBusyBeaverValue n) := by
   obtain ⟨value, hvalue⟩ := exists_isBusyBeaverValue n

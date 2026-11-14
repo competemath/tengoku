@@ -24,21 +24,27 @@ namespace SandronesLibrary.Probability
 open Set MeasureTheory ProbabilityTheory
 open scoped ENNReal ProbabilityTheory
 
-/-- Markov 不等式：非负可测量的超水平集概率由其非负积分控制。-/
+/-- Markov 不等式：非负可测量的超水平集概率由其非负积分控制。
+@isnad1 id=le.3h4v.s6.e35bc08474e1 from=translated src=- shape=6029d244 vocab=d8eb0b9e
+-/
 theorem markov_inequality
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} {X : Ω → ℝ≥0∞}
     (hX : AEMeasurable X μ) {a : ℝ≥0∞} (ha0 : a ≠ 0) (haTop : a ≠ ⊤) :
     μ {ω | a ≤ X ω} ≤ (∫⁻ ω, X ω ∂μ) / a :=
   meas_ge_le_lintegral_div hX ha0 haTop
 
-/-- Chebyshev 不等式：偏离期望至少 `c` 的概率由方差除以 `c²` 控制。-/
+/-- Chebyshev 不等式：偏离期望至少 `c` 的概率由方差除以 `c²` 控制。
+@isnad1 id=le.2h4v.s7.a9b62cb65ed1 from=translated src=- shape=630c91ca vocab=f2608bd6
+-/
 theorem chebyshev_inequality
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} (hX : MemLp X 2 μ) {c : ℝ} (hc : 0 < c) :
     μ {ω | c ≤ |X ω - ∫ x, X x ∂μ|} ≤ ENNReal.ofReal (Var[X; μ] / c ^ 2) :=
   meas_ge_le_variance_div_sq hX hc
 
-/-- 概率测度版本 Jensen 不等式。-/
+/-- 概率测度版本 Jensen 不等式。
+@isnad1 id=le.6h6v.s8.04c2eff77b6f from=translated src=- shape=8c900df9 vocab=4637d58d
+-/
 theorem jensen_inequality
     {Ω E : Type*} [MeasurableSpace Ω] [NormedAddCommGroup E] [NormedSpace ℝ E]
     [CompleteSpace E] {μ : Measure Ω} [IsProbabilityMeasure μ]

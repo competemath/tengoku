@@ -60,7 +60,9 @@ private theorem binaryVanKampenLetterWord_append (U V : Set X) {x₀ : X}
       simp only [List.cons_append, binaryVanKampenLetterWord, ih, mul_assoc]
 
 /-- 每个二开集 van Kampen Pushout 元素都严格等于有限个单侧基本群字母的有序乘积。
-证明直接使用 Mathlib `Monoid.PushoutI.induction_on`；交集生成元由任一侧（这里固定 `false`）吸收。-/
+证明直接使用 Mathlib `Monoid.PushoutI.induction_on`；交集生成元由任一侧（这里固定 `false`）吸收。
+@isnad1 id=ex.2h5v.s6.fdbb660f88d8 from=translated src=- shape=a7e259af vocab=1a6b81b4
+-/
 theorem exists_binaryVanKampenLetterWord (U V : Set X) {x₀ : X}
     (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (a : binaryVanKampenPushout U V hxU hxV) :
@@ -83,6 +85,9 @@ noncomputable def fundamentalGroupPathRepresentative
     Path y y :=
   Classical.choose (Path.Homotopic.Quotient.mk_surjective g)
 
+/--
+@isnad1 id=eq.0h3v.s5.9d471686e6f9 from=translated src=- shape=a50df1cb vocab=f35245c0
+-/
 @[simp] theorem fundamentalGroupPathRepresentative_mk
     {Y : Type*} [TopologicalSpace Y] (y : Y) (g : FundamentalGroup Y y) :
     FundamentalGroup.fromPath
@@ -101,7 +106,9 @@ noncomputable def BinaryVanKampenLetter.ambientLoop
   · exact mapped.cast rfl rfl
   · exact mapped.cast rfl rfl
 
-/-- 单侧字母经 van Kampen 规范同态后的像，严格由其所选环境环路代表。-/
+/-- 单侧字母经 van Kampen 规范同态后的像，严格由其所选环境环路代表。
+@isnad1 id=eq.2h5v.s12.3440bb510462 from=translated src=- shape=0c65c0da vocab=0db2968f
+-/
 theorem binaryVanKampenCanonicalMap_of_letter
     {U V : Set X} {x₀ : X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (letter : BinaryVanKampenLetter U V hxU hxV) :
@@ -116,7 +123,9 @@ theorem binaryVanKampenCanonicalMap_of_letter
       (binaryOpenCoverBasepoint hxU hxV _) g] <;>
     rfl
 
-/-- 基本群中的单位元等式可无损还原为一个端点相对道路同伦。-/
+/-- 基本群中的单位元等式可无损还原为一个端点相对道路同伦。
+@isnad1 id=homotopi.1h3v.s6.5559c175c07e from=translated src=- shape=64869a26 vocab=7d131fa5
+-/
 theorem pathHomotopic_refl_of_fromPath_eq_one
     {Y : Type*} [TopologicalSpace Y] {y : Y} (p : Path y y)
     (h : FundamentalGroup.fromPath ⟦p⟧ = 1) :
@@ -136,6 +145,9 @@ noncomputable def binaryVanKampenLetterConcatLoop
     (fun i : Fin reversed.length =>
       (reversed.get i).ambientLoop hxU hxV)
 
+/--
+@isnad1 id=eq.2h6v.s9.e6e65af8b213 from=translated src=- shape=f21cbdf4 vocab=497ab2bc
+-/
 @[simp] theorem BinaryVanKampenLetter.ambientLoop_apply
     {U V : Set X} {x₀ : X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (letter : BinaryVanKampenLetter U V hxU hxV) (t : unitInterval) :
@@ -156,7 +168,9 @@ private theorem BinaryVanKampenLetter.ambientLoop_mem_piece
   exact (fundamentalGroupPathRepresentative
     (binaryOpenCoverBasepoint hxU hxV b) g t).property
 
-/-- `Path.concat` 的第 `i` 个输入 segment 使用反序列表中的标签。-/
+/-- `Path.concat` 的第 `i` 个输入 segment 使用反序列表中的标签。
+@isnad1 id=mem.2h7v.s7.f128b471992c from=translated src=- shape=72b3c8a9 vocab=d841d744
+-/
 theorem binaryVanKampenLetterConcatLoop_segment_mem
     {U V : Set X} {x₀ : X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (letters : List (BinaryVanKampenLetter U V hxU hxV))

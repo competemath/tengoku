@@ -29,7 +29,9 @@ variable [TopologicalSpace X] [TopologicalSpace Y] [TopologicalSpace Z]
 
 /-- 一般同伦恰好是时间零与时间一切片为指定连续映射的连续变形；第一坐标是同伦时间。
 
-> **Entry**: topology.homotopy.standard-/
+> **Entry**: topology.homotopy.standard
+@isnad1 id=iff.0h4v.s7.c4aa29c67f6c from=translated src=- shape=f1db8e87 vocab=e1a18ad0
+-/
 theorem nonempty_homotopy_iff_exists_continuous_deformation
     {f g : C(X, Y)} :
     Nonempty (f.Homotopy g) ↔
@@ -47,7 +49,9 @@ theorem nonempty_homotopy_iff_exists_continuous_deformation
       map_one_left := hone
     }⟩
 
-/-- 相对 `S` 的同伦要求 `S` 中的点在全部时间保持固定，而不只是两个端点映射在 `S` 上相等。-/
+/-- 相对 `S` 的同伦要求 `S` 中的点在全部时间保持固定，而不只是两个端点映射在 `S` 上相等。
+@isnad1 id=iff.0h5v.s7.fb765f158569 from=translated src=- shape=b3b87f39 vocab=ea991f4f
+-/
 theorem nonempty_homotopyRel_iff_exists_continuous_deformation_fixed_on
     {f g : C(X, Y)} {S : Set X} :
     Nonempty (f.HomotopyRel g S) ↔
@@ -69,7 +73,9 @@ theorem nonempty_homotopyRel_iff_exists_continuous_deformation_fixed_on
       prop' := hfixed
     }⟩
 
-/-- 两个相容同伦的复合使用同一时间坐标，并逐点复合它们的空间取值。-/
+/-- 两个相容同伦的复合使用同一时间坐标，并逐点复合它们的空间取值。
+@isnad1 id=eq.0h10v.s7.54bed1993e8c from=translated src=- shape=dffd0e3e vocab=eda676a2
+-/
 theorem homotopy_comp_apply
     {f₀ f₁ : C(X, Y)} {g₀ g₁ : C(Y, Z)}
     (G : g₀.Homotopy g₁) (F : f₀.Homotopy f₁)
@@ -77,7 +83,9 @@ theorem homotopy_comp_apply
     G.comp F z = G (z.1, F z) := by
   rfl
 
-/-- 对相对 `S` 同伦的每一阶段后复合连续映射，仍得到相对同一个集合 `S` 的同伦。-/
+/-- 对相对 `S` 同伦的每一阶段后复合连续映射，仍得到相对同一个集合 `S` 的同伦。
+@isnad1 id=eq.0h9v.s8.80fca34b33a5 from=translated src=- shape=b4578794 vocab=3990576c
+-/
 theorem homotopyRel_compContinuousMap_apply
     {f₀ f₁ : C(X, Y)} {S : Set X}
     (F : f₀.HomotopyRel f₁ S) (g : C(Y, Z))

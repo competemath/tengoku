@@ -60,20 +60,26 @@ noncomputable def fundamentalGroupProdMulEquiv (x : X) (y : Y) :
       exact (Path.Homotopic.comp_prod_eq_prod_comp gh₁.1 gh₁.2 gh₀.1 gh₀.2).symm
   }
 
-/-- 在指定基点 `(x,y)`，积空间基本群等价把 `(g,h)` 送到逐点配对所得的积道路同伦类。-/
+/-- 在指定基点 `(x,y)`，积空间基本群等价把 `(g,h)` 送到逐点配对所得的积道路同伦类。
+@isnad1 id=eq.0h6v.s8.44b1c3c350a5 from=translated src=- shape=3d4021c4 vocab=d590632f
+-/
 theorem fundamentalGroupProdMulEquiv_apply (x : X) (y : Y)
     (g : FundamentalGroup X x) (h : FundamentalGroup Y y) :
     fundamentalGroupProdMulEquiv x y (g, h) = Path.Homotopic.prod g h := by
   rfl
 
-/-- 投影同态在道路同伦商上的作用就是分别取道路的两个坐标。-/
+/-- 投影同态在道路同伦商上的作用就是分别取道路的两个坐标。
+@isnad1 id=eq.0h5v.s8.662db97ceddf from=translated src=- shape=49a8adb9 vocab=6a38bb5a
+-/
 theorem fundamentalGroupProdProjections_apply (x : X) (y : Y)
     (k : FundamentalGroup (X × Y) (x, y)) :
     fundamentalGroupProdProjections x y k =
       (Path.Homotopic.projLeft k, Path.Homotopic.projRight k) := by
   rfl
 
-/-- 先组成积道路再投影，恢复原来的两个基本群元素。-/
+/-- 先组成积道路再投影，恢复原来的两个基本群元素。
+@isnad1 id=eq.0h4v.s9.6c53290ece7d from=translated src=- shape=44572578 vocab=ee70a6d5
+-/
 theorem fundamentalGroupProdProjections_comp_equiv (x : X) (y : Y) :
     (fundamentalGroupProdProjections x y).comp
       (fundamentalGroupProdMulEquiv x y).toMonoidHom = MonoidHom.id _ := by
@@ -85,7 +91,9 @@ theorem fundamentalGroupProdProjections_comp_equiv (x : X) (y : Y) :
   · change Path.Homotopic.projRight (Path.Homotopic.prod g h) = h
     exact Path.Homotopic.projRight_prod g h
 
-/-- 先投影一个积空间环路类再组成积道路，恢复原环路类。-/
+/-- 先投影一个积空间环路类再组成积道路，恢复原环路类。
+@isnad1 id=eq.0h4v.s9.aef9a0f5bdb2 from=translated src=- shape=21e16fce vocab=ee70a6d5
+-/
 theorem fundamentalGroupProdMulEquiv_comp_projections (x : X) (y : Y) :
     (fundamentalGroupProdMulEquiv x y).toMonoidHom.comp
       (fundamentalGroupProdProjections x y) = MonoidHom.id _ := by

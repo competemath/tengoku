@@ -48,7 +48,9 @@ private theorem nat_pow_succ_mod_self (q k : ℕ) (_hq : 2 ≤ q) :
 > **Entry**: settheory.googology.hereditary-natural-power-rank
 > **一句话**: 底数 `q≥2` 时，`q^k` 的修正遗传编码在 `omegaValue` 下精确等于本库的 `ω^k`。
 > **依赖**: `settheory.googology.hereditary-natural-encoding-strict-order`
-> **mathlib**: `Nat.mul_div_left`、`Nat.mul_mod_left`-/
+> **mathlib**: `Nat.mul_div_left`、`Nat.mul_mod_left`
+@isnad1 id=eq.1h2v.s5.15978fff1098 from=translated src=- shape=25d03952 vocab=e2f89945
+-/
 theorem hereditaryNatEncode_power_omegaValue (q : ℕ) (hq : 2 ≤ q) :
     ∀ k : ℕ,
       (hereditaryNatEncode q hq (q ^ k)).omegaValue =
@@ -68,7 +70,9 @@ theorem hereditaryNatEncode_power_omegaValue (q : ℕ) (hq : 2 ≤ q) :
         ih]
       simpa using omega_mul_ordinalPow_omega_nat k
 
-/-- Every encoded natural below `q^k` has ordinal value strictly below the exact rank `ω^k`.-/
+/-- Every encoded natural below `q^k` has ordinal value strictly below the exact rank `ω^k`.
+@isnad1 id=lt.2h3v.s5.7263131c1b8c from=translated src=- shape=dc32ec4f vocab=c07ab1ed
+-/
 theorem hereditaryNatEncode_lt_power_omegaValue {q k n : ℕ} (hq : 2 ≤ q)
     (hn : n < q ^ k) :
     (hereditaryNatEncode q hq n).omegaValue <

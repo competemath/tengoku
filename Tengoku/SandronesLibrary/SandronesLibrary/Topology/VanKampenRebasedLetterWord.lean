@@ -126,7 +126,9 @@ private def PathConcatAlignedSquareSubdivision.leftBoundaryConcatDyadicSegment
     (by rw [pathConcatSegmentMeshPoint_last,
       Path.concat_breakpoint_apply vertices segments i.succ])
 
-/-- 真实左边界的第 `i` 个完整 dyadic 网格块，同伦于原始输入 `segments i`。-/
+/-- 真实左边界的第 `i` 个完整 dyadic 网格块，同伦于原始输入 `segments i`。
+@isnad1 id=homotopi.0h10v.s7.4fc9da34ee77 from=translated src=- shape=f7681454 vocab=02d7b9e3
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundaryConcatDyadicSegment_homotopic
     {Y : Type*} [TopologicalSpace Y] {n : ℕ}
     (vertices : Fin (n + 1) → Y)
@@ -176,7 +178,9 @@ theorem PathConcatAlignedSquareSubdivision.leftBoundaryConcatDyadicSegment_homot
     rw [hright]
     exact Path.concatDyadicSegment_homotopic vertices segments i)
 
-/-- 对反序列表取数组后做上述左乘 fold，恢复原列表映射后的乘积。-/
+/-- 对反序列表取数组后做上述左乘 fold，恢复原列表映射后的乘积。
+@isnad1 id=eq.0h4v.s6.9c20e8ed823a from=translated src=- shape=3e7f5cd1 vocab=8e1a4fe1
+-/
 theorem reverseDfoldl_reverse_get_eq_map_prod
     {G : Type*} [Group G] (value : α → G) (items : List α) :
     Fin.dfoldl items.reverse.length (fun _ => G)
@@ -191,7 +195,9 @@ theorem reverseDfoldl_reverse_get_eq_map_prod
   simp
 
 /-- The recursive interpretation of a Pushout letter word is the ordinary list
-product of the injected letter values.-/
+product of the injected letter values.
+@isnad1 id=eq.2h5v.s12.7a3eea0110ca from=translated src=- shape=6eefaeff vocab=9b61e4c7
+-/
 theorem binaryVanKampenLetterWord_eq_map_prod
     {U V : Set X} {x₀ : X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (letters : List (BinaryVanKampenLetter U V hxU hxV)) :
@@ -239,7 +245,9 @@ private theorem PathConcatAlignedSquareSubdivision.reverseLeftBoundaryLetterBloc
 
 /-- The completed two-level telescope: the actual framed products of all
 left-boundary blocks differ from the original Pushout word only by one global
-start/end rebase.-/
+start/end rebase.
+@isnad1 id=other.6h7v.s9.fd3cc56b2463 from=translated src=- shape=da9a9992 vocab=c79b8f9e
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundaryFramedBlocks_eq_rebaseWord
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))
@@ -269,7 +277,9 @@ theorem PathConcatAlignedSquareSubdivision.leftBoundaryFramedBlocks_eq_rebaseWor
     hxU hxV hUV hU hV letters Fhom]
 
 /-- The flattened actual fine-edge word on the complete left boundary is the
-original Pushout word with only one global start/end change of frame.-/
+original Pushout word with only one global start/end change of frame.
+@isnad1 id=other.6h7v.s9.4eca5d2e0b73 from=translated src=- shape=da9a9992 vocab=db9dd9a3
+-/
 theorem PathConcatAlignedSquareSubdivision.leftBoundaryAllFramedCellEdges_eq_rebaseWord
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))
@@ -299,7 +309,9 @@ theorem PathConcatAlignedSquareSubdivision.leftBoundaryAllFramedCellEdges_eq_reb
     hxU hxV hUV hU hV letters Fhom hn
 
 /-- The existing full-grid cancellation theorem now closes the complete
-left-boundary telescope: the globally rebased input Pushout word is one.-/
+left-boundary telescope: the globally rebased input Pushout word is one.
+@isnad1 id=other.6h7v.s9.13531676d0d5 from=translated src=- shape=787a8b1d vocab=7e08d2bb
+-/
 theorem PathConcatAlignedSquareSubdivision.rebasedLetterWord_eq_one
     {x₀ : X} {U V : Set X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUV : IsPathConnected (U ∩ V))

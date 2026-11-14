@@ -40,7 +40,9 @@ private theorem binaryVanKampenCanonicalMap_letterWord_eq_prod
 
 /-- `Path.concat` 环路的基本群类严格等于原 Pushout 字母词的规范同态像。
 
-> **Entry**: topology.fundamental-group.van-kampen-theorem-/
+> **Entry**: topology.fundamental-group.van-kampen-theorem
+@isnad1 id=eq.2h5v.s9.6b0c65b971e3 from=translated src=- shape=413e308a vocab=92d2e8ae
+-/
 theorem binaryVanKampenCanonicalMap_letterWord_eq_concatLoop
     {U V : Set X} {x₀ : X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (letters : List (BinaryVanKampenLetter U V hxU hxV)) :
@@ -99,7 +101,9 @@ theorem binaryVanKampenCanonicalMap_letterWord_eq_concatLoop
 /-- 每个 kernel 元素都有精确恢复该元素的非空字母词候选，以及拼接环路到常值道路的
 显式同伦。空字母词对应的元素已经是 `1`，后续 VK3 证明可单独立即结束。
 
-> **Entry**: topology.fundamental-group.van-kampen-theorem-/
+> **Entry**: topology.fundamental-group.van-kampen-theorem
+@isnad1 id=ex.3h5v.s9.e41e81e38a1e from=translated src=- shape=4a74cf15 vocab=095b0b93
+-/
 theorem exists_binaryVanKampenKernelConcatLoopHomotopy
     (U V : Set X) {x₀ : X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (a : binaryVanKampenPushout U V hxU hxV)
@@ -117,7 +121,9 @@ theorem exists_binaryVanKampenKernelConcatLoopHomotopy
 /-- 二元 van Kampen 规范同态 kernel 中的每个元素都是单位元。空字母词直接处理；非空词通过其
 零伦的对齐方格细分归约到前序 kernel 字母词定理。
 
-> **Entry**: topology.fundamental-group.van-kampen-theorem-/
+> **Entry**: topology.fundamental-group.van-kampen-theorem
+@isnad1 id=eq.9h5v.s9.3ebe380612da from=translated src=- shape=64ec2677 vocab=ccc837d7
+-/
 theorem binaryVanKampenCanonicalMap_eq_one_imp
     {x₀ : X} (U V : Set X) (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUopen : IsOpen U) (hVopen : IsOpen V) (hcover : U ∪ V = Set.univ)
@@ -148,7 +154,9 @@ theorem binaryVanKampenCanonicalMap_eq_one_imp
 
 /-- 二元 Seifert--van Kampen 定理的单射部分。
 
-> **Entry**: topology.fundamental-group.van-kampen-theorem-/
+> **Entry**: topology.fundamental-group.van-kampen-theorem
+@isnad1 id=injectiv.8h4v.s9.ba582f715fc3 from=translated src=- shape=4e3bd7f6 vocab=a1ab293a
+-/
 theorem injective_binaryVanKampenCanonicalMap
     {x₀ : X} (U V : Set X) (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUopen : IsOpen U) (hVopen : IsOpen V) (hcover : U ∪ V = Set.univ)
@@ -181,7 +189,9 @@ noncomputable def binaryVanKampenCanonicalEquiv
 
 /-- 二元 van Kampen 等价的正向同态正是由两个覆盖成员包含到环境空间所诱导的规范映射。
 
-> **Entry**: topology.fundamental-group.van-kampen-theorem-/
+> **Entry**: topology.fundamental-group.van-kampen-theorem
+@isnad1 id=eq.8h4v.s9.483ae5941b98 from=translated src=- shape=71e814a8 vocab=0ccf87f2
+-/
 theorem binaryVanKampenCanonicalEquiv_toMonoidHom
     {x₀ : X} (U V : Set X) (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUopen : IsOpen U) (hVopen : IsOpen V) (hcover : U ∪ V = Set.univ)
@@ -193,7 +203,9 @@ theorem binaryVanKampenCanonicalEquiv_toMonoidHom
 
 /-- 计算二元 van Kampen 等价的正向作用，等同于计算其规范映射。
 
-> **Entry**: topology.fundamental-group.van-kampen-theorem-/
+> **Entry**: topology.fundamental-group.van-kampen-theorem
+@isnad1 id=eq.8h5v.s10.23b5f0306590 from=translated src=- shape=e3ee8d8a vocab=702259ce
+-/
 @[simp] theorem binaryVanKampenCanonicalEquiv_apply
     {x₀ : X} (U V : Set X) (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUopen : IsOpen U) (hVopen : IsOpen V) (hcover : U ∪ V = Set.univ)
@@ -206,7 +218,9 @@ theorem binaryVanKampenCanonicalEquiv_toMonoidHom
 
 /-- 对来自任一覆盖成员的生成元，二元 van Kampen 等价等于该包含映射诱导的基本群同态。
 
-> **Entry**: topology.fundamental-group.van-kampen-theorem-/
+> **Entry**: topology.fundamental-group.van-kampen-theorem
+@isnad1 id=eq.8h6v.s11.6eaac7088192 from=translated src=- shape=00f079ac vocab=11a1e073
+-/
 @[simp] theorem binaryVanKampenCanonicalEquiv_of
     {x₀ : X} (U V : Set X) (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (hUopen : IsOpen U) (hVopen : IsOpen V) (hcover : U ∪ V = Set.univ)

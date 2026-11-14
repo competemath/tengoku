@@ -33,13 +33,17 @@ def natPairingCode : PairingCode where
     intro x y
     exact congrArg Prod.snd (Nat.unpair_pair x y)
 
-/-- 具体配对的两个投影同时恢复原有序对。-/
+/-- 具体配对的两个投影同时恢复原有序对。
+@isnad1 id=eq.0h2v.s4.9e22f243f469 from=translated src=- shape=35e3a13f vocab=ab62b9c5
+-/
 theorem natPairingCode_recover (x y : ℕ) :
     (natPairingCode.left (natPairingCode.pair x y),
       natPairingCode.right (natPairingCode.pair x y)) = (x, y) := by
   exact natPairingCode.recover x y
 
-/-- 具体配对函数在自然数有序对上没有碰撞。-/
+/-- 具体配对函数在自然数有序对上没有碰撞。
+@isnad1 id=injectiv.0h0v.s4.c62a14c80440 from=translated src=- shape=3a8a24d5 vocab=bbe152b7
+-/
 theorem natPairingCode_injective :
     Function.Injective (fun p : ℕ × ℕ => natPairingCode.pair p.1 p.2) := by
   exact natPairingCode.pair_injective
@@ -48,7 +52,9 @@ theorem natPairingCode_injective :
 > **Entry**: settheory.computability.concrete-pairing-code
 > **一句话**: `Nat.pair` 与 `Nat.unpair` 给出一个可计算、可恢复且无碰撞的自然数有序对编码。
 > **依赖**: `settheory.computability.pairing-code`
-> **mathlib**: `Nat.pair`, `Nat.unpair`, `Nat.unpair_pair`-/
+> **mathlib**: `Nat.pair`, `Nat.unpair`, `Nat.unpair_pair`
+@isnad1 id=and.0h2v.s4.02e8e4ac8c88 from=translated src=- shape=9dfb00da vocab=94824c13
+-/
 theorem natPairingCode_specification (x y : ℕ) :
     natPairingCode.left (natPairingCode.pair x y) = x ∧
       natPairingCode.right (natPairingCode.pair x y) = y := by

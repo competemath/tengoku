@@ -36,7 +36,9 @@ namespace SandronesLibrary.NumberTheory.Algebraic
 承载，右端把它的两个组成条件写成对读者可见的命题。`CharZero` 由假设给出，`Algebra ℚ K`
 是特征零域上唯一的 `ℚ`-代数结构。
 
-> **Entry**: number-theory.algebraic.number-field-/
+> **Entry**: number-theory.algebraic.number-field
+@isnad1 id=iff.0h1v.s5.4b68a032ecca from=translated src=- shape=1ee15bc4 vocab=703ddfcf
+-/
 theorem numberField_iff (K : Type*) [Field K] [CharZero K] :
     NumberField K ↔ FiniteDimensional ℚ K :=
   ⟨fun h => h.to_finiteDimensional, fun h => @NumberField.of_module_finite ℚ K _ _ _ _ h⟩
@@ -44,7 +46,9 @@ theorem numberField_iff (K : Type*) [Field K] [CharZero K] :
 /-- **数域是有限维 `ℚ`-向量空间。** 这是数域定义的一半，也是「每个数域都是有限次扩张」
 的直接形式。
 
-> **Entry**: number-theory.algebraic.number-field-/
+> **Entry**: number-theory.algebraic.number-field
+@isnad1 id=finitedi.0h1v.s5.248d049ffd01 from=translated src=- shape=ac29a6f1 vocab=82a51fc0
+-/
 theorem numberField_finiteDimensional (K : Type*) [Field K] [NumberField K] :
     FiniteDimensional ℚ K :=
   inferInstance
@@ -52,7 +56,9 @@ theorem numberField_finiteDimensional (K : Type*) [Field K] [NumberField K] :
 /-- **数域中每个元素都是 `ℚ` 上的代数元。** 有限维蕴含代数性，因此数域中任意元素都满足一个
 非零有理系数多项式方程；这是后面代数整数与极小多项式讨论的入口。
 
-> **Entry**: number-theory.algebraic.number-field-/
+> **Entry**: number-theory.algebraic.number-field
+@isnad1 id=isalgebr.0h1v.s4.e9cc55618419 from=translated src=- shape=ac29a6f1 vocab=2567b0ac
+-/
 theorem numberField_isAlgebraic (K : Type*) [Field K] [NumberField K] :
     Algebra.IsAlgebraic ℚ K :=
   NumberField.isAlgebraic K
@@ -60,7 +66,9 @@ theorem numberField_isAlgebraic (K : Type*) [Field K] [NumberField K] :
 /-- **数域的有限扩张仍是数域。** 若 `L` 是数域 `K` 上的有限扩张，则 `L` 也是数域：由塔性质，
 `L` 在 `ℚ` 上有限维，且特征零。教材里「数域的任何有限扩张还是数域」即此。
 
-> **Entry**: number-theory.algebraic.number-field-/
+> **Entry**: number-theory.algebraic.number-field
+@isnad1 id=numberfi.0h2v.s6.0ae8eb5ab11f from=translated src=- shape=d3cade44 vocab=2a3d7819
+-/
 theorem numberField_of_module_finite (K L : Type*) [Field K] [Field L] [NumberField K]
     [Algebra K L] [Module.Finite K L] : NumberField L :=
   NumberField.of_module_finite K L
@@ -68,7 +76,9 @@ theorem numberField_of_module_finite (K L : Type*) [Field K] [Field L] [NumberFi
 /-- **数域的子域仍是数域。** 子域继承特征零；又因为 `E ⊆ K` 且 `K` 在 `ℚ` 上有限维，
 `E` 也在 `ℚ` 上有限维。
 
-> **Entry**: number-theory.algebraic.number-field-/
+> **Entry**: number-theory.algebraic.number-field
+@isnad1 id=numberfi.0h2v.s5.a9aeddcdb335 from=translated src=- shape=2737fe64 vocab=142c66fd
+-/
 theorem numberField_of_subfield (K : Type*) [Field K] [NumberField K] (E : Subfield K) :
     NumberField E :=
   NumberField.of_subfield E
@@ -80,7 +90,9 @@ theorem numberField_of_subfield (K : Type*) [Field K] [NumberField K] (E : Subfi
 这正是教材「有限可分扩张都是单扩张」在数域上的形式：特征零自动给出可分性。有限性假设由
 `NumberField` 提供。
 
-> **Entry**: number-theory.algebraic.number-field-/
+> **Entry**: number-theory.algebraic.number-field
+@isnad1 id=ex.0h1v.s7.7dcbb544e6b1 from=translated src=- shape=0e01d74d vocab=bf458f7e
+-/
 theorem numberField_exists_primitive_element (K : Type*) [Field K] [NumberField K] :
     ∃ α : K, IntermediateField.adjoin ℚ ({α} : Set K) = ⊤ :=
   Field.exists_primitive_element ℚ K

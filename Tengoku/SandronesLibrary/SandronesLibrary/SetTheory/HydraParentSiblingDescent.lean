@@ -50,7 +50,9 @@ def ParentRightmostHeadReplicatedCut (stage : Nat)
       (rootSiblings ++ List.replicate (stage + 1) (.node parentSiblings))
 
 /-- The specified two-prefix transformation is exactly `chop` at the path
-formed by the lengths of the two retained prefixes.-/
+formed by the lengths of the two retained prefixes.
+@isnad1 id=step.1h5v.s4.aa5708186472 from=translated src=- shape=85aeb539 vocab=657b4de0
+-/
 theorem parentRightmostHeadReplicatedCut_isStep {stage : Nat}
     {rootSiblings parentSiblings : List Hydra} {before after : Hydra}
     (cut : ParentRightmostHeadReplicatedCut stage rootSiblings parentSiblings

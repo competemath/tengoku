@@ -36,7 +36,9 @@ variable {X : Type*} [TopologicalSpace X]
 `beforeR * shared⁻¹ * afterR`，则粘合后的外边界顺序是
 `beforeR * afterL * beforeL * afterR`。这个次序不能交换。
 
-> **Entry**: topology.fundamental-group.van-kampen-edge-gauge-/
+> **Entry**: topology.fundamental-group.van-kampen-edge-gauge
+@isnad1 id=eq.2h6v.s7.53d2c56bdb5f from=translated src=- shape=2ad9e77c vocab=9f72dee7
+-/
 theorem twoCellBoundary_glue
     {G : Type*} [Group G]
     (beforeL shared afterL beforeR afterR : G)
@@ -57,6 +59,9 @@ theorem twoCellBoundary_glue
 def rebaseEdge {G : Type*} [Group G] (startChange endChange edge : G) : G :=
   endChange⁻¹ * edge * startChange
 
+/--
+@isnad1 id=eq.0h2v.s5.83c8320ddfce from=translated src=- shape=d7d691ff vocab=b450d500
+-/
 @[simp] theorem rebaseEdge_one_changes
     {G : Type*} [Group G] (edge : G) :
     rebaseEdge 1 1 edge = edge := by
@@ -72,7 +77,9 @@ private theorem rebaseEdge_mul
   simp [rebaseEdge, mul_assoc]
 
 /-- 给定边元素和左端 frame，把右端 frame 取为 `edge * startChange`，
-则该边在两端 frames 下严格规范化为单位元。-/
+则该边在两端 frames 下严格规范化为单位元。
+@isnad1 id=eq.0h3v.s5.5a4c2e11f074 from=translated src=- shape=45cd9b2d vocab=12a71d4f
+-/
 @[simp] theorem rebaseEdge_mul_start_eq_one
     {G : Type*} [Group G] (startChange edge : G) :
     rebaseEdge startChange (edge * startChange) edge = 1 := by
@@ -94,7 +101,9 @@ private theorem rebaseEdge_cycle_four
       t₀⁻¹ * (e₃ * e₂ * e₁ * e₀) * t₀ := by
   simp [rebaseEdge, mul_assoc]
 
-/-- 两套 connector 比较给出的边关系，等价于由两端 transition 控制的 `rebaseEdge`。-/
+/-- 两套 connector 比较给出的边关系，等价于由两端 transition 控制的 `rebaseEdge`。
+@isnad1 id=eq.3h9v.s7.4aba33a4a5e5 from=translated src=- shape=ce0e9ce8 vocab=4a305f90
+-/
 theorem edgeElements_eq_rebaseEdge_of_change_relations
     {G : Type*} [Group G] (endL startL commonL cellL : G)
     (endR startR commonR cellR : G)
@@ -376,6 +385,9 @@ noncomputable def BinaryOpenCoverSquareSubdivision.horizontalInternalEdgeTransit
   else
     D.horizontalSwitchEdgeTransitions hxU hxV hUV hU hV i k j hshared hlabel
 
+/--
+@isnad1 id=other.6h9v.s12.738e8f73ae42 from=translated src=- shape=992dadbb vocab=bae16ec7
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalInternalEdge_relation
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -478,6 +490,9 @@ noncomputable def BinaryOpenCoverSquareSubdivision.verticalInternalEdgeTransitio
   else
     D.verticalSwitchEdgeTransitions hxU hxV hUV hU hV i j l hshared hlabel
 
+/--
+@isnad1 id=other.6h9v.s12.36f57d2715ba from=translated src=- shape=70432a35 vocab=a1c7b148
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalInternalEdge_relation
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -507,7 +522,9 @@ def reverseEdgeChainProduct {G : Type*} [Group G] : List (G × G) → G
   | [] => 1
   | (_, edge) :: rest => reverseEdgeChainProduct rest * edge
 
-/-- 反序边链乘积就是取第二坐标后反转列表的通常乘积。-/
+/-- 反序边链乘积就是取第二坐标后反转列表的通常乘积。
+@isnad1 id=eq.0h2v.s5.18a3816036c7 from=translated src=- shape=ef5699c7 vocab=9931ad82
+-/
 theorem reverseEdgeChainProduct_eq_reverse_map_snd_prod
     {G : Type*} [Group G] (chain : List (G × G)) :
     reverseEdgeChainProduct chain = (chain.map Prod.snd).reverse.prod := by
@@ -520,7 +537,9 @@ theorem reverseEdgeChainProduct_eq_reverse_map_snd_prod
       rw [ih]
 
 /-- Reverse edge products turn concatenation into multiplication in the opposite
-block order.-/
+block order.
+@isnad1 id=eq.0h3v.s6.3237f7feed00 from=translated src=- shape=967c79bf vocab=75e5bc7e
+-/
 theorem reverseEdgeChainProduct_append
     {G : Type*} [Group G] (first second : List (G × G)) :
     reverseEdgeChainProduct (first ++ second) =
@@ -552,12 +571,17 @@ private theorem edgeChainEnd_ofFn_succ
 def finLastOfPos (n : ℕ) (hn : 0 < n) : Fin n :=
   ⟨n - 1, Nat.sub_lt hn Nat.zero_lt_one⟩
 
+/--
+@isnad1 id=eq.1h1v.s5.81c37c4e48b2 from=translated src=- shape=d96e6285 vocab=bf59249d
+-/
 @[simp] theorem finLastOfPos_succ (n : ℕ) (hn : 0 < n + 1) :
     finLastOfPos (n + 1) hn = Fin.last n := by
   apply Fin.ext
   simp [finLastOfPos]
 
-/-- 任意正长度 `Fin` 边链的最终 transition，是其规范最后一项保存的终点 transition。-/
+/-- 任意正长度 `Fin` 边链的最终 transition，是其规范最后一项保存的终点 transition。
+@isnad1 id=eq.1h5v.s5.e527574eeee7 from=translated src=- shape=95f1f711 vocab=700f4ff4
+-/
 theorem edgeChainEnd_ofFn_of_pos
     {G : Type*} (n : ℕ) (hn : 0 < n) (startChange : G)
     (endChange edge : Fin n → G) :
@@ -576,7 +600,9 @@ def rebasedEdgeChainProduct {G : Type*} [Group G] (startChange : G) :
       rebasedEdgeChainProduct endChange rest *
         rebaseEdge startChange endChange edge
 
-/-- 任意有限边链的所有中间顶点 transition 严格望远镜消去。-/
+/-- 任意有限边链的所有中间顶点 transition 严格望远镜消去。
+@isnad1 id=eq.0h3v.s4.b32d6f2d4286 from=translated src=- shape=c4ef42cf vocab=167d709f
+-/
 theorem rebasedEdgeChainProduct_eq_rebaseEdge
     {G : Type*} [Group G] (startChange : G) (chain : List (G × G)) :
     rebasedEdgeChainProduct startChange chain =
@@ -592,7 +618,9 @@ theorem rebasedEdgeChainProduct_eq_rebaseEdge
       exact rebaseEdge_mul startChange endChange
         (edgeChainEnd endChange rest) edge (reverseEdgeChainProduct rest)
 
-/-- 闭合有限边链换连接后，只剩所选基点 transition 的共轭。-/
+/-- 闭合有限边链换连接后，只剩所选基点 transition 的共轭。
+@isnad1 id=eq.1h3v.s6.7d12eebe6cd3 from=translated src=- shape=35f938b9 vocab=2b72e92a
+-/
 theorem rebasedEdgeChainProduct_eq_conj_of_end_eq
     {G : Type*} [Group G] (startChange : G) (chain : List (G × G))
     (hend : edgeChainEnd startChange chain = startChange) :
@@ -630,7 +658,9 @@ private theorem rebasedEdgeChainProduct_ofFn_eq_reverseEdgeChainProduct
         (hadj := fun k => hadj k.succ)]
 
 /-- `rebasedEdgeChainProduct_ofFn_eq_reverseEdgeChainProduct` 的任意正长度版本；相邻性以两条
-`Fin n` 边的共享顶点等式表述，避免调用者先把依赖长度重写成后继数。-/
+`Fin n` 边的共享顶点等式表述，避免调用者先把依赖长度重写成后继数。
+@isnad1 id=eq.2h5v.s7.ffe8ed0bee6a from=translated src=- shape=c261ee2f vocab=a608ba3a
+-/
 theorem rebasedEdgeChainProduct_ofFn_eq_reverseEdgeChainProduct_of_pos
     {G : Type*} [Group G] (n : ℕ) (hn : 0 < n)
     (startFrame endFrame edge : Fin n → G)
@@ -648,7 +678,9 @@ theorem rebasedEdgeChainProduct_ofFn_eq_reverseEdgeChainProduct_of_pos
         startFrame endFrame edge
         (fun k => hadj k.castSucc k.succ (Fin.succ_castSucc k))
 
-/-- `Fin.dfoldl` 每次把新项乘在左侧，因此结果是数组按索引反序后的列表乘积。-/
+/-- `Fin.dfoldl` 每次把新项乘在左侧，因此结果是数组按索引反序后的列表乘积。
+@isnad1 id=eq.0h3v.s6.e4e1f3ec7f91 from=translated src=- shape=44d48406 vocab=d2ece296
+-/
 theorem reverseDfoldl_eq_reverse_ofFn_prod
     {G : Type*} [Group G] : ∀ {n : ℕ} (a : Fin n → G),
     Fin.dfoldl n (fun _ => G) (fun i acc => a i * acc) 1 =
@@ -690,7 +722,9 @@ private theorem rebaseCellBoundary_eq_one
   rw [rebaseCellBoundary, hcell]
   simp
 
-/-- 任一网格单格的 Pushout 四边关系可按四个角的任意 transition 同时换连接。-/
+/-- 任一网格单格的 Pushout 四边关系可按四个角的任意 transition 同时换连接。
+@isnad1 id=eq.4h12v.s13.213e68c867ec from=translated src=- shape=3c1c0362 vocab=c231d4dc
+-/
 theorem BinaryOpenCoverSquareSubdivision.gridCellPushoutEdgeWord_rebase_eq_one
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -723,7 +757,9 @@ private theorem rebaseEdge_rebase
       rebaseEdge (innerStart * outerStart) (innerEnd * outerEnd) edge := by
   simp [rebaseEdge, mul_assoc]
 
-/-- 一条公共边关系在条带当前 connector frame 下继续成立，并给出下一格左侧顶点的合成 transition。-/
+/-- 一条公共边关系在条带当前 connector frame 下继续成立，并给出下一格左侧顶点的合成 transition。
+@isnad1 id=eq.1h7v.s6.a027453d6ced from=translated src=- shape=15f80e01 vocab=12a71d4f
+-/
 theorem rebaseEdge_relation_in_frame
     {G : Type*} [Group G]
     (outerStart outerEnd innerStart innerEnd leftEdge rightEdge : G)
@@ -732,7 +768,9 @@ theorem rebaseEdge_relation_in_frame
       rebaseEdge (innerStart * outerStart) (innerEnd * outerEnd) rightEdge := by
   rw [h, rebaseEdge_rebase]
 
-/-- 水平内部边在任意已有条带 frame 下的传播公式。-/
+/-- 水平内部边在任意已有条带 frame 下的传播公式。
+@isnad1 id=other.6h11v.s12.cf9d2298af4b from=translated src=- shape=16f85d65 vocab=6505c24c
+-/
 theorem BinaryOpenCoverSquareSubdivision.horizontalInternalEdge_relation_in_frame
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)
@@ -753,7 +791,9 @@ theorem BinaryOpenCoverSquareSubdivision.horizontalInternalEdge_relation_in_fram
   exact D.horizontalInternalEdge_relation hxU hxV hUV hU hV
     i k j hshared
 
-/-- 竖直内部边在任意已有条带 frame 下的传播公式。-/
+/-- 竖直内部边在任意已有条带 frame 下的传播公式。
+@isnad1 id=other.6h11v.s12.487c3ec18900 from=translated src=- shape=fc0bb4ef vocab=ec8259d5
+-/
 theorem BinaryOpenCoverSquareSubdivision.verticalInternalEdge_relation_in_frame
     {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}
     (D : BinaryOpenCoverSquareSubdivision H U V)

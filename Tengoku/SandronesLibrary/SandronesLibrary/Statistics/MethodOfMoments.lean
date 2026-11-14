@@ -93,7 +93,9 @@ def IsMethodOfMomentsEstimator (P : Kernel Θ 𝓧) (T : 𝓧 → 𝓨) (S : �
     (θhat : 𝓧 → Θ) : Prop :=
   Measurable θhat ∧ ∀ x, momentMap P T (θhat x) = S x
 
-/-- 矩估计的定义展开。-/
+/-- 矩估计的定义展开。
+@isnad1 id=iff.0h7v.s6.2dcaa29c8aa1 from=translated src=- shape=8fc501a7 vocab=93c8cf2e
+-/
 theorem isMethodOfMomentsEstimator_iff (P : Kernel Θ 𝓧) (T : 𝓧 → 𝓨) (S : 𝓧 → 𝓨)
     (θhat : 𝓧 → Θ) :
     IsMethodOfMomentsEstimator P T S θhat ↔
@@ -103,7 +105,9 @@ theorem isMethodOfMomentsEstimator_iff (P : Kernel Θ 𝓧) (T : 𝓧 → 𝓨) 
 /-- **模型族可测性**：矩映射随参数可测。
 
 这是 kernel 参数可测性经积分后的结论，只要求 `T` 强可测（不需要可积）。它是把"矩函数"
-当作参数空间上可测对象的依据。-/
+当作参数空间上可测对象的依据。
+@isnad1 id=measurab.1h5v.s6.6a4ae6121c81 from=translated src=- shape=5e8453e6 vocab=cdf5c8cb
+-/
 theorem momentMap_measurable [MeasurableSpace 𝓨] [BorelSpace 𝓨]
     (P : Kernel Θ 𝓧) (T : 𝓧 → 𝓨) (hT : StronglyMeasurable T) :
     Measurable (momentMap P T) := by
@@ -112,14 +116,18 @@ theorem momentMap_measurable [MeasurableSpace 𝓨] [BorelSpace 𝓨]
 
 /-- **矩存在性**下的加性：逐参数可积时，矩映射对统计量的加法线性。
 
-可积性是真实假设：没有它 Bochner 积分可能退化为 `0`，右端的分解不成立。-/
+可积性是真实假设：没有它 Bochner 积分可能退化为 `0`，右端的分解不成立。
+@isnad1 id=eq.2h7v.s7.3189df317813 from=translated src=- shape=b1f51c50 vocab=2eefbe3d
+-/
 theorem momentMap_add (P : Kernel Θ 𝓧) (T T' : 𝓧 → 𝓨) (θ : Θ)
     (hT : Integrable T (P θ)) (hT' : Integrable T' (P θ)) :
     momentMap P (T + T') θ = momentMap P T θ + momentMap P T' θ := by
   simpa [momentMap] using integral_add hT hT'
 
 /-- 概率模型下常数统计量的矩就是该常数。这是矩存在性最简的消费者：模型总质量为一是它成立
-的唯一原因，证明直接引用 `statistics.model.definition` 的 `statisticalModel_measure_univ`。-/
+的唯一原因，证明直接引用 `statistics.model.definition` 的 `statisticalModel_measure_univ`。
+@isnad1 id=eq.0h6v.s6.ddb28bcff65c from=translated src=- shape=39b072ed vocab=dc3b393e
+-/
 theorem momentMap_const (P : Kernel Θ 𝓧) [IsMarkovKernel P] [CompleteSpace 𝓨]
     (c : 𝓨) (θ : Θ) :
     momentMap P (fun _ => c) θ = c := by
@@ -128,7 +136,9 @@ theorem momentMap_const (P : Kernel Θ 𝓧) [IsMarkovKernel P] [CompleteSpace �
 
 /-- 确定性观测模型 `P = Kernel.deterministic g hg` 下，总体矩退化为 `T (g θ)`。
 
-这把矩估计接到 `statistics.model.definition` 的确定性模型桥上：确定性参数族无需另设载体。-/
+这把矩估计接到 `statistics.model.definition` 的确定性模型桥上：确定性参数族无需另设载体。
+@isnad1 id=eq.2h6v.s6.2d7f9e712441 from=translated src=- shape=146dc991 vocab=a8c9fc94
+-/
 theorem momentMap_deterministic {g : Θ → 𝓧} (hg : Measurable g) (T : 𝓧 → 𝓨)
     [CompleteSpace 𝓨] (hT : StronglyMeasurable T) (θ : Θ) :
     momentMap (Kernel.deterministic g hg) T θ = T (g θ) := by
@@ -140,12 +150,16 @@ theorem momentMap_deterministic {g : Θ → 𝓧} (hg : Measurable g) (T : 𝓧 
 def MomentIdentifiable (P : Kernel Θ 𝓧) (T : 𝓧 → 𝓨) : Prop :=
   Function.Injective (momentMap P T)
 
-/-- 识别性的定义展开。-/
+/-- 识别性的定义展开。
+@isnad1 id=iff.0h5v.s6.5e5dd22cc669 from=translated src=- shape=2f29d7e4 vocab=e8fdd9cd
+-/
 theorem momentIdentifiable_iff (P : Kernel Θ 𝓧) (T : 𝓧 → 𝓨) :
     MomentIdentifiable P T ↔ ∀ θ θ', momentMap P T θ = momentMap P T θ' → θ = θ' :=
   Iff.rfl
 
-/-- 识别性给出矩估计的唯一性：同一个样本矩统计量至多对应一个矩估计。-/
+/-- 识别性给出矩估计的唯一性：同一个样本矩统计量至多对应一个矩估计。
+@isnad1 id=eq.3h8v.s6.8718a56168cc from=translated src=- shape=e0a78224 vocab=995335e3
+-/
 theorem methodOfMomentsEstimator_unique (P : Kernel Θ 𝓧) (T : 𝓧 → 𝓨) (S : 𝓧 → 𝓨)
     (h : MomentIdentifiable P T) {θhat θhat' : 𝓧 → Θ}
     (h1 : IsMethodOfMomentsEstimator P T S θhat)
@@ -155,7 +169,9 @@ theorem methodOfMomentsEstimator_unique (P : Kernel Θ 𝓧) (T : 𝓧 → 𝓨)
   exact h (by rw [h1.2 x, h2.2 x])
 
 /-- 样本矩恰好等于真值处总体矩时，识别性迫使矩估计等于真值。这是矩估计"精确识别"的极限
-情形，也是 `methodOfMomentsEstimator_unique` 的直接消费者。-/
+情形，也是 `methodOfMomentsEstimator_unique` 的直接消费者。
+@isnad1 id=eq.3h8v.s6.d39841a87877 from=translated src=- shape=403391b9 vocab=4b774cf9
+-/
 theorem methodOfMomentsEstimator_eq_const_of_sample_moment_eq (P : Kernel Θ 𝓧) (T : 𝓧 → 𝓨)
     (S : 𝓧 → 𝓨) (θhat : 𝓧 → Θ) (θ₀ : Θ) (h : MomentIdentifiable P T)
     (h1 : IsMethodOfMomentsEstimator P T S θhat)
@@ -166,7 +182,9 @@ theorem methodOfMomentsEstimator_eq_const_of_sample_moment_eq (P : Kernel Θ �
 
 /-- 矩估计经 Dirac kernel 给出合法的确定性估计量，接入 `statistics.estimator.definition`
 的随机化估计量接口。证明直接复用该条目的 `deterministicEstimator_isMarkov`，只使用定义中的
-可测性分量；本引理不产生新的数学内容，职责是接口桥。-/
+可测性分量；本引理不产生新的数学内容，职责是接口桥。
+@isnad1 id=ismarkov.1h7v.s6.a13bdc99a0ec from=translated src=- shape=b12cd4ad vocab=829be57d
+-/
 theorem methodOfMomentsEstimator_isMarkov (P : Kernel Θ 𝓧) (T : 𝓧 → 𝓨) (S : 𝓧 → 𝓨)
     (θhat : 𝓧 → Θ) (h : IsMethodOfMomentsEstimator P T S θhat) :
     IsMarkovKernel (Kernel.deterministic θhat h.1) :=
@@ -194,7 +212,9 @@ def MomentEquationWellPosedAt (P : Kernel Θ 𝓧) (T : 𝓧 → 𝓨) (θ₀ : 
 大数定律（`hS`）与矩方程适定性（`hwp`）都是显式前提：本定理只做"矩收敛 ⟹ 参数收敛"这一步
 拓扑转移，不证明样本矩本身收敛。证明是测度单调性加夹逼：由 `hwp` 的逆连续性，事件
 `{ε ≤ edist (θhat n x) θ₀}` 被事件 `{δ ≤ edist (S n x) (momentMap P T θ₀)}` 包含，后者的
-概率按 `hS` 趋于零。-/
+概率按 `hS` 趋于零。
+@isnad1 id=tendstoi.3h8v.s7.715f24138b5c from=translated src=- shape=ecb93e7c vocab=8d47ffc5
+-/
 theorem methodOfMomentsEstimator_tendstoInMeasure (P : Kernel Θ 𝓧) [IsMarkovKernel P]
     (T : 𝓧 → 𝓨) (S : ℕ → 𝓧 → 𝓨) (θhat : ℕ → 𝓧 → Θ) (θ₀ : Θ)
     (hwp : MomentEquationWellPosedAt P T θ₀)

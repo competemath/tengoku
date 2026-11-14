@@ -51,6 +51,9 @@ def FinitePowerBorrowForm.borrowedExpression {base : ℕ}
     (f : FinitePowerBorrowForm base) : HereditaryBaseExpr :=
   .add f.head (finitePowerBorrowExpansion base f.exponent)
 
+/--
+@isnad1 id=eq.0h2v.s5.f2aeeff59898 from=translated src=- shape=d870d0b3 vocab=daeb0187
+-/
 theorem finitePowerBorrowExpansion_eval (base k : ℕ) :
     (finitePowerBorrowExpansion base k).eval (base + 1) =
       (base + 1) ^ k - 1 := by
@@ -61,6 +64,9 @@ theorem finitePowerBorrowExpansion_eval (base k : ℕ) :
       rw [← Nat.add_sub_assoc (Nat.one_le_pow k (base + 1) (by omega))]
       simp [Nat.pow_succ, Nat.mul_add]
 
+/--
+@isnad1 id=valid.1h2v.s4.792b7562b3e2 from=translated src=- shape=16f24055 vocab=3a720316
+-/
 theorem finitePowerBorrowExpansion_valid {base k : ℕ} (hk : k ≤ base) :
     (finitePowerBorrowExpansion base k).Valid (base + 1) := by
   induction k with

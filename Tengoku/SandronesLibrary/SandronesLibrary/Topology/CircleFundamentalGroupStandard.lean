@@ -64,7 +64,9 @@ def circleDeckIntEquiv : AddSubgroup.zmultiples (2 * Real.pi) ≃+ ℤ where
     rw [Classical.choose_spec (AddSubgroup.mem_zmultiples_iff.mp b.property)]
     rfl
 
-/-- 在 `circleDeckIntEquiv` 下，整数 `n` 精确对应平移量 `n • 2π`。-/
+/-- 在 `circleDeckIntEquiv` 下，整数 `n` 精确对应平移量 `n • 2π`。
+@isnad1 id=eq.0h1v.s8.30b982c1c21b from=translated src=- shape=9ac68cdb vocab=3c8c9a86
+-/
 theorem circleDeckIntEquiv_symm_apply_coe (n : ℤ) :
     ((circleDeckIntEquiv.symm n : AddSubgroup.zmultiples (2 * Real.pi)) : ℝ) =
       n • (2 * Real.pi) :=
@@ -78,11 +80,15 @@ private def mulOppositeDeckEquivInt :
 def circleLoopLift (g : Path (1 : Circle) 1) : C(unitInterval, ℝ) :=
   Circle.isCoveringMap_exp.liftPath g 0 (by simp)
 
-/-- 选定的圆周环路提升从零开始。-/
+/-- 选定的圆周环路提升从零开始。
+@isnad1 id=eq.0h1v.s6.fdb93527847a from=translated src=- shape=c1ebf479 vocab=61d36a9c
+-/
 theorem circleLoopLift_zero (g : Path (1 : Circle) 1) : circleLoopLift g 0 = 0 := by
   exact Circle.isCoveringMap_exp.liftPath_zero g 0 (by simp)
 
-/-- 把选定提升逐点投影回 `Circle.exp`，得到原圆周环路。-/
+/-- 把选定提升逐点投影回 `Circle.exp`，得到原圆周环路。
+@isnad1 id=eq.0h2v.s7.469cf5741d38 from=translated src=- shape=2a5fc5b3 vocab=9400c984
+-/
 theorem circleLoopLift_exp (g : Path (1 : Circle) 1) (t : unitInterval) :
     Circle.exp (circleLoopLift g t) = g t := by
   exact congr_fun (Circle.isCoveringMap_exp.liftPath_lifts g 0 (by simp)) t
@@ -92,13 +98,17 @@ def circleWindingHom : FundamentalGroup Circle 1 →* Multiplicative ℤ :=
   mulOppositeDeckEquivInt.toMonoidHom.comp
     (Circle.isAddQuotientCoveringMap_exp.fundamentalGroupToMulOpposite circleExpBasepoint)
 
-/-- 具有相同绕数的两个带基点圆周环路类相等。-/
+/-- 具有相同绕数的两个带基点圆周环路类相等。
+@isnad1 id=injectiv.0h0v.s8.a87f8a3c3bce from=translated src=- shape=f3b7ffe4 vocab=3e493c9e
+-/
 theorem circleWindingHom_injective : Function.Injective circleWindingHom := by
   exact mulOppositeDeckEquivInt.injective.comp
     (Circle.isAddQuotientCoveringMap_exp.fundamentalGroupToMulOpposite_injective
       circleExpBasepoint)
 
-/-- 每个整数都能成为某个带基点圆周环路的绕数。-/
+/-- 每个整数都能成为某个带基点圆周环路的绕数。
+@isnad1 id=surjecti.0h0v.s8.911ebb9db7af from=translated src=- shape=f3b7ffe4 vocab=a3ea1f1c
+-/
 theorem circleWindingHom_surjective : Function.Surjective circleWindingHom := by
   exact mulOppositeDeckEquivInt.surjective.comp
     (Circle.isAddQuotientCoveringMap_exp.fundamentalGroupToMulOpposite_surjective

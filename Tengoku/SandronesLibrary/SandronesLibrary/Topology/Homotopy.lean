@@ -41,6 +41,9 @@ instance {τX : TextbookTopology X} {τY : TextbookTopology Y} {f g : X → Y} :
     CoeFun (Homotopy τX τY f g) (fun _ ↦ X × UnitInterval → Y) :=
   ⟨Homotopy.toFun⟩
 
+/--
+@isnad1 id=eq.1h8v.s6.f8416266695a from=translated src=- shape=fff49ceb vocab=e1e42f43
+-/
 @[ext]
 theorem ext {τX : TextbookTopology X} {τY : TextbookTopology Y} {f g : X → Y}
     {F G : Homotopy τX τY f g} (h : ∀ p, F p = G p) : F = G := by
@@ -58,6 +61,9 @@ def refl {τX : TextbookTopology X} {τY : TextbookTopology Y} {f : X → Y}
   at_zero := fun _ ↦ rfl
   at_one := fun _ ↦ rfl
 
+/--
+@isnad1 id=eq.1h6v.s5.1bafa19ec39a from=translated src=- shape=7abcc2bd vocab=8597179e
+-/
 @[simp] theorem refl_apply {τX : TextbookTopology X} {τY : TextbookTopology Y}
     {f : X → Y} (hf : Continuous τX τY f) (p : X × UnitInterval) :
     refl hf p = f p.1 := rfl

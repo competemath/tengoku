@@ -57,7 +57,9 @@ private theorem dist_convexComb_left_le_for_multiple_grid (a b u : unitInterval)
 
 /-- 带指定纵向等分约束的二开集方形细分：网格步数是给定正整数 `m` 的倍数。
 
-> **Entry**: topology.homotopy.path-concat-dyadic-subdivision-/
+> **Entry**: topology.homotopy.path-concat-dyadic-subdivision
+@isnad1 id=ex.4h5v.s8.9a3ffc6bad40 from=translated src=- shape=c57fd7fe vocab=dc25245d
+-/
 theorem exists_binaryOpenCoverSquareSubdivision_steps_multiple
     (H : C(unitInterval × unitInterval, X)) {U V : Set X}
     (hU : IsOpen U) (hV : IsOpen V)
@@ -132,12 +134,17 @@ theorem exists_binaryOpenCoverSquareSubdivision_steps_multiple
 /-- `n` 次有限 `Path.concat` 所有递归二分断点的公共分母。-/
 def pathConcatDyadicScale (n : ℕ) : ℕ := 2 ^ n
 
+/--
+@isnad1 id=lt.0h1v.s3.a0596fe12d15 from=translated src=- shape=8a62b088 vocab=a222c73b
+-/
 @[simp] theorem pathConcatDyadicScale_pos (n : ℕ) :
     0 < pathConcatDyadicScale n := by
   simp [pathConcatDyadicScale]
 
 /-- 可选择网格步数为 `2^n` 的倍数，从而为后续对齐 `n` 段 `Path.concat` 的全部 dyadic
-断点提供统一分母。-/
+断点提供统一分母。
+@isnad1 id=ex.3h5v.s8.5dbb04ca3ab0 from=translated src=- shape=f221b69b vocab=5dc1993d
+-/
 theorem exists_binaryOpenCoverSquareSubdivision_concat_multiple
     (H : C(unitInterval × unitInterval, X)) {U V : Set X}
     (hU : IsOpen U) (hV : IsOpen V)
@@ -164,6 +171,9 @@ def pathConcatBreakpointNumerator : (n : ℕ) → Fin (n + 1) → ℕ
       rw [Fin.lastCases_castSucc]
       exact ih
 
+/--
+@isnad1 id=eq.0h1v.s5.d9af07755c76 from=translated src=- shape=621f10a3 vocab=f5322374
+-/
 @[simp] theorem pathConcatBreakpointNumerator_last (n : ℕ) :
     pathConcatBreakpointNumerator (n + 1) (Fin.last (n + 1)) =
       pathConcatDyadicScale (n + 1) := by
@@ -175,6 +185,9 @@ def pathConcatBreakpointNumerator : (n : ℕ) → Fin (n + 1) → ℕ
       pathConcatBreakpointNumerator n i := by
   simp [pathConcatBreakpointNumerator]
 
+/--
+@isnad1 id=le.0h2v.s4.60c43d0f6ca1 from=translated src=- shape=2090ea8f vocab=bb54605b
+-/
 theorem pathConcatBreakpointNumerator_le_scale :
     ∀ (n : ℕ) (i : Fin (n + 1)),
       pathConcatBreakpointNumerator n i ≤ pathConcatDyadicScale n
@@ -189,7 +202,9 @@ theorem pathConcatBreakpointNumerator_le_scale :
           _ ≤ pathConcatDyadicScale (n + 1) := by
             simp [pathConcatDyadicScale, pow_succ]
 
-/-- 相邻 concat 断点的整数分子严格递增。各段长度可以不同，但都非退化。-/
+/-- 相邻 concat 断点的整数分子严格递增。各段长度可以不同，但都非退化。
+@isnad1 id=lt.0h2v.s4.c60dd7fa3be2 from=translated src=- shape=21f7f2f9 vocab=9ec4a782
+-/
 theorem pathConcatBreakpointNumerator_strictMonoAdjacent :
     ∀ (n : ℕ) (i : Fin n),
       pathConcatBreakpointNumerator n i.castSucc <
@@ -223,6 +238,9 @@ def pathConcatBreakpoint (n : ℕ) (r : Fin (n + 1)) : unitInterval :=
   simp [pathConcatBreakpoint, pathConcatBreakpointNumerator,
     pathConcatDyadicScale]
 
+/--
+@isnad1 id=eq.0h1v.s5.ec25292a160e from=translated src=- shape=7644ab49 vocab=fe98a41f
+-/
 @[simp] theorem pathConcatBreakpoint_last (n : ℕ) :
     pathConcatBreakpoint (n + 1) (Fin.last (n + 1)) = 1 := by
   ext
@@ -305,7 +323,9 @@ private theorem Path.trans_half_apply
   · change (t : ℝ) / 2 ≤ 1 / 2
     linarith [t.2.2]
 
-/-- `Path.concat` 在每个 dyadic 断点的值严格等于原顶点 family 的对应值。-/
+/-- `Path.concat` 在每个 dyadic 断点的值严格等于原顶点 family 的对应值。
+@isnad1 id=eq.0h5v.s7.be0af88c5be7 from=translated src=- shape=4403cb44 vocab=2869364b
+-/
 theorem Path.concat_breakpoint_apply
     {Y : Type*} [TopologicalSpace Y] :
     ∀ {n : ℕ} (p : Fin (n + 1) → Y)
@@ -434,7 +454,9 @@ private theorem Path.concatDyadicSegment_castSucc_eq
     (pathConcatBreakpoint (n + 1) i.castSucc)
     (pathConcatBreakpoint (n + 1) i.succ) t
 
-/-- `Path.concat` 的每个规范 dyadic segment 都与相应输入道路端点相对同伦。-/
+/-- `Path.concat` 的每个规范 dyadic segment 都与相应输入道路端点相对同伦。
+@isnad1 id=homotopi.0h5v.s6.c5bfea9a8cce from=translated src=- shape=2d560c54 vocab=490e8280
+-/
 theorem Path.concatDyadicSegment_homotopic
     {Y : Type*} [TopologicalSpace Y] :
     ∀ {n : ℕ} (p : Fin (n + 1) → Y)
@@ -527,7 +549,9 @@ private theorem Path.concat_one_mem
   · exact hF _
 
 /-- 每个 concat dyadic segment 的全部取值仍落在对应输入 segment 全部取值所在的任意集合中。
-这比同伦结论更强，后续可据此把真实左边界细网格边提升到输入字母指定的覆盖成员。-/
+这比同伦结论更强，后续可据此把真实左边界细网格边提升到输入字母指定的覆盖成员。
+@isnad1 id=mem.1h7v.s7.bc0125fe1aac from=translated src=- shape=3c1f624c vocab=d9421b0c
+-/
 theorem Path.concatDyadicSegment_mem :
     ∀ {Y : Type*} [TopologicalSpace Y] {n : ℕ}
       (p : Fin (n + 1) → Y)
@@ -550,7 +574,9 @@ theorem Path.concatDyadicSegment_mem :
           (p ∘ Fin.castSucc) (fun k => F k.castSucc) j S hF
 
 /-- `Path.concat` 的第 `i` 个 dyadic segment（包括一段基例中的常值重参数化部分）逐点仍位于
-反序输入列表第 `i` 个字母指定的覆盖成员中。-/
+反序输入列表第 `i` 个字母指定的覆盖成员中。
+@isnad1 id=mem.2h7v.s8.27e2af5d59ec from=translated src=- shape=f72d5dd7 vocab=87b28951
+-/
 theorem binaryVanKampenLetterConcatLoop_dyadicSegment_mem_piece
     {U V : Set X} {x₀ : X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (letters : List (BinaryVanKampenLetter U V hxU hxV))
@@ -568,6 +594,9 @@ theorem binaryVanKampenLetterConcatLoop_dyadicSegment_mem_piece
     (binaryVanKampenLetterConcatLoop_segment_mem hxU hxV letters i) t
 
 omit [TopologicalSpace X] in
+/--
+@isnad1 id=eq.2h5v.s5.7cfea7f0a1af from=translated src=- shape=d7b0dd3b vocab=5482f8d2
+-/
 @[simp] theorem coe_binaryOpenCoverBasepoint
     {U V : Set X} {x₀ : X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V) (b : Bool) :
     ((binaryOpenCoverBasepoint hxU hxV b : binaryOpenCoverPiece U V b) : X) = x₀ := by
@@ -594,7 +623,9 @@ def binaryVanKampenLetterDyadicSegmentInPiece
     apply Subtype.ext
     simp
 
-/-- 字母成员中的 dyadic segment 提升，与该字母所选基本群道路代表在同一 subtype 中同伦。-/
+/-- 字母成员中的 dyadic segment 提升，与该字母所选基本群道路代表在同一 subtype 中同伦。
+@isnad1 id=homotopi.2h6v.s9.1c2eb425a31c from=translated src=- shape=0929356a vocab=126b1b8b
+-/
 theorem binaryVanKampenLetterDyadicSegmentInPiece_homotopic_representative
     {U V : Set X} {x₀ : X} (hxU : x₀ ∈ U) (hxV : x₀ ∈ V)
     (letters : List (BinaryVanKampenLetter U V hxU hxV))

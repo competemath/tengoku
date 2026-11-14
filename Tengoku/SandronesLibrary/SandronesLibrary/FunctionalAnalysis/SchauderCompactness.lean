@@ -116,7 +116,9 @@ private theorem weakStarDualOperator_continuousOn_dual_unitBall
 证明在弱星对偶单位球上使用 Banach--Alaoglu。原算子单位球像的紧性给出有限网；
 有限多个弱星求值条件再借助对偶单位球的一致范数界，提升为对偶算子像中的范数控制。
 
-> **Entry**: functional-analysis.compact-operator.dual-/
+> **Entry**: functional-analysis.compact-operator.dual
+@isnad1 id=iscompac.1h3v.s10.e58dc5cf5664 from=translated src=- shape=ef3c6bfc vocab=de23f467
+-/
 theorem dualOperator_isCompactOperator [CompleteSpace E] [CompleteSpace F]
     (T : E →L[ℝ] F) (hT : IsCompactOperator T) :
     IsCompactOperator (dualOperator T) := by

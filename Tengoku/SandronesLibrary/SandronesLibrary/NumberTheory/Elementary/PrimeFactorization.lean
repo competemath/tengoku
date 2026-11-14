@@ -25,7 +25,9 @@ def primeMultiplicity (n p : ℕ) : ℕ :=
   Nat.findGreatest (fun k ↦ p ^ k ∣ n) n
 
 /-- The bounded-power definition agrees with Mathlib's factorization exponent for a prime and a
-nonzero natural number.-/
+nonzero natural number.
+@isnad1 id=eq.2h2v.s5.5638f4c9b39d from=translated src=- shape=1e4a390c vocab=a93c4c4d
+-/
 theorem primeMultiplicity_eq_factorization {n p : ℕ} (hp : p.Prime) (hn : n ≠ 0) :
     primeMultiplicity n p = n.factorization p := by
   unfold primeMultiplicity
@@ -36,12 +38,16 @@ theorem primeMultiplicity_eq_factorization {n p : ℕ} (hp : p.Prime) (hn : n �
   · exact Nat.le_findGreatest (Nat.le_of_lt (Nat.factorization_lt p hn))
       ((hp.pow_dvd_iff_le_factorization hn).2 le_rfl)
 
-/-- The multiplicity convention at zero is explicitly zero.-/
+/-- The multiplicity convention at zero is explicitly zero.
+@isnad1 id=eq.0h1v.s4.bbefc6df2c52 from=translated src=- shape=fe2c2146 vocab=ba851ba2
+-/
 theorem primeMultiplicity_zero (p : ℕ) : primeMultiplicity 0 p = 0 := by
   exact Nat.eq_zero_of_le_zero (Nat.findGreatest_le 0)
 
 /-- **素因子分解的存在性（重构形式）**：非零自然数等于其所有素因子幂之积。
-> **Entry**: number-theory.elementary.prime-factorization-/
+> **Entry**: number-theory.elementary.prime-factorization
+@isnad1 id=eq.1h1v.s5.4d064af60daa from=translated src=- shape=53a06fd7 vocab=765844e7
+-/
 theorem prime_factorization_reconstructs {n : ℕ} (hn : n ≠ 0) :
     n.factorization.prod (fun p e ↦ p ^ e) = n := by
   exact Nat.prod_factorization_pow_eq_self hn

@@ -47,10 +47,16 @@ def CanonicalGoodsteinState.expression (s : CanonicalGoodsteinState) :
     HereditaryBaseExpr :=
   hereditaryNatEncode s.base s.base_ge_two s.value
 
+/--
+@isnad1 id=valid.0h1v.s2.74eea26689ac from=translated src=- shape=fc2c1e2b vocab=e1da6549
+-/
 theorem CanonicalGoodsteinState.expression_valid (s : CanonicalGoodsteinState) :
     s.expression.Valid s.base :=
   (hereditaryNatEncode_valid_eval s.base s.base_ge_two s.value).1
 
+/--
+@isnad1 id=eq.0h1v.s3.b0496f8f2332 from=translated src=- shape=dea8492f vocab=47e4c5a6
+-/
 theorem CanonicalGoodsteinState.expression_evaluates (s : CanonicalGoodsteinState) :
     s.expression.eval s.base = s.value :=
   (hereditaryNatEncode_valid_eval s.base s.base_ge_two s.value).2
@@ -61,7 +67,9 @@ def canonicalGoodsteinStep (s : CanonicalGoodsteinState) : CanonicalGoodsteinSta
   base_ge_two := s.base_ge_two.trans (Nat.le_succ s.base)
   value := goodsteinStep s.base s.expression
 
-/-- 规范一步的新底数、表达式合法性与求值正确性规格。-/
+/-- 规范一步的新底数、表达式合法性与求值正确性规格。
+@isnad1 id=and.0h1v.s6.11147c462d6a from=translated src=- shape=c8c677a4 vocab=445e1b7e
+-/
 theorem canonicalGoodsteinStep_specification (s : CanonicalGoodsteinState) :
     (canonicalGoodsteinStep s).base = s.base + 1 ∧
       (canonicalGoodsteinStep s).expression.Valid (s.base + 1) ∧
@@ -85,7 +93,9 @@ def CanonicalBaseChangeOmegaCompatible (s : CanonicalGoodsteinState) : Prop :=
   s.baseChangeReencodingMeasure = s.ordinalMeasure
 
 /-- 一旦换底正规化保持旧序数树，从正的新底数值减一便严格降低序数度量。兼容性前提被刻意保留
-在定理陈述中，因为它尚未对所有规范状态得到证明。-/
+在定理陈述中，因为它尚未对所有规范状态得到证明。
+@isnad1 id=lt.2h1v.s5.919d39732963 from=translated src=- shape=e4827f74 vocab=f9a646e3
+-/
 theorem canonicalGoodsteinStep_omega_lt_of_compatible
     (s : CanonicalGoodsteinState)
     (hpositive : 0 < s.expression.eval (s.base + 1))

@@ -52,14 +52,18 @@ def HasEigenvalue (K : Type*) {V : Type*} [Field K] [AddCommGroup V] [LinearSpac
   ∃ x ≠ 0, T x = μ • x
 
 /-- **特征向量满足 T(x) = μ·x**：特征向量定义的第二条。 
-> **Entry**: linear-algebra.eigen.vector-/
+> **Entry**: linear-algebra.eigen.vector
+@isnad1 id=eq.1h5v.s8.667fba884fad from=translated src=- shape=ec832c09 vocab=9214091c
+-/
 theorem eigenvector_apply {K : Type*} {V : Type*} [Field K]
     [AddCommGroup V] [LinearSpace K V] {T : V →ₗ[K] V} {μ : K} {x : V}
     (hx : HasEigenvector K T μ x) : T x = μ • x :=
   hx.2
 
 /-- **特征值 ⟺ 存在非零特征向量**：由定义直得。 
-> **Entry**: linear-algebra.eigen.value-/
+> **Entry**: linear-algebra.eigen.value
+@isnad1 id=iff.0h4v.s6.f178f04d214b from=translated src=- shape=5e26df66 vocab=7356c4af
+-/
 theorem eigenvalue_iff_exists_eigenvector {K : Type*} {V : Type*} [Field K]
     [AddCommGroup V] [LinearSpace K V] {T : V →ₗ[K] V} {μ : K} :
     HasEigenvalue K T μ ↔ ∃ x, HasEigenvector K T μ x := by
@@ -70,7 +74,9 @@ theorem eigenvalue_iff_exists_eigenvector {K : Type*} {V : Type*} [Field K]
     exact ⟨x, hx0, hTx⟩
 
 /-- **特征子空间非平凡 ⟺ 特征值**：E_μ(T) ≠ {0} 当且仅当 μ 是特征值。 
-> **Entry**: linear-algebra.eigen.value-/
+> **Entry**: linear-algebra.eigen.value
+@isnad1 id=iff.0h4v.s6.6b8ca552f2c7 from=translated src=- shape=37cb2423 vocab=39a87540
+-/
 theorem eigenvalue_iff_eigenspace_nontrivial {K : Type*} {V : Type*} [Field K]
     [AddCommGroup V] [LinearSpace K V] {T : V →ₗ[K] V} {μ : K} :
     HasEigenvalue K T μ ↔ ∃ x, x ∈ eigenspace K T μ ∧ x ≠ 0 := by
@@ -86,7 +92,9 @@ def spectrum (K : Type*) {V : Type*} [Field K] [AddCommGroup V] [LinearSpace K V
   { μ | HasEigenvalue K T μ }
 
 /-- **特征值属于谱**：μ 是特征值，则 μ ∈ spectrum(T)。 
-> **Entry**: linear-algebra.eigen.spectrum-/
+> **Entry**: linear-algebra.eigen.spectrum
+@isnad1 id=mem.1h4v.s6.c17da5cdd16a from=translated src=- shape=fb045852 vocab=137393e1
+-/
 theorem eigenvalue_mem_spectrum {K : Type*} {V : Type*} [Field K]
     [AddCommGroup V] [LinearSpace K V] {T : V →ₗ[K] V} {μ : K}
     (hμ : HasEigenvalue K T μ) : μ ∈ spectrum K T :=
@@ -94,20 +102,26 @@ theorem eigenvalue_mem_spectrum {K : Type*} {V : Type*} [Field K]
 
 /-- **特征多项式**：对角矩阵 diag(d₁,…,dₙ) 的特征多项式是 ∏ᵢ (X − dᵢ)。
   （对角元即特征值；这是"特征值是特征多项式根"的直接来源。） 
-> **Entry**: linear-algebra.eigen.charpoly-/
+> **Entry**: linear-algebra.eigen.charpoly
+@isnad1 id=eq.0h3v.s7.63deb843b6a7 from=translated src=- shape=b89bad6e vocab=b3f58c69
+-/
 theorem charpoly_diagonal {K : Type*} {n : Type*} [Field K] [DecidableEq n] [Fintype n]
     (d : n → K) : (Matrix.diagonal d).charpoly = ∏ i, (Polynomial.X - Polynomial.C (d i)) :=
   Matrix.charpoly_diagonal d
 
 /-- **特征多项式首一**：n 阶矩阵的特征多项式是首一的。 
-> **Entry**: linear-algebra.eigen.charpoly-/
+> **Entry**: linear-algebra.eigen.charpoly
+@isnad1 id=monic.0h3v.s5.6804dda122c2 from=translated src=- shape=cf402585 vocab=376f52ce
+-/
 theorem charpoly_monic {K : Type*} {n : Type*} [Field K] [DecidableEq n] [Fintype n]
     (M : Matrix n n K) : M.charpoly.Monic :=
   M.charpoly_monic
 
 /-- **不同特征值对应特征向量线性无关**：设 {μᵢ} 是一族（成对不同的）特征值，
   对每个 μᵢ 取一个属于它的特征向量 xᵢ，则 {xᵢ} 线性无关。 
-> **Entry**: linear-algebra.eigen.independent-/
+> **Entry**: linear-algebra.eigen.independent
+@isnad1 id=islinear.1h5v.s6.aa3d086acb93 from=translated src=- shape=8d77b779 vocab=4548630d
+-/
 theorem eigenvectors_linearIndependent {K : Type*} {V : Type*} [Field K]
     [AddCommGroup V] [LinearSpace K V] {T : V →ₗ[K] V}
     (μs : Set K) (xs : ↑μs → V)
@@ -134,7 +148,9 @@ def IsDiagonalizable {K : Type*} [Field K] {n : Type*} [Fintype n] [DecidableEq 
   ∃ (d : n → K) (P : Matrix n n K), IsUnit P.det ∧ P⁻¹ * A * P = Matrix.diagonal d
 
 /-- **对角阵可对角化**：对角阵 diag(d) 取 P = 单位阵即满足定义。 
-> **Entry**: linear-algebra.eigen.similar-diagonal-/
+> **Entry**: linear-algebra.eigen.similar-diagonal
+@isnad1 id=isdiagon.0h3v.s5.320b840cdd86 from=translated src=- shape=d9a720d5 vocab=1ad07970
+-/
 theorem diagonalizable_diagonal {K : Type*} [Field K] {n : Type*} [Fintype n] [DecidableEq n]
     (d : n → K) : IsDiagonalizable (Matrix.diagonal d) := by
   unfold IsDiagonalizable
@@ -143,7 +159,9 @@ theorem diagonalizable_diagonal {K : Type*} [Field K] {n : Type*} [Fintype n] [D
   · simp
 
 /-- **可逆 ⟹ 左右逆**：若 det A 可逆（≠0），则 A⁻¹ 给出 A⁻¹·A = 1 与 A·A⁻¹ = 1。 
-> **Entry**: linear-algebra.eigen.similar-diagonal-/
+> **Entry**: linear-algebra.eigen.similar-diagonal
+@isnad1 id=and.1h3v.s7.ab5e698def12 from=translated src=- shape=52287ff9 vocab=7cfe7671
+-/
 theorem invertible_mul_inv {K : Type*} [Field K] {n : Type*} [Fintype n] [DecidableEq n]
     (A : Matrix n n K) (h : IsUnit A.det) :
     A⁻¹ * A = 1 ∧ A * A⁻¹ = 1 :=
@@ -153,7 +171,9 @@ theorem invertible_mul_inv {K : Type*} [Field K] {n : Type*} [Fintype n] [Decida
   则对每个标量 c，det(c·1 − A) = det(c·1 − D)。
   这正是"相似保持特征多项式"（charpoly 即 det(X·1 − A)）的逐点形式；
   证明只用数矩阵的 det 乘性与可逆阵的左右逆，不引入多项式矩阵。 
-> **Entry**: linear-algebra.eigen.similar-charpoly-/
+> **Entry**: linear-algebra.eigen.similar-charpoly
+@isnad1 id=eq.2h6v.s8.63ee55fa9ceb from=translated src=- shape=5ef4ff60 vocab=c8c2282f
+-/
 theorem similar_det {K : Type*} [Field K] {n : Type*} [Fintype n] [DecidableEq n]
     (A D P : Matrix n n K) (h : P⁻¹ * A * P = D) (hP : IsUnit P.det) :
     ∀ c : K, (c • (1 : Matrix n n K) - A).det = (c • (1 : Matrix n n K) - D).det := by
@@ -215,7 +235,9 @@ private theorem matrixHasEigenvalue_iff_mathlib {K : Type*} [Field K]
 
 /-- **特征值是特征多项式的根**：μ 是方阵 A 的特征值 ⟺ μ 是 A 的特征多项式 charpoly 的根。
   教材核心：charpoly = det(X·1 − A)，其根恰为特征值。 
-> **Entry**: linear-algebra.eigen.charpoly-root-/
+> **Entry**: linear-algebra.eigen.charpoly-root
+@isnad1 id=iff.0h4v.s5.d446686537e6 from=translated src=- shape=d2da196c vocab=776b7083
+-/
 theorem eigenvalue_iff_isRoot_charpoly {K : Type*} [Field K] {n : Type*} [Fintype n] [DecidableEq n]
     (A : Matrix n n K) (μ : K) : MatrixHasEigenvalue A μ ↔ A.charpoly.IsRoot μ := by
   rw [matrixHasEigenvalue_iff_mathlib]

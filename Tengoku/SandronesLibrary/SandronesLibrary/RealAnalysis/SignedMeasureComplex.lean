@@ -45,21 +45,27 @@ variable {α : Type*} [MeasurableSpace α]
 /-- **复测度的点式分解**。复测度 `c` 在任意集合 `i` 上的取值可分解为其实部与虚部
 （均为有符号测度）的取值：`c i = re c i + (im c i) * I`。这就是 Folland 把复测度
 写成 `ν = ν_r + i ν_i` 的 Lean 形式。
-> **Entry**: real-analysis.signed-measure.complex-/
+> **Entry**: real-analysis.signed-measure.complex
+@isnad1 id=eq.0h3v.s9.388b4a5c4371 from=translated src=- shape=2e7bc288 vocab=660bc287
+-/
 theorem complexMeasure_re_add_im (c : ComplexMeasure α) (i : Set α) :
     c i = (ComplexMeasure.re c i : ℂ) + (ComplexMeasure.im c i : ℂ) * Complex.I := by
   rw [← Complex.re_add_im (c i), ComplexMeasure.re_apply, ComplexMeasure.im_apply]
   rfl
 
 /-- **复测度实部的取值**。`(re c) i = (c i).re`：实部就是逐点取实部得到的有符号测度。
-> **Entry**: real-analysis.signed-measure.complex-/
+> **Entry**: real-analysis.signed-measure.complex
+@isnad1 id=eq.0h3v.s8.70320ab675d8 from=translated src=- shape=840d15d8 vocab=62acc118
+-/
 theorem complexMeasure_re_apply (c : ComplexMeasure α) (i : Set α) :
     (ComplexMeasure.re c) i = (c i).re := by
   simp only [ComplexMeasure.re_apply]
   rfl
 
 /-- **复测度虚部的取值**。`(im c) i = (c i).im`：虚部就是逐点取虚部得到的有符号测度。
-> **Entry**: real-analysis.signed-measure.complex-/
+> **Entry**: real-analysis.signed-measure.complex
+@isnad1 id=eq.0h3v.s8.a500eb184fa6 from=translated src=- shape=840d15d8 vocab=0e0c0a59
+-/
 theorem complexMeasure_im_apply (c : ComplexMeasure α) (i : Set α) :
     (ComplexMeasure.im c) i = (c i).im := by
   simp only [ComplexMeasure.im_apply]
@@ -68,26 +74,34 @@ theorem complexMeasure_im_apply (c : ComplexMeasure α) (i : Set α) :
 /-- **由实部、虚部重建复测度**。任意复测度都等于其自身实部与虚部通过
 `SignedMeasure.toComplexMeasure` 拼回的复测度：`(re c).toComplexMeasure (im c) = c`。
 这是 `ν = ν_r + i ν_i` 的“还原”方向。
-> **Entry**: real-analysis.signed-measure.complex-/
+> **Entry**: real-analysis.signed-measure.complex
+@isnad1 id=eq.0h2v.s8.ff7266b55b90 from=translated src=- shape=7a230344 vocab=d30a32d2
+-/
 theorem complexMeasure_toComplexMeasure_re_im (c : ComplexMeasure α) :
     SignedMeasure.toComplexMeasure (ComplexMeasure.re c) (ComplexMeasure.im c) = c :=
   c.toComplexMeasure_to_signedMeasure
 
 /-- **拼回复测度的实部**。`re (s.toComplexMeasure t) = s`：先拼后取实部回到第一个有符号测度。
-> **Entry**: real-analysis.signed-measure.complex-/
+> **Entry**: real-analysis.signed-measure.complex
+@isnad1 id=eq.0h3v.s8.b51be6af28ad from=translated src=- shape=ab7c8ba1 vocab=7dd17679
+-/
 theorem complexMeasure_re_toComplexMeasure (s t : SignedMeasure α) :
     ComplexMeasure.re (SignedMeasure.toComplexMeasure s t) = s :=
   s.re_toComplexMeasure t
 
 /-- **拼回复测度的虚部**。`im (s.toComplexMeasure t) = t`：先拼后取虚部回到第二个有符号测度。
-> **Entry**: real-analysis.signed-measure.complex-/
+> **Entry**: real-analysis.signed-measure.complex
+@isnad1 id=eq.0h3v.s8.f2b81f78f47f from=translated src=- shape=8b59062b vocab=5b3c8ede
+-/
 theorem complexMeasure_im_toComplexMeasure (s t : SignedMeasure α) :
     ComplexMeasure.im (SignedMeasure.toComplexMeasure s t) = t :=
   s.im_toComplexMeasure t
 
 /-- **拼回复测度的取值公式**。`(s.toComplexMeasure t) i = s i + (t i) * I`，
 即 `ν_r + i ν_i` 在集合上的取值。
-> **Entry**: real-analysis.signed-measure.complex-/
+> **Entry**: real-analysis.signed-measure.complex
+@isnad1 id=eq.0h4v.s6.9cea9458a138 from=translated src=- shape=0135d130 vocab=0f78e080
+-/
 theorem complexMeasure_apply_toComplexMeasure (s t : SignedMeasure α) (i : Set α) :
     (SignedMeasure.toComplexMeasure s t) i = (s i : ℂ) + (t i : ℂ) * Complex.I := by
   rw [SignedMeasure.toComplexMeasure_apply]
@@ -96,7 +110,9 @@ theorem complexMeasure_apply_toComplexMeasure (s t : SignedMeasure α) (i : Set 
 /-! ## 2. 复测度与有符号测度对的对应 -/
 
 /-- **复测度为零的判定**。复测度 `c` 为零当且仅当其实部与虚部同时为零有符号测度。
-> **Entry**: real-analysis.signed-measure.complex-/
+> **Entry**: real-analysis.signed-measure.complex
+@isnad1 id=iff.0h2v.s9.dcd5fffc6ae6 from=translated src=- shape=670caa54 vocab=841782e0
+-/
 theorem complexMeasure_eq_zero_iff (c : ComplexMeasure α) :
     c = 0 ↔ ComplexMeasure.re c = 0 ∧ ComplexMeasure.im c = 0 := by
   constructor
@@ -110,7 +126,9 @@ theorem complexMeasure_eq_zero_iff (c : ComplexMeasure α) :
 
 /-- **复测度的外延性**。若两复测度的实部相等且虚部相等，则两复测度相等：实部与虚部
 共同决定一个复测度。
-> **Entry**: real-analysis.signed-measure.complex-/
+> **Entry**: real-analysis.signed-measure.complex
+@isnad1 id=eq.2h3v.s9.dc0a39357a9d from=translated src=- shape=b70ef720 vocab=841782e0
+-/
 theorem complexMeasure_ext {c d : ComplexMeasure α}
     (hre : ComplexMeasure.re c = ComplexMeasure.re d)
     (him : ComplexMeasure.im c = ComplexMeasure.im d) : c = d := by
@@ -126,7 +144,9 @@ def complexMeasure_equiv_signedMeasure :
 
 /-- **复测度取值为零的逐点判定**。`c i = 0` 当且仅当 `re c` 与 `im c` 在 `i` 上都取零；
 这是点式分解 `c i = re c i + i · im c i` 的直接推论，也是实部／虚部概念的真实使用者。
-> **Entry**: real-analysis.signed-measure.complex-/
+> **Entry**: real-analysis.signed-measure.complex
+@isnad1 id=iff.0h3v.s9.1713ee02ca3d from=translated src=- shape=d68d763c vocab=3fa98d45
+-/
 theorem complexMeasure_apply_eq_zero_iff (c : ComplexMeasure α) (i : Set α) :
     c i = 0 ↔ ComplexMeasure.re c i = 0 ∧ ComplexMeasure.im c i = 0 := by
   rw [complexMeasure_re_add_im, complexMeasure_re_apply, complexMeasure_im_apply]
