@@ -35,7 +35,7 @@ jobs:
 
   tooling-tests:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25   # was 15: the suite took 13 to 17 minutes on 14 Nov 2026 and a run at the cap is cancelled, not failed (#815: two runs cancelled at 15:00 on one head; the same head passed at 15 minutes earlier)
     permissions: { contents: read }
     steps:
       - uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2
