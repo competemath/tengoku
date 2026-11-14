@@ -1,0 +1,1 @@
+-- TdaLib: a factory bundle (data/intake/tda-lib). This file only marks the library for Tengoku/All.lean.

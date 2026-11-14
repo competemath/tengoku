@@ -80,6 +80,7 @@ import Tengoku.SphereEversion
 import Tengoku.FrontiermathHypergraphs
 import Tengoku.Aperiodicmonotiles
 import Tengoku
+import Tengoku.TdaLib
 import Tengoku.Ieantn
 import Tengoku.GroebnerProj
 import Tengoku.Azurite
