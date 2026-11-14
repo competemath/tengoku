@@ -555,5 +555,133 @@ class SectionScope(unittest.TestCase):
         self.assertEqual("\n".join(once), "\n".join(self.run_text("\n".join(once))))
 
 
+def lean_scope_error(text: str) -> str | None:
+    """What Lean says about the scopes of a module, or None: one scope per component of a `namespace`/`section` name, `end X.Y` closes as many as it names (innermost last) and each name must
+    match, a bare `end` closes one scope and that scope must have no name (Lean: "Missing name after `end`")."""
+    stack: list[str] = []
+    for n, raw in enumerate(text.split("\n"), 1):
+        for ln in raw.split(
+            " end Tengoku.Foo open Tengoku.Foo"
+        ):  # the generated commands share a line: `namespace NS end NS open NS` leaves the scopes as they were
+            ln = ln.replace("namespace Tengoku.Foo", "").strip() if ln is not raw else ln.strip()
+            m = re.match(r"(?:@\[expose\] )?(?:(?:public|noncomputable) )*(namespace|section)(?: (\S+))?$", ln)
+            if m:
+                stack.extend(m.group(2).split(".") if m.group(2) else [""])
+            elif re.match(r"end(?: \S+)?$", ln):
+                names = ln.split()[1].split(".") if " " in ln else [""]
+                for name in reversed(names):
+                    if not stack:
+                        return f"line {n}: `end` without a scope"
+                    top = stack.pop()
+                    if top != name:
+                        return f"line {n}: `end {name}` closes the scope `{top}`"
+    return None
+
+
+class CompoundEnd(unittest.TestCase):
+    """`end A.B` closes two scopes: the `end` of a renamed root namespace may name an inner namespace with it (merge queue, wave 4: Physlib/Units/Exponent.lean, `namespace Dimension` …
+    `namespace Exponent` … `end Dimension.Exponent`, then the bare `end` of the section found `Tengoku.Physlib` still open: "Missing name after `end`: Expected the current scope name `Physlib`")."""
+
+    REPORT = {"Foo": "roots: 1 declarations\nroot: Dimension\n"}
+    PHYSLIB = (
+        "module\n\nimport Tengoku\n\n@[expose] public section\n\nnamespace Dimension\n\ndef zero : Nat := 0\n\nnamespace Exponent\n\n"
+        "theorem t : zero = 0 := rfl\n\nend Dimension.Exponent\n\nend\n"
+    )
+
+    def run_text(self, text):
+        changed, _ = rt.qualify_files({"Tengoku/Foo/A.lean": text}, self.REPORT)
+        return changed.get("Tengoku/Foo/A.lean", text)
+
+    def test_the_real_module_closes_every_scope_it_opened(self):
+        self.assertIsNone(lean_scope_error(self.PHYSLIB))  # the checker accepts the original
+        out = self.run_text(self.PHYSLIB)
+        self.assertIn("\nnamespace Tengoku.Foo.Dimension\n", out)
+        self.assertIn("\nend Tengoku.Foo.Dimension.Exponent\n", out)
+        self.assertIsNone(lean_scope_error(out))
+
+    def test_the_checker_reports_what_the_queue_reported(self):
+        broken = self.run_text(self.PHYSLIB).replace("end Tengoku.Foo.Dimension.Exponent", "end Dimension.Exponent")
+        self.assertIn("closes the scope `Foo`", lean_scope_error(broken))  # the bare `end` of the section meets the library namespace
+
+    def test_a_dotted_namespace_closed_one_component_at_a_time(self):
+        out = self.run_text(
+            "module\n\nimport Tengoku\n\nnamespace Dimension.Inner\n\ndef a : Nat := 0\n\nend Inner\n\ndef b : Nat := 1\n\nend Dimension\n"
+        )
+        self.assertIn("\nnamespace Tengoku.Foo.Dimension.Inner\n", out)
+        self.assertIn("\nend Inner\n", out)  # closes the inner scope only: unchanged
+        self.assertIn("\nend Tengoku.Foo.Dimension\n", out)
+        self.assertIsNone(lean_scope_error(out))
+
+    def test_the_plain_forms_are_as_before(self):
+        out = self.run_text("module\n\nimport Tengoku\n\nnamespace Dimension\n\ndef a : Nat := 0\n\nend Dimension\n")
+        self.assertIn("\nend Tengoku.Foo.Dimension\n", out)
+        out = self.run_text("module\n\nimport Tengoku\n\nnamespace Dimension.Inner\n\ndef a : Nat := 0\n\nend Dimension.Inner\n")
+        self.assertIn("\nend Tengoku.Foo.Dimension.Inner\n", out)
+        self.assertIsNone(lean_scope_error(out))
+
+    def test_an_inner_end_of_a_namespace_left_open_is_not_renamed(self):
+        out = self.run_text("module\n\nimport Tengoku\n\nnamespace Dimension.Inner\n\ndef a : Nat := 0\n\nend Inner\n\ndef b : Nat := 1\n")
+        self.assertIn("\nend Inner\n", out)  # `Dimension` stays open to the end of the file: no `end` closes it
+        self.assertEqual(out.count("Tengoku.Foo.Dimension"), 1)
+
+    def test_a_section_between_is_closed_by_its_own_end(self):
+        text = "module\n\nimport Tengoku\n\nnamespace Dimension\n\nsection S\n\ndef a : Nat := 0\n\nend S\n\nnamespace Exponent\n\ndef b : Nat := 1\n\nend Dimension.Exponent\n"
+        out = self.run_text(text)
+        self.assertIn("\nend S\n", out)
+        self.assertIn("\nend Tengoku.Foo.Dimension.Exponent\n", out)
+        self.assertIsNone(lean_scope_error(out))
+
+    def test_ends_that_close_a_dotted_namespace_leave_the_section_open(self):
+        # LeanPool …/Morrey/Adams.lean: two sections, `namespace CKN.Foundation.Parabolic.Morrey`, four `end`s. The sections stay open to the end of the file, so the commands stay inside.
+        text = (
+            "module\n\nimport Tengoku\n\n@[expose] public section\n\nnoncomputable section\n\nnamespace CKN.Foundation.Parabolic.Morrey\n\n"
+            "def Dimension : Nat := 0\n\nend Morrey\nend Parabolic\nend Foundation\nend CKN\n"
+        )
+        code = rt.mask(text).split("\n")
+        opener = code.index("@[expose] public section")
+        self.assertNotIn(opener, rt.scope_info(code)[1])  # nothing closes it
+        self.assertEqual(rt.scope_info(code)[1][code.index("namespace CKN.Foundation.Parabolic.Morrey")], code.index("end CKN"))
+
+    def test_a_quoted_component_counts_once(self):
+        code = ["namespace «a.b»", "namespace c", "end «a.b».c"]
+        self.assertEqual(rt.scope_closers(code)[1], {1: (2, 1), 0: (2, 0)})
+
+    def test_no_line_is_added_and_it_is_idempotent(self):
+        once = self.run_text(self.PHYSLIB)
+        self.assertEqual(len(once.split("\n")), len(self.PHYSLIB.split("\n")) + 1)  # the footer line only
+        self.assertEqual(once, self.run_text(once))
+
+    def test_random_scopes_stay_balanced(self):
+        rng = random.Random(20261114)
+        for _ in range(300):
+            lines, stack = ["module", "", "import Tengoku", ""], []
+            for _ in range(rng.randint(1, 8)):
+                kind = rng.choice(["ns", "ns2", "sec", "decl", "close", "close2"])
+                if kind == "ns":
+                    name = rng.choice(["Dimension", "Other", "Inner"])
+                    lines += [f"namespace {name}", ""]
+                    stack.append(name)
+                elif kind == "ns2":
+                    a, b = rng.choice(["Dimension", "Other"]), rng.choice(["P", "Q"])
+                    lines += [f"namespace {a}.{b}", ""]
+                    stack += [a, b]
+                elif kind == "sec":
+                    lines += ["section", ""]
+                    stack.append("")
+                elif kind == "decl":
+                    lines += [f"def d{len(lines)} : Nat := 0", ""]
+                elif kind == "close" and stack:
+                    name = stack.pop()
+                    lines += [f"end {name}".rstrip(), ""]
+                elif kind == "close2" and len(stack) >= 2 and stack[-1] and stack[-2]:
+                    b, a = stack.pop(), stack.pop()
+                    lines += [f"end {a}.{b}", ""]
+            text = "\n".join(lines) + "\n"
+            self.assertIsNone(lean_scope_error(text), text)
+            out = self.run_text(text)
+            self.assertIsNone(lean_scope_error(out), f"{text}\n--- became ---\n{out}")
+            self.assertEqual(out, self.run_text(out))
+
+
 if __name__ == "__main__":
     unittest.main()
