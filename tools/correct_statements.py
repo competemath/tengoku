@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""correct_statements.py FILE... --by WHO --at DATE --reason TEXT [--write]
+"""correct_statements.py LIBRARY... --by WHO --at DATE --reason TEXT [--write]
 
 For a tentative records file, the `statement_correction` lines (schemas/record.schema.json) for the records whose statement and proof the extractor of today splits differently from the
 way they were harvested (tengoku#811: a `:=` of a let/have in the type, or the arms of a match, ended the statement early). The text of a record is its statement and its proof joined by a
@@ -108,9 +108,13 @@ def corrections(text: str, by: str, at: str, reason: str, trusted: frozenset[str
     return out
 
 
-def main(argv: list[str]) -> int:
+REPO_ROOT = Path(__file__).resolve().parent.parent  # not an argument: the files read and written are the ones of this repository
+LIBRARY_KEY = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]*")
+
+
+def main(argv: list[str], root: Path = REPO_ROOT) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    ap.add_argument("files", nargs="+")
+    ap.add_argument("libraries", nargs="+", help="library keys: the files data/tentative/LIBRARY.jsonl of the repo of this repository")
     ap.add_argument("--by", required=True)
     ap.add_argument("--at", required=True)
     ap.add_argument("--reason", required=True)
@@ -119,10 +123,14 @@ def main(argv: list[str]) -> int:
     if not AT_RE.fullmatch(a.at) or not a.reason.strip() or "\n" in a.reason or len(a.reason) > 300:
         print("--at is a date (YYYY-MM-DD) and --reason one line of at most 300 characters, as the gate wants them", file=sys.stderr)
         return 2
-    trusted = trusted_names(Path(__file__).resolve().parent.parent)
+    trusted = trusted_names(root)
     total = 0
-    for f in a.files:
-        p = Path(f)
+    for lib in a.libraries:
+        if not LIBRARY_KEY.fullmatch(lib):  # a key, never a path: nothing outside data/tentative can be read or appended to
+            print(f"{lib!r} is not a library key (letters, digits, dots, hyphens and underscores)", file=sys.stderr)
+            return 2
+        f = f"data/tentative/{lib}.jsonl"
+        p = root / "data" / "tentative" / f"{lib}.jsonl"
         text = p.read_text(encoding="utf-8")
         lines = [json.dumps(c, ensure_ascii=False) + "\n" for c in corrections(text, a.by, a.at, a.reason, trusted)]
         print(f"{f}: {len(lines)} statement corrections")

@@ -13,7 +13,7 @@ Invariants:
   4. A second run over the file with its corrections appended makes no line (the newest correction of a name is its current text); a retracted name and a line that is no record are left alone.
   5. The helper takes `moves_only` and the date rule from the validator's source: with that rule made stricter the helper makes fewer lines.
   6. A name that is in data/trusted gets no line (the gate refuses it: its text is the compiled one); the names are found as validate_records.trusted_names finds them, in the real data/trusted.
-  7. `--at` that is no date, and a `--reason` that is empty, has a newline or is longer than 300 characters, write nothing and exit with 2 (the gate would reject the lines); a good run exits with 0."""
+  7. a library argument that is a path, not a key, writes nothing and exits 2 (path traversal, Sonar S8707); `--at` that is no date, and a `--reason` that is empty, has a newline or is longer than 300 characters, write nothing and exit with 2 (the gate would reject the lines); a good run exits with 0."""
 
 from __future__ import annotations
 
@@ -146,22 +146,31 @@ class TrustedAndArguments(unittest.TestCase):
 
     def test_arguments_the_gate_would_reject_write_nothing(self):
         recs = by_lib(TRUNCATED)["rankamplificationtotient"]
-        good = ["--by", "t", "--at", "2026-11-14", "--reason", "r"]
         with tempfile.TemporaryDirectory() as d:
-            f = Path(d) / "x.jsonl"
+            root = Path(d)
+            (root / "data" / "tentative").mkdir(parents=True)
+            f = root / "data" / "tentative" / "lib.jsonl"
             f.write_text(file_text(recs), encoding="utf-8")
             before = f.read_text(encoding="utf-8")
-            for bad in (
-                ["--by", "t", "--at", "14 Nov", "--reason", "r"],
-                ["--by", "t", "--at", "2026-11-14", "--reason", ""],
-                ["--by", "t", "--at", "2026-11-14", "--reason", "a\nb"],
-                ["--by", "t", "--at", "2026-11-14", "--reason", "x" * 301],
-            ):
-                self.assertEqual(cs.main([str(f), *bad, "--write"]), 2)
+            good = ["--by", "t", "--at", "2026-11-14", "--reason", "r"]
+            for at, reason in (("14 Nov", "r"), ("2026-11-14", ""), ("2026-11-14", "a\nb"), ("2026-11-14", "x" * 301)):
+                self.assertEqual(cs.main(["lib", "--by", "t", "--at", at, "--reason", reason, "--write"], root), 2)
                 self.assertEqual(f.read_text(encoding="utf-8"), before)
-            self.assertEqual(cs.main([str(f), *good, "--write"]), 0)
+            self.assertEqual(cs.main(["lib", *good, "--write"], root), 0)
             self.assertGreater(len(f.read_text(encoding="utf-8")), len(before))
-            self.assertEqual(cs.main([str(f), *good, "--write"]), 0)
+            self.assertEqual(cs.main(["lib", *good, "--write"], root), 0)
+
+    def test_an_argument_is_a_library_key_never_a_path(self):
+        """The corrections are appended to data/tentative/KEY.jsonl only: a path, `..` or an absolute path is refused before anything is read or written (Sonar S8707, path traversal)."""
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            (root / "data" / "tentative").mkdir(parents=True)
+            outside = root / "outside.jsonl"
+            outside.write_text(file_text(by_lib(TRUNCATED)["rankamplificationtotient"]), encoding="utf-8")
+            before = outside.read_text(encoding="utf-8")
+            for bad in ("../../outside", "../outside", str(outside), "data/tentative/x", "", ".hidden", "a b", "a/b"):
+                self.assertEqual(cs.main([bad, "--by", "t", "--at", "2026-11-14", "--reason", "r", "--write"], root), 2, bad)
+            self.assertEqual(outside.read_text(encoding="utf-8"), before)
 
 
 if __name__ == "__main__":
