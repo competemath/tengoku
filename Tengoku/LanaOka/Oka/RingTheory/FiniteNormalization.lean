@@ -37,7 +37,7 @@ minimal prime of `A`. Hence `dim (A ⧸ 𝔠) < dim A` for the conductor `𝔠`.
 - `exists_normalization`: the normalisation of a reduced algebra of finite type, with its
   conductor.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open scoped nonZeroDivisors
 
 universe u
@@ -86,7 +86,7 @@ section Dimension
 variable {R S : Type*} [CommRing R] [CommRing S] [Algebra R S]
 
 /-- The Krull dimension does not increase along an integral extension. -/
-theorem ringKrullDim_le_of_isIntegral [Algebra.IsIntegral R S] :
+theorem _root_.Tengoku.LanaOka.ringKrullDim_le_of_isIntegral [Algebra.IsIntegral R S] :
     ringKrullDim S ≤ ringKrullDim R := by
   refine Order.krullDim_le_of_strictMono (PrimeSpectrum.comap (algebraMap R S)) fun p q hpq ↦ ?_
   obtain ⟨x, hxq, hxp⟩ := SetLike.exists_of_lt (show p.asIdeal < q.asIdeal from hpq)
@@ -100,7 +100,7 @@ section Conductor
 variable (R S : Type*) [CommRing R] [CommRing S] [Algebra R S]
 
 /-- The conductor of `R` in `S`: the elements `a ∈ R` with `a S ⊆ R`. -/
-def conductorIdeal : Ideal R where
+def _root_.Tengoku.LanaOka.conductorIdeal : Ideal R where
   carrier := {a | ∀ s : S, ∃ r, algebraMap R S r = algebraMap R S a * s}
   zero_mem' s := ⟨0, by simp⟩
   add_mem' {a b} ha hb s := by
@@ -113,12 +113,12 @@ def conductorIdeal : Ideal R where
 
 variable {R S}
 
-lemma mem_conductorIdeal_iff {a : R} :
+lemma _root_.Tengoku.LanaOka.mem_conductorIdeal_iff {a : R} :
     a ∈ conductorIdeal R S ↔ ∀ s : S, ∃ r, algebraMap R S r = algebraMap R S a * s :=
   Iff.rfl
 
 /-- The conductor is an ideal of `S`. -/
-lemma exists_mem_conductorIdeal {i : R} (hi : i ∈ conductorIdeal R S) (s : S) :
+lemma _root_.Tengoku.LanaOka.exists_mem_conductorIdeal {i : R} (hi : i ∈ conductorIdeal R S) (s : S) :
     ∃ r ∈ conductorIdeal R S, algebraMap R S r = algebraMap R S i * s := by
   obtain ⟨r, hr⟩ := hi s
   refine ⟨r, fun s' ↦ ?_, hr⟩
@@ -131,11 +131,11 @@ section Normalization
 
 /-- A ring **is a finite product of integrally closed domains**. For noetherian rings this is
 normality. -/
-def IsFiniteProductOfNormalDomains (R : Type u) [CommRing R] : Prop :=
+def _root_.Tengoku.LanaOka.IsFiniteProductOfNormalDomains (R : Type u) [CommRing R] : Prop :=
   ∃ (ι : Type u) (_ : Finite ι) (D : ι → Type u) (_ : ∀ i, CommRing (D i))
     (_ : ∀ i, IsDomain (D i)) (_ : ∀ i, IsIntegrallyClosed (D i)), Nonempty (R ≃+* ∀ i, D i)
 
-lemma IsFiniteProductOfNormalDomains.of_ringEquiv {R R' : Type u} [CommRing R] [CommRing R']
+lemma Tengoku.LanaOka.IsFiniteProductOfNormalDomains.of_ringEquiv {R R' : Type u} [CommRing R] [CommRing R']
     (e : R ≃+* R') (h : IsFiniteProductOfNormalDomains R') : IsFiniteProductOfNormalDomains R := by
   obtain ⟨ι, hι, D, h₁, h₂, h₃, ⟨e'⟩⟩ := h
   exact ⟨ι, hι, D, h₁, h₂, h₃, ⟨e.trans e'⟩⟩
@@ -147,23 +147,23 @@ instance (p : minimalPrimes A) : p.1.IsPrime :=
 
 /-- **The normalisation** of a ring with finitely many minimal primes: the product, over the
 minimal primes `p`, of the integral closures of `A ⧸ p` in their fraction fields. -/
-abbrev Normalization : Type u :=
+abbrev _root_.Tengoku.LanaOka.Normalization : Type u :=
   (p : minimalPrimes A) → integralClosure (A ⧸ p.1) (FractionRing (A ⧸ p.1))
 
-lemma normalization_apply_coe (a : A) (p : minimalPrimes A) :
+lemma _root_.Tengoku.LanaOka.normalization_apply_coe (a : A) (p : minimalPrimes A) :
     ((algebraMap A (Normalization A) a p : integralClosure (A ⧸ p.1) (FractionRing (A ⧸ p.1))) :
       FractionRing (A ⧸ p.1)) = algebraMap (A ⧸ p.1) (FractionRing (A ⧸ p.1))
         (Ideal.Quotient.mk p.1 a) :=
   rfl
 
-lemma isFiniteProductOfNormalDomains_normalization [IsNoetherianRing A] :
+lemma _root_.Tengoku.LanaOka.isFiniteProductOfNormalDomains_normalization [IsNoetherianRing A] :
     IsFiniteProductOfNormalDomains (Normalization A) :=
   ⟨minimalPrimes A, Set.finite_coe_iff.2 (minimalPrimes.finite_of_isNoetherianRing A), _,
     inferInstance, fun _ ↦ inferInstance,
     fun p ↦ integralClosure.isIntegrallyClosedOfFiniteExtension (FractionRing (A ⧸ p.1)),
     ⟨RingEquiv.refl _⟩⟩
 
-lemma injective_algebraMap_normalization [IsReduced A] :
+lemma _root_.Tengoku.LanaOka.injective_algebraMap_normalization [IsReduced A] :
     Function.Injective (algebraMap A (Normalization A)) := by
   rw [injective_iff_map_eq_zero]
   intro a ha
@@ -184,7 +184,7 @@ lemma injective_algebraMap_normalization [IsReduced A] :
 variable (k : Type*) [Field k] [CharZero k] [Algebra k A] [Algebra.FiniteType k A]
 
 include k in
-lemma finite_normalization :
+lemma _root_.Tengoku.LanaOka.finite_normalization :
     Module.Finite A (Normalization A) := by
   haveI : IsNoetherianRing A := Algebra.FiniteType.isNoetherianRing k A
   haveI := Set.finite_coe_iff.2 (minimalPrimes.finite_of_isNoetherianRing A)
@@ -199,7 +199,7 @@ lemma finite_normalization :
 
 include k in
 /-- **The conductor of `A` in its normalisation is contained in no minimal prime.** -/
-lemma not_conductorIdeal_le (p : Ideal A) (hp : p ∈ minimalPrimes A) :
+lemma _root_.Tengoku.LanaOka.not_conductorIdeal_le (p : Ideal A) (hp : p ∈ minimalPrimes A) :
     ¬ conductorIdeal A (Normalization A) ≤ p := by
   classical
   haveI : IsNoetherianRing A := Algebra.FiniteType.isNoetherianRing k A
@@ -264,3 +264,4 @@ lemma not_conductorIdeal_le (p : Ideal A) (hp : p ∈ minimalPrimes A) :
     simp only [map_mul, Ideal.Quotient.eq_zero_iff_mem.2 this, map_zero, zero_mul]
 
 end Normalization
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

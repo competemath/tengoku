@@ -6,7 +6,7 @@ import Tengoku
 Auxiliary machinery for Chapter 28: Sperner's lemma (combinatorial),
 the Sperner-to-Brouwer bridge via subdivision of the standard 2-simplex.
 -/
-
+namespace Tengoku.Formalbook end Tengoku.Formalbook open Tengoku.Formalbook
 namespace chapter28
 
 /-- An abstract simplicial 2-complex: a collection of triangles (3-element subsets). -/
@@ -318,3 +318,4 @@ Define `count12 t` = number of {u,v} pairs in triangle t with {col u, col v} = {
   Therefore ∑ count12 ≡ (boundary 12-edges) ≡ 1 (mod 2). -/
 
 end chapter28
+-- Tengoku: root names of this library moved to Tengoku.Formalbook so they do not collide with other libraries (generated)

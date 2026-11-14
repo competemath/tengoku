@@ -26,8 +26,8 @@ reasoning rather than `rfl`.
 -/
 
 @[expose] public section
-
-namespace Dimension
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
+namespace Tengoku.Physlib.Dimension
 
 /-!
 
@@ -276,6 +276,7 @@ lemma rational_arithmetic_defeq :
 
 lemma inverse_arithmetic_defeq : ((-3 / 4 : Exponent)⁻¹ + 5 / 6) = -1 / 2 := rfl
 
-end Dimension.Exponent
+end Tengoku.Physlib.Dimension.Exponent
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

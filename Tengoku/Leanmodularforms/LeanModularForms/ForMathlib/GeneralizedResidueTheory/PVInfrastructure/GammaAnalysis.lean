@@ -20,7 +20,7 @@ used in the dyadic PV limit proof for principal value convergence.
 * `no_return_of_inj_continuous` — γ bounded away from γ(t₀)
     outside nbhd
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex Set Filter Topology
 open scoped Real
 
@@ -43,7 +43,7 @@ private lemma norm_real_smul (x : ℝ) (L : ℂ) : ‖x • L‖ = |x| * ‖L‖
 Uses `hasDerivAt_remainder_bound` + reverse triangle inequality.
 @isnad1 id=ex.2h3v.s7.aa900fe84c44 from=translated src=- shape=5d5ec183 vocab=a79e39f6
 -/
-lemma gamma_lower_bound_of_hasDerivAt {γ : ℝ → ℂ} {t₀ : ℝ} {L : ℂ} (hL : L ≠ 0)
+lemma _root_.Tengoku.Leanmodularforms.gamma_lower_bound_of_hasDerivAt {γ : ℝ → ℂ} {t₀ : ℝ} {L : ℂ} (hL : L ≠ 0)
     (hγ_hasderiv : HasDerivAt γ L t₀) :
     ∃ δ > 0, ∀ t, 0 < |t - t₀| → |t - t₀| < δ →
       ‖γ t - γ t₀‖ ≥ (‖L‖ / 2) * |t - t₀| := by
@@ -67,7 +67,7 @@ lemma gamma_lower_bound_of_hasDerivAt {γ : ℝ → ℂ} {t₀ : ℝ} {L : ℂ} 
 Uses `hasDerivAt_remainder_bound` + triangle inequality.
 @isnad1 id=ex.2h3v.s7.a51d0f5c55e9 from=translated src=- shape=65331a33 vocab=afba8a8a
 -/
-lemma gamma_upper_bound_of_hasDerivAt {γ : ℝ → ℂ} {t₀ : ℝ} {L : ℂ} (hL : L ≠ 0)
+lemma _root_.Tengoku.Leanmodularforms.gamma_upper_bound_of_hasDerivAt {γ : ℝ → ℂ} {t₀ : ℝ} {L : ℂ} (hL : L ≠ 0)
     (hγ_hasderiv : HasDerivAt γ L t₀) :
     ∃ δ > 0, ∀ t, 0 < |t - t₀| → |t - t₀| < δ →
       ‖γ t - γ t₀‖ ≤ 2 * ‖L‖ * |t - t₀| := by
@@ -90,7 +90,7 @@ lemma gamma_upper_bound_of_hasDerivAt {γ : ℝ → ℂ} {t₀ : ℝ} {L : ℂ} 
 from γ(t₀) outside any neighborhood of t₀.
 @isnad1 id=ex.3h5v.s7.c1c862cc503d from=translated src=- shape=d0ef2bb5 vocab=e1e95e54
 -/
-lemma no_return_of_inj_continuous {γ : ℝ → ℂ} {a b t₀ : ℝ} {c : ℝ} (hc_pos : 0 < c)
+lemma _root_.Tengoku.Leanmodularforms.no_return_of_inj_continuous {γ : ℝ → ℂ} {a b t₀ : ℝ} {c : ℝ} (hc_pos : 0 < c)
     (hγ_cont : ContinuousOn γ (Set.Icc a b))
     (h_inj : ∀ t ∈ Set.Icc a b, γ t = γ t₀ → t = t₀) :
     ∃ ρ > 0, ∀ t ∈ Set.Icc a b, c ≤ |t - t₀| → ρ ≤ ‖γ t - γ t₀‖ := by
@@ -112,3 +112,4 @@ lemma no_return_of_inj_continuous {γ : ℝ → ℂ} {a b t₀ : ℝ} {c : ℝ} 
   exact ⟨ρ, hρ_pos, fun t ht h_dist => hρ_le t ⟨ht, h_dist⟩⟩
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

@@ -34,7 +34,7 @@ applies. Limits are holomorphic by Weierstrass' theorem
   uniformly bounded sequence of holomorphic functions on `U` has a subsequence converging locally
   uniformly on `U` to a holomorphic function.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Metric Set Filter Topology
 
 /-- The restriction to `U` of a function continuous on `U`, as a continuous map on `U`. -/
@@ -52,7 +52,7 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
 
 /-- A function holomorphic on `B(z, R)` and bounded by `M` there satisfies
 `‖f y - f z‖ ≤ 2M/R ‖y - z‖` on `B(z, R)`. -/
-theorem norm_sub_le_of_differentiableOn_ball {f : E → ℂ} {z y : E} {R M : ℝ}
+theorem _root_.Tengoku.LanaOka.norm_sub_le_of_differentiableOn_ball {f : E → ℂ} {z y : E} {R M : ℝ}
     (hf : DifferentiableOn ℂ f (ball z R)) (hM : ∀ w ∈ ball z R, ‖f w‖ ≤ M)
     (hy : y ∈ ball z R) :
     ‖f y - f z‖ ≤ 2 * M / R * ‖y - z‖ := by
@@ -89,7 +89,7 @@ variable [FiniteDimensional ℂ E] {ι : Type*}
 
 /-- A family of holomorphic functions on `U` which is uniformly bounded on compact subsets of `U`
 is equicontinuous on `U`. -/
-theorem equicontinuous_restrict_of_differentiableOn {U : Set E} (hU : IsOpen U) {F : ι → E → ℂ}
+theorem _root_.Tengoku.LanaOka.equicontinuous_restrict_of_differentiableOn {U : Set E} (hU : IsOpen U) {F : ι → E → ℂ}
     (hF : ∀ i, DifferentiableOn ℂ (F i) U)
     (hb : ∀ K ⊆ U, IsCompact K → ∃ C, ∀ i, ∀ x ∈ K, ‖F i x‖ ≤ C) :
     Equicontinuous fun i ↦ U.domRestrict (F i) := by
@@ -108,7 +108,7 @@ theorem equicontinuous_restrict_of_differentiableOn {U : Set E} (hU : IsOpen U) 
 
 /-- **Montel's theorem**: a family of holomorphic functions on `U` which is uniformly bounded on
 compact subsets of `U` has compact closure in `C(U, ℂ)` (topology of compact convergence). -/
-theorem isCompact_closure_of_differentiableOn {U : Set E} (hU : IsOpen U) {F : ι → E → ℂ}
+theorem _root_.Tengoku.LanaOka.isCompact_closure_of_differentiableOn {U : Set E} (hU : IsOpen U) {F : ι → E → ℂ}
     (hF : ∀ i, DifferentiableOn ℂ (F i) U)
     (hb : ∀ K ⊆ U, IsCompact K → ∃ C, ∀ i, ∀ x ∈ K, ‖F i x‖ ≤ C) :
     IsCompact (closure (range fun i ↦ (hF i).continuousOn.toContinuousMapOn)) := by
@@ -138,7 +138,7 @@ theorem isCompact_closure_of_differentiableOn {U : Set E} (hU : IsOpen U) {F : �
 /-- **Montel's theorem**, sequential form: a sequence of holomorphic functions on `U` which is
 uniformly bounded on compact subsets of `U` has a subsequence converging locally uniformly on `U`
 to a holomorphic function. -/
-theorem exists_subseq_tendstoLocallyUniformlyOn {U : Set E} (hU : IsOpen U) {F : ℕ → E → ℂ}
+theorem _root_.Tengoku.LanaOka.exists_subseq_tendstoLocallyUniformlyOn {U : Set E} (hU : IsOpen U) {F : ℕ → E → ℂ}
     (hF : ∀ n, DifferentiableOn ℂ (F n) U)
     (hb : ∀ K ⊆ U, IsCompact K → ∃ C, ∀ n, ∀ x ∈ K, ‖F n x‖ ≤ C) :
     ∃ G : E → ℂ, ∃ φ : ℕ → ℕ, StrictMono φ ∧ DifferentiableOn ℂ G U ∧
@@ -156,3 +156,4 @@ theorem exists_subseq_tendstoLocallyUniformlyOn {U : Set E} (hU : IsOpen U) {F :
     · funext x
       simp [G, x.2]
   exact ⟨G, φ, hφ, differentiableOn_of_tendstoLocallyUniformlyOn hU (fun n ↦ hF _) hG, hG⟩
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

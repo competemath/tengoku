@@ -3,7 +3,7 @@ import Tengoku.FltAnthropic.Definitions.Def_Mathlib_Algebra_Algebra_Hom
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
 
-section
+section namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 local infixr:25 " →ₛₐ " => SemialgHom _
 local notation:25 A " →ₛₐ[" φ:25 "] " B:0 => SemialgHom φ A B
 
@@ -29,3 +29,4 @@ noncomputable def mapSemialgHom {α : Type*} [CommRing α] [UniformSpace α]
     exact extensionHom_coe _ _ m
 
 end UniformSpace.Completion
+-- Tengoku: root names of this library moved to Tengoku.FltAnthropic so they do not collide with other libraries (generated)

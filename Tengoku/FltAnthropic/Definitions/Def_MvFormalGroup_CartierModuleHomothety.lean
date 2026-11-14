@@ -3,14 +3,14 @@ import Tengoku.FltAnthropic.Definitions.Def_MvFormalGroup_NegV2
 import Tengoku.FltAnthropic.Definitions.Def_MvFormalGroup_CartierModule
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 set_option autoImplicit false
 
 noncomputable section
 
 universe u
 
-namespace MvFormalGroup
+namespace Tengoku.FltAnthropic.MvFormalGroup
 
 open MvPowerSeries WittLaw
 
@@ -91,6 +91,7 @@ end Examples
 
 end CartierModule
 
-end MvFormalGroup
+end Tengoku.FltAnthropic.MvFormalGroup
 
 end
+-- Tengoku: root names of this library moved to Tengoku.FltAnthropic so they do not collide with other libraries (generated)

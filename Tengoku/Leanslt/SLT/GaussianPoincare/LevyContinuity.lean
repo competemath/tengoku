@@ -31,7 +31,7 @@ on formalizing the Central Limit Theorem and related results in Lean 4.
 -/
 
 noncomputable section
-
+namespace Tengoku.Leanslt end Tengoku.Leanslt open Tengoku.Leanslt 
 open Filter MeasureTheory ProbabilityTheory BoundedContinuousFunction Real RCLike
 open scoped Topology RealInnerProductSpace ENNReal NNReal Nat
 
@@ -48,7 +48,7 @@ variable {α : Type*} [MeasurableSpace α]
 /--
 @isnad1 id=integrab.5h6v.s7.12e36cd1dc6e from=translated src=- shape=b5941b9c vocab=892cb0e2
 -/
-lemma integrable_norm_rpow_antitone
+lemma _root_.Tengoku.Leanslt.integrable_norm_rpow_antitone
     (μ : Measure α) [IsFiniteMeasure μ]
     {E} [NormedAddCommGroup E] {f : α → E} (hf : AEStronglyMeasurable f μ)
     {p q : ℝ} (hp : 0 ≤ p) (hq : 0 ≤ q) (hpq : p ≤ q)
@@ -67,7 +67,7 @@ lemma integrable_norm_rpow_antitone
 /--
 @isnad1 id=integrab.3h6v.s7.79faf879d739 from=translated src=- shape=44cbb018 vocab=aa41b263
 -/
-lemma integrable_norm_pow_antitone
+lemma _root_.Tengoku.Leanslt.integrable_norm_pow_antitone
     (μ : Measure α) [IsFiniteMeasure μ]
     {E} [NormedAddCommGroup E] {f : α → E} (hf : AEStronglyMeasurable f μ)
     {p q : ℕ} (hpq : p ≤ q)
@@ -90,7 +90,7 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 @isnad1 id=contdiff.1h3v.s7.c49485d85dbe from=translated src=- shape=fea44c67 vocab=593fbc43
 -/
 @[fun_prop]
-theorem contDiff_charFun
+theorem _root_.Tengoku.Leanslt.contDiff_charFun
     {n : ℕ} (hint : Integrable (‖·‖ ^ n) μ) :
     ContDiff ℝ n (charFun μ) := by
   have hint' (k : ℕ) (hk : k ≤ (n : ℕ∞)) : Integrable (fun x ↦ ‖x‖ ^ k * ‖(1 : E → ℂ) x‖) μ := by
@@ -105,9 +105,9 @@ theorem contDiff_charFun
 @isnad1 id=continuo.0h2v.s6.81dada462cda from=translated src=- shape=9ee56bd0 vocab=68b8d2d1
 -/
 @[fun_prop]
-  lemma continuous_charFun : Continuous (charFun μ) := by
+  lemma _root_.Tengoku.Leanslt.continuous_charFun : Continuous (charFun μ) := by
     rw [← contDiff_zero (𝕜 := ℝ)]
-    refine _root_.contDiff_charFun ?_
+    refine _root_.Tengoku.Leanslt.contDiff_charFun ?_
     exact integrable_const (1 : ℝ)
 
 end InnerProductSpace
@@ -138,7 +138,7 @@ variable [NormedSpace ℝ E] [FiniteDimensional ℝ E]
 /--
 @isnad1 id=istightm.1h3v.s7.87c72deb4b05 from=translated src=- shape=e5d6b327 vocab=1b457046
 -/
-lemma isTightMeasureSet_of_tendsto_limsup_measure_norm_gt
+lemma _root_.Tengoku.Leanslt.isTightMeasureSet_of_tendsto_limsup_measure_norm_gt
     (h : Tendsto (fun r : ℝ ↦ limsup (fun n ↦ μ n {x | r < ‖x‖}) atTop) atTop (𝓝 0)) :
     IsTightMeasureSet (Set.range μ) := by
   refine isTightMeasureSet_of_tendsto_measure_norm_gt ?_
@@ -154,7 +154,7 @@ lemma isTightMeasureSet_of_tendsto_limsup_measure_norm_gt
 /--
 @isnad1 id=iff.0h3v.s7.7b6982144a8e from=translated src=- shape=f65e86d1 vocab=1b457046
 -/
-lemma isTightMeasureSet_iff_tendsto_limsup_measure_norm_gt :
+lemma _root_.Tengoku.Leanslt.isTightMeasureSet_iff_tendsto_limsup_measure_norm_gt :
     IsTightMeasureSet (Set.range μ)
       ↔ Tendsto (fun r : ℝ ↦ limsup (fun n ↦ μ n {x | r < ‖x‖}) atTop) atTop (𝓝 0) := by
   refine ⟨fun h ↦ ?_, isTightMeasureSet_of_tendsto_limsup_measure_norm_gt⟩
@@ -174,7 +174,7 @@ variable [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
 /--
 @isnad1 id=istightm.1h3v.s7.7838f4e55d9c from=translated src=- shape=9cc72312 vocab=2f4aedad
 -/
-lemma isTightMeasureSet_of_tendsto_limsup_inner
+lemma _root_.Tengoku.Leanslt.isTightMeasureSet_of_tendsto_limsup_inner
     (h : ∀ z, Tendsto (fun r : ℝ ↦ limsup (fun n ↦ μ n {x | r < |⟪z, x⟫|}) atTop) atTop (𝓝 0)) :
     IsTightMeasureSet (Set.range μ) := by
   refine isTightMeasureSet_of_inner_tendsto (𝕜 := ℝ) fun z ↦ ?_
@@ -192,7 +192,7 @@ lemma isTightMeasureSet_of_tendsto_limsup_inner
 /--
 @isnad1 id=iff.0h3v.s7.aebe9aed153c from=translated src=- shape=6808e3e0 vocab=2f4aedad
 -/
-lemma isTightMeasureSet_iff_tendsto_limsup_inner :
+lemma _root_.Tengoku.Leanslt.isTightMeasureSet_iff_tendsto_limsup_inner :
     IsTightMeasureSet (Set.range μ)
       ↔ ∀ z, Tendsto (fun r : ℝ ↦ limsup (fun n ↦ μ n {x | r < |⟪z, x⟫|}) atTop) atTop (𝓝 0) := by
   refine ⟨fun h z ↦ ?_, isTightMeasureSet_of_tendsto_limsup_inner⟩
@@ -207,7 +207,7 @@ lemma isTightMeasureSet_iff_tendsto_limsup_inner :
 /--
 @isnad1 id=istightm.1h3v.s7.0e5aea68af06 from=translated src=- shape=b58e442e vocab=5324feba
 -/
-lemma isTightMeasureSet_of_tendsto_limsup_inner_of_norm_eq_one
+lemma _root_.Tengoku.Leanslt.isTightMeasureSet_of_tendsto_limsup_inner_of_norm_eq_one
     (h : ∀ z, ‖z‖ = 1
       → Tendsto (fun r : ℝ ↦ limsup (fun n ↦ μ n {x | r < |⟪z, x⟫|}) atTop) atTop (𝓝 0)) :
     IsTightMeasureSet (Set.range μ) := by
@@ -234,7 +234,7 @@ lemma isTightMeasureSet_of_tendsto_limsup_inner_of_norm_eq_one
 then `{μ n | n}` is tight.
 @isnad1 id=istightm.3h4v.s7.cc6a26919b6f from=translated src=- shape=854468ec vocab=033d7849
 -/
-lemma isTightMeasureSet_of_tendsto_charFun {μ : ℕ → Measure E} [∀ i, IsProbabilityMeasure (μ i)]
+lemma _root_.Tengoku.Leanslt.isTightMeasureSet_of_tendsto_charFun {μ : ℕ → Measure E} [∀ i, IsProbabilityMeasure (μ i)]
     {f : E → ℂ} (hf : ContinuousAt f 0) (hf_meas : Measurable f)
     (h : ∀ t, Tendsto (fun n ↦ charFun (μ n) t) atTop (𝓝 (f t))) :
     IsTightMeasureSet (Set.range μ) := by
@@ -371,3 +371,4 @@ end Tight
 The final Lévy convergence API that used to live locally in this file is now
 provided by `Mathlib.MeasureTheory.Measure.LevyConvergence`.
 -/
+-- Tengoku: root names of this library moved to Tengoku.Leanslt so they do not collide with other libraries (generated)

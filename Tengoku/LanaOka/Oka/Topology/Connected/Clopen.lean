@@ -58,7 +58,7 @@ and `sigma_mk_injective` from that module, in `Sigma.isConnected_iff`'s own proo
   so. The split is by destination: nothing there goes to
   `Mathlib/Topology/Connected/Clopen.lean`, because every statement in it names a homeomorphism.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Set
 
 /-- **The connected component of a point of a disjoint union of connected spaces is the member it
@@ -72,7 +72,7 @@ component by `IsPreconnected.subset_connectedComponent`.
 
 **`[∀ i, ConnectedSpace (β i)]` is used in the second inclusion only**, and only through
 `isPreconnected_univ`: the first holds for any family whatever. -/
-theorem connectedComponent_sigmaMk {ι : Type*} {β : ι → Type*} [∀ i, TopologicalSpace (β i)]
+theorem _root_.Tengoku.LanaOka.connectedComponent_sigmaMk {ι : Type*} {β : ι → Type*} [∀ i, TopologicalSpace (β i)]
     [∀ i, ConnectedSpace (β i)] (i : ι) (y : β i) :
     connectedComponent (⟨i, y⟩ : Σ i, β i) = Set.range (Sigma.mk i) := by
   refine subset_antisymm
@@ -80,3 +80,4 @@ theorem connectedComponent_sigmaMk {ι : Type*} {β : ι → Type*} [∀ i, Topo
     (IsPreconnected.subset_connectedComponent ?_ ⟨y, rfl⟩)
   simpa [Set.image_univ] using
     (isPreconnected_univ (α := β i)).image _ continuous_sigmaMk.continuousOn
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

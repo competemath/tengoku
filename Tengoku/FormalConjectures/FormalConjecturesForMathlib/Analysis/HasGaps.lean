@@ -20,7 +20,7 @@ public import Tengoku.FormalConjectures.FormalConjecturesForMathlib.Topology.Alg
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.FormalConjectures end Tengoku.FormalConjectures open Tengoku.FormalConjectures 
 /-!
 # Sequences with Large Gaps
 
@@ -34,16 +34,16 @@ open scoped Finset
 
 /-- A sequence of natural numbers `n₀ < n₁ < ...` is said to have Fabry gaps if `nₖ / k → ∞`.
 This is the terminology adopted in [Wa01] and some other sources.-/
-def HasFabryGaps (n : ℕ → ℕ) : Prop := StrictMono n ∧ Tendsto (fun k => n k / (k : ℝ)) atTop atTop
+def _root_.Tengoku.FormalConjectures.HasFabryGaps (n : ℕ → ℕ) : Prop := StrictMono n ∧ Tendsto (fun k => n k / (k : ℝ)) atTop atTop
 
 /-- A sequence of natural numbers `n₀ < n₁ < ...` is said to have Fejér gaps if `∑' 1 / nₖ < ∞`.
 This is the terminology adopted in [Wa01] and some other sources.-/
-def HasFejerGaps (n : ℕ → ℕ) : Prop := StrictMono n ∧ Summable (fun k => (n k : ℝ)⁻¹)
+def _root_.Tengoku.FormalConjectures.HasFejerGaps (n : ℕ → ℕ) : Prop := StrictMono n ∧ Summable (fun k => (n k : ℝ)⁻¹)
 
 /--
 @isnad1 id=hasfabry.1h1v.s3.639ae8906ada from=translated src=- shape=c3984ded vocab=19a1b097
 -/
-theorem HasFejerGaps.hasFabryGaps {f : ℕ → ℕ} (hf : HasFejerGaps f) : HasFabryGaps f := by
+theorem Tengoku.FormalConjectures.HasFejerGaps.hasFabryGaps {f : ℕ → ℕ} (hf : HasFejerGaps f) : HasFabryGaps f := by
   refine ⟨hf.1, tendsto_atTop_mono'
     (f₁ := (· / 2) ∘ (·⁻¹) ∘ (∑' n : Set.Ici ·, (f n : ℝ)⁻¹) ∘ (· / 2)) _ ?_ <|
       (tendsto_div_const_atTop_of_pos (two_pos (α := ℝ))).2 <| tendsto_inv_nhdsGT_zero.comp <|
@@ -66,3 +66,4 @@ theorem HasFejerGaps.hasFabryGaps {f : ℕ → ℕ} (hf : HasFejerGaps f) : HasF
   · filter_upwards [eventually_gt_atTop 0] with N hN
     refine (hf.2.comp_injective Subtype.val_injective).tsum_pos (by simp) ⟨N, by simp⟩ ?_
     simpa using (hf.1 hN).bot_lt
+-- Tengoku: root names of this library moved to Tengoku.FormalConjectures so they do not collide with other libraries (generated)

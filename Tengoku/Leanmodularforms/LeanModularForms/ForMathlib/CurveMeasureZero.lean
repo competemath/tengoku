@@ -22,7 +22,7 @@ nonempty intersection with a continuous Lipschitz curve, there exists a point in
 * `exists_mem_not_mem_image_of_isOpen_of_lipschitz` — for open nonempty `U` and
   Lipschitz `f : ℝ → ℂ`, there exists `w₀ ∈ U` off `f '' s`.
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open MeasureTheory Measure Set Filter Topology
 
 namespace ForMathlib
@@ -95,3 +95,4 @@ theorem exists_mem_not_mem_path_image_of_isOpen {x y : ℂ} (γ : PiecewiseC1Pat
   exact ⟨w₀, hw₀_mem, fun t ht heq => hw₀_off ⟨t, ht, heq⟩⟩
 
 end ForMathlib
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

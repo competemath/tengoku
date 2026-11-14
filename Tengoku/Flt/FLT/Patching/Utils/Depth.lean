@@ -15,7 +15,7 @@ together with basic API.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Flt end Tengoku.Flt open Tengoku.Flt 
 variable (R S M : Type*) [CommRing R] [CommRing S] [IsLocalRing R] [IsLocalRing S]
 variable [AddCommGroup M] [Module R M] [Module S M] [Algebra R S] [IsScalarTower R S M]
 variable [IsLocalHom (algebraMap R S)]
@@ -174,7 +174,7 @@ lemma Module.depth_le_dim [Nontrivial M] [Module.Finite R M] :
 /--
 @isnad1 id=iff.0h3v.s6.18bfc208796c from=translated src=- shape=4b14abd6 vocab=c488f50c
 -/
-lemma isSMulRegular_iff_of_free {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
+lemma _root_.Tengoku.Flt.isSMulRegular_iff_of_free {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     [Module.Free R M] [Nontrivial M] {r : R} :
     IsSMulRegular M r ↔ IsSMulRegular R r := by
   let I := Module.Free.ChooseBasisIndex R M
@@ -286,3 +286,4 @@ lemma Module.faithfulSMul_of_depth_eq_ringKrullDim [IsDomain R] [Nontrivial M] [
         refine (ringKrullDim_quotient_le _).trans_lt H
     _ = .some (Module.depth R M) := H'.symm
 -- Tengoku: 1 registration(s) of this module made local so they do not change other libraries (generated)
+-- Tengoku: root names of this library moved to Tengoku.Flt so they do not collide with other libraries (generated)

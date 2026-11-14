@@ -8,7 +8,7 @@ import Tengoku.Seed.GroupTheory.DoubleCoset
 import Tengoku.Seed.GroupTheory.Sylow
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.ClassfieldtheoryYamaguchi end Tengoku.ClassfieldtheoryYamaguchi open Tengoku.ClassfieldtheoryYamaguchi
 set_option autoImplicit false
 
 /-!
@@ -46,7 +46,7 @@ extension theorem proves the stronger result without a cyclicity
 assumption.
 @isnad1 id=ex.4h4v.s6.f624143d4b1e from=translated src=- shape=2c0890d5 vocab=60e50cd2
 -/
-theorem exists_index_prime_supergroup_of_card_prime_power
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.exists_index_prime_supergroup_of_card_prime_power
     {p v : ℕ}
     (hp : p.Prime)
     (hv : 0 < v)
@@ -99,7 +99,7 @@ theorem exists_index_prime_supergroup_of_card_prime_power
 supergroup is normal and its quotient has order `p`.
 @isnad1 id=ex.4h4v.s6.4c40963d6aa7 from=translated src=- shape=04918d8b vocab=44970084
 -/
-theorem cyclic_exists_normal_index_prime_supergroup
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.cyclic_exists_normal_index_prime_supergroup
     [IsCyclic G]
     {p v : ℕ}
     (hp : p.Prime)
@@ -127,7 +127,7 @@ omit [Finite G] in
 subgroup is contained in every subgroup of index `p`.
 @isnad1 id=le.4h5v.s6.e5b4124af07e from=translated src=- shape=39b0924b vocab=0805ad8c
 -/
-theorem subgroup_le_index_prime_subgroup_of_ne_top_cyclic_prime_power
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.subgroup_le_index_prime_subgroup_of_ne_top_cyclic_prime_power
     [IsCyclic G]
     {p exponent : ℕ}
     (hp : p.Prime)
@@ -180,7 +180,7 @@ This supplies the cyclic prime-degree subgroup used after passing to a
 normal closure.
 @isnad1 id=ex.0h1v.s5.2c10550910b8 from=translated src=- shape=1cb1c84f vocab=c55cf913
 -/
-theorem exists_element_of_prime_order :
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.exists_element_of_prime_order :
     ∃ (p : ℕ) (g : G),
       p.Prime ∧ orderOf g = p := by
   obtain ⟨p, hp, hpDvd⟩ :=
@@ -197,7 +197,7 @@ theorem exists_element_of_prime_order :
 of prime cardinality.
 @isnad1 id=ex.0h1v.s6.d88c54bb6ffe from=translated src=- shape=f93c2b59 vocab=20b07f4c
 -/
-theorem exists_cyclic_subgroup_of_prime_card :
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.exists_cyclic_subgroup_of_prime_card :
     ∃ (p : ℕ) (P : Subgroup G),
       p.Prime ∧ Nat.card P = p ∧ IsCyclic P := by
   obtain ⟨p, g, hp, hg⟩ :=
@@ -214,7 +214,7 @@ variable {G : Type uG} [Group G]
 
 /-- The canonical projection
 `H \ G = H \ G / 1 → H \ G / D`.-/
-def doubleCosetRightProjection
+def _root_.Tengoku.ClassfieldtheoryYamaguchi.doubleCosetRightProjection
     (H D : Subgroup G) :
     DoubleCoset.Quotient
         (H : Set G) (⊥ : Subgroup G) →
@@ -232,7 +232,7 @@ def doubleCosetRightProjection
 @isnad1 id=eq.0h4v.s5.9e218d6811ff from=translated src=- shape=26cb145b vocab=e9c48e54
 -/
 @[simp]
-theorem doubleCosetRightProjection_mk
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.doubleCosetRightProjection_mk
     (H D : Subgroup G)
     (g : G) :
     doubleCosetRightProjection H D
@@ -244,7 +244,7 @@ theorem doubleCosetRightProjection_mk
 the right subgroup lies in the normal core of the left subgroup.
 @isnad1 id=le.1h3v.s6.b5ef6e9b0166 from=translated src=- shape=769f4ef5 vocab=fc1566f2
 -/
-theorem rightSubgroup_le_normalCore_of_doubleCoset_projection_injective
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.rightSubgroup_le_normalCore_of_doubleCoset_projection_injective
     (H D : Subgroup G)
     (hinj : Function.Injective
       (doubleCosetRightProjection H D)) :
@@ -281,3 +281,4 @@ theorem rightSubgroup_le_normalCore_of_doubleCoset_projection_injective
   exact hh
 
 end DoubleCosets
+-- Tengoku: root names of this library moved to Tengoku.ClassfieldtheoryYamaguchi so they do not collide with other libraries (generated)

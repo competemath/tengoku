@@ -26,7 +26,7 @@ case-split on `z.re`: when `z.re ≤ 0`, `γ(t) - z ∈ slitPlane`; when `z.re >
 * `fdBoundaryPC1Path_contourIntegral_interior_eq`
 * `fdBoundary_interior_winding_complete`
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex MeasureTheory Set Filter Topology
 open scoped Real Interval
 
@@ -39,7 +39,7 @@ private lemma abs_lt_of_sq_lt {a b : ℝ} (h : a ^ 2 < b ^ 2) : |a| < |b| := by
 /--
 @isnad1 id=lt.3h1v.s6.e159ecdf53ec from=translated src=- shape=100c0d6f vocab=23878b0b
 -/
-theorem im_gt_sqrt3_div_two_of_interior {z : ℂ}
+theorem _root_.Tengoku.Leanmodularforms.im_gt_sqrt3_div_two_of_interior {z : ℂ}
     (hz_norm : 1 < ‖z‖) (hz_re : |z.re| < 1/2) (hz_im : 0 < z.im) :
     Real.sqrt 3 / 2 < z.im := by
   have hnsq := Complex.one_lt_normSq_iff.mpr hz_norm
@@ -471,7 +471,7 @@ private theorem xfer {z : ℂ} {H : ℝ}
 /-- **Interior contour integral = -2πi** for the FD boundary.
 @isnad1 id=eq.3h3v.s7.bb17257273f9 from=translated src=- shape=687a3acf vocab=3e2a4272
 -/
-theorem fdBoundary_contourIntegral_interior_eq {H : ℝ}
+theorem _root_.Tengoku.Leanmodularforms.fdBoundary_contourIntegral_interior_eq {H : ℝ}
     (_hH : H > Real.sqrt 3 / 2) {z : ℂ} (hz : FDStrictInterior z H)
     {γ : PiecewiseC1Path (fdStart H) (fdStart H)}
     (hγ : ∀ t ∈ Icc (0 : ℝ) 1, γ.toPath.extend t = fdBoundaryFun H t) :
@@ -482,7 +482,7 @@ theorem fdBoundary_contourIntegral_interior_eq {H : ℝ}
 /-- **Interior winding number = -1**.
 @isnad1 id=hasgener.3h3v.s7.64a440b97c59 from=translated src=- shape=1baee113 vocab=6b273e93
 -/
-theorem fdBoundary_interior_winding_complete {H : ℝ}
+theorem _root_.Tengoku.Leanmodularforms.fdBoundary_interior_winding_complete {H : ℝ}
     (hH : H > Real.sqrt 3 / 2) {z : ℂ} (hz : FDStrictInterior z H)
     {γ : PiecewiseC1Path (fdStart H) (fdStart H)}
     (hγ : ∀ t ∈ Icc (0 : ℝ) 1, γ.toPath.extend t = fdBoundaryFun H t) :
@@ -492,3 +492,4 @@ theorem fdBoundary_interior_winding_complete {H : ℝ}
     (fdBoundary_contourIntegral_interior_eq hH hz hγ)
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

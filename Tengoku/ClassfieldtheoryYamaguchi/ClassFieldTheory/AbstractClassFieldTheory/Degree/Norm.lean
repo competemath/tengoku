@@ -9,7 +9,7 @@ import Tengoku.ClassfieldtheoryYamaguchi.GaloisCohomology.Cyclic.IntegralRepUniv
 import Tengoku.ClassfieldtheoryYamaguchi.GaloisCohomology.Kummer.Abstract.KummerDelta
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.ClassfieldtheoryYamaguchi end Tengoku.ClassfieldtheoryYamaguchi open Tengoku.ClassfieldtheoryYamaguchi
 set_option autoImplicit false
 
 namespace ClassFormation
@@ -189,3 +189,4 @@ theorem relativeNorm_apply_coe
 
 end
 end ClassFormation
+-- Tengoku: root names of this library moved to Tengoku.ClassfieldtheoryYamaguchi so they do not collide with other libraries (generated)

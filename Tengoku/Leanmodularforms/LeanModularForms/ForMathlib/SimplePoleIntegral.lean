@@ -21,7 +21,7 @@ generalized winding number.
 
 * K. Hungerbühler, J. Wasem, *A generalized notion of winding numbers*
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Set Filter Topology MeasureTheory Complex
 open scoped Interval
 
@@ -33,7 +33,7 @@ variable {x y : ℂ}
 of `(z - s)⁻¹` equals `2πi · generalizedWindingNumber γ s`.
 @isnad1 id=eq.1h4v.s7.3bd05ba6f595 from=translated src=- shape=f47852a0 vocab=af3a3ac2
 -/
-theorem integral_inv_sub_eq_winding {s : ℂ} {γ : PiecewiseC1Path x y}
+theorem _root_.Tengoku.Leanmodularforms.integral_inv_sub_eq_winding {s : ℂ} {γ : PiecewiseC1Path x y}
     (hδ : ∃ δ > 0, ∀ t ∈ Icc (0 : ℝ) 1, δ ≤ ‖γ t - s‖) :
     γ.contourIntegral (fun z => (z - s)⁻¹) =
       2 * ↑Real.pi * I * generalizedWindingNumber γ s := by
@@ -41,3 +41,4 @@ theorem integral_inv_sub_eq_winding {s : ℂ} {γ : PiecewiseC1Path x y}
   rw [HasCauchyPV.unique (hasCauchyPV_of_avoids hδ) hw, hw.eq]
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

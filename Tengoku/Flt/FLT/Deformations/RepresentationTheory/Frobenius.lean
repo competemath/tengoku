@@ -44,7 +44,7 @@ Let `G` be a finite group acting on a ring `S`, and `R` is the fixed subring of 
 -/
 
 @[expose] public section
-
+namespace Tengoku.Flt end Tengoku.Flt open Tengoku.Flt 
 variable {R S : Type*} [CommRing R] [CommRing S] [Algebra R S]
 
 namespace IsArithFrobAt
@@ -119,7 +119,7 @@ variable (R G Q)
 with finite residue field. This is an arbitrary choice of a Frobenius over `Q`. It is chosen so that
 the Frobenius elements of `Q₁` and `Q₂` are conjugate if they lie over the same prime. -/
 noncomputable
-def _root_.arithFrobAt' [Q.IsPrime] [Finite (R ⧸ Q.under R)] : G :=
+def _root_.Tengoku.Flt.arithFrobAt' [Q.IsPrime] [Finite (R ⧸ Q.under R)] : G :=
   (exists_primesOver_isConj_of_profinite S G (Q.under R)).choose ⟨Q, ‹_›, ⟨rfl⟩⟩
 
 /--
@@ -130,3 +130,4 @@ protected lemma arithFrobAt' [Q.IsPrime] [Finite (R ⧸ Q.under R)] :
   (exists_primesOver_isConj_of_profinite S G (Q.under R)).choose_spec.1 ⟨Q, ‹_›, ⟨rfl⟩⟩
 
 end IsArithFrobAt
+-- Tengoku: root names of this library moved to Tengoku.Flt so they do not collide with other libraries (generated)

@@ -42,7 +42,7 @@ content is:
 
 * K. Hungerbuhler, J. Wasem, *A generalized notion of winding numbers*
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex MeasureTheory Set Filter Topology
 open scoped Real Interval
 
@@ -57,7 +57,7 @@ number is `-1/2`. This is the universal smooth-crossing result: the angle
 swept from entry to exit is `π`, giving `-(π * I) / (2 * π * I) = -1/2`.
 @isnad1 id=hasgener.1h5v.s6.7e4fe51ac139 from=translated src=- shape=fe0284c4 vocab=590690c7
 -/
-theorem hasGeneralizedWindingNumber_neg_half_of_scd {γ : PiecewiseC1Path x y} {z₀ : ℂ}
+theorem _root_.Tengoku.Leanmodularforms.hasGeneralizedWindingNumber_neg_half_of_scd {γ : PiecewiseC1Path x y} {z₀ : ℂ}
     (D : SingleCrossingData γ z₀) (hL : D.L = -(↑Real.pi * I)) :
     HasGeneralizedWindingNumber γ z₀ (-1 / 2) := by
   convert D.hasWindingNumber using 1
@@ -71,7 +71,7 @@ theorem hasGeneralizedWindingNumber_neg_half_of_scd {γ : PiecewiseC1Path x y} {
 - `h_near`: inside the δ-window, the curve is ε-close to `z₀`
 
 **Analytic parameter** (`ArcFTCHyp`): the FTC identity, integrability, and limit. -/
-def mkSingleCrossingData_smooth {H : ℝ} (γ : PiecewiseC1Path (fdStart H) (fdStart H)) (z₀ : ℂ)
+def _root_.Tengoku.Leanmodularforms.mkSingleCrossingData_smooth {H : ℝ} (γ : PiecewiseC1Path (fdStart H) (fdStart H)) (z₀ : ℂ)
     (t₀ : ℝ) (ht₀ : t₀ ∈ Ioo 0 1) (δ : ℝ → ℝ) (threshold : ℝ) (hthresh : 0 < threshold)
     (hδ_pos : ∀ ε, 0 < ε → ε < threshold → 0 < δ ε)
     (hδ_small : ∀ ε, 0 < ε → ε < threshold → δ ε < min t₀ (1 - t₀))
@@ -100,7 +100,7 @@ def mkSingleCrossingData_smooth {H : ℝ} (γ : PiecewiseC1Path (fdStart H) (fdS
 extract `HasGeneralizedWindingNumber γ z₀ (-1/2)`.
 @isnad1 id=hasgener.6h7v.s8.4766b9f256d6 from=translated src=- shape=cdb5523e vocab=e98fda46
 -/
-theorem boundaryWinding_of_smoothFTCHyp {H : ℝ} (γ : PiecewiseC1Path (fdStart H) (fdStart H))
+theorem _root_.Tengoku.Leanmodularforms.boundaryWinding_of_smoothFTCHyp {H : ℝ} (γ : PiecewiseC1Path (fdStart H) (fdStart H))
     (z₀ : ℂ) (t₀ : ℝ) (ht₀ : t₀ ∈ Ioo 0 1) (δ : ℝ → ℝ) (threshold : ℝ) (hthresh : 0 < threshold)
     (hδ_pos : ∀ ε, 0 < ε → ε < threshold → 0 < δ ε)
     (hδ_small : ∀ ε, 0 < ε → ε < threshold → δ ε < min t₀ (1 - t₀))
@@ -124,7 +124,7 @@ This bundles a crossing parameter, cutoff, geometric bounds, and the analytical
 
 Bundles a crossing parameter, cutoff, geometric bounds, and an `ArcFTCHyp`
 with limit `-(π * I)`. -/
-structure SmoothBoundaryWindingData {H : ℝ} (γ : PiecewiseC1Path (fdStart H) (fdStart H))
+structure _root_.Tengoku.Leanmodularforms.SmoothBoundaryWindingData {H : ℝ} (γ : PiecewiseC1Path (fdStart H) (fdStart H))
     (z₀ : ℂ) where
   /-- Crossing parameter in `(0, 1)`. -/
   t₀ : ℝ
@@ -150,7 +150,7 @@ structure SmoothBoundaryWindingData {H : ℝ} (γ : PiecewiseC1Path (fdStart H) 
 /-- From `SmoothBoundaryWindingData`, extract `HasGeneralizedWindingNumber γ z₀ (-1/2)`.
 @isnad1 id=hasgener.0h4v.s5.714ace390e64 from=translated src=- shape=32c7caa0 vocab=2593727c
 -/
-theorem SmoothBoundaryWindingData.hasWindingNumber {H : ℝ}
+theorem Tengoku.Leanmodularforms.SmoothBoundaryWindingData.hasWindingNumber {H : ℝ}
     {γ : PiecewiseC1Path (fdStart H) (fdStart H)} {z₀ : ℂ}
     (D : SmoothBoundaryWindingData γ z₀) : HasGeneralizedWindingNumber γ z₀ (-1 / 2) :=
   boundaryWinding_of_smoothFTCHyp γ z₀ D.t₀ D.ht₀ D.δ D.threshold D.hthresh
@@ -162,12 +162,13 @@ theorem SmoothBoundaryWindingData.hasWindingNumber {H : ℝ}
 Given a smooth curve `γ(t) = a + b*t*I` (or similar linear parameterization),
 the distance from `z₀ = γ(t₀)` satisfies `‖γ(t) - z₀‖ = C·|t - t₀|` for some
 positive constant `C`. The cutoff `linDelta C ε = ε / C` inverts this. -/
-def linDelta (C : ℝ) (ε : ℝ) : ℝ := ε / C
+def _root_.Tengoku.Leanmodularforms.linDelta (C : ℝ) (ε : ℝ) : ℝ := ε / C
 
 /--
 @isnad1 id=lt.2h2v.s5.83fdee97bd9d from=translated src=- shape=6c67d60b vocab=df15ef1b
 -/
-theorem linDelta_pos {C ε : ℝ} (hC : 0 < C) (hε : 0 < ε) : 0 < linDelta C ε :=
+theorem _root_.Tengoku.Leanmodularforms.linDelta_pos {C ε : ℝ} (hC : 0 < C) (hε : 0 < ε) : 0 < linDelta C ε :=
   div_pos hε hC
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

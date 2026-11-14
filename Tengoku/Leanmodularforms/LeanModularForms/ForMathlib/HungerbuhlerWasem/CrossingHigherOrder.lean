@@ -32,7 +32,7 @@ of inputs:
   smooth specialisation at off-partition points, deriving `L_- = L_+` and
   the even-power `h_B` from the simpler `(k-1)·π ∈ 2π·ℤ` form of (B).
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Filter Topology Set Complex MeasureTheory
 open scoped Real Interval
 
@@ -101,3 +101,4 @@ theorem hasDerivWithinAt_Iio_of_tendsto
     (hasDerivWithinAt_Iic_of_tendsto_deriv
       (fun t ht => (hs_diff t ht).differentiableWithinAt)
       hγ_cont.continuousWithinAt hs_mem hL_left)
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

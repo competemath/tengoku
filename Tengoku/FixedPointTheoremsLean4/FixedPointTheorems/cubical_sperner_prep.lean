@@ -3,7 +3,7 @@ import Tengoku.Seed.Algebra.BigOperators.Ring.Nat
 import Tengoku.Seed.Tactic
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.FixedPointTheoremsLean4 end Tengoku.FixedPointTheoremsLean4 open Tengoku.FixedPointTheoremsLean4
 open Classical
 
 /-
@@ -11,14 +11,14 @@ The Cubical Sperner's Lemma.
 We mostly follow Kuhn 1960 "Some Combinatorial Lemmas in Topology"
 -/
 
-structure SpernerCube where
+structure _root_.Tengoku.FixedPointTheoremsLean4.SpernerCube where
   n : ℕ
   p : ℕ
   RL : (Fin n → Fin (p+1)) → ℕ
   rl_proper : ∀ (I: Fin n → Fin (p+1) ), RL I ≤ n ∧
       ∀ (k : Fin n), (I k = 0 → RL I ≠ k.1) ∧ (I k = p → RL I ≤ k.1)
 
-namespace SpernerCube
+namespace Tengoku.FixedPointTheoremsLean4.SpernerCube
 
 def G (SC : SpernerCube) := Fin SC.n → Fin (SC.p+1)
 
@@ -26,36 +26,36 @@ instance Gfin (SC : SpernerCube): Fintype SC.G := by {
   exact Pi.instFintype
 }
 
-end SpernerCube
+end Tengoku.FixedPointTheoremsLean4.SpernerCube
 
 variable (SC : SpernerCube)
 variable {n1 : ℕ}
 variable {hn1 : n1 + 1 = SC.n}
 
-def simplex (m:ℕ ) (I : Fin (m+1)→ SC.G) := Function.Injective I
+def _root_.Tengoku.FixedPointTheoremsLean4.simplex (m:ℕ ) (I : Fin (m+1)→ SC.G) := Function.Injective I
     ∧ ∀ i < m, ∀ j : Fin SC.n, (I (Fin.ofNat _ i) j).1 ≤ (I (Fin.ofNat _ (i+1)) j).1
     ∧ (I (Fin.last m) j).1 ≤ (I 0 j).1 + 1
 
-def complete_simplex (m:ℕ ) (I : Fin (m+1) → SC.G ) := simplex SC m I
+def _root_.Tengoku.FixedPointTheoremsLean4.complete_simplex (m:ℕ ) (I : Fin (m+1) → SC.G ) := simplex SC m I
     ∧ Set.range (fun (i:Fin (m+1))↦ SC.RL (I i)) = {j : ℕ | j ≤ m}
 
-def is_face I J :=
+def _root_.Tengoku.FixedPointTheoremsLean4.is_face I J :=
     simplex SC n1 I ∧ simplex SC SC.n J ∧ Set.range I ⊆ Set.range J
 
-def is_boundary_face I := ∃! J, @is_face SC n1 I J
+def _root_.Tengoku.FixedPointTheoremsLean4.is_boundary_face I := ∃! J, @is_face SC n1 I J
 
-def complete_boundary_face I := is_boundary_face SC I ∧ complete_simplex SC n1 I
+def _root_.Tengoku.FixedPointTheoremsLean4.complete_boundary_face I := is_boundary_face SC I ∧ complete_simplex SC n1 I
 
-def case_A (I : Fin (n1 +1) → SC.G) := ∃ j, ∀ k, I k j = 0
+def _root_.Tengoku.FixedPointTheoremsLean4.case_A (I : Fin (n1 +1) → SC.G) := ∃ j, ∀ k, I k j = 0
 
-def case_B (I : Fin (n1 +1) → SC.G) := ∃ j, ∀ k, I k j = Fin.last SC.p
+def _root_.Tengoku.FixedPointTheoremsLean4.case_B (I : Fin (n1 +1) → SC.G) := ∃ j, ∀ k, I k j = Fin.last SC.p
 
-def case_C (I : Fin (n1 +1) → SC.G) :=
+def _root_.Tengoku.FixedPointTheoremsLean4.case_C (I : Fin (n1 +1) → SC.G) :=
     ∃ j, ∃ (q : Fin (SC.p + 1)), (q ≠ 0 ∧ q ≠ Fin.last SC.p ) ∧ ∀ k, I k j = q
 
-def case_D (I : Fin (n1 +1) → SC.G) := ∀ j, ∀ q, ∃ k,I k j ≠ q
+def _root_.Tengoku.FixedPointTheoremsLean4.case_D (I : Fin (n1 +1) → SC.G) := ∀ j, ∀ q, ∃ k,I k j ≠ q
 
-lemma one_of_ABCD (I : Fin (n1 +1) → SC.G) :
+lemma _root_.Tengoku.FixedPointTheoremsLean4.one_of_ABCD (I : Fin (n1 +1) → SC.G) :
     case_A SC I ∨ case_B SC I ∨ case_C SC I ∨ case_D SC I := by {
   by_cases h1 : case_D SC I
   exact Or.inr (Or.inr (Or.inr h1))
@@ -83,7 +83,7 @@ lemma one_of_ABCD (I : Fin (n1 +1) → SC.G) :
 
 section simplex_properties
 
-lemma monotone_1_of_simplex {m:ℕ } (I : Fin (m+1)→ SC.G) (hs : simplex SC m I) (i1 i2 : Fin (m+1))
+lemma _root_.Tengoku.FixedPointTheoremsLean4.monotone_1_of_simplex {m:ℕ } (I : Fin (m+1)→ SC.G) (hs : simplex SC m I) (i1 i2 : Fin (m+1))
     (h1 : i1 ≤ i2) : ∀ j, I i1 j ≤ I i2 j := by {
   intro j
   let f := fun i ↦ I i j
@@ -97,7 +97,7 @@ lemma monotone_1_of_simplex {m:ℕ } (I : Fin (m+1)→ SC.G) (hs : simplex SC m 
   convert h3 <;> ext <;> simp [Fin.ofNat_eq_cast, Nat.mod_eq_of_lt]
 }
 
-lemma monotone_2_of_simplex {m:ℕ } (I : Fin (m+1)→ SC.G) (hs : simplex SC m I) (i1 i2 : Fin (m+1)) :
+lemma _root_.Tengoku.FixedPointTheoremsLean4.monotone_2_of_simplex {m:ℕ } (I : Fin (m+1)→ SC.G) (hs : simplex SC m I) (i1 i2 : Fin (m+1)) :
     i1 ≤ i2 ↔ ∀ j, I i1 j ≤ I i2 j := by {
   apply Iff.intro
   {
@@ -117,7 +117,7 @@ lemma monotone_2_of_simplex {m:ℕ } (I : Fin (m+1)→ SC.G) (hs : simplex SC m 
   }
 }
 
-lemma last_of_simplex {m: ℕ} I (hs : simplex SC m I) j :
+lemma _root_.Tengoku.FixedPointTheoremsLean4.last_of_simplex {m: ℕ} I (hs : simplex SC m I) j :
     (I (Fin.last m) j).1 ≤ (I 0 j).1 + 1 := by {
   cases m
   simp only [Fin.last_zero, Fin.isValue, le_add_iff_nonneg_right, zero_le]
@@ -126,7 +126,7 @@ lemma last_of_simplex {m: ℕ} I (hs : simplex SC m I) j :
   exact (hs.2 0 h3 j).2
 }
 
-lemma le_add_one_of_simplex {m: ℕ} I (hs : simplex SC m I) (i1 i2 : Fin (m+1)) j :
+lemma _root_.Tengoku.FixedPointTheoremsLean4.le_add_one_of_simplex {m: ℕ} I (hs : simplex SC m I) (i1 i2 : Fin (m+1)) j :
     (I i1 j).1 ≤ (I i2 j).1 + 1 := by {
   have h1 := last_of_simplex SC I hs j
   apply le_trans _ (le_trans h1 _)
@@ -137,7 +137,7 @@ lemma le_add_one_of_simplex {m: ℕ} I (hs : simplex SC m I) (i1 i2 : Fin (m+1))
 
 end simplex_properties
 
-lemma p_ne_zero_of_cube {hn1 : n1 + 1 = SC.n}: Fin.last SC.p ≠ 0 := by {
+lemma _root_.Tengoku.FixedPointTheoremsLean4.p_ne_zero_of_cube {hn1 : n1 + 1 = SC.n}: Fin.last SC.p ≠ 0 := by {
   simp only [ne_eq, Fin.last_eq_zero_iff]
   intro h1
   let v : Fin SC.n → Fin (SC.p + 1) := fun _ ↦ 0
@@ -153,7 +153,7 @@ lemma p_ne_zero_of_cube {hn1 : n1 + 1 = SC.n}: Fin.last SC.p ≠ 0 := by {
 
 section simplex_child
 
-def insert_index (j : Fin (SC.n+1)) (a: Fin (n1 +1 )) : Fin (SC.n+1) :=
+def _root_.Tengoku.FixedPointTheoremsLean4.insert_index (j : Fin (SC.n+1)) (a: Fin (n1 +1 )) : Fin (SC.n+1) :=
 { val := if a.val < j.val then a.val else a.val+1,
   isLt := by {
     by_cases hlt : a.val < j.val
@@ -168,10 +168,10 @@ def insert_index (j : Fin (SC.n+1)) (a: Fin (n1 +1 )) : Fin (SC.n+1) :=
     }
 } }
 
-def delete_vertex (j: Fin (SC.n+1)) (I : Fin (SC.n+1)→ SC.G) : Fin (n1 + 1) → SC.G :=
+def _root_.Tengoku.FixedPointTheoremsLean4.delete_vertex (j: Fin (SC.n+1)) (I : Fin (SC.n+1)→ SC.G) : Fin (n1 + 1) → SC.G :=
   fun a ↦ I (@insert_index SC n1 hn1 j a)
 
-lemma insert_index_ne j a : @insert_index SC n1 hn1 j a ≠ j := by {
+lemma _root_.Tengoku.FixedPointTheoremsLean4.insert_index_ne j a : @insert_index SC n1 hn1 j a ≠ j := by {
   apply Fin.ne_of_val_ne
   unfold insert_index
   by_cases hlt : a.val < j.val
@@ -185,7 +185,7 @@ lemma insert_index_ne j a : @insert_index SC n1 hn1 j a ≠ j := by {
   }
 }
 
-lemma almost_surjective_of_insert_index (j : Fin (SC.n+1)) (a : Fin (SC.n+1)) (h : a ≠ j)
+lemma _root_.Tengoku.FixedPointTheoremsLean4.almost_surjective_of_insert_index (j : Fin (SC.n+1)) (a : Fin (SC.n+1)) (h : a ≠ j)
     : ∃ k : Fin (n1 + 1) , a = @insert_index SC n1 hn1 j k := by {
   unfold insert_index
   by_cases hlt : a.1 < j.1
@@ -233,7 +233,7 @@ lemma almost_surjective_of_insert_index (j : Fin (SC.n+1)) (a : Fin (SC.n+1)) (h
   }
 }
 
-lemma insert_index_strict_mono j : StrictMono (@insert_index SC n1 hn1 j) := by {
+lemma _root_.Tengoku.FixedPointTheoremsLean4.insert_index_strict_mono j : StrictMono (@insert_index SC n1 hn1 j) := by {
   intro a b h1
   have h2 : a.1 < b.1 := by {exact h1}
   have h21 : a.1 < b.1 + 1 := by omega
@@ -259,12 +259,12 @@ lemma insert_index_strict_mono j : StrictMono (@insert_index SC n1 hn1 j) := by 
   }
 }
 
-lemma insert_index_inj j : Function.Injective (@insert_index SC n1 hn1 j) := by {
+lemma _root_.Tengoku.FixedPointTheoremsLean4.insert_index_inj j : Function.Injective (@insert_index SC n1 hn1 j) := by {
   apply StrictMono.injective
   apply insert_index_strict_mono
 }
 
-lemma delete_vertex_inj J {hs : simplex SC SC.n J} i1 i2
+lemma _root_.Tengoku.FixedPointTheoremsLean4.delete_vertex_inj J {hs : simplex SC SC.n J} i1 i2
     (h1 : @delete_vertex SC n1 hn1 i1 J = @delete_vertex SC n1 hn1 i2 J ) : i1 = i2 := by {
   by_contra h2
   obtain ⟨k, h3 ⟩ := @almost_surjective_of_insert_index SC n1 hn1 i2 i1 h2
@@ -274,7 +274,7 @@ lemma delete_vertex_inj J {hs : simplex SC SC.n J} i1 i2
   exact (congrFun h1) k
 }
 
-lemma delete_vertex_simplex J {hs : simplex SC SC.n J} i :
+lemma _root_.Tengoku.FixedPointTheoremsLean4.delete_vertex_simplex J {hs : simplex SC SC.n J} i :
     simplex SC n1 (@delete_vertex SC n1 hn1 i J) := by {
   apply And.intro
   {
@@ -300,7 +300,7 @@ lemma delete_vertex_simplex J {hs : simplex SC SC.n J} i :
   }
 }
 
-lemma delete_vertex_is_face J {hs : simplex SC SC.n J} i :
+lemma _root_.Tengoku.FixedPointTheoremsLean4.delete_vertex_is_face J {hs : simplex SC SC.n J} i :
     is_face SC (@delete_vertex SC n1 hn1 i J) J := by {
   apply And.intro
   {
@@ -316,7 +316,7 @@ lemma delete_vertex_is_face J {hs : simplex SC SC.n J} i :
   }
 }
 
-lemma is_id_of_strict_mono (m: ℕ ) (f : Fin m → Fin m) (hsm : StrictMono f)
+lemma _root_.Tengoku.FixedPointTheoremsLean4.is_id_of_strict_mono (m: ℕ ) (f : Fin m → Fin m) (hsm : StrictMono f)
     : ∀ k, f k = k := by {
   suffices h1 : ∀ (a : ℕ), ∀ k, k.1 < a → f k = k by {
     intro k
@@ -351,7 +351,7 @@ lemma is_id_of_strict_mono (m: ℕ ) (f : Fin m → Fin m) (hsm : StrictMono f)
   }
 }
 
-lemma is_insert_index_of_strict_mono f (hsm : StrictMono f)
+lemma _root_.Tengoku.FixedPointTheoremsLean4.is_insert_index_of_strict_mono f (hsm : StrictMono f)
     : ∃ j, f = @insert_index SC n1 hn1 j := by {
   have h31 : Function.Injective f := by {exact hsm.injective}
   have hns : ∃ j, ∀ i, f i ≠ j := by {
@@ -385,7 +385,7 @@ lemma is_insert_index_of_strict_mono f (hsm : StrictMono f)
   rw [hg k, h3 k]
 }
 
-lemma child_simplex_char (I : Fin (n1 +1) → SC.G) J {hs : simplex SC SC.n J}
+lemma _root_.Tengoku.FixedPointTheoremsLean4.child_simplex_char (I : Fin (n1 +1) → SC.G) J {hs : simplex SC SC.n J}
     : is_face SC I J ↔ ∃ i, I = @delete_vertex SC n1 hn1 i J := by {
   apply Iff.intro
   {
@@ -435,7 +435,7 @@ end simplex_child
 
 section cases_ABCD
 
-lemma insert_vertex I (v : SC.G) j :
+lemma _root_.Tengoku.FixedPointTheoremsLean4.insert_vertex I (v : SC.G) j :
     ∃ J, I = @delete_vertex SC n1 hn1 j J ∧ J j = v := by {
   have h1 : ∀ j2, ∃ w, (j2 = j → w = v)
       ∧ ∀ i, @insert_index SC n1 hn1 j i = j2 → I i = w := by {
@@ -472,7 +472,7 @@ lemma insert_vertex I (v : SC.G) j :
   exact (h2 j).1 rfl
 }
 
-lemma surround_index (j : Fin (SC.n + 1)) (i : Fin (n1 + 1)) (hij : i.1 + 1 = j.1 )
+lemma _root_.Tengoku.FixedPointTheoremsLean4.surround_index (j : Fin (SC.n + 1)) (i : Fin (n1 + 1)) (hij : i.1 + 1 = j.1 )
     (hj1 : j ≠ Fin.last SC.n): ((@insert_index SC n1 hn1 j i).1 + 1 = j.1
     ∧ j.1 + 1 = @insert_index SC n1 hn1 j (i+1)) := by {
   unfold insert_index
@@ -492,7 +492,7 @@ lemma surround_index (j : Fin (SC.n + 1)) (i : Fin (n1 + 1)) (hij : i.1 + 1 = j.
   simp only [h3, hij, lt_self_iff_false, ↓reduceIte]
 }
 
-lemma parent_injective I (hs : simplex SC n1 I) J j
+lemma _root_.Tengoku.FixedPointTheoremsLean4.parent_injective I (hs : simplex SC n1 I) J j
     (h1 : I = @delete_vertex SC n1 hn1 j J) (h2 : J j ∉ Set.range I)
     : Function.Injective J := by {
   have h5 j3 : j3 ≠ j → ∃ i3, j3 = @insert_index SC n1 hn1 j i3
@@ -526,7 +526,7 @@ lemma parent_injective I (hs : simplex SC n1 I) J j
   rw [← hi1,← hi2, h4]
 }
 
-lemma parent_simplex_case_BC I (hs : simplex SC n1 I) J
+lemma _root_.Tengoku.FixedPointTheoremsLean4.parent_simplex_case_BC I (hs : simplex SC n1 I) J
     (h1 : I = @delete_vertex SC n1 hn1 0 J) (h2 : J 0 ≠ I 0)
     (h3 : ∀ k, J 0 k ≤ I 0 k ∧ (I (Fin.last n1) k).1 ≤ (J 0 k).1 + 1) : is_face SC I J := by {
   suffices h4 : simplex SC SC.n J by {
@@ -584,7 +584,7 @@ lemma parent_simplex_case_BC I (hs : simplex SC n1 I) J
   }
 }
 
-lemma parent_simplex_case_AC I (hs : simplex SC n1 I) J j (hj : j = Fin.last SC.n)
+lemma _root_.Tengoku.FixedPointTheoremsLean4.parent_simplex_case_AC I (hs : simplex SC n1 I) J j (hj : j = Fin.last SC.n)
     (h1 : I = @delete_vertex SC n1 hn1 j J) (h2 : J j ≠ I (Fin.last n1))
     (h3 : ∀ k, I (Fin.last n1) k ≤ J j k ∧ (J j k).1 ≤ (I 0 k).1 + 1) : is_face SC I J := by {
   suffices h4 : simplex SC SC.n J by {
@@ -659,7 +659,7 @@ lemma parent_simplex_case_AC I (hs : simplex SC n1 I) J j (hj : j = Fin.last SC.
   }
 }
 
-lemma parent_simplex_case_D I (hs : simplex SC n1 I) J j i
+lemma _root_.Tengoku.FixedPointTheoremsLean4.parent_simplex_case_D I (hs : simplex SC n1 I) J j i
     (hij : i.1 + 1 = j.1 ) (h1 : I = @delete_vertex SC n1 hn1 j J) (h2 : J j ∉ Set.range I)
     (h3 : ∀ k, I i k ≤ J j k ∧ J j k ≤ I (i+1) k) : is_face SC I J := by {
   suffices h4 : simplex SC SC.n J by {
@@ -777,9 +777,9 @@ lemma parent_simplex_case_D I (hs : simplex SC n1 I) J j i
   }
 }
 
-noncomputable def coord_change_count (v1 v2 : SC.G) := Finset.card {i | v1 i ≠ v2 i}
+noncomputable def _root_.Tengoku.FixedPointTheoremsLean4.coord_change_count (v1 v2 : SC.G) := Finset.card {i | v1 i ≠ v2 i}
 
-lemma ccc_add {m} I (hs : simplex SC m I) (i1 i2 i3) (h1 : i1 ≤ i2 ∧ i2 ≤ i3) :
+lemma _root_.Tengoku.FixedPointTheoremsLean4.ccc_add {m} I (hs : simplex SC m I) (i1 i2 i3) (h1 : i1 ≤ i2 ∧ i2 ≤ i3) :
     coord_change_count SC (I i1) (I i3) =
     coord_change_count SC (I i1) (I i2) + coord_change_count SC (I i2) (I i3) := by {
   unfold coord_change_count
@@ -818,7 +818,7 @@ lemma ccc_add {m} I (hs : simplex SC m I) (i1 i2 i3) (h1 : i1 ≤ i2 ∧ i2 ≤ 
   }
 }
 
-lemma ccc_pos {m} I (hs : simplex SC m I) i1 i2 (h1 : i1 ≠ i2)
+lemma _root_.Tengoku.FixedPointTheoremsLean4.ccc_pos {m} I (hs : simplex SC m I) i1 i2 (h1 : i1 ≠ i2)
     : 0 < coord_change_count SC (I i1) (I i2) := by {
   unfold coord_change_count
   by_contra! h2
@@ -832,13 +832,13 @@ lemma ccc_pos {m} I (hs : simplex SC m I) i1 i2 (h1 : i1 ≠ i2)
   apply h2
 }
 
-noncomputable def ccc_fun {m} (I : Fin (m+1)→ SC.G) (i : Fin (m+1)) : Fin (SC.n + 1 )
+noncomputable def _root_.Tengoku.FixedPointTheoremsLean4.ccc_fun {m} (I : Fin (m+1)→ SC.G) (i : Fin (m+1)) : Fin (SC.n + 1 )
     := ⟨ coord_change_count SC (I 0) (I i), by {
       refine Nat.lt_succ_of_le ?_
       exact card_finset_fin_le {i_1 | I 0 i_1 ≠ I i i_1}
     } ⟩
 
-lemma ccc_fun_strict_mono {m} I (hs : simplex SC m I) :
+lemma _root_.Tengoku.FixedPointTheoremsLean4.ccc_fun_strict_mono {m} I (hs : simplex SC m I) :
     StrictMono (ccc_fun SC I) := by {
   intro i1 i2 h1
   unfold ccc_fun
@@ -849,13 +849,13 @@ lemma ccc_fun_strict_mono {m} I (hs : simplex SC m I) :
   apply ccc_pos SC I hs _ _ $ Fin.ne_of_lt h1
 }
 
-lemma ccc_fun_is_insert_index I (hs : simplex SC n1 I) :
+lemma _root_.Tengoku.FixedPointTheoremsLean4.ccc_fun_is_insert_index I (hs : simplex SC n1 I) :
     ∃ j, ccc_fun SC I = @insert_index SC n1 hn1 j := by {
   apply is_insert_index_of_strict_mono
   apply ccc_fun_strict_mono SC I hs
 }
 
-lemma delete_vertex_ccc_fun_match J (hs : simplex SC SC.n J) j1 j2
+lemma _root_.Tengoku.FixedPointTheoremsLean4.delete_vertex_ccc_fun_match J (hs : simplex SC SC.n J) j1 j2
     ( h1 : ccc_fun SC (@delete_vertex SC n1 hn1 j1 J) = @insert_index SC n1 hn1 j2)
     : (j1 = 0 → j2 = Fin.last SC.n) ∧ (j1 ≠ 0 → j1 = j2) := by {
   let I := @delete_vertex SC n1 hn1 j1 J
@@ -939,7 +939,7 @@ lemma delete_vertex_ccc_fun_match J (hs : simplex SC SC.n J) j1 j2
   apply insert_index_ne
 }
 
-lemma same_delete_index_eq_iff J1 J2 j
+lemma _root_.Tengoku.FixedPointTheoremsLean4.same_delete_index_eq_iff J1 J2 j
     (h1 : @delete_vertex SC n1 hn1 j J1 = @delete_vertex SC n1 hn1 j J2)
     : J1 = J2 ↔ J1 j = J2 j := by {
   apply Iff.intro (fun a ↦ congrFun a j)
@@ -952,7 +952,7 @@ lemma same_delete_index_eq_iff J1 J2 j
   exact congrFun h1 i1
 }
 
-lemma unique_const_ABC {hn1 : n1 + 1 = SC.n} I (hs : simplex SC n1 I) k1 q1
+lemma _root_.Tengoku.FixedPointTheoremsLean4.unique_const_ABC {hn1 : n1 + 1 = SC.n} I (hs : simplex SC n1 I) k1 q1
     (h1 : ∀ i, I i k1 = q1): ∀ k2, k1 ≠ k2 → I 0 k2 ≠ I (Fin.last n1) k2 := by {
   intro k2 h3 h2
   let s : Finset (Fin SC.n) := {i | I 0 i ≠ I (Fin.last n1) i}
@@ -983,7 +983,7 @@ lemma unique_const_ABC {hn1 : n1 + 1 = SC.n} I (hs : simplex SC n1 I) k1 q1
   simp only [Nat.not_ofNat_le_one] at h7
 }
 
-lemma zero_ne_last {hn1 : n1 + 1 = SC.n} : 0 ≠ Fin.last SC.n := by {
+lemma _root_.Tengoku.FixedPointTheoremsLean4.zero_ne_last {hn1 : n1 + 1 = SC.n} : 0 ≠ Fin.last SC.n := by {
   simp only [ne_eq, Fin.zero_eq_last_iff]
   rw [←hn1]
   omega
@@ -992,3 +992,4 @@ lemma zero_ne_last {hn1 : n1 + 1 = SC.n} : 0 ≠ Fin.last SC.n := by {
 end cases_ABCD
 
 -- used in other file
+-- Tengoku: root names of this library moved to Tengoku.FixedPointTheoremsLean4 so they do not collide with other libraries (generated)

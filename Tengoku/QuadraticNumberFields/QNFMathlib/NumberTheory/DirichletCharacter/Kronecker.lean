@@ -38,7 +38,7 @@ Dirichlet character on `ZMod 0 = ℤ` (only `±1` are units; both map to `1`).
 * `kroneckerCharacter_apply_intCast`: at an integer argument, the character value is
   `kroneckerSym D n`.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 private def kroneckerCharacterFun (D : ℤ) (x : ZMod D.natAbs) : ℤ :=
   kroneckerSymNat D x.val
 
@@ -130,7 +130,7 @@ private lemma kroneckerCharacterFun_nonunit (D : ℤ)
 /-- The Kronecker symbol `(D / ·)` as a `DirichletCharacter ℤ D.natAbs`, for every
 `D : ℤ` with `D % 4 ∈ {0, 1}`. The construction packages `kroneckerSymNat D` via
 the value map on `ZMod D.natAbs`.-/
-noncomputable def kroneckerCharacter (D : ℤ) [Fact (D % 4 = 0 ∨ D % 4 = 1)] :
+noncomputable def _root_.Tengoku.QuadraticNumberFields.kroneckerCharacter (D : ℤ) [Fact (D % 4 = 0 ∨ D % 4 = 1)] :
     DirichletCharacter ℤ D.natAbs where
   toFun := kroneckerCharacterFun D
   map_one' := kroneckerCharacterFun_one D
@@ -140,7 +140,7 @@ noncomputable def kroneckerCharacter (D : ℤ) [Fact (D % 4 = 0 ∨ D % 4 = 1)] 
 /-- Direct evaluation of the Kronecker character at a `ZMod D.natAbs` argument.
 @isnad1 id=eq.0h2v.s6.f8231e46fa2d from=translated src=- shape=a0e0b78b vocab=361b55bb
 -/
-@[simp] theorem kroneckerCharacter_apply (D : ℤ) [Fact (D % 4 = 0 ∨ D % 4 = 1)]
+@[simp] theorem _root_.Tengoku.QuadraticNumberFields.kroneckerCharacter_apply (D : ℤ) [Fact (D % 4 = 0 ∨ D % 4 = 1)]
     (x : ZMod D.natAbs) :
     kroneckerCharacter D x = kroneckerSymNat D x.val := rfl
 
@@ -151,7 +151,7 @@ Not a `simp` lemma: `kroneckerCharacter_apply` already rewrites the left-hand
 side, so this would never be in simp-normal form; it is used via `rw`.
 @isnad1 id=eq.0h2v.s6.014cf8b254e7 from=translated src=- shape=d7129a30 vocab=3242d118
 -/
-theorem kroneckerCharacter_apply_natCast (D : ℤ) [Fact (D % 4 = 0 ∨ D % 4 = 1)]
+theorem _root_.Tengoku.QuadraticNumberFields.kroneckerCharacter_apply_natCast (D : ℤ) [Fact (D % 4 = 0 ∨ D % 4 = 1)]
     (n : ℕ) :
     kroneckerCharacter D ((n : ℕ) : ZMod D.natAbs) = kroneckerSymNat D n := by
   rw [kroneckerCharacter_apply, ZMod.val_natCast]
@@ -164,7 +164,7 @@ Not a `simp` lemma: `kroneckerCharacter_apply` already rewrites the left-hand
 side, so this would never be in simp-normal form; it is used via `rw`.
 @isnad1 id=eq.0h1v.s7.71b3ef83e78e from=translated src=- shape=40656078 vocab=24db0e6b
 -/
-theorem kroneckerCharacter_neg_one (D : ℤ) [Fact (D % 4 = 0 ∨ D % 4 = 1)] :
+theorem _root_.Tengoku.QuadraticNumberFields.kroneckerCharacter_neg_one (D : ℤ) [Fact (D % 4 = 0 ∨ D % 4 = 1)] :
     kroneckerCharacter D (-1 : ZMod D.natAbs) = kroneckerNegOne D := by
   rcases eq_or_ne D.natAbs 0 with hD0 | hD0
   · have hD : D = 0 := by omega
@@ -186,7 +186,7 @@ Not a `simp` lemma: `kroneckerCharacter_apply` already rewrites the left-hand
 side, so this would never be in simp-normal form; it is used via `rw`.
 @isnad1 id=eq.0h2v.s6.273f34599620 from=translated src=- shape=c26f70de vocab=afdb578a
 -/
-theorem kroneckerCharacter_apply_intCast (D : ℤ) [Fact (D % 4 = 0 ∨ D % 4 = 1)]
+theorem _root_.Tengoku.QuadraticNumberFields.kroneckerCharacter_apply_intCast (D : ℤ) [Fact (D % 4 = 0 ∨ D % 4 = 1)]
     (n : ℤ) :
     kroneckerCharacter D ((n : ℤ) : ZMod D.natAbs) = kroneckerSym D n := by
   rcases Int.eq_nat_or_neg n with ⟨m, rfl | rfl⟩
@@ -200,3 +200,4 @@ theorem kroneckerCharacter_apply_intCast (D : ℤ) [Fact (D % 4 = 0 ∨ D % 4 = 
         norm_num [Int.cast_neg]
       rw [hcast, map_mul, kroneckerCharacter_neg_one D, kroneckerCharacter_apply_natCast]
       rw [kroneckerSym_neg_natCast D hm0]
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

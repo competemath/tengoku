@@ -33,7 +33,7 @@ The finite-presentation input is `Algebra.FinitePresentation.of_finite_of_projec
 See Katz–Mazur, Appendix A7; SGA III, Exposé V, Theorem 4.1; and
 Demazure–Gabriel, III §2, 6.1.
 -/
-
+namespace Tengoku.Aintlib end Tengoku.Aintlib open Tengoku.Aintlib
 universe u v
 
 open TensorProduct
@@ -47,7 +47,7 @@ variable [MulSemiringAction G A] [SMulCommClass G R A] [SMulCommClass R G A]
 every nonzero `R`-algebra `R'` no `g ≠ 1` fixes an `R`-algebra point
 `A →ₐ[R] R'`. (Verbatim: "for any non-zero R-algebra R', and any element g ≠ id of
 G, g operates without fixed points on the set Hom_{R-alg}(A, R')".)-/
-def IsFreeAlgebraAction : Prop :=
+def _root_.Tengoku.Aintlib.IsFreeAlgebraAction : Prop :=
   ∀ g : G, g ≠ 1 → ∀ (R' : Type u) [CommRing R'] [Algebra R R'] [Nontrivial R']
     (φ : A →ₐ[R] R'), ∃ a : A, φ (g • a) ≠ φ a
 
@@ -61,7 +61,7 @@ ground `Aᴳ`, giving `(A ⊗_{Aᴳ} C)ᴳ = C` for every `Aᴳ`-algebra `C` —
 base-change engine of KM 7.1.3(3c) (GHB5a-i).
 @isnad1 id=isfreeal.1h3v.s9.d794938873f0 from=translated src=- shape=c58021cc vocab=09820355
 -/
-theorem IsFreeAlgebraAction.of_fixedPoints_ground
+theorem Tengoku.Aintlib.IsFreeAlgebraAction.of_fixedPoints_ground
     [SMulCommClass G ↥(FixedPoints.subalgebra R A G) A]
     [SMulCommClass ↥(FixedPoints.subalgebra R A G) G A]
     [IsScalarTower R ↥(FixedPoints.subalgebra R A G) A]
@@ -117,7 +117,7 @@ i.e. the route by which `torsorMul_bijective_of_isFreeAlgebraAction` and
 [SGA III, Exp. V, Thm 4.1] (not in `refs/`).
 @isnad1 id=ex.2h5v.s8.ccf57ef82116 from=translated src=- shape=67af1f56 vocab=4c200fbe
 -/
-theorem chr_of_isFreeAlgebraAction (hfree : IsFreeAlgebraAction G R A)
+theorem _root_.Tengoku.Aintlib.chr_of_isFreeAlgebraAction (hfree : IsFreeAlgebraAction G R A)
     (p : Ideal A) [hp : p.IsPrime] (g : G) (hg : g ≠ 1) :
     ∃ a : A, g • a - a ∉ p := by
   haveI : Nontrivial (A ⧸ p) := Ideal.Quotient.nontrivial_iff.mpr hp.ne_top
@@ -134,7 +134,7 @@ theorem chr_of_isFreeAlgebraAction (hfree : IsFreeAlgebraAction G R A)
 `chr_of_isFreeAlgebraAction` there.
 @isnad1 id=eq.2h4v.s8.93fe7c5aa421 from=translated src=- shape=a03f49bc vocab=1f729162
 -/
-theorem span_displacement_eq_top (hfree : IsFreeAlgebraAction G R A) (g : G) (hg : g ≠ 1) :
+theorem _root_.Tengoku.Aintlib.span_displacement_eq_top (hfree : IsFreeAlgebraAction G R A) (g : G) (hg : g ≠ 1) :
     Ideal.span (Set.range fun a : A => g • a - a) = ⊤ := by
   by_contra hne
   obtain ⟨m, hm, hle⟩ := Ideal.exists_le_maximal _ hne
@@ -176,7 +176,7 @@ and one at `g`.
 @isnad1 id=ex.2h4v.s12.17e5105d3947 from=translated src=- shape=ff77dfbf vocab=6e7e991e
 -/
 @[nolint unusedArguments]
-theorem exists_torsorMul_eq_zero_one (hfree : IsFreeAlgebraAction G R A) (g : G) (hg : g ≠ 1) :
+theorem _root_.Tengoku.Aintlib.exists_torsorMul_eq_zero_one (hfree : IsFreeAlgebraAction G R A) (g : G) (hg : g ≠ 1) :
     ∃ w : A ⊗[FixedPoints.subalgebra R A G] A,
       MulSemiringAction.torsorMul G R A w 1 = 0 ∧
       MulSemiringAction.torsorMul G R A w g = 1 := by
@@ -201,7 +201,7 @@ theorem exists_torsorMul_eq_zero_one (hfree : IsFreeAlgebraAction G R A) (g : G)
 with `∑ᵢ aᵢ * (g • bᵢ) = if g = 1 then 1 else 0` for every `g`.
 @isnad1 id=ex.1h3v.s8.0cc1dc121b2d from=translated src=- shape=e2561c26 vocab=4117b48e
 -/
-theorem exists_galoisCoords (hfree : IsFreeAlgebraAction G R A) :
+theorem _root_.Tengoku.Aintlib.exists_galoisCoords (hfree : IsFreeAlgebraAction G R A) :
     ∃ S : Finset (A × A), ∀ g : G,
       (∑ p ∈ S, p.1 * (g • p.2)) = if g = 1 then 1 else 0 := by
   classical
@@ -234,7 +234,7 @@ theorem exists_galoisCoords (hfree : IsFreeAlgebraAction G R A) :
 end GaloisCoordinates
 
 /-- The `G`-trace `a ↦ ∑_g g • a`, valued in the invariants.-/
-def traceInvariants [Fintype G] (a : A) : FixedPoints.subalgebra R A G :=
+def _root_.Tengoku.Aintlib.traceInvariants [Fintype G] (a : A) : FixedPoints.subalgebra R A G :=
   ⟨∑ g : G, g • a, by
     intro h
     show h • (∑ g : G, g • a) = ∑ g : G, g • a
@@ -248,7 +248,7 @@ def traceInvariants [Fintype G] (a : A) : FixedPoints.subalgebra R A G :=
 @isnad1 id=eq.1h5v.s9.54440671e724 from=translated src=- shape=2fa15902 vocab=eec3ea63
 -/
 @[nolint unusedArguments]
-theorem galoisCoords_dual [Fintype G] [DecidableEq G] {S : Finset (A × A)}
+theorem _root_.Tengoku.Aintlib.galoisCoords_dual [Fintype G] [DecidableEq G] {S : Finset (A × A)}
     (hS : ∀ g : G, (∑ p ∈ S, p.1 * (g • p.2)) = if g = 1 then 1 else 0) (x : A) :
     (∑ p ∈ S, p.1 * (traceInvariants G R A (p.2 * x) : A)) = x := by
   classical
@@ -290,7 +290,7 @@ theorem Module.Finite.of_isFreeAlgebraAction (hfree : IsFreeAlgebraAction G R A)
     (Finset.mem_image.mpr ⟨p, hp, rfl⟩)))
 
 /-- The `G`-trace as an `Aᴳ`-linear map `A → Aᴳ` (the bundled form of `traceInvariants`).-/
-noncomputable def traceLinear [Fintype G] :
+noncomputable def _root_.Tengoku.Aintlib.traceLinear [Fintype G] :
     A →ₗ[FixedPoints.subalgebra R A G] FixedPoints.subalgebra R A G where
   toFun a := traceInvariants G R A a
   map_add' a b := by
@@ -328,7 +328,7 @@ theorem Module.Projective.of_isFreeAlgebraAction (hfree : IsFreeAlgebraAction G 
 /-- For a free finite-group action, the trace onto the invariants is surjective.
 @isnad1 id=ex.1h3v.s10.338a7380c433 from=translated src=- shape=505c70c3 vocab=deda9469
 -/
-theorem exists_traceInvariants_eq_one [Fintype G] (hfree : IsFreeAlgebraAction G R A) :
+theorem _root_.Tengoku.Aintlib.exists_traceInvariants_eq_one [Fintype G] (hfree : IsFreeAlgebraAction G R A) :
     ∃ c : A, traceLinear G R A c = 1 := by
   classical
   haveI : Module.Finite (FixedPoints.subalgebra R A G) A :=
@@ -368,7 +368,7 @@ theorem exists_traceInvariants_eq_one [Fintype G] (hfree : IsFreeAlgebraAction G
 /-- Additive Hilbert 90 for a free action: every additive `1`-cocycle is a coboundary.
 @isnad1 id=ex.2h4v.s8.464dd97fc630 from=translated src=- shape=0126415b vocab=ad854a5a
 -/
-theorem exists_sub_smul_eq_of_isCocycle [Fintype G] (hfree : IsFreeAlgebraAction G R A)
+theorem _root_.Tengoku.Aintlib.exists_sub_smul_eq_of_isCocycle [Fintype G] (hfree : IsFreeAlgebraAction G R A)
     (a : G → A) (hcocycle : ∀ g h : G, a (g * h) = a g + g • a h) :
     ∃ d : A, ∀ g : G, a g = d - g • d := by
   classical
@@ -402,7 +402,7 @@ after base change to `A`. -/
 @isnad1 id=eq.1h5v.s8.d42c0f3b774d from=translated src=- shape=10f510d9 vocab=be78746c
 -/
 @[nolint unusedArguments]
-theorem smul_cocycle_inv (w : G → Aˣ)
+theorem _root_.Tengoku.Aintlib.smul_cocycle_inv (w : G → Aˣ)
     (hw : ∀ g h : G, ((w (g * h) : A)) = (w g : A) * g • (w h : A)) (g h : G) :
     h • (((w g)⁻¹ : Aˣ) : A) = (((w (h * g))⁻¹ : Aˣ) : A) * (w h : A) := by
   have hmul : (h • (((w g)⁻¹ : Aˣ) : A)) * (w (h * g) : A) = (w h : A) := by
@@ -418,7 +418,7 @@ theorem smul_cocycle_inv (w : G → Aˣ)
   rw [hc]; ring
 
 /-- The `w`-twisted invariants, an `Aᴳ`-submodule of `A`.-/
-def twistedInvariants (w : G → Aˣ) : Submodule (FixedPoints.subalgebra R A G) A where
+def _root_.Tengoku.Aintlib.twistedInvariants (w : G → Aˣ) : Submodule (FixedPoints.subalgebra R A G) A where
   carrier := {a : A | ∀ g : G, g • a = (w g : A) * a}
   zero_mem' := by intro g; simp only [smul_zero, mul_zero]
   add_mem' := by
@@ -434,7 +434,7 @@ def twistedInvariants (w : G → Aˣ) : Submodule (FixedPoints.subalgebra R A G)
 @isnad1 id=mem.1h5v.s9.564be3f99d7e from=translated src=- shape=4d70e1f4 vocab=53822360
 -/
 @[nolint unusedArguments]
-theorem twistedAvg_mem [Fintype G] (w : G → Aˣ)
+theorem _root_.Tengoku.Aintlib.twistedAvg_mem [Fintype G] (w : G → Aˣ)
     (hw : ∀ g h : G, ((w (g * h) : A)) = (w g : A) * g • (w h : A)) (x : A) :
     (∑ g : G, (((w g)⁻¹ : Aˣ) : A) * g • x) ∈ twistedInvariants G R A w := by
   intro h
@@ -451,7 +451,7 @@ theorem twistedAvg_mem [Fintype G] (w : G → Aˣ)
     (fun k => (w h : A) * ((((w k)⁻¹ : Aˣ) : A) * k • x)) (fun _ => rfl)
 
 /-- The twisted average as an `Aᴳ`-linear map `A → M_w`.-/
-noncomputable def twistedAvg [Fintype G] (w : G → Aˣ)
+noncomputable def _root_.Tengoku.Aintlib.twistedAvg [Fintype G] (w : G → Aˣ)
     (hw : ∀ g h : G, ((w (g * h) : A)) = (w g : A) * g • (w h : A)) :
     A →ₗ[FixedPoints.subalgebra R A G] twistedInvariants G R A w where
   toFun x := ⟨∑ g : G, (((w g)⁻¹ : Aˣ) : A) * g • x, twistedAvg_mem G R A w hw x⟩
@@ -474,7 +474,7 @@ noncomputable def twistedAvg [Fintype G] (w : G → Aˣ)
 `m ↦ c * m`.
 @isnad1 id=eq.2h6v.s12.6179c908c3f0 from=translated src=- shape=ea6b4885 vocab=b6b4bb9e
 -/
-theorem twistedAvg_smul_eq [Fintype G] (w : G → Aˣ)
+theorem _root_.Tengoku.Aintlib.twistedAvg_smul_eq [Fintype G] (w : G → Aˣ)
     (hw : ∀ g h : G, ((w (g * h) : A)) = (w g : A) * g • (w h : A))
     (c : A) (hc : (∑ g : G, g • c) = 1) (m : twistedInvariants G R A w) :
     twistedAvg G R A w hw (c * (m : A)) = m := by
@@ -491,7 +491,7 @@ theorem twistedAvg_smul_eq [Fintype G] (w : G → Aˣ)
 /-- **(A711-DESC)** The twisted invariants are a finite `Aᴳ`-module (a quotient of `A`).
 @isnad1 id=finite.2h4v.s10.76ed62086210 from=translated src=- shape=b4464a63 vocab=7dd83cb7
 -/
-theorem twistedInvariants_finite [Fintype G] (hfree : IsFreeAlgebraAction G R A)
+theorem _root_.Tengoku.Aintlib.twistedInvariants_finite [Fintype G] (hfree : IsFreeAlgebraAction G R A)
     (w : G → Aˣ) (hw : ∀ g h : G, ((w (g * h) : A)) = (w g : A) * g • (w h : A)) :
     Module.Finite (FixedPoints.subalgebra R A G) (twistedInvariants G R A w) := by
   haveI : Module.Finite (FixedPoints.subalgebra R A G) A :=
@@ -515,7 +515,7 @@ theorem Module.Projective.of_retract {B : Type u} [CommRing B] {A' M' : Type u}
 /-- The twisted invariants are projective as a module over `Aᴳ`.
 @isnad1 id=projecti.2h4v.s10.417439186dee from=translated src=- shape=b4464a63 vocab=1b60f6d9
 -/
-theorem twistedInvariants_projective [Fintype G] (hfree : IsFreeAlgebraAction G R A)
+theorem _root_.Tengoku.Aintlib.twistedInvariants_projective [Fintype G] (hfree : IsFreeAlgebraAction G R A)
     (w : G → Aˣ) (hw : ∀ g h : G, ((w (g * h) : A)) = (w g : A) * g • (w h : A)) :
     Module.Projective (FixedPoints.subalgebra R A G) (twistedInvariants G R A w) := by
   haveI : Module.Projective (FixedPoints.subalgebra R A G) A :=
@@ -533,7 +533,7 @@ theorem twistedInvariants_projective [Fintype G] (hfree : IsFreeAlgebraAction G 
 @isnad1 id=eq.1h3v.s7.30efb630f220 from=translated src=- shape=8e3941f9 vocab=6903b714
 -/
 @[nolint unusedArguments]
-theorem cocycle_one (w : G → Aˣ)
+theorem _root_.Tengoku.Aintlib.cocycle_one (w : G → Aˣ)
     (hw : ∀ g h : G, ((w (g * h) : A)) = (w g : A) * g • (w h : A)) : ((w 1 : A)) = 1 := by
   have h := hw 1 1
   rw [mul_one, one_smul] at h
@@ -542,7 +542,7 @@ theorem cocycle_one (w : G → Aˣ)
   exact h2.symm
 
 /-- The multiplication map `A ⊗_{Aᴳ} M_w → A`, `a ⊗ m ↦ a · m`.-/
-noncomputable def twistedMul (w : G → Aˣ) :
+noncomputable def _root_.Tengoku.Aintlib.twistedMul (w : G → Aˣ) :
     A ⊗[FixedPoints.subalgebra R A G] (twistedInvariants G R A w)
       →ₗ[FixedPoints.subalgebra R A G] A :=
   TensorProduct.lift ((LinearMap.mul (FixedPoints.subalgebra R A G) A).compl₂
@@ -552,14 +552,14 @@ noncomputable def twistedMul (w : G → Aˣ) :
 @isnad1 id=eq.0h6v.s13.05283b6b3597 from=translated src=- shape=5db44d07 vocab=3382821d
 -/
 @[simp, nolint unusedArguments]
-theorem twistedMul_tmul (w : G → Aˣ) (a : A) (m : twistedInvariants G R A w) :
+theorem _root_.Tengoku.Aintlib.twistedMul_tmul (w : G → Aˣ) (a : A) (m : twistedInvariants G R A w) :
     twistedMul G R A w (a ⊗ₜ[FixedPoints.subalgebra R A G] m) = a * (m : A) := rfl
 
 /-- Galois descent for rank-one modules: multiplication
 `A ⊗[Aᴳ] twistedInvariants G R A w → A` is bijective.
 @isnad1 id=bijectiv.2h4v.s13.8dab435eadbd from=translated src=- shape=69b64bc3 vocab=063b8cc8
 -/
-theorem twistedMul_bijective [Fintype G] [DecidableEq G] (hfree : IsFreeAlgebraAction G R A)
+theorem _root_.Tengoku.Aintlib.twistedMul_bijective [Fintype G] [DecidableEq G] (hfree : IsFreeAlgebraAction G R A)
     (w : G → Aˣ) (hw : ∀ g h : G, ((w (g * h) : A)) = (w g : A) * g • (w h : A)) :
     Function.Bijective (twistedMul G R A w) := by
   classical
@@ -648,7 +648,7 @@ theorem twistedMul_bijective [Fintype G] [DecidableEq G] (hfree : IsFreeAlgebraA
 unit of `A`.
 @isnad1 id=ex.2h4v.s9.c7c7b14f4f60 from=translated src=- shape=8b6207d9 vocab=5132bfd3
 -/
-theorem exists_unit_smul_eq_of_isLocalRing [Fintype G] [DecidableEq G] [Nontrivial A]
+theorem _root_.Tengoku.Aintlib.exists_unit_smul_eq_of_isLocalRing [Fintype G] [DecidableEq G] [Nontrivial A]
     [IsLocalRing (FixedPoints.subalgebra R A G)] (hfree : IsFreeAlgebraAction G R A)
     (w : G → Aˣ) (hw : ∀ g h : G, ((w (g * h) : A)) = (w g : A) * g • (w h : A)) :
     ∃ d : Aˣ, ∀ g : G, g • (d : A) = (w g : A) * (d : A) := by
@@ -722,7 +722,7 @@ theorem exists_unit_smul_eq_of_isLocalRing [Fintype G] [DecidableEq G] [Nontrivi
 
 /-- The candidate inverse of `torsorMul`, built from Galois coordinates `S`:
 `x ↦ ∑ᵢ aᵢ ⊗ (∑_g g⁻¹ • (x g · bᵢ))`.-/
-noncomputable def galoisInv [Fintype G] (S : Finset (A × A)) (x : G → A) :
+noncomputable def _root_.Tengoku.Aintlib.galoisInv [Fintype G] (S : Finset (A × A)) (x : G → A) :
     A ⊗[FixedPoints.subalgebra R A G] A :=
   ∑ p ∈ S, p.1 ⊗ₜ[FixedPoints.subalgebra R A G] (∑ g : G, g⁻¹ • (x g * p.2))
 
@@ -732,7 +732,7 @@ Galois-coordinate inverse recovers the tensor (the trace/averaging collapse). Ex
 `torsorMul_injective`'s induction stays short.
 @isnad1 id=eq.1h6v.s11.797860667823 from=translated src=- shape=37c7c089 vocab=719e05c8
 -/
-theorem galoisInv_torsorMul_tmul [Fintype G] [DecidableEq G] (S : Finset (A × A))
+theorem _root_.Tengoku.Aintlib.galoisInv_torsorMul_tmul [Fintype G] [DecidableEq G] (S : Finset (A × A))
     (hS : ∀ g : G, (∑ p ∈ S, p.1 * (g • p.2)) = if g = 1 then 1 else 0) (u v : A) :
     galoisInv G R A S (MulSemiringAction.torsorMul G R A
         (u ⊗ₜ[FixedPoints.subalgebra R A G] v)) = u ⊗ₜ[FixedPoints.subalgebra R A G] v := by
@@ -786,7 +786,7 @@ theorem galoisInv_torsorMul_tmul [Fintype G] [DecidableEq G] (S : Finset (A × A
 right inverse of `torsorMul` (Galois coordinates from `exists_galoisCoords`).
 @isnad1 id=surjecti.1h3v.s11.32217fa122e4 from=translated src=- shape=84efc84c vocab=59cf8c73
 -/
-theorem torsorMul_surjective (hfree : IsFreeAlgebraAction G R A) :
+theorem _root_.Tengoku.Aintlib.torsorMul_surjective (hfree : IsFreeAlgebraAction G R A) :
     Function.Surjective (MulSemiringAction.torsorMul G R A) := by
   classical
   haveI : Fintype G := Fintype.ofFinite G
@@ -821,7 +821,7 @@ left inverse of `torsorMul` (additive, checked on pure tensors via
 `galoisInv_torsorMul_tmul`).
 @isnad1 id=injectiv.1h3v.s11.449fbf5e2dcf from=translated src=- shape=84efc84c vocab=6e087d5c
 -/
-theorem torsorMul_injective (hfree : IsFreeAlgebraAction G R A) :
+theorem _root_.Tengoku.Aintlib.torsorMul_injective (hfree : IsFreeAlgebraAction G R A) :
     Function.Injective (MulSemiringAction.torsorMul G R A) := by
   classical
   haveI : Fintype G := Fintype.ofFinite G
@@ -861,7 +861,7 @@ sum is `tr(u · bᵢ) · v` with `tr(u · bᵢ)` invariant, so it crosses the te
 `(∑ᵢ tr(u · bᵢ) · aᵢ) ⊗ v = u ⊗ v` by the coordinate identity again.
 @isnad1 id=bijectiv.1h3v.s11.e632196c8270 from=translated src=- shape=84efc84c vocab=217d9052
 -/
-theorem torsorMul_bijective_of_isFreeAlgebraAction
+theorem _root_.Tengoku.Aintlib.torsorMul_bijective_of_isFreeAlgebraAction
     (hfree : IsFreeAlgebraAction G R A) :
     Function.Bijective (MulSemiringAction.torsorMul G R A) :=
   ⟨torsorMul_injective G R A hfree, torsorMul_surjective G R A hfree⟩
@@ -876,7 +876,7 @@ the identity `φ(ψ(z)) = ∑_g g • ((c ⊗ 1) · z)`, whose right-hand side c
 `z` is `G`-invariant.
 @isnad1 id=bijectiv.1h4v.s12.453459a27056 from=translated src=- shape=c1ed7ffd vocab=feaf3333
 -/
-theorem fixedPointsBaseChange_bijective_of_isFreeAlgebraAction
+theorem _root_.Tengoku.Aintlib.fixedPointsBaseChange_bijective_of_isFreeAlgebraAction
     (hfree : IsFreeAlgebraAction G R A)
     (R' : Type u) [CommRing R'] [Algebra R R'] :
     Function.Bijective
@@ -948,7 +948,7 @@ variable {G R A} in
 over the invariants `Aᴳ`, the map `c ↦ 1 ⊗ c` lands in the `G`-fixed points of `A ⊗_{Aᴳ} C`
 (the action being through the left factor). For free actions it is a bijection
 (`bijective_includeRightFixedPoints` below) — KM 7.1.3(3c)'s affine base-change engine.-/
-noncomputable def includeRightFixedPoints (C : Type u) [CommRing C]
+noncomputable def _root_.Tengoku.Aintlib.includeRightFixedPoints (C : Type u) [CommRing C]
     [Algebra ↥(FixedPoints.subalgebra R A G) C] :
     C →ₐ[↥(FixedPoints.subalgebra R A G)]
       ↥(FixedPoints.subalgebra ↥(FixedPoints.subalgebra R A G)
@@ -966,7 +966,7 @@ omit [SMulCommClass R G A] [Finite G] in
 @isnad1 id=eq.0h5v.s15.94b4ca31a3fb from=translated src=- shape=26015e0e vocab=c9d84c80
 -/
 @[simp]
-theorem includeRightFixedPoints_coe (C : Type u) [CommRing C]
+theorem _root_.Tengoku.Aintlib.includeRightFixedPoints_coe (C : Type u) [CommRing C]
     [Algebra ↥(FixedPoints.subalgebra R A G) C] (c : C) :
     (includeRightFixedPoints (G := G) (R := R) (A := A) C c :
       A ⊗[↥(FixedPoints.subalgebra R A G)] C) =
@@ -985,7 +985,7 @@ is `Aᴳ` itself and `Aᴳ ⊗_{Aᴳ} C ≅ C`. Note there is NO flatness/openne
 descent of the affine quotient (`exists_invariantsπ_lift_baseChange_of_free`).
 @isnad1 id=bijectiv.1h4v.s14.7fa7d0a53ef1 from=translated src=- shape=9da04031 vocab=43071952
 -/
-theorem bijective_includeRightFixedPoints (hfree : IsFreeAlgebraAction G R A)
+theorem _root_.Tengoku.Aintlib.bijective_includeRightFixedPoints (hfree : IsFreeAlgebraAction G R A)
     (C : Type u) [CommRing C] [Algebra ↥(FixedPoints.subalgebra R A G) C] :
     Function.Bijective (includeRightFixedPoints (G := G) (R := R) (A := A) C) := by
   classical
@@ -1035,7 +1035,7 @@ annihilation identity holds because `torsorMul` is an injective ring homomorphis
 `g ↦ (g • x − x) · δ_{g,1} = 0`.
 @isnad1 id=ex.1h3v.s12.a79ec9857773 from=translated src=- shape=de99f7df vocab=275f2897
 -/
-theorem exists_separabilityIdempotent (hfree : IsFreeAlgebraAction G R A) :
+theorem _root_.Tengoku.Aintlib.exists_separabilityIdempotent (hfree : IsFreeAlgebraAction G R A) :
     ∃ e : A ⊗[FixedPoints.subalgebra R A G] A,
       (Algebra.TensorProduct.lmul' (FixedPoints.subalgebra R A G) (S := A)) e = 1 ∧
       ∀ x : A, ((1 : A) ⊗ₜ[FixedPoints.subalgebra R A G] x
@@ -1167,3 +1167,4 @@ theorem Algebra.Etale.of_isFreeAlgebraAction (hfree : IsFreeAlgebraAction G R A)
   haveI : Algebra.FormallyUnramified (FixedPoints.subalgebra R A G) A :=
     Algebra.FormallyUnramified.of_isFreeAlgebraAction G R A hfree
   exact Algebra.Etale.of_formallyUnramified_of_flat
+-- Tengoku: root names of this library moved to Tengoku.Aintlib so they do not collide with other libraries (generated)

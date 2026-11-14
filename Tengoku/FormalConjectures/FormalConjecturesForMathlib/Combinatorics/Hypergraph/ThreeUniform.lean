@@ -18,7 +18,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.FormalConjectures end Tengoku.FormalConjectures open Tengoku.FormalConjectures 
 /-!
 # 3-Uniform Hypergraphs
 
@@ -53,7 +53,7 @@ Each element of `edges` is a hyperedge, and `uniform` ensures each has exactly 3
 
 Note: Mathlib does not yet have a general hypergraph API; this fills that gap for the
 3-uniform case relevant to Erdős problems 593 and 1177.-/
-structure ThreeUniformHypergraph (V : Type) where
+structure _root_.Tengoku.FormalConjectures.ThreeUniformHypergraph (V : Type) where
   /-- The set of hyperedges: each edge is a 3-element finset of vertices.-/
   edges : Set (Finset V)
   /-- Every hyperedge has exactly 3 vertices.-/
@@ -69,7 +69,7 @@ family `H`.-/
 def Finset.ContainsSubgraph {V : Type*} [DecidableEq V] (H : Finset (Finset V)) (m k : ℕ) : Prop :=
   ∃ S : Finset V, S.card = m ∧ k ≤ (Finset.filter (fun e : Finset V => e ⊆ S) H).card
 
-namespace ThreeUniformHypergraph
+namespace Tengoku.FormalConjectures.ThreeUniformHypergraph
 
 /-- The `ThreeUniformHypergraph` given by a 3-uniform finite family of edges.-/
 def ofFinset {V : Type} (H : Finset (Finset V)) (hH : Finset.IsThreeUniform H) :
@@ -123,13 +123,14 @@ for being obligatory (every obligatory finite 3-uniform hypergraph is 2-colorabl
 def IsTwoColorable {V : Type} (F : ThreeUniformHypergraph V) : Prop :=
   ∃ f : V → Fin 2, F.IsProperColoring f
 
-end ThreeUniformHypergraph
+end Tengoku.FormalConjectures.ThreeUniformHypergraph
 
 /-- A finite 3-uniform hypergraph `F` on a `Fintype` vertex type is **obligatory** if it
 appears in every 3-uniform hypergraph (on a `Type`-valued vertex set) whose chromatic
 cardinal exceeds `ℵ₀`.-/
-def IsObligatory {W : Type} [Fintype W] (F : ThreeUniformHypergraph W) : Prop :=
+def _root_.Tengoku.FormalConjectures.IsObligatory {W : Type} [Fintype W] (F : ThreeUniformHypergraph W) : Prop :=
   ∀ (V : Type) [DecidableEq V] (H : ThreeUniformHypergraph V),
     ℵ₀ < H.chromaticCardinal → F.Appears H
 
 end
+-- Tengoku: root names of this library moved to Tengoku.FormalConjectures so they do not collide with other libraries (generated)

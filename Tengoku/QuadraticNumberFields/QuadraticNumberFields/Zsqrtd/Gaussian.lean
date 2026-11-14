@@ -20,7 +20,7 @@ the algebraic structure needed for Gaussian-integer arguments. The Euclidean
 structure is transported through `Zsqrtd.equivMathlib`; the public API remains
 about the project-owned `Zsqrtd`, not mathlib's `_root_.Zsqrtd`.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 local notation "ℚ√" d => Qsqrtd d
 
 namespace QuadraticNumberFields
@@ -91,3 +91,4 @@ theorem exists_associated_cube_mk_im_one_of_cube_eq_sq_add_one {n z : ℤ}
 
 end Zsqrtd
 end QuadraticNumberFields
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

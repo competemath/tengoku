@@ -28,7 +28,7 @@ on each segment, and sum via `intervalIntegral.sum_integral_adjacent_intervals`.
 * `Complex.contourIntegral_inv_eq_sum_log_segRatio` — the contour integral of
   `(z - w)⁻¹` along `γ` equals a sum of complex logs of segment ratios.
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Set Filter Topology MeasureTheory Complex
 open scoped Interval
 
@@ -321,3 +321,4 @@ theorem generalizedWindingNumber_locally_const_of_closed
 end Complex
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

@@ -17,7 +17,7 @@ a natural topological structure as a subspace of the product. We record
 basic continuity properties of the canonical maps.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.Flt end Tengoku.Flt open Tengoku.Flt
 attribute [local simp] InverseLimit.prop
 
 
@@ -29,7 +29,7 @@ variable [∀ i j (h : i ≤ j), FunLike (T h) (G j) (G i)]
 variable [∀ i : ι, TopologicalSpace (G i)]
   {cont : ∀ {i j}, (h : i ≤ j) → Continuous (f i j h)}
 
-namespace InverseLimit
+namespace Tengoku.Flt.InverseLimit
 
 variable {W : Type*} {M : ι → Type*} (maps : ∀ i, M i) [∀ i, FunLike (M i) W (G i)]
 variable (inverseSystemHom : InverseSystemHom G f maps)
@@ -77,4 +77,5 @@ section TopologicalStructures
 
 end TopologicalStructures
 
-end InverseLimit
+end Tengoku.Flt.InverseLimit
+-- Tengoku: root names of this library moved to Tengoku.Flt so they do not collide with other libraries (generated)

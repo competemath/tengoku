@@ -28,17 +28,17 @@ existence of the time unit of seconds, and construct all other time units from t
 -/
 
 @[expose] public section
-
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
 open NNReal
 
 /-- The choices of translationally-invariant metrics on the manifold `TimeTransMan`.
   Such a choice corresponds to a choice of units for time. -/
-structure TimeUnit : Type where
+structure _root_.Tengoku.Physlib.TimeUnit : Type where
   /-- The underlying scale of the unit. -/
   val : ℝ
   property : 0 < val
 
-namespace TimeUnit
+namespace Tengoku.Physlib.TimeUnit
 
 @[simp]
 lemma val_ne_zero (x : TimeUnit) : x.val ≠ 0 := by
@@ -187,4 +187,5 @@ noncomputable def weeks : TimeUnit := scale (7 * 24 * 60 * 60) seconds
 
 -/
 
-end TimeUnit
+end Tengoku.Physlib.TimeUnit
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

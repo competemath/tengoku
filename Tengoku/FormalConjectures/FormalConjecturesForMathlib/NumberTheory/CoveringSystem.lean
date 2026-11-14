@@ -18,14 +18,14 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.FormalConjectures end Tengoku.FormalConjectures open Tengoku.FormalConjectures 
 open Pointwise
 
 /--
 A covering system of a semiring `R` is a finite set of cosets of non-zero ideals whose union
 covers the whole ring. In the case where `R = ℤ`, this corresponds to a choice of finitely many
 congruence relations such that every integer satisfies at least one of the relations.-/
-structure CoveringSystem (R : Type*) [CommSemiring R] where
+structure _root_.Tengoku.FormalConjectures.CoveringSystem (R : Type*) [CommSemiring R] where
   ι : Type
   [fintypeIndex : Fintype ι]
   residue : ι → R
@@ -40,10 +40,10 @@ a different ideal (or number).
 
 Note: this corresponds to the notion of a covering system that Erdos was using in
 [ErGr80] Erdős, P. and Graham, R., Old and new problems and results in combinatorial number theory. Monographies de L'Enseignement Mathematique (1980).-/
-structure StrictCoveringSystem (R : Type*) [CommSemiring R] extends CoveringSystem R where
+structure _root_.Tengoku.FormalConjectures.StrictCoveringSystem (R : Type*) [CommSemiring R] extends CoveringSystem R where
   injective_moduli : moduli.Injective
 
-namespace CoveringSystem
+namespace Tengoku.FormalConjectures.CoveringSystem
 
 variable {R : Type*} [CommSemiring R]
 
@@ -57,4 +57,5 @@ def coset (c : CoveringSystem R) (i : c.ι) : Set R :=
 theorem iUnion_cosets (c : CoveringSystem R) : ⋃ i, c.coset i = Set.univ :=
   c.unionCovers
 
-end CoveringSystem
+end Tengoku.FormalConjectures.CoveringSystem
+-- Tengoku: root names of this library moved to Tengoku.FormalConjectures so they do not collide with other libraries (generated)

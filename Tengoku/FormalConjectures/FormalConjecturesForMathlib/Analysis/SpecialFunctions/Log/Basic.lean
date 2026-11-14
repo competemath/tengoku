@@ -18,7 +18,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.FormalConjectures end Tengoku.FormalConjectures open Tengoku.FormalConjectures 
 -- TODO(mercuris): define a recursive version of this for better usability?
 -- TODO(mercuris): add `Real.iteratedLogb` for general bases
 /-- The iterated logarithm of `x` is the number of times the natural logarithm
@@ -44,7 +44,7 @@ theorem Real.iteratedLog_eq_zero_of_neg {x : ℝ} (hx : x < 0) :
 /--
 @isnad1 id=eq.0h0v.s4.a4913b7e582d from=translated src=- shape=1ac31801 vocab=ddbef369
 -/
-theorem iteratedLog_two : Real.iteratedLog 2 = 1 := by
+theorem _root_.Tengoku.FormalConjectures.iteratedLog_two : Real.iteratedLog 2 = 1 := by
   simp [Real.iteratedLog]
   have : Real.log 2 ≤ 1 := by
     convert Real.log_le_sub_one_of_pos (show 0 < 2 by norm_num)
@@ -55,7 +55,7 @@ theorem iteratedLog_two : Real.iteratedLog 2 = 1 := by
 /--
 @isnad1 id=eq.0h0v.s4.37c9074065a6 from=translated src=- shape=1ac31801 vocab=ddbef369
 -/
-theorem iteratedLog_four : Real.iteratedLog 4 = 2 := by
+theorem _root_.Tengoku.FormalConjectures.iteratedLog_four : Real.iteratedLog 4 = 2 := by
   simp [Real.iteratedLog]
   have : Real.log^[2] 4 ≤ 1 := by
     have h_ne_zero : Real.log √4 ≠ 0 := by simp; linarith [Real.sqrt_nonneg 4]
@@ -72,3 +72,4 @@ theorem iteratedLog_four : Real.iteratedLog 4 = 2 := by
   interval_cases n; simp
   simp [Real.lt_log_iff_exp_lt]
   linarith [Real.exp_one_lt_d9]
+-- Tengoku: root names of this library moved to Tengoku.FormalConjectures so they do not collide with other libraries (generated)

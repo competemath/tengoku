@@ -31,7 +31,7 @@ conjugate-linear identity `conjEquiv : M ≃ₛₗ[starRingEnd k] ConjModule M`,
 -/
 
 @[expose] public section
-
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
 open Module
 
 variable {k : Type*} [CommRing k] [StarRing k]
@@ -39,9 +39,9 @@ variable {M : Type*} [AddCommGroup M] [Module k M]
 
 /-- The conjugate module of `M`: the same additive group with the scalar action twisted by
 conjugation, `r • v = star r • v`. A type synonym so the twisted action stays off `M`. -/
-def ConjModule (M : Type*) := M
+def _root_.Tengoku.Physlib.ConjModule (M : Type*) := M
 
-namespace ConjModule
+namespace Tengoku.Physlib.ConjModule
 
 instance : AddCommGroup (ConjModule M) := inferInstanceAs (AddCommGroup M)
 
@@ -50,11 +50,11 @@ conjugation ring endomorphism `starRingEnd k`. -/
 instance instModule : Module k (ConjModule M) :=
   Module.compHom M (starRingEnd k)
 
-end ConjModule
+end Tengoku.Physlib.ConjModule
 
 /-- The canonical conjugate-linear equivalence `M ≃ₛₗ[starRingEnd k] ConjModule M`, the identity on
 the underlying additive group. -/
-def conjEquiv : M ≃ₛₗ[starRingEnd k] ConjModule M where
+def _root_.Tengoku.Physlib.conjEquiv : M ≃ₛₗ[starRingEnd k] ConjModule M where
   toFun v := v
   map_add' _ _ := rfl
   map_smul' r v := by show (r • v : M) = (star (star r) • v : M); rw [star_star]
@@ -62,7 +62,7 @@ def conjEquiv : M ≃ₛₗ[starRingEnd k] ConjModule M where
   left_inv _ := rfl
   right_inv _ := rfl
 
-namespace ConjModule
+namespace Tengoku.Physlib.ConjModule
 
 /-- Conjugating twice returns the original module: the `k`-linear isomorphism
 `ConjModule (ConjModule M) ≃ₗ[k] M`. It is `k`-linear, not merely semilinear, because
@@ -103,6 +103,7 @@ noncomputable def _root_.Basis.conj (b : Basis ι k M) : Basis ι k (ConjModule 
   · subst h; simp [Basis.conj_repr_apply]
   · simp [Basis.conj_repr_apply, Finsupp.single_eq_of_ne, h]
 
-end ConjModule
+end Tengoku.Physlib.ConjModule
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

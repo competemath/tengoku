@@ -16,16 +16,16 @@ We define specific instances of areas, such as square meters, square feet, etc.
 -/
 
 @[expose] public section
-
-open Dimension
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
+open Tengoku.Physlib.Dimension
 open NNReal
 
 /-- The type of areas in the absence of a choice of unit. -/
-abbrev DimArea : Type := Dimensionful (WithDim (L𝓭 * L𝓭) ℝ≥0)
+abbrev _root_.Tengoku.Physlib.DimArea : Type := Dimensionful (WithDim (L𝓭 * L𝓭) ℝ≥0)
 
-namespace DimArea
+namespace Tengoku.Physlib.DimArea
 
-open LTMCTUnitChoices
+open Tengoku.Physlib.LTMCTUnitChoices
 
 /-!
 
@@ -33,7 +33,7 @@ open LTMCTUnitChoices
 
 -/
 
-open Dimensionful CarriesDimension
+open Tengoku.Physlib.Dimensionful Tengoku.Physlib.CarriesDimension
 
 /-- The dimensional area corresponding to 1 square meter. -/
 noncomputable def squareMeter : DimArea := toDimensionful SI ⟨1⟩
@@ -111,4 +111,5 @@ lemma acre_eq_mul_squareFeet : acre = (43560 : ℝ≥0) • squareFoot := by
   ext
   norm_num [toDimensionful]
 
-end DimArea
+end Tengoku.Physlib.DimArea
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

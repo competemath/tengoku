@@ -16,15 +16,15 @@ Basic properties related to whether a field, or list of fields, is bosonic or fe
 -/
 
 @[expose] public section
-
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
 /-- The type `FieldStatistic` is the type containing two elements `bosonic` and `fermionic`.
   This type is used to specify if a field or operator obeys bosonic or fermionic statistics. -/
-inductive FieldStatistic : Type where
+inductive _root_.Tengoku.Physlib.FieldStatistic : Type where
   | bosonic : FieldStatistic
   | fermionic : FieldStatistic
 deriving DecidableEq
 
-namespace FieldStatistic
+namespace Tengoku.Physlib.FieldStatistic
 
 variable {𝓕 : Type}
 
@@ -296,4 +296,5 @@ instance : AddMonoid FieldStatistic where
 lemma add_eq_mul (a b : FieldStatistic) : a + b = a * b := rfl
 
 end ofListTake
-end FieldStatistic
+end Tengoku.Physlib.FieldStatistic
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

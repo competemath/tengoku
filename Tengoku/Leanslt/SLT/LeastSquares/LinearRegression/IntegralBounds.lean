@@ -18,14 +18,14 @@ All lemmas are pure analysis results with no project-specific dependencies.
 * `integral_bound`: The main integral bound (1/√n) ∫₀^δ √(d * log(1+2δ/s)) ds ≤ 2δ√(d/n)
 
 -/
-
+namespace Tengoku.Leanslt end Tengoku.Leanslt open Tengoku.Leanslt
 open MeasureTheory Finset BigOperators Real ProbabilityTheory Metric Set
 open scoped NNReal ENNReal
 
 /-- Upper bound: 1 + 2/u ≤ 3/u for u ∈ (0, 1]
 @isnad1 id=le.2h1v.s6.51f02974debd from=translated src=- shape=a0caba80 vocab=370e557f
 -/
-lemma one_plus_two_div_le_three_div {u : ℝ} (hu0 : 0 < u) (hu1 : u ≤ 1) :
+lemma _root_.Tengoku.Leanslt.one_plus_two_div_le_three_div {u : ℝ} (hu0 : 0 < u) (hu1 : u ≤ 1) :
     1 + 2 / u ≤ 3 / u := by
   have hu_ne : u ≠ 0 := ne_of_gt hu0
   have h1 : 1 ≤ 1 / u := by
@@ -38,7 +38,7 @@ lemma one_plus_two_div_le_three_div {u : ℝ} (hu0 : 0 < u) (hu1 : u ≤ 1) :
 /-- log(1 + 2/u) ≤ log 3 + log(1/u) for u ∈ (0, 1]
 @isnad1 id=le.2h1v.s6.34121f949a51 from=translated src=- shape=5f0ffbb2 vocab=7fca795f
 -/
-lemma log_one_plus_two_div_le {u : ℝ} (hu0 : 0 < u) (hu1 : u ≤ 1) :
+lemma _root_.Tengoku.Leanslt.log_one_plus_two_div_le {u : ℝ} (hu0 : 0 < u) (hu1 : u ≤ 1) :
     Real.log (1 + 2 / u) ≤ Real.log 3 + Real.log (1 / u) := by
   have h1u_pos : 0 < 1 / u := div_pos one_pos hu0
   have h12u_pos : 0 < 1 + 2 / u := by
@@ -54,7 +54,7 @@ lemma log_one_plus_two_div_le {u : ℝ} (hu0 : 0 < u) (hu1 : u ≤ 1) :
 /-- √(a + b) ≤ √a + √b for non-negative a, b
 @isnad1 id=le.2h2v.s5.89638037d61c from=translated src=- shape=e44816be vocab=c24bb1bf
 -/
-lemma sqrt_add_le {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) :
+lemma _root_.Tengoku.Leanslt.sqrt_add_le {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) :
     Real.sqrt (a + b) ≤ Real.sqrt a + Real.sqrt b := by
   have hsum_nonneg : 0 ≤ Real.sqrt a + Real.sqrt b := by
     apply add_nonneg (Real.sqrt_nonneg a) (Real.sqrt_nonneg b)
@@ -72,7 +72,7 @@ lemma sqrt_add_le {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) :
 /-- Pointwise bound: √(log(1 + 2/u)) ≤ √(log 3) + √(-log u) for u ∈ (0, 1)
 @isnad1 id=le.1h1v.s6.1955f1eb4b7b from=translated src=- shape=6e00d2f0 vocab=89e7e16a
 -/
-lemma sqrt_log_one_plus_two_div_bound {u : ℝ} (hu : u ∈ Set.Ioo 0 1) :
+lemma _root_.Tengoku.Leanslt.sqrt_log_one_plus_two_div_bound {u : ℝ} (hu : u ∈ Set.Ioo 0 1) :
     Real.sqrt (Real.log (1 + 2 / u)) ≤
     Real.sqrt (Real.log 3) + Real.sqrt (-Real.log u) := by
   have hlog_one_u : Real.log (1 / u) = -Real.log u := by
@@ -91,7 +91,7 @@ lemma sqrt_log_one_plus_two_div_bound {u : ℝ} (hu : u ∈ Set.Ioo 0 1) :
 /-- Measurability of √(d * log(1 + c/x))
 @isnad1 id=measurab.0h2v.s5.ae166524b51c from=translated src=- shape=cc0cc06b vocab=8ccd5c8a
 -/
-lemma measurable_sqrt_d_log_one_plus_c_div (d : ℕ) (c : ℝ) :
+lemma _root_.Tengoku.Leanslt.measurable_sqrt_d_log_one_plus_c_div (d : ℕ) (c : ℝ) :
     Measurable (fun x : ℝ => Real.sqrt (d * Real.log (1 + c / x))) := by
   apply Measurable.sqrt
   apply Measurable.mul measurable_const
@@ -102,7 +102,7 @@ lemma measurable_sqrt_d_log_one_plus_c_div (d : ℕ) (c : ℝ) :
 /-- log(1 + 2δ/ε) ≤ log(1 + 2δ) - log(ε) for ε ∈ (0, 1)
 @isnad1 id=le.3h2v.s6.1f6cdab858b6 from=translated src=- shape=bbd55b41 vocab=e6782208
 -/
-lemma log_one_plus_two_delta_div_eps_bound {δ ε : ℝ} (hδ : 0 < δ)
+lemma _root_.Tengoku.Leanslt.log_one_plus_two_delta_div_eps_bound {δ ε : ℝ} (hδ : 0 < δ)
     (hε_pos : 0 < ε) (hε_lt : ε < 1) :
     Real.log (1 + 2 * δ / ε) ≤ Real.log (1 + 2 * δ) - Real.log ε := by
   have h_ineq : 1 + 2 * δ / ε ≤ (1 + 2 * δ) / ε := by
@@ -119,7 +119,7 @@ lemma log_one_plus_two_delta_div_eps_bound {δ ε : ℝ} (hδ : 0 < δ)
 /-- The Gamma function at 3/2 equals √π/2
 @isnad1 id=eq.0h0v.s5.1204f3bd7106 from=translated src=- shape=c48149a1 vocab=f8319bae
 -/
-lemma Gamma_three_halves : Real.Gamma (3 / 2) = Real.sqrt Real.pi / 2 := by
+lemma _root_.Tengoku.Leanslt.Gamma_three_halves : Real.Gamma (3 / 2) = Real.sqrt Real.pi / 2 := by
   have h1 : (3 : ℝ) / 2 = 1 / 2 + 1 := by norm_num
   rw [h1, Real.Gamma_add_one (by norm_num : (1 : ℝ) / 2 ≠ 0)]
   rw [Real.Gamma_one_half_eq]
@@ -129,7 +129,7 @@ lemma Gamma_three_halves : Real.Gamma (3 / 2) = Real.sqrt Real.pi / 2 := by
 This is a direct consequence of the Gamma function integral representation.
 @isnad1 id=eq.0h0v.s6.abb5a080f6bf from=translated src=- shape=df5845f7 vocab=3f2a5e79
 -/
-lemma integral_sqrt_exp_neg_eq_Gamma_three_halves :
+lemma _root_.Tengoku.Leanslt.integral_sqrt_exp_neg_eq_Gamma_three_halves :
     ∫ t in Set.Ioi (0 : ℝ), t ^ ((2 : ℝ)⁻¹) * Real.exp (-t) =
     Real.sqrt Real.pi / 2 := by
   have h := integral_rpow_mul_exp_neg_rpow (p := 1) (q := 1/2) (by norm_num : (0 : ℝ) < 1)
@@ -146,13 +146,13 @@ lemma integral_sqrt_exp_neg_eq_Gamma_three_halves :
 /-- √t = t^(1/2) for non-negative t
 @isnad1 id=eq.0h1v.s4.47ea342912d8 from=translated src=- shape=254957c8 vocab=9cbc5fbd
 -/
-lemma sqrt_eq_rpow_half (t : ℝ) : Real.sqrt t = t ^ ((2 : ℝ)⁻¹) := by
+lemma _root_.Tengoku.Leanslt.sqrt_eq_rpow_half (t : ℝ) : Real.sqrt t = t ^ ((2 : ℝ)⁻¹) := by
   rw [Real.sqrt_eq_rpow, one_div]
 
 /-- Integral equivalence: ∫ √t * e^(-t) dt = ∫ t^(1/2) * e^(-t) dt
 @isnad1 id=eq.0h0v.s6.eb90da646c30 from=translated src=- shape=4a295d9a vocab=e3287147
 -/
-lemma integral_sqrt_eq_integral_rpow :
+lemma _root_.Tengoku.Leanslt.integral_sqrt_eq_integral_rpow :
     ∫ t in Set.Ioi (0 : ℝ), Real.sqrt t * Real.exp (-t) =
     ∫ t in Set.Ioi (0 : ℝ), t ^ ((2 : ℝ)⁻¹) * Real.exp (-t) := by
   congr 1
@@ -162,7 +162,7 @@ lemma integral_sqrt_eq_integral_rpow :
 /-- The integral ∫_{Ioi 0} √t * e^{-t} dt equals √π/2
 @isnad1 id=eq.0h0v.s6.18b595a94eb6 from=translated src=- shape=31e99254 vocab=6542057a
 -/
-lemma integral_sqrt_mul_exp_neg_Ioi :
+lemma _root_.Tengoku.Leanslt.integral_sqrt_mul_exp_neg_Ioi :
     ∫ t in Set.Ioi (0 : ℝ), Real.sqrt t * Real.exp (-t) = Real.sqrt Real.pi / 2 := by
   rw [integral_sqrt_eq_integral_rpow]
   exact integral_sqrt_exp_neg_eq_Gamma_three_halves
@@ -171,7 +171,7 @@ lemma integral_sqrt_mul_exp_neg_Ioi :
 This follows from the substitution t = -log u via change of variables.
 @isnad1 id=eq.0h0v.s6.66c63fb71d8e from=translated src=- shape=7292247d vocab=f325c82a
 -/
-lemma integral_sqrt_neg_log_Ioo :
+lemma _root_.Tengoku.Leanslt.integral_sqrt_neg_log_Ioo :
     ∫ u in Set.Ioo (0 : ℝ) 1, Real.sqrt (-Real.log u) =
     Real.sqrt Real.pi / 2 := by
   -- Use change of variables with f(t) = exp(-t) mapping Ioi 0 → Ioo 0 1
@@ -224,7 +224,7 @@ lemma integral_sqrt_neg_log_Ioo :
 /-- Helper: integrability of √(-log u) on Ioo 0 1
 @isnad1 id=integrab.0h0v.s5.509f440dfffe from=translated src=- shape=a5144246 vocab=750d28bb
 -/
-lemma integrableOn_sqrt_neg_log :
+lemma _root_.Tengoku.Leanslt.integrableOn_sqrt_neg_log :
     MeasureTheory.IntegrableOn (fun u => Real.sqrt (-Real.log u)) (Set.Ioo (0 : ℝ) 1) volume := by
   -- First establish the image relationship
   have h_image : Set.image (fun t => Real.exp (-t)) (Set.Ioi 0) = Set.Ioo 0 1 := by
@@ -272,7 +272,7 @@ lemma integrableOn_sqrt_neg_log :
 /-- Integrability of √d * (√(log 3) + √(-log u)) on (0,1)
 @isnad1 id=integrab.0h1v.s6.55f205502a2e from=translated src=- shape=0ac5292d vocab=1fd73662
 -/
-lemma integrableOn_sqrt_d_times_bound (d : ℕ) :
+lemma _root_.Tengoku.Leanslt.integrableOn_sqrt_d_times_bound (d : ℕ) :
     MeasureTheory.IntegrableOn
       (fun u => Real.sqrt d * (Real.sqrt (Real.log 3) + Real.sqrt (-Real.log u)))
       (Set.Ioo (0 : ℝ) 1) volume := by
@@ -299,7 +299,7 @@ The proof follows the standard analysis argument:
 
 @isnad1 id=le.0h0v.s6.7ddb1511a2d8 from=translated src=- shape=33115e6f vocab=1daa8a44
 -/
-theorem integral_constant_bound :
+theorem _root_.Tengoku.Leanslt.integral_constant_bound :
     ∫ u in (0 : ℝ)..1, Real.sqrt (Real.log (1 + 2 / u)) ≤
     Real.sqrt (Real.log 3) + Real.sqrt Real.pi / 2 := by
   -- Convert interval integral to set integral over Ioc 0 1
@@ -391,7 +391,7 @@ theorem integral_constant_bound :
 /-- Numerical bound: √(log 3) + √π/2 < 2
 @isnad1 id=lt.0h0v.s5.5875bc885b6b from=translated src=- shape=f1b33ff2 vocab=8ab8a2ab
 -/
-lemma sqrt_log3_plus_sqrt_pi_div_2_lt_two :
+lemma _root_.Tengoku.Leanslt.sqrt_log3_plus_sqrt_pi_div_2_lt_two :
     Real.sqrt (Real.log 3) + Real.sqrt Real.pi / 2 < 2 := by
   -- √(log 3) ≈ 1.048, √π/2 ≈ 0.886, sum ≈ 1.934 < 2
   -- We prove: log 3 < 1.1, so √(log 3) < √1.1 < 1.05
@@ -451,7 +451,7 @@ lemma sqrt_log3_plus_sqrt_pi_div_2_lt_two :
 /-- The integral constant is less than 2
 @isnad1 id=lt.0h0v.s6.379d4f7c3221 from=translated src=- shape=4b4fd4a5 vocab=1140b291
 -/
-theorem integral_constant_lt_two :
+theorem _root_.Tengoku.Leanslt.integral_constant_lt_two :
     ∫ u in (0 : ℝ)..1, Real.sqrt (Real.log (1 + 2 / u)) < 2 := by
   calc ∫ u in (0 : ℝ)..1, Real.sqrt (Real.log (1 + 2 / u))
       ≤ Real.sqrt (Real.log 3) + Real.sqrt Real.pi / 2 := integral_constant_bound
@@ -460,7 +460,7 @@ theorem integral_constant_lt_two :
 /-- Helper: Scaling the integral ∫₀^δ f(s) ds = δ ∫₀^1 f(δu) du via change of variable
 @isnad1 id=eq.2h2v.s6.b41f9b528ea2 from=translated src=- shape=c1f8e913 vocab=6540ee59
 -/
-lemma integral_scale {f : ℝ → ℝ} {δ : ℝ} (_hδ : 0 < δ) (_hf : IntervalIntegrable f volume 0 δ) :
+lemma _root_.Tengoku.Leanslt.integral_scale {f : ℝ → ℝ} {δ : ℝ} (_hδ : 0 < δ) (_hf : IntervalIntegrable f volume 0 δ) :
     ∫ s in (0 : ℝ)..δ, f s = δ * ∫ u in (0 : ℝ)..1, f (δ * u) := by
   -- Use substitution s = δ * u
   have h := @intervalIntegral.mul_integral_comp_mul_left 0 1 f δ
@@ -470,7 +470,7 @@ lemma integral_scale {f : ℝ → ℝ} {δ : ℝ} (_hδ : 0 < δ) (_hf : Interva
 /-- (1/√n) δ * ∫₀^1 √(d * log(1+2/u)) du ≤ 2δ√(d/n)
 @isnad1 id=le.3h3v.s7.356be0e850c1 from=translated src=- shape=eac41b01 vocab=5b74ab89
 -/
-theorem intermediate_integral_bound
+theorem _root_.Tengoku.Leanslt.intermediate_integral_bound
     {n d : ℕ} (hn : 0 < n) (hd : 0 < d)
     {δ : ℝ} (hδ : 0 < δ) :
     (n : ℝ)⁻¹.sqrt * (δ * ∫ u in (0 : ℝ)..1, Real.sqrt (d * Real.log (1 + 2 / u))) ≤
@@ -523,7 +523,7 @@ This follows from the change of variables s = δu, giving:
 Then `intermediate_integral_bound` provides the final bound.
 @isnad1 id=le.3h3v.s7.0edaa3d80b5b from=translated src=- shape=2c41f801 vocab=5b74ab89
 -/
-theorem integral_bound {n d : ℕ} (hn : 0 < n) (hd : 0 < d) {δ : ℝ} (hδ : 0 < δ) :
+theorem _root_.Tengoku.Leanslt.integral_bound {n d : ℕ} (hn : 0 < n) (hd : 0 < d) {δ : ℝ} (hδ : 0 < δ) :
     (n : ℝ)⁻¹.sqrt * ∫ s in (0 : ℝ)..δ, Real.sqrt (d * Real.log (1 + 2 * δ / s)) ≤
     2 * δ * Real.sqrt ((d : ℝ) / n) := by
   -- Step 1: Change of variables via s = δu, so ∫₀^δ f(s) ds = δ ∫₀^1 f(δu) du
@@ -546,3 +546,4 @@ theorem integral_bound {n d : ℕ} (hn : 0 < n) (hd : 0 < d) {δ : ℝ} (hδ : 0
   -- Combine and apply intermediate_integral_bound
   rw [h_cov, h_simp]
   exact intermediate_integral_bound hn hd hδ
+-- Tengoku: root names of this library moved to Tengoku.Leanslt so they do not collide with other libraries (generated)

@@ -37,7 +37,7 @@ Noetherian induction on `Spec R`.
   (`M_f` free over `R_f`) puts the basic open `D(algebraMap R S f)` inside the flat locus.
 * `isOpen_flatLocus`: the flat locus is open.
 -/
-
+namespace Tengoku.Aintlib end Tengoku.Aintlib open Tengoku.Aintlib
 open scoped TensorProduct
 open TensorProduct
 
@@ -55,7 +55,7 @@ over `R`.  For a submodule inclusion `N' ↪ P` of `R`-modules, tensoring with `
 an injective map is injective (`IsLocalizedModule.map_injective`).
 @isnad1 id=flat.0h4v.s8.b9dbb057ac02 from=translated src=- shape=3f78d732 vocab=d5a265d3
 -/
-theorem flat_localizedModule_of_flat {R S N : Type*} [CommRing R] [CommRing S] [Algebra R S]
+theorem _root_.Tengoku.Aintlib.flat_localizedModule_of_flat {R S N : Type*} [CommRing R] [CommRing S] [Algebra R S]
     [AddCommGroup N] [Module R N] [Module S N] [IsScalarTower R S N] (T : Submonoid S)
     [Module.Flat R N] : Module.Flat R (LocalizedModule T N) := by
   rw [Module.Flat.iff_lTensor_injectiveₛ]
@@ -71,7 +71,7 @@ theorem flat_localizedModule_of_flat {R S N : Type*} [CommRing R] [CommRing S] [
 `N'` of an `R`-flat `S`-module `N` (at a submonoid `T ≤ S`) is again flat over `R`.
 @isnad1 id=flat.0h6v.s8.29afb05426e8 from=translated src=- shape=d83b28fd vocab=8eb69502
 -/
-theorem flat_of_isLocalizedModule_flat {R S N N' : Type*} [CommRing R] [CommRing S] [Algebra R S]
+theorem _root_.Tengoku.Aintlib.flat_of_isLocalizedModule_flat {R S N N' : Type*} [CommRing R] [CommRing S] [Algebra R S]
     [AddCommGroup N] [Module R N] [Module S N] [IsScalarTower R S N]
     [AddCommGroup N'] [Module R N'] [Module S N'] [IsScalarTower R S N']
     (T : Submonoid S) (φ : N →ₗ[S] N') [IsLocalizedModule T φ] [Module.Flat R N] :
@@ -90,7 +90,7 @@ variable {R S M : Type*} [CommRing R] [CommRing S] [Algebra R S]
 
 /-- The **flat locus** of `M` over `R`: the primes `q` of `S` at which the localisation `M_q` is
 flat over `R`.-/
-def flatLocus (R S M : Type*) [CommRing R] [CommRing S] [Algebra R S]
+def _root_.Tengoku.Aintlib.flatLocus (R S M : Type*) [CommRing R] [CommRing S] [Algebra R S]
     [AddCommGroup M] [Module R M] [Module S M] [IsScalarTower R S M] :
     Set (PrimeSpectrum S) :=
   {q : PrimeSpectrum S | Module.Flat R (LocalizedModule q.asIdeal.primeCompl M)}
@@ -98,7 +98,7 @@ def flatLocus (R S M : Type*) [CommRing R] [CommRing S] [Algebra R S]
 /--
 @isnad1 id=iff.0h4v.s8.be7caab1f986 from=translated src=- shape=eb156a41 vocab=1208a401
 -/
-theorem mem_flatLocus {q : PrimeSpectrum S} :
+theorem _root_.Tengoku.Aintlib.mem_flatLocus {q : PrimeSpectrum S} :
     q ∈ flatLocus R S M ↔ Module.Flat R (LocalizedModule q.asIdeal.primeCompl M) := Iff.rfl
 
 /-- **Generisation-stability of the flat locus.** If `M_q` is flat over `R` and `x` generises `q`
@@ -106,7 +106,7 @@ theorem mem_flatLocus {q : PrimeSpectrum S} :
 `M_q` (`IsLocalizedModule.liftOfLE`).
 @isnad1 id=stableun.0h3v.s7.9305ca985acf from=translated src=- shape=eb1c83d7 vocab=f81c987b
 -/
-theorem flatLocus_stableUnderGeneralization :
+theorem _root_.Tengoku.Aintlib.flatLocus_stableUnderGeneralization :
     StableUnderGeneralization (flatLocus R S M) := by
   intro x y hyx hx
   rw [mem_flatLocus] at hx ⊢
@@ -127,7 +127,7 @@ over `R` at every prime `q` of `S` not containing the image `algebraMap R S f`. 
 basic open `D(algebraMap R S f)` is contained in the flat locus.
 @isnad1 id=le.1h4v.s8.877369a5ebc7 from=translated src=- shape=6db58a10 vocab=13042def
 -/
-theorem basicOpen_subset_flatLocus_of_free (f : R)
+theorem _root_.Tengoku.Aintlib.basicOpen_subset_flatLocus_of_free (f : R)
     (hfree : Module.Free (Localization.Away f)
       (LocalizedModule (Submonoid.powers f) M)) :
     ↑(PrimeSpectrum.basicOpen (algebraMap R S f)) ⊆ flatLocus R S M := by
@@ -161,3 +161,4 @@ theorem basicOpen_subset_flatLocus_of_free (f : R)
     (IsLocalizedModule.liftOfLE (Submonoid.powers (algebraMap R S f)) q.asIdeal.primeCompl hle
       (LocalizedModule.mkLinearMap (Submonoid.powers (algebraMap R S f)) M)
       (LocalizedModule.mkLinearMap q.asIdeal.primeCompl M))
+-- Tengoku: root names of this library moved to Tengoku.Aintlib so they do not collide with other libraries (generated)

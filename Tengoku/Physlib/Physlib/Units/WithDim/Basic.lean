@@ -22,15 +22,15 @@ routes through `LTMCTUnitChoices.dimScale`, is provided for the standard basis
 -/
 
 @[expose] public section
-
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
 open NNReal
 
 /-- The type `M` carrying an instance of a dimension `d`. -/
-structure WithDim {B : Type} [DimensionBasis B] (d : Dimension B) (M : Type) where
+structure _root_.Tengoku.Physlib.WithDim {B : Type} [DimensionBasis B] (d : Dimension B) (M : Type) where
   /-- The underlying value of `M`. -/
   val : M
 
-namespace WithDim
+namespace Tengoku.Physlib.WithDim
 
 @[ext]
 lemma ext {B : Type} [DimensionBasis B] {d : Dimension B} {M}
@@ -202,7 +202,7 @@ instance {d1 d2 : Dimension LTMCTDimensionBase} :
     congr 1
     rw [mul_comm]
 
-open UnitDependent
+open Tengoku.Physlib.UnitDependent
 
 @[simp]
 lemma val_mul_eq_mul {B : Type} [DimensionBasis B] {d1 d2 : Dimension B}
@@ -297,4 +297,5 @@ lemma cast_scaleUnit {d d2 : Dimension LTMCTDimensionBase} {M : Type} [MulAction
   subst h
   simp
 
-end WithDim
+end Tengoku.Physlib.WithDim
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

@@ -2,14 +2,14 @@ import Tengoku
 import Tengoku.FltAnthropic.Definitions.Def_MvFormalGroup_NegV2
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 set_option autoImplicit false
 
 noncomputable section
 
 universe u
 
-namespace MvFormalGroup
+namespace Tengoku.FltAnthropic.MvFormalGroup
 
 namespace WittLaw
 
@@ -769,7 +769,7 @@ def verschiebung [Φ.IsComm] [CharP R p] : CartierModule p Φ →+ CartierModule
 @[simp] theorem toPowerSeries_verschiebung [Φ.IsComm] [CharP R p] (f : CartierModule p Φ) :
     (verschiebung f).toPowerSeries = fun j => subst (WittLaw.frobFam p R) (f.toPowerSeries j) := rfl
 
-theorem _root_.MvFormalGroup.Hom.subst_subst_elim {τ : Type*} {F : MvFormalGroup d R}
+theorem _root_.Tengoku.FltAnthropic.MvFormalGroup.Hom.subst_subst_elim {τ : Type*} {F : MvFormalGroup d R}
     {G : MvFormalGroup d' R} (φ : F.Hom G) {a b : Fin d → MvPowerSeries τ R}
     (ha : ∀ j, (a j).constantCoeff = 0) (hb : ∀ j, (b j).constantCoeff = 0) (i : Fin d') :
     subst (fun j => subst (Sum.elim a b) (F.toPowerSeries j)) (φ.toPowerSeries i) =
@@ -1012,6 +1012,7 @@ end Examples
 
 end CartierModule
 
-end MvFormalGroup
+end Tengoku.FltAnthropic.MvFormalGroup
 
 end
+-- Tengoku: root names of this library moved to Tengoku.FltAnthropic so they do not collide with other libraries (generated)

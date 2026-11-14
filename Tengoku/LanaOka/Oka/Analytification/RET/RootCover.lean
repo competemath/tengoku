@@ -46,7 +46,7 @@ connected, so `Q` is a monic factor of `P` of degree strictly between `0` and `d
 
 - David Mumford, *Algebraic Geometry I: Complex Projective Varieties*, (4.16)
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Polynomial Filter Topology Asymptotics
 
 namespace ComplexAnalytic
@@ -666,3 +666,4 @@ theorem isPreconnected_rootCover {P : (MvPolynomial (Fin d) ℂ)[X]} (hP : P.Mon
 end
 
 end ComplexAnalytic
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

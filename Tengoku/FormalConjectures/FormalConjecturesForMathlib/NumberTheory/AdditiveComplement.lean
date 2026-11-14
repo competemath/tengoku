@@ -18,7 +18,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.FormalConjectures end Tengoku.FormalConjectures open Tengoku.FormalConjectures 
 /-!
 # Additive complements
 
@@ -30,12 +30,13 @@ open Filter
 open scoped Pointwise
 
 /-- `A` and `B` are *additive complements* if `A + B` contains all large integers.-/
-def IsAdditiveComplement (A B : Set ℕ) : Prop :=
+def _root_.Tengoku.FormalConjectures.IsAdditiveComplement (A B : Set ℕ) : Prop :=
   ∀ᶠ n : ℕ in atTop, n ∈ A + B
 
 /--
 @isnad1 id=isadditi.1h2v.s3.275ab74e0ed1 from=translated src=- shape=55c7d06a vocab=a4958a2c
 -/
-theorem IsAdditiveComplement.symm {A B : Set ℕ} (h : IsAdditiveComplement A B) :
+theorem Tengoku.FormalConjectures.IsAdditiveComplement.symm {A B : Set ℕ} (h : IsAdditiveComplement A B) :
     IsAdditiveComplement B A := by
   filter_upwards [h] with n hn using by rwa [Set.addCommMonoid.add_comm]
+-- Tengoku: root names of this library moved to Tengoku.FormalConjectures so they do not collide with other libraries (generated)

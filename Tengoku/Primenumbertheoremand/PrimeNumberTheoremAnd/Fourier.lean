@@ -1,6 +1,6 @@
 import Tengoku
 import Tengoku.Primenumbertheoremand.PrimeNumberTheoremAnd.Sobolev
-
+namespace Tengoku.Primenumbertheoremand end Tengoku.Primenumbertheoremand open Tengoku.Primenumbertheoremand
 open FourierTransform Real Complex MeasureTheory Filter Topology BoundedContinuousFunction
   SchwartzMap VectorFourier BigOperators
 
@@ -8,30 +8,30 @@ local instance {E : Type*} : Coe (E → ℝ) (E → ℂ) := ⟨fun f n => f n⟩
 
 section lemmas
 
-lemma fourierIntegral_deriv_aux2 (e : ℝ →ᵇ ℂ) {f : ℝ → ℂ} (hf : Integrable f) :
+lemma _root_.Tengoku.Primenumbertheoremand.fourierIntegral_deriv_aux2 (e : ℝ →ᵇ ℂ) {f : ℝ → ℂ} (hf : Integrable f) :
     Integrable (⇑e * f) :=
   hf.bdd_mul e.continuous.aestronglyMeasurable (ae_of_all _ e.norm_coe_le_norm)
 
-@[simp] lemma F_neg {f : ℝ → ℂ} {u : ℝ} : 𝓕 (fun x => -f x) u = - 𝓕 f u := by
+@[simp] lemma _root_.Tengoku.Primenumbertheoremand.F_neg {f : ℝ → ℂ} {u : ℝ} : 𝓕 (fun x => -f x) u = - 𝓕 f u := by
   simp [fourier_eq, integral_neg]
 
-@[simp] lemma F_add {f g : ℝ → ℂ} (hf : Integrable f) (hg : Integrable g) (x : ℝ) :
+@[simp] lemma _root_.Tengoku.Primenumbertheoremand.F_add {f g : ℝ → ℂ} (hf : Integrable f) (hg : Integrable g) (x : ℝ) :
     𝓕 (fun x => f x + g x) x = 𝓕 f x + 𝓕 g x := by
   have : Continuous fun p : ℝ × ℝ ↦ ((innerₗ ℝ) p.1) p.2 := continuous_inner
   have := fourierIntegral_add continuous_fourierChar this hf hg
   exact congr_fun this x
 
-@[simp] lemma F_sub {f g : ℝ → ℂ} (hf : Integrable f) (hg : Integrable g) (x : ℝ) :
+@[simp] lemma _root_.Tengoku.Primenumbertheoremand.F_sub {f g : ℝ → ℂ} (hf : Integrable f) (hg : Integrable g) (x : ℝ) :
     𝓕 (fun x => f x - g x) x = 𝓕 f x - 𝓕 g x := by
   simpa [sub_eq_add_neg, Pi.neg_def] using F_add hf hg.neg x
 
-@[simp] lemma F_mul {f : ℝ → ℂ} {c : ℂ} {u : ℝ} :
+@[simp] lemma _root_.Tengoku.Primenumbertheoremand.F_mul {f : ℝ → ℂ} {c : ℂ} {u : ℝ} :
     𝓕 (fun x => c * f x) u = c * 𝓕 f u := by
   exact congr_fun (VectorFourier.fourierIntegral_const_smul 𝐞 _ _ f c) u
 
 end lemmas
 
-theorem fourierIntegral_self_add_deriv_deriv (f : W21) (u : ℝ) :
+theorem _root_.Tengoku.Primenumbertheoremand.fourierIntegral_self_add_deriv_deriv (f : W21) (u : ℝ) :
     (1 + u ^ 2) * 𝓕 (f : ℝ → ℂ) u =
       𝓕 (fun u : ℝ => (f u - (1 / (4 * π ^ 2)) * deriv^[2] f u : ℂ)) u := by
   have l1 : Integrable (fun x => (((π : ℂ) ^ 2)⁻¹ * 4⁻¹) * deriv (deriv f) x) := by
@@ -41,12 +41,12 @@ theorem fourierIntegral_self_add_deriv_deriv (f : W21) (u : ℝ) :
   simp [f.hf, l1, add_mul, Real.fourier_deriv f.hf' l5 f.hf'', Real.fourier_deriv f.hf l4 f.hf']
   field_simp [pi_ne_zero] ; ring_nf ; simp
 
-@[simp] lemma deriv_ofReal : deriv ofReal = fun _ => 1 := by
+@[simp] lemma _root_.Tengoku.Primenumbertheoremand.deriv_ofReal : deriv ofReal = fun _ => 1 := by
   ext x ; exact ((hasDerivAt_id x).ofReal_comp).deriv
 
 /-- If, eventually in `T`, the integrand `f T` is bounded on `uIoc lo hi` by `B T`
 and `B T * |hi - lo| → 0`, then the interval integral `∫ x in lo..hi, f T x → 0`. -/
-lemma tendsto_intervalIntegral_zero_of_uniform_norm_bound
+lemma _root_.Tengoku.Primenumbertheoremand.tendsto_intervalIntegral_zero_of_uniform_norm_bound
     {f : ℝ → ℝ → ℂ} {lo hi : ℝ} {B : ℝ → ℝ}
     (hB : Filter.Tendsto (fun T : ℝ => B T * |hi - lo|) Filter.atTop (nhds 0))
     (hf : ∀ᶠ T in Filter.atTop, ∀ x ∈ Set.uIoc lo hi, ‖f T x‖ ≤ B T) :
@@ -57,7 +57,7 @@ lemma tendsto_intervalIntegral_zero_of_uniform_norm_bound
   exact intervalIntegral.norm_integral_le_of_norm_le_const (fun x hx => hT x hx)
 
 /-- The decay `K * (log (T + 2) / (T + 2)) → 0` as `T → ∞`, for any constant `K`. -/
-lemma tendsto_const_mul_log_add_two_div_add_two_atTop (K : ℝ) :
+lemma _root_.Tengoku.Primenumbertheoremand.tendsto_const_mul_log_add_two_div_add_two_atTop (K : ℝ) :
     Filter.Tendsto (fun T : ℝ => K * (Real.log (T + 2) / (T + 2)))
       Filter.atTop (nhds 0) := by
   have h0 : Filter.Tendsto (fun x : ℝ => Real.log x / x) Filter.atTop (nhds 0) := by
@@ -70,7 +70,7 @@ lemma tendsto_const_mul_log_add_two_div_add_two_atTop (K : ℝ) :
 
 /-- Fourier-transform decay from an integrable derivative: for integrable,
 differentiable `g` with integrable derivative, `‖𝓕 g w‖ ≤ (∫ ‖deriv g x‖) / (2π·|w|)`. -/
-lemma norm_fourier_le_integral_deriv_div
+lemma _root_.Tengoku.Primenumbertheoremand.norm_fourier_le_integral_deriv_div
     (g : ℝ → ℂ) (hg : Integrable g) (hdiff : Differentiable ℝ g)
     (hg' : Integrable (deriv g)) {w : ℝ} (hw : w ≠ 0) :
     ‖𝓕 g w‖ ≤ (∫ x, ‖deriv g x‖ ∂volume) / ((2 * Real.pi) * |w|) := by
@@ -99,7 +99,7 @@ lemma norm_fourier_le_integral_deriv_div
 
 /-- The oscillatory-integral form of the decay bound: for `0 < T`,
 `‖∫ g y · exp(T·i·y)‖ ≤ (∫ ‖deriv g x‖) / T`. -/
-lemma norm_oscillatory_integral_le_integral_deriv_div
+lemma _root_.Tengoku.Primenumbertheoremand.norm_oscillatory_integral_le_integral_deriv_div
     (g : ℝ → ℂ) (hg : Integrable g) (hdiff : Differentiable ℝ g)
     (hg' : Integrable (deriv g)) {T : ℝ} (hT : 0 < T) :
     ‖∫ y, g y * exp ((T : ℂ) * Complex.I * (y : ℂ)) ∂volume‖ ≤
@@ -131,7 +131,7 @@ lemma norm_oscillatory_integral_le_integral_deriv_div
 
 /-- The `|T|` variant of the oscillatory-integral decay bound: for `T ≠ 0`,
 `‖∫ g y · exp(T·i·y)‖ ≤ (∫ ‖deriv g x‖) / |T|`. -/
-lemma norm_oscillatory_integral_le_integral_deriv_div_abs
+lemma _root_.Tengoku.Primenumbertheoremand.norm_oscillatory_integral_le_integral_deriv_div_abs
     (g : ℝ → ℂ) (hg : Integrable g) (hdiff : Differentiable ℝ g)
     (hg' : Integrable (deriv g)) {T : ℝ} (hT : T ≠ 0) :
     ‖∫ y, g y * exp ((T : ℂ) * Complex.I * (y : ℂ)) ∂volume‖ ≤
@@ -159,3 +159,4 @@ lemma norm_oscillatory_integral_le_integral_deriv_div_abs
     rw [abs_div, abs_neg, abs_of_pos htwopi_pos]
     field_simp [Real.pi_ne_zero]
   rw [hden]
+-- Tengoku: root names of this library moved to Tengoku.Primenumbertheoremand so they do not collide with other libraries (generated)

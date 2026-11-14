@@ -38,17 +38,17 @@ coefficients satisfying the recurrence for every `b ∈ D`.
   minors.
 - `exists_hankelMinor_ne_zero_forall_eq_zero`: the choice of `d` and `I` for holomorphic families.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Set Filter Polynomial
 open scoped Topology
 
 /-- The Hankel minor `det (μ (I i + j) b)_{i, j < m}` with rows `I` and columns `0, …, m - 1`. -/
-noncomputable def hankelMinor {X : Type*} (μ : ℕ → X → ℂ) {m : ℕ} (I : Fin m → ℕ) (b : X) : ℂ :=
+noncomputable def _root_.Tengoku.LanaOka.hankelMinor {X : Type*} (μ : ℕ → X → ℂ) {m : ℕ} (I : Fin m → ℕ) (b : X) : ℂ :=
   (Matrix.of fun i j : Fin m ↦ μ (I i + j) b).det
 
 /-- The cofactor at position `j` of the last row of the matrix with rows `(μ (I i + ·) b)_i` and
 an added last row. -/
-noncomputable def hankelCof {X : Type*} (μ : ℕ → X → ℂ) {d : ℕ} (I : Fin d → ℕ) (j : Fin (d + 1))
+noncomputable def _root_.Tengoku.LanaOka.hankelCof {X : Type*} (μ : ℕ → X → ℂ) {d : ℕ} (I : Fin d → ℕ) (j : Fin (d + 1))
     (b : X) : ℂ :=
   (-1) ^ (d + (j : ℕ)) * (Matrix.of fun i j' : Fin d ↦ μ (I i + j.succAbove j') b).det
 
@@ -73,7 +73,7 @@ variable {X : Type*} {μ : ℕ → X → ℂ}
 
 /-- If `μ · b` satisfies a linear recurrence with characteristic polynomial `p ≠ 0`, then the
 Hankel minors of size `m + 1 > deg p` vanish at `b`. -/
-theorem hankelMinor_eq_zero_of_recurrence {b : X} {p : ℂ[X]} (hp : p ≠ 0)
+theorem _root_.Tengoku.LanaOka.hankelMinor_eq_zero_of_recurrence {b : X} {p : ℂ[X]} (hp : p ≠ 0)
     (hrec : ∀ k, ∑ j ∈ Finset.range (p.natDegree + 1), p.coeff j * μ (k + j) b = 0) {m : ℕ}
     (hm : p.natDegree ≤ m) (J : Fin (m + 1) → ℕ) : hankelMinor μ J b = 0 := by
   classical
@@ -90,13 +90,13 @@ theorem hankelMinor_eq_zero_of_recurrence {b : X} {p : ℂ[X]} (hp : p ≠ 0)
       rw [coeff_eq_zero_of_natDegree_lt (by simpa using hj), mul_zero]
 
 /-- The cofactor of the last position is the Hankel minor with rows `I`. -/
-theorem hankelCof_last {d : ℕ} (I : Fin d → ℕ) (b : X) :
+theorem _root_.Tengoku.LanaOka.hankelCof_last {d : ℕ} (I : Fin d → ℕ) (b : X) :
     hankelCof μ I (Fin.last d) b = hankelMinor μ I b := by
   simp [hankelCof, hankelMinor, Fin.succAbove_last, ← two_mul, pow_mul]
 
 /-- The cofactors of the last row, paired with a shifted row of the Hankel matrix, give a Hankel
 minor of size `d + 1`. -/
-theorem sum_hankelCof_mul {d : ℕ} (I : Fin d → ℕ) (b : X) (k : ℕ) :
+theorem _root_.Tengoku.LanaOka.sum_hankelCof_mul {d : ℕ} (I : Fin d → ℕ) (b : X) (k : ℕ) :
     ∑ j : Fin (d + 1), hankelCof μ I j b * μ (k + j) b =
       hankelMinor μ (Fin.snoc I k : Fin (d + 1) → ℕ) b := by
   have hM : (Matrix.of fun i j : Fin (d + 1) ↦ μ ((Fin.snoc I k : Fin (d + 1) → ℕ) i + j) b) =
@@ -114,7 +114,7 @@ section Holomorphic
 variable {B : Type*} [NormedAddCommGroup B] [NormedSpace ℂ B] {D : Set B}
 
 /-- The determinant of a matrix whose entries are holomorphic is holomorphic. -/
-theorem differentiableOn_det {m : ℕ} (M : B → Matrix (Fin m) (Fin m) ℂ)
+theorem _root_.Tengoku.LanaOka.differentiableOn_det {m : ℕ} (M : B → Matrix (Fin m) (Fin m) ℂ)
     (hM : ∀ i j, DifferentiableOn ℂ (fun b ↦ M b i j) D) :
     DifferentiableOn ℂ (fun b ↦ (M b).det) D := by
   induction m with
@@ -127,12 +127,12 @@ theorem differentiableOn_det {m : ℕ} (M : B → Matrix (Fin m) (Fin m) ℂ)
 variable {μ : ℕ → B → ℂ}
 
 /-- The Hankel minors of a holomorphic family of sequences are holomorphic. -/
-theorem differentiableOn_hankelMinor (hμ : ∀ k, DifferentiableOn ℂ (μ k) D) {m : ℕ}
+theorem _root_.Tengoku.LanaOka.differentiableOn_hankelMinor (hμ : ∀ k, DifferentiableOn ℂ (μ k) D) {m : ℕ}
     (I : Fin m → ℕ) : DifferentiableOn ℂ (hankelMinor μ I) D :=
   differentiableOn_det (fun b ↦ Matrix.of fun i j : Fin m ↦ μ (I i + j) b) fun _ _ ↦ hμ _
 
 /-- The cofactors `hankelCof` of a holomorphic family of sequences are holomorphic. -/
-theorem differentiableOn_hankelCof (hμ : ∀ k, DifferentiableOn ℂ (μ k) D) {d : ℕ}
+theorem _root_.Tengoku.LanaOka.differentiableOn_hankelCof (hμ : ∀ k, DifferentiableOn ℂ (μ k) D) {d : ℕ}
     (I : Fin d → ℕ) (j : Fin (d + 1)) : DifferentiableOn ℂ (hankelCof μ I j) D :=
   (differentiableOn_det (fun b ↦ Matrix.of fun i j' : Fin d ↦ μ (I i + j.succAbove j') b)
     fun _ _ ↦ hμ _).const_mul _
@@ -144,7 +144,7 @@ suppose that at every point of a nonempty open subset `O ⊆ D` the sequence `μ
 linear recurrence. Then there are `d` and rows `I` such that the minor with rows `I` and columns
 `0, …, d - 1` does not vanish identically on `D`, while all minors of size `d + 1` with columns
 `0, …, d` vanish on `D`. -/
-theorem exists_hankelMinor_ne_zero_forall_eq_zero (hD : IsOpen D) (hDc : IsPreconnected D)
+theorem _root_.Tengoku.LanaOka.exists_hankelMinor_ne_zero_forall_eq_zero (hD : IsOpen D) (hDc : IsPreconnected D)
     (hμ : ∀ k, DifferentiableOn ℂ (μ k) D) {O : Set B} (hO : IsOpen O) (hOD : O ⊆ D)
     (hOne : O.Nonempty)
     (hrec : ∀ b ∈ O, ∃ p : ℂ[X], p ≠ 0 ∧
@@ -198,3 +198,4 @@ theorem exists_hankelMinor_ne_zero_forall_eq_zero (hD : IsOpen D) (hDc : IsPreco
     exact ⟨J, ⟨b, hb, hJ⟩, hs⟩
 
 end Holomorphic
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

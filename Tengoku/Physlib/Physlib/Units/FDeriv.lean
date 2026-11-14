@@ -25,8 +25,8 @@ in which the derivative is taken.
 -/
 
 @[expose] public section
-
-open UnitDependent CarriesDimension NNReal
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
+open Tengoku.Physlib.UnitDependent Tengoku.Physlib.CarriesDimension NNReal
 
 variable {M1 M2 : Type} [NormedAddCommGroup M1] [NormedSpace ℝ M1]
     [ContinuousConstSMul ℝ M1] [HasDim M1]
@@ -34,7 +34,7 @@ variable {M1 M2 : Type} [NormedAddCommGroup M1] [NormedSpace ℝ M1]
     [SMulCommClass ℝ ℝ M2] [ContinuousConstSMul ℝ M2]
     [HasDim M2]
 
-lemma fderiv_apply_scaleUnit (u1 u2 : LTMCTUnitChoices) (x dm : M1)
+lemma _root_.Tengoku.Physlib.fderiv_apply_scaleUnit (u1 u2 : LTMCTUnitChoices) (x dm : M1)
     (f : M1 → M2) (hf : IsDimensionallyCorrect f) (f_diff : Differentiable ℝ f) :
     fderiv ℝ f (scaleUnit u2 u1 x) dm =
     u2.dimScale u1 (dim M2) • u1.dimScale u2 (dim M1) • fderiv ℝ f x dm := by
@@ -45,9 +45,9 @@ lemma fderiv_apply_scaleUnit (u1 u2 : LTMCTUnitChoices) (x dm : M1)
   simp [smul_smul]
   rfl
 
-open ContinuousLinearUnitDependent in
+open Tengoku.Physlib.ContinuousLinearUnitDependent in
 /-- If a function is dimensionally valid then so is it's derivative. -/
-lemma fderiv_isDimensionallyCorrect (f : M1 → M2) (hf : IsDimensionallyCorrect f)
+lemma _root_.Tengoku.Physlib.fderiv_isDimensionallyCorrect (f : M1 → M2) (hf : IsDimensionallyCorrect f)
     (f_diff : Differentiable ℝ f) :
     IsDimensionallyCorrect (fderiv ℝ f) := by
   simp only [isDimensionallyCorrect_fun_iff]
@@ -63,10 +63,11 @@ lemma fderiv_isDimensionallyCorrect (f : M1 → M2) (hf : IsDimensionallyCorrect
 
   This result also shows that dimensional correctness does depend on what
   quantities are considered dimensionful. -/
-lemma fderiv_dimension_const_direction (dm : M1) (f : M1 → M2) (hf : IsDimensionallyCorrect f)
+lemma _root_.Tengoku.Physlib.fderiv_dimension_const_direction (dm : M1) (f : M1 → M2) (hf : IsDimensionallyCorrect f)
     (f_diff : Differentiable ℝ f) :
     IsDimensionallyCorrect (fun x (v : WithDim (dim M2 * (dim M1)⁻¹) M2) =>
       fderiv ℝ f x dm = v.1) := by
   simp [isDimensionallyCorrect_fun_iff, funext_iff, WithDim.scaleUnit_val,
     fderiv_apply_scaleUnit _ _ _ dm f hf f_diff,
     ← smul_smul, ← LTMCTUnitChoices.dimScale_symm]
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

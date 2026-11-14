@@ -9,7 +9,7 @@ import Tengoku.ClassfieldtheoryYamaguchi.ClassFieldTheory.AlgebraicNumberTheory.
 import Tengoku.Seed.RingTheory.DedekindDomain.SInteger
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.ClassfieldtheoryYamaguchi end Tengoku.ClassfieldtheoryYamaguchi open Tengoku.ClassfieldtheoryYamaguchi
 set_option autoImplicit false
 
 /-!
@@ -27,7 +27,7 @@ noncomputable section
 
 variable {K : Type*} [Field K] [NumberField K]
 
-namespace FiniteIdeleGroup
+namespace Tengoku.ClassfieldtheoryYamaguchi.FiniteIdeleGroup
 
 /-- The finite ideles that are integral units away from `S`.-/
 def supportedAt (S : Set (HeightOneSpectrum (𝓞 K))) :
@@ -121,9 +121,9 @@ theorem isOpen_supportedAt (S : Finset (HeightOneSpectrum (𝓞 K))) :
   exact RestrictedProduct.isOpen_forall_imp_mem
     (fun v => isOpen_finiteLocalUnits K v)
 
-end FiniteIdeleGroup
+end Tengoku.ClassfieldtheoryYamaguchi.FiniteIdeleGroup
 
-namespace IdeleGroup
+namespace Tengoku.ClassfieldtheoryYamaguchi.IdeleGroup
 
 /-- The group `I_K^S`, with all infinite places included and finite
 components integral away from `S`.-/
@@ -195,11 +195,11 @@ theorem isOpen_supportedAt
         Subgroup (IdeleGroup K)) : Set (IdeleGroup K)) :=
   (FiniteIdeleGroup.isOpen_supportedAt S).preimage continuous_snd
 
-end IdeleGroup
+end Tengoku.ClassfieldtheoryYamaguchi.IdeleGroup
 
 /-- The group of `S`-units of `K`, for a finite set of finite places.
 All infinite places are understood to lie in `S`.-/
-abbrev SUnitGroup
+abbrev _root_.Tengoku.ClassfieldtheoryYamaguchi.SUnitGroup
     (S : Finset (HeightOneSpectrum (𝓞 K))) :=
   (S : Set (HeightOneSpectrum (𝓞 K))).unit K
 
@@ -207,9 +207,10 @@ abbrev SUnitGroup
 @isnad1 id=iff.0h3v.s8.fbe5f26134bc from=translated src=- shape=7cc6aa33 vocab=bc08d15a
 -/
 @[simp]
-theorem mem_SUnitGroup_iff
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.mem_SUnitGroup_iff
     (S : Finset (HeightOneSpectrum (𝓞 K))) (x : Kˣ) :
     x ∈ SUnitGroup (K := K) S ↔
       ∀ v : HeightOneSpectrum (𝓞 K), v ∉ S →
         v.valuation K x = 1 :=
   Iff.rfl
+-- Tengoku: root names of this library moved to Tengoku.ClassfieldtheoryYamaguchi so they do not collide with other libraries (generated)

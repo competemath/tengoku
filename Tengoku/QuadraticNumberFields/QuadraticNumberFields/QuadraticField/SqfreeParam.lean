@@ -43,13 +43,13 @@ morphisms, whereas each object of `QuadraticFieldCat` has a non-trivial
 The correct classification statement is one of isomorphism classes, pursued
 separately.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 /-- A normalized squarefree parameter: a squarefree integer `d ≠ 1`.
 
 These index the standard quadratic-field models `ℚ(√d)`.-/
 local notation "ℚ√" d => Qsqrtd d
 
-structure SqfreeParam where
+structure _root_.Tengoku.QuadraticNumberFields.SqfreeParam where
   /-- The underlying integer.-/
   d : ℤ
   /-- The integer is squarefree.-/
@@ -57,18 +57,18 @@ structure SqfreeParam where
   /-- The integer is not `1` (so that `ℚ(√d)` is a genuine field, not `ℚ × ℚ`).-/
   ne_one : d ≠ 1
 
-namespace SqfreeParam
+namespace Tengoku.QuadraticNumberFields.SqfreeParam
 
 /-- The standard model `ℚ(√d)` associated to a squarefree parameter.-/
 def qsqrtd (p : SqfreeParam) : Type :=
   Qsqrtd (p.d : ℚ)
 
-end SqfreeParam
+end Tengoku.QuadraticNumberFields.SqfreeParam
 
 open CategoryTheory
 
 /-- The discrete category on normalized squarefree parameters.-/
-abbrev SqfreeParamCat := Discrete SqfreeParam
+abbrev _root_.Tengoku.QuadraticNumberFields.SqfreeParamCat := Discrete SqfreeParam
 
 /-! ## Isomorphism-Class Classification
 
@@ -100,14 +100,15 @@ instance resolution deterministic across import contexts. -/
 
 /-- A squarefree parameter is determined by its integer `d` (the squarefree and
 `≠ 1` fields are propositions).-/
-theorem SqfreeParam.eq_of_d_eq {p q : SqfreeParam} (h : p.d = q.d) : p = q := by
+theorem Tengoku.QuadraticNumberFields.SqfreeParam.eq_of_d_eq {p q : SqfreeParam} (h : p.d = q.d) : p = q := by
   cases p; cases q; subst h; rfl
 
 /-- Parameter uniqueness: if the standard models of two squarefree
 parameters are `ℚ`-algebra isomorphic, the parameters are equal.-/
-theorem SqfreeParam.eq_of_algEquiv {p q : SqfreeParam}
+theorem Tengoku.QuadraticNumberFields.SqfreeParam.eq_of_algEquiv {p q : SqfreeParam}
     (e : @AlgEquiv ℚ (Qsqrtd (p.d : ℚ)) (Qsqrtd (q.d : ℚ)) Rat.commSemiring
       QuadraticAlgebra.instCommSemiring.toSemiring QuadraticAlgebra.instCommSemiring.toSemiring
       QuadraticAlgebra.instAlgebra QuadraticAlgebra.instAlgebra) : p = q :=
   SqfreeParam.eq_of_d_eq
     (Qsqrtd.param_unique p.d q.d e p.squarefree p.ne_one q.squarefree)
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

@@ -28,7 +28,7 @@ Two-level design: ENNReal `entropyIntegralENNReal` (canonical) with real wrapper
 * Dyadic sum approximation: `dyadicRHS_le_four_times_entropyIntegral`
 
 -/
-
+namespace Tengoku.Leanslt end Tengoku.Leanslt open Tengoku.Leanslt
 open Set Metric Real MeasureTheory
 open scoped BigOperators ENNReal
 
@@ -41,13 +41,13 @@ variable {A : Type*} [PseudoMetricSpace A]
 -/
 
 /-- Helper to compute metric entropy given a natural number. -/
-def metricEntropyOfNat (n : ℕ) : ℝ :=
+def _root_.Tengoku.Leanslt.metricEntropyOfNat (n : ℕ) : ℝ :=
   if n ≤ 1 then 0 else Real.log n
 
 /--
 @isnad1 id=le.0h1v.s3.8e96748deea7 from=translated src=- shape=b9369acb vocab=4f5e8fc0
 -/
-lemma metricEntropyOfNat_nonneg (n : ℕ) : 0 ≤ metricEntropyOfNat n := by
+lemma _root_.Tengoku.Leanslt.metricEntropyOfNat_nonneg (n : ℕ) : 0 ≤ metricEntropyOfNat n := by
   unfold metricEntropyOfNat
   split_ifs with hn
   · exact le_rfl
@@ -57,7 +57,7 @@ lemma metricEntropyOfNat_nonneg (n : ℕ) : 0 ≤ metricEntropyOfNat n := by
 /--
 @isnad1 id=le.1h2v.s4.81a25bdba364 from=translated src=- shape=d7721dd6 vocab=4f5e8fc0
 -/
-lemma metricEntropyOfNat_mono {n m : ℕ} (h : n ≤ m) : metricEntropyOfNat n ≤ metricEntropyOfNat m := by
+lemma _root_.Tengoku.Leanslt.metricEntropyOfNat_mono {n m : ℕ} (h : n ≤ m) : metricEntropyOfNat n ≤ metricEntropyOfNat m := by
   unfold metricEntropyOfNat
   split_ifs with hn hm hm
   · exact le_rfl
@@ -70,7 +70,7 @@ lemma metricEntropyOfNat_mono {n m : ℕ} (h : n ≤ m) : metricEntropyOfNat n �
 
 /-- Metric entropy: log of the covering number.
     Returns 0 if the covering number is infinite or ≤ 1 (to avoid log issues). -/
-def metricEntropy (eps : ℝ) (s : Set A) : ℝ :=
+def _root_.Tengoku.Leanslt.metricEntropy (eps : ℝ) (s : Set A) : ℝ :=
   match _h : coveringNumber eps s with
   | ⊤ => 0
   | (n : ℕ) => metricEntropyOfNat n
@@ -78,7 +78,7 @@ def metricEntropy (eps : ℝ) (s : Set A) : ℝ :=
 /-- Metric entropy is non-negative.
 @isnad1 id=le.0h3v.s4.ce2ac3da5fa0 from=translated src=- shape=86c5a503 vocab=0f648fb6
 -/
-lemma metricEntropy_nonneg (eps : ℝ) (s : Set A) : 0 ≤ metricEntropy eps s := by
+lemma _root_.Tengoku.Leanslt.metricEntropy_nonneg (eps : ℝ) (s : Set A) : 0 ≤ metricEntropy eps s := by
   unfold metricEntropy
   split
   · exact le_rfl
@@ -89,20 +89,20 @@ lemma metricEntropy_nonneg (eps : ℝ) (s : Set A) : 0 ≤ metricEntropy eps s :
 -/
 
 /-- Square root of metric entropy: √log N(ε, s). -/
-def sqrtEntropy (eps : ℝ) (s : Set A) : ℝ :=
+def _root_.Tengoku.Leanslt.sqrtEntropy (eps : ℝ) (s : Set A) : ℝ :=
   Real.sqrt (metricEntropy eps s)
 
 /-- Square root entropy is non-negative.
 @isnad1 id=le.0h3v.s4.5e08d2ed1f89 from=translated src=- shape=86c5a503 vocab=418fd016
 -/
-lemma sqrtEntropy_nonneg (eps : ℝ) (s : Set A) : 0 ≤ sqrtEntropy eps s :=
+lemma _root_.Tengoku.Leanslt.sqrtEntropy_nonneg (eps : ℝ) (s : Set A) : 0 ≤ sqrtEntropy eps s :=
   Real.sqrt_nonneg _
 
 /-- Helper: √(log (a * b)) ≤ √(log a) + √(log b) for a, b ≥ 1.
     Used for bounding edge cardinalities in the Dudley chaining argument.
 @isnad1 id=le.2h2v.s5.f289cf2f756f from=translated src=- shape=cd3c213d vocab=34fd61f5
 -/
-lemma sqrt_log_mul_le {a b : ℕ} (ha : 1 ≤ a) (hb : 1 ≤ b) :
+lemma _root_.Tengoku.Leanslt.sqrt_log_mul_le {a b : ℕ} (ha : 1 ≤ a) (hb : 1 ≤ b) :
     Real.sqrt (Real.log (a * b)) ≤ Real.sqrt (Real.log a) + Real.sqrt (Real.log b) := by
   by_cases ha2 : a ≤ 1
   · have ha1 : a = 1 := le_antisymm ha2 ha
@@ -141,7 +141,7 @@ lemma sqrt_log_mul_le {a b : ℕ} (ha : 1 ≤ a) (hb : 1 ≤ b) :
 /-- Each f(j) for j ∈ [1, K+1] appears at most twice when summing f(k+1) + f(k+2).
 @isnad1 id=le.1h2v.s6.4d7fbaf1aca8 from=translated src=- shape=263a69fa vocab=a09ec63f
 -/
-lemma sum_shifted_le_two_sum {f : ℕ → ℝ} (hf : ∀ k, 0 ≤ f k) (K : ℕ) :
+lemma _root_.Tengoku.Leanslt.sum_shifted_le_two_sum {f : ℕ → ℝ} (hf : ∀ k, 0 ≤ f k) (K : ℕ) :
     ∑ k ∈ Finset.range K, (f (k + 1) + f (k + 2)) ≤
     2 * ∑ k ∈ Finset.range (K + 2), f k := by
   -- Split the sum: Σ (f(k+1) + f(k+2)) = Σ f(k+1) + Σ f(k+2)
@@ -200,18 +200,18 @@ lemma sum_shifted_le_two_sum {f : ℕ → ℝ} (hf : ∀ k, 0 ≤ f k) (K : ℕ)
 
 /-- Metric entropy as ENNReal: max(0, log N(ε, s)).
     This is the non-negative part of the logarithm of the covering number. -/
-def metricEntropyENNReal (eps : ℝ) (s : Set A) : ℝ≥0∞ :=
+def _root_.Tengoku.Leanslt.metricEntropyENNReal (eps : ℝ) (s : Set A) : ℝ≥0∞ :=
   ENNReal.ofReal (metricEntropy eps s)
 
 /-- Dudley integrand: √(log N(ε, s)), as ENNReal.
     This is the integrand for Dudley's entropy integral. -/
-def dudleyIntegrand (eps : ℝ) (s : Set A) : ℝ≥0∞ :=
+def _root_.Tengoku.Leanslt.dudleyIntegrand (eps : ℝ) (s : Set A) : ℝ≥0∞ :=
   ENNReal.ofReal (sqrtEntropy eps s)
 
 /--
 @isnad1 id=eq.0h3v.s4.6f163476b1e6 from=translated src=- shape=c56b3978 vocab=3c699044
 -/
-lemma dudleyIntegrand_eq_sqrt_metricEntropyENNReal (eps : ℝ) (s : Set A) :
+lemma _root_.Tengoku.Leanslt.dudleyIntegrand_eq_sqrt_metricEntropyENNReal (eps : ℝ) (s : Set A) :
     dudleyIntegrand eps s = ENNReal.ofReal (Real.sqrt (metricEntropy eps s)) := rfl
 
 /-!
@@ -221,13 +221,13 @@ lemma dudleyIntegrand_eq_sqrt_metricEntropyENNReal (eps : ℝ) (s : Set A) :
 /-- Dudley's entropy integral as ENNReal:
     ∫_{(0,D]} √(log N(ε, s)) dε.
     This is the canonical definition; the real version is obtained via `.toReal`. -/
-def entropyIntegralENNReal (s : Set A) (D : ℝ) : ℝ≥0∞ :=
+def _root_.Tengoku.Leanslt.entropyIntegralENNReal (s : Set A) (D : ℝ) : ℝ≥0∞ :=
   ∫⁻ eps in Set.Ioc (0 : ℝ) D, dudleyIntegrand eps s
 
 /-- Entropy integral ENNReal is monotone in D.
 @isnad1 id=le.1h4v.s4.2cf38fd91fb3 from=translated src=- shape=710430c0 vocab=1b0d7303
 -/
-lemma entropyIntegralENNReal_mono_D {s : Set A} {D₁ D₂ : ℝ}
+lemma _root_.Tengoku.Leanslt.entropyIntegralENNReal_mono_D {s : Set A} {D₁ D₂ : ℝ}
     (hD : D₁ ≤ D₂) :
     entropyIntegralENNReal s D₁ ≤ entropyIntegralENNReal s D₂ := by
   unfold entropyIntegralENNReal
@@ -247,20 +247,20 @@ It requires a finiteness assumption to be meaningful.
 
 /-- Real-valued entropy integral, obtained from the extended integral via `toReal`.
     It is only meaningful (and useful) when `entropyIntegralENNReal s D < ∞`. -/
-def entropyIntegral (s : Set A) (D : ℝ) : ℝ :=
+def _root_.Tengoku.Leanslt.entropyIntegral (s : Set A) (D : ℝ) : ℝ :=
   (entropyIntegralENNReal s D).toReal
 
 /-- Entropy integral is non-negative.
 @isnad1 id=le.0h3v.s4.2a71e601ee38 from=translated src=- shape=6c655851 vocab=3e0e56e9
 -/
-lemma entropyIntegral_nonneg {s : Set A} {D : ℝ} :
+lemma _root_.Tengoku.Leanslt.entropyIntegral_nonneg {s : Set A} {D : ℝ} :
     0 ≤ entropyIntegral s D :=
   ENNReal.toReal_nonneg
 
 /-- Entropy integral is monotone in D (with finiteness assumptions).
 @isnad1 id=le.2h4v.s5.c34820e14368 from=translated src=- shape=3d01cd7e vocab=c49a9cf9
 -/
-lemma entropyIntegral_mono_D {s : Set A} {D₁ D₂ : ℝ}
+lemma _root_.Tengoku.Leanslt.entropyIntegral_mono_D {s : Set A} {D₁ D₂ : ℝ}
     (hD : D₁ ≤ D₂)
     (hfinite₂ : entropyIntegralENNReal s D₂ ≠ ⊤) :
     entropyIntegral s D₁ ≤ entropyIntegral s D₂ := by
@@ -273,7 +273,7 @@ lemma entropyIntegral_mono_D {s : Set A} {D₁ D₂ : ℝ}
 /-- Entropy integral is monotone in D for totally bounded sets (with finiteness).
 @isnad1 id=le.2h4v.s5.c34820e14368 from=translated src=- shape=3d01cd7e vocab=c49a9cf9
 -/
-lemma entropyIntegral_mono_D_of_totallyBounded {s : Set A} {D₁ D₂ : ℝ}
+lemma _root_.Tengoku.Leanslt.entropyIntegral_mono_D_of_totallyBounded {s : Set A} {D₁ D₂ : ℝ}
     (hD : D₁ ≤ D₂)
     (hfinite₂ : entropyIntegralENNReal s D₂ ≠ ⊤) :
     entropyIntegral s D₁ ≤ entropyIntegral s D₂ :=
@@ -294,7 +294,7 @@ For the chaining proof, we relate the entropy integral to a dyadic sum.
 /-- Set lintegral over an interval is bounded by length times sup.
 @isnad1 id=le.1h4v.s6.7d3649d5fbfa from=translated src=- shape=0147ea03 vocab=04a0eca5
 -/
-lemma setLIntegral_Ioc_le_length_mul_sup {f : ℝ → ℝ≥0∞} {a b : ℝ} {M : ℝ≥0∞}
+lemma _root_.Tengoku.Leanslt.setLIntegral_Ioc_le_length_mul_sup {f : ℝ → ℝ≥0∞} {a b : ℝ} {M : ℝ≥0∞}
     (hf : ∀ x ∈ Set.Ioc a b, f x ≤ M) :
     ∫⁻ x in Set.Ioc a b, f x ≤ ENNReal.ofReal (b - a) * M := by
   calc ∫⁻ x in Set.Ioc a b, f x
@@ -313,11 +313,11 @@ This avoids the potential divergence at 0 and is always finite.
 
 /-- Truncated Dudley entropy integral over (δ, D].
     Always finite when δ > 0 because `dudleyIntegrand` is bounded on [δ, D]. -/
-def entropyIntegralENNRealTrunc (s : Set A) (δ D : ℝ) : ℝ≥0∞ :=
+def _root_.Tengoku.Leanslt.entropyIntegralENNRealTrunc (s : Set A) (δ D : ℝ) : ℝ≥0∞ :=
   ∫⁻ eps in Set.Ioc δ D, dudleyIntegrand eps s
 
 /-- ENNReal dyadic RHS used in the dyadic bound for entropy integral. -/
-def dyadicRHS_ENNReal (s : Set A) (D : ℝ) (K : ℕ) : ℝ≥0∞ :=
+def _root_.Tengoku.Leanslt.dyadicRHS_ENNReal (s : Set A) (D : ℝ) (K : ℕ) : ℝ≥0∞ :=
   ENNReal.ofReal D *
     ∑ k ∈ Finset.range K,
       ENNReal.ofReal ((2 : ℝ)^(-((k : ℤ) + 1))) *
@@ -327,11 +327,11 @@ def dyadicRHS_ENNReal (s : Set A) (D : ℝ) (K : ℕ) : ℝ≥0∞ :=
 
 /-- Public dyadic RHS for ENNReal inequality, total in `K`.
     For `K = 0`, we return `⊤` (trivial bound). For `K ≥ 1`, we use the concrete dyadic RHS. -/
-def dyadicRHS_ENNReal_total (s : Set A) (D : ℝ) (K : ℕ) : ℝ≥0∞ :=
+def _root_.Tengoku.Leanslt.dyadicRHS_ENNReal_total (s : Set A) (D : ℝ) (K : ℕ) : ℝ≥0∞ :=
   if K = 0 then ⊤ else dyadicRHS_ENNReal s D K
 
 /-- Real-valued dyadic RHS used in the real dyadic bound, valid for `K ≥ 1`. -/
-def dyadicRHS_real (s : Set A) (D : ℝ) (K : ℕ) : ℝ :=
+def _root_.Tengoku.Leanslt.dyadicRHS_real (s : Set A) (D : ℝ) (K : ℕ) : ℝ :=
   D * ∑ k ∈ Finset.range K,
     (2 : ℝ)^(-((k : ℤ) + 1)) *
       sqrtEntropy (D * (2 : ℝ)^(-((k : ℤ) + 1))) s
@@ -341,7 +341,7 @@ def dyadicRHS_real (s : Set A) (D : ℝ) (K : ℕ) : ℝ :=
 /-- The dyadic RHS is non-negative when D > 0.
 @isnad1 id=le.1h4v.s5.ba16f57f5906 from=translated src=- shape=705e9a89 vocab=9abcb100
 -/
-lemma dyadicRHS_real_nonneg {s : Set A} {D : ℝ} (hD : 0 < D) (K : ℕ) :
+lemma _root_.Tengoku.Leanslt.dyadicRHS_real_nonneg {s : Set A} {D : ℝ} (hD : 0 < D) (K : ℕ) :
     0 ≤ dyadicRHS_real s D K := by
   unfold dyadicRHS_real
   apply add_nonneg
@@ -356,7 +356,7 @@ lemma dyadicRHS_real_nonneg {s : Set A} {D : ℝ} (hD : 0 < D) (K : ℕ) :
 /-- The ENNReal and real dyadic RHS are related by toReal when the ENNReal version is finite.
 @isnad1 id=eq.1h4v.s5.adba42afc782 from=translated src=- shape=99d8cdd6 vocab=fc0e4900
 -/
-lemma dyadicRHS_ENNReal_toReal {s : Set A} {D : ℝ} {K : ℕ}
+lemma _root_.Tengoku.Leanslt.dyadicRHS_ENNReal_toReal {s : Set A} {D : ℝ} {K : ℕ}
     (hD : 0 < D) :
     (dyadicRHS_ENNReal s D K).toReal = dyadicRHS_real s D K := by
   unfold dyadicRHS_ENNReal dyadicRHS_real dudleyIntegrand
@@ -396,7 +396,7 @@ lemma dyadicRHS_ENNReal_toReal {s : Set A} {D : ℝ} {K : ℕ}
 /-- Splitting lemma for truncated integrals: (δ, D] = (δ, c] ∪ (c, D] when δ ≤ c ≤ D.
 @isnad1 id=eq.2h5v.s5.b2f4a7ba903e from=translated src=- shape=62f5a75c vocab=e39c8a3e
 -/
-lemma entropyIntegralENNRealTrunc_split {s : Set A} {δ c D : ℝ}
+lemma _root_.Tengoku.Leanslt.entropyIntegralENNRealTrunc_split {s : Set A} {δ c D : ℝ}
     (hδc : δ ≤ c) (hcD : c ≤ D) :
     entropyIntegralENNRealTrunc s δ D =
       entropyIntegralENNRealTrunc s δ c + entropyIntegralENNRealTrunc s c D := by
@@ -409,7 +409,7 @@ lemma entropyIntegralENNRealTrunc_split {s : Set A} {δ c D : ℝ}
 /-- Dyadic bound consistency: dyadicRHS(D/2, K) + (D/2)·f(D/2) = dyadicRHS(D, K+1).
 @isnad1 id=le.1h4v.s7.1d24751fdf54 from=translated src=- shape=69d4a1d1 vocab=5bb8a2f1
 -/
-lemma dyadicRHS_ENNReal_half_step {s : Set A} {D : ℝ} {K : ℕ}
+lemma _root_.Tengoku.Leanslt.dyadicRHS_ENNReal_half_step {s : Set A} {D : ℝ} {K : ℕ}
     (hD : 0 < D) :
     dyadicRHS_ENNReal s (D / 2) K + ENNReal.ofReal (D / 2) * dudleyIntegrand (D / 2) s ≤
     dyadicRHS_ENNReal s D (K + 1) := by
@@ -484,7 +484,7 @@ lemma dyadicRHS_ENNReal_half_step {s : Set A} {D : ℝ} {K : ℕ}
   simp only [zero_add, Int.reduceNeg, Nat.cast_add, Nat.cast_one]
 
 /-- Real-valued truncated entropy integral over (δ, D]. -/
-def entropyIntegralTrunc (s : Set A) (δ D : ℝ) : ℝ :=
+def _root_.Tengoku.Leanslt.entropyIntegralTrunc (s : Set A) (δ D : ℝ) : ℝ :=
   (entropyIntegralENNRealTrunc s δ D).toReal
 
 /-!
@@ -496,7 +496,7 @@ Under finiteness, the ENNReal entropy integral equals a real Lebesgue integral.
 /-- The truncated ENNReal entropy integral is monotone in K (larger K means smaller δ_K).
 @isnad1 id=monotone.1h3v.s6.023df066ca16 from=translated src=- shape=fcfc0a8f vocab=57556942
 -/
-lemma entropyIntegralENNRealTrunc_mono_K
+lemma _root_.Tengoku.Leanslt.entropyIntegralENNRealTrunc_mono_K
     {s : Set A} {D : ℝ} (hD : 0 < D) :
     Monotone (fun K : ℕ => entropyIntegralENNRealTrunc s (D * 2^(-(K:ℤ))) D) := by
   intro K₁ K₂ hK
@@ -520,7 +520,7 @@ lemma entropyIntegralENNRealTrunc_mono_K
 /-- The truncated ENNReal entropy integral is bounded by the full integral.
 @isnad1 id=le.1h4v.s6.ff969b848a3d from=translated src=- shape=6787a840 vocab=9e2e73c9
 -/
-lemma entropyIntegralENNRealTrunc_le
+lemma _root_.Tengoku.Leanslt.entropyIntegralENNRealTrunc_le
     {s : Set A} {D : ℝ} (hD : 0 < D) (K : ℕ) :
     entropyIntegralENNRealTrunc s (D * 2^(-(K:ℤ))) D ≤ entropyIntegralENNReal s D := by
   unfold entropyIntegralENNRealTrunc entropyIntegralENNReal
@@ -535,7 +535,7 @@ lemma entropyIntegralENNRealTrunc_le
     This follows from the fact that ⋃_K Ioc(δ_K, D] = Ioc(0, D] as K → ∞.
 @isnad1 id=eq.1h3v.s6.82ba1116c4bb from=translated src=- shape=f30d14c1 vocab=31e6a8f7
 -/
-lemma iSup_entropyIntegralENNRealTrunc_eq
+lemma _root_.Tengoku.Leanslt.iSup_entropyIntegralENNRealTrunc_eq
     {s : Set A} {D : ℝ} (hD : 0 < D) :
     ⨆ K : ℕ, entropyIntegralENNRealTrunc s (D * 2^(-(K:ℤ))) D = entropyIntegralENNReal s D := by
   unfold entropyIntegralENNRealTrunc entropyIntegralENNReal
@@ -610,7 +610,7 @@ lemma iSup_entropyIntegralENNRealTrunc_eq
 /-- Truncated entropy integral converges to full entropy integral as K → ∞.
 @isnad1 id=tendsto.2h3v.s6.d134cee52e7b from=translated src=- shape=431fe71e vocab=9adc826d
 -/
-lemma entropyIntegralTrunc_tendsto_entropyIntegral
+lemma _root_.Tengoku.Leanslt.entropyIntegralTrunc_tendsto_entropyIntegral
     {s : Set A} {D : ℝ}
     (hD : 0 < D)
     (hfinite : entropyIntegralENNReal s D ≠ ⊤) :
@@ -638,7 +638,7 @@ lemma entropyIntegralTrunc_tendsto_entropyIntegral
 /-- Truncated entropy integral ≤ full entropy integral (real-valued).
 @isnad1 id=le.2h4v.s6.183d3574c3aa from=translated src=- shape=adb67573 vocab=9b9d2dce
 -/
-lemma entropyIntegralTrunc_le_entropyIntegral
+lemma _root_.Tengoku.Leanslt.entropyIntegralTrunc_le_entropyIntegral
     {s : Set A} {D : ℝ} (hD : 0 < D) (K : ℕ)
     (hfinite : entropyIntegralENNReal s D ≠ ⊤) :
     entropyIntegralTrunc s (D * 2^(-(K:ℤ))) D ≤ entropyIntegral s D := by
@@ -647,3 +647,4 @@ lemma entropyIntegralTrunc_le_entropyIntegral
   exact entropyIntegralENNRealTrunc_le hD K
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanslt so they do not collide with other libraries (generated)

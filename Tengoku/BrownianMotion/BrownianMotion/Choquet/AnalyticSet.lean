@@ -18,7 +18,7 @@ ones), because it's sufficient for our applications, and because it's easier to 
 -/
 
 @[expose] public section
-
+namespace Tengoku.BrownianMotion end Tengoku.BrownianMotion open Tengoku.BrownianMotion 
 open scoped ENNReal NNReal
 
 variable {𝓧 𝓨 𝓚 𝓚' ι : Type*} {p : Set (Set 𝓧)} {q : Set (Set 𝓚)} {s t : Set 𝓧} {f : ℕ → Set 𝓧}
@@ -863,3 +863,4 @@ lemma IsMeasurableAnalyticFor.isMeasurableAnalytic {m𝓧 : MeasurableSpace 𝓧
   exact MeasurableEmbedding.id.prodMap (measurableEmbedding_embeddingReal 𝓚)
 
 end MeasureTheory
+-- Tengoku: root names of this library moved to Tengoku.BrownianMotion so they do not collide with other libraries (generated)

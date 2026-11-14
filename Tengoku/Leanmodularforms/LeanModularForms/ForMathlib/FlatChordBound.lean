@@ -33,7 +33,7 @@ definition, which is the cleanest extraction. The full chord bound (orthogonal
 plus parallel correction) is left as a documented sub-task: it requires
 Pythagoras + sqrt asymptotic.
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Set Filter Topology Asymptotics
 
 namespace LeanModularForms
@@ -98,3 +98,4 @@ theorem norm_orthogonalProjection_minus_target_eq {w L : ℂ} (hL : L ≠ 0)
   ring
 
 end LeanModularForms
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

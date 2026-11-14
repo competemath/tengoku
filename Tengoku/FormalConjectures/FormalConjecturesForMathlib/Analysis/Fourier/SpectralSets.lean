@@ -18,7 +18,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.FormalConjectures end Tengoku.FormalConjectures open Tengoku.FormalConjectures 
 /-!
 # Spectral sets
 
@@ -31,18 +31,18 @@ open Real Set Complex MeasureTheory
 open scoped InnerProductSpace
 
 /-- The translate of a set `Ω` by a vector `t`.-/
-def translateSet {d : ℕ} (Ω: Set (Fin d → ℝ)) (t : Fin d → ℝ) :
+def _root_.Tengoku.FormalConjectures.translateSet {d : ℕ} (Ω: Set (Fin d → ℝ)) (t : Fin d → ℝ) :
     Set (Fin d → ℝ) :=
   {x | x - t ∈ Ω}
 
 /-- The exponential character `x ↦ exp(2π i ⟪ξ, x⟫)`.-/
-noncomputable def exponentialCharacter {d : ℕ} (ξ x : Fin d → ℝ) : ℂ :=
+noncomputable def _root_.Tengoku.FormalConjectures.exponentialCharacter {d : ℕ} (ξ x : Fin d → ℝ) : ℂ :=
   Complex.exp (2 * π * Complex.I * (∑ i, ξ i * x i))
 
 /-- The exponential character is continuous.
 @isnad1 id=continuo.0h2v.s5.be800525fe20 from=translated src=- shape=56d399c3 vocab=c835f3aa
 -/
-theorem continuous_exponentialCharacter {d : ℕ} (ξ : Fin d → ℝ) :
+theorem _root_.Tengoku.FormalConjectures.continuous_exponentialCharacter {d : ℕ} (ξ : Fin d → ℝ) :
     Continuous (exponentialCharacter ξ) := by
   unfold exponentialCharacter
   continuity
@@ -50,7 +50,7 @@ theorem continuous_exponentialCharacter {d : ℕ} (ξ : Fin d → ℝ) :
 /-- The exponential character has norm one.
 @isnad1 id=eq.0h3v.s4.74a529442d52 from=translated src=- shape=777866fc vocab=bd5e9be8
 -/
-theorem norm_exponentialCharacter {d : ℕ} (ξ x : Fin d → ℝ) :
+theorem _root_.Tengoku.FormalConjectures.norm_exponentialCharacter {d : ℕ} (ξ x : Fin d → ℝ) :
     ‖exponentialCharacter ξ x‖ = 1 := by
   unfold exponentialCharacter
   have h_simp :
@@ -63,7 +63,7 @@ theorem norm_exponentialCharacter {d : ℕ} (ξ x : Fin d → ℝ) :
 /-- On a finite-measure set, every exponential character belongs to `L^2`.
 @isnad1 id=memlp.1h3v.s7.e7d92f7cf294 from=translated src=- shape=34a48fb7 vocab=f1273573
 -/
-theorem exponentialCharacter_memLp {d : ℕ} {Ω : Set (Fin d → ℝ)}
+theorem _root_.Tengoku.FormalConjectures.exponentialCharacter_memLp {d : ℕ} {Ω : Set (Fin d → ℝ)}
     (hΩ_finite : volume Ω ≠ ⊤) (ξ : Fin d → ℝ) :
     MemLp (exponentialCharacter ξ) 2 (volume.restrict Ω) := by
   rw [MeasureTheory.memLp_two_iff_integrable_sq_norm (continuous_exponentialCharacter ξ).aestronglyMeasurable]
@@ -76,7 +76,7 @@ theorem exponentialCharacter_memLp {d : ℕ} {Ω : Set (Fin d → ℝ)}
 (Ω, Λ) is called a spectral pair if Λ is a spectrum for Ω, i.e.
 a set Λ of frequencies such that the associated exponential characters
  form an orthogonal basis of L^2(Ω).-/
-def spectralPair {d : ℕ} (Ω Λ : Set (Fin d → ℝ)) : Prop :=
+def _root_.Tengoku.FormalConjectures.spectralPair {d : ℕ} (Ω Λ : Set (Fin d → ℝ)) : Prop :=
   ∃ hΩ_finite : volume Ω ≠ ⊤,
     let e : (Fin d → ℝ) → MeasureTheory.Lp ℂ 2 (volume.restrict Ω) := fun ξ ↦
       MeasureTheory.MemLp.toLp (exponentialCharacter ξ) (exponentialCharacter_memLp hΩ_finite ξ)
@@ -85,14 +85,15 @@ def spectralPair {d : ℕ} (Ω Λ : Set (Fin d → ℝ)) : Prop :=
 
 /--
 A set is spectral if it belongs to a spectral pair.-/
-def isSpectral {d : ℕ} (Ω : Set (Fin d → ℝ)) : Prop :=
+def _root_.Tengoku.FormalConjectures.isSpectral {d : ℕ} (Ω : Set (Fin d → ℝ)) : Prop :=
   ∃ Λ : Set (Fin d → ℝ), spectralPair Ω Λ
 
 /--
 A set Ω tiles ℝ^d by translation if there exists a set T of translation vectors
 such that the translates of Ω by T cover ℝ^d without overlap.-/
-def tilesByTranslation {d : ℕ} (Ω : Set (Fin d → ℝ)) : Prop :=
+def _root_.Tengoku.FormalConjectures.tilesByTranslation {d : ℕ} (Ω : Set (Fin d → ℝ)) : Prop :=
   ∃ T : Set (Fin d → ℝ), T.Countable ∧
     volume (Set.univ \ (⋃ t ∈ T, translateSet Ω t)) = 0 ∧
     (∀ {t₁ t₂ : Fin d → ℝ}, t₁ ∈ T → t₂ ∈ T → t₁ ≠ t₂ →
       volume (translateSet Ω t₁ ∩ translateSet Ω t₂) = 0)
+-- Tengoku: root names of this library moved to Tengoku.FormalConjectures so they do not collide with other libraries (generated)

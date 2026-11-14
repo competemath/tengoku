@@ -24,14 +24,14 @@ sheaf of rings `okaSheaf ι` on the site of opens of `ℂ^ι`.
 - `OkaRing.congr`: the isomorphism of rings of holomorphic functions induced by a `ℂ`-linear
   change of coordinates `ℂ^ι ≃ ℂ^κ`.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open CategoryTheory TopologicalSpace Opposite
 
 universe u
 
 variable {ι : Type u} [Fintype ι]
 
-namespace OkaRing
+namespace Tengoku.LanaOka.OkaRing
 
 @[ext]
 lemma ext {U : Opens (ι → ℂ)} {f g : OkaRing U} (h : f.toFun = g.toFun) : f = g :=
@@ -85,20 +85,20 @@ lemma toFun_algebraMap {U : Opens (ι → ℂ)} (c : ℂ) (p : U) :
     OkaRing.toFun U (algebraMap ℂ (OkaRing U) c) p = c :=
   rfl
 
-end OkaRing
+end Tengoku.LanaOka.OkaRing
 
 section Analytic
 
 /-- Being holomorphic is a pointwise condition: since `U` is open, `OkaAnalytic f` holds if and
 only if the extension of `f` by zero is analytic at every point of `U`. -/
-lemma okaAnalytic_iff {U : Opens (ι → ℂ)} (f : U → ℂ) :
+lemma _root_.Tengoku.LanaOka.okaAnalytic_iff {U : Opens (ι → ℂ)} (f : U → ℂ) :
     OkaAnalytic f ↔ ∀ x ∈ U, AnalyticAt ℂ (Function.extend Subtype.val f 0) x :=
   U.isOpen.analyticOn_iff_analyticOnNhd
 
 omit [Fintype ι] in
 /-- Extending by zero commutes with restriction, up to functions agreeing near a point of the
 smaller open set. -/
-lemma extend_eventuallyEq_extend {U V : Opens (ι → ℂ)} (h : U ≤ V) (f : V → ℂ)
+lemma _root_.Tengoku.LanaOka.extend_eventuallyEq_extend {U V : Opens (ι → ℂ)} (h : U ≤ V) (f : V → ℂ)
     {x : ι → ℂ} (hx : x ∈ U) :
     Function.extend Subtype.val (f ∘ Opens.inclusion h) 0 =ᶠ[nhds x]
       Function.extend Subtype.val f 0 := by
@@ -112,7 +112,7 @@ lemma extend_eventuallyEq_extend {U V : Opens (ι → ℂ)} (h : U ≤ V) (f : V
 omit [Fintype ι] in
 /-- Near a point of `U`, the extension by zero of the restriction of a globally defined
 function agrees with the function itself. -/
-lemma extend_restrict_eventuallyEq {U : Opens (ι → ℂ)} (g : (ι → ℂ) → ℂ)
+lemma _root_.Tengoku.LanaOka.extend_restrict_eventuallyEq {U : Opens (ι → ℂ)} (g : (ι → ℂ) → ℂ)
     {x : ι → ℂ} (hx : x ∈ U) :
     Function.extend Subtype.val (fun y : U ↦ g y) 0 =ᶠ[nhds x] g := by
   filter_upwards [U.isOpen.mem_nhds hx] with y hy
@@ -120,19 +120,19 @@ lemma extend_restrict_eventuallyEq {U : Opens (ι → ℂ)} (g : (ι → ℂ) �
 
 /-- A function which is holomorphic at every point of `U` restricts to an element of the ring
 of holomorphic functions on `U`. -/
-lemma okaAnalytic_restrict {U : Opens (ι → ℂ)} {g : (ι → ℂ) → ℂ}
+lemma _root_.Tengoku.LanaOka.okaAnalytic_restrict {U : Opens (ι → ℂ)} {g : (ι → ℂ) → ℂ}
     (hg : ∀ x ∈ U, AnalyticAt ℂ g x) :
     OkaAnalytic (fun y : U ↦ g y) := by
   rw [okaAnalytic_iff]
   exact fun x hx ↦ (hg x hx).congr (extend_restrict_eventuallyEq g hx).symm
 
 /-- The extension by zero of `f : OkaRing U` agrees with `f` on `U`. -/
-lemma OkaRing.toGlobalFun_apply {U : Opens (ι → ℂ)} (f : OkaRing U) {x : ι → ℂ} (hx : x ∈ U) :
+lemma Tengoku.LanaOka.OkaRing.toGlobalFun_apply {U : Opens (ι → ℂ)} (f : OkaRing U) {x : ι → ℂ} (hx : x ∈ U) :
     f.toGlobalFun _ x = f.toFun _ ⟨x, hx⟩ :=
   Subtype.val_injective.extend_apply (f := (Subtype.val : U → ι → ℂ)) _ _ ⟨x, hx⟩
 
 /-- **A holomorphic function is continuous on its domain.** -/
-lemma OkaRing.continuousOn_toGlobalFun {U : Opens (ι → ℂ)} (f : OkaRing U) :
+lemma Tengoku.LanaOka.OkaRing.continuousOn_toGlobalFun {U : Opens (ι → ℂ)} (f : OkaRing U) :
     ContinuousOn (f.toGlobalFun _) U :=
   fun x hx ↦ ((okaAnalytic_iff _).1 f.2 x hx).continuousAt.continuousWithinAt
 
@@ -140,19 +140,19 @@ lemma OkaRing.continuousOn_toGlobalFun {U : Opens (ι → ℂ)} (f : OkaRing U) 
 
 This is `OkaRing.continuousOn_toGlobalFun` read through `OkaRing.evalHom`, and it is the form
 in which the value map of a complex analytic space is shown to be continuous. -/
-lemma OkaRing.continuous_evalHom {U : Opens (ι → ℂ)} (f : OkaRing U) :
+lemma Tengoku.LanaOka.OkaRing.continuous_evalHom {U : Opens (ι → ℂ)} (f : OkaRing U) :
     Continuous fun x : U ↦ OkaRing.evalHom x.2 f := by
   refine (continuousOn_iff_continuous_domRestrict.1 f.continuousOn_toGlobalFun).congr fun x ↦ ?_
   exact f.toGlobalFun_apply x.2
 
 /-- Holomorphic functions restrict to holomorphic functions. -/
-lemma OkaAnalytic.restrict {U V : Opens (ι → ℂ)} (h : U ≤ V) {f : V → ℂ} (hf : OkaAnalytic f) :
+lemma Tengoku.LanaOka.OkaAnalytic.restrict {U V : Opens (ι → ℂ)} (h : U ≤ V) {f : V → ℂ} (hf : OkaAnalytic f) :
     OkaAnalytic (f ∘ Opens.inclusion h) := by
   rw [okaAnalytic_iff] at hf ⊢
   exact fun x hx ↦ (hf x (h hx)).congr (extend_eventuallyEq_extend h f hx).symm
 
 /-- Being holomorphic is a local condition. -/
-lemma okaAnalytic_of_locally {U : Opens (ι → ℂ)} (f : U → ℂ)
+lemma _root_.Tengoku.LanaOka.okaAnalytic_of_locally {U : Opens (ι → ℂ)} (f : U → ℂ)
     (hf : ∀ x : U, ∃ (V : Opens (ι → ℂ)) (_ : x.1 ∈ V) (h : V ≤ U),
       OkaAnalytic (f ∘ Opens.inclusion h)) :
     OkaAnalytic f := by
@@ -177,7 +177,7 @@ variable {κ : Type*} [Fintype κ] (φ : (ι → ℂ) ≃L[ℂ] (κ → ℂ))
 
 /-- Precomposing a holomorphic function on `U` with a continuous linear map mapping `V` into `U`
 gives a holomorphic function on `V`. -/
-lemma OkaAnalytic.comp_continuousLinearMap {U : Opens (ι → ℂ)} {V : Opens (κ → ℂ)}
+lemma Tengoku.LanaOka.OkaAnalytic.comp_continuousLinearMap {U : Opens (ι → ℂ)} {V : Opens (κ → ℂ)}
     (ψ : (κ → ℂ) →L[ℂ] (ι → ℂ)) (h : ∀ y ∈ V, ψ y ∈ U) {f : U → ℂ} (hf : OkaAnalytic f) :
     OkaAnalytic (fun y : V ↦ f ⟨ψ y, h y y.2⟩) := by
   have key : ∀ y ∈ V, AnalyticAt ℂ (Function.extend Subtype.val f 0 ∘ ψ) y := fun y hy ↦
@@ -188,7 +188,7 @@ lemma OkaAnalytic.comp_continuousLinearMap {U : Opens (ι → ℂ)} {V : Opens (
 
 /-- A `ℂ`-linear change of coordinates `φ : ℂ^ι ≃ ℂ^κ` identifies the holomorphic functions on
 `U` with the holomorphic functions on the image of `U`. -/
-noncomputable def OkaRing.congr (U : Opens (ι → ℂ)) :
+noncomputable def Tengoku.LanaOka.OkaRing.congr (U : Opens (ι → ℂ)) :
     OkaRing U ≃ₐ[ℂ] OkaRing (φ.opensCongr U) where
   toFun f := OkaRing.mk (fun y ↦ f.toFun _ ⟨φ.symm y, y.2⟩)
     (f.2.comp_continuousLinearMap (φ.symm : (κ → ℂ) →L[ℂ] (ι → ℂ)) fun _ hy ↦ hy)
@@ -205,13 +205,13 @@ noncomputable def OkaRing.congr (U : Opens (ι → ℂ)) :
   commutes' c := rfl
 
 /-- Changing coordinates commutes with restriction. -/
-lemma OkaRing.congr_restrict {U V : Opens (ι → ℂ)} (h : V ≤ U) (f : OkaRing U) :
+lemma Tengoku.LanaOka.OkaRing.congr_restrict {U V : Opens (ι → ℂ)} (h : V ≤ U) (f : OkaRing U) :
     OkaRing.congr φ V (OkaRing.restrict h f) =
       OkaRing.restrict (φ.opensCongr.monotone h) (OkaRing.congr φ U f) :=
   rfl
 
 /-- Changing coordinates back commutes with restriction. -/
-lemma OkaRing.congr_symm_restrict {U V : Opens (ι → ℂ)}
+lemma Tengoku.LanaOka.OkaRing.congr_symm_restrict {U V : Opens (ι → ℂ)}
     (h : φ.opensCongr V ≤ φ.opensCongr U) (g : OkaRing (φ.opensCongr U)) :
     (OkaRing.congr φ V).symm (OkaRing.restrict h g) =
       OkaRing.restrict (φ.opensCongr.le_iff_le.mp h) ((OkaRing.congr φ U).symm g) :=
@@ -228,7 +228,7 @@ sends `V` into `U` gives a holomorphic function on `V`.**
 which is all the conclusion can see. That is what makes this usable when `ψ` comes from a
 holomorphic function on a *proper* open subset — extended by zero outside it, as
 `OkaRing.toGlobalFun` does — where analyticity off `V` is false and irrelevant. -/
-lemma OkaAnalytic.comp_analyticOn {κ : Type u} [Fintype κ] {U : Opens (ι → ℂ)}
+lemma Tengoku.LanaOka.OkaAnalytic.comp_analyticOn {κ : Type u} [Fintype κ] {U : Opens (ι → ℂ)}
     {V : Opens (κ → ℂ)} (ψ : (κ → ℂ) → (ι → ℂ)) (hψ : ∀ y ∈ V, AnalyticAt ℂ ψ y)
     (h : ∀ y ∈ V, ψ y ∈ U) {f : U → ℂ} (hf : OkaAnalytic f) :
     OkaAnalytic (fun y : V ↦ f ⟨ψ y, h y y.2⟩) := by
@@ -240,7 +240,7 @@ lemma OkaAnalytic.comp_analyticOn {κ : Type u} [Fintype κ] {U : Opens (ι → 
 
 /-- Precomposing a holomorphic function on `U` with an entire map sending `V` into `U` gives a
 holomorphic function on `V`. -/
-lemma OkaAnalytic.comp_analytic {κ : Type u} [Fintype κ] {U : Opens (ι → ℂ)} {V : Opens (κ → ℂ)}
+lemma Tengoku.LanaOka.OkaAnalytic.comp_analytic {κ : Type u} [Fintype κ] {U : Opens (ι → ℂ)} {V : Opens (κ → ℂ)}
     (ψ : (κ → ℂ) → (ι → ℂ)) (hψ : ∀ y, AnalyticAt ℂ ψ y) (h : ∀ y ∈ V, ψ y ∈ U)
     {f : U → ℂ} (hf : OkaAnalytic f) :
     OkaAnalytic (fun y : V ↦ f ⟨ψ y, h y y.2⟩) :=
@@ -291,7 +291,7 @@ variable (U : Opens (ι → ℂ)) (v : ι → ℂ)
 
 /-- Translation by `v` identifies the holomorphic functions on `U` with the holomorphic
 functions on the translate `U.shift v` of `U`. -/
-noncomputable def OkaRing.shift : OkaRing U ≃ₐ[ℂ] OkaRing (U.shift v) where
+noncomputable def Tengoku.LanaOka.OkaRing.shift : OkaRing U ≃ₐ[ℂ] OkaRing (U.shift v) where
   toFun f := OkaRing.mk (fun y ↦ f.toFun _ ⟨(y : ι → ℂ) + v, y.2⟩)
     (f.2.comp_analytic (fun y ↦ y + v) (fun _ ↦ analyticAt_id.add analyticAt_const) fun _ hy ↦ hy)
   invFun g := OkaRing.mk (fun z ↦ g.toFun _ ⟨(z : ι → ℂ) - v, by simp⟩)
@@ -310,13 +310,13 @@ noncomputable def OkaRing.shift : OkaRing U ≃ₐ[ℂ] OkaRing (U.shift v) wher
 variable {U v}
 
 /-- Translating commutes with restriction. -/
-lemma OkaRing.shift_restrict {V : Opens (ι → ℂ)} (h : V ≤ U) (f : OkaRing U) :
+lemma Tengoku.LanaOka.OkaRing.shift_restrict {V : Opens (ι → ℂ)} (h : V ≤ U) (f : OkaRing U) :
     OkaRing.shift V v (OkaRing.restrict h f) =
       OkaRing.restrict (Opens.shift_mono h) (OkaRing.shift U v f) :=
   rfl
 
 /-- Translating back commutes with restriction. -/
-lemma OkaRing.shift_symm_restrict {V : Opens (ι → ℂ)} (h : V.shift v ≤ U.shift v)
+lemma Tengoku.LanaOka.OkaRing.shift_symm_restrict {V : Opens (ι → ℂ)} (h : V.shift v ≤ U.shift v)
     (g : OkaRing (U.shift v)) :
     (OkaRing.shift V v).symm (OkaRing.restrict h g) =
       OkaRing.restrict (Opens.shift_le_shift_iff.mp h) ((OkaRing.shift U v).symm g) :=
@@ -325,14 +325,14 @@ lemma OkaRing.shift_symm_restrict {V : Opens (ι → ℂ)} (h : V.shift v ≤ U.
 end Translate
 
 /-- The presheaf of rings of holomorphic functions on `ℂ^ι`. -/
-noncomputable def okaPresheaf (ι : Type u) [Fintype ι] : (Opens (ι → ℂ))ᵒᵖ ⥤ RingCat.{u} where
+noncomputable def _root_.Tengoku.LanaOka.okaPresheaf (ι : Type u) [Fintype ι] : (Opens (ι → ℂ))ᵒᵖ ⥤ RingCat.{u} where
   obj U := RingCat.of (OkaRing U.unop)
   map f := RingCat.ofHom (OkaRing.restrict (leOfHom f.unop)).toRingHom
   map_id U := by ext f; rfl
   map_comp f g := by ext h; rfl
 
 /-- Being holomorphic, as a local predicate on the sheaf of `ℂ`-valued functions. -/
-def okaLocalPredicate (ι : Type u) [Fintype ι] :
+def _root_.Tengoku.LanaOka.okaLocalPredicate (ι : Type u) [Fintype ι] :
     TopCat.LocalPredicate (X := TopCat.of (ι → ℂ)) (fun _ ↦ ℂ) where
   pred {_} f := OkaAnalytic f
   res i _ hf := hf.restrict (leOfHom i)
@@ -342,13 +342,13 @@ def okaLocalPredicate (ι : Type u) [Fintype ι] :
 
 /-- The presheaf of holomorphic functions is, as a presheaf of types, the subpresheaf of the
 sheaf of all `ℂ`-valued functions cut out by the local predicate `OkaAnalytic`. -/
-noncomputable def okaPresheafIsoSubpresheaf (ι : Type u) [Fintype ι] :
+noncomputable def _root_.Tengoku.LanaOka.okaPresheafIsoSubpresheaf (ι : Type u) [Fintype ι] :
     okaPresheaf ι ⋙ CategoryTheory.forget RingCat.{u} ≅
       TopCat.subpresheafToTypes (okaLocalPredicate ι).toPrelocalPredicate :=
   NatIso.ofComponents (fun _ ↦ Iso.refl _) (fun _ ↦ rfl)
 
 /-- The presheaf of holomorphic functions on `ℂ^ι` is a sheaf. -/
-theorem okaPresheaf_isSheaf (ι : Type u) [Fintype ι] :
+theorem _root_.Tengoku.LanaOka.okaPresheaf_isSheaf (ι : Type u) [Fintype ι] :
     Presheaf.IsSheaf (Opens.grothendieckTopology (ι → ℂ)) (okaPresheaf ι) := by
   rw [Presheaf.isSheaf_iff_isSheaf_forget _ _ (CategoryTheory.forget RingCat.{u}),
     isSheaf_iff_isSheaf_of_type]
@@ -357,6 +357,7 @@ theorem okaPresheaf_isSheaf (ι : Type u) [Fintype ι] :
   exact Presieve.isSheaf_iso _ (okaPresheafIsoSubpresheaf ι).symm h
 
 /-- The structure sheaf of `ℂ^ι`: the sheaf of rings of holomorphic functions. -/
-noncomputable def okaSheaf (ι : Type u) [Fintype ι] :
+noncomputable def _root_.Tengoku.LanaOka.okaSheaf (ι : Type u) [Fintype ι] :
     Sheaf (Opens.grothendieckTopology (ι → ℂ)) RingCat.{u} :=
   ⟨okaPresheaf ι, okaPresheaf_isSheaf ι⟩
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

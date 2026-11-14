@@ -24,7 +24,7 @@ This file records the exact closure and global-section properties of quasicohere
 needed for affine sheaf-cohomology vanishing. The proofs use the equivalence between modules and
 quasicoherent modules on an affine scheme supplied by `tilde`.
 -/
-
+namespace Tengoku.Aintlib end Tengoku.Aintlib open Tengoku.Aintlib
 open CategoryTheory Limits Opposite TopologicalSpace
 
 universe u v w
@@ -2059,3 +2059,4 @@ theorem Modules.isQuasicoherent_app_surjective_of_epi
 end
 
 end AlgebraicGeometry.Scheme
+-- Tengoku: root names of this library moved to Tengoku.Aintlib so they do not collide with other libraries (generated)

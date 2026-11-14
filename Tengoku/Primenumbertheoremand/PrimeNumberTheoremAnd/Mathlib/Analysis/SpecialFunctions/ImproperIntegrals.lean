@@ -16,11 +16,11 @@ half-lines.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Primenumbertheoremand end Tengoku.Primenumbertheoremand open Tengoku.Primenumbertheoremand 
 open Real Set Filter MeasureTheory intervalIntegral
 open scoped Topology
 
-theorem integral_interval_rpow_neg_one_sub {ε m n : ℝ} (hε : 0 < ε) (hm : 1 ≤ m) (hmn : m ≤ n) :
+theorem _root_.Tengoku.Primenumbertheoremand.integral_interval_rpow_neg_one_sub {ε m n : ℝ} (hε : 0 < ε) (hm : 1 ≤ m) (hmn : m ≤ n) :
     ∫ u in m..n, u ^ (-1 - ε) = (m ^ (-ε) - n ^ (-ε)) / ε := by
   have h0notIcc : (0 : ℝ) ∉ Set.Icc m n := by
     intro hx
@@ -39,7 +39,7 @@ theorem integral_interval_rpow_neg_one_sub {ε m n : ℝ} (hε : 0 < ε) (hm : 1
       simp [sub_eq_add_neg, add_left_comm, add_comm]
     _ = (m ^ (-ε) - n ^ (-ε)) / ε := by ring
 
-theorem integral_interval_rpow_neg_le {ε m n : ℝ} (hε : 0 < ε) (hm : 1 ≤ m) (hmn : m ≤ n) :
+theorem _root_.Tengoku.Primenumbertheoremand.integral_interval_rpow_neg_le {ε m n : ℝ} (hε : 0 < ε) (hm : 1 ≤ m) (hmn : m ≤ n) :
     ∫ u in m..n, u ^ (-1 - ε) ≤ (1 / ε) * m ^ (-ε) := by
   rw [integral_interval_rpow_neg_one_sub hε hm hmn, div_eq_mul_one_div, mul_comm]
   gcongr
@@ -55,7 +55,7 @@ theorem intervalIntegral.tendsto_integral_Ioi_of_ae_norm_le {E : Type*} [NormedA
     tendsto_natCast_atTop_atTop
 
 /-- `∫_{1}^∞ u^{-re s - 1} = 1 / re s` for `0 < re s`. -/
-theorem integral_Ioi_rpow_neg_re_sub_one {s : ℂ} (hs : 0 < s.re) :
+theorem _root_.Tengoku.Primenumbertheoremand.integral_Ioi_rpow_neg_re_sub_one {s : ℂ} (hs : 0 < s.re) :
     ∫ u in Ioi (1 : ℝ), u ^ (-s.re - 1) = 1 / s.re := by
   have ha : (-s.re - 1) < -1 := by linarith
   have hc : 0 < (1 : ℝ) := zero_lt_one
@@ -67,3 +67,4 @@ theorem integral_Ioi_rpow_neg_re_sub_one {s : ℂ} (hs : 0 < s.re) :
         = - (1 : ℝ) ^ (-s.re) / (-s.re) := h'
     _ = - (1 : ℝ) / (-s.re) := by simp [Real.one_rpow]
     _ = 1 / s.re := by simp
+-- Tengoku: root names of this library moved to Tengoku.Primenumbertheoremand so they do not collide with other libraries (generated)

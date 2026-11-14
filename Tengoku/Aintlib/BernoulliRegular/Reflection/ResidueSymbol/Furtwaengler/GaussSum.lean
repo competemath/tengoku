@@ -41,7 +41,7 @@ trasport).
 -/
 
 @[expose] public section
-
+namespace Tengoku.Aintlib end Tengoku.Aintlib open Tengoku.Aintlib 
 noncomputable section
 
 namespace BernoulliRegular
@@ -115,7 +115,7 @@ sum is the same as taking the Gauss sum of the post-composed multiplicative
 and additive characters.
 @isnad1 id=eq.0h6v.s7.793e43eb8e37 from=translated src=- shape=84d5ae49 vocab=569674f2
 -/
-theorem _root_.gaussSum_ringHomComp
+theorem _root_.Tengoku.Aintlib.gaussSum_ringHomComp
     {R : Type*} [CommRing R] [Fintype R]
     {R' R'' : Type*} [CommRing R'] [CommRing R'']
     (χ : MulChar R R') (ψ : AddChar R R') (σ : R' →+* R'') :
@@ -282,3 +282,4 @@ theorem residueMulChar_ne_one
 end Furtwaengler
 
 end BernoulliRegular
+-- Tengoku: root names of this library moved to Tengoku.Aintlib so they do not collide with other libraries (generated)

@@ -7,7 +7,7 @@ Authors: Naganori Yamaguchi (assisted by OpenAI Codex)
 import Tengoku.ClassfieldtheoryYamaguchi.ClassFieldTheory.AlgebraicNumberTheory.Idele.Basic
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.ClassfieldtheoryYamaguchi end Tengoku.ClassfieldtheoryYamaguchi open Tengoku.ClassfieldtheoryYamaguchi
 set_option autoImplicit false
 
 /-!
@@ -24,7 +24,7 @@ noncomputable section
 
 variable (K : Type*) [Field K] [NumberField K]
 
-namespace IdeleGroup
+namespace Tengoku.ClassfieldtheoryYamaguchi.IdeleGroup
 
 /-- The diagonal embedding of `Kˣ` into the idele group.-/
 def principalIdele : Kˣ →* IdeleGroup K :=
@@ -83,8 +83,9 @@ theorem coe_principalEquiv (x : Kˣ) :
     (principalEquiv K x : IdeleGroup K) = principalIdele K x :=
   MonoidHom.ofInjective_apply (principalIdele_injective K)
 
-end IdeleGroup
+end Tengoku.ClassfieldtheoryYamaguchi.IdeleGroup
 
 /-- The idele class group `C_K = I_K / Kˣ`.-/
-abbrev IdeleClassGroup :=
+abbrev _root_.Tengoku.ClassfieldtheoryYamaguchi.IdeleClassGroup :=
   IdeleGroup K ⧸ IdeleGroup.principalSubgroup K
+-- Tengoku: root names of this library moved to Tengoku.ClassfieldtheoryYamaguchi so they do not collide with other libraries (generated)

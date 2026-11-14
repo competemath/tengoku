@@ -28,13 +28,13 @@ project unchanged (depends only on mathlib).
 -/
 
 @[expose] public section
-
+namespace Tengoku.Aintlib end Tengoku.Aintlib open Tengoku.Aintlib 
 noncomputable section
 
 open NumberField
 open scoped Topology nonZeroDivisors
 
-noncomputable instance instFintypeSym (α : Type*) [Finite α] (n : ℕ) :
+noncomputable instance _root_.Tengoku.Aintlib.instFintypeSym (α : Type*) [Finite α] (n : ℕ) :
     Fintype (Sym α n) :=
   Fintype.ofFinite (Sym α n)
 
@@ -637,3 +637,4 @@ theorem dedekindZeta_eq_tprod_primeIdeal {s : ℂ} (hs : 1 < s.re) :
 end NumberFieldEulerProduct
 
 end Chebotarev
+-- Tengoku: root names of this library moved to Tengoku.Aintlib so they do not collide with other libraries (generated)

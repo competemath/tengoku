@@ -46,7 +46,7 @@ so `h2(w) = 2πi · n(γ,w) · f(w)`.
 * J. D. Dixon, *A brief proof of Cauchy's integral theorem*, 1971
 * K. Hungerbuhler, J. Wasem, *A generalized notion of winding numbers*
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex Set Filter Topology MeasureTheory
 open scoped Classical Real Interval
 
@@ -69,7 +69,7 @@ When `‖w‖ > R ≥ sup_t ‖γ(t)‖`, the Cauchy-type integral satisfies
 bounds `‖γ'‖` on `[0, 1]`.
 @isnad1 id=le.5h7v.s8.2f3e9c4d308f from=translated src=- shape=c300e88c vocab=c5585eed
 -/
-theorem dixonH2_norm_le {f : ℂ → ℂ} {γ : PiecewiseC1Path x x}
+theorem _root_.Tengoku.Leanmodularforms.dixonH2_norm_le {f : ℂ → ℂ} {γ : PiecewiseC1Path x x}
     {R M_f M_d : ℝ} (hM_f_nn : 0 ≤ M_f)
     (hR : ∀ t ∈ Icc (0 : ℝ) 1, ‖γ t‖ ≤ R)
     (hM_f : ∀ t ∈ Icc (0 : ℝ) 1, ‖f (γ t)‖ ≤ M_f)
@@ -99,7 +99,7 @@ theorem dixonH2_norm_le {f : ℂ → ℂ} {γ : PiecewiseC1Path x x}
 For `‖w‖` large enough, `‖dixonH2 f γ w‖ ≤ M_f · M_d / (‖w‖ - R) → 0`.
 @isnad1 id=tendsto.4h6v.s8.103c771e15f7 from=translated src=- shape=d56785a5 vocab=993c604c
 -/
-theorem dixonH2_tendsto_zero {f : ℂ → ℂ} {γ : PiecewiseC1Path x x}
+theorem _root_.Tengoku.Leanmodularforms.dixonH2_tendsto_zero {f : ℂ → ℂ} {γ : PiecewiseC1Path x x}
     {R M_f M_d : ℝ} (hM_f_nn : 0 ≤ M_f)
     (hR : ∀ t ∈ Icc (0 : ℝ) 1, ‖γ t‖ ≤ R)
     (hM_f : ∀ t ∈ Icc (0 : ℝ) 1, ‖f (γ t)‖ ≤ M_f)
@@ -130,7 +130,7 @@ The eventual agreement `dixonFunction = dixonH2` holds because:
 - On `U` with winding number 0: the `h1/h2` identity gives `h1 = h2`.
 @isnad1 id=tendsto.5h7v.s8.93bd5436afab from=translated src=- shape=4da761ef vocab=d40a8605
 -/
-theorem dixonFunction_tendsto_zero {f : ℂ → ℂ} {U : Set ℂ}
+theorem _root_.Tengoku.Leanmodularforms.dixonFunction_tendsto_zero {f : ℂ → ℂ} {U : Set ℂ}
     {γ : PiecewiseC1Path x x}
     (h_evt : ∀ᶠ w in Filter.cocompact ℂ,
       dixonFunction f U γ w = dixonH2 f γ w)
@@ -153,7 +153,7 @@ For `w ∉ U`: `dixonFunction = dixonH2` by definition.
 For `w ∈ U` with `n(γ,w) = 0`: the identity gives `h1 = h2`.
 @isnad1 id=eventual.2h4v.s8.fa6e226ca57d from=translated src=- shape=ad1175b6 vocab=c0166f30
 -/
-theorem dixonFunction_eventually_eq_dixonH2 {f : ℂ → ℂ} {U : Set ℂ}
+theorem _root_.Tengoku.Leanmodularforms.dixonFunction_eventually_eq_dixonH2 {f : ℂ → ℂ} {U : Set ℂ}
     (γ : PwC1Immersion x x)
     (h_identity : ∀ w, (∀ t ∈ Icc (0 : ℝ) 1, γ.toPiecewiseC1Path t ≠ w) →
       dixonH1 f γ.toPiecewiseC1Path w =
@@ -204,7 +204,7 @@ The proof uses the classical trick: apply the Cauchy integral formula to
 `dixonH2 g γ w₀ = ∮_γ g(z)/(z - w₀) dz = ∮_γ f(z) dz` because γ avoids `w₀`.
 @isnad1 id=eq.5h5v.s9.6854fe50c680 from=translated src=- shape=decb0d31 vocab=93c18e16
 -/
-theorem contourIntegral_eq_zero_of_nullHomologous_at
+theorem _root_.Tengoku.Leanmodularforms.contourIntegral_eq_zero_of_nullHomologous_at
     {f : ℂ → ℂ} {U : Set ℂ} {γ : PiecewiseC1Path x x}
     (w₀ : ℂ) (hw₀_in_U : w₀ ∈ U)
     (hw₀_off : ∀ t ∈ Icc (0 : ℝ) 1, γ t ≠ w₀)
@@ -233,3 +233,4 @@ hypothesis via `winding_eventually_zero_cocompact_of_lipschitz` (which uses
 restriction in Dixon-based theorems. -/
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

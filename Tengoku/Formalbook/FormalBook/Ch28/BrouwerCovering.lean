@@ -8,7 +8,7 @@ Brouwer's fixed-point theorem in 2D via covering space arguments.
 -/
 
 noncomputable section BrouwerProof
-
+namespace Tengoku.Formalbook end Tengoku.Formalbook open Tengoku.Formalbook 
 open Metric Set unitInterval Topology Complex Real
 
 private abbrev acBase : AddCircle (1 : ℝ) := QuotientAddGroup.mk 0
@@ -249,7 +249,7 @@ private theorem brouwer_complex
 /--
 @isnad1 id=ex.2h1v.s8.75ffddbc8a88 from=translated src=- shape=6b825703 vocab=08998104
 -/
-theorem brouwer_fixed_point_2d_from_complex
+theorem _root_.Tengoku.Formalbook.brouwer_fixed_point_2d_from_complex
     (f : EuclideanSpace ℝ (Fin 2) → EuclideanSpace ℝ (Fin 2))
     (hf : Continuous f) (hB : ∀ x, ‖x‖ ≤ 1 → ‖f x‖ ≤ 1) :
     ∃ x, ‖x‖ ≤ 1 ∧ f x = x := by
@@ -265,3 +265,4 @@ theorem brouwer_fixed_point_2d_from_complex
 
 end BrouwerProof
 -- Tengoku: 1 registration(s) of this module made local so they do not change other libraries (generated)
+-- Tengoku: root names of this library moved to Tengoku.Formalbook so they do not collide with other libraries (generated)

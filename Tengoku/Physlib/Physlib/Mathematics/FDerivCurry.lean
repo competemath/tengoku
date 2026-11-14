@@ -13,13 +13,13 @@ Various lemmas related to fderiv on curried/uncurried functions.
 
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib
 variable {𝕜 : Type*} [NontriviallyNormedField 𝕜]
     {X Y Z : Type*} [NormedAddCommGroup X] [NormedSpace 𝕜 X]
     [NormedAddCommGroup Y] [NormedSpace 𝕜 Y]
     [NormedAddCommGroup Z] [NormedSpace 𝕜 Z]
 
-lemma fderiv_uncurry (f : X → Y → Z) (xy dxy : X × Y)
+lemma _root_.Tengoku.Physlib.fderiv_uncurry (f : X → Y → Z) (xy dxy : X × Y)
     (hf : DifferentiableAt 𝕜 (↿f) xy) :
     fderiv 𝕜 ↿f xy dxy
     =
@@ -34,7 +34,7 @@ lemma fderiv_uncurry (f : X → Y → Z) (xy dxy : X × Y)
   repeat rw [DifferentiableAt.fderiv_prodMk (hf₁ := by fun_prop) (hf₂ := by fun_prop)]
   simp
 
-lemma fderiv_uncurry_clm_comp (f : X → Y → Z) (hf : Differentiable 𝕜 (↿f)) :
+lemma _root_.Tengoku.Physlib.fderiv_uncurry_clm_comp (f : X → Y → Z) (hf : Differentiable 𝕜 (↿f)) :
     fderiv 𝕜 ↿f
     =
     fun xy =>
@@ -49,7 +49,7 @@ lemma fderiv_uncurry_clm_comp (f : X → Y → Z) (hf : Differentiable 𝕜 (↿
     ContinuousLinearMap.coe_fst', Function.comp_apply, ContinuousLinearMap.coe_snd']
   fun_prop
 
-lemma fderiv_wrt_prod_clm_comp (f : X × Y → Z) (hf : Differentiable 𝕜 f) :
+lemma _root_.Tengoku.Physlib.fderiv_wrt_prod_clm_comp (f : X × Y → Z) (hf : Differentiable 𝕜 f) :
     fderiv 𝕜 f
     =
     fun xy =>
@@ -58,7 +58,7 @@ lemma fderiv_wrt_prod_clm_comp (f : X × Y → Z) (hf : Differentiable 𝕜 f) :
       (fderiv 𝕜 (fun y' => f (xy.1,y')) xy.2).comp (ContinuousLinearMap.snd 𝕜 X Y) :=
   fderiv_uncurry_clm_comp (fun x y => f (x,y)) hf
 
-lemma fderiv_curry_clm_apply (f : X → Y →L[𝕜] Z) (y : Y) (x dx : X) (h : Differentiable 𝕜 f) :
+lemma _root_.Tengoku.Physlib.fderiv_curry_clm_apply (f : X → Y →L[𝕜] Z) (y : Y) (x dx : X) (h : Differentiable 𝕜 f) :
     fderiv 𝕜 f x dx y
     =
     fderiv 𝕜 (f · y) x dx := by
@@ -69,27 +69,27 @@ lemma fderiv_curry_clm_apply (f : X → Y →L[𝕜] Z) (y : Y) (x dx : X) (h : 
 /- Differentiability conditions. -/
 
 @[fun_prop]
-lemma fderiv_uncurry_differentiable_fst (f : X → Y → Z) (y : Y) (hf : ContDiff 𝕜 2 ↿f) :
+lemma _root_.Tengoku.Physlib.fderiv_uncurry_differentiable_fst (f : X → Y → Z) (y : Y) (hf : ContDiff 𝕜 2 ↿f) :
     Differentiable 𝕜 (fderiv 𝕜 fun x' => (↿f) (x', y)) := by
   fun_prop
 
 @[fun_prop]
-lemma fderiv_uncurry_differentiable_snd (f : X → Y → Z) (x : X) (hf : ContDiff 𝕜 2 ↿f) :
+lemma _root_.Tengoku.Physlib.fderiv_uncurry_differentiable_snd (f : X → Y → Z) (x : X) (hf : ContDiff 𝕜 2 ↿f) :
     Differentiable 𝕜 (fderiv 𝕜 fun y' => (↿f) (x, y')) := by
   fun_prop
 
 @[fun_prop]
-lemma fderiv_uncurry_differentiable_fst_comp_snd (f : X → Y → Z) (x : X) (hf : ContDiff 𝕜 2 ↿f) :
+lemma _root_.Tengoku.Physlib.fderiv_uncurry_differentiable_fst_comp_snd (f : X → Y → Z) (x : X) (hf : ContDiff 𝕜 2 ↿f) :
     Differentiable 𝕜 (fun y' => fderiv 𝕜 (fun x' => (↿f) (x', y')) x) := by
   fun_prop
 
 @[fun_prop]
-lemma fderiv_uncurry_differentiable_snd_comp_fst (f : X → Y → Z) (y : Y) (hf : ContDiff 𝕜 2 ↿f) :
+lemma _root_.Tengoku.Physlib.fderiv_uncurry_differentiable_snd_comp_fst (f : X → Y → Z) (y : Y) (hf : ContDiff 𝕜 2 ↿f) :
     Differentiable 𝕜 (fun x' => fderiv 𝕜 (fun y' => (↿f) (x', y')) y) := by
   fun_prop
 
 /- fderiv commutes on X × Y. -/
-lemma fderiv_swap [IsRCLikeNormedField 𝕜] (f : X → Y → Z) (x dx : X) (y dy : Y)
+lemma _root_.Tengoku.Physlib.fderiv_swap [IsRCLikeNormedField 𝕜] (f : X → Y → Z) (x dx : X) (y dy : Y)
     (hf : ContDiff 𝕜 2 ↿f) :
     fderiv 𝕜 (fun x' => fderiv 𝕜 (fun y' => f x' y') y dy) x dx
     =
@@ -113,3 +113,4 @@ lemma fderiv_swap [IsRCLikeNormedField 𝕜] (f : X → Y → Z) (x dx : X) (y d
   · fun_prop
   · exact hf.differentiable (by simp)
   · fun_prop
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

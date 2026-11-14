@@ -37,57 +37,57 @@ Kernel and partial-sum input live in `RiemannZetaAbelKernel` and `RiemannZetaPar
 -/
 
 @[expose] public section
-
+namespace Tengoku.Primenumbertheoremand end Tengoku.Primenumbertheoremand open Tengoku.Primenumbertheoremand 
 open scoped Topology
 open Real Set Filter Topology MeasureTheory Complex ZetaPartialSum ZetaAbelFractKernel
 
 /-- Lower threshold on `re s` for the Abel integral continuation of `ζ`. -/
-noncomputable def zetaAbelContinuationReLower : ℝ := 1 / 10
+noncomputable def _root_.Tengoku.Primenumbertheoremand.zetaAbelContinuationReLower : ℝ := 1 / 10
 
-theorem zetaAbelContinuationReLower_pos : 0 < zetaAbelContinuationReLower := by
+theorem _root_.Tengoku.Primenumbertheoremand.zetaAbelContinuationReLower_pos : 0 < zetaAbelContinuationReLower := by
   change 0 < (1 / 10 : ℝ)
   norm_num
 
-theorem one_lt_zetaAbelContinuationReLower : zetaAbelContinuationReLower < (1 : ℝ) := by
+theorem _root_.Tengoku.Primenumbertheoremand.one_lt_zetaAbelContinuationReLower : zetaAbelContinuationReLower < (1 : ℝ) := by
   change (1 / 10 : ℝ) < 1
   norm_num
 
-theorem one_sub_zetaAbelContinuationReLower :
+theorem _root_.Tengoku.Primenumbertheoremand.one_sub_zetaAbelContinuationReLower :
     (1 - zetaAbelContinuationReLower : ℝ) = 9 / 10 := by
   change (1 - 1 / 10 : ℝ) = 9 / 10
   norm_num
 
-theorem zetaAbelContinuationReLower_lt_half : zetaAbelContinuationReLower < (2⁻¹ : ℝ) := by
+theorem _root_.Tengoku.Primenumbertheoremand.zetaAbelContinuationReLower_lt_half : zetaAbelContinuationReLower < (2⁻¹ : ℝ) := by
   change (1 / 10 : ℝ) < (2⁻¹ : ℝ)
   norm_num
 
 /-- Domain `{s : ℂ | s ≠ 1 ∧ re s > 1/10}` where the Abel continuation of `ζ` is proved. -/
-def zetaAbelContinuationDomain : Set ℂ :=
+def _root_.Tengoku.Primenumbertheoremand.zetaAbelContinuationDomain : Set ℂ :=
   {s | s ≠ (1 : ℂ) ∧ zetaAbelContinuationReLower < s.re}
 
-theorem isOpen_zetaAbelContinuationDomain : IsOpen zetaAbelContinuationDomain := by
+theorem _root_.Tengoku.Primenumbertheoremand.isOpen_zetaAbelContinuationDomain : IsOpen zetaAbelContinuationDomain := by
   change IsOpen ({s : ℂ | s ≠ 1} ∩ {s : ℂ | zetaAbelContinuationReLower < s.re})
   exact isOpen_compl_singleton.inter (isOpen_lt continuous_const Complex.continuous_re)
 
-theorem isPreconnected_zetaAbelContinuationDomain : IsPreconnected zetaAbelContinuationDomain := by
+theorem _root_.Tengoku.Primenumbertheoremand.isPreconnected_zetaAbelContinuationDomain : IsPreconnected zetaAbelContinuationDomain := by
   convert (Complex.isPathConnected_halfSpace_re_gt_diff_singleton
       (a := zetaAbelContinuationReLower) (p := (1 : ℂ)) one_lt_zetaAbelContinuationReLower).isConnected.isPreconnected using 1
   ext z; simp [zetaAbelContinuationDomain, and_comm]
 
-theorem two_mem_zetaAbelContinuationDomain : (2 : ℂ) ∈ zetaAbelContinuationDomain := by
+theorem _root_.Tengoku.Primenumbertheoremand.two_mem_zetaAbelContinuationDomain : (2 : ℂ) ∈ zetaAbelContinuationDomain := by
   refine ⟨by norm_num, ?_⟩
   change (1 / 10 : ℝ) < (2 : ℂ).re
   norm_num
 
-theorem zetaAbelContinuationDomain_re_pos {s : ℂ} (hs : s ∈ zetaAbelContinuationDomain) :
+theorem _root_.Tengoku.Primenumbertheoremand.zetaAbelContinuationDomain_re_pos {s : ℂ} (hs : s ∈ zetaAbelContinuationDomain) :
     0 < s.re := lt_trans zetaAbelContinuationReLower_pos hs.2
 
-theorem mem_zetaAbelContinuationDomain_of_re {s : ℂ} (hs_ne : s ≠ 1)
+theorem _root_.Tengoku.Primenumbertheoremand.mem_zetaAbelContinuationDomain_of_re {s : ℂ} (hs_ne : s ≠ 1)
     (hs_re : zetaAbelContinuationReLower < s.re) : s ∈ zetaAbelContinuationDomain :=
   ⟨hs_ne, hs_re⟩
 
 /-- On `zetaAbelContinuationDomain`, `‖z‖ / re z ≤ 10 * ‖z‖`. -/
-theorem norm_div_re_le_ten_mul_norm_of_mem {z : ℂ} (hz : z ∈ zetaAbelContinuationDomain) :
+theorem _root_.Tengoku.Primenumbertheoremand.norm_div_re_le_ten_mul_norm_of_mem {z : ℂ} (hz : z ∈ zetaAbelContinuationDomain) :
     ‖z‖ / z.re ≤ 10 * ‖z‖ := by
   rw [div_eq_mul_inv, mul_comm]
   gcongr
@@ -100,10 +100,10 @@ theorem norm_div_re_le_ten_mul_norm_of_mem {z : ℂ} (hz : z ∈ zetaAbelContinu
       norm_num
 
 /-- Abel renormalization `1 + (s-1)⁻¹ - s ∫_{(1,∞)} K_s`. -/
-noncomputable def zetaAbelContinuationFormula (s : ℂ) : ℂ :=
+noncomputable def _root_.Tengoku.Primenumbertheoremand.zetaAbelContinuationFormula (s : ℂ) : ℂ :=
   1 + 1 / (s - 1) - s * ∫ u in Ioi (1 : ℝ), zetaAbelFractKernel s u
 
-theorem riemannZeta_abel_integral (s : ℂ) (hs : 1 < s.re) :
+theorem _root_.Tengoku.Primenumbertheoremand.riemannZeta_abel_integral (s : ℂ) (hs : 1 < s.re) :
     riemannZeta s = zetaAbelContinuationFormula s := by
   have hsne : s ≠ 1 := by
     intro h
@@ -142,7 +142,7 @@ theorem riemannZeta_abel_integral (s : ℂ) (hs : 1 < s.re) :
   simpa [zetaAbelContinuationFormula, sub_eq_add_neg] using huniq
 
 /-- On `zetaAbelContinuationDomain`, the Abel formula satisfies the standard strip bound. -/
-theorem norm_zetaAbelContinuationFormula_le (s : ℂ) (hs : s ∈ zetaAbelContinuationDomain) :
+theorem _root_.Tengoku.Primenumbertheoremand.norm_zetaAbelContinuationFormula_le (s : ℂ) (hs : s ∈ zetaAbelContinuationDomain) :
     ‖zetaAbelContinuationFormula s‖ ≤ 1 + ‖1 / (s - 1)‖ + ‖s‖ / s.re := by
   set g : ℝ → ℝ := fun u => u ^ (-s.re - 1)
   let μ := (volume : Measure ℝ).restrict (Ioi (1 : ℝ))
@@ -183,7 +183,7 @@ theorem norm_zetaAbelContinuationFormula_le (s : ℂ) (hs : s ∈ zetaAbelContin
     _ ≤ 1 + ‖1 / (s - 1)‖ + ‖s‖ / s.re := by simp [one_div]
 
 /-- The Abel continuation formula is analytic on `zetaAbelContinuationDomain`. -/
-theorem analyticOn_zetaAbelContinuationFormula :
+theorem _root_.Tengoku.Primenumbertheoremand.analyticOn_zetaAbelContinuationFormula :
     AnalyticOn ℂ zetaAbelContinuationFormula zetaAbelContinuationDomain := by
   simp only [AnalyticOn, zetaAbelContinuationDomain, Set.mem_ofPred_eq]
   intro s ⟨hs_ne, hs_re⟩
@@ -193,7 +193,7 @@ theorem analyticOn_zetaAbelContinuationFormula :
   exact sub_ne_zero.mpr hs_ne
 
 /-- The Abel integral formula agrees with `ζ` on `zetaAbelContinuationDomain`. -/
-theorem riemannZeta_eq_zetaAbelContinuationFormula (s : ℂ) (hs : s ∈ zetaAbelContinuationDomain) :
+theorem _root_.Tengoku.Primenumbertheoremand.riemannZeta_eq_zetaAbelContinuationFormula (s : ℂ) (hs : s ∈ zetaAbelContinuationDomain) :
     riemannZeta s = zetaAbelContinuationFormula s := by
   have hUo := isOpen_zetaAbelContinuationDomain
   have hζ : AnalyticOnNhd ℂ riemannZeta zetaAbelContinuationDomain := by
@@ -211,3 +211,4 @@ theorem riemannZeta_eq_zetaAbelContinuationFormula (s : ℂ) (hs : s ∈ zetaAbe
       using riemannZeta_abel_integral w hw
   exact (AnalyticOnNhd.eqOn_of_preconnected_of_eventuallyEq
     hζ hF isPreconnected_zetaAbelContinuationDomain two_mem_zetaAbelContinuationDomain hEq) hs
+-- Tengoku: root names of this library moved to Tengoku.Primenumbertheoremand so they do not collide with other libraries (generated)

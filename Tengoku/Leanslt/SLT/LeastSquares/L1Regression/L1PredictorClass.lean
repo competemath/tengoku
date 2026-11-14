@@ -25,7 +25,7 @@ and proves its basic properties including star-shapedness.
 * `mem_l1PredictorClass_iff`: f ∈ F ↔ ∃ θ with ‖θ‖₁ ≤ R and f = ⟨θ, ·⟩
 
 -/
-
+namespace Tengoku.Leanslt end Tengoku.Leanslt open Tengoku.Leanslt
 open MeasureTheory Finset BigOperators Real ProbabilityTheory Metric Set
 open scoped NNReal ENNReal
 
@@ -219,3 +219,4 @@ lemma convex_comb_mem_l1PredictorClass {f g : (EuclideanSpace ℝ (Fin d)) → �
                inner_add_left, inner_smul_left, RCLike.conj_to_real]
 
 end LeastSquares
+-- Tengoku: root names of this library moved to Tengoku.Leanslt so they do not collide with other libraries (generated)

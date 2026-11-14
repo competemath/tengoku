@@ -29,7 +29,7 @@ Kummer covering by a group of roots of unity are the invariant holomorphic funct
 - `KummerPi.exists_differentiableOn_powMap_eqOn`: Riemann extension on the Kummer covering.
 - `KummerPi.eqOn_comp_rotMap`: the extension of an invariant function is invariant.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Set Filter Topology Metric
 
 namespace KummerPi
@@ -113,3 +113,4 @@ theorem eqOn_comp_rotMap {M : ℕ} (hM : M ≠ 0) (a : Fin r → ℤ) {V : Set (
       exact hx) hF h
 
 end KummerPi
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

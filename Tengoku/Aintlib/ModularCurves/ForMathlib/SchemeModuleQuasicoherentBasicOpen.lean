@@ -8,7 +8,7 @@ import Tengoku.Aintlib.ModularCurves.ForMathlib.SchemeModuleQuasicoherent
 This file reconstructs quasicoherence on an affine spectrum from compatible
 tensor-product descriptions of sections on basic opens.
 -/
-
+namespace Tengoku.Aintlib end Tengoku.Aintlib open Tengoku.Aintlib
 open CategoryTheory Opposite TensorProduct TopologicalSpace
 
 universe u
@@ -56,3 +56,4 @@ theorem isQuasicoherent_of_basicOpen_tensorEquiv
 end
 
 end AlgebraicGeometry.Scheme.Modules
+-- Tengoku: root names of this library moved to Tengoku.Aintlib so they do not collide with other libraries (generated)

@@ -29,7 +29,7 @@ Explicit Pell-type unit candidates for the classical Richaud-Degert shapes
 * `HasExplicitUnitCandidate.exists_unit_ne_one`: an explicit candidate yields
   a unit of `ℤ[√d]` different from `±1`.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 local notation "ℚ√" d => Qsqrtd d
 
 namespace QuadraticNumberFields
@@ -136,3 +136,4 @@ theorem HasExplicitUnitCandidate.exists_unit_ne_one {d : ℤ}
 
 end Units
 end QuadraticNumberFields
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

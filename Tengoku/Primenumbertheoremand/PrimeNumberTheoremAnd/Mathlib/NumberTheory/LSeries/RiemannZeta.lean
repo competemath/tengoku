@@ -22,24 +22,24 @@ and convexity bounds in `RiemannZetaConvexity`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Primenumbertheoremand end Tengoku.Primenumbertheoremand open Tengoku.Primenumbertheoremand 
 open scoped BigOperators Topology
 open Complex Filter Real Set
 
 /-- The point `σ + it` on the vertical line with real part `σ`. -/
-def verticalLine (σ t : ℝ) : ℂ := σ + t * Complex.I
+def _root_.Tengoku.Primenumbertheoremand.verticalLine (σ t : ℝ) : ℂ := σ + t * Complex.I
 
-lemma verticalLine_re (σ t : ℝ) : (verticalLine σ t).re = σ := by
+lemma _root_.Tengoku.Primenumbertheoremand.verticalLine_re (σ t : ℝ) : (verticalLine σ t).re = σ := by
   simp only [verticalLine, Complex.add_re, Complex.ofReal_re, Complex.ofReal_im, Complex.mul_re,
     Complex.I_re, Complex.I_im, mul_zero]
   ring
 
-lemma verticalLine_im (σ t : ℝ) : (verticalLine σ t).im = t := by
+lemma _root_.Tengoku.Primenumbertheoremand.verticalLine_im (σ t : ℝ) : (verticalLine σ t).im = t := by
   simp only [verticalLine, Complex.add_im, Complex.ofReal_re, Complex.ofReal_im, Complex.mul_im,
     Complex.I_re, Complex.I_im, mul_zero, add_zero]
   ring
 
-lemma verticalLine_add_const (s : ℂ) (h t : ℝ) :
+lemma _root_.Tengoku.Primenumbertheoremand.verticalLine_add_const (s : ℂ) (h t : ℝ) :
     s + (h : ℂ) + t * Complex.I = verticalLine (s.re + h) (s.im + t) := by
   apply Complex.ext
   · simp [verticalLine, Complex.add_re, Complex.ofReal_re, Complex.mul_re, Complex.I_re, mul_zero,
@@ -180,7 +180,7 @@ section RiemannZetaEulerProduct
 open Nat.Primes
 
 /-- **`ζ(2r) = ζ(r) · ∏_p (1 + p^{-r})⁻¹`** for real `r > 1`. -/
-theorem riemannZeta_eq_mul_tprod_inv_one_add (r : ℝ) (hr : 1 < r) :
+theorem _root_.Tengoku.Primenumbertheoremand.riemannZeta_eq_mul_tprod_inv_one_add (r : ℝ) (hr : 1 < r) :
     riemannZeta (2 * (r : ℂ)) =
       riemannZeta (r : ℂ) * ∏' p : Nat.Primes, (1 + ((p : ℕ) : ℂ) ^ (-((r : ℝ) : ℂ)))⁻¹ := by
   set s : ℂ := (r : ℂ)
@@ -203,7 +203,7 @@ theorem riemannZeta_eq_mul_tprod_inv_one_add (r : ℝ) (hr : 1 < r) :
       rw [← riemannZeta_eulerProduct_tprod hs]
 
 /-- **`ζ(2r)/ζ(r) = ∏_p (1 + p^{-r})⁻¹`** for real `r > 1`. -/
-theorem riemannZeta_div_riemannZeta_eq_tprod_inv_one_add (r : ℝ) (hr : 1 < r) :
+theorem _root_.Tengoku.Primenumbertheoremand.riemannZeta_div_riemannZeta_eq_tprod_inv_one_add (r : ℝ) (hr : 1 < r) :
     riemannZeta (2 * (r : ℂ)) / riemannZeta (r : ℂ) =
       ∏' p : Nat.Primes, (1 + ((p : ℕ) : ℂ) ^ (-((r : ℝ) : ℂ)))⁻¹ := by
   set s : ℂ := (r : ℂ)
@@ -216,7 +216,7 @@ theorem riemannZeta_div_riemannZeta_eq_tprod_inv_one_add (r : ℝ) (hr : 1 < r) 
     _ = ∏' p : Nat.Primes, (1 + ((p : ℕ) : ℂ) ^ (-s))⁻¹ := by
       rw [mul_div_cancel_left₀ _ hzeta_ne]
 
-theorem norm_riemannZeta_eulerProduct (s : ℂ) (hs : 1 < s.re) :
+theorem _root_.Tengoku.Primenumbertheoremand.norm_riemannZeta_eulerProduct (s : ℂ) (hs : 1 < s.re) :
     ‖riemannZeta s‖ = ∏' p : Nat.Primes, (‖1 - ((p : ℕ) : ℂ) ^ (-s)‖)⁻¹ := by
   calc
     ‖riemannZeta s‖ = ‖∏' p : Nat.Primes, (1 - ((p : ℕ) : ℂ) ^ (-s))⁻¹‖ := by
@@ -226,7 +226,7 @@ theorem norm_riemannZeta_eulerProduct (s : ℂ) (hs : 1 < s.re) :
     _ = ∏' p : Nat.Primes, (‖1 - ((p : ℕ) : ℂ) ^ (-s)‖)⁻¹ := by
       congr 1; ext p; simp [norm_inv]
 
-theorem norm_riemannZeta_div_riemannZeta (r : ℝ) (hr : 1 < r) :
+theorem _root_.Tengoku.Primenumbertheoremand.norm_riemannZeta_div_riemannZeta (r : ℝ) (hr : 1 < r) :
     ‖riemannZeta (2 * (r : ℂ)) / riemannZeta (r : ℂ)‖ =
       ∏' p : Nat.Primes, (1 + ((p : ℕ) : ℝ) ^ (-r))⁻¹ := by
   set s : ℂ := (r : ℂ)
@@ -276,7 +276,7 @@ private lemma nnreal_tprod_le_coe {ι : Type*} (f g : ι → NNReal) (hf : Multi
 
 /-- On the vertical line `re s = σ > 1`, the real product `∏_p (1 + p^{-σ})^{-1}` is dominated
 by the Euler product at `σ + it`. -/
-theorem tprod_inv_one_add_real_le_riemannZeta_norm_on_verticalLine (σ t : ℝ) (hσ : 1 < σ) :
+theorem _root_.Tengoku.Primenumbertheoremand.tprod_inv_one_add_real_le_riemannZeta_norm_on_verticalLine (σ t : ℝ) (hσ : 1 < σ) :
     ∏' p : Nat.Primes, (1 + ((p : ℕ) : ℝ) ^ (-σ))⁻¹ ≤
       ∏' p : Nat.Primes, (‖1 - ((p : ℕ) : ℂ) ^ (-verticalLine σ t)‖)⁻¹ := by
   set s := verticalLine σ t
@@ -303,10 +303,11 @@ theorem tprod_inv_one_add_real_le_riemannZeta_norm_on_verticalLine (σ t : ℝ) 
 end RiemannZetaEulerProduct
 
 /-- `1 / (n : ℂ) ^ s` rewrites to `(n : ℂ) ^ (-s)` away from `n = 0`. -/
-theorem one_div_natCast_cpow_eq_ite_cpow_neg (s : ℂ) (hs : s ≠ 0) (n : ℕ) :
+theorem _root_.Tengoku.Primenumbertheoremand.one_div_natCast_cpow_eq_ite_cpow_neg (s : ℂ) (hs : s ≠ 0) (n : ℕ) :
     1 / (n : ℂ) ^ s = if n = 0 then 0 else (n : ℂ) ^ (-s) := by
   by_cases h : n = 0
   · simp [h, Complex.zero_cpow hs]
   · simp [h, one_div, Complex.cpow_neg]
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Primenumbertheoremand so they do not collide with other libraries (generated)

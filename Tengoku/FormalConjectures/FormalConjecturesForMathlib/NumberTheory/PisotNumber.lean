@@ -17,7 +17,7 @@ module
 
 public import Tengoku
 
-@[expose] public section
+@[expose] public section namespace Tengoku.FormalConjectures end Tengoku.FormalConjectures open Tengoku.FormalConjectures
 /-!
 # Pisot–Vijayaraghavan numbers
 
@@ -45,7 +45,7 @@ open Polynomial
 whose other conjugates lie strictly inside the complex unit disc: every root in
 `ℂ` of the minimal polynomial of `θ` over `ℚ`, except `θ` itself, has
 modulus `< 1`.-/
-def IsPisot (θ : ℝ) : Prop :=
+def _root_.Tengoku.FormalConjectures.IsPisot (θ : ℝ) : Prop :=
   1 < θ ∧ IsIntegral ℤ θ ∧ ∀ z ∈ (minpoly ℚ θ).aroots ℂ, z ≠ (θ : ℂ) → ‖z‖ < 1
 
 open Real in
@@ -54,7 +54,7 @@ integer greater than `1`, its minimal polynomial over `ℚ` is `X ^ 2 - X - 1`, 
 its only other conjugate `ψ = (1 - √5) / 2` has modulus `(√5 - 1) / 2 < 1`.
 @isnad1 id=ispisot.0h0v.s1.71fa2a051b41 from=translated src=- shape=49959d42 vocab=b80bd29e
 -/
-theorem isPisot_goldenRatio : IsPisot goldenRatio := by
+theorem _root_.Tengoku.FormalConjectures.isPisot_goldenRatio : IsPisot goldenRatio := by
   refine ⟨one_lt_goldenRatio, ?_, ?_⟩
   · -- `φ` is an algebraic integer: a root of the monic `X ^ 2 - X - 1 ∈ ℤ[X]`.
     refine ⟨X ^ 2 - X - 1, by monicity!, ?_⟩
@@ -88,3 +88,4 @@ theorem isPisot_goldenRatio : IsPisot goldenRatio := by
       · exact sub_eq_zero.mp h
     rw [hzψ, Complex.norm_real, Real.norm_eq_abs, abs_lt]
     exact ⟨neg_one_lt_goldenConj, by linarith [goldenConj_neg]⟩
+-- Tengoku: root names of this library moved to Tengoku.FormalConjectures so they do not collide with other libraries (generated)

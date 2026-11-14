@@ -67,7 +67,7 @@ the `VAdd (EuclideanSpace ℝ (Fin d)) (Space d)` instance instead.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
 /-!
 
 ## A. The `Space` type
@@ -79,11 +79,11 @@ the `VAdd (EuclideanSpace ℝ (Fin d)) (Space d)` instance instead.
 choice of length unit, and a given (but arbitrary) choice of zero.
 
 The default value of `d` is `3`. Thus `Space = Space 3`-/
-structure Space (d : ℕ := 3) where
+structure _root_.Tengoku.Physlib.Space (d : ℕ := 3) where
   /-- The underlying map `Fin d → ℝ` associated with a point in `Space`. -/
   val : Fin d → ℝ
 
-namespace Space
+namespace Tengoku.Physlib.Space
 
 lemma eq_of_val {d} {p q : Space d} (h : p.val = q.val) :
     p = q := by
@@ -277,4 +277,5 @@ noncomputable instance (d : ℕ) : ChartedSpace (EuclideanSpace ℝ (Fin d)) (Sp
 instance (d : ℕ) : IsManifold (𝓡 d) ⊤ (Space d) :=
   (homEuclideanSpaceSpace d).symm.toOpenPartialHomeomorph.isManifold_singleton (by simp)
 
-end Space
+end Tengoku.Physlib.Space
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

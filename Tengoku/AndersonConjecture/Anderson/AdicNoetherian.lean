@@ -14,7 +14,7 @@ isomorphic to R / M^n for each n, and that the completion is
 M-adically complete, so the Noetherian property lifts by
 successive approximation (Atiyah--Macdonald, Prop. 10.11).
 -/
-
+namespace Tengoku.AndersonConjecture end Tengoku.AndersonConjecture open Tengoku.AndersonConjecture
 open AdicCompletion
 
 open scoped Pointwise
@@ -30,7 +30,7 @@ variable (I : Ideal R)
 /-- `(map f I)ⁿ ⊆ ker(evalₐ I n)`: elements from I^n evaluate to zero.
 @isnad1 id=le.0h3v.s10.4c11d146727c from=translated src=- shape=83eb31e6 vocab=e04ac542
 -/
-lemma map_pow_le_ker_evalₐ (n : ℕ) :
+lemma _root_.Tengoku.AndersonConjecture.map_pow_le_ker_evalₐ (n : ℕ) :
     Ideal.map (algebraMap R (AdicCompletion I R)) (I ^ n) ≤
     RingHom.ker (AdicCompletion.evalₐ I n).toRingHom := by
   rw [Ideal.map_le_iff_le_comap]
@@ -43,7 +43,7 @@ lemma map_pow_le_ker_evalₐ (n : ℕ) :
 /-- `ker(evalₐ M n) = M̂ⁿ` for Noetherian local R.
 @isnad1 id=eq.0h2v.s11.eb815847a70f from=translated src=- shape=0ba12d6c vocab=66886609
 -/
-lemma ker_evalₐ_eq [IsLocalRing R] [IsNoetherianRing R] (n : ℕ) :
+lemma _root_.Tengoku.AndersonConjecture.ker_evalₐ_eq [IsLocalRing R] [IsNoetherianRing R] (n : ℕ) :
     RingHom.ker (evalₐ (IsLocalRing.maximalIdeal R) n).toRingHom =
     Ideal.map (algebraMap R (AdicCompletion (IsLocalRing.maximalIdeal R) R))
       (IsLocalRing.maximalIdeal R) ^ n := by
@@ -57,7 +57,7 @@ lemma ker_evalₐ_eq [IsLocalRing R] [IsNoetherianRing R] (n : ℕ) :
 /-- Evaluations are stable along Cauchy sequences.
 @isnad1 id=eq.2h5v.s11.859cec5d2259 from=translated src=- shape=0e24e663 vocab=e85eb6d9
 -/
-lemma eval_cauchy_stable (f : ℕ → AdicCompletion I R)
+lemma _root_.Tengoku.AndersonConjecture.eval_cauchy_stable (f : ℕ → AdicCompletion I R)
     (hf : ∀ {m n : ℕ}, m ≤ n →
       SModEq (I ^ m • (⊤ : Submodule R (AdicCompletion I R))) (f m) (f n))
     {k n : ℕ} (hkn : k ≤ n) :
@@ -71,7 +71,7 @@ lemma eval_cauchy_stable (f : ℕ → AdicCompletion I R)
 /-- `factorPow ∘ evalₐ n = evalₐ m` for m ≤ n.
 @isnad1 id=eq.1h5v.s11.b28f3d5ba92d from=translated src=- shape=576c93d7 vocab=a954745f
 -/
-lemma factorPow_comp_evalₐ_noeth {m n : ℕ} (hmn : m ≤ n) (x : AdicCompletion I R) :
+lemma _root_.Tengoku.AndersonConjecture.factorPow_comp_evalₐ_noeth {m n : ℕ} (hmn : m ≤ n) (x : AdicCompletion I R) :
     Ideal.Quotient.factorPow I hmn (evalₐ I n x) = evalₐ I m x := by
   apply induction_on I R
     (p := fun x => Ideal.Quotient.factorPow I hmn (evalₐ I n x) = evalₐ I m x) x
@@ -100,7 +100,7 @@ section QuotientIso
 variable [IsLocalRing R] [IsNoetherianRing R]
 
 /-- `R̂ / M̂ⁿ ≅ R / Mⁿ` as rings. -/
-noncomputable def quotientPowEquiv (n : ℕ) :
+noncomputable def _root_.Tengoku.AndersonConjecture.quotientPowEquiv (n : ℕ) :
     AdicCompletion (IsLocalRing.maximalIdeal R) R ⧸
       (Ideal.map (algebraMap R (AdicCompletion (IsLocalRing.maximalIdeal R) R))
         (IsLocalRing.maximalIdeal R)) ^ n ≃+*
@@ -129,7 +129,7 @@ variable (R : Type*) [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
 omit [IsLocalRing R] [IsNoetherianRing R] in
 /-- Generic helper: build a recursive sequence with proof-carrying data.
 This is a standalone `def` so its elaboration budget is independent. -/
-noncomputable def buildSeq {α : Type*} {P : ℕ → α → Prop}
+noncomputable def _root_.Tengoku.AndersonConjecture.buildSeq {α : Type*} {P : ℕ → α → Prop}
     (base : { a // P 0 a })
     (step : ∀ K, { a // P K a } → { a // P (K + 1) a }) :
     ∀ K, { a // P K a } :=
@@ -139,7 +139,7 @@ omit [IsLocalRing R] [IsNoetherianRing R] in
 /-- Auxiliary: M * FN(n) ≤ FN(n+1) for the leading-term filtration FN.
 @isnad1 id=le.1h5v.s11.de60acfa549d from=translated src=- shape=7865c5f0 vocab=5f4e4f1e
 -/
-lemma filtration_smul_le
+lemma _root_.Tengoku.AndersonConjecture.filtration_smul_le
     (Mi : Ideal R) (J : Ideal (AdicCompletion Mi R))
     (FN : ℕ → Ideal R)
     (hFN_def : ∀ n, FN n = Mi ^ n ⊓ Ideal.comap (Ideal.Quotient.mk (Mi ^ (n + 1)))
@@ -201,7 +201,7 @@ omit [IsLocalRing R] [IsNoetherianRing R] in
 /-- Auxiliary: lift elements of Mi^K • FN(n0) to I₀ with evalₐ compatibility.
 @isnad1 id=ex.3h8v.s12.f50cc2261429 from=translated src=- shape=96469a2e vocab=9a10ac24
 -/
-lemma smul_lift_of_filtration
+lemma _root_.Tengoku.AndersonConjecture.smul_lift_of_filtration
     (Mi : Ideal R)
     (n0 K : ℕ)
     (FN_n0 : Ideal R)
@@ -249,7 +249,7 @@ omit [IsLocalRing R] [IsNoetherianRing R] in
 /-- Auxiliary: extract a representative r ∈ Mi^K • FN_n0 from e ∈ Mhat^(n0+K) ∩ J.
 @isnad1 id=ex.5h9v.s12.ebf5f7ff3c35 from=translated src=- shape=ae0719e6 vocab=d4f50681
 -/
-lemma extract_filtration_rep
+lemma _root_.Tengoku.AndersonConjecture.extract_filtration_rep
     (Mi : Ideal R) (J : Ideal (AdicCompletion Mi R))
     (FN : ℕ → Ideal R) (n0 K : ℕ)
     (hFN_def : ∀ n, FN n = Mi ^ n ⊓ Ideal.comap (Ideal.Quotient.mk (Mi ^ (n + 1)))
@@ -289,3 +289,4 @@ lemma extract_filtration_rep
   exact ⟨r, hr_in_smul, hr_eq.symm⟩
 
 end Main
+-- Tengoku: root names of this library moved to Tengoku.AndersonConjecture so they do not collide with other libraries (generated)

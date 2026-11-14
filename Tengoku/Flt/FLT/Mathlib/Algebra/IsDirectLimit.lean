@@ -14,7 +14,7 @@ Material destined for Mathlib.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Flt end Tengoku.Flt open Tengoku.Flt 
 variable {ι : Type*} [Preorder ι] {M : ι → Type*} {P : Type*}
   (f : (i j : ι) → (h : i ≤ j) → M i → M j) (g : ∀ i, M i → P)
 
@@ -27,7 +27,7 @@ It requires:
   later module `M k`.
 * `compatibility`: ensures that the maps `g i` and `f i j hij` are compatible with one another.
 -/
-class IsDirectLimit [DirectedSystem M f] : Prop where
+class _root_.Tengoku.Flt.IsDirectLimit [DirectedSystem M f] : Prop where
   surj : ∀ m : P, ∃ i, ∃ mi : M i, g i mi = m
   inj :  ∀ i j, ∀ mi : M i, ∀ mj : M j, g i mi = g j mj → ∃ (k : ι) (hik : i ≤ k) (hjk : j ≤ k),
       f i k hik mi = f j k hjk mj
@@ -35,7 +35,7 @@ class IsDirectLimit [DirectedSystem M f] : Prop where
 
 variable [DirectedSystem M f] [IsDirectLimit f g]
 
-namespace IsDirectLimit
+namespace Tengoku.Flt.IsDirectLimit
 
 /--
 @isnad1 id=eq.1h8v.s6.d8f866374ccd from=translated src=- shape=27557d07 vocab=b940f25f
@@ -218,4 +218,5 @@ lemma linearEquiv_symm_apply (i : ι) (x : M i) :
 
 end Module
 
-end IsDirectLimit
+end Tengoku.Flt.IsDirectLimit
+-- Tengoku: root names of this library moved to Tengoku.Flt so they do not collide with other libraries (generated)

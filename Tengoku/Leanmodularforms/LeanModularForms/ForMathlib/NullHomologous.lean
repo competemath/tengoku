@@ -39,7 +39,7 @@ downstream applications need the actual numerical value `0`.
 
 * K. Hungerbuhler, J. Wasem, *A generalized notion of winding numbers*
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex Set Filter Topology MeasureTheory
 open scoped Real Interval
 
@@ -53,7 +53,7 @@ variable {x : ℂ}
 
 Closedness is encoded by the type: `PwC1Immersion x x` has the same start and
 end point. -/
-structure IsNullHomologous (γ : PwC1Immersion x x) (U : Set ℂ) : Prop where
+structure _root_.Tengoku.Leanmodularforms.IsNullHomologous (γ : PwC1Immersion x x) (U : Set ℂ) : Prop where
   /-- The image of `gamma` lies in `U`. -/
   image_subset : ∀ t ∈ Icc (0 : ℝ) 1, γ.toPiecewiseC1Path t ∈ U
   /-- The generalized winding number around every point outside `U` is zero. -/
@@ -67,7 +67,7 @@ structure IsNullHomologous (γ : PwC1Immersion x x) (U : Set ℂ) : Prop where
 /-- If a piecewise C^1 path avoids a point, there is a positive distance lower bound.
 @isnad1 id=ex.1h3v.s7.905c58ed3192 from=translated src=- shape=b630f07b vocab=6687762e
 -/
-theorem avoids_delta_bound (γ : PiecewiseC1Path x x) (z₀ : ℂ)
+theorem _root_.Tengoku.Leanmodularforms.avoids_delta_bound (γ : PiecewiseC1Path x x) (z₀ : ℂ)
     (h_avoids : ∀ t ∈ Icc (0 : ℝ) 1, γ t ≠ z₀) :
     ∃ δ > 0, ∀ t ∈ Icc (0 : ℝ) 1, δ ≤ ‖γ t - z₀‖ := by
   have h_compact : IsCompact (γ.toPath.extend '' Icc (0 : ℝ) 1) :=
@@ -89,7 +89,7 @@ theorem avoids_delta_bound (γ : PiecewiseC1Path x x) (z₀ : ℂ)
 `‖γ(0)‖ + K`.
 @isnad1 id=le.2h4v.s8.a3f8b804479b from=translated src=- shape=14e4b2a4 vocab=eaf88321
 -/
-lemma lipschitzWith_norm_bound_on_Icc01
+lemma _root_.Tengoku.Leanmodularforms.lipschitzWith_norm_bound_on_Icc01
     {x : ℂ} {γ : PwC1Immersion x x} {K : NNReal}
     (hLip : LipschitzWith K γ.toPath.extend) (t : ℝ) (ht : t ∈ Icc (0 : ℝ) 1) :
     ‖γ.toPath.extend t‖ ≤ ‖γ.toPath.extend 0‖ + (K : ℝ) := by
@@ -149,7 +149,7 @@ For a Lipschitz closed piecewise-`C¹` immersion `γ`, the generalized winding
 number around `w` is `0` whenever `‖w‖` exceeds `‖γ(0)‖ + K + K/(2π)`.
 @isnad1 id=eq.2h4v.s8.b73182947e4e from=translated src=- shape=139bfd7d vocab=59ef798f
 -/
-theorem generalizedWindingNumber_eq_zero_of_far_lipschitz
+theorem _root_.Tengoku.Leanmodularforms.generalizedWindingNumber_eq_zero_of_far_lipschitz
     {x : ℂ} {γ : PwC1Immersion x x} {K : NNReal}
     (hLip : LipschitzWith K γ.toPath.extend) {w : ℂ}
     (hw : ‖γ.toPath.extend 0‖ + (K : ℝ) + (K : ℝ) / (2 * Real.pi) < ‖w‖) :
@@ -204,7 +204,7 @@ bounded — it only uses γ being Lipschitz, which is automatic for
 `ClosedPwC1Immersion`.
 @isnad1 id=eventual.1h3v.s7.f7361a69a211 from=translated src=- shape=37963072 vocab=b57ff423
 -/
-theorem winding_eventually_zero_cocompact_of_lipschitz
+theorem _root_.Tengoku.Leanmodularforms.winding_eventually_zero_cocompact_of_lipschitz
     {x : ℂ} {γ : PwC1Immersion x x} {K : NNReal}
     (hLip : LipschitzWith K γ.toPath.extend) :
     ∀ᶠ w in Filter.cocompact ℂ,
@@ -237,7 +237,7 @@ Combines W-4 (locally constant) with the null-homologous vanishing at `w`. Unlik
 (e.g., a boundary point of `U`), at the cost of needing γ Lipschitz.
 @isnad1 id=ex.4h5v.s7.f358630f1a62 from=translated src=- shape=4567734a vocab=0cbf711f
 -/
-theorem IsNullHomologous.winding_zero_nhds_of_not_mem_of_closed
+theorem Tengoku.Leanmodularforms.IsNullHomologous.winding_zero_nhds_of_not_mem_of_closed
     {γ : PwC1Immersion x x} {U : Set ℂ} (h_null : IsNullHomologous γ U)
     {w : ℂ} (hw : w ∉ U)
     (h_avoid : ∀ t ∈ Icc (0 : ℝ) 1, γ.toPiecewiseC1Path t ≠ w)
@@ -252,3 +252,4 @@ theorem IsNullHomologous.winding_zero_nhds_of_not_mem_of_closed
 /-! ### Convex domains -/
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ import Tengoku.ClassfieldtheoryYamaguchi.GaloisCohomology.GroupTheory.Quotient
 import Tengoku.Seed.FieldTheory.Galois.Abelian
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.ClassfieldtheoryYamaguchi end Tengoku.ClassfieldtheoryYamaguchi open Tengoku.ClassfieldtheoryYamaguchi
 set_option autoImplicit false
 
 /-!
@@ -34,13 +34,13 @@ variable
 
 /-- The subgroup of the finite-normal-closure Galois group fixing the
 distinguished copy of the original extension.-/
-noncomputable def finiteNormalClosureOriginalFixingSubgroup :
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.finiteNormalClosureOriginalFixingSubgroup :
     Subgroup Gal(finiteNormalClosure K L / K) :=
   (finiteNormalClosureOriginalField K L).fixingSubgroup
 
 /-- The relative Galois group over the distinguished original field is the
 corresponding fixing subgroup of the full normal-closure Galois group.-/
-noncomputable def finiteNormalClosureOriginalFixingSubgroupEquiv :
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.finiteNormalClosureOriginalFixingSubgroupEquiv :
     Gal(finiteNormalClosure K L /
         finiteNormalClosureOriginalField K L) ≃*
       finiteNormalClosureOriginalFixingSubgroup K L := by
@@ -54,7 +54,7 @@ noncomputable def finiteNormalClosureOriginalFixingSubgroupEquiv :
 
 /-- The largest abelian Galois intermediate field of the finite normal
 closure that is contained in the distinguished copy of the original field.-/
-noncomputable def finiteNormalClosureMaximalAbelianSubfield :
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.finiteNormalClosureMaximalAbelianSubfield :
     IntermediateField K (finiteNormalClosure K L) :=
   IntermediateField.fixedField
     (finiteNormalClosureOriginalFixingSubgroup K L ⊔
@@ -64,7 +64,7 @@ noncomputable def finiteNormalClosureMaximalAbelianSubfield :
 the original extension.
 @isnad1 id=le.0h2v.s9.d944100fd170 from=translated src=- shape=2e09bba1 vocab=270252c9
 -/
-theorem finiteNormalClosureMaximalAbelianSubfield_le_originalField :
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.finiteNormalClosureMaximalAbelianSubfield_le_originalField :
     finiteNormalClosureMaximalAbelianSubfield K L ≤
       finiteNormalClosureOriginalField K L := by
   let N := finiteNormalClosure K L
@@ -89,7 +89,7 @@ theorem finiteNormalClosureMaximalAbelianSubfield_le_originalField :
 original field is contained in the maximal abelian subfield.
 @isnad1 id=le.1h3v.s11.d9c4e009e097 from=translated src=- shape=77fb5499 vocab=4e673007
 -/
-theorem finiteNormalClosureMaximalAbelianSubfield_greatest
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.finiteNormalClosureMaximalAbelianSubfield_greatest
     (F : IntermediateField K (finiteNormalClosure K L))
     [IsAbelianGalois K F]
     (hF : F ≤ finiteNormalClosureOriginalField K L) :
@@ -112,3 +112,4 @@ theorem finiteNormalClosureMaximalAbelianSubfield_greatest
   · rw [← F.restrictNormalHom_ker]
     exact Abelianization.commutator_subset_ker
       (AlgEquiv.restrictNormalHom (F := K) (K₁ := N) F)
+-- Tengoku: root names of this library moved to Tengoku.ClassfieldtheoryYamaguchi so they do not collide with other libraries (generated)

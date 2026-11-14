@@ -32,7 +32,7 @@ the disc, so all moments of `p * f` vanish.
   there is a monic polynomial `p` such that `p * f` is analytic near every point of `K`, and
   whose roots are points at which `f` is not analytic.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Set Filter Metric Complex Polynomial
 open scoped Real Topology
 
@@ -62,7 +62,7 @@ theorem cauchyIntegral_eq_of_forall_moment_eq_zero (hf : DifferentiableOn ℂ f 
 end Laurent
 
 /-- The moments of a function holomorphic near a closed disc vanish. -/
-theorem circleIntegral_pow_mul_eq_zero {f : ℂ → ℂ} {ρ : ℝ} (hρ : 0 ≤ ρ)
+theorem _root_.Tengoku.LanaOka.circleIntegral_pow_mul_eq_zero {f : ℂ → ℂ} {ρ : ℝ} (hρ : 0 ≤ ρ)
     (hf : AnalyticOnNhd ℂ f (closedBall 0 ρ)) (k : ℕ) :
     ∮ z in C(0, ρ), z ^ k * f z = 0 := by
   refine DiffContOnCl.circleIntegral_eq_zero hρ ?_
@@ -72,7 +72,7 @@ theorem circleIntegral_pow_mul_eq_zero {f : ℂ → ℂ} {ρ : ℝ} (hρ : 0 ≤
 
 /-- The points of a compact set `K` at which a function meromorphic at every point of `K` is not
 analytic form a finite set. -/
-theorem finite_setOf_not_analyticAt {f : ℂ → ℂ} {K : Set ℂ} (hK : IsCompact K)
+theorem _root_.Tengoku.LanaOka.finite_setOf_not_analyticAt {f : ℂ → ℂ} {K : Set ℂ} (hK : IsCompact K)
     (hf : ∀ t ∈ K, MeromorphicAt f t) : {t ∈ K | ¬AnalyticAt ℂ f t}.Finite := by
   have hclosed : IsClosed {t : ℂ | ¬AnalyticAt ℂ f t} := by
     simpa [compl_ofPred] using (isOpen_analyticAt ℂ f).isClosed_compl
@@ -86,7 +86,7 @@ theorem finite_setOf_not_analyticAt {f : ℂ → ℂ} {K : Set ℂ} (hK : IsComp
 /-- For `f` meromorphic at every point of a compact set `K` there is a monic polynomial `p` such
 that `p * f` is analytic at every point of `K`, and every root of `p` is a point at which `f` is
 not analytic. -/
-theorem exists_monic_analyticOnNhd_eval_mul {f : ℂ → ℂ} {K : Set ℂ} (hK : IsCompact K)
+theorem _root_.Tengoku.LanaOka.exists_monic_analyticOnNhd_eval_mul {f : ℂ → ℂ} {K : Set ℂ} (hK : IsCompact K)
     (hf : ∀ t ∈ K, MeromorphicAt f t) :
     ∃ p : ℂ[X], p.Monic ∧ AnalyticOnNhd ℂ (fun z ↦ p.eval z * f z) K ∧
       ∀ t, AnalyticAt ℂ f t → p.eval t ≠ 0 := by
@@ -122,3 +122,4 @@ theorem exists_monic_analyticOnNhd_eval_mul {f : ℂ → ℂ} {K : Set ℂ} (hK 
     intro s hs
     refine pow_ne_zero _ (sub_ne_zero.mpr fun hts ↦ ?_)
     exact ((hP s).mp hs).2 (hts ▸ ht)
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

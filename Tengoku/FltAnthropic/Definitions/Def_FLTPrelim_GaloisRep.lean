@@ -11,7 +11,7 @@ import Tengoku.Seed.Algebra.Module.ZMod
 import Tengoku.Seed.FieldTheory.IsAlgClosed.AlgebraicClosure
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 set_option autoImplicit false
 
 universe r s v
@@ -82,6 +82,7 @@ def GaloisRepIsIrreducible (W' : Affine R) (n : ℕ) : Prop :=
 
 end WeierstrassCurve.Affine.Point
 
-noncomputable instance instDecEqAlgebraicClosureRat :
+noncomputable instance _root_.Tengoku.FltAnthropic.instDecEqAlgebraicClosureRat :
     DecidableEq (AlgebraicClosure ℚ) :=
   Classical.decEq _
+-- Tengoku: root names of this library moved to Tengoku.FltAnthropic so they do not collide with other libraries (generated)

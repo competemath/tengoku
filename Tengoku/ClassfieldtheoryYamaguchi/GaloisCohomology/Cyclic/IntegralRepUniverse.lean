@@ -13,8 +13,9 @@ part of local class field theory uses this single named boundary.  Keeping the
 restriction here makes a future universe-polymorphic migration searchable and
 prevents individual subtrees from inventing private aliases.
 -/
-
+namespace Tengoku.ClassfieldtheoryYamaguchi end Tengoku.ClassfieldtheoryYamaguchi open Tengoku.ClassfieldtheoryYamaguchi
 set_option autoImplicit false
 
 /-- The universe-zero group boundary imposed by integral representations.-/
-abbrev IntegralRepGroupType := Type 0
+abbrev _root_.Tengoku.ClassfieldtheoryYamaguchi.IntegralRepGroupType := Type 0
+-- Tengoku: root names of this library moved to Tengoku.ClassfieldtheoryYamaguchi so they do not collide with other libraries (generated)

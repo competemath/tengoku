@@ -16,7 +16,7 @@ constructions (subobjects, products) and inducing-map properties.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Flt end Tengoku.Flt open Tengoku.Flt 
 open Topology
 
 variable (R : Type*) [Ring R] [TopologicalSpace R]
@@ -26,7 +26,7 @@ variable (R : Type*) [Ring R] [TopologicalSpace R]
 `IsTopologicalModule R M` states that the topology in `M` makes scalar multiplication and addition
 into continuous maps.
 -/
-class IsTopologicalModule extends ContinuousSMul R M, ContinuousAdd M
+class _root_.Tengoku.Flt.IsTopologicalModule extends ContinuousSMul R M, ContinuousAdd M
 
 variable [IsTopologicalModule R M]
 
@@ -41,3 +41,4 @@ protected theorem Topology.IsInducing.topologicalModule {F : Type*}
     IsTopologicalModule R H where
   continuous_smul := (hf.continuousSMul (f := id) continuous_id (by simp)).continuous_smul
   continuous_add := (hf.continuousAdd ..).continuous_add
+-- Tengoku: root names of this library moved to Tengoku.Flt so they do not collide with other libraries (generated)

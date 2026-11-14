@@ -25,7 +25,7 @@ inequalities for linear functions of Gaussian random vectors.
 * `integral_linear_stdGaussianPi_eq_zero` - Expectation of linear combination is 0
 
 -/
-
+namespace Tengoku.Leanslt end Tengoku.Leanslt open Tengoku.Leanslt
 open MeasureTheory ProbabilityTheory Real Finset BigOperators
 
 namespace GaussianMeasure
@@ -477,3 +477,4 @@ theorem linear_centered_tail_bound_stdGaussianPi (a : Fin n → ℝ) (u : ℝ)
   exact linear_tail_bound_stdGaussianPi a u hu ha
 
 end GaussianMeasure
+-- Tengoku: root names of this library moved to Tengoku.Leanslt so they do not collide with other libraries (generated)

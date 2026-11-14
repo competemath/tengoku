@@ -48,7 +48,7 @@ and do not depend on the torus.
 - `Laurent.exists_mvPolynomial_eq`: an entire function on `ℂⁿ` with finitely many nonzero
   coefficients is a polynomial.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Complex Metric Filter Set
 open scoped Real Topology ENNReal
 
@@ -663,3 +663,4 @@ theorem exists_mvPolynomial_eq {f : (Fin n → ℂ) → ℂ} (hf : Differentiabl
     rw [← zpow_natCast, Int.toNat_of_nonneg hki]
 
 end Laurent
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

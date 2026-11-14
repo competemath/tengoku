@@ -40,7 +40,7 @@ two-scale Chernoff bound.
 * `HansonWright.hanson_wright_inequality_hdp`: HDP-style Hanson-Wright tail bound
   using the maximum coordinate ψ₂ scale.
 -/
-
+namespace Tengoku.Leanslt end Tengoku.Leanslt open Tengoku.Leanslt
 open MeasureTheory ProbabilityTheory Real
 open scoped BigOperators NNReal
 
@@ -4693,3 +4693,4 @@ theorem hanson_wright_inequality_hdp {μ : Measure Ω} [IsProbabilityMeasure μ]
           norm_num
 
 end HansonWright
+-- Tengoku: root names of this library moved to Tengoku.Leanslt so they do not collide with other libraries (generated)

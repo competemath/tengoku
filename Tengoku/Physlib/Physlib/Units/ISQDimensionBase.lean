@@ -33,14 +33,14 @@ PhysLib's default `LTMCTDimensionBase` in two ways:
 -/
 
 @[expose] public section
-
-open Dimension
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
+open Tengoku.Physlib.Dimension
 
 /-- The seven ISQ base quantities (ISO/IEC 80000-1; VIM 3rd edition). Unlike
   `LTMCTDimensionBase`, electric current is the electromagnetic base quantity (so
   charge is derived), and amount of substance and luminous intensity are further
   base quantities. -/
-inductive ISQDimensionBase where
+inductive _root_.Tengoku.Physlib.ISQDimensionBase where
   /-- The length base quantity. -/
   | length
   /-- The mass base quantity. -/
@@ -63,7 +63,7 @@ instance : Fintype ISQDimensionBase where
 
 instance : DimensionBasis ISQDimensionBase := DimensionBasis.pi _
 
-namespace ISQDimensionBase
+namespace Tengoku.Physlib.ISQDimensionBase
 
 /-- The ISQ has seven base quantities. -/
 lemma card_eq_seven : Fintype.card ISQDimensionBase = 7 := by decide
@@ -98,4 +98,5 @@ lemma single_luminousIntensity_ne_one :
   have := congrArg (fun d => Dimension.exponent d .luminousIntensity) h
   simp [single_exponent] at this
 
-end ISQDimensionBase
+end Tengoku.Physlib.ISQDimensionBase
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

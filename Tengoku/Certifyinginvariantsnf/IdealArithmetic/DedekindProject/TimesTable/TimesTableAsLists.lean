@@ -20,7 +20,7 @@ this times table. We also define efficient exponentiation.
   exponentiation on lists corresponds to exponentiation in the algebra.
 
 -/
-
+namespace Tengoku.Certifyinginvariantsnf end Tengoku.Certifyinginvariantsnf open Tengoku.Certifyinginvariantsnf
 open BigOperators Module
 
 variable {n : ℕ} {R : Type*} [Semiring R]
@@ -28,7 +28,7 @@ variable {n : ℕ} {R : Type*} [Semiring R]
 /--
 @isnad1 id=eq.2h4v.s6.4729b6fe74a5 from=translated src=- shape=3927b41f vocab=ae375ab0
 -/
-lemma list_sum_length (hn : n ≠ 0) (f : Fin n → List R) (h : ∀ i, (f i).length = m) :
+lemma _root_.Tengoku.Certifyinginvariantsnf.list_sum_length (hn : n ≠ 0) (f : Fin n → List R) (h : ∀ i, (f i).length = m) :
     (List.sum (List.ofFn (fun i => f i))).length = m := by
   induction n with
   | zero => contradiction
@@ -47,14 +47,14 @@ variable (T : Fin n → Fin n → Fin n → R)
 /-- This is the multiplication based on a times table `T`,
   given by `(aᵢ) * (bᵢ) = ∑ᵢ∑ⱼ aᵢ * bⱼ • Tᵢⱼ`.
   We allow lists of different lengths, filling out with zeros if the indices are out of range. -/
-def table_mul_list' (a b : List R) : List R :=
+def _root_.Tengoku.Certifyinginvariantsnf.table_mul_list' (a b : List R) : List R :=
   List.sum (List.ofFn (fun i => List.sum (List.ofFn
     (fun j => List.mulPointwise ((List.getD a i 0) * (List.getD b j 0))  (List.ofFn (T i j))))))
 
 /--
 @isnad1 id=eq.0h5v.s5.622fb7992401 from=translated src=- shape=e6390d5b vocab=9d543adf
 -/
-lemma table_mul_list_length (a b : List R) : (table_mul_list' T a b).length = n := by
+lemma _root_.Tengoku.Certifyinginvariantsnf.table_mul_list_length (a b : List R) : (table_mul_list' T a b).length = n := by
   by_cases hn : n = 0
   · unfold table_mul_list'
     simp only [hn, List.ofFn_zero]
@@ -69,7 +69,7 @@ lemma table_mul_list_length (a b : List R) : (table_mul_list' T a b).length = n 
 /--
 @isnad1 id=eq.1h5v.s6.735dfcbbd79a from=translated src=- shape=22f3ac39 vocab=58c0158a
 -/
-lemma FnOfList_add_ofFn  (a b c : Fin n → R)
+lemma _root_.Tengoku.Certifyinginvariantsnf.FnOfList_add_ofFn  (a b c : Fin n → R)
     (hc : List.ofFn c = (List.ofFn a) + (List.ofFn b))  :
     c = a + b := by
   rw [List.add_ofFn, List.ofFn_inj] at hc
@@ -78,7 +78,7 @@ lemma FnOfList_add_ofFn  (a b c : Fin n → R)
 /--
 @isnad1 id=eq.1h5v.s6.65b1d33799ae from=translated src=- shape=04345c15 vocab=cd160114
 -/
-lemma FnOfList_mulPointwise_ofFin (a c : Fin n → R)
+lemma _root_.Tengoku.Certifyinginvariantsnf.FnOfList_mulPointwise_ofFin (a c : Fin n → R)
    (hc : List.ofFn c = List.mulPointwise d (List.ofFn a)) :
     c = d • a := by
   rw [List.mulPointwise_ofFn a d, List.ofFn_inj] at hc
@@ -87,7 +87,7 @@ lemma FnOfList_mulPointwise_ofFin (a c : Fin n → R)
 /--
 @isnad1 id=eq.1h5v.s6.895bd745a8fa from=translated src=- shape=e8816c7a vocab=62c0beb3
 -/
-lemma FnOfList_sum_ofFn {m : ℕ} (f : Fin m → (Fin n → R))(c : Fin n → R)
+lemma _root_.Tengoku.Certifyinginvariantsnf.FnOfList_sum_ofFn {m : ℕ} (f : Fin m → (Fin n → R))(c : Fin n → R)
     (h : List.ofFn c = List.sum (List.ofFn (fun i => List.ofFn (f i)))) :
     c = ∑ i, f i := by
   match m with
@@ -124,7 +124,7 @@ lemma List.table_mul_list_ofFn (hn : n ≠ 0) (a b : Fin n → R) :
 /--
 @isnad1 id=eq.1h6v.s7.efa6267fd9f1 from=translated src=- shape=d9fa2378 vocab=9179e798
 -/
-lemma FnOfList_table_mul_list_eq_sum_sum (a b c : Fin n → R)
+lemma _root_.Tengoku.Certifyinginvariantsnf.FnOfList_table_mul_list_eq_sum_sum (a b c : Fin n → R)
     (hc : List.ofFn c = table_mul_list' T (List.ofFn a) (List.ofFn b)) :
     c = ∑ i, (∑ j , (a i * b j) • T i j ) := by
   match n with
@@ -139,7 +139,7 @@ lemma FnOfList_table_mul_list_eq_sum_sum (a b c : Fin n → R)
 /--
 @isnad1 id=eq.1h7v.s9.5102f36153ff from=translated src=- shape=1eac9da1 vocab=40255afb
 -/
-lemma table_add_list_eq_add {S : Type*} [AddCommMonoid S] [Module R S] [Mul S]
+lemma _root_.Tengoku.Certifyinginvariantsnf.table_add_list_eq_add {S : Type*} [AddCommMonoid S] [Module R S] [Mul S]
     (B : Basis (Fin n) R S) (a b c : Fin n → R) (hc : List.ofFn c = (List.ofFn a) + (List.ofFn b) ) :
     (B.equivFun.symm a ) + (B.equivFun.symm b) = B.equivFun.symm c := by
   simp only [ Basis.equivFun_symm_eq_repr_symm' B]
@@ -153,7 +153,7 @@ lemma table_add_list_eq_add {S : Type*} [AddCommMonoid S] [Module R S] [Mul S]
 /--
 @isnad1 id=eq.1h7v.s9.72fe29fe6f3a from=translated src=- shape=7579f7ef vocab=f6396b98
 -/
-lemma table_mulPointwise_eq_smul
+lemma _root_.Tengoku.Certifyinginvariantsnf.table_mulPointwise_eq_smul
     {S : Type*}[AddCommMonoid S] [Module R S] [Mul S] (B : Basis (Fin n) R S)
     (a c : Fin n → R) (d : R) (hc : List.ofFn c = List.mulPointwise d (List.ofFn a) ) :
     d • (B.equivFun.symm a ) = (B.equivFun.symm c ) := by
@@ -170,7 +170,7 @@ lemma table_mulPointwise_eq_smul
   corresponds to multiplication in the algebra with times table `T`.
 @isnad1 id=eq.2h8v.s10.d563ab368c9d from=translated src=- shape=9c4b487e vocab=88aed4cb
 -/
-lemma table_mul_list_eq_mul
+lemma _root_.Tengoku.Certifyinginvariantsnf.table_mul_list_eq_mul
     {S : Type*} [NonUnitalNonAssocSemiring S] [Module R S] [SMulCommClass R S S]
     [IsScalarTower R S S] (B : Basis (Fin n) R S) (a b c : Fin n → R)
     (basisMulBasis: ∀ i j k , B.repr (B i * B j) k = T i j k)
@@ -189,7 +189,7 @@ lemma table_mul_list_eq_mul
 /--
 @isnad1 id=eq.1h8v.s9.d326016f7d8e from=translated src=- shape=885cf5b6 vocab=f8924574
 -/
-lemma table_sum_smul {S : Type*} {m : ℕ} [NonUnitalNonAssocSemiring S] [Module R S]
+lemma _root_.Tengoku.Certifyinginvariantsnf.table_sum_smul {S : Type*} {m : ℕ} [NonUnitalNonAssocSemiring S] [Module R S]
     [SMulCommClass R S S] [IsScalarTower R S S] (B : Basis (Fin n) R S)
     (a : Fin m → Fin n → R) (b : Fin n → R) (c : Fin m → R)
     (hc : List.ofFn b = List.sum (List.ofFn (fun j => List.mulPointwise (c j) (List.ofFn (a j))))) :
@@ -215,7 +215,7 @@ lemma table_sum_smul {S : Type*} {m : ℕ} [NonUnitalNonAssocSemiring S] [Module
 /--
 @isnad1 id=eq.1h7v.s9.76fc6511ae7e from=translated src=- shape=76ded61c vocab=1582bf98
 -/
-lemma table_sum_smul' {S : Type*} {m : ℕ} [NonUnitalNonAssocSemiring S] [Module R S]
+lemma _root_.Tengoku.Certifyinginvariantsnf.table_sum_smul' {S : Type*} {m : ℕ} [NonUnitalNonAssocSemiring S] [Module R S]
     [SMulCommClass R S S] [IsScalarTower R S S] (B : Basis (Fin n) R S)
     (a : Fin m → Fin n → R) (b : Fin n → R)
     (hc : List.ofFn b = List.sum (List.ofFn (fun j => (List.ofFn (a j))))) :
@@ -228,7 +228,7 @@ lemma table_sum_smul' {S : Type*} {m : ℕ} [NonUnitalNonAssocSemiring S] [Modul
 /--
 @isnad1 id=eq.1h8v.s9.5b18403960d6 from=translated src=- shape=facf08dd vocab=1582bf98
 -/
-lemma table_sum_sum {S : Type*} {m : ℕ} [NonUnitalNonAssocSemiring S] [Module R S]
+lemma _root_.Tengoku.Certifyinginvariantsnf.table_sum_sum {S : Type*} {m : ℕ} [NonUnitalNonAssocSemiring S] [Module R S]
     [SMulCommClass R S S] [IsScalarTower R S S] (B : Basis (Fin n) R S)
     (a : Fin l → Fin m → Fin n → R) (b : Fin n → R)
     (hc : List.ofFn b = List.sum (List.ofFn (fun i =>
@@ -255,14 +255,14 @@ lemma table_sum_sum {S : Type*} {m : ℕ} [NonUnitalNonAssocSemiring S] [Module 
 
 /-- A version of `table_mul_list'` in which the entries of the times table
   are given by lists instead of vectors `Fin n → R`. This performs better. -/
-def table_mul_list (T : Fin n → Fin n → List R) (a : List R) (b : List R) :=
+def _root_.Tengoku.Certifyinginvariantsnf.table_mul_list (T : Fin n → Fin n → List R) (a : List R) (b : List R) :=
   List.sum (List.ofFn (fun i => List.sum (List.ofFn
   (fun j => List.mulPointwise ((List.getD a i 0) * (List.getD b j 0))  (T i j)))))
 
 /--
 @isnad1 id=eq.1h6v.s6.b80ca658ce41 from=translated src=- shape=83c0679e vocab=36575af2
 -/
-lemma table_mul_eq_table_mul' (T' :  Fin n → Fin n → Fin n → R) (T : Fin n → Fin n → List R)
+lemma _root_.Tengoku.Certifyinginvariantsnf.table_mul_eq_table_mul' (T' :  Fin n → Fin n → Fin n → R) (T : Fin n → Fin n → List R)
     (h : ∀ i j , T i j = List.ofFn (T' i j)) : table_mul_list T a b = table_mul_list' T' a b := by
   unfold table_mul_list' table_mul_list
   simp_rw [h]
@@ -270,7 +270,7 @@ lemma table_mul_eq_table_mul' (T' :  Fin n → Fin n → Fin n → R) (T : Fin n
 /--
 @isnad1 id=eq.2h9v.s10.b183527e6f25 from=translated src=- shape=d90a2ceb vocab=0bd26588
 -/
-lemma table_sum_mul {S : Type*} {m : ℕ} [NonUnitalNonAssocSemiring S] [Module R S]
+lemma _root_.Tengoku.Certifyinginvariantsnf.table_sum_mul {S : Type*} {m : ℕ} [NonUnitalNonAssocSemiring S] [Module R S]
     [SMulCommClass R S S] [IsScalarTower R S S] (B : Basis (Fin n) R S)
     (basisMulBasis: ∀ i j k , B.repr (B i * B j) k = T i j k)
     (a : Fin m → Fin n → R) (b : Fin m → Fin n → R) (c : Fin n → R)
@@ -290,7 +290,7 @@ lemma table_sum_mul {S : Type*} {m : ℕ} [NonUnitalNonAssocSemiring S] [Module 
 
 /-- Exponentiation by squaring given a times table `T`. -/
 @[reducible]
-def nPow_sq_table (T : Fin n → Fin n → List R) (a : List R) (m : ℕ) : List R :=
+def _root_.Tengoku.Certifyinginvariantsnf.nPow_sq_table (T : Fin n → Fin n → List R) (a : List R) (m : ℕ) : List R :=
   match m with
   | 0 => 1
   | 1 => a
@@ -303,7 +303,7 @@ def nPow_sq_table (T : Fin n → Fin n → List R) (a : List R) (m : ℕ) : List
 /--
 @isnad1 id=eq.3h6v.s6.6dfdba5fe0c2 from=translated src=- shape=df7f31e9 vocab=040068ef
 -/
-lemma nPow_sq_table_length (T' : Fin n → Fin n → Fin n → R) (T : Fin n → Fin n → List R)
+lemma _root_.Tengoku.Certifyinginvariantsnf.nPow_sq_table_length (T' : Fin n → Fin n → Fin n → R) (T : Fin n → Fin n → List R)
     (a : List R) (m : ℕ) (hm : 0 < m) (heq : ∀ i j , T i j = List.ofFn (T' i j)) (ha : a.length = n) :
     (nPow_sq_table T a m).length = n := by
   match m with
@@ -334,3 +334,4 @@ lemma nPow_sq_table_length (T' : Fin n → Fin n → Fin n → R) (T : Fin n →
               simp only [hp, ↓reduceDIte]
             dsimp
         rw [heq', table_mul_eq_table_mul' T' T heq, table_mul_list_length]
+-- Tengoku: root names of this library moved to Tengoku.Certifyinginvariantsnf so they do not collide with other libraries (generated)

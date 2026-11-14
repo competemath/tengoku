@@ -6,8 +6,8 @@ import Tengoku.Seed.Analysis.Convex.GaugeRescale
 /-
 some helper lemmas involving homeomorphisms.
 -/
-
-lemma homeo_unit_ball {V : Type*}
+namespace Tengoku.FixedPointTheoremsLean4 end Tengoku.FixedPointTheoremsLean4 open Tengoku.FixedPointTheoremsLean4
+lemma _root_.Tengoku.FixedPointTheoremsLean4.homeo_unit_ball {V : Type*}
     [NormedAddCommGroup V] [NormedSpace ℝ V] [FiniteDimensional ℝ V]
     (s: Set V) (hcvx : Convex ℝ s) (hcmpct : IsCompact s)
     (hni : (interior s).Nonempty):
@@ -23,7 +23,7 @@ lemma homeo_unit_ball {V : Type*}
   exact Nonempty.intro e2
 }
 
-theorem homeo_of_finrank_eq {V W : Type*}
+theorem _root_.Tengoku.FixedPointTheoremsLean4.homeo_of_finrank_eq {V W : Type*}
     [NormedAddCommGroup V] [NormedSpace ℝ V] [FiniteDimensional ℝ V]
     [NormedAddCommGroup W] [NormedSpace ℝ W] [FiniteDimensional ℝ W]
     (hreq : Module.finrank ℝ V = Module.finrank ℝ W) :
@@ -56,7 +56,7 @@ theorem homeo_of_finrank_eq {V W : Type*}
   exact e2.symm.trans e1
 }
 
-lemma unit_cube_homeo_unit_ball {n}
+lemma _root_.Tengoku.FixedPointTheoremsLean4.unit_cube_homeo_unit_ball {n}
     : Nonempty (Set.Icc (0 : Fin n → ℝ) 1 ≃ₜ Metric.closedBall (0 : Fin n → ℝ) 1 ) := by
   apply homeo_unit_ball _ (convex_Icc 0 1) isCompact_Icc
   have h1 : Set.Icc (0 : Fin n → ℝ) 1 = Set.univ.pi (fun _ => Set.Icc (0 : ℝ) 1) := by
@@ -65,7 +65,7 @@ lemma unit_cube_homeo_unit_ball {n}
   exact Set.univ_pi_nonempty_iff.mpr fun _ => by
     rw [interior_Icc]; exact ⟨1/2, by norm_num, by norm_num⟩
 
-lemma homeo_unit_cube_of_convex_compact {V : Type*}
+lemma _root_.Tengoku.FixedPointTheoremsLean4.homeo_unit_cube_of_convex_compact {V : Type*}
     [NormedAddCommGroup V] [NormedSpace ℝ V] [FiniteDimensional ℝ V]
     (s: Set V) (hcvx : Convex ℝ s) (hcmpct : IsCompact s) (hne : s.Nonempty)
     : ∃ k, Nonempty (s ≃ₜ Set.Icc (0 : Fin k → ℝ) 1) := by {
@@ -126,3 +126,4 @@ lemma homeo_unit_cube_of_convex_compact {V : Type*}
   use k
   exact Nonempty.intro e5
 }
+-- Tengoku: root names of this library moved to Tengoku.FixedPointTheoremsLean4 so they do not collide with other libraries (generated)

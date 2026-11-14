@@ -1,12 +1,12 @@
 import Tengoku.FixedPointTheoremsLean4.FixedPointTheorems.cubical_sperner_prep
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.FixedPointTheoremsLean4 end Tengoku.FixedPointTheoremsLean4 open Tengoku.FixedPointTheoremsLean4
 open Classical
 
 section completeness
 
-lemma complete_simplex_iff {SC} m I(hs : simplex SC m I) :
+lemma _root_.Tengoku.FixedPointTheoremsLean4.complete_simplex_iff {SC} m I(hs : simplex SC m I) :
     complete_simplex SC m I ↔ ∀ c, c≤m → ∃ i, SC.RL (I i) = c := by {
   apply Iff.intro
   {
@@ -39,7 +39,7 @@ lemma complete_simplex_iff {SC} m I(hs : simplex SC m I) :
   }
 }
 
-lemma rl_inj_of_complete {SC} m I (hcs : complete_simplex SC m I):
+lemma _root_.Tengoku.FixedPointTheoremsLean4.rl_inj_of_complete {SC} m I (hcs : complete_simplex SC m I):
     ∀ i1 i2, SC.RL (I i1) = SC.RL (I i2) → i1 = i2 := by {
   let f1 : Fin (m+1) → Fin (m+1) := fun j ↦ Fin.ofNat _ (SC.RL (I j))
   suffices h1 : Function.Injective f1 by {
@@ -60,7 +60,7 @@ lemma rl_inj_of_complete {SC} m I (hcs : complete_simplex SC m I):
   exact Fin.cast_val_eq_self c
 }
 
-lemma char_complete_face {SC n1 hn1} I J (hs : simplex SC SC.n J) :
+lemma _root_.Tengoku.FixedPointTheoremsLean4.char_complete_face {SC n1 hn1} I J (hs : simplex SC SC.n J) :
     complete_simplex SC n1 I ∧ is_face SC I J
     ↔ ∃ i, I = @delete_vertex SC n1 hn1 i J
     ∧ ∀ (c:ℕ ), c ≤ n1 → ∃ i2, i2 ≠ i ∧ SC.RL (J i2) = c := by {
@@ -103,7 +103,7 @@ lemma char_complete_face {SC n1 hn1} I J (hs : simplex SC SC.n J) :
   }
 }
 
-lemma complete_child_uniq {SC n1} {hn1 : n1 + 1 = SC.n} J (hcs : complete_simplex SC SC.n J) :
+lemma _root_.Tengoku.FixedPointTheoremsLean4.complete_child_uniq {SC n1} {hn1 : n1 + 1 = SC.n} J (hcs : complete_simplex SC SC.n J) :
     ∃! (I : Fin (n1+1) → SC.G), complete_simplex SC n1 I ∧ is_face SC I J := by {
   have h4 : ∃ i, SC.RL (J i) = SC.n := by {
     rw [← Set.mem_range, hcs.2]
@@ -163,7 +163,7 @@ lemma complete_child_uniq {SC n1} {hn1 : n1 + 1 = SC.n} J (hcs : complete_simple
   exact (Eq.symm hi)
 }
 
-lemma incomplete_childs {SC n1} {hn1 : n1 + 1 = SC.n} J (hs : simplex SC SC.n J)
+lemma _root_.Tengoku.FixedPointTheoremsLean4.incomplete_childs {SC n1} {hn1 : n1 + 1 = SC.n} J (hs : simplex SC SC.n J)
     (hnc : ¬ complete_simplex SC SC.n J):
     Even (Finset.card { I : Fin (n1 + 1) → SC.G | complete_simplex SC n1 I ∧ is_face SC I J}) := by {
   let S : Finset _:= { I : Fin (n1 + 1) → SC.G | complete_simplex SC n1 I ∧ is_face SC I J}
@@ -283,7 +283,7 @@ section handshake
 variable {A B : Type*}
 variable [Fintype A] [Fintype B]
 
-lemma handshake_3 (r : A → B → Prop) (c : A → Prop)
+lemma _root_.Tengoku.FixedPointTheoremsLean4.handshake_3 (r : A → B → Prop) (c : A → Prop)
     (h1 : ∀ a, c a ↔ Odd (Finset.card {b | r a b}))
     : Odd (Finset.card {a | c a}) ↔ Odd (∑ a, Finset.card {b | r a b}) := by {
   rw [Finset.odd_sum_iff_odd_card_odd]
@@ -293,7 +293,7 @@ lemma handshake_3 (r : A → B → Prop) (c : A → Prop)
   exact h1 a
 }
 
-lemma handshake_2 (r : A → B → Prop)
+lemma _root_.Tengoku.FixedPointTheoremsLean4.handshake_2 (r : A → B → Prop)
     (c : A → Prop) (d : B → Prop)
     (h1 : ∀ a, c a ↔ Odd (Finset.card {b | r a b}))
     (h2 : ∀ b, d b ↔ Odd (Finset.card {a | r a b})) :
@@ -307,7 +307,7 @@ lemma handshake_2 (r : A → B → Prop)
   rwa [←handshake_3 r c h1]
 }
 
-lemma handshake_1 (r : A → B → Prop)
+lemma _root_.Tengoku.FixedPointTheoremsLean4.handshake_1 (r : A → B → Prop)
     (c1 c2 c3: A → Prop) (d1 d2: B → Prop)
     (h1 : ∀ b, d1 b → ∃! a, c2 a ∧ r a b)
     (h2 : ∀ b, d2 b → ¬ d1 b → Even (Finset.card { a | c2 a ∧ r a b}))
@@ -392,12 +392,12 @@ section induction_step
 variable (SC : SpernerCube)
 variable {n1 : ℕ}
 
-def child_map (v : Fin n1 → Fin (SC.p+1) ) : SC.G := fun i ↦
+def _root_.Tengoku.FixedPointTheoremsLean4.child_map (v : Fin n1 → Fin (SC.p+1) ) : SC.G := fun i ↦
   match n1 with
   | 0 => Fin.last SC.p
   | Nat.succ _ => if i.1 + 1 = SC.n then Fin.last SC.p else v (Fin.ofNat _ i.1)
 
-lemma child_map_last (v : Fin n1 → Fin (SC.p +1 ))
+lemma _root_.Tengoku.FixedPointTheoremsLean4.child_map_last (v : Fin n1 → Fin (SC.p +1 ))
     : ∀ j, j.1 + 1 = SC.n → child_map SC v j = SC.p := by {
   intro j hj
   unfold child_map
@@ -406,7 +406,7 @@ lemma child_map_last (v : Fin n1 → Fin (SC.p +1 ))
   simp only [hj, ↓reduceIte, Fin.val_last]
 }
 
-lemma child_map_applied [NeZero SC.n] {hn1 : n1 + 1 = SC.n} (v : Fin n1 → Fin (SC.p + 1))
+lemma _root_.Tengoku.FixedPointTheoremsLean4.child_map_applied [NeZero SC.n] {hn1 : n1 + 1 = SC.n} (v : Fin n1 → Fin (SC.p + 1))
     : ∀ (i : Fin n1), child_map SC v (Fin.ofNat _ i.1) = v i := by {
   intro i
   dsimp only [child_map]
@@ -422,7 +422,7 @@ lemma child_map_applied [NeZero SC.n] {hn1 : n1 + 1 = SC.n} (v : Fin n1 → Fin 
   simp only [h6, ↓reduceIte, Fin.ofNat_eq_cast, Fin.cast_val_eq_self]
 }
 
-lemma child_map_inj {hn1 : n1 + 1 = SC.n }: Function.Injective (@child_map SC n1) := by {
+lemma _root_.Tengoku.FixedPointTheoremsLean4.child_map_inj {hn1 : n1 + 1 = SC.n }: Function.Injective (@child_map SC n1) := by {
   intro v1 v2 h1
   ext i
   have h0 : NeZero SC.n := by {
@@ -435,7 +435,7 @@ lemma child_map_inj {hn1 : n1 + 1 = SC.n }: Function.Injective (@child_map SC n1
   exact hn1
 }
 
-lemma child_map_surj_on {hn1 : n1 + 1 = SC.n} w
+lemma _root_.Tengoku.FixedPointTheoremsLean4.child_map_surj_on {hn1 : n1 + 1 = SC.n} w
     (h1 : ∀ j, j.1 + 1 = SC.n → w j = SC.p)
     : ∃ v, @child_map SC n1 v = w := by {
   have h0 : NeZero SC.n := by {
@@ -482,7 +482,7 @@ lemma child_map_surj_on {hn1 : n1 + 1 = SC.n} w
   }
 }
 
-def child_cube {hn1 : n1 + 1 = SC.n}: SpernerCube where
+def _root_.Tengoku.FixedPointTheoremsLean4.child_cube {hn1 : n1 + 1 = SC.n}: SpernerCube where
   n := n1
   p := SC.p
   RL := fun v ↦ SC.RL (child_map SC v)
@@ -518,7 +518,7 @@ def child_cube {hn1 : n1 + 1 = SC.n}: SpernerCube where
 
 end induction_step
 
-lemma induction_start (SC : SpernerCube) (h0 : 0 = SC.n)
+lemma _root_.Tengoku.FixedPointTheoremsLean4.induction_start (SC : SpernerCube) (h0 : 0 = SC.n)
     : Odd (Finset.card { I | complete_simplex SC SC.n I}) := by {
   use 0
   simp only [mul_zero, zero_add]
@@ -582,3 +582,4 @@ lemma induction_start (SC : SpernerCube) (h0 : 0 = SC.n)
     exact False.elim ( hf j )
   }
 }
+-- Tengoku: root names of this library moved to Tengoku.FixedPointTheoremsLean4 so they do not collide with other libraries (generated)

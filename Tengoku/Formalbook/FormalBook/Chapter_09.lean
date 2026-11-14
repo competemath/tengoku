@@ -23,7 +23,7 @@ import Tengoku
     - (3)
     - (4)
 -/
-
+namespace Tengoku.Formalbook end Tengoku.Formalbook open Tengoku.Formalbook
 attribute [local simp] arctan_sqrt_three intervalIntegral.integral_inv_sq_add_sq intervalIntegral.integral_inv_sqrt_one_sub_sq intervalIntegral.intervalIntegrable_inv_sqrt_one_sub_sq
 
 open Real
@@ -36,7 +36,7 @@ set_option maxHeartbeats 1000000 in
 /--
 @isnad1 id=eq.0h0v.s6.ed72a8c67b50 from=translated src=- shape=e29c157c vocab=3233922f
 -/
-theorem euler_series : ∑' n : ℕ, ((n : ℝ) ^ 2)⁻¹ = π ^ 2 / 6 := by
+theorem _root_.Tengoku.Formalbook.euler_series : ∑' n : ℕ, ((n : ℝ) ^ 2)⁻¹ = π ^ 2 / 6 := by
   convert_to ∑' n : ℕ, (n : ℝ)⁻¹ ^ 2 = _ using 3 with n
   · simp
   -- Change the index from n to n + 1 to avoid division by zero
@@ -630,3 +630,4 @@ theorem euler_series : ∑' n : ℕ, ((n : ℝ) ^ 2)⁻¹ = π ^ 2 / 6 := by
   have : ((1 : ℝ) / 2 / (√3 / 2)) = (√3)⁻¹ := by field_simp
   rw [this, arctan_inv_sqrt_three]
   ring
+-- Tengoku: root names of this library moved to Tengoku.Formalbook so they do not collide with other libraries (generated)

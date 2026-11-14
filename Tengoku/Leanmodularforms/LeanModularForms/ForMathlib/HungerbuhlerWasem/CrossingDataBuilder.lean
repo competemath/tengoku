@@ -80,7 +80,7 @@ information.
 * K. Hungerbühler, J. Wasem, *A generalized notion of winding numbers*,
   arXiv:1808.00997v2.
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex MeasureTheory Set Filter Topology Asymptotics
 open scoped Real Interval
 
@@ -389,3 +389,4 @@ theorem norm_sub_strictAntiOn_left
       linarith [(hr_data t ⟨le_of_lt ht.1, ht.2⟩).2]
   intro a ha b hb hab
   exact lt_of_pow_lt_pow_left₀ 2 (norm_nonneg _) (h_f_strictAnti ha hb hab)
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

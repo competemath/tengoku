@@ -31,7 +31,7 @@ bridge between the two models lives in `QuadraticNumberFields.Zsqrtd.MathlibBrid
 * `Zsqrtd.halfInt_mem_range_toQsqrtdHom_iff_even_even`: Characterization of
   half-integers in the image of `Zsqrtd d`.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 local notation "ℚ√" d => Qsqrtd d
 
 namespace QuadraticNumberFields
@@ -305,3 +305,4 @@ def zsqrtdCarrierInQ (d : ℤ) : Set (Qsqrtd (d : ℚ)) :=
   Set.range (Zsqrtd.toQsqrtd (d := d))
 
 end QuadraticNumberFields
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

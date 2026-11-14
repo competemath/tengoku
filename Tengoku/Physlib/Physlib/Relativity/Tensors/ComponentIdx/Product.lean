@@ -32,8 +32,8 @@ of component indices for each side of the append.
 -/
 
 @[expose] public section
-
-namespace TensorSpecies
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
+namespace Tengoku.Physlib.TensorSpecies
 
 variable {k C G : Type} [CommRing k] [Group G]
   {V : C → Type} [∀ c, AddCommGroup (V c)] [∀ c, Module k (V c)]
@@ -78,4 +78,5 @@ lemma ComponentIdx.prod_symm_castAdd {n1 n2 : ℕ} {c : Fin n1 → C} {c1 : Fin 
       basisIdxCongr (by simp) (p i) := by simp [ComponentIdx.prod]
 
 end Tensor
-end TensorSpecies
+end Tengoku.Physlib.TensorSpecies
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

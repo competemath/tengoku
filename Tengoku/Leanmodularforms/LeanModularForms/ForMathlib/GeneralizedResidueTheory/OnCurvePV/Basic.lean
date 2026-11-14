@@ -13,7 +13,7 @@ General PV convergence machinery for piecewise C¹ curves: dyadic PV limits,
 measurability of cutout integrands, arc angle injectivity, CPV avoidance
 and concatenation lemmas. These results work for arbitrary curves and functions.
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex MeasureTheory Set Filter Topology
 open scoped Real Interval
 
@@ -25,7 +25,7 @@ noncomputable section
 non-vanishing derivative at an interior point `t₀`, using a dyadic Cauchy argument.
 @isnad1 id=ex.8h5v.s8.12101bfb63af from=translated src=- shape=23d41a67 vocab=ab515876
 -/
-lemma pv_limit_via_dyadic {γ : ℝ → ℂ} {a b t₀ : ℝ} {L : ℂ}
+lemma _root_.Tengoku.Leanmodularforms.pv_limit_via_dyadic {γ : ℝ → ℂ} {a b t₀ : ℝ} {L : ℂ}
     (hat₀ : t₀ ∈ Set.Ioo a b) (hL : L ≠ 0)
     (hγ_C2 : ContDiffAt ℝ 2 γ t₀) (hγ_deriv : deriv γ t₀ = L)
     (hγ_cont_deriv : ContinuousOn (deriv γ) (Set.Icc a b))
@@ -138,7 +138,7 @@ lemma pv_limit_via_dyadic {γ : ℝ → ℂ} {a b t₀ : ℝ} {L : ℂ}
 intersected with the (measurable) domain, is measurable.
 @isnad1 id=measurab.2h3v.s5.9237ccba3d08 from=translated src=- shape=1220e295 vocab=15d39cb8
 -/
-lemma measurableSet_norm_gt_of_continuousOn {f : ℝ → ℂ} {s : Set ℝ}
+lemma _root_.Tengoku.Leanmodularforms.measurableSet_norm_gt_of_continuousOn {f : ℝ → ℂ} {s : Set ℝ}
     (ε : ℝ) (hf : ContinuousOn f s) (hs : MeasurableSet s) :
     MeasurableSet ({t | ε < ‖f t‖} ∩ s) := by
   have h_norm_cont : ContinuousOn (fun t => ‖f t‖) s := hf.norm
@@ -160,7 +160,7 @@ lemma measurableSet_norm_gt_of_continuousOn {f : ℝ → ℂ} {s : Set ℝ}
 /-- Specialisation of `measurableSet_norm_gt_of_continuousOn` to closed intervals.
 @isnad1 id=measurab.1h4v.s6.83b8ab077fce from=translated src=- shape=dedd061a vocab=3f7afdae
 -/
-lemma measurableSet_norm_gt_Icc {f : ℝ → ℂ} {a b : ℝ}
+lemma _root_.Tengoku.Leanmodularforms.measurableSet_norm_gt_Icc {f : ℝ → ℂ} {a b : ℝ}
     (ε : ℝ) (hf : ContinuousOn f (Icc a b)) :
     MeasurableSet ({t | ε < ‖f t‖} ∩ Icc a b) :=
   measurableSet_norm_gt_of_continuousOn ε hf isClosed_Icc.measurableSet
@@ -169,7 +169,7 @@ lemma measurableSet_norm_gt_Icc {f : ℝ → ℂ} {a b : ℝ}
 then the Cauchy principal value of `1 / (z - c)` along `γ` exists.
 @isnad1 id=cauchypr.1h5v.s7.088af7a42c90 from=translated src=- shape=ac228657 vocab=f790fd34
 -/
-lemma cpv_exists_from_shifted_tendsto (γ : ℝ → ℂ) (a b : ℝ) (c : ℂ) (L : ℂ)
+lemma _root_.Tengoku.Leanmodularforms.cpv_exists_from_shifted_tendsto (γ : ℝ → ℂ) (a b : ℝ) (c : ℂ) (L : ℂ)
     (h : Tendsto (fun ε => ∫ t in a..b, if ‖γ t - c‖ > ε
       then (γ t - c)⁻¹ * deriv (fun s => γ s - c) t else 0) (𝓝[>] 0) (𝓝 L)) :
     CauchyPrincipalValueExists' (fun z => (z - c)⁻¹) γ a b c := by
@@ -179,7 +179,7 @@ lemma cpv_exists_from_shifted_tendsto (γ : ℝ → ℂ) (a b : ℝ) (c : ℂ) (
 /-- The map `t ↦ exp (π (1 + t) / 6 · i)` is injective on the open interval `(1, 3)`.
 @isnad1 id=eq.3h2v.s7.629906daba81 from=translated src=- shape=992c033d vocab=1cc32eb7
 -/
-lemma arc_angle_injective {t t' : ℝ}
+lemma _root_.Tengoku.Leanmodularforms.arc_angle_injective {t t' : ℝ}
     (ht : t ∈ Set.Ioo (1:ℝ) 3) (ht' : t' ∈ Set.Ioo (1:ℝ) 3)
     (h_eq : Complex.exp (↑(Real.pi * (1 + t) / 6) * I) =
             Complex.exp (↑(Real.pi * (1 + t') / 6) * I)) :
@@ -211,7 +211,7 @@ lemma arc_angle_injective {t t' : ℝ}
 /-- CPV trivially exists when the curve avoids `z₀` on `[a, b]`.
 @isnad1 id=cauchypr.3h5v.s6.be97786af8ac from=translated src=- shape=e3ea94e6 vocab=61652196
 -/
-lemma cpv_avoidance (f : ℂ → ℂ) (γ : ℝ → ℂ) (a b : ℝ) (z₀ : ℂ)
+lemma _root_.Tengoku.Leanmodularforms.cpv_avoidance (f : ℂ → ℂ) (γ : ℝ → ℂ) (a b : ℝ) (z₀ : ℂ)
     (h_cont : ContinuousOn γ (Set.Icc a b)) (hab : a ≤ b)
     (h_avoid : ∀ t ∈ Set.Icc a b, γ t ≠ z₀) :
     CauchyPrincipalValueExists' f γ a b z₀ :=
@@ -220,7 +220,7 @@ lemma cpv_avoidance (f : ℂ → ℂ) (γ : ℝ → ℂ) (a b : ℝ) (z₀ : ℂ
 /-- CPV on adjacent intervals can be concatenated (when `a ≤ b ≤ c`).
 @isnad1 id=cauchypr.5h6v.s7.41f1dd094c7f from=translated src=- shape=6a886021 vocab=b17dc581
 -/
-lemma cpv_concat (f : ℂ → ℂ) (γ : ℝ → ℂ) (a b c : ℝ) (z₀ : ℂ)
+lemma _root_.Tengoku.Leanmodularforms.cpv_concat (f : ℂ → ℂ) (γ : ℝ → ℂ) (a b c : ℝ) (z₀ : ℂ)
     (h_ab : CauchyPrincipalValueExists' f γ a b z₀)
     (h_bc : CauchyPrincipalValueExists' f γ b c z₀)
     (hab : a ≤ b) (hbc : b ≤ c)
@@ -232,3 +232,4 @@ lemma cpv_concat (f : ℂ → ℂ) (γ : ℝ → ℂ) (a b c : ℝ) (z₀ : ℂ)
   ⟨_, hL₁.concat hL₂ hab hbc h_int⟩
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

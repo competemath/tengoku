@@ -1,44 +1,44 @@
 import Tengoku
-
+namespace Tengoku.Primenumbertheoremand end Tengoku.Primenumbertheoremand open Tengoku.Primenumbertheoremand
 open Real Complex MeasureTheory Filter Topology BoundedContinuousFunction SchwartzMap  BigOperators
 open scoped ContDiff
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] {n : ℕ}
 
-@[ext] structure CS (n : ℕ) (E : Type*) [NormedAddCommGroup E] [NormedSpace ℝ E] where
+@[ext] structure _root_.Tengoku.Primenumbertheoremand.CS (n : ℕ) (E : Type*) [NormedAddCommGroup E] [NormedSpace ℝ E] where
   toFun : ℝ → E
   h1 : ContDiff ℝ n toFun
   h2 : HasCompactSupport toFun
 
-structure trunc extends (CS 2 ℝ) where
+structure _root_.Tengoku.Primenumbertheoremand.trunc extends (CS 2 ℝ) where
   h3 : (Set.Icc (-1) (1)).indicator 1 ≤ toFun
   h4 : toFun ≤ Set.indicator (Set.Ioo (-2) (2)) 1
 
-structure W1 (n : ℕ) (E : Type*) [NormedAddCommGroup E] [NormedSpace ℝ E] where
+structure _root_.Tengoku.Primenumbertheoremand.W1 (n : ℕ) (E : Type*) [NormedAddCommGroup E] [NormedSpace ℝ E] where
   toFun : ℝ → E
   smooth : ContDiff ℝ n toFun
   integrable : ∀ ⦃k⦄, k ≤ n → Integrable (iteratedDeriv k toFun)
 
-abbrev W21 := W1 2 ℂ
+abbrev _root_.Tengoku.Primenumbertheoremand.W21 := W1 2 ℂ
 
 section lemmas
 
-noncomputable def funscale {E : Type*} (g : ℝ → E) (R x : ℝ) : E := g (R⁻¹ • x)
+noncomputable def _root_.Tengoku.Primenumbertheoremand.funscale {E : Type*} (g : ℝ → E) (R x : ℝ) : E := g (R⁻¹ • x)
 
-lemma contDiff_ofReal : ContDiff ℝ ∞ ofReal := by
+lemma _root_.Tengoku.Primenumbertheoremand.contDiff_ofReal : ContDiff ℝ ∞ ofReal := by
   have key x : HasDerivAt ofReal 1 x := hasDerivAt_id x |>.ofReal_comp
   have key' : deriv ofReal = fun _ => 1 := by ext x ; exact (key x).deriv
   refine contDiff_infty_iff_deriv.mpr ⟨fun x => (key x).differentiableAt, ?_⟩
   simpa [key'] using contDiff_const
 
 omit [NormedSpace ℝ E] in
-lemma tendsto_funscale {f : ℝ → E} (hf : ContinuousAt f 0) (x : ℝ) :
+lemma _root_.Tengoku.Primenumbertheoremand.tendsto_funscale {f : ℝ → E} (hf : ContinuousAt f 0) (x : ℝ) :
     Tendsto (fun R => funscale f R x) atTop (𝓝 (f 0)) :=
   hf.tendsto.comp (by simpa using tendsto_inv_atTop_zero.mul_const x)
 
 end lemmas
 
-namespace CS
+namespace Tengoku.Primenumbertheoremand.CS
 
 variable {f : CS n E} {R x v : ℝ}
 
@@ -109,9 +109,9 @@ lemma bounded : ∃ C, ∀ v, ‖f v‖ ≤ C := by
     (continuous_norm.comp f.continuous).exists_forall_ge_of_hasCompactSupport f.h2.norm
   exact ⟨_, hx⟩
 
-end CS
+end Tengoku.Primenumbertheoremand.CS
 
-namespace trunc
+namespace Tengoku.Primenumbertheoremand.trunc
 
 instance : CoeFun trunc (fun _ => ℝ → ℝ) where coe f := f.toFun
 
@@ -128,9 +128,9 @@ lemma zero (g : trunc) : g =ᶠ[𝓝 0] 1 := by
 
 @[simp] lemma zero_at {g : trunc} : g 0 = 1 := g.zero.eq_of_nhds
 
-end trunc
+end Tengoku.Primenumbertheoremand.trunc
 
-namespace W1
+namespace Tengoku.Primenumbertheoremand.W1
 
 instance : CoeFun (W1 n E) (fun _ => ℝ → E) where coe := W1.toFun
 
@@ -181,9 +181,9 @@ noncomputable def of_Schwartz (f : 𝓢(ℝ, ℂ)) : W1 n ℂ where
   smooth := f.smooth n
   integrable _ _ := integrable_iteratedDeriv_Schwarz
 
-end W1
+end Tengoku.Primenumbertheoremand.W1
 
-namespace W21
+namespace Tengoku.Primenumbertheoremand.W21
 
 variable {f : W21}
 
@@ -220,9 +220,9 @@ lemma hf' (f : W21) : Integrable (deriv f) := by
 lemma hf'' (f : W21) : Integrable (deriv (deriv f))  := by
   simpa [iteratedDeriv_succ] using f.integrable le_rfl
 
-end W21
+end Tengoku.Primenumbertheoremand.W21
 
-theorem W21_approximation (f : W21) (g : trunc) :
+theorem _root_.Tengoku.Primenumbertheoremand.W21_approximation (f : W21) (g : trunc) :
     Tendsto (fun R => ‖f - (g.scale R * f : W21)‖) atTop (𝓝 0) := by
 
   -- Definitions
@@ -355,3 +355,4 @@ theorem W21_approximation (f : W21) (g : trunc) :
         filter_upwards [eh' v] with R hR ; simp [hR]
       · simpa [h] using! ((g.tendsto_scale v).const_sub 1).ofReal.mul tendsto_const_nhds
     simpa [F] using tendsto_integral_filter_of_dominated_convergence bound e1 e2 e3 e4
+-- Tengoku: root names of this library moved to Tengoku.Primenumbertheoremand so they do not collide with other libraries (generated)

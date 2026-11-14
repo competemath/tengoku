@@ -31,13 +31,13 @@ The dominated-convergence helpers used downstream
 `multipointPV_eq_sum_of_integral_zero`) live in
 `LeanModularForms.ForMathlib.GeneralizedResidueTheory.Residue.MultipointPV.DominatedConvergence`.
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex MeasureTheory Set Filter Topology Metric
 open scoped Real Interval
 
 noncomputable section
 
-private lemma measurableSet_norm_gt_of_continuousOn {f : ℝ → ℂ} {s : Set ℝ} (ε : ℝ)
+private lemma _root_.Tengoku.Leanmodularforms.measurableSet_norm_gt_of_continuousOn {f : ℝ → ℂ} {s : Set ℝ} (ε : ℝ)
     (hf : ContinuousOn f s) (hs : MeasurableSet s) :
     MeasurableSet ({t | ε < ‖f t‖} ∩ s) := by
   obtain ⟨U, hU_open, hU_eq⟩ := isOpen_induced_iff.mp
@@ -52,7 +52,7 @@ private lemma measurableSet_norm_gt_of_continuousOn {f : ℝ → ℂ} {s : Set �
   rw [h_eq]
   exact hU_open.measurableSet.inter hs
 
-private lemma measurableSet_norm_gt_Icc {f : ℝ → ℂ} {a b : ℝ} (ε : ℝ)
+private lemma _root_.Tengoku.Leanmodularforms.measurableSet_norm_gt_Icc {f : ℝ → ℂ} {a b : ℝ} (ε : ℝ)
     (hf : ContinuousOn f (Icc a b)) :
     MeasurableSet ({t | ε < ‖f t‖} ∩ Icc a b) :=
   measurableSet_norm_gt_of_continuousOn ε hf isClosed_Icc.measurableSet
@@ -60,7 +60,7 @@ private lemma measurableSet_norm_gt_Icc {f : ℝ → ℂ} {a b : ℝ} (ε : ℝ)
 /-- A function continuous off a finite set is a.e. strongly measurable on `Icc a b`.
 @isnad1 id=aestrong.1h4v.s6.b6989af703e6 from=translated src=- shape=b1ab36b8 vocab=2a7d24e1
 -/
-theorem aEStronglyMeasurable_of_continuousOn_off_finite {f : ℝ → ℂ} {a b : ℝ} {P : Finset ℝ}
+theorem _root_.Tengoku.Leanmodularforms.aEStronglyMeasurable_of_continuousOn_off_finite {f : ℝ → ℂ} {a b : ℝ} {P : Finset ℝ}
     (hf_cont : ContinuousOn f (Icc a b \ P)) :
     AEStronglyMeasurable f (volume.restrict (Icc a b)) := by
   have hP_meas_zero : volume (↑P ∩ Icc a b) = 0 :=
@@ -193,7 +193,7 @@ private lemma goodset_piecewise_ae_eq_decomposed {g_reg : ℂ → ℂ} {γ : ℝ
 /--
 @isnad1 id=aestrong.4h8v.s8.d2cd7c6f0685 from=translated src=- shape=58a01ed6 vocab=d5a285b9
 -/
-theorem aEStronglyMeasurable_pv_integrand_decomposed {g_reg : ℂ → ℂ} {γ : ℝ → ℂ}
+theorem _root_.Tengoku.Leanmodularforms.aEStronglyMeasurable_pv_integrand_decomposed {g_reg : ℂ → ℂ} {γ : ℝ → ℂ}
     {a b ε : ℝ} {P : Finset ℝ} (S : Finset ℂ) (coeffs : ℂ → ℂ) (hε : 0 < ε)
     (hg : ContinuousOn g_reg (γ '' Icc a b)) (hγ : ContinuousOn γ (Icc a b))
     (hγ'_off_P : ContinuousOn (deriv γ) (Icc a b \ P)) :
@@ -208,7 +208,7 @@ theorem aEStronglyMeasurable_pv_integrand_decomposed {g_reg : ℂ → ℂ} {γ :
 /--
 @isnad1 id=integrab.2h4v.s6.09baca6d50dc from=translated src=- shape=f3835b0b vocab=2fac3216
 -/
-theorem integrableOn_of_bounded_aeMeasurable {f : ℝ → ℂ} {a b : ℝ} (M : ℝ)
+theorem _root_.Tengoku.Leanmodularforms.integrableOn_of_bounded_aeMeasurable {f : ℝ → ℂ} {a b : ℝ} (M : ℝ)
     (hf_meas : AEStronglyMeasurable f (volume.restrict (Icc a b)))
     (hf_bound : ∀ x ∈ Icc a b, ‖f x‖ ≤ M) :
     IntegrableOn f (Icc a b) volume := by
@@ -220,7 +220,7 @@ theorem integrableOn_of_bounded_aeMeasurable {f : ℝ → ℂ} {a b : ℝ} (M : 
 /--
 @isnad1 id=tendsto.4h5v.s8.5a098bb7b540 from=translated src=- shape=93386ef2 vocab=db4a0ad0
 -/
-theorem tendsto_integral_of_dominated' {a b : ℝ} {F : ℝ → ℝ → ℂ} {f : ℝ → ℂ} {g : ℝ → ℝ}
+theorem _root_.Tengoku.Leanmodularforms.tendsto_integral_of_dominated' {a b : ℝ} {F : ℝ → ℝ → ℂ} {f : ℝ → ℂ} {g : ℝ → ℝ}
     (hF_meas : ∀ ε > 0, AEStronglyMeasurable (F ε) (volume.restrict (Ι a b)))
     (hF_le : ∀ ε > 0, ∀ᵐ t ∂volume, t ∈ Ι a b → ‖F ε t‖ ≤ g t)
     (hg_int : IntervalIntegrable g volume a b)
@@ -235,7 +235,7 @@ theorem tendsto_integral_of_dominated' {a b : ℝ} {F : ℝ → ℝ → ℂ} {f 
 /-- Continuous functions on a compact image are bounded.
 @isnad1 id=ex.2h4v.s6.e62d89957ddd from=translated src=- shape=4c51d630 vocab=5d68a4f5
 -/
-lemma continuousOn_image_bounded {g : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ}
+lemma _root_.Tengoku.Leanmodularforms.continuousOn_image_bounded {g : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ}
     (hγ_cont : ContinuousOn γ (Icc a b)) (hg_cont : ContinuousOn g (γ '' Icc a b)) :
     ∃ Mg : ℝ, ∀ z ∈ γ '' Icc a b, ‖g z‖ ≤ Mg :=
   (isCompact_Icc.image_of_continuousOn hγ_cont).exists_bound_of_continuousOn hg_cont
@@ -255,7 +255,7 @@ private lemma piecewiseC1Immersion_deriv_continuousOn_off_partition (γ : Piecew
 /-- Residue term integrand is interval integrable.
 @isnad1 id=interval.1h4v.s7.42ed4873558b from=translated src=- shape=8d6f7d6c vocab=a479cb57
 -/
-lemma intervalIntegrable_residueTerm {γ : PiecewiseC1Immersion} {s c : ℂ} {ε : ℝ}
+lemma _root_.Tengoku.Leanmodularforms.intervalIntegrable_residueTerm {γ : PiecewiseC1Immersion} {s c : ℂ} {ε : ℝ}
     (hε : 0 < ε) :
     IntervalIntegrable
       (fun t => if ‖γ.toFun t - s‖ > ε then (c / (γ.toFun t - s)) * deriv γ.toFun t else 0)
@@ -285,7 +285,7 @@ lemma intervalIntegrable_residueTerm {γ : PiecewiseC1Immersion} {s c : ℂ} {ε
 /--
 @isnad1 id=aestrong.3h7v.s8.d55ba170e469 from=translated src=- shape=ec89e0ff vocab=ed3b70b5
 -/
-lemma aEStronglyMeasurable_pv_sum_residue (S : Finset ℂ) (f : ℂ → ℂ) (γ : ℝ → ℂ)
+lemma _root_.Tengoku.Leanmodularforms.aEStronglyMeasurable_pv_sum_residue (S : Finset ℂ) (f : ℂ → ℂ) (γ : ℝ → ℂ)
     (ε : ℝ) (hε : 0 < ε) (a b : ℝ) {P : Finset ℝ} (hγ_cont : ContinuousOn γ (Icc a b))
     (hγ'_off_P : ContinuousOn (deriv γ) (Icc a b \ P)) :
     AEStronglyMeasurable
@@ -301,3 +301,4 @@ lemma aEStronglyMeasurable_pv_sum_residue (S : Finset ℂ) (f : ℂ → ℂ) (γ
     simp only [Pi.add_apply, Finset.sum_insert hx]
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

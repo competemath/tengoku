@@ -26,7 +26,7 @@ establishes the log difference formula and limit `E(δ) → -πi`.
 * `fdBoundaryFun_arg_right` — `arg(γ(2/5+δ) - i) = 5δπ/12 - π`
 * `fdBoundaryFun_log_diff_core_tendsto` — `log(γ(2/5-δ)-i) - log(γ(2/5+δ)-i) → πi`
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex MeasureTheory Set Filter Topology
 open scoped Real Interval
 
@@ -35,7 +35,7 @@ noncomputable section
 /-- On segment 2 (arc before `i`, angle `< π/2`), `γ(t) - i ∈ slitPlane`.
 @isnad1 id=mem.2h2v.s6.ebbc0d5fa761 from=translated src=- shape=a18b9178 vocab=a91e6597
 -/
-theorem fdBoundaryFun_sub_i_slitPlane_seg2 (H : ℝ) (t : ℝ) (ht1 : 1/5 < t) (ht2 : t < 2/5) :
+theorem _root_.Tengoku.Leanmodularforms.fdBoundaryFun_sub_i_slitPlane_seg2 (H : ℝ) (t : ℝ) (ht1 : 1/5 < t) (ht2 : t < 2/5) :
     fdBoundaryFun H t - I ∈ Complex.slitPlane := by
   refine Or.inl ?_
   rw [fdBoundaryFun_arc_eq_exp H t (by linarith) (by linarith),
@@ -48,7 +48,7 @@ theorem fdBoundaryFun_sub_i_slitPlane_seg2 (H : ℝ) (t : ℝ) (ht1 : 1/5 < t) (
 /-- On segment 3 (arc after `i`), `γ(t) - i ≠ 0` (cos is strictly negative).
 @isnad1 id=ne.2h2v.s6.c8f9e1575263 from=translated src=- shape=b98e2911 vocab=4de9c8d3
 -/
-theorem fdBoundaryFun_sub_i_ne_zero_seg3 (H : ℝ) (t : ℝ) (ht2 : 2/5 < t) (ht3 : t ≤ 3/5) :
+theorem _root_.Tengoku.Leanmodularforms.fdBoundaryFun_sub_i_ne_zero_seg3 (H : ℝ) (t : ℝ) (ht2 : 2/5 < t) (ht3 : t ≤ 3/5) :
     fdBoundaryFun H t - I ≠ 0 := by
   rw [fdBoundaryFun_arc_eq_exp H t (by linarith) ht3,
     exp_mul_I, ← ofReal_cos, ← ofReal_sin]
@@ -62,7 +62,7 @@ theorem fdBoundaryFun_sub_i_ne_zero_seg3 (H : ℝ) (t : ℝ) (ht2 : 2/5 < t) (ht
 /-- Norm of `γ(2/5 - δ) - i` equals `2|sin(5δπ/12)|`.
 @isnad1 id=eq.2h2v.s7.1fee98c866d5 from=translated src=- shape=a8b5dc19 vocab=4eb91e97
 -/
-theorem fdBoundaryFun_sub_i_norm_left (H : ℝ) {δ : ℝ} (hδ : 0 < δ) (hδs : δ < 1/5) :
+theorem _root_.Tengoku.Leanmodularforms.fdBoundaryFun_sub_i_norm_left (H : ℝ) {δ : ℝ} (hδ : 0 < δ) (hδs : δ < 1/5) :
     ‖fdBoundaryFun H (2/5 - δ) - I‖ = 2 * |Real.sin (5 * δ * Real.pi / 12)| := by
   rw [fdBoundaryFun_arc_dist_I H (2/5 - δ) (by linarith) (by linarith),
     show (fdArcAngle (2/5 - δ) - Real.pi / 2) / 2 = -(5 * δ * Real.pi / 12) by
@@ -71,7 +71,7 @@ theorem fdBoundaryFun_sub_i_norm_left (H : ℝ) {δ : ℝ} (hδ : 0 < δ) (hδs 
 /-- Norm of `γ(2/5 + δ) - i` equals `2|sin(5δπ/12)|`.
 @isnad1 id=eq.2h2v.s7.e16595d48d18 from=translated src=- shape=93e930ec vocab=f9caa1e0
 -/
-theorem fdBoundaryFun_sub_i_norm_right (H : ℝ) {δ : ℝ} (hδ : 0 < δ) (hδs : δ < 1/5) :
+theorem _root_.Tengoku.Leanmodularforms.fdBoundaryFun_sub_i_norm_right (H : ℝ) {δ : ℝ} (hδ : 0 < δ) (hδs : δ < 1/5) :
     ‖fdBoundaryFun H (2/5 + δ) - I‖ = 2 * |Real.sin (5 * δ * Real.pi / 12)| := by
   rw [fdBoundaryFun_arc_dist_I H (2/5 + δ) (by linarith) (by linarith),
     show (fdArcAngle (2/5 + δ) - Real.pi / 2) / 2 = 5 * δ * Real.pi / 12 by
@@ -80,7 +80,7 @@ theorem fdBoundaryFun_sub_i_norm_right (H : ℝ) {δ : ℝ} (hδ : 0 < δ) (hδs
 /-- The norms are equal: `‖γ(2/5-δ) - i‖ = ‖γ(2/5+δ) - i‖`.
 @isnad1 id=eq.2h2v.s7.c208c9ef714e from=translated src=- shape=7525665c vocab=1c5ec516
 -/
-theorem fdBoundaryFun_sub_i_norm_symm (H : ℝ) {δ : ℝ} (hδ : 0 < δ) (hδs : δ < 1/5) :
+theorem _root_.Tengoku.Leanmodularforms.fdBoundaryFun_sub_i_norm_symm (H : ℝ) {δ : ℝ} (hδ : 0 < δ) (hδs : δ < 1/5) :
     ‖fdBoundaryFun H (2/5 - δ) - I‖ = ‖fdBoundaryFun H (2/5 + δ) - I‖ := by
   rw [fdBoundaryFun_sub_i_norm_left H hδ hδs,
     fdBoundaryFun_sub_i_norm_right H hδ hδs]
@@ -89,7 +89,7 @@ theorem fdBoundaryFun_sub_i_norm_symm (H : ℝ) {δ : ℝ} (hδ : 0 < δ) (hδs 
 equals `↑(arg z - arg w) * I`.
 @isnad1 id=eq.3h2v.s6.da5928c55d77 from=translated src=- shape=cfb62628 vocab=f252ab05
 -/
-theorem log_sub_eq_of_equal_norm {z w : ℂ} (_hz : z ≠ 0) (_hw : w ≠ 0)
+theorem _root_.Tengoku.Leanmodularforms.log_sub_eq_of_equal_norm {z w : ℂ} (_hz : z ≠ 0) (_hw : w ≠ 0)
     (hnorm : ‖z‖ = ‖w‖) : Complex.log z - Complex.log w = ↑(z.arg - w.arg) * I := by
   apply Complex.ext <;> simp [Complex.log_re, hnorm, Complex.log_im]
 
@@ -99,7 +99,7 @@ The half-angle factorization gives `γ(2/5-δ) - i = 2sin(α) · exp(-iα)` wher
 `α = 5δπ/12 ∈ (0, π/12)`, hence `arg = -α`.
 @isnad1 id=eq.2h2v.s7.237bb1a0229e from=translated src=- shape=caa60577 vocab=0c057908
 -/
-theorem fdBoundaryFun_arg_left (H : ℝ) {δ : ℝ} (hδ : 0 < δ) (hδs : δ < 1/5) :
+theorem _root_.Tengoku.Leanmodularforms.fdBoundaryFun_arg_left (H : ℝ) {δ : ℝ} (hδ : 0 < δ) (hδs : δ < 1/5) :
     (fdBoundaryFun H (2/5 - δ) - I).arg = -(5 * δ * Real.pi / 12) := by
   rw [fdBoundaryFun_arc_eq_exp H _ (by linarith) (by linarith),
     exp_mul_I, ← ofReal_cos, ← ofReal_sin]
@@ -136,7 +136,7 @@ The half-angle factorization gives `γ(2/5+δ) - i = -2sin(α) · exp(iα)` wher
 `α = 5δπ/12`, so `arg = α - π` (negative since `im < 0`).
 @isnad1 id=eq.2h2v.s7.315049315025 from=translated src=- shape=a5b909e6 vocab=b20e8880
 -/
-theorem fdBoundaryFun_arg_right (H : ℝ) {δ : ℝ} (hδ : 0 < δ) (hδs : δ < 1/5) :
+theorem _root_.Tengoku.Leanmodularforms.fdBoundaryFun_arg_right (H : ℝ) {δ : ℝ} (hδ : 0 < δ) (hδs : δ < 1/5) :
     (fdBoundaryFun H (2/5 + δ) - I).arg = 5 * δ * Real.pi / 12 - Real.pi := by
   rw [fdBoundaryFun_arc_eq_exp H _ (by linarith) (by linarith),
     exp_mul_I, ← ofReal_cos, ← ofReal_sin]
@@ -170,7 +170,7 @@ theorem fdBoundaryFun_arg_right (H : ℝ) {δ : ℝ} (hδ : 0 < δ) (hδs : δ <
 /-- The arg difference: `arg(left) - arg(right) = π - 5δπ/6`.
 @isnad1 id=eq.2h2v.s7.9cd541602b88 from=translated src=- shape=c3304aca vocab=b20e8880
 -/
-theorem fdBoundaryFun_arg_diff (H : ℝ) {δ : ℝ} (hδ : 0 < δ) (hδs : δ < 1/5) :
+theorem _root_.Tengoku.Leanmodularforms.fdBoundaryFun_arg_diff (H : ℝ) {δ : ℝ} (hδ : 0 < δ) (hδs : δ < 1/5) :
     (fdBoundaryFun H (2/5 - δ) - I).arg -
     (fdBoundaryFun H (2/5 + δ) - I).arg = Real.pi - 5 * δ * Real.pi / 6 := by
   rw [fdBoundaryFun_arg_left H hδ hδs, fdBoundaryFun_arg_right H hδ hδs]
@@ -180,7 +180,7 @@ theorem fdBoundaryFun_arg_diff (H : ℝ) {δ : ℝ} (hδ : 0 < δ) (hδs : δ < 
 `log(γ(2/5-δ) - i) - log(γ(2/5+δ) - i) → πi`.
 @isnad1 id=tendsto.0h1v.s7.a88ca5233a33 from=translated src=- shape=01d8c858 vocab=706604ca
 -/
-theorem fdBoundaryFun_log_diff_core_tendsto (H : ℝ) :
+theorem _root_.Tengoku.Leanmodularforms.fdBoundaryFun_log_diff_core_tendsto (H : ℝ) :
     Tendsto (fun δ => Complex.log (fdBoundaryFun H (2/5 - δ) - I) -
       Complex.log (fdBoundaryFun H (2/5 + δ) - I))
       (𝓝[>] 0) (𝓝 (↑Real.pi * I)) := by
@@ -206,3 +206,4 @@ theorem fdBoundaryFun_log_diff_core_tendsto (H : ℝ) :
   exact htend.congr' (hkey.mono fun _ h => h.symm)
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

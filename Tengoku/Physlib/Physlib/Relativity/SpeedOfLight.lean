@@ -33,7 +33,7 @@ and should be thought of as the speed of light in some chosen but arbitrary syst
 -/
 
 @[expose] public section
-
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
 /-!
 
 ## A. The Speed of Light type
@@ -42,12 +42,12 @@ and should be thought of as the speed of light in some chosen but arbitrary syst
 
 /-- The speed of light in a vacuum. An element of this type should be thought of as
   the speed of light in some chosen but arbitrary system of units. -/
-structure SpeedOfLight where
+structure _root_.Tengoku.Physlib.SpeedOfLight where
   /-- The underlying value of the speed of light. -/
   val : ℝ
   pos : 0 < val
 
-namespace SpeedOfLight
+namespace Tengoku.Physlib.SpeedOfLight
 
 /-!
 
@@ -86,4 +86,5 @@ lemma val_nonneg (c : SpeedOfLight) : 0 ≤ (c : ℝ) := le_of_lt c.pos
 @[simp]
 lemma val_ne_zero (c : SpeedOfLight) : (c : ℝ) ≠ 0 := ne_of_gt c.pos
 
-end SpeedOfLight
+end Tengoku.Physlib.SpeedOfLight
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

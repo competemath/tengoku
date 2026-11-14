@@ -3,13 +3,13 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.BrownianMotion end Tengoku.BrownianMotion open Tengoku.BrownianMotion 
 open MeasureTheory ENNReal
 
 /--
 @isnad1 id=le.2h5v.s6.f2596c169eff from=translated src=- shape=42766c5e vocab=5d11972d
 -/
-lemma rpow_lintegral_le {X : Type*} {mX : MeasurableSpace X} {μ : Measure X} {f : X → ℝ≥0∞}
+lemma _root_.Tengoku.BrownianMotion.rpow_lintegral_le {X : Type*} {mX : MeasurableSpace X} {μ : Measure X} {f : X → ℝ≥0∞}
     (hf : AEMeasurable f μ) {r : ℝ} (hr : 1 ≤ r) :
     (∫⁻ x, f x ∂μ) ^ r ≤ (μ Set.univ) ^ (r - 1) * ∫⁻ x, (f x) ^ r ∂μ := calc
   (∫⁻ x, f x ∂μ) ^ r
@@ -63,3 +63,4 @@ lemma rpow_finsetSum_le_finsetSum_rpow {p : ℝ} {ι : Type*} {I : Finset ι} {f
       (ENNReal.rpow_add_le_add_rpow _ _ (le_of_lt hp) hp1).trans (by gcongr)
 
 end ENNReal
+-- Tengoku: root names of this library moved to Tengoku.BrownianMotion so they do not collide with other libraries (generated)

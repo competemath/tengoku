@@ -29,16 +29,16 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.Primenumbertheoremand end Tengoku.Primenumbertheoremand open Tengoku.Primenumbertheoremand 
 open scoped Topology
 open Real Set Filter Topology MeasureTheory Complex
 
 /-- Fractional-part kernel `{u} · u^{-s-1}` (`K_s` in the Abel formula). -/
-noncomputable def zetaAbelFractKernel (s : ℂ) (u : ℝ) : ℂ :=
+noncomputable def _root_.Tengoku.Primenumbertheoremand.zetaAbelFractKernel (s : ℂ) (u : ℝ) : ℂ :=
   ((Int.fract u : ℝ) : ℂ) * (u : ℂ) ^ (-s - 1)
 
 /-- `{u} · u^{-s-1}` is dominated by `u^{- re s - 1}` for `u ≥ 1`. -/
-theorem norm_zetaAbelFractKernel_le (u : ℝ) (hu : 1 ≤ u) (s : ℂ) :
+theorem _root_.Tengoku.Primenumbertheoremand.norm_zetaAbelFractKernel_le (u : ℝ) (hu : 1 ≤ u) (s : ℂ) :
     ‖zetaAbelFractKernel s u‖ ≤ u ^ (-s.re - 1) := by
   have hu0 : 0 < u := one_pos.trans_le hu
   have hfract_le1 : ‖((Int.fract u : ℝ) : ℂ)‖ ≤ 1 := by simpa using Int.fract_abs_le_one u
@@ -209,3 +209,4 @@ theorem integral_analytic (s : ℂ) (hs : 0 < s.re) :
     (f := fun z => ∫ u in Ioi (1 : ℝ), zetaAbelFractKernel z u)).2 hDiff
 
 end ZetaAbelFractKernel
+-- Tengoku: root names of this library moved to Tengoku.Primenumbertheoremand so they do not collide with other libraries (generated)

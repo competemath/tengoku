@@ -1,0 +1,108 @@
+leakscan: 8 global instances (2 can fire outside the library), 0 scoped; 11 global simp lemmas (7 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 97 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: instance Sym2.instCoeMultiset registered in Tengoku.Formalbook.FormalBook.Mathlib.EdgeFinset (declared at line 45)
+leak: simp Sym2.setOf_mem_eq registered in Tengoku.Formalbook.FormalBook.Mathlib.EdgeFinset (declared at line 17)
+leak: simp Sym2.toMultiset_mk registered in Tengoku.Formalbook.FormalBook.Mathlib.EdgeFinset (declared at line 47)
+leak: simp Sym2.coe_toFinset registered in Tengoku.Formalbook.FormalBook.Mathlib.EdgeFinset (declared at line 67)
+leak: instance _private.Tengoku.Formalbook.FormalBook.Ch28.BrouwerCovering.0.instContractibleSpaceElemComplexClosedBallOfNatReal registered in Tengoku.Formalbook.FormalBook.Ch28.BrouwerCovering (declared at line 96)
+leak: simp intervalIntegral.intervalIntegrable_inv_sqrt_one_sub_sq registered in Tengoku.Formalbook.FormalBook.Mathlib.Analysis.SpecialFunctions.Integrability.Basic (declared at line 5)
+leak: simp intervalIntegral.integral_inv_sqrt_one_sub_sq registered in Tengoku.Formalbook.FormalBook.Mathlib.Analysis.SpecialFunctions.Integrals.Basic (declared at line 9)
+leak: simp intervalIntegral.integral_inv_sq_add_sq registered in Tengoku.Formalbook.FormalBook.Mathlib.Analysis.SpecialFunctions.Integrals.Basic (declared at line 50)
+leak: simp arctan_sqrt_three registered in Tengoku.Formalbook.FormalBook.Mathlib.Analysis.SpecialFunctions.Trigonometric.Arctan (declared at line 5)
+root: eval_homogeneousComponent_eq_zero_of_forall_eval_line_eq_zero
+root: erdos_gallai_f_mul_neg
+root: erdos_gallai_f_nonneg
+root: isOpen
+root: closure_inter_sphere_disjoint_neg_of_open_inter_sphere
+root: exists_image_primes_eq_primesBelow
+root: cauchy_amgm_rpow
+root: lemma_35_2
+root: infinity_of_primes₂
+root: kneser_cover_eq_univ
+root: erdos_gallai_deriv_at_one
+root: KneserGraph_no_edges_of_lt_two_mul
+root: erdos_gallai_C_sq_nonneg
+root: invRealHom
+root: theorem_35_3'
+root: lemma_35_1
+root: S1_eq_smoothNumbers
+root: erdos_gallai_T
+root: lemma_35_1_aux
+root: dalembert_lemma
+root: is_open_open_set_for_subsets
+root: sub_one_le_sub_one
+root: sq_sub_sq_ge
+root: hm_le_gm
+root: open_set_for_subsets
+root: erdos_gallai_C_sq
+root: restrictTotalDegree_eq_span
+root: cauchy_amgm_pow2
+root: erdos_gallai_area
+root: primeCountingReal
+root: S₁
+root: prime_counting_lemma
+root: infinity_of_primes₃
+root: GeometricKneserGraph
+root: cauchy_amgm_fintype
+root: cauchy_amgm_backward
+root: cauchy_amgm
+root: linePoly
+root: erdos_gallai_f_integrable
+root: erdos_gallai_f
+root: momentCurve
+root: erdos_gallai_f_continuous
+root: prod_sub_one_mul_prod_add_one
+root: cauchy_amgm_doubling
+root: prod_Icc_le
+root: euler_product_rearrangement
+root: integral_one_sub_sq
+root: momentCurvePoints
+root: brouwer_fixed_point_2d_from_complex
+root: erdos_gallai_f_mul_neg_ge
+root: infinity_of_primes₅
+root: N
+root: le_binom_sum
+root: coeff_linePoly_eq_homogeneousComponent_eval
+root: f_abs_summable
+root: IsKakeyaSet
+root: arithmetic_f
+root: cauchy_amgm_backward_iter
+root: summable_invRealHom_smoothNumbers
+root: euler_series
+root: invRealMonoidHom
+root: CauchyAMGM
+root: instFintypeExponentsLe
+root: prod_Icc_succ_div
+root: eval_linePoly
+root: card_exponents_le
+root: cauchy_amgm_base
+root: cauchy_amgm_two
+root: erdos_gallai_deriv_product
+root: AlmostInjective
+root: am_gm_sqrt
+root: log_riemann_bound
+root: H_P4_1
+root: fundamental_theorem_of_algebra
+root: eval_homogeneousComponent_eq_zero_of_vanishes_on_Kakeya
+root: momentCurve_general_position
+root: arctan_sqrt_three
+root: momentCurvePoints_generalPosition
+root: exponents_le
+root: kneser_C
+root: antipodal_in_open_set_implies_disjoint_sets
+root: is_closed_kneser_C
+root: no_antipodal_in_C
+root: erdos_gallai_integral_neg_eq
+root: fermatProduct
+root: norm_invRealHom_prime_lt_one
+root: natDegree_linePoly_le
+root: exponents_le_finite
+root: erdos_gallai_deriv_at_neg_one
+root: momentCurvePoints_card
+root: dim_restrictTotalDegree
+root: erdos_gallai_integral_bound
+root: KneserGraph
+root: KneserGraph_chromaticNumber_le
+root: infinity_of_primes₁
+root: GeneralPosition
+root: theorem_35_3

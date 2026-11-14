@@ -15,7 +15,7 @@ a prime from the localisation and cancelling powers of p.
 -/
 
 noncomputable section
-
+namespace Tengoku.AndersonConjecture end Tengoku.AndersonConjecture open Tengoku.AndersonConjecture 
 open Cardinal Ideal Set Pointwise
 
 section Nagata
@@ -25,14 +25,14 @@ variable {R₀ : Type*} [CommRing R₀] [IsDomain R₀]
 /--
 @isnad1 id=le.1h2v.s6.ba690f884d77 from=translated src=- shape=b2c33d8d vocab=10e20316
 -/
-theorem nagata_powers_le_nonZeroDivisors (p : R₀) (hp : Prime p) :
+theorem _root_.Tengoku.AndersonConjecture.nagata_powers_le_nonZeroDivisors (p : R₀) (hp : Prime p) :
     Submonoid.powers p ≤ nonZeroDivisors R₀ :=
   powers_le_nonZeroDivisors_of_noZeroDivisors hp.ne_zero
 
 /--
 @isnad1 id=injectiv.1h2v.s7.128fc0992e60 from=translated src=- shape=204ed196 vocab=21caedfd
 -/
-theorem nagata_algebraMap_injective (p : R₀) (hp : Prime p) :
+theorem _root_.Tengoku.AndersonConjecture.nagata_algebraMap_injective (p : R₀) (hp : Prime p) :
     Function.Injective (algebraMap R₀ (Localization.Away p)) :=
   IsLocalization.injective _ (nagata_powers_le_nonZeroDivisors p hp)
 
@@ -40,7 +40,7 @@ theorem nagata_algebraMap_injective (p : R₀) (hp : Prime p) :
     then `q ∣ a`. We peel off factors of `p` one at a time.
 @isnad1 id=dvd.3h5v.s6.83e8469f1af4 from=translated src=- shape=5b909aa4 vocab=0d7be69c
 -/
-theorem dvd_of_dvd_mul_prime_pow {p q a : R₀} (hp : Prime p) (hpq : ¬p ∣ q) :
+theorem _root_.Tengoku.AndersonConjecture.dvd_of_dvd_mul_prime_pow {p q a : R₀} (hp : Prime p) (hpq : ¬p ∣ q) :
     ∀ n : ℕ, q ∣ a * p ^ n → q ∣ a := by
   intro n
   induction n with
@@ -61,7 +61,7 @@ theorem dvd_of_dvd_mul_prime_pow {p q a : R₀} (hp : Prime p) (hpq : ¬p ∣ q)
     then `q` is prime in `R₀`.
 @isnad1 id=prime.3h3v.s8.3eda45d639b6 from=translated src=- shape=2f2fed1a vocab=e31ef3e3
 -/
-theorem prime_of_image_prime (p : R₀) (hp : Prime p) (q : R₀)
+theorem _root_.Tengoku.AndersonConjecture.prime_of_image_prime (p : R₀) (hp : Prime p) (q : R₀)
     (hpq : ¬p ∣ q)
     (hq_loc : Prime (algebraMap R₀ (Localization.Away p) q)) :
     Prime q := by
@@ -93,7 +93,7 @@ theorem prime_of_image_prime (p : R₀) (hp : Prime p) (q : R₀)
     if inverting one prime element yields a UFD, the original ring was already a UFD.
 @isnad1 id=uniquefa.2h2v.s5.705f23eeece7 from=translated src=- shape=15d07ca6 vocab=d0e1ee87
 -/
-theorem nagata_criterion [WfDvdMonoid R₀]
+theorem _root_.Tengoku.AndersonConjecture.nagata_criterion [WfDvdMonoid R₀]
     (p : R₀) (hp : Prime p)
     (hUFD_loc : UniqueFactorizationMonoid (Localization.Away p)) :
     UniqueFactorizationMonoid R₀ := by
@@ -172,3 +172,4 @@ theorem nagata_criterion [WfDvdMonoid R₀]
 end Nagata
 
 end
+-- Tengoku: root names of this library moved to Tengoku.AndersonConjecture so they do not collide with other libraries (generated)

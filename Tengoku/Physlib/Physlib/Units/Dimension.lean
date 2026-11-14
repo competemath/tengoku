@@ -33,7 +33,7 @@ a suitable basis `B`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
 open NNReal
 
 /-!
@@ -44,7 +44,7 @@ open NNReal
 
 /-- A choice of exponent-tuple representation for a basis `B`. Native addition on `Exponents`
 is used for dimension multiplication, while `exponentEquiv` provides the basis-generic API. -/
-class DimensionBasis (B : Type) where
+class _root_.Tengoku.Physlib.DimensionBasis (B : Type) where
   /-- The native tuple of exponents for this basis. -/
   Exponents : Type
   /-- The additive structure on native exponent tuples. -/
@@ -54,7 +54,7 @@ class DimensionBasis (B : Type) where
 
 attribute [instance] DimensionBasis.addCommGroup
 
-namespace DimensionBasis
+namespace Tengoku.Physlib.DimensionBasis
 
 /-- The function-backed exponent representation for a basis without a specialized tuple. -/
 def pi (B : Type) : DimensionBasis B where
@@ -62,15 +62,15 @@ def pi (B : Type) : DimensionBasis B where
   addCommGroup := inferInstance
   exponentEquiv := AddEquiv.refl _
 
-end DimensionBasis
+end Tengoku.Physlib.DimensionBasis
 
 /-- A dimension over a represented basis `B`. PhysLib's default basis is
 `LTMCTDimensionBase`. -/
-structure Dimension (B : Type) [DimensionBasis B] where
+structure _root_.Tengoku.Physlib.Dimension (B : Type) [DimensionBasis B] where
   /-- The dimension's native exponent tuple. -/
   exponents : DimensionBasis.Exponents B
 
-namespace Dimension
+namespace Tengoku.Physlib.Dimension
 
 variable {B : Type} [DimensionBasis B]
 
@@ -262,4 +262,5 @@ def Embedding.ofBasis {B B' : Type} [DimensionBasis B] [DimensionBasis B']
     simpa only [extendHom, MonoidHom.coe_mk, OneHom.coe_mk, extend_exponent_apply hf]
       using h2
 
-end Dimension
+end Tengoku.Physlib.Dimension
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

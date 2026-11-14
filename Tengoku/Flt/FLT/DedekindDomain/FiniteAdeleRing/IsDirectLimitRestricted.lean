@@ -18,7 +18,7 @@ Dedekind domain is the direct limit of its `S`-finite-adele subrings, where
 -/
 
 @[expose] public section
-
+namespace Tengoku.Flt end Tengoku.Flt open Tengoku.Flt 
 namespace RestrictedProduct
 
 open Set Filter
@@ -33,7 +33,7 @@ end directedSystem
 
 section inclusion
 
-open scoped RestrictedProduct TensorProduct IsDirectLimit
+open scoped RestrictedProduct TensorProduct Tengoku.Flt.IsDirectLimit
 
 variable {A : Type*} [CommRing A] {ι : Type*} {R : ι → Type*} {ℱ : Filter ι}
   [Π i, AddCommGroup (R i)] [∀ i, Module A (R i)] {C : ∀ i, Submodule A (R i)} {M : Type*}
@@ -47,3 +47,4 @@ variable {ι : Type*} (R : ι → Type*) {ℱ : Filter ι} (A : Type*) [CommRing
 variable [Π i, AddCommGroup (R i)] [∀ i, Module A (R i)] {C : ∀ i, Submodule A (R i)}
 
 end RestrictedProduct
+-- Tengoku: root names of this library moved to Tengoku.Flt so they do not collide with other libraries (generated)

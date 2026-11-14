@@ -8,11 +8,11 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
 --Can this be rewritten more generally? For `finiteness` to work, I don't know how.
 --PR'ed in #33105
 @[aesop (rule_sets := [finiteness]) unsafe apply]
-theorem ite_eq_top {α : Type*} [Top α] (h : Prop) [Decidable h] {x y : α} (hx : x ≠ ⊤) (hy : y ≠ ⊤) :
+theorem _root_.Tengoku.Physlib.ite_eq_top {α : Type*} [Top α] (h : Prop) [Decidable h] {x y : α} (hx : x ≠ ⊤) (hy : y ≠ ⊤) :
     (if h then x else y) ≠ ⊤ := by
   split <;> assumption
 
@@ -41,26 +41,26 @@ variable {ι α : Type*} [i : Nonempty ι] [ConditionallyCompleteLattice α]
 
 /- This isn't marked as `simp` because rewriting from a sup over a `CompleteLattice` into a
 `ConditionallyCompleteLattice` would, pretty often, be undesirable. -/
-theorem subtype_val_iSup (h : ∀ i, f i ∈ Set.Icc a b) :
+theorem _root_.Tengoku.Physlib.subtype_val_iSup (h : ∀ i, f i ∈ Set.Icc a b) :
     (⨆ i, (⟨f i, h i⟩ : ↑(Set.Icc a b))).val = ⨆ i, f i := by
   simp only [iSup, sSup, Set.range_eq_empty_iff, not_isEmpty_of_nonempty, reduceDIte]
   congr 1; ext1
   simp
 
-theorem subtype_val_iSup' (h : ∀ i, f i ∈ Set.Icc a b) :
+theorem _root_.Tengoku.Physlib.subtype_val_iSup' (h : ∀ i, f i ∈ Set.Icc a b) :
     ⨆ i, (⟨f i, h i⟩ : ↑(Set.Icc a b)) =
       ⟨⨆ i, f i, ⟨(h i.some).1.trans (le_ciSup ⟨b, by intro; grind⟩ _), ciSup_le (h ·|>.2)⟩⟩ := by
   rw [Subtype.ext_iff, subtype_val_iSup]
 
 /- This isn't marked as `simp` because rewriting from a sup over a `CompleteLattice` into a
 `ConditionallyCompleteLattice` would, pretty often, be undesirable. -/
-theorem subtype_val_iInf (h : ∀ i, f i ∈ Set.Icc a b) :
+theorem _root_.Tengoku.Physlib.subtype_val_iInf (h : ∀ i, f i ∈ Set.Icc a b) :
     (⨅ i, (⟨f i, h i⟩ : ↑(Set.Icc a b))).val = ⨅ i, f i := by
   simp only [iInf, sInf, Set.range_eq_empty_iff, not_isEmpty_of_nonempty, reduceDIte]
   congr 1; ext1
   simp
 
-theorem subtype_val_iInf' (h : ∀ i, f i ∈ Set.Icc a b) :
+theorem _root_.Tengoku.Physlib.subtype_val_iInf' (h : ∀ i, f i ∈ Set.Icc a b) :
     ⨅ i, (⟨f i, h i⟩ : ↑(Set.Icc a b)) =
       ⟨⨅ i, f i, ⟨le_ciInf (h ·|>.1), (ciInf_le ⟨a, by intro; grind⟩ _).trans (h i.some).2⟩⟩ := by
   rw [Subtype.ext_iff, subtype_val_iInf]
@@ -86,7 +86,7 @@ protected lemma ENNReal.bdd_le_mul_tendsto_zero
 --PULLOUT: Belongs in Mathlib/Algebra/Order/Group/Pointwise/CompleteLattice.lean
 -- (after appropriately generalizing to MulPosMono)
 open scoped Pointwise in
-theorem csInf_mul_nonneg {s t : Set ℝ}
+theorem _root_.Tengoku.Physlib.csInf_mul_nonneg {s t : Set ℝ}
   (hs₀ : s.Nonempty) (hs₁ : ∀ x ∈ s, 0 ≤ x) (ht₀ : t.Nonempty) (ht₁ : ∀ x ∈ t, 0 ≤ x) :
     sInf (s * t) = sInf s * sInf t := by
   apply le_antisymm
@@ -163,7 +163,7 @@ lemma Multiset.map_univ_eq_iff {α β : Type*} [Fintype α] (f g : α → β) :
 /--
 If two functions from finite types have the same multiset of values, there exists a bijection between the domains that commutes with the functions.
 -/
-lemma exists_equiv_of_multiset_map_eq {α β γ : Type*} [Fintype α] [Fintype β] [DecidableEq γ]
+lemma _root_.Tengoku.Physlib.exists_equiv_of_multiset_map_eq {α β γ : Type*} [Fintype α] [Fintype β] [DecidableEq γ]
     (f : α → γ) (g : β → γ) (h : Multiset.map f Finset.univ.val = Multiset.map g Finset.univ.val) :
     ∃ e : α ≃ β, f = g ∘ e := by
   -- Since the multisets of values are equal, the cardinalities of the domains must be equal (as the multiset size is the cardinality of the domain). Thus there exists a bijection `σ : α ≃ β`.
@@ -180,3 +180,4 @@ lemma exists_equiv_of_multiset_map_eq {α β γ : Type*} [Fintype α] [Fintype �
   obtain ⟨e', he'⟩ : ∃ e' : α ≃ α, f = (g ∘ σ) ∘ e' := by
     exact (Multiset.map_univ_eq_iff f (g ∘ ⇑σ)).mp hσ;
   exact ⟨ e'.trans σ, by simp_all [ Function.comp ]; grind⟩
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

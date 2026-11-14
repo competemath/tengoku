@@ -13,7 +13,7 @@ import Tengoku
 -/
 
 noncomputable section
-
+namespace Tengoku.Formalbook end Tengoku.Formalbook open Tengoku.Formalbook 
 /-- If an open set `U` intersected with a symmetric closed set `S` (like a sphere) contains no
   antipodal points, then the closure of that intersection also contains no antipodal points.
   Since we need to apply this to the sphere, which is in particular closed, we may take the closure
@@ -22,7 +22,7 @@ noncomputable section
   what is required.
 @isnad1 id=disjoint.3h3v.s7.73515f4b3e61 from=translated src=- shape=b90e4788 vocab=b3725242
 -/
-lemma closure_inter_sphere_disjoint_neg_of_open_inter_sphere {E : Type*} [NormedAddCommGroup E]
+lemma _root_.Tengoku.Formalbook.closure_inter_sphere_disjoint_neg_of_open_inter_sphere {E : Type*} [NormedAddCommGroup E]
     (U : Set E) (h_open : IsOpen U) (S : Set E)
     (hS_symm : ∀ x ∈ S, -x ∈ S) (h_disjoint : Disjoint (U ∩ S) {x | -x ∈ U ∩ S}) :
     Disjoint (closure (U ∩ S)) {x | -x ∈ U ∩ S} := by
@@ -39,13 +39,13 @@ lemma closure_inter_sphere_disjoint_neg_of_open_inter_sphere {E : Type*} [Normed
 
 /-- A Kneser graph for natural numbers `n`, `k` is a graph with vertices being `k`-subsets of
   `{1,..,n}` and edges between disjoint sets. -/
-def KneserGraph (n k : ℕ) : SimpleGraph {s : Finset (Fin n) // s.card = k} :=
+def _root_.Tengoku.Formalbook.KneserGraph (n k : ℕ) : SimpleGraph {s : Finset (Fin n) // s.card = k} :=
   SimpleGraph.fromRel (fun v w => Disjoint v.val w.val)
 
 /-- If `n < 2k`, the Kneser graph has no edges.
 @isnad1 id=eq.1h2v.s6.5d60f77a295c from=translated src=- shape=e6b9d9b8 vocab=84ddd424
 -/
-lemma KneserGraph_no_edges_of_lt_two_mul (n k : ℕ) (h : n < 2 * k) :
+lemma _root_.Tengoku.Formalbook.KneserGraph_no_edges_of_lt_two_mul (n k : ℕ) (h : n < 2 * k) :
     (KneserGraph n k).edgeSet = ∅ := by
       ext ⟨s, hs⟩;
       simp +zetaDelta at *;
@@ -59,7 +59,7 @@ lemma KneserGraph_no_edges_of_lt_two_mul (n k : ℕ) (h : n < 2 * k) :
 /-- The chromatic number of the Kneser graph `K(2k+d, k)` is at most `d+2`.
 @isnad1 id=le.2h3v.s6.60c441beac11 from=translated src=- shape=1022bde3 vocab=2e230ed7
 -/
-lemma KneserGraph_chromaticNumber_le (n k d : ℕ) (hk : 1 ≤ k) (h : n = 2 * k + d) :
+lemma _root_.Tengoku.Formalbook.KneserGraph_chromaticNumber_le (n k d : ℕ) (hk : 1 ≤ k) (h : n = 2 * k + d) :
     (KneserGraph n k).chromaticNumber ≤ d + 2 := by
   let color : Finset (Fin n) → Fin (d + 2) := fun A =>
     if hA : ∃ x ∈ A, (x : ℕ) < d + 1 then
@@ -124,18 +124,18 @@ lemma KneserGraph_chromaticNumber_le (n k d : ℕ) (hk : 1 ≤ k) (h : n = 2 * k
 
 /-- A set of points `S` in `R^d` is in general position if every subset of size at most `d` is
   linearly independent. -/
-def GeneralPosition {d : ℕ} (S : Finset (EuclideanSpace ℝ (Fin d))) : Prop :=
+def _root_.Tengoku.Formalbook.GeneralPosition {d : ℕ} (S : Finset (EuclideanSpace ℝ (Fin d))) : Prop :=
   ∀ s ⊆ S, s.card ≤ d → LinearIndependent ℝ (fun x : s => (x : EuclideanSpace ℝ (Fin d)))
 
 /-- The moment curve is an explicit construction to obtain points in general position. -/
-def momentCurve (d : ℕ) (t : ℝ) : EuclideanSpace ℝ (Fin d) :=
+def _root_.Tengoku.Formalbook.momentCurve (d : ℕ) (t : ℝ) : EuclideanSpace ℝ (Fin d) :=
   (WithLp.equiv 2 _).symm (fun (i : Fin d) => t ^ (i : ℕ))
 
 /-- Points on the moment curve are in general position. In particular, there exist a set of points
   in general position. We do this to construct the points explicitly for the proof.
 @isnad1 id=linearin.1h2v.s7.a54b2ca5c27f from=translated src=- shape=d66dfe0c vocab=0eac239c
 -/
-lemma momentCurve_general_position {d : ℕ} {s : Finset ℝ} (hs : s.card ≤ d) :
+lemma _root_.Tengoku.Formalbook.momentCurve_general_position {d : ℕ} {s : Finset ℝ} (hs : s.card ≤ d) :
     LinearIndependent ℝ (fun x : s => momentCurve d x) := by
   have h_vandermonde_inv : ∀ (c : Fin s.card → ℝ),
       (∀ j : Fin d, ∑ i : Fin s.card, c i * (s.orderEmbOfFin rfl i) ^ j.val = 0) → c = 0 := by
@@ -178,7 +178,7 @@ lemma momentCurve_general_position {d : ℕ} {s : Finset ℝ} (hs : s.card ≤ d
   In our case, `V` will be an element of the chosen cover of `k`-subsets of `2k + d₀`
   points in general position on the sphere `S^{d₀ + 1}`. -/
 @[nolint defsWithUnderscore]
-def open_set_for_subsets {d : ℕ} (V : Set (Finset (EuclideanSpace ℝ (Fin d)))) :
+def _root_.Tengoku.Formalbook.open_set_for_subsets {d : ℕ} (V : Set (Finset (EuclideanSpace ℝ (Fin d)))) :
   Set (EuclideanSpace ℝ (Fin d)) :=
   { x | ∃ A ∈ V, ∀ y ∈ A, inner (𝕜 := ℝ) x y > 0 }
 
@@ -186,7 +186,7 @@ def open_set_for_subsets {d : ℕ} (V : Set (Finset (EuclideanSpace ℝ (Fin d))
   `V` is open.
 @isnad1 id=isopen.0h2v.s5.53372f09c5e1 from=translated src=- shape=a9e82abd vocab=943c71fd
 -/
-lemma is_open_open_set_for_subsets {d : ℕ} (V : Set (Finset (EuclideanSpace ℝ (Fin d)))) :
+lemma _root_.Tengoku.Formalbook.is_open_open_set_for_subsets {d : ℕ} (V : Set (Finset (EuclideanSpace ℝ (Fin d)))) :
     IsOpen (open_set_for_subsets V) := by
       convert isOpen_biUnion fun A hA => ?_;
       rotate_left;
@@ -205,7 +205,7 @@ lemma is_open_open_set_for_subsets {d : ℕ} (V : Set (Finset (EuclideanSpace �
   antipodal points.
 @isnad1 id=false.6h5v.s10.2aedf299e925 from=translated src=- shape=cdc2b917 vocab=a68b24d1
 -/
-lemma no_antipodal_in_C {k d : ℕ} (P : Finset (EuclideanSpace ℝ (Fin (d + 2))))
+lemma _root_.Tengoku.Formalbook.no_antipodal_in_C {k d : ℕ} (P : Finset (EuclideanSpace ℝ (Fin (d + 2))))
     (hP_card : P.card = 2 * k + d) (hP_gp : GeneralPosition P)
     (C : Set (EuclideanSpace ℝ (Fin (d + 2))))
     (hC : C = { x | ∀ A ⊆ P, A.card = k → ∃ y ∈ A, inner (𝕜 := ℝ) x y ≤ 0 }) :
@@ -265,7 +265,7 @@ lemma no_antipodal_in_C {k d : ℕ} (P : Finset (EuclideanSpace ℝ (Fin (d + 2)
 /--
 @isnad1 id=ex.2h3v.s7.0258c6727978 from=translated src=- shape=d8a6d14e vocab=4fcc3a40
 -/
-lemma antipodal_in_open_set_implies_disjoint_sets {d : ℕ}
+lemma _root_.Tengoku.Formalbook.antipodal_in_open_set_implies_disjoint_sets {d : ℕ}
     (V : Set (Finset (EuclideanSpace ℝ (Fin d)))) (x : EuclideanSpace ℝ (Fin d))
     (hx : x ∈ open_set_for_subsets V) (hnegx : -x ∈ open_set_for_subsets V) :
     ∃ A B, A ∈ V ∧ B ∈ V ∧ Disjoint A B := by
@@ -279,14 +279,14 @@ lemma antipodal_in_open_set_implies_disjoint_sets {d : ℕ}
   open hemisphere centered at `y`. In particular, here `C` contains all the points outside the
   sphere as well. -/
 @[nolint defsWithUnderscore]
-def kneser_C {d : ℕ} (P : Finset (EuclideanSpace ℝ (Fin d))) (k : ℕ) :
+def _root_.Tengoku.Formalbook.kneser_C {d : ℕ} (P : Finset (EuclideanSpace ℝ (Fin d))) (k : ℕ) :
   Set (EuclideanSpace ℝ (Fin d)) :=
   { x | ∀ A ⊆ P, A.card = k → ∃ y ∈ A, inner (𝕜 := ℝ) x y ≤ 0 }
 
 /-- The union of the open sets `O_i` and the set `C` covers the entire space.
 @isnad1 id=eq.1h5v.s7.5aa63b921af6 from=translated src=- shape=395ee997 vocab=05da1d0e
 -/
-lemma kneser_cover_eq_univ {d k n : ℕ} (P : Finset (EuclideanSpace ℝ (Fin d)))
+lemma _root_.Tengoku.Formalbook.kneser_cover_eq_univ {d k n : ℕ} (P : Finset (EuclideanSpace ℝ (Fin d)))
     (V : Fin n → Set (Finset (EuclideanSpace ℝ (Fin d))))
     (h_partition : (⋃ i, V i) = { A | A ⊆ P ∧ A.card = k }) :
     (⋃ i, open_set_for_subsets (V i)) ∪ kneser_C P k = Set.univ := by
@@ -303,7 +303,7 @@ lemma kneser_cover_eq_univ {d k n : ℕ} (P : Finset (EuclideanSpace ℝ (Fin d)
 /-- The set `C` defined for the Kneser graph proof is closed.
 @isnad1 id=isclosed.0h3v.s5.e0947349f95c from=translated src=- shape=c43e9011 vocab=1b0432b6
 -/
-lemma is_closed_kneser_C {d k : ℕ} (P : Finset (EuclideanSpace ℝ (Fin d))) :
+lemma _root_.Tengoku.Formalbook.is_closed_kneser_C {d k : ℕ} (P : Finset (EuclideanSpace ℝ (Fin d))) :
     IsClosed (kneser_C P k) := by
       set V := { A : Finset (EuclideanSpace ℝ (Fin d)) | A ⊆ P ∧ A.card = k } with hV;
       have hC_eq : kneser_C P k =
@@ -315,7 +315,7 @@ lemma is_closed_kneser_C {d k : ℕ} (P : Finset (EuclideanSpace ℝ (Fin d))) :
 
 /-- The geometric Kneser graph on a set of points `P` with parameter `k` has vertices as
   `k`-subsets of `P` and edges between disjoint sets. -/
-def GeometricKneserGraph {d : ℕ} (P : Finset (EuclideanSpace ℝ (Fin d))) (k : ℕ) :
+def _root_.Tengoku.Formalbook.GeometricKneserGraph {d : ℕ} (P : Finset (EuclideanSpace ℝ (Fin d))) (k : ℕ) :
     SimpleGraph {s : Finset (EuclideanSpace ℝ (Fin d)) // s ⊆ P ∧ s.card = k} :=
   SimpleGraph.fromRel (fun v w => Disjoint v.val w.val)
 
@@ -340,13 +340,13 @@ lemma SimpleGraph.Iso.chromaticNumber_eq {V W : Type*} {G : SimpleGraph V} {H : 
         exact chromaticNumber_le_of_forall_imp h_colorable
 
 /-- The set of `n` points on the moment curve in `R^d`. -/
-def momentCurvePoints (n d : ℕ) : Finset (EuclideanSpace ℝ (Fin d)) :=
+def _root_.Tengoku.Formalbook.momentCurvePoints (n d : ℕ) : Finset (EuclideanSpace ℝ (Fin d)) :=
   (Finset.univ : Finset (Fin n)).image (fun (i : Fin n) => momentCurve d (i : ℝ))
 
 /-- The set of points on the moment curve has size `n`, provided `d \geq 2`.
 @isnad1 id=eq.1h2v.s4.01cb285bc5ef from=translated src=- shape=8c2d04de vocab=652a0011
 -/
-lemma momentCurvePoints_card (n d : ℕ) (hd : 2 ≤ d) : (momentCurvePoints n d).card = n := by
+lemma _root_.Tengoku.Formalbook.momentCurvePoints_card (n d : ℕ) (hd : 2 ≤ d) : (momentCurvePoints n d).card = n := by
   rw [momentCurvePoints, Finset.card_image_of_injective]
   · simp
   · intro i j h
@@ -362,7 +362,7 @@ lemma momentCurvePoints_card (n d : ℕ) (hd : 2 ≤ d) : (momentCurvePoints n d
 /-- The points on the moment curve are in general position.
 @isnad1 id=generalp.0h2v.s5.52bcf11273f6 from=translated src=- shape=8be9fca4 vocab=81bb241f
 -/
-lemma momentCurvePoints_generalPosition (n d : ℕ) :
+lemma _root_.Tengoku.Formalbook.momentCurvePoints_generalPosition (n d : ℕ) :
     GeneralPosition (momentCurvePoints n (d + 2)) := by
       intro s hs hcard
       have h_sub :
@@ -407,3 +407,4 @@ lemma momentCurvePoints_generalPosition (n d : ℕ) :
           use t
           aesop
       · grind
+-- Tengoku: root names of this library moved to Tengoku.Formalbook so they do not collide with other libraries (generated)

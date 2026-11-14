@@ -22,7 +22,7 @@ the key lemma that relates empirical norm to ℓ₁ norm under this condition.
   - Key lemma: ‖Xθ‖₂/√n ≤ Σⱼ|θⱼ|·‖Xⱼ‖₂/√n ≤ Σⱼ|θⱼ| = ‖θ‖₁
 
 -/
-
+namespace Tengoku.Leanslt end Tengoku.Leanslt open Tengoku.Leanslt
 open MeasureTheory Finset BigOperators Real ProbabilityTheory Metric Set
 open scoped NNReal ENNReal
 
@@ -173,3 +173,4 @@ lemma empiricalNorm_eq_zero_of_n_eq_zero (f : Fin 0 → ℝ) :
   simp
 
 end LeastSquares
+-- Tengoku: root names of this library moved to Tengoku.Leanslt so they do not collide with other libraries (generated)

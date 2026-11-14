@@ -14,7 +14,7 @@ import Tengoku.QuadraticNumberFields.QuadraticNumberFields.Qsqrtd.Basic
 This file contains lightweight shared definitions for explicit quadratic-field
 families used in class-number-one and class-number-divisibility problems.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 local notation "ℚ√" d => Qsqrtd d
 
 namespace QuadraticNumberFields
@@ -30,3 +30,4 @@ def IsAdmissibleParam (d : ℤ) : Prop :=
 
 end Families
 end QuadraticNumberFields
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

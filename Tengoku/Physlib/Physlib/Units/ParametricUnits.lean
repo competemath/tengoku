@@ -30,20 +30,20 @@ fold, written out by hand; `LTMCTUnitChoices.toScale` exhibits the correspondenc
 -/
 
 @[expose] public section
-
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
 open NNReal
 open scoped BigOperators
 
 /-- A choice of unit for each base dimension of `B`: a positive-real magnitude per
   base. This is the basis-generic form of `LTMCTUnitChoices`. -/
 @[ext]
-structure UnitScale (B : Type) where
+structure _root_.Tengoku.Physlib.UnitScale (B : Type) where
   /-- The positive-real magnitude of the chosen unit at each base dimension. -/
   scale : B → ℝ≥0
   /-- Each chosen unit has a positive magnitude. -/
   scale_pos : ∀ b, 0 < scale b
 
-namespace UnitScale
+namespace Tengoku.Physlib.UnitScale
 
 variable {B : Type}
 
@@ -85,7 +85,7 @@ lemma dimScale_transitive [DimensionBasis B] [Fintype B]
   congr 1
   rw [div_mul_div_comm, mul_comm (u2.scale b), mul_div_mul_right _ _ (u2.scale_pos b).ne']
 
-end UnitScale
+end Tengoku.Physlib.UnitScale
 
 /-!
 ## The current five-field `LTMCTUnitChoices` is the `LTMCTDimensionBase` instance
@@ -95,7 +95,7 @@ exhibiting the existing bespoke `dimScale` as the `LTMCTDimensionBase` case of t
 fold.
 -/
 
-namespace LTMCTUnitChoices
+namespace Tengoku.Physlib.LTMCTUnitChoices
 
 /-- Read a five-field `LTMCTUnitChoices` as a `UnitScale` over `LTMCTDimensionBase`. -/
 noncomputable def toScale (u : LTMCTUnitChoices) : UnitScale LTMCTDimensionBase where
@@ -113,4 +113,5 @@ noncomputable def toScale (u : LTMCTUnitChoices) : UnitScale LTMCTDimensionBase 
     · exact NNReal.coe_pos.mp u.charge.val_pos
     · exact NNReal.coe_pos.mp u.temperature.val_pos
 
-end LTMCTUnitChoices
+end Tengoku.Physlib.LTMCTUnitChoices
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

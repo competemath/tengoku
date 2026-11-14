@@ -14,7 +14,7 @@ import Tengoku.QuadraticNumberFields.QuadraticNumberFields.Families.Basic
 This file records the standard two-parameter Richaud-Degert shape
 `(a * n)^2 + k * a`.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 local notation "ℚ√" d => Qsqrtd d
 
 namespace QuadraticNumberFields
@@ -30,3 +30,4 @@ def IsRichaudDegertShift (k : ℤ) : Prop :=
 
 end Families
 end QuadraticNumberFields
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

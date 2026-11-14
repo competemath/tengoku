@@ -30,7 +30,7 @@ including the complexity classes P, NP, and coNP.
 -/
 
 @[expose] public section
-
+namespace Tengoku.FormalConjectures end Tengoku.FormalConjectures open Tengoku.FormalConjectures 
 open Computability Turing
 
 namespace ComplexityTheory
@@ -93,3 +93,4 @@ def coNP : ComplexityClass :=
   { L | Lᶜ ∈ NP }
 
 end ComplexityTheory
+-- Tengoku: root names of this library moved to Tengoku.FormalConjectures so they do not collide with other libraries (generated)

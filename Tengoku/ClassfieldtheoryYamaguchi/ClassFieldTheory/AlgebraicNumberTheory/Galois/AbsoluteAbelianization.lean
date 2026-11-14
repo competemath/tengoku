@@ -10,7 +10,7 @@ import Tengoku.Seed.FieldTheory.IsSepClosed
 import Tengoku.Seed.Topology.Algebra.Group.TopologicalAbelianization
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.ClassfieldtheoryYamaguchi end Tengoku.ClassfieldtheoryYamaguchi open Tengoku.ClassfieldtheoryYamaguchi
 set_option autoImplicit false
 
 /-!
@@ -30,7 +30,7 @@ variable (K : Type) [Field K]
 
 /-- The closure of the commutator subgroup of the separable absolute Galois
 group, packaged as a closed subgroup.-/
-def absoluteCommutatorClosure :
+def _root_.Tengoku.ClassfieldtheoryYamaguchi.absoluteCommutatorClosure :
     ClosedSubgroup Gal(SeparableClosure K / K) where
   toSubgroup :=
     (commutator Gal(SeparableClosure K / K)).topologicalClosure
@@ -39,21 +39,21 @@ def absoluteCommutatorClosure :
 /-- The topological closure of the absolute commutator subgroup is normal.
 @isnad1 id=normal.0h1v.s10.97bf806210c9 from=translated src=- shape=faacd8f5 vocab=5a801647
 -/
-instance absoluteCommutatorClosure_normal :
+instance _root_.Tengoku.ClassfieldtheoryYamaguchi.absoluteCommutatorClosure_normal :
     (absoluteCommutatorClosure K).Normal := by
   change
     ((commutator Gal(SeparableClosure K / K)).topologicalClosure).Normal
   infer_instance
 
 /-- The maximal abelian subextension of the separable closure.-/
-def maximalAbelianExtension :
+def _root_.Tengoku.ClassfieldtheoryYamaguchi.maximalAbelianExtension :
     IntermediateField K (SeparableClosure K) :=
   IntermediateField.fixedField (absoluteCommutatorClosure K).toSubgroup
 
 /-- The maximal abelian subextension is Galois over the base field.
 @isnad1 id=isgalois.0h1v.s9.2b4b6b6aff15 from=translated src=- shape=37b33571 vocab=c80ca2f2
 -/
-instance maximalAbelianExtension_isGalois :
+instance _root_.Tengoku.ClassfieldtheoryYamaguchi.maximalAbelianExtension_isGalois :
     IsGalois K (maximalAbelianExtension K) := by
   apply (InfiniteGalois.normal_iff_isGalois
     (maximalAbelianExtension K)).1
@@ -66,7 +66,7 @@ instance maximalAbelianExtension_isGalois :
 
 /-- The algebraic quotient equivalence from the absolute topological
 abelianization to the Galois group of the maximal abelian extension.-/
-noncomputable def absoluteAbelianizationMulEquivMaximalAbelianGalois :
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.absoluteAbelianizationMulEquivMaximalAbelianGalois :
     TopologicalAbelianization Gal(SeparableClosure K / K) ≃*
       Gal(maximalAbelianExtension K / K) :=
   InfiniteGalois.normalAutEquivQuotient (absoluteCommutatorClosure K)
@@ -76,7 +76,7 @@ maximal abelian extension.
 @isnad1 id=eq.0h2v.s17.baa19a9258db from=translated src=- shape=b586675f vocab=d065ebe2
 -/
 @[simp]
-theorem absoluteAbelianizationMulEquivMaximalAbelianGalois_mk
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.absoluteAbelianizationMulEquivMaximalAbelianGalois_mk
     (sigma : Gal(SeparableClosure K / K)) :
     absoluteAbelianizationMulEquivMaximalAbelianGalois K
         (QuotientGroup.mk sigma) =
@@ -86,7 +86,7 @@ theorem absoluteAbelianizationMulEquivMaximalAbelianGalois_mk
 /-- The algebraic equivalence from the absolute abelianization is continuous.
 @isnad1 id=continuo.0h1v.s16.48d0f18d68a6 from=translated src=- shape=e7c4bf00 vocab=375b2937
 -/
-theorem absoluteAbelianizationMulEquivMaximalAbelianGalois_continuous :
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.absoluteAbelianizationMulEquivMaximalAbelianGalois_continuous :
     Continuous (absoluteAbelianizationMulEquivMaximalAbelianGalois K) := by
   apply (QuotientGroup.isQuotientMap_mk
     (absoluteCommutatorClosure K).toSubgroup).continuous_iff.2
@@ -98,7 +98,7 @@ theorem absoluteAbelianizationMulEquivMaximalAbelianGalois_continuous :
 
 /-- The canonical topological identification of the absolute separable
 Galois group's abelianization with the maximal abelian Galois group.-/
-noncomputable def absoluteTopologicalAbelianizationEquivMaximalAbelianGalois :
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.absoluteTopologicalAbelianizationEquivMaximalAbelianGalois :
     TopologicalAbelianization Gal(SeparableClosure K / K) ≃ₜ*
       Gal(maximalAbelianExtension K / K) := by
   letI : T2Space Gal(maximalAbelianExtension K / K) :=
@@ -117,7 +117,7 @@ noncomputable def absoluteTopologicalAbelianizationEquivMaximalAbelianGalois :
 /-- The absolute topological abelianization is totally disconnected.
 @isnad1 id=totallyd.0h1v.s11.36255af5bf52 from=translated src=- shape=7c5d9ad3 vocab=62f5cb76
 -/
-instance absoluteTopologicalAbelianization_totallyDisconnectedSpace :
+instance _root_.Tengoku.ClassfieldtheoryYamaguchi.absoluteTopologicalAbelianization_totallyDisconnectedSpace :
     TotallyDisconnectedSpace
       (TopologicalAbelianization Gal(SeparableClosure K / K)) :=
   Homeomorph.totallyDisconnectedSpace
@@ -127,7 +127,7 @@ instance absoluteTopologicalAbelianization_totallyDisconnectedSpace :
 contained in the maximal abelian extension.
 @isnad1 id=le.0h2v.s11.1196561f7176 from=translated src=- shape=025fb784 vocab=8f6a4fd4
 -/
-theorem finiteAbelianIntermediateField_le_maximalAbelianExtension
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.finiteAbelianIntermediateField_le_maximalAbelianExtension
     (E : IntermediateField K (SeparableClosure K))
     [FiniteDimensional K E] [IsAbelianGalois K E] :
     E ≤ maximalAbelianExtension K := by
@@ -146,7 +146,7 @@ theorem finiteAbelianIntermediateField_le_maximalAbelianExtension
 /-- A selected embedding of a finite abelian extension into the maximal
 abelian extension.  Naming this embedding keeps downstream finite-coordinate
 arguments independent of the implementation of the separable closure.-/
-noncomputable def finiteAbelianExtensionEmbeddingIntoMaximalAbelianExtension
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.finiteAbelianExtensionEmbeddingIntoMaximalAbelianExtension
     (L : Type*) [Field L] [Algebra K L]
     [FiniteDimensional K L] [IsAbelianGalois K L] :
     L →ₐ[K] maximalAbelianExtension K := by
@@ -164,7 +164,7 @@ noncomputable def finiteAbelianExtensionEmbeddingIntoMaximalAbelianExtension
 
 /-- The finite Galois intermediate field of the maximal abelian extension
 selected by a finite abelian extension.-/
-noncomputable def finiteAbelianExtensionInMaximalAbelianExtension
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.finiteAbelianExtensionInMaximalAbelianExtension
     (L : Type*) [Field L] [Algebra K L]
     [FiniteDimensional K L] [IsAbelianGalois K L] :
     FiniteGaloisIntermediateField K (maximalAbelianExtension K) :=
@@ -175,8 +175,9 @@ noncomputable def finiteAbelianExtensionInMaximalAbelianExtension
 
 /-- The selected finite layer is canonically equivalent to the original
 finite abelian extension.-/
-noncomputable def finiteAbelianExtensionEquivInMaximalAbelianExtension
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.finiteAbelianExtensionEquivInMaximalAbelianExtension
     (L : Type*) [Field L] [Algebra K L]
     [FiniteDimensional K L] [IsAbelianGalois K L] :
     L ≃ₐ[K] finiteAbelianExtensionInMaximalAbelianExtension K L :=
   (finiteAbelianExtensionEmbeddingIntoMaximalAbelianExtension K L).equivFieldRange
+-- Tengoku: root names of this library moved to Tengoku.ClassfieldtheoryYamaguchi so they do not collide with other libraries (generated)

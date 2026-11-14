@@ -14,7 +14,7 @@ depth T >= 2, associated primes of T have height at most 1.
 
 Heitmann, "Characterization of completions of UFDs", 1993, Prop. 1.
 -/
-
+namespace Tengoku.AndersonConjecture end Tengoku.AndersonConjecture open Tengoku.AndersonConjecture
 universe u
 
 noncomputable section
@@ -48,7 +48,7 @@ depth(M, T/rT) = 0, but depth(M, T) ≥ 2 and r is regular (domain) so
 depth(M, T/rT) ≥ 1 by the depth lemma.
 @isnad1 id=not.2h2v.s8.05ebc09c3b38 from=translated src=- shape=452c05c8 vocab=5bd0f70b
 -/
-theorem maximal_not_assoc_of_depth_ge_two
+theorem _root_.Tengoku.AndersonConjecture.maximal_not_assoc_of_depth_ge_two
     (hdepth : ∃ (a b : T), a ∈ IsLocalRing.maximalIdeal T ∧
       b ∈ IsLocalRing.maximalIdeal T ∧
       RingTheory.Sequence.IsRegular T [a, b])
@@ -142,7 +142,7 @@ then associated primes of T/rT for nonzero r have height ≤ 1.
 The height hypothesis holds for our concrete T (dim = 2).
 @isnad1 id=le.4h3v.s8.22089b2786e6 from=translated src=- shape=4f1e05c4 vocab=832bb7ca
 -/
-theorem assoc_height_le_one_of_domain
+theorem _root_.Tengoku.AndersonConjecture.assoc_height_le_one_of_domain
     (hdepth : ∃ (a b : T), a ∈ IsLocalRing.maximalIdeal T ∧
       b ∈ IsLocalRing.maximalIdeal T ∧
       RingTheory.Sequence.IsRegular T [a, b])
@@ -158,3 +158,4 @@ theorem assoc_height_le_one_of_domain
   exact hht P hP_prime hP_ne_M
 
 end
+-- Tengoku: root names of this library moved to Tengoku.AndersonConjecture so they do not collide with other libraries (generated)

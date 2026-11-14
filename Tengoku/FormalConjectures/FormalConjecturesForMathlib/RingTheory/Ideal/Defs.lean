@@ -24,10 +24,11 @@ This file defines right ideals over a semiring.
 -/
 
 @[expose] public section
-
+namespace Tengoku.FormalConjectures end Tengoku.FormalConjectures open Tengoku.FormalConjectures 
 universe u
 
 /-- A right ideal in a semiring `R` is an additive submonoid closed under multiplication on the
 right. It is implemented as a submodule of the right regular module.-/
-abbrev RightIdeal (R : Type u) [Semiring R] :=
+abbrev _root_.Tengoku.FormalConjectures.RightIdeal (R : Type u) [Semiring R] :=
   Submodule Rᵐᵒᵖ R
+-- Tengoku: root names of this library moved to Tengoku.FormalConjectures so they do not collide with other libraries (generated)

@@ -13,12 +13,12 @@ whose residue field has the cardinality of C.
 -/
 
 noncomputable section
-
+namespace Tengoku.AndersonConjecture end Tengoku.AndersonConjecture open Tengoku.AndersonConjecture 
 -- T is local since it's a quotient of a local ring by a proper ideal
 /--
 @isnad1 id=islocalr.0h0v.s4.be366ea6f8b6 from=translated src=- shape=49959d42 vocab=75b051c3
 -/
-instance T_isLocalRing : IsLocalRing T := by
+instance _root_.Tengoku.AndersonConjecture.T_isLocalRing : IsLocalRing T := by
   have : Nontrivial T := Ideal.Quotient.nontrivial_iff.mpr conj_I_ne_top
   exact IsLocalRing.of_surjective' (Ideal.Quotient.mk conj_I) Ideal.Quotient.mk_surjective
 
@@ -46,7 +46,7 @@ lemma Finsupp.tail_add' {n : ℕ} (s t : Fin (n + 1) →₀ ℕ) :
 lemma Finsupp.add_cons_zero {n : ℕ} (s t : Fin (n + 1) →₀ ℕ) :
     (s + t) 0 = s 0 + t 0 := by simp [Finsupp.add_apply]
 
-noncomputable def mvPowerSeriesFin0RingEquiv (R : Type*) [CommSemiring R] :
+noncomputable def _root_.Tengoku.AndersonConjecture.mvPowerSeriesFin0RingEquiv (R : Type*) [CommSemiring R] :
     MvPowerSeries (Fin 0) R ≃+* R where
   toFun := MvPowerSeries.constantCoeff
   invFun := MvPowerSeries.C
@@ -66,7 +66,7 @@ variable {n : ℕ} {R : Type*} [CommSemiring R]
 /--
 @isnad1 id=eq.0h1v.s6.1531574c752c from=translated src=- shape=71137cf4 vocab=14fe0282
 -/
-lemma fin1_finsupp_eq {u : Fin 1 →₀ ℕ} : u = Finsupp.single 0 (u 0) := by
+lemma _root_.Tengoku.AndersonConjecture.fin1_finsupp_eq {u : Fin 1 →₀ ℕ} : u = Finsupp.single 0 (u 0) := by
   refine Finsupp.ext_iff.mpr (fun i => ?_)
   have : i = (0 : Fin 1) := Subsingleton.elim i 0
   subst this
@@ -78,21 +78,21 @@ section AdicComplete
 
 open MvPowerSeries Finset Finsupp
 
-abbrev M_PS := IsLocalRing.maximalIdeal (MvPowerSeries (Fin 3) ℂ)
+abbrev _root_.Tengoku.AndersonConjecture.M_PS := IsLocalRing.maximalIdeal (MvPowerSeries (Fin 3) ℂ)
 
-abbrev tdeg (d : Fin 3 →₀ ℕ) : ℕ := d.sum fun _ k => k
+abbrev _root_.Tengoku.AndersonConjecture.tdeg (d : Fin 3 →₀ ℕ) : ℕ := d.sum fun _ k => k
 
 /--
 @isnad1 id=eq.0h2v.s6.c445e0ff6b63 from=translated src=- shape=158f9c2c vocab=80cff213
 -/
-lemma tdeg_add (a b : Fin 3 →₀ ℕ) :
+lemma _root_.Tengoku.AndersonConjecture.tdeg_add (a b : Fin 3 →₀ ℕ) :
     tdeg (a + b) = tdeg a + tdeg b := by
   simp [tdeg, Finsupp.sum_add_index']
 
 /--
 @isnad1 id=eq.1h1v.s8.3cee6bdb3ca4 from=translated src=- shape=4463e0dc vocab=f3faba3f
 -/
-lemma constantCoeff_eq_zero_of_mem_M_PS
+lemma _root_.Tengoku.AndersonConjecture.constantCoeff_eq_zero_of_mem_M_PS
     {m : MvPowerSeries (Fin 3) ℂ}
     (hm : m ∈ M_PS) :
     MvPowerSeries.constantCoeff (σ := Fin 3) (R := ℂ) m = 0 := by
@@ -104,7 +104,7 @@ lemma constantCoeff_eq_zero_of_mem_M_PS
 /--
 @isnad1 id=mem.1h2v.s8.a14dc869c99a from=translated src=- shape=73151686 vocab=6050af47
 -/
-lemma mem_M_PS_pow_of_coeff_vanish
+lemma _root_.Tengoku.AndersonConjecture.mem_M_PS_pow_of_coeff_vanish
     (f : MvPowerSeries (Fin 3) ℂ) (n : ℕ)
     (hf : ∀ d : Fin 3 →₀ ℕ, tdeg d < n → coeff d f = 0) :
     f ∈ M_PS ^ n := by
@@ -254,7 +254,7 @@ open MvPowerSeries Finsupp in
 /--
 @isnad1 id=mem.1h2v.s8.41f74f814aff from=translated src=- shape=cb11134e vocab=e3ce9f79
 -/
-lemma mvPS_mem_span_X_of_constantCoeff_zero {k : Type*} [CommRing k]
+lemma _root_.Tengoku.AndersonConjecture.mvPS_mem_span_X_of_constantCoeff_zero {k : Type*} [CommRing k]
     (f : MvPowerSeries (Fin 3) k) (hf : MvPowerSeries.constantCoeff f = 0) :
     f ∈ Ideal.span ({(X 0 : MvPowerSeries (Fin 3) k), X 1, X 2} : Set _) := by
   let I := Ideal.span ({(X 0 : MvPowerSeries (Fin 3) k), X 1, X 2} : Set _)
@@ -357,7 +357,7 @@ open MvPowerSeries in
 /--
 @isnad1 id=eq.0h0v.s7.7f7cf93e57e4 from=translated src=- shape=d34feb8a vocab=9e1c9f35
 -/
-lemma mvPS_maximalIdeal_eq_span_X :
+lemma _root_.Tengoku.AndersonConjecture.mvPS_maximalIdeal_eq_span_X :
     IsLocalRing.maximalIdeal (MvPowerSeries (Fin 3) ℂ) =
     Ideal.span ({(X 0 : MvPowerSeries (Fin 3) ℂ), X 1, X 2} : Set _) := by
   apply le_antisymm
@@ -381,7 +381,7 @@ open MvPowerSeries in
 /--
 @isnad1 id=injectiv.0h0v.s9.7e7ce31069da from=translated src=- shape=7e8d9449 vocab=d0fc127c
 -/
-lemma cToT_injective : Function.Injective
+lemma _root_.Tengoku.AndersonConjecture.cToT_injective : Function.Injective
     ((Ideal.Quotient.mk conj_I).comp (MvPowerSeries.C (σ := Fin 3) (R := ℂ))) := by
   intro a b hab
   simp only [RingHom.comp_apply] at hab
@@ -398,7 +398,7 @@ lemma cToT_injective : Function.Injective
 /--
 @isnad1 id=eq.0h0v.s3.479944f46ddf from=translated src=- shape=72b4a015 vocab=33ea5066
 -/
-lemma mvPS_card_eq : Cardinal.mk (MvPowerSeries (Fin 3) ℂ) = Cardinal.mk ℂ := by
+lemma _root_.Tengoku.AndersonConjecture.mvPS_card_eq : Cardinal.mk (MvPowerSeries (Fin 3) ℂ) = Cardinal.mk ℂ := by
   change Cardinal.mk ((Fin 3 →₀ ℕ) → ℂ) = Cardinal.mk ℂ
   rw [Cardinal.mk_arrow]
   simp only [Cardinal.lift_id]
@@ -410,7 +410,7 @@ lemma mvPS_card_eq : Cardinal.mk (MvPowerSeries (Fin 3) ℂ) = Cardinal.mk ℂ :
 /-- |T| = |ℂ| (a power series ring over ℂ in finitely many vars has cardinality |ℂ|).
 @isnad1 id=eq.0h0v.s2.a5d83011aa0f from=translated src=- shape=7bded134 vocab=e8b7c3fd
 -/
-theorem T_card_eq : Cardinal.mk T = Cardinal.mk ℂ :=
+theorem _root_.Tengoku.AndersonConjecture.T_card_eq : Cardinal.mk T = Cardinal.mk ℂ :=
   le_antisymm
     ((Cardinal.mk_le_of_surjective Ideal.Quotient.mk_surjective).trans mvPS_card_eq.le)
     (Cardinal.mk_le_of_injective cToT_injective)
@@ -418,7 +418,8 @@ theorem T_card_eq : Cardinal.mk T = Cardinal.mk ℂ :=
 -- If mk(g) is a unit in T, then constantCoeff g is a unit in ℂ
 
 open MvPowerSeries in
-noncomputable def cToResT : ℂ →+* IsLocalRing.ResidueField T :=
+noncomputable def _root_.Tengoku.AndersonConjecture.cToResT : ℂ →+* IsLocalRing.ResidueField T :=
   (IsLocalRing.residue T).comp ((Ideal.Quotient.mk conj_I).comp (C (σ := Fin 3)))
 
 -- Surjectivity: every class in T/M has a constant representative
+-- Tengoku: root names of this library moved to Tengoku.AndersonConjecture so they do not collide with other libraries (generated)

@@ -10,7 +10,7 @@ import Tengoku.Seed.Algebra.Module.ZLattice.Basic
 import Tengoku.Seed.NumberTheory.NumberField.ProductFormula
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.ClassfieldtheoryYamaguchi end Tengoku.ClassfieldtheoryYamaguchi open Tengoku.ClassfieldtheoryYamaguchi
 set_option autoImplicit false
 
 /-!
@@ -35,7 +35,7 @@ open scoped Classical NumberField nonZeroDivisors
 
 variable {K : Type*} [Field K] [NumberField K]
 
-namespace SUnitGroup
+namespace Tengoku.ClassfieldtheoryYamaguchi.SUnitGroup
 
 variable (S : Finset (HeightOneSpectrum (𝓞 K)))
 
@@ -1288,4 +1288,5 @@ noncomputable def decomposition :
 
 end Decomposition
 
-end SUnitGroup
+end Tengoku.ClassfieldtheoryYamaguchi.SUnitGroup
+-- Tengoku: root names of this library moved to Tengoku.ClassfieldtheoryYamaguchi so they do not collide with other libraries (generated)

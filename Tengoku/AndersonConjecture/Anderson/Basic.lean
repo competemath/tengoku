@@ -14,7 +14,7 @@ stabilizes modulo powers of M. The weak variant restricts to
 chains with zero intersection. We also define analytical
 irreducibility (the M-adic completion is a domain).
 -/
-
+namespace Tengoku.AndersonConjecture end Tengoku.AndersonConjecture open Tengoku.AndersonConjecture
 open scoped Pointwise
 
 variable (R : Type*) [CommRing R] [IsLocalRing R]
@@ -24,7 +24,7 @@ ideals `A : ℕ → Ideal R` and each `k : ℕ`, there exists `s` such that
 `A s ≤ (⨅ n, A n) ⊔ (IsLocalRing.maximalIdeal R) ^ k`.
 
 This is Definition 1.1 of Anderson (2014). -/
-def IsQuasiComplete : Prop :=
+def _root_.Tengoku.AndersonConjecture.IsQuasiComplete : Prop :=
   ∀ (A : ℕ → Ideal R), Antitone A →
     ∀ (k : ℕ), ∃ s,
       A s ≤ (⨅ n, A n) ⊔ (IsLocalRing.maximalIdeal R) ^ k
@@ -35,20 +35,21 @@ there exists `s` such that `A s ≤ (IsLocalRing.maximalIdeal R) ^ k`.
 
 Equivalently, this is `IsQuasiComplete` restricted to sequences whose
 intersection is `⊥`. -/
-def IsWeaklyQuasiComplete : Prop :=
+def _root_.Tengoku.AndersonConjecture.IsWeaklyQuasiComplete : Prop :=
   ∀ (A : ℕ → Ideal R), Antitone A → (⨅ n, A n) = ⊥ →
     ∀ (k : ℕ), ∃ s, A s ≤ (IsLocalRing.maximalIdeal R) ^ k
 
 /-- A Noetherian local ring is **analytically irreducible** if its
 maximal-ideal-adic completion is a domain. -/
-def IsAnalyticallyIrreducible [IsNoetherianRing R] : Prop :=
+def _root_.Tengoku.AndersonConjecture.IsAnalyticallyIrreducible [IsNoetherianRing R] : Prop :=
   IsDomain (AdicCompletion (IsLocalRing.maximalIdeal R) R)
 
 /-- Quasi-completeness implies weak quasi-completeness.
 @isnad1 id=isweakly.1h1v.s4.05b5c8620bf4 from=translated src=- shape=affebb5f vocab=fb737a91
 -/
-theorem IsQuasiComplete.isWeaklyQuasiComplete
+theorem Tengoku.AndersonConjecture.IsQuasiComplete.isWeaklyQuasiComplete
     (h : IsQuasiComplete R) : IsWeaklyQuasiComplete R := by
   intro A hA hInt k
   obtain ⟨s, hs⟩ := h A hA k
   exact ⟨s, by rwa [hInt, bot_sup_eq] at hs⟩
+-- Tengoku: root names of this library moved to Tengoku.AndersonConjecture so they do not collide with other libraries (generated)

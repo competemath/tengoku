@@ -15,12 +15,13 @@ import Tengoku.LanaOka.Oka.StructureSheaf
 complex differentiable on `U`. This is the bridge from `OkaRing` to the `DifferentiableOn`
 vocabulary of Mathlib's complex analysis.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open TopologicalSpace
 
 variable {ι : Type*} [Fintype ι]
 
 /-- Elements of `OkaRing U` are holomorphic on `U`. -/
-lemma OkaRing.differentiableOn_toGlobalFun {U : Opens (ι → ℂ)} (f : OkaRing U) :
+lemma Tengoku.LanaOka.OkaRing.differentiableOn_toGlobalFun {U : Opens (ι → ℂ)} (f : OkaRing U) :
     DifferentiableOn ℂ (f.toGlobalFun _) U := fun x hx ↦
   ((okaAnalytic_iff _).1 f.2 x hx).differentiableAt.differentiableWithinAt
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

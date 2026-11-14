@@ -24,7 +24,7 @@ for differentiation under the integral sign.
 
 * J. D. Dixon, *A brief proof of Cauchy's integral theorem*, 1971
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex Set Filter Topology MeasureTheory
 open scoped Classical Real Interval
 
@@ -114,7 +114,7 @@ The integrability, bounds, and measurability hypotheses are provided externally
 since they depend on the curve's regularity structure.
 @isnad1 id=differen.6h4v.s10.51b7cadbfabd from=translated src=- shape=190f6079 vocab=8c709e41
 -/
-theorem dixonH2_differentiableAt {f : ℂ → ℂ}
+theorem _root_.Tengoku.Leanmodularforms.dixonH2_differentiableAt {f : ℂ → ℂ}
     {γ : PiecewiseC1Path x x} {w : ℂ}
     (hoff : ∀ t ∈ Icc (0 : ℝ) 1, γ t ≠ w)
     (h_int : IntervalIntegrable
@@ -190,7 +190,7 @@ Discharges the six oracles of `dixonH2_differentiableAt`:
 * `h_deriv_bound` — from `LipschitzWith K γ.extend` via `norm_deriv_le_of_lipschitz`.
 @isnad1 id=differen.3h5v.s8.982f4ef27185 from=translated src=- shape=d1df000a vocab=0e546052
 -/
-theorem dixonH2_differentiableAt_of_regular {f : ℂ → ℂ}
+theorem _root_.Tengoku.Leanmodularforms.dixonH2_differentiableAt_of_regular {f : ℂ → ℂ}
     {γ : PiecewiseC1Path x x} {w : ℂ}
     (hoff : ∀ t ∈ Icc (0 : ℝ) 1, γ t ≠ w)
     (hf_cont : ContinuousOn f (γ.toPath.extend '' Icc (0 : ℝ) 1))
@@ -290,7 +290,7 @@ private lemma dslope_deriv_product_bound
 Uses the parametric Leibniz rule with Cauchy estimates for the derivative of dslope.
 @isnad1 id=differen.9h4v.s10.8991ec5963f0 from=translated src=- shape=84127c86 vocab=7108c862
 -/
-theorem dixonH1_differentiableOn {f : ℂ → ℂ} {U : Set ℂ}
+theorem _root_.Tengoku.Leanmodularforms.dixonH1_differentiableOn {f : ℂ → ℂ} {U : Set ℂ}
     (_hU : IsOpen U) (_hf : DifferentiableOn ℂ f U)
     (γ : PwC1Immersion x x) (_hγ : ∀ t ∈ Icc (0 : ℝ) 1, γ.toPiecewiseC1Path t ∈ U)
     (h_int : ∀ w ∈ U, IntervalIntegrable
@@ -364,7 +364,7 @@ Auto-discharges the other 5 oracles of `dixonH1_differentiableOn`:
 * `h_dslope_hasDerivAt` — via `dslope_hasDerivAt_first_arg`.
 @isnad1 id=differen.6h5v.s9.e29f31cb1d5b from=translated src=- shape=0be2da05 vocab=ebbcb12c
 -/
-theorem dixonH1_differentiableOn_of_regular {f : ℂ → ℂ} {U : Set ℂ}
+theorem _root_.Tengoku.Leanmodularforms.dixonH1_differentiableOn_of_regular {f : ℂ → ℂ} {U : Set ℂ}
     (hU : IsOpen U) (hf : DifferentiableOn ℂ f U)
     (γ : PwC1Immersion x x) (hγ : ∀ t ∈ Icc (0 : ℝ) 1, γ.toPiecewiseC1Path t ∈ U)
     {K : NNReal} (hLip : LipschitzWith K γ.toPiecewiseC1Path.toPath.extend)
@@ -430,7 +430,7 @@ Patching at `boundary(U)`: null-homologous gives winding number 0 near `boundary
 so `h1 = h2` by the fundamental identity.
 @isnad1 id=differen.7h4v.s9.1df64139897e from=translated src=- shape=69d8f334 vocab=de0a6366
 -/
-theorem dixonFunction_differentiable {f : ℂ → ℂ} {U : Set ℂ} (hU : IsOpen U)
+theorem _root_.Tengoku.Leanmodularforms.dixonFunction_differentiable {f : ℂ → ℂ} {U : Set ℂ} (hU : IsOpen U)
     (_hf : DifferentiableOn ℂ f U)
     (γ : PwC1Immersion x x) (h_null : IsNullHomologous γ U)
     (h1_diff : DifferentiableOn ℂ (dixonH1 f γ.toPiecewiseC1Path) U)
@@ -478,3 +478,4 @@ theorem dixonFunction_differentiable {f : ℂ → ℂ} {U : Set ℂ} (hU : IsOpe
     exact (h2_diff w hoff).congr_of_eventuallyEq heq_near
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

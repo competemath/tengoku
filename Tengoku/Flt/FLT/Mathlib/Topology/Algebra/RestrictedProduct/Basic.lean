@@ -14,7 +14,7 @@ Material destined for Mathlib.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Flt end Tengoku.Flt open Tengoku.Flt 
 namespace RestrictedProduct
 
 variable {ι : Type*}
@@ -89,7 +89,7 @@ def RestrictedProduct.inclusionLinearMap
 /--
 @isnad1 id=eq.1h7v.s10.c9d98d6bc7d3 from=translated src=- shape=8a74dbee vocab=0e6259a3
 -/
-lemma inclusionLinearMap_apply {𝓕 𝓖 : Filter ι} (h : 𝓕 ≤ 𝓖) (x : Πʳ i, [R i, C i]_[𝓖]) :
+lemma _root_.Tengoku.Flt.inclusionLinearMap_apply {𝓕 𝓖 : Filter ι} (h : 𝓕 ≤ 𝓖) (x : Πʳ i, [R i, C i]_[𝓖]) :
   inclusionLinearMap A R C h x = ⟨x.1, x.2.filter_mono h⟩ := rfl
 
 end modules
@@ -355,3 +355,4 @@ theorem mem_structureSubring_iff {ι : Type*} {R : ι → Type*} {S : ι → Typ
 end structure_map
 
 end RestrictedProduct
+-- Tengoku: root names of this library moved to Tengoku.Flt so they do not collide with other libraries (generated)

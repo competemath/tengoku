@@ -3,7 +3,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.BrownianMotion end Tengoku.BrownianMotion open Tengoku.BrownianMotion 
 open Bornology Filter
 
 open scoped NNReal ENNReal Topology
@@ -11,7 +11,7 @@ open scoped NNReal ENNReal Topology
 /--
 @isnad1 id=eventual.1h5v.s6.b8650812f9a5 from=translated src=- shape=b96586ab vocab=1cb84429
 -/
-lemma eventually_nhdsGT {α : Type*} [TopologicalSpace α] [LinearOrder α] [ClosedIciTopology α]
+lemma _root_.Tengoku.BrownianMotion.eventually_nhdsGT {α : Type*} [TopologicalSpace α] [LinearOrder α] [ClosedIciTopology α]
     {a b : α} (hab : a < b) {p : α → Prop} (h : ∀ x ∈ Set.Ioc a b, p x) :
     ∀ᶠ x in 𝓝[>] a, p x :=
   sets_of_superset (x := Set.Ioo a b) _ (Ioo_mem_nhdsGT hab) (by grind)
@@ -22,7 +22,7 @@ variable {X Y : Type*} [PseudoEMetricSpace X] [PseudoEMetricSpace Y] [CompleteSp
 /--
 @isnad1 id=nebot.1h3v.s6.de603f563a1f from=translated src=- shape=38fdd053 vocab=ff4d34a9
 -/
-lemma neBot_comap_nhds (hs : Dense s) (x : X) : ((𝓝 x).comap ((↑) : s → X)).NeBot :=
+lemma _root_.Tengoku.BrownianMotion.neBot_comap_nhds (hs : Dense s) (x : X) : ((𝓝 x).comap ((↑) : s → X)).NeBot :=
   hs.isDenseInducing_val.comap_nhds_neBot _
 
 /--
@@ -148,3 +148,4 @@ lemma HolderOnWith.holderOnWith_of_le_of_le {X Y : Type*} [PseudoEMetricSpace X]
     (hrs : r ≤ s) (hst : s ≤ t) : HolderOnWith (max C₁ C₂) s f u := by
   simp_rw [← HolderWith.restrict_iff] at *
   exact hf₁.HolderWith_of_le_of_le hf₂ hrs hst
+-- Tengoku: root names of this library moved to Tengoku.BrownianMotion so they do not collide with other libraries (generated)

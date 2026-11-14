@@ -20,7 +20,7 @@ Euler-Mascheroni formula for `Λ₀(1)` is in `Mathlib/NumberTheory/Harmonic/Zet
 -/
 
 @[expose] public section
-
+namespace Tengoku.Primenumbertheoremand end Tengoku.Primenumbertheoremand open Tengoku.Primenumbertheoremand 
 open Complex Set
 
 open scoped BigOperators
@@ -55,7 +55,7 @@ private lemma log_four_mul_pi_lt_one_hundred_twenty_seven_div_fifty :
   exact hpi.trans exp_one_hundred_twenty_seven_div_fifty_gt
 
 /-- The completed Riemann zeta factor has value `π / 6` at `2`. -/
-theorem completedRiemannZeta_two :
+theorem _root_.Tengoku.Primenumbertheoremand.completedRiemannZeta_two :
     completedRiemannZeta (2 : ℂ) = (Real.pi : ℂ) / 6 := by
   have hs : (1 : ℝ) < Complex.re (2 : ℂ) := by norm_num
   have hpi0 : (Real.pi : ℂ) ≠ 0 := by exact_mod_cast Real.pi_ne_zero
@@ -77,7 +77,7 @@ theorem completedRiemannZeta_two :
             field_simp [hpi0]
 
 /-- The entire completed zeta function `Λ₀` has value `(π - 3) / 6` at `2`. -/
-theorem completedRiemannZeta₀_two :
+theorem _root_.Tengoku.Primenumbertheoremand.completedRiemannZeta₀_two :
     completedRiemannZeta₀ (2 : ℂ) = ((Real.pi : ℂ) - 3) / 6 := by
   have h := completedRiemannZeta_eq (2 : ℂ)
   have h' :
@@ -94,7 +94,7 @@ theorem completedRiemannZeta₀_two :
     (Real.pi : ℂ) / 6 + (1 : ℂ) / 2 + (-1 : ℂ) = ((Real.pi : ℂ) - 3) / 6)
 
 /-- The entire completed zeta function `Λ₀` is not identically zero. -/
-theorem completedRiemannZeta₀_nontrivial : ∃ z : ℂ, completedRiemannZeta₀ z ≠ 0 := by
+theorem _root_.Tengoku.Primenumbertheoremand.completedRiemannZeta₀_nontrivial : ∃ z : ℂ, completedRiemannZeta₀ z ≠ 0 := by
   refine ⟨(2 : ℂ), ?_⟩
   have hpi_ne3 : (Real.pi : ℂ) ≠ (3 : ℂ) := by
     intro h'
@@ -109,7 +109,7 @@ theorem completedRiemannZeta₀_nontrivial : ∃ z : ℂ, completedRiemannZeta�
 
 /-- The functional equation identifies the values of the entire completed zeta function `Λ₀`
 at `0` and `1`. -/
-theorem completedRiemannZeta₀_zero_eq_one :
+theorem _root_.Tengoku.Primenumbertheoremand.completedRiemannZeta₀_zero_eq_one :
     completedRiemannZeta₀ (0 : ℂ) = completedRiemannZeta₀ (1 : ℂ) := by
   have h := completedRiemannZeta₀_one_sub (0 : ℂ)
   simpa using h.symm
@@ -118,7 +118,7 @@ theorem completedRiemannZeta₀_zero_eq_one :
 
 This uses the Euler-Mascheroni formula for `Λ₀(1)` from `ZetaAsymp`, the lower bound
 `27 / 50 < γ`, and an elementary numerical bound `log (4π) < 127 / 50`. -/
-theorem completedRiemannZeta₀_one_ne_zero :
+theorem _root_.Tengoku.Primenumbertheoremand.completedRiemannZeta₀_one_ne_zero :
     completedRiemannZeta₀ (1 : ℂ) ≠ 0 := by
   have hpos :
       0 < (Real.eulerMascheroniConstant - Real.log (4 * Real.pi)) / 2 + 1 := by
@@ -136,6 +136,7 @@ theorem completedRiemannZeta₀_one_ne_zero :
 
 /-- The entire completed zeta function `Λ₀` is nonzero at `0`, by the functional equation and the
 nonvanishing at `1`. -/
-theorem completedRiemannZeta₀_zero_ne_zero :
+theorem _root_.Tengoku.Primenumbertheoremand.completedRiemannZeta₀_zero_ne_zero :
     completedRiemannZeta₀ (0 : ℂ) ≠ 0 := by
   simpa [completedRiemannZeta₀_zero_eq_one] using completedRiemannZeta₀_one_ne_zero
+-- Tengoku: root names of this library moved to Tengoku.Primenumbertheoremand so they do not collide with other libraries (generated)

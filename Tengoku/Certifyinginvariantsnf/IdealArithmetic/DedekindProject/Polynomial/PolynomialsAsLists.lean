@@ -10,7 +10,7 @@ to Mathlib polynomials.
 - `Polynomial.ofList` : turns a list of coefficients into the corresponding polynomial.
 - `computablePolynomialRingEquiv` : the ring isomorphism between computable polynomials and Mathlib
 polynomials -/
-
+namespace Tengoku.Certifyinginvariantsnf end Tengoku.Certifyinginvariantsnf open Tengoku.Certifyinginvariantsnf
 open Polynomial BigOperators
 
 variable {R : Type*}
@@ -75,7 +75,7 @@ def List.dropTrailingZeros' [Zero R][DecidableEq R] : List R → List R
 @isnad1 id=eq.0h2v.s4.bd16ee42ba2d from=translated src=- shape=2c343361 vocab=1b80798c
 -/
 @[simp]
-lemma addPointwise_nil_left [AddMonoid R] (l : List R) : List.addPointwise [] l = l := by
+lemma _root_.Tengoku.Certifyinginvariantsnf.addPointwise_nil_left [AddMonoid R] (l : List R) : List.addPointwise [] l = l := by
   induction l
   rfl ; rfl
 
@@ -83,7 +83,7 @@ lemma addPointwise_nil_left [AddMonoid R] (l : List R) : List.addPointwise [] l 
 @isnad1 id=eq.0h2v.s4.c559c369a1e6 from=translated src=- shape=807c4d20 vocab=1b80798c
 -/
 @[simp]
-lemma addPointwise_nil_right [AddMonoid R] (l : List R) : List.addPointwise l [] = l := by
+lemma _root_.Tengoku.Certifyinginvariantsnf.addPointwise_nil_right [AddMonoid R] (l : List R) : List.addPointwise l [] = l := by
   induction l
   rfl ; rfl
 
@@ -91,7 +91,7 @@ lemma addPointwise_nil_right [AddMonoid R] (l : List R) : List.addPointwise l []
 @isnad1 id=eq.0h5v.s5.9ee1b00f187d from=translated src=- shape=c399a65d vocab=d8b662e8
 -/
 @[simp]
-lemma addPointwise_cons [AddMonoid R] (x y : R) (l l' : List R) :
+lemma _root_.Tengoku.Certifyinginvariantsnf.addPointwise_cons [AddMonoid R] (x y : R) (l l' : List R) :
     List.addPointwise (x :: l) (y :: l') = (x + y) :: (List.addPointwise l l') := by
   rfl
 
@@ -129,7 +129,7 @@ lemma List.dropTrailingZeros_ne_zero_of_ne_zero [Zero R] [DecidableEq R]
 /--
 @isnad1 id=eq.0h2v.s4.2f68c05ec004 from=translated src=- shape=12f82b81 vocab=2747adb5
 -/
-lemma dropTrailingZeros_iter [Zero R] (l : List R) [DecidableEq R] :
+lemma _root_.Tengoku.Certifyinginvariantsnf.dropTrailingZeros_iter [Zero R] (l : List R) [DecidableEq R] :
     l.dropTrailingZeros =  (l.dropTrailingZeros).dropTrailingZeros := by
   induction l with
   | nil => simp only [List.dropTrailingZeros]
@@ -151,7 +151,7 @@ lemma dropTrailingZeros_iter [Zero R] (l : List R) [DecidableEq R] :
 /--
 @isnad1 id=le.0h2v.s4.5e25017d11fe from=translated src=- shape=48bae449 vocab=15239a35
 -/
-lemma dropTrailingZeros_length [Zero R] [DecidableEq R] (l : List R) :
+lemma _root_.Tengoku.Certifyinginvariantsnf.dropTrailingZeros_length [Zero R] [DecidableEq R] (l : List R) :
     (l.dropTrailingZeros).length ≤ l.length := by
   induction l with
   | nil => simp only [List.dropTrailingZeros, List.length_nil, le_refl]
@@ -188,7 +188,7 @@ instance : Zero (List R) where
 /--
 @isnad1 id=eq.0h1v.s4.3282074285c1 from=translated src=- shape=5e1f9489 vocab=280ff05b
 -/
-lemma zero_def : (0 : List R) = [] := rfl
+lemma _root_.Tengoku.Certifyinginvariantsnf.zero_def : (0 : List R) = [] := rfl
 
 instance [Semiring R] : NatPow (List R)  where
   pow := λ l => λ n => npowRec n l
@@ -420,13 +420,13 @@ lemma List.dvd_foldl_gcd {R : Type u} [CommSemiring R] [IsDomain R]
 
 /-- Given a list of length `n`, this is the function `Fin n → R`
   that sends `i` to the `i`-th entry of the list. -/
-def FnOfList {α : Type*} (n : ℕ) (l : List α) (hl : l.length = n) : Fin n → α :=
+def _root_.Tengoku.Certifyinginvariantsnf.FnOfList {α : Type*} (n : ℕ) (l : List α) (hl : l.length = n) : Fin n → α :=
   fun (i : Fin n) => (l.get (Fin.cast hl.symm i))
 
 /--
 @isnad1 id=eq.1h3v.s4.0ed7fa9f5e4a from=translated src=- shape=acc8d326 vocab=b9b0fb25
 -/
-lemma listOfFn_of_FnOfList
+lemma _root_.Tengoku.Certifyinginvariantsnf.listOfFn_of_FnOfList
   {α : Type*}(n : ℕ)(l : List α)(hl : l.length = n) : List.ofFn (FnOfList n l hl) = l := by
   unfold FnOfList
   rw [← List.ofFn_congr hl _, List.ofFn_get]
@@ -434,7 +434,7 @@ lemma listOfFn_of_FnOfList
 /--
 @isnad1 id=eq.0h3v.s4.8a856013fb85 from=translated src=- shape=eac2ae25 vocab=f4544a70
 -/
-lemma FnOfList_of_OfFn {α : Type*} (n : ℕ) (a : Fin n → α) :
+lemma _root_.Tengoku.Certifyinginvariantsnf.FnOfList_of_OfFn {α : Type*} (n : ℕ) (a : Fin n → α) :
     FnOfList n (List.ofFn a) (List.length_ofFn) = a := by
   unfold FnOfList
   simp only [List.get_ofFn, Fin.cast_cast, Fin.cast_eq_self]
@@ -465,7 +465,7 @@ section ComputablePolynomialsSemiring
 /-- A computable polynomial is a list without no trailing zeros
   (i.e. equal to itself after removing trailing zeros). -/
 @[reducible]
-def ComputablePolynomial (R : Type*) [Semiring R] [DecidableEq R]:=
+def _root_.Tengoku.Certifyinginvariantsnf.ComputablePolynomial (R : Type*) [Semiring R] [DecidableEq R]:=
   {p : List R // p = p.dropTrailingZeros }
 
 variable  {R : Type*} [Semiring R][DecidableEq R]
@@ -494,7 +494,7 @@ instance [Semiring R] : SMul ℕ (ComputablePolynomial R) where
   smul := λ n => λ p => (↑n * p)
 
 /-- Sends a polynomial to the corresponding computable polynomial. -/
-def toComputablePolynomial (p : R[X]) : ComputablePolynomial R :=
+def _root_.Tengoku.Certifyinginvariantsnf.toComputablePolynomial (p : R[X]) : ComputablePolynomial R :=
   ⟨toList p, dropTrailingZeros_iter _ ⟩
 
 end ComputablePolynomialsSemiring
@@ -514,3 +514,4 @@ instance : SMul ℤ (ComputablePolynomial R) where
   smul := fun z => fun p => z * p
 
 /- Ring isomorphism between polynomials and computable polynomials. -/
+-- Tengoku: root names of this library moved to Tengoku.Certifyinginvariantsnf so they do not collide with other libraries (generated)

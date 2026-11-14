@@ -1,7 +1,7 @@
 import Tengoku
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 open scoped TensorProduct
 
 section FlatClosure
@@ -17,11 +17,11 @@ instance : IsScalarTower R F (F ⊗[R] G) := IsScalarTower.of_algebraMap_eq fun 
 /--
 @isnad1 id=eq.0h5v.s9.7f280eb89a7f from=translated src=- shape=754b7d68 vocab=357f762f
 -/
-lemma one_tmul_smul (r : R) (g : G) :
+lemma _root_.Tengoku.FltAnthropic.one_tmul_smul (r : R) (g : G) :
     (1 : F) ⊗ₜ[R] (r • g) = (algebraMap R F r) • ((1 : F) ⊗ₜ[R] g) := by
   rw [TensorProduct.tmul_smul, algebraMap_smul]
 
-def flatClosure (B : Subalgebra F (F ⊗[R] G)) : Subalgebra R G where
+def _root_.Tengoku.FltAnthropic.flatClosure (B : Subalgebra F (F ⊗[R] G)) : Subalgebra R G where
   carrier := {g : G | (1 : F) ⊗ₜ[R] g ∈ B}
   mul_mem' {a b} ha hb := by
     have h : ((1 : F) ⊗ₜ[R] a) * ((1 : F) ⊗ₜ[R] b) ∈ B := mul_mem ha hb
@@ -51,25 +51,25 @@ def flatClosure (B : Subalgebra F (F ⊗[R] G)) : Subalgebra R G where
 @isnad1 id=iff.0h5v.s9.29ebd1a72440 from=translated src=- shape=fcc44cd4 vocab=ed7e9432
 -/
 @[simp]
-lemma mem_flatClosure_iff {B : Subalgebra F (F ⊗[R] G)} {g : G} :
+lemma _root_.Tengoku.FltAnthropic.mem_flatClosure_iff {B : Subalgebra F (F ⊗[R] G)} {g : G} :
     g ∈ flatClosure B ↔ (1 : F) ⊗ₜ[R] g ∈ B := Iff.rfl
 
 /--
 @isnad1 id=le.1h5v.s9.41a00a6830b4 from=translated src=- shape=ae58c8eb vocab=56d5fff2
 -/
-lemma flatClosure_mono {B B' : Subalgebra F (F ⊗[R] G)} (h : B ≤ B') :
+lemma _root_.Tengoku.FltAnthropic.flatClosure_mono {B B' : Subalgebra F (F ⊗[R] G)} (h : B ≤ B') :
     flatClosure B ≤ flatClosure B' := fun _ hg => h hg
 
 /--
 @isnad1 id=iff.0h5v.s9.ca8533f9c339 from=translated src=- shape=85cccc6d vocab=25f4be3a
 -/
-lemma le_flatClosure_iff {B : Subalgebra F (F ⊗[R] G)} {S : Subalgebra R G} :
+lemma _root_.Tengoku.FltAnthropic.le_flatClosure_iff {B : Subalgebra F (F ⊗[R] G)} {S : Subalgebra R G} :
     S ≤ flatClosure B ↔ ∀ g ∈ S, (1 : F) ⊗ₜ[R] g ∈ B := Iff.rfl
 
 /--
 @isnad1 id=finite.0h4v.s8.446909e47700 from=translated src=- shape=db0ab7e1 vocab=0a505a9c
 -/
-theorem flatClosure_finite [IsNoetherianRing R] [Module.Finite R G]
+theorem _root_.Tengoku.FltAnthropic.flatClosure_finite [IsNoetherianRing R] [Module.Finite R G]
     (B : Subalgebra F (F ⊗[R] G)) : Module.Finite R (flatClosure B) := by
   haveI : IsNoetherian R G := isNoetherian_of_isNoetherianRing_of_finite R G
   exact Module.Finite.iff_fg.mpr (IsNoetherian.noetherian (Subalgebra.toSubmodule (flatClosure B)))
@@ -77,14 +77,14 @@ theorem flatClosure_finite [IsNoetherianRing R] [Module.Finite R G]
 /--
 @isnad1 id=istorsio.0h4v.s8.749be0734473 from=translated src=- shape=b9d6d8ac vocab=a3809a05
 -/
-theorem flatClosure_isTorsionFree [Module.IsTorsionFree R G]
+theorem _root_.Tengoku.FltAnthropic.flatClosure_isTorsionFree [Module.IsTorsionFree R G]
     (B : Subalgebra F (F ⊗[R] G)) : Module.IsTorsionFree R (flatClosure B) :=
   Function.Injective.moduleIsTorsionFree _ Subtype.coe_injective (fun _ _ => rfl)
 
 /--
 @isnad1 id=free.0h4v.s8.73d9ef629f74 from=translated src=- shape=35a66fd2 vocab=d501010b
 -/
-theorem flatClosure_free [IsDomain R] [IsPrincipalIdealRing R] [IsNoetherianRing R]
+theorem _root_.Tengoku.FltAnthropic.flatClosure_free [IsDomain R] [IsPrincipalIdealRing R] [IsNoetherianRing R]
     [Module.Finite R G] [Module.IsTorsionFree R G]
     (B : Subalgebra F (F ⊗[R] G)) : Module.Free R (flatClosure B) := by
   haveI := flatClosure_finite (R := R) (F := F) (G := G) B
@@ -94,7 +94,7 @@ theorem flatClosure_free [IsDomain R] [IsPrincipalIdealRing R] [IsNoetherianRing
 /--
 @isnad1 id=flat.0h4v.s8.3bc7239d906f from=translated src=- shape=35a66fd2 vocab=da825366
 -/
-theorem flatClosure_flat [IsDomain R] [IsPrincipalIdealRing R] [IsNoetherianRing R]
+theorem _root_.Tengoku.FltAnthropic.flatClosure_flat [IsDomain R] [IsPrincipalIdealRing R] [IsNoetherianRing R]
     [Module.Finite R G] [Module.IsTorsionFree R G]
     (B : Subalgebra F (F ⊗[R] G)) : Module.Flat R (flatClosure B) := by
   haveI := flatClosure_free (R := R) (F := F) (G := G) B
@@ -103,7 +103,7 @@ theorem flatClosure_flat [IsDomain R] [IsPrincipalIdealRing R] [IsNoetherianRing
 /--
 @isnad1 id=ex.0h4v.s9.9b396dcf8e08 from=translated src=- shape=2e486c0c vocab=b5bda6dd
 -/
-theorem exists_nonzero_smul_eq_one_tmul [IsDomain R] [IsFractionRing R F] (x : F ⊗[R] G) :
+theorem _root_.Tengoku.FltAnthropic.exists_nonzero_smul_eq_one_tmul [IsDomain R] [IsFractionRing R F] (x : F ⊗[R] G) :
     ∃ (r : R) (g : G), r ≠ 0 ∧ (algebraMap R F r) • x = (1 : F) ⊗ₜ[R] g := by
   induction x with
   | zero => exact ⟨1, 0, one_ne_zero, by simp⟩
@@ -125,7 +125,7 @@ theorem exists_nonzero_smul_eq_one_tmul [IsDomain R] [IsFractionRing R F] (x : F
 /--
 @isnad1 id=ex.1h5v.s10.48db76a50c0d from=translated src=- shape=98d8ce73 vocab=aeee08d5
 -/
-theorem exists_nonzero_smul_mem_flatClosure [IsDomain R] [IsFractionRing R F]
+theorem _root_.Tengoku.FltAnthropic.exists_nonzero_smul_mem_flatClosure [IsDomain R] [IsFractionRing R F]
     {B : Subalgebra F (F ⊗[R] G)} {x : F ⊗[R] G} (hx : x ∈ B) :
     ∃ (r : R) (g : G), r ≠ 0 ∧ g ∈ flatClosure B ∧
       (algebraMap R F r) • x = (1 : F) ⊗ₜ[R] g := by
@@ -137,7 +137,7 @@ theorem exists_nonzero_smul_mem_flatClosure [IsDomain R] [IsFractionRing R F]
 /--
 @isnad1 id=eq.0h4v.s11.75eba9065e4d from=translated src=- shape=3e129180 vocab=c3730109
 -/
-theorem span_image_flatClosure [IsDomain R] [IsFractionRing R F]
+theorem _root_.Tengoku.FltAnthropic.span_image_flatClosure [IsDomain R] [IsFractionRing R F]
     (B : Subalgebra F (F ⊗[R] G)) :
     Submodule.span F ((fun g : G => (1 : F) ⊗ₜ[R] g) '' (flatClosure B : Set G))
       = Subalgebra.toSubmodule B := by
@@ -157,7 +157,7 @@ theorem span_image_flatClosure [IsDomain R] [IsFractionRing R F]
 /--
 @isnad1 id=istorsio.0h4v.s10.4733d85980a1 from=translated src=- shape=a62404c6 vocab=b3c1c8fb
 -/
-theorem quotient_flatClosure_isTorsionFree [IsDomain R] [IsFractionRing R F]
+theorem _root_.Tengoku.FltAnthropic.quotient_flatClosure_isTorsionFree [IsDomain R] [IsFractionRing R F]
     (B : Subalgebra F (F ⊗[R] G)) :
     Module.IsTorsionFree R (G ⧸ Subalgebra.toSubmodule (flatClosure B)) := by
   rw [Module.isTorsionFree_iff_smul_eq_zero]
@@ -179,7 +179,7 @@ theorem quotient_flatClosure_isTorsionFree [IsDomain R] [IsFractionRing R F]
 /--
 @isnad1 id=finite.0h4v.s10.868c1c146483 from=translated src=- shape=3ccead7f vocab=e844cfde
 -/
-theorem quotient_flatClosure_finite [Module.Finite R G] (B : Subalgebra F (F ⊗[R] G)) :
+theorem _root_.Tengoku.FltAnthropic.quotient_flatClosure_finite [Module.Finite R G] (B : Subalgebra F (F ⊗[R] G)) :
     Module.Finite R (G ⧸ Subalgebra.toSubmodule (flatClosure B)) :=
   Module.Finite.of_surjective (Subalgebra.toSubmodule (flatClosure B)).mkQ
     (Submodule.Quotient.mk_surjective _)
@@ -187,7 +187,7 @@ theorem quotient_flatClosure_finite [Module.Finite R G] (B : Subalgebra F (F ⊗
 /--
 @isnad1 id=free.0h4v.s10.a31286d13423 from=translated src=- shape=345c5f74 vocab=b835b786
 -/
-theorem quotient_flatClosure_free [IsDomain R] [IsPrincipalIdealRing R] [IsFractionRing R F]
+theorem _root_.Tengoku.FltAnthropic.quotient_flatClosure_free [IsDomain R] [IsPrincipalIdealRing R] [IsFractionRing R F]
     [Module.Finite R G] (B : Subalgebra F (F ⊗[R] G)) :
     Module.Free R (G ⧸ Subalgebra.toSubmodule (flatClosure B)) := by
   haveI := quotient_flatClosure_isTorsionFree (R := R) (F := F) (G := G) B
@@ -197,7 +197,7 @@ theorem quotient_flatClosure_free [IsDomain R] [IsPrincipalIdealRing R] [IsFract
 /--
 @isnad1 id=ex.0h4v.s9.75ead5128906 from=translated src=- shape=61ca6030 vocab=a2640e5f
 -/
-theorem exists_isCompl_flatClosure [IsDomain R] [IsPrincipalIdealRing R] [IsFractionRing R F]
+theorem _root_.Tengoku.FltAnthropic.exists_isCompl_flatClosure [IsDomain R] [IsPrincipalIdealRing R] [IsFractionRing R F]
     [Module.Finite R G] (B : Subalgebra F (F ⊗[R] G)) :
     ∃ C : Submodule R G, IsCompl (Subalgebra.toSubmodule (flatClosure B)) C := by
   haveI := quotient_flatClosure_free (R := R) (F := F) (G := G) B
@@ -225,3 +225,4 @@ theorem exists_isCompl_flatClosure [IsDomain R] [IsPrincipalIdealRing R] [IsFrac
     exact Submodule.add_mem_sup hmem ⟨N.mkQ g, rfl⟩
 
 end FlatClosure
+-- Tengoku: root names of this library moved to Tengoku.FltAnthropic so they do not collide with other libraries (generated)

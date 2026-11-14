@@ -20,18 +20,18 @@ implicit origin `Time.mk 0`, including addition of instants, norms, and derivati
 -/
 
 @[expose] public section
-
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
 /-!
 # A. The `Time` type
 -/
 
 /-- An instant in time with a given unit and orientation, but no distinguished origin. -/
 @[ext]
-structure Time where
+structure _root_.Tengoku.Physlib.Time where
   /-- The implementation coordinate associated with an instant. -/
   val : ℝ
 
-namespace Time
+namespace Tengoku.Physlib.Time
 
 lemma val_injective : Function.Injective val := fun _ _ h => Time.ext h
 
@@ -59,4 +59,5 @@ instance : AddTorsor ℝ Time where
   vsub_vadd' t₁ t₂ := by ext; simp
   vadd_vsub' dt t := by simp
 
-end Time
+end Tengoku.Physlib.Time
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

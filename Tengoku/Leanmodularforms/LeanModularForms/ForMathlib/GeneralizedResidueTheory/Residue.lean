@@ -34,7 +34,7 @@ The multi-point PV integrand `cpvIntegrandOn` is imported from
 * `integral_eq_sum_residues_of_avoids` — classical residue theorem
 * `pv_integral_simple_pole` — PV of c/(z-s) = 2πi · winding · c
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex MeasureTheory Set Filter Topology
 open scoped Real Interval
 
@@ -43,14 +43,14 @@ noncomputable section
 /-- The multi-point Cauchy principal value exists with value `L`: the ε-truncated
 integral along `γ` over `[a, b]` tends to `L` as `ε → 0⁺`. **Primary API predicate**
 (Tendsto-based). -/
-def HasCauchyPVOn'
+def _root_.Tengoku.Leanmodularforms.HasCauchyPVOn'
     (S : Finset ℂ) (f : ℂ → ℂ) (γ : ℝ → ℂ)
     (a b : ℝ) (L : ℂ) : Prop :=
   Tendsto (fun ε => ∫ t in a..b, cpvIntegrandOn S f γ ε t) (𝓝[>] 0) (𝓝 L)
 
 /-- The multi-point Cauchy principal value (limUnder-based; secondary).
 Returns junk when the limit does not exist; use `HasCauchyPVOn'` for the predicate. -/
-def cauchyPrincipalValueOn
+def _root_.Tengoku.Leanmodularforms.cauchyPrincipalValueOn
     (S : Finset ℂ) (f : ℂ → ℂ) (γ : ℝ → ℂ)
     (a b : ℝ) : ℂ :=
   limUnder (𝓝[>] (0 : ℝ)) fun ε =>
@@ -58,7 +58,7 @@ def cauchyPrincipalValueOn
       cpvIntegrandOn S f γ ε t
 
 /-- Existence of the multi-point PV; abbreviation `∃ L, HasCauchyPVOn' S f γ a b L`. -/
-def CauchyPrincipalValueExistsOn
+def _root_.Tengoku.Leanmodularforms.CauchyPrincipalValueExistsOn
     (S : Finset ℂ) (f : ℂ → ℂ) (γ : ℝ → ℂ)
     (a b : ℝ) : Prop :=
   ∃ L : ℂ, HasCauchyPVOn' S f γ a b L
@@ -66,7 +66,7 @@ def CauchyPrincipalValueExistsOn
 /-- Bridge theorem: if `HasCauchyPVOn' S f γ a b L`, then `cauchyPrincipalValueOn S f γ a b = L`.
 @isnad1 id=eq.1h6v.s5.e832d4494971 from=translated src=- shape=b2e1c372 vocab=6c0a4344
 -/
-theorem HasCauchyPVOn'.cauchyPVOn_eq {S : Finset ℂ} {f : ℂ → ℂ} {γ : ℝ → ℂ}
+theorem Tengoku.Leanmodularforms.HasCauchyPVOn'.cauchyPVOn_eq {S : Finset ℂ} {f : ℂ → ℂ} {γ : ℝ → ℂ}
     {a b : ℝ} {L : ℂ} (h : HasCauchyPVOn' S f γ a b L) :
     cauchyPrincipalValueOn S f γ a b = L :=
   h.limUnder_eq
@@ -74,14 +74,14 @@ theorem HasCauchyPVOn'.cauchyPVOn_eq {S : Finset ℂ} {f : ℂ → ℂ} {γ : �
 /-- The limit in `HasCauchyPVOn'` is unique.
 @isnad1 id=eq.2h7v.s5.ef773625e358 from=translated src=- shape=39cf5939 vocab=4ac14f84
 -/
-theorem HasCauchyPVOn'.unique {S : Finset ℂ} {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ}
+theorem Tengoku.Leanmodularforms.HasCauchyPVOn'.unique {S : Finset ℂ} {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ}
     {L₁ L₂ : ℂ} (h₁ : HasCauchyPVOn' S f γ a b L₁) (h₂ : HasCauchyPVOn' S f γ a b L₂) :
     L₁ = L₂ :=
   tendsto_nhds_unique h₁ h₂
 
 /-- Residue of f at z₀ via the limit formula
 `lim_{z → z₀} (z - z₀) · f(z)`. -/
-def residueSimplePole (f : ℂ → ℂ) (z₀ : ℂ) : ℂ :=
+def _root_.Tengoku.Leanmodularforms.residueSimplePole (f : ℂ → ℂ) (z₀ : ℂ) : ℂ :=
   limUnder (𝓝[≠] z₀) fun z => (z - z₀) * f z
 
 private lemma bounded_on_Ioo_of_continuousOn_with_limits
@@ -156,7 +156,7 @@ private lemma off_partition_in_consecutive_pair
 /-- The derivative of a piecewise C¹ immersion is bounded on [a,b].
 @isnad1 id=ex.0h1v.s6.89ad3687a1b1 from=translated src=- shape=8fb6bee1 vocab=208c4e73
 -/
-lemma piecewiseC1Immersion_deriv_bounded
+lemma _root_.Tengoku.Leanmodularforms.piecewiseC1Immersion_deriv_bounded
     (γ : PiecewiseC1Immersion) :
     ∃ M : ℝ, ∀ t ∈ Icc γ.a γ.b,
       ‖deriv γ.toFun t‖ ≤ M := by
@@ -205,7 +205,7 @@ lemma piecewiseC1Immersion_deriv_bounded
 /-- The derivative of a piecewise C¹ curve is interval integrable when bounded.
 @isnad1 id=interval.1h1v.s7.4c4ad596dcdb from=translated src=- shape=213c6c86 vocab=de7e0722
 -/
-lemma piecewiseC1_deriv_intervalIntegrable (γ : PiecewiseC1Curve)
+lemma _root_.Tengoku.Leanmodularforms.piecewiseC1_deriv_intervalIntegrable (γ : PiecewiseC1Curve)
     (h_bdd : ∃ M : ℝ, ∀ t ∈ Icc γ.a γ.b, ‖deriv γ.toFun t‖ ≤ M) :
     IntervalIntegrable (deriv γ.toFun) MeasureTheory.volume γ.a γ.b := by
   obtain ⟨M, hM⟩ := h_bdd
@@ -221,7 +221,7 @@ lemma piecewiseC1_deriv_intervalIntegrable (γ : PiecewiseC1Curve)
 /-- A single singular term is interval integrable when γ avoids s.
 @isnad1 id=interval.2h3v.s7.6090a91aa1cc from=translated src=- shape=d218e55e vocab=97fc24c5
 -/
-lemma singular_term_intervalIntegrable
+lemma _root_.Tengoku.Leanmodularforms.singular_term_intervalIntegrable
     (f : ℂ → ℂ) (s : ℂ)
     (γ : PiecewiseC1Curve)
     (hγ_avoids_s : ∀ t ∈ Icc γ.a γ.b, γ.toFun t ≠ s)
@@ -237,7 +237,7 @@ lemma singular_term_intervalIntegrable
 /-- The singular sum is interval integrable when curve avoids all poles.
 @isnad1 id=interval.2h3v.s7.84ea631ca74f from=translated src=- shape=4bed5bc8 vocab=5f1ad38c
 -/
-lemma singular_sum_intervalIntegrable
+lemma _root_.Tengoku.Leanmodularforms.singular_sum_intervalIntegrable
     (f : ℂ → ℂ) (S0 : Finset ℂ)
     (γ : PiecewiseC1Curve)
     (hγ_avoids : ∀ s ∈ S0, ∀ t ∈ Icc γ.a γ.b, γ.toFun t ≠ s)
@@ -258,7 +258,7 @@ lemma singular_sum_intervalIntegrable
 /-- For simple poles, the residue equals the Laurent coefficient.
 @isnad1 id=eq.2h4v.s6.4abcb1ada20c from=translated src=- shape=4e964524 vocab=57e72fc6
 -/
-theorem residue_simple_pole_eq_laurent
+theorem _root_.Tengoku.Leanmodularforms.residue_simple_pole_eq_laurent
     (f : ℂ → ℂ) (z₀ : ℂ) (c : ℂ) (g : ℂ → ℂ)
     (hg : AnalyticAt ℂ g z₀)
     (hf : ∀ᶠ z in 𝓝[≠] z₀, f z = c / (z - z₀) + g z) :
@@ -279,7 +279,7 @@ theorem residue_simple_pole_eq_laurent
 /-- The integral of a singular term equals the winding number times the coefficient.
 @isnad1 id=eq.1h3v.s7.7bd32d327bc5 from=translated src=- shape=0784650d vocab=72422ad3
 -/
-lemma integral_singular_term_eq_winding_times_coeff
+lemma _root_.Tengoku.Leanmodularforms.integral_singular_term_eq_winding_times_coeff
     (γ : PiecewiseC1Curve) (s c : ℂ)
     (h_avoids : ∀ t ∈ Icc γ.a γ.b, γ.toFun t ≠ s) :
     ∫ t in γ.a..γ.b, c / (γ.toFun t - s) * deriv γ.toFun t =
@@ -302,7 +302,7 @@ lemma integral_singular_term_eq_winding_times_coeff
 /-- PV with empty singular set is just the ordinary contour integral.
 @isnad1 id=hascauch.0h4v.s6.2c410310e3dc from=translated src=- shape=cd67de08 vocab=0ae0fb03
 -/
-lemma hasCauchyPVOn'_empty (f : ℂ → ℂ) (γ : ℝ → ℂ) (a b : ℝ) :
+lemma _root_.Tengoku.Leanmodularforms.hasCauchyPVOn'_empty (f : ℂ → ℂ) (γ : ℝ → ℂ) (a b : ℝ) :
     HasCauchyPVOn' ∅ f γ a b (∫ t in a..b, f (γ t) * deriv γ t) := by
   refine Filter.Tendsto.congr' ?_ tendsto_const_nhds
   filter_upwards [Ioo_mem_nhdsGT (show (0:ℝ) < 1 by norm_num)] with ε _
@@ -313,7 +313,7 @@ lemma hasCauchyPVOn'_empty (f : ℂ → ℂ) (γ : ℝ → ℂ) (a b : ℝ) :
 all singularities.
 @isnad1 id=hascauch.1h3v.s7.eefa139f2b84 from=translated src=- shape=ffe3b303 vocab=ccbfd891
 -/
-lemma hasCauchyPVOn'_avoids
+lemma _root_.Tengoku.Leanmodularforms.hasCauchyPVOn'_avoids
     (S0 : Finset ℂ) (f : ℂ → ℂ) (γ : PiecewiseC1Curve)
     (h_avoids : ∀ s ∈ S0, ∀ t ∈ Icc γ.a γ.b, γ.toFun t ≠ s) :
     HasCauchyPVOn' S0 f γ.toFun γ.a γ.b
@@ -348,7 +348,7 @@ lemma hasCauchyPVOn'_avoids
 /-- PV exists when curve avoids all singularities.
 @isnad1 id=cauchypr.1h3v.s5.cdb9139b8b1a from=translated src=- shape=4b7471b6 vocab=8a93ad94
 -/
-lemma cauchyPrincipalValueExistsOn_avoids
+lemma _root_.Tengoku.Leanmodularforms.cauchyPrincipalValueExistsOn_avoids
     (S0 : Finset ℂ) (f : ℂ → ℂ) (γ : PiecewiseC1Curve)
     (h_avoids : ∀ s ∈ S0, ∀ t ∈ Icc γ.a γ.b, γ.toFun t ≠ s) :
     CauchyPrincipalValueExistsOn S0 f γ.toFun γ.a γ.b :=
@@ -357,7 +357,7 @@ lemma cauchyPrincipalValueExistsOn_avoids
 /-- PV value equals classical integral when avoiding.
 @isnad1 id=eq.1h3v.s7.0d2440d13e67 from=translated src=- shape=2beb3a46 vocab=e815f2f7
 -/
-lemma cauchyPrincipalValueOn_avoids
+lemma _root_.Tengoku.Leanmodularforms.cauchyPrincipalValueOn_avoids
     (S0 : Finset ℂ) (f : ℂ → ℂ) (γ : PiecewiseC1Curve)
     (h_avoids : ∀ s ∈ S0, ∀ t ∈ Icc γ.a γ.b, γ.toFun t ≠ s) :
     cauchyPrincipalValueOn S0 f γ.toFun γ.a γ.b =
@@ -367,7 +367,7 @@ lemma cauchyPrincipalValueOn_avoids
 /-- PV of 1/z equals 2πi times winding number.
 @isnad1 id=eq.0h2v.s6.c2d9f9e5c3bb from=translated src=- shape=e32f1494 vocab=f80c4fff
 -/
-theorem pv_integral_inverse
+theorem _root_.Tengoku.Leanmodularforms.pv_integral_inverse
     (γ : PiecewiseC1Curve) (z₀ : ℂ) :
     cauchyPrincipalValue' (·⁻¹) (fun t => γ.toFun t - z₀) γ.a γ.b 0 =
       2 * Real.pi * I * generalizedWindingNumber' γ.toFun γ.a γ.b z₀ := by
@@ -378,7 +378,7 @@ theorem pv_integral_inverse
 /-- Single-point PV formula for simple pole.
 @isnad1 id=eq.1h3v.s8.f66508842617 from=translated src=- shape=2430c071 vocab=5e63f947
 -/
-theorem pv_integral_simple_pole
+theorem _root_.Tengoku.Leanmodularforms.pv_integral_simple_pole
     (γ : PiecewiseC1Curve) (z₀ c : ℂ)
     (hPV : ∃ L, Tendsto (fun ε => ∫ t in γ.a..γ.b,
       if ‖(fun s => γ.toFun s - z₀) t - 0‖ > ε
@@ -410,3 +410,4 @@ theorem pv_integral_simple_pole
   exact (hL.mul_const c).limUnder_eq ▸ (hL.limUnder_eq ▸ rfl)
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

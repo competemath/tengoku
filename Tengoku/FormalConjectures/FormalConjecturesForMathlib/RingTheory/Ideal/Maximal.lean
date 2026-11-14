@@ -25,10 +25,10 @@ This file defines maximal right ideals and gives their basic order-theoretic API
 -/
 
 @[expose] public section
-
+namespace Tengoku.FormalConjectures end Tengoku.FormalConjectures open Tengoku.FormalConjectures 
 universe u
 
-namespace RightIdeal
+namespace Tengoku.FormalConjectures.RightIdeal
 
 section Semiring
 
@@ -91,4 +91,5 @@ theorem _root_.Ideal.isMaximal_toRightIdeal_iff (I : Ideal R) :
 
 end CommSemiring
 
-end RightIdeal
+end Tengoku.FormalConjectures.RightIdeal
+-- Tengoku: root names of this library moved to Tengoku.FormalConjectures so they do not collide with other libraries (generated)

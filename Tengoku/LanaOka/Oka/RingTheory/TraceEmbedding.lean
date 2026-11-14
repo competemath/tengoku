@@ -21,7 +21,7 @@ is a finite `A`-algebra with `A → B` injective. The trace forms `b ↦ Tr(b b�
 After a flat base change `A → S`, the vanishing of `∑ⱼ cⱼ ⊗ bⱼ` in `S ⊗[A] B` can then be tested
 by the coordinates `∑ⱼ cⱼ λ_k(bⱼ)` (`TensorProduct.sum_tmul_eq_zero_iff_of_injective`).
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open TensorProduct
 
 section Tensor
@@ -61,7 +61,7 @@ variable (A B : Type*) [CommRing A] [IsDomain A] [IsIntegrallyClosed A]
 
 /-- **A finite torsion-free algebra over a normal domain of characteristic zero embeds into a
 free module**, through the trace forms `b ↦ Tr(b bⱼ)` for generators `bⱼ`. -/
-theorem exists_injective_linearMap_pi_of_finite (hinj : Function.Injective (algebraMap A B)) :
+theorem _root_.Tengoku.LanaOka.exists_injective_linearMap_pi_of_finite (hinj : Function.Injective (algebraMap A B)) :
     ∃ (r : ℕ) (ℓ : B →ₗ[A] (Fin r → A)), Function.Injective ℓ := by
   classical
   obtain ⟨m, b, hb⟩ := Module.Finite.exists_fin (R := A) (M := B)
@@ -122,3 +122,4 @@ theorem exists_injective_linearMap_pi_of_finite (hinj : Function.Injective (alge
   exact IsFractionRing.injective B L (h0.trans (map_zero _).symm)
 
 end Trace
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

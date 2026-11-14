@@ -33,7 +33,7 @@ and generalized winding numbers following Hungerbühler–Wasem.
 * `continuousWithinAt_integral_of_dominated_piecewise`: dominated convergence for
   parametric integrals over a piecewise continuous family.
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex MeasureTheory Set Filter Topology
 open scoped Real Interval
 
@@ -43,7 +43,7 @@ noncomputable section
 subinterval between partition points. Layers an Icc-style `partition` (endpoints included)
 on top of an inherited `PiecewiseC1PathOn a b hab x y` whose partition is Ioo-style. -/
 @[ext]
-structure PiecewiseC1Curve where
+structure _root_.Tengoku.Leanmodularforms.PiecewiseC1Curve where
   /-- Left endpoint of the parameter interval. -/
   a : ℝ
   /-- Right endpoint of the parameter interval. -/
@@ -65,7 +65,7 @@ structure PiecewiseC1Curve where
   /-- The Icc-style partition is the inherited Ioo-style one with endpoints adjoined. -/
   partition_eq : partition = insert a (insert b toPiecewiseC1PathOn.partition)
 
-namespace PiecewiseC1Curve
+namespace Tengoku.Leanmodularforms.PiecewiseC1Curve
 
 /-- The underlying function `ℝ → ℂ` of a piecewise `C¹` curve. -/
 def toFun (γ : PiecewiseC1Curve) : ℝ → ℂ := γ.toPiecewiseC1PathOn.toFun
@@ -163,16 +163,16 @@ def ofIccPartition (toFun : ℝ → ℂ) (a b : ℝ) (hab : a < b) (partition : 
     (part : Finset ℝ) (h1 h2 h3 h4 h5) :
     (PiecewiseC1Curve.ofIccPartition toFun a b hab part h1 h2 h3 h4 h5).b = b := rfl
 
-end PiecewiseC1Curve
+end Tengoku.Leanmodularforms.PiecewiseC1Curve
 
 /-- A closed curve has γ(a) = γ(b). -/
-def PiecewiseC1Curve.IsClosed (γ : PiecewiseC1Curve) : Prop :=
+def Tengoku.Leanmodularforms.PiecewiseC1Curve.IsClosed (γ : PiecewiseC1Curve) : Prop :=
   γ.toFun γ.a = γ.toFun γ.b
 
 /-- A piecewise `C¹` immersion: a piecewise `C¹` curve whose derivative is nonzero and
 admits nonzero one-sided limits at every partition point. -/
 @[ext]
-structure PiecewiseC1Immersion extends PiecewiseC1Curve where
+structure _root_.Tengoku.Leanmodularforms.PiecewiseC1Immersion extends PiecewiseC1Curve where
   /-- The derivative is nonzero off the partition. -/
   deriv_ne_zero : ∀ t ∈ Icc a b, t ∉ partition → deriv toPiecewiseC1PathOn.toFun t ≠ 0
   /-- At every interior partition point the left limit of the derivative is nonzero. -/
@@ -185,7 +185,7 @@ structure PiecewiseC1Immersion extends PiecewiseC1Curve where
 /-- The Cauchy principal value of ∮_γ f(z) dz exists with value `L`: the ε-truncated
 integral along `γ` over `[a, b]` (excluding the ε-neighbourhood of `z₀`) tends to `L`
 as `ε → 0⁺`. **Primary API predicate** (Tendsto-based, raw `ℝ → ℂ`, `[a, b]`). -/
-def HasCauchyPV' (f : ℂ → ℂ) (γ : ℝ → ℂ) (a b : ℝ) (z₀ : ℂ) (L : ℂ) : Prop :=
+def _root_.Tengoku.Leanmodularforms.HasCauchyPV' (f : ℂ → ℂ) (γ : ℝ → ℂ) (a b : ℝ) (z₀ : ℂ) (L : ℂ) : Prop :=
   Tendsto (fun ε ↦
       ∫ t in a..b, if ‖γ t - z₀‖ > ε then f (γ t) * deriv γ t else 0)
     (𝓝[>] 0) (𝓝 L)
@@ -193,12 +193,12 @@ def HasCauchyPV' (f : ℂ → ℂ) (γ : ℝ → ℂ) (a b : ℝ) (z₀ : ℂ) (
 /-- The Cauchy principal value of ∮_γ f(z) dz, excluding ε-neighborhoods of z₀.
 limUnder-based; secondary. Returns junk when the limit does not exist; use
 `HasCauchyPV'` for the predicate. -/
-def cauchyPrincipalValue' (f : ℂ → ℂ) (γ : ℝ → ℂ) (a b : ℝ) (z₀ : ℂ) : ℂ :=
+def _root_.Tengoku.Leanmodularforms.cauchyPrincipalValue' (f : ℂ → ℂ) (γ : ℝ → ℂ) (a b : ℝ) (z₀ : ℂ) : ℂ :=
   limUnder (𝓝[>] (0 : ℝ)) fun ε ↦
     ∫ t in a..b, if ‖γ t - z₀‖ > ε then f (γ t) * deriv γ t else 0
 
 /-- The Cauchy principal value exists; abbreviation `∃ L, HasCauchyPV' f γ a b z₀ L`. -/
-def CauchyPrincipalValueExists' (f : ℂ → ℂ) (γ : ℝ → ℂ)
+def _root_.Tengoku.Leanmodularforms.CauchyPrincipalValueExists' (f : ℂ → ℂ) (γ : ℝ → ℂ)
     (a b : ℝ) (z₀ : ℂ) : Prop :=
   ∃ L : ℂ, HasCauchyPV' f γ a b z₀ L
 
@@ -206,7 +206,7 @@ def CauchyPrincipalValueExists' (f : ℂ → ℂ) (γ : ℝ → ℂ)
 `cauchyPrincipalValue' f γ a b z₀ = L`.
 @isnad1 id=eq.1h6v.s5.b4365312aa2f from=translated src=- shape=cfe81e18 vocab=cb5eea94
 -/
-theorem HasCauchyPV'.cauchyPV_eq {f : ℂ → ℂ} {γ : ℝ → ℂ}
+theorem Tengoku.Leanmodularforms.HasCauchyPV'.cauchyPV_eq {f : ℂ → ℂ} {γ : ℝ → ℂ}
     {a b : ℝ} {z₀ : ℂ} {L : ℂ} (h : HasCauchyPV' f γ a b z₀ L) :
     cauchyPrincipalValue' f γ a b z₀ = L :=
   h.limUnder_eq
@@ -214,7 +214,7 @@ theorem HasCauchyPV'.cauchyPV_eq {f : ℂ → ℂ} {γ : ℝ → ℂ}
 /-- The limit in `HasCauchyPV'` is unique.
 @isnad1 id=eq.2h7v.s5.4a9b625ef927 from=translated src=- shape=cd526d90 vocab=a650366e
 -/
-theorem HasCauchyPV'.unique {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
+theorem Tengoku.Leanmodularforms.HasCauchyPV'.unique {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
     {L₁ L₂ : ℂ} (h₁ : HasCauchyPV' f γ a b z₀ L₁) (h₂ : HasCauchyPV' f γ a b z₀ L₂) :
     L₁ = L₂ :=
   tendsto_nhds_unique h₁ h₂
@@ -228,7 +228,7 @@ integrand. -/
 /-- The CPV integrand `if ε < ‖γ t - z₀‖ then f(γ t) * deriv γ t else 0` is congr in `f`.
 @isnad1 id=hascauch.2h7v.s5.7ab9aa84a9cd from=translated src=- shape=731396d0 vocab=a650366e
 -/
-theorem HasCauchyPV'.congr_along_curve {f g : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ} {L : ℂ}
+theorem Tengoku.Leanmodularforms.HasCauchyPV'.congr_along_curve {f g : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ} {L : ℂ}
     (h : HasCauchyPV' f γ a b z₀ L) (h_eq : ∀ t, f (γ t) = g (γ t)) :
     HasCauchyPV' g γ a b z₀ L := by
   show Tendsto _ _ _
@@ -238,7 +238,7 @@ theorem HasCauchyPV'.congr_along_curve {f g : ℂ → ℂ} {γ : ℝ → ℂ} {a
 /-- Scalar multiplication: if the CPV of `f` is `L`, then the CPV of `c * f` is `c * L`.
 @isnad1 id=hascauch.1h7v.s5.e5b544c69b4d from=translated src=- shape=a583240e vocab=17c472ef
 -/
-theorem HasCauchyPV'.const_mul {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ} {L : ℂ}
+theorem Tengoku.Leanmodularforms.HasCauchyPV'.const_mul {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ} {L : ℂ}
     (h : HasCauchyPV' f γ a b z₀ L) (c : ℂ) :
     HasCauchyPV' (fun z => c * f z) γ a b z₀ (c * L) := by
   have h_eq : (fun ε => ∫ t in a..b, if ‖γ t - z₀‖ > ε
@@ -256,7 +256,7 @@ theorem HasCauchyPV'.const_mul {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ} 
 /-- Right-multiplication by a scalar: CPV of `f * c` is `L * c`.
 @isnad1 id=hascauch.1h7v.s5.0fd32da02f71 from=translated src=- shape=22cdfc27 vocab=17c472ef
 -/
-theorem HasCauchyPV'.mul_const {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ} {L : ℂ}
+theorem Tengoku.Leanmodularforms.HasCauchyPV'.mul_const {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ} {L : ℂ}
     (h : HasCauchyPV' f γ a b z₀ L) (c : ℂ) :
     HasCauchyPV' (fun z => f z * c) γ a b z₀ (L * c) := by
   simpa [mul_comm] using h.const_mul c
@@ -265,7 +265,7 @@ theorem HasCauchyPV'.mul_const {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ} 
 then `HasCauchyPV' f γ … L` (when `f` agrees with `g (· - c)` on the curve).
 @isnad1 id=hascauch.2h7v.s5.2fc549c35745 from=translated src=- shape=b5952611 vocab=a650366e
 -/
-theorem HasCauchyPV'.of_eventuallyEq_along_curve
+theorem Tengoku.Leanmodularforms.HasCauchyPV'.of_eventuallyEq_along_curve
     {f g : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ} {L : ℂ}
     (h : HasCauchyPV' g γ a b z₀ L) (h_eq : ∀ t, g (γ t) = f (γ t)) :
     HasCauchyPV' f γ a b z₀ L :=
@@ -275,7 +275,7 @@ theorem HasCauchyPV'.of_eventuallyEq_along_curve
 ordinary integral; in particular it exists.
 @isnad1 id=hascauch.3h5v.s7.9fe22835f423 from=translated src=- shape=99209ce4 vocab=f35c4302
 -/
-theorem HasCauchyPV'.of_avoidance {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
+theorem Tengoku.Leanmodularforms.HasCauchyPV'.of_avoidance {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
     (h_cont : ContinuousOn γ (Icc a b)) (hab : a ≤ b)
     (h_avoid : ∀ t ∈ Icc a b, γ t ≠ z₀) :
     HasCauchyPV' f γ a b z₀ (∫ t in a..b, f (γ t) * deriv γ t) := by
@@ -292,7 +292,7 @@ theorem HasCauchyPV'.of_avoidance {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b : �
 /-- Concatenation: CPV on adjacent intervals `[a, b]` and `[b, c]` glues to `[a, c]`.
 @isnad1 id=hascauch.5h8v.s7.41c09a87f2ec from=translated src=- shape=26152bef vocab=085b0958
 -/
-theorem HasCauchyPV'.concat {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b c : ℝ} {z₀ : ℂ}
+theorem Tengoku.Leanmodularforms.HasCauchyPV'.concat {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b c : ℝ} {z₀ : ℂ}
     {L₁ L₂ : ℂ}
     (h_ab : HasCauchyPV' f γ a b z₀ L₁) (h_bc : HasCauchyPV' f γ b c z₀ L₂)
     (hab : a ≤ b) (hbc : b ≤ c)
@@ -311,7 +311,7 @@ theorem HasCauchyPV'.concat {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b c : ℝ} {
 /-- Existence version of avoidance.
 @isnad1 id=cauchypr.3h5v.s6.be97786af8ac from=translated src=- shape=e3ea94e6 vocab=61652196
 -/
-theorem cauchyPrincipalValueExists'_of_avoidance {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ}
+theorem _root_.Tengoku.Leanmodularforms.cauchyPrincipalValueExists'_of_avoidance {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ}
     {z₀ : ℂ} (h_cont : ContinuousOn γ (Icc a b)) (hab : a ≤ b)
     (h_avoid : ∀ t ∈ Icc a b, γ t ≠ z₀) :
     CauchyPrincipalValueExists' f γ a b z₀ :=
@@ -320,7 +320,7 @@ theorem cauchyPrincipalValueExists'_of_avoidance {f : ℂ → ℂ} {γ : ℝ →
 /-- Existence version of concatenation.
 @isnad1 id=cauchypr.5h6v.s7.41f1dd094c7f from=translated src=- shape=6a886021 vocab=b17dc581
 -/
-theorem CauchyPrincipalValueExists'.concat {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b c : ℝ}
+theorem Tengoku.Leanmodularforms.CauchyPrincipalValueExists'.concat {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b c : ℝ}
     {z₀ : ℂ} (h_ab : CauchyPrincipalValueExists' f γ a b z₀)
     (h_bc : CauchyPrincipalValueExists' f γ b c z₀) (hab : a ≤ b) (hbc : b ≤ c)
     (h_int : ∀ ε > 0, IntervalIntegrable
@@ -332,7 +332,8 @@ theorem CauchyPrincipalValueExists'.concat {f : ℂ → ℂ} {γ : ℝ → ℂ} 
 
 /-- The generalized winding number of γ around z₀, defined via principal value.
 `n_{z₀}(γ) = (1/2πi) · PV ∮_γ dz/(z - z₀)`. -/
-def generalizedWindingNumber' (γ : ℝ → ℂ) (a b : ℝ) (z₀ : ℂ) : ℂ :=
+def _root_.Tengoku.Leanmodularforms.generalizedWindingNumber' (γ : ℝ → ℂ) (a b : ℝ) (z₀ : ℂ) : ℂ :=
   (2 * Real.pi * I)⁻¹ * cauchyPrincipalValue' (·⁻¹) (fun t ↦ γ t - z₀) a b 0
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

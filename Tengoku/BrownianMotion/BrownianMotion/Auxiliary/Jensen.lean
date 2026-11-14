@@ -14,7 +14,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.BrownianMotion end Tengoku.BrownianMotion open Tengoku.BrownianMotion 
 open MeasureTheory Filter ENNReal
 open scoped NNReal
 
@@ -120,3 +120,4 @@ lemma ae_bdd_condExp_of_ae_bdd' {R : ℝ} {f : Ω → E} (hbdd : ∀ᵐ ω ∂μ
   grw [hω1, hω2, condExp_const hm]
 
 end MeasureTheory
+-- Tengoku: root names of this library moved to Tengoku.BrownianMotion so they do not collide with other libraries (generated)

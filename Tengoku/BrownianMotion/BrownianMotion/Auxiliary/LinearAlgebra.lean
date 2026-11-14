@@ -3,11 +3,11 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.BrownianMotion end Tengoku.BrownianMotion open Tengoku.BrownianMotion 
 /--
 @isnad1 id=eq.0h3v.s6.3efe4c7c577a from=translated src=- shape=ae36750a vocab=675d24b7
 -/
-lemma sum_single_apply {ι : Type*} (φ : ι → Type*) [∀ i, AddCommMonoid (φ i)] [Fintype ι]
+lemma _root_.Tengoku.BrownianMotion.sum_single_apply {ι : Type*} (φ : ι → Type*) [∀ i, AddCommMonoid (φ i)] [Fintype ι]
     [DecidableEq ι] (v : (i : ι) → φ i) :
     ∑ i, Pi.single i (v i) = v := by
   ext i
@@ -98,7 +98,7 @@ lemma EuclideanSpace.real_inner_eq {ι : Type*} [Fintype ι] (x y : EuclideanSpa
 @isnad1 id=eq.0h3v.s11.8379bef1a27b from=translated src=- shape=a0a36ce5 vocab=9c3e1ba3
 -/
 @[simp]
-lemma inner_toDual_symm_eq_self {𝕜 E : Type*} [RCLike 𝕜] [NormedAddCommGroup E]
+lemma _root_.Tengoku.BrownianMotion.inner_toDual_symm_eq_self {𝕜 E : Type*} [RCLike 𝕜] [NormedAddCommGroup E]
     [InnerProductSpace 𝕜 E] [CompleteSpace E] (L : StrongDual 𝕜 E) :
   inner 𝕜 ((InnerProductSpace.toDual 𝕜 E).symm L) = L := by ext; simp
 
@@ -111,3 +111,4 @@ lemma LinearIsometryEquiv.coe_coe_eq_coe {𝕜 E F : Type*} [RCLike 𝕜] [Norme
     ⇑f.toLinearIsometry.toContinuousLinearMap = ⇑f := rfl
 
 end InnerProductSpace
+-- Tengoku: root names of this library moved to Tengoku.BrownianMotion so they do not collide with other libraries (generated)

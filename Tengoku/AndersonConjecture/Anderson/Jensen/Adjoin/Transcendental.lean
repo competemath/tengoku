@@ -16,7 +16,7 @@ Loepp, "Constructing local generic formal fibers", 1997, Lemma 11.
 -/
 
 noncomputable section
-
+namespace Tengoku.AndersonConjecture end Tengoku.AndersonConjecture open Tengoku.AndersonConjecture 
 open Cardinal Ideal Polynomial Set Pointwise
 
 variable {T : Type*} [CommRing T] [IsLocalRing T] [IsNoetherianRing T] [IsDomain T]
@@ -31,7 +31,7 @@ where q(x) is a unit in T (equivalently, q(x) ∉ M).
 /-- The carrier set of R[x] localized at R[x] ∩ M, viewed inside T.
 An element t ∈ T is in this set iff t = p(x)/q(x) for some p,q ∈ R[X]
 with q(x) a unit in T (i.e., q(x) ∉ M). -/
-def adjoinLocSet (R : NSubring T) (x : T) : Set T :=
+def _root_.Tengoku.AndersonConjecture.adjoinLocSet (R : NSubring T) (x : T) : Set T :=
   { t : T | ∃ (p q : Polynomial R.carrier),
     (aeval x q : T) ∉ IsLocalRing.maximalIdeal T ∧
     t * (aeval x q : T) = (aeval x p : T) }
@@ -44,3 +44,4 @@ then R[x] localized at M is again an N-subring.
 -/
 
 end
+-- Tengoku: root names of this library moved to Tengoku.AndersonConjecture so they do not collide with other libraries (generated)

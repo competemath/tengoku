@@ -31,14 +31,14 @@ Hungerbühler–Wasem.
 
 * K. Hungerbühler, J. Wasem, *A generalized notion of winding numbers*
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Set Filter Topology
 
 noncomputable section
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] {x y : E}
 
-namespace PwC1Immersion
+namespace Tengoku.Leanmodularforms.PwC1Immersion
 
 /-- The crossing set: parameter values in `[0, 1]` where the path passes through `z₀`. -/
 def crossingSet (γ : PwC1Immersion x y) (z₀ : E) : Set ℝ :=
@@ -247,6 +247,7 @@ theorem crossingSet_finite (γ : PwC1Immersion x y) (z₀ : E)
      lt_of_le_of_ne ha_S.1.2 (fun h => h1 (h ▸ ha_S.2))⟩
   exact γ.crossing_not_accPt z₀ a ha_Ioo ha_S.2 ha_acc
 
-end PwC1Immersion
+end Tengoku.Leanmodularforms.PwC1Immersion
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

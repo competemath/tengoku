@@ -37,8 +37,8 @@ component indices induced by tensor products and contractions live in sibling fi
 -/
 
 @[expose] public section
-
-namespace TensorSpecies
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
+namespace Tengoku.Physlib.TensorSpecies
 
 variable {k : Type} [CommRing k] {C G : Type} [Group G]
   {V : C → Type} [∀ c, AddCommGroup (V c)] [∀ c, Module k (V c)]
@@ -78,4 +78,5 @@ def ComponentIdx.cast {n m : ℕ} {c : Fin n → C} {cm : Fin m → C}
 
 end Tensor
 
-end TensorSpecies
+end Tengoku.Physlib.TensorSpecies
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

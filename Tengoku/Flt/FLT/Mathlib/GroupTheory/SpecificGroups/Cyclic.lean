@@ -14,12 +14,12 @@ Material for `Mathlib.GroupTheory.SpecificGroups.Cyclic`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Flt end Tengoku.Flt open Tengoku.Flt 
 /-- A group `G` with exactly two elements — the identity `1` and a distinguished element `g ≠ 1`,
 every element being equal to one of the two — is isomorphic to `Multiplicative (ZMod 2)`, via the
 isomorphism sending `g` to `Multiplicative.ofAdd 1`. The generator `g` and the exhaustion `key` are
 taken as explicit data (rather than a bare `Nat.card G = 2`) so the isomorphism is computable. -/
-def mulEquivMultiplicativeZModTwo {G : Type*} [Group G] [DecidableEq G] (g : G) (hg : g ≠ 1)
+def _root_.Tengoku.Flt.mulEquivMultiplicativeZModTwo {G : Type*} [Group G] [DecidableEq G] (g : G) (hg : g ≠ 1)
     (key : ∀ x : G, x = 1 ∨ x = g) : G ≃* Multiplicative (ZMod 2) :=
   have hgg : g * g = 1 := (key (g * g)).resolve_right fun h ↦ hg (mul_eq_right.mp h)
   have keyM : ∀ x : Multiplicative (ZMod 2), x = 1 ∨ x = .ofAdd 1 := by decide
@@ -34,3 +34,4 @@ def mulEquivMultiplicativeZModTwo {G : Type*} [Group G] [DecidableEq G] (g : G) 
   }
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Flt so they do not collide with other libraries (generated)

@@ -7,7 +7,7 @@ Authors: Naganori Yamaguchi (assisted by OpenAI Codex)
 import Tengoku.ClassfieldtheoryYamaguchi.ClassFieldTheory.AlgebraicNumberTheory.Idele.Relative.Support
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.ClassfieldtheoryYamaguchi end Tengoku.ClassfieldtheoryYamaguchi open Tengoku.ClassfieldtheoryYamaguchi
 set_option autoImplicit false
 
 /-!
@@ -35,7 +35,7 @@ variable
 
 /-- A relative adele is linearly equivalent to its finite family of
 base-adele coefficients in the chosen extension basis.-/
-noncomputable def relativeAdeleCoefficientLinearEquiv :
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeAdeleCoefficientLinearEquiv :
     RelativeAdeleRing K L ≃ₗ[
       NumberField.AdeleRing (𝓞 K) K]
       (RelativeAdeleBasisIndex (K := K) (L := L) →
@@ -47,7 +47,7 @@ omit [NumberField L] in
 @isnad1 id=eq.0h4v.s11.67657180c872 from=translated src=- shape=afa98fc7 vocab=482f5722
 -/
 @[simp]
-theorem relativeAdeleCoefficientLinearEquiv_apply
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeAdeleCoefficientLinearEquiv_apply
     (z : RelativeAdeleRing K L)
     (i : RelativeAdeleBasisIndex (K := K) (L := L)) :
     relativeAdeleCoefficientLinearEquiv
@@ -57,7 +57,7 @@ theorem relativeAdeleCoefficientLinearEquiv_apply
   rfl
 
 /-- Assemble a finite family of base adeles into a relative adele.-/
-noncomputable def relativeAdeleOfCoefficients
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeAdeleOfCoefficients
     (a :
       RelativeAdeleBasisIndex (K := K) (L := L) →
         NumberField.AdeleRing (𝓞 K) K) :
@@ -70,7 +70,7 @@ omit [NumberField L] in
 @isnad1 id=eq.0h4v.s6.af0190d2c831 from=translated src=- shape=110eac18 vocab=d5eba3cd
 -/
 @[simp]
-theorem relativeAdeleCoefficient_ofCoefficients
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeAdeleCoefficient_ofCoefficients
     (a :
       RelativeAdeleBasisIndex (K := K) (L := L) →
         NumberField.AdeleRing (𝓞 K) K)
@@ -93,7 +93,7 @@ omit [NumberField L] in
 @isnad1 id=eq.0h3v.s6.d26ab643710d from=translated src=- shape=19b71f92 vocab=21e7379d
 -/
 @[simp]
-theorem relativeAdeleOfCoefficients_coefficients
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeAdeleOfCoefficients_coefficients
     (z : RelativeAdeleRing K L) :
     relativeAdeleOfCoefficients
         (K := K) (L := L)
@@ -114,7 +114,7 @@ omit [NumberField L] in
 corresponding tensor sum of its coefficient components.
 @isnad1 id=eq.0h4v.s11.3780e473b812 from=translated src=- shape=abd6a38e vocab=00ebc1ef
 -/
-theorem relativeAdeleOfCoefficients_finiteComponent
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeAdeleOfCoefficients_finiteComponent
     (a :
       RelativeAdeleBasisIndex (K := K) (L := L) →
         NumberField.AdeleRing (𝓞 K) K)
@@ -137,7 +137,7 @@ omit [NumberField L] in
 corresponding tensor sum of its coefficient components.
 @isnad1 id=eq.0h4v.s11.0a3aed66ae1c from=translated src=- shape=2dd88ac3 vocab=156e43d7
 -/
-theorem relativeAdeleOfCoefficients_infiniteComponent
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeAdeleOfCoefficients_infiniteComponent
     (a :
       RelativeAdeleBasisIndex (K := K) (L := L) →
         NumberField.AdeleRing (𝓞 K) K)
@@ -158,7 +158,7 @@ theorem relativeAdeleOfCoefficients_infiniteComponent
 /-- Assemble mutually inverse coordinate families into an actual relative
 idele.  The inverse equation is checked after global coordinate assembly,
 so no invertibility is hidden in the definition.-/
-noncomputable def relativeIdeleOfCoefficientFamilies
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeIdeleOfCoefficientFamilies
     (a b :
       RelativeAdeleBasisIndex (K := K) (L := L) →
         NumberField.AdeleRing (𝓞 K) K)
@@ -180,7 +180,7 @@ omit [NumberField L] in
 @isnad1 id=eq.1h4v.s9.ae8a56d7f89b from=translated src=- shape=dbdef4ed vocab=062f092e
 -/
 @[simp]
-theorem relativeIdeleOfCoefficientFamilies_coe
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeIdeleOfCoefficientFamilies_coe
     (a b :
       RelativeAdeleBasisIndex (K := K) (L := L) →
         NumberField.AdeleRing (𝓞 K) K)
@@ -196,3 +196,4 @@ theorem relativeIdeleOfCoefficientFamilies_coe
       relativeAdeleOfCoefficients
         (K := K) (L := L) a :=
   Units.val_mkOfMulEqOne hab
+-- Tengoku: root names of this library moved to Tengoku.ClassfieldtheoryYamaguchi so they do not collide with other libraries (generated)

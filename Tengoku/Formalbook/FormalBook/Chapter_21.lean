@@ -9,13 +9,13 @@ import Tengoku
 # The fundamental theorem of algebra
 D'Alembert and Argand's proof
 -/
-
+namespace Tengoku.Formalbook end Tengoku.Formalbook open Tengoku.Formalbook
 open Complex Polynomial Filter Finset Finsupp ComplexConjugate
 
 /--
 @isnad1 id=ex.3h3v.s6.998ae916674c from=translated src=- shape=c83d8060 vocab=afcad39e
 -/
-theorem dalembert_lemma {p : Polynomial ℂ} (hp : p.natDegree > 0)
+theorem _root_.Tengoku.Formalbook.dalembert_lemma {p : Polynomial ℂ} (hp : p.natDegree > 0)
     {a : ℂ} (hpa : p.eval a ≠ 0) {R : ℝ} (hR : 0 < R) :
     ∃ b, ‖b - a‖ < R ∧ ‖p.eval b‖ < ‖p.eval a‖ := by
   wlog h1 : a = 0 ∧ p.eval a = 1
@@ -205,7 +205,7 @@ theorem dalembert_lemma {p : Polynomial ℂ} (hp : p.natDegree > 0)
 /--
 @isnad1 id=ex.1h1v.s5.dda5ae3ae3b9 from=translated src=- shape=5980e33a vocab=f6d12649
 -/
-theorem fundamental_theorem_of_algebra (p : Polynomial ℂ) (hp : p.natDegree > 0) :
+theorem _root_.Tengoku.Formalbook.fundamental_theorem_of_algebra (p : Polynomial ℂ) (hp : p.natDegree > 0) :
     ∃ z : ℂ, p.eval z = 0 := by
   obtain ⟨z0, hfz0_le⟩ := p.exists_forall_norm_le
   use z0
@@ -214,3 +214,4 @@ theorem fundamental_theorem_of_algebra (p : Polynomial ℂ) (hp : p.natDegree > 
   by_contra! hz0_ne0
   obtain ⟨b, hb1, hb2⟩ := dalembert_lemma hp hz0_ne0 R1_pos
   linarith only [hb2, hfz0_le b]
+-- Tengoku: root names of this library moved to Tengoku.Formalbook so they do not collide with other libraries (generated)

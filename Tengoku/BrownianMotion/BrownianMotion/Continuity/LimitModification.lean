@@ -14,7 +14,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.BrownianMotion end Tengoku.BrownianMotion open Tengoku.BrownianMotion 
 open MeasureTheory Filter
 open scoped ENNReal NNReal Topology
 
@@ -23,7 +23,7 @@ section aux
 /--
 @isnad1 id=measurab.2h6v.s6.7b56973ab689 from=translated src=- shape=82875738 vocab=ac3a2ceb
 -/
-lemma measurable_limUnder_of_exists_tendsto {ι X E : Type*}
+lemma _root_.Tengoku.BrownianMotion.measurable_limUnder_of_exists_tendsto {ι X E : Type*}
     {mX : MeasurableSpace X} [TopologicalSpace E] [TopologicalSpace.PseudoMetrizableSpace E]
     [MeasurableSpace E] [BorelSpace E] {l : Filter ι}
     [l.IsCountablyGenerated] {f : ι → X → E} [hE : Nonempty E]
@@ -37,7 +37,7 @@ lemma measurable_limUnder_of_exists_tendsto {ι X E : Type*}
 /--
 @isnad1 id=measurab.1h5v.s6.6282c8ad3dba from=translated src=- shape=2ddb2652 vocab=a5a46046
 -/
-lemma measurable_limUnder {ι X E : Type*} [MeasurableSpace X] [TopologicalSpace E] [PolishSpace E]
+lemma _root_.Tengoku.BrownianMotion.measurable_limUnder {ι X E : Type*} [MeasurableSpace X] [TopologicalSpace E] [PolishSpace E]
     [MeasurableSpace E] [BorelSpace E] [Countable ι] {l : Filter ι}
     [l.IsCountablyGenerated] {f : ι → X → E} [hE : Nonempty E] (hf : ∀ i, Measurable (f i)) :
     Measurable (fun x ↦ limUnder l (f · x)) := by
@@ -57,7 +57,7 @@ lemma measurable_limUnder {ι X E : Type*} [MeasurableSpace X] [TopologicalSpace
 /--
 @isnad1 id=eq.2h8v.s7.664abe10e1e4 from=translated src=- shape=a14f48a7 vocab=0f37af3e
 -/
-lemma limUnder_prod {α β X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
+lemma _root_.Tengoku.BrownianMotion.limUnder_prod {α β X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
     [Nonempty X] [Nonempty Y] [T2Space X] [T2Space Y] {f : Filter α} {f' : Filter β}
     [NeBot f] [NeBot f'] {g : α → X} {g' : β → Y}
     (h₁ : ∃ x, Tendsto g f (𝓝 x)) (h₂ : ∃ x', Tendsto g' f' (𝓝 x')) :
@@ -86,7 +86,7 @@ lemma _root_.Measurable.of_edist_eq_zero {Ω E : Type*} {mΩ : MeasurableSpace �
 /--
 @isnad1 id=eq.0h4v.s5.9bc618c87a8e from=translated src=- shape=59cbe53d vocab=22b448d2
 -/
-lemma edist_limUnder_const {T E : Type*} [PseudoEMetricSpace E] [Nonempty E]
+lemma _root_.Tengoku.BrownianMotion.edist_limUnder_const {T E : Type*} [PseudoEMetricSpace E] [Nonempty E]
     {c : E} {l : Filter T} [l.NeBot] :
     edist (limUnder l fun _ ↦ c) c = 0 := by
   rw [← EMetric.inseparable_iff]
@@ -97,7 +97,7 @@ lemma edist_limUnder_const {T E : Type*} [PseudoEMetricSpace E] [Nonempty E]
 /--
 @isnad1 id=eq.2h7v.s7.f102a216f26b from=translated src=- shape=183fc2dc vocab=045c405c
 -/
-lemma edist_limUnder_prod_eq_zero {α β E : Type*} [PseudoEMetricSpace E] [Nonempty E]
+lemma _root_.Tengoku.BrownianMotion.edist_limUnder_prod_eq_zero {α β E : Type*} [PseudoEMetricSpace E] [Nonempty E]
     {l₁ : Filter α} {l₂ : Filter β}
     [l₁.NeBot] [l₂.NeBot]
     {f : α → E} {g : β → E} (hf : ∃ c, Tendsto f l₁ (𝓝 c)) (hg : ∃ c, Tendsto g l₂ (𝓝 c)) :
@@ -424,3 +424,4 @@ lemma IsLimitOfIndicator.indicatorProcess {Y X : T → Ω → E}
     · simp [indicatorProcess_apply, hω]
 
 end ProbabilityTheory
+-- Tengoku: root names of this library moved to Tengoku.BrownianMotion so they do not collide with other libraries (generated)

@@ -19,12 +19,13 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.FormalConjectures end Tengoku.FormalConjectures open Tengoku.FormalConjectures 
 /-- The distance from a real number to the nearest integer.-/
-noncomputable def distToNearestInt (x : ℝ) : ℝ := |x - round x|
+noncomputable def _root_.Tengoku.FormalConjectures.distToNearestInt (x : ℝ) : ℝ := |x - round x|
 
 /-- The distance to the nearest integer is nonnegative.
 @isnad1 id=le.0h1v.s3.1975b5ecb613 from=translated src=- shape=8a62b088 vocab=6bc70d28
 -/
 @[simp]
-theorem distToNearestInt_nonneg (x : ℝ) : 0 ≤ distToNearestInt x := abs_nonneg _
+theorem _root_.Tengoku.FormalConjectures.distToNearestInt_nonneg (x : ℝ) : 0 ≤ distToNearestInt x := abs_nonneg _
+-- Tengoku: root names of this library moved to Tengoku.FormalConjectures so they do not collide with other libraries (generated)

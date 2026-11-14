@@ -36,15 +36,15 @@ existence of the length unit of meters, and construct all other length units fro
 -/
 
 @[expose] public section
-
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
 /-- The choices of translationally-invariant metrics on the space-manifold.
   Such a choice corresponds to a choice of units for length. -/
-structure LengthUnit where
+structure _root_.Tengoku.Physlib.LengthUnit where
   /-- The underlying scale of the unit. -/
   val : ℝ
   property : 0 < val
 
-namespace LengthUnit
+namespace Tengoku.Physlib.LengthUnit
 
 @[simp]
 lemma val_ne_zero (x : LengthUnit) : x.val ≠ 0 := by
@@ -235,4 +235,5 @@ noncomputable def parsecs : LengthUnit := scale (648000/Real.pi) astronomicalUni
 
 -/
 
-end LengthUnit
+end Tengoku.Physlib.LengthUnit
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

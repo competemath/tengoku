@@ -17,7 +17,7 @@ ones), because it's sufficient for our applications, and because it's easier to 
 -/
 
 @[expose] public section
-
+namespace Tengoku.BrownianMotion end Tengoku.BrownianMotion open Tengoku.BrownianMotion 
 open scoped ENNReal NNReal
 
 variable {𝓧 𝓨 𝓚 𝓚' ι : Type*} {p : Set (Set 𝓧)} {q : Set (Set 𝓚)} {s t : Set 𝓧} {f : ℕ → Set 𝓧}
@@ -29,7 +29,7 @@ variable {α : Type*} {S : Set (Set α)}
 /--
 @isnad1 id=iff.0h3v.s7.da07ae6993ca from=translated src=- shape=d5318d35 vocab=57622048
 -/
-lemma mem_supClosure_set_iff (s : Set α) :
+lemma _root_.Tengoku.BrownianMotion.mem_supClosure_set_iff (s : Set α) :
     s ∈ supClosure S ↔ ∃ L : Finset (Set α), L.Nonempty ∧ s = ⋃₀ L ∧ ↑L ⊆ S := by
   refine ⟨fun ⟨L, hL⟩ ↦ ?_, fun h ↦ ?_⟩
   · choose hL_nonempty hL_subset hL_sup using hL
@@ -42,7 +42,7 @@ lemma mem_supClosure_set_iff (s : Set α) :
 /--
 @isnad1 id=iff.0h3v.s7.246addbea4bd from=translated src=- shape=d5318d35 vocab=039aff57
 -/
-lemma mem_infClosure_set_iff (s : Set α) :
+lemma _root_.Tengoku.BrownianMotion.mem_infClosure_set_iff (s : Set α) :
     s ∈ infClosure S ↔ ∃ L : Finset (Set α), L.Nonempty ∧ s = ⋂₀ L ∧ ↑L ⊆ S := by
   refine ⟨fun ⟨L, hL⟩ ↦ ?_, fun h ↦ ?_⟩
   · choose hL_nonempty hL_subset hL_sup using hL
@@ -55,7 +55,7 @@ lemma mem_infClosure_set_iff (s : Set α) :
 /--
 @isnad1 id=iff.0h3v.s7.283033640f0e from=translated src=- shape=ba3bdc60 vocab=56f10ea6
 -/
-lemma mem_supClosure_set_iff' (s : Set α) :
+lemma _root_.Tengoku.BrownianMotion.mem_supClosure_set_iff' (s : Set α) :
     s ∈ supClosure S ↔ ∃ (t : Finset ℕ) (_ : t.Nonempty) (A : ℕ → Set α),
       (∀ n ∈ t, A n ∈ S) ∧ s = ⋃ n ∈ t, A n := by
   rw [mem_supClosure_set_iff]
@@ -85,7 +85,7 @@ lemma mem_supClosure_set_iff' (s : Set α) :
 /--
 @isnad1 id=iff.0h3v.s7.861dca09962d from=translated src=- shape=720e1eb9 vocab=2b804a6f
 -/
-lemma mem_supClosure_insert_empty_iff (s : Set α) :
+lemma _root_.Tengoku.BrownianMotion.mem_supClosure_insert_empty_iff (s : Set α) :
     s ∈ supClosure (insert ∅ S) ↔ ∃ L : Finset (Set α), s = ⋃₀ L ∧ ↑L ⊆ insert ∅ S := by
   rw [mem_supClosure_set_iff]
   refine ⟨fun ⟨L, hL_nonempty, hL_eq, hL_subset⟩ ↦ ⟨L, hL_eq, hL_subset⟩,
@@ -102,7 +102,7 @@ lemma mem_supClosure_insert_empty_iff (s : Set α) :
 /--
 @isnad1 id=iff.0h3v.s7.0c86810fe676 from=translated src=- shape=f83533ae vocab=5f9a9d56
 -/
-lemma mem_infClosure_insert_univ_iff (s : Set α) :
+lemma _root_.Tengoku.BrownianMotion.mem_infClosure_insert_univ_iff (s : Set α) :
     s ∈ infClosure (insert Set.univ S) ↔
       ∃ L : Finset (Set α), s = ⋂₀ L ∧ ↑L ⊆ insert Set.univ S := by
   rw [mem_infClosure_set_iff]
@@ -121,13 +121,13 @@ end Aux
 /--
 @isnad1 id=iscompac.0h1v.s4.6451ba0a10bd from=translated src=- shape=7835ae7f vocab=13a4f156
 -/
-lemma isCompactSystem_singleton_empty {α : Type*} : IsCompactSystem {(∅ : Set α)} :=
+lemma _root_.Tengoku.BrownianMotion.isCompactSystem_singleton_empty {α : Type*} : IsCompactSystem {(∅ : Set α)} :=
   fun C hC _ ↦ ⟨0, by simpa using hC 0⟩
 
 /--
 @isnad1 id=iscompac.0h1v.s5.9c4d73e57d00 from=translated src=- shape=5ebdf361 vocab=a67d31c9
 -/
-lemma isCompactSystem_Icc (α : Type*) [TopologicalSpace α] [T2Space α] [Preorder α]
+lemma _root_.Tengoku.BrownianMotion.isCompactSystem_Icc (α : Type*) [TopologicalSpace α] [T2Space α] [Preorder α]
     [CompactIccSpace α] :
     IsCompactSystem {t | ∃ a b : α, Set.Icc a b = t} :=
   (isCompactSystem_isCompact _).mono fun _ ⟨_, _, heq⟩ ↦ heq ▸ isCompact_Icc
@@ -135,7 +135,7 @@ lemma isCompactSystem_Icc (α : Type*) [TopologicalSpace α] [T2Space α] [Preor
 /--
 @isnad1 id=iscompac.0h1v.s5.9bc22a7d7b24 from=translated src=- shape=72e88313 vocab=18ed3719
 -/
-lemma isCompactSystem_insert_empty_Icc (α : Type*) [TopologicalSpace α] [T2Space α] [Preorder α]
+lemma _root_.Tengoku.BrownianMotion.isCompactSystem_insert_empty_Icc (α : Type*) [TopologicalSpace α] [T2Space α] [Preorder α]
     [CompactIccSpace α] :
     IsCompactSystem (insert ∅ {t | ∃ a b : α, Set.Icc a b = t}) := by
   refine (isCompactSystem_isCompact α).mono fun s hs ↦ ?_
@@ -184,7 +184,7 @@ lemma IsCompactSystem.equiv (e : 𝓚 ≃ 𝓚') {S : Set (Set 𝓚)} (hS : IsCo
 /--
 @isnad1 id=iff.0h5v.s6.b1e162f4075e from=translated src=- shape=32301361 vocab=1ef0eb2b
 -/
-lemma iInter_sigma_eq_empty_iff {𝓚 : ι → Type*} {β : Type*} (s : β → Set ι)
+lemma _root_.Tengoku.BrownianMotion.iInter_sigma_eq_empty_iff {𝓚 : ι → Type*} {β : Type*} (s : β → Set ι)
     (f : β → (i : ι) → Set (𝓚 i)) :
      ⋂ b, (s b).sigma (f b) = ∅ ↔ ∀ i ∈ ⋂ b, s b, ⋂ b, f b i = ∅ := by
   simp only [Set.eq_empty_iff_forall_notMem, Set.mem_iInter, Set.mem_sigma_iff]
@@ -194,7 +194,7 @@ lemma iInter_sigma_eq_empty_iff {𝓚 : ι → Type*} {β : Type*} (s : β → S
 /-- Variant with an additional condition `p b` (e.g. `b ≤ n` for `dissipate`).
 @isnad1 id=iff.0h6v.s7.53131f9f624c from=translated src=- shape=0ed8e05e vocab=1ef0eb2b
 -/
-lemma iInter₂_sigma_eq_empty_iff {𝓚 : ι → Type*} {β : Type*} {p : β → Prop}
+lemma _root_.Tengoku.BrownianMotion.iInter₂_sigma_eq_empty_iff {𝓚 : ι → Type*} {β : Type*} {p : β → Prop}
     (s : β → Set ι) (f : β → (i : ι) → Set (𝓚 i)) :
     ⋂ (b) (_ : p b), (s b).sigma (f b) = ∅ ↔
       ∀ i ∈ ⋂ (b) (_ : p b), s b, ⋂ (b) (_ : p b), f b i = ∅ := by
@@ -437,3 +437,4 @@ lemma _root_.SupClosed.mem_countableSupClosure_iff (hp : SupClosed p) {s : Set �
 -- He (35.1) in the proof of 1.35
 
 end MeasureTheory
+-- Tengoku: root names of this library moved to Tengoku.BrownianMotion so they do not collide with other libraries (generated)

@@ -23,7 +23,7 @@ statements that should apply to any quadratic field over `ℚ`.
 * `QuadraticField K`: a field `K` with a `ℚ`-algebra structure whose
   dimension over `ℚ` is two.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 -- Use the canonical `QuadraticAlgebra` algebra structure on `Qsqrtd` in this file.
 -- Otherwise `DivisionRing.toRatAlgebra` competes with it once `Qsqrtd d` is a field.
 local notation "ℚ√" d => Qsqrtd d
@@ -36,7 +36,7 @@ This wraps `Algebra.IsQuadraticExtension ℚ K` as a class so that theorems can
 state their abstract-field input directly as `[QuadraticField K]`, while the
 instance below provides the underlying mathlib predicate whenever existing APIs
 ask for it.-/
-class QuadraticField (K : Type*) [Field K] [Algebra ℚ K] : Prop where
+class _root_.Tengoku.QuadraticNumberFields.QuadraticField (K : Type*) [Field K] [Algebra ℚ K] : Prop where
   /-- The underlying degree-two extension predicate.-/
   isQuadratic : Algebra.IsQuadraticExtension ℚ K
 
@@ -46,7 +46,7 @@ instance (K : Type*) [Field K] [Algebra ℚ K] [QuadraticField K] :
     Algebra.IsQuadraticExtension ℚ K :=
   QuadraticField.isQuadratic
 
-namespace QuadraticField
+namespace Tengoku.QuadraticNumberFields.QuadraticField
 
 /-- A quadratic field has degree two over `ℚ`.
 @isnad1 id=eq.0h1v.s5.0c2bb7841098 from=translated src=- shape=a962aec1 vocab=21a40806
@@ -55,13 +55,13 @@ theorem finrank_eq_two (K : Type*) [Field K] [Algebra ℚ K] [QuadraticField K] 
     Module.finrank ℚ K = 2 :=
   Algebra.IsQuadraticExtension.finrank_eq_two ℚ K
 
-end QuadraticField
+end Tengoku.QuadraticNumberFields.QuadraticField
 
 /-- A quadratic field is a number field: it has characteristic zero
 and is finite-dimensional over `ℚ`.
 @isnad1 id=numberfi.0h1v.s4.66bc45603afd from=translated src=- shape=8e42a0f8 vocab=5b51e447
 -/
-instance QuadraticField.instNumberField (K : Type*) [Field K] [Algebra ℚ K]
+instance Tengoku.QuadraticNumberFields.QuadraticField.instNumberField (K : Type*) [Field K] [Algebra ℚ K]
     [QuadraticField K] : NumberField K where
   to_charZero := charZero_of_injective_algebraMap (algebraMap ℚ K).injective
   to_finiteDimensional := by
@@ -72,7 +72,7 @@ instance QuadraticField.instNumberField (K : Type*) [Field K] [Algebra ℚ K]
     congr 1
     exact Subsingleton.elim _ _
 
-namespace Qsqrtd
+namespace Tengoku.QuadraticNumberFields.Qsqrtd
 
 section RatAlgebra
 
@@ -87,4 +87,5 @@ instance instRatAlgebraQuadraticField (d : ℚ) [Fact (¬ IsSquare d)] :
 
 end RatAlgebra
 
-end Qsqrtd
+end Tengoku.QuadraticNumberFields.Qsqrtd
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

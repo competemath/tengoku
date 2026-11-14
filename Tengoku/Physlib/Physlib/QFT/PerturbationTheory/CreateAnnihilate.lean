@@ -13,16 +13,16 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
 /-- The type `CreateAnnihilate` is the type containing two elements `create` and `annihilate`.
   This type is used to specify if an operator is a creation, or annihilation, operator
   or the sum thereof or integral thereof etc. -/
-inductive CreateAnnihilate where
+inductive _root_.Tengoku.Physlib.CreateAnnihilate where
   | create : CreateAnnihilate
   | annihilate : CreateAnnihilate
 deriving Inhabited, BEq, DecidableEq
 
-namespace CreateAnnihilate
+namespace Tengoku.Physlib.CreateAnnihilate
 
 /-- The type `CreateAnnihilate` is finite. -/
 instance : Fintype CreateAnnihilate where
@@ -71,4 +71,5 @@ lemma sum_eq {M : Type} [AddCommMonoid M] (f : CreateAnnihilate → M) :
 @[simp]
 lemma CreateAnnihilate_card_eq_two : Fintype.card CreateAnnihilate = 2 := rfl
 
-end CreateAnnihilate
+end Tengoku.Physlib.CreateAnnihilate
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

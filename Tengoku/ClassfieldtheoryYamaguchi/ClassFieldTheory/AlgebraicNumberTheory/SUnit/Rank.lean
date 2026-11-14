@@ -13,7 +13,7 @@ import Tengoku.Seed.NumberTheory.NumberField.Units.Regulator
 import Tengoku.Seed.RingTheory.DedekindDomain.Factorization
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.ClassfieldtheoryYamaguchi end Tengoku.ClassfieldtheoryYamaguchi open Tengoku.ClassfieldtheoryYamaguchi
 set_option autoImplicit false
 
 /-!
@@ -31,7 +31,7 @@ open scoped NumberField nonZeroDivisors
 
 variable {K : Type*} [Field K] [NumberField K]
 
-namespace SUnitGroup
+namespace Tengoku.ClassfieldtheoryYamaguchi.SUnitGroup
 
 /-- The group of ordinary units, expressed as `S`-units for the empty set.-/
 noncomputable def emptyEquivNumberFieldUnits :
@@ -703,4 +703,5 @@ theorem finrank_modTorsion_eq_card_infinitePlaces_add_card_sub_one :
 
 end Rank
 
-end SUnitGroup
+end Tengoku.ClassfieldtheoryYamaguchi.SUnitGroup
+-- Tengoku: root names of this library moved to Tengoku.ClassfieldtheoryYamaguchi so they do not collide with other libraries (generated)

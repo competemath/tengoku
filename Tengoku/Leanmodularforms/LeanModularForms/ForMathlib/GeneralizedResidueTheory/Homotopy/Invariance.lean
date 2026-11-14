@@ -16,7 +16,7 @@ curve avoids the point `z₀`.
 * `generalizedWindingNumber_eq_classical_away` — PV winding number equals the classical
   integral `(2πi)⁻¹ ∫ (γ - z₀)⁻¹ γ'` when `γ` avoids `z₀` on `[a, b]`.
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex MeasureTheory Set Filter Topology
 open scoped Real Interval
 
@@ -25,7 +25,7 @@ noncomputable section
 /-- When γ avoids z₀, the PV winding number equals the classical contour integral.
 @isnad1 id=eq.1h2v.s7.449be1b85b53 from=translated src=- shape=5ec7dc04 vocab=b9ecc625
 -/
-theorem generalizedWindingNumber_eq_classical_away
+theorem _root_.Tengoku.Leanmodularforms.generalizedWindingNumber_eq_classical_away
     (γ : PiecewiseC1Curve) (z₀ : ℂ) (hoff : ∀ t ∈ Icc γ.a γ.b, γ.toFun t ≠ z₀) :
     generalizedWindingNumber' γ.toFun γ.a γ.b z₀ =
     (2 * Real.pi * I)⁻¹ * ∫ t in γ.a..γ.b, (γ.toFun t - z₀)⁻¹ * deriv γ.toFun t := by
@@ -48,3 +48,4 @@ theorem generalizedWindingNumber_eq_classical_away
   simp [hbound, deriv_sub_const]
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

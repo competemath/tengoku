@@ -51,7 +51,7 @@ nonzero `f ∈ R`. This file collects the building blocks and assembles the dév
   dévissage; the domain-case dimension induction is isolated in
   `exists_generically_free_domain`.
 -/
-
+namespace Tengoku.Aintlib end Tengoku.Aintlib open Tengoku.Aintlib
 open Submodule LinearMap TensorProduct
 
 universe u
@@ -63,7 +63,7 @@ Noetherian ring receives an injection from `R ⧸ 𝔭` for some prime `𝔭`. T
 prime `𝔭 = Ann(x)`; then `r ↦ r • x` has kernel `𝔭` and descends to an injection.
 @isnad1 id=ex.0h2v.s8.8a1642536c09 from=translated src=- shape=b7996a1f vocab=e96cb2b6
 -/
-theorem exists_primeQuotient_injection [IsNoetherianRing R] [Nontrivial M] :
+theorem _root_.Tengoku.Aintlib.exists_primeQuotient_injection [IsNoetherianRing R] [Nontrivial M] :
     ∃ p : Ideal R, p.IsPrime ∧ ∃ f : (R ⧸ p) →ₗ[R] M, Function.Injective f := by
   obtain ⟨I, hI⟩ := associatedPrimes.nonempty R M
   rw [AssociatedPrimes.mem_iff, isAssociatedPrime_iff] at hI
@@ -81,7 +81,7 @@ projective, so the surjection `M → B` splits, giving `M ≃ₗ A × B`; a prod
 free.
 @isnad1 id=free.3h6v.s8.deae9b47452c from=translated src=- shape=fc658db9 vocab=31d7b005
 -/
-theorem free_of_exact_of_free {R A M B : Type*} [Ring R]
+theorem _root_.Tengoku.Aintlib.free_of_exact_of_free {R A M B : Type*} [Ring R]
     [AddCommGroup A] [Module R A] [AddCommGroup M] [Module R M] [AddCommGroup B] [Module R B]
     (j : A →ₗ[R] M) (g : M →ₗ[R] B) (hj : Function.Injective j) (hg : Function.Surjective g)
     (hexact : LinearMap.range j = LinearMap.ker g)
@@ -95,7 +95,7 @@ zero locus of the annihilator, so `𝔭 ∉ Supp N` means `Ann N ⊄ 𝔭`, i.e.
 with `g ∉ 𝔭`.
 @isnad1 id=ex.1h3v.s7.a1d19362dd86 from=translated src=- shape=7fb5a00e vocab=3c9c7b31
 -/
-theorem exists_smul_eq_zero_of_notMem_support {R N : Type*} [CommRing R]
+theorem _root_.Tengoku.Aintlib.exists_smul_eq_zero_of_notMem_support {R N : Type*} [CommRing R]
     [AddCommGroup N] [Module R N] [Module.Finite R N] (p : PrimeSpectrum R)
     (hp : p ∉ Module.support R N) : ∃ g ∉ p.asIdeal, ∀ n : N, g • n = 0 := by
   rw [Module.support_eq_zeroLocus, PrimeSpectrum.mem_zeroLocus, Set.not_subset] at hp
@@ -109,7 +109,7 @@ over `K`, i.e. a finite injective `K`-algebra map from a polynomial ring
 `K ⊗[R] S`, which is finite-type over `K`.
 @isnad1 id=ex.0h2v.s11.307614442ac9 from=translated src=- shape=f529fa90 vocab=d73609bc
 -/
-theorem exists_noetherNormalization_baseChange {R S : Type*} [CommRing R] [IsDomain R]
+theorem _root_.Tengoku.Aintlib.exists_noetherNormalization_baseChange {R S : Type*} [CommRing R] [IsDomain R]
     [CommRing S] [Algebra R S] [Algebra.FiniteType R S]
     [Nontrivial ((FractionRing R) ⊗[R] S)] :
     ∃ (d : ℕ) (φ : MvPolynomial (Fin d) (FractionRing R) →ₐ[FractionRing R]
@@ -623,3 +623,4 @@ private structure GFDatum (R : Type u) [CommRing R] (B : Type u) [CommRing B] [A
     Function.Exact fF gN
 
 end Devissage
+-- Tengoku: root names of this library moved to Tengoku.Aintlib so they do not collide with other libraries (generated)

@@ -24,12 +24,12 @@ Used in `RiemannZetaAbelContinuation` to match the Abel integral formula for `re
 -/
 
 @[expose] public section
-
+namespace Tengoku.Primenumbertheoremand end Tengoku.Primenumbertheoremand open Tengoku.Primenumbertheoremand 
 open scoped BigOperators Topology
 open Real Set Filter Topology MeasureTheory Complex Nat ZetaAbelFractKernel
 
 /-- Partial sum of the Dirichlet series defining `ζ` for `re s > 1`. -/
-noncomputable def zetaPartialSum (s : ℂ) (N : ℕ) : ℂ :=
+noncomputable def _root_.Tengoku.Primenumbertheoremand.zetaPartialSum (s : ℂ) (N : ℕ) : ℂ :=
   ∑ n ∈ Finset.range N, (n + 1 : ℂ) ^ (-s)
 
 namespace ZetaPartialSum
@@ -199,3 +199,4 @@ theorem tendsto_riemannZeta (s : ℂ) (hs : 1 < s.re) :
   simpa [zetaPartialSum, h, h_tsum_eq.trans hzeta.symm] using Summable.tendsto_sum_tsum_nat hhSumm
 
 end ZetaPartialSum
+-- Tengoku: root names of this library moved to Tengoku.Primenumbertheoremand so they do not collide with other libraries (generated)

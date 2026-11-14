@@ -24,7 +24,7 @@ Let `E` be a finite-dimensional complex normed space.
   functions holomorphic on `X`. Then for all `g_k` holomorphic on `U_k` there are `f_k`
   holomorphic on `U_k` with `g_k = f_k - f_{k+1}` on `U_k`; i.e. `lim¹_k 𝒪(U_k) = 0`.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Complex Filter Metric Set
 open scoped Topology
 
@@ -32,7 +32,7 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] [FiniteDimension
 
 /-- **Weierstrass' theorem** in several variables: a locally uniform limit of holomorphic
 functions on an open subset of a finite-dimensional space is holomorphic. -/
-theorem differentiableOn_of_tendstoLocallyUniformlyOn {ι : Type*} {l : Filter ι} [l.NeBot]
+theorem _root_.Tengoku.LanaOka.differentiableOn_of_tendstoLocallyUniformlyOn {ι : Type*} {l : Filter ι} [l.NeBot]
     {U : Set E} (hU : IsOpen U) {F : ι → E → ℂ} {G : E → ℂ}
     (hF : ∀ n, DifferentiableOn ℂ (F n) U) (hFG : TendstoLocallyUniformlyOn F G l U) :
     DifferentiableOn ℂ G U := by
@@ -125,7 +125,7 @@ theorem differentiableOn_of_tendstoLocallyUniformlyOn {ι : Type*} {l : Filter �
 
 /-- A series of holomorphic functions on an open subset of a finite-dimensional space, dominated
 by a summable sequence, has a holomorphic sum. -/
-theorem differentiableOn_tsum_of_summable_norm_le {U : Set E} (hU : IsOpen U)
+theorem _root_.Tengoku.LanaOka.differentiableOn_tsum_of_summable_norm_le {U : Set E} (hU : IsOpen U)
     {F : ℕ → E → ℂ} (hF : ∀ n, DifferentiableOn ℂ (F n) U) {u : ℕ → ℝ} (hu : Summable u)
     (hle : ∀ n, ∀ z ∈ U, ‖F n z‖ ≤ u n) :
     DifferentiableOn ℂ (fun z ↦ ∑' n, F n z) U :=
@@ -137,7 +137,7 @@ theorem differentiableOn_tsum_of_summable_norm_le {U : Set E} (hU : IsOpen U)
 `U_{k+1}` is a uniform limit on `U_k` of functions holomorphic on `⋃ U_j`. Then for all
 `g_k` holomorphic on `U_k` there are `f_k` holomorphic on `U_k` with `g_k = f_k - f_{k+1}` on
 `U_k`. In other words `lim¹_k 𝒪(U_k) = 0`. -/
-theorem exists_mittagLeffler {U : ℕ → Set E} (hU : ∀ k, IsOpen (U k)) (hmono : Monotone U)
+theorem _root_.Tengoku.LanaOka.exists_mittagLeffler {U : ℕ → Set E} (hU : ∀ k, IsOpen (U k)) (hmono : Monotone U)
     (happrox : ∀ k (g : E → ℂ), DifferentiableOn ℂ g (U (k + 1)) → ∀ ε > 0,
       ∃ h : E → ℂ, DifferentiableOn ℂ h (⋃ j, U j) ∧ ∀ z ∈ U k, ‖g z - h z‖ ≤ ε)
     (g : ℕ → E → ℂ) (hg : ∀ k, DifferentiableOn ℂ (g k) (U k)) :
@@ -166,3 +166,4 @@ theorem exists_mittagLeffler {U : ℕ → Set E} (hU : ∀ k, IsOpen (U k)) (hmo
     have : ∀ j, j + 1 + k = j + (k + 1) := fun j ↦ by omega
     simp_rw [this]
     ring
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

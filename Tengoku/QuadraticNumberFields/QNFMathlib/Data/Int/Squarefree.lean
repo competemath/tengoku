@@ -14,13 +14,13 @@ import Tengoku.QuadraticNumberFields.QNFMathlib.Algebra.Squarefree.Basic
 
 Material destined for mathlib.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 /-- `-1` is not a square in `ℚ`.
 @isnad1 id=not.0h0v.s3.1601fe51afa6 from=translated src=- shape=9d0cceca vocab=adcd887f
 -/
 -- Repository use: `QuadraticField/Parameters.lean` uses this to rule out the
 -- negative square-ratio case in squarefree parameter uniqueness.
-lemma not_isSquare_neg_one_rat : ¬ IsSquare (- (1 : ℚ)) := by
+lemma _root_.Tengoku.QuadraticNumberFields.not_isSquare_neg_one_rat : ¬ IsSquare (- (1 : ℚ)) := by
   rintro ⟨r, hr⟩
   have hnonneg : 0 ≤ r ^ 2 := sq_nonneg r
   nlinarith [hr, hnonneg]
@@ -29,7 +29,7 @@ lemma not_isSquare_neg_one_rat : ¬ IsSquare (- (1 : ℚ)) := by
 @isnad1 id=eq.2h1v.s4.89b71f1a5d67 from=translated src=- shape=aaf7728e vocab=a210c365
 -/
 -- Repository use: internal support for `int_dvd_of_ratio_square`.
-lemma nat_eq_one_of_squarefree_intcast_of_isSquare (m : ℕ)
+lemma _root_.Tengoku.QuadraticNumberFields.nat_eq_one_of_squarefree_intcast_of_isSquare (m : ℕ)
     (hsm : Squarefree (m : ℤ)) (hsq : IsSquare (m : ℤ)) : m = 1 := by
   have hmz : (m : ℤ) = 1 ∨ (m : ℤ) = -1 :=
     eq_one_of_squarefree_isSquare hsm hsq
@@ -48,7 +48,7 @@ by squarefreeness).
 -- Repository use: `QuadraticField/Parameters.lean` uses this for uniqueness of
 -- squarefree parameters; `Qsqrtd/TraceNorm.lean` uses it in integrality
 -- denominator control.
-lemma int_dvd_of_ratio_square (d₁ d₂ : ℤ) (hd₂ : d₂ ≠ 0)
+lemma _root_.Tengoku.QuadraticNumberFields.int_dvd_of_ratio_square (d₁ d₂ : ℤ) (hd₂ : d₂ ≠ 0)
     (hsq_d₂ : Squarefree d₂) (hr : IsSquare ((d₁ : ℚ) / (d₂ : ℚ))) : d₂ ∣ d₁ := by
   -- A rational square has square numerator and denominator.
   -- Since the denominator divides the squarefree integer `d₂`,
@@ -64,3 +64,4 @@ lemma int_dvd_of_ratio_square (d₁ d₂ : ℤ) (hd₂ : d₂ ≠ 0)
   have hden1_nat : ((d₁ : ℚ) / (d₂ : ℚ)).den = 1 :=
     nat_eq_one_of_squarefree_intcast_of_isSquare _ hsqf_den_int hsq_den_int
   exact (Rat.den_div_intCast_eq_one_iff d₁ d₂ hd₂).1 hden1_nat
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

@@ -4,7 +4,7 @@ import Tengoku.FltAnthropic.Definitions.Def_DualIsogenyAPI
 import Tengoku.Seed.Algebra.Group.Subgroup.Basic
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 set_option autoImplicit false
 
 open scoped Function
@@ -88,7 +88,7 @@ private theorem intCast_sub_mem {S : Subring (AddMonoid.End A)} {φ : AddMonoid.
 /--
 @isnad1 id=dualisog.1h2v.s9.e82cb3b7e93f from=translated src=- shape=43d98f71 vocab=e5fbf0d2
 -/
-theorem dualIsogenyExistence_of_charPoly {S : Subring (AddMonoid.End A)}
+theorem _root_.Tengoku.FltAnthropic.dualIsogenyExistence_of_charPoly {S : Subring (AddMonoid.End A)}
     (hcp : ∀ φ ∈ S, ∃ t n : ℤ,
       φ * φ = (t : AddMonoid.End A) * φ - (n : AddMonoid.End A) ∧
       (φ ∉ (⊥ : Subring (AddMonoid.End A)) → t ^ 2 < 4 * n)) :
@@ -109,7 +109,7 @@ theorem dualIsogenyExistence_of_charPoly {S : Subring (AddMonoid.End A)}
 /--
 @isnad1 id=ex.2h3v.s8.1705772a13bc from=translated src=- shape=2f69b77c vocab=cf5c845e
 -/
-theorem charPoly_of_dualIsogenyExistence {S : Subring (AddMonoid.End A)}
+theorem _root_.Tengoku.FltAnthropic.charPoly_of_dualIsogenyExistence {S : Subring (AddMonoid.End A)}
     (hex : DualIsogenyExistence S) :
     ∀ φ ∈ S, ∃ t n : ℤ,
       φ * φ = (t : AddMonoid.End A) * φ - (n : AddMonoid.End A) ∧ 0 ≤ n := by
@@ -171,7 +171,7 @@ section SatGates
 /--
 @isnad1 id=eq.0h0v.s7.bde4102341e4 from=translated src=- shape=c34f1e54 vocab=9b0cc327
 -/
-theorem gate_dualOfSurjective_id :
+theorem _root_.Tengoku.FltAnthropic.gate_dualOfSurjective_id :
     AddMonoidHom.dualOfSurjective (AddMonoidHom.id ℤ) Function.surjective_id 1
       (fun a ha => by rwa [one_zsmul]) = AddMonoidHom.id ℤ :=
   ((AddMonoidHom.dualOfSurjective_unique (AddMonoidHom.id ℤ) Function.surjective_id 1
@@ -180,7 +180,7 @@ theorem gate_dualOfSurjective_id :
 /--
 @isnad1 id=ex.0h0v.s7.c0715a117204 from=translated src=- shape=59d21603 vocab=8c84348f
 -/
-theorem gate_exists_of_factor_intCast :
+theorem _root_.Tengoku.FltAnthropic.gate_exists_of_factor_intCast :
     ∃ χ : ℤ →+ ℤ, AddMonoidHom.IsDualPair
       ((3 : AddMonoid.End ℤ).comp (2 : AddMonoid.End ℤ)) χ ((2 : ℤ)^2 * 3^2) :=
   AddMonoidHom.exists_isDualPair_of_factor
@@ -190,7 +190,7 @@ theorem gate_exists_of_factor_intCast :
 /--
 @isnad1 id=dualisog.0h1v.s6.2d80c2b5b219 from=translated src=- shape=7d1e16a9 vocab=a5c5878a
 -/
-theorem gate_dualIsogenyExistence_of_charPoly_bot {A : Type*} [AddCommGroup A] :
+theorem _root_.Tengoku.FltAnthropic.gate_dualIsogenyExistence_of_charPoly_bot {A : Type*} [AddCommGroup A] :
     DualIsogenyExistence (⊥ : Subring (AddMonoid.End A)) := by
   apply dualIsogenyExistence_of_charPoly
   intro φ hφ
@@ -202,9 +202,10 @@ theorem gate_dualIsogenyExistence_of_charPoly_bot {A : Type*} [AddCommGroup A] :
 /--
 @isnad1 id=ex.1h2v.s9.0c9cb5d0347a from=translated src=- shape=910738e3 vocab=cf3984fa
 -/
-theorem gate_charPoly_of_dualIsogenyExistence_bot {A : Type*} [AddCommGroup A] :
+theorem _root_.Tengoku.FltAnthropic.gate_charPoly_of_dualIsogenyExistence_bot {A : Type*} [AddCommGroup A] :
     ∀ φ ∈ (⊥ : Subring (AddMonoid.End A)), ∃ t n : ℤ,
       φ * φ = (t : AddMonoid.End A) * φ - (n : AddMonoid.End A) ∧ 0 ≤ n :=
   charPoly_of_dualIsogenyExistence dualIsogenyExistence_bot
 
 end SatGates
+-- Tengoku: root names of this library moved to Tengoku.FltAnthropic so they do not collide with other libraries (generated)

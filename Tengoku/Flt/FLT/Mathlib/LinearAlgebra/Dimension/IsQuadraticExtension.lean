@@ -15,7 +15,7 @@ lemmas about elements of a quadratic extension lying outside the base field.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Flt end Tengoku.Flt open Tengoku.Flt 
 section
 
 variable (K L : Type*) [Field K] [Field L] [Algebra K L]
@@ -24,7 +24,7 @@ variable (K L : Type*) [Field K] [Field L] [Algebra K L]
 field.
 @isnad1 id=linearin.1h3v.s7.21d2b3a1df09 from=translated src=- shape=f06e0a7f vocab=a0d282d7
 -/
-theorem linearIndependent_one_of_notMem_range_algebraMap {θ : L}
+theorem _root_.Tengoku.Flt.linearIndependent_one_of_notMem_range_algebraMap {θ : L}
     (hθ : θ ∉ Set.range (algebraMap K L)) : LinearIndependent K ![(1 : L), θ] :=
   (LinearIndependent.pair_iff' one_ne_zero).mpr fun a ha ↦
     hθ ⟨a, by rwa [Algebra.algebraMap_eq_smul_one]⟩
@@ -71,7 +71,7 @@ variable {K : Type*} [Field K] (L : Type*) [Field L] [Algebra K L]
 /-- An element whose square is (the image of) a nonsquare of `K` lies outside `K`.
 @isnad1 id=not.2h4v.s7.dfe59adb74dd from=translated src=- shape=6c1a4598 vocab=aab245a4
 -/
-lemma notMem_range_algebraMap_of_not_isSquare {d : K} (hd : ¬IsSquare d) {α : L}
+lemma _root_.Tengoku.Flt.notMem_range_algebraMap_of_not_isSquare {d : K} (hd : ¬IsSquare d) {α : L}
     (hα : α ^ 2 = algebraMap K L d) : α ∉ Set.range (algebraMap K L) := by
   rintro ⟨c, rfl⟩
   refine hd ⟨c, FaithfulSMul.algebraMap_injective K L ?_⟩
@@ -81,3 +81,4 @@ lemma notMem_range_algebraMap_of_not_isSquare {d : K} (hd : ¬IsSquare d) {α : 
 end
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Flt so they do not collide with other libraries (generated)

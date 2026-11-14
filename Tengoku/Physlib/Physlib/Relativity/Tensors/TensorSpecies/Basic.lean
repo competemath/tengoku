@@ -20,14 +20,14 @@ public import Tengoku.Physlib.Physlib.Mathematics.PiTensorProduct
 -/
 
 @[expose] public section
-
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
 open Module
 open scoped TensorProduct
 
 /-- The structure `TensorSpecies` contains the necessary structure needed to define
   a system of tensors with index notation. Examples of `TensorSpecies` include real Lorentz tensors,
   complex Lorentz tensors, and ordinary Euclidean tensors. -/
-structure TensorSpecies (k : Type) [CommRing k] (C : Type) (G : Type) [Group G]
+structure _root_.Tengoku.Physlib.TensorSpecies (k : Type) [CommRing k] (C : Type) (G : Type) [Group G]
     (V : C → Type) [∀ c, AddCommGroup (V c)] [∀ c, Module k (V c)]
     (basisIdx : C → Type) [∀ c, Fintype (basisIdx c)] [∀ c, DecidableEq (basisIdx c)]
     (rep : (c : C) → Representation k G (V c)) (basis : (c : C) → Basis (basisIdx c) k (V c)) where
@@ -65,7 +65,7 @@ structure TensorSpecies (k : Type) [CommRing k] (C : Type) (G : Type) [Group G]
 
 noncomputable section
 
-namespace TensorSpecies
+namespace Tengoku.Physlib.TensorSpecies
 
 variable {k : Type} [CommRing k] {C : Type} [Group G]
   {basisIdx : C → Type}
@@ -127,6 +127,7 @@ set_option linter.unusedVariables false in
 def numIndices {S : TensorSpecies k C G V basisIdx rep basis} {n : ℕ} {c : Fin n → C}
     (_ : PiTensorProduct k (fun i => V (c i))) : ℕ := n
 
-end TensorSpecies
+end Tengoku.Physlib.TensorSpecies
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

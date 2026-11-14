@@ -27,7 +27,7 @@ and Euclidean norm, enabling dimension reduction from n to d.
 * `linearCoveringNumber_le_euclideanBall_d`: Dimension reduction bound
 
 -/
-
+namespace Tengoku.Leanslt end Tengoku.Leanslt open Tengoku.Leanslt
 open MeasureTheory Finset BigOperators Real ProbabilityTheory Metric Set
 open scoped NNReal ENNReal
 
@@ -453,3 +453,4 @@ lemma LinearIsometryEquiv.image_closedBall {E F : Type*} [NormedAddCommGroup E]
     · simp
 
 end LeastSquares
+-- Tengoku: root names of this library moved to Tengoku.Leanslt so they do not collide with other libraries (generated)

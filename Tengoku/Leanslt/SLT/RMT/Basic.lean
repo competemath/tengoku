@@ -40,7 +40,7 @@ This file starts the random-matrix infrastructure for HDP, Section 4.4.
 * `RMT.two_sided_subgaussian_matrices_expectation_hdp`: the exact proposition stated by
   HDP Remark 4.6.2.
 -/
-
+namespace Tengoku.Leanslt end Tengoku.Leanslt open Tengoku.Leanslt
 open MeasureTheory ProbabilityTheory Real Filter
 open scoped BigOperators NNReal Topology
 
@@ -4481,3 +4481,4 @@ def two_sided_subgaussian_matrices_expectation_hdp {m n : ℕ}
           C * K ^ 2 * (√((n : ℝ) / (m : ℝ)) + (n : ℝ) / (m : ℝ))
 
 end RMT
+-- Tengoku: root names of this library moved to Tengoku.Leanslt so they do not collide with other libraries (generated)

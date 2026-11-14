@@ -35,8 +35,8 @@ quantities back without *adding* them.
 -/
 
 @[expose] public section
-
-namespace Dimension
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
+namespace Tengoku.Physlib.Dimension
 
 /-- The function underlying `toISQHom`: fix length, mass, time and temperature, and
   send PhysLib's charge generator to the derived ISQ charge `I · T` (the current
@@ -143,4 +143,5 @@ lemma toISQHom_C𝓭 : toISQHom C𝓭 = ISQDimensionBase.charge := by
   ext b
   cases b <;> simp [toISQHom_apply, toISQFun, C𝓭, ISQDimensionBase.charge, single_exponent]
 
-end Dimension
+end Tengoku.Physlib.Dimension
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

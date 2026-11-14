@@ -24,7 +24,7 @@ Strip bounds for `riemannZeta`, used in `ZetaFiniteOrder`. Euler-product input i
 -/
 
 @[expose] public section
-
+namespace Tengoku.Primenumbertheoremand end Tengoku.Primenumbertheoremand open Tengoku.Primenumbertheoremand 
 open scoped BigOperators Topology
 open Real Set Filter Topology MeasureTheory Complex
 
@@ -33,7 +33,7 @@ open Real Set Filter Topology MeasureTheory Complex
 -/
 
 /-- For `σ > 1`, the Euler product at `re s = 2σ` controls `‖ζ(2σ) / ζ σ‖` on the line `σ + it`. -/
-theorem norm_riemannZeta_ratio_le_on_verticalLine (σ t : ℝ) (hσ : 1 < σ) :
+theorem _root_.Tengoku.Primenumbertheoremand.norm_riemannZeta_ratio_le_on_verticalLine (σ t : ℝ) (hσ : 1 < σ) :
     ‖riemannZeta (2 * (σ : ℂ)) / riemannZeta (σ : ℂ)‖ ≤ ‖riemannZeta (verticalLine σ t)‖ := by
   have hs : 1 < (verticalLine σ t).re := by rw [verticalLine_re]; exact hσ
   calc
@@ -46,7 +46,7 @@ theorem norm_riemannZeta_ratio_le_on_verticalLine (σ t : ℝ) (hσ : 1 < σ) :
       simpa [verticalLine] using (norm_riemannZeta_eulerProduct (verticalLine σ t) hs).symm
 
 /-- Convexity input at `σ = 3/2`: `‖ζ 3 / ζ (3/2)‖ ≤ ‖ζ (3/2 + it)‖`. -/
-theorem norm_riemannZeta_ratio_le_on_vertical_line (t : ℝ) :
+theorem _root_.Tengoku.Primenumbertheoremand.norm_riemannZeta_ratio_le_on_vertical_line (t : ℝ) :
     ‖riemannZeta 3 / riemannZeta ((3 : ℝ) / 2)‖ ≤ ‖riemannZeta (verticalLine (3 / 2 : ℝ) t)‖ := by
   have hσ : 1 < (3 / 2 : ℝ) := by norm_num
   have h2 : (2 : ℂ) * ((3 / 2 : ℝ) : ℂ) = (3 : ℂ) := by norm_num
@@ -58,7 +58,7 @@ theorem norm_riemannZeta_ratio_le_on_vertical_line (t : ℝ) :
 -/
 
 /-- On `zetaAbelContinuationDomain`, `‖ζ s‖ ≤ 1 + ‖(s - 1)⁻¹‖ + ‖s‖ / re s`. -/
-theorem norm_riemannZeta_le (s : ℂ) (hs : s ∈ zetaAbelContinuationDomain) :
+theorem _root_.Tengoku.Primenumbertheoremand.norm_riemannZeta_le (s : ℂ) (hs : s ∈ zetaAbelContinuationDomain) :
     ‖riemannZeta s‖ ≤ 1 + ‖1 / (s - 1)‖ + ‖s‖ / s.re := by
   rw [riemannZeta_eq_zetaAbelContinuationFormula s hs]
   exact norm_zetaAbelContinuationFormula_le s hs
@@ -119,7 +119,7 @@ end StripBounds
 open StripBounds
 
 /-- In the strip `1/2 ≤ re z < 3` with `1 ≤ |im z|`, `‖ζ z‖ < 8 + 2|im z|`. -/
-theorem norm_riemannZeta_lt_linear_im_on_strip (z : ℂ)
+theorem _root_.Tengoku.Primenumbertheoremand.norm_riemannZeta_lt_linear_im_on_strip (z : ℂ)
     (hz_re : z.re ∈ Ico (1 / 2 : ℝ) (3 : ℝ)) (hz_im : (1 : ℝ) ≤ |z.im|) :
     ‖riemannZeta z‖ < (8 : ℝ) + 2 * |z.im| := by
   have hz_re' : (1 / 2 : ℝ) ≤ z.re ∧ z.re < (3 : ℝ) := by simpa [Ico] using hz_re
@@ -151,7 +151,7 @@ private lemma shift_mem_strip (s : ℂ) (t : ℝ) (hs : ‖s‖ ≤ 1) (ht : (2 
       linarith [h.2, ht']
 
 /-- If `‖s‖ ≤ 1` and `2 < |t|`, then `‖ζ (s + 3/2 + it)‖ < 10 + 2|t|`. -/
-theorem norm_riemannZeta_shift_le (t : ℝ) (s : ℂ) (hs : ‖s‖ ≤ 1) (ht : 2 < |t|) :
+theorem _root_.Tengoku.Primenumbertheoremand.norm_riemannZeta_shift_le (t : ℝ) (s : ℂ) (hs : ‖s‖ ≤ 1) (ht : 2 < |t|) :
     ‖riemannZeta (s + (3 / 2 : ℝ) + Complex.I * t)‖ < 10 + 2 * |t| := by
   set z := verticalLine (s.re + (3 / 2 : ℝ)) (s.im + t)
   have hz : s + (3 / 2 : ℝ) + Complex.I * t = z := by
@@ -167,3 +167,4 @@ theorem norm_riemannZeta_shift_le (t : ℝ) (s : ℂ) (hs : ‖s‖ ≤ 1) (ht :
     _ < (8 : ℝ) + 2 * |z.im| := norm_riemannZeta_lt_linear_im_on_strip z hz_re hz_im
     _ ≤ (8 : ℝ) + 2 * (1 + |t|) := by gcongr
     _ = (10 : ℝ) + 2 * |t| := by ring
+-- Tengoku: root names of this library moved to Tengoku.Primenumbertheoremand so they do not collide with other libraries (generated)

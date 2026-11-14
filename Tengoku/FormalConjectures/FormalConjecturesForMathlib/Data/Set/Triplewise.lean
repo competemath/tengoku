@@ -18,8 +18,8 @@ module
 public import Tengoku
 
 @[expose] public section
-
-def Triplewise {α : Type*} (r : α → α → α → Prop) : Prop :=
+namespace Tengoku.FormalConjectures end Tengoku.FormalConjectures open Tengoku.FormalConjectures 
+def _root_.Tengoku.FormalConjectures.Triplewise {α : Type*} (r : α → α → α → Prop) : Prop :=
   ∀ ⦃i j k ⦄, i ≠ j → j ≠ k → i ≠ k → r i j k
 
 namespace Set
@@ -163,3 +163,4 @@ theorem triplewise_set_pred_iff {S : Set α} {P : Set α → Prop} :
     simp [insert_subset_iff, hx, hy, hz]
 
 end Set
+-- Tengoku: root names of this library moved to Tengoku.FormalConjectures so they do not collide with other libraries (generated)

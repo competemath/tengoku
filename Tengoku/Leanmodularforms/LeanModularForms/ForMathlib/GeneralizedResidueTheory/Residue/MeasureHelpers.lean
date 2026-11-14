@@ -11,7 +11,7 @@ import Tengoku.Leanmodularforms.LeanModularForms.ForMathlib.ClassicalCPV
 Countability of isolated point sets and measure-zero results for
 preimages of singletons under piecewise C¹ immersions.
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex MeasureTheory Set Filter Topology Metric
 open scoped Real Interval
 
@@ -48,7 +48,7 @@ theorem Set.countable_setOf_isolated_points' {S : Set ℝ}
 /-- Preimage of a singleton under a piecewise C¹ immersion has measure zero.
 @isnad1 id=eq.3h5v.s8.5020ee445954 from=translated src=- shape=f74fe7d0 vocab=d15d838b
 -/
-theorem preimage_singleton_measure_zero_of_deriv_ne_zero {γ : ℝ → ℂ} {a b : ℝ}
+theorem _root_.Tengoku.Leanmodularforms.preimage_singleton_measure_zero_of_deriv_ne_zero {γ : ℝ → ℂ} {a b : ℝ}
     {P : Finset ℝ} (z₀ : ℂ) (_hγ : ContinuousOn γ (Icc a b))
     (hγ_diff : ∀ t ∈ Icc a b, t ∉ P → DifferentiableAt ℝ γ t)
     (hγ'_ne : ∀ t ∈ Icc a b, t ∉ P → deriv γ t ≠ 0) :
@@ -80,7 +80,7 @@ theorem preimage_singleton_measure_zero_of_deriv_ne_zero {γ : ℝ → ℂ} {a b
 zero. Lifts `preimage_singleton_measure_zero_of_deriv_ne_zero` to a finset.
 @isnad1 id=eq.3h5v.s8.7719c7fbc1d9 from=translated src=- shape=a1a2551a vocab=e4e32f2a
 -/
-theorem preimage_finset_measure_zero_of_deriv_ne_zero {γ : ℝ → ℂ} {a b : ℝ}
+theorem _root_.Tengoku.Leanmodularforms.preimage_finset_measure_zero_of_deriv_ne_zero {γ : ℝ → ℂ} {a b : ℝ}
     {P : Finset ℝ} (S : Finset ℂ) (hγ : ContinuousOn γ (Icc a b))
     (hγ_diff : ∀ t ∈ Icc a b, t ∉ P → DifferentiableAt ℝ γ t)
     (hγ'_ne : ∀ t ∈ Icc a b, t ∉ P → deriv γ t ≠ 0) :
@@ -97,3 +97,4 @@ theorem preimage_finset_measure_zero_of_deriv_ne_zero {γ : ℝ → ℂ} {a b : 
   exact preimage_singleton_measure_zero_of_deriv_ne_zero s hγ hγ_diff hγ'_ne
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

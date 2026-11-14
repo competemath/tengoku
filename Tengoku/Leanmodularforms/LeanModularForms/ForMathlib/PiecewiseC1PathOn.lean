@@ -34,7 +34,7 @@ fixed to `[0, 1]` via `unitInterval`. A free-interval generalization needs a raw
 * `PROJECT_OVERVIEW.md` §3.6 (four parallel curve types).
 * `P4_PLAN.md` (multi-day plan).
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Set Filter Topology
 
 noncomputable section
@@ -48,7 +48,7 @@ The smoothness conditions (differentiability and continuous derivative) hold at 
 point of `(a, b)` outside a finite set of breakpoints. The partition lives in the open
 interval `Ioo a b` — the endpoints `a` and `b` are not partition points. -/
 @[ext]
-structure PiecewiseC1PathOn (a b : ℝ) (hab : a < b) (x y : E) where
+structure _root_.Tengoku.Leanmodularforms.PiecewiseC1PathOn (a b : ℝ) (hab : a < b) (x y : E) where
   /-- The underlying function `ℝ → E`. -/
   toFun : ℝ → E
   /-- The path starts at `x` (at parameter `a`). -/
@@ -67,13 +67,14 @@ structure PiecewiseC1PathOn (a b : ℝ) (hab : a < b) (x y : E) where
   partition. -/
   deriv_continuous_off : ∀ t ∈ Ioo a b, t ∉ partition → ContinuousAt (deriv toFun) t
 
-namespace PiecewiseC1PathOn
+namespace Tengoku.Leanmodularforms.PiecewiseC1PathOn
 
 variable {a b : ℝ} {hab : a < b} {x y : E}
 
 instance : CoeFun (PiecewiseC1PathOn a b hab x y) fun _ => ℝ → E where
   coe := PiecewiseC1PathOn.toFun
 
-end PiecewiseC1PathOn
+end Tengoku.Leanmodularforms.PiecewiseC1PathOn
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

@@ -39,7 +39,7 @@ and log-derivative FTC. These are the building blocks for computing integrals of
 
 * K. Hungerbuhler, J. Wasem, *A generalized notion of winding numbers*
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Set MeasureTheory Complex
 open scoped Interval
 
@@ -171,3 +171,4 @@ theorem ftc_log_pieceFM {g h : ℝ → ℂ} {a b : ℝ} (hab : a ≤ b)
   rw [hval, hderiv]
 
 end LogDerivFTC
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

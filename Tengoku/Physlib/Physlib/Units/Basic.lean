@@ -71,7 +71,7 @@ in Physlib which is based exclusively on Reals.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
 /-!
 
 ## Units
@@ -81,7 +81,7 @@ open NNReal
 
 /-- The choice of units. -/
 @[ext]
-structure LTMCTUnitChoices where
+structure _root_.Tengoku.Physlib.LTMCTUnitChoices where
   /-- The length unit. -/
   length : LengthUnit
   /-- The time unit. -/
@@ -93,7 +93,7 @@ structure LTMCTUnitChoices where
   /-- The temperature unit. -/
   temperature : TemperatureUnit
 
-namespace LTMCTUnitChoices
+namespace Tengoku.Physlib.LTMCTUnitChoices
 
 /-- Given two choices of units `u1` and `u2` and a dimension `d`, the
   element of `ℝ≥0` corresponding to the scaling (by definition) of a quantity of dimension `d`
@@ -254,7 +254,7 @@ lemma dimScale_SIPrimed_SI (d : Dimension LTMCTDimensionBase) :
   simp [dimScale, SI, SIPrimed]
   rfl
 
-end LTMCTUnitChoices
+end Tengoku.Physlib.LTMCTUnitChoices
 
 /-!
 
@@ -269,7 +269,7 @@ Dimensions are assigned to types with the following type-classes
 
 /-- This typeclass indicates that there is a dimension `dim M : Dimension`
   associated with the type `M`. -/
-class HasDim (M : Type) where
+class _root_.Tengoku.Physlib.HasDim (M : Type) where
   /-- The dimension associated with a type `M`. -/
   d : Dimension LTMCTDimensionBase
 
@@ -296,24 +296,24 @@ and a type
 
 /-- A quantity of type `M` which depends on a choice of units `LTMCTUnitChoices` is said to be
   of dimension `d` if it scales by `LTMCTUnitChoices.dimScale u1 u2 d` under a change in units. -/
-def HasDimension {M : Type} [CarriesDimension M] (f : LTMCTUnitChoices → M) : Prop :=
+def _root_.Tengoku.Physlib.HasDimension {M : Type} [CarriesDimension M] (f : LTMCTUnitChoices → M) : Prop :=
   ∀ u1 u2 : LTMCTUnitChoices, f u2 = LTMCTUnitChoices.dimScale u1 u2 (dim M) • f u1
 
-lemma hasDimension_iff {M : Type} [CarriesDimension M] (f : LTMCTUnitChoices → M) :
+lemma _root_.Tengoku.Physlib.hasDimension_iff {M : Type} [CarriesDimension M] (f : LTMCTUnitChoices → M) :
     HasDimension f ↔ ∀ u1 u2 : LTMCTUnitChoices, f u2 =
     LTMCTUnitChoices.dimScale u1 u2 (dim M) • f u1 := by
   rfl
 
 /-- The subtype of functions `LTMCTUnitChoices → M`, for which `M` carries a dimension,
   which `HasDimension`. -/
-def Dimensionful (M : Type) [CarriesDimension M] := Subtype (HasDimension (M := M))
+def _root_.Tengoku.Physlib.Dimensionful (M : Type) [CarriesDimension M] := Subtype (HasDimension (M := M))
 
 instance {M : Type} [CarriesDimension M] :
     CoeFun (Dimensionful M) (fun _ => LTMCTUnitChoices → M) where
   coe := Subtype.val
 
 @[ext]
-lemma Dimensionful.ext {M : Type} [CarriesDimension M] (f1 f2 : Dimensionful M)
+lemma Tengoku.Physlib.Dimensionful.ext {M : Type} [CarriesDimension M] (f1 f2 : Dimensionful M)
     (h : f1.val = f2.val) : f1 = f2 := Subtype.ext h
 
 instance {M : Type} [CarriesDimension M] : MulAction ℝ≥0 (Dimensionful M) where
@@ -331,13 +331,13 @@ instance {M : Type} [CarriesDimension M] : MulAction ℝ≥0 (Dimensionful M) wh
     rw [smul_smul]
 
 @[simp]
-lemma Dimensionful.smul_apply {M : Type} [CarriesDimension M]
+lemma Tengoku.Physlib.Dimensionful.smul_apply {M : Type} [CarriesDimension M]
     (a : ℝ≥0) (f : Dimensionful M) (u : LTMCTUnitChoices) :
     (a • f).1 u = a • f.1 u := rfl
 
 /-- For `M` carrying a dimension `d`, the equivalence between `M` and `Dimension M`,
   given a choice of units. -/
-noncomputable def CarriesDimension.toDimensionful {M : Type} [CarriesDimension M]
+noncomputable def Tengoku.Physlib.CarriesDimension.toDimensionful {M : Type} [CarriesDimension M]
     (u : LTMCTUnitChoices) :
     M ≃ Dimensionful M where
   toFun m := {
@@ -353,6 +353,7 @@ noncomputable def CarriesDimension.toDimensionful {M : Type} [CarriesDimension M
     ext u1
     simpa using (f.2 u u1).symm
 
-lemma CarriesDimension.toDimensionful_apply_apply
+lemma Tengoku.Physlib.CarriesDimension.toDimensionful_apply_apply
     {M : Type} [CarriesDimension M] (u1 u2 : LTMCTUnitChoices) (m : M) :
     (toDimensionful u1 m).1 u2 = (u1.dimScale u2 (dim M)) • m := by rfl
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

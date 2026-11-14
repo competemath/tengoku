@@ -14,7 +14,7 @@ Material destined for Mathlib.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Flt end Tengoku.Flt open Tengoku.Flt 
 -- TODO: needs work before it can go in mathlib.
 -- Change `IsBiscalar` into a bundled map? Currently this is a pain to use even
 -- when using `f : F` where `Funlike F A B` because some bundled maps do not coerce correctly
@@ -33,7 +33,7 @@ functions already containing a scalar, this class can be used to assert that the
 also has another scalar. The convention in this repo is to use the bundled scalar as the first
 argument. For example, if `f : A →ₗ[R] B` and it is also scalar with respect to `S`, then
 use `IsBiscalar R S f`. -/
-class IsBiscalar (R S : Type*) {A B : Type*} [Semiring R] [Semiring S] [AddCommMonoid A]
+class _root_.Tengoku.Flt.IsBiscalar (R S : Type*) {A B : Type*} [Semiring R] [Semiring S] [AddCommMonoid A]
     [AddCommMonoid B] [Module R A] [Module R B] [Module S A] [Module S B] (f : A → B) where
   map_smul₁ : ∀ (r : R) (a : A), f (r • a) = r • f a
   map_smul₂ : ∀ (s : S) (a : A), f (s • a) = s • f a
@@ -94,7 +94,7 @@ def AlgEquiv.extendScalars {A C D : Type*} (B : Type*) [CommSemiring A] [CommSem
 /--
 @isnad1 id=eq.0h6v.s7.c699b1fcb996 from=translated src=- shape=3fbe3ac1 vocab=164b5208
 -/
-theorem IsBiscalar.commutes {S : Type*} (S' : Type*) {A B : Type*} [CommSemiring S']
+theorem Tengoku.Flt.IsBiscalar.commutes {S : Type*} (S' : Type*) {A B : Type*} [CommSemiring S']
     [CommSemiring S] [Semiring A] [Semiring B] [Algebra S' A] [Algebra S' B] [Algebra S A]
     [Algebra S B] (f : A →ₐ[S] B) [IsBiscalar S S' f] (s : S') :
     f (algebraMap S' A s) = algebraMap S' B s := by
@@ -154,3 +154,4 @@ example {A B : Type*} (S' : Type*) {S : Type*}
     (AlgHom.changeScalars S' f).changeScalars S = f := rfl
 
 end diamond_checks
+-- Tengoku: root names of this library moved to Tengoku.Flt so they do not collide with other libraries (generated)

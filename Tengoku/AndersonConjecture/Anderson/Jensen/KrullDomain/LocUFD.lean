@@ -15,7 +15,7 @@ irreducibles stay prime.
 -/
 
 noncomputable section
-
+namespace Tengoku.AndersonConjecture end Tengoku.AndersonConjecture open Tengoku.AndersonConjecture 
 open Cardinal Ideal Set Pointwise
 
 section LocUFD
@@ -25,7 +25,7 @@ variable {R₀ : Type*} [CommRing R₀] [IsDomain R₀] [UniqueFactorizationMono
 /-- In a UFD, the localization away from a nonzero element is a UFD.
 @isnad1 id=uniquefa.1h2v.s5.0ad8fc7a84df from=translated src=- shape=dec64591 vocab=46bbc1e4
 -/
-theorem localization_away_UFD (y : R₀) (hy : y ≠ 0) :
+theorem _root_.Tengoku.AndersonConjecture.localization_away_UFD (y : R₀) (hy : y ≠ 0) :
     UniqueFactorizationMonoid (Localization.Away y) := by
   open Classical in
   have hpow_ne : (0 : R₀) ∉ Submonoid.powers y := by
@@ -109,7 +109,7 @@ is a UFD. Generalizes `localization_away_UFD` to an arbitrary
 submonoid `M`.
 @isnad1 id=uniquefa.1h3v.s6.3e82eba6f879 from=translated src=- shape=e3e630ac vocab=bf079896
 -/
-theorem localization_submonoid_UFD {S : Type*} [CommRing S]
+theorem _root_.Tengoku.AndersonConjecture.localization_submonoid_UFD {S : Type*} [CommRing S]
     [Algebra R₀ S] {M : Submonoid R₀} [IsLocalization M S]
     (hM : M ≤ nonZeroDivisors R₀) :
     UniqueFactorizationMonoid S := by
@@ -196,3 +196,4 @@ theorem localization_submonoid_UFD {S : Type*} [CommRing S]
 end LocUFD
 
 end
+-- Tengoku: root names of this library moved to Tengoku.AndersonConjecture so they do not collide with other libraries (generated)

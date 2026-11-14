@@ -4,7 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Kei Tsukamoto, Kazumi Kasaura, Naoto Onda, Sho sonoda, Yuma Mizuno
 -/
 import Tengoku
-
+namespace Tengoku.Leanslt end Tengoku.Leanslt open Tengoku.Leanslt
 universe u v
 
 open TopologicalSpace
@@ -12,7 +12,7 @@ open TopologicalSpace
 /--
 @isnad1 id=le.2h3v.s6.5c6e29b868d0 from=translated src=- shape=bcf2857b vocab=e6507836
 -/
-lemma closure_mem_le_sSup {E : Type v} [ConditionallyCompleteLattice E] [TopologicalSpace E] [OrderClosedTopology E]
+lemma _root_.Tengoku.Leanslt.closure_mem_le_sSup {E : Type v} [ConditionallyCompleteLattice E] [TopologicalSpace E] [OrderClosedTopology E]
   {s : Set E} (hs' : BddAbove s) {b : E} (hb : b ∈ closure s) :
   b ≤ sSup s := by
     have : s ⊆ Set.Iic (sSup s) := by
@@ -25,7 +25,7 @@ lemma closure_mem_le_sSup {E : Type v} [ConditionallyCompleteLattice E] [Topolog
 /--
 @isnad1 id=eq.2h2v.s6.e1291463315a from=translated src=- shape=788743d1 vocab=64c7f5e8
 -/
-lemma sSup_eq_closure_sSup {E : Type v} [ConditionallyCompleteLattice E] [TopologicalSpace E] [OrderClosedTopology E]
+lemma _root_.Tengoku.Leanslt.sSup_eq_closure_sSup {E : Type v} [ConditionallyCompleteLattice E] [TopologicalSpace E] [OrderClosedTopology E]
   {s : Set E} (hs : s.Nonempty) (hs' : BddAbove s) :
   sSup s = sSup (closure s) := by
   have h' : (BddAbove (closure s)) := by
@@ -41,7 +41,7 @@ lemma sSup_eq_closure_sSup {E : Type v} [ConditionallyCompleteLattice E] [Topolo
 /--
 @isnad1 id=eq.1h3v.s6.7cfc7947ce9a from=translated src=- shape=bde5a292 vocab=f167afc4
 -/
-lemma closure_range_eq_closure_denseSeq {X : Type u} [TopologicalSpace X] [SeparableSpace X] [Nonempty X]
+lemma _root_.Tengoku.Leanslt.closure_range_eq_closure_denseSeq {X : Type u} [TopologicalSpace X] [SeparableSpace X] [Nonempty X]
   {E : Type v} [ConditionallyCompleteLattice E] [TopologicalSpace E] [OrderClosedTopology E]
   {f : X → E} (hf : Continuous f) :
   closure (Set.range f) = closure (Set.range (f ∘ denseSeq X)) := by
@@ -56,7 +56,7 @@ lemma closure_range_eq_closure_denseSeq {X : Type u} [TopologicalSpace X] [Separ
 /--
 @isnad1 id=eq.2h3v.s6.a33e8d64b31f from=translated src=- shape=b100b7d2 vocab=297c905b
 -/
-theorem separableSpaceSup_eq {X : Type u} [TopologicalSpace X] [SeparableSpace X] [Nonempty X]
+theorem _root_.Tengoku.Leanslt.separableSpaceSup_eq {X : Type u} [TopologicalSpace X] [SeparableSpace X] [Nonempty X]
   {E : Type v} [ConditionallyCompleteLattice E] [TopologicalSpace E] [OrderClosedTopology E]
   {f : X → E} (hf : Continuous f) (hf' : BddAbove (Set.range f)) :
   ⨆ x : X, f x = ⨆ i : Nat, f (denseSeq X i) := by
@@ -75,7 +75,7 @@ theorem separableSpaceSup_eq {X : Type u} [TopologicalSpace X] [SeparableSpace X
 /--
 @isnad1 id=eq.1h2v.s5.fc1c9435e611 from=translated src=- shape=36f0e889 vocab=66d24d4a
 -/
-theorem separableSpaceSup_eq_real {X : Type u} [TopologicalSpace X] [SeparableSpace X] [Nonempty X]
+theorem _root_.Tengoku.Leanslt.separableSpaceSup_eq_real {X : Type u} [TopologicalSpace X] [SeparableSpace X] [Nonempty X]
   {f : X → ℝ} (hf : Continuous f) :
   ⨆ x : X, f x = ⨆ i : Nat, f (denseSeq X i) := by
   if bdd : BddAbove (Set.range f) then
@@ -89,3 +89,4 @@ theorem separableSpaceSup_eq_real {X : Type u} [TopologicalSpace X] [SeparableSp
     calc
       _ = 0 := Real.iSup_of_not_bddAbove bdd
       _ = _ := (Real.iSup_of_not_bddAbove this).symm
+-- Tengoku: root names of this library moved to Tengoku.Leanslt so they do not collide with other libraries (generated)

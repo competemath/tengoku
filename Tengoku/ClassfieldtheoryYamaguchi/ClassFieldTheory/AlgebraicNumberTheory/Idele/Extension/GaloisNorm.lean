@@ -10,7 +10,7 @@ import Tengoku.Seed.LinearAlgebra.Charpoly.BaseChange
 import Tengoku.Seed.RingTheory.TensorProduct.MvPolynomial
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.ClassfieldtheoryYamaguchi end Tengoku.ClassfieldtheoryYamaguchi open Tengoku.ClassfieldtheoryYamaguchi
 set_option autoImplicit false
 
 /-!
@@ -26,7 +26,7 @@ open NumberField
 
 noncomputable section
 
-namespace RelativeIdeleGroup
+namespace Tengoku.ClassfieldtheoryYamaguchi.RelativeIdeleGroup
 
 universe u v w
 
@@ -187,4 +187,5 @@ theorem scalarConjugation_baseAdele_apply
       conjugation K L σ z :=
   rfl
 
-end RelativeIdeleGroup
+end Tengoku.ClassfieldtheoryYamaguchi.RelativeIdeleGroup
+-- Tengoku: root names of this library moved to Tengoku.ClassfieldtheoryYamaguchi so they do not collide with other libraries (generated)

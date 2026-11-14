@@ -15,7 +15,7 @@ argument.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Flt end Tengoku.Flt open Tengoku.Flt 
 variable {ι : Type*} [Preorder ι] [Nonempty ι] [IsDirected ι (· ≥ ·)]
 variable (α : ι → Type*) (f : ∀ i j, i ≤ j → α i → α j)
 
@@ -29,7 +29,7 @@ include hf in
 /--
 @isnad1 id=dense.2h4v.s8.5360fa6a8f0e from=translated src=- shape=90eb49fb vocab=fa1ea446
 -/
-lemma dense_inverseLimit_of_forall_image_dense
+lemma _root_.Tengoku.Flt.dense_inverseLimit_of_forall_image_dense
     (s : Set { v : Π i, α i // ∀ i j (h : i ≤ j), f i j h (v i) = v j })
     (hs : ∀ i, Dense ((fun x ↦ (Subtype.val x) i) '' s)) : Dense s := by
   classical
@@ -47,7 +47,7 @@ include hf in
 /--
 @isnad1 id=denseran.2h5v.s8.ccf987ad91a9 from=translated src=- shape=d96565f8 vocab=892a5af8
 -/
-lemma denseRange_inverseLimit {β}
+lemma _root_.Tengoku.Flt.denseRange_inverseLimit {β}
     (g : β → { v : Π i, α i // ∀ i j (h : i ≤ j), f i j h (v i) = v j })
     (hg : ∀ i, DenseRange (fun x ↦ (g x).1 i)) : DenseRange g := by
   refine dense_inverseLimit_of_forall_image_dense α f hf _ fun i ↦ ?_
@@ -71,7 +71,7 @@ include hf₀ hf hl hl' in
 /--
 @isnad1 id=nonempty.4h4v.s7.2656db0cdfad from=translated src=- shape=9b65d34d vocab=5f6ee997
 -/
-theorem nonempty_inverseLimit_of_finite [∀ i, Finite (α i)] [∀ i, Nonempty (α i)] :
+theorem _root_.Tengoku.Flt.nonempty_inverseLimit_of_finite [∀ i, Finite (α i)] [∀ i, Nonempty (α i)] :
     Nonempty { v : Π i, α i // ∀ i j (h : i ≤ j), f i j h (v i) = v j } := by
   let f' : ιᵒᵈᵒᵖ ⥤ Type _ :=
   { obj i := α i.1,
@@ -89,3 +89,4 @@ theorem nonempty_inverseLimit_of_finite [∀ i, Finite (α i)] [∀ i, Nonempty 
   exact ⟨⟨fun i ↦ x ⟨i⟩, fun i j e ↦ hx (homOfLE e).op⟩⟩
 
 end MittagLeffler
+-- Tengoku: root names of this library moved to Tengoku.Flt so they do not collide with other libraries (generated)

@@ -6,7 +6,7 @@ import Tengoku.Seed.RingTheory.Ideal.Quotient.Operations
 import Tengoku.Seed.Algebra.CharP.Defs
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 set_option autoImplicit false
 
 noncomputable section
@@ -14,7 +14,7 @@ noncomputable section
 open MvPowerSeries
 
 @[ext]
-structure MvFormalGroup (g : ℕ) (R : Type*) [CommRing R] where
+structure _root_.Tengoku.FltAnthropic.MvFormalGroup (g : ℕ) (R : Type*) [CommRing R] where
 
   toPowerSeries : Fin g → MvPowerSeries (Fin g ⊕ Fin g) R
 
@@ -47,7 +47,7 @@ structure MvFormalGroup (g : ℕ) (R : Type*) [CommRing R] where
           (toPowerSeries j))
       (toPowerSeries i)
 
-namespace MvFormalGroup
+namespace Tengoku.FltAnthropic.MvFormalGroup
 
 variable {g h k : ℕ} {R : Type*} [CommRing R] {S : Type*} [CommRing S]
 
@@ -425,4 +425,5 @@ def addMv (g : ℕ) (R : Type*) [CommRing R] : MvFormalGroup g R where
     simp only [Sum.elim_inl, Sum.elim_inr]
     exact add_assoc _ _ _
 
-end MvFormalGroup
+end Tengoku.FltAnthropic.MvFormalGroup
+-- Tengoku: root names of this library moved to Tengoku.FltAnthropic so they do not collide with other libraries (generated)

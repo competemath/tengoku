@@ -33,7 +33,7 @@ variable (X : Scheme.{u})
 /-- The irreducible components of a locally Noetherian scheme form a locally finite family. -/
 theorem Scheme.locallyFinite_irreducibleComponents [IsLocallyNoetherian X] :
     LocallyFinite (fun Z : irreducibleComponents X ↦ (Z : Set X)) := by
-  refine _root_.locallyFinite_irreducibleComponents fun x ↦ ?_
+  refine _root_.Tengoku.LanaOka.locallyFinite_irreducibleComponents fun x ↦ ?_
   obtain ⟨_, ⟨U, hU, rfl⟩, hxU, -⟩ :=
     X.isBasis_affineOpens.exists_subset_of_mem_open (Set.mem_univ x) isOpen_univ
   have : IsNoetherianRing Γ(X, U) := IsLocallyNoetherian.component_noetherian ⟨U, hU⟩
@@ -49,3 +49,4 @@ theorem Scheme.reflTransGen_irreducibleComponents [IsLocallyNoetherian X] [Jacob
   JacobsonSpace.reflTransGen_irreducibleComponents X.locallyFinite_irreducibleComponents hx hy
 
 end AlgebraicGeometry
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

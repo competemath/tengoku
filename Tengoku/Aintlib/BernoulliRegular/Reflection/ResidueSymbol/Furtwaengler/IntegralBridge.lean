@@ -20,7 +20,7 @@ same character values and Gauss sum as actual algebraic integers.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Aintlib end Tengoku.Aintlib open Tengoku.Aintlib 
 noncomputable section
 
 open scoped NumberField
@@ -268,3 +268,4 @@ end ConcreteStickelbergerSetup
 end Furtwaengler
 
 end BernoulliRegular
+-- Tengoku: root names of this library moved to Tengoku.Aintlib so they do not collide with other libraries (generated)

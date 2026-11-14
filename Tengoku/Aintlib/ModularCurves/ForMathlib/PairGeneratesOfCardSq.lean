@@ -30,7 +30,7 @@ geometric fibre with `G = E[p](k̄)` (`#G = p²` from BB-DEG rank + étaleness).
 `addSubgroup_closure_pair_eq_top_iff` takes the torsion hypothesis and speaks
 `ℕ`-multiples only.
 -/
-
+namespace Tengoku.Aintlib end Tengoku.Aintlib open Tengoku.Aintlib
 open Module
 
 namespace ModularCurves
@@ -165,7 +165,7 @@ end ModularCurves
 `pair_generates_iff_combos_ne_zero` at `N = 2`.
 @isnad1 id=ne.4h4v.s8.a4473f501bca from=translated src=- shape=19c8b2cd vocab=11581301
 -/
-theorem combos2_ne_zero {G : Type*} [AddCommGroup G] {P Q : G}
+theorem _root_.Tengoku.Aintlib.combos2_ne_zero {G : Type*} [AddCommGroup G] {P Q : G}
     (hP : P ≠ 0) (hQ : Q ≠ 0) (hPQ : P + Q ≠ 0) :
     ∀ ab : ZMod 2 × ZMod 2, ab ≠ 0 →
       ((ab.1.val : ℤ)) • P + ((ab.2.val : ℤ)) • Q ≠ 0 := by
@@ -189,7 +189,7 @@ abelian group, the four independence conditions `P ≠ 0, Q ≠ 0, Q ≠ ±P` fo
 nontrivial `(ℤ/3)²`-combinations away from zero (`2•x = −x` collapses every case).
 @isnad1 id=ne.7h4v.s8.dfba1399cd7f from=translated src=- shape=a4134cae vocab=0abdc5b9
 -/
-theorem combos3_ne_zero {G : Type*} [AddCommGroup G] {P Q : G}
+theorem _root_.Tengoku.Aintlib.combos3_ne_zero {G : Type*} [AddCommGroup G] {P Q : G}
     (hP3 : (3 : ℤ) • P = 0) (hQ3 : (3 : ℤ) • Q = 0)
     (hP : P ≠ 0) (hQ : Q ≠ 0) (hQP : Q ≠ P) (hQnP : Q ≠ -P) :
     ∀ ab : ZMod 3 × ZMod 3, ab ≠ 0 →
@@ -218,3 +218,4 @@ theorem combos3_ne_zero {G : Type*} [AddCommGroup G] {P Q : G}
   · exact fun hc => hQP (neg_add_eq_zero.mp hc).symm
   · exact fun hc => hQnP (eq_neg_of_add_eq_zero_right
       (neg_eq_zero.mp (by rwa [← neg_add] at hc)))
+-- Tengoku: root names of this library moved to Tengoku.Aintlib so they do not collide with other libraries (generated)

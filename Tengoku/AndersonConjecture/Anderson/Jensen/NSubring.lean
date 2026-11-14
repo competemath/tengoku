@@ -16,7 +16,7 @@ An A-extension preserves primality and cardinality bounds.
 -/
 
 noncomputable section
-
+namespace Tengoku.AndersonConjecture end Tengoku.AndersonConjecture open Tengoku.AndersonConjecture 
 open Cardinal Ideal
 
 /-!
@@ -33,7 +33,7 @@ variable {T : Type*} [CommRing T] [IsLocalRing T] [IsNoetherianRing T] [IsDomain
 /-- An N-subring of a complete local domain (T, M).
 This is a quasi-local UFD R ⊆ T with bounded cardinality and a height condition
 on associated primes of principal ideals. -/
-structure NSubring (T : Type*) [CommRing T] [IsLocalRing T] [IsNoetherianRing T] [IsDomain T] where
+structure _root_.Tengoku.AndersonConjecture.NSubring (T : Type*) [CommRing T] [IsLocalRing T] [IsNoetherianRing T] [IsDomain T] where
   /-- The underlying subring of T -/
   carrier : Subring T
   /-- R is a UFD -/
@@ -52,7 +52,7 @@ structure NSubring (T : Type*) [CommRing T] [IsLocalRing T] [IsNoetherianRing T]
     ∀ P ∈ associatedPrimes T (T ⧸ Ideal.span {t}),
       Ideal.height (P.comap carrier.subtype) ≤ 1
 
-namespace NSubring
+namespace Tengoku.AndersonConjecture.NSubring
 
 instance (N : NSubring T) : UniqueFactorizationMonoid N.carrier := N.isUFD
 instance (N : NSubring T) : IsLocalRing N.carrier := N.isLocalRing
@@ -60,7 +60,7 @@ instance (N : NSubring T) : IsLocalRing N.carrier := N.isLocalRing
 /-- Coercion: an N-subring is a subring of T. -/
 instance : CoeOut (NSubring T) (Subring T) := ⟨NSubring.carrier⟩
 
-end NSubring
+end Tengoku.AndersonConjecture.NSubring
 
 /-!
 ## A-extension
@@ -71,7 +71,7 @@ of R remain prime in S, and |S| ≤ max(ℵ₀, |R|).
 
 /-- S is an A-extension of R if R ≤ S, primes of R remain prime in S,
 and the cardinality of S is bounded by max(ℵ₀, |R|). -/
-structure IsAExtension (R S : NSubring T) : Prop where
+structure _root_.Tengoku.AndersonConjecture.IsAExtension (R S : NSubring T) : Prop where
   /-- R is contained in S -/
   le : R.carrier ≤ S.carrier
   /-- Prime elements of R remain prime in S.
@@ -94,15 +94,16 @@ In characteristic 0 over ℂ, this is essentially ℚ embedded in T.
 -/
 
 /-- The inclusion map from an N-subring into T. -/
-def NSubring.subtype (N : NSubring T) : N.carrier →+* T :=
+def Tengoku.AndersonConjecture.NSubring.subtype (N : NSubring T) : N.carrier →+* T :=
   N.carrier.subtype
 
 /-- Two N-subrings are equal if their carriers are equal.
 @isnad1 id=eq.1h3v.s6.63d0e1180b85 from=translated src=- shape=296f7bd8 vocab=9af1272a
 -/
-theorem NSubring.ext {N₁ N₂ : NSubring T} (h : N₁.carrier = N₂.carrier) : N₁ = N₂ := by
+theorem Tengoku.AndersonConjecture.NSubring.ext {N₁ N₂ : NSubring T} (h : N₁.carrier = N₂.carrier) : N₁ = N₂ := by
   cases N₁
   cases N₂
   congr
 
 end
+-- Tengoku: root names of this library moved to Tengoku.AndersonConjecture so they do not collide with other libraries (generated)

@@ -15,7 +15,7 @@ This file contains an API for `ContinuousAlgEquiv`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Flt end Tengoku.Flt open Tengoku.Flt 
 open scoped Topology
 
 namespace ContinuousAlgEquiv
@@ -39,3 +39,4 @@ def changeScalars {A B : Type*} (S' : Type*) {S : Type*}
   continuous_invFun := f.continuous_invFun
 
 end ContinuousAlgEquiv
+-- Tengoku: root names of this library moved to Tengoku.Flt so they do not collide with other libraries (generated)

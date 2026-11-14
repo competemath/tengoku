@@ -15,7 +15,7 @@ induction on the UFD factorisation in R.
 -/
 
 noncomputable section
-
+namespace Tengoku.AndersonConjecture end Tengoku.AndersonConjecture open Tengoku.AndersonConjecture 
 open Cardinal Ideal
 
 variable {T : Type*} [CommRing T] [IsLocalRing T] [IsNoetherianRing T] [IsDomain T]
@@ -36,3 +36,4 @@ close_up_principal.
 -/
 
 end
+-- Tengoku: root names of this library moved to Tengoku.AndersonConjecture so they do not collide with other libraries (generated)

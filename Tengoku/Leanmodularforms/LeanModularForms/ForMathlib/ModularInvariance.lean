@@ -17,7 +17,7 @@ We also provide:
 * `fdBox` and `modularForm_finitely_many_zeros_in_fdBox` — finiteness of zeros
 * Cusp nonvanishing (`exists_height_cusp_nonvanishing`)
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex Set Filter Topology CongruenceSubgroup
 open scoped Real UpperHalfPlane ModularForm Modular MatrixGroups
 
@@ -26,7 +26,7 @@ noncomputable section
 variable {k : ℤ} (f : ModularForm (Gamma 1) k)
 
 /-- The composition of a modular form with `ofComplex`, for contour integration. -/
-abbrev modularFormCompOfComplex : ℂ → ℂ := f ∘ UpperHalfPlane.ofComplex
+abbrev _root_.Tengoku.Leanmodularforms.modularFormCompOfComplex : ℂ → ℂ := f ∘ UpperHalfPlane.ofComplex
 
 private lemma mero_sub_const_fwd (g : ℂ → ℂ) (x c : ℂ) (h_sub_an : AnalyticAt ℂ (· - c) (x + c))
     (hg : MeromorphicAt g x) :
@@ -80,7 +80,7 @@ private lemma meromorphicOrderAt_comp_sub_const (g : ℂ → ℂ) (x c : ℂ) :
 /-- T-invariance of vanishing order: `ord(f, z+1) = ord(f, z)`.
 @isnad1 id=eq.0h3v.s9.61287545ed5c from=translated src=- shape=a50482e2 vocab=68d0512b
 -/
-lemma ord_add_one_eq (p : ℍ) :
+lemma _root_.Tengoku.Leanmodularforms.ord_add_one_eq (p : ℍ) :
     orderOfVanishingAt' f ((1 : ℝ) +ᵥ p) = orderOfVanishingAt' f p := by
   unfold orderOfVanishingAt'
   set G : ℂ → ℂ := fun w => if h : 0 < w.im then f ⟨w, h⟩ else 0 with hG_def
@@ -105,18 +105,18 @@ lemma ord_add_one_eq (p : ℍ) :
   rw [meromorphicOrderAt_congr hG_eq_near, meromorphicOrderAt_comp_sub_const]
 
 /-- An open box containing the truncated fundamental domain. -/
-def fdBox (M : ℝ) : Set ℂ := {z : ℂ | -1 < z.re ∧ z.re < 1 ∧ (1:ℝ)/2 < z.im ∧ z.im < M}
+def _root_.Tengoku.Leanmodularforms.fdBox (M : ℝ) : Set ℂ := {z : ℂ | -1 < z.re ∧ z.re < 1 ∧ (1:ℝ)/2 < z.im ∧ z.im < M}
 
 /--
 @isnad1 id=lt.1h2v.s4.2b3395c53aaa from=translated src=- shape=d9bd9ecf vocab=e76e0434
 -/
-lemma fdBox_im_pos {M : ℝ} {z : ℂ} (hz : z ∈ fdBox M) : 0 < z.im := by
+lemma _root_.Tengoku.Leanmodularforms.fdBox_im_pos {M : ℝ} {z : ℂ} (hz : z ∈ fdBox M) : 0 < z.im := by
   linarith [hz.2.2.1]
 
 /-- A nonzero modular form has finitely many zeros in `fdBox M`.
 @isnad1 id=finite.2h3v.s9.833bb0a1fcdf from=translated src=- shape=22652640 vocab=469a76a0
 -/
-theorem modularForm_finitely_many_zeros_in_fdBox (hf : f ≠ 0) {M : ℝ} (hM : (1:ℝ)/2 < M) :
+theorem _root_.Tengoku.Leanmodularforms.modularForm_finitely_many_zeros_in_fdBox (hf : f ≠ 0) {M : ℝ} (hM : (1:ℝ)/2 < M) :
     Set.Finite {z ∈ fdBox M | modularFormCompOfComplex f z = 0} := by
   by_contra h_inf
   have hBdd : Bornology.IsBounded (fdBox M) :=
@@ -150,7 +150,7 @@ theorem modularForm_finitely_many_zeros_in_fdBox (hf : f ≠ 0) {M : ℝ} (hM : 
 /-- The cusp function of a nonzero modular form is not identically zero near 0.
 @isnad1 id=not.1h2v.s10.9cad9f00d8db from=translated src=- shape=666fa749 vocab=8133b3a8
 -/
-theorem cuspFunction_not_eventually_zero (hf : f ≠ 0) :
+theorem _root_.Tengoku.Leanmodularforms.cuspFunction_not_eventually_zero (hf : f ≠ 0) :
     ¬∀ᶠ q in 𝓝 (0 : ℂ), UpperHalfPlane.cuspFunction (1 : ℝ) (⇑f) q = 0 := by
   intro h_freq
   have hMC : ModularFormClass (ModularForm (Gamma 1) k) 𝒮ℒ k :=
@@ -175,7 +175,7 @@ theorem cuspFunction_not_eventually_zero (hf : f ≠ 0) :
 /-- For a nonzero modular form, the cusp function is eventually nonzero near 0.
 @isnad1 id=eventual.1h2v.s10.66c5337e1bd4 from=translated src=- shape=f1a5447c vocab=b562472e
 -/
-theorem cuspFunction_eventually_ne_zero (hf : f ≠ 0) :
+theorem _root_.Tengoku.Leanmodularforms.cuspFunction_eventually_ne_zero (hf : f ≠ 0) :
     ∀ᶠ q in 𝓝[≠] (0 : ℂ),
       UpperHalfPlane.cuspFunction (1 : ℝ) (⇑f) q ≠ 0 :=
   have hMC : ModularFormClass (ModularForm (Gamma 1) k) 𝒮ℒ k :=
@@ -187,7 +187,7 @@ theorem cuspFunction_eventually_ne_zero (hf : f ≠ 0) :
 /-- Existence of a nonvanishing radius for the cusp function.
 @isnad1 id=ex.1h2v.s10.ae1f77a87f2f from=translated src=- shape=9d221666 vocab=b7540847
 -/
-theorem exists_radius_cusp_nonvanishing (hf : f ≠ 0) :
+theorem _root_.Tengoku.Leanmodularforms.exists_radius_cusp_nonvanishing (hf : f ≠ 0) :
     ∃ r : ℝ, 0 < r ∧ ∀ q : ℂ, q ∈ Metric.closedBall (0 : ℂ) r →
       q ≠ 0 → UpperHalfPlane.cuspFunction (1 : ℝ) (⇑f) q ≠ 0 := by
   obtain ⟨s, hs_prop, hs_open, hs_zero⟩ := eventually_nhds_iff.mp
@@ -198,12 +198,12 @@ theorem exists_radius_cusp_nonvanishing (hf : f ≠ 0) :
       (mem_compl_singleton_iff.mpr hq_ne)⟩
 
 /-- Convert a q-radius to a FD boundary height. -/
-noncomputable def heightOfRadius (r : ℝ) : ℝ := -Real.log r / (2 * Real.pi)
+noncomputable def _root_.Tengoku.Leanmodularforms.heightOfRadius (r : ℝ) : ℝ := -Real.log r / (2 * Real.pi)
 
 /-- For a nonzero modular form, there exists `H > √3/2` with cusp nonvanishing.
 @isnad1 id=ex.1h2v.s10.83c2b43fcd36 from=translated src=- shape=02b1497b vocab=a4af65cc
 -/
-theorem exists_height_cusp_nonvanishing (hf : f ≠ 0) :
+theorem _root_.Tengoku.Leanmodularforms.exists_height_cusp_nonvanishing (hf : f ≠ 0) :
     ∃ H : ℝ, Real.sqrt 3 / 2 < H ∧
       ∀ q : ℂ, q ∈ Metric.closedBall (0 : ℂ) (Real.exp (-2 * Real.pi * H)) →
         q ≠ 0 → UpperHalfPlane.cuspFunction (1 : ℝ) (⇑f) q ≠ 0 := by
@@ -225,7 +225,7 @@ theorem exists_height_cusp_nonvanishing (hf : f ≠ 0) :
 /-- Height monotonicity for cusp nonvanishing.
 @isnad1 id=ne.4h5v.s9.43182256d0e4 from=translated src=- shape=483fa8e7 vocab=6db6b775
 -/
-lemma cusp_nonvanishing_height_mono {H₁ H₂ : ℝ} (hH : H₁ ≤ H₂)
+lemma _root_.Tengoku.Leanmodularforms.cusp_nonvanishing_height_mono {H₁ H₂ : ℝ} (hH : H₁ ≤ H₂)
     (h : ∀ q ∈ Metric.closedBall (0 : ℂ) (Real.exp (-2 * Real.pi * H₁)), q ≠ 0 →
       UpperHalfPlane.cuspFunction (1 : ℝ) (⇑f) q ≠ 0) :
     ∀ q ∈ Metric.closedBall (0 : ℂ) (Real.exp (-2 * Real.pi * H₂)), q ≠ 0 →
@@ -234,3 +234,4 @@ lemma cusp_nonvanishing_height_mono {H₁ H₂ : ℝ} (hH : H₁ ≤ H₂)
     (Real.exp_le_exp.mpr (by nlinarith [Real.pi_pos])) hq) hq_ne
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

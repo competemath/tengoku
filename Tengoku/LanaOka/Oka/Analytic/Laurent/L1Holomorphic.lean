@@ -40,7 +40,7 @@ both circles, the Laurent series sums to `h (z, w)` on `σ⁻¹ ≤ ‖w‖ ≤ 
   `Laurent.L1.eq_zero_of_toL1_eq_zero`: Laurent series of functions holomorphic on a disc.
 - `Laurent.L1.circleCoeff_evalNat`: the Taylor coefficients of the part of nonnegative degree.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Set Filter Metric Complex
 open scoped Real Topology ENNReal
 
@@ -486,3 +486,4 @@ lemma eq_zero_of_toL1_eq_zero (hστ : σ < τ) {R : ℝ} (hτR : τ < R)
 end L1
 
 end Laurent
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

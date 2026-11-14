@@ -54,7 +54,7 @@ finite order, which is the last entry in the germs ↔ formal power series dicti
 - [Hans Grauert and Reinhold Remmert, *Analytische Stellenalgebren*][grauert-remmert1971], §I
 - [Hans Grauert and Reinhold Remmert, *Coherent analytic sheaves*][grauert-remmert1984], §A
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 universe u
 
 open MvPowerSeries
@@ -237,7 +237,7 @@ lemma locallyConvergent_of_summableAt_const [Finite ι] {P : MvPowerSeries ι �
 
 end MvPowerSeries
 
-namespace LocalOkaRing
+namespace Tengoku.LanaOka.LocalOkaRing
 
 variable {ι : Type u}
 
@@ -419,4 +419,5 @@ theorem iInf_maximalIdeal_pow_eq_bot :
 
 end Consequences
 
-end LocalOkaRing
+end Tengoku.LanaOka.LocalOkaRing
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

@@ -39,7 +39,7 @@ formalizations of questions of polynomial-time computability will capture the in
 -/
 
 @[expose] public section
-
+namespace Tengoku.FormalConjectures end Tengoku.FormalConjectures open Tengoku.FormalConjectures 
 open Computability
 
 section BitstringEncodings
@@ -48,9 +48,9 @@ section BitstringEncodings
 
 This is a class version of Mathlib's `Computability.Encoding`, specialized to the
 alphabet `Bool`.-/
-class BitstringEncoding α extends Computability.Encoding α Bool
+class _root_.Tengoku.FormalConjectures.BitstringEncoding α extends Computability.Encoding α Bool
 
-namespace BitstringEncoding
+namespace Tengoku.FormalConjectures.BitstringEncoding
 
 variable {α β : Type*}
 
@@ -240,6 +240,7 @@ instance : BitstringEncoding ℚ :=
   ofLeftInverse (fun q : ℚ => (q.num, q.den))
     (fun p => some ((p.1 : ℚ) / (p.2 : ℚ))) (fun q => by simp [Rat.num_div_den])
 
-end BitstringEncoding
+end Tengoku.FormalConjectures.BitstringEncoding
 
 end BitstringEncodings
+-- Tengoku: root names of this library moved to Tengoku.FormalConjectures so they do not collide with other libraries (generated)

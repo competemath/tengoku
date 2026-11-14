@@ -21,7 +21,7 @@ This is the purely topological half of "a connected smooth curve is irreducible"
 (`decomposition-km10.md` §L1); the other half is that smoothness forces the components
 to be disjoint (tickets T-G4a-SUB1/SUB2).
 -/
-
+namespace Tengoku.Aintlib end Tengoku.Aintlib open Tengoku.Aintlib
 open Set
 
 variable {X : Type*} [TopologicalSpace X]
@@ -31,7 +31,7 @@ irreducible component is open (its complement is the union of the others, a loca
 finite union of closed sets).
 @isnad1 id=isopen.3h2v.s7.e8e2229820b9 from=translated src=- shape=cae40bbd vocab=eca24f6b
 -/
-theorem isOpen_of_mem_irreducibleComponents_of_disjoint
+theorem _root_.Tengoku.Aintlib.isOpen_of_mem_irreducibleComponents_of_disjoint
     (hlf : LocallyFinite ((↑) : irreducibleComponents X → Set X))
     (hdisj : ∀ Z ∈ irreducibleComponents X, ∀ W ∈ irreducibleComponents X, Z ≠ W →
       Disjoint Z W)
@@ -67,7 +67,7 @@ theorem isOpen_of_mem_irreducibleComponents_of_disjoint
 finite and pairwise disjoint is irreducible.
 @isnad1 id=irreduci.2h1v.s7.d44211f12e29 from=translated src=- shape=90cfe67a vocab=62f2e9e2
 -/
-theorem irreducibleSpace_of_connected_of_disjoint_irreducibleComponents
+theorem _root_.Tengoku.Aintlib.irreducibleSpace_of_connected_of_disjoint_irreducibleComponents
     [Nonempty X] [ConnectedSpace X]
     (hlf : LocallyFinite ((↑) : irreducibleComponents X → Set X))
     (hdisj : ∀ Z ∈ irreducibleComponents X, ∀ W ∈ irreducibleComponents X, Z ≠ W →
@@ -114,7 +114,7 @@ maximality, using `IsIrreducible.union_of_isOpen_of_inter_nonempty`), so compone
 open; being also closed and nonempty, connectedness forces a single one.
 @isnad1 id=irreduci.1h1v.s5.4227ae3a3ce5 from=translated src=- shape=65ba7ea4 vocab=3ca76d4a
 -/
-theorem irreducibleSpace_of_connected_of_locallyIrreducible [Nonempty X] [ConnectedSpace X]
+theorem _root_.Tengoku.Aintlib.irreducibleSpace_of_connected_of_locallyIrreducible [Nonempty X] [ConnectedSpace X]
     (h : ∀ x : X, ∃ U : Set X, IsOpen U ∧ x ∈ U ∧ IsIrreducible U) : IrreducibleSpace X := by
   obtain ⟨x⟩ := ‹Nonempty X›
   have hopen : IsOpen (irreducibleComponent x) := by
@@ -132,3 +132,4 @@ theorem irreducibleSpace_of_connected_of_locallyIrreducible [Nonempty X] [Connec
     hclopen.eq_univ ⟨x, mem_irreducibleComponent⟩
   exact { isPreirreducible_univ := huniv ▸ isIrreducible_irreducibleComponent.2
           toNonempty := ⟨x⟩ }
+-- Tengoku: root names of this library moved to Tengoku.Aintlib so they do not collide with other libraries (generated)

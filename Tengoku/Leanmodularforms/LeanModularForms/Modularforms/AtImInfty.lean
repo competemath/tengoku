@@ -8,7 +8,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms 
 /-!
 # Helper lemmas for `UpperHalfPlane.atImInfty`
 
@@ -30,8 +30,9 @@ instance : FunLike (ℍ → ℂ) ℍ ℂ where
 q-expansion.
 @isnad1 id=eq.1h4v.s6.01c8930b5e51 from=translated src=- shape=8075f59f vocab=dfb95bad
 -/
-lemma qExpansion_ext2 {α β : Type*} [FunLike α ℍ ℂ] [FunLike β ℍ ℂ]
+lemma _root_.Tengoku.Leanmodularforms.qExpansion_ext2 {α β : Type*} [FunLike α ℍ ℂ] [FunLike β ℍ ℂ]
     (f : α) (g : β) (h : ⇑f = ⇑g) : qExpansion 1 f = qExpansion 1 g := by
   have hcf : cuspFunction 1 f = cuspFunction 1 g := congrArg (cuspFunction 1) h
   ext m
   simp [qExpansion_coeff, hcf]
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

@@ -31,7 +31,7 @@ at `x`.
 - the stalks of `𝒪_{ℂ^ι}` are local rings. The instance is anonymous, so it has no name to cite;
   it is `IsLocalRing ((okaCommPresheaf ι).stalk x)`.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open CategoryTheory TopologicalSpace Opposite AlgebraicGeometry Limits
 
 universe u
@@ -39,17 +39,17 @@ universe u
 variable {ι : Type u} [Fintype ι]
 
 /-- The presheaf of commutative rings of holomorphic functions on `ℂ^ι`. -/
-noncomputable def okaCommPresheaf (ι : Type u) [Fintype ι] :
+noncomputable def _root_.Tengoku.LanaOka.okaCommPresheaf (ι : Type u) [Fintype ι] :
     TopCat.Presheaf CommRingCat.{u} (TopCat.of (ι → ℂ)) where
   obj U := CommRingCat.of (OkaRing U.unop)
   map f := CommRingCat.ofHom (OkaRing.restrict (leOfHom f.unop)).toRingHom
   map_id U := by ext f; rfl
   map_comp f g := by ext h; rfl
 
-lemma okaCommPresheaf_comp_forget₂ (ι : Type u) [Fintype ι] :
+lemma _root_.Tengoku.LanaOka.okaCommPresheaf_comp_forget₂ (ι : Type u) [Fintype ι] :
     okaCommPresheaf ι ⋙ forget₂ CommRingCat.{u} RingCat.{u} = okaPresheaf ι := rfl
 
-theorem okaCommPresheaf_isSheaf (ι : Type u) [Fintype ι] :
+theorem _root_.Tengoku.LanaOka.okaCommPresheaf_isSheaf (ι : Type u) [Fintype ι] :
     Presheaf.IsSheaf (Opens.grothendieckTopology (ι → ℂ)) (okaCommPresheaf ι) := by
   rw [Presheaf.isSheaf_iff_isSheaf_forget _ _ (CategoryTheory.forget CommRingCat.{u})]
   have h := okaPresheaf_isSheaf ι
@@ -70,7 +70,7 @@ instance (x : ι → ℂ) : Nontrivial ((okaCommPresheaf ι).stalk x) := by
   exact one_ne_zero h2
 
 /-- A holomorphic function which does not vanish at `x` has invertible germ at `x`. -/
-lemma isUnit_okaGerm {x : ι → ℂ} (hx : x ∈ U) (f : OkaRing U)
+lemma _root_.Tengoku.LanaOka.isUnit_okaGerm {x : ι → ℂ} (hx : x ∈ U) (f : OkaRing U)
     (hf : OkaRing.evalHom hx f ≠ 0) :
     IsUnit ((okaCommPresheaf ι).germ U x hx f) := by
   have hana : ∀ y ∈ U, AnalyticAt ℂ (f.toGlobalFun _) y := (okaAnalytic_iff _).1 f.2
@@ -108,19 +108,19 @@ instance (x : ι → ℂ) : IsLocalRing ((okaCommPresheaf ι).stalk x) := by
   · exact Or.inl (isUnit_okaGerm hx f h)
 
 /-- The structure sheaf of `ℂ^ι`, as a sheaf of commutative rings. -/
-noncomputable def okaCommSheaf (ι : Type u) [Fintype ι] :
+noncomputable def _root_.Tengoku.LanaOka.okaCommSheaf (ι : Type u) [Fintype ι] :
     TopCat.Sheaf CommRingCat.{u} (TopCat.of (ι → ℂ)) :=
   ⟨okaCommPresheaf ι, okaCommPresheaf_isSheaf ι⟩
 
 /-- The complex space `ℂ^ι` as a locally ringed space. -/
-noncomputable def complexSpace (ι : Type u) [Fintype ι] : LocallyRingedSpace.{u} where
+noncomputable def _root_.Tengoku.LanaOka.complexSpace (ι : Type u) [Fintype ι] : LocallyRingedSpace.{u} where
   carrier := TopCat.of (ι → ℂ)
   presheaf := okaCommPresheaf ι
   IsSheaf := okaCommPresheaf_isSheaf ι
   isLocalRing := inferInstance
 
 @[simp]
-lemma complexSpace_presheaf (ι : Type u) [Fintype ι] :
+lemma _root_.Tengoku.LanaOka.complexSpace_presheaf (ι : Type u) [Fintype ι] :
     (complexSpace ι).presheaf = okaCommPresheaf ι :=
   rfl
 
@@ -129,5 +129,6 @@ lemma complexSpace_presheaf (ι : Type u) [Fintype ι] :
 We index the coordinates by `ULift (Fin n)` rather than `Fin n` so that the underlying type
 `ULift (Fin n) → ℂ` lives in `Type u`; this keeps `complexAffineSpace` universe polymorphic,
 matching `AlgebraicGeometry.Scheme`. -/
-noncomputable abbrev complexAffineSpace (n : ℕ) : LocallyRingedSpace.{u} :=
+noncomputable abbrev _root_.Tengoku.LanaOka.complexAffineSpace (n : ℕ) : LocallyRingedSpace.{u} :=
   complexSpace (ULift.{u} (Fin n))
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

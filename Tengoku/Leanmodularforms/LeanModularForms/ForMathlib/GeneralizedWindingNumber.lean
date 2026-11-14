@@ -47,7 +47,7 @@ via the bridge theorem when needed.
 
 * K. Hungerbühler, J. Wasem, *A generalized notion of winding numbers*
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Set Filter Topology MeasureTheory Complex
 open scoped Interval
 
@@ -59,18 +59,18 @@ variable {x y : ℂ}
 
 Defined as: the CPV of `∮_γ (z - z₀)⁻¹ dz` exists and equals `2πi · w`.
 This is the **primary API predicate** for generalized winding numbers. -/
-def HasGeneralizedWindingNumber (γ : PiecewiseC1Path x y) (z₀ : ℂ) (w : ℂ) : Prop :=
+def _root_.Tengoku.Leanmodularforms.HasGeneralizedWindingNumber (γ : PiecewiseC1Path x y) (z₀ : ℂ) (w : ℂ) : Prop :=
   HasCauchyPV (fun z => (z - z₀)⁻¹) γ z₀ (2 * ↑Real.pi * I * w)
 
 /-- The generalized winding number of `γ` around `z₀`, defined as
 `(2πi)⁻¹ · PV ∮_γ (z - z₀)⁻¹ dz`. Returns junk when the CPV does not exist. -/
-def generalizedWindingNumber (γ : PiecewiseC1Path x y) (z₀ : ℂ) : ℂ :=
+def _root_.Tengoku.Leanmodularforms.generalizedWindingNumber (γ : PiecewiseC1Path x y) (z₀ : ℂ) : ℂ :=
   (2 * ↑Real.pi * I)⁻¹ * cauchyPV (fun z => (z - z₀)⁻¹) γ z₀
 
 /-- Bridge: if `HasGeneralizedWindingNumber γ z₀ w`, then `generalizedWindingNumber γ z₀ = w`.
 @isnad1 id=eq.1h5v.s5.6a116a408772 from=translated src=- shape=bcc7fac2 vocab=d605a602
 -/
-theorem HasGeneralizedWindingNumber.eq {γ : PiecewiseC1Path x y} {z₀ w : ℂ}
+theorem Tengoku.Leanmodularforms.HasGeneralizedWindingNumber.eq {γ : PiecewiseC1Path x y} {z₀ w : ℂ}
     (h : HasGeneralizedWindingNumber γ z₀ w) : generalizedWindingNumber γ z₀ = w := by
   rw [generalizedWindingNumber, h.cauchyPV_eq, ← mul_assoc,
     inv_mul_cancel₀ Complex.two_pi_I_ne_zero, one_mul]
@@ -79,7 +79,7 @@ theorem HasGeneralizedWindingNumber.eq {γ : PiecewiseC1Path x y} {z₀ w : ℂ}
 equals the classical contour integral formula.
 @isnad1 id=hasgener.1h4v.s7.5db15c148df3 from=translated src=- shape=c2b00f99 vocab=ea66688c
 -/
-theorem hasGeneralizedWindingNumber_of_avoids {γ : PiecewiseC1Path x y} {z₀ : ℂ}
+theorem _root_.Tengoku.Leanmodularforms.hasGeneralizedWindingNumber_of_avoids {γ : PiecewiseC1Path x y} {z₀ : ℂ}
     (hδ : ∃ δ > 0, ∀ t ∈ Icc (0 : ℝ) 1, δ ≤ ‖γ t - z₀‖) :
     HasGeneralizedWindingNumber γ z₀
       ((2 * ↑Real.pi * I)⁻¹ * γ.contourIntegral (fun z => (z - z₀)⁻¹)) := by
@@ -90,7 +90,7 @@ theorem hasGeneralizedWindingNumber_of_avoids {γ : PiecewiseC1Path x y} {z₀ :
 corresponding winding number value.
 @isnad1 id=hasgener.1h5v.s6.0aa2a77262b3 from=translated src=- shape=abd9da69 vocab=0b0afba9
 -/
-theorem hasGeneralizedWindingNumber_of_hasCauchyPV {γ : PiecewiseC1Path x y} {z₀ L : ℂ}
+theorem _root_.Tengoku.Leanmodularforms.hasGeneralizedWindingNumber_of_hasCauchyPV {γ : PiecewiseC1Path x y} {z₀ L : ℂ}
     (h : HasCauchyPV (fun z => (z - z₀)⁻¹) γ z₀ L) :
     HasGeneralizedWindingNumber γ z₀ ((2 * ↑Real.pi * I)⁻¹ * L) := by
   rw [HasGeneralizedWindingNumber, mul_inv_cancel_left₀ Complex.two_pi_I_ne_zero]
@@ -99,7 +99,7 @@ theorem hasGeneralizedWindingNumber_of_hasCauchyPV {γ : PiecewiseC1Path x y} {z
 /-- Helper: distance lower bound for points in a small ball around `w₀` (off the curve).
 @isnad1 id=ex.1h4v.s7.6d23e485c3d5 from=translated src=- shape=1325ad93 vocab=406fa3a6
 -/
-lemma ball_dist_to_curve_lb {γ : PiecewiseC1Path x y} {w₀ : ℂ}
+lemma _root_.Tengoku.Leanmodularforms.ball_dist_to_curve_lb {γ : PiecewiseC1Path x y} {w₀ : ℂ}
     (hoff : ∀ t ∈ Icc (0 : ℝ) 1, γ t ≠ w₀) :
     ∃ ε > 0, ∀ w ∈ Metric.ball w₀ ε, ∀ t ∈ Icc (0 : ℝ) 1, ε ≤ ‖γ t - w‖ := by
   have h_compact : IsCompact (γ.toPath.extend '' Icc (0 : ℝ) 1) :=
@@ -126,7 +126,7 @@ piecewise C¹ curve. Uses parametric continuity of the contour integral
 `‖(γt - w)⁻¹ * γ'(t)‖ ≤ ε⁻¹ · K` for `w` in a ball around `w₀`.
 @isnad1 id=continuo.2h5v.s7.fcc317d63503 from=translated src=- shape=2fd0504e vocab=66d71530
 -/
-theorem generalizedWindingNumber_continuousAt_of_avoids
+theorem _root_.Tengoku.Leanmodularforms.generalizedWindingNumber_continuousAt_of_avoids
     {γ : PiecewiseC1Path x y} {w₀ : ℂ}
     (hoff : ∀ t ∈ Icc (0 : ℝ) 1, γ t ≠ w₀)
     {K : NNReal} (hLip : LipschitzWith K γ.toPath.extend) :
@@ -176,3 +176,4 @@ theorem generalizedWindingNumber_continuousAt_of_avoids
       continuousAt_const
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

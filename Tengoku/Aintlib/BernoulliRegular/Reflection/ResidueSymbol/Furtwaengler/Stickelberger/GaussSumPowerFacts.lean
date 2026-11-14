@@ -43,7 +43,7 @@ Stickelberger formula's prime factorisation.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Aintlib end Tengoku.Aintlib open Tengoku.Aintlib 
 noncomputable section
 
 namespace BernoulliRegular
@@ -901,3 +901,4 @@ theorem residueGaussSum_mem_ideal_of_psi_pow_form
 end Furtwaengler
 
 end BernoulliRegular
+-- Tengoku: root names of this library moved to Tengoku.Aintlib so they do not collide with other libraries (generated)

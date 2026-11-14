@@ -7,7 +7,7 @@ Authors: Naganori Yamaguchi (assisted by OpenAI Codex)
 import Tengoku.ClassfieldtheoryYamaguchi.ClassFieldTheory.AlgebraicNumberTheory.Idele.Extension.LocalComponent
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.ClassfieldtheoryYamaguchi end Tengoku.ClassfieldtheoryYamaguchi open Tengoku.ClassfieldtheoryYamaguchi
 set_option autoImplicit false
 
 /-!
@@ -43,17 +43,17 @@ variable
     [FiniteDimensional K L]
 
 /-- The finite index type of the canonical chosen `K`-basis of `L`.-/
-abbrev RelativeAdeleBasisIndex :=
+abbrev _root_.Tengoku.ClassfieldtheoryYamaguchi.RelativeAdeleBasisIndex :=
   Module.Free.ChooseBasisIndex K L
 
 /-- The canonical chosen `K`-basis used to extract base-adele
 coefficients.-/
-noncomputable def relativeExtensionBasis :
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeExtensionBasis :
     Module.Basis (RelativeAdeleBasisIndex (K := K) (L := L)) K L :=
   Module.Free.chooseBasis K L
 
 /-- Scalar extension of the chosen basis from `K` to `𝔸_K`.-/
-noncomputable def relativeAdeleBasis :
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeAdeleBasis :
     Module.Basis (RelativeAdeleBasisIndex (K := K) (L := L))
       (NumberField.AdeleRing (𝓞 K) K)
       (RelativeAdeleRing K L) :=
@@ -62,7 +62,7 @@ noncomputable def relativeAdeleBasis :
     (relativeExtensionBasis (K := K) (L := L))
 
 /-- The `i`-th base-adele coefficient of a relative adele.-/
-noncomputable def relativeAdeleCoefficient
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeAdeleCoefficient
     (z : RelativeAdeleRing K L)
     (i : RelativeAdeleBasisIndex (K := K) (L := L)) :
     NumberField.AdeleRing (𝓞 K) K :=
@@ -72,7 +72,7 @@ omit [NumberField L] in
 /-- Expansion of a relative adele in the chosen extension basis.
 @isnad1 id=eq.0h3v.s9.1dac95e1a592 from=translated src=- shape=0ce2fc8b vocab=b85cb659
 -/
-theorem relativeAdele_eq_sum_tmul_coefficients
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeAdele_eq_sum_tmul_coefficients
     (z : RelativeAdeleRing K L) :
     z =
       ∑ i : RelativeAdeleBasisIndex (K := K) (L := L),
@@ -91,7 +91,7 @@ omit [NumberField L] in
 basis expansion.
 @isnad1 id=eq.0h4v.s11.9e42be2b1352 from=translated src=- shape=fd5eff89 vocab=0032110e
 -/
-theorem relativeAdeleFiniteComponent_eq_sum_tmul_coefficients
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeAdeleFiniteComponent_eq_sum_tmul_coefficients
     (z : RelativeAdeleRing K L)
     (w : HeightOneSpectrum (𝓞 K)) :
     relativeAdeleFiniteComponent
@@ -114,7 +114,7 @@ omit [NumberField L] in
 basis expansion.
 @isnad1 id=eq.0h4v.s11.17bbcb83ad07 from=translated src=- shape=484a8466 vocab=733a4362
 -/
-theorem relativeAdeleInfiniteComponent_eq_sum_tmul_coefficients
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeAdeleInfiniteComponent_eq_sum_tmul_coefficients
     (z : RelativeAdeleRing K L)
     (w : InfinitePlace K) :
     relativeAdeleInfiniteComponent
@@ -136,7 +136,7 @@ theorem relativeAdeleInfiniteComponent_eq_sum_tmul_coefficients
 valuation ring is finite.
 @isnad1 id=finite.0h2v.s8.eee6aa549989 from=translated src=- shape=1b64264b vocab=4289095e
 -/
-theorem finite_adeleNonIntegralPlaces
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.finite_adeleNonIntegralPlaces
     (a : NumberField.AdeleRing (𝓞 K) K) :
     {w : HeightOneSpectrum (𝓞 K) |
       a.2 w ∉ w.adicCompletionIntegers K}.Finite :=
@@ -144,7 +144,7 @@ theorem finite_adeleNonIntegralPlaces
 
 /-- The exceptional finite places at which a base adele is not in the
 local valuation ring.-/
-noncomputable def adeleNonIntegralPlaces
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.adeleNonIntegralPlaces
     (a : NumberField.AdeleRing (𝓞 K) K) :
     Finset (HeightOneSpectrum (𝓞 K)) :=
   (finite_adeleNonIntegralPlaces (K := K) a).toFinset
@@ -153,7 +153,7 @@ noncomputable def adeleNonIntegralPlaces
 @isnad1 id=iff.0h3v.s8.cf777c22bd37 from=translated src=- shape=feff08c3 vocab=5136008a
 -/
 @[simp]
-theorem mem_adeleNonIntegralPlaces_iff
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.mem_adeleNonIntegralPlaces_iff
     (a : NumberField.AdeleRing (𝓞 K) K)
     (w : HeightOneSpectrum (𝓞 K)) :
     w ∈ adeleNonIntegralPlaces (K := K) a ↔
@@ -166,7 +166,7 @@ theorem mem_adeleNonIntegralPlaces_iff
 finite component.
 @isnad1 id=mem.1h3v.s8.d290fa653764 from=translated src=- shape=f1e864b5 vocab=5136008a
 -/
-theorem adele_component_mem_integers_of_notMem
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.adele_component_mem_integers_of_notMem
     (a : NumberField.AdeleRing (𝓞 K) K)
     (w : HeightOneSpectrum (𝓞 K))
     (hw : w ∉ adeleNonIntegralPlaces (K := K) a) :
@@ -178,7 +178,7 @@ theorem adele_component_mem_integers_of_notMem
 
 /-- Exact union of all exceptional coefficient places of a relative
 adele.-/
-noncomputable def relativeAdeleCoefficientSupport
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeAdeleCoefficientSupport
     (z : RelativeAdeleRing K L) :
     Finset (HeightOneSpectrum (𝓞 K)) := by
   classical
@@ -193,7 +193,7 @@ omit [NumberField L] in
 @isnad1 id=iff.0h4v.s8.32a0fd07d8d1 from=translated src=- shape=ac08fb14 vocab=3ff13b19
 -/
 @[simp]
-theorem mem_relativeAdeleCoefficientSupport_iff
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.mem_relativeAdeleCoefficientSupport_iff
     (z : RelativeAdeleRing K L)
     (w : HeightOneSpectrum (𝓞 K)) :
     w ∈ relativeAdeleCoefficientSupport
@@ -207,7 +207,7 @@ theorem mem_relativeAdeleCoefficientSupport_iff
 
 /-- The exact coefficient support of a relative idele contains the
 exceptional places of the idele and its inverse.-/
-noncomputable def relativeIdeleCoefficientSupport
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeIdeleCoefficientSupport
     (z : RelativeIdeleGroup K L) :
     Finset (HeightOneSpectrum (𝓞 K)) := by
   classical
@@ -225,7 +225,7 @@ omit [NumberField L] in
 @isnad1 id=iff.0h4v.s9.573ca33559e8 from=translated src=- shape=d2e0bda8 vocab=7ccd56ca
 -/
 @[simp]
-theorem mem_relativeIdeleCoefficientSupport_iff
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.mem_relativeIdeleCoefficientSupport_iff
     (z : RelativeIdeleGroup K L)
     (w : HeightOneSpectrum (𝓞 K)) :
     w ∈ relativeIdeleCoefficientSupport
@@ -250,7 +250,7 @@ the relative idele and its inverse is integral at the given finite
 place.
 @isnad1 id=and.1h4v.s9.3673b7e4ec26 from=translated src=- shape=97ab8ca4 vocab=7ccd56ca
 -/
-theorem relativeIdele_coefficients_integral_of_notMem
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeIdele_coefficients_integral_of_notMem
     (z : RelativeIdeleGroup K L)
     (w : HeightOneSpectrum (𝓞 K))
     (hw : w ∉ relativeIdeleCoefficientSupport
@@ -287,7 +287,7 @@ omit [NumberField L] in
 coefficients of the idele and its inverse are integral.
 @isnad1 id=le.1h4v.s9.db672dc1c7a0 from=translated src=- shape=02a3d83f vocab=fb3710a6
 -/
-theorem relativeIdeleCoefficientSupport_minimal
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeIdeleCoefficientSupport_minimal
     (z : RelativeIdeleGroup K L)
     (S : Finset (HeightOneSpectrum (𝓞 K)))
     (hS :
@@ -319,7 +319,7 @@ omit [NumberField L] in
 /-- Basis-lattice integrality in the local tensor algebra: all
 coordinates in the fixed extension basis belong to the valuation
 ring of `K_w`.-/
-def RelativeBasisIntegralAt
+def _root_.Tengoku.ClassfieldtheoryYamaguchi.RelativeBasisIntegralAt
     (w : HeightOneSpectrum (𝓞 K))
     (x : w.adicCompletion K ⊗[K] L) : Prop :=
   ∃ c :
@@ -334,7 +334,7 @@ def RelativeBasisIntegralAt
 omit [NumberField L] in
 /-- A local tensor unit is basis-integral when both it and its inverse
 belong to the local valuation-ring coefficient lattice.-/
-def RelativeBasisIntegralUnitAt
+def _root_.Tengoku.ClassfieldtheoryYamaguchi.RelativeBasisIntegralUnitAt
     (w : HeightOneSpectrum (𝓞 K))
     (x : (w.adicCompletion K ⊗[K] L)ˣ) : Prop :=
   RelativeBasisIntegralAt
@@ -350,7 +350,7 @@ omit [NumberField L] in
 base-adele coefficients.
 @isnad1 id=eq.0h4v.s12.bbec2a8ba307 from=translated src=- shape=a8788a9c vocab=bae36cab
 -/
-theorem relativeIdele_finiteComponent_eq_sum_tmul_coefficients
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeIdele_finiteComponent_eq_sum_tmul_coefficients
     (z : RelativeIdeleGroup K L)
     (w : HeightOneSpectrum (𝓞 K)) :
     ((RelativeIdeleGroup.finiteComponent
@@ -373,7 +373,7 @@ omit [NumberField L] in
 in the local lattice spanned by the chosen extension basis.
 @isnad1 id=relative.1h4v.s12.a57867e557db from=translated src=- shape=32d959c8 vocab=a83ad2a5
 -/
-theorem relativeIdele_finiteComponent_basisIntegral_of_notMem
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeIdele_finiteComponent_basisIntegral_of_notMem
     (z : RelativeIdeleGroup K L)
     (w : HeightOneSpectrum (𝓞 K))
     (hw : w ∉ relativeIdeleCoefficientSupport
@@ -403,7 +403,7 @@ omit [NumberField L] in
 inverse lies in the same local basis lattice.
 @isnad1 id=relative.1h4v.s12.379848b03152 from=translated src=- shape=b3cc7996 vocab=8de02758
 -/
-theorem relativeIdele_inverse_finiteComponent_basisIntegral_of_notMem
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeIdele_inverse_finiteComponent_basisIntegral_of_notMem
     (z : RelativeIdeleGroup K L)
     (w : HeightOneSpectrum (𝓞 K))
     (hw : w ∉ relativeIdeleCoefficientSupport
@@ -436,7 +436,7 @@ omit [NumberField L] in
 in the same basis lattice outside the coefficient support.
 @isnad1 id=relative.1h4v.s12.043d0ba8eaaf from=translated src=- shape=fa6b8408 vocab=8de02758
 -/
-theorem relativeIdele_finiteComponent_inv_basisIntegral_of_notMem
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeIdele_finiteComponent_inv_basisIntegral_of_notMem
     (z : RelativeIdeleGroup K L)
     (w : HeightOneSpectrum (𝓞 K))
     (hw : w ∉ relativeIdeleCoefficientSupport
@@ -456,7 +456,7 @@ omit [NumberField L] in
 explicit coefficient support.
 @isnad1 id=relative.1h4v.s12.83d60ce4f091 from=translated src=- shape=1aebb2e0 vocab=fb4933f7
 -/
-theorem relativeIdele_finiteComponent_basisIntegralUnit_of_notMem
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeIdele_finiteComponent_basisIntegralUnit_of_notMem
     (z : RelativeIdeleGroup K L)
     (w : HeightOneSpectrum (𝓞 K))
     (hw : w ∉ relativeIdeleCoefficientSupport
@@ -476,7 +476,7 @@ minimal finset simultaneously controls the local basis integrality of
 the relative idele and its inverse.
 @isnad1 id=ex.0h3v.s13.03a674a328ca from=translated src=- shape=b7a35e0e vocab=0865a710
 -/
-theorem exists_relativeIdele_coefficientSupport
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.exists_relativeIdele_coefficientSupport
     (z : RelativeIdeleGroup K L) :
     ∃ S : Finset (HeightOneSpectrum (𝓞 K)),
       (∀ w, w ∉ S →
@@ -517,3 +517,4 @@ theorem exists_relativeIdele_coefficientSupport
           (K := K) (L := L) z w hw,
         relativeIdele_finiteComponent_inv_basisIntegral_of_notMem
           (K := K) (L := L) z w hw⟩
+-- Tengoku: root names of this library moved to Tengoku.ClassfieldtheoryYamaguchi so they do not collide with other libraries (generated)

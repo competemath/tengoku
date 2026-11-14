@@ -8,7 +8,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms 
 /-!
 # Cuspidal vanishing/boundedness from infinity-side hypotheses
 
@@ -23,8 +23,9 @@ open scoped MatrixGroups ModularForm UpperHalfPlane
 cusp `c` of the arithmetic subgroup `𝒢`.
 @isnad1 id=iszeroat.2h4v.s9.5f3a1600308f from=translated src=- shape=6a36e555 vocab=dbd92186
 -/
-theorem zero_at_cusps_of_zero_at_infty {f : ℍ → ℂ} {c : OnePoint ℝ} {k : ℤ}
+theorem _root_.Tengoku.Leanmodularforms.zero_at_cusps_of_zero_at_infty {f : ℍ → ℂ} {c : OnePoint ℝ} {k : ℤ}
     {𝒢 : Subgroup (GL (Fin 2) ℝ)} [𝒢.IsArithmetic] (hc : IsCusp c 𝒢)
     (hb : ∀ A ∈ 𝒮ℒ, UpperHalfPlane.IsZeroAtImInfty (f ∣[k] A)) : c.IsZeroAt f k := by
   rw [Subgroup.IsArithmetic.isCusp_iff_isCusp_SL2Z] at hc
   exact (OnePoint.isZeroAt_iff_forall_SL2Z hc).mpr fun A _ ↦ hb A ⟨A, rfl⟩
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

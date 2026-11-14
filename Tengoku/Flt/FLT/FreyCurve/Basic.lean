@@ -33,8 +33,8 @@ curve is a multiple of q if 2 < q is a prime of bad reduction.
 -/
 
 @[expose] public section
-
-namespace FreyPackage
+namespace Tengoku.Flt end Tengoku.Flt open Tengoku.Flt 
+namespace Tengoku.Flt.FreyPackage
 
 /-- The Weierstrass curve over `ℤ` associated to a Frey package. The conditions imposed
 upon a Frey package guarantee that the running hypotheses in
@@ -65,11 +65,11 @@ def freyCurve (P : FreyPackage) : WeierstrassCurve ℚ where
   a₄ := -(P.a ^ P.p) * (P.b ^ P.p) / 16 -- this is also an integer
   a₆ := 0
 
-end FreyPackage
+end Tengoku.Flt.FreyPackage
 
 namespace FreyCurve
 
-open FreyPackage WeierstrassCurve
+open Tengoku.Flt.FreyPackage WeierstrassCurve
 
 /--
 @isnad1 id=eq.0h1v.s4.0c9570692f57 from=translated src=- shape=b4d18b3e vocab=bda99024
@@ -218,3 +218,4 @@ lemma j_valuation_of_bad_prime (P : FreyPackage) {q : ℕ} (hqPrime : q.Prime)
   exact dvd_mul_of_dvd_left (dvd_mul_left _ _) _
 
 end FreyCurve
+-- Tengoku: root names of this library moved to Tengoku.Flt so they do not collide with other libraries (generated)

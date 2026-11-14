@@ -9,7 +9,7 @@ import Tengoku.ClassfieldtheoryYamaguchi.GaloisCohomology.Cyclic.IntegralRepUniv
 import Tengoku.Seed.GroupTheory.GroupAction.Quotient
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.ClassfieldtheoryYamaguchi end Tengoku.ClassfieldtheoryYamaguchi open Tengoku.ClassfieldtheoryYamaguchi
 set_option autoImplicit false
 
 universe u
@@ -212,3 +212,4 @@ end relativeNormFormulas
 
 end
 end ClassFormation
+-- Tengoku: root names of this library moved to Tengoku.ClassfieldtheoryYamaguchi so they do not collide with other libraries (generated)

@@ -89,7 +89,7 @@ in coordinates and of reading off what it says about one fibre of the first comp
   projection forgets more than one coordinate and the conclusion is false; with `j ∈ Set.range e`
   the two kernels are not complementary. Both are hypotheses `he` and `hj` and neither is derived.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Set Filter Topology
 
 universe u
@@ -242,7 +242,7 @@ halves of `IsOpenEmbedding` on it are
 `ImplicitFunctionData.injOn_rightFun_levelSet` and
 `ImplicitFunctionData.isOpen_image_rightFun_levelSet`. Openness of the image needs that an open
 subset of the domain is `g ⁻¹' W` for some open `W`, which is `Topology.IsInducing.isOpen_iff`. -/
-theorem isLocalHomeomorph_coordProj_comp_of_isEmbedding
+theorem _root_.Tengoku.LanaOka.isLocalHomeomorph_coordProj_comp_of_isEmbedding
     {T : Type*} [TopologicalSpace T] {g : T → (ι → 𝕜)} (hg : Topology.IsEmbedding g)
     (he : ∀ i, i ≠ j → i ∈ Set.range e) (hj : j ∉ Set.range e)
     (hrange : Set.range g = {z | f z = c})
@@ -318,7 +318,7 @@ is not available to every consumer of this theorem: a caller whose level set is 
 function it is required to keep — continuous, holomorphic, a section of a structure sheaf — has
 in general no replacement with level set `{z | f z = c} ∩ Ω`, and for such a caller the restricted
 statement is not a corollary of the unrestricted one. -/
-theorem isLocalHomeomorph_coordProj_comp_of_isEmbedding_inter
+theorem _root_.Tengoku.LanaOka.isLocalHomeomorph_coordProj_comp_of_isEmbedding_inter
     {T : Type*} [TopologicalSpace T] {g : T → (ι → 𝕜)} {Ω : Set (ι → 𝕜)}
     (hg : Topology.IsEmbedding g) (hΩ : IsOpen Ω)
     (he : ∀ i, i ≠ j → i ∈ Set.range e) (hj : j ∉ Set.range e)
@@ -344,7 +344,7 @@ theorem isLocalHomeomorph_coordProj_comp_of_isEmbedding_inter
 /-- **The level set itself, as a subtype, is locally homeomorphic to the remaining
 coordinates.** `isLocalHomeomorph_coordProj_comp_of_isEmbedding` at the inclusion of the level
 set. -/
-theorem isLocalHomeomorph_coordProj_levelSet
+theorem _root_.Tengoku.LanaOka.isLocalHomeomorph_coordProj_levelSet
     (he : ∀ i, i ≠ j → i ∈ Set.range e) (hj : j ∉ Set.range e)
     (hf : ∀ z, f z = c → HasStrictFDerivAt f (f' z) z)
     (hne : ∀ z, f z = c → f' z (Pi.single j 1) ≠ 0) :
@@ -353,3 +353,4 @@ theorem isLocalHomeomorph_coordProj_levelSet
     Subtype.range_coe hf hne
 
 end LevelSet
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

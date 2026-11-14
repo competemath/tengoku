@@ -26,7 +26,7 @@ would be vacuous). No continuity of `f` is needed.
 
 AINTLIB ModularCurves (T-W7.7 rigidity infrastructure); upstream candidate.
 -/
-
+namespace Tengoku.Aintlib end Tengoku.Aintlib open Tengoku.Aintlib
 open Set
 
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y] {f : X → Y}
@@ -36,7 +36,7 @@ open and closed, every fibre `f ⁻¹' {y}` is connected, and `Y` is connected, 
 connected.
 @isnad1 id=connecte.3h3v.s5.44d74a1efd89 from=translated src=- shape=afa4064a vocab=ddfc7983
 -/
-theorem connectedSpace_of_isOpenMap_of_isClosedMap_of_isConnected_preimage
+theorem _root_.Tengoku.Aintlib.connectedSpace_of_isOpenMap_of_isClosedMap_of_isConnected_preimage
     (hf₁ : IsOpenMap f) (hf₂ : IsClosedMap f) [ConnectedSpace Y]
     (hfib : ∀ y, IsConnected (f ⁻¹' {y})) : ConnectedSpace X := by
   have hne : Nonempty X := ⟨(hfib (Classical.arbitrary Y)).nonempty.choose⟩
@@ -67,7 +67,7 @@ theorem connectedSpace_of_isOpenMap_of_isClosedMap_of_isConnected_preimage
 /-- Connectedness transfers up a subtype inclusion.
 @isnad1 id=isconnec.2h3v.s5.d756277a186c from=translated src=- shape=5a0b7bc6 vocab=7b475e9f
 -/
-lemma isConnected_preimage_val {Z : Type*} [TopologicalSpace Z] {u A : Set Z} (hAu : A ⊆ u)
+lemma _root_.Tengoku.Aintlib.isConnected_preimage_val {Z : Type*} [TopologicalSpace Z] {u A : Set Z} (hAu : A ⊆ u)
     (hA : IsConnected A) : IsConnected (Subtype.val ⁻¹' A : Set u) := by
   haveI : ConnectedSpace ↑A := isConnected_iff_connectedSpace.mp hA
   rw [show (Subtype.val ⁻¹' A : Set u) = Set.range (Set.inclusion hAu) from
@@ -81,7 +81,7 @@ The `⊇` direction restricts `f` over a component and applies
 componentwise canonicity glue (AINTLIB T-W7.7·C4glue); upstream candidate.
 @isnad1 id=eq.4h4v.s6.52de1456b43c from=translated src=- shape=0adb3b83 vocab=f3325de2
 -/
-theorem connectedComponent_eq_preimage_connectedComponent
+theorem _root_.Tengoku.Aintlib.connectedComponent_eq_preimage_connectedComponent
     (hcont : Continuous f) (hopen : IsOpenMap f) (hclosed : IsClosedMap f)
     (hfib : ∀ y, IsConnected (f ⁻¹' {y})) (x : X) :
     connectedComponent x = f ⁻¹' (connectedComponent (f x)) := by
@@ -118,3 +118,4 @@ theorem connectedComponent_eq_preimage_connectedComponent
         hopen' hclosed' hfib'
     exact hpre.isPreconnected.subset_connectedComponent
       (by simp only [Set.mem_preimage]; exact mem_connectedComponent)
+-- Tengoku: root names of this library moved to Tengoku.Aintlib so they do not collide with other libraries (generated)

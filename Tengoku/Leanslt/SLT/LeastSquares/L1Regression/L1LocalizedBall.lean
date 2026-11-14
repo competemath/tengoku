@@ -23,7 +23,7 @@ and proves key properties about their parameter space representation.
 * `l1LocalizedBallImage_subset`: The image of B_n(δ) in EmpiricalSpace is bounded
 
 -/
-
+namespace Tengoku.Leanslt end Tengoku.Leanslt open Tengoku.Leanslt
 open MeasureTheory Finset BigOperators Real ProbabilityTheory Metric Set
 open scoped NNReal ENNReal
 
@@ -199,3 +199,4 @@ theorem l1LocalizedBallImage_diameter_le {d : ℕ} {R δ : ℝ} (hδ : 0 ≤ δ)
     _ = 2 * δ := by ring
 
 end LeastSquares
+-- Tengoku: root names of this library moved to Tengoku.Leanslt so they do not collide with other libraries (generated)

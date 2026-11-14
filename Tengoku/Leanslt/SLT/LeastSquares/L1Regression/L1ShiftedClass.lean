@@ -22,7 +22,7 @@ and proves its star-shaped property.
 * `l1ShiftedClass_param_bound`: Functions in H* correspond to Δ with ‖Δ‖₁ ≤ 2R
 
 -/
-
+namespace Tengoku.Leanslt end Tengoku.Leanslt open Tengoku.Leanslt
 open MeasureTheory Finset BigOperators Real ProbabilityTheory Metric Set
 open scoped NNReal ENNReal
 
@@ -178,3 +178,4 @@ lemma l1ShiftedClass_superset {R : ℝ} {θ_star : EuclideanSpace ℝ (Fin d)}
   exact l1ShiftedClass_param_bound hθ_star hh
 
 end LeastSquares
+-- Tengoku: root names of this library moved to Tengoku.Leanslt so they do not collide with other libraries (generated)

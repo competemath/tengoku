@@ -9,7 +9,7 @@ import Tengoku.Seed.RingTheory.DedekindDomain.Factorization
 import Tengoku.Seed.RingTheory.ClassGroup.Basic
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.ClassfieldtheoryYamaguchi end Tengoku.ClassfieldtheoryYamaguchi open Tengoku.ClassfieldtheoryYamaguchi
 set_option autoImplicit false
 
 /-!
@@ -29,7 +29,7 @@ noncomputable section
 
 variable {K : Type*} [Field K] [NumberField K]
 
-namespace FiniteIdeleGroup
+namespace Tengoku.ClassfieldtheoryYamaguchi.FiniteIdeleGroup
 
 /-- The exponent of a local multiplicative element, normalized so that a
 uniformizer has exponent one.-/
@@ -194,13 +194,13 @@ theorem valuationVector_surjective :
   refine ⟨valuationVectorSection e.toAdd, ?_⟩
   exact valuationVector_valuationVectorSection e.toAdd
 
-end FiniteIdeleGroup
+end Tengoku.ClassfieldtheoryYamaguchi.FiniteIdeleGroup
 
 /-- The group of nonzero fractional ideals of a number field.-/
-abbrev FractionalIdealGroup (K : Type*) [Field K] [NumberField K] :=
+abbrev _root_.Tengoku.ClassfieldtheoryYamaguchi.FractionalIdealGroup (K : Type*) [Field K] [NumberField K] :=
   (FractionalIdeal (nonZeroDivisors (𝓞 K)) K)ˣ
 
-namespace FractionalIdealGroup
+namespace Tengoku.ClassfieldtheoryYamaguchi.FractionalIdealGroup
 
 /-- The fractional ideal represented by a finite prime.-/
 def prime (v : HeightOneSpectrum (𝓞 K)) :
@@ -337,9 +337,9 @@ def factorizationEquiv :
   MulEquiv.ofBijective (factorization (K := K))
     ⟨factorization_injective, factorization_surjective⟩
 
-end FractionalIdealGroup
+end Tengoku.ClassfieldtheoryYamaguchi.FractionalIdealGroup
 
-namespace FiniteIdeleGroup
+namespace Tengoku.ClassfieldtheoryYamaguchi.FiniteIdeleGroup
 
 /-- The fractional ideal attached to a finite idele.-/
 def fractionalIdeal :
@@ -413,9 +413,9 @@ def quotientIntegralEquiv :
   exact QuotientGroup.quotientKerEquivOfSurjective
     fractionalIdeal fractionalIdeal_surjective
 
-end FiniteIdeleGroup
+end Tengoku.ClassfieldtheoryYamaguchi.FiniteIdeleGroup
 
-namespace IdeleGroup
+namespace Tengoku.ClassfieldtheoryYamaguchi.IdeleGroup
 
 /-- The fractional ideal attached to an idele. The archimedean components
 do not contribute.-/
@@ -485,4 +485,5 @@ def quotientIdealClassKernelEquiv :
   QuotientGroup.quotientKerEquivOfSurjective
     idealClass idealClass_surjective
 
-end IdeleGroup
+end Tengoku.ClassfieldtheoryYamaguchi.IdeleGroup
+-- Tengoku: root names of this library moved to Tengoku.ClassfieldtheoryYamaguchi so they do not collide with other libraries (generated)

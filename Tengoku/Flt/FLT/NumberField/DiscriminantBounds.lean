@@ -15,7 +15,7 @@ the comparison between root discriminants and small-degree explicit bounds.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Flt end Tengoku.Flt open Tengoku.Flt 
 open scoped Nat
 open Real
 
@@ -23,7 +23,7 @@ open Real
 /--
 @isnad1 id=strictmo.1h3v.s5.2d786d3fa231 from=translated src=- shape=c0804124 vocab=1868d122
 -/
-theorem strictMonoOn_Ici_nat_of_lt_succ {α : Type*} [Preorder α] {f : ℕ → α} {x : ℕ}
+theorem _root_.Tengoku.Flt.strictMonoOn_Ici_nat_of_lt_succ {α : Type*} [Preorder α] {f : ℕ → α} {x : ℕ}
     (h : ∀ n, x ≤ n → f n < f (n + 1)) :
     StrictMonoOn f {i | x ≤ i} :=
   fun _ ha _ _ ↦ Nat.rel_of_forall_rel_succ_of_le_of_lt (· < ·) h ha
@@ -32,7 +32,7 @@ theorem strictMonoOn_Ici_nat_of_lt_succ {α : Type*} [Preorder α] {f : ℕ → 
 /--
 @isnad1 id=strictmo.1h3v.s5.743e5e34a8bb from=translated src=- shape=601f0f16 vocab=4fbd618d
 -/
-theorem strictMonoOn_Ioi_nat_of_lt_succ {α : Type*} [Preorder α] {f : ℕ → α} {x : ℕ}
+theorem _root_.Tengoku.Flt.strictMonoOn_Ioi_nat_of_lt_succ {α : Type*} [Preorder α] {f : ℕ → α} {x : ℕ}
     (h : ∀ n, x < n → f n < f (n + 1)) :
     StrictMonoOn f (Set.Ioi x) :=
   strictMonoOn_Ici_nat_of_lt_succ (x := x + 1) h
@@ -107,13 +107,13 @@ private lemma rootDiscrBound_strictMono_aux :
 Minkowski's lower bound for the root discriminant (that is, the `n`th root of the absolute value of
 the discriminant) of a totally complex number field of degree `n`.
 -/
-noncomputable def rootDiscrBound (n : ℕ) : ℝ :=
+noncomputable def _root_.Tengoku.Flt.rootDiscrBound (n : ℕ) : ℝ :=
   (π / 4) * (n ^ 2 / (n ! : ℝ) ^ (2 / n : ℝ))
 
 /--
 @isnad1 id=strictmo.0h0v.s2.502f5bce475b from=translated src=- shape=54c8eceb vocab=5452a275
 -/
-lemma rootDiscrBound_strictMono : StrictMono rootDiscrBound := by
+lemma _root_.Tengoku.Flt.rootDiscrBound_strictMono : StrictMono rootDiscrBound := by
   refine .const_mul (StrictMonoOn.Iic_union_Ici (a := 1) ?_ ?_) (by positivity)
   next =>
     have : Set.Iic 1 = {0, 1} := by simp [Set.ext_iff]; omega
@@ -178,7 +178,7 @@ private lemma rootDiscrBound_fourteen_gt :
 /--
 @isnad1 id=iff.0h1v.s6.d09a29b29617 from=translated src=- shape=6c055e8b vocab=564ce3ea
 -/
-theorem rootDiscrBound_lt_iff_lt_fourteen {n : ℕ} :
+theorem _root_.Tengoku.Flt.rootDiscrBound_lt_iff_lt_fourteen {n : ℕ} :
     rootDiscrBound n < 2 ^ (2 / 3 : ℝ) * 3 ^ (7 / 8 : ℝ) ↔ n < 14 := by
   refine ⟨fun h ↦ ?mp, fun h ↦ ?mpr⟩
   case mp => exact rootDiscrBound_strictMono.lt_iff_lt.mp (h.trans rootDiscrBound_fourteen_gt)
@@ -189,7 +189,7 @@ theorem rootDiscrBound_lt_iff_lt_fourteen {n : ℕ} :
 /--
 @isnad1 id=iff.0h1v.s4.a9c023d0d7fd from=translated src=- shape=1a9360f1 vocab=edc7501c
 -/
-theorem rootDiscrBound_lt_iff_lt_five {n : ℕ} :
+theorem _root_.Tengoku.Flt.rootDiscrBound_lt_iff_lt_five {n : ℕ} :
     rootDiscrBound n < 2.75 ↔ n < 5 := by
   refine ⟨fun h ↦ ?mp, fun h ↦ ?mpr⟩
   case mp => exact rootDiscrBound_strictMono.lt_iff_lt.mp (h.trans rootDiscrBound_five_gt)
@@ -200,13 +200,14 @@ theorem rootDiscrBound_lt_iff_lt_five {n : ℕ} :
 /--
 @isnad1 id=le.1h1v.s6.06063a8ee11d from=translated src=- shape=3f23f713 vocab=60440018
 -/
-theorem le_fourteen_of_rootDiscrBound {n : ℕ}
+theorem _root_.Tengoku.Flt.le_fourteen_of_rootDiscrBound {n : ℕ}
     (h : rootDiscrBound n < 2 ^ (2 / 3 : ℝ) * 3 ^ (7 / 8 : ℝ)) : n ≤ 14 :=
   (rootDiscrBound_lt_iff_lt_fourteen.mp h).le
 
 /--
 @isnad1 id=le.1h1v.s6.1ca465b4789d from=translated src=- shape=8ded7cba vocab=af48e7bf
 -/
-theorem le_five_of_rootDiscrBound {n : ℕ}
+theorem _root_.Tengoku.Flt.le_five_of_rootDiscrBound {n : ℕ}
     (h : (π / 4) * (n ^ 2 / (n !) ^ (2 / n : ℝ)) < 2.75) : n ≤ 5 :=
   (rootDiscrBound_lt_iff_lt_five.mp h).le
+-- Tengoku: root names of this library moved to Tengoku.Flt so they do not collide with other libraries (generated)

@@ -1,0 +1,110 @@
+leakscan: 40 global instances (8 can fire outside the library), 0 scoped; 108 global simp lemmas (3 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 1 scoped
+roots: 97 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: instance Qsqrtd.instFact_of_not_isSquare registered in Tengoku.QuadraticNumberFields.QuadraticNumberFields.Qsqrtd.Basic (declared at line 138)
+leak: instance instFact_not_isSquare_ratCast_of_squarefree_ne_one registered in Tengoku.QuadraticNumberFields.QuadraticNumberFields.Qsqrtd.Basic (declared at line 270)
+leak: instance QuadraticNumberFields.Examples.SqrtNeg5.instFactLtIntNegOfNat registered in Tengoku.QuadraticNumberFields.Examples.SqrtNeg5.Ideals (declared at line 44)
+leak: instance NarrowClassGroup.RingOfIntegers.instFintypeRingOfIntegersFractionRingRealEmbeddings registered in Tengoku.QuadraticNumberFields.QNFMathlib.NumberTheory.NumberField.NarrowClassGroup (declared at line 28)
+leak: simp FractionalIdeal.ringEquivOfRingEquiv_smul registered in Tengoku.QuadraticNumberFields.QNFMathlib.RingTheory.FractionalIdeal.RingEquiv (declared at line 36)
+leak: simp ClassGroup.mk0_pow_eq_one_iff_pow_isPrincipal registered in Tengoku.QuadraticNumberFields.QuadraticNumberFields.ClassGroup.Torsion (declared at line 263)
+leak: instance QuadraticNumberFields.instFactSquarefreeIntNegOfNat registered in Tengoku.QuadraticNumberFields.QuadraticNumberFields.RingOfIntegers.CommonInstances (declared at line 33)
+leak: instance QuadraticNumberFields.instFactNeIntNegOfNat registered in Tengoku.QuadraticNumberFields.QuadraticNumberFields.RingOfIntegers.CommonInstances (declared at line 37)
+leak: instance QuadraticNumberFields.instFactSquarefreeIntOfNat registered in Tengoku.QuadraticNumberFields.QuadraticNumberFields.RingOfIntegers.CommonInstances (declared at line 39)
+leak: instance QuadraticNumberFields.instFactNeIntOfNat registered in Tengoku.QuadraticNumberFields.QuadraticNumberFields.RingOfIntegers.CommonInstances (declared at line 41)
+leak: simp ZOnePlusSqrtdOverTwo.norm_mk registered in Tengoku.QuadraticNumberFields.QuadraticNumberFields.ZOnePlusSqrtdOverTwo.Basic (declared at line 90)
+root: imPartRatio_eq_im
+root: kroneckerCharacter_apply
+root: imPartRatio
+root: kroneckerSymNat_eq_one_or_neg_one_of_coprime
+root: kroneckerSymNat_eq_zero_of_not_coprime
+root: kroneckerNegOne
+root: dvd_four_sub_sq_iff_same_parity_of_one_mod_four
+root: kroneckerSym_eq_legendreSym_of_ne_two
+root: kroneckerTwo_eq_neg_one_iff
+root: kroneckerSymNat_add_natAbs_eq
+root: kroneckerTwo_eq_one_iff
+root: ZOnePlusSqrtdOverTwo
+root: kroneckerSym_neg_two_right
+root: kroneckerSym_natCast
+root: squarefree_eq_of_rat_sq_mul
+root: kroneckerSym
+root: NarrowClassGroup
+root: kroneckerNegOne_of_nonneg
+root: kroneckerNegOne_sq
+root: not_isSquare_ratCast_of_squarefree_ne_one
+root: instCommGroupNarrowClassGroup
+root: kroneckerSymNat_eq_zero_iff_not_coprime
+root: kroneckerSymNat_one_right
+root: kroneckerSym_mul
+root: kroneckerSym_eq_one_or_neg_one_of_coprime
+root: not_isSquare_neg_one_rat
+root: kroneckerCharacter
+root: IsStandardParameter
+root: coe_kroneckerSymNatUnit
+root: kroneckerSymNat_mul_left
+root: imPartRatio_wedge
+root: kroneckerSym_eq_zero_iff_not_coprime
+root: kroneckerSymNat_two
+root: kroneckerSymNat_trichotomy
+root: re_zsmul
+root: kroneckerCharacter_apply_natCast
+root: imPartRatio_wedge_mul_left
+root: not_isSquare_int_of_squarefree_ne_one
+root: kroneckerNegOne_eq_sign_of_ne_zero
+root: kroneckerSym_trichotomy
+root: kroneckerSymNat_mod_natAbs_eq
+root: kroneckerSymNat_mul
+root: kroneckerSym_mul_left
+root: kroneckerCharacter_neg_one
+root: kroneckerSymNat_eq_primeFactorsList_prod
+root: kroneckerSymNat_natAbs_sub_one_eq_sign
+root: instIsQuadraticExtensionRatOfQuadraticField
+root: kroneckerSym_one_right
+root: int_dvd_of_ratio_square
+root: eq_one_of_squarefree_isSquare
+root: Qsqrtd_iso_squarefree_int_param
+root: kroneckerTwo
+root: nat_eq_one_of_squarefree_intcast_of_isSquare
+root: kroneckerSymNat_eq_legendreSym_of_ne_two
+root: Qsqrtd
+root: im_zsmul
+root: kroneckerSymNat_zero_right
+root: kroneckerSymNat_eq_jacobiSym_natAbs_of_emod_four_eq_one
+root: QuadraticFieldCat
+root: kroneckerSymNat_eq_jacobiSym_of_odd
+root: instInhabitedNarrowClassGroup
+root: kroneckerNegOne_mul
+root: SqfreeParam
+root: even_even_of_dvd_four_sub_sq_of_ne_one_mod_four
+root: kroneckerSym_two_right
+root: kroneckerSym_sq_one_of_coprime
+root: kroneckerSymNat_prod_left
+root: dvd_four_sub_sq_iff_even_even_or_odd_odd_mod_four_one
+root: kroneckerSymNat_eq_one_of_forall_primeFactors_eq_one
+root: kroneckerSymNat_eq_of_modEq
+root: squarefree_int_not_dvd_four
+root: eq_algebraMap_re_of_star_self
+root: kroneckerSym_one_left
+root: kroneckerSymNat_add_natAbs_mul_eq
+root: eq_imPartRatio_smul_sqrt_of_star_neg
+root: kroneckerSym_zero_right
+root: kroneckerNegOne_of_neg
+root: Qsqrtd_iso_int_param
+root: instFact_not_isSquare_ratCast_of_squarefree_ne_one
+root: kroneckerNegOne_ne_zero
+root: kroneckerSym_of_neg
+root: squarefree_int_emod_four
+root: kroneckerSymNatUnit
+root: kroneckerSymNat_one_left
+root: kroneckerTwo_eq_zero_iff
+root: dvd_four_sub_sq_iff_even_even_of_ne_one_mod_four
+root: kroneckerSym_neg_natCast
+root: kroneckerTwo_mul
+root: kroneckerSym_neg
+root: kroneckerSymNat_sq_one_of_coprime
+root: kroneckerCharacter_apply_intCast
+root: eq_re_smul_one_of_star_self
+root: kroneckerSym_neg_one_right
+root: QuadraticField
+root: kroneckerSymNat
+root: kroneckerSym_of_nonneg
+root: SqfreeParamCat

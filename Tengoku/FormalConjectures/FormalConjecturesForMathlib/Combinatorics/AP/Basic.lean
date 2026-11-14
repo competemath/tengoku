@@ -18,7 +18,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.FormalConjectures end Tengoku.FormalConjectures open Tengoku.FormalConjectures 
 /-! # Arithmetic Progressions
 
 Main definitions:
@@ -250,7 +250,7 @@ theorem Set.IsAPOfLengthFree.maxCard_one (N : ℕ) : maxCard 1 N = N := by
 def Set.ContainsAP (A : Set α) (k : ℕ) (d : α) : Prop :=
   ∃ a, ∃ s, s ⊆ A ∧ s.IsAPOfLengthWith (k : ℕ∞) a d
 
-def ContainsMonoAPofLength {κ : Type} [Finite κ] {M : Set α}
+def _root_.Tengoku.FormalConjectures.ContainsMonoAPofLength {κ : Type} [Finite κ] {M : Set α}
     (coloring : M → κ) (k : ℕ) : Prop :=
   ∃ c : κ, ∃ ap : Set M, ((·.1) '' ap).IsAPOfLength k ∧
     ∀ m ∈ ap, coloring m = c
@@ -259,7 +259,7 @@ def ContainsMonoAPofLength {κ : Type} [Finite κ] {M : Set α}
 A function `f : β → α` has a monotone `k`-term arithmetic progression if there exists a choice
 of indices `b 1 < b 2 < ... < b k` such that the subsequence `f (b i)` forms an increasing or
 decreasing arithmetic progression of length `k`.-/
-def HasMonotoneAP {β : Type*} [Preorder β] (f : β → α) (k : ℕ) : Prop :=
+def _root_.Tengoku.FormalConjectures.HasMonotoneAP {β : Type*} [Preorder β] (f : β → α) (k : ℕ) : Prop :=
   ∃ l : List β, (l.map f).IsAPOfLength k ∧ l.Pairwise (· < ·)
 
 /--
@@ -268,3 +268,4 @@ any non-trivial `k`-term arithmetic progression.-/
 noncomputable def Finset.maxAPFreeCard (k : ℕ) (s : Finset α) : ℕ :=
   open scoped Classical in
   (s.powerset.filter fun t : Finset α ↦ (t : Set α).IsAPOfLengthFree k).sup Finset.card
+-- Tengoku: root names of this library moved to Tengoku.FormalConjectures so they do not collide with other libraries (generated)

@@ -18,7 +18,7 @@ This file defines power-torsion subgroups and square quotients for commutative
 groups, together with their maps under homomorphisms and equivalences. The final
 sections specialize the torsion results to ordinary and narrow ideal class groups.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 namespace CommGroup
 
 variable (G : Type*) [CommGroup G]
@@ -290,7 +290,7 @@ theorem mk0_mem_twoTorsion_iff
 
 end ClassGroup
 
-namespace NarrowClassGroup
+namespace Tengoku.QuadraticNumberFields.NarrowClassGroup
 
 variable (R)
 variable [CommRing R] [IsDomain R]
@@ -321,7 +321,7 @@ theorem mk0_mul_self_eq_one_of_twoTorsion
 
 end DedekindDomain
 
-end NarrowClassGroup
+end Tengoku.QuadraticNumberFields.NarrowClassGroup
 
 /-
 Exact Sequence
@@ -330,3 +330,4 @@ Definition of narrow class group. 1 → P⁺(R) → I(R) → Cl⁺(R) → 1.
 1 → (O R)ˣ⁺ → (Rˣ)⁺ → P⁺(R) → 1
 rank F₂ Cl⁺(R)[2] =t-1
 -/
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

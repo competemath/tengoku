@@ -51,7 +51,7 @@ product space. The file is deliberately real: two of its rules (`gradient_const_
 -/
 
 @[expose] public section
-
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
 noncomputable section
 
 open InnerProductSpace
@@ -68,14 +68,14 @@ constant scales both.
 -/
 
 /-- Adding a constant to a function does not change its gradient. -/
-lemma gradient_add_const {f : F → ℝ} (c : ℝ) (x : F) :
+lemma _root_.Tengoku.Physlib.gradient_add_const {f : F → ℝ} (c : ℝ) (x : F) :
     gradient (fun y => f y + c) x = gradient f x := by
   unfold gradient
   rw [fderiv_add_const]
 
 /-- The gradient of a constant multiple of a differentiable function is the constant multiple of
 the gradient. -/
-lemma gradient_const_mul {f : F → ℝ} {x : F} (c : ℝ) (hf : DifferentiableAt ℝ f x) :
+lemma _root_.Tengoku.Physlib.gradient_const_mul {f : F → ℝ} {x : F} (c : ℝ) (hf : DifferentiableAt ℝ f x) :
     gradient (fun y => c * f y) x = c • gradient f x := by
   unfold gradient
   rw [fderiv_const_mul hf, map_smul]
@@ -90,7 +90,7 @@ is `2 • x`.
 -/
 
 /-- The gradient of `y ↦ ⟪y, y⟫` at `x` is `2 • x`. -/
-lemma gradient_inner_self (x : F) : gradient (fun y : F => ⟪y, y⟫_ℝ) x = (2 : ℝ) • x := by
+lemma _root_.Tengoku.Physlib.gradient_inner_self (x : F) : gradient (fun y : F => ⟪y, y⟫_ℝ) x = (2 : ℝ) • x := by
   refine ext_inner_right (𝕜 := ℝ) fun y => ?_
   unfold gradient
   rw [toDual_symm_apply,
@@ -98,7 +98,7 @@ lemma gradient_inner_self (x : F) : gradient (fun y : F => ⟪y, y⟫_ℝ) x = (
   simp [real_inner_comm, inner_smul_right, two_mul]
 
 /-- The gradient of `y ↦ c * ⟪y, y⟫` at `x` is `(2 * c) • x`. -/
-lemma gradient_const_mul_inner_self (c : ℝ) (x : F) :
+lemma _root_.Tengoku.Physlib.gradient_const_mul_inner_self (c : ℝ) (x : F) :
     gradient (fun y : F => c * ⟪y, y⟫_ℝ) x = (2 * c) • x := by
   rw [gradient_const_mul c (differentiableAt_fun_id.inner ℝ differentiableAt_fun_id),
     gradient_inner_self, smul_smul, mul_comm]
@@ -114,7 +114,7 @@ The coordinate functional `y ↦ y i` on `EuclideanSpace ℝ ι` is the continuo
 
 /-- The gradient of the `i`-th coordinate functional on Euclidean space is the `i`-th basis
 vector. -/
-lemma gradient_coord {ι : Type*} [Fintype ι] [DecidableEq ι] (i : ι) (x : EuclideanSpace ℝ ι) :
+lemma _root_.Tengoku.Physlib.gradient_coord {ι : Type*} [Fintype ι] [DecidableEq ι] (i : ι) (x : EuclideanSpace ℝ ι) :
     gradient (fun y : EuclideanSpace ℝ ι => y i) x = EuclideanSpace.single i 1 := by
   have h : HasFDerivAt (fun y : EuclideanSpace ℝ ι => y i)
       (innerSL ℝ (EuclideanSpace.single i (1 : ℝ))) x :=
@@ -124,7 +124,7 @@ lemma gradient_coord {ι : Type*} [Fintype ι] [DecidableEq ι] (i : ι) (x : Eu
 
 /-- Chain rule for a function of one coordinate: the gradient of `y ↦ f (y i)` at `x` is
 `f' • EuclideanSpace.single i 1`, where `f'` is the derivative of `f` at `x i`. -/
-lemma gradient_comp_coord {ι : Type*} [Fintype ι] [DecidableEq ι] {f : ℝ → ℝ} {f' : ℝ}
+lemma _root_.Tengoku.Physlib.gradient_comp_coord {ι : Type*} [Fintype ι] [DecidableEq ι] {f : ℝ → ℝ} {f' : ℝ}
     (i : ι) (x : EuclideanSpace ℝ ι) (hf : HasDerivAt f f' (x i)) :
     gradient (fun y : EuclideanSpace ℝ ι => f (y i)) x = f' • EuclideanSpace.single i 1 := by
   have h : HasFDerivAt (fun y : EuclideanSpace ℝ ι => f (y i))
@@ -136,3 +136,4 @@ lemma gradient_comp_coord {ι : Type*} [Fintype ι] [DecidableEq ι] {f : ℝ �
 end
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

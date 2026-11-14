@@ -23,7 +23,7 @@ This file provides global `Fact` instances for frequently-used quadratic field p
 - `Fact (Squarefree (17 : ℤ))` / `Fact ((17 : ℤ) ≠ 1)` — real field ℚ(√17)
 - the remaining Heegner parameters `d = -2, -7, -11, -19, -43, -67, -163`
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 local notation "ℚ√" d => Qsqrtd d
 
 namespace QuadraticNumberFields
@@ -44,3 +44,4 @@ instance : Fact ((17 : ℤ) ≠ 1) := ⟨by decide⟩
 prime in `ℤ` (via `natAbs`), hence squarefree. -/
 
 end QuadraticNumberFields
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

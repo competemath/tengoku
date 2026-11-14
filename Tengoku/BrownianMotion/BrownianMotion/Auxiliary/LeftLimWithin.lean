@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.BrownianMotion end Tengoku.BrownianMotion open Tengoku.BrownianMotion 
 open Set Filter
 
 open Topology
@@ -20,7 +20,7 @@ open Topology
 /--
 @isnad1 id=eq.0h4v.s5.f7ff1639d4be from=translated src=- shape=c2167df9 vocab=645b83b0
 -/
-lemma nhdsWithin_inf_principal {E : Type*} [TopologicalSpace E] (s t : Set E) (x : E) :
+lemma _root_.Tengoku.BrownianMotion.nhdsWithin_inf_principal {E : Type*} [TopologicalSpace E] (s t : Set E) (x : E) :
     𝓝[s] x ⊓ 𝓟 t = 𝓝[s ∩ t] x := by
   rw [nhdsWithin, nhdsWithin, inf_assoc, inf_principal, Set.inter_comm]
 
@@ -53,7 +53,7 @@ open Function
 /-- If `s` is dense and `𝓝[<] a` is not bot, then `a` is a left-accumulation point of `s`.
 @isnad1 id=nebot.1h3v.s6.58b686aa542a from=translated src=- shape=824b8daa vocab=e73187e6
 -/
-lemma nhdsWithin_Iio_inter_neBot_of_nhdsLT_neBot [TopologicalSpace α] [OrderTopology α]
+lemma _root_.Tengoku.BrownianMotion.nhdsWithin_Iio_inter_neBot_of_nhdsLT_neBot [TopologicalSpace α] [OrderTopology α]
     {s : Set α} (hs : Dense s) (a : α) [(𝓝[<] a).NeBot] :
     (𝓝[Iio a ∩ s] a).NeBot := by
   rw [← mem_closure_iff_nhdsWithin_neBot, mem_closure_iff]
@@ -66,14 +66,14 @@ lemma nhdsWithin_Iio_inter_neBot_of_nhdsLT_neBot [TopologicalSpace α] [OrderTop
 /-- If `s` is dense and `a` is not a minimum, then `a` is a left-accumulation point of `s`.
 @isnad1 id=nebot.1h3v.s6.3ad20f01e610 from=translated src=- shape=7646f135 vocab=1ff07b12
 -/
-lemma nhdsWithin_Iio_inter_neBot [TopologicalSpace α] [OrderTopology α] [DenselyOrdered α]
+lemma _root_.Tengoku.BrownianMotion.nhdsWithin_Iio_inter_neBot [TopologicalSpace α] [OrderTopology α] [DenselyOrdered α]
     [NoMinOrder α] {s : Set α} (hs : Dense s) (a : α) : (𝓝[Iio a ∩ s] a).NeBot :=
   nhdsWithin_Iio_inter_neBot_of_nhdsLT_neBot hs a
 
 /-- If `s` is dense and `𝓝[>] a` is not bot, then `a` is a right-accumulation point of `s`.
 @isnad1 id=nebot.1h3v.s6.d529c747b499 from=translated src=- shape=824b8daa vocab=448dfa55
 -/
-lemma nhdsWithin_Ioi_inter_neBot_of_nhdsGT_neBot [TopologicalSpace α] [OrderTopology α]
+lemma _root_.Tengoku.BrownianMotion.nhdsWithin_Ioi_inter_neBot_of_nhdsGT_neBot [TopologicalSpace α] [OrderTopology α]
     {s : Set α} (hs : Dense s) (a : α) [(𝓝[>] a).NeBot] :
     (𝓝[Ioi a ∩ s] a).NeBot := by
   rw [← mem_closure_iff_nhdsWithin_neBot, mem_closure_iff]
@@ -86,7 +86,7 @@ lemma nhdsWithin_Ioi_inter_neBot_of_nhdsGT_neBot [TopologicalSpace α] [OrderTop
 /-- If `s` is dense and `a` is not a maximum, then `a` is a right-accumulation point of `s`.
 @isnad1 id=nebot.1h3v.s6.1b3d45e2a7fb from=translated src=- shape=7646f135 vocab=669db35c
 -/
-lemma nhdsWithin_Ioi_inter_neBot [TopologicalSpace α] [OrderTopology α] [DenselyOrdered α]
+lemma _root_.Tengoku.BrownianMotion.nhdsWithin_Ioi_inter_neBot [TopologicalSpace α] [OrderTopology α] [DenselyOrdered α]
     [NoMaxOrder α] {s : Set α} (hs : Dense s) (a : α) : (𝓝[Ioi a ∩ s] a).NeBot :=
   nhdsWithin_Ioi_inter_neBot_of_nhdsGT_neBot hs a
 
@@ -95,7 +95,7 @@ lemma nhdsWithin_Ioi_inter_neBot [TopologicalSpace α] [OrderTopology α] [Dense
 /--
 @isnad1 id=eq.1h6v.s6.c4967af3862a from=translated src=- shape=933f0a99 vocab=f1a6afdd
 -/
-lemma leftLimWithin_eq_of_tendsto [hα : TopologicalSpace α] [h'α : OrderTopology α] [T2Space β]
+lemma _root_.Tengoku.BrownianMotion.leftLimWithin_eq_of_tendsto [hα : TopologicalSpace α] [h'α : OrderTopology α] [T2Space β]
     {f : α → β} {s : Set α} {a : α} {y : β} [h : (𝓝[Iio a ∩ s] a).NeBot]
     (h' : Tendsto f (𝓝[Iio a ∩ s] a) (𝓝 y)) :
     leftLimWithin f s a = y := by
@@ -107,7 +107,7 @@ lemma leftLimWithin_eq_of_tendsto [hα : TopologicalSpace α] [h'α : OrderTopol
 /--
 @isnad1 id=eq.1h6v.s6.034dc5320258 from=translated src=- shape=933f0a99 vocab=db66cc96
 -/
-lemma rightLimWithin_eq_of_tendsto [TopologicalSpace α] [OrderTopology α] [T2Space β]
+lemma _root_.Tengoku.BrownianMotion.rightLimWithin_eq_of_tendsto [TopologicalSpace α] [OrderTopology α] [T2Space β]
     {f : α → β} {s : Set α} {a : α} {y : β} [h : (𝓝[Ioi a ∩ s] a).NeBot]
     (h' : Tendsto f (𝓝[Ioi a ∩ s] a) (𝓝 y)) :
     rightLimWithin f s a = y :=
@@ -116,7 +116,7 @@ lemma rightLimWithin_eq_of_tendsto [TopologicalSpace α] [OrderTopology α] [T2S
 /--
 @isnad1 id=eq.1h5v.s6.9b9fd6754485 from=translated src=- shape=ca198ca8 vocab=38717f89
 -/
-lemma leftLimWithin_eq_of_eq_bot [hα : TopologicalSpace α] [h'α : OrderTopology α] (f : α → β)
+lemma _root_.Tengoku.BrownianMotion.leftLimWithin_eq_of_eq_bot [hα : TopologicalSpace α] [h'α : OrderTopology α] (f : α → β)
     {s : Set α} {a : α} (h : 𝓝[Iio a ∩ s] a = ⊥) : leftLimWithin f s a = f a := by
   rw [h'α.topology_eq_generate_intervals] at h
   simp [leftLimWithin, h]
@@ -124,14 +124,14 @@ lemma leftLimWithin_eq_of_eq_bot [hα : TopologicalSpace α] [h'α : OrderTopolo
 /--
 @isnad1 id=eq.1h5v.s6.a246fbd9c2bc from=translated src=- shape=ca198ca8 vocab=d557f22f
 -/
-lemma rightLimWithin_eq_of_eq_bot [TopologicalSpace α] [OrderTopology α] (f : α → β)
+lemma _root_.Tengoku.BrownianMotion.rightLimWithin_eq_of_eq_bot [TopologicalSpace α] [OrderTopology α] (f : α → β)
     {s : Set α} {a : α} (h : 𝓝[Ioi a ∩ s] a = ⊥) : rightLimWithin f s a = f a :=
   leftLimWithin_eq_of_eq_bot (α := αᵒᵈ) f h
 
 /--
 @isnad1 id=eq.1h5v.s6.997b654eac2d from=translated src=- shape=092b2391 vocab=8ea3aa9f
 -/
-lemma leftLimWithin_eq_of_not_tendsto
+lemma _root_.Tengoku.BrownianMotion.leftLimWithin_eq_of_not_tendsto
     [hα : TopologicalSpace α] [h'α : OrderTopology α] (f : α → β) {s : Set α} {a : α}
     (h : ¬ ∃ y, Tendsto f (𝓝[Iio a ∩ s] a) (𝓝 y)) : leftLimWithin f s a = f a := by
   rw [h'α.topology_eq_generate_intervals] at h
@@ -140,7 +140,7 @@ lemma leftLimWithin_eq_of_not_tendsto
 /--
 @isnad1 id=eq.1h5v.s6.ffef2b4e47c3 from=translated src=- shape=092b2391 vocab=91689e28
 -/
-lemma rightLimWithin_eq_of_not_tendsto
+lemma _root_.Tengoku.BrownianMotion.rightLimWithin_eq_of_not_tendsto
     [hα : TopologicalSpace α] [h'α : OrderTopology α] (f : α → β) {s : Set α} {a : α}
     (h : ¬ ∃ y, Tendsto f (𝓝[Ioi a ∩ s] a) (𝓝 y)) : rightLimWithin f s a = f a :=
   leftLimWithin_eq_of_not_tendsto (α := αᵒᵈ) f h
@@ -148,7 +148,7 @@ lemma rightLimWithin_eq_of_not_tendsto
 /--
 @isnad1 id=eq.1h5v.s5.19194e0e62f2 from=translated src=- shape=d3d75edb vocab=32bb96d6
 -/
-lemma leftLimWithin_eq_of_isBot {f : α → β} {s : Set α} {a : α} (ha : IsBot a) :
+lemma _root_.Tengoku.BrownianMotion.leftLimWithin_eq_of_isBot {f : α → β} {s : Set α} {a : α} (ha : IsBot a) :
     leftLimWithin f s a = f a := by
   let A : TopologicalSpace α := Preorder.topology α
   have : OrderTopology α := ⟨rfl⟩
@@ -159,7 +159,7 @@ lemma leftLimWithin_eq_of_isBot {f : α → β} {s : Set α} {a : α} (ha : IsBo
 /--
 @isnad1 id=eq.1h5v.s5.08738783c147 from=translated src=- shape=d3d75edb vocab=4d28682d
 -/
-lemma rightLimWithin_eq_of_isTop {f : α → β} {s : Set α} {a : α} (ha : IsTop a) :
+lemma _root_.Tengoku.BrownianMotion.rightLimWithin_eq_of_isTop {f : α → β} {s : Set α} {a : α} (ha : IsTop a) :
     rightLimWithin f s a = f a :=
   leftLimWithin_eq_of_isBot (α := αᵒᵈ) ha
 
@@ -185,7 +185,7 @@ lemma ContinuousWithinAt.rightLimWithin_eq [TopologicalSpace α] [OrderTopology 
 /--
 @isnad1 id=tendsto.1h5v.s6.312789b7eba5 from=translated src=- shape=c3e938b8 vocab=8ea3aa9f
 -/
-lemma tendsto_leftLimWithin_of_tendsto [TopologicalSpace α] [h'α : OrderTopology α]
+lemma _root_.Tengoku.BrownianMotion.tendsto_leftLimWithin_of_tendsto [TopologicalSpace α] [h'α : OrderTopology α]
     {f : α → β} {s : Set α} {a : α} (h : ∃ y, Tendsto f (𝓝[Iio a ∩ s] a) (𝓝 y)) :
     Tendsto f (𝓝[Iio a ∩ s] a) (𝓝 (leftLimWithin f s a)) := by
   rcases eq_or_neBot (𝓝[Iio a ∩ s] a) with h' | h'
@@ -197,7 +197,7 @@ lemma tendsto_leftLimWithin_of_tendsto [TopologicalSpace α] [h'α : OrderTopolo
 /--
 @isnad1 id=tendsto.1h5v.s6.7ce1990867b1 from=translated src=- shape=c3e938b8 vocab=91689e28
 -/
-lemma tendsto_rightLimWithin_of_tendsto [TopologicalSpace α] [OrderTopology α]
+lemma _root_.Tengoku.BrownianMotion.tendsto_rightLimWithin_of_tendsto [TopologicalSpace α] [OrderTopology α]
     {f : α → β} {s : Set α} {a : α} (h : ∃ y, Tendsto f (𝓝[Ioi a ∩ s] a) (𝓝 y)) :
     Tendsto f (𝓝[Ioi a ∩ s] a) (𝓝 (rightLimWithin f s a)) :=
   tendsto_leftLimWithin_of_tendsto (α := αᵒᵈ) h
@@ -206,7 +206,7 @@ lemma tendsto_rightLimWithin_of_tendsto [TopologicalSpace α] [OrderTopology α]
 provided `a ∈ s`.
 @isnad1 id=mapclust.1h5v.s6.c0c5f7f2e64c from=translated src=- shape=de9a0880 vocab=af736ba4
 -/
-lemma mapClusterPt_leftLimWithin [TopologicalSpace α] [OrderTopology α]
+lemma _root_.Tengoku.BrownianMotion.mapClusterPt_leftLimWithin [TopologicalSpace α] [OrderTopology α]
     (f : α → β) {s : Set α} {a : α} (ha : a ∈ s) :
     MapClusterPt (leftLimWithin f s a) (𝓝[Iic a ∩ s] a) f := by
   have A : (𝓝 (f a) ⊓ map f (𝓝[Iic a ∩ s] a)).NeBot := by
@@ -225,7 +225,7 @@ lemma mapClusterPt_leftLimWithin [TopologicalSpace α] [OrderTopology α]
 /--
 @isnad1 id=mapclust.1h5v.s6.27dc6b6ee505 from=translated src=- shape=de9a0880 vocab=33a5dacc
 -/
-lemma mapClusterPt_rightLimWithin [TopologicalSpace α] [OrderTopology α]
+lemma _root_.Tengoku.BrownianMotion.mapClusterPt_rightLimWithin [TopologicalSpace α] [OrderTopology α]
     (f : α → β) {s : Set α} {a : α} (ha : a ∈ s) :
     MapClusterPt (rightLimWithin f s a) (𝓝[Ici a ∩ s] a) f :=
   mapClusterPt_leftLimWithin (α := αᵒᵈ) f ha
@@ -241,7 +241,7 @@ lets the degenerate cases go through, so no density hypothesis is needed. -/
 /--
 @isnad1 id=continuo.1h5v.s6.00bfc08ba8b4 from=translated src=- shape=9807a16f vocab=4b35aa67
 -/
-lemma continuousWithinAt_leftLimWithin_Iic [TopologicalSpace α] [OrderTopology α] [T3Space β]
+lemma _root_.Tengoku.BrownianMotion.continuousWithinAt_leftLimWithin_Iic [TopologicalSpace α] [OrderTopology α] [T3Space β]
     {f : α → β} {s : Set α} {a : α}
     (h : Tendsto f (𝓝[Iio a ∩ s] a) (𝓝 (leftLimWithin f s a))) :
     ContinuousWithinAt (leftLimWithin f s) (Iic a ∩ s) a := by
@@ -280,7 +280,7 @@ lemma continuousWithinAt_leftLimWithin_Iic [TopologicalSpace α] [OrderTopology 
 /--
 @isnad1 id=continuo.1h5v.s6.1b8222617e5e from=translated src=- shape=9807a16f vocab=b2be1e56
 -/
-lemma continuousWithinAt_rightLimWithin_Ici [TopologicalSpace α] [OrderTopology α] [T3Space β]
+lemma _root_.Tengoku.BrownianMotion.continuousWithinAt_rightLimWithin_Ici [TopologicalSpace α] [OrderTopology α] [T3Space β]
     {f : α → β} {s : Set α} {a : α}
     (h : Tendsto f (𝓝[Ioi a ∩ s] a) (𝓝 (rightLimWithin f s a))) :
     ContinuousWithinAt (rightLimWithin f s) (Ici a ∩ s) a :=
@@ -293,7 +293,7 @@ left limit at `a`, and that `f` has a within left limit at every point eventuall
 `a`.
 @isnad1 id=continuo.3h5v.s7.8cc214d2aec3 from=translated src=- shape=696afe4d vocab=60b1af32
 -/
-lemma continuousWithinAt_leftLimWithin_Iic_of_dense [TopologicalSpace α] [OrderTopology α]
+lemma _root_.Tengoku.BrownianMotion.continuousWithinAt_leftLimWithin_Iic_of_dense [TopologicalSpace α] [OrderTopology α]
     [DenselyOrdered α] [NoMinOrder α] [T3Space β] {f : α → β} {s : Set α} {a : α} (hs : Dense s)
     (h : Tendsto f (𝓝[Iio a ∩ s] a) (𝓝 (leftLimWithin f s a)))
     (hlim : ∀ᶠ c in 𝓝[<] a, Tendsto f (𝓝[Iio c ∩ s] c) (𝓝 (leftLimWithin f s c))) :
@@ -321,7 +321,7 @@ lemma continuousWithinAt_leftLimWithin_Iic_of_dense [TopologicalSpace α] [Order
 the stronger conclusion `Ici a`.
 @isnad1 id=continuo.3h5v.s7.c2feac56de51 from=translated src=- shape=696afe4d vocab=c5a5d847
 -/
-lemma continuousWithinAt_rightLimWithin_Ici_of_dense [TopologicalSpace α] [OrderTopology α]
+lemma _root_.Tengoku.BrownianMotion.continuousWithinAt_rightLimWithin_Ici_of_dense [TopologicalSpace α] [OrderTopology α]
     [DenselyOrdered α] [NoMaxOrder α] [T3Space β] {f : α → β} {s : Set α} {a : α} (hs : Dense s)
     (h : Tendsto f (𝓝[Ioi a ∩ s] a) (𝓝 (rightLimWithin f s a)))
     (hlim : ∀ᶠ c in 𝓝[>] a, Tendsto f (𝓝[Ioi c ∩ s] c) (𝓝 (rightLimWithin f s c))) :
@@ -331,7 +331,7 @@ lemma continuousWithinAt_rightLimWithin_Ici_of_dense [TopologicalSpace α] [Orde
 /--
 @isnad1 id=eq.1h5v.s6.a97bea96500b from=translated src=- shape=3433d756 vocab=c62c0841
 -/
-lemma leftLimWithin_leftLimWithin [TopologicalSpace α] [OrderTopology α] [T3Space β]
+lemma _root_.Tengoku.BrownianMotion.leftLimWithin_leftLimWithin [TopologicalSpace α] [OrderTopology α] [T3Space β]
     {f : α → β} {s : Set α} {a : α}
     (h : Tendsto f (𝓝[Iio a ∩ s] a) (𝓝 (leftLimWithin f s a))) :
     leftLimWithin (leftLimWithin f s) s a = leftLimWithin f s a :=
@@ -340,7 +340,7 @@ lemma leftLimWithin_leftLimWithin [TopologicalSpace α] [OrderTopology α] [T3Sp
 /--
 @isnad1 id=eq.1h5v.s6.5de813ea2f1e from=translated src=- shape=3433d756 vocab=af08630e
 -/
-lemma rightLimWithin_rightLimWithin [TopologicalSpace α] [OrderTopology α] [T3Space β]
+lemma _root_.Tengoku.BrownianMotion.rightLimWithin_rightLimWithin [TopologicalSpace α] [OrderTopology α] [T3Space β]
     {f : α → β} {s : Set α} {a : α}
     (h : Tendsto f (𝓝[Ioi a ∩ s] a) (𝓝 (rightLimWithin f s a))) :
     rightLimWithin (rightLimWithin f s) s a = rightLimWithin f s a :=
@@ -349,7 +349,7 @@ lemma rightLimWithin_rightLimWithin [TopologicalSpace α] [OrderTopology α] [T3
 /--
 @isnad1 id=eq.1h5v.s7.a067916d806a from=translated src=- shape=668afaac vocab=a98e9931
 -/
-lemma leftLimWithin_rightLimWithin [TopologicalSpace α] [OrderTopology α] [T3Space β]
+lemma _root_.Tengoku.BrownianMotion.leftLimWithin_rightLimWithin [TopologicalSpace α] [OrderTopology α] [T3Space β]
     {f : α → β} {s : Set α} {a : α} [h' : (𝓝[Iio a ∩ s] a).NeBot]
     (h : Tendsto f (𝓝[Iio a ∩ s] a) (𝓝 (leftLimWithin f s a))) :
     leftLimWithin (rightLimWithin f s) s a = leftLimWithin f s a := by
@@ -378,7 +378,7 @@ lemma leftLimWithin_rightLimWithin [TopologicalSpace α] [OrderTopology α] [T3S
 /--
 @isnad1 id=eq.1h5v.s7.a3bee864919c from=translated src=- shape=668afaac vocab=66f9d61e
 -/
-lemma rightLimWithin_leftLimWithin [TopologicalSpace α] [OrderTopology α] [T3Space β]
+lemma _root_.Tengoku.BrownianMotion.rightLimWithin_leftLimWithin [TopologicalSpace α] [OrderTopology α] [T3Space β]
     {f : α → β} {s : Set α} {a : α} [h' : (𝓝[Ioi a ∩ s] a).NeBot]
     (h : Tendsto f (𝓝[Ioi a ∩ s] a) (𝓝 (rightLimWithin f s a))) :
     rightLimWithin (leftLimWithin f s) s a = rightLimWithin f s a :=
@@ -389,7 +389,7 @@ lemma rightLimWithin_leftLimWithin [TopologicalSpace α] [OrderTopology α] [T3S
 /--
 @isnad1 id=tendsto.3h5v.s7.8f5e7823f22d from=translated src=- shape=948f23a3 vocab=a8218472
 -/
-lemma tendsto_leftLimWithin_atTop_of_tendsto
+lemma _root_.Tengoku.BrownianMotion.tendsto_leftLimWithin_atTop_of_tendsto
     [TopologicalSpace α] [OrderTopology α] [DenselyOrdered α] [NoMinOrder α] [NoTopOrder α]
     [T3Space β] {f : α → β} {s : Set α} {b : β} (hs : Dense s)
     (hlim : ∀ c, Tendsto f (𝓝[Iio c ∩ s] c) (𝓝 (leftLimWithin f s c)))
@@ -402,7 +402,7 @@ lemma tendsto_leftLimWithin_atTop_of_tendsto
 /--
 @isnad1 id=tendsto.3h5v.s7.e624f5d9c2f7 from=translated src=- shape=a249d7b0 vocab=c017dfe1
 -/
-lemma tendsto_rightLimWithin_atTop_of_tendsto [TopologicalSpace α] [OrderTopology α]
+lemma _root_.Tengoku.BrownianMotion.tendsto_rightLimWithin_atTop_of_tendsto [TopologicalSpace α] [OrderTopology α]
     [DenselyOrdered α] [NoMaxOrder α] [T3Space β] {f : α → β} {s : Set α} {b : β} (hs : Dense s)
     (hlim : ∀ c, Tendsto f (𝓝[Ioi c ∩ s] c) (𝓝 (rightLimWithin f s c)))
     (h : Tendsto f atTop (𝓝 b)) :
@@ -419,7 +419,7 @@ lemma tendsto_rightLimWithin_atTop_of_tendsto [TopologicalSpace α] [OrderTopolo
 /--
 @isnad1 id=tendsto.3h5v.s7.3563948f5cdd from=translated src=- shape=948f23a3 vocab=804131ac
 -/
-lemma tendsto_rightLimWithin_atBot_of_tendsto
+lemma _root_.Tengoku.BrownianMotion.tendsto_rightLimWithin_atBot_of_tendsto
     [TopologicalSpace α] [OrderTopology α] [DenselyOrdered α] [NoMaxOrder α] [NoBotOrder α]
     [T3Space β] {f : α → β} {s : Set α} {b : β} (hs : Dense s)
     (hlim : ∀ c, Tendsto f (𝓝[Ioi c ∩ s] c) (𝓝 (rightLimWithin f s c)))
@@ -430,7 +430,7 @@ lemma tendsto_rightLimWithin_atBot_of_tendsto
 /--
 @isnad1 id=tendsto.3h5v.s7.fa7d807c423f from=translated src=- shape=a249d7b0 vocab=3e0c5a93
 -/
-lemma tendsto_leftLimWithin_atBot_of_tendsto [TopologicalSpace α] [OrderTopology α]
+lemma _root_.Tengoku.BrownianMotion.tendsto_leftLimWithin_atBot_of_tendsto [TopologicalSpace α] [OrderTopology α]
     [DenselyOrdered α] [NoMinOrder α] [T3Space β] {f : α → β} {s : Set α} {b : β} (hs : Dense s)
     (hlim : ∀ c, Tendsto f (𝓝[Iio c ∩ s] c) (𝓝 (leftLimWithin f s c)))
     (h : Tendsto f atBot (𝓝 b)) :
@@ -775,3 +775,4 @@ lemma continuousAt_iff_leftLimWithin_eq_rightLimWithin
   hf.dual_right.continuousAt_iff_leftLimWithin_eq_rightLimWithin hs
 
 end Antitone
+-- Tengoku: root names of this library moved to Tengoku.BrownianMotion so they do not collide with other libraries (generated)

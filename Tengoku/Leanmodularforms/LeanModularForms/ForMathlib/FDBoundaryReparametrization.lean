@@ -29,7 +29,7 @@ chains until the residue side is fully ported to the ForMathlib chain.
 * `generalizedWindingNumberPrime_eq_of_hasGeneralizedWindingNumber` — extract
   the old-chain winding-number value from the new chain's winding-number proof
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex MeasureTheory Set Filter Topology
 
 noncomputable section
@@ -135,7 +135,7 @@ multi-point CPV integrand on `[0, 5]` into a ForMathlib `HasCauchyPVOn`
 statement on a `PiecewiseC1Path` agreeing with `fdBoundaryFun H`.
 @isnad1 id=hascauch.2h5v.s8.08eb22df0a94 from=translated src=- shape=016dbb63 vocab=9582442e
 -/
-theorem hasCauchyPVOn_of_cauchyPVOn'_tendsto
+theorem _root_.Tengoku.Leanmodularforms.hasCauchyPVOn_of_cauchyPVOn'_tendsto
     {H : ℝ} {S : Finset ℂ} {f : ℂ → ℂ} {L : ℂ}
     (γ : PiecewiseC1Path (fdStart H) (fdStart H))
     (hγ : ∀ t ∈ Icc (0 : ℝ) 1, γ.toPath.extend t = fdBoundaryFun H t)
@@ -156,7 +156,7 @@ This is the per-point converter: if the new chain proves a winding number value,
 the old chain's parametrization gives the same value.
 @isnad1 id=eq.2h4v.s7.9b914e034f0f from=translated src=- shape=ae40d549 vocab=1ba6cbff
 -/
-theorem generalizedWindingNumberPrime_eq_of_hasGeneralizedWindingNumber
+theorem _root_.Tengoku.Leanmodularforms.generalizedWindingNumberPrime_eq_of_hasGeneralizedWindingNumber
     {H : ℝ}
     (γ : PiecewiseC1Path (fdStart H) (fdStart H))
     (hγ : ∀ t ∈ Icc (0 : ℝ) 1, γ.toPath.extend t = fdBoundaryFun H t)
@@ -173,3 +173,4 @@ theorem generalizedWindingNumberPrime_eq_of_hasGeneralizedWindingNumber
   field_simp [Complex.two_pi_I_ne_zero]
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

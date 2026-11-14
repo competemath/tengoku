@@ -32,7 +32,7 @@ bound when `δ_R ≠ δ_L`).
 
 * K. Hungerbuhler, J. Wasem, *A generalized notion of winding numbers*
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex MeasureTheory Set Filter Topology
 open scoped Interval
 
@@ -45,7 +45,7 @@ variable {x y : ℂ}
 one parameter `t₀ ∈ (0, 1)`; the left cutoff `δ_left ε` controls the
 parameter-space radius on `[t₀ - δ_left ε, t₀]`, and the right cutoff
 `δ_right ε` controls `[t₀, t₀ + δ_right ε]`. -/
-structure AsymmetricSingleCrossingData (γ : PiecewiseC1Path x y) (z₀ : ℂ) where
+structure _root_.Tengoku.Leanmodularforms.AsymmetricSingleCrossingData (γ : PiecewiseC1Path x y) (z₀ : ℂ) where
   /-- Target PV limit value. -/
   L : ℂ
   /-- Unique crossing parameter in `(0, 1)`. -/
@@ -95,7 +95,7 @@ structure AsymmetricSingleCrossingData (γ : PiecewiseC1Path x y) (z₀ : ℂ) w
   /-- `E(ε) → L` as `ε → 0⁺`. -/
   h_limit : Tendsto E (𝓝[>] 0) (𝓝 L)
 
-namespace AsymmetricSingleCrossingData
+namespace Tengoku.Leanmodularforms.AsymmetricSingleCrossingData
 
 variable {γ : PiecewiseC1Path x y} {z₀ : ℂ}
 
@@ -214,6 +214,7 @@ theorem hasWindingNumber (D : AsymmetricSingleCrossingData γ z₀) :
     HasGeneralizedWindingNumber γ z₀ (D.L / (2 * ↑Real.pi * I)) := by
   rw [show D.L / (2 * ↑Real.pi * I) = (2 * ↑Real.pi * I)⁻¹ * D.L by ring]
   exact hasGeneralizedWindingNumber_of_hasCauchyPV D.hasCauchyPV
-end AsymmetricSingleCrossingData
+end Tengoku.Leanmodularforms.AsymmetricSingleCrossingData
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

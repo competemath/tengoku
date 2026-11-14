@@ -15,17 +15,17 @@ domain with a height-one prime Q = (x,y) that is not principal.
 -/
 
 noncomputable section
-
+namespace Tengoku.AndersonConjecture end Tengoku.AndersonConjecture open Tengoku.AndersonConjecture 
 open MvPowerSeries in
 /-- Q = (x, y)T, the height-1 prime that is not principal.
 Here x = image of X 0, y = image of X 1 in T. -/
-def Q : Ideal T :=
+def _root_.Tengoku.AndersonConjecture.Q : Ideal T :=
   Ideal.span {Ideal.Quotient.mk conj_I (X 0), Ideal.Quotient.mk conj_I (X 1)}
 
 /-- Ring hom from MvPowerSeries (Fin 3) ℂ to PowerSeries ℂ that "projects onto X₂":
     φ(f)(n) = coeff (Finsupp.single 2 n) f.
     This sends X₀ ↦ 0, X₁ ↦ 0, X₂ ↦ X. -/
-noncomputable def phiToPS : MvPowerSeries (Fin 3) ℂ →+* PowerSeries ℂ where
+noncomputable def _root_.Tengoku.AndersonConjecture.phiToPS : MvPowerSeries (Fin 3) ℂ →+* PowerSeries ℂ where
   toFun f := PowerSeries.mk (fun n => MvPowerSeries.coeff (Finsupp.single 2 n) f)
   map_one' := by
     ext n
@@ -49,19 +49,19 @@ noncomputable def phiToPS : MvPowerSeries (Fin 3) ℂ →+* PowerSeries ℂ wher
 
 open MvPowerSeries in
 /-- The ideal P = (X₀, X₁) in MvPowerSeries (Fin 3) ℂ. -/
-def P_pre : Ideal (MvPowerSeries (Fin 3) ℂ) :=
+def _root_.Tengoku.AndersonConjecture.P_pre : Ideal (MvPowerSeries (Fin 3) ℂ) :=
   Ideal.span {X 0, X 1}
 
 open MvPowerSeries in
 /-- "Division by X s": shifts the s-index down by 1. -/
-def divX (s : Fin 3) (f : MvPowerSeries (Fin 3) ℂ) : MvPowerSeries (Fin 3) ℂ :=
+def _root_.Tengoku.AndersonConjecture.divX (s : Fin 3) (f : MvPowerSeries (Fin 3) ℂ) : MvPowerSeries (Fin 3) ℂ :=
   fun m => f (m + Finsupp.single s 1)
 
 open MvPowerSeries in
 /-- f - X s * divX s f vanishes whenever m s ≥ 1, and equals f(m) when m s = 0.
 @isnad1 id=eq.0h3v.s9.3f804fd38874 from=translated src=- shape=976b3c38 vocab=e79b9a92
 -/
-theorem coeff_sub_X_mul_divX
+theorem _root_.Tengoku.AndersonConjecture.coeff_sub_X_mul_divX
     (s : Fin 3) (f : MvPowerSeries (Fin 3) ℂ) (m : Fin 3 →₀ ℕ) :
     MvPowerSeries.coeff m (f - X s * divX s f) =
       if m s = 0 then MvPowerSeries.coeff m f else 0 := by
@@ -90,18 +90,18 @@ theorem coeff_sub_X_mul_divX
     · exact Nat.zero_le _
 
 open MvPowerSeries in
-noncomputable def negSubst_map : Fin 2 → MvPowerSeries (Fin 2) ℂ :=
+noncomputable def _root_.Tengoku.AndersonConjecture.negSubst_map : Fin 2 → MvPowerSeries (Fin 2) ℂ :=
   fun i => -(X i)
 
 /--
 @isnad1 id=hassubst.0h0v.s4.8a039a68c800 from=translated src=- shape=434a9ff5 vocab=66356a1d
 -/
-lemma negSubst_hasSubst : MvPowerSeries.HasSubst negSubst_map := by
+lemma _root_.Tengoku.AndersonConjecture.negSubst_hasSubst : MvPowerSeries.HasSubst negSubst_map := by
   apply MvPowerSeries.hasSubst_of_constantCoeff_zero
   intro s
   simp [negSubst_map, MvPowerSeries.constantCoeff_X]
 
-noncomputable def negSubst :
+noncomputable def _root_.Tengoku.AndersonConjecture.negSubst :
     MvPowerSeries (Fin 2) ℂ →ₐ[ℂ] MvPowerSeries (Fin 2) ℂ :=
   MvPowerSeries.substAlgHom negSubst_hasSubst
 
@@ -109,7 +109,7 @@ open MvPowerSeries in
 /--
 @isnad1 id=eq.0h1v.s8.0c9d07b72dfd from=translated src=- shape=a60fffee vocab=9e7dd823
 -/
-lemma negSubst_X (i : Fin 2) : negSubst (X i) = -(X i) := by
+lemma _root_.Tengoku.AndersonConjecture.negSubst_X (i : Fin 2) : negSubst (X i) = -(X i) := by
   change MvPowerSeries.substAlgHom negSubst_hasSubst (X i) = -(X i)
   rw [MvPowerSeries.substAlgHom_X]
   rfl
@@ -118,7 +118,7 @@ open MvPowerSeries in
 /--
 @isnad1 id=eq.0h1v.s7.6778f63707fc from=translated src=- shape=a2773449 vocab=fa5138f6
 -/
-lemma negSubst_ψ_map (i : Fin 3) : negSubst (ψ_map i) = ψ_map i := by
+lemma _root_.Tengoku.AndersonConjecture.negSubst_ψ_map (i : Fin 3) : negSubst (ψ_map i) = ψ_map i := by
   fin_cases i
   · change negSubst (X 0 * X 1) = X 0 * X 1
     rw [map_mul, negSubst_X, negSubst_X, neg_mul_neg]
@@ -131,7 +131,7 @@ open MvPowerSeries in
 /--
 @isnad1 id=eq.0h1v.s8.b01c5601bb4e from=translated src=- shape=0a1ded2e vocab=fcd1172a
 -/
-lemma negSubst_comp_ψ_hom (f : MvPowerSeries (Fin 3) ℂ) :
+lemma _root_.Tengoku.AndersonConjecture.negSubst_comp_ψ_hom (f : MvPowerSeries (Fin 3) ℂ) :
     negSubst (ψ_hom f) = ψ_hom f := by
   have h1 : negSubst (ψ_hom f) =
       MvPowerSeries.subst (fun s => MvPowerSeries.subst negSubst_map (ψ_map s)) f := by
@@ -155,7 +155,7 @@ open MvPowerSeries in
 /--
 @isnad1 id=eq.0h1v.s6.73e48c0a4c49 from=translated src=- shape=bb42872d vocab=977faaff
 -/
-lemma negSubst_map_eq (s : Fin 2) :
+lemma _root_.Tengoku.AndersonConjecture.negSubst_map_eq (s : Fin 2) :
     negSubst_map s = ((-1 : ℂ) • MvPowerSeries.X s : MvPowerSeries (Fin 2) ℂ) := by
   simp [negSubst_map]
 
@@ -175,3 +175,4 @@ lemma Finsupp.sum_fin2
   simp [Finset.univ_fin2]
 
 end
+-- Tengoku: root names of this library moved to Tengoku.AndersonConjecture so they do not collide with other libraries (generated)
