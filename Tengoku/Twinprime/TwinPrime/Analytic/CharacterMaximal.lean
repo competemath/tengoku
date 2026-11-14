@@ -24,16 +24,25 @@ def characterMaxError {q : ℕ} (T : ℕ) (χ : DirichletCharacter ℂ q) : ℝ 
   (range (T + 1)).sup' ⟨0, mem_range.mpr (Nat.succ_pos T)⟩
     (fun t => ‖centeredCharacterPsi t χ‖)
 
+/--
+@isnad1 id=le.0h3v.s4.cf11415f5ed9 from=translated src=- shape=a11b2b73 vocab=683a1653
+-/
 theorem characterMaxError_nonneg {q : ℕ} (T : ℕ) (χ : DirichletCharacter ℂ q) :
     0 ≤ characterMaxError T χ :=
   (norm_nonneg _).trans (Finset.le_sup' (f := fun t => ‖centeredCharacterPsi t χ‖)
     (mem_range.mpr (Nat.succ_pos T) : 0 ∈ range (T + 1)))
 
+/--
+@isnad1 id=le.1h4v.s5.4f4ee590aad7 from=translated src=- shape=0519443a vocab=1a8260ba
+-/
 theorem norm_centeredCharacterPsi_le_max {q t T : ℕ}
     (χ : DirichletCharacter ℂ q) (ht : t ≤ T) :
     ‖centeredCharacterPsi t χ‖ ≤ characterMaxError T χ :=
   Finset.le_sup' (f := fun t => ‖centeredCharacterPsi t χ‖) (mem_range.mpr (by omega))
 
+/--
+@isnad1 id=eq.2h3v.s7.7a8678827f5e from=translated src=- shape=e395b039 vocab=bcbd6cf0
+-/
 theorem totient_mul_progressionError_eq_centeredCharacter_sum (t q a : ℕ)
     (hq : 0 < q) (ha : Nat.Coprime a q) :
     (Nat.totient q : ℂ) * (progressionError t q a : ℂ) =
@@ -59,6 +68,9 @@ theorem totient_mul_progressionError_eq_centeredCharacter_sum (t q a : ℕ)
       push_cast
       field_simp
 
+/--
+@isnad1 id=le.2h3v.s6.c133166f99ff from=translated src=- shape=5e892a55 vocab=74348b0f
+-/
 theorem abs_progressionError_le_character_sum (t q a : ℕ)
     (hq : 0 < q) (ha : Nat.Coprime a q) :
     |progressionError t q a| ≤
@@ -74,7 +86,9 @@ theorem abs_progressionError_le_character_sum (t q a : ℕ)
   rw [norm_mul]
   exact (mul_le_mul_of_nonneg_right (χ.norm_le_one _) (norm_nonneg _)).trans_eq (one_mul _)
 
-/-- Both the residue and integer-endpoint maxima are controlled uniformly.-/
+/-- Both the residue and integer-endpoint maxima are controlled uniformly.
+@isnad1 id=le.1h2v.s6.32d36a60c57c from=translated src=- shape=2a5ac48a vocab=5e32c44c
+-/
 theorem progressionMaxError_le_characterMaxError (T q : ℕ) (hq : 0 < q) :
     progressionMaxError T q ≤
       (∑ χ : DirichletCharacter ℂ q, characterMaxError T χ) / Nat.totient q := by

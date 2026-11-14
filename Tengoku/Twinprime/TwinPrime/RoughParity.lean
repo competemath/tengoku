@@ -22,7 +22,9 @@ open scoped ArithmeticFunction.Omega
 namespace TwinPrime
 
 /-- A rough integer below the cube cutoff is prime or the product of two
-primes, with no distinctness assumption on the two factors.-/
+primes, with no distinctness assumption on the two factors.
+@isnad1 id=or.3h2v.s6.d34be6e01532 from=translated src=- shape=683786d7 vocab=5ba06496
+-/
 theorem prime_or_semiprime_of_rough {n z : ℕ} (hn : 2 ≤ n)
     (hnz : n < z ^ 3) (hrough : ∀ p, p.Prime → p ∣ n → z < p) :
     n.Prime ∨ ∃ p q : ℕ, p.Prime ∧ q.Prime ∧ n = p * q := by
@@ -53,7 +55,9 @@ theorem prime_or_semiprime_of_rough {n z : ℕ} (hn : 2 ≤ n)
     rw [hm]
     exact dvd_mul_of_dvd_right hpd _
 
-/-- The factor count is with multiplicity: a prime square has count two.-/
+/-- The factor count is with multiplicity: a prime square has count two.
+@isnad1 id=or.3h2v.s6.3d81bfb576c7 from=translated src=- shape=f08ca32a vocab=7a97555d
+-/
 theorem cardFactors_eq_one_or_two_of_rough {n z : ℕ} (hn : 2 ≤ n)
     (hnz : n < z ^ 3) (hrough : ∀ p, p.Prime → p ∣ n → z < p) :
     Ω n = 1 ∨ Ω n = 2 := by
@@ -64,7 +68,9 @@ theorem cardFactors_eq_one_or_two_of_rough {n z : ℕ} (hn : 2 ≤ n)
       cardFactors_apply_prime hp, cardFactors_apply_prime hq]
 
 /-- On this rough range the single Liouville selector is exactly the prime
-indicator multiplied by two. In particular it vanishes on prime squares.-/
+indicator multiplied by two. In particular it vanishes on prime squares.
+@isnad1 id=eq.3h2v.s6.5e21eed33bab from=translated src=- shape=1cc9befb vocab=b4f5e5f6
+-/
 theorem one_sub_liouville_eq_prime_selector_of_rough {n z : ℕ} (hn : 2 ≤ n)
     (hnz : n < z ^ 3) (hrough : ∀ p, p.Prime → p ∣ n → z < p) :
     1 - (liouville n : ℝ) = if n.Prime then 2 else 0 := by
@@ -99,7 +105,9 @@ def roughParityCombination (X z : ℕ) : ℝ :=
     roughLiouvilleProduct X z
 
 /-- Every dyadic twin survives the sifting when `z < X`, so there is no
-small-prime-pair correction in the identity.-/
+small-prime-pair correction in the identity.
+@isnad1 id=mem.3h3v.s6.65aada0bae21 from=translated src=- shape=779105b6 vocab=320005bb
+-/
 theorem twin_mem_roughDyadicSet {X z n : ℕ} (hzX : z < X)
     (hn : n ∈ Ioc X (2 * X)) (htwin : n ∈ twinPrimes) :
     n ∈ roughDyadicSet X z := by
@@ -115,7 +123,9 @@ theorem twin_mem_roughDyadicSet {X z n : ℕ} (hzX : z < X)
 
 /-- The product of the two separate selectors is four precisely on twins.
 The lower bound on `z` and `z < X` exclude `n = 0, 1`; the shifted member
-is also at least two.-/
+is also at least two.
+@isnad1 id=eq.4h3v.s7.6e5f844013da from=translated src=- shape=d93b19b8 vocab=3a12f79b
+-/
 theorem rough_liouville_selector {X z n : ℕ} (hz : 3 ≤ z) (hzX : z < X)
     (hcube : 2 * X + 2 < z ^ 3) (hn : n ∈ roughDyadicSet X z) :
     (1 - (liouville n : ℝ)) * (1 - (liouville (n + 2) : ℝ)) =
@@ -137,7 +147,9 @@ theorem rough_liouville_selector {X z n : ℕ} (hz : 3 ≤ z) (hzX : z < X)
   split_ifs <;> norm_num <;> tauto
 
 /-- A weighted finite form, valid for arbitrary real weights without positivity
-or distribution assumptions.-/
+or distribution assumptions.
+@isnad1 id=eq.3h3v.s7.f91034f3fef2 from=translated src=- shape=365a357f vocab=1afcf4bc
+-/
 theorem rough_liouville_weighted_identity (X z : ℕ) (hz : 3 ≤ z) (hzX : z < X)
     (hcube : 2 * X + 2 < z ^ 3) (a : ℕ → ℝ) :
     4 * ∑ n ∈ (Ioc X (2 * X)).filter (· ∈ twinPrimes), a n =
@@ -158,7 +170,9 @@ theorem rough_liouville_weighted_identity (X z : ℕ) (hz : 3 ≤ z) (hzX : z < 
   rw [rough_liouville_selector hz hzX hcube hn]
   split_ifs <;> ring
 
-/-- PLAN.md (R), exactly: `4 N₂ = S - L₀ - L₂ + L₀₂`.-/
+/-- PLAN.md (R), exactly: `4 N₂ = S - L₀ - L₂ + L₀₂`.
+@isnad1 id=eq.3h2v.s6.dd3e8bf2a51b from=translated src=- shape=4ab41c40 vocab=272cef02
+-/
 theorem rough_parity_identity (X z : ℕ) (hz : 3 ≤ z) (hzX : z < X)
     (hcube : 2 * X + 2 < z ^ 3) :
     4 * (N2 X : ℝ) = roughParityCombination X z := by
@@ -172,7 +186,9 @@ theorem rough_parity_identity (X z : ℕ) (hz : 3 ≤ z) (hzX : z < X)
   simp [sum_add_distrib, sum_sub_distrib]
 
 /-- Cofinal positivity of this specified four-correlation combination suffices.
-This theorem does not assert that the required positive intervals exist.-/
+This theorem does not assert that the required positive intervals exist.
+@isnad1 id=twinprim.1h0v.s6.9c01d3171833 from=translated src=- shape=3db606b7 vocab=f552c452
+-/
 theorem twinPrimeConjecture_of_cofinal_roughParity_pos
     (h : ∀ Y : ℕ, ∃ X ≥ Y, ∃ z : ℕ, 3 ≤ z ∧ z < X ∧
       2 * X + 2 < z ^ 3 ∧ 0 < roughParityCombination X z) :
@@ -187,7 +203,9 @@ theorem twinPrimeConjecture_of_cofinal_roughParity_pos
 
 /-- Separate sufficient inputs: a positive lower bound `M` for the rough count
 on the admissible range, and a cofinal one-sided parity bound saving a positive
-fraction of that lower bound. Neither input is proved here.-/
+fraction of that lower bound. Neither input is proved here.
+@isnad1 id=twinprim.5h4v.s7.42b735c7b9ce from=translated src=- shape=b424bfa3 vocab=0bad27bd
+-/
 theorem twinPrimeConjecture_of_rough_distribution_and_parity
     (z : ℕ → ℕ) (M : ℕ → ℝ) (δ : ℝ) (hδ : 0 < δ) (X₀ : ℕ)
     (hrange : ∀ X ≥ X₀, 3 ≤ z X ∧ z X < X ∧ 2 * X + 2 < (z X) ^ 3)

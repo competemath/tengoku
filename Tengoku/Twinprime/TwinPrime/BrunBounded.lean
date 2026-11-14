@@ -30,12 +30,21 @@ namespace TwinPrime
 /-- The sifting level `z(x) = ⌊x^{1/2000}⌋`.-/
 def zC (x : ℕ) : ℕ := ⌊(x : ℝ) ^ (1 / 2000 : ℝ)⌋₊
 
+/--
+@isnad1 id=le.0h1v.s5.993d3df56bc4 from=translated src=- shape=3d7eac4f vocab=c0c37bec
+-/
 theorem zC_le_rpow (x : ℕ) : (zC x : ℝ) ≤ (x : ℝ) ^ (1 / 2000 : ℝ) :=
   Nat.floor_le (by positivity)
 
+/--
+@isnad1 id=lt.0h1v.s5.f9cdaae31e4a from=translated src=- shape=c10d8f7e vocab=9cd25869
+-/
 theorem rpow_lt_zC_add_one (x : ℕ) : (x : ℝ) ^ (1 / 2000 : ℝ) < (zC x : ℝ) + 1 :=
   Nat.lt_floor_add_one _
 
+/--
+@isnad1 id=le.1h1v.s4.63a0c8f13c7f from=translated src=- shape=71fa8a4a vocab=9ba60194
+-/
 theorem zC_le_self {x : ℕ} (hx : 1 ≤ x) : zC x ≤ x := by
   have h1 : (1 : ℝ) ≤ x := by exact_mod_cast hx
   have : (x : ℝ) ^ (1 / 2000 : ℝ) ≤ x := by
@@ -46,7 +55,9 @@ theorem zC_le_self {x : ℕ} (hx : 1 ≤ x) : zC x ≤ x := by
 
 /-! ### The number of blocks is `O(log log x)` -/
 
-/-- `Nat.log 2 y ≤ log y / log 2`.-/
+/-- `Nat.log 2 y ≤ log y / log 2`.
+@isnad1 id=le.1h1v.s5.d688940811de from=translated src=- shape=159fbb1b vocab=4819a208
+-/
 theorem natLog_le_log_div {y : ℕ} (hy : 1 ≤ y) :
     (Nat.log 2 y : ℝ) ≤ Real.log y / Real.log 2 := by
   have hlog2 : 0 < Real.log 2 := Real.log_pos (by norm_num)
@@ -57,7 +68,9 @@ theorem natLog_le_log_div {y : ℕ} (hy : 1 ≤ y) :
   rw [Real.log_pow] at this
   exact this
 
-/-- `nBlocks (zC x) ≤ 2 log log x + 3` for `x ≥ 16`.-/
+/-- `nBlocks (zC x) ≤ 2 log log x + 3` for `x ≥ 16`.
+@isnad1 id=le.1h1v.s5.d9279f26ce4d from=translated src=- shape=e5b53842 vocab=85599572
+-/
 theorem nBlocks_zC_le {x : ℕ} (hx : 16 ≤ x) :
     (nBlocks (zC x) : ℝ) ≤ 2 * Real.log (Real.log x) + 3 := by
   have hlog2 : 0.6931471803 < Real.log 2 := Real.log_two_gt_d9
@@ -104,11 +117,16 @@ theorem nBlocks_zC_le {x : ℕ} (hx : 16 ≤ x) :
 
 /-! ### Main and remainder terms -/
 
+/--
+@isnad1 id=le.1h1v.s6.112987e52ff4 from=translated src=- shape=7a029be6 vocab=c871f7ba
+-/
 theorem log_le_2000_rpow {x : ℝ} (hx : 0 ≤ x) : Real.log x ≤ 2000 * x ^ (1 / 2000 : ℝ) := by
   calc Real.log x ≤ x ^ (1 / 2000 : ℝ) / (1 / 2000) := Real.log_le_rpow_div hx (by norm_num)
     _ = 2000 * x ^ (1 / 2000 : ℝ) := by ring
 
-/-- `(log x)^n ≤ 2000^n x^{n/2000}`.-/
+/-- `(log x)^n ≤ 2000^n x^{n/2000}`.
+@isnad1 id=le.1h2v.s6.108e0b21a586 from=translated src=- shape=7fdb7415 vocab=3f4f6c65
+-/
 theorem log_pow_le {x : ℝ} (hx : 1 ≤ x) (n : ℕ) :
     (Real.log x) ^ n ≤ 2000 ^ n * x ^ ((n : ℝ) / 2000) := by
   have hx0 : 0 ≤ x := by linarith
@@ -120,10 +138,16 @@ theorem log_pow_le {x : ℝ} (hx : 1 ≤ x) (n : ℕ) :
         congr 1
         ring_nf
 
+/--
+@isnad1 id=eq.1h2v.s5.eff788e09a31 from=translated src=- shape=060a17c7 vocab=5ab3c956
+-/
 theorem exp_nat_mul_loglog {x : ℝ} (hx : 0 < Real.log x) (n : ℕ) :
     Real.exp ((n : ℝ) * Real.log (Real.log x)) = (Real.log x) ^ n := by
   rw [← Real.log_pow, Real.exp_log (pow_pos hx n)]
 
+/--
+@isnad1 id=eq.1h2v.s5.a7b3490ee5cd from=translated src=- shape=fcff99db vocab=7d9ceece
+-/
 theorem exp_neg_nat_mul_loglog {x : ℝ} (hx : 0 < Real.log x) (n : ℕ) :
     Real.exp (-((n : ℝ) * Real.log (Real.log x))) = ((Real.log x) ^ n)⁻¹ := by
   rw [Real.exp_neg, exp_nat_mul_loglog hx n]

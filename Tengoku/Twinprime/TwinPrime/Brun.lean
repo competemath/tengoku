@@ -31,11 +31,17 @@ open Sieve
 
 /-! ### Real-analysis helpers -/
 
+/--
+@isnad1 id=le.1h1v.s6.184a38fd0adb from=translated src=- shape=7a029be6 vocab=c871f7ba
+-/
 theorem log_le_sixteen_mul_rpow {x : ℝ} (hx : 0 ≤ x) :
     Real.log x ≤ 16 * x ^ (1 / 16 : ℝ) := by
   calc Real.log x ≤ x ^ (1 / 16 : ℝ) / (1 / 16) := Real.log_le_rpow_div hx (by norm_num)
     _ = 16 * x ^ (1 / 16 : ℝ) := by ring
 
+/--
+@isnad1 id=le.1h1v.s6.9ba54c9676f6 from=translated src=- shape=e4abcc68 vocab=3821a301
+-/
 theorem log_pow_eight_le {x : ℝ} (hx : 1 ≤ x) :
     (Real.log x) ^ 8 ≤ 2 ^ 32 * Real.sqrt x := by
   have hx0 : 0 ≤ x := by linarith
@@ -47,6 +53,9 @@ theorem log_pow_eight_le {x : ℝ} (hx : 1 ≤ x) :
         norm_num
     _ = 2 ^ 32 * Real.sqrt x := by rw [Real.sqrt_eq_rpow]
 
+/--
+@isnad1 id=le.1h1v.s6.375a334f0c1a from=translated src=- shape=57817e73 vocab=c871f7ba
+-/
 theorem log_sq_le {x : ℝ} (hx : 1 ≤ x) :
     (Real.log x) ^ 2 ≤ 2 ^ 8 * x ^ (1 / 8 : ℝ) := by
   have hx0 : 0 ≤ x := by linarith
@@ -62,12 +71,18 @@ theorem log_sq_le {x : ℝ} (hx : 1 ≤ x) :
 /-- Fourth root (floor).-/
 def z4 (x : ℕ) : ℕ := Nat.sqrt (Nat.sqrt x)
 
+/--
+@isnad1 id=le.0h1v.s4.106dc1340f9e from=translated src=- shape=d81c1b8c vocab=4d51052b
+-/
 theorem z4_pow_four_le (x : ℕ) : z4 x ^ 4 ≤ x := by
   unfold z4
   calc Nat.sqrt (Nat.sqrt x) ^ 4 = (Nat.sqrt (Nat.sqrt x) ^ 2) ^ 2 := by ring
     _ ≤ (Nat.sqrt x) ^ 2 := Nat.pow_le_pow_left (Nat.sqrt_le' _) 2
     _ ≤ x := Nat.sqrt_le' x
 
+/--
+@isnad1 id=lt.0h1v.s5.689b0f3ea2f4 from=translated src=- shape=c4df414f vocab=e1d8c1f4
+-/
 theorem lt_z4_add_one_pow_four (x : ℕ) : x < (z4 x + 1) ^ 4 := by
   unfold z4
   have h1 : x < (Nat.sqrt x + 1) ^ 2 := Nat.lt_succ_sqrt' x
@@ -76,12 +91,18 @@ theorem lt_z4_add_one_pow_four (x : ℕ) : x < (z4 x + 1) ^ 4 := by
     _ ≤ ((Nat.sqrt (Nat.sqrt x) + 1) ^ 2) ^ 2 := Nat.pow_le_pow_left h2 2
     _ = (Nat.sqrt (Nat.sqrt x) + 1) ^ 4 := by ring
 
+/--
+@isnad1 id=le.1h1v.s5.35543931828c from=translated src=- shape=3f8dd538 vocab=4d51052b
+-/
 theorem sixteen_le_z4 {x : ℕ} (hx : 2 ^ 16 ≤ x) : 16 ≤ z4 x := by
   unfold z4
   rw [Nat.le_sqrt]
   rw [Nat.le_sqrt]
   omega
 
+/--
+@isnad1 id=le.0h1v.s5.a26d156c30e4 from=translated src=- shape=fc6dd884 vocab=c07980dd
+-/
 theorem z4_sq_le_sqrt (x : ℕ) : ((z4 x : ℝ)) ^ 2 ≤ Real.sqrt x := by
   unfold z4
   calc ((Nat.sqrt (Nat.sqrt x) : ℕ) : ℝ) ^ 2 = ((Nat.sqrt (Nat.sqrt x) ^ 2 : ℕ) : ℝ) := by
@@ -89,7 +110,9 @@ theorem z4_sq_le_sqrt (x : ℕ) : ((z4 x : ℝ)) ^ 2 ≤ Real.sqrt x := by
     _ ≤ ((Nat.sqrt x : ℕ) : ℝ) := by exact_mod_cast Nat.sqrt_le' _
     _ ≤ Real.sqrt x := Real.nat_sqrt_le_real_sqrt
 
-/-- `log z ≥ ¼ log x − log 2` for `z = z4 x`, `x ≥ 1`.-/
+/-- `log z ≥ ¼ log x − log 2` for `z = z4 x`, `x ≥ 1`.
+@isnad1 id=le.1h1v.s6.532fd2fd039c from=translated src=- shape=f4251d26 vocab=033d53b3
+-/
 theorem log_z4_ge {x : ℕ} (hx : 1 ≤ x) :
     (1 / 4 : ℝ) * Real.log x - Real.log 2 ≤ Real.log (z4 x) := by
   have hz1 : 1 ≤ z4 x := by
@@ -110,7 +133,9 @@ theorem log_z4_ge {x : ℕ} (hx : 1 ≤ x) :
     linarith
   linarith
 
-/-- `z + 1 ≤ 2 x^{1/4}` for `z = z4 x`.-/
+/-- `z + 1 ≤ 2 x^{1/4}` for `z = z4 x`.
+@isnad1 id=le.1h1v.s6.0f2d60cfb94e from=translated src=- shape=bceb6251 vocab=a32997b1
+-/
 theorem z4_add_one_le {x : ℕ} (hx : 1 ≤ x) :
     ((z4 x : ℝ) + 1) ≤ 2 * (x : ℝ) ^ (1 / 4 : ℝ) := by
   have hz1 : (1 : ℝ) ≤ z4 x := by
@@ -132,19 +157,27 @@ theorem z4_add_one_le {x : ℕ} (hx : 1 ≤ x) :
 /-- The summand `1/n` on twin primes, `0` elsewhere.-/
 def twinRecip (n : ℕ) : ℝ := Set.indicator twinPrimes (fun n : ℕ => (n : ℝ)⁻¹) n
 
+/--
+@isnad1 id=le.0h1v.s3.f9ec2638a26e from=translated src=- shape=b9369acb vocab=1275f38f
+-/
 theorem twinRecip_nonneg (n : ℕ) : 0 ≤ twinRecip n := by
   unfold twinRecip
   apply Set.indicator_nonneg
   intro n _
   positivity
 
+/--
+@isnad1 id=eq.0h0v.s3.bc1574fb19a4 from=translated src=- shape=1ac31801 vocab=b1199bc8
+-/
 theorem twinRecip_zero : twinRecip 0 = 0 := by
   unfold twinRecip
   rw [Set.indicator_of_notMem]
   intro h
   exact Nat.not_prime_zero h.1
 
-/-- Dyadic decomposition of a partial sum.-/
+/-- Dyadic decomposition of a partial sum.
+@isnad1 id=le.1h3v.s7.00b92b890659 from=translated src=- shape=1625f2c5 vocab=88af63e0
+-/
 theorem sum_range_two_pow_le (a : ℕ → ℝ) (B : ℕ → ℝ)
     (hblock : ∀ k, ∑ n ∈ Ico (2 ^ k) (2 ^ (k + 1)), a n ≤ B k) (K : ℕ) :
     ∑ n ∈ range (2 ^ K), a n ≤ a 0 + ∑ k ∈ range K, B k := by
@@ -156,7 +189,9 @@ theorem sum_range_two_pow_le (a : ℕ → ℝ) (B : ℕ → ℝ)
       sum_range_succ]
     linarith [hblock K]
 
-/-- The block `[2^k, 2^{k+1})` contributes at most `π₂(2^{k+1}) / 2^k`.-/
+/-- The block `[2^k, 2^{k+1})` contributes at most `π₂(2^{k+1}) / 2^k`.
+@isnad1 id=le.0h1v.s7.7c49b8247bd2 from=translated src=- shape=8cb64743 vocab=e68fd6e6
+-/
 theorem twinRecip_block_le (k : ℕ) :
     ∑ n ∈ Ico (2 ^ k) (2 ^ (k + 1)), twinRecip n ≤ (twinCount (2 ^ (k + 1)) : ℝ) / 2 ^ k := by
   classical
@@ -187,7 +222,9 @@ theorem twinRecip_block_le (k : ℕ) :
         exact ⟨by omega, hn.2⟩
     _ = (twinCount (2 ^ (k + 1)) : ℝ) / 2 ^ k := by rw [div_eq_mul_inv]
 
-/-- `∑_{k < K} 1/(k+1)^2 ≤ 2`.-/
+/-- `∑_{k < K} 1/(k+1)^2 ≤ 2`.
+@isnad1 id=le.0h1v.s5.64c0e9a58a73 from=translated src=- shape=636ce5a1 vocab=8276cecb
+-/
 theorem sum_inv_sq_succ_le (K : ℕ) : ∑ k ∈ range K, (((k + 1 : ℕ) : ℝ) ^ 2)⁻¹ ≤ 2 := by
   have h := sum_Ioo_inv_sq_le (α := ℝ) 0 (K + 1)
   simp only [Nat.cast_zero, zero_add, div_one] at h

@@ -17,6 +17,9 @@ open MeasureTheory Set Complex
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=le.3h3v.s7.3d9fb23b122e from=translated src=- shape=5a6dd093 vocab=a8d2e992
+-/
 theorem norm_weighted_vonMangoldt_sub_pole_sub_vertical_le (x c H : ℝ)
     (hx : 0 < x) (hc : 1 < c) (hH : 0 < H) :
     ‖weightedPartialSum (fun n : ℕ => (ArithmeticFunction.vonMangoldt n : ℂ)) x -
@@ -44,6 +47,9 @@ def smoothedPrincipalContourBudget (x a c H M : ℝ) : ℝ :=
     (1 / (2 * Real.pi)) *
       (Real.pi * (1 + (a ^ 2)⁻¹) * x ^ a * M + 2 * (c - a) * x ^ c * M / H ^ 2)
 
+/--
+@isnad1 id=le.8h5v.s7.ac74abc8b361 from=translated src=- shape=7c9258cb vocab=472424c8
+-/
 theorem norm_weighted_vonMangoldt_sub_pole_le_contour_budget (x a c H M : ℝ)
     (hx : 1 ≤ x) (ha : 0 < a) (hac : a ≤ c) (hc : 1 < c)
     (hH : 0 < H) (hM : 0 ≤ M)

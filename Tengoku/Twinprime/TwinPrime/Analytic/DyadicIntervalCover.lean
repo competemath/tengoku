@@ -22,6 +22,9 @@ def dyadicTreeBlocks (M : ℕ) : ℕ → Finset (ℕ × ℕ)
   | k + 1 => insert (M, k + 1)
       (dyadicTreeBlocks M k ∪ dyadicTreeBlocks (M + 2 ^ k) k)
 
+/--
+@isnad1 id=and.1h3v.s6.3d2d1dc0c9c4 from=translated src=- shape=fcc1ad9f vocab=79839eca
+-/
 theorem mem_dyadicTreeBlocks_bounds (M k : ℕ) (p : ℕ × ℕ)
     (hp : p ∈ dyadicTreeBlocks M k) :
     M ≤ p.1 ∧ p.1 + 2 ^ p.2 ≤ M + 2 ^ k ∧ p.2 ≤ k := by
@@ -42,6 +45,9 @@ theorem mem_dyadicTreeBlocks_bounds (M k : ℕ) (p : ℕ × ℕ)
         · obtain ⟨h1, h2, h3⟩ := ih (M + 2 ^ k) hr
           exact ⟨le_trans (by omega) h1, h2.trans (by omega), h3.trans (Nat.le_succ _)⟩
 
+/--
+@isnad1 id=disjoint.0h2v.s5.b837462753e0 from=translated src=- shape=d1372d4c vocab=b43730a4
+-/
 theorem dyadicTreeBlocks_children_disjoint (M k : ℕ) :
     Disjoint (dyadicTreeBlocks M k) (dyadicTreeBlocks (M + 2 ^ k) k) := by
   apply disjoint_left.mpr
@@ -51,6 +57,9 @@ theorem dyadicTreeBlocks_children_disjoint (M k : ℕ) :
   have hpos : 0 < 2 ^ p.2 := by positivity
   omega
 
+/--
+@isnad1 id=not.0h2v.s6.4499e1bf29c9 from=translated src=- shape=1eeb0509 vocab=3bc56e98
+-/
 theorem dyadicTreeBlocks_root_not_mem_children (M k : ℕ) :
     (M, k + 1) ∉ dyadicTreeBlocks M k ∪ dyadicTreeBlocks (M + 2 ^ k) k := by
   intro hp
@@ -72,16 +81,24 @@ def dyadicIntervalCover (M : ℕ) : ℕ → ℕ → ℕ → Finset (ℕ × ℕ)
         dyadicIntervalCover (M + 2 ^ k) k (M + 2 ^ k) v
     else ∅
 
+/--
+@isnad1 id=eq.1h4v.s5.313b49fedc2a from=translated src=- shape=2a1d0ea1 vocab=33948b6a
+-/
 theorem dyadicIntervalCover_eq_empty (M k u v : ℕ) (hvu : v ≤ u) :
     dyadicIntervalCover M k u v = ∅ := by
   cases k <;> simp [dyadicIntervalCover, not_lt.mpr hvu]
 
+/--
+@isnad1 id=eq.0h2v.s5.6a8a19c0fdb4 from=translated src=- shape=38f45f96 vocab=30416842
+-/
 theorem dyadicIntervalCover_full (M k : ℕ) :
     dyadicIntervalCover M k M (M + 2 ^ k) = {(M, k)} := by
   have hp : 0 < 2 ^ k := by positivity
   cases k <;> simp [dyadicIntervalCover, hp]
 
-/-- Every selected code is a genuine node of the enclosing dyadic tree.-/
+/-- Every selected code is a genuine node of the enclosing dyadic tree.
+@isnad1 id=le.0h4v.s5.9ee88eaa02e4 from=translated src=- shape=c5263e81 vocab=8e78045b
+-/
 theorem dyadicIntervalCover_subset_tree (M k u v : ℕ) :
     dyadicIntervalCover M k u v ⊆ dyadicTreeBlocks M k := by
   induction k generalizing M u v with
@@ -97,7 +114,9 @@ theorem dyadicIntervalCover_subset_tree (M k u v : ℕ) :
       · exact empty_subset _
 
 /-- Every selected block is nonempty and contained in the target interval;
-its height does not exceed that of the root.-/
+its height does not exceed that of the root.
+@isnad1 id=and.4h5v.s7.e13de20c74b9 from=translated src=- shape=9201994c vocab=5d35a72a
+-/
 theorem mem_dyadicIntervalCover_bounds (M k u v : ℕ)
     (hMu : M ≤ u) (huv : u ≤ v) (hv : v ≤ M + 2 ^ k)
     (p : ℕ × ℕ) (hp : p ∈ dyadicIntervalCover M k u v) :
@@ -133,7 +152,9 @@ theorem mem_dyadicIntervalCover_bounds (M k u v : ℕ)
             (by omega) (by omega) hp
           exact ⟨le_trans (by omega) h1, h2, h3.trans (Nat.le_succ _)⟩
 
-/-- Covers of disjoint target intervals cannot select the same block.-/
+/-- Covers of disjoint target intervals cannot select the same block.
+@isnad1 id=disjoint.7h8v.s7.9761406a4c20 from=translated src=- shape=0e1874d7 vocab=94e9e843
+-/
 theorem dyadicIntervalCover_disjoint_of_intervals (M k u v M' k' u' v' : ℕ)
     (hMu : M ≤ u) (huv : u ≤ v) (hv : v ≤ M + 2 ^ k)
     (hMu' : M' ≤ u') (huv' : u' ≤ v') (hv' : v' ≤ M' + 2 ^ k')
@@ -147,7 +168,9 @@ theorem dyadicIntervalCover_disjoint_of_intervals (M k u v M' k' u' v' : ℕ)
   exact disjoint_left.mp hdis (mem_Ico.mpr ⟨h1, by omega⟩)
     (mem_Ico.mpr ⟨h1', by omega⟩)
 
-/-- A prefix selects at most one block for each possible height.-/
+/-- A prefix selects at most one block for each possible height.
+@isnad1 id=le.2h3v.s6.d9850eaa4621 from=translated src=- shape=bbb29cc9 vocab=0d5f6a52
+-/
 theorem card_dyadicIntervalCover_prefix_le (M k v : ℕ)
     (hMv : M ≤ v) (hv : v ≤ M + 2 ^ k) :
     (dyadicIntervalCover M k M v).card ≤ k + 1 := by
@@ -167,7 +190,9 @@ theorem card_dyadicIntervalCover_prefix_le (M k v : ℕ)
         omega
       · simp
 
-/-- A suffix also selects at most one block for each possible height.-/
+/-- A suffix also selects at most one block for each possible height.
+@isnad1 id=le.2h3v.s6.a080926d3ddd from=translated src=- shape=a2ede3be vocab=0d5f6a52
+-/
 theorem card_dyadicIntervalCover_suffix_le (M k u : ℕ)
     (hMu : M ≤ u) (hu : u ≤ M + 2 ^ k) :
     (dyadicIntervalCover M k u (M + 2 ^ k)).card ≤ k + 1 := by
@@ -191,7 +216,9 @@ theorem card_dyadicIntervalCover_suffix_le (M k u : ℕ)
         omega
       · simp
 
-/-- An arbitrary subinterval uses at most twice the number of tree levels.-/
+/-- An arbitrary subinterval uses at most twice the number of tree levels.
+@isnad1 id=le.3h4v.s6.79703914d70e from=translated src=- shape=7fc49554 vocab=e27ba81b
+-/
 theorem card_dyadicIntervalCover_le (M k u v : ℕ)
     (hMu : M ≤ u) (huv : u ≤ v) (hv : v ≤ M + 2 ^ k) :
     (dyadicIntervalCover M k u v).card ≤ 2 * (k + 1) := by
@@ -210,7 +237,9 @@ theorem card_dyadicIntervalCover_le (M k u v : ℕ)
         omega
       · simp
 
-/-- Exact finite sum decomposition for the selected dyadic blocks.-/
+/-- Exact finite sum decomposition for the selected dyadic blocks.
+@isnad1 id=eq.3h6v.s7.dc268cbae02c from=translated src=- shape=4d6fa864 vocab=2bc05ede
+-/
 theorem sum_dyadicIntervalCover {α : Type*} [AddCommMonoid α] (f : ℕ → α)
     (M k u v : ℕ) (hMu : M ≤ u) (huv : u ≤ v) (hv : v ≤ M + 2 ^ k) :
     (∑ p ∈ dyadicIntervalCover M k u v, ∑ n ∈ Ico p.1 (p.1 + 2 ^ p.2), f n) =
@@ -243,7 +272,9 @@ theorem sum_dyadicIntervalCover {α : Type*} [AddCommMonoid α] (f : ℕ → α)
       · rw [Ico_eq_empty_of_le (by omega)]
         simp
 
-/-- Squared triangle inequality followed by finite Cauchy--Schwarz.-/
+/-- Squared triangle inequality followed by finite Cauchy--Schwarz.
+@isnad1 id=le.0h3v.s6.c3bb19576cc7 from=translated src=- shape=3e05cf2d vocab=2d6580db
+-/
 theorem norm_sum_sq_le_card_mul_sum_sq {ι : Type*} (s : Finset ι) (z : ι → ℂ) :
     ‖∑ i ∈ s, z i‖ ^ 2 ≤ (s.card : ℝ) * ∑ i ∈ s, ‖z i‖ ^ 2 := by
   calc
@@ -252,7 +283,9 @@ theorem norm_sum_sq_le_card_mul_sum_sq {ι : Type*} (s : Finset ι) (z : ι → 
     _ ≤ _ := by
       simpa using sum_mul_sq_le_sq_mul_sq s (fun _ => (1 : ℝ)) (fun i => ‖z i‖)
 
-/-- One interval is bounded using only its selected tree nodes.-/
+/-- One interval is bounded using only its selected tree nodes.
+@isnad1 id=le.3h5v.s7.6acb7c6518c2 from=translated src=- shape=a9882b1a vocab=60def6b5
+-/
 theorem norm_interval_sq_le_dyadicCover (f : ℕ → ℂ) (M k u v : ℕ)
     (hMu : M ≤ u) (huv : u ≤ v) (hv : v ≤ M + 2 ^ k) :
     ‖∑ n ∈ Ico u v, f n‖ ^ 2 ≤
@@ -264,7 +297,9 @@ theorem norm_interval_sq_le_dyadicCover (f : ℕ → ℂ) (M k u v : ℕ)
   exact_mod_cast card_dyadicIntervalCover_le M k u v hMu huv hv
 
 /-- The square sums over any disjoint family of subintervals are controlled
-by the complete dyadic tree, without any factor for the number of intervals.-/
+by the complete dyadic tree, without any factor for the number of intervals.
+@isnad1 id=le.2h7v.s8.497267b7613a from=translated src=- shape=937ccbc5 vocab=65f68b19
+-/
 theorem sum_disjoint_intervals_sq_le_tree {ι : Type*} (s : Finset ι)
     (u v : ι → ℕ) (f : ℕ → ℂ) (M k : ℕ)
     (hvalid : ∀ i ∈ s, M ≤ u i ∧ u i ≤ v i ∧ v i ≤ M + 2 ^ k)
@@ -296,7 +331,9 @@ theorem sum_disjoint_intervals_sq_le_tree {ι : Type*} (s : Finset ι)
     _ ≤ _ := mul_le_mul_of_nonneg_left
       (sum_le_sum_of_subset_of_nonneg hsub (fun _ _ _ => sq_nonneg _)) (by positivity)
 
-/-- The explicit node sum is exactly the recursively defined tree energy.-/
+/-- The explicit node sum is exactly the recursively defined tree energy.
+@isnad1 id=eq.0h3v.s6.11a3dcdc46f0 from=translated src=- shape=47689dcd vocab=fcc73ce9
+-/
 theorem sum_dyadicTreeBlocks_eq_energy (f : ℕ → ℂ) (M k : ℕ) :
     (∑ p ∈ dyadicTreeBlocks M k, ‖∑ n ∈ Ico p.1 (p.1 + 2 ^ p.2), f n‖ ^ 2) =
       dyadicEnergy f M k := by
@@ -308,7 +345,9 @@ theorem sum_dyadicTreeBlocks_eq_energy (f : ℕ → ℂ) (M k : ℕ) :
       simp only [dyadicEnergy]
       ring
 
-/-- The finite disjoint-interval variation bound, with loss `2(k+1)`.-/
+/-- The finite disjoint-interval variation bound, with loss `2(k+1)`.
+@isnad1 id=le.2h7v.s7.58030d57392e from=translated src=- shape=ae66bbc2 vocab=0d9bae07
+-/
 theorem sum_disjoint_intervals_sq_le_dyadicEnergy {ι : Type*} (s : Finset ι)
     (u v : ι → ℕ) (f : ℕ → ℂ) (M k : ℕ)
     (hvalid : ∀ i ∈ s, M ≤ u i ∧ u i ≤ v i ∧ v i ≤ M + 2 ^ k)
@@ -320,7 +359,9 @@ theorem sum_disjoint_intervals_sq_le_dyadicEnergy {ι : Type*} (s : Finset ι)
 
 /-- Fixed-interval second moments control disjoint interval families that
 may depend on the outer index. The cost is `2(k+1)^2`, independently of the
-number of intervals in each family.-/
+number of intervals in each family.
+@isnad1 id=le.5h12v.s9.bd8d8df2d5a4 from=translated src=- shape=6508aee5 vocab=1590b06c
+-/
 theorem sum_weighted_disjoint_intervals_sq_le {ι κ : Type*} (s : Finset ι)
     (t : ι → Finset κ) (u v : ι → κ → ℕ) (w : ι → ℝ)
     (hw : ∀ i ∈ s, 0 ≤ w i) (f : ι → ℕ → ℂ) (e : ℕ → ℝ) (A : ℝ)

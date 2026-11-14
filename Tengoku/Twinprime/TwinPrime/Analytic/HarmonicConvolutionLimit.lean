@@ -23,7 +23,9 @@ open scoped Topology
 namespace TwinPrime.Analytic
 
 /-- The uniform bound that permits domination by the absolute coefficient
-alone, without a logarithmically weighted summability assumption.-/
+alone, without a logarithmically weighted summability assumption.
+@isnad1 id=and.3h2v.s7.69d7495b37ed from=translated src=- shape=aa33fee9 vocab=1c5bdc05
+-/
 theorem harmonic_quotient_normalized_bounds (x : ℝ) (d : ℕ)
     (hx : 1 ≤ x) (hd : 1 ≤ d) (hdx : (d : ℝ) ≤ x) :
     0 ≤ (harmonic ⌊x / d⌋₊ : ℝ) / (1 + Real.log x) ∧
@@ -42,7 +44,9 @@ theorem harmonic_quotient_normalized_bounds (x : ℝ) (d : ℕ)
     (div_le_self (by linarith) (by exact_mod_cast hd))
 
 /-- Every fixed positive divisor preserves the leading logarithm of the
-harmonic number, including the floor in its argument.-/
+harmonic number, including the floor in its argument.
+@isnad1 id=tendsto.1h1v.s6.b371f46264ab from=translated src=- shape=060ae304 vocab=58adb5cd
+-/
 theorem tendsto_harmonic_quotient_normalized (d : ℕ) (hd : 1 ≤ d) :
     Tendsto (fun x : ℝ => (harmonic ⌊x / d⌋₊ : ℝ) / (1 + Real.log x))
       atTop (𝓝 1) := by
@@ -70,7 +74,9 @@ theorem tendsto_harmonic_quotient_normalized (d : ℕ) (hd : 1 ≤ d) :
       hd ((le_max_right _ _).trans hx)).2
 
 /-- General real-endpoint harmonic convolution. The positive finite sum
-omits the zero coefficient, so its limiting mass is tsum h minus h(0).-/
+omits the zero coefficient, so its limiting mass is tsum h minus h(0).
+@isnad1 id=tendsto.1h1v.s7.94e0230535a8 from=translated src=- shape=c6c1bc5c vocab=cabee8be
+-/
 theorem tendsto_real_harmonic_convolution_div_log (h : ℕ → ℝ)
     (hh : Summable (fun d => |h d|)) :
     Tendsto (fun x : ℝ =>
@@ -119,7 +125,9 @@ theorem tendsto_real_harmonic_convolution_div_log (h : ℕ → ℝ)
   intro d hd
   simp only [f, ite_eq_left hd, mul_div_assoc]
 
-/-- The common arithmetic-function case has no zero coefficient.-/
+/-- The common arithmetic-function case has no zero coefficient.
+@isnad1 id=tendsto.2h1v.s7.637b9efce21b from=translated src=- shape=4dc6fcac vocab=7cca3d3c
+-/
 theorem tendsto_real_harmonic_convolution_div_log_of_zero (h : ℕ → ℝ)
     (hh : Summable (fun d => |h d|)) (hzero : h 0 = 0) :
     Tendsto (fun x : ℝ =>
@@ -127,7 +135,9 @@ theorem tendsto_real_harmonic_convolution_div_log_of_zero (h : ℕ → ℝ)
       atTop (𝓝 (∑' d, h d)) := by
   simpa only [hzero, sub_zero] using tendsto_real_harmonic_convolution_div_log h hh
 
-/-- Natural endpoints identify the inner floor with natural division.-/
+/-- Natural endpoints identify the inner floor with natural division.
+@isnad1 id=tendsto.1h1v.s7.9f059d2c9914 from=translated src=- shape=6c1d5068 vocab=62e05bec
+-/
 theorem tendsto_harmonic_convolution_div_log (h : ℕ → ℝ)
     (hh : Summable (fun d => |h d|)) :
     Tendsto (fun z : ℕ =>
@@ -136,6 +146,9 @@ theorem tendsto_harmonic_convolution_div_log (h : ℕ → ℝ)
   simpa only [Function.comp_def, Nat.floor_natCast, Nat.floor_div_natCast] using
     (tendsto_real_harmonic_convolution_div_log h hh).comp tendsto_natCast_atTop_atTop
 
+/--
+@isnad1 id=tendsto.2h1v.s7.c7341ce545af from=translated src=- shape=d74bc3aa vocab=4d854db7
+-/
 theorem tendsto_harmonic_convolution_div_log_of_zero (h : ℕ → ℝ)
     (hh : Summable (fun d => |h d|)) (hzero : h 0 = 0) :
     Tendsto (fun z : ℕ =>

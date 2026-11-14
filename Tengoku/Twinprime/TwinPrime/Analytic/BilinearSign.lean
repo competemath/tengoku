@@ -17,6 +17,9 @@ open scoped ArithmeticFunction.Moebius ArithmeticFunction.zeta
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=eq.3h3v.s6.aee39b902914 from=translated src=- shape=7da345e3 vocab=4973493f
+-/
 theorem vaughanBilinear_eq_zero_of_prime (U V p : ℕ) (hU : 1 ≤ U) (hV : 1 ≤ V)
     (hp : Nat.Prime p) : (moebiusHigh U * vaughanBeta V) p = 0 := by
   rw [mul_apply,
@@ -25,6 +28,9 @@ theorem vaughanBilinear_eq_zero_of_prime (U V p : ℕ) (hU : 1 ≤ U) (hV : 1 �
   simp [moebiusHigh, cutoffHigh_apply, Nat.not_lt.mpr hU, Nat.div_self hp.pos,
     vaughanBeta_eq_zero_of_le V 1 hV]
 
+/--
+@isnad1 id=eq.1h2v.s5.c0e809f9dc6a from=translated src=- shape=474ca389 vocab=f068d488
+-/
 theorem vaughanBeta_eq_log_of_small_divisors (V n : ℕ)
     (hsmall : ∀ d ∈ n.divisors, d ≤ V → d = 1) :
     vaughanBeta V n = Real.log n := by
@@ -37,6 +43,9 @@ theorem vaughanBeta_eq_log_of_small_divisors (V n : ℕ)
     · simp [h]
   rw [hzero, sub_zero]
 
+/--
+@isnad1 id=eq.3h3v.s6.daa9a8f750a1 from=translated src=- shape=735f9d1b vocab=01131c72
+-/
 theorem moebiusLow_mul_eq_of_small_divisors (U n : ℕ) (hU : 1 ≤ U) (hn : n ≠ 0)
     (hsmall : ∀ d ∈ n.divisors, d ≤ U → d = 1) (g : ArithmeticFunction ℝ) :
     (moebiusLow U * g) n = g n := by
@@ -49,7 +58,9 @@ theorem moebiusLow_mul_eq_of_small_divisors (U n : ℕ) (hU : 1 ≤ U) (hn : n �
   · simp [hn]
 
 /-- The rough coefficient identity. The support condition rules out every
-nontrivial divisor below either cutoff; no distribution assumption occurs.-/
+nontrivial divisor below either cutoff; no distribution assumption occurs.
+@isnad1 id=eq.3h3v.s6.e3b260d2a586 from=translated src=- shape=9050cda0 vocab=5d754759
+-/
 theorem vaughanBilinear_eq_mangoldt_sub_log_of_small_divisors (U V n : ℕ)
     (hU : 1 ≤ U) (hn : n ≠ 0)
     (hsmall : ∀ d ∈ n.divisors, d ≤ max U V → d = 1) :
@@ -79,6 +90,9 @@ theorem vaughanBilinear_eq_mangoldt_sub_log_of_small_divisors (U V n : ℕ)
   rw [hb]
   linarith
 
+/--
+@isnad1 id=eq.3h3v.s5.93be438be9bb from=translated src=- shape=71715853 vocab=174aee02
+-/
 theorem small_divisors_eq_one_of_prime_divisors_gt (z n : ℕ)
     (hrough : ∀ p, Nat.Prime p → p ∣ n → z < p) :
     ∀ d ∈ n.divisors, d ≤ z → d = 1 := by
@@ -89,7 +103,9 @@ theorem small_divisors_eq_one_of_prime_divisors_gt (z n : ℕ)
   have hpdle : p ≤ d := Nat.le_of_dvd (Nat.pos_of_mem_divisors hd) hpd
   omega
 
-/-- The same identity with roughness stated through prime divisors.-/
+/-- The same identity with roughness stated through prime divisors.
+@isnad1 id=eq.3h3v.s6.ca825af3a2d3 from=translated src=- shape=3ec22a5a vocab=b472cec6
+-/
 theorem vaughanBilinear_eq_mangoldt_sub_log_of_rough (U V n : ℕ)
     (hU : 1 ≤ U) (hn : n ≠ 0)
     (hrough : ∀ p, Nat.Prime p → p ∣ n → max U V < p) :
@@ -98,7 +114,9 @@ theorem vaughanBilinear_eq_mangoldt_sub_log_of_rough (U V n : ℕ)
     (small_divisors_eq_one_of_prime_divisors_gt (max U V) n hrough)
 
 /-- Rough mixed composites have a negative logarithmic coefficient, regardless
-of the number or multiplicity of their prime factors.-/
+of the number or multiplicity of their prime factors.
+@isnad1 id=eq.4h3v.s6.118abab03657 from=translated src=- shape=96387938 vocab=5c6aa17e
+-/
 theorem vaughanBilinear_eq_neg_log_of_rough_not_prime_pow (U V n : ℕ)
     (hU : 1 ≤ U) (hn : n ≠ 0)
     (hrough : ∀ p, Nat.Prime p → p ∣ n → max U V < p)
@@ -107,6 +125,9 @@ theorem vaughanBilinear_eq_neg_log_of_rough_not_prime_pow (U V n : ℕ)
   rw [vaughanBilinear_eq_mangoldt_sub_log_of_rough U V n hU hn hrough,
     vonMangoldt_eq_zero_iff.mpr hnpow, zero_sub]
 
+/--
+@isnad1 id=le.1h3v.s5.5915b0f47a23 from=translated src=- shape=5bcc2dc5 vocab=9f7cf8d6
+-/
 theorem vaughanBeta_div_le_log (V n d : ℕ) (hd : d ∈ n.divisors) :
     vaughanBeta V (n / d) ≤ Real.log n := by
   calc
@@ -115,7 +136,9 @@ theorem vaughanBeta_div_le_log (V n d : ℕ) (hd : d ∈ n.divisors) :
       (by exact_mod_cast Nat.div_pos (Nat.divisor_le hd) (Nat.pos_of_mem_divisors hd))
       (by exact_mod_cast Nat.div_le_self n d)
 
-/-- A uniform divisor-count bound for the complete signed coefficient.-/
+/-- A uniform divisor-count bound for the complete signed coefficient.
+@isnad1 id=le.0h3v.s6.2188825a0f16 from=translated src=- shape=3284acf0 vocab=548724e6
+-/
 theorem abs_vaughanBilinear_le_card_divisors_mul_log (U V n : ℕ) :
     |(moebiusHigh U * vaughanBeta V) n| ≤ (n.divisors.card : ℝ) * Real.log n := by
   rw [mul_apply,
@@ -140,7 +163,9 @@ theorem abs_vaughanBilinear_le_card_divisors_mul_log (U V n : ℕ) :
     _ = _ := by simp
 
 /-- Only the squarefree divisor `p` can contribute on a positive prime power.
-The quotient form retains the integer endpoint exactly.-/
+The quotient form retains the integer endpoint exactly.
+@isnad1 id=eq.3h4v.s7.4d220256d9c3 from=translated src=- shape=a382757c vocab=60496827
+-/
 theorem vaughanBilinear_prime_pow (U V p a : ℕ) (hU : 1 ≤ U)
     (hp : Nat.Prime p) (ha : 1 ≤ a) :
     (moebiusHigh U * vaughanBeta V) (p ^ a) =
@@ -160,7 +185,9 @@ theorem vaughanBilinear_prime_pow (U V p a : ℕ) (hU : 1 ≤ U)
     omega
 
 /-- Prime powers have a much smaller coefficient bound than the general
-divisor-count estimate. This is uniform in both positive cutoffs.-/
+divisor-count estimate. This is uniform in both positive cutoffs.
+@isnad1 id=le.2h4v.s6.3b5f115d67b8 from=translated src=- shape=c418e6ec vocab=0738bc64
+-/
 theorem abs_vaughanBilinear_prime_pow_le_log (U V p a : ℕ) (hU : 1 ≤ U)
     (hp : Nat.Prime p) :
     |(moebiusHigh U * vaughanBeta V) (p ^ a)| ≤ Real.log (p ^ a : ℕ) := by

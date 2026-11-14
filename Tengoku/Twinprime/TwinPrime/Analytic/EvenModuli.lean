@@ -23,11 +23,17 @@ namespace TwinPrime.Analytic
 def evenProgressionBound (X : ℕ) : ℝ :=
   2 * Real.sqrt (2 * X + 2) * Real.log (2 * X + 2)
 
+/--
+@isnad1 id=le.0h1v.s3.3e1295a7acb4 from=translated src=- shape=b9369acb vocab=8fa2bb16
+-/
 theorem evenProgressionBound_nonneg (X : ℕ) : 0 ≤ evenProgressionBound X := by
   unfold evenProgressionBound
   apply mul_nonneg (by positivity)
   exact Real.log_nonneg (by have := Nat.cast_nonneg (α := ℝ) X; linarith)
 
+/--
+@isnad1 id=not.3h2v.s5.b2b5f4b12cc6 from=translated src=- shape=991e4322 vocab=3213aabf
+-/
 theorem not_prime_add_two_of_even_dvd {q n : ℕ} (hq : Even q)
     (hqn : q ∣ n) (hn : 0 < n) : ¬ (n + 2).Prime := by
   intro hp
@@ -35,7 +41,9 @@ theorem not_prime_add_two_of_even_dvd {q n : ℕ} (hq : Even q)
   have htwo : n + 2 = 2 := hp.even_iff.mp (heven.add (by decide : Even (2 : ℕ)))
   omega
 
-/-- In particular, the exceptional even-modulus terms are never assigned `X/φ(q)`.-/
+/-- In particular, the exceptional even-modulus terms are never assigned `X/φ(q)`.
+@isnad1 id=le.1h2v.s6.acd6e21099c7 from=translated src=- shape=91acaf38 vocab=18fcc921
+-/
 theorem even_shiftedProgression_le (X q : ℕ) (hq : Even q) :
     (∑ n ∈ Ioc X (2 * X) with q ∣ n, vonMangoldt (n + 2)) ≤
       evenProgressionBound X := by
@@ -61,7 +69,9 @@ theorem even_shiftedProgression_le (X q : ℕ) (hq : Even q) :
     _ ≤ 2 * Real.sqrt (Y : ℝ) * Real.log Y := Chebyshev.psi_sub_theta_le hY
     _ = evenProgressionBound X := by simp [Y, evenProgressionBound]
 
-/-- The complete even-modulus contribution, with the actual coefficient norm retained.-/
+/-- The complete even-modulus contribution, with the actual coefficient norm retained.
+@isnad1 id=le.1h3v.s7.ec54840d2133 from=translated src=- shape=c7a366ea vocab=9cc9cdf3
+-/
 theorem weighted_even_progression_le (X : ℕ) (s : Finset ℕ) (w : ℕ → ℝ)
     (hs : ∀ q ∈ s, Even q) :
     |∑ q ∈ s, w q * ∑ n ∈ Ioc X (2 * X) with q ∣ n, vonMangoldt (n + 2)| ≤

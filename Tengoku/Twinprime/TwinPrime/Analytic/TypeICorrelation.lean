@@ -23,7 +23,9 @@ open scoped ArithmeticFunction.Moebius
 namespace TwinPrime.Analytic
 
 /-- The convolution main coefficient is exactly the two-factor totient sum.
-No multiplicativity of the totient at noncoprime factors is used.-/
+No multiplicativity of the totient at noncoprime factors is used.
+@isnad1 id=eq.0h2v.s6.a14bc1a217ed from=translated src=- shape=54e5e21e vocab=345287f5
+-/
 theorem vaughanCoefficient_odd_totient_sum_eq (U V : ℕ) :
     (∑ q ∈ range (U * V + 1) with Odd q,
       vaughanCoefficient U V q / Nat.totient q) = totientTypeIMain U V := by
@@ -84,6 +86,9 @@ theorem vaughanCoefficient_odd_totient_sum_eq (U V : ℕ) :
     dsimp only
     rw [hprod]
 
+/--
+@isnad1 id=eq.0h3v.s8.a19f2adcdbb0 from=translated src=- shape=53e894bf vocab=497a8aeb
+-/
 theorem typeITerm_eq_odd_add_even (U V X : ℕ) :
     typeITerm U V X =
       (∑ q ∈ range (U * V + 1) with Odd q, vaughanCoefficient U V q *
@@ -96,6 +101,9 @@ theorem typeITerm_eq_odd_add_even (U V X : ℕ) :
       (fun q => vaughanCoefficient U V q *
         ∑ n ∈ Ioc X (2 * X) with q ∣ n, vonMangoldt (n + 2))).symm
 
+/--
+@isnad1 id=le.1h3v.s6.c9e434cdb532 from=translated src=- shape=4669af87 vocab=cc417530
+-/
 theorem abs_vaughanCoefficient_le_log_cutoff (U V q : ℕ) (hq : q ≤ U * V) :
     |vaughanCoefficient U V q| ≤ Real.log (U * V + 1) := by
   by_cases hq0 : q = 0

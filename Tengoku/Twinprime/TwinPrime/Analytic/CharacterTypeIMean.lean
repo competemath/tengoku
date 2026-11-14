@@ -19,6 +19,9 @@ open Finset Classical
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=le.0h3v.s7.92c8708aec4c from=translated src=- shape=945dda05 vocab=e7c432ba
+-/
 theorem primitive_character_vaughanI1_maximal_mean_le (R U T : ℕ) :
     (∑ q ∈ Icc 2 R, (q : ℝ) / Nat.totient q *
       (∑ χ ∈ (univ : Finset (DirichletCharacter ℂ q)).filter (fun χ => χ.IsPrimitive),
@@ -44,6 +47,9 @@ theorem primitive_character_vaughanI1_maximal_mean_le (R U T : ℕ) :
       mul_le_mul_of_nonneg_left (sum_modulus_sqrt_log_le R) (by positivity)
     _ = _ := by ring
 
+/--
+@isnad1 id=le.0h4v.s7.19466835c76d from=translated src=- shape=f7da556a vocab=81b007cb
+-/
 theorem primitive_character_vaughanI2_maximal_mean_le (R U V T : ℕ) :
     (∑ q ∈ Icc 2 R, (q : ℝ) / Nat.totient q *
       (∑ χ ∈ (univ : Finset (DirichletCharacter ℂ q)).filter (fun χ => χ.IsPrimitive),
@@ -70,7 +76,9 @@ theorem primitive_character_vaughanI2_maximal_mean_le (R U V T : ℕ) :
       mul_le_mul_of_nonneg_left (sum_modulus_sqrt_log_le R) (by positivity)
     _ = _ := by ring
 
-/-- The low von Mangoldt term's common budget, averaged over primitive characters.-/
+/-- The low von Mangoldt term's common budget, averaged over primitive characters.
+@isnad1 id=le.0h2v.s7.6352962f98f1 from=translated src=- shape=0120bd8f vocab=d728c240
+-/
 theorem primitive_character_low_mean_le (R V : ℕ) :
     (∑ q ∈ Icc 2 R, (q : ℝ) / Nat.totient q *
       (∑ _χ ∈ (univ : Finset (DirichletCharacter ℂ q)).filter (fun χ => χ.IsPrimitive),
@@ -80,7 +88,9 @@ theorem primitive_character_low_mean_le (R V : ℕ) :
     ((V : ℝ) * Real.log V) (by positivity) (fun _ _ _ _ => le_rfl)
   simpa only [mul_comm, mul_left_comm, mul_assoc] using h
 
-/-- Separate the positive-modulus interval at one, including the empty range.-/
+/-- Separate the positive-modulus interval at one, including the empty range.
+@isnad1 id=le.1h2v.s6.0b468677cc8d from=translated src=- shape=68f1d7eb vocab=8a8f060c
+-/
 theorem sum_Icc_one_le_first_add_sum_Icc_two (R : ℕ) (f : ℕ → ℝ) (hf : 0 ≤ f 1) :
     (∑ q ∈ Icc 1 R, f q) ≤ f 1 + ∑ q ∈ Icc 2 R, f q := by
   by_cases hR : R = 0

@@ -18,6 +18,9 @@ open scoped ArithmeticFunction.Moebius
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=eq.5h4v.s7.8eace5762d44 from=translated src=- shape=1ebf6730 vocab=57ff29e8
+-/
 theorem moebiusLow_mul_primeBeta_mixed_smooth_rough (U W a b : ℕ)
     (hUW : U ≤ W) (ha : 0 < a) (hb : 0 < b)
     (hsmooth : ∀ p, Nat.Prime p → p ∣ a → p ≤ W)
@@ -37,7 +40,9 @@ theorem moebiusLow_mul_primeBeta_mixed_smooth_rough (U W a b : ℕ)
     (fun p hp hpd => hsmooth p hp (hpd.trans hquot))]
 
 /-- The Möbius cutoff stays U even when smoothness and the prime-beta
-cutoff use W. Neither factor is required to be squarefree.-/
+cutoff use W. Neither factor is required to be squarefree.
+@isnad1 id=eq.5h4v.s7.b631e6998d06 from=translated src=- shape=115b0b89 vocab=5ccc6392
+-/
 theorem primeVaughanBilinear_eq_primeMangoldtHigh_sub_of_mixed_smooth_rough
     (U W a b : ℕ) (hUW : U ≤ W) (ha : 0 < a) (hb : 0 < b)
     (hsmooth : ∀ p, Nat.Prime p → p ∣ a → p ≤ W)
@@ -52,6 +57,9 @@ theorem primeVaughanBilinear_eq_primeMangoldtHigh_sub_of_mixed_smooth_rough
     moebiusLow_mul_primeBeta_mixed_smooth_rough U W a b hUW ha hb hsmooth hrough] at hsum
   linarith
 
+/--
+@isnad1 id=eq.5h4v.s7.4bd36143e5df from=translated src=- shape=c9158eea vocab=b662db11
+-/
 theorem primeVaughanBilinear_eq_neg_mul_of_nontrivial_mixed_smooth_rough
     (U W a b : ℕ) (hUW : U ≤ W) (ha : 1 < a) (hb : 0 < b)
     (hsmooth : ∀ p, Nat.Prime p → p ∣ a → p ≤ W)
@@ -63,13 +71,18 @@ theorem primeVaughanBilinear_eq_neg_mul_of_nontrivial_mixed_smooth_rough
     primeMangoldtHigh_mul_smooth_eq_zero W a b ha hsmooth]
   ring
 
+/--
+@isnad1 id=eq.3h2v.s5.9edf0f38c504 from=translated src=- shape=dac4f0f2 vocab=51380f15
+-/
 theorem truncatedMoebiusSum_prime_of_cutoff_lt (U p : ℕ) (hU : 1 ≤ U)
     (hp : Nat.Prime p) (hUp : U < p) : truncatedMoebiusSum U p = 1 := by
   rw [truncatedMoebiusSum, hp.divisors, sum_filter]
   simp [hU, Nat.not_le.mpr hUp, hp.ne_one.symm]
 
 /-- A prime between the two cutoffs gives a negative prime-beta coefficient.
-In particular raising the beta cutoff does not replace m_U with m_W.-/
+In particular raising the beta cutoff does not replace m_U with m_W.
+@isnad1 id=eq.6h4v.s6.974ba68f3181 from=translated src=- shape=bbe6c237 vocab=1ec839ad
+-/
 theorem primeVaughanBilinear_eq_neg_primeBeta_of_middle_prime (U W p b : ℕ)
     (hU : 1 ≤ U) (hp : Nat.Prime p) (hUp : U < p) (hpW : p ≤ W)
     (hb : 0 < b) (hrough : ∀ q, Nat.Prime q → q ∣ b → W < q) :
@@ -82,6 +95,9 @@ theorem primeVaughanBilinear_eq_neg_primeBeta_of_middle_prime (U W p b : ℕ)
     truncatedMoebiusSum_prime_of_cutoff_lt U p hU hp hUp]
   ring
 
+/--
+@isnad1 id=le.6h4v.s6.0ae23ddf21f5 from=translated src=- shape=32aec757 vocab=0b2fa8ed
+-/
 theorem primeVaughanBilinear_nonpos_of_middle_prime (U W p b : ℕ)
     (hU : 1 ≤ U) (hp : Nat.Prime p) (hUp : U < p) (hpW : p ≤ W)
     (hb : 0 < b) (hrough : ∀ q, Nat.Prime q → q ∣ b → W < q) :

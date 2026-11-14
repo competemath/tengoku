@@ -18,6 +18,9 @@ namespace TwinPrime.Analytic
 def siegelValuePowerConstant (ε δ L : ℝ) : ℝ :=
   δ / (20 * L * residueConductorConstant ^ δ * (1 + 6 / ε) ^ 3)
 
+/--
+@isnad1 id=lt.3h3v.s5.b7be25cfcedf from=translated src=- shape=1b4cbc0d vocab=fa3e12ef
+-/
 theorem siegelValuePowerConstant_pos (ε δ L : ℝ)
     (hε : 0 < ε) (hδ : 0 < δ) (hL : 0 < L) :
     0 < siegelValuePowerConstant ε δ L := by
@@ -25,6 +28,9 @@ theorem siegelValuePowerConstant_pos (ε δ L : ℝ)
   have hA := residueConductorConstant_pos
   positivity
 
+/--
+@isnad1 id=le.3h3v.s7.43a9d5edf077 from=translated src=- shape=5f6a228d vocab=e0c65887
+-/
 theorem rpow_gap_mul_log_cube_le (ε δ Q : ℝ) (hε : 0 < ε)
     (hδε : δ ≤ ε / 80) (hQ : 1 ≤ Q) :
     Q ^ (40 * δ) * (1 + Real.log Q) ^ 3 ≤
@@ -47,7 +53,9 @@ theorem rpow_gap_mul_log_cube_le (ε δ Q : ℝ) (hε : 0 < ε)
     _ ≤ _ := mul_le_mul_of_nonneg_left
       (Real.rpow_le_rpow_of_exponent_le hQ (by linarith)) (by positivity)
 
-/-- The auxiliary lower bound dominates a fixed positive multiple of `Q^-ε`.-/
+/-- The auxiliary lower bound dominates a fixed positive multiple of `Q^-ε`.
+@isnad1 id=le.5h4v.s7.e826edc03f91 from=translated src=- shape=5e9fee3f vocab=f1bd8b6d
+-/
 theorem siegelValuePowerConstant_mul_rpow_le (ε δ L Q : ℝ)
     (hε : 0 < ε) (hδ : 0 < δ) (hL : 0 < L) (hδε : δ ≤ ε / 80) (hQ : 1 ≤ Q) :
     siegelValuePowerConstant ε δ L * Q ^ (-ε) ≤

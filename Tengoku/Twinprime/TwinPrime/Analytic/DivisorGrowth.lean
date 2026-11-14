@@ -18,6 +18,9 @@ open Finset
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=le.0h1v.s6.f6981bca8cce from=translated src=- shape=3ab7241c vocab=f96c6fce
+-/
 theorem succ_cube_le_eight_mul_two_pow (a : ℕ) : (a + 1) ^ 3 ≤ 8 * 2 ^ a := by
   induction a using Nat.strong_induction_on with
   | h a ih =>
@@ -34,6 +37,9 @@ theorem succ_cube_le_eight_mul_two_pow (a : ℕ) : (a + 1) ^ 3 ≤ 8 * 2 ^ a := 
         _ ≤ 8 * (8 * 2 ^ (a - 3)) := Nat.mul_le_mul_left 8 hprev
         _ = 8 * 2 ^ a := by nth_rw 2 [heq]; rw [pow_add]; norm_num; ring
 
+/--
+@isnad1 id=le.0h1v.s5.410df46afbf6 from=translated src=- shape=0c72263b vocab=94889561
+-/
 theorem succ_le_two_pow (a : ℕ) : a + 1 ≤ 2 ^ a := by
   induction a with
   | zero => norm_num
@@ -42,6 +48,9 @@ theorem succ_le_two_pow (a : ℕ) : a + 1 ≤ 2 ^ a := by
     have : 1 ≤ 2 ^ a := Nat.one_le_pow a 2 (by norm_num)
     omega
 
+/--
+@isnad1 id=le.1h2v.s6.3638dc69e61b from=translated src=- shape=fa3901f5 vocab=ba095b51
+-/
 theorem prime_exponent_cube_le (p a : ℕ) (hp : p.Prime) :
     (a + 1) ^ 3 ≤ (if p < 8 then 8 else 1) * p ^ a := by
   by_cases hsmall : p < 8
@@ -54,6 +63,9 @@ theorem prime_exponent_cube_le (p a : ℕ) (hp : p.Prime) :
       _ = 8 ^ a := by rw [← pow_mul, Nat.mul_comm a 3, pow_mul]; norm_num
       _ ≤ p ^ a := Nat.pow_le_pow_left (by omega) a
 
+/--
+@isnad1 id=le.0h1v.s5.995cac2a2f46 from=translated src=- shape=5d97cd9d vocab=617e8c74
+-/
 theorem card_divisors_cube_le (n : ℕ) : n.divisors.card ^ 3 ≤ 4096 * n := by
   by_cases hn : n = 0
   · subst n; simp
@@ -77,6 +89,9 @@ theorem card_divisors_cube_le (n : ℕ) : n.divisors.card ^ 3 ≤ 4096 * n := by
       rw [prod_mul_distrib, ← Nat.prod_primeFactors_pow_factorization hn]
     _ ≤ _ := Nat.mul_le_mul_right n hprod
 
+/--
+@isnad1 id=le.0h1v.s5.d85575753cce from=translated src=- shape=1e428657 vocab=157a02cd
+-/
 theorem card_divisors_le_sixteen_cuberoot (n : ℕ) :
     (n.divisors.card : ℝ) ≤ 16 * (n : ℝ) ^ (1 / 3 : ℝ) := by
   have hc : (n.divisors.card : ℝ) ^ 3 ≤ 4096 * (n : ℝ) := by

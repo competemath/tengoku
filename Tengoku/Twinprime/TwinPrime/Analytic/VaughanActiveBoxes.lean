@@ -24,14 +24,22 @@ def activeVaughanBoxes (U V T : ℕ) : Finset (ℕ × ℕ) :=
   ((range (dyadicNatDepth T)).product (range (dyadicNatDepth T))).filter fun p =>
     U < 2 ^ (p.1 + 1) ∧ V < 2 ^ (p.2 + 1) ∧ 2 ^ p.1 * 2 ^ p.2 ≤ T
 
+/--
+@isnad1 id=le.0h3v.s5.0b8a84e63f70 from=translated src=- shape=de1ccc5c vocab=f42ceefb
+-/
 theorem card_activeVaughanBoxes_le (U V T : ℕ) :
     (activeVaughanBoxes U V T).card ≤ (dyadicNatDepth T) ^ 2 := by
   exact (card_filter_le _ _).trans_eq (by simp [card_product, pow_two])
 
+/--
+@isnad1 id=eq.0h2v.s4.425e02482c03 from=translated src=- shape=1ccb9198 vocab=05cf7db1
+-/
 @[simp] theorem activeVaughanBoxes_zero (U V : ℕ) : activeVaughanBoxes U V 0 = ∅ := by
   simp [activeVaughanBoxes]
 
-/-- The full set of natural inequalities retained by active membership.-/
+/-- The full set of natural inequalities retained by active membership.
+@isnad1 id=iff.0h5v.s7.b9b98bf95cc3 from=translated src=- shape=0c96e0b4 vocab=d37fa0c7
+-/
 theorem mem_activeVaughanBoxes_iff (U V T k j : ℕ) :
     (k, j) ∈ activeVaughanBoxes U V T ↔
       k < dyadicNatDepth T ∧ j < dyadicNatDepth T ∧
@@ -39,7 +47,9 @@ theorem mem_activeVaughanBoxes_iff (U V T k j : ℕ) :
   simp only [activeVaughanBoxes, mem_filter, product_eq_sprod, mem_product, mem_range]
   tauto
 
-/-- An inactive cell vanishes for every character and every cutoff at most `T`.-/
+/-- An inactive cell vanishes for every character and every cutoff at most `T`.
+@isnad1 id=eq.2h8v.s7.c535fc8aa865 from=translated src=- shape=6be9eede vocab=d72f7795
+-/
 theorem vaughanBox_characterProductCutoffSum_eq_zero_of_inactive {q : ℕ}
     (χ : DirichletCharacter ℂ q) (U V T k j t : ℕ) (ht : t ≤ T)
     (hinactive : ¬ (U < 2 ^ (k + 1) ∧ V < 2 ^ (j + 1) ∧ 2 ^ k * 2 ^ j ≤ T)) :
@@ -61,7 +71,9 @@ theorem vaughanBox_characterProductCutoffSum_eq_zero_of_inactive {q : ℕ}
   have hpowj : 2 ^ (j + 1) = (2 : ℕ) ^ j + 2 ^ j := by rw [pow_succ]; omega
   exact (hinactive ⟨by omega, by omega, (Nat.mul_le_mul hmb.1 hnb.1).trans hmn⟩).elim
 
-/-- Inactive cells also have zero finite product-cutoff maximum.-/
+/-- Inactive cells also have zero finite product-cutoff maximum.
+@isnad1 id=eq.1h7v.s7.c5a7a987ab91 from=translated src=- shape=d592da5d vocab=e6d0b6af
+-/
 theorem vaughanBox_characterProductCutoffMax_eq_zero_of_inactive {q : ℕ}
     (χ : DirichletCharacter ℂ q) (U V T k j : ℕ)
     (hinactive : ¬ (U < 2 ^ (k + 1) ∧ V < 2 ^ (j + 1) ∧ 2 ^ k * 2 ^ j ≤ T)) :
@@ -75,7 +87,9 @@ theorem vaughanBox_characterProductCutoffMax_eq_zero_of_inactive {q : ℕ}
   rw [hmax, vaughanBox_characterProductCutoffSum_eq_zero_of_inactive
     χ U V T k j t (mem_Icc.mp ht).2 hinactive, norm_zero]
 
-/-- A discarded box from the depth-indexed family has zero cutoff sum.-/
+/-- A discarded box from the depth-indexed family has zero cutoff sum.
+@isnad1 id=eq.4h8v.s7.bf2501b96aed from=translated src=- shape=1c4b6f88 vocab=dd684d79
+-/
 theorem vaughanBox_characterProductCutoffSum_eq_zero_of_not_mem {q : ℕ}
     (χ : DirichletCharacter ℂ q) (U V T k j t : ℕ) (ht : t ≤ T)
     (hk : k < dyadicNatDepth T) (hj : j < dyadicNatDepth T)
@@ -86,7 +100,9 @@ theorem vaughanBox_characterProductCutoffSum_eq_zero_of_not_mem {q : ℕ}
   intro h
   exact hnot ((mem_activeVaughanBoxes_iff U V T k j).mpr ⟨hk, hj, h⟩)
 
-/-- A discarded box from the depth-indexed family has zero cutoff maximum.-/
+/-- A discarded box from the depth-indexed family has zero cutoff maximum.
+@isnad1 id=eq.3h7v.s6.50f687b1acf0 from=translated src=- shape=f76f4303 vocab=fadacceb
+-/
 theorem vaughanBox_characterProductCutoffMax_eq_zero_of_not_mem {q : ℕ}
     (χ : DirichletCharacter ℂ q) (U V T k j : ℕ)
     (hk : k < dyadicNatDepth T) (hj : j < dyadicNatDepth T)
@@ -98,7 +114,9 @@ theorem vaughanBox_characterProductCutoffMax_eq_zero_of_not_mem {q : ℕ}
   exact hnot ((mem_activeVaughanBoxes_iff U V T k j).mpr ⟨hk, hj, h⟩)
 
 /-- The real side bounds and natural depth bounds used by the box estimate.
-The factor `1/2` comes from using global power-of-two cells.-/
+The factor `1/2` comes from using global power-of-two cells.
+@isnad1 id=and.1h5v.s7.1fd78f5602fe from=translated src=- shape=00e2ecbb vocab=7da95158
+-/
 theorem activeVaughanBoxes_bounds (U V T k j : ℕ)
     (h : (k, j) ∈ activeVaughanBoxes U V T) :
     (U : ℝ) / 2 ≤ (2 : ℝ) ^ k ∧ (V : ℝ) / 2 ≤ (2 : ℝ) ^ j ∧
@@ -112,7 +130,9 @@ theorem activeVaughanBoxes_bounds (U V T k j : ℕ)
   exact_mod_cast hprod
 
 /-- The two depth factors of every active box are at most the square of
-the common dyadic depth.-/
+the common dyadic depth.
+@isnad1 id=le.1h5v.s6.5ce98a4cd93a from=translated src=- shape=7beb471f vocab=1acf19c5
+-/
 theorem activeVaughanBoxes_depth_product_le (U V T k j : ℕ)
     (h : (k, j) ∈ activeVaughanBoxes U V T) :
     (k + 1) * (j + 1) ≤ (dyadicNatDepth T) ^ 2 := by

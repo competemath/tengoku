@@ -19,7 +19,9 @@ namespace TwinPrime.Analytic
 open TwinPrime.Sieve
 
 /-- Every positive odd squarefree integer below the threshold divides its
-odd primorial.-/
+odd primorial.
+@isnad1 id=dvd.3h2v.s4.e2e0ea9c5e8a from=translated src=- shape=855766a0 vocab=16d4ab91
+-/
 theorem dvd_oddPrimorial_of_odd_squarefree_le (d z : ℕ)
     (hdodd : Odd d) (hdsq : Squarefree d) (hdz : d ≤ z) :
     d ∣ oddPrimorial z := by
@@ -38,7 +40,9 @@ theorem dvd_oddPrimorial_of_odd_squarefree_le (d z : ℕ)
   simpa only [Nat.prod_primeFactors_of_squarefree hdsq, oddPrimorial] using hprod
 
 /-- On its allowed divisors, the local Selberg term is exactly the product
-of `1/(p-2)` over the distinct prime factors.-/
+of `1/(p-2)` over the distinct prime factors.
+@isnad1 id=eq.2h4v.s6.055ea3cc20bb from=translated src=- shape=13fcfe83 vocab=cdf6c420
+-/
 theorem middlePrimeSieve_selbergTerms_eq (q X z d : ℕ) (hz : 1 ≤ z)
     (hd : d ∣ oddPrimorial z) :
     (middlePrimeSieve q X z hz).selbergTerms d =
@@ -66,7 +70,9 @@ def middlePrimeSelbergDenominator (z : ℕ) : ℝ :=
     ∏ p ∈ d.primeFactors, (1 : ℝ) / ((p : ℝ) - 2)
 
 /-- The Selberg cutoff `d²≤z²` selects precisely the odd squarefree
-integers in `[1,z]`, including the contribution one at `d=1`.-/
+integers in `[1,z]`, including the contribution one at `d=1`.
+@isnad1 id=eq.1h3v.s4.93a3db8ce43d from=translated src=- shape=9775eaa7 vocab=62d9aeb3
+-/
 theorem middlePrimeSieve_selbergBoundingSum_eq (q X z : ℕ) (hz : 1 ≤ z) :
     (middlePrimeSieve q X z hz).selbergBoundingSum =
       middlePrimeSelbergDenominator z := by
@@ -105,6 +111,9 @@ theorem middlePrimeSieve_selbergBoundingSum_eq (q X z : ℕ) (hz : 1 ≤ z) :
   exact middlePrimeSieve_selbergTerms_eq q X z d hz
     (dvd_oddPrimorial_of_odd_squarefree_le d z hdodd hdsq (mem_Icc.mp hdI).2)
 
+/--
+@isnad1 id=lt.1h1v.s4.3714256d6993 from=translated src=- shape=f8216502 vocab=32e52eec
+-/
 theorem middlePrimeSelbergDenominator_pos (z : ℕ) (hz : 1 ≤ z) :
     0 < middlePrimeSelbergDenominator z := by
   rw [← middlePrimeSieve_selbergBoundingSum_eq 1 0 z hz]

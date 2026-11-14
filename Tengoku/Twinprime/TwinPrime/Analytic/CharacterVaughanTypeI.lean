@@ -19,7 +19,9 @@ open scoped ArithmeticFunction.Moebius ArithmeticFunction.zeta
 namespace TwinPrime.Analytic
 
 /-- A finite convolution with its first factor supported at most `K`.
-Natural division retains the product cutoff exactly, including empty sums.-/
+Natural division retains the product cutoff exactly, including empty sums.
+@isnad1 id=eq.1h6v.s8.1434c62590f0 from=translated src=- shape=b4d5a717 vocab=121097e3
+-/
 theorem sum_character_convolution_eq_factor_sum {q : ℕ}
     (f g : ArithmeticFunction ℝ) (K t : ℕ) (χ : DirichletCharacter ℂ q)
     (hf : ∀ d, K < d → f d = 0) :
@@ -92,7 +94,9 @@ def characterVaughanI1 {q : ℕ} (U t : ℕ) (χ : DirichletCharacter ℂ q) : �
 def characterVaughanI2 {q : ℕ} (U V t : ℕ) (χ : DirichletCharacter ℂ q) : ℂ :=
   ∑ n ∈ Ioc 0 t, ((vaughanCoefficient U V * ζ) n : ℂ) * χ n
 
-/-- The exact logarithmically weighted first-factor formula.-/
+/-- The exact logarithmically weighted first-factor formula.
+@isnad1 id=eq.0h4v.s7.f3dd63b50cb1 from=translated src=- shape=034786d0 vocab=6073baf6
+-/
 theorem characterVaughanI1_eq_factor_sum {q : ℕ} (U t : ℕ)
     (χ : DirichletCharacter ℂ q) :
     characterVaughanI1 U t χ =
@@ -108,7 +112,9 @@ theorem characterVaughanI1_eq_factor_sum {q : ℕ} (U t : ℕ)
     ArithmeticFunction.log_apply, ArithmeticFunction.intCoe_apply]
 
 /-- The coefficient support is exactly bounded by `U*V`; the quotient keeps
-the original endpoint, even when an outer factor exceeds it.-/
+the original endpoint, even when an outer factor exceeds it.
+@isnad1 id=eq.0h5v.s7.702ccf491e16 from=translated src=- shape=aecc27a4 vocab=ef54ee85
+-/
 theorem characterVaughanI2_eq_factor_sum {q : ℕ} (U V t : ℕ)
     (χ : DirichletCharacter ℂ q) :
     characterVaughanI2 U V t χ =
@@ -125,7 +131,9 @@ theorem characterVaughanI2_eq_factor_sum {q : ℕ} (U V t : ℕ)
   have hr0 : r ≠ 0 := (mem_Ioc.mp hr).1.ne'
   simp [ArithmeticFunction.natCoe_apply, ArithmeticFunction.zeta_apply_ne hr0]
 
-/-- The full finite identity in terms of the named Type I and Type II sums.-/
+/-- The full finite identity in terms of the named Type I and Type II sums.
+@isnad1 id=eq.0h5v.s6.3cceafd3e67f from=translated src=- shape=4b05fc3a vocab=f6e69ab4
+-/
 theorem characterPsi_eq_vaughan_types {q : ℕ} (U V t : ℕ)
     (χ : DirichletCharacter ℂ q) :
     characterPsi t χ = characterVaughanI1 U t χ - characterVaughanI2 U V t χ +

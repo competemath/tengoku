@@ -19,6 +19,9 @@ open Finset Filter
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=iff.0h2v.s7.13c838872aed from=translated src=- shape=32b67134 vocab=b1d133df
+-/
 theorem primitiveCharacter_principal_iff {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) : χ.primitiveCharacter = 1 ↔ χ = 1 := by
   constructor
@@ -28,6 +31,9 @@ theorem primitiveCharacter_principal_iff {q : ℕ} [NeZero q]
     subst χ
     exact DirichletCharacter.primitiveCharacter_one
 
+/--
+@isnad1 id=le.0h3v.s6.d503a1ff84aa from=translated src=- shape=33e9187c vocab=75df6950
+-/
 theorem norm_centeredCharacterPsi_sub_primitive_le {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (t : ℕ) :
     ‖centeredCharacterPsi t χ - centeredCharacterPsi t χ.primitiveCharacter‖ ≤
@@ -40,6 +46,9 @@ theorem norm_centeredCharacterPsi_sub_primitive_le {q : ℕ} [NeZero q]
   rw [heq]
   exact norm_characterPsi_sub_primitive_le χ t
 
+/--
+@isnad1 id=le.0h3v.s5.c232c3a207a9 from=translated src=- shape=9ec0468c vocab=88a3f7d7
+-/
 theorem characterMaxError_le_primitive {q : ℕ} [NeZero q]
     (T : ℕ) (χ : DirichletCharacter ℂ q) :
     characterMaxError T χ ≤ characterMaxError T χ.primitiveCharacter + noncoprimeMangoldtMass T q := by
@@ -59,7 +68,9 @@ theorem characterMaxError_le_primitive {q : ℕ} [NeZero q]
         ((norm_centeredCharacterPsi_sub_primitive_le χ t).trans (noncoprimeMangoldtMass_mono q htT))
 
 /-- Every character still appears once at its original modulus; replacing it
-by its primitive character costs one copy of the excluded mass after averaging.-/
+by its primitive character costs one copy of the excluded mass after averaging.
+@isnad1 id=le.1h2v.s6.5e9c2e2cfd74 from=translated src=- shape=0c7f2c18 vocab=09d2b94a
+-/
 theorem progressionMaxError_le_primitiveCharacter_sum (T q : ℕ) (hq : 0 < q) :
     progressionMaxError T q ≤
       (∑ χ : DirichletCharacter ℂ q, characterMaxError T χ.primitiveCharacter) / Nat.totient q +
@@ -80,7 +91,9 @@ theorem progressionMaxError_le_primitiveCharacter_sum (T q : ℕ) (hq : 0 < q) :
       field_simp
 
 /-- A finite reduction of the exact progression maximum to primitive
-character errors, with a completely explicit elementary replacement cost.-/
+character errors, with a completely explicit elementary replacement cost.
+@isnad1 id=le.1h2v.s7.ae4c44b1c18e from=translated src=- shape=5d9ac17e vocab=b4c5f0c4
+-/
 theorem sum_progressionMaxError_le_primitiveCharacter_sum (T Q : ℕ) (hT : 1 ≤ T) :
     (∑ q ∈ Icc 1 Q, progressionMaxError T q) ≤
       (∑ q ∈ Icc 1 Q,
@@ -103,7 +116,9 @@ theorem sum_progressionMaxError_le_primitiveCharacter_sum (T Q : ℕ) (hT : 1 �
       exact sum_noncoprimeMangoldtMass_le_uniform T Q hT (fun _ => T) (fun _ _ => le_rfl)
 
 /-- At the exact BV endpoint and a suitable logarithmic modulus loss, the
-primitive replacement error is absorbed into the requested error scale.-/
+primitive replacement error is absorbed into the requested error scale.
+@isnad1 id=eventual.1h1v.s8.5033ed1d25d4 from=translated src=- shape=28d76b5a vocab=eb303548
+-/
 theorem eventually_sum_progressionMaxError_le_primitiveCharacter_sum
     (A : ℝ) (hA : 0 < A) :
     ∀ᶠ X : ℕ in atTop, ∀ Q : ℕ,

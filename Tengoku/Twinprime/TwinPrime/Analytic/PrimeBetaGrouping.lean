@@ -17,12 +17,17 @@ open scoped ArithmeticFunction.Moebius
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=eq.1h2v.s5.a4fe87b71482 from=translated src=- shape=d3903c8c vocab=ec95c1e4
+-/
 theorem primeVaughanBeta_eq_zero_of_le (V r : ℕ) (hr : r ≤ V) :
     primeVaughanBeta V r = 0 :=
   le_antisymm ((primeVaughanBeta_le V r).trans_eq (vaughanBeta_eq_zero_of_le V r hr))
     (primeVaughanBeta_nonneg V r)
 
-/-- Generic exact grouping of the complete positive-factor domain.-/
+/-- Generic exact grouping of the complete positive-factor domain.
+@isnad1 id=eq.0h5v.s7.a1fd5345642a from=translated src=- shape=156fac61 vocab=465aa1d6
+-/
 theorem sum_bilinearPairs_eq_sum_divisorsAntidiagonal {A : Type*} [AddCommMonoid A]
     (U V X : ℕ) (f : ℕ × ℕ → A) :
     (∑ dr ∈ bilinearPairs U V X, f dr) =
@@ -69,7 +74,9 @@ theorem sum_bilinearPairs_eq_sum_divisorsAntidiagonal {A : Type*} [AddCommMonoid
     rfl
 
 /-- The prime-beta factor sum is exactly its grouped convolution sum.
-No positivity hypothesis on either cutoff or the interval endpoint is needed.-/
+No positivity hypothesis on either cutoff or the interval endpoint is needed.
+@isnad1 id=eq.0h3v.s6.38d059776f97 from=translated src=- shape=4b327de0 vocab=33183f92
+-/
 theorem bilinearPrimeBeta_eq_grouped (U V X : ℕ) :
     bilinearPrimeBeta U V X = ∑ n ∈ Ioc X (2 * X),
       vonMangoldt (n + 2) * (moebiusHigh U * primeVaughanBeta V) n := by

@@ -26,31 +26,52 @@ def reciprocalTotient : ArithmeticFunction ℝ :=
 def totientReciprocalCorrection : ArithmeticFunction ℝ :=
   normalizedMoebius * reciprocalTotient
 
+/--
+@isnad1 id=eq.0h1v.s5.b16b61733fb9 from=translated src=- shape=cd5fb02e vocab=d9465ef8
+-/
 @[simp] theorem reciprocalTotient_apply (n : ℕ) :
     reciprocalTotient n = 1 / (Nat.totient n : ℝ) := rfl
 
+/--
+@isnad1 id=ismultip.0h0v.s2.7bf258a5f77d from=translated src=- shape=25b03439 vocab=ce005b4e
+-/
 theorem isMultiplicative_normalizedMoebius : normalizedMoebius.IsMultiplicative := by
   refine ⟨by simp, fun {m n} hmn => ?_⟩
   simp only [normalizedMoebius_apply,
     isMultiplicative_moebius.map_mul_of_coprime hmn, Int.cast_mul, Nat.cast_mul]
   ring
 
+/--
+@isnad1 id=ismultip.0h0v.s2.3831fbdab44a from=translated src=- shape=25b03439 vocab=4b6852d8
+-/
 theorem isMultiplicative_reciprocalTotient : reciprocalTotient.IsMultiplicative := by
   refine ⟨by simp, fun {m n} hmn => ?_⟩
   simp [Nat.totient_mul hmn, Nat.cast_mul, div_eq_mul_inv, mul_comm]
 
+/--
+@isnad1 id=ismultip.0h0v.s2.9d3174a0a1a2 from=translated src=- shape=25b03439 vocab=bb131010
+-/
 theorem isMultiplicative_totientReciprocalCorrection :
     totientReciprocalCorrection.IsMultiplicative :=
   isMultiplicative_normalizedMoebius.mul isMultiplicative_reciprocalTotient
 
+/--
+@isnad1 id=eq.0h0v.s4.65af691f155c from=translated src=- shape=ff26b9d8 vocab=b0d847d2
+-/
 @[simp] theorem totientReciprocalCorrection_one : totientReciprocalCorrection 1 = 1 :=
   isMultiplicative_totientReciprocalCorrection.map_one
 
+/--
+@isnad1 id=eq.0h0v.s4.f3d9e256f37f from=translated src=- shape=26571668 vocab=fbefdb29
+-/
 theorem reciprocalTotient_eq_convolution :
     reciprocalTotient = totientReciprocalCorrection * reciprocalNat := by
   rw [totientReciprocalCorrection, mul_comm normalizedMoebius, mul_assoc,
     mul_comm normalizedMoebius, reciprocalNat_mul_normalizedMoebius, mul_one]
 
+/--
+@isnad1 id=eq.1h2v.s7.43be49b987e4 from=translated src=- shape=28283fda vocab=6fe77b3a
+-/
 theorem totientReciprocalCorrection_prime_pow_succ (p k : ℕ) (hp : p.Prime) :
     totientReciprocalCorrection (p ^ (k + 1)) =
       reciprocalTotient (p ^ (k + 1)) - reciprocalTotient (p ^ k) / p := by
@@ -71,6 +92,9 @@ theorem totientReciprocalCorrection_prime_pow_succ (p k : ℕ) (hp : p.Prime) :
   rw [pow_succ, Nat.mul_div_cancel _ hp.pos]
   ring
 
+/--
+@isnad1 id=eq.1h1v.s5.9ff7ce3feb62 from=translated src=- shape=28af7a8e vocab=27e29402
+-/
 theorem totientReciprocalCorrection_prime (p : ℕ) (hp : p.Prime) :
     totientReciprocalCorrection p = 1 / ((p : ℝ) * ((p : ℝ) - 1)) := by
   have h := totientReciprocalCorrection_prime_pow_succ p 0 hp
@@ -85,6 +109,9 @@ theorem totientReciprocalCorrection_prime (p : ℕ) (hp : p.Prime) :
   field_simp
   ring
 
+/--
+@isnad1 id=eq.1h2v.s5.3af20e3b193f from=translated src=- shape=815f9e33 vocab=dc268484
+-/
 theorem totientReciprocalCorrection_prime_pow_succ_succ (p k : ℕ) (hp : p.Prime) :
     totientReciprocalCorrection (p ^ (k + 2)) = 0 := by
   rw [show k + 2 = (k + 1) + 1 by omega,
@@ -99,6 +126,9 @@ theorem totientReciprocalCorrection_prime_pow_succ_succ (p k : ℕ) (hp : p.Prim
   field_simp
   ring
 
+/--
+@isnad1 id=hassum.1h1v.s6.22298dda2b24 from=translated src=- shape=bc13781c vocab=24125a0c
+-/
 theorem hasSum_norm_totientReciprocalCorrection_prime_pow (p : ℕ) (hp : p.Prime) :
     HasSum (fun k : ℕ => ‖totientReciprocalCorrection (p ^ k)‖)
       (1 + 1 / ((p : ℝ) * ((p : ℝ) - 1))) := by
@@ -112,6 +142,9 @@ theorem hasSum_norm_totientReciprocalCorrection_prime_pow (p : ℕ) (hp : p.Prim
     norm_one, zero_add, pow_one, totientReciprocalCorrection_prime p hp,
     Real.norm_of_nonneg (by positivity : 0 ≤ 1 / ((p : ℝ) * ((p : ℝ) - 1)))] using h
 
+/--
+@isnad1 id=summable.0h0v.s4.9b831509b628 from=translated src=- shape=b957a2d0 vocab=2db41444
+-/
 theorem summable_norm_totientReciprocalCorrection :
     Summable (fun n : ℕ => ‖totientReciprocalCorrection n‖) := by
   have hg : Summable (fun n : ℕ => 2 / (n : ℝ) ^ 2) := by
@@ -132,16 +165,24 @@ theorem summable_norm_totientReciprocalCorrection :
 /-- A finite positive constant controlling all reciprocal totient sums.-/
 def totientReciprocalConstant : ℝ := ∑' n : ℕ, ‖totientReciprocalCorrection n‖
 
+/--
+@isnad1 id=le.0h0v.s3.b76c77bf0cc1 from=translated src=- shape=ff3a10fc vocab=99a0794d
+-/
 theorem totientReciprocalConstant_nonneg : 0 ≤ totientReciprocalConstant :=
   tsum_nonneg fun _ => norm_nonneg _
 
+/--
+@isnad1 id=le.0h0v.s3.4260269a0f8d from=translated src=- shape=ff3a10fc vocab=99a0794d
+-/
 theorem one_le_totientReciprocalConstant : 1 ≤ totientReciprocalConstant := by
   have h := summable_norm_totientReciprocalCorrection.sum_le_tsum {1}
     (fun n _ => norm_nonneg (totientReciprocalCorrection n))
   simpa only [sum_singleton, totientReciprocalCorrection_one, norm_one,
     totientReciprocalConstant] using h
 
-/-- The reciprocal totient sum is a harmonic convolution, with integer cutoffs.-/
+/-- The reciprocal totient sum is a harmonic convolution, with integer cutoffs.
+@isnad1 id=eq.0h1v.s6.c5d620af7fd8 from=translated src=- shape=70afcb85 vocab=24371a9c
+-/
 theorem sum_reciprocalTotient_eq_harmonic_convolution (N : ℕ) :
     (∑ n ∈ Ioc 0 N, (1 : ℝ) / Nat.totient n) =
       ∑ d ∈ Ioc 0 N, totientReciprocalCorrection d * (harmonic (N / d) : ℝ) := by
@@ -149,7 +190,9 @@ theorem sum_reciprocalTotient_eq_harmonic_convolution (N : ℕ) :
   rw [reciprocalTotient_eq_convolution, sum_Ioc_mul_eq_sum_sum]
   simp only [reciprocalNat_apply, sum_one_div_Ioc_eq_harmonic]
 
-/-- The elementary logarithmic bound needed for the conductor multiplicity.-/
+/-- The elementary logarithmic bound needed for the conductor multiplicity.
+@isnad1 id=le.0h1v.s6.214a96e7c362 from=translated src=- shape=0843cc49 vocab=030cadd9
+-/
 theorem sum_reciprocalTotient_le_log (N : ℕ) :
     (∑ n ∈ Ioc 0 N, (1 : ℝ) / Nat.totient n) ≤
       totientReciprocalConstant * (1 + Real.log N) := by
@@ -182,7 +225,9 @@ theorem sum_reciprocalTotient_le_log (N : ℕ) :
       (summable_norm_totientReciprocalCorrection.sum_le_tsum _ (fun _ _ => norm_nonneg _)) hlog0
 
 /-- Multiples of a fixed conductor have a reciprocal-totient weight bounded
-by the same absolute constant, with the necessary factor `1/φ(r)`.-/
+by the same absolute constant, with the necessary factor `1/φ(r)`.
+@isnad1 id=le.1h2v.s6.c017165a1a97 from=translated src=- shape=edf63509 vocab=4b2939b8
+-/
 theorem sum_reciprocalTotient_multiples_le_log (r Q : ℕ) (hr : 0 < r) :
     (∑ k ∈ Ioc 0 (Q / r), (1 : ℝ) / Nat.totient (r * k)) ≤
       totientReciprocalConstant * (1 + Real.log Q) / Nat.totient r := by

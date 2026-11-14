@@ -20,7 +20,9 @@ namespace TwinPrime.Analytic
 
 /-- Exact Dirichlet hyperbola decomposition at arbitrary integer cutoffs.
 The two inequalities say that their rectangle lies inside the hyperbola and
-that their two strips cover it. Zero cutoffs are allowed.-/
+that their two strips cover it. Zero cutoffs are allowed.
+@isnad1 id=eq.2h6v.s9.b274c0debee9 from=translated src=- shape=6951bfa9 vocab=2bafc4d2
+-/
 theorem sum_Ioc_convolution_hyperbola {R : Type*} [CommRing R]
     (f g : ArithmeticFunction R) (X Y Z : ℕ)
     (hlower : Y * Z ≤ X) (hupper : X < (Y + 1) * (Z + 1)) :
@@ -131,12 +133,17 @@ theorem sum_Ioc_convolution_hyperbola {R : Type*} [CommRing R]
 def arithmeticSummatory (f : ArithmeticFunction ℝ) (x : ℝ) : ℝ :=
   ∑ n ∈ Ioc 0 ⌊x⌋₊, f n
 
+/--
+@isnad1 id=eq.0h2v.s5.e6602319e813 from=translated src=- shape=a17e8e2e vocab=3856fa11
+-/
 @[simp] theorem arithmeticSummatory_nat (f : ArithmeticFunction ℝ) (N : ℕ) :
     arithmeticSummatory f (N : ℝ) = ∑ n ∈ Ioc 0 N, f n := by
   simp [arithmeticSummatory]
 
 /-- The real Dirichlet hyperbola identity, keeping each quotient real inside
-the summatory function.-/
+the summatory function.
+@isnad1 id=eq.4h5v.s7.fe158e020591 from=translated src=- shape=ab150183 vocab=24674316
+-/
 theorem arithmeticSummatory_convolution_hyperbola (f g : ArithmeticFunction ℝ)
     (x y z : ℝ) (hx : 1 ≤ x) (hy : 1 ≤ y) (hz : 1 ≤ z) (hyz : y * z = x) :
     arithmeticSummatory (f * g) x =

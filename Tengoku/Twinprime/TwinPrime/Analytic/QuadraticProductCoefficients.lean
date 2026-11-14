@@ -25,16 +25,25 @@ def quadraticProductCoefficients {Q : ℕ} (χ₁ χ₂ : DirichletCharacter ℂ
   .zeta * toArithmeticFunction (χ₁ ·) * toArithmeticFunction (χ₂ ·) *
     toArithmeticFunction ((χ₁ * χ₂) ·)
 
+/--
+@isnad1 id=ismultip.0h3v.s5.d764125a1f5b from=translated src=- shape=bd7f30ff vocab=4f001a3d
+-/
 theorem quadraticProductCoefficients_isMultiplicative {Q : ℕ}
     (χ₁ χ₂ : DirichletCharacter ℂ Q) :
     (quadraticProductCoefficients χ₁ χ₂).IsMultiplicative :=
   ((χ₁.isMultiplicative_zetaMul.mul χ₂.isMultiplicative_toArithmeticFunction).mul
     (χ₁ * χ₂).isMultiplicative_toArithmeticFunction)
 
+/--
+@isnad1 id=eq.0h3v.s5.7aaa9a66b439 from=translated src=- shape=756fba0b vocab=575c4b5f
+-/
 @[simp] theorem quadraticProductCoefficients_one {Q : ℕ}
     (χ₁ χ₂ : DirichletCharacter ℂ Q) : quadraticProductCoefficients χ₁ χ₂ 1 = 1 :=
   (quadraticProductCoefficients_isMultiplicative χ₁ χ₂).map_one
 
+/--
+@isnad1 id=eq.0h3v.s5.5c855f2e2aad from=translated src=- shape=bc651f2d vocab=d4e90ed4
+-/
 theorem quadraticProductCoefficients_comm {Q : ℕ}
     (χ₁ χ₂ : DirichletCharacter ℂ Q) :
     quadraticProductCoefficients χ₁ χ₂ = quadraticProductCoefficients χ₂ χ₁ := by
@@ -42,6 +51,9 @@ theorem quadraticProductCoefficients_comm {Q : ℕ}
   rw [show χ₂ * χ₁ = χ₁ * χ₂ from mul_comm _ _]
   ac_rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.d5d52a2e8e8a from=translated src=- shape=c3888546 vocab=bde59374
+-/
 theorem quadraticProductCoefficients_eq_paired {Q : ℕ}
     (χ₁ χ₂ : DirichletCharacter ℂ Q) :
     quadraticProductCoefficients χ₁ χ₂ = χ₁.zetaMul *
@@ -50,7 +62,9 @@ theorem quadraticProductCoefficients_eq_paired {Q : ℕ}
   exact mul_assoc _ _ _
 
 /-- An exact finite convolution identity: the other two character factors
-are a pointwise twist of the first character's zeta convolution.-/
+are a pointwise twist of the first character's zeta convolution.
+@isnad1 id=eq.0h4v.s8.fabfbe0e1597 from=translated src=- shape=1bd939a3 vocab=e8bf7b2a
+-/
 theorem character_pair_convolution_eq_twisted_zetaMul {Q : ℕ}
     (χ₁ χ₂ : DirichletCharacter ℂ Q) (n : ℕ) :
     (toArithmeticFunction (χ₂ ·) * toArithmeticFunction ((χ₁ * χ₂) ·)) n =
@@ -68,7 +82,9 @@ theorem character_pair_convolution_eq_twisted_zetaMul {Q : ℕ}
   ring
 
 /-- Nonnegative local factors give a nonnegative Dirichlet convolution at
-every power of the same prime.-/
+every power of the same prime.
+@isnad1 id=le.3h4v.s7.feec837596c3 from=translated src=- shape=b354370b vocab=211b70ba
+-/
 theorem arithmeticFunction_mul_prime_pow_nonneg (f g : ArithmeticFunction ℂ)
     {p : ℕ} (hp : p.Prime) (hf : ∀ k, 0 ≤ f (p ^ k)) (hg : ∀ k, 0 ≤ g (p ^ k))
     (k : ℕ) : 0 ≤ (f * g) (p ^ k) := by
@@ -83,7 +99,9 @@ theorem arithmeticFunction_mul_prime_pow_nonneg (f g : ArithmeticFunction ℂ)
   exact mul_nonneg (hf i) (hg j)
 
 /-- The last convolution includes the endpoint divisor with complementary
-factor one; all other local terms are nonnegative.-/
+factor one; all other local terms are nonnegative.
+@isnad1 id=le.4h4v.s7.70cd248aaa94 from=translated src=- shape=2790e33c vocab=211b70ba
+-/
 theorem arithmeticFunction_le_mul_prime_pow (f g : ArithmeticFunction ℂ)
     {p : ℕ} (hp : p.Prime) (hf : ∀ k, 0 ≤ f (p ^ k)) (hg : ∀ k, 0 ≤ g (p ^ k))
     (hg1 : g 1 = 1) (k : ℕ) : f (p ^ k) ≤ (f * g) (p ^ k) := by
@@ -102,6 +120,9 @@ theorem arithmeticFunction_le_mul_prime_pow (f g : ArithmeticFunction ℂ)
     · exact Nat.mem_divisorsAntidiagonal.mpr ⟨mul_one _, pow_ne_zero _ hp.ne_zero⟩
   simpa only [hg1, mul_one] using hterm
 
+/--
+@isnad1 id=le.3h5v.s8.2fb5382234af from=translated src=- shape=3e16d40f vocab=85190902
+-/
 theorem character_pair_prime_pow_nonneg_of_nonneg {Q : ℕ}
     (χ₁ χ₂ : DirichletCharacter ℂ Q) (hχ₁ : χ₁ ^ 2 = 1)
     {p : ℕ} (hp : p.Prime) (hχ₂p : 0 ≤ χ₂ p) (k : ℕ) :

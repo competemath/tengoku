@@ -19,12 +19,17 @@ open scoped Topology ArithmeticFunction.Moebius
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=eq.0h1v.s5.c8a2f41f3fcb from=translated src=- shape=06eee78b vocab=12a81a56
+-/
 theorem sum_reciprocalNat_Ioc (N : ℕ) :
     (∑ n ∈ Ioc 0 N, reciprocalNat n) = (harmonic N : ℝ) := by
   have hI : Ioc 0 N = Icc 1 N := by ext n; simp only [mem_Ioc, mem_Icc]; omega
   simp [hI, harmonic_eq_sum_Icc, one_div]
 
-/-- The finite identity which fixes the boundary constant at one.-/
+/-- The finite identity which fixes the boundary constant at one.
+@isnad1 id=eq.1h1v.s6.b226aa3db95c from=translated src=- shape=4f478e24 vocab=72b8c2c1
+-/
 theorem normalizedMoebius_harmonic_sum (X : ℕ) (hX : 1 ≤ X) :
     (∑ d ∈ Ioc 0 X, normalizedMoebius d * (harmonic (X / d) : ℝ)) = 1 := by
   have h := sum_Ioc_mul_eq_sum_sum normalizedMoebius reciprocalNat X
@@ -55,7 +60,9 @@ private theorem quotient_bounds (X d : ℕ) (hd : 0 < d) :
     have he := Nat.mod_add_div X d
     exact_mod_cast (show X < (X / d + 1) * d by nlinarith)
 
-/-- Uniform harmonic approximation, retaining the real quotient in the log.-/
+/-- Uniform harmonic approximation, retaining the real quotient in the log.
+@isnad1 id=le.2h2v.s5.8b845f597fc4 from=translated src=- shape=baafb8f2 vocab=ac2c3c0d
+-/
 theorem abs_harmonicRemainder_le (X d : ℕ) (hd : 1 ≤ d) (hdX : d ≤ X) :
     |harmonicRemainder X d| ≤ 2 * d / X := by
   let q := X / d
@@ -95,7 +102,9 @@ theorem abs_harmonicRemainder_le (X d : ℕ) (hd : 1 ≤ d) (hdX : d ≤ X) :
   nlinarith
 
 /-- Both harmonic and logarithmic pieces decrease with the divisor variable;
-their separate variations telescope.-/
+their separate variations telescope.
+@isnad1 id=le.2h2v.s6.c8dc1124f7ac from=translated src=- shape=34fe3eb3 vocab=9a9b9b13
+-/
 theorem harmonicRemainder_variation_le (X a : ℕ) (ha : 1 ≤ a) (haX : a ≤ X) :
     (∑ t ∈ Ico a X, |harmonicRemainder X (t + 1) - harmonicRemainder X t|) ≤
       2 * Real.log X := by
@@ -144,7 +153,9 @@ theorem harmonicRemainder_variation_le (X a : ℕ) (ha : 1 ≤ a) (haX : a ≤ X
       linarith
 
 /-- Exact decomposition of the normalized convolution into smoothing and its
-harmonic remainder.-/
+harmonic remainder.
+@isnad1 id=eq.1h1v.s6.7850a0835a17 from=translated src=- shape=de33d841 vocab=55323ac4
+-/
 theorem smoothedMoebiusSum_add_harmonicRemainder (X : ℕ) (hX : 1 ≤ X) :
     smoothedMoebiusSum X + Real.eulerMascheroniConstant * normalizedMoebiusSum X +
       (∑ d ∈ Ioc 0 X, normalizedMoebius d * harmonicRemainder X d) = 1 := by
@@ -160,7 +171,9 @@ def moebiusHarmonicError (X : ℕ) : ℝ :=
   ∑ d ∈ Ioc 0 X, normalizedMoebius d * harmonicRemainder X d
 
 /-- A finite split into a short absolutely bounded head and an Abel-controlled
-tail. Only ordinary Mertens sums on the displayed interval are used.-/
+tail. Only ordinary Mertens sums on the displayed interval are used.
+@isnad1 id=le.4h3v.s8.38179dcafa5c from=translated src=- shape=3820a517 vocab=f5e20710
+-/
 theorem abs_moebiusHarmonicError_le (X a : ℕ) (ha : 2 ≤ a) (haX : a ≤ X)
     (K : ℝ) (hK : 0 ≤ K)
     (hM : ∀ t ∈ Icc a X, |mertensSum t| ≤ K * t / (Real.log t) ^ 6) :
@@ -225,7 +238,9 @@ theorem abs_moebiusHarmonicError_le (X a : ℕ) (ha : 2 ≤ a) (haX : a ≤ X)
   exact (abs_add_le _ _).trans (add_le_add hhead htail)
 
 /-- The harmonic remainder tends to zero under ordinary quantitative Mertens
-cancellation. The cutoff is only an auxiliary elementary fifth-root split.-/
+cancellation. The cutoff is only an auxiliary elementary fifth-root split.
+@isnad1 id=tendsto.2h1v.s6.c14fcccd0a31 from=translated src=- shape=d1ba767f vocab=9f3b2085
+-/
 theorem tendsto_moebiusHarmonicError_of_mertens_log_six (K : ℝ) (hK : 0 ≤ K)
     (hM : ∀ᶠ t : ℕ in atTop, |mertensSum t| ≤ K * t / (Real.log t) ^ 6) :
     Tendsto moebiusHarmonicError atTop (𝓝 0) := by
@@ -294,7 +309,9 @@ theorem tendsto_moebiusHarmonicError_of_mertens_log_six (K : ℝ) (hK : 0 ≤ K)
     exact hfinite.trans (add_le_add hhead htail)
 
 /-- The finite convolution and the harmonic error identify the integer
-smoothed boundary constant.-/
+smoothed boundary constant.
+@isnad1 id=tendsto.3h1v.s6.cf14bd7ba790 from=translated src=- shape=5ce15de5 vocab=49445e48
+-/
 theorem tendsto_smoothedMoebiusSum_nat_of_mertens_and_zero (K : ℝ) (hK : 0 ≤ K)
     (hM : ∀ᶠ t : ℕ in atTop, |mertensSum t| ≤ K * t / (Real.log t) ^ 6)
     (hzero : Tendsto normalizedMoebiusSum atTop (𝓝 0)) :
@@ -312,7 +329,9 @@ theorem tendsto_smoothedMoebiusSum_nat_of_mertens_and_zero (K : ℝ) (hK : 0 ≤
   linarith
 
 /-- The ordinary logarithmic Möbius moment has constant `-1`; that constant
-is proved from the convolution and is not an independent hypothesis.-/
+is proved from the convolution and is not an independent hypothesis.
+@isnad1 id=tendsto.3h1v.s6.f3e05d6ff08d from=translated src=- shape=b3700092 vocab=508c5626
+-/
 theorem tendsto_moebiusLogMoment_of_mertens_and_zero (K : ℝ) (hK : 0 ≤ K)
     (hM : ∀ᶠ t : ℕ in atTop, |mertensSum t| ≤ K * t / (Real.log t) ^ 6)
     (hzero : Tendsto normalizedMoebiusSum atTop (𝓝 0)) :
@@ -331,7 +350,9 @@ theorem tendsto_moebiusLogMoment_of_mertens_and_zero (K : ℝ) (hK : 0 ≤ K)
   linarith
 
 /-- The real-endpoint smoothing limit, derived from quantitative ordinary
-Mertens cancellation and the reciprocal limit zero, with no moment assumption.-/
+Mertens cancellation and the reciprocal limit zero, with no moment assumption.
+@isnad1 id=tendsto.3h1v.s6.39d9543b8645 from=translated src=- shape=7c330739 vocab=49445e48
+-/
 theorem tendsto_smoothedMoebiusSum_of_mertens_and_zero (K : ℝ) (hK : 0 ≤ K)
     (hM : ∀ᶠ t : ℕ in atTop, |mertensSum t| ≤ K * t / (Real.log t) ^ 6)
     (hzero : Tendsto normalizedMoebiusSum atTop (𝓝 0)) :
@@ -340,7 +361,9 @@ theorem tendsto_smoothedMoebiusSum_of_mertens_and_zero (K : ℝ) (hK : 0 ≤ K)
     (tendsto_moebiusLogMoment_of_mertens_and_zero K hK hM hzero)
 
 /-- Quantitative ordinary Mertens cancellation alone supplies the moment
-constant, with the reciprocal normalization discharged by the hyperbola lemma.-/
+constant, with the reciprocal normalization discharged by the hyperbola lemma.
+@isnad1 id=tendsto.2h1v.s6.855136b9bd26 from=translated src=- shape=289d149e vocab=79030027
+-/
 theorem tendsto_moebiusLogMoment_of_mertens_log_six (K : ℝ) (hK : 0 ≤ K)
     (hM : ∀ᶠ t : ℕ in atTop, |mertensSum t| ≤ K * t / (Real.log t) ^ 6) :
     Tendsto moebiusLogMoment atTop (𝓝 (-1)) :=
@@ -348,7 +371,9 @@ theorem tendsto_moebiusLogMoment_of_mertens_log_six (K : ℝ) (hK : 0 ≤ K)
     (tendsto_normalizedMoebiusSum_of_mertens_log_six K hK hM)
 
 /-- The classical smoothed normalization follows from the ordinary quantitative
-Mertens hypothesis; no limit constant is left as an additional premise.-/
+Mertens hypothesis; no limit constant is left as an additional premise.
+@isnad1 id=tendsto.2h1v.s6.f2c0d099a495 from=translated src=- shape=c087f0d9 vocab=a8cd1ad6
+-/
 theorem tendsto_smoothedMoebiusSum_of_mertens_log_six (K : ℝ) (hK : 0 ≤ K)
     (hM : ∀ᶠ t : ℕ in atTop, |mertensSum t| ≤ K * t / (Real.log t) ^ 6) :
     Tendsto smoothedMoebiusSum atTop (𝓝 1) :=

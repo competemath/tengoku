@@ -26,10 +26,16 @@ namespace TwinPrime.Sieve
 def powOmega (c : ℝ) : ArithmeticFunction ℝ :=
   ⟨fun d => if d = 0 then 0 else c ^ (ω d), by simp⟩
 
+/--
+@isnad1 id=eq.1h2v.s5.b9986ab265e9 from=translated src=- shape=84340356 vocab=ecc4a2ed
+-/
 theorem powOmega_apply {c : ℝ} {d : ℕ} (hd : d ≠ 0) : powOmega c d = c ^ (ω d) := by
   show (if d = 0 then (0 : ℝ) else c ^ (ω d)) = _
   rw [ite_eq_right hd]
 
+/--
+@isnad1 id=ismultip.0h1v.s2.920abf9e0a4d from=translated src=- shape=6da4ece3 vocab=1b15ce01
+-/
 theorem powOmega_isMultiplicative (c : ℝ) : (powOmega c).IsMultiplicative := by
   refine ⟨by rw [powOmega_apply one_ne_zero, cardDistinctFactors_one, pow_zero], ?_⟩
   intro m n hmn
@@ -40,7 +46,9 @@ theorem powOmega_isMultiplicative (c : ℝ) : (powOmega c).IsMultiplicative := b
   rw [powOmega_apply (mul_ne_zero hm hn), powOmega_apply hm, powOmega_apply hn,
     cardDistinctFactors_mul hmn, pow_add]
 
-/-- For multiplicative `h` and squarefree `P`: `∑_{d ∣ P} h d = ∏_{p ∣ P} (1 + h p)`.-/
+/-- For multiplicative `h` and squarefree `P`: `∑_{d ∣ P} h d = ∏_{p ∣ P} (1 + h p)`.
+@isnad1 id=eq.2h2v.s6.b02528228865 from=translated src=- shape=1ca94107 vocab=ac8e047b
+-/
 theorem sum_divisors_eq_prod_one_add (h : ArithmeticFunction ℝ) (hh : h.IsMultiplicative)
     {P : ℕ} (hP : Squarefree P) :
     ∑ d ∈ P.divisors, h d = ∏ p ∈ P.primeFactors, (1 + h p) := by
@@ -65,7 +73,9 @@ theorem sum_divisors_eq_prod_one_add (h : ArithmeticFunction ℝ) (hh : h.IsMult
   push_cast
   ring
 
-/-- `∏_{i ∈ s} (1 + a i) ≤ exp (∑_{i ∈ s} a i)` for `a ≥ 0`.-/
+/-- `∏_{i ∈ s} (1 + a i) ≤ exp (∑_{i ∈ s} a i)` for `a ≥ 0`.
+@isnad1 id=le.1h3v.s6.e2c9ddec8128 from=translated src=- shape=ce86c78a vocab=162f370e
+-/
 theorem prod_one_add_le_exp_sum {ι : Type*} (s : Finset ι) (a : ι → ℝ) (ha : ∀ i ∈ s, 0 ≤ a i) :
     ∏ i ∈ s, (1 + a i) ≤ Real.exp (∑ i ∈ s, a i) := by
   rw [Real.exp_sum]
@@ -73,7 +83,9 @@ theorem prod_one_add_le_exp_sum {ι : Type*} (s : Finset ι) (a : ι → ℝ) (h
   · intro i hi; linarith [ha i hi]
   · intro i _; linarith [Real.add_one_le_exp (a i)]
 
-/-- `exp (-3t) ≤ 1 - t` for `0 ≤ t ≤ 2/3`.-/
+/-- `exp (-3t) ≤ 1 - t` for `0 ≤ t ≤ 2/3`.
+@isnad1 id=le.2h1v.s6.96e6e12073ef from=translated src=- shape=63933a53 vocab=459e50bf
+-/
 theorem exp_neg_three_mul_le_one_sub {t : ℝ} (h0 : 0 ≤ t) (h1 : t ≤ 2 / 3) :
     Real.exp (-(3 * t)) ≤ 1 - t := by
   have h1' : 0 < 1 - t := by linarith
@@ -89,7 +101,9 @@ theorem exp_neg_three_mul_le_one_sub {t : ℝ} (h0 : 0 ≤ t) (h1 : t ≤ 2 / 3)
   rw [neg_le_neg_iff, div_le_iff₀ h1']
   nlinarith
 
-/-- `∏_{i ∈ s} (1 - t i) ≥ exp (-3 ∑ t i)` for `0 ≤ t i ≤ 2/3`.-/
+/-- `∏_{i ∈ s} (1 - t i) ≥ exp (-3 ∑ t i)` for `0 ≤ t i ≤ 2/3`.
+@isnad1 id=le.2h3v.s7.2dc9da1a9c79 from=translated src=- shape=1395b048 vocab=65d82991
+-/
 theorem prod_one_sub_ge_exp {ι : Type*} (s : Finset ι) (t : ι → ℝ) (h0 : ∀ i ∈ s, 0 ≤ t i)
     (h1 : ∀ i ∈ s, t i ≤ 2 / 3) :
     Real.exp (-(3 * ∑ i ∈ s, t i)) ≤ ∏ i ∈ s, (1 - t i) := by
@@ -98,7 +112,9 @@ theorem prod_one_sub_ge_exp {ι : Type*} (s : Finset ι) (t : ι → ℝ) (h0 : 
   · intro i _; exact (Real.exp_pos _).le
   · intro i hi; exact exp_neg_three_mul_le_one_sub (h0 i hi) (h1 i hi)
 
-/-- **Rankin's trick (tail)**.-/
+/-- **Rankin's trick (tail)**.
+@isnad1 id=le.4h4v.s7.cd27cf1697cb from=translated src=- shape=f311c34f vocab=a562095a
+-/
 theorem sum_divisors_filter_ge_le (h : ArithmeticFunction ℝ) (hh : h.IsMultiplicative)
     {P : ℕ} (hP : Squarefree P) (h0 : ∀ d ∈ P.divisors, 0 ≤ h d)
     {lam : ℝ} (hlam : 1 ≤ lam) (m : ℕ) :
@@ -140,7 +156,9 @@ theorem sum_divisors_filter_ge_le (h : ArithmeticFunction ℝ) (hh : h.IsMultipl
         rw [pmul_apply, powOmega_apply hpp.ne_zero, cardDistinctFactors_apply_prime hpp, pow_one,
           mul_comm]
 
-/-- **Rankin's trick (head)**.-/
+/-- **Rankin's trick (head)**.
+@isnad1 id=le.4h4v.s7.8aabda5b1489 from=translated src=- shape=2816ceb1 vocab=b076ccf9
+-/
 theorem sum_divisors_filter_le_le (h : ArithmeticFunction ℝ) (hh : h.IsMultiplicative)
     {P : ℕ} (hP : Squarefree P) (h0 : ∀ d ∈ P.divisors, 0 ≤ h d)
     {lam : ℝ} (hlam : 1 ≤ lam) (m : ℕ) :

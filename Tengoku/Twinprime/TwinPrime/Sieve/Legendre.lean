@@ -33,7 +33,9 @@ namespace TwinPrime.Sieve
 
 /-! ### Legendre's identity for a bounding sieve -/
 
-/-- Legendre's identity: `siftedSum = ∑_{d ∣ P} μ(d) A_d`.-/
+/-- Legendre's identity: `siftedSum = ∑_{d ∣ P} μ(d) A_d`.
+@isnad1 id=eq.0h1v.s5.4de175680574 from=translated src=- shape=addd44c2 vocab=df63e931
+-/
 theorem siftedSum_eq_sum_moebius_multSum (s : BoundingSieve) :
     s.siftedSum = ∑ d ∈ s.prodPrimes.divisors, (μ d : ℝ) * s.multSum d := by
   calc s.siftedSum
@@ -63,7 +65,9 @@ theorem siftedSum_eq_sum_moebius_multSum (s : BoundingSieve) :
         split_ifs <;> ring
 
 /-- The main term of Legendre's identity is `X ∏_{p ∣ P} (1 - ν p)`, and the sifted sum is at
-least that minus the sum of all remainders.-/
+least that minus the sum of all remainders.
+@isnad1 id=le.0h1v.s6.95859f71fc2c from=translated src=- shape=2ebc89d5 vocab=da2500af
+-/
 theorem siftedSum_ge_of_legendre (s : BoundingSieve) :
     s.totalMass * ∏ p ∈ s.prodPrimes.primeFactors, (1 - s.nu p) -
         ∑ d ∈ s.prodPrimes.divisors, |s.rem d| ≤ s.siftedSum := by
@@ -87,17 +91,26 @@ theorem siftedSum_ge_of_legendre (s : BoundingSieve) :
 
 /-! ### The twin sieve with all primes `p ≤ z` (including `2`) -/
 
+/--
+@isnad1 id=eq.0h0v.s3.4414d8bef76b from=translated src=- shape=3c26ae4f vocab=7fbdda8a
+-/
 theorem twinRoots_two : twinRoots 2 = 1 := by
   unfold twinRoots
   rw [Nat.card_eq_fintype_card, Fintype.card_subtype]
   decide
 
+/--
+@isnad1 id=lt.1h1v.s4.61d6f5eb1e98 from=translated src=- shape=2b511f7f vocab=265d7331
+-/
 theorem twinRoots_pos {d : ℕ} (hd : d ≠ 0) : 0 < twinRoots d := by
   haveI : NeZero d := ⟨hd⟩
   unfold twinRoots
   rw [Nat.card_eq_fintype_card, Fintype.card_pos_iff]
   exact ⟨⟨0, by simp⟩⟩
 
+/--
+@isnad1 id=le.1h1v.s3.6963a245157f from=translated src=- shape=fdf4e94d vocab=f152f780
+-/
 theorem twinRoots_prime_le_two {p : ℕ} (hp : p.Prime) : twinRoots p ≤ 2 := by
   by_cases h2 : p = 2
   · subst h2; rw [twinRoots_two]; norm_num
@@ -107,11 +120,20 @@ theorem twinRoots_prime_le_two {p : ℕ} (hp : p.Prime) : twinRoots p ≤ 2 := b
 def twinNu2 : ArithmeticFunction ℝ :=
   ⟨fun d => if d = 0 then 0 else (twinRoots d : ℝ) / d, by simp⟩
 
+/--
+@isnad1 id=eq.0h1v.s5.091bf573901a from=translated src=- shape=99ce8af2 vocab=8768124a
+-/
 theorem twinNu2_apply' (d : ℕ) : twinNu2 d = if d = 0 then 0 else (twinRoots d : ℝ) / d := rfl
 
+/--
+@isnad1 id=eq.1h1v.s5.629d5550df25 from=translated src=- shape=08262418 vocab=95786454
+-/
 theorem twinNu2_apply {d : ℕ} (hd : d ≠ 0) : twinNu2 d = (twinRoots d : ℝ) / d := by
   rw [twinNu2_apply', ite_eq_right hd]
 
+/--
+@isnad1 id=ismultip.0h0v.s2.086e279afef3 from=translated src=- shape=25b03439 vocab=65229982
+-/
 theorem twinNu2_isMultiplicative : twinNu2.IsMultiplicative := by
   refine ⟨by simp [twinNu2_apply', twinRoots_one], ?_⟩
   intro m n hmn
@@ -146,13 +168,18 @@ def twinSieveL (x z : ℕ) : BoundingSieve where
       have := hp.two_le
       exact_mod_cast (by omega : 2 < p)
 
+/--
+@isnad1 id=eq.0h3v.s6.47877b68e7c5 from=translated src=- shape=6457a146 vocab=e57cb5ef
+-/
 theorem twinSieveL_multSum (x z d : ℕ) :
     (twinSieveL x z).multSum d = #{n ∈ range (x + 1) | d ∣ n * (n + 2)} := by
   simp only [multSum, twinSieveL]
   rw [sum_image (fun a _ b _ h => mul_add_two_injective h), ← sum_filter, sum_const,
     nsmul_eq_mul, mul_one]
 
-/-- `|#{n < N : d ∣ n(n+2)} − ρ(d) N / d| ≤ ρ(d)` for every `d ≥ 1`.-/
+/-- `|#{n < N : d ∣ n(n+2)} − ρ(d) N / d| ≤ ρ(d)` for every `d ≥ 1`.
+@isnad1 id=le.1h2v.s6.305d7e4061e6 from=translated src=- shape=6810bc39 vocab=cd8b724c
+-/
 theorem abs_card_filter_dvd_sub_le' {N d : ℕ} (hd : d ≠ 0) :
     |((#{n ∈ range N | d ∣ n * (n + 2)} : ℕ) : ℝ) - (twinRoots d : ℝ) * N / d| ≤ twinRoots d := by
   haveI : NeZero d := ⟨hd⟩
@@ -171,6 +198,9 @@ theorem abs_card_filter_dvd_sub_le' {N d : ℕ} (hd : d ≠ 0) :
     _ ≤ ∑ _r ∈ R, (1 : ℝ) := sum_le_sum fun r _ => abs_count_residue_sub_le r
     _ = twinRoots d := by rw [sum_const, nsmul_eq_mul, mul_one, hcard]
 
+/--
+@isnad1 id=le.1h3v.s5.b1b2261ccf85 from=translated src=- shape=7f1b9b34 vocab=f71958a3
+-/
 theorem twinSieveL_abs_rem_le (x z : ℕ) {d : ℕ} (hd : d ≠ 0) :
     |(twinSieveL x z).rem d| ≤ twinRoots d := by
   simp only [rem]
@@ -187,10 +217,16 @@ theorem twinSieveL_abs_rem_le (x z : ℕ) {d : ℕ} (hd : d ≠ 0) :
 /-- `ρ` as an arithmetic function.-/
 def twinRhoA : ArithmeticFunction ℝ := ⟨fun d => if d = 0 then 0 else (twinRoots d : ℝ), by simp⟩
 
+/--
+@isnad1 id=eq.1h1v.s4.1a503e08ed90 from=translated src=- shape=1dc874df vocab=12744f61
+-/
 theorem twinRhoA_apply {d : ℕ} (hd : d ≠ 0) : twinRhoA d = twinRoots d := by
   show (if d = 0 then (0 : ℝ) else (twinRoots d : ℝ)) = _
   rw [ite_eq_right hd]
 
+/--
+@isnad1 id=ismultip.0h0v.s2.e9ed2263ecee from=translated src=- shape=25b03439 vocab=2829eaa4
+-/
 theorem twinRhoA_isMultiplicative : twinRhoA.IsMultiplicative := by
   refine ⟨by simp [twinRhoA_apply, twinRoots_one], ?_⟩
   intro m n hmn
@@ -202,6 +238,9 @@ theorem twinRhoA_isMultiplicative : twinRhoA.IsMultiplicative := by
   push_cast
   ring
 
+/--
+@isnad1 id=le.1h1v.s5.3e5e4f1ae5cc from=translated src=- shape=700f51f1 vocab=725f2f8f
+-/
 theorem sum_divisors_twinRoots_le {P : ℕ} (hP : Squarefree P) :
     (∑ d ∈ P.divisors, (twinRoots d : ℝ)) ≤ 3 ^ #P.primeFactors := by
   have hmul : (ArithmeticFunction.pmul (μ : ArithmeticFunction ℝ) twinRhoA).IsMultiplicative :=
@@ -238,7 +277,9 @@ theorem sum_divisors_twinRoots_le {P : ℕ} (hP : Squarefree P) :
 
 /-! ### The main term: `∏_{p ≤ z} (1 - ν₂ p) ≥ 1 / z²` -/
 
-/-- Telescoping: `∏_{m=3}^{z} (1 - 2/m) = 2 / ((z - 1) z)` for `z ≥ 2`.-/
+/-- Telescoping: `∏_{m=3}^{z} (1 - 2/m) = 2 / ((z - 1) z)` for `z ≥ 2`.
+@isnad1 id=eq.1h1v.s6.26ab3a3eebe0 from=translated src=- shape=d7688c9b vocab=fcdb32bc
+-/
 theorem prod_one_sub_two_div (z : ℕ) (hz : 2 ≤ z) :
     ∏ m ∈ Finset.Icc 3 z, (1 - 2 / (m : ℝ)) = 2 / (((z : ℝ) - 1) * z) := by
   induction z with
@@ -260,6 +301,9 @@ theorem prod_one_sub_two_div (z : ℕ) (hz : 2 ≤ z) :
       field_simp
       ring
 
+/--
+@isnad1 id=le.1h1v.s6.bdd43a3b10e5 from=translated src=- shape=48a28c64 vocab=4cfe5a66
+-/
 theorem prod_primesLE_one_sub_nu_ge (z : ℕ) (hz : 3 ≤ z) :
     1 / ((z : ℝ) ^ 2) ≤ ∏ p ∈ primesLE z, (1 - twinNu2 p) := by
   have h2mem : 2 ∈ primesLE z := by rw [mem_primesLE]; exact ⟨by omega, Nat.prime_two⟩
@@ -322,7 +366,9 @@ theorem prod_primesLE_one_sub_nu_ge (z : ℕ) (hz : 3 ≤ z) :
 
 /-! ### The counting lower bound -/
 
-/-- `Nat.Coprime (primorial z) m ↔ m` has no prime factor `≤ z`.-/
+/-- `Nat.Coprime (primorial z) m ↔ m` has no prime factor `≤ z`.
+@isnad1 id=iff.0h2v.s4.1e1b6d670162 from=translated src=- shape=c2a5370c vocab=9bee2ec9
+-/
 theorem coprime_primorial_iff {z m : ℕ} :
     Nat.Coprime (primorial z) m ↔ ∀ p, p.Prime → p ≤ z → ¬ p ∣ m := by
   constructor

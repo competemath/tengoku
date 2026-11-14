@@ -19,7 +19,9 @@ open Finset Classical
 namespace TwinPrime.Analytic
 
 /-- A positive integer below the product threshold cannot have too many
-distinct prime divisors above U. Prime powers are counted only once.-/
+distinct prime divisors above U. Prime powers are counted only once.
+@isnad1 id=le.3h4v.s6.f4526aad93cd from=translated src=- shape=eaaaec25 vocab=a91eaa09
+-/
 theorem card_large_prime_divisors_le (U D k m : ℕ) (hm : 0 < m) (hmD : m ≤ D)
     (hD : D < (U + 1) ^ (k + 1)) :
     (m.primeFactors.filter (fun p => U < p)).card ≤ k := by
@@ -38,7 +40,9 @@ theorem card_large_prime_divisors_le (U D k m : ℕ) (hm : 0 < m) (hmD : m ≤ D
   exact (not_le_of_gt hD) hle
 
 /-- The natural quotient endpoint is exactly the positive multiples of q
-through D, including a multiple at the upper endpoint.-/
+through D, including a multiple at the upper endpoint.
+@isnad1 id=eq.1h3v.s6.d8ba7ebd2024 from=translated src=- shape=493c2414 vocab=b201e9d0
+-/
 theorem sum_Icc_div_eq_sum_dvd (q D : ℕ) (hq : 0 < q) (E : ℕ → ℝ) :
     (∑ d ∈ Icc 1 (D / q), E (q * d)) =
       ∑ m ∈ (Icc 1 D).filter (q ∣ ·), E m := by
@@ -60,7 +64,9 @@ theorem sum_Icc_div_eq_sum_dvd (q D : ℕ) (hq : 0 < q) (E : ℕ → ℝ) :
 
 /-- Exact aggregation: each modulus is weighted by the number of its
 distinct prime divisors in the specified interval. No sign assumption on E
-is needed for the identity.-/
+is needed for the identity.
+@isnad1 id=eq.0h4v.s7.7328792fba92 from=translated src=- shape=3759f335 vocab=cd6680c4
+-/
 theorem sum_large_prime_modulus_multiples_eq (U W D : ℕ) (E : ℕ → ℝ) :
     (∑ q ∈ (Ioc U W).filter Nat.Prime, ∑ d ∈ Icc 1 (D / q), E (q * d)) =
       ∑ m ∈ Icc 1 D,
@@ -88,7 +94,9 @@ theorem sum_large_prime_modulus_multiples_eq (U W D : ℕ) (E : ℕ → ℝ) :
       simp
 
 /-- The exact modulus count gives an aggregate bound for arbitrary
-nonnegative error weights.-/
+nonnegative error weights.
+@isnad1 id=le.2h5v.s7.86d67afab09c from=translated src=- shape=9a4787c0 vocab=e601ff65
+-/
 theorem sum_large_prime_modulus_multiples_le (U W D k : ℕ) (E : ℕ → ℝ)
     (hE : ∀ m ∈ Icc 1 D, 0 ≤ E m) (hD : D < (U + 1) ^ (k + 1)) :
     (∑ q ∈ (Ioc U W).filter Nat.Prime, ∑ d ∈ Icc 1 (D / q), E (q * d)) ≤
@@ -105,7 +113,9 @@ theorem sum_large_prime_modulus_multiples_le (U W D k : ℕ) (E : ℕ → ℝ)
   exact mul_le_mul_of_nonneg_right (by exact_mod_cast hcard) (hE m hm)
 
 /-- In the cubic-threshold range, aggregation costs at most two copies of
-the actual maximal progression-error sum.-/
+the actual maximal progression-error sum.
+@isnad1 id=le.1h4v.s7.452b86c0d11d from=translated src=- shape=268e8178 vocab=82bf04a6
+-/
 theorem sum_large_prime_progressionMaxError_le_two (U W D Y : ℕ)
     (hD : D < (U + 1) ^ 3) :
     (∑ q ∈ (Ioc U W).filter Nat.Prime,
@@ -115,7 +125,9 @@ theorem sum_large_prime_progressionMaxError_le_two (U W D Y : ℕ)
     (fun m _ => progressionMaxError_nonneg Y m) hD
 
 /-- A prime larger than every prime factor of its complementary factor is
-uniquely determined by the product. The complementary factors may have powers.-/
+uniquely determined by the product. The complementary factors may have powers.
+@isnad1 id=eq.5h4v.s6.33fa4b7edaca from=translated src=- shape=04c8f315 vocab=f0dba8db
+-/
 theorem prime_eq_of_mul_eq_mul_of_primeFactors_lt {q r d e : ℕ}
     (hq : Nat.Prime q) (hr : Nat.Prime r)
     (hd : ∀ p, Nat.Prime p → p ∣ d → p < q)
@@ -131,7 +143,9 @@ theorem prime_eq_of_mul_eq_mul_of_primeFactors_lt {q r d e : ℕ}
 
 /-- Restricting the complementary factor to primes strictly below q makes
 the multiplication map injective. Thus aggregation costs only one copy of
-the nonnegative modulus sum, with no power threshold on U or D.-/
+the nonnegative modulus sum, with no power threshold on U or D.
+@isnad1 id=le.1h4v.s7.f3421726abd6 from=translated src=- shape=f9ccf02d vocab=4d493cf5
+-/
 theorem sum_largest_prime_modulus_multiples_le (U W D : ℕ) (E : ℕ → ℝ)
     (hE : ∀ m ∈ Icc 1 D, 0 ≤ E m) :
     (∑ q ∈ (Ioc U W).filter Nat.Prime,
@@ -166,7 +180,9 @@ theorem sum_largest_prime_modulus_multiples_le (U W D : ℕ) (E : ℕ → ℝ)
     _ ≤ _ := sum_le_sum_of_subset_of_nonneg hsub (fun m hm _ => hE m hm)
 
 /-- The unique-largest-prime restriction directly bounds the actual
-maximal progression errors by their ordinary unweighted sum.-/
+maximal progression errors by their ordinary unweighted sum.
+@isnad1 id=le.0h4v.s6.3a1827d3b6dc from=translated src=- shape=fad526a9 vocab=28a66d3b
+-/
 theorem sum_largest_prime_progressionMaxError_le (U W D Y : ℕ) :
     (∑ q ∈ (Ioc U W).filter Nat.Prime,
       ∑ d ∈ (Icc 1 (D / q)).filter

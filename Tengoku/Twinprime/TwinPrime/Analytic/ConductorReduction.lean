@@ -18,6 +18,9 @@ open Finset Filter
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=le.0h2v.s7.e7e6df9b23ea from=translated src=- shape=a926ba85 vocab=a48fa325
+-/
 theorem sum_primitiveCharacter_errors_le_weighted_conductor_sum (T Q : ℕ) :
     (∑ q ∈ Icc 1 Q,
       (∑ χ : DirichletCharacter ℂ q, characterMaxError T χ.primitiveCharacter) /
@@ -36,7 +39,9 @@ theorem sum_primitiveCharacter_errors_le_weighted_conductor_sum (T Q : ℕ) :
     _ = _ := by ring
 
 /-- A finite conductor reduction with a single logarithmic loss and an
-explicit accumulated primitive-replacement error.-/
+explicit accumulated primitive-replacement error.
+@isnad1 id=le.1h2v.s7.d2109152fc6c from=translated src=- shape=ca7a392b vocab=6f1c8eac
+-/
 theorem sum_progressionMaxError_le_weighted_conductor_sum (T Q : ℕ) (hT : 1 ≤ T) :
     (∑ q ∈ Icc 1 Q, progressionMaxError T q) ≤
       totientReciprocalConstant * (1 + Real.log Q) *
@@ -46,7 +51,9 @@ theorem sum_progressionMaxError_le_weighted_conductor_sum (T Q : ℕ) (hT : 1 �
     (add_le_add (sum_primitiveCharacter_errors_le_weighted_conductor_sum T Q) le_rfl)
 
 /-- The conductor reduction at the repository's exact BV endpoint and
-modulus scale. The threshold and the logarithmic constant are uniform in Q.-/
+modulus scale. The threshold and the logarithmic constant are uniform in Q.
+@isnad1 id=eventual.1h1v.s8.4fdb589f97db from=translated src=- shape=c2e973a5 vocab=6731c214
+-/
 theorem eventually_sum_progressionMaxError_le_weighted_conductor_sum
     (A : ℝ) (hA : 0 < A) :
     ∀ᶠ X : ℕ in atTop, ∀ Q : ℕ,

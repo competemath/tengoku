@@ -30,6 +30,9 @@ namespace Sieve
 
 /-! ### `π₂(x) ≤ z + 1 + siftedSum` -/
 
+/--
+@isnad1 id=coprime.2h2v.s4.b63ba7c49e67 from=translated src=- shape=8d576c2e vocab=34477ffb
+-/
 theorem coprime_oddPrimorial_of_prime_gt {z p : ℕ} (hp : p.Prime) (hzp : z < p) :
     Nat.Coprime (oddPrimorial z) p := by
   unfold oddPrimorial
@@ -57,19 +60,33 @@ def twinF : ℕ →* ℝ where
     push_cast
     field_simp
 
+/--
+@isnad1 id=eq.0h1v.s6.2213f0bc1a9f from=translated src=- shape=4ee2b9bf vocab=0df67be5
+-/
 theorem twinF_apply' (n : ℕ) : twinF n = if n = 0 then 0 else (2 : ℝ) ^ (Ω n) / n := rfl
 
+/--
+@isnad1 id=eq.1h1v.s6.1b6625ab4252 from=translated src=- shape=526cba0d vocab=2da2e61b
+-/
 theorem twinF_apply {n : ℕ} (hn : n ≠ 0) : twinF n = (2 : ℝ) ^ (Ω n) / n := by
   rw [twinF_apply', ite_eq_right hn]
 
+/--
+@isnad1 id=le.0h1v.s5.709c51236fb9 from=translated src=- shape=904cabbd vocab=d896fd08
+-/
 theorem twinF_nonneg (n : ℕ) : 0 ≤ twinF n := by
   rw [twinF_apply']
   split_ifs <;> positivity
 
+/--
+@isnad1 id=eq.1h1v.s5.13ba5069f62f from=translated src=- shape=f1017915 vocab=3b212d73
+-/
 theorem twinF_prime {p : ℕ} (hp : p.Prime) : twinF p = twinNu p := by
   rw [twinF_apply hp.ne_zero, twinNu_prime hp, cardFactors_apply_prime hp, pow_one]
 
-/-- `#divisors m ≤ 2^{Ω m}`.-/
+/-- `#divisors m ≤ 2^{Ω m}`.
+@isnad1 id=le.0h1v.s5.8c577eb9b485 from=translated src=- shape=77aceaa7 vocab=31d78d82
+-/
 theorem card_divisors_le_two_pow_cardFactors (m : ℕ) : #m.divisors ≤ 2 ^ (Ω m) := by
   induction m using Nat.recOnPrimePow with
   | zero => simp
@@ -82,7 +99,9 @@ theorem card_divisors_le_two_pow_cardFactors (m : ℕ) : #m.divisors ≤ 2 ^ (Ω
       cardFactors_mul (pow_ne_zero n hp.ne_zero) ha, cardFactors_apply_prime_pow hp, pow_add]
     exact Nat.mul_le_mul Nat.lt_two_pow_self ih
 
-/-- `(∑_{a ∈ A} 1/a)² ≤ ∑_{m ∈ T} 2^{Ω m}/m` whenever `A · A ⊆ T`.-/
+/-- `(∑_{a ∈ A} 1/a)² ≤ ∑_{m ∈ T} 2^{Ω m}/m` whenever `A · A ⊆ T`.
+@isnad1 id=le.2h2v.s7.c66abbbfb132 from=translated src=- shape=0a2af44a vocab=389d8851
+-/
 theorem sq_sum_inv_le_sum_twinF (A T : Finset ℕ) (hA0 : ∀ a ∈ A, a ≠ 0)
     (hAT : ∀ a ∈ A, ∀ b ∈ A, a * b ∈ T) :
     (∑ a ∈ A, (a : ℝ)⁻¹) ^ 2 ≤ ∑ m ∈ T, twinF m := by
@@ -138,11 +157,16 @@ theorem sq_sum_inv_le_sum_twinF (A T : Finset ℕ) (hA0 : ∀ a ∈ A, a ≠ 0)
 /-- The odd integers in `[1, w]`.-/
 def oddUpTo (w : ℕ) : Finset ℕ := (Finset.Icc 1 w).filter fun a => ¬ 2 ∣ a
 
+/--
+@isnad1 id=iff.0h2v.s5.057925da5b3e from=translated src=- shape=1801dbe8 vocab=51e7cb12
+-/
 theorem mem_oddUpTo {w a : ℕ} : a ∈ oddUpTo w ↔ (1 ≤ a ∧ a ≤ w) ∧ ¬ 2 ∣ a := by
   unfold oddUpTo
   rw [mem_filter, mem_Icc]
 
-/-- `∑_{a ≤ w, a odd} 1/a ≥ ½ log (w/2 + 1)`.-/
+/-- `∑_{a ≤ w, a odd} 1/a ≥ ½ log (w/2 + 1)`.
+@isnad1 id=le.0h1v.s6.18a295206b5c from=translated src=- shape=c59022f8 vocab=0d516b33
+-/
 theorem sum_inv_oddUpTo_ge (w : ℕ) :
     (1 / 2 : ℝ) * Real.log ((w : ℝ) / 2 + 1) ≤ ∑ a ∈ oddUpTo w, (a : ℝ)⁻¹ := by
   set K := (w + 1) / 2 with hK
@@ -199,6 +223,9 @@ theorem sum_inv_oddUpTo_ge (w : ℕ) :
 
 /-! ### The lower bound for the Selberg sum of the twin sieve -/
 
+/--
+@isnad1 id=le.1h2v.s5.7d81deae6c9d from=translated src=- shape=2aa84f35 vocab=71ab6dcf
+-/
 theorem twinSieve_boundingSum_ge_sq (x z : ℕ) (hz : 1 ≤ z) :
     (∑ a ∈ oddUpTo (Nat.sqrt z), (a : ℝ)⁻¹) ^ 2 ≤ (twinSieve x z hz).selbergBoundingSum := by
   refine le_trans (sq_sum_inv_le_sum_twinF (oddUpTo (Nat.sqrt z)) (oddUpTo z) ?_ ?_) ?_
@@ -235,6 +262,9 @@ theorem twinSieve_boundingSum_ge_sq (x z : ℕ) (hz : 1 ≤ z) :
 /-- `L(z) = ¼ log z − ½ log 2`.-/
 def Lz (z : ℕ) : ℝ := (1 / 4 : ℝ) * Real.log z - (1 / 2 : ℝ) * Real.log 2
 
+/--
+@isnad1 id=lt.1h1v.s4.c8e74efc8992 from=translated src=- shape=f8216502 vocab=cb061e6e
+-/
 theorem Lz_pos {z : ℕ} (hz : 16 ≤ z) : 0 < Lz z := by
   unfold Lz
   have h16 : Real.log 16 ≤ Real.log z := Real.log_le_log (by norm_num) (by exact_mod_cast hz)
@@ -244,6 +274,9 @@ theorem Lz_pos {z : ℕ} (hz : 16 ≤ z) : 0 < Lz z := by
   have h2 : 0 < Real.log 2 := Real.log_pos (by norm_num)
   linarith
 
+/--
+@isnad1 id=le.1h1v.s5.4312b7648a53 from=translated src=- shape=9bb901cc vocab=e9082a5d
+-/
 theorem Lz_le_sum_inv_oddUpTo {z : ℕ} (hz : 1 ≤ z) :
     Lz z ≤ ∑ a ∈ oddUpTo (Nat.sqrt z), (a : ℝ)⁻¹ := by
   refine le_trans ?_ (sum_inv_oddUpTo_ge (Nat.sqrt z))
@@ -261,6 +294,9 @@ theorem Lz_le_sum_inv_oddUpTo {z : ℕ} (hz : 1 ≤ z) :
     ring
   linarith
 
+/--
+@isnad1 id=le.1h2v.s5.b8546ec85eec from=translated src=- shape=a4a94fff vocab=c1447c51
+-/
 theorem twinSieve_boundingSum_ge (x z : ℕ) (hz : 16 ≤ z) :
     (Lz z) ^ 2 ≤ (twinSieve x z (by omega)).selbergBoundingSum := by
   refine le_trans ?_ (twinSieve_boundingSum_ge_sq x z (by omega))
@@ -268,6 +304,9 @@ theorem twinSieve_boundingSum_ge (x z : ℕ) (hz : 16 ≤ z) :
 
 /-! ### The error sum -/
 
+/--
+@isnad1 id=le.1h2v.s7.1d07d136bdb0 from=translated src=- shape=c8d1cbe2 vocab=785790a4
+-/
 theorem twinSieve_errSum_le (x z : ℕ) (hz : 1 ≤ z) :
     (∑ d ∈ (oddPrimorial z).divisors,
         if (d : ℝ) ≤ (z : ℝ) ^ 2 then (3 : ℝ) ^ ω d * |(twinSieve x z hz).rem d| else 0)

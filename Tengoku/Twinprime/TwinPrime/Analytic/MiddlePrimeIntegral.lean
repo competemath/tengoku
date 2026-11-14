@@ -24,6 +24,9 @@ def middlePrimeIntegrandDerivative (a t : ℝ) : ℝ :=
 def middlePrimeIntegralPrimitive (a t : ℝ) : ℝ :=
   (1 / a) * Real.log t - ((1 - a) / a) * Real.log (a - t)
 
+/--
+@isnad1 id=eq.3h2v.s6.229a6c2bbd7a from=translated src=- shape=c26c3489 vocab=7e9b1764
+-/
 theorem middlePrimeIntegrand_eq_partial_fractions (a t : ℝ)
     (ha : a ≠ 0) (ht : t ≠ 0) (hat : a - t ≠ 0) :
     middlePrimeIntegrand a t = (1 / a) / t + ((1 - a) / a) / (a - t) := by
@@ -31,12 +34,18 @@ theorem middlePrimeIntegrand_eq_partial_fractions (a t : ℝ)
   field_simp
   ring
 
+/--
+@isnad1 id=contdiff.0h1v.s5.5c950304c338 from=translated src=- shape=d9dc5480 vocab=05d9cc67
+-/
 theorem contDiffOn_middlePrimeIntegrand (a : ℝ) :
     ContDiffOn ℝ ⊤ (middlePrimeIntegrand a) (Ioo 0 a) := by
   exact (contDiffOn_const.sub contDiffOn_id).div
     (contDiffOn_id.mul (contDiffOn_const.sub contDiffOn_id))
     (fun t ht => mul_ne_zero (ne_of_gt ht.1) (ne_of_gt (sub_pos.mpr ht.2)))
 
+/--
+@isnad1 id=hasderiv.3h2v.s6.4d411e9b58f8 from=translated src=- shape=70bb4bae vocab=1bcb9fdb
+-/
 theorem hasDerivAt_middlePrimeIntegrand (a t : ℝ)
     (ha : a ≠ 0) (ht : t ≠ 0) (hat : a - t ≠ 0) :
     HasDerivAt (middlePrimeIntegrand a) (middlePrimeIntegrandDerivative a t) t := by
@@ -48,11 +57,17 @@ theorem hasDerivAt_middlePrimeIntegrand (a t : ℝ)
   field_simp
   ring
 
+/--
+@isnad1 id=eq.3h2v.s6.d4069404e202 from=translated src=- shape=0b4e7760 vocab=27007add
+-/
 theorem deriv_middlePrimeIntegrand (a t : ℝ)
     (ha : a ≠ 0) (ht : t ≠ 0) (hat : a - t ≠ 0) :
     deriv (middlePrimeIntegrand a) t = middlePrimeIntegrandDerivative a t :=
   (hasDerivAt_middlePrimeIntegrand a t ha ht hat).deriv
 
+/--
+@isnad1 id=hasderiv.3h2v.s6.5ea711463288 from=translated src=- shape=70bb4bae vocab=2148d050
+-/
 theorem hasDerivAt_middlePrimeIntegralPrimitive (a t : ℝ)
     (ha : a ≠ 0) (ht : t ≠ 0) (hat : a - t ≠ 0) :
     HasDerivAt (middlePrimeIntegralPrimitive a) (middlePrimeIntegrand a t) t := by
@@ -64,17 +79,26 @@ theorem hasDerivAt_middlePrimeIntegralPrimitive (a t : ℝ)
   field_simp
   ring
 
+/--
+@isnad1 id=continuo.2h3v.s5.01cab17bd1ba from=translated src=- shape=ea816a7a vocab=40133307
+-/
 theorem continuousOn_middlePrimeIntegrand (a u v : ℝ)
     (hu : 0 < u) (hva : v < a) :
     ContinuousOn (middlePrimeIntegrand a) (Icc u v) := by
   exact (contDiffOn_middlePrimeIntegrand a).continuousOn.mono
     (fun _ ht => ⟨lt_of_lt_of_le hu ht.1, lt_of_le_of_lt ht.2 hva⟩)
 
+/--
+@isnad1 id=interval.3h3v.s5.208713a7dd26 from=translated src=- shape=3bc0656b vocab=1a408095
+-/
 theorem intervalIntegrable_middlePrimeIntegrand (a u v : ℝ)
     (hu : 0 < u) (huv : u ≤ v) (hva : v < a) :
     IntervalIntegrable (middlePrimeIntegrand a) volume u v :=
   (continuousOn_middlePrimeIntegrand a u v hu hva).intervalIntegrable_of_Icc huv
 
+/--
+@isnad1 id=eq.3h3v.s7.12b09dc60bfe from=translated src=- shape=17d5b375 vocab=91f698cb
+-/
 theorem integral_middlePrimeIntegrand (a u v : ℝ)
     (hu : 0 < u) (huv : u ≤ v) (hva : v < a) :
     (∫ t in u..v, middlePrimeIntegrand a t) =
@@ -96,11 +120,17 @@ theorem integral_middlePrimeIntegrand (a u v : ℝ)
     Real.log_div hv.ne' hu.ne', Real.log_div hau.ne' hav.ne']
   ring
 
+/--
+@isnad1 id=le.3h2v.s5.ca92eab77b1e from=translated src=- shape=96016c98 vocab=df03485f
+-/
 theorem middlePrimeIntegrand_nonneg (a t : ℝ)
     (ht : 0 < t) (hta : t < a) (ha : a ≤ 1) :
     0 ≤ middlePrimeIntegrand a t := by
   exact div_nonneg (by linarith) (mul_nonneg ht.le (sub_nonneg.mpr hta.le))
 
+/--
+@isnad1 id=le.4h4v.s6.2793443c0ec6 from=translated src=- shape=dbc90dbd vocab=c99fc20d
+-/
 theorem abs_middlePrimeIntegrand_le (a u v t : ℝ)
     (hu : 0 < u) (hva : v < a) (ha : a ≤ 1) (ht : t ∈ Icc u v) :
     |middlePrimeIntegrand a t| ≤ 1 / (u * (a - v)) := by
@@ -115,6 +145,9 @@ theorem abs_middlePrimeIntegrand_le (a u v t : ℝ)
       exact div_le_div_of_nonneg_right (by linarith) (by positivity)
     _ ≤ 1 / (u * (a - v)) := one_div_le_one_div_of_le (mul_pos hu hav) hden
 
+/--
+@isnad1 id=le.4h4v.s7.88dee711da09 from=translated src=- shape=8849352c vocab=3903049d
+-/
 theorem abs_middlePrimeIntegrandDerivative_le (a u v t : ℝ)
     (hu : 0 < u) (hva : v < a) (ha : a ≤ 1) (ht : t ∈ Icc u v) :
     |middlePrimeIntegrandDerivative a t| ≤
@@ -142,6 +175,9 @@ theorem abs_middlePrimeIntegrandDerivative_le (a u v t : ℝ)
         (div_le_div_of_nonneg_left (by positivity) (by positivity) hsq2)
     _ = _ := by rw [div_div, div_div]
 
+/--
+@isnad1 id=le.4h4v.s7.32bdbd84bc90 from=translated src=- shape=dcce74be vocab=291b1abf
+-/
 theorem abs_deriv_middlePrimeIntegrand_le (a u v t : ℝ)
     (hu : 0 < u) (hva : v < a) (ha : a ≤ 1) (ht : t ∈ Icc u v) :
     |deriv (middlePrimeIntegrand a) t| ≤
@@ -152,6 +188,9 @@ theorem abs_deriv_middlePrimeIntegrand_le (a u v t : ℝ)
     (ne_of_gt (sub_pos.mpr hta))]
   exact abs_middlePrimeIntegrandDerivative_le a u v t hu hva ha ht
 
+/--
+@isnad1 id=continuo.2h3v.s6.e402891bfe1f from=translated src=- shape=a32bf529 vocab=a5728000
+-/
 theorem continuousOn_deriv_middlePrimeIntegrand (a u v : ℝ)
     (hu : 0 < u) (hva : v < a) :
     ContinuousOn (deriv (middlePrimeIntegrand a)) (Icc u v) := by

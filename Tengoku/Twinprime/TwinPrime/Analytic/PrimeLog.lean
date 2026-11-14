@@ -19,10 +19,16 @@ open Finset Filter ArithmeticFunction
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=eq.0h1v.s5.ab7e3e9ec452 from=translated src=- shape=a3b7b704 vocab=3ef2fc98
+-/
 theorem primeLogSummatory_nat (N : ℕ) :
     primeLogSummatory N = ∑ n ∈ Ioc 0 N, vonMangoldt n * Real.log n := by
   simp [primeLogSummatory, arithmeticSummatory]
 
+/--
+@isnad1 id=eq.0h1v.s6.7bc8d4017edb from=translated src=- shape=038ac9e7 vocab=4f014657
+-/
 theorem primeLogSummatory_sub_sum_log (N : ℕ) :
     primeLogSummatory N - (∑ n ∈ Ioc 0 N, Real.log n) =
       ∑ n ∈ Ioc 0 N, Real.log n * primeErrorCoefficient n := by
@@ -32,7 +38,9 @@ theorem primeLogSummatory_sub_sum_log (N : ℕ) :
   simp only [primeErrorCoefficient, ite_eq_right (Nat.ne_of_gt (mem_Ioc.mp hn).1)]
   ring
 
-/-- A maximal unweighted error costs at most twice the final logarithm.-/
+/-- A maximal unweighted error costs at most twice the final logarithm.
+@isnad1 id=le.2h2v.s6.dc3298cbf2e9 from=translated src=- shape=ac0f496c vocab=7c061d6c
+-/
 theorem abs_primeLogSummatory_sub_sum_log_le (N : ℕ) (M : ℝ) (hM : 0 ≤ M)
     (hψ : ∀ t ≤ N, |Chebyshev.psi (t : ℝ) - (t : ℝ)| ≤ M) :
     |primeLogSummatory N - (∑ n ∈ Ioc 0 N, Real.log n)| ≤
@@ -50,6 +58,9 @@ theorem abs_primeLogSummatory_sub_sum_log_le (N : ℕ) (M : ℝ) (hM : 0 ≤ M)
     rw [coefficientSum_primeErrorCoefficient]
     exact hψ t (mem_Icc.mp ht).2
 
+/--
+@isnad1 id=ex.1h0v.s6.54b1c7464ac9 from=translated src=- shape=1050c3a0 vocab=ed0ae285
+-/
 theorem MaximalBombieriVinogradov.primeLog_sub_sum_log
     (hBV : MaximalBombieriVinogradov) :
     ∃ K : ℝ, 0 ≤ K ∧ ∀ᶠ N : ℕ in atTop,
@@ -70,7 +81,9 @@ theorem MaximalBombieriVinogradov.primeLog_sub_sum_log
     _ = _ := by field_simp
 
 /-- The maximal BV hypothesis supplies the weighted prime main term at
-integer endpoints with five logarithmic powers of saving.-/
+integer endpoints with five logarithmic powers of saving.
+@isnad1 id=ex.1h0v.s6.fe93fcc3553d from=translated src=- shape=2298fd6b vocab=105f4e04
+-/
 theorem MaximalBombieriVinogradov.primeLog_nat_error
     (hBV : MaximalBombieriVinogradov) :
     ∃ K : ℝ, 0 ≤ K ∧ ∀ᶠ N : ℕ in atTop,
@@ -97,7 +110,9 @@ theorem MaximalBombieriVinogradov.primeLog_nat_error
     _ = _ := by ring
 
 /-- The main term changes by at most a logarithm plus an absolute constant
-when its real argument is rounded down.-/
+when its real argument is rounded down.
+@isnad1 id=le.1h1v.s6.8e258e1bdbf2 from=translated src=- shape=171c6810 vocab=eceeb31e
+-/
 theorem abs_log_mainTerm_natFloor_sub_le (x : ℝ) (hx : 4 ≤ x) :
     |((⌊x⌋₊ : ℝ) * Real.log (⌊x⌋₊ : ℝ) - ⌊x⌋₊) -
       (x * Real.log x - x)| ≤ Real.log x + 3 := by
@@ -120,7 +135,9 @@ theorem abs_log_mainTerm_natFloor_sub_le (x : ℝ) (hx : 4 ≤ x) :
     _ ≤ x * (2 / x) + 1 * Real.log x + 1 := by gcongr
     _ = _ := by field_simp; ring
 
-/-- A fifth-power weighted prime error passes from integers to real inputs.-/
+/-- A fifth-power weighted prime error passes from integers to real inputs.
+@isnad1 id=eventual.2h1v.s7.d69456680d26 from=translated src=- shape=adf6f574 vocab=b4a1860e
+-/
 theorem primeLog_real_error_of_nat_error (K : ℝ) (hK : 0 ≤ K)
     (hP : ∀ᶠ N : ℕ in atTop,
       |primeLogSummatory N - ((N : ℝ) * Real.log N - N)| ≤
@@ -164,7 +181,9 @@ theorem primeLog_real_error_of_nat_error (K : ℝ) (hK : 0 ≤ K)
       add_le_add hmain hround
     _ = _ := by ring
 
-/-- Real weighted prime asymptotics, deduced from the named BV hypothesis.-/
+/-- Real weighted prime asymptotics, deduced from the named BV hypothesis.
+@isnad1 id=ex.1h0v.s6.6b87a346baa0 from=translated src=- shape=cea66132 vocab=784c335c
+-/
 theorem MaximalBombieriVinogradov.primeLog_real_error
     (hBV : MaximalBombieriVinogradov) :
     ∃ K : ℝ, 0 ≤ K ∧ ∀ᶠ x : ℝ in atTop,

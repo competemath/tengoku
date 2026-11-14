@@ -23,6 +23,9 @@ def centeredQuadraticProductCoefficients {q : ℕ} [NeZero q]
   quadraticProductCoefficients χ₁ χ₂ -
     regularizedQuadraticLFunctionProduct χ₁ χ₂ 1 • (zeta : ArithmeticFunction ℂ)
 
+/--
+@isnad1 id=eq.1h4v.s6.c76f79feadff from=translated src=- shape=cb09d781 vocab=166c9f7d
+-/
 theorem centeredQuadraticProductCoefficients_apply {q : ℕ} [NeZero q]
     (χ₁ χ₂ : DirichletCharacter ℂ q) (n : ℕ) (hn : n ≠ 0) :
     centeredQuadraticProductCoefficients χ₁ χ₂ n =
@@ -31,6 +34,9 @@ theorem centeredQuadraticProductCoefficients_apply {q : ℕ} [NeZero q]
     regularizedQuadraticLFunctionProduct χ₁ χ₂ 1 * (zeta : ArithmeticFunction ℂ) n = _
   simp [zeta_apply_ne hn]
 
+/--
+@isnad1 id=eq.0h4v.s6.e033258c1636 from=translated src=- shape=51623d1a vocab=9ee02315
+-/
 theorem sum_Ioc_centeredQuadraticProductCoefficients {q : ℕ} [NeZero q]
     (χ₁ χ₂ : DirichletCharacter ℂ q) (N : ℕ) :
     (∑ n ∈ Ioc 0 N, centeredQuadraticProductCoefficients χ₁ χ₂ n) =
@@ -46,7 +52,9 @@ theorem sum_Ioc_centeredQuadraticProductCoefficients {q : ℕ} [NeZero q]
   simp only [sum_const, Nat.card_Ioc, Nat.sub_zero, nsmul_eq_mul]
 
 /-- The actual centered coefficients satisfy the prefix-power hypothesis
-needed for ordered Dirichlet continuation; the zero prefix is included.-/
+needed for ordered Dirichlet continuation; the zero prefix is included.
+@isnad1 id=le.3h4v.s8.d4b007874fc1 from=translated src=- shape=db34381d vocab=693a29c0
+-/
 theorem norm_centeredQuadraticProductCoefficients_prefix_le {q : ℕ} [NeZero q]
     (χ₁ χ₂ : DirichletCharacter ℂ q)
     (hχ₁ : χ₁ ≠ 1) (hχ₂ : χ₂ ≠ 1) (hχ₁₂ : χ₁ * χ₂ ≠ 1) (N : ℕ) :
@@ -76,7 +84,9 @@ theorem norm_centeredQuadraticProductCoefficients_prefix_le {q : ℕ} [NeZero q]
         ((N : ℝ) ^ (4 / 5 : ℝ) * ((N : ℝ) ^ (1 / 20 : ℝ)) ^ 2) := by ring
     _ = _ := by rw [hpower]
 
-/-- The centered Dirichlet partial sum retains both original finite sums.-/
+/-- The centered Dirichlet partial sum retains both original finite sums.
+@isnad1 id=eq.0h5v.s6.25e3b6906cfc from=translated src=- shape=4f205dc9 vocab=8118b51e
+-/
 theorem powerDirichletPartialSum_centeredQuadraticProductCoefficients
     {q : ℕ} [NeZero q] (χ₁ χ₂ : DirichletCharacter ℂ q) (s : ℂ) (N : ℕ) :
     powerDirichletPartialSum (centeredQuadraticProductCoefficients χ₁ χ₂) s N =

@@ -19,6 +19,9 @@ open scoped ArithmeticFunction.Moebius ArithmeticFunction.zeta
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=coprime.3h3v.s5.33f24a039477 from=translated src=- shape=a7e8309a vocab=078ddf0c
+-/
 theorem coprime_small_rough (U a b : ℕ) (ha : 0 < a) (haU : a ≤ U)
     (hrough : ∀ p, Nat.Prime p → p ∣ b → U < p) : a.Coprime b := by
   apply Nat.coprime_of_dvd
@@ -26,13 +29,18 @@ theorem coprime_small_rough (U a b : ℕ) (ha : 0 < a) (haU : a ≤ U)
   have hpU := (Nat.le_of_dvd ha hpa).trans haU
   exact (not_lt_of_ge hpU) (hrough p hp hpb)
 
-/-- A divisor below the cutoff cannot acquire any prime factor from the rough part.-/
+/-- A divisor below the cutoff cannot acquire any prime factor from the rough part.
+@isnad1 id=dvd.4h4v.s5.4761bae8ccc5 from=translated src=- shape=c8eec6b3 vocab=11fca42f
+-/
 theorem small_divisor_mul_dvd_left_of_rough (U a b d : ℕ)
     (hd : 0 < d) (hdU : d ≤ U)
     (hrough : ∀ p, Nat.Prime p → p ∣ b → U < p) (hdvd : d ∣ a * b) :
     d ∣ a :=
   (coprime_small_rough U d b hd hdU hrough).dvd_of_dvd_mul_right hdvd
 
+/--
+@isnad1 id=eq.0h2v.s6.5e97ff886f06 from=translated src=- shape=fd1d98c3 vocab=6d32c23e
+-/
 theorem vaughanBeta_eq_sum_primePow (U n : ℕ) :
     vaughanBeta U n =
       ∑ d ∈ n.divisors with IsPrimePow d, if U < d then vonMangoldt d else 0 := by
@@ -44,13 +52,18 @@ theorem vaughanBeta_eq_sum_primePow (U n : ℕ) :
   · simp [hd, vonMangoldt_eq_zero_iff.mpr hd]
 
 /-- The cutoff divisor weight is additive on coprime products, with no
-restriction on prime-power multiplicities.-/
+restriction on prime-power multiplicities.
+@isnad1 id=eq.1h3v.s6.489b727ab99a from=translated src=- shape=96affc39 vocab=1a2c46d0
+-/
 theorem vaughanBeta_mul_of_coprime (U : ℕ) {a b : ℕ} (hab : a.Coprime b) :
     vaughanBeta U (a * b) = vaughanBeta U a + vaughanBeta U b := by
   rw [vaughanBeta_eq_sum_primePow, Nat.mul_divisors_filter_prime_pow hab,
     filter_union, sum_union (Nat.disjoint_divisors_filter_isPrimePow hab),
     ← vaughanBeta_eq_sum_primePow, ← vaughanBeta_eq_sum_primePow]
 
+/--
+@isnad1 id=eq.3h3v.s6.9cb7d0249f02 from=translated src=- shape=529b47a9 vocab=4e0ea443
+-/
 theorem vaughanBeta_mul_small_rough (U a b : ℕ) (ha : 0 < a) (haU : a ≤ U)
     (hrough : ∀ p, Nat.Prime p → p ∣ b → U < p) :
     vaughanBeta U (a * b) = Real.log b := by
@@ -60,7 +73,9 @@ theorem vaughanBeta_mul_small_rough (U a b : ℕ) (ha : 0 < a) (haU : a ≤ U)
       (small_divisors_eq_one_of_prime_divisors_gt U b hrough), zero_add]
 
 /-- The low Möbius convolution factors through the complete divisor sum of
-the bounded small part.-/
+the bounded small part.
+@isnad1 id=eq.4h3v.s7.f84226eaaded from=translated src=- shape=1d2e917f vocab=a5858088
+-/
 theorem moebiusLow_mul_beta_small_rough (U a b : ℕ) (ha : 0 < a)
     (haU : a ≤ U) (hb : 0 < b)
     (hrough : ∀ p, Nat.Prime p → p ∣ b → U < p) :
@@ -100,6 +115,9 @@ theorem moebiusLow_mul_beta_small_rough (U a b : ℕ) (ha : 0 < a)
       ((Nat.div_le_self a d).trans haU) hrough]
   rfl
 
+/--
+@isnad1 id=eq.4h3v.s6.03b2c9ca8910 from=translated src=- shape=39012c31 vocab=ea0b51df
+-/
 theorem mangoldtHigh_mul_small_rough (U a b : ℕ) (ha : 1 < a)
     (haU : a ≤ U) (hb : 0 < b)
     (hrough : ∀ p, Nat.Prime p → p ∣ b → U < p) :
@@ -118,7 +136,9 @@ theorem mangoldtHigh_mul_small_rough (U a b : ℕ) (ha : 1 < a)
   simp [mangoldtHigh, cutoffHigh_apply, vonMangoldt_eq_zero_iff.mpr hnot]
 
 /-- A nontrivial small part of size at most the common cutoff forces exact
-grouped cancellation, including repeated prime factors and the case b = 1.-/
+grouped cancellation, including repeated prime factors and the case b = 1.
+@isnad1 id=eq.4h3v.s6.4a84732632db from=translated src=- shape=e461fe83 vocab=469087be
+-/
 theorem vaughanBilinear_eq_zero_of_small_part (U a b : ℕ) (ha : 1 < a)
     (haU : a ≤ U) (hb : 0 < b)
     (hrough : ∀ p, Nat.Prime p → p ∣ b → U < p) :
@@ -143,7 +163,9 @@ theorem vaughanBilinear_eq_zero_of_small_part (U a b : ℕ) (ha : 1 < a)
   exact hsum
 
 /-- With a rough right factor, every low divisor comes entirely from the
-left factor. The test function can retain arbitrary signed coefficients.-/
+left factor. The test function can retain arbitrary signed coefficients.
+@isnad1 id=eq.3h4v.s7.1fc13090d41f from=translated src=- shape=f7440bce vocab=853e4411
+-/
 theorem moebiusLow_mul_apply_mul_rough (U a b : ℕ) (ha : 0 < a) (hb : 0 < b)
     (hrough : ∀ p, Nat.Prime p → p ∣ b → U < p) (g : ArithmeticFunction ℝ) :
     (moebiusLow U * g) (a * b) =
@@ -176,6 +198,9 @@ theorem moebiusLow_mul_apply_mul_rough (U a b : ℕ) (ha : 0 < a) (hb : 0 < b)
   · simp only [moebiusLow, cutoffLow_apply, ite_eq_left hdU, hquot, intCoe_apply]
   · simp [moebiusLow, cutoffLow_apply, hdU]
 
+/--
+@isnad1 id=coprime.2h3v.s5.3a9158ffcd95 from=translated src=- shape=362bd51b vocab=078ddf0c
+-/
 theorem coprime_smooth_rough (U a b : ℕ)
     (hsmooth : ∀ p, Nat.Prime p → p ∣ a → p ≤ U)
     (hrough : ∀ p, Nat.Prime p → p ∣ b → U < p) : a.Coprime b := by
@@ -183,7 +208,9 @@ theorem coprime_smooth_rough (U a b : ℕ)
   intro p hp hpa hpb
   exact (not_lt_of_ge (hsmooth p hp hpa)) (hrough p hp hpb)
 
-/-- A squarefree smooth integer has no prime-power divisor above the cutoff.-/
+/-- A squarefree smooth integer has no prime-power divisor above the cutoff.
+@isnad1 id=eq.2h2v.s5.f8c64afb20a0 from=translated src=- shape=5e32c071 vocab=32497f5e
+-/
 theorem vaughanBeta_eq_zero_of_squarefree_smooth (U a : ℕ) (ha : Squarefree a)
     (hsmooth : ∀ p, Nat.Prime p → p ∣ a → p ≤ U) :
     vaughanBeta U a = 0 := by
@@ -196,6 +223,9 @@ theorem vaughanBeta_eq_zero_of_squarefree_smooth (U a : ℕ) (ha : Squarefree a)
     ⟨ha.squarefree_of_dvd hda, hpow⟩
   simp [Nat.not_lt.mpr (hsmooth d hp hda)]
 
+/--
+@isnad1 id=eq.3h3v.s6.8c24f331d0a8 from=translated src=- shape=cc59f480 vocab=b418e0c6
+-/
 theorem vaughanBeta_mul_squarefree_smooth_rough (U a b : ℕ) (ha : Squarefree a)
     (hsmooth : ∀ p, Nat.Prime p → p ∣ a → p ≤ U)
     (hrough : ∀ p, Nat.Prime p → p ∣ b → U < p) :
@@ -205,6 +235,9 @@ theorem vaughanBeta_mul_squarefree_smooth_rough (U a b : ℕ) (ha : Squarefree a
     vaughanBeta_eq_log_of_small_divisors U b
       (small_divisors_eq_one_of_prime_divisors_gt U b hrough), zero_add]
 
+/--
+@isnad1 id=eq.4h3v.s6.c1f7a98cbb79 from=translated src=- shape=3f72381f vocab=e0244048
+-/
 theorem moebiusLow_mul_beta_squarefree_smooth_rough (U a b : ℕ) (ha : Squarefree a)
     (hb : 0 < b) (hsmooth : ∀ p, Nat.Prime p → p ∣ a → p ≤ U)
     (hrough : ∀ p, Nat.Prime p → p ∣ b → U < p) :
@@ -219,7 +252,9 @@ theorem moebiusLow_mul_beta_squarefree_smooth_rough (U a b : ℕ) (ha : Squarefr
     (fun p hp hpd => hsmooth p hp (hpd.trans hda)) hrough]
 
 /-- The smooth part may exceed U and the rough part may have repeated factors.
-The truncated Möbius sum retains its sign.-/
+The truncated Möbius sum retains its sign.
+@isnad1 id=eq.4h3v.s7.265d3cf677a9 from=translated src=- shape=33591fb5 vocab=a1d0c057
+-/
 theorem vaughanBilinear_eq_mangoldtHigh_sub_of_squarefree_smooth_rough
     (U a b : ℕ) (ha : Squarefree a) (hb : 0 < b)
     (hsmooth : ∀ p, Nat.Prime p → p ∣ a → p ≤ U)
@@ -238,6 +273,9 @@ theorem vaughanBilinear_eq_mangoldtHigh_sub_of_squarefree_smooth_rough
     moebiusLow_mul_beta_squarefree_smooth_rough U a b ha hb hsmooth hrough] at hsum
   linarith
 
+/--
+@isnad1 id=eq.5h3v.s7.6ccae427027b from=translated src=- shape=9167fd70 vocab=37b08399
+-/
 theorem vaughanBilinear_eq_mangoldt_sub_of_squarefree_smooth_rough
     (U a b : ℕ) (ha : Squarefree a) (hb : 0 < b) (hn : U < a * b)
     (hsmooth : ∀ p, Nat.Prime p → p ∣ a → p ≤ U)
@@ -247,6 +285,9 @@ theorem vaughanBilinear_eq_mangoldt_sub_of_squarefree_smooth_rough
   rw [vaughanBilinear_eq_mangoldtHigh_sub_of_squarefree_smooth_rough
     U a b ha hb hsmooth hrough, mangoldtHigh, cutoffHigh_apply, ite_eq_left hn]
 
+/--
+@isnad1 id=eq.6h3v.s6.557d6f5f9a1f from=translated src=- shape=99786f17 vocab=8f40681c
+-/
 theorem truncatedMoebiusSum_two_primes (U p q : ℕ) (hp : Nat.Prime p)
     (hq : Nat.Prime q) (hpq : p ≠ q) (hpU : p ≤ U) (hqU : q ≤ U)
     (hU : U < p * q) : truncatedMoebiusSum U (p * q) = -1 := by
@@ -270,7 +311,9 @@ theorem truncatedMoebiusSum_two_primes (U p q : ℕ) (hp : Nat.Prime p)
 
 /-- Two distinct small primes whose product exceeds the cutoff give a
 positive logarithmic coefficient when multiplied by any positive rough part.
-The rough factor may have repeated primes; at b = 1 the coefficient is zero.-/
+The rough factor may have repeated primes; at b = 1 the coefficient is zero.
+@isnad1 id=eq.8h4v.s7.4b0746f5ac33 from=translated src=- shape=c1123f63 vocab=144d51e9
+-/
 theorem vaughanBilinear_eq_log_of_two_small_primes (U p q b : ℕ)
     (hp : Nat.Prime p) (hq : Nat.Prime q) (hpq : p ≠ q)
     (hpU : p ≤ U) (hqU : q ≤ U) (hU : U < p * q) (hb : 0 < b)
@@ -294,6 +337,9 @@ theorem vaughanBilinear_eq_log_of_two_small_primes (U p q b : ℕ)
     truncatedMoebiusSum_two_primes U p q hp hq hpq hpU hqU hU]
   simp [mangoldtHigh, cutoffHigh_apply, vonMangoldt_eq_zero_iff.mpr hnot]
 
+/--
+@isnad1 id=le.8h4v.s7.284a73edb543 from=translated src=- shape=40467a85 vocab=469087be
+-/
 theorem vaughanBilinear_nonneg_of_two_small_primes (U p q b : ℕ)
     (hp : Nat.Prime p) (hq : Nat.Prime q) (hpq : p ≠ q)
     (hpU : p ≤ U) (hqU : q ≤ U) (hU : U < p * q) (hb : 0 < b)

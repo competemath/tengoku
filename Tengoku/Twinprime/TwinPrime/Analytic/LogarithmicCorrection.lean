@@ -18,6 +18,9 @@ open scoped ArithmeticFunction.Moebius
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=eq.1h2v.s6.3cf28218de25 from=translated src=- shape=3ad20448 vocab=9636689f
+-/
 theorem truncatedMoebiusSum_eq_moduli (U n : ℕ) (hn : 0 < n) :
     truncatedMoebiusSum U n = ∑ d ∈ range (U + 1) with d ∣ n, (μ d : ℝ) := by
   unfold truncatedMoebiusSum
@@ -26,6 +29,9 @@ theorem truncatedMoebiusSum_eq_moduli (U n : ℕ) (hn : 0 < n) :
   simp only [mem_filter, Nat.mem_divisors, mem_range]
   omega
 
+/--
+@isnad1 id=eq.0h2v.s7.eabbc56d20dd from=translated src=- shape=c89f3c8b vocab=52ff0a72
+-/
 theorem logarithmicCorrection_eq_progressions (U X : ℕ) :
     logarithmicCorrection U X = ∑ q ∈ range (U + 1), (μ q : ℝ) *
       ∑ n ∈ Ioc X (2 * X) with q ∣ n,
@@ -51,6 +57,9 @@ theorem logarithmicCorrection_eq_progressions (U X : ℕ) :
       intro n _
       split_ifs <;> simp [mul_assoc]
 
+/--
+@isnad1 id=le.3h3v.s6.67b3fe57fff5 from=translated src=- shape=bc84d7a5 vocab=b0b1bb8a
+-/
 theorem log_ratio_nonneg {U X n : ℕ} (hU : 0 < U) (hUX : U ≤ X)
     (hn : n ∈ Ioc X (2 * X)) : 0 ≤ Real.log ((n : ℝ) / U) := by
   apply Real.log_nonneg
@@ -58,6 +67,9 @@ theorem log_ratio_nonneg {U X n : ℕ} (hU : 0 < U) (hUX : U ≤ X)
   simp only [one_mul]
   exact_mod_cast (show U ≤ n by have := mem_Ioc.mp hn; omega)
 
+/--
+@isnad1 id=le.2h3v.s6.eca9b3355ba5 from=translated src=- shape=128a694f vocab=029dfb73
+-/
 theorem log_ratio_le_dyadic {U X n : ℕ} (hU : 0 < U)
     (hn : n ∈ Ioc X (2 * X)) :
     Real.log ((n : ℝ) / U) ≤ Real.log (2 * X + 2) := by
@@ -68,6 +80,9 @@ theorem log_ratio_le_dyadic {U X n : ℕ} (hU : 0 < U)
   apply (div_le_self (le_of_lt hnp) hU1).trans
   exact_mod_cast (show n ≤ 2 * X + 2 by have := mem_Ioc.mp hn; omega)
 
+/--
+@isnad1 id=le.3h3v.s7.bbe9e0784917 from=translated src=- shape=3b621d76 vocab=20daa8a1
+-/
 theorem even_logarithmicProgression_le (U X q : ℕ) (hU : 0 < U) (hUX : U ≤ X)
     (hq : Even q) :
     |∑ n ∈ Ioc X (2 * X) with q ∣ n,
@@ -87,7 +102,9 @@ theorem even_logarithmicProgression_le (U X q : ℕ) (hU : 0 < U) (hUX : U ≤ X
     _ ≤ _ := mul_le_mul_of_nonneg_left (even_shiftedProgression_le X q hq)
       (Real.log_nonneg (by have := Nat.cast_nonneg (α := ℝ) X; linarith))
 
-/-- Cumulative shifted errors on every intermediate integer endpoint.-/
+/-- Cumulative shifted errors on every intermediate integer endpoint.
+@isnad1 id=eq.1h3v.s7.14f9135a2173 from=translated src=- shape=1bfc2651 vocab=a91455ca
+-/
 theorem shiftedProgression_interval_sub_main_eq_errors (a b q : ℕ) (hab : a ≤ b) :
     (∑ n ∈ Ioc a b with q ∣ n, vonMangoldt (n + 2)) -
       ((b : ℝ) - a) / Nat.totient q =
@@ -122,10 +139,16 @@ theorem shiftedProgression_interval_sub_main_eq_errors (a b q : ℕ) (hab : a �
 def logarithmicMass (U X : ℕ) : ℝ :=
   ∑ n ∈ Ioc X (2 * X), Real.log ((n : ℝ) / U)
 
+/--
+@isnad1 id=le.2h2v.s5.d6d7701d9f3f from=translated src=- shape=660f03ce vocab=a0ee3b08
+-/
 theorem logarithmicMass_nonneg (U X : ℕ) (hU : 0 < U) (hUX : U ≤ X) :
     0 ≤ logarithmicMass U X :=
   sum_nonneg (fun _ hn => log_ratio_nonneg hU hUX hn)
 
+/--
+@isnad1 id=le.1h2v.s6.ced644a5a57a from=translated src=- shape=5213a35a vocab=d9c6d4e0
+-/
 theorem logarithmicMass_le (U X : ℕ) (hU : 0 < U) :
     logarithmicMass U X ≤ X * Real.log (2 * X + 2) := by
   calc
@@ -133,6 +156,9 @@ theorem logarithmicMass_le (U X : ℕ) (hU : 0 < U) :
       sum_le_sum (fun _ hn => log_ratio_le_dyadic hU hn)
     _ = _ := by simp [Nat.card_Ioc, show 2 * X - X = X by omega]
 
+/--
+@isnad1 id=eq.0h1v.s4.427bda1dbfbc from=translated src=- shape=5653184b vocab=1e0e14a9
+-/
 theorem oddCutoff_eq_range_filter (U : ℕ) :
     oddCutoff U = (range (U + 1)).filter Odd := by
   ext q
@@ -143,7 +169,9 @@ theorem oddCutoff_eq_range_filter (U : ℕ) :
   · rintro ⟨hq, ho⟩
     exact ⟨⟨ho.pos, by omega⟩, ho⟩
 
-/-- A finite assembly lemma retaining a separate reduced-residue estimate.-/
+/-- A finite assembly lemma retaining a separate reduced-residue estimate.
+@isnad1 id=le.3h2v.s8.fc0680b2d190 from=translated src=- shape=23579a1f vocab=63fd8581
+-/
 theorem logarithmicCorrection_error_le_of_progressions (U X : ℕ)
     (hU : 0 < U) (hUX : U ≤ X)
     (hodd : ∀ q, Odd q →

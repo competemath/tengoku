@@ -14,7 +14,9 @@ noncomputable section
 
 namespace TwinPrime.Analytic
 
-/-- A single side of the square-root box polynomial.-/
+/-- A single side of the square-root box polynomial.
+@isnad1 id=le.2h2v.s6.3ed758d62fe7 from=translated src=- shape=dda5c098 vocab=339213db
+-/
 theorem sqrt_mul_add_le (M C : ℝ) (hM : 0 ≤ M) (hC : 0 ≤ C) :
     Real.sqrt (M * (M + C)) ≤ M + Real.sqrt C * Real.sqrt M := by
   apply (Real.sqrt_le_left (by positivity)).mpr
@@ -22,7 +24,9 @@ theorem sqrt_mul_add_le (M C : ℝ) (hM : 0 ≤ M) (hC : 0 ≤ C) :
     rw [mul_pow, Real.sq_sqrt hC, Real.sq_sqrt hM]
   nlinarith [mul_nonneg hM (mul_nonneg (Real.sqrt_nonneg C) (Real.sqrt_nonneg M))]
 
-/-- Expansion of the box polynomial into its three types of terms.-/
+/-- Expansion of the box polynomial into its three types of terms.
+@isnad1 id=le.3h3v.s7.14556be01da5 from=translated src=- shape=405e17f6 vocab=339213db
+-/
 theorem bilinear_box_sqrt_le_expansion (M N C : ℝ)
     (hM : 0 ≤ M) (hN : 0 ≤ N) (hC : 0 ≤ C) :
     Real.sqrt (M * N * (M + C) * (N + C)) ≤
@@ -42,7 +46,9 @@ theorem bilinear_box_sqrt_le_expansion (M N C : ℝ)
         _ = _ := by rw [Real.sq_sqrt hC]
 
 /-- A mixed side term is controlled by the product bound and the lower
-bound for the side appearing under its square root.-/
+bound for the side appearing under its square root.
+@isnad1 id=le.4h4v.s6.e6bfae95f891 from=translated src=- shape=bd4ac70a vocab=4374279d
+-/
 theorem mul_sqrt_le_div_sqrt (M N V T : ℝ) (hM : 0 ≤ M)
     (hV : 0 < V) (hVN : V ≤ N) (hMN : M * N ≤ T) :
     M * Real.sqrt N ≤ T / Real.sqrt V := by
@@ -58,7 +64,9 @@ theorem mul_sqrt_le_div_sqrt (M N V T : ℝ) (hM : 0 ≤ M)
     _ ≤ _ := div_le_div_of_nonneg_left hT hsV (Real.sqrt_le_sqrt hVN)
 
 /-- The polynomial bound for a nonempty bilinear box, with explicit
-positive lower cutoffs and a nonnegative large-sieve constant.-/
+positive lower cutoffs and a nonnegative large-sieve constant.
+@isnad1 id=le.6h6v.s7.678cbd837d34 from=translated src=- shape=dbaf057f vocab=a2bb450f
+-/
 theorem bilinear_box_polynomial_le (M N U V T C : ℝ)
     (hU : 0 < U) (hUM : U ≤ M) (hV : 0 < V) (hVN : V ≤ N)
     (hMN : M * N ≤ T) (hC : 0 ≤ C) :
@@ -79,7 +87,9 @@ theorem bilinear_box_polynomial_le (M N U V T C : ℝ)
     _ = _ := by ring
 
 /-- Absorb the square-root logarithmic factor into `L ≥ 1` after putting
-`C = Q² L`. This isolates the polynomial used by the later Vaughan boxes.-/
+`C = Q² L`. This isolates the polynomial used by the later Vaughan boxes.
+@isnad1 id=le.7h7v.s8.61c674db9d17 from=translated src=- shape=d69c6f3f vocab=d44e7500
+-/
 theorem bilinear_box_polynomial_le_log_factor (M N U V T Q L : ℝ)
     (hU : 0 < U) (hUM : U ≤ M) (hV : 0 < V) (hVN : V ≤ N)
     (hMN : M * N ≤ T) (hQ : 0 ≤ Q) (hL : 1 ≤ L) :

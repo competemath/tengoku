@@ -25,6 +25,9 @@ def middlePrimeActualWeight (a : ℝ) (X q : ℕ) : ℝ :=
 def middlePrimeIdealWeight (a : ℝ) (X q : ℕ) : ℝ :=
   2 * (1 - middlePrimeLogCoordinate X q) / (a - middlePrimeLogCoordinate X q)
 
+/--
+@isnad1 id=and.2h3v.s6.94aab0b53e4c from=translated src=- shape=b6677f51 vocab=47ad6ad4
+-/
 theorem middlePrimeLogCoordinate_bounds (v : ℝ) (X q : ℕ) (hX : 2 ≤ X)
     (hq : q ∈ Ioc (primaryCutoff X) (middlePrimePowerCutoff v X)) :
     1 / 5 < middlePrimeLogCoordinate X q ∧ middlePrimeLogCoordinate X q ≤ v := by
@@ -46,7 +49,9 @@ theorem middlePrimeLogCoordinate_bounds (v : ℝ) (X q : ℕ) (hX : 2 ≤ X)
     have h := Real.log_le_log hq0 hupper
     simpa only [Real.log_rpow (by linarith : (0 : ℝ) < X)] using h
 
-/-- The ideal weight is uniformly positive and bounded on the active interval.-/
+/-- The ideal weight is uniformly positive and bounded on the active interval.
+@isnad1 id=and.4h4v.s6.79ce29130e93 from=translated src=- shape=90ebc427 vocab=50ea58ef
+-/
 theorem middlePrimeIdealWeight_bounds (a v : ℝ) (hva : v < a) (ha : a < 1)
     (X q : ℕ) (hX : 2 ≤ X)
     (hq : q ∈ Ioc (primaryCutoff X) (middlePrimePowerCutoff v X)) :
@@ -95,7 +100,9 @@ private theorem ratio_perturbation_le (L z t a δ c : ℝ)
     _ = _ := by field_simp; norm_num
 
 /-- Combining the full threshold rounding with the modulus floor gives
-a bounded logarithmic error before normalization by log X.-/
+a bounded logarithmic error before normalization by log X.
+@isnad1 id=le.4h3v.s7.fd90152e2e19 from=translated src=- shape=4445772e vocab=35a41419
+-/
 theorem abs_log_middlePrimeSieveThreshold_sub_power_half_le_two (a : ℝ) (X q : ℕ)
     (hX : 2 ≤ X) (hpow : 4 ≤ (X : ℝ) ^ a) (hq : 1 ≤ q)
     (hqD : q ≤ middlePrimePowerCutoff a X) :
@@ -122,7 +129,9 @@ theorem abs_log_middlePrimeSieveThreshold_sub_power_half_le_two (a : ℝ) (X q :
   rw [abs_div, abs_of_pos (by norm_num : (0 : ℝ) < 2)]
   linarith
 
-/-- Explicit uniform rate for the actual sieve weight.-/
+/-- Explicit uniform rate for the actual sieve weight.
+@isnad1 id=eventual.3h2v.s7.211510618a2a from=translated src=- shape=bd351791 vocab=c2ea2702
+-/
 theorem eventually_middlePrimeActualWeight_sub_ideal_le (a v : ℝ)
     (hv : (1 / 5 : ℝ) < v) (hva : v < a) (ha : a < 1 / 2) :
     ∀ᶠ X : ℕ in atTop, ∀ q ∈ Ioc (primaryCutoff X) (middlePrimePowerCutoff v X),
@@ -167,7 +176,9 @@ theorem eventually_middlePrimeActualWeight_sub_ideal_le (a v : ℝ)
   simpa only [middlePrimeActualWeight, middlePrimeIdealWeight, hnum] using hb
 
 /-- The actual weight approaches its ideal expression uniformly over all
-active integers q, with the lower endpoint and every rounding retained.-/
+active integers q, with the lower endpoint and every rounding retained.
+@isnad1 id=eventual.4h3v.s7.57eb1e11ad18 from=translated src=- shape=40ec6d5a vocab=5ffd16d2
+-/
 theorem eventually_middlePrimeActualWeight_sub_ideal_le_epsilon (a v : ℝ)
     (hv : (1 / 5 : ℝ) < v) (hva : v < a) (ha : a < 1 / 2)
     (ε : ℝ) (hε : 0 < ε) :
@@ -186,7 +197,9 @@ theorem eventually_middlePrimeActualWeight_sub_ideal_le_epsilon (a v : ℝ)
   exact (hbound q hq).trans hsmall.le
 
 /-- A positive lower bound and one fixed upper bound hold simultaneously
-throughout the growing family.-/
+throughout the growing family.
+@isnad1 id=eventual.3h2v.s7.fea17d4f9f0d from=translated src=- shape=9e8c9fea vocab=4600cb6b
+-/
 theorem eventually_middlePrimeActualWeight_bounds (a v : ℝ)
     (hv : (1 / 5 : ℝ) < v) (hva : v < a) (ha : a < 1 / 2) :
     ∀ᶠ X : ℕ in atTop, ∀ q ∈ Ioc (primaryCutoff X) (middlePrimePowerCutoff v X),
@@ -198,6 +211,9 @@ theorem eventually_middlePrimeActualWeight_bounds (a v : ℝ)
   obtain ⟨hd0, hd1⟩ := abs_le.mp (hdiff q hq)
   constructor <;> linarith
 
+/--
+@isnad1 id=eventual.3h2v.s7.0259bb5890b7 from=translated src=- shape=b7040b3b vocab=4831f38a
+-/
 theorem eventually_abs_middlePrimeActualWeight_le (a v : ℝ)
     (hv : (1 / 5 : ℝ) < v) (hva : v < a) (ha : a < 1 / 2) :
     ∀ᶠ X : ℕ in atTop, ∀ q ∈ Ioc (primaryCutoff X) (middlePrimePowerCutoff v X),

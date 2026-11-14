@@ -20,6 +20,9 @@ open Finset ArithmeticFunction
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=eq.0h3v.s7.a94a76e3dde0 from=translated src=- shape=4dc63b59 vocab=22f2f2a5
+-/
 theorem sum_characterArithmetic_Ioc_eq {q : ℕ}
     (χ : DirichletCharacter ℂ q) (N : ℕ) :
     (∑ n ∈ Ioc 0 N, toArithmeticFunction (χ ·) n) =
@@ -28,18 +31,26 @@ theorem sum_characterArithmetic_Ioc_eq {q : ℕ}
   intro n hn
   exact (χ.apply_eq_toArithmeticFunction_apply (ne_of_gt (mem_Ioc.mp hn).1)).symm
 
+/--
+@isnad1 id=le.1h3v.s7.a4905a3dcb86 from=translated src=- shape=4c76525c vocab=f82bceb2
+-/
 theorem norm_characterArithmetic_sum_le_modulus {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1) (N : ℕ) :
     ‖∑ n ∈ Ioc 0 N, toArithmeticFunction (χ ·) n‖ ≤ (q : ℝ) := by
   rw [sum_characterArithmetic_Ioc_eq]
   exact norm_character_sum_Ioc_le_modulus χ hχ N
 
+/--
+@isnad1 id=le.1h3v.s7.f90d853fb6ef from=translated src=- shape=ad4745b2 vocab=9eb21ec9
+-/
 theorem norm_complexArithmeticSummatory_character_le_modulus {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1) (x : ℝ) :
     ‖complexArithmeticSummatory (toArithmeticFunction (χ ·)) x‖ ≤ (q : ℝ) :=
   norm_characterArithmetic_sum_le_modulus χ hχ ⌊x⌋₊
 
-/-- Each nonprincipal factor supplies its actual complete-period bound.-/
+/-- Each nonprincipal factor supplies its actual complete-period bound.
+@isnad1 id=le.3h4v.s8.a82b9aff95cb from=translated src=- shape=616428e1 vocab=f986f32a
+-/
 theorem norm_two_character_convolution_summatory_le {q : ℕ} [NeZero q]
     (χ₁ χ₂ : DirichletCharacter ℂ q) (hχ₁ : χ₁ ≠ 1) (hχ₂ : χ₂ ≠ 1)
     (x : ℝ) (hx : 1 ≤ x) :
@@ -52,7 +63,9 @@ theorem norm_two_character_convolution_summatory_le {q : ℕ} [NeZero q]
     (norm_characterArithmetic_sum_le_modulus χ₂ hχ₂) x hx
 
 /-- The real hyperbola cutoffs `x^(2/3)` and `x^(1/3)` give a uniform
-triple-convolution bound, including imprimitive nonprincipal characters.-/
+triple-convolution bound, including imprimitive nonprincipal characters.
+@isnad1 id=le.4h5v.s9.db1d3384b0bf from=translated src=- shape=0b29c6f5 vocab=f9a61c0a
+-/
 theorem norm_three_character_convolution_summatory_le {q : ℕ} [NeZero q]
     (χ₁ χ₂ χ₃ : DirichletCharacter ℂ q)
     (hχ₁ : χ₁ ≠ 1) (hχ₂ : χ₂ ≠ 1) (hχ₃ : χ₃ ≠ 1)

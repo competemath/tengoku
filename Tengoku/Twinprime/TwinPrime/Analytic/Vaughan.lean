@@ -30,12 +30,21 @@ def cutoffLow (f : ArithmeticFunction ℝ) (U : ℕ) : ArithmeticFunction ℝ :=
 def cutoffHigh (f : ArithmeticFunction ℝ) (U : ℕ) : ArithmeticFunction ℝ :=
   ⟨fun n => if U < n then f n else 0, by simp⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.512bdeb0bd72 from=translated src=- shape=d514a4a6 vocab=70d264d3
+-/
 @[simp] theorem cutoffLow_apply (f : ArithmeticFunction ℝ) (U n : ℕ) :
     cutoffLow f U n = if n ≤ U then f n else 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.55ee63cb32ea from=translated src=- shape=f7e7efab vocab=9a3861b1
+-/
 @[simp] theorem cutoffHigh_apply (f : ArithmeticFunction ℝ) (U n : ℕ) :
     cutoffHigh f U n = if U < n then f n else 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.7a4f7b0961a7 from=translated src=- shape=423526d6 vocab=67503ebb
+-/
 theorem cutoffLow_add_cutoffHigh (f : ArithmeticFunction ℝ) (U : ℕ) :
     cutoffLow f U + cutoffHigh f U = f := by
   ext n
@@ -49,7 +58,9 @@ def mangoldtLow (V : ℕ) : ArithmeticFunction ℝ := cutoffLow vonMangoldt V
 def mangoldtHigh (V : ℕ) : ArithmeticFunction ℝ := cutoffHigh vonMangoldt V
 
 /-- Vaughan's identity, including its low von Mangoldt term. It holds at all
-natural inputs, including zero, for every pair of natural cutoffs.-/
+natural inputs, including zero, for every pair of natural cutoffs.
+@isnad1 id=eq.0h2v.s7.be2cdfc4d8d5 from=translated src=- shape=20258b8c vocab=488d2369
+-/
 theorem vaughanIdentity (U V : ℕ) :
     vonMangoldt =
       moebiusLow U * ArithmeticFunction.log -
@@ -88,6 +99,9 @@ def vaughanCoefficient (U V : ℕ) : ArithmeticFunction ℝ :=
 /-- The nonnegative divisor weight `β_V(r) = ∑ b ∣ r, b > V, Λ(b)`.-/
 def vaughanBeta (V : ℕ) : ArithmeticFunction ℝ := mangoldtHigh V * ζ
 
+/--
+@isnad1 id=eq.0h3v.s7.f942e0159d35 from=translated src=- shape=2027431c vocab=2a919b7e
+-/
 theorem vaughanCoefficient_apply (U V n : ℕ) :
     vaughanCoefficient U V n =
       ∑ db ∈ n.divisorsAntidiagonal,
@@ -97,10 +111,16 @@ theorem vaughanCoefficient_apply (U V n : ℕ) :
   intro db hdb
   split_ifs <;> simp_all
 
+/--
+@isnad1 id=eq.0h2v.s5.377089471a31 from=translated src=- shape=892d290d vocab=f2715ca1
+-/
 theorem vaughanBeta_apply (V n : ℕ) :
     vaughanBeta V n = ∑ b ∈ n.divisors, if V < b then vonMangoldt b else 0 := by
   simp only [vaughanBeta, coe_mul_zeta_apply, mangoldtHigh, cutoffHigh_apply]
 
+/--
+@isnad1 id=eq.0h2v.s6.6d659b91c3e9 from=translated src=- shape=f8e106e1 vocab=bc0f05c0
+-/
 theorem vaughanBeta_eq_log_sub (V n : ℕ) :
     vaughanBeta V n = Real.log n -
       ∑ b ∈ n.divisors, if b ≤ V then vonMangoldt b else 0 := by
@@ -114,16 +134,25 @@ theorem vaughanBeta_eq_log_sub (V n : ℕ) :
   simpa only [mangoldtLow, cutoffLow_apply] using (eq_sub_iff_add_eq.mpr (by linarith :
     vaughanBeta V n + (∑ b ∈ n.divisors, mangoldtLow V b) = Real.log n))
 
+/--
+@isnad1 id=le.0h2v.s4.30c7fd58bf09 from=translated src=- shape=f54b5217 vocab=205f65a0
+-/
 theorem vaughanBeta_nonneg (V n : ℕ) : 0 ≤ vaughanBeta V n := by
   rw [vaughanBeta_apply]
   exact sum_nonneg fun b _ => by split_ifs <;> positivity
 
+/--
+@isnad1 id=le.0h2v.s4.ea039a110a0f from=translated src=- shape=4eea045b vocab=0f77aba5
+-/
 theorem vaughanBeta_le_log (V n : ℕ) : vaughanBeta V n ≤ Real.log n := by
   rw [vaughanBeta_eq_log_sub]
   have h : 0 ≤ ∑ b ∈ n.divisors, if b ≤ V then vonMangoldt b else 0 :=
     sum_nonneg fun b _ => by split_ifs <;> positivity
   linarith
 
+/--
+@isnad1 id=eq.1h2v.s5.31db15e34605 from=translated src=- shape=d3903c8c vocab=205f65a0
+-/
 theorem vaughanBeta_eq_zero_of_le (V n : ℕ) (hn : n ≤ V) :
     vaughanBeta V n = 0 := by
   rw [vaughanBeta_apply]
@@ -133,6 +162,9 @@ theorem vaughanBeta_eq_zero_of_le (V n : ℕ) (hn : n ≤ V) :
     (Nat.pos_of_ne_zero (Nat.ne_zero_of_mem_divisors hb)) (Nat.dvd_of_mem_divisors hb)
   simp [Nat.not_lt.mpr (hbn.trans hn)]
 
+/--
+@isnad1 id=eq.1h3v.s5.500058d6a271 from=translated src=- shape=a0cb8dc6 vocab=c994c148
+-/
 theorem vaughanCoefficient_eq_zero_of_lt (U V n : ℕ) (hn : U * V < n) :
     vaughanCoefficient U V n = 0 := by
   rw [vaughanCoefficient_apply]
@@ -144,6 +176,9 @@ theorem vaughanCoefficient_eq_zero_of_lt (U V n : ℕ) (hn : U * V < n) :
     omega
   · rfl
 
+/--
+@isnad1 id=le.0h3v.s5.89bdf603ca49 from=translated src=- shape=dfd7fcc1 vocab=e2833abf
+-/
 theorem abs_vaughanCoefficient_le_log (U V n : ℕ) :
     |vaughanCoefficient U V n| ≤ Real.log n := by
   rw [vaughanCoefficient_apply]
@@ -164,7 +199,9 @@ theorem abs_vaughanCoefficient_le_log (U V n : ℕ) :
       rw [Nat.sum_divisorsAntidiagonal' (fun _ b => vonMangoldt b), vonMangoldt_sum]
 
 /-- The remaining convolution is bilinear, with both factors strictly above
-their respective cutoffs. The factorization is over positive divisors.-/
+their respective cutoffs. The factorization is over positive divisors.
+@isnad1 id=eq.0h3v.s7.a5a24ecb7104 from=translated src=- shape=528adf57 vocab=ba349df7
+-/
 theorem vaughanBilinear_apply (U V n : ℕ) :
     (moebiusHigh U * vaughanBeta V) n =
       ∑ dr ∈ n.divisorsAntidiagonal,
@@ -179,7 +216,9 @@ theorem vaughanBilinear_apply (U V n : ℕ) :
     · simp [hd, hr, vaughanBeta_eq_zero_of_le V dr.2 (Nat.le_of_not_gt hr)]
   · simp [hd]
 
-/-- On inputs above `V`, the low von Mangoldt term disappears.-/
+/-- On inputs above `V`, the low von Mangoldt term disappears.
+@isnad1 id=eq.1h3v.s7.b9b0c6e81822 from=translated src=- shape=8dcdedd6 vocab=0832080c
+-/
 theorem vaughanIdentity_apply_of_lt (U V n : ℕ) (hn : V < n) :
     vonMangoldt n = (moebiusLow U * ArithmeticFunction.log) n -
       (vaughanCoefficient U V * ζ) n + (moebiusHigh U * vaughanBeta V) n := by
@@ -189,7 +228,9 @@ theorem vaughanIdentity_apply_of_lt (U V n : ℕ) (hn : V < n) :
     add_zero, vaughanCoefficient, vaughanBeta, mul_assoc] using h
 
 /-- The finite weighted identity, ready to specialize to the weight `Λ(n+2)`
-on a dyadic interval. All hypotheses concern support, not prime distribution.-/
+on a dyadic interval. All hypotheses concern support, not prime distribution.
+@isnad1 id=eq.1h4v.s7.4bdbb530af56 from=translated src=- shape=b858652c vocab=e28a2a2b
+-/
 theorem vaughanIdentity_sum (U V : ℕ) (s : Finset ℕ) (w : ℕ → ℝ)
     (hs : ∀ n ∈ s, V < n) :
     (∑ n ∈ s, vonMangoldt n * w n) =

@@ -17,6 +17,9 @@ open Metric MeromorphicOn Finset
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=le.4h4v.s8.13602a72edec from=translated src=- shape=57362f4b vocab=7b8f521f
+-/
 theorem norm_divisor_zero_sum_le {f : ℂ → ℂ} {K : Set ℂ}
     (hf : AnalyticOnNhd ℂ f K) (hK : IsCompact K)
     (s : ℂ) (δ : ℝ) (hδ : 0 < δ)
@@ -51,6 +54,9 @@ theorem norm_divisor_zero_sum_le {f : ℂ → ℂ} {K : Set ℂ}
   rw [norm_div, hn]
   exact div_le_div_of_nonneg_left hD0 hδ (hsep u hD)
 
+/--
+@isnad1 id=eq.2h3v.s7.b9eabdf7bb42 from=translated src=- shape=aaa5bc56 vocab=8866d785
+-/
 theorem analytic_zero_of_divisor_ne_zero {f : ℂ → ℂ} {K : Set ℂ}
     (hf : AnalyticOnNhd ℂ f K) (u : ℂ) (hu : divisor f K u ≠ 0) : f u = 0 := by
   have hmem : u ∈ K := (divisor f K).supportWithinDomain hu
@@ -59,7 +65,9 @@ theorem analytic_zero_of_divisor_ne_zero {f : ℂ → ℂ} {K : Set ℂ}
   rw [divisor_apply hf.meromorphicOn hmem, ho] at hu
   simp at hu
 
-/-- The height margin covers the entire local divisor disk.-/
+/-- The height margin covers the entire local divisor disk.
+@isnad1 id=le.2h3v.s6.9b97d7ddf819 from=translated src=- shape=cbb33d4c vocab=f81950cb
+-/
 theorem abs_im_le_height_add_two_of_mem_local_disk (H : ℝ) (c u : ℂ)
     (hc : |c.im| ≤ H) (hu : u ∈ closedBall c (5 / 4)) : |u.im| ≤ H + 2 := by
   have hdiff : |u.im - c.im| ≤ 5 / 4 := by
@@ -70,6 +78,9 @@ theorem abs_im_le_height_add_two_of_mem_local_disk (H : ℝ) (c u : ℂ)
     simpa only [sub_add_cancel] using abs_add_le (u.im - c.im) c.im
   linarith
 
+/--
+@isnad1 id=le.5h6v.s8.3aa4abe9a6e7 from=translated src=- shape=fdcc1730 vocab=ac6e7fae
+-/
 theorem divisor_zero_separation_of_zero_free_rectangle {f : ℂ → ℂ}
     (c s : ℂ) (δ H : ℝ)
     (hf : AnalyticOnNhd ℂ f (closedBall c (5 / 4)))
@@ -87,6 +98,9 @@ theorem divisor_zero_separation_of_zero_free_rectangle {f : ℂ → ℂ}
   simp only [Complex.sub_re] at hnorm
   linarith
 
+/--
+@isnad1 id=le.5h5v.s9.8da7963013de from=translated src=- shape=3a228b17 vocab=a3a0310b
+-/
 theorem norm_divisor_zero_sum_le_of_zero_free_rectangle {f : ℂ → ℂ}
     (c s : ℂ) (δ H : ℝ) (hδ : 0 < δ)
     (hf : AnalyticOnNhd ℂ f (closedBall c (5 / 4)))

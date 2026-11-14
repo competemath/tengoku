@@ -16,6 +16,9 @@ open Finset ArithmeticFunction
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=eq.0h1v.s4.2037aa863f14 from=translated src=- shape=8bb6a94a vocab=8e48d836
+-/
 theorem complexArithmeticSummatory_zeta (x : ℝ) :
     complexArithmeticSummatory (ArithmeticFunction.zeta : ArithmeticFunction ℂ) x =
       (⌊x⌋₊ : ℂ) := by
@@ -28,13 +31,18 @@ theorem complexArithmeticSummatory_zeta (x : ℝ) :
   rw [h]
   simp
 
+/--
+@isnad1 id=le.1h1v.s5.ba28e4c26783 from=translated src=- shape=4e16b277 vocab=5d73feed
+-/
 theorem norm_natFloor_sub_self_le_one (x : ℝ) (hx : 0 ≤ x) :
     ‖(⌊x⌋₊ : ℂ) - (x : ℂ)‖ ≤ 1 := by
   rw [← Complex.ofReal_natCast, ← Complex.ofReal_sub, Complex.norm_real, Real.norm_eq_abs]
   exact abs_le.mpr ⟨by have := Nat.lt_floor_add_one x; linarith, by have := Nat.floor_le hx; linarith⟩
 
 /-- Replacing the zeta partial sum by its real endpoint costs only the
-absolute coefficient mass of the outer finite sum.-/
+absolute coefficient mass of the outer finite sum.
+@isnad1 id=le.1h3v.s7.446258a601fe from=translated src=- shape=261126d2 vocab=126ae4cd
+-/
 theorem norm_zeta_hyperbola_head_sub_reciprocal_le (f : ArithmeticFunction ℂ)
     (x : ℝ) (hx : 0 ≤ x) (Y : ℕ) :
     ‖(∑ k ∈ Ioc 0 Y, f k * complexArithmeticSummatory
@@ -58,7 +66,9 @@ theorem norm_zeta_hyperbola_head_sub_reciprocal_le (f : ArithmeticFunction ℂ)
   exact mul_le_of_le_one_right (norm_nonneg _) (norm_natFloor_sub_self_le_one _ (by positivity))
 
 /-- A finite zeta-convolution main-term bound retaining the actual reciprocal
-head error. The proposed coefficient `L` is arbitrary.-/
+head error. The proposed coefficient `L` is arbitrary.
+@isnad1 id=le.4h5v.s8.39aacb481461 from=translated src=- shape=5f026d83 vocab=450853a2
+-/
 theorem norm_zeta_convolution_sub_main_le_hyperbola (f : ArithmeticFunction ℂ)
     (L : ℂ) (x y z : ℝ) (hx : 1 ≤ x) (hy : 1 ≤ y) (hz : 1 ≤ z)
     (hyz : y * z = x) :

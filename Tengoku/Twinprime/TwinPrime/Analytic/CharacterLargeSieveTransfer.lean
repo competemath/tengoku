@@ -18,6 +18,9 @@ open scoped ComplexConjugate
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=eq.0h3v.s8.59e2fe0f98e0 from=translated src=- shape=0ee3cb25 vocab=e205bd6c
+-/
 theorem unit_character_orthogonality {q : ℕ} [NeZero q]
     (u v : (ZMod q)ˣ) :
     (∑ χ : DirichletCharacter ℂ q, χ u * conj (χ v)) =
@@ -33,7 +36,9 @@ theorem unit_character_orthogonality {q : ℕ} [NeZero q]
       DirichletCharacter.sum_char_inv_mul_char_eq ℂ v.isUnit u
     _ = _ := by simp only [Units.val_inj, eq_comm]
 
-/-- Unnormalized character Parseval for a function on the unit group.-/
+/-- Unnormalized character Parseval for a function on the unit group.
+@isnad1 id=eq.0h2v.s8.50926e6e5e75 from=translated src=- shape=7fb3b30e vocab=f0e0eea4
+-/
 theorem unit_character_parseval {q : ℕ} [NeZero q]
     (f : (ZMod q)ˣ → ℂ) :
     (∑ χ : DirichletCharacter ℂ q, ‖∑ u : (ZMod q)ˣ, χ u * f u‖ ^ 2) =
@@ -75,7 +80,9 @@ theorem unit_character_parseval {q : ℕ} [NeZero q]
   exact Complex.ofReal_injective hcomplex
 
 /-- The zero values of a character outside the unit group allow the unit
-sum to be identified with the Gauss sum over the whole residue ring.-/
+sum to be identified with the Gauss sum over the whole residue ring.
+@isnad1 id=eq.0h3v.s7.e1fae045b546 from=translated src=- shape=b8dd6bcd vocab=ec27baf1
+-/
 theorem sum_units_character_mul_eq {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (f : ZMod q → ℂ) :
     (∑ u : (ZMod q)ˣ, χ u * f u) = ∑ a : ZMod q, χ a * f a := by
@@ -98,7 +105,9 @@ theorem sum_units_character_mul_eq {q : ℕ} [NeZero q]
       rw [χ.map_nonunit hna, zero_mul]
 
 /-- Exact Gauss-sum factorization. The inverse character convention matches
-the standard additive character with a positive sign in its argument.-/
+the standard additive character with a positive sign in its argument.
+@isnad1 id=eq.1h4v.s8.231a99d61343 from=translated src=- shape=61c1e823 vocab=66db6f3e
+-/
 theorem primitive_character_additive_factorization {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive) (s : Finset ℕ) (a : ℕ → ℂ) :
     gaussSum χ ZMod.stdAddChar * (∑ n ∈ s, a n * χ⁻¹ n) =
@@ -125,7 +134,9 @@ theorem primitive_character_additive_factorization {q : ℕ} [NeZero q]
     _ = _ := by rw [mul_sum]; apply sum_congr rfl; intro n _; ring
 
 /-- Finite transfer at one positive modulus. Restriction to primitive
-characters is the only inequality; the unrestricted unit transform obeys Parseval.-/
+characters is the only inequality; the unrestricted unit transform obeys Parseval.
+@isnad1 id=le.0h3v.s8.f1fe13b79466 from=translated src=- shape=67b9710f vocab=8923b2d0
+-/
 theorem primitive_character_largeSieve_transfer {q : ℕ} [NeZero q]
     (s : Finset ℕ) (a : ℕ → ℂ) :
     (q : ℝ) / Nat.totient q *

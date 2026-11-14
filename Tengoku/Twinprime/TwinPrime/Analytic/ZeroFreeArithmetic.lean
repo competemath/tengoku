@@ -15,6 +15,9 @@ L-function requires proving the corresponding logarithmic-derivative inequality.
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=not.3h2v.s7.d96d42174c9e from=translated src=- shape=53d7a4ad vocab=70d00927
+-/
 theorem four_three_pole_contradiction {E δ : ℝ} (hE : 0 < E)
     (hδ0 : 0 ≤ δ) (hδ : δ ≤ 1 / (20 * E)) :
     ¬ 4 / (1 / (4 * E) + δ) ≤ 3 / (1 / (4 * E)) + E := by
@@ -31,6 +34,9 @@ theorem four_three_pole_contradiction {E δ : ℝ} (hE : 0 < E)
   rw [hr]
   linarith
 
+/--
+@isnad1 id=and.1h1v.s7.b85e21780c86 from=translated src=- shape=e5e20d96 vocab=c96aef97
+-/
 theorem zero_free_parameters_le {E : ℝ} (hE : 120 ≤ E) :
     0 < 1 / (4 * E) ∧ 1 / (4 * E) ≤ 1 / 8 ∧
       0 < 1 / (20 * E) ∧ 1 / (20 * E) ≤ 1 / 4 := by

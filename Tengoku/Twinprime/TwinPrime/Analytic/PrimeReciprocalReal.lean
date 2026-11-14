@@ -19,6 +19,9 @@ namespace TwinPrime.Analytic
 
 def realPrimeReciprocalSum (x : ℝ) : ℝ := primeReciprocalSum ⌊x⌋₊
 
+/--
+@isnad1 id=le.1h1v.s5.ed0cbeb9584b from=translated src=- shape=3fd25e48 vocab=5a030973
+-/
 theorem abs_log_sub_log_natFloor_le {x : ℝ} (hx : 4 ≤ x) :
     |Real.log x - Real.log (⌊x⌋₊ : ℝ)| ≤ 2 / x := by
   have hx0 : 0 < x := by linarith
@@ -41,7 +44,9 @@ theorem abs_log_sub_log_natFloor_le {x : ℝ} (hx : 4 ≤ x) :
     _ ≤ 2 / x := (div_le_div_iff₀ hn0 hx0).mpr (by simpa using hhalf)
 
 /-- A centered reciprocal estimate extends to real arguments with no change
-to its logarithmic exponent.-/
+to its logarithmic exponent.
+@isnad1 id=eventual.2h2v.s7.816797d5ab19 from=translated src=- shape=246047b7 vocab=2e081bd5
+-/
 theorem primeReciprocal_real_center_bound_of_nat (c C : ℝ) (hC : 0 ≤ C)
     (hcenter : ∀ᶠ N : ℕ in atTop,
       |primeReciprocalSum N - Real.log N - c| ≤ C / (Real.log N) ^ 5) :
@@ -75,6 +80,9 @@ theorem primeReciprocal_real_center_bound_of_nat (c C : ℝ) (hC : 0 ≤ C)
     _ ≤ 32 * C / (Real.log x) ^ 5 + 2 / (Real.log x) ^ 5 := add_le_add hmain hround
     _ = _ := by ring
 
+/--
+@isnad1 id=ex.2h1v.s7.1463710ea1f3 from=translated src=- shape=0eb28cf7 vocab=865ef86a
+-/
 theorem exists_realPrimeReciprocalSum_center_of_psi_log_six (K : ℝ) (hK : 0 ≤ K)
     (hψ : ∀ᶠ N : ℕ in atTop,
       |Chebyshev.psi N - (N : ℝ)| ≤ K * N / (Real.log N) ^ 6) :
@@ -83,6 +91,9 @@ theorem exists_realPrimeReciprocalSum_center_of_psi_log_six (K : ℝ) (hK : 0 �
   obtain ⟨c, _, C, hC, hcenter⟩ := exists_primeReciprocalSum_center_of_psi_log_six K hK hψ
   exact ⟨c, 32 * C + 2, by positivity, primeReciprocal_real_center_bound_of_nat c C hC hcenter⟩
 
+/--
+@isnad1 id=ex.1h0v.s6.c26f7e210c55 from=translated src=- shape=f76642b7 vocab=76f418c4
+-/
 theorem MaximalBombieriVinogradov.real_primeReciprocal_center
     (hBV : MaximalBombieriVinogradov) :
     ∃ c C : ℝ, 0 ≤ C ∧ ∀ᶠ x : ℝ in atTop,

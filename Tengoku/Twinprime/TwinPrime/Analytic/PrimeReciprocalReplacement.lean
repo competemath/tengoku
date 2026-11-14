@@ -16,6 +16,9 @@ open Finset ArithmeticFunction Filter Topology
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=eq.2h2v.s6.51c0d40b8c1d from=translated src=- shape=c8af4291 vocab=26159b5a
+-/
 theorem sum_Ioc_reciprocal_pred_mul (U W : ℕ) (hU : 1 ≤ U) (hUW : U ≤ W) :
     (∑ n ∈ Ioc U W, (1 : ℝ) / ((n : ℝ) * ((n : ℝ) - 1))) =
       1 / (U : ℝ) - 1 / (W : ℝ) := by
@@ -29,6 +32,9 @@ theorem sum_Ioc_reciprocal_pred_mul (U W : ℕ) (hU : 1 ≤ U) (hUW : U ≤ W) :
   field_simp [hnpos.ne', hUpos.ne']
   ring
 
+/--
+@isnad1 id=le.1h2v.s6.a43ab126be21 from=translated src=- shape=ffed5582 vocab=26159b5a
+-/
 theorem sum_Ioc_reciprocal_pred_mul_le (U W : ℕ) (hU : 1 ≤ U) :
     (∑ n ∈ Ioc U W, (1 : ℝ) / ((n : ℝ) * ((n : ℝ) - 1))) ≤ 1 / (U : ℝ) := by
   by_cases hUW : U ≤ W
@@ -37,6 +43,9 @@ theorem sum_Ioc_reciprocal_pred_mul_le (U W : ℕ) (hU : 1 ≤ U) :
   · rw [Ioc_eq_empty_of_le (Nat.le_of_not_ge hUW), sum_empty]
     positivity
 
+/--
+@isnad1 id=le.3h4v.s7.0cbc9cf79942 from=translated src=- shape=7e112e36 vocab=0f0db8aa
+-/
 theorem abs_sum_prime_totient_sub_reciprocal_le (U W : ℕ) (hU : 1 ≤ U)
     (F : ℕ → ℝ) (M : ℝ) (hM : 0 ≤ M)
     (hF : ∀ p ∈ Ioc U W, p.Prime → |F p| ≤ M) :
@@ -81,7 +90,9 @@ theorem abs_sum_prime_totient_sub_reciprocal_le (U W : ℕ) (hU : 1 ≤ U)
       mul_le_mul_of_nonneg_left (sum_Ioc_reciprocal_pred_mul_le U W hU) hM
     _ = M / U := by ring
 
-/-- The difference is exactly the weighted proper-prime-power sum.-/
+/-- The difference is exactly the weighted proper-prime-power sum.
+@isnad1 id=eq.0h3v.s7.1293296f2f51 from=translated src=- shape=941250c2 vocab=57346451
+-/
 theorem sum_mangoldt_reciprocal_sub_prime_eq (U W : ℕ) (F : ℕ → ℝ) :
     (∑ n ∈ Ioc U W, vonMangoldt n / n * F n) -
       (∑ p ∈ (Ioc U W).filter Nat.Prime, Real.log p / p * F p) =
@@ -94,6 +105,9 @@ theorem sum_mangoldt_reciprocal_sub_prime_eq (U W : ℕ) (F : ℕ → ℝ) :
   · simp [hn, nonprimeMangoldt, vonMangoldt_apply_prime hn]
   · simp [hn, nonprimeMangoldt]
 
+/--
+@isnad1 id=le.1h4v.s7.a3ea7461796d from=translated src=- shape=2af52850 vocab=756afe1f
+-/
 theorem abs_sum_mangoldt_reciprocal_sub_prime_le (U W : ℕ) (F : ℕ → ℝ)
     (M : ℝ) (hF : ∀ n ∈ Ioc U W, |F n| ≤ M) :
     |(∑ n ∈ Ioc U W, vonMangoldt n / n * F n) -
@@ -112,7 +126,9 @@ theorem abs_sum_mangoldt_reciprocal_sub_prime_le (U W : ℕ) (F : ℕ → ℝ)
       exact mul_le_mul_of_nonneg_left (hF n hn) hn0
 
 /-- A single positive constant controls every weighted prime-power
-replacement, uniformly in both integer endpoints.-/
+replacement, uniformly in both integer endpoints.
+@isnad1 id=ex.0h0v.s7.57b355aaae17 from=translated src=- shape=8e132c00 vocab=a95be130
+-/
 theorem exists_abs_sum_mangoldt_reciprocal_sub_prime_bound :
     ∃ C : ℝ, 0 < C ∧ ∀ U W : ℕ, 1 ≤ U → ∀ F : ℕ → ℝ,
       ∀ M : ℝ, 0 ≤ M → (∀ n ∈ Ioc U W, |F n| ≤ M) →
@@ -129,7 +145,9 @@ theorem exists_abs_sum_mangoldt_reciprocal_sub_prime_bound :
     _ = _ := by ring
 
 /-- A growing lower endpoint makes the totient replacement negligible for
-every uniformly bounded family of signed prime weights.-/
+every uniformly bounded family of signed prime weights.
+@isnad1 id=tendsto.3h4v.s7.8f56915308d9 from=translated src=- shape=ceadec3a vocab=a1170d84
+-/
 theorem tendsto_sum_prime_totient_sub_reciprocal
     (U W : ℕ → ℕ) (F : ℕ → ℕ → ℝ) (hU : Tendsto U atTop atTop)
     (M : ℝ) (hM : 0 ≤ M)
@@ -150,7 +168,9 @@ theorem tendsto_sum_prime_totient_sub_reciprocal
     exact abs_sum_prime_totient_sub_reciprocal_le (U X) (W X) hUX (F X) M hM hFX
 
 /-- The weighted Mangoldt-to-prime replacement is negligible at every
-growing lower endpoint, with its actual prime-power error controlled.-/
+growing lower endpoint, with its actual prime-power error controlled.
+@isnad1 id=tendsto.3h4v.s7.b0e37a466162 from=translated src=- shape=536e6452 vocab=394840fa
+-/
 theorem tendsto_sum_mangoldt_reciprocal_sub_prime
     (U W : ℕ → ℕ) (F : ℕ → ℕ → ℝ) (hU : Tendsto U atTop atTop)
     (M : ℝ) (hM : 0 ≤ M)

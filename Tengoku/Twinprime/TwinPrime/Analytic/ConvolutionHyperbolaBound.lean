@@ -17,6 +17,9 @@ open Finset
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=le.2h2v.s5.925f4bda5daf from=translated src=- shape=48404316 vocab=0a8d040c
+-/
 theorem norm_complexArithmeticSummatory_le_length (f : ArithmeticFunction ℂ)
     (hf : ∀ n, ‖f n‖ ≤ 1) (x : ℝ) (hx : 0 ≤ x) :
     ‖complexArithmeticSummatory f x‖ ≤ x := by
@@ -26,7 +29,9 @@ theorem norm_complexArithmeticSummatory_le_length (f : ArithmeticFunction ℂ)
     _ = (⌊x⌋₊ : ℝ) := by simp
     _ ≤ x := Nat.floor_le hx
 
-/-- A hyperbola strip costs its length times the inner cancellation budget.-/
+/-- A hyperbola strip costs its length times the inner cancellation budget.
+@isnad1 id=le.4h5v.s7.77ca697b6c20 from=translated src=- shape=395634a4 vocab=2048efa5
+-/
 theorem norm_complex_hyperbola_strip_le (f g : ArithmeticFunction ℂ)
     (hf : ∀ n, ‖f n‖ ≤ 1) (C : ℝ) (hC : 0 ≤ C)
     (hG : ∀ N : ℕ, ‖∑ n ∈ Ioc 0 N, g n‖ ≤ C)
@@ -43,7 +48,9 @@ theorem norm_complex_hyperbola_strip_le (f g : ArithmeticFunction ℂ)
     _ ≤ y * C := mul_le_mul_of_nonneg_right (Nat.floor_le hy) hC
 
 /-- Two uniformly bounded partial sums give square-root cancellation for
-their actual Dirichlet convolution.-/
+their actual Dirichlet convolution.
+@isnad1 id=le.6h4v.s7.5408978f3530 from=translated src=- shape=0611c438 vocab=5e37bf9c
+-/
 theorem norm_convolution_summatory_le_three_mul_sqrt (f g : ArithmeticFunction ℂ)
     (hf : ∀ n, ‖f n‖ ≤ 1) (hg : ∀ n, ‖g n‖ ≤ 1)
     (C : ℝ) (hC : 0 ≤ C)

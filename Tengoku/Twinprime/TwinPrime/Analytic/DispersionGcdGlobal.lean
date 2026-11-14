@@ -26,12 +26,21 @@ def dispersionSmallGcdSum (U V X G : ℕ) (s : Finset (ℕ × ℕ)) : ℝ :=
   ∑ ij ∈ s, Real.sqrt (max (dispersionMass V (2 ^ ij.2) *
     dispersionOffDiagonalSmallGcd U V X (2 ^ ij.1) (2 ^ ij.2) G) 0)
 
+/--
+@isnad1 id=le.0h5v.s4.a69cb78540e3 from=translated src=- shape=34006868 vocab=e3a7cf12
+-/
 theorem dispersionLargeGcdSum_nonneg (U V X G : ℕ) (s : Finset (ℕ × ℕ)) :
     0 ≤ dispersionLargeGcdSum U V X G s := sum_nonneg fun _ _ => Real.sqrt_nonneg _
 
+/--
+@isnad1 id=le.0h5v.s4.c121adde9d69 from=translated src=- shape=34006868 vocab=a5ff1c53
+-/
 theorem dispersionSmallGcdSum_nonneg (U V X G : ℕ) (s : Finset (ℕ × ℕ)) :
     0 ≤ dispersionSmallGcdSum U V X G s := sum_nonneg fun _ _ => Real.sqrt_nonneg _
 
+/--
+@isnad1 id=le.5h6v.s7.88d681539b92 from=translated src=- shape=40e0df2a vocab=cb43fd7f
+-/
 theorem dispersion_largeGcd_sqrt_div_le (U V X M N G : ℕ)
     (hX : 1 ≤ X) (hM : 1 ≤ M) (hN : 1 ≤ N) (hG : 1 ≤ G)
     (hMN : M * N ≤ 2 * X) :
@@ -49,6 +58,9 @@ theorem dispersion_largeGcd_sqrt_div_le (U V X M N G : ℕ)
   have hs := Real.sqrt_le_sqrt hb
   rwa [Real.sqrt_div hprod, Real.sqrt_sq (Nat.cast_nonneg X)] at hs
 
+/--
+@isnad1 id=le.3h5v.s7.88b5cfbd5c9b from=translated src=- shape=ccdb2c22 vocab=997328d3
+-/
 theorem dispersionLargeGcdSum_div_le (U V X G : ℕ) (s : Finset (ℕ × ℕ))
     (hX : 1 ≤ X) (hG : 1 ≤ G)
     (hs : ∀ ij ∈ s, 2 ^ ij.1 * 2 ^ ij.2 ≤ 2 * X) :
@@ -65,6 +77,9 @@ theorem dispersionLargeGcdSum_div_le (U V X G : ℕ) (s : Finset (ℕ × ℕ))
         (Nat.one_le_iff_ne_zero.mpr (pow_ne_zero _ (by decide))) hG (hs ij hij)
     _ = _ := by simp
 
+/--
+@isnad1 id=le.0h6v.s6.f7c540d9ce73 from=translated src=- shape=db2f9d59 vocab=9f871b40
+-/
 theorem abs_bilinearBox_le_gcd_dispersion (U V X M N G : ℕ) :
     |bilinearBox U V X M N| ≤
       Real.sqrt (dispersionMass V N * dispersionDiagonal U V X M N) +
@@ -94,6 +109,9 @@ theorem abs_bilinearBox_le_gcd_dispersion (U V X M N G : ℕ) :
   nlinarith [sq_abs (bilinearBox U V X M N), abs_nonneg (bilinearBox U V X M N),
     mul_nonneg hd ha, mul_nonneg hd hb, mul_nonneg ha hb]
 
+/--
+@isnad1 id=le.2h4v.s6.b2fde37b7c43 from=translated src=- shape=fb13b73d vocab=9c0688b2
+-/
 theorem abs_bilinearTerm_le_gcd_dispersion (U V X G : ℕ) (hU : 1 ≤ U) (hV : 1 ≤ V) :
     |bilinearTerm U V X| ≤
       dispersionDiagonalSum U V X (dispersionBoxIndices U V X) +
@@ -113,7 +131,9 @@ def primaryDispersionSmallGcd (X : ℕ) : ℝ :=
   dispersionSmallGcdSum (primaryCutoff X) (primaryCutoff X) X (dispersionGcdCutoff X)
     (dispersionBoxIndices (primaryCutoff X) (primaryCutoff X) X)
 
-/-- The complete large-gcd off-diagonal budget is sublinear at G=ceil(L^10).-/
+/-- The complete large-gcd off-diagonal budget is sublinear at G=ceil(L^10).
+@isnad1 id=tendsto.0h0v.s5.e8ea0de96aba from=translated src=- shape=15fb6055 vocab=5e063e5b
+-/
 theorem tendsto_primaryDispersionLargeGcd_div :
     Tendsto (fun X : ℕ => primaryDispersionLargeGcd X / X) atTop (nhds 0) := by
   apply tendsto_div_of_dispersionGcdCutoff_bound
@@ -125,6 +145,9 @@ theorem tendsto_primaryDispersionLargeGcd_div :
     · intro ij hij
       exact (dispersionBoxIndices_bounds hij).2.2.2.2.1
 
+/--
+@isnad1 id=le.1h1v.s5.68f210cb5f07 from=translated src=- shape=ea4c8eb9 vocab=66a3b1e1
+-/
 theorem neg_primary_gcd_dispersion_le_bilinearTerm (X : ℕ) (hX : 1 ≤ X) :
     -(primaryDispersionDiagonal X + primaryDispersionLargeGcd X + primaryDispersionSmallGcd X) ≤
       bilinearTerm (primaryCutoff X) (primaryCutoff X) X := by

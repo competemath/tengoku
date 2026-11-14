@@ -17,7 +17,9 @@ open Finset
 
 namespace TwinPrime.Analytic
 
-/-- Finite Abel summation with complex coefficients, retaining the boundary term.-/
+/-- Finite Abel summation with complex coefficients, retaining the boundary term.
+@isnad1 id=eq.1h4v.s7.b4751ada10f5 from=translated src=- shape=79889694 vocab=949a9517
+-/
 theorem discrete_abel_Ioc_complex (a b : ℕ) (hab : a ≤ b) (w e : ℕ → ℂ) :
     (∑ n ∈ Ioc a b, w n * e n) =
       w b * (∑ n ∈ Ioc a b, e n) -
@@ -30,7 +32,9 @@ theorem discrete_abel_Ioc_complex (a b : ℕ) (hab : a ≤ b) (w e : ℕ → ℂ
         sum_Ico_succ_top hab (fun t => (w (t + 1) - w t) * (∑ n ∈ Ioc a t, e n)), ih]
       ring
 
-/-- Nonnegative increasing real weights cost at most twice the endpoint weight.-/
+/-- Nonnegative increasing real weights cost at most twice the endpoint weight.
+@isnad1 id=le.5h5v.s7.f40b5b08a1ae from=translated src=- shape=27fef562 vocab=5fb9fc2d
+-/
 theorem norm_sum_Ioc_real_mul_le_of_partial_sums (a b : ℕ) (hab : a ≤ b)
     (w : ℕ → ℝ) (e : ℕ → ℂ) (C : ℝ) (hC : 0 ≤ C) (hw0 : 0 ≤ w a)
     (hw : MonotoneOn w (Set.Icc a b))
@@ -66,13 +70,18 @@ theorem norm_sum_Ioc_real_mul_le_of_partial_sums (a b : ℕ) (hab : a ≤ b)
       ring
     _ ≤ _ := by nlinarith
 
-/-- The totalized real logarithm is nondecreasing on natural-number casts.-/
+/-- The totalized real logarithm is nondecreasing on natural-number casts.
+@isnad1 id=monotone.0h0v.s3.f6071167c570 from=translated src=- shape=d112e31a vocab=5331353c
+-/
 theorem log_natCast_mono : Monotone (fun n : ℕ => Real.log (n : ℝ)) := by
   intro m n hmn
   rcases m.eq_zero_or_pos with rfl | hm
   · simpa using Real.log_natCast_nonneg n
   · exact Real.log_le_log (by exact_mod_cast hm) (by exact_mod_cast hmn)
 
+/--
+@isnad1 id=le.2h3v.s7.58acb1cfb9d9 from=translated src=- shape=660d3c6e vocab=99a736a3
+-/
 theorem norm_sum_primitive_character_Ioc_le {q : ℕ} (hq : 1 < q)
     (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive) (T : ℕ) :
     ‖∑ n ∈ Ioc 0 T, χ (n : ZMod q)‖ ≤ Real.sqrt q * (1 + Real.log q) := by
@@ -83,7 +92,9 @@ theorem norm_sum_primitive_character_Ioc_le {q : ℕ} (hq : 1 < q)
   rw [hI]
   exact norm_sum_primitive_character_Ico_le hq χ hχ 1 (T + 1)
 
-/-- The logarithmically weighted prefix bound also holds at `T=0`.-/
+/-- The logarithmically weighted prefix bound also holds at `T=0`.
+@isnad1 id=le.2h3v.s7.b53198ac9abb from=translated src=- shape=a79e6e95 vocab=bc3b8175
+-/
 theorem norm_sum_primitive_character_log_Ioc_le {q : ℕ} (hq : 1 < q)
     (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive) (T : ℕ) :
     ‖∑ n ∈ Ioc 0 T, (Real.log (n : ℝ) : ℂ) * χ (n : ZMod q)‖ ≤
@@ -97,7 +108,9 @@ theorem norm_sum_primitive_character_log_Ioc_le {q : ℕ} (hq : 1 < q)
     (fun t _ => norm_sum_primitive_character_Ioc_le hq χ hχ t)
   simpa only [mul_assoc] using h
 
-/-- A common endpoint controls all shorter logarithmically weighted prefixes.-/
+/-- A common endpoint controls all shorter logarithmically weighted prefixes.
+@isnad1 id=le.3h4v.s7.bcec924e35ce from=translated src=- shape=fb6511a2 vocab=bc3b8175
+-/
 theorem norm_sum_primitive_character_log_Ioc_le_uniform {q : ℕ} (hq : 1 < q)
     (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive) (T : ℕ) {t : ℕ} (ht : t ≤ T) :
     ‖∑ n ∈ Ioc 0 t, (Real.log (n : ℝ) : ℂ) * χ (n : ZMod q)‖ ≤
@@ -107,7 +120,9 @@ theorem norm_sum_primitive_character_log_Ioc_le_uniform {q : ℕ} (hq : 1 < q)
   have := Real.log_natCast_nonneg q
   positivity
 
-/-- A finite Type I estimate with independently clipped inner endpoints.-/
+/-- A finite Type I estimate with independently clipped inner endpoints.
+@isnad1 id=le.3h6v.s8.bf3852d519fb from=translated src=- shape=2bd5d260 vocab=a3f04a83
+-/
 theorem norm_sum_typeI_log_character_le_uniform {q : ℕ} (hq : 1 < q)
     (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive) (s : Finset ℕ)
     (a : ℕ → ℂ) (T : ℕ) (t : ℕ → ℕ) (ht : ∀ m ∈ s, t m ≤ T) :
@@ -128,7 +143,9 @@ theorem norm_sum_typeI_log_character_le_uniform {q : ℕ} (hq : 1 < q)
       · exact norm_nonneg _
     _ = _ := by rw [← sum_mul]; ring
 
-/-- The usual Type I cutoff `n ≤ T/m`; zero quotients need no exception.-/
+/-- The usual Type I cutoff `n ≤ T/m`; zero quotients need no exception.
+@isnad1 id=le.2h5v.s8.405c8b77e884 from=translated src=- shape=62f8410c vocab=67439643
+-/
 theorem norm_sum_typeI_log_character_le {q : ℕ} (hq : 1 < q)
     (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive) (U T : ℕ) (a : ℕ → ℂ) :
     ‖∑ m ∈ Ioc 0 U, a m * χ (m : ZMod q) *

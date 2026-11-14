@@ -26,11 +26,16 @@ def characterEulerCorrection {M : ℕ} (χ : DirichletCharacter ℂ M)
   ∑ p ∈ N.primeFactors,
     χ p * (Real.log p : ℂ) * (p : ℂ) ^ (-s) / (1 - χ p * (p : ℂ) ^ (-s))
 
+/--
+@isnad1 id=eq.0h3v.s5.7ff855519a11 from=translated src=- shape=0e11a4ed vocab=81e35609
+-/
 @[simp] theorem characterEulerCorrection_one {M : ℕ}
     (χ : DirichletCharacter ℂ M) (s : ℂ) : characterEulerCorrection χ 1 s = 0 := by
   simp [characterEulerCorrection]
 
-/-- A uniform smallness bound for every prime Euler ratio.-/
+/-- A uniform smallness bound for every prime Euler ratio.
+@isnad1 id=le.2h4v.s7.7664ab6d050d from=translated src=- shape=8ef92cb5 vocab=2c2f32a3
+-/
 theorem norm_characterEulerRatio_le_half {M : ℕ} (χ : DirichletCharacter ℂ M)
     (p : ℕ) (hp : 2 ≤ p) (s : ℂ) (hs : 1 ≤ s.re) :
     ‖χ p * (p : ℂ) ^ (-s)‖ ≤ 1 / 2 := by
@@ -47,7 +52,9 @@ theorem norm_characterEulerRatio_le_half {M : ℕ} (χ : DirichletCharacter ℂ 
     _ = (p : ℝ)⁻¹ := Real.rpow_neg_one _
     _ ≤ 1 / 2 := by simpa using inv_anti₀ (by norm_num : (0 : ℝ) < 2) hp2
 
-/-- Euler denominators are nonzero already on the boundary `s.re=1`.-/
+/-- Euler denominators are nonzero already on the boundary `s.re=1`.
+@isnad1 id=ne.2h4v.s7.2cffcd137624 from=translated src=- shape=8107f730 vocab=e09e1582
+-/
 theorem characterEulerFactor_ne_zero {M : ℕ} (χ : DirichletCharacter ℂ M)
     (p : ℕ) (hp : 2 ≤ p) (s : ℂ) (hs : 1 ≤ s.re) :
     1 - χ p * (p : ℂ) ^ (-s) ≠ 0 := by
@@ -57,7 +64,9 @@ theorem characterEulerFactor_ne_zero {M : ℕ} (χ : DirichletCharacter ℂ M)
   rw [hz, norm_one] at h
   norm_num at h
 
-/-- Differentiation of one Euler factor with the real prime logarithm.-/
+/-- Differentiation of one Euler factor with the real prime logarithm.
+@isnad1 id=hasderiv.1h4v.s7.a035e8cf0be2 from=translated src=- shape=513db706 vocab=b4338252
+-/
 theorem hasDerivAt_characterEulerFactor {M : ℕ} (χ : DirichletCharacter ℂ M)
     (p : ℕ) (hp : 0 < p) (s : ℂ) :
     HasDerivAt (fun z : ℂ => 1 - χ p * (p : ℂ) ^ (-z))
@@ -68,7 +77,9 @@ theorem hasDerivAt_characterEulerFactor {M : ℕ} (χ : DirichletCharacter ℂ M
   simpa only [id_eq, Pi.neg_apply, ← Complex.natCast_log, neg_mul, mul_neg,
     mul_one, one_mul, neg_neg, mul_comm, mul_left_comm, mul_assoc] using h
 
-/-- Each Euler logarithmic-derivative term is bounded by the prime logarithm.-/
+/-- Each Euler logarithmic-derivative term is bounded by the prime logarithm.
+@isnad1 id=le.2h4v.s7.f462d3d7ccf4 from=translated src=- shape=8a7fe354 vocab=2f31f067
+-/
 theorem norm_characterEulerTerm_le_log {M : ℕ} (χ : DirichletCharacter ℂ M)
     (p : ℕ) (hp : 2 ≤ p) (s : ℂ) (hs : 1 ≤ s.re) :
     ‖χ p * (Real.log p : ℂ) * (p : ℂ) ^ (-s) /
@@ -92,7 +103,9 @@ theorem norm_characterEulerTerm_le_log {M : ℕ} (χ : DirichletCharacter ℂ M)
   nlinarith [mul_le_mul_of_nonneg_right hn hlog]
 
 /-- The logarithms of the distinct prime factors are bounded by that of
-their positive parent modulus.  Modulus one has an empty sum.-/
+their positive parent modulus.  Modulus one has an empty sum.
+@isnad1 id=le.1h1v.s5.5405e515580e from=translated src=- shape=e5169e03 vocab=6b19f6f1
+-/
 theorem sum_log_primeFactors_le_log (N : ℕ) (hN : 0 < N) :
     (∑ p ∈ N.primeFactors, Real.log p) ≤ Real.log N := by
   have hp (p : ℕ) (hp : p ∈ N.primeFactors) : (0 : ℝ) < p := by
@@ -102,7 +115,9 @@ theorem sum_log_primeFactors_le_log (N : ℕ) (hN : 0 < N) :
   rw [← Nat.cast_prod]
   exact_mod_cast Nat.le_of_dvd hN (Nat.prod_primeFactors_dvd N)
 
-/-- A finite, conductor-uniform bound for the entire inducing correction.-/
+/-- A finite, conductor-uniform bound for the entire inducing correction.
+@isnad1 id=le.2h4v.s5.121bbd19ee9c from=translated src=- shape=41f47806 vocab=61b87341
+-/
 theorem norm_characterEulerCorrection_le_log {M : ℕ} (χ : DirichletCharacter ℂ M)
     (N : ℕ) (hN : 0 < N) (s : ℂ) (hs : 1 ≤ s.re) :
     ‖characterEulerCorrection χ N s‖ ≤ Real.log N := by

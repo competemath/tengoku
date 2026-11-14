@@ -17,7 +17,9 @@ open Finset
 
 namespace TwinPrime.Analytic
 
-/-- The error increment is bounded by one harmonic summand.-/
+/-- The error increment is bounded by one harmonic summand.
+@isnad1 id=and.1h1v.s7.b3ecc6bfad4f from=translated src=- shape=e841298b vocab=58955ff2
+-/
 theorem logFactorial_increment_bounds {x : ℝ} (hx : 0 < x) :
     0 ≤ 1 - x * (Real.log (x + 1) - Real.log x) ∧
       1 - x * (Real.log (x + 1) - Real.log x) ≤ 1 / (x + 1) := by
@@ -33,7 +35,9 @@ theorem logFactorial_increment_bounds {x : ℝ} (hx : 0 < x) :
   rw [hL] at hlower
   constructor <;> linarith
 
-/-- Exact increment formula for the finite sum of logarithms.-/
+/-- Exact increment formula for the finite sum of logarithms.
+@isnad1 id=eq.0h1v.s7.fbbd9f6c1ec0 from=translated src=- shape=c21ed1e2 vocab=2fd386b9
+-/
 theorem sum_log_sub_main_succ (N : ℕ) :
     (∑ n ∈ Ioc 0 (N + 1), Real.log (n : ℝ)) -
         (((N + 1 : ℕ) : ℝ) * Real.log (N + 1 : ℕ) - (N + 1 : ℕ)) =
@@ -44,7 +48,9 @@ theorem sum_log_sub_main_succ (N : ℕ) :
   push_cast
   ring
 
-/-- The factorial-logarithm error lies between zero and the harmonic sum.-/
+/-- The factorial-logarithm error lies between zero and the harmonic sum.
+@isnad1 id=and.0h1v.s7.d98ba43c02ab from=translated src=- shape=1d982562 vocab=0173be23
+-/
 theorem sum_log_sub_main_bounds (N : ℕ) :
     0 ≤ (∑ n ∈ Ioc 0 N, Real.log (n : ℝ)) - ((N : ℝ) * Real.log N - N) ∧
       (∑ n ∈ Ioc 0 N, Real.log (n : ℝ)) - ((N : ℝ) * Real.log N - N) ≤
@@ -64,13 +70,18 @@ theorem sum_log_sub_main_bounds (N : ℕ) :
       rw [sum_log_sub_main_succ, hH]
       constructor <;> linarith [ih.1, ih.2, hstep.1, hstep.2]
 
-/-- A concise absolute factorial-logarithm error bound.-/
+/-- A concise absolute factorial-logarithm error bound.
+@isnad1 id=le.0h1v.s6.8686d47c8618 from=translated src=- shape=4c51a453 vocab=9d7ffda6
+-/
 theorem abs_sum_log_sub_main_le_harmonic (N : ℕ) :
     |(∑ n ∈ Ioc 0 N, Real.log (n : ℝ)) - ((N : ℝ) * Real.log N - N)| ≤
       (harmonic N : ℝ) := by
   rw [abs_of_nonneg (sum_log_sub_main_bounds N).1]
   exact (sum_log_sub_main_bounds N).2
 
+/--
+@isnad1 id=le.0h1v.s6.ea8cf28a205e from=translated src=- shape=fafdc543 vocab=5cff2ba6
+-/
 theorem abs_sum_log_sub_main_le_one_add_log (N : ℕ) :
     |(∑ n ∈ Ioc 0 N, Real.log (n : ℝ)) - ((N : ℝ) * Real.log N - N)| ≤
       1 + Real.log N :=

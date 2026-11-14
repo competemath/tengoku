@@ -22,13 +22,22 @@ def mellinRamp (u : ℝ) : ℂ := ((max (1 - u) 0 : ℝ) : ℂ)
 
 def mellinRampKernel (s : ℂ) : ℂ := 1 / (s * (s + 1))
 
+/--
+@isnad1 id=eq.1h1v.s5.0f782102edf2 from=translated src=- shape=1c7083cd vocab=e2ce9ea1
+-/
 theorem mellinRamp_eq_of_le_one (u : ℝ) (hu : u ≤ 1) :
     mellinRamp u = 1 - (u : ℂ) := by
   simp [mellinRamp, max_eq_left (sub_nonneg.mpr hu)]
 
+/--
+@isnad1 id=eq.1h1v.s4.2b2b342da33c from=translated src=- shape=aa240375 vocab=9d10f8f9
+-/
 theorem mellinRamp_eq_zero_of_one_le (u : ℝ) (hu : 1 ≤ u) : mellinRamp u = 0 := by
   simp [mellinRamp, max_eq_right (sub_nonpos.mpr hu)]
 
+/--
+@isnad1 id=continuo.0h0v.s4.7d9bbbd51924 from=translated src=- shape=54c8eceb vocab=98620bf9
+-/
 theorem continuous_mellinRamp : Continuous mellinRamp := by
   unfold mellinRamp
   fun_prop
@@ -54,6 +63,9 @@ private theorem intervalIntegrable_mellinRamp_difference (s : ℂ) (hs : 0 < s.r
     linarith
   · exact intervalIntegral.intervalIntegrable_cpow' (by linarith)
 
+/--
+@isnad1 id=mellinco.1h1v.s4.7715ec3993bd from=translated src=- shape=c5298c69 vocab=7ac13073
+-/
 theorem mellinConvergent_mellinRamp (s : ℂ) (hs : 0 < s.re) :
     MellinConvergent mellinRamp s := by
   have hi := (intervalIntegrable_mellinRamp_difference s hs).1.integrable_indicator
@@ -61,6 +73,9 @@ theorem mellinConvergent_mellinRamp (s : ℂ) (hs : 0 < s.re) :
   exact hi.integrableOn.congr_fun (fun t ht =>
     (mellinRamp_integrand_eq_indicator s t ht).symm) measurableSet_Ioi
 
+/--
+@isnad1 id=eq.1h1v.s5.21ed2bd5ac6d from=translated src=- shape=cae4238f vocab=ccbc8645
+-/
 theorem mellin_mellinRamp (s : ℂ) (hs : 0 < s.re) :
     mellin mellinRamp s = mellinRampKernel s := by
   have hs0 : s ≠ 0 := by intro h; simp [h] at hs
@@ -85,10 +100,16 @@ theorem mellin_mellinRamp (s : ℂ) (hs : 0 < s.re) :
   · exact intervalIntegral.intervalIntegrable_cpow' (by simp only [sub_re, one_re]; linarith)
   · exact intervalIntegral.intervalIntegrable_cpow' (by linarith)
 
+/--
+@isnad1 id=hasmelli.1h1v.s4.95af70a093cc from=translated src=- shape=20c519ab vocab=f738bae6
+-/
 theorem hasMellin_mellinRamp (s : ℂ) (hs : 0 < s.re) :
     HasMellin mellinRamp s (mellinRampKernel s) :=
   ⟨mellinConvergent_mellinRamp s hs, mellin_mellinRamp s hs⟩
 
+/--
+@isnad1 id=le.1h2v.s6.577df9cd5a75 from=translated src=- shape=c8401b0b vocab=e292b0de
+-/
 theorem norm_mellinRampKernel_vertical_le (c : ℝ) (hc : 0 < c) (t : ℝ) :
     ‖mellinRampKernel ((c : ℂ) + t * I)‖ ≤
       (1 + (c ^ 2)⁻¹) * (1 + t ^ 2)⁻¹ := by
@@ -115,6 +136,9 @@ theorem norm_mellinRampKernel_vertical_le (c : ℝ) (hc : 0 < c) (t : ℝ) :
       rw [← div_eq_mul_inv]
       exact (div_le_div_iff₀ hden (by positivity)).mpr (by simpa only [one_mul] using hnum)
 
+/--
+@isnad1 id=vertical.1h1v.s4.22257f9d88bf from=translated src=- shape=cfaaad28 vocab=123895b3
+-/
 theorem verticalIntegrable_mellinRampKernel (c : ℝ) (hc : 0 < c) :
     VerticalIntegrable mellinRampKernel c := by
   have hs (t : ℝ) : (c : ℂ) + t * I ≠ 0 := by
@@ -135,12 +159,18 @@ theorem verticalIntegrable_mellinRampKernel (c : ℝ) (hc : 0 < c) :
   exact (integrable_inv_one_add_sq.const_mul (1 + (c ^ 2)⁻¹)).mono'
     hcont.aestronglyMeasurable (Filter.Eventually.of_forall (norm_mellinRampKernel_vertical_le c hc))
 
+/--
+@isnad1 id=vertical.1h1v.s5.5c431663afe6 from=translated src=- shape=9edc543a vocab=ceac725b
+-/
 theorem verticalIntegrable_mellin_mellinRamp (c : ℝ) (hc : 0 < c) :
     VerticalIntegrable (mellin mellinRamp) c := by
   apply (verticalIntegrable_mellinRampKernel c hc).congr
   filter_upwards [] with t
   exact (mellin_mellinRamp ((c : ℂ) + t * I) (by simpa using hc)).symm
 
+/--
+@isnad1 id=eq.2h2v.s5.d94d2c7e7898 from=translated src=- shape=3dafefcd vocab=24f7ffbb
+-/
 theorem mellinInv_mellinRampKernel (c : ℝ) (hc : 0 < c) (u : ℝ) (hu : 0 < u) :
     mellinInv c mellinRampKernel u = mellinRamp u := by
   have hinv := mellinInv_mellin_eq c mellinRamp hu

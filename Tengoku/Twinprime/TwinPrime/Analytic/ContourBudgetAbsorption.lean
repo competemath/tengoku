@@ -18,6 +18,9 @@ open scoped Topology
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=eq.1h5v.s8.57921427b89a from=translated src=- shape=ab9dae23 vocab=d5b756cb
+-/
 theorem smoothedPrincipalContourBudget_eq (x a c H M : ℝ) (hH : H ≠ 0) :
     smoothedPrincipalContourBudget x a c H M =
       x ^ c * (mangoldtDirichletMass c + 1 / (c - 1)) / (Real.pi * H) +
@@ -28,6 +31,9 @@ theorem smoothedPrincipalContourBudget_eq (x a c H M : ℝ) (hH : H ≠ 0) :
   field_simp
   ring
 
+/--
+@isnad1 id=le.8h6v.s8.475a1bf5dcb1 from=translated src=- shape=f7045406 vocab=ee05f4be
+-/
 theorem smoothedPrincipalContourBudget_le_three_errors
     (x K k C δ M : ℝ) (hx : 1 < x) (hlog : 8 ≤ Real.log x)
     (hC : 0 < C) (hδ : 0 < δ) (hδu : δ ≤ 1 / 16)
@@ -114,12 +120,17 @@ theorem smoothedPrincipalContourBudget_le_three_errors
 
 def contourAbsorptionConstant (C : ℝ) : ℝ := 42 * Real.exp 1 + 3 * C + C * Real.exp 1
 
+/--
+@isnad1 id=lt.1h1v.s4.1b3fff66a9e9 from=translated src=- shape=35bd48ee vocab=fd5c33ec
+-/
 theorem contourAbsorptionConstant_pos (C : ℝ) (hC : 0 < C) :
     0 < contourAbsorptionConstant C := by
   unfold contourAbsorptionConstant
   positivity
 
-/-- A common threshold works for every admissible width and norm budget.-/
+/-- A common threshold works for every admissible width and norm budget.
+@isnad1 id=eventual.3h3v.s8.7239f982af5d from=translated src=- shape=0ba62589 vocab=8c7f1260
+-/
 theorem eventually_smoothedPrincipalContourBudget_le (A k C : ℝ)
     (hA : 0 < A) (hk : 0 < k) (hC : 0 < C) :
     ∀ᶠ x : ℝ in atTop, ∀ δ M : ℝ,
@@ -160,6 +171,9 @@ theorem eventually_smoothedPrincipalContourBudget_le (A k C : ℝ)
   rw [he]
   linarith
 
+/--
+@isnad1 id=le.3h5v.s5.4d6419df55cc from=translated src=- shape=93407ad6 vocab=201cd8fe
+-/
 theorem smoothedMangoldtContourBudget_le_principal (x a c H M : ℝ)
     (hx : 0 ≤ x) (hc : 1 < c) (hH : 0 < H) :
     smoothedMangoldtContourBudget x a c H M ≤ smoothedPrincipalContourBudget x a c H M := by

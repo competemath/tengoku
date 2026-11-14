@@ -20,7 +20,9 @@ open scoped ArithmeticFunction.Moebius Topology
 
 namespace TwinPrime.Analytic
 
-/-- Exact cutoff shift, with no positivity assumption on the left cutoff.-/
+/-- Exact cutoff shift, with no positivity assumption on the left cutoff.
+@isnad1 id=eq.2h4v.s5.148558f39ec6 from=translated src=- shape=e8be2112 vocab=e0615710
+-/
 theorem bilinearTerm_sub_eq_typeITerm_sub (U V W X : ℕ)
     (hV : V ≤ X) (hW : W ≤ X) :
     bilinearTerm U V X - bilinearTerm U W X =
@@ -40,7 +42,9 @@ theorem bilinearTerm_sub_eq_typeITerm_sub (U V W X : ℕ)
   simpa only [mul_sub] using congrArg (fun r : ℝ => vonMangoldt (n + 2) * r) hc
 
 /-- Comparable cutoff logarithms preserve a square-logarithmically weighted
-limit. The coefficient function is arbitrary and retains its sign.-/
+limit. The coefficient function is arbitrary and retains its sign.
+@isnad1 id=tendsto.4h4v.s7.a292b61039b5 from=translated src=- shape=c6b360fc vocab=ca94d76e
+-/
 theorem tendsto_mul_log_sq_of_cutoff_log_comparison (F : ℕ → ℝ)
     (hF : Tendsto (fun t : ℕ => F t * (Real.log ((t : ℝ) + 1)) ^ 2)
       atTop (nhds 0))
@@ -76,7 +80,9 @@ theorem tendsto_mul_log_sq_of_cutoff_log_comparison (F : ℕ → ℝ)
     _ = _ := by ring
 
 /-- The known Möbius/totient square-log limit controls the complete mixed
-Type I main coefficient, including the shared-prime correction.-/
+Type I main coefficient, including the shared-prime correction.
+@isnad1 id=tendsto.4h3v.s7.fff5a3ce39c1 from=translated src=- shape=40fba174 vocab=708f865b
+-/
 theorem tendsto_totientTypeIMain_of_log_comparison
     (hF : Tendsto (fun t : ℕ =>
       oddMoebiusTotientSum t * (Real.log ((t : ℝ) + 1)) ^ 2) atTop (nhds 0))

@@ -16,6 +16,9 @@ open Finset Classical
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=eq.1h3v.s7.0c8b825bfe77 from=translated src=- shape=f5b1e3e1 vocab=f2e9770a
+-/
 theorem sum_Ioc_eq_dyadic_of_support {α : Type*} [AddCommMonoid α]
     (f : ℕ → α) (T : ℕ) (hf : ∀ n, T < n → f n = 0) :
     (∑ n ∈ Ioc 0 T, f n) =
@@ -29,6 +32,9 @@ theorem sum_Ioc_eq_dyadic_of_support {α : Type*} [AddCommMonoid α]
   · simp [hn]
   · simp [hn, hf n (Nat.lt_of_not_ge hn)]
 
+/--
+@isnad1 id=eq.1h3v.s7.c6c9f89ab8ca from=translated src=- shape=6b761414 vocab=f2e9770a
+-/
 theorem sum_Ioc_product_eq_dyadic_of_support {α : Type*} [AddCommMonoid α]
     (f : ℕ → ℕ → α) (T : ℕ)
     (hf : ∀ m n, T < m ∨ T < n → f m n = 0) :

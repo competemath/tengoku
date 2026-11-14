@@ -26,6 +26,9 @@ private def mellinSeriesTerm (a : ℕ → ℂ) (c u : ℝ) (n : ℕ) (t : ℝ) :
   (u : ℂ) ^ (-((c : ℂ) + t * I)) *
     LSeries.term a ((c : ℂ) + t * I) n * mellinRampKernel ((c : ℂ) + t * I)
 
+/--
+@isnad1 id=eq.0h4v.s5.ff2666420bbf from=translated src=- shape=69f183d3 vocab=9099fc57
+-/
 theorem norm_LSeries_term_vertical_eq (a : ℕ → ℂ) (c t : ℝ) (n : ℕ) :
     ‖LSeries.term a ((c : ℂ) + t * I) n‖ = ‖LSeries.term a (c : ℂ) n‖ := by
   simp [LSeries.norm_term_eq]
@@ -92,7 +95,9 @@ private theorem integral_mellinSeriesTerm_sum (a : ℕ → ℂ) (c : ℝ) (hc : 
   exact .of_forall fun t => (hasSum_mellinSeriesTerm a c ha u t).tsum_eq
 
 /-- Absolute convergence of the Dirichlet series and the vertical ramp
-kernel imply integrability of the full inverse Mellin integrand.-/
+kernel imply integrability of the full inverse Mellin integrand.
+@isnad1 id=integrab.3h3v.s7.696355fc3ca2 from=translated src=- shape=3bd9ca57 vocab=19645820
+-/
 theorem integrable_LSeries_mellinRamp_integrand (a : ℕ → ℂ) (c : ℝ) (hc : 0 < c)
     (ha : LSeriesSummable a (c : ℂ)) (u : ℝ) (hu : 0 < u) :
     Integrable (fun t : ℝ => (u : ℂ) ^ (-((c : ℂ) + t * I)) *
@@ -155,7 +160,9 @@ private theorem scaled_integral_mellinSeriesTerm (a : ℕ → ℂ)
       _ = _ := by rw [mellinInv_mellinRampKernel c hc _ hnu]
 
 /-- Termwise Mellin inversion with an integrable, absolutely summable
-majorant. The zero coefficient is excluded exactly as in `LSeries.term`.-/
+majorant. The zero coefficient is excluded exactly as in `LSeries.term`.
+@isnad1 id=eq.3h3v.s7.111572b96673 from=translated src=- shape=3ddcf00a vocab=3220357d
+-/
 theorem mellinInv_LSeries_mul_mellinRampKernel (a : ℕ → ℂ)
     (c : ℝ) (hc : 0 < c) (ha : LSeriesSummable a (c : ℂ))
     (u : ℝ) (hu : 0 < u) :
@@ -168,6 +175,9 @@ theorem mellinInv_LSeries_mul_mellinRampKernel (a : ℕ → ℂ)
   rw [← tsum_const_smul'']
   exact tsum_congr (scaled_integral_mellinSeriesTerm a c hc u hu)
 
+/--
+@isnad1 id=eq.3h3v.s6.8f33e8b9d213 from=translated src=- shape=2d4b9bdb vocab=b72da184
+-/
 theorem mellinInv_LSeries_mul_mellinRampKernel_eq_weightedPartialSum
     (a : ℕ → ℂ) (c : ℝ) (hc : 0 < c) (ha : LSeriesSummable a (c : ℂ))
     (x : ℝ) (hx : 0 < x) :
@@ -192,6 +202,9 @@ theorem mellinInv_LSeries_mul_mellinRampKernel_eq_weightedPartialSum
       rw [ite_eq_right hn0, mellinRamp_eq_zero_of_one_le _ (by
         simpa only [one_div, div_eq_mul_inv, one_mul] using (one_le_div hx).mpr hxn.le), mul_zero]
 
+/--
+@isnad1 id=vertical.2h2v.s5.e15d1dcbae1c from=translated src=- shape=c556d28a vocab=0722a6a6
+-/
 theorem verticalIntegrable_LSeries_mul_mellinRampKernel (a : ℕ → ℂ)
     (c : ℝ) (hc : 0 < c) (ha : LSeriesSummable a (c : ℂ)) :
     VerticalIntegrable (fun s => LSeries a s * mellinRampKernel s) c := by
@@ -205,7 +218,9 @@ private theorem mangoldt_LSeriesSummable_of_mass {q : ℕ}
     (fun n => by simpa using norm_twist_vonMangoldt_term_le χ (c : ℂ) n)
 
 /-- The actual logarithmic-derivative kernel is vertically integrable;
-the modulus and character may be principal or imprimitive.-/
+the modulus and character may be principal or imprimitive.
+@isnad1 id=vertical.1h3v.s6.28636aee730f from=translated src=- shape=ad9a5322 vocab=9ccd7320
+-/
 theorem verticalIntegrable_mangoldt_mellinRampKernel {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (c : ℝ) (hc : 1 < c) :
     VerticalIntegrable (fun s =>
@@ -217,6 +232,9 @@ theorem verticalIntegrable_mangoldt_mellinRampKernel {q : ℕ} [NeZero q]
   filter_upwards [] with t
   rw [neg_LFunction_logDerivative_eq_twist χ (by simpa using hc)]
 
+/--
+@isnad1 id=integrab.2h4v.s7.1553bb329be6 from=translated src=- shape=3f4437e8 vocab=40878377
+-/
 theorem integrable_mangoldt_mellinRamp_integrand {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (c : ℝ) (hc : 1 < c) (u : ℝ) (hu : 0 < u) :
     Integrable (fun t : ℝ => (u : ℂ) ^ (-((c : ℂ) + t * I)) *
@@ -230,7 +248,9 @@ theorem integrable_mangoldt_mellinRamp_integrand {q : ℕ} [NeZero q]
   rw [neg_LFunction_logDerivative_eq_twist χ (by simpa using hc)]
 
 /-- Smoothed von Mangoldt-character sums equal the actual inverse Mellin
-integral of `(-L'/L)/(s(s+1))`, without a supplied analytic hypothesis.-/
+integral of `(-L'/L)/(s(s+1))`, without a supplied analytic hypothesis.
+@isnad1 id=eq.2h4v.s7.14eb8c386fc1 from=translated src=- shape=62adc492 vocab=6fae6c01
+-/
 theorem weighted_mangoldt_sum_eq_mellinInv {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (c : ℝ) (hc : 1 < c) (x : ℝ) (hx : 0 < x) :
     weightedPartialSum (fun n : ℕ => χ n * (ArithmeticFunction.vonMangoldt n : ℂ)) x =
@@ -246,6 +266,9 @@ theorem weighted_mangoldt_sum_eq_mellinInv {q : ℕ} [NeZero q]
   filter_upwards [] with t
   rw [neg_LFunction_logDerivative_eq_twist χ (by simpa using hc)]
 
+/--
+@isnad1 id=eq.2h4v.s8.d5ca783b9afa from=translated src=- shape=df146c2c vocab=5673d3c4
+-/
 theorem sum_Icc_mangoldt_ramp_eq_mellinInv {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (c : ℝ) (hc : 1 < c) (x : ℝ) (hx : 0 < x) :
     (∑ n ∈ Icc 1 ⌊x⌋₊, (χ n * (ArithmeticFunction.vonMangoldt n : ℂ)) *

@@ -15,7 +15,9 @@ open Finset
 
 namespace TwinPrime.Analytic
 
-/-- The main term in a finite real zeta sum below one has positive sign.-/
+/-- The main term in a finite real zeta sum below one has positive sign.
+@isnad1 id=le.3h2v.s7.4a17f214280b from=translated src=- shape=53873c13 vocab=6933fbd5
+-/
 theorem norm_zeta_real_sum_sub_zeta_sub_main_le (N : ℕ) (hN : 1 ≤ N)
     (β : ℝ) (hβ0 : 0 < β) (hβ1 : β < 1) :
     ‖(∑ n ∈ Ioc 0 N, (n : ℂ) ^ (-(β : ℂ))) - riemannZeta (β : ℂ) -
@@ -34,6 +36,9 @@ theorem norm_zeta_real_sum_sub_zeta_sub_main_le (N : ℕ) (hN : 1 ≤ N)
   simpa only [Complex.norm_real, Real.norm_eq_abs, abs_of_pos hβ0,
     Complex.ofReal_re, div_self hβ0.ne', one_mul] using h
 
+/--
+@isnad1 id=eq.2h2v.s7.481c6b432a5d from=translated src=- shape=68765aae vocab=2e22d545
+-/
 theorem norm_zeta_real_pole_term (N : ℕ) (hN : 1 ≤ N)
     (β : ℝ) (hβ1 : β < 1) :
     ‖(N : ℂ) ^ (1 - (β : ℂ)) / (1 - (β : ℂ))‖ =
@@ -45,7 +50,9 @@ theorem norm_zeta_real_pole_term (N : ℕ) (hN : 1 ≤ N)
     Complex.norm_real, Real.norm_eq_abs, abs_of_pos (sub_pos.mpr hβ1)]
 
 /-- A convenient bound for the full finite sum minus zeta, with no
-unproved approximation premise.-/
+unproved approximation premise.
+@isnad1 id=le.3h2v.s7.7267aa1397a0 from=translated src=- shape=e24f53a3 vocab=1e48aaa6
+-/
 theorem norm_zeta_real_sum_sub_zeta_le (N : ℕ) (hN : 1 ≤ N)
     (β : ℝ) (hβ0 : 0 < β) (hβ1 : β < 1) :
     ‖(∑ n ∈ Ioc 0 N, (n : ℂ) ^ (-(β : ℂ))) - riemannZeta (β : ℂ)‖ ≤

@@ -24,6 +24,9 @@ def localLFunctionZeroSum {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q)
     (c s : ℂ) : ℂ :=
   ∑ᶠ ρ, (divisor (DirichletCharacter.LFunction χ) (closedBall c (5 / 4)) ρ : ℂ) / (s - ρ)
 
+/--
+@isnad1 id=lt.3h3v.s6.196916b68d65 from=translated src=- shape=bfeaa2c1 vocab=0c8bd06c
+-/
 theorem primitiveLFunction_zero_re_lt_one {q : ℕ} [NeZero q]
     (hq : 1 < q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive)
     (ρ : ℂ) (hρ : DirichletCharacter.LFunction χ ρ = 0) : ρ.re < 1 := by
@@ -31,7 +34,9 @@ theorem primitiveLFunction_zero_re_lt_one {q : ℕ} [NeZero q]
   exact DirichletCharacter.LFunction_ne_zero_of_one_le_re χ
     (Or.inl (primitive_character_ne_one hq χ hχ)) (not_lt.mp h) hρ
 
-/-- Every point in the support of the actual divisor is strictly left of one.-/
+/-- Every point in the support of the actual divisor is strictly left of one.
+@isnad1 id=lt.3h4v.s7.8e8f04fafa8d from=translated src=- shape=49fe3d52 vocab=8508be58
+-/
 theorem LFunction_divisor_re_lt_one {q : ℕ} [NeZero q]
     (hq : 1 < q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive)
     (K : Set ℂ) (ρ : ℂ) (hρ : divisor (DirichletCharacter.LFunction χ) K ρ ≠ 0) :
@@ -45,6 +50,9 @@ theorem LFunction_divisor_re_lt_one {q : ℕ} [NeZero q]
   rw [divisor_apply (fun z _ => (ha.analyticAt z).meromorphicAt) hK, ho] at hρ
   simp at hρ
 
+/--
+@isnad1 id=ne.2h3v.s6.ab68b7f7cb1d from=translated src=- shape=4aac0934 vocab=41d0c710
+-/
 theorem meromorphicOrderAt_primitiveLFunction_ne_top {q : ℕ} [NeZero q]
     (hq : 1 < q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive) (ρ : ℂ) :
     meromorphicOrderAt (DirichletCharacter.LFunction χ) ρ ≠ ⊤ := by
@@ -57,7 +65,9 @@ theorem meromorphicOrderAt_primitiveLFunction_ne_top {q : ℕ} [NeZero q]
   rw [(ha.analyticAt (2 : ℂ)).meromorphicNFAt.meromorphicOrderAt_eq_zero_iff.mpr hn]
   simp
 
-/-- An actual zero in the divisor domain has positive integer multiplicity.-/
+/-- An actual zero in the divisor domain has positive integer multiplicity.
+@isnad1 id=le.4h4v.s7.376a4e11ba2a from=translated src=- shape=66c21f7b vocab=76c1d840
+-/
 theorem one_le_LFunction_divisor_of_zero {q : ℕ} [NeZero q]
     (hq : 1 < q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive)
     (K : Set ℂ) (ρ : ℂ) (hK : ρ ∈ K) (hρ : DirichletCharacter.LFunction χ ρ = 0) :
@@ -74,7 +84,9 @@ theorem one_le_LFunction_divisor_of_zero {q : ℕ} [NeZero q]
   change divisor (DirichletCharacter.LFunction χ) K ρ ≠ 0 at hsupport
   omega
 
-/-- Each actual-divisor reciprocal term has nonnegative real part.-/
+/-- Each actual-divisor reciprocal term has nonnegative real part.
+@isnad1 id=le.3h5v.s7.b6228915d350 from=translated src=- shape=d65ff310 vocab=404c6ab1
+-/
 theorem LFunction_divisor_term_re_nonneg {q : ℕ} [NeZero q]
     (hq : 1 < q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive)
     (K : Set ℂ) (s ρ : ℂ) (hs : 1 < s.re) :
@@ -91,6 +103,9 @@ theorem LFunction_divisor_term_re_nonneg {q : ℕ} [NeZero q]
     zero_mul, zero_div, add_zero]
   exact div_nonneg (mul_nonneg hD (by linarith)) (Complex.normSq_nonneg _)
 
+/--
+@isnad1 id=hasfinit.0h4v.s7.6aa51b95e43d from=translated src=- shape=a2e7be44 vocab=5b4cdabd
+-/
 theorem localLFunctionZeroTerm_hasFiniteSupport {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (c s : ℂ) :
     (fun ρ => (divisor (DirichletCharacter.LFunction χ) (closedBall c (5 / 4)) ρ : ℂ) /
@@ -102,6 +117,9 @@ theorem localLFunctionZeroTerm_hasFiniteSupport {q : ℕ} [NeZero q]
   intro hD
   exact hρ (by simp [hD])
 
+/--
+@isnad1 id=eq.0h4v.s7.656575c8e712 from=translated src=- shape=9158ef87 vocab=2f9b16ca
+-/
 theorem localLFunctionZeroSum_re {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (c s : ℂ) :
     (localLFunctionZeroSum χ c s).re =
@@ -109,13 +127,18 @@ theorem localLFunctionZeroSum_re {q : ℕ} [NeZero q]
         (s - ρ)).re :=
   Complex.reAddGroupHom.map_finsum (localLFunctionZeroTerm_hasFiniteSupport χ c s)
 
+/--
+@isnad1 id=le.3h4v.s6.7a9b7d878adf from=translated src=- shape=b335ff60 vocab=236a8096
+-/
 theorem localLFunctionZeroSum_re_nonneg {q : ℕ} [NeZero q]
     (hq : 1 < q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive)
     (c s : ℂ) (hs : 1 < s.re) : 0 ≤ (localLFunctionZeroSum χ c s).re := by
   rw [localLFunctionZeroSum_re]
   exact finsum_nonneg (fun ρ => LFunction_divisor_term_re_nonneg hq χ hχ _ s ρ hs)
 
-/-- A single term is bounded by the whole actual zero sum.-/
+/-- A single term is bounded by the whole actual zero sum.
+@isnad1 id=le.3h5v.s8.88a753c86280 from=translated src=- shape=d351be78 vocab=c886d0e5
+-/
 theorem LFunction_divisor_term_re_le_zeroSum {q : ℕ} [NeZero q]
     (hq : 1 < q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive)
     (c s ρ : ℂ) (hs : 1 < s.re) :
@@ -133,7 +156,9 @@ theorem LFunction_divisor_term_re_le_zeroSum {q : ℕ} [NeZero q]
 
 /-- A zero at the evaluation height contributes at least its simple-zero
 reciprocal.  The real cutoff `3/4` ensures membership in the radius-`5/4`
-divisor disk centered at `2+iγ`; no upper restriction on `σ` is needed here.-/
+divisor disk centered at `2+iγ`; no upper restriction on `σ` is needed here.
+@isnad1 id=le.5h5v.s7.79c084a8d8d0 from=translated src=- shape=7f1d859f vocab=cfa204bb
+-/
 theorem one_div_sub_le_localLFunctionZeroSum_re_of_zero {q : ℕ} [NeZero q]
     (hq : 1 < q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive)
     (β γ σ : ℝ) (hβ : 3 / 4 ≤ β) (hσ : 1 < σ)

@@ -33,7 +33,9 @@ def bilinearBoxSmallGcd (U V X M N G : ℕ) : ℝ :=
     vaughanBeta V dr.2 * dispersionEntry X dr.1 dr.2
 
 /-- Any restriction of the box is exactly the corresponding restriction of
-the finite global factor domain.-/
+the finite global factor domain.
+@isnad1 id=eq.0h6v.s9.c1eda44a8e8e from=translated src=- shape=fda44caf vocab=8509b934
+-/
 theorem bilinearBox_filtered_eq_filtered_pair_sum (U V X M N : ℕ)
     (P : ℕ × ℕ → Prop) [DecidablePred P] :
     (∑ dr ∈ ((dispersionLeft U M).product (dispersionRight V N)).filter P,
@@ -56,6 +58,9 @@ theorem bilinearBox_filtered_eq_filtered_pair_sum (U V X M N : ℕ)
     simp [hP, hprod, dispersionEntry]
   all_goals ring
 
+/--
+@isnad1 id=eq.0h6v.s8.3fd523708363 from=translated src=- shape=25de8278 vocab=264c0bd8
+-/
 theorem bilinearBoxLargeGcd_eq_filtered_pair_sum (U V X M N G : ℕ) :
     bilinearBoxLargeGcd U V X M N G =
       ∑ dr ∈ (bilinearPairs U V X).filter
@@ -64,6 +69,9 @@ theorem bilinearBoxLargeGcd_eq_filtered_pair_sum (U V X M N G : ℕ) :
         (μ dr.1 : ℝ) * vaughanBeta V dr.2 * vonMangoldt (dr.1 * dr.2 + 2) :=
   bilinearBox_filtered_eq_filtered_pair_sum U V X M N _
 
+/--
+@isnad1 id=eq.0h6v.s8.52b11f5d7edc from=translated src=- shape=8980485a vocab=ca8c8b54
+-/
 theorem bilinearBoxSmallGcd_eq_filtered_pair_sum (U V X M N G : ℕ) :
     bilinearBoxSmallGcd U V X M N G =
       ∑ dr ∈ (bilinearPairs U V X).filter
@@ -72,6 +80,9 @@ theorem bilinearBoxSmallGcd_eq_filtered_pair_sum (U V X M N G : ℕ) :
         (μ dr.1 : ℝ) * vaughanBeta V dr.2 * vonMangoldt (dr.1 * dr.2 + 2) :=
   bilinearBox_filtered_eq_filtered_pair_sum U V X M N _
 
+/--
+@isnad1 id=eq.0h6v.s5.5af1622a1b1b from=translated src=- shape=3b3c0b1f vocab=f16e6b67
+-/
 theorem bilinearBox_eq_smallGcd_add_largeGcd (U V X M N G : ℕ) :
     bilinearBox U V X M N =
       bilinearBoxSmallGcd U V X M N G + bilinearBoxLargeGcd U V X M N G := by
@@ -89,6 +100,9 @@ theorem bilinearBox_eq_smallGcd_add_largeGcd (U V X M N G : ℕ) :
   · simp [hg, not_lt.mpr hg]
   · simp [hg, lt_of_not_ge hg]
 
+/--
+@isnad1 id=le.1h5v.s6.9b960bae6a63 from=translated src=- shape=a1564255 vocab=90d15359
+-/
 theorem bilinearBoxLargeGcdPairs_card_le (U V M N G : ℕ) (hG : 1 ≤ G) :
     ((bilinearBoxLargeGcdPairs U V M N G).card : ℝ) ≤ 4 * (M : ℝ) * N / G := by
   have hsub : bilinearBoxLargeGcdPairs U V M N G ⊆
@@ -109,6 +123,9 @@ theorem bilinearBoxLargeGcdPairs_card_le (U V M N G : ℕ) (hG : 1 ≤ G) :
       card_largeGcd_rectangle_le (2 * M) (2 * N) G hG
     _ = _ := by push_cast; ring
 
+/--
+@isnad1 id=le.1h6v.s6.1eddff40a668 from=translated src=- shape=a50a29ac vocab=1ec52061
+-/
 theorem abs_bilinearBoxLargeGcd_le_card (U V X M N G : ℕ) (hN : 1 ≤ N) :
     |bilinearBoxLargeGcd U V X M N G| ≤
       (bilinearBoxLargeGcdPairs U V M N G).card *
@@ -134,7 +151,9 @@ theorem abs_bilinearBoxLargeGcd_le_card (U V X M N G : ℕ) (hN : 1 ≤ N) :
     _ = _ := by simp; ring
 
 /-- The actual large-gcd bilinear subrange saves a factor `G`, without any
-prime-distribution hypothesis.-/
+prime-distribution hypothesis.
+@isnad1 id=le.4h6v.s7.0e4866ae35c2 from=translated src=- shape=e5b9d16a vocab=c01b4b47
+-/
 theorem abs_bilinearBoxLargeGcd_le (U V X M N G : ℕ)
     (hM : 1 ≤ M) (hN : 1 ≤ N) (hG : 1 ≤ G) (hMN : M * N ≤ 2 * X) :
     |bilinearBoxLargeGcd U V X M N G| ≤

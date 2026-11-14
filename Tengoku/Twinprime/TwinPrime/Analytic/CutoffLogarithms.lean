@@ -16,7 +16,9 @@ open Filter
 
 namespace TwinPrime.Analytic
 
-/-- The upper side of the floor estimate, with a strictly positive successor.-/
+/-- The upper side of the floor estimate, with a strictly positive successor.
+@isnad1 id=lt.0h1v.s5.642c6494d7ab from=translated src=- shape=c4df414f vocab=07bf6d9a
+-/
 theorem primaryCutoff_inverse_bound (X : ℕ) : X < (primaryCutoff X + 1) ^ 5 := by
   have hfloor : (X : ℝ) ^ (1 / 5 : ℝ) < (primaryCutoff X : ℝ) + 1 :=
     Nat.lt_floor_add_one _
@@ -28,7 +30,9 @@ theorem primaryCutoff_inverse_bound (X : ℕ) : X < (primaryCutoff X + 1) ^ 5 :=
   rw [heq] at hp
   exact_mod_cast hp
 
-/-- The inverse cutoff comparison needed to transfer logarithmic decay.-/
+/-- The inverse cutoff comparison needed to transfer logarithmic decay.
+@isnad1 id=le.1h1v.s6.737b3d83c4eb from=translated src=- shape=857676f9 vocab=403a8963
+-/
 theorem log_dyadic_le_seven_log_primaryCutoff (X : ℕ) (hX : 1 ≤ X) :
     Real.log (2 * X + 2) ≤ 7 * Real.log (primaryCutoff X + 1) := by
   let U := primaryCutoff X
@@ -61,7 +65,9 @@ private theorem tendsto_inv_log_nat_add_one :
     linarith
   exact (Real.tendsto_log_atTop.comp harg).inv_tendsto_atTop
 
-/-- A square-logarithmic saving implies a single-logarithmic saving.-/
+/-- A square-logarithmic saving implies a single-logarithmic saving.
+@isnad1 id=tendsto.1h1v.s6.b722b8372b80 from=translated src=- shape=0e8e72c0 vocab=e7bc1b26
+-/
 theorem tendsto_mul_log_of_mul_log_sq_tendsto_zero (F : ℕ → ℝ)
     (hF : Tendsto (fun n : ℕ => F n * (Real.log (n + 1)) ^ 2) atTop (nhds 0)) :
     Tendsto (fun n : ℕ => F n * Real.log (n + 1)) atTop (nhds 0) := by
@@ -73,7 +79,9 @@ theorem tendsto_mul_log_of_mul_log_sq_tendsto_zero (F : ℕ → ℝ)
     (Real.log_pos (by exact_mod_cast (show 1 < n + 1 by omega))).ne'
   field_simp
 
-/-- Ordinary decay follows from square-logarithmic decay.-/
+/-- Ordinary decay follows from square-logarithmic decay.
+@isnad1 id=tendsto.1h1v.s6.e12f543816f8 from=translated src=- shape=a58abafa vocab=e7bc1b26
+-/
 theorem tendsto_of_mul_log_sq_tendsto_zero (F : ℕ → ℝ)
     (hF : Tendsto (fun n : ℕ => F n * (Real.log (n + 1)) ^ 2) atTop (nhds 0)) :
     Tendsto F atTop (nhds 0) := by
@@ -87,7 +95,9 @@ theorem tendsto_of_mul_log_sq_tendsto_zero (F : ℕ → ℝ)
   field_simp
 
 /-- Cancellation of an arbitrary sequence transfers to the primary cutoff
-with the full dyadic logarithmic weight.-/
+with the full dyadic logarithmic weight.
+@isnad1 id=tendsto.1h1v.s7.97f87932c762 from=translated src=- shape=6b1c4099 vocab=8b515542
+-/
 theorem tendsto_primary_mul_log_of_mul_log_sq_tendsto_zero (F : ℕ → ℝ)
     (hF : Tendsto (fun n : ℕ => F n * (Real.log (n + 1)) ^ 2) atTop (nhds 0)) :
     Tendsto (fun X : ℕ => F (primaryCutoff X) * Real.log (2 * X + 2))

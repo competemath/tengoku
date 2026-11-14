@@ -20,7 +20,9 @@ open Finset ArithmeticFunction
 namespace TwinPrime.Analytic
 
 /-- An unconditional summatory error about the actual three-L-value product.
-Every character factor is nonprincipal, but need not be primitive.-/
+Every character factor is nonprincipal, but need not be primitive.
+@isnad1 id=le.4h5v.s9.c5dfff730561 from=translated src=- shape=0695d83d vocab=6cfc78d2
+-/
 theorem norm_zeta_three_character_convolution_sub_LFunction_product_le
     {q : ℕ} [NeZero q] (χ₁ χ₂ χ₃ : DirichletCharacter ℂ q)
     (hχ₁ : χ₁ ≠ 1) (hχ₂ : χ₂ ≠ 1) (hχ₃ : χ₃ ≠ 1)
@@ -56,7 +58,9 @@ theorem norm_zeta_three_character_convolution_sub_LFunction_product_le
   ring
 
 /-- The main term of the actual quadratic-product coefficients is the
-regularized value at one when all three character factors are nonprincipal.-/
+regularized value at one when all three character factors are nonprincipal.
+@isnad1 id=le.4h4v.s8.1014c4a349e6 from=translated src=- shape=57c20dfd vocab=e38aad8f
+-/
 theorem norm_quadraticProductCoefficients_summatory_sub_residue_le
     {q : ℕ} [NeZero q] (χ₁ χ₂ : DirichletCharacter ℂ q)
     (hχ₁ : χ₁ ≠ 1) (hχ₂ : χ₂ ≠ 1) (hχ₁₂ : χ₁ * χ₂ ≠ 1)
@@ -70,7 +74,9 @@ theorem norm_quadraticProductCoefficients_summatory_sub_residue_le
 
 /-- Distinct nonprincipal quadratic characters meet the three nonprincipal
 conditions. In fact only the first character's square-one identity is needed
-for this analytic bound; positivity is a separate finite theorem.-/
+for this analytic bound; positivity is a separate finite theorem.
+@isnad1 id=le.5h4v.s8.051969c8dadc from=translated src=- shape=ad2328db vocab=e38aad8f
+-/
 theorem norm_quadraticProductCoefficients_summatory_sub_residue_le_of_distinct
     {q : ℕ} [NeZero q] (χ₁ χ₂ : DirichletCharacter ℂ q)
     (hχ₁ : χ₁ ≠ 1) (hχ₂ : χ₂ ≠ 1) (hsq : χ₁ ^ 2 = 1) (hne : χ₁ ≠ χ₂)

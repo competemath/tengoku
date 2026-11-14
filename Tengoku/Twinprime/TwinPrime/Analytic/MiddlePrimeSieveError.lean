@@ -26,13 +26,18 @@ def middlePrimeSieveErrorMass (U W Y : ℕ) (z : ℕ → ℕ) : ℝ :=
     ∑ d ∈ (oddPrimorial (z q)).divisors.filter (fun d => d ≤ z q ^ 2),
       (3 : ℝ) ^ ω d * progressionMaxError Y (q * d)
 
+/--
+@isnad1 id=le.0h4v.s4.23586476dca0 from=translated src=- shape=457952fd vocab=79b6a651
+-/
 theorem middlePrimeSieveErrorMass_nonneg (U W Y : ℕ) (z : ℕ → ℕ) :
     0 ≤ middlePrimeSieveErrorMass U W Y z :=
   sum_nonneg fun _ _ => sum_nonneg fun _ _ =>
     mul_nonneg (by positivity) (progressionMaxError_nonneg _ _)
 
 /-- The entire remainder is embedded into one squarefree weighted error
-sum. In particular no replacement of `3^ω(d)` by a constant occurs.-/
+sum. In particular no replacement of `3^ω(d)` by a constant occurs.
+@isnad1 id=le.2h5v.s6.e78cd267a53d from=translated src=- shape=a584818f vocab=b2514e2d
+-/
 theorem middlePrimeSieveErrorMass_le_weighted (U W D Y : ℕ) (z : ℕ → ℕ)
     (hU : 2 ≤ U)
     (hz : ∀ q ∈ Ioc U W, q.Prime → z q < q ∧ q * z q ^ 2 ≤ D) :

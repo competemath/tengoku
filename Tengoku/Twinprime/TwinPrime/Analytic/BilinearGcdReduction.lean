@@ -28,6 +28,9 @@ def bilinearLargeGcd (U V X G : ℕ) : ℝ :=
   ∑ dr ∈ (bilinearPairs U V X).filter (fun dr => G < Nat.gcd dr.1 dr.2),
     (μ dr.1 : ℝ) * vaughanBeta V dr.2 * vonMangoldt (dr.1 * dr.2 + 2)
 
+/--
+@isnad1 id=eq.0h4v.s4.0c2b25c33528 from=translated src=- shape=a54507de vocab=0b02f09a
+-/
 theorem bilinearTerm_eq_smallGcd_add_largeGcd (U V X G : ℕ) :
     bilinearTerm U V X = bilinearSmallGcd U V X G + bilinearLargeGcd U V X G := by
   rw [bilinearTerm_eq_pair_sum]
@@ -39,7 +42,9 @@ theorem bilinearTerm_eq_smallGcd_add_largeGcd (U V X G : ℕ) :
   · simp [hg, lt_of_not_ge hg]
 
 /-- Every restriction of the original factor domain inherits the unique
-right-closed dyadic assignment, without modifying its coefficient.-/
+right-closed dyadic assignment, without modifying its coefficient.
+@isnad1 id=eq.2h6v.s9.31b775984b1a from=translated src=- shape=e2e02ac3 vocab=c2270c48
+-/
 theorem sum_bilinearPairs_filter_eq_sum_boxes {A : Type*} [AddCommMonoid A]
     (U V X : ℕ) (hU : 1 ≤ U) (hV : 1 ≤ V)
     (P : ℕ × ℕ → Prop) [DecidablePred P] (f : ℕ × ℕ → A) :
@@ -66,18 +71,27 @@ theorem sum_bilinearPairs_filter_eq_sum_boxes {A : Type*} [AddCommMonoid A]
     · exact fun hnot => False.elim (hnot hij.1)
   · simp only [hP, and_false, ite_false, sum_const_zero]
 
+/--
+@isnad1 id=eq.2h4v.s6.cdbff96c49c8 from=translated src=- shape=6886f68a vocab=0106b8d2
+-/
 theorem bilinearLargeGcd_eq_sum_boxes (U V X G : ℕ) (hU : 1 ≤ U) (hV : 1 ≤ V) :
     bilinearLargeGcd U V X G = ∑ ij ∈ dispersionBoxIndices U V X,
       bilinearBoxLargeGcd U V X (2 ^ ij.1) (2 ^ ij.2) G := by
   simp_rw [bilinearBoxLargeGcd_eq_filtered_pair_sum]
   exact sum_bilinearPairs_filter_eq_sum_boxes U V X hU hV _ _
 
+/--
+@isnad1 id=eq.2h4v.s6.2e77e688de73 from=translated src=- shape=6886f68a vocab=b2893cf9
+-/
 theorem bilinearSmallGcd_eq_sum_boxes (U V X G : ℕ) (hU : 1 ≤ U) (hV : 1 ≤ V) :
     bilinearSmallGcd U V X G = ∑ ij ∈ dispersionBoxIndices U V X,
       bilinearBoxSmallGcd U V X (2 ^ ij.1) (2 ^ ij.2) G := by
   simp_rw [bilinearBoxSmallGcd_eq_filtered_pair_sum]
   exact sum_bilinearPairs_filter_eq_sum_boxes U V X hU hV _ _
 
+/--
+@isnad1 id=le.3h4v.s7.21f96cacb6e8 from=translated src=- shape=34f90ecc vocab=e5525e0e
+-/
 theorem abs_bilinearLargeGcd_le (U V X G : ℕ)
     (hU : 1 ≤ U) (hV : 1 ≤ V) (hG : 1 ≤ G) :
     |bilinearLargeGcd U V X G| ≤
@@ -100,6 +114,9 @@ theorem abs_bilinearLargeGcd_le (U V X G : ℕ)
       apply mul_le_mul_of_nonneg_right _ (by positivity)
       exact_mod_cast dispersionBoxIndices_card_le U V X
 
+/--
+@isnad1 id=le.4h4v.s7.81a1d29e3b9c from=translated src=- shape=7950703c vocab=e5525e0e
+-/
 theorem abs_bilinearLargeGcd_div_le (U V X G : ℕ)
     (hU : 1 ≤ U) (hV : 1 ≤ V) (hX : 1 ≤ X) (hG : 1 ≤ G) :
     |bilinearLargeGcd U V X G| / X ≤
@@ -111,7 +128,9 @@ theorem abs_bilinearLargeGcd_div_le (U V X G : ℕ)
       div_le_div_of_nonneg_right (abs_bilinearLargeGcd_le U V X G hU hV hG) hx.le
     _ = _ := by field_simp
 
-/-- The original-factor large-gcd budget decays by six logarithmic powers.-/
+/-- The original-factor large-gcd budget decays by six logarithmic powers.
+@isnad1 id=le.1h1v.s8.7a175e7de433 from=translated src=- shape=c46ee9d4 vocab=33f55fac
+-/
 theorem bilinearGcdCutoff_family_error_le (X : ℕ) (hX : 128 ≤ X) :
     (dyadicNatDepth (2 * X) : ℝ) ^ 2 * 8 * (Real.log (4 * X + 4)) ^ 2 /
         dispersionGcdCutoff X ≤
@@ -136,6 +155,9 @@ theorem bilinearGcdCutoff_family_error_le (X : ℕ) (hX : 128 ≤ X) :
         field_simp
       exact heq.symm.trans_le h
 
+/--
+@isnad1 id=le.3h3v.s7.d3d678f6b49e from=translated src=- shape=b78e38d2 vocab=31935527
+-/
 theorem abs_bilinearLargeGcd_div_le_log (U V X : ℕ)
     (hU : 1 ≤ U) (hV : 1 ≤ V) (hX : 128 ≤ X) :
     |bilinearLargeGcd U V X (dispersionGcdCutoff X)| / X ≤
@@ -143,6 +165,9 @@ theorem abs_bilinearLargeGcd_div_le_log (U V X : ℕ)
   (abs_bilinearLargeGcd_div_le U V X _ hU hV (by omega)
     (one_le_dispersionGcdCutoff X)).trans (bilinearGcdCutoff_family_error_le X hX)
 
+/--
+@isnad1 id=tendsto.0h0v.s7.25be9c832c88 from=translated src=- shape=1ffa35b1 vocab=dd27d985
+-/
 theorem tendsto_bilinearGcd_log_error :
     Tendsto (fun X : ℕ => 8 * (2 / Real.log 2) ^ 2 /
       (Real.log (4 * (X : ℝ) + 4)) ^ 6) atTop (𝓝 0) := by
@@ -161,17 +186,26 @@ def primaryBilinearSmallGcd (X : ℕ) : ℝ :=
 def primaryBilinearLargeGcd (X : ℕ) : ℝ :=
   bilinearLargeGcd (primaryCutoff X) (primaryCutoff X) X (dispersionGcdCutoff X)
 
+/--
+@isnad1 id=eq.0h1v.s4.281ac32c5301 from=translated src=- shape=54cdae79 vocab=36b70e14
+-/
 theorem primary_bilinear_eq_smallGcd_add_largeGcd (X : ℕ) :
     bilinearTerm (primaryCutoff X) (primaryCutoff X) X =
       primaryBilinearSmallGcd X + primaryBilinearLargeGcd X :=
   bilinearTerm_eq_smallGcd_add_largeGcd _ _ X _
 
+/--
+@isnad1 id=le.1h1v.s7.374beb285126 from=translated src=- shape=d4915c89 vocab=d13072f5
+-/
 theorem abs_primaryBilinearLargeGcd_div_le_log (X : ℕ) (hX : 128 ≤ X) :
     |primaryBilinearLargeGcd X| / X ≤
       8 * (2 / Real.log 2) ^ 2 / (Real.log (4 * (X : ℝ) + 4)) ^ 6 :=
   abs_bilinearLargeGcd_div_le_log _ _ X
     (primaryCutoff_pos (by omega)) (primaryCutoff_pos (by omega)) hX
 
+/--
+@isnad1 id=tendsto.0h0v.s5.bec4f1729096 from=translated src=- shape=ec6bf2a0 vocab=f4fbcad6
+-/
 theorem tendsto_abs_primaryBilinearLargeGcd_div :
     Tendsto (fun X : ℕ => |primaryBilinearLargeGcd X| / X) atTop (𝓝 0) := by
   apply tendsto_of_tendsto_of_tendsto_of_le_of_le'
@@ -181,6 +215,9 @@ theorem tendsto_abs_primaryBilinearLargeGcd_div :
   · filter_upwards [eventually_ge_atTop 128] with X hX
     exact abs_primaryBilinearLargeGcd_div_le_log X hX
 
+/--
+@isnad1 id=tendsto.0h0v.s5.d078933ebac0 from=translated src=- shape=15fb6055 vocab=a8578746
+-/
 theorem tendsto_primaryBilinearLargeGcd_div :
     Tendsto (fun X : ℕ => primaryBilinearLargeGcd X / X) atTop (𝓝 0) := by
   rw [tendsto_zero_iff_abs_tendsto_zero]
@@ -188,7 +225,9 @@ theorem tendsto_primaryBilinearLargeGcd_div :
     tendsto_abs_primaryBilinearLargeGcd_div
 
 /-- Removing the original-factor large-gcd range changes the normalized
-signed bilinear term by a quantity tending to zero.-/
+signed bilinear term by a quantity tending to zero.
+@isnad1 id=tendsto.0h0v.s5.06abd8fdff16 from=translated src=- shape=0c6d8850 vocab=dd06d886
+-/
 theorem tendsto_primary_bilinear_sub_smallGcd_div :
     Tendsto (fun X : ℕ => (bilinearTerm (primaryCutoff X) (primaryCutoff X) X -
       primaryBilinearSmallGcd X) / X) atTop (𝓝 0) := by

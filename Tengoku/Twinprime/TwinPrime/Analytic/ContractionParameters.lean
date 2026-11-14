@@ -16,6 +16,9 @@ open Filter
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=ex.0h2v.s7.1ce379689ec4 from=translated src=- shape=ed196ecd vocab=55841f93
+-/
 theorem exists_small_parameter_eventual_contraction (D J : ℝ) :
     ∃ δ : ℝ, 0 < δ ∧ δ < 1 ∧ ∀ᶠ x : ℝ in atTop,
       D * (δ + 2 / Real.log x) ^ 2 / (1 - δ) ^ 6 + J / Real.log x ≤ 1 / 2 := by

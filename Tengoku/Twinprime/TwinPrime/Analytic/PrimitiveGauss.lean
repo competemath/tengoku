@@ -19,7 +19,9 @@ open scoped ComplexConjugate
 namespace TwinPrime.Analytic
 
 /-- Character inversion is complex conjugation, including the zero values
-at nonunits.-/
+at nonunits.
+@isnad1 id=eq.0h3v.s7.c369f180a4ba from=translated src=- shape=36efcef4 vocab=4303fc4e
+-/
 theorem character_inv_apply_eq_conj {q : ℕ} (χ : DirichletCharacter ℂ q)
     (a : ZMod q) : χ⁻¹ a = conj (χ a) := by
   rw [MulChar.inv_apply_eq_inv']
@@ -29,7 +31,9 @@ theorem character_inv_apply_eq_conj {q : ℕ} (χ : DirichletCharacter ℂ q)
   · simp [χ.map_nonunit ha]
 
 /-- The primitive Gauss product identity over an arbitrary positive modulus.
-The proof uses Fourier inversion over the finite ring, with no field assumption.-/
+The proof uses Fourier inversion over the finite ring, with no field assumption.
+@isnad1 id=eq.1h2v.s6.4d72ed27d7fe from=translated src=- shape=c8a80e1c vocab=cece3a23
+-/
 theorem primitive_gaussSum_mul_conj {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive) :
     gaussSum χ ZMod.stdAddChar * conj (gaussSum χ ZMod.stdAddChar) = (q : ℂ) := by
@@ -64,7 +68,9 @@ theorem primitive_gaussSum_mul_conj {q : ℕ} [NeZero q]
   exact hdouble.symm.trans hinv
 
 /-- A primitive Gauss sum has squared norm equal to the modulus, including
-the primitive character at modulus one.-/
+the primitive character at modulus one.
+@isnad1 id=eq.1h2v.s6.ecc6d266b6f4 from=translated src=- shape=ce95f045 vocab=6655e753
+-/
 theorem norm_primitive_gaussSum_sq {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive) :
     ‖gaussSum χ ZMod.stdAddChar‖ ^ 2 = (q : ℝ) := by
@@ -72,6 +78,9 @@ theorem norm_primitive_gaussSum_sq {q : ℕ} [NeZero q]
   rw [Complex.mul_conj'] at h
   exact_mod_cast h
 
+/--
+@isnad1 id=eq.1h2v.s5.deb7eb0d1997 from=translated src=- shape=fea5e01b vocab=58d5367e
+-/
 theorem norm_primitive_gaussSum {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive) :
     ‖gaussSum χ ZMod.stdAddChar‖ = Real.sqrt q := by

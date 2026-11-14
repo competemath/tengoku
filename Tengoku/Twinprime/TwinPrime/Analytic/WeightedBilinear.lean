@@ -16,7 +16,9 @@ open Finset Classical
 
 namespace TwinPrime.Analytic
 
-/-- Weighted Cauchy--Schwarz on two finite indices, with a varying inner set.-/
+/-- Weighted Cauchy--Schwarz on two finite indices, with a varying inner set.
+@isnad1 id=le.1h7v.s7.fb7eee2f72d1 from=translated src=- shape=ac1a7da3 vocab=410affd2
+-/
 theorem weighted_sum_sum_mul_le_sqrt_mul_sqrt {ι κ : Type*}
     (s : Finset ι) (J : ι → Finset κ) (w : ι → ℝ) (f g : ι → κ → ℝ)
     (hw : ∀ i ∈ s, 0 ≤ w i) :
@@ -28,7 +30,9 @@ theorem weighted_sum_sum_mul_le_sqrt_mul_sqrt {ι κ : Type*}
     (fun p hp => hw p.1 (mem_sigma.mp hp).1)
   simpa only [sum_sigma, mul_sum, mul_assoc] using h
 
-/-- Complex products are bounded by their two actual weighted square sums.-/
+/-- Complex products are bounded by their two actual weighted square sums.
+@isnad1 id=le.1h7v.s7.0e414019e106 from=translated src=- shape=fe7e81ac vocab=c0bff357
+-/
 theorem weighted_sum_sum_norm_mul_le_sqrt_mul_sqrt {ι κ : Type*}
     (s : Finset ι) (J : ι → Finset κ) (w : ι → ℝ) (A B : ι → κ → ℂ)
     (hw : ∀ i ∈ s, 0 ≤ w i) :
@@ -40,7 +44,9 @@ theorem weighted_sum_sum_norm_mul_le_sqrt_mul_sqrt {ι κ : Type*}
 
 /-- Bounds on the two second moments give a first-moment product bound.
 Separate nonnegativity hypotheses on the budgets are unnecessary: they
-already follow from the displayed square-sum bounds and nonnegative weights.-/
+already follow from the displayed square-sum bounds and nonnegative weights.
+@isnad1 id=le.3h9v.s7.f077594b35eb from=translated src=- shape=69ae2b38 vocab=c0bff357
+-/
 theorem weighted_sum_sum_norm_mul_le {ι κ : Type*}
     (s : Finset ι) (J : ι → Finset κ) (w : ι → ℝ) (A B : ι → κ → ℂ)
     (hw : ∀ i ∈ s, 0 ≤ w i) (EA EB : ℝ)
@@ -52,7 +58,9 @@ theorem weighted_sum_sum_norm_mul_le {ι κ : Type*}
     (mul_le_mul (Real.sqrt_le_sqrt hA) (Real.sqrt_le_sqrt hB)
       (Real.sqrt_nonneg _) (Real.sqrt_nonneg _))
 
-/-- The corresponding first-moment bound for a single finite index.-/
+/-- The corresponding first-moment bound for a single finite index.
+@isnad1 id=le.3h7v.s7.8c2000798ffd from=translated src=- shape=bfe08148 vocab=c0bff357
+-/
 theorem weighted_sum_norm_mul_le {ι : Type*} (s : Finset ι)
     (w : ι → ℝ) (A B : ι → ℂ) (hw : ∀ i ∈ s, 0 ≤ w i) (EA EB : ℝ)
     (hA : (∑ i ∈ s, w i * ‖A i‖ ^ 2) ≤ EA)
@@ -62,7 +70,9 @@ theorem weighted_sum_norm_mul_le {ι : Type*} (s : Finset ι)
     (fun i (_ : Unit) => A i) (fun i (_ : Unit) => B i) hw EA EB
     (by simpa only [sum_singleton] using hA) (by simpa only [sum_singleton] using hB)
 
-/-- The norm may instead surround the inner sum, by the finite triangle inequality.-/
+/-- The norm may instead surround the inner sum, by the finite triangle inequality.
+@isnad1 id=le.3h9v.s7.7f971f246b38 from=translated src=- shape=0a8d4c2f vocab=c0bff357
+-/
 theorem weighted_sum_norm_sum_mul_le {ι κ : Type*}
     (s : Finset ι) (J : ι → Finset κ) (w : ι → ℝ) (A B : ι → κ → ℂ)
     (hw : ∀ i ∈ s, 0 ≤ w i) (EA EB : ℝ)
@@ -75,7 +85,9 @@ theorem weighted_sum_norm_sum_mul_le {ι κ : Type*}
       sum_le_sum fun i hi => mul_le_mul_of_nonneg_left (norm_sum_le _ _) (hw i hi)
     _ ≤ _ := weighted_sum_sum_norm_mul_le s J w A B hw EA EB hA hB
 
-/-- A varying finite family of factorized rectangular sums has the same bound.-/
+/-- A varying finite family of factorized rectangular sums has the same bound.
+@isnad1 id=le.3h13v.s8.2ed387402fb4 from=translated src=- shape=b6731a4b vocab=c0bff357
+-/
 theorem weighted_sum_sum_norm_rectangular_le {ι κ α β : Type*}
     (s : Finset ι) (J : ι → Finset κ) (w : ι → ℝ)
     (U : ι → κ → Finset α) (V : ι → κ → Finset β)
@@ -91,7 +103,9 @@ theorem weighted_sum_sum_norm_rectangular_le {ι κ α β : Type*}
   simpa only [sum_mul_sum] using h
 
 /-- A prefix baseline and `k` disjoint-interval levels have the safe
-staircase factor `2(k+1)(j+1)`.-/
+staircase factor `2(k+1)(j+1)`.
+@isnad1 id=le.2h4v.s7.7a3b8d70f07f from=translated src=- shape=0c482b7b vocab=00494cef
+-/
 theorem sqrt_baseline_add_levels_le (EA EB : ℝ) (_hEA : 0 ≤ EA) (hEB : 0 ≤ EB)
     (k j : ℕ) :
     Real.sqrt EA * Real.sqrt (((j : ℝ) + 1) ^ 2 * EB) +

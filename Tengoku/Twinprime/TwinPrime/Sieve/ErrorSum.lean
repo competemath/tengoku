@@ -34,7 +34,9 @@ open scoped ArithmeticFunction.omega
 
 namespace TwinPrime.Sieve
 
-/-- `∑_{d ∣ P, d ≤ x} 1/d ≤ 1 + log x`.-/
+/-- `∑_{d ∣ P, d ≤ x} 1/d ≤ 1 + log x`.
+@isnad1 id=le.1h2v.s6.d186e383676a from=translated src=- shape=8be54f0d vocab=8094b088
+-/
 theorem sum_divisors_inv_le_one_add_log {P : ℕ} (x : ℝ) (hx : 1 ≤ x) :
     (∑ d ∈ P.divisors, if (d : ℝ) ≤ x then (d : ℝ)⁻¹ else 0) ≤ 1 + Real.log x := by
   rw [← sum_filter]
@@ -53,7 +55,9 @@ theorem sum_divisors_inv_le_one_add_log {P : ℕ} (x : ℝ) (hx : 1 ≤ x) :
         rfl
     _ ≤ 1 + Real.log x := harmonic_floor_le_one_add_log x hx
 
-/-- Lemma 3.1 in Heath-Brown's notes: `∑_{d ∣ P, d ≤ x} k^{ω d} / d ≤ (1 + log x)^k`.-/
+/-- Lemma 3.1 in Heath-Brown's notes: `∑_{d ∣ P, d ≤ x} k^{ω d} / d ≤ (1 + log x)^k`.
+@isnad1 id=le.2h3v.s7.289cfdc3efd5 from=translated src=- shape=7b1f86f7 vocab=fd20f1ba
+-/
 theorem sum_pow_cardDistinctFactors_div_self_le_log_pow {P k : ℕ} (x : ℝ) (hx : 1 ≤ x)
     (hP : Squarefree P) :
     (∑ d ∈ P.divisors, if (d : ℝ) ≤ x then (k : ℝ) ^ (ω d) / (d : ℝ) else 0)
@@ -119,7 +123,9 @@ theorem sum_pow_cardDistinctFactors_div_self_le_log_pow {P k : ℕ} (x : ℝ) (h
           pow_le_pow_left₀ (sum_nonneg fun d _ => by split_ifs <;> positivity)
             (sum_divisors_inv_le_one_add_log x hx) k
 
-/-- `∑_{d ∣ P, d ≤ x} k^{ω d} ≤ x (1 + log x)^k`.-/
+/-- `∑_{d ∣ P, d ≤ x} k^{ω d} ≤ x (1 + log x)^k`.
+@isnad1 id=le.2h3v.s6.2896f5de7be9 from=translated src=- shape=b726adf4 vocab=701282ba
+-/
 theorem sum_pow_cardDistinctFactors_le_self_mul_log_pow {P k : ℕ} (x : ℝ) (hx : 1 ≤ x)
     (hP : Squarefree P) :
     (∑ d ∈ P.divisors, if (d : ℝ) ≤ x then (k : ℝ) ^ (ω d) else 0)

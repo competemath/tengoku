@@ -19,6 +19,9 @@ open Finset Filter Topology
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=tendsto.0h0v.s6.74095f05f0d5 from=translated src=- shape=fad2f17c vocab=24a6a388
+-/
 theorem tendsto_middlePrimeSelbergDenominator_div_one_add_log :
     Tendsto (fun z : ℕ => middlePrimeSelbergDenominator z / (1 + Real.log z))
       atTop (𝓝 (1 / (2 * twinPrimeConstant))) := by
@@ -29,6 +32,9 @@ theorem tendsto_middlePrimeSelbergDenominator_div_one_add_log :
   simpa only [← middlePrimeSelbergDenominator_eq_harmonic_convolution,
     tsum_middlePrimeSelbergCorrection] using h
 
+/--
+@isnad1 id=tendsto.0h0v.s5.4158aefb5547 from=translated src=- shape=ea4f1310 vocab=28c4b88c
+-/
 theorem tendsto_middlePrimeSelbergDenominator_div_log :
     Tendsto (fun z : ℕ => middlePrimeSelbergDenominator z / Real.log z)
       atTop (𝓝 (1 / (2 * twinPrimeConstant))) := by
@@ -54,6 +60,9 @@ theorem tendsto_middlePrimeSelbergDenominator_div_log :
     linarith
   field_simp
 
+/--
+@isnad1 id=tendsto.0h0v.s5.d6b62de149e3 from=translated src=- shape=dcfdeab9 vocab=28c4b88c
+-/
 theorem tendsto_log_div_middlePrimeSelbergDenominator :
     Tendsto (fun z : ℕ => Real.log z / middlePrimeSelbergDenominator z)
       atTop (𝓝 (2 * twinPrimeConstant)) := by
@@ -62,7 +71,9 @@ theorem tendsto_log_div_middlePrimeSelbergDenominator :
   have h := tendsto_middlePrimeSelbergDenominator_div_log.inv₀ (one_div_ne_zero hC)
   simpa only [inv_div, inv_one, div_one] using h
 
-/-- One threshold controls every member of a growing sieve family.-/
+/-- One threshold controls every member of a growing sieve family.
+@isnad1 id=ex.1h1v.s6.9258457eb072 from=translated src=- shape=67c865b7 vocab=d7c006b4
+-/
 theorem middlePrimeSelbergDenominator_uniform_reciprocal_bound (ε : ℝ) (hε : 0 < ε) :
     ∃ Z : ℕ, ∀ z ≥ Z, 0 < Real.log (z : ℝ) ∧
       1 / middlePrimeSelbergDenominator z ≤

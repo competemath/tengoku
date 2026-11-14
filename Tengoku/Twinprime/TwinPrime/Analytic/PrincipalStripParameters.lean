@@ -16,6 +16,9 @@ noncomputable section
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=eq.0h1v.s4.503157434277 from=translated src=- shape=ca6a8ef5 vocab=a3fa6db6
+-/
 theorem primitiveLogZeroFreeWidth_one_eq_twice_zeta (H : ℝ) :
     primitiveLogZeroFreeWidth 1 H = 2 * zetaLogZeroFreeWidth H := by
   unfold primitiveLogZeroFreeWidth zetaLogZeroFreeWidth
@@ -23,6 +26,9 @@ theorem primitiveLogZeroFreeWidth_one_eq_twice_zeta (H : ℝ) :
   simp only [one_div, mul_inv_rev]
   ring
 
+/--
+@isnad1 id=le.0h3v.s6.b11ff870fdc3 from=translated src=- shape=3cfa56d7 vocab=2529d2d1
+-/
 theorem common_principal_width_le_zeta (ε d H : ℝ) :
     2 * (primitiveZeroFreeRectangleWidth ε d 1 (H + 2) / 2) ≤
       zetaLogZeroFreeWidth (H + 2) := by
@@ -30,6 +36,9 @@ theorem common_principal_width_le_zeta (ε d H : ℝ) :
   rw [primitiveLogZeroFreeWidth_one_eq_twice_zeta] at hw
   linarith
 
+/--
+@isnad1 id=le.1h2v.s5.c3f6bdc9ebd0 from=translated src=- shape=02261d0b vocab=0b592df1
+-/
 theorem zetaStripBudget_le_twice_primitive (H δ : ℝ) (hδ : 0 < δ) :
     zetaStripLogDerivativeBudget H δ ≤ 2 * primitiveStripLogDerivativeBudget 1 H δ := by
   have h65 : 0 < Real.log (6 / 5 : ℝ) := Real.log_pos (by norm_num)
@@ -46,6 +55,9 @@ theorem zetaStripBudget_le_twice_primitive (H δ : ℝ) (hδ : 0 < δ) :
     positivity
   linarith
 
+/--
+@isnad1 id=and.4h4v.s8.32d90d9103a4 from=translated src=- shape=85d4ca91 vocab=3f58737b
+-/
 theorem principal_common_strip_width_and_budget (B K d L : ℝ)
     (hB : 0 < B) (hK : 0 < K) (hd : 0 < d) (hL : 1 ≤ L) :
     siegelWalfiszStripWidthConstant B K d * L ^ (-(1 / 2 : ℝ)) ≤

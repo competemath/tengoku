@@ -24,9 +24,15 @@ def middlePrimePowerCutoff (b : ℝ) (X : ℕ) : ℕ := ⌊(X : ℝ) ^ b⌋₊
 def middlePrimeSieveThreshold (a : ℝ) (X q : ℕ) : ℕ :=
   max 1 (Nat.sqrt (middlePrimePowerCutoff a X / q))
 
+/--
+@isnad1 id=le.0h3v.s4.51bc53cf768c from=translated src=- shape=877de13a vocab=b6364819
+-/
 theorem middlePrimeSieveThreshold_pos (a : ℝ) (X q : ℕ) :
     1 ≤ middlePrimeSieveThreshold a X q := le_max_left _ _
 
+/--
+@isnad1 id=and.2h2v.s6.b8486e7aec98 from=translated src=- shape=374e9d41 vocab=608486c7
+-/
 theorem middlePrimePowerCutoff_bounds (b : ℝ) (hb : 0 ≤ b) (X : ℕ) (hX : 1 ≤ X) :
     (X : ℝ) ^ b / 2 ≤ (middlePrimePowerCutoff b X : ℝ) ∧
       (middlePrimePowerCutoff b X : ℝ) ≤ (X : ℝ) ^ b := by
@@ -34,7 +40,9 @@ theorem middlePrimePowerCutoff_bounds (b : ℝ) (hb : 0 ≤ b) (X : ℕ) (hX : 1
   exact ⟨(Nat.div_two_lt_floor hx).le, Nat.floor_le (Real.rpow_nonneg (Nat.cast_nonneg X) b)⟩
 
 /-- Any fixed multiple of the lower power cutoff is eventually below the
-higher power cutoff. This supplies the uniform growing lower threshold.-/
+higher power cutoff. This supplies the uniform growing lower threshold.
+@isnad1 id=eventual.2h3v.s5.5581fc859c21 from=translated src=- shape=f2baae78 vocab=1cd6ec1a
+-/
 theorem eventually_mul_middlePrimePowerCutoff_le (a v : ℝ) (ha : 0 ≤ a)
     (hva : v < a) (C : ℕ) :
     ∀ᶠ X : ℕ in atTop, C * middlePrimePowerCutoff v X ≤ middlePrimePowerCutoff a X := by
@@ -59,7 +67,9 @@ theorem eventually_mul_middlePrimePowerCutoff_le (a v : ℝ) (ha : 0 ≤ a)
   exact_mod_cast hfinal
 
 /-- Above the primary cutoff, the cubic threshold is larger than any
-power at most three fifths. No primality hypothesis is needed.-/
+power at most three fifths. No primality hypothesis is needed.
+@isnad1 id=lt.3h3v.s6.db79f1e62e73 from=translated src=- shape=5db94567 vocab=0e5c0fa4
+-/
 theorem middlePrimePowerCutoff_lt_cube (a : ℝ) (ha : a ≤ 3 / 5) (X q : ℕ)
     (hX : 1 ≤ X) (hq : primaryCutoff X < q) :
     middlePrimePowerCutoff a X < q ^ 3 := by
@@ -80,6 +90,9 @@ theorem middlePrimePowerCutoff_lt_cube (a : ℝ) (ha : a ≤ 3 / 5) (X q : ℕ)
         exact pow_lt_pow_left₀ hqroot (Real.rpow_nonneg (Nat.cast_nonneg X) _) (by norm_num)
   exact_mod_cast hD
 
+/--
+@isnad1 id=lt.3h3v.s5.789f338b022c from=translated src=- shape=0c20b2ee vocab=c1925562
+-/
 theorem middlePrimeSieveThreshold_lt (a : ℝ) (ha : a ≤ 3 / 5) (X q : ℕ)
     (hX : 1 ≤ X) (hq : primaryCutoff X < q) :
     middlePrimeSieveThreshold a X q < q := by
@@ -90,6 +103,9 @@ theorem middlePrimeSieveThreshold_lt (a : ℝ) (ha : a ≤ 3 / 5) (X q : ℕ)
   apply (Nat.div_lt_iff_lt_mul (by omega : 0 < q)).mpr
   simpa only [pow_succ, pow_two, mul_assoc] using hc
 
+/--
+@isnad1 id=le.2h3v.s5.5796ab6a12da from=translated src=- shape=92abf9d7 vocab=8d2a7986
+-/
 theorem middlePrimeSieveThreshold_level (a : ℝ) (X q : ℕ) (hq : 1 ≤ q)
     (hqD : q ≤ middlePrimePowerCutoff a X) :
     q * middlePrimeSieveThreshold a X q ^ 2 ≤ middlePrimePowerCutoff a X := by
@@ -100,7 +116,9 @@ theorem middlePrimeSieveThreshold_level (a : ℝ) (X q : ℕ) (hq : 1 ≤ q)
     (by simpa only [mul_comm] using Nat.div_mul_le_self (middlePrimePowerCutoff a X) q)
 
 /-- Every prescribed lower threshold eventually works simultaneously for
-all positive q through the upper outer cutoff.-/
+all positive q through the upper outer cutoff.
+@isnad1 id=eventual.2h3v.s6.5de33cc3cb06 from=translated src=- shape=a98e20c1 vocab=d9beb829
+-/
 theorem eventually_middlePrimeSieveThreshold_ge (a v : ℝ) (ha : 0 ≤ a)
     (hva : v < a) (Z : ℕ) :
     ∀ᶠ X : ℕ in atTop, ∀ q ∈ Icc 1 (middlePrimePowerCutoff v X),
@@ -113,7 +131,9 @@ theorem eventually_middlePrimeSieveThreshold_ge (a v : ℝ) (ha : 0 ≤ a)
   exact (Nat.mul_le_mul_left (Z ^ 2) hqW).trans hX
 
 /-- Simultaneous support and level conditions on the actual middle-prime
-interval. The later cutoff restriction v<3/10 is not needed here.-/
+interval. The later cutoff restriction v<3/10 is not needed here.
+@isnad1 id=eventual.3h2v.s7.a173d148503e from=translated src=- shape=59adc5ca vocab=538b6b7c
+-/
 theorem eventually_middlePrimeSieveThreshold_support (a v : ℝ)
     (hv : (1 / 5 : ℝ) < v) (hva : v < a) (ha : a < 1 / 2) :
     ∀ᶠ X : ℕ in atTop, ∀ q ∈ Ioc (primaryCutoff X) (middlePrimePowerCutoff v X),
@@ -129,6 +149,9 @@ theorem eventually_middlePrimeSieveThreshold_support (a v : ℝ)
   · exact lt_of_lt_of_le (primaryCutoff_pos hX) hUq.le
   · simpa only [one_mul] using hqW.trans (by simpa only [one_mul] using hD)
 
+/--
+@isnad1 id=eventual.2h3v.s6.0a87dd0aeb94 from=translated src=- shape=2f5510c0 vocab=bde895dc
+-/
 theorem eventually_middlePrimeSieveThreshold_active_ge (a v : ℝ)
     (hv : (1 / 5 : ℝ) < v) (hva : v < a) (Z : ℕ) :
     ∀ᶠ X : ℕ in atTop, ∀ q ∈ Ioc (primaryCutoff X) (middlePrimePowerCutoff v X),
@@ -140,7 +163,9 @@ theorem eventually_middlePrimeSieveThreshold_active_ge (a v : ℝ)
 
 /-- The two integer roundings still place the real quotient strictly
 between z squared and (z+1) squared. Thus the logarithmic rounding error
-is at most 1/z.-/
+is at most 1/z.
+@isnad1 id=le.2h3v.s6.1bf08de8a052 from=translated src=- shape=f68123d9 vocab=88e49ca6
+-/
 theorem abs_log_middlePrimeSieveThreshold_sub_half_log_le (a : ℝ) (X q : ℕ)
     (hq : 1 ≤ q) (hqD : q ≤ middlePrimePowerCutoff a X) :
     |Real.log (middlePrimeSieveThreshold a X q : ℝ) -
@@ -182,7 +207,9 @@ theorem abs_log_middlePrimeSieveThreshold_sub_half_log_le (a : ℝ) (X q : ℕ)
 
 /-- The logarithmic approximation tends to zero uniformly throughout the
 growing outer interval. The full modulus floor and quotient floor remain
-in the threshold definition.-/
+in the threshold definition.
+@isnad1 id=eventual.3h3v.s7.8ee2b826da78 from=translated src=- shape=ef42deee vocab=33dfbd0d
+-/
 theorem eventually_abs_log_middlePrimeSieveThreshold_sub_half_log_le
     (a v : ℝ) (hv : (1 / 5 : ℝ) < v) (hva : v < a)
     (ε : ℝ) (hε : 0 < ε) :

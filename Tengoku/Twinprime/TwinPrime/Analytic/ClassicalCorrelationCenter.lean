@@ -24,7 +24,9 @@ def classicalCorrelationCenter (U V X : ℕ) : ℝ :=
     oddMoebiusTotientSum U * logarithmicMass U X - (X : ℝ) * totientTypeIMain U V
 
 /-- The discrepancy from the centered bilinear expression is exactly the sum
-of the three classical progression remainders.-/
+of the three classical progression remainders.
+@isnad1 id=eq.2h3v.s7.5662a1f630b5 from=translated src=- shape=63d4f236 vocab=18b323ad
+-/
 theorem correlation_sub_bilinear_add_classicalCenter_eq (U V X : ℕ)
     (hU : 0 < U) (hV : V ≤ X) :
     W2 X - (bilinearTerm U V X + classicalCorrelationCenter U V X) =
@@ -36,7 +38,9 @@ theorem correlation_sub_bilinear_add_classicalCenter_eq (U V X : ℕ)
   unfold classicalCorrelationCenter typeICorrection
   ring
 
-/-- Centering retains the precise Type I remainder under a right-cutoff change.-/
+/-- Centering retains the precise Type I remainder under a right-cutoff change.
+@isnad1 id=eq.2h4v.s6.331898b97def from=translated src=- shape=c9e0a0c1 vocab=07f35989
+-/
 theorem centered_bilinear_cutoff_shift_eq (U V W X : ℕ)
     (hV : V ≤ X) (hW : W ≤ X) :
     (bilinearTerm U V X + classicalCorrelationCenter U V X) -

@@ -15,6 +15,9 @@ open Finset Filter
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=eventual.2h3v.s7.2e0a334c3e9a from=translated src=- shape=c8b477b9 vocab=7ce57e46
+-/
 theorem eventually_modulus_le_BV_range_of_power_bound
     (Q : ℕ → ℕ) (a : ℝ) (ha : a < 1 / 2)
     (hQ : ∀ᶠ X : ℕ in atTop, (Q X : ℝ) ≤ (X : ℝ) ^ a) (B : ℝ) :
@@ -36,6 +39,9 @@ theorem eventually_modulus_le_BV_range_of_power_bound
       mul_le_mul hQX hpow hden.le (Real.rpow_nonneg (Nat.cast_nonneg X) _)
     _ = _ := by rw [← Real.rpow_add (lt_trans zero_lt_one hx)]; congr 1; ring
 
+/--
+@isnad1 id=tendsto.3h2v.s7.de6e428cfbd2 from=translated src=- shape=7e7a2a61 vocab=82691c21
+-/
 theorem MaximalBombieriVinogradov.tendsto_log_mul_sum_error_div_of_power_level
     (hBV : MaximalBombieriVinogradov) (Q : ℕ → ℕ) (a : ℝ) (ha : a < 1 / 2)
     (hQ : ∀ᶠ X : ℕ in atTop, (Q X : ℝ) ≤ (X : ℝ) ^ a) :

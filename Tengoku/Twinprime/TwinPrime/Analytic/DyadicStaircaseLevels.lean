@@ -24,12 +24,17 @@ def dyadicStaircaseCorrection (a b : ℕ → ℂ) (F : ℕ → ℕ) (p : ℕ × 
   (∑ m ∈ Ico p.1 (p.1 + 2 ^ (p.2 - 1)), a m) *
     (∑ n ∈ Ico (F (p.1 + 2 ^ p.2 - 1)) (F (p.1 + 2 ^ (p.2 - 1) - 1)), b n)
 
+/--
+@isnad1 id=eq.0h4v.s5.620fdee2d061 from=translated src=- shape=22851aa9 vocab=55bc0999
+-/
 @[simp] theorem dyadicStaircaseCorrection_leaf (a b : ℕ → ℂ) (F : ℕ → ℕ) (M : ℕ) :
     dyadicStaircaseCorrection a b F (M, 0) = 0 := by
   simp [dyadicStaircaseCorrection]
 
 /-- The recursive detail is the exact sum over all tree nodes; leaves
-contribute zero. No monotonicity of the boundary is needed for this identity.-/
+contribute zero. No monotonicity of the boundary is needed for this identity.
+@isnad1 id=eq.0h5v.s5.b1f81c9d5046 from=translated src=- shape=ec2f0898 vocab=9f6e63b3
+-/
 theorem dyadicStaircaseDetail_eq_sum_tree (a b : ℕ → ℂ) (F : ℕ → ℕ) (M k : ℕ) :
     dyadicStaircaseDetail a b F M k =
       ∑ p ∈ dyadicTreeBlocks M k, dyadicStaircaseCorrection a b F p := by
@@ -42,7 +47,9 @@ theorem dyadicStaircaseDetail_eq_sum_tree (a b : ℕ → ℂ) (F : ℕ → ℕ) 
       ring
 
 /-- Every internal node occurs in exactly one height group. The grouping
-preserves the node formulas used in the geometric disjointness lemmas.-/
+preserves the node formulas used in the geometric disjointness lemmas.
+@isnad1 id=eq.0h5v.s6.55d011eb4f03 from=translated src=- shape=43fa00a6 vocab=df4f21a1
+-/
 theorem dyadicStaircaseDetail_eq_sum_levels (a b : ℕ → ℂ) (F : ℕ → ℕ) (M k : ℕ) :
     dyadicStaircaseDetail a b F M k =
       ∑ ℓ ∈ range k,
@@ -62,7 +69,9 @@ theorem dyadicStaircaseDetail_eq_sum_levels (a b : ℕ → ℂ) (F : ℕ → ℕ
       simp [hh]
 
 /-- The same exact decomposition with the left-child height written as the
-outer level index.-/
+outer level index.
+@isnad1 id=eq.0h5v.s8.ef625ad74b34 from=translated src=- shape=04bd745e vocab=2572283e
+-/
 theorem dyadicStaircaseDetail_eq_sum_levels_explicit
     (a b : ℕ → ℂ) (F : ℕ → ℕ) (M k : ℕ) :
     dyadicStaircaseDetail a b F M k =
@@ -78,7 +87,9 @@ theorem dyadicStaircaseDetail_eq_sum_levels_explicit
   simp only [dyadicStaircaseCorrection, (mem_filter.mp hp).2, Nat.add_sub_cancel]
 
 /-- Triangle inequality grouped by height, retaining the product of norms
-of the two rectangular factors.-/
+of the two rectangular factors.
+@isnad1 id=le.0h5v.s8.aace73e38775 from=translated src=- shape=42077a0d vocab=8fde3829
+-/
 theorem norm_dyadicStaircaseDetail_le_levels
     (a b : ℕ → ℂ) (F : ℕ → ℕ) (M k : ℕ) :
     ‖dyadicStaircaseDetail a b F M k‖ ≤
@@ -96,7 +107,9 @@ theorem norm_dyadicStaircaseDetail_le_levels
       (dyadicStaircaseCorrection a b F))
 
 /-- The baseline and all height groups bound the norm of the exact
-staircase sum.-/
+staircase sum.
+@isnad1 id=le.2h6v.s9.1a2a04561507 from=translated src=- shape=7ba29499 vocab=a5e0effd
+-/
 theorem norm_sum_dyadic_staircase_le_levels (a b : ℕ → ℂ) (F : ℕ → ℕ) (M N k : ℕ)
     (hN : ∀ m ∈ Ico M (M + 2 ^ k), N ≤ F m)
     (hF : AntitoneOn F (Set.Ico M (M + 2 ^ k))) :

@@ -17,7 +17,9 @@ open Finset
 namespace TwinPrime.Analytic
 
 /-- The j-th positive point is at least `(j+1)δ` when the first point and
-every successive gap are at least δ.-/
+every successive gap are at least δ.
+@isnad1 id=le.2h3v.s7.0cfc7e2d472a from=translated src=- shape=ab6d30a6 vocab=74153dad
+-/
 theorem orderEmbOfFin_ge_mul_of_separated (s : Finset ℝ) (δ : ℝ)
     (hbase : ∀ x ∈ s, δ ≤ x)
     (hsep : ∀ x ∈ s, ∀ y ∈ s, x < y → δ ≤ y - x) :
@@ -42,7 +44,9 @@ theorem orderEmbOfFin_ge_mul_of_separated (s : Finset ℝ) (δ : ℝ)
   intro j
   exact h j.val j.isLt
 
-/-- Reciprocal mass of finitely many positive separated points.-/
+/-- Reciprocal mass of finitely many positive separated points.
+@isnad1 id=le.3h2v.s7.b64e970460b2 from=translated src=- shape=d005e34e vocab=df18a882
+-/
 theorem sum_reciprocal_le_harmonic_of_separated (s : Finset ℝ) (δ : ℝ) (hδ : 0 < δ)
     (hbase : ∀ x ∈ s, δ ≤ x)
     (hsep : ∀ x ∈ s, ∀ y ∈ s, x < y → δ ≤ y - x) :
@@ -67,6 +71,9 @@ theorem sum_reciprocal_le_harmonic_of_separated (s : Finset ℝ) (δ : ℝ) (hδ
       simp only [harmonic, Rat.cast_sum, Rat.cast_inv, Rat.cast_natCast,
         Nat.cast_add, Nat.cast_one, Rat.cast_add, Rat.cast_one, div_eq_mul_inv, one_mul]
 
+/--
+@isnad1 id=monotone.0h0v.s3.9a19cc72471f from=translated src=- shape=f0959ba1 vocab=ad7c2cf9
+-/
 theorem harmonic_real_mono : Monotone (fun n : ℕ => (harmonic n : ℝ)) := by
   intro m n hmn
   change (harmonic m : ℝ) ≤ harmonic n
@@ -78,7 +85,9 @@ theorem harmonic_real_mono : Monotone (fun n : ℕ => (harmonic n : ℝ)) := by
     positivity
 
 /-- Split a separated set on the real line into its positive and negative
-parts. Each part contributes at most one harmonic reciprocal sum.-/
+parts. Each part contributes at most one harmonic reciprocal sum.
+@isnad1 id=le.3h2v.s7.c2005f341d3e from=translated src=- shape=24760f1f vocab=ad0ece8d
+-/
 theorem sum_reciprocal_abs_le_of_separated (s : Finset ℝ) (δ : ℝ) (hδ : 0 < δ)
     (hbase : ∀ x ∈ s, δ ≤ |x|)
     (hsep : ∀ x ∈ s, ∀ y ∈ s, x ≠ y → δ ≤ |x - y|) :

@@ -15,11 +15,17 @@ noncomputable section
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=le.0h0v.s5.eabc06892f07 from=translated src=- shape=63c521e8 vocab=78a65fa7
+-/
 theorem half_le_log_two : (1 / 2 : ℝ) ≤ Real.log 2 := by
   have h := Real.one_sub_inv_le_log_of_pos (show (0 : ℝ) < 2 by norm_num)
   norm_num at h
   linarith
 
+/--
+@isnad1 id=le.1h1v.s5.e5fa827132bb from=translated src=- shape=a141bd88 vocab=8e7b393f
+-/
 theorem eight_log_two_le_log_nat (T : ℕ) (hT : 256 ≤ T) :
     8 * Real.log 2 ≤ Real.log (T : ℝ) := by
   have heq : Real.log (256 : ℝ) = 8 * Real.log 2 := by
@@ -29,10 +35,16 @@ theorem eight_log_two_le_log_nat (T : ℕ) (hT : 256 ≤ T) :
   rw [← heq]
   exact Real.log_le_log (by norm_num) (by exact_mod_cast hT)
 
+/--
+@isnad1 id=le.1h1v.s4.358d65d55990 from=translated src=- shape=d643ca81 vocab=a0466d8a
+-/
 theorem one_le_log_of_256_le (T : ℕ) (hT : 256 ≤ T) :
     1 ≤ Real.log (T : ℝ) := by
   linarith [eight_log_two_le_log_nat T hT, half_le_log_two]
 
+/--
+@isnad1 id=le.1h1v.s5.37f922494773 from=translated src=- shape=b520b8d7 vocab=4115a345
+-/
 theorem dyadicNatDepth_le_two_div_log_two_mul_log (T : ℕ) (hT : 256 ≤ T) :
     (dyadicNatDepth T : ℝ) ≤ (2 / Real.log 2) * Real.log (T : ℝ) := by
   have hD : dyadicNatDepth T ≤ Nat.log 2 T + 1 :=
@@ -50,6 +62,9 @@ theorem dyadicNatDepth_le_two_div_log_two_mul_log (T : ℕ) (hT : 256 ≤ T) :
     _ ≤ 2 * (Real.log (T : ℝ) / Real.log 2) := by linarith
     _ = _ := by ring
 
+/--
+@isnad1 id=le.2h2v.s5.44414b4783b0 from=translated src=- shape=b14ac921 vocab=4d12c2c9
+-/
 theorem characterLargeSieveLogFactor_le_two_log (T R : ℕ) (hT : 256 ≤ T)
     (hR : (R : ℝ) ≤ Real.sqrt (T : ℝ)) :
     characterLargeSieveLogFactor R ≤ 2 * Real.log (T : ℝ) := by
@@ -63,6 +78,9 @@ theorem characterLargeSieveLogFactor_le_two_log (T R : ℕ) (hT : 256 ≤ T)
   unfold characterLargeSieveLogFactor
   linarith [half_le_log_two]
 
+/--
+@isnad1 id=le.3h2v.s5.c26aa79cf281 from=translated src=- shape=6659576e vocab=9660657f
+-/
 theorem one_add_log_modulus_le_log (T R : ℕ) (hT : 256 ≤ T) (hR1 : 1 ≤ R)
     (hR : (R : ℝ) ≤ Real.sqrt (T : ℝ)) :
     1 + Real.log (R : ℝ) ≤ Real.log (T : ℝ) := by

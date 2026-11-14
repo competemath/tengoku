@@ -20,6 +20,9 @@ namespace TwinPrime.Analytic
 def zeroFactorMultiplicity (f : ℂ → ℂ) (K : Set ℂ) : ℕ :=
   ∑ᶠ z, (divisor f K z).toNat
 
+/--
+@isnad1 id=eq.1h2v.s7.179cd77ceb21 from=translated src=- shape=807612c6 vocab=cb88719f
+-/
 theorem zeroFactorMultiplicity_eq_sum (f : ℂ → ℂ) {K : Set ℂ} (hK : IsCompact K) :
     zeroFactorMultiplicity f K =
       ∑ z ∈ ((divisor f K).finiteSupport hK).toFinset, (divisor f K z).toNat := by
@@ -31,6 +34,9 @@ theorem zeroFactorMultiplicity_eq_sum (f : ℂ → ℂ) {K : Set ℂ} (hK : IsCo
   have hd : divisor f K z = 0 := by simpa [Function.mem_support] using h
   simp [hd] at hz
 
+/--
+@isnad1 id=eq.2h2v.s7.aeaa16692838 from=translated src=- shape=46bf4e78 vocab=7a0e419f
+-/
 theorem zeroFactorMultiplicity_cast {f : ℂ → ℂ} {K : Set ℂ}
     (hf : AnalyticOnNhd ℂ f K) (hK : IsCompact K) :
     (zeroFactorMultiplicity f K : ℝ) = ((∑ᶠ z, divisor f K z : ℤ) : ℝ) := by
@@ -43,6 +49,9 @@ theorem zeroFactorMultiplicity_cast {f : ℂ → ℂ} {K : Set ℂ}
   intro z _
   exact_mod_cast Int.natCast_toNat_eq_self.mpr (hf.divisor_nonneg z)
 
+/--
+@isnad1 id=eq.2h3v.s7.b17f5ae03450 from=translated src=- shape=6d5683a2 vocab=397c15ff
+-/
 theorem zeroFactorPolynomial_eq_prod {f : ℂ → ℂ} {K : Set ℂ}
     (hf : AnalyticOnNhd ℂ f K) (hK : IsCompact K) (z : ℂ) :
     zeroFactorPolynomial f K z =
@@ -60,6 +69,9 @@ theorem zeroFactorPolynomial_eq_prod {f : ℂ → ℂ} {K : Set ℂ}
   change (z - u) ^ D u = (z - u) ^ (D u).toNat
   conv_lhs => rw [← Int.natCast_toNat_eq_self.mpr (hf.divisor_nonneg u), zpow_natCast]
 
+/--
+@isnad1 id=le.4h4v.s6.1ac246578944 from=translated src=- shape=20aaf85b vocab=cb995110
+-/
 theorem norm_zeroFactorPolynomial_le {f : ℂ → ℂ} {K : Set ℂ}
     (hf : AnalyticOnNhd ℂ f K) (hK : IsCompact K) (z : ℂ) (R : ℝ)
     (_hR : 0 ≤ R) (hz : ∀ u ∈ K, ‖z - u‖ ≤ R) :
@@ -75,6 +87,9 @@ theorem norm_zeroFactorPolynomial_le {f : ℂ → ℂ} {K : Set ℂ}
     apply pow_le_pow_left₀ (norm_nonneg _) (hz u ?_)
     exact (divisor f K).supportWithinDomain (by simpa using hu)
 
+/--
+@isnad1 id=le.4h4v.s6.002d41ec885f from=translated src=- shape=02d082c7 vocab=cb995110
+-/
 theorem le_norm_zeroFactorPolynomial {f : ℂ → ℂ} {K : Set ℂ}
     (hf : AnalyticOnNhd ℂ f K) (hK : IsCompact K) (z : ℂ) (R : ℝ)
     (hR : 0 ≤ R) (hz : ∀ u ∈ K, R ≤ ‖z - u‖) :
@@ -90,6 +105,9 @@ theorem le_norm_zeroFactorPolynomial {f : ℂ → ℂ} {K : Set ℂ}
     apply pow_le_pow_left₀ hR (hz u ?_)
     exact (divisor f K).supportWithinDomain (by simpa using hu)
 
+/--
+@isnad1 id=le.1h2v.s7.9d1ca578f260 from=translated src=- shape=23fffd50 vocab=bb86ed26
+-/
 theorem norm_zeroFactorPolynomial_center_le {f : ℂ → ℂ} (c : ℂ)
     (hf : AnalyticOnNhd ℂ f (closedBall c (3 / 2))) :
     ‖zeroFactorPolynomial f (closedBall c (5 / 4)) c‖ ≤
@@ -100,6 +118,9 @@ theorem norm_zeroFactorPolynomial_center_le {f : ℂ → ℂ} (c : ℂ)
   intro u hu
   simpa only [norm_sub_rev] using mem_closedBall_iff_norm.mp hu
 
+/--
+@isnad1 id=le.2h3v.s7.c03946268903 from=translated src=- shape=7c770305 vocab=6e10d109
+-/
 theorem norm_zeroFactorPolynomial_sphere_ge {f : ℂ → ℂ} (c : ℂ)
     (hf : AnalyticOnNhd ℂ f (closedBall c (3 / 2))) (z : ℂ)
     (hz : z ∈ sphere c (3 / 2)) :
@@ -115,6 +136,9 @@ theorem norm_zeroFactorPolynomial_sphere_ge {f : ℂ → ℂ} (c : ℂ)
   rw [sub_add_sub_cancel, hzc] at ht
   linarith
 
+/--
+@isnad1 id=le.2h3v.s7.5dd715ee4e8b from=translated src=- shape=4a0fda97 vocab=198382a6
+-/
 theorem zero_removal_center_lower {f g : ℂ → ℂ} (c : ℂ)
     (hf : AnalyticOnNhd ℂ f (closedBall c (3 / 2)))
     (heq : f c = zeroFactorPolynomial f (closedBall c (5 / 4)) c * g c) :
@@ -124,6 +148,9 @@ theorem zero_removal_center_lower {f g : ℂ → ℂ} (c : ℂ)
   exact (mul_le_mul_of_nonneg_right (norm_zeroFactorPolynomial_center_le c hf)
     (norm_nonneg (g c))).trans_eq (mul_comm _ _)
 
+/--
+@isnad1 id=le.5h5v.s8.4135e65f0db7 from=translated src=- shape=83eaa29a vocab=60ed8d66
+-/
 theorem norm_zero_removal_quotient_le_on_closedBall {f g : ℂ → ℂ} (c : ℂ)
     (hf : AnalyticOnNhd ℂ f (closedBall c (3 / 2)))
     (hg : AnalyticOnNhd ℂ g (closedBall c (3 / 2))) (M : ℝ)

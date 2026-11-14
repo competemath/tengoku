@@ -17,6 +17,9 @@ open Metric MeromorphicOn
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=le.1h1v.s6.8cce9215e37e from=translated src=- shape=e5c25e48 vocab=ec4916d8
+-/
 theorem primitive_character_interval_constant_le_sq (q : ℕ) (hq : 1 < q) :
     Real.sqrt q * (1 + Real.log q) ≤ (q : ℝ) ^ 2 := by
   have hq1 : (1 : ℝ) ≤ q := by exact_mod_cast (show 1 ≤ q by omega)
@@ -29,6 +32,9 @@ theorem primitive_character_interval_constant_le_sq (q : ℕ) (hq : 1 < q) :
       (by positivity) (by positivity)
     _ = _ := by ring
 
+/--
+@isnad1 id=le.1h2v.s7.3e622b603f42 from=translated src=- shape=2547887b vocab=9987cec7
+-/
 theorem primitiveLFunctionGrowthBudget_half_le (q : ℕ) (hq : 1 < q) (s : ℂ) :
     primitiveLFunctionGrowthBudget q (1 / 2) (‖s‖ + 3 / 2) ≤
       4 * (q : ℝ) ^ 2 * (‖s‖ + 2) := by
@@ -43,7 +49,9 @@ theorem primitiveLFunctionGrowthBudget_half_le (q : ℕ) (hq : 1 < q) (s : ℂ) 
     _ ≤ _ := by nlinarith [mul_nonneg (sq_nonneg (q : ℝ)) hn]
 
 /-- The divisor sum counts all zeros in the closed disk, with multiplicity.
-The right side has explicit logarithmic conductor and height dependence.-/
+The right side has explicit logarithmic conductor and height dependence.
+@isnad1 id=le.3h3v.s8.80a02c937e23 from=translated src=- shape=9bc3db5e vocab=6693fb34
+-/
 theorem sum_divisor_LFunction_le_log_conductor_height {q : ℕ} [NeZero q]
     (hq : 1 < q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive)
     (s : ℂ) (hs : s.re = 2) :

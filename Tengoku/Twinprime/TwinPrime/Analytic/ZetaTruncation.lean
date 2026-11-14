@@ -27,7 +27,9 @@ private theorem intervalIntegrable_cpow_neg_positive (s : ℂ)
   exact ha.not_ge h.1
 
 /-- Euler's error on a unit interval is bounded by the decrease of the
-real power majorant across that interval.-/
+real power majorant across that interval.
+@isnad1 id=le.2h2v.s7.bbf4d89fe31a from=translated src=- shape=4638742f vocab=3265b3b5
+-/
 theorem norm_cpow_neg_sub_integral_unit_le (s : ℂ) (hs : 0 < s.re)
     (a : ℝ) (ha : 0 < a) :
     ‖((a + 1 : ℝ) : ℂ) ^ (-s) -
@@ -55,7 +57,9 @@ theorem norm_cpow_neg_sub_integral_unit_le (s : ℂ) (hs : 0 < s.re)
     (Real.rpow_le_rpow_of_nonpos ha hx.1.le (neg_nonpos.mpr hs.le)) _
 
 /-- Finite Euler summation with a quantitative complex-power error.
-The two endpoints may coincide.-/
+The two endpoints may coincide.
+@isnad1 id=le.3h3v.s7.92f88c7407cf from=translated src=- shape=3f944507 vocab=7da7f432
+-/
 theorem norm_sum_cpow_neg_sub_integral_Ioc_le (M N : ℕ)
     (hM : 1 ≤ M) (hMN : M ≤ N) (s : ℂ) (hs : 0 < s.re) :
     ‖(∑ n ∈ Ioc M N, (n : ℂ) ^ (-s)) -
@@ -84,7 +88,9 @@ theorem norm_sum_cpow_neg_sub_integral_Ioc_le (M N : ℕ)
         add_le_add ih hunit
       _ = _ := by ring
 
-/-- A positive-length complex-power integral with the pole denominator exposed.-/
+/-- A positive-length complex-power integral with the pole denominator exposed.
+@isnad1 id=eq.3h3v.s7.735bf57047e4 from=translated src=- shape=49c7aaba vocab=c14bf7d0
+-/
 theorem integral_cpow_neg_eq_pole_difference (M N : ℕ)
     (hM : 1 ≤ M) (hMN : M ≤ N) (s : ℂ) (hs1 : s ≠ 1) :
     (∫ x : ℝ in (M : ℝ)..N, (x : ℂ) ^ (-s)) =
@@ -105,7 +111,9 @@ theorem integral_cpow_neg_eq_pole_difference (M N : ℕ)
 def zetaPolePartialSum (s : ℂ) (N : ℕ) : ℂ :=
   (∑ n ∈ Ioc 0 N, (n : ℂ) ^ (-s)) + (N : ℂ) ^ (1 - s) / (s - 1)
 
-/-- The pole-corrected approximations differ by a finite Euler error.-/
+/-- The pole-corrected approximations differ by a finite Euler error.
+@isnad1 id=eq.3h3v.s6.1c3a2f83ea3f from=translated src=- shape=626fcd8b vocab=3c8c6815
+-/
 theorem zetaPolePartialSum_sub (M N : ℕ) (hM : 1 ≤ M) (hMN : M ≤ N)
     (s : ℂ) (hs1 : s ≠ 1) :
     zetaPolePartialSum s N - zetaPolePartialSum s M =
@@ -116,7 +124,9 @@ theorem zetaPolePartialSum_sub (M N : ℕ) (hM : 1 ≤ M) (hMN : M ≤ N)
     integral_cpow_neg_eq_pole_difference M N hM hMN s hs1]
   ring
 
-/-- Sharp finite comparison of two pole-corrected ordered approximations.-/
+/-- Sharp finite comparison of two pole-corrected ordered approximations.
+@isnad1 id=le.4h3v.s6.eb813580ee61 from=translated src=- shape=67457a03 vocab=a734d5fa
+-/
 theorem norm_zetaPolePartialSum_sub_le (M N : ℕ)
     (hM : 1 ≤ M) (hMN : M ≤ N) (s : ℂ) (hs : 0 < s.re) (hs1 : s ≠ 1) :
     ‖zetaPolePartialSum s N - zetaPolePartialSum s M‖ ≤
@@ -124,7 +134,9 @@ theorem norm_zetaPolePartialSum_sub_le (M N : ℕ)
   rw [zetaPolePartialSum_sub M N hM hMN s hs1]
   exact norm_sum_cpow_neg_sub_integral_Ioc_le M N hM hMN s hs
 
-/-- A simpler bound suitable for ordered convergence.-/
+/-- A simpler bound suitable for ordered convergence.
+@isnad1 id=le.4h3v.s6.d2d832e9e275 from=translated src=- shape=eb9f5f81 vocab=a734d5fa
+-/
 theorem norm_zetaPolePartialSum_sub_le_left (M N : ℕ)
     (hM : 1 ≤ M) (hMN : M ≤ N) (s : ℂ) (hs : 0 < s.re) (hs1 : s ≠ 1) :
     ‖zetaPolePartialSum s N - zetaPolePartialSum s M‖ ≤
@@ -134,7 +146,9 @@ theorem norm_zetaPolePartialSum_sub_le_left (M N : ℕ)
     (sub_le_self _ (Real.rpow_nonneg (Nat.cast_nonneg N) _))
     (div_nonneg (norm_nonneg _) hs.le)
 
-/-- Pole-corrected ordered sums are Cauchy on `0 < s.re`, away from the pole.-/
+/-- Pole-corrected ordered sums are Cauchy on `0 < s.re`, away from the pole.
+@isnad1 id=cauchyse.2h1v.s5.3e0369913519 from=translated src=- shape=b8bf1be6 vocab=5e980e37
+-/
 theorem cauchySeq_zetaPolePartialSum (s : ℂ) (hs : 0 < s.re) (hs1 : s ≠ 1) :
     CauchySeq (zetaPolePartialSum s) := by
   apply (cauchySeq_shift 1).mp
@@ -150,7 +164,9 @@ theorem cauchySeq_zetaPolePartialSum (s : ℂ) (hs : 0 < s.re) (hs1 : s ≠ 1) :
     simpa using hp.const_mul (‖s‖ / s.re)
 
 /-- An ordered pole-corrected limit exists throughout the positive half-plane
-away from `1`, with an explicit error for every positive natural truncation.-/
+away from `1`, with an explicit error for every positive natural truncation.
+@isnad1 id=ex.2h1v.s6.af4485c3204e from=translated src=- shape=d5b2d9a4 vocab=3692e468
+-/
 theorem exists_zetaPolePartialSum_limit (s : ℂ) (hs : 0 < s.re) (hs1 : s ≠ 1) :
     ∃ L : ℂ, Tendsto (zetaPolePartialSum s) atTop (𝓝 L) ∧
       ∀ M : ℕ, 1 ≤ M →
@@ -163,7 +179,9 @@ theorem exists_zetaPolePartialSum_limit (s : ℂ) (hs : 0 < s.re) (hs1 : s ≠ 1
   exact norm_zetaPolePartialSum_sub_le_left M N hM hMN s hs hs1
 
 /-- Ordinary zeta sums converge to Mathlib's `riemannZeta` on its absolutely
-convergent half-plane.-/
+convergent half-plane.
+@isnad1 id=tendsto.1h1v.s6.f703efe2ecb0 from=translated src=- shape=703fdef3 vocab=25cc1dbf
+-/
 theorem tendsto_zetaPartialSum (s : ℂ) (hs : 1 < s.re) :
     Tendsto (fun N : ℕ => ∑ n ∈ Ioc 0 N, (n : ℂ) ^ (-s)) atTop
       (𝓝 (riemannZeta s)) := by
@@ -179,7 +197,9 @@ theorem tendsto_zetaPartialSum (s : ℂ) (hs : 1 < s.re) :
   rw [zeta_eq_tsum_one_div_nat_cpow hs]
   exact (hS.tendsto_sum_nat.comp (tendsto_add_atTop_nat 1)).congr heq
 
-/-- The pole correction tends to zero to the right of `1`.-/
+/-- The pole correction tends to zero to the right of `1`.
+@isnad1 id=tendsto.1h1v.s6.3bb42aae4542 from=translated src=- shape=b630d763 vocab=90c35d3a
+-/
 theorem tendsto_zetaPoleCorrection_zero (s : ℂ) (hs : 1 < s.re) :
     Tendsto (fun N : ℕ => (N : ℂ) ^ (1 - s) / (s - 1)) atTop (𝓝 0) := by
   have hp : Tendsto (fun N : ℕ => (N : ℂ) ^ (1 - s)) atTop (𝓝 0) := by
@@ -196,7 +216,9 @@ theorem tendsto_zetaPoleCorrection_zero (s : ℂ) (hs : 1 < s.re) :
   simpa using hp.div_const (s - 1)
 
 /-- The pole-corrected ordered approximation equals zeta in the original
-absolutely convergent half-plane.-/
+absolutely convergent half-plane.
+@isnad1 id=tendsto.1h1v.s5.43de4654e721 from=translated src=- shape=e044ba58 vocab=801b4cb1
+-/
 theorem tendsto_zetaPolePartialSum_riemannZeta (s : ℂ) (hs : 1 < s.re) :
     Tendsto (zetaPolePartialSum s) atTop (𝓝 (riemannZeta s)) := by
   change Tendsto (fun N : ℕ => (∑ n ∈ Ioc 0 N, (n : ℂ) ^ (-s)) +
@@ -206,7 +228,9 @@ theorem tendsto_zetaPolePartialSum_riemannZeta (s : ℂ) (hs : 1 < s.re) :
 
 /-- Quantitative pole-corrected truncation of the actual zeta function on
 `1 < s.re`.  Identification of the positive-half-plane ordered limit with
-zeta outside this range requires a separate analytic-continuation argument.-/
+zeta outside this range requires a separate analytic-continuation argument.
+@isnad1 id=le.2h2v.s7.98f11c4442ab from=translated src=- shape=4aa7ff53 vocab=ed19306b
+-/
 theorem norm_riemannZeta_sub_sum_sub_pole_le (M : ℕ) (hM : 1 ≤ M)
     (s : ℂ) (hs : 1 < s.re) :
     ‖riemannZeta s - (∑ n ∈ Ioc 0 M, (n : ℂ) ^ (-s)) -

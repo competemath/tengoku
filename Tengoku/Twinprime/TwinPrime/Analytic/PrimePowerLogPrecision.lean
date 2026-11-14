@@ -17,6 +17,9 @@ open Filter
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=tendsto.0h1v.s6.5a54165ac9a4 from=translated src=- shape=801b52e0 vocab=4cd93d55
+-/
 theorem tendsto_Epp_div_mul_log_pow (k : ℕ) :
     Tendsto (fun X : ℕ => Epp X / X * (Real.log (2 * X + 2)) ^ k)
       atTop (nhds 0) := by

@@ -19,6 +19,9 @@ open scoped Topology
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=eq.0h3v.s6.da6d1ed24184 from=translated src=- shape=df579fbc vocab=412bcfd3
+-/
 theorem logDeriv_sub_const_zpow (u z : ℂ) (m : ℤ) :
     logDeriv (fun w : ℂ => (w - u) ^ m) z = (m : ℂ) / (z - u) := by
   have hd : HasDerivAt (fun w : ℂ => w - u) 1 z := (hasDerivAt_id z).sub_const u
@@ -26,7 +29,9 @@ theorem logDeriv_sub_const_zpow (u z : ℂ) (m : ℤ) :
   ring
 
 /-- The finite zero-factor function is analytic at any point where its
-totalized value is nonzero, even without assuming nonnegative exponents.-/
+totalized value is nonzero, even without assuming nonnegative exponents.
+@isnad1 id=analytic.2h3v.s6.a9937c15d5d6 from=translated src=- shape=0d929cb0 vocab=bb5737af
+-/
 theorem analyticAt_zeroFactorPolynomial_of_ne_zero (f : ℂ → ℂ) (K : Set ℂ)
     (hK : IsCompact K) (z : ℂ) (hP : zeroFactorPolynomial f K z ≠ 0) :
     AnalyticAt ℂ (zeroFactorPolynomial f K) z := by

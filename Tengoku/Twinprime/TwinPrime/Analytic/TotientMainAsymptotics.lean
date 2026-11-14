@@ -22,13 +22,18 @@ namespace TwinPrime.Analytic
 def oddMangoldtTotientSum (V : ℕ) : ℝ :=
   ∑ b ∈ oddCutoff V, vonMangoldt b / Nat.totient b
 
+/--
+@isnad1 id=le.0h1v.s3.4b8ca84154d5 from=translated src=- shape=b9369acb vocab=30ee6921
+-/
 theorem oddMangoldtTotientSum_nonneg (V : ℕ) : 0 ≤ oddMangoldtTotientSum V := by
   unfold oddMangoldtTotientSum
   apply sum_nonneg
   intro b _
   exact div_nonneg vonMangoldt_nonneg (Nat.cast_nonneg _)
 
-/-- On prime powers, Euler's totient is at least half the argument.-/
+/-- On prime powers, Euler's totient is at least half the argument.
+@isnad1 id=le.1h1v.s4.b7f6b8568018 from=translated src=- shape=a65468a1 vocab=7ced0228
+-/
 theorem primePower_le_two_totient {b : ℕ} (hb : IsPrimePow b) : b ≤ 2 * Nat.totient b := by
   obtain ⟨p, k, hp, hk, rfl⟩ := (isPrimePow_nat_iff b).mp hb
   cases k with
@@ -42,6 +47,9 @@ theorem primePower_le_two_totient {b : ℕ} (hb : IsPrimePow b) : b ≤ 2 * Nat.
         rw [Nat.totient_prime_pow_succ hp]
         ring
 
+/--
+@isnad1 id=le.0h1v.s6.25853dcd619d from=translated src=- shape=de3d0c5e vocab=2ad822bb
+-/
 theorem mangoldt_div_totient_le (b : ℕ) :
     vonMangoldt b / Nat.totient b ≤ 2 * vonMangoldt b / (b : ℝ) := by
   by_cases hb : IsPrimePow b
@@ -57,7 +65,9 @@ theorem mangoldt_div_totient_le (b : ℕ) :
   · simp [vonMangoldt_eq_zero_iff.mpr hb]
 
 /-- A sufficient elementary coefficient bound. It costs two logarithms and
-uses only the harmonic-sum bound and prime-power support of `Λ`.-/
+uses only the harmonic-sum bound and prime-power support of `Λ`.
+@isnad1 id=le.0h1v.s5.bf5077d8389d from=translated src=- shape=c0674b13 vocab=6b2b1526
+-/
 theorem oddMangoldtTotientSum_le_log_sq (V : ℕ) :
     oddMangoldtTotientSum V ≤ 6 * (Real.log ((V : ℝ) + 1)) ^ 2 := by
   by_cases hV : V = 0
@@ -97,6 +107,9 @@ theorem oddMangoldtTotientSum_le_log_sq (V : ℕ) :
     _ ≤ 2 * L * (3 * L) := mul_le_mul_of_nonneg_left hH (by positivity)
     _ = 6 * (Real.log ((V : ℝ) + 1)) ^ 2 := by dsimp [L]; ring
 
+/--
+@isnad1 id=le.0h2v.s6.4eb6b6a63ea7 from=translated src=- shape=15844448 vocab=3e4ea264
+-/
 theorem abs_moebius_mul_oddMangoldtTotientSum_le (U V : ℕ) :
     |oddMoebiusTotientSum U * oddMangoldtTotientSum V| ≤
       6 * |oddMoebiusTotientSum U * (Real.log ((V : ℝ) + 1)) ^ 2| := by
@@ -109,7 +122,9 @@ theorem abs_moebius_mul_oddMangoldtTotientSum_le (U V : ℕ) :
       ring
 
 /-- The elementary coefficient bound converts logarithmically weighted
-cancellation of `F` into decay of the product part of `Q`.-/
+cancellation of `F` into decay of the product part of `Q`.
+@isnad1 id=tendsto.1h2v.s6.8863d765006e from=translated src=- shape=92bea046 vocab=a9fb70b9
+-/
 theorem tendsto_moebius_mul_oddMangoldtTotientSum
     (U V : ℕ → ℕ)
     (hweighted : Tendsto (fun X =>
@@ -125,7 +140,9 @@ theorem tendsto_moebius_mul_oddMangoldtTotientSum
   · exact Eventually.of_forall (fun X => abs_moebius_mul_oddMangoldtTotientSum_le (U X) (V X))
 
 /-- Decay of the complete Type I main term, including its shared-prime
-correction. Both analytic cancellation inputs are displayed explicitly.-/
+correction. Both analytic cancellation inputs are displayed explicitly.
+@isnad1 id=tendsto.3h2v.s7.6cf1caf58786 from=translated src=- shape=1fd32f44 vocab=30220675
+-/
 theorem tendsto_totientTypeIMain
     (hF : Tendsto oddMoebiusTotientSum atTop (nhds 0))
     (U V : ℕ → ℕ) (hU : Tendsto U atTop atTop)
@@ -138,7 +155,9 @@ theorem tendsto_totientTypeIMain
     ← totientTypeIMain_eq_main_sub_sharedPrimeCorrection] using h
 
 /-- Logarithmically weighted cancellation already implies unweighted
-cancellation. This avoids a redundant hypothesis when the cutoffs coincide.-/
+cancellation. This avoids a redundant hypothesis when the cutoffs coincide.
+@isnad1 id=tendsto.1h0v.s6.691623a2f088 from=translated src=- shape=8b42cf40 vocab=ac031229
+-/
 theorem tendsto_oddMoebiusTotientSum_of_log_sq
     (hweighted : Tendsto (fun U : ℕ =>
       oddMoebiusTotientSum U * (Real.log ((U : ℝ) + 1)) ^ 2) atTop (nhds 0)) :
@@ -163,7 +182,9 @@ theorem tendsto_oddMoebiusTotientSum_of_log_sq
     nlinarith [mul_le_mul_of_nonneg_left hLsq (abs_nonneg (oddMoebiusTotientSum U))]
 
 /-- With the same growing cutoff in both positions, the sole remaining input
-for `Q→0` is the classical cancellation `F(t) log²(t+1)→0`.-/
+for `Q→0` is the classical cancellation `F(t) log²(t+1)→0`.
+@isnad1 id=tendsto.2h1v.s6.70fb0b158e7b from=translated src=- shape=3c58ec7a vocab=30220675
+-/
 theorem tendsto_totientTypeIMain_same_cutoff
     (hweighted : Tendsto (fun t : ℕ =>
       oddMoebiusTotientSum t * (Real.log ((t : ℝ) + 1)) ^ 2) atTop (nhds 0))

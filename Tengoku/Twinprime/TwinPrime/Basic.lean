@@ -34,9 +34,15 @@ def twinPrimes : Set ℕ := {p : ℕ | Nat.Prime p ∧ Nat.Prime (p + 2)}
 /-- The twin prime conjecture, as a proposition (open).-/
 def TwinPrimeConjecture : Prop := twinPrimes.Infinite
 
+/--
+@isnad1 id=iff.0h0v.s4.74f903e7c141 from=translated src=- shape=1f957282 vocab=13c88af1
+-/
 theorem twinPrimeConjecture_iff :
     TwinPrimeConjecture ↔ {p : ℕ | Nat.Prime p ∧ Nat.Prime (p + 2)}.Infinite := Iff.rfl
 
+/--
+@isnad1 id=iff.0h1v.s4.4a3b057bd585 from=translated src=- shape=56151189 vocab=c44fda59
+-/
 @[simp] theorem mem_twinPrimes {p : ℕ} : p ∈ twinPrimes ↔ p.Prime ∧ (p + 2).Prime := Iff.rfl
 
 instance : DecidablePred (· ∈ twinPrimes) := fun p =>
@@ -44,32 +50,63 @@ instance : DecidablePred (· ∈ twinPrimes) := fun p =>
 
 /-! ### Small instances -/
 
+/--
+@isnad1 id=mem.0h0v.s3.448d469c918e from=translated src=- shape=d52416c9 vocab=9b7f1cb8
+-/
 theorem three_mem : 3 ∈ twinPrimes := by norm_num [mem_twinPrimes]
+/--
+@isnad1 id=mem.0h0v.s3.8b78e609d408 from=translated src=- shape=d52416c9 vocab=9b7f1cb8
+-/
 theorem five_mem : 5 ∈ twinPrimes := by norm_num [mem_twinPrimes]
+/--
+@isnad1 id=mem.0h0v.s3.57b693b91eac from=translated src=- shape=d52416c9 vocab=9b7f1cb8
+-/
 theorem eleven_mem : 11 ∈ twinPrimes := by norm_num [mem_twinPrimes]
+/--
+@isnad1 id=mem.0h0v.s3.a899ee67c1b1 from=translated src=- shape=d52416c9 vocab=9b7f1cb8
+-/
 theorem seventeen_mem : 17 ∈ twinPrimes := by norm_num [mem_twinPrimes]
+/--
+@isnad1 id=not.0h0v.s3.f003339be6ab from=translated src=- shape=55a69007 vocab=9b7f1cb8
+-/
 theorem two_not_mem : 2 ∉ twinPrimes := by norm_num [mem_twinPrimes]
+/--
+@isnad1 id=not.0h0v.s3.4301b3360378 from=translated src=- shape=55a69007 vocab=9b7f1cb8
+-/
 theorem seven_not_mem : 7 ∉ twinPrimes := by norm_num [mem_twinPrimes]
 
-/-- The twin primes have no upper bound at least as far as `101`: the eight pairs below 100.-/
+/-- The twin primes have no upper bound at least as far as `101`: the eight pairs below 100.
+@isnad1 id=eq.0h0v.s6.97e1cd46100a from=translated src=- shape=f89c5f35 vocab=60c77e77
+-/
 theorem twinPrimes_lt_100 :
     (Finset.range 100).filter (· ∈ twinPrimes) = {3, 5, 11, 17, 29, 41, 59, 71} := by
   decide
 
 /-! ### Equivalent formulations -/
 
+/--
+@isnad1 id=iff.0h0v.s2.18c4c416858d from=translated src=- shape=b3d4df38 vocab=6e9a76f3
+-/
 theorem twinPrimeConjecture_iff_not_bddAbove : TwinPrimeConjecture ↔ ¬ BddAbove twinPrimes :=
   ⟨Set.Infinite.not_bddAbove, Set.infinite_of_not_bddAbove⟩
 
+/--
+@isnad1 id=iff.0h0v.s4.cf75b2524142 from=translated src=- shape=34848ee7 vocab=39d4a954
+-/
 theorem twinPrimeConjecture_iff_forall_exists_gt :
     TwinPrimeConjecture ↔ ∀ N : ℕ, ∃ p ∈ twinPrimes, N < p := by
   rw [twinPrimeConjecture_iff_not_bddAbove, not_bddAbove_iff]
 
+/--
+@isnad1 id=iff.0h0v.s4.d106c922143f from=translated src=- shape=8ba6bf4d vocab=9111ae41
+-/
 theorem twinPrimeConjecture_iff_frequently :
     TwinPrimeConjecture ↔ ∃ᶠ p in atTop, p.Prime ∧ (p + 2).Prime :=
   Nat.frequently_atTop_iff_infinite.symm
 
-/-- The twin prime conjecture implies (trivially) that there are infinitely many primes.-/
+/-- The twin prime conjecture implies (trivially) that there are infinitely many primes.
+@isnad1 id=infinite.1h0v.s3.ba7dd4de5273 from=translated src=- shape=422d4331 vocab=63eb156c
+-/
 theorem infinite_primes_of_twinPrimeConjecture (h : TwinPrimeConjecture) :
     {p : ℕ | p.Prime}.Infinite := by
   refine Set.Infinite.mono ?_ h
@@ -78,7 +115,9 @@ theorem infinite_primes_of_twinPrimeConjecture (h : TwinPrimeConjecture) :
 
 /-! ### Structure mod 6 -/
 
-/-- Every twin prime `p ≥ 5` is `≡ 5 (mod 6)`.-/
+/-- Every twin prime `p ≥ 5` is `≡ 5 (mod 6)`.
+@isnad1 id=eq.2h1v.s5.5e273b478e3e from=translated src=- shape=15a1894a vocab=9d1c6363
+-/
 theorem mod_six_eq_five {p : ℕ} (hp : p ∈ twinPrimes) (h5 : 5 ≤ p) : p % 6 = 5 := by
   obtain ⟨hp1, hp2⟩ := hp
   have h2 : p % 2 = 1 := by
@@ -100,13 +139,17 @@ theorem mod_six_eq_five {p : ℕ} (hp : p ∈ twinPrimes) (h5 : 5 ≤ p) : p % 6
     · exact h
   omega
 
-/-- Every twin prime pair other than `(3, 5)` has the form `(6k - 1, 6k + 1)`.-/
+/-- Every twin prime pair other than `(3, 5)` has the form `(6k - 1, 6k + 1)`.
+@isnad1 id=ex.2h1v.s5.25bf6ab583f5 from=translated src=- shape=99a87533 vocab=ce6231d9
+-/
 theorem exists_eq_six_mul_sub_one {p : ℕ} (hp : p ∈ twinPrimes) (h5 : 5 ≤ p) :
     ∃ k, 1 ≤ k ∧ p = 6 * k - 1 := by
   have := mod_six_eq_five hp h5
   exact ⟨(p + 1) / 6, by omega, by omega⟩
 
-/-- The `6k ± 1` formulation.-/
+/-- The `6k ± 1` formulation.
+@isnad1 id=iff.0h0v.s5.c3f501550a1d from=translated src=- shape=d7b9c87a vocab=2d1e2e79
+-/
 theorem twinPrimeConjecture_iff_six :
     TwinPrimeConjecture ↔ {k : ℕ | (6 * k - 1).Prime ∧ (6 * k + 1).Prime}.Infinite := by
   rw [twinPrimeConjecture_iff_forall_exists_gt]
@@ -134,12 +177,18 @@ Zhang (2013) proved `BoundedGaps 70000000`; Polymath8b / Maynard give `BoundedGa
 def BoundedGaps (H : ℕ) : Prop :=
   {p : ℕ | p.Prime ∧ ∃ q, p < q ∧ q ≤ p + H ∧ q.Prime}.Infinite
 
+/--
+@isnad1 id=boundedg.2h2v.s3.4937da3448cb from=translated src=- shape=8567d0ba vocab=728b00db
+-/
 theorem boundedGaps_mono {H H' : ℕ} (h : H ≤ H') (hH : BoundedGaps H) : BoundedGaps H' := by
   unfold BoundedGaps at hH ⊢
   refine Set.Infinite.mono ?_ hH
   rintro p ⟨hp, q, hq1, hq2, hq3⟩
   exact ⟨hp, q, hq1, by omega, hq3⟩
 
+/--
+@isnad1 id=boundedg.1h0v.s3.f84c9aead084 from=translated src=- shape=14d41014 vocab=4e62c318
+-/
 theorem boundedGaps_two_of_twinPrimeConjecture (h : TwinPrimeConjecture) : BoundedGaps 2 := by
   unfold BoundedGaps
   refine Set.Infinite.mono ?_ h
@@ -147,7 +196,9 @@ theorem boundedGaps_two_of_twinPrimeConjecture (h : TwinPrimeConjecture) : Bound
   exact ⟨hp, p + 2, by omega, le_rfl, hq⟩
 
 /-- Bounded gaps `≤ 2` is *equivalent* to the twin prime conjecture: the only prime pair at
-distance `1` is `(2, 3)`.-/
+distance `1` is `(2, 3)`.
+@isnad1 id=iff.0h0v.s3.ba37b8fb782d from=translated src=- shape=9ae76a30 vocab=4e62c318
+-/
 theorem twinPrimeConjecture_iff_boundedGaps_two : TwinPrimeConjecture ↔ BoundedGaps 2 := by
   refine ⟨boundedGaps_two_of_twinPrimeConjecture, fun h => ?_⟩
   have hsub : {p : ℕ | p.Prime ∧ ∃ q, p < q ∧ q ≤ p + 2 ∧ q.Prime} ⊆ twinPrimes ∪ {2} := by
@@ -192,7 +243,9 @@ private theorem natCast_eq_neg_two (n : ℕ) : ((n : ℕ) : ZMod (n + 2)) = -2 :
   linear_combination this
 
 /-- **Clement's criterion** (1949). For `n ≥ 2`: `n` and `n + 2` are both prime if and only if
-`n (n + 2) ∣ 4 ((n - 1)! + 1) + n`.-/
+`n (n + 2) ∣ 4 ((n - 1)! + 1) + n`.
+@isnad1 id=iff.1h1v.s6.d403e7acb4a1 from=translated src=- shape=2b0a8c39 vocab=c3d9b4b7
+-/
 theorem clement {n : ℕ} (hn : 2 ≤ n) :
     n ∈ twinPrimes ↔ n * (n + 2) ∣ 4 * ((n - 1)! + 1) + n := by
   constructor

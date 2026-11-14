@@ -17,6 +17,9 @@ open Finset ArithmeticFunction
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=monotone.0h1v.s3.97f38ff3941b from=translated src=- shape=a4c439d3 vocab=4dbd3208
+-/
 theorem noncoprimeMangoldtMass_mono (q : ℕ) :
     Monotone (fun t => noncoprimeMangoldtMass t q) := by
   intro t T ht
@@ -27,6 +30,9 @@ theorem noncoprimeMangoldtMass_mono (q : ℕ) :
       (mem_Ioc.mp hnI).2.trans ht⟩, hnq⟩
   · exact fun _ _ _ => vonMangoldt_nonneg
 
+/--
+@isnad1 id=le.1h2v.s5.b23962377baf from=translated src=- shape=f0c2b7df vocab=06c8f6a9
+-/
 theorem noncoprimeMangoldtMass_le_log_add_psi_sub_theta (t q : ℕ)
     (hq : 0 < q) :
     noncoprimeMangoldtMass t q ≤ Real.log q +
@@ -58,6 +64,9 @@ theorem noncoprimeMangoldtMass_le_log_add_psi_sub_theta (t q : ℕ)
       (sum_filter_add_sum_filter_not s Nat.Prime vonMangoldt).symm
     _ ≤ _ := add_le_add hp hn
 
+/--
+@isnad1 id=le.2h2v.s6.b4219adb4fcc from=translated src=- shape=b4649c4c vocab=e1fbb4cf
+-/
 theorem noncoprimeMangoldtMass_le (t q : ℕ) (ht : 1 ≤ t) (hq : 1 ≤ q) :
     noncoprimeMangoldtMass t q ≤
       Real.log q + 2 * Real.sqrt t * Real.log t := by
@@ -65,13 +74,18 @@ theorem noncoprimeMangoldtMass_le (t q : ℕ) (ht : 1 ≤ t) (hq : 1 ≤ q) :
     (add_le_add le_rfl (Chebyshev.psi_sub_theta_le (x := (t : ℝ))
       (by exact_mod_cast ht)))
 
+/--
+@isnad1 id=le.3h3v.s6.0808f22fe602 from=translated src=- shape=4504378e vocab=e1fbb4cf
+-/
 theorem noncoprimeMangoldtMass_le_uniform (T q : ℕ) (hT : 1 ≤ T) (hq : 1 ≤ q)
     {t : ℕ} (ht : t ≤ T) :
     noncoprimeMangoldtMass t q ≤
       Real.log q + 2 * Real.sqrt T * Real.log T :=
   (noncoprimeMangoldtMass_mono q ht).trans (noncoprimeMangoldtMass_le T q hT hq)
 
-/-- The endpoint may vary with the modulus, as in a maximal progression error.-/
+/-- The endpoint may vary with the modulus, as in a maximal progression error.
+@isnad1 id=le.2h3v.s7.ceb6b154c369 from=translated src=- shape=8e7bdebf vocab=2d122dbe
+-/
 theorem sum_noncoprimeMangoldtMass_le_uniform (T Q : ℕ) (hT : 1 ≤ T)
     (t : ℕ → ℕ) (ht : ∀ q ∈ Ioc 0 Q, t q ≤ T) :
     (∑ q ∈ Ioc 0 Q, noncoprimeMangoldtMass (t q) q) ≤
@@ -87,7 +101,9 @@ theorem sum_noncoprimeMangoldtMass_le_uniform (T Q : ℕ) (hT : 1 ≤ T)
           (by exact_mod_cast hqQ)) le_rfl)
     _ = _ := by simp; ring
 
-/-- Passing to the inducing primitive character costs only the excluded mass.-/
+/-- Passing to the inducing primitive character costs only the excluded mass.
+@isnad1 id=le.0h3v.s5.bba8d1050110 from=translated src=- shape=a2321492 vocab=4744e04c
+-/
 theorem norm_characterPsi_sub_primitive_le {q : ℕ} (χ : DirichletCharacter ℂ q)
     (t : ℕ) :
     ‖characterPsi t χ - characterPsi t χ.primitiveCharacter‖ ≤

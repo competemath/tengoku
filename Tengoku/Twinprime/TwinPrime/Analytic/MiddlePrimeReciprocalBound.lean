@@ -19,6 +19,9 @@ open Finset Filter ArithmeticFunction
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=le.1h2v.s6.f1bde9278455 from=translated src=- shape=8abba1d8 vocab=82517f25
+-/
 theorem sum_middlePrime_reciprocal_le_primeReciprocalSum (U W : ℕ)
     (hU : 1 ≤ U) :
     (∑ p ∈ (Ioc U W).filter Nat.Prime, (1 : ℝ) / p) ≤

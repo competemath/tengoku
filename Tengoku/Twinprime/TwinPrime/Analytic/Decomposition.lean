@@ -40,7 +40,9 @@ def bilinearTerm (U V X : ℕ) : ℝ :=
 
 def typeICorrection (U V X : ℕ) : ℝ := logarithmicCorrection U X - typeITerm U V X
 
-/-- A supported divisor sum can be restricted to its fixed modulus range.-/
+/-- A supported divisor sum can be restricted to its fixed modulus range.
+@isnad1 id=eq.2h3v.s7.23cc40f3848c from=translated src=- shape=27e0c9c1 vocab=902e76c7
+-/
 theorem convolution_zeta_eq_supported_sum (f : ArithmeticFunction ℝ) (L n : ℕ)
     (hn : 0 < n) (hf : ∀ q, L < q → f q = 0) :
     (f * ζ) n = ∑ q ∈ range (L + 1) with q ∣ n, f q := by
@@ -55,7 +57,9 @@ theorem convolution_zeta_eq_supported_sum (f : ArithmeticFunction ℝ) (L n : �
     by_contra h
     exact hnot (mem_filter.mpr ⟨mem_range.mpr (by omega), hqdvd⟩)
 
-/-- The Type I term uses only moduli at most `UV`, exactly as in (D).-/
+/-- The Type I term uses only moduli at most `UV`, exactly as in (D).
+@isnad1 id=eq.0h3v.s6.4d9b3c42c25b from=translated src=- shape=b0d54fc8 vocab=9ccdd4f1
+-/
 theorem typeITerm_eq_progressions (U V X : ℕ) :
     typeITerm U V X = ∑ q ∈ range (U * V + 1), vaughanCoefficient U V q *
       ∑ n ∈ Ioc X (2 * X) with q ∣ n, vonMangoldt (n + 2) := by
@@ -85,7 +89,9 @@ theorem typeITerm_eq_progressions (U V X : ℕ) :
       split_ifs <;> simp [mul_comm]
 
 /-- The mixed correlation uses only moduli at most `U`, with the residue class
-of the shifted von Mangoldt input equal to `2 mod d`.-/
+of the shifted von Mangoldt input equal to `2 mod d`.
+@isnad1 id=eq.0h2v.s7.e5f4d5d9cfa8 from=translated src=- shape=4f8d9447 vocab=bcdc92ae
+-/
 theorem mixedCorrelation_eq_progressions (U X : ℕ) :
     mixedCorrelation U X = ∑ d ∈ range (U + 1), (μ d : ℝ) *
       Real.log ((U : ℝ) / d) *
@@ -111,7 +117,9 @@ theorem mixedCorrelation_eq_progressions (U X : ℕ) :
       intro n _
       split_ifs <;> simp
 
-/-- Identity (D). Every summation input is positive and exceeds `V`.-/
+/-- Identity (D). Every summation input is positive and exceeds `V`.
+@isnad1 id=eq.2h3v.s5.3b79a2b180ea from=translated src=- shape=3d670bd6 vocab=fc3763a2
+-/
 theorem correlation_decomposition (U V X : ℕ) (hU : 0 < U) (hV : V ≤ X) :
     W2 X = mixedCorrelation U X + typeICorrection U V X + bilinearTerm U V X := by
   unfold W2 mixedCorrelation typeICorrection logarithmicCorrection typeITerm bilinearTerm

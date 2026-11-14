@@ -20,12 +20,18 @@ def centeredRealCharacterPsi {q : ℕ} (x : ℝ) (χ : DirichletCharacter ℂ q)
   (∑ n ∈ Icc 1 ⌊x⌋₊, (ArithmeticFunction.vonMangoldt n : ℂ) * χ n) -
     if χ = 1 then (x : ℂ) else 0
 
+/--
+@isnad1 id=eq.0h3v.s4.c28420d9beb1 from=translated src=- shape=afb494ec vocab=76223a5b
+-/
 theorem centeredRealCharacterPsi_natCast {q : ℕ} (T : ℕ) (χ : DirichletCharacter ℂ q) :
     centeredRealCharacterPsi (T : ℝ) χ = centeredCharacterPsi T χ := by
   have hI : Icc 1 T = Ioc 0 T := by ext n; simp only [mem_Icc, mem_Ioc]; omega
   simp only [centeredRealCharacterPsi, Nat.floor_natCast, centeredCharacterPsi,
     characterPsi, hI, Complex.ofReal_natCast]
 
+/--
+@isnad1 id=eq.1h3v.s7.12e27a1067d5 from=translated src=- shape=e23989de vocab=4e2a5046
+-/
 theorem integrated_mangoldt_character_eq_centered {q : ℕ}
     (χ : DirichletCharacter ℂ q) (x : ℝ) (hx : x ≠ 0) :
     integratedWeightedPartialSum (fun n => (ArithmeticFunction.vonMangoldt n : ℂ) * χ n) x =
@@ -36,6 +42,9 @@ theorem integrated_mangoldt_character_eq_centered {q : ℕ}
   funext n
   exact mul_comm _ _
 
+/--
+@isnad1 id=le.3h4v.s7.b77bdfb9491e from=translated src=- shape=16ea9e6a vocab=211645dd
+-/
 theorem norm_centeredRealCharacterPsi_le_smoothed {q : ℕ}
     (χ : DirichletCharacter ℂ q) (x h : ℝ) (hx : 0 < x) (hh : 0 < h)
     (hxh : 1 ≤ x + h) :
@@ -79,7 +88,9 @@ theorem norm_centeredRealCharacterPsi_le_smoothed {q : ℕ}
   linarith
 
 /-- Two smoothed estimates with exponent `2*A+4` suffice. The short
-interval has length `x / (log x)^(A+2)`, which is at least one here.-/
+interval has length `x / (log x)^(A+2)`, which is at least one here.
+@isnad1 id=le.7h5v.s8.695c0ded4ee6 from=translated src=- shape=87cbde07 vocab=da1c02c6
+-/
 theorem norm_centeredRealCharacterPsi_le_of_two_smoothed {q : ℕ}
     (χ : DirichletCharacter ℂ q) (A C x : ℝ) (hA : 0 < A) (hC : 0 < C)
     (hx : 1 ≤ x) (hlog : 1 ≤ Real.log x)

@@ -36,20 +36,32 @@ def bvTypeIIBudget (T R : ℕ) : ℝ :=
       (1 / Real.sqrt ((W : ℝ) / 2) + 1 / Real.sqrt ((W : ℝ) / 2)) +
       (R : ℝ) ^ 2 * Real.sqrt (T : ℝ))
 
+/--
+@isnad1 id=lt.0h0v.s3.f583a7a8a1fb from=translated src=- shape=ff3a10fc vocab=d298fc32
+-/
 theorem bvMeanConstant_pos : 0 < bvMeanConstant := by
   unfold bvMeanConstant
   positivity
 
+/--
+@isnad1 id=le.0h2v.s4.f0babf9d11f1 from=translated src=- shape=5ffe46ab vocab=9afb95ce
+-/
 theorem bvMeanPolynomial_nonneg (T R : ℕ) : 0 ≤ bvMeanPolynomial T R := by
   unfold bvMeanPolynomial
   positivity
 
+/--
+@isnad1 id=le.0h2v.s3.d8b9e8b02ebf from=translated src=- shape=5867c2f8 vocab=60dc7acd
+-/
 theorem bvMeanPolynomial_ge_endpoint (T R : ℕ) : (T : ℝ) ≤ bvMeanPolynomial T R := by
   unfold bvMeanPolynomial
   have h1 : 0 ≤ (T : ℝ) ^ (15 / 16 : ℝ) * R := by positivity
   have h2 : 0 ≤ Real.sqrt (T : ℝ) * (R : ℝ) ^ 2 := by positivity
   linarith
 
+/--
+@isnad1 id=le.0h2v.s5.fff1f3ab7884 from=translated src=- shape=a8686758 vocab=6b18ebf0
+-/
 theorem bvMeanPolynomial_ge_modulus_sq (T R : ℕ) :
     Real.sqrt (T : ℝ) * (R : ℝ) ^ 2 ≤ bvMeanPolynomial T R := by
   unfold bvMeanPolynomial
@@ -57,7 +69,9 @@ theorem bvMeanPolynomial_ge_modulus_sq (T R : ℕ) :
   have h2 : (0 : ℝ) ≤ T := Nat.cast_nonneg T
   linarith
 
-/-- The three Type I contributions have aggregate constant four.-/
+/-- The three Type I contributions have aggregate constant four.
+@isnad1 id=le.3h2v.s6.afede42db906 from=translated src=- shape=12293e16 vocab=5f84bf36
+-/
 theorem bvTypeIBudget_le (T R : ℕ) (hT : 256 ≤ T) (hR1 : 1 ≤ R)
     (hR : (R : ℝ) ≤ Real.sqrt (T : ℝ)) :
     bvTypeIBudget T R ≤ 4 * Real.sqrt (T : ℝ) * (R : ℝ) ^ 2 * (Real.log (T : ℝ)) ^ 2 := by
@@ -124,7 +138,9 @@ theorem bvTypeIBudget_le (T R : ℕ) (hT : 256 ≤ T) (hR1 : 1 ≤ R)
   linarith
 
 /-- Both half-cutoff reciprocal factors are absorbed into the middle
-`T^(15/16) R` term, at cost four for the complete polynomial.-/
+`T^(15/16) R` term, at cost four for the complete polynomial.
+@isnad1 id=le.1h2v.s7.95c5249fbbe4 from=translated src=- shape=57dd73f8 vocab=a195893b
+-/
 theorem bvInternalCutoff_polynomial_le_four (T R : ℕ) (hT : 256 ≤ T) :
     ((T : ℝ) + (R : ℝ) * T *
       (1 / Real.sqrt ((bvInternalCutoff T : ℝ) / 2) +
@@ -155,7 +171,9 @@ theorem bvInternalCutoff_polynomial_le_four (T R : ℕ) (hT : 256 ≤ T) :
       linarith
 
 /-- The full Type II numerical budget, including its dyadic and coefficient
-losses, is bounded by a fixed constant times `P log^6 T`.-/
+losses, is bounded by a fixed constant times `P log^6 T`.
+@isnad1 id=le.2h2v.s7.c60722d35fe4 from=translated src=- shape=7366891b vocab=a1209b7a
+-/
 theorem bvTypeIIBudget_le (T R : ℕ) (hT : 256 ≤ T)
     (hR : (R : ℝ) ≤ Real.sqrt (T : ℝ)) :
     bvTypeIIBudget T R ≤
@@ -185,7 +203,9 @@ theorem bvTypeIIBudget_le (T R : ℕ) (hT : 256 ≤ T)
       mul_le_mul hcoef hB hB0 (by positivity)
     _ = _ := by dsimp only [a, l]; ring
 
-/-- Grouped absorption of the principal endpoint and both Vaughan budgets.-/
+/-- Grouped absorption of the principal endpoint and both Vaughan budgets.
+@isnad1 id=le.3h2v.s6.8b09b023aef7 from=translated src=- shape=f30fc2e5 vocab=65071a84
+-/
 theorem bvMeanBudget_le (T R : ℕ) (hT : 256 ≤ T) (hRpos : 1 ≤ R)
     (hR : (R : ℝ) ≤ Real.sqrt (T : ℝ)) :
     (T : ℝ) * Real.log (T : ℝ) + bvTypeIBudget T R + bvTypeIIBudget T R ≤
@@ -213,7 +233,9 @@ theorem bvMeanBudget_le (T R : ℕ) (hT : 256 ≤ T) (hRpos : 1 ≤ R)
     _ = _ := by dsimp only [bvMeanConstant, l]; ring
 
 /-- The fully expanded raw mean budget at the internal cutoff. Its left
-side matches the finite Vaughan decomposition with `U = V = W`.-/
+side matches the finite Vaughan decomposition with `U = V = W`.
+@isnad1 id=other.3h2v.s9.fa349d95d73e from=translated src=- shape=358695f4 vocab=9ae2af78
+-/
 theorem bvInternalCutoff_mean_budget_le (T R : ℕ) (hT : 256 ≤ T) (hRpos : 1 ≤ R)
     (hR : (R : ℝ) ≤ Real.sqrt (T : ℝ)) :
     let W := bvInternalCutoff T

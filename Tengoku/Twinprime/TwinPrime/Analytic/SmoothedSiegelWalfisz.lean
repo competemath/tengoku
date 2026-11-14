@@ -21,6 +21,9 @@ def centeredWeightedCharacterSum {q : ℕ} (x : ℝ) (χ : DirichletCharacter �
   weightedPartialSum (fun n : ℕ => χ n * (ArithmeticFunction.vonMangoldt n : ℂ)) x -
     if χ = 1 then (x : ℂ) / 2 else 0
 
+/--
+@isnad1 id=le.3h3v.s5.51189461a698 from=translated src=- shape=21487621 vocab=231e6a27
+-/
 theorem primitiveStripLogDerivativeBudget_nonneg (q : ℕ) (H δ : ℝ)
     (hq : 1 ≤ q) (hH : 0 ≤ H) (hδ : 0 ≤ δ) :
     0 ≤ primitiveStripLogDerivativeBudget q H δ := by
@@ -32,6 +35,9 @@ theorem primitiveStripLogDerivativeBudget_nonneg (q : ℕ) (H δ : ℝ)
   unfold primitiveStripLogDerivativeBudget
   positivity
 
+/--
+@isnad1 id=le.2h2v.s5.e8dc9a39e05c from=translated src=- shape=6c67d60b vocab=5a06513c
+-/
 theorem zetaStripLogDerivativeBudget_nonneg (H δ : ℝ) (hH : 0 ≤ H) (hδ : 0 ≤ δ) :
     0 ≤ zetaStripLogDerivativeBudget H δ := by
   have hHlog := Real.log_nonneg (show 1 ≤ H + 4 by linarith)
@@ -41,6 +47,9 @@ theorem zetaStripLogDerivativeBudget_nonneg (H δ : ℝ) (hH : 0 ≤ H) (hδ : 0
   unfold zetaStripLogDerivativeBudget
   positivity
 
+/--
+@isnad1 id=eventual.0h1v.s4.2f2b6cbdc441 from=translated src=- shape=37acfcba vocab=9187980e
+-/
 theorem eventually_log_rpow_le_self (A : ℝ) :
     ∀ᶠ x : ℝ in atTop, (Real.log x) ^ A ≤ x := by
   have h := (isLittleO_log_rpow_rpow_atTop A (s := 1) (by norm_num)).eventuallyLE

@@ -16,6 +16,9 @@ open Finset Classical
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=le.5h12v.s8.7ad411f6eeef from=translated src=- shape=654556b4 vocab=1590b06c
+-/
 theorem sum_weighted_fixed_disjoint_intervals_sq_le {ι κ : Type*}
     (s : Finset ι) (J : Finset κ) (u v : κ → ℕ) (w : ι → ℝ)
     (f : ι → ℕ → ℂ) (e : ℕ → ℝ) (A : ℝ)

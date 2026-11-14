@@ -19,6 +19,9 @@ namespace TwinPrime.Analytic
 def mixedEvenWeightBudget (U V X : ℕ) : ℝ :=
   (((U * V : ℕ) : ℝ) + 1) * Real.log (2 * X + 2) * evenProgressionBound X
 
+/--
+@isnad1 id=le.0h3v.s4.d73782af8f98 from=translated src=- shape=1995cd38 vocab=5d2938a0
+-/
 theorem mixedEvenWeightBudget_nonneg (U V X : ℕ) :
     0 ≤ mixedEvenWeightBudget U V X := by
   unfold mixedEvenWeightBudget
@@ -28,6 +31,9 @@ theorem mixedEvenWeightBudget_nonneg (U V X : ℕ) :
   have := Nat.cast_nonneg (α := ℝ) X
   linarith
 
+/--
+@isnad1 id=le.2h4v.s7.54ff8a713aa5 from=translated src=- shape=05cbc023 vocab=5736a3bd
+-/
 theorem mixedEvenWeightBudget_le_of_product_le (U V X : ℕ) (a : ℝ) (ha : 0 ≤ a)
     (hUV : ((U * V : ℕ) : ℝ) ≤ (2 * X + 2 : ℝ) ^ a) :
     mixedEvenWeightBudget U V X ≤
@@ -54,7 +60,9 @@ theorem mixedEvenWeightBudget_le_of_product_le (U V X : ℕ) (a : ℝ) (ha : 0 �
     _ = _ := by rw [← hpow]; ring
 
 /-- Only the eventual product bound is needed; either cutoff may otherwise
-vary arbitrarily, and zero cutoffs and the initial endpoint are permitted.-/
+vary arbitrarily, and zero cutoffs and the initial endpoint are permitted.
+@isnad1 id=tendsto.3h3v.s7.63045c898a32 from=translated src=- shape=897e35ed vocab=22d523a5
+-/
 theorem tendsto_mixedEvenWeightBudget_div_of_product_le (U V : ℕ → ℕ)
     (a : ℝ) (ha : 0 ≤ a) (haHalf : a < 1 / 2)
     (hUV : ∀ᶠ X : ℕ in atTop, ((U X * V X : ℕ) : ℝ) ≤ (X : ℝ) ^ a) :

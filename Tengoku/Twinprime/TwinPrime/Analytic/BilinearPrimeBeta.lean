@@ -20,9 +20,15 @@ namespace TwinPrime.Analytic
 def primeVaughanBeta (V : ℕ) : ArithmeticFunction ℝ :=
   ⟨fun r => ∑ p ∈ r.divisors, if V < p ∧ p.Prime then vonMangoldt p else 0, by simp⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.178927178de2 from=translated src=- shape=b6cc75a7 vocab=38899813
+-/
 theorem primeVaughanBeta_apply (V r : ℕ) :
     primeVaughanBeta V r = ∑ p ∈ r.divisors, if V < p ∧ p.Prime then vonMangoldt p else 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.ac94a9b0c30c from=translated src=- shape=d9f1ae6a vocab=76b62868
+-/
 theorem vaughanBeta_sub_primeVaughanBeta (V r : ℕ) :
     vaughanBeta V r - primeVaughanBeta V r =
       ∑ b ∈ r.divisors.filter (V < ·), nonprimeMangoldt b := by
@@ -31,16 +37,25 @@ theorem vaughanBeta_sub_primeVaughanBeta (V r : ℕ) :
   intro b _
   by_cases hV : V < b <;> by_cases hp : b.Prime <;> simp [hV, hp, nonprimeMangoldt]
 
+/--
+@isnad1 id=le.0h2v.s4.d4c6f7c5d4b8 from=translated src=- shape=f54b5217 vocab=ec95c1e4
+-/
 theorem primeVaughanBeta_nonneg (V r : ℕ) : 0 ≤ primeVaughanBeta V r := by
   rw [primeVaughanBeta_apply]
   exact sum_nonneg fun _ _ => by split_ifs <;> positivity
 
+/--
+@isnad1 id=le.0h2v.s5.99dcfcf515eb from=translated src=- shape=686dc35f vocab=1ba7f942
+-/
 theorem primeVaughanBeta_le (V r : ℕ) : primeVaughanBeta V r ≤ vaughanBeta V r := by
   have h := sum_nonneg (s := r.divisors.filter (V < ·))
     (fun b _ => nonprimeMangoldt_nonneg b)
   rw [← vaughanBeta_sub_primeVaughanBeta] at h
   linarith
 
+/--
+@isnad1 id=le.1h2v.s6.7bf40c4e4932 from=translated src=- shape=9622d6f2 vocab=f79abc5d
+-/
 theorem positiveHyperbola_right_dvd_card_le (T b : ℕ) (hb : 0 < b) :
     (((positiveHyperbolaPairs T).filter (fun dr => b ∣ dr.2)).card : ℝ) ≤
       (T : ℝ) / b * (1 + Real.log T) := by
@@ -76,6 +91,9 @@ theorem positiveHyperbola_right_dvd_card_le (T b : ℕ) (hb : 0 < b) :
         (Nat.cast_nonneg _)
     _ ≤ _ := mul_le_mul_of_nonneg_right Nat.cast_div_le (by positivity)
 
+/--
+@isnad1 id=le.1h3v.s6.37f60f65c1cc from=translated src=- shape=d8999609 vocab=db0d9bdf
+-/
 theorem sum_hyperbola_divisor_tail_le (T V : ℕ) (a : ℕ → ℝ) (ha : ∀ b, 0 ≤ a b) :
     (∑ dr ∈ positiveHyperbolaPairs T, ∑ b ∈ dr.2.divisors.filter (V < ·), a b) ≤
       (T : ℝ) * (1 + Real.log T) * ∑ b ∈ Ioc V T, a b / b := by
@@ -121,9 +139,15 @@ def bilinearPrimeBetaErrorMass (U V X : ℕ) : ℝ :=
     |(μ dr.1 : ℝ) * (vaughanBeta V dr.2 - primeVaughanBeta V dr.2) *
       vonMangoldt (dr.1 * dr.2 + 2)|
 
+/--
+@isnad1 id=le.0h3v.s4.05dbd6ac5024 from=translated src=- shape=1995cd38 vocab=746b86b5
+-/
 theorem bilinearPrimeBetaErrorMass_nonneg (U V X : ℕ) :
     0 ≤ bilinearPrimeBetaErrorMass U V X := sum_nonneg fun _ _ => abs_nonneg _
 
+/--
+@isnad1 id=le.0h3v.s5.4586f852527d from=translated src=- shape=502a303e vocab=e7581f64
+-/
 theorem abs_bilinear_sub_primeBeta_le_mass (U V X : ℕ) :
     |bilinearTerm U V X - bilinearPrimeBeta U V X| ≤ bilinearPrimeBetaErrorMass U V X := by
   rw [bilinearTerm_eq_pair_sum]
@@ -141,6 +165,9 @@ theorem abs_bilinear_sub_primeBeta_le_mass (U V X : ℕ) :
   rw [he]
   exact abs_sum_le_sum_abs _ _
 
+/--
+@isnad1 id=le.1h3v.s7.826c83f14b4d from=translated src=- shape=c8ffe264 vocab=fbaa8a3b
+-/
 theorem bilinearPrimeBetaErrorMass_le_tail (U V X : ℕ) (hX : 1 ≤ X) :
     bilinearPrimeBetaErrorMass U V X ≤
       4 * (X : ℝ) * (Real.log (4 * X + 4)) ^ 2 *

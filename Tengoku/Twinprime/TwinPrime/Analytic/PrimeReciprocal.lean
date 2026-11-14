@@ -26,6 +26,9 @@ def primeReciprocalSum (N : ℕ) : ℝ :=
 def primeErrorCoefficient (n : ℕ) : ℝ :=
   if n = 0 then 0 else vonMangoldt n - 1
 
+/--
+@isnad1 id=eq.0h1v.s4.72cd34c67333 from=translated src=- shape=90f40ee9 vocab=2078fb72
+-/
 theorem coefficientSum_primeErrorCoefficient (N : ℕ) :
     coefficientSum primeErrorCoefficient N = Chebyshev.psi (N : ℝ) - N := by
   have hsum : coefficientSum primeErrorCoefficient N =
@@ -36,6 +39,9 @@ theorem coefficientSum_primeErrorCoefficient (N : ℕ) :
   rw [hsum, sum_sub_distrib]
   simp [Chebyshev.psi]
 
+/--
+@isnad1 id=eq.0h1v.s4.4e427a89128f from=translated src=- shape=6a12ad02 vocab=ad4ce2b8
+-/
 theorem reciprocalCoefficientSum_primeErrorCoefficient (N : ℕ) :
     reciprocalCoefficientSum primeErrorCoefficient N =
       primeReciprocalSum N - (harmonic N : ℝ) := by
@@ -54,7 +60,9 @@ theorem reciprocalCoefficientSum_primeErrorCoefficient (N : ℕ) :
   congr 1
   simp [hI, harmonic_eq_sum_Icc, one_div]
 
-/-- The harmonic remainder is at most one reciprocal input.-/
+/-- The harmonic remainder is at most one reciprocal input.
+@isnad1 id=le.1h1v.s5.07fceb35213c from=translated src=- shape=d3d8b84a vocab=000cc0dc
+-/
 theorem abs_harmonic_sub_log_sub_eulerMascheroni_le (N : ℕ) (hN : 1 ≤ N) :
     |(harmonic N : ℝ) - Real.log N - Real.eulerMascheroniConstant| ≤ 1 / N := by
   have hNr : (0 : ℝ) < N := by exact_mod_cast (show 0 < N by omega)
@@ -88,7 +96,9 @@ private theorem eventually_one_div_nat_le_log_five :
   exact (div_le_div_iff₀ hNr (pow_pos hlog 5)).mpr (by simpa using hpow)
 
 /-- A sixth-power ordinary prime error gives a centered reciprocal limit
-with an explicit fifth-power remainder constant.-/
+with an explicit fifth-power remainder constant.
+@isnad1 id=ex.2h1v.s7.b76ede0dbdf1 from=translated src=- shape=f2b44031 vocab=2e6e07f0
+-/
 theorem exists_primeReciprocalSum_center_bound_of_psi_log_six
     (K : ℝ) (hK : 0 ≤ K)
     (hψ : ∀ᶠ N : ℕ in atTop,
@@ -131,7 +141,9 @@ theorem exists_primeReciprocalSum_center_bound_of_psi_log_six
       _ = _ := by ring
 
 /-- The quantitative prime-to-reciprocal bridge with an explicitly
-nonnegative remainder constant.-/
+nonnegative remainder constant.
+@isnad1 id=ex.2h1v.s7.e7c201354976 from=translated src=- shape=7283e8ca vocab=227f4530
+-/
 theorem exists_primeReciprocalSum_center_of_psi_log_six
     (K : ℝ) (hK : 0 ≤ K)
     (hψ : ∀ᶠ N : ℕ in atTop,

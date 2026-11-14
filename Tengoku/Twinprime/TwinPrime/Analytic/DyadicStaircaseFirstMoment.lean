@@ -19,6 +19,9 @@ open Finset Classical
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=le.8h13v.s9.603893f03b6b from=translated src=- shape=f4ab70b9 vocab=b3151c7e
+-/
 theorem sum_weighted_dyadic_staircase_le {ι : Type*}
     (s : Finset ι) (w : ι → ℝ) (hw : ∀ x ∈ s, 0 ≤ w x)
     (a b : ι → ℕ → ℂ) (ea eb : ℕ → ℝ) (C : ℝ) (hC : 0 ≤ C)

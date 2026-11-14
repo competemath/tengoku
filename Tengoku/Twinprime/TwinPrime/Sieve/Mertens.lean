@@ -25,6 +25,9 @@ namespace TwinPrime.Sieve
 /-- The dyadic block of primes `2^k < p ≤ 2^{k+1}`.-/
 def primeBlock (k : ℕ) : Finset ℕ := (primesLE (2 ^ (k + 1))).filter fun p => 2 ^ k < p
 
+/--
+@isnad1 id=eq.0h1v.s5.de501b4b03d7 from=translated src=- shape=3c1b12bf vocab=a7cc3928
+-/
 theorem primesLE_two_pow_succ (k : ℕ) :
     primesLE (2 ^ (k + 1)) = primesLE (2 ^ k) ∪ primeBlock k := by
   ext p
@@ -38,6 +41,9 @@ theorem primesLE_two_pow_succ (k : ℕ) :
     · exact ⟨le_trans hp (Nat.pow_le_pow_right two_pos (Nat.le_succ k)), hpp⟩
     · exact ⟨hp, hpp⟩
 
+/--
+@isnad1 id=disjoint.0h1v.s4.63d07db419b1 from=translated src=- shape=2085ec16 vocab=d16ed05e
+-/
 theorem disjoint_primesLE_primeBlock (k : ℕ) : Disjoint (primesLE (2 ^ k)) (primeBlock k) := by
   rw [Finset.disjoint_left]
   intro p hp hq
@@ -45,7 +51,9 @@ theorem disjoint_primesLE_primeBlock (k : ℕ) : Disjoint (primesLE (2 ^ k)) (pr
   simp only [primeBlock, mem_filter] at hq
   omega
 
-/-- `log p ≥ (k+1) log 2 / 2` for `p` in the `k`-th block.-/
+/-- `log p ≥ (k+1) log 2 / 2` for `p` in the `k`-th block.
+@isnad1 id=le.1h2v.s6.6245a7d8a557 from=translated src=- shape=8bcbbd98 vocab=7f60a559
+-/
 theorem log_ge_of_mem_primeBlock {k p : ℕ} (hp : p ∈ primeBlock k) :
     ((k : ℝ) + 1) * Real.log 2 / 2 ≤ Real.log p := by
   simp only [primeBlock, mem_filter, mem_primesLE] at hp
@@ -64,7 +72,9 @@ theorem log_ge_of_mem_primeBlock {k p : ℕ} (hp : p ∈ primeBlock k) :
     have hk1 : (1 : ℝ) ≤ k := by exact_mod_cast hk
     nlinarith
 
-/-- Block bound: `∑_{2^k < p ≤ 2^{k+1}} 1/p ≤ 8/(k+1)`.-/
+/-- Block bound: `∑_{2^k < p ≤ 2^{k+1}} 1/p ≤ 8/(k+1)`.
+@isnad1 id=le.0h1v.s5.1244e3088420 from=translated src=- shape=1822c140 vocab=fc521c5f
+-/
 theorem sum_primeBlock_inv_le (k : ℕ) :
     ∑ p ∈ primeBlock k, (p : ℝ)⁻¹ ≤ 8 / ((k : ℝ) + 1) := by
   have hlog2 : 0 < Real.log 2 := Real.log_pos (by norm_num)
@@ -120,7 +130,9 @@ theorem sum_primeBlock_inv_le (k : ℕ) :
         field_simp
         ring
 
-/-- `∑_{p ≤ 2^{K+1}} 1/p ≤ 8 H(K+1)`.-/
+/-- `∑_{p ≤ 2^{K+1}} 1/p ≤ 8 H(K+1)`.
+@isnad1 id=le.0h1v.s6.9ea9b598c2e6 from=translated src=- shape=fa5c4d88 vocab=efe331b1
+-/
 theorem sum_primesLE_two_pow_inv_le (K : ℕ) :
     ∑ p ∈ primesLE (2 ^ (K + 1)), (p : ℝ)⁻¹ ≤ 8 * (harmonic (K + 1) : ℝ) := by
   induction K with
@@ -141,7 +153,9 @@ theorem sum_primesLE_two_pow_inv_le (K : ℕ) :
     have : (8 : ℝ) / ((K : ℝ) + 1 + 1) = 8 * ((K : ℝ) + 1 + 1)⁻¹ := by ring
     linarith
 
-/-- **Mertens-type bound**: `∑_{p ≤ z} 1/p ≤ 8 (1 + log (⌊log₂ z⌋ + 1))`.-/
+/-- **Mertens-type bound**: `∑_{p ≤ z} 1/p ≤ 8 (1 + log (⌊log₂ z⌋ + 1))`.
+@isnad1 id=le.0h1v.s6.7826d0fb1ccf from=translated src=- shape=9ce7c922 vocab=cdabef75
+-/
 theorem sum_primesLE_inv_le (z : ℕ) :
     ∑ p ∈ primesLE z, (p : ℝ)⁻¹ ≤ 8 * (1 + Real.log ((Nat.log 2 z : ℝ) + 1)) := by
   set K := Nat.log 2 z with hK

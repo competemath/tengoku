@@ -28,7 +28,9 @@ private theorem odd_prime_two_lt (p : ℕ) (hp : p.Prime) (hpodd : Odd p) : 2 < 
   omega
 
 /-- A global bound for `F` gives a bound for all `F_p`, with the explicit
-geometric factor `1/(p-2)`. The bound does not assume cancellation.-/
+geometric factor `1/(p-2)`. The bound does not assume cancellation.
+@isnad1 id=le.3h3v.s6.b4be7138b517 from=translated src=- shape=0e2b5c4e vocab=51042a24
+-/
 theorem oddMoebiusTotientSumDivisible_abs_le {M : ℝ}
     (hF : ∀ U : ℕ, |oddMoebiusTotientSum U| ≤ M) (U p : ℕ)
     (hp : p.Prime) (hpodd : Odd p) :
@@ -56,7 +58,9 @@ theorem oddMoebiusTotientSumDivisible_abs_le {M : ℝ}
           ring
 
 /-- Iterating the exact recurrence `J` times, with the complete remaining term.
-The powers in the natural quotient are exact integer cutoffs.-/
+The powers in the natural quotient are exact integer cutoffs.
+@isnad1 id=eq.2h3v.s7.eb9a61d727d4 from=translated src=- shape=f486740a vocab=2a17e169
+-/
 theorem oddMoebiusTotientSumDivisible_expansion (U p J : ℕ) (hp : p.Prime)
     (hpodd : Odd p) :
     oddMoebiusTotientSumDivisible U p =
@@ -82,7 +86,9 @@ theorem oddMoebiusTotientSumDivisible_expansion (U p J : ℕ) (hp : p.Prime)
 
 /-- If the odd Möbius/totient sum tends to zero, then its portion divisible
 by any fixed odd prime also tends to zero. The prime is fixed before the limit;
-this theorem does not claim an error rate uniform in a growing prime.-/
+this theorem does not claim an error rate uniform in a growing prime.
+@isnad1 id=tendsto.3h1v.s5.d26a974d5ca0 from=translated src=- shape=264cb0f0 vocab=9cd01958
+-/
 theorem tendsto_oddMoebiusTotientSumDivisible
     (hF : Tendsto oddMoebiusTotientSum atTop (nhds 0)) (p : ℕ)
     (hp : p.Prime) (hpodd : Odd p) :
@@ -134,7 +140,9 @@ theorem tendsto_oddMoebiusTotientSumDivisible
     _ < ε := by linarith [hU₀ U hU]
 
 /-- A summable majorant for the prime-power coefficient after the uniform
-`F_p` bound. The estimate uses only `log p≤p`, not prime distribution.-/
+`F_p` bound. The estimate uses only `log p≤p`, not prime distribution.
+@isnad1 id=le.3h2v.s7.75adbba02dc8 from=translated src=- shape=aab328e6 vocab=db62aad7
+-/
 theorem primePowerTotientWeight_le (p k : ℕ) (hp : p.Prime) (hpodd : Odd p)
     (hk : 0 < k) :
     (Real.log p / ((p : ℝ) * Nat.totient (p ^ k))) / ((p : ℝ) - 2) ≤
@@ -185,6 +193,9 @@ def sharedPrimeCorrection (U V : ℕ) : ℝ :=
     (Real.log pk.1 / ((pk.1 : ℝ) * Nat.totient (pk.1 ^ pk.2))) *
       oddMoebiusTotientSumDivisible U pk.1
 
+/--
+@isnad1 id=eq.0h2v.s5.5b1a8ccc50a6 from=translated src=- shape=b715d413 vocab=fe9c0cb2
+-/
 theorem totientTypeIMain_eq_main_sub_sharedPrimeCorrection (U V : ℕ) :
     totientTypeIMain U V =
       oddMoebiusTotientSum U *
@@ -263,7 +274,9 @@ private theorem tendsto_primePowerCorrectionSummand
 
 /-- The full shared-prime correction tends to zero, using domination over the
 actual `(prime, exponent)` pairs. Only the cancellation `F→0` is assumed.
-`V` may be arbitrary; only the first cutoff must tend to infinity.-/
+`V` may be arbitrary; only the first cutoff must tend to infinity.
+@isnad1 id=tendsto.2h2v.s6.0714afb343a9 from=translated src=- shape=af11f4a8 vocab=be63b951
+-/
 theorem tendsto_sharedPrimeCorrection
     (hF : Tendsto oddMoebiusTotientSum atTop (nhds 0))
     (U V : ℕ → ℕ) (hU : Tendsto U atTop atTop) :

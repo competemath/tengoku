@@ -40,6 +40,9 @@ def ell (z : ℕ) : ℝ := 16 * (1 + Real.log ((Nat.log 2 z : ℝ) + 1))
 /-- The (odd) truncation level `m(z) = 2 ⌈3 ℓ(z)⌉ + 1`.-/
 def mLevel (z : ℕ) : ℕ := 2 * ⌈3 * ell z⌉₊ + 1
 
+/--
+@isnad1 id=lt.0h1v.s3.f744fb538b0e from=translated src=- shape=b9369acb vocab=10d7b03f
+-/
 theorem ell_pos (z : ℕ) : 0 < ell z := by
   unfold ell
   have : 0 ≤ Real.log ((Nat.log 2 z : ℝ) + 1) := Real.log_nonneg (by
@@ -47,8 +50,14 @@ theorem ell_pos (z : ℕ) : 0 < ell z := by
     linarith)
   linarith
 
+/--
+@isnad1 id=odd.0h1v.s2.d0a81aa60390 from=translated src=- shape=6da4ece3 vocab=4c34c14a
+-/
 theorem mLevel_odd (z : ℕ) : Odd (mLevel z) := ⟨⌈3 * ell z⌉₊, rfl⟩
 
+/--
+@isnad1 id=le.0h1v.s5.97479a322f68 from=translated src=- shape=aa9bb20b vocab=c6a09366
+-/
 theorem six_ell_le_mLevel (z : ℕ) : 6 * ell z + 1 ≤ (mLevel z : ℝ) := by
   unfold mLevel
   push_cast
@@ -57,11 +66,17 @@ theorem six_ell_le_mLevel (z : ℕ) : 6 * ell z + 1 ≤ (mLevel z : ℝ) := by
 
 /-! ### Local densities -/
 
+/--
+@isnad1 id=le.1h1v.s5.22574550e1e0 from=translated src=- shape=9f6984ba vocab=84936a75
+-/
 theorem twinNu2_prime_le {p : ℕ} (hp : p.Prime) : twinNu2 p ≤ 2 / p := by
   rw [twinNu2_apply hp.ne_zero]
   apply div_le_div_of_nonneg_right _ (by positivity)
   exact_mod_cast twinRoots_prime_le_two hp
 
+/--
+@isnad1 id=le.1h1v.s5.b83ed5c12174 from=translated src=- shape=f50d0977 vocab=d0b4615f
+-/
 theorem twinNu2_prime_le_two_thirds {p : ℕ} (hp : p.Prime) : twinNu2 p ≤ 2 / 3 := by
   by_cases h2 : p = 2
   · subst h2
@@ -73,11 +88,16 @@ theorem twinNu2_prime_le_two_thirds {p : ℕ} (hp : p.Prime) : twinNu2 p ≤ 2 /
       exact_mod_cast (by omega : 3 ≤ p)
     apply div_le_div_of_nonneg_left (by norm_num) (by norm_num) this
 
+/--
+@isnad1 id=le.0h1v.s4.0306e9d82099 from=translated src=- shape=122adcd9 vocab=8d626fb8
+-/
 theorem twinNu2_nonneg (d : ℕ) : 0 ≤ twinNu2 d := by
   rw [twinNu2_apply']
   split_ifs <;> positivity
 
-/-- `∑_{p ≤ z} ν p ≤ ℓ(z)`.-/
+/-- `∑_{p ≤ z} ν p ≤ ℓ(z)`.
+@isnad1 id=le.0h1v.s4.f1e0c2642114 from=translated src=- shape=e91ec5ec vocab=a4471dc6
+-/
 theorem sum_primesLE_twinNu2_le (z : ℕ) : ∑ p ∈ primesLE z, twinNu2 p ≤ ell z := by
   calc ∑ p ∈ primesLE z, twinNu2 p ≤ ∑ p ∈ primesLE z, 2 * (p : ℝ)⁻¹ := by
         apply sum_le_sum
@@ -89,7 +109,9 @@ theorem sum_primesLE_twinNu2_le (z : ℕ) : ∑ p ∈ primesLE z, twinNu2 p ≤ 
         mul_le_mul_of_nonneg_left (sum_primesLE_inv_le z) (by norm_num)
     _ = ell z := by unfold ell; ring
 
-/-- The main-term product is at least `e^{-3 ℓ(z)}`.-/
+/-- The main-term product is at least `e^{-3 ℓ(z)}`.
+@isnad1 id=le.0h1v.s5.0165bfdf8d54 from=translated src=- shape=f4896d82 vocab=f3bbec79
+-/
 theorem prod_primesLE_one_sub_twinNu2_ge (z : ℕ) :
     Real.exp (-(3 * ell z)) ≤ ∏ p ∈ primesLE z, (1 - twinNu2 p) := by
   refine le_trans ?_ (prod_one_sub_ge_exp (primesLE z) (fun p => twinNu2 p)
@@ -98,7 +120,9 @@ theorem prod_primesLE_one_sub_twinNu2_ge (z : ℕ) :
   have := sum_primesLE_twinNu2_le z
   linarith
 
-/-- Tail of the main term: `∑_{d ∣ P, ω d ≥ m+1} ν d ≤ 8^{-(m+1)} e^{8 ℓ(z)}`.-/
+/-- Tail of the main term: `∑_{d ∣ P, ω d ≥ m+1} ν d ≤ 8^{-(m+1)} e^{8 ℓ(z)}`.
+@isnad1 id=le.0h2v.s7.50530a386c32 from=translated src=- shape=67dd96c9 vocab=d45f2d6a
+-/
 theorem sum_tail_twinNu2_le (z m : ℕ) :
     ∑ d ∈ (primorial z).divisors with m + 1 ≤ ω d, twinNu2 d ≤
       ((8 : ℝ) ^ (m + 1))⁻¹ * Real.exp (8 * ell z) := by
@@ -112,7 +136,9 @@ theorem sum_tail_twinNu2_le (z m : ℕ) :
   rw [← mul_sum]
   exact mul_le_mul_of_nonneg_left (sum_primesLE_twinNu2_le z) (by norm_num)
 
-/-- Remainder sum: `∑_{d ∣ P, ω d ≤ m} ρ(d) ≤ z^m e⁴` for `z ≥ 1`.-/
+/-- Remainder sum: `∑_{d ∣ P, ω d ≤ m} ρ(d) ≤ z^m e⁴` for `z ≥ 1`.
+@isnad1 id=le.1h2v.s6.df78233cceed from=translated src=- shape=f94370df vocab=98c09d0b
+-/
 theorem sum_head_twinRoots_le (z m : ℕ) (hz : 1 ≤ z) :
     ∑ d ∈ (primorial z).divisors with ω d ≤ m, (twinRoots d : ℝ) ≤ (z : ℝ) ^ m * Real.exp 4 := by
   have hz1 : (1 : ℝ) ≤ z := by exact_mod_cast hz
@@ -149,7 +175,9 @@ theorem sum_head_twinRoots_le (z m : ℕ) (hz : 1 ≤ z) :
 
 /-! ### The exact Brun inequality -/
 
-/-- `∑_{d ∣ P, ω d ≤ m} μ d ν d ≥ ∏_{p ≤ z} (1 - ν p) − ∑_{d ∣ P, ω d ≥ m+1} ν d`.-/
+/-- `∑_{d ∣ P, ω d ≤ m} μ d ν d ≥ ∏_{p ≤ z} (1 - ν p) − ∑_{d ∣ P, ω d ≥ m+1} ν d`.
+@isnad1 id=le.0h2v.s7.74afd7c40a27 from=translated src=- shape=1bc18a3b vocab=9da91c80
+-/
 theorem sum_truncMoebius_mul_nu_ge (z m : ℕ) :
     ∏ p ∈ primesLE z, (1 - twinNu2 p) -
         ∑ d ∈ (primorial z).divisors with m + 1 ≤ ω d, twinNu2 d ≤

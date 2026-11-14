@@ -21,7 +21,9 @@ namespace TwinPrime.Analytic
 set_option maxHeartbeats 600000
 
 /-- A multiplicative function is norm summable when its absolute local Euler
-factors have a summable nonnegative excess over one.-/
+factors have a summable nonnegative excess over one.
+@isnad1 id=summable.4h2v.s7.20bf19f63ebe from=translated src=- shape=4094565c vocab=6bf5fc40
+-/
 theorem summable_norm_of_primePower_bound (f : ArithmeticFunction ℝ)
     (hf : f.IsMultiplicative) (g : ℕ → ℝ) (hg0 : ∀ n, 0 ≤ g n) (hg : Summable g)
     (hlocal : ∀ p : ℕ, p.Prime →
@@ -61,6 +63,9 @@ theorem summable_norm_of_primePower_bound (f : ArithmeticFunction ℝ)
     _ ≤ Real.exp (∑' p, g p) :=
       Real.exp_le_exp.mpr (hg.sum_le_tsum _ (fun p _ => hg0 p))
 
+/--
+@isnad1 id=hassum.0h0v.s5.036e278c4757 from=translated src=- shape=595a022f vocab=bfbbed14
+-/
 theorem hasSum_norm_smoothingCorrection_two_pow :
     HasSum (fun k : ℕ => ‖smoothingCorrection (2 ^ k)‖) 2 := by
   have h := hasSum_geometric_of_norm_lt_one (show ‖(1 / 2 : ℝ)‖ < 1 by norm_num)
@@ -69,12 +74,18 @@ theorem hasSum_norm_smoothingCorrection_two_pow :
     rw [smoothingCorrection_two_pow, Real.norm_of_nonneg (by positivity), div_pow, one_pow]
   · norm_num
 
+/--
+@isnad1 id=hassum.0h0v.s5.a1ba2d73a883 from=translated src=- shape=b5bbd223 vocab=c9c3913d
+-/
 theorem hasSum_smoothingCorrection_two_pow :
     HasSum (fun k : ℕ => smoothingCorrection (2 ^ k)) 2 := by
   convert! hasSum_norm_smoothingCorrection_two_pow using 1
   ext k
   rw [smoothingCorrection_two_pow, Real.norm_of_nonneg (by positivity)]
 
+/--
+@isnad1 id=hassum.2h1v.s6.b2bd81b9260a from=translated src=- shape=64fb33ed vocab=426c3816
+-/
 theorem hasSum_smoothingCorrection_odd_prime_pow_succ (p : ℕ)
     (hp : p.Prime) (hpodd : Odd p) :
     HasSum (fun k : ℕ => smoothingCorrection (p ^ (k + 1)))
@@ -93,6 +104,9 @@ theorem hasSum_smoothingCorrection_odd_prime_pow_succ (p : ℕ)
     field_simp
   · field_simp
 
+/--
+@isnad1 id=hassum.2h1v.s6.a95de5b11faa from=translated src=- shape=003cab92 vocab=f5cafcef
+-/
 theorem hasSum_smoothingCorrection_odd_prime_pow (p : ℕ)
     (hp : p.Prime) (hpodd : Odd p) :
     HasSum (fun k : ℕ => smoothingCorrection (p ^ k))
@@ -102,6 +116,9 @@ theorem hasSum_smoothingCorrection_odd_prime_pow (p : ℕ)
   simpa only [sum_range_one, pow_zero, smoothingCorrection_one, neg_div,
     neg_add_eq_sub, add_comm, sub_eq_add_neg] using h
 
+/--
+@isnad1 id=hassum.2h1v.s6.30472a62ea16 from=translated src=- shape=4845d56f vocab=9b224c9e
+-/
 theorem hasSum_norm_smoothingCorrection_odd_prime_pow (p : ℕ)
     (hp : p.Prime) (hpodd : Odd p) :
     HasSum (fun k : ℕ => ‖smoothingCorrection (p ^ k)‖)
@@ -119,6 +136,9 @@ theorem hasSum_norm_smoothingCorrection_odd_prime_pow (p : ℕ)
   have h := (hasSum_nat_add_iff (f := fun k : ℕ => ‖smoothingCorrection (p ^ k)‖) 1).mp hnorm
   simpa only [sum_range_one, pow_zero, smoothingCorrection_one, norm_one, add_comm] using h
 
+/--
+@isnad1 id=summable.0h0v.s4.282ef34af9fd from=translated src=- shape=b957a2d0 vocab=915f790b
+-/
 theorem summable_norm_smoothingCorrection :
     Summable (fun n : ℕ => ‖smoothingCorrection n‖) := by
   have hg : Summable (fun n : ℕ => 4 / (n : ℝ) ^ 2) := by
@@ -141,10 +161,15 @@ theorem summable_norm_smoothingCorrection :
     rw [div_le_div_iff₀ (by nlinarith) (by positivity)]
     nlinarith
 
+/--
+@isnad1 id=summable.0h0v.s4.c250e8c314ff from=translated src=- shape=ddcca31f vocab=299d63fb
+-/
 theorem summable_smoothingCorrection : Summable smoothingCorrection :=
   summable_norm_smoothingCorrection.of_norm
 
-/-- The exact local factors, including the separate contribution of the prime two.-/
+/-- The exact local factors, including the separate contribution of the prime two.
+@isnad1 id=eq.0h1v.s6.96fe8d7b2e6d from=translated src=- shape=48ab0b7f vocab=bb73eaa6
+-/
 theorem smoothingCorrection_eulerFactor (p : ℕ) :
     ({q : ℕ | q.Prime}.mulIndicator
       (fun q => ∑' k : ℕ, smoothingCorrection (q ^ k))) p =
@@ -163,7 +188,9 @@ theorem smoothingCorrection_eulerFactor (p : ℕ) :
     have hp2 : p ≠ 2 := by rintro rfl; exact hp Nat.prime_two
     simp [hp2, twinConstantFactor, hp]
 
-/-- The correction has total mass exactly twice the twin-prime constant.-/
+/-- The correction has total mass exactly twice the twin-prime constant.
+@isnad1 id=eq.0h0v.s5.8bf0a709758f from=translated src=- shape=9b90c598 vocab=193a7bc0
+-/
 theorem tsum_smoothingCorrection :
     (∑' n : ℕ, smoothingCorrection n) = 2 * twinPrimeConstant := by
   have heuler := EulerProduct.eulerProduct_hasProd_mulIndicator
@@ -182,9 +209,15 @@ theorem tsum_smoothingCorrection :
 def sqrtWeightedSmoothingCorrection : ArithmeticFunction ℝ :=
   ⟨fun n => smoothingCorrection n * Real.sqrt n, by simp⟩
 
+/--
+@isnad1 id=eq.0h1v.s5.becabea42f34 from=translated src=- shape=9a598b35 vocab=5bcc45fa
+-/
 @[simp] theorem sqrtWeightedSmoothingCorrection_apply (n : ℕ) :
     sqrtWeightedSmoothingCorrection n = smoothingCorrection n * Real.sqrt n := rfl
 
+/--
+@isnad1 id=ismultip.0h0v.s2.dbde6f107389 from=translated src=- shape=25b03439 vocab=188a1c2d
+-/
 theorem isMultiplicative_sqrtWeightedSmoothingCorrection :
     sqrtWeightedSmoothingCorrection.IsMultiplicative := by
   refine ⟨by simp, fun {m n} hmn => ?_⟩
@@ -200,6 +233,9 @@ private theorem sqrt_nat_pow (p k : ℕ) :
   | succ k ih =>
       rw [pow_succ, Real.sqrt_mul (pow_nonneg (Nat.cast_nonneg p) k), ih, pow_succ]
 
+/--
+@isnad1 id=eq.0h1v.s6.1926fa2b9057 from=translated src=- shape=d3c04fe8 vocab=d04b6e79
+-/
 theorem norm_sqrtWeightedSmoothingCorrection_two_pow (k : ℕ) :
     ‖sqrtWeightedSmoothingCorrection (2 ^ k)‖ = (1 / Real.sqrt 2) ^ k := by
   simp only [sqrtWeightedSmoothingCorrection_apply, smoothingCorrection_two_pow,
@@ -209,6 +245,9 @@ theorem norm_sqrtWeightedSmoothingCorrection_two_pow (k : ℕ) :
     1 / (2 : ℝ) ^ k * Real.sqrt 2 ^ k = (Real.sqrt 2 / 2) ^ k := by rw [div_pow]; ring
     _ = _ := by rw [Real.sqrt_div_self']
 
+/--
+@isnad1 id=eq.2h2v.s6.dc05482f712c from=translated src=- shape=3b353770 vocab=338b256c
+-/
 theorem norm_sqrtWeightedSmoothingCorrection_odd_prime_pow (p k : ℕ)
     (hp : p.Prime) (hpodd : Odd p) :
     ‖sqrtWeightedSmoothingCorrection (p ^ (k + 1))‖ =
@@ -225,6 +264,9 @@ theorem norm_sqrtWeightedSmoothingCorrection_odd_prime_pow (p k : ℕ)
     _ = (Real.sqrt p ^ (k + 1) / (p : ℝ) ^ (k + 1)) / ((p : ℝ) - 1) := by field_simp
     _ = _ := by rw [← div_pow, Real.sqrt_div_self']
 
+/--
+@isnad1 id=hassum.0h0v.s6.ce20d84ad760 from=translated src=- shape=58109ae9 vocab=0ca9d9f1
+-/
 theorem hasSum_norm_sqrtWeightedSmoothingCorrection_two_pow :
     HasSum (fun k : ℕ => ‖sqrtWeightedSmoothingCorrection (2 ^ k)‖)
       (Real.sqrt 2 / (Real.sqrt 2 - 1)) := by
@@ -237,6 +279,9 @@ theorem hasSum_norm_sqrtWeightedSmoothingCorrection_two_pow :
     have hq1 : Real.sqrt 2 - 1 ≠ 0 := by linarith
     field_simp
 
+/--
+@isnad1 id=hassum.2h1v.s6.e35f1ed18553 from=translated src=- shape=5909105b vocab=f87d3d90
+-/
 theorem hasSum_norm_sqrtWeightedSmoothingCorrection_odd_prime_pow (p : ℕ)
     (hp : p.Prime) (hpodd : Odd p) :
     HasSum (fun k : ℕ => ‖sqrtWeightedSmoothingCorrection (p ^ k)‖)
@@ -262,6 +307,9 @@ theorem hasSum_norm_sqrtWeightedSmoothingCorrection_odd_prime_pow (p : ℕ)
   simpa only [sum_range_one, pow_zero, sqrtWeightedSmoothingCorrection_apply,
     smoothingCorrection_one, Nat.cast_one, Real.sqrt_one, mul_one, norm_one, add_comm] using h
 
+/--
+@isnad1 id=summable.0h0v.s4.0a1dfec0a061 from=translated src=- shape=b957a2d0 vocab=ecce2e89
+-/
 theorem summable_norm_sqrtWeightedSmoothingCorrection :
     Summable (fun n : ℕ => ‖sqrtWeightedSmoothingCorrection n‖) := by
   have hpseries : Summable (fun n : ℕ => 8 / ((n : ℝ) * Real.sqrt n)) := by
@@ -305,14 +353,18 @@ theorem summable_norm_sqrtWeightedSmoothingCorrection :
     rw [div_le_div_iff₀ (by positivity) (by positivity)]
     nlinarith
 
-/-- A positive power moment, strong enough to control large-divisor tails.-/
+/-- A positive power moment, strong enough to control large-divisor tails.
+@isnad1 id=summable.0h0v.s5.cabea9e836f0 from=translated src=- shape=b7186469 vocab=10bdf531
+-/
 theorem summable_sqrt_mul_abs_smoothingCorrection :
     Summable (fun n : ℕ => Real.sqrt n * |smoothingCorrection n|) := by
   convert! summable_norm_sqrtWeightedSmoothingCorrection using 1
   ext n
   simp [norm_mul, Real.norm_of_nonneg (Real.sqrt_nonneg _), mul_comm]
 
-/-- The logarithmic moment used in dominated convergence for the unsmoothed sum.-/
+/-- The logarithmic moment used in dominated convergence for the unsmoothed sum.
+@isnad1 id=summable.0h0v.s6.4cd906506b88 from=translated src=- shape=06c26084 vocab=45cc98ed
+-/
 theorem summable_log_sq_mul_abs_smoothingCorrection :
     Summable (fun n : ℕ => (Real.log ((n : ℝ) + 1)) ^ 2 * |smoothingCorrection n|) := by
   have hsmall := ((isLittleO_log_rpow_rpow_atTop 2 (s := 1 / 2)

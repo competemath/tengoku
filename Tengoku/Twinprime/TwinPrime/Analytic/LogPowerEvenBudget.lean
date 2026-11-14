@@ -18,6 +18,9 @@ open Filter
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=tendsto.3h4v.s7.703a18b939ba from=translated src=- shape=1336191f vocab=557f69dc
+-/
 theorem tendsto_mixedEvenWeightBudget_div_mul_log_pow
     (U V : ℕ → ℕ) (a : ℝ) (ha : 0 ≤ a) (haHalf : a < 1 / 2)
     (hUV : ∀ᶠ X : ℕ in atTop, ((U X * V X : ℕ) : ℝ) ≤ (X : ℝ) ^ a)

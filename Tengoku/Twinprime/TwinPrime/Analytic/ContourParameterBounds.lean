@@ -18,6 +18,9 @@ open scoped Topology
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=eq.1h1v.s6.98953e5906b9 from=translated src=- shape=8f8e9db3 vocab=25172127
+-/
 theorem rpow_one_add_inv_log (x : ℝ) (hx : 1 < x) :
     x ^ (1 + 1 / Real.log x) = Real.exp 1 * x := by
   have hx0 : 0 < x := by linarith
@@ -27,6 +30,9 @@ theorem rpow_one_add_inv_log (x : ℝ) (hx : 1 < x) :
   rw [he]
   ring
 
+/--
+@isnad1 id=eq.1h2v.s5.06574d31d0d7 from=translated src=- shape=890913e6 vocab=dac88f51
+-/
 theorem rpow_one_sub_eq_mul_exp (x δ : ℝ) (hx : 0 < x) :
     x ^ (1 - δ) = x * Real.exp (-δ * Real.log x) := by
   rw [show 1 - δ = 1 + -δ by ring, Real.rpow_add hx, Real.rpow_one,
@@ -34,6 +40,9 @@ theorem rpow_one_sub_eq_mul_exp (x δ : ℝ) (hx : 0 < x) :
   congr 2
   ring
 
+/--
+@isnad1 id=le.2h3v.s7.c3c04786a2e3 from=translated src=- shape=bf466ebe vocab=35853818
+-/
 theorem rpow_one_sub_le_of_width (x k δ : ℝ) (hx : 1 < x)
     (hwidth : k * (Real.log x) ^ (-(1 / 2 : ℝ)) ≤ δ) :
     x ^ (1 - δ) ≤ x * Real.exp (-k * (Real.log x) ^ (1 / 2 : ℝ)) := by
@@ -51,7 +60,9 @@ theorem rpow_one_sub_le_of_width (x k δ : ℝ) (hx : 1 < x)
   rw [mul_assoc, hpow] at hw
   linarith
 
-/-- Square-root exponential decay absorbs arbitrary real powers.-/
+/-- Square-root exponential decay absorbs arbitrary real powers.
+@isnad1 id=tendsto.1h2v.s6.54c8314167cd from=translated src=- shape=fd7f2fc8 vocab=1b4eb9c6
+-/
 theorem tendsto_rpow_mul_exp_neg_sqrt (A k : ℝ) (hk : 0 < k) :
     Tendsto (fun L : ℝ => L ^ A * Real.exp (-k * L ^ (1 / 2 : ℝ)))
       atTop (𝓝 0) := by
@@ -64,6 +75,9 @@ theorem tendsto_rpow_mul_exp_neg_sqrt (A k : ℝ) (hk : 0 < k) :
   congr 2
   ring
 
+/--
+@isnad1 id=eventual.1h2v.s6.8e81681bca12 from=translated src=- shape=c34dad78 vocab=018a73ae
+-/
 theorem eventually_mul_exp_neg_sqrt_le_rpow (A k : ℝ) (hk : 0 < k) :
     ∀ᶠ L : ℝ in atTop,
       L * Real.exp (-k * L ^ (1 / 2 : ℝ)) ≤ L ^ (-A) := by
@@ -82,6 +96,9 @@ theorem eventually_mul_exp_neg_sqrt_le_rpow (A k : ℝ) (hk : 0 < k) :
       congr 1
       ring
 
+/--
+@isnad1 id=le.1h1v.s6.f2ffd7f0e6fc from=translated src=- shape=66a5aff7 vocab=6860bb9f
+-/
 theorem mangoldtMass_right_line_le (x : ℝ) (hx : 8 ≤ Real.log x) :
     mangoldtDirichletMass (1 + 1 / Real.log x) ≤ Real.log x + 40 := by
   have hl : 0 < Real.log x := by linarith

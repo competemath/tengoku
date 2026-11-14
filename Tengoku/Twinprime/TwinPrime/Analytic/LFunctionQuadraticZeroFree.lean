@@ -16,7 +16,9 @@ noncomputable section
 
 namespace TwinPrime.Analytic
 
-/-- The real part of the principal pole at twice the height.-/
+/-- The real part of the principal pole at twice the height.
+@isnad1 id=eq.0h2v.s6.d670e9b37a02 from=translated src=- shape=60115b54 vocab=8cbd1687
+-/
 theorem principal_pole_re_at_twice_height (a t : ℝ) :
     (1 / ((a : ℂ) + Complex.I * (2 * t : ℝ))).re = a / (a ^ 2 + 4 * t ^ 2) := by
   simp only [Complex.div_re, Complex.normSq_apply, Complex.one_re, Complex.one_im,
@@ -24,6 +26,9 @@ theorem principal_pole_re_at_twice_height (a t : ℝ) :
     Complex.I_im, Complex.ofReal_re, Complex.ofReal_im]
   ring
 
+/--
+@isnad1 id=le.2h2v.s6.432d6beefda1 from=translated src=- shape=4e2f511b vocab=a183a737
+-/
 theorem principal_pole_re_le_one_fifth (a t : ℝ) (ha : 0 < a) (ht : a ≤ |t|) :
     (1 / ((a : ℂ) + Complex.I * (2 * t : ℝ))).re ≤ 1 / (5 * a) := by
   rw [principal_pole_re_at_twice_height]
@@ -34,7 +39,9 @@ theorem principal_pole_re_le_one_fifth (a t : ℝ) (ha : 0 < a) (ht : a ≤ |t|)
     (by positivity : 0 < 5 * a)).mpr
   nlinarith
 
-/-- The numerical contradiction after retaining and bounding the extra pole.-/
+/-- The numerical contradiction after retaining and bounding the extra pole.
+@isnad1 id=not.3h2v.s7.13ceedbd80a4 from=translated src=- shape=378aea26 vocab=70d00927
+-/
 theorem four_three_one_fifth_pole_contradiction {E δ : ℝ} (hE : 0 < E)
     (hδ0 : 0 ≤ δ) (hδ : δ ≤ 1 / (40 * E)) :
     ¬ 4 / (1 / (4 * E) + δ) ≤
@@ -57,6 +64,9 @@ theorem four_three_one_fifth_pole_contradiction {E δ : ℝ} (hE : 0 < E)
 def quadraticZeroFreeBudget (q : ℕ) (t : ℝ) : ℝ :=
   120 + 4 * primitiveLFunctionLogBudget q t + zetaLogBudget (2 * t) + Real.log q
 
+/--
+@isnad1 id=le.0h2v.s4.21f1c3630aeb from=translated src=- shape=787c1379 vocab=e87f135b
+-/
 theorem quadraticZeroFreeBudget_ge (q : ℕ) (t : ℝ) :
     120 ≤ quadraticZeroFreeBudget q t := by
   have hK := primitiveLFunctionLogBudget_nonneg q t

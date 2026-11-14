@@ -19,6 +19,9 @@ namespace TwinPrime.Analytic
 
 def moebiusSummatory (N : ℕ) : ℝ := ∑ n ∈ Ioc 0 N, (μ n : ℝ)
 
+/--
+@isnad1 id=eq.1h1v.s6.2ae47129a0d6 from=translated src=- shape=cf2a56fe vocab=2b7ad6d4
+-/
 theorem moebius_floor_sum (X : ℕ) (hX : 1 ≤ X) :
     (∑ n ∈ Ioc 0 X, (μ n : ℝ) * (X / n : ℕ)) = 1 := by
   have hμ : (μ : ArithmeticFunction ℝ) * ζ = 1 := coe_moebius_mul_coe_zeta
@@ -26,13 +29,18 @@ theorem moebius_floor_sum (X : ℕ) (hX : 1 ≤ X) :
   rw [hμ] at h
   simpa [ArithmeticFunction.one_apply, hX] using h.symm
 
+/--
+@isnad1 id=eq.1h2v.s5.af8a4980717f from=translated src=- shape=eb3bd28f vocab=1c3220b3
+-/
 theorem moebiusSummatory_sub (a b : ℕ) (hab : a ≤ b) :
     moebiusSummatory b - moebiusSummatory a = ∑ n ∈ Ioc a b, (μ n : ℝ) := by
   unfold moebiusSummatory
   have h := sum_Ioc_consecutive (fun n => (μ n : ℝ)) (show 0 ≤ a from Nat.zero_le _) hab
   linarith
 
-/-- An exact hyperbola split at the integer rectangle `N × K`.-/
+/-- An exact hyperbola split at the integer rectangle `N × K`.
+@isnad1 id=eq.2h2v.s7.362b66690e61 from=translated src=- shape=760b8ef2 vocab=917c54e2
+-/
 theorem moebius_hyperbola (K N : ℕ) (hK : 1 ≤ K) (hN : 1 ≤ N) :
     (∑ d ∈ Ioc 0 N, (μ d : ℝ) * (K * N / d : ℕ)) +
       (∑ m ∈ Ioc 0 K, moebiusSummatory (K * N / m)) - K * moebiusSummatory N = 1 := by
@@ -85,6 +93,9 @@ theorem moebius_hyperbola (K N : ℕ) (hK : 1 ≤ K) (hN : 1 ≤ N) :
   simpa only [X, sum_sub_distrib, sum_const, Nat.card_Ioc, Nat.sub_zero, nsmul_eq_mul,
     add_sub_assoc] using hsplit
 
+/--
+@isnad1 id=le.0h2v.s6.9341bbc8c81c from=translated src=- shape=33d409d5 vocab=43baa53a
+-/
 theorem abs_moebius_floor_error_le (K N : ℕ) :
     |(∑ d ∈ Ioc 0 N, (μ d : ℝ) * (K * N / d : ℕ)) -
       ((K : ℝ) * N) * normalizedMoebiusSum N| ≤ N := by
@@ -118,7 +129,9 @@ theorem abs_moebius_floor_error_le (K N : ℕ) :
       nlinarith
     _ = _ := by simp
 
-/-- The finite hyperbola estimate needs cancellation only on `[N,KN]`.-/
+/-- The finite hyperbola estimate needs cancellation only on `[N,KN]`.
+@isnad1 id=le.4h3v.s7.78e271e5314b from=translated src=- shape=31f13c38 vocab=496f2f6e
+-/
 theorem normalizedMoebiusSum_le_of_mertens_range (K N : ℕ) (hK : 1 ≤ K) (hN : 1 ≤ N)
     (ε : ℝ) (hε : 0 ≤ ε)
     (hM : ∀ t ∈ Icc N (K * N), |moebiusSummatory t| ≤ ε * t) :
@@ -163,7 +176,9 @@ theorem normalizedMoebiusSum_le_of_mertens_range (K N : ℕ) (hK : 1 ≤ K) (hN 
     _ = ((K : ℝ) * N) * (2 / K + ε * (K + 1)) := by field_simp
 
 /-- Ordinary sublinear Möbius cancellation identifies the normalized limit as
-zero by the exact hyperbola identity, without a Tauberian or absolute-sum assumption.-/
+zero by the exact hyperbola identity, without a Tauberian or absolute-sum assumption.
+@isnad1 id=tendsto.1h0v.s5.0b91c20ec363 from=translated src=- shape=8f7c36b8 vocab=4c3d9c2f
+-/
 theorem tendsto_normalizedMoebiusSum_of_mertens_sublinear
     (hM : Tendsto (fun N : ℕ => moebiusSummatory N / N) atTop (nhds 0)) :
     Tendsto normalizedMoebiusSum atTop (nhds 0) := by
@@ -196,6 +211,9 @@ theorem tendsto_normalizedMoebiusSum_of_mertens_sublinear
   rw [heq] at hr
   linarith
 
+/--
+@isnad1 id=tendsto.2h1v.s6.74dfaf68fc02 from=translated src=- shape=43b31438 vocab=6e7efdbc
+-/
 theorem tendsto_mertens_div_of_log_six (K : ℝ) (_hK : 0 ≤ K)
     (hM : ∀ᶠ t : ℕ in atTop, |mertensSum t| ≤ K * t / (Real.log t) ^ 6) :
     Tendsto (fun t : ℕ => mertensSum t / t) atTop (nhds 0) := by
@@ -216,12 +234,17 @@ theorem tendsto_mertens_div_of_log_six (K : ℝ) (_hK : 0 ≤ K)
     have heq : (K * (t : ℝ) / (Real.log t) ^ 6) / t = K / (Real.log t) ^ 6 := by field_simp
     exact heq.le
 
-/-- The zero constant is now derived from the ordinary Mertens hypothesis.-/
+/-- The zero constant is now derived from the ordinary Mertens hypothesis.
+@isnad1 id=tendsto.2h1v.s6.74033f281200 from=translated src=- shape=d1ba767f vocab=6af94e27
+-/
 theorem tendsto_normalizedMoebiusSum_of_mertens_log_six (K : ℝ) (hK : 0 ≤ K)
     (hM : ∀ᶠ t : ℕ in atTop, |mertensSum t| ≤ K * t / (Real.log t) ^ 6) :
     Tendsto normalizedMoebiusSum atTop (nhds 0) :=
   tendsto_normalizedMoebiusSum_of_mertens_sublinear (tendsto_mertens_div_of_log_six K hK hM)
 
+/--
+@isnad1 id=eventual.2h1v.s7.3d87a90bc52b from=translated src=- shape=d609ec82 vocab=280bf528
+-/
 theorem normalizedMoebiusSum_abs_le_log_five_of_mertens (K : ℝ) (hK : 0 ≤ K)
     (hM : ∀ᶠ t : ℕ in atTop, |mertensSum t| ≤ K * t / (Real.log t) ^ 6) :
     ∀ᶠ t : ℕ in atTop,
@@ -230,6 +253,9 @@ theorem normalizedMoebiusSum_abs_le_log_five_of_mertens (K : ℝ) (hK : 0 ≤ K)
     reciprocalCoefficientSum_sub_limit_le_log_five (fun n => (μ n : ℝ)) K hK hM 0
       (tendsto_normalizedMoebiusSum_of_mertens_log_six K hK hM)
 
+/--
+@isnad1 id=tendsto.2h1v.s7.e57ef400d797 from=translated src=- shape=96bff251 vocab=6ec49dea
+-/
 theorem tendsto_normalizedMoebiusSum_log_sq_of_mertens (K : ℝ) (hK : 0 ≤ K)
     (hM : ∀ᶠ t : ℕ in atTop, |mertensSum t| ≤ K * t / (Real.log t) ^ 6) :
     Tendsto (fun t : ℕ => normalizedMoebiusSum t * (Real.log (t + 1)) ^ 2)

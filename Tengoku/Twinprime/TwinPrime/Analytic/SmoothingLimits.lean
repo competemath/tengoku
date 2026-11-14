@@ -20,6 +20,9 @@ open scoped ArithmeticFunction.Moebius
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=le.1h2v.s7.0a6a3fa39d4c from=translated src=- shape=f41a97e8 vocab=1bd5e950
+-/
 theorem log_sq_nat_le_div_log_sq (U d : ℕ) (hd : 0 < d) :
     (Real.log ((U : ℝ) + 1)) ^ 2 ≤
       2 * ((Real.log ((d : ℝ) + 1)) ^ 2 + (Real.log ((U / d : ℕ) + 1)) ^ 2) := by
@@ -41,6 +44,9 @@ theorem log_sq_nat_le_div_log_sq (U d : ℕ) (hd : 0 < d) :
   have hsq := pow_le_pow_left₀ hnonneg hlog 2
   nlinarith [sq_nonneg (Real.log ((d : ℝ) + 1) - Real.log ((U / d : ℕ) + (1 : ℝ)))]
 
+/--
+@isnad1 id=tendsto.1h1v.s5.a5baab6fc4e5 from=translated src=- shape=c67d69e0 vocab=491f3f28
+-/
 theorem tendsto_nat_div_atTop (d : ℕ) (hd : 0 < d) :
     Tendsto (fun U : ℕ => U / d) atTop atTop := by
   have hdR : (0 : ℝ) < d := by exact_mod_cast hd
@@ -48,7 +54,9 @@ theorem tendsto_nat_div_atTop (d : ℕ) (hd : 0 < d) :
     ((tendsto_div_const_atTop_of_pos hdR).mpr tendsto_natCast_atTop_atTop)
   simpa only [Function.comp_def, Nat.floor_div_natCast, Nat.floor_natCast] using h
 
-/-- A fixed divisor preserves square-logarithmic decay with the original endpoint.-/
+/-- A fixed divisor preserves square-logarithmic decay with the original endpoint.
+@isnad1 id=tendsto.2h2v.s7.d66d1e75d1e2 from=translated src=- shape=14312afd vocab=2f6ea480
+-/
 theorem tendsto_nat_div_mul_log_sq (F : ℕ → ℝ) (d : ℕ) (hd : 0 < d)
     (hF : Tendsto (fun n : ℕ => F n * (Real.log (n + 1)) ^ 2) atTop (𝓝 0)) :
     Tendsto (fun U : ℕ => F (U / d) * (Real.log (U + 1)) ^ 2) atTop (𝓝 0) := by
@@ -68,13 +76,18 @@ theorem tendsto_nat_div_mul_log_sq (F : ℕ → ℝ) (d : ℕ) (hd : 0 < d)
     have h := mul_le_mul_of_nonneg_left (log_sq_nat_le_div_log_sq U d hd) (abs_nonneg (F (U / d)))
     nlinarith
 
+/--
+@isnad1 id=ex.1h2v.s5.9966d4eb56b3 from=translated src=- shape=84d299df vocab=c033aa45
+-/
 theorem exists_bound_of_tendsto_nat (F : ℕ → ℝ) (L : ℝ)
     (hF : Tendsto F atTop (𝓝 L)) : ∃ C : ℝ, 0 ≤ C ∧ ∀ n, |F n| ≤ C := by
   rcases (Metric.isBounded_range_of_tendsto F hF).exists_pos_norm_le with ⟨C, hC, hbound⟩
   exact ⟨C, hC.le, fun n => by simpa only [Real.norm_eq_abs] using hbound (F n) (Set.mem_range_self n)⟩
 
 /-- Absolutely summable divisor weights with a square-logarithmic moment
-preserve normalized square-logarithmic cancellation.-/
+preserve normalized square-logarithmic cancellation.
+@isnad1 id=tendsto.3h2v.s8.b9af2b27f5ce from=translated src=- shape=05c7a39a vocab=087d47cc
+-/
 theorem tendsto_divisorConvolution_mul_log_sq (h F : ℕ → ℝ)
     (hh : Summable (fun d => |h d|))
     (hhlog : Summable (fun d : ℕ => (Real.log ((d : ℝ) + 1)) ^ 2 * |h d|))
@@ -134,7 +147,9 @@ theorem tendsto_divisorConvolution_mul_log_sq (h F : ℕ → ℝ)
   simp only [f, ite_eq_left hd, mul_assoc]
 
 /-- A convergent bounded real kernel transfers through an absolutely summable
-divisor convolution; the positive summation interval omits the zero coefficient.-/
+divisor convolution; the positive summation interval omits the zero coefficient.
+@isnad1 id=tendsto.5h4v.s7.4af990765653 from=translated src=- shape=d937cc74 vocab=8ce44a48
+-/
 theorem tendsto_real_divisorConvolution (h : ℕ → ℝ) (B : ℝ → ℝ) (L : ℝ)
     (hh : Summable (fun d => |h d|)) (hhzero : h 0 = 0)
     (hB : Tendsto B atTop (𝓝 L))
@@ -174,7 +189,9 @@ theorem tendsto_real_divisorConvolution (h : ℕ → ℝ) (B : ℝ → ℝ) (L :
   intro d hd
   simp only [f, ite_eq_left hd]
 
-/-- On a finite real interval the finite smoothing sum has an explicit bound.-/
+/-- On a finite real interval the finite smoothing sum has an explicit bound.
+@isnad1 id=le.2h2v.s5.418770bdcbe4 from=translated src=- shape=a995fcef vocab=e871a869
+-/
 theorem abs_smoothedMoebiusSum_le_on_Icc {x T : ℝ} (hx : 1 ≤ x) (hxT : x ≤ T) :
     |smoothedMoebiusSum x| ≤ (⌊T⌋₊ : ℝ) * Real.log T := by
   have hx0 : 0 < x := by linarith
@@ -205,7 +222,9 @@ theorem abs_smoothedMoebiusSum_le_on_Icc {x T : ℝ} (hx : 1 ≤ x) (hxT : x ≤
     _ ≤ _ := mul_le_mul_of_nonneg_right (by exact_mod_cast Nat.floor_mono hxT) hlogT
 
 /-- Real convergence of the ordinary smoothed sum supplies a uniform bound on
-all admissible quotient arguments, without an additional regularity assumption.-/
+all admissible quotient arguments, without an additional regularity assumption.
+@isnad1 id=ex.1h1v.s5.955340668453 from=translated src=- shape=b45e63e9 vocab=b29cd678
+-/
 theorem exists_bound_smoothedMoebiusSum_of_tendsto (L : ℝ)
     (hB : Tendsto smoothedMoebiusSum atTop (𝓝 L)) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ x : ℝ, 1 ≤ x → |smoothedMoebiusSum x| ≤ C := by
@@ -219,7 +238,9 @@ theorem exists_bound_smoothedMoebiusSum_of_tendsto (L : ℝ)
   · exact (hT₀ x ((le_max_right _ _).trans hTx)).trans (le_max_left _ _)
   · exact (abs_smoothedMoebiusSum_le_on_Icc hx (le_of_not_ge hTx)).trans (le_max_right _ _)
 
-/-- The ordinary normalized Möbius estimate transfers to the odd totient sum.-/
+/-- The ordinary normalized Möbius estimate transfers to the odd totient sum.
+@isnad1 id=tendsto.1h0v.s7.7d403bf0ea07 from=translated src=- shape=40458bc9 vocab=c9a010d3
+-/
 theorem tendsto_oddMoebiusTotientSum_log_sq_of_normalized
     (hS : Tendsto (fun n : ℕ => normalizedMoebiusSum n * (Real.log (n + 1)) ^ 2)
       atTop (𝓝 0)) :
@@ -231,7 +252,9 @@ theorem tendsto_oddMoebiusTotientSum_log_sq_of_normalized
   simpa only [← oddMoebiusTotientSum_eq_smoothingConvolution] using h
 
 /-- The smoothed ordinary limit transfers with the independently evaluated
-Euler-product mass of the correction coefficients.-/
+Euler-product mass of the correction coefficients.
+@isnad1 id=tendsto.1h0v.s5.e320158dd118 from=translated src=- shape=856a3043 vocab=23552345
+-/
 theorem tendsto_smoothedTotientSum_of_smoothedMoebius
     (hB : Tendsto smoothedMoebiusSum atTop (𝓝 1)) :
     Tendsto smoothedTotientSum atTop (𝓝 (2 * twinPrimeConstant)) := by

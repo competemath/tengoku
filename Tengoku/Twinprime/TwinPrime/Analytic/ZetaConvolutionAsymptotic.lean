@@ -18,10 +18,16 @@ open Finset ArithmeticFunction
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=eq.0h2v.s5.dfeb72d4b45f from=translated src=- shape=8924a20c vocab=bcf8b4e7
+-/
 theorem powerDirichletPartialSum_one_eq (a : ℕ → ℂ) (N : ℕ) :
     powerDirichletPartialSum a 1 N = ∑ n ∈ Ioc 0 N, a n / (n : ℂ) := by
   simp only [powerDirichletPartialSum, Complex.cpow_neg_one, div_eq_mul_inv, mul_comm]
 
+/--
+@isnad1 id=le.1h3v.s7.12a5ef5102d1 from=translated src=- shape=4a854fa7 vocab=fc7f570f
+-/
 theorem norm_prefix_le_three_quarter_power_of_real_bound (f : ArithmeticFunction ℂ)
     (C : ℝ)
     (hA : ∀ x : ℝ, 1 ≤ x →
@@ -32,6 +38,9 @@ theorem norm_prefix_le_three_quarter_power_of_real_bound (f : ArithmeticFunction
   · simpa only [complexArithmeticSummatory_nat] using
       hA N (by exact_mod_cast Nat.one_le_iff_ne_zero.mpr hN)
 
+/--
+@isnad1 id=le.3h3v.s7.6eb600d1a2e8 from=translated src=- shape=44b5c47d vocab=bfc59c82
+-/
 theorem norm_reciprocal_sum_sub_powerDirichletLimit_le (f : ArithmeticFunction ℂ)
     (C : ℝ) (hC : 0 ≤ C)
     (hA : ∀ x : ℝ, 1 ≤ x →
@@ -48,6 +57,9 @@ theorem norm_reciprocal_sum_sub_powerDirichletLimit_le (f : ArithmeticFunction �
         (norm_prefix_le_three_quarter_power_of_real_bound f C hA) N hN 1 (by norm_num)
     _ = _ := by norm_num; ring
 
+/--
+@isnad1 id=le.3h3v.s7.ff20a04db82a from=translated src=- shape=c857698b vocab=afe0ea3e
+-/
 theorem norm_reciprocal_sum_natFloor_sub_powerDirichletLimit_le
     (f : ArithmeticFunction ℂ) (C : ℝ) (hC : 0 ≤ C)
     (hA : ∀ x : ℝ, 1 ≤ x →
@@ -64,7 +76,9 @@ theorem norm_reciprocal_sum_natFloor_sub_powerDirichletLimit_le
     _ = _ := by ring
 
 /-- The main coefficient is the actual ordered reciprocal limit, constructed
-from the cancellation hypothesis. No asymptotic formula is assumed.-/
+from the cancellation hypothesis. No asymptotic formula is assumed.
+@isnad1 id=le.4h3v.s8.6378d69d35c2 from=translated src=- shape=23adf583 vocab=3518019c
+-/
 theorem norm_zeta_convolution_sub_powerDirichletLimit_le
     (f : ArithmeticFunction ℂ) (C : ℝ) (hC : 0 ≤ C)
     (hA : ∀ x : ℝ, 1 ≤ x →

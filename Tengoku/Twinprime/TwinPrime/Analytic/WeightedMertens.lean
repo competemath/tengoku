@@ -22,10 +22,16 @@ def weightedMertens (x : ℝ) : ℝ := |mertensReal x| * (Real.log x) ^ 6 / x
 
 def mertensSup (x : ℝ) : ℝ := initialIntervalSup weightedMertens 2 x
 
+/--
+@isnad1 id=le.1h1v.s4.42e7a28d721f from=translated src=- shape=35bd48ee vocab=cd3e33d7
+-/
 theorem weightedMertens_nonneg (x : ℝ) (hx : 0 ≤ x) : 0 ≤ weightedMertens x := by
   unfold weightedMertens
   exact div_nonneg (mul_nonneg (abs_nonneg _) (by positivity)) hx
 
+/--
+@isnad1 id=le.1h1v.s5.1310f71e06be from=translated src=- shape=daa6252f vocab=3c18ac21
+-/
 theorem weightedMertens_le_log_pow (x : ℝ) (hx : 0 < x) :
     weightedMertens x ≤ (Real.log x) ^ 6 := by
   unfold weightedMertens
@@ -34,7 +40,9 @@ theorem weightedMertens_le_log_pow (x : ℝ) (hx : 0 < x) :
     (show 0 ≤ (Real.log x) ^ 6 by positivity)
   simpa only [mul_comm] using h
 
-/-- Local boundedness uses only `|M(t)| ≤ t`, with a bound depending on x.-/
+/-- Local boundedness uses only `|M(t)| ≤ t`, with a bound depending on x.
+@isnad1 id=bddabove.1h1v.s5.531df1a5c907 from=translated src=- shape=ceec3c47 vocab=4e550787
+-/
 theorem weightedMertens_bddAbove (x : ℝ) (_hx : 2 ≤ x) :
     BddAbove (weightedMertens '' Set.Icc 2 x) := by
   refine ⟨(Real.log x) ^ 6, ?_⟩
@@ -44,17 +52,29 @@ theorem weightedMertens_bddAbove (x : ℝ) (_hx : 2 ≤ x) :
   exact (weightedMertens_le_log_pow t ht0).trans
     (pow_le_pow_left₀ hlogt (Real.log_le_log ht0 ht.2) 6)
 
+/--
+@isnad1 id=islub.1h1v.s5.ce5ecfbf402e from=translated src=- shape=4dc81713 vocab=0cf230bd
+-/
 theorem mertensSup_isLUB (x : ℝ) (hx : 2 ≤ x) :
     IsLUB (weightedMertens '' Set.Icc 2 x) (mertensSup x) :=
   initialIntervalSup_isLUB weightedMertens hx (weightedMertens_bddAbove x hx)
 
+/--
+@isnad1 id=le.2h2v.s4.ad0918409d80 from=translated src=- shape=994278ac vocab=5e4c1b96
+-/
 theorem weightedMertens_le_sup {t x : ℝ} (ht : 2 ≤ t) (htx : t ≤ x) :
     weightedMertens t ≤ mertensSup x :=
   le_initialIntervalSup weightedMertens (weightedMertens_bddAbove x (ht.trans htx)) ⟨ht, htx⟩
 
+/--
+@isnad1 id=le.1h1v.s4.b27b982cf24b from=translated src=- shape=35bd48ee vocab=0bd16f11
+-/
 theorem mertensSup_nonneg (x : ℝ) (hx : 2 ≤ x) : 0 ≤ mertensSup x :=
   (weightedMertens_nonneg 2 (by norm_num)).trans (weightedMertens_le_sup le_rfl hx)
 
+/--
+@isnad1 id=le.1h1v.s5.81d64a00e224 from=translated src=- shape=076044b8 vocab=c4efc89c
+-/
 theorem mertensSup_le_log_pow (x : ℝ) (hx : 2 ≤ x) :
     mertensSup x ≤ (Real.log x) ^ 6 := by
   apply (mertensSup_isLUB x hx).2
@@ -63,16 +83,24 @@ theorem mertensSup_le_log_pow (x : ℝ) (hx : 2 ≤ x) :
   exact (weightedMertens_le_log_pow t ht0).trans
     (pow_le_pow_left₀ (Real.log_nonneg (by linarith [ht.1])) (Real.log_le_log ht0 ht.2) 6)
 
+/--
+@isnad1 id=le.2h2v.s4.7d7b1868d8cf from=translated src=- shape=994278ac vocab=0bd16f11
+-/
 theorem mertensSup_mono {x y : ℝ} (hx : 2 ≤ x) (hxy : x ≤ y) :
     mertensSup x ≤ mertensSup y :=
   initialIntervalSup_mono weightedMertens hx hxy (weightedMertens_bddAbove y (hx.trans hxy))
 
+/--
+@isnad1 id=monotone.0h0v.s4.f50e6858a9b6 from=translated src=- shape=f2a09be3 vocab=18ef7b2c
+-/
 theorem mertensSup_monotoneOn : MonotoneOn mertensSup (Set.Ici 2) := by
   intro x hx y _hy hxy
   exact mertensSup_mono hx hxy
 
 /-- Every actual Möbius sum in the initial interval is controlled by its
-finite weighted supremum.-/
+finite weighted supremum.
+@isnad1 id=le.2h2v.s6.8875abe106dc from=translated src=- shape=c9766e64 vocab=e5a4d1c9
+-/
 theorem abs_mertensReal_le_sup {t x : ℝ} (ht : 2 ≤ t) (htx : t ≤ x) :
     |mertensReal t| ≤ mertensSup x * t / (Real.log t) ^ 6 := by
   have ht0 : 0 < t := by linarith
@@ -80,7 +108,9 @@ theorem abs_mertensReal_le_sup {t x : ℝ} (ht : 2 ≤ t) (htx : t ≤ x) :
   apply (le_div_iff₀ (pow_pos hlog 6)).mpr
   exact (div_le_iff₀ ht0).mp (weightedMertens_le_sup ht htx)
 
-/-- The actual short hyperbola head with arbitrary real rectangular cutoffs.-/
+/-- The actual short hyperbola head with arbitrary real rectangular cutoffs.
+@isnad1 id=le.4h4v.s7.8660b2a5b5bd from=translated src=- shape=ef0acd17 vocab=e5f279f3
+-/
 theorem selberg_head_le_mertensSup (c x y z : ℝ)
     (hx : 2 ≤ x) (_hy : 1 ≤ y) (hz : 2 ≤ z) (hyz : y * z = x) :
     (∑ k ∈ Ioc 0 ⌊y⌋₊, |centeredSelbergCoefficient c k| * |mertensReal (x / k)|) ≤
@@ -112,7 +142,9 @@ theorem selberg_head_le_mertensSup (c x y z : ℝ)
         (pow_le_pow_left₀ hlogz.le hlogle 6)) (abs_nonneg _)
     _ = _ := by ring
 
-/-- The fixed-power head estimate, with the real quotient retained.-/
+/-- The fixed-power head estimate, with the real quotient retained.
+@isnad1 id=le.4h3v.s8.4e527d8c7ec5 from=translated src=- shape=4ac75860 vocab=be2f9a19
+-/
 theorem selberg_power_head_le_mertensSup (c x δ : ℝ)
     (hx : 2 ≤ x) (hδ : 0 < δ) (_hδ1 : δ < 1) (hz : 2 ≤ x ^ (1 - δ)) :
     (∑ k ∈ Ioc 0 ⌊x ^ δ⌋₊, |centeredSelbergCoefficient c k| * |mertensReal (x / k)|) ≤
@@ -126,7 +158,9 @@ theorem selberg_power_head_le_mertensSup (c x δ : ℝ)
     selberg_head_le_mertensSup c x (x ^ δ) (x ^ (1 - δ)) hx hy hz hyz
 
 /-- The unconditional coefficient mass gives the explicit quadratic
-logarithmic factor in the hyperbola head.-/
+logarithmic factor in the hyperbola head.
+@isnad1 id=le.4h3v.s8.293e222f7e5f from=translated src=- shape=0b8d231c vocab=c3df816f
+-/
 theorem selberg_power_head_le_mertensSup_log_sq (c x δ : ℝ)
     (hx : 2 ≤ x) (hδ : 0 < δ) (hδ1 : δ < 1) (hz : 2 ≤ x ^ (1 - δ)) :
     (∑ k ∈ Ioc 0 ⌊x ^ δ⌋₊, |centeredSelbergCoefficient c k| * |mertensReal (x / k)|) ≤
@@ -140,7 +174,9 @@ theorem selberg_power_head_le_mertensSup_log_sq (c x δ : ℝ)
   simpa only [Real.log_rpow hx0] using centeredSelbergReciprocalMass_floor_le c (x ^ δ) hy
 
 /-- After the normalization used in the Mertens contraction, the head
-coefficient approaches `D(c) δ² / (1-δ)⁶`.-/
+coefficient approaches `D(c) δ² / (1-δ)⁶`.
+@isnad1 id=le.4h3v.s8.d502d45f13c6 from=translated src=- shape=c3d02a63 vocab=c3df816f
+-/
 theorem normalized_selberg_power_head_le (c x δ : ℝ)
     (hx : 2 ≤ x) (hδ : 0 < δ) (hδ1 : δ < 1) (hz : 2 ≤ x ^ (1 - δ)) :
     (∑ k ∈ Ioc 0 ⌊x ^ δ⌋₊, |centeredSelbergCoefficient c k| * |mertensReal (x / k)|) *

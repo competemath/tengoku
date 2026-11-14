@@ -21,7 +21,9 @@ namespace TwinPrime.Analytic
 
 /-- The actual residue at the common product level is bounded by the two
 original L-values and three logarithmic factors. The product character
-is nonprincipal because the primitive conductors differ.-/
+is nonprincipal because the primitive conductors differ.
+@isnad1 id=le.6h4v.s8.270db997f32f from=translated src=- shape=5226ca93 vocab=d80c0f60
+-/
 theorem norm_commonLevel_quadraticProduct_residue_le
     {q₀ q : ℕ} [NeZero q₀] [NeZero q]
     (χ₀ : DirichletCharacter ℂ q₀) (χ : DirichletCharacter ℂ q)
@@ -67,7 +69,9 @@ theorem norm_commonLevel_quadraticProduct_residue_le
     _ = _ := by ring
 
 /-- A zero of the auxiliary character remains an actual zero of the
-four-factor product after induction to the common level.-/
+four-factor product after induction to the common level.
+@isnad1 id=eq.2h5v.s6.4d84b4c9a42b from=translated src=- shape=960f8084 vocab=fc3edb3d
+-/
 theorem commonLevel_quadraticLFunctionProduct_eq_zero_of_auxiliary_zero
     {q₀ q : ℕ} [NeZero q₀] [NeZero q]
     (χ₀ : DirichletCharacter ℂ q₀) (χ : DirichletCharacter ℂ q)

@@ -17,6 +17,9 @@ noncomputable section
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=le.2h1v.s7.2de05594e2da from=translated src=- shape=aaf2d0a7 vocab=bf351edb
+-/
 theorem neg_zeta_logDerivative_real_le_pole_add_forty (σ : ℝ)
     (hσ : 1 < σ) (hσu : σ ≤ 9 / 8) :
     (-deriv riemannZeta (σ : ℂ) / riemannZeta (σ : ℂ)).re ≤ 1 / (σ - 1) + 40 := by
@@ -35,6 +38,9 @@ theorem neg_zeta_logDerivative_real_le_pole_add_forty (σ : ℝ)
 def nonquadraticZeroFreeBudget (q : ℕ) (t : ℝ) : ℝ :=
   120 + 4 * primitiveLFunctionLogBudget q t + primitiveLFunctionLogBudget q (2 * t) + Real.log q
 
+/--
+@isnad1 id=le.0h2v.s4.204f02080268 from=translated src=- shape=787c1379 vocab=6a4fddc4
+-/
 theorem nonquadraticZeroFreeBudget_ge (q : ℕ) (t : ℝ) :
     120 ≤ nonquadraticZeroFreeBudget q t := by
   have hk := primitiveLFunctionLogBudget_nonneg q t

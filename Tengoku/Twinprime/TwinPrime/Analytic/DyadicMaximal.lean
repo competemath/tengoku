@@ -23,6 +23,9 @@ def dyadicEnergy (f : ℕ → ℂ) (M : ℕ) : ℕ → ℝ
   | k + 1 => ‖∑ n ∈ Ico M (M + 2 ^ (k + 1)), f n‖ ^ 2 +
       dyadicEnergy f M k + dyadicEnergy f (M + 2 ^ k) k
 
+/--
+@isnad1 id=le.0h3v.s4.09732f5a5067 from=translated src=- shape=def86511 vocab=189ca5fe
+-/
 theorem dyadicEnergy_nonneg (f : ℕ → ℂ) (M k : ℕ) : 0 ≤ dyadicEnergy f M k := by
   induction k generalizing M with
   | zero => exact sq_nonneg _
@@ -30,6 +33,9 @@ theorem dyadicEnergy_nonneg (f : ℕ → ℂ) (M k : ℕ) : 0 ≤ dyadicEnergy f
       rw [dyadicEnergy]
       exact add_nonneg (add_nonneg (sq_nonneg _) (ih M)) (ih _)
 
+/--
+@isnad1 id=le.0h3v.s6.720b356408a3 from=translated src=- shape=ab446430 vocab=4aefa2b8
+-/
 theorem norm_dyadicBlock_sq_le_energy (f : ℕ → ℂ) (M k : ℕ) :
     ‖∑ n ∈ Ico M (M + 2 ^ k), f n‖ ^ 2 ≤ dyadicEnergy f M k := by
   cases k with
@@ -53,7 +59,9 @@ private theorem add_sq_le_of_sq_le (a b c d : ℝ) (hc : 0 < c) (h : a ^ 2 ≤ c
       (add_le_add le_rfl ((div_le_iff₀ hc).mpr (by simpa only [mul_comm] using h))) (by linarith)
 
 /-- Every prefix of a dyadic interval has its squared norm controlled by
-the complete tree energy, with one factor for the number of depths.-/
+the complete tree energy, with one factor for the number of depths.
+@isnad1 id=le.2h4v.s6.a57c00ffabff from=translated src=- shape=179803f3 vocab=149352a6
+-/
 theorem norm_prefix_sq_le_dyadicEnergy (f : ℕ → ℂ) (M k t : ℕ)
     (hMt : M ≤ t) (ht : t ≤ M + 2 ^ k) :
     ‖∑ n ∈ Ico M t, f n‖ ^ 2 ≤ ((k : ℝ) + 1) * dyadicEnergy f M k := by
@@ -100,7 +108,9 @@ theorem norm_prefix_sq_le_dyadicEnergy (f : ℕ → ℂ) (M k t : ℕ)
               mul_le_mul_of_nonneg_left he (by positivity : 0 ≤ ((k : ℝ) + 1) + 1)
 
 /-- Fixed-interval second moments control the entire dyadic tree with one
-factor for its depth. The bound is uniform in the interval's starting point.-/
+factor for its depth. The bound is uniform in the interval's starting point.
+@isnad1 id=le.2h8v.s8.d0f3b86636ae from=translated src=- shape=19db6b31 vocab=b6df14da
+-/
 theorem sum_weighted_dyadicEnergy_le {ι : Type*} (s : Finset ι)
     (w : ι → ℝ) (f : ι → ℕ → ℂ) (e : ℕ → ℝ) (A : ℝ)
     (he : ∀ n, 0 ≤ e n)
@@ -145,7 +155,9 @@ theorem sum_weighted_dyadicEnergy_le {ι : Type*} (s : Finset ι)
             (show 0 ≤ (2 : ℝ) ^ k by positivity)]
 
 /-- Independently selected prefix endpoints for every member of a finite
-family cost only the square of the dyadic depth in a second moment.-/
+family cost only the square of the dyadic depth in a second moment.
+@isnad1 id=le.4h9v.s8.556d75a18b6e from=translated src=- shape=942b1197 vocab=f6aadc7a
+-/
 theorem sum_weighted_prefix_sq_le {ι : Type*} (s : Finset ι)
     (w : ι → ℝ) (hw : ∀ i ∈ s, 0 ≤ w i) (f : ι → ℕ → ℂ)
     (e : ℕ → ℝ) (A : ℝ) (he : ∀ n, 0 ≤ e n)

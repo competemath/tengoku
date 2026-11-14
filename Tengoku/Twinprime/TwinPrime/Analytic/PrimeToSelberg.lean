@@ -17,6 +17,9 @@ open Filter
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=ex.1h0v.s6.48459599ca76 from=translated src=- shape=e4550ae5 vocab=cf26d107
+-/
 theorem MaximalBombieriVinogradov.centeredSelberg_error
     (hBV : MaximalBombieriVinogradov) :
     ∃ c K : ℝ, 0 ≤ K ∧ ∀ᶠ x : ℝ in atTop,

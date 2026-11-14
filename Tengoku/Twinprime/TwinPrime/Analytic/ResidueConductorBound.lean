@@ -16,10 +16,16 @@ namespace TwinPrime.Analytic
 
 def residueConductorConstant : ℝ := 2 * (37044 * 3251) ^ 20
 
+/--
+@isnad1 id=lt.0h0v.s3.c351d0a4bff7 from=translated src=- shape=ff3a10fc vocab=b595c0fe
+-/
 theorem residueConductorConstant_pos : 0 < residueConductorConstant := by
   unfold residueConductorConstant
   positivity
 
+/--
+@isnad1 id=le.1h1v.s6.9516fe201755 from=translated src=- shape=179aae69 vocab=291509f8
+-/
 theorem residueCutoff_le_conductor_power (q : ℕ) (hq : 1 ≤ q) :
     (residueCutoff (1 + 3250 * (q : ℝ) ^ 2) : ℝ) ≤
       residueConductorConstant * (q : ℝ) ^ 40 := by
@@ -39,6 +45,9 @@ theorem residueCutoff_le_conductor_power (q : ℕ) (hq : 1 ≤ q) :
       unfold residueConductorConstant
       ring
 
+/--
+@isnad1 id=le.2h2v.s7.35b09c3b5007 from=translated src=- shape=f188c2a5 vocab=e86f1f70
+-/
 theorem residue_gap_conductor_bound (q : ℕ) (hq : 1 ≤ q)
     (δ : ℝ) (hδ : 0 < δ) :
     δ / (4 * residueConductorConstant ^ δ * (q : ℝ) ^ (40 * δ)) ≤

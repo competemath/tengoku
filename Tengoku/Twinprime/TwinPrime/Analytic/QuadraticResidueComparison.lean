@@ -20,7 +20,9 @@ open Finset
 
 namespace TwinPrime.Analytic
 
-/-- A weighted comparison retaining the actual product value and zeta term.-/
+/-- A weighted comparison retaining the actual product value and zeta term.
+@isnad1 id=le.6h5v.s8.c40f48e4dd8f from=translated src=- shape=d2211b41 vocab=3836db90
+-/
 theorem norm_quadraticProductPartialSum_sub_product_sub_residue_le
     {q : ℕ} [NeZero q] (χ₁ χ₂ : DirichletCharacter ℂ q)
     (hχ₁ : χ₁ ≠ 1) (hχ₂ : χ₂ ≠ 1) (hχ₁₂ : χ₁ * χ₂ ≠ 1)

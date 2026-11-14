@@ -18,6 +18,9 @@ open Finset MeasureTheory ArithmeticFunction
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=eq.0h1v.s5.fb0e9e9d1612 from=translated src=- shape=730454ab vocab=39ef1d28
+-/
 theorem realPrimeReciprocalSum_eq_sum_Icc (y : ℝ) :
     realPrimeReciprocalSum y =
       ∑ n ∈ Icc 0 ⌊y⌋₊, vonMangoldt n / (n : ℝ) := by
@@ -54,7 +57,9 @@ private theorem intervalIntegrable_deriv_mul_reciprocal_error
   ext y
   ring
 
-/-- Exact centered Abel summation, with no asymptotic hypothesis.-/
+/-- Exact centered Abel summation, with no asymptotic hypothesis.
+@isnad1 id=eq.4h4v.s8.50749eac3afa from=translated src=- shape=3df74e74 vocab=21ef98cd
+-/
 theorem primeReciprocal_abel_centered_identity
     {a b : ℝ} {f : ℝ → ℝ} (ha : 0 < a) (hab : a ≤ b)
     (hf_diff : ∀ y ∈ Set.Icc a b, DifferentiableAt ℝ f y)
@@ -110,7 +115,9 @@ theorem primeReciprocal_abel_centered_identity
   ring
 
 /-- A uniform centered reciprocal error controls Abel summation by total
-variation. Differentiability and an integrable derivative suffice.-/
+variation. Differentiability and an integrable derivative suffice.
+@isnad1 id=le.5h5v.s8.151443643635 from=translated src=- shape=e6492749 vocab=566c5227
+-/
 theorem abs_primeReciprocal_abel_error_le
     {a b : ℝ} {f : ℝ → ℝ} (ha : 0 < a) (hab : a ≤ b)
     (hf_diff : ∀ y ∈ Set.Icc a b, DifferentiableAt ℝ f y)
@@ -151,7 +158,9 @@ theorem abs_primeReciprocal_abel_error_le
           (mul_le_mul_of_nonneg_left (herror a ⟨le_rfl, hab⟩) (abs_nonneg _))) hint
     _ = _ := by ring
 
-/-- The continuously differentiable version of the centered Abel bound.-/
+/-- The continuously differentiable version of the centered Abel bound.
+@isnad1 id=le.5h5v.s8.df84b4d5a72a from=translated src=- shape=54c79839 vocab=12a24574
+-/
 theorem abs_primeReciprocal_abel_error_le_of_continuous_deriv
     {a b : ℝ} {f : ℝ → ℝ} (ha : 0 < a) (hab : a ≤ b)
     (hf_diff : ∀ y ∈ Set.Icc a b, DifferentiableAt ℝ f y)

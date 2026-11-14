@@ -21,6 +21,9 @@ open scoped Topology
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=lseriess.1h4v.s5.f8535710b0bc from=translated src=- shape=3ef11502 vocab=11976317
+-/
 theorem LSeriesSummable_centeredQuadraticProductCoefficients {q : ℕ} [NeZero q]
     (χ₁ χ₂ : DirichletCharacter ℂ q) {s : ℂ} (hs : 1 < s.re) :
     LSeriesSummable (centeredQuadraticProductCoefficients χ₁ χ₂) s := by
@@ -30,6 +33,9 @@ theorem LSeriesSummable_centeredQuadraticProductCoefficients {q : ℕ} [NeZero q
   exact (LSeriesSummable_quadraticProductCoefficients χ₁ χ₂ hs).sub
     (LSeriesSummable.smul _ (ArithmeticFunction.LSeriesSummable_zeta_iff.mpr hs))
 
+/--
+@isnad1 id=eq.1h4v.s6.aa0ec9ff3683 from=translated src=- shape=f7188a91 vocab=243211e6
+-/
 theorem LSeries_centeredQuadraticProductCoefficients {q : ℕ} [NeZero q]
     (χ₁ χ₂ : DirichletCharacter ℂ q) {s : ℂ} (hs : 1 < s.re) :
     LSeries (centeredQuadraticProductCoefficients χ₁ χ₂) s =
@@ -49,7 +55,9 @@ theorem LSeries_centeredQuadraticProductCoefficients {q : ℕ} [NeZero q]
     hzEq]
   rfl
 
-/-- No convergence or residue hypothesis is assumed on the enlarged half-plane.-/
+/-- No convergence or residue hypothesis is assumed on the enlarged half-plane.
+@isnad1 id=eqon.3h3v.s8.53cc27c26c82 from=translated src=- shape=411f1e4a vocab=504960c2
+-/
 theorem powerDirichletLimit_centeredQuadraticProductCoefficients_eqOn
     {q : ℕ} [NeZero q] (χ₁ χ₂ : DirichletCharacter ℂ q)
     (hχ₁ : χ₁ ≠ 1) (hχ₂ : χ₂ ≠ 1) (hχ₁₂ : χ₁ * χ₂ ≠ 1) :
@@ -66,6 +74,9 @@ theorem powerDirichletLimit_centeredQuadraticProductCoefficients_eqOn
     exact LSeries_centeredQuadraticProductCoefficients χ₁ χ₂
       ((le_max_right (9 / 10 : ℝ) 1).trans_lt hs)
 
+/--
+@isnad1 id=tendsto.4h4v.s8.4c9425a90afd from=translated src=- shape=7e6477a1 vocab=85551082
+-/
 theorem tendsto_centeredQuadraticProduct_partialSum
     {q : ℕ} [NeZero q] (χ₁ χ₂ : DirichletCharacter ℂ q)
     (hχ₁ : χ₁ ≠ 1) (hχ₂ : χ₂ ≠ 1) (hχ₁₂ : χ₁ * χ₂ ≠ 1)
@@ -77,6 +88,9 @@ theorem tendsto_centeredQuadraticProduct_partialSum
     (441 * (1 + 3250 * (q : ℝ) ^ 2)) (by positivity)
     (norm_centeredQuadraticProductCoefficients_prefix_le χ₁ χ₂ hχ₁ hχ₂ hχ₁₂) s hs
 
+/--
+@isnad1 id=le.5h5v.s9.f87975a78a78 from=translated src=- shape=5767e036 vocab=524e2218
+-/
 theorem norm_centeredQuadraticLFunctionProduct_sub_partialSum_le
     {q : ℕ} [NeZero q] (χ₁ χ₂ : DirichletCharacter ℂ q)
     (hχ₁ : χ₁ ≠ 1) (hχ₂ : χ₂ ≠ 1) (hχ₁₂ : χ₁ * χ₂ ≠ 1)
@@ -93,7 +107,9 @@ theorem norm_centeredQuadraticLFunctionProduct_sub_partialSum_le
   convert h using 1
   ring
 
-/-- A uniform tail bound in a fixed real interval immediately below one.-/
+/-- A uniform tail bound in a fixed real interval immediately below one.
+@isnad1 id=le.6h5v.s8.7a67ae68f388 from=translated src=- shape=c025adbe vocab=20065966
+-/
 theorem norm_centeredQuadraticLFunctionProduct_real_sub_partialSum_le
     {q : ℕ} [NeZero q] (χ₁ χ₂ : DirichletCharacter ℂ q)
     (hχ₁ : χ₁ ≠ 1) (hχ₂ : χ₂ ≠ 1) (hχ₁₂ : χ₁ * χ₂ ≠ 1)

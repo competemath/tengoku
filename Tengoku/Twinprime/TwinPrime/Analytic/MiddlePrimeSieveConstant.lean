@@ -20,6 +20,9 @@ def middlePrimeSieveMainConstant (a v : ℝ) : ℝ :=
   2 * ((1 / a) * Real.log (v / (1 / 5)) +
     ((1 - a) / a) * Real.log ((a - 1 / 5) / (a - v)))
 
+/--
+@isnad1 id=eq.2h2v.s6.b575afb3f943 from=translated src=- shape=17371a6d vocab=aefae07a
+-/
 theorem middlePrimeSieveMainConstant_eq_integral (a v : ℝ)
     (hv : (1 / 5 : ℝ) ≤ v) (hva : v < a) :
     middlePrimeSieveMainConstant a v =
@@ -28,7 +31,9 @@ theorem middlePrimeSieveMainConstant_eq_integral (a v : ℝ)
   rfl
 
 /-- The degree-three alternating logarithm polynomial is an upper bound
-on the full nonnegative half-line.-/
+on the full nonnegative half-line.
+@isnad1 id=le.1h1v.s6.70137920cf17 from=translated src=- shape=44f63e00 vocab=1789be8f
+-/
 theorem log_one_add_le_cubic (x : ℝ) (hx : 0 ≤ x) :
     Real.log (1 + x) ≤ x - x ^ 2 / 2 + x ^ 3 / 3 := by
   let F : ℝ → ℝ := fun t => t - t ^ 2 / 2 + t ^ 3 / 3 - Real.log (1 + t)
@@ -58,7 +63,9 @@ theorem log_one_add_le_cubic (x : ℝ) (hx : 0 ≤ x) :
     add_zero, Real.log_one, zero_sub, sub_nonneg] using h
 
 /-- The exact fixed-power coefficient is below 0.263.  All constants and
-all logarithm arguments are rational; no floating-point estimate enters.-/
+all logarithm arguments are rational; no floating-point estimate enters.
+@isnad1 id=lt.0h0v.s6.34f02c79479e from=translated src=- shape=3baf3fe8 vocab=31214370
+-/
 theorem middlePrimeSieveMainConstant_fixed_lt :
     middlePrimeSieveMainConstant (49999 / 100000) (21 / 100) < 263 / 1000 := by
   have h₁ := log_one_add_le_cubic (1 / 20) (by norm_num)

@@ -19,7 +19,9 @@ open Finset
 namespace TwinPrime.Analytic
 
 /-- Discrete Abel summation with cumulative sums based at `a`. Including the
-index `a` in the variation sum is harmless because its cumulative sum is zero.-/
+index `a` in the variation sum is harmless because its cumulative sum is zero.
+@isnad1 id=eq.1h4v.s7.883531aa77e3 from=translated src=- shape=79889694 vocab=99383b29
+-/
 theorem discrete_abel_Ioc (a b : ℕ) (hab : a ≤ b) (w e : ℕ → ℝ) :
     (∑ n ∈ Ioc a b, w n * e n) =
       w b * (∑ n ∈ Ioc a b, e n) -
@@ -33,7 +35,9 @@ theorem discrete_abel_Ioc (a b : ℕ) (hab : a ≤ b) (w e : ℕ → ℝ) :
     ring
 
 /-- Bounded cumulative errors control a weighted sum by the endpoint weight
-and its full finite variation. The weights may have either sign.-/
+and its full finite variation. The weights may have either sign.
+@isnad1 id=le.2h5v.s7.2ca85aad86ca from=translated src=- shape=c4a7f256 vocab=3fefe59d
+-/
 theorem abs_sum_Ioc_mul_le_total_variation (a b : ℕ) (hab : a ≤ b)
     (w e : ℕ → ℝ) (M : ℝ)
     (hE : ∀ t ∈ Icc a b, |∑ n ∈ Ioc a t, e n| ≤ M) :
@@ -57,7 +61,9 @@ theorem abs_sum_Ioc_mul_le_total_variation (a b : ℕ) (hab : a ≤ b)
           (abs_nonneg _)
     _ = _ := by rw [← sum_mul]; ring
 
-/-- Nonnegative nondecreasing weights cost at most twice their final value.-/
+/-- Nonnegative nondecreasing weights cost at most twice their final value.
+@isnad1 id=le.5h5v.s7.4423f43aa539 from=translated src=- shape=490daeb8 vocab=bbfc77d7
+-/
 theorem abs_sum_Ioc_mul_le_of_partial_sums (a b : ℕ) (hab : a ≤ b)
     (w e : ℕ → ℝ) (M : ℝ) (hM : 0 ≤ M) (hw0 : 0 ≤ w a)
     (hw : MonotoneOn w (Set.Icc a b))
@@ -79,7 +85,9 @@ theorem abs_sum_Ioc_mul_le_of_partial_sums (a b : ℕ) (hab : a ≤ b)
   nlinarith
 
 /-- Logarithmic weights used by the Type I correction fit the monotone-weight
-bound as soon as the positive cutoff is at most the lower interval endpoint.-/
+bound as soon as the positive cutoff is at most the lower interval endpoint.
+@isnad1 id=le.5h5v.s7.bd56d6801fe2 from=translated src=- shape=2beafde5 vocab=97baafbf
+-/
 theorem abs_sum_Ioc_log_mul_le_of_partial_sums (a b U : ℕ) (hab : a ≤ b)
     (hU : 0 < U) (hUa : U ≤ a) (e : ℕ → ℝ) (M : ℝ) (hM : 0 ≤ M)
     (hE : ∀ t ∈ Icc a b, |∑ n ∈ Ioc a t, e n| ≤ M) :

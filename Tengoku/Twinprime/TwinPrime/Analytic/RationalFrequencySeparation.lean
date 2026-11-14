@@ -17,7 +17,9 @@ noncomputable section
 
 namespace TwinPrime.Analytic
 
-/-- Distinct rational frequencies have reciprocal-product spacing on the circle.-/
+/-- Distinct rational frequencies have reciprocal-product spacing on the circle.
+@isnad1 id=le.3h4v.s8.d014089d6535 from=translated src=- shape=b2a2ff09 vocab=eb0c167f
+-/
 theorem rational_frequency_dist_ge (a b : ℤ) (q r : ℕ) (hq : 0 < q) (hr : 0 < r)
     (hne : (((a : ℝ) / q : ℝ) : UnitAddCircle) ≠ (((b : ℝ) / r : ℝ) : UnitAddCircle)) :
     (1 : ℝ) / ((q : ℝ) * r) ≤
@@ -47,7 +49,9 @@ theorem rational_frequency_dist_ge (a b : ℤ) (q r : ℕ) (hq : 0 < q) (hr : 0 
   rw [hdist]
   exact div_le_div_of_nonneg_right hkabs (mul_pos hq0 hr0).le
 
-/-- Uniform spacing for all denominators bounded by `Q`.-/
+/-- Uniform spacing for all denominators bounded by `Q`.
+@isnad1 id=le.5h5v.s8.47baf7c34ff3 from=translated src=- shape=43be998c vocab=8f5d230d
+-/
 theorem rational_frequency_dist_ge_inv_sq (a b : ℤ) (q r Q : ℕ)
     (hq : 0 < q) (hr : 0 < r) (hqQ : q ≤ Q) (hrQ : r ≤ Q)
     (hne : (((a : ℝ) / q : ℝ) : UnitAddCircle) ≠ (((b : ℝ) / r : ℝ) : UnitAddCircle)) :
@@ -63,7 +67,9 @@ theorem rational_frequency_dist_ge_inv_sq (a b : ℤ) (q r Q : ℕ)
     (rational_frequency_dist_ge a b q r hq hr hne)
 
 /-- Two reduced representatives in `[0,1)` have the same frequency only if
-both their denominators and their numerators agree.-/
+both their denominators and their numerators agree.
+@isnad1 id=and.7h4v.s7.8b05633d3212 from=translated src=- shape=4db65f0c vocab=3e496af5
+-/
 theorem reduced_rational_frequency_unique (a b q r : ℕ)
     (hq : 0 < q) (hr : 0 < r) (ha : a < q) (hb : b < r)
     (haq : Nat.Coprime a q) (hbr : Nat.Coprime b r)
@@ -89,7 +95,9 @@ theorem reduced_rational_frequency_unique (a b q r : ℕ)
   exact Nat.eq_of_mul_eq_mul_right hq hcross
 
 /-- Unit residues across positive moduli give distinct circle frequencies,
-except for the identical denominator and canonical numerator.-/
+except for the identical denominator and canonical numerator.
+@isnad1 id=iff.0h4v.s8.38cccebb8fc1 from=translated src=- shape=64ab4b5e vocab=457bf623
+-/
 theorem unit_rational_frequency_eq_iff {q r : ℕ} [NeZero q] [NeZero r]
     (u : (ZMod q)ˣ) (v : (ZMod r)ˣ) :
     ZMod.toAddCircle (u : ZMod q) = ZMod.toAddCircle (v : ZMod r) ↔
@@ -108,7 +116,9 @@ theorem unit_rational_frequency_eq_iff {q r : ℕ} [NeZero q] [NeZero r]
     exact congrArg ZMod.toAddCircle (ZMod.val_injective q huv)
 
 /-- The reduced rational frequencies with modulus at most `Q` are separated
-by `1/Q²`, with modulus one included.-/
+by `1/Q²`, with modulus one included.
+@isnad1 id=le.3h5v.s8.d3f5b731ea25 from=translated src=- shape=a1e0433f vocab=983ce67a
+-/
 theorem unit_rational_frequency_dist_ge_inv_sq {q r : ℕ} [NeZero q] [NeZero r]
     (Q : ℕ) (hqQ : q ≤ Q) (hrQ : r ≤ Q) (u : (ZMod q)ˣ) (v : (ZMod r)ˣ)
     (hne : ¬ (q = r ∧ (u : ZMod q).val = (v : ZMod r).val)) :

@@ -16,6 +16,9 @@ noncomputable section
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=le.1h2v.s6.d2b43e88b81f from=translated src=- shape=e05eee1d vocab=af303085
+-/
 theorem log_natCast_sq_le_rpow_half (q : ℕ) (ε : ℝ) (hε : 0 < ε) :
     (Real.log q) ^ 2 ≤ 16 * (q : ℝ) ^ (ε / 2) / ε ^ 2 := by
   have h := Real.log_natCast_le_rpow_div q (show 0 < ε / 4 by positivity)
@@ -30,7 +33,9 @@ theorem log_natCast_sq_le_rpow_half (q : ℕ) (ε : ℝ) (hε : 0 < ε) :
   field_simp
   ring
 
-/-- The logarithmic-square cost consumes half of a chosen power saving.-/
+/-- The logarithmic-square cost consumes half of a chosen power saving.
+@isnad1 id=le.3h3v.s7.cf1667fc0820 from=translated src=- shape=f1bb7f9a vocab=ac08dee7
+-/
 theorem power_gap_constant_le_div_log_sq {q : ℕ} (hq : 1 < q)
     (c ε : ℝ) (hc : 0 ≤ c) (hε : 0 < ε) :
     (c * ε ^ 2 / (160 * Real.exp 2)) * (q : ℝ) ^ (-ε) ≤
@@ -58,7 +63,9 @@ theorem power_gap_constant_le_div_log_sq {q : ℕ} (hq : 1 < q)
       apply div_le_div_of_nonneg_left (by positivity) (by positivity)
       exact mul_le_mul_of_nonneg_left (log_natCast_sq_le_rpow_half q ε hε) (by positivity)
 
-/-- Explicit large-conductor conversion for a supplied value lower bound.-/
+/-- Explicit large-conductor conversion for a supplied value lower bound.
+@isnad1 id=le.7h5v.s8.38699b00e2de from=translated src=- shape=82028506 vocab=20c4ac3b
+-/
 theorem real_zero_power_gap_of_value_lower_bound {q : ℕ} [NeZero q]
     (hq : 256 ≤ q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive)
     (c ε β : ℝ) (hc : 0 ≤ c) (hε : 0 < ε)

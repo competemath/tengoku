@@ -17,10 +17,16 @@ open Finset Filter
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=eq.0h3v.s5.3977e3ccd7fb from=translated src=- shape=0c284d60 vocab=a8cd4dc2
+-/
 @[simp] theorem characterDirichletPartialSum_one {q : ℕ}
     (χ : DirichletCharacter ℂ q) (s : ℂ) : characterDirichletPartialSum χ s 1 = 1 := by
   norm_num [characterDirichletPartialSum]
 
+/--
+@isnad1 id=le.1h1v.s6.09756baa6893 from=translated src=- shape=efaee915 vocab=ac479230
+-/
 theorem sum_Ioc_one_inv_sq_le_three_quarters (N : ℕ) (hN : 2 ≤ N) :
     (∑ n ∈ Ioc 1 N, ((n : ℝ) ^ 2)⁻¹) ≤ 3 / 4 := by
   have hs := sum_Ioc_consecutive (fun n : ℕ => ((n : ℝ) ^ 2)⁻¹)
@@ -30,7 +36,9 @@ theorem sum_Ioc_one_inv_sq_le_three_quarters (N : ℕ) (hN : 2 ≤ N) :
   norm_num at hs ht
   linarith
 
-/-- A finite estimate for every character, including principal characters.-/
+/-- A finite estimate for every character, including principal characters.
+@isnad1 id=le.2h4v.s6.cb8a63e8ab0c from=translated src=- shape=e9f68724 vocab=8879730f
+-/
 theorem norm_characterDirichletPartialSum_sub_one_le {q : ℕ}
     (χ : DirichletCharacter ℂ q) (s : ℂ) (hs : 2 ≤ s.re)
     (N : ℕ) (hN : 2 ≤ N) :
@@ -51,6 +59,9 @@ theorem norm_characterDirichletPartialSum_sub_one_le {q : ℕ}
     _ ≤ (n : ℝ) ^ (-2 : ℝ) := Real.rpow_le_rpow_of_exponent_le hn1 (by linarith)
     _ = _ := by rw [Real.rpow_neg (Nat.cast_nonneg n), Real.rpow_two]
 
+/--
+@isnad1 id=le.1h3v.s6.fccbfb8c6a30 from=translated src=- shape=de3cb080 vocab=68389610
+-/
 theorem norm_LFunction_sub_one_le {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (s : ℂ) (hs : 2 ≤ s.re) :
     ‖DirichletCharacter.LFunction χ s - 1‖ ≤ 3 / 4 := by
@@ -59,7 +70,9 @@ theorem norm_LFunction_sub_one_le {q : ℕ} [NeZero q]
   filter_upwards [eventually_ge_atTop 2] with N hN
   exact norm_characterDirichletPartialSum_sub_one_le χ s hs N hN
 
-/-- An absolute center-value lower bound suitable for local zero estimates.-/
+/-- An absolute center-value lower bound suitable for local zero estimates.
+@isnad1 id=le.1h3v.s6.a47d890a8d1c from=translated src=- shape=21a2f84d vocab=7f263296
+-/
 theorem one_quarter_le_norm_LFunction {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (s : ℂ) (hs : 2 ≤ s.re) :
     1 / 4 ≤ ‖DirichletCharacter.LFunction χ s‖ := by
@@ -72,6 +85,9 @@ theorem one_quarter_le_norm_LFunction {q : ℕ} [NeZero q]
         norm_add_le (1 - DirichletCharacter.LFunction χ s) (DirichletCharacter.LFunction χ s)
   linarith
 
+/--
+@isnad1 id=le.1h3v.s5.b6a6cadd0c4e from=translated src=- shape=a1a18f72 vocab=1d2666cd
+-/
 theorem norm_inv_LFunction_le_four {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (s : ℂ) (hs : 2 ≤ s.re) :
     ‖(DirichletCharacter.LFunction χ s)⁻¹‖ ≤ 4 := by

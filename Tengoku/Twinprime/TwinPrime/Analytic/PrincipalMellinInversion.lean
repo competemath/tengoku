@@ -23,6 +23,9 @@ def negativeRegularizedZetaLogDerivative (s : ℂ) : ℂ :=
 
 def mellinPoleContourIntegrand (x : ℝ) (s : ℂ) : ℂ := (x : ℂ) ^ s * mellinPoleKernel s
 
+/--
+@isnad1 id=eq.0h1v.s7.85bdc23b2826 from=translated src=- shape=3c795d96 vocab=b87c252b
+-/
 theorem weighted_vonMangoldt_sum_eq_modOne (x : ℝ) :
     weightedPartialSum (fun n : ℕ => (ArithmeticFunction.vonMangoldt n : ℂ)) x =
       weightedPartialSum (fun n : ℕ =>
@@ -31,6 +34,9 @@ theorem weighted_vonMangoldt_sum_eq_modOne (x : ℝ) :
   funext n
   rw [show (n : ZMod 1) = 1 from Subsingleton.elim _ _, map_one, one_mul]
 
+/--
+@isnad1 id=eq.1h2v.s6.28b08aab6540 from=translated src=- shape=831d011a vocab=03d36c10
+-/
 theorem regularized_mellin_integrand_eq_difference (x : ℝ) (s : ℂ) (hs : 1 < s.re) :
     mellinContourIntegrand x negativeRegularizedZetaLogDerivative s =
       mellinContourIntegrand x (negativeLFunctionLogDerivative (1 : DirichletCharacter ℂ 1)) s -
@@ -43,6 +49,9 @@ theorem regularized_mellin_integrand_eq_difference (x : ℝ) (s : ℂ) (hs : 1 <
   rw [DirichletCharacter.LFunction_modOne_eq, he, mellinPoleKernel_eq_mellinRampKernel_div]
   ring
 
+/--
+@isnad1 id=integrab.2h2v.s6.cdeddaccc5b8 from=translated src=- shape=e2f13675 vocab=9840cc8d
+-/
 theorem integrable_mellinPole_contour_integrand (x c : ℝ) (hx : 0 < x) (hc : 1 < c) :
     Integrable (fun t : ℝ => mellinPoleContourIntegrand x ((c : ℂ) + t * I)) := by
   have hpow : Continuous (fun t : ℝ => (x : ℂ) ^ ((c : ℂ) + t * I)) :=
@@ -56,6 +65,9 @@ theorem integrable_mellinPole_contour_integrand (x c : ℝ) (hx : 0 < x) (hc : 1
   rw [mellinPoleContourIntegrand, norm_mul, Complex.norm_cpow_eq_rpow_re_of_pos hx]
   simp
 
+/--
+@isnad1 id=integrab.2h2v.s6.75df34127344 from=translated src=- shape=a72ad49f vocab=0fe73fe6
+-/
 theorem integrable_regularizedZeta_contour_integrand (x c : ℝ) (hx : 0 < x) (hc : 1 < c) :
     Integrable (fun t : ℝ => mellinContourIntegrand x negativeRegularizedZetaLogDerivative
       ((c : ℂ) + t * I)) := by
@@ -64,6 +76,9 @@ theorem integrable_regularizedZeta_contour_integrand (x c : ℝ) (hx : 0 < x) (h
   filter_upwards [] with t
   exact (regularized_mellin_integrand_eq_difference x ((c : ℂ) + t * I) (by simpa using hc)).symm
 
+/--
+@isnad1 id=eq.2h2v.s7.42994292e95a from=translated src=- shape=096765cb vocab=2f1d335e
+-/
 theorem mellinPoleWeight_eq_contour_integral (x c : ℝ) (hx : 0 < x) (hc : 1 < c) :
     mellinPoleWeight (1 / x) = (1 / (2 * Real.pi) : ℝ) •
       ∫ t : ℝ, mellinPoleContourIntegrand x ((c : ℂ) + t * I) := by
@@ -75,7 +90,9 @@ theorem mellinPoleWeight_eq_contour_integral (x c : ℝ) (hx : 0 < x) (hc : 1 < 
   rfl
 
 /-- The exact principal main term is retained before estimating the
-holomorphic regularized part.-/
+holomorphic regularized part.
+@isnad1 id=eq.2h2v.s7.3a4a17677e8a from=translated src=- shape=bb40370b vocab=f3f5385b
+-/
 theorem weighted_vonMangoldt_sum_sub_pole_eq_contour_integral
     (x c : ℝ) (hx : 0 < x) (hc : 1 < c) :
     weightedPartialSum (fun n : ℕ => (ArithmeticFunction.vonMangoldt n : ℂ)) x -
@@ -94,6 +111,9 @@ theorem weighted_vonMangoldt_sum_sub_pole_eq_contour_integral
   filter_upwards [] with t
   exact (regularized_mellin_integrand_eq_difference x ((c : ℂ) + t * I) (by simpa using hc)).symm
 
+/--
+@isnad1 id=le.1h2v.s6.cea886255f27 from=translated src=- shape=eb79ebf0 vocab=c4adef16
+-/
 theorem norm_negativeRegularizedZetaLogDerivative_vertical_le
     (c t : ℝ) (hc : 1 < c) :
     ‖negativeRegularizedZetaLogDerivative ((c : ℂ) + t * I)‖ ≤
@@ -120,6 +140,9 @@ theorem norm_negativeRegularizedZetaLogDerivative_vertical_le
   rw [hsplit]
   exact (norm_sub_le _ _).trans (_root_.add_le_add hmass hpole)
 
+/--
+@isnad1 id=le.3h3v.s7.6bdb57bb7242 from=translated src=- shape=f2e96bb3 vocab=aa97ce8c
+-/
 theorem norm_regularizedZeta_mellin_integrand_le_inv_sq
     (x c t : ℝ) (hx : 0 < x) (hc : 1 < c) (ht : t ≠ 0) :
     ‖mellinContourIntegrand x negativeRegularizedZetaLogDerivative ((c : ℂ) + t * I)‖ ≤

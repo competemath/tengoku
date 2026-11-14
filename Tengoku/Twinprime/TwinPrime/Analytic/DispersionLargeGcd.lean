@@ -18,7 +18,9 @@ open Finset ArithmeticFunction
 
 namespace TwinPrime.Analytic
 
-/-- The inverse-square tail, including the empty interval when `n < k`.-/
+/-- The inverse-square tail, including the empty interval when `n < k`.
+@isnad1 id=le.1h2v.s5.e8bc930da314 from=translated src=- shape=4f9722e9 vocab=eea0ea3e
+-/
 theorem sum_Ioc_inv_sq_le_inv (k n : ℕ) (hk : 1 ≤ k) :
     (∑ i ∈ Ioc k n, ((i : ℝ) ^ 2)⁻¹) ≤ (k : ℝ)⁻¹ := by
   by_cases hkn : k ≤ n
@@ -27,7 +29,9 @@ theorem sum_Ioc_inv_sq_le_inv (k n : ℕ) (hk : 1 ≤ k) :
   · simp [Ioc_eq_empty_of_le (by omega : n ≤ k)]
 
 /-- Counting pairs with a large gcd in an arbitrary positive integer rectangle.
-The diagonal may be included in this elementary upper bound.-/
+The diagonal may be included in this elementary upper bound.
+@isnad1 id=le.1h3v.s6.1f1ef9826c43 from=translated src=- shape=ba41ad09 vocab=b706f9b4
+-/
 theorem card_largeGcd_rectangle_le (A B G : ℕ) (hG : 1 ≤ G) :
     ((((Ioc 0 A).product (Ioc 0 B)).filter
       (fun de => G < Nat.gcd de.1 de.2)).card : ℝ) ≤ (A : ℝ) * B / G := by
@@ -91,6 +95,9 @@ def dispersionOffDiagonalSmallGcd (U V X M N G : ℕ) : ℝ :=
     ∑ de ∈ dispersionSmallGcdPairs U M G,
       dispersionEntry X de.1 r * dispersionEntry X de.2 r
 
+/--
+@isnad1 id=le.1h3v.s6.c95381882f9d from=translated src=- shape=45b161b4 vocab=1be6740c
+-/
 theorem dispersionLargeGcdPairs_card_le (U M G : ℕ) (hG : 1 ≤ G) :
     ((dispersionLargeGcdPairs U M G).card : ℝ) ≤ 4 * (M : ℝ) ^ 2 / G := by
   have hsub : dispersionLargeGcdPairs U M G ⊆
@@ -111,6 +118,9 @@ theorem dispersionLargeGcdPairs_card_le (U M G : ℕ) (hG : 1 ≤ G) :
       card_largeGcd_rectangle_le (2 * M) (2 * M) G hG
     _ = _ := by push_cast; ring
 
+/--
+@isnad1 id=eq.0h6v.s5.3a132481320d from=translated src=- shape=3b3c0b1f vocab=b7ef7216
+-/
 theorem dispersionOffDiagonal_eq_small_add_large (U V X M N G : ℕ) :
     dispersionOffDiagonal U V X M N =
       dispersionOffDiagonalSmallGcd U V X M N G +
@@ -141,7 +151,9 @@ theorem dispersionOffDiagonal_eq_small_add_large (U V X M N G : ℕ) :
       by_cases hde : d = e <;> by_cases hg : Nat.gcd d e ≤ G <;>
         simp [hde, hg, show (G < Nat.gcd d e) ↔ ¬ Nat.gcd d e ≤ G from not_le.symm]
 
-/-- Before any pair counting, bounded entries control the restricted sum.-/
+/-- Before any pair counting, bounded entries control the restricted sum.
+@isnad1 id=le.0h6v.s6.662958cc5802 from=translated src=- shape=7a194afa vocab=df13be6e
+-/
 theorem abs_dispersionOffDiagonalLargeGcd_le_card (U V X M N G : ℕ) :
     |dispersionOffDiagonalLargeGcd U V X M N G| ≤
       (dispersionLargeGcdPairs U M G).card * (Real.log (2 * X + 2)) ^ 2 *
@@ -172,6 +184,9 @@ theorem abs_dispersionOffDiagonalLargeGcd_le_card (U V X M N G : ℕ) :
         _ = _ := by simp
     _ = _ := by rw [← sum_mul]; unfold dispersionMass; ring
 
+/--
+@isnad1 id=le.1h6v.s7.60c8246acfca from=translated src=- shape=2123a983 vocab=c131e47b
+-/
 theorem abs_dispersionOffDiagonalLargeGcd_le (U V X M N G : ℕ) (hG : 1 ≤ G) :
     |dispersionOffDiagonalLargeGcd U V X M N G| ≤
       (4 * (M : ℝ) ^ 2 / G) * (Real.log (2 * X + 2)) ^ 2 *
@@ -181,7 +196,9 @@ theorem abs_dispersionOffDiagonalLargeGcd_le (U V X M N G : ℕ) (hG : 1 ≤ G) 
       (mul_le_mul_of_nonneg_right (dispersionLargeGcdPairs_card_le U M G hG)
         (sq_nonneg _)) (dispersionMass_nonneg V N))
 
-/-- A finite large-gcd saving on the true dyadic product range.-/
+/-- A finite large-gcd saving on the true dyadic product range.
+@isnad1 id=le.4h6v.s7.931cc0b9f2a6 from=translated src=- shape=08627c44 vocab=c131e47b
+-/
 theorem dispersion_mass_mul_abs_largeGcd_le (U V X M N G : ℕ)
     (hM : 1 ≤ M) (hN : 1 ≤ N) (hG : 1 ≤ G) (hMN : M * N ≤ 2 * X) :
     dispersionMass V N * |dispersionOffDiagonalLargeGcd U V X M N G| ≤

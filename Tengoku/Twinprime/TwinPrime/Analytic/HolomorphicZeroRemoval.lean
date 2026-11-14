@@ -21,6 +21,9 @@ namespace TwinPrime.Analytic
 def zeroFactorPolynomial (f : ℂ → ℂ) (K : Set ℂ) : ℂ → ℂ :=
   ∏ᶠ u, (· - u) ^ divisor f K u
 
+/--
+@isnad1 id=ex.6h4v.s7.0ade2d8b088e from=translated src=- shape=0bfe3fbd vocab=d551728b
+-/
 theorem exists_holomorphic_zero_removal {f : ℂ → ℂ} {U K : Set ℂ} {c : ℂ}
     (hf : AnalyticOnNhd ℂ f U) (hU : IsPreconnected U) (hc : c ∈ U)
     (hfc : f c ≠ 0) (hK : IsCompact K) (hKU : K ⊆ U) :

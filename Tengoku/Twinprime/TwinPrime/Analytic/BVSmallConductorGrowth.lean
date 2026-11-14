@@ -17,6 +17,9 @@ namespace TwinPrime.Analytic
 def bvSmallConductorCutoff (A : ℝ) (X : ℕ) : ℕ :=
   ⌈(Real.log X) ^ (A + 9)⌉₊
 
+/--
+@isnad1 id=and.2h2v.s7.cb7cee8dae02 from=translated src=- shape=c0b70d85 vocab=e5b8908e
+-/
 theorem bvSmallConductorCutoff_bounds (A : ℝ) (hA : 0 < A)
     (X : ℕ) (hlog : 2 ≤ Real.log (X : ℝ)) :
     1 ≤ bvSmallConductorCutoff A X ∧
@@ -31,6 +34,9 @@ theorem bvSmallConductorCutoff_bounds (A : ℝ) (hA : 0 < A)
   refine ⟨?_, hlo, by linarith⟩
   exact_mod_cast hp.trans hlo
 
+/--
+@isnad1 id=le.3h2v.s6.6922b5d86afa from=translated src=- shape=c694c437 vocab=e5b8908e
+-/
 theorem bvSmallConductorCutoff_le_log_endpoint (A : ℝ) (hA : 0 < A)
     (X : ℕ) (hX : 2 ≤ X) (hlog : 2 ≤ Real.log (X : ℝ)) :
     (bvSmallConductorCutoff A X : ℝ) ≤ (Real.log (2 * X + 2)) ^ (A + 10) := by
@@ -48,7 +54,9 @@ theorem bvSmallConductorCutoff_le_log_endpoint (A : ℝ) (hA : 0 < A)
     _ ≤ _ := Real.rpow_le_rpow hl.le hlt (by linarith)
 
 /-- The admissible BV range is inside both the original scale and the
-square-root range required by the proved finite mean.-/
+square-root range required by the proved finite mean.
+@isnad1 id=and.4h3v.s7.40950c95e866 from=translated src=- shape=9e7def37 vocab=3fc8b303
+-/
 theorem bv_admissible_modulus_bounds (A : ℝ) (hA : 0 < A)
     (X Q : ℕ) (hX : 2 ≤ X) (hlog : 1 ≤ Real.log (X : ℝ))
     (hQ : (Q : ℝ) ≤ (X : ℝ) ^ (1 / 2 : ℝ) / (Real.log X) ^ (A + 9)) :
@@ -66,7 +74,9 @@ theorem bv_admissible_modulus_bounds (A : ℝ) (hA : 0 < A)
     linarith
 
 /-- Increasing the logarithmic modulus loss also meets the already proved
-primitive-replacement error range.-/
+primitive-replacement error range.
+@isnad1 id=le.3h3v.s7.ffd701505e2c from=translated src=- shape=2c32988b vocab=ea7ec0a7
+-/
 theorem bv_admissible_modulus_le_exception_range (A : ℝ) (_hA : 0 < A)
     (X Q : ℕ) (hlog : 1 ≤ Real.log (X : ℝ))
     (hQ : (Q : ℝ) ≤ (X : ℝ) ^ (1 / 2 : ℝ) / (Real.log X) ^ (A + 9)) :
@@ -76,7 +86,9 @@ theorem bv_admissible_modulus_le_exception_range (A : ℝ) (_hA : 0 < A)
   exact Real.rpow_le_rpow_of_exponent_le hlog (by linarith)
 
 /-- A uniform centered bound with exponent `2A+12` absorbs the count of
-small conductors and the outer reciprocal-totient logarithm.-/
+small conductors and the outer reciprocal-totient logarithm.
+@isnad1 id=le.5h4v.s8.65516bfe29cf from=translated src=- shape=aceb69d3 vocab=5a02ed70
+-/
 theorem bv_small_conductor_budget_le (A : ℝ) (hA : 0 < A)
     (C : ℝ) (hC : 0 ≤ C) (X Q : ℕ) (hX : 2 ≤ X)
     (hlog : 2 ≤ Real.log (X : ℝ)) (hQ : Q ≤ X) :

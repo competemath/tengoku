@@ -23,7 +23,9 @@ open scoped Interval Topology
 namespace TwinPrime.Analytic
 
 /-- The variation of a complex Dirichlet weight is controlled by the
-decrease of its real absolute-value weight.-/
+decrease of its real absolute-value weight.
+@isnad1 id=le.3h3v.s7.12fc233f35d7 from=translated src=- shape=ccc73028 vocab=363b6b69
+-/
 theorem norm_cpow_neg_sub_le (s : ℂ) (hs : 0 < s.re)
     {a b : ℝ} (ha : 0 < a) (hab : a ≤ b) :
     ‖(b : ℂ) ^ (-s) - (a : ℂ) ^ (-s)‖ ≤
@@ -58,7 +60,9 @@ theorem norm_cpow_neg_sub_le (s : ℂ) (hs : 0 < s.re)
   ring
 
 /-- Abel summation with a bound for each partial sum anchored at `M`.
-The right endpoint may coincide with the left endpoint.-/
+The right endpoint may coincide with the left endpoint.
+@isnad1 id=le.5h5v.s7.a06fbf9f5a2f from=translated src=- shape=5f9b9c63 vocab=aca5868f
+-/
 theorem norm_sum_Ioc_cpow_mul_le_of_partial_sums (M N : ℕ)
     (hM : 1 ≤ M) (hMN : M ≤ N) (s : ℂ) (hs : 0 < s.re)
     (e : ℕ → ℂ) (C : ℝ) (hC : 0 ≤ C)
@@ -115,7 +119,9 @@ theorem norm_sum_Ioc_cpow_mul_le_of_partial_sums (M N : ℕ)
       nlinarith [mul_nonneg hratio hNpow]
 
 /-- A primitive-character Dirichlet tail bound valid on `0 < s.re`.
-This concerns a finite ordered sum and does not assert absolute summability.-/
+This concerns a finite ordered sum and does not assert absolute summability.
+@isnad1 id=le.5h5v.s7.99b8c8fd4345 from=translated src=- shape=54031fea vocab=eb7ea704
+-/
 theorem norm_sum_primitive_character_dirichlet_Ioc_le {q : ℕ}
     (hq : 1 < q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive)
     (M N : ℕ) (hM : 1 ≤ M) (hMN : M ≤ N) (s : ℂ) (hs : 0 < s.re) :
@@ -140,6 +146,9 @@ def characterDirichletPartialSum {q : ℕ} (χ : DirichletCharacter ℂ q)
     (s : ℂ) (N : ℕ) : ℂ :=
   ∑ n ∈ Ioc 0 N, (n : ℂ) ^ (-s) * χ (n : ZMod q)
 
+/--
+@isnad1 id=eq.1h5v.s7.041c825c550b from=translated src=- shape=e5e5aaf2 vocab=0274a890
+-/
 theorem characterDirichletPartialSum_sub {q : ℕ}
     (χ : DirichletCharacter ℂ q) (s : ℂ) {M N : ℕ} (hMN : M ≤ N) :
     characterDirichletPartialSum χ s N - characterDirichletPartialSum χ s M =
@@ -150,7 +159,9 @@ theorem characterDirichletPartialSum_sub {q : ℕ}
   rw [← h]
   ring
 
-/-- Cauchy convergence of the ordered partial sums on the positive half-plane.-/
+/-- Cauchy convergence of the ordered partial sums on the positive half-plane.
+@isnad1 id=cauchyse.3h3v.s6.cdeedccc10c1 from=translated src=- shape=a9ae892a vocab=4d7b0abc
+-/
 theorem cauchySeq_characterDirichletPartialSum {q : ℕ}
     (hq : 1 < q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive)
     (s : ℂ) (hs : 0 < s.re) : CauchySeq (characterDirichletPartialSum χ s) := by
@@ -169,7 +180,9 @@ theorem cauchySeq_characterDirichletPartialSum {q : ℕ}
       (1 + ‖s‖ / s.re)
 
 /-- An ordered limit exists, with the same quantitative bound on every
-tail starting at a positive natural endpoint.-/
+tail starting at a positive natural endpoint.
+@isnad1 id=ex.3h3v.s7.3b0ccfc2af16 from=translated src=- shape=0ce14fbb vocab=2bc3e270
+-/
 theorem exists_characterDirichletPartialSum_limit {q : ℕ}
     (hq : 1 < q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive)
     (s : ℂ) (hs : 0 < s.re) :
@@ -188,7 +201,9 @@ theorem exists_characterDirichletPartialSum_limit {q : ℕ}
   exact norm_sum_primitive_character_dirichlet_Ioc_le hq χ hχ M N hM hMN s hs
 
 /-- On the absolutely convergent half-plane the ordered limit agrees with
-Mathlib's analytically continued Dirichlet L-function.-/
+Mathlib's analytically continued Dirichlet L-function.
+@isnad1 id=tendsto.1h3v.s6.2a7dcd7465cd from=translated src=- shape=dd07408e vocab=0730417b
+-/
 theorem tendsto_characterDirichletPartialSum_LFunction {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (s : ℂ) (hs : 1 < s.re) :
     Tendsto (characterDirichletPartialSum χ s) atTop
@@ -212,7 +227,9 @@ theorem tendsto_characterDirichletPartialSum_LFunction {q : ℕ} [NeZero q]
   exact (hS.hasSum.tendsto_sum_nat.comp (tendsto_add_atTop_nat 1)).congr heq
 
 /-- A quantitative truncation of `LFunction` on `1 < s.re`, with conductor
-dependence supplied by the proved primitive-character interval estimate.-/
+dependence supplied by the proved primitive-character interval estimate.
+@isnad1 id=le.4h4v.s7.26c7451eef27 from=translated src=- shape=869f3f7d vocab=edad62a4
+-/
 theorem norm_LFunction_sub_characterDirichletPartialSum_le {q : ℕ} [NeZero q]
     (hq : 1 < q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive)
     (M : ℕ) (hM : 1 ≤ M) (s : ℂ) (hs : 1 < s.re) :

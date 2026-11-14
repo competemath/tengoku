@@ -28,7 +28,9 @@ open scoped ArithmeticFunction.Moebius ArithmeticFunction.omega
 
 namespace TwinPrime.Sieve
 
-/-- Truncated geometric series bound: `∑_{v=1}^{M} x^v ≤ x / (1 - x)` for `0 ≤ x < 1`.-/
+/-- Truncated geometric series bound: `∑_{v=1}^{M} x^v ≤ x / (1 - x)` for `0 ≤ x < 1`.
+@isnad1 id=le.2h2v.s6.44fd6ac8f8f8 from=translated src=- shape=895c8148 vocab=219306b2
+-/
 theorem geom_sum_Icc_le {x : ℝ} (h0 : 0 ≤ x) (h1 : x < 1) (M : ℕ) :
     ∑ v ∈ Finset.Icc 1 M, x ^ v ≤ x / (1 - x) := by
   have h1' : 0 < 1 - x := by linarith
@@ -44,7 +46,9 @@ theorem geom_sum_Icc_le {x : ℝ} (h0 : 0 ≤ x) (h1 : x < 1) (M : ℕ) :
   linarith
 
 /-- The per-radical inequality: if every `m ∈ T` is nonzero with prime factors exactly those of
-the squarefree `l ∣ P`, then `∑_{m ∈ T} f m ≤ g l`.-/
+the squarefree `l ∣ P`, then `∑_{m ∈ T} f m ≤ g l`.
+@isnad1 id=le.4h4v.s7.8eabb3136ea5 from=translated src=- shape=ad577427 vocab=af3a2799
+-/
 theorem sum_le_selbergTerms_of_primeFactors_eq (s : BoundingSieve) (f : ℕ →* ℝ)
     (hf_nonneg : ∀ n, 0 ≤ f n) (hfnu : ∀ p, p.Prime → p ∣ s.prodPrimes → f p = s.nu p)
     {l : ℕ} (hl : l ∣ s.prodPrimes) (T : Finset ℕ)
@@ -119,7 +123,9 @@ open TwinPrime.Sieve
 
 /-- **Lower bound for the Selberg sum.**  If `f : ℕ →* ℝ` is nonnegative, completely
 multiplicative, and agrees with `ν` on the sifting primes, then `∑_{m ∈ T} f m ≤ S` for every
-finite set `T` of nonzero integers `m` with `m² ≤ y` all of whose prime factors divide `P`.-/
+finite set `T` of nonzero integers `m` with `m² ≤ y` all of whose prime factors divide `P`.
+@isnad1 id=le.5h3v.s8.d95a73c9e5f2 from=translated src=- shape=04706ba0 vocab=24d76087
+-/
 theorem selbergBoundingSum_ge_sum (s : SelbergSieve) (f : ℕ →* ℝ) (hf_nonneg : ∀ n, 0 ≤ f n)
     (hfnu : ∀ p, p.Prime → p ∣ s.prodPrimes → f p = s.nu p)
     (T : Finset ℕ) (hT0 : ∀ m ∈ T, m ≠ 0)

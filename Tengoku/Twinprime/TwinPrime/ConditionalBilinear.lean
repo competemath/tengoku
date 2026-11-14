@@ -27,7 +27,9 @@ namespace TwinPrime
 
 open Analytic Filter
 
-/-- The numerical budget in PLAN.md, Section 7.2.-/
+/-- The numerical budget in PLAN.md, Section 7.2.
+@isnad1 id=le.5h7v.s7.21c1b5b7ace4 from=translated src=- shape=4d3b6fc1 vocab=b59c7e53
+-/
 theorem four_obligation_budget {A K B E W C x : ℝ}
     (hD : W = A + K + B)
     (hA : |A - C * x| ≤ C * x / 8)
@@ -40,7 +42,9 @@ theorem four_obligation_budget {A K B E W C x : ℝ}
 
 /-- A positive proportion of the mixed main term surviving the exact signed
 decomposition, after proper prime powers are removed, gives infinitely many twins.
-This is a conditional theorem with all four analytic obligations visible.-/
+This is a conditional theorem with all four analytic obligations visible.
+@isnad1 id=twinprim.6h4v.s8.7b6bc123f8dd from=translated src=- shape=c4ad69db vocab=794a47bf
+-/
 theorem twinPrimeConjecture_of_bilinear_budget
     (U V : ℕ → ℕ) (C : ℝ) (hC : 0 < C) (X₀ : ℕ)
     (hcutoff : ∀ X ≥ X₀, 0 < U X ∧ V X ≤ X)
@@ -62,7 +66,9 @@ theorem twinPrimeConjecture_of_bilinear_budget
   have hmain : 0 < C * (X : ℝ) / 8 := by positivity
   exact ⟨X, hYX, by linarith⟩
 
-/-- Specialization to the existing, proved positive twin-prime constant.-/
+/-- Specialization to the existing, proved positive twin-prime constant.
+@isnad1 id=twinprim.5h3v.s8.3de2a5aae970 from=translated src=- shape=4531f0a3 vocab=84dc85c4
+-/
 theorem twinPrimeConjecture_of_bilinear_budget_twinConstant
     (U V : ℕ → ℕ) (X₀ : ℕ)
     (hcutoff : ∀ X ≥ X₀, 0 < U X ∧ V X ≤ X)
@@ -79,7 +85,9 @@ theorem twinPrimeConjecture_of_bilinear_budget_twinConstant
     (mul_pos (by norm_num) twinPrimeConstant_pos) X₀ hcutoff hA hK hE hB
 
 /-- The prime-power obligation is already discharged by `tendsto_Epp_div`.
-The two known analytic estimates and the new signed estimate remain assumptions.-/
+The two known analytic estimates and the new signed estimate remain assumptions.
+@isnad1 id=twinprim.5h4v.s7.9f17dcc69b3f from=translated src=- shape=fa5356f6 vocab=873b043c
+-/
 theorem twinPrimeConjecture_of_bilinear_estimates
     (U V : ℕ → ℕ) (C : ℝ) (hC : 0 < C) (X₀ : ℕ)
     (hcutoff : ∀ X ≥ X₀, 0 < U X ∧ V X ≤ X)
@@ -99,7 +107,9 @@ theorem twinPrimeConjecture_of_bilinear_estimates
   linarith
 
 /-- The precise primary-route endpoint: fixed fifth-root cutoffs, the existing
-twin-prime constant, and only the three as-yet unproved analytic estimates.-/
+twin-prime constant, and only the three as-yet unproved analytic estimates.
+@isnad1 id=twinprim.3h1v.s7.0daf0d338390 from=translated src=- shape=8e92c667 vocab=0ba5cb00
+-/
 theorem twinPrimeConjecture_of_primary_estimates (X₀ : ℕ)
     (hA : ∀ X ≥ X₀,
       |mixedCorrelation (primaryCutoff X) X - (2 * twinPrimeConstant) * X| ≤

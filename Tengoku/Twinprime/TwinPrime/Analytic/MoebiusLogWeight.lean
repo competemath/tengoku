@@ -19,6 +19,9 @@ open scoped ArithmeticFunction.Moebius
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=and.1h1v.s7.e8915559836a from=translated src=- shape=f2428cbb vocab=60e75a81
+-/
 theorem log_sq_succ_sub_bounds {x : ℝ} (hx : 2 ≤ x) :
     0 ≤ (Real.log (x + 1)) ^ 2 - (Real.log x) ^ 2 ∧
       (Real.log (x + 1)) ^ 2 - (Real.log x) ^ 2 ≤ 4 * Real.log x / x := by
@@ -45,7 +48,9 @@ theorem log_sq_succ_sub_bounds {x : ℝ} (hx : 2 ≤ x) :
         mul_le_mul hdiff (by linarith) (by linarith) (by positivity)
       _ = _ := by ring
 
-/-- Exact Abel identity, including the contribution at `t=1`.-/
+/-- Exact Abel identity, including the contribution at `t=1`.
+@isnad1 id=eq.1h1v.s7.5ad3fe1b93ed from=translated src=- shape=198a278e vocab=df8f45b1
+-/
 theorem mertens_mul_log_sq_eq (N : ℕ) (hN : 2 ≤ N) :
     mertensSum N * (Real.log N) ^ 2 = moebiusLogSqSummatory (N : ℝ) +
       (Real.log 2) ^ 2 +
@@ -72,7 +77,9 @@ theorem mertens_mul_log_sq_eq (N : ℕ) (hN : 2 ≤ N) :
   dsimp only [v] at habel
   nlinarith
 
-/-- A finite weighted supremum bound controls the Abel unweighting error.-/
+/-- A finite weighted supremum bound controls the Abel unweighting error.
+@isnad1 id=le.3h2v.s8.869c0e8f9411 from=translated src=- shape=3cbf356a vocab=d8250893
+-/
 theorem abs_mertens_mul_log_sq_le (N : ℕ) (hN : 2 ≤ N) (W : ℝ) (hW0 : 0 ≤ W)
     (hW : ∀ t ∈ Icc 2 N, |mertensSum t| * (Real.log t) ^ 6 / (t : ℝ) ≤ W) :
     |mertensSum N| * (Real.log N) ^ 2 ≤ |moebiusLogSqSummatory (N : ℝ)| +
@@ -125,7 +132,9 @@ theorem abs_mertens_mul_log_sq_le (N : ℕ) (hN : 2 ≤ N) (W : ℝ) (hW0 : 0 �
   linarith
 
 /-- Normalized form of unweighting: the contribution of the finite supremum
-has an additional inverse logarithm. The kernel bound is already proved.-/
+has an additional inverse logarithm. The kernel bound is already proved.
+@isnad1 id=eventual.0h0v.s8.4905e80e5673 from=translated src=- shape=615ac1e3 vocab=0327feb1
+-/
 theorem eventually_mertens_log_six_le_logSq_sum :
     ∀ᶠ N : ℕ in atTop, ∀ W : ℝ, 0 ≤ W →
       (∀ t ∈ Icc 2 N, |mertensSum t| * (Real.log t) ^ 6 / (t : ℝ) ≤ W) →
@@ -153,7 +162,9 @@ theorem eventually_mertens_log_six_le_logSq_sum :
     _ = _ := by field_simp
 
 /-- Real unweighting preserves the exact logarithm and bounds its final
-fractional-interval increment separately.-/
+fractional-interval increment separately.
+@isnad1 id=le.3h2v.s8.0addf493015f from=translated src=- shape=6e8ad5b1 vocab=91834dda
+-/
 theorem abs_mertensReal_mul_log_sq_le (x : ℝ) (hx : 4 ≤ x) (W : ℝ) (hW0 : 0 ≤ W)
     (hW : ∀ t : ℝ, 2 ≤ t → t ≤ x → |mertensReal t| * (Real.log t) ^ 6 / t ≤ W) :
     |mertensReal x| * (Real.log x) ^ 2 ≤ |moebiusLogSqSummatory x| +
@@ -199,7 +210,9 @@ theorem abs_mertensReal_mul_log_sq_le (x : ℝ) (hx : 4 ≤ x) (W : ℝ) (hW0 : 
 
 /-- The real normalized form feeds a supremum on a real initial interval.
 Its main coefficient remains one, and the additional supremum coefficient
-tends to zero as an inverse logarithm.-/
+tends to zero as an inverse logarithm.
+@isnad1 id=eventual.0h0v.s8.8460348d39f8 from=translated src=- shape=35e10a63 vocab=0022fede
+-/
 theorem eventually_mertensReal_log_six_le_logSq_sum :
     ∀ᶠ x : ℝ in atTop, ∀ W : ℝ, 0 ≤ W →
       (∀ t : ℝ, 2 ≤ t → t ≤ x → |mertensReal t| * (Real.log t) ^ 6 / t ≤ W) →

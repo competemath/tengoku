@@ -22,6 +22,9 @@ def middlePrimePowerMainSum (a v : ℝ) (X : ℕ) : ℝ :=
     Real.log ((2 * X : ℝ) / q) /
       ((Nat.totient q : ℝ) * Real.log (middlePrimeSieveThreshold a X q))
 
+/--
+@isnad1 id=le.2h2v.s5.c66f1f8bd4c0 from=translated src=- shape=9946dde9 vocab=64b7bcb6
+-/
 theorem middlePrimePowerCutoff_le_input (v : ℝ) (hv : v ≤ 1)
     (X : ℕ) (hX : 1 ≤ X) : middlePrimePowerCutoff v X ≤ X := by
   apply Nat.floor_le_of_le

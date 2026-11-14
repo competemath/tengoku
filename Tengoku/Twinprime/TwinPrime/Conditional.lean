@@ -30,6 +30,9 @@ namespace TwinPrime
 
 /-! ### Growth of `π₂` implies the conjecture -/
 
+/--
+@isnad1 id=twinprim.1h0v.s3.253d2c0e5cda from=translated src=- shape=9b783fac vocab=c53f5bb5
+-/
 theorem twinPrimeConjecture_of_tendsto (h : Tendsto (fun x : ℕ => twinCount x) atTop atTop) :
     TwinPrimeConjecture := by
   by_contra hfin
@@ -47,7 +50,9 @@ theorem twinPrimeConjecture_of_tendsto (h : Tendsto (fun x : ℕ => twinCount x)
   have := hbound x
   omega
 
-/-- `x / (log x)^2 → ∞`.-/
+/-- `x / (log x)^2 → ∞`.
+@isnad1 id=tendsto.0h0v.s5.1c45de9e10c8 from=translated src=- shape=59f7bc4d vocab=e07a643a
+-/
 theorem tendsto_div_log_sq_atTop :
     Tendsto (fun x : ℝ => x / (Real.log x) ^ 2) atTop atTop := by
   have h0 : Tendsto (fun x : ℝ => (Real.log x) ^ 2 / (1 * x + 0)) atTop (𝓝 0) :=
@@ -63,6 +68,9 @@ theorem tendsto_div_log_sq_atTop :
   filter_upwards [eventually_gt_atTop 1] with x hx
   simp [Pi.inv_apply, inv_div]
 
+/--
+@isnad1 id=twinprim.2h2v.s6.bcb0c92f4b21 from=translated src=- shape=c9597bc2 vocab=63b4f1ff
+-/
 theorem twinPrimeConjecture_of_lower_bound {c : ℝ} (hc : 0 < c) (x₀ : ℕ)
     (h : ∀ x ≥ x₀, c * x / (Real.log x) ^ 2 ≤ twinCount x) : TwinPrimeConjecture := by
   apply twinPrimeConjecture_of_tendsto
@@ -84,6 +92,9 @@ theorem twinPrimeConjecture_of_lower_bound {c : ℝ} (hc : 0 < c) (x₀ : ℕ)
 def HardyLittlewoodAsymptotic (C : ℝ) : Prop :=
   Tendsto (fun x : ℕ => (twinCount x : ℝ) / (C * x / (Real.log x) ^ 2)) atTop (𝓝 1)
 
+/--
+@isnad1 id=twinprim.2h1v.s4.daa29a065e35 from=translated src=- shape=0e860516 vocab=20dc8f10
+-/
 theorem twinPrimeConjecture_of_hardyLittlewood {C : ℝ} (hC : 0 < C)
     (h : HardyLittlewoodAsymptotic C) : TwinPrimeConjecture := by
   -- eventually the ratio is at least `1/2`

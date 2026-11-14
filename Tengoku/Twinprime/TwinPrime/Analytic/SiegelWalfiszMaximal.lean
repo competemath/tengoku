@@ -19,7 +19,9 @@ open Finset Filter Classical
 
 namespace TwinPrime.Analytic
 
-/-- The elementary centered bound includes the principal character and zero.-/
+/-- The elementary centered bound includes the principal character and zero.
+@isnad1 id=le.0h3v.s5.1919e5481f58 from=translated src=- shape=8e1bcb8a vocab=54160779
+-/
 theorem norm_centeredCharacterPsi_le_trivial {r : ℕ} (t : ℕ)
     (χ : DirichletCharacter ℂ r) :
     ‖centeredCharacterPsi t χ‖ ≤ (t : ℝ) * Real.log (t : ℝ) + t := by
@@ -65,7 +67,9 @@ private theorem short_centered_endpoint_le {r : ℕ} (A : ℝ) (t T : ℕ)
     _ = _ := by dsimp only [L]; ring
 
 /-- A uniform centered pointwise Siegel--Walfisz estimate gives the full
-finite endpoint maximum, including primitive conductor one.-/
+finite endpoint maximum, including primitive conductor one.
+@isnad1 id=maximals.1h0v.s1.674fd28d0233 from=translated src=- shape=1d48f1ac vocab=18ba61c5
+-/
 theorem PointwiseSiegelWalfisz.maximal (hSW : PointwiseSiegelWalfisz) :
     MaximalSiegelWalfisz := by
   intro A B hA hB

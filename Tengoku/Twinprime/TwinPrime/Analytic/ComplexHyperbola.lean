@@ -19,12 +19,17 @@ namespace TwinPrime.Analytic
 def complexArithmeticSummatory (f : ArithmeticFunction ℂ) (x : ℝ) : ℂ :=
   ∑ n ∈ Ioc 0 ⌊x⌋₊, f n
 
+/--
+@isnad1 id=eq.0h2v.s5.4e32d1363ba3 from=translated src=- shape=766ee2b9 vocab=6eda3612
+-/
 @[simp] theorem complexArithmeticSummatory_nat (f : ArithmeticFunction ℂ) (N : ℕ) :
     complexArithmeticSummatory f (N : ℝ) = ∑ n ∈ Ioc 0 N, f n := by
   simp [complexArithmeticSummatory]
 
 /-- The real Dirichlet hyperbola identity, keeping each quotient real inside
-the summatory function.-/
+the summatory function.
+@isnad1 id=eq.4h5v.s7.c8105f42b191 from=translated src=- shape=e7906b5a vocab=c26736c3
+-/
 theorem complexArithmeticSummatory_convolution_hyperbola (f g : ArithmeticFunction ℂ)
     (x y z : ℝ) (hx : 1 ≤ x) (hy : 1 ≤ y) (hz : 1 ≤ z) (hyz : y * z = x) :
     complexArithmeticSummatory (f * g) x =

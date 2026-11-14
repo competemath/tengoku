@@ -26,6 +26,9 @@ def siegelWalfiszStripBudgetConstant (B K d : ℝ) : ℝ :=
     ((288 * (1 + Real.log 5 / Real.log (6 / 5))) +
       1 / (Real.log (6 / 5) * siegelWalfiszStripWidthConstant B K d))
 
+/--
+@isnad1 id=lt.2h2v.s5.72898dfedc5f from=translated src=- shape=6c67d60b vocab=fb1dbf77
+-/
 theorem siegelWalfiszStripNumeratorConstant_pos (B K : ℝ)
     (hB : 0 < B) (hK : 0 < K) : 0 < siegelWalfiszStripNumeratorConstant B K := by
   have h16 : 0 ≤ Real.log (16 : ℝ) := Real.log_nonneg (by norm_num)
@@ -33,6 +36,9 @@ theorem siegelWalfiszStripNumeratorConstant_pos (B K : ℝ)
   unfold siegelWalfiszStripNumeratorConstant
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s5.d5c33d12ca8c from=translated src=- shape=1b4cbc0d vocab=4b1c230b
+-/
 theorem siegelWalfiszStripBudgetConstant_pos (B K d : ℝ)
     (hB : 0 < B) (hK : 0 < K) (hd : 0 < d) :
     0 < siegelWalfiszStripBudgetConstant B K d := by
@@ -43,6 +49,9 @@ theorem siegelWalfiszStripBudgetConstant_pos (B K d : ℝ)
   unfold siegelWalfiszStripBudgetConstant
   positivity
 
+/--
+@isnad1 id=le.5h4v.s7.0c395adac9fa from=translated src=- shape=6c2a099f vocab=29c2edc5
+-/
 theorem primitiveStripLogNumerator_polylog_le (B K L : ℝ)
     (hB : 0 < B) (hK : 0 < K) (hL : 1 ≤ L)
     (q : ℕ) (hq : 1 ≤ q) (hqL : (q : ℝ) ≤ L ^ B) :
@@ -72,7 +81,9 @@ theorem primitiveStripLogNumerator_polylog_le (B K L : ℝ)
   unfold siegelWalfiszStripNumeratorConstant
   nlinarith
 
-/-- Pointwise control for every logarithmic variable at least one.-/
+/-- Pointwise control for every logarithmic variable at least one.
+@isnad1 id=le.6h5v.s7.e4952c156c36 from=translated src=- shape=a45e8029 vocab=f4d47dbd
+-/
 theorem siegelWalfiszStripBudgetConstant_bound (B K d L : ℝ)
     (hB : 0 < B) (hK : 0 < K) (hd : 0 < d) (hL : 1 ≤ L)
     (q : ℕ) (hq : 1 ≤ q) (hqL : (q : ℝ) ≤ L ^ B) :
@@ -134,6 +145,9 @@ theorem siegelWalfiszStripBudgetConstant_bound (B K d L : ℝ)
   rw [he]
   linarith
 
+/--
+@isnad1 id=ex.3h3v.s7.488dfd460338 from=translated src=- shape=91c6b437 vocab=c42ea38c
+-/
 theorem exists_siegelWalfisz_stripBudget_bound (B K d : ℝ)
     (hB : 0 < B) (hK : 0 < K) (hd : 0 < d) :
     ∃ C : ℝ, 0 < C ∧ ∀ᶠ x : ℝ in atTop, ∀ q : ℕ,

@@ -16,6 +16,9 @@ open Filter
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=le.1h1v.s5.66444c204ed5 from=translated src=- shape=0cb2de66 vocab=af79bc10
+-/
 theorem log_le_two_log_natFloor {x : ℝ} (hx : 4 ≤ x) :
     Real.log x ≤ 2 * Real.log (⌊x⌋₊ : ℝ) := by
   have hn : 2 ≤ ⌊x⌋₊ := Nat.le_floor (by linarith : (2 : ℝ) ≤ x)
@@ -27,7 +30,9 @@ theorem log_le_two_log_natFloor {x : ℝ} (hx : 4 ≤ x) :
     Real.log x ≤ Real.log ((⌊x⌋₊ : ℝ) ^ 2) := Real.log_le_log hx0 hsq
     _ = _ := by rw [Real.log_pow]; norm_num
 
-/-- Every fixed logarithmic power is eventually at most the real scale.-/
+/-- Every fixed logarithmic power is eventually at most the real scale.
+@isnad1 id=eventual.0h1v.s4.98573ff9ff4a from=translated src=- shape=b88b1b9e vocab=b025f509
+-/
 theorem eventually_log_pow_le_self (k : ℕ) :
     ∀ᶠ x : ℝ in atTop, (Real.log x) ^ k ≤ x := by
   have h := (isLittleO_log_rpow_rpow_atTop (k : ℝ) (s := 1) (by norm_num)).eventuallyLE
@@ -36,7 +41,9 @@ theorem eventually_log_pow_le_self (k : ℕ) :
     abs_of_nonneg (pow_nonneg (Real.log_nonneg hx) k), abs_of_nonneg (by linarith : 0 ≤ x)] using h
 
 /-- Integer Chebyshev errors imply the corresponding real-endpoint error,
-with a displayed constant accounting for the floor and logarithm comparison.-/
+with a displayed constant accounting for the floor and logarithm comparison.
+@isnad1 id=eventual.2h2v.s7.d656a075710a from=translated src=- shape=6e669281 vocab=066d4d60
+-/
 theorem psi_real_error_of_nat_error (k : ℕ) (K : ℝ) (hK : 0 ≤ K)
     (hψ : ∀ᶠ N : ℕ in atTop,
       |Chebyshev.psi N - (N : ℝ)| ≤ K * N / (Real.log N) ^ k) :
@@ -78,7 +85,9 @@ theorem psi_real_error_of_nat_error (k : ℕ) (K : ℝ) (hK : 0 ≤ K)
     _ = _ := by ring
 
 /-- Modulus one of BV supplies the real prime estimate used by the centered
-Selberg argument. The distribution theorem remains an explicit hypothesis.-/
+Selberg argument. The distribution theorem remains an explicit hypothesis.
+@isnad1 id=ex.1h0v.s6.a1f60532d1eb from=translated src=- shape=d2fe5f53 vocab=22d68501
+-/
 theorem MaximalBombieriVinogradov.psi_real_log_six
     (hBV : MaximalBombieriVinogradov) :
     ∃ K : ℝ, 0 ≤ K ∧ ∀ᶠ x : ℝ in atTop,

@@ -24,7 +24,9 @@ def characterVaughanII {q : ℕ} (U V t : ℕ) (χ : DirichletCharacter ℂ q) :
   ∑ n ∈ Ioc 0 t, ((moebiusHigh U * vaughanBeta V) n : ℂ) * χ n
 
 /-- Reindex the convolution by its two positive factors and unique product.
-The ambient bound T may exceed the selected endpoint t.-/
+The ambient bound T may exceed the selected endpoint t.
+@isnad1 id=eq.1h6v.s8.1b8864efe1f5 from=translated src=- shape=fd96b915 vocab=c4db43df
+-/
 theorem characterVaughanII_eq_pair_sum {q : ℕ} (U V t T : ℕ)
     (χ : DirichletCharacter ℂ q) (ht : t ≤ T) :
     characterVaughanII U V t χ =
@@ -85,7 +87,9 @@ theorem characterVaughanII_eq_pair_sum {q : ℕ} (U V t T : ℕ)
     dsimp only
     rw [← Nat.cast_mul, hprod]
 
-/-- The same exact factorization as an iterated sum, retaining `m*n ≤ t`.-/
+/-- The same exact factorization as an iterated sum, retaining `m*n ≤ t`.
+@isnad1 id=eq.1h6v.s7.2e1773975e90 from=translated src=- shape=3d8b77ba vocab=563cf054
+-/
 theorem characterVaughanII_eq_double_sum {q : ℕ} (U V t T : ℕ)
     (χ : DirichletCharacter ℂ q) (ht : t ≤ T) :
     characterVaughanII U V t χ =
@@ -99,7 +103,9 @@ theorem characterVaughanII_eq_double_sum {q : ℕ} (U V t T : ℕ)
     _ = _ := by simp only [sum_filter]
 
 /-- A global positive square domain with the two cutoff masks made explicit.
-This form is ready for partition into fixed dyadic boxes.-/
+This form is ready for partition into fixed dyadic boxes.
+@isnad1 id=eq.1h6v.s8.f977a2bdbf88 from=translated src=- shape=f02d2958 vocab=edf0b6f2
+-/
 theorem characterVaughanII_eq_masked_double_sum {q : ℕ} (U V t T : ℕ)
     (χ : DirichletCharacter ℂ q) (ht : t ≤ T) :
     characterVaughanII U V t χ =
@@ -124,7 +130,9 @@ theorem characterVaughanII_eq_masked_double_sum {q : ℕ} (U V t T : ℕ)
   · simp [hUm]
 
 /-- The low von Mangoldt convolution is the original character sum with
-the endpoint truncated at V.-/
+the endpoint truncated at V.
+@isnad1 id=eq.0h4v.s6.7955e5095d2c from=translated src=- shape=806e585a vocab=dd43e85e
+-/
 theorem sum_mangoldtLow_character_eq {q : ℕ} (V t : ℕ) (χ : DirichletCharacter ℂ q) :
     (∑ n ∈ Ioc 0 t, (mangoldtLow V n : ℂ) * χ n) = characterPsi (min t V) χ := by
   have hfilter : (Ioc 0 t).filter (fun n => n ≤ V) = Ioc 0 (min t V) := by
@@ -138,7 +146,9 @@ theorem sum_mangoldtLow_character_eq {q : ℕ} (V t : ℕ) (χ : DirichletCharac
   by_cases hn : n ≤ V <;> simp [mangoldtLow, cutoffLow_apply, hn]
 
 /-- Full finite Vaughan identity for the character sum. The low term is
-retained, so the result applies to every natural endpoint and both cutoffs.-/
+retained, so the result applies to every natural endpoint and both cutoffs.
+@isnad1 id=eq.0h5v.s8.d8f02d90d89b from=translated src=- shape=0eb4427e vocab=dbd820ba
+-/
 theorem characterPsi_eq_vaughan {q : ℕ} (U V t : ℕ) (χ : DirichletCharacter ℂ q) :
     characterPsi t χ =
       (∑ n ∈ Ioc 0 t, ((moebiusLow U * ArithmeticFunction.log) n : ℂ) * χ n) -

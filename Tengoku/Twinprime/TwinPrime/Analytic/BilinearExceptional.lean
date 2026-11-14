@@ -22,15 +22,24 @@ namespace TwinPrime.Analytic
 
 def nonprimeMangoldt (n : ℕ) : ℝ := if ¬n.Prime then vonMangoldt n else 0
 
+/--
+@isnad1 id=le.0h1v.s3.edbebcc34582 from=translated src=- shape=b9369acb vocab=9d65596d
+-/
 theorem nonprimeMangoldt_nonneg (n : ℕ) : 0 ≤ nonprimeMangoldt n := by
   unfold nonprimeMangoldt
   split_ifs <;> positivity
 
+/--
+@isnad1 id=eq.0h1v.s5.6f030235fcef from=translated src=- shape=68ec2821 vocab=1ca8c631
+-/
 theorem sum_nonprimeMangoldt_eq (Y : ℕ) :
     (∑ n ∈ Ioc 0 Y, nonprimeMangoldt n) = Chebyshev.psi Y - Chebyshev.theta Y := by
   rw [Chebyshev.psi_sub_theta_eq_sum_not_prime]
   simp [nonprimeMangoldt, sum_filter]
 
+/--
+@isnad1 id=le.0h1v.s5.1c991fc6df8e from=translated src=- shape=f4ba616f vocab=b96eb6a4
+-/
 theorem nonprimeMangoldt_dyadic_le (X : ℕ) :
     (∑ n ∈ Ioc X (2 * X), nonprimeMangoldt n) ≤ evenProgressionBound X := by
   calc
@@ -47,6 +56,9 @@ theorem nonprimeMangoldt_dyadic_le (X : ℕ) :
         (Chebyshev.psi_sub_theta_le (x := ((2 * X + 2 : ℕ) : ℝ))
           (by exact_mod_cast (show 1 ≤ 2 * X + 2 by omega)))
 
+/--
+@isnad1 id=le.0h1v.s5.4f2401919033 from=translated src=- shape=482206e9 vocab=e90aaf56
+-/
 theorem nonprimeMangoldt_shifted_dyadic_le (X : ℕ) :
     (∑ n ∈ Ioc X (2 * X), nonprimeMangoldt (n + 2)) ≤ evenProgressionBound X := by
   calc
@@ -66,17 +78,26 @@ theorem nonprimeMangoldt_shifted_dyadic_le (X : ℕ) :
         (Chebyshev.psi_sub_theta_le (x := ((2 * X + 2 : ℕ) : ℝ))
           (by exact_mod_cast (show 1 ≤ 2 * X + 2 by omega)))
 
+/--
+@isnad1 id=le.1h1v.s5.96ec1269bf41 from=translated src=- shape=8d05bb8f vocab=2807b73c
+-/
 theorem log_two_le_vonMangoldt {n : ℕ} (hn : IsPrimePow n) :
     Real.log 2 ≤ vonMangoldt n := by
   rw [vonMangoldt_apply, ite_eq_left hn]
   exact Real.log_le_log (by norm_num)
     (by exact_mod_cast (Nat.minFac_prime hn.ne_one).two_le)
 
+/--
+@isnad1 id=le.2h3v.s6.60e10ab624c2 from=translated src=- shape=bd962928 vocab=892d5d0f
+-/
 theorem abs_vaughanBilinear_of_prime_pow_le_log (U V n : ℕ) (hU : 1 ≤ U)
     (hn : IsPrimePow n) : |(moebiusHigh U * vaughanBeta V) n| ≤ Real.log n := by
   obtain ⟨p, a, hp, _, rfl⟩ := (isPrimePow_nat_iff n).mp hn
   exact abs_vaughanBilinear_prime_pow_le_log U V p a hU hp
 
+/--
+@isnad1 id=le.0h3v.s6.5685426b9341 from=translated src=- shape=9b66f457 vocab=12b910a5
+-/
 theorem abs_vaughanBilinear_le_cuberoot (U V n : ℕ) :
     |(moebiusHigh U * vaughanBeta V) n| ≤ 16 * (n : ℝ) ^ (1 / 3 : ℝ) * Real.log n := by
   by_cases hn : n = 0
@@ -94,6 +115,9 @@ def bilinearExceptionalBound (X : ℕ) : ℝ :=
   ((Real.log (2 * X + 2)) ^ 2 / Real.log 2 +
     16 * (2 * X + 2 : ℝ) ^ (1 / 3 : ℝ) * Real.log (2 * X + 2)) * evenProgressionBound X
 
+/--
+@isnad1 id=le.0h1v.s3.6c5ef70001b6 from=translated src=- shape=b9369acb vocab=ab4e240a
+-/
 theorem bilinearExceptionalBound_nonneg (X : ℕ) : 0 ≤ bilinearExceptionalBound X := by
   have hL : 0 ≤ Real.log (2 * X + 2) :=
     Real.log_nonneg (by have := Nat.cast_nonneg (α := ℝ) X; linarith)
@@ -101,7 +125,9 @@ theorem bilinearExceptionalBound_nonneg (X : ℕ) : 0 ≤ bilinearExceptionalBou
   exact mul_nonneg (add_nonneg (div_nonneg (sq_nonneg _) (Real.log_nonneg (by norm_num)))
     (mul_nonneg (by positivity) hL)) (evenProgressionBound_nonneg X)
 
-/-- Explicit finite error for removing the entire prime-power exceptional range.-/
+/-- Explicit finite error for removing the entire prime-power exceptional range.
+@isnad1 id=le.2h3v.s5.6e93ec597158 from=translated src=- shape=208b2e17 vocab=d0283415
+-/
 theorem abs_bilinearTerm_sub_primeSupport_le (U V X : ℕ) (hU : 1 ≤ U) (hV : 1 ≤ V) :
     |bilinearTerm U V X - bilinearPrimeSupport U V X| ≤ bilinearExceptionalBound X := by
   let Y : ℕ := 2 * X + 2
@@ -167,6 +193,9 @@ theorem abs_bilinearTerm_sub_primeSupport_le (U V X : ℕ) (hU : 1 ≤ U) (hV : 
   apply hp.trans
   convert he using 1; simp [bilinearExceptionalBound, D, L, Y, add_mul]
 
+/--
+@isnad1 id=tendsto.1h2v.s7.5e737fd4a6e0 from=translated src=- shape=421ed299 vocab=2f6ea480
+-/
 theorem tendsto_dyadic_power_log_pow_div (k : ℕ) {a : ℝ} (ha : a < 1) :
     Tendsto (fun X : ℕ => (2 * X + 2 : ℝ) ^ a * (Real.log (2 * X + 2)) ^ k / X)
       atTop (nhds 0) := by
@@ -199,6 +228,9 @@ theorem tendsto_dyadic_power_log_pow_div (k : ℕ) {a : ℝ} (ha : a < 1) :
       2 * ((X : ℝ) + 1) := by simpa only [mul_add, mul_one] using heq
   nlinarith [congrArg (fun t : ℝ => t * (Real.log (2 * ((X : ℝ) + 1))) ^ k) heq']
 
+/--
+@isnad1 id=eq.0h1v.s8.52d42beac739 from=translated src=- shape=56582a48 vocab=ccbc53d3
+-/
 theorem bilinearExceptionalBound_eq (X : ℕ) :
     bilinearExceptionalBound X =
       (2 / Real.log 2) * ((2 * X + 2 : ℝ) ^ (1 / 2 : ℝ) * (Real.log (2 * X + 2)) ^ 3) +
@@ -216,13 +248,18 @@ theorem bilinearExceptionalBound_eq (X : ℕ) :
         (Real.log (2 * X + 2)) ^ 2) := by ring
     _ = _ := by rw [hp]
 
+/--
+@isnad1 id=tendsto.0h0v.s5.b88672280272 from=translated src=- shape=15fb6055 vocab=247dccc1
+-/
 theorem tendsto_bilinearExceptionalBound_div :
     Tendsto (fun X : ℕ => bilinearExceptionalBound X / X) atTop (nhds 0) := by
   have h₁ := (tendsto_dyadic_power_log_pow_div 3 (a := 1 / 2) (by norm_num)).const_mul (2 / Real.log 2)
   have h₂ := (tendsto_dyadic_power_log_pow_div 2 (a := 5 / 6) (by norm_num)).const_mul 32
   simpa only [bilinearExceptionalBound_eq, add_div, mul_div_assoc, mul_zero, add_zero] using h₁.add h₂
 
-/-- The removal cost is sublinear uniformly for any two eventually positive cutoffs.-/
+/-- The removal cost is sublinear uniformly for any two eventually positive cutoffs.
+@isnad1 id=tendsto.2h2v.s6.baf94a83892c from=translated src=- shape=e6df6523 vocab=a3e8cae3
+-/
 theorem tendsto_bilinearTerm_sub_primeSupport_div (U V : ℕ → ℕ)
     (hU : ∀ᶠ X in atTop, 1 ≤ U X) (hV : ∀ᶠ X in atTop, 1 ≤ V X) :
     Tendsto (fun X : ℕ => (bilinearTerm (U X) (V X) X -

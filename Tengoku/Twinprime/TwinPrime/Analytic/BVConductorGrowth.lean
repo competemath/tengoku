@@ -18,7 +18,9 @@ open Filter
 
 namespace TwinPrime.Analytic
 
-/-- A finite numerical bound, with the power margin supplied explicitly.-/
+/-- A finite numerical bound, with the power margin supplied explicitly.
+@isnad1 id=le.7h4v.s8.2debbfac9b32 from=translated src=- shape=f1f46e14 vocab=ba2052a4
+-/
 theorem bvLargeConductorBudget_le_log_saving (A : ℝ) (hA : 0 < A)
     (X R₀ Q : ℕ) (hX : 256 ≤ X) (hR₀ : 1 ≤ R₀) (hRQ : R₀ ≤ Q)
     (hR : (Real.log X) ^ (A + 9) ≤ (R₀ : ℝ))
@@ -146,7 +148,9 @@ theorem bvLargeConductorBudget_le_log_saving (A : ℝ) (hA : 0 < A)
       gcongr
     _ = _ := by ring
 
-/-- The threshold is uniform in both conductor cutoffs; the constant is absolute.-/
+/-- The threshold is uniform in both conductor cutoffs; the constant is absolute.
+@isnad1 id=ex.1h1v.s8.89bed4c5b2a4 from=translated src=- shape=568eb8a7 vocab=b21cfd3b
+-/
 theorem eventually_bvLargeConductorBudget_le_log_saving (A : ℝ) (hA : 0 < A) :
     ∃ K : ℝ, 0 < K ∧ ∀ᶠ X : ℕ in atTop, ∀ R₀ Q : ℕ,
       1 ≤ R₀ → R₀ ≤ Q →

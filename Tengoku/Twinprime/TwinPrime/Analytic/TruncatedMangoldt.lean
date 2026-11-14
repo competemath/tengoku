@@ -30,6 +30,9 @@ def truncatedMoebiusSum (U n : ℕ) : ℝ :=
 def truncatedMoebiusLog (U n : ℕ) : ℝ :=
   ∑ d ∈ n.divisors with d ≤ U, (μ d : ℝ) * Real.log ((n : ℝ) / d)
 
+/--
+@isnad1 id=eq.1h2v.s6.7b9d9032e511 from=translated src=- shape=08470fd8 vocab=acc9bec0
+-/
 theorem truncatedMangoldt_eq (U n : ℕ) (hU : 0 < U) :
     truncatedMangoldt U n = Real.log U * truncatedMoebiusSum U n -
       ∑ d ∈ n.divisors with d ≤ U, (μ d : ℝ) * Real.log d := by
@@ -41,7 +44,9 @@ theorem truncatedMangoldt_eq (U n : ℕ) (hU : 0 < U) :
   rw [Real.log_div (by exact_mod_cast hU.ne') (by exact_mod_cast hdpos.ne')]
   ring
 
-/-- The exact correction from the first Vaughan term to `Λ_U`.-/
+/-- The exact correction from the first Vaughan term to `Λ_U`.
+@isnad1 id=eq.2h2v.s6.aa6c575dee1e from=translated src=- shape=5df979ea vocab=3b7251e4
+-/
 theorem truncatedMoebiusLog_eq (U n : ℕ) (hU : 0 < U) (hn : 0 < n) :
     truncatedMoebiusLog U n = truncatedMangoldt U n +
       Real.log ((n : ℝ) / U) * truncatedMoebiusSum U n := by
@@ -55,6 +60,9 @@ theorem truncatedMoebiusLog_eq (U n : ℕ) (hU : 0 < U) (hn : 0 < n) :
     Real.log_div (by exact_mod_cast hn.ne') (by exact_mod_cast hU.ne')]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s5.3f4fe0d36860 from=translated src=- shape=b634669c vocab=37f37884
+-/
 theorem moebiusLow_mul_log_apply (U n : ℕ) :
     (moebiusLow U * ArithmeticFunction.log) n = truncatedMoebiusLog U n := by
   rw [ArithmeticFunction.mul_apply,
@@ -69,7 +77,9 @@ theorem moebiusLow_mul_log_apply (U n : ℕ) :
   · by_cases h : d ≤ U <;> simp [h]
   · exact_mod_cast hdpos.ne'
 
-/-- A fixed modulus range for the truncated sum, including its divisibility filter.-/
+/-- A fixed modulus range for the truncated sum, including its divisibility filter.
+@isnad1 id=eq.1h2v.s6.76159bd44a7e from=translated src=- shape=9386c769 vocab=07388b1d
+-/
 theorem truncatedMangoldt_eq_moduli (U n : ℕ) (hn : 0 < n) :
     truncatedMangoldt U n = ∑ d ∈ range (U + 1) with d ∣ n,
       (μ d : ℝ) * Real.log ((U : ℝ) / d) := by
@@ -79,7 +89,9 @@ theorem truncatedMangoldt_eq_moduli (U n : ℕ) (hn : 0 < n) :
   simp only [mem_filter, Nat.mem_divisors, mem_range]
   omega
 
-/-- A uniform coefficient bound on the full truncated modulus range.-/
+/-- A uniform coefficient bound on the full truncated modulus range.
+@isnad1 id=le.1h2v.s6.649043967db2 from=translated src=- shape=187b8f8e vocab=79d547f8
+-/
 theorem abs_moebius_log_div_le (U d : ℕ) (hd : d ≤ U) :
     |(μ d : ℝ) * Real.log ((U : ℝ) / d)| ≤ Real.log (U + 1) := by
   by_cases hd0 : d = 0

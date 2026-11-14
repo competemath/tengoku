@@ -39,16 +39,25 @@ def uB (x : ℕ) : ℝ := Real.log x / (1000 * Real.log (Real.log x))
 
 /-! ### Eventual estimates -/
 
+/--
+@isnad1 id=eventual.0h1v.s4.ccd270500c06 from=translated src=- shape=07390086 vocab=2b74225b
+-/
 theorem eventually_loglog_ge (C : ℝ) : ∀ᶠ x : ℕ in atTop, C ≤ Real.log (Real.log x) := by
   have h : Tendsto (fun x : ℕ => Real.log (Real.log x)) atTop atTop :=
     Real.tendsto_log_atTop.comp (Real.tendsto_log_atTop.comp tendsto_natCast_atTop_atTop)
   exact h.eventually (eventually_ge_atTop C)
 
+/--
+@isnad1 id=eventual.0h1v.s4.f3863b71187f from=translated src=- shape=e8d442b5 vocab=2b74225b
+-/
 theorem eventually_log_ge (C : ℝ) : ∀ᶠ x : ℕ in atTop, C ≤ Real.log x := by
   have h : Tendsto (fun x : ℕ => Real.log x) atTop atTop :=
     Real.tendsto_log_atTop.comp tendsto_natCast_atTop_atTop
   exact h.eventually (eventually_ge_atTop C)
 
+/--
+@isnad1 id=eventual.1h1v.s5.acb6b9f222f1 from=translated src=- shape=fe4cb336 vocab=7b0d1522
+-/
 theorem eventually_loglog_le_mul_log {ε : ℝ} (hε : 0 < ε) :
     ∀ᶠ x : ℕ in atTop, Real.log (Real.log x) ≤ ε * Real.log x := by
   have h1 : (fun y : ℝ => Real.log y) =o[atTop] (fun y => y) := Real.isLittleO_log_id_atTop
@@ -59,13 +68,18 @@ theorem eventually_loglog_le_mul_log {ε : ℝ} (hε : 0 < ε) :
   rw [Real.norm_eq_abs, Real.norm_eq_abs, abs_of_nonneg hx0] at hx
   exact le_trans (le_abs_self _) hx
 
+/--
+@isnad1 id=eventual.1h2v.s5.5c7ecf8feae0 from=translated src=- shape=25385bbd vocab=d214ac1a
+-/
 theorem eventually_rpow_ge (C : ℝ) {y : ℝ} (hy : 0 < y) :
     ∀ᶠ x : ℕ in atTop, C ≤ (x : ℝ) ^ y := by
   have h : Tendsto (fun x : ℕ => (x : ℝ) ^ y) atTop atTop :=
     (tendsto_rpow_atTop hy).comp tendsto_natCast_atTop_atTop
   exact h.eventually (eventually_ge_atTop C)
 
-/-- The basic estimates at `z = zB x`, for large `x`.-/
+/-- The basic estimates at `z = zB x`, for large `x`.
+@isnad1 id=eventual.0h0v.s6.702a5083566a from=translated src=- shape=f56700cf vocab=5ff53100
+-/
 theorem zB_estimates : ∀ᶠ x : ℕ in atTop,
     2 ≤ zB x ∧
     ell (zB x) ≤ 32 * Real.log (Real.log x) ∧
@@ -155,7 +169,9 @@ theorem zB_estimates : ∀ᶠ x : ℕ in atTop,
 
 /-! ### From roughness to few prime factors -/
 
-/-- If every prime factor of `N ≥ 1` exceeds `z`, then `(z+1)^{Ω N} ≤ N`.-/
+/-- If every prime factor of `N ≥ 1` exceeds `z`, then `(z+1)^{Ω N} ≤ N`.
+@isnad1 id=le.2h2v.s6.6bd15fc4f8d4 from=translated src=- shape=62085574 vocab=3a996ef4
+-/
 theorem pow_cardFactors_le {N z : ℕ} (hN : N ≠ 0) (h : ∀ p, p.Prime → p ∣ N → z < p) :
     (z + 1) ^ (Ω N) ≤ N := by
   rw [ArithmeticFunction.cardFactors_apply]
@@ -167,7 +183,9 @@ theorem pow_cardFactors_le {N z : ℕ} (hN : N ≠ 0) (h : ∀ p, p.Prime → p 
         omega
     _ = N := Nat.prod_primeFactorsList hN
 
-/-- Sifted `n` with `√x ≤ n ≤ x` have `Ω(n) + Ω(n+2) ≤ 6000 log log n`.-/
+/-- Sifted `n` with `√x ≤ n ≤ x` have `Ω(n) + Ω(n+2) ≤ 6000 log log n`.
+@isnad1 id=le.6h2v.s7.9622136b365a from=translated src=- shape=9dd8d59e vocab=a3e4dd83
+-/
 theorem cardFactors_le_of_coprime_primorial {x n : ℕ} (hx : 16 ≤ x) (hℓ : 3 ≤ Real.log (Real.log x))
     (hu : uB x ≤ Real.log ((zB x : ℝ) + 1)) (hn1 : Nat.sqrt x ≤ n) (hnx : n ≤ x)
     (hcop : Nat.Coprime (primorial (zB x)) (n * (n + 2))) :

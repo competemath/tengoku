@@ -18,7 +18,9 @@ open Finset Filter
 
 namespace TwinPrime.Analytic
 
-/-- Both primary factors together use moduli no larger than `X^(2/5)`.-/
+/-- Both primary factors together use moduli no larger than `X^(2/5)`.
+@isnad1 id=le.0h1v.s6.700ac21b07d7 from=translated src=- shape=94fc8469 vocab=34772e32
+-/
 theorem primaryCutoff_sq_le_rpow (X : ℕ) :
     ((primaryCutoff X ^ 2 : ℕ) : ℝ) ≤ (X : ℝ) ^ (2 / 5 : ℝ) := by
   have hc : (primaryCutoff X : ℝ) ≤ (X : ℝ) ^ (1 / 5 : ℝ) :=
@@ -31,7 +33,9 @@ theorem primaryCutoff_sq_le_rpow (X : ℕ) :
       rw [← Real.rpow_mul_natCast (Nat.cast_nonneg X)]
       norm_num
 
-/-- The fixed power margin absorbs any fixed logarithmic restriction.-/
+/-- The fixed power margin absorbs any fixed logarithmic restriction.
+@isnad1 id=eventual.0h1v.s6.4071b9230d2c from=translated src=- shape=5a4f8c71 vocab=8021f208
+-/
 theorem eventually_primaryCutoff_sq_le_BV_range (B : ℝ) :
     ∀ᶠ X : ℕ in atTop,
       ((primaryCutoff X ^ 2 : ℕ) : ℝ) ≤
@@ -59,9 +63,15 @@ theorem eventually_primaryCutoff_sq_le_BV_range (B : ℝ) :
 def primaryProgressionError (X : ℕ) : ℝ :=
   ∑ q ∈ Icc 1 (primaryCutoff X ^ 2), progressionMaxError (2 * X + 2) q
 
+/--
+@isnad1 id=le.0h1v.s3.921e0e7c1501 from=translated src=- shape=b9369acb vocab=92b53769
+-/
 theorem primaryProgressionError_nonneg (X : ℕ) : 0 ≤ primaryProgressionError X :=
   sum_nonneg fun q _ => progressionMaxError_nonneg _ q
 
+/--
+@isnad1 id=le.1h2v.s6.e2fa79236fbe from=translated src=- shape=a18c5f86 vocab=2f528285
+-/
 theorem sum_progressionMaxError_le_primary {Q X : ℕ}
     (hQ : Q ≤ primaryCutoff X ^ 2) :
     (∑ q ∈ Icc 1 Q, progressionMaxError (2 * X + 2) q) ≤ primaryProgressionError X := by
@@ -70,7 +80,9 @@ theorem sum_progressionMaxError_le_primary {Q X : ℕ}
     exact mem_Icc.mpr ⟨(mem_Icc.mp hq).1, (mem_Icc.mp hq).2.trans hQ⟩
   · exact fun q _ _ => progressionMaxError_nonneg _ q
 
-/-- An elementary comparison of the dyadic logarithm with the scale logarithm.-/
+/-- An elementary comparison of the dyadic logarithm with the scale logarithm.
+@isnad1 id=le.1h1v.s6.3e8b0da78e56 from=translated src=- shape=eff19de0 vocab=45c294fc
+-/
 theorem log_two_mul_add_two_le_two_log {X : ℕ} (hX : 3 ≤ X) :
     Real.log (2 * X + 2) ≤ 2 * Real.log X := by
   have hx : (3 : ℝ) ≤ X := by exact_mod_cast hX
@@ -82,7 +94,9 @@ theorem log_two_mul_add_two_le_two_log {X : ℕ} (hX : 3 ≤ X) :
     _ = _ := by rw [Real.log_pow]; norm_num
 
 /-- Under (BV), one logarithmic weight on the full primary modulus range still
-costs `o(X)`. The distribution theorem remains an explicit hypothesis.-/
+costs `o(X)`. The distribution theorem remains an explicit hypothesis.
+@isnad1 id=tendsto.1h0v.s6.80111ea83180 from=translated src=- shape=00055cad vocab=2b1ea155
+-/
 theorem MaximalBombieriVinogradov.tendsto_log_mul_sum_error_div
     (hBV : MaximalBombieriVinogradov) :
     Tendsto (fun X : ℕ => Real.log (2 * X + 2) * primaryProgressionError X / X)

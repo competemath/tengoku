@@ -20,14 +20,23 @@ namespace TwinPrime.Analytic
 
 def chebyshevLinearConstant : ℝ := Real.log 4 + 4
 
+/--
+@isnad1 id=le.0h0v.s3.8163992f960c from=translated src=- shape=ff3a10fc vocab=fdeeacf7
+-/
 theorem chebyshevLinearConstant_nonneg : 0 ≤ chebyshevLinearConstant := by
   unfold chebyshevLinearConstant
   have := Real.log_nonneg (show (1 : ℝ) ≤ 4 by norm_num)
   linarith
 
+/--
+@isnad1 id=le.0h1v.s3.bcca0dcdfabc from=translated src=- shape=b9369acb vocab=8a60ff64
+-/
 theorem primeReciprocalSum_nonneg (N : ℕ) : 0 ≤ primeReciprocalSum N :=
   sum_nonneg fun n _ => div_nonneg vonMangoldt_nonneg (Nat.cast_nonneg n)
 
+/--
+@isnad1 id=monotone.0h0v.s2.431c4cc763be from=translated src=- shape=54c8eceb vocab=8cabccdb
+-/
 theorem primeReciprocalSum_mono : Monotone primeReciprocalSum := by
   intro a b hab
   apply sum_le_sum_of_subset_of_nonneg
@@ -36,12 +45,17 @@ theorem primeReciprocalSum_mono : Monotone primeReciprocalSum := by
   · intro n _ _
     exact div_nonneg vonMangoldt_nonneg (Nat.cast_nonneg n)
 
+/--
+@isnad1 id=eq.0h1v.s5.54d1b45558ef from=translated src=- shape=8acf36f4 vocab=c553b502
+-/
 theorem sum_one_div_Ioc_eq_harmonic (N : ℕ) :
     (∑ n ∈ Ioc 0 N, (1 : ℝ) / n) = harmonic N := by
   have hI : Ioc 0 N = Icc 1 N := by ext n; simp only [mem_Ioc, mem_Icc]; omega
   simp [hI, harmonic_eq_sum_Icc, one_div]
 
-/-- The elementary prime reciprocal bound has a constant independent of N.-/
+/-- The elementary prime reciprocal bound has a constant independent of N.
+@isnad1 id=le.1h1v.s5.0f86edb10059 from=translated src=- shape=374c2742 vocab=dac77636
+-/
 theorem primeReciprocalSum_le_log (N : ℕ) (hN : 1 ≤ N) :
     primeReciprocalSum N ≤ chebyshevLinearConstant * (2 + Real.log N) := by
   have habel := reciprocalCoefficientSum_sub_eq (fun n => vonMangoldt n) 1 N
@@ -82,10 +96,16 @@ theorem primeReciprocalSum_le_log (N : ℕ) (hN : 1 ≤ N) :
   have hmul := mul_le_mul_of_nonneg_left hH chebyshevLinearConstant_nonneg
   nlinarith
 
+/--
+@isnad1 id=le.0h1v.s5.a3d48fac6605 from=translated src=- shape=3d12c4eb vocab=0f2ae6ee
+-/
 theorem vonMangoldt_convolution_nonneg (n : ℕ) : 0 ≤ (vonMangoldt * vonMangoldt : ArithmeticFunction ℝ) n := by
   rw [ArithmeticFunction.mul_apply]
   exact sum_nonneg fun _ _ => mul_nonneg vonMangoldt_nonneg vonMangoldt_nonneg
 
+/--
+@isnad1 id=le.1h2v.s6.662320c5d93b from=translated src=- shape=d5bda31c vocab=14220a78
+-/
 theorem abs_centeredSelbergCoefficient_le (c : ℝ) (n : ℕ) (hn : 1 ≤ n) :
     |centeredSelbergCoefficient c n| ≤
       (vonMangoldt * vonMangoldt : ArithmeticFunction ℝ) n +
@@ -108,6 +128,9 @@ theorem abs_centeredSelbergCoefficient_le (c : ℝ) (n : ℕ) (hn : 1 ≤ n) :
       rw [abs_mul, abs_of_pos (show (0 : ℝ) < 2 by norm_num)]
       linarith
 
+/--
+@isnad1 id=le.0h1v.s6.513b5b5f82c3 from=translated src=- shape=5b1b1b3f vocab=58a0585d
+-/
 theorem reciprocal_vonMangoldt_convolution_le (N : ℕ) :
     (∑ n ∈ Ioc 0 N, (vonMangoldt * vonMangoldt : ArithmeticFunction ℝ) n / n) ≤
       (primeReciprocalSum N) ^ 2 := by
@@ -138,6 +161,9 @@ theorem reciprocal_vonMangoldt_convolution_le (N : ℕ) :
 def centeredSelbergReciprocalMass (c : ℝ) (N : ℕ) : ℝ :=
   ∑ n ∈ Ioc 0 N, |centeredSelbergCoefficient c n| / n
 
+/--
+@isnad1 id=le.0h2v.s6.6d671143ae58 from=translated src=- shape=988876b5 vocab=a9b633a2
+-/
 theorem centeredSelbergReciprocalMass_le (c : ℝ) (N : ℕ) :
     centeredSelbergReciprocalMass c N ≤
       (primeReciprocalSum N) ^ 2 + Real.log N * primeReciprocalSum N +
@@ -171,11 +197,16 @@ theorem centeredSelbergReciprocalMass_le (c : ℝ) (N : ℕ) :
 def selbergReciprocalMassConstant (c : ℝ) : ℝ :=
   chebyshevLinearConstant ^ 2 + chebyshevLinearConstant + 2 * |c|
 
+/--
+@isnad1 id=le.0h1v.s3.95cddeb7df4f from=translated src=- shape=8a62b088 vocab=923521c2
+-/
 theorem selbergReciprocalMassConstant_nonneg (c : ℝ) : 0 ≤ selbergReciprocalMassConstant c :=
   add_nonneg (add_nonneg (sq_nonneg _) chebyshevLinearConstant_nonneg) (by positivity)
 
 /-- The complete absolute coefficient mass grows at most quadratically in
-the logarithm. No cancellation assumption is used in this estimate.-/
+the logarithm. No cancellation assumption is used in this estimate.
+@isnad1 id=le.1h2v.s6.afdd05a02cde from=translated src=- shape=dbd76b7e vocab=c566f365
+-/
 theorem centeredSelbergReciprocalMass_le_log_sq (c : ℝ) (N : ℕ) (hN : 1 ≤ N) :
     centeredSelbergReciprocalMass c N ≤
       selbergReciprocalMassConstant c * (2 + Real.log N) ^ 2 := by
@@ -195,6 +226,9 @@ theorem centeredSelbergReciprocalMass_le_log_sq (c : ℝ) (N : ℕ) (hN : 1 ≤ 
       linarith
     _ = _ := by unfold selbergReciprocalMassConstant; ring
 
+/--
+@isnad1 id=le.1h2v.s6.614c4d065534 from=translated src=- shape=d516aa69 vocab=87cdda04
+-/
 theorem centeredSelbergReciprocalMass_floor_le (c x : ℝ) (hx : 1 ≤ x) :
     centeredSelbergReciprocalMass c ⌊x⌋₊ ≤
       selbergReciprocalMassConstant c * (2 + Real.log x) ^ 2 := by

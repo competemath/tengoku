@@ -25,6 +25,9 @@ def truncatedWeight (U d : ℕ) : ℝ := (μ d : ℝ) * Real.log ((U : ℝ) / d)
 def smoothedTotientSum (U : ℕ) : ℝ :=
   ∑ d ∈ range (U + 1) with Odd d, truncatedWeight U d / Nat.totient d
 
+/--
+@isnad1 id=eq.0h2v.s7.c7679edd3871 from=translated src=- shape=17fd30f0 vocab=18be03e2
+-/
 theorem mixedCorrelation_eq_odd_add_even (U X : ℕ) :
     mixedCorrelation U X =
       (∑ d ∈ range (U + 1) with Odd d, truncatedWeight U d *
@@ -38,12 +41,16 @@ theorem mixedCorrelation_eq_odd_add_even (U X : ℕ) :
         ∑ n ∈ Ioc X (2 * X) with d ∣ n, vonMangoldt (n + 2))).symm
 
 /-- The primary cutoff tends to infinity, so a known one-variable limit may
-be applied to it without strengthening its quantifiers.-/
+be applied to it without strengthening its quantifiers.
+@isnad1 id=tendsto.0h0v.s3.3818bec24bfa from=translated src=- shape=41b74a9e vocab=d08327af
+-/
 theorem tendsto_primaryCutoff : Tendsto primaryCutoff atTop atTop := by
   exact tendsto_nat_floor_atTop.comp
     ((tendsto_rpow_atTop (by norm_num : (0 : ℝ) < 1 / 5)).comp tendsto_natCast_atTop_atTop)
 
-/-- Convert a normalized limit to an explicit eventual linear error budget.-/
+/-- Convert a normalized limit to an explicit eventual linear error budget.
+@isnad1 id=eventual.2h3v.s6.798f248febdb from=translated src=- shape=75474e5a vocab=d415dacc
+-/
 theorem eventually_abs_sub_mul_le_of_tendsto_div (f : ℕ → ℝ) {C ε : ℝ}
     (hε : 0 < ε) (hf : Tendsto (fun X : ℕ => f X / X) atTop (nhds C)) :
     ∀ᶠ X : ℕ in atTop, |f X - C * X| ≤ ε * X := by

@@ -24,9 +24,15 @@ namespace TwinPrime.Analytic
 def mangoldtDirichletMass (σ : ℝ) : ℝ :=
   ∑' n : ℕ, vonMangoldt n / (n : ℝ) ^ σ
 
+/--
+@isnad1 id=le.0h1v.s3.501bc688e5f7 from=translated src=- shape=8a62b088 vocab=a6ecba4b
+-/
 theorem mangoldtDirichletMass_nonneg (σ : ℝ) : 0 ≤ mangoldtDirichletMass σ :=
   tsum_nonneg fun _ => div_nonneg vonMangoldt_nonneg (Real.rpow_nonneg (Nat.cast_nonneg _) _)
 
+/--
+@isnad1 id=eq.0h2v.s5.4d921c84e414 from=translated src=- shape=f3acfca1 vocab=4c43e265
+-/
 theorem vonMangoldt_term_real (σ : ℝ) (n : ℕ) :
     LSeries.term (fun n : ℕ => (vonMangoldt n : ℂ)) (σ : ℂ) n =
       ((vonMangoldt n / (n : ℝ) ^ σ : ℝ) : ℂ) := by
@@ -35,6 +41,9 @@ theorem vonMangoldt_term_real (σ : ℝ) (n : ℕ) :
   · rw [LSeries.term_of_ne_zero (by omega), Complex.ofReal_div,
       Complex.ofReal_cpow (Nat.cast_nonneg n), Complex.ofReal_natCast]
 
+/--
+@isnad1 id=eq.0h1v.s4.e2aca137c8fc from=translated src=- shape=9d6eaa83 vocab=2b55d42f
+-/
 theorem LSeries_vonMangoldt_real_eq (σ : ℝ) :
     LSeries (fun n : ℕ => (vonMangoldt n : ℂ)) (σ : ℂ) =
       (mangoldtDirichletMass σ : ℂ) := by
@@ -42,29 +51,42 @@ theorem LSeries_vonMangoldt_real_eq (σ : ℝ) :
   rw [Complex.ofReal_tsum]
   exact tsum_congr (vonMangoldt_term_real σ)
 
+/--
+@isnad1 id=summable.1h1v.s5.5d897189a249 from=translated src=- shape=359a0925 vocab=3293d5c6
+-/
 theorem summable_mangoldtDirichletMass {σ : ℝ} (hσ : 1 < σ) :
     Summable (fun n : ℕ => vonMangoldt n / (n : ℝ) ^ σ) := by
   have h := ArithmeticFunction.LSeriesSummable_vonMangoldt
     (s := (σ : ℂ)) (by simpa using hσ)
   exact Complex.summable_ofReal.mp (h.congr (vonMangoldt_term_real σ))
 
-/-- The majorant is precisely the negative zeta logarithmic derivative.-/
+/-- The majorant is precisely the negative zeta logarithmic derivative.
+@isnad1 id=eq.1h1v.s6.9302d8e3e814 from=translated src=- shape=f7b1b8fa vocab=ee58ea4f
+-/
 theorem neg_zeta_logDerivative_eq_mass {σ : ℝ} (hσ : 1 < σ) :
     -deriv riemannZeta (σ : ℂ) / riemannZeta (σ : ℂ) =
       (mangoldtDirichletMass σ : ℂ) :=
   (ArithmeticFunction.LSeries_vonMangoldt_eq_deriv_riemannZeta_div
     (by simpa using hσ)).symm.trans (LSeries_vonMangoldt_real_eq σ)
 
+/--
+@isnad1 id=le.1h1v.s6.2d085cb4cf93 from=translated src=- shape=72bab61b vocab=4c9372af
+-/
 theorem neg_zeta_logDerivative_re_nonneg {σ : ℝ} (hσ : 1 < σ) :
     0 ≤ (-deriv riemannZeta (σ : ℂ) / riemannZeta (σ : ℂ)).re := by
   rw [neg_zeta_logDerivative_eq_mass hσ, Complex.ofReal_re]
   exact mangoldtDirichletMass_nonneg σ
 
+/--
+@isnad1 id=eq.1h1v.s6.b7ccc44100df from=translated src=- shape=68ecd92e vocab=9f5c04ed
+-/
 theorem neg_zeta_logDerivative_im_eq_zero {σ : ℝ} (hσ : 1 < σ) :
     (-deriv riemannZeta (σ : ℂ) / riemannZeta (σ : ℂ)).im = 0 := by
   rw [neg_zeta_logDerivative_eq_mass hσ, Complex.ofReal_im]
 
-/-- The derivative belongs to the analytic continuation, not merely the series.-/
+/-- The derivative belongs to the analytic continuation, not merely the series.
+@isnad1 id=eq.1h3v.s7.e099f77fce7e from=translated src=- shape=a7954606 vocab=dfc23690
+-/
 theorem neg_LFunction_logDerivative_eq_twist {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) {s : ℂ} (hs : 1 < s.re) :
     -deriv (DirichletCharacter.LFunction χ) s / DirichletCharacter.LFunction χ s =
@@ -73,6 +95,9 @@ theorem neg_LFunction_logDerivative_eq_twist {q : ℕ} [NeZero q]
     DirichletCharacter.LFunction_eq_LSeries χ hs]
   exact (DirichletCharacter.LSeries_twist_vonMangoldt_eq χ hs).symm
 
+/--
+@isnad1 id=le.0h4v.s7.a65446cf0954 from=translated src=- shape=bc329dc6 vocab=48eb8569
+-/
 theorem norm_twist_vonMangoldt_term_le {q : ℕ} (χ : DirichletCharacter ℂ q)
     (s : ℂ) (n : ℕ) :
     ‖LSeries.term (fun n : ℕ => χ n * (vonMangoldt n : ℂ)) s n‖ ≤
@@ -86,7 +111,9 @@ theorem norm_twist_vonMangoldt_term_le {q : ℕ} (χ : DirichletCharacter ℂ q)
     exact mul_le_of_le_one_left vonMangoldt_nonneg (χ.norm_le_one _)
 
 /-- Absolute convergence gives a scalar majorant independent of the character
-and imaginary part.-/
+and imaginary part.
+@isnad1 id=le.1h3v.s6.fcf03ce68bf0 from=translated src=- shape=3459286d vocab=e010683c
+-/
 theorem norm_twist_vonMangoldt_LSeries_le {q : ℕ} (χ : DirichletCharacter ℂ q)
     {s : ℂ} (hs : 1 < s.re) :
     ‖LSeries (fun n : ℕ => χ n * (vonMangoldt n : ℂ)) s‖ ≤
@@ -97,7 +124,9 @@ theorem norm_twist_vonMangoldt_LSeries_le {q : ℕ} (χ : DirichletCharacter ℂ
     (summable_mangoldtDirichletMass hs)
 
 /-- The standard zeta bound for every Dirichlet logarithmic derivative,
-including principal characters and modulus one.-/
+including principal characters and modulus one.
+@isnad1 id=le.1h3v.s7.f641f0cc774d from=translated src=- shape=ba346405 vocab=81ca6d73
+-/
 theorem norm_LFunction_logDerivative_le_zeta {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) {s : ℂ} (hs : 1 < s.re) :
     ‖deriv (DirichletCharacter.LFunction χ) s / DirichletCharacter.LFunction χ s‖ ≤
@@ -107,7 +136,9 @@ theorem norm_LFunction_logDerivative_le_zeta {q : ℕ} [NeZero q]
   rw [← neg_LFunction_logDerivative_eq_twist χ hs, neg_div, norm_neg] at h
   exact h
 
-/-- The coefficient inequality underlying the classical three-four-one argument.-/
+/-- The coefficient inequality underlying the classical three-four-one argument.
+@isnad1 id=le.1h1v.s6.db41c9dc6e94 from=translated src=- shape=de9e1df2 vocab=38325dc8
+-/
 theorem three_four_one_re_nonneg (z : ℂ) (hz : ‖z‖ ≤ 1) :
     0 ≤ 3 + 4 * z.re + (z ^ 2).re := by
   have hnorm : z.re ^ 2 + z.im ^ 2 ≤ 1 := by
@@ -117,7 +148,9 @@ theorem three_four_one_re_nonneg (z : ℂ) (hz : ‖z‖ ≤ 1) :
   simp only [pow_two, Complex.mul_re]
   nlinarith [sq_nonneg (z.re + 1)]
 
-/-- Separate the positive real weight from the character and imaginary phase.-/
+/-- Separate the positive real weight from the character and imaginary phase.
+@isnad1 id=eq.1h5v.s7.8f723113f234 from=translated src=- shape=be506b4c vocab=6adfac26
+-/
 theorem twist_vonMangoldt_term_eq_phase {q : ℕ} (χ : DirichletCharacter ℂ q)
     (σ t : ℝ) {n : ℕ} (hn : n ≠ 0) :
     LSeries.term (fun n : ℕ => χ n * (vonMangoldt n : ℂ))
@@ -130,6 +163,9 @@ theorem twist_vonMangoldt_term_eq_phase {q : ℕ} (χ : DirichletCharacter ℂ q
   simp only [div_eq_mul_inv, mul_inv_rev]
   ring
 
+/--
+@isnad1 id=le.1h4v.s6.a59bc4cffcea from=translated src=- shape=3ff08318 vocab=289545e5
+-/
 theorem character_cpow_phase_norm_le_one {q : ℕ} (χ : DirichletCharacter ℂ q)
     (t : ℝ) {n : ℕ} (hn : 0 < n) :
     ‖χ n * (n : ℂ) ^ (-(I * t))‖ ≤ 1 := by
@@ -138,6 +174,9 @@ theorem character_cpow_phase_norm_le_one {q : ℕ} (χ : DirichletCharacter ℂ 
     simp
   simpa only [norm_mul, hphase, mul_one] using χ.norm_le_one (n : ZMod q)
 
+/--
+@isnad1 id=eq.0h4v.s8.8e788e6ec608 from=translated src=- shape=1d0f3235 vocab=1156fb60
+-/
 theorem character_cpow_phase_sq {q : ℕ} (χ : DirichletCharacter ℂ q)
     (t : ℝ) (n : ℕ) :
     (χ ^ 2) n * (n : ℂ) ^ (-(I * ((2 * t : ℝ) : ℂ))) =
@@ -147,7 +186,9 @@ theorem character_cpow_phase_sq {q : ℕ} (χ : DirichletCharacter ℂ q)
     Complex.cpow_nat_mul, mul_pow]
 
 /-- Coefficientwise three-four-one positivity, including zero coefficients
-at integers not coprime to the modulus.-/
+at integers not coprime to the modulus.
+@isnad1 id=le.0h5v.s8.40b1555616b9 from=translated src=- shape=6c33e054 vocab=ee4e26e0
+-/
 theorem three_four_one_vonMangoldt_term_nonneg {q : ℕ} (χ : DirichletCharacter ℂ q)
     (σ t : ℝ) (n : ℕ) :
     0 ≤ 3 * (vonMangoldt n / (n : ℝ) ^ σ) +
@@ -167,7 +208,9 @@ theorem three_four_one_vonMangoldt_term_nonneg {q : ℕ} (χ : DirichletCharacte
   simp only [Complex.mul_re] at h
   nlinarith
 
-/-- The three-four-one inequality for absolutely convergent twisted series.-/
+/-- The three-four-one inequality for absolutely convergent twisted series.
+@isnad1 id=le.1h4v.s8.60983bbde00d from=translated src=- shape=9479843b vocab=6a098ec9
+-/
 theorem three_four_one_vonMangoldt_LSeries_nonneg {q : ℕ} (χ : DirichletCharacter ℂ q)
     {σ : ℝ} (hσ : 1 < σ) (t : ℝ) :
     0 ≤ 3 * mangoldtDirichletMass σ +
@@ -186,7 +229,9 @@ theorem three_four_one_vonMangoldt_LSeries_nonneg {q : ℕ} (χ : DirichletChara
 
 /-- Actual logarithmic-derivative positivity in the half-plane `σ>1`.
 The first term is zeta, so the statement also covers integers not coprime
-to the character modulus without a missing Euler-factor correction.-/
+to the character modulus without a missing Euler-factor correction.
+@isnad1 id=le.1h4v.s9.80a0222aa6bd from=translated src=- shape=2bf621a7 vocab=5ff6b5f5
+-/
 theorem three_four_one_LFunction_logDerivative_nonneg {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) {σ : ℝ} (hσ : 1 < σ) (t : ℝ) :
     0 ≤ 3 * (-deriv riemannZeta (σ : ℂ) / riemannZeta (σ : ℂ)).re +

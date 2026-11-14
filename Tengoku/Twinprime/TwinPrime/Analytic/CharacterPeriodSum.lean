@@ -19,6 +19,9 @@ open Finset
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=eq.1h2v.s7.a203084a31a0 from=translated src=- shape=688bb216 vocab=26a8a39d
+-/
 theorem character_sum_range_modulus_eq_zero {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1) :
     ∑ n ∈ range q, χ (n : ZMod q) = 0 := by
@@ -46,6 +49,9 @@ private theorem sum_Ioc_zero_eq_shifted_range (f : ℕ → ℂ) (N : ℕ) :
   rw [hI, sum_Ico_eq_sum_range]
   simp only [Nat.add_sub_cancel, Nat.add_comm 1]
 
+/--
+@isnad1 id=eq.1h2v.s7.9ca302949a57 from=translated src=- shape=e4056dab vocab=99f19a3d
+-/
 theorem character_sum_shifted_range_modulus_eq_zero {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1) :
     ∑ n ∈ range q, χ ((n + 1 : ℕ) : ZMod q) = 0 := by
@@ -53,7 +59,9 @@ theorem character_sum_shifted_range_modulus_eq_zero {q : ℕ} [NeZero q]
   rw [sum_range_succ, character_sum_range_modulus_eq_zero χ hχ] at hs
   simpa only [Nat.cast_zero, ZMod.natCast_self, zero_add, add_eq_right] using hs.symm
 
-/-- The initial sum is exactly its remainder sum; no estimate is used.-/
+/-- The initial sum is exactly its remainder sum; no estimate is used.
+@isnad1 id=eq.1h3v.s7.0862f569fcc2 from=translated src=- shape=7b736a62 vocab=25d23ca3
+-/
 theorem character_sum_Ioc_eq_mod {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1) (N : ℕ) :
     ∑ n ∈ Ioc 0 N, χ (n : ZMod q) =
@@ -66,7 +74,9 @@ theorem character_sum_Ioc_eq_mod {q : ℕ} [NeZero q]
     simp only [Nat.cast_add, ZMod.natCast_self, zero_add]
   simpa only [sum_Ioc_zero_eq_shifted_range] using (hp.map_mod_nat N).symm
 
-/-- The elementary length bound includes principal characters and modulus zero.-/
+/-- The elementary length bound includes principal characters and modulus zero.
+@isnad1 id=le.0h3v.s6.3e017bec190b from=translated src=- shape=9774bab6 vocab=55014081
+-/
 theorem norm_character_sum_Ioc_le_length {q : ℕ}
     (χ : DirichletCharacter ℂ q) (N : ℕ) :
     ‖∑ n ∈ Ioc 0 N, χ (n : ZMod q)‖ ≤ (N : ℝ) := by
@@ -75,19 +85,27 @@ theorem norm_character_sum_Ioc_le_length {q : ℕ}
     _ ≤ ∑ _ ∈ Ioc 0 N, (1 : ℝ) := sum_le_sum fun n _ => χ.norm_le_one _
     _ = _ := by simp
 
+/--
+@isnad1 id=le.1h3v.s7.61c44600ad96 from=translated src=- shape=2a39eb7e vocab=66f9b6cc
+-/
 theorem norm_character_sum_Ioc_le_remainder {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1) (N : ℕ) :
     ‖∑ n ∈ Ioc 0 N, χ (n : ZMod q)‖ ≤ (N % q : ℕ) := by
   rw [character_sum_Ioc_eq_mod χ hχ]
   exact norm_character_sum_Ioc_le_length χ (N % q)
 
-/-- A bound for all nonprincipal characters, including imprimitive ones.-/
+/-- A bound for all nonprincipal characters, including imprimitive ones.
+@isnad1 id=le.1h3v.s7.7fc38ce3db1f from=translated src=- shape=a4d69b21 vocab=4009314b
+-/
 theorem norm_character_sum_Ioc_le_modulus {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1) (N : ℕ) :
     ‖∑ n ∈ Ioc 0 N, χ (n : ZMod q)‖ ≤ (q : ℝ) :=
   (norm_character_sum_Ioc_le_remainder χ hχ N).trans
     (by exact_mod_cast (Nat.mod_lt N (NeZero.pos q)).le)
 
+/--
+@isnad1 id=le.0h4v.s6.dc749937c6ad from=translated src=- shape=cbc34536 vocab=77373f82
+-/
 theorem norm_character_sum_Ioc_interval_le_length {q : ℕ}
     (χ : DirichletCharacter ℂ q) (M N : ℕ) :
     ‖∑ n ∈ Ioc M N, χ (n : ZMod q)‖ ≤ (N - M : ℕ) := by
@@ -97,7 +115,9 @@ theorem norm_character_sum_Ioc_interval_le_length {q : ℕ}
     _ = _ := by simp
 
 /-- A general interval is the difference of two bounded initial sums.
-The statement includes empty intervals and both endpoints zero.-/
+The statement includes empty intervals and both endpoints zero.
+@isnad1 id=le.1h4v.s7.4cdb0011d532 from=translated src=- shape=ac83f0f0 vocab=c9225334
+-/
 theorem norm_character_sum_Ioc_interval_le_two_modulus {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1) (M N : ℕ) :
     ‖∑ n ∈ Ioc M N, χ (n : ZMod q)‖ ≤ 2 * (q : ℝ) := by

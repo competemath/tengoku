@@ -26,7 +26,9 @@ namespace TwinPrime.Sieve
 
 /-! ### Alternating binomial sums -/
 
-/-- `∑_{j ≤ m} (-1)^j C(t, j) = (-1)^m C(t-1, m)` for `t ≥ 1`.-/
+/-- `∑_{j ≤ m} (-1)^j C(t, j) = (-1)^m C(t-1, m)` for `t ≥ 1`.
+@isnad1 id=eq.1h2v.s6.58ee0a6917f8 from=translated src=- shape=2aa43b79 vocab=4f73e400
+-/
 theorem sum_neg_one_pow_choose (t m : ℕ) (ht : 1 ≤ t) :
     ∑ j ∈ range (m + 1), (-1 : ℤ) ^ j * (t.choose j : ℤ) = (-1) ^ m * ((t - 1).choose m : ℤ) := by
   induction m with
@@ -41,12 +43,17 @@ theorem sum_neg_one_pow_choose (t m : ℕ) (ht : 1 ≤ t) :
 
 /-! ### Divisors of a squarefree number with a given number of prime factors -/
 
+/--
+@isnad1 id=eq.0h1v.s4.09db65d8e57e from=translated src=- shape=be2e8b6b vocab=d153508a
+-/
 theorem card_primeFactors_eq (n : ℕ) : #n.primeFactors = ω n := by
   rw [cardDistinctFactors_apply, ← List.card_toFinset]
   rfl
 
 /-- The map `S ↦ ∏_{p ∈ S} p` is a bijection from `j`-subsets of the prime factors of a
-squarefree `g` onto the divisors of `g` with `ω = j`.-/
+squarefree `g` onto the divisors of `g` with `ω = j`.
+@isnad1 id=eq.1h2v.s6.a7240bd6f57b from=translated src=- shape=dc93a2a1 vocab=dd30c448
+-/
 theorem card_divisors_cardDistinctFactors_eq {g : ℕ} (hg : Squarefree g) (j : ℕ) :
     #{d ∈ g.divisors | ω d = j} = (ω g).choose j := by
   rw [← card_primeFactors_eq, ← Finset.card_powersetCard]
@@ -78,6 +85,9 @@ theorem card_divisors_cardDistinctFactors_eq {g : ℕ} (hg : Squarefree g) (j : 
 /-- `μ` restricted to numbers with at most `m` prime factors.-/
 def truncMoebius (m : ℕ) (d : ℕ) : ℝ := if ω d ≤ m then (μ d : ℝ) else 0
 
+/--
+@isnad1 id=le.0h2v.s4.0272e2a1c2ee from=translated src=- shape=488223d7 vocab=67485395
+-/
 theorem abs_truncMoebius_le (m d : ℕ) : |truncMoebius m d| ≤ 1 := by
   unfold truncMoebius
   split_ifs
@@ -85,7 +95,9 @@ theorem abs_truncMoebius_le (m d : ℕ) : |truncMoebius m d| ≤ 1 := by
     split_ifs <;> norm_num
   · simp
 
-/-- For squarefree `g`: `∑_{d ∣ g} truncMoebius m d = ∑_{j ≤ m} (-1)^j C(ω g, j)`.-/
+/-- For squarefree `g`: `∑_{d ∣ g} truncMoebius m d = ∑_{j ≤ m} (-1)^j C(ω g, j)`.
+@isnad1 id=eq.1h2v.s6.8ce015ea2768 from=translated src=- shape=76e269d2 vocab=98daa6ef
+-/
 theorem sum_divisors_truncMoebius {g : ℕ} (hg : Squarefree g) (m : ℕ) :
     ∑ d ∈ g.divisors, truncMoebius m d =
       ∑ j ∈ range (m + 1), (-1 : ℝ) ^ j * ((ω g).choose j : ℝ) := by
@@ -118,7 +130,9 @@ theorem sum_divisors_truncMoebius {g : ℕ} (hg : Squarefree g) (m : ℕ) :
     refine ⟨h1, ?_, h3⟩
     omega
 
-/-- **Bonferroni**: for squarefree `g` and odd `m`, `∑_{d ∣ g} truncMoebius m d ≤ [g = 1]`.-/
+/-- **Bonferroni**: for squarefree `g` and odd `m`, `∑_{d ∣ g} truncMoebius m d ≤ [g = 1]`.
+@isnad1 id=le.2h2v.s5.96b4034bf745 from=translated src=- shape=58fb4910 vocab=3716c207
+-/
 theorem sum_truncMoebius_le {g : ℕ} (hg : Squarefree g) {m : ℕ} (hm : Odd m) :
     ∑ d ∈ g.divisors, truncMoebius m d ≤ if g = 1 then 1 else 0 := by
   rw [sum_divisors_truncMoebius hg]
@@ -151,7 +165,9 @@ theorem sum_truncMoebius_le {g : ℕ} (hg : Squarefree g) {m : ℕ} (hm : Odd m)
 
 /-! ### The lower-bound sieve inequality -/
 
-/-- If `∑_{d ∣ n} w d ≤ [n = 1]` for every `n ∣ P`, then `∑_{d ∣ P} w d · A_d ≤ siftedSum`.-/
+/-- If `∑_{d ∣ n} w d ≤ [n = 1]` for every `n ∣ P`, then `∑_{d ∣ P} w d · A_d ≤ siftedSum`.
+@isnad1 id=le.1h2v.s6.0bbc8140686e from=translated src=- shape=b1ee1e19 vocab=be5458d9
+-/
 theorem sum_mul_multSum_le_siftedSum (s : BoundingSieve) (w : ℕ → ℝ)
     (hw : ∀ n, n ∣ s.prodPrimes → ∑ d ∈ n.divisors, w d ≤ if n = 1 then 1 else 0) :
     ∑ d ∈ s.prodPrimes.divisors, w d * s.multSum d ≤ s.siftedSum := by

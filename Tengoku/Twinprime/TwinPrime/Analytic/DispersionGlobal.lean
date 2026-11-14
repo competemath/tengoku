@@ -21,9 +21,15 @@ def dispersionOffDiagonalSum (U V X : ℕ) (s : Finset (ℕ × ℕ)) : ℝ :=
   ∑ ij ∈ s, Real.sqrt (max (dispersionMass V (2 ^ ij.2) *
     dispersionOffDiagonal U V X (2 ^ ij.1) (2 ^ ij.2)) 0)
 
+/--
+@isnad1 id=le.0h4v.s4.272efbf777dd from=translated src=- shape=f14d7cc0 vocab=245f73ff
+-/
 theorem dispersionOffDiagonalSum_nonneg (U V X : ℕ) (s : Finset (ℕ × ℕ)) :
     0 ≤ dispersionOffDiagonalSum U V X s := sum_nonneg fun _ _ => Real.sqrt_nonneg _
 
+/--
+@isnad1 id=le.0h5v.s6.57d79096e0e8 from=translated src=- shape=b9d7c0e8 vocab=05df05d2
+-/
 theorem abs_bilinearBox_le_diagonal_add_offDiagonal (U V X M N : ℕ) :
     |bilinearBox U V X M N| ≤
       Real.sqrt (dispersionMass V N * dispersionDiagonal U V X M N) +
@@ -40,6 +46,9 @@ theorem abs_bilinearBox_le_diagonal_add_offDiagonal (U V X M N : ℕ) :
   nlinarith [sq_abs (bilinearBox U V X M N), abs_nonneg (bilinearBox U V X M N),
     mul_nonneg hdr hor]
 
+/--
+@isnad1 id=le.2h3v.s5.ab1e1a21d9d7 from=translated src=- shape=c52b46f1 vocab=36259cad
+-/
 theorem abs_bilinearTerm_le_dispersion_sums (U V X : ℕ) (hU : 1 ≤ U) (hV : 1 ≤ V) :
     |bilinearTerm U V X| ≤
       dispersionDiagonalSum U V X (dispersionBoxIndices U V X) +
@@ -50,6 +59,9 @@ theorem abs_bilinearTerm_le_dispersion_sums (U V X : ℕ) (hU : 1 ≤ U) (hV : 1
   rw [← sum_add_distrib]
   exact sum_le_sum fun ij _ => abs_bilinearBox_le_diagonal_add_offDiagonal U V X (2 ^ ij.1) (2 ^ ij.2)
 
+/--
+@isnad1 id=le.2h3v.s5.e539c9a05a6d from=translated src=- shape=e01377be vocab=a5b2be91
+-/
 theorem neg_dispersion_sums_le_bilinearTerm (U V X : ℕ) (hU : 1 ≤ U) (hV : 1 ≤ V) :
     -(dispersionDiagonalSum U V X (dispersionBoxIndices U V X) +
       dispersionOffDiagonalSum U V X (dispersionBoxIndices U V X)) ≤ bilinearTerm U V X := by
@@ -65,7 +77,9 @@ def primaryDispersionOffDiagonal (X : ℕ) : ℝ :=
     (dispersionBoxIndices (primaryCutoff X) (primaryCutoff X) X)
 
 /-- The diagonal sum over every active box is negligible, even with any
-additional fixed power of the logarithm.-/
+additional fixed power of the logarithm.
+@isnad1 id=tendsto.0h1v.s6.2992e6f7f20e from=translated src=- shape=801b52e0 vocab=8e6ebaed
+-/
 theorem tendsto_primaryDispersionDiagonal_div_log_pow (k : ℕ) :
     Tendsto (fun X : ℕ => primaryDispersionDiagonal X / X *
       (Real.log (4 * X + 4)) ^ k) atTop (nhds 0) := by
@@ -76,12 +90,17 @@ theorem tendsto_primaryDispersionDiagonal_div_log_pow (k : ℕ) :
     have hb := dispersionBoxIndices_bounds hij
     exact ⟨hb.2.2.1, hb.2.2.2.2.1⟩
 
+/--
+@isnad1 id=tendsto.0h0v.s5.bcde9453eef3 from=translated src=- shape=15fb6055 vocab=f958f2f2
+-/
 theorem tendsto_primaryDispersionDiagonal_div :
     Tendsto (fun X : ℕ => primaryDispersionDiagonal X / X) atTop (nhds 0) := by
   simpa only [pow_zero, mul_one] using tendsto_primaryDispersionDiagonal_div_log_pow 0
 
 /-- A vanishing off-diagonal budget would imply absolute cancellation of
-the actual bilinear term. This hypothesis is not supplied by the diagonal.-/
+the actual bilinear term. This hypothesis is not supplied by the diagonal.
+@isnad1 id=tendsto.1h0v.s6.1efeef274840 from=translated src=- shape=38e4e702 vocab=f9fe9e3e
+-/
 theorem tendsto_primary_bilinear_div_of_offDiagonal
     (hOff : Tendsto (fun X : ℕ => primaryDispersionOffDiagonal X / X) atTop (nhds 0)) :
     Tendsto (fun X : ℕ => bilinearTerm (primaryCutoff X) (primaryCutoff X) X / X)

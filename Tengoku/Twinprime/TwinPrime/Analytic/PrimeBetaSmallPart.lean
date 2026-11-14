@@ -23,15 +23,24 @@ namespace TwinPrime.Analytic
 def primeMangoldtHigh (U : ℕ) : ArithmeticFunction ℝ :=
   ⟨fun n => if U < n ∧ n.Prime then vonMangoldt n else 0, by simp⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.794918716a09 from=translated src=- shape=3eb42caf vocab=98915f88
+-/
 @[simp] theorem primeMangoldtHigh_apply (U n : ℕ) :
     primeMangoldtHigh U n = if U < n ∧ n.Prime then vonMangoldt n else 0 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.0fa905a05536 from=translated src=- shape=bbcbc93f vocab=3f2d0f07
+-/
 theorem primeVaughanBeta_eq_primeMangoldtHigh_mul_zeta (U : ℕ) :
     primeVaughanBeta U = primeMangoldtHigh U * ζ := by
   ext n
   rw [primeVaughanBeta_apply, coe_mul_zeta_apply]
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.0b064b3911b9 from=translated src=- shape=86372b8a vocab=c0cda8fb
+-/
 theorem moebius_mul_primeVaughanBeta (U : ℕ) :
     (μ : ArithmeticFunction ℝ) * primeVaughanBeta U = primeMangoldtHigh U := by
   rw [primeVaughanBeta_eq_primeMangoldtHigh_mul_zeta]
@@ -40,7 +49,9 @@ theorem moebius_mul_primeVaughanBeta (U : ℕ) :
     _ = _ := by rw [coe_moebius_mul_coe_zeta, mul_one]
 
 /-- A smooth factor adds no prime divisor above the cutoff. The other
-factor is arbitrary and may share primes with the smooth factor.-/
+factor is arbitrary and may share primes with the smooth factor.
+@isnad1 id=eq.3h3v.s6.1e77f73cbc57 from=translated src=- shape=a2570953 vocab=2cfae1b1
+-/
 theorem primeVaughanBeta_mul_smooth (U a b : ℕ) (ha : 0 < a) (hb : 0 < b)
     (hsmooth : ∀ p, Nat.Prime p → p ∣ a → p ≤ U) :
     primeVaughanBeta U (a * b) = primeVaughanBeta U b := by
@@ -59,7 +70,9 @@ theorem primeVaughanBeta_mul_smooth (U a b : ℕ) (ha : 0 < a) (hb : 0 < b)
   · simp [h]
 
 /-- The entire dependence on the smooth factor is the signed truncated
-Möbius divisor sum. Prime multiplicities in either factor are allowed.-/
+Möbius divisor sum. Prime multiplicities in either factor are allowed.
+@isnad1 id=eq.4h3v.s6.dc78e3e1f0aa from=translated src=- shape=7bc1795a vocab=57ff29e8
+-/
 theorem moebiusLow_mul_primeBeta_smooth_rough (U a b : ℕ)
     (ha : 0 < a) (hb : 0 < b)
     (hsmooth : ∀ p, Nat.Prime p → p ∣ a → p ≤ U)
@@ -78,7 +91,9 @@ theorem moebiusLow_mul_primeBeta_smooth_rough (U a b : ℕ)
     (fun p hp hpd => hsmooth p hp (hpd.trans hquot))]
 
 /-- Exact prime-only coefficient on a positive smooth-times-rough input.
-The smooth part need not be squarefree or bounded by the cutoff.-/
+The smooth part need not be squarefree or bounded by the cutoff.
+@isnad1 id=eq.4h3v.s7.daf0a4a9ad49 from=translated src=- shape=694c90f6 vocab=5ccc6392
+-/
 theorem primeVaughanBilinear_eq_primeMangoldtHigh_sub_of_smooth_rough
     (U a b : ℕ) (ha : 0 < a) (hb : 0 < b)
     (hsmooth : ∀ p, Nat.Prime p → p ∣ a → p ≤ U)
@@ -94,7 +109,9 @@ theorem primeVaughanBilinear_eq_primeMangoldtHigh_sub_of_smooth_rough
   linarith
 
 /-- The prime-only weight counts each large prime once, independently of
-its exponent.-/
+its exponent.
+@isnad1 id=eq.0h2v.s5.70f8750a15de from=translated src=- shape=33ce4558 vocab=2ddddb1c
+-/
 theorem primeVaughanBeta_eq_sum_primeFactors (U b : ℕ) :
     primeVaughanBeta U b =
       ∑ p ∈ b.primeFactors, if U < p then Real.log p else 0 := by
@@ -105,6 +122,9 @@ theorem primeVaughanBeta_eq_sum_primeFactors (U b : ℕ) :
   · simp [hp, vonMangoldt_apply_prime hp]
   · simp [hp]
 
+/--
+@isnad1 id=eq.1h2v.s5.569921b623d4 from=translated src=- shape=ce1c2acc vocab=be5e7e5e
+-/
 theorem primeVaughanBeta_eq_sum_log_of_rough (U b : ℕ)
     (hrough : ∀ p, Nat.Prime p → p ∣ b → U < p) :
     primeVaughanBeta U b = ∑ p ∈ b.primeFactors, Real.log p := by
@@ -114,7 +134,9 @@ theorem primeVaughanBeta_eq_sum_log_of_rough (U b : ℕ)
   rw [ite_eq_left (hrough p (Nat.prime_of_mem_primeFactors hp) (Nat.dvd_of_mem_primeFactors hp))]
 
 /-- A nontrivial smooth factor prevents the entire input from being a prime
-strictly above the cutoff.-/
+strictly above the cutoff.
+@isnad1 id=eq.2h3v.s5.14967261846f from=translated src=- shape=07d81c45 vocab=ae838b3a
+-/
 theorem primeMangoldtHigh_mul_smooth_eq_zero (U a b : ℕ) (ha : 1 < a)
     (hsmooth : ∀ p, Nat.Prime p → p ∣ a → p ≤ U) :
     primeMangoldtHigh U (a * b) = 0 := by
@@ -127,6 +149,9 @@ theorem primeMangoldtHigh_mul_smooth_eq_zero (U a b : ℕ) (ha : 1 < a)
     exact False.elim ((not_lt_of_ge (hpn ▸ hpU)) h.1)
   · simp [h]
 
+/--
+@isnad1 id=eq.4h3v.s7.12e63e753800 from=translated src=- shape=eeb0ad5b vocab=b662db11
+-/
 theorem primeVaughanBilinear_eq_neg_mul_of_nontrivial_smooth_rough
     (U a b : ℕ) (ha : 1 < a) (hb : 0 < b)
     (hsmooth : ∀ p, Nat.Prime p → p ∣ a → p ≤ U)

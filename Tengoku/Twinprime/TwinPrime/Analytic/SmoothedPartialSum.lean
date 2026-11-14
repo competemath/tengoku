@@ -29,6 +29,9 @@ def integratedWeightedPartialSum (a : ℕ → ℂ) (x : ℝ) : ℂ :=
 def weightedPartialSum (a : ℕ → ℂ) (x : ℝ) : ℂ :=
   ∑ n ∈ Icc 1 ⌊x⌋₊, a n * (1 - (n : ℂ) / (x : ℂ))
 
+/--
+@isnad1 id=eq.1h2v.s5.4e75e2ab564c from=translated src=- shape=7621bab9 vocab=036b2616
+-/
 theorem integratedWeightedPartialSum_eq_mul_weightedPartialSum
     (a : ℕ → ℂ) (x : ℝ) (hx : x ≠ 0) :
     integratedWeightedPartialSum a x = (x : ℂ) * weightedPartialSum a x := by
@@ -53,7 +56,9 @@ private theorem prefix_disjoint_shortInterval (x h : ℝ) :
   simp only [mem_Icc, mem_Ioc] at hn hm
   omega
 
-/-- The old indices contribute exactly `h` times their unweighted sum.-/
+/-- The old indices contribute exactly `h` times their unweighted sum.
+@isnad1 id=eq.1h3v.s7.02f607837bd9 from=translated src=- shape=afa4071f vocab=6d6baca9
+-/
 theorem integratedWeightedPartialSum_add_sub (a : ℕ → ℂ) (x h : ℝ)
     (hh : 0 ≤ h) :
     integratedWeightedPartialSum a (x + h) - integratedWeightedPartialSum a x =
@@ -68,7 +73,9 @@ theorem integratedWeightedPartialSum_add_sub (a : ℕ → ℂ) (x h : ℝ)
   push_cast
   ring
 
-/-- Exact unsmoothing, retaining the weight on each new short-interval index.-/
+/-- Exact unsmoothing, retaining the weight on each new short-interval index.
+@isnad1 id=eq.1h3v.s7.11950f05fd03 from=translated src=- shape=fd8015a2 vocab=fe201d90
+-/
 theorem integratedWeightedPartialSum_forward_difference (a : ℕ → ℂ) (x h : ℝ)
     (hh : 0 < h) :
     (integratedWeightedPartialSum a (x + h) - integratedWeightedPartialSum a x) /
@@ -85,6 +92,9 @@ theorem integratedWeightedPartialSum_forward_difference (a : ℕ → ℂ) (x h :
   push_cast
   ring
 
+/--
+@isnad1 id=and.3h3v.s7.fecca55bd177 from=translated src=- shape=995e10df vocab=b5a9a167
+-/
 theorem shortInterval_weight_nonneg_le_one (x h : ℝ) (hx : 0 ≤ x) (hh : 0 < h)
     (n : ℕ) (hn : n ∈ Ioc ⌊x⌋₊ ⌊x + h⌋₊) :
     0 ≤ (x + h - n) / h ∧ (x + h - n) / h ≤ 1 := by
@@ -97,7 +107,9 @@ theorem shortInterval_weight_nonneg_le_one (x h : ℝ) (hx : 0 ≤ x) (hh : 0 < 
   · apply (div_le_one hh).mpr
     linarith
 
-/-- The smoothing error is bounded by the coefficient mass on `(x,x+h]`.-/
+/-- The smoothing error is bounded by the coefficient mass on `(x,x+h]`.
+@isnad1 id=le.2h3v.s7.51b83ba01ddf from=translated src=- shape=8dfb1239 vocab=5df072cf
+-/
 theorem norm_integratedWeightedPartialSum_forward_difference_sub_sum_le
     (a : ℕ → ℂ) (x h : ℝ) (hx : 0 ≤ x) (hh : 0 < h) :
     ‖(integratedWeightedPartialSum a (x + h) - integratedWeightedPartialSum a x) /
@@ -111,6 +123,9 @@ theorem norm_integratedWeightedPartialSum_forward_difference_sub_sum_le
   rw [norm_mul, Complex.norm_real, Real.norm_eq_abs, abs_of_nonneg hw0]
   exact mul_le_of_le_one_right (norm_nonneg _) hw1
 
+/--
+@isnad1 id=le.2h2v.s6.ca359578841b from=translated src=- shape=ceecf4d6 vocab=77db725e
+-/
 theorem card_shortInterval_le (x h : ℝ) (hx : 0 ≤ x) (hh : 0 ≤ h) :
     ((Ioc ⌊x⌋₊ ⌊x + h⌋₊).card : ℝ) ≤ h + 1 := by
   have hfloor := Nat.floor_mono (show x ≤ x + h by linarith)
@@ -119,7 +134,9 @@ theorem card_shortInterval_le (x h : ℝ) (hx : 0 ≤ x) (hh : 0 ≤ h) :
   have hbottom := Nat.lt_floor_add_one x
   linarith
 
-/-- A constant bound on the new coefficients costs at most `h+1` terms.-/
+/-- A constant bound on the new coefficients costs at most `h+1` terms.
+@isnad1 id=le.4h4v.s7.8ca6a01b3328 from=translated src=- shape=a760c1ea vocab=3c42241f
+-/
 theorem norm_integratedWeightedPartialSum_forward_difference_sub_sum_le_const
     (a : ℕ → ℂ) (x h B : ℝ) (hx : 0 ≤ x) (hh : 0 < h) (hB : 0 ≤ B)
     (ha : ∀ n ∈ Ioc ⌊x⌋₊ ⌊x + h⌋₊, ‖a n‖ ≤ B) :
@@ -131,7 +148,9 @@ theorem norm_integratedWeightedPartialSum_forward_difference_sub_sum_le_const
     _ = ((Ioc ⌊x⌋₊ ⌊x + h⌋₊).card : ℝ) * B := by simp
     _ ≤ (h + 1) * B := mul_le_mul_of_nonneg_right (card_shortInterval_le x h hx hh.le) hB
 
-/-- The elementary unsmoothing budget for any Mangoldt character twist.-/
+/-- The elementary unsmoothing budget for any Mangoldt character twist.
+@isnad1 id=le.3h4v.s8.6cf239c26ff3 from=translated src=- shape=1ee3df93 vocab=bf519d34
+-/
 theorem norm_mangoldt_character_forward_difference_sub_sum_le {q : ℕ}
     (χ : DirichletCharacter ℂ q) (x h : ℝ) (hx : 0 ≤ x) (hh : 0 < h)
     (hxh : 1 ≤ x + h) :

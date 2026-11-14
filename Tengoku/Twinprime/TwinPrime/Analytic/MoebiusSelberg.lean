@@ -24,9 +24,15 @@ namespace TwinPrime.Analytic
 def arithmeticLogWeight (f : ArithmeticFunction ℝ) : ArithmeticFunction ℝ :=
   f.pmul ArithmeticFunction.log
 
+/--
+@isnad1 id=eq.0h2v.s5.018ace1b25e9 from=translated src=- shape=bf124770 vocab=55dfe431
+-/
 @[simp] theorem arithmeticLogWeight_apply (f : ArithmeticFunction ℝ) (n : ℕ) :
     arithmeticLogWeight f n = f n * Real.log n := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.7fcbbe75fc3b from=translated src=- shape=ddeb4c08 vocab=c120e153
+-/
 theorem arithmeticLogWeight_mul (f g : ArithmeticFunction ℝ) :
     arithmeticLogWeight (f * g) =
       arithmeticLogWeight f * g + f * arithmeticLogWeight g := by
@@ -43,12 +49,17 @@ theorem arithmeticLogWeight_mul (f g : ArithmeticFunction ℝ) :
   rw [← hm, Nat.cast_mul, Real.log_mul h₁ h₂]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s5.520997e5d606 from=translated src=- shape=5290fb3b vocab=cda0037a
+-/
 @[simp] theorem arithmeticLogWeight_neg (f : ArithmeticFunction ℝ) :
     arithmeticLogWeight (-f) = -arithmeticLogWeight f := by
   ext n
   simp
 
-/-- The first-order identity obtained from the divisor sum for von Mangoldt.-/
+/-- The first-order identity obtained from the divisor sum for von Mangoldt.
+@isnad1 id=eq.0h0v.s6.8aa755836012 from=translated src=- shape=f6962b35 vocab=84de2a00
+-/
 theorem arithmeticLogWeight_moebius :
     arithmeticLogWeight (μ : ArithmeticFunction ℝ) =
       -((μ : ArithmeticFunction ℝ) * vonMangoldt) := by
@@ -65,7 +76,9 @@ theorem arithmeticLogWeight_moebius :
       rw [hz]
       ring
 
-/-- The second derivative identity, with both logarithmic weights pointwise.-/
+/-- The second derivative identity, with both logarithmic weights pointwise.
+@isnad1 id=eq.0h0v.s6.ef3a6f2e1935 from=translated src=- shape=de07e47d vocab=90f02644
+-/
 theorem arithmeticLogWeight_twice_moebius :
     arithmeticLogWeight (arithmeticLogWeight (μ : ArithmeticFunction ℝ)) =
       (μ : ArithmeticFunction ℝ) *
@@ -79,7 +92,9 @@ def centeredSelbergCoefficient (c : ℝ) : ArithmeticFunction ℝ :=
   vonMangoldt * vonMangoldt - arithmeticLogWeight vonMangoldt -
     (2 * c) • (ζ : ArithmeticFunction ℝ)
 
-/-- Exact centered convolution identity, valid also at the unused index zero.-/
+/-- Exact centered convolution identity, valid also at the unused index zero.
+@isnad1 id=eq.0h1v.s7.b02214e39610 from=translated src=- shape=b2595d8b vocab=88628673
+-/
 theorem moebius_mul_centeredSelbergCoefficient (c : ℝ) :
     (μ : ArithmeticFunction ℝ) * centeredSelbergCoefficient c =
       arithmeticLogWeight (arithmeticLogWeight (μ : ArithmeticFunction ℝ)) -
@@ -87,7 +102,9 @@ theorem moebius_mul_centeredSelbergCoefficient (c : ℝ) :
   rw [centeredSelbergCoefficient, mul_sub, mul_smul_comm,
     coe_moebius_mul_coe_zeta, arithmeticLogWeight_twice_moebius]
 
-/-- The same identity expressed entirely as a finite divisor-pair sum.-/
+/-- The same identity expressed entirely as a finite divisor-pair sum.
+@isnad1 id=eq.0h2v.s7.e956b84036f0 from=translated src=- shape=79c7a0c8 vocab=75d9fdfe
+-/
 theorem moebius_mul_centeredSelbergCoefficient_apply (c : ℝ) (n : ℕ) :
     (∑ d ∈ n.divisorsAntidiagonal,
       (μ d.1 : ℝ) * centeredSelbergCoefficient c d.2) =

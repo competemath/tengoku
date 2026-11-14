@@ -22,12 +22,18 @@ namespace TwinPrime.Analytic
 def negativeLFunctionLogDerivative {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (s : ℂ) : ℂ :=
   -deriv (DirichletCharacter.LFunction χ) s / DirichletCharacter.LFunction χ s
 
+/--
+@isnad1 id=eq.1h2v.s5.575c2bd8f513 from=translated src=- shape=38804fce vocab=572cb429
+-/
 theorem one_div_cpow_neg_eq (x : ℝ) (hx : 0 < x) (s : ℂ) :
     ((1 / x : ℝ) : ℂ) ^ (-s) = (x : ℂ) ^ s := by
   rw [Complex.ofReal_div, Complex.ofReal_one, one_div,
     Complex.inv_cpow _ _ (by rw [Complex.arg_ofReal_of_nonneg hx.le]; exact Real.pi_pos.ne),
     Complex.cpow_neg, inv_inv]
 
+/--
+@isnad1 id=eq.1h3v.s7.17ec40e43ab9 from=translated src=- shape=d30c47cb vocab=a0381d71
+-/
 theorem mellinInv_one_div_eq_contour_integral (x : ℝ) (hx : 0 < x)
     (c : ℝ) (F : ℂ → ℂ) :
     mellinInv c (fun s => F s * mellinRampKernel s) (1 / x) =
@@ -41,6 +47,9 @@ theorem mellinInv_one_div_eq_contour_integral (x : ℝ) (hx : 0 < x)
   unfold mellinContourIntegrand
   ring
 
+/--
+@isnad1 id=integrab.2h4v.s6.36782401891f from=translated src=- shape=468840c3 vocab=87369478
+-/
 theorem integrable_mangoldt_contour_integrand {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (x c : ℝ) (hx : 0 < x) (hc : 1 < c) :
     Integrable (fun t : ℝ =>
@@ -51,7 +60,9 @@ theorem integrable_mangoldt_contour_integrand {q : ℕ} [NeZero q]
   unfold mellinContourIntegrand negativeLFunctionLogDerivative
   ring
 
-/-- Truncation of the actual inverse Mellin integral, including both tails.-/
+/-- Truncation of the actual inverse Mellin integral, including both tails.
+@isnad1 id=le.3h5v.s8.74e7859faf92 from=translated src=- shape=c61fd374 vocab=9a338988
+-/
 theorem norm_weighted_mangoldt_sum_sub_vertical_le {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (x c H : ℝ)
     (hx : 0 < x) (hc : 1 < c) (hH : 0 < H) :
@@ -81,6 +92,9 @@ def smoothedMangoldtContourBudget (x a c H M : ℝ) : ℝ :=
     (1 / (2 * Real.pi)) *
       (Real.pi * (1 + (a ^ 2)⁻¹) * x ^ a * M + 2 * (c - a) * x ^ c * M / H ^ 2)
 
+/--
+@isnad1 id=le.8h7v.s8.52bcca272a93 from=translated src=- shape=ea283cf5 vocab=ec27c023
+-/
 theorem norm_weighted_mangoldt_sum_le_contour_budget {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (x a c H M : ℝ)
     (hx : 1 ≤ x) (ha : 0 < a) (hac : a ≤ c) (hc : 1 < c)

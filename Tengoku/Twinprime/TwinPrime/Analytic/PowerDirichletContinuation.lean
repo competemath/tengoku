@@ -26,6 +26,9 @@ namespace TwinPrime.Analytic
 def powerDirichletLimit (a : ℕ → ℂ) (s : ℂ) : ℂ :=
   limUnder atTop (powerDirichletPartialSum a s)
 
+/--
+@isnad1 id=tendsto.4h4v.s6.e11fc0f5235e from=translated src=- shape=7e15d961 vocab=0a70e55d
+-/
 theorem tendsto_powerDirichletPartialSum_limit (α : ℝ) (hα : 0 ≤ α)
     (a : ℕ → ℂ) (C : ℝ) (hC : 0 ≤ C)
     (hA : ∀ t : ℕ, ‖∑ n ∈ Ioc 0 t, a n‖ ≤ C * (t : ℝ) ^ α)
@@ -33,6 +36,9 @@ theorem tendsto_powerDirichletPartialSum_limit (α : ℝ) (hα : 0 ≤ α)
     Tendsto (powerDirichletPartialSum a s) atTop (𝓝 (powerDirichletLimit a s)) :=
   (cauchySeq_powerDirichletPartialSum α hα s hs a C hC hA).tendsto_limUnder
 
+/--
+@isnad1 id=le.5h5v.s7.e4ff188b0eec from=translated src=- shape=bb61567f vocab=0e55ea9e
+-/
 theorem norm_powerDirichletLimit_sub_partialSum_le (α : ℝ) (hα : 0 ≤ α)
     (a : ℕ → ℂ) (C : ℝ) (hC : 0 ≤ C)
     (hA : ∀ t : ℕ, ‖∑ n ∈ Ioc 0 t, a n‖ ≤ C * (t : ℝ) ^ α)
@@ -45,7 +51,9 @@ theorem norm_powerDirichletLimit_sub_partialSum_le (α : ℝ) (hα : 0 ≤ α)
   rw [powerDirichletPartialSum_sub a s hMN]
   exact norm_sum_Ioc_cpow_mul_le_of_power_partial_sums M N hM hMN α hα s hs a C hC hA
 
-/-- The exponent gap `δ` makes a common quantitative tail bound available.-/
+/-- The exponent gap `δ` makes a common quantitative tail bound available.
+@isnad1 id=le.7h7v.s7.24efa2f6827e from=translated src=- shape=c01a2a47 vocab=a1888685
+-/
 theorem norm_powerDirichletLimit_sub_partialSum_le_uniform (α : ℝ) (hα : 0 ≤ α)
     (a : ℕ → ℂ) (C : ℝ) (hC : 0 ≤ C)
     (hA : ∀ t : ℕ, ‖∑ n ∈ Ioc 0 t, a n‖ ≤ C * (t : ℝ) ^ α)
@@ -64,6 +72,9 @@ theorem norm_powerDirichletLimit_sub_partialSum_le_uniform (α : ℝ) (hα : 0 �
   · positivity
   · positivity
 
+/--
+@isnad1 id=tendstou.4h5v.s7.91d55d460d53 from=translated src=- shape=b937949a vocab=b581106a
+-/
 theorem tendstoUniformlyOn_powerDirichletPartialSum_limit (α : ℝ) (hα : 0 ≤ α)
     (a : ℕ → ℂ) (C : ℝ) (hC : 0 ≤ C)
     (hA : ∀ t : ℕ, ‖∑ n ∈ Ioc 0 t, a n‖ ≤ C * (t : ℝ) ^ α)
@@ -83,6 +94,9 @@ theorem tendstoUniformlyOn_powerDirichletPartialSum_limit (α : ℝ) (hα : 0 �
   exact (norm_powerDirichletLimit_sub_partialSum_le_uniform α hα a C hC hA N hN
     δ H hδ s hs.1 hs.2).trans_lt hbN
 
+/--
+@isnad1 id=tendstol.3h3v.s7.e8753036db75 from=translated src=- shape=2c64eb7f vocab=34207284
+-/
 theorem tendstoLocallyUniformlyOn_powerDirichletPartialSum_limit (α : ℝ) (hα : 0 ≤ α)
     (a : ℕ → ℂ) (C : ℝ) (hC : 0 ≤ C)
     (hA : ∀ t : ℕ, ‖∑ n ∈ Ioc 0 t, a n‖ ≤ C * (t : ℝ) ^ α) :
@@ -102,6 +116,9 @@ theorem tendstoLocallyUniformlyOn_powerDirichletPartialSum_limit (α : ℝ) (hα
     tendstoUniformlyOn_powerDirichletPartialSum_limit α hα a C hC hA δ H hδ⟩
   exact mem_of_superset (inter_mem hlo hhi) (fun s hs => ⟨hs.1.le, hs.2.le⟩)
 
+/--
+@isnad1 id=differen.0h2v.s6.fee01e9d81c6 from=translated src=- shape=a4babc60 vocab=c745867c
+-/
 theorem differentiable_powerDirichletPartialSum (a : ℕ → ℂ) (N : ℕ) :
     Differentiable ℂ (fun s => powerDirichletPartialSum a s N) := by
   unfold powerDirichletPartialSum
@@ -110,6 +127,9 @@ theorem differentiable_powerDirichletPartialSum (a : ℕ → ℂ) (N : ℕ) :
   have hn0 : (n : ℂ) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt (mem_Ioc.mp hn).1)
   exact (differentiable_id.neg.const_cpow (Or.inl hn0)).mul_const (a n)
 
+/--
+@isnad1 id=differen.3h3v.s7.749c1b53ff46 from=translated src=- shape=57f811c3 vocab=25076f85
+-/
 theorem differentiableOn_powerDirichletLimit (α : ℝ) (hα : 0 ≤ α)
     (a : ℕ → ℂ) (C : ℝ) (hC : 0 ≤ C)
     (hA : ∀ t : ℕ, ‖∑ n ∈ Ioc 0 t, a n‖ ≤ C * (t : ℝ) ^ α) :
@@ -118,7 +138,9 @@ theorem differentiableOn_powerDirichletLimit (α : ℝ) (hα : 0 ≤ α)
     (Eventually.of_forall (fun N => (differentiable_powerDirichletPartialSum a N).differentiableOn))
     (isOpen_lt continuous_const Complex.continuous_re)
 
-/-- Agreement on a farther right half-plane identifies the holomorphic limit.-/
+/-- Agreement on a farther right half-plane identifies the holomorphic limit.
+@isnad1 id=eqon.5h4v.s7.9d09e469f492 from=translated src=- shape=ea0b5978 vocab=b7289ea6
+-/
 theorem powerDirichletLimit_eqOn_of_eqOn_right (α : ℝ) (hα : 0 ≤ α)
     (a : ℕ → ℂ) (C : ℝ) (hC : 0 ≤ C)
     (hA : ∀ t : ℕ, ‖∑ n ∈ Ioc 0 t, a n‖ ≤ C * (t : ℝ) ^ α)
@@ -136,6 +158,9 @@ theorem powerDirichletLimit_eqOn_of_eqOn_right (α : ℝ) (hα : 0 ≤ α)
   filter_upwards [hright] with s hs
   exact hEq hs
 
+/--
+@isnad1 id=eqon.5h4v.s7.c02debc2b337 from=translated src=- shape=e42a9e7e vocab=16198c01
+-/
 theorem powerDirichletLimit_eqOn_of_tendsto_right (α : ℝ) (hα : 0 ≤ α)
     (a : ℕ → ℂ) (C : ℝ) (hC : 0 ≤ C)
     (hA : ∀ t : ℕ, ‖∑ n ∈ Ioc 0 t, a n‖ ≤ C * (t : ℝ) ^ α)
@@ -148,7 +173,9 @@ theorem powerDirichletLimit_eqOn_of_tendsto_right (α : ℝ) (hα : 0 ≤ α)
   exact tendsto_nhds_unique (tendsto_powerDirichletPartialSum_limit α hα a C hC hA s
     ((le_max_left α 1).trans_lt hs)) (hT s hs)
 
-/-- Absolute summability, where separately available, identifies the ordered sums.-/
+/-- Absolute summability, where separately available, identifies the ordered sums.
+@isnad1 id=tendsto.1h2v.s5.a3e971396678 from=translated src=- shape=a6b408c8 vocab=ad9a454c
+-/
 theorem tendsto_powerDirichletPartialSum_LSeries (a : ℕ → ℂ) (s : ℂ)
     (hS : LSeriesSummable a s) :
     Tendsto (powerDirichletPartialSum a s) atTop (𝓝 (LSeries a s)) := by
@@ -166,6 +193,9 @@ theorem tendsto_powerDirichletPartialSum_LSeries (a : ℕ → ℂ) (s : ℂ)
     ring
   exact (hS.hasSum.tendsto_sum_nat.comp (tendsto_add_atTop_nat 1)).congr heq
 
+/--
+@isnad1 id=eqon.6h4v.s7.357d1b6bf22a from=translated src=- shape=3b2ab65e vocab=361e4318
+-/
 theorem powerDirichletLimit_eqOn_of_LSeries_right (α : ℝ) (hα : 0 ≤ α)
     (a : ℕ → ℂ) (C : ℝ) (hC : 0 ≤ C)
     (hA : ∀ t : ℕ, ‖∑ n ∈ Ioc 0 t, a n‖ ≤ C * (t : ℝ) ^ α)
@@ -178,7 +208,9 @@ theorem powerDirichletLimit_eqOn_of_LSeries_right (α : ℝ) (hα : 0 ≤ α)
   rw [← hEq hs]
   exact tendsto_powerDirichletPartialSum_LSeries a s (hS s hs)
 
-/-- Quantitative truncation after identification with an actual continuation.-/
+/-- Quantitative truncation after identification with an actual continuation.
+@isnad1 id=le.6h6v.s7.3a9942751e93 from=translated src=- shape=935fa031 vocab=e03ddefa
+-/
 theorem norm_sub_powerDirichletPartialSum_le_of_eqOn (α : ℝ) (hα : 0 ≤ α)
     (a : ℕ → ℂ) (C : ℝ) (hC : 0 ≤ C)
     (hA : ∀ t : ℕ, ‖∑ n ∈ Ioc 0 t, a n‖ ≤ C * (t : ℝ) ^ α)

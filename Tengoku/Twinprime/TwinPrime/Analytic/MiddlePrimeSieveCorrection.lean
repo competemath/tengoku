@@ -27,6 +27,9 @@ def middlePrimeSelbergCoefficient : ArithmeticFunction ℝ :=
 def middlePrimeSelbergCorrection : ArithmeticFunction ℝ :=
   normalizedMoebius * middlePrimeSelbergCoefficient
 
+/--
+@isnad1 id=eq.0h1v.s6.261b95642f73 from=translated src=- shape=eaf5a60e vocab=690f1696
+-/
 theorem middlePrimeSelbergCoefficient_apply (n : ℕ) :
     middlePrimeSelbergCoefficient n = (μ n : ℝ) ^ 2 *
       ∏ p ∈ n.primeFactors, (1 : ℝ) / ((p : ℝ) - 2) := by
@@ -35,31 +38,52 @@ theorem middlePrimeSelbergCoefficient_apply (n : ℕ) :
     simp
   · simp [middlePrimeSelbergCoefficient, pmul_apply, prodPrimeFactors_apply hn, pow_two]
 
+/--
+@isnad1 id=ismultip.0h0v.s2.78b64515ba54 from=translated src=- shape=25b03439 vocab=ab34a2ab
+-/
 theorem isMultiplicative_middlePrimeSelbergCoefficient :
     middlePrimeSelbergCoefficient.IsMultiplicative := by
   unfold middlePrimeSelbergCoefficient
   exact (isMultiplicative_moebius.intCast.pmul isMultiplicative_moebius.intCast).pmul
     (IsMultiplicative.prodPrimeFactors _)
 
+/--
+@isnad1 id=ismultip.0h0v.s2.7551adf27321 from=translated src=- shape=25b03439 vocab=54bf28fd
+-/
 theorem isMultiplicative_middlePrimeSelbergCorrection :
     middlePrimeSelbergCorrection.IsMultiplicative :=
   isMultiplicative_normalizedMoebius.mul isMultiplicative_middlePrimeSelbergCoefficient
 
+/--
+@isnad1 id=eq.0h0v.s4.8307af8a791a from=translated src=- shape=ff26b9d8 vocab=09c731a1
+-/
 @[simp] theorem middlePrimeSelbergCoefficient_one : middlePrimeSelbergCoefficient 1 = 1 :=
   isMultiplicative_middlePrimeSelbergCoefficient.map_one
 
+/--
+@isnad1 id=eq.0h0v.s4.4c452126b616 from=translated src=- shape=ff26b9d8 vocab=bc44dfd8
+-/
 @[simp] theorem middlePrimeSelbergCorrection_one : middlePrimeSelbergCorrection 1 = 1 :=
   isMultiplicative_middlePrimeSelbergCorrection.map_one
 
+/--
+@isnad1 id=eq.1h1v.s5.0eb01459bf19 from=translated src=- shape=f8cc7707 vocab=ec1a877a
+-/
 theorem middlePrimeSelbergCoefficient_prime (p : ℕ) (hp : p.Prime) :
     middlePrimeSelbergCoefficient p = 1 / ((p : ℝ) - 2) := by
   simp [middlePrimeSelbergCoefficient_apply, moebius_apply_prime hp, hp.primeFactors]
 
+/--
+@isnad1 id=eq.1h2v.s5.a57971bfffe2 from=translated src=- shape=815f9e33 vocab=f7517d26
+-/
 theorem middlePrimeSelbergCoefficient_prime_pow_succ_succ (p k : ℕ) (hp : p.Prime) :
     middlePrimeSelbergCoefficient (p ^ (k + 2)) = 0 := by
   simp [middlePrimeSelbergCoefficient_apply,
     moebius_apply_prime_pow hp (show k + 2 ≠ 0 by omega), show k + 2 ≠ 1 by omega]
 
+/--
+@isnad1 id=eq.1h1v.s4.e702f9a34f96 from=translated src=- shape=b2686bd8 vocab=66704f56
+-/
 theorem middlePrimeSelbergCoefficient_eq_zero_of_even (n : ℕ) (hn : Even n) :
     middlePrimeSelbergCoefficient n = 0 := by
   by_cases hn0 : n = 0
@@ -71,6 +95,9 @@ theorem middlePrimeSelbergCoefficient_eq_zero_of_even (n : ℕ) (hn : Even n) :
     Finset.prod_eq_zero htwo (by norm_num)
   rw [middlePrimeSelbergCoefficient_apply, hprod, mul_zero]
 
+/--
+@isnad1 id=eq.0h1v.s6.f74f1d4019e1 from=translated src=- shape=224726a5 vocab=056ad5ac
+-/
 theorem middlePrimeSelbergCoefficient_eq_kernel (n : ℕ) :
     middlePrimeSelbergCoefficient n =
       if Odd n ∧ Squarefree n then
@@ -87,7 +114,9 @@ theorem middlePrimeSelbergCoefficient_eq_kernel (n : ℕ) :
       moebius_eq_zero_of_not_squarefree hs]
     simp
 
-/-- Exact positive-endpoint summation of the arithmetic coefficient.-/
+/-- Exact positive-endpoint summation of the arithmetic coefficient.
+@isnad1 id=eq.0h1v.s5.5cd1914b8da1 from=translated src=- shape=0d03b97b vocab=02c300a4
+-/
 theorem sum_middlePrimeSelbergCoefficient_eq_denominator (z : ℕ) :
     (∑ n ∈ Ioc 0 z, middlePrimeSelbergCoefficient n) =
       middlePrimeSelbergDenominator z := by
@@ -99,12 +128,17 @@ theorem sum_middlePrimeSelbergCoefficient_eq_denominator (z : ℕ) :
   rw [middlePrimeSelbergDenominator, hI, sum_filter]
   exact sum_congr rfl fun n _ => middlePrimeSelbergCoefficient_eq_kernel n
 
+/--
+@isnad1 id=eq.0h0v.s4.b4c753b70fab from=translated src=- shape=26571668 vocab=55b817b2
+-/
 theorem middlePrimeSelbergCoefficient_eq_convolution :
     middlePrimeSelbergCoefficient = middlePrimeSelbergCorrection * reciprocalNat := by
   rw [middlePrimeSelbergCorrection, mul_comm normalizedMoebius, mul_assoc,
     mul_comm normalizedMoebius, reciprocalNat_mul_normalizedMoebius, mul_one]
 
-/-- The exact harmonic convolution, with natural division retained.-/
+/-- The exact harmonic convolution, with natural division retained.
+@isnad1 id=eq.0h1v.s5.a40694e9eb46 from=translated src=- shape=8de08149 vocab=831e3205
+-/
 theorem middlePrimeSelbergDenominator_eq_harmonic_convolution (z : ℕ) :
     middlePrimeSelbergDenominator z =
       ∑ d ∈ Ioc 0 z, middlePrimeSelbergCorrection d * (harmonic (z / d) : ℝ) := by
@@ -112,6 +146,9 @@ theorem middlePrimeSelbergDenominator_eq_harmonic_convolution (z : ℕ) :
     middlePrimeSelbergCoefficient_eq_convolution, sum_Ioc_mul_eq_sum_sum]
   simp only [reciprocalNat_apply, sum_one_div_Ioc_eq_harmonic]
 
+/--
+@isnad1 id=eq.1h2v.s7.9c52918dc6f1 from=translated src=- shape=28283fda vocab=945fb07d
+-/
 theorem middlePrimeSelbergCorrection_prime_pow_succ (p k : ℕ) (hp : p.Prime) :
     middlePrimeSelbergCorrection (p ^ (k + 1)) =
       middlePrimeSelbergCoefficient (p ^ (k + 1)) -
@@ -133,11 +170,17 @@ theorem middlePrimeSelbergCorrection_prime_pow_succ (p k : ℕ) (hp : p.Prime) :
   rw [pow_succ, Nat.mul_div_cancel _ hp.pos]
   ring
 
+/--
+@isnad1 id=eq.0h0v.s5.bea5cea349a3 from=translated src=- shape=89f25cf5 vocab=abf8d4d7
+-/
 theorem middlePrimeSelbergCorrection_two : middlePrimeSelbergCorrection 2 = -1 / 2 := by
   have h := middlePrimeSelbergCorrection_prime_pow_succ 2 0 Nat.prime_two
   norm_num [middlePrimeSelbergCoefficient_prime 2 Nat.prime_two] at h
   simpa only [neg_div] using h
 
+/--
+@isnad1 id=eq.2h1v.s6.7f22fbcbefab from=translated src=- shape=5b77ea0b vocab=1a4de38e
+-/
 theorem middlePrimeSelbergCorrection_odd_prime (p : ℕ) (hp : p.Prime) (hpo : Odd p) :
     middlePrimeSelbergCorrection p = 2 / ((p : ℝ) * ((p : ℝ) - 2)) := by
   have h := middlePrimeSelbergCorrection_prime_pow_succ p 0 hp
@@ -152,6 +195,9 @@ theorem middlePrimeSelbergCorrection_odd_prime (p : ℕ) (hp : p.Prime) (hpo : O
   field_simp
   ring
 
+/--
+@isnad1 id=eq.1h1v.s6.83290a0bd48b from=translated src=- shape=29b812ce vocab=691e9765
+-/
 theorem middlePrimeSelbergCorrection_prime_sq (p : ℕ) (hp : p.Prime) :
     middlePrimeSelbergCorrection (p ^ 2) = -1 / ((p : ℝ) * ((p : ℝ) - 2)) := by
   have h := middlePrimeSelbergCorrection_prime_pow_succ p 1 hp
@@ -160,6 +206,9 @@ theorem middlePrimeSelbergCorrection_prime_sq (p : ℕ) (hp : p.Prime) :
   rw [h, zero_sub, div_div]
   simp only [neg_div, mul_comm]
 
+/--
+@isnad1 id=eq.1h2v.s5.5a2ff2a3b9c5 from=translated src=- shape=815f9e33 vocab=952df055
+-/
 theorem middlePrimeSelbergCorrection_prime_pow_succ_succ_succ
     (p k : ℕ) (hp : p.Prime) :
     middlePrimeSelbergCorrection (p ^ (k + 3)) = 0 := by
@@ -171,6 +220,9 @@ theorem middlePrimeSelbergCorrection_prime_pow_succ_succ_succ
   · simp
   all_goals exact hp
 
+/--
+@isnad1 id=hassum.1h1v.s6.ee91ab382713 from=translated src=- shape=4fd56a40 vocab=9aa81def
+-/
 theorem hasSum_middlePrimeSelbergCorrection_prime_pow (p : ℕ) (hp : p.Prime) :
     HasSum (fun k : ℕ => middlePrimeSelbergCorrection (p ^ k))
       (1 + middlePrimeSelbergCorrection p + middlePrimeSelbergCorrection (p ^ 2)) := by
@@ -182,6 +234,9 @@ theorem hasSum_middlePrimeSelbergCorrection_prime_pow (p : ℕ) (hp : p.Prime) :
   simpa only [sum_range_succ, sum_range_zero, pow_zero, middlePrimeSelbergCorrection_one,
     zero_add, Nat.reduceAdd, pow_one] using h
 
+/--
+@isnad1 id=hassum.1h1v.s6.0f162131cf1a from=translated src=- shape=42aa0e6b vocab=8a24ac3a
+-/
 theorem hasSum_norm_middlePrimeSelbergCorrection_prime_pow (p : ℕ) (hp : p.Prime) :
     HasSum (fun k : ℕ => ‖middlePrimeSelbergCorrection (p ^ k)‖)
       (1 + ‖middlePrimeSelbergCorrection p‖ + ‖middlePrimeSelbergCorrection (p ^ 2)‖) := by
@@ -193,6 +248,9 @@ theorem hasSum_norm_middlePrimeSelbergCorrection_prime_pow (p : ℕ) (hp : p.Pri
   simpa only [sum_range_succ, sum_range_zero, pow_zero, middlePrimeSelbergCorrection_one,
     norm_one, zero_add, Nat.reduceAdd, pow_one] using h
 
+/--
+@isnad1 id=hassum.0h0v.s6.9dd37eed557b from=translated src=- shape=1c16b63d vocab=e832ac4a
+-/
 theorem hasSum_middlePrimeSelbergCorrection_two_pow :
     HasSum (fun k : ℕ => middlePrimeSelbergCorrection (2 ^ k)) (1 / 2) := by
   have h := hasSum_middlePrimeSelbergCorrection_prime_pow 2 Nat.prime_two
@@ -201,6 +259,9 @@ theorem hasSum_middlePrimeSelbergCorrection_two_pow :
   convert! h using 1
   norm_num
 
+/--
+@isnad1 id=hassum.0h0v.s6.1b40773de271 from=translated src=- shape=f99d0a40 vocab=d721aa06
+-/
 theorem hasSum_norm_middlePrimeSelbergCorrection_two_pow :
     HasSum (fun k : ℕ => ‖middlePrimeSelbergCorrection (2 ^ k)‖) (3 / 2) := by
   have h := hasSum_norm_middlePrimeSelbergCorrection_prime_pow 2 Nat.prime_two
@@ -209,6 +270,9 @@ theorem hasSum_norm_middlePrimeSelbergCorrection_two_pow :
   convert! h using 1
   norm_num
 
+/--
+@isnad1 id=hassum.2h1v.s6.62c5d19b5961 from=translated src=- shape=db55fd2f vocab=50be6224
+-/
 theorem hasSum_middlePrimeSelbergCorrection_odd_prime_pow (p : ℕ)
     (hp : p.Prime) (hpo : Odd p) :
     HasSum (fun k : ℕ => middlePrimeSelbergCorrection (p ^ k))
@@ -219,6 +283,9 @@ theorem hasSum_middlePrimeSelbergCorrection_odd_prime_pow (p : ℕ)
   convert! h using 1
   ring
 
+/--
+@isnad1 id=hassum.2h1v.s6.13c420df2eae from=translated src=- shape=908240b1 vocab=c27ce8f9
+-/
 theorem hasSum_norm_middlePrimeSelbergCorrection_odd_prime_pow (p : ℕ)
     (hp : p.Prime) (hpo : Odd p) :
     HasSum (fun k : ℕ => ‖middlePrimeSelbergCorrection (p ^ k)‖)
@@ -236,7 +303,9 @@ theorem hasSum_norm_middlePrimeSelbergCorrection_odd_prime_pow (p : ℕ)
   ring
 
 /-- Absolute summability follows from the finite local Euler factors and
-the ordinary convergent series `sum 9/n²`.-/
+the ordinary convergent series `sum 9/n²`.
+@isnad1 id=summable.0h0v.s4.fc56944b4fd8 from=translated src=- shape=b957a2d0 vocab=32b321af
+-/
 theorem summable_norm_middlePrimeSelbergCorrection :
     Summable (fun n : ℕ => ‖middlePrimeSelbergCorrection n‖) := by
   have hg : Summable (fun n : ℕ => 9 / (n : ℝ) ^ 2) := by
@@ -263,6 +332,9 @@ theorem summable_norm_middlePrimeSelbergCorrection :
     rw [div_le_div_iff₀ hden (sq_pos_of_pos hp0)]
     nlinarith [mul_nonneg (show (0 : ℝ) ≤ p by positivity) (show 0 ≤ (p : ℝ) - 3 by linarith)]
 
+/--
+@isnad1 id=summable.0h0v.s4.6c4588386832 from=translated src=- shape=ddcca31f vocab=b2cc6678
+-/
 theorem summable_middlePrimeSelbergCorrection : Summable middlePrimeSelbergCorrection :=
   summable_norm_middlePrimeSelbergCorrection.of_norm
 

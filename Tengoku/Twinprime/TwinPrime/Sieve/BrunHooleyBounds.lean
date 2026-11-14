@@ -31,11 +31,16 @@ namespace TwinPrime.Sieve
 
 /-! ### Block main sums -/
 
+/--
+@isnad1 id=le.0h1v.s5.a8486b80afb2 from=translated src=- shape=24c36ad6 vocab=0625ec87
+-/
 theorem abs_moebius_le_one' (d : ℕ) : |(μ d : ℝ)| ≤ 1 := by
   rw [← Int.cast_abs, abs_moebius]
   split_ifs <;> norm_num
 
-/-- `|S_j − V_j| ≤ tail_j`.-/
+/-- `|S_j − V_j| ≤ tail_j`.
+@isnad1 id=le.3h3v.s7.f518fb4da7d1 from=translated src=- shape=2f3f7930 vocab=d3265dfa
+-/
 theorem abs_sum_truncMoebius_mul_sub_prod_le (ν : ArithmeticFunction ℝ) (hν : ν.IsMultiplicative)
     (hν0 : ∀ d, 0 ≤ ν d) {Pj : ℕ} (hPj : Squarefree Pj) (m : ℕ) :
     |∑ d ∈ Pj.divisors, truncMoebius m d * ν d - ∏ p ∈ Pj.primeFactors, (1 - ν p)| ≤
@@ -73,7 +78,9 @@ theorem abs_sum_truncMoebius_mul_sub_prod_le (ν : ArithmeticFunction ℝ) (hν 
         have := abs_moebius_le_one' d
         nlinarith [hν0 d, abs_nonneg ((μ d : ℝ))]
 
-/-- The defective block sum is `∑_{d ∣ P_j, ω d = 2k+1} ν d`, hence between `0` and `tail_j`.-/
+/-- The defective block sum is `∑_{d ∣ P_j, ω d = 2k+1} ν d`, hence between `0` and `tail_j`.
+@isnad1 id=and.2h3v.s8.c398025516a9 from=translated src=- shape=334a47e0 vocab=173ddb71
+-/
 theorem sum_defect_mul_nu_bounds (ν : ArithmeticFunction ℝ) (hν0 : ∀ d, 0 ≤ ν d) {Pj : ℕ}
     (hPj : Squarefree Pj) (k : ℕ) :
     0 ≤ ∑ d ∈ Pj.divisors, (truncMoebius (2 * k) d - truncMoebius (2 * k + 1) d) * ν d ∧
@@ -111,7 +118,9 @@ theorem sum_defect_mul_nu_bounds (ν : ArithmeticFunction ℝ) (hν0 : ∀ d, 0 
 
 /-! ### The main-term inequality -/
 
-/-- Weierstrass: `1 − ∑ ε ≤ ∏ (1 − ε)` for `0 ≤ ε ≤ 1`.-/
+/-- Weierstrass: `1 − ∑ ε ≤ ∏ (1 − ε)` for `0 ≤ ε ≤ 1`.
+@isnad1 id=le.2h3v.s6.ffe3238ce153 from=translated src=- shape=77868c6c vocab=ae5e4e6e
+-/
 theorem one_sub_sum_le_prod_one_sub {ι : Type*} (s : Finset ι) (ε : ι → ℝ)
     (h0 : ∀ i ∈ s, 0 ≤ ε i) (h1 : ∀ i ∈ s, ε i ≤ 1) :
     1 - ∑ i ∈ s, ε i ≤ ∏ i ∈ s, (1 - ε i) := by
@@ -128,7 +137,9 @@ theorem one_sub_sum_le_prod_one_sub {ι : Type*} (s : Finset ι) (ε : ι → �
       mul_nonneg ha0 hs0]
 
 /-- If `|S_j − V_j| ≤ ε_j V_j`, `0 ≤ T_j ≤ ε_j V_j`, `V_j > 0`, `ε_j ≥ 0` and `∑ ε_j ≤ 1/8`, then
-`∏ S_j − ∑_j T_j ∏_{i ≠ j} S_i ≥ (∏ V_j) / 2`.-/
+`∏ S_j − ∑_j T_j ∏_{i ≠ j} S_i ≥ (∏ V_j) / 2`.
+@isnad1 id=le.6h5v.s8.2bfe61a7df66 from=translated src=- shape=fc3082fb vocab=005abab1
+-/
 theorem main_term_ge {r : ℕ} (S T V ε : Fin r → ℝ) (hV : ∀ j, 0 < V j) (hε : ∀ j, 0 ≤ ε j)
     (hS : ∀ j, |S j - V j| ≤ ε j * V j) (_hT0 : ∀ j, 0 ≤ T j) (hT : ∀ j, T j ≤ ε j * V j)
     (hsum : ∑ j, ε j ≤ 1 / 8) :
@@ -196,7 +207,9 @@ theorem main_term_ge {r : ℕ} (S T V ε : Fin r → ℝ) (hV : ∀ j, 0 < V j) 
 
 /-! ### The remainder -/
 
-/-- Factorisation of `∑_D (∏_j f_j(D_j)) h(∏ D)` for multiplicative `h`.-/
+/-- Factorisation of `∑_D (∏_j f_j(D_j)) h(∏ D)` for multiplicative `h`.
+@isnad1 id=eq.1h5v.s7.2998499278f8 from=translated src=- shape=45ae9c27 vocab=de14033b
+-/
 theorem sum_prod_mul_mult {P r : ℕ} (B : Blocks P r) (f : Fin r → ℕ → ℝ)
     (h : ArithmeticFunction ℝ) (hh : h.IsMultiplicative) :
     ∑ D ∈ Fintype.piFinset (fun j => (B.block j).divisors),
@@ -210,7 +223,9 @@ theorem sum_prod_mul_mult {P r : ℕ} (B : Blocks P r) (f : Fin r → ℕ → �
   have hcop := B.pairwise_coprime_of_dvd D (fun j => dvd_of_mem_divisors (hD j))
   rw [IsMultiplicative.map_prod D hh Finset.univ (hcop.set_pairwise _), ← prod_mul_distrib]
 
-/-- `|truncMoebius m d| ≤ [ω d ≤ m]`.-/
+/-- `|truncMoebius m d| ≤ [ω d ≤ m]`.
+@isnad1 id=le.0h2v.s6.2fc6a9e6f08c from=translated src=- shape=d79acc2e vocab=2effe2f4
+-/
 theorem abs_truncMoebius_le_indicator (m d : ℕ) :
     |truncMoebius m d| ≤ if ω d ≤ m then 1 else 0 := by
   unfold truncMoebius
@@ -218,7 +233,9 @@ theorem abs_truncMoebius_le_indicator (m d : ℕ) :
   · exact abs_moebius_le_one' d
   · simp
 
-/-- `|defect k j i d| ≤ [ω d ≤ 2 k i + 1]`.-/
+/-- `|defect k j i d| ≤ [ω d ≤ 2 k i + 1]`.
+@isnad1 id=le.0h5v.s7.b2d7a4c3730c from=translated src=- shape=c296d1b8 vocab=3ea58cea
+-/
 theorem abs_defect_le_indicator {r : ℕ} (k : Fin r → ℕ) (j i : Fin r) (d : ℕ) :
     |defect k j i d| ≤ if ω d ≤ 2 * k i + 1 then 1 else 0 := by
   unfold defect
@@ -239,7 +256,9 @@ theorem abs_defect_le_indicator {r : ℕ} (k : Fin r → ℕ) (j i : Fin r) (d :
     refine le_trans (abs_truncMoebius_le_indicator _ _) ?_
     split_ifs <;> first | exact le_rfl | (exfalso; omega) | norm_num
 
-/-- Remainder bound for a weight family bounded by indicators `[ω d ≤ m i]`.-/
+/-- Remainder bound for a weight family bounded by indicators `[ω d ≤ m i]`.
+@isnad1 id=le.4h6v.s8.8f42218ee4d2 from=translated src=- shape=753fdc41 vocab=f852f561
+-/
 theorem abs_sum_prod_mul_rem_le {r : ℕ} (s : BoundingSieve) (B : Blocks s.prodPrimes r)
     (f : Fin r → ℕ → ℝ) (m : Fin r → ℕ) (hf : ∀ i d, |f i d| ≤ if ω d ≤ m i then 1 else 0)
     (ρ : ArithmeticFunction ℝ) (hρ : ρ.IsMultiplicative) (_hρ0 : ∀ d, 0 ≤ ρ d)
@@ -277,7 +296,9 @@ theorem abs_sum_prod_mul_rem_le {r : ℕ} (s : BoundingSieve) (B : Blocks s.prod
 /-- **The general Brun–Hooley lower bound.**  With `V_j = ∏_{p ∣ P_j} (1 − ν p)`, if the tails
 satisfy `∑_{d ∣ P_j, ω d ≥ 2k_j+1} ν d ≤ ε_j V_j` with `∑ ε_j ≤ 1/8`, and `|R_d| ≤ ρ(d)` for a
 multiplicative `ρ ≥ 0`, then
-`siftedSum ≥ X (∏ V_j)/2 − (r+1) ∏_j ∑_{d ∣ P_j, ω d ≤ 2k_j+1} ρ(d)`.-/
+`siftedSum ≥ X (∏ V_j)/2 − (r+1) ∏_j ∑_{d ∣ P_j, ω d ≤ 2k_j+1} ρ(d)`.
+@isnad1 id=le.8h6v.s9.ae1a072eccd4 from=translated src=- shape=7c17f4b5 vocab=4d76e632
+-/
 theorem siftedSum_ge_of_blocks {r : ℕ} (s : BoundingSieve) (B : Blocks s.prodPrimes r)
     (k : Fin r → ℕ) (hX : 0 ≤ s.totalMass) (hν0 : ∀ d, 0 ≤ s.nu d)
     (ρ : ArithmeticFunction ℝ) (hρ : ρ.IsMultiplicative) (hρ0 : ∀ d, 0 ≤ ρ d)

@@ -30,11 +30,20 @@ def primeLogSummatory (x : ℝ) : ℝ :=
 def centeredSelbergSummatory (c x : ℝ) : ℝ :=
   arithmeticSummatory (centeredSelbergCoefficient c) x
 
+/--
+@isnad1 id=eq.0h1v.s4.36797e27b932 from=translated src=- shape=98cb13d8 vocab=d6ba8192
+-/
 theorem mertensReal_eq (x : ℝ) : mertensReal x = mertensSum ⌊x⌋₊ := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.3fdf6f9f28a7 from=translated src=- shape=25ac9e83 vocab=add88478
+-/
 theorem arithmeticSummatory_vonMangoldt (x : ℝ) :
     arithmeticSummatory vonMangoldt x = Chebyshev.psi x := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.eae2232f00dc from=translated src=- shape=68b82ccc vocab=185f9ab5
+-/
 theorem moebiusLogSqSummatory_eq (x : ℝ) :
     moebiusLogSqSummatory x =
       arithmeticSummatory (arithmeticLogWeight (arithmeticLogWeight (μ : ArithmeticFunction ℝ))) x := by
@@ -44,6 +53,9 @@ theorem moebiusLogSqSummatory_eq (x : ℝ) :
   simp only [arithmeticLogWeight_apply, intCoe_apply]
   ring
 
+/--
+@isnad1 id=eq.1h2v.s6.5afb926c182e from=translated src=- shape=69c9faba vocab=aa6c646e
+-/
 theorem arithmeticSummatory_moebius_mul_centeredSelberg (c x : ℝ) (hx : 1 ≤ x) :
     arithmeticSummatory ((μ : ArithmeticFunction ℝ) * centeredSelbergCoefficient c) x =
       moebiusLogSqSummatory x - 2 * c := by
@@ -52,7 +64,9 @@ theorem arithmeticSummatory_moebius_mul_centeredSelberg (c x : ℝ) (hx : 1 ≤ 
   simp [arithmeticSummatory, sub_eq_add_neg, ArithmeticFunction.one_apply,
     Finset.sum_add_distrib, Finset.sum_neg_distrib, hfloor]
 
-/-- The second hyperbola split, with real quotient arguments and exact overlap.-/
+/-- The second hyperbola split, with real quotient arguments and exact overlap.
+@isnad1 id=eq.4h4v.s7.3e08d8e84fb2 from=translated src=- shape=c7a6528a vocab=5d0063aa
+-/
 theorem moebiusSelberg_hyperbola (c x y z : ℝ)
     (hx : 1 ≤ x) (hy : 1 ≤ y) (hz : 1 ≤ z) (hyz : y * z = x) :
     moebiusLogSqSummatory x - 2 * c =
@@ -63,6 +77,9 @@ theorem moebiusSelberg_hyperbola (c x y z : ℝ)
   exact arithmeticSummatory_convolution_hyperbola (centeredSelbergCoefficient c)
     (μ : ArithmeticFunction ℝ) x y z hx hy hz hyz
 
+/--
+@isnad1 id=eq.0h2v.s6.9dcd4059657c from=translated src=- shape=759b8313 vocab=b2cdc2ee
+-/
 theorem centeredSelbergSummatory_eq (c x : ℝ) :
     centeredSelbergSummatory c x =
       arithmeticSummatory (vonMangoldt * vonMangoldt) x - primeLogSummatory x -
@@ -78,7 +95,9 @@ theorem centeredSelbergSummatory_eq (c x : ℝ) :
   simp_rw [sum_congr rfl hterm, sum_sub_distrib]
   simp [arithmeticSummatory, mul_comm]
 
-/-- The symmetric prime convolution split at the exact real square root.-/
+/-- The symmetric prime convolution split at the exact real square root.
+@isnad1 id=eq.1h1v.s7.37656f862177 from=translated src=- shape=26acb3d9 vocab=f5ff2fa8
+-/
 theorem vonMangoldt_convolution_sqrt (x : ℝ) (hx : 1 ≤ x) :
     arithmeticSummatory (vonMangoldt * vonMangoldt) x =
       2 * (∑ n ∈ Ioc 0 ⌊Real.sqrt x⌋₊, vonMangoldt n * Chebyshev.psi (x / n)) -

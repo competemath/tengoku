@@ -21,14 +21,23 @@ def mellinPoleWeight (u : ℝ) : ℂ := mellinRamp u ^ 2 / (2 * (u : ℂ))
 
 def mellinPoleKernel (s : ℂ) : ℂ := 1 / ((s - 1) * s * (s + 1))
 
+/--
+@isnad1 id=eq.1h1v.s6.3e40850b88cf from=translated src=- shape=13b6998f vocab=5a5eab33
+-/
 theorem mellinPoleWeight_eq_of_le_one (u : ℝ) (hu : u ≤ 1) :
     mellinPoleWeight u = (1 - (u : ℂ)) ^ 2 / (2 * (u : ℂ)) := by
   rw [mellinPoleWeight, mellinRamp_eq_of_le_one u hu]
 
+/--
+@isnad1 id=eq.1h1v.s4.cd3c6d9c4b61 from=translated src=- shape=aa240375 vocab=272491d4
+-/
 theorem mellinPoleWeight_eq_zero_of_one_le (u : ℝ) (hu : 1 ≤ u) :
     mellinPoleWeight u = 0 := by
   simp [mellinPoleWeight, mellinRamp_eq_zero_of_one_le u hu]
 
+/--
+@isnad1 id=continuo.1h1v.s5.918933392779 from=translated src=- shape=8d189fc0 vocab=5fb40c09
+-/
 theorem continuousAt_mellinPoleWeight (u : ℝ) (hu : u ≠ 0) :
     ContinuousAt mellinPoleWeight u := by
   unfold mellinPoleWeight
@@ -58,6 +67,9 @@ private theorem mellinPoleWeight_integrand_eq (s : ℂ) (u : ℝ) (hu : 0 < u) :
   simp only [smul_eq_mul]
   rw [← mul_div_assoc, mul_sub, ← mul_assoc, hp]
 
+/--
+@isnad1 id=mellinco.1h1v.s4.e02afa86b386 from=translated src=- shape=c5298c69 vocab=f0c24ee3
+-/
 theorem mellinConvergent_mellinPoleWeight (s : ℂ) (hs : 1 < s.re) :
     MellinConvergent mellinPoleWeight s := by
   have h0 : IntegrableOn (fun u : ℝ => (u : ℂ) ^ ((s - 1) - 1) • mellinRamp u)
@@ -71,6 +83,9 @@ theorem mellinConvergent_mellinPoleWeight (s : ℂ) (hs : 1 < s.re) :
   exact hi.congr_fun
     (fun u hu => (mellinPoleWeight_integrand_eq s u hu).symm) measurableSet_Ioi
 
+/--
+@isnad1 id=eq.1h1v.s5.7021affcf666 from=translated src=- shape=cae4238f vocab=0d233363
+-/
 theorem mellin_mellinPoleWeight (s : ℂ) (hs : 1 < s.re) :
     mellin mellinPoleWeight s = mellinPoleKernel s := by
   have hsm1 : 0 < (s - 1).re := by simp only [sub_re, one_re]; linarith
@@ -93,16 +108,25 @@ theorem mellin_mellinPoleWeight (s : ℂ) (hs : 1 < s.re) :
   field_simp
   ring
 
+/--
+@isnad1 id=hasmelli.1h1v.s4.57281a89c1c5 from=translated src=- shape=20c519ab vocab=86d7f4ec
+-/
 theorem hasMellin_mellinPoleWeight (s : ℂ) (hs : 1 < s.re) :
     HasMellin mellinPoleWeight s (mellinPoleKernel s) :=
   ⟨mellinConvergent_mellinPoleWeight s hs, mellin_mellinPoleWeight s hs⟩
 
+/--
+@isnad1 id=eq.0h1v.s4.b4851c600f1a from=translated src=- shape=39eac801 vocab=b51a1a43
+-/
 theorem mellinPoleKernel_eq_mellinRampKernel_div (s : ℂ) :
     mellinPoleKernel s = mellinRampKernel s / (s - 1) := by
   simp only [mellinPoleKernel, mellinRampKernel, div_div]
   congr 1
   ring
 
+/--
+@isnad1 id=le.1h2v.s6.ebce22c25367 from=translated src=- shape=89328341 vocab=68ebd574
+-/
 theorem norm_mellinPoleKernel_vertical_le (c : ℝ) (hc : 1 < c) (t : ℝ) :
     ‖mellinPoleKernel ((c : ℂ) + t * I)‖ ≤
       ‖mellinRampKernel ((c : ℂ) + t * I)‖ / (c - 1) := by
@@ -111,6 +135,9 @@ theorem norm_mellinPoleKernel_vertical_le (c : ℝ) (hc : 1 < c) (t : ℝ) :
   rw [mellinPoleKernel_eq_mellinRampKernel_div, norm_div]
   exact div_le_div_of_nonneg_left (norm_nonneg _) (by linarith) hr
 
+/--
+@isnad1 id=vertical.1h1v.s4.2faa39580ba9 from=translated src=- shape=cfaaad28 vocab=1f8a7af5
+-/
 theorem verticalIntegrable_mellinPoleKernel (c : ℝ) (hc : 1 < c) :
     VerticalIntegrable mellinPoleKernel c := by
   have hs (t : ℝ) : (c : ℂ) + t * I - 1 ≠ 0 := by
@@ -138,12 +165,18 @@ theorem verticalIntegrable_mellinPoleKernel (c : ℝ) (hc : 1 < c) :
   exact ((verticalIntegrable_mellinRampKernel c (by linarith)).norm.div_const (c - 1)).mono'
     hcont.aestronglyMeasurable (Filter.Eventually.of_forall (norm_mellinPoleKernel_vertical_le c hc))
 
+/--
+@isnad1 id=vertical.1h1v.s5.55c20a239e61 from=translated src=- shape=9edc543a vocab=434993cc
+-/
 theorem verticalIntegrable_mellin_mellinPoleWeight (c : ℝ) (hc : 1 < c) :
     VerticalIntegrable (mellin mellinPoleWeight) c := by
   apply (verticalIntegrable_mellinPoleKernel c hc).congr
   filter_upwards [] with t
   exact (mellin_mellinPoleWeight ((c : ℂ) + t * I) (by simpa using hc)).symm
 
+/--
+@isnad1 id=eq.2h2v.s5.7ab08a734bba from=translated src=- shape=3dafefcd vocab=eeaad0f9
+-/
 theorem mellinInv_mellinPoleKernel (c : ℝ) (hc : 1 < c) (u : ℝ) (hu : 0 < u) :
     mellinInv c mellinPoleKernel u = mellinPoleWeight u := by
   have hinv := mellinInv_mellin_eq c mellinPoleWeight hu
@@ -156,6 +189,9 @@ theorem mellinInv_mellinPoleKernel (c : ℝ) (hc : 1 < c) (u : ℝ) (hu : 0 < u)
   filter_upwards [] with t
   rw [mellin_mellinPoleWeight ((c : ℂ) + t * I) (by simpa using hc)]
 
+/--
+@isnad1 id=eq.1h1v.s6.b19a579288c0 from=translated src=- shape=201a2ec8 vocab=5a5eab33
+-/
 theorem mellinPoleWeight_one_div (x : ℝ) (hx : 1 ≤ x) :
     mellinPoleWeight (1 / x) = (((x - 1) ^ 2 / (2 * x) : ℝ) : ℂ) := by
   have hx0 : 0 < x := by linarith
@@ -164,10 +200,16 @@ theorem mellinPoleWeight_one_div (x : ℝ) (hx : 1 ≤ x) :
   have hxc : (x : ℂ) ≠ 0 := Complex.ofReal_ne_zero.mpr hx0.ne'
   field_simp
 
+/--
+@isnad1 id=eq.2h2v.s6.092eedba4ddc from=translated src=- shape=e92f879b vocab=b279ac95
+-/
 theorem mellinInv_mellinPoleKernel_one_div (c : ℝ) (hc : 1 < c) (x : ℝ) (hx : 1 ≤ x) :
     mellinInv c mellinPoleKernel (1 / x) = (((x - 1) ^ 2 / (2 * x) : ℝ) : ℂ) := by
   rw [mellinInv_mellinPoleKernel c hc (1 / x) (by positivity), mellinPoleWeight_one_div x hx]
 
+/--
+@isnad1 id=le.1h1v.s6.6f22dfc77a76 from=translated src=- shape=a06cab75 vocab=fa67b91f
+-/
 theorem norm_mellinPoleWeight_one_div_sub_half_le (x : ℝ) (hx : 1 ≤ x) :
     ‖mellinPoleWeight (1 / x) - ((x / 2 : ℝ) : ℂ)‖ ≤ 1 := by
   rw [mellinPoleWeight_one_div x hx, ← Complex.ofReal_sub, Complex.norm_real, Real.norm_eq_abs]

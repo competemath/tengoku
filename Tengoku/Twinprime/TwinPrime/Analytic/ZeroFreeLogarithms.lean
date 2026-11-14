@@ -17,6 +17,9 @@ namespace TwinPrime.Analytic
 
 def zeroFreeLogConstant : ℝ := 144 * (1 + Real.log 5 / Real.log (6 / 5))
 
+/--
+@isnad1 id=le.0h0v.s3.beafd0cfebd1 from=translated src=- shape=ff3a10fc vocab=1a46f709
+-/
 theorem zeroFreeLogConstant_ge : 144 ≤ zeroFreeLogConstant := by
   have h5 : 0 ≤ Real.log (5 : ℝ) := Real.log_nonneg (by norm_num)
   have h65 : 0 ≤ Real.log (6 / 5 : ℝ) := Real.log_nonneg (by norm_num)
@@ -24,10 +27,16 @@ theorem zeroFreeLogConstant_ge : 144 ≤ zeroFreeLogConstant := by
   unfold zeroFreeLogConstant
   linarith
 
+/--
+@isnad1 id=lt.0h0v.s3.9c7dd3d5d3e3 from=translated src=- shape=ff3a10fc vocab=637b3361
+-/
 theorem zeroFreeLogConstant_pos : 0 < zeroFreeLogConstant := by
   have h := zeroFreeLogConstant_ge
   linarith
 
+/--
+@isnad1 id=le.0h2v.s6.e680de690fc7 from=translated src=- shape=50410fcb vocab=ab85798c
+-/
 theorem primitiveLFunctionLogBudget_le_log_abs (q : ℕ) (t : ℝ) :
     primitiveLFunctionLogBudget q t ≤
       zeroFreeLogConstant * (1 + Real.log 16 + 2 * Real.log q + Real.log (|t| + 4)) := by
@@ -40,6 +49,9 @@ theorem primitiveLFunctionLogBudget_le_log_abs (q : ℕ) (t : ℝ) :
   change zeroFreeLogConstant * _ ≤ _
   exact mul_le_mul_of_nonneg_left (by linarith) zeroFreeLogConstant_pos.le
 
+/--
+@isnad1 id=le.0h1v.s6.dbe750b4fc19 from=translated src=- shape=a06384cf vocab=c4cec830
+-/
 theorem log_abs_double_add_four_le (t : ℝ) :
     Real.log (|2 * t| + 4) ≤ 2 * Real.log (|t| + 4) := by
   have htwo : Real.log (2 : ℝ) ≤ Real.log (|t| + 4) :=
@@ -51,7 +63,9 @@ theorem log_abs_double_add_four_le (t : ℝ) :
     _ ≤ _ := by linarith
 
 /-- The complete primitive budget has a uniform logarithmic conductor and
-height bound; this is an actual estimate of the previously proved budget.-/
+height bound; this is an actual estimate of the previously proved budget.
+@isnad1 id=le.0h2v.s6.be5decd83c00 from=translated src=- shape=671aae29 vocab=e442f7c6
+-/
 theorem primitiveZeroFreeBudget_le_log_conductor_height (q : ℕ) (t : ℝ) :
     primitiveZeroFreeBudget q t ≤
       100 * zeroFreeLogConstant * (1 + Real.log q + Real.log (|t| + 4)) := by
@@ -107,6 +121,9 @@ theorem primitiveZeroFreeBudget_le_log_conductor_height (q : ℕ) (t : ℝ) :
 def primitiveLogZeroFreeWidth (q : ℕ) (t : ℝ) : ℝ :=
   1 / (4000 * zeroFreeLogConstant * (1 + Real.log q + Real.log (|t| + 4)))
 
+/--
+@isnad1 id=lt.0h2v.s4.f01a4a56d471 from=translated src=- shape=787c1379 vocab=f1092afa
+-/
 theorem primitiveLogZeroFreeWidth_pos (q : ℕ) (t : ℝ) :
     0 < primitiveLogZeroFreeWidth q t := by
   have hq := Real.log_natCast_nonneg q
@@ -115,6 +132,9 @@ theorem primitiveLogZeroFreeWidth_pos (q : ℕ) (t : ℝ) :
   unfold primitiveLogZeroFreeWidth
   positivity
 
+/--
+@isnad1 id=le.0h2v.s3.388ba99e70c5 from=translated src=- shape=d802f31c vocab=c6325acc
+-/
 theorem primitiveLogZeroFreeWidth_le (q : ℕ) (t : ℝ) :
     primitiveLogZeroFreeWidth q t ≤ primitiveZeroFreeWidth q t := by
   have hR := (primitiveZeroFreeBudget_bounds q t).1
@@ -123,7 +143,9 @@ theorem primitiveLogZeroFreeWidth_le (q : ℕ) (t : ℝ) :
   apply one_div_le_one_div_of_le (by linarith : 0 < 40 * primitiveZeroFreeBudget q t)
   nlinarith
 
-/-- The principal zero-free budget has logarithmic height growth as well.-/
+/-- The principal zero-free budget has logarithmic height growth as well.
+@isnad1 id=le.0h1v.s6.05693262fe72 from=translated src=- shape=da34ad71 vocab=37042792
+-/
 theorem zetaZeroFreeBudget_le_log_height (t : ℝ) :
     zetaZeroFreeBudget t ≤ 100 * zeroFreeLogConstant * (1 + Real.log (|t| + 4)) := by
   let C := zeroFreeLogConstant
@@ -155,12 +177,18 @@ theorem zetaZeroFreeBudget_le_log_height (t : ℝ) :
 def zetaLogZeroFreeWidth (t : ℝ) : ℝ :=
   1 / (8000 * zeroFreeLogConstant * (1 + Real.log (|t| + 4)))
 
+/--
+@isnad1 id=lt.0h1v.s3.d6f5ee5cea93 from=translated src=- shape=8a62b088 vocab=d5c53f26
+-/
 theorem zetaLogZeroFreeWidth_pos (t : ℝ) : 0 < zetaLogZeroFreeWidth t := by
   have ht : 0 ≤ Real.log (|t| + 4) := Real.log_nonneg (by have := abs_nonneg t; linarith)
   have hC := zeroFreeLogConstant_pos
   unfold zetaLogZeroFreeWidth
   positivity
 
+/--
+@isnad1 id=le.0h1v.s5.699eec7c2eac from=translated src=- shape=13804d8c vocab=d5f13737
+-/
 theorem zetaLogZeroFreeWidth_le (t : ℝ) :
     zetaLogZeroFreeWidth t ≤ 1 / (80 * zetaZeroFreeBudget t) := by
   have hE := zetaZeroFreeBudget_ge t

@@ -20,6 +20,9 @@ namespace TwinPrime.Analytic
 
 def dispersionGcdCutoff (X : ℕ) : ℕ := ⌈(Real.log (4 * (X : ℝ) + 4)) ^ 10⌉₊
 
+/--
+@isnad1 id=le.0h1v.s5.b17aaa110442 from=translated src=- shape=84cc2093 vocab=45c294fc
+-/
 theorem one_le_dispersion_log (X : ℕ) : 1 ≤ Real.log (4 * (X : ℝ) + 4) := by
   have hfour : Real.log (4 : ℝ) = 2 * Real.log 2 := by
     rw [show (4 : ℝ) = 2 ^ 2 by norm_num, Real.log_pow]
@@ -28,22 +31,33 @@ theorem one_le_dispersion_log (X : ℕ) : 1 ≤ Real.log (4 * (X : ℝ) + 4) := 
     Real.log_le_log (by norm_num) (by have := Nat.cast_nonneg (α := ℝ) X; linarith)
   linarith [half_le_log_two]
 
+/--
+@isnad1 id=le.0h1v.s5.49e1f3ebd4c9 from=translated src=- shape=26608f98 vocab=3f6a24d3
+-/
 theorem log_pow_le_dispersionGcdCutoff (X : ℕ) :
     (Real.log (4 * (X : ℝ) + 4)) ^ 10 ≤ (dispersionGcdCutoff X : ℝ) :=
   Nat.le_ceil _
 
+/--
+@isnad1 id=le.0h1v.s3.5ec520ceb947 from=translated src=- shape=8a62b088 vocab=d15c5497
+-/
 theorem one_le_dispersionGcdCutoff (X : ℕ) : 1 ≤ dispersionGcdCutoff X := by
   have h : (1 : ℝ) ≤ (dispersionGcdCutoff X : ℝ) :=
     (one_le_pow₀ (one_le_dispersion_log X)).trans (log_pow_le_dispersionGcdCutoff X)
   exact_mod_cast h
 
+/--
+@isnad1 id=le.0h1v.s6.e57f88208a6a from=translated src=- shape=b6dfc278 vocab=3f6a24d3
+-/
 theorem dispersionGcdCutoff_le_two_log_pow (X : ℕ) :
     (dispersionGcdCutoff X : ℝ) ≤ 2 * (Real.log (4 * (X : ℝ) + 4)) ^ 10 := by
   have hp : (1 : ℝ) ≤ (Real.log (4 * (X : ℝ) + 4)) ^ 10 :=
     one_le_pow₀ (one_le_dispersion_log X)
   exact Nat.ceil_le_two_mul (by norm_num; linarith)
 
-/-- The ceiling costs nothing in the useful direction for the error.-/
+/-- The ceiling costs nothing in the useful direction for the error.
+@isnad1 id=le.0h1v.s7.f77b7358d494 from=translated src=- shape=9276f61c vocab=4aaa2df9
+-/
 theorem sqrt_dispersionGcdCutoff_error_le (X : ℕ) :
     Real.sqrt (16 * (Real.log (4 * (X : ℝ) + 4)) ^ 4 / dispersionGcdCutoff X) ≤
       4 / (Real.log (4 * (X : ℝ) + 4)) ^ 3 := by
@@ -62,7 +76,9 @@ theorem sqrt_dispersionGcdCutoff_error_le (X : ℕ) :
   exact heq.symm.trans_le h
 
 /-- The actual dyadic depth at `2X` is bounded using the same logarithm
-as the cutoff. The fixed threshold makes the earlier depth estimate apply.-/
+as the cutoff. The fixed threshold makes the earlier depth estimate apply.
+@isnad1 id=le.1h1v.s6.05c034fabe0e from=translated src=- shape=620fbde2 vocab=cd8e12a0
+-/
 theorem dyadicNatDepth_two_mul_le_dispersion_log (X : ℕ) (hX : 128 ≤ X) :
     (dyadicNatDepth (2 * X) : ℝ) ≤
       (2 / Real.log 2) * Real.log (4 * (X : ℝ) + 4) := by
@@ -76,7 +92,9 @@ theorem dyadicNatDepth_two_mul_le_dispersion_log (X : ℕ) (hX : 128 ≤ X) :
   exact (dyadicNatDepth_le_two_div_log_two_mul_log (2 * X) (by omega)).trans
     (mul_le_mul_of_nonneg_left hlog (by positivity))
 
-/-- The complete growing-family budget loses only one reciprocal logarithm.-/
+/-- The complete growing-family budget loses only one reciprocal logarithm.
+@isnad1 id=le.1h1v.s7.24aa83497397 from=translated src=- shape=228ebf64 vocab=b21d50e5
+-/
 theorem dispersionGcdCutoff_family_error_le (X : ℕ) (hX : 128 ≤ X) :
     (dyadicNatDepth (2 * X) : ℝ) ^ 2 *
       Real.sqrt (16 * (Real.log (4 * (X : ℝ) + 4)) ^ 4 / dispersionGcdCutoff X) ≤
@@ -93,6 +111,9 @@ theorem dispersionGcdCutoff_family_error_le (X : ℕ) (hX : 128 ≤ X) :
       change ((2 / Real.log 2) * L) ^ 2 * (4 / L ^ 3) = 4 * (2 / Real.log 2) ^ 2 / L
       field_simp
 
+/--
+@isnad1 id=tendsto.0h0v.s7.d3689b962b5d from=translated src=- shape=75436f68 vocab=01e3c498
+-/
 theorem tendsto_dispersionGcdCutoff_family_error :
     Tendsto (fun X : ℕ => (dyadicNatDepth (2 * X) : ℝ) ^ 2 *
       Real.sqrt (16 * (Real.log (4 * (X : ℝ) + 4)) ^ 4 / dispersionGcdCutoff X))
@@ -114,7 +135,9 @@ theorem tendsto_dispersionGcdCutoff_family_error :
     exact dispersionGcdCutoff_family_error_le X hX
 
 /-- Any nonnegative actual error satisfying the displayed full-family
-budget is sublinear. The bound may hold only eventually.-/
+budget is sublinear. The bound may hold only eventually.
+@isnad1 id=tendsto.2h1v.s7.d43f8736d1ac from=translated src=- shape=dd69d0bd vocab=1b4563e0
+-/
 theorem tendsto_div_of_dispersionGcdCutoff_bound (F : ℕ → ℝ)
     (hF : ∀ᶠ X : ℕ in atTop, 0 ≤ F X)
     (hbound : ∀ᶠ X : ℕ in atTop,

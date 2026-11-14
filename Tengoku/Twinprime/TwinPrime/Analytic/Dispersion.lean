@@ -19,7 +19,9 @@ open scoped ArithmeticFunction.Moebius
 
 namespace TwinPrime.Analytic
 
-/-- A finite weighted Cauchy--Schwarz inequality, allowing zero weights.-/
+/-- A finite weighted Cauchy--Schwarz inequality, allowing zero weights.
+@isnad1 id=le.1h4v.s7.9d4fdd17edb7 from=translated src=- shape=32986919 vocab=261e16a0
+-/
 theorem weighted_sum_sq_le {ι : Type*} (s : Finset ι) (w a : ι → ℝ)
     (hw : ∀ i ∈ s, 0 ≤ w i) :
     (∑ i ∈ s, w i * a i) ^ 2 ≤
@@ -29,7 +31,9 @@ theorem weighted_sum_sq_le {ι : Type*} (s : Finset ι) (w a : ι → ℝ)
   intro i _
   exact le_of_eq (by ring)
 
-/-- Both orientations of every distinct pair occur in the off-diagonal.-/
+/-- Both orientations of every distinct pair occur in the off-diagonal.
+@isnad1 id=eq.0h3v.s6.5b2805cdef06 from=translated src=- shape=609603fa vocab=1227d654
+-/
 theorem sum_sq_eq_diagonal_add_offDiagonal {ι : Type*} [DecidableEq ι]
     (s : Finset ι) (a : ι → ℝ) :
     (∑ i ∈ s, a i) ^ 2 =
@@ -52,7 +56,9 @@ def bilinearBox (U V X M N : ℕ) : ℝ :=
   ∑ r ∈ dispersionRight V N, vaughanBeta V r *
     ∑ d ∈ dispersionLeft U M, dispersionEntry X d r
 
-/-- The box really is the corresponding restriction of the original factor domain.-/
+/-- The box really is the corresponding restriction of the original factor domain.
+@isnad1 id=eq.0h5v.s8.3515e93bfcf9 from=translated src=- shape=b42abfcd vocab=fca0d4eb
+-/
 theorem dispersion_boxPairs_eq (U V X M N : ℕ) :
     ((dispersionLeft U M).product (dispersionRight V N)).filter
         (fun dr => X < dr.1 * dr.2 ∧ dr.1 * dr.2 ≤ 2 * X) =
@@ -73,6 +79,9 @@ theorem dispersion_boxPairs_eq (U V X M N : ℕ) :
   · rintro ⟨⟨_, hUd, hVr, hlow, hupp⟩, hMd, hdM, hNr, hrN⟩
     exact ⟨⟨⟨⟨hMd, hdM⟩, hUd⟩, ⟨⟨hNr, hrN⟩, hVr⟩⟩, hlow, hupp⟩
 
+/--
+@isnad1 id=eq.0h5v.s8.8699b64875cf from=translated src=- shape=191f9815 vocab=2401ce4f
+-/
 theorem bilinearBox_eq_filtered_pair_sum (U V X M N : ℕ) :
     bilinearBox U V X M N =
       ∑ dr ∈ (bilinearPairs U V X).filter
@@ -101,14 +110,23 @@ def dispersionOffDiagonal (U V X M N : ℕ) : ℝ :=
     ∑ d ∈ dispersionLeft U M, ∑ e ∈ (dispersionLeft U M).erase d,
       dispersionEntry X d r * dispersionEntry X e r
 
+/--
+@isnad1 id=le.0h2v.s4.3044ab4b8f53 from=translated src=- shape=5ffe46ab vocab=5af2d641
+-/
 theorem dispersionMass_nonneg (V N : ℕ) : 0 ≤ dispersionMass V N :=
   sum_nonneg fun r _ => vaughanBeta_nonneg V r
 
+/--
+@isnad1 id=le.0h5v.s4.286f3ac06be1 from=translated src=- shape=e13a4e99 vocab=db709dfb
+-/
 theorem dispersionDiagonal_nonneg (U V X M N : ℕ) :
     0 ≤ dispersionDiagonal U V X M N :=
   sum_nonneg fun r _ => mul_nonneg (vaughanBeta_nonneg V r)
     (sum_nonneg fun _ _ => sq_nonneg _)
 
+/--
+@isnad1 id=eq.0h5v.s6.070bbd1b34ff from=translated src=- shape=13ad6ab3 vocab=76606b14
+-/
 theorem dispersion_secondMoment_eq (U V X M N : ℕ) :
     (∑ r ∈ dispersionRight V N, vaughanBeta V r *
       (∑ d ∈ dispersionLeft U M, dispersionEntry X d r) ^ 2) =
@@ -116,7 +134,9 @@ theorem dispersion_secondMoment_eq (U V X M N : ℕ) :
   simp_rw [sum_sq_eq_diagonal_add_offDiagonal, mul_add, sum_add_distrib]
   rfl
 
-/-- This is the complete Cauchy--Schwarz bound, not a diagonal-only bound.-/
+/-- This is the complete Cauchy--Schwarz bound, not a diagonal-only bound.
+@isnad1 id=le.0h5v.s6.9f497a706d45 from=translated src=- shape=1d88cd57 vocab=ccd1a603
+-/
 theorem bilinearBox_sq_le_dispersion (U V X M N : ℕ) :
     bilinearBox U V X M N ^ 2 ≤ dispersionMass V N *
       (dispersionDiagonal U V X M N + dispersionOffDiagonal U V X M N) := by
@@ -126,14 +146,23 @@ theorem bilinearBox_sq_le_dispersion (U V X M N : ℕ) :
   rw [dispersion_secondMoment_eq] at h
   exact h
 
+/--
+@isnad1 id=le.0h2v.s3.db1b8e1352e4 from=translated src=- shape=9da2df65 vocab=42638ed4
+-/
 theorem dispersionLeft_card_le (U M : ℕ) : (dispersionLeft U M).card ≤ M := by
   calc
     _ ≤ (Ioc M (2 * M)).card := card_filter_le _ _
     _ = M := by simp; omega
 
+/--
+@isnad1 id=le.0h2v.s3.0a910b54d517 from=translated src=- shape=9da2df65 vocab=ad463225
+-/
 theorem dispersionRight_card_le (V N : ℕ) : (dispersionRight V N).card ≤ N := by
   exact dispersionLeft_card_le V N
 
+/--
+@isnad1 id=le.0h3v.s5.acbad8987b04 from=translated src=- shape=e9278588 vocab=e1ca022a
+-/
 theorem abs_dispersionEntry_le_log (X d r : ℕ) :
     |dispersionEntry X d r| ≤ Real.log (2 * X + 2) := by
   have hL : 0 ≤ Real.log (2 * (X : ℝ) + 2) :=
@@ -151,12 +180,17 @@ theorem abs_dispersionEntry_le_log (X d r : ℕ) :
           (by exact_mod_cast (show d * r + 2 ≤ 2 * X + 2 by omega)))
   · simpa using hL
 
+/--
+@isnad1 id=le.0h3v.s6.1589f469bb92 from=translated src=- shape=2ec5cab4 vocab=52a26d49
+-/
 theorem dispersionEntry_sq_le (X d r : ℕ) :
     dispersionEntry X d r ^ 2 ≤ (Real.log (2 * X + 2)) ^ 2 := by
   have h := abs_dispersionEntry_le_log X d r
   nlinarith [sq_abs (dispersionEntry X d r), abs_nonneg (dispersionEntry X d r)]
 
-/-- The weight mass bound uses only beta <= log, not prime distribution.-/
+/-- The weight mass bound uses only beta <= log, not prime distribution.
+@isnad1 id=le.1h2v.s5.fb32985afbb9 from=translated src=- shape=4e00a1f3 vocab=952c6689
+-/
 theorem dispersionMass_le (V N : ℕ) (hN : 1 ≤ N) :
     dispersionMass V N ≤ N * Real.log (2 * N) := by
   have hL : 0 ≤ Real.log (2 * (N : ℝ)) :=
@@ -172,6 +206,9 @@ theorem dispersionMass_le (V N : ℕ) (hN : 1 ≤ N) :
     _ ≤ N * Real.log (2 * N) := mul_le_mul_of_nonneg_right
       (by exact_mod_cast dispersionRight_card_le V N) hL
 
+/--
+@isnad1 id=le.0h5v.s6.91887b9d49c4 from=translated src=- shape=2be7d951 vocab=fc81dae3
+-/
 theorem dispersionDiagonal_le_mass (U V X M N : ℕ) :
     dispersionDiagonal U V X M N ≤
       M * (Real.log (2 * X + 2)) ^ 2 * dispersionMass V N := by
@@ -189,7 +226,9 @@ theorem dispersionDiagonal_le_mass (U V X M N : ℕ) :
           (by exact_mod_cast dispersionLeft_card_le U M) (sq_nonneg _)
     _ = _ := by rw [← sum_mul]; unfold dispersionMass; ring
 
-/-- A finite diagonal estimate with no admissibility condition on the box.-/
+/-- A finite diagonal estimate with no admissibility condition on the box.
+@isnad1 id=le.1h5v.s7.51fec859c8c4 from=translated src=- shape=3d0e96c1 vocab=fc81dae3
+-/
 theorem dispersion_mass_mul_diagonal_le (U V X M N : ℕ) (hN : 1 ≤ N) :
     dispersionMass V N * dispersionDiagonal U V X M N ≤
       M * (N : ℝ) ^ 2 * (Real.log (2 * N)) ^ 2 * (Real.log (2 * X + 2)) ^ 2 := by
@@ -204,7 +243,9 @@ theorem dispersion_mass_mul_diagonal_le (U V X M N : ℕ) (hN : 1 ≤ N) :
       gcongr
     _ = _ := by ring
 
-/-- On a nonempty dyadic product range, the diagonal saves one factor M.-/
+/-- On a nonempty dyadic product range, the diagonal saves one factor M.
+@isnad1 id=le.3h5v.s7.cb2c312dfd77 from=translated src=- shape=545557be vocab=fc81dae3
+-/
 theorem dispersion_diagonal_saving (U V X M N : ℕ) (hM : 1 ≤ M) (hN : 1 ≤ N)
     (hMN : M * N ≤ 2 * X) :
     M * (dispersionMass V N * dispersionDiagonal U V X M N) ≤
@@ -235,7 +276,9 @@ theorem dispersion_diagonal_saving (U V X M N : ℕ) (hM : 1 ≤ M) (hN : 1 ≤ 
     _ = _ := by ring
 
 /-- Uniform normalized diagonal saving when the first dyadic range starts
-at least halfway to the cutoff. This does not control the off-diagonal.-/
+at least halfway to the cutoff. This does not control the off-diagonal.
+@isnad1 id=le.6h5v.s7.7866ac0747bf from=translated src=- shape=9090c838 vocab=b6ffedc4
+-/
 theorem dispersion_diagonal_div_sq_le (U V X M N : ℕ)
     (hU : 1 ≤ U) (hX : 1 ≤ X) (hM : 1 ≤ M) (hN : 1 ≤ N)
     (hUM : U ≤ 2 * M) (hMN : M * N ≤ 2 * X) :
@@ -251,7 +294,9 @@ theorem dispersion_diagonal_div_sq_le (U V X M N : ℕ)
   nlinarith [mul_le_mul_of_nonneg_right hUMr hprod0]
 
 /-- The normalized diagonal tends to zero even after any fixed logarithmic
-loss. The only hypotheses specify the dyadic factor ranges.-/
+loss. The only hypotheses specify the dyadic factor ranges.
+@isnad1 id=tendsto.1h3v.s7.faba22888143 from=translated src=- shape=3104758d vocab=d97fd4e1
+-/
 theorem tendsto_primary_dispersion_diagonal (M N : ℕ → ℕ) (k : ℕ)
     (hrange : ∀ᶠ X : ℕ in atTop,
       1 ≤ M X ∧ 1 ≤ N X ∧ primaryCutoff X ≤ 2 * M X ∧ M X * N X ≤ 2 * X) :
@@ -268,7 +313,9 @@ theorem tendsto_primary_dispersion_diagonal (M N : ℕ → ℕ) (k : ℕ)
     h.1 h.2.1 h.2.2.1 h.2.2.2
 
 /-- The square-root diagonal contribution is o(X), even after any fixed
-logarithmic loss. This still says nothing about the off-diagonal.-/
+logarithmic loss. This still says nothing about the off-diagonal.
+@isnad1 id=tendsto.1h3v.s7.58d214a6316a from=translated src=- shape=af2b79aa vocab=eab4fbcd
+-/
 theorem tendsto_primary_dispersion_diagonal_sqrt (M N : ℕ → ℕ) (k : ℕ)
     (hrange : ∀ᶠ X : ℕ in atTop,
       1 ≤ M X ∧ 1 ≤ N X ∧ primaryCutoff X ≤ 2 * M X ∧ M X * N X ≤ 2 * X) :

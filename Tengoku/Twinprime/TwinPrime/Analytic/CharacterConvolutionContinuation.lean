@@ -20,6 +20,9 @@ open scoped Topology
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=lseriess.1h3v.s6.260bc759710b from=translated src=- shape=9066a502 vocab=443d3bf7
+-/
 theorem LSeriesSummable_characterArithmeticFunction {q : ℕ}
     (χ : DirichletCharacter ℂ q) {s : ℂ} (hs : 1 < s.re) :
     LSeriesSummable (toArithmeticFunction (χ ·)) s := by
@@ -27,12 +30,18 @@ theorem LSeriesSummable_characterArithmeticFunction {q : ℕ}
     (χ.apply_eq_toArithmeticFunction_apply hn).symm).mpr
       (χ.LSeriesSummable_of_one_lt_re hs)
 
+/--
+@isnad1 id=eq.1h3v.s6.f81d46a941ec from=translated src=- shape=ae7c0a84 vocab=714b7356
+-/
 theorem LSeries_characterArithmeticFunction {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) {s : ℂ} (hs : 1 < s.re) :
     LSeries (toArithmeticFunction (χ ·)) s = DirichletCharacter.LFunction χ s := by
   rw [χ.LFunction_eq_LSeries hs]
   exact LSeries_congr (fun hn => (χ.apply_eq_toArithmeticFunction_apply hn).symm) s
 
+/--
+@isnad1 id=lseriess.1h5v.s8.944da7bf0261 from=translated src=- shape=d1b2f3db vocab=727ca210
+-/
 theorem LSeriesSummable_three_character_convolution {q : ℕ}
     (χ₁ χ₂ χ₃ : DirichletCharacter ℂ q) {s : ℂ} (hs : 1 < s.re) :
     LSeriesSummable ((toArithmeticFunction (χ₁ ·) * toArithmeticFunction (χ₂ ·) *
@@ -43,7 +52,9 @@ theorem LSeriesSummable_three_character_convolution {q : ℕ}
     (LSeriesSummable_characterArithmeticFunction χ₃ hs)
 
 /-- The product is Dirichlet convolution, with the entire arithmetic-function
-expression typed before coercion to a sequence.-/
+expression typed before coercion to a sequence.
+@isnad1 id=eq.1h5v.s8.fe1b15ac16c1 from=translated src=- shape=ecddc75d vocab=9b710118
+-/
 theorem LSeries_three_character_convolution {q : ℕ} [NeZero q]
     (χ₁ χ₂ χ₃ : DirichletCharacter ℂ q) {s : ℂ} (hs : 1 < s.re) :
     LSeries ((toArithmeticFunction (χ₁ ·) * toArithmeticFunction (χ₂ ·) *
@@ -57,6 +68,9 @@ theorem LSeries_three_character_convolution {q : ℕ} [NeZero q]
     ArithmeticFunction.LSeries_mul' h₁ h₂, LSeries_characterArithmeticFunction χ₁ hs,
     LSeries_characterArithmeticFunction χ₂ hs, LSeries_characterArithmeticFunction χ₃ hs]
 
+/--
+@isnad1 id=differen.3h4v.s8.6e09bb04c786 from=translated src=- shape=42d995f2 vocab=82761ebd
+-/
 theorem differentiable_threeLFunctionProduct {q : ℕ} [NeZero q]
     (χ₁ χ₂ χ₃ : DirichletCharacter ℂ q)
     (hχ₁ : χ₁ ≠ 1) (hχ₂ : χ₂ ≠ 1) (hχ₃ : χ₃ ≠ 1) :
@@ -66,6 +80,9 @@ theorem differentiable_threeLFunctionProduct {q : ℕ} [NeZero q]
     (DirichletCharacter.differentiable_LFunction hχ₂)).mul
     (DirichletCharacter.differentiable_LFunction hχ₃)
 
+/--
+@isnad1 id=eq.0h2v.s5.dfeb72d4b45f from=translated src=- shape=8924a20c vocab=bcf8b4e7
+-/
 theorem powerDirichletPartialSum_one_eq_reciprocal (a : ℕ → ℂ) (M : ℕ) :
     powerDirichletPartialSum a 1 M = ∑ n ∈ Ioc 0 M, a n / (n : ℂ) := by
   simp only [powerDirichletPartialSum, Complex.cpow_neg, Complex.cpow_one,
@@ -93,7 +110,9 @@ private theorem three_character_convolution_limit_eqOn_of_power_bound
       ((le_max_right (3 / 4 : ℝ) 1).trans_lt hs)
 
 /-- The prefix-power estimate is discharged by actual nonprincipal-character
-cancellation. No convergence premise is assumed on the enlarged half-plane.-/
+cancellation. No convergence premise is assumed on the enlarged half-plane.
+@isnad1 id=eqon.3h4v.s8.03e5788df839 from=translated src=- shape=079faa7b vocab=d262e99e
+-/
 theorem powerDirichletLimit_three_character_convolution_eqOn
     {q : ℕ} [NeZero q] (χ₁ χ₂ χ₃ : DirichletCharacter ℂ q)
     (hχ₁ : χ₁ ≠ 1) (hχ₂ : χ₂ ≠ 1) (hχ₃ : χ₃ ≠ 1) :
@@ -104,6 +123,9 @@ theorem powerDirichletLimit_three_character_convolution_eqOn
   three_character_convolution_limit_eqOn_of_power_bound χ₁ χ₂ χ₃ hχ₁ hχ₂ hχ₃
     (norm_three_character_convolution_prefix_le_power χ₁ χ₂ χ₃ hχ₁ hχ₂ hχ₃)
 
+/--
+@isnad1 id=tendstol.3h4v.s9.3761b228fdd6 from=translated src=- shape=298e9cfa vocab=3af73084
+-/
 theorem tendstoLocallyUniformlyOn_three_character_convolution_LFunctions
     {q : ℕ} [NeZero q] (χ₁ χ₂ χ₃ : DirichletCharacter ℂ q)
     (hχ₁ : χ₁ ≠ 1) (hχ₂ : χ₂ ≠ 1) (hχ₃ : χ₃ ≠ 1) :
@@ -117,6 +139,9 @@ theorem tendstoLocallyUniformlyOn_three_character_convolution_LFunctions
     (norm_three_character_convolution_prefix_le_power χ₁ χ₂ χ₃ hχ₁ hχ₂ hχ₃)).congr_right
     (powerDirichletLimit_three_character_convolution_eqOn χ₁ χ₂ χ₃ hχ₁ hχ₂ hχ₃)
 
+/--
+@isnad1 id=tendsto.4h5v.s8.311800b222bc from=translated src=- shape=32be14bf vocab=b3ab3f65
+-/
 theorem tendsto_three_character_convolution_partialSum_LFunctions
     {q : ℕ} [NeZero q] (χ₁ χ₂ χ₃ : DirichletCharacter ℂ q)
     (hχ₁ : χ₁ ≠ 1) (hχ₂ : χ₂ ≠ 1) (hχ₃ : χ₃ ≠ 1)
@@ -132,6 +157,9 @@ theorem tendsto_three_character_convolution_partialSum_LFunctions
     (130 * (q : ℝ) ^ 2) (by positivity)
     (norm_three_character_convolution_prefix_le_power χ₁ χ₂ χ₃ hχ₁ hχ₂ hχ₃) s hs
 
+/--
+@isnad1 id=le.5h6v.s9.b6a44931bb6b from=translated src=- shape=405f8796 vocab=635c950d
+-/
 theorem norm_threeLFunctionProduct_sub_partialSum_le
     {q : ℕ} [NeZero q] (χ₁ χ₂ χ₃ : DirichletCharacter ℂ q)
     (hχ₁ : χ₁ ≠ 1) (hχ₂ : χ₂ ≠ 1) (hχ₃ : χ₃ ≠ 1)
@@ -150,7 +178,9 @@ theorem norm_threeLFunctionProduct_sub_partialSum_le
   ring
 
 /-- The reciprocal sums converge in their natural order to the actual product
-at one. This does not assert absolute summability of the reciprocal series.-/
+at one. This does not assert absolute summability of the reciprocal series.
+@isnad1 id=tendsto.3h4v.s8.3b2df98fdf55 from=translated src=- shape=d75e4a88 vocab=68221c1f
+-/
 theorem tendsto_three_character_convolution_reciprocal_sum
     {q : ℕ} [NeZero q] (χ₁ χ₂ χ₃ : DirichletCharacter ℂ q)
     (hχ₁ : χ₁ ≠ 1) (hχ₂ : χ₂ ≠ 1) (hχ₃ : χ₃ ≠ 1) :
@@ -163,7 +193,9 @@ theorem tendsto_three_character_convolution_reciprocal_sum
     χ₁ χ₂ χ₃ hχ₁ hχ₂ hχ₃ 1 (by norm_num)).congr
     (fun M => powerDirichletPartialSum_one_eq_reciprocal _ M)
 
-/-- A fully explicit tail bound at one for arbitrary nonprincipal factors.-/
+/-- A fully explicit tail bound at one for arbitrary nonprincipal factors.
+@isnad1 id=le.4h5v.s9.4e06fbb70f20 from=translated src=- shape=4e986f3f vocab=dc92d286
+-/
 theorem norm_threeLFunctionProduct_one_sub_reciprocal_sum_le
     {q : ℕ} [NeZero q] (χ₁ χ₂ χ₃ : DirichletCharacter ℂ q)
     (hχ₁ : χ₁ ≠ 1) (hχ₂ : χ₂ ≠ 1) (hχ₃ : χ₃ ≠ 1)

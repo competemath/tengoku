@@ -18,16 +18,24 @@ open Finset
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=eq.0h2v.s7.090a9c801608 from=translated src=- shape=d44f50c0 vocab=d14a867c
+-/
 theorem unitAddCircle_dist_eq_abs_sub_round (x y : ℝ) :
     dist (x : UnitAddCircle) (y : UnitAddCircle) = |x - y - round (x - y)| := by
   rw [dist_eq_norm, ← AddCircle.coe_sub, UnitAddCircle.norm_eq]
 
+/--
+@isnad1 id=le.0h3v.s7.d0a0a5d10211 from=translated src=- shape=30493cc9 vocab=2ee9abea
+-/
 theorem unitAddCircle_dist_le_abs_sub_int (x y : ℝ) (m : ℤ) :
     dist (x : UnitAddCircle) (y : UnitAddCircle) ≤ |x - y - m| := by
   rw [unitAddCircle_dist_eq_abs_sub_round]
   exact round_le (x - y) m
 
-/-- Reciprocal distances from a fixed frequency, with the diagonal removed.-/
+/-- Reciprocal distances from a fixed frequency, with the diagonal removed.
+@isnad1 id=le.3h5v.s8.72ddb8211970 from=translated src=- shape=ba77bbaf vocab=15facce0
+-/
 theorem sum_reciprocal_unitAddCircle_dist_le {ι : Type*} [DecidableEq ι]
     (s : Finset ι) (θ : ι → ℝ) (δ : ℝ) (hδ : 0 < δ)
     (hsep : ∀ i ∈ s, ∀ j ∈ s, i ≠ j →
@@ -82,7 +90,9 @@ theorem sum_reciprocal_unitAddCircle_dist_le {ι : Type*} [DecidableEq ι]
       (mul_le_mul_of_nonneg_left
         (harmonic_real_mono (card_image_le.trans (card_erase_le))) (by norm_num)) hδ.le
 
-/-- Each full Gram row has its interval-length diagonal and harmonic off-diagonal bound.-/
+/-- Each full Gram row has its interval-length diagonal and harmonic off-diagonal bound.
+@isnad1 id=le.3h7v.s8.822a493437cc from=translated src=- shape=0398dbe5 vocab=bb7d52a9
+-/
 theorem additive_kernel_row_le_of_separated {ι : Type*} (s : Finset ι)
     (θ : ι → ℝ) (M N : ℕ) (δ : ℝ) (hδ : 0 < δ)
     (hsep : ∀ i ∈ s, ∀ j ∈ s, i ≠ j →
@@ -119,7 +129,9 @@ theorem additive_kernel_row_le_of_separated {ι : Type*} (s : Finset ι)
   rw [← sum_erase_add s _ hi, hdiag]
   linarith
 
-/-- A proved additive large sieve, with the harmonic logarithmic loss retained.-/
+/-- A proved additive large sieve, with the harmonic logarithmic loss retained.
+@isnad1 id=le.2h7v.s8.137a593824d0 from=translated src=- shape=d2843e91 vocab=3b0421a0
+-/
 theorem additive_large_sieve_of_separated {ι : Type*} (s : Finset ι)
     (θ : ι → ℝ) (a : ℕ → ℂ) (M N : ℕ) (δ : ℝ) (hδ : 0 < δ)
     (hsep : ∀ i ∈ s, ∀ j ∈ s, i ≠ j →
@@ -133,7 +145,9 @@ theorem additive_large_sieve_of_separated {ι : Type*} (s : Finset ι)
     positivity
   · exact additive_kernel_row_le_of_separated s θ M N δ hδ hsep
 
-/-- An elementary logarithmic version of the same finite estimate.-/
+/-- An elementary logarithmic version of the same finite estimate.
+@isnad1 id=le.2h7v.s8.0e62dac15dbb from=translated src=- shape=9ba9ec7f vocab=9c89f865
+-/
 theorem additive_large_sieve_of_separated_log {ι : Type*} (s : Finset ι)
     (θ : ι → ℝ) (a : ℕ → ℂ) (M N : ℕ) (δ : ℝ) (hδ : 0 < δ)
     (hsep : ∀ i ∈ s, ∀ j ∈ s, i ≠ j →

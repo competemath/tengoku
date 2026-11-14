@@ -25,6 +25,9 @@ def dispersionBoxIndices (U V X : ℕ) : Finset (ℕ × ℕ) :=
     (fun ij => U ≤ 2 * 2 ^ ij.1 ∧ V ≤ 2 * 2 ^ ij.2 ∧
       2 ^ ij.1 * 2 ^ ij.2 ≤ 2 * X)
 
+/--
+@isnad1 id=iff.0h4v.s7.eb9ffe25706e from=translated src=- shape=6ffa3c67 vocab=178dc80f
+-/
 theorem mem_dispersionBoxIndices_iff (U V X : ℕ) (ij : ℕ × ℕ) :
     ij ∈ dispersionBoxIndices U V X ↔
       ij.1 < dyadicNatDepth (2 * X) ∧ ij.2 < dyadicNatDepth (2 * X) ∧
@@ -33,7 +36,9 @@ theorem mem_dispersionBoxIndices_iff (U V X : ℕ) (ij : ℕ × ℕ) :
   tauto
 
 /-- The right-closed cells cover each relevant factor exactly once,
-including powers of two at the upper endpoint of a cell.-/
+including powers of two at the upper endpoint of a cell.
+@isnad1 id=existsun.2h2v.s6.86900cd770c2 from=translated src=- shape=c4672279 vocab=bfce5830
+-/
 theorem existsUnique_dispersion_dyadic_index (T n : ℕ) (hn : 1 < n) (hnT : n ≤ T) :
     ∃! i : ℕ, i ∈ range (dyadicNatDepth T) ∧ 2 ^ i < n ∧ n ≤ 2 * 2 ^ i := by
   obtain ⟨i, hi, huniq⟩ := existsUnique_dyadicNatCell T (n - 1)
@@ -49,13 +54,18 @@ theorem existsUnique_dispersion_dyadic_index (T n : ℕ) (hn : 1 < n) (hnT : n �
   rw [pow_succ, mul_comm _ 2]
   exact mem_Ico.mpr ⟨by omega, by omega⟩
 
+/--
+@isnad1 id=le.0h3v.s5.4a41849aaa59 from=translated src=- shape=43a21322 vocab=0b15923c
+-/
 theorem dispersionBoxIndices_card_le (U V X : ℕ) :
     (dispersionBoxIndices U V X).card ≤ (dyadicNatDepth (2 * X)) ^ 2 := by
   apply (card_filter_le _ _).trans_eq
   simp only [product_eq_sprod, card_product, card_range, pow_two]
 
 /-- Natural side lengths and the true product/cutoff/depth bounds used by
-the dispersion estimates on each selected box.-/
+the dispersion estimates on each selected box.
+@isnad1 id=and.1h4v.s8.1a341d955891 from=translated src=- shape=f08199ee vocab=a513b40b
+-/
 theorem dispersionBoxIndices_bounds {U V X : ℕ} {ij : ℕ × ℕ}
     (hij : ij ∈ dispersionBoxIndices U V X) :
     1 ≤ 2 ^ ij.1 ∧ 1 ≤ 2 ^ ij.2 ∧ U ≤ 2 * 2 ^ ij.1 ∧ V ≤ 2 * 2 ^ ij.2 ∧
@@ -67,7 +77,9 @@ theorem dispersionBoxIndices_bounds {U V X : ℕ} {ij : ℕ × ℕ}
     hU, hV, hprod, hi, hj⟩
 
 /-- Every actual bilinear factor pair belongs to a unique selected box.
-The boxes retain the complete signed factor sum, not an absolute majorant.-/
+The boxes retain the complete signed factor sum, not an absolute majorant.
+@isnad1 id=existsun.3h4v.s7.47680df89e55 from=translated src=- shape=c3e9b5d8 vocab=fc5ca946
+-/
 theorem existsUnique_dispersionBox_of_bilinearPairs {U V X : ℕ}
     (hU : 1 ≤ U) (hV : 1 ≤ V) (dr : ℕ × ℕ) (hdr : dr ∈ bilinearPairs U V X) :
     ∃! ij : ℕ × ℕ, ij ∈ dispersionBoxIndices U V X ∧
@@ -92,7 +104,9 @@ theorem existsUnique_dispersionBox_of_bilinearPairs {U V X : ℕ}
   simp only [hk, hl]
 
 /-- Exact global decomposition into the existing right-closed dispersion
-boxes. Factors one vanish under the stated positive cutoffs.-/
+boxes. Factors one vanish under the stated positive cutoffs.
+@isnad1 id=eq.2h3v.s6.f1e46876769f from=translated src=- shape=f5305edb vocab=a17956df
+-/
 theorem bilinearTerm_eq_sum_dispersionBoxes (U V X : ℕ) (hU : 1 ≤ U) (hV : 1 ≤ V) :
     bilinearTerm U V X =
       ∑ ij ∈ dispersionBoxIndices U V X, bilinearBox U V X (2 ^ ij.1) (2 ^ ij.2) := by

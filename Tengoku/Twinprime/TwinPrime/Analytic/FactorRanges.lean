@@ -23,7 +23,9 @@ def bilinearPairs (U V X : ℕ) : Finset (ℕ × ℕ) :=
   ((Icc 1 (2 * X)).product (Icc 1 (2 * X))).filter
     (fun dr => U < dr.1 ∧ V < dr.2 ∧ X < dr.1 * dr.2 ∧ dr.1 * dr.2 ≤ 2 * X)
 
-/-- Exact reindexing by the unique product `n = d*r`.-/
+/-- Exact reindexing by the unique product `n = d*r`.
+@isnad1 id=eq.0h3v.s6.8eafe8cb0aef from=translated src=- shape=faafba68 vocab=f1897812
+-/
 theorem bilinearTerm_eq_pair_sum (U V X : ℕ) :
     bilinearTerm U V X = ∑ dr ∈ bilinearPairs U V X,
       (μ dr.1 : ℝ) * vaughanBeta V dr.2 * vonMangoldt (dr.1 * dr.2 + 2) := by
@@ -79,14 +81,18 @@ theorem bilinearTerm_eq_pair_sum (U V X : ℕ) :
     dsimp only
     rw [hprod]
 
-/-- The opposite cutoff bounds the first factor throughout the complete range.-/
+/-- The opposite cutoff bounds the first factor throughout the complete range.
+@isnad1 id=le.1h4v.s6.c13dc06e479a from=translated src=- shape=11421601 vocab=a2949314
+-/
 theorem bilinearPairs_left_le_div {U V X : ℕ} {dr : ℕ × ℕ}
     (hdr : dr ∈ bilinearPairs U V X) : dr.1 ≤ 2 * X / (V + 1) := by
   obtain ⟨_, _, hV, _, hupp⟩ := mem_filter.mp hdr
   rw [Nat.le_div_iff_mul_le (Nat.succ_pos V)]
   exact (Nat.mul_le_mul_left dr.1 (Nat.succ_le_of_lt hV)).trans hupp
 
-/-- The opposite cutoff bounds the second factor throughout the complete range.-/
+/-- The opposite cutoff bounds the second factor throughout the complete range.
+@isnad1 id=le.1h4v.s6.040b3cfe2da0 from=translated src=- shape=7b21fdb7 vocab=4d8eb0cd
+-/
 theorem bilinearPairs_right_le_div {U V X : ℕ} {dr : ℕ × ℕ}
     (hdr : dr ∈ bilinearPairs U V X) : dr.2 ≤ 2 * X / (U + 1) := by
   obtain ⟨_, hU, _, _, hupp⟩ := mem_filter.mp hdr

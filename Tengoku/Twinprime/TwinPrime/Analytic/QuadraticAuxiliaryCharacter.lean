@@ -22,16 +22,28 @@ namespace TwinPrime.Analytic
 def auxiliaryQuadraticCharacter : DirichletCharacter ℂ 4 :=
   ZMod.χ₄.ringHomComp (Int.castRingHom ℂ)
 
+/--
+@isnad1 id=eq.0h0v.s6.51587b15a6b8 from=translated src=- shape=966742d6 vocab=160948e1
+-/
 @[simp] theorem auxiliaryQuadraticCharacter_three :
     auxiliaryQuadraticCharacter (3 : ZMod 4) = -1 := by
   simp [auxiliaryQuadraticCharacter, ZMod.χ₄_apply]
 
+/--
+@isnad1 id=isquadra.0h0v.s4.9a453075aaf6 from=translated src=- shape=bfe16b09 vocab=d5255d2b
+-/
 theorem auxiliaryQuadraticCharacter_isQuadratic : auxiliaryQuadraticCharacter.IsQuadratic :=
   ZMod.isQuadratic_χ₄.comp (Int.castRingHom ℂ)
 
+/--
+@isnad1 id=eq.0h0v.s7.62e27df85fdc from=translated src=- shape=fce97d67 vocab=6fb24c1b
+-/
 theorem auxiliaryQuadraticCharacter_sq_eq_one : auxiliaryQuadraticCharacter ^ 2 = 1 :=
   auxiliaryQuadraticCharacter_isQuadratic.sq_eq_one
 
+/--
+@isnad1 id=ne.0h0v.s6.f1367dade768 from=translated src=- shape=3cd55e50 vocab=f0b94c4e
+-/
 theorem auxiliaryQuadraticCharacter_ne_one : auxiliaryQuadraticCharacter ≠ 1 := by
   intro h
   have hv := congrArg (fun χ : DirichletCharacter ℂ 4 => χ (3 : ZMod 4)) h
@@ -51,6 +63,9 @@ private theorem auxiliaryQuadraticCharacter_conductor_ne_two :
   simp only [Int.cast_ofNat, hcast, map_one, auxiliaryQuadraticCharacter_three] at hv
   norm_num at hv
 
+/--
+@isnad1 id=eq.0h0v.s4.5461a73f9f10 from=translated src=- shape=12701c7e vocab=89abf0fb
+-/
 theorem auxiliaryQuadraticCharacter_conductor : auxiliaryQuadraticCharacter.conductor = 4 := by
   have hd : auxiliaryQuadraticCharacter.conductor ∣ 2 ^ 2 := by
     simpa only [show (2 : ℕ) ^ 2 = 4 by norm_num] using
@@ -64,10 +79,15 @@ theorem auxiliaryQuadraticCharacter_conductor : auxiliaryQuadraticCharacter.cond
     exact False.elim (auxiliaryQuadraticCharacter_conductor_ne_two hc)
   · simpa using hconductor
 
+/--
+@isnad1 id=isprimit.0h0v.s3.0fee48020dc4 from=translated src=- shape=0792f4bc vocab=a06cc9ee
+-/
 theorem auxiliaryQuadraticCharacter_isPrimitive : auxiliaryQuadraticCharacter.IsPrimitive :=
   auxiliaryQuadraticCharacter_conductor
 
-/-- A concrete witness for arguments requiring a primitive quadratic character.-/
+/-- A concrete witness for arguments requiring a primitive quadratic character.
+@isnad1 id=ex.0h0v.s8.b62defcbc318 from=translated src=- shape=e4bf73c1 vocab=fe3a8499
+-/
 theorem exists_primitive_nonprincipal_quadratic_character :
     ∃ (q : ℕ) (_ : 1 < q) (χ : DirichletCharacter ℂ q),
       χ.IsPrimitive ∧ χ ≠ 1 ∧ χ ^ 2 = 1 :=

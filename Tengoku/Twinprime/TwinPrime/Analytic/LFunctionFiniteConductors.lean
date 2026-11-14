@@ -18,7 +18,9 @@ noncomputable section
 namespace TwinPrime.Analytic
 
 /-- A positive lower bound for all nonprincipal characters of one modulus.
-The statement also covers moduli with no nonprincipal characters.-/
+The statement also covers moduli with no nonprincipal characters.
+@isnad1 id=ex.0h1v.s6.361cc0c335db from=translated src=- shape=65700d79 vocab=d602e9a9
+-/
 theorem exists_pos_le_norm_LFunction_one (q : ℕ) [NeZero q] :
     ∃ c : ℝ, 0 < c ∧ ∀ χ : DirichletCharacter ℂ q, χ ≠ 1 →
       c ≤ ‖DirichletCharacter.LFunction χ 1‖ := by
@@ -31,7 +33,9 @@ theorem exists_pos_le_norm_LFunction_one (q : ℕ) [NeZero q] :
   simpa only [zero_add] using (hbound ⟨χ, hχ⟩).le
 
 /-- A single positive lower bound for all positive conductors at most `Q`.
-The `NeZero` binder restricts the modulus to the positive natural numbers.-/
+The `NeZero` binder restricts the modulus to the positive natural numbers.
+@isnad1 id=ex.0h1v.s6.d951be0d8e4c from=translated src=- shape=863f39a8 vocab=d602e9a9
+-/
 theorem exists_pos_le_norm_LFunction_one_of_conductor_le (Q : ℕ) :
     ∃ c : ℝ, 0 < c ∧ ∀ (q : ℕ) [NeZero q], q ≤ Q →
       ∀ χ : DirichletCharacter ℂ q, χ ≠ 1 →
@@ -51,7 +55,9 @@ theorem exists_pos_le_norm_LFunction_one_of_conductor_le (Q : ℕ) :
         exact (min_le_right c d).trans (hlast χ hχ)
       · exact (min_le_left c d).trans (hbound q (by omega) χ hχ)
 
-/-- The coarse derivative budget is monotone over positive conductors.-/
+/-- The coarse derivative budget is monotone over positive conductors.
+@isnad1 id=le.2h2v.s7.2d649f3e678a from=translated src=- shape=c5e2a3ac vocab=70b21fec
+-/
 theorem primitiveLFunction_real_derivative_budget_le {q Q : ℕ}
     (hq : 0 < q) (hqQ : q ≤ Q) :
     4 + 14 * Real.sqrt q * (1 + Real.log q) ≤
@@ -65,7 +71,9 @@ theorem primitiveLFunction_real_derivative_budget_le {q Q : ℕ}
   gcongr
 
 /-- Every actual real zero of a primitive character in a finite conductor
-range stays a positive uniform distance to the left of one.-/
+range stays a positive uniform distance to the left of one.
+@isnad1 id=ex.0h1v.s6.2c24e204ca38 from=translated src=- shape=f318d5f5 vocab=426567d4
+-/
 theorem exists_pos_le_primitive_real_zero_gap_of_conductor_le (Q : ℕ) :
     ∃ δ : ℝ, 0 < δ ∧ ∀ (q : ℕ) [NeZero q], 1 < q → q ≤ Q →
       ∀ (χ : DirichletCharacter ℂ q), χ.IsPrimitive → ∀ β : ℝ,

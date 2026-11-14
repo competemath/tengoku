@@ -27,6 +27,9 @@ def mellinVerticalSegment (x : ℝ) (F : ℂ → ℂ) (σ H : ℝ) : ℂ :=
 def mellinHorizontalSegment (x : ℝ) (F : ℂ → ℂ) (t a b : ℝ) : ℂ :=
   ∫ σ : ℝ in a..b, mellinContourIntegrand x F ((σ : ℂ) + t * I)
 
+/--
+@isnad1 id=differen.3h5v.s7.d3b2c5c5f7be from=translated src=- shape=bb624a6d vocab=a59870f9
+-/
 theorem differentiableOn_mellinContourIntegrand (x : ℝ) (hx : 0 < x)
     (F : ℂ → ℂ) (a b H : ℝ) (ha : 0 < a)
     (hF : DifferentiableOn ℂ F (Icc a b ×ℂ Icc (-H) H)) :
@@ -50,7 +53,9 @@ theorem differentiableOn_mellinContourIntegrand (x : ℝ) (hx : 0 < x)
   exact ((differentiableOn_id.const_cpow
     (.inl (Complex.ofReal_ne_zero.mpr hx.ne'))).mul hF).mul hK
 
-/-- Exact orientation of the upward vertical integrals in the rectangle.-/
+/-- Exact orientation of the upward vertical integrals in the rectangle.
+@isnad1 id=eq.5h5v.s7.a4dfba9e7dc6 from=translated src=- shape=66b14f70 vocab=e9f76181
+-/
 theorem mellinVerticalSegment_sub_eq (x : ℝ) (hx : 0 < x) (F : ℂ → ℂ)
     (a b H : ℝ) (ha : 0 < a) (hab : a ≤ b) (hH : 0 ≤ H)
     (hF : DifferentiableOn ℂ F (Icc a b ×ℂ Icc (-H) H)) :
@@ -79,6 +84,9 @@ theorem mellinVerticalSegment_sub_eq (x : ℝ) (hx : 0 < x) (F : ℂ → ℂ)
         mellinHorizontalSegment x F H a b)) := congrArg (fun z : ℂ => (-I) * z) heq
     _ = _ := by ring
 
+/--
+@isnad1 id=le.1h1v.s5.ed8f09dc5b88 from=translated src=- shape=821164b8 vocab=bd2b7a4f
+-/
 theorem norm_mellinRampKernel_le_one_div_im_sq (s : ℂ) (hs : s.im ≠ 0) :
     ‖mellinRampKernel s‖ ≤ 1 / s.im ^ 2 := by
   have h0 := Complex.abs_im_le_norm s
@@ -90,6 +98,9 @@ theorem norm_mellinRampKernel_le_one_div_im_sq (s : ℂ) (hs : s.im ≠ 0) :
   rw [mellinRampKernel, norm_div, norm_one, norm_mul]
   exact one_div_le_one_div_of_le (sq_pos_of_ne_zero hs) hprod
 
+/--
+@isnad1 id=le.5h6v.s7.fe873a8b184f from=translated src=- shape=98d4f15c vocab=f34d96d0
+-/
 theorem norm_mellinContourIntegrand_horizontal_le (x : ℝ) (hx : 1 ≤ x)
     (F : ℂ → ℂ) (b M σ t : ℝ) (hM : 0 ≤ M) (hσ : σ ≤ b) (ht : t ≠ 0)
     (hF : ‖F ((σ : ℂ) + t * I)‖ ≤ M) :
@@ -108,6 +119,9 @@ theorem norm_mellinContourIntegrand_horizontal_le (x : ℝ) (hx : 1 ≤ x)
     (mul_nonneg (Real.rpow_nonneg (by linarith) _) hM)
   simpa only [mul_one_div] using hfinal
 
+/--
+@isnad1 id=le.5h6v.s7.6487a862c866 from=translated src=- shape=4664cfd0 vocab=9e645c0e
+-/
 theorem norm_mellinHorizontalSegment_le (x : ℝ) (hx : 1 ≤ x) (F : ℂ → ℂ)
     (a b t M : ℝ) (hab : a ≤ b) (ht : t ≠ 0) (hM : 0 ≤ M)
     (hF : ∀ σ ∈ Icc a b, ‖F ((σ : ℂ) + t * I)‖ ≤ M) :
@@ -122,6 +136,9 @@ theorem norm_mellinHorizontalSegment_le (x : ℝ) (hx : 1 ≤ x) (F : ℂ → �
   rw [abs_of_nonneg (sub_nonneg.mpr hab)] at hb
   convert hb using 1; ring
 
+/--
+@isnad1 id=le.5h6v.s7.8fb823b47890 from=translated src=- shape=e4285487 vocab=f217c512
+-/
 theorem norm_mellinHorizontalDifference_le (x : ℝ) (hx : 1 ≤ x) (F : ℂ → ℂ)
     (a b H M : ℝ) (hab : a ≤ b) (hH : 0 < H) (hM : 0 ≤ M)
     (hF : ∀ s ∈ Icc a b ×ℂ Icc (-H) H, ‖F s‖ ≤ M) :
@@ -141,7 +158,9 @@ theorem norm_mellinHorizontalDifference_le (x : ℝ) (hx : 1 ≤ x) (F : ℂ →
     (mellinHorizontalSegment x F H a b)).trans (add_le_add hbottom htop)
   simpa only [neg_sq, ← two_mul, mul_div_assoc, mul_assoc] using hn
 
-/-- An integrable kernel majorant gives a vertical bound independent of height.-/
+/-- An integrable kernel majorant gives a vertical bound independent of height.
+@isnad1 id=le.5h5v.s7.6348b1233a19 from=translated src=- shape=2e8d8c5e vocab=e5d0124b
+-/
 theorem norm_mellinVerticalSegment_le (x : ℝ) (hx : 0 < x) (F : ℂ → ℂ)
     (a H M : ℝ) (ha : 0 < a) (hH : 0 ≤ H) (hM : 0 ≤ M)
     (hF : ∀ t ∈ Icc (-H) H, ‖F ((a : ℂ) + t * I)‖ ≤ M) :
@@ -169,7 +188,9 @@ theorem norm_mellinVerticalSegment_le (x : ℝ) (hx : 0 < x) (F : ℂ → ℂ)
   have hb := mul_le_mul_of_nonneg_left harctan hC
   simpa only [C, mul_comm, mul_left_comm, mul_assoc] using hb
 
-/-- A finite contour estimate, with the horizontal contribution displayed.-/
+/-- A finite contour estimate, with the horizontal contribution displayed.
+@isnad1 id=le.7h6v.s8.1b1eb7172e22 from=translated src=- shape=821b2ece vocab=76ae4800
+-/
 theorem norm_mellinVerticalSegment_right_le (x : ℝ) (hx : 1 ≤ x) (F : ℂ → ℂ)
     (a b H M : ℝ) (ha : 0 < a) (hab : a ≤ b) (hH : 0 < H) (hM : 0 ≤ M)
     (hd : DifferentiableOn ℂ F (Icc a b ×ℂ Icc (-H) H))

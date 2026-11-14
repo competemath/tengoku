@@ -23,7 +23,9 @@ def primeConvolutionError (x : ℝ) : ℝ :=
   ∑ n ∈ Ioc 0 ⌊Real.sqrt x⌋₊,
     vonMangoldt n * (Chebyshev.psi (x / n) - x / n)
 
-/-- Exact expansion into the three analytic errors and the floor correction.-/
+/-- Exact expansion into the three analytic errors and the floor correction.
+@isnad1 id=eq.1h2v.s7.ed3299d57638 from=translated src=- shape=f4379d7c vocab=8d7236dc
+-/
 theorem centeredSelbergSummatory_sqrt_error (c x : ℝ) (hx : 1 ≤ x) :
     centeredSelbergSummatory c x =
       2 * x * (realPrimeReciprocalSum (Real.sqrt x) - Real.log (Real.sqrt x) - c) +
@@ -43,7 +45,9 @@ theorem centeredSelbergSummatory_sqrt_error (c x : ℝ) (hx : 1 ≤ x) :
     Real.log_sqrt (by linarith : 0 ≤ x)]
   nlinarith [Real.sq_sqrt (by linarith : 0 ≤ x)]
 
-/-- An unconditional reciprocal prime mass bound at a real endpoint.-/
+/-- An unconditional reciprocal prime mass bound at a real endpoint.
+@isnad1 id=le.1h1v.s5.5cdc58f51ffc from=translated src=- shape=c1c0eb0f vocab=4244110b
+-/
 theorem realPrimeReciprocalSum_le_log (y : ℝ) (hy : 1 ≤ y) :
     realPrimeReciprocalSum y ≤ chebyshevLinearConstant * (2 + Real.log y) := by
   have hfloor : 1 ≤ ⌊y⌋₊ := Nat.le_floor (by exact_mod_cast hy)
@@ -53,7 +57,9 @@ theorem realPrimeReciprocalSum_le_log (y : ℝ) (hy : 1 ≤ y) :
     (add_le_add le_rfl (Real.log_le_log hfloor0 (Nat.floor_le (by linarith))))
     chebyshevLinearConstant_nonneg
 
-/-- The convolution error loses exactly one logarithmic power.-/
+/-- The convolution error loses exactly one logarithmic power.
+@isnad1 id=le.4h2v.s7.6e36bc131ad7 from=translated src=- shape=7befef9c vocab=738c4f62
+-/
 theorem abs_primeConvolutionError_le (x K : ℝ) (hx : 1 ≤ x)
     (hlog : 2 ≤ Real.log x) (hK : 0 ≤ K)
     (hψ : ∀ t : ℝ, Real.sqrt x ≤ t →
@@ -116,7 +122,9 @@ private theorem abs_six_error_terms (a b c d e f : ℝ) :
   linarith
 
 /-- The complete finite bound for the centered error. The three analytic
-premises occur only at their actual real arguments.-/
+premises occur only at their actual real arguments.
+@isnad1 id=le.9h5v.s8.62605a6e4991 from=translated src=- shape=076cad77 vocab=3334acd5
+-/
 theorem abs_centeredSelbergSummatory_le_of_prime_errors
     (c x Kψ KL KP : ℝ) (hx : 1 ≤ x) (hlog : 2 ≤ Real.log x)
     (hpow : (Real.log x) ^ 5 ≤ x)
@@ -208,7 +216,9 @@ theorem abs_centeredSelbergSummatory_le_of_prime_errors
     _ = _ := by ring
 
 /-- The centered summatory error follows from the three real prime estimates;
-no additional cancellation estimate for the centered coefficient is assumed.-/
+no additional cancellation estimate for the centered coefficient is assumed.
+@isnad1 id=ex.6h4v.s8.0d6f3fce4bd9 from=translated src=- shape=db062087 vocab=ad05c4db
+-/
 theorem exists_centeredSelbergSummatory_bound_of_prime_errors
     (c Kψ KL KP : ℝ) (hKψ : 0 ≤ Kψ) (hKL : 0 ≤ KL) (hKP : 0 ≤ KP)
     (hψ : ∀ᶠ x : ℝ in atTop,

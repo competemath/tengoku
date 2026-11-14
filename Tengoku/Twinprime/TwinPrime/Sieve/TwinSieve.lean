@@ -34,16 +34,27 @@ namespace TwinPrime.Sieve
 /-- The product of the odd primes `≤ z`.-/
 def oddPrimorial (z : ℕ) : ℕ := ∏ p ∈ (primesLE z).erase 2, p
 
+/--
+@isnad1 id=dvd.0h1v.s3.52f91a396a35 from=translated src=- shape=0fc427d2 vocab=c8a4ef43
+-/
 theorem oddPrimorial_dvd_primorial (z : ℕ) : oddPrimorial z ∣ primorial z := by
   rw [primorial_eq_prod_primesLE]
   exact Finset.prod_dvd_prod_of_subset _ _ _ (erase_subset _ _)
 
+/--
+@isnad1 id=squarefr.0h1v.s2.4f927c211710 from=translated src=- shape=6da4ece3 vocab=9fc0250c
+-/
 theorem oddPrimorial_squarefree (z : ℕ) : Squarefree (oddPrimorial z) :=
   (squarefree_primorial z).squarefree_of_dvd (oddPrimorial_dvd_primorial z)
 
+/--
+@isnad1 id=ne.0h1v.s3.9c5d2c841db7 from=translated src=- shape=b14ee516 vocab=e7dc8511
+-/
 theorem oddPrimorial_ne_zero (z : ℕ) : oddPrimorial z ≠ 0 := (oddPrimorial_squarefree z).ne_zero
 
-/-- A prime divides the odd primorial iff it is an odd prime `≤ z`.-/
+/-- A prime divides the odd primorial iff it is an odd prime `≤ z`.
+@isnad1 id=iff.1h2v.s4.543783115e98 from=translated src=- shape=76c5dc3f vocab=02e6b041
+-/
 theorem prime_dvd_oddPrimorial_iff {p z : ℕ} (hp : p.Prime) :
     p ∣ oddPrimorial z ↔ p ≠ 2 ∧ p ≤ z := by
   unfold oddPrimorial
@@ -57,11 +68,17 @@ theorem prime_dvd_oddPrimorial_iff {p z : ℕ} (hp : p.Prime) :
   · rintro ⟨h2, hz⟩
     exact ⟨p, by rw [mem_erase, mem_primesLE]; exact ⟨h2, hz, hp⟩, dvd_rfl⟩
 
+/--
+@isnad1 id=not.1h2v.s4.a0702f674918 from=translated src=- shape=7f946e5b vocab=f39c2de3
+-/
 theorem not_two_dvd_of_dvd_oddPrimorial {d z : ℕ} (hd : d ∣ oddPrimorial z) : ¬ 2 ∣ d := by
   intro h2
   have := (prime_dvd_oddPrimorial_iff Nat.prime_two).mp (h2.trans hd)
   exact this.1 rfl
 
+/--
+@isnad1 id=le.2h2v.s4.de2e92da984b from=translated src=- shape=35420a73 vocab=02e6b041
+-/
 theorem three_le_of_prime_dvd_oddPrimorial {p z : ℕ} (hp : p.Prime) (hpP : p ∣ oddPrimorial z) :
     3 ≤ p := by
   have h := (prime_dvd_oddPrimorial_iff hp).mp hpP
@@ -74,14 +91,26 @@ theorem three_le_of_prime_dvd_oddPrimorial {p z : ℕ} (hp : p.Prime) (hpP : p �
 def twinNu : ArithmeticFunction ℝ :=
   ⟨fun d => if d = 0 then 0 else (2 : ℝ) ^ (ω d) / d, by simp⟩
 
+/--
+@isnad1 id=eq.0h1v.s6.0208cc7803b7 from=translated src=- shape=be84e6a2 vocab=6fd1b700
+-/
 theorem twinNu_apply' (d : ℕ) : twinNu d = if d = 0 then 0 else (2 : ℝ) ^ (ω d) / d := rfl
 
+/--
+@isnad1 id=eq.1h1v.s6.e06c78080e13 from=translated src=- shape=f2f22316 vocab=ed9b3159
+-/
 theorem twinNu_apply {d : ℕ} (hd : d ≠ 0) : twinNu d = (2 : ℝ) ^ (ω d) / d := by
   rw [twinNu_apply', ite_eq_right hd]
 
+/--
+@isnad1 id=eq.1h1v.s5.6bfc1c86de3e from=translated src=- shape=9f6984ba vocab=a6c22ad2
+-/
 theorem twinNu_prime {p : ℕ} (hp : p.Prime) : twinNu p = 2 / p := by
   rw [twinNu_apply hp.ne_zero, cardDistinctFactors_apply_prime hp, pow_one]
 
+/--
+@isnad1 id=ismultip.0h0v.s2.a7e76e95b613 from=translated src=- shape=25b03439 vocab=436f5e8a
+-/
 theorem twinNu_isMultiplicative : twinNu.IsMultiplicative := by
   refine ⟨by simp [twinNu_apply'], ?_⟩
   intro m n hmn
@@ -99,6 +128,9 @@ theorem twinNu_isMultiplicative : twinNu.IsMultiplicative := by
 /-- The number of solutions of `r (r + 2) = 0` in `ZMod d`.-/
 def twinRoots (d : ℕ) : ℕ := Nat.card {r : ZMod d // r * (r + 2) = 0}
 
+/--
+@isnad1 id=eq.1h2v.s4.fa4f5e3f3256 from=translated src=- shape=20e9f6dc vocab=49c71ec5
+-/
 theorem twinRoots_mul {m n : ℕ} (h : m.Coprime n) :
     twinRoots (m * n) = twinRoots m * twinRoots n := by
   unfold twinRoots
@@ -125,6 +157,9 @@ theorem twinRoots_mul {m n : ℕ} (h : m.Coprime n) :
       (q := fun b : ZMod n => b * (b + 2) = 0)),
     Nat.card_prod]
 
+/--
+@isnad1 id=eq.2h1v.s4.38f80cd62c15 from=translated src=- shape=3e353cdf vocab=7436c029
+-/
 theorem twinRoots_prime {p : ℕ} (hp : p.Prime) (hp2 : p ≠ 2) : twinRoots p = 2 := by
   haveI := Fact.mk hp
   unfold twinRoots
@@ -150,12 +185,17 @@ theorem twinRoots_prime {p : ℕ} (hp : p.Prime) (hp2 : p ≠ 2) : twinRoots p =
   apply h2
   linear_combination h
 
+/--
+@isnad1 id=eq.0h0v.s3.ebddc21bd08a from=translated src=- shape=3c26ae4f vocab=7fbdda8a
+-/
 theorem twinRoots_one : twinRoots 1 = 1 := by
   unfold twinRoots
   have : ∀ r : ZMod 1, r * (r + 2) = 0 := fun r => Subsingleton.elim _ _
   rw [Nat.card_congr (Equiv.subtypeUnivEquiv this), Nat.card_eq_fintype_card, ZMod.card]
 
-/-- For odd squarefree `d`, `r (r + 2) = 0` has exactly `2^{ω d}` solutions in `ZMod d`.-/
+/-- For odd squarefree `d`, `r (r + 2) = 0` has exactly `2^{ω d}` solutions in `ZMod d`.
+@isnad1 id=eq.2h1v.s5.ef088fc88868 from=translated src=- shape=2ebbd901 vocab=539dec8f
+-/
 theorem twinRoots_eq {d : ℕ} (hd : Squarefree d) (hodd : ¬ 2 ∣ d) : twinRoots d = 2 ^ (ω d) := by
   induction d using Nat.recOnPosPrimePosCoprime with
   | prime_pow p n hp hn =>
@@ -181,7 +221,9 @@ theorem twinRoots_eq {d : ℕ} (hd : Squarefree d) (hodd : ¬ 2 ∣ d) : twinRoo
 /-! ### Counting `n < N` with `d ∣ n (n + 2)` -/
 
 /-- Number of `n < N` in a fixed residue class mod `d`, as a real number, differs from `N / d`
-by at most one.-/
+by at most one.
+@isnad1 id=le.0h3v.s6.8f3407ed4799 from=translated src=- shape=ce6ae91e vocab=0a77d7fc
+-/
 theorem abs_count_residue_sub_le {N d : ℕ} [NeZero d] (r : ZMod d) :
     |((#(filter (fun n : ℕ => (n : ZMod d) = r) (range N)) : ℕ) : ℝ) - (N : ℝ) / d| ≤ 1 := by
   have hd : 0 < d := NeZero.pos d
@@ -207,7 +249,9 @@ theorem abs_count_residue_sub_le {N d : ℕ} [NeZero d] (r : ZMod d) :
   split_ifs <;> constructor <;> linarith
 
 /-- For `d > 0`, the number of `n < N` with `d ∣ n (n + 2)` is a sum over the roots `r` of
-`r (r + 2) = 0` in `ZMod d` of the number of `n < N` with `n ≡ r`.-/
+`r (r + 2) = 0` in `ZMod d` of the number of `n < N` with `n ≡ r`.
+@isnad1 id=eq.0h2v.s8.caf1ee97413f from=translated src=- shape=5192dd81 vocab=e84d86aa
+-/
 theorem card_filter_dvd_mul_add_two_eq_sum {N d : ℕ} [NeZero d] :
     #{n ∈ range N | d ∣ n * (n + 2)} =
       ∑ r ∈ (Finset.univ.filter fun r : ZMod d => r * (r + 2) = 0),
@@ -235,13 +279,18 @@ theorem card_filter_dvd_mul_add_two_eq_sum {N d : ℕ} [NeZero d] :
     simp only [Finset.mem_coe, mem_filter, mem_univ, true_and] at hn ⊢
     exact (hcast n).mp hn.2
 
+/--
+@isnad1 id=eq.0h1v.s7.908e6f9cd393 from=translated src=- shape=44b3fd30 vocab=07b99d35
+-/
 theorem card_twinRoots_filter {d : ℕ} [NeZero d] :
     #(Finset.univ.filter fun r : ZMod d => r * (r + 2) = 0) = twinRoots d := by
   unfold twinRoots
   rw [Nat.card_eq_fintype_card, Fintype.card_subtype]
 
 /-- **Key counting estimate.** For odd squarefree `d`,
-`| #{n < N : d ∣ n (n + 2)} - 2^{ω d} N / d | ≤ 2^{ω d}`.-/
+`| #{n < N : d ∣ n (n + 2)} - 2^{ω d} N / d | ≤ 2^{ω d}`.
+@isnad1 id=le.2h2v.s7.6ffdb92c9342 from=translated src=- shape=d932fee7 vocab=b3f0cdd7
+-/
 theorem abs_card_filter_dvd_sub_le {N d : ℕ} (hd : Squarefree d) (hodd : ¬ 2 ∣ d) :
     |((#{n ∈ range N | d ∣ n * (n + 2)} : ℕ) : ℝ) - (2 : ℝ) ^ (ω d) * N / d| ≤ 2 ^ (ω d) := by
   haveI : NeZero d := ⟨hd.ne_zero⟩
@@ -288,16 +337,31 @@ def twinSieve (x z : ℕ) (hz : 1 ≤ z) : SelbergSieve where
     have : (1 : ℝ) ≤ z := by exact_mod_cast hz
     nlinarith
 
+/--
+@isnad1 id=eq.1h2v.s4.9119c6ffdb01 from=translated src=- shape=93a0d6aa vocab=a7f81fea
+-/
 theorem twinSieve_prodPrimes (x z : ℕ) (hz : 1 ≤ z) :
     (twinSieve x z hz).prodPrimes = oddPrimorial z := rfl
 
+/--
+@isnad1 id=eq.1h2v.s5.e6f0b58b158e from=translated src=- shape=f27f9e93 vocab=5398a6d6
+-/
 theorem twinSieve_level (x z : ℕ) (hz : 1 ≤ z) : (twinSieve x z hz).level = (z : ℝ) ^ 2 := rfl
 
+/--
+@isnad1 id=eq.1h2v.s5.b6a8133dac18 from=translated src=- shape=0a33b8f0 vocab=57f5a8e3
+-/
 theorem twinSieve_totalMass (x z : ℕ) (hz : 1 ≤ z) :
     (twinSieve x z hz).totalMass = x + 1 := rfl
 
+/--
+@isnad1 id=eq.1h2v.s4.58fda806e0a0 from=translated src=- shape=195343ac vocab=3685ae28
+-/
 theorem twinSieve_nu (x z : ℕ) (hz : 1 ≤ z) : (twinSieve x z hz).nu = twinNu := rfl
 
+/--
+@isnad1 id=injectiv.0h0v.s4.a24be726615a from=translated src=- shape=ff260be7 vocab=ccbd9c6d
+-/
 theorem mul_add_two_injective : Function.Injective fun n : ℕ => n * (n + 2) := by
   intro a b h
   have h' : (a + 1) ^ 2 = (b + 1) ^ 2 := by
@@ -307,13 +371,18 @@ theorem mul_add_two_injective : Function.Injective fun n : ℕ => n * (n + 2) :=
   have := Nat.pow_left_injective two_ne_zero h'
   omega
 
+/--
+@isnad1 id=eq.1h3v.s6.aa7d7b6ef438 from=translated src=- shape=b379a220 vocab=a513f09d
+-/
 theorem twinSieve_multSum (x z : ℕ) (hz : 1 ≤ z) (d : ℕ) :
     (twinSieve x z hz).multSum d = #{n ∈ range (x + 1) | d ∣ n * (n + 2)} := by
   simp only [multSum, twinSieve]
   rw [sum_image (fun a _ b _ h => mul_add_two_injective h), ← sum_filter, sum_const,
     nsmul_eq_mul, mul_one]
 
-/-- The remainder bound `|R_d| ≤ 2^{ω d}` for `d ∣ P`.-/
+/-- The remainder bound `|R_d| ≤ 2^{ω d}` for `d ∣ P`.
+@isnad1 id=le.2h3v.s6.d48bfef6f2f1 from=translated src=- shape=2f313673 vocab=dcece55d
+-/
 theorem twinSieve_abs_rem_le (x z : ℕ) (hz : 1 ≤ z) {d : ℕ} (hd : d ∣ oddPrimorial z) :
     |(twinSieve x z hz).rem d| ≤ (2 : ℝ) ^ (ω d) := by
   have hsq : Squarefree d := (oddPrimorial_squarefree z).squarefree_of_dvd hd

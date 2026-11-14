@@ -16,6 +16,9 @@ open Metric
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=le.5h4v.s8.fca8f1daec84 from=translated src=- shape=b3ae3366 vocab=35dceedc
+-/
 theorem wide_norm_deriv_le_of_re_le_on_ball {h : ℂ → ℂ} {c : ℂ} {A : ℝ}
     (hA : 0 < A) (hh : DifferentiableOn ℂ h (ball c (5 / 4)))
     (hc : h c = 0) (hre : ∀ w ∈ ball c (5 / 4), (h w).re ≤ A)
@@ -37,7 +40,9 @@ theorem wide_norm_deriv_le_of_re_le_on_ball {h : ℂ → ℂ} {c : ℂ} {A : ℝ
   ring
 
 /-- The enlarged disk allows evaluation slightly left of one when the
-center has real part two. Nonvanishing is still an explicit hypothesis.-/
+center has real part two. Nonvanishing is still an explicit hypothesis.
+@isnad1 id=le.4h4v.s8.1b9f912839d7 from=translated src=- shape=6f48c868 vocab=aa1b324b
+-/
 theorem wide_norm_logDerivative_le_of_nonvanishing_on_ball
     {g : ℂ → ℂ} {c : ℂ} {M : ℝ}
     (hg : DifferentiableOn ℂ g (ball c (5 / 4)))
@@ -64,6 +69,9 @@ theorem wide_norm_logDerivative_le_of_nonvanishing_on_ball
   rw [← hd z hz']
   exact wide_norm_deriv_le_of_re_le_on_ball (by linarith) hh hhc hre z hz
 
+/--
+@isnad1 id=le.1h2v.s7.f0ae0d717a8f from=translated src=- shape=10e86770 vocab=b57ffa22
+-/
 theorem wide_zero_removal_log_budget_le_of_jensen {L : ℝ} (N : ℕ)
     (hN : (N : ℝ) ≤ L / Real.log (6 / 5)) :
     288 * (1 + L + N * Real.log 5) ≤

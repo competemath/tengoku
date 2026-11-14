@@ -28,11 +28,17 @@ namespace TwinPrime
 /-- The sifting level `z(x) = ⌊log x / (2 log 3)⌋`.-/
 def zL (x : ℕ) : ℕ := ⌊Real.log x / (2 * Real.log 3)⌋₊
 
+/--
+@isnad1 id=le.0h0v.s4.26ba721bf9a8 from=translated src=- shape=cf0a9d99 vocab=766ac740
+-/
 theorem one_le_log_three : 1 ≤ Real.log 3 := by
   rw [Real.le_log_iff_exp_le (by norm_num)]
   have := Real.exp_one_lt_d9
   linarith
 
+/--
+@isnad1 id=le.0h1v.s5.7e673b6a096e from=translated src=- shape=9657006c vocab=af50c925
+-/
 theorem zL_le {x : ℕ} : (zL x : ℝ) ≤ Real.log x / (2 * Real.log 3) := by
   unfold zL
   apply Nat.floor_le
@@ -43,6 +49,9 @@ theorem zL_le {x : ℕ} : (zL x : ℝ) ≤ Real.log x / (2 * Real.log 3) := by
   have hlog3 : 0 < Real.log 3 := by linarith [one_le_log_three]
   positivity
 
+/--
+@isnad1 id=le.1h1v.s5.81d15f49bb0a from=translated src=- shape=3f8dd538 vocab=31df57ee
+-/
 theorem three_le_zL {x : ℕ} (hx : 3 ^ 6 ≤ x) : 3 ≤ zL x := by
   unfold zL
   apply Nat.le_floor
@@ -54,7 +63,9 @@ theorem three_le_zL {x : ℕ} (hx : 3 ^ 6 ≤ x) : 3 ≤ zL x := by
   push_cast at this ⊢
   linarith
 
-/-- `3^{z(x)+1} ≤ 3 √x`.-/
+/-- `3^{z(x)+1} ≤ 3 √x`.
+@isnad1 id=le.1h1v.s6.f22d0688abeb from=translated src=- shape=7fba6232 vocab=dff3a2df
+-/
 theorem three_pow_zL_le {x : ℕ} (hx : 1 ≤ x) : (3 : ℝ) ^ (zL x + 1) ≤ 3 * Real.sqrt x := by
   have hxpos : (0 : ℝ) < x := by exact_mod_cast hx
   have hlog3 : 0 < Real.log 3 := by linarith [one_le_log_three]
@@ -68,7 +79,9 @@ theorem three_pow_zL_le {x : ℕ} (hx : 1 ≤ x) : (3 : ℝ) ^ (zL x + 1) ≤ 3 
   calc (3 : ℝ) ^ (zL x + 1) = 3 * 3 ^ (zL x) := by ring
     _ ≤ 3 * Real.sqrt x := by linarith
 
-/-- `√x (log x)² ≤ x / 2` for `x ≥ 2^24`.-/
+/-- `√x (log x)² ≤ x / 2` for `x ≥ 2^24`.
+@isnad1 id=le.1h1v.s6.5a0ce751e2c6 from=translated src=- shape=56c773a3 vocab=e1a62eb3
+-/
 theorem sqrt_mul_log_sq_le {x : ℝ} (hx : 2 ^ 24 ≤ x) : Real.sqrt x * (Real.log x) ^ 2 ≤ x / 2 := by
   have hx1 : (1 : ℝ) ≤ x := by linarith
   have hx0 : (0 : ℝ) ≤ x := by linarith

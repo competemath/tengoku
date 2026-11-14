@@ -21,7 +21,9 @@ namespace TwinPrime.Analytic
 def characterLargeSieveConstant (Q M N : ℕ) : ℝ :=
   ((N - M : ℕ) : ℝ) + (Q : ℝ) ^ 2 * (1 + 2 * Real.log ((Q : ℝ) + 1))
 
-/-- Weighted Cauchy--Schwarz for two real sequences; zero weights are allowed.-/
+/-- Weighted Cauchy--Schwarz for two real sequences; zero weights are allowed.
+@isnad1 id=le.1h5v.s7.f594e7f4a3b5 from=translated src=- shape=3d8c2f6e vocab=410affd2
+-/
 theorem weighted_sum_mul_le_sqrt_mul_sqrt {ι : Type*} (s : Finset ι)
     (w f g : ι → ℝ) (hw : ∀ i ∈ s, 0 ≤ w i) :
     (∑ i ∈ s, w i * f i * g i) ≤
@@ -39,7 +41,9 @@ theorem weighted_sum_mul_le_sqrt_mul_sqrt {ι : Type*} (s : Finset ι)
   exact (Real.le_sqrt_of_sq_le hsq).trans_eq
     (Real.sqrt_mul (sum_nonneg hf) _)
 
-/-- Multiplicativity factors a rectangular character sum exactly.-/
+/-- Multiplicativity factors a rectangular character sum exactly.
+@isnad1 id=eq.0h6v.s8.e4845b82a7c3 from=translated src=- shape=7b32c91e vocab=d2c35d8b
+-/
 theorem character_rectangular_sum_eq {q : ℕ} (χ : DirichletCharacter ℂ q)
     (s t : Finset ℕ) (a b : ℕ → ℂ) :
     (∑ m ∈ s, ∑ n ∈ t, a m * b n * χ (m * n)) =

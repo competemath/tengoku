@@ -17,6 +17,9 @@ open Metric
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=le.5h4v.s8.884998e44692 from=translated src=- shape=35398f8c vocab=4de6725e
+-/
 theorem norm_analytic_le_of_re_le_on_ball {h : ℂ → ℂ} {c : ℂ} {A : ℝ}
     (hA : 0 < A) (hh : DifferentiableOn ℂ h (ball c (5 / 4)))
     (hc : h c = 0) (hre : ∀ w ∈ ball c (5 / 4), (h w).re ≤ A)
@@ -40,6 +43,9 @@ theorem norm_analytic_le_of_re_le_on_ball {h : ℂ → ℂ} {c : ℂ} {A : ℝ}
   apply (div_le_iff₀ (by linarith : 0 < 5 / 4 - ‖w - c‖)).mpr
   nlinarith [mul_le_mul_of_nonneg_left hwle hA.le]
 
+/--
+@isnad1 id=le.5h4v.s8.8fa04e7d6c90 from=translated src=- shape=30cf8efc vocab=35dceedc
+-/
 theorem norm_deriv_le_of_re_le_on_ball {h : ℂ → ℂ} {c : ℂ} {A : ℝ}
     (hA : 0 < A) (hh : DifferentiableOn ℂ h (ball c (5 / 4)))
     (hc : h c = 0) (hre : ∀ w ∈ ball c (5 / 4), (h w).re ≤ A)
@@ -62,7 +68,9 @@ theorem norm_deriv_le_of_re_le_on_ball {h : ℂ → ℂ} {c : ℂ} {A : ℝ}
 
 /-- A logarithmic derivative bound for a holomorphic function without zeros.
 The factorization removing zeros must be established before applying this
-bound to an L-function.-/
+bound to an L-function.
+@isnad1 id=le.4h4v.s8.54522a5418b7 from=translated src=- shape=f705457c vocab=aa1b324b
+-/
 theorem norm_logDerivative_le_of_nonvanishing_on_ball {g : ℂ → ℂ} {c : ℂ} {M : ℝ}
     (hg : DifferentiableOn ℂ g (ball c (5 / 4)))
     (hgn : ∀ w ∈ ball c (5 / 4), g w ≠ 0)
@@ -88,6 +96,9 @@ theorem norm_logDerivative_le_of_nonvanishing_on_ball {g : ℂ → ℂ} {c : ℂ
   rw [← hd z hz']
   exact norm_deriv_le_of_re_le_on_ball (by linarith) hh hhc hre z hz
 
+/--
+@isnad1 id=le.4h4v.s7.0977485ea6fd from=translated src=- shape=461339a5 vocab=1bd5e950
+-/
 theorem zero_removal_log_budget_le {a b M : ℝ} (ha : 0 < a) (hb : 0 < b)
     (hM : 0 < M) (N : ℕ) (hcenter : a ≤ (5 / 4 : ℝ) ^ N * b) :
     1 + Real.log (M * 4 ^ N / b) ≤
@@ -102,6 +113,9 @@ theorem zero_removal_log_budget_le {a b M : ℝ} (ha : 0 < a) (hb : 0 < b)
   rw [h45] at hlog
   nlinarith
 
+/--
+@isnad1 id=le.1h2v.s7.23207a1a56ef from=translated src=- shape=10e86770 vocab=b57ffa22
+-/
 theorem zero_removal_log_budget_le_of_jensen {L : ℝ} (N : ℕ)
     (hN : (N : ℝ) ≤ L / Real.log (6 / 5)) :
     144 * (1 + L + N * Real.log 5) ≤

@@ -37,7 +37,9 @@ namespace TwinPrime.Sieve
 
 /-! ### Auxiliary sum manipulations -/
 
-/-- Substituting `l = k * m` in a sum over divisors when the summand vanishes unless `k ∣ l`.-/
+/-- Substituting `l = k * m` in a sum over divisors when the summand vanishes unless `k ∣ l`.
+@isnad1 id=eq.1h3v.s6.e58a29820db4 from=translated src=- shape=c0e5fee2 vocab=74ce0c91
+-/
 theorem sum_mul_subst (k n : ℕ) {f : ℕ → ℝ} (h : ∀ l, l ∣ n → ¬ k ∣ l → f l = 0) :
     ∑ l ∈ n.divisors, f l = ∑ m ∈ n.divisors, if k * m ∣ n then f (k * m) else 0 := by
   by_cases hn : n = 0
@@ -66,7 +68,9 @@ theorem sum_mul_subst (k n : ℕ) {f : ℕ → ℝ} (h : ∀ l, l ∣ n → ¬ k
     rw [mem_filter] at hl
     exact h l (dvd_of_mem_divisors hl.1) hl.2
 
-/-- `∑_{d ∣ n} μ d = [n = 1]`, as real numbers.-/
+/-- `∑_{d ∣ n} μ d = [n = 1]`, as real numbers.
+@isnad1 id=eq.0h1v.s6.2157276e1a40 from=translated src=- shape=2c947f87 vocab=f9192174
+-/
 theorem sum_divisors_moebius_real (n : ℕ) :
     (∑ d ∈ n.divisors, (μ d : ℝ)) = if n = 1 then 1 else 0 := by
   have h := congrArg (fun f : ArithmeticFunction ℤ => f n) moebius_mul_coe_zeta
@@ -76,7 +80,9 @@ theorem sum_divisors_moebius_real (n : ℕ) :
   push_cast at h'
   exact h'
 
-/-- For squarefree `m`: `∑_{d ∣ m, l ∣ d} μ d = [l = m] μ l`.-/
+/-- For squarefree `m`: `∑_{d ∣ m, l ∣ d} μ d = [l = m] μ l`.
+@isnad1 id=eq.1h2v.s6.9895b8ff2122 from=translated src=- shape=136fb774 vocab=bac52cb3
+-/
 theorem sum_moebius_dvd_eq (l m : ℕ) (hm : Squarefree m) :
     (∑ d ∈ m.divisors, if l ∣ d then (μ d : ℝ) else 0) = if l = m then (μ l : ℝ) else 0 := by
   have hm0 : m ≠ 0 := hm.ne_zero
@@ -115,7 +121,9 @@ theorem sum_moebius_dvd_eq (l m : ℕ) (hm : Squarefree m) :
     intro hld
     exact hl (hld.trans (dvd_of_mem_divisors hd))
 
-/-- `∑_{d ∣ P, l ∣ d, d ∣ m} μ d = [l = m] μ l` for `m ∣ P`, `P` squarefree.-/
+/-- `∑_{d ∣ P, l ∣ d, d ∣ m} μ d = [l = m] μ l` for `m ∣ P`, `P` squarefree.
+@isnad1 id=eq.2h3v.s6.e36d10072f2f from=translated src=- shape=d0402fdd vocab=bac52cb3
+-/
 theorem sum_moebius_dvd_dvd_eq {P : ℕ} (hP : Squarefree P) (l m : ℕ) (hm : m ∣ P) :
     (∑ d ∈ P.divisors, if l ∣ d ∧ d ∣ m then (μ d : ℝ) else 0) =
       if l = m then (μ l : ℝ) else 0 := by
@@ -125,7 +133,9 @@ theorem sum_moebius_dvd_dvd_eq {P : ℕ} (hP : Squarefree P) (l m : ℕ) (hm : m
   intro d _
   by_cases h1 : d ∣ m <;> by_cases h2 : l ∣ d <;> simp [h1, h2]
 
-/-- Terms of a Λ² sieve vanish beyond the level when the weights vanish beyond `√y`.-/
+/-- Terms of a Λ² sieve vanish beyond the level when the weights vanish beyond `√y`.
+@isnad1 id=eq.2h3v.s6.f28984b6fd93 from=translated src=- shape=5ecc3b30 vocab=54fd32c6
+-/
 theorem lambdaSquared_eq_zero_of_support (w : ℕ → ℝ) (y : ℝ)
     (hw : ∀ d : ℕ, ¬ (d : ℝ) ^ 2 ≤ y → w d = 0) (d : ℕ) (hd : ¬ (d : ℝ) ≤ y) :
     lambdaSquared w d = 0 := by
@@ -172,6 +182,9 @@ variable (s : SelbergSieve)
 def selbergBoundingSum : ℝ :=
   ∑ l ∈ divisors s.prodPrimes, if (l : ℝ) ^ 2 ≤ s.level then s.selbergTerms l else 0
 
+/--
+@isnad1 id=lt.0h1v.s3.4947d8a62b52 from=translated src=- shape=b9369acb vocab=1b26df3f
+-/
 theorem selbergBoundingSum_pos : 0 < s.selbergBoundingSum := by
   unfold selbergBoundingSum
   rw [← sum_filter]
@@ -184,8 +197,14 @@ theorem selbergBoundingSum_pos : 0 < s.selbergBoundingSum := by
     refine ⟨⟨one_dvd _, prodPrimes_ne_zero⟩, ?_⟩
     simp [s.one_le_level]
 
+/--
+@isnad1 id=ne.0h1v.s3.732f4aaab975 from=translated src=- shape=a311c14d vocab=a641ac69
+-/
 theorem selbergBoundingSum_ne_zero : s.selbergBoundingSum ≠ 0 := s.selbergBoundingSum_pos.ne'
 
+/--
+@isnad1 id=le.0h1v.s3.bab673fa063b from=translated src=- shape=b9369acb vocab=ebc7b043
+-/
 theorem selbergBoundingSum_nonneg : 0 ≤ s.selbergBoundingSum := s.selbergBoundingSum_pos.le
 
 /-- Selberg's optimal weights `γ_d`.-/
@@ -196,10 +215,16 @@ def selbergWeights : ℕ → ℝ := fun d =>
         if ((d * m : ℕ) : ℝ) ^ 2 ≤ s.level ∧ m.Coprime d then s.selbergTerms m else 0
   else 0
 
+/--
+@isnad1 id=eq.1h2v.s4.fd520cd86a7d from=translated src=- shape=16b11ef8 vocab=661497b6
+-/
 theorem selbergWeights_eq_zero_of_not_dvd {d : ℕ} (hd : ¬ d ∣ s.prodPrimes) :
     s.selbergWeights d = 0 := by
   rw [selbergWeights, ite_eq_right hd]
 
+/--
+@isnad1 id=eq.1h2v.s5.17ea5486f3ba from=translated src=- shape=1a3f1f1e vocab=d9435c0b
+-/
 theorem selbergWeights_eq_zero (d : ℕ) (hd : ¬ (d : ℝ) ^ 2 ≤ s.level) :
     s.selbergWeights d = 0 := by
   unfold selbergWeights
@@ -217,6 +242,9 @@ theorem selbergWeights_eq_zero (d : ℕ) (hd : ¬ (d : ℝ) ^ 2 ≤ s.level) :
     exact pow_le_pow_left₀ (by positivity) this 2
   · rfl
 
+/--
+@isnad1 id=le.1h2v.s5.fa3a25d09527 from=translated src=- shape=7be01a52 vocab=20ea765e
+-/
 theorem selbergWeights_mul_mu_nonneg (d : ℕ) (hdP : d ∣ s.prodPrimes) :
     0 ≤ s.selbergWeights d * μ d := by
   unfold selbergWeights
@@ -243,7 +271,9 @@ theorem selbergWeights_mul_mu_nonneg (d : ℕ) (hdP : d ∣ s.prodPrimes) :
   rw [this]
   exact mul_nonneg h4 (mul_nonneg (mul_nonneg (mul_nonneg h1 h2) h3) hsum)
 
-/-- The key identity: `ν d γ_d = S⁻¹ μ d ∑_{l ∣ P, d ∣ l, l² ≤ y} g l`.-/
+/-- The key identity: `ν d γ_d = S⁻¹ μ d ∑_{l ∣ P, d ∣ l, l² ≤ y} g l`.
+@isnad1 id=eq.0h2v.s7.2b8bc6175b7a from=translated src=- shape=5e6c786c vocab=8e07c4f4
+-/
 theorem selbergWeights_eq_dvds_sum (d : ℕ) :
     s.nu d * s.selbergWeights d =
       (s.selbergBoundingSum)⁻¹ * μ d *
@@ -291,7 +321,9 @@ theorem selbergWeights_eq_dvds_sum (d : ℕ) :
       ite_eq_right (show ¬ (((d * m : ℕ) : ℝ) ^ 2 ≤ s.level ∧ m.Coprime d) from fun h => hc h.2)]
     ring
 
-/-- Diagonalisation: `∑_{d ∣ P, l ∣ d} ν d γ_d = [l² ≤ y] g l μ l S⁻¹`.-/
+/-- Diagonalisation: `∑_{d ∣ P, l ∣ d} ν d γ_d = [l² ≤ y] g l μ l S⁻¹`.
+@isnad1 id=eq.1h2v.s7.e74cf7eada88 from=translated src=- shape=16e7fcaf vocab=340d4995
+-/
 theorem selbergWeights_diagonalisation (l : ℕ) (hl : l ∈ divisors s.prodPrimes) :
     (∑ d ∈ divisors s.prodPrimes, if l ∣ d then s.nu d * s.selbergWeights d else 0) =
       if (l : ℝ) ^ 2 ≤ s.level then s.selbergTerms l * μ l * (s.selbergBoundingSum)⁻¹ else 0 := by
@@ -337,6 +369,9 @@ theorem selbergWeights_diagonalisation (l : ℕ) (hl : l ∈ divisors s.prodPrim
 /-- The Selberg upper-bound coefficients `μ⁺ = Λ² γ`.-/
 def selbergMuPlus : ℕ → ℝ := lambdaSquared s.selbergWeights
 
+/--
+@isnad1 id=eq.0h1v.s4.2edf956d5ea7 from=translated src=- shape=59ae2d96 vocab=81067945
+-/
 theorem weight_one_of_selberg : s.selbergWeights 1 = 1 := by
   unfold selbergWeights
   rw [ite_eq_left (one_dvd _), s.nu_mult.left, selbergTerms_isMultiplicative.left]
@@ -345,13 +380,21 @@ theorem weight_one_of_selberg : s.selbergWeights 1 = 1 := by
   change s.selbergBoundingSum⁻¹ * s.selbergBoundingSum = 1
   exact inv_mul_cancel₀ s.selbergBoundingSum_ne_zero
 
+/--
+@isnad1 id=eq.1h2v.s4.c8421381b202 from=translated src=- shape=cd68b033 vocab=2052ea7d
+-/
 theorem selbergMuPlus_eq_zero (d : ℕ) (hd : ¬ (d : ℝ) ≤ s.level) : s.selbergMuPlus d = 0 :=
   lambdaSquared_eq_zero_of_support _ s.level s.selbergWeights_eq_zero d hd
 
+/--
+@isnad1 id=isupperm.0h1v.s2.dd5a778eeb65 from=translated src=- shape=76a08d12 vocab=f997dc43
+-/
 theorem isUpperMoebius_selbergMuPlus : IsUpperMoebius s.selbergMuPlus :=
   upperMoebius_lambdaSquared s.selbergWeights s.weight_one_of_selberg
 
-/-- The main term of the Selberg sieve is exactly `S⁻¹`.-/
+/-- The main term of the Selberg sieve is exactly `S⁻¹`.
+@isnad1 id=eq.0h1v.s3.268f2a624d62 from=translated src=- shape=22861c53 vocab=9e5f6790
+-/
 theorem selberg_bound_simple_mainSum : s.mainSum s.selbergMuPlus = (s.selbergBoundingSum)⁻¹ := by
   unfold selbergMuPlus
   rw [mainSum_lambdaSquared_eq_sum_mul_sum_sq]
@@ -411,6 +454,9 @@ private theorem helper_iff {k m d : ℕ} (hkd : k ∣ d) (hk : k ∈ divisors s.
       · exact dvd_of_mem_divisors hm
     · exact eq_gcd_mul_of_dvd_of_coprime hkd h2 hk0
 
+/--
+@isnad1 id=le.1h2v.s5.825da01c5db6 from=translated src=- shape=37b444dd vocab=4962c221
+-/
 theorem selbergBoundingSum_ge {d : ℕ} (hdP : d ∣ s.prodPrimes) :
     s.selbergBoundingSum ≥ s.selbergWeights d * (μ d : ℝ) * s.selbergBoundingSum := by
   have hP0 := s.prodPrimes_ne_zero
@@ -504,6 +550,9 @@ theorem selbergBoundingSum_ge {d : ℕ} (hdP : d ∣ s.prodPrimes) :
             if ((d * m : ℕ) : ℝ) ^ 2 ≤ s.level ∧ m.Coprime d then s.selbergTerms m else 0 with hA
         linear_combination (-A) * hμ - A * ((μ d : ℝ)) ^ 2 * hSS
 
+/--
+@isnad1 id=le.0h2v.s4.aa9b61501465 from=translated src=- shape=4884be87 vocab=6a7daa60
+-/
 theorem selberg_bound_weights (d : ℕ) : |s.selbergWeights d| ≤ 1 := by
   by_cases hdP : d ∣ s.prodPrimes
   swap
@@ -520,6 +569,9 @@ theorem selberg_bound_weights (d : ℕ) : |s.selbergWeights d| ≤ 1 := by
     _ = s.selbergWeights d * (μ d : ℝ) := abs_of_nonneg (s.selbergWeights_mul_mu_nonneg d hdP)
     _ ≤ 1 := h2
 
+/--
+@isnad1 id=le.1h2v.s6.14c6e27f2e1b from=translated src=- shape=150446ac vocab=0ca0392a
+-/
 theorem selberg_bound_muPlus (n : ℕ) (hn : n ∈ divisors s.prodPrimes) :
     |s.selbergMuPlus n| ≤ (3 : ℝ) ^ ω n := by
   let f : ℕ → ℕ → ℝ := fun x z => if n = x.lcm z then 1 else 0
@@ -553,6 +605,9 @@ theorem selberg_bound_muPlus (n : ℕ) (hn : n ∈ divisors s.prodPrimes) :
         constructor <;> rintro ⟨h1, h2⟩ <;> exact ⟨h1, h2.symm⟩
     _ = (3 : ℝ) ^ ω n := by norm_num
 
+/--
+@isnad1 id=le.0h1v.s6.5e8309c29fbb from=translated src=- shape=5d403d3c vocab=4677438d
+-/
 theorem selberg_bound_simple_errSum :
     s.errSum s.selbergMuPlus ≤
       ∑ d ∈ divisors s.prodPrimes,
@@ -565,7 +620,9 @@ theorem selberg_bound_simple_errSum :
     exact s.selberg_bound_muPlus d hd
   · rw [s.selbergMuPlus_eq_zero d h, abs_zero, zero_mul]
 
-/-- **The fundamental theorem of the Selberg upper-bound sieve.**-/
+/-- **The fundamental theorem of the Selberg upper-bound sieve.**
+@isnad1 id=le.0h1v.s6.7e17aa55a8bd from=translated src=- shape=3cef6c88 vocab=c67897e7
+-/
 theorem selberg_bound_simple :
     s.siftedSum ≤
       s.totalMass / s.selbergBoundingSum +

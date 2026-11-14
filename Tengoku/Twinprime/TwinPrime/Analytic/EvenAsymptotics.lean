@@ -18,7 +18,9 @@ open Filter
 
 namespace TwinPrime.Analytic
 
-/-- A general dyadic logarithmic error with power strictly below one is sublinear.-/
+/-- A general dyadic logarithmic error with power strictly below one is sublinear.
+@isnad1 id=tendsto.1h1v.s7.cb404036b6ff from=translated src=- shape=8fda9f1c vocab=2f6ea480
+-/
 theorem tendsto_dyadic_power_log_sq_div {a : ℝ} (ha : a < 1) :
     Tendsto (fun X : ℕ => (2 * X + 2 : ℝ) ^ a * (Real.log (2 * X + 2)) ^ 2 / X)
       atTop (nhds 0) := by
@@ -55,6 +57,9 @@ theorem tendsto_dyadic_power_log_sq_div {a : ℝ} (ha : a < 1) :
 def evenWeightBudget (X : ℕ) : ℝ :=
   ((primaryCutoff X : ℝ) ^ 2 + 1) * Real.log (2 * X + 2) * evenProgressionBound X
 
+/--
+@isnad1 id=le.0h1v.s3.a116397d1ed3 from=translated src=- shape=b9369acb vocab=1be3eff4
+-/
 theorem evenWeightBudget_nonneg (X : ℕ) : 0 ≤ evenWeightBudget X := by
   unfold evenWeightBudget
   apply mul_nonneg _ (evenProgressionBound_nonneg X)
@@ -63,6 +68,9 @@ theorem evenWeightBudget_nonneg (X : ℕ) : 0 ≤ evenWeightBudget X := by
   have := Nat.cast_nonneg (α := ℝ) X
   linarith
 
+/--
+@isnad1 id=le.0h1v.s7.b603d17bc941 from=translated src=- shape=fcc733dc vocab=8391ef25
+-/
 theorem evenWeightBudget_le (X : ℕ) :
     evenWeightBudget X ≤ 4 * (2 * X + 2 : ℝ) ^ (9 / 10 : ℝ) *
       (Real.log (2 * X + 2)) ^ 2 := by
@@ -92,6 +100,9 @@ theorem evenWeightBudget_le (X : ℕ) :
       exact mul_le_mul_of_nonneg_right (by linarith) (Real.log_nonneg hY)
     _ = _ := by rw [← hpow]; ring
 
+/--
+@isnad1 id=tendsto.0h0v.s5.2d8e3591893e from=translated src=- shape=15fb6055 vocab=d06fedd3
+-/
 theorem tendsto_evenWeightBudget_div :
     Tendsto (fun X : ℕ => evenWeightBudget X / X) atTop (nhds 0) := by
   have h := (tendsto_dyadic_power_log_sq_div (a := 9 / 10) (by norm_num)).const_mul 4

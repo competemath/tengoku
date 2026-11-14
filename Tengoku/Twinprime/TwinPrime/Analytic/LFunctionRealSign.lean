@@ -23,6 +23,9 @@ open scoped ComplexConjugate
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=eq.2h3v.s7.1994812f0835 from=translated src=- shape=ff56553e vocab=11f2f4cf
+-/
 theorem LFunction_real_im_eq_zero {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1) (hsq : χ ^ 2 = 1) (u : ℝ) :
     (DirichletCharacter.LFunction χ (u : ℂ)).im = 0 := by
@@ -30,6 +33,9 @@ theorem LFunction_real_im_eq_zero {q : ℕ} [NeZero q]
   simp only [Complex.conj_ofReal, Complex.conj_im] at h
   linarith
 
+/--
+@isnad1 id=eq.2h3v.s7.f1fbdb93d076 from=translated src=- shape=6f25aff8 vocab=32687145
+-/
 theorem LFunction_real_eq_ofReal_re {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1) (hsq : χ ^ 2 = 1) (u : ℝ) :
     DirichletCharacter.LFunction χ (u : ℂ) =
@@ -38,6 +44,9 @@ theorem LFunction_real_eq_ofReal_re {q : ℕ} [NeZero q]
   · simp only [Complex.ofReal_re]
   · simpa only [Complex.ofReal_im] using LFunction_real_im_eq_zero χ hχ hsq u
 
+/--
+@isnad1 id=le.0h2v.s5.d229298db53c from=translated src=- shape=f7ffb8ea vocab=baa1e33d
+-/
 theorem one_quarter_le_LFunction_two_re {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) :
     1 / 4 ≤ (DirichletCharacter.LFunction χ 2).re := by
@@ -49,7 +58,9 @@ theorem one_quarter_le_LFunction_two_re {q : ℕ} [NeZero q]
 
 /-- Positivity follows from the supplied real zero exclusion and the known
 nonvanishing at and to the right of one. The lower endpoint may be any real
-number at most one; no condition on negative real arguments is suppressed.-/
+number at most one; no condition on negative real arguments is suppressed.
+@isnad1 id=lt.4h3v.s8.7b9294be2c9e from=translated src=- shape=62ae5507 vocab=2a56f1e8
+-/
 theorem LFunction_real_re_pos_of_no_zeros {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1) (hsq : χ ^ 2 = 1)
     (β : ℝ) (hβ1 : β ≤ 1)
@@ -76,7 +87,9 @@ theorem LFunction_real_re_pos_of_no_zeros {q : ℕ} [NeZero q]
   · exact (DirichletCharacter.LFunction_ne_zero_of_one_le_re χ (Or.inl hχ)
       (by simp only [Complex.ofReal_re]; linarith)) hzero
 
-/-- Truncation at `N=1` retains the negative pole term just below one.-/
+/-- Truncation at `N=1` retains the negative pole term just below one.
+@isnad1 id=lt.2h1v.s5.114d795970ae from=translated src=- shape=6a3344be vocab=b4f0db53
+-/
 theorem riemannZeta_re_neg_of_nineteen_twentieths_le (β : ℝ)
     (hβ : 19 / 20 ≤ β) (hβ1 : β < 1) : (riemannZeta (β : ℂ)).re < 0 := by
   have hβ0 : 0 < β := by linarith
@@ -95,7 +108,9 @@ theorem riemannZeta_re_neg_of_nineteen_twentieths_le (β : ℝ)
   linarith
 
 /-- If all three real character factors have no zeros between `β` and one,
-the actual four-factor product has negative real part at `β`.-/
+the actual four-factor product has negative real part at `β`.
+@isnad1 id=lt.10h4v.s9.97141241e914 from=translated src=- shape=46acf135 vocab=4b0d35c2
+-/
 theorem quadraticLFunctionProduct_real_re_neg_of_no_zeros
     {q : ℕ} [NeZero q] (χ₁ χ₂ : DirichletCharacter ℂ q)
     (hχ₁ : χ₁ ≠ 1) (hχ₂ : χ₂ ≠ 1) (hχ₁₂ : χ₁ * χ₂ ≠ 1)

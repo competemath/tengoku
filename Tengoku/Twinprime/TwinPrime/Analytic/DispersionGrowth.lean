@@ -17,7 +17,9 @@ open Filter
 namespace TwinPrime.Analytic
 
 /-- The larger logarithm used in the finite dispersion bounds still costs
-only a constant multiple of the cutoff logarithm.-/
+only a constant multiple of the cutoff logarithm.
+@isnad1 id=le.1h1v.s6.91c1686b0d21 from=translated src=- shape=857676f9 vocab=403a8963
+-/
 theorem log_four_mul_add_four_le_eight_log_primaryCutoff (X : ℕ) (hX : 1 ≤ X) :
     Real.log (4 * X + 4) ≤ 8 * Real.log (primaryCutoff X + 1) := by
   have hdyadic := log_dyadic_le_seven_log_primaryCutoff X hX
@@ -32,7 +34,9 @@ theorem log_four_mul_add_four_le_eight_log_primaryCutoff (X : ℕ) (hX : 1 ≤ X
   linarith
 
 /-- A successor inside a logarithm does not change its negligible growth
-relative to a positive integer denominator.-/
+relative to a positive integer denominator.
+@isnad1 id=tendsto.0h1v.s6.d0c07c83ea8c from=translated src=- shape=9d20fe2d vocab=c2482069
+-/
 theorem tendsto_log_nat_add_one_pow_div (k : ℕ) :
     Tendsto (fun n : ℕ => (Real.log ((n : ℝ) + 1)) ^ k / n) atTop (nhds 0) := by
   have hbase : Tendsto (fun t : ℝ => (Real.log t) ^ k / t) atTop (nhds 0) := by
@@ -55,7 +59,9 @@ theorem tendsto_log_nat_add_one_pow_div (k : ℕ) :
   dsimp only [Function.comp_def]
   field_simp
 
-/-- Any fixed logarithmic loss is absorbed by one power of the primary cutoff.-/
+/-- Any fixed logarithmic loss is absorbed by one power of the primary cutoff.
+@isnad1 id=tendsto.0h1v.s6.70e2c088a24b from=translated src=- shape=0d350ff3 vocab=0b455907
+-/
 theorem tendsto_dispersion_log_pow_div_primaryCutoff (k : ℕ) :
     Tendsto (fun X : ℕ => (Real.log (4 * X + 4)) ^ k / primaryCutoff X)
       atTop (nhds 0) := by
@@ -80,7 +86,9 @@ theorem tendsto_dispersion_log_pow_div_primaryCutoff (k : ℕ) :
     simpa only [Function.comp_def, mul_pow, mul_div_assoc] using hdiv
 
 /-- A bound with a primary-cutoff denominator remains negligible after any
-additional fixed logarithmic weight.-/
+additional fixed logarithmic weight.
+@isnad1 id=tendsto.1h4v.s7.2797c56553e7 from=translated src=- shape=d31e019d vocab=0bd1438f
+-/
 theorem tendsto_mul_dispersion_log_pow_of_primaryCutoff_bound
     (F : ℕ → ℝ) (C : ℝ) (m k : ℕ)
     (hF : ∀ᶠ X : ℕ in atTop,

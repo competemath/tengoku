@@ -31,7 +31,9 @@ def bilinearSmallGcdLargeSquare (U V X G H : ℕ) : ℝ := by
     (μ dr.1 : ℝ) * vaughanBeta V dr.2 * vonMangoldt (dr.1 * dr.2 + 2)
 
 /-- Every squarefree input survives both restrictions; no claim of
-cancellation on this remaining range follows from the removals.-/
+cancellation on this remaining range follows from the removals.
+@isnad1 id=and.2h4v.s5.229b7e831827 from=translated src=- shape=2514658c vocab=58dd3eb1
+-/
 theorem structuredCore_condition_of_squarefree (d r G H : ℕ)
     (hG : 1 ≤ G) (hs : Squarefree (d * r)) :
     Nat.gcd d r ≤ G ∧ ¬largePrimeSquareInput H (d * r) := by
@@ -40,6 +42,9 @@ theorem structuredCore_condition_of_squarefree (d r G H : ℕ)
   · rintro ⟨p, hp, _, hpp⟩
     exact (Nat.squarefree_iff_prime_squarefree.mp hs p hp) (by simpa only [pow_two] using hpp)
 
+/--
+@isnad1 id=eq.0h5v.s5.e46ca20dfba1 from=translated src=- shape=a8fd8bc2 vocab=b5f202b0
+-/
 theorem bilinearSmallGcd_eq_core_add_square (U V X G H : ℕ) :
     bilinearSmallGcd U V X G =
       bilinearStructuredCore U V X G H + bilinearSmallGcdLargeSquare U V X G H := by
@@ -51,6 +56,9 @@ theorem bilinearSmallGcd_eq_core_add_square (U V X G H : ℕ) :
   by_cases hg : Nat.gcd dr.1 dr.2 ≤ G <;>
     by_cases hs : largePrimeSquareInput H (dr.1 * dr.2) <;> simp [hg, hs]
 
+/--
+@isnad1 id=le.0h5v.s4.847544c8e79f from=translated src=- shape=7aeea9c4 vocab=a5978642
+-/
 theorem abs_bilinearSmallGcdLargeSquare_le_mass (U V X G H : ℕ) :
     |bilinearSmallGcdLargeSquare U V X G H| ≤ bilinearLargePrimeSquareAbsMass U V X H := by
   classical
@@ -62,6 +70,9 @@ theorem abs_bilinearSmallGcdLargeSquare_le_mass (U V X G H : ℕ) :
   · intro _ _ _
     exact abs_nonneg _
 
+/--
+@isnad1 id=le.0h5v.s5.97e2861fb6b4 from=translated src=- shape=a0e73b41 vocab=961a6698
+-/
 theorem abs_bilinear_sub_structuredCore_le (U V X G H : ℕ) :
     |bilinearTerm U V X - bilinearStructuredCore U V X G H| ≤
       |bilinearLargeGcd U V X G| + bilinearLargePrimeSquareAbsMass U V X H := by
@@ -78,6 +89,9 @@ def primaryBilinearStructuredCore (X : ℕ) : ℝ :=
   bilinearStructuredCore (primaryCutoff X) (primaryCutoff X) X
     (dispersionGcdCutoff X) (dispersionGcdCutoff X)
 
+/--
+@isnad1 id=le.1h1v.s7.f61a56f7de78 from=translated src=- shape=3d3c3047 vocab=91394cfd
+-/
 theorem abs_primary_bilinear_sub_structuredCore_div_le (X : ℕ) (hX : 128 ≤ X) :
     |bilinearTerm (primaryCutoff X) (primaryCutoff X) X - primaryBilinearStructuredCore X| / X ≤
       (24 * (2 / Real.log 2) + 8) / (Real.log (4 * (X : ℝ) + 4)) ^ 7 := by
@@ -96,6 +110,9 @@ theorem abs_primary_bilinear_sub_structuredCore_div_le (X : ℕ) (hX : 128 ≤ X
         (bilinearLargePrimeSquareAbsMass_div_le_log _ _ X (by omega))
     _ = _ := by rw [add_div]
 
+/--
+@isnad1 id=tendsto.0h0v.s5.413bd342fd92 from=translated src=- shape=0c6d8850 vocab=5a3fd014
+-/
 theorem tendsto_primary_bilinear_sub_structuredCore_div :
     Tendsto (fun X : ℕ =>
       (bilinearTerm (primaryCutoff X) (primaryCutoff X) X - primaryBilinearStructuredCore X) / X)

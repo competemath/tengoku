@@ -19,6 +19,9 @@ open scoped ArithmeticFunction.Moebius
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=le.1h1v.s4.5814f036688d from=translated src=- shape=e481bd26 vocab=a9fa9fc0
+-/
 theorem abs_mertensReal_le (x : ℝ) (hx : 0 ≤ x) : |mertensReal x| ≤ x := by
   calc
     _ ≤ ∑ n ∈ Ioc 0 ⌊x⌋₊, |(μ n : ℝ)| := abs_sum_le_sum_abs _ _
@@ -29,6 +32,9 @@ theorem abs_mertensReal_le (x : ℝ) (hx : 0 ≤ x) : |mertensReal x| ≤ x := b
     _ = (⌊x⌋₊ : ℝ) := by simp
     _ ≤ x := Nat.floor_le hx
 
+/--
+@isnad1 id=le.5h5v.s7.f9cdbdb2f8e2 from=translated src=- shape=cf66fc94 vocab=1b83682f
+-/
 theorem abs_moebiusSelberg_tail_le (c x y z K : ℝ)
     (hy : 2 ≤ y) (hz : 1 ≤ z) (hyz : y * z = x) (hK : 0 ≤ K)
     (hA : ∀ t : ℝ, y ≤ t → |centeredSelbergSummatory c t| ≤ K * t / (Real.log t) ^ 5) :
@@ -62,7 +68,9 @@ theorem abs_moebiusSelberg_tail_le (c x y z K : ℝ)
         _ = _ := by ring
     _ = _ := by rw [← mul_sum, sum_one_div_Ioc_eq_harmonic]
 
-/-- The exact overlap costs no more than one additional harmonic unit.-/
+/-- The exact overlap costs no more than one additional harmonic unit.
+@isnad1 id=le.5h5v.s7.77bdfedae035 from=translated src=- shape=0fc0575f vocab=ed51f502
+-/
 theorem abs_moebiusSelberg_boundary_le (c x y z K : ℝ)
     (hy : 2 ≤ y) (hz : 1 ≤ z) (hyz : y * z = x) (hK : 0 ≤ K)
     (hAy : |centeredSelbergSummatory c y| ≤ K * y / (Real.log y) ^ 5) :
@@ -74,6 +82,9 @@ theorem abs_moebiusSelberg_boundary_le (c x y z K : ℝ)
       mul_le_mul hAy (abs_mertensReal_le z (by linarith)) (abs_nonneg _) (by positivity)
     _ = _ := by rw [← hyz]; ring
 
+/--
+@isnad1 id=le.5h5v.s8.4a9fdf0aa04d from=translated src=- shape=3e5d9dca vocab=357ee165
+-/
 theorem abs_moebiusLogSqSummatory_le_hyperbola_head (c x y z K : ℝ)
     (hy : 2 ≤ y) (hz : 1 ≤ z) (hyz : y * z = x) (hK : 0 ≤ K)
     (hA : ∀ t : ℝ, y ≤ t → |centeredSelbergSummatory c t| ≤ K * t / (Real.log t) ^ 5) :
@@ -105,7 +116,9 @@ theorem abs_moebiusLogSqSummatory_le_hyperbola_head (c x y z K : ℝ)
       nlinarith [hhead, ht, hb]
 
 /-- With a fixed power cutoff, the discarded strip and overlap have four
-logarithmic powers of saving. No cancellation bound for Mertens is used.-/
+logarithmic powers of saving. No cancellation bound for Mertens is used.
+@isnad1 id=ex.4h3v.s7.2b4a87c223ff from=translated src=- shape=a6dc957a vocab=3bd9612c
+-/
 theorem eventually_moebiusLogSqSummatory_le_power_head
     (c K δ : ℝ) (hK : 0 ≤ K) (hδ0 : 0 < δ) (hδ1 : δ < 1)
     (hA : ∀ᶠ t : ℝ in atTop,

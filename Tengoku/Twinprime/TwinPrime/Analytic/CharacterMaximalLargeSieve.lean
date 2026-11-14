@@ -26,6 +26,9 @@ def primitiveCharacterFamily (Q : ℕ) : Finset (Σ q : ℕ, DirichletCharacter 
 def primitiveCharacterWeight (p : Σ q : ℕ, DirichletCharacter ℂ q) : ℝ :=
   (p.1 : ℝ) / Nat.totient p.1
 
+/--
+@isnad1 id=le.0h1v.s4.4b98d988e0f2 from=translated src=- shape=1046a67b vocab=a395a1e8
+-/
 theorem primitiveCharacterWeight_nonneg (p : Σ q : ℕ, DirichletCharacter ℂ q) :
     0 ≤ primitiveCharacterWeight p := by unfold primitiveCharacterWeight; positivity
 

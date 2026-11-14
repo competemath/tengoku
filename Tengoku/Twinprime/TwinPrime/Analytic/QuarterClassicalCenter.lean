@@ -20,7 +20,9 @@ open Filter
 namespace TwinPrime.Analytic
 
 /-- The prime-only replacement error also permits the smaller logarithm used
-by the classical center, uniformly in the choice of left cutoff.-/
+by the classical center, uniformly in the choice of left cutoff.
+@isnad1 id=tendsto.0h2v.s6.678d64026e8a from=translated src=- shape=6ab26712 vocab=f5e22df1
+-/
 theorem tendsto_quarter_abs_bilinear_sub_primeBeta_div_mul_log_two_pow
     (U : ℕ → ℕ) (k : ℕ) :
     Tendsto (fun X : ℕ =>

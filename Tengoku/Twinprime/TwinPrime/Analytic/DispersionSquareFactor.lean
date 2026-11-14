@@ -21,6 +21,9 @@ namespace TwinPrime.Analytic
 def positiveHyperbolaPairs (T : ℕ) : Finset (ℕ × ℕ) :=
   ((Ioc 0 T).product (Ioc 0 T)).filter (fun ab => ab.1 * ab.2 ≤ T)
 
+/--
+@isnad1 id=iff.0h2v.s6.ae65a4540fd6 from=translated src=- shape=abb6fa61 vocab=fecddfd7
+-/
 theorem mem_positiveHyperbolaPairs_iff (T : ℕ) (ab : ℕ × ℕ) :
     ab ∈ positiveHyperbolaPairs T ↔ 0 < ab.1 ∧ 0 < ab.2 ∧ ab.1 * ab.2 ≤ T := by
   simp only [positiveHyperbolaPairs, mem_filter, Finset.product_eq_sprod, mem_product, mem_Ioc]
@@ -31,6 +34,9 @@ theorem mem_positiveHyperbolaPairs_iff (T : ℕ) (ab : ℕ × ℕ) :
     exact ⟨⟨⟨ha, (Nat.le_mul_of_pos_right _ hb).trans hp⟩,
       ⟨hb, (Nat.le_mul_of_pos_left _ ha).trans hp⟩⟩, hp⟩
 
+/--
+@isnad1 id=eq.0h1v.s5.ea422ab72f57 from=translated src=- shape=bb5f4c8a vocab=2c9adcb2
+-/
 theorem positiveHyperbolaPairs_card (T : ℕ) :
     (positiveHyperbolaPairs T).card = ∑ d ∈ Ioc 0 T, T / d := by
   simp only [positiveHyperbolaPairs, card_eq_sum_ones, sum_filter,
@@ -51,6 +57,9 @@ theorem positiveHyperbolaPairs_card (T : ℕ) :
   rw [Nat.card_Ioc, Nat.sub_zero] at hc
   simpa only [card_eq_sum_ones, sum_filter] using hc
 
+/--
+@isnad1 id=le.0h1v.s5.0540a8242aae from=translated src=- shape=16417a38 vocab=38fb7966
+-/
 theorem positiveHyperbolaPairs_card_le (T : ℕ) :
     ((positiveHyperbolaPairs T).card : ℝ) ≤ T * (1 + Real.log T) := by
   rw [positiveHyperbolaPairs_card, Nat.cast_sum]
@@ -67,7 +76,9 @@ theorem positiveHyperbolaPairs_card_le (T : ℕ) :
     _ ≤ _ := mul_le_mul_of_nonneg_left (harmonic_le_one_add_log T) (Nat.cast_nonneg T)
 
 /-- A prime square in a product with squarefree left factor has two possible
-allocations. Both cases may hold, which is harmless in the counting cover.-/
+allocations. Both cases may hold, which is harmless in the counting cover.
+@isnad1 id=or.3h3v.s6.a41e7796c6bf from=translated src=- shape=0ca4721e vocab=23087afa
+-/
 theorem prime_sq_dvd_mul_of_squarefree_left {p d r : ℕ}
     (hp : p.Prime) (hd : Squarefree d) (hprod : p ^ 2 ∣ d * r) :
     p ^ 2 ∣ r ∨ p ∣ d ∧ p ∣ r := by
@@ -93,6 +104,9 @@ def largePrimeSquarePairs (T H : ℕ) : Finset (ℕ × ℕ) := by
   exact (positiveHyperbolaPairs T).filter
     (fun dr => Squarefree dr.1 ∧ largePrimeSquareInput H (dr.1 * dr.2))
 
+/--
+@isnad1 id=le.1h2v.s6.caa4db202faa from=translated src=- shape=13fbe2e9 vocab=0c0590dc
+-/
 theorem largePrimeSquarePairs_card_le (T H : ℕ) (hH : 1 ≤ H) :
     ((largePrimeSquarePairs T H).card : ℝ) ≤ 2 * T * (1 + Real.log T) / H := by
   classical
@@ -193,10 +207,16 @@ def bilinearLargePrimeSquare (U V X H : ℕ) : ℝ := by
   exact ∑ dr ∈ (bilinearPairs U V X).filter (fun dr => largePrimeSquareInput H (dr.1 * dr.2)),
     (μ dr.1 : ℝ) * vaughanBeta V dr.2 * vonMangoldt (dr.1 * dr.2 + 2)
 
+/--
+@isnad1 id=le.0h4v.s4.563fef10aaf8 from=translated src=- shape=f0c23793 vocab=e9c4b241
+-/
 theorem bilinearLargePrimeSquareAbsMass_nonneg (U V X H : ℕ) :
     0 ≤ bilinearLargePrimeSquareAbsMass U V X H :=
   sum_nonneg fun _ _ => abs_nonneg _
 
+/--
+@isnad1 id=le.2h4v.s6.ede94d60f91d from=translated src=- shape=2b71e873 vocab=cbe0a5b3
+-/
 theorem bilinearLargePrimeSquareAbsMass_le (U V X H : ℕ) (hX : 1 ≤ X) (hH : 1 ≤ H) :
     bilinearLargePrimeSquareAbsMass U V X H ≤
       8 * (X : ℝ) * (Real.log (4 * X + 4)) ^ 3 / H := by
@@ -260,6 +280,9 @@ theorem bilinearLargePrimeSquareAbsMass_le (U V X H : ℕ) (hX : 1 ≤ X) (hH : 
     _ ≤ (2 * (2 * X : ℕ) * (2 * L) / H) * L ^ 2 := by gcongr
     _ = _ := by change _ = 8 * (X : ℝ) * L ^ 3 / H; push_cast; ring
 
+/--
+@isnad1 id=le.2h4v.s7.6e8e62984c28 from=translated src=- shape=8a44973c vocab=cb6655e2
+-/
 theorem abs_bilinearLargePrimeSquare_le (U V X H : ℕ) (hX : 1 ≤ X) (hH : 1 ≤ H) :
     |bilinearLargePrimeSquare U V X H| ≤
       8 * (X : ℝ) * (Real.log (4 * X + 4)) ^ 3 / H :=
@@ -270,6 +293,9 @@ def bilinearNoLargePrimeSquare (U V X H : ℕ) : ℝ := by
   exact ∑ dr ∈ (bilinearPairs U V X).filter (fun dr => ¬largePrimeSquareInput H (dr.1 * dr.2)),
     (μ dr.1 : ℝ) * vaughanBeta V dr.2 * vonMangoldt (dr.1 * dr.2 + 2)
 
+/--
+@isnad1 id=eq.0h4v.s4.babac8327a75 from=translated src=- shape=a54507de vocab=886bf859
+-/
 theorem bilinearTerm_eq_noLargePrimeSquare_add_largePrimeSquare (U V X H : ℕ) :
     bilinearTerm U V X =
       bilinearNoLargePrimeSquare U V X H + bilinearLargePrimeSquare U V X H := by
@@ -280,6 +306,9 @@ theorem bilinearTerm_eq_noLargePrimeSquare_add_largePrimeSquare (U V X H : ℕ) 
   intro dr _
   by_cases h : largePrimeSquareInput H (dr.1 * dr.2) <;> simp [h]
 
+/--
+@isnad1 id=le.1h3v.s6.62c9da591f07 from=translated src=- shape=df733a38 vocab=beff5fc2
+-/
 theorem bilinearLargePrimeSquareAbsMass_div_le_log (U V X : ℕ) (hX : 1 ≤ X) :
     bilinearLargePrimeSquareAbsMass U V X (dispersionGcdCutoff X) / X ≤
       8 / (Real.log (4 * (X : ℝ) + 4)) ^ 7 := by
@@ -300,6 +329,9 @@ theorem bilinearLargePrimeSquareAbsMass_div_le_log (U V X : ℕ) (hX : 1 ≤ X) 
       have he : (8 / L ^ 7) * L ^ 10 = 8 * L ^ 3 := by field_simp
       exact he.symm.trans_le h
 
+/--
+@isnad1 id=tendsto.0h2v.s5.734810667698 from=translated src=- shape=56beeab1 vocab=c922c5ec
+-/
 theorem tendsto_bilinearLargePrimeSquareAbsMass_div (U V : ℕ → ℕ) :
     Tendsto (fun X : ℕ => bilinearLargePrimeSquareAbsMass (U X) (V X) X
       (dispersionGcdCutoff X) / X) atTop (𝓝 0) := by
@@ -318,6 +350,9 @@ theorem tendsto_bilinearLargePrimeSquareAbsMass_div (U V : ℕ → ℕ) :
   · filter_upwards [eventually_ge_atTop 1] with X hX
     exact bilinearLargePrimeSquareAbsMass_div_le_log _ _ X hX
 
+/--
+@isnad1 id=tendsto.0h2v.s5.bd943a420114 from=translated src=- shape=56beeab1 vocab=1dacfcda
+-/
 theorem tendsto_bilinearLargePrimeSquare_div (U V : ℕ → ℕ) :
     Tendsto (fun X : ℕ => bilinearLargePrimeSquare (U X) (V X) X
       (dispersionGcdCutoff X) / X) atTop (𝓝 0) := by
@@ -332,7 +367,9 @@ theorem tendsto_bilinearLargePrimeSquare_div (U V : ℕ → ℕ) :
     exact div_le_div_of_nonneg_right (abs_sum_le_sum_abs _ _) (Nat.cast_nonneg X)
 
 /-- Removing the whole input range containing a prime square above the
-logarithmic threshold changes the normalized signed sum by o(1).-/
+logarithmic threshold changes the normalized signed sum by o(1).
+@isnad1 id=tendsto.0h2v.s6.df8fbf625b22 from=translated src=- shape=8e3a156b vocab=cce6885a
+-/
 theorem tendsto_bilinearTerm_sub_noLargePrimeSquare_div (U V : ℕ → ℕ) :
     Tendsto (fun X : ℕ => (bilinearTerm (U X) (V X) X -
       bilinearNoLargePrimeSquare (U X) (V X) X (dispersionGcdCutoff X)) / X)

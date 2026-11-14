@@ -16,7 +16,9 @@ open Finset
 
 namespace TwinPrime.Analytic
 
-/-- The exact reciprocal-weighted tail, retaining both cumulative boundaries.-/
+/-- The exact reciprocal-weighted tail, retaining both cumulative boundaries.
+@isnad1 id=eq.2h3v.s7.0469ced410b2 from=translated src=- shape=6bd7dc0d vocab=509ce919
+-/
 theorem sum_Ioc_div_eq_cumulative (a : ℕ → ℝ) (R₀ Q : ℕ)
     (hR : 1 ≤ R₀) (hRQ : R₀ ≤ Q) :
     (∑ r ∈ Ioc R₀ Q, a r / r) =
@@ -27,7 +29,9 @@ theorem sum_Ioc_div_eq_cumulative (a : ℕ → ℝ) (R₀ Q : ℕ)
   unfold reciprocalCoefficientSum at h
   rwa [← hsplit, add_sub_cancel_left] at h
 
-/-- The reciprocal quadratic kernel telescopes exactly.-/
+/-- The reciprocal quadratic kernel telescopes exactly.
+@isnad1 id=eq.2h2v.s6.f827ba20ce07 from=translated src=- shape=c8af4291 vocab=465cb8ce
+-/
 theorem sum_Ico_reciprocal_product_eq (R₀ Q : ℕ) (hR : 1 ≤ R₀) (hRQ : R₀ ≤ Q) :
     (∑ r ∈ Ico R₀ Q, (1 : ℝ) / ((r : ℝ) * (r + 1))) = 1 / (R₀ : ℝ) - 1 / Q := by
   calc
@@ -43,7 +47,9 @@ theorem sum_Ico_reciprocal_product_eq (R₀ Q : ℕ) (hR : 1 ≤ R₀) (hRQ : R�
       rw [← sum_neg_distrib] at h
       simpa only [neg_sub] using h
 
-/-- A finite reciprocal sum is bounded by the logarithm of the endpoint ratio.-/
+/-- A finite reciprocal sum is bounded by the logarithm of the endpoint ratio.
+@isnad1 id=le.2h2v.s6.608d54dcdf9f from=translated src=- shape=27b4c24a vocab=bb8cf46f
+-/
 theorem sum_Ico_reciprocal_succ_le_log_ratio (R₀ Q : ℕ)
     (hR : 1 ≤ R₀) (hRQ : R₀ ≤ Q) :
     (∑ r ∈ Ico R₀ Q, (1 : ℝ) / ((r : ℝ) + 1)) ≤ Real.log ((Q : ℝ) / R₀) := by
@@ -67,7 +73,9 @@ theorem sum_Ico_reciprocal_succ_le_log_ratio (R₀ Q : ℕ)
     _ = _ := (Real.log_div hQ0.ne' hR0.ne').symm
 
 /-- A nonnegative coefficient sequence with a quadratic cumulative bound
-has the reciprocal-weight tail required for the conductor decomposition.-/
+has the reciprocal-weight tail required for the conductor decomposition.
+@isnad1 id=le.7h6v.s8.a494196c4bc9 from=translated src=- shape=e04faf9e vocab=6370dae1
+-/
 theorem sum_Ioc_div_le_of_cumulative_quadratic
     (a : ℕ → ℝ) (ha : ∀ r, 0 ≤ a r) (R₀ Q : ℕ)
     (hR : 1 ≤ R₀) (hRQ : R₀ ≤ Q) (A B D : ℝ)

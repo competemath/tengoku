@@ -19,7 +19,9 @@ open Metric
 namespace TwinPrime.Analytic
 
 /-- A normalized holomorphic logarithm and its logarithmic derivative.
-All function identities hold on the stated open ball.-/
+All function identities hold on the stated open ball.
+@isnad1 id=ex.3h3v.s8.94d18337e0ff from=translated src=- shape=8925e1b8 vocab=32265a12
+-/
 theorem exists_normalized_holomorphic_log_on_ball (g : ℂ → ℂ) (c : ℂ) (R : ℝ)
     (hR : 0 < R) (hg : DifferentiableOn ℂ g (ball c R))
     (hgn : ∀ z ∈ ball c R, g z ≠ 0) :

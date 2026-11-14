@@ -18,6 +18,9 @@ open Finset Filter
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=le.1h1v.s7.39cd32cc6b37 from=translated src=- shape=f4e23de3 vocab=b21d50e5
+-/
 theorem dispersionGcdCutoff_linear_family_error_le (X : ℕ) (hX : 128 ≤ X) :
     (3 * dyadicNatDepth (2 * X) : ℝ) *
       Real.sqrt (16 * (Real.log (4 * (X : ℝ) + 4)) ^ 4 / dispersionGcdCutoff X) ≤
@@ -35,6 +38,9 @@ theorem dispersionGcdCutoff_linear_family_error_le (X : ℕ) (hX : 128 ≤ X) :
       field_simp
       ring
 
+/--
+@isnad1 id=le.1h1v.s7.d1d6d0d2500c from=translated src=- shape=f985c43c vocab=33f55fac
+-/
 theorem bilinearGcdCutoff_linear_family_error_le (X : ℕ) (hX : 128 ≤ X) :
     (3 * dyadicNatDepth (2 * X) : ℝ) * 8 * (Real.log (4 * (X : ℝ) + 4)) ^ 2 /
         dispersionGcdCutoff X ≤
@@ -58,6 +64,9 @@ theorem bilinearGcdCutoff_linear_family_error_le (X : ℕ) (hX : 128 ≤ X) :
           (3 * ((2 / Real.log 2) * L)) * 8 * L ^ 2 := by field_simp; ring
       exact heq.symm.trans_le h
 
+/--
+@isnad1 id=le.2h3v.s7.815a103fe348 from=translated src=- shape=0acb6819 vocab=1d6ba3fb
+-/
 theorem dispersionDiagonalSum_div_le_linear (U V X : ℕ)
     (hU : 1 ≤ U) (hX : 1 ≤ X) :
     dispersionDiagonalSum U V X (dispersionBoxIndices U V X) / X ≤
@@ -71,6 +80,9 @@ theorem dispersionDiagonalSum_div_le_linear (U V X : ℕ)
     have hb := dispersionBoxIndices_bounds (dispersionActiveBoxIndices_subset U V X hij)
     exact ⟨hb.2.2.1, hb.2.2.2.2.1⟩
 
+/--
+@isnad1 id=le.2h4v.s7.20aef7b66534 from=translated src=- shape=0bbd8bb8 vocab=50e8765a
+-/
 theorem dispersionLargeGcdSum_div_le_linear (U V X G : ℕ)
     (hX : 1 ≤ X) (hG : 1 ≤ G) :
     dispersionLargeGcdSum U V X G (dispersionBoxIndices U V X) / X ≤
@@ -83,12 +95,18 @@ theorem dispersionLargeGcdSum_div_le_linear (U V X G : ℕ)
   · intro ij hij
     exact (dispersionBoxIndices_bounds (dispersionActiveBoxIndices_subset U V X hij)).2.2.2.2.1
 
+/--
+@isnad1 id=le.1h1v.s7.81b8b3cd5eb5 from=translated src=- shape=0052a2df vocab=984ab2a7
+-/
 theorem primaryDispersionLargeGcd_div_le_log_sq (X : ℕ) (hX : 128 ≤ X) :
     primaryDispersionLargeGcd X / X ≤
       12 * (2 / Real.log 2) / (Real.log (4 * (X : ℝ) + 4)) ^ 2 :=
   (dispersionLargeGcdSum_div_le_linear _ _ X _ (by omega)
     (one_le_dispersionGcdCutoff X)).trans (dispersionGcdCutoff_linear_family_error_le X hX)
 
+/--
+@isnad1 id=eq.1h6v.s6.81d1d58ff23e from=translated src=- shape=fd532551 vocab=0c20e319
+-/
 theorem bilinearBoxLargeGcd_eq_zero_of_not_band (U V X M N G : ℕ)
     (hband : ¬ (X < 4 * (M * N) ∧ M * N < 2 * X)) :
     bilinearBoxLargeGcd U V X M N G = 0 := by
@@ -99,6 +117,9 @@ theorem bilinearBoxLargeGcd_eq_zero_of_not_band (U V X M N G : ℕ)
   rw [dispersionEntry_eq_zero_of_not_band (mem_filter.mp hpair.1).1
     (mem_filter.mp hpair.2).1 hband, mul_zero]
 
+/--
+@isnad1 id=eq.2h4v.s6.972a6e8b44d0 from=translated src=- shape=6886f68a vocab=0269836d
+-/
 theorem bilinearLargeGcd_eq_sum_active_boxes (U V X G : ℕ) (hU : 1 ≤ U) (hV : 1 ≤ V) :
     bilinearLargeGcd U V X G = ∑ ij ∈ dispersionActiveBoxIndices U V X,
       bilinearBoxLargeGcd U V X (2 ^ ij.1) (2 ^ ij.2) G := by
@@ -107,6 +128,9 @@ theorem bilinearLargeGcd_eq_sum_active_boxes (U V X G : ℕ) (hU : 1 ≤ U) (hV 
   intro ij _ hband
   exact bilinearBoxLargeGcd_eq_zero_of_not_band U V X _ _ G hband
 
+/--
+@isnad1 id=le.4h4v.s7.3575da3463da from=translated src=- shape=7574227f vocab=e5525e0e
+-/
 theorem abs_bilinearLargeGcd_div_le_linear (U V X G : ℕ)
     (hU : 1 ≤ U) (hV : 1 ≤ V) (hX : 1 ≤ X) (hG : 1 ≤ G) :
     |bilinearLargeGcd U V X G| / X ≤
@@ -136,6 +160,9 @@ theorem abs_bilinearLargeGcd_div_le_linear (U V X G : ℕ)
       div_le_div_of_nonneg_right hmass hx.le
     _ = _ := by field_simp
 
+/--
+@isnad1 id=le.3h3v.s7.a1a2fbd20078 from=translated src=- shape=ba6a4aee vocab=31935527
+-/
 theorem abs_bilinearLargeGcd_div_le_log_seven (U V X : ℕ)
     (hU : 1 ≤ U) (hV : 1 ≤ V) (hX : 128 ≤ X) :
     |bilinearLargeGcd U V X (dispersionGcdCutoff X)| / X ≤
@@ -143,6 +170,9 @@ theorem abs_bilinearLargeGcd_div_le_log_seven (U V X : ℕ)
   (abs_bilinearLargeGcd_div_le_linear U V X _ hU hV (by omega)
     (one_le_dispersionGcdCutoff X)).trans (bilinearGcdCutoff_linear_family_error_le X hX)
 
+/--
+@isnad1 id=le.1h1v.s7.d406fa757645 from=translated src=- shape=0b8d5b41 vocab=d13072f5
+-/
 theorem abs_primaryBilinearLargeGcd_div_le_log_seven (X : ℕ) (hX : 128 ≤ X) :
     |primaryBilinearLargeGcd X| / X ≤
       24 * (2 / Real.log 2) / (Real.log (4 * (X : ℝ) + 4)) ^ 7 :=

@@ -17,7 +17,9 @@ open Finset Classical
 namespace TwinPrime.Analytic
 
 /-- A primitive character agrees pointwise with its associated primitive
-character, even though their level parameters need transport.-/
+character, even though their level parameters need transport.
+@isnad1 id=eq.1h3v.s7.90736b4119d8 from=translated src=- shape=9c37b2f7 vocab=3e3c48b8
+-/
 theorem primitiveCharacter_apply_of_primitive {r : ℕ}
     (ψ : DirichletCharacter ℂ r) (hψ : ψ.IsPrimitive) (a : ℤ) :
     ψ.primitiveCharacter a = ψ a := by
@@ -28,7 +30,9 @@ theorem primitiveCharacter_apply_of_primitive {r : ℕ}
       (ψ.primitiveCharacter.apply_eq_zero_iff a).mpr (by simpa only [hc] using ha)]
 
 /-- Inducing a primitive character and then taking its primitive character
-does not change its centered endpoint maximum.-/
+does not change its centered endpoint maximum.
+@isnad1 id=eq.2h4v.s9.0b3e0681cd93 from=translated src=- shape=322ad536 vocab=3f749b1b
+-/
 theorem characterMaxError_primitive_changeLevel {r q : ℕ} [NeZero q]
     (hd : r ∣ q) (ψ : DirichletCharacter ℂ r) (hψ : ψ.IsPrimitive) (T : ℕ) :
     characterMaxError T (ψ.changeLevel hd).primitiveCharacter = characterMaxError T ψ := by
@@ -52,10 +56,15 @@ def primitiveCharacterMass (T r : ℕ) : ℝ :=
   ∑ ψ ∈ (univ : Finset (DirichletCharacter ℂ r)).filter (fun ψ => ψ.IsPrimitive),
     characterMaxError T ψ
 
+/--
+@isnad1 id=le.0h2v.s4.f491cdfbf506 from=translated src=- shape=5ffe46ab vocab=a9f87211
+-/
 theorem primitiveCharacterMass_nonneg (T r : ℕ) : 0 ≤ primitiveCharacterMass T r :=
   sum_nonneg fun ψ _ => characterMaxError_nonneg T ψ
 
-/-- Exact finite conductor regrouping at a positive modulus.-/
+/-- Exact finite conductor regrouping at a positive modulus.
+@isnad1 id=eq.1h2v.s6.d2383f2da8e9 from=translated src=- shape=901ffb8d vocab=96f4a484
+-/
 theorem sum_characterMaxError_primitiveCharacter_eq (T q : ℕ) (hq : 0 < q) :
     (∑ χ : DirichletCharacter ℂ q, characterMaxError T χ.primitiveCharacter) =
       ∑ r ∈ q.divisors, primitiveCharacterMass T r := by
@@ -91,7 +100,9 @@ theorem sum_characterMaxError_primitiveCharacter_eq (T q : ℕ) (hq : 0 < q) :
   rw [← hbij]
   simp only [s, sum_sigma', primitiveCharacterMass]
 
-/-- Reindex a finite divisor sum by the positive multiplier of each divisor.-/
+/-- Reindex a finite divisor sum by the positive multiplier of each divisor.
+@isnad1 id=eq.0h2v.s6.05dc66396287 from=translated src=- shape=5e23488f vocab=4323015c
+-/
 theorem sum_Ioc_divisors_eq_sum_multiples (Q : ℕ) (f : ℕ → ℕ → ℝ) :
     (∑ q ∈ Ioc 0 Q, ∑ r ∈ q.divisors, f r q) =
       ∑ r ∈ Ioc 0 Q, ∑ k ∈ Ioc 0 (Q / r), f r (r * k) := by
@@ -135,7 +146,9 @@ theorem sum_Ioc_divisors_eq_sum_multiples (Q : ℕ) (f : ℕ → ℕ → ℝ) :
         rfl
 
 /-- The global regrouping retains the exact multiplicity weight from all
-original moduli divisible by a primitive conductor.-/
+original moduli divisible by a primitive conductor.
+@isnad1 id=eq.0h2v.s7.55722414a924 from=translated src=- shape=0c4aa912 vocab=f9359d1d
+-/
 theorem sum_primitiveCharacter_errors_eq_conductor_sum (T Q : ℕ) :
     (∑ q ∈ Icc 1 Q,
       (∑ χ : DirichletCharacter ℂ q, characterMaxError T χ.primitiveCharacter) /

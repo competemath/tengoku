@@ -16,6 +16,9 @@ open Filter
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=tendsto.0h1v.s6.0c8da7775034 from=translated src=- shape=e9b2b10d vocab=795625b6
+-/
 theorem tendsto_dispersion_log_pow_mul_primaryCutoff_neg_half (k : ℕ) :
     Tendsto (fun X : ℕ => (Real.log (4 * X + 4)) ^ k *
       (primaryCutoff X : ℝ) ^ (-1 / 2 : ℝ)) atTop (nhds 0) := by
@@ -35,6 +38,9 @@ theorem tendsto_dispersion_log_pow_mul_primaryCutoff_neg_half (k : ℕ) :
     show (-1 / 2 : ℝ) = -(1 / 2 : ℝ) by norm_num,
     Real.rpow_neg (Nat.cast_nonneg _), ← Real.sqrt_eq_rpow, div_eq_mul_inv]
 
+/--
+@isnad1 id=tendsto.0h1v.s6.e8f051be91a8 from=translated src=- shape=44ab026a vocab=b944e909
+-/
 theorem tendsto_dispersion_log_pow_div_sqrt_primaryCutoff (k : ℕ) :
     Tendsto (fun X : ℕ => (Real.log (4 * X + 4)) ^ k /
       Real.sqrt (primaryCutoff X : ℝ)) atTop (nhds 0) := by
@@ -45,7 +51,9 @@ theorem tendsto_dispersion_log_pow_div_sqrt_primaryCutoff (k : ℕ) :
     Real.rpow_neg (Nat.cast_nonneg _), ← Real.sqrt_eq_rpow, div_eq_mul_inv]
 
 /-- A square-root cutoff saving remains negligible after any additional
-fixed power of the logarithm. The eventual bound is the sole input.-/
+fixed power of the logarithm. The eventual bound is the sole input.
+@isnad1 id=tendsto.1h4v.s7.e62b9eae8272 from=translated src=- shape=ca4e3b10 vocab=e17c2b02
+-/
 theorem tendsto_mul_dispersion_log_pow_of_primaryCutoff_neg_half_bound
     (F : ℕ → ℝ) (C : ℝ) (m k : ℕ)
     (hF : ∀ᶠ X : ℕ in atTop, |F X| ≤

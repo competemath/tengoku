@@ -20,7 +20,9 @@ open Finset
 
 namespace TwinPrime.Analytic
 
-/-- The finite Schur bound, using only symmetry, positivity and row sums.-/
+/-- The finite Schur bound, using only symmetry, positivity and row sums.
+@isnad1 id=le.3h5v.s7.173762596d57 from=translated src=- shape=c0db1296 vocab=261e16a0
+-/
 theorem finite_schur_bound {ι : Type*} (s : Finset ι) (K : ι → ι → ℝ)
     (w : ι → ℝ) (B : ℝ)
     (hK : ∀ i ∈ s, ∀ j ∈ s, 0 ≤ K i j)
@@ -51,7 +53,9 @@ section InnerProduct
 
 variable {ι H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
 
-/-- The synthesis estimate associated with a finite absolute Gram row bound.-/
+/-- The synthesis estimate associated with a finite absolute Gram row bound.
+@isnad1 id=le.1h6v.s8.989219c6035e from=translated src=- shape=03725bda vocab=5c8c4a2a
+-/
 theorem norm_sum_smul_sq_le_gram_row (s : Finset ι) (v : ι → H)
     (b : ι → ℂ) (B : ℝ)
     (hrow : ∀ i ∈ s, ∑ j ∈ s, ‖inner ℂ (v i) (v j)‖ ≤ B) :
@@ -72,7 +76,9 @@ theorem norm_sum_smul_sq_le_gram_row (s : Finset ι) (v : ι → H)
       (fun i => ‖b i‖) B (fun _ _ _ _ => norm_nonneg _)
       (fun i _ j _ => norm_inner_symm _ _) hrow
 
-/-- A finite large-sieve inequality; the family need not be orthogonal.-/
+/-- A finite large-sieve inequality; the family need not be orthogonal.
+@isnad1 id=le.2h6v.s8.89750b1cd710 from=translated src=- shape=6a2076f0 vocab=f5dc72b4
+-/
 theorem sum_norm_inner_sq_le_gram_row (s : Finset ι) (v : ι → H)
     (x : H) (B : ℝ) (hB : 0 ≤ B)
     (hrow : ∀ i ∈ s, ∑ j ∈ s, ‖inner ℂ (v i) (v j)‖ ≤ B) :
@@ -103,7 +109,9 @@ theorem sum_norm_inner_sq_le_gram_row (s : Finset ι) (v : ι → H)
 end InnerProduct
 
 /-- The complex-matrix form, with a finite sample type and arbitrary finite
-frequency set. The orientation agrees with `Σ a(n) E(i,n)`.-/
+frequency set. The orientation agrees with `Σ a(n) E(i,n)`.
+@isnad1 id=le.2h6v.s7.1832094aad43 from=translated src=- shape=25be0e12 vocab=933662c5
+-/
 theorem finite_large_sieve {ι κ : Type*} [Fintype κ] (s : Finset ι)
     (E : ι → κ → ℂ) (a : κ → ℂ) (B : ℝ) (hB : 0 ≤ B)
     (hrow : ∀ i ∈ s, ∑ j ∈ s,
@@ -124,7 +132,9 @@ theorem finite_large_sieve {ι κ : Type*} [Fintype κ] (s : Finset ι)
   have h := sum_norm_inner_sq_le_gram_row s v x B hB (by simpa only [hv] using hrow)
   simpa only [hx, hnorm] using h
 
-/-- Both the frequency set and the sample set may be arbitrary finsets.-/
+/-- Both the frequency set and the sample set may be arbitrary finsets.
+@isnad1 id=le.2h7v.s7.5030616e7a98 from=translated src=- shape=1119a489 vocab=0db9294a
+-/
 theorem finite_large_sieve_finset {ι κ : Type*} (s : Finset ι) (t : Finset κ)
     (E : ι → κ → ℂ) (a : κ → ℂ) (B : ℝ) (hB : 0 ≤ B)
     (hrow : ∀ i ∈ s, ∑ j ∈ s,
@@ -144,7 +154,9 @@ theorem finite_large_sieve_finset {ι κ : Type*} (s : Finset ι) (t : Finset κ
     rw [Finset.sum_coe_sort t (fun n => a n * E i n)]
   · rw [Finset.sum_coe_sort t (fun n => ‖a n‖ ^ 2)]
 
-/-- The additive-phase specialization, ready for a geometric row estimate.-/
+/-- The additive-phase specialization, ready for a geometric row estimate.
+@isnad1 id=le.2h7v.s7.ae349365443a from=translated src=- shape=d5e0d9d4 vocab=6241d872
+-/
 theorem finite_additive_large_sieve_of_kernel_rows {ι : Type*} (s : Finset ι)
     (θ : ι → ℝ) (a : ℕ → ℂ) (M N : ℕ) (B : ℝ) (hB : 0 ≤ B)
     (hrow : ∀ i ∈ s, ∑ j ∈ s,

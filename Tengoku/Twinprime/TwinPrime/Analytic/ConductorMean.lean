@@ -20,7 +20,9 @@ open Finset Classical
 
 namespace TwinPrime.Analytic
 
-/-- Centering disappears for primitive characters only above modulus one.-/
+/-- Centering disappears for primitive characters only above modulus one.
+@isnad1 id=eq.1h2v.s6.c8fd8ba37ee1 from=translated src=- shape=c0604666 vocab=58b8314b
+-/
 theorem primitiveCharacterMass_eq_sum_characterPsiMax (T r : ℕ) (hr : 1 < r) :
     primitiveCharacterMass T r =
       ∑ χ ∈ (univ : Finset (DirichletCharacter ℂ r)).filter (fun χ => χ.IsPrimitive),
@@ -36,6 +38,9 @@ def primitiveCharacterPsiWeight (T r : ℕ) : ℝ :=
     ∑ χ ∈ (univ : Finset (DirichletCharacter ℂ r)).filter (fun χ => χ.IsPrimitive),
       characterPsiMax T χ
 
+/--
+@isnad1 id=le.0h2v.s4.fe8ebc5f9d2a from=translated src=- shape=5ffe46ab vocab=5a4fe606
+-/
 theorem primitiveCharacterPsiWeight_nonneg (T r : ℕ) :
     0 ≤ primitiveCharacterPsiWeight T r := by
   unfold primitiveCharacterPsiWeight
@@ -43,7 +48,9 @@ theorem primitiveCharacterPsiWeight_nonneg (T r : ℕ) :
     (sum_nonneg fun χ _ => characterPsiMax_nonneg T χ)
 
 /-- The cumulative coefficient sum is exactly the actual weighted mean,
-including its uncentered modulus-one contribution.-/
+including its uncentered modulus-one contribution.
+@isnad1 id=eq.0h2v.s7.715aee19fd76 from=translated src=- shape=b8d18003 vocab=461caef2
+-/
 theorem coefficientSum_primitiveCharacterPsiWeight (T R : ℕ) :
     coefficientSum (primitiveCharacterPsiWeight T) R =
       ∑ r ∈ Icc 1 R, (r : ℝ) / Nat.totient r *
@@ -56,7 +63,9 @@ theorem coefficientSum_primitiveCharacterPsiWeight (T R : ℕ) :
   simp only [coefficientSum, primitiveCharacterPsiWeight, hI]
 
 /-- Dividing the mean weight by a positive nonprincipal modulus recovers
-the centered mass divided by its totient.-/
+the centered mass divided by its totient.
+@isnad1 id=eq.1h2v.s5.c0cfc5d66528 from=translated src=- shape=57ed9320 vocab=536f2f18
+-/
 theorem primitiveCharacterPsiWeight_div_eq (T r : ℕ) (hr : 1 < r) :
     primitiveCharacterPsiWeight T r / r = primitiveCharacterMass T r / Nat.totient r := by
   have hr0 : (r : ℝ) ≠ 0 := by exact_mod_cast (Nat.zero_lt_of_lt hr).ne'
@@ -65,7 +74,9 @@ theorem primitiveCharacterPsiWeight_div_eq (T r : ℕ) (hr : 1 < r) :
 
 /-- A quadratic bound for the actual primitive-character mean yields the
 large-conductor tail. The cutoff excludes the centered conductor-one term,
-and the cumulative hypothesis is required only between the two endpoints.-/
+and the cumulative hypothesis is required only between the two endpoints.
+@isnad1 id=le.6h6v.s8.2e7d9c8172b3 from=translated src=- shape=6273d4d5 vocab=01347288
+-/
 theorem sum_primitiveCharacterMass_div_totient_le_of_quadratic_mean
     (T R₀ Q : ℕ) (hR₀ : 1 ≤ R₀) (hRQ : R₀ ≤ Q) (A B D : ℝ)
     (hA : 0 ≤ A) (hB : 0 ≤ B) (hD : 0 ≤ D)

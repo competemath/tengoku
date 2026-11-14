@@ -21,17 +21,25 @@ def dispersionActiveBoxIndices (U V X : ℕ) : Finset (ℕ × ℕ) :=
   (dispersionBoxIndices U V X).filter
     (fun ij => X < 4 * (2 ^ ij.1 * 2 ^ ij.2) ∧ 2 ^ ij.1 * 2 ^ ij.2 < 2 * X)
 
+/--
+@isnad1 id=le.0h3v.s5.3014dc1caab3 from=translated src=- shape=59e90078 vocab=8f412081
+-/
 theorem dispersionActiveBoxIndices_subset (U V X : ℕ) :
     dispersionActiveBoxIndices U V X ⊆ dispersionBoxIndices U V X :=
   filter_subset _ _
 
+/--
+@isnad1 id=iff.0h4v.s7.1adafa4ebd42 from=translated src=- shape=46ef27b2 vocab=f77afb24
+-/
 theorem mem_dispersionActiveBoxIndices_iff (U V X : ℕ) (ij : ℕ × ℕ) :
     ij ∈ dispersionActiveBoxIndices U V X ↔
       ij ∈ dispersionBoxIndices U V X ∧
         X < 4 * (2 ^ ij.1 * 2 ^ ij.2) ∧ 2 ^ ij.1 * 2 ^ ij.2 < 2 * X :=
   mem_filter
 
-/-- Any two exponents in the product band differ by at most two.-/
+/-- Any two exponents in the product band differ by at most two.
+@isnad1 id=le.2h3v.s6.54a535fbaa93 from=translated src=- shape=2906e262 vocab=3f16b8dd
+-/
 theorem dyadic_product_band_exponent_le {X k l : ℕ}
     (hk : X < 4 * 2 ^ k) (hl : 2 ^ l < 2 * X) : l ≤ k + 2 := by
   by_contra h
@@ -42,7 +50,9 @@ theorem dyadic_product_band_exponent_le {X k l : ℕ}
   omega
 
 /-- The full support family has at most three boxes for each left exponent,
-including all boundary and empty cases.-/
+including all boundary and empty cases.
+@isnad1 id=le.0h3v.s5.658f9a32e1d0 from=translated src=- shape=f4a43410 vocab=31dde327
+-/
 theorem dispersionActiveBoxIndices_card_le (U V X : ℕ) :
     (dispersionActiveBoxIndices U V X).card ≤ 3 * dyadicNatDepth (2 * X) := by
   classical
@@ -83,7 +93,9 @@ theorem dispersionActiveBoxIndices_card_le (U V X : ℕ) :
     change s.card ≤ _
     simp only [hz, card_empty, Nat.zero_le]
 
-/-- Outside the strict product band, every entry in the box vanishes.-/
+/-- Outside the strict product band, every entry in the box vanishes.
+@isnad1 id=eq.3h5v.s7.9aa2885e0b71 from=translated src=- shape=49dea22f vocab=f7073779
+-/
 theorem dispersionEntry_eq_zero_of_not_band {X M N d r : ℕ}
     (hd : d ∈ Ioc M (2 * M)) (hr : r ∈ Ioc N (2 * N))
     (hband : ¬ (X < 4 * (M * N) ∧ M * N < 2 * X)) :
@@ -101,6 +113,9 @@ theorem dispersionEntry_eq_zero_of_not_band {X M N d r : ℕ}
     exact lt_of_le_of_lt h1 h2
   exact hband ⟨lt_of_lt_of_le hprod.1 hupper, lt_of_lt_of_le hlower hprod.2⟩
 
+/--
+@isnad1 id=eq.1h5v.s6.f305d5a61d1b from=translated src=- shape=268025b1 vocab=853a971d
+-/
 theorem bilinearBox_eq_zero_of_not_band (U V X M N : ℕ)
     (hband : ¬ (X < 4 * (M * N) ∧ M * N < 2 * X)) :
     bilinearBox U V X M N = 0 := by
@@ -113,6 +128,9 @@ theorem bilinearBox_eq_zero_of_not_band (U V X M N : ℕ)
     exact dispersionEntry_eq_zero_of_not_band (mem_filter.mp hd).1 (mem_filter.mp hr).1 hband
   rw [hsum, mul_zero]
 
+/--
+@isnad1 id=eq.1h5v.s6.cf06f6ed3f81 from=translated src=- shape=268025b1 vocab=23413230
+-/
 theorem dispersionDiagonal_eq_zero_of_not_band (U V X M N : ℕ)
     (hband : ¬ (X < 4 * (M * N) ∧ M * N < 2 * X)) :
     dispersionDiagonal U V X M N = 0 := by
@@ -126,6 +144,9 @@ theorem dispersionDiagonal_eq_zero_of_not_band (U V X M N : ℕ)
       (mem_filter.mp hr).1 hband, zero_pow (by decide : 2 ≠ 0)]
   rw [hsum, mul_zero]
 
+/--
+@isnad1 id=eq.1h5v.s6.f75f34ef8816 from=translated src=- shape=268025b1 vocab=9f39d39d
+-/
 theorem dispersionOffDiagonal_eq_zero_of_not_band (U V X M N : ℕ)
     (hband : ¬ (X < 4 * (M * N) ∧ M * N < 2 * X)) :
     dispersionOffDiagonal U V X M N = 0 := by
@@ -140,6 +161,9 @@ theorem dispersionOffDiagonal_eq_zero_of_not_band (U V X M N : ℕ)
       (mem_filter.mp hr).1 hband, zero_mul, sum_const_zero]
   rw [hsum, mul_zero]
 
+/--
+@isnad1 id=eq.1h6v.s6.cc1feb0eac29 from=translated src=- shape=fd532551 vocab=aab77134
+-/
 theorem dispersionOffDiagonalLargeGcd_eq_zero_of_not_band (U V X M N G : ℕ)
     (hband : ¬ (X < 4 * (M * N) ∧ M * N < 2 * X)) :
     dispersionOffDiagonalLargeGcd U V X M N G = 0 := by
@@ -155,6 +179,9 @@ theorem dispersionOffDiagonalLargeGcd_eq_zero_of_not_band (U V X M N G : ℕ)
       (mem_filter.mp hr).1 hband, zero_mul]
   rw [hsum, mul_zero]
 
+/--
+@isnad1 id=eq.1h6v.s6.478c36e6c16d from=translated src=- shape=fd532551 vocab=aba4cbf6
+-/
 theorem dispersionOffDiagonalSmallGcd_eq_zero_of_not_band (U V X M N G : ℕ)
     (hband : ¬ (X < 4 * (M * N) ∧ M * N < 2 * X)) :
     dispersionOffDiagonalSmallGcd U V X M N G = 0 := by
@@ -170,7 +197,9 @@ theorem dispersionOffDiagonalSmallGcd_eq_zero_of_not_band (U V X M N G : ℕ)
       (mem_filter.mp hr).1 hband, zero_mul]
   rw [hsum, mul_zero]
 
-/-- Generic exact transport, also valid for externally weighted box sums.-/
+/-- Generic exact transport, also valid for externally weighted box sums.
+@isnad1 id=eq.1h5v.s7.311aa3c28852 from=translated src=- shape=8695efba vocab=00f065f9
+-/
 theorem sum_dispersionBoxIndices_eq_active {A : Type*} [AddCommMonoid A]
     (U V X : ℕ) (f : ℕ × ℕ → A)
     (hzero : ∀ ij ∈ dispersionBoxIndices U V X,
@@ -185,6 +214,9 @@ theorem sum_dispersionBoxIndices_eq_active {A : Type*} [AddCommMonoid A]
   · simp only [ite_eq_left hband]
   · rw [ite_eq_right hband, hzero ij hij hband]
 
+/--
+@isnad1 id=eq.2h3v.s6.9ccd1a9526f0 from=translated src=- shape=f5305edb vocab=17c7c6a1
+-/
 theorem bilinearTerm_eq_sum_dispersionActiveBoxes (U V X : ℕ) (hU : 1 ≤ U) (hV : 1 ≤ V) :
     bilinearTerm U V X = ∑ ij ∈ dispersionActiveBoxIndices U V X,
       bilinearBox U V X (2 ^ ij.1) (2 ^ ij.2) := by
@@ -193,6 +225,9 @@ theorem bilinearTerm_eq_sum_dispersionActiveBoxes (U V X : ℕ) (hU : 1 ≤ U) (
   intro ij _ hband
   exact bilinearBox_eq_zero_of_not_band U V X _ _ hband
 
+/--
+@isnad1 id=eq.0h3v.s4.badc215e978c from=translated src=- shape=eb5d5ec4 vocab=e93c7b62
+-/
 theorem dispersionDiagonalSum_eq_active (U V X : ℕ) :
     dispersionDiagonalSum U V X (dispersionBoxIndices U V X) =
       dispersionDiagonalSum U V X (dispersionActiveBoxIndices U V X) := by
@@ -201,6 +236,9 @@ theorem dispersionDiagonalSum_eq_active (U V X : ℕ) :
   intro ij _ hband
   simp only [dispersionDiagonal_eq_zero_of_not_band U V X _ _ hband, mul_zero, Real.sqrt_zero]
 
+/--
+@isnad1 id=eq.0h3v.s4.0a6f7ece2240 from=translated src=- shape=eb5d5ec4 vocab=b1012597
+-/
 theorem dispersionOffDiagonalSum_eq_active (U V X : ℕ) :
     dispersionOffDiagonalSum U V X (dispersionBoxIndices U V X) =
       dispersionOffDiagonalSum U V X (dispersionActiveBoxIndices U V X) := by
@@ -210,6 +248,9 @@ theorem dispersionOffDiagonalSum_eq_active (U V X : ℕ) :
   simp only [dispersionOffDiagonal_eq_zero_of_not_band U V X _ _ hband,
     mul_zero, max_self, Real.sqrt_zero]
 
+/--
+@isnad1 id=eq.0h4v.s4.035de383d545 from=translated src=- shape=3941b868 vocab=871d9f8b
+-/
 theorem dispersionLargeGcdSum_eq_active (U V X G : ℕ) :
     dispersionLargeGcdSum U V X G (dispersionBoxIndices U V X) =
       dispersionLargeGcdSum U V X G (dispersionActiveBoxIndices U V X) := by
@@ -219,6 +260,9 @@ theorem dispersionLargeGcdSum_eq_active (U V X G : ℕ) :
   simp only [dispersionOffDiagonalLargeGcd_eq_zero_of_not_band U V X _ _ G hband,
     abs_zero, mul_zero, Real.sqrt_zero]
 
+/--
+@isnad1 id=eq.0h4v.s4.a08930d38096 from=translated src=- shape=3941b868 vocab=1b240bcc
+-/
 theorem dispersionSmallGcdSum_eq_active (U V X G : ℕ) :
     dispersionSmallGcdSum U V X G (dispersionBoxIndices U V X) =
       dispersionSmallGcdSum U V X G (dispersionActiveBoxIndices U V X) := by

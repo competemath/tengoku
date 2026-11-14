@@ -17,6 +17,9 @@ open MeasureTheory Set Complex
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=le.2h3v.s6.0ad2cf1d1da5 from=translated src=- shape=0c80fa90 vocab=a888370f
+-/
 theorem norm_integral_Ioi_le_of_inv_sq_bound (g : ℝ → ℂ) (H C : ℝ)
     (hH : 0 < H) (hbound : ∀ t : ℝ, H < t → ‖g t‖ ≤ C / t ^ 2) :
     ‖∫ t : ℝ in Ioi H, g t‖ ≤ C / H := by
@@ -35,7 +38,9 @@ theorem norm_integral_Ioi_le_of_inv_sq_bound (g : ℝ → ℂ) (H C : ℝ)
       norm_num [Real.rpow_neg_one]
       ring
 
-/-- Both tails are retained, with no unproved improper-integral limit.-/
+/-- Both tails are retained, with no unproved improper-integral limit.
+@isnad1 id=le.3h3v.s7.bba2881f9cd1 from=translated src=- shape=be376263 vocab=23baeb91
+-/
 theorem norm_integral_sub_intervalIntegral_le_of_inv_sq_bound
     (g : ℝ → ℂ) (hg : Integrable g) (H C : ℝ) (hH : 0 < H)
     (hbound : ∀ t : ℝ, H ≤ |t| → ‖g t‖ ≤ C / t ^ 2) :
@@ -62,6 +67,9 @@ theorem norm_integral_sub_intervalIntegral_le_of_inv_sq_bound
     _ ≤ C / H + C / H := ht.trans (_root_.add_le_add hleft hright)
     _ = _ := by ring
 
+/--
+@isnad1 id=le.1h1v.s5.ed8f09dc5b88 from=translated src=- shape=821164b8 vocab=bd2b7a4f
+-/
 theorem norm_mellinRampKernel_le_inv_im_sq (s : ℂ) (hs : s.im ≠ 0) :
     ‖mellinRampKernel s‖ ≤ 1 / s.im ^ 2 := by
   have h1 := Complex.abs_im_le_norm s
@@ -73,12 +81,18 @@ theorem norm_mellinRampKernel_le_inv_im_sq (s : ℂ) (hs : s.im ≠ 0) :
   rw [mellinRampKernel, norm_div, norm_one, norm_mul]
   exact one_div_le_one_div_of_le (sq_pos_of_ne_zero hs) hprod
 
+/--
+@isnad1 id=le.2h1v.s6.bb55f595ba1a from=translated src=- shape=5075de53 vocab=e0d0fc8a
+-/
 theorem mangoldtDirichletMass_le_pole_add_forty (c : ℝ)
     (hc : 1 < c) (hcu : c ≤ 9 / 8) :
     mangoldtDirichletMass c ≤ 1 / (c - 1) + 40 := by
   have h := neg_zeta_logDerivative_real_le_pole_add_forty c hc hcu
   rwa [neg_zeta_logDerivative_eq_mass hc, Complex.ofReal_re] at h
 
+/--
+@isnad1 id=le.3h5v.s8.0901c06455b8 from=translated src=- shape=8dae06f4 vocab=4488d86d
+-/
 theorem norm_mangoldt_mellin_integrand_le_inv_sq {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (x c t : ℝ) (hx : 0 < x) (hc : 1 < c) (ht : t ≠ 0) :
     ‖(x : ℂ) ^ ((c : ℂ) + t * I) *

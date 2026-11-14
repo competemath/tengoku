@@ -19,6 +19,9 @@ open Finset Metric
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=le.4h3v.s6.256a08cd12d9 from=translated src=- shape=34572276 vocab=1d2dc258
+-/
 theorem rpow_neg_le_exp_two_div_of_near_one {q n : ℕ}
     (hq : 1 < q) (hn : 1 ≤ n) (hnq : n ≤ q) (σ : ℝ)
     (hσ : 1 - 2 / Real.log q ≤ σ) :
@@ -42,7 +45,9 @@ theorem rpow_neg_le_exp_two_div_of_near_one {q n : ℕ}
     _ ≤ Real.exp (2 - Real.log (n : ℝ)) := Real.exp_le_exp.mpr (by nlinarith)
     _ = _ := by rw [Real.exp_sub, Real.exp_log hn0]
 
-/-- The finite sum at the conductor is bounded by the harmonic sum.-/
+/-- The finite sum at the conductor is bounded by the harmonic sum.
+@isnad1 id=le.2h3v.s6.fdfb6115a68a from=translated src=- shape=6710d637 vocab=3edc51f2
+-/
 theorem norm_characterDirichletPartialSum_conductor_le_near_one {q : ℕ}
     (hq : 1 < q) (χ : DirichletCharacter ℂ q) (s : ℂ)
     (hσ : 1 - 2 / Real.log q ≤ s.re) :
@@ -69,7 +74,9 @@ theorem norm_characterDirichletPartialSum_conductor_le_near_one {q : ℕ}
       using harmonic_le_one_add_log q
   exact mul_le_mul_of_nonneg_left hh (Real.exp_pos _).le
 
-/-- Actual primitive L-function growth from truncation at its conductor.-/
+/-- Actual primitive L-function growth from truncation at its conductor.
+@isnad1 id=le.4h3v.s7.adf17cece8ab from=translated src=- shape=262826c4 vocab=2ec764b2
+-/
 theorem norm_LFunction_le_near_one {q : ℕ} [NeZero q]
     (hq : 256 ≤ q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive)
     (s : ℂ) (hσ : 1 - 2 / Real.log q ≤ s.re) (hs : ‖s‖ ≤ 5 / 4) :
@@ -122,7 +129,9 @@ theorem norm_LFunction_le_near_one {q : ℕ} [NeZero q]
   have he : 0 < Real.exp 2 := Real.exp_pos _
   nlinarith
 
-/-- The logarithmic-radius disk fits the strip used by the conductor truncation.-/
+/-- The logarithmic-radius disk fits the strip used by the conductor truncation.
+@isnad1 id=le.5h4v.s7.6fcc53ad4c1b from=translated src=- shape=0b89b901 vocab=45f04293
+-/
 theorem norm_LFunction_le_on_near_one_closedBall {q : ℕ} [NeZero q]
     (hq : 256 ≤ q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive)
     (u : ℝ) (hu : 1 - 1 / Real.log q ≤ u) (hu1 : u ≤ 1)
@@ -145,7 +154,9 @@ theorem norm_LFunction_le_on_near_one_closedBall {q : ℕ} [NeZero q]
     rw [Complex.norm_real, Real.norm_eq_abs, abs_of_nonneg hu0] at hn
     linarith
 
-/-- A Cauchy estimate with only a logarithmic-square conductor cost near one.-/
+/-- A Cauchy estimate with only a logarithmic-square conductor cost near one.
+@isnad1 id=le.4h3v.s7.cc2ed8a09576 from=translated src=- shape=34b5372a vocab=6d2b71dc
+-/
 theorem norm_deriv_LFunction_near_one_le {q : ℕ} [NeZero q]
     (hq : 256 ≤ q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive)
     (u : ℝ) (hu : 1 - 1 / Real.log q ≤ u) (hu1 : u ≤ 1) :

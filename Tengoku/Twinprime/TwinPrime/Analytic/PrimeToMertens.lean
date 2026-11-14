@@ -15,6 +15,9 @@ noncomputable section
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=mertensl.1h0v.s1.c8d36d78a006 from=translated src=- shape=1d48f1ac vocab=f093a1b4
+-/
 theorem MaximalBombieriVinogradov.mertensLogSix
     (hBV : MaximalBombieriVinogradov) : MertensLogSix := by
   obtain ⟨c, K, hK, hA⟩ := hBV.centeredSelberg_error

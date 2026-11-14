@@ -38,7 +38,9 @@ def totientTypeIMain (U V : ℕ) : ℝ :=
     (μ d : ℝ) * vonMangoldt b / Nat.totient (d * b)
 
 /-- Multiplication by powers of an existing prime factor scales the totient
-by those powers. No squarefree hypothesis is needed.-/
+by those powers. No squarefree hypothesis is needed.
+@isnad1 id=eq.2h3v.s5.2633f86e58d3 from=translated src=- shape=6c9e38a5 vocab=0bb7b7b8
+-/
 theorem totient_mul_prime_pow_of_dvd {p d : ℕ} (hp : p.Prime) (hpd : p ∣ d)
     (k : ℕ) : Nat.totient (d * p ^ k) = Nat.totient d * p ^ k := by
   induction k with
@@ -48,7 +50,9 @@ theorem totient_mul_prime_pow_of_dvd {p d : ℕ} (hp : p.Prime) (hpd : p ∣ d)
       Nat.totient_mul_of_prime_of_dvd hp (dvd_mul_of_dvd_left hpd _), ih]
     ring
 
-/-- The reciprocal-totient correction for a positive prime power.-/
+/-- The reciprocal-totient correction for a positive prime power.
+@isnad1 id=eq.2h3v.s7.bd64505983e5 from=translated src=- shape=e2ba0e81 vocab=7bc0f4cd
+-/
 theorem reciprocal_totient_mul_prime_pow (p d k : ℕ) (hp : p.Prime) (hd : 0 < d) :
     (1 : ℝ) / Nat.totient (d * p ^ (k + 1)) =
       1 / ((Nat.totient d : ℝ) * Nat.totient (p ^ (k + 1))) -
@@ -71,7 +75,9 @@ theorem reciprocal_totient_mul_prime_pow (p d k : ℕ) (hp : p.Prime) (hd : 0 < 
     rw [ite_eq_right hpd, sub_zero, Nat.totient_mul hcop, Nat.cast_mul]
 
 /-- The shared-prime correction at a single summand. `minFac b` matters only
-on the prime-power support of `Λ`; all other inputs contribute zero.-/
+on the prime-power support of `Λ`; all other inputs contribute zero.
+@isnad1 id=eq.1h2v.s8.718fe87cd329 from=translated src=- shape=5acc8cce vocab=924b22d2
+-/
 theorem moebius_mangoldt_totient_mul (d b : ℕ) (hd : 0 < d) :
     (μ d : ℝ) * vonMangoldt b / Nat.totient (d * b) =
       ((μ d : ℝ) / Nat.totient d) * (vonMangoldt b / Nat.totient b) -
@@ -96,7 +102,9 @@ theorem moebius_mangoldt_totient_mul (d b : ℕ) (hd : 0 < d) :
 /-- Formula (Q), with its prime powers indexed by their value `b`.
 The correction has a minus sign and the additional factor `1 / minFac b`.
 Because `Λ(b)=0` off prime powers, this is exactly the correction over `p^k≤V`.
-No cancellation estimate is assumed.-/
+No cancellation estimate is assumed.
+@isnad1 id=eq.0h2v.s6.9e33853d35a2 from=translated src=- shape=6193dde3 vocab=9faa06ee
+-/
 theorem totientTypeIMain_eq_sharedPrimeCorrection (U V : ℕ) :
     totientTypeIMain U V =
       oddMoebiusTotientSum U *
@@ -128,7 +136,9 @@ theorem totientTypeIMain_eq_sharedPrimeCorrection (U V : ℕ) :
         simp only [oddMoebiusTotientSumDivisible, sum_filter]
 
 /-- The Möbius/totient summand after adjoining one prime. Repeated prime
-factors give zero, as required in the recurrence for `F_p`.-/
+factors give zero, as required in the recurrence for `F_p`.
+@isnad1 id=eq.1h2v.s7.2cb736ad0884 from=translated src=- shape=01a40996 vocab=3edc5a08
+-/
 theorem moebiusTotient_mul_prime (p d : ℕ) (hp : p.Prime) :
     (μ (p * d) : ℝ) / Nat.totient (p * d) =
       if p ∣ d then 0 else -((μ d : ℝ) / Nat.totient d) / ((p : ℝ) - 1) := by
@@ -144,7 +154,9 @@ theorem moebiusTotient_mul_prime (p d : ℕ) (hp : p.Prime) :
     simp only [div_eq_mul_inv, mul_inv_rev]
     ring
 
-/-- Reindexing the multiples of an odd positive integer inside the odd cutoff.-/
+/-- Reindexing the multiples of an odd positive integer inside the odd cutoff.
+@isnad1 id=eq.2h2v.s5.3954bc377ae7 from=translated src=- shape=dc722d76 vocab=d81dd18f
+-/
 theorem oddCutoff_filter_dvd_eq_image (U p : ℕ) (hp : 0 < p) (hpodd : Odd p) :
     (oddCutoff U).filter (p ∣ ·) =
       (oddCutoff (U / p)).image (fun d => p * d) := by
@@ -161,6 +173,9 @@ theorem oddCutoff_filter_dvd_eq_image (U p : ℕ) (hp : 0 < p) (hpodd : Odd p) :
     refine ⟨⟨⟨Nat.mul_pos hp hepos, ?_⟩, hpodd.mul heodd⟩, dvd_mul_right _ _⟩
     exact (by simpa [mul_comm] using (Nat.le_div_iff_mul_le hp).mp heU)
 
+/--
+@isnad1 id=eq.2h2v.s6.91cdbc1c0b97 from=translated src=- shape=51e51a63 vocab=5e0db16d
+-/
 theorem oddMoebiusTotientSumDivisible_eq_sum_mul (U p : ℕ) (hp : 0 < p)
     (hpodd : Odd p) :
     oddMoebiusTotientSumDivisible U p =
@@ -170,7 +185,9 @@ theorem oddMoebiusTotientSumDivisible_eq_sum_mul (U p : ℕ) (hp : 0 < p)
     sum_image (fun a _ b _ hab => Nat.eq_of_mul_eq_mul_left hp hab)]
 
 /-- The exact recurrence in PLAN.md, Section 6.3. Here `U / p` is the natural
-cutoff: summing integers at most the real ratio gives precisely that cutoff.-/
+cutoff: summing integers at most the real ratio gives precisely that cutoff.
+@isnad1 id=eq.2h2v.s6.fec6368f7ce4 from=translated src=- shape=4258da89 vocab=53db2186
+-/
 theorem oddMoebiusTotientSumDivisible_recurrence (U p : ℕ) (hp : p.Prime)
     (hpodd : Odd p) :
     oddMoebiusTotientSumDivisible U p =
@@ -191,7 +208,9 @@ def oddPrimePowerPairs (V : ℕ) : Finset (ℕ × ℕ) :=
   (((Icc 1 V).filter (fun p => p.Prime ∧ Odd p)) ×ˢ Icc 1 V).filter
     (fun pk => pk.1 ^ pk.2 ≤ V)
 
-/-- Unique prime-power factorization justifies the finite reindexing.-/
+/-- Unique prime-power factorization justifies the finite reindexing.
+@isnad1 id=eq.0h3v.s6.5aa6f4cdd032 from=translated src=- shape=ec77bfc7 vocab=895255d6
+-/
 theorem sum_odd_primePowers_eq {R : Type*} [AddCommMonoid R] (V : ℕ) (f : ℕ → R) :
     (∑ b ∈ (oddCutoff V).filter IsPrimePow, f b) =
       ∑ pk ∈ oddPrimePowerPairs V, f (pk.1 ^ pk.2) := by
@@ -221,7 +240,9 @@ theorem sum_odd_primePowers_eq {R : Type*} [AddCommMonoid R] (V : ℕ) (f : ℕ 
     rfl
 
 /-- Formula (Q) in its explicit prime/exponent form. Every odd prime power
-`p^k≤V`, `k≥1`, appears exactly once in the correction.-/
+`p^k≤V`, `k≥1`, appears exactly once in the correction.
+@isnad1 id=eq.0h2v.s7.76ccf9fa72c3 from=translated src=- shape=f7ba6f50 vocab=2a7872cd
+-/
 theorem totientTypeIMain_eq_primePowerCorrection (U V : ℕ) :
     totientTypeIMain U V =
       oddMoebiusTotientSum U *

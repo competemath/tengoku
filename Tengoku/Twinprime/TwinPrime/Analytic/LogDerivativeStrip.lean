@@ -30,12 +30,18 @@ def zetaStripLogDerivativeBudget (H δ : ℝ) : ℝ :=
       (1 + Real.log 16 + 2 * Real.log (H + 4)) +
     ((Real.log 16 + 2 * Real.log (H + 4)) / Real.log (6 / 5)) / δ
 
+/--
+@isnad1 id=le.1h2v.s5.0e578be438d3 from=translated src=- shape=ca1a7c78 vocab=31682fdc
+-/
 theorem norm_two_add_I_im_le (H : ℝ) (s : ℂ) (hs : |s.im| ≤ H) :
     ‖(2 : ℂ) + Complex.I * s.im‖ ≤ H + 2 := by
   have h := norm_add_le (2 : ℂ) (Complex.I * s.im)
   norm_num [norm_mul, Complex.norm_real, Real.norm_eq_abs] at h
   linarith
 
+/--
+@isnad1 id=mem.3h2v.s7.43e186885f3f from=translated src=- shape=98a0b248 vocab=13e03f21
+-/
 theorem mem_wide_center_disk_of_re_bounds (s : ℂ) (δ : ℝ)
     (hδ : δ ≤ 1 / 16) (hs : 1 - δ ≤ s.re) (hs2 : s.re ≤ 2) :
     s ∈ closedBall ((2 : ℂ) + Complex.I * s.im) (17 / 16) := by
@@ -47,6 +53,9 @@ theorem mem_wide_center_disk_of_re_bounds (s : ℂ) (δ : ℝ)
 def zetaEvaluationWidth (H : ℝ) : ℝ :=
   min (1 / 16) (zetaLogZeroFreeWidth (H + 2) / 2)
 
+/--
+@isnad1 id=lt.0h1v.s3.3eccb04faf22 from=translated src=- shape=8a62b088 vocab=649a8e7e
+-/
 theorem zetaEvaluationWidth_pos (H : ℝ) : 0 < zetaEvaluationWidth H := by
   have hw := zetaLogZeroFreeWidth_pos (H + 2)
   unfold zetaEvaluationWidth

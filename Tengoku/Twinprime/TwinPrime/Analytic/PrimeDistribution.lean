@@ -49,6 +49,9 @@ def MaximalBombieriVinogradov : Prop :=
       (∑ q ∈ Icc 1 Q, progressionMaxError (2 * X + 2) q) ≤
         K * X / (Real.log X) ^ A
 
+/--
+@isnad1 id=le.0h2v.s4.4b64abaa0064 from=translated src=- shape=5ffe46ab vocab=52a781ac
+-/
 theorem progressionMaxError_nonneg (T q : ℕ) : 0 ≤ progressionMaxError T q := by
   have hmem : (0, q) ∈ (range (T + 1)).product (range (q + 1)) :=
     mem_product.mpr ⟨mem_range.mpr (Nat.succ_pos T), mem_range.mpr (Nat.lt_succ_self q)⟩
@@ -56,6 +59,9 @@ theorem progressionMaxError_nonneg (T q : ℕ) : 0 ≤ progressionMaxError T q :
     if ta.2 < q ∧ Nat.Coprime ta.2 q then |progressionError ta.1 q ta.2| else 0) hmem
   simpa only [lt_irrefl, false_and, ite_false, progressionMaxError] using h
 
+/--
+@isnad1 id=le.3h4v.s5.96a551d5bbdc from=translated src=- shape=39355fba vocab=38c0ab75
+-/
 theorem abs_progressionError_le_max {t T q a : ℕ} (ht : t ≤ T) (ha : a < q)
     (hcop : Nat.Coprime a q) : |progressionError t q a| ≤ progressionMaxError T q := by
   have hmem : (t, a) ∈ (range (T + 1)).product (range (q + 1)) :=
@@ -66,7 +72,9 @@ theorem abs_progressionError_le_max {t T q a : ℕ} (ht : t ≤ T) (ha : a < q)
   rw [ite_eq_left ⟨ha, hcop⟩] at h
   exact h
 
-/-- Ordinary cumulative endpoint subtraction, including endpoint zero.-/
+/-- Ordinary cumulative endpoint subtraction, including endpoint zero.
+@isnad1 id=eq.1h4v.s6.59d8e85fc52c from=translated src=- shape=d3c3e59e vocab=a40d8370
+-/
 theorem progressionPsi_sub (l h q a : ℕ) (hlh : l ≤ h) :
     progressionPsi h q a - progressionPsi l q a =
       ∑ m ∈ Ioc l h with Nat.ModEq q m a, vonMangoldt m := by
@@ -94,7 +102,9 @@ theorem progressionPsi_sub (l h q a : ℕ) (hlh : l ≤ h) :
   unfold progressionPsi
   rw [← sum_sdiff hsub, hset, add_sub_cancel_right]
 
-/-- Exact shifted interval conversion; both endpoints use the same residue class.-/
+/-- Exact shifted interval conversion; both endpoints use the same residue class.
+@isnad1 id=eq.0h2v.s6.da6c68a99ff1 from=translated src=- shape=0aae50e4 vocab=94079e33
+-/
 theorem shiftedProgression_eq_psi_sub (X q : ℕ) :
     (∑ n ∈ Ioc X (2 * X) with q ∣ n, vonMangoldt (n + 2)) =
       progressionPsi (2 * X + 2) q 2 - progressionPsi (X + 2) q 2 := by
@@ -118,7 +128,9 @@ theorem shiftedProgression_eq_psi_sub (X q : ℕ) :
   · intro n _
     rfl
 
-/-- The exact error after subtracting the dyadic main term.-/
+/-- The exact error after subtracting the dyadic main term.
+@isnad1 id=eq.0h2v.s7.25a113735391 from=translated src=- shape=8414599b vocab=5e0cd981
+-/
 theorem shiftedProgression_sub_main_eq_errors (X q : ℕ) :
     (∑ n ∈ Ioc X (2 * X) with q ∣ n, vonMangoldt (n + 2)) -
         (X : ℝ) / Nat.totient q =

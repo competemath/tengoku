@@ -17,7 +17,9 @@ open Finset ArithmeticFunction Filter Topology
 namespace TwinPrime.Analytic
 
 /-- The two correction Euler factors multiply to one at every prime,
-and both prime indicators equal one away from primes.-/
+and both prime indicators equal one away from primes.
+@isnad1 id=eq.0h1v.s6.b159f86c5b8f from=translated src=- shape=8e6a55ac vocab=1aa379ce
+-/
 theorem middlePrimeSelbergCorrection_eulerFactor_mul_smoothing (p : ℕ) :
     ({q : ℕ | q.Prime}.mulIndicator
       (fun q => ∑' k : ℕ, middlePrimeSelbergCorrection (q ^ k))) p *
@@ -45,7 +47,9 @@ theorem middlePrimeSelbergCorrection_eulerFactor_mul_smoothing (p : ℕ) :
       Set.mulIndicator_of_notMem (show p ∉ {q : ℕ | q.Prime} from hp)]
     norm_num
 
-/-- The absolutely convergent correction series has mass `1 / (2 C₂)`.-/
+/-- The absolutely convergent correction series has mass `1 / (2 C₂)`.
+@isnad1 id=eq.0h0v.s5.5df19fa7c72e from=translated src=- shape=cbf6a5a1 vocab=1879747f
+-/
 theorem tsum_middlePrimeSelbergCorrection :
     (∑' n : ℕ, middlePrimeSelbergCorrection n) = 1 / (2 * twinPrimeConstant) := by
   have hmid := EulerProduct.eulerProduct_hasProd_mulIndicator

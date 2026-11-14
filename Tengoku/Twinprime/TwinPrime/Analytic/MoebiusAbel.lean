@@ -26,7 +26,9 @@ def coefficientSum (c : ℕ → ℝ) (N : ℕ) : ℝ := ∑ n ∈ Ioc 0 N, c n
 def reciprocalCoefficientSum (c : ℕ → ℝ) (N : ℕ) : ℝ :=
   ∑ n ∈ Ioc 0 N, c n / n
 
-/-- Abel summation retaining the ordinary cumulative sums at both endpoints.-/
+/-- Abel summation retaining the ordinary cumulative sums at both endpoints.
+@isnad1 id=eq.1h4v.s7.ff33c7fcc861 from=translated src=- shape=615ca14d vocab=dc0f9357
+-/
 theorem abel_cumulative_Ioc (a b : ℕ) (hab : a ≤ b) (w c : ℕ → ℝ) :
     (∑ n ∈ Ioc a b, w n * c n) =
       w b * coefficientSum c b - w a * coefficientSum c a -
@@ -40,7 +42,9 @@ theorem abel_cumulative_Ioc (a b : ℕ) (hab : a ≤ b) (w c : ℕ → ℝ) :
       sum_Ico_succ_top hab (fun t => (w (t + 1) - w t) * coefficientSum c t), ih]
     ring
 
-/-- The exact reciprocal-weight tail in terms of ordinary cumulative sums.-/
+/-- The exact reciprocal-weight tail in terms of ordinary cumulative sums.
+@isnad1 id=eq.2h3v.s7.056447c7e858 from=translated src=- shape=7ab2a15b vocab=30019338
+-/
 theorem reciprocalCoefficientSum_sub_eq (c : ℕ → ℝ) (a b : ℕ)
     (ha : 1 ≤ a) (hab : a ≤ b) :
     reciprocalCoefficientSum c b - reciprocalCoefficientSum c a =
@@ -86,7 +90,9 @@ private theorem inverse_log_power_difference {a b : ℝ}
       div_le_div_of_nonneg_right hdiff (by positivity)
     _ = _ := by field_simp
 
-/-- A telescoping majorant for the reciprocal-logarithm kernel.-/
+/-- A telescoping majorant for the reciprocal-logarithm kernel.
+@isnad1 id=le.1h1v.s7.7c65fa6287b9 from=translated src=- shape=23a304a9 vocab=60e75a81
+-/
 theorem reciprocal_log_six_kernel_le {x : ℝ} (hx : 2 ≤ x) :
     1 / ((x + 1) * (Real.log x) ^ 6) ≤
       32 * (1 / (Real.log x) ^ 5 - 1 / (Real.log (x + 1)) ^ 5) := by
@@ -112,6 +118,9 @@ theorem reciprocal_log_six_kernel_le {x : ℝ} (hx : 2 ≤ x) :
     _ = 32 * ((Real.log (x + 1) - Real.log x) / (32 * (Real.log x) ^ 6)) := by ring
     _ ≤ _ := mul_le_mul_of_nonneg_left hpow (by norm_num)
 
+/--
+@isnad1 id=le.2h2v.s7.9642b707872e from=translated src=- shape=4c90a08f vocab=7ea59c3a
+-/
 theorem sum_reciprocal_log_six_kernel_le (a b : ℕ) (ha : 2 ≤ a) (hab : a ≤ b) :
     (∑ n ∈ Ico a b, 1 / (((n : ℝ) + 1) * (Real.log n) ^ 6)) ≤
       32 / (Real.log a) ^ 5 := by
@@ -134,7 +143,9 @@ theorem sum_reciprocal_log_six_kernel_le (a b : ℕ) (ha : 2 ≤ a) (hab : a ≤
       simp only [div_eq_mul_inv, one_mul] at hp ⊢
       linarith
 
-/-- Quantitative ordinary cancellation gives an explicit normalized tail.-/
+/-- Quantitative ordinary cancellation gives an explicit normalized tail.
+@isnad1 id=le.4h4v.s7.4cef4303ab3c from=translated src=- shape=cae95b77 vocab=c11892f3
+-/
 theorem reciprocalCoefficientSum_tail_le_log_six (c : ℕ → ℝ) (a b : ℕ)
     (ha : 2 ≤ a) (hab : a ≤ b) (K : ℝ) (hK : 0 ≤ K)
     (hM : ∀ t ∈ Icc a b,
@@ -186,7 +197,9 @@ theorem reciprocalCoefficientSum_tail_le_log_six (c : ℕ → ℝ) (a b : ℕ)
   simp only [mul_div_assoc] at hmid ⊢
   linarith
 
-/-- A single fifth-power logarithmic denominator suffices uniformly from two onward.-/
+/-- A single fifth-power logarithmic denominator suffices uniformly from two onward.
+@isnad1 id=le.4h4v.s7.600920ddc1ff from=translated src=- shape=2c78f1c3 vocab=c11892f3
+-/
 theorem reciprocalCoefficientSum_tail_le_log_five (c : ℕ → ℝ) (a b : ℕ)
     (ha : 2 ≤ a) (hab : a ≤ b) (K : ℝ) (hK : 0 ≤ K)
     (hM : ∀ t ∈ Icc a b,
@@ -212,7 +225,9 @@ theorem reciprocalCoefficientSum_tail_le_log_five (c : ℕ → ℝ) (a b : ℕ)
     _ = _ := by ring
 
 /-- Ordinary logarithmic cancellation implies convergence and an explicit tail rate.
-The conclusion is ordered partial-sum convergence, not unconditional summability.-/
+The conclusion is ordered partial-sum convergence, not unconditional summability.
+@isnad1 id=ex.2h2v.s7.03183b15f724 from=translated src=- shape=c72323bd vocab=4610c148
+-/
 theorem exists_reciprocalCoefficientSum_limit_of_log_six (c : ℕ → ℝ)
     (K : ℝ) (hK : 0 ≤ K)
     (hM : ∀ᶠ t : ℕ in atTop,
@@ -253,11 +268,16 @@ theorem exists_reciprocalCoefficientSum_limit_of_log_six (c : ℕ → ℝ)
 /-- The ordinary Mertens partial sum, with positive integer indices.-/
 def mertensSum (N : ℕ) : ℝ := coefficientSum (fun n => (μ n : ℝ)) N
 
+/--
+@isnad1 id=eq.0h1v.s5.f2711b5ed490 from=translated src=- shape=1a2f9656 vocab=775f10fa
+-/
 @[simp] theorem reciprocalCoefficientSum_moebius (N : ℕ) :
     reciprocalCoefficientSum (fun n => (μ n : ℝ)) N = normalizedMoebiusSum N := rfl
 
 /-- A classical ordinary Mertens bound gives a limiting normalized Möbius sum.
-Its value is deliberately not identified by cancellation alone in this theorem.-/
+Its value is deliberately not identified by cancellation alone in this theorem.
+@isnad1 id=ex.2h1v.s7.89928e965bf7 from=translated src=- shape=ef0ffef3 vocab=b9f3de18
+-/
 theorem exists_normalizedMoebiusSum_limit_of_mertens_log_six (K : ℝ) (hK : 0 ≤ K)
     (hM : ∀ᶠ t : ℕ in atTop, |mertensSum t| ≤ K * t / (Real.log t) ^ 6) :
     ∃ L : ℝ, Tendsto normalizedMoebiusSum atTop (𝓝 L) ∧
@@ -267,7 +287,9 @@ theorem exists_normalizedMoebiusSum_limit_of_mertens_log_six (K : ℝ) (hK : 0 �
   exact exists_reciprocalCoefficientSum_limit_of_log_six (fun n => (μ n : ℝ)) K hK hM
 
 /-- Once the ordinary limiting constant is known, the same explicit tail holds
-with that constant.-/
+with that constant.
+@isnad1 id=eventual.3h3v.s7.fcda3c336f6a from=translated src=- shape=f06a2dc5 vocab=4610c148
+-/
 theorem reciprocalCoefficientSum_sub_limit_le_log_five (c : ℕ → ℝ)
     (K : ℝ) (hK : 0 ≤ K)
     (hM : ∀ᶠ t : ℕ in atTop,
@@ -281,7 +303,9 @@ theorem reciprocalCoefficientSum_sub_limit_le_log_five (c : ℕ → ℝ)
   simpa only [heq] using htail
 
 /-- A fifth-power logarithmic tail supplies the square-logarithmic decay
-needed by the subsequent finite convolution transfer.-/
+needed by the subsequent finite convolution transfer.
+@isnad1 id=tendsto.2h2v.s7.7b5d5169cfcc from=translated src=- shape=8b1d448f vocab=c43eed2a
+-/
 theorem tendsto_mul_log_sq_of_abs_le_log_five (F : ℕ → ℝ) (C : ℝ) (hC : 0 ≤ C)
     (hF : ∀ᶠ n : ℕ in atTop, |F n| ≤ C / (Real.log n) ^ 5) :
     Tendsto (fun n : ℕ => F n * (Real.log (n + 1)) ^ 2) atTop (𝓝 0) := by
@@ -314,7 +338,9 @@ theorem tendsto_mul_log_sq_of_abs_le_log_five (F : ℕ → ℝ) (C : ℝ) (hC : 
       _ = _ := by field_simp; ring
 
 /-- Ordinary Mertens cancellation and identification of the normalized limit
-at zero imply the stronger log-squared cancellation used by the smoothing bridge.-/
+at zero imply the stronger log-squared cancellation used by the smoothing bridge.
+@isnad1 id=tendsto.3h1v.s7.24492a563152 from=translated src=- shape=977f6c97 vocab=6ec49dea
+-/
 theorem tendsto_normalizedMoebiusSum_mul_log_sq_of_mertens_log_six
     (K : ℝ) (hK : 0 ≤ K)
     (hM : ∀ᶠ t : ℕ in atTop, |mertensSum t| ≤ K * t / (Real.log t) ^ 6)
@@ -332,7 +358,9 @@ until a boundary-value or elementary normalization argument identifies it.-/
 def moebiusLogMoment (N : ℕ) : ℝ :=
   ∑ n ∈ Ioc 0 N, normalizedMoebius n * Real.log n
 
-/-- Exact finite smoothing identity with the original real endpoint retained.-/
+/-- Exact finite smoothing identity with the original real endpoint retained.
+@isnad1 id=eq.1h1v.s5.ff9b0ecd0b86 from=translated src=- shape=6d815aa4 vocab=b802e0c2
+-/
 theorem smoothedMoebiusSum_eq_log_mul_sub_moment {x : ℝ} (hx : 0 < x) :
     smoothedMoebiusSum x =
       Real.log x * normalizedMoebiusSum ⌊x⌋₊ - moebiusLogMoment ⌊x⌋₊ := by
@@ -344,7 +372,9 @@ theorem smoothedMoebiusSum_eq_log_mul_sub_moment {x : ℝ} (hx : 0 < x) :
   rw [Real.log_div hx.ne' hnpos.ne']
   ring
 
-/-- The integer logarithmic decay controls the exact real smoothing endpoint.-/
+/-- The integer logarithmic decay controls the exact real smoothing endpoint.
+@isnad1 id=tendsto.1h1v.s6.ec9e3043779b from=translated src=- shape=7b92c233 vocab=f8b146d3
+-/
 theorem tendsto_log_mul_floor_of_mul_log_sq (F : ℕ → ℝ)
     (hF : Tendsto (fun n : ℕ => F n * (Real.log (n + 1)) ^ 2) atTop (𝓝 0)) :
     Tendsto (fun x : ℝ => Real.log x * F ⌊x⌋₊) atTop (𝓝 0) := by
@@ -366,7 +396,9 @@ theorem tendsto_log_mul_floor_of_mul_log_sq (F : ℕ → ℝ)
       (Real.log_le_log hx0 (Nat.lt_floor_add_one x).le) (abs_nonneg _)
 
 /-- Once the ordinary logarithmic moment has its classical constant `-1`,
-the real-endpoint smoothed normalized Möbius sum converges to `1`.-/
+the real-endpoint smoothed normalized Möbius sum converges to `1`.
+@isnad1 id=tendsto.4h1v.s7.6af8046a788a from=translated src=- shape=d2ca1d3f vocab=54816494
+-/
 theorem tendsto_smoothedMoebiusSum_of_ordinary_inputs
     (K : ℝ) (hK : 0 ≤ K)
     (hM : ∀ᶠ t : ℕ in atTop, |mertensSum t| ≤ K * t / (Real.log t) ^ 6)

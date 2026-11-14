@@ -21,6 +21,9 @@ namespace TwinPrime.Analytic
 def characterExceptionBudget (X Q : ℕ) : ℝ :=
   Q * (Real.log Q + 2 * Real.sqrt (2 * X + 2) * Real.log (2 * X + 2))
 
+/--
+@isnad1 id=le.2h2v.s6.ddaf493d1ecc from=translated src=- shape=dd9896ec vocab=f135f0eb
+-/
 theorem characterExceptionBudget_le (X Q : ℕ) (hX : 2 ≤ X) (hQ : Q ≤ X) :
     characterExceptionBudget X Q ≤ 13 * Q * Real.sqrt X * Real.log X := by
   rcases Q.eq_zero_or_pos with rfl | hQ0
@@ -52,7 +55,9 @@ theorem characterExceptionBudget_le (X Q : ℕ) (hX : 2 ≤ X) (hQ : Q ≤ X) :
       _ ≤ _ := by nlinarith [mul_nonneg (sub_nonneg.mpr hs1) hl]
   exact (mul_le_mul_of_nonneg_left hinside (Nat.cast_nonneg Q)).trans_eq (by ring)
 
-/-- The logarithmic cutoff exponent is explicit, and the final constant is one.-/
+/-- The logarithmic cutoff exponent is explicit, and the final constant is one.
+@isnad1 id=le.4h3v.s7.6db0a3bac108 from=translated src=- shape=12dccbc7 vocab=b483eb62
+-/
 theorem characterExceptionBudget_le_log_saving (A : ℝ) (hA : 0 < A)
     (X Q : ℕ) (hX : 2 ≤ X) (hlog : 13 ≤ Real.log (X : ℝ))
     (hQ : (Q : ℝ) ≤ (X : ℝ) ^ (1 / 2 : ℝ) / (Real.log X) ^ (A + 2)) :
@@ -87,6 +92,9 @@ theorem characterExceptionBudget_le_log_saving (A : ℝ) (hA : 0 < A)
       mul_le_mul_of_nonneg_right hratio (by positivity)
     _ = _ := one_mul _
 
+/--
+@isnad1 id=eventual.1h1v.s7.8a50b2087e9b from=translated src=- shape=ba829164 vocab=9a032794
+-/
 theorem eventually_characterExceptionBudget_le (A : ℝ) (hA : 0 < A) :
     ∀ᶠ X : ℕ in atTop, ∀ Q : ℕ,
       (Q : ℝ) ≤ (X : ℝ) ^ (1 / 2 : ℝ) / (Real.log X) ^ (A + 2) →
@@ -97,13 +105,18 @@ theorem eventually_characterExceptionBudget_le (A : ℝ) (hA : 0 < A) :
   filter_upwards [eventually_ge_atTop 2, hlog] with X hX hl Q hQ
   exact characterExceptionBudget_le_log_saving A hA X Q hX hl hQ
 
+/--
+@isnad1 id=ex.1h1v.s7.a07a625d5963 from=translated src=- shape=5da5abfc vocab=f74d023e
+-/
 theorem exists_exponent_characterExceptionBudget_le (A : ℝ) (hA : 0 < A) :
     ∃ B : ℝ, 0 < B ∧ ∀ᶠ X : ℕ in atTop, ∀ Q : ℕ,
       (Q : ℝ) ≤ (X : ℝ) ^ (1 / 2 : ℝ) / (Real.log X) ^ B →
       characterExceptionBudget X Q ≤ (X : ℝ) / (Real.log X) ^ A :=
   ⟨A + 2, by linarith, eventually_characterExceptionBudget_le A hA⟩
 
-/-- Every modulus may choose its own endpoint through `2X+2`.-/
+/-- Every modulus may choose its own endpoint through `2X+2`.
+@isnad1 id=le.1h3v.s6.28cc1373cb4c from=translated src=- shape=900fc380 vocab=89762b00
+-/
 theorem sum_noncoprimeMangoldtMass_le_characterExceptionBudget (X Q : ℕ)
     (t : ℕ → ℕ) (ht : ∀ q ∈ Ioc 0 Q, t q ≤ 2 * X + 2) :
     (∑ q ∈ Ioc 0 Q, noncoprimeMangoldtMass (t q) q) ≤
@@ -111,6 +124,9 @@ theorem sum_noncoprimeMangoldtMass_le_characterExceptionBudget (X Q : ℕ)
   simpa only [Nat.cast_add, Nat.cast_mul, Nat.cast_ofNat, characterExceptionBudget] using
     sum_noncoprimeMangoldtMass_le_uniform (2 * X + 2) Q (by omega) t ht
 
+/--
+@isnad1 id=eventual.1h1v.s7.4dad5dacde5c from=translated src=- shape=ff3269bb vocab=6156cee8
+-/
 theorem eventually_sum_noncoprimeMangoldtMass_le (A : ℝ) (hA : 0 < A) :
     ∀ᶠ X : ℕ in atTop, ∀ Q : ℕ,
       (Q : ℝ) ≤ (X : ℝ) ^ (1 / 2 : ℝ) / (Real.log X) ^ (A + 2) →

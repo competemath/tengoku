@@ -20,7 +20,9 @@ open scoped ArithmeticFunction.omega
 namespace TwinPrime.Analytic
 
 /-- Dividing by the modulus injects any one residue class through t into
-the quotient interval. The extra one covers its first incomplete block.-/
+the quotient interval. The extra one covers its first incomplete block.
+@isnad1 id=le.0h3v.s5.f890bb96cd97 from=translated src=- shape=ec58a473 vocab=c97496c4
+-/
 theorem card_progression_le_div_add_one (t q a : ℕ) :
     ((Ioc 0 t).filter (fun n => Nat.ModEq q n a)).card ≤ t / q + 1 := by
   have hcard := card_le_card_of_injOn (s := (Ioc 0 t).filter (fun n => Nat.ModEq q n a))
@@ -38,7 +40,9 @@ theorem card_progression_le_div_add_one (t q a : ℕ) :
   simpa only [card_range] using hcard
 
 /-- A trivial but uniform progression estimate, with the modulus retained
-in the denominator. It applies to every residue, including nonreduced ones.-/
+in the denominator. It applies to every residue, including nonreduced ones.
+@isnad1 id=le.3h4v.s6.e900408ef5df from=translated src=- shape=da784aaa vocab=ffcd4ce2
+-/
 theorem progressionPsi_le_two_mul_div_mul_log (t Y q a : ℕ)
     (ht : t ≤ Y) (hq : 1 ≤ q) (hqY : q ≤ Y) :
     progressionPsi t q a ≤ 2 * (Y : ℝ) / q * Real.log Y := by
@@ -68,7 +72,9 @@ theorem progressionPsi_le_two_mul_div_mul_log (t Y q a : ℕ)
     _ ≤ _ := by simpa using mul_le_mul_of_nonneg_right hcard hlog
 
 /-- Pointwise domination used only in the second weighted moment. The
-first moment will retain the proved cancellation in Bombieri--Vinogradov.-/
+first moment will retain the proved cancellation in Bombieri--Vinogradov.
+@isnad1 id=le.2h2v.s6.5442daadcf26 from=translated src=- shape=294201de vocab=4b9a5110
+-/
 theorem progressionMaxError_le_totient_trivial (Y q : ℕ)
     (hq : 1 ≤ q) (hqY : q ≤ Y) :
     progressionMaxError Y q ≤ 3 * (Y : ℝ) * (1 + Real.log Y) / Nat.totient q := by
@@ -102,7 +108,9 @@ theorem progressionMaxError_le_totient_trivial (Y q : ℕ)
   · positivity
 
 /-- A uniform elementary comparison of the totient with the number of
-distinct prime factors. This comparison itself does not require squarefreeness.-/
+distinct prime factors. This comparison itself does not require squarefreeness.
+@isnad1 id=le.1h1v.s6.44f1c006ebb2 from=translated src=- shape=bf382fd9 vocab=ce24d00f
+-/
 theorem div_totient_le_two_pow_omega (m : ℕ) (hm : 0 < m) :
     (m : ℝ) / Nat.totient m ≤ (2 : ℝ) ^ ω m := by
   have hprod : (∏ p ∈ m.primeFactors, p) ≤
@@ -131,6 +139,9 @@ theorem div_totient_le_two_pow_omega (m : ℕ) (hm : 0 < m) :
     by exact_mod_cast Nat.totient_pos.mpr hm)]
   exact_mod_cast hnat
 
+/--
+@isnad1 id=le.1h1v.s6.3c9be584d76d from=translated src=- shape=fa5e28f3 vocab=ce24d00f
+-/
 theorem one_div_totient_le_two_pow_omega_div (m : ℕ) (hm : 0 < m) :
     (1 : ℝ) / Nat.totient m ≤ (2 : ℝ) ^ ω m / m := by
   have hm0 : (0 : ℝ) < m := by exact_mod_cast hm
@@ -138,7 +149,9 @@ theorem one_div_totient_le_two_pow_omega_div (m : ℕ) (hm : 0 < m) :
   simpa only [one_div_mul_eq_div] using div_totient_le_two_pow_omega m hm
 
 /-- The second moment needed by weighted Cauchy--Schwarz has only a fixed
-logarithmic cost. Its proof uses squarefreeness in the divisor moment.-/
+logarithmic cost. Its proof uses squarefreeness in the divisor moment.
+@isnad1 id=le.3h3v.s7.75e814085496 from=translated src=- shape=346f15b3 vocab=b07d7f0c
+-/
 theorem squarefree_nine_pow_omega_mul_error_le (P Q Y : ℕ)
     (hP : Squarefree P) (hY : 1 ≤ Y) (hQY : Q ≤ Y) :
     (∑ d ∈ P.divisors.filter (· ≤ Q),
@@ -181,12 +194,17 @@ theorem squarefree_nine_pow_omega_mul_error_le (P Q Y : ℕ)
 def squarefreeWeightedProgressionError (P Q Y : ℕ) : ℝ :=
   ∑ d ∈ P.divisors.filter (· ≤ Q), (3 : ℝ) ^ ω d * progressionMaxError Y d
 
+/--
+@isnad1 id=le.0h3v.s4.2b335e45dc16 from=translated src=- shape=1995cd38 vocab=abb862e6
+-/
 theorem squarefreeWeightedProgressionError_nonneg (P Q Y : ℕ) :
     0 ≤ squarefreeWeightedProgressionError P Q Y :=
   sum_nonneg (fun d _ => mul_nonneg (by positivity) (progressionMaxError_nonneg Y d))
 
 /-- Finite weighted Cauchy--Schwarz retains the actual unweighted
-progression-error sum. No weighted distribution hypothesis is supplied.-/
+progression-error sum. No weighted distribution hypothesis is supplied.
+@isnad1 id=le.3h3v.s7.19b3960097c2 from=translated src=- shape=0b041c4e vocab=4366493e
+-/
 theorem squarefree_weighted_progressionMaxError_sq_le (P Q Y : ℕ)
     (hP : Squarefree P) (hY : 1 ≤ Y) (hQY : Q ≤ Y) :
     squarefreeWeightedProgressionError P Q Y ^ 2 ≤

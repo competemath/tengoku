@@ -18,7 +18,9 @@ open Metric MeromorphicOn
 namespace TwinPrime.Analytic
 
 /-- Jensen counts the actual zeros of the entire regularization on the
-closed radius-5/4 disk, with multiplicity and no pole contribution.-/
+closed radius-5/4 disk, with multiplicity and no pole contribution.
+@isnad1 id=le.1h1v.s8.8ba92514221c from=translated src=- shape=b962b587 vocab=c3b2b4ff
+-/
 theorem sum_divisor_regularizedZeta_le_log_height (c : ℂ) (hc : c.re = 2) :
     (((∑ᶠ u, divisor regularizedRiemannZeta (closedBall c (5 / 4)) u) : ℤ) : ℝ) ≤
       (Real.log 16 + 2 * Real.log (‖c‖ + 2)) / Real.log (6 / 5) := by

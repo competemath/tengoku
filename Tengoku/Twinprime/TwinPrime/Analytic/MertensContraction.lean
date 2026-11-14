@@ -20,7 +20,9 @@ open Finset Filter
 namespace TwinPrime.Analytic
 
 /-- The finite hyperbola head and discrete Abel unweighting give the actual
-coefficient that contracts the weighted Mertens supremum.-/
+coefficient that contracts the weighted Mertens supremum.
+@isnad1 id=ex.4h3v.s8.8b404d256817 from=translated src=- shape=78cee7a4 vocab=a7e2012a
+-/
 theorem eventually_weightedMertens_le_sup_coefficient
     (c K δ : ℝ) (hK : 0 ≤ K) (hδ0 : 0 < δ) (hδ1 : δ < 1)
     (hA : ∀ᶠ t : ℝ in atTop,
@@ -74,7 +76,9 @@ theorem eventually_weightedMertens_le_sup_coefficient
     _ = _ := by ring
 
 /-- A centered Selberg summatory error with five logarithmic powers of
-saving implies the ordinary Mertens estimate with six powers.-/
+saving implies the ordinary Mertens estimate with six powers.
+@isnad1 id=mertensl.2h2v.s6.c5ce1958f16a from=translated src=- shape=3eecd699 vocab=29e515a8
+-/
 theorem mertensLogSix_of_centeredSelberg_bound (c K : ℝ) (hK : 0 ≤ K)
     (hA : ∀ᶠ t : ℝ in atTop,
       |centeredSelbergSummatory c t| ≤ K * t / (Real.log t) ^ 5) :

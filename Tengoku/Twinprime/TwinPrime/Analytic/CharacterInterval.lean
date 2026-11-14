@@ -22,7 +22,9 @@ open Finset
 
 namespace TwinPrime.Analytic
 
-/-- At a fixed modulus, distinct residues have spacing `1/q`, not `1/q²`.-/
+/-- At a fixed modulus, distinct residues have spacing `1/q`, not `1/q²`.
+@isnad1 id=le.1h3v.s8.caad608dab2f from=translated src=- shape=976c04fe vocab=63606762
+-/
 theorem residue_frequency_dist_ge_inv {q : ℕ} [NeZero q] (a b : ZMod q) (hab : a ≠ b) :
     (1 : ℝ) / q ≤ dist (ZMod.toAddCircle a) (ZMod.toAddCircle b) := by
   letI : Fact ((0 : ℝ) < 1) := ⟨by norm_num⟩
@@ -38,7 +40,9 @@ theorem residue_frequency_dist_ge_inv {q : ℕ} [NeZero q] (a b : ZMod q) (hab :
   rw [dist_eq_norm, ← map_sub, hnorm]
   exact div_le_div_of_nonneg_right (by exact_mod_cast hmin) (Nat.cast_nonneg q)
 
-/-- The phase convention for an arbitrary residue, with no unit restriction.-/
+/-- The phase convention for an arbitrary residue, with no unit restriction.
+@isnad1 id=eq.0h3v.s7.ba8110fdff3a from=translated src=- shape=d7fb9fa9 vocab=795cac26
+-/
 theorem stdAddChar_mul_nat_eq_additivePhase {q : ℕ} [NeZero q]
     (u : ZMod q) (n : ℕ) :
     ZMod.stdAddChar (u * (n : ZMod q)) =
@@ -50,7 +54,9 @@ theorem stdAddChar_mul_nat_eq_additivePhase {q : ℕ} [NeZero q]
   congr 1
   simp only [nsmul_eq_mul, mul_comm]
 
-/-- The total norm of all nonzero residue kernels at one modulus.-/
+/-- The total norm of all nonzero residue kernels at one modulus.
+@isnad1 id=le.0h3v.s7.d55214b54575 from=translated src=- shape=74df4b00 vocab=1d1dd22e
+-/
 theorem sum_norm_nonzero_residue_kernels_le {q : ℕ} [NeZero q] (M N : ℕ) :
     (∑ u ∈ (univ : Finset (ZMod q)).erase 0,
       ‖∑ n ∈ Ico M N, ZMod.stdAddChar (u * (n : ZMod q))‖) ≤
@@ -88,7 +94,9 @@ theorem sum_norm_nonzero_residue_kernels_le {q : ℕ} [NeZero q] (M N : ℕ) :
       div_le_div_of_nonneg_right hrecip (by norm_num)
     _ = _ := by simp only [one_div, div_inv_eq_mul]; ring
 
-/-- The inverse convention supplied directly by primitive Gauss factorization.-/
+/-- The inverse convention supplied directly by primitive Gauss factorization.
+@isnad1 id=le.2h4v.s7.cf90e6b0f0fb from=translated src=- shape=f5568a51 vocab=db54b5a3
+-/
 theorem norm_sum_primitive_character_inv_Ico_le_harmonic {q : ℕ}
     (hq : 1 < q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive) (M N : ℕ) :
     ‖∑ n ∈ Ico M N, χ⁻¹ (n : ZMod q)‖ ≤ Real.sqrt q * (harmonic q : ℝ) := by
@@ -127,7 +135,9 @@ theorem norm_sum_primitive_character_inv_Ico_le_harmonic {q : ℕ}
         _ = (Real.sqrt q) ^ 2 * (harmonic q : ℝ) := by rw [Real.sq_sqrt hq0.le]
         _ = _ := by ring
 
-/-- A primitive character at modulus greater than one is nonprincipal.-/
+/-- A primitive character at modulus greater than one is nonprincipal.
+@isnad1 id=ne.2h2v.s6.db17fce5a9b8 from=translated src=- shape=84d18b1a vocab=4b50390a
+-/
 theorem primitive_character_ne_one {q : ℕ} (hq : 1 < q)
     (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive) : χ ≠ 1 := by
   letI : NeZero q := ⟨by omega⟩
@@ -136,7 +146,9 @@ theorem primitive_character_ne_one {q : ℕ} (hq : 1 < q)
   rw [heq, DirichletCharacter.conductor_one] at hc
   omega
 
-/-- Pólya--Vinogradov with the exact harmonic factor, for every natural interval.-/
+/-- Pólya--Vinogradov with the exact harmonic factor, for every natural interval.
+@isnad1 id=le.2h4v.s6.5f3f5088cdd7 from=translated src=- shape=2fe84837 vocab=9daea3d6
+-/
 theorem norm_sum_primitive_character_Ico_le_harmonic {q : ℕ}
     (hq : 1 < q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive) (M N : ℕ) :
     ‖∑ n ∈ Ico M N, χ (n : ZMod q)‖ ≤ Real.sqrt q * (harmonic q : ℝ) := by
@@ -146,7 +158,9 @@ theorem norm_sum_primitive_character_Ico_le_harmonic {q : ℕ}
     exact hχ
   simpa only [inv_inv] using norm_sum_primitive_character_inv_Ico_le_harmonic hq χ⁻¹ hinv M N
 
-/-- An unconditional interval bound with absolute constant one.-/
+/-- An unconditional interval bound with absolute constant one.
+@isnad1 id=le.2h4v.s7.788518c2e942 from=translated src=- shape=6abfb1b2 vocab=db59e631
+-/
 theorem norm_sum_primitive_character_Ico_le {q : ℕ}
     (hq : 1 < q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive) (M N : ℕ) :
     ‖∑ n ∈ Ico M N, χ (n : ZMod q)‖ ≤ Real.sqrt q * (1 + Real.log q) :=

@@ -19,6 +19,9 @@ open Function Metric MeromorphicOn
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=ne.0h1v.s4.5e4b2f325b55 from=translated src=- shape=d72ec3d6 vocab=a52b4bb2
+-/
 theorem meromorphicOrderAt_regularizedZeta_ne_top (ρ : ℂ) :
     meromorphicOrderAt regularizedRiemannZeta ρ ≠ ⊤ := by
   have hF : AnalyticOnNhd ℂ regularizedRiemannZeta Set.univ :=
@@ -29,6 +32,9 @@ theorem meromorphicOrderAt_regularizedZeta_ne_top (ρ : ℂ) :
   rw [hn.meromorphicOrderAt_eq_zero_iff.mpr (by simp : regularizedRiemannZeta 1 ≠ 0)]
   simp
 
+/--
+@isnad1 id=le.2h2v.s6.525b7891a2ff from=translated src=- shape=7e56f093 vocab=6116802f
+-/
 theorem one_le_regularizedZeta_divisor_of_zero (K : Set ℂ) (ρ : ℂ)
     (hK : ρ ∈ K) (hρ : regularizedRiemannZeta ρ = 0) :
     1 ≤ divisor regularizedRiemannZeta K ρ := by
@@ -41,11 +47,17 @@ theorem one_le_regularizedZeta_divisor_of_zero (K : Set ℂ) (ρ : ℂ)
   change divisor regularizedRiemannZeta K ρ ≠ 0 at hsupport
   omega
 
+/--
+@isnad1 id=eq.0h2v.s7.eb0f0f33889f from=translated src=- shape=2d405db0 vocab=a1a980c3
+-/
 theorem localZetaZeroSum_re (c s : ℂ) :
     (localZetaZeroSum c s).re =
       ∑ᶠ ρ, ((divisor regularizedRiemannZeta (closedBall c (5 / 4)) ρ : ℂ) / (s - ρ)).re :=
   Complex.reAddGroupHom.map_finsum (localZetaZeroTerm_hasFiniteSupport c s)
 
+/--
+@isnad1 id=le.1h3v.s7.c024edeac655 from=translated src=- shape=d57e97d0 vocab=1a6dc97b
+-/
 theorem regularizedZeta_divisor_term_re_le_zeroSum (c s ρ : ℂ) (hs : 1 < s.re) :
     ((divisor regularizedRiemannZeta (closedBall c (5 / 4)) ρ : ℂ) / (s - ρ)).re ≤
       (localZetaZeroSum c s).re := by
@@ -60,7 +72,9 @@ theorem regularizedZeta_divisor_term_re_le_zeroSum (c s ρ : ℂ) (hs : 1 < s.re
   · exact fun u => regularizedZeta_divisor_term_re_nonneg _ s u hs
 
 /-- A selected actual zero of the entire regularization contributes with
-positive integer multiplicity. The pole at one is never counted as a zero.-/
+positive integer multiplicity. The pole at one is never counted as a zero.
+@isnad1 id=le.3h3v.s7.370b8bfc251f from=translated src=- shape=0ffb5d49 vocab=5fbb7caf
+-/
 theorem one_div_sub_le_localZetaZeroSum_re_of_zero (β t σ : ℝ)
     (hβ : 3 / 4 ≤ β) (hσ : 1 < σ)
     (hzero : regularizedRiemannZeta ((β : ℂ) + Complex.I * t) = 0) :
@@ -86,6 +100,9 @@ theorem one_div_sub_le_localZetaZeroSum_re_of_zero (β t σ : ℝ)
       rw [heval, Complex.div_ofReal_re, Complex.intCast_re]
     _ ≤ _ := regularizedZeta_divisor_term_re_le_zeroSum c s ρ hs
 
+/--
+@isnad1 id=eq.0h2v.s6.fdfd36c83046 from=translated src=- shape=342a3ca7 vocab=8cbd1687
+-/
 theorem principal_pole_re_at_height (a t : ℝ) :
     (1 / ((a : ℂ) + Complex.I * t)).re = a / (a ^ 2 + t ^ 2) := by
   simp only [Complex.div_re, Complex.normSq_apply, Complex.one_re, Complex.one_im,
@@ -93,6 +110,9 @@ theorem principal_pole_re_at_height (a t : ℝ) :
     Complex.I_im, Complex.ofReal_re, Complex.ofReal_im]
   ring
 
+/--
+@isnad1 id=le.2h2v.s6.408c33e5292a from=translated src=- shape=a68f8ebd vocab=a183a737
+-/
 theorem principal_pole_re_le_one_seventeenth (a t : ℝ) (ha : 0 < a) (ht : 4 * a ≤ |t|) :
     (1 / ((a : ℂ) + Complex.I * t)).re ≤ 1 / (17 * a) := by
   rw [principal_pole_re_at_height]
@@ -103,6 +123,9 @@ theorem principal_pole_re_le_one_seventeenth (a t : ℝ) (ha : 0 < a) (ht : 4 * 
     (by positivity : 0 < 17 * a)).mpr
   nlinarith
 
+/--
+@isnad1 id=not.3h2v.s7.40d5e072f738 from=translated src=- shape=378aea26 vocab=70d00927
+-/
 theorem four_three_five_seventeenths_pole_contradiction {E δ : ℝ} (hE : 0 < E)
     (hδ0 : 0 ≤ δ) (hδ : δ ≤ 1 / (80 * E)) :
     ¬ 4 / (1 / (4 * E) + δ) ≤
@@ -125,6 +148,9 @@ theorem four_three_five_seventeenths_pole_contradiction {E δ : ℝ} (hE : 0 < E
 def zetaZeroFreeBudget (t : ℝ) : ℝ :=
   120 + 4 * zetaLogBudget t + zetaLogBudget (2 * t)
 
+/--
+@isnad1 id=le.0h1v.s3.3575f1dbc973 from=translated src=- shape=8a62b088 vocab=b211da6f
+-/
 theorem zetaZeroFreeBudget_ge (t : ℝ) : 120 ≤ zetaZeroFreeBudget t := by
   have hZ := zetaLogBudget_nonneg t
   have hZ2 := zetaLogBudget_nonneg (2 * t)

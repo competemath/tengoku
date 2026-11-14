@@ -25,7 +25,9 @@ def characterProductCutoffSum {q : ℕ} (χ : DirichletCharacter ℂ q)
     ∑ n ∈ Ico N (N + 2 ^ j) with m * n ≤ t, a m * b n * χ (m * n)
 
 /-- Multiplicativity and the exact filtered-row identity give a staircase.
-Only the first coordinate's starting point needs to be positive.-/
+Only the first coordinate's starting point needs to be positive.
+@isnad1 id=eq.1h9v.s7.00c208e6dd2c from=translated src=- shape=0674778b vocab=197b07d1
+-/
 theorem characterProductCutoffSum_eq_staircase {q : ℕ} (χ : DirichletCharacter ℂ q)
     (a b : ℕ → ℂ) (M N k j t : ℕ) (hM : 0 < M) :
     characterProductCutoffSum χ a b M N k j t =
@@ -40,7 +42,9 @@ theorem characterProductCutoffSum_eq_staircase {q : ℕ} (χ : DirichletCharacte
   simp only [map_mul]
   ring
 
-/-- The full baseline and internal-node decomposition of the twisted sum.-/
+/-- The full baseline and internal-node decomposition of the twisted sum.
+@isnad1 id=eq.1h9v.s8.64384b8fb804 from=translated src=- shape=4a531bdf vocab=ce47b0e7
+-/
 theorem characterProductCutoffSum_eq_baseline_add_detail {q : ℕ}
     (χ : DirichletCharacter ℂ q) (a b : ℕ → ℂ) (M N k j t : ℕ) (hM : 0 < M) :
     characterProductCutoffSum χ a b M N k j t =

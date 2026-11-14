@@ -18,7 +18,9 @@ open Finset Filter
 namespace TwinPrime.Analytic
 
 /-- Once the cutoff is at least two, its logarithm controls the original
-scale logarithm without a successor inside the cutoff logarithm.-/
+scale logarithm without a successor inside the cutoff logarithm.
+@isnad1 id=le.1h1v.s5.e8a97aa288ab from=translated src=- shape=930fdc4e vocab=03b5d0b4
+-/
 theorem log_nat_le_fourteen_log_primaryCutoff (N : ℕ)
     (hU : 2 ≤ primaryCutoff N) :
     Real.log (N : ℝ) ≤ 14 * Real.log (primaryCutoff N : ℝ) := by
@@ -40,7 +42,9 @@ theorem log_nat_le_fourteen_log_primaryCutoff (N : ℕ)
   have hdyadic := log_dyadic_le_seven_log_primaryCutoff N hN1
   linarith
 
-/-- The cutoff head stays sublinear after every fixed logarithmic weight.-/
+/-- The cutoff head stays sublinear after every fixed logarithmic weight.
+@isnad1 id=tendsto.0h1v.s6.93e17edddc61 from=translated src=- shape=d3c2e913 vocab=8398c40d
+-/
 theorem tendsto_primaryCutoff_mul_log_pow_div (k : ℕ) :
     Tendsto (fun N : ℕ => (primaryCutoff N : ℝ) * (Real.log N) ^ k / N)
       atTop (nhds 0) := by
@@ -72,7 +76,9 @@ theorem tendsto_primaryCutoff_mul_log_pow_div (k : ℕ) :
         mul_le_mul_of_nonneg_left hratio hL
       _ = _ := by ring
 
-/-- Explicit head and tail bounds for the reciprocal fifth-logarithm kernel.-/
+/-- Explicit head and tail bounds for the reciprocal fifth-logarithm kernel.
+@isnad1 id=le.1h1v.s7.ab63655ba716 from=translated src=- shape=68626146 vocab=0cfda3bb
+-/
 theorem sum_inverse_log_five_le_cutoff (N : ℕ) (hN : 32 ≤ N) :
     (∑ n ∈ Icc 2 N, 1 / (Real.log n) ^ 5) ≤
       (primaryCutoff N : ℝ) / (Real.log 2) ^ 5 +
@@ -128,7 +134,9 @@ theorem sum_inverse_log_five_le_cutoff (N : ℕ) (hN : 32 ≤ N) :
   rw [hI, ← hsplit]
   exact add_le_add hhead htail
 
-/-- The full positive kernel sum has an eventual bound with an explicit constant.-/
+/-- The full positive kernel sum has an eventual bound with an explicit constant.
+@isnad1 id=eventual.0h0v.s7.0f50987cf072 from=translated src=- shape=8e988935 vocab=a1e5871d
+-/
 theorem eventually_sum_inverse_log_five_le :
     ∀ᶠ N : ℕ in atTop,
       (∑ n ∈ Icc 2 N, 1 / (Real.log n) ^ 5) ≤
@@ -157,7 +165,9 @@ theorem eventually_sum_inverse_log_five_le :
       add_le_add hhead le_rfl
     _ = _ := by ring
 
-/-- An assumption-free existence form of the reciprocal logarithm kernel bound.-/
+/-- An assumption-free existence form of the reciprocal logarithm kernel bound.
+@isnad1 id=ex.0h0v.s6.45dae0d20b5a from=translated src=- shape=4b552720 vocab=b5b8869a
+-/
 theorem exists_sum_inverse_log_five_bound :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ᶠ N : ℕ in atTop,
       (∑ n ∈ Icc 2 N, 1 / (Real.log n) ^ 5) ≤ C * N / (Real.log N) ^ 5 :=

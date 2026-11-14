@@ -18,7 +18,9 @@ open scoped Interval Topology
 namespace TwinPrime.Analytic
 
 /-- A power weight on the left endpoint is absorbed in the real exponent
-of the derivative integral.-/
+of the derivative integral.
+@isnad1 id=le.4h4v.s7.c09acdf66e25 from=translated src=- shape=a26c36fb vocab=363b6b69
+-/
 theorem rpow_mul_norm_cpow_neg_sub_le (α : ℝ) (hα : 0 ≤ α)
     (s : ℂ) (hs : α < s.re) {a b : ℝ} (ha : 0 < a) (hab : a ≤ b) :
     a ^ α * ‖(b : ℂ) ^ (-s) - (a : ℂ) ^ (-s)‖ ≤
@@ -63,7 +65,9 @@ theorem rpow_mul_norm_cpow_neg_sub_le (α : ℝ) (hα : 0 ≤ α)
   field_simp [ne_of_lt (sub_neg.mpr hs), (sub_pos.mpr hs).ne']
   ring
 
-/-- Finite Abel summation when prefixes anchored at `M` have a power bound.-/
+/-- Finite Abel summation when prefixes anchored at `M` have a power bound.
+@isnad1 id=le.6h6v.s7.ad5bf73ff593 from=translated src=- shape=49913426 vocab=c2809dbd
+-/
 theorem norm_sum_Ioc_cpow_mul_le_of_anchored_power_sums (M N : ℕ)
     (hM : 1 ≤ M) (hMN : M ≤ N) (α : ℝ) (hα : 0 ≤ α)
     (s : ℂ) (hs : α < s.re) (a : ℕ → ℂ) (C : ℝ) (hC : 0 ≤ C)
@@ -130,7 +134,9 @@ theorem norm_sum_Ioc_cpow_mul_le_of_anchored_power_sums (M N : ℕ)
       nlinarith [mul_nonneg hratio hNpow, mul_le_mul_of_nonneg_left hpow hC]
 
 /-- An ordinary cumulative power bound gives finite tails, with factor two
-for changing the anchor of a partial sum.-/
+for changing the anchor of a partial sum.
+@isnad1 id=le.6h6v.s7.e8cedc457835 from=translated src=- shape=05b04280 vocab=7df9dcce
+-/
 theorem norm_sum_Ioc_cpow_mul_le_of_power_partial_sums (M N : ℕ)
     (hM : 1 ≤ M) (hMN : M ≤ N) (α : ℝ) (hα : 0 ≤ α)
     (s : ℂ) (hs : α < s.re) (a : ℕ → ℂ) (C : ℝ) (hC : 0 ≤ C)
@@ -155,6 +161,9 @@ theorem norm_sum_Ioc_cpow_mul_le_of_power_partial_sums (M N : ℕ)
 def powerDirichletPartialSum (a : ℕ → ℂ) (s : ℂ) (N : ℕ) : ℂ :=
   ∑ n ∈ Ioc 0 N, (n : ℂ) ^ (-s) * a n
 
+/--
+@isnad1 id=eq.1h4v.s6.54f7fb8917c5 from=translated src=- shape=0e5648c9 vocab=18edcec1
+-/
 theorem powerDirichletPartialSum_sub (a : ℕ → ℂ) (s : ℂ)
     {M N : ℕ} (hMN : M ≤ N) :
     powerDirichletPartialSum a s N - powerDirichletPartialSum a s M =
@@ -164,6 +173,9 @@ theorem powerDirichletPartialSum_sub (a : ℕ → ℂ) (s : ℂ)
   rw [← h]
   ring
 
+/--
+@isnad1 id=cauchyse.4h4v.s6.2ef08fdd0991 from=translated src=- shape=17f69692 vocab=4aea6fd8
+-/
 theorem cauchySeq_powerDirichletPartialSum (α : ℝ) (hα : 0 ≤ α)
     (s : ℂ) (hs : α < s.re) (a : ℕ → ℂ) (C : ℝ) (hC : 0 ≤ C)
     (hA : ∀ t : ℕ, ‖∑ n ∈ Ioc 0 t, a n‖ ≤ C * (t : ℝ) ^ α) :
@@ -183,7 +195,9 @@ theorem cauchySeq_powerDirichletPartialSum (α : ℝ) (hα : 0 ≤ α)
       simpa only [neg_sub, Function.comp_def] using ht
     simpa using (hp.const_mul (2 * C)).mul_const (1 + ‖s‖ / (s.re - α))
 
-/-- The ordered limit exists and obeys the same explicit tail estimate.-/
+/-- The ordered limit exists and obeys the same explicit tail estimate.
+@isnad1 id=ex.4h4v.s7.88f54ad188af from=translated src=- shape=832a1a4a vocab=5a74ddfb
+-/
 theorem exists_powerDirichletPartialSum_limit (α : ℝ) (hα : 0 ≤ α)
     (s : ℂ) (hs : α < s.re) (a : ℕ → ℂ) (C : ℝ) (hC : 0 ≤ C)
     (hA : ∀ t : ℕ, ‖∑ n ∈ Ioc 0 t, a n‖ ≤ C * (t : ℝ) ^ α) :

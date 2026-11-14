@@ -30,9 +30,15 @@ def kB (z : ℕ) (i : Fin (nBlocks z)) : ℕ := 120 + i
 /-- `ε_i = e^{160} / 2^{2 k_i + 1}`.-/
 def epsB (z : ℕ) (i : Fin (nBlocks z)) : ℝ := Real.exp 160 / 2 ^ (2 * kB z i + 1)
 
+/--
+@isnad1 id=le.0h2v.s4.0dad2cbd23ce from=translated src=- shape=2c701dde vocab=5c7896e3
+-/
 theorem epsB_nonneg (z : ℕ) (i : Fin (nBlocks z)) : 0 ≤ epsB z i := by
   unfold epsB; positivity
 
+/--
+@isnad1 id=le.0h0v.s5.d0662f732757 from=translated src=- shape=3dc9892a vocab=7e715e50
+-/
 theorem exp_160_le : Real.exp 160 ≤ (2 : ℝ) ^ 231 := by
   rw [← Real.exp_log (by positivity : (0 : ℝ) < 2 ^ 231), Real.log_pow]
   apply Real.exp_le_exp.mpr
@@ -40,12 +46,17 @@ theorem exp_160_le : Real.exp 160 ≤ (2 : ℝ) ^ 231 := by
   push_cast
   linarith
 
-/-- `∑_{i < r} (1/4)^i ≤ 4/3`.-/
+/-- `∑_{i < r} (1/4)^i ≤ 4/3`.
+@isnad1 id=le.0h1v.s6.b36086f07a6a from=translated src=- shape=1920d928 vocab=f9b94969
+-/
 theorem sum_quarter_pow_le (r : ℕ) : ∑ i ∈ range r, (1 / 4 : ℝ) ^ i ≤ 4 / 3 := by
   have := mul_neg_geom_sum (1 / 4 : ℝ) r
   have hpow : (0 : ℝ) ≤ (1 / 4) ^ r := by positivity
   nlinarith
 
+/--
+@isnad1 id=eq.0h2v.s6.c9c1de1347d3 from=translated src=- shape=740977a7 vocab=4800f0e4
+-/
 theorem epsB_eq (z : ℕ) (i : Fin (nBlocks z)) :
     epsB z i = Real.exp 160 / 2 ^ 241 * (1 / 4 : ℝ) ^ (i : ℕ) := by
   unfold epsB kB
@@ -53,7 +64,9 @@ theorem epsB_eq (z : ℕ) (i : Fin (nBlocks z)) :
   field_simp
   norm_num
 
-/-- `∑ ε_i ≤ 1/8`.-/
+/-- `∑ ε_i ≤ 1/8`.
+@isnad1 id=le.0h1v.s5.23844bc74521 from=translated src=- shape=ee933215 vocab=7fabbc21
+-/
 theorem sum_epsB_le (z : ℕ) : ∑ i, epsB z i ≤ 1 / 8 := by
   simp_rw [epsB_eq]
   rw [← mul_sum, Fin.sum_univ_eq_sum_range (fun i => (1 / 4 : ℝ) ^ i)]
@@ -67,6 +80,9 @@ theorem sum_epsB_le (z : ℕ) : ∑ i, epsB z i ≤ 1 / 8 := by
 
 /-! ### Tails and the main-term products -/
 
+/--
+@isnad1 id=le.1h2v.s6.27bbea6a5ab4 from=translated src=- shape=60a64ffc vocab=71d8500b
+-/
 theorem prod_block_one_sub_ge {z : ℕ} (hz : 1 ≤ z) (i : Fin (nBlocks z)) :
     Real.exp (-96) ≤ ∏ p ∈ (brunBlock z i).primeFactors, (1 - twinNu2 p) := by
   rw [primeFactors_brunBlock]
@@ -76,6 +92,9 @@ theorem prod_block_one_sub_ge {z : ℕ} (hz : 1 ≤ z) (i : Fin (nBlocks z)) :
   have := sum_blockPrimes_twinNu2_le hz i
   linarith
 
+/--
+@isnad1 id=le.1h2v.s7.25c0a616a688 from=translated src=- shape=109ec528 vocab=a104ac20
+-/
 theorem tail_le {z : ℕ} (hz : 1 ≤ z) (i : Fin (nBlocks z)) :
     ∑ d ∈ (brunBlock z i).divisors with 2 * kB z i + 1 ≤ ω d, twinNu2 d ≤
       epsB z i * ∏ p ∈ (brunBlock z i).primeFactors, (1 - twinNu2 p) := by
@@ -104,6 +123,9 @@ theorem tail_le {z : ℕ} (hz : 1 ≤ z) (i : Fin (nBlocks z)) :
 
 /-! ### The remainder -/
 
+/--
+@isnad1 id=le.1h2v.s7.2eb51dcd1313 from=translated src=- shape=9cfa2668 vocab=a29fd298
+-/
 theorem rem_block_le {z : ℕ} (hz : 1 ≤ z) (i : Fin (nBlocks z)) :
     ∑ d ∈ (brunBlock z i).divisors with ω d ≤ 2 * kB z i + 1, twinRhoA d ≤
       (thr z i : ℝ) ^ (2 * kB z i + 1) * Real.exp 4 := by
@@ -133,7 +155,9 @@ theorem rem_block_le {z : ℕ} (hz : 1 ≤ z) (i : Fin (nBlocks z)) :
         rw [mul_div_assoc', div_le_iff₀ htpos]
         nlinarith
 
-/-- `∑_{i<r} (i+1)/2^i = 4 − (2r+4)/2^r ≤ 4`.-/
+/-- `∑_{i<r} (i+1)/2^i = 4 − (2r+4)/2^r ≤ 4`.
+@isnad1 id=eq.0h1v.s7.1146ab8b2fa4 from=translated src=- shape=3b06b0ca vocab=113fc2fa
+-/
 theorem sum_succ_div_two_pow_eq (r : ℕ) :
     ∑ i ∈ range r, ((i : ℝ) + 1) / 2 ^ i = 4 - (2 * (r : ℝ) + 4) / 2 ^ r := by
   induction r with
@@ -144,12 +168,17 @@ theorem sum_succ_div_two_pow_eq (r : ℕ) :
     field_simp
     ring
 
+/--
+@isnad1 id=le.0h1v.s6.eaf329800e13 from=translated src=- shape=a93316e5 vocab=e139705d
+-/
 theorem sum_succ_div_two_pow_le (r : ℕ) : ∑ i ∈ range r, ((i : ℝ) + 1) / 2 ^ i ≤ 4 := by
   rw [sum_succ_div_two_pow_eq]
   have : (0 : ℝ) ≤ (2 * (r : ℝ) + 4) / 2 ^ r := by positivity
   linarith
 
-/-- The exponent sum `∑_{i<r} (2 k_i + 1) / 2^i ≤ 972`.-/
+/-- The exponent sum `∑_{i<r} (2 k_i + 1) / 2^i ≤ 972`.
+@isnad1 id=le.0h1v.s6.6cb87a77c5f2 from=translated src=- shape=3f28ee01 vocab=53a2be45
+-/
 theorem sum_exponent_le (z : ℕ) :
     ∑ i : Fin (nBlocks z), (1 : ℝ) / 2 ^ (i : ℕ) * ((2 * kB z i + 1 : ℕ) : ℝ) ≤ 972 := by
   unfold kB
@@ -171,6 +200,9 @@ theorem sum_exponent_le (z : ℕ) :
     _ ≤ 243 * 4 := mul_le_mul_of_nonneg_left (sum_succ_div_two_pow_le _) (by norm_num)
     _ = 972 := by norm_num
 
+/--
+@isnad1 id=le.1h1v.s7.88d8a58ada48 from=translated src=- shape=b515513b vocab=667902a6
+-/
 theorem prod_rem_le {z : ℕ} (hz : 1 ≤ z) :
     ∏ i : Fin (nBlocks z), ((thr z i : ℝ) ^ (2 * kB z i + 1) * Real.exp 4) ≤
       Real.exp (4 * nBlocks z) * (z : ℝ) ^ (972 : ℝ) := by
@@ -192,11 +224,17 @@ theorem prod_rem_le {z : ℕ} (hz : 1 ≤ z) :
 
 /-! ### The exact inequality -/
 
+/--
+@isnad1 id=le.0h1v.s4.333065cede03 from=translated src=- shape=122adcd9 vocab=d8c76a03
+-/
 theorem twinRhoA_nonneg (d : ℕ) : 0 ≤ twinRhoA d := by
   by_cases hd : d = 0
   · subst hd; simp [twinRhoA]
   · rw [twinRhoA_apply hd]; positivity
 
+/--
+@isnad1 id=le.1h3v.s5.0c49b60814e5 from=translated src=- shape=35e36bc3 vocab=9d6c4c49
+-/
 theorem twinSieveL_abs_rem_le_rhoA (x z : ℕ) {d : ℕ} (hd : d ∣ primorial z) :
     |(twinSieveL x z).rem d| ≤ twinRhoA d := by
   have hd0 : d ≠ 0 := ne_zero_of_dvd_ne_zero (primorial_pos z).ne' hd

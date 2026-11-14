@@ -30,6 +30,9 @@ def W2 (X : ℕ) : ℝ := ∑ n ∈ Ioc X (2 * X), Λ n * Λ (n + 2)
 def Epp (X : ℕ) : ℝ :=
   ∑ n ∈ (Ioc X (2 * X)).filter (· ∉ twinPrimes), Λ n * Λ (n + 2)
 
+/--
+@isnad1 id=monotone.0h0v.s2.864c66f2cfed from=translated src=- shape=e3d48bcb vocab=3428fa91
+-/
 theorem twinCount_mono : Monotone twinCount := by
   intro x y hxy
   apply Finset.card_le_card
@@ -37,7 +40,9 @@ theorem twinCount_mono : Monotone twinCount := by
   simp only [mem_filter, mem_range] at hn ⊢
   exact ⟨by omega, hn.2⟩
 
-/-- Natural subtraction is valid because the earlier counting set is a subset.-/
+/-- Natural subtraction is valid because the earlier counting set is a subset.
+@isnad1 id=eq.0h1v.s4.bd79723fd099 from=translated src=- shape=e3a968fc vocab=13812c5f
+-/
 theorem N2_eq_twinCount_sub (X : ℕ) : N2 X = twinCount (2 * X) - twinCount X := by
   have hsub : (range (X + 1)).filter (· ∈ twinPrimes) ⊆
       (range (2 * X + 1)).filter (· ∈ twinPrimes) := by
@@ -62,12 +67,17 @@ theorem N2_eq_twinCount_sub (X : ℕ) : N2 X = twinCount (2 * X) - twinCount X :
   unfold N2 twinCount
   rw [heq, card_sdiff_of_subset hsub]
 
+/--
+@isnad1 id=iff.0h1v.s5.2cd7fbb5a5bd from=translated src=- shape=5dd8aa72 vocab=92252320
+-/
 theorem N2_pos_iff (X : ℕ) :
     0 < N2 X ↔ ∃ n, X < n ∧ n ≤ 2 * X ∧ n ∈ twinPrimes := by
   simp only [N2, card_pos, nonempty_def, mem_filter, mem_Ioc]
   aesop
 
-/-- Good dyadic intervals need only occur cofinally, rather than eventually.-/
+/-- Good dyadic intervals need only occur cofinally, rather than eventually.
+@isnad1 id=iff.0h0v.s4.b5d9ec2215f4 from=translated src=- shape=93522ad3 vocab=534eeea0
+-/
 theorem twinPrimeConjecture_iff_cofinal_N2_pos :
     TwinPrimeConjecture ↔ ∀ Y : ℕ, ∃ X ≥ Y, 0 < N2 X := by
   rw [twinPrimeConjecture_iff_forall_exists_gt]
@@ -80,11 +90,16 @@ theorem twinPrimeConjecture_iff_cofinal_N2_pos :
     obtain ⟨p, hXp, _, hp⟩ := (N2_pos_iff X).mp hX
     exact ⟨p, hp, lt_of_le_of_lt hYX hXp⟩
 
+/--
+@isnad1 id=le.0h1v.s3.d5de9522c38c from=translated src=- shape=b9369acb vocab=948aa1c1
+-/
 theorem Epp_nonneg (X : ℕ) : 0 ≤ Epp X := by
   exact sum_nonneg fun _ _ => mul_nonneg ArithmeticFunction.vonMangoldt_nonneg
     ArithmeticFunction.vonMangoldt_nonneg
 
-/-- Exact removal of all nonprime contributions from the correlation.-/
+/-- Exact removal of all nonprime contributions from the correlation.
+@isnad1 id=eq.0h1v.s6.d0e5225c6078 from=translated src=- shape=1c7a464b vocab=afea2aa5
+-/
 theorem W2_sub_Epp_eq_prime_sum (X : ℕ) :
     W2 X - Epp X =
       ∑ n ∈ (Ioc X (2 * X)).filter (· ∈ twinPrimes),
@@ -104,7 +119,9 @@ theorem W2_sub_Epp_eq_prime_sum (X : ℕ) :
   unfold W2 Epp
   rw [← hsplit, add_sub_cancel_right, hprime]
 
-/-- The prime-power subtraction inequality (PP) from the proof plan.-/
+/-- The prime-power subtraction inequality (PP) from the proof plan.
+@isnad1 id=le.0h1v.s6.01d285a19c39 from=translated src=- shape=87fd4c06 vocab=6a0134db
+-/
 theorem W2_sub_Epp_le_log_sq_mul_N2 (X : ℕ) :
     W2 X - Epp X ≤ (Real.log (2 * X + 2)) ^ 2 * N2 X := by
   rw [W2_sub_Epp_eq_prime_sum]
@@ -127,6 +144,9 @@ theorem W2_sub_Epp_le_log_sq_mul_N2 (X : ℕ) :
         (Real.log_nonneg (by exact_mod_cast hq.one_le)) hlog).trans_eq (sq _).symm
     _ = _ := by simp [N2, mul_comm]
 
+/--
+@isnad1 id=iff.0h1v.s4.fdb7cff4a3b1 from=translated src=- shape=bed0a73a vocab=2fa2d5d6
+-/
 theorem W2_gt_Epp_iff_N2_pos (X : ℕ) : Epp X < W2 X ↔ 0 < N2 X := by
   rw [← sub_pos, W2_sub_Epp_eq_prime_sum]
   constructor
@@ -149,17 +169,25 @@ theorem W2_gt_Epp_iff_N2_pos (X : ℕ) : Epp X < W2 X ↔ 0 < N2 X := by
       · exact_mod_cast hp.one_lt
       · exact_mod_cast hq.one_lt
 
+/--
+@isnad1 id=iff.0h0v.s4.eecee23fbcd5 from=translated src=- shape=fe32bc0f vocab=ab1c80ef
+-/
 theorem twinPrimeConjecture_iff_cofinal_W2_gt_Epp :
     TwinPrimeConjecture ↔ ∀ Y : ℕ, ∃ X ≥ Y, Epp X < W2 X := by
   simp_rw [W2_gt_Epp_iff_N2_pos]
   exact twinPrimeConjecture_iff_cofinal_N2_pos
 
+/--
+@isnad1 id=twinprim.1h0v.s4.50c0c5620720 from=translated src=- shape=e3c1556b vocab=ab1c80ef
+-/
 theorem twinPrimeConjecture_of_cofinal_W2_gt_Epp
     (h : ∀ Y : ℕ, ∃ X ≥ Y, Epp X < W2 X) : TwinPrimeConjecture :=
   twinPrimeConjecture_iff_cofinal_W2_gt_Epp.mpr h
 
 /-- A direct bound for the excluded contribution using the classical elementary
-Chebyshev bound for `ψ - θ`. It is sufficient for the required `o(X)` error.-/
+Chebyshev bound for `ψ - θ`. It is sufficient for the required `o(X)` error.
+@isnad1 id=le.0h1v.s6.435b52552012 from=translated src=- shape=13117286 vocab=742e93de
+-/
 theorem Epp_le_sqrt_mul_log_sq (X : ℕ) :
     Epp X ≤ 4 * Real.sqrt (2 * X + 2) * (Real.log (2 * X + 2)) ^ 2 := by
   let Y : ℕ := 2 * X + 2
@@ -230,7 +258,9 @@ theorem Epp_le_sqrt_mul_log_sq (X : ℕ) :
       _ = _ := by ring
   simpa [Y, L] using hmain
 
-/-- The elementary prime-power error bound is sublinear.-/
+/-- The elementary prime-power error bound is sublinear.
+@isnad1 id=tendsto.0h0v.s7.557493491f85 from=translated src=- shape=8cb51be2 vocab=537744eb
+-/
 theorem tendsto_primePowerError_div :
     Tendsto (fun X : ℕ =>
       (4 * Real.sqrt (2 * X + 2) * (Real.log (2 * X + 2)) ^ 2) / X)
@@ -265,7 +295,9 @@ theorem tendsto_primePowerError_div :
   rw [heq']
   ring
 
-/-- Removing proper prime powers has zero relative cost on dyadic intervals.-/
+/-- Removing proper prime powers has zero relative cost on dyadic intervals.
+@isnad1 id=tendsto.0h0v.s5.66d06ca4c39c from=translated src=- shape=15fb6055 vocab=89d87673
+-/
 theorem tendsto_Epp_div :
     Tendsto (fun X : ℕ => Epp X / X) atTop (nhds 0) := by
   apply tendsto_of_tendsto_of_tendsto_of_le_of_le'
@@ -276,7 +308,9 @@ theorem tendsto_Epp_div :
     exact div_le_div_of_nonneg_right (Epp_le_sqrt_mul_log_sq X) (Nat.cast_nonneg X)
 
 /-- Any fixed positive linear lower bound on cofinally many `W2` values suffices.
-The needed prime-power estimate is proved above rather than assumed here.-/
+The needed prime-power estimate is proved above rather than assumed here.
+@isnad1 id=twinprim.2h1v.s5.41c6862d85dc from=translated src=- shape=fdc82b2d vocab=802ba2ad
+-/
 theorem twinPrimeConjecture_of_cofinal_W2_linear {c : ℝ} (hc : 0 < c)
     (h : ∀ Y : ℕ, ∃ X ≥ Y, c * X ≤ W2 X) : TwinPrimeConjecture := by
   have hsmall : ∀ᶠ X : ℕ in atTop, Epp X / X < c :=

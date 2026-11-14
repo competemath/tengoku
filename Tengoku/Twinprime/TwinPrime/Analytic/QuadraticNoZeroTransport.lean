@@ -21,6 +21,9 @@ namespace TwinPrime.Analytic
 local instance {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) :
     NeZero χ.conductor := ⟨χ.conductor_ne_zero⟩
 
+/--
+@isnad1 id=lt.1h2v.s6.bf67e3d608c7 from=translated src=- shape=774eb9d6 vocab=e539b74c
+-/
 theorem one_lt_conductor_of_ne_one {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1) : 1 < χ.conductor := by
   have hpos : 0 < χ.conductor := Nat.pos_of_ne_zero χ.conductor_ne_zero
@@ -28,6 +31,9 @@ theorem one_lt_conductor_of_ne_one {q : ℕ} [NeZero q]
     hχ (DirichletCharacter.eq_one_iff_conductor_eq_one.mpr h)
   omega
 
+/--
+@isnad1 id=eq.1h2v.s9.2f1442bf0c8d from=translated src=- shape=f8b15100 vocab=5a85d0a1
+-/
 theorem primitiveCharacter_sq_eq_one {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (hsq : χ ^ 2 = 1) :
     χ.primitiveCharacter ^ 2 = 1 := by
@@ -35,7 +41,9 @@ theorem primitiveCharacter_sq_eq_one {q : ℕ} [NeZero q]
   rw [map_pow, χ.changeLevel_primitiveCharacter, map_one, hsq]
 
 /-- The actual zeros agree with those of the primitive inducing character
-in the positive half-plane, away from the possible principal pole.-/
+in the positive half-plane, away from the possible principal pole.
+@isnad1 id=iff.2h3v.s6.dc307528e09b from=translated src=- shape=7c91390a vocab=2ed9fc4a
+-/
 theorem LFunction_eq_zero_iff_primitiveCharacter_of_re_pos
     {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q)
     (s : ℂ) (hs : s ≠ 1) (hre : 0 < s.re) :
@@ -47,7 +55,9 @@ theorem LFunction_eq_zero_iff_primitiveCharacter_of_re_pos
       χ.conductor_dvd_level χ.primitiveCharacter s hs hre
 
 /-- A globally supplied primitive quadratic zero exclusion on `[σ,1)`
-also excludes zeros of every nonprincipal quadratic character there.-/
+also excludes zeros of every nonprincipal quadratic character there.
+@isnad1 id=ne.5h4v.s9.d029b7bf85b4 from=translated src=- shape=a369f15f vocab=597a4ff2
+-/
 theorem LFunction_nonprincipal_quadratic_ne_zero_of_primitive_interval
     (σ : ℝ) (hσ : 0 < σ)
     (hno : ∀ (r : ℕ) [NeZero r], 1 < r →
@@ -68,7 +78,9 @@ theorem LFunction_nonprincipal_quadratic_ne_zero_of_primitive_interval
 
 /-- At a common product level, distinct primitive quadratic conductors
 give three nonprincipal factors. A primitive zero exclusion therefore
-supplies all three interval hypotheses in the actual product sign theorem.-/
+supplies all three interval hypotheses in the actual product sign theorem.
+@isnad1 id=lt.10h5v.s9.7c477e6dd682 from=translated src=- shape=0f818337 vocab=9210bb24
+-/
 theorem commonLevel_quadraticLFunctionProduct_re_neg_of_primitive_interval
     (σ : ℝ) (hσ : 19 / 20 ≤ σ) (hσ1 : σ < 1)
     (hno : ∀ (r : ℕ) [NeZero r], 1 < r →

@@ -20,6 +20,9 @@ open Filter
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=eventual.2h2v.s6.47cf166115d8 from=translated src=- shape=43b0bbb0 vocab=f371a0bd
+-/
 theorem eventually_rightCutoff_le_of_primary_product_bound (W : ℕ → ℕ)
     (a : ℝ) (ha : a ≤ 1)
     (hprod : ∀ᶠ X : ℕ in atTop,
@@ -30,6 +33,9 @@ theorem eventually_rightCutoff_le_of_primary_product_bound (W : ℕ → ℕ)
     exact_mod_cast hPX.trans (Real.rpow_le_self_of_one_le (by exact_mod_cast hX) ha)
   exact (Nat.le_mul_of_pos_left (W X) (primaryCutoff_pos hX)).trans hp
 
+/--
+@isnad1 id=tendsto.0h2v.s6.b6c3edd047aa from=translated src=- shape=4b4f2c36 vocab=f8f0bce9
+-/
 theorem tendsto_quarter_bilinear_sub_primeBeta_div_mul_log_pow (U : ℕ → ℕ) (k : ℕ) :
     Tendsto (fun X : ℕ =>
       (bilinearTerm (U X) (quarterCutoff X) X - bilinearPrimeBeta (U X) (quarterCutoff X) X) /
@@ -53,6 +59,9 @@ theorem tendsto_quarter_bilinear_sub_primeBeta_div_mul_log_pow (U : ℕ → ℕ)
       field_simp
     _ ≤ _ := mul_le_mul_of_nonneg_left hpow (by positivity)
 
+/--
+@isnad1 id=tendsto.0h1v.s5.735240f841ca from=translated src=- shape=d309da66 vocab=2adb88b3
+-/
 theorem tendsto_quarter_bilinear_sub_primeBeta_div (U : ℕ → ℕ) :
     Tendsto (fun X : ℕ =>
       (bilinearTerm (U X) (quarterCutoff X) X - bilinearPrimeBeta (U X) (quarterCutoff X) X) / X)

@@ -25,7 +25,9 @@ private theorem characterArithmetic_prefix_le_power_zero {q : ℕ} [NeZero q]
   simpa only [Real.rpow_zero, mul_one] using norm_characterArithmetic_sum_le_modulus χ hχ N
 
 /-- The actual L-function is the ordered character-series limit throughout
-the positive half-plane, including for imprimitive nonprincipal characters.-/
+the positive half-plane, including for imprimitive nonprincipal characters.
+@isnad1 id=eqon.1h2v.s7.922bb88752d0 from=translated src=- shape=d4a9bc49 vocab=adad7fe3
+-/
 theorem powerDirichletLimit_character_eqOn {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1) :
     Set.EqOn (powerDirichletLimit (toArithmeticFunction (χ ·)))
@@ -38,6 +40,9 @@ theorem powerDirichletLimit_character_eqOn {q : ℕ} [NeZero q]
   · intro s hs
     exact LSeries_characterArithmeticFunction χ ((le_max_right (0 : ℝ) 1).trans_lt hs)
 
+/--
+@isnad1 id=tendstol.1h2v.s7.f3e790c2ebd7 from=translated src=- shape=b83cf06d vocab=d505709b
+-/
 theorem tendstoLocallyUniformlyOn_character_powerDirichletPartialSum_LFunction
     {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1) :
     TendstoLocallyUniformlyOn
@@ -47,6 +52,9 @@ theorem tendstoLocallyUniformlyOn_character_powerDirichletPartialSum_LFunction
     (Nat.cast_nonneg q) (characterArithmetic_prefix_le_power_zero χ hχ)).congr_right
       (powerDirichletLimit_character_eqOn χ hχ)
 
+/--
+@isnad1 id=tendsto.2h3v.s7.269d0e8231f6 from=translated src=- shape=fa4f7335 vocab=0091d568
+-/
 theorem tendsto_character_powerDirichletPartialSum_LFunction
     {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1)
     (s : ℂ) (hs : 0 < s.re) :
@@ -57,7 +65,9 @@ theorem tendsto_character_powerDirichletPartialSum_LFunction
     (Nat.cast_nonneg q) (characterArithmetic_prefix_le_power_zero χ hχ) s hs
 
 /-- A period bound gives a quantitative truncation estimate on `Re(s)>0`.
-This is an ordered-series estimate, not an absolute-summability assertion.-/
+This is an ordered-series estimate, not an absolute-summability assertion.
+@isnad1 id=le.3h4v.s8.b58019366ccd from=translated src=- shape=97800731 vocab=f428ce94
+-/
 theorem norm_LFunction_sub_powerDirichletPartialSum_le_of_nonprincipal
     {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1)
     (M : ℕ) (hM : 1 ≤ M) (s : ℂ) (hs : 0 < s.re) :
@@ -69,7 +79,9 @@ theorem norm_LFunction_sub_powerDirichletPartialSum_le_of_nonprincipal
       (characterArithmetic_prefix_le_power_zero χ hχ) _
       (powerDirichletLimit_character_eqOn χ hχ) M hM s hs
 
-/-- The finite reciprocal head needs no nonprincipal or positive-modulus hypothesis.-/
+/-- The finite reciprocal head needs no nonprincipal or positive-modulus hypothesis.
+@isnad1 id=le.0h3v.s6.789a0fe5ad13 from=translated src=- shape=05c5d150 vocab=a26da5c3
+-/
 theorem norm_character_reciprocal_partialSum_le_one_add_log {q : ℕ}
     (χ : DirichletCharacter ℂ q) (M : ℕ) :
     ‖powerDirichletPartialSum (toArithmeticFunction (χ ·)) 1 M‖ ≤ 1 + Real.log M := by
@@ -88,7 +100,9 @@ theorem norm_character_reciprocal_partialSum_le_one_add_log {q : ℕ}
         using harmonic_le_one_add_log M
 
 /-- A uniform logarithmic upper bound for every nonprincipal character,
-including imprimitive characters at any positive modulus.-/
+including imprimitive characters at any positive modulus.
+@isnad1 id=le.1h2v.s6.030e9efb0b7d from=translated src=- shape=51986d8b vocab=308007f8
+-/
 theorem norm_LFunction_one_le_five_add_log {q : ℕ} [NeZero q]
     (χ : DirichletCharacter ℂ q) (hχ : χ ≠ 1) :
     ‖DirichletCharacter.LFunction χ 1‖ ≤ 5 + Real.log q := by

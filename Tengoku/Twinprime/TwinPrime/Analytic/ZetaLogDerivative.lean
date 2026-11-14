@@ -17,6 +17,9 @@ open Metric
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=eq.1h1v.s6.cc273139a8f4 from=translated src=- shape=410b3a3c vocab=d8ae6469
+-/
 theorem deriv_regularizedRiemannZeta_of_ne_one (s : ℂ) (hs : s ≠ 1) :
     deriv regularizedRiemannZeta s =
       (s - 1) * deriv riemannZeta s + riemannZeta s := by
@@ -25,7 +28,9 @@ theorem deriv_regularizedRiemannZeta_of_ne_one (s : ℂ) (hs : s ≠ 1) :
     DirichletCharacter.deriv_LFunctionTrivChar₁_apply_of_ne_one 1 hs
 
 /-- The pole term is explicit; the regularization must be nonzero only at
-the point where its logarithmic derivative is evaluated.-/
+the point where its logarithmic derivative is evaluated.
+@isnad1 id=eq.2h1v.s7.35c2a0064a06 from=translated src=- shape=59d02692 vocab=864da179
+-/
 theorem neg_zeta_logDerivative_eq_pole_sub_regularized (s : ℂ) (hs : s ≠ 1)
     (hZ : regularizedRiemannZeta s ≠ 0) :
     -deriv riemannZeta s / riemannZeta s =
@@ -39,16 +44,25 @@ theorem neg_zeta_logDerivative_eq_pole_sub_regularized (s : ℂ) (hs : s ≠ 1)
   field_simp
   ring
 
+/--
+@isnad1 id=eq.0h1v.s3.88ffdd56c3c0 from=translated src=- shape=bb0110a5 vocab=84a1fc06
+-/
 @[simp] theorem regularizedZetaPartialSum_cutoff_one (s : ℂ) :
     regularizedZetaPartialSum s 1 = s := by
   simp [regularizedZetaPartialSum]
 
+/--
+@isnad1 id=le.1h1v.s6.f5b82627bdbf from=translated src=- shape=ccc23876 vocab=861a4a4c
+-/
 theorem norm_regularizedRiemannZeta_sub_self_le (s : ℂ) (hs : 0 < s.re) :
     ‖regularizedRiemannZeta s - s‖ ≤ ‖s - 1‖ * (‖s‖ / s.re) := by
   simpa using norm_regularizedRiemannZeta_sub_partialSum_le 1 (by norm_num) s hs
 
 def regularizedZetaGrowthBudget (δ H : ℝ) : ℝ := H + (H + 1) * (H / δ)
 
+/--
+@isnad1 id=le.1h1v.s4.3cda60dd7af9 from=translated src=- shape=296e7837 vocab=0f23726b
+-/
 theorem norm_regularizedRiemannZeta_le_of_re_pos (s : ℂ) (hs : 0 < s.re) :
     ‖regularizedRiemannZeta s‖ ≤ regularizedZetaGrowthBudget s.re ‖s‖ := by
   have ht := norm_regularizedRiemannZeta_sub_self_le s hs
@@ -59,6 +73,9 @@ theorem norm_regularizedRiemannZeta_le_of_re_pos (s : ℂ) (hs : 0 < s.re) :
   unfold regularizedZetaGrowthBudget
   linarith
 
+/--
+@isnad1 id=le.3h3v.s5.42bb767992bf from=translated src=- shape=eff4528c vocab=0f23726b
+-/
 theorem norm_regularizedRiemannZeta_le_on_re_norm (δ H : ℝ) (hδ : 0 < δ)
     (s : ℂ) (hs : δ ≤ s.re) (hH : ‖s‖ ≤ H) :
     ‖regularizedRiemannZeta s‖ ≤ regularizedZetaGrowthBudget δ H := by
@@ -68,6 +85,9 @@ theorem norm_regularizedRiemannZeta_le_on_re_norm (δ H : ℝ) (hδ : 0 < δ)
   gcongr
   exact div_nonneg (norm_nonneg s) (hδ.trans_le hs).le
 
+/--
+@isnad1 id=le.2h3v.s6.940ccf28d42f from=translated src=- shape=9c257564 vocab=dae4ed26
+-/
 theorem norm_regularizedRiemannZeta_le_on_closedBall (s : ℂ) (R : ℝ)
     (hR : R < s.re) (z : ℂ) (hz : z ∈ closedBall s R) :
     ‖regularizedRiemannZeta z‖ ≤
@@ -80,6 +100,9 @@ theorem norm_regularizedRiemannZeta_le_on_closedBall (s : ℂ) (R : ℝ)
   · linarith
   · exact norm_le_norm_add_const_of_dist_le (mem_closedBall.mp hz)
 
+/--
+@isnad1 id=le.2h3v.s6.d7294d8ec5e1 from=translated src=- shape=a18a2f1a vocab=2ae391b9
+-/
 theorem norm_iteratedDeriv_regularizedRiemannZeta_le (s : ℂ) (R : ℝ)
     (hR0 : 0 < R) (hR : R < s.re) (n : ℕ) :
     ‖iteratedDeriv n regularizedRiemannZeta s‖ ≤
@@ -89,6 +112,9 @@ theorem norm_iteratedDeriv_regularizedRiemannZeta_le (s : ℂ) (R : ℝ)
   intro z hz
   exact norm_regularizedRiemannZeta_le_on_closedBall s R hR z (sphere_subset_closedBall hz)
 
+/--
+@isnad1 id=le.2h2v.s6.a188610a21af from=translated src=- shape=36c426bb vocab=2696dc96
+-/
 theorem norm_deriv_regularizedRiemannZeta_le (s : ℂ) (R : ℝ)
     (hR0 : 0 < R) (hR : R < s.re) :
     ‖deriv regularizedRiemannZeta s‖ ≤
@@ -96,7 +122,9 @@ theorem norm_deriv_regularizedRiemannZeta_le (s : ℂ) (R : ℝ)
   simpa using norm_iteratedDeriv_regularizedRiemannZeta_le s R hR0 hR 1
 
 /-- A concrete local bound at the pole follows directly from the cutoff-one
-truncation estimate. It does not assume nonvanishing.-/
+truncation estimate. It does not assume nonvanishing.
+@isnad1 id=le.1h1v.s6.df058ef7d8d9 from=translated src=- shape=ab762b49 vocab=f07b8e1f
+-/
 theorem norm_regularizedRiemannZeta_sub_one_le_two_thirds (s : ℂ)
     (hs : ‖s - 1‖ ≤ 1 / 4) :
     ‖regularizedRiemannZeta s - 1‖ ≤ 2 / 3 := by
@@ -118,6 +146,9 @@ theorem norm_regularizedRiemannZeta_sub_one_le_two_thirds (s : ℂ)
   rw [sub_add_sub_cancel] at hn
   linarith
 
+/--
+@isnad1 id=le.1h1v.s6.977bc616f9ec from=translated src=- shape=42474ec9 vocab=f07b8e1f
+-/
 theorem one_third_le_norm_regularizedRiemannZeta (s : ℂ)
     (hs : ‖s - 1‖ ≤ 1 / 4) :
     1 / 3 ≤ ‖regularizedRiemannZeta s‖ := by
@@ -126,10 +157,16 @@ theorem one_third_le_norm_regularizedRiemannZeta (s : ℂ)
   simp only [sub_add_cancel, norm_one, norm_sub_rev (1 : ℂ)] at hn
   linarith
 
+/--
+@isnad1 id=ne.1h1v.s5.f02d38f27484 from=translated src=- shape=3924c09c vocab=f07b8e1f
+-/
 theorem regularizedRiemannZeta_ne_zero_of_norm_sub_one_le (s : ℂ)
     (hs : ‖s - 1‖ ≤ 1 / 4) : regularizedRiemannZeta s ≠ 0 := by
   exact norm_pos_iff.mp (lt_of_lt_of_le (by norm_num) (one_third_le_norm_regularizedRiemannZeta s hs))
 
+/--
+@isnad1 id=le.1h1v.s6.d2a95a80d1be from=translated src=- shape=849db8d5 vocab=eb51e740
+-/
 theorem norm_regularizedRiemannZeta_logDerivative_le_forty (s : ℂ)
     (hs : ‖s - 1‖ ≤ 1 / 8) :
     ‖deriv regularizedRiemannZeta s / regularizedRiemannZeta s‖ ≤ 40 := by
@@ -154,7 +191,9 @@ theorem norm_regularizedRiemannZeta_logDerivative_le_forty (s : ℂ)
   linarith
 
 /-- An explicit bounded regular part of the negative zeta logarithmic
-derivative in a punctured neighborhood of the pole.-/
+derivative in a punctured neighborhood of the pole.
+@isnad1 id=le.2h1v.s7.57a09c0ce477 from=translated src=- shape=634fe875 vocab=5348cbfd
+-/
 theorem norm_neg_zeta_logDerivative_sub_pole_le_forty (s : ℂ)
     (hs1 : s ≠ 1) (hs : ‖s - 1‖ ≤ 1 / 8) :
     ‖-deriv riemannZeta s / riemannZeta s - 1 / (s - 1)‖ ≤ 40 := by

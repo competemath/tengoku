@@ -17,6 +17,9 @@ open Finset
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=ex.0h0v.s5.9943b8c4a031 from=translated src=- shape=0b6e7814 vocab=a61f7f2b
+-/
 theorem exists_nonprimeMangoldt_sqrt_bound :
     ∃ C : ℝ, 0 < C ∧ ∀ T : ℕ,
       (∑ n ∈ Ioc 0 T, nonprimeMangoldt n) ≤ C * Real.sqrt T := by
@@ -28,7 +31,9 @@ theorem exists_nonprimeMangoldt_sqrt_bound :
     (by linarith [le_abs_self K]) (Real.sqrt_nonneg _))
 
 /-- The finite tail bound with its explicit factor three. Nonnegativity
-allows the anchored partial sums to use the same square-root constant.-/
+allows the anchored partial sums to use the same square-root constant.
+@isnad1 id=le.3h3v.s7.1f1a08917261 from=translated src=- shape=cf3461b7 vocab=295f3092
+-/
 theorem sum_nonprimeMangoldt_div_le_of_sqrt_bound (C : ℝ) (hC : 0 ≤ C)
     (hA : ∀ T : ℕ, (∑ n ∈ Ioc 0 T, nonprimeMangoldt n) ≤ C * Real.sqrt T)
     (V T : ℕ) (hV : 1 ≤ V) :
@@ -69,7 +74,9 @@ theorem sum_nonprimeMangoldt_div_le_of_sqrt_bound (C : ℝ) (hC : 0 ≤ C)
     positivity
 
 /-- One positive constant controls every finite proper-prime-power
-reciprocal tail, including an empty interval when `T < V`.-/
+reciprocal tail, including an empty interval when `T < V`.
+@isnad1 id=ex.0h0v.s6.abb6fcfb7672 from=translated src=- shape=42fe4db7 vocab=6de9bb51
+-/
 theorem exists_nonprimeMangoldt_reciprocal_tail_bound :
     ∃ C : ℝ, 0 < C ∧ ∀ V : ℕ, 1 ≤ V → ∀ T : ℕ,
       (∑ n ∈ Ioc V T, nonprimeMangoldt n / n) ≤

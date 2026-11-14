@@ -25,12 +25,18 @@ namespace TwinPrime.Analytic
 def characterDirichletLimit {q : ℕ} (χ : DirichletCharacter ℂ q) (s : ℂ) : ℂ :=
   limUnder atTop (characterDirichletPartialSum χ s)
 
+/--
+@isnad1 id=tendsto.3h3v.s6.2106874f4ffd from=translated src=- shape=7e081d0e vocab=04d5c5ce
+-/
 theorem tendsto_characterDirichletPartialSum_limit {q : ℕ}
     (hq : 1 < q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive)
     (s : ℂ) (hs : 0 < s.re) :
     Tendsto (characterDirichletPartialSum χ s) atTop (𝓝 (characterDirichletLimit χ s)) :=
   (cauchySeq_characterDirichletPartialSum hq χ hχ s hs).tendsto_limUnder
 
+/--
+@isnad1 id=le.4h4v.s7.bc4e93b6f9b6 from=translated src=- shape=7da6db51 vocab=5e3fdd15
+-/
 theorem norm_characterDirichletLimit_sub_partialSum_le {q : ℕ}
     (hq : 1 < q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive)
     (M : ℕ) (hM : 1 ≤ M) (s : ℂ) (hs : 0 < s.re) :
@@ -44,7 +50,9 @@ theorem norm_characterDirichletLimit_sub_partialSum_le {q : ℕ}
   exact norm_sum_primitive_character_dirichlet_Ioc_le hq χ hχ M N hM hMN s hs
 
 /-- A common quantitative tail budget on every bounded set separated from
-the boundary of the positive half-plane.-/
+the boundary of the positive half-plane.
+@isnad1 id=le.6h6v.s7.f0353e9e611b from=translated src=- shape=e11f225f vocab=5e3fdd15
+-/
 theorem norm_characterDirichletLimit_sub_partialSum_le_uniform {q : ℕ}
     (hq : 1 < q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive)
     (M : ℕ) (hM : 1 ≤ M) (δ H : ℝ) (hδ : 0 < δ)
@@ -63,7 +71,9 @@ theorem norm_characterDirichletLimit_sub_partialSum_le_uniform {q : ℕ}
   · positivity
   · positivity
 
-/-- Uniform convergence on bounded closed portions of `0 < s.re`.-/
+/-- Uniform convergence on bounded closed portions of `0 < s.re`.
+@isnad1 id=tendstou.3h4v.s6.0defa2396ec8 from=translated src=- shape=6604df2b vocab=71731792
+-/
 theorem tendstoUniformlyOn_characterDirichletPartialSum_limit {q : ℕ}
     (hq : 1 < q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive)
     (δ H : ℝ) (hδ : 0 < δ) :
@@ -84,7 +94,9 @@ theorem tendstoUniformlyOn_characterDirichletPartialSum_limit {q : ℕ}
     δ H hδ s hs.1 hs.2).trans_lt hbN
 
 /-- The uniform bounded-region estimates give locally uniform convergence
-on the whole positive half-plane.-/
+on the whole positive half-plane.
+@isnad1 id=tendstol.2h2v.s6.3891c9454a9e from=translated src=- shape=8cab25ac vocab=e756d977
+-/
 theorem tendstoLocallyUniformlyOn_characterDirichletPartialSum_limit {q : ℕ}
     (hq : 1 < q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive) :
     TendstoLocallyUniformlyOn (fun N s => characterDirichletPartialSum χ s N)
@@ -103,7 +115,9 @@ theorem tendstoLocallyUniformlyOn_characterDirichletPartialSum_limit {q : ℕ}
     tendstoUniformlyOn_characterDirichletPartialSum_limit hq χ hχ δ H hδ⟩
   exact mem_of_superset (inter_mem hlo hhi) (fun s hs => ⟨hs.1.le, hs.2.le⟩)
 
-/-- Every ordered partial sum is an entire function of the complex exponent.-/
+/-- Every ordered partial sum is an entire function of the complex exponent.
+@isnad1 id=differen.0h3v.s6.47d1139cfa8c from=translated src=- shape=5e8f902f vocab=c5630200
+-/
 theorem differentiable_characterDirichletPartialSum {q : ℕ}
     (χ : DirichletCharacter ℂ q) (N : ℕ) :
     Differentiable ℂ (fun s => characterDirichletPartialSum χ s N) := by
@@ -113,7 +127,9 @@ theorem differentiable_characterDirichletPartialSum {q : ℕ}
   have hn0 : (n : ℂ) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt (mem_Ioc.mp hn).1)
   exact (differentiable_id.neg.const_cpow (Or.inl hn0)).mul_const (χ (n : ZMod q))
 
-/-- The ordered limit is holomorphic on the positive half-plane.-/
+/-- The ordered limit is holomorphic on the positive half-plane.
+@isnad1 id=differen.2h2v.s6.77d192bef2cf from=translated src=- shape=35b9f965 vocab=c1108759
+-/
 theorem differentiableOn_characterDirichletLimit {q : ℕ}
     (hq : 1 < q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive) :
     DifferentiableOn ℂ (characterDirichletLimit χ) {s : ℂ | 0 < s.re} :=
@@ -122,7 +138,9 @@ theorem differentiableOn_characterDirichletLimit {q : ℕ}
     (isOpen_lt continuous_const Complex.continuous_re)
 
 /-- The identity theorem identifies the ordered limit with the existing
-analytic continuation on the connected positive half-plane.-/
+analytic continuation on the connected positive half-plane.
+@isnad1 id=eqon.2h2v.s6.df4fdc26efc1 from=translated src=- shape=80b442c4 vocab=03eb0b74
+-/
 theorem characterDirichletLimit_eqOn_LFunction {q : ℕ} [NeZero q]
     (hq : 1 < q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive) :
     Set.EqOn (characterDirichletLimit χ) (DirichletCharacter.LFunction χ)
@@ -141,7 +159,9 @@ theorem characterDirichletLimit_eqOn_LFunction {q : ℕ} [NeZero q]
     (tendsto_characterDirichletPartialSum_limit hq χ hχ s (lt_trans zero_lt_one hs))
     (tendsto_characterDirichletPartialSum_LFunction χ s hs)
 
-/-- Locally uniform ordered convergence to the actual L-function.-/
+/-- Locally uniform ordered convergence to the actual L-function.
+@isnad1 id=tendstol.2h2v.s6.08cfbc2a9fcb from=translated src=- shape=404c0323 vocab=c651d52e
+-/
 theorem tendstoLocallyUniformlyOn_characterDirichletPartialSum_LFunction {q : ℕ} [NeZero q]
     (hq : 1 < q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive) :
     TendstoLocallyUniformlyOn (fun N s => characterDirichletPartialSum χ s N)
@@ -149,7 +169,9 @@ theorem tendstoLocallyUniformlyOn_characterDirichletPartialSum_LFunction {q : �
   (tendstoLocallyUniformlyOn_characterDirichletPartialSum_limit hq χ hχ).congr_right
     (characterDirichletLimit_eqOn_LFunction hq χ hχ)
 
-/-- Ordered convergence to `LFunction` throughout `0 < s.re`.-/
+/-- Ordered convergence to `LFunction` throughout `0 < s.re`.
+@isnad1 id=tendsto.3h3v.s6.03e4c482b298 from=translated src=- shape=875de4bf vocab=94770584
+-/
 theorem tendsto_characterDirichletPartialSum_LFunction_of_re_pos {q : ℕ} [NeZero q]
     (hq : 1 < q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive)
     (s : ℂ) (hs : 0 < s.re) :
@@ -159,7 +181,9 @@ theorem tendsto_characterDirichletPartialSum_LFunction_of_re_pos {q : ℕ} [NeZe
   exact tendsto_characterDirichletPartialSum_limit hq χ hχ s hs
 
 /-- The original Pólya--Vinogradov truncation budget now applies to the
-actual L-function on the full positive half-plane.-/
+actual L-function on the full positive half-plane.
+@isnad1 id=le.4h4v.s7.2bc1a8819490 from=translated src=- shape=869f3f7d vocab=edad62a4
+-/
 theorem norm_LFunction_sub_characterDirichletPartialSum_le_of_re_pos {q : ℕ} [NeZero q]
     (hq : 1 < q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive)
     (M : ℕ) (hM : 1 ≤ M) (s : ℂ) (hs : 0 < s.re) :

@@ -24,6 +24,9 @@ def siegelWalfiszStripDenominator (B K : ℝ) : ℝ :=
 def siegelWalfiszStripWidthConstant (B K d : ℝ) : ℝ :=
   min (1 / 16) (min (siegelWalfiszStripDenominator B K)⁻¹ d) / 4
 
+/--
+@isnad1 id=lt.2h2v.s5.050602bd2897 from=translated src=- shape=6c67d60b vocab=ae556816
+-/
 theorem siegelWalfiszStripDenominator_pos (B K : ℝ) (hB : 0 < B) (hK : 0 < K) :
     0 < siegelWalfiszStripDenominator B K := by
   have hC := zeroFreeLogConstant_pos
@@ -31,6 +34,9 @@ theorem siegelWalfiszStripDenominator_pos (B K : ℝ) (hB : 0 < B) (hK : 0 < K) 
   unfold siegelWalfiszStripDenominator
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s5.b9651623813f from=translated src=- shape=1b4cbc0d vocab=cc43808c
+-/
 theorem siegelWalfiszStripWidthConstant_pos (B K d : ℝ)
     (hB : 0 < B) (hK : 0 < K) (hd : 0 < d) :
     0 < siegelWalfiszStripWidthConstant B K d := by
@@ -39,7 +45,9 @@ theorem siegelWalfiszStripWidthConstant_pos (B K d : ℝ)
   positivity
 
 /-- The logarithmic denominator is at most a fixed multiple of `L^(1/2)`.
-The added height margin two is included before taking the logarithm.-/
+The added height margin two is included before taking the logarithm.
+@isnad1 id=le.5h4v.s7.274d9ce462a9 from=translated src=- shape=81b5232a vocab=d9c2955c
+-/
 theorem primitiveLogZeroFreeWidth_polylog_lower_bound (B K L : ℝ)
     (hB : 0 < B) (hK : 0 < K) (hL : 1 ≤ L)
     (q : ℕ) (hq : 1 ≤ q) (hqL : (q : ℝ) ≤ L ^ B) :
@@ -89,7 +97,9 @@ theorem primitiveLogZeroFreeWidth_polylog_lower_bound (B K L : ℝ)
       ring
     _ ≤ _ := one_div_le_one_div_of_le hden0 hden
 
-/-- The choice `ε=1/(2B)` cancels the conductor exponent exactly.-/
+/-- The choice `ε=1/(2B)` cancels the conductor exponent exactly.
+@isnad1 id=le.4h3v.s7.1cd56fa8404b from=translated src=- shape=9ce19b6a vocab=483ba5e0
+-/
 theorem polylog_conductor_power_gap_lower_bound (B L : ℝ)
     (hB : 0 < B) (hL : 1 ≤ L) (q : ℕ) (hq : 1 ≤ q)
     (hqL : (q : ℝ) ≤ L ^ B) :
@@ -103,7 +113,9 @@ theorem polylog_conductor_power_gap_lower_bound (B L : ℝ)
     field_simp
   rwa [he] at h
 
-/-- A pointwise estimate whenever the logarithmic variable is at least one.-/
+/-- A pointwise estimate whenever the logarithmic variable is at least one.
+@isnad1 id=le.6h5v.s7.b52917a4c060 from=translated src=- shape=dd7d6d58 vocab=2bea8b66
+-/
 theorem siegelWalfiszStripWidthConstant_mul_rpow_le
     (B K d L : ℝ) (hB : 0 < B) (hK : 0 < K) (hd : 0 < d) (hL : 1 ≤ L)
     (q : ℕ) (hq : 1 ≤ q) (hqL : (q : ℝ) ≤ L ^ B) :
@@ -129,7 +141,9 @@ theorem siegelWalfiszStripWidthConstant_mul_rpow_le
   nlinarith
 
 /-- Uniformity over the full polylogarithmic conductor family, with no
-additional asymptotic or prime-distribution hypothesis.-/
+additional asymptotic or prime-distribution hypothesis.
+@isnad1 id=ex.3h3v.s7.91fb35b17d78 from=translated src=- shape=1a606ba7 vocab=dd14fc3b
+-/
 theorem exists_siegelWalfisz_stripWidth_lower_bound (B K d : ℝ)
     (hB : 0 < B) (hK : 0 < K) (hd : 0 < d) :
     ∃ k : ℝ, 0 < k ∧ ∀ᶠ x : ℝ in atTop, ∀ q : ℕ,

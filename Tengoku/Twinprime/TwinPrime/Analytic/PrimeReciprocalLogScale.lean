@@ -61,6 +61,9 @@ private theorem continuousOn_logScaleDerivative
   exact ((hg.comp hc (fun y hy => logScale_mem hL huv hy)).div_const _).div
     continuousOn_id (fun y hy => (hypos y hy).ne')
 
+/--
+@isnad1 id=eq.3h4v.s6.bec2f9bdefc5 from=translated src=- shape=fa9a92bd vocab=81a8b7c9
+-/
 theorem integral_logScaleTestFunction_div
     {g : ℝ → ℝ} {L u v : ℝ} (hL : 0 < L) (huv : u ≤ v)
     (hg : ContinuousOn g (Set.Icc u v)) :
@@ -92,6 +95,9 @@ theorem integral_logScaleTestFunction_div
   simp only [Function.comp_apply, logScaleTestFunction]
   ring
 
+/--
+@isnad1 id=le.5h5v.s8.76047590810e from=translated src=- shape=579596c5 vocab=16ca3542
+-/
 theorem abs_logScaleTestFunction_variation_le
     {g : ℝ → ℝ} {L u v K : ℝ} (hL : 0 < L) (huv : u ≤ v)
     (hg_diff : ∀ t ∈ Set.Icc u v, DifferentiableAt ℝ g t)
@@ -135,7 +141,9 @@ theorem abs_logScaleTestFunction_variation_le
       field_simp
 
 /-- Finite, exact-floor version of centered Abel summation for a logarithmic
-test function. Both signs of the derivative are allowed.-/
+test function. Both signs of the derivative are allowed.
+@isnad1 id=le.7h8v.s8.104939fe40e0 from=translated src=- shape=9e549e09 vocab=83abc2b7
+-/
 theorem abs_logScale_primeReciprocal_error_le
     {g : ℝ → ℝ} {L u v : ℝ} (hL : 0 < L) (huv : u ≤ v)
     (hg_diff : ∀ t ∈ Set.Icc u v, DifferentiableAt ℝ g t)

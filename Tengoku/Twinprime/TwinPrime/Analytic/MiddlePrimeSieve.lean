@@ -48,12 +48,18 @@ def middlePrimeSieve (q X z : ℕ) (hz : 1 ≤ z) : SelbergSieve where
     have hz' : (1 : ℝ) ≤ z := by exact_mod_cast hz
     nlinarith
 
+/--
+@isnad1 id=coprime.3h3v.s4.ac13183f4db4 from=translated src=- shape=4848f6e8 vocab=499d9dcc
+-/
 theorem prime_coprime_of_dvd_oddPrimorial (q z d : ℕ) (hq : q.Prime)
     (hzq : z < q) (hd : d ∣ oddPrimorial z) : q.Coprime d := by
   apply hq.coprime_iff_not_dvd.mpr
   intro hqd
   exact (not_lt_of_ge ((prime_dvd_oddPrimorial_iff hq).mp (hqd.trans hd)).2) hzq
 
+/--
+@isnad1 id=eq.2h4v.s6.900211292b03 from=translated src=- shape=657c4158 vocab=27e9b27e
+-/
 theorem middlePrimeSieve_multSum (q X z d : ℕ) (hz : 1 ≤ z)
     (hqd : q.Coprime d) :
     (middlePrimeSieve q X z hz).multSum d =
@@ -80,9 +86,15 @@ def middlePrimeInputs (q W X : ℕ) : Finset ℕ := by
 def middlePrimeSlice (q W X : ℕ) : ℝ :=
   ∑ n ∈ middlePrimeInputs q W X, vonMangoldt (n + 2) * primeVaughanBeta W (n / q)
 
+/--
+@isnad1 id=le.0h3v.s4.6819370d9310 from=translated src=- shape=1995cd38 vocab=3f7269a9
+-/
 theorem middlePrimeSlice_nonneg (q W X : ℕ) : 0 ≤ middlePrimeSlice q W X :=
   sum_nonneg fun n _ => mul_nonneg vonMangoldt_nonneg (primeVaughanBeta_nonneg W (n / q))
 
+/--
+@isnad1 id=coprime.4h5v.s5.2ee28645cc4f from=translated src=- shape=460fccae vocab=24c416f1
+-/
 theorem coprime_oddPrimorial_of_middlePrimeInputs (q W X z n : ℕ)
     (hq : q.Prime) (hzq : z < q) (hzW : z ≤ W)
     (hn : n ∈ middlePrimeInputs q W X) : (oddPrimorial z).Coprime n := by
@@ -101,7 +113,9 @@ theorem coprime_oddPrimorial_of_middlePrimeInputs (q W X z n : ℕ)
   exact False.elim ((not_lt_of_ge (hpz.trans hzW)) (hrough p hp hpquot))
 
 /-- The whole beta-weighted class is bounded by the enlarged sifted set.
-The quotient need not be prime, semiprime, or squarefree.-/
+The quotient need not be prime, semiprime, or squarefree.
+@isnad1 id=le.5h4v.s6.3520ac76b685 from=translated src=- shape=3f74fbfa vocab=deb2921f
+-/
 theorem middlePrimeSlice_le_siftedSum (q W X z : ℕ) (hz : 1 ≤ z)
     (hq : q.Prime) (hzq : z < q) (hzW : z ≤ W) (hqX : q ≤ 2 * X) :
     middlePrimeSlice q W X ≤ Real.log ((2 * X : ℝ) / q) *
@@ -142,7 +156,9 @@ theorem middlePrimeSlice_le_siftedSum (q W X z : ℕ) (hz : 1 ≤ z)
     exact mul_nonneg hL (by split_ifs <;> positivity)
 
 /-- The grouped Vaughan coefficient has exactly the claimed negative mass
-on this class; this does not assert a bound for its complement.-/
+on this class; this does not assert a bound for its complement.
+@isnad1 id=eq.4h4v.s6.e9ed2504d913 from=translated src=- shape=b2f525a7 vocab=03368983
+-/
 theorem middlePrimeSlice_eq_neg_bilinear (U q W X : ℕ)
     (hU : 1 ≤ U) (hq : q.Prime) (hUq : U < q) (hqW : q ≤ W) :
     (∑ n ∈ middlePrimeInputs q W X,
@@ -162,7 +178,9 @@ theorem middlePrimeSlice_eq_neg_bilinear (U q W X : ℕ)
   rw [hcoeff]
   ring
 
-/-- Two different primes cannot both be the complete smooth part.-/
+/-- Two different primes cannot both be the complete smooth part.
+@isnad1 id=disjoint.4h4v.s5.1fdf43a989ad from=translated src=- shape=dda1650e vocab=12234af7
+-/
 theorem middlePrimeInputs_disjoint (q r W X : ℕ) (hq : q.Prime) (hr : r.Prime)
     (hrW : r ≤ W) (hqr : q ≠ r) :
     Disjoint (middlePrimeInputs q W X) (middlePrimeInputs r W X) := by
@@ -181,6 +199,9 @@ theorem middlePrimeInputs_disjoint (q r W X : ℕ) (hq : q.Prime) (hr : r.Prime)
 def middlePrimeMass (U W X : ℕ) : ℝ :=
   ∑ q ∈ Ioc U W with q.Prime, middlePrimeSlice q W X
 
+/--
+@isnad1 id=le.0h3v.s4.2c44851813ce from=translated src=- shape=1995cd38 vocab=47244be0
+-/
 theorem middlePrimeMass_nonneg (U W X : ℕ) : 0 ≤ middlePrimeMass U W X :=
   sum_nonneg fun q _ => middlePrimeSlice_nonneg q W X
 

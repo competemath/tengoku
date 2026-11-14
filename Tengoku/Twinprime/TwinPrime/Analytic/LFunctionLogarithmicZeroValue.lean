@@ -16,6 +16,9 @@ noncomputable section
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=le.1h2v.s5.d159abefef82 from=translated src=- shape=3dffdaab vocab=8798bc40
+-/
 theorem primitiveLogZeroFreeWidth_le_one_div_log {q : ℕ}
     (hq : 1 < q) (t : ℝ) :
     primitiveLogZeroFreeWidth q t ≤ 1 / Real.log q := by
@@ -28,7 +31,9 @@ theorem primitiveLogZeroFreeWidth_le_one_div_log {q : ℕ}
     (by linarith : 0 ≤ 1 + Real.log (q : ℝ) + Real.log (|t| + 4))]
 
 /-- The actual value at one is bounded by the distance to any nearby real zero,
-with only a logarithmic-square loss.-/
+with only a logarithmic-square loss.
+@isnad1 id=le.4h3v.s7.661aebbff077 from=translated src=- shape=7b155ce1 vocab=140de6a9
+-/
 theorem norm_LFunction_one_le_log_sq_gap {q : ℕ} [NeZero q]
     (hq : 256 ≤ q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive)
     (β : ℝ) (hβ : 1 - 1 / Real.log q ≤ β)
@@ -44,6 +49,9 @@ theorem norm_LFunction_one_le_log_sq_gap {q : ℕ} [NeZero q]
   intro u hu
   exact norm_deriv_LFunction_near_one_le hq χ hχ u (hβ.trans hu.1) hu.2
 
+/--
+@isnad1 id=le.4h3v.s7.842c083c3086 from=translated src=- shape=8f8dcf71 vocab=140de6a9
+-/
 theorem real_zero_gap_ge_LFunction_one_div_log_sq {q : ℕ} [NeZero q]
     (hq : 256 ≤ q) (χ : DirichletCharacter ℂ q) (hχ : χ.IsPrimitive)
     (β : ℝ) (hβ : 1 - 1 / Real.log q ≤ β)

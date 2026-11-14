@@ -15,6 +15,9 @@ open Finset Filter
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=tendsto.3h3v.s7.3d1c3b6802a7 from=translated src=- shape=867f532b vocab=82691c21
+-/
 theorem MaximalBombieriVinogradov.tendsto_log_pow_mul_sum_error_div_of_power_level
     (hBV : MaximalBombieriVinogradov) (Q : ℕ → ℕ) (a : ℝ) (ha : a < 1 / 2)
     (hQ : ∀ᶠ X : ℕ in atTop, (Q X : ℝ) ≤ (X : ℝ) ^ a) (k : ℕ) :

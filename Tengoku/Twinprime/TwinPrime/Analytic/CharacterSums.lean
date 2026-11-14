@@ -23,9 +23,15 @@ def characterPsi {q : ℕ} (t : ℕ) (χ : DirichletCharacter ℂ q) : ℂ :=
 def noncoprimeMangoldtMass (t q : ℕ) : ℝ :=
   ∑ n ∈ Ioc 0 t with ¬ Nat.Coprime n q, vonMangoldt n
 
+/--
+@isnad1 id=le.0h2v.s4.2de71df57f06 from=translated src=- shape=5ffe46ab vocab=b4e1b820
+-/
 theorem noncoprimeMangoldtMass_nonneg (t q : ℕ) : 0 ≤ noncoprimeMangoldtMass t q :=
   sum_nonneg fun _ _ => vonMangoldt_nonneg
 
+/--
+@isnad1 id=eq.0h2v.s6.ef3d3ed6880d from=translated src=- shape=8f2ed2ca vocab=9fad0cfc
+-/
 theorem characterPsi_one (t q : ℕ) :
     characterPsi t (1 : DirichletCharacter ℂ q) =
       ((Chebyshev.psi (t : ℝ) - noncoprimeMangoldtMass t q : ℝ) : ℂ) := by
@@ -48,7 +54,9 @@ theorem characterPsi_one (t q : ℕ) :
   rw [hchar, ← heq]
   simp
 
-/-- Orthogonality retains all characters, including the principal one.-/
+/-- Orthogonality retains all characters, including the principal one.
+@isnad1 id=eq.2h3v.s7.7f53b544a951 from=translated src=- shape=e395b039 vocab=40caeb71
+-/
 theorem totient_mul_progressionPsi_eq_character_sum (t q a : ℕ)
     (hq : 0 < q) (ha : Nat.Coprime a q) :
     (Nat.totient q : ℂ) * (progressionPsi t q a : ℂ) =
@@ -78,6 +86,9 @@ theorem totient_mul_progressionPsi_eq_character_sum (t q a : ℕ)
       rw [← sum_filter, ← sum_mul]
       simp [progressionPsi, mul_comm]
 
+/--
+@isnad1 id=eq.2h3v.s7.9fa971fc88c9 from=translated src=- shape=19e2f9de vocab=47e6a070
+-/
 theorem progressionPsi_eq_character_sum (t q a : ℕ)
     (hq : 0 < q) (ha : Nat.Coprime a q) :
     (progressionPsi t q a : ℂ) =

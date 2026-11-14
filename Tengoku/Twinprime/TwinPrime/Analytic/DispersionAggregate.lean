@@ -22,9 +22,15 @@ def dispersionDiagonalSum (U V X : ℕ) (s : Finset (ℕ × ℕ)) : ℝ :=
   ∑ ij ∈ s, Real.sqrt (dispersionMass V (2 ^ ij.2) *
     dispersionDiagonal U V X (2 ^ ij.1) (2 ^ ij.2))
 
+/--
+@isnad1 id=le.0h4v.s4.4c654df65e80 from=translated src=- shape=f14d7cc0 vocab=dc81345d
+-/
 theorem dispersionDiagonalSum_nonneg (U V X : ℕ) (s : Finset (ℕ × ℕ)) :
     0 ≤ dispersionDiagonalSum U V X s := sum_nonneg fun _ _ => Real.sqrt_nonneg _
 
+/--
+@isnad1 id=le.6h5v.s7.96878ad81b5e from=translated src=- shape=1f3f3d3c vocab=c6c648c9
+-/
 theorem dispersion_diagonal_sqrt_div_le (U V X M N : ℕ)
     (hU : 1 ≤ U) (hX : 1 ≤ X) (hM : 1 ≤ M) (hN : 1 ≤ N)
     (hUM : U ≤ 2 * M) (hMN : M * N ≤ 2 * X) :
@@ -34,6 +40,9 @@ theorem dispersion_diagonal_sqrt_div_le (U V X M N : ℕ)
   rwa [Real.sqrt_div (mul_nonneg (dispersionMass_nonneg V N)
     (dispersionDiagonal_nonneg U V X M N)), Real.sqrt_sq (Nat.cast_nonneg X)] at h
 
+/--
+@isnad1 id=le.3h4v.s8.fbded2b371eb from=translated src=- shape=078f7d96 vocab=83868d8a
+-/
 theorem dispersionDiagonalSum_div_le (U V X : ℕ) (s : Finset (ℕ × ℕ))
     (hU : 1 ≤ U) (hX : 1 ≤ X)
     (hs : ∀ ij ∈ s, U ≤ 2 * 2 ^ ij.1 ∧ 2 ^ ij.1 * 2 ^ ij.2 ≤ 2 * X) :
@@ -52,7 +61,9 @@ theorem dispersionDiagonalSum_div_le (U V X : ℕ) (s : Finset (ℕ × ℕ))
     _ = _ := by simp
 
 /-- Uniform control of the complete growing family, not a pointwise limit
-with one pair of side lengths fixed in advance.-/
+with one pair of side lengths fixed in advance.
+@isnad1 id=tendsto.2h2v.s8.3c55f16107a5 from=translated src=- shape=cc69df34 vocab=a809a36a
+-/
 theorem tendsto_primary_dispersion_diagonal_sum (s : ℕ → Finset (ℕ × ℕ)) (k : ℕ)
     (hcard : ∀ᶠ X : ℕ in atTop, (s X).card ≤ (dyadicNatDepth (2 * X)) ^ 2)
     (hrange : ∀ᶠ X : ℕ in atTop, ∀ ij ∈ s X,

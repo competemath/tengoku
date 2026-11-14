@@ -26,6 +26,9 @@ namespace TwinPrime.Sieve
 
 /-! ### Products of pairwise coprime divisors -/
 
+/--
+@isnad1 id=dvd.2h4v.s6.f6e835ef55e8 from=translated src=- shape=44b43c2e vocab=6539012f
+-/
 theorem prod_dvd_of_pairwise_coprime {ι : Type*} [DecidableEq ι] (s : Finset ι) (D : ι → ℕ)
     (n : ℕ) (hcop : (s : Set ι).Pairwise (Function.onFun Nat.Coprime D)) (hdvd : ∀ i ∈ s, D i ∣ n) :
     ∏ i ∈ s, D i ∣ n := by
@@ -45,6 +48,9 @@ theorem prod_dvd_of_pairwise_coprime {ι : Type*} [DecidableEq ι] (s : Finset �
 
 variable {P r : ℕ}
 
+/--
+@isnad1 id=pairwise.1h4v.s5.84dc7383eb4e from=translated src=- shape=b2b87cfd vocab=ff948cdd
+-/
 theorem Blocks.pairwise_coprime_of_dvd (B : Blocks P r) (D : Fin r → ℕ)
     (hD : ∀ j, D j ∣ B.block j) : Pairwise (Function.onFun Nat.Coprime D) := by
   intro i j hij
@@ -57,8 +63,14 @@ theorem Blocks.pairwise_coprime_of_dvd (B : Blocks P r) (D : Fin r → ℕ)
 def blockSumF (Pj : ℕ) (f : ℕ → ℝ) (n : ℕ) : ℝ :=
   ∑ d ∈ Pj.divisors, if d ∣ n then f d else 0
 
+/--
+@isnad1 id=eq.0h3v.s4.d00baeab7078 from=translated src=- shape=20f68adb vocab=567b4d77
+-/
 theorem blockSum_eq_blockSumF (Pj m n : ℕ) : blockSum Pj m n = blockSumF Pj (truncMoebius m) n := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.fb38466d87f3 from=translated src=- shape=c2933105 vocab=8e45924b
+-/
 theorem blockSumF_sub (Pj : ℕ) (f g : ℕ → ℝ) (n : ℕ) :
     blockSumF Pj f n - blockSumF Pj g n = blockSumF Pj (fun d => f d - g d) n := by
   unfold blockSumF
@@ -67,7 +79,9 @@ theorem blockSumF_sub (Pj : ℕ) (f g : ℕ → ℝ) (n : ℕ) :
   intro d _
   split_ifs <;> simp
 
-/-- **Expansion**: `∑_n a_n ∏_j blockSumF (P_j) (f j) n = ∑_D (∏_j f j (D j)) · A_{∏ D}`.-/
+/-- **Expansion**: `∑_n a_n ∏_j blockSumF (P_j) (f j) n = ∑_D (∏_j f j (D j)) · A_{∏ D}`.
+@isnad1 id=eq.0h4v.s7.7bdf1bfc0014 from=translated src=- shape=a97fc279 vocab=89fd9789
+-/
 theorem sum_weights_prod_blockSumF (s : BoundingSieve) (B : Blocks s.prodPrimes r)
     (f : Fin r → ℕ → ℝ) :
     ∑ n ∈ s.support, s.weights n * ∏ j, blockSumF (B.block j) (f j) n =
@@ -102,7 +116,9 @@ theorem sum_weights_prod_blockSumF (s : BoundingSieve) (B : Blocks s.prodPrimes 
     rw [prod_eq_zero (mem_univ j) (ite_eq_right hj)]
     ring
 
-/-- The main term factorises over blocks.-/
+/-- The main term factorises over blocks.
+@isnad1 id=eq.0h4v.s7.4dfa02d4526b from=translated src=- shape=02f7cfdb vocab=c64881e3
+-/
 theorem sum_prod_mul_nu (s : BoundingSieve) (B : Blocks s.prodPrimes r) (f : Fin r → ℕ → ℝ) :
     ∑ D ∈ Fintype.piFinset (fun j => (B.block j).divisors),
         (∏ j, f j (D j)) * s.nu (∏ j, D j) =
@@ -122,6 +138,9 @@ def defect (k : Fin r → ℕ) (j : Fin r) : Fin r → ℕ → ℝ := fun i d =>
   if i = j then truncMoebius (2 * k j) d - truncMoebius (2 * k j + 1) d
   else truncMoebius (2 * k i) d
 
+/--
+@isnad1 id=eq.0h6v.s7.eaa9fbdde62e from=translated src=- shape=85a4ff17 vocab=181fb296
+-/
 theorem prod_blockSumF_defect (B : Blocks P r) (k : Fin r → ℕ) (j : Fin r) (n : ℕ) :
     ∏ i, blockSumF (B.block i) (defect k j i) n =
       (blockSum (B.block j) (2 * k j) n - blockSum (B.block j) (2 * k j + 1) n) *
@@ -141,7 +160,9 @@ theorem prod_blockSumF_defect (B : Blocks P r) (k : Fin r → ℕ) (j : Fin r) (
     ext d
     simp [hij]
 
-/-- **The Brun–Hooley sieve inequality** (expanded over block divisors).-/
+/-- **The Brun–Hooley sieve inequality** (expanded over block divisors).
+@isnad1 id=le.0h4v.s7.49cf6b5edafb from=translated src=- shape=63118127 vocab=2d00a122
+-/
 theorem siftedSum_ge_brunHooley (s : BoundingSieve) (B : Blocks s.prodPrimes r) (k : Fin r → ℕ) :
     ∑ D ∈ Fintype.piFinset (fun j => (B.block j).divisors),
         (∏ j, truncMoebius (2 * k j) (D j)) * s.multSum (∏ j, D j) -

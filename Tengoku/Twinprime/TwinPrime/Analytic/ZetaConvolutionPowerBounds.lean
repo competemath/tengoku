@@ -17,7 +17,9 @@ open Finset
 
 namespace TwinPrime.Analytic
 
-/-- The strip with constant outer coefficients costs a reciprocal-power sum.-/
+/-- The strip with constant outer coefficients costs a reciprocal-power sum.
+@isnad1 id=le.5h4v.s8.d3de0637834d from=translated src=- shape=aa9aa18b vocab=1c202b86
+-/
 theorem norm_zeta_convolution_power_strip_le (f : ArithmeticFunction ℂ)
     (C : ℝ) (hC : 0 ≤ C)
     (hA : ∀ u : ℝ, 1 ≤ u → ‖complexArithmeticSummatory f u‖ ≤ C * u ^ (3 / 4 : ℝ))
@@ -46,7 +48,9 @@ theorem norm_zeta_convolution_power_strip_le (f : ArithmeticFunction ℂ)
       mul_le_mul_of_nonneg_left hrec (by positivity)
     _ = _ := by ring
 
-/-- The overlap keeps the natural floor coefficient and the real inner cutoff.-/
+/-- The overlap keeps the natural floor coefficient and the real inner cutoff.
+@isnad1 id=le.4h4v.s7.fb50abceb937 from=translated src=- shape=91742a50 vocab=b0a69499
+-/
 theorem natFloor_mul_norm_complexArithmeticSummatory_le (f : ArithmeticFunction ℂ)
     (C : ℝ) (hC : 0 ≤ C)
     (hA : ∀ u : ℝ, 1 ≤ u → ‖complexArithmeticSummatory f u‖ ≤ C * u ^ (3 / 4 : ℝ))
@@ -60,7 +64,9 @@ theorem natFloor_mul_norm_complexArithmeticSummatory_le (f : ArithmeticFunction 
         (mul_nonneg hC (Real.rpow_nonneg (by linarith) _))
     _ = _ := by ring
 
-/-- Flooring a positive real tail cutoff costs at most a factor two.-/
+/-- Flooring a positive real tail cutoff costs at most a factor two.
+@isnad1 id=le.1h1v.s6.b737fd77adbf from=translated src=- shape=95adc12a vocab=ba6d5b61
+-/
 theorem natFloor_rpow_neg_quarter_le (y : ℝ) (hy : 1 ≤ y) :
     (⌊y⌋₊ : ℝ) ^ (-(1 / 4 : ℝ)) ≤ 2 * y ^ (-(1 / 4 : ℝ)) := by
   have hy0 : 0 ≤ y := by linarith

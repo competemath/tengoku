@@ -18,6 +18,9 @@ open Finset
 
 namespace TwinPrime.Analytic
 
+/--
+@isnad1 id=le.2h2v.s6.71329053762d from=translated src=- shape=04c177a2 vocab=1c652f2b
+-/
 theorem sum_Ioc_rpow_neg_le (N : ℕ) (α : ℝ) (hα : 0 ≤ α) (hα1 : α < 1) :
     (∑ n ∈ Ioc 0 N, (n : ℝ) ^ (-α)) ≤ (N : ℝ) ^ (1 - α) / (1 - α) := by
   by_cases hN : N = 0
@@ -52,6 +55,9 @@ theorem sum_Ioc_rpow_neg_le (N : ℕ) (α : ℝ) (hα : 0 ≤ α) (hα1 : α < 1
       field_simp
       linarith
 
+/--
+@isnad1 id=le.3h2v.s6.dcaa97c76db2 from=translated src=- shape=100a4214 vocab=42977d57
+-/
 theorem sum_Ioc_natFloor_rpow_neg_le (x : ℝ) (hx : 0 ≤ x)
     (α : ℝ) (hα : 0 ≤ α) (hα1 : α < 1) :
     (∑ n ∈ Ioc 0 ⌊x⌋₊, (n : ℝ) ^ (-α)) ≤ x ^ (1 - α) / (1 - α) := by
@@ -59,6 +65,9 @@ theorem sum_Ioc_natFloor_rpow_neg_le (x : ℝ) (hx : 0 ≤ x)
   exact div_le_div_of_nonneg_right
     (Real.rpow_le_rpow (Nat.cast_nonneg _) (Nat.floor_le hx) (by linarith)) (by linarith)
 
+/--
+@isnad1 id=le.1h1v.s6.08273e19bb26 from=translated src=- shape=95609d2c vocab=4260ba39
+-/
 theorem sum_Ioc_natFloor_one_div_sqrt_le (x : ℝ) (hx : 0 ≤ x) :
     (∑ n ∈ Ioc 0 ⌊x⌋₊, 1 / Real.sqrt (n : ℝ)) ≤ 2 * Real.sqrt x := by
   have h := sum_Ioc_natFloor_rpow_neg_le x hx (1 / 2) (by norm_num) (by norm_num)
@@ -66,6 +75,9 @@ theorem sum_Ioc_natFloor_one_div_sqrt_le (x : ℝ) (hx : 0 ≤ x) :
   simp_rw [Real.rpow_neg (Nat.cast_nonneg _), ← Real.sqrt_eq_rpow] at h
   convert h using 1 <;> norm_num [div_eq_mul_inv, mul_comm]
 
+/--
+@isnad1 id=le.0h1v.s5.bded66cc872a from=translated src=- shape=e5ed4a91 vocab=eb76f83a
+-/
 theorem sum_Ioc_one_div_sqrt_le (N : ℕ) :
     (∑ n ∈ Ioc 0 N, 1 / Real.sqrt (n : ℝ)) ≤ 2 * Real.sqrt (N : ℝ) := by
   simpa only [Nat.floor_natCast] using

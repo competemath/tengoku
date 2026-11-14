@@ -21,7 +21,9 @@ open Finset
 namespace TwinPrime.Analytic
 
 /-- The elementary Euler product is bounded by the full harmonic sum.
-The empty product for modulus one is included.-/
+The empty product for modulus one is included.
+@isnad1 id=le.1h1v.s5.97cbc9d435db from=translated src=- shape=8cd792f4 vocab=85ab194b
+-/
 theorem prod_one_add_inv_primeFactors_le_harmonic (N : ℕ) (hN : 0 < N) :
     (∏ p ∈ N.primeFactors, (1 + (p : ℝ)⁻¹)) ≤ harmonic N := by
   classical
@@ -58,12 +60,16 @@ theorem prod_one_add_inv_primeFactors_le_harmonic (N : ℕ) (hN : 0 < N) :
     _ = harmonic N := by
       simp only [harmonic_eq_sum_Icc, Rat.cast_sum, Rat.cast_inv, Rat.cast_natCast]
 
-/-- The logarithmic bound has constant one and no power of the modulus.-/
+/-- The logarithmic bound has constant one and no power of the modulus.
+@isnad1 id=le.1h1v.s5.db5a0ce279a0 from=translated src=- shape=af917ad1 vocab=b280eab3
+-/
 theorem prod_one_add_inv_primeFactors_le_one_add_log (N : ℕ) (hN : 0 < N) :
     (∏ p ∈ N.primeFactors, (1 + (p : ℝ)⁻¹)) ≤ 1 + Real.log N :=
   (prod_one_add_inv_primeFactors_le_harmonic N hN).trans (harmonic_le_one_add_log N)
 
-/-- The actual Euler multiplier at one, for an arbitrary inducing character.-/
+/-- The actual Euler multiplier at one, for an arbitrary inducing character.
+@isnad1 id=le.1h3v.s7.8deaa6b3e109 from=translated src=- shape=c3065d05 vocab=612573fb
+-/
 theorem norm_characterEulerMultiplier_one_le {M : ℕ} (χ : DirichletCharacter ℂ M)
     (N : ℕ) (hN : 0 < N) :
     ‖∏ p ∈ N.primeFactors, (1 - χ p * (p : ℂ) ^ (-(1 : ℂ)))‖ ≤
@@ -82,7 +88,9 @@ theorem norm_characterEulerMultiplier_one_le {M : ℕ} (χ : DirichletCharacter 
       simpa only [one_mul] using add_le_add_right h 1
 
 /-- At one, a nonprincipal inducing character loses only a logarithmic
-factor when moved to a larger positive modulus.-/
+factor when moved to a larger positive modulus.
+@isnad1 id=le.2h3v.s8.7272a632728f from=translated src=- shape=a94f4757 vocab=6d14f534
+-/
 theorem norm_LFunction_changeLevel_one_le {M N : ℕ} [NeZero M] [NeZero N]
     (hMN : M ∣ N) (χ : DirichletCharacter ℂ M) (hχ : χ ≠ 1) :
     ‖DirichletCharacter.LFunction (χ.changeLevel hMN) 1‖ ≤
@@ -92,14 +100,18 @@ theorem norm_LFunction_changeLevel_one_le {M N : ℕ} [NeZero M] [NeZero N]
     (norm_characterEulerMultiplier_one_le χ N (NeZero.pos N)) (norm_nonneg _)
 
 /-- An actual zero of the inducing L-function remains a zero at the larger
-level. The value at the possible principal pole is explicitly excluded.-/
+level. The value at the possible principal pole is explicitly excluded.
+@isnad1 id=eq.3h4v.s8.185ae2d91bab from=translated src=- shape=6f3c8874 vocab=5291108a
+-/
 theorem LFunction_changeLevel_eq_zero_of_eq_zero {M N : ℕ} [NeZero M] [NeZero N]
     (hMN : M ∣ N) (χ : DirichletCharacter ℂ M) (s : ℂ) (hs : s ≠ 1)
     (hzero : DirichletCharacter.LFunction χ s = 0) :
     DirichletCharacter.LFunction (χ.changeLevel hMN) s = 0 := by
   rw [DirichletCharacter.LFunction_changeLevel hMN χ (Or.inr hs), hzero, zero_mul]
 
-/-- A prime Euler factor is nonzero throughout the positive half-plane.-/
+/-- A prime Euler factor is nonzero throughout the positive half-plane.
+@isnad1 id=ne.2h4v.s7.8769c5cd103b from=translated src=- shape=a16157e6 vocab=8eac65f4
+-/
 theorem characterEulerFactor_ne_zero_of_re_pos {M : ℕ}
     (χ : DirichletCharacter ℂ M) (p : ℕ) (hp : p.Prime)
     (s : ℂ) (hs : 0 < s.re) :
@@ -121,7 +133,9 @@ theorem characterEulerFactor_ne_zero_of_re_pos {M : ℕ}
   exact lt_irrefl _ hratio
 
 /-- No Euler multiplier introduces a zero in the positive half-plane.
-This finite statement includes the empty prime-factor set.-/
+This finite statement includes the empty prime-factor set.
+@isnad1 id=ne.1h4v.s7.d53091da80d6 from=translated src=- shape=5d4b0fae vocab=be9f4e88
+-/
 theorem characterEulerMultiplier_ne_zero_of_re_pos {M : ℕ}
     (χ : DirichletCharacter ℂ M) (N : ℕ) (s : ℂ) (hs : 0 < s.re) :
     (∏ p ∈ N.primeFactors, (1 - χ p * (p : ℂ) ^ (-s))) ≠ 0 := by
@@ -131,7 +145,9 @@ theorem characterEulerMultiplier_ne_zero_of_re_pos {M : ℕ}
     (Nat.prime_of_mem_primeFactors hp) s hs
 
 /-- Away from the possible principal pole, induction preserves precisely
-the actual zeros in the positive half-plane.-/
+the actual zeros in the positive half-plane.
+@isnad1 id=iff.3h4v.s8.2b7e501ef5e5 from=translated src=- shape=a6104331 vocab=c045eca7
+-/
 theorem LFunction_changeLevel_eq_zero_iff_of_re_pos
     {M N : ℕ} [NeZero M] [NeZero N] (hMN : M ∣ N)
     (χ : DirichletCharacter ℂ M) (s : ℂ) (hs : s ≠ 1) (hre : 0 < s.re) :

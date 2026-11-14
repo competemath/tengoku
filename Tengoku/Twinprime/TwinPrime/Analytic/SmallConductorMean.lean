@@ -20,7 +20,9 @@ open Finset Classical
 namespace TwinPrime.Analytic
 
 /-- At a positive conductor, exact character counting cancels the totient
-denominator in a uniform centered-character bound.-/
+denominator in a uniform centered-character bound.
+@isnad1 id=le.3h3v.s6.3934d135e149 from=translated src=- shape=286a8d21 vocab=9044284b
+-/
 theorem primitiveCharacterMass_div_totient_le (T r : ℕ) (hr : 0 < r)
     (E : ℝ) (hE : 0 ≤ E)
     (hχ : ∀ χ : DirichletCharacter ℂ r, χ.IsPrimitive → characterMaxError T χ ≤ E) :
@@ -38,7 +40,9 @@ theorem primitiveCharacterMass_div_totient_le (T r : ℕ) (hr : 0 < r)
     _ = _ := mul_comm _ _
 
 /-- A uniform bound on all primitive centered maxima through `R₀` controls
-the small-conductor sum at every modulus limit, including zero cutoffs.-/
+the small-conductor sum at every modulus limit, including zero cutoffs.
+@isnad1 id=le.2h4v.s6.1ab8de57871a from=translated src=- shape=25b61398 vocab=4c31afc5
+-/
 theorem sum_small_primitiveCharacterMass_le (T R₀ Q : ℕ) (E : ℝ) (hE : 0 ≤ E)
     (hsmall : ∀ r ∈ Icc 1 R₀, ∀ χ : DirichletCharacter ℂ r,
       χ.IsPrimitive → characterMaxError T χ ≤ E) :
