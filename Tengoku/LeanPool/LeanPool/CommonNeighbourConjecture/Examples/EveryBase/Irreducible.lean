@@ -20,7 +20,7 @@ is idempotent.  Maschke's theorem then proves irreducibility.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace SaxlCounterexamples.EveryBase
@@ -678,3 +678,4 @@ theorem hq_irreducible (d : Nat) (hd : Odd d) :
     exact LinearMap.range_id
 
 end SaxlCounterexamples.EveryBase
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

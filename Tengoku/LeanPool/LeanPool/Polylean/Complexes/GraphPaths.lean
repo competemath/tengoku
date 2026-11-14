@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.Polylean
 
 /-- A graph with directed edges, distinguished null edge, and edge reversal. -/
@@ -605,3 +605,4 @@ instance htSemigroup {G : Graph V E} {x : V} : Semigroup (ht G x x) where
   mul_one := ht_right_identity
 
 end LeanPool.Polylean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

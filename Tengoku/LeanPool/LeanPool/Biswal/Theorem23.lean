@@ -17,7 +17,7 @@ Dyck-path counting model.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Biswal.Theorem23
 
 /-! ## Definition 1: Chebyshev-type polynomials -/
@@ -1189,3 +1189,4 @@ theorem thm_manifest_coeff_nonneg (m μ : ℕ) {s : ℕ}
     thm_manifest_D_nonneg m _ _ _ hm (h_bound ν).1 (h_bound ν).2.1 (h_bound ν).2.2
 
 end Biswal.Theorem23
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

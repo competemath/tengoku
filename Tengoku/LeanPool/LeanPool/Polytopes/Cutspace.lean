@@ -13,18 +13,18 @@ Cut spaces obtained by intersecting collections of halfspaces.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Module
 
 variable {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]
 
 /-- The cut space of a set of halfspaces: the intersection of all of them. -/
-def cutSpace (H_ : Set (Halfspace E)) : Set E := ⋂₀ (SetLike.coe '' H_)
+def _root_.Tengoku.LeanPool.cutSpace (H_ : Set (Halfspace E)) : Set E := ⋂₀ (SetLike.coe '' H_)
 
 /--
 @isnad1 id=convex.0h2v.s6.2972b54cc6e3 from=translated src=- shape=326da679 vocab=3e5ba06c
 -/
-lemma Convex_cutSpace (H_ : Set (Halfspace E)) : Convex ℝ (cutSpace H_) := by
+lemma _root_.Tengoku.LeanPool.Convex_cutSpace (H_ : Set (Halfspace E)) : Convex ℝ (cutSpace H_) := by
   apply convex_sInter
   rintro _ ⟨ Hi_, _, rfl ⟩
   exact Halfspace_convex Hi_
@@ -32,7 +32,7 @@ lemma Convex_cutSpace (H_ : Set (Halfspace E)) : Convex ℝ (cutSpace H_) := by
 /--
 @isnad1 id=isclosed.0h2v.s5.a6b7e4b09335 from=translated src=- shape=743a83fe vocab=b7f1f4e1
 -/
-lemma Closed_cutSpace (H_ : Set (Halfspace E)) : IsClosed (cutSpace H_) := by
+lemma _root_.Tengoku.LeanPool.Closed_cutSpace (H_ : Set (Halfspace E)) : IsClosed (cutSpace H_) := by
   apply isClosed_sInter
   rintro _ ⟨ Hi_, _, rfl ⟩
   exact Halfspace_closed Hi_
@@ -40,7 +40,7 @@ lemma Closed_cutSpace (H_ : Set (Halfspace E)) : IsClosed (cutSpace H_) := by
 /--
 @isnad1 id=iff.0h3v.s8.641ee0360838 from=translated src=- shape=5026a876 vocab=f1cae5aa
 -/
-lemma mem_cutSpace (H_ : Set (Halfspace E)) (x : E) :
+lemma _root_.Tengoku.LeanPool.mem_cutSpace (H_ : Set (Halfspace E)) (x : E) :
   x ∈ cutSpace H_ ↔ ∀ Hi, Hi ∈ H_ → Hi.f.1 x ≤ Hi.α := by
   constructor <;> intro h
   · -- 1.
@@ -59,7 +59,7 @@ lemma mem_cutSpace (H_ : Set (Halfspace E)) (x : E) :
 /--
 @isnad1 id=ex.1h1v.s6.8cfc0870307c from=translated src=- shape=419647a8 vocab=efa94475
 -/
-lemma empty_cutSpace (h : ∃ x : E, x ≠ 0) : ∃ (H_ : Set (Halfspace E)), cutSpace H_ = ∅ := by
+lemma _root_.Tengoku.LeanPool.empty_cutSpace (h : ∃ x : E, x ≠ 0) : ∃ (H_ : Set (Halfspace E)), cutSpace H_ = ∅ := by
   rcases h with ⟨ x, hx ⟩
   let xhat := (norm x)⁻¹ • x
   let fval : StrongDual ℝ E := InnerProductSpace.toDualMap ℝ _ xhat
@@ -82,7 +82,7 @@ lemma empty_cutSpace (h : ∃ x : E, x ≠ 0) : ∃ (H_ : Set (Halfspace E)), cu
 /--
 @isnad1 id=ex.0h3v.s8.cda5bdaac46d from=translated src=- shape=c899ed1c vocab=3a2184f4
 -/
-lemma hyperplane_cutSpace (f : {f : (StrongDual ℝ E) // norm f = 1}) (c : ℝ) :
+lemma _root_.Tengoku.LeanPool.hyperplane_cutSpace (f : {f : (StrongDual ℝ E) // norm f = 1}) (c : ℝ) :
   ∃ (H_ : Set (Halfspace E)), cutSpace H_ = {x | f.1 x = c} := by
   refine ⟨ {Halfspace.mk f c, Halfspace.mk (-f) (-c)}, ?_ ⟩
   ext x
@@ -106,7 +106,7 @@ lemma hyperplane_cutSpace (f : {f : (StrongDual ℝ E) // norm f = 1}) (c : ℝ)
 /--
 @isnad1 id=eq.0h3v.s6.863946676576 from=translated src=- shape=f2c39577 vocab=05bd09bc
 -/
-lemma inter_cutSpace (H_1 H_2 : Set (Halfspace E)) :
+lemma _root_.Tengoku.LeanPool.inter_cutSpace (H_1 H_2 : Set (Halfspace E)) :
   cutSpace (H_1 ∪ H_2) = cutSpace H_1 ∩ cutSpace H_2 := by
   ext x
   rw [mem_cutSpace, Set.mem_inter_iff, mem_cutSpace, mem_cutSpace]
@@ -123,21 +123,21 @@ lemma inter_cutSpace (H_1 H_2 : Set (Halfspace E)) :
       exact h.2 Hi hHi
 
 /-- The pair of halfspaces whose intersection is the hyperplane orthogonal to `x`. -/
-def orthoHyperplane (x : {x : E // x ≠ 0}) : Set (Halfspace E) :=
+def _root_.Tengoku.LeanPool.orthoHyperplane (x : {x : E // x ≠ 0}) : Set (Halfspace E) :=
   { Halfspace.mk (pointDualLin x) 0,
     Halfspace.mk (pointDualLin ⟨ -x.1, by rw [neg_ne_zero]; exact x.2 ⟩) 0 }
 
 /--
 @isnad1 id=finite.0h2v.s5.fa5de841a666 from=translated src=- shape=5c9017f9 vocab=62838e3f
 -/
-lemma orthoHyperplane.Finite (x : {x : E // x ≠ 0}) : (orthoHyperplane x).Finite := by
+lemma Tengoku.LeanPool.orthoHyperplane.Finite (x : {x : E // x ≠ 0}) : (orthoHyperplane x).Finite := by
   unfold orthoHyperplane
   simp only [Set.finite_singleton, Set.Finite.insert]
 
 /--
 @isnad1 id=iff.0h3v.s6.74843fc181c0 from=translated src=- shape=3b18c57f vocab=b990b6fc
 -/
-lemma orthoHyperplane_mem (x : {x : E // x ≠ 0}) :
+lemma _root_.Tengoku.LeanPool.orthoHyperplane_mem (x : {x : E // x ≠ 0}) :
     ∀ (y : E), y ∈ cutSpace (orthoHyperplane x) ↔ inner ℝ x.1 y = (0:ℝ) := by
   intro y
   rw [mem_cutSpace]
@@ -171,7 +171,7 @@ lemma orthoHyperplane_mem (x : {x : E // x ≠ 0}) :
 /--
 @isnad1 id=iff.0h3v.s7.0884d57b0ab7 from=translated src=- shape=22704417 vocab=856d5052
 -/
-lemma cutSpace_sUnion_orthoHyperplane (X : Set {x : E // x ≠ 0}) : ∀ (y : E),
+lemma _root_.Tengoku.LeanPool.cutSpace_sUnion_orthoHyperplane (X : Set {x : E // x ≠ 0}) : ∀ (y : E),
     y ∈ cutSpace (⋃₀ (orthoHyperplane '' X)) ↔
     ∀ (i : ↑(orthoHyperplane '' X)), y ∈ cutSpace ↑i := by
   intro y
@@ -181,7 +181,7 @@ lemma cutSpace_sUnion_orthoHyperplane (X : Set {x : E // x ≠ 0}) : ∀ (y : E)
 /--
 @isnad1 id=iff.0h3v.s8.10a2780546b1 from=translated src=- shape=5af663e8 vocab=79487ee6
 -/
-lemma orthoHyperplanes_mem (X : Set {x : E // x ≠ 0}) :
+lemma _root_.Tengoku.LeanPool.orthoHyperplanes_mem (X : Set {x : E // x ≠ 0}) :
     ∀ (y : E), y ∈ cutSpace (⋃₀ (orthoHyperplane '' X)) ↔ ∀ x ∈ X, inner ℝ x.1 y = (0:ℝ) := by
   intro y
   rw [cutSpace_sUnion_orthoHyperplane]
@@ -196,13 +196,13 @@ lemma orthoHyperplanes_mem (X : Set {x : E // x ≠ 0}) :
     exact (orthoHyperplane_mem x y).mpr (h x hx)
 
 /-- A finite set of halfspaces whose cut space is the subspace `p`, built from a basis of `pᗮ`. -/
-def submoduleCut [FiniteDimensional ℝ E] (p : Subspace ℝ E) : Set (Halfspace E) :=
+def _root_.Tengoku.LeanPool.submoduleCut [FiniteDimensional ℝ E] (p : Subspace ℝ E) : Set (Halfspace E) :=
   ⋃₀ (orthoHyperplane '' (Subtype.val ⁻¹' (Set.range (Subtype.val ∘ Module.finBasis ℝ pᗮ))))
 
 /--
 @isnad1 id=finite.0h2v.s6.e009b82316d1 from=translated src=- shape=836c8142 vocab=3fce214a
 -/
-lemma Submodule_cut_finite [FiniteDimensional ℝ E] (p : Subspace ℝ E) :
+lemma _root_.Tengoku.LeanPool.Submodule_cut_finite [FiniteDimensional ℝ E] (p : Subspace ℝ E) :
     (submoduleCut p).Finite := by
   apply Set.Finite.sUnion ?_ (fun t ht => by
     rcases ht with ⟨ x, _, rfl ⟩
@@ -214,7 +214,7 @@ lemma Submodule_cut_finite [FiniteDimensional ℝ E] (p : Subspace ℝ E) :
 /--
 @isnad1 id=ex.0h2v.s7.bbc3f2271a24 from=translated src=- shape=da9fab18 vocab=bc913029
 -/
-lemma Submodule_cutspace [FiniteDimensional ℝ E] (p : Subspace ℝ E) :
+lemma _root_.Tengoku.LeanPool.Submodule_cutspace [FiniteDimensional ℝ E] (p : Subspace ℝ E) :
     ∃ H_ : Set (Halfspace E), H_.Finite ∧ ↑p = cutSpace H_ := by
   use submoduleCut p
   use Submodule_cut_finite p
@@ -239,3 +239,4 @@ lemma Submodule_cutspace [FiniteDimensional ℝ E] (p : Subspace ℝ E) :
       exact hHi_ v' ⟨ i, rfl ⟩
     rw [← Submodule.mem_orthogonal_Basis] at this
     exact this _ hy
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

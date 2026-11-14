@@ -15,7 +15,7 @@ polynomials*, Arch. Math. 59 (1992), 239-244; upstreaming candidates for Mathlib
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-- Between finite groups, an injective homomorphism extends to an isomorphism iff the two groups
 have the same cardinality.
 @isnad1 id=iff.1h3v.s6.8cfeef224701 from=translated src=- shape=79266738 vocab=1eda57cc
@@ -25,3 +25,4 @@ theorem MonoidHom.nonempty_mulEquiv_iff_card_eq {G H : Type*} [Group G] [Group H
     Nonempty (G ≃* H) ↔ Nat.card G = Nat.card H :=
   ⟨fun ⟨e⟩ ↦ Nat.card_congr e.toEquiv,
     fun h ↦ ⟨MulEquiv.ofBijective φ ((Nat.bijective_iff_injective_and_card φ).mpr ⟨hφ, h⟩)⟩⟩
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

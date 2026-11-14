@@ -21,7 +21,7 @@ count to that unit slice. Among unit words of length `n + 3`, exactly
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace GKPCarry
 
 /-- Natural value of a fixed-length ternary word. -/
@@ -330,3 +330,4 @@ theorem card_unitBadCarryWords (n : ℕ) :
   ring
 
 end GKPCarry
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

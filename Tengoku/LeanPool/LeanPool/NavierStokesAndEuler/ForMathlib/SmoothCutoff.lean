@@ -25,7 +25,7 @@ is accessed through its positivity and bound lemmas; its choice is private.
 -/
 
 public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open Set Filter Metric
@@ -270,3 +270,4 @@ theorem baseCutoff_iteratedFDeriv_le (n : ℕ) (x : E) :
   (Classical.choose_spec (exists_derivative_bound (E := E) n)).2 x
 
 end NavierStokesAndEuler.SmoothCutoff
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

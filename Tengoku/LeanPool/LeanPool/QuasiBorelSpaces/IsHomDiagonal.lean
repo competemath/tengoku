@@ -16,8 +16,8 @@ Imported Lean Pool material for `LeanPool.QuasiBorelSpaces.IsHomDiagonal`.
 -/
 
 @[expose] public section
-
-namespace QuasiBorelSpace
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+namespace Tengoku.LeanPool.QuasiBorelSpace
 
 variable
   {A : Type*} [QuasiBorelSpace A]
@@ -45,4 +45,5 @@ instance
     : IsHomDiagonal A where
   isHom_eq := by simp only [isHom_of_discrete_countable]
 
-end QuasiBorelSpace
+end Tengoku.LeanPool.QuasiBorelSpace
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

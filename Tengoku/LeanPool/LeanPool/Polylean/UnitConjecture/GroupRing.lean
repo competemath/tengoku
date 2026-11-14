@@ -20,7 +20,7 @@ to show invariance under elementary moves and to prove that `R[G]` is a ring.
 
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 open scoped LeanPool.Polylean LeanPool.Polylean.FormalSum
 
 
@@ -489,3 +489,4 @@ def ringInclusionHom (G : Type) [Group G] [DecidableEq G] : R →+* R[G] :=
 
 end LeanPool.Polylean
 -- Tengoku: 1 registration(s) of this module made local so they do not change other libraries (generated)
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

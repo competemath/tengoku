@@ -13,7 +13,7 @@ velocity and gives the paper's vanishing vector potential in the heat exterior.
 -/
 
 noncomputable section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace NavierStokes.LocalPotentialRebundle
 
 open Set Filter ProblemStatement CorrectionInitialization
@@ -271,3 +271,4 @@ theorem awayExtensions {a : ℕ → ℕ}
       (Classical.choice (extension_curl (Classical.choice (removedPotential_awayExtensions x hx))))
 
 end NavierStokes.LocalPotentialRebundle
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

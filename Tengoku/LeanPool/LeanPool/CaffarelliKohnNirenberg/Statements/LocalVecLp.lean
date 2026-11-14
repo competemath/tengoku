@@ -14,7 +14,7 @@ Part of the Caffarelli–Kohn–Nirenberg partial regularity proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open CKN.Foundation.Parabolic
 
 namespace CKN
@@ -25,3 +25,4 @@ def localVecLp (E : Set ParabolicPoint) (p : ℝ)
   ∀ i : Fin 3, localLp E p (fun z => g z i)
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

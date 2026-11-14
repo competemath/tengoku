@@ -21,7 +21,7 @@ leading-coefficient obstruction.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.PoincareThreeBody
 
 /-- Prograde, noncircular elliptic actions whose entire ellipse stays inside the unit primary
@@ -514,3 +514,4 @@ theorem hasDenseNondegenerateResonantEccentricities_of_nondegeneracy
     eccentricity.2.2.2
 
 end LeanPool.PoincareThreeBody
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

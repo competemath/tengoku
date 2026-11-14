@@ -15,7 +15,7 @@ These definitions agree with the independently stated upstream comparator challe
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open MeasureTheory Metric
@@ -55,3 +55,4 @@ def phi : ℝ :=
     (26 + 4 * √22)
 
 end LeanPool.CenteredMaximal
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

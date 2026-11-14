@@ -16,7 +16,7 @@ Part of the Caffarelli–Kohn–Nirenberg partial regularity proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory MeasureTheory.Measure Set Metric
 open scoped ENNReal NNReal Topology
 
@@ -55,3 +55,4 @@ theorem parabolicHedbergNearConstant_pos {β : ℝ} :
   exact ENNReal.mul_pos hfactor.ne' (lt_of_lt_of_le hterm hsum).ne'
 
 end CKN.Foundation.Parabolic.Morrey
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

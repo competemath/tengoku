@@ -20,8 +20,8 @@ resulting colorful points produces a fixed point.
 -/
 
 @[expose] public section
-
-open Brouwer (standardSimplex)
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+open Tengoku.LeanPool.Brouwer (standardSimplex)
 
 attribute [local instance] Classical.propDecidable
 
@@ -30,14 +30,14 @@ section
 end
 
 noncomputable section
-open IndexedLOrder
+open Tengoku.LeanPool.IndexedLOrder
 
 variable (n l : ℕ+) (i : Fin n)
 
 /-- The combinatorial type of integer points of the `l`-scaled `n`-simplex. -/
-abbrev TT := {x : Πₗ (_ : Fin n), Fin (l+1) | ∑ i, (x i : ℕ)  = l}
+abbrev _root_.Tengoku.LeanPool.TT := {x : Πₗ (_ : Fin n), Fin (l+1) | ∑ i, (x i : ℕ)  = l}
 
-instance TT.inhabited : Inhabited (TT n l) where
+instance Tengoku.LeanPool.TT.inhabited : Inhabited (TT n l) where
   default :=
     ⟨ fun i => if i = 0 then Fin.last l else 0,  by
       change ∑ i : Fin n, ((if i = 0 then Fin.last (l : ℕ) else 0 : Fin ((l : ℕ) + 1)) : ℕ)
@@ -47,13 +47,13 @@ instance TT.inhabited : Inhabited (TT n l) where
       · intro b _ hb; simp [hb]
       · simp [Fin.val_last] ⟩
 
-instance TT.funlike : FunLike (TT n l) (Fin n) (Fin (l+1)) where
+instance Tengoku.LeanPool.TT.funlike : FunLike (TT n l) (Fin n) (Fin (l+1)) where
   coe := fun a => a.1
   coe_injective := Subtype.val_injective
 
 variable {n l} in
 /-- The point of the standard simplex associated to an integer point of `TT n l`. -/
-def TTtostdSimplex (x : TT n l) : standardSimplex ℝ (Fin n) := ⟨fun i => x i / l, by
+def _root_.Tengoku.LeanPool.TTtostdSimplex (x : TT n l) : standardSimplex ℝ (Fin n) := ⟨fun i => x i / l, by
   rw [standardSimplex]
   constructor
   · intro;simp only[]
@@ -64,18 +64,18 @@ def TTtostdSimplex (x : TT n l) : standardSimplex ℝ (Fin n) := ⟨fun i => x i
     · exact Iff.mpr Nat.cast_ne_zero (PNat.ne_zero l)
   ⟩
 
-instance TT.CoestdSimplex : CoeOut (TT n l) (standardSimplex ℝ (Fin n)) where
+instance Tengoku.LeanPool.TT.CoestdSimplex : CoeOut (TT n l) (standardSimplex ℝ (Fin n)) where
   coe := TTtostdSimplex
 
 variable {n l} in
 /-- The strict order on `TT n l` at index `i`, comparing the `i`-th coordinate first. -/
-abbrev TT.Ilt (x y : TT n l) :=
+abbrev Tengoku.LeanPool.TT.Ilt (x y : TT n l) :=
   toLex (x i, x)  < toLex (y i, y)
 
 /--
 @isnad1 id=isstrict.0h3v.s5.f0f6be61fd40 from=translated src=- shape=ceb790b9 vocab=1a916a1b
 -/
-instance TT.IST : IsStrictTotalOrder (TT n l) (TT.Ilt i) where
+instance Tengoku.LeanPool.TT.IST : IsStrictTotalOrder (TT n l) (TT.Ilt i) where
   trichotomous := by
     intro a b h_ab h_ba
     unfold TT.Ilt at h_ab h_ba
@@ -93,7 +93,7 @@ instance TT.IST : IsStrictTotalOrder (TT n l) (TT.Ilt i) where
     exact lt_trans h_ab h_bc
 
 variable {n l} in
-instance TT.ILO : IndexedLOrder (Fin n) (TT n l) where
+instance Tengoku.LeanPool.TT.ILO : IndexedLOrder (Fin n) (TT n l) where
   IST := fun i => linearOrderOfSTO (TT.Ilt i)
 
 local notation  lhs "<[" i "]" rhs => IndexedLOrder.ltAt i lhs rhs
@@ -102,14 +102,14 @@ local notation  lhs "≤[" i "]" rhs => IndexedLOrder.leAt i lhs rhs
 /--
 @isnad1 id=iff.0h5v.s6.3b27153090f6 from=translated src=- shape=ea8dda2b vocab=3f290042
 -/
-lemma TT.Ilt_def (a b : TT n l) :
+lemma Tengoku.LeanPool.TT.Ilt_def (a b : TT n l) :
   (a <[i] b) ↔ TT.Ilt i a b := by
   rfl
 
 /--
 @isnad1 id=ltat.1h5v.s8.b2de66533bb4 from=translated src=- shape=2d3f2e72 vocab=bf25cb42
 -/
-lemma TT.Ilt_keyprop (a b : TT n l) :
+lemma Tengoku.LeanPool.TT.Ilt_keyprop (a b : TT n l) :
   a i < b i → a <[i] b := by
   intro h
   change toLex (a i, a) < toLex (b i, b)
@@ -119,7 +119,7 @@ lemma TT.Ilt_keyprop (a b : TT n l) :
 /--
 @isnad1 id=lt.2h4v.s8.578622a96b4e from=translated src=- shape=627c20b1 vocab=ce7cb1e4
 -/
-lemma size_bound_key (σ : Finset (TT n l)) (C : Finset (Fin n)) (h : TT.ILO.isDominant σ C)
+lemma _root_.Tengoku.LeanPool.size_bound_key (σ : Finset (TT n l)) (C : Finset (Fin n)) (h : TT.ILO.isDominant σ C)
 (h2 : σ.Nonempty) :
   l < ∑ k ∈ C, (σ.image (fun x => (x k : ℕ))).min' (h2.image _) + C.card := by
   by_contra h_not
@@ -216,7 +216,7 @@ lemma size_bound_key (σ : Finset (TT n l)) (C : Finset (Fin n)) (h : TT.ILO.isD
 /--
 @isnad1 id=lt.3h7v.s9.a1dd76df5ce1 from=translated src=- shape=b24d7ad5 vocab=e42d4bd6
 -/
-theorem size_bound_in (σ : Finset (TT n l)) (C : Finset (Fin n)) (h : TT.ILO.isDominant σ C) :
+theorem _root_.Tengoku.LeanPool.size_bound_in (σ : Finset (TT n l)) (C : Finset (Fin n)) (h : TT.ILO.isDominant σ C) :
     ∀ x ∈ σ, ∀ y ∈ σ, ∀ i : Fin n, abs ((x i : ℤ) - (y i : ℤ)) < 2 * (n + 1)
     := by
   by_cases hσ : σ.Nonempty
@@ -307,7 +307,7 @@ theorem size_bound_in (σ : Finset (TT n l)) (C : Finset (Fin n)) (h : TT.ILO.is
 /--
 @isnad1 id=lt.3h6v.s8.bbb013432c7c from=translated src=- shape=3694d1e4 vocab=eaeea606
 -/
-theorem size_bound_out (σ : Finset (TT n l)) (C : Finset (Fin n)) (h : TT.ILO.isDominant σ C) :
+theorem _root_.Tengoku.LeanPool.size_bound_out (σ : Finset (TT n l)) (C : Finset (Fin n)) (h : TT.ILO.isDominant σ C) :
     ∀ x ∈ σ, ∀ i ∉ C, (x i : ℤ) < n + 1
     := by
   by_cases hσ : σ.Nonempty
@@ -380,31 +380,31 @@ noncomputable def stdSimplex.pick (x y : standardSimplex ℝ (Fin n))
     := Classical.choice <| stdSimplex.upidx x y
 
 /-- The Scarf coloring induced on `TT n l` by a self-map `f` of the simplex. -/
-def Fcolor (x : TT n l) : Fin n := stdSimplex.pick x (f x)
+def _root_.Tengoku.LeanPool.Fcolor (x : TT n l) : Fin n := stdSimplex.pick x (f x)
 
 /-- A colorful room produced by Scarf lemma for the `l-th` subdivision. -/
-def roomSeq (l' : ℕ) :=
+def _root_.Tengoku.LeanPool.roomSeq (l' : ℕ) :=
   -- `l'.succPNat` rather than the raw `⟨l' + 1, _⟩ : ℕ+` (definitionally the same value), so that
   -- instance search on `TT n l'.succPNat` can unify the `ℕ+` argument.
   let l : PNat := l'.succPNat
   Classical.choice (TT.ILO.Scarf (@Fcolor n l f)).to_subtype
 
 /-- A point of the colorful room `roomSeq`, as an integer point of `TT`. -/
-def roomPointSeq (l' : ℕ) : TT n l'.succPNat :=
+def _root_.Tengoku.LeanPool.roomPointSeq (l' : ℕ) : TT n l'.succPNat :=
   (pickColorfulPoint (Finset.mem_filter.1 (roomSeq f l').2).2).1
 
 section finiteness
 
 -- Define subsequence function
 /-- The subsequence of indices generated by iterating a step function. -/
-def mkSubseq (f : ℕ → ℕ) (h : ∀ n, n < f n) : ℕ → ℕ
+def _root_.Tengoku.LeanPool.mkSubseq (f : ℕ → ℕ) (h : ∀ n, n < f n) : ℕ → ℕ
   | 0 => f 0
   | n+1 => f (mkSubseq f h n)
 
 /--
 @isnad1 id=ex.1h3v.s6.7a7541d0d71f from=translated src=- shape=1cdfb1f9 vocab=70a4e4d3
 -/
-theorem exists_subseq_constant_of_finite_image {s : Finset α} (e : ℕ → α) (he : ∀ n, e n ∈ s) :
+theorem _root_.Tengoku.LeanPool.exists_subseq_constant_of_finite_image {s : Finset α} (e : ℕ → α) (he : ∀ n, e n ∈ s) :
   ∃ a ∈ s, ∃ g : ℕ ↪o ℕ,  (∀ n, e (g n) = a) := by
   have range_subset : Set.range e ⊆ (s : Set α) := Set.range_subset_iff.mpr he
   have range_finite : (Set.range e).Finite := (Finset.finite_toSet s).subset range_subset
@@ -470,7 +470,7 @@ end finiteness
 /--
 @isnad1 id=nonempty.0h2v.s10.e4d0465d30fb from=translated src=- shape=2720d9d3 vocab=6e66eea4
 -/
-lemma constant_index_set_nonempty : Nonempty {(a, g) :(Finset (Fin n)) × (ℕ ↪o ℕ) | ∀ l',
+lemma _root_.Tengoku.LeanPool.constant_index_set_nonempty : Nonempty {(a, g) :(Finset (Fin n)) × (ℕ ↪o ℕ) | ∀ l',
     (roomSeq f (g l')).1.2 = a } := by
   obtain ⟨a, ha,g,hg⟩ := exists_subseq_constant_of_finite_image (s := Finset.univ)
     (fun x => (roomSeq f x).1.2) (by simp)
@@ -478,10 +478,10 @@ lemma constant_index_set_nonempty : Nonempty {(a, g) :(Finset (Fin n)) × (ℕ �
 
 /- roomSeq ∘ gpkg.1.2 has constant value equal to gpkg.1.1-/
 /-- A constant-index colorful subsequence package extracted from `roomSeq`. -/
-def gpkg :=  Classical.choice <| constant_index_set_nonempty f
+def _root_.Tengoku.LeanPool.gpkg :=  Classical.choice <| constant_index_set_nonempty f
 
 /-- The index subsequence selected by `gpkg`. -/
-abbrev g1 := gpkg f |>.1.2
+abbrev _root_.Tengoku.LeanPool.g1 := gpkg f |>.1.2
 
 open Topology
 open Filter
@@ -491,7 +491,7 @@ open Filter
 /--
 @isnad1 id=tendsto.2h5v.s10.d6ea96f7da72 from=translated src=- shape=43ed051e vocab=324f332d
 -/
-lemma dominant_coords_tend_to_zero (f : standardSimplex ℝ (Fin n) → standardSimplex ℝ (Fin n))
+lemma _root_.Tengoku.LeanPool.dominant_coords_tend_to_zero (f : standardSimplex ℝ (Fin n) → standardSimplex ℝ (Fin n))
     (C : Finset (Fin n)) (g : ℕ ↪o ℕ) (h_const : ∀ l', (roomSeq f (g l')).1.2 = C) :
   ∀ i ∉ C, Filter.Tendsto (fun l' => ((roomPointSeq f (g l')) : standardSimplex ℝ (Fin n)).1 i)
       Filter.atTop (𝓝 0) := by
@@ -535,7 +535,7 @@ lemma dominant_coords_tend_to_zero (f : standardSimplex ℝ (Fin n) → standard
 /--
 @isnad1 id=nonempty.0h2v.s8.4d28ebaa01fa from=translated src=- shape=7fde79ba vocab=8ef9a3d1
 -/
-lemma hpkgAux :
+lemma _root_.Tengoku.LeanPool.hpkgAux :
   Nonempty {(z , h) : (standardSimplex ℝ  (Fin n)) × (ℕ → ℕ) | StrictMono h ∧ Filter.Tendsto
     ((fun l' => (roomPointSeq f (g1 f l'): standardSimplex ℝ (Fin n))) ∘ h)
     Filter.atTop (𝓝 z) } := by
@@ -547,7 +547,7 @@ lemma hpkgAux :
   exact ⟨φ_mono, h_tendsto⟩
 
 /-- A convergent colorful subsequence package, with its limit point. -/
-def hpkg := Classical.choice  (hpkgAux f)
+def _root_.Tengoku.LeanPool.hpkg := Classical.choice  (hpkgAux f)
 
 /-
 Use
@@ -558,7 +558,7 @@ Use
 /--
 @isnad1 id=tendsto.0h2v.s14.c725b1c04f19 from=translated src=- shape=6d7f6606 vocab=cc703afc
 -/
-theorem tendsto_diam_to_zero (f : standardSimplex ℝ (Fin n) → standardSimplex ℝ (Fin n)) :
+theorem _root_.Tengoku.LeanPool.tendsto_diam_to_zero (f : standardSimplex ℝ (Fin n) → standardSimplex ℝ (Fin n)) :
   Tendsto
     (fun k =>
       Metric.diam
@@ -633,7 +633,7 @@ theorem tendsto_diam_to_zero (f : standardSimplex ℝ (Fin n) → standardSimple
 /--
 @isnad1 id=le.2h3v.s11.9c458267d0a8 from=translated src=- shape=8c9f1d88 vocab=7571883f
 -/
-theorem f_coords_ge_z_coords (f : standardSimplex ℝ (Fin n) → standardSimplex ℝ (Fin n))
+theorem _root_.Tengoku.LeanPool.f_coords_ge_z_coords (f : standardSimplex ℝ (Fin n) → standardSimplex ℝ (Fin n))
     (hf : Continuous f) :
   ∀ i ∈ (gpkg f).1.1, (f (hpkg f).1.1).1 i ≥ ((hpkg f).1.1).1 i := by
       let z := (hpkg f).1.1
@@ -742,7 +742,7 @@ theorem f_coords_ge_z_coords (f : standardSimplex ℝ (Fin n) → standardSimple
 /--
 @isnad1 id=ex.1h2v.s7.9975b25d55e0 from=translated src=- shape=67904036 vocab=fa07ac67
 -/
-theorem Brouwer (hf : Continuous f) : ∃ x , f x = x := by
+theorem _root_.Tengoku.LeanPool.Brouwer (hf : Continuous f) : ∃ x , f x = x := by
   let z := (hpkg f).1.1
   let C := (gpkg f).1.1
   let φ := (hpkg f).1.2
@@ -810,3 +810,4 @@ theorem Brouwer (hf : Continuous f) : ∃ x , f x = x := by
   · rw [f_coords_outside_C_zero i_1 hi, coords_outside_C_zero i_1 hi]
 
 end Brouwer
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -50,7 +50,7 @@ and `Plane.interior_closedSquare`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set
 
 namespace Schoenflies
@@ -775,3 +775,4 @@ theorem iInter_eq_singleton_of_mem_tail {K : ℕ → Set Plane} {v : Plane} {N :
 end Plane
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

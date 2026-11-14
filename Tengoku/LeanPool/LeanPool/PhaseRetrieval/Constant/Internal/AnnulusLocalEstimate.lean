@@ -27,7 +27,7 @@ import Tengoku.Seed.Tactic.NormNum.Parity
 /-! # AnnulusLocalEstimate -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Complex Real Finset
 
 noncomputable section
@@ -415,3 +415,4 @@ theorem annulus_local_estimate {D : ℕ} (hD : 1 ≤ D) (a : Fin D → ℂ)
   · exact annulus_high_freq hD a j (by omega) hr_nn
 
 end FockSPR
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

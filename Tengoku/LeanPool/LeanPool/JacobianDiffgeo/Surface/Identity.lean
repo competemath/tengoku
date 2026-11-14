@@ -27,7 +27,7 @@ For holomorphic maps between Riemann surfaces:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold
 open Set Filter Topology IsManifold
 
@@ -47,3 +47,4 @@ variable [T2Space Y]   -- â„‚ qualifies, so all lemmas below apply to `f g : X â
 /-! ### Isolated fibers, open mapping, surjectivity -/
 
 end RS
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -18,15 +18,15 @@ itself an ωQBS.
 -/
 
 @[expose] public section
-
-open QuasiBorelSpace
-open OmegaQuasiBorelSpace
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+open Tengoku.LeanPool.QuasiBorelSpace
+open Tengoku.LeanPool.OmegaQuasiBorelSpace
 open OmegaCompletePartialOrder
 
 /--
 Exponential objects: functions that are both Scott-Continuous and Measurable (QBS Morphisms)
 -/
-structure OmegaQuasiBorelHom
+structure _root_.Tengoku.LeanPool.OmegaQuasiBorelHom
     (X Y : Type*)
     [OmegaQuasiBorelSpace X] [OmegaQuasiBorelSpace Y] where
   /-- The underlying function of an ω-quasi-borel morphism. -/
@@ -36,7 +36,7 @@ structure OmegaQuasiBorelHom
 
 @[inherit_doc] infixr:25 " →ω𝒒 " => OmegaQuasiBorelHom
 
-namespace OmegaQuasiBorelHom
+namespace Tengoku.LeanPool.OmegaQuasiBorelHom
 
 variable {X Y Z : Type*} [OmegaQuasiBorelSpace X] [OmegaQuasiBorelSpace Y] [OmegaQuasiBorelSpace Z]
 
@@ -388,4 +388,5 @@ lemma curry_uncurry (f : Z →ω𝒒 (X →ω𝒒 Y)) : curry (uncurry f) = f :=
 @[simp]
 lemma uncurry_curry (f : Z × X →ω𝒒 Y) : uncurry (curry f) = f := rfl
 
-end OmegaQuasiBorelHom
+end Tengoku.LeanPool.OmegaQuasiBorelHom
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

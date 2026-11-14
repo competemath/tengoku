@@ -18,7 +18,7 @@ Imported Lean Pool material for
 -/
 
 public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Function
 open scoped ENNReal NNReal
 
@@ -71,3 +71,4 @@ instance {α β : Type*} [MeasurableSpace α] [MeasurableSpace β] {μ : Measure
   · rw [Measure.prod_zero]
     infer_instance
   infer_instance
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

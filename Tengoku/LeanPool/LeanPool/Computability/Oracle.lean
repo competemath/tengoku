@@ -39,7 +39,7 @@ Computability, Oracle, Recursion, Primitive Recursion
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Primrec Nat.Partrec Part Encodable
 
 namespace Computability
@@ -335,3 +335,4 @@ theorem RecursiveIn_subst {O O' : Set (ℕ →. ℕ)} {f : ℕ →. ℕ} (hf : R
   | rfind _ ihf => exact .rfind ihf
 
 end Computability
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

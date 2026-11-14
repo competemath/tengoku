@@ -44,7 +44,7 @@ Adapted for Lean Pool from `Timeroot/BS_Lam` at commit
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-! ### Minkowski's inequality
 
 The lemma below mentions nothing from this development.  Mathlib has the two-summand
@@ -59,7 +59,7 @@ because it is Mathlib-shaped, not `BSLambda`-shaped.
 `∑ y, t y`.
 @isnad1 id=le.2h4v.s7.e83de0142330 from=translated src=- shape=115d5d54 vocab=8d2b42e3
 -/
-theorem sum_sq_sum_le_sq_sum {X Y : Type*} [Fintype X] [Fintype Y] (F : Y → X → ℝ) (t : Y → ℝ)
+theorem _root_.Tengoku.LeanPool.sum_sq_sum_le_sq_sum {X Y : Type*} [Fintype X] [Fintype Y] (F : Y → X → ℝ) (t : Y → ℝ)
     (ht0 : ∀ y, 0 ≤ t y) (ht : ∀ y, ∑ x, F y x ^ 2 ≤ t y ^ 2) :
     ∑ x, (∑ y, F y x) ^ 2 ≤ (∑ y, t y) ^ 2 := by
   have hn (y : Y) : ‖(WithLp.toLp 2 (F y) : EuclideanSpace ℝ X)‖ ≤ t y := by
@@ -603,3 +603,4 @@ theorem lam_iterFun_eq (f : Input V → Bool) : ∀ m, lam (iterFun f m) = lam f
 end Composition
 
 end BSLambda
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

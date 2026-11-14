@@ -11,7 +11,7 @@ The same explicit smooth cutoffs supply the pressure commutator, localized
 energy, and the `L⁶` estimate of the fourth-power weighted velocity.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace NavierStokes.R3CutoffSobolev
 
 open Set Filter MeasureTheory ProblemStatement
@@ -214,3 +214,4 @@ theorem operator_norm_sq_le (A : Space →L[ℝ] Space) :
     sq_nonneg (‖A (coordinateVector 2)‖ - ‖A (coordinateVector 0)‖)]
 
 end NavierStokes.R3CutoffSobolev
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

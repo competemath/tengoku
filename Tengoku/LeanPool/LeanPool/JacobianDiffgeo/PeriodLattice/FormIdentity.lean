@@ -21,7 +21,7 @@ Main declaration: `RS.form1_eq_zero_of_eventually_coeffIn_zero`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold
 open Set Filter Topology Metric IsManifold
 
@@ -130,3 +130,4 @@ theorem form1_eq_zero_of_eventually_coeffIn_zero {η : Form1 X} {x₀ : X}
 end RS
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

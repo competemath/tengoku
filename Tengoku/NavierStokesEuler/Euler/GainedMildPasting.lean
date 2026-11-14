@@ -1,6 +1,6 @@
 import Tengoku.NavierStokesEuler.Euler.GainedMildFormula
 import Tengoku.NavierStokesEuler.Euler.DuhamelPasting
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace EulerGainedMildPasting
 end EulerGainedMildPasting
 namespace MeasureTheory
@@ -87,3 +87,4 @@ theorem glue_gained_mild {q : ℕ} (ν : ℝ) (hν : 0 < ν) (a b : ℝ) (ha : 0
   exact (gluePath_map_apply (truncateOperator period q) a b ha hb u v hmatch t).trans (h t)
 
 end EulerGainedMildPasting
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

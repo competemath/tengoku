@@ -25,7 +25,7 @@ All nontrivial proofs are `sorry`-ed for now; this file pins the statements.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace PeriodPair
@@ -248,3 +248,4 @@ theorem eta₂_smul : (a • L).eta₂ = (a : ℂ)⁻¹ * L.eta₂ := by
   ring
 
 end PeriodPair
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

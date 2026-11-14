@@ -49,7 +49,7 @@ Lie algebra, cohomology
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace VirasoroProject
 
 universe u
@@ -448,3 +448,4 @@ noncomputable def _root_.VirasoroProject.LieTwoCocycle.toLieTwoCohomologyEquiv :
 end IsLieAbelian --section
 
 end VirasoroProject -- namespace
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

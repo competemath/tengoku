@@ -8,7 +8,7 @@ module
 
 public import Tengoku.Seed.Analysis.CStarAlgebra.Classes
 public import Tengoku.Seed.NumberTheory.ModularForms.QExpansion
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -162,3 +162,4 @@ lemma qExpansion_pow (f : ModularForm Γ(1) k) (n : ℕ) :
   exact_mod_cast
     (qExpansion_of_pow (Γ := Γ(1)) (h := (1 : ℕ))
       (hh := by positivity) (hΓ := by simp) (f := f) (n := n))
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

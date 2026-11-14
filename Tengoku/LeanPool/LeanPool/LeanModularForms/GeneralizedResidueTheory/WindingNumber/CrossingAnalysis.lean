@@ -16,7 +16,7 @@ import Tengoku.Seed.CategoryTheory.Category.Init
 import Tengoku.Seed.Combinatorics.Matroid.Init
 import Tengoku.Seed.MeasureTheory.Covering.Besicovitch
 import Tengoku.Seed.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -921,3 +921,4 @@ lemma tendsto_exp_cutoff_integral_crossing
     (Filter.Eventually.mono h_eq fun _ h => h.symm) h_lim
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

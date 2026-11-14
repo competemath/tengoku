@@ -34,7 +34,7 @@ geometric core of the forward half of the quantitative-refinement recursion.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set
 open scoped Graph
 
@@ -1295,3 +1295,4 @@ end LocalOverlayRelabeling
 end SourceNonboundarySegmentCover
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

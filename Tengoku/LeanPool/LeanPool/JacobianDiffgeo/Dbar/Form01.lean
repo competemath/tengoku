@@ -28,7 +28,7 @@ ordinary identifier.)
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold
 open Set IsManifold
 
@@ -344,3 +344,4 @@ theorem Form01.coeffAt_ofCoeffs {ι : Type*} (Data : Form01CoeffData X ι) {x : 
   exact h
 
 end RS
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -27,7 +27,7 @@ Axiom footprint: `propext`, `Classical.choice`, `Quot.sound` only.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LehmerE10
 
 open Polynomial
@@ -150,3 +150,4 @@ theorem no_unit_circle_factor {F : Polynomial ℤ} (hFm : F.Monic)
   exact no_cyclotomic_divisor hk hdvdZ
 
 end LehmerE10
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -17,10 +17,10 @@ Imported Lean Pool material for `LeanPool.ErdosTuzaValtr.Config.Lemmas`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 variable {α : Type _} [LinearOrder α] {C : Config α}
 
-namespace Config
+namespace Tengoku.LeanPool.Config
 
 namespace Cap
 
@@ -309,12 +309,12 @@ theorem head_le_getLast {n : ℕ} {l : List α} (l_ncup : C.NCup n l) (p q : α)
 
 end NCup
 
-end Config
+end Tengoku.LeanPool.Config
 
 /--
 @isnad1 id=hasngon.2h4v.s5.8db08391d0bd from=translated src=- shape=240f6055 vocab=3fdd27e4
 -/
-theorem ncup_is_ngon {n : ℕ} {S : Finset α} (hn : 2 ≤ n) (h : C.HasNCup n S) : C.HasNGon n S := by
+theorem _root_.Tengoku.LeanPool.ncup_is_ngon {n : ℕ} {S : Finset α} (hn : 2 ≤ n) (h : C.HasNCup n S) : C.HasNGon n S := by
   rcases h with ⟨c, ⟨⟨c_cup, c_length⟩, c_in_S⟩⟩
   have hc : c ≠ [] := by
     rintro rfl
@@ -344,7 +344,7 @@ theorem ncup_is_ngon {n : ℕ} {S : Finset α} (hn : 2 ≤ n) (h : C.HasNCup n S
 /--
 @isnad1 id=hasncap.2h5v.s5.8df4b31864f9 from=translated src=- shape=7888ab6c vocab=deadee63
 -/
-theorem hasNCap_supset {n : ℕ} {S1 S2 : Finset α} (h : S1 ⊆ S2) (h1 : C.HasNCap n S1) :
+theorem _root_.Tengoku.LeanPool.hasNCap_supset {n : ℕ} {S1 S2 : Finset α} (h : S1 ⊆ S2) (h1 : C.HasNCap n S1) :
     C.HasNCap n S2 := by
   obtain ⟨c1, h1⟩ := h1
   exact ⟨c1, h1.left, fun a a_c1 => h (h1.right a a_c1)⟩
@@ -352,7 +352,7 @@ theorem hasNCap_supset {n : ℕ} {S1 S2 : Finset α} (h : S1 ⊆ S2) (h1 : C.Has
 /--
 @isnad1 id=hasncup.2h5v.s5.4f7c1f55c041 from=translated src=- shape=7888ab6c vocab=17ec6803
 -/
-theorem hasNCup_supset {n : ℕ} {S1 S2 : Finset α} (h : S1 ⊆ S2) (h1 : C.HasNCup n S1) :
+theorem _root_.Tengoku.LeanPool.hasNCup_supset {n : ℕ} {S1 S2 : Finset α} (h : S1 ⊆ S2) (h1 : C.HasNCup n S1) :
     C.HasNCup n S2 := by
   obtain ⟨c1, h1⟩ := h1
   exact ⟨c1, h1.left, fun a a_c1 => h (h1.right a a_c1)⟩
@@ -360,7 +360,7 @@ theorem hasNCup_supset {n : ℕ} {S1 S2 : Finset α} (h : S1 ⊆ S2) (h1 : C.Has
 /--
 @isnad1 id=hasngon.2h5v.s5.3019a4a1063d from=translated src=- shape=7888ab6c vocab=b0a0beab
 -/
-theorem hasNGon_supset {n : ℕ} {S1 S2 : Finset α} (h : S1 ⊆ S2) (h1 : C.HasNGon n S1) :
+theorem _root_.Tengoku.LeanPool.hasNGon_supset {n : ℕ} {S1 S2 : Finset α} (h : S1 ⊆ S2) (h1 : C.HasNGon n S1) :
     C.HasNGon n S2 := by
   rcases h1 with ⟨c1, c2, ⟨gon, c1_in, c2_in⟩⟩
   exact ⟨c1, c2, gon, fun a a_c1 => h (c1_in a a_c1), fun a a_c2 => h (c2_in a a_c2)⟩
@@ -368,7 +368,8 @@ theorem hasNGon_supset {n : ℕ} {S1 S2 : Finset α} (h : S1 ⊆ S2) (h1 : C.Has
 /--
 @isnad1 id=hasncup.2h5v.s5.a3f14a3c0c33 from=translated src=- shape=94497edc vocab=17ec6803
 -/
-theorem hasNCup_le {n m : ℕ} {S : Finset α} (h : n ≤ m) : C.HasNCup m S → C.HasNCup n S := by
+theorem _root_.Tengoku.LeanPool.hasNCup_le {n m : ℕ} {S : Finset α} (h : n ≤ m) : C.HasNCup m S → C.HasNCup n S := by
   rintro ⟨c, ⟨⟨c_cup, c_length⟩, c_in⟩⟩
   refine ⟨c.take n, ⟨c_cup.take n, ?_⟩, fun a ha => c_in a (List.take_subset _ _ ha)⟩
   rw [List.length_take, c_length, Nat.min_eq_left h]
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

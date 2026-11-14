@@ -34,7 +34,7 @@ concrete application of `exists_unique_capacity_achieving_prior_discharged`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory
 open ProbabilityTheory
 open scoped ENNReal
@@ -490,3 +490,4 @@ theorem exists_unique_capacity_achieving_prior_discharged
 end Capacity
 
 end ChannelCapacity
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

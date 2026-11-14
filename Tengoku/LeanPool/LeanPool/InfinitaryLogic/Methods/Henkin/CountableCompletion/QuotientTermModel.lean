@@ -37,7 +37,7 @@ congruence, and `C0` alone. There is no `M ⊨ φ ↔ φ ∈ S` for arbitrary `�
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure
@@ -228,3 +228,4 @@ theorem not_relMap_of_neg_mem (hsc : HenkinComplete U S) {l : ℕ} (R : L.Relati
   HenkinComplete.no_contradiction hsc (relInst R g) ⟨(relMap_qmk_iff hsc R g).mp hrel, hmem⟩
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

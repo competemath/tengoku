@@ -11,7 +11,7 @@ import Tengoku.Seed.Analysis.Normed.Ring.Lemmas
 import Tengoku.Seed.RingTheory.DedekindDomain.Dvr
 import Tengoku.Seed.RingTheory.KrullDimension.PID
 import Tengoku.Seed.RingTheory.Localization.Cardinality
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -201,3 +201,4 @@ theorem NSubring.ext {N₁ N₂ : NSubring T} (h : N₁.carrier = N₂.carrier) 
   simp_all
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -38,7 +38,7 @@ Lie algebra, central extension, short exact sequence
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace VirasoroProject
 
 section IsCentralExtension
@@ -249,3 +249,4 @@ end LieAlgebra.IsExtension
 end Basis
 
 end VirasoroProject -- namespace
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

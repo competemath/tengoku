@@ -37,7 +37,7 @@ countability live in `LocalColimit.lean`; here we stop at the tower and its stag
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u v w
 
 namespace FirstOrder.Language
@@ -325,3 +325,4 @@ theorem liftNegBody_mem_Γlocal_succ (s₀ : LocalStage) {k n : ℕ}
   localSeed_subset_localGammaNext _
     (Or.inl (Or.inl (Set.mem_image_of_mem _ (not_mem_skolemNeed_of_all_mem h))))
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

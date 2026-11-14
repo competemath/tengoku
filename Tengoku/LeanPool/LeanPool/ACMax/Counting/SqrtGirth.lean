@@ -33,7 +33,7 @@ engine is a BFS ball-excess count in a graph with no cycle of length `≤ 2r + 1
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace ACMax
 
 open SimpleGraph
@@ -813,3 +813,4 @@ theorem two_core_aux (G : SimpleGraph V) [DecidableRel G.Adj] {t : ℕ}
     exact ⟨S', hsub.trans (Finset.erase_subset _ _), hne', hmin', hinv'⟩
 
 end ACMax
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

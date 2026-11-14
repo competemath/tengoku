@@ -38,7 +38,7 @@ All declarations live in the `FiveEighths` namespace.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FiveEighths
 
 /-- The fraction of elements of a finite group `G` that lie in its center. -/
@@ -259,3 +259,4 @@ theorem commProb_le_five_eighths (G : Type*) [Group G] (h : ¬IsMulCommutative G
     norm_num
 
 end FiveEighths
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

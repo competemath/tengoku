@@ -16,7 +16,7 @@ Frisch and Vaserstein's main theorem.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.PythagoreanPolynomialParametrization
 
 open MvPolynomial
@@ -189,3 +189,4 @@ theorem exists_int_valued_parametrization :
     simpa [pythagoreanTriples] using hpy
 
 end LeanPool.PythagoreanPolynomialParametrization
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

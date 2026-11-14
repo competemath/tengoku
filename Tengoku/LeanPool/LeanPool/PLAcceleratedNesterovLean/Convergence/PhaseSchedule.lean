@@ -21,7 +21,7 @@ Key arithmetic facts:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace PLAcceleratedNesterovLean
@@ -208,3 +208,4 @@ theorem partial_geometric_quarter_le (K : ℕ) :
     _ = 1 / 3 := by norm_num
 
 end PLAcceleratedNesterovLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

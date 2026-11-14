@@ -20,7 +20,7 @@ Generic coefficient transfer gives refutations over all linearly ordered commuta
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace GoemansFlow
 
 /-! ## 1.  The counterexample instance -/
@@ -726,3 +726,4 @@ theorem dgg_cost_conjecture_false_of_headline : ¬ GoemansCostConjecture ℚ :=
   fun h => goemans_cost_conjecture_false (GoemansCostConjectureFull_of_GoemansCostConjecture ℚ h)
 
 end GoemansFlow
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

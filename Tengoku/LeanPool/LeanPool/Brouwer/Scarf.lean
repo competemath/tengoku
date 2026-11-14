@@ -19,7 +19,7 @@ colorful room.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 section fiberlemma
 
 open Finset
@@ -29,7 +29,7 @@ variable {α : Type u} {β : Type v} [DecidableEq α] [DecidableEq β]
 /--
 @isnad1 id=ex.1h4v.s7.5fa45ffef8bb from=translated src=- shape=25e7e1a1 vocab=3bc7ab85
 -/
-lemma injOn_sdiff (s : Finset α) (f : α → β) (h : s.card = (Finset.image f s).card + 1) : ∃ a b,
+lemma _root_.Tengoku.LeanPool.injOn_sdiff (s : Finset α) (f : α → β) (h : s.card = (Finset.image f s).card + 1) : ∃ a b,
     a ∈ s ∧ b ∈ s ∧ f a = f b ∧ a ≠ b ∧ Set.InjOn f (s \ ({a, b} : Finset α)) := by
   obtain ⟨a, ha, b, hb, hne, heq⟩ :=
     Finset.exists_ne_map_eq_of_card_image_lt (by omega : (s.image f).card < s.card)
@@ -59,7 +59,7 @@ variable {T : Type*} [Inhabited T]
 variable {I : Type*}
 
 /-- A family of linear orders on `T` indexed by `I`. -/
-class IndexedLOrder (I T : Type*) where
+class _root_.Tengoku.LeanPool.IndexedLOrder (I T : Type*) where
   /-- The linear order on `T` at index `i`. -/
   IST : I → LinearOrder T
 
@@ -69,7 +69,7 @@ instance : FunLike (IndexedLOrder I T) I (LinearOrder T) where
 
 variable [IST : IndexedLOrder I T]
 
-namespace IndexedLOrder
+namespace Tengoku.LeanPool.IndexedLOrder
 
 /-- Strict order at index `i` for an `IndexedLOrder`: `lt a b` for the linear
 order `IST i`. -/
@@ -81,12 +81,12 @@ order `IST i`. -/
 abbrev leAt (i : I) (a b : T) : Prop :=
   (IST i).le a b
 
-end IndexedLOrder
+end Tengoku.LeanPool.IndexedLOrder
 
 local notation  lhs "<[" i "]" rhs => IndexedLOrder.ltAt i lhs rhs
 local notation  lhs "≤[" i "]" rhs => IndexedLOrder.leAt i lhs rhs
 
-namespace IndexedLOrder
+namespace Tengoku.LeanPool.IndexedLOrder
 variable (σ : Finset T) (C : Finset I)
 
 /- Definition of Dominant -/
@@ -2168,4 +2168,5 @@ theorem Scarf : (IST.colorful c).Nonempty := by
 
 end Scarf
 
-end IndexedLOrder
+end Tengoku.LeanPool.IndexedLOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

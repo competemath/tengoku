@@ -13,25 +13,25 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-
   This file contains the definition of `dTopCat`, the category of directed spaces.
   The structure of this file is based on the approach for the undirected version in Mathlib:
   https://github.com/leanprover-community/mathlib4/blob/master/Mathlib/Topology/Category/TopCat/Basic.lean
 -/
 
-open DirectedMap
+open Tengoku.LeanPool.DirectedMap
 open CategoryTheory
 
 universe u
 
 /-- The category of directed topological spaces. -/
-structure dTopCat where
+structure _root_.Tengoku.LeanPool.dTopCat where
   /-- The underlying type of a directed topological space. -/
   carrier : Type u
   [str : DirectedSpace carrier]
 
-namespace dTopCat
+namespace Tengoku.LeanPool.dTopCat
 
 attribute [instance] dTopCat.str
 
@@ -151,4 +151,5 @@ def DirectedSubtypeHom {X : dTopCat} (Y : Set X) : (dTopCat.of Y) ⟶ X :=
 def DirectedSubsetHom {X : dTopCat} {Y₀ Y₁ : Set X} (h : Y₀ ⊆ Y₁) : (dTopCat.of Y₀) ⟶ Y₁ :=
   ofHom (DirectedSubsetInclusion h)
 
-end dTopCat
+end Tengoku.LeanPool.dTopCat
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

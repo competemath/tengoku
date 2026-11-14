@@ -13,7 +13,7 @@ public import Tengoku
 /-! TODO: Add doc-string. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open Complex Ideal IsDedekindDomain MeasureTheory NumberField
@@ -414,3 +414,4 @@ theorem fundamentalConeZeta_eq_integral_nonzeroIdealShapeTheta
   exact tsum_nonzeroIdealElement_radialMellinGaussian K J s y
 
 end NumberField.Odlyzko
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

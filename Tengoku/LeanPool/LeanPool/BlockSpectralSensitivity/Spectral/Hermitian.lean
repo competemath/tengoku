@@ -31,7 +31,7 @@ Adapted for Lean Pool from `Timeroot/BS_Lam` at commit
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Matrix.IsHermitian
 
 open scoped Matrix Matrix.Norms.L2Operator
@@ -88,3 +88,4 @@ theorem exists_eigenvector_ciSup_eigenvalues [Nonempty n] (hA : A.IsHermitian) :
   exact hA.mulVec_eigenvectorBasis i
 
 end Matrix.IsHermitian
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -10,7 +10,7 @@ public import Tengoku.LeanPool.LeanPool.Odlyzko.CompletedZeta.FractionalShapeThe
 /-! TODO: Add doc-string. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open Complex NumberField NumberField.InfinitePlace NumberField.Units
@@ -100,3 +100,4 @@ theorem fractionalShapeIdealTheta_add_unitCoordinateShift
       (fun x ↦ complexPlaceGaussian K (x : K) (expMapBasis y))
 
 end NumberField.Odlyzko
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

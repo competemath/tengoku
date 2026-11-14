@@ -11,7 +11,7 @@ public import Tengoku
 /-! # Axioms -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LO
 namespace Axioms
 
@@ -122,3 +122,4 @@ end «lp_section_1»
 end Axioms
 end LO
 -- Tengoku: 6 notation(s) of this module made scoped so they do not change other libraries (generated)
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

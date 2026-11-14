@@ -33,7 +33,7 @@ argument used in the Kalton-Roberts bound.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace KaltonRoberts
 
 open Finset BigOperators
@@ -338,3 +338,4 @@ theorem small_term_E₄
 /-! ## Combined expander existence -/
 
 end KaltonRoberts
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

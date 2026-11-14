@@ -25,7 +25,7 @@ legitimate; every other quantity is unconditional.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory MeasureTheory.Measure Set
 open scoped ENNReal Pointwise
 open CKN.Foundation.Parabolic CKN.Foundation.Parabolic.Integration
@@ -89,3 +89,4 @@ def parabolicAffine (a : ℝ) (x : Vec3) (t : ℝ) : ParabolicPoint → Paraboli
 end CKN
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

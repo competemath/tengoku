@@ -14,7 +14,7 @@ Imported Lean Pool material for `LeanPool.BrauerGroupNew.Mathlib.RingTheory.Cong
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Function
 
 /-!
@@ -58,3 +58,4 @@ def mkA [CommSemiring α] [Semiring R] [Algebra α R] (c : RingCon R) : R →ₐ
   c.mkₐ (α := α)
 
 end RingCon
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

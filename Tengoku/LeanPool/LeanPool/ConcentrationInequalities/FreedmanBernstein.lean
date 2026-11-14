@@ -27,7 +27,7 @@ Sorry-free and axiom-clean `[propext, Classical.choice, Quot.sound]`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory ProbabilityTheory Real Contrib.Bennett
 open scoped ENNReal NNReal Topology
 
@@ -249,3 +249,4 @@ variable {Y : ℕ → Ω → ℝ} {V : ℕ → ℝ≥0} {c : ℝ≥0} {ℱ : Fil
 end Martingale
 
 end Contrib.Freedman
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

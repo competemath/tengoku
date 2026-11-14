@@ -10,7 +10,7 @@ public import Tengoku.Seed.MeasureTheory.Integral.CircleIntegral
 public import Tengoku.LeanPool.LeanPool.NavierStokesAndEuler.NavierStokes.CauchyRestriction
 public import Tengoku.LeanPool.LeanPool.NavierStokesAndEuler.NavierStokes.CompactSmoothFamily
 import Tengoku.Seed.Analysis.Complex.CauchyIntegral
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -396,3 +396,4 @@ theorem differentiableOn_family_of_joint {B : Type} [NormedAddCommGroup B] [Norm
 end
 
 end NavierStokes.HolomorphicFamily
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

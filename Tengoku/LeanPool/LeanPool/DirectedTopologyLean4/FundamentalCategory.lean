@@ -13,14 +13,14 @@ public import Tengoku.LeanPool.LeanPool.DirectedTopologyLean4.DTop
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-
   This file contains the definition of the fundamental category of a directed space.
   We follow the structure of the undirected version found at:
   https://leanprover-community.github.io/mathlib_docs/algebraic_topology/fundamental_groupoid/basic.html#fundamental_groupoid
 -/
 
-open DirectedMap
+open Tengoku.LeanPool.DirectedMap
 open CategoryTheory
 
 universe u v
@@ -30,7 +30,7 @@ open scoped unitInterval
 
 noncomputable section
 
-namespace Dipath
+namespace Tengoku.LeanPool.Dipath
 
 namespace Dihomotopy
 
@@ -104,7 +104,7 @@ end assoc
 
 end Dihomotopy
 
-end Dipath
+end Tengoku.LeanPool.Dipath
 
 /-
  Definition of the fundamental category and of the functor sending a directed space to its
@@ -112,11 +112,11 @@ end Dipath
 -/
 /-- The fundamental category of a type, wrapping the underlying element as `as`. -/
 @[ext]
-structure FundamentalCategory (X : Type u) where
+structure _root_.Tengoku.LeanPool.FundamentalCategory (X : Type u) where
   /-- The underlying element of the type. -/
   as : X
 
-namespace FundamentalCategory
+namespace Tengoku.LeanPool.FundamentalCategory
 
 /-- The fundamental-category wrapper is type-equivalent to the underlying type. -/
 @[simps]
@@ -284,4 +284,5 @@ fundamental category of that space. -/
 def fromPath {X : dTopCat} {x₀ x₁ : X} (p : Dipath.Dihomotopic.Quotient x₀ x₁) :
   FundamentalCategory.mk x₀ ⟶ FundamentalCategory.mk x₁ := p
 
-end FundamentalCategory
+end Tengoku.LeanPool.FundamentalCategory
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

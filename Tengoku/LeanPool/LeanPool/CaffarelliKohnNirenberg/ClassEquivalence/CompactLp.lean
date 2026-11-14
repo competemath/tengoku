@@ -28,7 +28,7 @@ nothing beyond the data clauses.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory MeasureTheory.Measure Set Filter
 open scoped ENNReal NNReal Topology
 open CKN.Foundation.Parabolic
@@ -188,3 +188,4 @@ theorem spatialGradientSq_integrableOn_compact_of_data
   positivity
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

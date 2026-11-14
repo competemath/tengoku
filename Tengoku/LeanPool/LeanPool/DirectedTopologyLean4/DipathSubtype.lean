@@ -12,14 +12,14 @@ public import Tengoku.LeanPool.LeanPool.DirectedTopologyLean4.FundamentalCategor
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-
   This file contains properties of dipaths contained in directed subspaces of a directed space.
   In particular, properties about their equivalence classes in the fundamental category.
 -/
 
 open Set
-open scoped FundamentalCategory unitInterval
+open scoped Tengoku.LeanPool.FundamentalCategory unitInterval
 
 attribute [local instance] Dipath.Dihomotopic.setoid
 
@@ -179,3 +179,4 @@ lemma dihomSubtype_of_dihom_range_subset {γ γ' : Dipath x y} (hγ : range γ �
 Quotient.eq.mpr (Relation.EqvGen.rel _ _ ⟨DihomotopyOfSubtype hγ hγ' hF⟩)
 
 end DiSubtype
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

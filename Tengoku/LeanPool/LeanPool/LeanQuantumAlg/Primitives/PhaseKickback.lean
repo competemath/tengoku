@@ -40,7 +40,7 @@ is "kicked back" in front of the `|1⟩` component of the control
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace QuantumAlg
 
 open PureState Gate
@@ -120,3 +120,4 @@ theorem GeneralizedPhaseKickback.main (U : Gate n) (u : PureState n) (θ : ℝ)
 end
 
 end QuantumAlg
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

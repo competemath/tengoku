@@ -13,7 +13,7 @@ public import Tengoku.LeanPool.LeanPool.DirectedTopologyLean4.DTop
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-
   This file contains the definitions of splitting a (dipath)
       dihomotopy both vertically and horizontally.
@@ -50,7 +50,7 @@ public import Tengoku.LeanPool.LeanPool.DirectedTopologyLean4.DTop
   gives two dipath dihomotopies.
 -/
 
-open DirectedMap
+open Tengoku.LeanPool.DirectedMap
 open scoped unitInterval
 
 namespace SplitDihomotopy
@@ -219,3 +219,4 @@ lemma sph_eval_1 {f g : D(I,X)} (F : Dihomotopy f g) (T : I) :
   simp
 
 end SplitDihomotopy
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

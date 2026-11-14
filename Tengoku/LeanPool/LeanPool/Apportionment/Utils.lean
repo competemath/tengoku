@@ -15,11 +15,11 @@ vector of natural numbers, and a closed form for the sum of a length-four vector
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-- A vector of natural numbers has positive sum iff at least one component is positive.
 @isnad1 id=iff.0h2v.s6.dc5af51160e0 from=translated src=- shape=e2dd8c5a vocab=8082960a
 -/
-lemma sum_pos_iff_exists_pos {n : ℕ} {v : Vector ℕ n} :
+lemma _root_.Tengoku.LeanPool.sum_pos_iff_exists_pos {n : ℕ} {v : Vector ℕ n} :
     0 < v.sum ↔ ∃ i : Fin n, 0 < v[i] := by
   constructor
   · contrapose!
@@ -45,3 +45,4 @@ lemma Vector.sum_four (v : Vector ℕ 4) : v.sum = v[0] + v[1] + v[2] + v[3] := 
   have h : v.toArray = #[v[0], v[1], v[2], v[3]] := by grind
   simp [Vector.sum, h, Array.sum]
   abel
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -54,7 +54,7 @@ public import Tengoku.LeanPool.LeanPool.Sundogcert.ThreeDMReindex
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Sundog.SATReduction Sundog.SATNPHard
 open Sundog.SATReductionIncidence Sundog.ThreeDMReindex
 
@@ -641,3 +641,4 @@ theorem forward (φ : Formula n m) (h : Satisfiable φ) :
     ynode_cover φ slotStar wheelTriple beta T hsplitFull hwheel_form⟩
 
 end Sundog.SATReductionForward
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

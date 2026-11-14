@@ -17,7 +17,7 @@ polynomials*, Arch. Math. 59 (1992), 239-244; upstreaming candidates for Mathlib
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-- A multiset `M` invariant under an involution `τ` that is fixed-point-free on its support
 splits as `N + N.map τ`.
 @isnad1 id=ex.3h3v.s6.c788880eef2d from=translated src=- shape=12b96cd2 vocab=6ab1198b
@@ -51,3 +51,4 @@ theorem Multiset.exists_add_map_of_involutive {β : Type*} (τ : β → β) (M :
       exact ⟨x ::ₘ N', by
         rw [hMdecomp, hN']
         simp only [Multiset.map_cons, Multiset.cons_add, Multiset.add_cons, Multiset.cons_swap]⟩
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

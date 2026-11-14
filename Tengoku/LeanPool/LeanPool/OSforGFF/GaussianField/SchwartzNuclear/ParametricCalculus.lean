@@ -23,7 +23,7 @@ not yet available in Mathlib. Used as building blocks in the SchwartzNuclear pro
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory SchwartzMap
 open scoped ContDiff
 
@@ -64,7 +64,7 @@ differ from those derived from `NormedAddCommGroup`, preventing direct use of
 currying isometry with explicit `NormedAddCommGroup` instances via `curryLeftLIE`.
 @isnad1 id=eq.0h6v.s10.0bc3a27e13ce from=translated src=- shape=acebf50b vocab=30131860
 -/
-lemma norm_iteratedFDeriv_iteratedFDeriv {E F : Type*}
+lemma _root_.Tengoku.LeanPool.norm_iteratedFDeriv_iteratedFDeriv {E F : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup F] [NormedSpace ℝ F]
     (f : E → F) (n l' : ℕ) (z : E) :
@@ -110,7 +110,7 @@ then `y ↦ ∫_t f(ι(y,t)) · g(t) dt` is C^∞ and `D^m` commutes with `∫`.
 **Reference**: Folland, "Real Analysis", Theorem 2.27 (iterated version).
 @isnad1 id=and.3h5v.s10.4876672007f3 from=translated src=- shape=e7f784a4 vocab=459e254e
 -/
-lemma contDiff_schwartz_parametric_integral
+lemma _root_.Tengoku.LeanPool.contDiff_schwartz_parametric_integral
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {H : Type*} [NormedAddCommGroup H] [NormedSpace ℝ H]
     (f : SchwartzMap E ℝ) (g : SchwartzMap ℝ ℝ)
@@ -324,3 +324,4 @@ lemma contDiff_schwartz_parametric_integral
   rw [h_Φ_eq]
   exact contDiff_infty.mpr fun m =>
     ((continuousMultilinearCurryFin0 ℝ H ℝ).contDiff).comp (I_contDiff m 0)
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

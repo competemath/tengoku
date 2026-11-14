@@ -30,7 +30,7 @@ structure lemmas `propindu`, from which the two theorems below follow.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped Topology
 
 noncomputable section
@@ -3104,3 +3104,4 @@ theorem theomwpu_even {m : ℕ} [NeZero m] (hm : Even m) {v : Fin m × Fin m} (h
     exact isIntegral_algebraMap.mul hint
 
 end PeriodPair
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

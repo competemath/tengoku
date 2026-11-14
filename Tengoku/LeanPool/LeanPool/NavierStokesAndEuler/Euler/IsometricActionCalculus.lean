@@ -11,7 +11,7 @@ public import Tengoku
 /-! Closed differentiability for strongly continuous linear isometric actions. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace EulerIsometricAction
@@ -83,3 +83,4 @@ theorem hasFDerivAt_limit (τ : P → E →ₗᵢ[ℝ] E)
   rwa [hz] at hh
 
 end EulerIsometricAction
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

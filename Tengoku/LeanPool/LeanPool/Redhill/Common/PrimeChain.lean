@@ -15,49 +15,49 @@ These are sequences of primes where the next prime is at least twice the last.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Nat
 
 /-- `primeChain s` is the lexicographically earliest sequence of primes
 with `primeChain s 0 > s` and each succeeding element more than twice the last. -/
-def primeChain (s : ℕ) : ℕ → ℕ
+def _root_.Tengoku.LeanPool.primeChain (s : ℕ) : ℕ → ℕ
   | 0 => Nat.find (exists_infinite_primes (s + 1))
   | n + 1 => Nat.find (exists_infinite_primes (2 * primeChain s n + 1))
 
 /--
 @isnad1 id=prime.0h2v.s3.b9b0827f7d9b from=translated src=- shape=b794339c vocab=265e45b8
 -/
-lemma prime_primeChain {s n : ℕ} : (primeChain s n).Prime := by
+lemma _root_.Tengoku.LeanPool.prime_primeChain {s n : ℕ} : (primeChain s n).Prime := by
   induction n <;> exact (Nat.find_spec (exists_infinite_primes _)).2
 
 /--
 @isnad1 id=lt.0h1v.s3.162529f0e779 from=translated src=- shape=591c59b6 vocab=1c935ffe
 -/
-lemma primeChain_zero_gt {s : ℕ} : s < primeChain s 0 :=
+lemma _root_.Tengoku.LeanPool.primeChain_zero_gt {s : ℕ} : s < primeChain s 0 :=
   (Nat.find_spec (exists_infinite_primes _)).1
 
 /--
 @isnad1 id=lt.0h2v.s5.240f5a442306 from=translated src=- shape=018674c0 vocab=cd23e52b
 -/
-lemma primeChain_succ_gt {s n : ℕ} : 2 * primeChain s n < primeChain s (n + 1) :=
+lemma _root_.Tengoku.LeanPool.primeChain_succ_gt {s n : ℕ} : 2 * primeChain s n < primeChain s (n + 1) :=
   (Nat.find_spec (exists_infinite_primes _)).1
 
 /--
 @isnad1 id=strictmo.0h1v.s3.b8220528b51f from=translated src=- shape=f736e2c1 vocab=5d2da96e
 -/
-lemma strictMono_primeChain {s : ℕ} : StrictMono (primeChain s) :=
+lemma _root_.Tengoku.LeanPool.strictMono_primeChain {s : ℕ} : StrictMono (primeChain s) :=
   strictMono_nat_of_lt_succ (by grind [primeChain_succ_gt])
 
 /--
 @isnad1 id=lt.0h2v.s3.c58f19554db5 from=translated src=- shape=70252ff3 vocab=1c935ffe
 -/
-lemma primeChain_gt {s n : ℕ} : s < primeChain s n :=
+lemma _root_.Tengoku.LeanPool.primeChain_gt {s n : ℕ} : s < primeChain s n :=
   primeChain_zero_gt.trans_le (strictMono_primeChain.monotone (Nat.zero_le _))
 
 open Fin Finset
 
 /-- An `(n + 2)`-tuple that satisfies the strong subsum condition if `0 < m ≤ s`. -/
-def chainTup (n m s : ℕ) (i : Fin (n + 2)) : ℤ :=
+def _root_.Tengoku.LeanPool.chainTup (n m s : ℕ) (i : Fin (n + 2)) : ℤ :=
   i.addCases (primeChain s ·.1) fun | 0 => m | 1 => -(m + ∑ i ∈ range n, primeChain s i)
 
 variable {n m s : ℕ}
@@ -65,7 +65,7 @@ variable {n m s : ℕ}
 /--
 @isnad1 id=eq.0h2v.s6.40f54a7a51d7 from=translated src=- shape=cc3cf53b vocab=cbbe8b7a
 -/
-lemma chainTup_zero : chainTup 0 m s = fun | 0 => m | 1 => -m := by
+lemma _root_.Tengoku.LeanPool.chainTup_zero : chainTup 0 m s = fun | 0 => m | 1 => -m := by
   ext i
   cases i using addCases with
   | left i => exact i.elim0
@@ -76,7 +76,7 @@ lemma chainTup_zero : chainTup 0 m s = fun | 0 => m | 1 => -m := by
 /--
 @isnad1 id=eq.0h1v.s8.a8d21d2e56ef from=translated src=- shape=6c726960 vocab=32b47433
 -/
-lemma chainTup_induction_compl :
+lemma _root_.Tengoku.LeanPool.chainTup_induction_compl :
     {natAdd n 0, natAdd n 2}ᶜ = insert (natAdd n 1) (univ.map (castAddEmb 3)) := by
   ext i
   simp_rw [mem_compl, mem_insert, mem_singleton, mem_map, mem_univ, true_and, coe_castAddEmb]
@@ -85,7 +85,7 @@ lemma chainTup_induction_compl :
 /--
 @isnad1 id=lt.1h3v.s5.d0a89fc7fe04 from=translated src=- shape=82d68041 vocab=9f8c58e4
 -/
-lemma add_sum_lt_primeChain (h : m ≤ s) : m + ∑ i ∈ range n, primeChain s i < primeChain s n := by
+lemma _root_.Tengoku.LeanPool.add_sum_lt_primeChain (h : m ≤ s) : m + ∑ i ∈ range n, primeChain s i < primeChain s n := by
   induction n with
   | zero =>
     rw [sum_range_zero, primeChain]
@@ -99,7 +99,7 @@ lemma add_sum_lt_primeChain (h : m ≤ s) : m + ∑ i ∈ range n, primeChain s 
 /--
 @isnad1 id=eq.1h3v.s9.bff3ec294509 from=translated src=- shape=7801b96b vocab=f1aa0b6d
 -/
-lemma tupReduce_chainTup {c : n + 1 = n + 1 + 2 - #{natAdd n (0 : Fin 3), natAdd n 2}} :
+lemma _root_.Tengoku.LeanPool.tupReduce_chainTup {c : n + 1 = n + 1 + 2 - #{natAdd n (0 : Fin 3), natAdd n 2}} :
     tupReduce (chainTup (n + 1) m s) {natAdd n (0 : Fin 3), natAdd n (2 : Fin 3)} c =
     chainTup n m s := by
   ext i
@@ -138,3 +138,4 @@ lemma tupReduce_chainTup {c : n + 1 = n + 1 + 2 - #{natAdd n (0 : Fin 3), natAdd
       have sh₁ : i.castAdd 3 = (i.castAdd 1).castAdd 2 := rfl
       have sh₂ : i.castSucc.castSucc = castAdd 2 i := rfl
       rw [lastCases_castSucc, sh₁, addCases_left, sh₂, addCases_left, val_castAdd]
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

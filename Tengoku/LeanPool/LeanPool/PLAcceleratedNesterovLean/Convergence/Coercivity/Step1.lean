@@ -22,7 +22,7 @@ And T_n := ‖P v_n‖ ≤ √(L_n/λ).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace PLAcceleratedNesterovLean
@@ -96,3 +96,4 @@ theorem perp_v_bound_from_u (u Pperp_v e : E d) (sqrtmu : ℝ)
     _ = ‖u‖ + |sqrtmu| * ‖e‖ := by rw [norm_smul, Real.norm_eq_abs]
 
 end PLAcceleratedNesterovLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

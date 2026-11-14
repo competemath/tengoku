@@ -51,7 +51,7 @@ genuinely-undecidable test
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem ApproximableMap Domain.Neighborhood.Exercise619
@@ -732,3 +732,4 @@ theorem not_trianglelefteq_otimes :
 end Exercise627
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

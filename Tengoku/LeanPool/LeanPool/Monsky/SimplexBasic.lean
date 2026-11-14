@@ -14,7 +14,7 @@ Imported Lean Pool material for `LeanPool.Monsky.SimplexBasic`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.Monsky
 
 local notation "ℝ²" => EuclideanSpace ℝ (Fin 2)
@@ -392,3 +392,4 @@ lemma openHull_constant_rev {n : ℕ} {P : ℝ²} {f : Fin n → ℝ²}
 
 end Monsky
 end LeanPool
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -11,7 +11,7 @@ public import Tengoku.LeanPool.LeanPool.DomainTheory.ContinuousLattice.Specializ
 # Scott-continuous maps (Scott 1972, §2.5–2.7)
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 attribute [local instance] Domain.ContinuousLattice.specializationPreorder
 
 
@@ -220,3 +220,4 @@ theorem proposition_2_7_inf_right (hD : IsContinuousLattice D) (x : D) :
   continuous_of_preservesDirectedSup (meet_preservesDirectedSup x hD)
 
 end Domain.ContinuousLattice
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

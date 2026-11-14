@@ -23,7 +23,7 @@ family.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.CencovPetz
 open scoped BigOperators
 
@@ -61,3 +61,4 @@ lemma continuous_fisherBilin_apply (u v : tangentSpace (α := α)) :
 
 end Simplex
 end LeanPool.CencovPetz
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

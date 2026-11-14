@@ -48,7 +48,7 @@ on `propext`/`Quot.sound` (no `Classical.choice`).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 /-- **Definition 1.1 (Scott 1981, PRG-19).** A *neighbourhood system* over a token
@@ -584,3 +584,4 @@ theorem Isomorphic.trans {α β γ : Type*} {V₀ : NeighborhoodSystem α} {V₁
   h₀.elim fun e₀ => h₁.elim fun e₁ => ⟨e₀.trans e₁⟩
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

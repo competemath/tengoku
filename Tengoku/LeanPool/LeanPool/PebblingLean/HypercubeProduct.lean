@@ -19,7 +19,7 @@ to hypercubes.  The first ingredient is the coordinate split
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace PebblingLean
 
 namespace Hypercube
@@ -487,3 +487,4 @@ theorem hasHighDemandDistribution_split_product_of_highDemand_variable
 end Hypercube
 
 end PebblingLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

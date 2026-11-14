@@ -24,7 +24,7 @@ This is one of the standard reduction steps in finite Čencov/Chentsov uniquenes
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.CencovPetz
 open scoped BigOperators
 
@@ -73,3 +73,4 @@ lemma split_pushforward_eq_uniform_of_apply_eq_div_card (m : α → ℕ) (hm : �
 
 end MarkovMorphism
 end LeanPool.CencovPetz
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

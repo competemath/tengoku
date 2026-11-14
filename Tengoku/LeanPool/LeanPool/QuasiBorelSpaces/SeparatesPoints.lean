@@ -17,14 +17,14 @@ Imported Lean Pool material for `LeanPool.QuasiBorelSpaces.SeparatesPoints`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 variable
   {A : Type*} [QuasiBorelSpace A]
   {B : Type*} [QuasiBorelSpace B]
   {I : Type*} [Countable I]
   {P : I → Type*} [∀ i, QuasiBorelSpace (P i)]
 
-namespace QuasiBorelSpace
+namespace Tengoku.LeanPool.QuasiBorelSpace
 
 /--
 A `QuasiBorelSpace` _separates points_ if any two elements are equal iff all
@@ -45,4 +45,5 @@ lemma separatesPoints_def
     : x = y :=
   ‹SeparatesPoints A›.separates x y h
 
-end QuasiBorelSpace
+end Tengoku.LeanPool.QuasiBorelSpace
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

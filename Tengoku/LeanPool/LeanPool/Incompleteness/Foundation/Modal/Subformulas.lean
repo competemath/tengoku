@@ -9,7 +9,7 @@ public import Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Modal.Formula
 
 /-! # Subformulas -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 open scoped LO.Axioms LO.Dia LO.Entailment
 
 
@@ -178,3 +178,4 @@ end FormulaSet
 
 end Modal
 end LO
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

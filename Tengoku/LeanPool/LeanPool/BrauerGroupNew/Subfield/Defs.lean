@@ -15,11 +15,11 @@ Imported Lean Pool material for `LeanPool.BrauerGroupNew.Subfield.Defs`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Function TensorProduct MulOpposite
 
 /-- A subalgebra whose carrier is commutative and contains inverses of all nonzero elements. -/
-structure SubField (K A : Type*) [CommSemiring K] [Semiring A] [Algebra K A]
+structure _root_.Tengoku.LeanPool.SubField (K A : Type*) [CommSemiring K] [Semiring A] [Algebra K A]
     extends Subalgebra K A where
   protected mul_comm ⦃x : A⦄ (hx : x ∈ carrier) ⦃y : A⦄ (hy : y ∈ carrier) : x * y = y * x
   exists_inverse ⦃x : A⦄ : x ∈ carrier → x ≠ 0 → ∃ y ∈ carrier, x * y = 1
@@ -27,7 +27,7 @@ structure SubField (K A : Type*) [CommSemiring K] [Semiring A] [Algebra K A]
 /-- Reinterpret SubFields as `Subalgebras` -/
 add_decl_doc SubField.toSubalgebra
 
-namespace SubField
+namespace Tengoku.LeanPool.SubField
 variable {R K A : Type*}
 
 section CommSemiring
@@ -89,7 +89,7 @@ instance (priority := low) algebra' {K' : Type*} [CommSemiring K'] [SMul K' R] [
     [IsScalarTower K' R A] (S : SubField R A) : Algebra K' S := S.toSubalgebra.algebra'
 
 open scoped Classical in
-noncomputable instance _root_.SubField.carrier.instSemifield [Nontrivial A] : Semifield L.1 where
+noncomputable instance _root_.Tengoku.LeanPool.SubField.carrier.instSemifield [Nontrivial A] : Semifield L.1 where
   __ := L
   mul_comm := fun ⟨a, ha⟩ ⟨b, hb⟩ ↦ Subtype.ext_iff.2 <| L.2 ha hb
   inv := fun ⟨x, hx⟩ ↦ if h0 : x = 0 then 0 else ⟨L.3 hx h0|>.choose,
@@ -138,11 +138,11 @@ instance : SubringClass (SubField R A) A where
   zero_mem {s} := zero_mem (s := s.1)
   neg_mem {s} := neg_mem (s := s.1)
 
-lemma _root_.SubField.mem_toSubring : a ∈ L.toSubring ↔ a ∈ L := .rfl
-@[simp] lemma _root_.SubField.coe_toSubring (L : SubField R A) :
+lemma _root_.Tengoku.LeanPool.SubField.mem_toSubring : a ∈ L.toSubring ↔ a ∈ L := .rfl
+@[simp] lemma _root_.Tengoku.LeanPool.SubField.coe_toSubring (L : SubField R A) :
     (L.toSubring : Set A) = L := rfl
 
-noncomputable instance _root_.SubField.carrier.instField [Nontrivial A] : Field L where
+noncomputable instance _root_.Tengoku.LeanPool.SubField.carrier.instField [Nontrivial A] : Field L where
   __ : Ring L := inferInstance
   __ := carrier.instSemifield
   qsmul := _
@@ -163,8 +163,9 @@ instance : Bot (SubField K A) where
 instance : Nonempty (SubField K A) := ⟨⊥⟩
 
 variable (K A) in
-lemma _root_.SubField.exists_isMax : ∃ L : SubField K A, IsMax L :=
+lemma _root_.Tengoku.LeanPool.SubField.exists_isMax : ∃ L : SubField K A, IsMax L :=
   zorn_le_nonempty fun s hschain hs ↦ ⟨dSup s hs hschain.directedOn, (isLUB_dSup ..).1⟩
 
 end Semifield
-end SubField
+end Tengoku.LeanPool.SubField
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

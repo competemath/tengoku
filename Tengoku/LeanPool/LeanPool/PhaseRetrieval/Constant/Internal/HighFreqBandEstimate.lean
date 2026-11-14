@@ -31,7 +31,7 @@ import Tengoku.Seed.Tactic.NormNum.Parity
 /-! # HighFreqBandEstimate -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Complex Real Finset
 
 noncomputable section
@@ -1074,3 +1074,4 @@ theorem high_freq_band_estimate {N L : ℕ}
   linarith
 
 end FockSPR
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

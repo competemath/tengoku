@@ -41,7 +41,7 @@ public import Tengoku.LeanPool.LeanPool.Sundogcert.MatchingNPHard
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Finset
 open Sundog.MatchingNPHard
 
@@ -131,3 +131,4 @@ theorem threeDM_reindex_comp (t : I → W × X × Y) :
   threeDM_reindex t
 
 end Sundog.ThreeDMReindex
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -32,7 +32,7 @@ the infrastructure for multi-variable entropy identities.
 - `marginalFst_prodDist`, `marginalSnd_prodDist`: marginals of product distributions
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPool.Shannon1948Formalization
 
 noncomputable section
@@ -182,3 +182,4 @@ theorem entropyNat_prodDist {α β : Type} [Fintype α] [Fintype β]
 end
 
 end LeanPool.Shannon1948Formalization
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

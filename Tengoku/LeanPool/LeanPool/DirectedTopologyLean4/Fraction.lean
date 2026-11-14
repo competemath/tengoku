@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped unitInterval
 noncomputable section
 
@@ -21,12 +21,12 @@ fraction
 `i/n : ℝ` lives in the unit interval
 -/
 @[reducible]
-def Fraction {i n : ℕ} (hn : 0 < n) (hi : i ≤ n) : I :=
+def _root_.Tengoku.LeanPool.Fraction {i n : ℕ} (hn : 0 < n) (hi : i ≤ n) : I :=
   ⟨(i : ℝ)/(n : ℝ),
     ⟨div_nonneg (Nat.cast_nonneg i) (Nat.cast_nonneg n),
       (div_le_one ((Nat.cast_pos (α := ℝ)).mpr hn)).mpr (Nat.cast_le.mpr hi)⟩⟩
 
-namespace Fraction
+namespace Tengoku.LeanPool.Fraction
 
 /-- For any positive number `n : ℕ`, we have the fraction `1/n : ℝ` in the unit interval
 -/
@@ -114,4 +114,5 @@ lemma lt_frac_succ {n m : ℕ} (hn : m < n) :
   apply div_lt_div_of_pos_right _ (Nat.cast_pos.mpr (lt_of_le_of_lt (Nat.zero_le m) hn))
   linarith
 
-end Fraction
+end Tengoku.LeanPool.Fraction
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

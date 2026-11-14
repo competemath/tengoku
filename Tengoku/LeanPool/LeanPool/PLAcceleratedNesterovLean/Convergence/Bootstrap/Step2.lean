@@ -24,7 +24,7 @@ Assuming all iterates up to n stay in Ω with Lyapunov ≤ R²:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace PLAcceleratedNesterovLean
@@ -64,3 +64,4 @@ theorem series_bound_from_geometric (f : ℕ → ℝ) (C r : ℝ) (n : ℕ)
   exact Finset.sum_le_sum fun k hk => hf k (Finset.mem_range.mp hk)
 
 end PLAcceleratedNesterovLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

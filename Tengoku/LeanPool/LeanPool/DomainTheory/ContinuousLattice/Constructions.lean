@@ -28,7 +28,7 @@ the Milner
 correction and remain open.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 attribute [local instance] Domain.ContinuousLattice.specializationPreorder
 
 
@@ -594,3 +594,4 @@ theorem sierpinski_isInjective_and_isContinuousLattice :
   ⟨proposition_1_2, isContinuousLattice_prop⟩
 
 end Domain.ContinuousLattice
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

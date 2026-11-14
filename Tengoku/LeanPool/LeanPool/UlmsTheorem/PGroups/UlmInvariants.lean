@@ -34,7 +34,7 @@ not the classical Ulm invariant used in Ulm's theorem.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace UlmsTheorem
 
 open Ordinal Cardinal
@@ -407,3 +407,4 @@ noncomputable def tailInvariants {G : Type*} [AddCommGroup G]
   fun k ↦ ulmInvariant p (ω * γ + k.1) (G := G)
 
 end UlmsTheorem
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

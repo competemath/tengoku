@@ -16,10 +16,10 @@ describe a floating-point format, along with the available `RoundingMode`s and a
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-- A floating-point format: a precision `prec` and an exponent range
 `[emin, emax]`. -/
-structure FloatCfg where
+structure _root_.Tengoku.LeanPool.FloatCfg where
   /-- The precision: the number of representable mantissa steps. -/
   prec : ℕ
   /-- The minimum exponent of the format. -/
@@ -32,7 +32,7 @@ structure FloatCfg where
   prec_pos : 0 < prec
 
 /-- The supported rounding modes for converting a rational to a float. -/
-inductive RoundingMode where
+inductive _root_.Tengoku.LeanPool.RoundingMode where
   /-- Round to the nearest representable value (ties to even). -/
   | nearest
   /-- Round toward negative infinity. -/
@@ -45,6 +45,7 @@ inductive RoundingMode where
   | toinf
 
 /-- A typeclass selecting the `RoundingMode` in scope. -/
-class Rounding where
+class _root_.Tengoku.LeanPool.Rounding where
   /-- The rounding mode used by the operations in scope. -/
   mode : RoundingMode
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

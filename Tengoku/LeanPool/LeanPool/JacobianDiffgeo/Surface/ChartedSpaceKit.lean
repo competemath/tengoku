@@ -26,7 +26,7 @@ This file is standalone (it does not assume a pre-existing surface).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold
 open Set
 
@@ -81,3 +81,4 @@ theorem isManifold_of_family (c : ι → OpenPartialHomeomorph Z ℂ) (idx : Z �
   exact htrans i j
 
 end RS
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

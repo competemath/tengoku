@@ -16,7 +16,7 @@ import Tengoku.LeanPool.LeanPool.EcTateLean.Algebra.Ring.Basic
 Imported Lean Pool material for `LeanPool.EcTateLean.Algebra.EllipticCurve.Model`.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 -- import Aesop
 
 -- TODO cleanup variables, sections assumption strength
@@ -29,7 +29,7 @@ $$
 y^2 + a₁ xy + a₃ y = x^ 3 + a₂ x ^ 2 + a₄ x + a₆
 $$
 -/
-structure Model (R : Type u) [CommRing R] where
+structure _root_.Tengoku.LeanPool.Model (R : Type u) [CommRing R] where
   /-- The `a₁` coefficient of the Weierstrass model. -/
   a1 : R
   /-- The `a₂` coefficient of the Weierstrass model. -/
@@ -42,7 +42,7 @@ structure Model (R : Type u) [CommRing R] where
   a6 : R
 deriving Inhabited, DecidableEq
 
-namespace Model
+namespace Tengoku.LeanPool.Model
 variable {R : Type u} [CommRing R]
 
 instance [Repr R] : Repr (Model R) :=
@@ -419,15 +419,15 @@ def rstTriple (e : Model R) (rst : R × R × R) : Model R :=
 -/
 lemma rstIso_to_triple (e : Model R) (r s t : R) : rstIso r s t e = rstTriple e (r, s, t) := rfl
 
-end Model
+end Tengoku.LeanPool.Model
 
 /-- A Weierstrass model with nonzero discriminant, i.e. a nonsingular elliptic
 curve. -/
-structure ValidModel (R : Type u) [CommRing R] extends Model R where
+structure _root_.Tengoku.LeanPool.ValidModel (R : Type u) [CommRing R] extends Model R where
   /-- The discriminant of the underlying model is nonzero. -/
   discr_not_zero : toModel.discr ≠ 0
 
-namespace ValidModel
+namespace Tengoku.LeanPool.ValidModel
 variable {R : Type u} [CommRing R]
 instance [Repr R] : Repr (ValidModel R) := ⟨fun (e : ValidModel R) _ => repr e.toModel⟩
 
@@ -554,9 +554,9 @@ def rstTriple (e : ValidModel R) (rst : R × R × R) : ValidModel R :=
 lemma rstIso_to_triple (e : ValidModel R) (r s t : R) : rstIso r s t e = rstTriple e (r, s, t) :=
 rfl
 
-end ValidModel
+end Tengoku.LeanPool.ValidModel
 
-namespace Model
+namespace Tengoku.LeanPool.Model
 
 variable {K : Type u} [CommRing K]
 
@@ -839,4 +839,5 @@ lemma move_singularPoint_to_origin' [PerfectRing K] (e : Model K) :
 
 end Field
 
-end Model
+end Tengoku.LeanPool.Model
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

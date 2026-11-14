@@ -13,7 +13,7 @@ import Tengoku.LeanPool.LeanPool.Feige.Grunbaum.ProbabilityCore
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Set
 
 noncomputable section
@@ -63,3 +63,4 @@ theorem volume_inter_le_eq_volume_inter_lt
   rw [measure_union hdisjoint hboundaryMeas, hboundary, add_zero]
 
 end Grunbaum
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

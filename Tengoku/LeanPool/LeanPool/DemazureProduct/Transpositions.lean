@@ -21,7 +21,7 @@ $S = \{n\}$ a singleton.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.DemazureProduct
 
 namespace Transpositions
@@ -596,3 +596,4 @@ def fallingSet (α : AspPerm) (S : Set ℤ) : Set ℤ :=
 end Transpositions
 
 end LeanPool.DemazureProduct
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

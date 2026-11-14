@@ -10,7 +10,7 @@ public import Tengoku.Seed.Analysis.Calculus.ContDiff.Defs
 public import Tengoku.Seed.Analysis.SpecialFunctions.Pow.Real
 import Tengoku.Seed.Analysis.Calculus.InverseFunctionTheorem.ContDiff
 import Tengoku.Seed.Analysis.SpecialFunctions.Pow.Deriv
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -567,3 +567,4 @@ theorem manuscript_coordinate_existsUnique {h τ : ℝ} (hh : 0 < h)
   exact existsUnique_positive_solution (by linarith) (by linarith) hτ z
 
 end NavierStokes.SimilarityCoordinates
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -76,7 +76,7 @@ inhabitant
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem Domain.Recursive
@@ -208,3 +208,4 @@ theorem unitSys_isEffectivelyGiven : unitSys.IsEffectivelyGiven :=
   ⟨unitPresentation⟩
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

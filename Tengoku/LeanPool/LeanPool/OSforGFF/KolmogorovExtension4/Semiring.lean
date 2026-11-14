@@ -16,7 +16,7 @@ THIS FILE IS NOT USED FOR THE MAIN RESULT
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 variable {α : Type*} {C : Set (Set α)} {s t : Set α} {J : Finset (Set α)}
 
 open Finset Set
@@ -76,3 +76,4 @@ theorem disjointed_mem (hC : IsSetField C) {s : ℕ → Set α} (hs : ∀ n, s n
 end IsSetField
 
 end MeasureTheory
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

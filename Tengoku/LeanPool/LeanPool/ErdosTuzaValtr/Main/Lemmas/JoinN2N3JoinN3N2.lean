@@ -16,7 +16,7 @@ Imported Lean Pool material for `LeanPool.ErdosTuzaValtr.Main.Lemmas.JoinN2N3Joi
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open OrderDual
 
 variable {α : Type _} [LinearOrder α] (C : Config α)
@@ -24,7 +24,7 @@ variable {α : Type _} [LinearOrder α] (C : Config α)
 /--
 @isnad1 id=ex.6h7v.s7.9aae45969ea9 from=translated src=- shape=6853eaa3 vocab=cbf17420
 -/
-theorem Config.join_n2_n2_interweaved {S : Finset α} {n : ℕ} {c1 : List α}
+theorem Tengoku.LeanPool.Config.join_n2_n2_interweaved {S : Finset α} {n : ℕ} {c1 : List α}
     (c1_cup : C.NCup (n + 2) c1) (c1_in_S : c1.In S) {c2 : List α} (c2_cup : C.NCup (n + 2) c2)
     (c2_in_S : c2.In S) (x : α) (c1_last : x ∈ c1.getLast?) (c2_head : x ∈ c2.head?) :
     ∃ p q r s, C.HasInterweavedLaced (n + 2) S p q r s := by
@@ -66,7 +66,7 @@ theorem Config.join_n2_n2_interweaved {S : Finset α} {n : ℕ} {c1 : List α}
 /--
 @isnad1 id=ex.14h10v.s7.230b1036c9dc from=translated src=- shape=6e2f0894 vocab=50219a6f
 -/
-theorem Config.join_n2_n3_join_n3_n2_main (S : Finset α) (n : ℕ) (cap4_free : ¬C.HasNCap 4 S)
+theorem Tengoku.LeanPool.Config.join_n2_n3_join_n3_n2_main (S : Finset α) (n : ℕ) (cap4_free : ¬C.HasNCap 4 S)
     (cup_free : ¬C.HasNCup (n + 4) S) {cx : List α} (cx_cup : C.NCup (n + 2) cx) (cx_in_S : cx.In S)
     {cx1 : List α} (cx1_cup : C.NCup (n + 3) cx1) (cx1_in_S : cx1.In S) {cy1 : List α}
     (cy1_cup : C.NCup (n + 3) cy1) (cy1_in_S : cy1.In S) {cy : List α} (cy_cup : C.NCup (n + 2) cy)
@@ -157,7 +157,7 @@ theorem Config.join_n2_n3_join_n3_n2_main (S : Finset α) (n : ℕ) (cap4_free :
 /--
 @isnad1 id=ex.4h4v.s7.15177f2c1b82 from=translated src=- shape=c3485307 vocab=d9c3d34f
 -/
-theorem Config.join_n2_n3_join_n3_n2 (S : Finset α) (n : ℕ) (cap4_free : ¬C.HasNCap 4 S)
+theorem Tengoku.LeanPool.Config.join_n2_n3_join_n3_n2 (S : Finset α) (n : ℕ) (cap4_free : ¬C.HasNCap 4 S)
     (cup_free : ¬C.HasNCup (n + 4) S) (hx : C.HasJoin (n + 2) (n + 3) S)
     (hy : C.HasJoin (n + 3) (n + 2) S) : ∃ p q r s, C.HasInterweavedLaced (n + 3) S p q r s := by
   rcases hx with ⟨x, cx, cx1, ⟨cx_cup, cx_in_S, cx_last⟩, ⟨cx1_cup, cx1_in_S, cx1_head⟩⟩
@@ -165,3 +165,4 @@ theorem Config.join_n2_n3_join_n3_n2 (S : Finset α) (n : ℕ) (cap4_free : ¬C.
   apply
     C.join_n2_n3_join_n3_n2_main S n cap4_free cup_free cx_cup cx_in_S cx1_cup cx1_in_S cy1_cup
       cy1_in_S cy_cup cy_in_S x cx_last cx1_head y cy1_last cy_head
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

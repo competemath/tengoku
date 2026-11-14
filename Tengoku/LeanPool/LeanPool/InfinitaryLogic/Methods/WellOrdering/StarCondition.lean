@@ -34,7 +34,7 @@ atom — in particular all of `Bφ`'s diagram), and (*) at every countable ordin
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure
@@ -158,3 +158,4 @@ structure WOMem (φ : L.Sentenceω) (lt : L.Relations 2) (S : Set L[[ℕ]].Sente
     StarCondition φ lt (S \ baseDiagram φ lt) α
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

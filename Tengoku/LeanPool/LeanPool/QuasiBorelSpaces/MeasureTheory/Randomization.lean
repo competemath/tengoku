@@ -16,7 +16,7 @@ Imported Lean Pool material for `LeanPool.QuasiBorelSpaces.MeasureTheory.Randomi
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped unitInterval
 
 namespace MeasureTheory.Measure
@@ -148,3 +148,4 @@ product Lebesgue measure on `I × I`. -/
 noncomputable def splitI : I → I × I := Measure.det volume
 
 end MeasureTheory
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -15,7 +15,7 @@ Part of the Caffarelli–Kohn–Nirenberg partial regularity proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory MeasureTheory.Measure Set Filter
 open scoped ENNReal NNReal Topology
 open CKN.Foundation.Parabolic
@@ -327,3 +327,4 @@ theorem sws_timeSliceBallEnergy_essSup_lt_top
   exact lt_of_le_of_lt hmono (ENNReal.mul_lt_top (by norm_num) hEssSup)
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

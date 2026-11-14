@@ -43,7 +43,7 @@ The trivial front is `{[]}` (rank `0`). For a front, `[] ∉ F`, `F ≠ {[]}`, `
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set List
 
 noncomputable section
@@ -56,16 +56,16 @@ variable {M : ℕ → ℕ}
 depend on any front, so they live outside the `Front` namespace. -/
 
 /-- The least index at which `M` passes `a`. -/
-def afterShift (M : ℕ → ℕ) (a : ℕ) : ℕ := sInf {j | a < M j}
+def _root_.Tengoku.LeanPool.afterShift (M : ℕ → ℕ) (a : ℕ) : ℕ := sInf {j | a < M j}
 
 /-- `M after a`: the increasing enumeration of `{n ∈ M : n > a}`, as the subsequence
 `M ∘ (· + afterShift M a)`. A `StrictMono`-to-`StrictMono` operation on enumerations. -/
-def rayEnum (M : ℕ → ℕ) (a : ℕ) : ℕ → ℕ := fun i => M (i + afterShift M a)
+def _root_.Tengoku.LeanPool.rayEnum (M : ℕ → ℕ) (a : ℕ) : ℕ → ℕ := fun i => M (i + afterShift M a)
 
 /--
 @isnad1 id=lt.1h2v.s4.a730c6d969fa from=translated src=- shape=3007ccc3 vocab=6ef01087
 -/
-theorem afterShift_spec (hM : StrictMono M) (a : ℕ) : a < M (afterShift M a) := by
+theorem _root_.Tengoku.LeanPool.afterShift_spec (hM : StrictMono M) (a : ℕ) : a < M (afterShift M a) := by
   have hne : {j | a < M j}.Nonempty :=
     ⟨a + 1, lt_of_lt_of_le (Nat.lt_succ_self a) (hM.le_apply : a + 1 ≤ M (a + 1))⟩
   exact Nat.sInf_mem hne
@@ -73,7 +73,7 @@ theorem afterShift_spec (hM : StrictMono M) (a : ℕ) : a < M (afterShift M a) :
 /--
 @isnad1 id=le.1h3v.s4.110cf79788be from=translated src=- shape=d07b7769 vocab=3c58aac4
 -/
-theorem lt_of_lt_afterShift {a k : ℕ} (hk : k < afterShift M a) : M k ≤ a := by
+theorem _root_.Tengoku.LeanPool.lt_of_lt_afterShift {a k : ℕ} (hk : k < afterShift M a) : M k ≤ a := by
   by_contra h
   have hle : afterShift M a ≤ k := Nat.sInf_le (Nat.lt_of_not_le h)
   omega
@@ -81,25 +81,25 @@ theorem lt_of_lt_afterShift {a k : ℕ} (hk : k < afterShift M a) : M k ≤ a :=
 /--
 @isnad1 id=strictmo.1h2v.s4.3db23def9c3a from=translated src=- shape=e9042b07 vocab=af0b02dd
 -/
-theorem rayEnum_strictMono (hM : StrictMono M) (a : ℕ) : StrictMono (rayEnum M a) :=
+theorem _root_.Tengoku.LeanPool.rayEnum_strictMono (hM : StrictMono M) (a : ℕ) : StrictMono (rayEnum M a) :=
   fun _ _ hxy => hM (by omega)
 
 /--
 @isnad1 id=lt.1h3v.s4.f181c270c991 from=translated src=- shape=66433e9a vocab=ce5fc2ad
 -/
-theorem rayEnum_gt (hM : StrictMono M) (a i : ℕ) : a < rayEnum M a i :=
+theorem _root_.Tengoku.LeanPool.rayEnum_gt (hM : StrictMono M) (a i : ℕ) : a < rayEnum M a i :=
   lt_of_lt_of_le (afterShift_spec hM a) (hM.monotone (by omega))
 
 /--
 @isnad1 id=mem.0h3v.s4.40566531be70 from=translated src=- shape=bc56665b vocab=e95b4826
 -/
-theorem rayEnum_mem_range (a i : ℕ) : rayEnum M a i ∈ Set.range M :=
+theorem _root_.Tengoku.LeanPool.rayEnum_mem_range (a i : ℕ) : rayEnum M a i ∈ Set.range M :=
   ⟨i + afterShift M a, rfl⟩
 
 /--
 @isnad1 id=iff.1h3v.s5.5afabbd3eaed from=translated src=- shape=cc071c80 vocab=3f39e351
 -/
-theorem mem_range_rayEnum_iff (hM : StrictMono M) (a n : ℕ) :
+theorem _root_.Tengoku.LeanPool.mem_range_rayEnum_iff (hM : StrictMono M) (a n : ℕ) :
     n ∈ Set.range (rayEnum M a) ↔ n ∈ Set.range M ∧ a < n := by
   constructor
   · rintro ⟨i, rfl⟩
@@ -281,3 +281,4 @@ theorem mem_tree_ray {a : ℕ} {t : List ℕ} : t ∈ tree (ray F a) ↔ a :: t 
     exact ⟨t ++ v, hw, List.prefix_append t v⟩
 
 end Front
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

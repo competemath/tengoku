@@ -93,7 +93,7 @@ into the module that owns `Schoenflies.IsHomeoOn`:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Bornology Metric Set
 
 namespace Schoenflies
@@ -575,3 +575,4 @@ theorem jordan_schoenflies_of_homeomorph_of_squareExtension (hsq : SquareExtensi
   exact ⟨F, fun z => (hF z.2).trans (hfe z z.2)⟩
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

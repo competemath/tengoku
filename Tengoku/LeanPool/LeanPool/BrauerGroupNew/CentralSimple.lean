@@ -35,7 +35,7 @@ immediately give rise to nontrivial quotients of `D` so there are no central sim
 algebras in this case according to our definition.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 universe u v w
 open Module
 variable (K : Type u) [Field K]
@@ -192,7 +192,7 @@ end IsCentralSimple
 section CSA_implies_CSA
 variable (K : Type u) [Field K]
 variable (B : Type*) [Ring B]
-lemma top_eq_ring (R : Type*) [Ring R] : (⊤ : TwoSidedIdeal R) = (⊤ : Set R) := by
+lemma _root_.Tengoku.LeanPool.top_eq_ring (R : Type*) [Ring R] : (⊤ : TwoSidedIdeal R) = (⊤ : Set R) := by
   aesop
 lemma _root_.AlgEquiv.isCentral {K B C : Type*}
     [Field K] [Ring B] [Algebra K B]
@@ -204,7 +204,7 @@ lemma _root_.AlgEquiv.isCentral {K B C : Type*}
       simp only [Subalgebra.mem_center_iff] at hz ⊢
       exact fun x ↦ by simpa using congr(e.symm $(hz (e x))))
     exact ⟨k, by simpa [Algebra.ofId_apply] using congr(e $hk)⟩
-theorem CSA_implies_CSA (K : Type*) (B : Type*) [Field K] [Ring B] [Algebra K B]
+theorem _root_.Tengoku.LeanPool.CSA_implies_CSA (K : Type*) (B : Type*) [Field K] [Ring B] [Algebra K B]
     (n : ℕ) (D : Type*) [NeZero n] (h : DivisionRing D) [Algebra K D]
     (Wdb : B ≃ₐ[K] (Matrix (Fin n) (Fin n) D)) [Algebra.IsCentral K B] :
     Algebra.IsCentral K D := by
@@ -223,3 +223,4 @@ theorem CSA_implies_CSA (K : Type*) (B : Type*) [Field K] [Ring B] [Algebra K B]
   apply_fun (· 0 0) at hk
   simpa [Matrix.algebraMap_matrix_apply] using hk
 end CSA_implies_CSA
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

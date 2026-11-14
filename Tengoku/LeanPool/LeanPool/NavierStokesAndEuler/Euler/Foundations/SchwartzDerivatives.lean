@@ -15,7 +15,7 @@ by parts or the analytic estimates used to prove rapid decay.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace EulerSobolev
@@ -49,3 +49,4 @@ theorem schwartzIteratedDerivative_apply {n : ℕ} (m : Fin n → E) (f : 𝓢(E
   SchwartzMap.iteratedLineDerivOp_eq_iteratedFDeriv
 
 end EulerSobolev
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

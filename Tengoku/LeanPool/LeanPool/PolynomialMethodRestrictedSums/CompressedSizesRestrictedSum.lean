@@ -23,7 +23,7 @@ The main theorem of this file was originally proved by Aristotle
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MvPolynomial
 
 open Finset
@@ -81,13 +81,13 @@ where the numbers b′_i are defined by (2). This completes the proof.
 noncomputable section AristotleLemmas
 
 /-- A sequence `b` is valid if it is strictly decreasing and the last element is positive. -/
-def ValidSeq (k : ℕ) (b : Fin (k + 1) → ℕ) : Prop :=
+def _root_.Tengoku.LeanPool.ValidSeq (k : ℕ) (b : Fin (k + 1) → ℕ) : Prop :=
   (∀ i j, i < j → b j < b i) ∧ 0 < b (Fin.last k)
 
 /-- The base sequence `b_i = k + 1 - i`. Its sum equals `(k + 2).choose 2`. -/
-def baseSeq (k : ℕ) : Fin (k + 1) → ℕ := fun i => k + 1 - i
+def _root_.Tengoku.LeanPool.baseSeq (k : ℕ) : Fin (k + 1) → ℕ := fun i => k + 1 - i
 
-lemma sum_baseSeq (k : ℕ) : ∑ i, baseSeq k i = Nat.choose (k + 2) 2 := by
+lemma _root_.Tengoku.LeanPool.sum_baseSeq (k : ℕ) : ∑ i, baseSeq k i = Nat.choose (k + 2) 2 := by
   unfold baseSeq;
   induction k <;> simp_all +decide [ Nat.choose_succ_succ, Fin.sum_univ_succ ];
   ring
@@ -97,7 +97,7 @@ Any valid sequence is component-wise greater than or equal to the base sequence 
 This follows from the fact that the sequence is strictly decreasing and the last element is at least
 1.
 -/
-lemma valid_seq_ge_base {k : ℕ} {b : Fin (k + 1) → ℕ} (h : ValidSeq k b) :
+lemma _root_.Tengoku.LeanPool.valid_seq_ge_base {k : ℕ} {b : Fin (k + 1) → ℕ} (h : ValidSeq k b) :
     ∀ i, b i ≥ baseSeq k i := by
       -- We proceed by induction on $i$.
       intro i
@@ -112,7 +112,7 @@ If a valid sequence is not equal to the base sequence, then there must be some i
 strictly greater than the base sequence. This is because valid sequences are always component-wise
 greater than or equal to the base sequence.
 -/
-lemma exists_gt_base_of_ne_base {k : ℕ} {b : Fin (k + 1) → ℕ}
+lemma _root_.Tengoku.LeanPool.exists_gt_base_of_ne_base {k : ℕ} {b : Fin (k + 1) → ℕ}
     (h_valid : ValidSeq k b) (h_ne : b ≠ baseSeq k) :
     ∃ j, baseSeq k j < b j := by
       -- Since $b$ is not equal to the base sequence, there must be some $i$ where $b i \neq
@@ -125,7 +125,7 @@ lemma exists_gt_base_of_ne_base {k : ℕ} {b : Fin (k + 1) → ℕ}
 /-- The transformation T maps a sequence `b` to `b'` by finding the largest index
 `j` such that `b_j > k + 1 - j` and setting `b'_j = b_j - 1`. If no such `j`
 exists (i.e. `b` is the base sequence), it returns `b`. -/
-noncomputable def transformSeq (k : ℕ) (b : Fin (k + 1) → ℕ) : Fin (k + 1) → ℕ :=
+noncomputable def _root_.Tengoku.LeanPool.transformSeq (k : ℕ) (b : Fin (k + 1) → ℕ) : Fin (k + 1) → ℕ :=
   let s := (Finset.univ : Finset (Fin (k + 1))).filter (fun j => baseSeq k j < b j)
   if h : s.Nonempty then
     let j := s.max' h
@@ -137,7 +137,7 @@ noncomputable def transformSeq (k : ℕ) (b : Fin (k + 1) → ℕ) : Fin (k + 1)
 If b is a valid sequence different from the base sequence, then T(b) is also a valid sequence, its
 sum is one less than the sum of b, and T(b) is component-wise less than or equal to b.
 -/
-lemma transformSeq_props {k : ℕ} {b : Fin (k + 1) → ℕ}
+lemma _root_.Tengoku.LeanPool.transformSeq_props {k : ℕ} {b : Fin (k + 1) → ℕ}
     (h_valid : ValidSeq k b) (h_not_base : b ≠ baseSeq k) :
     let b' := transformSeq k b
     ValidSeq k b' ∧ (∑ i, b' i = ∑ i, b i - 1) ∧ (∀ i, b' i ≤ b i) := by
@@ -212,7 +212,7 @@ lemma transformSeq_props {k : ℕ} {b : Fin (k + 1) → ℕ}
 For any sequence b, the compressed sizes sequence is component-wise less than or equal to b. This
 follows immediately from the definition involving min.
 -/
-lemma compressedSizes_le {k : ℕ} {b : Fin (k + 1) → ℕ} : ∀ i, compressedSizes b i ≤ b i := by
+lemma _root_.Tengoku.LeanPool.compressedSizes_le {k : ℕ} {b : Fin (k + 1) → ℕ} : ∀ i, compressedSizes b i ≤ b i := by
   rintro ⟨i, hi⟩
   cases i with
   | zero =>
@@ -226,7 +226,7 @@ lemma compressedSizes_le {k : ℕ} {b : Fin (k + 1) → ℕ} : ∀ i, compressed
 The value of compressedSizes at index i + 1 is min(compressedSizes b i - 1, b (i + 1)) by
 definition.
 -/
-lemma compressedSizes_succ {k : ℕ} {b : Fin (k + 1) → ℕ} (i : Fin k) :
+lemma _root_.Tengoku.LeanPool.compressedSizes_succ {k : ℕ} {b : Fin (k + 1) → ℕ} (i : Fin k) :
     compressedSizes b (Fin.succ i) = min (compressedSizes b (Fin.castSucc i) - 1) (
         b (Fin.succ i)) := by
   rcases i with ⟨i, hi⟩
@@ -238,7 +238,7 @@ This can be proven by reverse induction or by observing that the sequence is non
 strictly decreasing where positive). Actually, from the recurrence, b'_{i + 1} <= b'_i - 1, so b'_i
 >= b'_{i + 1} + 1 > b'_{i + 1}. So if the last is positive, previous ones are larger.
 -/
-lemma compressedSizes_pos {k : ℕ} {b : Fin (k + 1) → ℕ}
+lemma _root_.Tengoku.LeanPool.compressedSizes_pos {k : ℕ} {b : Fin (k + 1) → ℕ}
     (h_last_pos : compressedSizes b (Fin.last k) > 0) :
     ∀ i, 0 < compressedSizes b i := by
       intro i
@@ -259,7 +259,7 @@ then there exists a valid sequence with the target sum that is component-wise le
 the original sequence. This is proved by repeatedly applying the transformation T, which reduces the
 sum by 1 at each step while maintaining validity and the component-wise inequality.
 -/
-lemma polynomialMethod_reduction_lemma {k : ℕ} {b : Fin (k + 1) → ℕ} (h_valid : ValidSeq k b)
+lemma _root_.Tengoku.LeanPool.polynomialMethod_reduction_lemma {k : ℕ} {b : Fin (k + 1) → ℕ} (h_valid : ValidSeq k b)
     (h_sum : ∑ i, b i > p + Nat.choose (k + 2) 2 - 1) :
     ∃ b'' : Fin (k + 1) → ℕ, ValidSeq k b'' ∧
       (∑ i, b'' i = p + Nat.choose (k + 2) 2 - 1) ∧
@@ -288,7 +288,7 @@ The compressed sizes sequence is strictly decreasing because each term is define
 the previous term minus 1 and the original sequence value. Thus, b'_{i + 1} <= b'_i - 1 < b'_i.
 Since the last term is positive by hypothesis, the sequence is valid.
 -/
-lemma compressedSizes_is_valid {k : ℕ} {b : Fin (k + 1) → ℕ}
+lemma _root_.Tengoku.LeanPool.compressedSizes_is_valid {k : ℕ} {b : Fin (k + 1) → ℕ}
     (h_last_pos : compressedSizes b (Fin.last k) > 0) :
     ValidSeq k (compressedSizes b) := by
   refine ⟨?_, h_last_pos⟩
@@ -299,3 +299,4 @@ lemma compressedSizes_is_valid {k : ℕ} {b : Fin (k + 1) → ℕ}
     (Nat.sub_lt (compressedSizes_pos h_last_pos _) Nat.one_pos)
 
 end AristotleLemmas
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

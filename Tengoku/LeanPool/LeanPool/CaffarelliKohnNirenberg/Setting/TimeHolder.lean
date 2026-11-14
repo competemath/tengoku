@@ -18,7 +18,7 @@ statements valid without an extra integrability hypothesis.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set MeasureTheory
 open scoped ENNReal
 
@@ -269,3 +269,4 @@ theorem time_holder_q {t₀ r ρ q : ℝ} (hr : 0 < r) (hrr : r ≤ ρ / 2)
         exact mul_comm _ _
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

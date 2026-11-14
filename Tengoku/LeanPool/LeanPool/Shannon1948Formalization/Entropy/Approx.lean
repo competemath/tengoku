@@ -19,7 +19,7 @@ their convergence to `p`. This is the bridge from the rational formula to the
 full real-probability formula.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPool.Shannon1948Formalization
 
 noncomputable section
@@ -256,3 +256,4 @@ lemma tendsto_approxProb
 end
 
 end LeanPool.Shannon1948Formalization
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

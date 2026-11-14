@@ -18,7 +18,7 @@ It corresponds roughly to Section 4 of
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.DemazureProduct
 
 /-! ### Submodular slipfaces and recovery of ASP permutations
@@ -1617,3 +1617,4 @@ theorem lel_of_rres (α β : AspPerm) : α ▹ β ≤L β := by
 end Submodular
 
 end LeanPool.DemazureProduct
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

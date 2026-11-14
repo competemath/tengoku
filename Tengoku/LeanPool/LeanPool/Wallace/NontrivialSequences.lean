@@ -21,7 +21,7 @@ This observation avoids any separate oscillating-marker construction.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter Set Topology
 
 universe u
@@ -145,3 +145,4 @@ theorem eventually_eq_limit_of_no_injective_sequence_converges
 end
 
 end Wallace
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

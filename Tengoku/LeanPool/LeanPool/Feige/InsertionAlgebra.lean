@@ -18,7 +18,7 @@ chain mixture as an upward transfer inside each pair `{Cⱼ, Hⱼ}`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Feige
 
 section PairMasses
@@ -634,3 +634,4 @@ theorem exists_insertionPairScore_of_transfer
 end LocalInsertionConclusion
 
 end Feige
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

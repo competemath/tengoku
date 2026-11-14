@@ -20,7 +20,7 @@ corresponding signed exponential sum.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory ProbabilityTheory Set
 open scoped BigOperators ENNReal
 
@@ -406,3 +406,4 @@ theorem zMinusLaw_eq_conv_map_neg_mul
 end
 
 end Feige
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

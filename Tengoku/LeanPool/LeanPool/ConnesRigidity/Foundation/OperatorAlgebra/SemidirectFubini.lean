@@ -21,7 +21,7 @@ The semidirect fubini component of the Connes rigidity formalization.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Connes
 namespace SemidirectFubini
 
@@ -242,3 +242,4 @@ Paper: §3. -/
 end
 end SemidirectFubini
 end Connes
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

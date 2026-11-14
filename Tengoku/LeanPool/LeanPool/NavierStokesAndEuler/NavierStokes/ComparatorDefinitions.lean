@@ -39,7 +39,7 @@ https://github.com/google-deepmind/formal-conjectures/blob/8bf45ed70d48b2b2a501d
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open ContDiff Set InnerProductSpace MeasureTheory
 open scoped Laplacian
 
@@ -262,3 +262,4 @@ structure NavierStokesExistenceAndSmoothnessPeriodic
   isOnePeriodic_pressure : ∀ t ≥ 0, IsOnePeriodic (p · t)
 
 end NavierStokes.Comparator
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

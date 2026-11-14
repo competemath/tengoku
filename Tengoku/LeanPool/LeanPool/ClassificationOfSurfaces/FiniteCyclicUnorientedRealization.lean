@@ -23,7 +23,7 @@ the cross-cap pseudo-rewrite, whose common P2 refinement reads one of its two fa
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanEval.Topology.ClassificationOfSurfaces
 
 open Complex
@@ -1086,3 +1086,4 @@ end UnorientedPresentationIso
 end FiniteCyclicPresentation
 
 end LeanEval.Topology.ClassificationOfSurfaces
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

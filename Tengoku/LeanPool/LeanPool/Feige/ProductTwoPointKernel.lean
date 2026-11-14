@@ -17,7 +17,7 @@ proof of Theorem 2.1 before conditioning on all latent pairs.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory ProbabilityTheory Set
 
 namespace Feige
@@ -239,3 +239,4 @@ end RecursiveFiniteKernel
 end
 
 end Feige
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

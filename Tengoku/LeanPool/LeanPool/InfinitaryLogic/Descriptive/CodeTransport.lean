@@ -22,7 +22,7 @@ so they live here at the `StructureSpaceOn` level.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 namespace StructureSpaceOn
@@ -76,3 +76,4 @@ theorem encodeViaEquiv_iso {M : Type*} [L.Structure M] {α : Type*} (e : M ≃ �
 end StructureSpaceOn
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

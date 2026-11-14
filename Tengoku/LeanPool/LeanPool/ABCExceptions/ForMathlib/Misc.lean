@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open Set
@@ -85,7 +85,7 @@ lemma Finset.finite_subsets (s : Finset ℕ) : {a | a ⊆ s}.Finite := by
 @isnad1 id=eq.1h4v.s6.4d2aa66cd9cb from=translated src=- shape=5dd4fd1d vocab=c48ef2b3
 -/
 @[to_additive]
-lemma prod_Icc_eq_prod_range_mul_prod_Icc {α : Type*} [CommMonoid α] {f : ℕ → α} {t : ℕ}
+lemma _root_.Tengoku.LeanPool.prod_Icc_eq_prod_range_mul_prod_Icc {α : Type*} [CommMonoid α] {f : ℕ → α} {t : ℕ}
     (ht : t ≤ d + 1) :
     ∏ i ≤ d, f i = (∏ i ∈ Finset.range t, f i) * ∏ i ∈ Finset.Icc t d, f i := by
   rw [Nat.Iic_eq_Icc, ← Finset.Ico_union_Icc_eq_Icc' (Nat.zero_le t) ht, Nat.Ico_zero_eq_range,
@@ -95,7 +95,7 @@ lemma prod_Icc_eq_prod_range_mul_prod_Icc {α : Type*} [CommMonoid α] {f : ℕ 
 /--
 @isnad1 id=eq.0h3v.s7.06e706b66cf9 from=translated src=- shape=87994888 vocab=5de5ec9a
 -/
-lemma Iic_sdiff_Icc_eq_inter {α : Type*} [LinearOrder α]
+lemma _root_.Tengoku.LeanPool.Iic_sdiff_Icc_eq_inter {α : Type*} [LinearOrder α]
     [LocallyFiniteOrder α] [LocallyFiniteOrderBot α] {x y : α} :
     Finset.Iic x \ Finset.Icc y x = Finset.Iic x ∩ Finset.Iio y := by
   ext a; simp +contextual [- not_and]
@@ -103,7 +103,7 @@ lemma Iic_sdiff_Icc_eq_inter {α : Type*} [LinearOrder α]
 /--
 @isnad1 id=eq.1h3v.s6.6a85654d37cf from=translated src=- shape=529affde vocab=d7162ca7
 -/
-lemma Iic_sdiff_Icc_of_le {α : Type*} [LinearOrder α]
+lemma _root_.Tengoku.LeanPool.Iic_sdiff_Icc_of_le {α : Type*} [LinearOrder α]
     [LocallyFiniteOrder α] [LocallyFiniteOrderBot α] {x y : α} (h : y ≤ x) :
     Finset.Iic x \ Finset.Icc y x = Finset.Iio y := by
   ext a
@@ -115,3 +115,4 @@ lemma Iic_sdiff_Icc_of_le {α : Type*} [LinearOrder α]
     exact ⟨hay.le.trans h, fun hyx ↦ not_le_of_gt hay hyx.1⟩
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

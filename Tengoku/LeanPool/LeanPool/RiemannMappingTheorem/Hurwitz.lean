@@ -14,7 +14,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter Topology Set Metric Uniformity
 
 section filter
@@ -24,7 +24,7 @@ variable {α 𝕜 : Type*} {s : Set α} {z₀ : α} {P : α → Prop} {p : Filte
 /--
 @isnad1 id=iff.2h4v.s6.2780655e255c from=translated src=- shape=7d957f5f vocab=105791f2
 -/
-lemma mem_iff_eventually_subset (hp : p.HasBasis (fun t : ℝ => 0 < t) φ) (hφ : Monotone φ) :
+lemma _root_.Tengoku.LeanPool.mem_iff_eventually_subset (hp : p.HasBasis (fun t : ℝ => 0 < t) φ) (hφ : Monotone φ) :
     s ∈ p ↔ (∀ᶠ t in 𝓝[>] 0, φ t ⊆ s) := by
   rw [(nhdsWithin_hasBasis nhds_basis_closedBall (Ioi (0 : ℝ))).eventually_iff]
   simp_rw [hp.mem_iff, ← exists_prop, mem_inter_iff, mem_closedBall_zero_iff]
@@ -34,14 +34,14 @@ lemma mem_iff_eventually_subset (hp : p.HasBasis (fun t : ℝ => 0 < t) φ) (hφ
 /--
 @isnad1 id=iff.0h3v.s6.def6a002563a from=translated src=- shape=c6a30b2a vocab=b7e45e40
 -/
-lemma eventually_nhds_iff_eventually_ball [PseudoMetricSpace α] :
+lemma _root_.Tengoku.LeanPool.eventually_nhds_iff_eventually_ball [PseudoMetricSpace α] :
     (∀ᶠ z in 𝓝 z₀, P z) ↔ (∀ᶠ r in 𝓝[>] 0, ∀ z ∈ ball z₀ r, P z) :=
   mem_iff_eventually_subset nhds_basis_ball (fun _ _ => ball_subset_ball)
 
 /--
 @isnad1 id=iff.0h3v.s6.22770333d3c4 from=translated src=- shape=c6a30b2a vocab=4c6a3aa7
 -/
-lemma eventually_nhds_iff_eventually_closed_ball [PseudoMetricSpace α] :
+lemma _root_.Tengoku.LeanPool.eventually_nhds_iff_eventually_closed_ball [PseudoMetricSpace α] :
     (∀ᶠ z in 𝓝 z₀, P z) ↔ (∀ᶠ r in 𝓝[>] 0, ∀ z ∈ closedBall z₀ r, P z) :=
   mem_iff_eventually_subset nhds_basis_closedBall (fun _ _ => closedBall_subset_closedBall)
 
@@ -55,7 +55,7 @@ variable {𝕜 ι α : Type*} {s K : Set α} [NormedField 𝕜] {F G : ι → α
 /--
 @isnad1 id=le.4h5v.s7.1b49ee43dcec from=translated src=- shape=92955eec vocab=1adaf07f
 -/
-lemma dist_inv_le_dist_div (hη : 0 < η) (hη' : 0 < η') (hx : x ∉ ball 0 η) (hy : y ∉ ball 0 η') :
+lemma _root_.Tengoku.LeanPool.dist_inv_le_dist_div (hη : 0 < η) (hη' : 0 < η') (hx : x ∉ ball 0 η) (hy : y ∉ ball 0 η') :
     dist x⁻¹ y⁻¹ ≤ dist x y / (η * η') := by
   simp only [mem_ball, dist_eq_norm, sub_zero, not_lt] at hx hy
   rw [dist_inv_inv₀ (norm_pos_iff.mp (hη.trans_le hx)) (norm_pos_iff.mp (hη'.trans_le hy))]
@@ -64,7 +64,7 @@ lemma dist_inv_le_dist_div (hη : 0 < η) (hη' : 0 < η') (hx : x ∉ ball 0 η
 /--
 @isnad1 id=le.2h3v.s7.79eac9ef75c4 from=translated src=- shape=3b43356b vocab=2e81b180
 -/
-lemma titi {p q : Filter 𝕜} (hp : p ⊓ 𝓝 0 = ⊥) (hq : q ⊓ 𝓝 0 = ⊥) :
+lemma _root_.Tengoku.LeanPool.titi {p q : Filter 𝕜} (hp : p ⊓ 𝓝 0 = ⊥) (hq : q ⊓ 𝓝 0 = ⊥) :
     map (fun x : 𝕜 × 𝕜 => (x.1⁻¹, x.2⁻¹)) (𝓤 𝕜 ⊓ (p ×ˢ q)) ≤ 𝓤 𝕜 := by
   obtain ⟨U, hU, V, hV, hUV⟩ := inf_eq_bot_iff.mp hp
   obtain ⟨U', hU', V', hV', hUV'⟩ := inf_eq_bot_iff.mp hq
@@ -87,7 +87,7 @@ lemma titi {p q : Filter 𝕜} (hp : p ⊓ 𝓝 0 = ⊥) (hq : q ⊓ 𝓝 0 = �
 /--
 @isnad1 id=uniformc.1h2v.s6.a56d4e619a18 from=translated src=- shape=82631045 vocab=2129df94
 -/
-lemma uniform_ContinuousOn_inv {s : Set 𝕜} (hs : 𝓟 s ⊓ 𝓝 0 = ⊥) :
+lemma _root_.Tengoku.LeanPool.uniform_ContinuousOn_inv {s : Set 𝕜} (hs : 𝓟 s ⊓ 𝓝 0 = ⊥) :
     UniformContinuousOn Inv.inv s := by
   simpa only [UniformContinuousOn, Tendsto, ← prod_principal_principal] using titi hs hs
 
@@ -107,7 +107,7 @@ lemma TendstoUniformlyOn.inv_of_isolated_zero (hF : TendstoUniformlyOn F f p s)
 /--
 @isnad1 id=eq.0h5v.s7.70332746ee55 from=translated src=- shape=06d82a81 vocab=2e85461e
 -/
-lemma lxyab {x y a b : 𝕜} : x * a - y * b = (x - y) * a + y * (a - b) := by ring
+lemma _root_.Tengoku.LeanPool.lxyab {x y a b : 𝕜} : x * a - y * b = (x - y) * a + y * (a - b) := by ring
 
 /--
 @isnad1 id=tendstou.4h11v.s7.f4fba7463068 from=translated src=- shape=de38fb89 vocab=4d04e609
@@ -224,7 +224,7 @@ lemma Filter.Eventually.exists' {P : ℝ → Prop} {t₀} (h : ∀ᶠ t in 𝓝[
 /--
 @isnad1 id=iff.2h3v.s7.f35e53e7903f from=translated src=- shape=a733b422 vocab=242edc42
 -/
-lemma order_eq_zero_iff {p : FormalMultilinearSeries ℂ ℂ ℂ}
+lemma _root_.Tengoku.LeanPool.order_eq_zero_iff {p : FormalMultilinearSeries ℂ ℂ ℂ}
     (hp : HasFPowerSeriesAt f p z₀) (hz₀ : f z₀ = 0) :
     p.order = 0 ↔ ∀ᶠ z in 𝓝 z₀, f z = 0 := by
   rw [hp.locally_zero_iff]
@@ -238,7 +238,7 @@ lemma order_eq_zero_iff {p : FormalMultilinearSeries ℂ ℂ ℂ}
 /--
 @isnad1 id=iff.2h3v.s7.6472e92dedb1 from=translated src=- shape=de846848 vocab=b788bd64
 -/
-lemma order_pos_iff {p : FormalMultilinearSeries ℂ ℂ ℂ}
+lemma _root_.Tengoku.LeanPool.order_pos_iff {p : FormalMultilinearSeries ℂ ℂ ℂ}
     (hp : HasFPowerSeriesAt f p z₀) (hz₀ : f z₀ = 0) :
     0 < p.order ↔ ∃ᶠ z in 𝓝 z₀, f z ≠ 0 := by
   simp [pos_iff_ne_zero, (order_eq_zero_iff hp hz₀).not]
@@ -246,7 +246,7 @@ lemma order_pos_iff {p : FormalMultilinearSeries ℂ ℂ ℂ}
 /--
 @isnad1 id=eventual.3h2v.s6.e8d3c247e75d from=translated src=- shape=af1cea03 vocab=b8608793
 -/
-lemma cindex_pos (h1 : AnalyticAt ℂ f z₀) (h2 : f z₀ = 0) (h3 : ∀ᶠ z in 𝓝[≠] z₀, f z ≠ 0) :
+lemma _root_.Tengoku.LeanPool.cindex_pos (h1 : AnalyticAt ℂ f z₀) (h2 : f z₀ = 0) (h3 : ∀ᶠ z in 𝓝[≠] z₀, f z ≠ 0) :
     ∀ᶠ r in 𝓝[>] 0, cindex z₀ r f ≠ 0 := by
   obtain ⟨p, hp⟩ := h1
   filter_upwards [cindex_eventually_eq_order hp] with r h4
@@ -256,7 +256,7 @@ lemma cindex_pos (h1 : AnalyticAt ℂ f z₀) (h2 : f z₀ = 0) (h3 : ∀ᶠ z i
 /--
 @isnad1 id=eventual.4h5v.s7.d3f24ca5543d from=translated src=- shape=e6bf53c0 vocab=3d7f1e9c
 -/
-lemma hurwitz2_1 {K : Set ℂ} (hK : IsCompact K) (F_conv : TendstoUniformlyOn F f p K)
+lemma _root_.Tengoku.LeanPool.hurwitz2_1 {K : Set ℂ} (hK : IsCompact K) (F_conv : TendstoUniformlyOn F f p K)
     (hf1 : ContinuousOn f K) (hf2 : ∀ z ∈ K, f z ≠ 0) :
     ∀ᶠ n in p, ∀ z ∈ K, F n z ≠ 0 := by
   by_cases h : K = ∅
@@ -300,7 +300,7 @@ lemma TendstoUniformlyOn.tendsto_circle_integral (hr : 0 < r)
 /--
 @isnad1 id=tendsto.6h7v.s7.7581eeefabcd from=translated src=- shape=1d0b58ef vocab=a0d39923
 -/
-lemma hurwitz2_2 (hU : IsOpen U) (hF : ∀ᶠ n in p, DifferentiableOn ℂ (F n) U)
+lemma _root_.Tengoku.LeanPool.hurwitz2_2 (hU : IsOpen U) (hF : ∀ᶠ n in p, DifferentiableOn ℂ (F n) U)
     (hf : TendstoLocallyUniformlyOn F f p U) (hr1 : 0 < r) (hr2 : sphere z₀ r ⊆ U)
     (hf1 : ∀ (z : ℂ), z ∈ sphere z₀ r → f z ≠ 0) :
     Tendsto (cindex z₀ r ∘ F) p (𝓝 (cindex z₀ r f)) := by
@@ -325,7 +325,7 @@ lemma hurwitz2_2 (hU : IsOpen U) (hF : ∀ᶠ n in p, DifferentiableOn ℂ (F n)
 /--
 @isnad1 id=eventual.7h7v.s8.99e05d0f9bff from=translated src=- shape=87f1e3d5 vocab=2e19c237
 -/
-lemma hurwitz2
+lemma _root_.Tengoku.LeanPool.hurwitz2
     (hU : IsOpen U)
     (hF : ∀ᶠ n in p, DifferentiableOn ℂ (F n) U)
     (hf : TendstoLocallyUniformlyOn F f p U)
@@ -352,7 +352,7 @@ lemma hurwitz2
 /--
 @isnad1 id=eventual.7h7v.s8.ed0688ee7c85 from=translated src=- shape=f5f69880 vocab=69ec3237
 -/
-lemma hurwitz3 {s : Set ℂ}
+lemma _root_.Tengoku.LeanPool.hurwitz3 {s : Set ℂ}
     (hU : IsOpen U)
     (hF : ∀ᶠ n in p, DifferentiableOn ℂ (F n) U)
     (hf : TendstoLocallyUniformlyOn F f p U)
@@ -383,7 +383,7 @@ lemma hurwitz3 {s : Set ℂ}
 /--
 @isnad1 id=eventual.6h6v.s7.28049bb5b361 from=translated src=- shape=3332b3da vocab=d6330e33
 -/
-theorem local_hurwitz [NeBot p]
+theorem _root_.Tengoku.LeanPool.local_hurwitz [NeBot p]
     (hU : IsOpen U)
     (F_holo : ∀ᶠ n in p, DifferentiableOn ℂ (F n) U)
     (F_noz : ∀ n, ∀ z ∈ U, F n z ≠ 0)
@@ -413,7 +413,7 @@ theorem local_hurwitz [NeBot p]
 /--
 @isnad1 id=eq.8h7v.s7.44d056b94042 from=translated src=- shape=3fe4a0b4 vocab=2e7765e1
 -/
-theorem hurwitz [NeBot p]
+theorem _root_.Tengoku.LeanPool.hurwitz [NeBot p]
     (hU : IsOpen U)
     (hU' : IsPreconnected U)
     (F_holo : ∀ᶠ n in p, DifferentiableOn ℂ (F n) U)
@@ -429,7 +429,7 @@ theorem hurwitz [NeBot p]
 /--
 @isnad1 id=or.5h5v.s7.6f3a0a41ae01 from=translated src=- shape=31efcaba vocab=2e7765e1
 -/
-theorem hurwitz' [NeBot p]
+theorem _root_.Tengoku.LeanPool.hurwitz' [NeBot p]
     (hU : IsOpen U)
     (hU' : IsPreconnected U)
     (F_holo : ∀ᶠ n in p, DifferentiableOn ℂ (F n) U)
@@ -444,7 +444,7 @@ theorem hurwitz' [NeBot p]
 /--
 @isnad1 id=or.3h2v.s7.6e51cfc3b391 from=translated src=- shape=1ab7ac08 vocab=b0629c82
 -/
-lemma hurwitz_1 (hU : IsOpen U) (hU' : IsPreconnected U) (hf : DifferentiableOn ℂ f U) :
+lemma _root_.Tengoku.LeanPool.hurwitz_1 (hU : IsOpen U) (hU' : IsPreconnected U) (hf : DifferentiableOn ℂ f U) :
     (EqOn f 0 U) ∨ (∀ z₀ ∈ U, ∀ᶠ z in 𝓝[≠] z₀, f z ≠ 0) := by
   refine or_iff_not_imp_right.2 (fun h => ?_)
   simp only [not_forall, not_eventually, exists_prop, not_ne_iff] at h
@@ -454,7 +454,7 @@ lemma hurwitz_1 (hU : IsOpen U) (hU' : IsPreconnected U) (hf : DifferentiableOn 
 /--
 @isnad1 id=tendstol.2h9v.s6.34ca8fdd972c from=translated src=- shape=cd3617ae vocab=55da22c5
 -/
-lemma hurwitz4 {α β γ : Type*} {U : Set α} [TopologicalSpace α] [UniformSpace β] [UniformSpace γ]
+lemma _root_.Tengoku.LeanPool.hurwitz4 {α β γ : Type*} {U : Set α} [TopologicalSpace α] [UniformSpace β] [UniformSpace γ]
     {F : ι → α → β} {f : α → β} {φ : β → γ}
     (hf : TendstoLocallyUniformlyOn F f p U) (hφ : UniformContinuous φ) :
     TendstoLocallyUniformlyOn (fun n => φ ∘ F n) (φ ∘ f) p U :=
@@ -463,7 +463,7 @@ lemma hurwitz4 {α β γ : Type*} {U : Set α} [TopologicalSpace α] [UniformSpa
 /--
 @isnad1 id=or.5h5v.s7.2b472037cb81 from=translated src=- shape=a62a2af5 vocab=cdbde75d
 -/
-theorem hurwitz_inj [NeBot p]
+theorem _root_.Tengoku.LeanPool.hurwitz_inj [NeBot p]
     (hU : IsOpen U)
     (hU' : IsPreconnected U)
     (hF : ∀ᶠ n in p, DifferentiableOn ℂ (F n) U)
@@ -494,3 +494,4 @@ theorem hurwitz_inj [NeBot p]
   filter_upwards [h3.and h4] with n ⟨⟨xn, hxn, hGxn⟩, ⟨yn, hyn, hGyn⟩⟩
   rw [sub_eq_zero] at hGxn hGyn
   exact ⟨xn, hxn.2, yn, hyn.2, by rw [hGxn, hGyn], huv.ne_of_mem hxn.1 hyn.1⟩
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

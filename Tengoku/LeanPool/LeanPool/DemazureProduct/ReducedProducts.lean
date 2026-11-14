@@ -17,7 +17,7 @@ permutations. It corresponds roughly to Section 5 of
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.DemazureProduct
 
 /-! ### Reduced products and ordinary products
@@ -613,3 +613,4 @@ lemma star_eq {α β γ : AspPerm} (h : ReducedFact α β γ) : α ⋆ β = γ :
 end ReducedFact
 
 end LeanPool.DemazureProduct
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -10,7 +10,7 @@ public import Tengoku
 /-!
 Misere combinatorial games.
 -/
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace MisereGames
 
 public section
@@ -180,3 +180,4 @@ end Player
 end
 
 end MisereGames
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

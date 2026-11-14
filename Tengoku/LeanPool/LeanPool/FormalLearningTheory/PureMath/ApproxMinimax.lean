@@ -36,7 +36,7 @@ utilities, payoff analysis, covering arguments, and MWU potential bounds.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Finset
 
 noncomputable section
@@ -44,7 +44,7 @@ noncomputable section
 /-! ## PMF Construction Utilities -/
 
 /-- Normalize a strictly positive weight vector to a FinitePMF. -/
-def normalizeToPMF {C : Type*} [Fintype C] [Nonempty C]
+def _root_.Tengoku.LeanPool.normalizeToPMF {C : Type*} [Fintype C] [Nonempty C]
     (w : C → ℝ) (hw : ∀ c, 0 < w c) : FinitePMF C where
   prob c := w c / ∑ c' : C, w c'
   prob_nonneg c :=
@@ -57,23 +57,23 @@ def normalizeToPMF {C : Type*} [Fintype C] [Nonempty C]
 /--
 @isnad1 id=eq.1h3v.s6.562ac57200a7 from=translated src=- shape=7b5fedb5 vocab=d10ad45f
 -/
-lemma normalizeToPMF_prob {C : Type*} [Fintype C] [Nonempty C]
+lemma _root_.Tengoku.LeanPool.normalizeToPMF_prob {C : Type*} [Fintype C] [Nonempty C]
     (w : C → ℝ) (hw : ∀ c, 0 < w c) (c : C) :
     (normalizeToPMF w hw).prob c = w c / ∑ c' : C, w c' := rfl
 
 /-- Point mass PMF at a single element. -/
-def pointMassPMF {C : Type*} [Fintype C] [DecidableEq C] (c₀ : C) :
+def _root_.Tengoku.LeanPool.pointMassPMF {C : Type*} [Fintype C] [DecidableEq C] (c₀ : C) :
     FinitePMF C where
   prob c := if c = c₀ then 1 else 0
   prob_nonneg c := by split_ifs <;> norm_num
   prob_sum_one := by simp [sum_ite_eq']
 
 /-- Uniform PMF over a nonempty Fintype. -/
-def uniformPMF (C : Type*) [Fintype C] [Nonempty C] : FinitePMF C :=
+def _root_.Tengoku.LeanPool.uniformPMF (C : Type*) [Fintype C] [Nonempty C] : FinitePMF C :=
   normalizeToPMF (fun _ => (1 : ℝ)) fun _ => one_pos
 
 /-- Build FinitePMF from empirical frequencies of a finite sequence. -/
-def empiricalPMF {α : Type*} [Fintype α] [DecidableEq α]
+def _root_.Tengoku.LeanPool.empiricalPMF {α : Type*} [Fintype α] [DecidableEq α]
     {T : ℕ} (hT : 0 < T) (rs : Fin T → α) : FinitePMF α where
   prob a := (univ.filter (fun t => rs t = a)).card / (T : ℝ)
   prob_nonneg a := div_nonneg (Nat.cast_nonneg _) (Nat.cast_nonneg _)
@@ -90,14 +90,14 @@ def empiricalPMF {α : Type*} [Fintype α] [DecidableEq α]
 /-! ## Boolean Game Payoff -/
 
 /-- Expected payoff of distribution p against column c in a Boolean game. -/
-def boolGamePayoff {R C : Type*} [Fintype R]
+def _root_.Tengoku.LeanPool.boolGamePayoff {R C : Type*} [Fintype R]
     (M : R → C → Bool) (p : FinitePMF R) (c : C) : ℝ :=
   ∑ r : R, p.prob r * (if M r c then (1 : ℝ) else 0)
 
 /--
 @isnad1 id=le.0h5v.s5.245b20393141 from=translated src=- shape=8fae4bd9 vocab=7cc3db36
 -/
-lemma boolGamePayoff_nonneg {R C : Type*} [Fintype R]
+lemma _root_.Tengoku.LeanPool.boolGamePayoff_nonneg {R C : Type*} [Fintype R]
     (M : R → C → Bool) (p : FinitePMF R) (c : C) :
     0 ≤ boolGamePayoff M p c :=
   Finset.sum_nonneg fun r _ =>
@@ -106,7 +106,7 @@ lemma boolGamePayoff_nonneg {R C : Type*} [Fintype R]
 /--
 @isnad1 id=le.0h5v.s5.e65426efe1c2 from=translated src=- shape=bfc4cdd1 vocab=7cc3db36
 -/
-lemma boolGamePayoff_le_one {R C : Type*} [Fintype R]
+lemma _root_.Tengoku.LeanPool.boolGamePayoff_le_one {R C : Type*} [Fintype R]
     (M : R → C → Bool) (p : FinitePMF R) (c : C) :
     boolGamePayoff M p c ≤ 1 := by
   calc boolGamePayoff M p c
@@ -117,7 +117,7 @@ lemma boolGamePayoff_le_one {R C : Type*} [Fintype R]
 /-- Point mass payoff equals the game value at that row-column pair.
 @isnad1 id=eq.0h5v.s5.4ecf518f5151 from=translated src=- shape=e610f94b vocab=c66632bc
 -/
-lemma boolGamePayoff_pointMass {R C : Type*} [Fintype R] [DecidableEq R]
+lemma _root_.Tengoku.LeanPool.boolGamePayoff_pointMass {R C : Type*} [Fintype R] [DecidableEq R]
     (M : R → C → Bool) (r₀ : R) (c : C) :
     boolGamePayoff M (pointMassPMF r₀) c = if M r₀ c then 1 else 0 := by
   simp only [boolGamePayoff, pointMassPMF]
@@ -131,7 +131,7 @@ lemma boolGamePayoff_pointMass {R C : Type*} [Fintype R] [DecidableEq R]
 /-- The minimax value of a Boolean game is at most 1.
 @isnad1 id=le.1h4v.s6.bdd955bd5b9e from=translated src=- shape=6f59ef19 vocab=fba99958
 -/
-lemma minimax_value_le_one {R C : Type*} [Fintype C] [Nonempty C]
+lemma _root_.Tengoku.LeanPool.minimax_value_le_one {R C : Type*} [Fintype C] [Nonempty C]
     (M : R → C → Bool) (v : ℝ)
     (hrow : ∀ q : FinitePMF C, ∃ r : R,
       v ≤ ∑ c, q.prob c * (if M r c then (1 : ℝ) else 0)) :
@@ -149,7 +149,7 @@ lemma minimax_value_le_one {R C : Type*} [Fintype C] [Nonempty C]
 /-- If minimax value > 0, every column has a row with M(r,c) = true.
 @isnad1 id=ex.2h5v.s6.29b00c0610b2 from=translated src=- shape=91260995 vocab=fd8fbd6f
 -/
-lemma exists_covering_row {R C : Type*} [Fintype C]
+lemma _root_.Tengoku.LeanPool.exists_covering_row {R C : Type*} [Fintype C]
     (M : R → C → Bool) (v : ℝ) (hv : 0 < v)
     (hrow : ∀ q : FinitePMF C, ∃ r : R,
       v ≤ ∑ c, q.prob c * (if M r c then (1 : ℝ) else 0)) :
@@ -181,7 +181,7 @@ lemma exists_covering_row {R C : Type*} [Fintype C]
     column c₀ is covered by at least one row (namely r_c₀).
 @isnad1 id=ex.2h4v.s7.1ef0a0675ef0 from=translated src=- shape=978798d8 vocab=42cbdcb7
 -/
-theorem covering_minimax
+theorem _root_.Tengoku.LeanPool.covering_minimax
     {R C : Type*} [Fintype R] [Fintype C] [Nonempty C]
     (M : R → C → Bool) (v : ℝ) (hv : 0 < v)
     (hrow : ∀ q : FinitePMF C, ∃ r : R,
@@ -229,7 +229,7 @@ This version uses the covering argument (payoff ≥ 1/|C| for all columns)
 combined with the feasibility condition v - ε ≤ 1/|C|.
 @isnad1 id=ex.3h5v.s7.e77bf6068bca from=translated src=- shape=49b2df89 vocab=c2a96007
 -/
-theorem finite_approx_minimax
+theorem _root_.Tengoku.LeanPool.finite_approx_minimax
     {R C : Type*} [Fintype R] [Fintype C] [Nonempty C] [Nonempty R]
     (M : R → C → Bool) (v ε : ℝ) (hε : 0 < ε)
     (hrow : ∀ q : FinitePMF C, ∃ r : R,
@@ -251,41 +251,41 @@ is the core analytic result: after T rounds, Φ_T ≤ |C| · (1 - ηv)^T.
 -/
 
 /-- MWU config: weight vector with positivity proof. -/
-structure MWUConfig (C : Type*) [Fintype C] where
+structure _root_.Tengoku.LeanPool.MWUConfig (C : Type*) [Fintype C] where
   /-- Current nonnegative weight for each expert/concept. -/
   weights : C → ℝ
   weights_pos : ∀ c, 0 < weights c
 
 /-- Potential = sum of weights. -/
-def MWUConfig.potential {C : Type*} [Fintype C] (cfg : MWUConfig C) : ℝ :=
+def Tengoku.LeanPool.MWUConfig.potential {C : Type*} [Fintype C] (cfg : MWUConfig C) : ℝ :=
   ∑ c : C, cfg.weights c
 
 /--
 @isnad1 id=lt.0h2v.s4.321c59528c23 from=translated src=- shape=abec20dc vocab=988eb62d
 -/
-lemma MWUConfig.potential_pos {C : Type*} [Fintype C] [Nonempty C]
+lemma Tengoku.LeanPool.MWUConfig.potential_pos {C : Type*} [Fintype C] [Nonempty C]
     (cfg : MWUConfig C) : 0 < cfg.potential :=
   Finset.sum_pos (fun c _ => cfg.weights_pos c) univ_nonempty
 
 /-- Initial config: all weights = 1. -/
-def mwuInit (C : Type*) [Fintype C] : MWUConfig C where
+def _root_.Tengoku.LeanPool.mwuInit (C : Type*) [Fintype C] : MWUConfig C where
   weights := fun _ => 1
   weights_pos := fun _ => one_pos
 
 /--
 @isnad1 id=eq.0h1v.s4.10e92ec6a883 from=translated src=- shape=794ba50c vocab=bcd56d16
 -/
-lemma mwuInit_potential (C : Type*) [Fintype C] :
+lemma _root_.Tengoku.LeanPool.mwuInit_potential (C : Type*) [Fintype C] :
     (mwuInit C).potential = Fintype.card C := by
   simp [MWUConfig.potential, mwuInit, sum_const, nsmul_eq_mul, mul_one]
 
 /-- Normalize config to PMF. -/
-def MWUConfig.toPMF {C : Type*} [Fintype C] [Nonempty C]
+def Tengoku.LeanPool.MWUConfig.toPMF {C : Type*} [Fintype C] [Nonempty C]
     (cfg : MWUConfig C) : FinitePMF C :=
   normalizeToPMF cfg.weights cfg.weights_pos
 
 /-- One MWU update step on weights. -/
-def mwuUpdateWeights {C : Type*} [Fintype C] {R : Type*}
+def _root_.Tengoku.LeanPool.mwuUpdateWeights {C : Type*} [Fintype C] {R : Type*}
     (M : R → C → Bool) (η : ℝ) (hη1 : η < 1)
     (cfg : MWUConfig C) (r : R) : MWUConfig C where
   weights c := cfg.weights c * (if M r c then (1 - η) else 1)
@@ -294,7 +294,7 @@ def mwuUpdateWeights {C : Type*} [Fintype C] {R : Type*}
 /-- Best response payoff ≥ v · Φ in terms of weights.
 @isnad1 id=le.1h5v.s8.2d72c3bbb0ae from=translated src=- shape=afdb9cca vocab=440fb81a
 -/
-lemma best_response_payoff_weights {R C : Type*} [Fintype C] [Nonempty C]
+lemma _root_.Tengoku.LeanPool.best_response_payoff_weights {R C : Type*} [Fintype C] [Nonempty C]
     (M : R → C → Bool) (v : ℝ)
     (hrow : ∀ q : FinitePMF C, ∃ r : R,
       v ≤ ∑ c, q.prob c * (if M r c then (1 : ℝ) else 0))
@@ -318,7 +318,7 @@ lemma best_response_payoff_weights {R C : Type*} [Fintype C] [Nonempty C]
 /-- Potential bound after one step: Φ' ≤ Φ · (1 - η·v).
 @isnad1 id=le.3h6v.s7.fb6be2a62e24 from=translated src=- shape=489fb12b vocab=dd6a845c
 -/
-lemma potential_one_step_bound {R C : Type*} [Fintype C] [Nonempty C]
+lemma _root_.Tengoku.LeanPool.potential_one_step_bound {R C : Type*} [Fintype C] [Nonempty C]
     (M : R → C → Bool) (η : ℝ) (hη : 0 ≤ η) (hη1 : η < 1) (v : ℝ)
     (hrow : ∀ q : FinitePMF C, ∃ r : R,
       v ≤ ∑ c, q.prob c * (if M r c then (1 : ℝ) else 0))
@@ -354,7 +354,7 @@ lemma potential_one_step_bound {R C : Type*} [Fintype C] [Nonempty C]
   linarith
 
 /-- MWU run: iterate T steps, returning final config and row sequence. -/
-def mwuRun {R C : Type*} [Fintype R] [Fintype C] [Nonempty C]
+def _root_.Tengoku.LeanPool.mwuRun {R C : Type*} [Fintype R] [Fintype C] [Nonempty C]
     (M : R → C → Bool) (η : ℝ) (hη1 : η < 1) (v : ℝ)
     (hrow : ∀ q : FinitePMF C, ∃ r : R,
       v ≤ ∑ c, q.prob c * (if M r c then (1 : ℝ) else 0)) :
@@ -366,7 +366,7 @@ def mwuRun {R C : Type*} [Fintype R] [Fintype C] [Nonempty C]
     (mwuUpdateWeights M η hη1 cfg r, Fin.snoc rows r)
 
 /-- The MWU config after T steps. -/
-abbrev mwuConfig {R C : Type*} [Fintype R] [Fintype C] [Nonempty C]
+abbrev _root_.Tengoku.LeanPool.mwuConfig {R C : Type*} [Fintype R] [Fintype C] [Nonempty C]
     (M : R → C → Bool) (η : ℝ) (hη1 : η < 1) (v : ℝ)
     (hrow : ∀ q : FinitePMF C, ∃ r : R,
       v ≤ ∑ c, q.prob c * (if M r c then (1 : ℝ) else 0))
@@ -374,7 +374,7 @@ abbrev mwuConfig {R C : Type*} [Fintype R] [Fintype C] [Nonempty C]
   (mwuRun M η hη1 v hrow T).1
 
 /-- The MWU row sequence after T steps. -/
-abbrev mwuRows {R C : Type*} [Fintype R] [Fintype C] [Nonempty C]
+abbrev _root_.Tengoku.LeanPool.mwuRows {R C : Type*} [Fintype R] [Fintype C] [Nonempty C]
     (M : R → C → Bool) (η : ℝ) (hη1 : η < 1) (v : ℝ)
     (hrow : ∀ q : FinitePMF C, ∃ r : R,
       v ≤ ∑ c, q.prob c * (if M r c then (1 : ℝ) else 0))
@@ -387,7 +387,7 @@ This is the core MWU guarantee. Combined with individual weight lower
 bounds (w_T(c) = (1-η)^{losses(c)}), it yields the regret bound.
 @isnad1 id=le.3h6v.s7.ca1d4bbd2fe4 from=translated src=- shape=aefcd9d6 vocab=5650d1f0
 -/
-theorem mwu_potential_T_bound {R C : Type*} [Fintype R] [Fintype C] [Nonempty C]
+theorem _root_.Tengoku.LeanPool.mwu_potential_T_bound {R C : Type*} [Fintype R] [Fintype C] [Nonempty C]
     (M : R → C → Bool) (η : ℝ) (hη : 0 ≤ η) (hη1 : η < 1) (v : ℝ)
     (hrow : ∀ q : FinitePMF C, ∃ r : R,
       v ≤ ∑ c, q.prob c * (if M r c then (1 : ℝ) else 0))
@@ -615,7 +615,7 @@ private lemma hitRate_from_potential
     then there is a row mixture with payoff ≥ v - ε against every column.
 @isnad1 id=ex.2h5v.s6.eb4ff66fcb3a from=translated src=- shape=070d6463 vocab=8a6acf4c
 -/
-theorem mwu_approx_minimax
+theorem _root_.Tengoku.LeanPool.mwu_approx_minimax
     {R C : Type*} [Fintype R] [Fintype C] [Nonempty R] [Nonempty C]
     (M : R → C → Bool) (v ε : ℝ) (hε : 0 < ε)
     (hrow : ∀ q : FinitePMF C, ∃ r : R,
@@ -659,3 +659,4 @@ theorem mwu_approx_minimax
   exact hitRate_from_potential hNpos hη hη1 hv1 hTpos hpot (by dsimp [η]; linarith) hlargeT
 
 end -- noncomputable section
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

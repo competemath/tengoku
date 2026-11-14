@@ -14,7 +14,7 @@ Part of the Caffarelli–Kohn–Nirenberg partial regularity proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ENNReal NNReal Topology
 open CKN.Foundation.Parabolic
 open CKN.Foundation.Parabolic.Morrey
@@ -114,3 +114,4 @@ theorem decay_iteration
   exact geometric_decay_iteration hθ hσ hθσ hA hB ha haA hrec
 
 end CKN.Core.Step4
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

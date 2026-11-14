@@ -65,7 +65,7 @@ by `by_cases`
 (`Classical.em`). -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem
@@ -517,3 +517,4 @@ theorem exists_principal_eq_apply_principal (e : V₀.Element ≃o V₁.Element)
 end ApproximableMap
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -18,7 +18,7 @@ additive lemma `folded_additive`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Finset
 
 namespace Erdos865
@@ -310,3 +310,4 @@ theorem folded_additive {m : ℕ} (hm : 2 ≤ m) {B : Finset ℕ} (hB : FoldedOK
       grind +suggestions)))
 
 end Erdos865
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

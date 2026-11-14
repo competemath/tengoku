@@ -15,7 +15,7 @@ stated and proved using the same types.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter Topology Metric InnerProductSpace
 
 noncomputable section
@@ -60,3 +60,4 @@ def Ext.hessianQuadForm (f : E → ℝ) (x ξ : E) : ℝ :=
   @inner ℝ E _ (fderiv ℝ (Ext.gradient f) x ξ) ξ
 
 end PLAcceleratedNesterovLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

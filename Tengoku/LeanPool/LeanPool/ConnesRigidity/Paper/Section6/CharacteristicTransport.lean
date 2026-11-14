@@ -16,7 +16,7 @@ cited public mathematical source.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Connes
 namespace PaperCharacteristicTransport
 
@@ -201,3 +201,4 @@ theorem kernelSubgroup_characteristic
 end
 end PaperCharacteristicTransport
 end Connes
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

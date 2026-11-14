@@ -71,7 +71,7 @@ boundary case analysis.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood.Exercise510
 
 open Domain.Neighborhood NeighborhoodSystem ApproximableMap
@@ -1031,3 +1031,4 @@ def smashCurryEquiv (V₀ : NeighborhoodSystem α) (V₁ : NeighborhoodSystem β
       exact ⟨hY, W, hWmem, hg W p.2 hWrel⟩
 
 end Domain.Neighborhood.Exercise510
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

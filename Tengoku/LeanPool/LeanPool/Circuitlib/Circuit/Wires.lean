@@ -16,7 +16,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Circuit
 
 /-- A bundle of `I` wires, each carrying a value of type `V`. -/
@@ -148,3 +148,4 @@ lemma Wires.get_drop_vector {n k : ℕ} (a : Vector V n) (i : Fin (n - k)) :
   Wires.get_drop a i
 
 end Circuit
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

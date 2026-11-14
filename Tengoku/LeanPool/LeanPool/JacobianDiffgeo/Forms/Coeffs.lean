@@ -29,7 +29,7 @@ All downstream units interact with 1-forms exclusively through this API.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold Bundle
 open Set
 
@@ -351,3 +351,4 @@ theorem coeffIn_trans {e e' : OpenPartialHomeomorph X ℂ}
 end RS
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

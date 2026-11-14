@@ -13,11 +13,11 @@ import Tengoku.LeanPool.LeanPool.SardMoreira.MeasureComap
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ENNReal NNReal Set.Notation Pointwise
 open MeasureTheory Filter Set Function Metric Topology
 
-noncomputable instance instMeasureSpaceNNRealLeanPool : MeasureSpace ℝ≥0 where
+noncomputable instance _root_.Tengoku.LeanPool.instMeasureSpaceNNRealLeanPool : MeasureSpace ℝ≥0 where
   volume := .comap (↑) (volume : Measure ℝ)
 
 /--
@@ -26,3 +26,4 @@ noncomputable instance instMeasureSpaceNNRealLeanPool : MeasureSpace ℝ≥0 whe
 theorem NNReal.volume_def : (volume : Measure ℝ≥0) = .comap (↑) (volume : Measure ℝ) := rfl
 
 -- TODO: should we have this instance? I'm not sure.
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

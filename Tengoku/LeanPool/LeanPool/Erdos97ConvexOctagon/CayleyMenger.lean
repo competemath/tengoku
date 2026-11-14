@@ -11,7 +11,7 @@ import Tengoku.LeanPool.LeanPool.Erdos97ConvexOctagon.Gram
 /-! # Erdős 97 convex-octagon formalization: Cayley Menger -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Erdos97Octagon
 
 open scoped InnerProductSpace
@@ -92,3 +92,4 @@ theorem cm4_normalized_eq_zero
   nlinarith
 
 end Erdos97Octagon
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

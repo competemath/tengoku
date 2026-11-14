@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory MeasureTheory.Measure  ProbabilityTheory Finset NNReal ENNReal Preorder Filter
 
 namespace MeasureTheory.Measure
@@ -53,3 +53,4 @@ lemma ae_bind_of_ae_ae
   exact (ae_map_iff hf hmeas).mpr h
 
 end MeasureTheory.Measure
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

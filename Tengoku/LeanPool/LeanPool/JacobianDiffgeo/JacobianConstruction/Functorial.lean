@@ -24,7 +24,7 @@ this unit's final report for the flag to the orchestrator.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold
 
 universe u
@@ -66,7 +66,7 @@ variable {X : Type u} [TopologicalSpace X] [T2Space X] [CompactSpace X] [Connect
 variable {Y : Type u} [TopologicalSpace Y] [T2Space Y] [CompactSpace Y] [ConnectedSpace Y]
   [ChartedSpace ℂ Y] [IsManifold 𝓘(ℂ) ω Y]
 
-namespace Jacobian
+namespace Tengoku.LeanPool.Jacobian
 
 /-- A `ℂ`-linear map on the ambient period spaces, respecting the period subgroups (at the raw,
 undiscretized `periodSubgroup` level — the natural hypothesis to check for a map arising from a
@@ -86,4 +86,5 @@ noncomputable def inducedHom {T : (Fin (genus X) → ℂ) →ₗ[ℂ] (Fin (genu
             T.continuous_of_finiteDimensional))).comp
       RS.uliftDownHom)
 
-end Jacobian
+end Tengoku.LeanPool.Jacobian
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -26,7 +26,7 @@ Gibbs inequality and concavity of `negMulLog`.
 6. `condEntropy_nonneg` — conditional entropy is nonnegative
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPool.Shannon1948Formalization
 
 noncomputable section
@@ -276,3 +276,4 @@ theorem condEntropy_le_entropyNat {α β : Type} [Fintype α] [Fintype β]
 end
 
 end LeanPool.Shannon1948Formalization
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

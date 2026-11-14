@@ -22,7 +22,7 @@ normalized odd entries below `h` have been included.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FourAP
 
 /-- Putting further entries after a finite word preserves the fact that each
@@ -126,3 +126,4 @@ theorem safe_splice {P E O : List ℕ}
         omega
 
 end FourAP
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

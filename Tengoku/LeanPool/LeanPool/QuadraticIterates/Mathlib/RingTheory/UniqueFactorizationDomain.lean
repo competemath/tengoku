@@ -15,13 +15,13 @@ polynomials*, Arch. Math. 59 (1992), 239-244; upstreaming candidates for Mathlib
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open UniqueFactorizationMonoid in
 /-- If `σ` is a multiplicative automorphism of a normalization UFD and `σ p` is associated to
 `p`, then `normalize ∘ σ` permutes the multiset of normalized factors of `p`.
 @isnad1 id=eq.2h3v.s7.bd8e35de071b from=translated src=- shape=b4c27cdc vocab=7fa76793
 -/
-lemma normalizedFactors_map_mulEquiv_eq {α : Type*} [CommMonoidWithZero α]
+lemma _root_.Tengoku.LeanPool.normalizedFactors_map_mulEquiv_eq {α : Type*} [CommMonoidWithZero α]
     [NormalizationMonoid α] [UniqueFactorizationMonoid α] (σ : α ≃* α) {p : α} (hp0 : p ≠ 0)
     (hassoc : Associated (σ p) p) :
     (normalizedFactors p).map (fun q ↦ normalize (σ q)) = normalizedFactors p := by
@@ -48,7 +48,7 @@ variable {R : Type*} [CommMonoidWithZero R] [UniqueFactorizationMonoid R]
 /-- `p ^ k ∣ x` iff `k` is at most the multiplicity of a normalized prime `p` in `x ≠ 0`.
 @isnad1 id=iff.3h4v.s6.82290895c969 from=translated src=- shape=42f23c49 vocab=266a40e5
 -/
-lemma pow_dvd_iff_le_factorization {p x : R} (hp : Prime p) (hpn : normalize p = p) (hx : x ≠ 0)
+lemma _root_.Tengoku.LeanPool.pow_dvd_iff_le_factorization {p x : R} (hp : Prime p) (hpn : normalize p = p) (hx : x ≠ 0)
     {k : ℕ} : p ^ k ∣ x ↔ k ≤ factorization x p := by
   rw [factorization_eq_count, pow_dvd_iff_le_emultiplicity,
     emultiplicity_eq_count_normalizedFactors hp.irreducible hx, hpn, Nat.cast_le]
@@ -56,14 +56,14 @@ lemma pow_dvd_iff_le_factorization {p x : R} (hp : Prime p) (hpn : normalize p =
 /-- A normalized prime `p` divides `x ≠ 0` iff its multiplicity in `x` is positive.
 @isnad1 id=iff.3h3v.s6.a4cd6458e29d from=translated src=- shape=d9f17dc4 vocab=30c25d79
 -/
-lemma one_le_factorization_iff_dvd {p x : R} (hp : Prime p) (hpn : normalize p = p) (hx : x ≠ 0) :
+lemma _root_.Tengoku.LeanPool.one_le_factorization_iff_dvd {p x : R} (hp : Prime p) (hpn : normalize p = p) (hx : x ≠ 0) :
     1 ≤ factorization x p ↔ p ∣ x := by
   simpa using (pow_dvd_iff_le_factorization hp hpn hx (k := 1)).symm
 
 /-- The multiplicity of a normalized prime `p` in `x ≠ 0` vanishes iff `p ∤ x`.
 @isnad1 id=iff.3h3v.s6.3e79f3f4c126 from=translated src=- shape=f22daf9a vocab=876575c0
 -/
-lemma factorization_eq_zero_iff_not_dvd {p x : R} (hp : Prime p) (hpn : normalize p = p)
+lemma _root_.Tengoku.LeanPool.factorization_eq_zero_iff_not_dvd {p x : R} (hp : Prime p) (hpn : normalize p = p)
     (hx : x ≠ 0) : factorization x p = 0 ↔ ¬p ∣ x := by
   rw [← one_le_factorization_iff_dvd hp hpn hx]
   lia
@@ -81,7 +81,7 @@ variable {S : Type*} [CommRing S] [UniqueFactorizationMonoid S]
 `p ^ (E+1) ∣ x - y`, then `v_p x = E`.
 @isnad1 id=eq.6h5v.s7.58d7c5dcca09 from=translated src=- shape=33bd9e8e vocab=bd1a4088
 -/
-theorem factorization_eq_of_dvd_sub {p : S} (hp : Prime p) (hpn : normalize p = p)
+theorem _root_.Tengoku.LeanPool.factorization_eq_of_dvd_sub {p : S} (hp : Prime p) (hpn : normalize p = p)
     {x y : S} (hx : x ≠ 0) (hy : y ≠ 0) {E : ℕ} (hyE : factorization y p = E)
     (hcong : p ^ (E + 1) ∣ x - y) : factorization x p = E := by
   have hpEy : p ^ E ∣ y := (pow_dvd_iff_le_factorization hp hpn hy).mpr (by lia)
@@ -104,7 +104,7 @@ theorem factorization_eq_of_dvd_sub {p : S} (hp : Prime p) (hpn : normalize p = 
 `E = v_p (x m)`), then `v_p (x n) = E` when `m ∣ n` and `0` otherwise.
 @isnad1 id=eq.9h6v.s8.562b3ed7ea45 from=translated src=- shape=014d61fc vocab=f0924ef7
 -/
-theorem factorization_periodic_shape {p : S} (hp : Prime p) (hpn : normalize p = p)
+theorem _root_.Tengoku.LeanPool.factorization_periodic_shape {p : S} (hp : Prime p) (hpn : normalize p = p)
     (x : ℕ → S) (m E : ℕ) (hm : 2 ≤ m) (hne : ∀ n ≥ 1, x n ≠ 0)
     (hE : factorization (x m) p = E)
     (hmin : ∀ k < m, ¬ (1 ≤ k ∧ p ∣ x k)) (hpm1 : ¬ p ∣ x (m + 1))
@@ -145,3 +145,4 @@ theorem factorization_periodic_shape {p : S} (hp : Prime p) (hpn : normalize p =
         exact dvd_sub hd (dvd_trans (dvd_pow_self p (by lia : E + 1 ≠ 0)) hcong)
 
 end PeriodicShape
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

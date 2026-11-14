@@ -48,7 +48,7 @@ family-membership-carrying restricted truth lemma.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 variable (Λ : Language.{0, 0}) (J : Type) [LinearOrder J]
@@ -693,3 +693,4 @@ theorem LocalEMContext.lhomWithConstants_isExpansionOn (ctx : LocalEMContext Λ 
 end Quotient
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

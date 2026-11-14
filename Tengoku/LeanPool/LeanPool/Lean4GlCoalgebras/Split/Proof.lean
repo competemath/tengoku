@@ -14,7 +14,7 @@ Here we define the GL-split-proof system along with finitization and basic prope
 namespace Split to distinguish from our general GL-proofs.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 open scoped Lean4GlCoalgebras.Formula
 
 
@@ -588,3 +588,4 @@ lemma in_vocab_of_path_right {𝕏 : Proof} {x y : 𝕏.X} (x_y : Relation.ReflT
 end Split
 end Lean4GlCoalgebras
 -- Tengoku: 1 notation(s) of this module made scoped so they do not change other libraries (generated)
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

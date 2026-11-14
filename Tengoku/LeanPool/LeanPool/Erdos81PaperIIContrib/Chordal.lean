@@ -33,7 +33,7 @@ self-contained and depends only on Mathlib.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace SimpleGraph
 
 variable {V : Type*} {G : SimpleGraph V}
@@ -957,3 +957,4 @@ theorem IsChordal.exists_two_nonadj_isSimplicial [Finite V]
   · exact isSimplicial_of_rsimplicial G (fun c _ => Finset.mem_univ _) hb
 
 end SimpleGraph
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

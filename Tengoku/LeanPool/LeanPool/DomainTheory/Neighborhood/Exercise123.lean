@@ -47,7 +47,7 @@ maximal: any `W`
 The construction is `[propext, Quot.sound]` given the supplied `DecidablePred`. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 namespace NeighborhoodSystem
@@ -317,3 +317,4 @@ theorem filters_sequence_determined (x : V.Element) :
 end Exercise123
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

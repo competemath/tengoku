@@ -19,7 +19,7 @@ the `CKN` namespace and the reduced weak-derivative dependency surface.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace CKN
 
 /-- `gi` is the `i`th weak derivative of `u` on `U`. -/
@@ -257,3 +257,4 @@ theorem HasWeakGradientOn.of_contDiff {d : ℕ}
   exact HasWeakPartialDerivOn.of_contDiff hf
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

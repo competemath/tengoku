@@ -27,7 +27,7 @@ See `LeanPool.ExpChaotic` for attribution and the upstream source.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Function Filter Set Metric
 
 namespace ExpChaotic
@@ -215,3 +215,4 @@ theorem not_tendstoLocallyUniformlyOn_sphericalExpIterate
 end
 
 end ExpChaotic
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

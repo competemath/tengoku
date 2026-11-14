@@ -41,7 +41,7 @@ The proof has two parts.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-! # PART I — Abstract laminar interval family: Kernel + forest recursion.
 
 A finite family `E : Finset ι` of half-open integer intervals `(lo e, hi e]` with columns
@@ -1003,3 +1003,4 @@ theorem T_levelCanonical {d m : ℕ} (hd : 0 < d) (hm : 0 < m)
   simpa using hm0
 
 end CriticalPortraits
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

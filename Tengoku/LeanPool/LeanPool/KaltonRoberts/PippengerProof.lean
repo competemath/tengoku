@@ -23,7 +23,7 @@ needed by the Kalton-Roberts bound.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace KaltonRoberts
 
 open Finset BigOperators
@@ -1406,3 +1406,4 @@ noncomputable def finiteExpanderOfGoodEdge
     exact this
 
 end KaltonRoberts
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

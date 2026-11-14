@@ -38,14 +38,14 @@ For the massive scalar field in 4D Euclidean space, the exact formula is:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Set Filter Asymptotics Real
 
 /-- The modified Bessel function K₁(z) via cosh integral representation.
     K₁(z) = ∫₀^∞ exp(-z cosh(t)) cosh(t) dt
     This is well-defined and positive for z > 0.
 -/
-noncomputable def besselK1 (z : ℝ) : ℝ :=
+noncomputable def _root_.Tengoku.LeanPool.besselK1 (z : ℝ) : ℝ :=
   ∫ t : ℝ in Ici 0, exp (-z * cosh t) * cosh t
 
 /-- The integrand `t ↦ exp(-z cosh t) cosh t` is continuous. -/
@@ -190,7 +190,7 @@ private lemma besselK1_integrand_tail_integral_le (z : ℝ) (hz : 0 < z) :
 /-- K₁(z) is positive for z > 0.
 @isnad1 id=lt.1h1v.s4.5fbc0b9828a3 from=translated src=- shape=35bd48ee vocab=aaae4e02
 -/
-lemma besselK1_pos (z : ℝ) (hz : 0 < z) : 0 < besselK1 z := by
+lemma _root_.Tengoku.LeanPool.besselK1_pos (z : ℝ) (hz : 0 < z) : 0 < besselK1 z := by
   unfold besselK1
   -- The integrand f(t) = exp(-z cosh(t)) * cosh(t) is strictly positive for all t
   set f : ℝ → ℝ := fun t => exp (-z * cosh t) * cosh t with hf_def
@@ -222,7 +222,7 @@ lemma besselK1_pos (z : ℝ) (hz : 0 < z) : 0 < besselK1 z := by
     for z in compact K ⊆ (0, ∞), bound by exp(-min(K) * cosh(t)) * cosh(t).
 @isnad1 id=continuo.0h0v.s4.5a65e2698487 from=translated src=- shape=f2a09be3 vocab=dcc92df6
 -/
-lemma besselK1_continuousOn : ContinuousOn besselK1 (Ioi 0) := by
+lemma _root_.Tengoku.LeanPool.besselK1_continuousOn : ContinuousOn besselK1 (Ioi 0) := by
   -- Show ContinuousAt at each z₀ > 0 using dominated convergence
   rw [isOpen_Ioi.continuousOn_iff]
   intro z₀ hz₀
@@ -264,7 +264,7 @@ lemma besselK1_continuousOn : ContinuousOn besselK1 (Ioi 0) := by
     The proof uses the same technique as besselK1_mul_self_le but for z ≥ 1.
 @isnad1 id=le.1h1v.s5.c540f0491626 from=translated src=- shape=4b78ba05 vocab=05b081ca
 -/
-lemma besselK1_asymptotic (z : ℝ) (hz : 1 ≤ z) :
+lemma _root_.Tengoku.LeanPool.besselK1_asymptotic (z : ℝ) (hz : 1 ≤ z) :
     besselK1 z ≤ (sinh 1 + 2) * exp (-z) := by
   unfold besselK1
   set f : ℝ → ℝ := fun t => exp (-z * cosh t) * cosh t with hf_def
@@ -334,7 +334,7 @@ lemma besselK1_asymptotic (z : ℝ) (hz : 1 ≤ z) :
     - On [1,∞): z · ∫₁^∞ exp(-z cosh t) cosh t dt ≤ 2 (via exponential bound)
 @isnad1 id=le.2h1v.s5.e1d2e550cbad from=translated src=- shape=01646ba4 vocab=6ffb6b86
 -/
-lemma besselK1_mul_self_le (z : ℝ) (hz : 0 < z) (hz_le : z ≤ 1) :
+lemma _root_.Tengoku.LeanPool.besselK1_mul_self_le (z : ℝ) (hz : 0 < z) (hz_le : z ≤ 1) :
     z * besselK1 z ≤ cosh 1 + 2 := by
   unfold besselK1
   set f : ℝ → ℝ := fun t => exp (-z * cosh t) * cosh t with hf_def
@@ -410,7 +410,7 @@ lemma besselK1_mul_self_le (z : ℝ) (hz : 0 < z) (hz_le : z ≤ 1) :
     This follows from z · K₁(z) ≤ cosh(1) + 2 (proved in besselK1_mul_self_le).
 @isnad1 id=le.2h1v.s5.4147ec07059d from=translated src=- shape=8d24ba99 vocab=a5762994
 -/
-lemma besselK1_near_origin_bound (z : ℝ) (hz : 0 < z) (hz_small : z ≤ 1) :
+lemma _root_.Tengoku.LeanPool.besselK1_near_origin_bound (z : ℝ) (hz : 0 < z) (hz_small : z ≤ 1) :
     besselK1 z ≤ (cosh 1 + 2) / z := by
   have h_bound := besselK1_mul_self_le z hz hz_small
   -- z * K₁(z) ≤ cosh(1) + 2, so K₁(z) ≤ (cosh(1) + 2) / z
@@ -425,7 +425,7 @@ lemma besselK1_near_origin_bound (z : ℝ) (hz : 0 < z) (hz_small : z ≤ 1) :
     This is a key ingredient for showing the free covariance kernel is L¹ in 4D.
 @isnad1 id=integrab.1h1v.s6.9d83829deb06 from=translated src=- shape=8eda6e24 vocab=264882f7
 -/
-lemma radial_besselK1_integrable (m : ℝ) (hm : 0 < m) :
+lemma _root_.Tengoku.LeanPool.radial_besselK1_integrable (m : ℝ) (hm : 0 < m) :
     IntegrableOn (fun r => r ^ 2 * besselK1 (m * r)) (Set.Ioi 0) volume := by
   -- Split (0, ∞) = (0, 1/m] ∪ (1/m, ∞)
   have h_split : Ioi (0 : ℝ) = Ioc 0 (1/m) ∪ Ioi (1/m) := by
@@ -590,7 +590,7 @@ lemma radial_besselK1_integrable (m : ℝ) (hm : 0 < m) :
     This follows from splitting at 0 and using cosh(-u) = cosh(u).
 @isnad1 id=eq.1h1v.s6.304bd195cdda from=translated src=- shape=a65ea8bd vocab=8b207cbb
 -/
-lemma bessel_symmetry_integral (z : ℝ) (hz : 0 < z) :
+lemma _root_.Tengoku.LeanPool.bessel_symmetry_integral (z : ℝ) (hz : 0 < z) :
     ∫ u : ℝ, exp (-u) * exp (-z * cosh u) = 2 * besselK1 z := by
   -- Integrability conditions (both decay super-exponentially as u → ∞)
   have hg_int : IntegrableOn (fun u => exp u * exp (-z * cosh u)) (Ioi 0) := by
@@ -754,7 +754,7 @@ lemma bessel_symmetry_integral (z : ℝ) (hz : 0 < z) :
     which transforms the integral to the cosh representation of K₁.
 @isnad1 id=eq.2h2v.s7.e5bc821bb6af from=translated src=- shape=a716b7a6 vocab=6a22c2d6
 -/
-lemma schwingerIntegral_eq_besselK1 (m r : ℝ) (hm : 0 < m) (hr : 0 < r) :
+lemma _root_.Tengoku.LeanPool.schwingerIntegral_eq_besselK1 (m r : ℝ) (hm : 0 < m) (hr : 0 < r) :
     ∫ t in Ioi 0, (1 / t^2) * exp (-m^2 * t - r^2 / (4 * t)) =
     (4 * m / r) * besselK1 (m * r) := by
   /-
@@ -873,3 +873,4 @@ lemma schwingerIntegral_eq_besselK1 (m r : ℝ) (hm : 0 < m) (hr : 0 < r) :
     -- The expressions differ only in parenthesization: -(m^2 * t) vs -m^2 * t
     simp_all
   rw [h_eq, integral_const_mul]
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

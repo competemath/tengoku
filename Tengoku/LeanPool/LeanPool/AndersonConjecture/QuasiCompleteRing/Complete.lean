@@ -9,7 +9,7 @@ public import Tengoku.LeanPool.LeanPool.AndersonConjecture.Basic
 import Tengoku.Seed.RingTheory.Filtration
 import Tengoku.Seed.RingTheory.HopkinsLevitzki
 import Tengoku.Seed.RingTheory.Ideal.Quotient.Noetherian
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -287,3 +287,4 @@ theorem anderson_complete_isQuasiComplete
     exact add_mem hyj_Am (Ideal.mem_sup_right hfL)
   -- Conclusion
   exact Submodule.mem_sup.mpr ⟨x - L, hxL_mem, L, hLMk, sub_add_cancel x L⟩
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

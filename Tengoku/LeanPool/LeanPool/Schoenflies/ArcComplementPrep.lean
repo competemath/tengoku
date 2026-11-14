@@ -74,7 +74,7 @@ outer-chain lemma (`lem:outer-chain`), so that the theorem itself becomes a shor
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set unitInterval
 open scoped Graph
 
@@ -1299,3 +1299,4 @@ with `chainUnion Γ k` the fold of `Graph.union` over `i < k`, exported as a `de
 -/
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

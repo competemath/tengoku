@@ -11,7 +11,7 @@ public import Tengoku
 /-! TODO: Add doc-string. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open Complex MeasureTheory NumberField NumberField.InfinitePlace NumberField.Units
@@ -55,3 +55,4 @@ theorem integrableOn_nonzeroShapeThetaMellinKernel
   rw [nonzeroShapeThetaMellinKernel, logarithmicMellinWeight]
 
 end NumberField.Odlyzko
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

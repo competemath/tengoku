@@ -72,7 +72,7 @@ Root `Graph`, as fixed by `Schoenflies/Graph/Walk.lean`, so that `h.reaches_an_e
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set
 open scoped Graph
 
@@ -411,3 +411,4 @@ theorem IsWalk.finite_edgeSet_pathGraphOf (h : G.IsWalk u W v) :
   rw [pathGraphOf_edgeSet h]; exact List.finite_toSet W
 
 end Graph
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

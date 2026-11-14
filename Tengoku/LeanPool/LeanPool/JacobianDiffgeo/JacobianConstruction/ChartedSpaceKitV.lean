@@ -27,7 +27,7 @@ Namespace `RS` (Compat section, primed names to avoid clashing with Surface's or
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold
 open Set
 
@@ -85,3 +85,4 @@ theorem isManifold_of_family' (c : ι → OpenPartialHomeomorph Z E) (idx : Z �
   exact htrans i j
 
 end RS
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

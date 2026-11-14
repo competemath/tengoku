@@ -22,7 +22,7 @@ That older interface was removed because the generated-algorithm interface in
 algorithm dependency clearer.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 noncomputable section
 
 open scoped BigOperators
@@ -861,3 +861,4 @@ theorem YTMMuStop_of_gap_le_hdim_mul {n : Nat} {w : HSState n} {ε : ℝ}
   nlinarith [hgap]
 
 end HSDInteriorPointLP
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

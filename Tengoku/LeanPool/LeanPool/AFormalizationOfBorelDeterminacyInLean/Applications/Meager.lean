@@ -16,7 +16,7 @@ Auxiliary declarations for the Borel determinacy formalization.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 variable {X Y : Type*} [tX : TopologicalSpace X] [tY : TopologicalSpace Y]
   (f : X → Y) {A B U V : Set X}
 open Topology
@@ -25,25 +25,25 @@ scoped[Topology] notation (name := DenseOf) "Dense[" t "]" => @Dense _ t
 /--
 @isnad1 id=dense.2h3v.s6.4069ff3dc600 from=translated src=- shape=b876168e vocab=8d7538e5
 -/
-lemma dense_trans {B : Set A} (hA : Dense A) (hB : Dense B) :
+lemma _root_.Tengoku.LeanPool.dense_trans {B : Set A} (hA : Dense A) (hB : Dense B) :
   Dense (Subtype.val '' B) := (Dense.isDenseEmbedding_val hA).dense_image.mpr hB
 open Set.Notation
 /--
 @isnad1 id=dense.0h2v.s5.2b69c79f923a from=translated src=- shape=b070e629 vocab=499fad5d
 -/
-lemma dense_in_closure (A : Set X) : Dense (closure A ↓∩ A) := by
+lemma _root_.Tengoku.LeanPool.dense_in_closure (A : Set X) : Dense (closure A ↓∩ A) := by
   rw [Subtype.dense_iff]
   apply closure_mono
   simp [subset_closure]
 
 /-- Auxiliary declaration for the Borel determinacy formalization. -/
-def openDenseFilterBasis : FilterBasis X where
+def _root_.Tengoku.LeanPool.openDenseFilterBasis : FilterBasis X where
   sets := {U | IsOpen U ∧ Dense U}
   nonempty := ⟨Set.univ, ⟨isOpen_univ, dense_univ⟩⟩
   inter_sets {U V} hU hV := ⟨U ∩ V,
     ⟨hU.1.inter hV.1, hU.2.inter_of_isOpen_left hV.2 hU.1⟩, subset_rfl⟩
 /-- Auxiliary declaration for the Borel determinacy formalization. -/
-abbrev openDenseFilter : Filter X := openDenseFilterBasis.filter
+abbrev _root_.Tengoku.LeanPool.openDenseFilter : Filter X := openDenseFilterBasis.filter
 
 /--
 @isnad1 id=isnowher.1h3v.s4.253195bf33d2 from=translated src=- shape=a0ad1a89 vocab=8f8374e0
@@ -58,7 +58,7 @@ lemma IsNowhereDense.inter_right (hA : IsNowhereDense A) :
 /--
 @isnad1 id=iff.0h2v.s5.b517f3b18aa7 from=translated src=- shape=d6d27087 vocab=14cf4c3d
 -/
-lemma isNowhereDense_iff_subset_closed_nowhereDense :
+lemma _root_.Tengoku.LeanPool.isNowhereDense_iff_subset_closed_nowhereDense :
   IsNowhereDense A ↔ ∃ C, A ⊆ C ∧ IsClosed C ∧ IsNowhereDense C where
   mp := by
     -- Mathlib should handle the conjunct order uniformly here.
@@ -67,7 +67,7 @@ lemma isNowhereDense_iff_subset_closed_nowhereDense :
 /--
 @isnad1 id=iff.0h2v.s4.94795ef837cf from=translated src=- shape=f269b021 vocab=6522495b
 -/
-lemma isNowhereDense_iff_compl_contains_openDense :
+lemma _root_.Tengoku.LeanPool.isNowhereDense_iff_compl_contains_openDense :
   IsNowhereDense A ↔ Aᶜ ∈ openDenseFilter := by
   rw [isNowhereDense_iff_subset_closed_nowhereDense, compl_surjective.exists]
   simp_rw [isClosed_isNowhereDense_iff_compl,
@@ -82,13 +82,13 @@ lemma isNowhereDense.union (hA : IsNowhereDense A) (hB : IsNowhereDense B) :
 /--
 @isnad1 id=isnowher.1h3v.s5.af9d93b31bf7 from=translated src=- shape=ff438511 vocab=b50a4d84
 -/
-lemma isNowhereDense_iUnion {I} {A : I → Set X} [Finite I] (h : ∀ i, IsNowhereDense (A i)) :
+lemma _root_.Tengoku.LeanPool.isNowhereDense_iUnion {I} {A : I → Set X} [Finite I] (h : ∀ i, IsNowhereDense (A i)) :
   IsNowhereDense (⋃ i, A i) := by
   simpa [isNowhereDense_iff_compl_contains_openDense] using h
 /--
 @isnad1 id=tendsto.2h3v.s5.e9363c0001a2 from=translated src=- shape=2d2c8bec vocab=ca087782
 -/
-lemma tendsto_openDense_of_isOpenMap (hc : Continuous f) (ho : IsOpenMap f) :
+lemma _root_.Tengoku.LeanPool.tendsto_openDense_of_isOpenMap (hc : Continuous f) (ho : IsOpenMap f) :
   Filter.Tendsto f openDenseFilter openDenseFilter :=
   openDenseFilterBasis.hasBasis.ge_iff.mpr fun U ⟨hUo, hUd⟩ ↦
     ⟨f⁻¹' U, ⟨hUo.preimage hc, hUd.preimage ho⟩, subset_rfl⟩
@@ -108,7 +108,7 @@ lemma Dense.dense_in_open (hU : IsOpen U) (hD : Dense A) : Dense (U ↓∩ A) :=
 /--
 @isnad1 id=iff.0h2v.s6.58781daeecea from=translated src=- shape=09ade63a vocab=6e20d00f
 -/
-lemma somewhereDense_iff : ¬ IsNowhereDense A ↔ ∃ U, U.Nonempty ∧ IsOpen U ∧ Dense (U ↓∩ A) := by
+lemma _root_.Tengoku.LeanPool.somewhereDense_iff : ¬ IsNowhereDense A ↔ ∃ U, U.Nonempty ∧ IsOpen U ∧ Dense (U ↓∩ A) := by
   simp_rw [Subtype.dense_iff, Subtype.image_preimage_coe]; constructor
   · intro h
     use interior (closure A), Set.notMem_singleton_empty.mp h, isOpen_interior
@@ -119,13 +119,13 @@ lemma somewhereDense_iff : ¬ IsNowhereDense A ↔ ∃ U, U.Nonempty ∧ IsOpen 
 /--
 @isnad1 id=iff.0h2v.s5.9791c472b129 from=translated src=- shape=af21546e vocab=6e20d00f
 -/
-lemma nowhereDense_iff : IsNowhereDense A ↔ ∀ U, U.Nonempty → IsOpen U → ¬ Dense (U ↓∩ A) := by
+lemma _root_.Tengoku.LeanPool.nowhereDense_iff : IsNowhereDense A ↔ ∀ U, U.Nonempty → IsOpen U → ¬ Dense (U ↓∩ A) := by
   simpa using not_iff_not.mpr somewhereDense_iff
 
 /--
 @isnad1 id=isnowher.2h4v.s5.3866baff2902 from=translated src=- shape=b97bd5f5 vocab=d6de2c23
 -/
-lemma isNowhereDense_image (hf : IsInducing f) (h : IsNowhereDense A) :
+lemma _root_.Tengoku.LeanPool.isNowhereDense_image (hf : IsInducing f) (h : IsNowhereDense A) :
   IsNowhereDense (f '' A) := by
   simp_rw [IsNowhereDense, hf.closure_eq_preimage_closure_image] at *
   replace h := subset_trans (preimage_interior_subset_interior_preimage hf.continuous) h.subset
@@ -137,7 +137,7 @@ lemma isNowhereDense_image (hf : IsInducing f) (h : IsNowhereDense A) :
 /--
 @isnad1 id=iff.1h3v.s6.4dfdf5dd5ce4 from=translated src=- shape=856fb250 vocab=0d3c2670
 -/
-lemma nowhereDense_in_open (hU : IsOpen U) (A : Set U) :
+lemma _root_.Tengoku.LeanPool.nowhereDense_in_open (hU : IsOpen U) (A : Set U) :
   IsNowhereDense (Subtype.val '' A) ↔ IsNowhereDense A := by
   constructor <;> intro h
   · simpa using h.preimage (f := Subtype.val) continuous_subtype_val hU.isOpenMap_subtype_val
@@ -145,7 +145,7 @@ lemma nowhereDense_in_open (hU : IsOpen U) (A : Set U) :
 /--
 @isnad1 id=iff.1h3v.s6.42090ef3dca3 from=translated src=- shape=856fb250 vocab=ffdeb061
 -/
-lemma nowhereDense_in_dense (hU : Dense U) (A : Set U) :
+lemma _root_.Tengoku.LeanPool.nowhereDense_in_dense (hU : Dense U) (A : Set U) :
   IsNowhereDense (Subtype.val '' A) ↔ IsNowhereDense A := by
   constructor
   · intro h
@@ -162,7 +162,7 @@ lemma nowhereDense_in_dense (hU : Dense U) (A : Set U) :
 /--
 @isnad1 id=iff.1h2v.s4.3aa2e2263a7e from=translated src=- shape=cd5270fa vocab=d5894bae
 -/
-lemma isOpen_isNowhereDense (hU : IsOpen U) : IsNowhereDense U ↔ U = ∅ := by
+lemma _root_.Tengoku.LeanPool.isOpen_isNowhereDense (hU : IsOpen U) : IsNowhereDense U ↔ U = ∅ := by
   rw [← Subtype.coe_image_univ U, nowhereDense_in_open hU Set.univ]
   simp [IsNowhereDense]
 /--
@@ -173,14 +173,14 @@ lemma Dense.somewhereDense [Nonempty X] (hU : Dense U) : ¬ IsNowhereDense U := 
 /--
 @isnad1 id=nonempty.1h2v.s4.3ef48c058cbc from=translated src=- shape=2fb328a6 vocab=fdf9d927
 -/
-lemma nonempty_of_somewhereDense (h : ¬ IsNowhereDense A) : Nonempty A := by
+lemma _root_.Tengoku.LeanPool.nonempty_of_somewhereDense (h : ¬ IsNowhereDense A) : Nonempty A := by
   by_contra hc; have heq : A = ∅ := Set.isEmpty_coe_sort.mp ⟨fun a ↦ hc ⟨a⟩⟩
   subst heq; exact h isNowhereDense_empty
 
 /--
 @isnad1 id=ex.1h4v.s6.fadde5792c49 from=translated src=- shape=447d3b13 vocab=d8573621
 -/
-lemma fiber_somewhereDense (h : ¬ IsNowhereDense U) {α} (f : U → α) [Finite α] :
+lemma _root_.Tengoku.LeanPool.fiber_somewhereDense (h : ¬ IsNowhereDense U) {α} (f : U → α) [Finite α] :
     ∃ a, ¬ IsNowhereDense (Subtype.val '' (f⁻¹' {a})) := by
   by_contra hA; push Not at hA; apply h
   simpa [← Set.image_iUnion, ← Set.preimage_iUnion, Set.iUnion_of_singleton]
@@ -189,7 +189,7 @@ lemma fiber_somewhereDense (h : ¬ IsNowhereDense U) {α} (f : U → α) [Finite
 /--
 @isnad1 id=eq.2h4v.s5.0a969c16fe83 from=translated src=- shape=ffcdd9c4 vocab=ba6da511
 -/
-lemma closure_open_cover {I} (U : I → Set X) (hO : ∀ i, IsOpen (U i)) (hcov : ⋃ i, U i = Set.univ) :
+lemma _root_.Tengoku.LeanPool.closure_open_cover {I} (U : I → Set X) (hO : ∀ i, IsOpen (U i)) (hcov : ⋃ i, U i = Set.univ) :
     closure A = ⋃ i, closure (A ∩ U i) := by
   apply subset_antisymm _ (by simp [closure_mono])
   intro x hx
@@ -201,7 +201,7 @@ lemma closure_open_cover {I} (U : I → Set X) (hO : ∀ i, IsOpen (U i)) (hcov 
 /--
 @isnad1 id=eq.2h4v.s5.eb04d183a8a8 from=translated src=- shape=ffcdd9c4 vocab=e445d5e7
 -/
-lemma interior_open_cover {I} (U : I → Set X) (hO : ∀ i, IsOpen (U i))
+lemma _root_.Tengoku.LeanPool.interior_open_cover {I} (U : I → Set X) (hO : ∀ i, IsOpen (U i))
   (hcov : ⋃ i, U i = Set.univ) :
     interior A = ⋃ i, interior (A ∩ U i) := by
   apply subset_antisymm _ (by simp)
@@ -213,7 +213,7 @@ lemma interior_open_cover {I} (U : I → Set X) (hO : ∀ i, IsOpen (U i))
 /--
 @isnad1 id=isclosed.3h4v.s6.6a8246dd2e4b from=translated src=- shape=4b873170 vocab=3c640920
 -/
-lemma open_cover_closed {I} (U : I → Set X) (hO : ∀ i, IsOpen (U i)) (hcov : ⋃ i, U i = Set.univ)
+lemma _root_.Tengoku.LeanPool.open_cover_closed {I} (U : I → Set X) (hO : ∀ i, IsOpen (U i)) (hcov : ⋃ i, U i = Set.univ)
   (hd : Pairwise (Function.onFun Disjoint U)) i :
     IsClosed (U i) := by
   rw [← isOpen_compl_iff, Set.compl_eq_univ_sdiff, ← hcov, Set.iUnion_sdiff]
@@ -230,13 +230,13 @@ lemma IsClopen.inter_closure (h : IsClopen U) {A} : closure A ∩ U = closure (A
 /--
 @isnad1 id=iff.2h3v.s6.876d3392f767 from=translated src=- shape=43d378fd vocab=4302de4e
 -/
-lemma nowhereDense_iff_nowhereDense_in_open (hU : IsOpen U) (hA : A ⊆ U) :
+lemma _root_.Tengoku.LeanPool.nowhereDense_iff_nowhereDense_in_open (hU : IsOpen U) (hA : A ⊆ U) :
   IsNowhereDense A ↔ IsNowhereDense (U ↓∩ A) := by
   rw [← nowhereDense_in_open hU, Subtype.image_preimage_coe, Set.inter_eq_self_of_subset_right hA]
 /--
 @isnad1 id=isnowher.4h4v.s6.bae80b1d1384 from=translated src=- shape=5d48de7c vocab=4a8e5d41
 -/
-lemma isNowhereDense_disjoint_open {I} (U : I → Set X) (hO : ∀ i, IsOpen (U i))
+lemma _root_.Tengoku.LeanPool.isNowhereDense_disjoint_open {I} (U : I → Set X) (hO : ∀ i, IsOpen (U i))
   (hcov : A ⊆ ⋃ i, U i) (hd : Pairwise (Function.onFun Disjoint U))
   (h : ∀ i, IsNowhereDense (A ∩ U i)) : IsNowhereDense (A) := by
   let V := ⋃ i, U i
@@ -260,14 +260,14 @@ lemma isNowhereDense_disjoint_open {I} (U : I → Set X) (hO : ∀ i, IsOpen (U 
 /--
 @isnad1 id=le.0h1v.s4.e24fe1b50716 from=translated src=- shape=e716c754 vocab=e25c7702
 -/
-lemma residual_le_openDense : residual X ≤ openDenseFilter := by
+lemma _root_.Tengoku.LeanPool.residual_le_openDense : residual X ≤ openDenseFilter := by
   unfold openDenseFilter
   rw [openDenseFilterBasis.hasBasis.ge_iff]
   exact fun _ h ↦ residual_of_dense_open h.1 h.2
 /--
 @isnad1 id=iff.0h2v.s5.58948cd7858e from=translated src=- shape=c71547e4 vocab=996ba542
 -/
-lemma isMeagre_iff_eq_countable_union_isNowhereDense {s : Set X} :
+lemma _root_.Tengoku.LeanPool.isMeagre_iff_eq_countable_union_isNowhereDense {s : Set X} :
     IsMeagre s ↔ ∃ S : Set (Set X), (∀ t ∈ S, IsNowhereDense t) ∧ S.Countable ∧ s = ⋃₀ S := by
   rw [isMeagre_iff_countable_union_isNowhereDense]; constructor
   · intro ⟨S, h1, h2, h3⟩
@@ -301,7 +301,7 @@ lemma IsMeagre.interior [BaireSpace X] {U : Set X} (hU : IsMeagre U) : interior 
 /--
 @isnad1 id=ismeagre.2h4v.s5.e9a2ce739d30 from=translated src=- shape=b97bd5f5 vocab=87ad7afc
 -/
-lemma isMeagre_image (hf : IsInducing f) (h : IsMeagre A) : IsMeagre (f '' A) := by
+lemma _root_.Tengoku.LeanPool.isMeagre_image (hf : IsInducing f) (h : IsMeagre A) : IsMeagre (f '' A) := by
   rw [isMeagre_iff_eq_countable_union_isNowhereDense] at *
   obtain ⟨S, h1, h2, h3⟩ := h
   use (fun s ↦ f '' s) '' S
@@ -313,7 +313,7 @@ lemma isMeagre_image (hf : IsInducing f) (h : IsMeagre A) : IsMeagre (f '' A) :=
 /--
 @isnad1 id=iff.0h1v.s4.5290b9d731ad from=translated src=- shape=70479290 vocab=a92f791a
 -/
-lemma baireSpace_iff_isMeagre_interior : BaireSpace X ↔
+lemma _root_.Tengoku.LeanPool.baireSpace_iff_isMeagre_interior : BaireSpace X ↔
   ∀ U : Set X, IsMeagre U → interior U = ∅ := by
   use @IsMeagre.interior _ _
   intro h; constructor
@@ -325,13 +325,13 @@ lemma baireSpace_iff_isMeagre_interior : BaireSpace X ↔
 /--
 @isnad1 id=iff.1h2v.s4.10a235b246d1 from=translated src=- shape=bdb43d30 vocab=3a9911f2
 -/
-lemma isOpen_isMeagre [BaireSpace X] {U : Set X} (hU : IsOpen U) : IsMeagre U ↔ U = ∅ :=
+lemma _root_.Tengoku.LeanPool.isOpen_isMeagre [BaireSpace X] {U : Set X} (hU : IsOpen U) : IsMeagre U ↔ U = ∅ :=
   ⟨by intro h; rwa [← h.interior, Eq.comm, interior_eq_iff_isOpen],
     by rintro rfl; exact IsMeagre.empty⟩
 /--
 @isnad1 id=iff.0h1v.s4.c7051467ebaf from=translated src=- shape=ed0fe8ac vocab=3a9911f2
 -/
-lemma baireSpace_iff_isMeagre_isOpen : BaireSpace X ↔
+lemma _root_.Tengoku.LeanPool.baireSpace_iff_isMeagre_isOpen : BaireSpace X ↔
   ∀ U : Set X, IsMeagre U → IsOpen U → U = ∅ := by
   constructor
   · have := @isOpen_isMeagre (X := X); aesop
@@ -340,7 +340,7 @@ lemma baireSpace_iff_isMeagre_isOpen : BaireSpace X ↔
 /--
 @isnad1 id=bairespa.1h2v.s5.894684bbd111 from=translated src=- shape=bccbd022 vocab=9ffc2d8a
 -/
-lemma open_baire [BaireSpace X] {U : Set X} (hU : IsOpen U) : BaireSpace U := by
+lemma _root_.Tengoku.LeanPool.open_baire [BaireSpace X] {U : Set X} (hU : IsOpen U) : BaireSpace U := by
   rw [baireSpace_iff_isMeagre_isOpen]
   intro V hVm hVo
   rw [← Set.image_eq_empty (f := Subtype.val), ← isOpen_isMeagre]
@@ -426,7 +426,7 @@ private lemma forces_disjoint_iUnion_left {I} (U : I → tX.Opens)
 end residual.dom
 open residual.dom in
 /-- a Baire category analogue of outer measure -/
-def dom (A : Set X) : tX.Opens := ⨆ (U) (_ : U ⊩ A), U
+def _root_.Tengoku.LeanPool.dom (A : Set X) : tX.Opens := ⨆ (U) (_ : U ⊩ A), U
 namespace residual.dom
 /--
 @isnad1 id=forces.0h2v.s4.50f8f84b52b1 from=translated src=- shape=903e385d vocab=624d2cc4
@@ -505,3 +505,4 @@ lemma banach_category {I} (U : I → Set X) (hUo : ∀ i, IsOpen (U i)) (hUm : �
   exact forces_iUnion_left _ hUm
 
 end residual.dom
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

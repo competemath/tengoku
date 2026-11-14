@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-
 Given two morphisms l: A ⟶ B and r: X ⟶ Y in a category C, we say that l is left orthogonal to r
 or that r is right orthogonal to l, if for every commuting square of the form
@@ -790,3 +790,4 @@ def homOrthogonalImpliesOrthogonal
       ( hom_orthogonal_implies_hom_orthogonal_aux l r h)
 
 end CategoryTheory
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

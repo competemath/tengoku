@@ -11,7 +11,7 @@ public import Tengoku.LeanPool.LeanPool.Odlyzko.CompletedZeta.UnitAveragedGaussi
 /-! TODO: Add doc-string. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open Complex Ideal IsDedekindDomain MeasureTheory NumberField NumberField.Units
@@ -92,3 +92,4 @@ theorem hasSum_integral_idealSet_complexPlaceMellinGaussian
     (lt_trans zero_lt_one hs)
 
 end NumberField.Odlyzko
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

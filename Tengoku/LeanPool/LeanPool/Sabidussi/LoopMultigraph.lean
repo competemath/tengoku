@@ -18,7 +18,7 @@ incidences; consequently a loop contributes two incidences at its vertex.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Sabidussi
 
 open scoped BigOperators
@@ -371,3 +371,4 @@ end CompatibleFourColoring
 
 end LoopMultigraph
 end Sabidussi
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

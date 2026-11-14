@@ -16,7 +16,7 @@ the critical set near x₀ is locally a C¹ graph over ker(Hess f(x₀)).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter Topology Metric Submodule Asymptotics
 
 noncomputable section
@@ -520,3 +520,4 @@ lemma ift_gives_graph_impl₂ (f : E → ℝ) (μ : ℝ) (x₀ : E) (hμ : 0 < �
   exact ⟨U, hU, φ, hφ_smooth, hφ_zero, hφ_deriv, fun x hx => hUprop x hx⟩
 
 end PLAcceleratedNesterovLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

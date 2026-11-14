@@ -18,7 +18,7 @@ exhausts the original ball.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Function Set Filter MeasureTheory Topology
 open scoped ENNReal Convolution Pointwise
 
@@ -71,3 +71,4 @@ lemma tendsto_integral_rpow_norm_of_tendsto_lpNorm
 
 end
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

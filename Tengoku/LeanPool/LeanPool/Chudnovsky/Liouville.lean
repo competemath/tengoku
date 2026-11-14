@@ -28,7 +28,7 @@ Cauchy--Goursat primitives.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace Chudnovsky
@@ -2024,3 +2024,4 @@ theorem IsEllipticWith.exists_const_mul_of_meromorphicOrderAt_eq (hf : L.IsEllip
     rw [hz, hz', one_mul]
 
 end PeriodPair
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

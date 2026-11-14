@@ -5,7 +5,7 @@ import Tengoku.NavierStokesEuler.NavierStokes.LocalAngularGrowth
 /-! # A common local domain for the paper's heat-exterior formula -/
 
 noncomputable section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace NavierStokes.LocalPaperDomain
 
 open Set Filter ProblemStatement CorrectionInitialization
@@ -96,3 +96,4 @@ theorem exterior_conditions_eventually {a : ℕ → ℕ} {w : SpaceTime}
   exact ⟨hz, hez, hcz⟩
 
 end NavierStokes.LocalPaperDomain
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

@@ -21,7 +21,7 @@ resp. `≤ 1/4` at the witness points `±4 + 2^(1/4)`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Topology Metric MeasureTheory InnerProductSpace Complex Filter
 
 namespace Rado
@@ -674,3 +674,4 @@ theorem perronSup_le_witness [T2Space X] :
 end Config
 
 end Rado
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

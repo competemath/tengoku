@@ -12,7 +12,7 @@ Authors: Carles Marín
 module
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace CK.Coassoc
 
 /-- Planar rooted trees, represented by the forest of children below the root. -/
@@ -255,3 +255,4 @@ theorem _root_.CK.Coassoc.coprod_coassoc (t : RTree) :
     (coLeft (coprodTree t)).Perm (coRight (coprodTree t)) := coassocTree t
 
 end CK.Coassoc
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

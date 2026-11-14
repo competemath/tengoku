@@ -1,6 +1,6 @@
 import Tengoku.NavierStokesEuler.Euler.DriftCorrectionForcing
 import Tengoku.NavierStokesEuler.Euler.GevreyNonlinearEstimate
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace EulerDriftNonlinearEstimate
 end EulerDriftNonlinearEstimate
 namespace MeasureTheory
@@ -158,3 +158,4 @@ theorem correctionForcing_polynomial {s : ℕ} (hs : 6 ≤ s) {A : SmoothCoeffic
     (weightedNorm_nonneg period 6 N ρ hρ e) hv hf h
 
 end EulerDriftNonlinearEstimate
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

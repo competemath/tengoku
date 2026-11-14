@@ -20,7 +20,7 @@ trivial inclusions used when instantiating the configuration in a chart.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Metric Complex
 
 namespace Rado
@@ -418,3 +418,4 @@ theorem config_annuli_disjoint :
   closedBall_disjoint_closedBall (by rw [dist_neg_four_four]; norm_num)
 
 end Rado
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

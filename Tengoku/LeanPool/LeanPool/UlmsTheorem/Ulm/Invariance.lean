@@ -16,7 +16,7 @@ Ulm invariants.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace UlmsTheorem
 
 open Cardinal Ordinal
@@ -194,3 +194,4 @@ theorem ulmInvariant_iso_invariant {G H : Type u} [AddCommGroup G] [AddCommGroup
   exact rank_eq_of_equiv_equiv (fun c : ZMod p ↦ c) e (by simp) hlin
 
 end UlmsTheorem
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -13,7 +13,7 @@ public import Tengoku
 /-! ### General -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-
   This file contains many lemmas about relations that the parts of a split path satisfy.
 -/
@@ -763,3 +763,4 @@ lemma second_part_trans_eval_at_end (γ₁ : Dipath x₀ x₁) (γ₂ : Dipath x
   nlinarith [sq_nonneg ((n : ℝ) - 1), sq_nonneg ((n : ℝ) + 1), h₂ n]
 
 end SplitProperties
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -14,7 +14,7 @@ public import Tengoku.LeanPool.LeanPool.PDL.General.ListFinset
 /-! # Semantics (Section 2.2) -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace PDL
 
 /-! ## Models and Truth -/
@@ -305,3 +305,4 @@ theorem stepToStar : φ ⊨ (⌈α⌉φ) ⋀ ψ  →  φ ⊨ (⌈∗α⌉ψ) := 
   simp_all
 
 end PDL
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

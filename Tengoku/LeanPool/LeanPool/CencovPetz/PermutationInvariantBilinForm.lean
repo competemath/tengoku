@@ -20,7 +20,7 @@ This is a technical step towards the finite Čencov uniqueness theorem.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.CencovPetz
 open scoped BigOperators
 
@@ -338,3 +338,4 @@ end Bilin
 
 end TangentFin
 end LeanPool.CencovPetz
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

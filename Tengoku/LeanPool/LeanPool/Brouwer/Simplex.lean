@@ -17,8 +17,8 @@ when reasoning about mixed strategies, including the key inequality
 -/
 
 @[expose] public section
-
-namespace Brouwer
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+namespace Tengoku.LeanPool.Brouwer
 
 /-- The standard simplex as a set of coordinate functions. Keeping this representation gives
 its points the subspace topology of the finite product used in the fixed-point proof. -/
@@ -47,9 +47,9 @@ theorem isCompact_standardSimplex (α : Type*) [Fintype α] :
 instance (α : Type*) [Fintype α] : CompactSpace (standardSimplex ℝ α) :=
   isCompact_iff_compactSpace.mp (isCompact_standardSimplex α)
 
-end Brouwer
+end Tengoku.LeanPool.Brouwer
 
-open Brouwer (standardSimplex)
+open Tengoku.LeanPool.Brouwer (standardSimplex)
 
 /- We use `MixedStrategy` to denote a mixed strategy over a finite type. -/
 
@@ -141,4 +141,5 @@ lemma wsum_magic_ineq [PosMulMono k]
 end stdSimplex
 
 /-- The standard simplex over `α` with real coefficients, used as mixed strategies. -/
-abbrev MixedStrategy := standardSimplex ℝ α
+abbrev _root_.Tengoku.LeanPool.MixedStrategy := standardSimplex ℝ α
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

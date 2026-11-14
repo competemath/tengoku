@@ -29,7 +29,7 @@ the separator budgets are stated against.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 namespace BoundedFormulaω
@@ -258,3 +258,4 @@ theorem hasQuantSigned_insert_of_le (h : hasQuantSigned s σ → HasQuantSigned 
 end Theoryω
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

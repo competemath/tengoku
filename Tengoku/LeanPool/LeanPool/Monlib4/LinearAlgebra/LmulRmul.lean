@@ -17,7 +17,7 @@ The left and right multiplication maps, copied from `LinearMap.mulLeft` and
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 section
 
 variable {R E F : Type _} [CommSemiring R] [NonUnitalNonAssocSemiring E]
@@ -58,7 +58,7 @@ variable {R H₁ H₂ : Type _} [CommSemiring R]
 /--
 @isnad1 id=iff.0h3v.s8.642a0b7aa6a8 from=translated src=- shape=9569d755 vocab=7c8425c6
 -/
-theorem left_module_map_iff {H₁ : Type _} [Semiring H₁] [Algebra R H₁] {x : l(R,H₁)} :
+theorem _root_.Tengoku.LeanPool.left_module_map_iff {H₁ : Type _} [Semiring H₁] [Algebra R H₁] {x : l(R,H₁)} :
     (∀ a b : H₁, x (a * b) = a * x b) ↔ x = LinearMap.mulRight R (x 1) := by
   simp_rw [LinearMap.ext_iff, LinearMap.mulRight_apply]
   constructor <;> intro h <;> intros
@@ -68,7 +68,7 @@ theorem left_module_map_iff {H₁ : Type _} [Semiring H₁] [Algebra R H₁] {x 
 /--
 @isnad1 id=iff.0h3v.s8.0f66788908e5 from=translated src=- shape=5fedf906 vocab=86829ec2
 -/
-theorem right_module_map_iff {H₂ : Type _} [Semiring H₂] [Algebra R H₂] {x : l(R,H₂)} :
+theorem _root_.Tengoku.LeanPool.right_module_map_iff {H₂ : Type _} [Semiring H₂] [Algebra R H₂] {x : l(R,H₂)} :
     (∀ a b : H₂, x (a * b) = x a * b) ↔ x = LinearMap.mulLeft R (x 1) := by
   simp_rw [LinearMap.ext_iff, LinearMap.mulLeft_apply]
   constructor <;> intro h <;> intros
@@ -76,7 +76,7 @@ theorem right_module_map_iff {H₂ : Type _} [Semiring H₂] [Algebra R H₂] {x
   · rw [h, ← mul_assoc, ← h]
 
 /-- The linear map sending an element to left multiplication by that element. -/
-def lmul : H₁ →ₗ[R] l(R,H₁) where
+def _root_.Tengoku.LeanPool.lmul : H₁ →ₗ[R] l(R,H₁) where
   toFun x := LinearMap.mulLeft R x
   map_add' x y := by
     ext1
@@ -88,32 +88,32 @@ def lmul : H₁ →ₗ[R] l(R,H₁) where
 /--
 @isnad1 id=eq.0h4v.s8.5f90022118b5 from=translated src=- shape=d5ef5168 vocab=6f6c4217
 -/
-theorem lmul_apply (x y : H₁) : (lmul x : l(R,H₁)) y = x * y :=
+theorem _root_.Tengoku.LeanPool.lmul_apply (x y : H₁) : (lmul x : l(R,H₁)) y = x * y :=
   rfl
 
 /--
 @isnad1 id=eq.0h3v.s8.c62e28bde387 from=translated src=- shape=19ea232e vocab=d8792df0
 -/
-theorem lmul_eq_mul (x : H₁) : lmul x = LinearMap.mulLeft R x :=
+theorem _root_.Tengoku.LeanPool.lmul_eq_mul (x : H₁) : lmul x = LinearMap.mulLeft R x :=
   rfl
 
 /--
 @isnad1 id=eq.0h3v.s9.58fed6ca22b1 from=translated src=- shape=8378dbe6 vocab=1869c922
 -/
-theorem lmul_eq_alg_lmul {H₁ : Type _} [Semiring H₁] [Algebra R H₁] (x : H₁) :
+theorem _root_.Tengoku.LeanPool.lmul_eq_alg_lmul {H₁ : Type _} [Semiring H₁] [Algebra R H₁] (x : H₁) :
     (lmul x : l(R,H₁)) = Algebra.lmul R H₁ x :=
   rfl
 
 /--
 @isnad1 id=eq.0h2v.s9.5ef6b8c95f99 from=translated src=- shape=6296cca8 vocab=f6cee473
 -/
-theorem lmul_one {H₁ : Type _} [NonAssocSemiring H₁] [Module R H₁] [SMulCommClass R H₁ H₁]
+theorem _root_.Tengoku.LeanPool.lmul_one {H₁ : Type _} [NonAssocSemiring H₁] [Module R H₁] [SMulCommClass R H₁ H₁]
     [IsScalarTower R H₁ H₁] : (lmul (1 : H₁) : l(R,H₁)) = 1 := by
     ext
     simp_rw [lmul_apply, Module.End.one_apply, one_mul]
 
 /-- The linear map sending an element to right multiplication by that element. -/
-def rmul : H₂ →ₗ[R] l(R,H₂) where
+def _root_.Tengoku.LeanPool.rmul : H₂ →ₗ[R] l(R,H₂) where
   toFun x := LinearMap.mulRight R x
   map_add' x y := by
     ext1
@@ -125,19 +125,19 @@ def rmul : H₂ →ₗ[R] l(R,H₂) where
 /--
 @isnad1 id=eq.0h4v.s8.d92828164f46 from=translated src=- shape=01f7ef74 vocab=21a7674e
 -/
-theorem rmul_apply (x y : H₂) : (rmul x : l(R,H₂)) y = y * x :=
+theorem _root_.Tengoku.LeanPool.rmul_apply (x y : H₂) : (rmul x : l(R,H₂)) y = y * x :=
   rfl
 
 /--
 @isnad1 id=eq.0h3v.s8.544ab0176650 from=translated src=- shape=19ea232e vocab=7c5b6e9c
 -/
-theorem rmul_eq_mul (x : H₂) : rmul x = LinearMap.mulRight R x :=
+theorem _root_.Tengoku.LeanPool.rmul_eq_mul (x : H₂) : rmul x = LinearMap.mulRight R x :=
   rfl
 
 /--
 @isnad1 id=eq.0h2v.s9.f37a7512b12c from=translated src=- shape=6296cca8 vocab=48e7caa2
 -/
-theorem rmul_one {H₁ : Type _} [NonAssocSemiring H₁] [Module R H₁] [SMulCommClass R H₁ H₁]
+theorem _root_.Tengoku.LeanPool.rmul_one {H₁ : Type _} [NonAssocSemiring H₁] [Module R H₁] [SMulCommClass R H₁ H₁]
     [IsScalarTower R H₁ H₁] : (rmul (1 : H₁) : l(R,H₁)) = 1 := by
   ext
   simp only [rmul_apply, mul_one, Module.End.one_apply]
@@ -147,7 +147,7 @@ open scoped TensorProduct
 local notation x " ⊗ₘ " y => TensorProduct.map x y
 
 /-- Tensor right multiplication on the left factor with left multiplication on the right factor. -/
-noncomputable def rmulMapLmul {R H₁ H₂ : Type*} [CommSemiring R]
+noncomputable def _root_.Tengoku.LeanPool.rmulMapLmul {R H₁ H₂ : Type*} [CommSemiring R]
   [NonUnitalNonAssocSemiring H₁] [Module R H₁] [SMulCommClass R H₁ H₁] [IsScalarTower R H₁ H₁]
   [NonUnitalNonAssocSemiring H₂] [Module R H₂] [SMulCommClass R H₂ H₂] [IsScalarTower R H₂ H₂] :
   H₁ ⊗[R] H₂ →ₗ[R] ((H₁ ⊗[R] H₂) →ₗ[R] (H₁ ⊗[R] H₂)) :=
@@ -156,14 +156,14 @@ noncomputable def rmulMapLmul {R H₁ H₂ : Type*} [CommSemiring R]
 /--
 @isnad1 id=eq.0h5v.s10.3af603e16fed from=translated src=- shape=7753c8c4 vocab=a03081ab
 -/
-theorem rmulMapLmul_apply (x : H₁) (y : H₂) : rmulMapLmul (x ⊗ₜ[R] y) = rmul x ⊗ₘ lmul y := by
+theorem _root_.Tengoku.LeanPool.rmulMapLmul_apply (x : H₁) (y : H₂) : rmulMapLmul (x ⊗ₜ[R] y) = rmul x ⊗ₘ lmul y := by
   rw [rmulMapLmul, LinearMap.comp_apply, TensorProduct.map_tmul,
     TensorProduct.homTensorHomMap_apply]
 
 /--
 @isnad1 id=eq.0h3v.s10.7964ea1e5b36 from=translated src=- shape=6d225785 vocab=deccaa46
 -/
-theorem rmulMapLmul_one {H₁ : Type _} [NonAssocSemiring H₁] [Module R H₁] [SMulCommClass R H₁ H₁]
+theorem _root_.Tengoku.LeanPool.rmulMapLmul_one {H₁ : Type _} [NonAssocSemiring H₁] [Module R H₁] [SMulCommClass R H₁ H₁]
     [IsScalarTower R H₁ H₁] {H₂ : Type _} [NonAssocSemiring H₂] [Module R H₂]
     [SMulCommClass R H₂ H₂] [IsScalarTower R H₂ H₂] : rmulMapLmul (1 ⊗ₜ 1 : H₁ ⊗[R] H₂) = 1 := by
   apply TensorProduct.ext'
@@ -194,21 +194,21 @@ by simp_rw [← rmul_eq_mul, map_sum]
 /--
 @isnad1 id=iff.0h3v.s9.a3b6a79bf777 from=translated src=- shape=7051a291 vocab=f3bc56a4
 -/
-theorem lmul_eq_zero_iff {H₁ : Type _} [Semiring H₁] [Algebra R H₁] (x : H₁) :
+theorem _root_.Tengoku.LeanPool.lmul_eq_zero_iff {H₁ : Type _} [Semiring H₁] [Algebra R H₁] (x : H₁) :
     (lmul x : l(R,H₁)) = 0 ↔ x = 0 :=
   LinearMap.mulLeft_eq_zero_iff _ _ _
 
 /--
 @isnad1 id=iff.0h3v.s9.04b87c063937 from=translated src=- shape=7051a291 vocab=5b33aafd
 -/
-theorem rmul_eq_zero_iff {H₁ : Type _} [Semiring H₁] [Algebra R H₁] (x : H₁) :
+theorem _root_.Tengoku.LeanPool.rmul_eq_zero_iff {H₁ : Type _} [Semiring H₁] [Algebra R H₁] (x : H₁) :
     (rmul x : l(R,H₁)) = 0 ↔ x = 0 :=
   LinearMap.mulRight_eq_zero_iff _ _ _
 
 /--
 @isnad1 id=iff.0h3v.s9.8e569b4c6b2a from=translated src=- shape=729cfabc vocab=f6cee473
 -/
-theorem lmul_eq_one_iff {H₁ : Type _} [NonAssocSemiring H₁] [Module R H₁] [SMulCommClass R H₁ H₁]
+theorem _root_.Tengoku.LeanPool.lmul_eq_one_iff {H₁ : Type _} [NonAssocSemiring H₁] [Module R H₁] [SMulCommClass R H₁ H₁]
     [IsScalarTower R H₁ H₁] (x : H₁) : (lmul x : l(R,H₁)) = 1 ↔ x = 1 := by
   simp_rw [LinearMap.ext_iff, lmul_apply, Module.End.one_apply]
   refine ⟨fun h => ?_, fun h a => by rw [h, one_mul]⟩
@@ -224,7 +224,7 @@ theorem LinearMap.mulLeft_eq_one_iff {H₁ : Type _} [NonAssocSemiring H₁] [Mo
 /--
 @isnad1 id=iff.0h3v.s9.1631d76486eb from=translated src=- shape=729cfabc vocab=48e7caa2
 -/
-theorem rmul_eq_one_iff {H₁ : Type _} [NonAssocSemiring H₁] [Module R H₁] [SMulCommClass R H₁ H₁]
+theorem _root_.Tengoku.LeanPool.rmul_eq_one_iff {H₁ : Type _} [NonAssocSemiring H₁] [Module R H₁] [SMulCommClass R H₁ H₁]
     [IsScalarTower R H₁ H₁] (x : H₁) : (rmul x : l(R,H₁)) = 1 ↔ x = 1 := by
   simp_rw [LinearMap.ext_iff, rmul_apply, Module.End.one_apply]
   refine ⟨fun h => ?_, fun h a => by rw [h, mul_one]⟩
@@ -295,7 +295,7 @@ theorem LinearMap.mulLeft_apply_inj {H₁ : Type _} [Semiring H₁] [Module R H�
 /--
 @isnad1 id=eq.0h3v.s9.f8439fd2a26a from=translated src=- shape=f1e12ab8 vocab=bc2dcc0d
 -/
-theorem lmul_op {R A : Type*} [CommSemiring R] [NonUnitalNonAssocSemiring A] [Module R A]
+theorem _root_.Tengoku.LeanPool.lmul_op {R A : Type*} [CommSemiring R] [NonUnitalNonAssocSemiring A] [Module R A]
   [SMulCommClass R A A] [IsScalarTower R A A] (x : Aᵐᵒᵖ) :
     lmul x = (rmul (x.unop) : A →ₗ[R] A).op :=
   rfl
@@ -303,7 +303,7 @@ theorem lmul_op {R A : Type*} [CommSemiring R] [NonUnitalNonAssocSemiring A] [Mo
 /--
 @isnad1 id=eq.0h3v.s9.8ee3549b2ee9 from=translated src=- shape=3e4b654a vocab=696e2512
 -/
-theorem lmul_op' {R A : Type*} [CommSemiring R] [NonUnitalNonAssocSemiring A] [Module R A]
+theorem _root_.Tengoku.LeanPool.lmul_op' {R A : Type*} [CommSemiring R] [NonUnitalNonAssocSemiring A] [Module R A]
   [SMulCommClass R A A] [IsScalarTower R A A] (x : A) :
     lmul (MulOpposite.op x) = (rmul x : A →ₗ[R] A).op :=
   rfl
@@ -311,7 +311,8 @@ theorem lmul_op' {R A : Type*} [CommSemiring R] [NonUnitalNonAssocSemiring A] [M
 /--
 @isnad1 id=eq.0h3v.s9.3ecd2e6032f4 from=translated src=- shape=3e4b654a vocab=696e2512
 -/
-theorem rmul_op' {R A : Type*} [CommSemiring R] [NonUnitalNonAssocSemiring A] [Module R A]
+theorem _root_.Tengoku.LeanPool.rmul_op' {R A : Type*} [CommSemiring R] [NonUnitalNonAssocSemiring A] [Module R A]
   [SMulCommClass R A A] [IsScalarTower R A A] (x : A) :
     rmul (MulOpposite.op x) = (lmul x : A →ₗ[R] A).op :=
   rfl
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

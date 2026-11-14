@@ -13,7 +13,7 @@ public import Tengoku
 /-! TODO: Add doc-string. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open Ideal IsDedekindDomain NumberField NumberField.Units Submodule
@@ -214,3 +214,4 @@ theorem fundamentalConeZeta_eq_torsion_mul_principalIdealZeta
   rw [fundamentalConeZeta, hcoeff, LSeries_smul, principalIdealZeta]
 
 end NumberField.Odlyzko
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

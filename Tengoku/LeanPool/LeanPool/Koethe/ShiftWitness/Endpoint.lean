@@ -15,7 +15,7 @@ nil ideal. No matrix-nilness principle is used.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace KoetheCounterexample
@@ -191,3 +191,4 @@ end ShiftWitness
 end KoetheCounterexample
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

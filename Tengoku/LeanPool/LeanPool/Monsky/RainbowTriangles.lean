@@ -16,7 +16,7 @@ Imported Lean Pool material for `LeanPool.Monsky.RainbowTriangles`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.Monsky
 
 /-!
@@ -537,3 +537,4 @@ theorem no_odd_rainbowTriangle
 
 end Monsky
 end LeanPool
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

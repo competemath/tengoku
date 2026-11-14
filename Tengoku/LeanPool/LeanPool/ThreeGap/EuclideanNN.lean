@@ -27,7 +27,7 @@ it is stated here generically for any symmetric `c : ℤ → ℝ` and instantiat
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace ThreeGap.EuclideanRecords
 
 open ThreeGap.Chevallier ThreeGap.SimApprox
@@ -123,3 +123,4 @@ theorem nnDistE_count_le (α : Fin 2 → ℝ) {k₀ : Fin 2} (hirr : Irrational 
   exact gap_count_euclidean α hirr hN
 
 end ThreeGap.EuclideanRecords
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

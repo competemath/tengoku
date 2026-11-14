@@ -19,7 +19,7 @@ We show that a graph action induces an action on the edges.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Module
 
 variable {V : Type*}
@@ -28,12 +28,12 @@ open SimpleGraph
 section «Action»
 
 /-- A group `G` acts as a graph action on `X`, if the adjacency relation is preserved. -/
-class GraphAction (G : Type*) [Group G] [MulAction G V] (X : SimpleGraph V) where
+class _root_.Tengoku.LeanPool.GraphAction (G : Type*) [Group G] [MulAction G V] (X : SimpleGraph V) where
   smul_adj_smul (g : G) (x y : V) (h : X.Adj x y) : X.Adj (g • x) (g • y)
 
 variable (G : Type*) [Group G] [MulAction G V] (X : SimpleGraph V) [GraphAction G X]
 
-namespace GraphAction
+namespace Tengoku.LeanPool.GraphAction
 
 /--
 @isnad1 id=iff.0h6v.s6.ca75c33d564d from=translated src=- shape=15340661 vocab=1c55248e
@@ -113,6 +113,7 @@ lemma smul_mem_smul_iff (g : G) (e : Sym2 V) (x : V) :
     simpa using smul_mem_smul_of g⁻¹ (g • e) (g • x) h
   · exact smul_mem_smul_of g e x
 
-end GraphAction
+end Tengoku.LeanPool.GraphAction
 
 end «Action»
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

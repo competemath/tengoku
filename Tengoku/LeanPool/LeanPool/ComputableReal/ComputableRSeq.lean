@@ -27,7 +27,7 @@ classically and is `noncomputable`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace QInterval
 
 /-- Notation `ℚInterval` for a nonempty rational interval. -/
@@ -129,7 +129,7 @@ end QInterval
 
   The defs `lb`, `ub` are the actual CauSeq's , `val` is the associated real number,
   and `hlb`, `hub`, and `heq` relate `lb` `ub` and `val` to each other. -/
-structure ComputableℝSeq where
+structure _root_.Tengoku.LeanPool.ComputableℝSeq where
   mk' ::
   /-- The bundled lower and upper rational bounds at each step `n`. -/
   lub : ℕ → NonemptyInterval ℚ
@@ -141,7 +141,7 @@ structure ComputableℝSeq where
         let ub : CauSeq ℚ abs := ⟨fun n ↦ (lub n).snd, hcu⟩
         lb ≈ ub
 
-namespace ComputableℝSeq
+namespace Tengoku.LeanPool.ComputableℝSeq
 
 open scoped QInterval
 /-- The lower-bound Cauchy sequence of a `ComputableℝSeq`. -/
@@ -1260,4 +1260,5 @@ instance equiv : Setoid (ComputableℝSeq) :=
 theorem equiv_iff {x y : ComputableℝSeq} : x ≈ y ↔ x.val = y.val :=
   ⟨id, id⟩
 
-end ComputableℝSeq
+end Tengoku.LeanPool.ComputableℝSeq
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

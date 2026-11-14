@@ -18,7 +18,7 @@ No declaration in this file is an axiom and no proof is omitted.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter Set
 open scoped Cardinal
 
@@ -147,3 +147,4 @@ theorem binaryBranchOnNat_inter_finite {x y : ℕ → Bool} (hxy : x ≠ y) :
 end
 
 end Wallace
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

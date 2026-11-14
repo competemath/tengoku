@@ -14,7 +14,7 @@ import Tengoku.LeanPool.LeanPool.RlTheoryInLean.Data.Matrix.Mul
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Real Finset Filter TopologicalSpace Preorder Matrix EuclideanSpace
 open scoped InnerProductSpace RealInnerProductSpace
 
@@ -156,3 +156,4 @@ noncomputable instance [NegDefAsymm A] : Invertible A :=
 end invertible
 
 end Matrix
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -48,7 +48,7 @@ pair `i, j`) build on this relation and are formalized separately.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 variable {α : Type*}
@@ -144,3 +144,4 @@ theorem subsystem_iff_subset_of_common {D₀ D₁ E : NeighborhoodSystem α}
 end Subsystem
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

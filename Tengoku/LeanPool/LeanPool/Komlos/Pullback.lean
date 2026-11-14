@@ -23,7 +23,7 @@ are chosen so that the change in the first coordinate is `e • w`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Komlos
 
 open Finsupp Finset
@@ -101,3 +101,4 @@ lemma pullback {P : E →₀ ℝ} (hP : IsDist P) (w : E) {β : ℝ} (hβ : 3⁻
     simpa using add_smul_mem_convexHull hy.2 hy.1 hc
 
 end Komlos
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

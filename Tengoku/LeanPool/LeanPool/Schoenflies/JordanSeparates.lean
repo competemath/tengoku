@@ -85,7 +85,7 @@ Three groups of declarations here are general and have no home yet on `main`:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set unitInterval
 
 namespace Schoenflies
@@ -719,3 +719,4 @@ theorem exists_unique_unbounded_connectedComponentIn_compl {C : Set Plane} (hC :
   rw [connectedComponentIn_eq hw1, connectedComponentIn_eq (hsub hw2)]
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -53,7 +53,7 @@ a statement made in those sources; the mathematics is Karp's.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u v w w' uι uκ
 
 namespace FirstOrder
@@ -287,3 +287,4 @@ end AgreementQR
 end Language
 
 end FirstOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

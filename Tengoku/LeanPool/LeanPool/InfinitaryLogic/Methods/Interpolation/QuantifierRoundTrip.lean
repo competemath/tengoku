@@ -23,7 +23,7 @@ The Henkin truth lemma will meet an arbitrary existential `ψ.ex` (or negated un
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure
@@ -150,3 +150,4 @@ theorem insepAt_not_instConst_of_insepAt_not_all (c : ℕ) (ψ : L[[ℕ]].Bounde
   exact insepAt_instConst_of_insepAt_ex c ψ.not hcψ hcΓ hcΔ h'
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

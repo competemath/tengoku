@@ -48,7 +48,7 @@ stays off the EM stack.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 /-! ## The generic truth kernel
@@ -329,3 +329,4 @@ theorem locJSupport_locSkWitnessTerm {k n : ℕ}
 end WitnessTransport
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

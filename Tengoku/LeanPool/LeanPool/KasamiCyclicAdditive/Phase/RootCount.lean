@@ -21,7 +21,7 @@ for `A, B ∈ K^*` with `A³ + B³ = 1` and `A³ ≠ 1`, where `ρ = A³`, `σ =
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Finset
 
 namespace KasamiCyclicAdditive.Phase
@@ -679,3 +679,4 @@ theorem phase_to_root_count {ψ : AddChar K ℂ} {m D e : ℕ} {S : K → ℂ} {
   linear_combination hphase / 8
 
 end KasamiCyclicAdditive.Phase
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

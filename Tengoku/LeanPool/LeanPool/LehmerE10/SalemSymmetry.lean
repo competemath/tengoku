@@ -23,7 +23,7 @@ element as an integer lattice automorphism:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Polynomial Matrix
 
 namespace LehmerE10
@@ -42,3 +42,4 @@ theorem coxeterE10_det_one : coxeterE10.det = 1 := by
   norm_num
 
 end LehmerE10
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -29,7 +29,7 @@ every other arity as empty — this avoids deciding equality against the disting
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder
@@ -41,3 +41,4 @@ def ordRel (α : Ordinal.{0}) : ∀ n, (Fin n → α.ToType) → Prop
   | _, _ => False
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

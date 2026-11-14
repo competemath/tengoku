@@ -20,7 +20,7 @@ public import Tengoku
 /-! # BasisLocalization -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Complex MeasureTheory Real Finset
 
 noncomputable section
@@ -2626,3 +2626,4 @@ theorem single_basis_localization :
             ((k + 4 : ℕ) : ℝ))) ^ 2) := by nlinarith
 
 end HermitekLEAN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

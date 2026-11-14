@@ -18,7 +18,7 @@ and proof organization were revised.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Function
 open CategoryTheory CategoryTheory.ActionCategory CategoryTheory.SingleObj Quiver FreeGroup
 
@@ -121,3 +121,4 @@ Nielsen--Schreier instance uses an abstract chosen basis; this version keeps
 the original generator type visible for the cardinality computation. -/
 
 end GraphCoveringTheory
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -11,7 +11,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped MeasureTheory
 
 namespace LeanPool.PointwiseBirkhoff
@@ -493,3 +493,4 @@ theorem birkhoffErgodicTheorem' {Φ : α → ℝ} (hf : MeasurePreserving f μ �
   simp [hs' hy.1.1, ht' y hy.1.2, hu' y hy.2]
 
 end LeanPool.PointwiseBirkhoff
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

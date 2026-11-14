@@ -15,7 +15,7 @@ public import Tengoku.LeanPool.LeanPool.TwoColoringOneRound.LowerBound.N1000000M
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Distributed2Coloring.LowerBound
 
 namespace N1000000IntersectionCounting
@@ -709,3 +709,4 @@ theorem card_inter_eq_N {k : DirIdx} (u : BaseOrbit k) (a d : DirIdx) :
 end N1000000IntersectionCounting
 
 end Distributed2Coloring.LowerBound
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

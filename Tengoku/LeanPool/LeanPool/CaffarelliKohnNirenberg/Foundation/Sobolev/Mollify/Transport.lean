@@ -22,7 +22,7 @@ needed local convolution bound and translation-continuity package.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped Convolution Topology
 open MeasureTheory
 
@@ -187,3 +187,4 @@ theorem fderiv_mollify_eq_mollify_on_compact
     hU hu hgi hweak hε (hK x hx)
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -22,7 +22,7 @@ interior of the model range.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped Manifold
 
 namespace LeanEval
@@ -366,3 +366,4 @@ theorem mem_interior_range_halfSpace_of_isEmbedding_of_boundary
 end ClassificationOfSurfaces
 end Topology
 end LeanEval
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

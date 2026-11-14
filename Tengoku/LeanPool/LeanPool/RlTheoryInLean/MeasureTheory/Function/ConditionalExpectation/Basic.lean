@@ -18,7 +18,7 @@ import Tengoku.Seed.Probability.Kernel.Condexp
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter ProbabilityTheory
 open scoped RealInnerProductSpace
 
@@ -103,3 +103,4 @@ theorem norm_condExp_le_condExp_norm
   exact norm_integral_le_integral_norm f
 
 end MeasureTheory
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

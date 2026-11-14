@@ -13,7 +13,7 @@ public import Tengoku.LeanPool.LeanPool.DirectedTopologyLean4.Dipath
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-
   Auxiliary lemmas for the reflTrans and transRefl definitions in directed_path_homotopy.lean.
   These two are definitions are dihomotopies related to a `p : Dipath x₀ x₁`:
@@ -26,7 +26,7 @@ public import Tengoku.LeanPool.LeanPool.DirectedTopologyLean4.Dipath
   them manually.
 -/
 
-open DirectedSpace DirectedMap
+open Tengoku.LeanPool.DirectedSpace Tengoku.LeanPool.DirectedMap
 open scoped unitInterval
 
 universe u v
@@ -37,7 +37,7 @@ variable {x₀ x₁ : X}
 
 noncomputable section
 
-namespace Dipath
+namespace Tengoku.LeanPool.Dipath
 
 namespace Dihomotopy
 
@@ -161,4 +161,5 @@ lemma refl_trans_reparam_dipath (p : Dipath x₀ x₁) : (Dipath.refl x₀).tran
 
 end Dihomotopy
 
-end Dipath
+end Tengoku.LeanPool.Dipath
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

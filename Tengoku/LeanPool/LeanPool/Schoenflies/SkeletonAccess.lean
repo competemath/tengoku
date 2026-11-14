@@ -128,7 +128,7 @@ nothing beyond the shared hypothesis.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set
 open scoped Graph
 
@@ -957,3 +957,4 @@ theorem polygonal_side_accessibility_square [G.Finite] (h : IsDrawing G drawing)
     ((frontier_openSquare_subset c s).trans hS) hcell hF hx
 
 end Graph
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

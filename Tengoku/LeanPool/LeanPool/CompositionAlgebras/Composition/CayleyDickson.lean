@@ -57,8 +57,8 @@ Substrate for the classification. The headline declaration is the instance
 -/
 
 @[expose] public section
-
-namespace CompositionAlgebra
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+namespace Tengoku.LeanPool.CompositionAlgebra
 
 universe u
 
@@ -312,4 +312,5 @@ instance CD.instCompositionAlgebra : CompositionAlgebra (CD D) :=
 
 end Assoc
 
-end CompositionAlgebra
+end Tengoku.LeanPool.CompositionAlgebra
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

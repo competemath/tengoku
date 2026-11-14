@@ -25,7 +25,7 @@ Also provides 𝓜 characterization of compactness.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LO
 
 /-- Imported declaration from the Incompleteness formalization. -/
@@ -421,3 +421,4 @@ lemma compact_cumulative {T : ℕ → Set F} (hT : Cumulative T) :
 end Compact
 
 end LO
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

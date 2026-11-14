@@ -50,7 +50,7 @@ only that are unaffected.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set Schoenflies unitInterval
 open scoped Graph
 
@@ -225,3 +225,4 @@ theorem face_eq_or_disjoint (b c : Plane) :
     exact Set.disjoint_iff_inter_eq_empty.2 (not_nonempty_iff_eq_empty.1 h)
 
 end Graph
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

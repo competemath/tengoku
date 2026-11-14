@@ -6,7 +6,7 @@ Authors: Siddhartha Gadgil, Anand Rao
 module
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.Polylean
 
 /-!
@@ -151,3 +151,4 @@ instance funEnum {α β : Type _} [dfa : DecideForall α] [dfb : DecidableEq β]
 
 end EnumDecide
 end LeanPool.Polylean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

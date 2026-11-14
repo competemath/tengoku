@@ -18,7 +18,7 @@ full permutation module, while the all-ones operator restricts to zero.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace SaxlCounterexamples.EveryBase
@@ -386,3 +386,4 @@ def deletedCoord (d : Nat) : Vq d →+ (Fq d → F2) :=
   (Vq d).subtype.toAddHom
 
 end SaxlCounterexamples.EveryBase
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

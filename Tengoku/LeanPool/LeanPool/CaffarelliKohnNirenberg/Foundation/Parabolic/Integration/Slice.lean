@@ -17,7 +17,7 @@ The definitions remain the ordinary Mathlib set averages, so existing `average`,
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory MeasureTheory.Measure Set
 open scoped ENNReal
 
@@ -317,3 +317,4 @@ theorem ball_lintegral_norm_sq_mono_radius {x : Vec3} {r₁ r₂ s : ℝ}
   exact lintegral_mono_set (vec3Ball_mono hrr)
 
 end CKN.Foundation.Parabolic.Integration
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

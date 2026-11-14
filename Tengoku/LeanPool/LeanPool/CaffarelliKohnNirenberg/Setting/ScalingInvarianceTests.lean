@@ -17,7 +17,7 @@ Part of the Caffarelli–Kohn–Nirenberg partial regularity proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory MeasureTheory.Measure Set Filter
 open scoped ENNReal NNReal Topology Pointwise
 open CKN.Foundation.Parabolic CKN.Foundation.Parabolic.Integration
@@ -324,3 +324,4 @@ theorem spatialSecondPartial_zero_of_not_mem_tsupport_public
   spatialSecondPartial_zero_of_not_mem_tsupport hψ hz i j
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

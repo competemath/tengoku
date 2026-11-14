@@ -16,7 +16,7 @@ partial order) has a minimal element.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace EventStructures
 
 /-- Classical: A non-empty finite subset of a well-founded partial order has a minimal element.
@@ -64,3 +64,4 @@ lemma Finset.exists_minimal_dec {α : Type*} [PartialOrder α]
     · simp_all
 
 end EventStructures
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

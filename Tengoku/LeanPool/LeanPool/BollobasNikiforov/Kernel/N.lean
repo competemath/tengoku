@@ -18,7 +18,7 @@ for `x ≥ 0`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace BollobasNikiforov
 
 open Function Matrix Set
@@ -576,3 +576,4 @@ lemma N_ge_one (x : ℝ) (hq : ∀ i, 0 < q i) (hx : 0 ≤ x)
 end
 
 end BollobasNikiforov
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

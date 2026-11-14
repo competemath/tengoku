@@ -16,7 +16,7 @@ tree.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 attribute [local implicit_reducible]
   Quiver.Symmetrify IsFreeGroupoid.Generators
   WideSubquiver WideSubquiver.toType WideSubquiver.quiver IsFreeGroupoid.quiverGenerators
@@ -596,3 +596,4 @@ theorem proved_graph_fundamental_group_free_rank {V : Type u} [Quiver.{u} V]
   exact ⟨(B.reindex eX).repr⟩
 
 end FiniteGraphFreeGroup
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

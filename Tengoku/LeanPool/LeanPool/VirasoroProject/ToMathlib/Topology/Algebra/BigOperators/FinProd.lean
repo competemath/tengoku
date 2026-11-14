@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 section
 
 /--
@@ -35,7 +35,7 @@ lemma Finset.sum_eq_sum_of_support_subset_of_support_subset {ι R : Type*} [AddC
 /--
 @isnad1 id=eq.1h4v.s6.9aa17e0c6cf0 from=translated src=- shape=e794cae9 vocab=182f927e
 -/
-lemma finsum_add_finsum_compl {V : Type*} [AddCommMonoid V] {ι : Type*} (I : Set ι) (f : ι → V)
+lemma _root_.Tengoku.LeanPool.finsum_add_finsum_compl {V : Type*} [AddCommMonoid V] {ι : Type*} (I : Set ι) (f : ι → V)
     (hf : (Function.support f).Finite) :
     ∑ᶠ i, f i = (∑ᶠ i ∈ I, f i) + (∑ᶠ i ∈ Iᶜ, f i) := by
   rw [← finsum_mem_univ, ← Set.union_compl_self I]
@@ -44,3 +44,4 @@ lemma finsum_add_finsum_compl {V : Type*} [AddCommMonoid V] {ι : Type*} (I : Se
   · exact hf.subset Set.inter_subset_right
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

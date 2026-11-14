@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LieIdeal
 
 variable {R L : Type*} [CommRing R] [LieRing L] [LieAlgebra R L]
@@ -71,3 +71,4 @@ theorem solvable_of_ideal_and_quot_solvable {I : LieIdeal R L} (quotsol : LieAlg
   simp_all
 
 end LieAlgebra
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

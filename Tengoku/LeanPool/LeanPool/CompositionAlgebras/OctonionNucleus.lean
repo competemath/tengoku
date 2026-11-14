@@ -30,8 +30,8 @@ relation `c.coords m = -c.coords m`. Three triples cover all seven imaginary ind
 discharged by kernel-external evaluation, so nothing below rests on the compiler.
 -/
 
-@[expose] public section
-namespace Octonion
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
+namespace Tengoku.LeanPool.Octonion
 
 /--
 @isnad1 id=eq.1h3v.s4.737f40e3d921 from=translated src=- shape=ecb05047 vocab=c9f1f52f
@@ -89,4 +89,5 @@ theorem nucleus_real (c : Octonion)
   refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
   all_goals linarith
 
-end Octonion
+end Tengoku.LeanPool.Octonion
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

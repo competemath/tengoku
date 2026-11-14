@@ -18,7 +18,7 @@ at an eigenvector, and PŁ forces this minimum to be ≥ μ.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter Topology Metric Submodule Asymptotics
 
 noncomputable section
@@ -217,3 +217,4 @@ lemma mem_hessianKer_of_zero_quad (f : E → ℝ) (x₀ v : E)
   linarith [mul_neg_of_pos_of_neg ha2 h_neg]
 
 end PLAcceleratedNesterovLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -22,7 +22,7 @@ bundle are all found by typeclass inference (checked by the `example`s below). E
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold Bundle
 
 noncomputable section
@@ -59,3 +59,4 @@ theorem Form1.ext_apply {η η' : Form1 X} (h : ∀ x, ∀ v : TangentSpace 𝓘
 end RS
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

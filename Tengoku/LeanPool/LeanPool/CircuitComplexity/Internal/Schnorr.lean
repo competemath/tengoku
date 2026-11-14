@@ -18,7 +18,7 @@ The public definitions (`Schnorr.xorBool`, `Schnorr.xorBool_flip`,
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace CircuitComplexity
 
 namespace Schnorr
@@ -1409,3 +1409,4 @@ theorem xor_lower_bound_2 (N s : Nat) (hs : 0 < s) (d : CircDesc N s) (comp : Bo
 end Schnorr
 
 end CircuitComplexity
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

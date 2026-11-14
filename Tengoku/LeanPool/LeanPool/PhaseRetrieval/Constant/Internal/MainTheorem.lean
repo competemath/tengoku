@@ -28,7 +28,7 @@ import Tengoku.Seed.Tactic.NormNum.Parity
 /-! # MainTheorem -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Complex Real Finset Polynomial
 
 noncomputable section
@@ -810,3 +810,4 @@ theorem LocalFockSPR
     exact le_of_mul_le_mul_left h2 (div_pos one_pos Real.pi_pos)
 
 end FockSPR
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

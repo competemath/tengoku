@@ -30,7 +30,7 @@ restricted schema truth lemma.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 /-- **The Skolem-universality mixin**: in a given `localColim` structure, every staged
@@ -82,3 +82,4 @@ theorem locSkWitness_universal_of_mixin (s₀ : LocalStage) (J : Type) [LinearOr
   simpa only [hwval] using hw
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

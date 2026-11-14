@@ -17,7 +17,7 @@ inequality for martingale transforms by a predictable multiplier bounded by `1`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open MeasureTheory
@@ -263,3 +263,4 @@ private noncomputable def burkholder_tangentDy (p : ℝ) (hp : p > 1)
     Burkholder.du_dy p hp (X_{n}[w,f] ω) (Y_{n}[w,f] ω)
 
 end MeasureTheory
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

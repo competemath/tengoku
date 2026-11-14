@@ -27,7 +27,7 @@ public import Tengoku.LeanPool.LeanPool.SemicircleCheck.RotationArithmetic
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Equiv Equiv.Perm Fintype
 
 /-! ## 1. Total Cycle Count
@@ -58,13 +58,13 @@ Mathlib provides this as `finRotate`. Key properties we need:
 -/
 
 /-- The long cycle γ on Fin (2n). -/
-def longCycle (n : ℕ) : Perm (Fin (2 * n)) :=
+def _root_.Tengoku.LeanPool.longCycle (n : ℕ) : Perm (Fin (2 * n)) :=
   finRotate (2 * n)
 
 /-- For n ≥ 1, the long cycle is a single cycle of length 2n.
 @isnad1 id=iscycle.1h1v.s4.0067407407c4 from=translated src=- shape=bfffe250 vocab=d4351064
 -/
-theorem longCycle_isCycle {n : ℕ} (hn : 1 ≤ n) :
+theorem _root_.Tengoku.LeanPool.longCycle_isCycle {n : ℕ} (hn : 1 ≤ n) :
     (longCycle n).IsCycle := by
   unfold longCycle
   obtain ⟨m, rfl⟩ : ∃ m, n = m + 1 := ⟨n - 1, by omega⟩
@@ -78,11 +78,11 @@ avoids carrying proof terms through every definition and theorem.
 -/
 
 /-- A permutation is a pairing if it is an involution with no fixed points. -/
-def IsPairing {n : ℕ} (π : Perm (Fin (2 * n))) : Prop :=
+def _root_.Tengoku.LeanPool.IsPairing {n : ℕ} (π : Perm (Fin (2 * n))) : Prop :=
   π ^ 2 = 1 ∧ ∀ x, π x ≠ x
 
 /-- The type of pairings of Fin (2n). -/
-def Pairing (n : ℕ) :=
+def _root_.Tengoku.LeanPool.Pairing (n : ℕ) :=
   { π : Perm (Fin (2 * n)) // IsPairing π }
 
 instance (n : ℕ) : CoeOut (Pairing n) (Perm (Fin (2 * n))) :=
@@ -102,7 +102,7 @@ We prove separately that for pairings:
 -/
 
 /-- The genus of a pairing. -/
-def Pairing.genus {n : ℕ} (p : Pairing n) : ℕ :=
+def Tengoku.LeanPool.Pairing.genus {n : ℕ} (p : Pairing n) : ℕ :=
   ((n + 1) - numCycles (longCycle n * p.val)) / 2
 
 private lemma multiset_sum_ge_two_card' {s : Multiset ℕ} (h : ∀ c ∈ s, 2 ≤ c) :
@@ -470,7 +470,7 @@ private lemma pairing_swap_factorization {n : ℕ} (p : Pairing n) :
 /-- For any pairing, numCycles(γπ) ≤ n + 1.
 @isnad1 id=le.0h2v.s7.6c3f3fcdb500 from=translated src=- shape=d22e001e vocab=088cb1dc
 -/
-theorem Pairing.numCycles_le {n : ℕ} (p : Pairing n) :
+theorem Tengoku.LeanPool.Pairing.numCycles_le {n : ℕ} (p : Pairing n) :
     numCycles (longCycle n * p.val) ≤ n + 1 := by
   rcases Nat.eq_zero_or_pos n with rfl | hn
   · -- n = 0: Fin 0 is empty
@@ -540,7 +540,7 @@ private theorem numCycles_parity_even {n : ℕ} (p : Pairing n) (hn : 1 ≤ n) :
     False for n = 0: numCycles on Fin 0 is 0, but 2 * 0 ≠ 1.
 @isnad1 id=eq.1h2v.s7.f8a7152352d7 from=translated src=- shape=722a35bc vocab=f742a12b
 -/
-theorem Pairing.genus_exact {n : ℕ} (p : Pairing n) (hn : 1 ≤ n) :
+theorem Tengoku.LeanPool.Pairing.genus_exact {n : ℕ} (p : Pairing n) (hn : 1 ≤ n) :
     2 * p.genus = (n + 1) - numCycles (longCycle n * p.val) := by
   unfold Pairing.genus
   exact Nat.mul_div_cancel' (numCycles_parity_even p hn)
@@ -564,7 +564,7 @@ formulation because:
 -/
 
 /-- An adjacent pair in a pairing: a point i such that π(i) = i + 1 mod 2n. -/
-def Pairing.hasAdjacentAt {n : ℕ} (p : Pairing n) (i : Fin (2 * n)) : Prop :=
+def Tengoku.LeanPool.Pairing.hasAdjacentAt {n : ℕ} (p : Pairing n) (i : Fin (2 * n)) : Prop :=
   p.val i = finRotate (2 * n) i
 
 /-- Deletion of an adjacent pair: given a pairing with π(i) = i+1,
@@ -580,7 +580,7 @@ def Pairing.hasAdjacentAt {n : ℕ} (p : Pairing n) (i : Fin (2 * n)) : Prop :=
     It requires building the injection Fin(2n-2) ↪ Fin(2n) that
     skips i and j, and proving the conjugated permutation is
     a fixed-point-free involution. -/
-noncomputable def Pairing.deleteAdjacent {n : ℕ} (p : Pairing (n + 1))
+noncomputable def Tengoku.LeanPool.Pairing.deleteAdjacent {n : ℕ} (p : Pairing (n + 1))
     (i : Fin (2 * (n + 1))) (h : p.hasAdjacentAt i) :
     Pairing n :=
   -- Rotate so the adjacent pair sits at coordinates (0, 1)
@@ -627,7 +627,7 @@ noncomputable def Pairing.deleteAdjacent {n : ℕ} (p : Pairing (n + 1))
       exact SemicircleCore.contractZeroOne_isPairing h₀' h₁' hinv hfpf⟩
 
 /-- Recursive noncrossing predicate. -/
-def Pairing.IsNoncrossing : {n : ℕ} → Pairing n → Prop
+def Tengoku.LeanPool.Pairing.IsNoncrossing : {n : ℕ} → Pairing n → Prop
   | 0, _ => True
   | n + 1, p => ∃ i : Fin (2 * (n + 1)),
       ∃ h : p.hasAdjacentAt i, (p.deleteAdjacent i h).IsNoncrossing
@@ -884,7 +884,7 @@ private theorem numCycles_split_normalized {n : ℕ} (hn : 1 ≤ n)
     Requires n ≥ 1 so the target Pairing n is on ≥ 2 elements.
 @isnad1 id=eq.2h3v.s9.17aba415e14d from=translated src=- shape=dd96f0cd vocab=84af296d
 -/
-theorem numCycles_delete_adjacent {n : ℕ} (hn : 1 ≤ n) (p : Pairing (n + 1))
+theorem _root_.Tengoku.LeanPool.numCycles_delete_adjacent {n : ℕ} (hn : 1 ≤ n) (p : Pairing (n + 1))
     (i : Fin (2 * (n + 1))) (h : p.hasAdjacentAt i) :
     numCycles (longCycle (n + 1) * p.val) =
       numCycles (longCycle n * (p.deleteAdjacent i h).val) + 1 := by
@@ -1021,7 +1021,7 @@ private lemma fixedPoint_gives_adjacent {n : ℕ} (p : Pairing (n + 1))
     numCycles = n for the contracted pairing, and induction applies.
 @isnad1 id=isnoncro.1h2v.s7.8bb83f1953f5 from=translated src=- shape=0aee4005 vocab=fa9c515c
 -/
-theorem Pairing.maxCycles_imp_noncrossing {n : ℕ} (p : Pairing n)
+theorem Tengoku.LeanPool.Pairing.maxCycles_imp_noncrossing {n : ℕ} (p : Pairing n)
     (h : numCycles (longCycle n * p.val) = n + 1) :
     p.IsNoncrossing := by
   induction n with
@@ -1054,7 +1054,7 @@ theorem Pairing.maxCycles_imp_noncrossing {n : ℕ} (p : Pairing n)
     Requires n ≥ 1: on Fin 0, numCycles = 0 ≠ 1 = 0 + 1.
 @isnad1 id=eq.2h2v.s7.0220a8e09f1d from=translated src=- shape=30e1c273 vocab=988f3206
 -/
-theorem Pairing.noncrossing_imp_maxCycles {n : ℕ} (p : Pairing n)
+theorem Tengoku.LeanPool.Pairing.noncrossing_imp_maxCycles {n : ℕ} (p : Pairing n)
     (hn : 1 ≤ n) (h : p.IsNoncrossing) :
     numCycles (longCycle n * p.val) = n + 1 := by
   induction n with
@@ -1093,7 +1093,7 @@ theorem Pairing.noncrossing_imp_maxCycles {n : ℕ} (p : Pairing n)
 /-- **The Bridge Theorem**: genus zero ↔ noncrossing.
 @isnad1 id=iff.0h2v.s4.38562e3ea34e from=translated src=- shape=93dc54ee vocab=a3a87067
 -/
-theorem Pairing.genus_zero_iff_noncrossing {n : ℕ} (p : Pairing n) :
+theorem Tengoku.LeanPool.Pairing.genus_zero_iff_noncrossing {n : ℕ} (p : Pairing n) :
     p.genus = 0 ↔ p.IsNoncrossing := by
   cases n with
   | zero =>
@@ -1171,3 +1171,4 @@ law becomes a clean chain:
 Each arrow is a separate formalizable step, and this file handles
 the crucial middle link.
 -/
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

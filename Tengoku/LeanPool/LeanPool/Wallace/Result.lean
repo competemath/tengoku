@@ -22,7 +22,7 @@ Every declaration in this file is proved from its explicitly stated hypotheses.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter Set Topology
 
 universe u
@@ -231,3 +231,4 @@ theorem positiveCone_isWallace_of_limitProperty
     (single_one_mem_positiveCone ι i) (neg_single_one_not_mem_positiveCone ι i)
 
 end Wallace
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

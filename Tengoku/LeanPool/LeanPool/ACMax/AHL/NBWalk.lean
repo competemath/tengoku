@@ -42,7 +42,7 @@ assembly into the Moore bound are the follow-up counting node; this file lands t
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace ACMax
 
 open SimpleGraph
@@ -136,3 +136,4 @@ theorem nb_extension_count {V : Type*} (G : SimpleGraph V) [Fintype V] [Decidabl
     G.card_neighborFinset_eq_degree]
 
 end ACMax
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

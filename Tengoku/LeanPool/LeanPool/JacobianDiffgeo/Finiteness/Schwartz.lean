@@ -40,7 +40,7 @@ timeout at `E →L[ℂ] F`, per the spike `scratch_finiteness.lean` §11).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Function
 
 namespace RS
@@ -224,3 +224,4 @@ theorem FiniteDimensional.of_linearMap_ker_range {M N : Type*} [AddCommGroup M] 
   exact Module.Finite.of_submodule_quotient (LinearMap.ker f)
 
 end RS
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

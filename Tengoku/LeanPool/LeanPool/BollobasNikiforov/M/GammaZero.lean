@@ -23,7 +23,7 @@ original `M`, including the case `p = 0` (SC21).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace BollobasNikiforov
 
 open Matrix Finset Function Filter
@@ -540,3 +540,4 @@ lemma configγ_eq_zero_of_p_eq_zero (s t : Fin k → ℝ) (ρ x : Fin 0 → ℝ)
 end
 
 end BollobasNikiforov
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

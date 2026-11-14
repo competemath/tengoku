@@ -21,7 +21,7 @@ to the lifted EM starting family.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 variable {α : Type*}
@@ -96,3 +96,4 @@ theorem bfSubformulas_countable {Λ : Language.{0, 0}} (χ : Σ n, Λ.BoundedFor
 variable (L : Language.{0, 0})
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

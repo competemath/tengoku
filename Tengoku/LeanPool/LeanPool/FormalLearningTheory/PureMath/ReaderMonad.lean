@@ -16,30 +16,30 @@ The three monad laws hold definitionally (by `rfl`).
 This structure underlies MeasurableBatchLearner composition in the learning
 theory layer, but the monad itself is pure mathematics with zero dependencies.
 -/@[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 universe u v w
 
 /-- A reader-selection computation: family indexed by ι, selected by data. -/
-structure ReaderSel (ι : Type u) (α : Type v) (γ : Type w) where
+structure _root_.Tengoku.LeanPool.ReaderSel (ι : Type u) (α : Type v) (γ : Type w) where
   /-- Family of functions available to the selector. -/
   family : ι → α → γ
   /-- Data-dependent selector for the family index. -/
   sel : α → ι
 
 /-- Evaluate: apply the selected family member. -/
-def ReaderSel.eval {ι : Type u} {α : Type v} {γ : Type w}
+def Tengoku.LeanPool.ReaderSel.eval {ι : Type u} {α : Type v} {γ : Type w}
     (r : ReaderSel ι α γ) (a : α) : γ :=
   r.family (r.sel a) a
 
 /-- Pure: constant family (selector is irrelevant). -/
-def ReaderSel.pure {ι : Type u} {α : Type v} {γ : Type w}
+def Tengoku.LeanPool.ReaderSel.pure {ι : Type u} {α : Type v} {γ : Type w}
     (i₀ : ι) (f : α → γ) : ReaderSel ι α γ where
   family := fun _ => f
   sel := fun _ => i₀
 
 /-- Bind: the second computation may depend on the first's output.
     eval (bind r f) a = eval (f (eval r a)) a -/
-def ReaderSel.bind {ι : Type u} {α : Type v} {γ : Type w}
+def Tengoku.LeanPool.ReaderSel.bind {ι : Type u} {α : Type v} {γ : Type w}
     (r : ReaderSel ι α γ) (f : γ → ReaderSel ι α γ) :
     ReaderSel ι α γ where
   family := fun i a => (f (r.family (r.sel a) a)).family i a
@@ -48,7 +48,7 @@ def ReaderSel.bind {ι : Type u} {α : Type v} {γ : Type w}
 /-- Left unit: bind (pure f) g a = (g (f a)).eval a
 @isnad1 id=eq.0h7v.s5.e4fcd1d239a7 from=translated src=- shape=729f91fe vocab=25d050d6
 -/
-theorem ReaderSel.left_unit {ι : Type u} {α : Type v} {γ : Type w}
+theorem Tengoku.LeanPool.ReaderSel.left_unit {ι : Type u} {α : Type v} {γ : Type w}
     (i₀ : ι) (f : α → γ)
     (g : γ → ReaderSel ι α γ) (a : α) :
     (ReaderSel.pure i₀ f |>.bind g).eval a = (g (f a)).eval a := rfl
@@ -56,14 +56,15 @@ theorem ReaderSel.left_unit {ι : Type u} {α : Type v} {γ : Type w}
 /-- Right unit: bind r (fun v => pure (const v)) a = r.eval a
 @isnad1 id=eq.0h6v.s5.e0397a97f6ed from=translated src=- shape=a770a738 vocab=25d050d6
 -/
-theorem ReaderSel.right_unit {ι : Type u} {α : Type v} {γ : Type w}
+theorem Tengoku.LeanPool.ReaderSel.right_unit {ι : Type u} {α : Type v} {γ : Type w}
     (r : ReaderSel ι α γ) (i₀ : ι) (a : α) :
     (r.bind (fun v => ReaderSel.pure i₀ (fun _ => v))).eval a = r.eval a := rfl
 
 /-- Associativity: bind (bind r f) g = bind r (fun v => bind (f v) g)
 @isnad1 id=eq.0h7v.s6.eb16c5f0a321 from=translated src=- shape=840d52cd vocab=fbd94c47
 -/
-theorem ReaderSel.assoc {ι : Type u} {α : Type v} {γ : Type w}
+theorem Tengoku.LeanPool.ReaderSel.assoc {ι : Type u} {α : Type v} {γ : Type w}
     (r : ReaderSel ι α γ)
     (f : γ → ReaderSel ι α γ) (g : γ → ReaderSel ι α γ) (a : α) :
     ((r.bind f).bind g).eval a = (r.bind (fun v => (f v).bind g)).eval a := rfl
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

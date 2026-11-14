@@ -38,10 +38,10 @@ iso), `Inert.lean`, `Split.lean`, and `Ramified.lean`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Polynomial
 
-namespace QuadraticOrder
+namespace Tengoku.LeanPool.QuadraticOrder
 
 variable (d : ℤ) (p : ℕ)
 
@@ -357,4 +357,5 @@ theorem polyMod_irreducible_iff_legendreSym_eq_neg_one
   simp_rw [Polynomial.mem_roots hne, Polynomial.IsRoot.def]
   rw [← not_exists, polyMod_no_root_iff_legendreSym_eq_neg_one hp2 hd]
 
-end QuadraticOrder
+end Tengoku.LeanPool.QuadraticOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

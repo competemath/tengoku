@@ -54,8 +54,8 @@ Substrate for the two Hurwitz theorems. It states neither of them.
 -/
 
 @[expose] public section
-
-namespace CompositionAlgebra
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+namespace Tengoku.LeanPool.CompositionAlgebra
 
 universe u
 
@@ -241,4 +241,5 @@ theorem unit_mul_unit {a : C} (ha : a ∈ A) {b : C} (hb : b ∈ A) :
 
 end IsCompSubalgebra
 
-end CompositionAlgebra
+end Tengoku.LeanPool.CompositionAlgebra
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

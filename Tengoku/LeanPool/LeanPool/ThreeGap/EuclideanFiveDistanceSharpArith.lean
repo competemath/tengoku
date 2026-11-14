@@ -59,7 +59,7 @@ with record minima at `d = 1, 7, 8, 10, 11` (values `73 > 68 > 61 > 50 > 17`). T
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace ThreeGap.EuclideanRecords
 
 open scoped Real
@@ -584,3 +584,4 @@ theorem sharp_attained : ∃ α : Fin 2 → ℝ, (∃ k, Irrational (α k)) ∧
       (H3_aprt s hs_pos.le hsmall) (H4_aprt s hs_pos.le hsmall)
 
 end ThreeGap.EuclideanRecords
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -11,7 +11,7 @@ Riesz multiplier. Finite scale intervals give integrable kernels, uniformly
 bounded by a constant times `|x|⁻³` away from the origin.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace NavierStokes.R3RieszKernel
 
 open Set Filter MeasureTheory ProblemStatement FourierTransform R3GaussianPressure
@@ -437,3 +437,4 @@ theorem fourier_truncatedKernel_tendsto (i j : Fin 3) (ξ : Space) :
     hh.const_mul (R3PressureFourier.rieszSymbol i j ξ)
 
 end NavierStokes.R3RieszKernel
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

@@ -17,7 +17,7 @@ integral estimates.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory MeasureTheory.Measure Set Metric
 open scoped ENNReal NNReal Topology
 
@@ -262,3 +262,4 @@ theorem parabolicRieszPotential_mono {β : ℝ} {f g : ParabolicPoint → ℝ}
   exact mul_le_mul_right (ENNReal.ofReal_le_ofReal (hfg w)) _
 
 end CKN.Foundation.Parabolic.Morrey
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

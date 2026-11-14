@@ -15,15 +15,15 @@ gradient identity expressing the force as the negative phase-derivative of the p
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Real Finset
 
 /-- The Kuramoto potential `V = -(K / (2N)) ∑_{i,j} cos (θ_j - θ_i)`. -/
-noncomputable def kuramotoV (K : ℝ) (N : ℕ) (θ : Fin N → ℝ) : ℝ :=
+noncomputable def _root_.Tengoku.LeanPool.kuramotoV (K : ℝ) (N : ℕ) (θ : Fin N → ℝ) : ℝ :=
   -(K / (2 * N)) * ∑ i : Fin N, ∑ j : Fin N, Real.cos (θ j - θ i)
 
 /-- The Kuramoto force on oscillator `i`, `F_i = (K / N) ∑_j sin (θ_j - θ_i)`. -/
-noncomputable def kuramotoF (K : ℝ) (N : ℕ) (i : Fin N) (θ : Fin N → ℝ) : ℝ :=
+noncomputable def _root_.Tengoku.LeanPool.kuramotoF (K : ℝ) (N : ℕ) (i : Fin N) (θ : Fin N → ℝ) : ℝ :=
   (K / N) * ∑ j : Fin N, Real.sin (θ j - θ i)
 
 private lemma hasDerivAt_update_apply {N : ℕ} (θ : Fin N → ℝ) (i j : Fin N) :
@@ -98,7 +98,7 @@ private lemma pairDeriv_sum_eq {N : ℕ} (θ : Fin N → ℝ) (i : Fin N) :
 /--
 @isnad1 id=eq.2h4v.s6.6c0d3e9d2318 from=translated src=- shape=b5468c2e vocab=92763880
 -/
-theorem kuramoto_gradient_identity
+theorem _root_.Tengoku.LeanPool.kuramoto_gradient_identity
     (K : ℝ) (N : ℕ) (hN : 0 < N) (hK : 0 < K)
     (θ : Fin N → ℝ) (i : Fin N) :
     kuramotoF K N i θ = -(deriv (fun x => kuramotoV K N (Function.update θ i x)) (θ i)) := by
@@ -144,3 +144,4 @@ theorem kuramoto_gradient_identity
   rw [hderiv, pairDeriv_sum_eq]
   simp [kuramotoF]
   field_simp [hN']
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

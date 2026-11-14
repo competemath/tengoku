@@ -19,7 +19,7 @@ Part of the Caffarelli–Kohn–Nirenberg partial regularity proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set MeasureTheory Filter Topology
 open scoped BigOperators ENNReal Convolution Pointwise
 open CKN.Foundation.Parabolic
@@ -137,3 +137,4 @@ theorem native_euclidean_norm_le_sqrt_three_norm (x : Vec3) :
 
 end
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

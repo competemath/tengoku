@@ -49,7 +49,7 @@ second, non-defeq uniform structure).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set PiNat Filter Topology
 
 namespace MycielskiCantor
@@ -282,7 +282,7 @@ whenever `a ≠ b`. (Kechris, CDST 19.1, specialized.) Injectivity of `ψ` is no
 when avoiding a reflexive relation it is automatic.
 @isnad1 id=ex.1h1v.s7.e3adaaf701fd from=translated src=- shape=e499fdbb vocab=b2be5a21
 -/
-theorem mycielski_cantor {M : Set ((ℕ → Bool) × (ℕ → Bool))} (hM : IsMeagre M) :
+theorem _root_.Tengoku.LeanPool.mycielski_cantor {M : Set ((ℕ → Bool) × (ℕ → Bool))} (hM : IsMeagre M) :
     ∃ ψ : (ℕ → Bool) → (ℕ → Bool), Continuous ψ ∧
       ∀ a b : ℕ → Bool, a ≠ b → (ψ a, ψ b) ∉ M := by
   classical
@@ -371,3 +371,4 @@ theorem mycielski_cantor {M : Set ((ℕ → Bool) × (ℕ → Bool))} (hM : IsMe
       rw [hSb] at hmemb
       exact havoid (Set.mk_mem_prod hmema hmemb)
     exact hcompl hmem
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -24,7 +24,7 @@ modulus are `TrigPolynomial`s; collecting by frequency gives the representation.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace QuantumAlg
 
 open Complex BigOperators Matrix
@@ -512,3 +512,4 @@ theorem pauliX_kernel_eq_cos_sq (x x' : ℝ) :
   ring
 
 end QuantumAlg
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

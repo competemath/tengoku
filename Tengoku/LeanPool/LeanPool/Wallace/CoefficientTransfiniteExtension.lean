@@ -17,7 +17,7 @@ specialization obtains the character from Baer's extension theorem.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter Set Topology
 
 namespace Wallace
@@ -273,3 +273,4 @@ theorem globalCharacter_admissible
 end
 end CoefficientTransfiniteExtension
 end Wallace
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

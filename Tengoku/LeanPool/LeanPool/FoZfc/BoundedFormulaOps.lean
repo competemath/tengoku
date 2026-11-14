@@ -37,7 +37,7 @@ import Tengoku.LeanPool.LeanPool.FoZfc.FixedSnoc
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open FirstOrder
 open FirstOrder.Language
 open FirstOrder.Language.BoundedFormula
@@ -397,3 +397,4 @@ theorem realize_makeTsN {n m k : ℕ} {ts : Fin (m + 1) → L.Term (ℕ ⊕ Fin 
 end ReplaceFV
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

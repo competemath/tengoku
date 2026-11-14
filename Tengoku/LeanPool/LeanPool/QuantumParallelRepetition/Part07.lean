@@ -10,7 +10,7 @@ public import Tengoku.LeanPool.LeanPool.QuantumParallelRepetition.Part06
 /-! # Quantum parallel repetition, part 07 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace QuantumParallelRepetition
@@ -936,3 +936,4 @@ end
 end QuantumParallelRepetition
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -8,7 +8,7 @@ module
 public import Tengoku.LeanPool.LeanPool.LeanModularForms.ValenceFormula.ModularInvariance
 import Tengoku.Seed.Analysis.Meromorphic.NormalForm
 import Tengoku.Seed.LinearAlgebra.Matrix.FixedDetMatrices
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -254,3 +254,4 @@ theorem orb_rho_plus_one_eq_orb_rho :
     simp [ellipticPointRho', ellipticPointRhoPlusOne', UpperHalfPlane.coe_vadd]; ring⟩
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

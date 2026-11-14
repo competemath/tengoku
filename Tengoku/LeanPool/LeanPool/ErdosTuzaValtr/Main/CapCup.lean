@@ -17,10 +17,10 @@ Imported Lean Pool material for `LeanPool.ErdosTuzaValtr.Main.CapCup`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
-namespace Config
+namespace Tengoku.LeanPool.Config
 
 variable {α : Type _} [LinearOrder α] (C : Config α)
 
@@ -158,4 +158,5 @@ theorem cap_cup (a b : ℕ) (S : Finset α) (hS : Nat.choose (a + b) a < S.card)
           · rw [List.length_cons, cr_length]
           · simp_all
 
-end Config
+end Tengoku.LeanPool.Config
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

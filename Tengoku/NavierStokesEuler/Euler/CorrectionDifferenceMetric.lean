@@ -1,6 +1,6 @@
 import Tengoku.NavierStokesEuler.Euler.CorrectionDifferencePDE
 import Tengoku.NavierStokesEuler.Euler.SobolevDifferenceEnergy
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace EulerCorrectionDifferenceMetric
 end EulerCorrectionDifferenceMetric
 namespace MeasureTheory
@@ -171,3 +171,4 @@ theorem difference_metric_deriv_bound {q : ℕ} {T : Type*} [TopologicalSpace T]
     (mul_le_mul_of_nonneg_right hd (sq_nonneg _)))
 
 end EulerCorrectionDifferenceMetric
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

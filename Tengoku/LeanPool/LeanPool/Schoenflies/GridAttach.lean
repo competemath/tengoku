@@ -80,7 +80,7 @@ Neither is a restatement of a goal of this module, and both are true.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set
 open scoped Graph
 
@@ -779,3 +779,4 @@ theorem gridAttachGraph_isConnected_diff
   exact isConnected_cover_diff_of_joins hr₀ hJconn hJhub hJrep hJC hcov
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

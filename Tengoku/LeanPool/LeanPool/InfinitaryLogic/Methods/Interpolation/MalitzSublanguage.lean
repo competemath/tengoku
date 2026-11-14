@@ -24,7 +24,7 @@ proving those as *exact* equivalences rather than one-way implications.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder BoundedFormulaω
@@ -77,3 +77,4 @@ theorem malitz_interpolation [L.IsRelational] (φ ψ : L.Sentenceω) (hψ : IsUn
   · exact entails_mapLanguage_restrictSymbols_right F R ψ h₂F h₂R θ' hE2'
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

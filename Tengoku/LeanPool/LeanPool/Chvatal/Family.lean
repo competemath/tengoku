@@ -51,7 +51,7 @@ Proposition 4.1 is stated for a nonempty ground type.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Chvatal
 
 /-- A family of subsets of a finite ground type, representing `𝒜 ⊆ 2^[n]`
@@ -320,3 +320,4 @@ theorem exists_star_bound_of_maximal [Finite ι] {D : Family ι}
 
 end Family
 end Chvatal
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

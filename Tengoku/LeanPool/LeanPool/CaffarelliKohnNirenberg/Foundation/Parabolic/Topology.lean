@@ -23,7 +23,7 @@ Euclidean ball and the intervals `Ioo` and `Icc`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped Topology
 open Set Metric
 
@@ -235,3 +235,4 @@ theorem closure_parabolicCylinder_mono {x : Vec3} {t r₁ r₂ : ℝ} (hr₁ : 0
   closure_mono (parabolicCylinder_mono hr₁ hr)
 
 end CKN.Foundation.Parabolic
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

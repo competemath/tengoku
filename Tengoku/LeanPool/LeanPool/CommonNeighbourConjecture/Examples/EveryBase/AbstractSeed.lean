@@ -24,7 +24,7 @@ needed for the obstruction.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace SaxlCounterexamples.EveryBase
 
 open scoped BigOperators Pointwise
@@ -840,3 +840,4 @@ theorem affine_exactBaseSize_succ
   exactBaseSize_of_exactTupleBaseSize
     (affine_exactTupleBaseSize_succ H V hn h)
 end SaxlCounterexamples.EveryBase
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

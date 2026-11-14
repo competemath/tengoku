@@ -34,7 +34,7 @@ Any connected set avoiding all selected anchors must therefore have the required
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set Topology
 open scoped Graph
 
@@ -620,3 +620,4 @@ end MeshOverlayTransferData
 end TargetSegmentCover
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

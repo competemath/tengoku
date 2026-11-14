@@ -27,7 +27,7 @@ Arch. Math. **59** (1992), 239-244; see `QuadraticIterates.ArchMath1992`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Polynomial
 open scoped ArithmeticFunction.Moebius
 
@@ -256,3 +256,4 @@ lemma abs_bSeq_eq_betaSeq (ha : ¬IsSquare (-a : ℚ)) :
 end
 
 end QuadraticIterates
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

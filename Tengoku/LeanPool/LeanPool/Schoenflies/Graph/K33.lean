@@ -86,7 +86,7 @@ and `chords_disjoint` says they do not.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Schoenflies unitInterval
 open scoped Graph
 
@@ -665,3 +665,4 @@ theorem exists_two_chords_same_side (h : IsK33Config G x y e) (hd : IsDrawing G 
 end IsK33Config
 
 end Graph
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

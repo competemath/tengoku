@@ -12,7 +12,7 @@ import Tengoku.Seed.Analysis.Calculus.Deriv.Add
 import Tengoku.Seed.CategoryTheory.Category.Init
 import Tengoku.Seed.Combinatorics.Matroid.Init
 import Tengoku.Seed.Tactic.Positivity.Finset
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -165,3 +165,4 @@ theorem gWN_eq_neg_sixth_of_singleCrossing {γ : ℝ → ℂ} {a b : ℝ} {s : �
   exact hL ▸ pv_convert D.pvTendsto
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

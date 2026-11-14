@@ -18,8 +18,8 @@ See [HeunenKSY17], Proposition 16.
 -/
 
 @[expose] public section
-
-namespace QuasiBorelSpace.Pi
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+namespace Tengoku.LeanPool.QuasiBorelSpace.Pi
 
 variable
   {A : Type*} {_ : QuasiBorelSpace A}
@@ -87,11 +87,11 @@ instance
     · simp only [isHom_iff, isHom_iff_measurable]
       fun_prop
 
-end QuasiBorelSpace.Pi
+end Tengoku.LeanPool.QuasiBorelSpace.Pi
 
-namespace OmegaQuasiBorelSpace.Pi
+namespace Tengoku.LeanPool.OmegaQuasiBorelSpace.Pi
 
-open QuasiBorelSpace
+open Tengoku.LeanPool.QuasiBorelSpace
 open OmegaCompletePartialOrder
 
 variable {I : Type*} {P : I → Type*} [∀ i, OmegaQuasiBorelSpace (P i)]
@@ -106,4 +106,5 @@ instance : OmegaQuasiBorelSpace (∀i, P i) where
       Function.comp_apply, Function.eval]
     fun_prop
 
-end OmegaQuasiBorelSpace.Pi
+end Tengoku.LeanPool.OmegaQuasiBorelSpace.Pi
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

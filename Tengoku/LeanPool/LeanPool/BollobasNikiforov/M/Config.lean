@@ -20,7 +20,7 @@ Indices are identified with `Option (Fin k) ⊕ Fin p` via `configIdxEquiv`:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace BollobasNikiforov
 
 open Matrix Finset Function
@@ -686,3 +686,4 @@ lemma MX_z0_nonneg (hs : ∀ i, 0 < s i) (hρ : ∀ j, 0 < ρ j) (hx : ∀ j, 0 
 end
 
 end BollobasNikiforov
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

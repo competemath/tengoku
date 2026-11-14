@@ -31,7 +31,7 @@ the original
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe uN uT
 variable {T : Type uT}
 
@@ -610,3 +610,4 @@ theorem restrictLength_correct [DecidableEq T] [e : DecidableEq g.NT] (hg : g.We
     exact hw
 
 end ContextFreeGrammar
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

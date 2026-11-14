@@ -32,7 +32,7 @@ identification.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open ValuativeRel IntermediateField
 
 namespace MassFormula
@@ -355,3 +355,4 @@ theorem exists_unit_relation {π : 𝒪[K]} (hπ : Irreducible π) {x : Separabl
   exact ⟨ξ, u, rfl, hu, hbu⟩
 
 end MassFormula
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

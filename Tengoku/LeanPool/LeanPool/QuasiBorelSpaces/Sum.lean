@@ -21,8 +21,8 @@ See [HeunenKSY17], Proposition 17.
 -/
 
 @[expose] public section
-
-namespace QuasiBorelSpace.Sum
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+namespace Tengoku.LeanPool.QuasiBorelSpace.Sum
 
 universe u v
 
@@ -182,11 +182,11 @@ lemma isHom_isLeft : IsHom (Sum.isLeft : A ⊕ B → Bool) := by
   rw [this]
   fun_prop
 
-end QuasiBorelSpace.Sum
+end Tengoku.LeanPool.QuasiBorelSpace.Sum
 
-namespace OmegaQuasiBorelSpace.Sum
+namespace Tengoku.LeanPool.OmegaQuasiBorelSpace.Sum
 
-open QuasiBorelSpace
+open Tengoku.LeanPool.QuasiBorelSpace
 open OmegaCompletePartialOrder
 
 variable {A B C : Type*}
@@ -240,4 +240,5 @@ noncomputable instance
     simp only [ωSup]
     fun_prop
 
-end OmegaQuasiBorelSpace.Sum
+end Tengoku.LeanPool.OmegaQuasiBorelSpace.Sum
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

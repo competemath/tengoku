@@ -39,7 +39,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace MatchingLogic
 namespace Sorted
 
@@ -350,3 +350,4 @@ theorem Γ3_entails_φ3 (x y : Var) (hxy : x ≠ y) :
 
 end Sorted
 end MatchingLogic
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

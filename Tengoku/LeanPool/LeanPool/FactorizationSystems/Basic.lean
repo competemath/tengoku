@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace CategoryTheory
 universe u v u' v'
 variable {C : Type u} [Category.{v} C] {D : Type u'} [Category.{v'} D]
@@ -441,3 +441,4 @@ lemma left_cancellation_right_class :
   rwa [←fact]
 
 end CategoryTheory
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

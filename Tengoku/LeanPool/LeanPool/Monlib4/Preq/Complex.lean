@@ -16,7 +16,7 @@ This file contains some basic lemmas about complex numbers.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ComplexConjugate BigOperators
 
 open Complex
@@ -26,7 +26,7 @@ The norm of `∑ i, α i ^ 2` is the sum of `‖α i‖ ^ 2` if and only if
 the real and imaginary parts of the `α i` are pairwise proportional.
 @isnad1 id=iff.0h2v.s6.724b3d9a7515 from=translated src=- shape=c7651210 vocab=c883115a
 -/
-theorem norm_of_sum_sq_eq_sum_norm_sq_iff {n : Type _} [Fintype n] (α : n → ℂ) :
+theorem _root_.Tengoku.LeanPool.norm_of_sum_sq_eq_sum_norm_sq_iff {n : Type _} [Fintype n] (α : n → ℂ) :
     ‖(∑ i : n, α i ^ 2)‖ = ∑ i : n, ‖(α i)‖ ^ 2 ↔
       ∀ i j : n, (α i).re * (α j).im = (α j).re * (α i).im := by
   have complex.abs_sq : ∀ x : ℂ, ‖x‖ ^ 2 = Complex.normSq x := by
@@ -75,7 +75,7 @@ theorem norm_of_sum_sq_eq_sum_norm_sq_iff {n : Type _} [Fintype n] (α : n → �
 /--
 @isnad1 id=iff.0h2v.s7.c84bbdbbad2f from=translated src=- shape=65b29ad2 vocab=750a6712
 -/
-theorem norm_of_sq_add_sq_eq_norm_sq_add_norm_sq_iff (α₁ α₂ : ℂ) :
+theorem _root_.Tengoku.LeanPool.norm_of_sq_add_sq_eq_norm_sq_add_norm_sq_iff (α₁ α₂ : ℂ) :
     norm (α₁ ^ 2 + α₂ ^ 2) = norm α₁ ^ 2 + norm α₂ ^ 2 ↔
       α₁.re * α₂.im = α₂.re * α₁.im := by
   let α := ![α₁, α₂]
@@ -91,7 +91,7 @@ theorem norm_of_sq_add_sq_eq_norm_sq_add_norm_sq_iff (α₁ α₂ : ℂ) :
 /--
 @isnad1 id=iff.0h2v.s7.1d17990b5ab8 from=translated src=- shape=670f14cd vocab=d0c95f7f
 -/
-theorem norm_of_sq_add_sq_norm_sq_add_norm_sq_iff' (α₁ α₂ : ℂ) :
+theorem _root_.Tengoku.LeanPool.norm_of_sq_add_sq_norm_sq_add_norm_sq_iff' (α₁ α₂ : ℂ) :
     norm (α₁ ^ 2 + α₂ ^ 2) = norm α₁ ^ 2 + norm α₂ ^ 2 ↔ α₁ * conj α₂ = conj α₁ * α₂ := by
   rw [norm_of_sq_add_sq_eq_norm_sq_add_norm_sq_iff, ← re_add_im α₁, ← re_add_im α₂]
   simp_rw [add_re, add_im, map_add, conj_ofReal, mul_I_im, mul_I_re, starRingEnd_apply, star_mul',
@@ -111,7 +111,7 @@ The norm identity for a finite sum of squares is equivalent to saying that
 `α i * conj (α j) = conj (α i) * α j` for every pair `i`, `j`.
 @isnad1 id=iff.0h2v.s7.303b10652b87 from=translated src=- shape=ea277d06 vocab=d051d1f2
 -/
-theorem norm_of_sum_sq_eq_sum_norm_sq_iff' {n : Type _} [Fintype n] (α : n → ℂ) :
+theorem _root_.Tengoku.LeanPool.norm_of_sum_sq_eq_sum_norm_sq_iff' {n : Type _} [Fintype n] (α : n → ℂ) :
     norm (∑ i : n, α i ^ 2) = ∑ i : n, norm (α i) ^ 2 ↔
       ∀ i j : n, α i * conj (α j) = conj (α i) * α j := by
   have := norm_of_sq_add_sq_norm_sq_add_norm_sq_iff'
@@ -121,7 +121,7 @@ theorem norm_of_sum_sq_eq_sum_norm_sq_iff' {n : Type _} [Fintype n] (α : n → 
 /--
 @isnad1 id=iff.0h2v.s7.cf933c5d41ee from=translated src=- shape=ea2c2879 vocab=83b548ee
 -/
-theorem norm_of_sq_add_sq_norm_sq_add_norm_sq_iff'' (α₁ α₂ : ℂ) :
+theorem _root_.Tengoku.LeanPool.norm_of_sq_add_sq_norm_sq_add_norm_sq_iff'' (α₁ α₂ : ℂ) :
     norm (α₁ ^ 2 + α₂ ^ 2) = norm α₁ ^ 2 + norm α₂ ^ 2 ↔
       ∃ (γ : ℂ) (β₁ β₂ : ℝ), α₁ = γ * β₁ ∧ α₂ = γ * β₂ := by
   rw [norm_of_sq_add_sq_eq_norm_sq_add_norm_sq_iff]
@@ -162,7 +162,7 @@ The norm identity for a finite sum of squares is equivalent to all `α i`
 lying on a common complex line through the origin with real coefficients.
 @isnad1 id=iff.0h2v.s6.e801442587ee from=translated src=- shape=358b16d3 vocab=daf8ce09
 -/
-theorem norm_of_sum_sq_eq_sum_norm_sq_iff'' {n : Type _} [Fintype n] (α : n → ℂ) :
+theorem _root_.Tengoku.LeanPool.norm_of_sum_sq_eq_sum_norm_sq_iff'' {n : Type _} [Fintype n] (α : n → ℂ) :
     norm (∑ i : n, α i ^ 2) = ∑ i : n, norm (α i) ^ 2 ↔
       ∃ γ : ℂ, ∀ i : n, ∃ β : ℝ, α i = γ * β := by
   have := norm_of_sq_add_sq_norm_sq_add_norm_sq_iff''
@@ -189,3 +189,4 @@ theorem norm_of_sum_sq_eq_sum_norm_sq_iff'' {n : Type _} [Fintype n] (α : n →
     obtain ⟨β₁, hβ₁⟩ := hγ i
     obtain ⟨β₂, hβ₂⟩ := hγ j
     exact ⟨γ, β₁, β₂, ⟨hβ₁, hβ₂⟩⟩
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

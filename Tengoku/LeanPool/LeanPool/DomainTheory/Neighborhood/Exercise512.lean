@@ -58,7 +58,7 @@ Everything is choice-free in spirit; the only classical input is inherited from
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood.Exercise512
 
 open Domain.Neighborhood NeighborhoodSystem ApproximableMap
@@ -170,3 +170,4 @@ theorem whileMap_least (w' : (funSpace V V).Element)
   exact (hw' x).symm
 
 end Domain.Neighborhood.Exercise512
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

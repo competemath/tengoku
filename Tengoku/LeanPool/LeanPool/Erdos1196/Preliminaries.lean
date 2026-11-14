@@ -28,7 +28,7 @@ The arithmetic input for the Mertens partial sums lives in
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ArithmeticFunction BigOperators Topology
 open Filter MeasureTheory
 
@@ -792,3 +792,4 @@ lemma tailEstimate :
           field_simp
 
 end PrimitiveSetsAboveX
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

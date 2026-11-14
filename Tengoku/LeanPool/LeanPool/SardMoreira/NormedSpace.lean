@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace NNReal
 
 variable {E : Type*} [SeminormedAddCommGroup E] [NormedSpace ℝ E]
@@ -54,3 +54,4 @@ protected theorem edist_smul (a : ℝ≥0) (x y : E) : edist (a • x) (a • y)
   simp only [edist_nndist, NNReal.nndist_smul, ENNReal.coe_mul]
 
 end NNReal
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

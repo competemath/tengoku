@@ -38,7 +38,7 @@ All estimates hold on `Chudnovsky.Region = {τ | Im τ > 5/4}`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace Chudnovsky
@@ -1117,3 +1117,4 @@ theorem theonaehers2 {τ : ℍ} (hτ : τ ∈ Region) :
       linarith only [mul_lt_mul_of_pos_left hE6norm (pow_pos hQpos 3)]
 
 end Chudnovsky
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

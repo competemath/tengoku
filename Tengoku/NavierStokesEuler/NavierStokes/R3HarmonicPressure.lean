@@ -13,7 +13,7 @@ bounds or decay of the pressure.
 -/
 
 noncomputable section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace NavierStokes.R3HarmonicPressure
 
 open Set Filter MeasureTheory ProblemStatement TemperedDistribution FourierTransform
@@ -107,3 +107,4 @@ theorem eq_zero_of_harmonic_memSobolev {s : ℝ} {f : 𝓢'(Space, ℂ)}
   eq_zero_of_multiplier_eq_zero hs (multiplier_eq_zero_of_laplacian_eq_zero hf)
 
 end NavierStokes.R3HarmonicPressure
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

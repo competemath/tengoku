@@ -16,12 +16,12 @@ normal form, together with their yield and the subtree relation used by the pump
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe uN uT
 
 variable {T : Type uT}
 
-namespace ChomskyNormalFormGrammar
+namespace Tengoku.LeanPool.ChomskyNormalFormGrammar
 
 variable {g : ChomskyNormalFormGrammar T}
 
@@ -288,4 +288,5 @@ lemma Derives.yield {n : g.NT} {u : List T}
 
 end parseTree
 
-end ChomskyNormalFormGrammar
+end Tengoku.LeanPool.ChomskyNormalFormGrammar
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -20,7 +20,7 @@ parameter `t` on standard triangle edge `i`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Topology
 
 namespace LeanEval
@@ -732,3 +732,4 @@ end TriangleCell
 end ClassificationOfSurfaces
 end Topology
 end LeanEval
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

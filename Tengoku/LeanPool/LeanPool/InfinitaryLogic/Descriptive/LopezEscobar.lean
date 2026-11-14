@@ -31,7 +31,7 @@ adds no mathematical content beyond the orbit = isomorphism identification.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure Set
@@ -64,3 +64,4 @@ theorem lopezEscobar_action_iff {B : Set (StructureSpace L)} :
 /-! ## The collection equality (issue #28, target 7) -/
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

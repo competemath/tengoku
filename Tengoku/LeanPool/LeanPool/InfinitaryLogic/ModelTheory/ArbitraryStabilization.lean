@@ -30,7 +30,7 @@ of the audited thin bridge) then upgrades stabilized `BFEquiv α` to EVERY ordin
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder
 
 namespace Language
@@ -223,3 +223,4 @@ theorem bfEquiv_all_of_stabilizesCompletely_arbitrary {α : Ordinal}
 end Language
 
 end FirstOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

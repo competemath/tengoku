@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.Zeta3Irrational
 
 open scoped Nat
@@ -1272,3 +1272,4 @@ theorem J_rs {r s : ℕ} (h : r ≠ s) : J r s =
     · linarith
 
 end LeanPool.Zeta3Irrational
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

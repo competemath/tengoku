@@ -28,7 +28,7 @@ Cincio, Coles (2021); Ragone et al. (2023); Thanasilp, Wang, Cerezo, Holmes (202
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace QuantumAlg
 
 open Filter Topology
@@ -174,3 +174,4 @@ theorem GeometricQMLTrainable.variance_pos (M : GeometricQMLTrainable) {n : ℕ}
   lt_of_lt_of_le (one_div_pos.mpr (pow_pos (Nat.cast_pos.mpr hn) M.deg)) (M.variance_lb n hn)
 
 end QuantumAlg
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

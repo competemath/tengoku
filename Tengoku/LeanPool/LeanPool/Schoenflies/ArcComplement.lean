@@ -86,7 +86,7 @@ Three hypotheses, all named in the statements that carry them.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set unitInterval
 open scoped Graph
 
@@ -890,3 +890,4 @@ theorem isConnected_compl_arc {A : Set Plane} (hA : IsArc A) (h2c : SquaresTwoCo
     exact ⟨F, fun v hv => Set.disjoint_left.1 hFA hv, hzF, hyF, hFconn.isPreconnected⟩
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

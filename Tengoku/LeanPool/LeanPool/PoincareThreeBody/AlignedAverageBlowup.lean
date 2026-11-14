@@ -16,7 +16,7 @@ upper bound on the aligned disturbing average.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.PoincareThreeBody
 
 open MeasureTheory
@@ -245,3 +245,4 @@ theorem exists_collisionAligned_resonantDisturbingAverage_lt
     heccentricityOne, haverage⟩
 
 end LeanPool.PoincareThreeBody
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

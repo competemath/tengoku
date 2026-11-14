@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 section
 
 open Filter
@@ -40,3 +40,4 @@ lemma DiscreteTopology.summable_iff_eventually_zero
     exact summable_of_hasFiniteSupport (eventually_cofinite.mp ev_zero)
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

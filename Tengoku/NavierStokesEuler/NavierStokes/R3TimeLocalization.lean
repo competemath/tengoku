@@ -11,7 +11,7 @@ bounds into the corresponding space-time bounds. Smoothness is only required
 on the open time interval containing the cutoff support.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace NavierStokes.R3TimeLocalization
 
 open Set Filter MeasureTheory R3SpaceTime ProblemStatement
@@ -87,3 +87,4 @@ theorem localize_memLp_two {a : ℝ → ℝ} {u : Domain → ℂ} {C : ℝ}
       exact mul_le_mul_of_nonneg_left (hb t ht) (sq_nonneg _)
 
 end NavierStokes.R3TimeLocalization
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

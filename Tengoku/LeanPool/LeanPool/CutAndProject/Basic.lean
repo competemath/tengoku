@@ -31,7 +31,7 @@ projections is not formalised here. The irrational-slope case
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Nat
 
 namespace CutAndProject
@@ -3138,3 +3138,4 @@ theorem set_main_theorem_geometric_concrete
     (set_difference_sequence_unit_eq_one_of_ge α β ω (multiplier α β h_coprime))
 
 end CutAndProject
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

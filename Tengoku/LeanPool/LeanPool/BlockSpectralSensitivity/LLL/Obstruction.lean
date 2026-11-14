@@ -45,7 +45,7 @@ Adapted for Lean Pool from `Timeroot/BS_Lam` at commit
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace BSLambda
 
 namespace LLL
@@ -1199,3 +1199,4 @@ theorem pr_radiusTwoEvent_le [NeZero r] {Arc : ι → ι → Bool} (hT : IsTourn
 end LLL
 
 end BSLambda
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

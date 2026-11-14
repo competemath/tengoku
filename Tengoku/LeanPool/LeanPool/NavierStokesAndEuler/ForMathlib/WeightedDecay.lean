@@ -18,7 +18,7 @@ force estimates supply the slab bound by different compactness arguments.
 -/
 
 public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace NavierStokesAndEuler.WeightedDecay
 
 open Set
@@ -44,3 +44,4 @@ theorem exists_pos_norm_le_div_of_slab_bound {X V : Type*} [SeminormedAddCommGro
     exact (div_pos (lt_of_lt_of_le zero_lt_one (le_max_right _ _)) hwpos).le
 
 end NavierStokesAndEuler.WeightedDecay
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

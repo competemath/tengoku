@@ -22,7 +22,7 @@ These are upstream candidates for Mathlib; nothing here mentions `Gate`/`PureSta
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace QuantumAlg
 
 open Complex
@@ -320,3 +320,4 @@ theorem exists_cos_sin {v w : ℝ} (hvw : v ^ 2 + w ^ 2 = 1) :
     simp
 
 end QuantumAlg
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

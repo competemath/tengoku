@@ -18,8 +18,8 @@ Imported Lean Pool material for `LeanPool.QuasiBorelSpaces.Option`.
 -/
 
 @[expose] public section
-
-namespace QuasiBorelSpace.Option
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+namespace Tengoku.LeanPool.QuasiBorelSpace.Option
 
 variable {A B C : Type*} [QuasiBorelSpace A] [QuasiBorelSpace B] [QuasiBorelSpace C]
 
@@ -171,11 +171,11 @@ lemma isHom_isNone : IsHom (fun x : Option A ↦ x.isNone) := by
   simp only [this]
   fun_prop
 
-end QuasiBorelSpace.Option
+end Tengoku.LeanPool.QuasiBorelSpace.Option
 
-namespace OmegaQuasiBorelSpace.Option
+namespace Tengoku.LeanPool.OmegaQuasiBorelSpace.Option
 
-open QuasiBorelSpace
+open Tengoku.LeanPool.QuasiBorelSpace
 open OmegaCompletePartialOrder
 
 variable {A B : Type*}
@@ -225,4 +225,5 @@ noncomputable instance [OmegaQuasiBorelSpace A] : OmegaQuasiBorelSpace (Option A
     simp only [ωSup]
     fun_prop
 
-end OmegaQuasiBorelSpace.Option
+end Tengoku.LeanPool.OmegaQuasiBorelSpace.Option
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

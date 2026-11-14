@@ -24,7 +24,7 @@ Main declarations:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace RS
 
 open Metric Set
@@ -141,3 +141,4 @@ theorem isCompact_closure_montelFamily {Ω K : Set ℂ} (hΩ : IsOpen Ω) (hK : 
   exact (Homeomorph.isCompact_image E).mp key
 
 end RS
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

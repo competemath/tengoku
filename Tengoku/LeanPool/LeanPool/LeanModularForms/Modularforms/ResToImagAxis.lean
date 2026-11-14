@@ -17,7 +17,7 @@ import Tengoku.Seed.NumberTheory.ModularForms.QExpansion
 /-! # ResToImagAxis -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open UpperHalfPlane hiding I
 
 open Real Complex ContinuousMap Matrix CongruenceSubgroup ModularGroup Filter Asymptotics
@@ -28,7 +28,7 @@ open scoped Interval Real Topology Manifold ModularForm MatrixGroups
 Restrict a function `F : ℍ → ℂ` to the positive imaginary axis, i.e. `t ↦ F (I * t)`.
 If $t \le 0$, then `F (I * t)` is not defined, and we return `0` in that case.
 -/
-noncomputable def ResToImagAxis (F : ℍ → ℂ) : ℝ → ℂ :=
+noncomputable def _root_.Tengoku.LeanPool.ResToImagAxis (F : ℍ → ℂ) : ℝ → ℂ :=
   fun t => if ht : 0 < t then F ⟨(I * t), by simp [ht]⟩ else 0
 
 namespace Function
@@ -49,14 +49,14 @@ Function $F : \mathbb{H} \to \mathbb{C}$ whose restriction to the imaginary axis
 i.e. imaginary part is zero.
 -/
 @[fun_prop]
-noncomputable def ResToImagAxis.Real (F : ℍ → ℂ) : Prop :=
+noncomputable def Tengoku.LeanPool.ResToImagAxis.Real (F : ℍ → ℂ) : Prop :=
   ∀ t : ℝ, 0 < t → (F.resToImagAxis t).im = 0
 
 /--
 Function $F : \mathbb{H} \to \mathbb{C}$ is real and positive on the imaginary axis.
 -/
 @[fun_prop]
-noncomputable def ResToImagAxis.Pos (F : ℍ → ℂ) : Prop :=
+noncomputable def Tengoku.LeanPool.ResToImagAxis.Pos (F : ℍ → ℂ) : Prop :=
   ResToImagAxis.Real F ∧ ∀ t : ℝ, 0 < t → 0 < (F.resToImagAxis t).re
 
 /--
@@ -64,11 +64,11 @@ Function $F : \mathbb{H} \to \mathbb{C}$ whose restriction to the imaginary axis
 positive, i.e. there exists $t_0 > 0$ such that for all $t \ge t_0$, $F(it)$ is real and positive.
 -/
 @[fun_prop]
-noncomputable def ResToImagAxis.EventuallyPos (F : ℍ → ℂ) : Prop :=
+noncomputable def Tengoku.LeanPool.ResToImagAxis.EventuallyPos (F : ℍ → ℂ) : Prop :=
   ResToImagAxis.Real F ∧ ∃ t₀ : ℝ, 0 < t₀ ∧ ∀ t : ℝ, t₀ ≤ t → 0 < (F.resToImagAxis t).re
 
 @[fun_prop]
-theorem ResToImagAxis.Differentiable (F : ℍ → ℂ) (hF : MDiff F) (t : ℝ)
+theorem Tengoku.LeanPool.ResToImagAxis.Differentiable (F : ℍ → ℂ) (hF : MDiff F) (t : ℝ)
     (ht : 0 < t) : DifferentiableAt ℝ F.resToImagAxis t := by
   rw [Function.resToImagAxis_eq_resToImagAxis]
   have hcdiff := hF ⟨Complex.I * t, by norm_num [Complex.I_re, ht]⟩
@@ -87,7 +87,7 @@ theorem ResToImagAxis.Differentiable (F : ℍ → ℂ) (hF : MDiff F) (t : ℝ)
 /--
 Restriction and slash action under S: $(F |_k S) (it) = (it)^{-k} * F(it)$
 -/
-theorem ResToImagAxis.SlashActionS (F : ℍ → ℂ) (k : ℤ) {t : ℝ} (ht : 0 < t) :
+theorem Tengoku.LeanPool.ResToImagAxis.SlashActionS (F : ℍ → ℂ) (k : ℤ) {t : ℝ} (ht : 0 < t) :
     (F ∣[k] S).resToImagAxis t = (Complex.I) ^ (-k) * t ^ (-k) * F.resToImagAxis (1 / t) := by
   set z : ℍ := ⟨I * t, by simp [ht]⟩ with hzdef
   set z' : ℍ := ⟨I * (1 / t : ℝ), by simpa [one_div_pos.2 ht]⟩ with hz'def
@@ -101,18 +101,18 @@ theorem ResToImagAxis.SlashActionS (F : ℍ → ℂ) (k : ℤ) {t : ℝ} (ht : 0
 Realness, positivity and essential positivity are closed under the addition and multiplication.
 -/
 @[fun_prop]
-theorem ResToImagAxis.Real.const (c : ℝ) : ResToImagAxis.Real (fun _ => c) := by
+theorem Tengoku.LeanPool.ResToImagAxis.Real.const (c : ℝ) : ResToImagAxis.Real (fun _ => c) := by
   intro t ht
   simp only [Function.resToImagAxis_apply, ResToImagAxis, ht, ↓reduceDIte, ofReal_im]
 
 @[fun_prop]
-theorem ResToImagAxis.Real.zero : ResToImagAxis.Real (fun _ => 0) := ResToImagAxis.Real.const 0
+theorem Tengoku.LeanPool.ResToImagAxis.Real.zero : ResToImagAxis.Real (fun _ => 0) := ResToImagAxis.Real.const 0
 
 @[fun_prop]
-theorem ResToImagAxis.Real.one : ResToImagAxis.Real (fun _ => 1) := ResToImagAxis.Real.const 1
+theorem Tengoku.LeanPool.ResToImagAxis.Real.one : ResToImagAxis.Real (fun _ => 1) := ResToImagAxis.Real.const 1
 
 @[fun_prop]
-theorem ResToImagAxis.Real.neg {F : ℍ → ℂ} (hF : ResToImagAxis.Real F) : ResToImagAxis.Real (-F)
+theorem Tengoku.LeanPool.ResToImagAxis.Real.neg {F : ℍ → ℂ} (hF : ResToImagAxis.Real F) : ResToImagAxis.Real (-F)
     := by
   intro t ht
   have hFreal := hF t ht
@@ -120,7 +120,7 @@ theorem ResToImagAxis.Real.neg {F : ℍ → ℂ} (hF : ResToImagAxis.Real F) : R
   simp [ResToImagAxis, ht, hFreal]
 
 @[fun_prop]
-theorem ResToImagAxis.Real.add {F G : ℍ → ℂ} (hF : ResToImagAxis.Real F)
+theorem Tengoku.LeanPool.ResToImagAxis.Real.add {F G : ℍ → ℂ} (hF : ResToImagAxis.Real F)
     (hG : ResToImagAxis.Real G) : ResToImagAxis.Real (F + G) := by
   intro t ht
   have hFreal := hF t ht; have hGreal := hG t ht
@@ -128,12 +128,12 @@ theorem ResToImagAxis.Real.add {F G : ℍ → ℂ} (hF : ResToImagAxis.Real F)
   simp [ResToImagAxis, ht, hFreal, hGreal]
 
 @[fun_prop]
-theorem ResToImagAxis.Real.sub {F G : ℍ → ℂ} (hF : ResToImagAxis.Real F)
+theorem Tengoku.LeanPool.ResToImagAxis.Real.sub {F G : ℍ → ℂ} (hF : ResToImagAxis.Real F)
     (hG : ResToImagAxis.Real G) : ResToImagAxis.Real (F - G) := by
   simpa [sub_eq_add_neg] using ResToImagAxis.Real.add hF hG.neg
 
 @[fun_prop]
-theorem ResToImagAxis.Real.mul {F G : ℍ → ℂ} (hF : ResToImagAxis.Real F)
+theorem Tengoku.LeanPool.ResToImagAxis.Real.mul {F G : ℍ → ℂ} (hF : ResToImagAxis.Real F)
     (hG : ResToImagAxis.Real G) : ResToImagAxis.Real (F * G) := by
   intro t ht
   have hFreal := hF t ht; have hGreal := hG t ht
@@ -141,7 +141,7 @@ theorem ResToImagAxis.Real.mul {F G : ℍ → ℂ} (hF : ResToImagAxis.Real F)
   simp [ResToImagAxis, ht, hFreal, hGreal]
 
 @[fun_prop]
-theorem ResToImagAxis.Real.smul {F : ℍ → ℂ} {c : ℝ} (hF : ResToImagAxis.Real F) :
+theorem Tengoku.LeanPool.ResToImagAxis.Real.smul {F : ℍ → ℂ} {c : ℝ} (hF : ResToImagAxis.Real F) :
     ResToImagAxis.Real (c • F) := by
   intro t ht
   have hFreal := hF t ht
@@ -149,21 +149,21 @@ theorem ResToImagAxis.Real.smul {F : ℍ → ℂ} {c : ℝ} (hF : ResToImagAxis.
   simp [ResToImagAxis, ht, hFreal]
 
 @[fun_prop]
-theorem ResToImagAxis.Real.pow {F : ℍ → ℂ} (hF : ResToImagAxis.Real F) (n : ℕ) :
+theorem Tengoku.LeanPool.ResToImagAxis.Real.pow {F : ℍ → ℂ} (hF : ResToImagAxis.Real F) (n : ℕ) :
     ResToImagAxis.Real (F ^ n) := by
   induction n with
   | zero => exact ResToImagAxis.Real.one
   | succ n hn => exact hn.mul hF
 
-theorem ResToImagAxis.Pos.const (c : ℝ) (hc : 0 < c) : ResToImagAxis.Pos (fun _ => c) :=
+theorem Tengoku.LeanPool.ResToImagAxis.Pos.const (c : ℝ) (hc : 0 < c) : ResToImagAxis.Pos (fun _ => c) :=
   ⟨ResToImagAxis.Real.const c, fun t ht ↦ by simp [ResToImagAxis, ht, hc]⟩
 
 @[fun_prop]
-theorem ResToImagAxis.Pos.one : ResToImagAxis.Pos (fun _ => 1) :=
+theorem Tengoku.LeanPool.ResToImagAxis.Pos.one : ResToImagAxis.Pos (fun _ => 1) :=
   ResToImagAxis.Pos.const 1 one_pos
 
 @[fun_prop]
-theorem ResToImagAxis.Pos.add {F G : ℍ → ℂ} (hF : ResToImagAxis.Pos F)
+theorem Tengoku.LeanPool.ResToImagAxis.Pos.add {F G : ℍ → ℂ} (hF : ResToImagAxis.Pos F)
     (hG : ResToImagAxis.Pos G) : ResToImagAxis.Pos (F + G) := by
   rw [Pos]; refine ⟨Real.add hF.1 hG.1, fun t ht ↦ ?_⟩
   have hFpos := hF.2 t ht; have hGpos := hG.2 t ht
@@ -171,7 +171,7 @@ theorem ResToImagAxis.Pos.add {F G : ℍ → ℂ} (hF : ResToImagAxis.Pos F)
   simp [ResToImagAxis, ht, add_pos hFpos hGpos]
 
 @[fun_prop]
-theorem ResToImagAxis.Pos.mul {F G : ℍ → ℂ} (hF : ResToImagAxis.Pos F)
+theorem Tengoku.LeanPool.ResToImagAxis.Pos.mul {F G : ℍ → ℂ} (hF : ResToImagAxis.Pos F)
     (hG : ResToImagAxis.Pos G) : ResToImagAxis.Pos (F * G) := by
   rw [Pos]; refine ⟨Real.mul hF.1 hG.1, fun t ht ↦ ?_⟩
   have hFreal := hF.1 t ht; have hGreal := hG.1 t ht
@@ -180,7 +180,7 @@ theorem ResToImagAxis.Pos.mul {F G : ℍ → ℂ} (hF : ResToImagAxis.Pos F)
   simp [ResToImagAxis, ht, hFreal, hGreal, mul_pos hFpos hGpos]
 
 @[fun_prop]
-theorem ResToImagAxis.Pos.smul {F : ℍ → ℂ} {c : ℝ} (hF : ResToImagAxis.Pos F)
+theorem Tengoku.LeanPool.ResToImagAxis.Pos.smul {F : ℍ → ℂ} {c : ℝ} (hF : ResToImagAxis.Pos F)
     (hc : 0 < c) : ResToImagAxis.Pos (c • F) := by
   rw [Pos]; refine ⟨Real.smul hF.1, fun t ht ↦ ?_⟩
   have hFreal := hF.1 t ht; have hFpos := hF.2 t ht
@@ -188,29 +188,29 @@ theorem ResToImagAxis.Pos.smul {F : ℍ → ℂ} {c : ℝ} (hF : ResToImagAxis.P
   simp [ResToImagAxis, ht, mul_pos hc hFpos]
 
 @[fun_prop]
-theorem ResToImagAxis.Pos.pow {F : ℍ → ℂ} (hF : ResToImagAxis.Pos F) (n : ℕ) :
+theorem Tengoku.LeanPool.ResToImagAxis.Pos.pow {F : ℍ → ℂ} (hF : ResToImagAxis.Pos F) (n : ℕ) :
     ResToImagAxis.Pos (F ^ n) := by
   induction n with
   | zero => exact ResToImagAxis.Pos.one
   | succ n hn => exact hn.mul hF
 
 @[fun_prop]
-theorem ResToImagAxis.EventuallyPos.from_pos {F : ℍ → ℂ} (hF : ResToImagAxis.Pos F) :
+theorem Tengoku.LeanPool.ResToImagAxis.EventuallyPos.from_pos {F : ℍ → ℂ} (hF : ResToImagAxis.Pos F) :
     ResToImagAxis.EventuallyPos F :=
   ⟨hF.1, 1, one_pos, fun t ht ↦ hF.2 t (by linarith)⟩
 
 @[fun_prop]
-theorem ResToImagAxis.EventuallyPos.one :
+theorem Tengoku.LeanPool.ResToImagAxis.EventuallyPos.one :
     ResToImagAxis.EventuallyPos (fun _ => 1) :=
   ResToImagAxis.EventuallyPos.from_pos ResToImagAxis.Pos.one
 
 @[fun_prop]
-theorem ResToImagAxis.EventuallyPos.const (c : ℝ) (hc : 0 < c) :
+theorem Tengoku.LeanPool.ResToImagAxis.EventuallyPos.const (c : ℝ) (hc : 0 < c) :
     ResToImagAxis.EventuallyPos (fun _ => c) :=
   ResToImagAxis.EventuallyPos.from_pos (ResToImagAxis.Pos.const c hc)
 
 @[fun_prop]
-theorem ResToImagAxis.EventuallyPos.add {F G : ℍ → ℂ}
+theorem Tengoku.LeanPool.ResToImagAxis.EventuallyPos.add {F G : ℍ → ℂ}
     (hF : ResToImagAxis.EventuallyPos F) (hG : ResToImagAxis.EventuallyPos G) :
     ResToImagAxis.EventuallyPos (F + G) := by
   rw [EventuallyPos]; refine ⟨ResToImagAxis.Real.add hF.1 hG.1, ?_⟩
@@ -224,7 +224,7 @@ theorem ResToImagAxis.EventuallyPos.add {F G : ℍ → ℂ}
   exact add_pos hFpos_t hGpos_t
 
 @[fun_prop]
-theorem ResToImagAxis.EventuallyPos.mul {F G : ℍ → ℂ}
+theorem Tengoku.LeanPool.ResToImagAxis.EventuallyPos.mul {F G : ℍ → ℂ}
     (hF : ResToImagAxis.EventuallyPos F) (hG : ResToImagAxis.EventuallyPos G) :
     ResToImagAxis.EventuallyPos (F * G) := by
   rw [EventuallyPos]; refine ⟨ResToImagAxis.Real.mul hF.1 hG.1, ?_⟩
@@ -241,7 +241,7 @@ theorem ResToImagAxis.EventuallyPos.mul {F G : ℍ → ℂ}
   exact mul_pos hFpos_t hGpos_t
 
 @[fun_prop]
-theorem ResToImagAxis.EventuallyPos.pow {F : ℍ → ℂ}
+theorem Tengoku.LeanPool.ResToImagAxis.EventuallyPos.pow {F : ℍ → ℂ}
     (hF : ResToImagAxis.EventuallyPos F) (n : ℕ) :
     ResToImagAxis.EventuallyPos (F ^ n) := by
   induction n with
@@ -249,7 +249,7 @@ theorem ResToImagAxis.EventuallyPos.pow {F : ℍ → ℂ}
   | succ n hn => exact hn.mul hF
 
 @[fun_prop]
-theorem ResToImagAxis.EventuallyPos.smul {F : ℍ → ℂ} {c : ℝ} (hF : ResToImagAxis.EventuallyPos F)
+theorem Tengoku.LeanPool.ResToImagAxis.EventuallyPos.smul {F : ℍ → ℂ} {c : ℝ} (hF : ResToImagAxis.EventuallyPos F)
     (hc : 0 < c) : ResToImagAxis.EventuallyPos (c • F) := by
   rw [EventuallyPos]; refine ⟨ResToImagAxis.Real.smul hF.1, ?_⟩
   obtain ⟨t₀, hF0, hFpos⟩ := hF.2; refine ⟨t₀, hF0, fun t ht ↦ ?_⟩
@@ -259,7 +259,7 @@ theorem ResToImagAxis.EventuallyPos.smul {F : ℍ → ℂ} {c : ℝ} (hF : ResTo
   simp [ResToImagAxis, htpos, mul_pos hc hFpos_t]
 
 /-- If `F` is real-valued, then `F` is equal to the real part of itself on imaginary axis. -/
-theorem ResToImagAxis.Real.eq_real_part {F : ℍ → ℂ} (hF : ResToImagAxis.Real F) (t : ℝ) :
+theorem Tengoku.LeanPool.ResToImagAxis.Real.eq_real_part {F : ℍ → ℂ} (hF : ResToImagAxis.Real F) (t : ℝ) :
     F.resToImagAxis t = (F.resToImagAxis t).re := by
   simp only [Function.resToImagAxis, ResToImagAxis]
   split_ifs with ht
@@ -279,7 +279,7 @@ One application is to cusp forms, which satisfy such exponential decay bounds.
 If `F : ℍ → ℂ` is `O(exp(-c * im τ))` at `atImInfty` for some `c > 0`, then
 the restriction to the imaginary axis `t ↦ F(it)` is `O(exp(-c * t))` at `atTop`.
 -/
-lemma isBigO_resToImagAxis_of_isBigO_atImInfty {F : ℍ → ℂ} {c : ℝ} (_hc : 0 < c)
+lemma _root_.Tengoku.LeanPool.isBigO_resToImagAxis_of_isBigO_atImInfty {F : ℍ → ℂ} {c : ℝ} (_hc : 0 < c)
     (hF : F =O[atImInfty] fun τ => Real.exp (-c * τ.im)) :
     F.resToImagAxis =O[atTop] fun t => Real.exp (-c * t) := by
   rw [Asymptotics.isBigO_iff] at hF ⊢
@@ -299,7 +299,7 @@ The analytic kernel: if `g : ℝ → ℂ` is eventually bounded by `C * exp(-b *
 This follows from the fact that `t^s * exp(-b * t) → 0` (mathlib's
 `tendsto_rpow_mul_exp_neg_mul_atTop_nhds_zero`) combined with the big-O transfer lemma.
 -/
-lemma tendsto_rpow_mul_of_isBigO_exp {g : ℝ → ℂ} {s b : ℝ} (hb : 0 < b)
+lemma _root_.Tengoku.LeanPool.tendsto_rpow_mul_of_isBigO_exp {g : ℝ → ℂ} {s b : ℝ} (hb : 0 < b)
     (hg : g =O[atTop] fun t => rexp (-b * t)) :
     Tendsto (fun t : ℝ => (t : ℂ) ^ (s : ℂ) * g t) atTop (𝓝 0) := by
   refine ((isBigO_refl _ _).mul (Complex.isBigO_ofReal_right.mpr hg)).trans_tendsto ?_
@@ -311,7 +311,7 @@ lemma tendsto_rpow_mul_of_isBigO_exp {g : ℝ → ℂ} {s b : ℝ} (hb : 0 < b)
 If `F : ℍ → ℂ` is `O(exp(-c * im τ))` at `atImInfty` for some `c > 0`, then
 `t^s * F(it) → 0` as `t → ∞` for any real power `s`.
 -/
-theorem tendsto_rpow_mul_resToImagAxis_of_isBigO_exp {F : ℍ → ℂ} {c : ℝ} (hc : 0 < c)
+theorem _root_.Tengoku.LeanPool.tendsto_rpow_mul_resToImagAxis_of_isBigO_exp {F : ℍ → ℂ} {c : ℝ} (hc : 0 < c)
     (hF : F =O[atImInfty] fun τ => rexp (-c * τ.im)) (s : ℝ) :
     Tendsto (fun t : ℝ => (t : ℂ) ^ (s : ℂ) * F.resToImagAxis t) atTop (𝓝 0) :=
   tendsto_rpow_mul_of_isBigO_exp hc (isBigO_resToImagAxis_of_isBigO_atImInfty hc hF)
@@ -321,7 +321,7 @@ For a cusp form `f` of level `Γ(n)`, we have `t^s * f(it) → 0` as `t → ∞`
 
 This follows from the exponential decay of cusp forms at infinity: `f = O(exp(-2π τ.im / n))`.
 -/
-theorem cuspForm_rpow_mul_resToImagAxis_tendsto_zero {n : ℕ} {k : ℤ} {F : Type*}
+theorem _root_.Tengoku.LeanPool.cuspForm_rpow_mul_resToImagAxis_tendsto_zero {n : ℕ} {k : ℤ} {F : Type*}
     [NeZero n] [FunLike F ℍ ℂ] [CuspFormClass F Γ(n) k] (f : F) (s : ℝ) :
     Tendsto (fun t : ℝ => (t : ℂ) ^ (s : ℂ) * (f : ℍ → ℂ).resToImagAxis t) atTop (𝓝 0) := by
   have hn_pos : (0 : ℝ) < n := Nat.cast_pos.mpr (NeZero.pos n)
@@ -349,7 +349,7 @@ then `F = O(exp(-2π n₀ · im z))` at `atImInfty`.
 The key bound is: for `im z ≥ c`,
   `‖F(z)‖ ≤ (∑_m ‖a_m‖ · exp(-2π c m)) · exp(-2π n₀ · im z)`
 -/
-lemma isBigO_atImInfty_of_fourier_shift
+lemma _root_.Tengoku.LeanPool.isBigO_atImInfty_of_fourier_shift
     {F : ℍ → ℂ} {a : ℕ → ℂ} {n₀ : ℕ} {c : ℝ} (_hn₀ : 0 < n₀) (_hc : 0 < c)
     (hF : ∀ z : ℍ, F z =
       ∑' m : ℕ, a m * cexp (2 * π * I * ((m + n₀ : ℕ) : ℂ) * (z : ℂ)))
@@ -416,7 +416,7 @@ at height `c > 0`, then `t^s * F(it) → 0` as `t → ∞` for any real power `s
 This converts a Fourier expansion representation directly into polynomial decay on the
 imaginary axis.
 -/
-theorem tendsto_rpow_mul_resToImagAxis_of_fourier_shift
+theorem _root_.Tengoku.LeanPool.tendsto_rpow_mul_resToImagAxis_of_fourier_shift
     {F : ℍ → ℂ} {a : ℕ → ℂ} {n₀ : ℕ} {c : ℝ} (hn₀ : 0 < n₀) (hc : 0 < c)
     (hF : ∀ z : ℍ, F z =
       ∑' m : ℕ, a m * Complex.exp (2 * π * Complex.I * ((m + n₀ : ℕ) : ℂ) * (z : ℂ)))
@@ -426,17 +426,17 @@ theorem tendsto_rpow_mul_resToImagAxis_of_fourier_shift
     (isBigO_atImInfty_of_fourier_shift hn₀ hc hF ha) s
 
 /-- Extract the imaginary part condition at a specific point from `ResToImagAxis.Real`. -/
-lemma ResToImagAxis.Real.im_eq_zero_at {F : ℍ → ℂ} (hF : ResToImagAxis.Real F)
+lemma Tengoku.LeanPool.ResToImagAxis.Real.im_eq_zero_at {F : ℍ → ℂ} (hF : ResToImagAxis.Real F)
     {t : ℝ} (ht : 0 < t) (z : ℍ) (hz : z = ⟨Complex.I * t, by simp [ht]⟩) :
     (F z).im = 0 := by subst hz; simpa [Function.resToImagAxis, ResToImagAxis, ht] using hF t ht
 
 /-- Extract the positivity condition at a specific point from `ResToImagAxis.Pos`. -/
-lemma ResToImagAxis.Pos.re_pos_at {F : ℍ → ℂ} (hF : ResToImagAxis.Pos F)
+lemma Tengoku.LeanPool.ResToImagAxis.Pos.re_pos_at {F : ℍ → ℂ} (hF : ResToImagAxis.Pos F)
     {t : ℝ} (ht : 0 < t) (z : ℍ) (hz : z = ⟨Complex.I * t, by simp [ht]⟩) :
     0 < (F z).re := by subst hz; simpa [Function.resToImagAxis, ResToImagAxis, ht] using hF.2 t ht
 
 /-- Tendsto conversion: if F tends to c at atImInfty, then F.resToImagAxis tends to c at atTop. -/
-lemma tendsto_resToImagAxis_of_tendsto_atImInfty {F : ℍ → ℂ} {c : ℂ}
+lemma _root_.Tengoku.LeanPool.tendsto_resToImagAxis_of_tendsto_atImInfty {F : ℍ → ℂ} {c : ℂ}
     (hF : Tendsto F atImInfty (nhds c)) :
     Tendsto F.resToImagAxis atTop (nhds c) := by
   rw [Metric.tendsto_atTop]; intro ε hε
@@ -445,3 +445,4 @@ lemma tendsto_resToImagAxis_of_tendsto_atImInfty {F : ℍ → ℂ} {c : ℂ}
   have ht_pos : 0 < t := lt_of_lt_of_le one_pos (le_of_max_le_right ht)
   simp only [Function.resToImagAxis, ResToImagAxis, ht_pos, ↓reduceDIte]
   simp_all
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

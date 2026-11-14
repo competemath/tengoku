@@ -19,10 +19,10 @@ interpretation `coeQ`, negation, validity predicates, and an ordering
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-- A sign/exponent/mantissa representation of a (normal) floating-point number
 in the format `α`. -/
-structure FloatRep (α : FloatCfg) where
+structure _root_.Tengoku.LeanPool.FloatRep (α : FloatCfg) where
   /-- The sign bit (`true` for negative). -/
   s : Bool
   /-- The exponent. -/
@@ -36,15 +36,15 @@ instance : Repr (FloatRep C) where
   reprPrec := fun ⟨s, e, m⟩ _ => "⟨" ++ repr s ++ ", " ++ repr e ++ ", " ++ repr m ++ "⟩"
 
 /-- Decidable equality on `FloatRep`. -/
-def FloatRep.decEq (f1 f2 : FloatRep C) : Decidable (Eq f1 f2) := by
+def Tengoku.LeanPool.FloatRep.decEq (f1 f2 : FloatRep C) : Decidable (Eq f1 f2) := by
   rw [FloatRep.mk.injEq]
   exact instDecidableAnd
 
 /-- A representation has a valid mantissa when it is below the precision. -/
-def FloatRep.validM (f : FloatRep C) : Prop := f.m < C.prec
+def Tengoku.LeanPool.FloatRep.validM (f : FloatRep C) : Prop := f.m < C.prec
 
 /-- The rational value represented by a `FloatRep`. -/
-def coeQ : FloatRep C → ℚ
+def _root_.Tengoku.LeanPool.coeQ : FloatRep C → ℚ
 | ⟨b, e, m⟩ =>
   let s := if b then -1 else 1
   s * (m / C.prec + 1) * 2^e
@@ -52,7 +52,7 @@ def coeQ : FloatRep C → ℚ
 /--
 @isnad1 id=lt.0h3v.s4.a9f940c2e1a2 from=translated src=- shape=af7ed12a vocab=8fa68ea2
 -/
-lemma coe_q_false_pos {e : ℤ} {m : ℕ} :
+lemma _root_.Tengoku.LeanPool.coe_q_false_pos {e : ℤ} {m : ℕ} :
   0 < coeQ (⟨false, e, m⟩ : FloatRep C) := by
   simp only [coeQ, Bool.false_eq_true, ↓reduceIte, one_mul]
   suffices ((m : ℚ) / C.prec + 1) > 0 by
@@ -62,7 +62,7 @@ lemma coe_q_false_pos {e : ℤ} {m : ℕ} :
     _ < m/C.prec + 1 := lt_add_one _
 
 /-- Negate a representation by flipping its sign bit. -/
-def FloatRep.neg {C : FloatCfg} : FloatRep C → FloatRep C
+def Tengoku.LeanPool.FloatRep.neg {C : FloatCfg} : FloatRep C → FloatRep C
 | ⟨s, e, m⟩ => ⟨!s, e, m⟩
 
 /--
@@ -75,7 +75,7 @@ lemma Flean.neg_neg : (@FloatRep.neg C) ∘ (@FloatRep.neg C) = id := by
 /--
 @isnad1 id=bijectiv.0h1v.s3.cf73f0be5f56 from=translated src=- shape=2f9cf4fe vocab=9b94f2a8
 -/
-lemma neg_invertible : Function.Bijective (@FloatRep.neg C) := by
+lemma _root_.Tengoku.LeanPool.neg_invertible : Function.Bijective (@FloatRep.neg C) := by
   apply Function.bijective_iff_has_inverse.2
   refine ⟨FloatRep.neg, Function.leftInverse_iff_comp.2 ?_, Function.rightInverse_iff_comp.2 ?_⟩
   <;> exact Flean.neg_neg
@@ -83,30 +83,30 @@ lemma neg_invertible : Function.Bijective (@FloatRep.neg C) := by
 /--
 @isnad1 id=iff.0h2v.s3.c04cdeeefee2 from=translated src=- shape=d0788cef vocab=da6b8a35
 -/
-lemma neg_valid_m {f : FloatRep C} :
+lemma _root_.Tengoku.LeanPool.neg_valid_m {f : FloatRep C} :
   (FloatRep.neg f).validM ↔ (f.validM) := by
   simp [FloatRep.validM, FloatRep.neg]
 
 /--
 @isnad1 id=eq.0h2v.s4.bde167590e42 from=translated src=- shape=13890474 vocab=6fddf953
 -/
-lemma coe_q_of_neg (f : FloatRep C) :
+lemma _root_.Tengoku.LeanPool.coe_q_of_neg (f : FloatRep C) :
   coeQ (FloatRep.neg f) = -coeQ f:= by
   by_cases h : f.s <;> simp [coeQ, h, FloatRep.neg] <;> ring
 
 /--
 @isnad1 id=eq.0h3v.s4.dd9ebd71bd92 from=translated src=- shape=e70ec00f vocab=ac3a1bc4
 -/
-lemma neg_false (e : ℤ) (m : ℕ) : ⟨true, e, m⟩ = (FloatRep.neg ⟨false, e, m⟩ : FloatRep C) := rfl
+lemma _root_.Tengoku.LeanPool.neg_false (e : ℤ) (m : ℕ) : ⟨true, e, m⟩ = (FloatRep.neg ⟨false, e, m⟩ : FloatRep C) := rfl
 /--
 @isnad1 id=eq.0h3v.s4.7050ff4eb588 from=translated src=- shape=e70ec00f vocab=ac3a1bc4
 -/
-lemma neg_true (e : ℤ) (m : ℕ) : ⟨false, e, m⟩ = (FloatRep.neg ⟨true, e, m⟩ : FloatRep C) := rfl
+lemma _root_.Tengoku.LeanPool.neg_true (e : ℤ) (m : ℕ) : ⟨false, e, m⟩ = (FloatRep.neg ⟨true, e, m⟩ : FloatRep C) := rfl
 
 /--
 @isnad1 id=lt.0h3v.s4.a4fdd083f1db from=translated src=- shape=fbdf4bf4 vocab=b4e3ef6d
 -/
-lemma coe_q_true_neg {e : ℤ} {m : ℕ} :
+lemma _root_.Tengoku.LeanPool.coe_q_true_neg {e : ℤ} {m : ℕ} :
   coeQ (⟨true, e, m⟩ : FloatRep C) < 0 := by
   rw [neg_false, coe_q_of_neg]
   simp only [Left.neg_neg_iff, coe_q_false_pos]
@@ -114,7 +114,7 @@ lemma coe_q_true_neg {e : ℤ} {m : ℕ} :
 /--
 @isnad1 id=ne.0h2v.s3.27545a43385b from=translated src=- shape=64d491c2 vocab=601aaaf0
 -/
-lemma coe_q_nezero {f : FloatRep C} :
+lemma _root_.Tengoku.LeanPool.coe_q_nezero {f : FloatRep C} :
   coeQ f ≠ 0 := by
   rcases f with ⟨s, e, m⟩
   cases s
@@ -124,7 +124,7 @@ lemma coe_q_nezero {f : FloatRep C} :
 /--
 @isnad1 id=var.0h5v.s5.2445fbd61800 from=translated src=- shape=35c2d0bf vocab=185c57b3
 -/
-lemma floatrep_of_false₁ (P : FloatRep C → Prop)
+lemma _root_.Tengoku.LeanPool.floatrep_of_false₁ (P : FloatRep C → Prop)
   (h1 : ∀ f, P (FloatRep.neg f) → P f)
   (h2 : ∀ e m, P ⟨false, e, m⟩) (f : FloatRep C) :
   P f := by
@@ -138,7 +138,7 @@ lemma floatrep_of_false₁ (P : FloatRep C → Prop)
 /--
 @isnad1 id=var.0h7v.s6.ddcc27d66eb0 from=translated src=- shape=4966c8c9 vocab=185c57b3
 -/
-lemma floatrep_of_false₂ (P : FloatRep C → FloatRep C → Prop)
+lemma _root_.Tengoku.LeanPool.floatrep_of_false₂ (P : FloatRep C → FloatRep C → Prop)
   (h1 : ∀ f1 f2, P (FloatRep.neg f1) f2 → P f1 f2)
   (h2 : ∀ f1 f2, P f1 (FloatRep.neg f2) → P f1 f2)
   (h3 : ∀ e e' m m', P ⟨false, e, m⟩ ⟨false, e', m'⟩) (f1 f2 : FloatRep C) :
@@ -152,7 +152,7 @@ lemma floatrep_of_false₂ (P : FloatRep C → FloatRep C → Prop)
 /--
 @isnad1 id=eq.0h3v.s6.e46c99d6c7ec from=translated src=- shape=178b411d vocab=1fefeb8c
 -/
-lemma coe_q_of_Cprec (b : Bool) (e : ℤ) :
+lemma _root_.Tengoku.LeanPool.coe_q_of_Cprec (b : Bool) (e : ℤ) :
   coeQ (⟨b, e, C.prec⟩ : FloatRep C) = (if b then -1 else 1) * 2^(e + 1) := by
   wlog h : b = false
   · simp [h, neg_false, coe_q_of_neg, this]
@@ -163,19 +163,19 @@ lemma coe_q_of_Cprec (b : Bool) (e : ℤ) :
   exact Nat.cast_ne_zero.mpr (by linarith [C.prec_pos])
 
 /-- A representation has a valid exponent when it lies in `[emin, emax]`. -/
-def FloatRep.validE (f : FloatRep C) : Prop := C.emin ≤ f.e ∧ f.e ≤ C.emax
+def Tengoku.LeanPool.FloatRep.validE (f : FloatRep C) : Prop := C.emin ≤ f.e ∧ f.e ≤ C.emax
 
 /--
 @isnad1 id=iff.0h2v.s3.cf7569afa8f5 from=translated src=- shape=d0788cef vocab=aae4533b
 -/
-lemma neg_valid_e {f : FloatRep C} :
+lemma _root_.Tengoku.LeanPool.neg_valid_e {f : FloatRep C} :
   (FloatRep.neg f).validE ↔ (f.validE) := by
   simp [FloatRep.validE, FloatRep.neg]
 
 /--
 @isnad1 id=le.2h3v.s5.c0ae75f2297c from=translated src=- shape=e86be8e9 vocab=3b3f6eee
 -/
-lemma floatrep_e_le_of_coe_q (f1 f2 : FloatRep C) (vm2 : f2.validM) (h : |coeQ f1| ≤ |coeQ f2|) :
+lemma _root_.Tengoku.LeanPool.floatrep_e_le_of_coe_q (f1 f2 : FloatRep C) (vm2 : f2.validM) (h : |coeQ f1| ≤ |coeQ f2|) :
   f1.e ≤ f2.e := by
   revert h vm2
   apply floatrep_of_false₂ (f1 := f1) (f2 := f2)
@@ -202,7 +202,7 @@ lemma floatrep_e_le_of_coe_q (f1 f2 : FloatRep C) (vm2 : f2.validM) (h : |coeQ f
 /--
 @isnad1 id=and.0h1v.s6.a955c3fde839 from=translated src=- shape=85bf7d06 vocab=6d2cf30f
 -/
-lemma max_mantissa_q (C : FloatCfg) : (1 ≤ 2 - (1 : ℚ) / C.prec) ∧ (2 - (1 : ℚ) / C.prec < 2) := by
+lemma _root_.Tengoku.LeanPool.max_mantissa_q (C : FloatCfg) : (1 ≤ 2 - (1 : ℚ) / C.prec) ∧ (2 - (1 : ℚ) / C.prec < 2) := by
   have := C.prec_pos
   have : (1 : ℚ) / C.prec ≤ 1 := by
     rw [one_div_le]
@@ -218,7 +218,7 @@ lemma max_mantissa_q (C : FloatCfg) : (1 ≤ 2 - (1 : ℚ) / C.prec) ∧ (2 - (1
 /--
 @isnad1 id=and.2h2v.s6.fa77a1cc5ca6 from=translated src=- shape=c3bc0ffd vocab=eb44282a
 -/
-lemma normal_range (f : FloatRep C) (ve : f.validE) (vm : f.validM) :
+lemma _root_.Tengoku.LeanPool.normal_range (f : FloatRep C) (ve : f.validE) (vm : f.validM) :
   C.emin ≤ Int.log 2 |coeQ f| ∧ Int.log 2 |coeQ f| ≤ C.emax := by
   revert ve vm
   apply floatrep_of_false₁ (f := f)
@@ -233,7 +233,7 @@ lemma normal_range (f : FloatRep C) (ve : f.validE) (vm : f.validM) :
 /--
 @isnad1 id=le.2h3v.s6.9cbbd8a2738d from=translated src=- shape=3a58144c vocab=ee36ee18
 -/
-lemma normal_range' (m : ℕ) (e : ℤ) (vm : m < C.prec) (ve2 : e ≤ C.emax) :
+lemma _root_.Tengoku.LeanPool.normal_range' (m : ℕ) (e : ℤ) (vm : m < C.prec) (ve2 : e ≤ C.emax) :
   |((m : ℚ) / ↑C.prec + 1) * 2 ^ e| ≤ (2 - 1 / ↑C.prec) * 2 ^ C.emax := by
   have := C.prec_pos
   have : (1 : ℚ) / C.prec ≤ 1 := by
@@ -256,15 +256,15 @@ lemma normal_range' (m : ℕ) (e : ℤ) (vm : m < C.prec) (ve2 : e ≤ C.emax) :
   simp_all
 
 /-- The largest finite rational representable in the format `C`. -/
-def maxFloatQ (C : FloatCfg) : ℚ := (2 - (1 : ℚ) / C.prec) * 2^C.emax
+def _root_.Tengoku.LeanPool.maxFloatQ (C : FloatCfg) : ℚ := (2 - (1 : ℚ) / C.prec) * 2^C.emax
 
 /-- The representation of the largest finite float of the format `C`. -/
-def maxFloatRep (C : FloatCfg) : FloatRep C := ⟨false, C.emax, C.prec - 1⟩
+def _root_.Tengoku.LeanPool.maxFloatRep (C : FloatCfg) : FloatRep C := ⟨false, C.emax, C.prec - 1⟩
 
 /--
 @isnad1 id=eq.0h1v.s3.4674c829fd2d from=translated src=- shape=aa9ebf7c vocab=a697d64d
 -/
-lemma coe_q_max_float_rep : coeQ (maxFloatRep C) = maxFloatQ C := by
+lemma _root_.Tengoku.LeanPool.coe_q_max_float_rep : coeQ (maxFloatRep C) = maxFloatQ C := by
   simp only [coeQ, maxFloatRep, Bool.false_eq_true, ↓reduceIte, one_mul, maxFloatQ, one_div,
     mul_eq_mul_right_iff]
   left
@@ -275,17 +275,17 @@ lemma coe_q_max_float_rep : coeQ (maxFloatRep C) = maxFloatQ C := by
 
 /-- Ordering on positive representations: larger exponent, or equal exponent
 and larger-or-equal mantissa. -/
-def floatrepLePos (f1 f2 : FloatRep C) : Prop :=
+def _root_.Tengoku.LeanPool.floatrepLePos (f1 f2 : FloatRep C) : Prop :=
   (f1.e < f2.e) ∨ (f1.e = f2.e ∧ f1.m ≤ f2.m)
 
 /-- An equivalent formulation of `floatrepLePos` as a conjunction. -/
-def floatrepLePos' (f1 f2 : FloatRep C) : Prop :=
+def _root_.Tengoku.LeanPool.floatrepLePos' (f1 f2 : FloatRep C) : Prop :=
   (f1.e ≤ f2.e) ∧ (f1.e = f2.e → f1.m ≤ f2.m)
 
 /--
 @isnad1 id=iff.0h3v.s4.09db02e92c7a from=translated src=- shape=71731232 vocab=8ad6cf12
 -/
-lemma floatrep_pos_equiv (f1 f2 : FloatRep C) :
+lemma _root_.Tengoku.LeanPool.floatrep_pos_equiv (f1 f2 : FloatRep C) :
   (floatrepLePos f1 f2) ↔ (floatrepLePos' f1 f2) := by
   simp only [floatrepLePos, floatrepLePos']
   constructor
@@ -302,21 +302,21 @@ lemma floatrep_pos_equiv (f1 f2 : FloatRep C) :
 /--
 @isnad1 id=iff.0h3v.s4.b772f3d62c32 from=translated src=- shape=9a309701 vocab=46664d75
 -/
-lemma floatrep_le_pos_neg₁ (f1 f2 : FloatRep C) :
+lemma _root_.Tengoku.LeanPool.floatrep_le_pos_neg₁ (f1 f2 : FloatRep C) :
   floatrepLePos (FloatRep.neg f1) f2 ↔ floatrepLePos f1 f2 := by
   simp [FloatRep.neg, floatrepLePos]
 
 /--
 @isnad1 id=iff.0h3v.s4.0a7eac36298a from=translated src=- shape=91924ffb vocab=46664d75
 -/
-lemma floatrep_le_pos_neg₂ (f1 f2 : FloatRep C) :
+lemma _root_.Tengoku.LeanPool.floatrep_le_pos_neg₂ (f1 f2 : FloatRep C) :
   floatrepLePos f1 (FloatRep.neg f2) ↔ floatrepLePos f1 f2 := by
   simp [FloatRep.neg, floatrepLePos]
 
 /--
 @isnad1 id=le.2h3v.s5.c67d89fb3de9 from=translated src=- shape=beb6416d vocab=73c5c6e4
 -/
-lemma floatrep_le_pos_coe_q (f1 f2 : FloatRep C) (vm1 : f1.m ≤ C.prec) :
+lemma _root_.Tengoku.LeanPool.floatrep_le_pos_coe_q (f1 f2 : FloatRep C) (vm1 : f1.m ≤ C.prec) :
   (floatrepLePos f1 f2) → |coeQ f1| ≤ |coeQ f2| := by
   revert vm1
   have almost_valid_neg {C : FloatCfg} (f : FloatRep C) :
@@ -356,7 +356,7 @@ lemma floatrep_le_pos_coe_q (f1 f2 : FloatRep C) (vm1 : f1.m ≤ C.prec) :
 /--
 @isnad1 id=floatrep.2h3v.s5.dff86f3cb658 from=translated src=- shape=53a1d664 vocab=ed27534b
 -/
-lemma coe_q_le_floatrep_pos (f1 f2 : FloatRep C) (vm2 : f2.validM) :
+lemma _root_.Tengoku.LeanPool.coe_q_le_floatrep_pos (f1 f2 : FloatRep C) (vm2 : f2.validM) :
   |coeQ f1| ≤ |coeQ f2| → floatrepLePos f1 f2 := by
   revert vm2
   apply floatrep_of_false₂ (f1 := f1) (f2 := f2)
@@ -380,12 +380,12 @@ lemma coe_q_le_floatrep_pos (f1 f2 : FloatRep C) (vm2 : f2.validM) :
 /--
 @isnad1 id=iff.2h3v.s5.18b6fadc3d3a from=translated src=- shape=c321576e vocab=8eb1fd21
 -/
-lemma floatrep_le_pos_iff_coe_q (f1 f2 : FloatRep C) (vm1 : f1.m ≤ C.prec) (vm2 : f2.validM) :
+lemma _root_.Tengoku.LeanPool.floatrep_le_pos_iff_coe_q (f1 f2 : FloatRep C) (vm1 : f1.m ≤ C.prec) (vm2 : f2.validM) :
   floatrepLePos f1 f2 ↔ |coeQ f1| ≤ |coeQ f2| := by
   refine ⟨floatrep_le_pos_coe_q f1 f2 vm1, coe_q_le_floatrep_pos f1 f2 vm2⟩
 
 /-- The full ordering on representations, accounting for signs. -/
-def floatrepLe (f1 f2 : FloatRep C) : Prop :=
+def _root_.Tengoku.LeanPool.floatrepLe (f1 f2 : FloatRep C) : Prop :=
   match (f1.s, f2.s) with
   | (false, false) => floatrepLePos f1 f2
   | (false, true) => False
@@ -395,7 +395,7 @@ def floatrepLe (f1 f2 : FloatRep C) : Prop :=
 /--
 @isnad1 id=iff.2h3v.s4.a79f147018b4 from=translated src=- shape=75ff915c vocab=c4d9d865
 -/
-lemma floatrep_le_iff_coe_q_le (f1 f2 : FloatRep C) (vm1 : f1.validM) (vm2 : f2.validM) :
+lemma _root_.Tengoku.LeanPool.floatrep_le_iff_coe_q_le (f1 f2 : FloatRep C) (vm1 : f1.validM) (vm2 : f2.validM) :
   floatrepLe f1 f2 ↔ coeQ f1 ≤ coeQ f2 := by
   -- We could extract the logic here, but we'll only do that for q
   rcases f1 with ⟨s, e, m⟩
@@ -422,3 +422,4 @@ lemma floatrep_le_iff_coe_q_le (f1 f2 : FloatRep C) (vm1 : f1.validM) (vm2 : f2.
   rw [<-abs_of_pos (coe_q_false_pos (e := e) (m := m))]
   rw [<-abs_of_pos (coe_q_false_pos (e := e') (m := m'))]
   exact floatrep_le_pos_iff_coe_q ⟨false, e', m'⟩ _ (le_of_lt vm2) vm1
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -38,7 +38,7 @@ is played by Proposition 8.5, which is stated with `C ⊆ closure D` as a hypoth
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set
 
 namespace Schoenflies
@@ -305,3 +305,4 @@ theorem exists_countable_dense_stronglyAccessible (hC : IsCompact C) (hCne : C.N
     linarith
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

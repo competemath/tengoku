@@ -56,7 +56,7 @@ point. Lemma 6.15 (`trianglelefteq_of_projectionPair`) then closes `D ⊴ E`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem ApproximableMap Domain.Neighborhood.Exercise510
@@ -331,3 +331,4 @@ theorem trianglelefteq_of_isInitial
   exact trianglelefteq_of_projectionPair hh gg hgh_id (le_of_eq_of_le hgk hk_le)
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

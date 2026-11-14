@@ -37,7 +37,7 @@ See the module docstring of `RomanovK4` and `MATHLIB_SUCCESSIVE_MINIMA_SCOPE.md`
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace ThreeGap.FiveDistanceHM
 
 open ThreeGap.SimApprox
@@ -316,3 +316,4 @@ theorem cone_exclusion {vj vk v0 : EuclideanSpace ℝ (Fin 2)}
   nlinarith [hsq, norm_nonneg (v0 - vj - vk), hc]
 
 end ThreeGap.FiveDistanceHM
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

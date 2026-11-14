@@ -35,7 +35,7 @@ the projected squared norm `∑ᵢ (jlMap A w i)²` of any fixed `w ≠ 0` (`jlM
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory ProbabilityTheory Real
 
 namespace JL
@@ -182,3 +182,4 @@ theorem jlMap_concentration {k n : ℕ} (hk : 0 < k) (w : Fin n → ℝ)
   exact jl_norm_preservation k hk h0 h1
 
 end JL
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

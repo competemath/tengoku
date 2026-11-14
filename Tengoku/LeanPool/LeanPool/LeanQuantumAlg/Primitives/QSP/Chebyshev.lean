@@ -65,7 +65,7 @@ Pinned Mathlib API: `Polynomial.coeff_X_mul`, `Polynomial.coeff_mul`,
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace QuantumAlg
 
 open Polynomial Complex
@@ -487,3 +487,4 @@ theorem qspW_form_iff (φ₀ : ℝ) (φs : List ℝ) (P Q : ℂ[X]) (x : ℝ) :
 end
 
 end QuantumAlg
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

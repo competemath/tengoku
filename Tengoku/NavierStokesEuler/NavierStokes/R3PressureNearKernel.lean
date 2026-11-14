@@ -12,7 +12,7 @@ Their norms scale as `R⁻¹⁄²` and `R⁻³⁄²`, respectively.
 -/
 
 noncomputable section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace NavierStokes.R3PressureNearKernel
 
 open Set Filter MeasureTheory ProblemStatement
@@ -275,3 +275,4 @@ theorem cutoff_kernel_bound {R L a b : ℝ} (hR : 0 < R) (hL : 1 ≤ L)
       _ ≤ _ := mul_le_mul_of_nonneg_right hc (Real.rpow_nonneg (norm_nonneg x) _)
 
 end NavierStokes.R3PressureNearKernel
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

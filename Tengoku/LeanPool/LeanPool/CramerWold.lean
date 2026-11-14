@@ -19,7 +19,7 @@ MSC: 60B11, 60E10, 28A33
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-!
 ## Mathematical overview
 
@@ -420,3 +420,4 @@ end InnerProductHasLaw
 
 end CramerWold
 end LeanPool
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -17,7 +17,7 @@ analytic segment estimate.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace CKN
 
 /--
@@ -94,3 +94,4 @@ theorem norm_sub_integralAverage_le_volumeAverage_integral_norm_sub
             exact MeasureTheory.norm_integral_le_integral_norm (fun y => u x - u y)
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

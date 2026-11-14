@@ -13,7 +13,7 @@ import Tengoku.Seed.Tactic.NormNum.Abs
 import Tengoku.Seed.Tactic.NormNum.DivMod
 import Tengoku.Seed.Tactic.NormNum.OfScientific
 import Tengoku.Seed.Tactic.NormNum.Pow
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -790,3 +790,4 @@ theorem frame_recurrence {t : ℕ}
   · exact substitution_theorem F edgeCounts blocks hFrame hBlocks.toPartitionedBlocks
 
 end HypergraphLowerBound
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -33,7 +33,7 @@ No convex geometry, no kissing number — purely the pigeonhole. Axiom-clean.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace ThreeGap.SimApprox
 
 variable {d : ℕ}
@@ -126,3 +126,4 @@ theorem supNorm_growth_doubling (α : Fin d → ℝ) (q : ℕ → ℤ) (p : ℕ 
   · exact key b.val a.val h hale heq.symm
 
 end ThreeGap.SimApprox
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

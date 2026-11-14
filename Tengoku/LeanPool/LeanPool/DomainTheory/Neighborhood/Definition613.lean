@@ -79,7 +79,7 @@ The identity functor is monotone and continuous on domains
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem ApproximableMap
@@ -179,3 +179,4 @@ theorem continuousOnDomains_id : ContinuousOnDomains (idEndofunctor DomainObj.{w
   exact hU Y
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

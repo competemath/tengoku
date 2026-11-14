@@ -35,10 +35,10 @@ thesis's hand computation. Mathematically the same as Prop 3.2.1.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Polynomial
 
-namespace QuadraticOrder
+namespace Tengoku.LeanPool.QuadraticOrder
 
 variable {d : ℤ} {p : ℕ}
 
@@ -204,4 +204,5 @@ theorem prime_ramified_iff [Fact p.Prime] (hp2 : p ≠ 2)
   -- Step 4: reduced quotient ↔ radical ideal.
   exact (Ideal.isRadical_iff_quotient_reduced _).mpr hred_QO
 
-end QuadraticOrder
+end Tengoku.LeanPool.QuadraticOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

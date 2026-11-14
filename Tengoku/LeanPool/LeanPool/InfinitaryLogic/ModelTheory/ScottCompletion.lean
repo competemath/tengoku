@@ -42,7 +42,7 @@ Everything is for countable relational vocabularies (`[L.IsRelational]`,
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder
 
 namespace Language
@@ -219,3 +219,4 @@ theorem exists_complete_kCategorical_of_hasArbLargeModels {φ : L.Sentenceω}
 end Language
 
 end FirstOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

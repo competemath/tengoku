@@ -15,7 +15,7 @@ across the infinitary logic library but not (yet) in Mathlib.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u v
 
 /-- Any function from `Empty` equals `Empty.elim`. -/
@@ -25,14 +25,14 @@ theorem Empty.eq_elim {α : Sort u} (f : Empty → α) : f = Empty.elim :=
 /-- Any function composed with `Empty.elim` is `Empty.elim`.
 @isnad1 id=eq.0h3v.s4.5bffd726bdc1 from=translated src=- shape=7b9235fe vocab=231d8a41
 -/
-theorem comp_empty_elim {α : Sort u} {β : Sort v} (f : α → β) :
+theorem _root_.Tengoku.LeanPool.comp_empty_elim {α : Sort u} {β : Sort v} (f : α → β) :
     f ∘ (Empty.elim : Empty → α) = Empty.elim :=
   funext (fun x => x.elim)
 
 /-- Any function composed with `Fin.elim0` is `Fin.elim0`.
 @isnad1 id=eq.0h3v.s4.38db910698e9 from=translated src=- shape=cfb04557 vocab=a2786d46
 -/
-theorem comp_fin_elim0 {α : Type u} {β : Type v} (f : α → β) :
+theorem _root_.Tengoku.LeanPool.comp_fin_elim0 {α : Type u} {β : Type v} (f : α → β) :
     f ∘ (Fin.elim0 : Fin 0 → α) = (Fin.elim0 : Fin 0 → β) :=
   funext (fun x => x.elim0)
 
@@ -46,3 +46,4 @@ theorem Fin.eq_elim0 {α : Type u} (f : Fin 0 → α) : f = Fin.elim0 :=
 theorem Fin.snoc_elim0_eq {α : Type u} (x : α) :
     (Fin.snoc (α := fun _ => α) Fin.elim0 x : Fin 1 → α) = fun _ => x :=
   funext fun v => Fin.lastCases rfl (fun i => i.elim0) v
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

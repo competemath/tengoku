@@ -14,7 +14,7 @@ Part of the Caffarelli–Kohn–Nirenberg partial regularity proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory MeasureTheory.Measure Set Metric Filter
 open scoped ENNReal NNReal Topology BigOperators
 open CKN.Foundation.Parabolic
@@ -227,3 +227,4 @@ theorem lintegral_vec3EuclideanNorm_rpow_le_sum {s : Set Vec3} {u : Vec3 → Vec
       rw [lintegral_finsetSum' _ (fun i _ => aemeasurable_component_enorm_rpow hu i)]
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

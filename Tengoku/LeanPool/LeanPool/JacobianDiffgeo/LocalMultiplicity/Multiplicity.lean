@@ -29,7 +29,7 @@ import Tengoku.LeanPool.LeanPool.JacobianDiffgeo.LocalMultiplicity.PlanarNormalF
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter Set OpenPartialHomeomorph
 open scoped ContDiff Manifold Topology
 
@@ -293,3 +293,4 @@ theorem meromorphicOrderAt_chart_of_eq_zero {f : X → ℂ} {x : X}
 end CC3Compat
 
 end RS
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

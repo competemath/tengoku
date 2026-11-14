@@ -15,7 +15,7 @@ PCF-theory formalization.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 universe u v w
@@ -249,3 +249,4 @@ theorem isSuccLimit_iff' {o : Ordinal} : IsSuccLimit o ↔ o ≠ 0 ∧ ∀ x < o
   rw [Ordinal.isSuccLimit_iff, isSuccPrelimit_iff_succ_lt]
 
 end Ordinal
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

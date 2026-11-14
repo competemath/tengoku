@@ -81,7 +81,7 @@ lists it holds are closed walks of `initSkel` whose cells are exactly `faceCells
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set Topology unitInterval
 open scoped Graph
 
@@ -1006,3 +1006,4 @@ theorem initial_pair' (hC : IsJordanCurve C) (A : AnchorSet C) :
   · exact D.toInitialData.target_closure_cell_inter'
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

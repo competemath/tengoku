@@ -19,7 +19,7 @@ kernel and convolution API independent of the sibling geometry layer.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped Convolution Topology
 
 namespace CKN
@@ -112,3 +112,4 @@ theorem mollify_tendsto_of_continuous {ι : Type*} {l : Filter ι}
       (μ := MeasureTheory.volume) hφ hu x)
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -20,7 +20,7 @@ The main result is `blueprint_case_mod8_eq3`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.SumsThreeSquares
 
 open scoped BigOperators
@@ -1038,3 +1038,4 @@ theorem blueprint_case_mod8_eq3 (m : ℕ) (hm_sq : Squarefree m) (hm_pos : 0 < m
   simp_all
 
 end LeanPool.SumsThreeSquares
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

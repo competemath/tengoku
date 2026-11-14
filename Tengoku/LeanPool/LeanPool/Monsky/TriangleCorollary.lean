@@ -15,7 +15,7 @@ Imported Lean Pool material for `LeanPool.Monsky.TriangleCorollary`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.Monsky
 
 local notation "ℝ²" => EuclideanSpace ℝ (Fin 2)
@@ -960,3 +960,4 @@ theorem equal_area_cover_implies_triangleArea_n (S : Finset Triangle)
 
 end Monsky
 end LeanPool
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

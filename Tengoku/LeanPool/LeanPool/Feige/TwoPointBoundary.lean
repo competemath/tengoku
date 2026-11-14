@@ -14,7 +14,7 @@ import Tengoku.LeanPool.LeanPool.Feige.StrictLocalInsertion
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter Topology
 
 namespace Feige
@@ -122,3 +122,4 @@ theorem tendsto_highSetMass_strictGammaApprox
 end
 
 end Feige
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

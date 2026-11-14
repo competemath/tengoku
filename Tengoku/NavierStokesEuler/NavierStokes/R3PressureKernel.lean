@@ -14,7 +14,7 @@ identifying the Riesz-transform commutator with its kernel is separate.
 -/
 
 noncomputable section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace NavierStokes.R3PressureKernel
 
 open Set MeasureTheory ProblemStatement
@@ -168,3 +168,4 @@ theorem power_six_difference {a b d : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) (hd : 0
     _ = 96 * (d * b ^ 5 + d ^ 6) := by ring
 
 end NavierStokes.R3PressureKernel
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

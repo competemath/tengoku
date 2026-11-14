@@ -15,12 +15,12 @@ These maps are converted from
 module
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /--
 Total map as recursive type with a key type α and value of type β.
 The empty map takes a default value d of type β.
 -/
-inductive TMap (α : Type) (β : Type) where
+inductive _root_.Tengoku.LeanPool.TMap (α : Type) (β : Type) where
   | empty (d : β): TMap α β
   | put (k : α ) (v : β) (t : TMap α β ) : TMap α β
 deriving Repr, Inhabited
@@ -35,7 +35,7 @@ returned.
 This function requires, that the type of the key `α` has the typeclasses BEq and LawfulBEq
 implemented.
 -/
-namespace TMap
+namespace Tengoku.LeanPool.TMap
 
   /--
     Let k ∈ α and v, d ∈ β.
@@ -88,7 +88,7 @@ namespace TMap
   def toString {α : Type} {β : Type} [ToString α][ToString β] (t : TMap α β) : String :=
     let s := toStringAux t
     "(" ++ s ++ ")"
-end TMap
+end Tengoku.LeanPool.TMap
 
 instance {α β} [ToString α] [ToString β]: Repr (TMap (α : Type) (β :Type)) where
   reprPrec t _ := t.toString
@@ -100,7 +100,7 @@ local notation:60 "(" k " ↦ "v"; "m")" => TMap.put k v m
 Partial map as recursive type with a key type α and value of type β is defined.
 Returns an option.
 -/
-inductive PMap (α : Type) (β : Type) where
+inductive _root_.Tengoku.LeanPool.PMap (α : Type) (β : Type) where
   | empty : PMap α β
   | put (k : α ) (v : β) (t : PMap α β )  : PMap α β
 deriving Repr, Inhabited
@@ -110,7 +110,7 @@ The get-function is also mandatory.
 This function differs from the TMap.get by returning corresponding value as option.
 If the key is not found in the map, return none.
 -/
-namespace PMap
+namespace Tengoku.LeanPool.PMap
   /--
     Let k ∈ α and v ∈ β, then PMap.get(k) returns some v
       (v wrapped inside an option object),
@@ -144,7 +144,7 @@ namespace PMap
     let s := toStringAux p
     "p(" ++ s ++ ")"
 
-end PMap
+end Tengoku.LeanPool.PMap
 
 instance {α β} [ToString α] [ToString β]: Repr (PMap (α : Type) (β :Type)) where
   reprPrec p _ := p.toString
@@ -159,7 +159,7 @@ corresponding value [v].
 @isnad1 id=eq.0h5v.s5.bbff962f75cf from=translated src=- shape=3d44d8d8 vocab=7d7e07bb
 -/
 @[simp]
-theorem t_update_eq : forall (α : Type) (β : Type) [BEq α] [LawfulBEq α]
+theorem _root_.Tengoku.LeanPool.t_update_eq : forall (α : Type) (β : Type) [BEq α] [LawfulBEq α]
     (t : TMap α β) (k : α) (v : β),
   (k ↦ v; t).get k = v
   := by
@@ -174,7 +174,7 @@ as when we would just search [t] for [k'].
 @isnad1 id=eq.1h6v.s5.2e08a7714f50 from=translated src=- shape=1e46f68e vocab=7d7e07bb
 -/
 @[simp]
-theorem t_update_neq : forall (α : Type) (β : Type) [BEq α] [LawfulBEq α]
+theorem _root_.Tengoku.LeanPool.t_update_neq : forall (α : Type) (β : Type) [BEq α] [LawfulBEq α]
     (t : TMap α β) (k k' : α) (v : β),
   k ≠ k' → (k ↦ v; t).get k' = t.get k'
   := by
@@ -191,7 +191,7 @@ corresponding value [v].
 @isnad1 id=eq.0h5v.s5.86e2d1afa4ab from=translated src=- shape=b15e7493 vocab=3c517fd7
 -/
 @[simp]
-theorem p_update_eq : forall (α : Type) (β : Type) [BEq α] [LawfulBEq α]
+theorem _root_.Tengoku.LeanPool.p_update_eq : forall (α : Type) (β : Type) [BEq α] [LawfulBEq α]
     (p : PMap α β) (k : α) (v : β),
   p(k ↦ v; p).get k = v
   := by
@@ -206,7 +206,7 @@ as when we would just search [t] for [k'].
 @isnad1 id=eq.1h6v.s5.b9efffa74960 from=translated src=- shape=a36b1f63 vocab=49bc21f4
 -/
 @[simp]
-theorem p_update_neq : forall (α : Type) (β : Type) [BEq α] [LawfulBEq α]
+theorem _root_.Tengoku.LeanPool.p_update_neq : forall (α : Type) (β : Type) [BEq α] [LawfulBEq α]
     (p : PMap α β) (k k' : α) (v : β),
   k ≠ k' → p(k ↦ v; p).get k' = p.get k'
   := by
@@ -216,3 +216,4 @@ theorem p_update_neq : forall (α : Type) (β : Type) [BEq α] [LawfulBEq α]
   rw [ite_eq_right]
   simpa only [beq_iff_eq] using fun h => HNeq h.symm
 -- Tengoku: 1 notation(s) of this module made local so they do not change other libraries (generated)
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

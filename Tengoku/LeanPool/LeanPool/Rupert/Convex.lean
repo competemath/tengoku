@@ -14,7 +14,7 @@ Imported Lean Pool material for `LeanPool.Rupert.Convex`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Pointwise
 
 namespace Convex
@@ -167,3 +167,4 @@ lemma ball_in_hull_of_corners_in_hull {X : Set (E 2)} {ε : ℝ} (hε : ε ∈ S
     · simp; field
 
 end Convex
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

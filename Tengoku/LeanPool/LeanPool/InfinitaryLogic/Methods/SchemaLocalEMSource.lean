@@ -31,7 +31,7 @@ into the quotient.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open Cardinal
@@ -364,3 +364,4 @@ theorem morleySeed_tailTemplate_model_of_schemaSource {L' : Language.{0, 0}}
     (morleySeed_template_agreement_cross φ hφ hφN ha hb)
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

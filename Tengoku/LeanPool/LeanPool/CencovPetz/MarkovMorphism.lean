@@ -32,7 +32,7 @@ needed for the Čencov/Chentsov uniqueness story.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.CencovPetz
 open scoped BigOperators
 
@@ -291,3 +291,4 @@ theorem fisherBilin_pushforward_le_of_markovMorphism (κ : MarkovMorphism α β)
           simp [this, κ.row_sum_eq_one a]
     _ = ∑ a : α, ((u : α → ℝ) a * (u : α → ℝ) a) / p.p a := rfl
 end LeanPool.CencovPetz
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

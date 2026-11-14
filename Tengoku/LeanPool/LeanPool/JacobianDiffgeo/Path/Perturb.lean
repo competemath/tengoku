@@ -26,7 +26,7 @@ Main declarations:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold Topology unitInterval
 open IsManifold Metric Set Filter
 
@@ -430,3 +430,4 @@ theorem Loop.exists_homotopic_avoiding {x₀ : X} (γ : Path x₀ x₀) {S : Set
 end RS
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

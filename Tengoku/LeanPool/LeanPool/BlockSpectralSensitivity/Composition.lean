@@ -30,7 +30,7 @@ Adapted for Lean Pool from `Timeroot/BS_Lam` at commit
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace BSLambda
 
 open Function
@@ -217,3 +217,4 @@ theorem card_pow_le_bs_iterFun {V ι : Type*} [Fintype V] [DecidableEq V] [Finty
   rwa [Finset.card_univ, card_iterCoord] at h
 
 end BSLambda
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

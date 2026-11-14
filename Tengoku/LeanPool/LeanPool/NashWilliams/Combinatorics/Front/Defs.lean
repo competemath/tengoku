@@ -49,7 +49,7 @@ increasing enumeration (a sorted `List ℕ`) and bridge to `Finset ℕ` only at 
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set List
 
 noncomputable section
@@ -269,3 +269,4 @@ theorem isFront_schreier {M : ℕ → ℕ} (hM : StrictMono M) : IsFront (schrei
         exact ⟨0, List.mem_range.mpr (by omega), by simp⟩
 
 end Front
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

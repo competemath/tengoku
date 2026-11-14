@@ -17,7 +17,7 @@ totally nonnegative.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Function Matrix Set
 
 namespace BollobasNikiforov
@@ -239,3 +239,4 @@ lemma isTotallyNonneg_convexRowMatrix
     exact (isEmpty_strictMonoFin3_of_three_lt (by omega)).elim ⟨J, hJ⟩
 
 end BollobasNikiforov
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

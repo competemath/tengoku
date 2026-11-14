@@ -25,12 +25,12 @@ Main declarations:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold
 
 /-- The genus of a compact Riemann surface: the dimension of the space of global holomorphic
 1-forms. -/
-noncomputable def genus (X : Type*) [TopologicalSpace X] [ChartedSpace ℂ X]
+noncomputable def _root_.Tengoku.LeanPool.genus (X : Type*) [TopologicalSpace X] [ChartedSpace ℂ X]
     [IsManifold 𝓘(ℂ) ω X] : ℕ :=
   Module.finrank ℂ (RS.Form1 X)
 
@@ -41,5 +41,6 @@ omit [ConnectedSpace X] in
 /-- The genus vanishes iff there are no nonzero global holomorphic 1-forms.
 @isnad1 id=iff.0h1v.s6.19973a289ce4 from=translated src=- shape=9df18ae9 vocab=361da35f
 -/
-theorem genus_eq_zero_iff_subsingleton : genus X = 0 ↔ Subsingleton (RS.Form1 X) :=
+theorem _root_.Tengoku.LeanPool.genus_eq_zero_iff_subsingleton : genus X = 0 ↔ Subsingleton (RS.Form1 X) :=
   Module.finrank_zero_iff
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -47,7 +47,7 @@ matters: an upper bound on the number of stored Paulis is what bounds the runtim
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Lean4LPD.PauliString
 open Finset
 
@@ -170,3 +170,4 @@ theorem card_lowSet_le_pow (n w : ℕ) (hw : w ≤ n) :
 /-! ### Sanity checks: the bound holds and is not vacuous -/
 
 end Lean4LPD.PauliString
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

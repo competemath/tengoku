@@ -21,7 +21,7 @@ hint notes that one needs an epsilon of room).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open MeasureTheory Metric Filter Set
@@ -141,3 +141,4 @@ theorem isWeakTypeBound_two_pow (d : ℕ) : IsWeakTypeBound d (2 ^ d) := by
     (by norm_num [ENNReal.ofReal_pow])).mono_left nhdsWithin_le_nhds
 
 end LeanPool.CenteredMaximal
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

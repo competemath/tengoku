@@ -14,7 +14,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-- Coordinate projection of a set of dependent functions along `Pi.single`. -/
 def Set.ofPi {ι : Type _} {B : ι → Type _} [DecidableEq ι] [∀ i, Zero (B i)] (s : Set (∀ i, B i)) :
     ∀ i, Set (B i) := fun i x => Pi.single i x ∈ s
@@ -131,3 +131,4 @@ StarOrderedRing.of_le_iff
   (fun a b => by
     rw [Pi.StarOrderedRing.le_def h]
     simp_rw [eq_sub_iff_add_eq', eq_comm])
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

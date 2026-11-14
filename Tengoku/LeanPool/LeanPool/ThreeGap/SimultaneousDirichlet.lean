@@ -33,7 +33,7 @@ coordinate, **with no remaining hypothesis** (`nnDist_count_unconditional`,
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace ThreeGap.SimDirichlet
 
 open ThreeGap.SimApprox ThreeGap.Chevallier ThreeGap.DeltaCost
@@ -211,3 +211,4 @@ theorem nnDist_count_plane_unconditional (α : Fin 2 → ℝ) {k₀ : Fin 2} (hi
   nnDist_count_le_plane α (recordsContinue_deltaCost α hirr) hN
 
 end ThreeGap.SimDirichlet
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

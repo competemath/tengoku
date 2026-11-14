@@ -22,7 +22,7 @@ of the linear functional determined by a coefficient vector.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators ENNReal
 
 open MeasureTheory Set
@@ -207,3 +207,4 @@ theorem one_le_simplexLinearForm_centroid (y : ι → ℝ)
     (by simpa using hy)
 
 end Feige
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -81,7 +81,7 @@ the rings are disjoint frames.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set
 open scoped Graph
 
@@ -1390,3 +1390,4 @@ theorem squareMesh_isConnected_diff {fresh : List Plane}
   exact isConnected_cover_diff_modelCurve (two_le_meshCount δ) hfresh hz₀
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

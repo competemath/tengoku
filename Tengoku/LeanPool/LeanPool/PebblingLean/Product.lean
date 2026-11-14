@@ -17,7 +17,7 @@ a Cartesian product can be executed inside a fixed slice of the product.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace PebblingLean
 
 universe u v
@@ -386,3 +386,4 @@ theorem hasSolvableAtMostSize_product_of_fiber_demands
 end Pebbling
 
 end PebblingLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -26,7 +26,7 @@ Main declarations:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold
 open IsManifold Module
 
@@ -106,3 +106,4 @@ theorem periodVector_symm {n : ℕ} (b : Basis (Fin n) ℂ (Form1 X)) (γ : Path
 end RS
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

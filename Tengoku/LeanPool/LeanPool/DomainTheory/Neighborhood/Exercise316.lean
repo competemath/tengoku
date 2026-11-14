@@ -53,7 +53,7 @@ project's `Element.ext`/`prodEquiv` machinery, as elsewhere in §3.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem
@@ -430,3 +430,4 @@ def projN (V : NeighborhoodSystem α) (n : ℕ) : ApproximableMap (iterSys V) V 
     exact ⟨single V n X, hz, single_mem hX, hX, by rw [fiber_single_self]⟩
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

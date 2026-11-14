@@ -18,7 +18,7 @@ every coordinate has the two-point law used in the proof outline.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators ENNReal
 open MeasureTheory Set
 
@@ -326,3 +326,4 @@ theorem sharpConstant_is_optimal_of_structural_inputs
 end
 
 end Feige
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

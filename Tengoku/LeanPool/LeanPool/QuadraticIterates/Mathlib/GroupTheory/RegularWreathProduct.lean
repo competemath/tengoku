@@ -18,12 +18,12 @@ polynomials*, Arch. Math. 59 (1992), 239-244; upstreaming candidates for Mathlib
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-- For a finite commutative group `H` of exponent `2`, `#H = #(H →* C₂)` where
 `C₂ = Multiplicative (ZMod 2)`.
 @isnad1 id=eq.2h1v.s7.4cd5def1df29 from=translated src=- shape=72f4e2c9 vocab=f2d74bca
 -/
-theorem elem_ab_card_hom (H : Type*) [Group H] [Finite H]
+theorem _root_.Tengoku.LeanPool.elem_ab_card_hom (H : Type*) [Group H] [Finite H]
     (hcomm : ∀ a b : H, a * b = b * a) (hexp : ∀ h : H, h ^ 2 = 1) :
     Nat.card H = Nat.card (H →* Multiplicative (ZMod 2)) := by
   let : CommGroup H := { ‹Group H› with mul_comm := hcomm }
@@ -186,7 +186,7 @@ private theorem card_hom_c2 :
 `𝔽₂`-dimension `n`.
 @isnad1 id=eq.0h1v.s7.bc724be95c36 from=translated src=- shape=6d8189e6 vocab=48dd652d
 -/
-theorem wreath_max_elem_ab (n : ℕ) :
+theorem _root_.Tengoku.LeanPool.wreath_max_elem_ab (n : ℕ) :
     Nat.card (IteratedWreathProduct (Multiplicative (ZMod 2)) n →* Multiplicative (ZMod 2))
       = 2 ^ n := by
   induction n with
@@ -196,3 +196,4 @@ theorem wreath_max_elem_ab (n : ℕ) :
       refine (RegularWreathProduct.card_hom (IteratedWreathProduct (Multiplicative (ZMod 2)) n)
         (Multiplicative (ZMod 2)) (Multiplicative (ZMod 2))).trans ?_
       rw [ih, card_hom_c2, pow_succ]
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

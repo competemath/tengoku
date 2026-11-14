@@ -78,7 +78,7 @@ roots, and that sum is divisible by `p` because twice it is `p(2 + (p-1)^2)`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Finset Polynomial
 
 namespace GranvilleMoore
@@ -829,3 +829,4 @@ theorem dvd_factorial_mul_sub_exceptional {p : ℕ} (hp : p.Prime) (hodd : Odd p
   · exact h
 
 end GranvilleMoore
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

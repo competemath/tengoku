@@ -25,7 +25,7 @@ disjointness (the combinatorial half of the Unit-1 occurrence gate).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder
@@ -130,3 +130,4 @@ theorem leftRels_inter_rightRels : leftRels L ∩ rightRels L = ∅ :=
   range_tag_disjoint fun _ _ _ h => Sum.inl_ne_inr (Sum.inr_injective h)
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -25,7 +25,7 @@ This module introduces no new definitions.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool
 
 open MeasureTheory Set Real Filter Topology
@@ -218,3 +218,4 @@ theorem expected_max_subGaussian {ι : Type*}
 end
 
 end LeanPool
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

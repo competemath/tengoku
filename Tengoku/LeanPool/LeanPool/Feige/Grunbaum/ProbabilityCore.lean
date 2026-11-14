@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter MeasureTheory ProbabilityTheory Set
 open scoped ENNReal Topology
 
@@ -408,3 +408,4 @@ lemma ContinuousLinearMap.map_setAverage (L : E →L[ℝ] F)
 end Average
 
 end Grunbaum
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

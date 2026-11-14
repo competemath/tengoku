@@ -15,7 +15,7 @@ of Fourier inversion and rapid decay.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace EulerSobolev
@@ -59,3 +59,4 @@ def schwartzFourierCLM : 𝓢(V, E) →L[ℂ] 𝓢(V, E) where
     exact (FourierTransform.fourierCLM (F := 𝓢(V, E)) ℂ 𝓢(V, E)).continuous
 
 end EulerSobolev
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -15,8 +15,8 @@ Imported Lean Pool material for `LeanPool.QuasiBorelSpaces.Chain`.
 -/
 
 @[expose] public section
-
-namespace QuasiBorelSpace.Chain
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+namespace Tengoku.LeanPool.QuasiBorelSpace.Chain
 
 open OmegaCompletePartialOrder
 
@@ -67,4 +67,5 @@ lemma isHom_iff [Preorder B] {f : A → Chain B} : IsHom f ↔ ∀i, IsHom (f ·
     apply isHom_comp' (isHom_apply i) hf
   · exact isHom_pi
 
-end QuasiBorelSpace.Chain
+end Tengoku.LeanPool.QuasiBorelSpace.Chain
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

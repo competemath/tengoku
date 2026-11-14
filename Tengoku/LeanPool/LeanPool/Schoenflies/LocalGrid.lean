@@ -81,7 +81,7 @@ report.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set
 open scoped Graph
 
@@ -761,3 +761,4 @@ theorem localGrid_fine (hs : 0 < s) (hε : 0 < ε) :
   exact lt_of_le_of_lt (dist_le_of_mem_localGridCell hx hy) (localGridCount_spec hε)
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

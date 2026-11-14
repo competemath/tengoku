@@ -21,7 +21,7 @@ forces `g ≡ 0`. So there are no nonzero holomorphic 1-forms on `ℙ¹` — the
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold OnePoint
 open Set Filter Topology OnePoint
 
@@ -151,3 +151,4 @@ end RS.P1
 -/
 theorem RS.genus_onePoint : genus (OnePoint ℂ) = 0 :=
   RS.P1.finrank_form1
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

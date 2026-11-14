@@ -53,7 +53,7 @@ already used by `curry`/`uncurry`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood.Exercise507
 
 open Domain.Neighborhood NeighborhoodSystem ApproximableMap
@@ -142,3 +142,4 @@ theorem curry₃_apply (g : ApproximableMap (prod (prod V₀ V₁) V₂) V₃)
   rw [curry₃, toElementMap_curry_apply, toElementMap_curry_apply]
 
 end Domain.Neighborhood.Exercise507
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

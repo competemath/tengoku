@@ -16,13 +16,13 @@ phase gap lies in `(0, π)` and the coupling is positive, the gap is contracting
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Real Finset
 
 /--
 @isnad1 id=eq.0h2v.s6.ff7610d90339 from=translated src=- shape=9264b630 vocab=2930cea1
 -/
-lemma kuramoto_relative_velocity
+lemma _root_.Tengoku.LeanPool.kuramoto_relative_velocity
     (K : ℝ) (θ : Fin 2 → ℝ) :
     kuramotoF K 2 0 θ - kuramotoF K 2 1 θ = -K * Real.sin (θ 0 - θ 1) := by
   unfold kuramotoF
@@ -37,7 +37,7 @@ lemma kuramoto_relative_velocity
 /--
 @isnad1 id=lt.3h2v.s7.43d16f9c6bab from=translated src=- shape=29a13072 vocab=bc612f97
 -/
-theorem kuramoto_pairwise_contraction
+theorem _root_.Tengoku.LeanPool.kuramoto_pairwise_contraction
     (K : ℝ) (hK : 0 < K) (θ : Fin 2 → ℝ)
     (hgap : 0 < θ 0 - θ 1) (hpi : θ 0 - θ 1 < Real.pi) :
     kuramotoF K 2 0 θ < kuramotoF K 2 1 θ := by
@@ -57,7 +57,7 @@ theorem kuramoto_pairwise_contraction
 /--
 @isnad1 id=lt.5h6v.s7.c34f1e809cad from=translated src=- shape=32f906a6 vocab=37361274
 -/
-theorem kuramoto_coupling_contraction
+theorem _root_.Tengoku.LeanPool.kuramoto_coupling_contraction
     (K : ℝ) (hK : 0 < K)
     (N : ℕ) (W : Fin N → Fin N → ℝ) (hW : ∀ i j, W i j = W j i)
     (θ : Fin N → ℝ) (i j : Fin N)
@@ -71,3 +71,4 @@ theorem kuramoto_coupling_contraction
     rw [harg, Real.sin_neg]
   rw [hW j i, hsinneg]
   nlinarith [mul_pos hK hWpos, hsinpos]
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

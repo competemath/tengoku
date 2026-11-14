@@ -35,7 +35,7 @@ Axiom-clean; elementary.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace ThreeGap.SimApprox
 
 variable {n : ℕ}
@@ -119,3 +119,4 @@ theorem delta_diff_le (α : Fin n → ℝ) (qi qj : ℤ) (pi pj : Fin n → ℤ)
   exact delta_le α (qi - qj) (pi - pj)
 
 end ThreeGap.SimApprox
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

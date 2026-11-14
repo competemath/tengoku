@@ -2,7 +2,7 @@ import Tengoku.NavierStokesEuler.Euler.CorrectionStabilityBudget
 import Tengoku.NavierStokesEuler.Euler.InviscidDifferencePDE
 
 /-! Tengoku repair: `inviscid_correction_unique` ran out of heartbeats in the tree; `synthInstance.maxHeartbeats` is 160000 for it (was 20000). -/
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace EulerInviscidCorrectionUniqueness
 end EulerInviscidCorrectionUniqueness
 namespace MeasureTheory
@@ -148,3 +148,4 @@ theorem inviscid_correction_unique {q : ℕ} (hq : 6 ≤ q) (T : ℝ) (hT : 0 �
   exact sub_eq_zero.mp (show value period (u t)-value period (v t)=0 from norm_eq_zero.mp hn)
 
 end EulerInviscidCorrectionUniqueness
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

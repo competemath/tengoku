@@ -19,8 +19,8 @@ See [HeunenKSY17], Proposition 16.
 -/
 
 @[expose] public section
-
-namespace QuasiBorelSpace.Prod
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+namespace Tengoku.LeanPool.QuasiBorelSpace.Prod
 
 variable
   {A : Type*} {_ : QuasiBorelSpace A}
@@ -129,11 +129,11 @@ lemma isHom_of_uncurry
     : IsHom fun x ↦ f (g x) (h x) := by
   exact isHom_comp' (f := Function.uncurry f) (g := fun x ↦ (g x, h x)) hf (by fun_prop)
 
-end QuasiBorelSpace.Prod
+end Tengoku.LeanPool.QuasiBorelSpace.Prod
 
-namespace OmegaQuasiBorelSpace.Prod
+namespace Tengoku.LeanPool.OmegaQuasiBorelSpace.Prod
 
-open QuasiBorelSpace
+open Tengoku.LeanPool.QuasiBorelSpace
 open OmegaCompletePartialOrder
 
 variable {A B : Type*} [OmegaQuasiBorelSpace A] [OmegaQuasiBorelSpace B]
@@ -148,9 +148,9 @@ instance : OmegaQuasiBorelSpace (A × B) where
         OrderHom.fst_coe, OrderHom.snd_coe]
       fun_prop
 
-end OmegaQuasiBorelSpace.Prod
+end Tengoku.LeanPool.OmegaQuasiBorelSpace.Prod
 
-namespace QuasiBorelSpace
+namespace Tengoku.LeanPool.QuasiBorelSpace
 
 variable {A B : Type*} [QuasiBorelSpace A] [QuasiBorelSpace B]
 
@@ -174,4 +174,5 @@ lemma isHom_lintegral
 
 end Measure
 
-end QuasiBorelSpace
+end Tengoku.LeanPool.QuasiBorelSpace
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

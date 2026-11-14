@@ -25,7 +25,7 @@ functions.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace KaltonRoberts
 
 open Finset BigOperators
@@ -588,3 +588,4 @@ by the main theorem live in `UniformRecombination.lean` and
 end
 
 end KaltonRoberts
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

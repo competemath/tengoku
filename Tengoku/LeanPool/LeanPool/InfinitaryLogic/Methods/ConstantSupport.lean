@@ -31,7 +31,7 @@ freshness arguments must CARRY a finite support rather than compute one). Craig 
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 /-! ## Structural lemmas for `functionsIn` (relabel / castLE / subst / openBounds)
@@ -724,3 +724,4 @@ theorem sentenceJConsts_mapLanguage_withConstants (r : L.Sentenceω) :
   exact absurd (show (Sum.inl p2 : L[[ℕ]].Functions 0) = Sum.inr j from eq_of_heq h2) (by simp)
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

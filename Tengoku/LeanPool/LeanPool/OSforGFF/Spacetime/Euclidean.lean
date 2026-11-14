@@ -20,7 +20,7 @@ Foundation for the OS2 axiom.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory NNReal ENNReal
 open TopologicalSpace Measure
 
@@ -404,3 +404,4 @@ lemma euclidean_actions_unified (g : E) :
   exact ⟨⟨euclideanActionCLM g, fun _ => rfl⟩, ⟨euclideanActionL2 g, fun _ => rfl⟩⟩
 
 end QFT
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

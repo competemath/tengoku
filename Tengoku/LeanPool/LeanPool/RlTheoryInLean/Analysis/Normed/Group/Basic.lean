@@ -12,16 +12,17 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 variable {E : Type*} [SeminormedAddGroup E]
 
 /--
 @isnad1 id=le.0h3v.s7.2b31012c4cca from=translated src=- shape=6d1a5390 vocab=cf5f1d58
 -/
-lemma norm_add_sq_le_norm_sq_add_norm_sq (x y : E) :
+lemma _root_.Tengoku.LeanPool.norm_add_sq_le_norm_sq_add_norm_sq (x y : E) :
   ‖x + y‖ ^ 2 ≤ 2 * ‖x‖ ^ 2 + 2 * ‖y‖ ^ 2 := by
   have h1 : ‖x + y‖ ≤ ‖x‖ + ‖y‖ := norm_add_le x y
   have h2 : (‖x‖ + ‖y‖) ^ 2 ≤ 2 * (‖x‖ ^ 2 + ‖y‖ ^ 2) := add_sq_le
   calc ‖x + y‖ ^ 2 ≤ (‖x‖ + ‖y‖) ^ 2 := sq_le_sq' (by linarith [norm_nonneg (x + y)]) h1
     _ ≤ 2 * (‖x‖ ^ 2 + ‖y‖ ^ 2) := h2
     _ = 2 * ‖x‖ ^ 2 + 2 * ‖y‖ ^ 2 := by ring
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

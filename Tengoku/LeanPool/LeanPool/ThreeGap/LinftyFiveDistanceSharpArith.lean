@@ -45,7 +45,7 @@ are reused verbatim from the Euclidean development.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace ThreeGap.LinftyRecords
 
 open scoped Real
@@ -448,3 +448,4 @@ theorem sharp_attained : ∃ α : Fin 2 → ℝ, (∃ k, Irrational (α k)) ∧
       (H3_aprt s hs_pos.le hsmall) (H4_aprt s hs_pos.le hsmall)
 
 end ThreeGap.LinftyRecords
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

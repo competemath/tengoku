@@ -25,7 +25,7 @@ identity (`JL/QJL.lean`).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped RealInnerProductSpace
 
 namespace JL
@@ -68,3 +68,4 @@ theorem inner_product_preservation {E F : Type*}
   exact htri
 
 end JL
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

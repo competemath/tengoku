@@ -143,7 +143,7 @@ there as `Schoenflies.finite_transfer_toward_square`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set
 open scoped Graph
 
@@ -1838,3 +1838,4 @@ Nothing below mentions how the transfer was built. If a later change to `IsTrans
 serving that recursion, this would break. -/
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

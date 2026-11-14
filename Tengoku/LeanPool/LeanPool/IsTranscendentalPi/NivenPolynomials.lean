@@ -17,7 +17,7 @@ to build the integer that drives the contradiction in Niven's proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Polynomial
 open Complex
 
@@ -27,12 +27,12 @@ open scoped BigOperators
 noncomputable section
 
 /-- `Fₚ = Xᵖ⁻¹ Tᵖ`. -/
-def Fp {R : Type*} [Semiring R] (T : R[X]) (p : ℕ) : R[X] := X^(p - 1) * T^p
+def _root_.Tengoku.LeanPool.Fp {R : Type*} [Semiring R] (T : R[X]) (p : ℕ) : R[X] := X^(p - 1) * T^p
 
 /-- If `T ≠ 0`, then `deg(Fₚ) = (p - 1) + p deg(T)`.
 @isnad1 id=eq.1h3v.s6.ec08749a0291 from=translated src=- shape=ed7549f4 vocab=48581e80
 -/
-lemma natDegree_Fp {R : Type*} [Semiring R] [Nontrivial R] [NoZeroDivisors R]
+lemma _root_.Tengoku.LeanPool.natDegree_Fp {R : Type*} [Semiring R] [Nontrivial R] [NoZeroDivisors R]
     (T : R[X]) (p : ℕ) (hT : T ≠ 0) :
     (Fp T p).natDegree = (p - 1) + p * T.natDegree := by
   rw [Fp, (monic_X_pow (p - 1)).natDegree_mul' (pow_ne_zero p hT), natDegree_X_pow, natDegree_pow]
@@ -40,7 +40,7 @@ lemma natDegree_Fp {R : Type*} [Semiring R] [Nontrivial R] [NoZeroDivisors R]
 /-- If `T ≠ 0`, then `deg(Fₚ⁽ⁱ⁾) ≤ (p - 1) + p deg(T) - i`.
 @isnad1 id=le.1h4v.s7.d81391aaf97a from=translated src=- shape=f9e4af9b vocab=9909a27b
 -/
-lemma natDegree_iterate_derivative_Fp_le {R : Type*} [Semiring R] [Nontrivial R] [NoZeroDivisors R]
+lemma _root_.Tengoku.LeanPool.natDegree_iterate_derivative_Fp_le {R : Type*} [Semiring R] [Nontrivial R] [NoZeroDivisors R]
     (T : R[X]) (p i : ℕ) (hT : T ≠ 0) :
     ((derivative^[i]) (Fp T p)).natDegree ≤ (p - 1) + p * T.natDegree - i := by
   apply le_trans (natDegree_iterate_derivative (Fp T p) i)
@@ -49,21 +49,21 @@ lemma natDegree_iterate_derivative_Fp_le {R : Type*} [Semiring R] [Nontrivial R]
 /-- The `(p - 1)`-th coefficient of `Fₚ` is `T(0)ᵖ`.
 @isnad1 id=eq.0h3v.s6.e6141070eb17 from=translated src=- shape=d6a95117 vocab=73404d09
 -/
-lemma coeff_Fp_pred {R : Type*} [CommSemiring R] (T : R[X]) (p : ℕ) :
+lemma _root_.Tengoku.LeanPool.coeff_Fp_pred {R : Type*} [CommSemiring R] (T : R[X]) (p : ℕ) :
     (Fp T p).coeff (p - 1) = (T.coeff 0) ^ p := by
   simp [Fp, coeff_X_pow_mul', coeff_zero_eq_eval_zero]
 
 /-- `Fₚ⁽ᵖ⁻¹⁾(0) = (p - 1)! * T(0)ᵖ`.
 @isnad1 id=eq.0h3v.s8.6ba70c807938 from=translated src=- shape=bfb73925 vocab=94dc2193
 -/
-lemma coeff_zero_iterate_derivative_Fp_pred {R : Type*} [CommSemiring R] (T : R[X]) (p : ℕ) :
+lemma _root_.Tengoku.LeanPool.coeff_zero_iterate_derivative_Fp_pred {R : Type*} [CommSemiring R] (T : R[X]) (p : ℕ) :
     ((derivative^[p - 1]) (Fp T p)).coeff 0 = (p - 1).factorial * (T.coeff 0) ^ p := by
   simp [coeff_iterate_derivative, Nat.descFactorial_self, coeff_Fp_pred T p]
 
 /-- `P(0)` is the constant coefficient of `P`.
 @isnad1 id=eq.0h3v.s7.67e23534c2de from=translated src=- shape=342efa8d vocab=e2fb5f14
 -/
-lemma aeval_zero_eq_cast_coeff_zero
+lemma _root_.Tengoku.LeanPool.aeval_zero_eq_cast_coeff_zero
     {R A : Type*} [CommSemiring R] [Semiring A] [Algebra R A] (P : R[X]) :
     aeval (0 : A) P = algebraMap R A (P.coeff 0) :=
   (coeff_zero_eq_aeval_zero' (A := A) P).symm
@@ -71,7 +71,7 @@ lemma aeval_zero_eq_cast_coeff_zero
 /-- If `T ≠ 0`, then `multₐ(Tᵖ) = p * multₐ(T)`.
 @isnad1 id=eq.1h3v.s6.2b93a3466849 from=translated src=- shape=3d115469 vocab=ad5f4047
 -/
-lemma rootMultiplicity_npow (T : ℤ[X]) (a : ℂ) (p : ℕ) (hT : T ≠ 0) :
+lemma _root_.Tengoku.LeanPool.rootMultiplicity_npow (T : ℤ[X]) (a : ℂ) (p : ℕ) (hT : T ≠ 0) :
     rootMultiplicity a ((T.map (algebraMap ℤ ℂ))^p)
       = p * rootMultiplicity a (T.map (algebraMap ℤ ℂ)) := by
   have hmap : (T.map (algebraMap ℤ ℂ)) ≠ 0 :=
@@ -85,7 +85,7 @@ lemma rootMultiplicity_npow (T : ℤ[X]) (a : ℂ) (p : ℕ) (hT : T ≠ 0) :
 /-- If `T ≠ 0`, then `multₐ(Fₚ) = p - 1 + p * multₐ(T)` if `a = 0` and `p * multₐ(T)` otherwise.
 @isnad1 id=eq.1h3v.s7.c3087dc71fc5 from=translated src=- shape=446c4186 vocab=fb568e81
 -/
-lemma rootMultiplicity_Fp (T : ℤ[X]) (p : ℕ) (a : ℂ) (hT : T ≠ 0) :
+lemma _root_.Tengoku.LeanPool.rootMultiplicity_Fp (T : ℤ[X]) (p : ℕ) (a : ℂ) (hT : T ≠ 0) :
     rootMultiplicity a ((Fp T p).map (algebraMap ℤ ℂ))
       = (if a = 0 then (p - 1) else 0) + p * rootMultiplicity a (T.map (algebraMap ℤ ℂ)) := by
   have hmap : (T.map (algebraMap ℤ ℂ)) ≠ 0 :=
@@ -109,20 +109,20 @@ lemma rootMultiplicity_Fp (T : ℤ[X]) (p : ℕ) (a : ℂ) (hT : T ≠ 0) :
       (x := a) hFp, hXpow, rootMultiplicity_npow T a p hT]
 
 /-- `Sₚ,ᵢ` is defined so that `Fₚ⁽ⁱ⁾ = i! • Sₚ,ᵢ`. -/
-def Sp {R : Type*} [Semiring R] (T : R[X]) (p i : ℕ) : R[X] :=
+def _root_.Tengoku.LeanPool.Sp {R : Type*} [Semiring R] (T : R[X]) (p i : ℕ) : R[X] :=
   ∑ j ∈ (derivative^[i] (Fp T p)).support, C (((j + i).choose i) • (Fp T p).coeff (j + i)) * X^j
 
 /-- We define `Gₚ(T) = ∑ᵢ₌ₚᵈ (i! / p!) • Sₚ,ᵢ(T)`, where `d = deg(Fₚ)`. -/
-def Gp {R : Type*} [Semiring R] (T : R[X]) (p : ℕ) : R[X] :=
+def _root_.Tengoku.LeanPool.Gp {R : Type*} [Semiring R] (T : R[X]) (p : ℕ) : R[X] :=
   ∑ i ∈ Finset.Icc p (Fp T p).natDegree, (i.factorial / p.factorial) • (Sp T p i)
 
 /-- `F_{p,d} = ∑ᵢ₌ₚᵈ Fₚ⁽ⁱ⁾`, with `d = deg(Fₚ)`. -/
-def Fpd (T : ℤ[X]) (p : ℕ) : ℤ[X] := sumDeriv (Fp T p)
+def _root_.Tengoku.LeanPool.Fpd (T : ℤ[X]) (p : ℕ) : ℤ[X] := sumDeriv (Fp T p)
 
 /-- The proof that `Fₚ⁽ⁱ⁾ = i! • Sₚ,ᵢ`.
 @isnad1 id=eq.0h4v.s7.02105fa0ffd2 from=translated src=- shape=6eb25cfe vocab=4a710e72
 -/
-lemma iterate_derivative_Fp_eq_factorial_Sp
+lemma _root_.Tengoku.LeanPool.iterate_derivative_Fp_eq_factorial_Sp
     {R : Type*} [Semiring R] (T : R[X]) (p i : ℕ) :
     derivative^[i] (Fp T p) = i.factorial • Sp T p i := by
   simpa [Sp] using iterate_derivative_eq_factorial_smul_sum (p := Fp T p) (k := i)
@@ -130,7 +130,7 @@ lemma iterate_derivative_Fp_eq_factorial_Sp
 /-- If `multₐ(T) ≥ m`, then `F_{p,d}(a)` is expressed in terms of `Fₚ⁽ⁱ⁾(a)`.
 @isnad1 id=eq.2h4v.s8.78877093b80d from=translated src=- shape=83b93bb5 vocab=ae19de1f
 -/
-lemma aeval_Fpd (T : ℤ[X]) (p m : ℕ) (a : ℂ) (hT : T ≠ 0)
+lemma _root_.Tengoku.LeanPool.aeval_Fpd (T : ℤ[X]) (p m : ℕ) (a : ℂ) (hT : T ≠ 0)
     (hmT : m ≤ rootMultiplicity a (T.map (algebraMap ℤ ℂ))) :
     aeval a (Fpd T p)
       =
@@ -150,19 +150,19 @@ lemma aeval_Fpd (T : ℤ[X]) (p m : ℕ) (a : ℂ) (hT : T ≠ 0)
       (hm := by simpa using hmFp))
 
 /-- The definition of `∑ᵢ₌ₚᵈ Fₚ⁽ⁱ⁾` with `d = deg(Fₚ)`. -/
-def sumStartpDerivFp {R : Type*} [Semiring R] (T : R[X]) (p : ℕ) : R[X]
+def _root_.Tengoku.LeanPool.sumStartpDerivFp {R : Type*} [Semiring R] (T : R[X]) (p : ℕ) : R[X]
   := ∑ i ∈ Finset.Icc p (Fp T p).natDegree, derivative^[i] (Fp T p)
 
 /-- If `a` is a root of `T`, then `T ≠ 0`.
 @isnad1 id=ne.1h2v.s5.0132dc0ffdc2 from=translated src=- shape=7762919c vocab=adb2d1fc
 -/
-lemma TwithRootNotZero (T : ℤ[X]) (a : ℂ)
+lemma _root_.Tengoku.LeanPool.TwithRootNotZero (T : ℤ[X]) (a : ℂ)
   (hroot : a ∈ T.aroots ℂ) : T ≠ 0 := (Polynomial.mem_aroots.1 hroot).1
 
 /-- If `a ≠ 0` and `a` is a root of `T`, then `F_{p,d} = ∑ᵢ₌ₚᵈ Fₚ⁽ⁱ⁾(a)`.
 @isnad1 id=eq.2h3v.s7.d22eaa25a2ac from=translated src=- shape=f24218c0 vocab=f5d95b93
 -/
-lemma aeval_Fpd_at_nonzero (T : ℤ[X]) (p : ℕ) (a : ℂ) (ha : a ≠ 0)
+lemma _root_.Tengoku.LeanPool.aeval_Fpd_at_nonzero (T : ℤ[X]) (p : ℕ) (a : ℂ) (ha : a ≠ 0)
     (hroot : a ∈ T.aroots ℂ) : aeval a (Fpd T p) = aeval a (sumStartpDerivFp T p) := by
   have hroot' : 1 ≤ rootMultiplicity a (T.map (algebraMap ℤ ℂ)) := by
     rcases Polynomial.mem_aroots'.1 hroot with ⟨hT0, hroot0⟩
@@ -175,7 +175,7 @@ lemma aeval_Fpd_at_nonzero (T : ℤ[X]) (p : ℕ) (a : ℂ) (ha : a ≠ 0)
 /-- If `0 < p` and `T ≠ 0`, then `F_{p,d}(0) = (p - 1)! T(0)ᵖ + ∑ᵢ₌ₚᵈ Fₚ⁽ⁱ⁾(0)`.
 @isnad1 id=eq.2h2v.s8.a117fd9025f6 from=translated src=- shape=a84fce57 vocab=ce1d6fdc
 -/
-lemma aeval_Fpd_at_zero (T : ℤ[X]) (p : ℕ) (hp : 0 < p) (hT : T ≠ 0) :
+lemma _root_.Tengoku.LeanPool.aeval_Fpd_at_zero (T : ℤ[X]) (p : ℕ) (hp : 0 < p) (hT : T ≠ 0) :
     aeval (0 : ℂ) (Fpd T p)
       = (p - 1).factorial * (aeval (0 : ℂ) T) ^ p + aeval (0 : ℂ) (sumStartpDerivFp T p) := by
   rw [aeval_Fpd T p 0 (0 : ℂ) hT
@@ -198,7 +198,7 @@ lemma aeval_Fpd_at_zero (T : ℤ[X]) (p : ℕ) (hp : 0 < p) (hT : T ≠ 0) :
 `F_{p,d}(0) * ∑ᵢ bᵢ exp(aᵢ) - ∑ᵢ bᵢ F_{p,d}(0)(aᵢ)`.
 @isnad1 id=eq.0h5v.s8.5bd11cbe867b from=translated src=- shape=80d05bae vocab=02ce884d
 -/
-lemma intExpNegPoly_sum_simp (n p : ℕ) (T : ℤ[X]) (a b : Fin n → ℂ) :
+lemma _root_.Tengoku.LeanPool.intExpNegPoly_sum_simp (n p : ℕ) (T : ℤ[X]) (a b : Fin n → ℂ) :
   ∑ i : Fin n, b i * cexp (a i) * intExpNegPoly (Fp T p) (a i) =
     aeval 0 (Fpd T p) * ∑ i : Fin n, b i * cexp (a i) -
       ∑ i : Fin n, b i * aeval (a i) (Fpd T p) := by
@@ -217,7 +217,7 @@ lemma intExpNegPoly_sum_simp (n p : ℕ) (T : ℤ[X]) (a b : Fin n → ℂ) :
 /-- `∑ᵢ₌ₚᵈ Fₚ⁽ⁱ⁾ = p! * Gₚ`.
 @isnad1 id=eq.0h3v.s6.baa6f39e2971 from=translated src=- shape=32ae8191 vocab=2971186d
 -/
-lemma factorise_sumIteratedDerivPoly {R : Type*} [Semiring R] (T : R[X]) (p : ℕ) :
+lemma _root_.Tengoku.LeanPool.factorise_sumIteratedDerivPoly {R : Type*} [Semiring R] (T : R[X]) (p : ℕ) :
     sumStartpDerivFp T p = C (p.factorial : R) * (Gp T p) := by
   rw [sumStartpDerivFp, Gp, Finset.mul_sum]
   refine Finset.sum_congr rfl ?_
@@ -227,3 +227,4 @@ lemma factorise_sumIteratedDerivPoly {R : Type*} [Semiring R] (T : R[X]) (p : �
   conv_rhs => rw [← natCast_mul]
   rw [← C_eq_natCast (R := R) (n := i.factorial / p.factorial), ← mul_assoc, ← C_mul,
     ← Nat.cast_mul, Nat.mul_div_cancel' (Nat.factorial_dvd_factorial (Finset.mem_Icc.mp hi).1)]
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

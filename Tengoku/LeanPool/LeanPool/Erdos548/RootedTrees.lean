@@ -31,7 +31,7 @@ word `l₀` number at most those supporting a rooted copy of the tree plus `(t -
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open SimpleGraph
 
 namespace Erdos548
@@ -587,3 +587,4 @@ lemma rooted_word_tree_bound {U V : Type} [Fintype U] [DecidableEq V]
   rooted_word_tree_bound_aux (Fintype.card U) U V T r hT rfl ht2 G l₀ hl hne
 
 end Erdos548
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

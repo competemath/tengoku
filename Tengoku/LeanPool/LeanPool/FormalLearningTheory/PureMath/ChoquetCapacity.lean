@@ -29,7 +29,7 @@ This file is independent of learning theory and is a candidate for contribution 
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u
 
 open MeasureTheory Set Filter Topology
@@ -422,3 +422,4 @@ theorem MeasureTheory.AnalyticSet.compactCap_eq
     MeasureTheory.compactCap μ s = μ s := by
   rw [compactCap_eq_iSup_isCompact]
   exact (hs.cap_eq_iSup_isCompact (measure_isChoquetCapacity μ)).symm
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

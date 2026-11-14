@@ -15,7 +15,7 @@ public import Tengoku.LeanPool.LeanPool.CenteredMaximal.Statement
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace LeanPool.CenteredMaximal
@@ -52,3 +52,4 @@ theorem phi_mem_Ioo : phi ∈ Set.Ioo (1685 / 1000 : ℝ) (1686 / 1000) := by
     linarith
 
 end LeanPool.CenteredMaximal
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

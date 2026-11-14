@@ -87,7 +87,7 @@ restatement of anything proved here.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set Topology unitInterval
 open scoped Graph
 
@@ -2322,3 +2322,4 @@ theorem initial_pair (harc : ∀ A : Set Plane, IsArc A → IsConnected Aᶜ) (h
     fun x hx => d.skeletonHomeo_eq_u hx⟩
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

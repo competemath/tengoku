@@ -15,7 +15,7 @@ Imported Lean Pool material for `LeanPool.Monlib4.LinearAlgebra.OfNorm`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ComplexOrder
 
 section Ex4
@@ -25,7 +25,7 @@ variable {𝕜 E : Type _} [RCLike 𝕜] [NormedAddCommGroup E] [InnerProductSpa
 /--
 @isnad1 id=eq.1h4v.s8.98b46aa0f027 from=translated src=- shape=be6f544f vocab=707f5926
 -/
-theorem cs_aux {x y : E} (hy : y ≠ 0) :
+theorem _root_.Tengoku.LeanPool.cs_aux {x y : E} (hy : y ≠ 0) :
     ‖x - (inner 𝕜 y x * (‖y‖ ^ 2 : ℝ)⁻¹) • y‖ ^ 2 = ‖x‖ ^ 2 - ‖inner 𝕜 x y‖ ^ 2 * (‖y‖ ^ 2)⁻¹ := by
   have : ((‖y‖ ^ 2 : ℝ) : 𝕜) ≠ 0 := by
     rwa [ne_eq, RCLike.ofReal_eq_zero, sq_eq_zero_iff, norm_eq_zero]
@@ -99,12 +99,12 @@ end OfNorm
 open scoped ComplexConjugate
 
 /-- An unbundled continuous linear map predicate. -/
-def IsContinuousLinearMap (𝕜 : Type _) [NormedField 𝕜] {E : Type _} [NormedAddCommGroup E]
+def _root_.Tengoku.LeanPool.IsContinuousLinearMap (𝕜 : Type _) [NormedField 𝕜] {E : Type _} [NormedAddCommGroup E]
     [NormedSpace 𝕜 E] {F : Type _} [NormedAddCommGroup F] [NormedSpace 𝕜 F] (f : E → F) : Prop :=
   IsLinearMap 𝕜 f ∧ Continuous f
 
 /-- Bundle an unbundled continuous linear map as a continuous linear map. -/
-def IsContinuousLinearMap.mk' {𝕜 : Type _} [NormedField 𝕜] {E : Type _} [NormedAddCommGroup E]
+def Tengoku.LeanPool.IsContinuousLinearMap.mk' {𝕜 : Type _} [NormedField 𝕜] {E : Type _} [NormedAddCommGroup E]
     [NormedSpace 𝕜 E] {F : Type _} [NormedAddCommGroup F] [NormedSpace 𝕜 F] {f : E → F}
     (h : IsContinuousLinearMap 𝕜 f) : E →L[𝕜] F :=
   ⟨h.1.mk' f, h.2⟩
@@ -112,7 +112,7 @@ def IsContinuousLinearMap.mk' {𝕜 : Type _} [NormedField 𝕜] {E : Type _} [N
 /--
 @isnad1 id=eq.1h4v.s7.85d1111751ac from=translated src=- shape=850bc2a5 vocab=3180145b
 -/
-theorem IsContinuousLinearMap.coe_mk' {𝕜 : Type _} [NormedField 𝕜] {E : Type _}
+theorem Tengoku.LeanPool.IsContinuousLinearMap.coe_mk' {𝕜 : Type _} [NormedField 𝕜] {E : Type _}
     [NormedAddCommGroup E] [NormedSpace 𝕜 E] {F : Type _} [NormedAddCommGroup F] [NormedSpace 𝕜 F]
     {f : E → F} (h : IsContinuousLinearMap 𝕜 f) : f = h.mk' :=
   rfl
@@ -120,7 +120,7 @@ theorem IsContinuousLinearMap.coe_mk' {𝕜 : Type _} [NormedField 𝕜] {E : Ty
 /--
 @isnad1 id=iff.0h4v.s6.7081f34839c9 from=translated src=- shape=f9465a38 vocab=ad368f6d
 -/
-theorem isBoundedLinearMap_iff_isContinuousLinearMap {𝕜 E : Type _} [NontriviallyNormedField 𝕜]
+theorem _root_.Tengoku.LeanPool.isBoundedLinearMap_iff_isContinuousLinearMap {𝕜 E : Type _} [NontriviallyNormedField 𝕜]
     [NormedAddCommGroup E] [NormedSpace 𝕜 E] {F : Type _} [NormedAddCommGroup F] [NormedSpace 𝕜 F]
     (f : E → F) : IsBoundedLinearMap 𝕜 f ↔ IsContinuousLinearMap 𝕜 f := by
   refine
@@ -129,7 +129,7 @@ theorem isBoundedLinearMap_iff_isContinuousLinearMap {𝕜 E : Type _} [Nontrivi
   exact (⟨h.1.mk' f, h.2⟩ : E →L[𝕜] F).isBoundedLinearMap
 
 /-- A function has a linear norm bound. -/
-def WithBound {E : Type _} [NormedAddCommGroup E] {F : Type _} [NormedAddCommGroup F] (f : E → F) :
+def _root_.Tengoku.LeanPool.WithBound {E : Type _} [NormedAddCommGroup E] {F : Type _} [NormedAddCommGroup F] (f : E → F) :
     Prop :=
   ∃ M, 0 < M ∧ ∀ x : E, ‖f x‖ ≤ M * ‖x‖
 
@@ -161,7 +161,7 @@ theorem LinearMap.ker_coe_def {R E F : Type _} [Semiring R] [AddCommMonoid E] [A
 /--
 @isnad1 id=ex.1h4v.s9.b46ca2130c50 from=translated src=- shape=6e95a2a1 vocab=3c48344f
 -/
-theorem exists_dual_vector_of_ne {X : Type _} [NormedAddCommGroup X] [NormedSpace 𝕜 X] {x y : X}
+theorem _root_.Tengoku.LeanPool.exists_dual_vector_of_ne {X : Type _} [NormedAddCommGroup X] [NormedSpace 𝕜 X] {x y : X}
     (h : x ≠ y) : ∃ f : StrongDual 𝕜 X, f x ≠ f y := by
   rw [ne_eq, ← sub_eq_zero] at h
   obtain ⟨f, ⟨_, hxy⟩⟩ := exists_dual_vector (𝕜 := 𝕜) (x - y) (by
@@ -174,7 +174,7 @@ theorem exists_dual_vector_of_ne {X : Type _} [NormedAddCommGroup X] [NormedSpac
 /--
 @isnad1 id=islinear.0h3v.s6.de46a9afc3d1 from=translated src=- shape=a8d12ee8 vocab=4b8b27af
 -/
-theorem isLinearMap_zero (R : Type _) {E F : Type _} [CommSemiring R] [AddCommMonoid E] [Module R E]
+theorem _root_.Tengoku.LeanPool.isLinearMap_zero (R : Type _) {E F : Type _} [CommSemiring R] [AddCommMonoid E] [Module R E]
     [AddCommMonoid F] [Module R F] : IsLinearMap R (0 : E → F) :=
   ⟨fun _ _ => by simp only [Pi.zero_apply, add_zero], fun _ _ => by simp only [Pi.zero_apply,
     smul_zero]⟩
@@ -182,7 +182,7 @@ theorem isLinearMap_zero (R : Type _) {E F : Type _} [CommSemiring R] [AddCommMo
 /--
 @isnad1 id=iscontin.0h3v.s6.becdf15ceca1 from=translated src=- shape=e6df328f vocab=88aa45e8
 -/
-theorem isContinuousLinearMapZero {𝕜 E : Type _} [NormedField 𝕜] [NormedAddCommGroup E]
+theorem _root_.Tengoku.LeanPool.isContinuousLinearMapZero {𝕜 E : Type _} [NormedField 𝕜] [NormedAddCommGroup E]
     [NormedSpace 𝕜 E] {F : Type _} [NormedAddCommGroup F] [NormedSpace 𝕜 F] :
     IsContinuousLinearMap 𝕜 (0 : E → F) :=
   ⟨isLinearMap_zero 𝕜, continuous_zero⟩
@@ -192,7 +192,7 @@ open scoped Topology BigOperators NNReal
 /--
 @isnad1 id=iscontin.1h3v.s6.13d9683a541e from=translated src=- shape=43a0cb46 vocab=9f7b8a98
 -/
-theorem IsContinuousLinearMap.ofInnerSymmetricFun {X : Type _} [NormedAddCommGroup X]
+theorem Tengoku.LeanPool.IsContinuousLinearMap.ofInnerSymmetricFun {X : Type _} [NormedAddCommGroup X]
     [InnerProductSpace 𝕜 X] [CompleteSpace X] {f : X → X}
     (h : ∀ a b : X, inner 𝕜 (f a) b = inner 𝕜 a (f b)) : IsContinuousLinearMap 𝕜 f := by
   have : IsLinearMap 𝕜 f :=
@@ -211,7 +211,7 @@ theorem IsContinuousLinearMap.ofInnerSymmetricFun {X : Type _} [NormedAddCommGro
   exact ⟨f'.isLinear, LinearMap.IsSymmetric.continuous h⟩
 
 /-- Bilinearity for maps whose domain is a product type. -/
-structure IsBilinearMapProd (𝕜 : Type _) [NormedField 𝕜] {E : Type _} [NormedAddCommGroup E]
+structure _root_.Tengoku.LeanPool.IsBilinearMapProd (𝕜 : Type _) [NormedField 𝕜] {E : Type _} [NormedAddCommGroup E]
     [NormedSpace 𝕜 E] {F : Type _} [NormedAddCommGroup F] [NormedSpace 𝕜 F] {G : Type _}
     [NormedAddCommGroup G] [NormedSpace 𝕜 G] (f : E × F → G) : Prop where
   add_left : ∀ (x₁ x₂ : E) (y : F), f (x₁ + x₂, y) = f (x₁, y) + f (x₂, y)
@@ -220,7 +220,7 @@ structure IsBilinearMapProd (𝕜 : Type _) [NormedField 𝕜] {E : Type _} [Nor
   smul_right : ∀ (c : 𝕜) (x : E) (y : F), f (x, c • y) = c • f (x, y)
 
 /-- Linearity of a product map in its left argument. -/
-def IsLeftLinearMap (𝕜 : Type _) [NormedField 𝕜] {E : Type _} [NormedAddCommGroup E]
+def _root_.Tengoku.LeanPool.IsLeftLinearMap (𝕜 : Type _) [NormedField 𝕜] {E : Type _} [NormedAddCommGroup E]
     [NormedSpace 𝕜 E] {F : Type _} {G : Type _} [NormedAddCommGroup G] [NormedSpace 𝕜 G]
     (f : E × F → G) : Prop :=
   ∀ b : F, IsLinearMap 𝕜 fun a => f (a, b)
@@ -228,13 +228,13 @@ def IsLeftLinearMap (𝕜 : Type _) [NormedField 𝕜] {E : Type _} [NormedAddCo
 /--
 @isnad1 id=iff.0h5v.s6.f9450cd44136 from=translated src=- shape=38829ef0 vocab=3703c1f5
 -/
-theorem isLeftLinearMap_iff {𝕜 : Type _} [NormedField 𝕜] {E : Type _} [NormedAddCommGroup E]
+theorem _root_.Tengoku.LeanPool.isLeftLinearMap_iff {𝕜 : Type _} [NormedField 𝕜] {E : Type _} [NormedAddCommGroup E]
     [NormedSpace 𝕜 E] {F : Type _} {G : Type _} [NormedAddCommGroup G] [NormedSpace 𝕜 G]
     {f : E × F → G} : IsLeftLinearMap 𝕜 f ↔ ∀ b : F, IsLinearMap 𝕜 fun a => f (a, b) :=
   Iff.rfl
 
 /-- Linearity of a product map in its right argument. -/
-def IsRightLinearMap (𝕜 : Type _) [NormedField 𝕜] {E : Type _} {F : Type _} [NormedAddCommGroup F]
+def _root_.Tengoku.LeanPool.IsRightLinearMap (𝕜 : Type _) [NormedField 𝕜] {E : Type _} {F : Type _} [NormedAddCommGroup F]
     [NormedSpace 𝕜 F] {G : Type _} [NormedAddCommGroup G] [NormedSpace 𝕜 G] (f : E × F → G) :
     Prop :=
   ∀ a : E, IsLinearMap 𝕜 fun b => f (a, b)
@@ -242,7 +242,7 @@ def IsRightLinearMap (𝕜 : Type _) [NormedField 𝕜] {E : Type _} {F : Type _
 /--
 @isnad1 id=iff.0h5v.s6.4cd498228542 from=translated src=- shape=beda5a81 vocab=02aafc00
 -/
-theorem isRightLinearMap_iff {𝕜 : Type _} [NormedField 𝕜] {E : Type _} {F : Type _}
+theorem _root_.Tengoku.LeanPool.isRightLinearMap_iff {𝕜 : Type _} [NormedField 𝕜] {E : Type _} {F : Type _}
     [NormedAddCommGroup F] [NormedSpace 𝕜 F] {G : Type _} [NormedAddCommGroup G] [NormedSpace 𝕜 G]
     {f : E × F → G} : IsRightLinearMap 𝕜 f ↔ ∀ a : E, IsLinearMap 𝕜 fun b => f (a, b) :=
   Iff.rfl
@@ -250,7 +250,7 @@ theorem isRightLinearMap_iff {𝕜 : Type _} [NormedField 𝕜] {E : Type _} {F 
 /--
 @isnad1 id=iff.0h5v.s6.7de2bcb05d90 from=translated src=- shape=f524f741 vocab=890cd9a0
 -/
-theorem isBilinearMap_iff_is_linear_map_left_right {𝕜 : Type _} [NormedField 𝕜] {E : Type _}
+theorem _root_.Tengoku.LeanPool.isBilinearMap_iff_is_linear_map_left_right {𝕜 : Type _} [NormedField 𝕜] {E : Type _}
     [NormedAddCommGroup E] [NormedSpace 𝕜 E] {F : Type _} [NormedAddCommGroup F] [NormedSpace 𝕜 F]
     {G : Type _} [NormedAddCommGroup G] [NormedSpace 𝕜 G] {f : E × F → G} :
     IsBilinearMapProd 𝕜 f ↔ IsLeftLinearMap 𝕜 f ∧ IsRightLinearMap 𝕜 f := by
@@ -267,7 +267,7 @@ theorem isBilinearMap_iff_is_linear_map_left_right {𝕜 : Type _} [NormedField 
     exact (h2 x).map_smul _ _
 
 /-- Bundle a product bilinear map as a linear map into linear maps. -/
-def IsBilinearMapProd.toLmLm {𝕜 : Type _} [NormedField 𝕜] {E : Type _} [NormedAddCommGroup E]
+def Tengoku.LeanPool.IsBilinearMapProd.toLmLm {𝕜 : Type _} [NormedField 𝕜] {E : Type _} [NormedAddCommGroup E]
     [NormedSpace 𝕜 E] {F : Type _} [NormedAddCommGroup F] [NormedSpace 𝕜 F] {G : Type _}
     [NormedAddCommGroup G] [NormedSpace 𝕜 G] {f : E × F → G} (hf : IsBilinearMapProd 𝕜 f) :
     E →ₗ[𝕜] F →ₗ[𝕜] G
@@ -304,7 +304,7 @@ def IsLmLeftIsClmRight.toLmClm {𝕜 : Type _} [NormedField 𝕜] {E : Type _} [
 /--
 @isnad1 id=eq.1h6v.s6.60646adde401 from=translated src=- shape=d03519ae vocab=bf3fda9f
 -/
-theorem IsBilinearMapProd.zero_left {𝕜 : Type _} [NormedField 𝕜] {E : Type _} [NormedAddCommGroup E]
+theorem Tengoku.LeanPool.IsBilinearMapProd.zero_left {𝕜 : Type _} [NormedField 𝕜] {E : Type _} [NormedAddCommGroup E]
     [NormedSpace 𝕜 E] {F : Type _} [NormedAddCommGroup F] [NormedSpace 𝕜 F] {G : Type _}
     [NormedAddCommGroup G] [NormedSpace 𝕜 G] {f : E × F → G} (h : IsBilinearMapProd 𝕜 f) (y : F) :
     f (0, y) = 0 := by
@@ -314,7 +314,7 @@ theorem IsBilinearMapProd.zero_left {𝕜 : Type _} [NormedField 𝕜] {E : Type
 /--
 @isnad1 id=eq.1h6v.s6.34a9bf36fbcf from=translated src=- shape=e22e3a4b vocab=bf3fda9f
 -/
-theorem IsBilinearMapProd.zero_right {𝕜 : Type _} [NormedField 𝕜] {E : Type _}
+theorem Tengoku.LeanPool.IsBilinearMapProd.zero_right {𝕜 : Type _} [NormedField 𝕜] {E : Type _}
     [NormedAddCommGroup E]
     [NormedSpace 𝕜 E] {F : Type _} [NormedAddCommGroup F] [NormedSpace 𝕜 F] {G : Type _}
     [NormedAddCommGroup G] [NormedSpace 𝕜 G] {f : E × F → G} (h : IsBilinearMapProd 𝕜 f) (x : E) :
@@ -322,7 +322,7 @@ theorem IsBilinearMapProd.zero_right {𝕜 : Type _} [NormedField 𝕜] {E : Typ
   simp only [isBilinearMap_iff_is_linear_map_left_right] at h
   exact (h.2 x).map_zero
 
-theorem IsBilinearMapProd.eq_zero_add_self {𝕜 : Type _} [NormedField 𝕜] {E : Type _}
+theorem Tengoku.LeanPool.IsBilinearMapProd.eq_zero_add_self {𝕜 : Type _} [NormedField 𝕜] {E : Type _}
     [NormedAddCommGroup E] [NormedSpace 𝕜 E] {F : Type _} [NormedAddCommGroup F]
     [NormedSpace 𝕜 F] {G : Type _} [NormedAddCommGroup G] [NormedSpace 𝕜 G]
     {f : E × F → G} (h : IsBilinearMapProd 𝕜 f)
@@ -369,7 +369,7 @@ open scoped ComplexOrder
 /--
 @isnad1 id=islinear.1h4v.s6.fa16208b104b from=translated src=- shape=feb31679 vocab=e621e852
 -/
-theorem IsContinuousLinearMap.to_is_lm {𝕜 X Y : Type _} [NormedField 𝕜] [NormedAddCommGroup X]
+theorem Tengoku.LeanPool.IsContinuousLinearMap.to_is_lm {𝕜 X Y : Type _} [NormedField 𝕜] [NormedAddCommGroup X]
     [NormedAddCommGroup Y] [NormedSpace 𝕜 X] [NormedSpace 𝕜 Y] {β : X → Y}
     (hf : IsContinuousLinearMap 𝕜 β) : IsLinearMap 𝕜 β :=
   hf.1
@@ -451,7 +451,7 @@ open scoped InnerProductSpace
 /--
 @isnad1 id=iff.2h4v.s7.45b09762f0b5 from=translated src=- shape=bbaa0532 vocab=ce211ee3
 -/
-theorem re_inner_lt_one_iff_of_norm_one {𝕜 H : Type _} [RCLike 𝕜] [NormedAddCommGroup H]
+theorem _root_.Tengoku.LeanPool.re_inner_lt_one_iff_of_norm_one {𝕜 H : Type _} [RCLike 𝕜] [NormedAddCommGroup H]
   [InnerProductSpace 𝕜 H]
   {x y : H} (hx : ‖x‖ = 1) (hy : ‖y‖ = 1) :
   re ⟪x, y⟫_𝕜 < 1 ↔ x ≠ y := by
@@ -461,7 +461,7 @@ theorem re_inner_lt_one_iff_of_norm_one {𝕜 H : Type _} [RCLike 𝕜] [NormedA
 /--
 @isnad1 id=iff.1h3v.s7.5a31a8698a44 from=translated src=- shape=4a72e810 vocab=3b8b9108
 -/
-theorem ne_zero_iff_nontrivial_of_mem_extremePoints_closed_unitBall
+theorem _root_.Tengoku.LeanPool.ne_zero_iff_nontrivial_of_mem_extremePoints_closed_unitBall
   {𝕜 H : Type _} [RCLike 𝕜] [NormedAddCommGroup H]
   [NormedSpace 𝕜 H] {x : H}
   (hx : x ∈ Set.extremePoints 𝕜 (Metric.closedBall (0 : H) 1)) :
@@ -482,7 +482,7 @@ theorem ne_zero_iff_nontrivial_of_mem_extremePoints_closed_unitBall
 /--
 @isnad1 id=eq.1h3v.s7.ca083a924d62 from=translated src=- shape=0f5e5ef4 vocab=e9a62a43
 -/
-theorem norm_one_of_mem_extremePoints_of_closed_unitBall {𝕜 H : Type _} [RCLike 𝕜]
+theorem _root_.Tengoku.LeanPool.norm_one_of_mem_extremePoints_of_closed_unitBall {𝕜 H : Type _} [RCLike 𝕜]
   [NormedAddCommGroup H]
   [NormedSpace 𝕜 H] [Nontrivial H] {x : H}
   (hx : x ∈ Set.extremePoints 𝕜 (Metric.closedBall (0 : H) 1)) :
@@ -508,7 +508,7 @@ theorem norm_one_of_mem_extremePoints_of_closed_unitBall {𝕜 H : Type _} [RCLi
 /--
 @isnad1 id=iff.0h3v.s7.e1532e0e956d from=translated src=- shape=250b2d93 vocab=0ca85e31
 -/
-theorem mem_extremePoints_of_closedBall_iff_norm_eq_one
+theorem _root_.Tengoku.LeanPool.mem_extremePoints_of_closedBall_iff_norm_eq_one
   {𝕜 H : Type _} [RCLike 𝕜] [NormedAddCommGroup H] [InnerProductSpace 𝕜 H] [Nontrivial H] (x : H) :
   x ∈ Set.extremePoints 𝕜 (Metric.closedBall (0 : H) 1) ↔ ‖x‖ = 1 := by
   refine ⟨fun hx => norm_one_of_mem_extremePoints_of_closed_unitBall hx, fun hx => ?_⟩
@@ -645,7 +645,7 @@ theorem Set.subset_diff_inj {α : Type _} (s : Set α) {t u : Set α}
 /--
 @isnad1 id=iff.4h4v.s8.3cb105192c25 from=translated src=- shape=882e8676 vocab=f4f13676
 -/
-lemma example_pos_commute_iff_pos_mul_of {𝕜 R : Type _} [RCLike 𝕜] [Ring R]
+lemma _root_.Tengoku.LeanPool.example_pos_commute_iff_pos_mul_of {𝕜 R : Type _} [RCLike 𝕜] [Ring R]
   [PartialOrder R] [StarRing R] [Algebra 𝕜 R]
   (h₁ : ∀ x : R, 0 ≤ x ↔ ∃ r : R, x = star r * r)
   (h₂ : ∀ x : R, 0 ≤ x ↔ IsSelfAdjoint x ∧ spectrum 𝕜 x ⊆ { a : 𝕜 | 0 ≤ a })
@@ -673,3 +673,4 @@ lemma example_pos_commute_iff_pos_mul_of {𝕜 R : Type _} [RCLike 𝕜] [Ring R
     exact this _
   · intro h
     exact h.1.symm
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

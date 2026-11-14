@@ -32,7 +32,7 @@ This is a special case of the modified Bessel function K_{1/2} identity.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Real Set MeasureTheory Filter Topology
 open scoped ENNReal NNReal
 
@@ -627,3 +627,4 @@ theorem laplace_integral_half_power_nonneg (a b : ℝ) (ha : 0 ≤ a) (hb : 0 < 
     exact laplace_integral_half_power a b ha_pos hb
 
 end LaplaceIntegral
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

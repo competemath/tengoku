@@ -36,7 +36,7 @@ We define the real-valued Wigner semicircle distribution.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ENNReal NNReal Real ProbabilityTheory
 
 open MeasureTheory Set
@@ -1175,3 +1175,4 @@ lemma centralMoment_odd_semicircleReal (μ : ℝ) (v : ℝ≥0) (n : ℕ) :
   apply centralMoment_fun_odd_semicircleReal
 
 end LeanPool.SemicircleLaw
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

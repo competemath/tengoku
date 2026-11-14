@@ -26,7 +26,7 @@ convention of `CKN.spatialPartial`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Set
 open CKN.Foundation.Parabolic
 
@@ -191,3 +191,4 @@ theorem spatialLaplacian_mul_smooth {η φ : Vec3 → ℝ}
 end
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -8,7 +8,7 @@ import Tengoku.NavierStokesEuler.NavierStokes.R3LocalizedEnergyLimit
 # Time evolution of the actual localized kinetic energy
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace NavierStokes.R3LocalEnergyEvolution
 
 open Set MeasureTheory ProblemStatement InnerProductSpace
@@ -78,3 +78,4 @@ theorem difference_energy_balance {χ : Space → ℝ} {u v : VelocityField}
     abel
 
 end NavierStokes.R3LocalEnergyEvolution
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

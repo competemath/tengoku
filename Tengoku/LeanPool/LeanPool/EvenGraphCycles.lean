@@ -66,7 +66,7 @@ minimum positive degree at least two, so a path of maximal length closes up into
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Finset
 
 namespace List
@@ -816,3 +816,4 @@ theorem exists_edge_pairing_of_even_degree (G : SimpleGraph V) [Fintype G.edgeSe
   exact heven v
 
 end SimpleGraph
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

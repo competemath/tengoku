@@ -20,7 +20,7 @@ The semidirect closure component of the Connes rigidity formalization.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Connes
 
 noncomputable section
@@ -183,3 +183,4 @@ theorem semidirect_vonNeumannClosure_eq_inl_inr
 
 end
 end Connes
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

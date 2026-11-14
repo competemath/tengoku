@@ -78,7 +78,7 @@ is done by `Exists.elim` while proving a `Prop`, so it stays **choice-free**
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem ApproximableMap Domain.Neighborhood.Exercise510
@@ -305,3 +305,4 @@ theorem nonempty_algHom_of_continuousOnMaps
   rw [comp_assoc, comp_assoc, hji, comp_idMap]
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -28,7 +28,7 @@ canonical polygonal generators transports to the equivalence closure of `Orienta
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Complex
 
 /-- The benchmark boundary parameter is periodic with integral period one.
@@ -220,3 +220,4 @@ end SurfaceCellComplex
 end ClassificationOfSurfaces
 end Topology
 end LeanEval
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

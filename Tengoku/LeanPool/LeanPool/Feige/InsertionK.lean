@@ -17,7 +17,7 @@ This file connects the concrete inserted Boolean chain to the abstract
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Feige
 
 /-- The `Bᵣ` value at the lifted lower state `Cᵣ`, extended by zero after
@@ -181,3 +181,4 @@ theorem chainMass_booleanChainK_insert_upper {n : ℕ}
       (A := insertionUpperK γ β σ) (B := insertionLowerK γ β σ) hJj)
 
 end Feige
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

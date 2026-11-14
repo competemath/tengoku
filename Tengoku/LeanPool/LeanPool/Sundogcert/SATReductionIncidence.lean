@@ -39,7 +39,7 @@ public import Tengoku.LeanPool.LeanPool.Sundogcert.SATReduction
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Sundog.SATReduction Sundog.SATNPHard
 
 namespace Sundog.SATReductionIncidence
@@ -134,3 +134,4 @@ theorem ycoord_g2 (φ : Formula n m) (g : Fin (m * (n - 1))) (idx : TripleIdx n 
     Expect `[propext, Quot.sound]` subsets — NO `sorryAx`, NO `Lean.ofReduceBool`. -/
 
 end Sundog.SATReductionIncidence
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

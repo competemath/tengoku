@@ -25,7 +25,7 @@ Since U₊ is fiber-saturated, m + te ∈ U₊ for t ∈ [0,1].
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace PLAcceleratedNesterovLean
@@ -224,3 +224,4 @@ theorem fiber_deriv {d : ℕ} (f : E d → ℝ) (m e : E d)
   simp_all
 
 end PLAcceleratedNesterovLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

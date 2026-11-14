@@ -34,7 +34,7 @@ Also defines soundness and completeness.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LO
 
 /-- Imported declaration from the Incompleteness formalization. -/
@@ -851,3 +851,4 @@ end «lp_section_8»
 
 end LO
 -- Tengoku: 2 notation(s) of this module made scoped so they do not change other libraries (generated)
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

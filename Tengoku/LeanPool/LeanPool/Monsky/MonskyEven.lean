@@ -15,7 +15,7 @@ Imported Lean Pool material for `LeanPool.Monsky.MonskyEven`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.Monsky
 
 local notation "ℝ²" => EuclideanSpace ℝ (Fin 2)
@@ -315,3 +315,4 @@ lemma zig_zag_open_disjoint {n : ℕ}
 
 end Monsky
 end LeanPool
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

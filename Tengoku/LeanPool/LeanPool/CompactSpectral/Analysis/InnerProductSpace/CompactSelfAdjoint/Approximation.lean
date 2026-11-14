@@ -22,7 +22,7 @@ For a compact self-adjoint operator `T` and `ε > 0`, the “large-eigenvalue”
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace CompactSelfAdjoint
 
 open Filter Topology Metric
@@ -235,3 +235,4 @@ lemma opNorm_sub_comp_largeEigenspaceProjector_le
     have : Subsingleton E := (not_nontrivial_iff_subsingleton).1 hE
     simpa using (le_of_lt hε)
 end CompactSelfAdjoint
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -16,11 +16,11 @@ i had trouble finding them.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /--
 @isnad1 id=var.1h4v.s4.9516fc96f71a from=translated src=- shape=f7812673 vocab=e3b0c442
 -/
-theorem excluded_middle_implication : ∀ (P Q C : Prop),
+theorem _root_.Tengoku.LeanPool.excluded_middle_implication : ∀ (P Q C : Prop),
   (P ∧ Q → C) ∧ (P ∧ ¬Q → C) →
   P →
   C
@@ -183,7 +183,7 @@ theorem UInt64.add_right_ne_of_lt : ∀ (n i l : UInt64),
   intro n i l h_iLtl neq
   simp_all
 
-instance instPreorderUInt64LeanPool : Preorder UInt64 where
+instance _root_.Tengoku.LeanPool.instPreorderUInt64LeanPool : Preorder UInt64 where
   le := (· ≤ ·)
   lt := (· < ·)
   le_refl := by simp
@@ -194,3 +194,4 @@ instance instPreorderUInt64LeanPool : Preorder UInt64 where
     · intro h
       simpa only [UInt64.not_le] using ⟨UInt64.le_of_lt h, h⟩
     · simp
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

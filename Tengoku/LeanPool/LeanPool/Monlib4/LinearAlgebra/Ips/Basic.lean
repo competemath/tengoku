@@ -18,8 +18,8 @@ This files provides some useful and obvious results for linear maps and continuo
 -/
 
 @[expose] public section
-
-theorem _root_.ext_inner_left_iff {𝕜 E : Type _} [RCLike 𝕜] [NormedAddCommGroup E]
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+theorem _root_.Tengoku.LeanPool.ext_inner_left_iff {𝕜 E : Type _} [RCLike 𝕜] [NormedAddCommGroup E]
     [InnerProductSpace 𝕜 E] (x y : E) :
     x = y ↔ ∀ v : E, inner 𝕜 x v = inner 𝕜 y v := by
   constructor
@@ -30,7 +30,7 @@ theorem _root_.ext_inner_left_iff {𝕜 E : Type _} [RCLike 𝕜] [NormedAddComm
 /--
 @isnad1 id=iff.0h3v.s6.77c6112f38a6 from=translated src=- shape=1b635a69 vocab=08bb0bb7
 -/
-theorem forall_inner_eq_zero_iff {𝕜 E : Type _} [RCLike 𝕜] [NormedAddCommGroup E]
+theorem _root_.Tengoku.LeanPool.forall_inner_eq_zero_iff {𝕜 E : Type _} [RCLike 𝕜] [NormedAddCommGroup E]
     [InnerProductSpace 𝕜 E] (x : E) : (∀ y, inner 𝕜 x y = 0) ↔ x = 0 := by
   refine ⟨fun h => ?_, fun h y => by rw [h, inner_zero_left]⟩
   simpa [inner_self_eq_zero] using h x
@@ -122,17 +122,17 @@ open scoped ComplexOrder
 /--
 @isnad1 id=le.0h3v.s6.72fdd73817c2 from=translated src=- shape=fad88609 vocab=29619ca9
 -/
-lemma inner_self_nonneg' {E : Type _} [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] {x : E} :
+lemma _root_.Tengoku.LeanPool.inner_self_nonneg' {E : Type _} [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] {x : E} :
     0 ≤ ⟪x, x⟫_𝕜 := by simp_rw [@RCLike.nonneg_def 𝕜, inner_self_nonneg, true_and, inner_self_im]
 
 /--
 @isnad1 id=iff.0h3v.s6.90561580f3fb from=translated src=- shape=e5800851 vocab=29619ca9
 -/
-lemma inner_self_nonpos' {E : Type _} [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] {x : E} :
+lemma _root_.Tengoku.LeanPool.inner_self_nonpos' {E : Type _} [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] {x : E} :
     ⟪x, x⟫_𝕜 ≤ 0 ↔ x = 0 := by
   simp_rw [@RCLike.nonpos_def 𝕜, re_inner_self_nonpos, inner_self_im, and_true]
 
-lemma _root_.isometry_iff_norm {E F : Type _} [SeminormedAddCommGroup E]
+lemma _root_.Tengoku.LeanPool.isometry_iff_norm {E F : Type _} [SeminormedAddCommGroup E]
   [SeminormedAddCommGroup F]
   {e : Type*} [FunLike e E F]
   [AddMonoidHomClass e E F]
@@ -141,12 +141,12 @@ lemma _root_.isometry_iff_norm {E F : Type _} [SeminormedAddCommGroup E]
   rw [isometry_iff_dist_eq]
   simp_rw [dist_eq_norm, ← map_sub]
   refine ⟨fun h x => by simpa using h x 0, fun h x y => h _⟩
-lemma _root_.isometry_iff_norm' {E F : Type _} [_root_.NormedAddCommGroup E]
+lemma _root_.Tengoku.LeanPool.isometry_iff_norm' {E F : Type _} [_root_.NormedAddCommGroup E]
     [_root_.NormedAddCommGroup F] {e : Type*} [FunLike e E F]
     [AddMonoidHomClass e E F] (f : e) :
     Isometry f ↔ ∀ x, ‖f x‖ = ‖x‖ :=
 isometry_iff_norm _
-lemma _root_.isometry_iff_inner {R E F : Type _} [RCLike R]
+lemma _root_.Tengoku.LeanPool.isometry_iff_inner {R E F : Type _} [RCLike R]
   [_root_.NormedAddCommGroup E] [_root_.NormedAddCommGroup F]
   [_root_.InnerProductSpace R E] [_root_.InnerProductSpace R F]
   {M : Type*} [FunLike M E F] [LinearMapClass M R E F]
@@ -162,14 +162,15 @@ lemma _root_.isometry_iff_inner {R E F : Type _} [RCLike R]
     simp_rw [this]
   · intro h x y
     simp_rw [@norm_eq_sqrt_re_inner R, h]
-lemma _root_.isometry_iff_inner_norm'
+lemma _root_.Tengoku.LeanPool.isometry_iff_inner_norm'
   {R E F : Type _} [RCLike R] [_root_.NormedAddCommGroup E] [_root_.NormedAddCommGroup F]
   [_root_.InnerProductSpace R E] [_root_.InnerProductSpace R F]
   {M : Type*} [FunLike M E F] [LinearMapClass M R E F] (f : M) :
   (∀ x, ‖f x‖ = ‖x‖) ↔ ∀ x y, ⟪f x, f y⟫_R = ⟪x, y⟫_R :=
 by rw [← isometry_iff_inner, isometry_iff_norm]
 
-lemma _root_.seminormedAddGroup_norm_eq_norm_NormedAddCommGroup
+lemma _root_.Tengoku.LeanPool.seminormedAddGroup_norm_eq_norm_NormedAddCommGroup
   {E : Type _} [_root_.NormedAddCommGroup E] (x : E) :
   @norm E SeminormedAddGroup.toNorm x = @norm E _root_.NormedAddCommGroup.toNorm x :=
 rfl
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

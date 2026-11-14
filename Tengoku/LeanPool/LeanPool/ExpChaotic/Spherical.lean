@@ -22,7 +22,7 @@ See `LeanPool.ExpChaotic` for attribution and the upstream source.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Function Filter Set Metric
 open scoped Topology NNReal Uniformity
 
@@ -218,3 +218,4 @@ theorem spherical_sensitive_dependence_exp :
 end
 
 end ExponentialJuliaSetMisiurewicz
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

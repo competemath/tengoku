@@ -23,7 +23,7 @@ an edge discrepancy bound of `36 * √t`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Hypergraph
 
 open Komlos Finset
@@ -69,3 +69,4 @@ lemma sum_incidenceMatrix_sq (hV : V(H).Finite) (x : hV.toFinset) :
         simp
 
 end Hypergraph
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

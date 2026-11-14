@@ -19,18 +19,18 @@ This defines the rank one operator $| x \rangle\langle y |$ for continuous linea
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 section rankOne
 
 /-- The bra map sending a vector to the corresponding inner-product functional. -/
 @[simps!]
-noncomputable abbrev bra (𝕜 : Type*) {E : Type*} [RCLike 𝕜] [NormedAddCommGroup E]
+noncomputable abbrev _root_.Tengoku.LeanPool.bra (𝕜 : Type*) {E : Type*} [RCLike 𝕜] [NormedAddCommGroup E]
     [InnerProductSpace 𝕜 E] :
     E →L⋆[𝕜] (E →L[𝕜] 𝕜) :=
 innerSL 𝕜
 /-- The ket map sending a vector to scalar multiplication by that vector. -/
 @[simps!]
-noncomputable def ket (𝕜 : Type*) {E : Type*} [RCLike 𝕜] [NormedAddCommGroup E]
+noncomputable def _root_.Tengoku.LeanPool.ket (𝕜 : Type*) {E : Type*} [RCLike 𝕜] [NormedAddCommGroup E]
     [InnerProductSpace 𝕜 E] :
     E →L[𝕜] (𝕜 →L[𝕜] E) where
   toFun x :=
@@ -48,7 +48,7 @@ noncomputable def ket (𝕜 : Type*) {E : Type*} [RCLike 𝕜] [NormedAddCommGro
 @isnad1 id=eq.0h3v.s10.2e3e295894a1 from=translated src=- shape=b9ba0933 vocab=b2ff11ee
 -/
 @[simp high]
-lemma ket_one_apply
+lemma _root_.Tengoku.LeanPool.ket_one_apply
   {𝕜 E : Type*} [RCLike 𝕜] [NormedAddCommGroup E] [InnerProductSpace 𝕜 E]
   (x : E) :
   ket 𝕜 x 1 = x :=
@@ -57,7 +57,7 @@ by simp only [ket_apply_apply, one_smul]
 /--
 @isnad1 id=eq.0h2v.s12.c937c6b267c5 from=translated src=- shape=81e706e2 vocab=247d60c5
 -/
-theorem ket_RCLike {𝕜 : Type*} [RCLike 𝕜] (x : 𝕜) :
+theorem _root_.Tengoku.LeanPool.ket_RCLike {𝕜 : Type*} [RCLike 𝕜] (x : 𝕜) :
   ket 𝕜 x = ContinuousLinearMap.mul 𝕜 𝕜 x := by
   ext
   simp only [ket_one_apply, ContinuousLinearMap.mul_apply', mul_one]
@@ -74,14 +74,14 @@ by ext; rw [mul_apply', one_mul]; rfl
 /--
 @isnad1 id=eq.0h1v.s11.7b4c369dd8ec from=translated src=- shape=d592003b vocab=8c791998
 -/
-theorem ket_RCLike_one {𝕜 : Type*} [RCLike 𝕜] :
+theorem _root_.Tengoku.LeanPool.ket_RCLike_one {𝕜 : Type*} [RCLike 𝕜] :
   ket 𝕜 (1 : 𝕜) = 1 :=
 by rw [ket_RCLike, ContinuousLinearMap.mul_one_apply]
 
 /--
 @isnad1 id=eq.0h2v.s12.2a7fc68ab2fd from=translated src=- shape=21d235d0 vocab=9950d779
 -/
-theorem bra_RCLike {𝕜 : Type*} [RCLike 𝕜] (x : 𝕜) :
+theorem _root_.Tengoku.LeanPool.bra_RCLike {𝕜 : Type*} [RCLike 𝕜] (x : 𝕜) :
   bra 𝕜 x = ContinuousLinearMap.mul 𝕜 𝕜 ((starRingEnd 𝕜) x) := by
   ext
   simp_all
@@ -89,14 +89,14 @@ theorem bra_RCLike {𝕜 : Type*} [RCLike 𝕜] (x : 𝕜) :
 /--
 @isnad1 id=eq.0h1v.s11.19f79e502d6a from=translated src=- shape=4ef6ffff vocab=0b26c3ef
 -/
-theorem bra_RCLike_one {𝕜 : Type*} [RCLike 𝕜] :
+theorem _root_.Tengoku.LeanPool.bra_RCLike_one {𝕜 : Type*} [RCLike 𝕜] :
   bra 𝕜 (1 : 𝕜) = 1 :=
 by rw [bra_RCLike, map_one, ContinuousLinearMap.mul_one_apply]
 
 /--
 @isnad1 id=eq.0h3v.s12.e85709e79ed8 from=translated src=- shape=c339c85c vocab=de56918f
 -/
-lemma bra_adjoint_eq_ket {𝕜 E : Type*} [RCLike 𝕜]
+lemma _root_.Tengoku.LeanPool.bra_adjoint_eq_ket {𝕜 E : Type*} [RCLike 𝕜]
   [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] [CompleteSpace E] (x : E) :
   ContinuousLinearMap.adjoint (bra 𝕜 x : E →L[𝕜] 𝕜) = (ket 𝕜 x) := by
   ext
@@ -105,7 +105,7 @@ lemma bra_adjoint_eq_ket {𝕜 E : Type*} [RCLike 𝕜]
   simp only [ket_apply_apply, one_smul, ContinuousLinearMap.adjoint_inner_right,
     bra_apply_apply, RCLike.inner_apply, inner_conj_symm, one_mul]
 
-lemma _root_.ket_adjoint_eq_bra {𝕜 E : Type*} [RCLike 𝕜]
+lemma _root_.Tengoku.LeanPool.ket_adjoint_eq_bra {𝕜 E : Type*} [RCLike 𝕜]
   [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] [CompleteSpace E] (x : E) :
   ContinuousLinearMap.adjoint (ket 𝕜 x) = bra 𝕜 x := by
   rw [← bra_adjoint_eq_ket, ContinuousLinearMap.adjoint_adjoint]
@@ -115,7 +115,7 @@ open scoped InnerProductSpace
 /--
 @isnad1 id=eq.0h4v.s12.e3e5b98f1cc5 from=translated src=- shape=25dcc225 vocab=347aba66
 -/
-lemma bra_ket_apply {𝕜 E : Type*} [RCLike 𝕜]
+lemma _root_.Tengoku.LeanPool.bra_ket_apply {𝕜 E : Type*} [RCLike 𝕜]
   [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] (x y : E) :
   (bra 𝕜 x) ∘L (ket 𝕜 y) = ket 𝕜 ⟪x, y⟫_𝕜 := by
   ext
@@ -124,7 +124,7 @@ lemma bra_ket_apply {𝕜 E : Type*} [RCLike 𝕜]
 /--
 @isnad1 id=eq.0h4v.s11.c991933f5202 from=translated src=- shape=29594122 vocab=347aba66
 -/
-lemma bra_ket_one_eq_inner {𝕜 E : Type*} [RCLike 𝕜]
+lemma _root_.Tengoku.LeanPool.bra_ket_one_eq_inner {𝕜 E : Type*} [RCLike 𝕜]
   [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] (x y : E) :
   ((bra 𝕜 x) ∘L (ket 𝕜 y)) 1 = ⟪x, y⟫_𝕜 := by
   rw [bra_ket_apply, ket_one_apply]
@@ -132,7 +132,7 @@ lemma bra_ket_one_eq_inner {𝕜 E : Type*} [RCLike 𝕜]
 /--
 @isnad1 id=eq.0h5v.s11.5ada1cb3984c from=translated src=- shape=1b1507c7 vocab=e1cbc458
 -/
-lemma continuousLinearMap_comp_ket {𝕜 E₁ E₂ : Type*} [RCLike 𝕜] [NormedAddCommGroup E₁]
+lemma _root_.Tengoku.LeanPool.continuousLinearMap_comp_ket {𝕜 E₁ E₂ : Type*} [RCLike 𝕜] [NormedAddCommGroup E₁]
   [InnerProductSpace 𝕜 E₁]
   [NormedAddCommGroup E₂] [InnerProductSpace 𝕜 E₂]
   (f : E₁ →L[𝕜] E₂) (x : E₁) :
@@ -143,7 +143,7 @@ lemma continuousLinearMap_comp_ket {𝕜 E₁ E₂ : Type*} [RCLike 𝕜] [Norme
 /--
 @isnad1 id=eq.0h5v.s12.134138bd2f93 from=translated src=- shape=be9d4d47 vocab=8e4765fe
 -/
-lemma bra_comp_continuousLinearMap {𝕜 E₁ E₂ : Type*} [RCLike 𝕜] [NormedAddCommGroup E₁]
+lemma _root_.Tengoku.LeanPool.bra_comp_continuousLinearMap {𝕜 E₁ E₂ : Type*} [RCLike 𝕜] [NormedAddCommGroup E₁]
   [InnerProductSpace 𝕜 E₁]
   [NormedAddCommGroup E₂] [InnerProductSpace 𝕜 E₂]
   [CompleteSpace E₁] [CompleteSpace E₂]
@@ -156,7 +156,7 @@ lemma bra_comp_continuousLinearMap {𝕜 E₁ E₂ : Type*} [RCLike 𝕜] [Norme
 /-- we define the rank one operator $| x \rangle\langle y |$ by
   $x \mapsto \langle y,z\rangle x$ -/
 @[simps]
-def rankOne (𝕜 : Type*) {E₁ E₂ : Type*} [RCLike 𝕜] [NormedAddCommGroup E₁]
+def _root_.Tengoku.LeanPool.rankOne (𝕜 : Type*) {E₁ E₂ : Type*} [RCLike 𝕜] [NormedAddCommGroup E₁]
   [InnerProductSpace 𝕜 E₁]
   [NormedAddCommGroup E₂] [InnerProductSpace 𝕜 E₂] :
     E₁ →ₗ[𝕜] (E₂ →ₗ⋆[𝕜] (E₂ →L[𝕜] E₁)) where
@@ -180,13 +180,13 @@ variable {𝕜 E₁ E₂ : Type*} [RCLike 𝕜] [NormedAddCommGroup E₁] [Inner
 @isnad1 id=eq.0h6v.s12.168608273222 from=translated src=- shape=c94cc495 vocab=11ad51b1
 -/
 @[simp]
-theorem rankOne_apply {x : E₁} {y : E₂} (z : E₂) : rankOne 𝕜 x y z = ⟪y,z⟫_𝕜 • x :=
+theorem _root_.Tengoku.LeanPool.rankOne_apply {x : E₁} {y : E₂} (z : E₂) : rankOne 𝕜 x y z = ⟪y,z⟫_𝕜 • x :=
 rfl
 
 /--
 @isnad1 id=eq.0h5v.s12.a4e7761e5e74 from=translated src=- shape=707dbdaf vocab=a8e2ee56
 -/
-theorem ket_bra_eq_rankOne {x : E₁} {y : E₂} :
+theorem _root_.Tengoku.LeanPool.ket_bra_eq_rankOne {x : E₁} {y : E₂} :
   ket 𝕜 x ∘L bra 𝕜 y = rankOne 𝕜 x y :=
 rfl
 
@@ -198,7 +198,7 @@ $| x \rangle\langle y | | z \rangle\langle w | =
 @isnad1 id=eq.0h8v.s13.7a8895c39705 from=translated src=- shape=16662a0a vocab=44765da1
 -/
 @[simp]
-theorem rankOne.apply_rankOne {E₃ : Type*} [NormedAddCommGroup E₃] [InnerProductSpace 𝕜 E₃]
+theorem Tengoku.LeanPool.rankOne.apply_rankOne {E₃ : Type*} [NormedAddCommGroup E₃] [InnerProductSpace 𝕜 E₃]
   (x : E₁) (y z : E₂) (w : E₃) :
     (rankOne 𝕜 x y) ∘L rankOne 𝕜 z w = ⟪y,z⟫_𝕜 • rankOne 𝕜 x w := by
   ext r
@@ -228,7 +228,7 @@ theorem ContinuousLinearMap.rankOne_comp {E₃ : Type*} [NormedAddCommGroup E₃
 /--
 @isnad1 id=issymmet.0h3v.s12.3e2d09ac11b5 from=translated src=- shape=9adc8765 vocab=40a1181a
 -/
-theorem rankOne_self_isSymmetric {x : E₁} :
+theorem _root_.Tengoku.LeanPool.rankOne_self_isSymmetric {x : E₁} :
   LinearMap.IsSymmetric ((rankOne 𝕜 x x) : E₁ →ₗ[𝕜] E₁) := by
   simp_rw [LinearMap.IsSymmetric, ContinuousLinearMap.coe_coe, rankOne_apply, inner_smul_left,
     inner_smul_right, inner_conj_symm, mul_comm, forall₂_true_iff]
@@ -237,14 +237,14 @@ theorem rankOne_self_isSymmetric {x : E₁} :
 @isnad1 id=isselfad.0h3v.s12.10925b42aab2 from=translated src=- shape=15d316ab vocab=ad74f0df
 -/
 @[simp]
-theorem rankOne_self_isSelfAdjoint [CompleteSpace E₁] {x : E₁} :
+theorem _root_.Tengoku.LeanPool.rankOne_self_isSelfAdjoint [CompleteSpace E₁] {x : E₁} :
   IsSelfAdjoint (rankOne 𝕜 x x) :=
 isSelfAdjoint_iff_isSymmetric.mpr rankOne_self_isSymmetric
 
 /-- $| x \rangle\langle y |^* = | y \rangle\langle x |$
 @isnad1 id=eq.0h5v.s13.8eab4b63b3c4 from=translated src=- shape=6c80f73d vocab=625018cd
 -/
-theorem rankOne_adjoint [CompleteSpace E₁] [CompleteSpace E₂] (x : E₁) (y : E₂) :
+theorem _root_.Tengoku.LeanPool.rankOne_adjoint [CompleteSpace E₁] [CompleteSpace E₂] (x : E₁) (y : E₂) :
   adjoint (rankOne 𝕜 x y) = rankOne 𝕜 y x := by
   rw [← ket_bra_eq_rankOne, adjoint_comp, bra_adjoint_eq_ket, ket_adjoint_eq_bra]
   rfl
@@ -252,7 +252,7 @@ theorem rankOne_adjoint [CompleteSpace E₁] [CompleteSpace E₂] (x : E₁) (y 
 /--
 @isnad1 id=eq.0h7v.s12.09e1aeffdad1 from=translated src=- shape=3e4ec84a vocab=ca23fe1e
 -/
-theorem rankOne_inner_left (x w : E₁) (y z : E₂) :
+theorem _root_.Tengoku.LeanPool.rankOne_inner_left (x w : E₁) (y z : E₂) :
   ⟪rankOne 𝕜 x y z,w⟫_𝕜 = ⟪z,y⟫_𝕜 * ⟪x,w⟫_𝕜 := by
   rw [rankOne_apply, inner_smul_left, inner_conj_symm]
 
@@ -309,7 +309,7 @@ theorem ContinuousLinearMap.centralizer_centralizer [CompleteSpace E₁] :
 /--
 @isnad1 id=iff.0h4v.s11.df7d27fe01b4 from=translated src=- shape=6e99b4b4 vocab=b2ff11ee
 -/
-theorem ket_eq_ket_iff {x y : E₁} :
+theorem _root_.Tengoku.LeanPool.ket_eq_ket_iff {x y : E₁} :
   ket 𝕜 x = ket 𝕜 y ↔ x = y := by
   simp only [ContinuousLinearMap.ext_iff, ket_apply_apply,
     ← @sub_eq_zero _ _ (_ • _), ← @sub_eq_zero _ _ x]
@@ -322,7 +322,7 @@ theorem ket_eq_ket_iff {x y : E₁} :
 /--
 @isnad1 id=iff.0h4v.s11.e7f2de18a322 from=translated src=- shape=e17bd034 vocab=446b2eac
 -/
-theorem bra_eq_bra_iff {x y : E₁} :
+theorem _root_.Tengoku.LeanPool.bra_eq_bra_iff {x y : E₁} :
   bra 𝕜 x = bra 𝕜 y ↔ x = y := by
   simp_all
 
@@ -394,7 +394,7 @@ end rankOne
 section rankOneLm
 
 /-- Same as `rankOne`, but as a linear map. -/
-abbrev rankOneLm {𝕜 E₁ E₂ : Type*} [RCLike 𝕜] [NormedAddCommGroup E₁]
+abbrev _root_.Tengoku.LeanPool.rankOneLm {𝕜 E₁ E₂ : Type*} [RCLike 𝕜] [NormedAddCommGroup E₁]
     [InnerProductSpace 𝕜 E₁] [NormedAddCommGroup E₂] [InnerProductSpace 𝕜 E₂]
     (x : E₁) (y : E₂) : E₂ →ₗ[𝕜] E₁ :=
   (rankOne 𝕜 x y).toLinearMap
@@ -417,7 +417,7 @@ theorem ContinuousLinearMap.coe_eq_zero {𝕜 E₁ E₂ : Type _} [RCLike 𝕜] 
 /--
 @isnad1 id=eq.0h6v.s13.6de3664dabcb from=translated src=- shape=0e178f14 vocab=d282b8c7
 -/
-theorem rankOne.left_sub {𝕜 E₁ E₂ : Type _} [RCLike 𝕜] [NormedAddCommGroup E₁]
+theorem Tengoku.LeanPool.rankOne.left_sub {𝕜 E₁ E₂ : Type _} [RCLike 𝕜] [NormedAddCommGroup E₁]
     [NormedAddCommGroup E₂] [InnerProductSpace 𝕜 E₁] [InnerProductSpace 𝕜 E₂]
     (x y : E₁) (z : E₂) :
     rankOne 𝕜 (x - y) z = rankOne 𝕜 x z - rankOne 𝕜 y z := by
@@ -477,3 +477,4 @@ calc LinearMap.adjoint b.repr.toLinearMap
 open scoped Matrix
 
 end rankOneLm
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

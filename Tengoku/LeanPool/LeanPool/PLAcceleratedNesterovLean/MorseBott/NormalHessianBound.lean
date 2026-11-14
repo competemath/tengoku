@@ -41,7 +41,7 @@ These are equal for C² functions because:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter Topology Metric Submodule InnerProductSpace
 
 noncomputable section
@@ -286,3 +286,4 @@ theorem ExternalThm3.hessianQuadForm_bound_forall
     (hU_open.mem_nhds (hS_sub hm)) hξ
 
 end PLAcceleratedNesterovLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

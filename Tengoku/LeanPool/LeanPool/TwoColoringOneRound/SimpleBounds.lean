@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Distributed2Coloring
 
 open MeasureTheory
@@ -484,3 +484,4 @@ theorem no_algorithm_p_lt_one_fifth :
   exact (not_lt_of_ge hbound) halg
 
 end Distributed2Coloring
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

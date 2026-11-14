@@ -29,7 +29,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter Set OpenPartialHomeomorph
 open scoped ContDiff Manifold Topology
 
@@ -244,3 +244,4 @@ theorem map_nhdsNE {α β : Type*} [TopologicalSpace α] [TopologicalSpace β]
     exact hyx (by rw [← e.right_inv hyt, h])
 
 end RS
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -23,7 +23,7 @@ to relate the variance to the Fourier coefficients.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace KrafftSieve
 
 open scoped BigOperators
@@ -375,3 +375,4 @@ lemma harmonic_variance_lower_bound (n : ℕ) (r : Fin (w n) → ℕ) (h : ZMod 
 end
 
 end KrafftSieve
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

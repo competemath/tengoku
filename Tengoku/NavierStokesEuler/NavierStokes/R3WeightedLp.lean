@@ -10,7 +10,7 @@ of its fourth-power cutoff. The exponents leave strictly less than two
 powers of the localized gradient in the energy error.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace NavierStokes.R3WeightedLp
 
 open Set Filter MeasureTheory ProblemStatement
@@ -256,3 +256,4 @@ theorem stress_weight_six {R L : ℝ} {φ U W : Space → ℝ} {g : Space → �
     (mul_le_mul_of_nonneg_left (lpNorm_mul_le (r := 2) hUinf hW₂) (by norm_num : (0 : ℝ) ≤ 2)))
 
 end NavierStokes.R3WeightedLp
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

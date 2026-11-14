@@ -15,7 +15,7 @@ exhibited as a crystallographic, reduced Mathlib `RootPairing`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace An
 
 /-- The integral weight lattice `Fin n → ℤ` underlying the type-Aₙ root pairing. -/
@@ -580,3 +580,4 @@ lemma An_is_crystallographic (n : ℕ) [NeZero n] : (rootPairing n).IsCrystallog
 -- To fix this, we must base change to ℚ or ℝ
 
 end An
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

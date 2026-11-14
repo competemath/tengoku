@@ -16,7 +16,7 @@ Package the uniform distribution on a finite type as a point of the open simplex
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.CencovPetz
 open scoped BigOperators
 
@@ -43,3 +43,4 @@ noncomputable def uniform : Simplex α where
 
 end Simplex
 end LeanPool.CencovPetz
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

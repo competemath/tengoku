@@ -11,7 +11,7 @@ public import Tengoku
 establish their mass stays in the proofs, while the kernel formulas remain transparent. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace EulerGaussianCylinderHeat
@@ -42,3 +42,4 @@ instance (μ : ℝ) (v : ℝ≥0) : IsProbabilityMeasure (gaussianMeasure μ v) 
   ite_eq_left rfl
 
 end EulerGaussianCylinderHeat
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

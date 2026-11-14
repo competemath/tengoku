@@ -16,7 +16,7 @@ Here we define ⋀ and ⋁ on formulas and seveal helper lemmas.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace PDL
 
 /-! ## Conjunction -/
@@ -462,3 +462,4 @@ theorem mapCon_mapForall (M : KripkeModel W) w φ
   constructor <;> grind [conEval]
 
 end PDL
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

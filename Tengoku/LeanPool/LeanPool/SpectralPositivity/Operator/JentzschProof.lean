@@ -33,7 +33,7 @@ structure (absolute value, positive/negative parts).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open MeasureTheory
@@ -42,7 +42,7 @@ open MeasureTheory
 
 /-- An operator on L²(ℝ^n) is positivity-preserving if it maps nonneg
 functions to nonneg functions. This is weaker than positivity-improving. -/
-def IsPositivityPreserving {Ω : Type*} [MeasureSpace Ω]
+def _root_.Tengoku.LeanPool.IsPositivityPreserving {Ω : Type*} [MeasureSpace Ω]
     (T : Lp ℝ 2 (volume : Measure (Ω)) →L[ℝ]
       Lp ℝ 2 (volume : Measure (Ω))) : Prop :=
   ∀ f : Lp ℝ 2 (volume : Measure (Ω)),
@@ -50,7 +50,7 @@ def IsPositivityPreserving {Ω : Type*} [MeasureSpace Ω]
 
 /-- An operator on L²(ℝ^n) is positivity-improving if it maps nonneg
 nonzero functions to a.e. strictly positive functions (ae-filter version). -/
-def IsPositivityImproving {Ω : Type*} [MeasureSpace Ω]
+def _root_.Tengoku.LeanPool.IsPositivityImproving {Ω : Type*} [MeasureSpace Ω]
     (T : Lp ℝ 2 (volume : Measure (Ω)) →L[ℝ]
       Lp ℝ 2 (volume : Measure (Ω))) : Prop :=
   ∀ f : Lp ℝ 2 (volume : Measure (Ω)),
@@ -60,7 +60,7 @@ def IsPositivityImproving {Ω : Type*} [MeasureSpace Ω]
 
 /-- An operator on L²(ℝ^n) is positivity-improving if it maps nonneg
 nonzero functions to a.e. strictly positive functions (Lp lattice version). -/
-def IsPositivityImproving' {Ω : Type*} [MeasureSpace Ω]
+def _root_.Tengoku.LeanPool.IsPositivityImproving' {Ω : Type*} [MeasureSpace Ω]
     (T : Lp ℝ 2 (volume : Measure (Ω)) →L[ℝ]
       Lp ℝ 2 (volume : Measure (Ω))) : Prop :=
   ∀ f : Lp ℝ 2 (volume : Measure (Ω)),
@@ -72,7 +72,7 @@ def IsPositivityImproving' {Ω : Type*} [MeasureSpace Ω]
     If f ≥ 0 and f ≠ 0, then Tf > 0 a.e. ≥ 0. If f = 0, then Tf = 0 ≥ 0.
 @isnad1 id=ispositi.1h2v.s11.6d33c01cda55 from=translated src=- shape=705bafec vocab=c815ab7c
 -/
-theorem IsPositivityImproving'.toPreserving {Ω : Type*} [MeasureSpace Ω]
+theorem Tengoku.LeanPool.IsPositivityImproving'.toPreserving {Ω : Type*} [MeasureSpace Ω]
     {T : Lp ℝ 2 (volume : Measure (Ω)) →L[ℝ]
       Lp ℝ 2 (volume : Measure (Ω))}
     (hT : IsPositivityImproving' T) : IsPositivityPreserving T := by
@@ -92,7 +92,7 @@ The definitions differ only in whether the hypotheses use ae-filter or Lp order/
 - `f ≠ 0` in Lp ↔ `¬ f =ᵐ[μ] 0` (by `Lp.eq_zero_iff_ae_eq_zero`)
 @isnad1 id=ispositi.1h2v.s11.07d854d2f3c3 from=translated src=- shape=705bafec vocab=59933cbc
 -/
-theorem IsPositivityImproving.toPI' {Ω : Type*} [MeasureSpace Ω]
+theorem Tengoku.LeanPool.IsPositivityImproving.toPI' {Ω : Type*} [MeasureSpace Ω]
     {T : Lp ℝ 2 (volume : Measure (Ω)) →L[ℝ]
       Lp ℝ 2 (volume : Measure (Ω))}
     (hT : IsPositivityImproving T) : IsPositivityImproving' T := by
@@ -114,7 +114,7 @@ Tf⁺ ≥ 0 and Tf⁻ ≥ 0. Then:
 /-- Phase 1: Absolute value inequality for positivity-preserving operators.
 @isnad1 id=le.1h3v.s14.66b1eb3829e3 from=translated src=- shape=89bc9c4d vocab=710aaa8a
 -/
-theorem abs_apply_le_apply_abs {Ω : Type*} [MeasureSpace Ω]
+theorem _root_.Tengoku.LeanPool.abs_apply_le_apply_abs {Ω : Type*} [MeasureSpace Ω]
     (T : Lp ℝ 2 (volume : Measure (Ω)) →L[ℝ]
       Lp ℝ 2 (volume : Measure (Ω)))
     (hT : IsPositivityPreserving T)
@@ -189,7 +189,7 @@ private theorem abs_inner_le_inner_abs_abs {Ω : Type*} [MeasureSpace Ω]
 /-- Phase 2: Inner product inequality.
 @isnad1 id=le.1h3v.s14.1944a2605041 from=translated src=- shape=32e88f85 vocab=5f90e1c6
 -/
-theorem abs_inner_le_inner_abs {Ω : Type*} [MeasureSpace Ω]
+theorem _root_.Tengoku.LeanPool.abs_inner_le_inner_abs {Ω : Type*} [MeasureSpace Ω]
     (T : Lp ℝ 2 (volume : Measure (Ω)) →L[ℝ]
       Lp ℝ 2 (volume : Measure (Ω)))
     (hT_pp : IsPositivityPreserving T)
@@ -229,7 +229,7 @@ T|f| > 0 a.e. But T|f| = lam₀|f|, so |f| > 0 a.e.
 is strictly positive almost everywhere.
 @isnad1 id=eventual.5h4v.s13.ea85cab24133 from=translated src=- shape=b74b9923 vocab=3851f07c
 -/
-theorem ground_state_strictly_positive {Ω : Type*} [MeasureSpace Ω]
+theorem _root_.Tengoku.LeanPool.ground_state_strictly_positive {Ω : Type*} [MeasureSpace Ω]
     (T : Lp ℝ 2 (volume : Measure (Ω)) →L[ℝ]
       Lp ℝ 2 (volume : Measure (Ω)))
     (hT_pi : IsPositivityImproving' T)
@@ -301,3 +301,4 @@ But ⟨e₀, g⟩ = 0 with e₀ > 0 and |g| > 0 contradicts constant sign.
 Combine all phases to prove the full theorem. -/
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

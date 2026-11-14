@@ -11,7 +11,7 @@ public import Tengoku
 /-! # Syntax (Section 2.1) -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace PDL
 
 mutual
@@ -1340,3 +1340,4 @@ def _root_.Finset.pdlSort : Finset Formula → List Formula | FS => FS.sort
 lemma Formula.mem_pdlSort {X : Finset Formula} : φ ∈ X.pdlSort ↔ φ ∈ X := by simp [Finset.pdlSort]
 
 end PDL
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

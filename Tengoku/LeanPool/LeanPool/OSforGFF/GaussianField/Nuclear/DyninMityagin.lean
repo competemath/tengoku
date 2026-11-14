@@ -30,7 +30,7 @@ not just Schwartz spaces.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace GaussianField
@@ -103,3 +103,4 @@ theorem _root_.GaussianField.DyninMityaginSpace.expansion_H
   simpa only [ContinuousLinearMap.comp_apply, innerSL_apply_apply] using hφ
 
 end GaussianField
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -14,7 +14,7 @@ Part of the Caffarelli–Kohn–Nirenberg partial regularity proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators ENNReal NNReal Topology Convolution
 
 open MeasureTheory MeasureTheory.Measure Set Filter
@@ -312,3 +312,4 @@ lemma backwardTestPotential_future_truncated_tendsto
   simpa only [f, backwardTestPotential_future_integral hζ hζc x t] using hdiff'
 
 end CKN.Foundation.Heat
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

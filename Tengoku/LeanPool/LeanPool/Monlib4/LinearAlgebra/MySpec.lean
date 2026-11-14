@@ -15,11 +15,11 @@ import Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.End
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /--
 @isnad1 id=iff.0h4v.s8.7b28ee813b67 from=translated src=- shape=3c93dae1 vocab=ba046250
 -/
-theorem isUnit_comm (K E : Type _) [DivisionRing K] [AddCommGroup E] [Module K E]
+theorem _root_.Tengoku.LeanPool.isUnit_comm (K E : Type _) [DivisionRing K] [AddCommGroup E] [Module K E]
     [FiniteDimensional K E] (x y : E →ₗ[K] E) : IsUnit (x ∘ₗ y) ↔ IsUnit (y ∘ₗ x) := by
   simp_rw [← Module.End.mul_eq_comp]
   constructor
@@ -42,7 +42,7 @@ theorem isUnit_comm (K E : Type _) [DivisionRing K] [AddCommGroup E] [Module K E
 /--
 @isnad1 id=iff.0h2v.s5.de9b0e81081c from=translated src=- shape=b1dfd8ec vocab=5564c4b8
 -/
-theorem isUnit_neg {α : Type _} [Monoid α] [HasDistribNeg α] (x : α) : IsUnit (-x) ↔ IsUnit x := by
+theorem _root_.Tengoku.LeanPool.isUnit_neg {α : Type _} [Monoid α] [HasDistribNeg α] (x : α) : IsUnit (-x) ↔ IsUnit x := by
   simp_all
 
 /--
@@ -64,3 +64,4 @@ theorem spectrum.comm {K E : Type _} [Field K] [AddCommGroup E] [Module K E] [Fi
     intro H
     rw [H, map_zero, eq_comm, smul_eq_zero] at h
     simp_rw [Hu, hv, false_or] at h
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -25,7 +25,7 @@ formula analysis stabilizes for all tuples simultaneously.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u v w
 
 namespace FirstOrder
@@ -172,3 +172,4 @@ theorem scottHeight_eq_of_equiv
 end Language
 
 end FirstOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

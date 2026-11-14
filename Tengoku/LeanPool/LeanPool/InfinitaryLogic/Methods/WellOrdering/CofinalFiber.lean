@@ -24,7 +24,7 @@ Proof: if every fiber were bounded, the supremum of countably many bounds would 
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open Cardinal Ordinal
@@ -54,3 +54,4 @@ theorem exists_unbounded_fiber {ι : Type} [Countable ι] [_nonemptyι : Nonempt
     (le_trans (Ordinal.le_iSup bnd _) (le_of_lt (lt_add_one _))) hαlt rfl
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

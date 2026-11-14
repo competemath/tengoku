@@ -36,11 +36,11 @@ no longer matches the order of discriminant `d`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped Polynomial
 
 /-- The defining polynomial of `QuadraticOrder d`. -/
-noncomputable def poly (d : ℤ) : ℤ[X] :=
+noncomputable def _root_.Tengoku.LeanPool.poly (d : ℤ) : ℤ[X] :=
   Polynomial.X ^ 2 - Polynomial.C d * Polynomial.X + Polynomial.C ((d ^ 2 - d) / 4)
 
 /--
@@ -54,10 +54,10 @@ For integers `d` with `d ≡ 0, 1 (mod 4)`, this ring coincides with the
 definition should simply be understood as this explicit quadratic
 quotient ring over `ℤ`.
 -/
-abbrev QuadraticOrder (d : ℤ) : Type :=
+abbrev _root_.Tengoku.LeanPool.QuadraticOrder (d : ℤ) : Type :=
   AdjoinRoot (poly d)
 
-namespace QuadraticOrder
+namespace Tengoku.LeanPool.QuadraticOrder
 
 /-! ### Defining polynomial
 
@@ -176,4 +176,5 @@ lemma basis_repr_tau_one :
     decide
   simp_all
 
-end QuadraticOrder
+end Tengoku.LeanPool.QuadraticOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

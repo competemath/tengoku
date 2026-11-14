@@ -41,7 +41,7 @@ Silver's theorem.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Function MeasureTheory
 
 namespace G0Fusion
@@ -820,3 +820,4 @@ theorem exists_gsGraph_hom [Nonempty α] (hG : AnalyticSet G) (hg : Continuous g
 end Fusion
 
 end G0Fusion
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

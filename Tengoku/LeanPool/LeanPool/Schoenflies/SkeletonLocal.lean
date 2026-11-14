@@ -72,7 +72,7 @@ sectors in aggregate — as one `Plane.cone` over all free directions at once.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set
 open scoped Graph
 
@@ -740,3 +740,4 @@ theorem IsDrawing.openSegment_subset_face {r : ℝ} {y : Plane}
   exact Set.image_mono Ioo_subset_Ioc_self
 
 end Graph
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

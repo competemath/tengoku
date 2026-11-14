@@ -25,7 +25,7 @@ operators and their interaction with the `C¹_c` graph embedding used to define 
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace RellichKondrachov
 namespace Analysis
 namespace FunctionalSpaces
@@ -208,3 +208,4 @@ end Sobolev
 end FunctionalSpaces
 end Analysis
 end RellichKondrachov
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

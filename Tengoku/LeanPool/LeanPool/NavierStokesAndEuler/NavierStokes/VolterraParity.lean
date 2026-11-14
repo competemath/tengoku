@@ -13,7 +13,7 @@ public import Tengoku.Seed.Analysis.Analytic.Basic
 public import Tengoku.Seed.Analysis.Calculus.Deriv.Basic
 public import Tengoku.Seed.MeasureTheory.Integral.IntervalIntegral.Basic
 import Tengoku.Seed.Analysis.Complex.CauchyIntegral
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -2427,3 +2427,4 @@ theorem last_components_odd {W : Field} {R : ℝ} {U : Set ℂ}
     congrFun (hW r ⟨hr.1.le, hr.2.le⟩ z hz) i
 
 end NavierStokes.VolterraParity
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

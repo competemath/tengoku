@@ -16,7 +16,7 @@ Imported Lean Pool material for `LeanPool.Monsky.SegmentCounting`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.Monsky
 
 local notation "ℝ²" => EuclideanSpace ℝ (Fin 2)
@@ -1953,3 +1953,4 @@ theorem monsky_rainbow (Δ : Finset Triangle)
 
 end Monsky
 end LeanPool
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

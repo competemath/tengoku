@@ -38,7 +38,7 @@ Apply this pattern three times:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Complex SchwartzMap Filter Set Function Metric
 open scoped Real Topology Pointwise
 
@@ -52,7 +52,7 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 /-- Schwartz functions are integrable.
 @isnad1 id=integrab.0h2v.s7.3086d8a341bd from=translated src=- shape=8d6c1ddc vocab=b961ec10
 -/
-lemma schwartz_integrable (f : SchwartzMap E ℂ) : Integrable f := f.integrable
+lemma _root_.Tengoku.LeanPool.schwartz_integrable (f : SchwartzMap E ℂ) : Integrable f := f.integrable
 
 omit [MeasurableSpace E] [BorelSpace E] in
 /-- Schwartz functions vanish at infinity (C₀).
@@ -61,24 +61,24 @@ Proof: Schwartz decay gives ‖x‖^k · ‖f(x)‖ ≤ seminorm k 0 f for all k
 Taking k = 1: ‖f(x)‖ ≤ C/‖x‖ → 0 as ‖x‖ → ∞.
 @isnad1 id=tendsto.0h2v.s7.fae88207f3d4 from=translated src=- shape=c24d035e vocab=f4d3e066
 -/
-lemma schwartz_tendsto_zero (f : SchwartzMap E ℂ) :
+lemma _root_.Tengoku.LeanPool.schwartz_tendsto_zero (f : SchwartzMap E ℂ) :
     Tendsto f (cocompact E) (nhds 0) := zero_at_infty f
 
 /-! ## Kernel decomposition -/
 
 /-- The singular (compactly supported) part of the kernel. -/
-def kernelSingular (K : E → ℝ) (R₀ : ℝ) : E → ℝ :=
+def _root_.Tengoku.LeanPool.kernelSingular (K : E → ℝ) (R₀ : ℝ) : E → ℝ :=
   fun x => K x * (closedBall (0 : E) R₀).indicator (fun _ => (1 : ℝ)) x
 
 /-- The tail (decaying) part of the kernel. -/
-def kernelTail (K : E → ℝ) (R₀ : ℝ) : E → ℝ :=
+def _root_.Tengoku.LeanPool.kernelTail (K : E → ℝ) (R₀ : ℝ) : E → ℝ :=
   fun x => K x * (closedBall (0 : E) R₀)ᶜ.indicator (fun _ => (1 : ℝ)) x
 
 omit [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E] in
 /-- Kernel decomposes into singular and tail parts.
 @isnad1 id=eq.0h3v.s5.dd0ef834e5f2 from=translated src=- shape=f5e2b092 vocab=28ff473a
 -/
-lemma kernel_decomposition (K : E → ℝ) (R₀ : ℝ) :
+lemma _root_.Tengoku.LeanPool.kernel_decomposition (K : E → ℝ) (R₀ : ℝ) :
     K = fun x => kernelSingular K R₀ x + kernelTail K R₀ x := by
   ext x
   simp only [kernelSingular, kernelTail]
@@ -90,7 +90,7 @@ omit [MeasurableSpace E] [BorelSpace E] in
 /-- K_tail vanishes at infinity when K has polynomial decay.
 @isnad1 id=tendsto.2h5v.s7.46ba4d0d3664 from=translated src=- shape=5927cc79 vocab=85cce77e
 -/
-lemma kernelTail_tendsto_zero (K : E → ℝ) (R₀ : ℝ)
+lemma _root_.Tengoku.LeanPool.kernelTail_tendsto_zero (K : E → ℝ) (R₀ : ℝ)
     (α : ℝ) (hα : α > 0) (C : ℝ)
     (hK_decay : ∀ z : E, ‖z‖ ≥ R₀ → |K z| ≤ C / ‖z‖ ^ α) :
     Tendsto (kernelTail K R₀) (cocompact E) (nhds 0) := by
@@ -174,7 +174,7 @@ omit [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] [MeasurableSpace E] [Bo
 /-- A continuous function vanishing at infinity is bounded.
 @isnad1 id=ex.2h2v.s6.eb004262cb56 from=translated src=- shape=ed2bf6ce vocab=6e01e83c
 -/
-lemma bounded_of_continuous_tendsto_zero
+lemma _root_.Tengoku.LeanPool.bounded_of_continuous_tendsto_zero
     {g : E → ℂ} (hg_cont : Continuous g) (hg_zero : Tendsto g (cocompact E) (nhds 0)) :
     ∃ C : ℝ, ∀ x, ‖g x‖ ≤ C := by
   -- g tends to 0 at infinity, so for ε = 1, ‖g x‖ < 1 outside some compact set
@@ -208,7 +208,7 @@ lemma bounded_of_continuous_tendsto_zero
 This is a standard consequence of integrability - the integral concentrates on compact sets.
 @isnad1 id=ex.2h3v.s7.6c71df21a970 from=translated src=- shape=52f00b3a vocab=6c844c6f
 -/
-lemma integrable_tail_small {f : E → ℂ} (hf : Integrable f) (ε : ℝ) (hε : 0 < ε) :
+lemma _root_.Tengoku.LeanPool.integrable_tail_small {f : E → ℂ} (hf : Integrable f) (ε : ℝ) (hε : 0 < ε) :
     ∃ K : Set E, IsCompact K ∧ ∫ x in Kᶜ, ‖f x‖ < ε := by
   -- Use: for antitone sequence of sets, integral tends to integral over intersection
   -- Here s(n) = (closedBall 0 n)ᶜ is antitone and ⋂ s(n) = ∅
@@ -245,7 +245,7 @@ lemma integrable_tail_small {f : E → ℂ} (hf : Integrable f) (ε : ℝ) (hε 
 also vanishes at infinity. This is a fundamental result in harmonic analysis.
 @isnad1 id=tendsto.3h3v.s8.a0a7ba2d2633 from=translated src=- shape=59dc80d3 vocab=5b58466f
 -/
-theorem convolution_vanishes_of_integrable_and_C0
+theorem _root_.Tengoku.LeanPool.convolution_vanishes_of_integrable_and_C0
     {f : E → ℂ} {g : E → ℂ}
     (hf_int : Integrable f)
     (hg_C0 : Tendsto g (cocompact E) (nhds 0))
@@ -385,7 +385,7 @@ This enables Fubini's theorem to swap integration order:
 ∫∫ f(x) K(x-y) g(y-a) dx dy = ∫ (∫ f(x) K(x-y) dx) g(y-a) dy
 @isnad1 id=integrab.4h6v.s8.7b654190b3ab from=translated src=- shape=30a32f6d vocab=e946e948
 -/
-theorem schwartz_bilinear_prod_integrable
+theorem _root_.Tengoku.LeanPool.schwartz_bilinear_prod_integrable
     (f g : SchwartzMap E ℂ)
     (K : E → ℝ) (hK_meas : Measurable K) (hK_loc : LocallyIntegrable K volume)
     (R₀ : ℝ) (_hR₀ : R₀ > 0)
@@ -524,7 +524,7 @@ theorem schwartz_bilinear_prod_integrable
 /-! ## Main theorem -/
 
 /-- The bilinear integral of Schwartz functions against a decaying kernel -/
-def schwartzBilinearIntegral (f g : SchwartzMap E ℂ) (K : E → ℝ) (a : E) : ℂ :=
+def _root_.Tengoku.LeanPool.schwartzBilinearIntegral (f g : SchwartzMap E ℂ) (K : E → ℝ) (a : E) : ℂ :=
   ∫ x : E, ∫ y : E, f x * (K (x - y) : ℂ) * g (y - a)
 
 private lemma schwartz_bilinear_kernelSingular_vanish
@@ -873,7 +873,7 @@ the bilinear integral tends to 0 as the translation parameter a → ∞.
 This version adds LocallyIntegrable hypothesis to handle kernel singularities.
 @isnad1 id=tendsto.7h7v.s8.64e16e18bdf1 from=translated src=- shape=5287f1e9 vocab=9eebd2c9
 -/
-theorem schwartz_bilinear_translation_decay_proof
+theorem _root_.Tengoku.LeanPool.schwartz_bilinear_translation_decay_proof
     (f g : SchwartzMap E ℂ)
     (K : E → ℝ)
     (hK_meas : Measurable K)
@@ -1091,3 +1091,4 @@ theorem schwartz_bilinear_translation_decay_proof
   simp_all
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

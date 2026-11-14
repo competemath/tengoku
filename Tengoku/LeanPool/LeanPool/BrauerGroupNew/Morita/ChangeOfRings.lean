@@ -15,7 +15,7 @@ Imported Lean Pool material for `LeanPool.BrauerGroupNew.Morita.ChangeOfRings`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open CategoryTheory Limits
 
 namespace ModuleCat
@@ -182,3 +182,4 @@ noncomputable def algEquivOfDivisionRing (R : Type u) [CommRing R]
 
 end MoritaEquivalence
 end ModuleCat
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

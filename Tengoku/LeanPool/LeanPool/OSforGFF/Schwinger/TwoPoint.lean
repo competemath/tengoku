@@ -23,7 +23,7 @@ For the GFF with covariance kernel C, this equals C(x) by `double_mollifier_conv
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory
 open scoped MeasureTheory
 
@@ -40,7 +40,7 @@ private lemma tendsto_of_tendsto_succ {α : Type*} {f : ℕ → α} {L : Filter 
     This produces the L¹-normalized version φ.normed volume, which integrates to 1.
     Bump functions have compact support and are smooth, so they are Schwartz.
 -/
-noncomputable def bumpToSchwartz (φ : ContDiffBump (0 : SpaceTime)) : OSforGFF.TestFunction :=
+noncomputable def _root_.Tengoku.LeanPool.bumpToSchwartz (φ : ContDiffBump (0 : SpaceTime)) : OSforGFF.TestFunction :=
   -- The normed bump has compact support and is C^∞, hence Schwartz
   (φ.hasCompactSupport_normed (μ := volume)).toSchwartzMap φ.contDiff_normed
 
@@ -48,7 +48,7 @@ noncomputable def bumpToSchwartz (φ : ContDiffBump (0 : SpaceTime)) : OSforGFF.
 @isnad1 id=eq.0h2v.s8.8ff0cba3a8e3 from=translated src=- shape=42649375 vocab=99cdd928
 -/
 @[simp]
-theorem bumpToSchwartz_apply (φ : ContDiffBump (0 : SpaceTime)) (x : SpaceTime) :
+theorem _root_.Tengoku.LeanPool.bumpToSchwartz_apply (φ : ContDiffBump (0 : SpaceTime)) (x : SpaceTime) :
     bumpToSchwartz φ x = φ.normed volume x := rfl
 
 /-- Translate a Schwartz function by a vector.
@@ -57,7 +57,7 @@ theorem bumpToSchwartz_apply (φ : ContDiffBump (0 : SpaceTime)) (x : SpaceTime)
     Translation preserves smoothness and decay properties.
     See `SchwartzMap.translate` in FunctionalAnalysis.lean for the general version.
 -/
-noncomputable def translateSchwartz (f : OSforGFF.TestFunction) (a : SpaceTime) :
+noncomputable def _root_.Tengoku.LeanPool.translateSchwartz (f : OSforGFF.TestFunction) (a : SpaceTime) :
     OSforGFF.TestFunction :=
   f.translate a
 
@@ -67,7 +67,7 @@ noncomputable def translateSchwartz (f : OSforGFF.TestFunction) (a : SpaceTime) 
 
     SmearedTwoPointFunction dμ φ x = ∫∫ φ(u-x) ⟨φ(u)φ(v)⟩ φ(v) du dv
 -/
-noncomputable def SmearedTwoPointFunction (dμ_config : ProbabilityMeasure FieldConfiguration)
+noncomputable def _root_.Tengoku.LeanPool.SmearedTwoPointFunction (dμ_config : ProbabilityMeasure FieldConfiguration)
     (φ : ContDiffBump (0 : SpaceTime)) (x : SpaceTime) : ℝ :=
   SchwingerFunction₂ dμ_config
     (translateSchwartz (bumpToSchwartz φ) x)
@@ -76,7 +76,7 @@ noncomputable def SmearedTwoPointFunction (dμ_config : ProbabilityMeasure Field
 /-- A canonical sequence of bump functions with rOut → 0.
     We use rOut = 1/n for n ∈ ℕ⁺.
 -/
-noncomputable def standardBumpSequence (n : ℕ) (hn : n ≠ 0) : ContDiffBump (0 : SpaceTime) :=
+noncomputable def _root_.Tengoku.LeanPool.standardBumpSequence (n : ℕ) (hn : n ≠ 0) : ContDiffBump (0 : SpaceTime) :=
   -- Create a bump with rOut = 1/n and rIn = 1/(2n)
   { rIn := 1 / (2 * n)
     rOut := 1 / n
@@ -103,7 +103,7 @@ noncomputable def standardBumpSequence (n : ℕ) (hn : n ≠ 0) : ContDiffBump (
 
     For the GFF, this limit equals freeCovarianceKernel(x) by `double_mollifier_convergence`.
 -/
-noncomputable def SchwingerTwoPointFunction
+noncomputable def _root_.Tengoku.LeanPool.SchwingerTwoPointFunction
     (dμ_config : ProbabilityMeasure FieldConfiguration) (x : SpaceTime) : ℝ :=
   -- Regularize at coincident points: S₂(0) = 0
   if x = 0 then 0
@@ -118,7 +118,7 @@ noncomputable def SchwingerTwoPointFunction
 @isnad1 id=eq.0h1v.s8.f9ef9ab59675 from=translated src=- shape=98672205 vocab=365a357f
 -/
 @[simp]
-theorem schwingerTwoPointFunction_zero
+theorem _root_.Tengoku.LeanPool.schwingerTwoPointFunction_zero
     (dμ_config : ProbabilityMeasure FieldConfiguration) :
     SchwingerTwoPointFunction dμ_config 0 = 0 := by
   unfold SchwingerTwoPointFunction
@@ -137,7 +137,7 @@ theorem schwingerTwoPointFunction_zero
     The proof uses `double_mollifier_convergence` from FunctionalAnalysis.lean.
 @isnad1 id=tendsto.4h6v.s10.94721e096f4d from=translated src=- shape=28f6392d vocab=70adcd8a
 -/
-theorem smearedTwoPoint_tendsto_schwingerTwoPoint
+theorem _root_.Tengoku.LeanPool.smearedTwoPoint_tendsto_schwingerTwoPoint
     (dμ_config : ProbabilityMeasure FieldConfiguration) (x : SpaceTime) (hx : x ≠ 0)
     {ι : Type*} {l : Filter ι}
     (φ : ι → ContDiffBump (0 : SpaceTime))
@@ -176,7 +176,7 @@ theorem smearedTwoPoint_tendsto_schwingerTwoPoint
     so this theorem requires x ≠ 0.
 @isnad1 id=eq.3h3v.s10.d558233c8cbf from=translated src=- shape=670fa49a vocab=d3eeeb7b
 -/
-theorem schwingerTwoPointFunction_eq_kernel
+theorem _root_.Tengoku.LeanPool.schwingerTwoPointFunction_eq_kernel
     (dμ_config : ProbabilityMeasure FieldConfiguration) (x : SpaceTime) (hx : x ≠ 0)
     (C : SpaceTime → ℝ)
     (hC : ContinuousOn C {y | y ≠ 0})
@@ -232,3 +232,4 @@ theorem schwingerTwoPointFunction_eq_kernel
   exact Filter.Tendsto.limUnder_eq h_tendsto
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

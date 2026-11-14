@@ -48,7 +48,7 @@ needs to change here.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold
 
 universe u
@@ -73,10 +73,10 @@ the `ULift` shell around `RS.Jac₀ X`, matching the challenge's universe-polymo
 (`Jacobian` must have type `Type u` for *every* `u`, but the honest quotient construction only
 ever lives in `Type 0` — see this unit's design doc §2). An `abbrev`, for the same
 instance-transfer reason as `RS.Jac₀`. -/
-abbrev Jacobian (X : Type u) [TopologicalSpace X] [T2Space X] [CompactSpace X] [ConnectedSpace X]
+abbrev _root_.Tengoku.LeanPool.Jacobian (X : Type u) [TopologicalSpace X] [T2Space X] [CompactSpace X] [ConnectedSpace X]
     [ChartedSpace ℂ X] [IsManifold 𝓘(ℂ) ω X] : Type u := ULift.{u} (RS.Jac₀ X)
 
-namespace Jacobian
+namespace Tengoku.LeanPool.Jacobian
 
 variable {X : Type u} [TopologicalSpace X] [T2Space X] [CompactSpace X] [ConnectedSpace X]
   [ChartedSpace ℂ X] [IsManifold 𝓘(ℂ) ω X]
@@ -92,6 +92,7 @@ instance : TopologicalSpace (Jacobian X) := inferInstance
 instance instChartedSpace [DiscreteTopology (RS.periodSubgroup X).topologicalClosure] :
     ChartedSpace (Fin (genus X) → ℂ) (Jacobian X) := inferInstance
 
-end Jacobian
+end Tengoku.LeanPool.Jacobian
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

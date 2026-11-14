@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Module
 
 variable {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S)
@@ -106,7 +106,7 @@ lemma GL.coe_map_inv_mul_map (g : GL α R) : g.val⁻¹.map f * g.val.map f = 1 
 /--
 @isnad1 id=eq.0h5v.s8.c96a4efcf0b5 from=translated src=- shape=92a5d35c vocab=33805dbd
 -/
-lemma GL_map_eq {ι : Type*} [DecidableEq ι] [Fintype ι]
+lemma _root_.Tengoku.LeanPool.GL_map_eq {ι : Type*} [DecidableEq ι] [Fintype ι]
     {R S : Type*} [CommRing R] [CommRing S] (g : GL ι R) (f : R →+* S) :
     GL.map f g = Matrix.GeneralLinearGroup.map f g :=
   rfl
@@ -114,12 +114,12 @@ lemma GL_map_eq {ι : Type*} [DecidableEq ι] [Fintype ι]
 variable {K : Type*} [CommRing K] (R : Subring K)
 
 /-- Coerce matrices over `R` to matrices over `K`. -/
-instance instCoeHeadMatrixSubtypeMemSubringLeanPool {α β : Type*} :
+instance _root_.Tengoku.LeanPool.instCoeHeadMatrixSubtypeMemSubringLeanPool {α β : Type*} :
     CoeHead (Matrix α β R) (Matrix α β K) where
   coe g := g.map R.subtype
 
 /-- Coerce invertible matrices over `R` to matrices over `K`. -/
-instance instCoeHeadGeneralLinearGroupSubtypeMemSubringLeanPool
+instance _root_.Tengoku.LeanPool.instCoeHeadGeneralLinearGroupSubtypeMemSubringLeanPool
     {α : Type*} [DecidableEq α] [Fintype α] : CoeHead (GL α R) (GL α K) where
   coe g := GL.map R.subtype g
 
@@ -147,3 +147,4 @@ lemma Subring.coe_map_inv_mul_map (g : GL α R) :
 lemma Subring.coe_det (g : Matrix α α R) : (g.map Subtype.val).det = g.det := by
   erw [← R.subtype.map_det]
   simp
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

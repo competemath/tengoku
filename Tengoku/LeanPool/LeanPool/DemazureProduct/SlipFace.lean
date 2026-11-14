@@ -18,7 +18,7 @@ Section 3, with some essential-set material from Section 7.1, of
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.DemazureProduct
 
 /-- A slipface function of shift `χ`, i.e. a function $s : \mathbb{Z}^2 \to \mathbb{N}$
@@ -2028,3 +2028,4 @@ theorem ess_clifford (s t : SlipFace) (cliff : s.isClifford) :
 end SlipFace
 
 end LeanPool.DemazureProduct
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

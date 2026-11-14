@@ -26,7 +26,7 @@ Neither direction of the equivalence uses a choice of preimage.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FourAP
 
 /-- The conclusion of the paper for a sequence indexed by `ℕ`: no four entries
@@ -195,3 +195,4 @@ theorem permutationOfSafeStages_apFree
     simpa only [hidx k hk, hidx l hl] using hkl
 
 end FourAP
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

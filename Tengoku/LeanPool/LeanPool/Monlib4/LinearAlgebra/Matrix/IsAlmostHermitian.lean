@@ -17,7 +17,7 @@ public import Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.Matrix.Conj
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Matrix
 
 variable {𝕜 n : Type _}
@@ -191,3 +191,4 @@ theorem _root_.Matrix.IsHermitian.isAlmostHermitian [Semiring 𝕜] [Star 𝕜] 
   ⟨1, x, one_smul _ _, hx⟩
 
 end Matrix
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

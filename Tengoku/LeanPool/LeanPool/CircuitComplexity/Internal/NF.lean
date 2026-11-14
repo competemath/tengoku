@@ -26,7 +26,7 @@ The public interface re-exports the main theorems from `Circ.NF`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace CircuitComplexity
 
 /-! ## Helper lemmas for toCircuit correctness -/
@@ -398,3 +398,4 @@ theorem DNF.flip_complexity_lb (φ : DNF N) (hN : 1 ≤ N)
     exact huniq _ (List.getElem_mem ..) x₁ x₂ sat₁ sat₂
 
 end CircuitComplexity
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

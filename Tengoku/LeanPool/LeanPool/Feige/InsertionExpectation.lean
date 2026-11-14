@@ -18,7 +18,7 @@ the proof of Theorem 2.1.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators
 
 namespace Feige
@@ -101,3 +101,4 @@ theorem insertionLevelScore_eq_booleanChainTerm {n : ℕ}
     all_goals omega
 
 end Feige
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

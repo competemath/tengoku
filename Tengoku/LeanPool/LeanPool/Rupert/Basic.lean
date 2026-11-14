@@ -14,7 +14,7 @@ Imported Lean Pool material for `LeanPool.Rupert.Basic`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped Matrix
 
 /-- Three-dimensional Euclidean space over `ℝ`. -/
@@ -23,17 +23,17 @@ notation "ℝ³" => EuclideanSpace ℝ (Fin 3)
 notation "ℝ²" => EuclideanSpace ℝ (Fin 2)
 
 /-- `n`-dimensional Euclidean space over `ℝ`, indexed by `Fin n`. -/
-abbrev E (n : ℕ) := EuclideanSpace ℝ (Fin n)
+abbrev _root_.Tengoku.LeanPool.E (n : ℕ) := EuclideanSpace ℝ (Fin n)
 
 /-- The special orthogonal group in dimension three over `ℝ`. -/
-abbrev SO3 := Matrix.specialOrthogonalGroup (Fin 3) ℝ
+abbrev _root_.Tengoku.LeanPool.SO3 := Matrix.specialOrthogonalGroup (Fin 3) ℝ
 
 /-- Projects a vector from 3-space to 2-space by dropping the third coordinate. -/
-def projXy {k : Type} (v : EuclideanSpace k (Fin 3)) : EuclideanSpace k (Fin 2) :=
+def _root_.Tengoku.LeanPool.projXy {k : Type} (v : EuclideanSpace k (Fin 3)) : EuclideanSpace k (Fin 2) :=
   !₂[v 0, v 1]
 
 /-- The Rupert Property for a convex polyhedron given as an indexed finite set of vertices. -/
-def IsRupert {ι : Type} (vertices : ι → ℝ³) : Prop :=
+def _root_.Tengoku.LeanPool.IsRupert {ι : Type} (vertices : ι → ℝ³) : Prop :=
    ∃ innerRotation ∈ SO3, ∃ innerOffset : ℝ², ∃ outerRotation ∈ SO3,
    let hull := convexHull ℝ { vertices i | i }
    let inner_shadow := { innerOffset + projXy (innerRotation.toEuclideanLin p) | p ∈ hull }
@@ -42,8 +42,9 @@ def IsRupert {ι : Type} (vertices : ι → ℝ³) : Prop :=
 
 /-- Alternate formulation of the Rupert Property. This is equivalent to IsRupert and
     should be easier to prove. -/
-def IsRupert' {ι : Type} (vertices : ι → ℝ³) : Prop :=
+def _root_.Tengoku.LeanPool.IsRupert' {ι : Type} (vertices : ι → ℝ³) : Prop :=
    ∃ innerRotation ∈ SO3, ∃ innerOffset : ℝ², ∃ outerRotation ∈ SO3,
    let inner_shadow := { innerOffset + projXy (innerRotation.toEuclideanLin (vertices i)) | i }
    let outerShadow := { projXy (outerRotation.toEuclideanLin (vertices i)) | i }
    inner_shadow ⊆ interior (convexHull ℝ outerShadow)
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -10,7 +10,7 @@ public import Tengoku
 /-! TODO: Add doc-string. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open Finset MeasureTheory Module NumberField NumberField.InfinitePlace
@@ -313,3 +313,4 @@ theorem integrableOn_expMapBasis_image_iff
   rw [abs_det_fderiv_expMapBasis]
 
 end NumberField.Odlyzko
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

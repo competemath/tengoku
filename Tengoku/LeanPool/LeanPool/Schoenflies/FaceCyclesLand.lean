@@ -79,7 +79,7 @@ Once this module is moved above `Schoenflies/FaceCyclesProof.lean`, the hypothes
   interior of its boundary cycle".
 -/
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Bornology Metric Set
 
 namespace Schoenflies
@@ -464,3 +464,4 @@ theorem IsFaceCycle.eq_inside_of_isBounded' {z : Plane} {e : β} {u v : Plane} {
   hf.eq_inside_of_isBounded hbdd
 
 end Graph
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

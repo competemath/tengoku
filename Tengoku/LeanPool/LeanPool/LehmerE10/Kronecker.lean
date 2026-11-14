@@ -24,7 +24,7 @@ Axiom footprint: `propext`, `Classical.choice`, `Quot.sound` only.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LehmerE10
 
 open Polynomial
@@ -155,3 +155,4 @@ theorem eligible_totient_census :
   decide
 
 end LehmerE10
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

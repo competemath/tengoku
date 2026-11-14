@@ -25,7 +25,7 @@ import Tengoku.Seed.Tactic.NormNum.Parity
 /-! # LocalCircleEstimate -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Complex Real Finset
 
 noncomputable section
@@ -658,3 +658,4 @@ theorem local_circle_estimate {L : ℕ} (hL : 1 ≤ L) {E : Finset ℕ}
         mul_le_mul_of_nonneg_left h (le_of_lt h144L)
 
 end FockSPR
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

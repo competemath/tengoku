@@ -69,7 +69,7 @@ development is
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem ApproximableMap
@@ -322,3 +322,4 @@ theorem Subsystem.trianglelefteq {D E : NeighborhoodSystem α} (h : D ◁ E) : D
   ⟨D, h, Isomorphic.refl D⟩
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

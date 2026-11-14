@@ -27,7 +27,7 @@ the input function and of its image under `T` are explicit hypotheses.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ENNReal NNReal Topology
 
 open MeasureTheory MeasureTheory.Measure Set Filter
@@ -777,3 +777,4 @@ lemma weighted_combined {N : Vec3 → ℝ≥0∞} (hN : Measurable N) (hNfin : �
   exact interp_scale hA₁ hp1 hp2 _
 
 end CKN.Foundation.Euclidean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

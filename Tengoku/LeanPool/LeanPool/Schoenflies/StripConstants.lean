@@ -62,7 +62,7 @@ use whichever side is convenient. It carries enough simplicity for both statemen
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set
 
 namespace Schoenflies
@@ -351,3 +351,4 @@ theorem exists_stripData (P : ClosedPolygon m) : Nonempty (StripData P) :=
   ⟨(exists_stripData_subset P isOpen_univ (subset_univ _)).choose⟩
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

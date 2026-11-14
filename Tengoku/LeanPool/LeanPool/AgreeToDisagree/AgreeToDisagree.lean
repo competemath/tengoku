@@ -15,7 +15,7 @@ for Aumann's agreement theorem.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace AgreeToDisagree
 
 open Set
@@ -300,3 +300,4 @@ lemma agreeToDisagree' {ι : Type*} {μ : ι → Measure Ω} [∀ i, IsProbabili
   exact h' i j
 
 end AgreeToDisagree
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

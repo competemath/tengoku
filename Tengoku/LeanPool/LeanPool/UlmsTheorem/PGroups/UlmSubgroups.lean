@@ -16,7 +16,7 @@ structural lemmas.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace UlmsTheorem
 
 open Ordinal
@@ -213,3 +213,4 @@ lemma add_zsmul_mem_iff_of_mem {β : Ordinal.{0}} {x c : G}
 end UlmSubgroupLemmas
 
 end UlmsTheorem
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

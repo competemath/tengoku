@@ -24,7 +24,7 @@ a function that preserves logical connectives.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LO
 
 section «lp_section_1»
@@ -634,3 +634,4 @@ lemma map_disj_union [DecidableEq α] [FunLike F α Prop] [LogicalConnective.Hom
 end «lp_section_8»
 
 end Finset
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

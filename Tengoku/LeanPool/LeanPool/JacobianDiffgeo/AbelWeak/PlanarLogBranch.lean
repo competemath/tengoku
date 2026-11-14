@@ -25,7 +25,7 @@ imports (matches `Path/Planar.lean`'s hygiene). Two facts:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Complex Metric Set
 
 noncomputable section
@@ -198,3 +198,4 @@ theorem exists_exteriorLogBranch {a b : ℂ} {ρ : ℝ} (hρ : 0 < ρ)
 end RS.AbelWeak
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

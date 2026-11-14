@@ -15,7 +15,7 @@ This file provides the `OmegaCompletePartialOrder` instance for `Sum α β`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace OmegaCompletePartialOrder.Sum
 
 variable {α β : Type*} [OmegaCompletePartialOrder α] [OmegaCompletePartialOrder β]
@@ -61,3 +61,4 @@ lemma ωSup_inr (c : Chain β) : ωSup (Chain.Sum.inr c : Chain (α ⊕ β)) = .
   simp only [ωSup, Chain.Sum.distrib_inr, Sum.map_inr]
 
 end OmegaCompletePartialOrder.Sum
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

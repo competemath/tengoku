@@ -17,7 +17,7 @@ truncated-metric variant `wassersteinBar` (Wbar), and their property lemmas
 bound, finiteness under finite first moments). -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory
 
 namespace Vlasov
@@ -864,3 +864,4 @@ lemma wasserstein1_ofReal_exp_monotone
 /-! ## Equation (Dobrushin stability estimate) (`tex: eq:dobrushin`) -/
 
 end Vlasov
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

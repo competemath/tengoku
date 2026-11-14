@@ -54,7 +54,7 @@ The quotient-first route to `RootEqSolvable` in even dimension.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open KasamiCyclicAdditive.FermatCubic KasamiCyclicAdditive.PointFrobenius WeierstrassCurve
 
 namespace KasamiCyclicAdditive
@@ -262,3 +262,4 @@ theorem rootEquationSolvable_even {K : Type*} [Field K] [Fintype K] [CharP K 2]
   exact hroot
 
 end KasamiCyclicAdditive
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

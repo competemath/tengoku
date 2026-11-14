@@ -18,7 +18,7 @@ Combined with ‖e_n‖² ≤ C_coer/μ' · L_n from coercivity:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace PLAcceleratedNesterovLean
@@ -62,3 +62,4 @@ theorem step_bound (v_next g : E d) (sqrtη η : ℝ) :
         rw [norm_smul, norm_smul, Real.norm_eq_abs, Real.norm_eq_abs]
 
 end PLAcceleratedNesterovLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

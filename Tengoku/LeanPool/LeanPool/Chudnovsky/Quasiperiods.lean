@@ -28,7 +28,7 @@ All statements in this file are fully proved.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open scoped UpperHalfPlane
@@ -536,3 +536,4 @@ theorem eta₁_Lτ_eq_G2 (τ : ℍ) : (Lτ τ).eta₁ = G2 τ :=
   PeriodPair.eta₁_Lτ_eq_G2_aux τ
 
 end Chudnovsky
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

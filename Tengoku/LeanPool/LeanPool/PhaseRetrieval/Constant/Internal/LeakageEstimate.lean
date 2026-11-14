@@ -24,7 +24,7 @@ public import Tengoku
 /-! # LeakageEstimate -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Real Finset Complex
 
 noncomputable section
@@ -1030,3 +1030,4 @@ theorem eta_5_bound : etaCoeff 5 100 < 4 / (10 : ℝ) ^ 11 := by
     from by norm_num]
 
 end FockSPR
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

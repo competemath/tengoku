@@ -17,7 +17,7 @@ exterior are then combined without choosing new fields for different clauses.
 -/
 
 noncomputable section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace NavierStokes.LocalPaper
 
 open Set Filter ProblemStatement CorrectionInitialization
@@ -186,3 +186,4 @@ theorem local_theorem :
   exact ⟨_, _, _, _, _, _, _, _, _, properties_of_schedule hs hr⟩
 
 end NavierStokes.LocalPaper
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

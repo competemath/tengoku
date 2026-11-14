@@ -27,7 +27,7 @@ but unfinished is in `Unused/FischerLadnerViaPreForms.lean`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace PDL
 
 /-! ## Definition  -/
@@ -345,3 +345,4 @@ end PDL
 namespace PDL
 
 end PDL
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

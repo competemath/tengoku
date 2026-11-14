@@ -25,7 +25,7 @@ the original paper appeared in 2019.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPoolSensitivity
 
 /-- A finset-flavoured restatement of Mathlib's
@@ -90,3 +90,4 @@ theorem huang_finset {m : ℕ} (H : Finset (Fin (m + 1) → Bool))
       exact (Classical.not_not.mp hne').symm⟩
 
 end LeanPoolSensitivity
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

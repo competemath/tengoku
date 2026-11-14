@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open Polynomial UniqueFactorizationMonoid
@@ -299,3 +299,4 @@ theorem radical_natDegree_mul_le (a b : k[X]) :
 end Polynomial
 
 end LeanPolyABC
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

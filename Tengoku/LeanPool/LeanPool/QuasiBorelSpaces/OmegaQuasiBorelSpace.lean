@@ -15,9 +15,9 @@ Imported Lean Pool material for `LeanPool.QuasiBorelSpaces.OmegaQuasiBorelSpace`
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open OmegaCompletePartialOrder
-open QuasiBorelSpace
+open Tengoku.LeanPool.QuasiBorelSpace
 
 /-!
 # Omega quasi-Borel spaces
@@ -41,14 +41,14 @@ An ωQBS (Omega quasi-borel space) is a type equipped with both a
 `QuasiBorelSpace` and an `OmegaCompletePartialOrder`, satisfying the
 compatibility axiom: variables are closed under pointwise ω-suprema of ω-chains.
 -/
-class OmegaQuasiBorelSpace (A : Type*) extends OmegaCompletePartialOrder A, QuasiBorelSpace A where
+class _root_.Tengoku.LeanPool.OmegaQuasiBorelSpace (A : Type*) extends OmegaCompletePartialOrder A, QuasiBorelSpace A where
   /--
   Compatibility axiom (Definition 3.5 in [VakarKS19]):
   variables are closed under pointwise ω-suprema of ω-chains.
   -/
   isHom_ωSup : IsHom (OmegaCompletePartialOrder.ωSup : Chain A → A)
 
-namespace OmegaQuasiBorelSpace
+namespace Tengoku.LeanPool.OmegaQuasiBorelSpace
 
 variable {A B C : Type*}
 
@@ -71,4 +71,5 @@ instance
     : OmegaQuasiBorelSpace A where
   isHom_ωSup := by simp only [isHom_to_subsingleton]
 
-end OmegaQuasiBorelSpace
+end Tengoku.LeanPool.OmegaQuasiBorelSpace
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

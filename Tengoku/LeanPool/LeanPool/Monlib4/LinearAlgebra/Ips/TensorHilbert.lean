@@ -19,7 +19,7 @@ inner product space structure now lives in Mathlib.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped TensorProduct BigOperators
 
 namespace TensorProduct
@@ -167,3 +167,4 @@ theorem forall_inner_eq_zero (x : E ⊗[𝕜] F) :
   · simp_all
 
 end TensorProduct
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

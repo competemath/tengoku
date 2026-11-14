@@ -16,7 +16,7 @@ import Tengoku.LeanPool.LeanPool.DirectedTopologyLean4.SplitPath.SplitProperties
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-
   This file contains the definition of a directed path being n-covered by two subspaces X₁ and X₂:
   It maps any subinterval [i/n, (i+1)/n] into either X₁ or X₂.
@@ -29,7 +29,7 @@ open scoped unitInterval
 
 noncomputable section
 
-namespace Dipath
+namespace Tengoku.LeanPool.Dipath
 
 variable {X : dTopCat} {X₀ X₁ : Set X}
 
@@ -300,4 +300,5 @@ lemma has_subpaths {X₁ X₂ : Set X} (hX : X₁ ∪ X₂ = Set.univ) (X₁_ope
   convert this <;> nth_rewrite 2 [←h] <;> simp
 
 end coveredPartwise
-end Dipath
+end Tengoku.LeanPool.Dipath
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

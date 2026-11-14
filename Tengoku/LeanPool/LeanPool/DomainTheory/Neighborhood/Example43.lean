@@ -54,7 +54,7 @@ structurally from the truth domain `T` of Example 1.2 exactly as
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood.Example43
 
 open Domain.Neighborhood NeighborhoodSystem ApproximableMap
@@ -335,3 +335,4 @@ theorem predMap_succMap_natElem (n : ℕ) :
   rw [succMap_natElem, predMap_natElem_succ]
 
 end Domain.Neighborhood.Example43
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

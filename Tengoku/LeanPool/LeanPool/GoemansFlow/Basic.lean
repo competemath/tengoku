@@ -10,7 +10,7 @@ public import Tengoku
 /-! # Directed walks, unsplittable loads, and Goemans' cost conjecture -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace GoemansFlow
 
 section Walks
@@ -112,3 +112,4 @@ def GoemansCostConjectureFull (R : Type) [CommRing R] [LinearOrder R] :
       (∑ a : E, c a * unsplittableLoad d P a) ≤ ∑ a : E, c a * x a
 
 end GoemansFlow
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

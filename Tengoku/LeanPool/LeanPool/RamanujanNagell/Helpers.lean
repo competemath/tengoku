@@ -22,8 +22,8 @@ rather than through `𝓞 K` where `K = QuadraticAlgebra ℚ (-2) 1`. The payoff
 -/
 
 @[expose] public section
-
-namespace RamanujanNagell
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+namespace Tengoku.LeanPool.RamanujanNagell
 
 open QuadraticAlgebra
 
@@ -526,4 +526,5 @@ lemma ufd_power_association (α β : R) (m : ℕ)
   · left; exact associated_eq_or_neg α (θ ^ m) h_left
   · right; exact associated_eq_or_neg α (θ' ^ m) h_right
 
-end RamanujanNagell
+end Tengoku.LeanPool.RamanujanNagell
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

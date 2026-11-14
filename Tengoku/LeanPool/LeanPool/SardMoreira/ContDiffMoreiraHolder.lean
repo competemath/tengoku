@@ -15,7 +15,7 @@ import Tengoku.LeanPool.LeanPool.SardMoreira.ToMathlib.ContinuousLinearMap
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped unitInterval Topology NNReal
 open Asymptotics Filter Set
 
@@ -27,7 +27,7 @@ variable {E F G : Type*}
 /-- A map `f` is `C^{k+(α)}` at a point `a`, meaning it is `C^k` at `a` and its
 `k`-th derivative satisfies a pointwise Hölder estimate of exponent `α` at `a`. -/
 @[mk_iff]
-structure ContDiffMoreiraHolderAt (k : ℕ) (α : I) (f : E → F) (a : E) : Prop where
+structure _root_.Tengoku.LeanPool.ContDiffMoreiraHolderAt (k : ℕ) (α : I) (f : E → F) (a : E) : Prop where
   /-- A `C^{k+(α)}` map is in particular `C^k` at the point. -/
   contDiffAt : ContDiffAt ℝ k f a
   /-- A `C^{k+(α)}` map satisfies `D^k f x - D^k f a = O(‖x - a‖^α)` as `x → a`. -/
@@ -45,7 +45,7 @@ theorem ContDiffAt.contDiffMoreiraHolderAt {n : WithTop ℕ∞} {k : ℕ} {f : E
     _ =O[𝓝 a] (‖· - a‖ ^ (α : ℝ)) :=
       .of_norm_left <| .comp_tendsto (.id_rpow_of_le_one α.2.2) <| tendsto_norm_sub_self_nhdsGE a
 
-namespace ContDiffMoreiraHolderAt
+namespace Tengoku.LeanPool.ContDiffMoreiraHolderAt
 
 /--
 @isnad1 id=continuo.1h6v.s6.81e117d70d9b from=translated src=- shape=2232b642 vocab=2bd43d05
@@ -296,4 +296,5 @@ theorem congr_eventuallyEq {f g : E → F} {a : E} {k : ℕ} {α : I}
     · exact hfg.symm.iteratedFDeriv ℝ _
     · rw [hfg.symm.iteratedFDeriv ℝ _ |>.self_of_nhds]
 
-end ContDiffMoreiraHolderAt
+end Tengoku.LeanPool.ContDiffMoreiraHolderAt
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

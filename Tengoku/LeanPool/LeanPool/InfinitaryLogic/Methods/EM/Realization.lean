@@ -39,7 +39,7 @@ model-realizing tranche will need to restrict to a countable sub-theory.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u v w
 
 namespace FirstOrder.Language
@@ -155,3 +155,4 @@ end Lomega1omegaTemplate
 -- _of_fullFragment, _of_compact) are in Methods/EM/FragmentAdapter.lean.
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

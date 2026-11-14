@@ -53,7 +53,7 @@ import Tengoku.LeanPool.LeanPool.Sundogcert.SATReductionReverse
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Sundog.SATReduction Sundog.SATNPHard Sundog.SATReductionForward
 open Sundog.SATReductionReverse Sundog.ThreeDMReindex Sundog.MatchingNPHard
 
@@ -94,3 +94,4 @@ theorem sat_iff_decodes (φ : Formula n m) :
     NO `Lean.ofReduceBool` (no `native_decide` anywhere; the only `decide`s are kernel-reduced). -/
 
 end Sundog.SATReductionMain
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -56,7 +56,7 @@ neighbourhood, condition
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem ApproximableMap
@@ -1006,3 +1006,4 @@ def curryEquiv (V₀ : NeighborhoodSystem α) (V₁ : NeighborhoodSystem β)
       exact hg _ _ hgrel
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

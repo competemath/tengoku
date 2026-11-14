@@ -23,11 +23,11 @@ the `@[simp]`. This can shorten proofs because lean
 can apply these theorems with simp automatically.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 local notation:60 "(" k " ↦ "v"; "m")" => TMap.put k v m
 
 
-namespace MState
+namespace Tengoku.LeanPool.MState
 
 /--
 @isnad1 id=eq.0h1v.s4.f91c13e21fb8 from=translated src=- shape=bec27525 vocab=d024877c
@@ -616,4 +616,5 @@ theorem run_n_plus_m_intersect : ∀ (s s' : MState) (m m' : Nat) (L_w L_b L_w' 
     obtain ⟨n', hn'_pre, h_run_eq⟩ := exists_tail_run s s' m m' n'' h_run1 h h_lt
     simp_all
 
-end MState
+end Tengoku.LeanPool.MState
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

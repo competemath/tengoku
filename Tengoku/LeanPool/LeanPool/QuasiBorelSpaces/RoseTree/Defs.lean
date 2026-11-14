@@ -14,18 +14,18 @@ Imported Lean Pool material for `LeanPool.QuasiBorelSpaces.RoseTree.Defs`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u
 variable {A B C : Type*}
 
 /-- The type of node-labelled, finitely branching trees. -/
-structure Rose (A : Type u) : Type u where
+structure _root_.Tengoku.LeanPool.Rose (A : Type u) : Type u where
   /-- The label of the root node. -/
   label : A
   /-- The list of child trees. -/
   children : List (Rose A)
 
-namespace Rose
+namespace Tengoku.LeanPool.Rose
 
 /-- The fold operation over trees. -/
 @[simp]
@@ -95,4 +95,5 @@ def decode [Encodable A] (n : ℕ) : Option (Rose A) :=
 instance [LE A] : LE (Rose A) where
   le := fold fun x rec t ↦ x ≤ t.label ∧ List.Forall₂ id rec t.children
 
-end Rose
+end Tengoku.LeanPool.Rose
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

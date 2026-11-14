@@ -21,7 +21,7 @@ S_a = Σ_{k=0}^∞ (1-a/2)^{k/2} = 1/(1-√(1-a/2)) is finite for a > 0.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace PLAcceleratedNesterovLean
@@ -95,3 +95,4 @@ theorem telescoping_norm_bound {d : ℕ} (x : ℕ → E d) (n : ℕ) :
       _ = _ := by abel
 
 end PLAcceleratedNesterovLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

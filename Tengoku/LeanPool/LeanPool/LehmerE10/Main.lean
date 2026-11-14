@@ -41,7 +41,7 @@ Axiom footprint: `propext`, `Classical.choice`, `Quot.sound` only.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LehmerE10
 
 open Polynomial
@@ -799,3 +799,4 @@ theorem coxeter_charpoly_lehmer :
   exact Polynomial.map_injective _ Int.cast_injective h
 
 end LehmerE10
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

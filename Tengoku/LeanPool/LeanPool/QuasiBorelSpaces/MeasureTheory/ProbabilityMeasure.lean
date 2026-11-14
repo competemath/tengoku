@@ -14,7 +14,7 @@ Imported Lean Pool material for `LeanPool.QuasiBorelSpaces.MeasureTheory.Probabi
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace MeasureTheory
 
 variable {A B C : Type*} [MeasurableSpace A] [MeasurableSpace B] [MeasurableSpace C]
@@ -87,3 +87,4 @@ lemma measurable_bind
 end ProbabilityMeasure
 
 end MeasureTheory
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

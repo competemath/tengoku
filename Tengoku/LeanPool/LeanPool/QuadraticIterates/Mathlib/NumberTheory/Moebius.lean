@@ -18,7 +18,7 @@ polynomials*, Arch. Math. 59 (1992), 239-244; upstreaming candidates for Mathlib
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open ArithmeticFunction
 open scoped ArithmeticFunction.Moebius ArithmeticFunction.zeta
 
@@ -26,7 +26,7 @@ open scoped ArithmeticFunction.Moebius ArithmeticFunction.zeta
 of the radical `n' = rad n`: `∏_{t ∣ n'} F (k t) ^ μ (n'/t)`, where `k = n / n'`.
 @isnad1 id=eq.3h4v.s7.2601760f2b32 from=translated src=- shape=08e8d57d vocab=70507a57
 -/
-theorem beta_radical (n k n' : ℕ) (hn : 1 ≤ n)
+theorem _root_.Tengoku.LeanPool.beta_radical (n k n' : ℕ) (hn : 1 ≤ n)
     (hn' : n' = UniqueFactorizationMonoid.radical n) (hk : n = k * n') (F : ℕ → ℚ) :
     ∏ x ∈ n.divisorsAntidiagonal, F x.2 ^ (μ x.1)
       = ∏ t ∈ n'.divisors, F (k * t) ^ (μ (n' / t)) := by
@@ -48,7 +48,7 @@ theorem beta_radical (n k n' : ℕ) (hn : 1 ≤ n)
 /-- `∑_{ed = n} μ e = 0` for `n ≥ 2`: the Möbius function is the Dirichlet inverse of `ζ`.
 @isnad1 id=eq.1h1v.s5.7bbc4cdf0be3 from=translated src=- shape=2d196cad vocab=276c2e02
 -/
-theorem moebius_antidiag_sum_zero (n : ℕ) (hn : 2 ≤ n) :
+theorem _root_.Tengoku.LeanPool.moebius_antidiag_sum_zero (n : ℕ) (hn : 2 ≤ n) :
     ∑ x ∈ n.divisorsAntidiagonal, (μ x.1) = 0 := by
   have : (∑ x ∈ n.divisorsAntidiagonal, μ x.1) = (μ * (ζ : ArithmeticFunction ℤ)) n :=
     (Finset.sum_congr rfl fun x hx ↦ by
@@ -62,7 +62,7 @@ theorem moebius_antidiag_sum_zero (n : ℕ) (hn : 2 ≤ n) :
 to the sign of `μ(n'/t)`.
 @isnad1 id=ex.2h1v.s7.80f88340025c from=translated src=- shape=e7186994 vocab=abb73fb8
 -/
-theorem moebius_sign_partition (n' : ℕ) (hn'1 : 1 < n') (hsf : Squarefree n') :
+theorem _root_.Tengoku.LeanPool.moebius_sign_partition (n' : ℕ) (hn'1 : 1 < n') (hsf : Squarefree n') :
     ∃ Sp Sm : Finset ℕ, Disjoint Sp Sm ∧ Sp ∪ Sm = n'.divisors ∧ Sp.card = Sm.card ∧
       (∀ t ∈ Sp, μ (n' / t) = 1) ∧ (∀ t ∈ Sm, μ (n' / t) = -1) := by
   have hmu_pm : ∀ t ∈ n'.divisors, μ (n' / t) = 1 ∨ μ (n' / t) = -1 := by
@@ -104,7 +104,7 @@ theorem moebius_sign_partition (n' : ℕ) (hn'1 : 1 < n') (hsf : Squarefree n') 
 quotient `(∏_{t ∈ Sp} F (k t)) / (∏_{t ∈ Sm} F (k t))`, where `k = n / n'`.
 @isnad1 id=eq.7h6v.s8.7d37bb85c333 from=translated src=- shape=c979413a vocab=4fdd9ef9
 -/
-theorem prod_pow_moebius_eq_div (n k n' : ℕ) (hn : 1 ≤ n)
+theorem _root_.Tengoku.LeanPool.prod_pow_moebius_eq_div (n k n' : ℕ) (hn : 1 ≤ n)
     (hn' : n' = UniqueFactorizationMonoid.radical n) (hk : n = k * n') (F : ℕ → ℚ)
     {Sp Sm : Finset ℕ} (hdisj : Disjoint Sp Sm) (hunion : Sp ∪ Sm = n'.divisors)
     (hSp : ∀ t ∈ Sp, μ (n' / t) = 1) (hSm : ∀ t ∈ Sm, μ (n' / t) = -1) :
@@ -122,7 +122,7 @@ theorem prod_pow_moebius_eq_div (n k n' : ℕ) (hn : 1 ≤ n)
 otherwise (assuming `m ∣ n`, `m, n ≥ 1`).
 @isnad1 id=eq.3h2v.s6.b79764834f7e from=translated src=- shape=d44969fd vocab=81a4ed41
 -/
-theorem moebius_restricted_sum (m n : ℕ) (hm : 1 ≤ m) (hn : 1 ≤ n) (hmn : m ∣ n) :
+theorem _root_.Tengoku.LeanPool.moebius_restricted_sum (m n : ℕ) (hm : 1 ≤ m) (hn : 1 ≤ n) (hmn : m ∣ n) :
     ∑ x ∈ n.divisorsAntidiagonal with m ∣ x.2, (μ x.1 : ℤ) = if n = m then 1 else 0 := by
   have hm_pos : 0 < m := by lia
   have classic : ∀ N ≥ 1, ∑ i ∈ N.divisors, (μ i : ℤ) = if N = 1 then 1 else 0 := by
@@ -159,7 +159,7 @@ theorem moebius_restricted_sum (m n : ℕ) (hm : 1 ≤ m) (hn : 1 ≤ n) (hmn : 
 of its indicator (in the second coordinate) over `n` is `0` or `1`; in particular nonnegative.
 @isnad1 id=le.2h3v.s7.60e4fbb0fd9d from=translated src=- shape=47fe9396 vocab=afd98624
 -/
-theorem indicator_moebius_nonneg (g : ℕ → ℕ)
+theorem _root_.Tengoku.LeanPool.indicator_moebius_nonneg (g : ℕ → ℕ)
     (hmin : ∀ x ≥ 1, ∀ y ≥ 1, g (x.gcd y) = min (g x) (g y)) (n : ℕ) (hn : 1 ≤ n) (k : ℕ) :
     0 ≤ ∑ x ∈ n.divisorsAntidiagonal, (μ x.1 : ℤ) * (if k ≤ g x.2 then 1 else 0) := by
   have hmem (x : ℕ × ℕ) (hx : x ∈ n.divisorsAntidiagonal) : x.2 ∈ n.divisors :=
@@ -203,7 +203,7 @@ theorem indicator_moebius_nonneg (g : ℕ → ℕ)
 integrality of the Möbius factors of a strong divisibility sequence.
 @isnad1 id=le.2h2v.s6.a53a88dfb081 from=translated src=- shape=d884ed77 vocab=a8819b8b
 -/
-theorem moebius_transform_nonneg (g : ℕ → ℕ)
+theorem _root_.Tengoku.LeanPool.moebius_transform_nonneg (g : ℕ → ℕ)
     (hmin : ∀ x ≥ 1, ∀ y ≥ 1, g (x.gcd y) = min (g x) (g y)) (n : ℕ) (hn : 1 ≤ n) :
     0 ≤ ∑ x ∈ n.divisorsAntidiagonal, (μ x.1 : ℤ) * (g x.2 : ℤ) := by
   have hmono (x : ℕ × ℕ) (hx : x ∈ n.divisorsAntidiagonal) : g x.2 ≤ g n := by
@@ -219,3 +219,4 @@ theorem moebius_transform_nonneg (g : ℕ → ℕ)
   rw [Finset.sum_congr rfl fun x hx ↦ by rw [hcard (g x.2) (hmono x hx), Finset.mul_sum],
     Finset.sum_comm]
   exact Finset.sum_nonneg fun k _ ↦ indicator_moebius_nonneg g hmin n hn k
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -27,7 +27,7 @@ finiteness** — finiteness belongs to the inseparable-pair instance (commit 4).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 variable {L : Language.{0, 0}}
@@ -108,3 +108,4 @@ structure HenkinComplete (U : Set L[[ℕ]].Sentenceω) (S : Set L[[ℕ]].Sentenc
     φ.all.not ∈ S → ∃ c : ℕ, (instConst c φ).not ∈ S
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

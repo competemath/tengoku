@@ -15,7 +15,7 @@ This file proves the `p`-belief version of Aumann's agreement theorem.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace AgreeToDisagree
 
 open Set MeasureTheory
@@ -383,3 +383,4 @@ lemma agreeToDisagree_beliefs {ι : Type*} {P : ι → Partition Ω}
   linarith
 
 end AgreeToDisagree
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -16,7 +16,7 @@ norm inequalities from the Nesterov accelerated gradient descent analysis.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace PLAcceleratedNesterovLean
@@ -133,3 +133,4 @@ theorem coercivity_core_bound
   linarith
 
 end PLAcceleratedNesterovLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -23,7 +23,7 @@ Lean-reading hints for beginners:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open scoped BigOperators
@@ -437,3 +437,4 @@ proof engineering is happening.
 -/
 
 end HSDInteriorPointLP
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

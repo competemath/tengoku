@@ -18,7 +18,7 @@ telescopically, so no manifold partition-of-unity machinery is needed.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set
 noncomputable section
 namespace CKN
@@ -158,3 +158,4 @@ theorem exists_smooth_partition_of_unity_of_isCompact {d : ℕ} {ι : Type*}
       _ = 1 := by rw [hprod0]; ring
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

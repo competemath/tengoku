@@ -26,7 +26,7 @@ This is the five-point Gram obstruction in its scale-free form.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Erdos132ThreeChain
 
 /-- Two points on the circle of squared radius `c` about `o`, at squared distance `c` or
@@ -133,3 +133,4 @@ theorem no_five_chain_points {A B C D E : Point} {c : ℝ} (hc : 0 < c) (hAB : s
       (qCE.sharedLeft.resolve_left (by rw [hac]; exact hne))
 
 end Erdos132ThreeChain
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

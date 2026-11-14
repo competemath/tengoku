@@ -19,7 +19,7 @@ common subset does not see the ambient set.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Set
 noncomputable section
 namespace CKN
@@ -74,3 +74,4 @@ theorem setIntegral_eq_of_support_subset {d : ℕ} {A B S : Set (Vec d)}
         (fun x hx => hzero x (fun hS => hx (hB hS)))]
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

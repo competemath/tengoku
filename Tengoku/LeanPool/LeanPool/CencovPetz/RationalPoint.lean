@@ -31,7 +31,7 @@ This file packages the notion of a common-denominator point and relates it to
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.CencovPetz
 open scoped BigOperators
 
@@ -73,3 +73,4 @@ lemma IsRational.isSplitRepresentable {p : Simplex α} (hp : IsRational (α := �
 
 end Simplex
 end LeanPool.CencovPetz
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

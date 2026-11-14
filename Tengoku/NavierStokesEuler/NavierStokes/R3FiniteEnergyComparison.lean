@@ -14,7 +14,7 @@ solution's bounds on each closed interval before time one.
 -/
 
 noncomputable section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace NavierStokes.ComparatorBridge
 
 open Set MeasureTheory ProblemStatement
@@ -73,3 +73,4 @@ theorem compact_candidate_excludes_global_solution
   exact heq t ⟨ht.1, le_rfl⟩ x
 
 end NavierStokes.ComparatorBridge
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

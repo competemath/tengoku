@@ -21,7 +21,7 @@ These are used downstream to turn “no eigenvalues above `ε`” into an operat
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace CompactSelfAdjoint
 
 open CompactSpectral
@@ -336,3 +336,4 @@ theorem exists_hasEigenvector_norm_eq_opNorm_of_isCompactOperator_of_isSelfAdjoi
                 _ = a • (x0 + u) := by simp [smul_add]
     simpa using this
 end CompactSelfAdjoint
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

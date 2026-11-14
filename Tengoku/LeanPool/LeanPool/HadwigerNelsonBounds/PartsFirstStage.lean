@@ -23,7 +23,7 @@ cover every proper normalized coloring of the 13-vertex 2-Golomb root.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace HadwigerNelsonBounds
 
 /-- Swap the two colors not fixed by the normalized root. -/
@@ -1190,3 +1190,4 @@ theorem partsCertificateVariant_verifies (base : Fin 36)
   exact partsCertificateVariant_verifies_core base symmetry swap
 
 end HadwigerNelsonBounds
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

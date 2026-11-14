@@ -45,7 +45,7 @@ Pinned Mathlib API: `Equiv.permCongr` (`permCongr_apply`), `Fin.rev`
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace QuantumAlg
 
 namespace Gate
@@ -120,3 +120,4 @@ end
 end Gate
 
 end QuantumAlg
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -15,7 +15,7 @@ We define positive Boolean formulas (`PositiveBool`), alternating Büchi automat
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanModelChecking
 
 /-- A positive Boolean formula over a set of atoms `Q`: a formula built from
@@ -92,3 +92,4 @@ def ABW.language {S Q} (A : ABW S Q) (w : Nat → S) :=
   ∃ (G : RunDAG A w), G.accepting
 
 end LeanModelChecking
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

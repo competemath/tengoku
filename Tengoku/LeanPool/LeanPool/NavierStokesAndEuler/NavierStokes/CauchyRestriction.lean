@@ -11,7 +11,7 @@ public import Tengoku.Seed.Analysis.Calculus.DiffContOnCl
 public import Tengoku.Seed.Analysis.SpecialFunctions.Complex.CircleMap
 public import Tengoku.Seed.MeasureTheory.Integral.IntervalIntegral.Basic
 import Tengoku.Seed.Analysis.Complex.CauchyIntegral
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -319,3 +319,4 @@ theorem contDiff_derivative_path {X : Type*} [NormedAddCommGroup X] [NormedSpace
   ((derivativeCLM c hgap).restrictScalars ℝ).contDiff.comp hf
 
 end NavierStokes.CauchyRestriction
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

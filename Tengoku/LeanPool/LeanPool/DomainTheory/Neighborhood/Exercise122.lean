@@ -58,7 +58,7 @@ exercise need Definition 1.7 (`↑X`) and are deferred.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 namespace NeighborhoodSystem
@@ -197,3 +197,4 @@ theorem specializes_iff_le (x y : V.Element) : y ⤳ x ↔ x ≤ y := by
 end NeighborhoodSystem
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

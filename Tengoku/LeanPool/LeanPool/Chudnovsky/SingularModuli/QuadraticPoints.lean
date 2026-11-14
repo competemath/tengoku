@@ -34,7 +34,7 @@ The `GL₂` action is the classical *right* action on forms,
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace Chudnovsky.QF
@@ -301,3 +301,4 @@ theorem det_of_fixes {f : BQF} (hf : IsPrimitive f) (hpd : IsPosDef f)
   rw [hr, hq, hs]; ring
 
 end Chudnovsky.QF
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

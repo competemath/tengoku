@@ -57,7 +57,7 @@ established
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem ApproximableMap
@@ -324,3 +324,4 @@ theorem fixC_fixed (φ : (funSpace V V).Element) :
   rw [fixC]; exact fixMap_fixed V φ
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

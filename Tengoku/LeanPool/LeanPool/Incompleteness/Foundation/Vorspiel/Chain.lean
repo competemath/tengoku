@@ -10,7 +10,7 @@ public import Tengoku
 /-! # Chain -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace List
 
 variable {l l₁ l₂ : List α}
@@ -48,3 +48,4 @@ lemma chains_finite [Finite α] (R_trans : IsTrans α R) (R_irrefl : Std.Irrefl 
       simpa using h)
 
 end List
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

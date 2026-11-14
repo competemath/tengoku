@@ -25,7 +25,7 @@ Main export: `RS.resAt_comp_mul_deriv`, and the `=ᶠ`-robust corollary
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter Topology Metric Function
 
 namespace RS
@@ -172,3 +172,4 @@ theorem resAt_comp_mul_deriv_of_eventuallyEq {φ : ℂ → ℂ} (hφ : AnalyticA
   exact resAt_comp_mul_deriv hφ hφ' hφ₀ hf
 
 end RS
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

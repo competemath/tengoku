@@ -49,7 +49,7 @@ exercise's framing
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood.Exercise222
 
 open Domain.Neighborhood NeighborhoodSystem Set
@@ -361,3 +361,4 @@ def reprIso : (reprSystem C hInter hne).Element ≃o {X : Set τ // X ∈ C} whe
       exact ⟨F, hab _ hF, htCl⟩
 
 end Domain.Neighborhood.Exercise222
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

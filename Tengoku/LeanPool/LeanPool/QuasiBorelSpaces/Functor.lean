@@ -17,8 +17,8 @@ Imported Lean Pool material for `LeanPool.QuasiBorelSpaces.Functor`.
 -/
 
 @[expose] public section
-
-namespace QuasiBorelSpace
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+namespace Tengoku.LeanPool.QuasiBorelSpace
 
 /--
 A `QuasiBorelSpace` `Functor` is a function `F : Type → Type` such that:
@@ -501,4 +501,5 @@ def unfold (f : A →𝒒 F A) : A →𝒒 Nu F where
 
 end Nu
 
-end QuasiBorelSpace
+end Tengoku.LeanPool.QuasiBorelSpace
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

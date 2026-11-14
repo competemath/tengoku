@@ -18,7 +18,7 @@ and the fiber-path Hessian-to-second-derivative connection.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace PLAcceleratedNesterovLean
@@ -123,3 +123,4 @@ theorem fiber_path_C2at_on_segment {d : ℕ} (f : E d → ℝ) (m v : E d)
   exact (hf_C2.contDiffAt (hV.mem_nhds (hseg t ht))).comp t hψ.contDiffAt
 
 end PLAcceleratedNesterovLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

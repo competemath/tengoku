@@ -78,7 +78,7 @@ interface that lets the two cut points be interior to edges of `C`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Schoenflies unitInterval
 open scoped Graph
 
@@ -606,3 +606,4 @@ theorem false_of_realization {drawing : β → ℝ → Plane} (hd : IsDrawing H 
 end IsK33Subdivision
 
 end Graph
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

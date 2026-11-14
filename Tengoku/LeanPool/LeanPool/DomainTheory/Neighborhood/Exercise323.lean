@@ -41,7 +41,7 @@ right adjoint to `- × 𝒟₀`. Everything is **choice-free** (`#print axioms �
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem ApproximableMap
@@ -85,3 +85,4 @@ def homAdjunction (V₀ : NeighborhoodSystem α) (V₁ : NeighborhoodSystem β)
   curryEquiv V₀ V₁ V₂
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

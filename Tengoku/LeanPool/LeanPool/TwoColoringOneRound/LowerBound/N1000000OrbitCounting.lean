@@ -15,7 +15,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Distributed2Coloring.LowerBound
 
 namespace N1000000OrbitCounting
@@ -410,3 +410,4 @@ theorem baseOrbit_card (k : DirIdx) : Fintype.card (BaseOrbit k) = baseTypeCount
 end N1000000OrbitCounting
 
 end Distributed2Coloring.LowerBound
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

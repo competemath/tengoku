@@ -74,7 +74,7 @@ Everything (including `numEquiv` and the order-isomorphisms) is **choice-free**
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood.Exercise513
 
 /-! ### Triangular numbers -/
@@ -277,3 +277,4 @@ def pnnOrderIsoProd : Set (ℕ × ℕ) ≃o Set ℕ × Set ℕ :=
   pnOrderIsoPNN.symm.trans pnOrderIsoProd
 
 end Domain.Neighborhood.Exercise513
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

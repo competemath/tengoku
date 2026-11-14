@@ -17,7 +17,7 @@ This could be lowered because `strongSSC_vwTup` only requires `m ≤ s`, not `2m
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace OddCase
 
 open Nat Fin Finset
@@ -335,3 +335,4 @@ lemma not_dvd_tup (dx : ↑(Y n F) ∣ x) (dF : Disjoint {0, 1, 2, 5, 10} F) :
 end Coprime
 
 end OddCase
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

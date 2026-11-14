@@ -22,7 +22,7 @@ We let $V$ be an inner product space over $\mathbb{k}$.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 variable {V 𝕜 : Type _} [RCLike 𝕜] [NormedAddCommGroup V] [InnerProductSpace 𝕜 V]
 
 local notation "P" => Submodule.orthogonalProjection
@@ -84,7 +84,7 @@ open LinearMap in
 /-- $\textnormal{ker}(T) = \textnormal{range}(T^*)^\bot$
 @isnad1 id=eq.0h4v.s11.3dfef406ec3a from=translated src=- shape=46402d96 vocab=2c09ca88
 -/
-theorem ker_ortho_adjoint_range {W : Type _} [FiniteDimensional 𝕜 V] [NormedAddCommGroup W]
+theorem _root_.Tengoku.LeanPool.ker_ortho_adjoint_range {W : Type _} [FiniteDimensional 𝕜 V] [NormedAddCommGroup W]
     [InnerProductSpace 𝕜 W] [FiniteDimensional 𝕜 W] (T : V →ₗ[𝕜] W) :
     ker T = (range (adjoint T))ᗮ := by
   ext x
@@ -176,14 +176,14 @@ by rw [Commute.symm_iff]; exact ⟨fun hT => hT.star_comm_self, IsStarNormal.mk�
 /--
 @isnad1 id=issymmet.0h3v.s11.89eb8a9563ff from=translated src=- shape=df85c41c vocab=e8a04158
 -/
-theorem isSymmetric_hMul_adjoint_self [FiniteDimensional 𝕜 V] (T : V →ₗ[𝕜] V) :
+theorem _root_.Tengoku.LeanPool.isSymmetric_hMul_adjoint_self [FiniteDimensional 𝕜 V] (T : V →ₗ[𝕜] V) :
     IsSymmetric (T * (adjoint T)) := fun u v => by
   simp_rw [Module.End.mul_apply, ← adjoint_inner_left T, ← adjoint_inner_right T]
 
 /--
 @isnad1 id=issymmet.1h3v.s8.22d37f465b62 from=translated src=- shape=c87beba1 vocab=636c9739
 -/
-theorem IsSymmetric.neg (T : V →ₗ[𝕜] V) (hT : T.IsSymmetric) : IsSymmetric (-T) := by
+theorem Tengoku.LeanPool.IsSymmetric.neg (T : V →ₗ[𝕜] V) (hT : T.IsSymmetric) : IsSymmetric (-T) := by
   intro u v
   simp_rw [LinearMap.neg_apply, inner_neg_left, inner_neg_right, neg_inj]
   exact hT u v
@@ -191,7 +191,7 @@ theorem IsSymmetric.neg (T : V →ₗ[𝕜] V) (hT : T.IsSymmetric) : IsSymmetri
 /--
 @isnad1 id=issymmet.2h4v.s9.b42d990a6c6b from=translated src=- shape=0f04fd65 vocab=617502cf
 -/
-theorem IsSymmetric.sub {T S : V →ₗ[𝕜] V} (hT : T.IsSymmetric) (hS : S.IsSymmetric) :
+theorem Tengoku.LeanPool.IsSymmetric.sub {T S : V →ₗ[𝕜] V} (hT : T.IsSymmetric) (hS : S.IsSymmetric) :
     (T - S).IsSymmetric := by
   rw [sub_eq_add_neg]
   exact IsSymmetric.add hT (IsSymmetric.neg S hS)
@@ -402,3 +402,4 @@ theorem LinearMap.injective_iff_adjoint_surjective {W : Type _} [NormedAddCommGr
     Function.Injective T ↔ Function.Surjective (adjoint T) := by
   rw [← LinearMap.ker_eq_bot, ← LinearMap.range_eq_top, ker_ortho_adjoint_range,
     Submodule.orthogonal_eq_bot_iff]
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

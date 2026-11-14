@@ -23,7 +23,7 @@ idempotent generator `e` of `I` and shows that the corner subring `eRe` is a
 division subring.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 open scoped LeanPool.ArtinWedderburn
 
 
@@ -258,3 +258,4 @@ theorem minimal_ideal_I_sq_nonzero_exists_idem_and_div (h_atom_I : IsAtom I) (hI
   exact corner_ring_div (Ideal.span {e}) h_atom_span e he_span henz he_idem
 
 end LeanPool.ArtinWedderburn
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

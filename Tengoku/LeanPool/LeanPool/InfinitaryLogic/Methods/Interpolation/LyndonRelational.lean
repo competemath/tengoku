@@ -37,7 +37,7 @@ the endpoint's `(Pos r₁ ∩ Pos r₂, Neg r₁ ∩ Neg r₂)`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure BoundedFormulaω
@@ -116,3 +116,4 @@ theorem lyndon_interpolation_relational_countable [L.IsRelational]
   exact hb2 (h M (fun ψ hψ => by rw [Set.mem_singleton_iff] at hψ; subst hψ; exact hb1))
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

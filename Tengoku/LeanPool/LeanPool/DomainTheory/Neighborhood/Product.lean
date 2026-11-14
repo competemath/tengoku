@@ -56,7 +56,7 @@ Everything is **choice-free** (`#print axioms ⊆ {propext, Quot.sound}`).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem
@@ -715,3 +715,4 @@ theorem substitution_toElementMap (F : ApproximableMap (prod V₀ V₁) V₂)
   rw [toElementMap_comp, toElementMap_paired, toElementMap₂_toMap₂]
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

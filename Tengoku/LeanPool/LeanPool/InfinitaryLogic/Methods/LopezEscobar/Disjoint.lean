@@ -26,7 +26,7 @@ Unit 5 feeds to `craig_pcSeparation_relational`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure Set
@@ -126,3 +126,4 @@ theorem pcSentences_entails_not {B : Set (StructureSpace L)}
   exact pcMem_disjoint T₀ T₁ hT₀ hT₁ hinv M ⟨⟨instM, ‹_›, hleft⟩, ⟨instM, ‹_›, hright⟩⟩
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

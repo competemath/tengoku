@@ -21,7 +21,7 @@ The semidirect generator transport component of the Connes rigidity formalizatio
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Connes
 namespace SemidirectGeneratorTransport
 
@@ -53,3 +53,4 @@ Paper: §3. -/
 end
 end SemidirectGeneratorTransport
 end Connes
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

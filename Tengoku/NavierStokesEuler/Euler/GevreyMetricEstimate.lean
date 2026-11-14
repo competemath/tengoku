@@ -1,5 +1,5 @@
 import Tengoku.NavierStokesEuler.Euler.GevreyNonlinearEstimate
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace EulerGevreyMetricEstimate
 end EulerGevreyMetricEstimate
 namespace MeasureTheory
@@ -138,3 +138,4 @@ theorem velocity_ae_metric {s : ℕ} (N : ℕ) (hN : N+6 ≤ s) (ρ : ℝ) (hρ 
   exact (hx.trans hp).trans (Real.le_coe_toNNReal _)
 
 end EulerGevreyMetricEstimate
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

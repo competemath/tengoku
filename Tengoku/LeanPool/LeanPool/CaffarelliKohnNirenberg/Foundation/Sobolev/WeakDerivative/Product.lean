@@ -19,7 +19,7 @@ the resulting derivative is a global weak derivative of the zero extension.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Set
 open scoped ENNReal
 
@@ -211,3 +211,4 @@ theorem HasWeakGradientOn.mono {d : ℕ}
   h.restrict hVOpen hVU
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

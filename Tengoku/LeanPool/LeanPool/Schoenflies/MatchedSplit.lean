@@ -102,7 +102,7 @@ appears it belongs there or in `Schoenflies/Graph/Drawing.lean`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Schoenflies
 open scoped Graph
 
@@ -580,3 +580,4 @@ end SplitData
 end CellStructure
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -10,7 +10,7 @@ public import Tengoku
 /-! TODO: Add doc-string. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace NumberField.Odlyzko
@@ -1112,3 +1112,4 @@ theorem exp_fourierGaussian_eq_latticeGaussian
 end NumberField.Odlyzko
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

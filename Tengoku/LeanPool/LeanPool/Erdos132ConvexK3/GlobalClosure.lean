@@ -22,7 +22,7 @@ the original labelling.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.Erdos132ConvexK3
 
 /-- Reflection in the horizontal axis.  This preserves squared distances and
@@ -3294,3 +3294,4 @@ theorem convex_top_three_degree_six : ConvexTopThreeDegreeSixStatement :=
     convex_top_three_draft_reduction_complete
 
 end LeanPool.Erdos132ConvexK3
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

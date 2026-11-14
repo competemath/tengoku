@@ -20,7 +20,7 @@ Main declarations: `RS.segmentPath`, `RS.pathIntegral_segmentPath`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold
 open Set Metric unitInterval
 
@@ -84,3 +84,4 @@ theorem pathIntegral_segmentPath {η : Form1 X} {e : OpenPartialHomeomorph X ℂ
 end RS
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

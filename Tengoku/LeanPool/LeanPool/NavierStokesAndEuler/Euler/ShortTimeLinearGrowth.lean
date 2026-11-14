@@ -13,7 +13,7 @@ The proof uses the supremum norm and the mean value inequality, so the
 constant is two under the stated smallness condition. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace EulerShortTimeLinearGrowth
@@ -65,3 +65,4 @@ theorem norm_le_two (T L : ℝ) (hL : 0 ≤ L)
   exact (V.norm_coe_le_norm ⟨t,hst,t.property.2⟩).trans hV'
 
 end EulerShortTimeLinearGrowth
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

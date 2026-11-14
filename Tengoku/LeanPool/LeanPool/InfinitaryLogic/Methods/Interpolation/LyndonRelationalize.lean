@@ -48,7 +48,7 @@ for Craig's graph antecedent `(graphAxioms F).and (relationalizeFormula r)` and 
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure BoundedFormulaω
@@ -347,3 +347,4 @@ theorem preimage_baseRelSym_graphImp (s : Bool) (F : Set (Σ n, L.Functions n)) 
     exact Or.inr ((mem_relationsInSigned_relationalizeFormula s p φ).mpr hp)
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

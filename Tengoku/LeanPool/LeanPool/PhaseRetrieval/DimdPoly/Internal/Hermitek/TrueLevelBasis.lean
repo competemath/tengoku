@@ -20,7 +20,7 @@ public import Tengoku
 /-! # TrueLevelBasis -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Complex MeasureTheory Real Finset
 open scoped BigOperators Topology
 
@@ -4319,3 +4319,4 @@ theorem modulusDefect_le_norm (F0 G : ℂ → ℂ) (z : ℂ) :
   exact h
 
 end HermitekLEAN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

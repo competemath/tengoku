@@ -20,7 +20,7 @@ average on the ambient set.  The oscillations use genuine space-time averages.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ENNReal NNReal Topology
 
 open MeasureTheory MeasureTheory.Measure Set Metric Filter
@@ -79,3 +79,4 @@ theorem average_abs_le_outer_average_abs
       field_simp
 
 end CKN.Foundation.Parabolic
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

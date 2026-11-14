@@ -20,7 +20,7 @@ This file records how complex conjugation acts on cyclotomic units and proves th
 of a unit by its conjugate is a square of a root of unity.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace Tengoku.FltRegular end Tengoku.FltRegular open Tengoku.FltRegular 
 variable {p : ℕ} [NeZero p] {K : Type*} [Field K]
 
@@ -36,7 +36,7 @@ local notation3 "η" => (hζ.toInteger_isPrimitiveRoot.isUnit (NeZero.ne p)).uni
 
 local notation "I" => (Ideal.span ({(η - 1 : 𝓞 K)} : Set (𝓞 K)) : Ideal (𝓞 K))
 
-theorem eq_one_mod_one_sub {A : Type*} [CommRing A] {t : A} :
+theorem _root_.Tengoku.LeanPool.eq_one_mod_one_sub {A : Type*} [CommRing A] {t : A} :
     algebraMap A (A ⧸ Ideal.span ({t - 1} : Set A)) t = 1 := by
   rw [← map_one <| algebraMap A <| A ⧸ Ideal.span ({t - 1} : Set A),
     ← sub_eq_zero, ← map_sub,
@@ -47,7 +47,7 @@ variable [NumberField K] [IsCyclotomicExtension {p} ℚ K]
 
 include hζ in
 /-- Complex conjugation sends a primitive `p`-th root of unity to its inverse. -/
-theorem complexConj_zeta (hp : 2 < p) :
+theorem _root_.Tengoku.LeanPool.complexConj_zeta (hp : 2 < p) :
     haveI := IsCyclotomicExtension.Rat.isCMField (S := {p}) K ⟨p, rfl, hp⟩
     complexConj K ζ = ζ⁻¹ := by
   let _ := IsCyclotomicExtension.Rat.isCMField (S := {p}) K ⟨p, rfl, hp⟩
@@ -57,7 +57,7 @@ theorem complexConj_zeta (hp : 2 < p) :
     exact hζ.pow_eq_one
   exact complexConj_torsion (K := K) ⟨η, hη⟩
 
-theorem roots_of_unity_in_cyclo (hpo : Odd p) (x : K)
+theorem _root_.Tengoku.LeanPool.roots_of_unity_in_cyclo (hpo : Odd p) (x : K)
     (h : ∃ (n : ℕ) (_ : 0 < n), x ^ n = 1) :
     ∃ (m k : ℕ), x = (-1) ^ k * (η.1 : K) ^ m := by
   obtain ⟨n, hn, hxn⟩ := h
@@ -67,7 +67,7 @@ theorem roots_of_unity_in_cyclo (hpo : Odd p) (x : K)
     (isOfFinOrder_iff_pow_eq_one.mpr ⟨n, hn, hxn⟩)
   · exact ⟨r, 2, by simp [hr]⟩
   · exact ⟨r, 1, by simp [hr]⟩
-lemma unit_inv_conj_not_neg_zeta_runity_aux (u : (𝓞 K)ˣ) [Fact (p.Prime)] (hp : 2 < p) :
+lemma _root_.Tengoku.LeanPool.unit_inv_conj_not_neg_zeta_runity_aux (u : (𝓞 K)ˣ) [Fact (p.Prime)] (hp : 2 < p) :
     haveI := IsCyclotomicExtension.Rat.isCMField (S := {p}) K ⟨p, rfl, hp⟩
     algebraMap (𝓞 K) (𝓞 K ⧸ I) (unitsMulComplexConjInv K u).1 = 1 := by
   let _ := IsCyclotomicExtension.Rat.isCMField (S := {p}) K ⟨p, rfl, hp⟩
@@ -78,7 +78,7 @@ lemma unit_inv_conj_not_neg_zeta_runity_aux (u : (𝓞 K)ˣ) [Fact (p.Prime)] (h
   exact (RingHom.congr_fun (quotient_zero_sub_one_comp_aut hζ
     (ringOfIntegersComplexConj K).toRingEquiv.toRingHom) (u : 𝓞 K)).symm
 
-theorem unit_inv_conj_not_neg_zeta_runity (u : (𝓞 K)ˣ) (n : ℕ) [Fact (p.Prime)] (hp : 2 < p) :
+theorem _root_.Tengoku.LeanPool.unit_inv_conj_not_neg_zeta_runity (u : (𝓞 K)ˣ) (n : ℕ) [Fact (p.Prime)] (hp : 2 < p) :
     haveI := IsCyclotomicExtension.Rat.isCMField (S := {p}) K ⟨p, rfl, hp⟩
     u * (unitsComplexConj K u)⁻¹ ≠ -η ^ n := by
   by_contra H
@@ -99,7 +99,7 @@ theorem unit_inv_conj_not_neg_zeta_runity (u : (𝓞 K)ˣ) (n : ℕ) [Fact (p.Pr
     ← neg_eq_iff_add_eq_zero]
   exact hμ'.symm.trans hμ
 
-theorem unit_inv_conj_is_root_of_unity (u : (𝓞 K)ˣ) [H : Fact (p.Prime)] (hp : 2 < p) :
+theorem _root_.Tengoku.LeanPool.unit_inv_conj_is_root_of_unity (u : (𝓞 K)ˣ) [H : Fact (p.Prime)] (hp : 2 < p) :
     haveI := IsCyclotomicExtension.Rat.isCMField (S := {p}) K ⟨p, rfl, hp⟩
     ∃ m : ℕ, u * (unitsComplexConj K u)⁻¹ = (η ^ m) ^ 2 := by
   let _ := IsCyclotomicExtension.Rat.isCMField (S := {p}) K ⟨p, rfl, hp⟩
@@ -128,3 +128,4 @@ theorem unit_inv_conj_is_root_of_unity (u : (𝓞 K)ˣ) [H : Fact (p.Prime)] (hp
     · exact NumberField.RingOfIntegers.isIntegral_coe _
   · simp
 -- Tengoku: opens Tengoku.FltRegular: its root names moved there, and this module uses them (generated)
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

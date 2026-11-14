@@ -17,7 +17,7 @@ with the identity on neighborhoods of the relevant base points.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter
 open scoped Topology
 
@@ -354,3 +354,4 @@ end LocalBiholomorphAt
 end
 
 end LocalComplexGeometry
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

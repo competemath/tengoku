@@ -40,7 +40,7 @@ Recon: ~/Knowledge/Construct/recon/erdos_376.md.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Egrs75.SeedWindow
 
 open Nat
@@ -328,3 +328,4 @@ theorem seed_window {p q : ℕ} (hp : p.Prime) (hq : q.Prime) (hq3 : 3 ≤ q)
     exact_mod_cast h4
 
 end Egrs75.SeedWindow
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -14,7 +14,7 @@ Imported Lean Pool material for `LeanPool.WhiteheadTheorem.Exponential`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open CategoryTheory
 open scoped Topology
 
@@ -197,3 +197,4 @@ lemma hom_eq_of_argSwap_curry_eq {Y : TopCat} {f g : TopCat.of (A × B) ⟶ Y}
   TopCat.hom_ext_iff.mpr <| ContinuousMap.eq_of_argSwap_curry_eq e
 
 end TopCat
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

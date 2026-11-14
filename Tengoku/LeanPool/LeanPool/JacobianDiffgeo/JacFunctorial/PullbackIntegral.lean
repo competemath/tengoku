@@ -18,7 +18,7 @@ and its corollary `pathIntegral_pullback` (naturality of `pathIntegral` under pu
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold Topology unitInterval
 open Set Filter IsManifold
 
@@ -113,3 +113,4 @@ theorem pathIntegral_pullback {f : X → Y} (hf : ContMDiff 𝓘(ℂ) 𝓘(ℂ) 
 end RS
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

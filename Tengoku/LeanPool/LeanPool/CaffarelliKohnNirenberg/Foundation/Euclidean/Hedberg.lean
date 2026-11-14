@@ -16,7 +16,7 @@ maximal function from `Maximal.HardyLittlewood`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ENNReal NNReal Topology
 open MeasureTheory MeasureTheory.Measure Set Metric Filter
 noncomputable section
@@ -818,3 +818,4 @@ theorem rieszPotentialOne_hedberg
       norm_num
 
 end CKN.Foundation.Euclidean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

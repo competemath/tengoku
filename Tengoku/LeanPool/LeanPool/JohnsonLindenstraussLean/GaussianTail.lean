@@ -31,7 +31,7 @@ The route is:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory ProbabilityTheory Real Filter Set
 open scoped ENNReal NNReal Topology
 
@@ -313,3 +313,4 @@ theorem foldedNormal_subgaussian :
           rw [← Real.exp_add, neg_add_cancel, Real.exp_zero, mul_one]
 
 end JL
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

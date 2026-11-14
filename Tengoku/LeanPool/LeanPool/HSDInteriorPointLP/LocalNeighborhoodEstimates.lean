@@ -27,7 +27,7 @@ Lean-reading hints for beginners:
 * `field_simp` clears denominators after you provide nonzero-denominator proofs.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 noncomputable section
 
 open scoped BigOperators
@@ -1348,3 +1348,4 @@ theorem predictor_fixed_scaled_core_to_norm_bounds {n : Nat}
   · exact hcore.center
 
 end HSDInteriorPointLP
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -20,7 +20,7 @@ determined by Wick's theorem from the two-point function S₂ = C.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Complex
 open TopologicalSpace
 
@@ -48,24 +48,24 @@ S_n(f₁,...,fₙ) = (-i)ⁿ (coefficient of (iJ)ⁿ/n! in Z[J])
     This is the fundamental object in constructive QFT - all physics is contained
     in the infinite sequence of Schwinger functions {S_n}_{n=1}^∞.
 -/
-def SchwingerFunction (dμ_config : ProbabilityMeasure FieldConfiguration) (n : ℕ)
+def _root_.Tengoku.LeanPool.SchwingerFunction (dμ_config : ProbabilityMeasure FieldConfiguration) (n : ℕ)
   (f : Fin n → OSforGFF.TestFunction) : ℝ :=
   ∫ ω, (∏ i, distributionPairing ω (f i)) ∂dμ_config.toMeasure
 
 /-- The 1-point Schwinger function: the mean field -/
-def SchwingerFunction₁ (dμ_config : ProbabilityMeasure FieldConfiguration)
+def _root_.Tengoku.LeanPool.SchwingerFunction₁ (dμ_config : ProbabilityMeasure FieldConfiguration)
   (f : OSforGFF.TestFunction) : ℝ :=
   SchwingerFunction dμ_config 1 ![f]
 
 /-- The 2-point Schwinger function: the covariance -/
-def SchwingerFunction₂ (dμ_config : ProbabilityMeasure FieldConfiguration)
+def _root_.Tengoku.LeanPool.SchwingerFunction₂ (dμ_config : ProbabilityMeasure FieldConfiguration)
   (f g : OSforGFF.TestFunction) : ℝ :=
   SchwingerFunction dμ_config 2 ![f, g]
 
 /-- The Schwinger function equals the GJ mean for n=1
 @isnad1 id=eq.0h2v.s8.258014a8bac0 from=translated src=- shape=5f1f646b vocab=4aeda908
 -/
-lemma schwinger_eq_mean (dμ_config : ProbabilityMeasure FieldConfiguration)
+lemma _root_.Tengoku.LeanPool.schwinger_eq_mean (dμ_config : ProbabilityMeasure FieldConfiguration)
     (f : OSforGFF.TestFunction) :
   SchwingerFunction₁ dμ_config f = GJMean dμ_config f := by
   unfold SchwingerFunction₁ SchwingerFunction GJMean
@@ -75,7 +75,7 @@ lemma schwinger_eq_mean (dμ_config : ProbabilityMeasure FieldConfiguration)
 /-- The Schwinger function equals the direct covariance integral for n=2
 @isnad1 id=eq.0h3v.s10.0cd7261c537f from=translated src=- shape=5a82da33 vocab=5e837b54
 -/
-lemma schwinger_eq_covariance (dμ_config : ProbabilityMeasure FieldConfiguration) (f g :
+lemma _root_.Tengoku.LeanPool.schwinger_eq_covariance (dμ_config : ProbabilityMeasure FieldConfiguration) (f g :
   OSforGFF.TestFunction) :
   SchwingerFunction₂ dμ_config f g = ∫ ω, (distributionPairing ω f) * (distributionPairing ω g)
     ∂dμ_config.toMeasure := by
@@ -86,28 +86,28 @@ lemma schwinger_eq_covariance (dμ_config : ProbabilityMeasure FieldConfiguratio
 /-- For centered measures (zero mean), the 1-point function vanishes
 @isnad1 id=eq.1h2v.s8.36b2379f3cad from=translated src=- shape=99452dfa vocab=4aeda908
 -/
-lemma schwinger_vanishes_centered (dμ_config : ProbabilityMeasure FieldConfiguration)
+lemma _root_.Tengoku.LeanPool.schwinger_vanishes_centered (dμ_config : ProbabilityMeasure FieldConfiguration)
   (h_centered : ∀ f : OSforGFF.TestFunction, GJMean dμ_config f = 0) (f : OSforGFF.TestFunction) :
   SchwingerFunction₁ dμ_config f = 0 := by
   rw [schwinger_eq_mean]
   exact h_centered f
 
 /-- Complex version of Schwinger functions for complex test functions -/
-def SchwingerFunctionℂ (dμ_config : ProbabilityMeasure FieldConfiguration) (n : ℕ)
+def _root_.Tengoku.LeanPool.SchwingerFunctionℂ (dμ_config : ProbabilityMeasure FieldConfiguration) (n : ℕ)
   (f : Fin n → TestFunctionℂ) : ℂ :=
   ∫ ω, (∏ i, distributionPairingℂReal ω (f i)) ∂dμ_config.toMeasure
 
 /-- The complex 2-point Schwinger function for complex test functions.
     This is the natural extension of SchwingerFunction₂ to complex test functions.
 -/
-def SchwingerFunctionℂ₂ (dμ_config : ProbabilityMeasure FieldConfiguration)
+def _root_.Tengoku.LeanPool.SchwingerFunctionℂ₂ (dμ_config : ProbabilityMeasure FieldConfiguration)
   (φ ψ : TestFunctionℂ) : ℂ :=
   SchwingerFunctionℂ dμ_config 2 ![φ, ψ]
 
 /-- Property that SchwingerFunctionℂ₂ is ℂ-bilinear in both arguments.
     This is a key property for Gaussian measures and essential for OS0 analyticity.
 -/
-def CovarianceBilinear (dμ_config : ProbabilityMeasure FieldConfiguration) : Prop :=
+def _root_.Tengoku.LeanPool.CovarianceBilinear (dμ_config : ProbabilityMeasure FieldConfiguration) : Prop :=
   ∀ (c : ℂ) (φ₁ φ₂ ψ : TestFunctionℂ),
     SchwingerFunctionℂ₂ dμ_config (c • φ₁) ψ = c * SchwingerFunctionℂ₂ dμ_config φ₁ ψ ∧
     SchwingerFunctionℂ₂ dμ_config (φ₁ + φ₂) ψ = SchwingerFunctionℂ₂ dμ_config φ₁ ψ +
@@ -120,7 +120,7 @@ def CovarianceBilinear (dμ_config : ProbabilityMeasure FieldConfiguration) : Pr
     2-point Schwinger function is ℂ-bilinear in both arguments.
 @isnad1 id=covarian.1h1v.s10.dd5b00a50fd3 from=translated src=- shape=13f2b7ad vocab=4b42144d
 -/
-lemma CovarianceBilinear_of_integrable
+lemma _root_.Tengoku.LeanPool.CovarianceBilinear_of_integrable
   (dμ_config : ProbabilityMeasure FieldConfiguration)
   (h_int : ∀ (φ ψ : TestFunctionℂ),
     Integrable (fun ω => distributionPairingℂReal ω φ * distributionPairingℂReal ω ψ)
@@ -246,7 +246,7 @@ This approach is more elementary and constructive than functional derivatives.
 -/
 /-- A (centered) Gaussian field measure: the generating functional is an exponential of a
 quadratic form. -/
-def IsGaussianMeasure (dμ : ProbabilityMeasure FieldConfiguration) : Prop :=
+def _root_.Tengoku.LeanPool.IsGaussianMeasure (dμ : ProbabilityMeasure FieldConfiguration) : Prop :=
   ∃ (Cov : OSforGFF.TestFunction → OSforGFF.TestFunction → ℝ),
     ∀ J : OSforGFF.TestFunction,
       GJGeneratingFunctional dμ J = Complex.exp ((-(1 : ℂ) / 2) * (Cov J J : ℂ))
@@ -258,7 +258,8 @@ as distributions on product spaces. These are needed by other modules.
 -/
 
 /-- The product space of n copies of spacetime -/
-abbrev SpaceTimeProduct (n : ℕ) := (Fin n) → SpaceTime
+abbrev _root_.Tengoku.LeanPool.SpaceTimeProduct (n : ℕ) := (Fin n) → SpaceTime
 
 /-- Test functions on the n-fold product space -/
-abbrev TestFunctionProduct (n : ℕ) := SchwartzMap (SpaceTimeProduct n) ℝ
+abbrev _root_.Tengoku.LeanPool.TestFunctionProduct (n : ℕ) := SchwartzMap (SpaceTimeProduct n) ℝ
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

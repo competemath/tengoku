@@ -17,7 +17,7 @@ and proof organization were revised.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Function
 open CategoryTheory CategoryTheory.ActionCategory CategoryTheory.SingleObj Quiver FreeGroup
 
@@ -204,3 +204,4 @@ theorem freeGroupoid_end_free_rank (G : Type u) [Groupoid G]
   exact ⟨B.repr⟩
 
 end GraphCoveringTheory
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

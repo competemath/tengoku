@@ -20,7 +20,7 @@ the rest of the project still uses.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped Real NNReal MatrixGroups CongruenceSubgroup
 
 noncomputable section
@@ -155,3 +155,4 @@ theorem hasFPowerSeries_cuspFunction {F : Type*} [FunLike F ℍ ℂ]
       (SlashInvariantFormClass.periodic_comp_ofComplex f hΓ) (holo f) (bdd_at_infty f))
 
 end ModularFormClass
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

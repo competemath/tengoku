@@ -17,7 +17,7 @@ prefix-action infrastructure used by the construction.
 -/
 
 noncomputable section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace SoficGroups
 
 section
@@ -4787,3 +4787,4 @@ end
 end SoficGroups
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

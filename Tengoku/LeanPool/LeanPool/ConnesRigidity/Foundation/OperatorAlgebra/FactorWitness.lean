@@ -21,7 +21,7 @@ The factor witness component of the Connes rigidity formalization.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Connes
 namespace FactorWitness
 
@@ -123,3 +123,4 @@ theorem tracialEquiv_of_spatialWitness {G H : CountableDiscreteGroup}
 end
 end FactorWitness
 end Connes
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

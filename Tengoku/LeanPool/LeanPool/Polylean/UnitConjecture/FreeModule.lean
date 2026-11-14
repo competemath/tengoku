@@ -26,7 +26,7 @@ properties.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.Polylean
 
 variable {R : Type _} [Ring R] [DecidableEq R]
@@ -1416,3 +1416,4 @@ instance basicRepr [NormCube X] [Repr X] [Repr R] : Repr (R[X]) :=
 
 end LeanPool.Polylean
 -- Tengoku: 2 notation(s) of this module made scoped so they do not change other libraries (generated)
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

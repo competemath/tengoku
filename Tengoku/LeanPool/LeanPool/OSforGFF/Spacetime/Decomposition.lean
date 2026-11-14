@@ -27,7 +27,7 @@ time and spatial components: SpaceTime ≃ᵐ ℝ × SpatialCoords.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory MeasureSpace FiniteDimensional Real
 
 /-! ### Integral Decomposition for SpaceTime
@@ -38,7 +38,7 @@ This uses `MeasurableEquiv.piFinSuccAbove` and `measurePreserving_piFinSuccAbove
 -/
 
 /-- MeasurableEquiv between PiLp and the underlying pi type. -/
-def piLpMeasurableEquiv (n : ℕ) : PiLp 2 (fun _ : Fin n => ℝ) ≃ᵐ (Fin n → ℝ) where
+def _root_.Tengoku.LeanPool.piLpMeasurableEquiv (n : ℕ) : PiLp 2 (fun _ : Fin n => ℝ) ≃ᵐ (Fin n → ℝ) where
   toEquiv := WithLp.equiv 2 _
   measurable_toFun := WithLp.measurable_ofLp 2 _
   measurable_invFun := WithLp.measurable_toLp 2 _
@@ -49,7 +49,7 @@ def piLpMeasurableEquiv (n : ℕ) : PiLp 2 (fun _ : Fin n => ℝ) ≃ᵐ (Fin n 
     2. piFinSuccAbove 0 : (Fin 4 → ℝ) → ℝ × (Fin 3 → ℝ)
     3. id × piLpMeasurableEquiv.symm : ℝ × (Fin 3 → ℝ) → ℝ × SpatialCoords
 -/
-def spacetimeDecomp : SpaceTime ≃ᵐ ℝ × SpatialCoords :=
+def _root_.Tengoku.LeanPool.spacetimeDecomp : SpaceTime ≃ᵐ ℝ × SpatialCoords :=
   (piLpMeasurableEquiv STDimension).trans
   ((MeasurableEquiv.piFinSuccAbove (fun _ => ℝ) 0).trans
   (MeasurableEquiv.prodCongr (MeasurableEquiv.refl ℝ)
@@ -58,7 +58,7 @@ def spacetimeDecomp : SpaceTime ≃ᵐ ℝ × SpatialCoords :=
 /-- Measure preservation for piLpMeasurableEquiv.
 @isnad1 id=measurep.0h1v.s9.8a828ae590cb from=translated src=- shape=45b4978f vocab=83f2175e
 -/
-lemma piLpMeasurableEquiv_measurePreserving (n : ℕ) :
+lemma _root_.Tengoku.LeanPool.piLpMeasurableEquiv_measurePreserving (n : ℕ) :
     MeasurePreserving (piLpMeasurableEquiv n)
       (volume : Measure (PiLp 2 (fun _ : Fin n => ℝ))) volume := by
   simp only [piLpMeasurableEquiv]
@@ -67,7 +67,7 @@ lemma piLpMeasurableEquiv_measurePreserving (n : ℕ) :
 /-- The spacetime decomposition preserves measure.
 @isnad1 id=measurep.0h0v.s10.d0b358bdc7ba from=translated src=- shape=f902b55a vocab=ea55b3b8
 -/
-theorem spacetimeDecomp_measurePreserving :
+theorem _root_.Tengoku.LeanPool.spacetimeDecomp_measurePreserving :
     MeasurePreserving spacetimeDecomp (volume : Measure SpaceTime) volume := by
   unfold spacetimeDecomp
   -- Step 1: PiLp → (Fin 4 → ℝ) is measure-preserving
@@ -92,14 +92,14 @@ theorem spacetimeDecomp_measurePreserving :
 /-- Spacetime decomposition maps k to (k 0, spatialPart k).
 @isnad1 id=eq.0h1v.s8.df35d6b18735 from=translated src=- shape=2f53a93a vocab=b0e9fb54
 -/
-theorem spacetimeDecomp_apply (k : SpaceTime) :
+theorem _root_.Tengoku.LeanPool.spacetimeDecomp_apply (k : SpaceTime) :
     spacetimeDecomp k = (k 0, spatialPart k) := rfl
 
 /-- `spacetimeDecomp.symm` equals `spacetimeOfTimeSpace` (from SchwartzProdIntegrable.lean).
     Both construct a SpaceTime point from time t and spatial coordinates v.
 @isnad1 id=eq.0h2v.s9.b834718b934d from=translated src=- shape=054770ef vocab=419954f2
 -/
-lemma spacetimeDecomp_symm_eq_spacetimeOfTimeSpace (t : ℝ) (v : SpatialCoords) :
+lemma _root_.Tengoku.LeanPool.spacetimeDecomp_symm_eq_spacetimeOfTimeSpace (t : ℝ) (v : SpatialCoords) :
     spacetimeDecomp.symm (t, v) = spacetimeOfTimeSpace t v := by
   -- Both definitions construct a point x with x 0 = t and x i = v (i-1) for i > 0
   ext i
@@ -122,7 +122,7 @@ lemma spacetimeDecomp_symm_eq_spacetimeOfTimeSpace (t : ℝ) (v : SpatialCoords)
 /-- The SpaceTime norm decomposes into time and spatial parts: ‖k‖² = k₀² + ‖k_sp‖².
 @isnad1 id=eq.0h1v.s8.9c8f4324c6d7 from=translated src=- shape=fb351d36 vocab=9a513f68
 -/
-lemma spacetime_norm_sq_decompose (k : SpaceTime) :
+lemma _root_.Tengoku.LeanPool.spacetime_norm_sq_decompose (k : SpaceTime) :
     ‖k‖^2 = (k 0)^2 + ‖spatialPart k‖^2 := by
   -- Expand SpaceTime norm as sum over 4 components
   have hST : ‖k‖^2 = (k 0)^2 + (k 1)^2 + (k 2)^2 + (k 3)^2 := by
@@ -147,10 +147,11 @@ lemma spacetime_norm_sq_decompose (k : SpaceTime) :
 /-- For a product-type integrand f(k₀) × g(k_sp), the integral decomposes as a product.
 @isnad1 id=eq.2h2v.s10.6205f91bf402 from=translated src=- shape=77719327 vocab=2674958f
 -/
-lemma integral_spacetime_prod_split {f : ℝ → ℂ} {g : SpatialCoords → ℂ}
+lemma _root_.Tengoku.LeanPool.integral_spacetime_prod_split {f : ℝ → ℂ} {g : SpatialCoords → ℂ}
     (_hf : Integrable f) (_hg : Integrable g) :
     ∫ k : SpaceTime, f (k 0) * g (spatialPart k) =
     (∫ k₀ : ℝ, f k₀) * (∫ k_sp : SpatialCoords, g k_sp) := by
   have h := spacetimeDecomp_measurePreserving.integral_comp' (fun p => f p.1 * g p.2)
   simp only [spacetimeDecomp_apply] at h
   rw [h]; exact integral_prod_mul f g
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

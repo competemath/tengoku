@@ -69,7 +69,7 @@ zero over the list". `edgesOf` builds a closed chain from a cyclic vertex list, 
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set
 
 namespace Schoenflies
@@ -1254,3 +1254,4 @@ theorem exists_direction_hgt_ne (L : List Piece) (hnd : ∀ P ∈ L, P.Nondeg) :
   exact hdet _ ⟨P, hP, rfl⟩ hne hzero
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

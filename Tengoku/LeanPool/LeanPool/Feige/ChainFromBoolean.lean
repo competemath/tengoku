@@ -19,7 +19,7 @@ immediately.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Feige
 
 /-- The two-point statistic along the maximal chain encoded by `σ`, extended
@@ -67,3 +67,4 @@ theorem twoPointKFinset_nonneg {ι : Type*} [Fintype ι]
   exact dirichletK_nonneg _
 
 end Feige
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -50,7 +50,7 @@ harmlessly, in the *boundedness* of `j·q` at the cusp, via
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace Chudnovsky
@@ -609,3 +609,4 @@ theorem j_mul_q_hasSum_int :
 end IntegerQExpansion
 
 end Chudnovsky
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -17,7 +17,7 @@ A finite counterexample showing that row separation does not imply injective pri
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory
 open ProbabilityTheory
 open scoped ENNReal NNReal
@@ -328,3 +328,4 @@ noncomputable def identityKernel : Kernel (Fin 3) (Fin 3) := Kernel.id
 end Toy
 
 end ChannelCapacity.Counterexample
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

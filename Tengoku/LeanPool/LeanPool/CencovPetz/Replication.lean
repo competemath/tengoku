@@ -16,7 +16,7 @@ Replication Markov morphisms `α → α × Fin m` that split each outcome into `
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.CencovPetz
 open scoped BigOperators
 
@@ -173,3 +173,4 @@ lemma coarsen_tangentPushforward_replicate (m : ℕ) (hm : 0 < m)
 
 end MarkovMorphism
 end LeanPool.CencovPetz
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

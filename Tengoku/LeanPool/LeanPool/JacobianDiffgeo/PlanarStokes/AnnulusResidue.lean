@@ -36,7 +36,7 @@ the design's own R2 fallback.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Complex MeasureTheory Set Filter Metric
 open scoped Real
 
@@ -977,3 +977,4 @@ theorem integral_wirtingerDbar_mul_inv_sub_sub_inv_sub_eq {g : ℂ → ℂ} {U :
   ring
 
 end RS
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

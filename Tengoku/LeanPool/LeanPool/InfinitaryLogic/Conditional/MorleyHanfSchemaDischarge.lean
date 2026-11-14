@@ -31,7 +31,7 @@ So: **`ℶ_{ω₁}` is a Hanf bound for every `L_{ω₁ω}` sentence, unconditio
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open Cardinal
@@ -222,3 +222,4 @@ theorem morley_hanf {L' : Language.{0, 0}} (φ : L'.Sentenceω) :
   morley_hanf_of_seed_realizable morleySeedTailTemplateRealizable_holds φ
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

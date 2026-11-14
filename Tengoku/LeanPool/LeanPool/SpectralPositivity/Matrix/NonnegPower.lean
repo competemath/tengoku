@@ -28,7 +28,7 @@ blocks for the Metzler matrix exponential theorem (in MetzlerExp.lean).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Matrix BigOperators Finset
 
 noncomputable section
@@ -82,7 +82,7 @@ theorem Matrix.Nonneg.smul {M : Matrix n n ℝ} (hM : M.Nonneg) {c : ℝ} (hc : 
 when M is nonneg and t ≥ 0.
 @isnad1 id=nonneg.2h4v.s7.bf9f75dd605d from=translated src=- shape=790a97c6 vocab=47d004ad
 -/
-theorem truncated_exp_nonneg {M : Matrix n n ℝ} (hM : M.Nonneg) {t : ℝ} (ht : 0 ≤ t)
+theorem _root_.Tengoku.LeanPool.truncated_exp_nonneg {M : Matrix n n ℝ} (hM : M.Nonneg) {t : ℝ} (ht : 0 ≤ t)
     (N : ℕ) :
     (∑ k ∈ range (N + 1), (1 / k.factorial : ℝ) • (t • M) ^ k).Nonneg := by
   apply Matrix.Nonneg.sum
@@ -95,7 +95,7 @@ theorem truncated_exp_nonneg {M : Matrix n n ℝ} (hM : M.Nonneg) {t : ℝ} (ht 
 nonneg off-diagonal entries: L_{xy} = M_{xy} ≥ 0 for x ≠ y.
 @isnad1 id=nonnegof.1h2v.s5.ee9a36cd13a4 from=translated src=- shape=015b853f vocab=336aa6b7
 -/
-theorem markov_generator_nonneg_offdiag {m : Type*} [DecidableEq m]
+theorem _root_.Tengoku.LeanPool.markov_generator_nonneg_offdiag {m : Type*} [DecidableEq m]
     (M : Matrix m m ℝ) (hM : M.Nonneg) :
     (M - 1).NonnegOffDiag := by
   intro i j hij
@@ -103,3 +103,4 @@ theorem markov_generator_nonneg_offdiag {m : Type*} [DecidableEq m]
   exact hM i j
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -14,7 +14,7 @@ This file contains some obvious lemmas on `module.End`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators
 
 /--
@@ -61,3 +61,4 @@ theorem Module.End.has_eigenvector_iff_hasEigenvalue {R M : Type _} [CommRing R]
     simp only [Module.End.HasEigenvalue, Module.End.HasUnifEigenvalue] at h
     simp_rw [Submodule.ne_bot_iff] at h
     simp_all
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

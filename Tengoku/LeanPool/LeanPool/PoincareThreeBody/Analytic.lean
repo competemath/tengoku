@@ -17,7 +17,7 @@ it to the inverse square roots in the restricted three-body potential.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.PoincareThreeBody
 
 /-- A real power is analytic at every positive base.
@@ -216,3 +216,4 @@ theorem hamiltonian_analyticAt_mass_zero {s : PhaseSpace} (hs : (0, s) ∈ colli
   simpa [Function.comp_def] using hjoint.comp (f := fun μ : ℝ ↦ (μ, s)) hembedding
 
 end LeanPool.PoincareThreeBody
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

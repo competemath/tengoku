@@ -36,7 +36,7 @@ case-analysis.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 /-- Concatenation of two finite sequences: the first `n1` entries are `X1 0, …, X1
@@ -272,3 +272,4 @@ theorem not_finitelyConsistent : ¬ triSys.FinitelyConsistent family := by
 end triSys
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

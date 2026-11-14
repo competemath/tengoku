@@ -44,7 +44,7 @@ Root inseparability itself is **not** proved here; that (and interpolation) is U
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure BoundedFormulaω
@@ -697,3 +697,4 @@ theorem exists_lyndon_paired_model_neg [L.IsRelational] [Countable (Σ l, L.Rela
   exact hr2not
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -10,7 +10,7 @@ public import Tengoku
 /-! # Graph -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Function
 
 variable {σ α β : Sort*}
@@ -65,3 +65,4 @@ lemma _root_.Function.Graph₃.iff_right (f : α → β → γ → σ) {y x₁ x
     y = f x₁ x₂ x₃ ↔ Graph₃ f y x₁ x₂ x₃ := by simp [Graph₃]
 
 end Function
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

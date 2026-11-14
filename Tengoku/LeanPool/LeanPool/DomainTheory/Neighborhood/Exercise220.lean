@@ -52,7 +52,7 @@ Choice-free (`#print axioms ⊆ {propext, Quot.sound}`); the
 `Classical.choice`. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood.Exercise220
 
 open Domain.Neighborhood NeighborhoodSystem
@@ -350,3 +350,4 @@ theorem toSet_interMap₂ (x y : powerSet.Element) :
       mem_compl_singleton k, Set.union_subset subset_rfl subset_rfl⟩
 
 end Domain.Neighborhood.Exercise220
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -13,7 +13,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 namespace Demazure
 
@@ -264,3 +264,4 @@ lemma demaux_commutes_adjacent (i : Fin n) (h : i + 1 < n) :
 end Demazure
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

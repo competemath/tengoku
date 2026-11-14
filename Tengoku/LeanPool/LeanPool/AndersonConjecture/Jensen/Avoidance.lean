@@ -12,7 +12,7 @@ import Tengoku.Seed.RingTheory.Filtration
 import Tengoku.Seed.RingTheory.Ideal.Quotient.Noetherian
 import Tengoku.Seed.RingTheory.PicardGroup
 import Tengoku.Seed.Topology.Algebra.Nonarchimedean.AdicTopology
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -700,3 +700,4 @@ theorem avoidance
     exact countable_avoidance hC_count hC_prime hC_ne_max hD_count hI
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

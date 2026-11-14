@@ -18,7 +18,7 @@ measurable scalar field without requiring a global representative.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set MeasureTheory
 open CKN.Foundation.Parabolic
 
@@ -87,3 +87,4 @@ theorem one_sided_indicated_components_aemeasurable
     exact (aemeasurable_indicator_iff hS).mpr (aemeasurable_pi_iff.mp hf i)
 
 end CKN.Core.Endgame
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

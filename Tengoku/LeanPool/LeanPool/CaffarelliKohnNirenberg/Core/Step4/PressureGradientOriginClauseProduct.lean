@@ -24,7 +24,7 @@ ball or a backward time window is used.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory MeasureTheory.Measure Set Filter
 open scoped ENNReal NNReal Topology
 open CKN.Foundation.Parabolic
@@ -57,3 +57,4 @@ theorem prodPowerIntegral_eq_lintegral_slices
   exact CKN.Foundation.Parabolic.Integration.prod_lintegral_swap_cyl hFm
 
 end CKN.Core.Step4
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

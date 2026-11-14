@@ -14,7 +14,7 @@ Imported Lean Pool material for `LeanPool.BrauerGroupNew.MatrixCenterEquiv`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 local notation "M[" ι "," R "]" => Matrix ι ι R
 
 universe u v w
@@ -89,3 +89,4 @@ def Matrix.centerAlgEquiv (n : ℕ) (hn : 0 < n) :
   commutes' := fun _ ↦ rfl }
 
 end AlgEquiv
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

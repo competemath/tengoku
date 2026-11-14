@@ -18,7 +18,7 @@ coordinatewise strict-moment assumption from the finite product mixture.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory ProbabilityTheory
 
 namespace Feige
@@ -97,3 +97,4 @@ theorem pi_eq_recursiveMeanOneAugmented_mixture
 end
 
 end Feige
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

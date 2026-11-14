@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped TensorProduct BigOperators
 
 namespace TensorProduct
@@ -279,3 +279,4 @@ theorem TensorProduct.map_add {R : Type _} [CommSemiring R] {M₁ M₂ N₁ N₂
     TensorProduct.map z (x + y) = map z x + map z y := by
   simp only [TensorProduct.ext_iff', TensorProduct.map_tmul, tmul_add, LinearMap.add_apply,
     forall₂_true_iff]
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

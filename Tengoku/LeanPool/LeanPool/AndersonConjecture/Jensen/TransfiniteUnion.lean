@@ -14,7 +14,7 @@ import Tengoku.Seed.Data.EReal.Operations
 import Tengoku.Seed.Data.Nat.Totient
 import Tengoku.Seed.Topology.Algebra.InfiniteSum.Order
 import Tengoku.Seed.Topology.MetricSpace.Bounded
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -322,3 +322,4 @@ theorem transfinite_union_isNSubring
   exact ⟨chain.unionNSubring hS_card, chain.le_union⟩
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

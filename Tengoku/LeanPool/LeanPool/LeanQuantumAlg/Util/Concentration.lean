@@ -17,7 +17,7 @@ Quantum-free; built on Mathlib's `variance` and Chebyshev inequality.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace QuantumAlg
 
 open MeasureTheory ProbabilityTheory
@@ -110,3 +110,4 @@ theorem ExpConcentratedProb.tendsto_zero {Ω : ℕ → Type*} [∀ n, Measurable
     (fun _ => zero_le) (fun n => hbound n δ hδ)
 
 end QuantumAlg
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

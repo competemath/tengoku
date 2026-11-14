@@ -21,7 +21,7 @@ compactness statements across equivalent measures.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace RellichKondrachov
 
 open scoped ENNReal MeasureTheory Topology
@@ -156,3 +156,4 @@ theorem volume_eq_smul_hausdorffMeasure :
 end
 
 end RellichKondrachov
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

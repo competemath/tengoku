@@ -15,7 +15,7 @@ Regularity lemmas for additive contents used in the Kolmogorov extension constru
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ENNReal
 
 namespace MeasureTheory
@@ -92,3 +92,4 @@ lemma addContent_iUnion_eq_sum_of_regular (hR : IsSetRing R) (m : AddContent ℝ
   exact tendsto_zero_of_regular_addContent hR m hs hs_anti hs_iInter hC hCR h_reg
 
 end MeasureTheory
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

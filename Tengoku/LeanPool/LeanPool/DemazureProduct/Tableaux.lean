@@ -21,7 +21,7 @@ Hecke factorizations for the 321-avoiding case.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.DemazureProduct
 
 namespace Tableaux
@@ -1271,3 +1271,4 @@ end FixedChi
 end Tableaux
 
 end LeanPool.DemazureProduct
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

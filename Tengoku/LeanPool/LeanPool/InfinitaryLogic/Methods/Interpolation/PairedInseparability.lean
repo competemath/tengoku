@@ -43,7 +43,7 @@ endpoint yielding `M ⊨ r₁ ∧ ¬ M ⊨ r₂`) is assembled on top of these g
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure
@@ -146,3 +146,4 @@ theorem insepAt_grow_fresh (c : ℕ)
   · exact entails_not_genEx_of_entails_not hcΔ hΔσ
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

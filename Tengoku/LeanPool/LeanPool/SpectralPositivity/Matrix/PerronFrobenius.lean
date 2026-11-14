@@ -34,7 +34,7 @@ For B = A^k with all entries strictly positive (from `exists_pos_power`):
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Matrix BigOperators Finset MeasureTheory
 
 noncomputable section
@@ -133,7 +133,7 @@ omit [DecidableEq n] in
 then B^2 v >= lam*(Bv) componentwise.
 @isnad1 id=le.2h5v.s7.36c06d8a7683 from=translated src=- shape=8daa4221 vocab=7ed08798
 -/
-lemma collatz_wielandt_monotone
+lemma _root_.Tengoku.LeanPool.collatz_wielandt_monotone
     {B : Matrix n n ℝ} (hB_nn : ∀ i j, 0 ≤ B i j)
     {v : n → ℝ} {lam : ℝ}
     (hBv_ge : ∀ i, lam * v i ≤ B.mulVec v i) :
@@ -154,7 +154,7 @@ omit [DecidableEq n] in
 then B^2 v > lam*(Bv) at every coordinate.
 @isnad1 id=lt.3h5v.s7.c2864e6ba37f from=translated src=- shape=bea75eed vocab=f750747a
 -/
-lemma collatz_wielandt_strict
+lemma _root_.Tengoku.LeanPool.collatz_wielandt_strict
     {B : Matrix n n ℝ} (hB : ∀ i j, 0 < B i j)
     {v : n → ℝ} {lam : ℝ}
     (hBv_ge : ∀ i, lam * v i ≤ B.mulVec v i)
@@ -194,7 +194,7 @@ omit [DecidableEq n] in
 /--
 @isnad1 id=ex.2h2v.s6.e0ef5eb2a2dd from=translated src=- shape=6c825329 vocab=09802865
 -/
-theorem allpos_has_pos_eigenvec (hn : Nonempty n)
+theorem _root_.Tengoku.LeanPool.allpos_has_pos_eigenvec (hn : Nonempty n)
     {B : Matrix n n ℝ} (hB : ∀ i j, 0 < B i j) :
     ∃ (μ : ℝ) (w : n → ℝ), 0 < μ ∧ (∀ i, 0 < w i) ∧ B.mulVec w = μ • w := by
   -- Convenience abbreviations
@@ -396,3 +396,4 @@ theorem allpos_has_pos_eigenvec (hn : Nonempty n)
   exact ⟨μ, v_star, hμ_pos, hv_pos, h_eig⟩
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

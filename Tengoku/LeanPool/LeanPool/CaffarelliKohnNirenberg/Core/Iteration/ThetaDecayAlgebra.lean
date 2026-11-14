@@ -43,7 +43,7 @@ square-root bounds for `√γ`, and the power comparisons `κ ≤ κ^{2/3}` and
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace CKN
@@ -631,3 +631,4 @@ theorem thetaDecay_algebra_small
   exact add_le_add (add_le_add (add_le_add le_rfl hterm) le_rfl) le_rfl
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

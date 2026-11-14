@@ -45,7 +45,7 @@ discharges the universal (dually for the negated universal via `neg_all_witness`
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure
@@ -292,3 +292,4 @@ theorem exists_model_of_henkinComplete (hsc : HenkinComplete U S) :
     fun φ => (truth_both hsc φ).1, fun φ => (truth_both hsc φ).2⟩
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

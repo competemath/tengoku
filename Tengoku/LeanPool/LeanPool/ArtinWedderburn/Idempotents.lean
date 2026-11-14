@@ -24,7 +24,7 @@ orthogonal idempotents whose corner rings are division rings, and packages the
 data as `OrtIdem` / `OrtIdemDiv` structures.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 open scoped LeanPool.ArtinWedderburn
 
 
@@ -486,3 +486,4 @@ def isomorphicOrtIdemDiv {R' : Type*} [Ring R'] (φ : R ≃+* R') (hoi : OrtIdem
       apply isomorphic_ring_div ψ (hoi.div i) }
 
 end LeanPool.ArtinWedderburn
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

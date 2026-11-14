@@ -25,8 +25,8 @@ is obtained from the single-simplex theorem.
 -/
 
 @[expose] public section
-
-open Brouwer (standardSimplex)
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+open Tengoku.LeanPool.Brouwer (standardSimplex)
 
 open Filter
 
@@ -34,7 +34,7 @@ section Brouwer.ProductRetraction
 variable {I : Type*} [Fintype I] [DecidableEq I] [Inhabited I] [LinearOrder I] (card : I → ℕ+)
 
 /-- Total number of coordinates: the sum of `card i` over all `i`. -/
-noncomputable def totalCard (card : I → ℕ+)
+noncomputable def _root_.Tengoku.LeanPool.totalCard (card : I → ℕ+)
     : ℕ+ := ⟨(Finset.univ : Finset I).sum (fun i => (card i : ℕ)), by
   apply Finset.sum_pos
   · simp
@@ -49,17 +49,17 @@ private lemma card_pos_real (i : I) : 0 < (card i : ℝ) := by
   norm_cast; exact PNat.pos (card i)
 
 /-- The big simplex on `totalCard card` coordinates. -/
-abbrev BigSimplex := standardSimplex ℝ (Fin (totalCard card))
+abbrev _root_.Tengoku.LeanPool.BigSimplex := standardSimplex ℝ (Fin (totalCard card))
 
 /-- The product of simplices indexed by `I`. -/
-abbrev ProductSimplices := (i : I) → standardSimplex ℝ (Fin (card i))
+abbrev _root_.Tengoku.LeanPool.ProductSimplices := (i : I) → standardSimplex ℝ (Fin (card i))
 
 /-- Cumulative sum of `card` over indices strictly less than `i`. -/
-noncomputable def prefixSum (card : I → ℕ+) (i : I) : ℕ :=
+noncomputable def _root_.Tengoku.LeanPool.prefixSum (card : I → ℕ+) (i : I) : ℕ :=
   ∑ j ∈ Finset.univ.filter (· < i), (card j : ℕ)
 
 /-- Combine a block/index pair `(i, j)` back into a flat index. -/
-noncomputable def indexCombine (p : Σ i, Fin (card i)) : Fin (totalCard card) :=
+noncomputable def _root_.Tengoku.LeanPool.indexCombine (p : Σ i, Fin (card i)) : Fin (totalCard card) :=
   ⟨prefixSum card p.1 + (p.2 : ℕ), by
     have h1 : prefixSum card p.1 + (p.2 : ℕ) < prefixSum card p.1 + (card p.1 : ℕ) := by
       simpa only [add_lt_add_iff_left] using p.2.is_lt
@@ -80,14 +80,14 @@ noncomputable def indexCombine (p : Σ i, Fin (card i)) : Fin (totalCard card) :
     exact lt_of_lt_of_le h1 h2⟩
 
 /-- Weight (size fraction) of block `i`: `(card i) / (totalCard card)`. -/
-noncomputable def blockWeight (i : I) : ℝ := (card i : ℝ) / (totalCard card : ℝ)
+noncomputable def _root_.Tengoku.LeanPool.blockWeight (i : I) : ℝ := (card i : ℝ) / (totalCard card : ℝ)
 
 /-- Sum of coordinates of `x` over the block `i`. -/
-noncomputable def blockSum (i : I) (x : BigSimplex card) : ℝ :=
+noncomputable def _root_.Tengoku.LeanPool.blockSum (i : I) (x : BigSimplex card) : ℝ :=
   ∑ j : Fin (card i), x.1 (indexCombine card ⟨i, j⟩)
 
 /-- The uniform point in each block simplex. -/
-noncomputable def uniformProduct : ProductSimplices card :=
+noncomputable def _root_.Tengoku.LeanPool.uniformProduct : ProductSimplices card :=
   fun i =>
     (⟨fun _ => (1 : ℝ) / (card i : ℝ), by
       simp only [standardSimplex, Set.mem_ofPred_eq]
@@ -97,7 +97,7 @@ noncomputable def uniformProduct : ProductSimplices card :=
     ⟩ : standardSimplex ℝ (Fin (card i)))
 
 /-- The uniform point in the big simplex. -/
-noncomputable def zUniform : BigSimplex card :=
+noncomputable def _root_.Tengoku.LeanPool.zUniform : BigSimplex card :=
   ⟨fun _ => (1 : ℝ) / (totalCard card : ℝ), by
     simp only [standardSimplex, Set.mem_ofPred_eq]
     constructor
@@ -115,15 +115,15 @@ noncomputable def zUniform : BigSimplex card :=
   ⟩
 
 /-- Total positive shortfall of block sums relative to block weights. -/
-noncomputable def deficit (x : BigSimplex card) : ℝ :=
+noncomputable def _root_.Tengoku.LeanPool.deficit (x : BigSimplex card) : ℝ :=
   ∑ i, max (0 : ℝ) ((blockWeight card i) - blockSum card i x)
 
 /-- Amount to push `x` toward `zUniform` (always in `[0, 1]`). -/
-noncomputable def tPush (x : BigSimplex card) : ℝ :=
+noncomputable def _root_.Tengoku.LeanPool.tPush (x : BigSimplex card) : ℝ :=
   (deficit card x) / (1 + deficit card x)
 
 /-- Convex push of `x` toward `zUniform` by amount `tPush`. -/
-noncomputable def pushTowardsZ (x : BigSimplex card) : BigSimplex card :=
+noncomputable def _root_.Tengoku.LeanPool.pushTowardsZ (x : BigSimplex card) : BigSimplex card :=
   ⟨fun k => (1 - tPush card x) * x.1 k + (tPush card x) * (zUniform card).1 k, by
     simp only [standardSimplex, Set.mem_ofPred_eq]
     constructor
@@ -171,25 +171,25 @@ noncomputable def pushTowardsZ (x : BigSimplex card) : BigSimplex card :=
   ⟩
 
 omit [DecidableEq I] [LinearOrder I] in
-lemma blockWeight_pos (i : I) : 0 < blockWeight card i :=
+lemma _root_.Tengoku.LeanPool.blockWeight_pos (i : I) : 0 < blockWeight card i :=
   div_pos (card_pos_real card i) (totalCard_pos_real card)
 
 /-- `blockSum card i x` is always nonnegative. -/
-lemma blockSum_nonneg (i : I) (x : BigSimplex card) : 0 ≤ blockSum card i x := by
+lemma _root_.Tengoku.LeanPool.blockSum_nonneg (i : I) (x : BigSimplex card) : 0 ≤ blockSum card i x := by
   unfold blockSum
   apply Finset.sum_nonneg
   intro j _
   exact x.2.1 _
 
 /-- `deficit card x` is always nonnegative. -/
-lemma deficit_nonneg (x : BigSimplex card) : 0 ≤ deficit card x := by
+lemma _root_.Tengoku.LeanPool.deficit_nonneg (x : BigSimplex card) : 0 ≤ deficit card x := by
   unfold deficit
   apply Finset.sum_nonneg
   intro i _
   exact le_max_left _ _
 
 /-- `tPush card x` is always in `[0, 1]`. -/
-lemma tPush_mem_Icc (x : BigSimplex card) : tPush card x ∈ Set.Icc (0 : ℝ) 1 := by
+lemma _root_.Tengoku.LeanPool.tPush_mem_Icc (x : BigSimplex card) : tPush card x ∈ Set.Icc (0 : ℝ) 1 := by
   have hdef := deficit_nonneg card x
   have hdenpos : 0 < (1 : ℝ) + deficit card x := by linarith
   refine ⟨?_, ?_⟩
@@ -197,14 +197,14 @@ lemma tPush_mem_Icc (x : BigSimplex card) : tPush card x ∈ Set.Icc (0 : ℝ) 1
   · rw [tPush, div_le_one hdenpos]; linarith
 
 /-- The block sum after pushing towards `zUniform` follows a linear formula. -/
-lemma blockSum_pushTowardsZ_formula (i : I) (x : BigSimplex card) :
+lemma _root_.Tengoku.LeanPool.blockSum_pushTowardsZ_formula (i : I) (x : BigSimplex card) :
     blockSum card i (pushTowardsZ card x) =
       (1 - tPush card x) * blockSum card i x + (tPush card x) * blockWeight card i := by
   simp [blockSum, pushTowardsZ, sub_eq_add_neg, Finset.sum_add_distrib, Finset.mul_sum,
         zUniform, blockWeight, div_eq_mul_inv, mul_left_comm]
 
 /-- The block sum after pushing towards `zUniform` is always positive. -/
-lemma blockSum_pushTowardsZ_pos (i : I) (x : BigSimplex card) :
+lemma _root_.Tengoku.LeanPool.blockSum_pushTowardsZ_pos (i : I) (x : BigSimplex card) :
     0 < blockSum card i (pushTowardsZ card x) := by
   rw [blockSum_pushTowardsZ_formula]
   have h_bw_pos := blockWeight_pos card i
@@ -232,7 +232,7 @@ lemma blockSum_pushTowardsZ_pos (i : I) (x : BigSimplex card) :
     linarith [mul_nonneg h_one_minus_nonneg h_block_nonneg]
 
 /-- Retraction from the big simplex to the product of simplices. -/
-noncomputable def projectToProduct (x : BigSimplex card) : ProductSimplices card :=
+noncomputable def _root_.Tengoku.LeanPool.projectToProduct (x : BigSimplex card) : ProductSimplices card :=
   fun i =>
     let y := pushTowardsZ card x
     let s := blockSum card i y
@@ -254,7 +254,7 @@ noncomputable def projectToProduct (x : BigSimplex card) : ProductSimplices card
     ⟩ : standardSimplex ℝ (Fin (card i)))
 
 /-- Continuity of `blockSum card i`. -/
-lemma blockSum_continuous (i : I) : Continuous (blockSum card i) := by
+lemma _root_.Tengoku.LeanPool.blockSum_continuous (i : I) : Continuous (blockSum card i) := by
   change Continuous (fun x : BigSimplex card =>
     ∑ j : Fin (card i), x.1 (indexCombine card ⟨i, j⟩))
   apply continuous_finsetSum
@@ -262,7 +262,7 @@ lemma blockSum_continuous (i : I) : Continuous (blockSum card i) := by
   exact (continuous_apply _).comp continuous_subtype_val
 
 /-- Continuity of `deficit card`. -/
-lemma deficit_continuous : Continuous (deficit card) := by
+lemma _root_.Tengoku.LeanPool.deficit_continuous : Continuous (deficit card) := by
   change Continuous (fun x : BigSimplex card =>
     ∑ i, max (0 : ℝ) ((blockWeight card i) - blockSum card i x))
   apply continuous_finsetSum
@@ -270,7 +270,7 @@ lemma deficit_continuous : Continuous (deficit card) := by
   exact continuous_const.max (continuous_const.sub (blockSum_continuous card i))
 
 /-- Continuity of `tPush card`. -/
-lemma tPush_continuous : Continuous (tPush card) := by
+lemma _root_.Tengoku.LeanPool.tPush_continuous : Continuous (tPush card) := by
   have h_denom_cont : Continuous (fun x => (1 : ℝ) + deficit card x) :=
     continuous_const.add (deficit_continuous card)
   have h_denom_ne : ∀ x, (1 : ℝ) + deficit card x ≠ 0 := fun x =>
@@ -278,7 +278,7 @@ lemma tPush_continuous : Continuous (tPush card) := by
   exact Continuous.div (deficit_continuous card) h_denom_cont h_denom_ne
 
 /-- Continuity of `pushTowardsZ card`. -/
-lemma pushTowardsZ_continuous : Continuous (pushTowardsZ card) := by
+lemma _root_.Tengoku.LeanPool.pushTowardsZ_continuous : Continuous (pushTowardsZ card) := by
   apply Continuous.subtype_mk
   classical
   apply continuous_pi
@@ -298,7 +298,7 @@ lemma pushTowardsZ_continuous : Continuous (pushTowardsZ card) := by
   simpa [pushTowardsZ] using hsum
 
 /-- Continuity of `projectToProduct`. -/
-lemma project_continuous : Continuous (projectToProduct card) := by
+lemma _root_.Tengoku.LeanPool.project_continuous : Continuous (projectToProduct card) := by
   apply continuous_pi
   intro i
   apply Continuous.subtype_mk
@@ -323,3 +323,4 @@ lemma project_continuous : Continuous (projectToProduct card) := by
   simpa [projectToProduct, blockSum] using h_div
 
 end Brouwer.ProductRetraction
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

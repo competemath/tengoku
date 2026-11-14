@@ -12,14 +12,14 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-- The largest prime factor of `n`, or `0` if `n` has no prime factors (i.e. `n ≤ 1`). -/
-def largestPrimeFactor (n : ℕ) : ℕ :=
+def _root_.Tengoku.LeanPool.largestPrimeFactor (n : ℕ) : ℕ :=
   WithBot.unbotD 0 n.primeFactors.max
 
 /-- The *truncated obtuse region* `H_n(η)`: integer pairs `(p, q)` with `η * n ≤ p`,
 `η * n ≤ q`, `p + q < n / 2`, and `gcd(p, q, n) = 1`. -/
-def truncatedObtuseRegion (n : ℕ) (η : ℝ) : Set (ℤ × ℤ) :=
+def _root_.Tengoku.LeanPool.truncatedObtuseRegion (n : ℕ) (η : ℝ) : Set (ℤ × ℤ) :=
   {pq : ℤ × ℤ |
     η * (n : ℝ) ≤ (pq.1 : ℝ) ∧
     η * (n : ℝ) ≤ (pq.2 : ℝ) ∧
@@ -27,16 +27,16 @@ def truncatedObtuseRegion (n : ℕ) (η : ℝ) : Set (ℤ × ℤ) :=
     Int.gcd (Int.gcd pq.1 pq.2) (n : ℤ) = 1}
 
 /-- The image in `ZMod n` of the integer interval `{1, …, m}`. -/
-def intervalSet (n : ℕ) (m : ℕ) : Set (ZMod n) :=
+def _root_.Tengoku.LeanPool.intervalSet (n : ℕ) (m : ℕ) : Set (ZMod n) :=
   {x : ZMod n | 1 ≤ ZMod.val x ∧ ZMod.val x ≤ m}
 
-instance intervalSetDecidableMem (n : ℕ) (m : ℕ) :
+instance _root_.Tengoku.LeanPool.intervalSetDecidableMem (n : ℕ) (m : ℕ) :
     DecidablePred (· ∈ intervalSet n m) :=
   fun _ => instDecidableAnd
 
 /-- The counting function `S(p, q)`: the number of units `a ∈ (ZMod n)ˣ` for which both `a * p`
 and `a * q` land in the initial intervals `intervalSet n (2p-1)` and `intervalSet n (2q-1)`. -/
-def countingFunctionS (n : ℕ) (p q : ℤ) : ℕ :=
+def _root_.Tengoku.LeanPool.countingFunctionS (n : ℕ) (p q : ℤ) : ℕ :=
   if h : n = 0 then 0
   else
     haveI : NeZero n := ⟨h⟩
@@ -48,7 +48,7 @@ def countingFunctionS (n : ℕ) (p q : ℤ) : ℕ :=
 
 /-- The *bad pairs*: pairs of `truncatedObtuseRegion n η` with `gcd(q, P⁺(n)) = 1` and
 `countingFunctionS n p q < 5`, where `P⁺(n) = largestPrimeFactor n`. -/
-def badPairsSet (n : ℕ) (η : ℝ) : Set (ℤ × ℤ) :=
+def _root_.Tengoku.LeanPool.badPairsSet (n : ℕ) (η : ℝ) : Set (ℤ × ℤ) :=
   {pq ∈ truncatedObtuseRegion n η |
     Int.gcd pq.2 (largestPrimeFactor n : ℤ) = 1 ∧
     countingFunctionS n pq.1 pq.2 < 5}
@@ -56,7 +56,7 @@ def badPairsSet (n : ℕ) (η : ℝ) : Set (ℤ × ℤ) :=
 /--
 @isnad1 id=le.0h2v.s7.51dccb52c0f8 from=translated src=- shape=9c70e0f0 vocab=f19d8a39
 -/
-lemma truncatedObtuseRegion_subset_box (n : ℕ) (η : ℝ) :
+lemma _root_.Tengoku.LeanPool.truncatedObtuseRegion_subset_box (n : ℕ) (η : ℝ) :
     truncatedObtuseRegion n η ⊆
       (Set.Icc (⌈η * (n : ℝ)⌉ - 1 : ℤ) (⌊(n : ℝ) / 2 - η * (n : ℝ)⌋ : ℤ)) ×ˢ
       (Set.Icc (⌈η * (n : ℝ)⌉ - 1 : ℤ) (⌊(n : ℝ) / 2 - η * (n : ℝ)⌋ : ℤ)) := by
@@ -71,7 +71,7 @@ lemma truncatedObtuseRegion_subset_box (n : ℕ) (η : ℝ) :
 /--
 @isnad1 id=finite.0h2v.s3.c7083ca10a22 from=translated src=- shape=26996fc8 vocab=697c0d60
 -/
-lemma truncatedObtuseRegion_finite (n : ℕ) (η : ℝ) :
+lemma _root_.Tengoku.LeanPool.truncatedObtuseRegion_finite (n : ℕ) (η : ℝ) :
     (truncatedObtuseRegion n η).Finite :=
   ((Set.finite_Icc _ _).prod (Set.finite_Icc _ _)).subset
     (truncatedObtuseRegion_subset_box n η)
@@ -79,7 +79,7 @@ lemma truncatedObtuseRegion_finite (n : ℕ) (η : ℝ) :
 /--
 @isnad1 id=le.0h2v.s7.a17c6acca48e from=translated src=- shape=3fff1ede vocab=f3925d6b
 -/
-lemma coprime_triangle_subset_truncatedObtuseRegion (n : ℕ) (η : ℝ) :
+lemma _root_.Tengoku.LeanPool.coprime_triangle_subset_truncatedObtuseRegion (n : ℕ) (η : ℝ) :
     {pq : ℤ × ℤ |
       η * (n : ℝ) ≤ (pq.1 : ℝ) ∧
       η * (n : ℝ) ≤ (pq.2 : ℝ) ∧
@@ -93,7 +93,7 @@ lemma coprime_triangle_subset_truncatedObtuseRegion (n : ℕ) (η : ℝ) :
 /--
 @isnad1 id=finite.0h2v.s6.a5d626e438df from=translated src=- shape=c209ec88 vocab=3c469443
 -/
-lemma coprime_triangle_finite (n : ℕ) (η : ℝ) :
+lemma _root_.Tengoku.LeanPool.coprime_triangle_finite (n : ℕ) (η : ℝ) :
     {pq : ℤ × ℤ |
       η * (n : ℝ) ≤ (pq.1 : ℝ) ∧
       η * (n : ℝ) ≤ (pq.2 : ℝ) ∧
@@ -106,7 +106,7 @@ lemma coprime_triangle_finite (n : ℕ) (η : ℝ) :
 /--
 @isnad1 id=lt.3h2v.s7.b056847ab146 from=translated src=- shape=03ef8ed5 vocab=6e0241cc
 -/
-lemma sum_lt_half_zero_case (p q : ℤ)
+lemma _root_.Tengoku.LeanPool.sum_lt_half_zero_case (p q : ℤ)
     (hp : p ≤ ⌊((0 : ℕ) : ℝ) / 6⌋) (hq : q ≤ ⌊((0 : ℕ) : ℝ) / 6⌋)
     (hgcd : Int.gcd p q = 1) :
     (p : ℝ) + (q : ℝ) < ((0 : ℕ) : ℝ) / 2 := by
@@ -122,7 +122,7 @@ lemma sum_lt_half_zero_case (p q : ℤ)
 /--
 @isnad1 id=lt.3h3v.s6.00f200552a5f from=translated src=- shape=72ca1a92 vocab=b92fd729
 -/
-lemma sum_lt_half_pos_case (n : ℕ) (p q : ℤ) (hn : 1 ≤ n)
+lemma _root_.Tengoku.LeanPool.sum_lt_half_pos_case (n : ℕ) (p q : ℤ) (hn : 1 ≤ n)
     (hp : p ≤ ⌊(n : ℝ) / 6⌋) (hq : q ≤ ⌊(n : ℝ) / 6⌋) :
     (p : ℝ) + (q : ℝ) < (n : ℝ) / 2 := by
   have h_p_le : (p : ℝ) ≤ (n : ℝ) / 6 := by
@@ -137,7 +137,7 @@ lemma sum_lt_half_pos_case (n : ℕ) (p q : ℤ) (hn : 1 ≤ n)
 /--
 @isnad1 id=lt.3h3v.s6.00337b15c03d from=translated src=- shape=2352126e vocab=6e0241cc
 -/
-lemma sum_lt_half_of_le_floor_sixth (n : ℕ) (p q : ℤ)
+lemma _root_.Tengoku.LeanPool.sum_lt_half_of_le_floor_sixth (n : ℕ) (p q : ℤ)
     (hp : p ≤ ⌊(n : ℝ) / 6⌋) (hq : q ≤ ⌊(n : ℝ) / 6⌋)
     (hgcd : Int.gcd p q = 1) :
     (p : ℝ) + (q : ℝ) < (n : ℝ) / 2 := by
@@ -148,7 +148,7 @@ lemma sum_lt_half_of_le_floor_sixth (n : ℕ) (p q : ℤ)
 /--
 @isnad1 id=le.0h2v.s8.074a04af55b7 from=translated src=- shape=ca180383 vocab=a0289225
 -/
-lemma rectangle_coprime_subset_target (n : ℕ) (η : ℝ) :
+lemma _root_.Tengoku.LeanPool.rectangle_coprime_subset_target (n : ℕ) (η : ℝ) :
     {pq : ℤ × ℤ |
       (⌈η * (n : ℝ)⌉ : ℤ) ≤ pq.1 ∧ pq.1 ≤ (⌊(n : ℝ) / 6⌋ : ℤ) ∧
       (⌈η * (n : ℝ)⌉ : ℤ) ≤ pq.2 ∧ pq.2 ≤ (⌊(n : ℝ) / 6⌋ : ℤ) ∧
@@ -169,7 +169,7 @@ lemma rectangle_coprime_subset_target (n : ℕ) (η : ℝ) :
 /--
 @isnad1 id=eq.0h2v.s5.0209e2760de2 from=translated src=- shape=3e6954b5 vocab=de4cc618
 -/
-lemma Int_Icc_ncard (a b : ℤ) :
+lemma _root_.Tengoku.LeanPool.Int_Icc_ncard (a b : ℤ) :
     (Set.Icc a b).ncard = (b + 1 - a).toNat := by
   rw [show (Set.Icc a b : Set ℤ) = ↑(Finset.Icc a b) from by simp, Set.ncard_coe_finset]
   simp
@@ -177,7 +177,7 @@ lemma Int_Icc_ncard (a b : ℤ) :
 /--
 @isnad1 id=ex.2h1v.s6.e93ec4f1a076 from=translated src=- shape=e6b8ed8b vocab=3a4e774d
 -/
-lemma eta_n_plus_one_le_n_div_six (η : ℝ) (_hη_pos : 0 < η) (hη_lt : η < 1 / 6) :
+lemma _root_.Tengoku.LeanPool.eta_n_plus_one_le_n_div_six (η : ℝ) (_hη_pos : 0 < η) (hη_lt : η < 1 / 6) :
     ∃ (N₀ : ℕ), ∀ n : ℕ, N₀ ≤ n →
       η * (n : ℝ) + 1 ≤ (n : ℝ) / 6 := by
   refine ⟨⌈(1 : ℝ) / ((1 / 6 : ℝ) - η)⌉₊, fun n hn => ?_⟩
@@ -188,7 +188,7 @@ lemma eta_n_plus_one_le_n_div_six (η : ℝ) (_hη_pos : 0 < η) (hη_lt : η < 
 /--
 @isnad1 id=lt.0h2v.s6.59deec8c929e from=translated src=- shape=8974eec8 vocab=31992720
 -/
-lemma int_expr_real_lower_bound (η : ℝ) (n : ℕ) :
+lemma _root_.Tengoku.LeanPool.int_expr_real_lower_bound (η : ℝ) (n : ℕ) :
     (n : ℝ) / 6 - η * (n : ℝ) - 1 <
       ((⌊(n : ℝ) / 6⌋ + 1 - ⌈η * (n : ℝ)⌉ : ℤ) : ℝ) := by
   have h₁ : (n : ℝ) / 6 - 1 < (⌊(n : ℝ) / 6⌋ : ℝ) := by
@@ -202,7 +202,7 @@ lemma int_expr_real_lower_bound (η : ℝ) (n : ℕ) :
 /--
 @isnad1 id=ex.2h1v.s6.7135ee17d597 from=translated src=- shape=da2286ed vocab=ce4d2769
 -/
-lemma ceil_le_floor_for_large_n (η : ℝ) (hη_pos : 0 < η) (hη_lt : η < 1 / 6) :
+lemma _root_.Tengoku.LeanPool.ceil_le_floor_for_large_n (η : ℝ) (hη_pos : 0 < η) (hη_lt : η < 1 / 6) :
     ∃ (N₀ : ℕ), ∀ n : ℕ, N₀ ≤ n →
       (⌈η * (n : ℝ)⌉ : ℤ) ≤ (⌊(n : ℝ) / 6⌋ : ℤ) := by
   obtain ⟨N₀, hN₀⟩ := eta_n_plus_one_le_n_div_six η hη_pos hη_lt
@@ -211,7 +211,7 @@ lemma ceil_le_floor_for_large_n (η : ℝ) (hη_pos : 0 < η) (hη_lt : η < 1 /
 /--
 @isnad1 id=ex.2h1v.s6.2a100e48f610 from=translated src=- shape=6dfbcda5 vocab=508cbfd3
 -/
-lemma int_expr_nonneg_for_large_n (η : ℝ) (hη_pos : 0 < η) (hη_lt : η < 1 / 6) :
+lemma _root_.Tengoku.LeanPool.int_expr_nonneg_for_large_n (η : ℝ) (hη_pos : 0 < η) (hη_lt : η < 1 / 6) :
     ∃ N₀ : ℕ, ∀ n : ℕ, N₀ ≤ n →
       (0 : ℤ) ≤ (⌊(n : ℝ) / 6⌋ + 1 - ⌈η * (n : ℝ)⌉ : ℤ) := by
   obtain ⟨N₀, hN₀⟩ := ceil_le_floor_for_large_n η hη_pos hη_lt
@@ -220,7 +220,7 @@ lemma int_expr_nonneg_for_large_n (η : ℝ) (hη_pos : 0 < η) (hη_lt : η < 1
 /--
 @isnad1 id=ex.2h1v.s7.44d502d8298d from=translated src=- shape=bd58e323 vocab=93503938
 -/
-lemma half_bound_for_large_n (η : ℝ) (_hη_pos : 0 < η) (hη_lt : η < 1 / 6) :
+lemma _root_.Tengoku.LeanPool.half_bound_for_large_n (η : ℝ) (_hη_pos : 0 < η) (hη_lt : η < 1 / 6) :
     ∃ N₀ : ℕ, ∀ n : ℕ, N₀ ≤ n →
       ((1 / 6 - η) / 2) * (n : ℝ) ≤ (1 / 6 - η) * (n : ℝ) - 1 := by
   obtain ⟨N₀, hN₀⟩ := eta_n_plus_one_le_n_div_six ((η + 1 / 6) / 2)
@@ -231,7 +231,7 @@ lemma half_bound_for_large_n (η : ℝ) (_hη_pos : 0 < η) (hη_lt : η < 1 / 6
 /--
 @isnad1 id=ex.2h1v.s7.99a2b5ab60a3 from=translated src=- shape=9c25496b vocab=82c04311
 -/
-lemma interval_toNat_lower_bound (η : ℝ) (hη_pos : 0 < η) (hη_lt : η < 1 / 6) :
+lemma _root_.Tengoku.LeanPool.interval_toNat_lower_bound (η : ℝ) (hη_pos : 0 < η) (hη_lt : η < 1 / 6) :
     ∃ N₀ : ℕ, ∀ n : ℕ, N₀ ≤ n →
       ((1 / 6 - η) / 2) * (n : ℝ) ≤
         ((⌊(n : ℝ) / 6⌋ + 1 - ⌈η * (n : ℝ)⌉ : ℤ).toNat : ℝ) := by
@@ -253,7 +253,7 @@ lemma interval_toNat_lower_bound (η : ℝ) (hη_pos : 0 < η) (hη_lt : η < 1 
 /--
 @isnad1 id=ex.2h1v.s7.2199b05d290b from=translated src=- shape=85ffe700 vocab=51627832
 -/
-theorem interval_ncard_lower_bound (η : ℝ) (hη_pos : 0 < η) (hη_lt : η < 1 / 6) :
+theorem _root_.Tengoku.LeanPool.interval_ncard_lower_bound (η : ℝ) (hη_pos : 0 < η) (hη_lt : η < 1 / 6) :
     ∃ (N₀ : ℕ), ∀ n : ℕ, N₀ ≤ n →
       ((1 / 6 - η) / 2) * (n : ℝ) ≤
         ((Set.Icc (⌈η * (n : ℝ)⌉ : ℤ) (⌊(n : ℝ) / 6⌋ : ℤ)).ncard : ℝ) := by
@@ -265,7 +265,7 @@ theorem interval_ncard_lower_bound (η : ℝ) (hη_pos : 0 < η) (hη_lt : η < 
 /--
 @isnad1 id=le.0h2v.s6.6c53b00f588d from=translated src=- shape=8e28b7c0 vocab=f8d6b279
 -/
-lemma coprime_pairs_subset_product (A B : ℤ) :
+lemma _root_.Tengoku.LeanPool.coprime_pairs_subset_product (A B : ℤ) :
     {pq : ℤ × ℤ |
       A ≤ pq.1 ∧ pq.1 ≤ B ∧
       A ≤ pq.2 ∧ pq.2 ≤ B ∧
@@ -277,12 +277,12 @@ lemma coprime_pairs_subset_product (A B : ℤ) :
 /--
 @isnad1 id=le.0h1v.s6.1f5630cf153c from=translated src=- shape=83e214ac vocab=e624faf6
 -/
-lemma sq_add_one_le (a : ℝ) : (a + 1) ^ 2 ≤ 5 / 4 * a ^ 2 + 5 := by nlinarith [sq_nonneg (a - 4)]
+lemma _root_.Tengoku.LeanPool.sq_add_one_le (a : ℝ) : (a + 1) ^ 2 ≤ 5 / 4 * a ^ 2 + 5 := by nlinarith [sq_nonneg (a - 4)]
 
 /--
 @isnad1 id=le.1h1v.s6.0c663e0cee30 from=translated src=- shape=03d9a33b vocab=6c42160c
 -/
-lemma inv_sq_le_inv_pred_mul (k : ℕ) (hk : 2 ≤ k) :
+lemma _root_.Tengoku.LeanPool.inv_sq_le_inv_pred_mul (k : ℕ) (hk : 2 ≤ k) :
     (1 : ℝ) / (k : ℝ) ^ 2 ≤ 1 / ((k - 1 : ℝ) * k) := by
   have h₁ : (2 : ℝ) ≤ (k : ℝ) := by exact_mod_cast hk
   have h₃ : (0 : ℝ) < (k : ℝ) - 1 := by linarith
@@ -293,7 +293,7 @@ lemma inv_sq_le_inv_pred_mul (k : ℕ) (hk : 2 ≤ k) :
 /--
 @isnad1 id=eq.1h1v.s6.03a6d3ac6dbc from=translated src=- shape=e8338890 vocab=f26a4264
 -/
-lemma telescoping_sum_eq (N : ℕ) (hN : 3 ≤ N) :
+lemma _root_.Tengoku.LeanPool.telescoping_sum_eq (N : ℕ) (hN : 3 ≤ N) :
     ∑ k ∈ Finset.Icc 3 N, (1 : ℝ) / ((k - 1 : ℝ) * k) = 1 / 2 - 1 / N := by
   induction N, hN using Nat.le_induction with
   | base => norm_num
@@ -307,7 +307,7 @@ lemma telescoping_sum_eq (N : ℕ) (hN : 3 ≤ N) :
 /--
 @isnad1 id=le.0h1v.s6.a7bbaf568993 from=translated src=- shape=84716e90 vocab=7f95fb3f
 -/
-lemma tail_sum_le_half (N : ℕ) :
+lemma _root_.Tengoku.LeanPool.tail_sum_le_half (N : ℕ) :
     ∑ k ∈ Finset.Icc 3 N, (1 : ℝ) / (k : ℝ) ^ 2 ≤ 1 / 2 := by
   by_cases hN : 3 ≤ N
   · calc ∑ k ∈ Finset.Icc 3 N, (1 : ℝ) / (k : ℝ) ^ 2
@@ -323,7 +323,7 @@ lemma tail_sum_le_half (N : ℕ) :
 /--
 @isnad1 id=eq.1h2v.s6.4b097cc1e52c from=translated src=- shape=9fd8ec47 vocab=8a8f060c
 -/
-lemma sum_Icc_split (N : ℕ) (hN : 2 ≤ N) (f : ℕ → ℝ) :
+lemma _root_.Tengoku.LeanPool.sum_Icc_split (N : ℕ) (hN : 2 ≤ N) (f : ℕ → ℝ) :
     ∑ k ∈ Finset.Icc 2 N, f k = f 2 + ∑ k ∈ Finset.Icc 3 N, f k := by
   have h_main : Finset.Icc 2 N = {2} ∪ Finset.Icc 3 N := by ext x; simp [Finset.mem_Icc]; omega
   simp_all
@@ -331,7 +331,7 @@ lemma sum_Icc_split (N : ℕ) (hN : 2 ≤ N) (f : ℕ → ℝ) :
 /--
 @isnad1 id=le.0h1v.s6.a5369a0f96c2 from=translated src=- shape=84716e90 vocab=7f95fb3f
 -/
-lemma sum_inv_sq_le_three_fourths (N : ℕ) :
+lemma _root_.Tengoku.LeanPool.sum_inv_sq_le_three_fourths (N : ℕ) :
     ∑ k ∈ Finset.Icc 2 N, (1 : ℝ) / (k : ℝ) ^ 2 ≤ 3 / 4 := by
   by_cases hN : 2 ≤ N
   · rw [sum_Icc_split N hN]
@@ -345,7 +345,7 @@ lemma sum_inv_sq_le_three_fourths (N : ℕ) :
 /--
 @isnad1 id=finite.0h3v.s5.49f72b0a0ae9 from=translated src=- shape=74b85ad0 vocab=dd839e44
 -/
-lemma multiples_finite (A B : ℤ) (m : ℕ) :
+lemma _root_.Tengoku.LeanPool.multiples_finite (A B : ℤ) (m : ℕ) :
     {x : ℤ | A ≤ x ∧ x ≤ B ∧ (m : ℤ) ∣ x}.Finite := by
   refine (Set.finite_Icc A B).subset (fun x hx => ?_)
   simp_all
@@ -353,7 +353,7 @@ lemma multiples_finite (A B : ℤ) (m : ℕ) :
 /--
 @isnad1 id=eq.3h2v.s5.48498bb67926 from=translated src=- shape=531ca67d vocab=8214bf44
 -/
-lemma toNat_inj_of_nonneg (a b : ℤ) (ha : 0 ≤ a) (hb : 0 ≤ b)
+lemma _root_.Tengoku.LeanPool.toNat_inj_of_nonneg (a b : ℤ) (ha : 0 ≤ a) (hb : 0 ≤ b)
     (h : a.toNat = b.toNat) : a = b := by
   have h₁ : (a.toNat : ℤ) = a := Int.toNat_of_nonneg ha
   simp_all
@@ -361,12 +361,12 @@ lemma toNat_inj_of_nonneg (a b : ℤ) (ha : 0 ≤ a) (hb : 0 ≤ b)
 /--
 @isnad1 id=eq.2h4v.s5.f8f070b4c87a from=translated src=- shape=69a42415 vocab=8240cd1b
 -/
-lemma emod_eq_of_dvd (x₁ x₂ A : ℤ) (m : ℤ) (h₁ : m ∣ x₁) (h₂ : m ∣ x₂) :
+lemma _root_.Tengoku.LeanPool.emod_eq_of_dvd (x₁ x₂ A : ℤ) (m : ℤ) (h₁ : m ∣ x₁) (h₂ : m ∣ x₂) :
     (x₁ - A) % m = (x₂ - A) % m := by
   rw [Int.sub_emod x₁, Int.sub_emod x₂,
     Int.emod_eq_zero_of_dvd h₁, Int.emod_eq_zero_of_dvd h₂]
 
-lemma eq_of_ediv_eq_emod_eq (a b m : ℤ) (_hm : m ≠ 0)
+lemma _root_.Tengoku.LeanPool.eq_of_ediv_eq_emod_eq (a b m : ℤ) (_hm : m ≠ 0)
     (hdiv : a / m = b / m) (hmod : a % m = b % m) : a = b := by
   have h₁ : a % m + m * (a / m) = a := Int.emod_add_mul_ediv a m
   have h₂ : b % m + m * (b / m) = b := Int.emod_add_mul_ediv b m
@@ -375,7 +375,7 @@ lemma eq_of_ediv_eq_emod_eq (a b m : ℤ) (_hm : m ≠ 0)
 /--
 @isnad1 id=injon.1h3v.s6.b612e2f43e2f from=translated src=- shape=2651a881 vocab=dd3ecbe1
 -/
-lemma shift_div_toNat_injOn (A B : ℤ) (m : ℕ) (hm : 0 < m) :
+lemma _root_.Tengoku.LeanPool.shift_div_toNat_injOn (A B : ℤ) (m : ℕ) (hm : 0 < m) :
     Set.InjOn (fun x => ((x - A) / (m : ℤ)).toNat)
       {x : ℤ | A ≤ x ∧ x ≤ B ∧ (m : ℤ) ∣ x} := by
   intro x₁ hx₁ x₂ hx₂ heq
@@ -396,7 +396,7 @@ lemma shift_div_toNat_injOn (A B : ℤ) (m : ℕ) (hm : 0 < m) :
 /--
 @isnad1 id=le.3h4v.s6.cb262da6acba from=translated src=- shape=6983fcd9 vocab=f5c16f91
 -/
-lemma shift_div_toNat_le (A B : ℤ) (m : ℕ) (hm : 0 < m) (x : ℤ)
+lemma _root_.Tengoku.LeanPool.shift_div_toNat_le (A B : ℤ) (m : ℕ) (hm : 0 < m) (x : ℤ)
     (hxA : A ≤ x) (hxB : x ≤ B) :
     ((x - A) / (m : ℤ)).toNat ≤ (B + 1 - A).toNat / m := by
   have h₁ : 0 ≤ (x - A : ℤ) := by linarith
@@ -411,7 +411,7 @@ lemma shift_div_toNat_le (A B : ℤ) (m : ℕ) (hm : 0 < m) (x : ℤ)
 /--
 @isnad1 id=le.1h3v.s6.dd33fb5ec04e from=translated src=- shape=b381ea04 vocab=bee21975
 -/
-lemma shift_div_image_subset_range (A B : ℤ) (m : ℕ) (hm : 0 < m) :
+lemma _root_.Tengoku.LeanPool.shift_div_image_subset_range (A B : ℤ) (m : ℕ) (hm : 0 < m) :
     (fun x => ((x - A) / (m : ℤ)).toNat) ''
       {x : ℤ | A ≤ x ∧ x ≤ B ∧ (m : ℤ) ∣ x} ⊆
     ↑(Finset.range ((Set.Icc A B).ncard / m + 1)) := by
@@ -426,7 +426,7 @@ lemma shift_div_image_subset_range (A B : ℤ) (m : ℕ) (hm : 0 < m) :
 /--
 @isnad1 id=le.1h3v.s6.66a23d33ed58 from=translated src=- shape=8828ce3a vocab=5dc970e4
 -/
-lemma ncard_multiples_le (A B : ℤ) (m : ℕ) (hm : 0 < m) :
+lemma _root_.Tengoku.LeanPool.ncard_multiples_le (A B : ℤ) (m : ℕ) (hm : 0 < m) :
     ({x : ℤ | A ≤ x ∧ x ≤ B ∧ (m : ℤ) ∣ x}).ncard ≤ (Set.Icc A B).ncard / m + 1 := by
   have h1 := shift_div_toNat_injOn A B m hm
   have h2 := shift_div_image_subset_range A B m hm
@@ -442,7 +442,7 @@ lemma ncard_multiples_le (A B : ℤ) (m : ℕ) (hm : 0 < m) :
 /--
 @isnad1 id=ex.6h5v.s6.a78ae8e8f3dd from=translated src=- shape=b1575f5b vocab=16c9bdb5
 -/
-lemma exists_prime_dvd_both (A B : ℤ) (B' : ℕ)
+lemma _root_.Tengoku.LeanPool.exists_prime_dvd_both (A B : ℤ) (B' : ℕ)
     (hB' : ∀ p : ℤ, A ≤ p → p ≤ B → ∀ ℓ : ℕ, Nat.Prime ℓ → (ℓ : ℤ) ∣ p → ℓ ≤ B')
     (p q : ℤ) (hAp : A ≤ p) (hpB : p ≤ B) (_hAq : A ≤ q) (_hqB : q ≤ B)
     (hgcd : Int.gcd p q ≠ 1) :
@@ -460,7 +460,7 @@ lemma exists_prime_dvd_both (A B : ℤ) (B' : ℕ)
 /--
 @isnad1 id=other.2h3v.s8.f7738dd977c8 from=translated src=- shape=4ac46c72 vocab=c26f240f
 -/
-lemma non_coprime_subset_union (A B : ℤ) (_hAB : A ≤ B) (B' : ℕ)
+lemma _root_.Tengoku.LeanPool.non_coprime_subset_union (A B : ℤ) (_hAB : A ≤ B) (B' : ℕ)
     (hB' : ∀ p : ℤ, A ≤ p → p ≤ B → ∀ ℓ : ℕ, Nat.Prime ℓ → (ℓ : ℤ) ∣ p → ℓ ≤ B') :
     let S := Set.Icc A B ×ˢ Set.Icc A B
     let C := {pq : ℤ × ℤ |
@@ -490,7 +490,7 @@ lemma non_coprime_subset_union (A B : ℤ) (_hAB : A ≤ B) (B' : ℕ)
 /--
 @isnad1 id=other.1h3v.s6.f3945b4da957 from=translated src=- shape=793c3c24 vocab=650bdf46
 -/
-lemma ncard_multiples_prod_le (A B : ℤ) (ℓ : ℕ) (hℓ : Nat.Prime ℓ) :
+lemma _root_.Tengoku.LeanPool.ncard_multiples_prod_le (A B : ℤ) (ℓ : ℕ) (hℓ : Nat.Prime ℓ) :
     let L := (Set.Icc A B).ncard
     let Mℓ := {x : ℤ | A ≤ x ∧ x ≤ B ∧ (ℓ : ℤ) ∣ x}
     (Mℓ ×ˢ Mℓ).ncard ≤ (L / ℓ + 1) ^ 2 := by
@@ -503,7 +503,7 @@ lemma ncard_multiples_prod_le (A B : ℤ) (ℓ : ℕ) (hℓ : Nat.Prime ℓ) :
 /--
 @isnad1 id=other.2h3v.s7.da16f8fdff90 from=translated src=- shape=8ba9adcf vocab=842b6e6b
 -/
-lemma non_coprime_ncard_le_sum (A B : ℤ) (hAB : A ≤ B) (B' : ℕ)
+lemma _root_.Tengoku.LeanPool.non_coprime_ncard_le_sum (A B : ℤ) (hAB : A ≤ B) (B' : ℕ)
     (hB' : ∀ p : ℤ, A ≤ p → p ≤ B → ∀ ℓ : ℕ, Nat.Prime ℓ → (ℓ : ℤ) ∣ p → ℓ ≤ B') :
     let L := (Set.Icc A B).ncard
     let S := Set.Icc A B ×ˢ Set.Icc A B
@@ -540,7 +540,7 @@ lemma non_coprime_ncard_le_sum (A B : ℤ) (hAB : A ≤ B) (B' : ℕ)
 /--
 @isnad1 id=le.0h1v.s4.1bdbd0c21452 from=translated src=- shape=554b964a vocab=ed4e870a
 -/
-lemma card_primes_le_B' (B' : ℕ) :
+lemma _root_.Tengoku.LeanPool.card_primes_le_B' (B' : ℕ) :
     ((Finset.Icc 2 B').filter Nat.Prime).card ≤ B' := by
   calc ((Finset.Icc 2 B').filter Nat.Prime).card
       ≤ (Finset.Icc 2 B').card := Finset.card_filter_le _ _
@@ -550,7 +550,7 @@ lemma card_primes_le_B' (B' : ℕ) :
 /--
 @isnad1 id=le.0h1v.s6.8a0db949c714 from=translated src=- shape=e6b34c7e vocab=5c668411
 -/
-lemma sum_inv_sq_primes_le (B' : ℕ) :
+lemma _root_.Tengoku.LeanPool.sum_inv_sq_primes_le (B' : ℕ) :
     ∑ ℓ ∈ (Finset.Icc 2 B').filter Nat.Prime, (1 : ℝ) / (ℓ : ℝ) ^ 2 ≤ 3 / 4 := by
   calc ∑ ℓ ∈ (Finset.Icc 2 B').filter Nat.Prime, (1 : ℝ) / (ℓ : ℝ) ^ 2
       ≤ ∑ ℓ ∈ Finset.Icc 2 B', (1 : ℝ) / (ℓ : ℝ) ^ 2 := by
@@ -561,7 +561,7 @@ lemma sum_inv_sq_primes_le (B' : ℕ) :
 /--
 @isnad1 id=le.1h2v.s7.57b72016eb40 from=translated src=- shape=e2f95070 vocab=ad3e4bb6
 -/
-lemma term_sq_bound (L ℓ : ℕ) (hℓ : 2 ≤ ℓ) :
+lemma _root_.Tengoku.LeanPool.term_sq_bound (L ℓ : ℕ) (hℓ : 2 ≤ ℓ) :
     ((L / ℓ + 1 : ℕ) : ℝ) ^ 2 ≤ 5 / 4 * (L : ℝ) ^ 2 / (ℓ : ℝ) ^ 2 + 5 := by
   have hℓpos : (0 : ℝ) < (ℓ : ℝ) := by positivity
   push_cast
@@ -578,7 +578,7 @@ lemma term_sq_bound (L ℓ : ℕ) (hℓ : 2 ≤ ℓ) :
 /--
 @isnad1 id=le.0h2v.s7.7ba6993ecea4 from=translated src=- shape=a7f62dd8 vocab=699108eb
 -/
-lemma sum_sq_bound_real (L B' : ℕ) :
+lemma _root_.Tengoku.LeanPool.sum_sq_bound_real (L B' : ℕ) :
     (∑ ℓ ∈ (Finset.Icc 2 B').filter Nat.Prime, ((L / ℓ + 1 : ℕ) : ℝ) ^ 2) ≤
     15 / 16 * (L : ℝ) ^ 2 + 5 * (B' : ℝ) := by
   set P := (Finset.Icc 2 B').filter Nat.Prime
@@ -606,7 +606,7 @@ lemma sum_sq_bound_real (L B' : ℕ) :
 /--
 @isnad1 id=other.2h3v.s8.2a43b76e592c from=translated src=- shape=b036ac11 vocab=ed9195c1
 -/
-lemma non_coprime_pairs_upper_bound (A B : ℤ) (hAB : A ≤ B) (B' : ℕ)
+lemma _root_.Tengoku.LeanPool.non_coprime_pairs_upper_bound (A B : ℤ) (hAB : A ≤ B) (B' : ℕ)
     (hB' : ∀ p : ℤ, A ≤ p → p ≤ B → ∀ ℓ : ℕ, Nat.Prime ℓ → (ℓ : ℤ) ∣ p → ℓ ≤ B') :
     let L := (Set.Icc A B).ncard
     let S := Set.Icc A B ×ˢ Set.Icc A B
@@ -626,7 +626,7 @@ lemma non_coprime_pairs_upper_bound (A B : ℤ) (hAB : A ≤ B) (B' : ℕ)
 /--
 @isnad1 id=le.2h4v.s7.f12ec0b95fe7 from=translated src=- shape=eab30b5c vocab=a8e1e6c9
 -/
-lemma coprime_lower_bound_from_complement (L : ℕ) (C_card NC_card : ℕ) (B' : ℕ)
+lemma _root_.Tengoku.LeanPool.coprime_lower_bound_from_complement (L : ℕ) (C_card NC_card : ℕ) (B' : ℕ)
     (h_partition : C_card + NC_card = L * L)
     (h_NC_bound : (NC_card : ℝ) ≤ 15 / 16 * (L : ℝ) ^ 2 + 5 * (B' : ℝ)) :
     (L : ℝ) ^ 2 / 16 - 5 * (B' : ℝ) ≤ (C_card : ℝ) := by
@@ -639,7 +639,7 @@ lemma coprime_lower_bound_from_complement (L : ℕ) (C_card NC_card : ℕ) (B' :
 /--
 @isnad1 id=other.2h3v.s7.d7ab9ab15c2d from=translated src=- shape=1bcb03e4 vocab=f2b6ca39
 -/
-lemma coprime_pairs_sieve_lower_bound (A B : ℤ) (hAB : A ≤ B) (B' : ℕ)
+lemma _root_.Tengoku.LeanPool.coprime_pairs_sieve_lower_bound (A B : ℤ) (hAB : A ≤ B) (B' : ℕ)
     (hB' : ∀ p : ℤ, A ≤ p → p ≤ B → ∀ ℓ : ℕ, Nat.Prime ℓ → (ℓ : ℤ) ∣ p → ℓ ≤ B') :
     let L := (Set.Icc A B).ncard
     (L : ℝ) ^ 2 / 16 - 5 * (B' : ℝ) ≤
@@ -665,7 +665,7 @@ lemma coprime_pairs_sieve_lower_bound (A B : ℤ) (hAB : A ≤ B) (B' : ℕ)
 /--
 @isnad1 id=le.5h4v.s7.50523b6aab25 from=translated src=- shape=ec7ee8cd vocab=e7bc5859
 -/
-lemma quadratic_dominates_linear (δ L n B' : ℝ) (hδ : 0 < δ)
+lemma _root_.Tengoku.LeanPool.quadratic_dominates_linear (δ L n B' : ℝ) (hδ : 0 < δ)
     (hn : 0 ≤ n) (hL : δ * n ≤ L) (hB' : 5 * B' ≤ 5 * n)
     (hn_large : 160 / δ ^ 2 ≤ n) :
     δ ^ 2 / 32 * n ^ 2 ≤ L ^ 2 / 16 - 5 * B' := by
@@ -678,7 +678,7 @@ lemma quadratic_dominates_linear (δ L n B' : ℝ) (hδ : 0 < δ)
 /--
 @isnad1 id=le.2h2v.s5.da7a47947f33 from=translated src=- shape=ba4cfd9e vocab=1ace55b5
 -/
-lemma ceil_eta_n_pos (η : ℝ) (hη_pos : 0 < η) (n : ℕ) (hn : 1 ≤ n) :
+lemma _root_.Tengoku.LeanPool.ceil_eta_n_pos (η : ℝ) (hη_pos : 0 < η) (n : ℕ) (hn : 1 ≤ n) :
     1 ≤ (⌈η * (n : ℝ)⌉ : ℤ) := by
   have h_main : 0 < (η : ℝ) * (n : ℝ) := by positivity
   simp_all
@@ -686,7 +686,7 @@ lemma ceil_eta_n_pos (η : ℝ) (hη_pos : 0 < η) (n : ℕ) (hn : 1 ≤ n) :
 /--
 @isnad1 id=le.0h1v.s5.c31f43d8577a from=translated src=- shape=bc49e4b2 vocab=d524c22f
 -/
-lemma floor_div_six_le_n (n : ℕ) : (⌊(n : ℝ) / 6⌋ : ℤ) ≤ (n : ℤ) := by
+lemma _root_.Tengoku.LeanPool.floor_div_six_le_n (n : ℕ) : (⌊(n : ℝ) / 6⌋ : ℤ) ≤ (n : ℤ) := by
   have h₁ : (n : ℝ) / 6 ≤ (n : ℝ) := by nlinarith
   have h₂ : ((⌊(n : ℝ) / 6⌋ : ℤ) : ℝ) ≤ (n : ℝ) / 6 := Int.floor_le _
   have h₃ : ((⌊(n : ℝ) / 6⌋ : ℤ) : ℝ) ≤ (n : ℝ) := by nlinarith
@@ -695,7 +695,7 @@ lemma floor_div_six_le_n (n : ℕ) : (⌊(n : ℝ) / 6⌋ : ℤ) ≤ (n : ℤ) :
 /--
 @isnad1 id=le.3h2v.s5.a70acf4a62f2 from=translated src=- shape=5b9dcbf9 vocab=db75f3e8
 -/
-lemma prime_dvd_le_of_pos (p : ℤ) (hp : 0 < p) (ℓ : ℕ) (_hprime : Nat.Prime ℓ)
+lemma _root_.Tengoku.LeanPool.prime_dvd_le_of_pos (p : ℤ) (hp : 0 < p) (ℓ : ℕ) (_hprime : Nat.Prime ℓ)
     (hdvd : (ℓ : ℤ) ∣ p) : (ℓ : ℤ) ≤ p := by
   have h₂ : (ℓ : ℤ) ≤ p := by
     have h₃ : (ℓ : ℤ) ∣ p := hdvd
@@ -706,7 +706,7 @@ lemma prime_dvd_le_of_pos (p : ℤ) (hp : 0 < p) (ℓ : ℕ) (_hprime : Nat.Prim
 /--
 @isnad1 id=le.6h4v.s6.dfb0bb74cae6 from=translated src=- shape=27eeb3aa vocab=fd1eb2b4
 -/
-lemma prime_divisor_bound (η : ℝ) (hη_pos : 0 < η) (n : ℕ) (hn : 1 ≤ n) :
+lemma _root_.Tengoku.LeanPool.prime_divisor_bound (η : ℝ) (hη_pos : 0 < η) (n : ℕ) (hn : 1 ≤ n) :
     ∀ p : ℤ, (⌈η * (n : ℝ)⌉ : ℤ) ≤ p → p ≤ (⌊(n : ℝ) / 6⌋ : ℤ) →
     ∀ ℓ : ℕ, Nat.Prime ℓ → (ℓ : ℤ) ∣ p → ℓ ≤ n := by
   intro p hp_low hp_high ℓ hprime hdvd
@@ -718,7 +718,7 @@ lemma prime_divisor_bound (η : ℝ) (hη_pos : 0 < η) (n : ℕ) (hn : 1 ≤ n)
 /--
 @isnad1 id=ex.2h1v.s7.7559d13afdab from=translated src=- shape=c9d5c1b0 vocab=5a160243
 -/
-lemma rectangle_coprime_ncard_lower_bound (η : ℝ) (hη_pos : 0 < η) (hη_lt : η < 1 / 6) :
+lemma _root_.Tengoku.LeanPool.rectangle_coprime_ncard_lower_bound (η : ℝ) (hη_pos : 0 < η) (hη_lt : η < 1 / 6) :
     ∃ (c : ℝ) (N₁ : ℕ), 0 < c ∧ ∀ n : ℕ, N₁ ≤ n →
       c * (n : ℝ) ^ 2 ≤
         ({pq : ℤ × ℤ |
@@ -755,7 +755,7 @@ lemma rectangle_coprime_ncard_lower_bound (η : ℝ) (hη_pos : 0 < η) (hη_lt 
 /--
 @isnad1 id=ex.2h1v.s7.803fa5831648 from=translated src=- shape=d70acaef vocab=36cd50b2
 -/
-lemma coprime_triangle_ncard_lower_bound (η : ℝ) (hη_pos : 0 < η) (hη_lt : η < 1 / 6) :
+lemma _root_.Tengoku.LeanPool.coprime_triangle_ncard_lower_bound (η : ℝ) (hη_pos : 0 < η) (hη_lt : η < 1 / 6) :
     ∃ (c : ℝ) (N₁ : ℕ), 0 < c ∧ ∀ n : ℕ, N₁ ≤ n →
       c * (n : ℝ) ^ 2 ≤
         ({pq : ℤ × ℤ |
@@ -772,7 +772,7 @@ lemma coprime_triangle_ncard_lower_bound (η : ℝ) (hη_pos : 0 < η) (hη_lt :
 /--
 @isnad1 id=ex.2h1v.s6.936e52e0e22e from=translated src=- shape=9cf2e0cf vocab=55e09559
 -/
-lemma truncatedObtuseRegion_ncard_lower_bound (η : ℝ) (hη_pos : 0 < η) (hη_lt : η < 1 / 6) :
+lemma _root_.Tengoku.LeanPool.truncatedObtuseRegion_ncard_lower_bound (η : ℝ) (hη_pos : 0 < η) (hη_lt : η < 1 / 6) :
     ∃ (c : ℝ) (N₁ : ℕ), 0 < c ∧ ∀ n : ℕ, N₁ ≤ n →
       c * (n : ℝ) ^ 2 ≤ ((truncatedObtuseRegion n η).ncard : ℝ) := by
   obtain ⟨c, N₁, hc_pos, h_lower⟩ := coprime_triangle_ncard_lower_bound η hη_pos hη_lt
@@ -790,26 +790,26 @@ lemma truncatedObtuseRegion_ncard_lower_bound (η : ℝ) (hη_pos : 0 < η) (hη
 
 /-- A relaxed family of bad pairs, replacing `countingFunctionS n p q < 5` by
 `(countingFunctionS n p q : ℝ) < η ^ 2 / 2 * φ(n)`. -/
-noncomputable def badPairsE (n : ℕ) (η : ℝ) : Set (ℤ × ℤ) :=
+noncomputable def _root_.Tengoku.LeanPool.badPairsE (n : ℕ) (η : ℝ) : Set (ℤ × ℤ) :=
   {pq ∈ truncatedObtuseRegion n η |
     Int.gcd pq.2 (largestPrimeFactor n : ℤ) = 1 ∧
     (countingFunctionS n pq.1 pq.2 : ℝ) < (η ^ 2 / 2 : ℝ) * (Nat.totient n : ℝ)}
 
 /-- Pairs of `truncatedObtuseRegion n η` with `gcd(q, P⁺(n)) = 1` and `P⁺(n) ∣ p`. -/
-noncomputable def pdivPairs (n : ℕ) (η : ℝ) : Set (ℤ × ℤ) :=
+noncomputable def _root_.Tengoku.LeanPool.pdivPairs (n : ℕ) (η : ℝ) : Set (ℤ × ℤ) :=
   {pq ∈ truncatedObtuseRegion n η |
     Int.gcd pq.2 (largestPrimeFactor n : ℤ) = 1 ∧
     (largestPrimeFactor n : ℤ) ∣ pq.1}
 
 /-- The pairs in `badPairsE n η` whose first coordinate is not divisible by the largest prime
 factor of `n`. -/
-noncomputable def residueBadPairs (n : ℕ) (η : ℝ) : Set (ℤ × ℤ) :=
+noncomputable def _root_.Tengoku.LeanPool.residueBadPairs (n : ℕ) (η : ℝ) : Set (ℤ × ℤ) :=
   {pq ∈ badPairsE n η | ¬((largestPrimeFactor n : ℤ) ∣ pq.1)}
 
 /--
 @isnad1 id=lt.4h3v.s6.bc1a2d92e5e2 from=translated src=- shape=f1849920 vocab=3ef55dd5
 -/
-lemma div_toNat_mem_range (B : ℤ) (P : ℕ) (_hP : 0 < P) (hB : 0 ≤ B) (x : ℤ)
+lemma _root_.Tengoku.LeanPool.div_toNat_mem_range (B : ℤ) (P : ℕ) (_hP : 0 < P) (hB : 0 ≤ B) (x : ℤ)
     (hx0 : 0 ≤ x) (hxB : x ≤ B) :
     (x / (P : ℤ)).toNat < B.toNat / P + 1 := by
   have h₂ : (x / (P : ℤ)).toNat = x.toNat / P := by
@@ -822,7 +822,7 @@ lemma div_toNat_mem_range (B : ℤ) (P : ℕ) (_hP : 0 < P) (hB : 0 ≤ B) (x : 
 /--
 @isnad1 id=injon.1h2v.s5.d9037d3c4d8e from=translated src=- shape=95170afa vocab=0ccd72e3
 -/
-lemma inj_div_toNat (B : ℤ) (P : ℕ) (hP : 0 < P) :
+lemma _root_.Tengoku.LeanPool.inj_div_toNat (B : ℤ) (P : ℕ) (hP : 0 < P) :
     Set.InjOn (fun x : ℤ => (x / (P : ℤ)).toNat)
       {x : ℤ | 0 ≤ x ∧ x ≤ B ∧ (P : ℤ) ∣ x} := by
   intro x hx y hy hxy
@@ -839,7 +839,7 @@ lemma inj_div_toNat (B : ℤ) (P : ℕ) (hP : 0 < P) :
 /--
 @isnad1 id=le.2h2v.s6.efb74069e7b1 from=translated src=- shape=e8c4a432 vocab=67076b48
 -/
-lemma ncard_nonneg_multiples_le (B : ℤ) (P : ℕ) (hP : 0 < P) (hB : 0 ≤ B) :
+lemma _root_.Tengoku.LeanPool.ncard_nonneg_multiples_le (B : ℤ) (P : ℕ) (hP : 0 < P) (hB : 0 ≤ B) :
     ({x : ℤ | 0 ≤ x ∧ x ≤ B ∧ (P : ℤ) ∣ x}).ncard ≤ B.toNat / P + 1 := by
   have h1 := inj_div_toNat B P hP
   calc ({x : ℤ | 0 ≤ x ∧ x ≤ B ∧ (P : ℤ) ∣ x}).ncard
@@ -855,14 +855,14 @@ lemma ncard_nonneg_multiples_le (B : ℤ) (P : ℕ) (hP : 0 < P) (hB : 0 ≤ B) 
 /--
 @isnad1 id=finite.0h2v.s5.902f8b1d9cd4 from=translated src=- shape=e3341508 vocab=dd839e44
 -/
-lemma nonneg_multiples_finite (B : ℤ) (P : ℕ) :
+lemma _root_.Tengoku.LeanPool.nonneg_multiples_finite (B : ℤ) (P : ℕ) :
     {x : ℤ | 0 ≤ x ∧ x ≤ B ∧ (P : ℤ) ∣ x}.Finite :=
   multiples_finite 0 B P
 
 /--
 @isnad1 id=mem.3h3v.s6.a2820d468629 from=translated src=- shape=3b434840 vocab=3559a1d7
 -/
-lemma mul_P_mem_set (B : ℤ) (P : ℕ) (_hP : 0 < P) (hB : 0 ≤ B)
+lemma _root_.Tengoku.LeanPool.mul_P_mem_set (B : ℤ) (P : ℕ) (_hP : 0 < P) (hB : 0 ≤ B)
     (k : ℕ) (hk : k ≤ B.toNat / P) :
     (↑k * ↑P : ℤ) ∈ {x : ℤ | 0 ≤ x ∧ x ≤ B ∧ (P : ℤ) ∣ x} := by
   have h₁ : 0 ≤ (↑k * ↑P : ℤ) := by nlinarith
@@ -877,7 +877,7 @@ lemma mul_P_mem_set (B : ℤ) (P : ℕ) (_hP : 0 < P) (hB : 0 ≤ B)
 /--
 @isnad1 id=le.2h2v.s6.65d9f0b08bcf from=translated src=- shape=3c67ad8a vocab=67076b48
 -/
-lemma ncard_nonneg_multiples_ge (B : ℤ) (P : ℕ) (hP : 0 < P) (hB : 0 ≤ B) :
+lemma _root_.Tengoku.LeanPool.ncard_nonneg_multiples_ge (B : ℤ) (P : ℕ) (hP : 0 < P) (hB : 0 ≤ B) :
     B.toNat / P + 1 ≤ ({x : ℤ | 0 ≤ x ∧ x ≤ B ∧ (P : ℤ) ∣ x}).ncard := by
   set S := {x : ℤ | 0 ≤ x ∧ x ≤ B ∧ (P : ℤ) ∣ x}
   set f : ℕ → ℤ := fun k => ↑k * ↑P
@@ -904,7 +904,7 @@ lemma ncard_nonneg_multiples_ge (B : ℤ) (P : ℕ) (hP : 0 < P) (hB : 0 ≤ B) 
 /--
 @isnad1 id=le.3h3v.s6.3af89dd919b5 from=translated src=- shape=89e29faa vocab=997ad1db
 -/
-lemma real_sq_div_mono (n : ℕ) (P : ℕ) (θ : ℝ)
+lemma _root_.Tengoku.LeanPool.real_sq_div_mono (n : ℕ) (P : ℕ) (θ : ℝ)
     (hn : 2 ≤ n) (_hP_pos : 0 < P)
     (hP : (P : ℝ) ≥ (n : ℝ) ^ θ) :
     (n : ℝ) ^ 2 / (P : ℝ) ≤ (n : ℝ) ^ 2 / (n : ℝ) ^ θ := by
@@ -916,7 +916,7 @@ lemma real_sq_div_mono (n : ℕ) (P : ℕ) (θ : ℝ)
 /--
 @isnad1 id=finite.0h2v.s3.15d6180d83f6 from=translated src=- shape=26996fc8 vocab=f134c01d
 -/
-lemma residueBadPairs_finite (n : ℕ) (η : ℝ) :
+lemma _root_.Tengoku.LeanPool.residueBadPairs_finite (n : ℕ) (η : ℝ) :
     (residueBadPairs n η).Finite :=
   (truncatedObtuseRegion_finite n η).subset (fun pq hpq => by
     obtain ⟨⟨h1, _⟩, _⟩ := hpq
@@ -925,7 +925,7 @@ lemma residueBadPairs_finite (n : ℕ) (η : ℝ) :
 /--
 @isnad1 id=ex.1h1v.s5.a94cd90fd778 from=translated src=- shape=215d3bf3 vocab=cce967a7
 -/
-lemma largestPrimeFactor_pos_helper (n : ℕ) (hn : 2 ≤ n) :
+lemma _root_.Tengoku.LeanPool.largestPrimeFactor_pos_helper (n : ℕ) (hn : 2 ≤ n) :
     ∃ a : ℕ, n.primeFactors.max = ↑a ∧ 0 < a := by
   have h₂ : n.primeFactors.Nonempty := Nat.nonempty_primeFactors.mpr hn
   obtain ⟨a, ha⟩ := Finset.max_of_nonempty h₂
@@ -934,7 +934,7 @@ lemma largestPrimeFactor_pos_helper (n : ℕ) (hn : 2 ≤ n) :
 /--
 @isnad1 id=lt.1h1v.s4.eac14829c4cf from=translated src=- shape=a8dc2df9 vocab=1db0b90c
 -/
-lemma largestPrimeFactor_pos (n : ℕ) (hn : 2 ≤ n) :
+lemma _root_.Tengoku.LeanPool.largestPrimeFactor_pos (n : ℕ) (hn : 2 ≤ n) :
     0 < largestPrimeFactor n := by
   obtain ⟨a, ha_max, ha_pos⟩ := largestPrimeFactor_pos_helper n hn
   simp only [largestPrimeFactor, ha_max]
@@ -943,7 +943,7 @@ lemma largestPrimeFactor_pos (n : ℕ) (hn : 2 ≤ n) :
 /--
 @isnad1 id=eq.1h3v.s5.d9bfe26b8625 from=translated src=- shape=ab2fd678 vocab=9db3b173
 -/
-lemma fiber_empty_of_gcd_ne_one (n : ℕ) (η : ℝ) (q : ℤ)
+lemma _root_.Tengoku.LeanPool.fiber_empty_of_gcd_ne_one (n : ℕ) (η : ℝ) (q : ℤ)
     (hq : Int.gcd q (largestPrimeFactor n : ℤ) ≠ 1) :
     {p : ℤ | (p, q) ∈ residueBadPairs n η} = ∅ := by
   apply Set.eq_empty_of_forall_notMem
@@ -954,7 +954,7 @@ lemma fiber_empty_of_gcd_ne_one (n : ℕ) (η : ℝ) (q : ℤ)
 /--
 @isnad1 id=lt.2h3v.s6.26972ffaf4e3 from=translated src=- shape=b60c2bb8 vocab=4632aacc
 -/
-lemma snd_lt_half_of_mem_truncatedObtuseRegion_fb (n : ℕ) (η : ℝ)
+lemma _root_.Tengoku.LeanPool.snd_lt_half_of_mem_truncatedObtuseRegion_fb (n : ℕ) (η : ℝ)
     (pq : ℤ × ℤ) (h : pq ∈ truncatedObtuseRegion n η) (hp_pos : 0 < pq.1) :
     (pq.2 : ℝ) < (n : ℝ) / 2 := by
   simp only [truncatedObtuseRegion] at h
@@ -965,7 +965,7 @@ lemma snd_lt_half_of_mem_truncatedObtuseRegion_fb (n : ℕ) (η : ℝ)
 /--
 @isnad1 id=le.1h2v.s5.be4fbb807562 from=translated src=- shape=72605d68 vocab=73159939
 -/
-lemma intLe_half_of_real_lt_half_fb (n : ℕ) (q : ℤ) (hq : (q : ℝ) < (n : ℝ) / 2) :
+lemma _root_.Tengoku.LeanPool.intLe_half_of_real_lt_half_fb (n : ℕ) (q : ℤ) (hq : (q : ℝ) < (n : ℝ) / 2) :
     q ≤ ↑n / 2 := by
   have h₃ : (2 : ℤ) * q < (n : ℤ) := by
     have h₂ : (2 : ℝ) * (q : ℝ) < (n : ℝ) := by linarith
@@ -975,7 +975,7 @@ lemma intLe_half_of_real_lt_half_fb (n : ℕ) (q : ℤ) (hq : (q : ℝ) < (n : �
 /--
 @isnad1 id=lt.2h3v.s5.3c07b08546d5 from=translated src=- shape=549435e5 vocab=5313ad48
 -/
-lemma pos_of_mem_truncatedObtuseRegion_fst_fb (n : ℕ) (η : ℝ) (hη_pos : 0 < η)
+lemma _root_.Tengoku.LeanPool.pos_of_mem_truncatedObtuseRegion_fst_fb (n : ℕ) (η : ℝ) (hη_pos : 0 < η)
     (pq : ℤ × ℤ) (h : pq ∈ truncatedObtuseRegion n η) :
     0 < pq.1 := by
   have h₁ : η * (n : ℝ) ≤ (pq.1 : ℝ) := h.1
@@ -991,7 +991,7 @@ lemma pos_of_mem_truncatedObtuseRegion_fst_fb (n : ℕ) (η : ℝ) (hη_pos : 0 
 /--
 @isnad1 id=lt.2h3v.s5.c95a33f6a797 from=translated src=- shape=549435e5 vocab=2d652769
 -/
-lemma pos_of_mem_truncatedObtuseRegion_snd_fb (n : ℕ) (η : ℝ) (hη_pos : 0 < η)
+lemma _root_.Tengoku.LeanPool.pos_of_mem_truncatedObtuseRegion_snd_fb (n : ℕ) (η : ℝ) (hη_pos : 0 < η)
     (pq : ℤ × ℤ) (h : pq ∈ truncatedObtuseRegion n η) :
     0 < pq.2 := by
   have h₂ : (η * (n : ℝ) : ℝ) ≤ (pq.2 : ℝ) := h.2.1
@@ -1008,7 +1008,7 @@ lemma pos_of_mem_truncatedObtuseRegion_snd_fb (n : ℕ) (η : ℝ) (hη_pos : 0 
 /--
 @isnad1 id=le.1h3v.s6.fda563ffa2ae from=translated src=- shape=41d30ec0 vocab=2bc267bc
 -/
-lemma fiber_subset_range (n : ℕ) (η : ℝ) (hη_pos : 0 < η) (q : ℤ) :
+lemma _root_.Tengoku.LeanPool.fiber_subset_range (n : ℕ) (η : ℝ) (hη_pos : 0 < η) (q : ℤ) :
     {p : ℤ | (p, q) ∈ residueBadPairs n η} ⊆ Set.Ico (0 : ℤ) (↑n / 2) := by
   intro p hp
   have hres : (p, q) ∈ residueBadPairs n η := hp
@@ -1028,14 +1028,14 @@ lemma fiber_subset_range (n : ℕ) (η : ℝ) (hη_pos : 0 < η) (q : ℤ) :
 /--
 @isnad1 id=finite.1h3v.s5.1b7de1453d02 from=translated src=- shape=b2900faf vocab=c7b881e3
 -/
-lemma fiber_finite (n : ℕ) (η : ℝ) (hη_pos : 0 < η) (q : ℤ) :
+lemma _root_.Tengoku.LeanPool.fiber_finite (n : ℕ) (η : ℝ) (hη_pos : 0 < η) (q : ℤ) :
     {p : ℤ | (p, q) ∈ residueBadPairs n η}.Finite :=
   (Set.finite_Ico (0 : ℤ) (↑n / 2)).subset (fiber_subset_range n η hη_pos q)
 
 /--
 @isnad1 id=not.1h4v.s6.1904bbfe80e2 from=translated src=- shape=c3a5499a vocab=0ce1398d
 -/
-lemma counting_large_implies_not_badPairsE (n : ℕ) (η : ℝ) (p q : ℤ)
+lemma _root_.Tengoku.LeanPool.counting_large_implies_not_badPairsE (n : ℕ) (η : ℝ) (p q : ℤ)
     (h : (η ^ 2 / 2 : ℝ) * (Nat.totient n : ℝ) ≤ (countingFunctionS n p q : ℝ)) :
     (p, q) ∉ badPairsE n η := by
   intro h_in
@@ -1045,7 +1045,7 @@ lemma counting_large_implies_not_badPairsE (n : ℕ) (η : ℝ) (p q : ℤ)
 /--
 @isnad1 id=injon.2h4v.s6.610eef6d2df1 from=translated src=- shape=4569b3fa vocab=ba541ba1
 -/
-lemma fiber_div_injOn (n d : ℕ) (hd_pos : 0 < d) (b : ℕ)
+lemma _root_.Tengoku.LeanPool.fiber_div_injOn (n d : ℕ) (hd_pos : 0 < d) (b : ℕ)
     (S : Set ℤ) (hS_sub : S ⊆ Set.Ico (0 : ℤ) (↑n / 2)) :
     Set.InjOn (fun x : ℤ => (x / (d : ℤ)).toNat)
       {x ∈ S | (x % (d : ℤ)).toNat = b} := by
@@ -1074,20 +1074,20 @@ lemma fiber_div_injOn (n d : ℕ) (hd_pos : 0 < d) (b : ℕ)
 /--
 @isnad1 id=eq.2h2v.s5.058b88cff7bb from=translated src=- shape=2f6e83ab vocab=affaabe1
 -/
-lemma int_ediv_eq_natCast_div (n : ℤ) (m : ℕ) (_hm : 0 < m) (hn : 0 ≤ n) :
+lemma _root_.Tengoku.LeanPool.int_ediv_eq_natCast_div (n : ℤ) (m : ℕ) (_hm : 0 < m) (hn : 0 ≤ n) :
     n / (m : ℤ) = ↑(n.toNat / m) := by simp_all
 
 /--
 @isnad1 id=eq.2h2v.s5.e6bec704f48f from=translated src=- shape=3b57aa7b vocab=affaabe1
 -/
-lemma int_toNat_ediv_eq (n : ℤ) (m : ℕ) (hm : 0 < m) (hn : 0 ≤ n) :
+lemma _root_.Tengoku.LeanPool.int_toNat_ediv_eq (n : ℤ) (m : ℕ) (hm : 0 < m) (hn : 0 ≤ n) :
     (n / (m : ℤ)).toNat = n.toNat / m := by
   rw [int_ediv_eq_natCast_div n m hm hn, Int.toNat_natCast]
 
 /--
 @isnad1 id=le.3h3v.s5.69d3a063b90a from=translated src=- shape=a80c6851 vocab=affaabe1
 -/
-lemma int_ediv_toNat_le (a b : ℤ) (m : ℕ) (_hm : 0 < m)
+lemma _root_.Tengoku.LeanPool.int_ediv_toNat_le (a b : ℤ) (m : ℕ) (_hm : 0 < m)
     (ha : 0 ≤ a) (hab : a ≤ b) :
     (a / (m : ℤ)).toNat ≤ (b / (m : ℤ)).toNat := by
   have h₁ : ∀ (a : ℤ), 0 ≤ a → (a / (m : ℤ)).toNat = a.toNat / m := by grind
@@ -1098,7 +1098,7 @@ lemma int_ediv_toNat_le (a b : ℤ) (m : ℕ) (_hm : 0 < m)
 /--
 @isnad1 id=le.3h3v.s6.39c573487e33 from=translated src=- shape=79988918 vocab=99ac84d9
 -/
-lemma div_toNat_le_half_div (n d : ℕ) (hd_pos : 0 < d) (x : ℤ)
+lemma _root_.Tengoku.LeanPool.div_toNat_le_half_div (n d : ℕ) (hd_pos : 0 < d) (x : ℤ)
     (hx0 : 0 ≤ x) (hx_lt : x < (↑n : ℤ) / 2) :
     (x / (↑d : ℤ)).toNat ≤ n / (2 * d) := by
   have hx_le : x ≤ (↑n : ℤ) / 2 := le_of_lt hx_lt
@@ -1115,7 +1115,7 @@ lemma div_toNat_le_half_div (n d : ℕ) (hd_pos : 0 < d) (x : ℤ)
 /--
 @isnad1 id=mem.3h5v.s7.e177402be6ee from=translated src=- shape=c70d5db2 vocab=ff204933
 -/
-lemma fiber_div_mem_range (n d : ℕ) (hd_pos : 0 < d) (b : ℕ)
+lemma _root_.Tengoku.LeanPool.fiber_div_mem_range (n d : ℕ) (hd_pos : 0 < d) (b : ℕ)
     (S : Set ℤ) (hS_sub : S ⊆ Set.Ico (0 : ℤ) (↑n / 2))
     (x : ℤ) (hx : x ∈ {x ∈ S | (x % (d : ℤ)).toNat = b}) :
     (x / (d : ℤ)).toNat ∈ Finset.range (n / (2 * d) + 1) := by
@@ -1128,7 +1128,7 @@ lemma fiber_div_mem_range (n d : ℕ) (hd_pos : 0 < d) (b : ℕ)
 /--
 @isnad1 id=le.4h4v.s7.cfab3e634a7d from=translated src=- shape=40ad4298 vocab=1a38b984
 -/
-lemma product_ge_eta_sq_n_sq (η : ℝ) (hη_pos : 0 < η)
+lemma _root_.Tengoku.LeanPool.product_ge_eta_sq_n_sq (η : ℝ) (hη_pos : 0 < η)
     (n : ℕ) (hn : 2 ≤ n)
     (p q : ℤ) (hp : η * (n : ℝ) ≤ (p : ℝ)) (hq : η * (n : ℝ) ≤ (q : ℝ)) :
     (η * (n : ℝ)) ^ 2 ≤ (2 * (p : ℝ) - 1) * (2 * (q : ℝ) - 1) := by
@@ -1145,7 +1145,7 @@ lemma product_ge_eta_sq_n_sq (η : ℝ) (hη_pos : 0 < η)
 /--
 @isnad1 id=le.2h4v.s8.70ea46d47b67 from=translated src=- shape=03078c60 vocab=1a22a19b
 -/
-lemma rearrange_ineq (η : ℝ) (n : ℕ) (hn : 2 ≤ n) (p q : ℤ)
+lemma _root_.Tengoku.LeanPool.rearrange_ineq (η : ℝ) (n : ℕ) (hn : 2 ≤ n) (p q : ℤ)
     (h : (η * (n : ℝ)) ^ 2 ≤ (2 * (p : ℝ) - 1) * (2 * (q : ℝ) - 1)) :
     η ^ 2 * (Nat.totient n : ℝ) ≤
       (2 * (p : ℝ) - 1) * (2 * (q : ℝ) - 1) * (Nat.totient n : ℝ) / (n : ℝ) ^ 2 := by
@@ -1163,7 +1163,7 @@ lemma rearrange_ineq (η : ℝ) (n : ℕ) (hn : 2 ≤ n) (p q : ℤ)
 /--
 @isnad1 id=le.3h4v.s7.e60ff1644fc3 from=translated src=- shape=182d2bb2 vocab=0b4c7630
 -/
-lemma main_term_lower_bound (η : ℝ) (hη_pos : 0 < η)
+lemma _root_.Tengoku.LeanPool.main_term_lower_bound (η : ℝ) (hη_pos : 0 < η)
     (n : ℕ) (hn : 2 ≤ n)
     (p q : ℤ) (hpq : (p, q) ∈ truncatedObtuseRegion n η) :
     η ^ 2 * (Nat.totient n : ℝ) ≤
@@ -1172,21 +1172,21 @@ lemma main_term_lower_bound (η : ℝ) (hη_pos : 0 < η)
   exact rearrange_ineq η n hn p q (product_ge_eta_sq_n_sq η hη_pos n hn p q hp hq)
 
 /-- The complex-valued indicator function of `intervalSet n m` on `ZMod n`. -/
-noncomputable def intervalIndicator (n : ℕ) (m : ℕ) : ZMod n → ℂ :=
+noncomputable def _root_.Tengoku.LeanPool.intervalIndicator (n : ℕ) (m : ℕ) : ZMod n → ℂ :=
   (intervalSet n m).indicator (fun _ => 1)
 
 /-- The normalised discrete Fourier transform of `f : ZMod n → ℂ`, scaled by `(n : ℂ)⁻¹`. -/
-noncomputable def normalizedDFT (n : ℕ) [NeZero n] (f : ZMod n → ℂ) (k : ZMod n) : ℂ :=
+noncomputable def _root_.Tengoku.LeanPool.normalizedDFT (n : ℕ) [NeZero n] (f : ZMod n → ℂ) (k : ZMod n) : ℂ :=
   ((n : ℂ)⁻¹) * ZMod.dft f k
 
 /-- The Ramanujan sum `c_n(t)`, written via the standard additive character of `ZMod n`. -/
-noncomputable def ramanujanSum (n : ℕ) [NeZero n] (t : ℤ) : ℂ :=
+noncomputable def _root_.Tengoku.LeanPool.ramanujanSum (n : ℕ) [NeZero n] (t : ℤ) : ℂ :=
   ∑ a : (ZMod n)ˣ, ZMod.stdAddChar (a.val * (t : ZMod n))
 
 /--
 @isnad1 id=eq.1h1v.s6.ab274d81c7e7 from=translated src=- shape=de13bef2 vocab=3ddf8ca0
 -/
-lemma toNat_two_mul_sub_one (p : ℤ) (hp : 1 ≤ p) :
+lemma _root_.Tengoku.LeanPool.toNat_two_mul_sub_one (p : ℤ) (hp : 1 ≤ p) :
     ((2 * p - 1).toNat : ℝ) = 2 * (p : ℝ) - 1 := by
   have h₂ : ((2 * p - 1).toNat : ℤ) = 2 * p - 1 := Int.toNat_of_nonneg (by omega)
   have : ((2 * p - 1).toNat : ℝ) = ((2 * p - 1 : ℤ) : ℝ) := by exact_mod_cast h₂
@@ -1195,7 +1195,7 @@ lemma toNat_two_mul_sub_one (p : ℤ) (hp : 1 ≤ p) :
 /--
 @isnad1 id=eq.0h5v.s6.c4e93a1987e6 from=translated src=- shape=5ba0dd4c vocab=796e7483
 -/
-lemma indicator_product_eq_ite (n : ℕ) (mp mq : ℕ) (x y : ZMod n) :
+lemma _root_.Tengoku.LeanPool.indicator_product_eq_ite (n : ℕ) (mp mq : ℕ) (x y : ZMod n) :
     intervalIndicator n mp x * intervalIndicator n mq y =
     if (x ∈ intervalSet n mp ∧ y ∈ intervalSet n mq) then (1 : ℂ) else 0 := by
   dsimp [intervalIndicator]
@@ -1204,7 +1204,7 @@ lemma indicator_product_eq_ite (n : ℕ) (mp mq : ℕ) (x y : ZMod n) :
 /--
 @isnad1 id=eq.4h3v.s8.e3b585b8d1c0 from=translated src=- shape=70e82b60 vocab=bcc77c77
 -/
-lemma counting_as_indicator_product (n : ℕ) (p q : ℤ) (hn : 2 ≤ n)
+lemma _root_.Tengoku.LeanPool.counting_as_indicator_product (n : ℕ) (p q : ℤ) (hn : 2 ≤ n)
     (_hp : 1 ≤ p) (_hq : 1 ≤ q) (_hpq : (p : ℝ) + (q : ℝ) < (n : ℝ) / 2) :
     haveI : NeZero n := ⟨by omega⟩
     (countingFunctionS n p q : ℂ) =
@@ -1221,7 +1221,7 @@ lemma counting_as_indicator_product (n : ℕ) (p q : ℤ) (hn : 2 ≤ n)
 /--
 @isnad1 id=eq.0h3v.s6.f966b0401f41 from=translated src=- shape=92bb2492 vocab=f381e9bf
 -/
-lemma fourier_inversion (n : ℕ) [NeZero n] (f : ZMod n → ℂ) (x : ZMod n) :
+lemma _root_.Tengoku.LeanPool.fourier_inversion (n : ℕ) [NeZero n] (f : ZMod n → ℂ) (x : ZMod n) :
     f x = ∑ k : ZMod n,
       normalizedDFT n f k * ZMod.stdAddChar (k * x) := by
   have h₁ : (ZMod.dft.symm : (ZMod n → ℂ) ≃ₗ[ℂ] (ZMod n → ℂ)) (ZMod.dft f) = f := by
@@ -1243,7 +1243,7 @@ lemma fourier_inversion (n : ℕ) [NeZero n] (f : ZMod n → ℂ) (x : ZMod n) :
 /--
 @isnad1 id=eq.0h5v.s6.d4a49061d8f7 from=translated src=- shape=7715e08e vocab=8311caaa
 -/
-lemma three_sum_comm {α : Type*} {β : Type*} {γ : Type*} {R : Type*}
+lemma _root_.Tengoku.LeanPool.three_sum_comm {α : Type*} {β : Type*} {γ : Type*} {R : Type*}
     [Fintype α] [Fintype β] [Fintype γ] [AddCommMonoid R]
     (f : α → β → γ → R) :
     (∑ a : α, ∑ b : β, ∑ c : γ, f a b c) =
@@ -1253,7 +1253,7 @@ lemma three_sum_comm {α : Type*} {β : Type*} {γ : Type*} {R : Type*}
 /--
 @isnad1 id=eq.0h5v.s8.714c00f99925 from=translated src=- shape=d5fc65ba vocab=4911e4ac
 -/
-lemma sum_product_interchange_units (n : ℕ) [NeZero n]
+lemma _root_.Tengoku.LeanPool.sum_product_interchange_units (n : ℕ) [NeZero n]
     (c : ZMod n → ℂ) (d : ZMod n → ℂ)
     (f : ZMod n → (ZMod n)ˣ → ℂ) (g : ZMod n → (ZMod n)ˣ → ℂ) :
     (∑ a : (ZMod n)ˣ,
@@ -1274,7 +1274,7 @@ lemma sum_product_interchange_units (n : ℕ) [NeZero n]
 /--
 @isnad1 id=eq.4h3v.s9.88b9d67a8ffd from=translated src=- shape=d840b534 vocab=3ce75565
 -/
-lemma interchange_and_factor (n : ℕ) (p q : ℤ) (hn : 2 ≤ n)
+lemma _root_.Tengoku.LeanPool.interchange_and_factor (n : ℕ) (p q : ℤ) (hn : 2 ≤ n)
     (_ : 1 ≤ p) (_ : 1 ≤ q) (_ : (p : ℝ) + (q : ℝ) < (n : ℝ) / 2) :
     haveI : NeZero n := ⟨by omega⟩
     (∑ a : (ZMod n)ˣ,
@@ -1298,7 +1298,7 @@ lemma interchange_and_factor (n : ℕ) (p q : ℤ) (hn : 2 ≤ n)
 /--
 @isnad1 id=eq.0h5v.s8.468471ad2b7b from=translated src=- shape=98212a57 vocab=317e54eb
 -/
-lemma character_product_simplify (n : ℕ) [NeZero n] (k l : ZMod n) (p q : ℤ) :
+lemma _root_.Tengoku.LeanPool.character_product_simplify (n : ℕ) [NeZero n] (k l : ZMod n) (p q : ℤ) :
     (∑ a : (ZMod n)ˣ,
       ZMod.stdAddChar (k * (a.val * (p : ZMod n))) *
       ZMod.stdAddChar (l * (a.val * (q : ZMod n))) : ℂ) =
@@ -1320,7 +1320,7 @@ lemma character_product_simplify (n : ℕ) [NeZero n] (k l : ZMod n) (p q : ℤ)
 /--
 @isnad1 id=eq.4h3v.s8.4479ab48cf99 from=translated src=- shape=81e7c48c vocab=ccc14185
 -/
-lemma counting_eq_fourier_ramanujan_sum
+lemma _root_.Tengoku.LeanPool.counting_eq_fourier_ramanujan_sum
     (n : ℕ) (hn : 2 ≤ n)
     (p q : ℤ) (hp : 1 ≤ p) (hq : 1 ≤ q)
     (hpq : (p : ℝ) + (q : ℝ) < (n : ℝ) / 2) :
@@ -1338,14 +1338,14 @@ lemma counting_eq_fourier_ramanujan_sum
 /--
 @isnad1 id=ex.1h1v.s5.a94cd90fd778 from=translated src=- shape=215d3bf3 vocab=cce967a7
 -/
-lemma largestPrimeFactor_pos_helper_fb (n : ℕ) (hn : 2 ≤ n) :
+lemma _root_.Tengoku.LeanPool.largestPrimeFactor_pos_helper_fb (n : ℕ) (hn : 2 ≤ n) :
     ∃ a : ℕ, n.primeFactors.max = ↑a ∧ 0 < a :=
   largestPrimeFactor_pos_helper n hn
 
 /--
 @isnad1 id=le.1h1v.s4.b9fb06a54bfc from=translated src=- shape=35bd48ee vocab=6f250dcd
 -/
-lemma largestPrimeFactor_ge_two (n : ℕ) (hn : 2 ≤ n) :
+lemma _root_.Tengoku.LeanPool.largestPrimeFactor_ge_two (n : ℕ) (hn : 2 ≤ n) :
     2 ≤ largestPrimeFactor n := by
   obtain ⟨a, ha_max, _ha_pos⟩ := largestPrimeFactor_pos_helper_fb n hn
   have ha_prime : Nat.Prime a := Nat.prime_of_mem_primeFactors (Finset.mem_of_max ha_max)
@@ -1356,7 +1356,7 @@ lemma largestPrimeFactor_ge_two (n : ℕ) (hn : 2 ≤ n) :
 /--
 @isnad1 id=le.1h1v.s5.6adb5220cb44 from=translated src=- shape=bdd0c48a vocab=bffa5ceb
 -/
-lemma ceil_log_ge_one (n : ℕ) (hn : 2 ≤ n) :
+lemma _root_.Tengoku.LeanPool.ceil_log_ge_one (n : ℕ) (hn : 2 ≤ n) :
     1 ≤ ⌈Real.log (n : ℝ)⌉₊ := by
   have h₁ : (1 : ℝ) < (n : ℝ) := by norm_cast
   have h₂ : 0 < Real.log (n : ℝ) := Real.log_pos h₁
@@ -1365,7 +1365,7 @@ lemma ceil_log_ge_one (n : ℕ) (hn : 2 ≤ n) :
 /--
 @isnad1 id=le.3h3v.s6.a51fedf715ee from=translated src=- shape=f6f1b44a vocab=00cae1bd
 -/
-lemma bound_first_term (P R A : ℝ) (hP : 2 ≤ P) (hR : 1 ≤ R) (hA : 0 ≤ A) :
+lemma _root_.Tengoku.LeanPool.bound_first_term (P R A : ℝ) (hP : 2 ≤ P) (hR : 1 ≤ R) (hA : 0 ≤ A) :
     A / (P - 1) ≤ 2 * R * A / P := by
   have hP0 : (0 : ℝ) < P := by linarith
   have hP1 : (0 : ℝ) < P - 1 := by linarith
@@ -1378,7 +1378,7 @@ lemma bound_first_term (P R A : ℝ) (hP : 2 ≤ P) (hR : 1 ≤ R) (hA : 0 ≤ A
 /--
 @isnad1 id=le.3h3v.s7.56d588885fe7 from=translated src=- shape=5c6286ba vocab=162129a8
 -/
-lemma combine_error_terms_real (P R A : ℝ) (hP : 2 ≤ P) (hR : 1 ≤ R) (hA : 0 ≤ A) :
+lemma _root_.Tengoku.LeanPool.combine_error_terms_real (P R A : ℝ) (hP : 2 ≤ P) (hR : 1 ≤ R) (hA : 0 ≤ A) :
     A / (P - 1) + 7 * R * A / P ≤ 9 * R * A / P := by
   have hP0 : (0 : ℝ) < P := by linarith
   have h := bound_first_term P R A hP hR hA
@@ -1387,7 +1387,7 @@ lemma combine_error_terms_real (P R A : ℝ) (hP : 2 ≤ P) (hR : 1 ≤ R) (hA :
 
 /-- The error term `E_{P₀}(p, q)`: the contribution of frequencies `(k, l)` with
 `P ^ (α - 1) ∣ k * p + l * q` but `P ^ α ∤ k * p + l * q` to the Fourier expansion. -/
-noncomputable def errorTermEP0 (n : ℕ) [NeZero n] (p q : ℤ) : ℂ :=
+noncomputable def _root_.Tengoku.LeanPool.errorTermEP0 (n : ℕ) [NeZero n] (p q : ℤ) : ℂ :=
   let P := largestPrimeFactor n
   let alpha := n.factorization P
   let P0 := P ^ (alpha - 1)
@@ -1404,7 +1404,7 @@ noncomputable def errorTermEP0 (n : ℕ) [NeZero n] (p q : ℤ) : ℂ :=
 
 /-- The error term `E_{P^α}(p, q)`: the contribution of nonzero frequencies `(k, l)` with
 `P ^ α ∣ k * p + l * q` to the Fourier expansion of `countingFunctionS`. -/
-noncomputable def errorTermEPalpha (n : ℕ) [NeZero n] (p q : ℤ) : ℂ :=
+noncomputable def _root_.Tengoku.LeanPool.errorTermEPalpha (n : ℕ) [NeZero n] (p q : ℤ) : ℂ :=
   let P := largestPrimeFactor n
   let alpha := n.factorization P
   let d := P ^ alpha
@@ -1420,14 +1420,14 @@ noncomputable def errorTermEPalpha (n : ℕ) [NeZero n] (p q : ℤ) : ℂ :=
 /--
 @isnad1 id=eq.0h3v.s6.d55d4fee902d from=translated src=- shape=43124b11 vocab=772f7d0f
 -/
-lemma zmod_mul_as_cast (n : ℕ) [NeZero n] (k : ZMod n) (p : ℤ) :
+lemma _root_.Tengoku.LeanPool.zmod_mul_as_cast (n : ℕ) [NeZero n] (k : ZMod n) (p : ℤ) :
     k * (p : ZMod n) = ((ZMod.val k * p : ℤ) : ZMod n) := by
   simp
 
 /--
 @isnad1 id=eq.0h1v.s4.9508724df0c3 from=translated src=- shape=d90a69c9 vocab=e84b16a6
 -/
-lemma ramanujanSum_zero (n : ℕ) [NeZero n] :
+lemma _root_.Tengoku.LeanPool.ramanujanSum_zero (n : ℕ) [NeZero n] :
     ramanujanSum n 0 = (Nat.totient n : ℂ) := by
   have h1 : ramanujanSum n 0 = ∑ _ : (ZMod n)ˣ, (1 : ℂ) := by simp [ramanujanSum]
   simp_all
@@ -1435,7 +1435,7 @@ lemma ramanujanSum_zero (n : ℕ) [NeZero n] :
 /--
 @isnad1 id=eq.1h2v.s6.874989c8093b from=translated src=- shape=e4c78e59 vocab=02dfdbee
 -/
-lemma card_intervalSet_filter (n : ℕ) [NeZero n] (m : ℕ) (hm2 : m < n) :
+lemma _root_.Tengoku.LeanPool.card_intervalSet_filter (n : ℕ) [NeZero n] (m : ℕ) (hm2 : m < n) :
     (Finset.univ.filter (fun j : ZMod n =>
       1 ≤ ZMod.val j ∧ ZMod.val j ≤ m)).card = m := by
   have h := Finset.card_bij'
@@ -1463,7 +1463,7 @@ lemma card_intervalSet_filter (n : ℕ) [NeZero n] (m : ℕ) (hm2 : m < n) :
 /--
 @isnad1 id=eq.2h2v.s5.418ef84b1e4f from=translated src=- shape=a9381b52 vocab=ae90dcbb
 -/
-lemma sum_intervalIndicator_eq (n : ℕ) [NeZero n] (m : ℕ) (_hm1 : 1 ≤ m) (hm2 : m < n) :
+lemma _root_.Tengoku.LeanPool.sum_intervalIndicator_eq (n : ℕ) [NeZero n] (m : ℕ) (_hm1 : 1 ≤ m) (hm2 : m < n) :
     ∑ x : ZMod n, intervalIndicator n m x = (m : ℂ) := by
   simp only [intervalIndicator, intervalSet, Set.indicator_apply, Set.mem_ofPred_eq,
     Finset.sum_boole]
@@ -1472,7 +1472,7 @@ lemma sum_intervalIndicator_eq (n : ℕ) [NeZero n] (m : ℕ) (_hm1 : 1 ≤ m) (
 /--
 @isnad1 id=eq.2h2v.s6.1b79965efb87 from=translated src=- shape=6c4bb785 vocab=e669c26b
 -/
-lemma normalizedDFT_intervalIndicator_zero (n : ℕ) [NeZero n] (m : ℕ) (hm1 : 1 ≤ m) (hm2 : m < n) :
+lemma _root_.Tengoku.LeanPool.normalizedDFT_intervalIndicator_zero (n : ℕ) [NeZero n] (m : ℕ) (hm1 : 1 ≤ m) (hm2 : m < n) :
     normalizedDFT n (intervalIndicator n m) 0 = (m : ℂ) / (n : ℂ) := by
   simp only [normalizedDFT, ZMod.dft_apply_zero]
   rw [sum_intervalIndicator_eq n m hm1 hm2]
@@ -1481,7 +1481,7 @@ lemma normalizedDFT_intervalIndicator_zero (n : ℕ) [NeZero n] (m : ℕ) (hm1 :
 /--
 @isnad1 id=le.1h1v.s5.82a59f660dfa from=translated src=- shape=c7feda6e vocab=d36c76bf
 -/
-lemma mp_lower_bound (p : ℤ) (hp : 1 ≤ p) :
+lemma _root_.Tengoku.LeanPool.mp_lower_bound (p : ℤ) (hp : 1 ≤ p) :
     1 ≤ (2 * p - 1).toNat := by
   have h₁₃ : (2 * p - 1 : ℤ) ≥ 1 := by linarith
   omega
@@ -1489,7 +1489,7 @@ lemma mp_lower_bound (p : ℤ) (hp : 1 ≤ p) :
 /--
 @isnad1 id=lt.4h3v.s6.86cc76c6a744 from=translated src=- shape=7d487c2c vocab=f66ddb49
 -/
-lemma mp_upper_bound (n : ℕ) (_hn : 2 ≤ n) (p q : ℤ) (hp : 1 ≤ p) (hq : 1 ≤ q)
+lemma _root_.Tengoku.LeanPool.mp_upper_bound (n : ℕ) (_hn : 2 ≤ n) (p q : ℤ) (hp : 1 ≤ p) (hq : 1 ≤ q)
     (hpq : (p : ℝ) + (q : ℝ) < (n : ℝ) / 2) :
     (2 * p - 1).toNat < n := by
   have h₁ : 2 * p - 1 < n := by
@@ -1504,7 +1504,7 @@ lemma mp_upper_bound (n : ℕ) (_hn : 2 ≤ n) (p q : ℤ) (hp : 1 ≤ p) (hq : 
 /--
 @isnad1 id=and.4h3v.s7.0bd53e084c9f from=translated src=- shape=6fe35183 vocab=f66ddb49
 -/
-lemma mp_valid (n : ℕ) (hn : 2 ≤ n) (p q : ℤ) (hp : 1 ≤ p) (hq : 1 ≤ q)
+lemma _root_.Tengoku.LeanPool.mp_valid (n : ℕ) (hn : 2 ≤ n) (p q : ℤ) (hp : 1 ≤ p) (hq : 1 ≤ q)
     (hpq : (p : ℝ) + (q : ℝ) < (n : ℝ) / 2) :
     1 ≤ (2 * p - 1).toNat ∧ (2 * p - 1).toNat < n := by
   exact ⟨mp_lower_bound p hp, mp_upper_bound n hn p q hp hq hpq⟩
@@ -1512,7 +1512,7 @@ lemma mp_valid (n : ℕ) (hn : 2 ≤ n) (p q : ℤ) (hp : 1 ≤ p) (hq : 1 ≤ q
 /--
 @isnad1 id=and.4h3v.s7.792f3c77b043 from=translated src=- shape=26b1d63f vocab=f66ddb49
 -/
-lemma mq_valid (n : ℕ) (_hn : 2 ≤ n) (p q : ℤ) (hp : 1 ≤ p) (hq : 1 ≤ q)
+lemma _root_.Tengoku.LeanPool.mq_valid (n : ℕ) (_hn : 2 ≤ n) (p q : ℤ) (hp : 1 ≤ p) (hq : 1 ≤ q)
     (hpq : (p : ℝ) + (q : ℝ) < (n : ℝ) / 2) :
     1 ≤ (2 * q - 1).toNat ∧ (2 * q - 1).toNat < n := by
   exact mp_valid n _hn q p hq hp (by rwa [add_comm])
@@ -1520,7 +1520,7 @@ lemma mq_valid (n : ℕ) (_hn : 2 ≤ n) (p q : ℤ) (hp : 1 ≤ p) (hq : 1 ≤ 
 /--
 @isnad1 id=eq.4h3v.s8.c0e00ab1f6b6 from=translated src=- shape=b10dfbd4 vocab=ed0c8ab6
 -/
-lemma zero_zero_term_eq_main
+lemma _root_.Tengoku.LeanPool.zero_zero_term_eq_main
     (n : ℕ) [NeZero n] (hn : 2 ≤ n)
     (p q : ℤ) (hp : 1 ≤ p) (hq : 1 ≤ q)
     (hpq : (p : ℝ) + (q : ℝ) < (n : ℝ) / 2) :
@@ -1539,7 +1539,7 @@ lemma zero_zero_term_eq_main
 /--
 @isnad1 id=eq.0h2v.s8.0c587bd7b880 from=translated src=- shape=11543770 vocab=4c7a8ca3
 -/
-lemma full_sum_split_zero_nonzero
+lemma _root_.Tengoku.LeanPool.full_sum_split_zero_nonzero
     (n : ℕ) [NeZero n] (F : ZMod n → ZMod n → ℂ) :
     ∑ k : ZMod n, ∑ l : ZMod n, F k l =
     F 0 0 +
@@ -1564,7 +1564,7 @@ lemma full_sum_split_zero_nonzero
 /--
 @isnad1 id=eq.0h2v.s7.450d06b3573c from=translated src=- shape=568d69a8 vocab=a16b5b53
 -/
-lemma sum_stdAddChar_mul_eq (n : ℕ) [NeZero n] (t : ℤ) :
+lemma _root_.Tengoku.LeanPool.sum_stdAddChar_mul_eq (n : ℕ) [NeZero n] (t : ℤ) :
     ∑ a : ZMod n, ZMod.stdAddChar (a * (t : ZMod n)) =
     if (n : ℤ) ∣ t then (n : ℂ) else 0 := by
   have h2 : ∑ a : ZMod n, ZMod.stdAddChar (a * (t : ZMod n)) =
@@ -1577,7 +1577,7 @@ lemma sum_stdAddChar_mul_eq (n : ℕ) [NeZero n] (t : ℤ) :
 /--
 @isnad1 id=eq.0h2v.s8.753b9dc45dae from=translated src=- shape=21ee0b65 vocab=794b891b
 -/
-lemma sum_filter_units_eq_sum_units (n : ℕ) [NeZero n] (f : ZMod n → ℂ) :
+lemma _root_.Tengoku.LeanPool.sum_filter_units_eq_sum_units (n : ℕ) [NeZero n] (f : ZMod n → ℂ) :
     ∑ a ∈ Finset.univ.filter (fun a : ZMod n => IsUnit a), f a =
     ∑ u : (ZMod n)ˣ, f u.val := by
   rw [← Finset.sum_subtype_eq_sum_filter, Finset.subtype_univ]
@@ -1591,7 +1591,7 @@ lemma sum_filter_units_eq_sum_units (n : ℕ) [NeZero n] (f : ZMod n → ℂ) :
 /--
 @isnad1 id=eq.0h2v.s8.cb1b8d98e98b from=translated src=- shape=ad616578 vocab=0ce18682
 -/
-lemma sum_eq_ramanujanSum_add_sum_nonunits (n : ℕ) [NeZero n] (t : ℤ) :
+lemma _root_.Tengoku.LeanPool.sum_eq_ramanujanSum_add_sum_nonunits (n : ℕ) [NeZero n] (t : ℤ) :
     (∑ a : ZMod n, ZMod.stdAddChar (a * (t : ZMod n))) =
     ramanujanSum n t +
     ∑ a ∈ Finset.univ.filter (fun a : ZMod n => ¬ IsUnit a),
@@ -1605,23 +1605,23 @@ lemma sum_eq_ramanujanSum_add_sum_nonunits (n : ℕ) [NeZero n] (t : ℤ) :
 /--
 @isnad1 id=eq.1h2v.s6.90af9e75786d from=translated src=- shape=a2b36395 vocab=0e093988
 -/
-lemma p_mul_pow_pred {p k : ℕ} (hk : 0 < k) : p * p ^ (k - 1) = p ^ k := by
+lemma _root_.Tengoku.LeanPool.p_mul_pow_pred {p k : ℕ} (hk : 0 < k) : p * p ^ (k - 1) = p ^ k := by
   cases k with
   | zero => omega
   | succ n => simp [pow_succ, mul_comm]
 
 /-- Lift a residue mod `p ^ (k - 1)` to a (non-unit) residue mod `p ^ k` by multiplying by `p`. -/
-noncomputable def nonunitFwd {p k : ℕ} (b : ZMod (p ^ (k - 1))) : ZMod (p ^ k) :=
+noncomputable def _root_.Tengoku.LeanPool.nonunitFwd {p k : ℕ} (b : ZMod (p ^ (k - 1))) : ZMod (p ^ k) :=
   (p : ZMod (p ^ k)) * (b.val : ZMod (p ^ k))
 
 /-- Send a residue mod `p ^ k` to the residue mod `p ^ (k - 1)` got by dividing its value by `p`. -/
-noncomputable def nonunitBwd {p k : ℕ} (a : ZMod (p ^ k)) : ZMod (p ^ (k - 1)) :=
+noncomputable def _root_.Tengoku.LeanPool.nonunitBwd {p k : ℕ} (a : ZMod (p ^ k)) : ZMod (p ^ (k - 1)) :=
   (a.val / p : ℕ)
 
 /--
 @isnad1 id=eq.1h3v.s6.62414b48d2f0 from=translated src=- shape=3eedf6bc vocab=1b9e8e44
 -/
-lemma val_nonunitFwd {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 0 < k)
+lemma _root_.Tengoku.LeanPool.val_nonunitFwd {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 0 < k)
     (b : ZMod (p ^ (k - 1))) :
     (nonunitFwd (p := p) (k := k) b).val = p * b.val := by
   unfold nonunitFwd
@@ -1631,7 +1631,7 @@ lemma val_nonunitFwd {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 0 < k)
 /--
 @isnad1 id=not.1h3v.s7.acbbc3b2c49b from=translated src=- shape=aa590f24 vocab=5ddf856d
 -/
-lemma nonunitFwd_not_isUnit {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 0 < k)
+lemma _root_.Tengoku.LeanPool.nonunitFwd_not_isUnit {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 0 < k)
     (b : ZMod (p ^ (k - 1))) :
     ¬ IsUnit (nonunitFwd b) := by
   intro ⟨u, hu⟩
@@ -1643,7 +1643,7 @@ lemma nonunitFwd_not_isUnit {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 
 /--
 @isnad1 id=eq.1h3v.s6.eb875c0a6559 from=translated src=- shape=6a0cfea8 vocab=23304901
 -/
-lemma nonunitBwd_nonunitFwd {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 0 < k)
+lemma _root_.Tengoku.LeanPool.nonunitBwd_nonunitFwd {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 0 < k)
     (b : ZMod (p ^ (k - 1))) :
     nonunitBwd (nonunitFwd (p := p) (k := k) b) = b := by
   simp [nonunitBwd, val_nonunitFwd hk b, Nat.mul_div_cancel_left _ hp.out.pos,
@@ -1652,7 +1652,7 @@ lemma nonunitBwd_nonunitFwd {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 
 /--
 @isnad1 id=dvd.1h3v.s6.33ec80c1e76c from=translated src=- shape=0a241aa5 vocab=660ca674
 -/
-lemma p_dvd_val_of_not_isUnit {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ}
+lemma _root_.Tengoku.LeanPool.p_dvd_val_of_not_isUnit {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ}
     (a : ZMod (p ^ k)) (ha : ¬ IsUnit a) : p ∣ a.val := by
   by_contra h
   have := Fact.mk hp.1
@@ -1666,7 +1666,7 @@ lemma p_dvd_val_of_not_isUnit {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ}
 /--
 @isnad1 id=lt.1h3v.s6.4853b5e2b86d from=translated src=- shape=27a86386 vocab=08d3cf8c
 -/
-lemma val_div_p_lt {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 0 < k)
+lemma _root_.Tengoku.LeanPool.val_div_p_lt {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 0 < k)
     (a : ZMod (p ^ k)) : a.val / p < p ^ (k - 1) := by
   have h₁ : a.val < p ^ k := ZMod.val_lt a
   have h₆ : a.val / p * p ≤ a.val := Nat.div_mul_le_self a.val p
@@ -1679,7 +1679,7 @@ lemma val_div_p_lt {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 0 < k)
 /--
 @isnad1 id=eq.2h3v.s9.5c9cbfeb460b from=translated src=- shape=996794d0 vocab=6edc0f09
 -/
-lemma nonunitFwd_nonunitBwd {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 0 < k)
+lemma _root_.Tengoku.LeanPool.nonunitFwd_nonunitBwd {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 0 < k)
     (a : ZMod (p ^ k))
     (ha : a ∈ Finset.univ.filter (fun a : ZMod (p ^ k) => ¬ IsUnit a)) :
     nonunitFwd (nonunitBwd (p := p) a) = a := by
@@ -1691,7 +1691,7 @@ lemma nonunitFwd_nonunitBwd {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 
 /--
 @isnad1 id=eq.1h4v.s8.eb22a6179ba4 from=translated src=- shape=d483efe1 vocab=08dc1b8f
 -/
-lemma lhs_cast_eq {p : ℕ} [_hp : Fact (Nat.Prime p)] {k : ℕ} (_hk : 0 < k)
+lemma _root_.Tengoku.LeanPool.lhs_cast_eq {p : ℕ} [_hp : Fact (Nat.Prime p)] {k : ℕ} (_hk : 0 < k)
     (b : ZMod (p ^ (k - 1))) (t : ℤ) :
     (nonunitFwd (p := p) (k := k) b * (t : ZMod (p ^ k)) : ZMod (p ^ k)) =
     ((↑p * ↑b.val * t : ℤ) : ZMod (p ^ k)) := by
@@ -1701,7 +1701,7 @@ lemma lhs_cast_eq {p : ℕ} [_hp : Fact (Nat.Prime p)] {k : ℕ} (_hk : 0 < k)
 /--
 @isnad1 id=eq.1h4v.s9.90fcfcc40552 from=translated src=- shape=9304a57d vocab=bac41366
 -/
-lemma rhs_cast_eq {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (_hk : 0 < k)
+lemma _root_.Tengoku.LeanPool.rhs_cast_eq {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (_hk : 0 < k)
     (b : ZMod (p ^ (k - 1))) (t : ℤ) :
     (b * (t : ZMod (p ^ (k - 1))) : ZMod (p ^ (k - 1))) =
     ((↑b.val * t : ℤ) : ZMod (p ^ (k - 1))) := by
@@ -1710,7 +1710,7 @@ lemma rhs_cast_eq {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (_hk : 0 < k)
 /--
 @isnad1 id=eq.1h4v.s8.07adceea2692 from=translated src=- shape=afc9299b vocab=d8c71b8a
 -/
-lemma exponent_eq {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 0 < k)
+lemma _root_.Tengoku.LeanPool.exponent_eq {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 0 < k)
     (b : ZMod (p ^ (k - 1))) (t : ℤ) :
     2 * ↑Real.pi * Complex.I * (↑(↑p * ↑b.val * t : ℤ) : ℂ) / (↑(p ^ k) : ℂ) =
     2 * ↑Real.pi * Complex.I * (↑(↑b.val * t : ℤ) : ℂ) / (↑(p ^ (k - 1)) : ℂ) := by
@@ -1722,7 +1722,7 @@ lemma exponent_eq {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 0 < k)
 /--
 @isnad1 id=eq.1h4v.s10.cea65ad0bcc6 from=translated src=- shape=9d753fcd vocab=2d838c25
 -/
-lemma stdAddChar_nonunitFwd_eq {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 0 < k)
+lemma _root_.Tengoku.LeanPool.stdAddChar_nonunitFwd_eq {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 0 < k)
     (b : ZMod (p ^ (k - 1))) (t : ℤ) :
     ZMod.stdAddChar (nonunitFwd (p := p) (k := k) b * (t : ZMod (p ^ k))) =
     ZMod.stdAddChar (b * (t : ZMod (p ^ (k - 1)))) := by
@@ -1734,7 +1734,7 @@ lemma stdAddChar_nonunitFwd_eq {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk
 /--
 @isnad1 id=eq.1h3v.s11.cf8a4466f612 from=translated src=- shape=79f60906 vocab=1864fc5d
 -/
-lemma sum_nonunits_eq_sum_lower {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 0 < k)
+lemma _root_.Tengoku.LeanPool.sum_nonunits_eq_sum_lower {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 0 < k)
     (t : ℤ) :
     (∑ a ∈ Finset.univ.filter (fun a : ZMod (p ^ k) => ¬ IsUnit a),
       ZMod.stdAddChar (a * (t : ZMod (p ^ k)))) =
@@ -1750,7 +1750,7 @@ lemma sum_nonunits_eq_sum_lower {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (h
 /--
 @isnad1 id=eq.1h3v.s10.2dc04739a778 from=translated src=- shape=d99a9677 vocab=5cfa7b39
 -/
-lemma ramanujanSum_prime_pow_decomp {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 0 < k)
+lemma _root_.Tengoku.LeanPool.ramanujanSum_prime_pow_decomp {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 0 < k)
     (t : ℤ) :
     @ramanujanSum (p ^ k) ⟨pow_ne_zero k hp.out.ne_zero⟩ t =
     (∑ a : ZMod (p ^ k), ZMod.stdAddChar (a * (t : ZMod (p ^ k)))) -
@@ -1762,7 +1762,7 @@ lemma ramanujanSum_prime_pow_decomp {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ
 /--
 @isnad1 id=eq.2h3v.s6.15d91bc373ae from=translated src=- shape=8538ca80 vocab=5d237961
 -/
-theorem ramanujanSum_prime_pow_eq_zero {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 0 < k)
+theorem _root_.Tengoku.LeanPool.ramanujanSum_prime_pow_eq_zero {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 0 < k)
     {t : ℤ} (ht : ¬ ((p : ℤ) ^ (k - 1) ∣ t)) :
     @ramanujanSum (p ^ k) ⟨pow_ne_zero k hp.out.ne_zero⟩ t = 0 := by
   rw [ramanujanSum_prime_pow_decomp hk t,
@@ -1775,7 +1775,7 @@ theorem ramanujanSum_prime_pow_eq_zero {p : ℕ} [hp : Fact (Nat.Prime p)] {k : 
 /--
 @isnad1 id=eq.0h3v.s8.20d5d8c57b75 from=translated src=- shape=80cb0428 vocab=6a315652
 -/
-lemma ramanujanSum_unit_shift (n : ℕ) [NeZero n] (u : (ZMod n)ˣ) (s : ZMod n) :
+lemma _root_.Tengoku.LeanPool.ramanujanSum_unit_shift (n : ℕ) [NeZero n] (u : (ZMod n)ˣ) (s : ZMod n) :
     ∑ a : (ZMod n)ˣ, ZMod.stdAddChar (a.val * (u.val * s)) =
     ∑ a : (ZMod n)ˣ, ZMod.stdAddChar (a.val * s) :=
   Fintype.sum_equiv (Equiv.mulRight u)
@@ -1786,7 +1786,7 @@ lemma ramanujanSum_unit_shift (n : ℕ) [NeZero n] (u : (ZMod n)ˣ) (s : ZMod n)
 /--
 @isnad1 id=dvd.1h3v.s6.b154bfd513e0 from=translated src=- shape=22fc0419 vocab=39436e10
 -/
-lemma dvd_sub_mul_crt_val {n₁ n₂ : ℕ} [NeZero n₁]
+lemma _root_.Tengoku.LeanPool.dvd_sub_mul_crt_val {n₁ n₂ : ℕ} [NeZero n₁]
     (h : Nat.Coprime n₁ n₂) (j : ℤ) :
     (n₁ : ℤ) ∣ j - ↑n₂ * ↑((j : ZMod n₁) * (↑n₂ : ZMod n₁)⁻¹).val := by
   rw [← ZMod.intCast_zmod_eq_zero_iff_dvd]
@@ -1797,7 +1797,7 @@ lemma dvd_sub_mul_crt_val {n₁ n₂ : ℕ} [NeZero n₁]
 /--
 @isnad1 id=ex.1h3v.s8.53d1a84e8bd3 from=translated src=- shape=92322e33 vocab=e417649b
 -/
-lemma crt_exponent_eq {n₁ n₂ : ℕ} [hn₁ : NeZero n₁] [hn₂ : NeZero n₂]
+lemma _root_.Tengoku.LeanPool.crt_exponent_eq {n₁ n₂ : ℕ} [hn₁ : NeZero n₁] [hn₂ : NeZero n₂]
     (h : Nat.Coprime n₁ n₂) (j : ℤ) :
     ∃ m : ℤ, 2 * ↑Real.pi * Complex.I * ↑j / ↑(n₁ * n₂) =
       (2 * ↑Real.pi * Complex.I * ↑((j : ZMod n₁) * (↑n₂ : ZMod n₁)⁻¹).val / ↑n₁ +
@@ -1822,7 +1822,7 @@ lemma crt_exponent_eq {n₁ n₂ : ℕ} [hn₁ : NeZero n₁] [hn₂ : NeZero n�
 /--
 @isnad1 id=eq.1h3v.s10.c600756d794a from=translated src=- shape=88e26cc5 vocab=97d2a80f
 -/
-lemma stdAddChar_crt_split {n₁ n₂ : ℕ} [hn₁ : NeZero n₁] [hn₂ : NeZero n₂]
+lemma _root_.Tengoku.LeanPool.stdAddChar_crt_split {n₁ n₂ : ℕ} [hn₁ : NeZero n₁] [hn₂ : NeZero n₂]
     (h : Nat.Coprime n₁ n₂) (x : ZMod (n₁ * n₂)) :
     @ZMod.stdAddChar (n₁ * n₂) ⟨Nat.mul_ne_zero hn₁.ne hn₂.ne⟩ x =
     ZMod.stdAddChar ((ZMod.chineseRemainder h x).1 * (n₂ : ZMod n₁)⁻¹) *
@@ -1839,7 +1839,7 @@ lemma stdAddChar_crt_split {n₁ n₂ : ℕ} [hn₁ : NeZero n₁] [hn₂ : NeZe
 /--
 @isnad1 id=other.1h5v.s11.2b2a101652b7 from=translated src=- shape=9bf293ae vocab=bfb12efe
 -/
-lemma crt_proj_fst {n₁ n₂ : ℕ} [_hn₁ : NeZero n₁] [_hn₂ : NeZero n₂]
+lemma _root_.Tengoku.LeanPool.crt_proj_fst {n₁ n₂ : ℕ} [_hn₁ : NeZero n₁] [_hn₂ : NeZero n₂]
     (h : Nat.Coprime n₁ n₂) (a₁ : (ZMod n₁)ˣ) (a₂ : (ZMod n₂)ˣ) (t : ℤ) :
     let e := (Units.mapEquiv (ZMod.chineseRemainder h).toMulEquiv).toEquiv.trans
       MulEquiv.prodUnits.toEquiv
@@ -1853,7 +1853,7 @@ lemma crt_proj_fst {n₁ n₂ : ℕ} [_hn₁ : NeZero n₁] [_hn₂ : NeZero n�
 /--
 @isnad1 id=other.1h5v.s11.ad317991c45a from=translated src=- shape=dcca2f73 vocab=42a9d9db
 -/
-lemma crt_proj_snd {n₁ n₂ : ℕ} [_hn₁ : NeZero n₁] [_hn₂ : NeZero n₂]
+lemma _root_.Tengoku.LeanPool.crt_proj_snd {n₁ n₂ : ℕ} [_hn₁ : NeZero n₁] [_hn₂ : NeZero n₂]
     (h : Nat.Coprime n₁ n₂) (a₁ : (ZMod n₁)ˣ) (a₂ : (ZMod n₂)ˣ) (t : ℤ) :
     let e := (Units.mapEquiv (ZMod.chineseRemainder h).toMulEquiv).toEquiv.trans
       MulEquiv.prodUnits.toEquiv
@@ -1867,7 +1867,7 @@ lemma crt_proj_snd {n₁ n₂ : ℕ} [_hn₁ : NeZero n₁] [_hn₂ : NeZero n�
 /--
 @isnad1 id=eq.1h3v.s10.eab4c6390dfa from=translated src=- shape=e45c2a54 vocab=1ebe851f
 -/
-lemma ramanujanSum_crt_decomp {n₁ n₂ : ℕ} [hn₁ : NeZero n₁] [hn₂ : NeZero n₂]
+lemma _root_.Tengoku.LeanPool.ramanujanSum_crt_decomp {n₁ n₂ : ℕ} [hn₁ : NeZero n₁] [hn₂ : NeZero n₂]
     (h : Nat.Coprime n₁ n₂) (t : ℤ) :
     ∑ a : (ZMod (n₁ * n₂))ˣ,
       @ZMod.stdAddChar (n₁ * n₂) ⟨Nat.mul_ne_zero hn₁.ne hn₂.ne⟩
@@ -1893,7 +1893,7 @@ lemma ramanujanSum_crt_decomp {n₁ n₂ : ℕ} [hn₁ : NeZero n₁] [hn₂ : N
 /--
 @isnad1 id=eq.1h3v.s8.84eb50846137 from=translated src=- shape=865a4f2b vocab=f0bd015a
 -/
-lemma ramanujanSum_absorb_inv {n m : ℕ} [NeZero n] (hc : Nat.Coprime m n) (s : ZMod n) :
+lemma _root_.Tengoku.LeanPool.ramanujanSum_absorb_inv {n m : ℕ} [NeZero n] (hc : Nat.Coprime m n) (s : ZMod n) :
     ∑ a : (ZMod n)ˣ, ZMod.stdAddChar (a.val * ((m : ZMod n)⁻¹ * s)) =
     ∑ a : (ZMod n)ˣ, ZMod.stdAddChar (a.val * s) := by
   let u := ZMod.unitOfCoprime m hc
@@ -1904,7 +1904,7 @@ lemma ramanujanSum_absorb_inv {n m : ℕ} [NeZero n] (hc : Nat.Coprime m n) (s :
 /--
 @isnad1 id=eq.0h4v.s9.441ba08df984 from=translated src=- shape=b7666ce1 vocab=4bd9ee5a
 -/
-lemma sum_prod_factor {n₁ n₂ : ℕ} [NeZero n₁] [NeZero n₂]
+lemma _root_.Tengoku.LeanPool.sum_prod_factor {n₁ n₂ : ℕ} [NeZero n₁] [NeZero n₂]
     (s₁ : ZMod n₁) (s₂ : ZMod n₂) :
     ∑ ab : (ZMod n₁)ˣ × (ZMod n₂)ˣ,
       ZMod.stdAddChar (ab.1.val * s₁) * ZMod.stdAddChar (ab.2.val * s₂) =
@@ -1915,7 +1915,7 @@ lemma sum_prod_factor {n₁ n₂ : ℕ} [NeZero n₁] [NeZero n₂]
 /--
 @isnad1 id=eq.1h3v.s6.a55fed30f61e from=translated src=- shape=e853dd7b vocab=57b3dfcd
 -/
-theorem ramanujanSum_multiplicative {n₁ n₂ : ℕ} [hn₁ : NeZero n₁] [hn₂ : NeZero n₂]
+theorem _root_.Tengoku.LeanPool.ramanujanSum_multiplicative {n₁ n₂ : ℕ} [hn₁ : NeZero n₁] [hn₂ : NeZero n₂]
     (h : Nat.Coprime n₁ n₂) (t : ℤ) :
     @ramanujanSum (n₁ * n₂) ⟨Nat.mul_ne_zero hn₁.ne hn₂.ne⟩ t =
     ramanujanSum n₁ t * ramanujanSum n₂ t := by
@@ -1927,7 +1927,7 @@ theorem ramanujanSum_multiplicative {n₁ n₂ : ℕ} [hn₁ : NeZero n₁] [hn�
 /--
 @isnad1 id=mem.1h1v.s4.5d4eed5ff0fb from=translated src=- shape=b73dc7e2 vocab=7f244118
 -/
-lemma largestPrimeFactor_mem_primeFactors (n : ℕ) (hn : 2 ≤ n) :
+lemma _root_.Tengoku.LeanPool.largestPrimeFactor_mem_primeFactors (n : ℕ) (hn : 2 ≤ n) :
     largestPrimeFactor n ∈ n.primeFactors := by
   obtain ⟨a, ha_max, _⟩ := largestPrimeFactor_pos_helper_fb n hn
   have : largestPrimeFactor n = a := by unfold largestPrimeFactor; rw [ha_max]; rfl
@@ -1937,7 +1937,7 @@ lemma largestPrimeFactor_mem_primeFactors (n : ℕ) (hn : 2 ≤ n) :
 /--
 @isnad1 id=le.1h1v.s5.92a88c8bd6bf from=translated src=- shape=5705796c vocab=9e2b24fe
 -/
-theorem largest_prime_factor_multiplicity_pos (n : ℕ) (hn : 2 ≤ n) :
+theorem _root_.Tengoku.LeanPool.largest_prime_factor_multiplicity_pos (n : ℕ) (hn : 2 ≤ n) :
     n.factorization (largestPrimeFactor n) ≥ 1 := by
   have hmem := largestPrimeFactor_mem_primeFactors n hn
   rw [← Nat.support_factorization] at hmem
@@ -1946,14 +1946,14 @@ theorem largest_prime_factor_multiplicity_pos (n : ℕ) (hn : 2 ≤ n) :
 /--
 @isnad1 id=prime.1h1v.s3.e77248d43c07 from=translated src=- shape=c1538fc1 vocab=bb0e4621
 -/
-lemma largest_prime_factor_prime (n : ℕ) (hn : 2 ≤ n) :
+lemma _root_.Tengoku.LeanPool.largest_prime_factor_prime (n : ℕ) (hn : 2 ≤ n) :
     Nat.Prime (largestPrimeFactor n) := by
   exact Nat.prime_of_mem_primeFactors (largestPrimeFactor_mem_primeFactors n hn)
 
 /--
 @isnad1 id=other.1h1v.s6.b903e0e97e74 from=translated src=- shape=88dcd1c3 vocab=e26605be
 -/
-lemma decompose_largest_prime (n : ℕ) (hn : 2 ≤ n) :
+lemma _root_.Tengoku.LeanPool.decompose_largest_prime (n : ℕ) (hn : 2 ≤ n) :
     let P := largestPrimeFactor n
     let α := n.factorization P
     let m := n / (P ^ α)
@@ -1975,7 +1975,7 @@ lemma decompose_largest_prime (n : ℕ) (hn : 2 ≤ n) :
 /--
 @isnad1 id=eq.2h2v.s6.550f1a570198 from=translated src=- shape=3ba0c5ae vocab=f84124dc
 -/
-lemma ramanujan_vanish_low_valuation
+lemma _root_.Tengoku.LeanPool.ramanujan_vanish_low_valuation
     (n : ℕ) [NeZero n] (hn : 2 ≤ n) (t : ℤ)
     (ht : ¬((largestPrimeFactor n ^ (n.factorization (largestPrimeFactor n) - 1) : ℤ) ∣ t)) :
     ramanujanSum n t = 0 := by
@@ -2001,7 +2001,7 @@ lemma ramanujan_vanish_low_valuation
 /--
 @isnad1 id=eq.4h5v.s10.52ef69b02d1e from=translated src=- shape=68eae0d8 vocab=d7f7eded
 -/
-lemma summand_eq_EP0_plus_EPalpha
+lemma _root_.Tengoku.LeanPool.summand_eq_EP0_plus_EPalpha
     (n : ℕ) [NeZero n] (hn : 2 ≤ n)
     (p q : ℤ) (_hp : 1 ≤ p) (_hq : 1 ≤ q)
     (_hpq : (p : ℝ) + (q : ℝ) < (n : ℝ) / 2)
@@ -2057,7 +2057,7 @@ lemma summand_eq_EP0_plus_EPalpha
 /--
 @isnad1 id=eq.4h3v.s8.4a3a48225347 from=translated src=- shape=4dfb0f26 vocab=8f00454e
 -/
-lemma nonzero_sum_eq_EP0_plus_EPalpha
+lemma _root_.Tengoku.LeanPool.nonzero_sum_eq_EP0_plus_EPalpha
     (n : ℕ) [NeZero n] (hn : 2 ≤ n)
     (p q : ℤ) (hp : 1 ≤ p) (hq : 1 ≤ q)
     (hpq : (p : ℝ) + (q : ℝ) < (n : ℝ) / 2) :
@@ -2080,7 +2080,7 @@ lemma nonzero_sum_eq_EP0_plus_EPalpha
 /--
 @isnad1 id=eq.4h3v.s8.d659a818e815 from=translated src=- shape=eaa831e2 vocab=5f9db273
 -/
-lemma fourier_sum_split_into_main_and_errors
+lemma _root_.Tengoku.LeanPool.fourier_sum_split_into_main_and_errors
     (n : ℕ) (hn : 2 ≤ n)
     (p q : ℤ) (hp : 1 ≤ p) (hq : 1 ≤ q)
     (hpq : (p : ℝ) + (q : ℝ) < (n : ℝ) / 2) :
@@ -2104,7 +2104,7 @@ lemma fourier_sum_split_into_main_and_errors
 /--
 @isnad1 id=eq.4h3v.s8.44f77da4921f from=translated src=- shape=24c96575 vocab=caa5b8c2
 -/
-lemma re_complex_lhs_eq_real_lhs
+lemma _root_.Tengoku.LeanPool.re_complex_lhs_eq_real_lhs
     (n : ℕ) (_hn : 2 ≤ n)
     (p q : ℤ) (_hp : 1 ≤ p) (_hq : 1 ≤ q)
     (_hpq : (p : ℝ) + (q : ℝ) < (n : ℝ) / 2) :
@@ -2120,7 +2120,7 @@ lemma re_complex_lhs_eq_real_lhs
 /--
 @isnad1 id=eq.5h3v.s8.23d5bdf9c949 from=translated src=- shape=52aee525 vocab=004f2df5
 -/
-lemma error_decomposition_from_complex
+lemma _root_.Tengoku.LeanPool.error_decomposition_from_complex
     (n : ℕ) (hn : 2 ≤ n)
     (p q : ℤ) (hp : 1 ≤ p) (hq : 1 ≤ q)
     (hpq : (p : ℝ) + (q : ℝ) < (n : ℝ) / 2)
@@ -2143,7 +2143,7 @@ lemma error_decomposition_from_complex
 /--
 @isnad1 id=eq.4h3v.s7.9e358c0a9846 from=translated src=- shape=0c398ddc vocab=f3f22967
 -/
-lemma error_decomposition
+lemma _root_.Tengoku.LeanPool.error_decomposition
     (n : ℕ) (hn : 2 ≤ n)
     (p q : ℤ) (hp : 1 ≤ p) (hq : 1 ≤ q)
     (hpq : (p : ℝ) + (q : ℝ) < (n : ℝ) / 2) :
@@ -2165,7 +2165,7 @@ lemma error_decomposition
 /--
 @isnad1 id=eq.0h3v.s6.6b6eaab2d26e from=translated src=- shape=5051cd00 vocab=1599ec66
 -/
-lemma double_sum_norms_eq_product
+lemma _root_.Tengoku.LeanPool.double_sum_norms_eq_product
     (n : ℕ) [NeZero n] (f g : ZMod n → ℂ) :
     ∑ k : ZMod n, ∑ l : ZMod n, ‖f k‖ * ‖g l‖ =
     (∑ k : ZMod n, ‖f k‖) * (∑ l : ZMod n, ‖g l‖) :=
@@ -2174,7 +2174,7 @@ lemma double_sum_norms_eq_product
 /--
 @isnad1 id=le.0h2v.s4.bc1ef3f076a4 from=translated src=- shape=15fb2fb3 vocab=6b4d40fb
 -/
-lemma ramanujanSum_norm_le_totient (n : ℕ) [NeZero n] (t : ℤ) :
+lemma _root_.Tengoku.LeanPool.ramanujanSum_norm_le_totient (n : ℕ) [NeZero n] (t : ℤ) :
     ‖ramanujanSum n t‖ ≤ (Nat.totient n : ℝ) := by
   calc
     ‖ramanujanSum n t‖ = ‖∑ a : (ZMod n)ˣ, ZMod.stdAddChar (a.val * (t : ZMod n))‖ := rfl
@@ -2185,7 +2185,7 @@ lemma ramanujanSum_norm_le_totient (n : ℕ) [NeZero n] (t : ℤ) :
 /--
 @isnad1 id=eq.3h3v.s7.c9a34014ced1 from=translated src=- shape=b58d4a07 vocab=a5ca8479
 -/
-lemma ramanujanSum_prime_pow_eq_neg {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 0 < k)
+lemma _root_.Tengoku.LeanPool.ramanujanSum_prime_pow_eq_neg {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 0 < k)
     {t : ℤ} (ht1 : (p : ℤ) ^ (k - 1) ∣ t) (ht2 : ¬ ((p : ℤ) ^ k ∣ t)) :
     @ramanujanSum (p ^ k) ⟨pow_ne_zero k hp.out.ne_zero⟩ t =
     -(p : ℂ) ^ (k - 1) := by
@@ -2195,7 +2195,7 @@ lemma ramanujanSum_prime_pow_eq_neg {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ
 /--
 @isnad1 id=eq.3h3v.s7.f3a771b45b31 from=translated src=- shape=f9433df0 vocab=a95dd023
 -/
-lemma norm_ramanujanSum_prime_pow_eq_neg {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 0 < k)
+lemma _root_.Tengoku.LeanPool.norm_ramanujanSum_prime_pow_eq_neg {p : ℕ} [hp : Fact (Nat.Prime p)] {k : ℕ} (hk : 0 < k)
     {t : ℤ} (ht1 : (p : ℤ) ^ (k - 1) ∣ t) (ht2 : ¬ ((p : ℤ) ^ k ∣ t)) :
     ‖@ramanujanSum (p ^ k) ⟨pow_ne_zero k hp.out.ne_zero⟩ t‖ = (p : ℝ) ^ (k - 1) := by
   rw [ramanujanSum_prime_pow_eq_neg hk ht1 ht2, norm_neg, Complex.norm_pow, Complex.norm_natCast]
@@ -2203,7 +2203,7 @@ lemma norm_ramanujanSum_prime_pow_eq_neg {p : ℕ} [hp : Fact (Nat.Prime p)] {k 
 /--
 @isnad1 id=eq.4h4v.s7.5dbb7c3c213c from=translated src=- shape=28d08230 vocab=d1b843ca
 -/
-lemma totient_div_prime_minus_one
+lemma _root_.Tengoku.LeanPool.totient_div_prime_minus_one
     (n P α m : ℕ)
     (hP : Nat.Prime P) (hα : 0 < α) (hcop : Nat.Coprime (P ^ α) m)
     (hn : P ^ α * m = n) :
@@ -2222,7 +2222,7 @@ lemma totient_div_prime_minus_one
 /--
 @isnad1 id=le.3h2v.s7.e96c3b366831 from=translated src=- shape=8f4bd9f1 vocab=a7882285
 -/
-lemma ramanujanSum_EP0_norm_bound
+lemma _root_.Tengoku.LeanPool.ramanujanSum_EP0_norm_bound
     (n : ℕ) [NeZero n] (hn : 2 ≤ n)
     (t : ℤ)
     (hP0 : (↑(largestPrimeFactor n ^ (n.factorization (largestPrimeFactor n) - 1)) : ℤ) ∣ t)
@@ -2267,7 +2267,7 @@ lemma ramanujanSum_EP0_norm_bound
 /--
 @isnad1 id=eq.0h2v.s7.9c204f23b578 from=translated src=- shape=35a88d99 vocab=251d3d26
 -/
-lemma sum_split_zero (n : ℕ) [NeZero n] (f : ZMod n → ℝ) :
+lemma _root_.Tengoku.LeanPool.sum_split_zero (n : ℕ) [NeZero n] (f : ZMod n → ℝ) :
     ∑ k : ZMod n, f k = f 0 + ∑ k ∈ (Finset.univ : Finset (ZMod n)).filter (· ≠ 0), f k := by
   conv_lhs => rw [show (∑ k : ZMod n, f k : ℝ) = ∑ k ∈ Finset.univ, f k from by simp]
   rw [← Finset.sum_filter_add_sum_filter_not Finset.univ (· = (0 : ZMod n))]
@@ -2276,7 +2276,7 @@ lemma sum_split_zero (n : ℕ) [NeZero n] (f : ZMod n → ℝ) :
 /--
 @isnad1 id=eq.0h4v.s8.e9bebcd6be49 from=translated src=- shape=e7fd2381 vocab=13e5206a
 -/
-lemma indicator_formula (n : ℕ) [NeZero n] (m : ℕ) (j : ZMod n) (k : ZMod n) :
+lemma _root_.Tengoku.LeanPool.indicator_formula (n : ℕ) [NeZero n] (m : ℕ) (j : ZMod n) (k : ZMod n) :
     ZMod.stdAddChar (-(j * k)) • intervalIndicator n m j =
     if j ∈ intervalSet n m then ZMod.stdAddChar (-(j * k)) else 0 := by
   simp [intervalIndicator, Set.indicator_apply]
@@ -2284,7 +2284,7 @@ lemma indicator_formula (n : ℕ) [NeZero n] (m : ℕ) (j : ZMod n) (k : ZMod n)
 /--
 @isnad1 id=eq.1h3v.s8.baca9f67a692 from=translated src=- shape=b36bc5ed vocab=60f61b1f
 -/
-lemma summand_reindex (n : ℕ) [NeZero n] (m : ℕ) (hm2 : m < n) (k : ZMod n) :
+lemma _root_.Tengoku.LeanPool.summand_reindex (n : ℕ) [NeZero n] (m : ℕ) (hm2 : m < n) (k : ZMod n) :
     ∑ j : ZMod n, (if j ∈ intervalSet n m then ZMod.stdAddChar (-(j * k)) else 0) =
     ∑ t ∈ Finset.range m, ZMod.stdAddChar (-((t + 1 : ZMod n) * k)) := by
   rw [← Finset.sum_filter]
@@ -2318,7 +2318,7 @@ lemma summand_reindex (n : ℕ) [NeZero n] (m : ℕ) (hm2 : m < n) (k : ZMod n) 
 /--
 @isnad1 id=eq.0h3v.s8.1fdee1fa8e3b from=translated src=- shape=b965a343 vocab=d0acafd0
 -/
-lemma character_multiplication_simplify (n : ℕ) [NeZero n] (t : ℕ) (k : ZMod n) :
+lemma _root_.Tengoku.LeanPool.character_multiplication_simplify (n : ℕ) [NeZero n] (t : ℕ) (k : ZMod n) :
     ZMod.stdAddChar (-((t + 1 : ZMod n) * k)) =
     (ZMod.stdAddChar (-k)) ^ (t + 1) := by
   have h1 : (-((t + 1 : ZMod n) * k) : ZMod n) = (t + 1 : ℕ) • (-k : ZMod n) := by
@@ -2328,7 +2328,7 @@ lemma character_multiplication_simplify (n : ℕ) [NeZero n] (t : ℕ) (k : ZMod
 /--
 @isnad1 id=eq.1h3v.s8.3533e8c75638 from=translated src=- shape=d2a0d968 vocab=8decd7e5
 -/
-lemma dft_intervalIndicator_eq_geom_sum (n : ℕ) [NeZero n] (m : ℕ)
+lemma _root_.Tengoku.LeanPool.dft_intervalIndicator_eq_geom_sum (n : ℕ) [NeZero n] (m : ℕ)
     (hm2 : m < n) (k : ZMod n) :
     ZMod.dft (intervalIndicator n m) k =
       ∑ t ∈ Finset.range m, (ZMod.stdAddChar (-k)) ^ (t + 1) := by
@@ -2340,7 +2340,7 @@ lemma dft_intervalIndicator_eq_geom_sum (n : ℕ) [NeZero n] (m : ℕ)
 /--
 @isnad1 id=eq.0h2v.s6.516b01989e74 from=translated src=- shape=cca14338 vocab=ac689d12
 -/
-lemma exponent_algebra (n : ℕ) (k : ZMod n) :
+lemma _root_.Tengoku.LeanPool.exponent_algebra (n : ℕ) (k : ZMod n) :
     (2 : ℂ) * ↑Real.pi * Complex.I * ↑(-(↑(ZMod.val k) : ℤ)) / ↑(n : ℕ) =
       Complex.I * ↑(-2 * Real.pi * (ZMod.val k : ℝ) / (n : ℝ)) := by
   push_cast
@@ -2349,7 +2349,7 @@ lemma exponent_algebra (n : ℕ) (k : ZMod n) :
 /--
 @isnad1 id=eq.0h2v.s7.ea1bdc3b3808 from=translated src=- shape=9e4bb56e vocab=efeedf26
 -/
-lemma stdAddChar_neg_eq_exp (n : ℕ) [NeZero n] (k : ZMod n) :
+lemma _root_.Tengoku.LeanPool.stdAddChar_neg_eq_exp (n : ℕ) [NeZero n] (k : ZMod n) :
     (ZMod.stdAddChar (-k) : ℂ) =
       Complex.exp (Complex.I * ↑(-2 * Real.pi * (ZMod.val k : ℝ) / (n : ℝ))) := by
   rw [show -k = (↑(-(↑(ZMod.val k) : ℤ)) : ZMod n) from by simp, ZMod.stdAddChar_coe]
@@ -2359,7 +2359,7 @@ lemma stdAddChar_neg_eq_exp (n : ℕ) [NeZero n] (k : ZMod n) :
 /--
 @isnad1 id=eq.0h2v.s7.119959d77ef7 from=translated src=- shape=5690e96d vocab=430ad7e3
 -/
-lemma norm_one_sub_stdAddChar_eq (n : ℕ) [NeZero n] (k : ZMod n) :
+lemma _root_.Tengoku.LeanPool.norm_one_sub_stdAddChar_eq (n : ℕ) [NeZero n] (k : ZMod n) :
     ‖(1 : ℂ) - ZMod.stdAddChar (-k)‖ = 2 * |Real.sin (Real.pi * (ZMod.val k : ℝ) / n)| := by
   rw [stdAddChar_neg_eq_exp, norm_sub_rev, Complex.norm_exp_I_mul_ofReal_sub_one,
     show (-2 * Real.pi * (ZMod.val k : ℝ) / (n : ℝ)) / 2 =
@@ -2370,7 +2370,7 @@ lemma norm_one_sub_stdAddChar_eq (n : ℕ) [NeZero n] (k : ZMod n) :
 /--
 @isnad1 id=le.2h2v.s6.3e367d1f5eea from=translated src=- shape=f596f3c0 vocab=920875b4
 -/
-lemma abs_bound_helper (n : ℕ) (v : ℝ) (hn : 0 < (n : ℝ)) (hvn : v ≤ n / 2) :
+lemma _root_.Tengoku.LeanPool.abs_bound_helper (n : ℕ) (v : ℝ) (hn : 0 < (n : ℝ)) (hvn : v ≤ n / 2) :
     Real.pi * v / n ≤ Real.pi / 2 := by
   rw [div_le_div_iff₀ hn (by norm_num)]
   nlinarith [Real.pi_pos]
@@ -2378,7 +2378,7 @@ lemma abs_bound_helper (n : ℕ) (v : ℝ) (hn : 0 < (n : ℝ)) (hvn : v ≤ n /
 /--
 @isnad1 id=le.3h2v.s6.602fdf882fa1 from=translated src=- shape=9f60c6e3 vocab=6e621717
 -/
-lemma two_v_div_n_le_abs_sin (n : ℕ) (v : ℝ) (hn : 0 < (n : ℝ)) (hv : 0 < v)
+lemma _root_.Tengoku.LeanPool.two_v_div_n_le_abs_sin (n : ℕ) (v : ℝ) (hn : 0 < (n : ℝ)) (hv : 0 < v)
     (hvn : v ≤ n / 2) :
     2 * v / n ≤ |Real.sin (Real.pi * v / n)| := by
   have h1 : 0 ≤ Real.pi * v / n := by positivity
@@ -2392,7 +2392,7 @@ lemma two_v_div_n_le_abs_sin (n : ℕ) (v : ℝ) (hn : 0 < (n : ℝ)) (hv : 0 < 
 /--
 @isnad1 id=eq.0h2v.s6.506c43d79bde from=translated src=- shape=7da727c4 vocab=66568aa9
 -/
-lemma abs_sin_val_eq_abs_sin_complement (n : ℕ) [NeZero n] (k : ZMod n) :
+lemma _root_.Tengoku.LeanPool.abs_sin_val_eq_abs_sin_complement (n : ℕ) [NeZero n] (k : ZMod n) :
     |Real.sin (Real.pi * (ZMod.val k : ℝ) / n)| =
     |Real.sin (Real.pi * ((n : ℝ) - ZMod.val k) / n)| := by
   have h₁ : (n : ℝ) ≠ 0 := Nat.cast_ne_zero.mpr (NeZero.ne n)
@@ -2403,7 +2403,7 @@ lemma abs_sin_val_eq_abs_sin_complement (n : ℕ) [NeZero n] (k : ZMod n) :
 /--
 @isnad1 id=le.1h2v.s6.c1e40e405a12 from=translated src=- shape=84116382 vocab=5a77d953
 -/
-lemma abs_sin_ge_two_min_div (n : ℕ) [NeZero n] (k : ZMod n) (hk : k ≠ 0) :
+lemma _root_.Tengoku.LeanPool.abs_sin_ge_two_min_div (n : ℕ) [NeZero n] (k : ZMod n) (hk : k ≠ 0) :
     2 * min (ZMod.val k : ℝ) ((n : ℝ) - ZMod.val k) / n ≤
     |Real.sin (Real.pi * (ZMod.val k : ℝ) / n)| := by
   have hval_pos : 0 < ZMod.val k := Nat.pos_of_ne_zero ((ZMod.val_ne_zero k).mpr hk)
@@ -2425,7 +2425,7 @@ lemma abs_sin_ge_two_min_div (n : ℕ) [NeZero n] (k : ZMod n) (hk : k ≠ 0) :
 /--
 @isnad1 id=eq.1h2v.s6.170a1434046c from=translated src=- shape=d100f603 vocab=565a34a9
 -/
-lemma geom_sum_shift_eq (r : ℂ) (hr_ne : r ≠ 1) (m : ℕ) :
+lemma _root_.Tengoku.LeanPool.geom_sum_shift_eq (r : ℂ) (hr_ne : r ≠ 1) (m : ℕ) :
     ∑ t ∈ Finset.range m, r ^ (t + 1) = r * (r ^ m - 1) / (r - 1) := by
   simp_rw [pow_succ']
   rw [← Finset.mul_sum, geom_sum_eq hr_ne, mul_div_assoc]
@@ -2433,7 +2433,7 @@ lemma geom_sum_shift_eq (r : ℂ) (hr_ne : r ≠ 1) (m : ℕ) :
 /--
 @isnad1 id=le.1h2v.s5.86493d47cde5 from=translated src=- shape=4c4c2500 vocab=1370151b
 -/
-lemma norm_pow_sub_one_le_two (r : ℂ) (hr_norm : ‖r‖ = 1) (m : ℕ) :
+lemma _root_.Tengoku.LeanPool.norm_pow_sub_one_le_two (r : ℂ) (hr_norm : ‖r‖ = 1) (m : ℕ) :
     ‖r ^ m - 1‖ ≤ 2 := by
   have h1 : ‖r ^ m‖ = 1 := by simp_all
   have h3 : ‖r ^ m - 1‖ ≤ ‖r ^ m‖ + ‖(1 : ℂ)‖ := norm_sub_le _ _
@@ -2442,7 +2442,7 @@ lemma norm_pow_sub_one_le_two (r : ℂ) (hr_norm : ‖r‖ = 1) (m : ℕ) :
 /--
 @isnad1 id=le.2h2v.s6.fc381dc63f92 from=translated src=- shape=42b16254 vocab=345850b1
 -/
-lemma norm_geom_sum_le (r : ℂ) (hr_ne : r ≠ 1) (hr_norm : ‖r‖ = 1) (m : ℕ) :
+lemma _root_.Tengoku.LeanPool.norm_geom_sum_le (r : ℂ) (hr_ne : r ≠ 1) (hr_norm : ‖r‖ = 1) (m : ℕ) :
     ‖∑ t ∈ Finset.range m, r ^ (t + 1)‖ ≤ 2 / ‖1 - r‖ := by
   rw [show ‖1 - r‖ = ‖r - 1‖ by rw [norm_sub_rev]]
   rw [geom_sum_shift_eq r hr_ne m]
@@ -2452,7 +2452,7 @@ lemma norm_geom_sum_le (r : ℂ) (hr_ne : r ≠ 1) (hr_norm : ‖r‖ = 1) (m : 
 /--
 @isnad1 id=le.1h2v.s7.537573585aef from=translated src=- shape=29b1cccd vocab=fc85c470
 -/
-lemma norm_one_sub_stdAddChar_lower_bound (n : ℕ) [NeZero n] (k : ZMod n) (hk : k ≠ 0) :
+lemma _root_.Tengoku.LeanPool.norm_one_sub_stdAddChar_lower_bound (n : ℕ) [NeZero n] (k : ZMod n) (hk : k ≠ 0) :
     (4 : ℝ) * min (ZMod.val k : ℝ) ((n : ℝ) - ZMod.val k) / n ≤
       ‖(1 : ℂ) - ZMod.stdAddChar (-k)‖ := by
   rw [norm_one_sub_stdAddChar_eq,
@@ -2463,7 +2463,7 @@ lemma norm_one_sub_stdAddChar_lower_bound (n : ℕ) [NeZero n] (k : ZMod n) (hk 
 /--
 @isnad1 id=ne.1h2v.s6.7e77c71ac1b4 from=translated src=- shape=0364b804 vocab=71ba5bdc
 -/
-lemma stdAddChar_ne_one (n : ℕ) [NeZero n] (k : ZMod n) (hk : k ≠ 0) :
+lemma _root_.Tengoku.LeanPool.stdAddChar_ne_one (n : ℕ) [NeZero n] (k : ZMod n) (hk : k ≠ 0) :
     ZMod.stdAddChar (-k) ≠ 1 := by
   have h_neg_k_ne_zero : -k ≠ 0 := by simp_all
   have h_primitive : (ZMod.stdAddChar : AddChar (ZMod n) ℂ).IsPrimitive :=
@@ -2473,14 +2473,14 @@ lemma stdAddChar_ne_one (n : ℕ) [NeZero n] (k : ZMod n) (hk : k ≠ 0) :
 /--
 @isnad1 id=eq.0h2v.s6.68584f885bc0 from=translated src=- shape=96134fa7 vocab=35ba1228
 -/
-lemma norm_stdAddChar_eq_one (n : ℕ) [NeZero n] (k : ZMod n) :
+lemma _root_.Tengoku.LeanPool.norm_stdAddChar_eq_one (n : ℕ) [NeZero n] (k : ZMod n) :
     ‖ZMod.stdAddChar (-k : ZMod n)‖ = 1 := by
   simp
 
 /--
 @isnad1 id=le.3h3v.s6.25a5e8f2df90 from=translated src=- shape=62e9663b vocab=e4102d3f
 -/
-lemma normalizedDFT_intervalIndicator_nonzero_bound
+lemma _root_.Tengoku.LeanPool.normalizedDFT_intervalIndicator_nonzero_bound
     (n : ℕ) [NeZero n] (m : ℕ) (_hm1 : 1 ≤ m) (hm2 : m < n)
     (k : ZMod n) (hk : k ≠ 0) :
     ‖normalizedDFT n (intervalIndicator n m) k‖ ≤
@@ -2513,7 +2513,7 @@ lemma normalizedDFT_intervalIndicator_nonzero_bound
 /--
 @isnad1 id=eq.1h1v.s7.b887d43102f0 from=translated src=- shape=6466a77d vocab=6a6160ee
 -/
-lemma sum_nonzero_reindex (n : ℕ) [NeZero n] (hn : 2 ≤ n) :
+lemma _root_.Tengoku.LeanPool.sum_nonzero_reindex (n : ℕ) [NeZero n] (hn : 2 ≤ n) :
     ∑ k ∈ (Finset.univ : Finset (ZMod n)).filter (· ≠ 0),
       (1 : ℝ) / (2 * min (ZMod.val k : ℝ) ((n : ℝ) - ZMod.val k)) =
     ∑ t ∈ Finset.Icc 1 (n - 1),
@@ -2539,7 +2539,7 @@ lemma sum_nonzero_reindex (n : ℕ) [NeZero n] (hn : 2 ≤ n) :
 /--
 @isnad1 id=eq.1h1v.s7.7378d2c2a287 from=translated src=- shape=14f7feb1 vocab=24aa14e8
 -/
-lemma first_half_eq (N : ℕ) (_hN : 1 ≤ N) :
+lemma _root_.Tengoku.LeanPool.first_half_eq (N : ℕ) (_hN : 1 ≤ N) :
     ∑ t ∈ Finset.Icc 1 N,
       (1 : ℝ) / (2 * min (t : ℝ) ((2 * N + 1 : ℝ) - t)) =
     ∑ t ∈ Finset.Icc 1 N, (1 : ℝ) / (2 * t) := by
@@ -2552,7 +2552,7 @@ lemma first_half_eq (N : ℕ) (_hN : 1 ≤ N) :
 /--
 @isnad1 id=eq.2h2v.s7.daad6e08acaf from=translated src=- shape=9f65379d vocab=75a3cff7
 -/
-lemma summand_min_eq (N : ℕ) (_hN : 1 ≤ N) (t : ℕ) (ht : t ∈ Finset.Icc (N + 1) (2 * N)) :
+lemma _root_.Tengoku.LeanPool.summand_min_eq (N : ℕ) (_hN : 1 ≤ N) (t : ℕ) (ht : t ∈ Finset.Icc (N + 1) (2 * N)) :
     (1 : ℝ) / (2 * min (t : ℝ) ((2 * N + 1 : ℝ) - t)) =
     (1 : ℝ) / (2 * ((2 * N + 1 : ℝ) - t)) := by
   have h₁ : (N + 1 : ℕ) ≤ t := (Finset.mem_Icc.mp ht).1
@@ -2564,7 +2564,7 @@ lemma summand_min_eq (N : ℕ) (_hN : 1 ≤ N) (t : ℕ) (ht : t ∈ Finset.Icc 
 /--
 @isnad1 id=eq.1h1v.s7.c84760f601fb from=translated src=- shape=08e33806 vocab=24aa14e8
 -/
-lemma second_half_min_simplify (N : ℕ) (hN : 1 ≤ N) :
+lemma _root_.Tengoku.LeanPool.second_half_min_simplify (N : ℕ) (hN : 1 ≤ N) :
     ∑ t ∈ Finset.Icc (N + 1) (2 * N),
       (1 : ℝ) / (2 * min (t : ℝ) ((2 * N + 1 : ℝ) - t)) =
     ∑ t ∈ Finset.Icc (N + 1) (2 * N),
@@ -2574,7 +2574,7 @@ lemma second_half_min_simplify (N : ℕ) (hN : 1 ≤ N) :
 /--
 @isnad1 id=eq.1h1v.s7.faea7916ebc3 from=translated src=- shape=f8b83adc vocab=b02b4973
 -/
-lemma second_half_reindex (N : ℕ) (_hN : 1 ≤ N) :
+lemma _root_.Tengoku.LeanPool.second_half_reindex (N : ℕ) (_hN : 1 ≤ N) :
     ∑ t ∈ Finset.Icc (N + 1) (2 * N),
       (1 : ℝ) / (2 * ((2 * N + 1 : ℝ) - t)) =
     ∑ u ∈ Finset.Icc 1 N, (1 : ℝ) / (2 * u) := by
@@ -2591,7 +2591,7 @@ lemma second_half_reindex (N : ℕ) (_hN : 1 ≤ N) :
 /--
 @isnad1 id=eq.1h1v.s7.9aaf1589177c from=translated src=- shape=de689987 vocab=24aa14e8
 -/
-lemma second_half_eq (N : ℕ) (hN : 1 ≤ N) :
+lemma _root_.Tengoku.LeanPool.second_half_eq (N : ℕ) (hN : 1 ≤ N) :
     ∑ t ∈ Finset.Icc (N + 1) (2 * N),
       (1 : ℝ) / (2 * min (t : ℝ) ((2 * N + 1 : ℝ) - t)) =
     ∑ u ∈ Finset.Icc 1 N, (1 : ℝ) / (2 * u) := by
@@ -2601,7 +2601,7 @@ lemma second_half_eq (N : ℕ) (hN : 1 ≤ N) :
 /--
 @isnad1 id=eq.0h1v.s7.9322ac36beda from=translated src=- shape=6fc8298f vocab=55160022
 -/
-lemma combine_halves (N : ℕ) :
+lemma _root_.Tengoku.LeanPool.combine_halves (N : ℕ) :
     ∑ u ∈ Finset.Icc 1 N, (1 : ℝ) / (2 * u) +
     ∑ u ∈ Finset.Icc 1 N, (1 : ℝ) / (2 * u) =
     ∑ u ∈ Finset.Icc 1 N, (u : ℝ)⁻¹ := by
@@ -2618,7 +2618,7 @@ lemma combine_halves (N : ℕ) :
 /--
 @isnad1 id=eq.1h1v.s7.ff2d5ac63cda from=translated src=- shape=0519e3bb vocab=5a25e95c
 -/
-lemma symmetric_sum_odd (N : ℕ) (hN : 1 ≤ N) :
+lemma _root_.Tengoku.LeanPool.symmetric_sum_odd (N : ℕ) (hN : 1 ≤ N) :
     ∑ t ∈ Finset.Icc 1 (2 * N),
       (1 : ℝ) / (2 * min (t : ℝ) ((2 * N + 1 : ℝ) - t)) =
     ∑ u ∈ Finset.Icc 1 N, (u : ℝ)⁻¹ := by
@@ -2631,7 +2631,7 @@ lemma symmetric_sum_odd (N : ℕ) (hN : 1 ≤ N) :
 /--
 @isnad1 id=eq.1h1v.s7.05cd007e1799 from=translated src=- shape=ecaa5f7f vocab=02dea147
 -/
-lemma Icc_split_three (N : ℕ) (hN : 2 ≤ N) :
+lemma _root_.Tengoku.LeanPool.Icc_split_three (N : ℕ) (hN : 2 ≤ N) :
     Finset.Icc 1 (2 * N - 1) =
       Finset.Icc 1 (N - 1) ∪ {N} ∪ Finset.Icc (N + 1) (2 * N - 1) := by
   have h₂ : Finset.Icc 1 (N - 1) ∪ {N} ∪ Finset.Icc (N + 1) (2 * N - 1) ⊆ Finset.Icc 1 (2 * N -
@@ -2646,7 +2646,7 @@ lemma Icc_split_three (N : ℕ) (hN : 2 ≤ N) :
 /--
 @isnad1 id=disjoint.1h1v.s6.fbcbef057a2f from=translated src=- shape=c14eed4b vocab=e645417f
 -/
-lemma Icc_disjoint_high (N : ℕ) (hN : 2 ≤ N) :
+lemma _root_.Tengoku.LeanPool.Icc_disjoint_high (N : ℕ) (hN : 2 ≤ N) :
     Disjoint (Finset.Icc 1 (N - 1) ∪ {N}) (Finset.Icc (N + 1) (2 * N - 1)) := by
   apply Finset.disjoint_union_left.mpr
   constructor <;>
@@ -2658,7 +2658,7 @@ lemma Icc_disjoint_high (N : ℕ) (hN : 2 ≤ N) :
 /--
 @isnad1 id=disjoint.1h1v.s5.48d0295e3351 from=translated src=- shape=9b7acc24 vocab=9a4c6c87
 -/
-lemma Icc_disjoint_mid (N : ℕ) (hN : 2 ≤ N) :
+lemma _root_.Tengoku.LeanPool.Icc_disjoint_mid (N : ℕ) (hN : 2 ≤ N) :
     Disjoint (Finset.Icc 1 (N - 1)) ({N} : Finset ℕ) := by
   apply Finset.disjoint_left.mpr
   intro x hx₁ hx₂
@@ -2668,7 +2668,7 @@ lemma Icc_disjoint_mid (N : ℕ) (hN : 2 ≤ N) :
 /--
 @isnad1 id=eq.1h1v.s7.dc4599d4c79e from=translated src=- shape=3bc1f4fc vocab=a5e01f76
 -/
-lemma sum_region_A (N : ℕ) (hN : 2 ≤ N) :
+lemma _root_.Tengoku.LeanPool.sum_region_A (N : ℕ) (hN : 2 ≤ N) :
     ∑ t ∈ Finset.Icc 1 (N - 1),
       (1 : ℝ) / (2 * min (t : ℝ) ((2 * N : ℝ) - t)) =
     ∑ t ∈ Finset.Icc 1 (N - 1), (1 : ℝ) / (2 * (t : ℝ)) := by
@@ -2683,7 +2683,7 @@ lemma sum_region_A (N : ℕ) (hN : 2 ≤ N) :
 /--
 @isnad1 id=eq.0h1v.s5.0b941420f108 from=translated src=- shape=88d21b82 vocab=c040995e
 -/
-lemma min_midpoint (N : ℕ) :
+lemma _root_.Tengoku.LeanPool.min_midpoint (N : ℕ) :
     min (N : ℝ) ((2 * N : ℝ) - N) = (N : ℝ) := by
   rw [show (2 * (N : ℝ) - N : ℝ) = (N : ℝ) from by ring]
   simp
@@ -2691,7 +2691,7 @@ lemma min_midpoint (N : ℕ) :
 /--
 @isnad1 id=eq.1h2v.s6.16f747d7229f from=translated src=- shape=cde22fe4 vocab=86df40a2
 -/
-lemma min_eq_complement_in_region_C (N : ℕ) (t : ℕ) (ht : t ∈ Finset.Icc (N + 1) (2 * N - 1)) :
+lemma _root_.Tengoku.LeanPool.min_eq_complement_in_region_C (N : ℕ) (t : ℕ) (ht : t ∈ Finset.Icc (N + 1) (2 * N - 1)) :
     min (t : ℝ) ((2 * N : ℝ) - t) = (2 * N : ℝ) - t := by
   have h₂ : (t : ℕ) ≥ N + 1 := (Finset.mem_Icc.mp ht).1
   have h₅ : ((2 * N : ℝ) - (t : ℝ)) ≤ (t : ℝ) := by
@@ -2702,7 +2702,7 @@ lemma min_eq_complement_in_region_C (N : ℕ) (t : ℕ) (ht : t ∈ Finset.Icc (
 /--
 @isnad1 id=eq.1h1v.s7.3517c9a07241 from=translated src=- shape=deef19af vocab=24aa14e8
 -/
-lemma sum_region_C (N : ℕ) (hN : 2 ≤ N) :
+lemma _root_.Tengoku.LeanPool.sum_region_C (N : ℕ) (hN : 2 ≤ N) :
     ∑ t ∈ Finset.Icc (N + 1) (2 * N - 1),
       (1 : ℝ) / (2 * min (t : ℝ) ((2 * N : ℝ) - t)) =
     ∑ u ∈ Finset.Icc 1 (N - 1), (1 : ℝ) / (2 * (u : ℝ)) := by
@@ -2725,7 +2725,7 @@ lemma sum_region_C (N : ℕ) (hN : 2 ≤ N) :
 /--
 @isnad1 id=eq.1h1v.s7.85002c7269cc from=translated src=- shape=69ba7ab1 vocab=5a25e95c
 -/
-lemma symmetric_sum_even (N : ℕ) (hN : 1 ≤ N) :
+lemma _root_.Tengoku.LeanPool.symmetric_sum_even (N : ℕ) (hN : 1 ≤ N) :
     ∑ t ∈ Finset.Icc 1 (2 * N - 1),
       (1 : ℝ) / (2 * min (t : ℝ) ((2 * N : ℝ) - t)) =
     (∑ u ∈ Finset.Icc 1 (N - 1), (u : ℝ)⁻¹) + 1 / (2 * N) := by
@@ -2743,7 +2743,7 @@ lemma symmetric_sum_even (N : ℕ) (hN : 1 ≤ N) :
 /--
 @isnad1 id=eq.1h1v.s7.395a5e95ecb7 from=translated src=- shape=f99d1591 vocab=b0f7259f
 -/
-lemma ratio_rewrite (u : ℕ) (hu : 1 ≤ u) :
+lemma _root_.Tengoku.LeanPool.ratio_rewrite (u : ℕ) (hu : 1 ≤ u) :
     (2 * (u : ℝ) + 1) / (2 * u - 1) = 1 + 2 / (2 * u - 1) := by
   have h₁ : (u : ℝ) ≥ 1 := by exact_mod_cast hu
   have h₂ : (2 : ℝ) * u - 1 > 0 := by linarith
@@ -2753,7 +2753,7 @@ lemma ratio_rewrite (u : ℕ) (hu : 1 ≤ u) :
 /--
 @isnad1 id=eq.1h1v.s7.c259f62de773 from=translated src=- shape=79c528c5 vocab=9b3349c5
 -/
-lemma pade_algebraic_identity (u : ℕ) (hu : 1 ≤ u) :
+lemma _root_.Tengoku.LeanPool.pade_algebraic_identity (u : ℕ) (hu : 1 ≤ u) :
     2 * (2 / (2 * (u : ℝ) - 1)) / (2 / (2 * u - 1) + 2) = (u : ℝ)⁻¹ := by
   have h₁ : (u : ℝ) ≥ 1 := by exact_mod_cast hu
   have h₂ : (2 : ℝ) * (u : ℝ) - 1 ≠ 0 := by nlinarith
@@ -2762,7 +2762,7 @@ lemma pade_algebraic_identity (u : ℕ) (hu : 1 ≤ u) :
 /--
 @isnad1 id=le.1h1v.s6.80aede7a3fa2 from=translated src=- shape=887e8fe0 vocab=22f76867
 -/
-lemma inv_le_log_ratio (u : ℕ) (hu : 1 ≤ u) :
+lemma _root_.Tengoku.LeanPool.inv_le_log_ratio (u : ℕ) (hu : 1 ≤ u) :
     (u : ℝ)⁻¹ ≤ Real.log ((2 * u + 1) / (2 * u - 1)) := by
   have h1 : (2 : ℝ) * u - 1 > 0 := by
     have : (1 : ℝ) ≤ (u : ℝ) := Nat.one_le_cast.mpr hu
@@ -2773,7 +2773,7 @@ lemma inv_le_log_ratio (u : ℕ) (hu : 1 ≤ u) :
 /--
 @isnad1 id=eq.1h1v.s7.1c795a9462ec from=translated src=- shape=0a49c466 vocab=00bf3666
 -/
-lemma telescoping_log_sum (N : ℕ) (hN : 1 ≤ N) :
+lemma _root_.Tengoku.LeanPool.telescoping_log_sum (N : ℕ) (hN : 1 ≤ N) :
     ∑ u ∈ Finset.Icc 1 N, Real.log ((2 * (u : ℝ) + 1) / (2 * u - 1)) =
     Real.log (2 * N + 1) := by
   induction N, hN using Nat.le_induction with
@@ -2789,7 +2789,7 @@ lemma telescoping_log_sum (N : ℕ) (hN : 1 ≤ N) :
 /--
 @isnad1 id=le.1h1v.s6.99305b945378 from=translated src=- shape=a89cbb3e vocab=13a7f1cf
 -/
-lemma harmonic_Icc_le_log_odd (N : ℕ) (hN : 1 ≤ N) :
+lemma _root_.Tengoku.LeanPool.harmonic_Icc_le_log_odd (N : ℕ) (hN : 1 ≤ N) :
     ∑ u ∈ Finset.Icc 1 N, (u : ℝ)⁻¹ ≤ Real.log (2 * N + 1) := by
   calc ∑ u ∈ Finset.Icc 1 N, (u : ℝ)⁻¹
       ≤ ∑ u ∈ Finset.Icc 1 N, Real.log ((2 * (u : ℝ) + 1) / (2 * u - 1)) :=
@@ -2799,7 +2799,7 @@ lemma harmonic_Icc_le_log_odd (N : ℕ) (hN : 1 ≤ N) :
 /--
 @isnad1 id=eq.1h1v.s6.e05d3562075d from=translated src=- shape=f9592de2 vocab=eda79b0c
 -/
-lemma one_sub_inv_ratio_eq (N : ℕ) (hN : 1 ≤ N) :
+lemma _root_.Tengoku.LeanPool.one_sub_inv_ratio_eq (N : ℕ) (hN : 1 ≤ N) :
     1 - (2 * (N : ℝ) / (2 * N - 1))⁻¹ = 1 / (2 * N) := by
   have h₁ : (2 : ℝ) * (N : ℝ) - 1 > 0 := by
     have h₁ : (N : ℝ) ≥ 1 := by exact_mod_cast hN
@@ -2813,7 +2813,7 @@ lemma one_sub_inv_ratio_eq (N : ℕ) (hN : 1 ≤ N) :
 /--
 @isnad1 id=le.1h1v.s6.cfdff4b7a1d7 from=translated src=- shape=9c6eb655 vocab=3f515e05
 -/
-lemma inv_two_N_le_log_ratio (N : ℕ) (hN : 1 ≤ N) :
+lemma _root_.Tengoku.LeanPool.inv_two_N_le_log_ratio (N : ℕ) (hN : 1 ≤ N) :
     1 / (2 * (N : ℝ)) ≤ Real.log (2 * N / (2 * N - 1)) := by
   rw [← one_sub_inv_ratio_eq N hN]
   apply Real.one_sub_inv_le_log_of_pos
@@ -2824,7 +2824,7 @@ lemma inv_two_N_le_log_ratio (N : ℕ) (hN : 1 ≤ N) :
 /--
 @isnad1 id=le.0h0v.s5.eabc06892f07 from=translated src=- shape=63c521e8 vocab=78a65fa7
 -/
-lemma half_le_log_two : (1 : ℝ) / 2 ≤ Real.log 2 := by
+lemma _root_.Tengoku.LeanPool.half_le_log_two : (1 : ℝ) / 2 ≤ Real.log 2 := by
   have := Real.log_two_gt_d9
   norm_num at this ⊢
   linarith
@@ -2832,7 +2832,7 @@ lemma half_le_log_two : (1 : ℝ) / 2 ≤ Real.log 2 := by
 /--
 @isnad1 id=le.1h1v.s6.85d0270b5de4 from=translated src=- shape=4f69a448 vocab=8ca83d10
 -/
-lemma harmonic_Icc_plus_remainder_le_log_even (N : ℕ) (hN : 1 ≤ N) :
+lemma _root_.Tengoku.LeanPool.harmonic_Icc_plus_remainder_le_log_even (N : ℕ) (hN : 1 ≤ N) :
     (∑ u ∈ Finset.Icc 1 (N - 1), (u : ℝ)⁻¹) + 1 / (2 * N) ≤ Real.log (2 * N) := by
   rcases eq_or_lt_of_le hN with rfl | hN2
   · simp
@@ -2856,7 +2856,7 @@ lemma harmonic_Icc_plus_remainder_le_log_even (N : ℕ) (hN : 1 ≤ N) :
 /--
 @isnad1 id=le.1h1v.s6.1afb9b5db983 from=translated src=- shape=6d44516b vocab=04b24fcd
 -/
-lemma symmetric_harmonic_sum_le_log (n : ℕ) (hn : 2 ≤ n) :
+lemma _root_.Tengoku.LeanPool.symmetric_harmonic_sum_le_log (n : ℕ) (hn : 2 ≤ n) :
     ∑ t ∈ Finset.Icc 1 (n - 1),
       (1 : ℝ) / (2 * min (t : ℝ) ((n : ℝ) - t)) ≤ Real.log n := by
   obtain ⟨N, hN | hN⟩ := Nat.even_or_odd' n
@@ -2880,7 +2880,7 @@ lemma symmetric_harmonic_sum_le_log (n : ℕ) (hn : 2 ≤ n) :
 /--
 @isnad1 id=le.3h2v.s6.882efeb1306a from=translated src=- shape=dfea60b3 vocab=50c45803
 -/
-lemma fourier_intervalIndicator_l1_bound
+lemma _root_.Tengoku.LeanPool.fourier_intervalIndicator_l1_bound
     (n : ℕ) [NeZero n] (hn : 2 ≤ n)
     (m : ℕ) (hm1 : 1 ≤ m) (hm2 : m < n) :
     ∑ k : ZMod n, ‖normalizedDFT n (intervalIndicator n m) k‖ ≤
@@ -2903,7 +2903,7 @@ lemma fourier_intervalIndicator_l1_bound
 /--
 @isnad1 id=le.1h5v.s10.f6a8ac2b668b from=translated src=- shape=0e87dc4d vocab=d3dc1b0f
 -/
-lemma summand_norm_bound
+lemma _root_.Tengoku.LeanPool.summand_norm_bound
     (n : ℕ) [NeZero n] (hn : 2 ≤ n)
     (p q : ℤ)
     (k l : ZMod n) :
@@ -2954,7 +2954,7 @@ lemma summand_norm_bound
 /--
 @isnad1 id=le.4h3v.s7.2462a45890ba from=translated src=- shape=9eb30b3c vocab=bc62c119
 -/
-lemma norm_errorTermEP0_le_double_sum
+lemma _root_.Tengoku.LeanPool.norm_errorTermEP0_le_double_sum
     (n : ℕ) [NeZero n] (hn : 2 ≤ n)
     (p q : ℤ) (_hp : 1 ≤ p) (_hq : 1 ≤ q)
     (_hpq : (p : ℝ) + (q : ℝ) < (n : ℝ) / 2) :
@@ -2994,7 +2994,7 @@ lemma norm_errorTermEP0_le_double_sum
 /--
 @isnad1 id=le.4h3v.s7.9a182da5c417 from=translated src=- shape=74693af5 vocab=bc62c119
 -/
-lemma norm_errorTermEP0_le_product
+lemma _root_.Tengoku.LeanPool.norm_errorTermEP0_le_product
     (n : ℕ) [NeZero n] (hn : 2 ≤ n)
     (p q : ℤ) (hp : 1 ≤ p) (hq : 1 ≤ q)
     (hpq : (p : ℝ) + (q : ℝ) < (n : ℝ) / 2) :
@@ -3009,7 +3009,7 @@ lemma norm_errorTermEP0_le_product
 /--
 @isnad1 id=le.4h3v.s7.2f9598c17ad7 from=translated src=- shape=9d62dc40 vocab=6c85419a
 -/
-lemma norm_errorTermEP0_le
+lemma _root_.Tengoku.LeanPool.norm_errorTermEP0_le
     (n : ℕ) [NeZero n] (hn : 2 ≤ n)
     (p q : ℤ) (hp : 1 ≤ p) (hq : 1 ≤ q)
     (hpq : (p : ℝ) + (q : ℝ) < (n : ℝ) / 2) :
@@ -3038,7 +3038,7 @@ lemma norm_errorTermEP0_le
 /--
 @isnad1 id=le.4h3v.s7.9136e66a7943 from=translated src=- shape=1302169c vocab=d4e2899c
 -/
-lemma error_EP0_universal_bound
+lemma _root_.Tengoku.LeanPool.error_EP0_universal_bound
     (n : ℕ) (hn : 2 ≤ n)
     (p q : ℤ) (hp : 1 ≤ p) (hq : 1 ≤ q)
     (hpq : (p : ℝ) + (q : ℝ) < (n : ℝ) / 2) :
@@ -3052,7 +3052,7 @@ lemma error_EP0_universal_bound
 /--
 @isnad1 id=le.0h9v.s6.4dd7c975fa4e from=translated src=- shape=31d5eb6d vocab=9e0287cc
 -/
-lemma summand_norm_le_aux (n : ℕ) [NeZero n] (_p _q : ℤ) (k l : ZMod n)
+lemma _root_.Tengoku.LeanPool.summand_norm_le_aux (n : ℕ) [NeZero n] (_p _q : ℤ) (k l : ZMod n)
     (fp fq : ZMod n → ℂ) (t : ℤ)
     (cond : Prop) [Decidable cond] :
     ‖(if cond then normalizedDFT n fp k * normalizedDFT n fq l * ramanujanSum n t
@@ -3072,7 +3072,7 @@ lemma summand_norm_le_aux (n : ℕ) [NeZero n] (_p _q : ℤ) (k l : ZMod n)
 /--
 @isnad1 id=other.0h5v.s10.b779d44445ac from=translated src=- shape=431d979b vocab=95f99a4a
 -/
-lemma summand_norm_le (n : ℕ) [NeZero n] (p q : ℤ)
+lemma _root_.Tengoku.LeanPool.summand_norm_le (n : ℕ) [NeZero n] (p q : ℤ)
     (k l : ZMod n) :
     let P := largestPrimeFactor n
     let alpha := n.factorization P
@@ -3099,7 +3099,7 @@ lemma summand_norm_le (n : ℕ) [NeZero n] (p q : ℤ)
 /--
 @isnad1 id=le.0h3v.s9.785f9c0010ad from=translated src=- shape=98fef088 vocab=a1a0e8aa
 -/
-lemma errorTermEPalpha_norm_le_totient_mul (n : ℕ) [NeZero n] (p q : ℤ) :
+lemma _root_.Tengoku.LeanPool.errorTermEPalpha_norm_le_totient_mul (n : ℕ) [NeZero n] (p q : ℤ) :
     ‖errorTermEPalpha n p q‖ ≤
       (Nat.totient n : ℝ) *
       ∑ k : ZMod n, ∑ l : ZMod n,
@@ -3161,7 +3161,7 @@ lemma errorTermEPalpha_norm_le_totient_mul (n : ℕ) [NeZero n] (p q : ℤ) :
 /--
 @isnad1 id=lt.1h1v.s5.2c90dd574fe5 from=translated src=- shape=666f94c7 vocab=760fd316
 -/
-lemma d_pos (n : ℕ) (hn : 2 ≤ n) :
+lemma _root_.Tengoku.LeanPool.d_pos (n : ℕ) (hn : 2 ≤ n) :
     0 < largestPrimeFactor n ^ n.factorization (largestPrimeFactor n) := by
   have h1 := Nat.prime_of_mem_primeFactors (largestPrimeFactor_mem_primeFactors n hn)
   exact Nat.pos_of_ne_zero (Nat.ne_of_gt (Nat.one_le_pow _ _ h1.pos))
@@ -3169,7 +3169,7 @@ lemma d_pos (n : ℕ) (hn : 2 ≤ n) :
 /--
 @isnad1 id=eq.1h2v.s5.31ab2b95d740 from=translated src=- shape=85dadadf vocab=91676a01
 -/
-lemma val_unitOfCoprime_eq_mod
+lemma _root_.Tengoku.LeanPool.val_unitOfCoprime_eq_mod
     (d a : ℕ) (hcoprime : a.Coprime d) :
     (ZMod.unitOfCoprime a hcoprime : ZMod d).val = a % d := by
   simp_all
@@ -3177,7 +3177,7 @@ lemma val_unitOfCoprime_eq_mod
 /--
 @isnad1 id=eq.0h3v.s6.062fdb283ba0 from=translated src=- shape=40422fec vocab=d0c4925a
 -/
-lemma combine_cases_arithmetic
+lemma _root_.Tengoku.LeanPool.combine_cases_arithmetic
     (C : ℝ) (L : ℝ) (d : ℝ) :
     C * (5 * L / d) + C * (L / d) = C * (6 * L / d) := by
   ring
@@ -3185,7 +3185,7 @@ lemma combine_cases_arithmetic
 /--
 @isnad1 id=lt.1h2v.s6.ece1b2056e73 from=translated src=- shape=63187f5a vocab=71da2cfe
 -/
-lemma min_val_pos (n : ℕ) [NeZero n] (k : ZMod n) (hk : k ≠ 0) :
+lemma _root_.Tengoku.LeanPool.min_val_pos (n : ℕ) [NeZero n] (k : ZMod n) (hk : k ≠ 0) :
     (0 : ℝ) < min (ZMod.val k : ℝ) ((n : ℝ) - ZMod.val k) := by
   have h₁ : 0 < ZMod.val k := Nat.pos_of_ne_zero ((ZMod.val_ne_zero k).mpr hk)
   have h₂ : (ZMod.val k : ℕ) < n := ZMod.val_lt k
@@ -3196,7 +3196,7 @@ lemma min_val_pos (n : ℕ) [NeZero n] (k : ZMod n) (hk : k ≠ 0) :
 /--
 @isnad1 id=eq.0h4v.s9.0f2eb2c23541 from=translated src=- shape=e9a0ad49 vocab=0ada56de
 -/
-lemma sum_exchange_weighted
+lemma _root_.Tengoku.LeanPool.sum_exchange_weighted
     (n d : ℕ) [NeZero n] [NeZero d]
     (mq : ℕ) (q : ℤ) :
     ∑ u : (ZMod d)ˣ,
@@ -3216,7 +3216,7 @@ lemma sum_exchange_weighted
 /--
 @isnad1 id=eq.0h2v.s7.9c204f23b578 from=translated src=- shape=35a88d99 vocab=251d3d26
 -/
-lemma outer_sum_split (n : ℕ) [NeZero n] (G : ZMod n → ℝ) :
+lemma _root_.Tengoku.LeanPool.outer_sum_split (n : ℕ) [NeZero n] (G : ZMod n → ℝ) :
     ∑ k : ZMod n, G k = G 0 + ∑ k ∈ Finset.univ.filter (fun k : ZMod n => k ≠ 0), G k := by
   have h := Finset.sum_filter_add_sum_filter_not Finset.univ (fun k : ZMod n => k = 0) G
   rw [Finset.sum_filter, Finset.sum_ite_eq' Finset.univ 0 G, ite_eq_left (Finset.mem_univ _)] at h
@@ -3225,7 +3225,7 @@ lemma outer_sum_split (n : ℕ) [NeZero n] (G : ZMod n → ℝ) :
 /--
 @isnad1 id=eq.0h4v.s9.49817f358b9e from=translated src=- shape=47341c1c vocab=0ada56de
 -/
-lemma zero_term_vanishes
+lemma _root_.Tengoku.LeanPool.zero_term_vanishes
     (n d : ℕ) [NeZero n] [NeZero d]
     (mq : ℕ) (q : ℤ) :
     ∑ u : (ZMod d)ˣ,
@@ -3240,7 +3240,7 @@ lemma zero_term_vanishes
 /--
 @isnad1 id=eq.1h5v.s9.5724fcf91b0b from=translated src=- shape=b33de7c6 vocab=0ada56de
 -/
-lemma summand_congr_on_filter
+lemma _root_.Tengoku.LeanPool.summand_congr_on_filter
     (n d : ℕ) [NeZero n] [NeZero d]
     (mq : ℕ) (q : ℤ)
     (k : ZMod n) (hk : k ≠ 0) :
@@ -3261,7 +3261,7 @@ lemma summand_congr_on_filter
 /--
 @isnad1 id=eq.0h4v.s9.e9efeeea16db from=translated src=- shape=691943ff vocab=0e4ccbdd
 -/
-lemma sum_restrict_to_nonzero
+lemma _root_.Tengoku.LeanPool.sum_restrict_to_nonzero
     (n d : ℕ) [NeZero n] [NeZero d]
     (mq : ℕ) (q : ℤ) :
     ∑ k : ZMod n, ∑ u : (ZMod d)ˣ,
@@ -3285,7 +3285,7 @@ lemma sum_restrict_to_nonzero
 /--
 @isnad1 id=eq.0h4v.s10.cecbf7a0ecdd from=translated src=- shape=6791dea5 vocab=0e4ccbdd
 -/
-lemma split_nonzero_by_divisibility
+lemma _root_.Tengoku.LeanPool.split_nonzero_by_divisibility
     (n d : ℕ) [NeZero n] [NeZero d]
     (mq : ℕ) (q : ℤ) :
     ∑ k ∈ Finset.univ.filter (fun k : ZMod n => k ≠ 0), ∑ u : (ZMod d)ˣ,
@@ -3313,7 +3313,7 @@ lemma split_nonzero_by_divisibility
 /--
 @isnad1 id=eq.0h4v.s10.179e121767b1 from=translated src=- shape=76e95776 vocab=0e4ccbdd
 -/
-lemma k_sum_split_by_d_divisibility
+lemma _root_.Tengoku.LeanPool.k_sum_split_by_d_divisibility
     (n d : ℕ) [NeZero n] [NeZero d]
     (mq : ℕ) (q : ℤ) :
     ∑ k : ZMod n, ∑ u : (ZMod d)ˣ,
@@ -3341,7 +3341,7 @@ lemma k_sum_split_by_d_divisibility
 /--
 @isnad1 id=eq.1h5v.s9.12ea33a934f9 from=translated src=- shape=56e90c62 vocab=0ada56de
 -/
-lemma factor_weight_from_double_sum
+lemma _root_.Tengoku.LeanPool.factor_weight_from_double_sum
     (n d : ℕ) [NeZero n] [NeZero d]
     (mq : ℕ) (q : ℤ) (k : ZMod n) (hk : k ≠ 0) :
     (∑ u : (ZMod d)ˣ,
@@ -3367,7 +3367,7 @@ lemma factor_weight_from_double_sum
 /--
 @isnad1 id=iff.2h6v.s7.05025c2f852c from=translated src=- shape=f7c0d37c vocab=78dc4234
 -/
-lemma dvd_simplify_multiple_case
+lemma _root_.Tengoku.LeanPool.dvd_simplify_multiple_case
     (n d : ℕ) [NeZero n] [NeZero d]
     (k : ZMod n) (l : ZMod n) (u : (ZMod d)ˣ) (q : ℤ)
     (hdk : (d : ℕ) ∣ ZMod.val k)
@@ -3390,7 +3390,7 @@ lemma dvd_simplify_multiple_case
 /--
 @isnad1 id=and.3h2v.s6.74dac544dbf5 from=translated src=- shape=78d0fdf5 vocab=6bd80c28
 -/
-lemma mq_bounds (n : ℕ) (_hn : 2 ≤ n) (q : ℤ) (hq_pos : 1 ≤ q)
+lemma _root_.Tengoku.LeanPool.mq_bounds (n : ℕ) (_hn : 2 ≤ n) (q : ℤ) (hq_pos : 1 ≤ q)
     (hq_bound : (q : ℝ) < (n : ℝ) / 2) :
     1 ≤ (2 * q - 1).toNat ∧ (2 * q - 1).toNat < n := by
   have h₂ : (2 * q - 1 : ℤ) < n := by
@@ -3401,7 +3401,7 @@ lemma mq_bounds (n : ℕ) (_hn : 2 ≤ n) (q : ℤ) (hq_pos : 1 ≤ q)
 /--
 @isnad1 id=le.3h2v.s7.72fa0368ea0a from=translated src=- shape=85594d11 vocab=4601c746
 -/
-lemma symmetric_sum_le_one_plus_log (n d : ℕ) (hn : 2 ≤ n) (_hd_dvd : d ∣ n) (_hd_pos : 0 < d) :
+lemma _root_.Tengoku.LeanPool.symmetric_sum_le_one_plus_log (n d : ℕ) (hn : 2 ≤ n) (_hd_dvd : d ∣ n) (_hd_pos : 0 < d) :
     ∑ j ∈ Finset.Icc 1 (n / d - 1),
       (1 : ℝ) / (2 * min (j : ℝ) ((↑(n / d) : ℝ) - j)) ≤ 1 + Real.log n := by
   set N := n / d with hN_def
@@ -3423,7 +3423,7 @@ lemma symmetric_sum_le_one_plus_log (n d : ℕ) (hn : 2 ≤ n) (_hd_dvd : d ∣ 
 /--
 @isnad1 id=lt.3h3v.s6.9cd278accee4 from=translated src=- shape=02ef9405 vocab=1f993048
 -/
-lemma mul_lt_of_mem_Icc (n d : ℕ) (_hd_dvd : d ∣ n) (hd_pos : 0 < d)
+lemma _root_.Tengoku.LeanPool.mul_lt_of_mem_Icc (n d : ℕ) (_hd_dvd : d ∣ n) (hd_pos : 0 < d)
     (j : ℕ) (hj : j ∈ Finset.Icc 1 (n / d - 1)) :
     j * d < n := by
   have h₁ : n / d ≥ 1 := by simp only [Finset.mem_Icc] at hj; omega
@@ -3436,7 +3436,7 @@ lemma mul_lt_of_mem_Icc (n d : ℕ) (_hd_dvd : d ∣ n) (hd_pos : 0 < d)
 /--
 @isnad1 id=mem.3h3v.s7.640bb969c2b3 from=translated src=- shape=765360a9 vocab=a00d99bf
 -/
-lemma fwd_mem (n d : ℕ) [NeZero n] (hd_dvd : d ∣ n) (hd_pos : 0 < d)
+lemma _root_.Tengoku.LeanPool.fwd_mem (n d : ℕ) [NeZero n] (hd_dvd : d ∣ n) (hd_pos : 0 < d)
     (j : ℕ) (hj : j ∈ Finset.Icc 1 (n / d - 1)) :
     (↑(j * d) : ZMod n) ∈ Finset.univ.filter (fun k : ZMod n => k ≠ 0 ∧ (d : ℕ) ∣ ZMod.val k) := by
   have hjd_lt : j * d < n := mul_lt_of_mem_Icc n d hd_dvd hd_pos j hj
@@ -3453,7 +3453,7 @@ lemma fwd_mem (n d : ℕ) [NeZero n] (hd_dvd : d ∣ n) (hd_pos : 0 < d)
 /--
 @isnad1 id=mem.3h3v.s7.9c3034aad3ae from=translated src=- shape=bfea23f9 vocab=3e9d11d0
 -/
-lemma bwd_mem (n d : ℕ) [NeZero n] (hd_dvd : d ∣ n) (hd_pos : 0 < d)
+lemma _root_.Tengoku.LeanPool.bwd_mem (n d : ℕ) [NeZero n] (hd_dvd : d ∣ n) (hd_pos : 0 < d)
     (k : ZMod n) (hk : k ∈ Finset.univ.filter (fun k : ZMod n => k ≠ 0 ∧ (d : ℕ) ∣ ZMod.val k)) :
     ZMod.val k / d ∈ Finset.Icc 1 (n / d - 1) := by
   simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hk
@@ -3469,7 +3469,7 @@ lemma bwd_mem (n d : ℕ) [NeZero n] (hd_dvd : d ∣ n) (hd_pos : 0 < d)
 /--
 @isnad1 id=eq.3h3v.s6.06529165e962 from=translated src=- shape=3b502b98 vocab=5c635408
 -/
-lemma left_inv (n d : ℕ) (hd_dvd : d ∣ n) (hd_pos : 0 < d)
+lemma _root_.Tengoku.LeanPool.left_inv (n d : ℕ) (hd_dvd : d ∣ n) (hd_pos : 0 < d)
     (j : ℕ) (hj : j ∈ Finset.Icc 1 (n / d - 1)) :
     ZMod.val (↑(j * d) : ZMod n) / d = j := by
   have hjd : j * d < n := mul_lt_of_mem_Icc n d hd_dvd hd_pos j hj
@@ -3478,7 +3478,7 @@ lemma left_inv (n d : ℕ) (hd_dvd : d ∣ n) (hd_pos : 0 < d)
 /--
 @isnad1 id=eq.3h3v.s7.6a49661a297c from=translated src=- shape=9c88d53f vocab=c2902d21
 -/
-lemma right_inv (n d : ℕ) [NeZero n] (_hd_dvd : d ∣ n) (_hd_pos : 0 < d)
+lemma _root_.Tengoku.LeanPool.right_inv (n d : ℕ) [NeZero n] (_hd_dvd : d ∣ n) (_hd_pos : 0 < d)
     (k : ZMod n) (hk : k ∈ Finset.univ.filter (fun k : ZMod n => k ≠ 0 ∧ (d : ℕ) ∣ ZMod.val k)) :
     (↑(ZMod.val k / d * d) : ZMod n) = k := by
   have hmem := (Finset.mem_filter.mp hk).2
@@ -3488,7 +3488,7 @@ lemma right_inv (n d : ℕ) [NeZero n] (_hd_dvd : d ∣ n) (_hd_pos : 0 < d)
 /--
 @isnad1 id=lt.2h3v.s5.beddf10770bf from=translated src=- shape=24747159 vocab=2c97e519
 -/
-lemma div_lt_div_of_dvd (n d : ℕ) [NeZero n] (hd_dvd : d ∣ n)
+lemma _root_.Tengoku.LeanPool.div_lt_div_of_dvd (n d : ℕ) [NeZero n] (hd_dvd : d ∣ n)
     (k : ZMod n) (_hd_dvd_val : d ∣ ZMod.val k) :
     ZMod.val k / d < n / d := by
   have h_val_lt_n : ZMod.val k < n := ZMod.val_lt k
@@ -3497,7 +3497,7 @@ lemma div_lt_div_of_dvd (n d : ℕ) [NeZero n] (hd_dvd : d ∣ n)
 /--
 @isnad1 id=eq.3h3v.s7.c15ef135c8f2 from=translated src=- shape=623ad6a9 vocab=864615aa
 -/
-lemma min_factor_d_nat (n d : ℕ) [NeZero n] (hd_dvd : d ∣ n) (k : ZMod n)
+lemma _root_.Tengoku.LeanPool.min_factor_d_nat (n d : ℕ) [NeZero n] (hd_dvd : d ∣ n) (k : ZMod n)
     (_hk_ne : k ≠ 0) (hd_dvd_val : d ∣ ZMod.val k) :
     min (ZMod.val k : ℝ) ((n : ℝ) - ZMod.val k) =
     (d : ℝ) * min (↑(ZMod.val k / d) : ℝ) ((↑(n / d) : ℝ) - ↑(ZMod.val k / d)) := by
@@ -3516,7 +3516,7 @@ lemma min_factor_d_nat (n d : ℕ) [NeZero n] (hd_dvd : d ∣ n) (k : ZMod n)
 /--
 @isnad1 id=eq.1h2v.s6.3d1103ce4b87 from=translated src=- shape=5d88ebf2 vocab=12ac4171
 -/
-lemma div_factor_d (d M : ℝ) (hd : d ≠ 0) :
+lemma _root_.Tengoku.LeanPool.div_factor_d (d M : ℝ) (hd : d ≠ 0) :
     (1 : ℝ) / (2 * (d * M)) = (1 / d) * (1 / (2 * M)) := by
   rcases eq_or_ne M 0 with h₂ | h₂
   · simp [h₂]
@@ -3525,7 +3525,7 @@ lemma div_factor_d (d M : ℝ) (hd : d ≠ 0) :
 /--
 @isnad1 id=other.3h3v.s8.d2e9ec2b6259 from=translated src=- shape=6fb5e124 vocab=cd6a82eb
 -/
-lemma summand_eq_via_bwd (n d : ℕ) [NeZero n] [NeZero d] (hd_dvd : d ∣ n) (_hd_pos : 0 < d)
+lemma _root_.Tengoku.LeanPool.summand_eq_via_bwd (n d : ℕ) [NeZero n] [NeZero d] (hd_dvd : d ∣ n) (_hd_pos : 0 < d)
     (k : ZMod n) (hk : k ∈ Finset.univ.filter (fun k : ZMod n => k ≠ 0 ∧ (d : ℕ) ∣ ZMod.val k)) :
     let N := n / d
     let j := ZMod.val k / d
@@ -3540,7 +3540,7 @@ lemma summand_eq_via_bwd (n d : ℕ) [NeZero n] [NeZero d] (hd_dvd : d ∣ n) (_
 /--
 @isnad1 id=other.2h2v.s8.f95fb850c8bb from=translated src=- shape=d6807281 vocab=9657e299
 -/
-lemma reindex_multiples_of_d (n d : ℕ) [NeZero n] [NeZero d]
+lemma _root_.Tengoku.LeanPool.reindex_multiples_of_d (n d : ℕ) [NeZero n] [NeZero d]
     (hd_dvd : d ∣ n) (hd_pos : 0 < d) :
     let N := n / d
     ∑ k ∈ Finset.univ.filter (fun k : ZMod n => k ≠ 0 ∧ (d : ℕ) ∣ ZMod.val k),
@@ -3560,7 +3560,7 @@ lemma reindex_multiples_of_d (n d : ℕ) [NeZero n] [NeZero d]
 /--
 @isnad1 id=le.3h2v.s8.142669acda83 from=translated src=- shape=845aa010 vocab=f7b83753
 -/
-lemma weight_sum_multiples_of_d_bound
+lemma _root_.Tengoku.LeanPool.weight_sum_multiples_of_d_bound
     (n d : ℕ) [NeZero n] [NeZero d] (hn : 2 ≤ n)
     (hd_dvd : d ∣ n) (hd_pos : 0 < d) :
     ∑ k ∈ Finset.univ.filter (fun k : ZMod n => k ≠ 0 ∧ (d : ℕ) ∣ ZMod.val k),
@@ -3576,14 +3576,14 @@ lemma weight_sum_multiples_of_d_bound
 /--
 @isnad1 id=dvd.1h1v.s5.08d651213bc5 from=translated src=- shape=48801d76 vocab=58b2845b
 -/
-lemma d_dvd_n (n : ℕ) (_hn : 2 ≤ n) :
+lemma _root_.Tengoku.LeanPool.d_dvd_n (n : ℕ) (_hn : 2 ≤ n) :
     largestPrimeFactor n ^ n.factorization (largestPrimeFactor n) ∣ n := by
   exact Nat.ordProj_dvd n (largestPrimeFactor n)
 
 /--
 @isnad1 id=eq.3h3v.s6.dddec8f7f27c from=translated src=- shape=94982915 vocab=1531ad8d
 -/
-lemma coprimality_q_d (n : ℕ) (_hn : 2 ≤ n) (q : ℤ)
+lemma _root_.Tengoku.LeanPool.coprimality_q_d (n : ℕ) (_hn : 2 ≤ n) (q : ℤ)
     (hq_coprime : Int.gcd q (largestPrimeFactor n : ℤ) = 1)
     (d : ℕ) (hd : d = largestPrimeFactor n ^ n.factorization (largestPrimeFactor n)) :
     Int.gcd q (d : ℤ) = 1 := by
@@ -3593,7 +3593,7 @@ lemma coprimality_q_d (n : ℕ) (_hn : 2 ≤ n) (q : ℤ)
 /--
 @isnad1 id=eq.2h5v.s8.7f87b0c5db19 from=translated src=- shape=e66037fb vocab=bb218e80
 -/
-lemma simplify_u_sum_when_d_dvd_k
+lemma _root_.Tengoku.LeanPool.simplify_u_sum_when_d_dvd_k
     (n d : ℕ) [NeZero n] [NeZero d]
     (mq : ℕ) (q : ℤ) (k : ZMod n)
     (hdk : (d : ℕ) ∣ ZMod.val k)
@@ -3614,7 +3614,7 @@ lemma simplify_u_sum_when_d_dvd_k
 /--
 @isnad1 id=le.3h3v.s6.41fa597c55b4 from=translated src=- shape=9a529449 vocab=3307e50c
 -/
-lemma restricted_fourier_mass_le
+lemma _root_.Tengoku.LeanPool.restricted_fourier_mass_le
     (n d : ℕ) [NeZero n] (hn : 2 ≤ n)
     (mq : ℕ) (hmq1 : 1 ≤ mq) (hmq2 : mq < n) :
     (∑ l : ZMod n,
@@ -3638,7 +3638,7 @@ lemma restricted_fourier_mass_le
 /--
 @isnad1 id=le.3h4v.s9.10cdee389c3c from=translated src=- shape=0e7348b1 vocab=4805282b
 -/
-lemma triple_sum_eq_card_times_product
+lemma _root_.Tengoku.LeanPool.triple_sum_eq_card_times_product
     (n d : ℕ) [NeZero n] [NeZero d] (_hn : 2 ≤ n)
     (mq : ℕ) (q : ℤ)
     (hq_coprime_d : Int.gcd q (d : ℤ) = 1)
@@ -3669,7 +3669,7 @@ lemma triple_sum_eq_card_times_product
 /--
 @isnad1 id=le.8h4v.s9.796435ad4b97 from=translated src=- shape=38b68e9c vocab=bf1432f4
 -/
-lemma triple_sum_bound_via_factoring
+lemma _root_.Tengoku.LeanPool.triple_sum_bound_via_factoring
     (n d : ℕ) [NeZero n] [NeZero d] (hn : 2 ≤ n)
     (hd : d = largestPrimeFactor n ^ n.factorization (largestPrimeFactor n))
     (q : ℤ) (hq_coprime : Int.gcd q (largestPrimeFactor n : ℤ) = 1)
@@ -3712,7 +3712,7 @@ lemma triple_sum_bound_via_factoring
 /--
 @isnad1 id=le.6h4v.s9.21d4a08bdb14 from=translated src=- shape=f2925dd2 vocab=bf1432f4
 -/
-lemma multiple_d_weighted_bound
+lemma _root_.Tengoku.LeanPool.multiple_d_weighted_bound
     (n d : ℕ) [NeZero n] [NeZero d] (hn : 2 ≤ n)
     (hd : d = largestPrimeFactor n ^ n.factorization (largestPrimeFactor n))
     (q : ℤ) (hq_coprime : Int.gcd q (largestPrimeFactor n : ℤ) = 1)
@@ -3735,7 +3735,7 @@ lemma multiple_d_weighted_bound
 /--
 @isnad1 id=le.1h2v.s6.2faf7deb314b from=translated src=- shape=76f5c059 vocab=ee8f7085
 -/
-lemma weight_nonneg (n : ℕ) [NeZero n] (k : ZMod n) (hk : k ≠ 0) :
+lemma _root_.Tengoku.LeanPool.weight_nonneg (n : ℕ) [NeZero n] (k : ZMod n) (hk : k ≠ 0) :
     (0 : ℝ) ≤ 2 * min (ZMod.val k : ℝ) ((n : ℝ) - ZMod.val k) := by
   have h := min_val_pos n k hk
   linarith
@@ -3743,7 +3743,7 @@ lemma weight_nonneg (n : ℕ) [NeZero n] (k : ZMod n) (hk : k ≠ 0) :
 /--
 @isnad1 id=le.1h2v.s7.a6a9e8357049 from=translated src=- shape=d3107e0c vocab=09ec1e57
 -/
-lemma weight_sum_le_log
+lemma _root_.Tengoku.LeanPool.weight_sum_le_log
     (n d : ℕ) [NeZero n] (hn : 2 ≤ n) :
     ∑ k ∈ Finset.univ.filter (fun k : ZMod n => k ≠ 0 ∧ ¬((d : ℕ) ∣ ZMod.val k)),
       (1 : ℝ) / (2 * min (ZMod.val k : ℝ) ((n : ℝ) - ZMod.val k)) ≤
@@ -3772,14 +3772,14 @@ lemma weight_sum_le_log
 /--
 @isnad1 id=le.1h2v.s6.47bdcbc90c78 from=translated src=- shape=ce2153f4 vocab=33fcd59f
 -/
-lemma const_bound_nonneg (n d : ℕ) [NeZero d] (_hn : 2 ≤ n) :
+lemma _root_.Tengoku.LeanPool.const_bound_nonneg (n d : ℕ) [NeZero d] (_hn : 2 ≤ n) :
     (0 : ℝ) ≤ ↑(Fintype.card (ZMod d)ˣ) * (5 * (1 + Real.log ↑n) / ↑d) := by
   positivity
 
 /--
 @isnad1 id=eq.0h1v.s7.fa60fef37979 from=translated src=- shape=c1b11c54 vocab=8831e33a
 -/
-lemma sum_eq_two_mul_half_sum (M : ℕ) :
+lemma _root_.Tengoku.LeanPool.sum_eq_two_mul_half_sum (M : ℕ) :
     (∑ t ∈ Finset.Icc 1 (M - 1),
       1 / min ((t : ℝ)) ((M : ℝ) - (t : ℝ))) =
     2 * (∑ t ∈ Finset.Icc 1 (M - 1),
@@ -3797,7 +3797,7 @@ lemma sum_eq_two_mul_half_sum (M : ℕ) :
 /--
 @isnad1 id=le.2h2v.s6.7efbc3ccde95 from=translated src=- shape=e0798199 vocab=814d2340
 -/
-lemma harmonic_min_sum_le_two_log (M n : ℕ) (hM : 2 ≤ M) (hMn : M ≤ n) :
+lemma _root_.Tengoku.LeanPool.harmonic_min_sum_le_two_log (M n : ℕ) (hM : 2 ≤ M) (hMn : M ≤ n) :
     (∑ t ∈ Finset.Icc 1 (M - 1),
       1 / min ((t : ℝ)) ((M : ℝ) - (t : ℝ))) ≤
     2 * (1 + Real.log ↑n) := by
@@ -3812,7 +3812,7 @@ lemma harmonic_min_sum_le_two_log (M n : ℕ) (hM : 2 ≤ M) (hMn : M ≤ n) :
 /--
 @isnad1 id=le.1h1v.s5.eff821e7ead9 from=translated src=- shape=852bc8ed vocab=de1fd33c
 -/
-lemma d_ge_P (n : ℕ) (hn : 2 ≤ n) :
+lemma _root_.Tengoku.LeanPool.d_ge_P (n : ℕ) (hn : 2 ≤ n) :
     largestPrimeFactor n ≤ largestPrimeFactor n ^ n.factorization (largestPrimeFactor n) := by
   have hP := largestPrimeFactor_pos n hn
   have hα := largest_prime_factor_multiplicity_pos n hn
@@ -3821,7 +3821,7 @@ lemma d_ge_P (n : ℕ) (hn : 2 ≤ n) :
 /--
 @isnad1 id=le.1h1v.s5.c1d431d1ec74 from=translated src=- shape=ce76718a vocab=1574cdf7
 -/
-lemma one_plus_log_nonneg (n : ℕ) (hn : 2 ≤ n) :
+lemma _root_.Tengoku.LeanPool.one_plus_log_nonneg (n : ℕ) (hn : 2 ≤ n) :
     0 ≤ 1 + Real.log (n : ℝ) := by
   have h₁ : 0 ≤ Real.log (n : ℝ) := by
     have h₂ : (1 : ℝ) ≤ (n : ℝ) := by
@@ -3833,7 +3833,7 @@ lemma one_plus_log_nonneg (n : ℕ) (hn : 2 ≤ n) :
 /--
 @isnad1 id=other.1h3v.s7.42c11902a6da from=translated src=- shape=8a00a529 vocab=521743f9
 -/
-lemma key_val_eq (d : ℕ) (k_val : ℕ) (hcop : Nat.Coprime k_val d)
+lemma _root_.Tengoku.LeanPool.key_val_eq (d : ℕ) (k_val : ℕ) (hcop : Nat.Coprime k_val d)
     (u : (ZMod d)ˣ) :
     let k_unit := ZMod.unitOfCoprime k_val hcop
     ((k_unit * u : (ZMod d)ˣ) : ZMod d).val = (k_val * (↑u : ZMod d).val) % d := by
@@ -3846,7 +3846,7 @@ lemma key_val_eq (d : ℕ) (k_val : ℕ) (hcop : Nat.Coprime k_val d)
 /--
 @isnad1 id=eq.1h2v.s8.04ea62594ae3 from=translated src=- shape=19a8b323 vocab=7a5607d9
 -/
-lemma coprime_case_sum_eq
+lemma _root_.Tengoku.LeanPool.coprime_case_sum_eq
     (d : ℕ) [NeZero d] (k_val : ℕ) (hcop : Nat.Coprime k_val d) :
     (∑ u : (ZMod d)ˣ,
       1 / min ((k_val * (u : ZMod d).val % d : ℕ) : ℝ)
@@ -3866,14 +3866,14 @@ lemma coprime_case_sum_eq
 /--
 @isnad1 id=injectiv.0h1v.s5.e7dd65c84cf7 from=translated src=- shape=b5cd39cc vocab=7e516f5b
 -/
-lemma units_val_injective (d : ℕ) [NeZero d] :
+lemma _root_.Tengoku.LeanPool.units_val_injective (d : ℕ) [NeZero d] :
     Function.Injective (fun u : (ZMod d)ˣ => (u : ZMod d).val) :=
   (ZMod.val_injective d).comp Units.val_injective
 
 /--
 @isnad1 id=mem.1h2v.s6.4b2f1567d518 from=translated src=- shape=f1eaf260 vocab=3dae4c78
 -/
-lemma unit_val_mem_Icc (d : ℕ) [NeZero d] (hd : 2 ≤ d) (u : (ZMod d)ˣ) :
+lemma _root_.Tengoku.LeanPool.unit_val_mem_Icc (d : ℕ) [NeZero d] (hd : 2 ≤ d) (u : (ZMod d)ˣ) :
     (u : ZMod d).val ∈ Finset.Icc 1 (d - 1) := by
   have h_val_lt_d : (u : ZMod d).val < d := ZMod.val_lt _
   have h_val_coprime_d : Nat.Coprime (u : ZMod d).val d := ZMod.val_coe_unit_coprime u
@@ -3884,7 +3884,7 @@ lemma unit_val_mem_Icc (d : ℕ) [NeZero d] (hd : 2 ≤ d) (u : (ZMod d)ˣ) :
 /--
 @isnad1 id=le.1h2v.s6.6042e777e3ec from=translated src=- shape=1c8d86fb vocab=46dd9938
 -/
-lemma units_sum_summand_nonneg (d : ℕ) (t : ℕ) (ht : t ∈ Finset.Icc 1 (d - 1)) :
+lemma _root_.Tengoku.LeanPool.units_sum_summand_nonneg (d : ℕ) (t : ℕ) (ht : t ∈ Finset.Icc 1 (d - 1)) :
     (0 : ℝ) ≤ 1 / min ((t : ℝ)) (((d : ℕ) : ℝ) - (t : ℝ)) := by
   obtain ⟨h₁, h₂⟩ := Finset.mem_Icc.mp ht
   have h₄ : (d : ℕ) ≥ t + 1 := by omega
@@ -3897,7 +3897,7 @@ lemma units_sum_summand_nonneg (d : ℕ) (t : ℕ) (ht : t ∈ Finset.Icc 1 (d -
 /--
 @isnad1 id=le.1h1v.s7.c69e9d7fc146 from=translated src=- shape=c26c78ba vocab=1c83902f
 -/
-lemma units_sum_le_Icc_sum
+lemma _root_.Tengoku.LeanPool.units_sum_le_Icc_sum
     (d : ℕ) [NeZero d] (hd : 2 ≤ d) :
     (∑ u : (ZMod d)ˣ,
       1 / min (((u : ZMod d).val : ℕ) : ℝ)
@@ -3920,12 +3920,12 @@ lemma units_sum_le_Icc_sum
 /--
 @isnad1 id=eq.0h3v.s5.b12f752dbc63 from=translated src=- shape=4547239a vocab=b7cede88
 -/
-lemma nat_mul_mod_right (a b n : ℕ) : a * b % n = a * (b % n) % n := by simp
+lemma _root_.Tengoku.LeanPool.nat_mul_mod_right (a b n : ℕ) : a * b % n = a * (b % n) % n := by simp
 
 /--
 @isnad1 id=eq.9h6v.s8.ed47f4cea378 from=translated src=- shape=4c64d549 vocab=fb2a85ec
 -/
-lemma kval_mul_unit_mod_eq_pv_mul
+lemma _root_.Tengoku.LeanPool.kval_mul_unit_mod_eq_pv_mul
     (d : ℕ) (p : ℕ) (_hp : Nat.Prime p) (α : ℕ) (_hα : 1 ≤ α)
     (hd_eq : d = p ^ α)
     (k_val : ℕ) (_hk_nd : ¬((d : ℕ) ∣ k_val)) (_hk_dvd_p : p ∣ k_val)
@@ -3947,7 +3947,7 @@ lemma kval_mul_unit_mod_eq_pv_mul
 /--
 @isnad1 id=not.3h3v.s6.9be8e484655e from=translated src=- shape=be2ca4a5 vocab=5bb04e2a
 -/
-lemma not_p_dvd_div_pow_1
+lemma _root_.Tengoku.LeanPool.not_p_dvd_div_pow_1
     (p : ℕ) (_hp : Nat.Prime p)
     (k_val v : ℕ)
     (hv_val : p ^ v ∣ k_val) (hv_max : ¬(p ^ (v + 1) ∣ k_val)) :
@@ -3961,7 +3961,7 @@ lemma not_p_dvd_div_pow_1
 /--
 @isnad1 id=dvd.2h3v.s4.87fb7483036e from=translated src=- shape=c3340ad1 vocab=6a28e6f0
 -/
-lemma dvd_of_dvd_mod_of_dvd (p a m : ℕ) (hpm : p ∣ m) (hpr : p ∣ a % m) : p ∣ a := by
+lemma _root_.Tengoku.LeanPool.dvd_of_dvd_mod_of_dvd (p a m : ℕ) (hpm : p ∣ m) (hpr : p ∣ a % m) : p ∣ a := by
   have h₄ : a % m + m * (a / m) = a := Nat.mod_add_div a m
   rw [← h₄]
   exact dvd_add hpr (dvd_mul_of_dvd_left hpm (a / m))
@@ -3969,7 +3969,7 @@ lemma dvd_of_dvd_mod_of_dvd (p a m : ℕ) (hpm : p ∣ m) (hpr : p ∣ a % m) : 
 /--
 @isnad1 id=not.3h4v.s7.7f6c54f24802 from=translated src=- shape=137405b3 vocab=46b8a370
 -/
-lemma not_p_dvd_unit_val_mod
+lemma _root_.Tengoku.LeanPool.not_p_dvd_unit_val_mod
     (p : ℕ) (hp : Nat.Prime p) (α : ℕ) (hα : 1 ≤ α)
     (v : ℕ) (hv_lt : v < α)
     (u : (ZMod (p ^ α))ˣ) :
@@ -3986,7 +3986,7 @@ lemma not_p_dvd_unit_val_mod
 /--
 @isnad1 id=not.3h3v.s5.9cdafc3da079 from=translated src=- shape=a83bca35 vocab=a7d03a3f
 -/
-lemma mul_not_dvd_of_not_dvd
+lemma _root_.Tengoku.LeanPool.mul_not_dvd_of_not_dvd
     (p a b : ℕ) (hp : Nat.Prime p)
     (ha : ¬(p ∣ a)) (hb : ¬(p ∣ b)) :
     ¬(p ∣ a * b) := by
@@ -3998,7 +3998,7 @@ lemma mul_not_dvd_of_not_dvd
 /--
 @isnad1 id=ne.3h3v.s5.726cda94d916 from=translated src=- shape=5836f7d6 vocab=c2520b84
 -/
-lemma mod_ne_zero_of_not_dvd_prime
+lemma _root_.Tengoku.LeanPool.mod_ne_zero_of_not_dvd_prime
     (p : ℕ) (_hp : Nat.Prime p) (k : ℕ) (hk : 1 ≤ k)
     (n : ℕ) (hn : ¬(p ∣ n)) :
     n % p ^ k ≠ 0 := by
@@ -4008,7 +4008,7 @@ lemma mod_ne_zero_of_not_dvd_prime
 /--
 @isnad1 id=ne.6h5v.s8.77977d8249f5 from=translated src=- shape=e8f27e7f vocab=fb2a85ec
 -/
-lemma reduced_product_mod_ne_zero
+lemma _root_.Tengoku.LeanPool.reduced_product_mod_ne_zero
     (p : ℕ) (hp : Nat.Prime p) (α : ℕ) (hα : 1 ≤ α)
     (k_val : ℕ)
     (v : ℕ) (hv_pos : 1 ≤ v) (hv_lt : v < α)
@@ -4026,7 +4026,7 @@ lemma reduced_product_mod_ne_zero
 /--
 @isnad1 id=eq.2h4v.s7.49978ae5aa76 from=translated src=- shape=28eba56f vocab=ce64cbca
 -/
-lemma min_pv_factor
+lemma _root_.Tengoku.LeanPool.min_pv_factor
     (p : ℕ) (v M x : ℕ)
     (_hx_pos : 0 < x) (_hx_lt : x < M) :
     min ((p ^ v * x : ℕ) : ℝ) (((p ^ v * M : ℕ) : ℝ) - ((p ^ v * x : ℕ) : ℝ))
@@ -4039,7 +4039,7 @@ lemma min_pv_factor
 /--
 @isnad1 id=lt.4h5v.s6.0242597fc088 from=translated src=- shape=062226dd vocab=30baad68
 -/
-lemma fiber_element_lt
+lemma _root_.Tengoku.LeanPool.fiber_element_lt
     (p : ℕ) (hp : Nat.Prime p) (α v : ℕ) (hv_lt : v < α)
     (s : ℕ) (hs_lt : s < p ^ (α - v))
     (j : ℕ) (hj : j < p ^ v) :
@@ -4053,7 +4053,7 @@ lemma fiber_element_lt
 /--
 @isnad1 id=not.3h5v.s6.77a28178dd8d from=translated src=- shape=12045c16 vocab=06125d1b
 -/
-lemma not_p_dvd_fiber_element
+lemma _root_.Tengoku.LeanPool.not_p_dvd_fiber_element
     (p : ℕ) (hp : Nat.Prime p) (α v : ℕ) (hv_lt : v < α)
     (s : ℕ) (hs_cop : Nat.Coprime s p)
     (j : ℕ) :
@@ -4068,7 +4068,7 @@ lemma not_p_dvd_fiber_element
 /--
 @isnad1 id=coprime.3h5v.s6.48607ffd056b from=translated src=- shape=0aae1092 vocab=7130d7da
 -/
-lemma fiber_element_coprime
+lemma _root_.Tengoku.LeanPool.fiber_element_coprime
     (p : ℕ) (hp : Nat.Prime p) (α v : ℕ) (hv_lt : v < α)
     (s : ℕ) (hs_cop : Nat.Coprime s p)
     (j : ℕ) :
@@ -4078,7 +4078,7 @@ lemma fiber_element_coprime
 /--
 @isnad1 id=eq.1h5v.s6.e0f503617ed0 from=translated src=- shape=adbebb14 vocab=f572c56f
 -/
-lemma fiber_element_mod_eq
+lemma _root_.Tengoku.LeanPool.fiber_element_mod_eq
     (p : ℕ) (α v : ℕ)
     (s : ℕ) (hs_lt : s < p ^ (α - v))
     (j : ℕ) :
@@ -4088,7 +4088,7 @@ lemma fiber_element_mod_eq
 /--
 @isnad1 id=lt.4h5v.s8.c2962ce8f41c from=translated src=- shape=87dca03f vocab=0ed9c4d2
 -/
-lemma fiber_index_lt
+lemma _root_.Tengoku.LeanPool.fiber_index_lt
     (p : ℕ) (_hp : Nat.Prime p) (α v : ℕ) (hv_lt : v < α)
     [NeZero (p ^ α)]
     (s : ℕ) (_hs_lt : s < p ^ (α - v))
@@ -4103,7 +4103,7 @@ lemma fiber_index_lt
 /--
 @isnad1 id=eq.2h3v.s5.8825657e0c66 from=translated src=- shape=20eb2356 vocab=04aff64c
 -/
-lemma fiber_reconstruct
+lemma _root_.Tengoku.LeanPool.fiber_reconstruct
     (M s n : ℕ) (hn : n % M = s) (hs_le : s ≤ n) :
     s + (n - s) / M * M = n := by
   have h₁ : M * (n / M) + n % M = n := Nat.div_add_mod n M
@@ -4114,7 +4114,7 @@ lemma fiber_reconstruct
 /--
 @isnad1 id=other.5h5v.s8.65fb179f7816 from=translated src=- shape=f92855e8 vocab=66fd9e6a
 -/
-lemma fiber_fwd_bwd
+lemma _root_.Tengoku.LeanPool.fiber_fwd_bwd
     (p : ℕ) (hp : Nat.Prime p) (α v : ℕ) (hv_lt : v < α)
     (s : ℕ) (hs_lt : s < p ^ (α - v)) (hs_cop : Nat.Coprime s p)
     (j : ℕ) (hj : j < p ^ v) :
@@ -4129,7 +4129,7 @@ lemma fiber_fwd_bwd
 /--
 @isnad1 id=other.5h5v.s9.b7b03d1ee8de from=translated src=- shape=a5ef6556 vocab=61fbcb22
 -/
-lemma fiber_bwd_fwd
+lemma _root_.Tengoku.LeanPool.fiber_bwd_fwd
     (p : ℕ) (hp : Nat.Prime p) (α v : ℕ) (hv_lt : v < α)
     [NeZero (p ^ α)]
     (s : ℕ) (_hs_lt : s < p ^ (α - v)) (hs_cop : Nat.Coprime s p)
@@ -4149,7 +4149,7 @@ lemma fiber_bwd_fwd
 /--
 @isnad1 id=other.5h5v.s8.4f181ecc31e2 from=translated src=- shape=d202bb0f vocab=a6d0dba5
 -/
-lemma fiber_fwd_mem
+lemma _root_.Tengoku.LeanPool.fiber_fwd_mem
     (p : ℕ) (hp : Nat.Prime p) (α v : ℕ) (hv_lt : v < α)
     (s : ℕ) (hs_lt : s < p ^ (α - v)) (hs_cop : Nat.Coprime s p)
     (j : ℕ) (hj : j < p ^ v) :
@@ -4165,7 +4165,7 @@ lemma fiber_fwd_mem
 /--
 @isnad1 id=eq.6h4v.s9.159a9178908c from=translated src=- shape=6854ba87 vocab=0f1a3616
 -/
-lemma projection_fiber_card
+lemma _root_.Tengoku.LeanPool.projection_fiber_card
     (p : ℕ) (hp : Nat.Prime p) (α : ℕ) (_hα : 1 ≤ α)
     (v : ℕ) (_hv_pos : 1 ≤ v) (hv_lt : v < α)
     [NeZero (p ^ α)]
@@ -4197,7 +4197,7 @@ lemma projection_fiber_card
 /--
 @isnad1 id=lt.2h5v.s8.4c86770ec9ad from=translated src=- shape=573ef138 vocab=5673b25b
 -/
-lemma reduced_product_mod_lt
+lemma _root_.Tengoku.LeanPool.reduced_product_mod_lt
     (p : ℕ) (_hp : Nat.Prime p) (α v : ℕ) (_hv_lt : v < α)
     [NeZero (p ^ (α - v))]
     (k_val : ℕ) (u : (ZMod (p ^ α))ˣ) :
@@ -4207,7 +4207,7 @@ lemma reduced_product_mod_lt
 /--
 @isnad1 id=eq.8h4v.s10.3a5a47b4dcd1 from=translated src=- shape=14f56e99 vocab=e5177b0d
 -/
-lemma summand_rewrite
+lemma _root_.Tengoku.LeanPool.summand_rewrite
     (p : ℕ) (hp : Nat.Prime p) (α : ℕ) (hα : 1 ≤ α)
     (k_val : ℕ) (hk_nd : ¬((p ^ α : ℕ) ∣ k_val)) (hk_dvd_p : p ∣ k_val)
     (v : ℕ) (hv_pos : 1 ≤ v) (hv_lt : v < α)
@@ -4238,7 +4238,7 @@ lemma summand_rewrite
 /--
 @isnad1 id=eq.2h2v.s6.32c06ad54dc6 from=translated src=- shape=fc25a954 vocab=82ac7a76
 -/
-lemma pv_cancel (pv : ℝ) (x : ℝ) (hpv : 0 < pv) (hx : x ≠ 0) :
+lemma _root_.Tengoku.LeanPool.pv_cancel (pv : ℝ) (x : ℝ) (hpv : 0 < pv) (hx : x ≠ 0) :
     pv * (1 / (pv * x)) = 1 / x := by
   have h₂ : pv ≠ 0 := by linarith
   field_simp
@@ -4246,7 +4246,7 @@ lemma pv_cancel (pv : ℝ) (x : ℝ) (hpv : 0 < pv) (hx : x ≠ 0) :
 /--
 @isnad1 id=coprime.3h4v.s7.623741729be9 from=translated src=- shape=fe9c65a6 vocab=a2a562d7
 -/
-lemma unit_mod_coprime_p
+lemma _root_.Tengoku.LeanPool.unit_mod_coprime_p
     (p : ℕ) (hp : Nat.Prime p) (α : ℕ) (hα : 1 ≤ α)
     (v : ℕ) (hv_lt : v < α)
     (u : (ZMod (p ^ α))ˣ) :
@@ -4262,7 +4262,7 @@ lemma unit_mod_coprime_p
 /--
 @isnad1 id=eq.1h4v.s6.df14501b08a9 from=translated src=- shape=0bf7496b vocab=b7cede88
 -/
-lemma summand_fiber_constant
+lemma _root_.Tengoku.LeanPool.summand_fiber_constant
     (k' M s u_val : ℕ) (hs : u_val % M = s) :
     k' * (u_val % M) % M = k' * s % M := by
   subst hs; rfl
@@ -4270,7 +4270,7 @@ lemma summand_fiber_constant
 /--
 @isnad1 id=ne.7h5v.s7.eb85cece87f2 from=translated src=- shape=eb439f27 vocab=d27123a5
 -/
-lemma reduced_product_mod_ne_zero_of_coprime
+lemma _root_.Tengoku.LeanPool.reduced_product_mod_ne_zero_of_coprime
     (p : ℕ) (hp : Nat.Prime p) (α : ℕ) (_hα : 1 ≤ α)
     (k_val : ℕ)
     (v : ℕ) (_hv_pos : 1 ≤ v) (hv_lt : v < α)
@@ -4291,7 +4291,7 @@ lemma reduced_product_mod_ne_zero_of_coprime
 /--
 @isnad1 id=lt.2h2v.s5.7ff8bbb4350d from=translated src=- shape=4d6b02b5 vocab=266da443
 -/
-lemma min_pos_of_ne_zero_lt
+lemma _root_.Tengoku.LeanPool.min_pos_of_ne_zero_lt
     (r M : ℕ) (hr_ne : r ≠ 0) (hr_lt : r < M) :
     (0 : ℝ) < min ((r : ℝ)) (((M : ℕ) : ℝ) - (r : ℝ)) := by
   have h₁ : (0 : ℝ) < (r : ℝ) := by exact_mod_cast Nat.pos_of_ne_zero hr_ne
@@ -4300,7 +4300,7 @@ lemma min_pos_of_ne_zero_lt
 /--
 @isnad1 id=eq.9h5v.s10.dd989459f531 from=translated src=- shape=471d8ab4 vocab=a6bbab41
 -/
-lemma fiber_sum_cancel
+lemma _root_.Tengoku.LeanPool.fiber_sum_cancel
     (p : ℕ) (hp : Nat.Prime p) (α : ℕ) (hα : 1 ≤ α)
     (k_val : ℕ) (_hk_nd : ¬((p ^ α : ℕ) ∣ k_val))
     (v : ℕ) (hv_pos : 1 ≤ v) (hv_lt : v < α)
@@ -4340,7 +4340,7 @@ lemma fiber_sum_cancel
 /--
 @isnad1 id=coprime.3h4v.s7.af8c820c09c3 from=translated src=- shape=aa3290b5 vocab=a2a562d7
 -/
-lemma unit_mod_coprime_pow
+lemma _root_.Tengoku.LeanPool.unit_mod_coprime_pow
     (p : ℕ) (hp : Nat.Prime p) (α : ℕ) (hα : 1 ≤ α)
     (v : ℕ) (hv_lt : v < α)
     (u : (ZMod (p ^ α))ˣ) :
@@ -4351,7 +4351,7 @@ lemma unit_mod_coprime_pow
 /--
 @isnad1 id=iff.3h5v.s9.4ccf91f06e16 from=translated src=- shape=8dd625e3 vocab=3c90c5bd
 -/
-lemma unitProjection_filter_iff
+lemma _root_.Tengoku.LeanPool.unitProjection_filter_iff
     (p : ℕ) (hp : Nat.Prime p) (α : ℕ) (hα : 1 ≤ α)
     (v : ℕ) (hv_lt : v < α)
     [NeZero (p ^ (α - v))]
@@ -4375,7 +4375,7 @@ lemma unitProjection_filter_iff
 /--
 @isnad1 id=eq.7h4v.s11.bbd7fcc7dad5 from=translated src=- shape=b3f13d67 vocab=0c480a5d
 -/
-lemma fiberwise_sum_eq_double_sum
+lemma _root_.Tengoku.LeanPool.fiberwise_sum_eq_double_sum
     (p : ℕ) (hp : Nat.Prime p) (α : ℕ) (hα : 1 ≤ α)
     (k_val : ℕ) (_hk_nd : ¬((p ^ α : ℕ) ∣ k_val))
     (v : ℕ) (_hv_pos : 1 ≤ v) (hv_lt : v < α)
@@ -4418,7 +4418,7 @@ lemma fiberwise_sum_eq_double_sum
 /--
 @isnad1 id=eq.7h4v.s10.c7204fd2d7f9 from=translated src=- shape=a8f97b99 vocab=e5177b0d
 -/
-lemma fiber_grouping_step
+lemma _root_.Tengoku.LeanPool.fiber_grouping_step
     (p : ℕ) (hp : Nat.Prime p) (α : ℕ) (hα : 1 ≤ α)
     (k_val : ℕ) (hk_nd : ¬((p ^ α : ℕ) ∣ k_val))
     (v : ℕ) (hv_pos : 1 ≤ v) (hv_lt : v < α)
@@ -4445,7 +4445,7 @@ lemma fiber_grouping_step
 /--
 @isnad1 id=coprime.4h4v.s5.34142b484aee from=translated src=- shape=edc8db30 vocab=dd6fa0e4
 -/
-lemma coprime_of_prime_power_not_dvd
+lemma _root_.Tengoku.LeanPool.coprime_of_prime_power_not_dvd
     (d : ℕ) (p : ℕ) (hp : Nat.Prime p) (α : ℕ) (_hα : 1 ≤ α)
     (hd_eq : d = p ^ α) (k_val : ℕ) (hp_ndvd : ¬(p ∣ k_val)) :
     Nat.Coprime k_val d := by
@@ -4455,7 +4455,7 @@ lemma coprime_of_prime_power_not_dvd
 /--
 @isnad1 id=eq.6h4v.s10.5492f6bc588b from=translated src=- shape=031e939f vocab=e5177b0d
 -/
-lemma permutation_step
+lemma _root_.Tengoku.LeanPool.permutation_step
     (p : ℕ) (hp : Nat.Prime p) (α : ℕ) (_hα : 1 ≤ α)
     (k_val : ℕ)
     (v : ℕ) (_hv_pos : 1 ≤ v) (hv_lt : v < α)
@@ -4478,7 +4478,7 @@ lemma permutation_step
 /--
 @isnad1 id=eq.9h5v.s10.a3d1f824d6df from=translated src=- shape=648f0b68 vocab=e5177b0d
 -/
-lemma orbit_fiber_sum_eq
+lemma _root_.Tengoku.LeanPool.orbit_fiber_sum_eq
     (d : ℕ) [NeZero d] (p : ℕ) (hp : Nat.Prime p) (α : ℕ) (hα : 1 ≤ α)
     (hd_eq : d = p ^ α)
     (k_val : ℕ) (hk_nd : ¬((d : ℕ) ∣ k_val)) (hk_dvd_p : p ∣ k_val)
@@ -4514,7 +4514,7 @@ lemma orbit_fiber_sum_eq
 /--
 @isnad1 id=eq.1h1v.s7.a57e87a80e9d from=translated src=- shape=f18b1fc3 vocab=8b28b276
 -/
-lemma distribute_two_over_sum (k : ℕ) (hk : 1 ≤ k) :
+lemma _root_.Tengoku.LeanPool.distribute_two_over_sum (k : ℕ) (hk : 1 ≤ k) :
     2 * ((∑ u ∈ Finset.Icc 1 (k - 1), (u : ℝ)⁻¹) + 1 / (2 * (k : ℝ))) =
     2 * (∑ u ∈ Finset.Icc 1 (k - 1), (u : ℝ)⁻¹) + 1 / (k : ℝ) := by
   have h₂ : (k : ℝ) ≠ 0 := by
@@ -4527,7 +4527,7 @@ lemma distribute_two_over_sum (k : ℕ) (hk : 1 ≤ k) :
 /--
 @isnad1 id=eq.1h1v.s7.3dbf0eace888 from=translated src=- shape=498a5047 vocab=5a25e95c
 -/
-lemma even_step_lhs_eq (k : ℕ) (hk : 1 ≤ k) :
+lemma _root_.Tengoku.LeanPool.even_step_lhs_eq (k : ℕ) (hk : 1 ≤ k) :
     (∑ t ∈ Finset.Icc 1 (2 * k - 1),
       1 / min ((t : ℝ)) ((2 * k : ℝ) - (t : ℝ))) =
     2 * (∑ u ∈ Finset.Icc 1 (k - 1), (u : ℝ)⁻¹) + 1 / (k : ℝ) := by
@@ -4539,7 +4539,7 @@ lemma even_step_lhs_eq (k : ℕ) (hk : 1 ≤ k) :
 /--
 @isnad1 id=eq.1h1v.s7.45e0c8959119 from=translated src=- shape=f6b6a9d4 vocab=5a25e95c
 -/
-lemma lhs_eq_1 (k : ℕ) (hk : 1 ≤ k) :
+lemma _root_.Tengoku.LeanPool.lhs_eq_1 (k : ℕ) (hk : 1 ≤ k) :
     (∑ t ∈ Finset.Icc 1 (2 * k),
       1 / min ((t : ℝ)) ((2 * (k : ℝ) + 1) - (t : ℝ))) =
     2 * ∑ u ∈ Finset.Icc 1 k, (u : ℝ)⁻¹ := by
@@ -4553,7 +4553,7 @@ lemma lhs_eq_1 (k : ℕ) (hk : 1 ≤ k) :
 /--
 @isnad1 id=eq.1h1v.s6.612fb6f190b9 from=translated src=- shape=4e7bd809 vocab=0d3d6f6b
 -/
-lemma harmonic_split (k : ℕ) (hk : 1 ≤ k) :
+lemma _root_.Tengoku.LeanPool.harmonic_split (k : ℕ) (hk : 1 ≤ k) :
     ∑ u ∈ Finset.Icc 1 k, (u : ℝ)⁻¹ =
     (∑ u ∈ Finset.Icc 1 (k - 1), (u : ℝ)⁻¹) + (k : ℝ)⁻¹ := by
   cases k with
@@ -4566,7 +4566,7 @@ lemma harmonic_split (k : ℕ) (hk : 1 ≤ k) :
 /--
 @isnad1 id=le.1h1v.s7.4c5191323a9d from=translated src=- shape=e3072d0c vocab=24aa14e8
 -/
-lemma even_step (k : ℕ) (hk : 1 ≤ k) :
+lemma _root_.Tengoku.LeanPool.even_step (k : ℕ) (hk : 1 ≤ k) :
     (∑ t ∈ Finset.Icc 1 (2 * k - 1),
       1 / min ((t : ℝ)) ((2 * k : ℝ) - (t : ℝ))) ≤
     (∑ t ∈ Finset.Icc 1 (2 * k),
@@ -4580,7 +4580,7 @@ lemma even_step (k : ℕ) (hk : 1 ≤ k) :
 /--
 @isnad1 id=eq.1h1v.s7.8c31d612a15b from=translated src=- shape=ed910fbe vocab=5a25e95c
 -/
-lemma rhs_eq (k : ℕ) (hk : 1 ≤ k) :
+lemma _root_.Tengoku.LeanPool.rhs_eq (k : ℕ) (hk : 1 ≤ k) :
     (∑ t ∈ Finset.Icc 1 (2 * k + 1),
       1 / min ((t : ℝ)) ((2 * (k : ℝ) + 1 + 1) - (t : ℝ))) =
     2 * ((∑ u ∈ Finset.Icc 1 k, (u : ℝ)⁻¹) + 1 / (2 * ((k : ℝ) + 1))) := by
@@ -4594,7 +4594,7 @@ lemma rhs_eq (k : ℕ) (hk : 1 ≤ k) :
 /--
 @isnad1 id=le.1h1v.s7.093962a3c77a from=translated src=- shape=8127459d vocab=24aa14e8
 -/
-lemma odd_step (k : ℕ) (hk : 1 ≤ k) :
+lemma _root_.Tengoku.LeanPool.odd_step (k : ℕ) (hk : 1 ≤ k) :
     (∑ t ∈ Finset.Icc 1 (2 * k),
       1 / min ((t : ℝ)) ((2 * (k : ℝ) + 1) - (t : ℝ))) ≤
     (∑ t ∈ Finset.Icc 1 (2 * k + 1),
@@ -4605,7 +4605,7 @@ lemma odd_step (k : ℕ) (hk : 1 ≤ k) :
 /--
 @isnad1 id=le.1h1v.s7.4778c54b405f from=translated src=- shape=260435d3 vocab=75cfb697
 -/
-lemma harmonic_min_sum_step (N : ℕ) (hN : 2 ≤ N) :
+lemma _root_.Tengoku.LeanPool.harmonic_min_sum_step (N : ℕ) (hN : 2 ≤ N) :
     (∑ t ∈ Finset.Icc 1 (N - 1),
       1 / min ((t : ℝ)) (((N : ℕ) : ℝ) - (t : ℝ))) ≤
     (∑ t ∈ Finset.Icc 1 ((N + 1) - 1),
@@ -4632,7 +4632,7 @@ lemma harmonic_min_sum_step (N : ℕ) (hN : 2 ≤ N) :
 /--
 @isnad1 id=le.2h2v.s7.e7bc579d59f6 from=translated src=- shape=3ce7398b vocab=03974225
 -/
-lemma harmonic_min_sum_mono
+lemma _root_.Tengoku.LeanPool.harmonic_min_sum_mono
     (M d : ℕ) (hM : 2 ≤ M) (hMd : M ≤ d) :
     (∑ t ∈ Finset.Icc 1 (M - 1),
       1 / min ((t : ℝ)) (((M : ℕ) : ℝ) - (t : ℝ))) ≤
@@ -4653,7 +4653,7 @@ lemma harmonic_min_sum_mono
 /--
 @isnad1 id=ex.4h3v.s6.3abfe1fbccc3 from=translated src=- shape=bc333509 vocab=f3b4808e
 -/
-lemma exists_padic_valuation
+lemma _root_.Tengoku.LeanPool.exists_padic_valuation
     (p : ℕ) (hp : Nat.Prime p) (α : ℕ) (_hα : 1 ≤ α)
     (k_val : ℕ) (hk_dvd_p : p ∣ k_val) (hk_nd : ¬(p ^ α ∣ k_val)) :
     ∃ v, 1 ≤ v ∧ v < α ∧ p ^ v ∣ k_val ∧ ¬(p ^ (v + 1) ∣ k_val) := by
@@ -4670,7 +4670,7 @@ lemma exists_padic_valuation
 /--
 @isnad1 id=le.5h4v.s8.20cc7b5b9ec7 from=translated src=- shape=1338f88c vocab=60ffa2dc
 -/
-lemma general_case_bound
+lemma _root_.Tengoku.LeanPool.general_case_bound
     (d : ℕ) [NeZero d] (p : ℕ) (hp : Nat.Prime p) (α : ℕ) (hα : 1 ≤ α)
     (hd_eq : d = p ^ α)
     (k_val : ℕ) (hk_nd : ¬((d : ℕ) ∣ k_val)) (hk_dvd_p : p ∣ k_val) :
@@ -4712,7 +4712,7 @@ lemma general_case_bound
 /--
 @isnad1 id=le.4h4v.s8.739f51119cd2 from=translated src=- shape=927fae9a vocab=60ffa2dc
 -/
-lemma orbit_fiber_sum_bound
+lemma _root_.Tengoku.LeanPool.orbit_fiber_sum_bound
     (d : ℕ) [NeZero d] (p : ℕ) (hp : Nat.Prime p) (α : ℕ) (hα : 1 ≤ α)
     (hd_eq : d = p ^ α)
     (k_val : ℕ) (hk_nd : ¬((d : ℕ) ∣ k_val)) :
@@ -4738,7 +4738,7 @@ lemma orbit_fiber_sum_bound
 /--
 @isnad1 id=le.2h2v.s5.a6b9987991ca from=translated src=- shape=d97110a8 vocab=de1fd33c
 -/
-lemma d_ge_two (n d : ℕ) (hn : 2 ≤ n)
+lemma _root_.Tengoku.LeanPool.d_ge_two (n d : ℕ) (hn : 2 ≤ n)
     (hd : d = largestPrimeFactor n ^ n.factorization (largestPrimeFactor n)) :
     2 ≤ d := by
   rw [hd]
@@ -4747,7 +4747,7 @@ lemma d_ge_two (n d : ℕ) (hn : 2 ≤ n)
 /--
 @isnad1 id=le.2h2v.s5.847718435704 from=translated src=- shape=40171378 vocab=de1fd33c
 -/
-lemma d_le_n (n d : ℕ) (hn : 2 ≤ n)
+lemma _root_.Tengoku.LeanPool.d_le_n (n d : ℕ) (hn : 2 ≤ n)
     (hd : d = largestPrimeFactor n ^ n.factorization (largestPrimeFactor n)) :
     d ≤ n := by
   rw [hd]
@@ -4756,7 +4756,7 @@ lemma d_le_n (n d : ℕ) (hn : 2 ≤ n)
 /--
 @isnad1 id=le.4h3v.s8.855f906234ff from=translated src=- shape=519a4dfd vocab=6f12a7bb
 -/
-lemma orbit_sum_le_two_log
+lemma _root_.Tengoku.LeanPool.orbit_sum_le_two_log
     (n d : ℕ) [NeZero d] (hn : 2 ≤ n)
     (hd : d = largestPrimeFactor n ^ n.factorization (largestPrimeFactor n))
     (k : ZMod n) (_hk : k ≠ 0) (hk_nd : ¬((d : ℕ) ∣ ZMod.val k)) :
@@ -4782,20 +4782,20 @@ lemma orbit_sum_le_two_log
 /--
 @isnad1 id=eq.1h2v.s6.59e6baf49f10 from=translated src=- shape=ad48391a vocab=0e093988
 -/
-lemma pow_pred_mul_eq (P α : ℕ) (hα : 0 < α) :
+lemma _root_.Tengoku.LeanPool.pow_pred_mul_eq (P α : ℕ) (hα : 0 < α) :
     P ^ (α - 1) * P = P ^ α := by
   rw [← pow_succ, Nat.sub_add_cancel hα]
 
 /--
 @isnad1 id=eq.1h1v.s5.7c1e9ce62fd0 from=translated src=- shape=32d246f7 vocab=11a4fc17
 -/
-lemma cast_nat_sub_one (P : ℕ) (hP2 : 2 ≤ P) : (↑(P - 1) : ℝ) = ↑P - 1 := by
+lemma _root_.Tengoku.LeanPool.cast_nat_sub_one (P : ℕ) (hP2 : 2 ≤ P) : (↑(P - 1) : ℝ) = ↑P - 1 := by
   rw [Nat.cast_sub (by omega), Nat.cast_one]
 
 /--
 @isnad1 id=eq.2h2v.s7.86aabf894fef from=translated src=- shape=29fe9cf7 vocab=dd3297cd
 -/
-lemma totient_prime_pow_simplify (P α : ℕ) (hP2 : 2 ≤ P) (hα : 0 < α) :
+lemma _root_.Tengoku.LeanPool.totient_prime_pow_simplify (P α : ℕ) (hP2 : 2 ≤ P) (hα : 0 < α) :
     (↑(P ^ (α - 1) * (P - 1)) : ℝ) * (4 / ↑(P ^ α)) = 4 * (↑P - 1) / ↑P := by
   have hP_pos : (0 : ℝ) < ↑P := by positivity
   have hPα1_pos : (0 : ℝ) < ↑(P ^ (α - 1)) := by positivity
@@ -4809,7 +4809,7 @@ lemma totient_prime_pow_simplify (P α : ℕ) (hP2 : 2 ≤ P) (hα : 0 < α) :
 /--
 @isnad1 id=le.1h1v.s6.b036be4c9e5e from=translated src=- shape=be8ccb4c vocab=60687568
 -/
-lemma four_times_sub_one_div_ge_two (P : ℕ) (hP2 : 2 ≤ P) :
+lemma _root_.Tengoku.LeanPool.four_times_sub_one_div_ge_two (P : ℕ) (hP2 : 2 ≤ P) :
     2 ≤ 4 * ((↑P : ℝ) - 1) / ↑P := by
   have hP_pos : (0 : ℝ) < ↑P := by positivity
   rw [le_div_iff₀ hP_pos]
@@ -4818,7 +4818,7 @@ lemma four_times_sub_one_div_ge_two (P : ℕ) (hP2 : 2 ≤ P) :
 /--
 @isnad1 id=le.3h2v.s6.aef754185b93 from=translated src=- shape=7ffdb6aa vocab=f595a5cc
 -/
-lemma totient_prime_pow_times_four_div_ge_two
+lemma _root_.Tengoku.LeanPool.totient_prime_pow_times_four_div_ge_two
     (P α : ℕ) (hP : Nat.Prime P) (hα : 0 < α) (hP2 : 2 ≤ P) :
     2 ≤ ((P ^ α).totient : ℝ) * (4 / ((P ^ α : ℕ) : ℝ)) := by
   rw [Nat.totient_prime_pow hP hα]
@@ -4828,7 +4828,7 @@ lemma totient_prime_pow_times_four_div_ge_two
 /--
 @isnad1 id=le.2h2v.s6.d89eaea5a207 from=translated src=- shape=67a319c1 vocab=1a4ed86f
 -/
-lemma totient_times_four_div_d_ge_two
+lemma _root_.Tengoku.LeanPool.totient_times_four_div_d_ge_two
     (n d : ℕ) (hn : 2 ≤ n)
     (hd : d = largestPrimeFactor n ^ n.factorization (largestPrimeFactor n)) :
     2 ≤ (d.totient : ℝ) * (4 / (d : ℝ)) := by
@@ -4841,7 +4841,7 @@ lemma totient_times_four_div_d_ge_two
 /--
 @isnad1 id=le.2h2v.s7.f6ce95780213 from=translated src=- shape=0a973e72 vocab=03e09b10
 -/
-lemma two_log_le_card_times_bound
+lemma _root_.Tengoku.LeanPool.two_log_le_card_times_bound
     (n d : ℕ) [NeZero d] (hn : 2 ≤ n)
     (hd : d = largestPrimeFactor n ^ n.factorization (largestPrimeFactor n)) :
     2 * (1 + Real.log ↑n) ≤
@@ -4862,7 +4862,7 @@ lemma two_log_le_card_times_bound
 /--
 @isnad1 id=le.4h3v.s8.bd5235015ae8 from=translated src=- shape=be46287d vocab=2c5cf846
 -/
-lemma orbit_reciprocal_sum_bound
+lemma _root_.Tengoku.LeanPool.orbit_reciprocal_sum_bound
     (n d : ℕ) [NeZero d] (hn : 2 ≤ n)
     (hd : d = largestPrimeFactor n ^ n.factorization (largestPrimeFactor n))
     (k : ZMod n) (hk : k ≠ 0) (hk_nd : ¬((d : ℕ) ∣ ZMod.val k)) :
@@ -5995,7 +5995,7 @@ open PerUnitMerge in
 /--
 @isnad1 id=le.8h5v.s9.502385c091de from=translated src=- shape=a4d301ab vocab=36c3bb21
 -/
-lemma per_unit_inner_sum_bound
+lemma _root_.Tengoku.LeanPool.per_unit_inner_sum_bound
     (n d : ℕ) [NeZero n] [NeZero d] (hn : 2 ≤ n)
     (hd : d = largestPrimeFactor n ^ n.factorization (largestPrimeFactor n))
     (q : ℤ) (hq_coprime : Int.gcd q (largestPrimeFactor n : ℤ) = 1)
@@ -6011,7 +6011,7 @@ lemma per_unit_inner_sum_bound
       1 / min ((ZMod.val k * (u : ZMod d).val % d : ℕ) : ℝ)
               ((d : ℝ) - (ZMod.val k * (u : ZMod d).val % d : ℕ)))
     + ↑(Fintype.card (ZMod d)ˣ) * ((1 + Real.log ↑n) / ↑d) := by
-  have hd_dvd : d ∣ n := hd ▸ _root_.d_dvd_n n hn
+  have hd_dvd : d ∣ n := hd ▸ _root_.Tengoku.LeanPool.d_dvd_n n hn
   have hq_coprime_d : Int.gcd q (d : ℤ) = 1 := coprimality_q_d n hn q hq_coprime d hd
   have hmq_bounds := mq_bounds n hn q hq_pos hq_bound
   have hmq_lo : 1 ≤ mq := hmq ▸ hmq_bounds.1
@@ -6048,7 +6048,7 @@ lemma per_unit_inner_sum_bound
 /--
 @isnad1 id=le.3h3v.s7.81944cafb492 from=translated src=- shape=71d3d849 vocab=70d00927
 -/
-lemma combine_orbit_and_tail_bounds
+lemma _root_.Tengoku.LeanPool.combine_orbit_and_tail_bounds
     (C L d_real : ℝ) (_hC : 0 ≤ C) (_hL : 0 ≤ L) (hd : 0 < d_real) :
     C * (4 * L / d_real) + C * (L / d_real) ≤ C * (5 * L / d_real) := by
   rw [show C * (4 * L / d_real) + C * (L / d_real) = C * (4 * L / d_real + L / d_real) from by ring,
@@ -6057,7 +6057,7 @@ lemma combine_orbit_and_tail_bounds
 /--
 @isnad1 id=le.8h5v.s8.dad43e2294fb from=translated src=- shape=c96deace vocab=def15ade
 -/
-lemma orbit_average_bound
+lemma _root_.Tengoku.LeanPool.orbit_average_bound
     (n d : ℕ) [NeZero n] [NeZero d] (hn : 2 ≤ n)
     (hd : d = largestPrimeFactor n ^ n.factorization (largestPrimeFactor n))
     (q : ℤ) (hq_coprime : Int.gcd q (largestPrimeFactor n : ℤ) = 1)
@@ -6092,7 +6092,7 @@ lemma orbit_average_bound
 /--
 @isnad1 id=le.6h4v.s9.2bc4b19314f3 from=translated src=- shape=0bcd58c4 vocab=bf1432f4
 -/
-lemma nonmultiple_d_weighted_bound
+lemma _root_.Tengoku.LeanPool.nonmultiple_d_weighted_bound
     (n d : ℕ) [NeZero n] [NeZero d] (hn : 2 ≤ n)
     (hd : d = largestPrimeFactor n ^ n.factorization (largestPrimeFactor n))
     (q : ℤ) (hq_coprime : Int.gcd q (largestPrimeFactor n : ℤ) = 1)
@@ -6154,7 +6154,7 @@ lemma nonmultiple_d_weighted_bound
 /--
 @isnad1 id=le.6h4v.s9.b907143cd8bf from=translated src=- shape=27c90ce4 vocab=6be6f8c3
 -/
-lemma weighted_orbit_total
+lemma _root_.Tengoku.LeanPool.weighted_orbit_total
     (n d : ℕ) [NeZero n] [NeZero d] (hn : 2 ≤ n)
     (hd : d = largestPrimeFactor n ^ n.factorization (largestPrimeFactor n))
     (q : ℤ) (hq_coprime : Int.gcd q (largestPrimeFactor n : ℤ) = 1)
@@ -6178,7 +6178,7 @@ lemma weighted_orbit_total
 /--
 @isnad1 id=le.6h4v.s9.27ed7aa3fbae from=translated src=- shape=6e8e30b7 vocab=6be6f8c3
 -/
-lemma average_S_bound
+lemma _root_.Tengoku.LeanPool.average_S_bound
     (n d : ℕ) [NeZero n] [NeZero d] (hn : 2 ≤ n)
     (hd : d = largestPrimeFactor n ^ n.factorization (largestPrimeFactor n))
     (q : ℤ) (hq_coprime : Int.gcd q (largestPrimeFactor n : ℤ) = 1)
@@ -6197,7 +6197,7 @@ lemma average_S_bound
 /--
 @isnad1 id=le.2h5v.s8.e8d57ae048cf from=translated src=- shape=3113f253 vocab=488a776b
 -/
-lemma sum_filter_lower_bound
+lemma _root_.Tengoku.LeanPool.sum_filter_lower_bound
     (d : ℕ)
     (f : (ZMod d)ˣ → ℝ) (_hf : ∀ u, 0 ≤ f u)
     (avg : ℝ) (R : ℕ)
@@ -6209,7 +6209,7 @@ lemma sum_filter_lower_bound
 /--
 @isnad1 id=le.1h4v.s8.88d6496dd117 from=translated src=- shape=e5613e73 vocab=cfac624d
 -/
-lemma sum_filter_le_sum_univ
+lemma _root_.Tengoku.LeanPool.sum_filter_le_sum_univ
     (d : ℕ) [NeZero d]
     (f : (ZMod d)ˣ → ℝ) (hf : ∀ u, 0 ≤ f u)
     (avg : ℝ) (R : ℕ) :
@@ -6221,7 +6221,7 @@ lemma sum_filter_le_sum_univ
 /--
 @isnad1 id=le.2h4v.s6.ba840a9c2d58 from=translated src=- shape=f88aea5d vocab=e13695f0
 -/
-lemma card_mul_R_le_of_nsmul_le
+lemma _root_.Tengoku.LeanPool.card_mul_R_le_of_nsmul_le
     (s C R : ℕ) (avg : ℝ) (havg : 0 < avg)
     (h : s • (↑R * avg) ≤ ↑C * avg) :
     s * R ≤ C := by
@@ -6234,7 +6234,7 @@ lemma card_mul_R_le_of_nsmul_le
 /--
 @isnad1 id=eq.2h3v.s8.123ee06bef1b from=translated src=- shape=51f69a57 vocab=d6c71db7
 -/
-lemma filter_empty_of_avg_zero
+lemma _root_.Tengoku.LeanPool.filter_empty_of_avg_zero
     (d : ℕ) [NeZero d]
     (f : (ZMod d)ˣ → ℝ) (hf : ∀ u, 0 ≤ f u)
     (hsum : ∑ u : (ZMod d)ˣ, f u ≤ 0)
@@ -6250,7 +6250,7 @@ lemma filter_empty_of_avg_zero
 /--
 @isnad1 id=le.4h4v.s8.4f2275a990d2 from=translated src=- shape=dbe4b476 vocab=5fd5cee9
 -/
-lemma markov_card_mul_le
+lemma _root_.Tengoku.LeanPool.markov_card_mul_le
     (d : ℕ) [NeZero d]
     (f : (ZMod d)ˣ → ℝ) (hf : ∀ u, 0 ≤ f u)
     (avg : ℝ) (havg : 0 ≤ avg)
@@ -6278,7 +6278,7 @@ lemma markov_card_mul_le
 /--
 @isnad1 id=le.4h4v.s8.28ae7d1cf33e from=translated src=- shape=060ea30b vocab=4c0dca5b
 -/
-lemma markov_card_filter_le
+lemma _root_.Tengoku.LeanPool.markov_card_filter_le
     (d : ℕ) [NeZero d]
     (f : (ZMod d)ˣ → ℝ) (hf : ∀ u, 0 ≤ f u)
     (avg : ℝ) (havg : 0 ≤ avg)
@@ -6293,7 +6293,7 @@ lemma markov_card_filter_le
 /--
 @isnad1 id=le.2h3v.s7.d43b3799e451 from=translated src=- shape=0a4066d0 vocab=0c88b104
 -/
-lemma image_val_card_le
+lemma _root_.Tengoku.LeanPool.image_val_card_le
     (d : ℕ) [NeZero d]
     (S : Finset (ZMod d)ˣ)
     (R : ℕ) (_hR : 1 ≤ R)
@@ -6308,7 +6308,7 @@ lemma image_val_card_le
 /--
 @isnad1 id=ex.4h4v.s8.12018c5d4531 from=translated src=- shape=1faa7036 vocab=d4e5666c
 -/
-lemma bad_set_from_average
+lemma _root_.Tengoku.LeanPool.bad_set_from_average
     (d : ℕ) [NeZero d]
     (f : (ZMod d)ˣ → ℝ) (hf : ∀ u, 0 ≤ f u)
     (avg : ℝ) (havg : 0 ≤ avg)
@@ -6333,7 +6333,7 @@ lemma bad_set_from_average
 /--
 @isnad1 id=eq.0h6v.s9.8f8fda0392dd from=translated src=- shape=95488e7c vocab=2e86b952
 -/
-lemma k_zero_term_eq (n d : ℕ) [NeZero n]
+lemma _root_.Tengoku.LeanPool.k_zero_term_eq (n d : ℕ) [NeZero n]
     (mp mq : ℕ) (p q : ℤ) :
     (∑ l : ZMod n,
       if ((0 : ZMod n), l) ≠ (0, 0) ∧ ((d : ℤ) ∣ (↑(ZMod.val (0 : ZMod n)) * p + ↑(ZMod.val l) * q))
@@ -6350,7 +6350,7 @@ lemma k_zero_term_eq (n d : ℕ) [NeZero n]
 /--
 @isnad1 id=eq.1h7v.s9.12f9f533701a from=translated src=- shape=f18eed2d vocab=2e86b952
 -/
-lemma inner_sum_eq_of_k_ne_zero (n d : ℕ) [NeZero n]
+lemma _root_.Tengoku.LeanPool.inner_sum_eq_of_k_ne_zero (n d : ℕ) [NeZero n]
     (mp mq : ℕ) (p q : ℤ) (k : ZMod n) (hk : k ≠ 0) :
     (∑ l : ZMod n,
       if (k, l) ≠ (0, 0) ∧ ((d : ℤ) ∣ (↑(ZMod.val k) * p + ↑(ZMod.val l) * q))
@@ -6367,7 +6367,7 @@ lemma inner_sum_eq_of_k_ne_zero (n d : ℕ) [NeZero n]
 /--
 @isnad1 id=eq.0h6v.s9.9ebafcf56e86 from=translated src=- shape=7e07f984 vocab=42f89d6c
 -/
-lemma filtered_sum_to_full_sum (n d : ℕ) [NeZero n]
+lemma _root_.Tengoku.LeanPool.filtered_sum_to_full_sum (n d : ℕ) [NeZero n]
     (mp mq : ℕ) (p q : ℤ) :
     (∑ k ∈ Finset.univ.filter (· ≠ (0 : ZMod n)), ∑ l : ZMod n,
       if (k, l) ≠ (0, 0) ∧ ((d : ℤ) ∣ (↑(ZMod.val k) * p + ↑(ZMod.val l) * q))
@@ -6389,7 +6389,7 @@ lemma filtered_sum_to_full_sum (n d : ℕ) [NeZero n]
 /--
 @isnad1 id=eq.0h6v.s9.13735b38841b from=translated src=- shape=310cd61f vocab=2e86b952
 -/
-lemma double_sum_split_k0_kneq0
+lemma _root_.Tengoku.LeanPool.double_sum_split_k0_kneq0
     (n d : ℕ) [NeZero n]
     (mp mq : ℕ)
     (p q : ℤ) :
@@ -6415,7 +6415,7 @@ lemma double_sum_split_k0_kneq0
 /--
 @isnad1 id=dvd.2h3v.s5.6ff80f3ccc8b from=translated src=- shape=2c3eeaa0 vocab=7928e2fa
 -/
-lemma int_coprime_dvd_mul_imp_dvd (d v : ℕ) (q : ℤ)
+lemma _root_.Tengoku.LeanPool.int_coprime_dvd_mul_imp_dvd (d v : ℕ) (q : ℤ)
     (hgcd : Int.gcd q (d : ℤ) = 1)
     (hdvd : (d : ℤ) ∣ (↑v * q)) :
     d ∣ v := by
@@ -6426,7 +6426,7 @@ lemma int_coprime_dvd_mul_imp_dvd (d v : ℕ) (q : ℤ)
 /--
 @isnad1 id=dvd.5h4v.s7.66f8cab7d458 from=translated src=- shape=fa4fe56e vocab=5e822bf1
 -/
-lemma dvd_val_of_dvd_val_mul_q
+lemma _root_.Tengoku.LeanPool.dvd_val_of_dvd_val_mul_q
     (n d : ℕ)
     (hn : 2 ≤ n)
     (hd : d = largestPrimeFactor n ^ n.factorization (largestPrimeFactor n))
@@ -6440,7 +6440,7 @@ lemma dvd_val_of_dvd_val_mul_q
 /--
 @isnad1 id=le.2h2v.s6.51d61518160a from=translated src=- shape=de7b2fb2 vocab=92c59dac
 -/
-lemma norm_normalizedDFT_zero_le_one
+lemma _root_.Tengoku.LeanPool.norm_normalizedDFT_zero_le_one
     (n : ℕ) [NeZero n] (m : ℕ) (hm1 : 1 ≤ m) (hm2 : m < n) :
     ‖normalizedDFT n (intervalIndicator n m) 0‖ ≤ 1 := by
   rw [normalizedDFT_intervalIndicator_zero n m hm1 hm2]
@@ -6450,7 +6450,7 @@ lemma norm_normalizedDFT_zero_le_one
 /--
 @isnad1 id=le.5h3v.s7.6f8d11e623b8 from=translated src=- shape=2ab4c61b vocab=bbc17900
 -/
-lemma sum_nonzero_multiples_dft_bound
+lemma _root_.Tengoku.LeanPool.sum_nonzero_multiples_dft_bound
     (n d : ℕ) [NeZero n] [NeZero d] (hn : 2 ≤ n)
     (hd_dvd : d ∣ n) (hd_pos : 0 < d)
     (mq : ℕ) (hmq1 : 1 ≤ mq) (hmq2 : mq < n) :
@@ -6471,7 +6471,7 @@ lemma sum_nonzero_multiples_dft_bound
 /--
 @isnad1 id=le.3h3v.s8.cfd0ccc385b1 from=translated src=- shape=30d7fd21 vocab=997c7576
 -/
-lemma filter_int_dvd_subset_filter_nat_dvd
+lemma _root_.Tengoku.LeanPool.filter_int_dvd_subset_filter_nat_dvd
     (n d : ℕ) [NeZero n] (hn : 2 ≤ n)
     (hd : d = largestPrimeFactor n ^ n.factorization (largestPrimeFactor n))
     (q : ℤ) (hq_coprime : Int.gcd q (largestPrimeFactor n : ℤ) = 1) :
@@ -6484,7 +6484,7 @@ lemma filter_int_dvd_subset_filter_nat_dvd
 /--
 @isnad1 id=le.5h5v.s8.69c238aa5087 from=translated src=- shape=bcf536a3 vocab=6d9adea9
 -/
-lemma sum_int_dvd_le_sum_nat_dvd
+lemma _root_.Tengoku.LeanPool.sum_int_dvd_le_sum_nat_dvd
     (n d : ℕ) [NeZero n] (hn : 2 ≤ n)
     (hd : d = largestPrimeFactor n ^ n.factorization (largestPrimeFactor n))
     (q : ℤ) (hq_coprime : Int.gcd q (largestPrimeFactor n : ℤ) = 1)
@@ -6502,7 +6502,7 @@ lemma sum_int_dvd_le_sum_nat_dvd
 /--
 @isnad1 id=le.3h4v.s6.44d0a99a1337 from=translated src=- shape=fa716c2e vocab=4cd6e101
 -/
-lemma sum_mul_le_sum_of_le_one
+lemma _root_.Tengoku.LeanPool.sum_mul_le_sum_of_le_one
     (n : ℕ) (c : ℝ) (hc : c ≤ 1) (_hc_nonneg : 0 ≤ c)
     (g : ZMod n → ℝ) (hg_nonneg : ∀ l, 0 ≤ g l)
     (S : Finset (ZMod n)) :
@@ -6512,7 +6512,7 @@ lemma sum_mul_le_sum_of_le_one
 /--
 @isnad1 id=other.6h4v.s8.0e63f4aedf75 from=translated src=- shape=6f8a035c vocab=cd2c1e75
 -/
-lemma k_zero_contribution_bound
+lemma _root_.Tengoku.LeanPool.k_zero_contribution_bound
     (n d : ℕ) [NeZero n] [NeZero d] (hn : 2 ≤ n)
     (hd : d = largestPrimeFactor n ^ n.factorization (largestPrimeFactor n))
     (p q : ℤ) (hp_pos : 1 ≤ p) (hq_pos : 1 ≤ q)
@@ -6561,7 +6561,7 @@ lemma k_zero_contribution_bound
 /--
 @isnad1 id=dvd.1h6v.s7.f2b18379712f from=translated src=- shape=969809ee vocab=109256ff
 -/
-lemma dvd_diff_from_zmod_eq (d : ℕ) (p : ℤ) (u_val : ℕ)
+lemma _root_.Tengoku.LeanPool.dvd_diff_from_zmod_eq (d : ℕ) (p : ℤ) (u_val : ℕ)
     (hu : (p : ZMod d) = (u_val : ZMod d))
     (k_val l_val : ℕ) (q : ℤ) :
     ((d : ℤ) ∣ (↑k_val * p + ↑l_val * q - (↑k_val * ↑u_val + ↑l_val * q))) := by
@@ -6574,7 +6574,7 @@ lemma dvd_diff_from_zmod_eq (d : ℕ) (p : ℤ) (u_val : ℕ)
 /--
 @isnad1 id=iff.1h6v.s7.a4cb478e6a95 from=translated src=- shape=efb9fad7 vocab=8d6546c3
 -/
-lemma congr_dvd_equiv (d : ℕ) (p : ℤ) (u_val : ℕ)
+lemma _root_.Tengoku.LeanPool.congr_dvd_equiv (d : ℕ) (p : ℤ) (u_val : ℕ)
     (hu : (p : ZMod d) = (u_val : ZMod d))
     (k_val l_val : ℕ) (q : ℤ) :
     ((d : ℤ) ∣ (↑k_val * p + ↑l_val * q)) ↔
@@ -6584,7 +6584,7 @@ lemma congr_dvd_equiv (d : ℕ) (p : ℤ) (u_val : ℕ)
 /--
 @isnad1 id=other.5h7v.s9.ad62d7766374 from=translated src=- shape=fa8448b8 vocab=e13aadf5
 -/
-lemma summand_le (n d : ℕ) [NeZero n] (hn : 2 ≤ n)
+lemma _root_.Tengoku.LeanPool.summand_le (n d : ℕ) [NeZero n] (hn : 2 ≤ n)
     (p q : ℤ) (hp_pos : 1 ≤ p) (hq_pos : 1 ≤ q)
     (hpq : (p : ℝ) + (q : ℝ) < (n : ℝ) / 2)
     (u_val : ℕ) (hu_congr : (p : ZMod d) = (u_val : ZMod d))
@@ -6631,7 +6631,7 @@ lemma summand_le (n d : ℕ) [NeZero n] (hn : 2 ≤ n)
 /--
 @isnad1 id=other.6h5v.s9.8bd9858e83ac from=translated src=- shape=dc6adbb9 vocab=ce4c266a
 -/
-lemma k_nonzero_contribution_bound
+lemma _root_.Tengoku.LeanPool.k_nonzero_contribution_bound
     (n d : ℕ) [NeZero n] (hn : 2 ≤ n)
     (_hd : d = largestPrimeFactor n ^ n.factorization (largestPrimeFactor n))
     (p q : ℤ) (hp_pos : 1 ≤ p) (hq_pos : 1 ≤ q)
@@ -6659,7 +6659,7 @@ lemma k_nonzero_contribution_bound
 /--
 @isnad1 id=le.7h6v.s7.116e726f9dba from=translated src=- shape=8dfc1bfe vocab=1bd5e950
 -/
-lemma combine_bounds_arithmetic
+lemma _root_.Tengoku.LeanPool.combine_bounds_arithmetic
     (R : ℕ) (P d : ℕ) (hR : 1 ≤ R) (hP : 0 < P) (hd : 0 < d)
     (hdP : P ≤ d) (n_real : ℝ) (hn_log : 0 ≤ Real.log n_real)
     (S0 Sneq0 : ℝ)
@@ -6686,7 +6686,7 @@ lemma combine_bounds_arithmetic
 /--
 @isnad1 id=other.2h2v.s8.2d341d20c3af from=translated src=- shape=616029a3 vocab=aae96bd9
 -/
-lemma combine_k0_kneq0_bounds
+lemma _root_.Tengoku.LeanPool.combine_k0_kneq0_bounds
     (n : ℕ) (hn : 2 ≤ n) (d : ℕ) [NeZero d]
     (hd : d = largestPrimeFactor n ^ n.factorization (largestPrimeFactor n)) :
     let P := largestPrimeFactor n
@@ -6707,7 +6707,7 @@ lemma combine_k0_kneq0_bounds
 /--
 @isnad1 id=other.8h5v.s10.2981e53378de from=translated src=- shape=481c9e42 vocab=03619771
 -/
-lemma good_p_double_sum_bound
+lemma _root_.Tengoku.LeanPool.good_p_double_sum_bound
     (n d : ℕ) [NeZero n] [NeZero d] (hn : 2 ≤ n)
     (hd : d = largestPrimeFactor n ^ n.factorization (largestPrimeFactor n))
     (p q : ℤ)
@@ -6750,7 +6750,7 @@ lemma good_p_double_sum_bound
 /--
 @isnad1 id=not.2h2v.s4.21aab7c022dd from=translated src=- shape=1a320bc9 vocab=6e14cad1
 -/
-lemma int_not_dvd_imp_nat_not_dvd
+lemma _root_.Tengoku.LeanPool.int_not_dvd_imp_nat_not_dvd
     (P : ℕ) (p : ℤ) (_hp_pos : 1 ≤ p) (hp_not_dvd : ¬ ((P : ℤ) ∣ p)) :
     ¬ P ∣ p.natAbs := by
   intro h
@@ -6759,7 +6759,7 @@ lemma int_not_dvd_imp_nat_not_dvd
 /--
 @isnad1 id=eq.2h2v.s5.1c3b96bd22bd from=translated src=- shape=0e71a7df vocab=ad549206
 -/
-lemma natAbs_mod_eq_emod_toNat
+lemma _root_.Tengoku.LeanPool.natAbs_mod_eq_emod_toNat
     (d : ℕ) (d_pos : 0 < d) (p : ℤ) (hp_pos : 1 ≤ p) :
     p.natAbs % d = (p % (d : ℤ)).toNat := by
   have hp_nn : 0 ≤ p := by omega
@@ -6770,7 +6770,7 @@ lemma natAbs_mod_eq_emod_toNat
 /--
 @isnad1 id=eq.1h2v.s5.885a5b7c6b94 from=translated src=- shape=5d132b6a vocab=ae14d8f9
 -/
-lemma intCast_eq_natCast_of_pos
+lemma _root_.Tengoku.LeanPool.intCast_eq_natCast_of_pos
     (d : ℕ) (p : ℤ) (hp_pos : 1 ≤ p) :
     (p : ZMod d) = (p.natAbs : ZMod d) := by
   have h_p_nonneg : 0 ≤ (p : ℤ) := by omega
@@ -6779,7 +6779,7 @@ lemma intCast_eq_natCast_of_pos
 /--
 @isnad1 id=ex.4h3v.s7.f76aed04c1cd from=translated src=- shape=eb5bdf61 vocab=f28bcc7e
 -/
-lemma p_mod_d_unit
+lemma _root_.Tengoku.LeanPool.p_mod_d_unit
     (n d : ℕ) [NeZero d] (hn : 2 ≤ n)
     (hd : d = largestPrimeFactor n ^ n.factorization (largestPrimeFactor n))
     (p : ℤ) (hp_pos : 1 ≤ p)
@@ -6801,7 +6801,7 @@ lemma p_mod_d_unit
 /--
 @isnad1 id=other.4h2v.s9.228cc099eeb7 from=translated src=- shape=a3c75c99 vocab=6da4f8dd
 -/
-lemma double_sum_bad_set_construction
+lemma _root_.Tengoku.LeanPool.double_sum_bad_set_construction
     (n : ℕ) [NeZero n] (hn : 2 ≤ n)
     (q : ℤ) (hq_coprime : Int.gcd q (largestPrimeFactor n : ℤ) = 1)
     (hq_pos : 1 ≤ q) (hq_bound : (q : ℝ) < (n : ℝ) / 2) :
@@ -6872,7 +6872,7 @@ lemma double_sum_bad_set_construction
 /--
 @isnad1 id=other.4h2v.s8.4dfe960460e5 from=translated src=- shape=a16784c8 vocab=2dc4f519
 -/
-lemma error_EPalpha_markov
+lemma _root_.Tengoku.LeanPool.error_EPalpha_markov
     (n : ℕ) (hn : 2 ≤ n)
     (q : ℤ) (hq_coprime : Int.gcd q (largestPrimeFactor n : ℤ) = 1)
     (hq_pos : 1 ≤ q) (hq_bound : (q : ℝ) < (n : ℝ) / 2) :
@@ -6916,7 +6916,7 @@ lemma error_EPalpha_markov
 /--
 @isnad1 id=ex.4h2v.s9.4480270f7e61 from=translated src=- shape=85372ab9 vocab=3356b08a
 -/
-lemma error_split_bound
+lemma _root_.Tengoku.LeanPool.error_split_bound
     (n : ℕ) (hn : 2 ≤ n)
     (q : ℤ) (hq_coprime : Int.gcd q (largestPrimeFactor n : ℤ) = 1)
     (hq_pos : 1 ≤ q) (hq_bound : (q : ℝ) < (n : ℝ) / 2) :
@@ -6954,7 +6954,7 @@ lemma error_split_bound
 /--
 @isnad1 id=le.1h1v.s8.926e7c865bfb from=translated src=- shape=6709a4d5 vocab=69de7435
 -/
-lemma combine_error_P0_Palpha
+lemma _root_.Tengoku.LeanPool.combine_error_P0_Palpha
     (n : ℕ) (hn : 2 ≤ n) :
     (Nat.totient n : ℝ) * (1 + Real.log (n : ℝ)) ^ 2 /
       ((largestPrimeFactor n : ℝ) - 1) +
@@ -6980,7 +6980,7 @@ lemma combine_error_P0_Palpha
 /--
 @isnad1 id=ex.4h2v.s8.2eb400afc2b3 from=translated src=- shape=d49d64a0 vocab=3356b08a
 -/
-lemma fourier_markov_bad_set
+lemma _root_.Tengoku.LeanPool.fourier_markov_bad_set
     (n : ℕ) (hn : 2 ≤ n)
     (q : ℤ) (hq_coprime : Int.gcd q (largestPrimeFactor n : ℤ) = 1)
     (hq_pos : 1 ≤ q) (hq_bound : (q : ℝ) < (n : ℝ) / 2) :
@@ -7003,7 +7003,7 @@ lemma fourier_markov_bad_set
 /--
 @isnad1 id=le.1h1v.s7.098d5b87a3b2 from=translated src=- shape=101966be vocab=c646f914
 -/
-lemma ceil_log_mul_sq_le_cube' (n : ℕ) (hn : 2 ≤ n) :
+lemma _root_.Tengoku.LeanPool.ceil_log_mul_sq_le_cube' (n : ℕ) (hn : 2 ≤ n) :
     9 * ⌈Real.log (n : ℝ)⌉₊ * (1 + Real.log (n : ℝ)) ^ 2 ≤
     9 * (1 + Real.log (n : ℝ)) ^ 3 := by
   have h₃ : 0 ≤ Real.log (n : ℝ) := Real.log_nonneg (by norm_cast; omega)
@@ -7016,7 +7016,7 @@ lemma ceil_log_mul_sq_le_cube' (n : ℕ) (hn : 2 ≤ n) :
 /--
 @isnad1 id=le.3h2v.s7.0292fffa2d01 from=translated src=- shape=fecd7733 vocab=f34ec344
 -/
-lemma log_cube_div_P_le_div_rpow' (θ : ℝ) (_hθ_pos : 0 < θ) (n : ℕ) (hn : 2 ≤ n)
+lemma _root_.Tengoku.LeanPool.log_cube_div_P_le_div_rpow' (θ : ℝ) (_hθ_pos : 0 < θ) (n : ℕ) (hn : 2 ≤ n)
     (hP : (largestPrimeFactor n : ℝ) ≥ (n : ℝ) ^ θ) :
     9 * (1 + Real.log (n : ℝ)) ^ 3 / (largestPrimeFactor n : ℝ) ≤
     9 * (1 + Real.log (n : ℝ)) ^ 3 / (n : ℝ) ^ θ := by
@@ -7028,7 +7028,7 @@ lemma log_cube_div_P_le_div_rpow' (θ : ℝ) (_hθ_pos : 0 < θ) (n : ℕ) (hn :
 /--
 @isnad1 id=lt.1h1v.s6.b7635dbcdb92 from=translated src=- shape=daf83d71 vocab=f3a5b989
 -/
-lemma nine_hundredths_lt_tenth' (η : ℝ) (hη_pos : 0 < η) :
+lemma _root_.Tengoku.LeanPool.nine_hundredths_lt_tenth' (η : ℝ) (hη_pos : 0 < η) :
     9 * (η ^ 2 / 100) < η ^ 2 / 10 := by
   have h₁ : 0 < η ^ 2 := pow_pos hη_pos 2
   nlinarith
@@ -7036,7 +7036,7 @@ lemma nine_hundredths_lt_tenth' (η : ℝ) (hη_pos : 0 < η) :
 /--
 @isnad1 id=lt.5h3v.s8.31b2b8632b11 from=translated src=- shape=ddeae6e3 vocab=e2d6daea
 -/
-theorem fourier_without_totient' (η θ : ℝ)
+theorem _root_.Tengoku.LeanPool.fourier_without_totient' (η θ : ℝ)
     (hη_pos : 0 < η) (hθ_pos : 0 < θ)
     (n : ℕ) (hn : 2 ≤ n)
     (hP : (largestPrimeFactor n : ℝ) ≥ (n : ℝ) ^ θ)
@@ -7062,7 +7062,7 @@ theorem fourier_without_totient' (η θ : ℝ)
 /--
 @isnad1 id=lt.5h3v.s8.f5e02870c682 from=translated src=- shape=403bfaf2 vocab=ef3e373d
 -/
-lemma fourier_bound_lt_target (η θ : ℝ)
+lemma _root_.Tengoku.LeanPool.fourier_bound_lt_target (η θ : ℝ)
     (hη_pos : 0 < η) (hθ_pos : 0 < θ)
     (n : ℕ) (hn : 2 ≤ n)
     (hP : (largestPrimeFactor n : ℝ) ≥ (n : ℝ) ^ θ)
@@ -7083,7 +7083,7 @@ lemma fourier_bound_lt_target (η θ : ℝ)
 /--
 @isnad1 id=and.3h4v.s7.138537587fa0 from=translated src=- shape=b2c3824c vocab=7b689ef8
 -/
-lemma region_implies_bounds (n : ℕ) (η : ℝ) (hη_pos : 0 < η) (hn : 2 ≤ n)
+lemma _root_.Tengoku.LeanPool.region_implies_bounds (n : ℕ) (η : ℝ) (hη_pos : 0 < η) (hn : 2 ≤ n)
     (p q : ℤ) (hpq : (p, q) ∈ truncatedObtuseRegion n η) :
     1 ≤ p ∧ 1 ≤ q ∧ (p : ℝ) + (q : ℝ) < (n : ℝ) / 2 ∧ (q : ℝ) < (n : ℝ) / 2 := by
   simp only [truncatedObtuseRegion, Set.mem_ofPred_eq] at hpq
@@ -7104,7 +7104,7 @@ lemma region_implies_bounds (n : ℕ) (η : ℝ) (hη_pos : 0 < η) (hn : 2 ≤ 
 /--
 @isnad1 id=ex.8h4v.s9.fea4b6477fa1 from=translated src=- shape=99322670 vocab=14631c39
 -/
-lemma error_bound_with_bad_set (η : ℝ) (θ : ℝ)
+lemma _root_.Tengoku.LeanPool.error_bound_with_bad_set (η : ℝ) (θ : ℝ)
     (hη_pos : 0 < η) (_hη_lt : η < 1 / 6) (hθ_pos : 0 < θ) (_hθ_lt : θ < 1)
     (n : ℕ) (hn : 2 ≤ n)
     (hP : (largestPrimeFactor n : ℝ) ≥ (n : ℝ) ^ θ)
@@ -7138,7 +7138,7 @@ lemma error_bound_with_bad_set (η : ℝ) (θ : ℝ)
 /--
 @isnad1 id=le.3h4v.s7.4d928f65ea96 from=translated src=- shape=6e0b2ecd vocab=2d1a3f30
 -/
-lemma combine_main_and_error (η : ℝ) (hη_pos : 0 < η)
+lemma _root_.Tengoku.LeanPool.combine_main_and_error (η : ℝ) (hη_pos : 0 < η)
     (n : ℕ) (S_val : ℝ) (M_val : ℝ)
     (hM : η ^ 2 * (Nat.totient n : ℝ) ≤ M_val)
     (hE : |S_val - M_val| < η ^ 2 / 10 * (Nat.totient n : ℝ)) :
@@ -7157,7 +7157,7 @@ lemma combine_main_and_error (η : ℝ) (hη_pos : 0 < η)
 /--
 @isnad1 id=ex.8h4v.s8.ce659e54ce25 from=translated src=- shape=dce3e09f vocab=4364ae0f
 -/
-lemma fourier_markov_residue_bound (η : ℝ) (θ : ℝ)
+lemma _root_.Tengoku.LeanPool.fourier_markov_residue_bound (η : ℝ) (θ : ℝ)
     (hη_pos : 0 < η) (hη_lt : η < 1 / 6) (hθ_pos : 0 < θ) (hθ_lt : θ < 1)
     (n : ℕ) (hn : 2 ≤ n)
     (hP : (largestPrimeFactor n : ℝ) ≥ (n : ℝ) ^ θ)
@@ -7179,7 +7179,7 @@ lemma fourier_markov_residue_bound (η : ℝ) (θ : ℝ)
 /--
 @isnad1 id=ex.8h4v.s8.f5a44a5c5741 from=translated src=- shape=9cff5940 vocab=473d8892
 -/
-lemma bad_residues_bound (η : ℝ) (θ : ℝ)
+lemma _root_.Tengoku.LeanPool.bad_residues_bound (η : ℝ) (θ : ℝ)
     (hη_pos : 0 < η) (hη_lt : η < 1 / 6) (hθ_pos : 0 < θ) (hθ_lt : θ < 1)
     (n : ℕ) (hn : 2 ≤ n)
     (hP : (largestPrimeFactor n : ℝ) ≥ (n : ℝ) ^ θ)
@@ -7202,7 +7202,7 @@ lemma bad_residues_bound (η : ℝ) (θ : ℝ)
 /--
 @isnad1 id=le.3h4v.s7.09208aa77be3 from=translated src=- shape=477e97dd vocab=35c481d0
 -/
-lemma residue_class_fiber_ncard_le (n d : ℕ) (hd_pos : 0 < d) (b : ℕ)
+lemma _root_.Tengoku.LeanPool.residue_class_fiber_ncard_le (n d : ℕ) (hd_pos : 0 < d) (b : ℕ)
     (S : Set ℤ) (hS_sub : S ⊆ Set.Ico (0 : ℤ) (↑n / 2))
     (_hS_fin : S.Finite) :
     {x ∈ S | (x % (d : ℤ)).toNat = b}.ncard ≤ n / (2 * d) + 1 := by
@@ -7218,7 +7218,7 @@ lemma residue_class_fiber_ncard_le (n d : ℕ) (hd_pos : 0 < d) (b : ℕ)
 /--
 @isnad1 id=le.1h3v.s6.2f38a02ed18d from=translated src=- shape=5d00de90 vocab=24e9c108
 -/
-lemma subset_biUnion_residue_fibers (d : ℕ) (B : Finset ℕ)
+lemma _root_.Tengoku.LeanPool.subset_biUnion_residue_fibers (d : ℕ) (B : Finset ℕ)
     (S : Set ℤ)
     (hS_res : ∀ x ∈ S, (x % (d : ℤ)).toNat ∈ B) :
     S ⊆ ⋃ b ∈ B, {x ∈ S | (x % (d : ℤ)).toNat = b} := by
@@ -7228,7 +7228,7 @@ lemma subset_biUnion_residue_fibers (d : ℕ) (B : Finset ℕ)
 /--
 @isnad1 id=le.5h5v.s7.181333c5e525 from=translated src=- shape=a25732fe vocab=3f0815a0
 -/
-lemma ncard_union_residue_classes_bound (n d K : ℕ) (hd_pos : 0 < d)
+lemma _root_.Tengoku.LeanPool.ncard_union_residue_classes_bound (n d K : ℕ) (hd_pos : 0 < d)
     (B : Finset ℕ) (hB_card : B.card ≤ K)
     (S : Set ℤ) (hS_sub : S ⊆ Set.Ico (0 : ℤ) (↑n / 2))
     (hS_fin : S.Finite)
@@ -7258,7 +7258,7 @@ lemma ncard_union_residue_classes_bound (n d K : ℕ) (hd_pos : 0 < d)
 /--
 @isnad1 id=le.8h4v.s8.62ff7170c5b6 from=translated src=- shape=e157c5f0 vocab=e8e81824
 -/
-lemma fiber_ncard_bound_coprime (η : ℝ) (θ : ℝ)
+lemma _root_.Tengoku.LeanPool.fiber_ncard_bound_coprime (η : ℝ) (θ : ℝ)
     (hη_pos : 0 < η) (hη_lt : η < 1 / 6) (hθ_pos : 0 < θ) (hθ_lt : θ < 1)
     (n : ℕ) (hn : 2 ≤ n)
     (hP : (largestPrimeFactor n : ℝ) ≥ (n : ℝ) ^ θ)
@@ -7285,7 +7285,7 @@ lemma fiber_ncard_bound_coprime (η : ℝ) (θ : ℝ)
 /--
 @isnad1 id=le.7h4v.s8.7e4b4404c453 from=translated src=- shape=8bc8841b vocab=44f7f573
 -/
-lemma fiber_ncard_bound (η : ℝ) (θ : ℝ)
+lemma _root_.Tengoku.LeanPool.fiber_ncard_bound (η : ℝ) (θ : ℝ)
     (hη_pos : 0 < η) (hη_lt : η < 1 / 6) (hθ_pos : 0 < θ) (hθ_lt : θ < 1)
     (n : ℕ) (hn : 2 ≤ n)
     (hP : (largestPrimeFactor n : ℝ) ≥ (n : ℝ) ^ θ)
@@ -7303,7 +7303,7 @@ lemma fiber_ncard_bound (η : ℝ) (θ : ℝ)
 /--
 @isnad1 id=lt.2h3v.s5.c95a33f6a797 from=translated src=- shape=549435e5 vocab=2d652769
 -/
-lemma pos_of_mem_truncatedObtuseRegion_snd (n : ℕ) (η : ℝ) (hη_pos : 0 < η)
+lemma _root_.Tengoku.LeanPool.pos_of_mem_truncatedObtuseRegion_snd (n : ℕ) (η : ℝ) (hη_pos : 0 < η)
     (pq : ℤ × ℤ) (h : pq ∈ truncatedObtuseRegion n η) :
     0 < pq.2 :=
   pos_of_mem_truncatedObtuseRegion_snd_fb n η hη_pos pq h
@@ -7311,7 +7311,7 @@ lemma pos_of_mem_truncatedObtuseRegion_snd (n : ℕ) (η : ℝ) (hη_pos : 0 < �
 /--
 @isnad1 id=lt.2h3v.s5.3c07b08546d5 from=translated src=- shape=549435e5 vocab=5313ad48
 -/
-lemma pos_of_mem_truncatedObtuseRegion_fst (n : ℕ) (η : ℝ) (hη_pos : 0 < η)
+lemma _root_.Tengoku.LeanPool.pos_of_mem_truncatedObtuseRegion_fst (n : ℕ) (η : ℝ) (hη_pos : 0 < η)
     (pq : ℤ × ℤ) (h : pq ∈ truncatedObtuseRegion n η) :
     0 < pq.1 :=
   pos_of_mem_truncatedObtuseRegion_fst_fb n η hη_pos pq h
@@ -7319,7 +7319,7 @@ lemma pos_of_mem_truncatedObtuseRegion_fst (n : ℕ) (η : ℝ) (hη_pos : 0 < �
 /--
 @isnad1 id=lt.2h3v.s6.26972ffaf4e3 from=translated src=- shape=b60c2bb8 vocab=4632aacc
 -/
-lemma snd_lt_half_of_mem_truncatedObtuseRegion' (n : ℕ) (η : ℝ)
+lemma _root_.Tengoku.LeanPool.snd_lt_half_of_mem_truncatedObtuseRegion' (n : ℕ) (η : ℝ)
     (pq : ℤ × ℤ) (h : pq ∈ truncatedObtuseRegion n η) (hp_pos : 0 < pq.1) :
     (pq.2 : ℝ) < (n : ℝ) / 2 :=
   snd_lt_half_of_mem_truncatedObtuseRegion_fb n η pq h hp_pos
@@ -7327,14 +7327,14 @@ lemma snd_lt_half_of_mem_truncatedObtuseRegion' (n : ℕ) (η : ℝ)
 /--
 @isnad1 id=le.1h2v.s5.be4fbb807562 from=translated src=- shape=72605d68 vocab=73159939
 -/
-lemma intLe_half_of_real_lt_half (n : ℕ) (q : ℤ) (hq : (q : ℝ) < (n : ℝ) / 2) :
+lemma _root_.Tengoku.LeanPool.intLe_half_of_real_lt_half (n : ℕ) (q : ℤ) (hq : (q : ℝ) < (n : ℝ) / 2) :
     q ≤ ↑n / 2 :=
   intLe_half_of_real_lt_half_fb n q hq
 
 /--
 @isnad1 id=mem.3h3v.s6.4c4e9822e24e from=translated src=- shape=5d5eac4d vocab=6d967f30
 -/
-lemma snd_mem_Icc_of_mem_residueBadPairs (n : ℕ) (η : ℝ) (hη : 0 < η) (_hn : 2 ≤ n)
+lemma _root_.Tengoku.LeanPool.snd_mem_Icc_of_mem_residueBadPairs (n : ℕ) (η : ℝ) (hη : 0 < η) (_hn : 2 ≤ n)
     (pq : ℤ × ℤ) (hpq : pq ∈ residueBadPairs n η) :
     pq.2 ∈ Finset.Icc (1 : ℤ) (↑n / 2) := by
   have hbad : pq ∈ badPairsE n η := hpq.1
@@ -7350,7 +7350,7 @@ lemma snd_mem_Icc_of_mem_residueBadPairs (n : ℕ) (η : ℝ) (hη : 0 < η) (_h
 /--
 @isnad1 id=le.0h2v.s6.fe8ab3b89a3b from=translated src=- shape=3482c658 vocab=e3996a8f
 -/
-lemma fiber_pair_ncard_le (S : Set (ℤ × ℤ)) (q : ℤ) :
+lemma _root_.Tengoku.LeanPool.fiber_pair_ncard_le (S : Set (ℤ × ℤ)) (q : ℤ) :
     {pq ∈ S | pq.2 = q}.ncard ≤ {p : ℤ | (p, q) ∈ S}.ncard := by
   have h₁ : {pq ∈ S | pq.2 = q} = Set.image (fun p : ℤ => (p, q)) {p : ℤ | (p, q) ∈ S} := by
     ext ⟨a, b⟩; simp only [Set.mem_ofPred_eq, Set.mem_image, Prod.mk.injEq]
@@ -7363,14 +7363,14 @@ lemma fiber_pair_ncard_le (S : Set (ℤ × ℤ)) (q : ℤ) :
 /--
 @isnad1 id=le.1h1v.s6.b22816e65d9d from=translated src=- shape=08fa1b6f vocab=b7b90708
 -/
-lemma card_Icc_one_half_le (n : ℕ) (_hn : 2 ≤ n) :
+lemma _root_.Tengoku.LeanPool.card_Icc_one_half_le (n : ℕ) (_hn : 2 ≤ n) :
     (Finset.Icc (1 : ℤ) (↑n / 2)).card ≤ n / 2 := by
   simp_all
 
 /--
 @isnad1 id=le.8h3v.s9.8d289a7b42dd from=translated src=- shape=985dbac0 vocab=44f7f573
 -/
-lemma residueBadPairs_ncard_from_fibers (η : ℝ) (θ : ℝ)
+lemma _root_.Tengoku.LeanPool.residueBadPairs_ncard_from_fibers (η : ℝ) (θ : ℝ)
     (hη_pos : 0 < η) (_hη_lt : η < 1 / 6) (_hθ_pos : 0 < θ) (_hθ_lt : θ < 1)
     (n : ℕ) (hn : 2 ≤ n)
     (_hP : (largestPrimeFactor n : ℝ) ≥ (n : ℝ) ^ θ)
@@ -7414,7 +7414,7 @@ lemma residueBadPairs_ncard_from_fibers (η : ℝ) (θ : ℝ)
 /--
 @isnad1 id=le.7h3v.s8.5b73cdf9dfdf from=translated src=- shape=6af68fba vocab=592c501f
 -/
-lemma residueBadPairs_ncard_le_counting (η : ℝ) (θ : ℝ)
+lemma _root_.Tengoku.LeanPool.residueBadPairs_ncard_le_counting (η : ℝ) (θ : ℝ)
     (hη_pos : 0 < η) (hη_lt : η < 1 / 6) (hθ_pos : 0 < θ) (hθ_lt : θ < 1)
     (n : ℕ) (hn : 2 ≤ n)
     (hP : (largestPrimeFactor n : ℝ) ≥ (n : ℝ) ^ θ)
@@ -7433,7 +7433,7 @@ lemma residueBadPairs_ncard_le_counting (η : ℝ) (θ : ℝ)
 /--
 @isnad1 id=le.2h4v.s6.7f4bdc42057f from=translated src=- shape=482d93eb vocab=1d689698
 -/
-lemma nat_div_prod_le (a b c d : ℕ) (hc : 0 < c) (hd : 0 < d) :
+lemma _root_.Tengoku.LeanPool.nat_div_prod_le (a b c d : ℕ) (hc : 0 < c) (hd : 0 < d) :
     (a / c) * (b / d) ≤ (a * b) / (c * d) := by
   have h₁ : (a / c) * c ≤ a := Nat.div_mul_le_self a c
   have h₂ : (b / d) * d ≤ b := Nat.div_mul_le_self b d
@@ -7445,7 +7445,7 @@ lemma nat_div_prod_le (a b c d : ℕ) (hc : 0 < c) (hd : 0 < d) :
 /--
 @isnad1 id=le.3h3v.s6.7acd87a9ae72 from=translated src=- shape=67c5fbc2 vocab=439d7981
 -/
-lemma dR_mul_n2d_le_n2R (n d R : ℕ) (hd_pos : 0 < d) (hR_pos : 0 < R)
+lemma _root_.Tengoku.LeanPool.dR_mul_n2d_le_n2R (n d R : ℕ) (hd_pos : 0 < d) (hR_pos : 0 < R)
     (hd_dvd : d ∣ n) :
     d / R * (n / (2 * d)) ≤ n / (2 * R) := by
   have h2d_pos : 0 < 2 * d := Nat.mul_pos (by norm_num) hd_pos
@@ -7461,7 +7461,7 @@ lemma dR_mul_n2d_le_n2R (n d R : ℕ) (hd_pos : 0 < d) (hR_pos : 0 < R)
 /--
 @isnad1 id=le.1h2v.s6.e6e3db60afd1 from=translated src=- shape=606ab67a vocab=2558d175
 -/
-lemma n2_mul_n2R_le_nsq_4R (n R : ℕ) (hR_pos : 0 < R) :
+lemma _root_.Tengoku.LeanPool.n2_mul_n2R_le_nsq_4R (n R : ℕ) (hR_pos : 0 < R) :
     n / 2 * (n / (2 * R)) ≤ n ^ 2 / (4 * R) := by
   have h2R_pos : 0 < 2 * R := Nat.mul_pos (by norm_num) hR_pos
   calc n / 2 * (n / (2 * R))
@@ -7471,7 +7471,7 @@ lemma n2_mul_n2R_le_nsq_4R (n R : ℕ) (hR_pos : 0 < R) :
 /--
 @isnad1 id=le.3h3v.s7.585beb886c95 from=translated src=- shape=ee95d2ee vocab=d792f21d
 -/
-theorem product_bound_first_term (n d R : ℕ) (hd_pos : 0 < d) (hR_pos : 0 < R)
+theorem _root_.Tengoku.LeanPool.product_bound_first_term (n d R : ℕ) (hd_pos : 0 < d) (hR_pos : 0 < R)
     (hd_dvd : d ∣ n) :
     n / 2 * (d / R) * (n / (2 * d)) ≤ n ^ 2 / (4 * R) := by
   calc n / 2 * (d / R) * (n / (2 * d))
@@ -7484,7 +7484,7 @@ theorem product_bound_first_term (n d R : ℕ) (hd_pos : 0 < d) (hR_pos : 0 < R)
 /--
 @isnad1 id=le.2h3v.s6.35657fd09f95 from=translated src=- shape=dd98159c vocab=2558d175
 -/
-lemma product_bound_second_term (n d R : ℕ) (hR_pos : 0 < R) (hd_le : d ≤ n) :
+lemma _root_.Tengoku.LeanPool.product_bound_second_term (n d R : ℕ) (hR_pos : 0 < R) (hd_le : d ≤ n) :
     n / 2 * (d / R) ≤ n ^ 2 / (2 * R) := by
   calc
     n / 2 * (d / R) ≤ n / 2 * (n / R) :=
@@ -7495,7 +7495,7 @@ lemma product_bound_second_term (n d R : ℕ) (hR_pos : 0 < R) (hd_le : d ≤ n)
 /--
 @isnad1 id=le.1h2v.s7.14dcaa04f144 from=translated src=- shape=5cb9497b vocab=dc46af4e
 -/
-lemma combine_frac_bounds (n R : ℕ) (hR_pos : 0 < R) :
+lemma _root_.Tengoku.LeanPool.combine_frac_bounds (n R : ℕ) (hR_pos : 0 < R) :
     n ^ 2 / (4 * R) + n ^ 2 / (2 * R) ≤ 3 * n ^ 2 / (4 * R) := by
   have h₁ : (n ^ 2 / (4 * R)) * (4 * R) ≤ n ^ 2 := Nat.div_mul_le_self (n ^ 2) (4 * R)
   have h₂ : (n ^ 2 / (2 * R)) * (2 * R) ≤ n ^ 2 := Nat.div_mul_le_self (n ^ 2) (2 * R)
@@ -7505,7 +7505,7 @@ lemma combine_frac_bounds (n R : ℕ) (hR_pos : 0 < R) :
 /--
 @isnad1 id=le.2h1v.s7.060b951b5f35 from=translated src=- shape=846910d6 vocab=91849b80
 -/
-lemma counting_bound_simplify (n : ℕ) (hn : 2 ≤ n)
+lemma _root_.Tengoku.LeanPool.counting_bound_simplify (n : ℕ) (hn : 2 ≤ n)
     (hP_pos : 0 < largestPrimeFactor n) :
     n / 2 *
     (largestPrimeFactor n ^ n.factorization (largestPrimeFactor n) /
@@ -7533,7 +7533,7 @@ lemma counting_bound_simplify (n : ℕ) (hn : 2 ≤ n)
 /--
 @isnad1 id=le.7h3v.s8.8e0eb10b828a from=translated src=- shape=176dde83 vocab=0db09308
 -/
-lemma residueBadPairs_ncard_le_nat (η : ℝ) (θ : ℝ)
+lemma _root_.Tengoku.LeanPool.residueBadPairs_ncard_le_nat (η : ℝ) (θ : ℝ)
     (hη_pos : 0 < η) (hη_lt : η < 1 / 6) (hθ_pos : 0 < θ) (hθ_lt : θ < 1)
     (n : ℕ) (hn : 2 ≤ n)
     (hP : (largestPrimeFactor n : ℝ) ≥ (n : ℝ) ^ θ)
@@ -7551,7 +7551,7 @@ lemma residueBadPairs_ncard_le_nat (η : ℝ) (θ : ℝ)
 /--
 @isnad1 id=le.2h2v.s7.3b1c07556131 from=translated src=- shape=425e2352 vocab=17224d36
 -/
-lemma ncard_nat_to_real_bound (ncard_val n : ℕ) (_hn : 2 ≤ n)
+lemma _root_.Tengoku.LeanPool.ncard_nat_to_real_bound (ncard_val n : ℕ) (_hn : 2 ≤ n)
     (h : ncard_val ≤ 3 * n ^ 2 / (4 * ⌈Real.log (n : ℝ)⌉₊)) :
     (ncard_val : ℝ) ≤ 3 / 4 * (n : ℝ) ^ 2 / ⌈Real.log (n : ℝ)⌉₊ := by
   have h₁ : (ncard_val : ℝ) ≤ ( (3 * n ^ 2 / (4 * ⌈Real.log (n : ℝ)⌉₊) : ℕ) : ℝ ) := by
@@ -7565,7 +7565,7 @@ lemma ncard_nat_to_real_bound (ncard_val n : ℕ) (_hn : 2 ≤ n)
 /--
 @isnad1 id=le.7h3v.s8.4a1eeabdd31a from=translated src=- shape=12ab349d vocab=0db09308
 -/
-lemma residueBadPairs_ncard_le (η : ℝ) (θ : ℝ)
+lemma _root_.Tengoku.LeanPool.residueBadPairs_ncard_le (η : ℝ) (θ : ℝ)
     (hη_pos : 0 < η) (hη_lt : η < 1 / 6) (hθ_pos : 0 < θ) (hθ_lt : θ < 1)
     (n : ℕ) (hn : 2 ≤ n)
     (hP : (largestPrimeFactor n : ℝ) ≥ (n : ℝ) ^ θ)
@@ -7577,7 +7577,7 @@ lemma residueBadPairs_ncard_le (η : ℝ) (θ : ℝ)
 /--
 @isnad1 id=le.1h1v.s7.b52341fd8632 from=translated src=- shape=43f3d710 vocab=17224d36
 -/
-lemma three_fourths_ceil_le_inv_log (n : ℕ) (hn : 2 ≤ n) :
+lemma _root_.Tengoku.LeanPool.three_fourths_ceil_le_inv_log (n : ℕ) (hn : 2 ≤ n) :
     3 / 4 * (n : ℝ) ^ 2 / ⌈Real.log (n : ℝ)⌉₊ ≤ (n : ℝ) ^ 2 / Real.log (n : ℝ) := by
   have h₁ : (n : ℝ) ≥ 2 := by exact_mod_cast hn
   have h₂ : Real.log (n : ℝ) > 0 := Real.log_pos (by linarith)
@@ -7592,7 +7592,7 @@ lemma three_fourths_ceil_le_inv_log (n : ℕ) (hn : 2 ≤ n) :
 /--
 @isnad1 id=le.7h3v.s7.bb1b7f51bf4b from=translated src=- shape=dafe57fc vocab=51c349c4
 -/
-lemma residueBadPairs_ncard_bound (η : ℝ) (θ : ℝ)
+lemma _root_.Tengoku.LeanPool.residueBadPairs_ncard_bound (η : ℝ) (θ : ℝ)
     (hη_pos : 0 < η) (hη_lt : η < 1 / 6) (hθ_pos : 0 < θ) (hθ_lt : θ < 1)
     (n : ℕ) (hn : 2 ≤ n)
     (hP : (largestPrimeFactor n : ℝ) ≥ (n : ℝ) ^ θ)
@@ -7605,7 +7605,7 @@ lemma residueBadPairs_ncard_bound (η : ℝ) (θ : ℝ)
 /--
 @isnad1 id=lt.2h3v.s5.3c07b08546d5 from=translated src=- shape=549435e5 vocab=5313ad48
 -/
-lemma pos_of_mem_truncatedObtuseRegion_fst_pd (n : ℕ) (η : ℝ) (hη_pos : 0 < η)
+lemma _root_.Tengoku.LeanPool.pos_of_mem_truncatedObtuseRegion_fst_pd (n : ℕ) (η : ℝ) (hη_pos : 0 < η)
     (pq : ℤ × ℤ) (h : pq ∈ truncatedObtuseRegion n η) :
     0 < pq.1 :=
   pos_of_mem_truncatedObtuseRegion_fst_fb n η hη_pos pq h
@@ -7613,7 +7613,7 @@ lemma pos_of_mem_truncatedObtuseRegion_fst_pd (n : ℕ) (η : ℝ) (hη_pos : 0 
 /--
 @isnad1 id=lt.2h3v.s5.c95a33f6a797 from=translated src=- shape=549435e5 vocab=2d652769
 -/
-lemma pos_of_mem_truncatedObtuseRegion_snd_pd (n : ℕ) (η : ℝ) (hη_pos : 0 < η)
+lemma _root_.Tengoku.LeanPool.pos_of_mem_truncatedObtuseRegion_snd_pd (n : ℕ) (η : ℝ) (hη_pos : 0 < η)
     (pq : ℤ × ℤ) (h : pq ∈ truncatedObtuseRegion n η) :
     0 < pq.2 :=
   pos_of_mem_truncatedObtuseRegion_snd_fb n η hη_pos pq h
@@ -7621,7 +7621,7 @@ lemma pos_of_mem_truncatedObtuseRegion_snd_pd (n : ℕ) (η : ℝ) (hη_pos : 0 
 /--
 @isnad1 id=lt.2h3v.s6.611fdf44ed75 from=translated src=- shape=b60c2bb8 vocab=4632aacc
 -/
-lemma fst_lt_half_of_mem_truncatedObtuseRegion (n : ℕ) (η : ℝ)
+lemma _root_.Tengoku.LeanPool.fst_lt_half_of_mem_truncatedObtuseRegion (n : ℕ) (η : ℝ)
     (pq : ℤ × ℤ) (h : pq ∈ truncatedObtuseRegion n η) (hq_pos : 0 < pq.2) :
     (pq.1 : ℝ) < (n : ℝ) / 2 := by
   have h₃ : ((pq.1 : ℝ) + (pq.2 : ℝ) : ℝ) < (n : ℝ) / 2 := h.2.2.1
@@ -7631,7 +7631,7 @@ lemma fst_lt_half_of_mem_truncatedObtuseRegion (n : ℕ) (η : ℝ)
 /--
 @isnad1 id=le.2h2v.s4.8141c3012cd9 from=translated src=- shape=e8072de7 vocab=203035aa
 -/
-lemma largestPrimeFactor_le_of_dvd_pos (P : ℕ) (p : ℤ) (hp_pos : 0 < p)
+lemma _root_.Tengoku.LeanPool.largestPrimeFactor_le_of_dvd_pos (P : ℕ) (p : ℤ) (hp_pos : 0 < p)
     (hdvd : (P : ℤ) ∣ p) :
     (P : ℤ) ≤ p := by
   exact Int.le_of_dvd hp_pos hdvd
@@ -7639,7 +7639,7 @@ lemma largestPrimeFactor_le_of_dvd_pos (P : ℕ) (p : ℤ) (hp_pos : 0 < p)
 /--
 @isnad1 id=eq.2h2v.s5.a76ede386953 from=translated src=- shape=aab6309b vocab=58f8d7c2
 -/
-lemma pdivPairs_empty_of_large_P (n : ℕ) (η : ℝ) (hη_pos : 0 < η)
+lemma _root_.Tengoku.LeanPool.pdivPairs_empty_of_large_P (n : ℕ) (η : ℝ) (hη_pos : 0 < η)
     (hP_large : n < 2 * largestPrimeFactor n) :
     pdivPairs n η = ∅ := by
   ext pq
@@ -7660,7 +7660,7 @@ lemma pdivPairs_empty_of_large_P (n : ℕ) (η : ℝ) (hη_pos : 0 < η)
 /--
 @isnad1 id=le.1h2v.s6.cd3a28193ddf from=translated src=- shape=4bf96f4c vocab=a5fbb0f9
 -/
-lemma pdivPairs_subset_prod_half (n : ℕ) (η : ℝ) (hη_pos : 0 < η) :
+lemma _root_.Tengoku.LeanPool.pdivPairs_subset_prod_half (n : ℕ) (η : ℝ) (hη_pos : 0 < η) :
     pdivPairs n η ⊆
       {x : ℤ | 0 ≤ x ∧ x ≤ (n / 2 : ℤ) ∧ (largestPrimeFactor n : ℤ) ∣ x} ×ˢ
       Set.Icc (0 : ℤ) (n / 2 : ℤ) := by
@@ -7686,19 +7686,19 @@ lemma pdivPairs_subset_prod_half (n : ℕ) (η : ℝ) (hη_pos : 0 < η) :
 /--
 @isnad1 id=eq.2h2v.s6.45258049dc85 from=translated src=- shape=ed8fbf14 vocab=67076b48
 -/
-lemma ncard_nonneg_multiples_eq (B : ℤ) (P : ℕ) (hP : 0 < P) (hB : 0 ≤ B) :
+lemma _root_.Tengoku.LeanPool.ncard_nonneg_multiples_eq (B : ℤ) (P : ℕ) (hP : 0 < P) (hB : 0 ≤ B) :
     ({x : ℤ | 0 ≤ x ∧ x ≤ B ∧ (P : ℤ) ∣ x}).ncard = B.toNat / P + 1 :=
   Nat.le_antisymm (ncard_nonneg_multiples_le B P hP hB) (ncard_nonneg_multiples_ge B P hP hB)
 
 /--
 @isnad1 id=le.1h1v.s5.ae1e163f9d30 from=translated src=- shape=902c3587 vocab=a13048df
 -/
-lemma div_two_add_one_le_1 (a : ℕ) (ha : 2 ≤ a) : a / 2 + 1 ≤ a := by omega
+lemma _root_.Tengoku.LeanPool.div_two_add_one_le_1 (a : ℕ) (ha : 2 ≤ a) : a / 2 + 1 ≤ a := by omega
 
 /--
 @isnad1 id=le.2h2v.s6.c93cf755adc8 from=translated src=- shape=ee896b35 vocab=24dada50
 -/
-lemma ncard_multiples_half_le (n P : ℕ) (hP_pos : 0 < P) (h2P : 2 * P ≤ n) :
+lemma _root_.Tengoku.LeanPool.ncard_multiples_half_le (n P : ℕ) (hP_pos : 0 < P) (h2P : 2 * P ≤ n) :
     ({x : ℤ | 0 ≤ x ∧ x ≤ (n / 2 : ℤ) ∧ (P : ℤ) ∣ x}).ncard ≤ n / P := by
   have hB : (0 : ℤ) ≤ (n : ℤ) / 2 := by omega
   rw [ncard_nonneg_multiples_eq ((n : ℤ) / 2) P hP_pos hB]
@@ -7711,7 +7711,7 @@ lemma ncard_multiples_half_le (n P : ℕ) (hP_pos : 0 < P) (h2P : 2 * P ≤ n) :
 /--
 @isnad1 id=le.1h1v.s5.f754e7611d07 from=translated src=- shape=03539406 vocab=953dff83
 -/
-lemma ncard_Icc_zero_half_le (n : ℕ) (hn : 2 ≤ n) :
+lemma _root_.Tengoku.LeanPool.ncard_Icc_zero_half_le (n : ℕ) (hn : 2 ≤ n) :
     (Set.Icc (0 : ℤ) (n / 2 : ℤ)).ncard ≤ n := by
   rw [Int_Icc_ncard]
   exact div_two_add_one_le_1 n hn
@@ -7719,21 +7719,21 @@ lemma ncard_Icc_zero_half_le (n : ℕ) (hn : 2 ≤ n) :
 /--
 @isnad1 id=finite.0h2v.s5.de7170fefee6 from=translated src=- shape=267b327d vocab=1baa9053
 -/
-lemma multiples_in_half_finite (n P : ℕ) :
+lemma _root_.Tengoku.LeanPool.multiples_in_half_finite (n P : ℕ) :
     {x : ℤ | 0 ≤ x ∧ x ≤ (n / 2 : ℤ) ∧ (P : ℤ) ∣ x}.Finite :=
   multiples_finite 0 (n / 2 : ℤ) P
 
 /--
 @isnad1 id=finite.0h1v.s5.5c4a78679921 from=translated src=- shape=9fdbc96a vocab=3abf3682
 -/
-lemma Icc_zero_half_finite (n : ℕ) :
+lemma _root_.Tengoku.LeanPool.Icc_zero_half_finite (n : ℕ) :
     (Set.Icc (0 : ℤ) (n / 2 : ℤ)).Finite :=
   Set.finite_Icc _ _
 
 /--
 @isnad1 id=finite.0h2v.s6.de939ee5905e from=translated src=- shape=2de2ac51 vocab=f5a98c8c
 -/
-lemma prod_half_finite (n P : ℕ) :
+lemma _root_.Tengoku.LeanPool.prod_half_finite (n P : ℕ) :
     ({x : ℤ | 0 ≤ x ∧ x ≤ (n / 2 : ℤ) ∧ (P : ℤ) ∣ x} ×ˢ
      Set.Icc (0 : ℤ) (n / 2 : ℤ)).Finite :=
   Set.Finite.prod (multiples_in_half_finite n P) (Icc_zero_half_finite n)
@@ -7741,7 +7741,7 @@ lemma prod_half_finite (n P : ℕ) :
 /--
 @isnad1 id=le.1h2v.s5.b0488a2ddb5e from=translated src=- shape=13f21fe1 vocab=1d689698
 -/
-lemma nat_div_mul_le_mul_div (n P : ℕ) (hP_pos : 0 < P) :
+lemma _root_.Tengoku.LeanPool.nat_div_mul_le_mul_div (n P : ℕ) (hP_pos : 0 < P) :
     (n / P) * n ≤ n * n / P := by
   rw [Nat.le_div_iff_mul_le hP_pos]
   calc (n / P) * n * P = (n / P) * P * n := by ring
@@ -7750,7 +7750,7 @@ lemma nat_div_mul_le_mul_div (n P : ℕ) (hP_pos : 0 < P) :
 /--
 @isnad1 id=le.4h2v.s6.ba05e42c37b3 from=translated src=- shape=953b46b4 vocab=371e83c7
 -/
-lemma pdivPairs_ncard_le_when_small_P (n : ℕ) (η : ℝ) (hη_pos : 0 < η)
+lemma _root_.Tengoku.LeanPool.pdivPairs_ncard_le_when_small_P (n : ℕ) (η : ℝ) (hη_pos : 0 < η)
     (hn : 2 ≤ n)
     (hP_pos : 0 < largestPrimeFactor n)
     (h2P : 2 * largestPrimeFactor n ≤ n) :
@@ -7778,7 +7778,7 @@ lemma pdivPairs_ncard_le_when_small_P (n : ℕ) (η : ℝ) (hη_pos : 0 < η)
 /--
 @isnad1 id=le.3h3v.s6.d94cc0254bb1 from=translated src=- shape=999a95f2 vocab=6f22346b
 -/
-lemma nat_sq_div_le_real (n : ℕ) (P : ℕ) (θ : ℝ)
+lemma _root_.Tengoku.LeanPool.nat_sq_div_le_real (n : ℕ) (P : ℕ) (θ : ℝ)
     (hn : 2 ≤ n) (hP_pos : 0 < P)
     (hP : (P : ℝ) ≥ (n : ℝ) ^ θ) :
     (↑(n * n / P) : ℝ) ≤ (n : ℝ) ^ 2 / (n : ℝ) ^ θ := by
@@ -7789,7 +7789,7 @@ lemma nat_sq_div_le_real (n : ℕ) (P : ℕ) (θ : ℝ)
 /--
 @isnad1 id=le.6h3v.s7.21278b1b68b7 from=translated src=- shape=7fde8d33 vocab=ea10f5cc
 -/
-lemma pdivPairs_ncard_bound (η : ℝ) (θ : ℝ)
+lemma _root_.Tengoku.LeanPool.pdivPairs_ncard_bound (η : ℝ) (θ : ℝ)
     (hη_pos : 0 < η) (_hη_lt : η < 1 / 6) (_hθ_pos : 0 < θ) (_hθ_lt : θ < 1)
     (n : ℕ) (hn : 2 ≤ n)
     (hP : (largestPrimeFactor n : ℝ) ≥ (n : ℝ) ^ θ) :
@@ -7817,7 +7817,7 @@ lemma pdivPairs_ncard_bound (η : ℝ) (θ : ℝ)
 /--
 @isnad1 id=le.0h2v.s4.187794252425 from=translated src=- shape=e58a698a vocab=a6e0ef83
 -/
-lemma badPairsE_subset_union (n : ℕ) (η : ℝ) :
+lemma _root_.Tengoku.LeanPool.badPairsE_subset_union (n : ℕ) (η : ℝ) :
     badPairsE n η ⊆ pdivPairs n η ∪ residueBadPairs n η := by
   intro ⟨p, q⟩ hpq
   simp only [badPairsE, pdivPairs, residueBadPairs, Set.mem_ofPred_eq,
@@ -7829,7 +7829,7 @@ lemma badPairsE_subset_union (n : ℕ) (η : ℝ) :
 /--
 @isnad1 id=le.7h3v.s8.2b7d434faabd from=translated src=- shape=ac2fc44f vocab=82f34ba4
 -/
-lemma badPairsE_ncard_le (η : ℝ) (θ : ℝ)
+lemma _root_.Tengoku.LeanPool.badPairsE_ncard_le (η : ℝ) (θ : ℝ)
     (hη_pos : 0 < η) (hη_lt : η < 1 / 6) (hθ_pos : 0 < θ) (hθ_lt : θ < 1)
     (n : ℕ) (hn : 2 ≤ n)
     (hP : (largestPrimeFactor n : ℝ) ≥ (n : ℝ) ^ θ)
@@ -7861,7 +7861,7 @@ lemma badPairsE_ncard_le (η : ℝ) (θ : ℝ)
 /--
 @isnad1 id=ex.7h3v.s8.bcc58f6a9bf7 from=translated src=- shape=5ea50400 vocab=76b4dacc
 -/
-lemma exists_fourier_exceptional_superset (η : ℝ) (θ : ℝ)
+lemma _root_.Tengoku.LeanPool.exists_fourier_exceptional_superset (η : ℝ) (θ : ℝ)
     (hη_pos : 0 < η) (hη_lt : η < 1 / 6) (hθ_pos : 0 < θ) (hθ_lt : θ < 1)
     (n : ℕ) (hn : 2 ≤ n)
     (hP : (largestPrimeFactor n : ℝ) ≥ (n : ℝ) ^ θ)
@@ -7878,7 +7878,7 @@ lemma exists_fourier_exceptional_superset (η : ℝ) (θ : ℝ)
 /--
 @isnad1 id=le.7h3v.s8.2b7d434faabd from=translated src=- shape=ac2fc44f vocab=82f34ba4
 -/
-lemma badPairsE_ncard_bound (η : ℝ) (θ : ℝ)
+lemma _root_.Tengoku.LeanPool.badPairsE_ncard_bound (η : ℝ) (θ : ℝ)
     (hη_pos : 0 < η) (hη_lt : η < 1 / 6) (hθ_pos : 0 < θ) (hθ_lt : θ < 1)
     (n : ℕ) (hn : 2 ≤ n)
     (hP : (largestPrimeFactor n : ℝ) ≥ (n : ℝ) ^ θ)
@@ -7893,7 +7893,7 @@ lemma badPairsE_ncard_bound (η : ℝ) (θ : ℝ)
 /--
 @isnad1 id=ex.7h3v.s8.53ffb845c76e from=translated src=- shape=cd8e29f3 vocab=39b2ca7e
 -/
-lemma exceptional_set_construction_single_n (η : ℝ) (θ : ℝ)
+lemma _root_.Tengoku.LeanPool.exceptional_set_construction_single_n (η : ℝ) (θ : ℝ)
     (hη_pos : 0 < η) (hη_lt : η < 1 / 6) (hθ_pos : 0 < θ) (hθ_lt : θ < 1)
     (n : ℕ) (hn : 2 ≤ n)
     (hP : (largestPrimeFactor n : ℝ) ≥ (n : ℝ) ^ θ)
@@ -7919,7 +7919,7 @@ lemma exceptional_set_construction_single_n (η : ℝ) (θ : ℝ)
 /--
 @isnad1 id=le.1h1v.s4.5420912dba7d from=translated src=- shape=d643ca81 vocab=a0466d8a
 -/
-lemma log_ge_one_of_ge_three (n : ℕ) (hn : 3 ≤ n) : 1 ≤ Real.log (n : ℝ) := by
+lemma _root_.Tengoku.LeanPool.log_ge_one_of_ge_three (n : ℕ) (hn : 3 ≤ n) : 1 ≤ Real.log (n : ℝ) := by
   have h₀ : Real.exp 1 < 3 := by
     have := Real.exp_one_lt_d9
     linarith
@@ -7934,7 +7934,7 @@ lemma log_ge_one_of_ge_three (n : ℕ) (hn : 3 ≤ n) : 1 ≤ Real.log (n : ℝ)
 /--
 @isnad1 id=le.1h1v.s6.58b6c84715ae from=translated src=- shape=f0cb35c4 vocab=e3709110
 -/
-lemma one_plus_log_pow_le (n : ℕ) (hn : 3 ≤ n) :
+lemma _root_.Tengoku.LeanPool.one_plus_log_pow_le (n : ℕ) (hn : 3 ≤ n) :
     (1 + Real.log (n : ℝ)) ^ 3 ≤ 8 * Real.log (n : ℝ) ^ 3 := by
   have hlog : 1 ≤ Real.log (n : ℝ) := log_ge_one_of_ge_three n hn
   have h1 : 1 + Real.log (n : ℝ) ≤ 2 * Real.log (n : ℝ) := by linarith
@@ -7946,7 +7946,7 @@ lemma one_plus_log_pow_le (n : ℕ) (hn : 3 ≤ n) :
 /--
 @isnad1 id=ex.2h2v.s6.2c4927bb2f5c from=translated src=- shape=3acf584f vocab=c3015e64
 -/
-lemma norm_log_pow_le_mul_norm_rpow (θ : ℝ) (hθ : 0 < θ) (c : ℝ) (hc : 0 < c) :
+lemma _root_.Tengoku.LeanPool.norm_log_pow_le_mul_norm_rpow (θ : ℝ) (hθ : 0 < θ) (c : ℝ) (hc : 0 < c) :
     ∃ N : ℕ, ∀ n : ℕ, N ≤ n →
       ‖Real.log (n : ℝ) ^ 3‖ ≤ c * ‖(n : ℝ) ^ θ‖ := by
   simp only [← Real.rpow_natCast (Real.log _) 3]
@@ -7959,7 +7959,7 @@ lemma norm_log_pow_le_mul_norm_rpow (θ : ℝ) (hθ : 0 < θ) (c : ℝ) (hc : 0 
 /--
 @isnad1 id=lt.3h3v.s7.b2d0cf50a1d2 from=translated src=- shape=0829dd27 vocab=fe2ad2f0
 -/
-theorem norm_bound_implies_div_lt (θ : ℝ) (ε : ℝ) (hε : 0 < ε) (n : ℕ)
+theorem _root_.Tengoku.LeanPool.norm_bound_implies_div_lt (θ : ℝ) (ε : ℝ) (hε : 0 < ε) (n : ℕ)
     (hn : 1 ≤ n)
     (hbound : ‖Real.log (n : ℝ) ^ 3‖ ≤ (ε / 2) * ‖(n : ℝ) ^ θ‖) :
     Real.log (n : ℝ) ^ 3 / (n : ℝ) ^ θ < ε := by
@@ -7973,7 +7973,7 @@ theorem norm_bound_implies_div_lt (θ : ℝ) (ε : ℝ) (hε : 0 < ε) (n : ℕ)
 /--
 @isnad1 id=ex.3h3v.s7.f4d6425808df from=translated src=- shape=f7550e87 vocab=fe2ad2f0
 -/
-lemma norm_bound_to_div_lt (θ : ℝ) (_hθ : 0 < θ) (ε : ℝ) (hε : 0 < ε) (N : ℕ)
+lemma _root_.Tengoku.LeanPool.norm_bound_to_div_lt (θ : ℝ) (_hθ : 0 < θ) (ε : ℝ) (hε : 0 < ε) (N : ℕ)
     (hN : ∀ n : ℕ, N ≤ n → ‖Real.log (n : ℝ) ^ 3‖ ≤ (ε / 2) * ‖(n : ℝ) ^ θ‖) :
     ∃ N' : ℕ, ∀ n : ℕ, N' ≤ n →
       Real.log (n : ℝ) ^ 3 / (n : ℝ) ^ θ < ε := by
@@ -7983,7 +7983,7 @@ lemma norm_bound_to_div_lt (θ : ℝ) (_hθ : 0 < θ) (ε : ℝ) (hε : 0 < ε) 
 /--
 @isnad1 id=ex.2h2v.s6.50a869b0fa5f from=translated src=- shape=1de1bb79 vocab=6b3b2400
 -/
-lemma log_pow_three_div_rpow_eventually_lt (θ : ℝ) (hθ : 0 < θ) (ε : ℝ) (hε : 0 < ε) :
+lemma _root_.Tengoku.LeanPool.log_pow_three_div_rpow_eventually_lt (θ : ℝ) (hθ : 0 < θ) (ε : ℝ) (hε : 0 < ε) :
     ∃ N : ℕ, ∀ n : ℕ, N ≤ n →
       Real.log (n : ℝ) ^ 3 / (n : ℝ) ^ θ < ε := by
   obtain ⟨N, hN⟩ := norm_log_pow_le_mul_norm_rpow θ hθ (ε / 2) (by linarith)
@@ -7992,7 +7992,7 @@ lemma log_pow_three_div_rpow_eventually_lt (θ : ℝ) (hθ : 0 < θ) (ε : ℝ) 
 /--
 @isnad1 id=ex.2h2v.s6.13e108f84b64 from=translated src=- shape=16f3676e vocab=ea7ec0a7
 -/
-lemma log_pow_over_rpow_eventually_lt (θ : ℝ) (hθ_pos : 0 < θ) (ε : ℝ) (hε : 0 < ε) :
+lemma _root_.Tengoku.LeanPool.log_pow_over_rpow_eventually_lt (θ : ℝ) (hθ_pos : 0 < θ) (ε : ℝ) (hε : 0 < ε) :
     ∃ N : ℕ, ∀ n : ℕ, N ≤ n →
       (1 + Real.log (n : ℝ)) ^ 3 / (n : ℝ) ^ θ < ε := by
   obtain ⟨N₁, hN₁⟩ := log_pow_three_div_rpow_eventually_lt θ hθ_pos (ε / 8) (by linarith)
@@ -8011,7 +8011,7 @@ lemma log_pow_over_rpow_eventually_lt (θ : ℝ) (hθ_pos : 0 < θ) (ε : ℝ) (
 /--
 @isnad1 id=ex.4h2v.s8.cdc9125a29d1 from=translated src=- shape=b752d9b9 vocab=39b2ca7e
 -/
-lemma exceptional_set_with_counting_bound (η : ℝ) (θ : ℝ)
+lemma _root_.Tengoku.LeanPool.exceptional_set_with_counting_bound (η : ℝ) (θ : ℝ)
     (hη_pos : 0 < η) (hη_lt : η < 1 / 6) (hθ_pos : 0 < θ) (hθ_lt : θ < 1) :
     ∃ N₁ : ℕ, ∀ n : ℕ, N₁ ≤ n →
       (largestPrimeFactor n : ℝ) ≥ (n : ℝ) ^ θ →
@@ -8035,7 +8035,7 @@ lemma exceptional_set_with_counting_bound (η : ℝ) (θ : ℝ)
 /--
 @isnad1 id=le.1h1v.s5.904d2ac6bc8e from=translated src=- shape=ed4d72e7 vocab=26067060
 -/
-lemma pred_sq_ge (p : ℕ) (hp : 3 ≤ p) : p ≤ (p - 1) ^ 2 := by
+lemma _root_.Tengoku.LeanPool.pred_sq_ge (p : ℕ) (hp : 3 ≤ p) : p ≤ (p - 1) ^ 2 := by
   obtain ⟨m, rfl⟩ : ∃ m, p = m + 3 := ⟨p - 3, by omega⟩
   simp only [show m + 3 - 1 = m + 2 from by omega]
   ring_nf
@@ -8044,7 +8044,7 @@ lemma pred_sq_ge (p : ℕ) (hp : 3 ≤ p) : p ≤ (p - 1) ^ 2 := by
 /--
 @isnad1 id=le.3h2v.s6.809e2cbb4814 from=translated src=- shape=f99b180b vocab=6d9d4018
 -/
-lemma odd_prime_pow_le_totient_sq (p k : ℕ) (hp : Nat.Prime p) (hodd : p ≠ 2) (hk : 1 ≤ k) :
+lemma _root_.Tengoku.LeanPool.odd_prime_pow_le_totient_sq (p k : ℕ) (hp : Nat.Prime p) (hodd : p ≠ 2) (hk : 1 ≤ k) :
     p ^ k ≤ (p ^ k).totient ^ 2 := by
   obtain ⟨m, rfl⟩ : ∃ m, k = m + 1 := Nat.exists_eq_succ_of_ne_zero (by omega)
   rw [Nat.totient_prime_pow_succ hp, mul_pow]
@@ -8061,7 +8061,7 @@ lemma odd_prime_pow_le_totient_sq (p k : ℕ) (hp : Nat.Prime p) (hodd : p ≠ 2
 /--
 @isnad1 id=lt.3h2v.s6.52c1d2e3e9ec from=translated src=- shape=96c1221a vocab=482a4ed6
 -/
-lemma ordCompl_lt_of_dvd (n p : ℕ) (hn : 0 < n) (hp : Nat.Prime p) (hdvd : p ∣ n) :
+lemma _root_.Tengoku.LeanPool.ordCompl_lt_of_dvd (n p : ℕ) (hn : 0 < n) (hp : Nat.Prime p) (hdvd : p ∣ n) :
     n / p ^ n.factorization p < n := by
   apply Nat.div_lt_self hn
   have hpos : 0 < n.factorization p := hp.factorization_pos_of_dvd (by omega) hdvd
@@ -8070,14 +8070,14 @@ lemma ordCompl_lt_of_dvd (n p : ℕ) (hn : 0 < n) (hp : Nat.Prime p) (hdvd : p �
 /--
 @isnad1 id=not.2h2v.s4.50a4e4d7c2fd from=translated src=- shape=27aed232 vocab=08c57cc2
 -/
-lemma not_two_dvd_of_dvd_odd (n d : ℕ) (hodd : ¬ 2 ∣ n) (hdvd : d ∣ n) : ¬ 2 ∣ d := by
+lemma _root_.Tengoku.LeanPool.not_two_dvd_of_dvd_odd (n d : ℕ) (hodd : ¬ 2 ∣ n) (hdvd : d ∣ n) : ¬ 2 ∣ d := by
   intro h
   exact hodd (dvd_trans h hdvd)
 
 /--
 @isnad1 id=le.3h2v.s6.d9dc83930539 from=translated src=- shape=1c4b6c5d vocab=52fb4d15
 -/
-lemma totient_sq_mul_of_coprime (a b : ℕ) (hcop : a.Coprime b)
+lemma _root_.Tengoku.LeanPool.totient_sq_mul_of_coprime (a b : ℕ) (hcop : a.Coprime b)
     (ha : a ≤ a.totient ^ 2) (hb : b ≤ b.totient ^ 2) :
     a * b ≤ (a * b).totient ^ 2 := by
   have h₁ : (a * b).totient = a.totient * b.totient := Nat.totient_mul hcop
@@ -8087,7 +8087,7 @@ lemma totient_sq_mul_of_coprime (a b : ℕ) (hcop : a.Coprime b)
 /--
 @isnad1 id=le.2h1v.s5.4284d1cebd1e from=translated src=- shape=56243794 vocab=f6fe7d98
 -/
-lemma odd_le_totient_sq (n : ℕ) (hn : 1 ≤ n) (hodd : ¬ 2 ∣ n) : n ≤ n.totient ^ 2 := by
+lemma _root_.Tengoku.LeanPool.odd_le_totient_sq (n : ℕ) (hn : 1 ≤ n) (hodd : ¬ 2 ∣ n) : n ≤ n.totient ^ 2 := by
   induction n using Nat.strongRec with
   | _ n ih =>
   obtain rfl | hn2 := eq_or_lt_of_le hn
@@ -8115,7 +8115,7 @@ lemma odd_le_totient_sq (n : ℕ) (hn : 1 ≤ n) (hodd : ¬ 2 ∣ n) : n ≤ n.t
 /--
 @isnad1 id=le.1h1v.s6.4802aeb20875 from=translated src=- shape=3c1187bc vocab=5cd83b3c
 -/
-lemma pow_two_le_two_mul_totient_sq (k : ℕ) (hk : 1 ≤ k) :
+lemma _root_.Tengoku.LeanPool.pow_two_le_two_mul_totient_sq (k : ℕ) (hk : 1 ≤ k) :
     2 ^ k ≤ 2 * (2 ^ k).totient ^ 2 := by
   have h₁ : (2 ^ k).totient = 2 ^ (k - 1) := by
     rw [Nat.totient_prime_pow (by decide : Nat.Prime 2)] <;> cases k with
@@ -8129,7 +8129,7 @@ lemma pow_two_le_two_mul_totient_sq (k : ℕ) (hk : 1 ≤ k) :
 /--
 @isnad1 id=le.1h1v.s5.0dccec7d4889 from=translated src=- shape=8dbc5864 vocab=5cd83b3c
 -/
-lemma totient_sq_lower_bound (n : ℕ) (hn : 1 ≤ n) : n ≤ 2 * n.totient ^ 2 := by
+lemma _root_.Tengoku.LeanPool.totient_sq_lower_bound (n : ℕ) (hn : 1 ≤ n) : n ≤ 2 * n.totient ^ 2 := by
   set v := n.factorization 2 with hv_def
   set m := n / 2 ^ v with hm_def
   have hn_eq : 2 ^ v * m = n := Nat.ordProj_mul_ordCompl_eq_self n 2
@@ -8161,7 +8161,7 @@ lemma totient_sq_lower_bound (n : ℕ) (hn : 1 ≤ n) : n ≤ 2 * n.totient ^ 2 
 /--
 @isnad1 id=ex.0h1v.s4.1f8560aa5cd4 from=translated src=- shape=ceac7746 vocab=3ba79c47
 -/
-lemma totient_tendsto_atTop :
+lemma _root_.Tengoku.LeanPool.totient_tendsto_atTop :
     ∀ K : ℕ, ∃ N : ℕ, ∀ n : ℕ, N ≤ n → K ≤ Nat.totient n := by
   intro K
   refine ⟨2 * K ^ 2 + 1, fun n hn => ?_⟩
@@ -8173,7 +8173,7 @@ lemma totient_tendsto_atTop :
 /--
 @isnad1 id=ex.1h1v.s6.1db2bafb39ab from=translated src=- shape=7f653551 vocab=368c6f1c
 -/
-lemma totient_large_enough (η : ℝ) (hη_pos : 0 < η) :
+lemma _root_.Tengoku.LeanPool.totient_large_enough (η : ℝ) (hη_pos : 0 < η) :
     ∃ N : ℕ, ∀ n : ℕ, N ≤ n →
       5 ≤ (η ^ 2 / 2 : ℝ) * (Nat.totient n : ℝ) := by
   obtain ⟨N, hN⟩ := totient_tendsto_atTop ⌈10 / η ^ 2⌉₊
@@ -8188,7 +8188,7 @@ lemma totient_large_enough (η : ℝ) (hη_pos : 0 < η) :
 /--
 @isnad1 id=ex.4h2v.s8.853801971fb7 from=translated src=- shape=6bf43d84 vocab=8e70d508
 -/
-lemma countingFunctionS_ge_five_outside_exceptional (η : ℝ) (θ : ℝ)
+lemma _root_.Tengoku.LeanPool.countingFunctionS_ge_five_outside_exceptional (η : ℝ) (θ : ℝ)
     (hη_pos : 0 < η) (hη_lt : η < 1 / 6) (hθ_pos : 0 < θ) (hθ_lt : θ < 1) :
     ∃ N₀ : ℕ, ∀ n : ℕ, N₀ ≤ n →
       (largestPrimeFactor n : ℝ) ≥ (n : ℝ) ^ θ →
@@ -8215,7 +8215,7 @@ lemma countingFunctionS_ge_five_outside_exceptional (η : ℝ) (θ : ℝ)
 /--
 @isnad1 id=ex.4h2v.s7.5d7fb2ab9d80 from=translated src=- shape=72508e8d vocab=7d6fc43d
 -/
-lemma badPairsSet_ncard_upper_bound (η : ℝ) (θ : ℝ)
+lemma _root_.Tengoku.LeanPool.badPairsSet_ncard_upper_bound (η : ℝ) (θ : ℝ)
     (hη_pos : 0 < η) (hη_lt : η < 1 / 6) (hθ_pos : 0 < θ) (hθ_lt : θ < 1) :
     ∃ (C : ℝ) (N₂ : ℕ), 0 < C ∧ ∀ n : ℕ, N₂ ≤ n →
       (largestPrimeFactor n : ℝ) ≥ (n : ℝ) ^ θ →
@@ -8239,7 +8239,7 @@ lemma badPairsSet_ncard_upper_bound (η : ℝ) (θ : ℝ)
 /--
 @isnad1 id=tendsto.1h1v.s5.81cd02a82c9f from=translated src=- shape=bfcb92f8 vocab=a9208de6
 -/
-lemma inv_rpow_tendsto_zero (θ : ℝ) (hθ_pos : 0 < θ) :
+lemma _root_.Tengoku.LeanPool.inv_rpow_tendsto_zero (θ : ℝ) (hθ_pos : 0 < θ) :
     Filter.Tendsto (fun n : ℕ => 1 / (n : ℝ) ^ θ) Filter.atTop (nhds 0) := by
   have h1 : Filter.Tendsto (fun n : ℕ => (n : ℝ)) Filter.atTop Filter.atTop := by
     simpa using tendsto_natCast_atTop_atTop
@@ -8252,7 +8252,7 @@ lemma inv_rpow_tendsto_zero (θ : ℝ) (hθ_pos : 0 < θ) :
 /--
 @isnad1 id=ex.3h2v.s6.478ee738d650 from=translated src=- shape=df7b0deb vocab=80fc64ab
 -/
-lemma dist_to_ineq (θ : ℝ) (_hθ_pos : 0 < θ) (ε : ℝ) (_hε : 0 < ε) :
+lemma _root_.Tengoku.LeanPool.dist_to_ineq (θ : ℝ) (_hθ_pos : 0 < θ) (ε : ℝ) (_hε : 0 < ε) :
     (∃ N : ℕ, ∀ n : ℕ, N ≤ n → dist (1 / (n : ℝ) ^ θ) 0 < ε) →
     ∃ N : ℕ, ∀ n : ℕ, N ≤ n → 1 / (n : ℝ) ^ θ < ε := by
   intro h
@@ -8264,7 +8264,7 @@ lemma dist_to_ineq (θ : ℝ) (_hθ_pos : 0 < θ) (ε : ℝ) (_hε : 0 < ε) :
 /--
 @isnad1 id=ex.2h2v.s6.9f51b3672867 from=translated src=- shape=305e6a2e vocab=60ff2d59
 -/
-lemma inv_rpow_eventually_lt (θ : ℝ) (hθ_pos : 0 < θ) :
+lemma _root_.Tengoku.LeanPool.inv_rpow_eventually_lt (θ : ℝ) (hθ_pos : 0 < θ) :
     ∀ ε : ℝ, 0 < ε →
       ∃ N : ℕ, ∀ n : ℕ, N ≤ n →
         1 / (n : ℝ) ^ θ < ε := by
@@ -8276,7 +8276,7 @@ lemma inv_rpow_eventually_lt (θ : ℝ) (hθ_pos : 0 < θ) :
 /--
 @isnad1 id=ex.1h1v.s5.65b717de8ecc from=translated src=- shape=e086aed3 vocab=463bf169
 -/
-lemma inv_log_eventually_lt :
+lemma _root_.Tengoku.LeanPool.inv_log_eventually_lt :
     ∀ ε : ℝ, 0 < ε →
       ∃ N : ℕ, ∀ n : ℕ, N ≤ n →
         1 / Real.log n < ε := by
@@ -8294,7 +8294,7 @@ lemma inv_log_eventually_lt :
 /--
 @isnad1 id=ex.2h2v.s6.524b5ab20270 from=translated src=- shape=46fb584e vocab=ea7ec0a7
 -/
-lemma asymptotic_decay (θ : ℝ) (hθ_pos : 0 < θ) :
+lemma _root_.Tengoku.LeanPool.asymptotic_decay (θ : ℝ) (hθ_pos : 0 < θ) :
     ∀ ε : ℝ, 0 < ε →
       ∃ N : ℕ, ∀ n : ℕ, N ≤ n →
         1 / (n : ℝ) ^ θ + 1 / Real.log n < ε := by
@@ -8310,7 +8310,7 @@ lemma asymptotic_decay (θ : ℝ) (hθ_pos : 0 < θ) :
 /--
 @isnad1 id=lt.8h7v.s7.d3038b2ef08b from=translated src=- shape=7ddc2fea vocab=8b1f73a6
 -/
-lemma ratio_bound_core (bad Hn c C n2 decay ε : ℝ)
+lemma _root_.Tengoku.LeanPool.ratio_bound_core (bad Hn c C n2 decay ε : ℝ)
     (hc_pos : 0 < c) (hC_pos : 0 < C) (hε_pos : 0 < ε)
     (hn2_pos : 0 < n2)
     (_h_bad_nonneg : 0 ≤ bad)
@@ -8329,7 +8329,7 @@ lemma ratio_bound_core (bad Hn c C n2 decay ε : ℝ)
 /--
 @isnad1 id=ex.8h7v.s8.f2a2b1742d59 from=translated src=- shape=284d5b1c vocab=6cd6fb70
 -/
-lemma ratio_bound_from_three_lemmas (c C : ℝ) (N₁ N₂ : ℕ) (η θ : ℝ)
+lemma _root_.Tengoku.LeanPool.ratio_bound_from_three_lemmas (c C : ℝ) (N₁ N₂ : ℕ) (η θ : ℝ)
     (hc_pos : 0 < c) (hC_pos : 0 < C)
     (h_lower : ∀ n : ℕ, N₁ ≤ n → c * (n : ℝ) ^ 2 ≤ ((truncatedObtuseRegion n η).ncard : ℝ))
     (h_upper : ∀ n : ℕ, N₂ ≤ n → (largestPrimeFactor n : ℝ) ≥ (n : ℝ) ^ θ →
@@ -8367,7 +8367,7 @@ lemma ratio_bound_from_three_lemmas (c C : ℝ) (N₁ N₂ : ℕ) (η θ : ℝ)
 /--
 @isnad1 id=ex.5h3v.s7.f79b83b2a5be from=translated src=- shape=407a712d vocab=ed9707d8
 -/
-theorem analyticEngine_lower_bound (η : ℝ) (θ : ℝ)
+theorem _root_.Tengoku.LeanPool.analyticEngine_lower_bound (η : ℝ) (θ : ℝ)
     (hη_pos : 0 < η) (hη_lt : η < 1 / 6) (hθ_pos : 0 < θ) (hθ_lt : θ < 1) :
     ∀ ε : ℝ, 0 < ε →
       ∃ N₀ : ℕ, ∀ n : ℕ, N₀ ≤ n →
@@ -8377,3 +8377,4 @@ theorem analyticEngine_lower_bound (η : ℝ) (θ : ℝ)
   obtain ⟨C, N₂, hC_pos, h_upper⟩ := badPairsSet_ncard_upper_bound η θ hη_pos hη_lt hθ_pos hθ_lt
   exact ratio_bound_from_three_lemmas c C N₁ N₂ η θ hc_pos hC_pos h_lower h_upper
     hη_pos hη_lt hθ_pos
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

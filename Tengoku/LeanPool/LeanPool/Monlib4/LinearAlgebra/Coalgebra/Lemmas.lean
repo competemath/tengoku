@@ -14,7 +14,7 @@ Imported Lean Pool material for `LeanPool.Monlib4.LinearAlgebra.Coalgebra.Lemmas
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /--
 @isnad1 id=eq.0h7v.s8.9209de15901e from=translated src=- shape=2e7b85b9 vocab=b2062741
 -/
@@ -124,7 +124,7 @@ open Coalgebra
 /--
 @isnad1 id=eq.0h2v.s9.674611b3586c from=translated src=- shape=9a541ae6 vocab=8c9b4df1
 -/
-theorem counit_comp_mul_comp_rTensor_unit {R A : Type*} [CommSemiring R] [Semiring A] [Algebra R A]
+theorem _root_.Tengoku.LeanPool.counit_comp_mul_comp_rTensor_unit {R A : Type*} [CommSemiring R] [Semiring A] [Algebra R A]
   [Coalgebra R A] :
   counit ∘ₗ (LinearMap.mul' R _) ∘ₗ
     (LinearMap.rTensor A (Algebra.linearMap R A))
@@ -140,7 +140,7 @@ calc counit ∘ₗ (LinearMap.mul' R _) ∘ₗ
 /--
 @isnad1 id=eq.0h2v.s9.59f12171abab from=translated src=- shape=e8479b29 vocab=92bf3b0e
 -/
-theorem counit_comp_mul_lTensor_unit {R A : Type*} [CommSemiring R] [Semiring A] [Algebra R A]
+theorem _root_.Tengoku.LeanPool.counit_comp_mul_lTensor_unit {R A : Type*} [CommSemiring R] [Semiring A] [Algebra R A]
   [Coalgebra R A] :
   counit ∘ₗ (mul' R _) ∘ₗ
     (lTensor A (Algebra.linearMap R A))
@@ -155,7 +155,7 @@ calc counit ∘ₗ (mul' R _) ∘ₗ (lTensor A (Algebra.linearMap R A))
 /--
 @isnad1 id=eq.0h2v.s9.746c3fa69e0e from=translated src=- shape=2e852f36 vocab=eeab8384
 -/
-theorem lTensor_counit_comp_comul_unit {R A : Type*} [CommSemiring R] [Semiring A] [Algebra R A]
+theorem _root_.Tengoku.LeanPool.lTensor_counit_comp_comul_unit {R A : Type*} [CommSemiring R] [Semiring A] [Algebra R A]
   [Coalgebra R A] :
   (lTensor A counit) ∘ₗ comul ∘ₗ (Algebra.linearMap R A)
   = (TensorProduct.rid R A).symm ∘ₗ (Algebra.linearMap R A) := by
@@ -271,7 +271,7 @@ lemma TensorProduct.lTensor_comp_lTensor {A B C D : Type*}
 /--
 @isnad1 id=eq.0h3v.s10.4f0b46e4a3fd from=translated src=- shape=9381ecfa vocab=0e244b69
 -/
-lemma lid_tensor_toLinearMap {A B : Type*} [AddCommMonoid A]
+lemma _root_.Tengoku.LeanPool.lid_tensor_toLinearMap {A B : Type*} [AddCommMonoid A]
   [Module R A] [AddCommMonoid B] [Module R B] :
   (τ (A ⊗[R] B)).toLinearMap
     = rT _ (τ _).toLinearMap ∘ₗ (LinearEquiv.symm (ϰ _ _ _)).toLinearMap := by
@@ -281,7 +281,7 @@ lemma lid_tensor_toLinearMap {A B : Type*} [AddCommMonoid A]
 /--
 @isnad1 id=eq.0h3v.s10.4f0b46e4a3fd from=translated src=- shape=9381ecfa vocab=0e244b69
 -/
-lemma lid_tensor {A B : Type*} [AddCommMonoid A]
+lemma _root_.Tengoku.LeanPool.lid_tensor {A B : Type*} [AddCommMonoid A]
   [Module R A] [AddCommMonoid B] [Module R B] :
   (τ (A ⊗[R] B)).toLinearMap
     = rT _ (τ _).toLinearMap ∘ₗ (LinearEquiv.symm (ϰ _ _ _)).toLinearMap :=
@@ -290,7 +290,7 @@ lid_tensor_toLinearMap
 /--
 @isnad1 id=eq.0h7v.s8.1b3f26949eab from=translated src=- shape=bfb22784 vocab=269bbb9e
 -/
-lemma rTensor_comp_lTensor' {A B C D : Type*}
+lemma _root_.Tengoku.LeanPool.rTensor_comp_lTensor' {A B C D : Type*}
   [AddCommMonoid A] [AddCommMonoid B] [AddCommMonoid C] [AddCommMonoid D]
   [Module R A] [Module R B] [Module R C] [Module R D] (x : A →ₗ[R] B) (y : C →ₗ[R] D) :
   (rT _ x) ∘ₗ (lT _ y) = (lT _ y) ∘ₗ (rT _ x) := by
@@ -304,20 +304,20 @@ open TensorProduct
 /--
 @isnad1 id=eq.0h2v.s9.d8a84abff9a9 from=translated src=- shape=b73a4b66 vocab=9fb98a99
 -/
-theorem counit_comp_mul_comp_rTensor_unit_eq_counit :
+theorem _root_.Tengoku.LeanPool.counit_comp_mul_comp_rTensor_unit_eq_counit :
   counit ∘ₗ (m A) ∘ₗ (rT _ (Algebra.linearMap R A)) = counit ∘ₗ (τ _).toLinearMap := by
   rw [Algebra.mul_comp_rTensor_unit]
 /--
 @isnad1 id=eq.0h2v.s9.c15427de4fea from=translated src=- shape=f53ea1ad vocab=6b46141b
 -/
-theorem counit_comp_mul_comp_lTensor_unit_eq_counit :
+theorem _root_.Tengoku.LeanPool.counit_comp_mul_comp_lTensor_unit_eq_counit :
   counit ∘ₗ (m A) ∘ₗ (lT _ (Algebra.linearMap R A))
     = counit ∘ₗ (TensorProduct.rid _ _).toLinearMap := by
   rw [Algebra.mul_comp_lTensor_unit]
 /--
 @isnad1 id=eq.0h2v.s9.ec72acd6aad1 from=translated src=- shape=b822a348 vocab=8426623b
 -/
-theorem rTensor_counit_comp_comul_comp_unit_eq_unit :
+theorem _root_.Tengoku.LeanPool.rTensor_counit_comp_comul_comp_unit_eq_unit :
   (rT _ counit) ∘ₗ comul ∘ₗ Algebra.linearMap R A
     = (τ _).symm.toLinearMap ∘ₗ Algebra.linearMap R A := by
   rw [← LinearMap.comp_assoc, rTensor_counit_comp_comul]
@@ -325,14 +325,14 @@ theorem rTensor_counit_comp_comul_comp_unit_eq_unit :
 /--
 @isnad1 id=eq.0h2v.s9.08b4a5a37c00 from=translated src=- shape=ac6e78b8 vocab=eeab8384
 -/
-theorem lTensor_counit_comp_comul_comp_unit_eq_unit :
+theorem _root_.Tengoku.LeanPool.lTensor_counit_comp_comul_comp_unit_eq_unit :
   (lT _ counit) ∘ₗ comul ∘ₗ Algebra.linearMap R A
     = (TensorProduct.rid _ _).symm.toLinearMap ∘ₗ Algebra.linearMap R A := by
   rw [← LinearMap.comp_assoc, lTensor_counit_comp_comul]
   rfl
 
 /-- An algebra and coalgebra with the Frobenius tensor compatibility law. -/
-class FrobeniusAlgebra (R A : Type*) [CommSemiring R] [Semiring A] extends
+class _root_.Tengoku.LeanPool.FrobeniusAlgebra (R A : Type*) [CommSemiring R] [Semiring A] extends
   Algebra R A, Coalgebra R A where
     lTensor_mul_comp_rTensor_comul_commute :
       (lT A (LinearMap.mul' R A))
@@ -346,3 +346,4 @@ attribute [instance] FrobeniusAlgebra.toAlgebra
 attribute [instance] FrobeniusAlgebra.toCoalgebra
 
 variable {R A : Type*} [CommSemiring R] [Semiring A] [FrobeniusAlgebra R A]
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

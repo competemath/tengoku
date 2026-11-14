@@ -22,7 +22,7 @@ This file proves the first case of Fermat's Last Theorem for regular primes, red
 statement to a normalized version and establishing the required cyclotomic ideal factorization.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace Tengoku.FltRegular end Tengoku.FltRegular open Tengoku.FltRegular 
 open Finset Nat IsCyclotomicExtension Ideal Polynomial Int Basis FltRegular.CaseI
 
@@ -285,3 +285,4 @@ theorem caseI {a b c : ℤ} {p : ℕ} [Fact p.Prime] (hreg : IsRegularPrime p)
 
 end FltRegular
 -- Tengoku: opens Tengoku.FltRegular: its root names moved there, and this module uses them (generated)
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

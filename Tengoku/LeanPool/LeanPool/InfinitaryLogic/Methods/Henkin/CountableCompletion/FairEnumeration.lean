@@ -24,7 +24,7 @@ it consumes `request_fires_after` plus per-request "what `process` adds" facts.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure
@@ -492,3 +492,4 @@ theorem exists_henkinComplete [Countable U] [Countable (Σ l, L.Relations l)] :
     henkinComplete_Sstar e' he' S₀⟩
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

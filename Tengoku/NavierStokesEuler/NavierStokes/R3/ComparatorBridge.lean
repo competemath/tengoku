@@ -13,7 +13,7 @@ gives exactly a global solution in the whole-space paper statement.
 -/
 
 noncomputable section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set MeasureTheory
 open scoped ContDiff
 
@@ -90,3 +90,4 @@ theorem comparator_of_breakdown {ν : ℝ}
   exact hglobal ⟨globalSolutionOfComparator hv⟩
 
 end NavierStokesR3
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

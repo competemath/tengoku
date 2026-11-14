@@ -16,7 +16,7 @@ must have a winning strategy: `gamedet` at the end.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Lean4GlCoalgebras
 
 /-! ## Games -/
@@ -438,3 +438,4 @@ lemma winning_of_in_cone_winning {g : Game} {i : Player} {p q : g.Pos} {sI : Str
   case oStep q q' q_in_cone o_turn in_moves ih =>
     exact @winning_of_whatever_other_move i g sI q o_turn ih ⟨q', in_moves⟩
 end Lean4GlCoalgebras
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -38,7 +38,7 @@ finitely-generated subsheaf reduction in the Grothendieck vanishing proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u
 
 open CategoryTheory TopologicalSpace Limits Opposite
@@ -128,7 +128,7 @@ def zeroOutsideOpenHom : zeroOutside V F ⟶ zeroOutside U F where
 /-- The presheaf stalk map of `zeroOutsideOpenHom h` at `x ∈ V` is surjective:
     any germ in the larger zero-outside presheaf can be lifted by restricting to `W ∩ V ≤ V`
     where the presheaf map is `eqToHom` (identity). -/
-theorem _root_.zeroOutside_openHom_stalk_surj
+theorem _root_.Tengoku.LeanPool.zeroOutside_openHom_stalk_surj
     {X : TopCat.{u}} {F : TopCat.Presheaf AddCommGrpCat.{u} X}
     {V U : Opens X} (h : V ≤ U) (x : X) (hx : x ∈ V) :
     Function.Surjective (ConcreteCategory.hom
@@ -159,7 +159,7 @@ theorem _root_.zeroOutside_openHom_stalk_surj
 /-- The sheaf stalk map of `sheafifyMap (zeroOutsideOpenHom h)` at `x ∈ V` is surjective.
     Transfers presheaf stalk surjectivity via `toSheafify_naturality` and
     the fact that `stalk(toSheafify)` is an isomorphism. -/
-theorem _root_.sheafifyMap_zeroOutside_openHom_stalk_surj
+theorem _root_.Tengoku.LeanPool.sheafifyMap_zeroOutside_openHom_stalk_surj
     {X : TopCat.{u}} (F : TopCat.Presheaf AddCommGrpCat.{u} X)
     {V U : Opens X} (h : V ≤ U) (x : X) (hx : x ∈ V) :
     Function.Surjective (ConcreteCategory.hom
@@ -425,7 +425,7 @@ end zeroOutsideInt
 open zeroOutsideInt
 
 /-- Stalks of `zeroOutsideInt V` vanish outside `V`. -/
-theorem _root_.stalk_zeroOutsideInt_zero_outside
+theorem _root_.Tengoku.LeanPool.stalk_zeroOutsideInt_zero_outside
     {X : TopCat.{u}} (V : Opens X) (x : X) (hx : x ∉ V)
     (a : (TopCat.Presheaf.stalkFunctor AddCommGrpCat.{u} x).obj
       (TopCat.Sheaf.zeroOutsideInt V).obj) : a = 0 := by
@@ -441,7 +441,7 @@ theorem _root_.stalk_zeroOutsideInt_zero_outside
   exact map_zero (ConcreteCategory.hom (T.map (toSheafify J P)))
 
 /-- `zeroOutsideInt ⊥` is the zero sheaf (all stalks vanish). -/
-theorem _root_.isZero_zeroOutsideInt_bot (X : TopCat.{u}) :
+theorem _root_.Tengoku.LeanPool.isZero_zeroOutsideInt_bot (X : TopCat.{u}) :
     IsZero (TopCat.Sheaf.zeroOutsideInt (⊥ : Opens X)) := by
   let F := TopCat.Sheaf.zeroOutsideInt (⊥ : Opens X)
   change IsZero F
@@ -450,7 +450,7 @@ theorem _root_.isZero_zeroOutsideInt_bot (X : TopCat.{u}) :
 
 /-- At a point inside the support open, every stalk element of `zeroOutsideInt V` is an integer
     multiple of the germ of the distinguished generator over `V`. -/
-theorem _root_.stalk_zeroOutsideInt_eq_zsmul_generator
+theorem _root_.Tengoku.LeanPool.stalk_zeroOutsideInt_eq_zsmul_generator
     {X : TopCat.{u}} (V : Opens X) (x : X) (hx : x ∈ V)
     (a : (TopCat.Presheaf.stalkFunctor AddCommGrpCat.{u} x).obj
       (TopCat.Sheaf.zeroOutsideInt V).obj) :
@@ -473,7 +473,7 @@ theorem _root_.stalk_zeroOutsideInt_eq_zsmul_generator
 
 /-- The map `n ↦ n • gen` from `ℤ` into `stalk(zeroOutsideInt V, x)` is injective
     for `x ∈ V`. -/
-theorem _root_.zsmul_generator_injective
+theorem _root_.Tengoku.LeanPool.zsmul_generator_injective
     {X : TopCat.{u}} (V : Opens X) (x : X) (hx : x ∈ V) :
     Function.Injective (fun (n : ℤ) ↦
       n • (TopCat.Presheaf.germ (TopCat.Sheaf.zeroOutsideInt V).obj V x hx
@@ -521,3 +521,4 @@ theorem _root_.zsmul_generator_injective
 end Sheaf
 
 end TopCat
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

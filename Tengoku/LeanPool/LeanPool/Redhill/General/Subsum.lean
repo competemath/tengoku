@@ -15,7 +15,7 @@ import Tengoku.LeanPool.LeanPool.Redhill.ToMathlib.NatAbs
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace GeneralCase
 
 open Fin Finset Nat
@@ -389,3 +389,4 @@ lemma maxAbs_tup : ∀ᶠ h in Filter.atTop, maxAbs (tup n F h) = (X F h + Y F) 
     · simp_all
 
 end GeneralCase
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

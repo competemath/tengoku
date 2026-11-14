@@ -24,7 +24,7 @@ consisted only of restriction, transport and almost-everywhere uniqueness.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Set
 noncomputable section
 namespace CKN
@@ -128,3 +128,4 @@ theorem hasWeakPartialDerivOn_of_isOpen_cover {d : ℕ} {ι : Type*}
   rw [hL, hR, Finset.sum_congr rfl hpiece, Finset.sum_neg_distrib]
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

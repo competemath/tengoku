@@ -22,7 +22,7 @@ formal multilinear series with radius at least one.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ENNReal NNReal Topology
 noncomputable section
 
@@ -157,3 +157,4 @@ theorem evalL1PowerSeries_convolution (a b : L1Sequence) {w : ℂ} (hw : ‖w‖
   ring
 
 end ClassicalComplexWPT
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

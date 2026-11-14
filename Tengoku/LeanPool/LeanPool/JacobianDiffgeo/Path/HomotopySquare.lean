@@ -27,7 +27,7 @@ Main declarations:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold Topology unitInterval
 open IsManifold Metric Set Filter
 
@@ -500,3 +500,4 @@ theorem period_eq_zero_of_homotopic_refl {γ : Path x x} (h : γ.Homotopic (Path
 end RS
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

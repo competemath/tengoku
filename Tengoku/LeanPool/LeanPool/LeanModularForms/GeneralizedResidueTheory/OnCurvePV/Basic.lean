@@ -14,7 +14,7 @@ import Tengoku.Seed.Analysis.SpecialFunctions.Trigonometric.Arctan
 import Tengoku.Seed.CategoryTheory.Category.Init
 import Tengoku.Seed.Combinatorics.Matroid.Init
 import Tengoku.Seed.MeasureTheory.Covering.Besicovitch
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -340,3 +340,4 @@ lemma cpv_concat (f : ℂ → ℂ) (γ : ℝ → ℂ) (a b c : ℝ) (z₀ : ℂ)
       rw [Set.uIcc_of_le hbc, Set.uIcc_of_le hac]; exact Set.Icc_subset_Icc_left hab))
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -17,7 +17,7 @@ Imported Lean Pool material for `LeanPool.ErdosTuzaValtr.Main.Lemmas.JoinN2N3N2`
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open OrderDual
 
 variable {α : Type _} [LinearOrder α] (C : Config α)
@@ -25,7 +25,7 @@ variable {α : Type _} [LinearOrder α] (C : Config α)
 /--
 @isnad1 id=ex.8h10v.s7.e3034b0fd1b8 from=translated src=- shape=06b53da1 vocab=1ef47e3d
 -/
-theorem Config.join_n2_n3_n2_ff (S : Finset α) (_cap4_free : ¬C.HasNCap 4 S) {n : ℕ} (x y : α)
+theorem Tengoku.LeanPool.Config.join_n2_n3_n2_ff (S : Finset α) (_cap4_free : ¬C.HasNCap 4 S) {n : ℕ} (x y : α)
     {P : List α} (hPx : C.NCup (n + 2) (P ++ [x])) (Px_in_S : (P ++ [x]).In S) {Q : List α}
     (hxQy : C.NCup (n + 3) ((x::Q) ++ [y])) (xQy_in_S : ((x::Q) ++ [y]).In S) {R : List α}
     (hyR : C.NCup (n + 2) (y::R)) (yR_in_S : (y::R).In S) (label : C.Label S)
@@ -158,7 +158,7 @@ theorem Config.join_n2_n3_n2_ff (S : Finset α) (_cap4_free : ¬C.HasNCap 4 S) {
 /--
 @isnad1 id=ex.8h10v.s7.664a65dded08 from=translated src=- shape=50348883 vocab=1ef47e3d
 -/
-theorem Config.join_n2_n3_n2_tt (S : Finset α) (cap4_free : ¬C.HasNCap 4 S) {n : ℕ} (x y : α)
+theorem Tengoku.LeanPool.Config.join_n2_n3_n2_tt (S : Finset α) (cap4_free : ¬C.HasNCap 4 S) {n : ℕ} (x y : α)
     {P : List α} (hPx : C.NCup (n + 2) (P ++ [x])) (Px_in_S : (P ++ [x]).In S) {Q : List α}
     (hxQy : C.NCup (n + 3) ((x::Q) ++ [y])) (xQy_in_S : ((x::Q) ++ [y]).In S) {R : List α}
     (hyR : C.NCup (n + 2) (y::R)) (yR_in_S : (y::R).In S) (label : C.Label S)
@@ -184,7 +184,7 @@ theorem Config.join_n2_n3_n2_tt (S : Finset α) (cap4_free : ¬C.HasNCap 4 S) {n
 /--
 @isnad1 id=ex.12h9v.s7.1eef29fc4d7c from=translated src=- shape=3349c494 vocab=50219a6f
 -/
-theorem Config.join_n2_n3_n2 (S : Finset α) {n : ℕ} (cap4_free : ¬C.HasNCap 4 S)
+theorem Tengoku.LeanPool.Config.join_n2_n3_n2 (S : Finset α) {n : ℕ} (cap4_free : ¬C.HasNCap 4 S)
     (_cup_free : ¬C.HasNCup (n + 4) S) {cx : List α} (cx_ncup : C.NCup (n + 2) cx)
     (cx_in_S : cx.In S) {c : List α} (c_ncup : C.NCup (n + 3) c) (c_in_S : c.In S) {cy : List α}
     (cy_ncup : C.NCup (n + 2) cy) (cy_in_S : cy.In S) (x : α) (hxcx : x ∈ cx.getLast?)
@@ -207,3 +207,4 @@ theorem Config.join_n2_n3_n2 (S : Finset α) {n : ℕ} (cap4_free : ¬C.HasNCap 
   by_cases sxy : label.Slope x y
   · exact C.join_n2_n3_n2_tt S cap4_free x y cx_ncup cx_in_S c_ncup c_in_S cy_ncup cy_in_S label sxy
   · exact C.join_n2_n3_n2_ff S cap4_free x y cx_ncup cx_in_S c_ncup c_in_S cy_ncup cy_in_S label sxy
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

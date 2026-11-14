@@ -32,7 +32,7 @@ continuous maps, so every chart composite involving them cancels by `rfl`. Conse
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold Pointwise
 open Set Filter Topology Metric
 
@@ -256,3 +256,4 @@ theorem contMDiff_neg_ulift :
   exact (contMDiff_uliftUp L).comp ((contMDiff_neg_torus L).comp (contMDiff_uliftDown L))
 
 end RS
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -14,14 +14,14 @@ Imported Lean Pool material for `LeanPool.EcTateLean.Algebra.EllipticCurve.Kodai
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 -- For imperfect residue fields of characteristic 2 or 3 there are new types:
 -- Z1, Z2, X1, X2, Y1, Y2, Y3, K n (n ≥ 2), K' n (even n ≥ 2), T n (n ≥ 1)
 
 /-- The Kodaira symbol classifying the reduction type of an elliptic curve at a
 place, including the extra symbols that arise over imperfect residue fields of
 characteristic 2 or 3. -/
-inductive Kodaira where
+inductive _root_.Tengoku.LeanPool.Kodaira where
   | I     : Nat → Kodaira --for both I0 and In with n > 0
   | II    : Kodaira
   | III   : Kodaira
@@ -42,7 +42,7 @@ inductive Kodaira where
   | T     : Nat → Kodaira -- only occurs for n ≥ 1
 deriving DecidableEq, Inhabited
 
-open Kodaira
+open Tengoku.LeanPool.Kodaira
 
 instance : Repr Kodaira where
   reprPrec
@@ -65,15 +65,15 @@ instance : Repr Kodaira where
     | K' m, _   => "K'" ++ repr m
     | T m, _   => "T" ++ repr m
 
-lemma eq_I_Nat (m n : Nat) : m = n ↔ I m = I n := by
+lemma _root_.Tengoku.LeanPool.eq_I_Nat (m n : Nat) : m = n ↔ I m = I n := by
   simp_all
 
-lemma eq_Is_Nat (m n : Nat) : m = n ↔ Is m = Is n := by
+lemma _root_.Tengoku.LeanPool.eq_Is_Nat (m n : Nat) : m = n ↔ Is m = Is n := by
   simp_all
 
 /-- The coarse reduction type of an elliptic curve at a place: good, split or
 non-split multiplicative, or additive. -/
-inductive ReductionType
+inductive _root_.Tengoku.LeanPool.ReductionType
   | Good
   | SplitMultiplicative
   | NonSplitMultiplicative
@@ -81,8 +81,9 @@ inductive ReductionType
 deriving DecidableEq, Repr, Inhabited
 
 /-- The integer code that the LMFDB uses for a reduction type. -/
-def ReductionType.toLmfdb : ReductionType → Int
+def Tengoku.LeanPool.ReductionType.toLmfdb : ReductionType → Int
   | Good                   => unreachable! -- LMFDB has no code for good reduction
   | SplitMultiplicative    => 1
   | NonSplitMultiplicative => -1
   | Additive               => 0
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

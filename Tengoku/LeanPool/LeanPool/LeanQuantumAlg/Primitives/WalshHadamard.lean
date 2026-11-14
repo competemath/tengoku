@@ -42,7 +42,7 @@ orthogonality and string recovery for Bernstein-Vazirani).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace QuantumAlg
 
 namespace WalshHadamard
@@ -470,3 +470,4 @@ end
 end WalshHadamard
 
 end QuantumAlg
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

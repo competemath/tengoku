@@ -16,8 +16,8 @@ Imported Lean Pool material for `LeanPool.QuasiBorelSpaces.Quotient`.
 -/
 
 @[expose] public section
-
-namespace QuasiBorelSpace.Quotient
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+namespace Tengoku.LeanPool.QuasiBorelSpace.Quotient
 
 variable
   {A : Type*} {_ : QuasiBorelSpace A}
@@ -99,4 +99,5 @@ lemma isHom_lift'
   simp only [this]
   fun_prop
 
-end QuasiBorelSpace.Quotient
+end Tengoku.LeanPool.QuasiBorelSpace.Quotient
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

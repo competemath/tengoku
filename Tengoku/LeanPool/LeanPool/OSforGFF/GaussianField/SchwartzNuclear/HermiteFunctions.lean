@@ -33,7 +33,7 @@ The polynomial infrastructure is available in
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Polynomial Real
 open scoped ContDiff
 
@@ -60,13 +60,13 @@ Key properties:
 /-- Normalization constant for the n-th Hermite function:
     cₙ = (n! · √π)^{-1/2}
 -/
-def hermiteFunctionNormConst (n : ℕ) : ℝ :=
+def _root_.Tengoku.LeanPool.hermiteFunctionNormConst (n : ℕ) : ℝ :=
   Real.sqrt ((n.factorial * Real.sqrt Real.pi)⁻¹)
 
 /-- The n-th Hermite function ψₙ(x) = cₙ · Hₙ(x√2) · exp(-x²/2)
     where Hₙ is the probabilist's Hermite polynomial evaluated at x√2.
 -/
-def hermiteFunction (n : ℕ) (x : ℝ) : ℝ :=
+def _root_.Tengoku.LeanPool.hermiteFunction (n : ℕ) (x : ℝ) : ℝ :=
   hermiteFunctionNormConst n *
   ((hermite n).map (Int.castRingHom ℝ)).eval (x * Real.sqrt 2) *
   Real.exp (-(x ^ 2) / 2)
@@ -202,7 +202,7 @@ private lemma polynomial_eval_mul_exp_neg_bound (P : ℝ[X]) {b : ℝ} (hb : 0 <
 /-- Hermite functions are square-integrable.
 @isnad1 id=memlp.0h1v.s5.e52b06400a05 from=translated src=- shape=09376515 vocab=a922119d
 -/
-theorem hermiteFunction_memLp (n : ℕ) :
+theorem _root_.Tengoku.LeanPool.hermiteFunction_memLp (n : ℕ) :
     MemLp (hermiteFunction n) 2 MeasureTheory.volume := by
   have hcont := continuous_hermiteFunction n
   rw [← integrable_norm_rpow_iff hcont.aestronglyMeasurable two_ne_zero ENNReal.ofNat_ne_top]
@@ -241,13 +241,13 @@ Key identity: `J(n, m+1) = n · J(n-1, m)`, giving `J(n,m) = δₙₘ · n! · �
 -/
 
 /-- Abbreviation: Hermite polynomial evaluated over ℝ. -/
-abbrev hermiteR (n : ℕ) : ℝ[X] := (hermite n).map (Int.castRingHom ℝ)
+abbrev _root_.Tengoku.LeanPool.hermiteR (n : ℕ) : ℝ[X] := (hermite n).map (Int.castRingHom ℝ)
 
 /-- The derivative of the (n+1)-th Hermite polynomial is (n+1) times the n-th.
     Adapted from auto1's `probHermite_derivative`.
 @isnad1 id=eq.0h1v.s7.e16f38815cba from=translated src=- shape=4dfe7772 vocab=0b5e48d4
 -/
-theorem hermite_derivative (n : ℕ) :
+theorem _root_.Tengoku.LeanPool.hermite_derivative (n : ℕ) :
     derivative (hermite (n + 1)) = (↑(n + 1) : ℤ[X]) * hermite n := by
   induction n with
   | zero => simp [hermite_succ, hermite_zero]
@@ -272,7 +272,7 @@ private theorem hermiteR_derivative (n : ℕ) :
   rw [Polynomial.derivative_map, hermite_derivative, Polynomial.map_mul, Polynomial.map_natCast]
 
 /-- The unnormalized Gaussian weight `exp(-x²/2)` (no `1/√(2π)` factor). -/
-abbrev gaussian (x : ℝ) : ℝ := Real.exp (-(x ^ 2 / 2))
+abbrev _root_.Tengoku.LeanPool.gaussian (x : ℝ) : ℝ := Real.exp (-(x ^ 2 / 2))
 
 /-- Derivative of `Hₘ(x) · exp(-x²/2)` equals `-H_{m+1}(x) · exp(-x²/2)`.
     From `H_{m+1} = X·Hₘ - Hₘ'` and the product rule.
@@ -340,7 +340,7 @@ private theorem differentiable_hermiteEval_mul_gaussian (m : ℕ) :
     (Differentiable.exp (by fun_prop : Differentiable ℝ (fun u : ℝ => -(u ^ 2 / 2))))
 
 /-- The `J` integral: `∫ Hₙ(x) · Hₘ(x) · exp(-x²/2) dx`. -/
-noncomputable def J (n m : ℕ) : ℝ :=
+noncomputable def _root_.Tengoku.LeanPool.J (n m : ℕ) : ℝ :=
   ∫ x, (hermiteR n).eval x * ((hermiteR m).eval x * gaussian x)
 
 /-- IBP recurrence: `J(n+1, m+1) = (n+1) · J(n, m)`. -/
@@ -460,7 +460,7 @@ private theorem J_succ_zero (k : ℕ) : J (k + 1) 0 = 0 := by
 /-- `J(n, m) = if n = m then n! * √(2π) else 0`.
 @isnad1 id=eq.0h2v.s5.f037a1aa80e9 from=translated src=- shape=c5a5dce7 vocab=62daa519
 -/
-theorem J_eq : ∀ m n : ℕ,
+theorem _root_.Tengoku.LeanPool.J_eq : ∀ m n : ℕ,
     J n m = if n = m then ↑(n.factorial) * Real.sqrt (2 * Real.pi) else 0 := by
   intro m
   induction m with
@@ -539,7 +539,7 @@ private theorem hermiteFunction_integral_eq (n m : ℕ) :
     ∫ ψₙ(x) ψₘ(x) dx = δₙₘ
 @isnad1 id=eq.0h2v.s5.c3eb77a0317e from=translated src=- shape=b44d3c89 vocab=0f0b662c
 -/
-theorem hermiteFunction_orthonormal :
+theorem _root_.Tengoku.LeanPool.hermiteFunction_orthonormal :
     ∀ n m : ℕ, ∫ x, hermiteFunction n x * hermiteFunction m x = if n = m then 1 else 0 := by
   intro n m
   rw [hermiteFunction_integral_eq, J_eq]
@@ -565,7 +565,7 @@ theorem hermiteFunction_orthonormal :
 -- hermiteFunction_complete is proved below, after the supporting lemmas.
 
 /-- The Gaussian exp(-x²/2) as a Schwartz function. -/
-noncomputable def gaussianSchwartz : SchwartzMap ℝ ℝ where
+noncomputable def _root_.Tengoku.LeanPool.gaussianSchwartz : SchwartzMap ℝ ℝ where
   toFun x := Real.exp (-(x ^ 2 / 2))
   smooth' := by fun_prop
   decay' := by
@@ -628,7 +628,7 @@ private lemma poly_mul_gaussian_schwartz (P : ℝ[X]) :
 /-- Each Hermite function is a Schwartz function.
 @isnad1 id=ex.0h1v.s6.190f7f84e9eb from=translated src=- shape=0e478a6a vocab=4f7cb1a5
 -/
-theorem hermiteFunction_schwartz (n : ℕ) :
+theorem _root_.Tengoku.LeanPool.hermiteFunction_schwartz (n : ℕ) :
     ∃ (φ : SchwartzMap ℝ ℝ), ∀ x, φ x = hermiteFunction n x := by
   -- Hₙ(x√2) = Q(x) where Q is the composed polynomial
   set Q := (hermiteR n).comp (C (Real.sqrt 2) * X) with hQ_def
@@ -675,14 +675,14 @@ private lemma normConst_succ (n : ℕ) :
 /-- X · Hₙ₊₁ = Hₙ₊₂ + (n+1) · Hₙ in ℤ[X].
 @isnad1 id=eq.0h1v.s6.ab797f89d6c1 from=translated src=- shape=dd68abff vocab=7df7fc42
 -/
-lemma hermite_X_mul (n : ℕ) :
+lemma _root_.Tengoku.LeanPool.hermite_X_mul (n : ℕ) :
     X * hermite (n + 1) = hermite (n + 2) + (↑(n + 1) : ℤ[X]) * hermite n := by
   linear_combination -(hermite_succ (n + 1)) + hermite_derivative n
 
 /--
 @isnad1 id=eq.0h2v.s6.e93502a9180a from=translated src=- shape=f4192569 vocab=7ae037fe
 -/
-lemma hermiteR_recurrence_succ (n : ℕ) (t : ℝ) :
+lemma _root_.Tengoku.LeanPool.hermiteR_recurrence_succ (n : ℕ) (t : ℝ) :
     t * (hermiteR (n + 1)).eval t =
     (hermiteR (n + 2)).eval t + ↑(n + 1) * (hermiteR n).eval t := by
   have h := congr_arg (fun p => (Polynomial.map (Int.castRingHom ℝ) p).eval t)
@@ -695,7 +695,7 @@ lemma hermiteR_recurrence_succ (n : ℕ) (t : ℝ) :
 /-- Hermite recurrence for n = 0: t · H₀(t) = H₁(t).
 @isnad1 id=eq.0h1v.s5.9ee549b5f8da from=translated src=- shape=3a1ed2d0 vocab=045cde47
 -/
-lemma hermiteR_recurrence_zero (t : ℝ) :
+lemma _root_.Tengoku.LeanPool.hermiteR_recurrence_zero (t : ℝ) :
     t * (hermiteR 0).eval t = (hermiteR 1).eval t := by
   simp [hermiteR, hermite_zero, hermite_succ, Polynomial.eval_X,
     Polynomial.map_X]
@@ -732,7 +732,7 @@ private lemma normConst_mul_div_sqrt2 (n : ℕ) :
 /-- Multiplication by x: x·ψₙ = √((n+1)/2)·ψ_{n+1} + √(n/2)·ψ_{n-1}.
 @isnad1 id=eq.0h2v.s6.60d0a99c336e from=translated src=- shape=baff52e2 vocab=9d573268
 -/
-theorem mul_x_hermiteFunction (n : ℕ) (x : ℝ) :
+theorem _root_.Tengoku.LeanPool.mul_x_hermiteFunction (n : ℕ) (x : ℝ) :
     x * hermiteFunction n x =
     Real.sqrt ((↑(n + 1) : ℝ) / 2) * hermiteFunction (n + 1) x +
     Real.sqrt ((↑n : ℝ) / 2) * hermiteFunction (n - 1) x := by
@@ -796,7 +796,7 @@ theorem mul_x_hermiteFunction (n : ℕ) (x : ℝ) :
 /-- Hermite functions are smooth (ContDiff ℝ ⊤).
 @isnad1 id=contdiff.0h2v.s5.bcd7c5cbdcd0 from=translated src=- shape=edcb9957 vocab=80cf5d10
 -/
-lemma hermiteFunction_contDiff (j : ℕ) (m : ℕ) :
+lemma _root_.Tengoku.LeanPool.hermiteFunction_contDiff (j : ℕ) (m : ℕ) :
     ContDiff ℝ m (hermiteFunction j) := by
   obtain ⟨φ, hφ⟩ := hermiteFunction_schwartz j
   have : hermiteFunction j = ⇑φ := funext fun x => (hφ x).symm
@@ -806,7 +806,7 @@ lemma hermiteFunction_contDiff (j : ℕ) (m : ℕ) :
     Proved from the product rule on cₙ · Hₙ(x√2) · exp(-x²/2) and Hermite recurrence.
 @isnad1 id=eq.0h2v.s7.672a4b96b488 from=translated src=- shape=8505a554 vocab=867d0058
 -/
-theorem deriv_hermiteFunction (n : ℕ) (x : ℝ) :
+theorem _root_.Tengoku.LeanPool.deriv_hermiteFunction (n : ℕ) (x : ℝ) :
     deriv (hermiteFunction n) x =
     Real.sqrt ((↑n : ℝ) / 2) * hermiteFunction (n - 1) x -
     Real.sqrt ((↑(n + 1) : ℝ) / 2) * hermiteFunction (n + 1) x := by
@@ -1036,7 +1036,7 @@ private lemma hermiteFunction_sq_tendsto_atBot (n : ℕ) :
     |ψₙ(x)|² ≤ 2‖ψₙ‖₂ · ‖ψₙ'‖₂ = 2√((2n+1)/2) ≤ C·(1+n)^{1/2}.
 @isnad1 id=ex.0h0v.s6.864098e7820a from=translated src=- shape=52284e89 vocab=5cacd6d8
 -/
-theorem hermiteFunction_sup_bound :
+theorem _root_.Tengoku.LeanPool.hermiteFunction_sup_bound :
     ∃ (C : ℝ) (s : ℝ), 0 < C ∧ 0 ≤ s ∧
     ∀ (n : ℕ) (x : ℝ), |hermiteFunction n x| ≤ C * (1 + ↑n) ^ s := by
   -- We use FTC + AM-GM: |ψ_n(x)|² ≤ ||ψ_n||₂² + ||ψ_n'||₂² = 1 + (2n+1)/2 ≤ 2(1+n)
@@ -1324,7 +1324,7 @@ private theorem hermiteFunction_pointwise_bound (k m : ℕ) :
     we have ‖ψₙ‖_{k,m} ≤ C_{k,m} · (1+n)^{(k+m)/2 + 1/4}.
 @isnad1 id=ex.0h2v.s9.817a731da4d4 from=translated src=- shape=b5b414de vocab=71af2aa1
 -/
-theorem hermiteFunction_seminorm_bound (k m : ℕ) :
+theorem _root_.Tengoku.LeanPool.hermiteFunction_seminorm_bound (k m : ℕ) :
     ∃ (C : ℝ) (s : ℝ), 0 < C ∧ 0 ≤ s ∧
     ∀ n : ℕ, SchwartzMap.seminorm ℝ k m
       (Classical.choose (hermiteFunction_schwartz n)) ≤ C * (1 + n) ^ s := by
@@ -1354,7 +1354,7 @@ by the Sobolev-Hermite norms.
     ∑_{n=0}^{N-1} (1+n)^{-2s} is bounded for s > 1/2, uniformly in N.
 @isnad1 id=ex.1h1v.s6.ebed86dbe806 from=translated src=- shape=63f5bd6e vocab=2aae7c7b
 -/
-theorem sobolevHermite_hs_sum_bound (s : ℝ) (hs : 1 / 2 < s) :
+theorem _root_.Tengoku.LeanPool.sobolevHermite_hs_sum_bound (s : ℝ) (hs : 1 / 2 < s) :
     ∃ C : ℝ, ∀ N : ℕ, ∑ i ∈ Finset.range N, ((1 + (i : ℝ)) ^ (-2 * s)) ≤ C := by
   -- The series ∑ (1+n)^{-2s} converges when 2s > 1, so partial sums are bounded by tsum
   have hexp : -2 * s < -1 := by linarith
@@ -1806,7 +1806,7 @@ private theorem hermiteFunction_complete_proof :
     if ∫ f ψₙ = 0 for all n, then f = 0 a.e.
 @isnad1 id=eventual.2h1v.s7.bce8427e9e19 from=translated src=- shape=14e7aa5f vocab=6cde4316
 -/
-theorem hermiteFunction_complete :
+theorem _root_.Tengoku.LeanPool.hermiteFunction_complete :
     ∀ f : ℝ → ℝ, MemLp f 2 volume →
     (∀ n, ∫ x, f x * hermiteFunction n x = 0) →
     f =ᵐ[volume] 0 := hermiteFunction_complete_proof
@@ -1834,3 +1834,4 @@ access `schwartzHermiteBasis`, `schwartzHermiteCoeff`, `schwartz_hermite_expansi
 -/
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

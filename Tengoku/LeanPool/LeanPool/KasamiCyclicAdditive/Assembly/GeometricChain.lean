@@ -42,7 +42,7 @@ preimage over `AlgebraicClosure K`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Finset
 open KasamiCyclicAdditive.FermatCubic KasamiCyclicAdditive.PointFrobenius WeierstrassCurve
 
@@ -555,3 +555,4 @@ theorem kasami_conjecture_of_inputs {n k m D : ℕ} {ψ : AddChar K ℂ}
 end Conclusion
 
 end KasamiCyclicAdditive
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

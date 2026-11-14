@@ -40,7 +40,7 @@ file imports the other: they share only the generic helpers in `NashWilliams.Dat
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set
 
 noncomputable section
@@ -58,7 +58,7 @@ private structure RamseyState (c : Finset ℕ → κ) (r : ℕ) where
 /--
 @isnad1 id=ex.1h4v.s6.bfaae1e2594c from=translated src=- shape=976b84a0 vocab=00410216
 -/
-theorem infinite_ramsey [Finite κ] (r : ℕ) (c : Finset ℕ → κ)
+theorem _root_.Tengoku.LeanPool.infinite_ramsey [Finite κ] (r : ℕ) (c : Finset ℕ → κ)
     {M : Set ℕ} (hM : M.Infinite) :
     ∃ N ⊆ M, N.Infinite ∧ ∃ col : κ,
       ∀ t : Finset ℕ, ↑t ⊆ N → t.card = r → c t = col := by
@@ -147,7 +147,7 @@ theorem infinite_ramsey [Finite κ] (r : ℕ) (c : Finset ℕ → κ)
 /--
 @isnad1 id=ex.0h3v.s6.1ef7b387d829 from=translated src=- shape=54bd1ab5 vocab=c9015066
 -/
-theorem infinite_ramsey_seq [Finite κ] (r : ℕ) (c : Finset ℕ → κ) :
+theorem _root_.Tengoku.LeanPool.infinite_ramsey_seq [Finite κ] (r : ℕ) (c : Finset ℕ → κ) :
     ∃ e : ℕ → ℕ, StrictMono e ∧ ∃ col : κ,
       ∀ t : Finset ℕ, ↑t ⊆ Set.range e → t.card = r → c t = col := by
   obtain ⟨N, _, hNinf, col, hcol⟩ := infinite_ramsey r c (M := Set.univ) Set.infinite_univ
@@ -160,7 +160,7 @@ theorem infinite_ramsey_seq [Finite κ] (r : ℕ) (c : Finset ℕ → κ) :
 `c (e i) (e j) = k` for all `i < j`. Derived from `infinite_ramsey_seq` at arity `2`.
 @isnad1 id=ex.0h2v.s6.fd8962b6c2b1 from=translated src=- shape=93293325 vocab=ec4f6963
 -/
-theorem infinite_ramsey_pairs {κ : Type*} [Finite κ] (c : ∀ (m n : ℕ), m < n → κ) :
+theorem _root_.Tengoku.LeanPool.infinite_ramsey_pairs {κ : Type*} [Finite κ] (c : ∀ (m n : ℕ), m < n → κ) :
     ∃ (e : ℕ → ℕ), ∃ (he : StrictMono e), ∃ k : κ,
       ∀ i j : ℕ, (h : i < j) → c (e i) (e j) (he h) = k := by
   classical
@@ -213,7 +213,7 @@ theorem infinite_ramsey_pairs {κ : Type*} [Finite κ] (c : ∀ (m n : ℕ), m <
 element).
 @isnad1 id=ex.0h2v.s6.339b7118e317 from=translated src=- shape=46f1dccc vocab=f1d30c4d
 -/
-theorem infinite_ramsey_triples {κ : Type*} [Finite κ]
+theorem _root_.Tengoku.LeanPool.infinite_ramsey_triples {κ : Type*} [Finite κ]
     (c : ∀ (m n l : ℕ), (m < n ∧ n < l) → κ) :
     ∃ (e : ℕ → ℕ), ∃ (he : StrictMono e), ∃ k : κ,
       ∀ h i j : ℕ, (hs : h < i ∧ i < j) →
@@ -302,3 +302,4 @@ theorem infinite_ramsey_triples {κ : Type*} [Finite κ]
   exact hkt
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

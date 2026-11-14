@@ -27,7 +27,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace SemicircleCore
 
 variable {n : ℕ}
@@ -143,3 +143,4 @@ theorem contractZeroOne_isPairing {π : Equiv.Perm (Fin (2 * n + 2))}
     exact hfpf _ h2
 
 end SemicircleCore
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

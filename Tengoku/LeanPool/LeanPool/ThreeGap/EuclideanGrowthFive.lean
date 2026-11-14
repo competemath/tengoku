@@ -39,7 +39,7 @@ remaining instantiation step. Axiom-clean.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace ThreeGap.SimApprox
 
 open scoped Real
@@ -161,3 +161,4 @@ theorem euclidean_growth_five (α : Fin 2 → ℝ) (q : ℕ → ℤ) (p : ℕ �
   exact EuclideanAngle.angle_gt_pi_div_three hwi hwj hui huj hsep hstrict
 
 end ThreeGap.SimApprox
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

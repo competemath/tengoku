@@ -19,8 +19,8 @@ value, so `exp` and the instances are `noncomputable` Lean terms.
 -/
 
 @[expose] public section
-
-namespace ComputableℝSeq
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+namespace Tengoku.LeanPool.ComputableℝSeq
 namespace Exp
 
 /-
@@ -477,9 +477,9 @@ noncomputable def exp : ComputableℝSeq → ComputableℝSeq :=
   (Exp.TLUW_lb_ub.1)
   (Exp.TLUW_lb_ub.2)
 
-end ComputableℝSeq
+end Tengoku.LeanPool.ComputableℝSeq
 
-namespace IsComputable
+namespace Tengoku.LeanPool.IsComputable
 
 noncomputable instance instComputableExp (x : ℝ) [hx : IsComputable x] : IsComputable (Real.exp x)
   :=
@@ -498,4 +498,5 @@ noncomputable instance instComputableTanh (x : ℝ) [hx : IsComputable x] : IsCo
   x) :=
   liftEq (Real.tanh_eq_sinh_div_cosh x).symm inferInstance
 
-end IsComputable
+end Tengoku.LeanPool.IsComputable
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

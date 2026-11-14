@@ -17,7 +17,7 @@ This module identifies the free-groupoid computation with the fundamental group 
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 attribute [local implicit_reducible]
   Quiver.Symmetrify Quiver.FreeGroupoid Quiver.FreeGroupoid.of IsFreeGroupoid.Generators
   WideSubquiver WideSubquiver.toType WideSubquiver.quiver IsFreeGroupoid.quiverGenerators
@@ -1942,3 +1942,4 @@ theorem proved_topological_fundamental_group_free_rank
   exact ⟨graphTopologicalFundamentalGroupEquiv root⟩
 
 end FiniteGraphFreeGroup
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

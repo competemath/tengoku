@@ -13,7 +13,7 @@ Here we supply basic definitions, abbreviations, and lemmas about the syntax of 
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Lean4GlCoalgebras
 
 /-- Type of BML Formulas. -/
@@ -698,3 +698,4 @@ lemma Finset.sum_diff_singleton_lt {α : Type} [DecidableEq α] {A C : Finset α
       · exact C_lt_B
 end Lean4GlCoalgebras
 -- Tengoku: 4 notation(s) of this module made scoped so they do not change other libraries (generated)
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

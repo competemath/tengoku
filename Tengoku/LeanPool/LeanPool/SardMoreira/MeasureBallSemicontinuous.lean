@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Topology Filter Set Metric
 open scoped NNReal
 
@@ -34,7 +34,7 @@ theorem MeasureTheory.tendsto_measure_biUnion_lt {α : Type*} {m : MeasurableSpa
 /--
 @isnad1 id=continuo.0h5v.s5.8bf9ca6afdb5 from=translated src=- shape=52264927 vocab=0b0ece65
 -/
-theorem continuousWithinAt_Iio_measure_ball {X : Type*} [PseudoMetricSpace X]
+theorem _root_.Tengoku.LeanPool.continuousWithinAt_Iio_measure_ball {X : Type*} [PseudoMetricSpace X]
     {_ : MeasurableSpace X} {μ : Measure X} {x : X} {r : ℝ} :
     ContinuousWithinAt (μ <| ball x ·) (Iio r) r := by
   rw [ContinuousWithinAt, ← biUnion_lt_ball]
@@ -43,7 +43,7 @@ theorem continuousWithinAt_Iio_measure_ball {X : Type*} [PseudoMetricSpace X]
 /--
 @isnad1 id=continuo.0h5v.s5.9f5990226d1d from=translated src=- shape=52264927 vocab=1765e711
 -/
-theorem continuousWithinAt_Iic_measure_ball {X : Type*} [PseudoMetricSpace X]
+theorem _root_.Tengoku.LeanPool.continuousWithinAt_Iic_measure_ball {X : Type*} [PseudoMetricSpace X]
     {_ : MeasurableSpace X} {μ : Measure X} {x : X} {r : ℝ} :
     ContinuousWithinAt (μ <| ball x ·) (Iic r) r :=
   continuousWithinAt_Iio_iff_Iic.mp continuousWithinAt_Iio_measure_ball
@@ -51,7 +51,7 @@ theorem continuousWithinAt_Iic_measure_ball {X : Type*} [PseudoMetricSpace X]
 /--
 @isnad1 id=lowersem.0h3v.s6.90d0d3711714 from=translated src=- shape=10f6aa09 vocab=cfeb37c4
 -/
-theorem lowerSemicontinuous_measure_ball_toUpper_symm {X : Type*} [PseudoMetricSpace X]
+theorem _root_.Tengoku.LeanPool.lowerSemicontinuous_measure_ball_toUpper_symm {X : Type*} [PseudoMetricSpace X]
     {_ : MeasurableSpace X} {μ : Measure X} :
     LowerSemicontinuous fun xr : X × WithUpper ℝ ↦ μ (ball xr.1 (WithUpper.toUpper.symm xr.2)) := by
   simp only [Semicontinuous, Prod.forall, WithUpper.toUpper.surjective.forall,
@@ -74,7 +74,7 @@ theorem lowerSemicontinuous_measure_ball_toUpper_symm {X : Type*} [PseudoMetricS
 /--
 @isnad1 id=lowersem.0h3v.s5.6be8e5fe1537 from=translated src=- shape=5f9c35a7 vocab=9cabc084
 -/
-theorem lowerSemicontinuous_measure_ball {X : Type*} [PseudoMetricSpace X]
+theorem _root_.Tengoku.LeanPool.lowerSemicontinuous_measure_ball {X : Type*} [PseudoMetricSpace X]
     {_ : MeasurableSpace X} {μ : Measure X} :
     LowerSemicontinuous fun xr : X × ℝ ↦ μ (ball xr.1 xr.2) :=
   lowerSemicontinuous_measure_ball_toUpper_symm.comp <|
@@ -115,7 +115,8 @@ theorem IsCompact.exists_pos_forall_lt_measure_ball {X : Type*} [PseudoMetricSpa
 /--
 @isnad1 id=ex.1h3v.s6.ecc426031bc0 from=translated src=- shape=40b45cc3 vocab=6fe1e124
 -/
-theorem exists_pos_forall_lt_measure_ball {X : Type*} [PseudoMetricSpace X] [CompactSpace X]
+theorem _root_.Tengoku.LeanPool.exists_pos_forall_lt_measure_ball {X : Type*} [PseudoMetricSpace X] [CompactSpace X]
     [MeasurableSpace X] (μ : Measure X) [μ.IsOpenPosMeasure]
     {r : ℝ} (hr : 0 < r) : ∃ m > (0 : ℝ≥0), ∀ x, m < μ (ball x r) := by
   simpa using isCompact_univ.exists_pos_forall_lt_measure_ball μ hr
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

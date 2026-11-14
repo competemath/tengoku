@@ -15,7 +15,7 @@ Imported Lean Pool material for `LeanPool.ErdosTuzaValtr.Lib.List.Lemmas`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 variable {α : Type _}
 
 section ListIn
@@ -296,3 +296,4 @@ def List.takeLast3 :
     let h : 3 ≤ (b :: c :: d :: t).length := (3 : ℕ).le_add_left (List.length t)
     let ⟨e1, e2, e3, m', eq_l'⟩ := List.takeLast3 h
     ⟨e1, e2, e3, a :: m', congr_arg (List.cons a) eq_l'⟩
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

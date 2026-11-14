@@ -13,7 +13,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open MeasureTheory Set
@@ -589,3 +589,4 @@ theorem radiusWeightOn_radialMainCoeff_of_contDiff_one {n : ℕ} {R0 : ℝ}
 
 end StationaryHarmonicMap
 end LeanStationaryHarmonicMaps
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

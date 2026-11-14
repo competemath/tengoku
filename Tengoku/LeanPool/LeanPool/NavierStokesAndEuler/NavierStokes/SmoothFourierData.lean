@@ -13,7 +13,7 @@ import Tengoku.Seed.Analysis.Calculus.SmoothSeries
 import Tengoku.Seed.MeasureTheory.Integral.Prod
 public import Tengoku.Seed.Analysis.Real.Sqrt
 import Tengoku.Seed.NumberTheory.Real.Irrational
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -1529,3 +1529,4 @@ theorem inverse_solves_smooth_periodic (d : Direction) {f : Plane → ℂ}
   rw [directionalInverse_solves d (rapid_coefficient hf hp) hz, series_coefficient hf hp]
 
 end NavierStokes.SmoothFourierData
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

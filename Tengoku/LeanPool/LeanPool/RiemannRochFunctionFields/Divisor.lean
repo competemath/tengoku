@@ -24,7 +24,7 @@ function `FractionalIdeal.count K v`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open IsDedekindDomain
 open scoped nonZeroDivisors
 
@@ -253,3 +253,4 @@ theorem weightedDegree_principal_mk' (w : Ideal R → ℕ) (x : Kˣ) (n : R)
       (Ideal.span_singleton_eq_bot.not.mpr hd) w]
 
 end FractionalIdeal
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

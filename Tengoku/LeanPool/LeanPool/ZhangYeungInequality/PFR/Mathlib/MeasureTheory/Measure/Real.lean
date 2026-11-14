@@ -20,7 +20,7 @@ Imported Lean Pool material for
 -/
 
 public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Function Set
 open scoped ENNReal NNReal
 
@@ -65,3 +65,4 @@ lemma measureReal_preimage_snd_singleton_eq_sum [Fintype Ω] (μ : Measure (Ω �
   simp_all
 
 end MeasureTheory
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

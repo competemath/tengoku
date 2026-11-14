@@ -30,7 +30,7 @@ Semantic anchors (see `Moise/Countermodels.lean` and the Definition Faithfulness
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-- A finite closed cover of a preconnected set has a connected intersection graph.
 
 This is the closed-cover counterpart of `IsPreconnected.transGen_of_iUnion`, whose open-cover
@@ -741,3 +741,4 @@ end GeometricTriangulation
 end ClassificationOfSurfaces
 end Topology
 end LeanEval
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

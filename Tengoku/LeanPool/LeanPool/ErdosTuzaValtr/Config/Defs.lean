@@ -14,14 +14,14 @@ Imported Lean Pool material for `LeanPool.ErdosTuzaValtr.Config.Defs`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-- A configuration: a decidable ternary "cup" relation on a linearly ordered type. -/
-structure Config (α : Type _) [LinearOrder α] where
+structure _root_.Tengoku.LeanPool.Config (α : Type _) [LinearOrder α] where
   /-- The ternary cup relation of the configuration. -/
   Cup3 : α → α → α → Prop
   /-- The cup relation is decidable. -/
   DecidableCup3 : DecidableRel3 Cup3
-namespace Config
+namespace Tengoku.LeanPool.Config
 
 variable {α : Type _} [ord : LinearOrder α] (C : Config α)
 
@@ -77,4 +77,5 @@ def HasNCup (n : ℕ) (S : Finset α) : Prop :=
 def HasNGon (n : ℕ) (S : Finset α) : Prop :=
   ∃ l1 l2 : List α, C.NGon n l1 l2 ∧ l1.In S ∧ l2.In S
 
-end Config
+end Tengoku.LeanPool.Config
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

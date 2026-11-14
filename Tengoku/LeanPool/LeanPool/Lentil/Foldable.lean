@@ -12,7 +12,7 @@ commutative-associative operation, used to give big-conjunction and
 big-disjunction TLA operators a uniform definition. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace TLA
 
 -- HMM this is kind of awkward: we need `Std.Commutative` and `Std.Associative` to be able
@@ -43,3 +43,4 @@ theorem Foldable.list_index_form_change {α : Type u} {β : Type w} (op : β →
     rw [List.foldr_map]; simp
 
 end TLA
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

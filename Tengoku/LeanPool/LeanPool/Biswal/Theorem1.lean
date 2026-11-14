@@ -17,7 +17,7 @@ Dyck-path model.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Biswal.Theorem1
 
 /-! ## Core Definitions -/
@@ -2268,3 +2268,4 @@ theorem genFun_is_polynomial (K : Type*) [Field K]
     exact poly_coe_eventually_zero K P r hr⟩
 
 end Biswal.Theorem1
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -20,7 +20,7 @@ For probability distributions, overlap equals `1 - tvDist P Q`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Komlos
 
 open Finsupp Finset
@@ -99,3 +99,4 @@ lemma shiftDist_eq_one_sub_overlap [AddCommGroup E] {P : E →₀ ℝ} (hP : IsD
   ring
 
 end Komlos
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

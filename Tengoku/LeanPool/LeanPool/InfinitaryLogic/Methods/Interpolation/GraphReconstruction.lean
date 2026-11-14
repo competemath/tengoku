@@ -24,7 +24,7 @@ occurrence-aware congruence `realize_congr_symbolsIn`, the exact occurrence iden
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure
@@ -127,3 +127,4 @@ theorem realize_relationalize_reconstruct {α : Type}
 end Reconstruct
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

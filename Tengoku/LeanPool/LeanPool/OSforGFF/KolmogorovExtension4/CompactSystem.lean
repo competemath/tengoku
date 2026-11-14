@@ -14,7 +14,7 @@ Auxiliary compact-system lemmas for the Kolmogorov extension construction.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set MeasureTheory
 
 section definition
@@ -51,18 +51,18 @@ section AllProj
 /-- All indices in `ι` that are constrained by the condition `∀ n, s n ∈ closedCompactCylinders α`.
 That is, the union of all indices in the bases of the cylinders.
 -/
-def allProj (hs : ∀ n, s n ∈ closedCompactCylinders α) : Set ι := ⋃ n, Js (hs n)
+def _root_.Tengoku.LeanPool.allProj (hs : ∀ n, s n ∈ closedCompactCylinders α) : Set ι := ⋃ n, Js (hs n)
 
 /--
 @isnad1 id=le.1h4v.s6.8aa611a57ce9 from=translated src=- shape=5ba9d202 vocab=0503a2d8
 -/
-theorem subset_allProj (hs : ∀ n, s n ∈ closedCompactCylinders α) (n : ℕ) :
+theorem _root_.Tengoku.LeanPool.subset_allProj (hs : ∀ n, s n ∈ closedCompactCylinders α) (n : ℕ) :
     ↑(Js (hs n)) ⊆ allProj hs := subset_iUnion (fun i ↦ (Js (hs i) : Set ι)) n
 
 /--
 @isnad1 id=ex.2h4v.s6.622efaa93128 from=translated src=- shape=784b33b9 vocab=9d2c5e43
 -/
-theorem exists_nat_proj (hs : ∀ n, s n ∈ closedCompactCylinders α) (i : ι) (hi : i ∈ allProj hs) :
+theorem _root_.Tengoku.LeanPool.exists_nat_proj (hs : ∀ n, s n ∈ closedCompactCylinders α) (i : ι) (hi : i ∈ allProj hs) :
     ∃ n, i ∈ Js (hs n) := by
   simpa only [allProj, mem_iUnion, Finset.mem_coe] using hi
 
@@ -70,13 +70,13 @@ open Classical in
 /-- The smallest `n` such that `i ∈ Js (hs n)`. That is, the first `n` such that `i` belongs to the
 finset defining the cylinder for `s n`.
 -/
-noncomputable def indexProj (hs : ∀ n, s n ∈ closedCompactCylinders α) (i : allProj hs) : ℕ :=
+noncomputable def _root_.Tengoku.LeanPool.indexProj (hs : ∀ n, s n ∈ closedCompactCylinders α) (i : allProj hs) : ℕ :=
   Nat.find (exists_nat_proj hs i i.2)
 
 /--
 @isnad1 id=mem.1h4v.s6.21ef7f9fb0eb from=translated src=- shape=d5d18471 vocab=7805e91d
 -/
-theorem mem_indexProj (hs : ∀ n, s n ∈ closedCompactCylinders α) (i : allProj hs) :
+theorem _root_.Tengoku.LeanPool.mem_indexProj (hs : ∀ n, s n ∈ closedCompactCylinders α) (i : allProj hs) :
     (i : ι) ∈ Js (hs (indexProj hs i)) := by
   classical
   exact Nat.find_spec (exists_nat_proj hs i i.2)
@@ -84,7 +84,7 @@ theorem mem_indexProj (hs : ∀ n, s n ∈ closedCompactCylinders α) (i : allPr
 /--
 @isnad1 id=le.1h5v.s7.611c6d72902b from=translated src=- shape=6c193bfb vocab=d29ea3fe
 -/
-theorem indexProj_le (hs : ∀ n, s n ∈ closedCompactCylinders α) (n : ℕ) (i : Js (hs n)) :
+theorem _root_.Tengoku.LeanPool.indexProj_le (hs : ∀ n, s n ∈ closedCompactCylinders α) (n : ℕ) (i : Js (hs n)) :
     indexProj hs ⟨i, subset_allProj hs n i.2⟩ ≤ n := by
   classical
   exact Nat.find_le i.2
@@ -92,7 +92,7 @@ theorem indexProj_le (hs : ∀ n, s n ∈ closedCompactCylinders α) (n : ℕ) (
 /--
 @isnad1 id=surjecti.1h3v.s7.3a2930649979 from=translated src=- shape=60050a08 vocab=037e085f
 -/
-lemma surjective_proj_allProj [∀ i, Nonempty (α i)] (hs : ∀ n, s n ∈ closedCompactCylinders α) :
+lemma _root_.Tengoku.LeanPool.surjective_proj_allProj [∀ i, Nonempty (α i)] (hs : ∀ n, s n ∈ closedCompactCylinders α) :
     Function.Surjective (fun (f : Π i, α i) (i : allProj hs) ↦ f (i : ι)) := by
   intro y
   let x := (inferInstance : Nonempty (Π i, α i)).some
@@ -106,14 +106,14 @@ section projCylinder
 /-- Given a countable family of closed cylinders, consider one of them as depending only on
 the countably many coordinates that appear in all of them.
 -/
-def projCylinder (hs : ∀ n, s n ∈ closedCompactCylinders α) (n : ℕ) :
+def _root_.Tengoku.LeanPool.projCylinder (hs : ∀ n, s n ∈ closedCompactCylinders α) (n : ℕ) :
     Set (Π i : allProj hs, α i) :=
   (fun (f : Π i : allProj hs, α i) (i : Js (hs n)) ↦ f ⟨i, subset_allProj hs _ i.2⟩) ⁻¹' (As (hs n))
 
 /--
 @isnad1 id=iff.1h5v.s8.23b030361c7f from=translated src=- shape=d2893302 vocab=e4b54805
 -/
-lemma mem_projCylinder (hs : ∀ n, s n ∈ closedCompactCylinders α) (n : ℕ)
+lemma _root_.Tengoku.LeanPool.mem_projCylinder (hs : ∀ n, s n ∈ closedCompactCylinders α) (n : ℕ)
     (x : Π i : allProj hs, α i) :
     x ∈ projCylinder hs n ↔ (fun (i : Js (hs n)) ↦ x ⟨i, subset_allProj hs _ i.2⟩) ∈ As (hs n) := by
   simp only [projCylinder, mem_preimage]
@@ -121,7 +121,7 @@ lemma mem_projCylinder (hs : ∀ n, s n ∈ closedCompactCylinders α) (n : ℕ)
 /--
 @isnad1 id=eq.1h4v.s7.40003af6db59 from=translated src=- shape=15c9289b vocab=5a4f46a8
 -/
-theorem preimage_projCylinder (hs : ∀ n, s n ∈ closedCompactCylinders α) (n : ℕ) :
+theorem _root_.Tengoku.LeanPool.preimage_projCylinder (hs : ∀ n, s n ∈ closedCompactCylinders α) (n : ℕ) :
     (fun (f : Π i, α i) (i : allProj hs) ↦ f i) ⁻¹' (projCylinder hs n) = s n := by
   conv_rhs => rw [closedCompactCylinders.eq_cylinder (hs n)]
   rfl
@@ -129,7 +129,7 @@ theorem preimage_projCylinder (hs : ∀ n, s n ∈ closedCompactCylinders α) (n
 /--
 @isnad1 id=nonempty.2h4v.s6.56960e6cb596 from=translated src=- shape=5a58f069 vocab=7bc86d7e
 -/
-lemma nonempty_projCylinder (hs : ∀ n, s n ∈ closedCompactCylinders α)
+lemma _root_.Tengoku.LeanPool.nonempty_projCylinder (hs : ∀ n, s n ∈ closedCompactCylinders α)
     (n : ℕ) (hs_nonempty : (s n).Nonempty) :
     (projCylinder hs n).Nonempty := by
   rw [← preimage_projCylinder hs n] at hs_nonempty
@@ -138,7 +138,7 @@ lemma nonempty_projCylinder (hs : ∀ n, s n ∈ closedCompactCylinders α)
 /--
 @isnad1 id=iff.1h4v.s6.48991bf6b747 from=translated src=- shape=6704b24c vocab=d6e609f5
 -/
-lemma nonempty_projCylinder_iff [∀ i, Nonempty (α i)]
+lemma _root_.Tengoku.LeanPool.nonempty_projCylinder_iff [∀ i, Nonempty (α i)]
     (hs : ∀ n, s n ∈ closedCompactCylinders α) (n : ℕ) :
     (projCylinder hs n).Nonempty ↔ (s n).Nonempty := by
   refine ⟨fun h ↦ ?_, nonempty_projCylinder hs n⟩
@@ -157,7 +157,7 @@ lemma nonempty_projCylinder_iff [∀ i, Nonempty (α i)]
 /--
 @isnad1 id=isclosed.2h4v.s8.477c0e41f9d8 from=translated src=- shape=78e0aaf4 vocab=0a85799f
 -/
-theorem isClosed_projCylinder
+theorem _root_.Tengoku.LeanPool.isClosed_projCylinder
     (hs : ∀ n, s n ∈ closedCompactCylinders α) (hs_closed : ∀ n, IsClosed (As (hs n))) (n : ℕ) :
     IsClosed (projCylinder hs n) :=
   (hs_closed n).preimage (by exact continuous_pi (fun i ↦ continuous_apply _))
@@ -170,7 +170,7 @@ open Classical in
 /-- Given countably many closed compact cylinders, the product set which, in each relevant
 coordinate, is the projection of the first cylinder for which this coordinate is relevant.
 -/
-def piCylinderSet (hs : ∀ n, s n ∈ closedCompactCylinders α) :
+def _root_.Tengoku.LeanPool.piCylinderSet (hs : ∀ n, s n ∈ closedCompactCylinders α) :
     Set (Π i : allProj hs, α i) :=
   {x : Π i : allProj hs, α i |
     ∀ i, x i ∈ (fun a : Π j : Js (hs (indexProj hs i)), α j ↦ a ⟨i, mem_indexProj hs i⟩) ''
@@ -179,7 +179,7 @@ def piCylinderSet (hs : ∀ n, s n ∈ closedCompactCylinders α) :
 /--
 @isnad1 id=iff.1h4v.s9.ecab947b8dfc from=translated src=- shape=a208285c vocab=afd8d201
 -/
-lemma mem_piCylinderSet (hs : ∀ n, s n ∈ closedCompactCylinders α) (x : Π i : allProj hs, α i) :
+lemma _root_.Tengoku.LeanPool.mem_piCylinderSet (hs : ∀ n, s n ∈ closedCompactCylinders α) (x : Π i : allProj hs, α i) :
     x ∈ piCylinderSet hs ↔
     ∀ i, x i ∈ (fun a : Π j : Js (hs (indexProj hs i)), α j ↦ a ⟨i, mem_indexProj hs i⟩) ''
       (As (hs (indexProj hs i))) := by
@@ -188,7 +188,7 @@ lemma mem_piCylinderSet (hs : ∀ n, s n ∈ closedCompactCylinders α) (x : Π 
 /--
 @isnad1 id=iscompac.1h3v.s7.09b6fa200996 from=translated src=- shape=1289f29c vocab=3504850a
 -/
-theorem isCompact_piCylinderSet (hs : ∀ n, s n ∈ closedCompactCylinders α) :
+theorem _root_.Tengoku.LeanPool.isCompact_piCylinderSet (hs : ∀ n, s n ∈ closedCompactCylinders α) :
     IsCompact (piCylinderSet hs) :=
   isCompact_pi_infinite fun _ ↦
     (closedCompactCylinders.isCompact (hs _)).image (continuous_apply _)
@@ -196,7 +196,7 @@ theorem isCompact_piCylinderSet (hs : ∀ n, s n ∈ closedCompactCylinders α) 
 /--
 @isnad1 id=eq.1h3v.s9.a8b24b9b2cf6 from=translated src=- shape=776b74c5 vocab=fc72ab41
 -/
-theorem piCylinderSet_eq_pi_univ (hs : ∀ n, s n ∈ closedCompactCylinders α) :
+theorem _root_.Tengoku.LeanPool.piCylinderSet_eq_pi_univ (hs : ∀ n, s n ∈ closedCompactCylinders α) :
     piCylinderSet hs =
       pi univ fun i ↦
         (fun a : Π j : Js (hs (indexProj hs i)), α j ↦ a ⟨i, mem_indexProj hs i⟩) ''
@@ -206,7 +206,7 @@ theorem piCylinderSet_eq_pi_univ (hs : ∀ n, s n ∈ closedCompactCylinders α)
 /--
 @isnad1 id=isclosed.1h3v.s7.aaaa7ab21ff1 from=translated src=- shape=1289f29c vocab=02d0f5c1
 -/
-theorem isClosed_piCylinderSet (hs : ∀ n, s n ∈ closedCompactCylinders α) :
+theorem _root_.Tengoku.LeanPool.isClosed_piCylinderSet (hs : ∀ n, s n ∈ closedCompactCylinders α) :
     IsClosed (piCylinderSet hs) := by
   rw [piCylinderSet_eq_pi_univ]
   exact isClosed_set_pi fun i _ ↦ IsClosed.isClosed_image_eval _
@@ -215,7 +215,7 @@ theorem isClosed_piCylinderSet (hs : ∀ n, s n ∈ closedCompactCylinders α) :
 /--
 @isnad1 id=nonempty.2h3v.s6.2f9bb05c74e6 from=translated src=- shape=1bff3046 vocab=13e06044
 -/
-theorem nonempty_piCylinderSet (hs : ∀ n, s n ∈ closedCompactCylinders α)
+theorem _root_.Tengoku.LeanPool.nonempty_piCylinderSet (hs : ∀ n, s n ∈ closedCompactCylinders α)
     (hs_nonempty : ∀ i, (s i).Nonempty) :
     (piCylinderSet hs).Nonempty := by
   have hs_nonempty' i : (As (hs i)).Nonempty := by
@@ -234,7 +234,7 @@ end piCylinderSet
 /--
 @isnad1 id=le.1h3v.s7.d84c77d1a7e6 from=translated src=- shape=674dd0cc vocab=81415cb5
 -/
-theorem iInter_subset_piCylinderSet (hs : ∀ n, s n ∈ closedCompactCylinders α) :
+theorem _root_.Tengoku.LeanPool.iInter_subset_piCylinderSet (hs : ∀ n, s n ∈ closedCompactCylinders α) :
     (⋂ n, projCylinder hs n) ⊆ piCylinderSet hs := by
   intro x hx
   rw [mem_iInter] at hx
@@ -247,7 +247,7 @@ theorem iInter_subset_piCylinderSet (hs : ∀ n, s n ∈ closedCompactCylinders 
 /--
 @isnad1 id=nonempty.3h4v.s8.92ad2ac06d10 from=translated src=- shape=05c836c2 vocab=8e0f27ca
 -/
-theorem nonempty_iInter_projCylinder_inter_piCylinderSet (hs : ∀ n, s n ∈ closedCompactCylinders α)
+theorem _root_.Tengoku.LeanPool.nonempty_iInter_projCylinder_inter_piCylinderSet (hs : ∀ n, s n ∈ closedCompactCylinders α)
     (hs_nonempty : ∀ i, (s i).Nonempty)
     (h_nonempty : ∀ n, (⋂ i ≤ n, projCylinder hs i).Nonempty) (n : ℕ) :
     ((⋂ i ≤ n, projCylinder hs i) ∩ piCylinderSet hs).Nonempty := by
@@ -289,7 +289,7 @@ theorem nonempty_iInter_projCylinder_inter_piCylinderSet (hs : ∀ n, s n ∈ cl
 /--
 @isnad1 id=nonempty.3h3v.s7.7c96883a72e8 from=translated src=- shape=d1a53978 vocab=5a16246c
 -/
-theorem nonempty_iInter_projCylinder (hs : ∀ n, s n ∈ closedCompactCylinders α)
+theorem _root_.Tengoku.LeanPool.nonempty_iInter_projCylinder (hs : ∀ n, s n ∈ closedCompactCylinders α)
     (hs_nonempty : ∀ i, (s i).Nonempty)
     (h_nonempty : ∀ n, (⋂ i ≤ n, projCylinder hs i).Nonempty) :
     (⋂ i, projCylinder hs i).Nonempty := by
@@ -315,7 +315,7 @@ theorem nonempty_iInter_projCylinder (hs : ∀ n, s n ∈ closedCompactCylinders
 /--
 @isnad1 id=ex.2h3v.s8.1fba21cb5cb4 from=translated src=- shape=bd0014d8 vocab=800720ac
 -/
-lemma exists_finset_iInter_projCylinder_eq_empty [∀ i, Nonempty (α i)]
+lemma _root_.Tengoku.LeanPool.exists_finset_iInter_projCylinder_eq_empty [∀ i, Nonempty (α i)]
     (hs : ∀ n, s n ∈ closedCompactCylinders α) (h : ⋂ n, projCylinder hs n = ∅) :
     ∃ t : Finset ℕ, (⋂ i ∈ t, projCylinder hs i) = ∅ := by
   by_contra! h_nonempty
@@ -330,7 +330,7 @@ lemma exists_finset_iInter_projCylinder_eq_empty [∀ i, Nonempty (α i)]
 /-- The `closedCompactCylinders` are a compact system.
 @isnad1 id=iscompac.0h2v.s4.d57d9fcea3d5 from=translated src=- shape=dece17ac vocab=bea7f1de
 -/
-theorem isCompactSystem_closedCompactCylinders : IsCompactSystem (closedCompactCylinders α) := by
+theorem _root_.Tengoku.LeanPool.isCompactSystem_closedCompactCylinders : IsCompactSystem (closedCompactCylinders α) := by
   by_cases hα : ∀ i, Nonempty (α i)
   swap
   · simp_all
@@ -349,3 +349,4 @@ theorem isCompactSystem_closedCompactCylinders : IsCompactSystem (closedCompactC
   rwa [(surjective_proj_allProj hs).nonempty_preimage]
 
 end ClosedCompactCylinders
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

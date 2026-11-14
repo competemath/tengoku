@@ -15,7 +15,7 @@ finite sums, used to differentiate the exponential factors in Niven's argument.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Polynomial
 open Complex
 
@@ -27,21 +27,21 @@ noncomputable section
 /-- Given `x ∈ ℂ`, the map `t ↦ t * x` is differentiable at `t`.
 @isnad1 id=differen.0h2v.s6.c44682a14686 from=translated src=- shape=3ad920cf vocab=66054778
 -/
-lemma differentiableAt_mul_const_ofReal (x : ℂ) (t : ℝ) :
+lemma _root_.Tengoku.LeanPool.differentiableAt_mul_const_ofReal (x : ℂ) (t : ℝ) :
     DifferentiableAt ℝ (fun t : ℝ => t * x) t :=
   (Complex.ofRealCLM.differentiableAt (x := t)).mul_const x
 
 /-- `d/dt (t * x) = x`.
 @isnad1 id=eq.0h2v.s6.5f1620316d11 from=translated src=- shape=de6aedf4 vocab=3d4bc586
 -/
-lemma deriv_mul_const_ofReal (x : ℂ) (t : ℝ) :
+lemma _root_.Tengoku.LeanPool.deriv_mul_const_ofReal (x : ℂ) (t : ℝ) :
   deriv (fun t : ℝ => t * x) t = x := by
   simpa using deriv_smul_const (hc := differentiableAt_id (x := t)) (f := x)
 
 /-- If `f` is differentiable at `t * x`, then `u ↦ f(u * x)` is differentiable at `t`.
 @isnad1 id=differen.1h3v.s7.a08f23d6c17b from=translated src=- shape=fd38e630 vocab=66054778
 -/
-lemma differentiableAt_comp_mul_real
+lemma _root_.Tengoku.LeanPool.differentiableAt_comp_mul_real
   (f : ℂ → ℂ) (x : ℂ) (t : ℝ)
   (hf : DifferentiableAt ℂ f (t * x)) :
     DifferentiableAt ℝ (fun t : ℝ => f (t * x)) t :=
@@ -50,7 +50,7 @@ lemma differentiableAt_comp_mul_real
 /-- For `x ∈ ℂ`, the map `t ↦ e^(-(t * x))` is differentiable at `t`.
 @isnad1 id=differen.0h2v.s6.e5f9b479e57b from=translated src=- shape=e6f92d1a vocab=27ca4239
 -/
-lemma differentiableAt_exp_neg_mul (x : ℂ) (t : ℝ) :
+lemma _root_.Tengoku.LeanPool.differentiableAt_exp_neg_mul (x : ℂ) (t : ℝ) :
     DifferentiableAt ℝ (fun t : ℝ => cexp (-(t * x))) t :=
   (differentiableAt_mul_const_ofReal x t).neg.cexp
 
@@ -58,7 +58,7 @@ lemma differentiableAt_exp_neg_mul (x : ℂ) (t : ℝ) :
 `[0, 1]` at `t`.
 @isnad1 id=continuo.1h4v.s7.213f8e3a73a0 from=translated src=- shape=18451666 vocab=558e72db
 -/
-lemma continuousWithinAt_iteratedDeriv_comp_mul
+lemma _root_.Tengoku.LeanPool.continuousWithinAt_iteratedDeriv_comp_mul
   (f : ℂ → ℂ) (x : ℂ) (n : ℕ) (t : ℝ)
   (hderiv : DifferentiableAt ℂ (iteratedDeriv n f) (t * x)) :
     ContinuousWithinAt (fun t : ℝ => iteratedDeriv n f (t * x))
@@ -69,7 +69,7 @@ lemma continuousWithinAt_iteratedDeriv_comp_mul
 /-- If `f⁽ᵏ⁾` is differentiable at `t * x`, then `t ↦ f⁽ᵏ⁾(t * x)` is differentiable at `t`.
 @isnad1 id=differen.1h4v.s7.e9d0ce500040 from=translated src=- shape=a03458b3 vocab=fa5cf28a
 -/
-lemma differentiableAt_iteratedDeriv_comp_mul
+lemma _root_.Tengoku.LeanPool.differentiableAt_iteratedDeriv_comp_mul
   (f : ℂ → ℂ) (x : ℂ) (k : ℕ) (t : ℝ)
   (hderiv : DifferentiableAt ℂ (iteratedDeriv k f) (t * x)) :
     DifferentiableAt ℝ (fun t : ℝ => iteratedDeriv k f (t * x)) t :=
@@ -78,7 +78,7 @@ lemma differentiableAt_iteratedDeriv_comp_mul
 /-- If `f⁽ⁱ⁾` is differentiable at `t * x`, then `d/dt f⁽ᵏ⁾(t * x)) = x * f⁽ᵏ⁺¹⁾(t * x)`.
 @isnad1 id=eq.1h4v.s7.53861c384680 from=translated src=- shape=320c9c40 vocab=6a3b39af
 -/
-lemma deriv_iteratedDeriv_comp_mul
+lemma _root_.Tengoku.LeanPool.deriv_iteratedDeriv_comp_mul
   (f : ℂ → ℂ) (x : ℂ) (k : ℕ) (t : ℝ)
   (hderiv : DifferentiableAt ℂ (iteratedDeriv k f) (t * x)) :
     deriv (fun t : ℝ => iteratedDeriv k f (t * x)) t
@@ -96,7 +96,7 @@ lemma deriv_iteratedDeriv_comp_mul
 `t ↦ ∑ₖ₌₀ⁿ f⁽ᵏ⁾(t * x)` is differentiable at `t`.
 @isnad1 id=differen.1h4v.s7.fbdf22dc516d from=translated src=- shape=b8298b24 vocab=40f2f3ed
 -/
-lemma differentiableAt_sum_iteratedDeriv
+lemma _root_.Tengoku.LeanPool.differentiableAt_sum_iteratedDeriv
   (f : ℂ → ℂ) (x : ℂ) (n : ℕ) (t : ℝ)
   (hderiv : ∀ k ≤ n, DifferentiableAt ℂ (iteratedDeriv k f) (t * x)) :
     DifferentiableAt ℝ
@@ -114,7 +114,7 @@ lemma differentiableAt_sum_iteratedDeriv
 `d/dt ∑ᵢ₌₀ⁿ f⁽ⁱ⁾(t * x)) = ∑ᵢ₌₀ⁿ x * f⁽ⁱ⁺¹⁾(t * x)`.
 @isnad1 id=eq.1h4v.s8.d394898dcc46 from=translated src=- shape=084a261a vocab=bcf551b6
 -/
-lemma sum_deriv_iteratedDeriv_comp_mul
+lemma _root_.Tengoku.LeanPool.sum_deriv_iteratedDeriv_comp_mul
   (f : ℂ → ℂ) (x : ℂ) (n : ℕ) (t : ℝ)
   (hderiv : ∀ k ≤ n, DifferentiableAt ℂ (iteratedDeriv k f) (t * x)) :
     deriv
@@ -128,3 +128,4 @@ lemma sum_deriv_iteratedDeriv_comp_mul
   · intro k hk
     simpa using differentiableAt_iteratedDeriv_comp_mul f x k t
       (hderiv k (by simpa [Finset.mem_range, Nat.lt_succ_iff] using hk))
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

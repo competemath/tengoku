@@ -23,7 +23,7 @@ shift distance in direction `u`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Komlos
 
 open Finsupp Finset
@@ -243,3 +243,4 @@ lemma shiftDist_split_le {P : E →₀ ℝ} (hP : IsDist P) (u v : E) :
   exact mass_le_overlap (split_mono v inf_le_left) (split_mono v inf_le_right)
 
 end Komlos
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

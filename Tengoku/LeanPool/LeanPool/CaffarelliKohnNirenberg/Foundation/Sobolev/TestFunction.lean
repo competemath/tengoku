@@ -17,7 +17,7 @@ weak-derivative predicates and uses the `CKN` namespace.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace CKN
 
 /-- A smooth compactly supported test function supported inside `U`. -/
@@ -39,3 +39,4 @@ noncomputable def WeakTestFunction.partialDeriv
   (fderiv ℝ φ.toFun x) (basisVec i)
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

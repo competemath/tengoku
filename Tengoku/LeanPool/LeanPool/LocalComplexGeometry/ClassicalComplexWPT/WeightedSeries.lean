@@ -20,7 +20,7 @@ unit polydisc is bounded by the `ℓ¹` norm.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Finset
 open scoped ENNReal NNReal Topology
 
@@ -278,3 +278,4 @@ def evalL1 (f : L1Coeff (S →₀ ℕ)) (y : S → ℂ) : ℂ :=
 end Evaluation
 
 end ClassicalComplexWPT
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

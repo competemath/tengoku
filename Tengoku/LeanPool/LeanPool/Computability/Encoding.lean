@@ -16,7 +16,7 @@ universal partial recursive function relative to an oracle, along with a proof t
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Denumerable Encodable
 
 namespace Computability
@@ -518,3 +518,4 @@ theorem exists_code_rel {α : Type} [Primcodable α] (g : α → ℕ →. ℕ) (
     | rfind' cf pf => exact rfind'o pf
 
 end Computability
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

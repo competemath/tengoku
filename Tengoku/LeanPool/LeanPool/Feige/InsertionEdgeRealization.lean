@@ -23,7 +23,7 @@ finite signed-exponential instance of the local transfer step.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory
 
 namespace Feige
@@ -50,3 +50,4 @@ theorem insertionOldK_eq_F_stateLaw {n : ℕ}
 end
 
 end Feige
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

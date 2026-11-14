@@ -67,7 +67,7 @@ kernel is injective; the group law on `E` itself is not developed here.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators
 open scoped Real
 open scoped Nat
@@ -347,3 +347,4 @@ The hypotheses of the two main theorems are satisfiable: they apply to `𝔽₂`
 
 end KasamiCyclicAdditive.FermatCubicFrobenius
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

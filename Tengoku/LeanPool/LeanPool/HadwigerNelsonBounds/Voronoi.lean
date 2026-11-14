@@ -16,7 +16,7 @@ theorem for the triangular lattice and defines the chosen nearest lattice cell.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace HadwigerNelsonBounds
 
 open SimpleGraph
@@ -179,3 +179,4 @@ lemma dist_le_voronoi_circumradius (p : R2) :
   nearestLatticeIdx_spec p
 
 end HadwigerNelsonBounds
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

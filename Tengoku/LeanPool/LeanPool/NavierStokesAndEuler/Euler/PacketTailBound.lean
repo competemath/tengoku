@@ -11,7 +11,7 @@ public import Tengoku
 /-! Bounds for the surviving grades of the actual finite packet residual. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace EulerPacketTailBound
@@ -81,3 +81,4 @@ theorem normalized_tail_norm_le (k B C : ℝ) (hk : 0 ≤ k) (hB : 0 ≤ B)
     _ = _ := by ring
 
 end EulerPacketTailBound
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

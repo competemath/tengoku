@@ -41,7 +41,7 @@ over the last variable, we use `relabel` to move it into a bound position.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u v w w'
 
 namespace FirstOrder
@@ -233,3 +233,4 @@ theorem realize_scottFormula_iff_BFEquiv
 end Language
 
 end FirstOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

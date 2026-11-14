@@ -31,7 +31,7 @@ This file has zero project imports; `LocalConstancy.lean` bridges `analyticOrder
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter Set Polynomial
 open scoped Topology
 
@@ -149,3 +149,4 @@ theorem sum_toNat_analyticOrderAt_pow_sub {k : ℕ} (hk : k ≠ 0) (w : ℂ) :
       _ = k := card_nthRoots_toFinset hk hw
 
 end RS
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

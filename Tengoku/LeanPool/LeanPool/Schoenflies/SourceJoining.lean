@@ -22,7 +22,7 @@ core, crosscut, and grid together with the joining segments, retaining every old
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set
 open scoped Graph
 
@@ -1507,3 +1507,4 @@ theorem GeneratedPair.exists_localGridForwardStageData
     }⟩
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

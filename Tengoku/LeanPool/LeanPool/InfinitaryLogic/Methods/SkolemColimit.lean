@@ -14,7 +14,7 @@ tower uses this generic construction for its function and relation symbols.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 /-! ### Sequential colimit of types -/
@@ -39,3 +39,4 @@ theorem DirectedColim.incl_step {F : ℕ → Type} {φ : ∀ k, F k → F (k + 1
   exact Quot.sound rfl
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -22,10 +22,10 @@ See [HeunenKSY17], Proposition 17.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped MeasureTheory
 
-namespace QuasiBorelSpace.Sigma
+namespace Tengoku.LeanPool.QuasiBorelSpace.Sigma
 
 variable
   {I : Type*} {P : I → Type*} [∀ i, QuasiBorelSpace (P i)]
@@ -514,12 +514,12 @@ instance
         · apply MeasurableSet.of_subtype_image
           apply MeasurableSpace.measurableSet_top
 
-end QuasiBorelSpace.Sigma
+end Tengoku.LeanPool.QuasiBorelSpace.Sigma
 
-namespace OmegaQuasiBorelSpace.Sigma
+namespace Tengoku.LeanPool.OmegaQuasiBorelSpace.Sigma
 
 open OmegaCompletePartialOrder
-open QuasiBorelSpace
+open Tengoku.LeanPool.QuasiBorelSpace
 
 variable {I : Type*} {P : I → Type*} [∀ i, OmegaQuasiBorelSpace (P i)]
 
@@ -567,4 +567,5 @@ instance : OmegaQuasiBorelSpace ((i : I) × P i) where
     simp only [ωSup]
     fun_prop
 
-end OmegaQuasiBorelSpace.Sigma
+end Tengoku.LeanPool.OmegaQuasiBorelSpace.Sigma
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

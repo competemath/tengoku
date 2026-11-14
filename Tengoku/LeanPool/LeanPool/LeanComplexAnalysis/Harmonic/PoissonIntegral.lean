@@ -50,7 +50,7 @@ harmonic function, Poisson integral, analytic function, unit disc
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.LeanComplexAnalysis
 
 open Complex Metric Real Set
@@ -526,3 +526,4 @@ theorem poisson_integral_of_analyticOn_unitDisc_continuousOn_closedUnitDisc_re_k
          (exp (t * I)) z (by rw [norm_exp_ofReal_mul_I])).symm
 
 end LeanPool.LeanComplexAnalysis
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

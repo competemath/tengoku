@@ -74,7 +74,7 @@ choice-free.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood.Exercise508
 
 open Domain.Neighborhood NeighborhoodSystem ApproximableMap
@@ -288,3 +288,4 @@ theorem bracket_spec {X : Dom} {A : Dom} (t : Poly X A) (x : X.sys.Element) :
       simp_all
 
 end Domain.Neighborhood.Exercise508
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

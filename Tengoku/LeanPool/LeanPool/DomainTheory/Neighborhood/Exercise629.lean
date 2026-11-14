@@ -76,7 +76,7 @@ classical `Set.Finite`). Both are flagged in their docstrings.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem
@@ -720,3 +720,4 @@ theorem iotimes_subsingleton [Infinite ι] (D : ∀ i, NeighborhoodSystem (α i)
 end Exercise629
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

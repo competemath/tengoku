@@ -17,7 +17,7 @@ primitive additive character of `K` with values in `ℂ` (in the application
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Finset
 
 namespace KasamiCyclicAdditive.Phase
@@ -62,3 +62,4 @@ def WalshCharacterFormula (ψ : AddChar K ℂ) (e : ℕ) (S : K → ℂ) : Prop 
       ∑ χ : MulChar K ℂ, gaussSum (χ ^ e) ψ / gaussSum (χ ^ 3) ψ * χ (a : K)
 
 end KasamiCyclicAdditive.Phase
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

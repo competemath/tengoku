@@ -17,7 +17,7 @@ the finite-convolution TP2 theorem to the common part of any genuine edge.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Feige
 namespace LikelihoodRatio
 
@@ -74,3 +74,4 @@ theorem translationTP2_commonFactors
 end
 end LikelihoodRatio
 end Feige
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

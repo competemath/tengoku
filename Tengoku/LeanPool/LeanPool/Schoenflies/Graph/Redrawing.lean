@@ -68,7 +68,7 @@ Bricks B7 and B8 of `lem:polygonal-redrawing` (H6), and the lemma itself.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set unitInterval
 open scoped Graph
 
@@ -725,3 +725,4 @@ theorem polygonal_redrawing {β : Type*} (G : Graph Plane β) [G.Finite]
       · rw [hEq]; exact (hlink f hf).inc_right
 
 end Graph
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

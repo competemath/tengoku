@@ -47,7 +47,7 @@ The downstream consumer is `hasArbLargeModels_of_tail_extraction` in
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u v
 
 namespace FirstOrder.Language
@@ -175,3 +175,4 @@ theorem IsLomega1omegaIndiscernibleOnTail.stretch_restricted_sequence_of_model
   exact hBridge.symm.trans (hBase i t)
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

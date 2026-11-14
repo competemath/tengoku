@@ -18,7 +18,7 @@ quotient of lists of events by trace equivalence.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace EventStructures
 
 variable (es : EventStructure)
@@ -238,3 +238,4 @@ end Monoid
 end Trace
 
 end EventStructures
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

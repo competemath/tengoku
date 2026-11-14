@@ -15,8 +15,8 @@ Imported Lean Pool material for `LeanPool.QuasiBorelSpaces.ENNReal`.
 -/
 
 @[expose] public section
-
-namespace QuasiBorelSpace.ENNReal
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+namespace Tengoku.LeanPool.QuasiBorelSpace.ENNReal
 
 variable
   {A : Type*} {_ : QuasiBorelSpace A}
@@ -64,11 +64,11 @@ lemma isHom_iSup {f : A → B → ENNReal} (hf : ∀ b, IsHom (f · b)) : IsHom 
   apply measurable_of_isHom
   fun_prop
 
-end QuasiBorelSpace.ENNReal
+end Tengoku.LeanPool.QuasiBorelSpace.ENNReal
 
-namespace OmegaQuasiBorelSpace.ENNReal
+namespace Tengoku.LeanPool.OmegaQuasiBorelSpace.ENNReal
 
-open QuasiBorelSpace
+open Tengoku.LeanPool.QuasiBorelSpace
 
 /-- ωQBS structure on `ENNReal` -/
 noncomputable instance : OmegaQuasiBorelSpace ENNReal where
@@ -76,4 +76,5 @@ noncomputable instance : OmegaQuasiBorelSpace ENNReal where
     change IsHom fun c : OmegaCompletePartialOrder.Chain ENNReal ↦ ⨆ n, c n
     fun_prop
 
-end OmegaQuasiBorelSpace.ENNReal
+end Tengoku.LeanPool.OmegaQuasiBorelSpace.ENNReal
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

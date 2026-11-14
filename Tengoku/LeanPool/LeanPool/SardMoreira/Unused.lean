@@ -13,7 +13,7 @@ import Tengoku.LeanPool.LeanPool.SardMoreira.ContDiff
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped Topology
 open Filter Set
 
@@ -126,7 +126,7 @@ protected theorem UniqueDiffOn.frequently_smallSets {s : Set E} (hs : UniqueDiff
 /--
 @isnad1 id=eq.1h8v.s8.8d673dd702f4 from=translated src=- shape=ae391ff4 vocab=98fea117
 -/
-theorem iteratedFDeriv_apply_congr_order
+theorem _root_.Tengoku.LeanPool.iteratedFDeriv_apply_congr_order
     {k l : ℕ} (h : k = l) (f : E → F) (x : E) (m : Fin k → E) :
     iteratedFDeriv 𝕜 k f x m = iteratedFDeriv 𝕜 l f x (m ∘ Fin.cast h.symm) := by
   subst l
@@ -167,3 +167,4 @@ theorem applyOrderedFinpartition_single (hn : n ≠ 0)
   rfl
 
 end OrderedFinpartition
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

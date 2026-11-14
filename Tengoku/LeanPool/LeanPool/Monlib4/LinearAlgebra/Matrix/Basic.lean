@@ -18,7 +18,7 @@ formalization.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Matrix
 
 open scoped BigOperators Matrix Kronecker
@@ -218,7 +218,7 @@ open scoped BigOperators InnerProductSpace Kronecker
 /--
 @isnad1 id=eq.0h4v.s8.bdde5d1f5a39 from=translated src=- shape=b5440130 vocab=349d825c
 -/
-theorem kmul_representation {R n₁ n₂ : Type _} [Fintype n₁] [Fintype n₂] [DecidableEq n₁]
+theorem _root_.Tengoku.LeanPool.kmul_representation {R n₁ n₂ : Type _} [Fintype n₁] [Fintype n₂] [DecidableEq n₁]
     [DecidableEq n₂] [Semiring R] (x : Matrix (n₁ × n₂) (n₁ × n₂) R) :
     x =
       ∑ i : n₁, ∑ j : n₁, ∑ k : n₂, ∑ l : n₂,
@@ -399,7 +399,7 @@ theorem Matrix.dotProduct_eq_trace {R n : Type _} [CommSemiring R] [StarRing R] 
 /--
 @isnad1 id=iff.0h4v.s6.69ede89258e9 from=translated src=- shape=6cf0e3f3 vocab=2c97d0ed
 -/
-theorem forall_left_hMul {n R : Type _} [Fintype n] [Semiring R]
+theorem _root_.Tengoku.LeanPool.forall_left_hMul {n R : Type _} [Fintype n] [Semiring R]
     (x y : Matrix n n R) : x = y ↔ ∀ a : Matrix n n R, a * x = a * y := by
   classical
   refine ⟨fun h a => by rw [h], fun h => ?_⟩
@@ -433,3 +433,4 @@ def LinearEquiv.toInvertibleMatrix {n R : Type _} [CommSemiring R]
   · simp only [← LinearMap.toMatrix'_mul, Module.End.mul_eq_comp,
       LinearEquiv.comp_coe, LinearEquiv.symm_trans_self,
       LinearEquiv.refl_toLinearMap, LinearMap.toMatrix'_id]
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

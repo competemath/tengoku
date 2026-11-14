@@ -21,7 +21,7 @@ A finite history of length `t` is represented by `Fin t → α`. Thus a
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace GenLimit.Generic
 
 /-- A language over an arbitrary example type. -/
@@ -410,3 +410,4 @@ def CorrectAt
   output G stream t ∈ L ∧ output G stream t ∉ sample stream t
 
 end GenLimit.Generic
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -12,7 +12,7 @@ General lemmas not specific to analysis of Boolean functions.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.LeanBooleanfun.BooleanFun
 
 open Finset Pi
@@ -155,3 +155,4 @@ lemma pow_eq_self_imp {ρ : ℝ} {k : ℕ} :
       · right; right; right; assumption
 
 end LeanPool.LeanBooleanfun.BooleanFun
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

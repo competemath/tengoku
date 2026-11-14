@@ -11,7 +11,7 @@ import Tengoku.Seed.Analysis.Calculus.Deriv.Pow
 import Tengoku.Seed.Analysis.Calculus.Deriv.Prod
 import Tengoku.Seed.Analysis.Calculus.IteratedDeriv.Lemmas
 import Tengoku.Seed.Analysis.Calculus.SmoothSeries
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -505,3 +505,4 @@ theorem profile_smooth_target {δ ε : ℝ} (hδ : 0 < δ) (hε : 0 < ε)
   exact mixedSeries_smooth _ hε A 0 0 ⟨hY, unitInterval_in_enlargedWindow hδ hη⟩
 
 end NavierStokes.AxisEvaluation
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -40,7 +40,7 @@ run of three equal symbols.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood.Exercise516
 
 open Domain.Neighborhood
@@ -276,3 +276,4 @@ theorem tElt_cube_free (u a : Str) (ha : a ≠ []) :
   simp_all
 
 end Domain.Neighborhood.Exercise516
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

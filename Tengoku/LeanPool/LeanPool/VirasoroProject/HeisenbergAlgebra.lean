@@ -46,7 +46,7 @@ Heisenberg algebra
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace VirasoroProject
 
 open Module
@@ -356,3 +356,4 @@ end HeisenbergAlgebra -- namespace
 end HeisenbergAlgebra
 
 end VirasoroProject -- namespace
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

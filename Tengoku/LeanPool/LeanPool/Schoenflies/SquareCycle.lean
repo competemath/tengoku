@@ -68,7 +68,7 @@ boundary, a number in `[0, 8r)`.  It is affine on each side, and it is the order
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set
 open scoped Graph
 
@@ -1204,3 +1204,4 @@ theorem squaresTwoConnected : SquaresTwoConnected :=
     squareGraph_isTwoConnected hnd hEnds hMeets hr hsub
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

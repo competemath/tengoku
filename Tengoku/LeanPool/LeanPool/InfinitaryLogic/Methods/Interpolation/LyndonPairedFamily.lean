@@ -40,7 +40,7 @@ endpoint.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure BoundedFormulaω
@@ -161,3 +161,4 @@ theorem lyndonPaired_insert_right {S Γ Δ : Set L[[ℕ]].Sentenceω} {A : Finse
     Set.insert_subset_iff.mpr ⟨hφS, hΔS⟩, hsupp, rfl, hA⟩
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

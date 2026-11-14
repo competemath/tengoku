@@ -17,7 +17,7 @@ Part of the Caffarelli–Kohn–Nirenberg partial regularity proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory MeasureTheory.Measure Set Filter
 open scoped ENNReal NNReal Topology Pointwise
 open CKN.Foundation.Parabolic
@@ -197,3 +197,4 @@ theorem localBox_forward {μ : ℝ} (hμ : 0 < μ) (z₀ : ParabolicPoint)
     exact hJI ht
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

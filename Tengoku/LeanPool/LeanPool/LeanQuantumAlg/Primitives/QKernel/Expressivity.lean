@@ -16,7 +16,7 @@ quantum kernel `tr{ρ(x)ρ(x')}`. Converse of `quantumKernel_gram_posSemidef`. N
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace QuantumAlg
 
 open Matrix
@@ -218,3 +218,4 @@ theorem eqk_nonempty :
     simp_all
 
 end QuantumAlg
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

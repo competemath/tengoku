@@ -88,7 +88,7 @@ representing `Φ` is the identity on the function space. Everything here is
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem ApproximableMap Domain.Neighborhood.Exercise510
@@ -168,3 +168,4 @@ theorem continuousOnMaps_id : ContinuousOnMaps (idEndofunctor DomainObj) := by
   rw [toElementMap_idMap, toStrictMap_toStrictFilter]
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

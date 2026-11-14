@@ -16,7 +16,7 @@ elements reachable in at least one step. Because `reachStep` only grows sets, af
 the set of `Relation.TransGen`-successors. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace PDL
 
 namespace FinReach
@@ -147,3 +147,4 @@ def decidableTransGen (a b : α) : Decidable (Relation.TransGen r a b) :=
 end FinReach
 
 end PDL
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

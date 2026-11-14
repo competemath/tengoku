@@ -17,17 +17,17 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-- Composition of the `i`-th injection and the `j`-th projection of a dependent
 direct sum, giving a linear map `M₁ i →ₗ[R] M₁ j`. -/
-def directSumFromTo {R : Type*} [Semiring R] {ι₁ : Type*} [DecidableEq ι₁] {M₁ : ι₁ → Type*}
+def _root_.Tengoku.LeanPool.directSumFromTo {R : Type*} [Semiring R] {ι₁ : Type*} [DecidableEq ι₁] {M₁ : ι₁ → Type*}
     [∀ i₁ : ι₁, AddCommGroup (M₁ i₁)] [∀ i₁ : ι₁, Module R (M₁ i₁)] (i j : ι₁) : M₁ i →ₗ[R] M₁ j :=
   LinearMap.proj j ∘ₗ LinearMap.single _ _ i
 
 /--
 @isnad1 id=eq.0h4v.s7.10df7e56eac1 from=translated src=- shape=76d2c2d9 vocab=b7267261
 -/
-theorem directSumFromTo_apply_same {R : Type _} [Semiring R] {ι₁ : Type _} [DecidableEq ι₁]
+theorem _root_.Tengoku.LeanPool.directSumFromTo_apply_same {R : Type _} [Semiring R] {ι₁ : Type _} [DecidableEq ι₁]
     {M₁ : ι₁ → Type _} [∀ i₁ : ι₁, AddCommGroup (M₁ i₁)] [∀ i₁ : ι₁, Module R (M₁ i₁)] (i : ι₁) :
     directSumFromTo i i = (1 : M₁ i →ₗ[R] M₁ i) := by
   ext1 x
@@ -36,8 +36,9 @@ theorem directSumFromTo_apply_same {R : Type _} [Semiring R] {ι₁ : Type _} [D
 /--
 @isnad1 id=eq.1h5v.s7.b2f8fbe0d2ab from=translated src=- shape=d3b3ec1e vocab=b7267261
 -/
-theorem directSumFromTo_apply_ne_same {R : Type _} [Semiring R] {ι₁ : Type _} [DecidableEq ι₁]
+theorem _root_.Tengoku.LeanPool.directSumFromTo_apply_ne_same {R : Type _} [Semiring R] {ι₁ : Type _} [DecidableEq ι₁]
     {M₁ : ι₁ → Type _} [∀ i₁ : ι₁, AddCommGroup (M₁ i₁)] [∀ i₁ : ι₁, Module R (M₁ i₁)] {i j : ι₁}
     (h : j ≠ i) : directSumFromTo i j = (0 : M₁ i →ₗ[R] M₁ j) := by
   ext1 x
   simp [directSumFromTo, h]
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

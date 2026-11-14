@@ -45,7 +45,7 @@ NOW FULLY PROVED (no remaining `sorry`):
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace CriticalPortraits
 
 open Finset
@@ -1690,3 +1690,4 @@ theorem T_surjOn {d m : ℕ} (hd : 0 < d) (hm : 0 < m) :
   exact ⟨beta U, beta_portrait hd hm hU.1 hU.2, T_beta hd hm hU.2⟩
 
 end CriticalPortraits
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

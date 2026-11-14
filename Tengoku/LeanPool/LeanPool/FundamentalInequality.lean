@@ -19,7 +19,7 @@ MSC: 12J20
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-!
 # Ramification Index, Residue Degree, and the Fundamental Inequality
 
@@ -618,3 +618,4 @@ theorem Valuation.fundamentalInequality [FiniteDimensional K L] :
   exact h_card
 
 end FundamentalInequality
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -52,7 +52,7 @@ coordinate change as the lattice configurations.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Nivat
 
 /-- An additive lattice map is determined by its two basis vectors, giving the primitive-direction
@@ -159,3 +159,4 @@ theorem transverse_coordinate_ne_zero (e : Lattice ≃+ Lattice) (q : ℕ)
   ring
 
 end Nivat
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

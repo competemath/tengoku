@@ -6,11 +6,11 @@ Authors: Julius Marx
 module
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /--
 Definition of the Instructions.
 -/
-inductive Instr : Type where
+inductive _root_.Tengoku.LeanPool.Instr : Type where
   /--
     Load an address into a register
 
@@ -282,7 +282,7 @@ instance : ToString Instr where
     | Instr.JumpNeqZero reg lbl => s!"bnez x{reg}, {lbl}"
     | Instr.Panic => "Panic!"
 
-namespace Instr
+namespace Tengoku.LeanPool.Instr
   /-- Boolean equality of instructions, defined via their string rendering. -/
   def beq (i j : Instr) : Bool :=
     match toString i, toString j with
@@ -297,7 +297,8 @@ namespace Instr
     rewrite [beq]
     simp
 
-end Instr
+end Tengoku.LeanPool.Instr
 
 instance : BEq Instr where
   beq := Instr.beq
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

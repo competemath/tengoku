@@ -23,18 +23,18 @@ it here to show case how a combinatorial proof can be done.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped PowerSeries.WithPiTopology
 
 /-! ## Basic properties of pentagonal numbers -/
 
 /-- Pentagonal numbers, including negative inputs -/
-def pentagonal'' (k : ℤ) := k * (3 * k - 1) / 2
+def _root_.Tengoku.LeanPool.pentagonal'' (k : ℤ) := k * (3 * k - 1) / 2
 
 /-- Because integer division is hard to work with, we often multiply it by two
 @isnad1 id=eq.0h1v.s5.d4f40c5ce56d from=translated src=- shape=1d2b7e3a vocab=cad374a0
 -/
-theorem two_pentagonal'' (k : ℤ) : 2 * pentagonal'' k = k * (3 * k - 1) := by
+theorem _root_.Tengoku.LeanPool.two_pentagonal'' (k : ℤ) : 2 * pentagonal'' k = k * (3 * k - 1) := by
   unfold pentagonal''
   refine Int.two_mul_ediv_two_of_even ?_
   obtain h | h := Int.even_or_odd k
@@ -48,7 +48,7 @@ theorem two_pentagonal'' (k : ℤ) : 2 * pentagonal'' k = k * (3 * k - 1) := by
 /-- Nonnegativity
 @isnad1 id=le.0h1v.s3.944085744963 from=translated src=- shape=8a62b088 vocab=0a3c2b20
 -/
-theorem pentagonal_nonneg'' (k : ℤ) : 0 ≤ pentagonal'' k := by
+theorem _root_.Tengoku.LeanPool.pentagonal_nonneg'' (k : ℤ) : 0 ≤ pentagonal'' k := by
   suffices 0 ≤ 2 * pentagonal'' k by simpa
   rw [two_pentagonal'']
   obtain h | h := lt_or_ge 0 k
@@ -58,7 +58,7 @@ theorem pentagonal_nonneg'' (k : ℤ) : 0 ≤ pentagonal'' k := by
 /--
 @isnad1 id=eq.1h2v.s6.cc0731430ae4 from=translated src=- shape=55b184f6 vocab=0e4a4b68
 -/
-theorem two_pentagonal_inj'' {x y : ℤ} (h : x * (3 * x - 1) = y * (3 * y - 1)) : x = y := by
+theorem _root_.Tengoku.LeanPool.two_pentagonal_inj'' {x y : ℤ} (h : x * (3 * x - 1) = y * (3 * y - 1)) : x = y := by
   simp_rw [mul_sub_one] at h
   rw [sub_eq_sub_iff_sub_eq_sub, mul_left_comm x, mul_left_comm y, ← mul_sub,
     mul_self_sub_mul_self, ← mul_assoc, ← sub_eq_zero, ← sub_one_mul, mul_eq_zero] at h
@@ -70,7 +70,7 @@ theorem two_pentagonal_inj'' {x y : ℤ} (h : x * (3 * x - 1) = y * (3 * y - 1))
 /-- There are no repeated pentagonal number
 @isnad1 id=injectiv.0h0v.s2.b696e80a3192 from=translated src=- shape=e3d48bcb vocab=e94030ad
 -/
-theorem pentagonal_injective'' : Function.Injective pentagonal'' := by
+theorem _root_.Tengoku.LeanPool.pentagonal_injective'' : Function.Injective pentagonal'' := by
   intro a b h
   have : a * (3 * a - 1) = b * (3 * b - 1) := by
     simp [← two_pentagonal'', h]
@@ -80,12 +80,12 @@ theorem pentagonal_injective'' : Function.Injective pentagonal'' := by
 $$ k = \frac{1 \pm \sqrt{1 + 24n}}{6} $$
 We can use $1 + 24n$ to determine whether such inverse exists.
 -/
-def pentagonalDelta (n : ℤ) := 1 + 24 * n
+def _root_.Tengoku.LeanPool.pentagonalDelta (n : ℤ) := 1 + 24 * n
 
 /--
 @isnad1 id=eq.0h1v.s5.81a05c8e265d from=translated src=- shape=2cf31057 vocab=18298167
 -/
-theorem pentagonalDelta_pentagonal (k : ℤ) :
+theorem _root_.Tengoku.LeanPool.pentagonalDelta_pentagonal (k : ℤ) :
     pentagonalDelta (pentagonal'' k) = (6 * k - 1) ^ 2 := by
   unfold pentagonalDelta
   rw [show 24 * pentagonal'' k = 12 * (2 * pentagonal'' k) by ring, two_pentagonal'']
@@ -93,7 +93,7 @@ theorem pentagonalDelta_pentagonal (k : ℤ) :
 
 /-- The first definition of $\phi(x)$, where each coefficient is assigned according to the
 pentagonal number inverse. $0$ if there is no inverse; $(-1)^k$ if there is an inverse $k$. -/
-def phiCoeff (n : ℤ) : ℤ :=
+def _root_.Tengoku.LeanPool.phiCoeff (n : ℤ) : ℤ :=
   if IsSquare (pentagonalDelta n) then
     if 6 ∣ 1 + (pentagonalDelta n).sqrt then
       ((1 + (pentagonalDelta n).sqrt) / 6).negOnePow
@@ -107,7 +107,7 @@ def phiCoeff (n : ℤ) : ℤ :=
 /-- The coefficients are exactly $(-1)^k$ at pentagonal numbers.
 @isnad1 id=eq.0h1v.s3.761494ead135 from=translated src=- shape=176da496 vocab=ba29482e
 -/
-theorem phiCoeff_pentagonal (k : ℤ) : phiCoeff (pentagonal'' k) = k.negOnePow := by
+theorem _root_.Tengoku.LeanPool.phiCoeff_pentagonal (k : ℤ) : phiCoeff (pentagonal'' k) = k.negOnePow := by
   rw [phiCoeff, pentagonalDelta_pentagonal]
   have hsquare : IsSquare ((6 * k - 1) ^ 2) := IsSquare.sq _
   simp only [hsquare, ↓reduceIte]
@@ -123,7 +123,7 @@ theorem phiCoeff_pentagonal (k : ℤ) : phiCoeff (pentagonal'' k) = k.negOnePow 
 /-- A coefficient is zero iff and only if it is not a pentagonal number.
 @isnad1 id=iff.0h1v.s4.27440181e4f6 from=translated src=- shape=307c98ab vocab=201deb1b
 -/
-theorem phiCoeff_eq_zero_iff (n : ℤ) : phiCoeff n = 0 ↔ n ∉ Set.range pentagonal'' := by
+theorem _root_.Tengoku.LeanPool.phiCoeff_eq_zero_iff (n : ℤ) : phiCoeff n = 0 ↔ n ∉ Set.range pentagonal'' := by
   rw [phiCoeff]
   constructor
   · split_ifs with hsq h1 h2
@@ -172,12 +172,12 @@ theorem phiCoeff_eq_zero_iff (n : ℤ) : phiCoeff n = 0 ↔ n ∉ Set.range pent
     · simp
 
 /-- $\phi(x)$ is constructed using the coefficients defined above. -/
-def phi : PowerSeries ℤ := PowerSeries.mk (phiCoeff ·)
+def _root_.Tengoku.LeanPool.phi : PowerSeries ℤ := PowerSeries.mk (phiCoeff ·)
 
 /-- The second definition of $\phi(x)$, summing over terms with pentagonal exponents directly.
 @isnad1 id=hassum.0h0v.s6.adeb8199f42e from=translated src=- shape=0d1995d0 vocab=3ecb53ee
 -/
-theorem hasSum_phi :
+theorem _root_.Tengoku.LeanPool.hasSum_phi :
     HasSum (fun k ↦ PowerSeries.monomial (pentagonal'' k).toNat (k.negOnePow : ℤ)) phi := by
   obtain h := PowerSeries.hasSum_of_monomials_self phi
   nth_rw 1 [phi] at h
@@ -493,7 +493,7 @@ We then calculate the difference between each element, and keep the last element
 We get a valid `x : FerrersDiagram 26` where `x.delta = [6, 5, 2, 1]`.
 -/
 @[ext]
-structure FerrersDiagram (n : ℕ) where
+structure _root_.Tengoku.LeanPool.FerrersDiagram (n : ℕ) where
   /-- The difference between parts. -/
   delta : List ℕ
   /-- since we require distinct partition, all delta should be positive. -/
@@ -501,7 +501,7 @@ structure FerrersDiagram (n : ℕ) where
   /-- All parts should sum back to `n`. Since we took the difference, this becomes a rolling sum. -/
   delta_sum : ((delta.zipIdx 1).map fun p ↦ p.1 * p.2).sum = n
 
-namespace FerrersDiagram
+namespace Tengoku.LeanPool.FerrersDiagram
 variable {n : ℕ}
 
 /-- There can't be more parts than `n`
@@ -1832,7 +1832,7 @@ match l with
     simpa [unfoldDelta, foldDelta, (foldDelta_unfoldDelta h.2)]
   exact Nat.add_sub_of_le  h.1
 
-end FerrersDiagram
+end Tengoku.LeanPool.FerrersDiagram
 
 namespace Multiset
 
@@ -1845,7 +1845,7 @@ theorem qind {α : Type*} {motive : Multiset α → Prop}
 
 end Multiset
 
-namespace FerrersDiagram
+namespace Tengoku.LeanPool.FerrersDiagram
 variable {n : ℕ}
 
 variable (n) in
@@ -1951,7 +1951,7 @@ theorem card_sub (hn : 0 < n) :
   rw [card_eq hn]
   simp
 
-end FerrersDiagram
+end Tengoku.LeanPool.FerrersDiagram
 
 namespace Finset
 
@@ -1970,7 +1970,7 @@ theorem sum_range_id_mul_two' (n : ℕ) :
 
 end Finset
 
-namespace FerrersDiagram
+namespace Tengoku.LeanPool.FerrersDiagram
 variable {n : ℕ}
 
 /-- Calculation of `n` for negative pentagonal case.
@@ -2259,18 +2259,18 @@ theorem phiCoeff_eq_card_sub (hn : 0 < n) :
         apply Int.eq_of_mul_eq_mul_left (show 2 ≠ 0 by simp)
         rw [two_pentagonal'', hk]
 
-end FerrersDiagram
+end Tengoku.LeanPool.FerrersDiagram
 
 /-! ## Final connection -/
 
 /-- Forth definition: of $\phi$: coefficients represents the difference of
 even and odd partitions. -/
-def phiCoeff' (n : ℕ) := ∑ s ∈ Nat.Partition.distincts n, (-1) ^ s.parts.card
+def _root_.Tengoku.LeanPool.phiCoeff' (n : ℕ) := ∑ s ∈ Nat.Partition.distincts n, (-1) ^ s.parts.card
 
 /--
 @isnad1 id=eq.0h1v.s3.affb8b3cd70c from=translated src=- shape=327d930b vocab=c9f8cfe7
 -/
-theorem phiCoeff_eq (n : ℕ) : phiCoeff n = phiCoeff' n := by
+theorem _root_.Tengoku.LeanPool.phiCoeff_eq (n : ℕ) : phiCoeff n = phiCoeff' n := by
   obtain rfl | hn := Nat.eq_zero_or_pos n
   · decide
   rw [FerrersDiagram.phiCoeff_eq_card_sub hn, ← FerrersDiagram.card_sub hn,
@@ -2308,7 +2308,7 @@ theorem phiCoeff_eq (n : ℕ) : phiCoeff n = phiCoeff' n := by
 /-- The multiplication formula of $\phi(x)$ expands precisely to the partition formula.
 @isnad1 id=hasprod.0h0v.s7.0386dc456a5c from=translated src=- shape=77c5da59 vocab=3de7d0ce
 -/
-theorem eularPhi : HasProd (fun (n : ℕ+) ↦ (1 - PowerSeries.monomial n (1 : ℤ)))
+theorem _root_.Tengoku.LeanPool.eularPhi : HasProd (fun (n : ℕ+) ↦ (1 - PowerSeries.monomial n (1 : ℤ)))
     (PowerSeries.mk (phiCoeff' ·)) := by
   unfold HasProd
   rw [PowerSeries.WithPiTopology.tendsto_iff_coeff_tendsto]
@@ -2379,7 +2379,7 @@ open PowerSeries in
 $$\prod_{n=1}^{\infty} (1 - x^n) = \sum_{k=-\infty}^{\infty} (-1)^k x^{k(3k-1)/2}$$
 @isnad1 id=eq.0h0v.s8.1c161c86c81d from=translated src=- shape=87640cd8 vocab=33e4128e
 -/
-theorem pentagonalNumberTheorem :
+theorem _root_.Tengoku.LeanPool.pentagonalNumberTheorem :
     ∏' (n : ℕ+), (1 - monomial n (1 : ℤ)) =
     ∑' (k : ℤ), monomial (k * (3 * k - 1) / 2).toNat (((-1) ^ k : ℤˣ) : ℤ) := by
   apply HasProd.tprod_eq
@@ -2387,3 +2387,4 @@ theorem pentagonalNumberTheorem :
   simp_rw [← phiCoeff_eq]
   rw [← phi]
   exact hasSum_phi.tsum_eq
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

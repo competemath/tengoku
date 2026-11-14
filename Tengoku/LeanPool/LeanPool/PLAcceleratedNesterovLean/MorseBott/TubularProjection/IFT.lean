@@ -16,7 +16,7 @@ the submanifold S.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter Topology Metric NNReal
 
 attribute [local instance] Classical.propDecidable
@@ -185,3 +185,4 @@ lemma localMin_sq_dist_implies_optimalityEqn
   rw [hterm1, hterm2]; exact h_sum_zero w
 
 end PLAcceleratedNesterovLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

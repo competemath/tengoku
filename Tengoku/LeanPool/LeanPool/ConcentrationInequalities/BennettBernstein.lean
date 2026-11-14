@@ -35,7 +35,7 @@ Sorry-free and axiom-clean `[propext, Classical.choice, Quot.sound]`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory ProbabilityTheory Real
 
 namespace Contrib.Bennett
@@ -501,3 +501,4 @@ theorem hasSubgammaMGF_of_bounded_above [IsProbabilityMeasure μ] {X : Ω → �
     (bennett_exponent_le_subgamma hbpos ht htbeq (hXsq.trans hvar)))
 
 end Contrib.Bennett
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

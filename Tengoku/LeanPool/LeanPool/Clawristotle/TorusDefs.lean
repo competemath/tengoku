@@ -16,7 +16,7 @@ periodic lift. The `FlatTorus3` instance is assembled in `TorusInstance.lean`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Matrix Finset BigOperators Real Filter
 
 noncomputable section
@@ -26,18 +26,19 @@ noncomputable section
 -- ============================================================================
 
 /-- The 3-torus: product of three circles with period 1. -/
-abbrev Torus3 := Fin 3 → AddCircle (1 : ℝ)
+abbrev _root_.Tengoku.LeanPool.Torus3 := Fin 3 → AddCircle (1 : ℝ)
 
 -- Period 1 > 0, needed for AddCircle.measureSpace
 
 /-- The quotient map ℝ³ → T³, sending each coordinate to its equivalence class. -/
-def torusMk (x : Fin 3 → ℝ) : Torus3 := fun i => QuotientAddGroup.mk (x i)
+def _root_.Tengoku.LeanPool.torusMk (x : Fin 3 → ℝ) : Torus3 := fun i => QuotientAddGroup.mk (x i)
 
 -- torusMk is surjective (every point in T³ has a preimage)
 
 /-- The periodic lift of a function on the torus to ℝ³. -/
-def periodicLift (f : Torus3 → ℝ) : (Fin 3 → ℝ) → ℝ := f ∘ torusMk
+def _root_.Tengoku.LeanPool.periodicLift (f : Torus3 → ℝ) : (Fin 3 → ℝ) → ℝ := f ∘ torusMk
 
 -- The lift IS periodic (by construction):
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

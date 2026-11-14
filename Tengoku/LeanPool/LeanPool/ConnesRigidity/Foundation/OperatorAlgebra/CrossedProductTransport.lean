@@ -19,7 +19,7 @@ The crossed product transport component of the Connes rigidity formalization.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Connes
 namespace CrossedProduct
 
@@ -253,3 +253,4 @@ theorem crossedHaarHilbertEquiv_group_conj
 end
 end CrossedProduct
 end Connes
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

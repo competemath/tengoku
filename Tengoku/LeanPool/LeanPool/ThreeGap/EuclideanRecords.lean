@@ -30,7 +30,7 @@ in the plane). The sharp `g₂ ≤ 5` needs Romanov's `K = 4`; this is the `K = 
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace ThreeGap.EuclideanRecords
 
 open scoped Real
@@ -165,3 +165,4 @@ theorem gap_count_euclidean (α : Fin 2 → ℝ) {k₀ : Fin 2} (hirr : Irration
   simpa using this
 
 end ThreeGap.EuclideanRecords
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

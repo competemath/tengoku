@@ -19,7 +19,7 @@ Imported Lean Pool material for `LeanPool.ErdosTuzaValtr.Main.Lemmas.Interweaved
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open OrderDual
 
 variable {α : Type _} [LinearOrder α] (C : Config α)
@@ -27,7 +27,7 @@ variable {α : Type _} [LinearOrder α] (C : Config α)
 /--
 @isnad1 id=hasngon.4h9v.s6.2560d7a92c7e from=translated src=- shape=6d97c03e vocab=abf49ced
 -/
-theorem Config.hasInterweavedLaced_hasNGon_ff {n : ℕ} {S : Finset α} (cap4_free : ¬C.HasNCap 4 S)
+theorem Tengoku.LeanPool.Config.hasInterweavedLaced_hasNGon_ff {n : ℕ} {S : Finset α} (cap4_free : ¬C.HasNCap 4 S)
     {p q r s : α} (label : C.Label S) (q_lt_r : q < r) (sqr : ¬label.Slope q r) :
     C.HasInterweavedLaced (n + 2) S p q r s → C.HasNGon (n + 3) S :=
   by
@@ -97,7 +97,7 @@ theorem Config.hasInterweavedLaced_hasNGon_ff {n : ℕ} {S : Finset α} (cap4_fr
 /--
 @isnad1 id=hasngon.4h9v.s6.76fbdb34ef3d from=translated src=- shape=e486672b vocab=abf49ced
 -/
-theorem Config.hasInterweavedLaced_hasNGon_tt {n : ℕ} {S : Finset α} (cap4_free : ¬C.HasNCap 4 S)
+theorem Tengoku.LeanPool.Config.hasInterweavedLaced_hasNGon_tt {n : ℕ} {S : Finset α} (cap4_free : ¬C.HasNCap 4 S)
     {p q r s : α} (label : C.Label S) (q_lt_r : q < r) (sqr : label.Slope q r) :
     C.HasInterweavedLaced (n + 2) S p q r s → C.HasNGon (n + 3) S :=
   by
@@ -109,7 +109,7 @@ theorem Config.hasInterweavedLaced_hasNGon_tt {n : ℕ} {S : Finset α} (cap4_fr
 /--
 @isnad1 id=hasngon.2h8v.s6.925a7a2a35f1 from=translated src=- shape=07dd537f vocab=a6915032
 -/
-theorem Config.hasInterweavedLaced_hasNGon {n : ℕ} {S : Finset α} (cap4_free : ¬C.HasNCap 4 S)
+theorem Tengoku.LeanPool.Config.hasInterweavedLaced_hasNGon {n : ℕ} {S : Finset α} (cap4_free : ¬C.HasNCap 4 S)
     {p q r s : α} : C.HasInterweavedLaced (n + 2) S p q r s → C.HasNGon (n + 3) S :=
   by
   intro h; have q_le_r : q ≤ r := by rw [Config.HasInterweavedLaced] at h; tauto
@@ -125,3 +125,4 @@ theorem Config.hasInterweavedLaced_hasNGon {n : ℕ} {S : Finset α} (cap4_free 
     apply C.hasInterweavedLaced_hasNGon_tt <;> assumption
   · revert h
     apply C.hasInterweavedLaced_hasNGon_ff <;> assumption
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

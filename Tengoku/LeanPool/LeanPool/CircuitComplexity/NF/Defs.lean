@@ -24,7 +24,7 @@ complexity measures, and De Morgan negation duality.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace CircuitComplexity
 
 /-- A literal: a Boolean variable (by index) together with a polarity flag.
@@ -136,3 +136,4 @@ theorem CNF.neg_complexity (φ : CNF N) : φ.neg.complexity = φ.complexity := b
   simp [CNF.neg, DNF.complexity, CNF.complexity, List.length_map]
 
 end CircuitComplexity
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

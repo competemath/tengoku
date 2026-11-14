@@ -27,7 +27,7 @@ spatial factor equivalence in Zhou §3.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Connes
 
 noncomputable section
@@ -117,3 +117,4 @@ theorem StarAlgEquiv.isNormal
 
 end
 end Connes
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

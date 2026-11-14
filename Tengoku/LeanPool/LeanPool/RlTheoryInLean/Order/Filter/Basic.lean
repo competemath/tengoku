@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Finset Filter
 open scoped BigOperators
 
@@ -33,3 +33,4 @@ lemma EventuallyEq.finset_sum {α ι β : Type*} [AddCommGroup β] {l : Filter �
       (ih (fun i hi => hfg i (Finset.mem_insert_of_mem hi)))
 
 end Filter
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

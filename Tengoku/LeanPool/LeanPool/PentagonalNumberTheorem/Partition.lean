@@ -15,11 +15,11 @@ Imported Lean Pool material for `LeanPool.PentagonalNumberTheorem.Partition`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /--
 @isnad1 id=eq.0h1v.s6.056490df0b70 from=translated src=- shape=523d3a35 vocab=0b35a43f
 -/
-theorem two_pentagonal (k : ℤ) : 2 * (k * (3 * k - 1) / 2) = k * (3 * k - 1) := by
+theorem _root_.Tengoku.LeanPool.two_pentagonal (k : ℤ) : 2 * (k * (3 * k - 1) / 2) = k * (3 * k - 1) := by
   refine Int.two_mul_ediv_two_of_even ?_
   obtain h | h := Int.even_or_odd k
   · exact Even.mul_right h (3 * k - 1)
@@ -32,7 +32,7 @@ theorem two_pentagonal (k : ℤ) : 2 * (k * (3 * k - 1) / 2) = k * (3 * k - 1) :
 /--
 @isnad1 id=le.0h1v.s5.1ade7b6cf879 from=translated src=- shape=81d07cb0 vocab=cf232d13
 -/
-theorem pentagonal_nonneg (k : ℤ) : 0 ≤ k * (3 * k - 1) / 2 := by
+theorem _root_.Tengoku.LeanPool.pentagonal_nonneg (k : ℤ) : 0 ≤ k * (3 * k - 1) / 2 := by
   suffices 0 ≤ 2 * (k * (3 * k - 1) / 2) by simpa
   rw [two_pentagonal]
   obtain h | h := lt_or_ge 0 k
@@ -42,7 +42,7 @@ theorem pentagonal_nonneg (k : ℤ) : 0 ≤ k * (3 * k - 1) / 2 := by
 /--
 @isnad1 id=eq.1h2v.s6.cc0731430ae4 from=translated src=- shape=55b184f6 vocab=0e4a4b68
 -/
-theorem two_pentagonal_inj {x y : ℤ} (h : x * (3 * x - 1) = y * (3 * y - 1)) : x = y := by
+theorem _root_.Tengoku.LeanPool.two_pentagonal_inj {x y : ℤ} (h : x * (3 * x - 1) = y * (3 * y - 1)) : x = y := by
   simp_rw [mul_sub_one] at h
   rw [sub_eq_sub_iff_sub_eq_sub, mul_left_comm x, mul_left_comm y, ← mul_sub,
     mul_self_sub_mul_self, ← mul_assoc, ← sub_eq_zero, ← sub_one_mul, mul_eq_zero] at h
@@ -63,3 +63,4 @@ noncomputable def kSet (n : ℤ) : Finset ℤ :=
   Finset.Icc (-(((1 + 24 * n).sqrt - 1) / 6)) (((1 + 24 * n).sqrt + 1) / 6)
 
 end Nat.Partition
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -19,7 +19,7 @@ using atoms of the neighbouring cells (`exists_isWitness_of_abs`). The `(2N + 1)
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open MeasureTheory Metric Set Filter
@@ -259,3 +259,4 @@ theorem ofReal_phi_le {C : ℝ≥0∞} (hC : IsWeakTypeBound 2 C) : ENNReal.ofRe
     ((tendsto_add_mul_div_add_mul_atTop_nhds (1 : ℝ) 3 2 two_ne_zero).pow 3).mul_const phi
 
 end LeanPool.CenteredMaximal.Lattice
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -25,7 +25,7 @@ rows by `(F_E, 𝒰)`, the Schur complement of the first block is
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Matrix
 open scoped Matrix
 
@@ -3197,3 +3197,4 @@ lemma extend_configLred_eq_weightedLaplacian (hs : ∀ i, 0 < s i)
 end
 
 end BollobasNikiforov
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

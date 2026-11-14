@@ -10,7 +10,7 @@ weighted Fourier representative is an `L²` function on four-dimensional
 space-time; the exceptional frequency line has Lebesgue measure zero.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace NavierStokes.R3SpaceTimeHarmonic
 
 open Set Filter MeasureTheory TemperedDistribution FourierTransform R3SpaceTime
@@ -111,3 +111,4 @@ theorem eq_zero_of_spatially_harmonic_memSobolev {s : ℝ} {f : 𝓢'(Domain, �
   eq_zero_of_multiplier_eq_zero hs (multiplier_eq_zero_of_spatialLaplacian_eq_zero hf)
 
 end NavierStokes.R3SpaceTimeHarmonic
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

@@ -12,7 +12,7 @@ Preliminary lemmas and definitions used by the Polytopes formalization.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Pointwise Module
 
 /-- Lifts a set whose elements satisfy `property` to the corresponding subtype.
@@ -199,7 +199,7 @@ lemma AffineMap.preimage_convexHull {𝕜 : Type u_1} {E : Type u_2} {F : Type u
 /-- The affine span of a nontrivial set is nontrivial.
 @isnad1 id=nontrivi.1h4v.s6.1c5312515db9 from=translated src=- shape=05060bdd vocab=69b28da8
 -/
-lemma affineSpan_nontrivial (k : Type u_1) {V : Type u_2} {P : Type u_3} [Ring k] [AddCommGroup V]
+lemma _root_.Tengoku.LeanPool.affineSpan_nontrivial (k : Type u_1) {V : Type u_2} {P : Type u_3} [Ring k] [AddCommGroup V]
     [Module k V] [AddTorsor V P] {s : Set P} (h : Nontrivial s) :
     Nontrivial (affineSpan k s) := by
   have := @CanLift.prf (Set P) (Set {x // x ∈ affineSpan k s}) _ _ _ s (subset_affineSpan k s)
@@ -259,3 +259,4 @@ lemma Fin.mem_fin_list_range {n : ℕ} (i : Fin n) : i ∈ n.finListRange := by
 /-- Drops the first `m` entries from a length-indexed vector. -/
 def Vector.Listdrop {R : Type*} {n : ℕ} (m : ℕ) : Vector R n → Vector R (n - m) :=
   fun v => v.drop m
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

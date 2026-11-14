@@ -1,5 +1,5 @@
 import Tengoku.NavierStokesEuler.Euler.GevreyCorrectionSplit
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace EulerBasePressureCommutator
 end EulerBasePressureCommutator
 namespace MeasureTheory
@@ -119,3 +119,4 @@ theorem basePressure_weighted_bound {s : ℕ} {A : SmoothCoefficient period} {p 
       (weight_pos hρ n.val).le).trans_eq (by ring)
 
 end EulerBasePressureCommutator
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

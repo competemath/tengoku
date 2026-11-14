@@ -30,7 +30,7 @@ C(x,y) = ∫₀^∞ e^{−sm²} H(s,|x−y|) ds via the heat kernel.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Complex Real Filter
 open TopologicalSpace
 open scoped Real InnerProductSpace BigOperators
@@ -52,13 +52,13 @@ noncomputable section
     Defined in FourierTransforms.lean as `parseval_covariance_schwartz_regulated`.
 @isnad1 id=eq.1h3v.s11.78dff8a74a68 from=translated src=- shape=5848d170 vocab=16aef5da
 -/
-theorem parseval_covariance_schwartz_regulated' (α : ℝ) (hα : 0 < α) (m : ℝ) [Fact (0 < m)] (f :
+theorem _root_.Tengoku.LeanPool.parseval_covariance_schwartz_regulated' (α : ℝ) (hα : 0 < α) (m : ℝ) [Fact (0 < m)] (f :
   TestFunctionℂ) :
   (∫ x, ∫ y,
     f x * (freeCovarianceRegulated α m x y : ℂ) * (starRingEnd ℂ (f y)) ∂volume ∂volume).re
   = ∫ k, Real.exp (-α * (2 * Real.pi)^2 * ‖k‖^2) * ‖(SchwartzMap.fourierTransformCLM ℂ f) k‖^2 *
     freePropagatorMomentumMathlib m k ∂volume :=
-  _root_.parseval_covariance_schwartz_regulated α hα m f
+  _root_.Tengoku.LeanPool.parseval_covariance_schwartz_regulated α hα m f
 
 /-- **(Time Reflection Change of Variables):**
     Integrating a function over spacetime is unchanged when both variables are composed with
@@ -66,7 +66,7 @@ theorem parseval_covariance_schwartz_regulated' (α : ℝ) (hα : 0 < α) (m : �
     together with Fubini's theorem for later use in reflection-positivity arguments.
 @isnad1 id=eq.1h1v.s10.f061f5375790 from=translated src=- shape=9bf56c0d vocab=2a5ec8e8
 -/
-lemma double_integral_timeReflection
+lemma _root_.Tengoku.LeanPool.double_integral_timeReflection
   (G : SpaceTime → SpaceTime → ℂ)
   (_hG : Integrable (fun p : SpaceTime × SpaceTime => G p.1 p.2) (volume.prod volume)) :
   ∫ x, ∫ y, G (QFT.timeReflection x) (QFT.timeReflection y) ∂volume ∂volume
@@ -87,7 +87,7 @@ lemma double_integral_timeReflection
     without re-establishing integrability each time.
 @isnad1 id=eq.1h3v.s12.c16ffda8bb67 from=translated src=- shape=c3ba320a vocab=3a68b569
 -/
-lemma double_integral_timeReflection_covariance
+lemma _root_.Tengoku.LeanPool.double_integral_timeReflection_covariance
   (m : ℝ) (f g : TestFunctionℂ)
   (hf : Integrable (fun p : SpaceTime × SpaceTime =>
       (QFT.compTimeReflection f) p.1 * (freeCovariance m p.1 p.2 : ℂ) * g p.2)
@@ -142,7 +142,7 @@ All results assume m > 0 (positive mass) which is required for integrability.
     for Schwartz test functions, using translation-invariant L¹ kernel integrability.
 @isnad1 id=integrab.0h3v.s9.619f45fc54ea from=translated src=- shape=c06a79db vocab=d1c0236f
 -/
-theorem freeCovarianceℂ_bilinear_integrable
+theorem _root_.Tengoku.LeanPool.freeCovarianceℂ_bilinear_integrable
     (m : ℝ) [Fact (0 < m)] (f g : TestFunctionℂ) :
     Integrable (fun p : SpaceTime × SpaceTime =>
       (f p.1) * (freeCovariance m p.1 p.2) * (g p.2)) volume :=
@@ -153,7 +153,7 @@ theorem freeCovarianceℂ_bilinear_integrable
     maps test functions to test functions.
 @isnad1 id=integrab.0h2v.s11.3da63398e78a from=translated src=- shape=74c02c3a vocab=a9f54fb8
 -/
-lemma integrable_compTimeReflection_covariance
+lemma _root_.Tengoku.LeanPool.integrable_compTimeReflection_covariance
   (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ) :
   Integrable (fun p : SpaceTime × SpaceTime =>
       (QFT.compTimeReflection f) p.1 * (freeCovariance m p.1 p.2 : ℂ) * f p.2)
@@ -165,7 +165,7 @@ lemma integrable_compTimeReflection_covariance
     they agree pointwise as complex values.
 @isnad1 id=eq.0h2v.s11.ece434595180 from=translated src=- shape=a89ffe2f vocab=d44383ab
 -/
-lemma compTimeReflection_toComplex_eq_ofReal
+lemma _root_.Tengoku.LeanPool.compTimeReflection_toComplex_eq_ofReal
   (f : OSforGFF.TestFunction) (x : SpaceTime) :
   (QFT.compTimeReflection (toComplex f)) x = ((QFT.compTimeReflectionReal f) x : ℂ) := by
   simp only [QFT.compTimeReflection, QFT.compTimeReflectionReal,
@@ -175,7 +175,7 @@ lemma compTimeReflection_toComplex_eq_ofReal
     This uses `integral_ofReal_eq` and `Complex.ofReal_re`.
 @isnad1 id=eq.1h3v.s6.4a44f2ff723c from=translated src=- shape=df164845 vocab=69a3b0bb
 -/
-lemma re_integral_ofReal {α : Type*} [MeasurableSpace α] (μ : Measure α) (h : α → ℝ)
+lemma _root_.Tengoku.LeanPool.re_integral_ofReal {α : Type*} [MeasurableSpace α] (μ : Measure α) (h : α → ℝ)
     (hf : Integrable h μ) :
     (∫ x, (h x : ℂ) ∂μ).re = ∫ x, h x ∂μ := by
   rw [integral_ofReal_eq μ h hf]
@@ -184,7 +184,7 @@ lemma re_integral_ofReal {α : Type*} [MeasurableSpace α] (μ : Measure α) (h 
 /-- Integrability of the real covariance kernel obtained from a real test function.
 @isnad1 id=integrab.0h2v.s10.2cde655183a8 from=translated src=- shape=69f743e5 vocab=74d08871
 -/
-lemma integrable_real_covariance_kernel
+lemma _root_.Tengoku.LeanPool.integrable_real_covariance_kernel
   (m : ℝ) [Fact (0 < m)] (f : OSforGFF.TestFunction) :
   Integrable (fun p : SpaceTime × SpaceTime =>
       (QFT.compTimeReflectionReal f) p.1 * freeCovariance m p.1 p.2 * f p.2)
@@ -227,7 +227,7 @@ lemma integrable_real_covariance_kernel
 /-- Fubini helper: rewrite the real kernel double integral over the product measure.
 @isnad1 id=eq.0h2v.s11.6e542505e617 from=translated src=- shape=623d2cd9 vocab=c277b97e
 -/
-lemma integral_prod_real_covariance_kernel
+lemma _root_.Tengoku.LeanPool.integral_prod_real_covariance_kernel
   (m : ℝ) [Fact (0 < m)] (f : OSforGFF.TestFunction) :
   ∫ p : SpaceTime × SpaceTime,
       (QFT.compTimeReflectionReal f) p.1 * freeCovariance m p.1 p.2 * f p.2 ∂(volume.prod volume)
@@ -240,7 +240,7 @@ lemma integral_prod_real_covariance_kernel
 /-- Complex Fubini helper mirroring `integral_prod_real_covariance_kernel`.
 @isnad1 id=eq.0h2v.s12.6cbc1e3222c6 from=translated src=- shape=702cd540 vocab=92d02d8a
 -/
-lemma integral_prod_complex_covariance_kernel
+lemma _root_.Tengoku.LeanPool.integral_prod_complex_covariance_kernel
   (m : ℝ) [Fact (0 < m)] (f : OSforGFF.TestFunction) :
   ∫ p : SpaceTime × SpaceTime,
       (QFT.compTimeReflection (toComplex f)) p.1 * (freeCovariance m p.1 p.2 : ℂ)
@@ -262,7 +262,7 @@ lemma integral_prod_complex_covariance_kernel
   via `integral_ofReal_eq` applied twice.
 @isnad1 id=eq.0h2v.s11.ddde32b98cfd from=translated src=- shape=7555db21 vocab=0be57843
 -/
-lemma real_integral_eq_complex_re
+lemma _root_.Tengoku.LeanPool.real_integral_eq_complex_re
   (m : ℝ) [Fact (0 < m)] (f : OSforGFF.TestFunction) :
   ∫ x, ∫ y, (QFT.compTimeReflectionReal f) x * freeCovariance m x y * f y ∂volume ∂volume
     = (∫ x, ∫ y, (QFT.compTimeReflection (toComplex f)) x * (freeCovariance m x y : ℂ)
@@ -301,7 +301,7 @@ lemma real_integral_eq_complex_re
   This allows us to match the Parseval identity which uses starRingEnd.
 @isnad1 id=eq.0h2v.s8.ef3c486d53b9 from=translated src=- shape=42db9c19 vocab=96954fd7
 -/
-lemma toComplex_star_eq
+lemma _root_.Tengoku.LeanPool.toComplex_star_eq
   (f : OSforGFF.TestFunction) (x : SpaceTime) :
   starRingEnd ℂ ((toComplex f) x) = (toComplex f) x := by
   -- toComplex f x = (f x : ℂ) by definition
@@ -310,7 +310,7 @@ lemma toComplex_star_eq
 /-- The time-reflected complexification of a real test function remains real-valued.
 @isnad1 id=eq.0h2v.s11.c9f2b097fd82 from=translated src=- shape=1b84be60 vocab=23846347
 -/
-lemma compTimeReflection_toComplex_star_eq
+lemma _root_.Tengoku.LeanPool.compTimeReflection_toComplex_star_eq
   (f : OSforGFF.TestFunction) (x : SpaceTime) :
   starRingEnd ℂ ((QFT.compTimeReflection (toComplex f)) x)
     = (QFT.compTimeReflection (toComplex f)) x := by
@@ -327,7 +327,7 @@ lemma compTimeReflection_toComplex_star_eq
     transformations preserve distances, this follows immediately.
 @isnad1 id=eq.0h4v.s4.05ae45a9a4fc from=translated src=- shape=f22db6dc vocab=0a919bc6
 -/
-theorem freeCovariance_euclidean_invariant (m : ℝ)
+theorem _root_.Tengoku.LeanPool.freeCovariance_euclidean_invariant (m : ℝ)
   (g : QFT.E) (x y : SpaceTime) :
   freeCovariance m (QFT.act g x) (QFT.act g y) = freeCovariance m x y := by
   -- freeCovariance = freeCovarianceBessel only depends on ‖x - y‖
@@ -338,12 +338,12 @@ theorem freeCovariance_euclidean_invariant (m : ℝ)
   simp only [h_diff, g.R.norm_map]
 
 /-- Time reflection as an element of the Euclidean group (rotation with no translation). -/
-def timeReflectionE : QFT.E := ⟨QFT.timeReflectionLE.toLinearIsometry, 0⟩
+def _root_.Tengoku.LeanPool.timeReflectionE : QFT.E := ⟨QFT.timeReflectionLE.toLinearIsometry, 0⟩
 
 /-- The Euclidean action of timeReflectionE equals timeReflection.
 @isnad1 id=eq.0h1v.s3.610c8260644c from=translated src=- shape=25ac9e83 vocab=3ef8ab55
 -/
-lemma act_timeReflectionE (x : SpaceTime) : QFT.act timeReflectionE x = QFT.timeReflection x := by
+lemma _root_.Tengoku.LeanPool.act_timeReflectionE (x : SpaceTime) : QFT.act timeReflectionE x = QFT.timeReflection x := by
   simp only [timeReflectionE, QFT.act, add_zero, LinearIsometryEquiv.coe_toLinearIsometry]
   rfl
 
@@ -352,7 +352,7 @@ lemma act_timeReflectionE (x : SpaceTime) : QFT.act timeReflectionE x = QFT.time
   This follows from general Euclidean invariance since time reflection is in O(4).
 @isnad1 id=eq.0h3v.s4.df9113c71d6c from=translated src=- shape=da649dde vocab=e76a8bd9
 -/
-lemma covariance_timeReflection_invariant (m : ℝ) :
+lemma _root_.Tengoku.LeanPool.covariance_timeReflection_invariant (m : ℝ) :
     ∀ x y, freeCovariance m (QFT.timeReflection x) (QFT.timeReflection y) = freeCovariance m x y :=
       by
   intro x y
@@ -369,7 +369,7 @@ The following lemmas prove properties of this bilinear form.
     This follows from product integrability (`freeCovarianceℂ_bilinear_integrable`) plus Fubini.
 @isnad1 id=integrab.0h3v.s9.3275e5badb73 from=translated src=- shape=92318404 vocab=f8344777
 -/
-lemma freeCovarianceℂ_bilinear_inner_integrable
+lemma _root_.Tengoku.LeanPool.freeCovarianceℂ_bilinear_inner_integrable
   (m : ℝ) [Fact (0 < m)] (f g : TestFunctionℂ) :
   Integrable (fun x => ∫ y, (f x) * (freeCovariance m x y) * (g y) ∂volume) volume := by
   have h := freeCovarianceℂ_bilinear_integrable m f g
@@ -381,7 +381,7 @@ lemma freeCovarianceℂ_bilinear_inner_integrable
     Follows from product integrability via Fubini (`Integrable.prod_right_ae`).
 @isnad1 id=eventual.0h3v.s9.6a1b16d4f533 from=translated src=- shape=abae68c4 vocab=4523bd11
 -/
-lemma freeCovarianceℂ_bilinear_slice_integrable
+lemma _root_.Tengoku.LeanPool.freeCovarianceℂ_bilinear_slice_integrable
   (m : ℝ) [Fact (0 < m)] (f g : TestFunctionℂ) :
   ∀ᵐ x ∂volume, Integrable (fun y => (f x) * (freeCovariance m x y) * (g y)) volume := by
   have h := freeCovarianceℂ_bilinear_integrable m f g
@@ -391,7 +391,7 @@ lemma freeCovarianceℂ_bilinear_slice_integrable
 /-- Generalized bilinearity in the first argument: scalar multiplication and addition combined.
 @isnad1 id=eq.0h5v.s8.668079cb88b3 from=translated src=- shape=e06e7412 vocab=ae6a4908
 -/
-theorem freeCovarianceℂ_bilinear_add_smul_left
+theorem _root_.Tengoku.LeanPool.freeCovarianceℂ_bilinear_add_smul_left
   (m : ℝ) [Fact (0 < m)] (c : ℂ) (f₁ f₂ g : TestFunctionℂ) :
     freeCovarianceℂBilinear m (c • f₁ + f₂) g
       = c * freeCovarianceℂBilinear m f₁ g + freeCovarianceℂBilinear m f₂ g := by
@@ -446,7 +446,7 @@ theorem freeCovarianceℂ_bilinear_add_smul_left
 /--
 @isnad1 id=eq.0h4v.s7.c42c00e62e7e from=translated src=- shape=6916336b vocab=0dcbd362
 -/
-theorem freeCovarianceℂ_bilinear_add_left
+theorem _root_.Tengoku.LeanPool.freeCovarianceℂ_bilinear_add_left
   (m : ℝ) [Fact (0 < m)] (f₁ f₂ g : TestFunctionℂ) :
     freeCovarianceℂBilinear m (f₁ + f₂) g
       = freeCovarianceℂBilinear m f₁ g + freeCovarianceℂBilinear m f₂ g := by
@@ -455,7 +455,7 @@ theorem freeCovarianceℂ_bilinear_add_left
 /--
 @isnad1 id=eq.0h4v.s7.92285ad46564 from=translated src=- shape=29e4c3f4 vocab=9bd8721c
 -/
-theorem freeCovarianceℂ_bilinear_smul_left
+theorem _root_.Tengoku.LeanPool.freeCovarianceℂ_bilinear_smul_left
   (m : ℝ) [Fact (0 < m)] (c : ℂ) (f g : TestFunctionℂ) :
     freeCovarianceℂBilinear m (c • f) g = c * freeCovarianceℂBilinear m f g := by
   -- Use the generalized lemma with f₁ = f and f₂ = 0
@@ -469,7 +469,7 @@ theorem freeCovarianceℂ_bilinear_smul_left
 /-- Symmetry of the complex bilinear form: swapping arguments gives the same result.
 @isnad1 id=eq.0h3v.s4.a26f0c0471aa from=translated src=- shape=7679722a vocab=31bf6ca3
 -/
-theorem freeCovarianceℂ_bilinear_symm
+theorem _root_.Tengoku.LeanPool.freeCovarianceℂ_bilinear_symm
   (m : ℝ) [Fact (0 < m)] (f g : TestFunctionℂ) :
     freeCovarianceℂBilinear m f g = freeCovarianceℂBilinear m g f := by
   unfold freeCovarianceℂBilinear
@@ -485,7 +485,7 @@ theorem freeCovarianceℂ_bilinear_symm
 /--
 @isnad1 id=eq.0h4v.s7.8559af796be8 from=translated src=- shape=ab9fa6d4 vocab=9bd8721c
 -/
-theorem freeCovarianceℂ_bilinear_smul_right
+theorem _root_.Tengoku.LeanPool.freeCovarianceℂ_bilinear_smul_right
   (m : ℝ) [Fact (0 < m)] (c : ℂ) (f g : TestFunctionℂ) :
     freeCovarianceℂBilinear m f (c • g) = c * freeCovarianceℂBilinear m f g := by
   -- Use symmetry to convert right scalar multiplication to left scalar multiplication
@@ -500,7 +500,7 @@ theorem freeCovarianceℂ_bilinear_smul_right
 /--
 @isnad1 id=eq.0h4v.s7.bcb56a0930d5 from=translated src=- shape=30be7be1 vocab=0dcbd362
 -/
-theorem freeCovarianceℂ_bilinear_add_right
+theorem _root_.Tengoku.LeanPool.freeCovarianceℂ_bilinear_add_right
   (m : ℝ) [Fact (0 < m)] (f g₁ g₂ : TestFunctionℂ) :
     freeCovarianceℂBilinear m f (g₁ + g₂)
       = freeCovarianceℂBilinear m f g₁ + freeCovarianceℂBilinear m f g₂ := by
@@ -516,7 +516,7 @@ theorem freeCovarianceℂ_bilinear_add_right
 
 /-- Complex extension of the covariance for complex test functions, using regulated Fourier
 form. -/
-def freeCovarianceℂRegulated (α : ℝ) (m : ℝ) (f g : TestFunctionℂ) : ℂ :=
+def _root_.Tengoku.LeanPool.freeCovarianceℂRegulated (α : ℝ) (m : ℝ) (f g : TestFunctionℂ) : ℂ :=
   ∫ x, ∫ y,
     (f x) * freeCovarianceRegulated α m x y * starRingEnd ℂ (g y)
       ∂volume ∂volume
@@ -524,7 +524,7 @@ def freeCovarianceℂRegulated (α : ℝ) (m : ℝ) (f g : TestFunctionℂ) : �
 /-- The regulated complex covariance is positive definite for any α > 0.
 @isnad1 id=le.1h3v.s5.6f89494ad125 from=translated src=- shape=dbed4b42 vocab=9f8c5111
 -/
-theorem freeCovarianceℂ_regulated_positive (α : ℝ) (hα : 0 < α) (m : ℝ) [Fact (0 < m)] (f :
+theorem _root_.Tengoku.LeanPool.freeCovarianceℂ_regulated_positive (α : ℝ) (hα : 0 < α) (m : ℝ) [Fact (0 < m)] (f :
   TestFunctionℂ) :
   0 ≤ (freeCovarianceℂRegulated α m f f).re := by
   unfold freeCovarianceℂRegulated
@@ -534,13 +534,13 @@ theorem freeCovarianceℂ_regulated_positive (α : ℝ) (hα : 0 < α) (m : ℝ)
     (freePropagatorMomentum_mathlib_nonneg m (Fact.out) k)
 
 /-- Complex extension of the covariance for complex test functions (limit form via Bessel). -/
-def freeCovarianceℂ (m : ℝ) (f g : TestFunctionℂ) : ℂ :=
+def _root_.Tengoku.LeanPool.freeCovarianceℂ (m : ℝ) (f g : TestFunctionℂ) : ℂ :=
   ∫ x, ∫ y, (f x) * (freeCovariance m x y) * (starRingEnd ℂ (g y)) ∂volume ∂volume
 
 /-- The complex covariance (Bessel form) is positive definite.
 @isnad1 id=le.0h2v.s4.b2677bd71464 from=translated src=- shape=a5e65406 vocab=2c769c41
 -/
-theorem freeCovarianceℂ_positive (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ) :
+theorem _root_.Tengoku.LeanPool.freeCovarianceℂ_positive (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ) :
     0 ≤ (freeCovarianceℂ m f f).re := by
   -- The regulated form converges to the Bessel form as α → 0⁺ (DCT in momentum space);
   -- by continuity of .re, the real parts also converge.
@@ -567,7 +567,7 @@ theorem freeCovarianceℂ_positive (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ
     of the regulated forms.
 @isnad1 id=eq.0h2v.s11.7653fff7e84c from=translated src=- shape=5133dcfe vocab=946560cf
 -/
-theorem parseval_covariance_schwartz_bessel (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ) :
+theorem _root_.Tengoku.LeanPool.parseval_covariance_schwartz_bessel (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ) :
     (freeCovarianceℂ m f f).re
     = ∫ k, ‖(SchwartzMap.fourierTransformCLM ℂ f) k‖^2 * freePropagatorMomentumMathlib m k ∂volume
       := by
@@ -581,3 +581,4 @@ theorem parseval_covariance_schwartz_bessel (m : ℝ) [Fact (0 < m)] (f : TestFu
   exact tendsto_nhds_unique h_re_tendsto (parseval_covariance_schwartz_correct m f)
 
 /-! ## OS Properties -/
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

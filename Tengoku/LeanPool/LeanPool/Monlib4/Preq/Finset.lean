@@ -16,7 +16,7 @@ In this file we provide some elementary results for summations
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Finset
 
 open scoped BigOperators
@@ -119,7 +119,7 @@ theorem Forall.rotate {α β γ : Sort _} {p : α → β → γ → Prop} :
 /--
 @isnad1 id=iff.0h5v.s5.4a461c29af83 from=translated src=- shape=41569231 vocab=e3b0c442
 -/
-theorem forall_forall_comm {α β γ ζ : Sort _} {p : α → β → γ → ζ → Prop} :
+theorem _root_.Tengoku.LeanPool.forall_forall_comm {α β γ ζ : Sort _} {p : α → β → γ → ζ → Prop} :
     (∀ (x : α) (y : β) (z : γ) (w : ζ), p x y z w) ↔ ∀ (x : α) (z : γ) (y : β) (w : ζ), p x y z w :=
   ⟨fun h _ _ _ _ => h _ _ _ _, fun h _ _ _ _ => h _ _ _ _⟩
 
@@ -129,3 +129,4 @@ theorem forall_forall_comm {α β γ ζ : Sort _} {p : α → β → γ → ζ �
 theorem Finset.sum_product_univ {β α γ : Type _} [AddCommMonoid β] [Fintype α] [Fintype γ]
     {f : γ × α → β} : ∑ x : γ × α, f x = ∑ x : γ, ∑ y : α, f (x, y) :=
   Finset.sum_product _ _ _
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -40,7 +40,7 @@ equation.  `SentBndPol`, the one-sided closure suite, and the paired family are 
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure BoundedFormulaω
@@ -209,3 +209,4 @@ theorem lyndon_root_class_eq (φ ψ : L.Sentenceω) :
   rw [negativeRelationsIn_not, positiveRelationsIn_not]
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

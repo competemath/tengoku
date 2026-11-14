@@ -33,7 +33,7 @@ Realization of the coded connectives and of carrier transport is in
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u v u' uι w
 
 namespace FirstOrder
@@ -160,3 +160,4 @@ def SentenceInf.Realize (φ : L.SentenceInf ι) (M : Type w) [L.Structure M] : P
 end Language
 
 end FirstOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -14,7 +14,7 @@ Imported Lean Pool material for `LeanPool.BrauerGroupNew.Examples.ShortComplex.L
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe v u
 
 open CategoryTheory
@@ -23,7 +23,7 @@ variable (R : Type u) [CommRing R] (S₁ : ShortComplex (ModuleCat.{v} R))
   (S₂ : ShortComplex (ModuleCat R)) (f : S₁ ⟶ S₂)
 
 /-- The map on explicit cycle modules induced by a morphism of short complexes. -/
-abbrev φK : ↥(LinearMap.ker (ModuleCat.Hom.hom S₁.g)) →ₗ[R]
+abbrev _root_.Tengoku.LeanPool.φK : ↥(LinearMap.ker (ModuleCat.Hom.hom S₁.g)) →ₗ[R]
     ↥(LinearMap.ker (ModuleCat.Hom.hom S₂.g)) :=
   LinearMap.restrict f.2.hom
     fun x hx ↦ by
@@ -43,7 +43,7 @@ lemma ShortComplex.moduleCatToCycles_coe (S : ShortComplex (ModuleCat.{v} R)) (x
 /-- The map on cycles carries boundaries to boundaries.
 @isnad1 id=eq.0h5v.s14.92eb312d94a9 from=translated src=- shape=aab62a7e vocab=42495345
 -/
-lemma φK_moduleCatToCycles (x : S₁.X₁) :
+lemma _root_.Tengoku.LeanPool.φK_moduleCatToCycles (x : S₁.X₁) :
     φK R S₁ S₂ f (S₁.moduleCatToCycles x) = S₂.moduleCatToCycles (f.τ₁ x) := by
   ext
   have h := LinearMap.ext_iff.1 ((ModuleCat.hom_ext_iff.1 f.comm₁₂).symm) x
@@ -52,14 +52,14 @@ lemma φK_moduleCatToCycles (x : S₁.X₁) :
 /-- The map on cycles descends to the quotient by boundaries.
 @isnad1 id=le.0h4v.s13.df66a16b95ac from=translated src=- shape=6a300589 vocab=d4273409
 -/
-lemma φK_maps_moduleCatToCycles_range :
+lemma _root_.Tengoku.LeanPool.φK_maps_moduleCatToCycles_range :
     S₁.moduleCatToCycles.range ≤
       Submodule.comap (φK R S₁ S₂ f) S₂.moduleCatToCycles.range := by
   rintro _ ⟨x, rfl⟩
   exact ⟨f.τ₁ x, (φK_moduleCatToCycles R S₁ S₂ f x).symm⟩
 
 /-- The induced map on explicit module-category left homology quotients. -/
-abbrev φH :
+abbrev _root_.Tengoku.LeanPool.φH :
     ModuleCat.of R (LinearMap.ker (ModuleCat.Hom.hom S₁.g) ⧸ LinearMap.range S₁.moduleCatToCycles) ⟶
       .of R (↥(LinearMap.ker (ModuleCat.Hom.hom S₂.g)) ⧸ LinearMap.range S₂.moduleCatToCycles) :=
   ModuleCat.ofHom <| Submodule.mapQ _ _ (φK _ _ _ f) <|
@@ -159,3 +159,4 @@ theorem ShortComplex.IsQuasiIsoAt_iff_moduleCat :
       rw [Submodule.mapQ_apply]
       apply (Submodule.Quotient.eq S₂.moduleCatToCycles.range).2
       exact ⟨y, by ext; simpa [φK] using hy⟩
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -14,12 +14,12 @@ Imported Lean Pool material for `LeanPool.FriezePatterns.Chapter1`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-- A field-valued frieze pattern of height `n`: a function `f : ℕ × ℕ → F` with `0`s on
 the row `i = 0`, `1`s on rows `i = 1` and `i = n`, `0`s on rows `i ≥ n + 1`, satisfying the
 diamond (or unimodular) relation `f (i + 1, m) * f (i + 1, m + 1) - 1 = f (i + 2, m) * f (i, m + 1)`
 for `i ≤ n - 1`. -/
-class pattern_n (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ) : Prop where
+class _root_.Tengoku.LeanPool.pattern_n (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ) : Prop where
   topBordZeros : ∀ m, f (0, m) = 0
   topBordOnes : ∀ m, f (1, m) = 1
   botBordOnes_n : ∀ m, f (n, m) = 1
@@ -27,13 +27,13 @@ class pattern_n (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ) : Prop wh
   diamond : ∀ i, ∀ m, i ≤ n - 1 → f (i + 1, m) * f (i + 1, m + 1) - 1 = f (i + 2, m) * f (i, m + 1)
 
 /-- A frieze pattern is *non-zero* if it never vanishes on the interior rows `1 ≤ i ≤ n`. -/
-class nzPattern_n (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ) extends pattern_n F f n where
+class _root_.Tengoku.LeanPool.nzPattern_n (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ) extends pattern_n F f n where
   non_zero : ∀ i, ∀ m, 1 ≤ i ∧ i ≤ n → f (i, m) ≠ 0
 
 /--
 @isnad1 id=eq.1h5v.s7.f11f14eb5792 from=translated src=- shape=0a49a856 vocab=1aa1902b
 -/
-lemma pattern_nContinuant1 (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ) [nzPattern_n F f n] :
+lemma _root_.Tengoku.LeanPool.pattern_nContinuant1 (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ) [nzPattern_n F f n] :
     ∀ i, i ≤ n - 1 → ∀ m, f (i + 2, m) = f (2, m + i) * f (i + 1, m) - f (i, m) := by
   intro i
   induction i with
@@ -82,7 +82,7 @@ lemma pattern_nContinuant1 (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ
 /--
 @isnad1 id=eq.1h5v.s7.94ee136da42f from=translated src=- shape=2892c367 vocab=1aa1902b
 -/
-lemma pattern_nContinuant2 (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ) [nzPattern_n F f n] :
+lemma _root_.Tengoku.LeanPool.pattern_nContinuant2 (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ) [nzPattern_n F f n] :
     ∀ i, i ≤ n - 1 → ∀ m,
       f (i, m + 2) = f (n - 1, m + 2) * f (i + 1, m + 1) - f (i + 2, m) := by
   by_cases one_leq_n : 1 ≤ n
@@ -168,7 +168,7 @@ lemma pattern_nContinuant2 (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ
 /--
 @isnad1 id=eq.1h5v.s6.8842375fd707 from=translated src=- shape=0849b090 vocab=60d1d70b
 -/
-theorem glideSymm (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ) [nzPattern_n F f n] :
+theorem _root_.Tengoku.LeanPool.glideSymm (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ) [nzPattern_n F f n] :
     ∀ i, i ≤ n + 1 → ∀ m, f (n + 1 - i, m + i) = f (i, m) := by
   -- we need glideSymm in chapter 3
   intro i ileq
@@ -214,7 +214,7 @@ theorem glideSymm (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ) [nzPatt
 /--
 @isnad1 id=eq.1h5v.s6.6278e3ea89bf from=translated src=- shape=da3de134 vocab=9b7c5740
 -/
-theorem translationInvariance (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ) [nzPattern_n F f n] :
+theorem _root_.Tengoku.LeanPool.translationInvariance (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ) [nzPattern_n F f n] :
     ∀ i, i ≤ n + 1 → ∀ m, f (i, m) = f (i, m + n + 1) := by
   intro i ileq m
   have key := glideSymm F f n i ileq m
@@ -229,7 +229,7 @@ theorem translationInvariance (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : 
 /--
 @isnad1 id=eq.1h5v.s6.dd9d4ce3deb4 from=translated src=- shape=4e428e26 vocab=c697b77d
 -/
-lemma strongTranslationInvariance (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ)
+lemma _root_.Tengoku.LeanPool.strongTranslationInvariance (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ)
     [nzPattern_n F f n] : ∀ i, i ≤ n + 1 → ∀ m, f (i, m) = f (i, m % (n + 1)) := by
   intro i ileq m
   induction m using Nat.strong_induction_on with
@@ -251,7 +251,7 @@ lemma strongTranslationInvariance (F : Type*) [Field F] (f : ℕ × ℕ → F) (
 /--
 @isnad1 id=finite.0h3v.s4.ad92d6a89cdb from=translated src=- shape=3dc66ae0 vocab=894647b4
 -/
-lemma imageFinite (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ) [nzPattern_n F f n] :
+lemma _root_.Tengoku.LeanPool.imageFinite (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ) [nzPattern_n F f n] :
     Finite (Set.range f) := by
   -- We use i ≤ n instead of 1 ≤ i ≤ n to simplify the induction. Lean also automatically infers
   -- that {i : ℕ | i ≤ n} is finite.
@@ -282,3 +282,4 @@ lemma imageFinite (F : Type*) [Field F] (f : ℕ × ℕ → F) (n : ℕ) [nzPatt
   rw [key]
   have : Finite ({i : ℕ | i ≤ n} ×ˢ {m : ℕ | m ≤ n}) := Finite.Set.finite_prod _ _
   exact Finite.Set.finite_image ({i : ℕ | i ≤ n} ×ˢ {m : ℕ | m ≤ n}) f
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

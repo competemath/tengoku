@@ -15,7 +15,7 @@ import Tengoku.LeanPool.LeanPool.MRiscX.AbstractSyntax.AbstractSyntax
 
 This module provides helpers reflecting Lean `Expr`s into MRiscX data.
 -/
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 local notation:60 "(" k " ↦ "v"; "m")" => TMap.put k v m
 
 public meta section
@@ -36,14 +36,14 @@ private def exprDepthBound : Expr → Nat
   | _ => 1
 
 /-- Fold the optional label expression `e?` into the running `labelmap` expression. -/
-def unwrapWhileCreateLabelmap (e? : Option Expr) (labelmap: Expr) : MetaM Expr :=
+def _root_.Tengoku.LeanPool.unwrapWhileCreateLabelmap (e? : Option Expr) (labelmap: Expr) : MetaM Expr :=
   match e? with
   | some arg => pure arg
   | none => throwError s!"Experienced an index out of bounds while trying to create a labelmap
     from expr {labelmap}"
 
 /-- Evaluate an `Expr` to the `UInt64` it denotes. -/
-def getUInt64FromExpr (e : Expr) : MetaM UInt64 := do
+def _root_.Tengoku.LeanPool.getUInt64FromExpr (e : Expr) : MetaM UInt64 := do
   let e ← Meta.whnf e
   if e.isAppOfArity ``UInt64 1 then
     let val ← Meta.whnf <| e.getArg! 0
@@ -80,7 +80,7 @@ def getUInt64FromExpr (e : Expr) : MetaM UInt64 := do
     throwError "Not a UInt64 Expression"
 
 /-- Evaluate an `Expr` to the `String` it denotes. -/
-def getStrFromExpr (e : Expr) : MetaM String := do
+def _root_.Tengoku.LeanPool.getStrFromExpr (e : Expr) : MetaM String := do
   let e ← Meta.whnf e
   match e with
   | Expr.lit (Literal.strVal s) => return s
@@ -103,11 +103,11 @@ private def getLabelMapFromMapExprAux (fuel : Nat) (e : Expr) : MetaM LabelMap :
     throwError s!"{e} is not a partial map"
 
 /-- Reflect a `PMap` value from its `Expr` representation `e`. -/
-def getLabelMapFromMapExpr (e : Expr) : MetaM LabelMap :=
+def _root_.Tengoku.LeanPool.getLabelMapFromMapExpr (e : Expr) : MetaM LabelMap :=
   getLabelMapFromMapExprAux (exprDepthBound e) e
 
 /-- Reflect the `LabelMap` value out of an `Expr` of type `Code`. -/
-def getLabelMapFromCodeExpr (e : Expr): MetaM LabelMap := do
+def _root_.Tengoku.LeanPool.getLabelMapFromCodeExpr (e : Expr): MetaM LabelMap := do
   let e ← Meta.whnf e
   if e.isAppOfArity ``Code.mk 2 then
     let labelMapExpr ← Meta.whnf <| e.getArg! 2
@@ -151,7 +151,7 @@ Extract an Instr from a Code.mk Expr given a program counter value.
 This function takes an Expr of type Code.mk and a program counter (UInt64),
 and returns the Expr of the Instr at that program counter position.
 -/
-def getInstrFromCodeExpr (codeExpr : Expr) (pc : UInt64) : MetaM Expr := do
+def _root_.Tengoku.LeanPool.getInstrFromCodeExpr (codeExpr : Expr) (pc : UInt64) : MetaM Expr := do
   let codeExpr ← Meta.whnf codeExpr
   if codeExpr.isAppOfArity ``Code.mk 2 then
     let instrMapExpr := codeExpr.getArg! 0
@@ -160,38 +160,38 @@ def getInstrFromCodeExpr (codeExpr : Expr) (pc : UInt64) : MetaM Expr := do
     throwError "Expected an Expr of type Code"
 
 /-- Interpret the first `n` arguments as `UInt64` values, throwing otherwise. -/
-def getArgsAsUIntsOrThrow (args : Array Expr) (n : Nat) : MetaM (List UInt64) := do
+def _root_.Tengoku.LeanPool.getArgsAsUIntsOrThrow (args : Array Expr) (n : Nat) : MetaM (List UInt64) := do
   if args.size < n then
     throwError "Expected at least {n} arguments, got {args.size}"
   (List.range n).mapM fun i => getUInt64FromExpr (args[i]!)
 
 /-- Interpret two argument expressions as a pair of `UInt64` values. -/
-def getTwoUIntFromExprValidated (args : Array Expr) : MetaM (UInt64 × UInt64) := do
+def _root_.Tengoku.LeanPool.getTwoUIntFromExprValidated (args : Array Expr) : MetaM (UInt64 × UInt64) := do
   if args.size < 2 then
     throwError "Expected at least 2 arguments, got {args.size}"
   return (←getUInt64FromExpr args[0]!, ←getUInt64FromExpr args[1]!)
 
 /-- Interpret three argument expressions as a triple of `UInt64` values. -/
-def getThreeUIntFromExprValidated (args : Array Expr) : MetaM (UInt64 × UInt64 × UInt64) := do
+def _root_.Tengoku.LeanPool.getThreeUIntFromExprValidated (args : Array Expr) : MetaM (UInt64 × UInt64 × UInt64) := do
   if args.size < 3 then
     throwError "Expected at least 3 arguments, got {args.size}"
   return (←getUInt64FromExpr args[0]!, ←getUInt64FromExpr args[1]!, ←getUInt64FromExpr args[2]!)
 
 /-- Interpret two argument expressions as a `UInt64` and a `String`. -/
-def getUIntStringFromExprValidated (args : Array Expr) : MetaM (UInt64 × String) := do
+def _root_.Tengoku.LeanPool.getUIntStringFromExprValidated (args : Array Expr) : MetaM (UInt64 × String) := do
   if args.size < 2 then
     throwError "Expected at least 2 arguments, got {args.size}"
   return (←getUInt64FromExpr args[0]!, ←getStrFromExpr args[1]!)
 
 /-- Interpret three argument expressions as two `UInt64` values and a `String`. -/
-def getTwoUIntOneStringFromExprValidated (args : Array Expr) :
+def _root_.Tengoku.LeanPool.getTwoUIntOneStringFromExprValidated (args : Array Expr) :
     MetaM (UInt64 × UInt64 × String) := do
   if args.size < 3 then
     throwError "Expected at least 3 arguments, got {args.size}"
   return (←getUInt64FromExpr args[0]!, ←getUInt64FromExpr args[1]!, ←getStrFromExpr args[2]!)
 
 /-- Reflect the `Instr` value out of an `Expr`. -/
-def getInstrFromExpr (e : Expr) : MetaM Instr := do
+def _root_.Tengoku.LeanPool.getInstrFromExpr (e : Expr) : MetaM Instr := do
   let e ← Meta.whnf e
   if e.isAppOfArity ``Instr.LoadAddress 2 then
     let (reg, addr) ← getTwoUIntFromExprValidated e.getAppArgs
@@ -274,11 +274,11 @@ private def getInstrMapFromExprAux (fuel : Nat) (e : Expr) : MetaM InstructionMa
     throwError s!"{e} is not a partial map"
 
 /-- Reflect an `InstructionMap` value from its `Expr` representation `e`. -/
-def getInstrMapFromExpr (e : Expr) : MetaM InstructionMap :=
+def _root_.Tengoku.LeanPool.getInstrMapFromExpr (e : Expr) : MetaM InstructionMap :=
   getInstrMapFromExprAux (exprDepthBound e) e
 
 /-- Reflect the `InstructionMap` value out of an `Expr` of type `Code`. -/
-def getInstrMapFromCodeExpr (e : Expr) : MetaM InstructionMap := do
+def _root_.Tengoku.LeanPool.getInstrMapFromCodeExpr (e : Expr) : MetaM InstructionMap := do
   let e ← Meta.whnf e
   if e.isAppOfArity ``Code.mk 2 then
     return ← getInstrMapFromExpr (e.getArg! 0)
@@ -300,7 +300,7 @@ private def getLambdaBody (e : Expr) (fuel : Nat) : MetaM Expr := do
 /--
 Return the actual binding body from a lambda function.
 -/
-def getCodeExprFromLambda (e : Expr) : MetaM Expr := do
+def _root_.Tengoku.LeanPool.getCodeExprFromLambda (e : Expr) : MetaM Expr := do
   let e ← Meta.whnf e
   let ty ← inferType e
   if !e.isLambda then
@@ -337,11 +337,11 @@ private def splitConjDisjAux (fuel : Nat) (declType : Expr) :
   | 0 => return (←`(rcasesPat | _))
 
 /-- Split a conjunction/disjunction type `declType` into a matching `rcases` pattern. -/
-def splitConjDisj (declType : Expr) : MetaM (TSyntax `rcasesPat) :=
+def _root_.Tengoku.LeanPool.splitConjDisj (declType : Expr) : MetaM (TSyntax `rcasesPat) :=
   splitConjDisjAux (exprDepthBound declType) declType
 
 /-- Evaluate a singleton argument expression to the `UInt64` it denotes. -/
-def parseSingletonExpr (e : Expr) : MetaM (UInt64) := do
+def _root_.Tengoku.LeanPool.parseSingletonExpr (e : Expr) : MetaM (UInt64) := do
   if e.isAppOfArity ``Singleton.singleton 4 then
     let nRaw? := ((e.getArg! 3).getArg! 1).rawNatLit?
     match nRaw? with
@@ -352,3 +352,4 @@ def parseSingletonExpr (e : Expr) : MetaM (UInt64) := do
   else
     throwError s!"It seems like {e} is not in correct shape. Please confirm that the whitelist " ++
       "consists of only one element like so: {1}"
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

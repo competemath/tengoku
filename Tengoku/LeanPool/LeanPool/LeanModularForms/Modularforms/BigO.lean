@@ -11,7 +11,7 @@ public import Tengoku
 /-! # BigO -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open EisensteinSeries UpperHalfPlane TopologicalSpace Set
   Metric Filter Function Complex
 
@@ -20,13 +20,13 @@ open scoped Interval Real NNReal ENNReal Topology BigOperators Nat
 /--
 @isnad1 id=eq.0h2v.s7.ad3fd20bba45 from=translated src=- shape=9ff7caa1 vocab=8e613788
 -/
-lemma norm_symm (x y : ℤ) : ‖![x, y]‖ = ‖![y,x]‖ := by
+lemma _root_.Tengoku.LeanPool.norm_symm (x y : ℤ) : ‖![x, y]‖ = ‖![y,x]‖ := by
   simp [EisensteinSeries.norm_eq_max_natAbs, max_comm]
 
 /--
 @isnad1 id=isbigo.0h2v.s5.33865f9de28a from=translated src=- shape=cc202cfd vocab=4b0e7066
 -/
-lemma linear_bigO (m : ℤ) (z : ℍ) : (fun (n : ℤ) => ((m : ℂ) * z + n)⁻¹) =O[cofinite]
+lemma _root_.Tengoku.LeanPool.linear_bigO (m : ℤ) (z : ℍ) : (fun (n : ℤ) => ((m : ℂ) * z + n)⁻¹) =O[cofinite]
     fun n => (|(n : ℝ)|⁻¹) := by
   have h1 : (fun (n : ℤ) => ((m : ℂ) * z + n)⁻¹) =O[cofinite]
     (fun n : ℤ => ((r z * ‖![n, m]‖))⁻¹) := by
@@ -44,7 +44,7 @@ lemma linear_bigO (m : ℤ) (z : ℍ) : (fun (n : ℤ) => ((m : ℂ) * z + n)⁻
     nth_rw 2 [mul_comm]
     simp_rw [Real.rpow_neg_one] at this
     have hr : (r z)⁻¹ = |r z|⁻¹ := by simp [abs_of_pos (r_pos z)]
-    rw [← hr, _root_.norm_symm]
+    rw [← hr, _root_.Tengoku.LeanPool.norm_symm]
     exact this}
   apply Asymptotics.IsBigO.trans h1
   rw [@Asymptotics.isBigO_iff']
@@ -80,7 +80,7 @@ lemma linear_bigO (m : ℤ) (z : ℍ) : (fun (n : ℤ) => ((m : ℂ) * z + n)⁻
 /--
 @isnad1 id=isbigo.0h3v.s6.602c3ae1ea1c from=translated src=- shape=f5ded19e vocab=5ee9471f
 -/
-lemma linear_bigO_pow (m : ℤ) (z : ℍ) (k : ℕ) : (fun (n : ℤ) => ((((m : ℂ) * z + n)) ^ k )⁻¹)
+lemma _root_.Tengoku.LeanPool.linear_bigO_pow (m : ℤ) (z : ℍ) (k : ℕ) : (fun (n : ℤ) => ((((m : ℂ) * z + n)) ^ k )⁻¹)
   =O[cofinite]
     fun n => ((|(n : ℝ)| ^ k)⁻¹) := by
   simp_rw [← inv_pow]
@@ -112,14 +112,14 @@ lemma Asymptotics.IsBigO.of_neg {α β : Type*} [Norm α] [Norm β] {f : ℤ →
 /--
 @isnad1 id=isbigo.0h2v.s5.a10bd4b5fd28 from=translated src=- shape=efb95bf4 vocab=0af1a9a9
 -/
-lemma linear_bigO_nat (m : ℤ) (z : ℍ) : (fun (n : ℕ) => ((m : ℂ) * z + n)⁻¹) =O[cofinite]
+lemma _root_.Tengoku.LeanPool.linear_bigO_nat (m : ℤ) (z : ℍ) : (fun (n : ℕ) => ((m : ℂ) * z + n)⁻¹) =O[cofinite]
     fun n => (|(n : ℝ)|⁻¹) :=
   (linear_bigO (m : ℤ) z).zify
 
 /--
 @isnad1 id=isbigo.0h2v.s5.97224b9a3df1 from=translated src=- shape=84f1b010 vocab=4b0e7066
 -/
-lemma linear_bigO' (m : ℤ) (z : ℍ) : (fun (n : ℤ) => ((n : ℂ) * z + m)⁻¹) =O[cofinite]
+lemma _root_.Tengoku.LeanPool.linear_bigO' (m : ℤ) (z : ℍ) : (fun (n : ℤ) => ((n : ℂ) * z + m)⁻¹) =O[cofinite]
     fun n => (|(n : ℝ)|⁻¹) := by
   have h1 : (fun (n : ℤ) => ((n : ℂ) * z + m)⁻¹) =O[cofinite]
     (fun n : ℤ => ((r z * ‖![m, n]‖))⁻¹) := by
@@ -141,7 +141,7 @@ lemma linear_bigO' (m : ℤ) (z : ℍ) : (fun (n : ℤ) => ((n : ℂ) * z + m)�
         apply symm
         rw [abs_eq_self]
         exact (r_pos z).le
-      rw [← hr, _root_.norm_symm]
+      rw [← hr, _root_.Tengoku.LeanPool.norm_symm]
       exact this}
   apply Asymptotics.IsBigO.trans h1
   rw [@Asymptotics.isBigO_iff']
@@ -172,3 +172,4 @@ lemma linear_bigO' (m : ℤ) (z : ℍ) : (fun (n : ℤ) => ((n : ℂ) * z + m)�
   · exact le_abs_self (r z)
   · simp; omega
   · simp
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

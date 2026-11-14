@@ -14,7 +14,7 @@ Part of the Caffarelli–Kohn–Nirenberg partial regularity proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Metric
 
 noncomputable section
@@ -160,3 +160,4 @@ theorem exists_compact_ordConnected_exhaustion {I : Set ℝ}
     exact ⟨n, hn.trans subset_closure⟩
 
 end CKN.Core.Step4.OriginInstance
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

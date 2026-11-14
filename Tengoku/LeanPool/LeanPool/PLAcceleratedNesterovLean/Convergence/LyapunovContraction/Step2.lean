@@ -25,7 +25,7 @@ Since u_{n+1} = w_n + √μ' ξ_n:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace PLAcceleratedNesterovLean
@@ -66,3 +66,4 @@ theorem inner_abs_le_norm_mul {d : ℕ} (w ξ : E d) :
   exact abs_real_inner_le_norm w ξ
 
 end PLAcceleratedNesterovLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

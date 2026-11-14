@@ -11,7 +11,7 @@ public import Tengoku
 /-! The existence of smooth bumps, separated from their construction. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-- A finite-dimensional real normed space admits smooth bump functions.
 This proof can be activated as an instance locally when defining cutoff data.
 @isnad1 id=hascontd.0h1v.s5.e230e6f197f1 from=translated src=- shape=e367154d vocab=997156d9
@@ -19,3 +19,4 @@ This proof can be activated as an instance locally when defining cutoff data.
 theorem FiniteDimensional.hasContDiffBump (E : Type*)
     [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E] :
     HasContDiffBump E := by infer_instance
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

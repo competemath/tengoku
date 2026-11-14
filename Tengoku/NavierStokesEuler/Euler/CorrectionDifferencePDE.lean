@@ -2,7 +2,7 @@ import Tengoku.NavierStokesEuler.Euler.CorrectionDifference
 import Tengoku.NavierStokesEuler.Euler.CorrectionMildEquation
 
 /-! Tengoku repair: `differenceRhs_eq_sub` ran out of heartbeats in the tree; `synthInstance.maxHeartbeats` is 160000 for it (was 20000). -/
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace EulerCorrectionDifferencePDE
 end EulerCorrectionDifferencePDE
 namespace MeasureTheory
@@ -114,3 +114,4 @@ theorem correction_difference_hasDerivAt {q : ℕ} (hq : 6 ≤ q) (ν μ : ℝ) 
   exact (differenceRhs_eq_sub period D hq ν μ ⟨t,ht.1.le,ht.2.le⟩ _ _).symm
 
 end EulerCorrectionDifferencePDE
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

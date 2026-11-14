@@ -31,7 +31,7 @@ perfect square ∫ (1/ω)|F_ω(kbar)|² dkbar with F_ω(kbar) = ∫ ftilde(t,kba
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace QFT
 
 open MeasureTheory Complex Real Filter
@@ -78,7 +78,7 @@ noncomputable def timeReflection (x : SpaceTime) : SpaceTime :=
 @isnad1 id=involuti.0h0v.s1.16e292e1c53c from=translated src=- shape=25b03439 vocab=7d6dfd2b
 -/
 lemma timeReflection_involutive : Function.Involutive timeReflection :=
-  _root_.timeReflection_involutive
+  _root_.Tengoku.LeanPool.timeReflection_involutive
 
 /-- The `spatialDot` declaration. -/
 noncomputable def spatialDot (k_spatial x_spatial : SpatialCoords) : ℝ :=
@@ -86,7 +86,7 @@ noncomputable def spatialDot (k_spatial x_spatial : SpatialCoords) : ℝ :=
 
 /-- The `freeCovarianceℂBilinear` declaration. -/
 noncomputable def freeCovarianceℂBilinear (m : ℝ) (f g : TestFunctionℂ) : ℂ :=
-  ∫ x, ∫ y, (f x) * (_root_.freeCovariance m x y) * (g y)
+  ∫ x, ∫ y, (f x) * (_root_.Tengoku.LeanPool.freeCovariance m x y) * (g y)
 
 /-- The `weightedLaplaceFourier` declaration. -/
 noncomputable def weightedLaplaceFourier (m : ℝ) (f : TestFunctionℂ) (k_sp : SpatialCoords) : ℂ :=
@@ -115,7 +115,7 @@ omit [Fact (0 < m)] in
 theorem rpInnerProduct_eq_bessel_reflected (f : TestFunctionℂ) :
     rpInnerProduct m f =
       ∫ x : SpaceTime, ∫ y : SpaceTime,
-        (starRingEnd ℂ (f x)) * (_root_.freeCovariance m (timeReflection x) y : ℂ) * f y := by
+        (starRingEnd ℂ (f x)) * (_root_.Tengoku.LeanPool.freeCovariance m (timeReflection x) y : ℂ) * f y := by
   unfold rpInnerProduct freeCovarianceℂBilinear
   have h_star : ∀ x, (star f) x = starRingEnd ℂ (f (timeReflection x)) := star_apply f
   simp_rw [h_star]
@@ -123,7 +123,7 @@ theorem rpInnerProduct_eq_bessel_reflected (f : TestFunctionℂ) :
   have h_inv : ∀ x, timeReflection (timeReflection x) = x := fun x => by
     simp [timeReflection, Function.update]
   let G := fun x => ∫ y, (starRingEnd ℂ (f (timeReflection x))) *
-      (_root_.freeCovariance m x y : ℂ) * f y
+      (_root_.Tengoku.LeanPool.freeCovariance m x y : ℂ) * f y
   have h_cov : ∫ x, G x = ∫ x, G (timeReflection x) :=
     (h_mp.integral_comp QFT.timeReflectionLE.toMeasurableEquiv.measurableEmbedding G).symm
   conv_lhs => rw [h_cov]
@@ -509,3 +509,4 @@ theorem freeCovariance_reflection_positive_real (m : ℝ) [Fact (0 < m)] (f : OS
   freeCovariance_reflection_positive_bilinear_real m f hf_supp
 
 end QFT
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

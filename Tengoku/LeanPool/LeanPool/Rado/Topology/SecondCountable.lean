@@ -24,7 +24,7 @@ All statements are pure topology, independent of the rest of the development.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Topology
 
 namespace Rado
@@ -121,3 +121,4 @@ theorem countable_setOf_reflTransGen {α : Type*} {r : α → α → Prop} (a₀
     exact mem_biUnion hn hbc
 
 end Rado
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

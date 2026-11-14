@@ -17,7 +17,7 @@ public import Tengoku
 /-! TODO: Add doc-string. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 section
 
 open MeasureTheory Set
@@ -496,3 +496,4 @@ theorem NumericalCertificate.archimedeanIntegral_le :
     integral_archimedean_odlyzkoScale_Ioc_zero_four_le
 
 end NumberField.Odlyzko
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

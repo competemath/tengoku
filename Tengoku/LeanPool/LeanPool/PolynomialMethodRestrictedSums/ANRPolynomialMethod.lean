@@ -23,7 +23,7 @@ for lower-bounding restricted sumsets.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped Finset
 
 variable {R : Type*} [CommRing R]
@@ -35,38 +35,38 @@ open AddMonoidAlgebra (coeff)
 open Finsupp
 
 /-- Definition of elimination polynomials g_i -/
-noncomputable def eliminationPolynomials (A : Fin (k + 1) → Finset (ZMod p)) :
+noncomputable def _root_.Tengoku.LeanPool.eliminationPolynomials (A : Fin (k + 1) → Finset (ZMod p)) :
     Fin (k + 1) → MvPolynomial (Fin (k + 1)) (ZMod p) :=
   fun i => ∏ a ∈ A i, (MvPolynomial.X i - C a)
 
 /-- The sum of variables polynomial -/
-noncomputable def sumXPolynomial : MvPolynomial (Fin (k + 1)) (ZMod p) :=
+noncomputable def _root_.Tengoku.LeanPool.sumXPolynomial : MvPolynomial (Fin (k + 1)) (ZMod p) :=
   ∑ i, MvPolynomial.X i
 
 /-- The restricted sumset S from the ANR theorem -/
-noncomputable def restrictedSumset (h : MvPolynomial (Fin (k + 1)) (ZMod p))
+noncomputable def _root_.Tengoku.LeanPool.restrictedSumset (h : MvPolynomial (Fin (k + 1)) (ZMod p))
     (A : Fin (k + 1) → Finset (ZMod p)) : Finset (ZMod p) :=
   ((Fintype.piFinset A).filter (fun f => h.eval f ≠ 0)).image (fun f => ∑ i, f i)
 
 /-- The polynomial Q = h * ∏_{e∈E} (∑X_i - e) -/
-noncomputable def constructionPolynomial
+noncomputable def _root_.Tengoku.LeanPool.constructionPolynomial
     (h : MvPolynomial (Fin (k + 1)) (ZMod p))
     (E : Multiset (ZMod p)) :
     MvPolynomial (Fin (k + 1)) (ZMod p) :=
   h * (E.map (fun e => sumXPolynomial - C e)).prod
 
 /-- The construction of E from S when |S| ≤ m -/
-def extendToSize (S : Finset (ZMod p)) (m : ℕ) :
+def _root_.Tengoku.LeanPool.extendToSize (S : Finset (ZMod p)) (m : ℕ) :
     Multiset (ZMod p) :=
   S.val + Multiset.replicate (m - S.card) (0 : ZMod p)
 
 /-- Alternative name for clarity. Here use k explicitly -/
-noncomputable def productPolynomial (k : ℕ) (E : Multiset (ZMod p)) :
+noncomputable def _root_.Tengoku.LeanPool.productPolynomial (k : ℕ) (E : Multiset (ZMod p)) :
     MvPolynomial (Fin (k + 1)) (ZMod p) :=
   (E.map (fun e => sumXPolynomial - C e)).prod
 
 /-- Lemma 2.1.1 : Construction_polynomial vanishes on ∏ A_i -/
-lemma constructionPolynomial_vanishes
+lemma _root_.Tengoku.LeanPool.constructionPolynomial_vanishes
     (h : MvPolynomial (Fin (k + 1)) (ZMod p))
     (A : Fin (k + 1) → Finset (ZMod p))
     (E : Multiset (ZMod p))
@@ -91,7 +91,7 @@ lemma constructionPolynomial_vanishes
     simp [h_prod_zero]
 
 /-- Lemma 2.1.2 : The product polynomial ∏_{e∈E} (∑X_i - C e) is always nonzero -/
-lemma productPolynomial_ne_zero (k : ℕ) (E : Multiset (ZMod p)) :
+lemma _root_.Tengoku.LeanPool.productPolynomial_ne_zero (k : ℕ) (E : Multiset (ZMod p)) :
     productPolynomial k E ≠ 0 := by
   unfold productPolynomial
   intro hzero
@@ -105,3 +105,4 @@ open scoped BigOperators
 noncomputable section AristotleLemmas
 
 end AristotleLemmas
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

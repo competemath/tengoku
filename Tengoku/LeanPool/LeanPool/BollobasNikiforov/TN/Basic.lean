@@ -20,7 +20,7 @@ enumerating the `C(3, r)` strictly increasing maps `Fin r → Fin 3`
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Function Matrix
 
 namespace BollobasNikiforov
@@ -314,3 +314,4 @@ lemma IsTotallyNonneg.mul_transpose [LinearOrder ι] [LinearOrder κ]
       mul_nonneg (hX r I S.1 hI S.2) (hY r J S.1 hJ S.2)
 
 end BollobasNikiforov
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -16,7 +16,7 @@ This construction makes no uniqueness assertion about comparison solutions.
 -/
 
 noncomputable section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace NavierStokes.R3CompactCandidate
 
 open Set Filter ProblemStatement SpatialLocalization
@@ -281,3 +281,4 @@ theorem Properties.not_global_agreement {u : VelocityField} {p : PressureField} 
   exact (not_lt_of_ge (hb.trans (le_max_left M 1))) hlarge
 
 end NavierStokes.R3CompactCandidate
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

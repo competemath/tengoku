@@ -58,7 +58,7 @@ in §3.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood.Exercise326
 
 open Domain.Neighborhood NeighborhoodSystem ApproximableMap
@@ -347,3 +347,4 @@ theorem cond_bot (x y : V.Element) :
     exact Or.inr (Or.inr ⟨inl_preimage_prodNbhd _ _, subset_rfl⟩)
 
 end Domain.Neighborhood.Exercise326
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

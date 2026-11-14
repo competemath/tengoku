@@ -48,7 +48,7 @@ All *data* is choice-free (`#print axioms ⊆ {propext, Quot.sound}`).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem ApproximableMap ExampleB
@@ -466,3 +466,4 @@ theorem B_domain_equation : B ≅ᴰ sum B B B_nonempty B_nonempty :=
 end Example62
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

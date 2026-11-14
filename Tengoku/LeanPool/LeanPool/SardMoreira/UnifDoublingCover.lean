@@ -11,7 +11,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Measure Metric Set
 
 /--
@@ -73,3 +73,4 @@ theorem IsUnifLocDoublingMeasure.exists_closedBall_covering_tsum_measure_le_of_m
         grw [hμU, ENNReal.mul_div_cancel]
         · simp [(one_pos.trans_le (one_le_scalingConstantOf _ _)).ne']
         · simp
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

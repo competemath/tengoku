@@ -13,7 +13,7 @@ import Tengoku.LeanPool.LeanPool.LowDimSolvClassification.GeneralResults
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Module
 open Submodule
 
@@ -79,3 +79,4 @@ end corollaries_dim_1
 end Dim1
 
 end LieAlgebra
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

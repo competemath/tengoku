@@ -13,7 +13,7 @@ THIS FILE IS NOT USED FOR THE MAIN RESULT
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Finset Set Filter
 
 open scoped ENNReal NNReal Topology
@@ -30,3 +30,4 @@ theorem MeasurableSet.accumulate {_ : MeasurableSpace α} {s : ℕ → Set α}
   MeasurableSet.biUnion (Set.to_countable _) fun n _ ↦ hs n
 
 end Accumulate
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

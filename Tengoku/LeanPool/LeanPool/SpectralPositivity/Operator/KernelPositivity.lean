@@ -33,7 +33,7 @@ This forces K > 0 a.e. on A × B for all such A, B.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Measure Filter
 
 noncomputable section
@@ -42,14 +42,14 @@ variable {Ω : Type*} [MeasureSpace Ω]
 
 /-- An integral operator on L² defined by a kernel K : Ω × Ω → ℝ.
 Tf(x) = ∫ K(x,y) f(y) dμ(y). -/
-structure IntegralOperator (Ω : Type*) [MeasureSpace Ω] where
+structure _root_.Tengoku.LeanPool.IntegralOperator (Ω : Type*) [MeasureSpace Ω] where
   /-- The integral kernel `K : Ω → Ω → ℝ` of the operator. -/
   kernel : Ω → Ω → ℝ
   /-- The kernel, viewed as a function on `Ω × Ω`, is measurable. -/
   kernel_measurable : Measurable (Function.uncurry kernel)
 
 /-- A kernel is a.e. positive if K(x,y) > 0 for (volume ⊗ volume)-a.e. (x,y). -/
-def IntegralOperator.IsAEPositive (T : IntegralOperator Ω) : Prop :=
+def Tengoku.LeanPool.IntegralOperator.IsAEPositive (T : IntegralOperator Ω) : Prop :=
   ∀ᵐ p ∂(volume.prod volume : Measure (Ω × Ω)),
     0 < T.kernel p.1 p.2
 
@@ -57,7 +57,7 @@ def IntegralOperator.IsAEPositive (T : IntegralOperator Ω) : Prop :=
 Tf(x) = ∫ K(x,y) f(y) dμ(y) > 0 for a.e. x.
 @isnad1 id=eventual.5h3v.s7.37378725f4a6 from=translated src=- shape=7e24f25c vocab=24e848f3
 -/
-theorem IntegralOperator.ae_pos_integral_of_ae_pos_kernel
+theorem Tengoku.LeanPool.IntegralOperator.ae_pos_integral_of_ae_pos_kernel
     [SFinite (volume : Measure Ω)]
     (T : IntegralOperator Ω)
     (hK : T.IsAEPositive)
@@ -114,7 +114,7 @@ finite measure and every positive-measure pair `(A, B)` has strictly positive do
 then `K(x, y) > 0` for every pair `(x, y)`, hence in particular for a.e. `(x, y)`.
 @isnad1 id=isaeposi.3h2v.s8.af263ed17d1d from=translated src=- shape=562c5716 vocab=8d28ab84
 -/
-theorem IntegralOperator.ae_pos_kernel_of_positivity_improving
+theorem Tengoku.LeanPool.IntegralOperator.ae_pos_kernel_of_positivity_improving
     [MeasurableSingletonClass Ω]
     (T : IntegralOperator Ω)
     (h_atom_pos : ∀ x : Ω, 0 < volume ({x} : Set Ω))
@@ -144,3 +144,4 @@ theorem IntegralOperator.ae_pos_kernel_of_positivity_improving
   exact pos_of_mul_pos_right (pos_of_mul_pos_right hsing hp1_real.le) hp2_real.le
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -13,7 +13,7 @@ public import Tengoku.LeanPool.LeanPool.DirectedTopologyLean4.DirectedPathHomoto
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-
   This file contains the construction of the following statement:
 
@@ -32,12 +32,12 @@ public import Tengoku.LeanPool.LeanPool.DirectedTopologyLean4.DirectedPathHomoto
 
 universe u
 
-open DirectedMap
+open Tengoku.LeanPool.DirectedMap
 open scoped unitInterval
 
 noncomputable section
 
-namespace DirectedMap
+namespace Tengoku.LeanPool.DirectedMap
 namespace Dihomotopy
 
 variable {X : dTopCat} {x y : X} (γ : Dipath x y)
@@ -125,7 +125,7 @@ lemma pathToTarget_range : Set.range (PathToTarget γ) = Set.range γ := by
     exact congr_arg γ (max_self t)
 
 end Dihomotopy
-end DirectedMap
+end Tengoku.LeanPool.DirectedMap
 
 namespace DihomToPathDihom
 
@@ -222,3 +222,4 @@ lemma dihom_to_path_dihom_range (F : Dihomotopy f g) :
   exact subset_trans (Dihomotopy.hcomp'_range A B _) (Set.union_subset hA hB)
 
 end DihomToPathDihom
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

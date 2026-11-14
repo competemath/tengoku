@@ -17,7 +17,7 @@ Section 2 of Tom Bohman's 1996 paper on the Conway--Guy sequence.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators
 
 namespace BooleanIsoperimetry.CoherentGap
@@ -650,3 +650,4 @@ lemma principal_dot (offset : ℕ)
   simpa [conwayGuyArithmetic, Nat.add_comm] using hblock
 
 end BooleanIsoperimetry.CoherentGap
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

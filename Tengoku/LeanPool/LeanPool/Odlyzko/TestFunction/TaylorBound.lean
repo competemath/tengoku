@@ -13,7 +13,7 @@ import Tengoku.LeanPool.LeanPool.Odlyzko.TestFunction.Quadratic
 /-! TODO: Add doc-string. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace NumberField.Odlyzko
 
 /-- A cos lower six used in the Odlyzko-bound argument. -/
@@ -238,3 +238,4 @@ theorem tartarAmplitudeLowerSix_le {x : ℝ} (hx : |x| ≤ 4) :
 end NumberField.Odlyzko
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

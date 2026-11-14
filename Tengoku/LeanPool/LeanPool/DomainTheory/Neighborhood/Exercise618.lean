@@ -67,7 +67,7 @@ Everything is choice-free where it is data.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem ApproximableMap Domain.Neighborhood.Exercise510
@@ -678,3 +678,4 @@ def iterIsInitial (Dom : StrictDomainObj.{w}) : IsInitial (iterAlg Dom) where
 end Exercise618
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

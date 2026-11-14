@@ -19,7 +19,7 @@ import Tengoku.Seed.Combinatorics.Matroid.Init
 import Tengoku.Seed.LinearAlgebra.Complex.FiniteDimensional
 import Tengoku.Seed.MeasureTheory.Covering.Besicovitch
 import Tengoku.Seed.Topology.MetricSpace.HausdorffDimension
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -989,3 +989,4 @@ theorem contourIntegral_eq_zero_of_nullHomologous (hU : IsOpen U) (hf : Differen
 end DixonProof
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

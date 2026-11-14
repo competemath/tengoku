@@ -15,7 +15,7 @@ This is the final mean-normalization reduction in the proof of Theorem 2.1.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory ProbabilityTheory Set Filter
 
 namespace Feige
@@ -123,3 +123,4 @@ theorem ae_le_meanOneNormalize
 end
 
 end Feige
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

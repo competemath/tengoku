@@ -65,7 +65,7 @@ not attempted.  Recon: ~/Knowledge/Construct/recon/erdos_376.md.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Egrs75.MuFinish
 
 open Nat
@@ -486,3 +486,4 @@ theorem egrs_clearing_low_mu {p q : ℕ} (hp : p.Prime) (hq : q.Prime)
   omega
 
 end Egrs75.MuFinish
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

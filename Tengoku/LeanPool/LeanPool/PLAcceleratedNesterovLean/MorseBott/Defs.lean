@@ -30,7 +30,7 @@ Formalization of definitions from:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter Topology Metric Submodule
 
 noncomputable section
@@ -154,3 +154,4 @@ def IsMuMB (f : E → ℝ) (μ : ℝ) (x₀ : E) : Prop :=
   ∀ v : E, v ∈ T.orthogonal → H v v ≥ μ * ‖v‖ ^ 2
 
 end PLAcceleratedNesterovLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

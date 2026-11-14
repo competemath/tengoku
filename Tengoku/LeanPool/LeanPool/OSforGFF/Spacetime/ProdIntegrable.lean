@@ -17,7 +17,7 @@ This specialized version matches the signature needed in OS3_MixedRepInfra.lean.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory SchwartzMap Real Set Metric
 open scoped ENNReal
 
@@ -40,7 +40,7 @@ private lemma norm_iteratedFDeriv_one_eq (f : TestFunctionℂ) (y : SpaceTime) :
     Follows from mean value theorem + global derivative bounds on Schwartz functions.
 @isnad1 id=ex.1h1v.s8.dca82106bae3 from=translated src=- shape=980050d5 vocab=4984729d
 -/
-theorem schwartz_vanishing_linear_bound (f : TestFunctionℂ)
+theorem _root_.Tengoku.LeanPool.schwartz_vanishing_linear_bound (f : TestFunctionℂ)
     (hf_supp : ∀ x : SpaceTime, x 0 ≤ 0 → f x = 0) :
     ∃ C : ℝ, 0 < C ∧ ∀ x : SpaceTime, 0 < x 0 → ‖f x‖ ≤ C * (x 0) := by
   -- Step 1: Get a global bound on the first derivative from Schwartz decay
@@ -118,16 +118,16 @@ On the bounded time domain {0 < t₁, 0 < t₂, t₁+t₂ < 1}, this gives integ
 -/
 
 /-- The spatial part of SpaceTime: ℝ³. -/
-abbrev SpatialCoords3 : Type := EuclideanSpace ℝ (Fin 3)
+abbrev _root_.Tengoku.LeanPool.SpatialCoords3 : Type := EuclideanSpace ℝ (Fin 3)
 
 /-- Decomposition of SpaceTime as time × space. -/
-noncomputable def spacetimeOfTimeSpace (t : ℝ) (x : SpatialCoords3) : SpaceTime :=
+noncomputable def _root_.Tengoku.LeanPool.spacetimeOfTimeSpace (t : ℝ) (x : SpatialCoords3) : SpaceTime :=
   EuclideanSpace.equiv (Fin 4) ℝ |>.symm (Fin.cons t (fun i => x i))
 
 /-- The time coordinate of spacetimeOfTimeSpace is t.
 @isnad1 id=eq.0h2v.s5.9314652c2bcc from=translated src=- shape=db33f545 vocab=f86a5486
 -/
-lemma spacetimeOfTimeSpace_time (t : ℝ) (x : SpatialCoords3) :
+lemma _root_.Tengoku.LeanPool.spacetimeOfTimeSpace_time (t : ℝ) (x : SpatialCoords3) :
     (spacetimeOfTimeSpace t x) 0 = t := by
   simp [spacetimeOfTimeSpace, EuclideanSpace.equiv]
 
@@ -135,7 +135,7 @@ lemma spacetimeOfTimeSpace_time (t : ℝ) (x : SpatialCoords3) :
     Mathematical fact: (spacetimeOfTimeSpace t x) (i+1) = x i
 @isnad1 id=eq.0h3v.s6.230c851347a1 from=translated src=- shape=d2dbf219 vocab=7dd10d96
 -/
-lemma spacetimeOfTimeSpace_spatial (t : ℝ) (x : SpatialCoords3) (i : Fin 3) :
+lemma _root_.Tengoku.LeanPool.spacetimeOfTimeSpace_spatial (t : ℝ) (x : SpatialCoords3) (i : Fin 3) :
     (spacetimeOfTimeSpace t x) ⟨i.val + 1, Nat.add_lt_add_right i.isLt 1⟩ = x i := by
   have h : (⟨i.val + 1, Nat.add_lt_add_right i.isLt 1⟩ : Fin 4) = Fin.succ i := rfl
   simp [spacetimeOfTimeSpace, EuclideanSpace.equiv, h]
@@ -144,7 +144,7 @@ lemma spacetimeOfTimeSpace_spatial (t : ℝ) (x : SpatialCoords3) (i : Fin 3) :
     This is the key structural fact: (t, x) = (t, 0) + (0, x).
 @isnad1 id=eq.0h2v.s7.f70dc3cd8733 from=translated src=- shape=edd3cb42 vocab=9b74d8ef
 -/
-lemma spacetimeOfTimeSpace_decompose (t : ℝ) (x : SpatialCoords3) :
+lemma _root_.Tengoku.LeanPool.spacetimeOfTimeSpace_decompose (t : ℝ) (x : SpatialCoords3) :
     spacetimeOfTimeSpace t x = spacetimeOfTimeSpace t 0 + spacetimeOfTimeSpace 0 x := by
   ext j
   cases j using Fin.cases with
@@ -158,7 +158,7 @@ lemma spacetimeOfTimeSpace_decompose (t : ℝ) (x : SpatialCoords3) :
 /-- Norm comparison: the spacetime norm dominates the spatial norm.
 @isnad1 id=le.0h2v.s6.9457578e9438 from=translated src=- shape=5db490ba vocab=a713f284
 -/
-lemma spacetimeOfTimeSpace_norm_ge (t : ℝ) (x : SpatialCoords3) :
+lemma _root_.Tengoku.LeanPool.spacetimeOfTimeSpace_norm_ge (t : ℝ) (x : SpatialCoords3) :
     ‖spacetimeOfTimeSpace t x‖ ≥ ‖x‖ := by
   have hsq : ‖spacetimeOfTimeSpace t x‖ ^ 2 = t ^ 2 + ‖x‖ ^ 2 := by
     rw [EuclideanSpace.norm_sq_eq, Fin.sum_univ_four]
@@ -183,7 +183,7 @@ lemma spacetimeOfTimeSpace_norm_ge (t : ℝ) (x : SpatialCoords3) :
 /-- Linear embedding of ℝ³ into ℝ⁴ as the spatial subspace at time 0.
     This maps x ↦ (0, x₀, x₁, x₂), i.e., spacetimeOfTimeSpace 0 x.
 -/
-noncomputable def spatialEmbed : SpatialCoords3 →ₗ[ℝ] SpaceTime where
+noncomputable def _root_.Tengoku.LeanPool.spatialEmbed : SpatialCoords3 →ₗ[ℝ] SpaceTime where
   toFun := fun x => spacetimeOfTimeSpace 0 x
   map_add' := fun x y => by
     ext j
@@ -199,21 +199,21 @@ noncomputable def spatialEmbed : SpatialCoords3 →ₗ[ℝ] SpaceTime where
 /-- The spatial embedding is continuous (being linear on finite-dim spaces).
 @isnad1 id=continuo.0h0v.s9.5c2e1b78fb35 from=translated src=- shape=70a4c996 vocab=45f16adb
 -/
-lemma spatialEmbed_continuous : Continuous spatialEmbed :=
+lemma _root_.Tengoku.LeanPool.spatialEmbed_continuous : Continuous spatialEmbed :=
   LinearMap.continuous_of_finiteDimensional spatialEmbed
 
 /-- The spatial embedding as a CLM. -/
-noncomputable def spatialEmbedCLM : SpatialCoords3 →L[ℝ] SpaceTime :=
+noncomputable def _root_.Tengoku.LeanPool.spatialEmbedCLM : SpatialCoords3 →L[ℝ] SpaceTime :=
   ⟨spatialEmbed, spatialEmbed_continuous⟩
 
 /-- The time-origin point: (t, 0, 0, 0) in SpaceTime. -/
-noncomputable def timeOrigin (t : ℝ) : SpaceTime :=
+noncomputable def _root_.Tengoku.LeanPool.timeOrigin (t : ℝ) : SpaceTime :=
   spacetimeOfTimeSpace t 0
 
 /-- spacetimeOfTimeSpace is continuous in the spatial argument for fixed time.
 @isnad1 id=continuo.0h1v.s6.b0f6fd5fcfc7 from=translated src=- shape=7000f90d vocab=a04bde2d
 -/
-lemma continuous_spacetimeOfTimeSpace_right (t : ℝ) : Continuous (spacetimeOfTimeSpace t) := by
+lemma _root_.Tengoku.LeanPool.continuous_spacetimeOfTimeSpace_right (t : ℝ) : Continuous (spacetimeOfTimeSpace t) := by
   -- spacetimeOfTimeSpace t x = timeOrigin t + spatialEmbedCLM x (constant + CLM)
   have h_decompose : ∀ x, spacetimeOfTimeSpace t x = timeOrigin t + spatialEmbedCLM x :=
     fun x => by rw [spacetimeOfTimeSpace_decompose]; rfl
@@ -223,7 +223,7 @@ lemma continuous_spacetimeOfTimeSpace_right (t : ℝ) : Continuous (spacetimeOfT
     Uses decay transfer: 4D Schwartz decay implies 3D integrability via norm comparison.
 @isnad1 id=integrab.0h2v.s8.0f741eab436b from=translated src=- shape=d0434bea vocab=1361f61d
 -/
-lemma schwartz_time_slice_integrable (f : TestFunctionℂ) (t : ℝ) :
+lemma _root_.Tengoku.LeanPool.schwartz_time_slice_integrable (f : TestFunctionℂ) (t : ℝ) :
     Integrable (fun x : SpatialCoords3 => f (spacetimeOfTimeSpace t x)) volume := by
   -- Strategy: Show the function has rapid decay and use integrability of decay functions
   --
@@ -281,13 +281,13 @@ lemma schwartz_time_slice_integrable (f : TestFunctionℂ) (t : ℝ) :
   exact h_bound x
 
 /-- The spatial integral G(t) = ∫_{ℝ³} ‖f(t, x)‖ dx. -/
-noncomputable def spatialNormIntegral (f : TestFunctionℂ) (t : ℝ) : ℝ :=
+noncomputable def _root_.Tengoku.LeanPool.spatialNormIntegral (f : TestFunctionℂ) (t : ℝ) : ℝ :=
   ∫ x : SpatialCoords3, ‖f (spacetimeOfTimeSpace t x)‖
 
 /-- G(t) = 0 for t ≤ 0 when f vanishes on {t ≤ 0}.
 @isnad1 id=eq.2h2v.s7.91ef806bc748 from=translated src=- shape=5940defa vocab=9dda5f95
 -/
-lemma spatialNormIntegral_zero_of_neg (f : TestFunctionℂ)
+lemma _root_.Tengoku.LeanPool.spatialNormIntegral_zero_of_neg (f : TestFunctionℂ)
     (hf_supp : ∀ x : SpaceTime, x 0 ≤ 0 → f x = 0) (t : ℝ) (ht : t ≤ 0) :
     spatialNormIntegral f t = 0 := by
   simp only [spatialNormIntegral]
@@ -301,7 +301,7 @@ lemma spatialNormIntegral_zero_of_neg (f : TestFunctionℂ)
 /-- G(t) is nonnegative.
 @isnad1 id=le.0h2v.s4.06bc674c0283 from=translated src=- shape=787c1379 vocab=4da04e2a
 -/
-lemma spatialNormIntegral_nonneg (f : TestFunctionℂ) (t : ℝ) :
+lemma _root_.Tengoku.LeanPool.spatialNormIntegral_nonneg (f : TestFunctionℂ) (t : ℝ) :
     0 ≤ spatialNormIntegral f t :=
   integral_nonneg (fun _ => norm_nonneg _)
 
@@ -332,7 +332,7 @@ lemma spatialNormIntegral_nonneg (f : TestFunctionℂ) (t : ℝ) :
     **Used by**: `spatialNormIntegral_linear_bound` and `F_norm_bound_via_linear_vanishing`.
 @isnad1 id=ex.1h1v.s8.989f0c357263 from=translated src=- shape=963598db vocab=121a1d82
 -/
-lemma schwartz_vanishing_ftc_decay (f : TestFunctionℂ)
+lemma _root_.Tengoku.LeanPool.schwartz_vanishing_ftc_decay (f : TestFunctionℂ)
     (hf_supp : ∀ x : SpaceTime, x 0 ≤ 0 → f x = 0) :
     ∃ C : ℝ, 0 < C ∧ ∀ (t : ℝ) (_ht : 0 < t) (x_sp : SpatialCoords3),
       ‖f (spacetimeOfTimeSpace t x_sp)‖ ≤ C * t / (1 + ‖x_sp‖)^4 := by
@@ -560,7 +560,7 @@ lemma schwartz_vanishing_ftc_decay (f : TestFunctionℂ)
     the spatial integral is finite.
 @isnad1 id=ex.1h1v.s8.4d411a05df85 from=translated src=- shape=4ae7b379 vocab=e421209c
 -/
-theorem spatialNormIntegral_linear_bound (f : TestFunctionℂ)
+theorem _root_.Tengoku.LeanPool.spatialNormIntegral_linear_bound (f : TestFunctionℂ)
     (hf_supp : ∀ x : SpaceTime, x 0 ≤ 0 → f x = 0) :
     ∃ C : ℝ, 0 < C ∧ ∀ t : ℝ, 0 < t → spatialNormIntegral f t ≤ C * t := by
   -- Step 1: Get the pointwise FTC + decay bound from helper lemma
@@ -604,3 +604,4 @@ theorem spatialNormIntegral_linear_bound (f : TestFunctionℂ)
     _ = C_pt * (K + 1) * t := by ring
 
 end SpaceTime
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

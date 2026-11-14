@@ -64,11 +64,11 @@ doubling chain is renamed along.
 -/
 
 @[expose] public section
-
-open CompositionAlgebra
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+open Tengoku.LeanPool.CompositionAlgebra
 open scoped Quaternion
 
-namespace CompositionAlgebra
+namespace Tengoku.LeanPool.CompositionAlgebra
 
 universe u v
 
@@ -92,7 +92,7 @@ structure IsCompIso {C : Type u} {D : Type v}
   /-- The norm form is preserved. -/
   map_nf : ∀ x : C, nf (f x) = nf x
 
-end CompositionAlgebra
+end Tengoku.LeanPool.CompositionAlgebra
 
 /-! ### The conjugation on the three associative carriers -/
 
@@ -178,7 +178,7 @@ missing companions. -/
 theorem Quaternion.nf_eq (q : ℍ[ℝ]) :
     nf q = q.re * q.re + q.imI * q.imI + q.imJ * q.imJ + q.imK * q.imK := rfl
 
-namespace CompositionAlgebra
+namespace Tengoku.LeanPool.CompositionAlgebra
 
 /-! ### `CD ℝ ≃ ℂ` -/
 
@@ -260,4 +260,5 @@ def cdQuaternionEquiv : CD ℍ[ℝ] ≃ₗ[ℝ] Octonion where
     (cdQuaternionEquiv x).coords = ![x.fst.re, x.fst.imI, x.fst.imJ, x.snd.re,
       x.fst.imK, x.snd.imJ, -x.snd.imK, x.snd.imI] := rfl
 
-end CompositionAlgebra
+end Tengoku.LeanPool.CompositionAlgebra
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

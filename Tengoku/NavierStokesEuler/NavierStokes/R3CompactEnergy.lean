@@ -10,7 +10,7 @@ All integrations by parts use a compact spatial cutoff. The velocity and
 pressure themselves need no decay of their derivatives.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace NavierStokes.R3CompactEnergy
 
 open Set MeasureTheory InnerProductSpace ProblemStatement
@@ -218,3 +218,4 @@ theorem energy_balance {χ p : Space → ℝ} {w u v z : Space → Space}
   linarith
 
 end NavierStokes.R3CompactEnergy
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

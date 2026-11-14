@@ -16,7 +16,7 @@ separate sheaf or stalk API into the public statement.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter
 open scoped Topology
 
@@ -45,3 +45,4 @@ theorem analytic_germ_isUnit {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ
   exact hg.continuousAt.eventually_ne hg0
 
 end ClassicalComplexWPT
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

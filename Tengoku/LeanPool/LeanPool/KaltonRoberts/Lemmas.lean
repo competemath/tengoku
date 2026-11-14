@@ -23,7 +23,7 @@ Mathematical lemmas from Sections 1-4 of the companion paper.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace KaltonRoberts
 
 open Finset BigOperators
@@ -498,3 +498,4 @@ theorem two_sided_recombination
   linarith
 
 end KaltonRoberts
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

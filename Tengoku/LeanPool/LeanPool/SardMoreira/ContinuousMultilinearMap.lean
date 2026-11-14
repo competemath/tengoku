@@ -13,7 +13,7 @@ import Tengoku.LeanPool.LeanPool.SardMoreira.ToMathlib.ContinuousLinearMap
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped Asymptotics BigOperators
 
 section AddMonoid
@@ -149,3 +149,4 @@ theorem compContinuousLinearMap_sub_compContinuousLinearMap_isBigO
   · exact hf_sub
 
 end ContinuousMultilinearMap
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

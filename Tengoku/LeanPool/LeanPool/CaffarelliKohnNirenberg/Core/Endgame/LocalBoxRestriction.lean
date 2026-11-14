@@ -15,7 +15,7 @@ interval or losing compact containment in the original domain.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set
 open CKN.Foundation.Parabolic
 
@@ -45,3 +45,4 @@ theorem support_subset_inter_spatial_box
   exact ⟨⟨(hbox hz).1, hspace z hz⟩, (hbox hz).2⟩
 
 end CKN.Core.Endgame
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -19,7 +19,7 @@ but can be made so by adding 101 to the factors of `y`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace GeneralCase
 
 open Fin Filter IsCoprime
@@ -500,3 +500,4 @@ theorem pairwiseCoprime_tup : ∀ᶠ h in atTop, PairwiseCoprime (tup n F h) := 
   case right.right i j => exact cp₃ i j (by simpa using hij)
 
 end GeneralCase
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

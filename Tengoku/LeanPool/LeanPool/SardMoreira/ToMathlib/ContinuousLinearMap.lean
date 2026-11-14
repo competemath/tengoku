@@ -13,7 +13,7 @@ Mostly about `ContinuousLinearMap.IsInvertible` and `ContinuousLinearMap.inverse
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter Function Asymptotics Topology
 
 namespace ContinuousLinearMap
@@ -88,3 +88,4 @@ theorem apply_sub_apply_isBigO {α 𝕜 𝕝 E F G : Type*}
       simpa using hf_sub.norm_norm.mul (hg_bdd.isBigO_one ℝ).norm_left
 
 end ContinuousLinearMap
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

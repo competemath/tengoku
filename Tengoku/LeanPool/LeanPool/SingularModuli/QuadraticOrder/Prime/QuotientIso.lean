@@ -33,10 +33,10 @@ Lean-idiomatic route; the mathematical content matches Prop 3.2.1.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Polynomial
 
-namespace QuadraticOrder
+namespace Tengoku.LeanPool.QuadraticOrder
 
 /-- The structural bridge: `QuadraticOrder d / (p)` is ring-equivalent to
 `(ZMod p)[X] / (polyMod d p)`. This is the key isomorphism connecting
@@ -97,4 +97,5 @@ noncomputable def quadraticOrderModPEquivXSqQuot
   (quadraticOrderModPEquivPolyModQuot d p).trans <|
     Ideal.quotEquivOfEq <| by rw [polyMod_eq_X_sq_of_p_dvd_d hp2 hd hpd]
 
-end QuadraticOrder
+end Tengoku.LeanPool.QuadraticOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

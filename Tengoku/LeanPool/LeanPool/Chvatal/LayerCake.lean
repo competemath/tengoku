@@ -45,7 +45,7 @@ support. The support is a lower set, and each step strictly shrinks it.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators
 
 namespace Chvatal
@@ -131,3 +131,4 @@ theorem sum_mul_antitone_nonneg_of_lowerSets (c : α → ℝ)
       simp [hwzero]
 
 end Chvatal
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

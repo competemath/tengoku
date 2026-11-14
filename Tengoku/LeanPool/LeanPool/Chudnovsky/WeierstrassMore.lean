@@ -25,7 +25,7 @@ characterisation of the zeros of `℘'` use the third Liouville theorem (from
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace PeriodPair
@@ -498,3 +498,4 @@ theorem derivWeierstrassP_eq_zero_iff {z : ℂ} (hz : z ∉ L.lattice) :
       exact L.derivWeierstrassP_add_div_two
 
 end PeriodPair
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

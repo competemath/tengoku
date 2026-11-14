@@ -21,7 +21,7 @@ polynomials*, Arch. Math. 59 (1992), 239-244; upstreaming candidates for Mathlib
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 variable {R : Type*} [CommRing R] [IsDomain R] [NormalizedGCDMonoid R]
 
 private theorem gcd_seq_add {a : ℕ → R} (hdvd : ∀ m j, a m ∣ a (m + j) - a j) (m n : ℕ) :
@@ -45,7 +45,7 @@ private theorem gcd_seq_add_mul {a : ℕ → R} (hdvd : ∀ m j, a m ∣ a (m + 
 `a` is a strong divisibility sequence: `gcd (a m) (a n) = normalize (a (gcd m n))`.
 @isnad1 id=eq.2h4v.s7.ecf6ca90a756 from=translated src=- shape=95e8855d vocab=2f9ef5d0
 -/
-theorem gcd_eq_normalize_of_dvd_sub {a : ℕ → R} (h0 : a 0 = 0)
+theorem _root_.Tengoku.LeanPool.gcd_eq_normalize_of_dvd_sub {a : ℕ → R} (h0 : a 0 = 0)
     (hdvd : ∀ m j, a m ∣ a (m + j) - a j) (m n : ℕ) :
     gcd (a m) (a n) = normalize (a (m.gcd n)) := by
   induction m, n using Nat.gcd.induction with
@@ -58,7 +58,7 @@ theorem gcd_eq_normalize_of_dvd_sub {a : ℕ → R} (h0 : a 0 = 0)
 /-- The `Associated` form of `gcd_eq_normalize_of_dvd_sub`.
 @isnad1 id=associat.2h4v.s7.36e8cdbc9abb from=translated src=- shape=28a084ea vocab=8e8a2d3e
 -/
-theorem associated_gcd_of_dvd_sub {a : ℕ → R} (h0 : a 0 = 0)
+theorem _root_.Tengoku.LeanPool.associated_gcd_of_dvd_sub {a : ℕ → R} (h0 : a 0 = 0)
     (hdvd : ∀ m j, a m ∣ a (m + j) - a j) (m n : ℕ) :
     Associated (gcd (a m) (a n)) (a (m.gcd n)) :=
   gcd_eq_normalize_of_dvd_sub h0 hdvd m n ▸ normalize_associated _
@@ -72,3 +72,4 @@ theorem Int.gcd_eq_natAbs_of_dvd_sub {a : ℕ → ℤ} (h0 : a 0 = 0)
     Int.gcd (a m) (a n) = (a (m.gcd n)).natAbs := by
   have h := Int.associated_iff_natAbs.mp (associated_gcd_of_dvd_sub h0 hdvd m n)
   rw [← h, ← Int.coe_gcd, Int.natAbs_natCast]
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

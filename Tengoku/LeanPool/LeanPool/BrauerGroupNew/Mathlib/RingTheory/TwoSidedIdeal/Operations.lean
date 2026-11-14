@@ -15,7 +15,7 @@ Imported Lean Pool material for
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Function
 
 namespace TwoSidedIdeal
@@ -55,3 +55,4 @@ def orderIsoOfRingEquiv {F : Type*} [EquivLike F R S] [RingEquivClass F R S] (f 
       simp only [Equiv.coe_fn_mk, SetLike.mem_coe, mem_comap] at hx ⊢
       exact h hx
 end TwoSidedIdeal
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

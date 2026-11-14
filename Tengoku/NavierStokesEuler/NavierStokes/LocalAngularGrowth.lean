@@ -13,7 +13,7 @@ angular asymptotic along an inward-moving radial ray.
 -/
 
 noncomputable section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Filter
 open scoped Topology ContDiff
 
@@ -251,3 +251,4 @@ theorem selected_candidate_one_with_angular_growth :
     TimeLocalization.activatedPressure_zero_early _ ht x⟩
 
 end NavierStokes.LocalAngularGrowth
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

@@ -17,7 +17,7 @@ Imported Lean Pool material for `LeanPool.BrauerGroupNew.Wedderburn`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 variable (A : Type*) [Ring A]
 
 open Matrix MulOpposite
@@ -140,7 +140,7 @@ variable (K D : Type*) [Field K] [IsSimpleRing A] [Algebra K A] [DivisionRing D]
 The canonical map from `Aᵒᵖ` to `Hom(A, A)`
 -/
 @[simps]
-def mopToEnd : Aᵐᵒᵖ →+* Module.End A A where
+def _root_.Tengoku.LeanPool.mopToEnd : Aᵐᵒᵖ →+* Module.End A A where
   toFun a :=
     { toFun := fun x ↦ x * a.unop
       map_add' := by simp [add_mul]
@@ -154,7 +154,7 @@ def mopToEnd : Aᵐᵒᵖ →+* Module.End A A where
 The canonical map from `A` to `Hom(A, A)ᵒᵖ`
 -/
 @[simps]
-def toEndMop : A →+* (Module.End A A)ᵐᵒᵖ where
+def _root_.Tengoku.LeanPool.toEndMop : A →+* (Module.End A A)ᵐᵒᵖ where
   toFun a := op
     { toFun := fun x ↦ x * a
       map_add' := by simp [add_mul]
@@ -167,7 +167,7 @@ def toEndMop : A →+* (Module.End A A)ᵐᵒᵖ where
 /--
 the map `Aᵒᵖ → Hom(A, A)` is bijective
 -/
-noncomputable def mopEquivEnd : Aᵐᵒᵖ ≃+* Module.End A A :=
+noncomputable def _root_.Tengoku.LeanPool.mopEquivEnd : Aᵐᵒᵖ ≃+* Module.End A A :=
   .ofBijective (mopToEnd A) ⟨RingHom.injective_iff_ker_eq_bot _ |>.mpr <|
     SetLike.ext fun α => ⟨by rintro (ha : mopToEnd A α = 0); simpa using (DFunLike.ext_iff.mp ha) 1,
       by rintro rfl; ext; simp⟩, fun φ => ⟨op (φ 1), by ext; simp⟩⟩
@@ -176,7 +176,7 @@ noncomputable def mopEquivEnd : Aᵐᵒᵖ ≃+* Module.End A A :=
 the map `Aᵒᵖ → Hom(A, A)` is bijective
 -/
 @[simps!]
-noncomputable def equivEndMop : A ≃+* (Module.End A A)ᵐᵒᵖ :=
+noncomputable def _root_.Tengoku.LeanPool.equivEndMop : A ≃+* (Module.End A A)ᵐᵒᵖ :=
   .ofBijective (toEndMop A) ⟨RingHom.injective_iff_ker_eq_bot _ |>.mpr <| SetLike.ext
     fun α => ⟨fun ha => by
       simp only [RingHom.mem_ker, toEndMop_apply, op_eq_zero_iff, DFunLike.ext_iff,
@@ -188,7 +188,7 @@ noncomputable def equivEndMop : A ≃+* (Module.End A A)ᵐᵒᵖ :=
 For any ring `D`, `Mₙ(D) ≅ Mₙ(D)ᵒᵖ`.
 -/
 @[simps]
-def matrixEquivMatrixMop (n : ℕ) (D : Type*) [Ring D] :
+def _root_.Tengoku.LeanPool.matrixEquivMatrixMop (n : ℕ) (D : Type*) [Ring D] :
     Matrix (Fin n) (Fin n) Dᵐᵒᵖ ≃+* (Matrix (Fin n) (Fin n) D)ᵐᵒᵖ where
   toFun M := MulOpposite.op (M.transpose.map (fun d => MulOpposite.unop d))
   invFun M := (MulOpposite.unop M).transpose.map (fun d => MulOpposite.op d)
@@ -213,7 +213,7 @@ lemma Ideal.eq_of_le_of_isSimpleModule {A : Type u} [Ring A]
 /--
 @isnad1 id=issimple.2h2v.s7.e6f13bf5112b from=translated src=- shape=f7ed2bc4 vocab=c3e3da99
 -/
-lemma minimal_ideal_isSimpleModule {A : Type u} [Ring A]
+lemma _root_.Tengoku.LeanPool.minimal_ideal_isSimpleModule {A : Type u} [Ring A]
     (I : Ideal A) (I_nontrivial : I ≠ ⊥)
     (I_minimal : ∀ J : Ideal A, J ≠ ⊥ → ¬ J < I) :
     IsSimpleModule A I := by
@@ -241,7 +241,7 @@ lemma minimal_ideal_isSimpleModule {A : Type u} [Ring A]
 /--
 @isnad1 id=ex.1h2v.s7.ff1761923694 from=translated src=- shape=f5311993 vocab=28618402
 -/
-lemma WedderburnArtin.aux.one_eq
+lemma Tengoku.LeanPool.WedderburnArtin.aux.one_eq
     {A : Type u} [Ring A] [simple : IsSimpleRing A]
     (I : Ideal A) (I_nontrivial : I ≠ ⊥) :
     ∃ (n : ℕ) (x : Fin n → A) (i : Fin n → I), ∑ j : Fin n, i j * x j = 1 := by
@@ -260,14 +260,14 @@ lemma WedderburnArtin.aux.one_eq
 
 /-- The minimal number of summands representing `1` from a nontrivial ideal in the
 Wedderburn-Artin proof. -/
-noncomputable abbrev WedderburnArtin.aux.n
+noncomputable abbrev Tengoku.LeanPool.WedderburnArtin.aux.n
     {A : Type u} [Ring A] [simple : IsSimpleRing A]
     (I : Ideal A) (I_nontrivial : I ≠ ⊥) : ℕ := by
   classical
   exact Nat.find <| WedderburnArtin.aux.one_eq I I_nontrivial
 
 /-- The right factors in the chosen minimal representation of `1`. -/
-noncomputable abbrev WedderburnArtin.aux.x
+noncomputable abbrev Tengoku.LeanPool.WedderburnArtin.aux.x
     {A : Type u} [Ring A] [simple : IsSimpleRing A]
     (I : Ideal A) (I_nontrivial : I ≠ ⊥) :
     Fin (WedderburnArtin.aux.n I I_nontrivial) → A  := by
@@ -275,18 +275,18 @@ noncomputable abbrev WedderburnArtin.aux.x
   exact (Nat.find_spec <| WedderburnArtin.aux.one_eq I I_nontrivial).choose
 
 /-- The ideal-valued left factors in the chosen minimal representation of `1`. -/
-noncomputable abbrev WedderburnArtin.aux.i
+noncomputable abbrev Tengoku.LeanPool.WedderburnArtin.aux.i
     {A : Type u} [Ring A] [simple : IsSimpleRing A]
     (I : Ideal A) (I_nontrivial : I ≠ ⊥) :
     Fin (WedderburnArtin.aux.n I I_nontrivial) → I := by
   classical
   exact (Nat.find_spec <| WedderburnArtin.aux.one_eq I I_nontrivial).choose_spec.choose
 
-open WedderburnArtin.aux in
+open Tengoku.LeanPool.WedderburnArtin.aux in
 /-- The chosen representation of `1` by the auxiliary Wedderburn-Artin data.
 @isnad1 id=eq.1h2v.s7.6a0989132bb0 from=translated src=- shape=9ead4a2d vocab=26968935
 -/
-lemma WedderburnArtin.aux.nxi_spec
+lemma Tengoku.LeanPool.WedderburnArtin.aux.nxi_spec
     {A : Type u} [Ring A] [simple : IsSimpleRing A]
     (I : Ideal A) (I_nontrivial : I ≠ ⊥) :
     ∑ j : Fin (n I I_nontrivial), (i I I_nontrivial j) * (x I I_nontrivial j) = 1 := by
@@ -296,17 +296,17 @@ lemma WedderburnArtin.aux.nxi_spec
 /--
 @isnad1 id=ne.1h2v.s5.613548ed0880 from=translated src=- shape=8d0f4368 vocab=900a1183
 -/
-lemma WedderburnArtin.aux.n_ne_zero
+lemma Tengoku.LeanPool.WedderburnArtin.aux.n_ne_zero
     {A : Type u} [Ring A] [simple : IsSimpleRing A]
     (I : Ideal A) (I_nontrivial : I ≠ ⊥) :
     WedderburnArtin.aux.n I I_nontrivial ≠ 0 := by
   simp_all
 
-open WedderburnArtin.aux in
+open Tengoku.LeanPool.WedderburnArtin.aux in
 /--
 @isnad1 id=and.1h3v.s7.6287a8ec846b from=translated src=- shape=6ab103b3 vocab=916f1ea3
 -/
-lemma WedderburnArtin.aux.nxi_ne_zero {A : Type u} [Ring A] [simple : IsSimpleRing A]
+lemma Tengoku.LeanPool.WedderburnArtin.aux.nxi_ne_zero {A : Type u} [Ring A] [simple : IsSimpleRing A]
     (I : Ideal A) (I_nontrivial : I ≠ ⊥) :
     ∀ j, x I I_nontrivial j ≠ 0 ∧ i I I_nontrivial j ≠ 0 := by
   classical
@@ -335,7 +335,7 @@ lemma WedderburnArtin.aux.nxi_ne_zero {A : Type u} [Ring A] [simple : IsSimpleRi
 /--
 @isnad1 id=ex.2h2v.s8.be1bb558f22a from=translated src=- shape=ff618333 vocab=1d8472af
 -/
-lemma WedderburnArtin.aux.equivIdeal
+lemma Tengoku.LeanPool.WedderburnArtin.aux.equivIdeal
     {A : Type u} [Ring A] [simple : IsSimpleRing A]
     (I : Ideal A) (I_nontrivial : I ≠ ⊥) (I_minimal : ∀ J : Ideal A, J ≠ ⊥ → ¬ J < I) :
     ∃ n ≠ 0, Nonempty ((Fin n → I) ≃ₗ[A] A) := by
@@ -395,7 +395,7 @@ lemma WedderburnArtin.aux.equivIdeal
 
 /-- Endomorphisms of a finite product are equivalent to matrices over endomorphisms of one
 factor. -/
-def endPowEquivMatrix (A : Type*) [Ring A]
+def _root_.Tengoku.LeanPool.endPowEquivMatrix (A : Type*) [Ring A]
     (M : Type*) [AddCommGroup M] [Module A M] (n : ℕ) :
     Module.End A (Fin n → M) ≃+* Matrix (Fin n) (Fin n) (Module.End A M) :=
   endVecAlgEquivMatrixEnd (Fin n) ℤ A M
@@ -403,7 +403,7 @@ def endPowEquivMatrix (A : Type*) [Ring A]
 /--
 @isnad1 id=ex.0h1v.s8.0af2e235415e from=translated src=- shape=e5aecb93 vocab=59f66fe1
 -/
-theorem WedderburnArtin_ideal_version
+theorem _root_.Tengoku.LeanPool.WedderburnArtin_ideal_version
     (A : Type u) [Ring A] [IsArtinianRing A] [simple : IsSimpleRing A] :
     ∃ n ≠ 0, ∃ (I : Ideal A) (_ : IsSimpleModule A I), Nonempty ((Fin n → I) ≃ₗ[A] A) := by
   classical
@@ -417,7 +417,7 @@ theorem WedderburnArtin_ideal_version
 /--
 @isnad1 id=ex.0h1v.s10.7099e23dbdab from=translated src=- shape=de8c480e vocab=47e28d82
 -/
-theorem WedderburnArtin (A : Type u) [Ring A] [IsArtinianRing A] [simple : IsSimpleRing A] :
+theorem _root_.Tengoku.LeanPool.WedderburnArtin (A : Type u) [Ring A] [IsArtinianRing A] [simple : IsSimpleRing A] :
     ∃ n ≠ 0, ∃ (I : Ideal A) (_ : IsSimpleModule A I),
       Nonempty (A ≃+* M[Fin n, (Module.End A I)ᵐᵒᵖ]) := by
   classical
@@ -439,7 +439,7 @@ theorem WedderburnArtin (A : Type u) [Ring A] [IsArtinianRing A] [simple : IsSim
 /--
 @isnad1 id=ex.0h1v.s6.ccc97e4440d7 from=translated src=- shape=5d40989e vocab=6ce920e8
 -/
-theorem WedderburnArtin' (A : Type u) [Ring A] [IsArtinianRing A] [simple : IsSimpleRing A] :
+theorem _root_.Tengoku.LeanPool.WedderburnArtin' (A : Type u) [Ring A] [IsArtinianRing A] [simple : IsSimpleRing A] :
     ∃ n ≠ 0, ∃ (S : Type u) (_ : DivisionRing S), Nonempty (A ≃+* (M[Fin n, S])) := by
   classical
   obtain ⟨n, hn, I, inst, e⟩ := WedderburnArtin A
@@ -473,7 +473,7 @@ variable {B} in
 For a `K`-algebra B, there is a map from `I : Ideal B` to `End(I)ᵒᵖ` defined by `k ↦ x ↦ k • x`.
 -/
 @[simps]
-def algebraMapEndIdealMop (I : Ideal B) : K →+* (Module.End B I)ᵐᵒᵖ where
+def _root_.Tengoku.LeanPool.algebraMapEndIdealMop (I : Ideal B) : K →+* (Module.End B I)ᵐᵒᵖ where
   toFun k := .op {
     toFun x := k • x
     map_add' := fun x y => by simp
@@ -484,7 +484,7 @@ def algebraMapEndIdealMop (I : Ideal B) : K →+* (Module.End B I)ᵐᵒᵖ wher
   map_zero' := unop_injective <| by ext; simp
   map_add' _ _ := unop_injective <| by ext; simp [add_smul]
 
-instance instAlgebraMulOppositeEndSubtypeMemIdealLeanPool (I : Ideal B) :
+instance _root_.Tengoku.LeanPool.instAlgebraMulOppositeEndSubtypeMemIdealLeanPool (I : Ideal B) :
     Algebra K (Module.End B I)ᵐᵒᵖ where
   algebraMap := algebraMapEndIdealMop K I
   commutes' := fun r ⟨x⟩ => MulOpposite.unop_injective <| DFunLike.ext _ _ fun ⟨i, hi⟩ =>
@@ -505,7 +505,7 @@ lemma algebraEndIdealMop.algebraMap_eq (I : Ideal B) :
 /--
 @isnad1 id=ex.0h2v.s7.254e0cc5c66f from=translated src=- shape=ec87db87 vocab=eb313bfc
 -/
-lemma WedderburnArtin_algebra_version' (R : Type u) (A : Type v) [CommRing R] [Ring A]
+lemma _root_.Tengoku.LeanPool.WedderburnArtin_algebra_version' (R : Type u) (A : Type v) [CommRing R] [Ring A]
     [sim : IsSimpleRing A] [Algebra R A] [hA : IsArtinianRing A] :
     ∃ n ≠ 0, ∃ (S : Type v) (_ : DivisionRing S) (_ : Algebra R S),
     Nonempty (A ≃ₐ[R] (M[Fin n, S])) := by
@@ -557,7 +557,7 @@ lemma WedderburnArtin_algebra_version' (R : Type u) (A : Type v) [CommRing R] [R
 /--
 @isnad1 id=ex.0h2v.s7.153d3ffa809d from=translated src=- shape=91a8ee3d vocab=7d35c482
 -/
-lemma WedderburnArtin_algebra_version
+lemma _root_.Tengoku.LeanPool.WedderburnArtin_algebra_version
     [sim : IsSimpleRing B] :
     ∃ n ≠ 0, ∃ (S : Type v) (_ : DivisionRing S) (_ : Algebra K S),
       Nonempty (B ≃ₐ[K] (M[Fin n, S])) := by
@@ -569,7 +569,7 @@ omit [FiniteDimensional K B] in
 /--
 @isnad1 id=iscentra.1h5v.s7.3ad506d0cac7 from=translated src=- shape=b8bdf787 vocab=83a89a3d
 -/
-theorem is_central_of_wdb [hctr : Algebra.IsCentral K B]
+theorem _root_.Tengoku.LeanPool.is_central_of_wdb [hctr : Algebra.IsCentral K B]
     (n : ℕ) (S : Type*) (hn : n ≠ 0) [h : DivisionRing S]
     [Algebra K S] (Wdb : B ≃ₐ[K] M[Fin n, S]) :
     Algebra.IsCentral K S := by
@@ -595,7 +595,7 @@ theorem is_central_of_wdb [hctr : Algebra.IsCentral K B]
 /--
 @isnad1 id=finitedi.1h5v.s7.fbe1e770a5f6 from=translated src=- shape=1a08eafe vocab=710ad8a6
 -/
-theorem is_fin_dim_of_wdb {n : ℕ} (hn : n ≠ 0) (S : Type*) [h : DivisionRing S] [Algebra K S]
+theorem _root_.Tengoku.LeanPool.is_fin_dim_of_wdb {n : ℕ} (hn : n ≠ 0) (S : Type*) [h : DivisionRing S] [Algebra K S]
     (Wdb : B ≃ₐ[K] M[Fin n, S]) : FiniteDimensional K S := by
   classical
   have : NeZero n := ⟨hn⟩
@@ -611,7 +611,7 @@ theorem is_fin_dim_of_wdb {n : ℕ} (hn : n ≠ 0) (S : Type*) [h : DivisionRing
 /--
 @isnad1 id=ex.0h2v.s7.bc4b9fdc61f8 from=translated src=- shape=95ac6ff7 vocab=e49c26c5
 -/
-theorem simple_eq_matrix_algClosed [IsAlgClosed K] [IsSimpleRing B] :
+theorem _root_.Tengoku.LeanPool.simple_eq_matrix_algClosed [IsAlgClosed K] [IsSimpleRing B] :
     ∃ n ≠ 0, Nonempty (B ≃ₐ[K] M[Fin n, K]) := by
   rcases WedderburnArtin_algebra_version K B with ⟨n, hn, S, ins1, ins2, ⟨e⟩⟩
   have := is_fin_dim_of_wdb K B hn S e
@@ -619,3 +619,4 @@ theorem simple_eq_matrix_algClosed [IsAlgClosed K] [IsSimpleRing B] :
     .ofBijective (Algebra.ofId _ _) IsAlgClosed.algebraMap_bijective_of_isIntegral⟩⟩
 
 end central_simple
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

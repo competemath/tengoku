@@ -23,7 +23,7 @@ polynomials*, Arch. Math. 59 (1992), 239-244; upstreaming candidates for Mathlib
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ArithmeticFunction.Moebius
 open UniqueFactorizationMonoid ArithmeticFunction
 
@@ -31,22 +31,22 @@ variable {R : Type*} [CommRing R] [IsDomain R]
 variable {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]
 
 /-- The Möbius factor of `c` in the fraction field. -/
-noncomputable def moebiusFactorK (c : ℕ → R) (n : ℕ) : K :=
+noncomputable def _root_.Tengoku.LeanPool.moebiusFactorK (c : ℕ → R) (n : ℕ) : K :=
   ∏ x ∈ n.divisorsAntidiagonal, (algebraMap R K (c x.2)) ^ (μ x.1)
 
 /-- numerator product (μ = 1 part) and denominator product (μ = -1 part), in `R`. -/
-noncomputable def numProd (c : ℕ → R) (n : ℕ) : R :=
+noncomputable def _root_.Tengoku.LeanPool.numProd (c : ℕ → R) (n : ℕ) : R :=
   ∏ x ∈ n.divisorsAntidiagonal with μ x.1 = 1, c x.2
 
 /-- The product of sequence values whose Möbius coefficient is negative. -/
-noncomputable def denProd (c : ℕ → R) (n : ℕ) : R :=
+noncomputable def _root_.Tengoku.LeanPool.denProd (c : ℕ → R) (n : ℕ) : R :=
   ∏ x ∈ n.divisorsAntidiagonal with μ x.1 = -1, c x.2
 
 omit [IsDomain R] in
 /--
 @isnad1 id=eq.1h4v.s7.65b5b12c6acb from=translated src=- shape=56829165 vocab=505a3660
 -/
-theorem moebiusFactorK_eq_div {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0) (n : ℕ) :
+theorem _root_.Tengoku.LeanPool.moebiusFactorK_eq_div {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0) (n : ℕ) :
     moebiusFactorK (K := K) c n
       = algebraMap R K (numProd c n) / algebraMap R K (denProd c n) := by
   have hne (x : ℕ × ℕ) (hx : x ∈ n.divisorsAntidiagonal) : algebraMap R K (c x.2) ≠ 0 := by
@@ -63,7 +63,7 @@ omit [IsDomain R] in
 /-- A Möbius factor of a nowhere-zero sequence is nonzero in the fraction field.
 @isnad1 id=ne.1h4v.s6.433fe36566de from=translated src=- shape=718968b9 vocab=cd140bad
 -/
-lemma moebiusFactorK_ne_zero {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0) (n : ℕ) :
+lemma _root_.Tengoku.LeanPool.moebiusFactorK_ne_zero {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0) (n : ℕ) :
     moebiusFactorK (K := K) c n ≠ 0 := by
   rw [moebiusFactorK, Finset.prod_ne_zero_iff]
   intro x hx
@@ -75,7 +75,7 @@ omit [IsDomain R] [IsFractionRing R K] in
 /--
 @isnad1 id=eq.0h3v.s6.1191b32c92e9 from=translated src=- shape=284f2114 vocab=748968b1
 -/
-@[simp] lemma moebiusFactorK_one (c : ℕ → R) :
+@[simp] lemma _root_.Tengoku.LeanPool.moebiusFactorK_one (c : ℕ → R) :
     moebiusFactorK (K := K) c 1 = algebraMap R K (c 1) := by
   simp [moebiusFactorK]
 
@@ -83,7 +83,7 @@ omit [IsDomain R] in
 /-- Möbius inversion in the fraction field: `c n = ∏_{d ∣ n} moebiusFactorK c d`.
 @isnad1 id=eq.2h4v.s7.64654f87e505 from=translated src=- shape=50df0895 vocab=0dd979b6
 -/
-lemma prod_moebiusFactorK {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0) (n : ℕ) (hn : 1 ≤ n) :
+lemma _root_.Tengoku.LeanPool.prod_moebiusFactorK {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0) (n : ℕ) (hn : 1 ≤ n) :
     algebraMap R K (c n) = ∏ d ∈ n.divisors, moebiusFactorK (K := K) c d :=
   ((ArithmeticFunction.prod_eq_iff_prod_pow_moebius_eq_of_nonzero
       (f := moebiusFactorK (K := K) c) (g := fun k ↦ algebraMap R K (c k))
@@ -95,7 +95,7 @@ omit [IsDomain R] in
 /-- `algebraMap a / algebraMap b` is integral iff `b ∣ a` (for `b ≠ 0`).
 @isnad1 id=iff.1h4v.s7.365b3417b9be from=translated src=- shape=4106fd6e vocab=84087948
 -/
-theorem isInteger_div_iff_dvd (a b : R) (hb : b ≠ 0) :
+theorem _root_.Tengoku.LeanPool.isInteger_div_iff_dvd (a b : R) (hb : b ≠ 0) :
     IsLocalization.IsInteger R (algebraMap R K a / algebraMap R K b) ↔ b ∣ a := by
   have hbK : algebraMap R K b ≠ 0 := by
     simpa using (map_ne_zero_iff _ (FaithfulSMul.algebraMap_injective R K)).mpr hb
@@ -108,13 +108,13 @@ theorem isInteger_div_iff_dvd (a b : R) (hb : b ≠ 0) :
 
 /-- The R-valued Möbius factor: the (unique, by injectivity) preimage of the fraction-field factor.
 Junk value if the factor is not integral. -/
-noncomputable def moebiusFactorR (c : ℕ → R) (n : ℕ) : R :=
+noncomputable def _root_.Tengoku.LeanPool.moebiusFactorR (c : ℕ → R) (n : ℕ) : R :=
   Function.invFun (algebraMap R (FractionRing R)) (moebiusFactorK c n)
 
 /--
 @isnad1 id=eq.0h2v.s5.337d2acde9e9 from=translated src=- shape=6a3a1f0c vocab=73d813a6
 -/
-@[simp] lemma moebiusFactorR_one (c : ℕ → R) : moebiusFactorR c 1 = c 1 := by
+@[simp] lemma _root_.Tengoku.LeanPool.moebiusFactorR_one (c : ℕ → R) : moebiusFactorR c 1 = c 1 := by
   rw [moebiusFactorR, moebiusFactorK_one,
     Function.leftInverse_invFun (FaithfulSMul.algebraMap_injective R (FractionRing R))]
 
@@ -126,7 +126,7 @@ variable [DecidableEq R]
 /--
 @isnad1 id=eq.1h5v.s7.419417a57e40 from=translated src=- shape=df1c06e9 vocab=55701dc1
 -/
-lemma factorization_prod {ι : Type*} {s : Finset ι} {f : ι → R} (hf : ∀ i ∈ s, f i ≠ 0) (p : R) :
+lemma _root_.Tengoku.LeanPool.factorization_prod {ι : Type*} {s : Finset ι} {f : ι → R} (hf : ∀ i ∈ s, f i ≠ 0) (p : R) :
     (factorization (∏ i ∈ s, f i)) p = ∑ i ∈ s, (factorization (f i)) p := by
   classical
   induction s using Finset.induction with
@@ -139,7 +139,7 @@ lemma factorization_prod {ι : Type*} {s : Finset ι} {f : ι → R} (hf : ∀ i
 /-- The valuation gap `v_p(numProd) - v_p(denProd)` is the Möbius transform of `v_p ∘ c`.
 @isnad1 id=eq.1h4v.s7.bddf7253a102 from=translated src=- shape=fa4b101a vocab=9f7a5d55
 -/
-lemma factorization_numProd_sub_denProd {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0) (n : ℕ) (p : R) :
+lemma _root_.Tengoku.LeanPool.factorization_numProd_sub_denProd {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0) (n : ℕ) (p : R) :
     (factorization (numProd c n) p : ℤ) - (factorization (denProd c n) p : ℤ)
       = ∑ x ∈ n.divisorsAntidiagonal, (μ x.1) * (factorization (c x.2) p : ℤ) := by
   have hcx (x : ℕ × ℕ) (hx : x ∈ n.divisorsAntidiagonal) : c x.2 ≠ 0 :=
@@ -156,7 +156,7 @@ omit [IsDomain R] in
 /-- The `p`-multiplicity of a gcd is the minimum of the multiplicities.
 @isnad1 id=eq.2h4v.s7.012aadfd6de7 from=translated src=- shape=424ab044 vocab=7d2222f9
 -/
-theorem factorization_gcd_min (a b : R) (ha : a ≠ 0) (hb : b ≠ 0) (p : R) :
+theorem _root_.Tengoku.LeanPool.factorization_gcd_min (a b : R) (ha : a ≠ 0) (hb : b ≠ 0) (p : R) :
     (factorization (gcd a b)) p = min ((factorization a) p) ((factorization b) p) := by
   have hg : gcd a b ≠ 0 := gcd_ne_zero_of_left ha
   simp only [factorization_eq_count]
@@ -188,7 +188,7 @@ omit [IsDomain R] in
 /-- `v_p ∘ c` is a `gcd`-`min` function when `c` is a strong divisibility sequence.
 @isnad1 id=eq.4h5v.s7.4dff3dcae9a6 from=translated src=- shape=86943ab6 vocab=6655dd94
 -/
-lemma factorization_c_gcd_min {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0)
+lemma _root_.Tengoku.LeanPool.factorization_c_gcd_min {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0)
     (hsd : ∀ m n, Associated (gcd (c m) (c n)) (c (m.gcd n))) (p : R) :
     ∀ x ≥ 1, ∀ y ≥ 1, (factorization (c (x.gcd y)) p)
       = min (factorization (c x) p) (factorization (c y) p) := by
@@ -200,7 +200,7 @@ omit [DecidableEq R] in
 /--
 @isnad1 id=dvd.3h3v.s7.0a7f420a57be from=translated src=- shape=9076f5f2 vocab=c22abbe9
 -/
-theorem denProd_dvd_numProd {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0)
+theorem _root_.Tengoku.LeanPool.denProd_dvd_numProd {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0)
     (hsd : ∀ m n, Associated (gcd (c m) (c n)) (c (m.gcd n))) (n : ℕ) (hn : 1 ≤ n) :
     denProd c n ∣ numProd c n := by
   classical
@@ -225,7 +225,7 @@ end Factorization
 the fraction-field Möbius factor `moebiusFactorK c n` lies in the image of `R`.
 @isnad1 id=isintege.3h4v.s7.becde3f0b0b2 from=translated src=- shape=f51ac383 vocab=d34d0037
 -/
-theorem moebiusFactorK_isInteger {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0)
+theorem _root_.Tengoku.LeanPool.moebiusFactorK_isInteger {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0)
     (hsd : ∀ m n, Associated (gcd (c m) (c n)) (c (m.gcd n))) (n : ℕ) (hn : 1 ≤ n) :
     IsLocalization.IsInteger R (moebiusFactorK (K := K) c n) := by
   classical
@@ -240,7 +240,7 @@ theorem moebiusFactorK_isInteger {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0)
 Möbius formula (for a nowhere-zero strong divisibility sequence).
 @isnad1 id=eq.3h4v.s7.61e076456179 from=translated src=- shape=d7200d8f vocab=cd8202c7
 -/
-theorem algebraMap_moebiusFactorR {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0)
+theorem _root_.Tengoku.LeanPool.algebraMap_moebiusFactorR {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0)
     (hsd : ∀ m n, Associated (gcd (c m) (c n)) (c (m.gcd n))) (n : ℕ) (hn : 1 ≤ n) :
     algebraMap R K (moebiusFactorR c n) = moebiusFactorK (K := K) c n := by
   classical
@@ -263,7 +263,7 @@ theorem algebraMap_moebiusFactorR {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0)
 divisibility sequence.
 @isnad1 id=eq.3h3v.s7.b868ecea9771 from=translated src=- shape=37392e1f vocab=051f9ee7
 -/
-theorem prod_moebiusFactorR {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0)
+theorem _root_.Tengoku.LeanPool.prod_moebiusFactorR {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0)
     (hsd : ∀ m n, Associated (gcd (c m) (c n)) (c (m.gcd n))) (n : ℕ) (hn : 1 ≤ n) :
     c n = ∏ d ∈ n.divisors, moebiusFactorR c d := by
   classical
@@ -280,7 +280,7 @@ omit [DecidableEq R] in
 /-- The defining identity of the `R`-valued factor: `β_n · denProd = numProd`.
 @isnad1 id=eq.3h3v.s7.3e0afb150071 from=translated src=- shape=bfb16cc7 vocab=cfc23c80
 -/
-theorem moebiusFactorR_mul_denProd {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0)
+theorem _root_.Tengoku.LeanPool.moebiusFactorR_mul_denProd {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0)
     (hsd : ∀ m n, Associated (gcd (c m) (c n)) (c (m.gcd n))) (n : ℕ) (hn : 1 ≤ n) :
     moebiusFactorR c n * denProd c n = numProd c n := by
   classical
@@ -297,7 +297,7 @@ omit [DecidableEq R] in
 /--
 @isnad1 id=ne.3h3v.s7.7d5d13c4b6ed from=translated src=- shape=4c415cb1 vocab=4279502f
 -/
-theorem moebiusFactorR_ne_zero {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0)
+theorem _root_.Tengoku.LeanPool.moebiusFactorR_ne_zero {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0)
     (hsd : ∀ m n, Associated (gcd (c m) (c n)) (c (m.gcd n))) (n : ℕ) (hn : 1 ≤ n) :
     moebiusFactorR c n ≠ 0 := by
   classical
@@ -313,7 +313,7 @@ theorem moebiusFactorR_ne_zero {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0)
 /-- `v_p(β_n)` is the Möbius transform of `v_p ∘ c`.
 @isnad1 id=eq.3h4v.s7.746697948c65 from=translated src=- shape=c2c2605b vocab=fe209423
 -/
-theorem factorization_moebiusFactorR {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0)
+theorem _root_.Tengoku.LeanPool.factorization_moebiusFactorR {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0)
     (hsd : ∀ m n, Associated (gcd (c m) (c n)) (c (m.gcd n))) (n : ℕ) (hn : 1 ≤ n) (p : R) :
     (factorization (moebiusFactorR c n) p : ℤ)
       = ∑ x ∈ n.divisorsAntidiagonal, (μ x.1) * (factorization (c x.2) p : ℤ) := by
@@ -334,7 +334,7 @@ theorem factorization_moebiusFactorR {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 
 then `v_p(β_n)` is supported at the single index `n = m`.
 @isnad1 id=eq.5h6v.s8.d02d2c8b5a36 from=translated src=- shape=93668591 vocab=0263dd48
 -/
-theorem factorization_moebiusFactorR_shape {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0)
+theorem _root_.Tengoku.LeanPool.factorization_moebiusFactorR_shape {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0)
     (hsd : ∀ m n, Associated (gcd (c m) (c n)) (c (m.gcd n))) (p : R) {m E : ℕ} (hm : 1 ≤ m)
     (hshape : ∀ k ≥ 1, factorization (c k) p = if m ∣ k then E else 0) (n : ℕ) (hn : 1 ≤ n) :
     factorization (moebiusFactorR c n) p = if n = m then E else 0 := by
@@ -359,7 +359,7 @@ theorem factorization_moebiusFactorR_shape {c : ℕ → R} (hc : ∀ d ≥ 1, c 
 the constant-valuation property: distinct factors share no prime.
 @isnad1 id=isrelpri.6h4v.s8.6899c794ff4a from=translated src=- shape=d5e7a513 vocab=8ec358fe
 -/
-theorem moebiusFactorR_isRelPrime {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0)
+theorem _root_.Tengoku.LeanPool.moebiusFactorR_isRelPrime {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0)
     (hsd : ∀ m n, Associated (gcd (c m) (c n)) (c (m.gcd n)))
     (hshape : ∀ p : R, Prime p → normalize p = p →
       ∃ m ≥ 1, ∃ E : ℕ, ∀ k ≥ 1, factorization (c k) p = if m ∣ k then E else 0)
@@ -394,3 +394,4 @@ theorem moebiusFactorR_isRelPrime {c : ℕ → R} (hc : ∀ d ≥ 1, c d ≠ 0)
   all_goals lia
 
 end Coprimality
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

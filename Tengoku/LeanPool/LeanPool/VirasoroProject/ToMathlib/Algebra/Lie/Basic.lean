@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u
 variable (𝕜 : Type*) [CommRing 𝕜]
 variable (𝓰 : Type u) [LieRing 𝓰] [LieAlgebra 𝕜 𝓰]
@@ -45,3 +45,4 @@ def LieEquiv.mkOfCompEqId {R : Type*} {L L' : Type*} [CommRing R]
   invFun := g
   left_inv := LieHom.congr_fun leftInv
   right_inv := LieHom.congr_fun rightInv
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -26,7 +26,7 @@ are completely positive (HP04–HP05), as is the closed half-plane (HP06).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Matrix Filter
 open scoped Matrix Topology
 
@@ -1302,3 +1302,4 @@ lemma shiftBy_ne_zero (z : n → Fin 2 → ℝ) {w : Fin 2 → ℝ} (hw : w ≠ 
 end
 
 end BollobasNikiforov
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

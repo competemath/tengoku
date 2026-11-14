@@ -15,10 +15,10 @@ Imported Lean Pool material for `LeanPool.ErdosTuzaValtr.Etv.Defs`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 variable {α : Type _} [LinearOrder α] (C : Config α)
 
-namespace Config
+namespace Tengoku.LeanPool.Config
 
 /-- `p` and `q` are laced of order `n` in `S`: an `n`-cup from `p` to `q` extends on both
 sides to cups whose lengths sum to `n`. -/
@@ -48,4 +48,5 @@ def HasJoin (a b : ℕ) (S : Finset α) : Prop :=
   ∃ (p : α) (cl cr : List α),
     (C.NCup a cl ∧ cl.In S ∧ p ∈ cl.getLast?) ∧ C.NCup b cr ∧ cr.In S ∧ p ∈ cr.head?
 
-end Config
+end Tengoku.LeanPool.Config
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

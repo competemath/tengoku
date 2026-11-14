@@ -11,7 +11,7 @@ including time zero, and allow every real decay exponent.
 -/
 
 noncomputable section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace NavierStokes.CompactSpatialForceDecay
 
 open Set Filter Function ProblemStatement
@@ -97,3 +97,4 @@ theorem forceConditionDecay {S : Set Space} (hS : IsCompact S) {f : VelocityFiel
   exact hb t ht x
 
 end NavierStokes.CompactSpatialForceDecay
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

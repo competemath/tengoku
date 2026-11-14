@@ -34,7 +34,7 @@ each α, the iso classes with height ≤ α inject into BFEquiv_α classes, givi
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u v
 
 namespace FirstOrder
@@ -374,3 +374,4 @@ theorem morley_counting (silver : SilverBurgessDichotomy.{v}) (φ : L.Sentenceω
 end Language
 
 end FirstOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

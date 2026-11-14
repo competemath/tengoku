@@ -15,11 +15,11 @@ converging to a real number, used in the construction of computable reals.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /--
 @isnad1 id=eq.0h2v.s6.d8020f86121a from=translated src=- shape=b13425f2 vocab=5da09205
 -/
-theorem abs_ite_le [AddCommGroup α] [LinearOrder α] [IsOrderedAddMonoid α] (x : α) :
+theorem _root_.Tengoku.LeanPool.abs_ite_le [AddCommGroup α] [LinearOrder α] [IsOrderedAddMonoid α] (x : α) :
     abs x = if 0 ≤ x then x else -x := by
   split_ifs <;> simp_all only [abs_eq_self, not_le, abs_eq_neg_self, le_of_lt]
 
@@ -97,7 +97,7 @@ end Real
 /--
 @isnad1 id=ex.1h2v.s6.3813df69abee from=translated src=- shape=0328ff66 vocab=105e76d7
 -/
-theorem cauchy_real_mk (x : CauSeq ℚ abs) : ∀ ε > 0, ∃ i, ∀ j ≥ i, |x j - Real.mk x| < ε := by
+theorem _root_.Tengoku.LeanPool.cauchy_real_mk (x : CauSeq ℚ abs) : ∀ ε > 0, ∃ i, ∀ j ≥ i, |x j - Real.mk x| < ε := by
   intro ε hε
   obtain ⟨q, hq, hq'⟩ := exists_rat_btwn hε
   obtain ⟨i, hi⟩ := x.2.cauchy₂ (by simpa using hq)
@@ -107,3 +107,4 @@ theorem cauchy_real_mk (x : CauSeq ℚ abs) : ∀ ε > 0, ∃ i, ∀ j ≥ i, |x
 
 --end silly lemmas
 --================
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

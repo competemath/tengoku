@@ -15,7 +15,7 @@ Supporting definitions and lemmas for the Odlyzko-bound formalization.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open Complex MeasureTheory
@@ -158,3 +158,4 @@ theorem poitouTransform_one_eq_integral
     simp [poitouTransformIntegrand, Complex.exp_im]
 
 end NumberField.Odlyzko
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

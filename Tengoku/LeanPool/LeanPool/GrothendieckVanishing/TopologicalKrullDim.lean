@@ -32,7 +32,7 @@ API for topological Krull dimension on irreducible spaces.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u
 
 open CategoryTheory TopologicalSpace
@@ -61,7 +61,7 @@ end TopologicalSpace
     Every point is dense, so any nonempty open contains every point.
 @isnad1 id=or.1h2v.s7.ab4b488dc559 from=translated src=- shape=c8f45478 vocab=a6b0d600
 -/
-theorem opens_eq_bot_or_top_of_irreducibleSpace_dim_zero
+theorem _root_.Tengoku.LeanPool.opens_eq_bot_or_top_of_irreducibleSpace_dim_zero
     {X : Type u} [TopologicalSpace X] [IrreducibleSpace X]
     (hdim : topologicalKrullDim X ≤ 0) (U : Opens X) :
     U = ⊥ ∨ U = ⊤ := by
@@ -80,7 +80,7 @@ theorem opens_eq_bot_or_top_of_irreducibleSpace_dim_zero
 /-- On a non-empty topological space, the topological Krull dimension is ≥ 0.
 @isnad1 id=le.0h1v.s4.19dafead06f6 from=translated src=- shape=8c6e13cb vocab=123b46a9
 -/
-theorem topologicalKrullDim_nonneg {X : Type u} [TopologicalSpace X]
+theorem _root_.Tengoku.LeanPool.topologicalKrullDim_nonneg {X : Type u} [TopologicalSpace X]
     [Nonempty X] : topologicalKrullDim X ≥ 0 := by
   rw [topologicalKrullDim, ge_iff_le, Order.krullDim_nonneg_iff]
   obtain ⟨x⟩ := ‹Nonempty X›
@@ -90,7 +90,7 @@ theorem topologicalKrullDim_nonneg {X : Type u} [TopologicalSpace X]
 dimension of each subspace.
 @isnad1 id=lt.1h3v.s5.e1237621c007 from=translated src=- shape=5aa15d96 vocab=e2065a06
 -/
-theorem topologicalKrullDim_subspace_lt_of_lt {X : Type u} [TopologicalSpace X]
+theorem _root_.Tengoku.LeanPool.topologicalKrullDim_subspace_lt_of_lt {X : Type u} [TopologicalSpace X]
     (Y : Set X) {a : WithBot ℕ∞} (ha : topologicalKrullDim X < a) :
     topologicalKrullDim Y < a :=
   lt_of_le_of_lt (topologicalKrullDim_subspace_le X Y) ha
@@ -99,7 +99,7 @@ theorem topologicalKrullDim_subspace_lt_of_lt {X : Type u} [TopologicalSpace X]
 dimension is finite.
 @isnad1 id=lt.1h2v.s5.6532755b309f from=translated src=- shape=0a7f82e8 vocab=14c6e255
 -/
-theorem topologicalKrullDim_lt_top_of_lt_nat {X : Type u} [TopologicalSpace X] {m : ℕ}
+theorem _root_.Tengoku.LeanPool.topologicalKrullDim_lt_top_of_lt_nat {X : Type u} [TopologicalSpace X] {m : ℕ}
     (hm : topologicalKrullDim X < ↑↑(m : ℕ)) :
     topologicalKrullDim X < ⊤ :=
   lt_of_lt_of_le hm le_top
@@ -108,7 +108,7 @@ theorem topologicalKrullDim_lt_top_of_lt_nat {X : Type u} [TopologicalSpace X] {
 upper bound `dim X < n + 1` descends to the predecessor bound `dim Y < n`.
 @isnad1 id=lt.2h3v.s6.c4dac84e5788 from=translated src=- shape=b27026a1 vocab=97153de8
 -/
-theorem topologicalKrullDim_lt_nat_of_lt_of_lt_nat_succ {X Y : Type u}
+theorem _root_.Tengoku.LeanPool.topologicalKrullDim_lt_nat_of_lt_of_lt_nat_succ {X Y : Type u}
     [TopologicalSpace X] [TopologicalSpace Y] {n : ℕ}
     (hYX : topologicalKrullDim Y < topologicalKrullDim X)
     (hXn : topologicalKrullDim X < ↑↑(n + 1 : ℕ)) :
@@ -228,7 +228,7 @@ end TopologicalSpace
     Y ⊊ X closed in irreducible X.
 @isnad1 id=le.2h2v.s6.3af146147feb from=translated src=- shape=2f678b43 vocab=343e22e3
 -/
-theorem topologicalKrullDim_add_one_le_of_isIrreducible_of_isClosed {X : Type u}
+theorem _root_.Tengoku.LeanPool.topologicalKrullDim_add_one_le_of_isIrreducible_of_isClosed {X : Type u}
     [TopologicalSpace X] [IrreducibleSpace X] {Y : Set X} (hY : IsClosed Y)
     (hne : Y ≠ Set.univ) :
     topologicalKrullDim Y + 1 ≤ topologicalKrullDim X := by
@@ -268,7 +268,7 @@ strictly smaller Krull dimension. The finiteness hypothesis excludes the case wh
 `Y` and `X` have infinite dimension.
 @isnad1 id=lt.3h2v.s6.1294fddcfb8d from=translated src=- shape=27c4e8fd vocab=c316a870
 -/
-theorem topologicalKrullDim_lt_of_isIrreducible_of_isClosed {X : Type u} [TopologicalSpace X]
+theorem _root_.Tengoku.LeanPool.topologicalKrullDim_lt_of_isIrreducible_of_isClosed {X : Type u} [TopologicalSpace X]
     [IrreducibleSpace X] {Y : Set X} (hY : IsClosed Y) (hne : Y ≠ Set.univ)
     (hfin : topologicalKrullDim Y < ⊤) :
     topologicalKrullDim Y < topologicalKrullDim X :=
@@ -279,7 +279,7 @@ theorem topologicalKrullDim_lt_of_isIrreducible_of_isClosed {X : Type u} [Topolo
 existence of a proper irreducible closed subset.
 @isnad1 id=iff.0h1v.s5.c2a40fcf24c5 from=translated src=- shape=c9ca2bef vocab=7a475ddd
 -/
-theorem topologicalKrullDim_pos_iff_exists_irreducibleCloseds_ne_univ {X : Type u}
+theorem _root_.Tengoku.LeanPool.topologicalKrullDim_pos_iff_exists_irreducibleCloseds_ne_univ {X : Type u}
     [TopologicalSpace X] [IrreducibleSpace X] :
     topologicalKrullDim X > 0 ↔ ∃ Z : IrreducibleCloseds X, (Z : Set X) ≠ Set.univ := by
   let T : IrreducibleCloseds X :=
@@ -303,7 +303,7 @@ closed subset `Z ⊊ X` of strictly smaller Krull dimension. This isolates the s
 closed-subset choice from the separate task of passing numerical bounds to `Z`.
 @isnad1 id=ex.2h1v.s6.e9465971fded from=translated src=- shape=0c77bc1d vocab=7055aa80
 -/
-theorem exists_closed_subset_lt_topologicalKrullDim_of_irreducible_pos
+theorem _root_.Tengoku.LeanPool.exists_closed_subset_lt_topologicalKrullDim_of_irreducible_pos
     {X : Type u} [TopologicalSpace X] [IrreducibleSpace X]
     (hpos : topologicalKrullDim X > 0) (hX_lt_top : topologicalKrullDim X < ⊤) :
     ∃ Z : Set X, IsClosed Z ∧ Z ≠ Set.univ ∧
@@ -315,3 +315,4 @@ theorem exists_closed_subset_lt_topologicalKrullDim_of_irreducible_pos
   refine ⟨Z, Z.isClosed, hZ_ne_univ, ?_⟩
   exact topologicalKrullDim_lt_of_isIrreducible_of_isClosed
     (X := X) Z.isClosed hZ_ne_univ hZ_lt_top
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

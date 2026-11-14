@@ -45,7 +45,7 @@ See `formalize/DESIGN.md` (in the source repository) for the overall design.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Vlasov
 
 open MeasureTheory ENNReal
@@ -6730,3 +6730,4 @@ theorem picard_iterate_exists_limit {d : ℕ} [NeZero d]
   exact h_tendsto t ht
 
 end Vlasov
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

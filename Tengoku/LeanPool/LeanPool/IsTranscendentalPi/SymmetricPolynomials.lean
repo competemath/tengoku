@@ -15,7 +15,7 @@ machinery feeding the algebraic estimates of Niven's proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Polynomial
 open Multiset
 
@@ -23,13 +23,13 @@ open scoped Polynomial
 open scoped BigOperators
 
 /-- The multiset `{b₀, …, bₙ₋₁}` attached to `b : Fin n → α`. -/
-def valuesFin {α : Type*} {n : ℕ} (b : Fin n → α) : Multiset α :=
+def _root_.Tengoku.LeanPool.valuesFin {α : Type*} {n : ℕ} (b : Fin n → α) : Multiset α :=
   (Finset.univ : Finset (Fin n)).val.map b
 
 /-- Every multiset can be indexed by a map `a : Fin n → α`.
 @isnad1 id=ex.0h2v.s4.ea8f74ad49eb from=translated src=- shape=2d6bb428 vocab=b80cd735
 -/
-lemma exists_valuesFin_eq_multiset {α : Type*} (s : Multiset α) :
+lemma _root_.Tengoku.LeanPool.exists_valuesFin_eq_multiset {α : Type*} (s : Multiset α) :
     ∃ (n : ℕ) (a : Fin n → α), s = valuesFin a := by
   refine Quotient.inductionOn s ?_
   intro l
@@ -39,7 +39,7 @@ lemma exists_valuesFin_eq_multiset {α : Type*} (s : Multiset α) :
 /-- The roots of a polynomial can be listed as a valuesFin `a₀, …, aₙ₋₁`.
 @isnad1 id=ex.0h1v.s5.efb0ec9cdbca from=translated src=- shape=aa2db306 vocab=f7b5a5ca
 -/
-lemma exists_valuesFin_eq_aroots (P : ℚ[X]) :
+lemma _root_.Tengoku.LeanPool.exists_valuesFin_eq_aroots (P : ℚ[X]) :
     ∃ (n : ℕ) (a : Fin n → ℂ), P.aroots ℂ = valuesFin a := by
   simp [exists_valuesFin_eq_multiset]
 
@@ -47,7 +47,7 @@ lemma exists_valuesFin_eq_aroots (P : ℚ[X]) :
 with an elementary symmetric polynomial in the roots.
 @isnad1 id=eq.3h6v.s8.cf5abdb28a47 from=translated src=- shape=aae5bf22 vocab=28ccee45
 -/
-lemma coeff_eq_esymm_of_roots
+lemma _root_.Tengoku.LeanPool.coeff_eq_esymm_of_roots
     {R S : Type*} [CommRing R] [Field S] [Algebra R S] [IsAlgClosed S]
     {n : ℕ} (B : Polynomial R) (b : Fin n → S)
     (hmonic : B.Monic) (hroots : B.aroots S = valuesFin b)
@@ -74,7 +74,7 @@ lemma coeff_eq_esymm_of_roots
 the coefficients of the monic polynomial with roots `b₀, …, bₙ₋₁`.
 @isnad1 id=ex.3h6v.s9.d241a126427e from=translated src=- shape=0357b492 vocab=e5c5614f
 -/
-lemma symmetric_poly_at_roots_eq_poly_of_esymm
+lemma _root_.Tengoku.LeanPool.symmetric_poly_at_roots_eq_poly_of_esymm
     {R S : Type*} [CommRing R] [Field S] [Algebra R S] [IsAlgClosed S]
     {n : ℕ} (B : R[X]) (a : Fin n → S)
     (hmonic : B.Monic) (hroots : B.aroots S = valuesFin a)
@@ -103,7 +103,7 @@ lemma symmetric_poly_at_roots_eq_poly_of_esymm
 the roots of a monic polynomial over `R`.
 @isnad1 id=ex.3h6v.s8.768406a2cdc6 from=translated src=- shape=0556f971 vocab=b0f3918d
 -/
-lemma symmetric_poly_at_roots
+lemma _root_.Tengoku.LeanPool.symmetric_poly_at_roots
     {R S : Type*} [CommRing R] [Field S] [Algebra R S] [IsAlgClosed S]
     {n : ℕ} (B : R[X]) (a : Fin n → S)
     (hmonic : B.Monic) (hroots : B.aroots S = valuesFin a)
@@ -112,3 +112,4 @@ lemma symmetric_poly_at_roots
   obtain ⟨Q, hQ⟩ := symmetric_poly_at_roots_eq_poly_of_esymm (B := B) (a := a) hmonic hroots P hP
   exact ⟨MvPolynomial.aeval (σ := Fin n) (R := ℤ) (S₁ := R)
     (fun i : Fin n => (-1) ^ (i.1 + 1) * B.coeff (n - (i.1 + 1))) Q, hQ⟩
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

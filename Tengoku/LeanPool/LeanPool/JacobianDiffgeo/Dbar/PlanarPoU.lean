@@ -25,7 +25,7 @@ call by an upstream investigation of the manifold `PartitionOfUnity` API.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open scoped ContDiff
@@ -145,3 +145,4 @@ theorem contDiffOn_indicator_smul_of_eventually_zero {U W V : Set ℂ} (_hU : Is
 end RS
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

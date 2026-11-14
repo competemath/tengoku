@@ -60,7 +60,7 @@ Brick B5 ↔ brick B6 of `lem:polygonal-redrawing` (H6), and the interface B7 us
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set
 
 namespace Schoenflies
@@ -462,3 +462,4 @@ theorem polyReaches_connectedComponentIn (h : IsLocallyPolyConn' S) (hA : IsRelO
     isPreconnected_connectedComponentIn hx hy
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

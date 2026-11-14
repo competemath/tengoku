@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 variable {R E F G : Type _} [CommSemiring R] [AddCommGroup E] [AddCommGroup F] [AddCommGroup G]
   [Module R E] [Module R F] [Module R G]
 
@@ -119,7 +119,7 @@ theorem TensorProduct.lid_coe_rid_coe (x : E) :
   (x : R ⊗[R] E) = (x : E ⊗[R] R) := by simp only [LinearEquiv.apply_symm_apply]
 
 @[reducible, instance]
-noncomputable def funTensorProductAssocHasCoe {A : Type _} :
+noncomputable def _root_.Tengoku.LeanPool.funTensorProductAssocHasCoe {A : Type _} :
     CoeFun (((E ⊗[R] F) ⊗[R] G → A)) (fun _ => E ⊗[R] (F ⊗[R] G) → A)
     where coe f x := f x
 
@@ -133,7 +133,7 @@ noncomputable def LinearMap.tensorProductAssocHasCoe {A : Type _} [AddCommMonoid
         E ⊗[R] (F ⊗[R] G) →ₗ[R] (E ⊗[R] F) ⊗[R] G)
 
 @[reducible, instance]
-noncomputable def funTensorProductAssocHasCoe' {A : Type _} :
+noncomputable def _root_.Tengoku.LeanPool.funTensorProductAssocHasCoe' {A : Type _} :
     Coe (E ⊗[R] (F ⊗[R] G) → A) ((E ⊗[R] F) ⊗[R] G → A)
     where coe f x := f x
 
@@ -147,7 +147,7 @@ noncomputable def LinearMap.tensorProductAssocHasCoe' {A : Type _} [AddCommMonoi
         (E ⊗[R] F) ⊗[R] G →ₗ[R] E ⊗[R] (F ⊗[R] G))
 
 @[reducible, instance]
-noncomputable def funLidHasCoe {A : Type _} :
+noncomputable def _root_.Tengoku.LeanPool.funLidHasCoe {A : Type _} :
     CoeFun (R ⊗[R] E → A) (fun _ ↦ E → A) where
   coe f x := f x
 
@@ -157,7 +157,7 @@ noncomputable def LinearMap.tensorProductLidHasCoe {A : Type _} [AddCommMonoid A
   coe f := f ∘ₗ ↑(TensorProduct.lid R E).symm
 
 @[reducible, instance]
-noncomputable def funLidHasCoe' {A : Type _} :
+noncomputable def _root_.Tengoku.LeanPool.funLidHasCoe' {A : Type _} :
     Coe (E → A) (R ⊗[R] E → A) where
   coe f x := f x
 
@@ -167,7 +167,7 @@ noncomputable def LinearMap.tensorProductLidHasCoe' {A : Type _} [AddCommMonoid 
   coe f := f ∘ₗ ↑(TensorProduct.lid R E)
 
 @[reducible, instance]
-noncomputable def funRidHasCoe {A : Type _} :
+noncomputable def _root_.Tengoku.LeanPool.funRidHasCoe {A : Type _} :
     CoeFun (E ⊗[R] R → A) (fun _ => E → A) where
   coe f x := f x
 
@@ -177,7 +177,7 @@ noncomputable def LinearMap.tensorProductRidHasCoe {A : Type _} [AddCommMonoid A
   coe f := f ∘ₗ ↑(TensorProduct.rid R E).symm
 
 @[reducible, instance]
-noncomputable def funRidHasCoe' {A : Type _} :
+noncomputable def _root_.Tengoku.LeanPool.funRidHasCoe' {A : Type _} :
     Coe (E → A) (E ⊗[R] R → A) where
   coe f x := f x
 
@@ -217,3 +217,4 @@ theorem LinearMap.rid_symm_coe {A : Type _} [AddCommMonoid A] [Module R A] (f : 
     f = (f : E →ₗ[R] A) := by
   simp only [LinearMap.comp_assoc, LinearEquiv.comp_coe,
     LinearEquiv.self_trans_symm, LinearEquiv.refl_toLinearMap, LinearMap.comp_id]
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

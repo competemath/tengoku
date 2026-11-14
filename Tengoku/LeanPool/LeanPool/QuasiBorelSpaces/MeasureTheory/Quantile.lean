@@ -15,7 +15,7 @@ Imported Lean Pool material for `LeanPool.QuasiBorelSpaces.MeasureTheory.Quantil
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace MeasureTheory
 
 variable {A : Type*} [MeasurableSpace A]
@@ -47,3 +47,4 @@ namespace Measure
 end Measure
 
 end MeasureTheory
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

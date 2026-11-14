@@ -13,7 +13,7 @@ public import Tengoku.LeanPool.LeanPool.MRiscX.AbstractSyntax.MState
 This module provides the operational `run` semantics of MRiscX.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 local notation:60 "(" k " ↦ "v"; "m")" => TMap.put k v m
 
 
@@ -25,7 +25,7 @@ The function `runOneStep` evaluates each instruction and performs the desired ac
 on the abstract syntax.
 -/
 
-namespace MState
+namespace Tengoku.LeanPool.MState
 
   /-- Conditional jump on one register: jump to `lbl` if `cond` holds of register
   `reg`, otherwise advance the program counter. -/
@@ -138,4 +138,5 @@ namespace MState
   /-- The instruction the machine would execute after one more step. -/
   def nextInstruction (ms:MState) : Instr := ms.runOneStep.currInstruction
 
-end MState
+end Tengoku.LeanPool.MState
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

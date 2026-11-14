@@ -37,7 +37,7 @@ The kernel → 1 pointwise and is bounded by 1, so DCT gives J_R → ∫ ψ.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Complex Filter Topology BigOperators
 open scoped Real FourierTransform InnerProductSpace
 
@@ -91,7 +91,7 @@ private lemma isPositiveDefinite_exp_inner (ξ : V) :
     Proof: negation is a linear isometry equiv, which preserves addHaar measure.
 @isnad1 id=isneginv.0h1v.s6.cf2ee32ee2b8 from=translated src=- shape=ebc3b9bf vocab=90b3d9f3
 -/
-instance volumeIsNegInvariant : (volume : Measure V).IsNegInvariant := by
+instance _root_.Tengoku.LeanPool.volumeIsNegInvariant : (volume : Measure V).IsNegInvariant := by
   constructor; exact ((LinearIsometryEquiv.neg ℝ (E := V)).measurePreserving).map_eq
 
 /-! ### Step A: The PD double integral has nonneg real part -/
@@ -578,7 +578,7 @@ private lemma pd_integral_re_nonneg (ψ : V → ℂ) (hpd : IsPositiveDefinite �
     on a finite-dimensional real inner product space has nonneg real part.
 @isnad1 id=le.3h3v.s7.214c30bccebe from=translated src=- shape=ae3be308 vocab=b5269ae2
 -/
-theorem pd_l1_fourier_re_nonneg_theorem
+theorem _root_.Tengoku.LeanPool.pd_l1_fourier_re_nonneg_theorem
     (φ : V → ℂ) (hpd : IsPositiveDefinite φ)
     (hint : Integrable φ) (hcont : Continuous φ)
     (ξ : V) : 0 ≤ (𝓕 φ ξ).re := by
@@ -614,3 +614,4 @@ theorem pd_l1_fourier_re_nonneg_theorem
   exact pd_integral_re_nonneg _ hψ_pd hψ_int hψ_cont
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

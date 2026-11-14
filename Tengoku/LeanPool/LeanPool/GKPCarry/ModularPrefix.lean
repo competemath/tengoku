@@ -17,7 +17,7 @@ evaluate those residues without first constructing the enormous value `4 ^ m`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace GKPCarry
 
 /--
@@ -138,3 +138,4 @@ theorem powMod_eq_pow_mod (base exponent modulus : ℕ) :
   · exact fun digit hdigit => Nat.digits_lt_base (by decide) hdigit
 
 end GKPCarry
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

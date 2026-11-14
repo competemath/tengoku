@@ -17,14 +17,14 @@ Euclidean structure `EuclideanSpace ℝ (Fin n)`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Set
 open scoped Pointwise
 
 /-- Brunn–Minkowski when `A` has infinite volume.
 @isnad1 id=le.3h4v.s10.fe0acea58880 from=translated src=- shape=1e556bd9 vocab=f3e3004d
 -/
-lemma brunn_minkowski_infinite
+lemma _root_.Tengoku.LeanPool.brunn_minkowski_infinite
     {d : ℕ} {A B C : Set (Fin (d + 1) → ℝ)}
     (hA : volume A = ⊤) (hB : B.Nonempty) (hABC : A + B ⊆ C)
     : (volume A)^((d:ℝ)+1)⁻¹ + (volume B)^((d:ℝ)+1)⁻¹ ≤ (volume C)^((d:ℝ)+1)⁻¹ := by
@@ -40,7 +40,7 @@ lemma brunn_minkowski_infinite
 /-- Brunn–Minkowski when `A` has zero volume.
 @isnad1 id=le.3h4v.s10.6f59659841fc from=translated src=- shape=68d010c4 vocab=070e6bc8
 -/
-lemma brunn_minkowski_zero
+lemma _root_.Tengoku.LeanPool.brunn_minkowski_zero
     {d : ℕ} {A B C : Set (Fin (d + 1) → ℝ)}
     (hA_zero : volume A = 0) (hA_nonempty : A.Nonempty) (hABC : A + B ⊆ C)
     : (volume A)^((d:ℝ)+1)⁻¹ + (volume B)^((d:ℝ)+1)⁻¹ ≤ (volume C)^((d:ℝ)+1)⁻¹ := by
@@ -52,3 +52,4 @@ lemma brunn_minkowski_zero
     volume B = volume ({hA_nonempty.some} + B) := by simp
     _ ≤ volume (A + B) := by gcongr; exact singleton_subset_iff.mpr hA_nonempty.some_mem
     _ ≤ volume C := by gcongr
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

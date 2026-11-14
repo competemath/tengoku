@@ -26,15 +26,15 @@ and establishing slitPlane membership for shifted curves.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Complex Metric
 
 /-- A continuous curve on [a,b] avoids a point z₀. -/
-def CurveAvoids (γ : ℝ → ℂ) (a b : ℝ) (z₀ : ℂ) : Prop :=
+def _root_.Tengoku.LeanPool.CurveAvoids (γ : ℝ → ℂ) (a b : ℝ) (z₀ : ℂ) : Prop :=
   ∀ t ∈ Icc a b, γ t ≠ z₀
 
 /-- Infimum distance from z₀ to the curve image on [a,b]. -/
-noncomputable def curveInfDist (γ : ℝ → ℂ) (a b : ℝ) (z₀ : ℂ) : ℝ :=
+noncomputable def _root_.Tengoku.LeanPool.curveInfDist (γ : ℝ → ℂ) (a b : ℝ) (z₀ : ℂ) : ℝ :=
   Metric.infDist z₀ (γ '' Icc a b)
 
 /-! ### Basic avoidance criteria -/
@@ -42,7 +42,7 @@ noncomputable def curveInfDist (γ : ℝ → ℂ) (a b : ℝ) (z₀ : ℂ) : ℝ
 /-- Trivial wrapper: CurveAvoids follows from pointwise inequality.
 @isnad1 id=curveavo.1h4v.s5.ce87e8318ecc from=translated src=- shape=2cd88944 vocab=5722772f
 -/
-theorem curveAvoids_of_ne_on_Icc {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
+theorem _root_.Tengoku.LeanPool.curveAvoids_of_ne_on_Icc {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
     (h : ∀ t ∈ Icc a b, γ t ≠ z₀) : CurveAvoids γ a b z₀ :=
   h
 
@@ -50,7 +50,7 @@ theorem curveAvoids_of_ne_on_Icc {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
 then the curve avoids z₀.
 @isnad1 id=curveavo.1h4v.s5.d0bed1a5d456 from=translated src=- shape=dff5ac03 vocab=f6bcd6f0
 -/
-theorem curveAvoids_of_im_lt {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
+theorem _root_.Tengoku.LeanPool.curveAvoids_of_im_lt {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
     (h : ∀ t ∈ Icc a b, z₀.im < (γ t).im) : CurveAvoids γ a b z₀ :=
   fun t ht heq => absurd (heq ▸ h t ht) (lt_irrefl _)
 
@@ -58,7 +58,7 @@ theorem curveAvoids_of_im_lt {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
 then the curve avoids z₀.
 @isnad1 id=curveavo.1h4v.s5.d1e9ee84d822 from=translated src=- shape=248de754 vocab=ef8d86cd
 -/
-theorem curveAvoids_of_re_ne {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
+theorem _root_.Tengoku.LeanPool.curveAvoids_of_re_ne {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
     (h : ∀ t ∈ Icc a b, (γ t).re ≠ z₀.re) : CurveAvoids γ a b z₀ :=
   fun t ht heq => h t ht (by rw [heq])
 
@@ -66,7 +66,7 @@ theorem curveAvoids_of_re_ne {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
 Useful for curves on circles.
 @isnad1 id=curveavo.1h4v.s5.e5ba64e112ee from=translated src=- shape=6b1d4c39 vocab=44a7d093
 -/
-theorem curveAvoids_of_norm_ne {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
+theorem _root_.Tengoku.LeanPool.curveAvoids_of_norm_ne {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
     (h : ∀ t ∈ Icc a b, ‖γ t‖ ≠ ‖z₀‖) : CurveAvoids γ a b z₀ :=
   fun t ht heq => h t ht (by rw [heq])
 
@@ -76,7 +76,7 @@ theorem curveAvoids_of_norm_ne {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
 distance from z₀ to the curve image is positive.
 @isnad1 id=lt.3h4v.s6.6acb8c86ed47 from=translated src=- shape=6de2df7f vocab=b2770379
 -/
-theorem curveInfDist_pos_of_avoids {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
+theorem _root_.Tengoku.LeanPool.curveInfDist_pos_of_avoids {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
     (hγ : ContinuousOn γ (Icc a b)) (hab : a ≤ b)
     (hav : CurveAvoids γ a b z₀) : 0 < curveInfDist γ a b z₀ := by
   unfold curveInfDist
@@ -93,7 +93,7 @@ theorem curveInfDist_pos_of_avoids {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
 imaginary part or positive real part, then every shifted value lies in the slit plane.
 @isnad1 id=mem.4h5v.s7.9865919983bc from=translated src=- shape=78114487 vocab=126c69b1
 -/
-theorem curve_sub_in_slitPlane {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
+theorem _root_.Tengoku.LeanPool.curve_sub_in_slitPlane {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
     (_hγ : ContinuousOn γ (Icc a b))
     (_hav : CurveAvoids γ a b z₀)
     (hpos : ∀ t ∈ Icc a b, 0 < (γ t - z₀).im ∨ 0 < (γ t - z₀).re) :
@@ -103,3 +103,4 @@ theorem curve_sub_in_slitPlane {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
   rcases hpos t ht with him | hre
   · right; exact him.ne'
   · left; exact hre
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

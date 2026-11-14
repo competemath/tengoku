@@ -13,7 +13,7 @@ integrability rather than relying on the zero value of an undefined integral.
 -/
 
 noncomputable section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace NavierStokes.R3ConvolutionYoung
 
 open Set Filter MeasureTheory ProblemStatement
@@ -254,3 +254,4 @@ theorem lpNorm_scalarConvolution_six_fifths_three_halves {f g : Space → 𝕜}
     toReal_eLpNorm hf₆.1, toReal_eLpNorm hg₃.1] using hb
 
 end NavierStokes.R3ConvolutionYoung
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

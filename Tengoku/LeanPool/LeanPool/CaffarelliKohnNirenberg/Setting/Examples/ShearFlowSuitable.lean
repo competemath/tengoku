@@ -16,7 +16,7 @@ definition on all space and the time interval (0,1), with zero pressure and forc
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Set
 open CKN.Foundation.Parabolic
 
@@ -42,3 +42,4 @@ theorem isSuitableWeakSolutionIntegrable_shearFlow :
     · simpa only [Pi.zero_apply, mul_zero, add_zero, zero_mul, Finset.sum_const_zero] using heq.le
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

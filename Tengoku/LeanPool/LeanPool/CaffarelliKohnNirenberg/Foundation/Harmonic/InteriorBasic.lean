@@ -21,7 +21,7 @@ Part of the Caffarelli–Kohn–Nirenberg partial regularity proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators ENNReal NNReal Topology
 open MeasureTheory MeasureTheory.Measure Set Filter
 open CKN.Foundation.Parabolic
@@ -309,3 +309,4 @@ theorem newtonianKernel_spatialDeriv_second_continuousAt
   exact hj.clm_apply continuousAt_const
 
 end CKN.Foundation.Heat
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -89,7 +89,7 @@ curve"; the extraction between them is what this module supplies.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set
 
 namespace Schoenflies
@@ -469,3 +469,4 @@ theorem exists_simple_poly_of_pointSet [G.Finite]
   exact exists_simple_poly_of_biUnion_finite hfin hA hconn hab ha hb
 
 end Graph
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

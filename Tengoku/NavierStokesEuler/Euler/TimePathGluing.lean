@@ -1,5 +1,5 @@
 import Tengoku.NavierStokesEuler.Euler.UniformHeatLocal
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace EulerTimePathGluing
 end EulerTimePathGluing
 namespace Set
@@ -105,3 +105,4 @@ theorem gluePath_norm_le (a b : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b)
   · exact (extendPath_norm_le b hb v (t.val-a)).trans hv
 
 end EulerTimePathGluing
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

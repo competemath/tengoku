@@ -52,7 +52,7 @@ the Shannon bound wins when `k` is large, regardless of `f`'s complexity.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace CircuitComplexity
 
 variable {k m : Nat}
@@ -232,3 +232,4 @@ theorem existQuantify_complexity_min [CompleteBasis Basis.andOr2]
   le_min (existQuantify_complexity_le f) (existQuantify_complexity_shannon f hm)
 
 end CircuitComplexity
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

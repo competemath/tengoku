@@ -32,7 +32,7 @@ The shared semantic tools the fifteen closure fields consume, isolated per revie
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure
@@ -154,3 +154,4 @@ theorem StarWitness.rem_realize_update {φ : L.Sentenceω} {lt : L.Relations 2}
   exact (Function.update_of_ne hkc x W.h).symm
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

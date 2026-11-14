@@ -20,7 +20,7 @@ This material is not present in [An extended Demazure product](https://arxiv.org
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.DemazureProduct
 
 /-- The 321-avoidance condition used in this file: every triple `i < j < k`
@@ -1568,3 +1568,4 @@ end fixed_321a
 end ASP321a
 
 end LeanPool.DemazureProduct
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

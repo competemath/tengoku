@@ -50,10 +50,10 @@ Substrate, and the non-vacuity witness for `Composition/Defs.lean`'s class.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
-open CompositionAlgebra
+open Tengoku.LeanPool.CompositionAlgebra
 open scoped Quaternion
 
 /-! ## `ℝ` -/
@@ -171,7 +171,7 @@ instance Quaternion.instCompositionAlgebra : CompositionAlgebra ℍ[ℝ] where
 
 /-! ## `𝕆` -/
 
-namespace Octonion
+namespace Tengoku.LeanPool.Octonion
 
 /-- The unit of `𝕆`. `Octonions.lean` has only a `def one`. -/
 instance instOne : One Octonion := ⟨Octonion.one⟩
@@ -237,7 +237,7 @@ instance instCompositionAlgebra : CompositionAlgebra Octonion where
     simp only [ipBilin_apply, octIp_self_eq_norm_sq]
     exact Octonion.norm_multiplicative x y
 
-end Octonion
+end Tengoku.LeanPool.Octonion
 
 /-! ## The four dimensions
 
@@ -257,3 +257,4 @@ theorem Complex.finrank_comp : Module.finrank ℝ ℂ = 2 := Complex.finrank_rea
 @isnad1 id=eq.0h0v.s5.c454a16f82a7 from=translated src=- shape=4a8fd812 vocab=04f9f482
 -/
 theorem Quaternion.finrank_comp : Module.finrank ℝ ℍ[ℝ] = 4 := Quaternion.finrank_eq_four
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

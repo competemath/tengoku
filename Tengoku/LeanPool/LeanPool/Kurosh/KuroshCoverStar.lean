@@ -17,7 +17,7 @@ and proof organization were revised.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Function
 open CategoryTheory
 open scoped Pointwise
@@ -571,3 +571,4 @@ theorem Internal.coverPrefunctor_star_bijective {ι : Type v}
   exact Internal.coverPrefunctor_star_inv G H x f
 
 end GraphCoveringTheory.Kurosh
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -13,7 +13,7 @@ public import Tengoku
 This file ports the upstream BrauerGroup development proving the Morita
 equivalence between modules over a ring and over a matrix ring.
 -/
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 @[expose] public section
 
 open CategoryTheory Matrix Module
@@ -26,7 +26,7 @@ variable (R : Type u) [Ring R]
 
 variable (ι : Type w) [Fintype ι] [Inhabited ι] [DecidableEq ι]
 
-instance instModuleMatrixForallLeanPool (M : Type*) [AddCommGroup M] [Module R M] :
+instance _root_.Tengoku.LeanPool.instModuleMatrixForallLeanPool (M : Type*) [AddCommGroup M] [Module R M] :
     Module M[ι, R] (ι → M) where
   smul N v i := ∑ j : ι, N i j • v j
   one_smul v := funext fun i ↦ show ∑ _, _ = _ by simp [one_apply]
@@ -42,7 +42,7 @@ instance instModuleMatrixForallLeanPool (M : Type*) [AddCommGroup M] [Module R M
 
 /-- The functor sending an `R`-module to the coordinatewise module over `ι × ι` matrices. -/
 @[simps]
-def toModuleCatOverMatrix : ModuleCat R ⥤ ModuleCat M[ι, R] where
+def _root_.Tengoku.LeanPool.toModuleCatOverMatrix : ModuleCat R ⥤ ModuleCat M[ι, R] where
   obj M := ModuleCat.of M[ι, R] (ι → M)
   map f := ModuleCat.ofHom {
     toFun := fun v i => f <| v i
@@ -55,7 +55,7 @@ def toModuleCatOverMatrix : ModuleCat R ⥤ ModuleCat M[ι, R] where
 
 /-- The additive subgroup cut out by the default diagonal idempotent. -/
 @[simps]
-def fromModuleCatOverMatrix.α (M : Type*) [AddCommGroup M] [Module M[ι, R] M] :
+def Tengoku.LeanPool.fromModuleCatOverMatrix.α (M : Type*) [AddCommGroup M] [Module M[ι, R] M] :
     AddSubgroup M where
   carrier := Set.range ((single (default : ι) (default : ι) (1 : R) : M[ι, R]) • ·)
   add_mem' := by
@@ -66,9 +66,9 @@ def fromModuleCatOverMatrix.α (M : Type*) [AddCommGroup M] [Module M[ι, R] M] 
     rintro _ ⟨m, rfl⟩
     exact ⟨-m, by simp⟩
 
-open fromModuleCatOverMatrix
+open Tengoku.LeanPool.fromModuleCatOverMatrix
 
-instance fromModuleCatOverMatrix.moduleΑ (M : Type*) [AddCommGroup M] [Module M[ι, R] M] :
+instance Tengoku.LeanPool.fromModuleCatOverMatrix.moduleΑ (M : Type*) [AddCommGroup M] [Module M[ι, R] M] :
     Module R <| α R ι M where
   smul a x := by
     refine ⟨(single default default a : M[ι, R]) • x.1, ?_⟩
@@ -112,11 +112,11 @@ instance fromModuleCatOverMatrix.moduleΑ (M : Type*) [AddCommGroup M] [Module M
     change single _ _ _ • _ = _
     simp only [single_zero, zero_smul, ZeroMemClass.coe_zero]
 
-open fromModuleCatOverMatrix
+open Tengoku.LeanPool.fromModuleCatOverMatrix
 
 /-- The functor sending a matrix-module to the default diagonal idempotent summand. -/
 @[simps]
-def fromModuleCatOverMatrix : ModuleCat M[ι, R] ⥤ ModuleCat R where
+def _root_.Tengoku.LeanPool.fromModuleCatOverMatrix : ModuleCat M[ι, R] ⥤ ModuleCat R where
   obj M := .of _ <| α R ι M
   map f := ModuleCat.ofHom {
     toFun x := by
@@ -407,7 +407,7 @@ omit [Inhabited ι] in
 /--
 @isnad1 id=eq.0h5v.s8.e4fe6f9875ea from=translated src=- shape=9e1d5bbf vocab=028d0b2d
 -/
-lemma matrix_smul_vec_def {M : Type*} [AddCommGroup M] [Module R M] (N : M[ι, R])
+lemma _root_.Tengoku.LeanPool.matrix_smul_vec_def {M : Type*} [AddCommGroup M] [Module R M] (N : M[ι, R])
     (v : ι → M) :
     N • v = fun i ↦ ∑ j : ι, N i j • v j := rfl
 
@@ -415,7 +415,7 @@ omit [Inhabited ι] in
 /--
 @isnad1 id=eq.0h5v.s8.59f168309d55 from=translated src=- shape=b6cc4fb0 vocab=028d0b2d
 -/
-lemma matrix_smul_vec_def' {M : Type*} [AddCommGroup M] [Module R M] (N : M[ι, R])
+lemma _root_.Tengoku.LeanPool.matrix_smul_vec_def' {M : Type*} [AddCommGroup M] [Module R M] (N : M[ι, R])
     (v : ι → M) :
     N • v = ∑ j : ι, fun i ↦ N i j • v j := by
   rw [matrix_smul_vec_def]
@@ -426,6 +426,7 @@ omit [Inhabited ι] in
 /--
 @isnad1 id=eq.0h6v.s8.44fb2ef9b31e from=translated src=- shape=51349f5d vocab=028d0b2d
 -/
-lemma matrix_smul_vec_apply {M : Type*} [AddCommGroup M] [Module R M] (N : M[ι, R])
+lemma _root_.Tengoku.LeanPool.matrix_smul_vec_apply {M : Type*} [AddCommGroup M] [Module R M] (N : M[ι, R])
     (v : ι → M) (i : ι) :
     (N • v) i = ∑ j : ι, N i j • v j := rfl
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

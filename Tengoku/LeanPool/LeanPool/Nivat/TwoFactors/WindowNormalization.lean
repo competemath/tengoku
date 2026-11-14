@@ -48,7 +48,7 @@ the pattern inequality and row-block witnesses are preserved explicitly.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Nivat.TwoFactors
 
 /-- The additive lattice equivalence that preserves horizontal coordinates and either preserves
@@ -195,3 +195,4 @@ theorem ShapeWindow.normalize {A : Type*} {c : Configuration A} {D₀ : Finset L
   simp [t, normalSignEquiv]
 
 end Nivat.TwoFactors
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

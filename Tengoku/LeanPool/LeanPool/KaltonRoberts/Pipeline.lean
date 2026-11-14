@@ -29,7 +29,7 @@ expander recombination to the final distance bound.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace KaltonRoberts
 
 open Finset BigOperators
@@ -628,3 +628,4 @@ lemma spine_case2
   nlinarith [ mul_le_mul_of_nonneg_left hq_half hY1_nn ]
 
 end KaltonRoberts
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

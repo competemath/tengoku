@@ -10,16 +10,16 @@ public import Tengoku.Seed.NumberTheory.Bernoulli
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
 /-! # Fel's Conjecture for Numerical Semigroups -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 /-- A *numerical semigroup*: an additive submonoid of `ℕ` with finite complement. -/
-structure NumericalSemigroup where
+structure _root_.Tengoku.LeanPool.NumericalSemigroup where
   /-- The underlying set of natural numbers comprising the semigroup. -/
   carrier : Set ℕ
   zero_mem : 0 ∈ carrier
   add_mem : ∀ a b, a ∈ carrier → b ∈ carrier → a + b ∈ carrier
   finite_complement : (carrier)ᶜ.Finite
 
-namespace NumericalSemigroup
+namespace Tengoku.LeanPool.NumericalSemigroup
 
 -- The gap set (complement of the semigroup in ℕ)
 /-- The *gaps* of `S`: the (finite) complement `ℕ \ S` as a `Finset`. -/
@@ -82,11 +82,11 @@ theorem semigroupGapDecomposition (S : NumericalSemigroup) :
   apply PowerSeries.ext
   exact semigroupGapDecomposition_aux S
 
-end NumericalSemigroup
+end Tengoku.LeanPool.NumericalSemigroup
 
 /-- A choice of generators for a numerical semigroup `S`: positive integers `d₁, …,
   d_m` with `gcd = 1` whose nonneg-integer combinations recover `S.carrier`. -/
-structure NumericalSemigroupGenerators (S : NumericalSemigroup) where
+structure _root_.Tengoku.LeanPool.NumericalSemigroupGenerators (S : NumericalSemigroup) where
   /-- The number of generators (embedding dimension of `S`). -/
   m : ℕ                           -- number of generators (embedding dimension)
   hm_pos : 0 < m                  -- at least one generator
@@ -96,7 +96,7 @@ structure NumericalSemigroupGenerators (S : NumericalSemigroup) where
   hgcd : (Finset.univ.image d).gcd id = 1  -- gcd of generators is 1
   generates : S.carrier = {n : ℕ | ∃ (c : Fin m → ℕ), n = ∑ i, c i * d i}
 
-namespace NumericalSemigroupGenerators
+namespace Tengoku.LeanPool.NumericalSemigroupGenerators
 
 /-- The product of generators `π_m = ∏ᵢ dᵢ` (Definition 6 in the paper). -/
 def piM {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) : ℕ :=
@@ -351,7 +351,7 @@ noncomputable def TDelta {S : NumericalSemigroup} (G : NumericalSemigroupGenerat
   :=
   (n.factorial : ℚ) / (2 ^ n : ℚ) * (PowerSeries.coeff n) (G.BSeries)
 
-end NumericalSemigroupGenerators
+end Tengoku.LeanPool.NumericalSemigroupGenerators
 
 namespace FelsConjectureProof
 
@@ -2112,9 +2112,10 @@ lemma fels_conjecture_main {S : NumericalSemigroup} (G : NumericalSemigroupGener
 
 end FelsConjectureProof
 
-theorem fels_conjecture (S : NumericalSemigroup) (G : NumericalSemigroupGenerators S) (p : ℕ) :
+theorem _root_.Tengoku.LeanPool.fels_conjecture (S : NumericalSemigroup) (G : NumericalSemigroupGenerators S) (p : ℕ) :
     G.KInvariant p =
       ∑ r ∈ Finset.range (p + 1),
         (p.choose r : ℚ) * G.TSigma (p - r) * S.gapPowerSum r +
       (2 ^ (p + 1) : ℚ) / ((p : ℚ) + 1) * G.TDelta (p + 1) :=
   FelsConjectureProof.fels_conjecture_main G p
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

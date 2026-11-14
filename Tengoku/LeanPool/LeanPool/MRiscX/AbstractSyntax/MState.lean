@@ -15,12 +15,12 @@ while the termination flag indicates whether the machine state has halted or if 
 evaluation should continue.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 local notation:60 "(" k " ↦ "v"; "m")" => TMap.put k v m
 
 /-- The state of the abstract machine: its memory, registers, program counter,
 loaded code, and termination flag. -/
-structure MState where
+structure _root_.Tengoku.LeanPool.MState where
   /-- The data memory of the machine. -/
   memory: Memory
   /-- The register file of the machine. -/
@@ -34,7 +34,7 @@ structure MState where
 
 /-- The initial machine state: empty memory and registers, program counter `0`,
 not terminated, and the default code. -/
-def DefaultMState : MState :=
+def _root_.Tengoku.LeanPool.DefaultMState : MState :=
   {registers := EmptyRegisters, memory := EmptyMemory, pc := 0,
     terminated := false, code := DefaultCode}
 
@@ -42,7 +42,7 @@ def DefaultMState : MState :=
 To perform the operations on the MState like we want to, we need to implement some
 functions.
 -/
-namespace MState
+namespace Tengoku.LeanPool.MState
 
   /-- The instruction at the current program counter. -/
   def currInstruction (ms:MState) : Instr :=
@@ -113,4 +113,5 @@ namespace MState
     | some i => {ms with pc := i}
     | none => {ms with terminated := true}
 
-end MState
+end Tengoku.LeanPool.MState
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

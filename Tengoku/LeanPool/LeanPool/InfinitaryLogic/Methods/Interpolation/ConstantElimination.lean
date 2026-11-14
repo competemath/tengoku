@@ -25,7 +25,7 @@ separator from constant support `insert c A` back to `A` (the InsepAt C7 step).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure
@@ -214,3 +214,4 @@ theorem entails_not_genEx_of_entails_not
   exact hnot hx
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -15,7 +15,7 @@ payoff used by the ordered insertion proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators
 
 namespace Feige
@@ -52,3 +52,4 @@ theorem productExpectation_rejection_eq {m : ℕ}
   by_cases hS : twoPointKFinset γ β S ≤ α <;> simp [hS]
 
 end Feige
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

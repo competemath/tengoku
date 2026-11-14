@@ -22,7 +22,7 @@ This file supplies the consumer-shaped definition. Existence results via ordered
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder
 
 /-- A linear order is **highly order-transitive** when every isomorphism between two finite
@@ -32,3 +32,4 @@ def HighlyOrderTransitive (J : Type*) [LinearOrder J] : Prop :=
   ∀ (n : ℕ) (s t : Fin n ↪o J), ∃ e : J ≃o J, ∀ i, e (s i) = t i
 
 end FirstOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

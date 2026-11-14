@@ -72,7 +72,7 @@ of the split edge lies on neither half.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Bornology Metric Set
 
 namespace Schoenflies
@@ -1109,3 +1109,4 @@ theorem exists_prePolygon_split {C : Set Plane} (hJ : IsJordanCurve C) (hP : IsP
     omega
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

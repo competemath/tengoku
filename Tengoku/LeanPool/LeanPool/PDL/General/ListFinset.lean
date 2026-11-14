@@ -15,7 +15,7 @@ used in several places and might also be in (newer versions of) Mathlib.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace PDL
 
 /-! ## Helpers about `List`s and `Finset`s -/
@@ -45,3 +45,4 @@ lemma List.Vector.tail_last_eq_last {k : Nat} (l : List.Vector α k.succ.succ) :
   | cons => rfl
 
 end PDL
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

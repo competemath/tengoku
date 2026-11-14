@@ -24,7 +24,7 @@ Both arguments use: continuous function ≥ threshold on compact set ⟹
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace PLAcceleratedNesterovLean
@@ -227,3 +227,4 @@ theorem hessian_psd_at_minimizer {d : ℕ}
     (Set.right_mem_Icc.mpr (le_of_lt ht_pos)) ht_pos⟩
 
 end PLAcceleratedNesterovLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

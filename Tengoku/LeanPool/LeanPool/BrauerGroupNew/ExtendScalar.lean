@@ -14,7 +14,7 @@ Imported Lean Pool material for `LeanPool.BrauerGroupNew.ExtendScalar`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped TensorProduct
 
 universe u
@@ -22,7 +22,7 @@ variable (k K L A : Type u) [Field k] [Field K] [Field L] [Algebra k K] [Algebra
   [Algebra k L] [Ring A] [Algebra k A] [IsScalarTower k K L]
 
 /-- Additive map sending `l ⊗ a` to `l ⊗ (1 ⊗ a)` after releasing scalars through `K`. -/
-def releaseAddHom : L ⊗[k] A →+ L ⊗[K] (K ⊗[k] A) :=
+def _root_.Tengoku.LeanPool.releaseAddHom : L ⊗[k] A →+ L ⊗[K] (K ⊗[k] A) :=
   TensorProduct.liftAddHom
   {
     toFun l := {
@@ -38,7 +38,7 @@ def releaseAddHom : L ⊗[k] A →+ L ⊗[K] (K ⊗[k] A) :=
   } fun r l a ↦ by simp only [AddMonoidHom.coe_mk, ZeroHom.coe_mk, TensorProduct.tmul_smul]; rfl
 
 /-- Linear map sending `m ⊗ a` to `(m • l) ⊗ a`. -/
-def absorbMap (l : L) : K ⊗[k] A →ₗ[k] L ⊗[k] A :=
+def _root_.Tengoku.LeanPool.absorbMap (l : L) : K ⊗[k] A →ₗ[k] L ⊗[k] A :=
   TensorProduct.lift {
     toFun := fun m ↦ {
       toFun := fun a ↦ (m • l) ⊗ₜ[k] a
@@ -50,3 +50,4 @@ def absorbMap (l : L) : K ⊗[k] A →ₗ[k] L ⊗[k] A :=
     map_smul' := fun _ _ ↦ by ext; simp only [smul_assoc, ← TensorProduct.smul_tmul',
       LinearMap.coe_mk, AddHom.coe_mk, RingHom.id_apply, LinearMap.smul_apply]
   }
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

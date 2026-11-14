@@ -37,7 +37,7 @@ reduces to Titu's lemma / Engel form of Cauchy–Schwarz on each fiber.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.CencovPetz
 open scoped BigOperators
 
@@ -148,3 +148,4 @@ theorem fisherBilin_pushforward_le (g : α → β) (hg : Function.Surjective g)
   -- Assemble.
   simp_all
 end LeanPool.CencovPetz
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

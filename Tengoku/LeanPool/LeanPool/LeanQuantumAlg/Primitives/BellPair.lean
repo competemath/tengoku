@@ -31,7 +31,7 @@ another. The registered `bell-state-prep` target is `bell_state_prep` here.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace QuantumAlg
 
 open PureState Gate
@@ -87,3 +87,4 @@ theorem norm_bell : ‖bell‖ = 1 := bell.norm_eq_one
 end
 
 end QuantumAlg
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

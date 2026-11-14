@@ -15,7 +15,7 @@ Part of the Caffarelli–Kohn–Nirenberg partial regularity proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace CKN
 
 open MeasureTheory Metric
@@ -771,3 +771,4 @@ theorem intervalIntegral_inv_pow_setIntegral_inter_closedBall_le_rieszKernel
 end TimeCollapse
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

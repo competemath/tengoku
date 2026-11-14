@@ -46,7 +46,7 @@ of Theorem 1.4. All sums are finite and the normalization is made explicit.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators symmDiff
 
 noncomputable section
@@ -228,3 +228,4 @@ theorem auxiliaryKernel_bessel_bound (F G : Family ι)
   exact le_of_mul_le_mul_left hsum (cube_card_pos (ι := ι))
 
 end Chvatal
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

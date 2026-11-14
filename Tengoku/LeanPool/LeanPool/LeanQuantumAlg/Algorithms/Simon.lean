@@ -35,7 +35,7 @@ mask [dW19, qcnotes.tex:1460].
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace QuantumAlg
 
 universe u
@@ -231,3 +231,4 @@ theorem SimonsProblem.main_with_resources {n : ℕ} {α : Type u}
   · exact Simon.expectedResourceProfile_exact n
 
 end QuantumAlg
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

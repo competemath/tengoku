@@ -25,7 +25,7 @@ Axiom footprint: `propext`, `Classical.choice`, `Quot.sound` only.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LehmerE10
 
 open Polynomial
@@ -190,3 +190,4 @@ theorem charpoly_eq_lehmer_of_irreducible {M : Matrix (Fin 10) (Fin 10) ℤ}
   rw [hu, hu1, mul_one]
 
 end LehmerE10
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

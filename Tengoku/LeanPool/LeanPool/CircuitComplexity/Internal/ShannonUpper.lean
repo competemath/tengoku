@@ -30,7 +30,7 @@ gates for `N ≥ 16`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace CircuitComplexity
 
 namespace ShannonUpper
@@ -1830,3 +1830,4 @@ theorem shannon_construction (N : Nat) [NeZero N] (hN : 16 ≤ N)
 end ShannonUpper
 
 end CircuitComplexity
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

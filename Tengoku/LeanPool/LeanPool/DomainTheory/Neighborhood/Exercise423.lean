@@ -51,7 +51,7 @@ only the project's permitted element-extensionality through `Theorem41`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem ApproximableMap
@@ -107,3 +107,4 @@ theorem f_unique_fixedPoint (f : ApproximableMap V V) (a : ℕ → ApproximableM
 end ApproximableMap
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

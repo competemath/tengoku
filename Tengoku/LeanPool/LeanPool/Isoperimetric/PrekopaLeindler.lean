@@ -18,14 +18,14 @@ then induction on the dimension.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Set
 open scoped Pointwise
 
 /-- Brunn–Minkowski in one dimension for compact sets.
 @isnad1 id=le.5h3v.s7.7a536faa2fa7 from=translated src=- shape=45a30c8a vocab=1e96eec8
 -/
-lemma brunn_minkowski_1d_compact
+lemma _root_.Tengoku.LeanPool.brunn_minkowski_1d_compact
     {A B C : Set ℝ}
     (h : A + B ⊆ C)
     (hA_nonempty : A.Nonempty) (hA_compact : IsCompact A)
@@ -65,7 +65,7 @@ lemma brunn_minkowski_1d_compact
 /-- Brunn–Minkowski in one dimension when one of the sets has infinite volume.
 @isnad1 id=le.3h3v.s7.ad0962d3c099 from=translated src=- shape=940cc6bf vocab=2f92a496
 -/
-lemma brunn_minkowski_1d_infinite
+lemma _root_.Tengoku.LeanPool.brunn_minkowski_1d_infinite
     {A B C : Set ℝ} (ha : volume A = ⊤) (hb : B.Nonempty) (hc : A + B ⊆ C) :
     volume A + volume B ≤ volume C := calc
   volume A + volume B = volume (A + {hb.some}) := by simp [ha]  -- since both sides = ⊤
@@ -75,7 +75,7 @@ lemma brunn_minkowski_1d_infinite
 /-- Brunn–Minkowski in one dimension for measurable sets.
 @isnad1 id=le.5h3v.s6.55a9be0acac9 from=translated src=- shape=45a30c8a vocab=ae0479b0
 -/
-lemma brunn_minkowski_1d
+lemma _root_.Tengoku.LeanPool.brunn_minkowski_1d
     {A B C : Set ℝ}
     (h : A + B ⊆ C)
     (hA_nonempty : A.Nonempty) (hA_measurable : MeasurableSet A)
@@ -146,7 +146,7 @@ lemma brunn_minkowski_1d
 /-- The volume of the superlevel set `{x | t ≤ f x}` is measurable in `t`.
 @isnad1 id=measurab.0h1v.s5.8fedd6701852 from=translated src=- shape=48756ddf vocab=8e1c3bff
 -/
-lemma vol_superlevelset_measurable (f : ℝ → ENNReal)
+lemma _root_.Tengoku.LeanPool.vol_superlevelset_measurable (f : ℝ → ENNReal)
     : Measurable (fun t : ℝ ↦ volume {x | ENNReal.ofReal t ≤ f x}) := by
   apply Antitone.measurable
   intro a b hab
@@ -160,7 +160,7 @@ lemma vol_superlevelset_measurable (f : ℝ → ENNReal)
 /-- The layer-cake formula for `ENNReal`-valued functions on `ℝ`.
 @isnad1 id=eq.1h1v.s6.af9237893fc4 from=translated src=- shape=5cc22b19 vocab=6bb8df12
 -/
-lemma layercake {f : ℝ → ENNReal} (hf_measurable : Measurable f) :
+lemma _root_.Tengoku.LeanPool.layercake {f : ℝ → ENNReal} (hf_measurable : Measurable f) :
     ∫⁻ (x : ℝ), f x = ∫⁻ (t : ℝ) in Ioi 0, volume {x : ℝ | ENNReal.ofReal t ≤ f x} := by
   let ind (x t : ℝ) : ENNReal := if ENNReal.ofReal t ≤ f x then 1 else 0
   calc
@@ -202,7 +202,7 @@ lemma layercake {f : ℝ → ENNReal} (hf_measurable : Measurable f) :
 /-- Layer-cake formula on `(0, 1)` for functions bounded by `1`.
 @isnad1 id=eq.2h1v.s6.5af26ea66a7d from=translated src=- shape=23e0a024 vocab=f3394373
 -/
-lemma lintegral_eq_vol_superlevelset_lintegral_01
+lemma _root_.Tengoku.LeanPool.lintegral_eq_vol_superlevelset_lintegral_01
     {f : ℝ → ENNReal} (hf_bound : f ≤ 1) (hf_measurable : Measurable f)
     : ∫⁻ x, f x = ∫⁻ t in Ioo 0 1, (fun t ↦ volume {x | ENNReal.ofReal t ≤ f x}) t := by
   let vf := fun t : ℝ ↦ volume {x | ENNReal.ofReal t ≤ f x}
@@ -230,7 +230,7 @@ lemma lintegral_eq_vol_superlevelset_lintegral_01
 /-- A weighted AM–GM inequality.
 @isnad1 id=le.3h3v.s7.dca4ab49eb05 from=translated src=- shape=254be0c1 vocab=d436dc98
 -/
-lemma weighted_amgm {θ a b : ℝ} (hθ : 0 < θ ∧ θ < 1) (ha : 0 ≤ a) (hb : 0 ≤ b)
+lemma _root_.Tengoku.LeanPool.weighted_amgm {θ a b : ℝ} (hθ : 0 < θ ∧ θ < 1) (ha : 0 ≤ a) (hb : 0 ≤ b)
     : ((1-θ)^(1-θ) * θ^θ)⁻¹ * a^(1-θ) * b^θ ≤ a + b := calc
   ((1-θ)^(1-θ) * θ^θ)⁻¹ * a^(1-θ) * b^θ = ((1-θ)^(1-θ))⁻¹ * a^(1-θ) * (θ^θ)⁻¹ * b^θ := by grind
   _ = ((1-θ)⁻¹)^(1-θ) * a^(1-θ) * (θ⁻¹)^θ * b^θ := by
@@ -247,7 +247,7 @@ lemma weighted_amgm {θ a b : ℝ} (hθ : 0 < θ ∧ θ < 1) (ha : 0 ≤ a) (hb 
 /-- Prékopa–Leindler in one dimension assuming sup norm 1.
 @isnad1 id=le.7h4v.s8.51f88b59dcc0 from=translated src=- shape=dfe50b0a vocab=15deaf70
 -/
-lemma prekopa_leindler_1d_normalized
+lemma _root_.Tengoku.LeanPool.prekopa_leindler_1d_normalized
     {θ : ℝ} {f g h : ℝ → ENNReal}
     (hθ : 0 < θ ∧ θ < 1)
     (hf_measurable : Measurable f) (hf_sup1 : iSup f = 1)
@@ -365,7 +365,7 @@ lemma prekopa_leindler_1d_normalized
 sup norm 1 assumption of `prekopa_leindler_1d_normalized` by scaling.
 @isnad1 id=le.7h4v.s8.74e43be84508 from=translated src=- shape=383f251f vocab=c7970a0e
 -/
-lemma prekopa_leindler_1d_bounded {θ : ℝ} {f g h : ℝ → ENNReal}
+lemma _root_.Tengoku.LeanPool.prekopa_leindler_1d_bounded {θ : ℝ} {f g h : ℝ → ENNReal}
     (hθ : 0 < θ ∧ θ < 1)
     (hf_measurable : Measurable f) (hf_bounded : iSup f ≠ ⊤)
     (hg_measurable : Measurable g) (hg_bounded : iSup g ≠ ⊤)
@@ -466,7 +466,7 @@ lemma prekopa_leindler_1d_bounded {θ : ℝ} {f g h : ℝ → ENNReal}
 `prekopa_leindler_1d_bounded` using an approximation argument.
 @isnad1 id=le.5h4v.s8.24be6282f6ff from=translated src=- shape=dd4b7179 vocab=e41b5650
 -/
-lemma prekopa_leindler_1d {θ : ℝ} {f g h : ℝ → ENNReal}
+lemma _root_.Tengoku.LeanPool.prekopa_leindler_1d {θ : ℝ} {f g h : ℝ → ENNReal}
     (hθ : 0 < θ ∧ θ < 1)
     (hf_measurable : Measurable f)
     (hg_measurable : Measurable g)
@@ -513,7 +513,7 @@ lemma prekopa_leindler_1d {θ : ℝ} {f g h : ℝ → ENNReal}
 /-- Lebesgue integral over `Fin 1 → ℝ` rewritten as an integral over `ℝ`.
 @isnad1 id=eq.0h1v.s7.0e517ab8ca7b from=translated src=- shape=a968859a vocab=1bcc1cab
 -/
-lemma lintegral_fin1 (F : (Fin 1 → ℝ) → ENNReal) :
+lemma _root_.Tengoku.LeanPool.lintegral_fin1 (F : (Fin 1 → ℝ) → ENNReal) :
     ∫⁻ v : (Fin 1 → ℝ), F v = ∫⁻ x : ℝ, F (fun _ ↦ x) := by
   have h : (Measure.map (MeasurableEquiv.funUnique (Fin 1) ℝ).symm volume :
       Measure (Fin 1 → ℝ)) = volume :=
@@ -522,33 +522,33 @@ lemma lintegral_fin1 (F : (Fin 1 → ℝ) → ENNReal) :
   rfl
 
 /-- Append a single coordinate to a vector to get a vector with one more coordinate. -/
-def append {d : ℕ} (x : Fin d → ℝ) (t : Fin 1 → ℝ) : Fin (d + 1) → ℝ :=
+def _root_.Tengoku.LeanPool.append {d : ℕ} (x : Fin d → ℝ) (t : Fin 1 → ℝ) : Fin (d + 1) → ℝ :=
   fun i ↦ if h : i.val < d then x ⟨i.val, h⟩ else t default
 
 /-- `append` distributes over addition.
 @isnad1 id=eq.0h5v.s8.c8c9d3ebb37c from=translated src=- shape=ce51339a vocab=f67f01fe
 -/
-lemma append_linear {d : ℕ} (x1 y1 : Fin (d + 1) → ℝ) (x y : Fin 1 → ℝ)
+lemma _root_.Tengoku.LeanPool.append_linear {d : ℕ} (x1 y1 : Fin (d + 1) → ℝ) (x y : Fin 1 → ℝ)
     : append x1 x + append y1 y = append (x1 + y1) (x + y) := by
   unfold append
   aesop
 
 /-- Turn a function `F : ℝ^{d+1} → ENNReal` into a function `ℝ^1 → ENNReal` by fixing the
 first `d` components to `x`. -/
-def fix {d : ℕ} (F : (Fin (d + 1) → ℝ) → ENNReal) (x : Fin d → ℝ) : (Fin 1 → ℝ) → ENNReal :=
+def _root_.Tengoku.LeanPool.fix {d : ℕ} (F : (Fin (d + 1) → ℝ) → ENNReal) (x : Fin d → ℝ) : (Fin 1 → ℝ) → ENNReal :=
   F ∘ (append x)
 
 /-- Application form of `fix`.
 @isnad1 id=eq.0h4v.s5.7d3e94e4e675 from=translated src=- shape=a68ef176 vocab=de01b6d1
 -/
-lemma fix_apply {d : ℕ} (F : (Fin (d + 1) → ℝ) → ENNReal) (x : Fin d → ℝ) (y : Fin 1 → ℝ)
+lemma _root_.Tengoku.LeanPool.fix_apply {d : ℕ} (F : (Fin (d + 1) → ℝ) → ENNReal) (x : Fin d → ℝ) (y : Fin 1 → ℝ)
     : fix F x y = F (append x y) := by
   rfl
 
 /-- The integral of `fix F x1` over `Fin 1 → ℝ` equals an `lmarginal` of `F`.
 @isnad1 id=eq.0h3v.s8.a976caf4ab6e from=translated src=- shape=529042d4 vocab=0d69db90
 -/
-lemma lintegral_fix_eq_lmarginal {d : ℕ}
+lemma _root_.Tengoku.LeanPool.lintegral_fix_eq_lmarginal {d : ℕ}
     (F : (Fin (d + 2) → ℝ) → ENNReal) (x1 : Fin (d + 1) → ℝ)
     : ∫⁻ y : Fin 1 → ℝ, (fix F x1) y = (∫⋯∫⁻_{⟨d+1, by simp⟩}, F) (append x1 default) := by
   have h_lmarginal_singleton := lmarginal_singleton F ⟨d+1, by simp⟩ (μ := fun _ ↦ volume)
@@ -566,7 +566,7 @@ lemma lintegral_fix_eq_lmarginal {d : ℕ}
 /-- Iterated integral of `fix f` recovers the integral of `f`.
 @isnad1 id=eq.1h2v.s9.e3f48687c385 from=translated src=- shape=50613dbf vocab=b3d4a227
 -/
-lemma lintegral_fix_lintegral_eq_lintegral
+lemma _root_.Tengoku.LeanPool.lintegral_fix_lintegral_eq_lintegral
     {d : ℕ} {f : (Fin (d + 2) → ℝ) → ENNReal} (hf_measurable : Measurable f) :
     ∫⁻ (x : Fin (d + 1) → ℝ), ∫⁻ (t : Fin 1 → ℝ), (fix f x) t
     = ∫⁻ (x : Fin (d + 2) → ℝ), f x := by
@@ -602,7 +602,7 @@ lemma lintegral_fix_lintegral_eq_lintegral
     (fun _ : Fin (d + 2) ↦ ℝ) (Fin.last (d + 1))).symm.map_eq
 
 /-- The hypotheses of the Prékopa–Leindler inequality bundled together. -/
-def PLConditions (n : ℕ) (θ : ℝ) (f g h : (Fin n → ℝ) → ENNReal) : Prop :=
+def _root_.Tengoku.LeanPool.PLConditions (n : ℕ) (θ : ℝ) (f g h : (Fin n → ℝ) → ENNReal) : Prop :=
   0 < θ ∧ θ < 1 ∧
   Measurable f ∧ Measurable g ∧ Measurable h ∧
   (∀ x y, (f x)^(1-θ) * (g y)^θ ≤ h (x + y))
@@ -610,7 +610,7 @@ def PLConditions (n : ℕ) (θ : ℝ) (f g h : (Fin n → ℝ) → ENNReal) : Pr
 /-- Prékopa–Leindler for `Fin 1 → ℝ` (a small wrapper around `prekopa_leindler_1d`).
 @isnad1 id=le.1h4v.s8.2c2cb3363d4f from=translated src=- shape=c1204489 vocab=99fa66a9
 -/
-lemma prekopa_leindler_1d_fin1
+lemma _root_.Tengoku.LeanPool.prekopa_leindler_1d_fin1
     {θ : ℝ} {f g h : (Fin 1 → ℝ) → ENNReal} (hθfgh : PLConditions 1 θ f g h)
     : ENNReal.ofReal ((1-θ)^(1-θ) * θ^θ)⁻¹ * (∫⁻ x, f x)^(1-θ) * (∫⁻ x, g x)^θ ≤ ∫⁻ x, h x := by
   let ⟨hθ0, hθ1, hf_measurable, hg_measurable, hh_measurable, hfgh⟩ := hθfgh
@@ -621,3 +621,4 @@ lemma prekopa_leindler_1d_fin1
     (by fun_prop)
     (by fun_prop)
     (fun x y ↦ hfgh (fun _ ↦ x) (fun _ ↦ y))
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -29,21 +29,21 @@ the star operation (complex conjugation composed with time reflection) for test 
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open TopologicalSpace Function SchwartzMap QFT
 
 /-- A spacetime point has positive time if its time component is positive -/
-def HasPositiveTime (x : SpaceTime) : Prop := getTimeComponent x > 0
+def _root_.Tengoku.LeanPool.HasPositiveTime (x : SpaceTime) : Prop := getTimeComponent x > 0
 
 /-- The set of all spacetime points with positive time -/
-def positiveTimeSet : Set SpaceTime := {x | HasPositiveTime x}
+def _root_.Tengoku.LeanPool.positiveTimeSet : Set SpaceTime := {x | HasPositiveTime x}
 
 /-- The positive time set is open
 @isnad1 id=isopen.0h0v.s4.3824df0e401d from=translated src=- shape=25b03439 vocab=1c07c18f
 -/
-lemma is_open_positiveTimeSet : IsOpen positiveTimeSet :=
+lemma _root_.Tengoku.LeanPool.is_open_positiveTimeSet : IsOpen positiveTimeSet :=
   isOpen_lt continuous_const (PiLp.continuous_apply 2 (fun _ => ℝ) (0 : Fin STDimension))
 
 /-- Submodule of **real-valued** test functions supported in the positive time region -/
@@ -57,7 +57,7 @@ def PositiveTimeTestFunctions.submodule : Submodule ℝ OSforGFF.TestFunction wh
   smul_mem' c f hf := (tsupport_smul_subset_right (fun _ : SpaceTime => c) f).trans hf
 
 /-- Type of real-valued test functions supported in the positive time region -/
-abbrev PositiveTimeTestFunction : Type := PositiveTimeTestFunctions.submodule
+abbrev _root_.Tengoku.LeanPool.PositiveTimeTestFunction : Type := PositiveTimeTestFunctions.submodule
 
 instance : AddCommMonoid PositiveTimeTestFunction := by infer_instance
 instance : AddCommGroup PositiveTimeTestFunction := by infer_instance
@@ -65,7 +65,7 @@ instance : AddCommGroup PositiveTimeTestFunction := by infer_instance
 /-- Linear combinations of positive-time test functions are positive-time test functions.
 @isnad1 id=ex.0h3v.s10.08bfb8817317 from=translated src=- shape=9708183b vocab=b4ed718f
 -/
-lemma PositiveTimeTestFunction.sum_smul_mem
+lemma Tengoku.LeanPool.PositiveTimeTestFunction.sum_smul_mem
     {n : ℕ} (f : Fin n → PositiveTimeTestFunction) (c : Fin n → ℝ) :
     ∃ g : PositiveTimeTestFunction, g.val = ∑ i, c i • (f i).val := by
   -- Use the fact that PositiveTimeTestFunctions.submodule is closed under finite linear
@@ -87,7 +87,7 @@ def PositiveTimeTestFunctionsℂ.submodule : Submodule ℂ TestFunctionℂ where
   smul_mem' c f hf := (tsupport_smul_subset_right (fun _ : SpaceTime => c) f).trans hf
 
 /-- Type of complex-valued test functions supported in the positive time region -/
-abbrev PositiveTimeTestFunctionℂ : Type := PositiveTimeTestFunctionsℂ.submodule
+abbrev _root_.Tengoku.LeanPool.PositiveTimeTestFunctionℂ : Type := PositiveTimeTestFunctionsℂ.submodule
 
 instance : AddCommMonoid PositiveTimeTestFunctionℂ := by infer_instance
 instance : AddCommGroup PositiveTimeTestFunctionℂ := by infer_instance
@@ -95,7 +95,7 @@ instance : AddCommGroup PositiveTimeTestFunctionℂ := by infer_instance
 /--
 @isnad1 id=eq.1h2v.s9.e9890cae6db0 from=translated src=- shape=9a585643 vocab=df1e7d3f
 -/
-lemma PositiveTimeTestFunctionℂ.zero_on_nonpositive
+lemma Tengoku.LeanPool.PositiveTimeTestFunctionℂ.zero_on_nonpositive
     (f : PositiveTimeTestFunctionℂ) {x : SpaceTime}
     (hx : getTimeComponent x ≤ 0) : f.val x = 0 := by
   refine image_eq_zero_of_notMem_tsupport (fun hx_mem => ?_)
@@ -106,7 +106,7 @@ lemma PositiveTimeTestFunctionℂ.zero_on_nonpositive
 /-- Helper lemma: starRingEnd ℂ commutes through derivatives and preserves norms
 @isnad1 id=eq.0h3v.s10.bc0f0e842f7f from=translated src=- shape=0c974c02 vocab=4f60e0f9
 -/
-lemma starRingEnd_iteratedFDeriv_norm_eq (g : TestFunctionℂ) (n : ℕ) (x : SpaceTime) :
+lemma _root_.Tengoku.LeanPool.starRingEnd_iteratedFDeriv_norm_eq (g : TestFunctionℂ) (n : ℕ) (x : SpaceTime) :
   ‖iteratedFDeriv ℝ n (fun x => starRingEnd ℂ (g x)) x‖ = ‖iteratedFDeriv ℝ n g x‖ := by
   -- Use the fact that starRingEnd ℂ = Complex.conjLIE (as functions)
   have h : (fun x => starRingEnd ℂ (g x)) = Complex.conjLIE ∘ g := by
@@ -117,7 +117,7 @@ lemma starRingEnd_iteratedFDeriv_norm_eq (g : TestFunctionℂ) (n : ℕ) (x : Sp
   exact LinearIsometryEquiv.norm_iteratedFDeriv_comp_left Complex.conjLIE g x n
 
 /-- Star operation on test functions: time reflection followed by complex conjugation -/
-noncomputable def starTestFunction (f : TestFunctionℂ) : TestFunctionℂ :=
+noncomputable def _root_.Tengoku.LeanPool.starTestFunction (f : TestFunctionℂ) : TestFunctionℂ :=
   -- Apply time reflection then complex conjugation pointwise
   let f_reflected := compTimeReflection f
   -- Apply complex conjugation to each value
@@ -145,7 +145,7 @@ noncomputable instance : Star TestFunctionℂ where
 /--
 @isnad1 id=eq.1h2v.s9.a4fdb249d53d from=translated src=- shape=31cb6298 vocab=8f30037d
 -/
-lemma PositiveTimeTestFunction.zero_on_nonpositive
+lemma Tengoku.LeanPool.PositiveTimeTestFunction.zero_on_nonpositive
     (f : PositiveTimeTestFunction) {x : SpaceTime}
     (hx : getTimeComponent x ≤ 0) : f.val x = 0 := by
   refine image_eq_zero_of_notMem_tsupport (fun hx_mem => ?_)
@@ -154,3 +154,4 @@ lemma PositiveTimeTestFunction.zero_on_nonpositive
   linarith
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

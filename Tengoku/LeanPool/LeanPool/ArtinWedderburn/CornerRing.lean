@@ -29,7 +29,7 @@ artinianness, primality, lifts and pushes of ideals, and isomorphisms between
 corner subrings of equal idempotents.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 open scoped LeanPool.ArtinWedderburn
 
 
@@ -495,3 +495,4 @@ theorem div_subring_to_div_ring (e : R) (idem_e : IsIdempotentElem e)
   exact hy
 
 end LeanPool.ArtinWedderburn
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

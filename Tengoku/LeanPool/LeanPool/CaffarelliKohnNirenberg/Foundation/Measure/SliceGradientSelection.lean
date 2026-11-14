@@ -55,7 +55,7 @@ carrier on which `spatialPartial` and `spaceTimeTestFunction` are stated.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory MeasureTheory.Measure Set Filter Metric
 open scoped Topology ENNReal
 open CKN.Foundation.Parabolic
@@ -440,3 +440,4 @@ theorem exists_spacetime_weak_gradient_of_slices (k : Fin 3)
 end CKN
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

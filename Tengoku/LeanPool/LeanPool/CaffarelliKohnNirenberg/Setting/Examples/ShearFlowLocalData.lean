@@ -15,7 +15,7 @@ interval. Compact local boxes therefore have finite energy and slice bounds.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Set
 open scoped ENNReal
 open CKN.Foundation.Parabolic
@@ -127,3 +127,4 @@ theorem shearFlow_localData (Ω' : Set Vec3) (J : Set ℝ)
   exact ae_of_all _ fun s => shearFlow_weakGradient Ω' s i
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

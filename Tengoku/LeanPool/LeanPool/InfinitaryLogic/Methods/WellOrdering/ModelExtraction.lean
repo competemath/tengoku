@@ -22,7 +22,7 @@ the later transport step, not done here.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure
@@ -100,3 +100,4 @@ theorem exists_model_relPreserving_relational [L.IsRelational]
   · exact (realize_ratLtAtom lt q r).mp (hall _ (ratLtAtom_mem_baseDiagram φ lt hqr))
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

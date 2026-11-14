@@ -23,7 +23,7 @@ for `Q_r = (t-r²,t) × B_r`, the `L³` cylinder factor is `r^(1/2)`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Set
 open scoped ENNReal
 
@@ -79,3 +79,4 @@ noncomputable def localSobolevConstant : ℝ≥0∞ :=
 
 end
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

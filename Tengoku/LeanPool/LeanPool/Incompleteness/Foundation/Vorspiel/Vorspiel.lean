@@ -10,7 +10,7 @@ public import Tengoku
 /-! # Vorspiel -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Nat
 variable {α : ℕ → Sort u}
 
@@ -69,7 +69,7 @@ def toFin (n : ℕ) : ℕ → Option (Fin n) := fun x => if hx : x < n then some
 
 end Nat
 
-lemma eq_finZeroElim {α : Sort u} (x : Fin 0 → α) : x = finZeroElim :=
+lemma _root_.Tengoku.LeanPool.eq_finZeroElim {α : Sort u} (x : Fin 0 → α) : x = finZeroElim :=
   funext (by rintro ⟨_, _⟩; contradiction)
 
 namespace Matrix
@@ -1105,11 +1105,12 @@ lemma subset_mem_chain_of_finite (c : Set (Set α)) (hc : Set.Nonempty c) (hchai
 end Set
 
 /-- Imported declaration from the Incompleteness formalization. -/
-class Exp (α : Type*) where
+class _root_.Tengoku.LeanPool.Exp (α : Type*) where
   /-- Imported declaration from the Incompleteness formalization. -/
   exp : α → α
 export Exp (exp)
 
 /-- Class for `α` has at least `n` elements -/
-class Atleast (n : ℕ+) (α) where
+class _root_.Tengoku.LeanPool.Atleast (n : ℕ+) (α) where
   mapping : ∃ f : Fin n → α, Function.HasLeftInverse f
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)
