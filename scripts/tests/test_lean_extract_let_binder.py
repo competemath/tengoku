@@ -1,0 +1,443 @@
+"""A `:=` that belongs to a `let`/`letI`/`have`/`haveI` of the TYPE is not the proof's `:=`, and a theorem defined by match arms ends its statement at its first arm.
+
+The real case: the batch-7 records PR (competemath/tengoku#794, 13 Nov 2026), Gitar's review: `tools/lean_extract.py::_find_statement_end` stopped at the first `:=` at depth 0, so
+`theorem isometry_left (a : CommonAmbient X Y) :\\n    letI := a.metric\\n    Isometry a.left := by ...` was recorded with the statement `... :\\n    letI` and the claim's end at the start of `proof`.
+Measured on the harvested records before the fix: 248 of 54,049 records of batch 7 and 510 of 58,822 of the batches already merged (Etingof 75, lean-operads 159, nlalib 191, abel 43, lean-eval 35,
+rankamplificationtotient 6, ck-hopf 1) ended their statement inside such a binder.
+
+The fixture (fixtures/real-let-binder-records-2026-11-13.json.gz) holds, from 14 real libraries as harvested before the fix: the 758 records whose statement ends in a let/have/set/obtain fragment (proofs cut to 4,000
+characters) and a 3.5% sample (3,944) of the others (proofs cut to 200 characters). A record is put back together as `statement + " " + proof` and extracted again.
+
+Invariants:
+  1. Nothing is lost: for every real record the new statement plus the new proof is the old statement plus the old proof, up to whitespace.
+  2. Every real record that ended in a let/have binder (615 of the 758) now ends its statement after the claim. The new and the old statement are one a prefix of the other: the new one is longer when the old
+     one stopped inside the type, and shorter when the old one had swallowed the arms of a theorem defined by match arms.
+  3. A real record the old code split right is split the same way (3,904 of the 3,944 sampled; 6 cannot be split from the 200 characters of proof the fixture keeps; the 35 others were wrong before:
+     11 cut at a binder, 24 that had swallowed their match arms).
+  4. 5,000 generated declarations with 0 to 4 binders of the four kinds, nested brackets, default arguments, comments and identifiers that contain the keywords: the statement is exactly the text before the
+     declaration's own `:=`.
+  5. Mutants: the pattern that finds binders removed, the arm pattern removed, and the proof-end pattern as it was (a match arm at column 0 ended the proof) each fail a real check."""
+
+from __future__ import annotations
+
+import gzip
+import importlib.util
+import json
+import random
+import re
+import sys
+import unittest
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+spec = importlib.util.spec_from_file_location("lean_extract", ROOT / "tools" / "lean_extract.py")
+le = importlib.util.module_from_spec(spec)
+sys.modules["lean_extract"] = le  # dataclasses resolve the module through sys.modules
+spec.loader.exec_module(le)
+
+REAL = json.loads(gzip.open(Path(__file__).resolve().parent / "fixtures" / "real-let-binder-records-2026-11-13.json.gz", "rt").read())
+BINDER_LINE = re.compile(r"^\s*(?:letI|haveI|let|have)\b")
+MATCH_ARM = re.compile(r"\n[ \t]*\|[^\n]*=>")
+ENDS_IN_BINDER = re.compile(r"^(?:letI|haveI|let|have)\b[^:=]*$")
+
+
+def squash(s: str) -> str:
+    return re.sub(r"\s+", "", s)
+
+
+def split(record: dict):
+    decls = le.extract_declarations(record["statement"] + " " + record["proof"])
+    return next((d for d in decls if d.name in (record["name"], record["name"].split(".")[-1])), decls[0] if decls else None)
+
+
+def ends_in_binder(statement: str) -> bool:
+    last = statement.rstrip().splitlines()[-1].strip() if statement.strip() else ""
+    return bool(ENDS_IN_BINDER.match(last))
+
+
+class RealRecords(unittest.TestCase):
+    def test_the_fixture_is_the_real_one(self):
+        self.assertEqual(len(REAL["truncated"]), 758)
+        self.assertEqual(len(REAL["normal"]), 3944)
+        self.assertEqual(
+            {r["lib"] for r in REAL["truncated"]},
+            {
+                "finite-simple-groups-lean",
+                "lean-commutator",
+                "piirrationalitymeasure",
+                "sandrones-library",
+                "tda-lib",
+                "twinprime",
+                "ck-hopf-formalization",
+                "nlalib",
+                "lean-eval-pi-succ-sphere-n-mulequiv-zmod-two",
+                "rankamplificationtotient",
+                "etingofrepresentationtheory",
+                "abel-formalization",
+                "lean-operads",
+            },
+        )
+
+    def test_the_truncated_records_are_split_after_the_claim_and_nothing_is_lost(self):
+        grew = binder_ending_before = 0
+        for r in REAL["truncated"]:
+            d = split(r)
+            self.assertIsNotNone(d, r["name"])
+            self.assertEqual(squash(d.statement + d.proof), squash(r["statement"] + r["proof"]), r["name"])  # 1
+            a, b = squash(d.statement), squash(r["statement"])
+            self.assertTrue(a.startswith(b) or b.startswith(a), r["name"])  # 2
+            if ends_in_binder(r["statement"]):
+                binder_ending_before += 1
+                self.assertFalse(ends_in_binder(d.statement), r["name"])
+            grew += len(d.statement) > len(r["statement"])
+        self.assertGreaterEqual(binder_ending_before, 600)
+        self.assertGreaterEqual(
+            grew, 590
+        )  # the others are theorems defined by match arms whose old statement had swallowed their arms: shorter now
+        self.assertEqual(
+            [r["name"] for r in REAL["truncated"] if MATCH_ARM.search(split(r).statement)], []
+        )  # no statement holds an arm line any more (Gitar on #811)
+
+    def test_the_records_the_old_code_split_right_are_split_the_same_way(self):
+        same = changed = 0
+        for r in REAL["normal"]:
+            d = split(r)
+            if d is None:  # the fixture's proofs are cut to 200 characters: a truncated record's own `:=` may lie beyond
+                continue
+            if d.statement == r["statement"]:
+                same += 1
+                continue
+            changed += 1
+            self.assertEqual(squash(d.statement + d.proof)[:150], squash(r["statement"] + r["proof"])[:150], r["name"])
+            a, b = squash(d.statement), squash(r["statement"])
+            self.assertTrue(a.startswith(b) or b.startswith(a), r["name"])
+            last = r["statement"].rstrip().splitlines()[-1]
+            self.assertTrue(BINDER_LINE.match(last) or MATCH_ARM.search(r["statement"]), r["name"])  # it was a truncation too
+        self.assertEqual((same, changed), (3904, 35))
+
+    def test_gitars_example(self):
+        (d,) = le.extract_declarations(
+            "theorem CommonAmbient.isometry_left (a : CommonAmbient X Y) :\n    letI := a.metric\n    Isometry a.left := by\n  let : MetricSpace a.carrier := a.metric\n  exact Isometry.of_dist_eq fun _ _ => rfl\n"
+        )
+        self.assertEqual(
+            d.statement, "theorem CommonAmbient.isometry_left (a : CommonAmbient X Y) :\n    letI := a.metric\n    Isometry a.left"
+        )
+        self.assertTrue(d.proof.startswith(":= by\n  let : MetricSpace"))
+
+
+class Cases(unittest.TestCase):
+    def one(self, src: str):
+        (d,) = le.extract_declarations(src)
+        return d
+
+    def test_a_let_in_the_type_owns_its_assignment(self):
+        d = self.one("theorem t : let N := 3; N = 3 := by decide\n")
+        self.assertEqual((d.statement, d.proof), ("theorem t : let N := 3; N = 3", ":= by decide"))
+
+    def test_several_binders_of_every_kind(self):
+        d = self.one(
+            "theorem t (h : 0 < n) :\n    let a := f n\n    letI : Foo := inst\n    have h2 : a = a := rfl\n    haveI := bar\n    a = a := by\n  simp\n"
+        )
+        self.assertTrue(d.statement.endswith("haveI := bar\n    a = a"))
+        self.assertTrue(d.proof.startswith(":= by\n  simp"))
+
+    def test_a_binder_inside_brackets_is_not_counted_and_nor_is_a_default_argument(self):
+        d = self.one("theorem t (n : Nat := 0) : (let x := 1; x) = 1 := rfl\n")
+        self.assertEqual(d.statement, "theorem t (n : Nat := 0) : (let x := 1; x) = 1")
+
+    def test_names_that_contain_the_keywords_are_not_binders(self):
+        for ident in ("letter", "let'", "my.have", "have_h", "haveI'", "Let", "letI!"):
+            d = self.one(f"theorem t : P {ident} = Q := by\n  simp\n")
+            self.assertEqual(d.statement, f"theorem t : P {ident} = Q", ident)
+
+    def test_set_and_obtain_are_not_binders_of_a_type(self):
+        d = self.one("theorem t (set : Finset Nat) : set = set := rfl\n")
+        self.assertEqual(d.statement, "theorem t (set : Finset Nat) : set = set")
+
+    def test_a_comment_cannot_hide_or_fake_a_binder(self):
+        d = self.one("theorem t : P := by\n  -- let x := 1\n  simp\n")
+        self.assertEqual(d.statement, "theorem t : P")
+        d = self.one("theorem t : -- let x := 1 here\n    P := by\n  simp\n")
+        self.assertEqual(squash(d.statement), "theoremt:P")
+
+    def test_a_theorem_defined_by_match_arms_ends_its_statement_at_the_first_arm(self):
+        d = self.one("theorem t : ∀ n : Nat, n + 0 = n\n  | 0 => rfl\n  | n + 1 => by\n      simp\n")
+        self.assertEqual(d.statement, "theorem t : ∀ n : Nat, n + 0 = n")
+        self.assertTrue(d.proof.startswith("| 0 => rfl"))
+        self.assertIn("simp", d.proof)
+
+    def test_an_assignment_inside_an_arm_does_not_end_the_statement(self):
+        """Gitar on #811: `obtain ... := e`, a `set ... := e` or a `calc` step inside an arm is not the declaration's `:=`; the statement ends at the first arm"""
+        for body in (
+            "obtain ⟨a, b⟩ := foo n\n      simp",
+            "set k := n + 1 with hk\n      simp",
+            "calc n + 1 + 0 = n + 1 := by simp\n        _ = n + 1 := rfl",
+            "have h := foo n\n      calc n + 1 = n + 1 := rfl",
+        ):
+            d = self.one(f"theorem t : ∀ n : Nat, n + 0 = n\n  | 0 => rfl\n  | n + 1 => by\n      {body}\n")
+            self.assertEqual(d.statement, "theorem t : ∀ n : Nat, n + 0 = n", body)
+            self.assertIn(body.splitlines()[0], d.proof, body)
+
+    def test_a_fun_that_ends_on_its_own_line_does_not_turn_the_theorems_own_arms_off(self):
+        """Gitar on #811: a `fun`/`match` of the type whose body ends on its line must not turn off the arms of the theorem itself (one holding an `obtain ... := e`)"""
+        for typ in (
+            "∀ n, (List.range n).map (fun i => i) = List.range n",
+            "∀ n, (List.range n).map fun i => i = List.range n",
+            "∀ n, (fun i => i) n = n",
+            "∀ n, id (λ i => i) n = n",
+            "∀ n, (match n with | 0 => 0 | _ => n) = n",
+        ):
+            d = self.one(f"theorem t : {typ}\n  | 0 => rfl\n  | n + 1 => by\n      obtain ⟨a, b⟩ := foo n\n      simp\n")
+            self.assertEqual(d.statement, f"theorem t : {typ}", typ)
+            self.assertIn("obtain", d.proof, typ)
+
+    def test_a_match_with_its_first_arm_on_the_same_line_owns_the_arms_that_follow(self):
+        """Gitar on #811"""
+        for src, stmt in (
+            ("theorem t : f n = match n with | 0 => 1 | _ => 2 := by\n  rfl\n", "theorem t : f n = match n with | 0 => 1 | _ => 2"),
+            ("theorem t : f n = match n with | 0 => 1\n  | _ => 2 := by\n  rfl\n", "theorem t : f n = match n with | 0 => 1\n  | _ => 2"),
+            (
+                "theorem t : f n = match n, m with\n  | 0, _ => 1\n  | _, _ => 2 := by\n  rfl\n",
+                "theorem t : f n = match n, m with\n  | 0, _ => 1\n  | _, _ => 2",
+            ),
+        ):
+            self.assertEqual(self.one(src).statement, stmt, src)
+
+    def test_a_fun_with_its_first_arm_on_the_same_line_owns_the_arms_that_follow(self):
+        d = self.one("theorem t : f = fun | 0 => 1\n  | _ => 2 := by\n  rfl\n")
+        self.assertEqual(d.statement, "theorem t : f = fun | 0 => 1\n  | _ => 2")
+
+    def test_arms_that_belong_to_the_type_do_not_end_the_statement(self):
+        d = self.one("theorem t : f = fun\n  | 0 => 1\n  | _ => 2 := by\n  rfl\n")
+        self.assertEqual(d.statement, "theorem t : f = fun\n  | 0 => 1\n  | _ => 2")
+        d = self.one("theorem t : g = match n with\n  | 0 => 1\n  | _ => 2 := by\n  rfl\n")
+        self.assertEqual(d.statement, "theorem t : g = match n with\n  | 0 => 1\n  | _ => 2")
+
+    def test_have_and_let_in_arms_are_consumed_as_binders_so_the_statement_still_ends_at_the_first_arm(self):
+        d = self.one(
+            "theorem t : ∀ n : Nat, n + 0 = n\n  | 0 => rfl\n  | n + 1 => by\n      have h := foo n\n      let q := n\n      simp\n"
+        )
+        self.assertEqual(d.statement, "theorem t : ∀ n : Nat, n + 0 = n")
+
+    def test_match_arms_with_a_let_in_the_type_and_arms_at_column_zero(self):
+        d = self.one("theorem t : ∀ p : Nat,\n    let a := p\n    a = p\n| 0 => rfl\n| p + 1 => by\n    let q := p\n    rfl\n")
+        self.assertEqual(squash(d.statement), squash("theorem t : ∀ p : Nat, let a := p a = p"))
+        self.assertIn("let q := p", d.proof)
+
+    NEXT = (
+        "theorem u : True := trivial",
+        "lemma u : True := trivial",
+        "noncomputable def pathTab0 (x : Nat) : List Nat := []",
+        "private def f : Nat := 1",
+        "instance : Inhabited Foo := ⟨x⟩",
+        "/-- A docstring. -/\ntheorem u : True := trivial",
+        "@[simp] theorem u : True := trivial",
+        "end Foo",
+        "namespace Bar",
+        "open Nat in\ntheorem u : True := trivial",
+        "#check t",
+        "variable (x : Nat)",
+    )
+
+    def test_an_arm_theorem_followed_by_another_command_does_not_take_it_in(self):
+        """Gitar on #811: in a real file an arm theorem is followed by something; before, it swallowed the next declaration's `:=`, or ended at an empty proof"""
+        arms = "theorem t : ∀ n : Nat, n + 0 = n\n  | 0 => rfl\n  | n + 1 => rfl\n"
+        for nxt in self.NEXT:
+            for gap in ("", "\n", "\n\n"):
+                ds = le.extract_declarations(arms + gap + nxt + "\n")
+                t = next(d for d in ds if d.name == "t")
+                self.assertEqual(t.statement, "theorem t : ∀ n : Nat, n + 0 = n", nxt)
+                self.assertTrue(t.proof.startswith("| 0 => rfl"), nxt)
+                self.assertNotIn("def", t.statement + t.proof, nxt)
+                self.assertNotIn("True", t.statement + t.proof, nxt)
+
+    def test_the_declaration_after_an_arm_theorem_is_extracted_whole(self):
+        arms = "theorem t : ∀ n : Nat, n + 0 = n\n  | 0 => rfl\n  | n + 1 => rfl\n\n"
+        ds = le.extract_declarations(arms + "theorem u : True := trivial\n")
+        self.assertEqual([(d.name, d.statement, d.proof) for d in ds if d.name == "u"], [("u", "theorem u : True", ":= trivial")])
+
+    def test_arms_at_column_zero_followed_by_another_command(self):
+        for nxt in self.NEXT:
+            ds = le.extract_declarations("theorem t : ∀ p : Nat, p = p\n| 0 => rfl\n| p + 1 => by\n    let q := p\n    rfl\n" + nxt + "\n")
+            t = next(d for d in ds if d.name == "t")
+            self.assertEqual(t.statement, "theorem t : ∀ p : Nat, p = p", nxt)
+            self.assertIn("let q := p", t.proof, nxt)
+
+    def test_a_declaration_with_a_proof_of_its_own_never_takes_an_arm_for_its_end(self):
+        d = self.one("theorem t : f = fun x => x := by\n  intro x\n  match x with\n  | 0 => rfl\n  | _ => rfl\n")
+        self.assertEqual(d.statement, "theorem t : f = fun x => x")
+
+    def test_unterminated_is_skipped(self):
+        self.assertEqual(le.extract_declarations("theorem t : let a := 1\n  a = 1\n"), [])
+
+
+def generated(rnd: random.Random):
+    """(source, statement, proof) of a random declaration: binders of the four kinds, each with its own `:=`, in the type"""
+    name = f"t{rnd.randint(0, 99999)}"
+    binders = []
+    for _ in range(rnd.randint(0, 4)):
+        kind = rnd.choice(["let", "letI", "have", "haveI"])
+        value = rnd.choice(["3", "inst", "(f x)", "⟨a, b⟩", "fun x => x", "(g (n := 0))", "by decide"])
+        ident = rnd.choice(["x", "N", "h", "_", "x'", "xₙ", "«a b»"])
+        binders.append(f"{kind} {ident} : T := {value}" if kind in ("let", "have") and rnd.random() < 0.5 else f"{kind} {ident} := {value}")
+    pre = rnd.choice(["", " (n : Nat := 0)", " {a b : Nat} (h : (let y := 1; y) = 1)", " [inst : Foo (α := Nat)]"])
+    claim = rnd.choice(["P n", "∀ k, f k = g k", "a = b ∧ c ≤ d", "(fun x => x + 1) 0 = 1", "x = if y then 1 else 2"])
+    sep = rnd.choice(["\n    ", "; ", "\n      "])
+    typ = f"{sep}".join(binders + [claim]) if binders else claim
+    statement = f"theorem {name}{pre} :{rnd.choice([' ', chr(10) + '    '])}{typ}"
+    proof = ":= " + rnd.choice(["rfl", "by\n  simp", "by\n  have h := foo\n  let y := 2\n  exact h", "fun x => x"])
+    return statement + " " + proof + "\n", statement, proof
+
+
+class Generated(unittest.TestCase):
+    def test_5000_declarations(self):
+        rnd = random.Random(20261113)
+        with_binders = 0
+        for _ in range(5000):
+            src, statement, proof = generated(rnd)
+            (d,) = le.extract_declarations(src)
+            self.assertEqual((d.statement, d.proof), (statement.strip(), proof.strip()), src)
+            with_binders += bool(re.search(r"\b(?:let|letI|have|haveI)\b [^(]", statement))
+        self.assertGreater(with_binders, 3500)
+
+
+def generated_arm_theorem(rnd: random.Random):
+    """(source, statement, first arm) of a theorem defined by match arms whose type holds a fun/λ/match in many shapes"""
+    typ_parts = rnd.choice(
+        [
+            "∀ n, f n = n",
+            "∀ n, (List.range n).map fun i => i = List.range n",
+            "∀ n, (fun i => i) n = n",
+            "∀ n, id (λ i => i + 1) n = n + 1",
+            "∀ n, (match n with | 0 => 0 | _ => n) = n",
+            "∀ n, k n = (let a := n; a)",
+            "∀ n, k n = have h := n; n",
+        ]
+    )
+    pre = rnd.choice(["", " (n : Nat)", " {α : Type} [Foo α]"])
+    statement = f"theorem t{rnd.randint(0, 999)}{pre} : {typ_parts}"
+    indent = rnd.choice(["  ", "    ", ""])
+    arms = [
+        f"{indent}| 0 => "
+        + rnd.choice(
+            [
+                "rfl",
+                "by simp",
+                "by\n      obtain ⟨a, b⟩ := foo",
+                "by\n      calc a = b := rfl\n        _ = c := rfl",
+                "by\n      have h := foo\n      let q := 1\n      simp",
+            ]
+        )
+    ]
+    arms.append(f"{indent}| n + 1 => " + rnd.choice(["rfl", "by\n      set k := n with hk\n      simp"]))
+    nxt = rnd.choice(["", "\ndef f : Nat := 1", "\ntheorem u : True := trivial", "\nend Foo", "\n/-- doc -/\ntheorem u : True := trivial"])
+    return statement + "\n" + "\n".join(arms) + "\n" + nxt + "\n", statement, arms[0]
+
+
+class GeneratedArms(unittest.TestCase):
+    def test_3000_arm_theorems(self):
+        """shapes whose arms are the theorem's own: no fun/λ/match in the type, or one that is parenthesised or whose body ends on its line"""
+        rnd = random.Random(20261113)
+        for _ in range(3000):
+            src, statement, first_arm = generated_arm_theorem(rnd)
+            ds = le.extract_declarations(src)
+            d = ds[0]
+            self.assertEqual(d.statement, statement, src)
+            self.assertTrue(d.proof.startswith(first_arm.strip()), src)
+            self.assertEqual([x.name for x in ds[1:]], [x.name for x in ds[1:] if x.name == "u"], src)  # nothing else was swallowed
+
+
+def generated_lambda_type_theorem(rnd: random.Random):
+    """(source, statement) of a theorem with a fun/λ/match in its type, in the shapes that own arms, followed by its proof"""
+    typ = rnd.choice(
+        [
+            "f n = match n with | 0 => 1 | _ => 2",
+            "f n = match n with\n      | 0 => 1\n      | _ => 2",
+            "h = fun\n      | 0 => 1\n      | _ => 2",
+            "h = fun | 0 => 1 | _ => 2",
+            "h = fun | 0 => 1\n      | _ => 2",
+            "g = λ\n      | 0 => 1\n      | _ => 2",
+        ]
+    )
+    statement = f"theorem t{rnd.randint(0, 999)} : {typ}"
+    proof = rnd.choice([":= rfl", ":= by\n  rfl", ":= by\n  obtain ⟨a, b⟩ := foo\n  simp", ":= by\n  set k := 1\n  calc a = b := rfl"])
+    nxt = rnd.choice(["", "\ndef f : Nat := 1", "\ntheorem u : True := trivial"])
+    return statement + " " + proof + "\n" + nxt + "\n", statement
+
+
+class GeneratedLambdaTypes(unittest.TestCase):
+    def test_3000_theorems_whose_type_owns_arms(self):
+        """the type's arms are not the theorem's: the statement runs to the declaration's own `:=` (the real records: fundamentalSystem_legal_rules, singleton_cost_cases, source_le_cost, cost_le_of).
+        Known limit, 0 of the 54,049 real records of batch 7: an arm-DEFINED theorem (no `:=` of its own) whose type also holds such a fun/match cannot be told from this shape, and is read as this one."""
+        rnd = random.Random(20261114)
+        for _ in range(3000):
+            src, statement = generated_lambda_type_theorem(rnd)
+            d = le.extract_declarations(src)[0]
+            self.assertEqual(d.statement, statement, src)
+            self.assertTrue(d.proof.startswith(":="), src)
+
+
+class Mutants(unittest.TestCase):
+    def test_without_the_binder_pattern_the_real_example_is_cut_again(self):
+        original = le._TYPE_BINDER_RE
+        le._TYPE_BINDER_RE = re.compile(r"(?!)")
+        try:
+            cut = [r for r in REAL["truncated"] if (d := split(r)) is not None and ends_in_binder(d.statement)]
+            self.assertGreaterEqual(len(cut), 590)  # what the harvest did
+            (d,) = le.extract_declarations("theorem t : let N := 3; N = 3 := by decide\n")
+            self.assertEqual(d.statement, "theorem t : let N")
+        finally:
+            le._TYPE_BINDER_RE = original
+
+    def test_with_the_proof_end_as_it_was_a_match_arm_at_column_zero_loses_text(self):
+        original = le._TOP_LEVEL_LINE_RE
+        le._TOP_LEVEL_LINE_RE = re.compile(r"^[^\s].*$", re.MULTILINE)
+        try:
+            (d,) = le.extract_declarations("theorem t : ∀ p : Nat, p = p\n| 0 => rfl\n| p + 1 => rfl\n")
+            self.assertNotIn("p + 1", d.proof)
+        finally:
+            le._TOP_LEVEL_LINE_RE = original
+        (d,) = le.extract_declarations("theorem t : ∀ p : Nat, p = p\n| 0 => rfl\n| p + 1 => rfl\n")
+        self.assertIn("p + 1", d.proof)
+
+    def test_without_the_arm_pattern_an_assignment_inside_an_arm_cuts_the_statement_again(self):
+        src = "theorem t : ∀ n : Nat, n + 0 = n\n  | 0 => rfl\n  | n + 1 => by\n      obtain ⟨a, b⟩ := foo n\n      simp\n"
+        (d,) = le.extract_declarations(src)
+        self.assertEqual(d.statement, "theorem t : ∀ n : Nat, n + 0 = n")
+        original = le._MATCH_ARM_RE
+        le._MATCH_ARM_RE = re.compile(r"(?!)")
+        try:
+            (d2,) = le.extract_declarations(src)
+            self.assertTrue(
+                d2.statement.endswith("obtain ⟨a, b⟩")
+            )  # what the harvest did (7 records of batch 7, about 90 of the 758 sampled)
+        finally:
+            le._MATCH_ARM_RE = original
+
+    def test_with_every_fun_turning_the_arms_off_the_theorems_own_arms_are_lost_again(self):
+        """the code of the commit before Gitar's last finding: the flag was set for any fun/λ/match at depth 0"""
+        import inspect
+
+        src = inspect.getsource(le._find_statement_end)
+        line = next(ln for ln in src.splitlines() if ln.strip().startswith("if not rest or"))
+        ns = dict(vars(le))
+        exec(src.replace(line, line[: len(line) - len(line.lstrip())] + "if True:"), ns)
+        text = "theorem t : ∀ n, (List.range n).map fun i => i = List.range n\n  | 0 => rfl\n  | n + 1 => by\n      obtain ⟨a, b⟩ := foo n\n      simp\n"
+        start = le._DECL_KEYWORD_RE.search(text).end()
+        mutant_end = ns["_find_statement_end"](text, start)
+        self.assertTrue(text[:mutant_end].rstrip().endswith("obtain ⟨a, b⟩"))  # the arms in the statement
+        self.assertTrue(text[: le._find_statement_end(text, start)].rstrip().endswith("= List.range n"))
+
+    def test_without_the_arm_fallback_an_arm_theorem_with_a_let_is_skipped(self):
+        src = "theorem t : ∀ p : Nat,\n    let a := p\n    a = p\n  | 0 => rfl\n  | p + 1 => rfl\n"
+        self.assertEqual(len(le.extract_declarations(src)), 1)
+        original = le._MATCH_ARM_RE
+        le._MATCH_ARM_RE = re.compile(r"(?!)")
+        try:
+            self.assertEqual(le.extract_declarations(src), [])
+        finally:
+            le._MATCH_ARM_RE = original
+
+
+if __name__ == "__main__":
+    unittest.main()

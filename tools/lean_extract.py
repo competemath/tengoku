@@ -36,7 +36,8 @@ _CLOSE = {v: k for k, v in _OPEN.items()}
 # the start of a new top-level command (theorem/def/namespace/end/#check/...).
 # Used to find where a proof body ends, without needing to know Lean's full
 # grammar for every possible top-level keyword.
-_TOP_LEVEL_LINE_RE = re.compile(r"^[^\s].*$", re.MULTILINE)
+# not a match arm written at column 0 (`| 0 => ...`): it belongs to the proof above
+_TOP_LEVEL_LINE_RE = re.compile(r"^[^\s|].*$", re.MULTILINE)
 
 # `sorry` as a whole word anywhere in a proof means Lean did NOT actually
 # check it — it's an admitted gap, not a proof. Many real-world libraries
@@ -121,11 +122,30 @@ def _strip_line_comments(text: str) -> str:
     return "\n".join(out_lines)
 
 
+# A binder of the TYPE that carries its own `:=`: `theorem t : let N := 3; N = 3 := ...`, `: letI := inst; P`, `: have h : Q := q; P`. Its `:=` is not the proof's. Only these four
+# keywords: `set` and `obtain` are tactics, and `set` is also a common identifier. Not part of a longer name (`let'`, `my.have`, `letter`).
+_TYPE_BINDER_RE = re.compile(r"(?<![\w.'!?])(?:letI|haveI|let|have)(?![\w'!?])")
+# A theorem defined by match arms has no `:=` of its own: `theorem t : T\n  | 0 => ...\n  | n + 1 => ...`. Its statement ends where the first arm begins.
+_MATCH_ARM_RE = re.compile(r"\n[ \t]*\|[^\n]*=>")
+# Arms that belong to the TYPE, not to the theorem: `theorem t : f = fun\n  | 0 => 1\n  | _ => 2 := by ...`. After one of these words at depth 0 that ends its line (or opens with an arm, or is a
+# `match ... with`) an arm is not the declaration's own.
+_WITH_RE = re.compile(r"(?<![\w.'!?])with(?![\w'!?])")  # a `match ... with` whose first arm is on the same line
+_LAMBDA_RE = re.compile(r"(?<![\w.'!?])(?:fun|λ|match)(?![\w'!?])")
+
+
 def _find_statement_end(text: str, search_from: int) -> int | None:
     """Find the top-level `:=` that starts the proof, tracking bracket depth
     so one nested inside a default-argument value (e.g. `(n : Nat := 0)`)
-    doesn't end the statement early. Returns None if unterminated."""
+    doesn't end the statement early. A top-level `let`/`letI`/`have`/`haveI`
+    in the type owns the next `:=` (13 Nov 2026: 510 harvested records were cut at
+    one, `... : letI` with the claim's end in `proof`). A declaration defined by match arms has no
+    `:=` of its own: its statement ends at the first arm (before any `:=` inside an arm: `obtain ... := e`, a `calc`
+    step) unless the type itself has a `fun`/`λ`/`match`; once an arm has been seen, whatever comes next (a `:=`, the next
+    declaration, the end of the text) ends the scan there (Gitar on tengoku#811). Returns None if unterminated."""
     depth = 0
+    pending = 0  # binders of the type whose `:=` has not been seen
+    arm = None  # the first match arm at depth 0: where the statement ends when there is no `:=` of the declaration's own
+    lambda_seen = False  # a `fun`/`λ`/`match` of the type at depth 0: the arms after it are its own
     i = search_from
     while i < len(text):
         ch = text[i]
@@ -134,13 +154,30 @@ def _find_statement_end(text: str, search_from: int) -> int | None:
         elif ch in _CLOSE:
             depth = max(0, depth - 1)
         elif depth == 0 and text.startswith(":=", i):
+            if arm is not None:
+                return arm  # an arm came first: this `:=` is inside it (`obtain ... := e`, a `calc` step), not the proof's
+            if pending:
+                pending -= 1
+                i += 2
+                continue
             return i
+        elif depth == 0 and ch in "lh" and (m := _TYPE_BINDER_RE.match(text, i)):
+            pending += 1
+            i = m.end()
+            continue
+        elif depth == 0 and ch in "fλm" and (lm := _LAMBDA_RE.match(text, i)):
+            rest = text[lm.end() : text.find("\n", lm.end()) if text.find("\n", lm.end()) != -1 else len(text)].strip()
+            # only a `fun`/`λ` that ends its line (its arms follow), `match ... with` (its first arm may follow on the same line), or `fun | ...` owns the arms that follow; `fun i => i = x` on one line does not
+            if not rest or rest.endswith("with") or rest.startswith("|") or (lm.group(0) == "match" and _WITH_RE.search(rest)):
+                lambda_seen = True
         elif depth == 0 and ch == "\n" and text[i:].lstrip().startswith(("theorem ", "lemma ")):
             # Next declaration started before `:=` was found — bail out
-            # rather than swallow it into this one.
-            return i
+            # rather than swallow it into this one. After a match arm: the statement ends at the arm.
+            return arm if arm is not None else i
+        elif depth == 0 and ch == "\n" and arm is None and not lambda_seen and _MATCH_ARM_RE.match(text, i):
+            arm = i
         i += 1
-    return None
+    return arm
 
 
 def _find_proof_end(text: str, proof_start: int) -> int:
