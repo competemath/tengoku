@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "6fc957437fd7432aa0909d0b24cce8b74998726cb592effa95621c2de25bd67f",
+ "factory_changes": {
+  "inert lines removed": 1,
+  "modules changed": 1
+ },
+ "gate2_unjudged": [],
+ "library": "tda-lib",
+ "lint_mode": "proposed",
+ "modules": 208,
+ "part": 2,
+ "theorems": 1941
+}
