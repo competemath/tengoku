@@ -22,7 +22,7 @@ jobs:
     timeout-minutes: 10
     permissions: { contents: read }
     steps:
-      - uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2
+      - uses: step-security/harden-runner@1d88384fd173af6ecb012dfd0264a306b711241a # v2
         with: { egress-policy: audit }
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with: { filter: "blob:none", persist-credentials: false }
@@ -38,7 +38,7 @@ jobs:
     timeout-minutes: 25   # was 15: the suite took 13 to 17 minutes on 14 Nov 2026 and a run at the cap is cancelled, not failed (#815: two runs cancelled at 15:00 on one head; the same head passed at 15 minutes earlier)
     permissions: { contents: read }
     steps:
-      - uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2
+      - uses: step-security/harden-runner@1d88384fd173af6ecb012dfd0264a306b711241a # v2
         with: { egress-policy: audit }
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with: { fetch-depth: 2, filter: "blob:none", persist-credentials: false }   # 2: the merge commit and the base (the fuzz step's diff)
@@ -89,7 +89,7 @@ jobs:
     timeout-minutes: 15
     permissions: { contents: read, pull-requests: read }
     steps:
-      - uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2
+      - uses: step-security/harden-runner@1d88384fd173af6ecb012dfd0264a306b711241a # v2
         with: { egress-policy: audit }
       # everything but the Lean tree, the data and the widget, with the full history: the scanner blames lines to find new code
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -120,7 +120,7 @@ jobs:
           if [ -n "$SONAR_TOKEN" ]; then echo "have=true" >> "$GITHUB_OUTPUT"; else echo "::notice::no SONAR_TOKEN for this run (Dependabot's pull request): the scan is skipped"; fi
       - name: Analyse
         if: steps.t.outputs.have == 'true'
-        uses: SonarSource/sonarqube-scan-action@d209202bc7d53ff1cc128f7f907dac145c9d6ae9 # v8.3.0
+        uses: SonarSource/sonarqube-scan-action@e805d875275f728fac1885b413934be6d7c63f65 # v8.4.1
         env: { SONAR_TOKEN: "${{ secrets.SONAR_TOKEN }}" }
       # The same report to Codecov (advisory; a run without the token skips it, a failed upload fails nothing)
       - name: Is there a Codecov token for this run?
@@ -144,7 +144,7 @@ jobs:
     timeout-minutes: 15
     permissions: { contents: read }
     steps:
-      - uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2
+      - uses: step-security/harden-runner@1d88384fd173af6ecb012dfd0264a306b711241a # v2
         with: { egress-policy: audit }
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with: { fetch-depth: 2, filter: "blob:none", persist-credentials: false }   # 2: the merge commit and the base
@@ -179,7 +179,7 @@ jobs:
     timeout-minutes: 20
     permissions: { contents: read }
     steps:
-      - uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2
+      - uses: step-security/harden-runner@1d88384fd173af6ecb012dfd0264a306b711241a # v2
         with: { egress-policy: audit }
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with: { fetch-depth: 2, filter: "blob:none", persist-credentials: false }   # 2: the merge commit and the base
