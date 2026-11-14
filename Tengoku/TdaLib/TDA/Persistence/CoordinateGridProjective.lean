@@ -41,7 +41,9 @@ variable {k : Type u} [Field k] {n : ℕ} (G : CoordinateGrid n)
 
 /-- Finite-grid left Kan extension preserves the existing relative
 rank-projectivity lifting property. The lift is obtained by applying the
-grid object's own lifting property to the restricted rank-exact sequence.-/
+grid object's own lifting property to the restricted rank-exact sequence.
+@isnad1 id=isrankpr.1h4v.s8.f79d3df2372e from=translated src=- shape=fcc21ea1 vocab=3efc5fc2
+-/
 theorem lan_isRankProjective (P : PModule.{u,0,u} k G.Point)
     (hP : IsRankProjective P) : IsRankProjective (G.lan.obj P) := by
   intro L M N ι π hs α
@@ -70,7 +72,9 @@ noncomputable abbrev lanBiproductIso {J : Type} [Fintype J]
   G.lan.mapBiproduct F
 
 /-- The finite-biproduct comparison identifies each projection with the
-actual Kan image of the grid projection.-/
+actual Kan image of the grid projection.
+@isnad1 id=eq.0h6v.s11.bd9cf32c8145 from=translated src=- shape=1c75c8af vocab=1c76c852
+-/
 theorem lanBiproductIso_hom_π {J : Type} [Fintype J]
     (F : J → PModule.{u,0,u} k G.Point) (j : J) :
     (G.lanBiproductIso F).hom ≫ biproduct.π (fun j => G.lan.obj (F j)) j =
@@ -78,7 +82,9 @@ theorem lanBiproductIso_hom_π {J : Type} [Fintype J]
   rw [lanBiproductIso, Functor.mapBiproduct_hom, biproduct.lift_π]
 
 /-- The inverse finite-biproduct comparison identifies each inclusion with
-the actual Kan image of the grid inclusion.-/
+the actual Kan image of the grid inclusion.
+@isnad1 id=eq.0h6v.s11.ee06ccd5713e from=translated src=- shape=4af22a95 vocab=b805da2c
+-/
 theorem lanBiproductIso_inv_ι {J : Type} [Fintype J]
     (F : J → PModule.{u,0,u} k G.Point) (j : J) :
     biproduct.ι (fun j => G.lan.obj (F j)) j ≫ (G.lanBiproductIso F).inv =

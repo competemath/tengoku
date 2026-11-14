@@ -15,7 +15,9 @@ variable [Fintype (TDA.Simplicial.TotalFace K)]
 variable {f0 : FilterFunction K α}
 
 /-- The parameters where the supplied face enumeration remains compatible form a
-closed set when every face grade varies continuously.-/
+closed set when every face grade varies continuously.
+@isnad1 id=isclosed.1h7v.s7.f5781df897f5 from=translated src=- shape=ede3a61e vocab=2ea2a713
+-/
 theorem CompatibleOrder.isClosed_compatible_locus
     (e : CompatibleOrder f0) (F : X → FilterFunction K α)
     (hF : ∀ s : TDA.Simplicial.TotalFace K,

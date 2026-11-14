@@ -25,7 +25,9 @@ variable {I : Type u} {J : Type v}
 local instance (α : Type*) : DecidableEq α := Classical.decEq α
 
 /-- Any two selected refinements between the same indexed families induce
-contiguous maps of ordinary nerves.-/
+contiguous maps of ordinary nerves.
+@isnad1 id=contiguo.0h7v.s5.a27d516dad14 from=translated src=- shape=8bcbb16b vocab=b394c4ba
+-/
 theorem nerveMap_contiguous {X : Type z}
     {U : TDA.Topology.CoverFamily X I}
     {V : TDA.Topology.CoverFamily X J}

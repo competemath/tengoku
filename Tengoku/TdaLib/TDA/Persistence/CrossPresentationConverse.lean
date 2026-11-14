@@ -358,7 +358,9 @@ noncomputable def crossDataRightIso :
       _ = (0 : module (R := R) Q.relations ⟶ P.presented) ≫ e.hom := by simp
   exact (quotientIsoOfMutualDescent P Q a hp hq).symm ≪≫ e
 
-/-- Finite original presentations yield finite shared cross-presentation data.-/
+/-- Finite original presentations yield finite shared cross-presentation data.
+@isnad1 id=isfinite.2h6v.s7.138be57fe343 from=translated src=- shape=037d5ad5 vocab=4f2b8222
+-/
 theorem crossData_isFinite (hD : D.IsFinite) (hE : E.IsFinite) :
     (D.crossData E i).IsFinite := by
   classical
@@ -378,7 +380,9 @@ theorem crossData_isFinite (hD : D.IsFinite) (hE : E.IsFinite) :
 end Presentation
 
 /-- Every interleaving between finitely presented real-coordinate modules
-admits finite shared cross-presentations.-/
+admits finite shared cross-presentations.
+@isnad1 id=ex.2h6v.s8.43a52c6b2309 from=translated src=- shape=40ebcd79 vocab=54463edf
+-/
 theorem finitelyPresented_exists_crossPresentation
     (hM : FinitelyPresented (R := R) (P := Fin n → ℝ) M)
     (hN : FinitelyPresented (R := R) (P := Fin n → ℝ) N)
@@ -395,7 +399,9 @@ theorem finitelyPresented_exists_crossPresentation
 /-- Finite-presentation characterization of the actual diagonal interleaving
 relation by finite simultaneous shifted generator-and-relation presentations.
 This is the finite-presentation part of Lesnick Theorem 4.4, over any ring and
-including dimension zero.-/
+including dimension zero.
+@isnad1 id=iff.2h5v.s8.af5c4d6b2955 from=translated src=- shape=e1fe8362 vocab=54463edf
+-/
 theorem finitelyPresented_interleaving_iff_crossPresentation
     (hM : FinitelyPresented (R := R) (P := Fin n → ℝ) M)
     (hN : FinitelyPresented (R := R) (P := Fin n → ℝ) N) :

@@ -34,7 +34,9 @@ variable {k : Type u} [Field k] {P : Type v} [PartialOrder P]
 /-- A hook contains the points above its birth and outside the upset of its death.-/
 abbrev support (i j : P) : Set P := {a | i ≤ a ∧ ¬ j ≤ a}
 
-/-- Hook supports are order convex.-/
+/-- Hook supports are order convex.
+@isnad1 id=ordconne.0h3v.s4.ab42bab84b4d from=translated src=- shape=ce8ffaa7 vocab=e65e50e5
+-/
 theorem support_ordConnected (i j : P) : (support i j).OrdConnected where
   out' := by
     intro a ha c hc b hb
@@ -45,14 +47,20 @@ theorem support_ordConnected (i j : P) : (support i j).OrdConnected where
 noncomputable def module (i j : P) : PModule.{u,v,u} k P :=
   SupportInterval.module (support i j) (support_ordConnected i j)
 
-/-- The birth grade belongs to every nonzero hook.-/
+/-- The birth grade belongs to every nonzero hook.
+@isnad1 id=mem.1h3v.s4.1b9256cc428c from=translated src=- shape=f6d68567 vocab=13f03f50
+-/
 theorem birth_mem {i j : P} (hij : i < j) : i ∈ support i j :=
   ⟨le_rfl, not_le_of_gt hij⟩
 
-/-- A hook excludes its death grade.-/
+/-- A hook excludes its death grade.
+@isnad1 id=not.0h3v.s4.09489e4a69ed from=translated src=- shape=1fcf41f8 vocab=44217c7e
+-/
 theorem death_not_mem (i j : P) : j ∉ support i j := fun h => h.2 le_rfl
 
-/-- The value on the unit at birth determines a morphism from a nonzero hook.-/
+/-- The value on the unit at birth determines a morphism from a nonzero hook.
+@isnad1 id=eq.2h7v.s10.f32859afd32e from=translated src=- shape=0e546aa5 vocab=3c523cba
+-/
 theorem hom_ext {i j : P} (hij : i < j) {M : PModule.{u,v,u} k P}
     {α β : module (k := k) i j ⟶ M}
     (h : (α.app i).hom (SupportInterval.one (support i j) (birth_mem hij)) =
@@ -90,7 +98,9 @@ theorem hom_ext {i j : P} (hij : i < j) {M : PModule.{u,v,u} k P}
   · have hx : x = 0 := Subtype.ext (SupportInterval.val_eq_zero (support i j) hp x)
     simp [hx]
 
-/-- The generating element of a hook morphism dies at the hook's death grade.-/
+/-- The generating element of a hook morphism dies at the hook's death grade.
+@isnad1 id=eq.1h6v.s10.5b1e6f473703 from=translated src=- shape=6ff7cc5c vocab=2dad572d
+-/
 theorem generator_dies {i j : P} (hij : i < j) {M : PModule.{u,v,u} k P}
     (α : module (k := k) i j ⟶ M) :
     structureMapLinear M hij.le
@@ -150,7 +160,9 @@ noncomputable def fromGenerator {i j : P} (hij : i < j) (M : PModule.{u,v,u} k P
       have hx : x = 0 := Subtype.ext (SupportInterval.val_eq_zero (support i j) hps x)
       simp [hx]
 
-/-- The component of a generated morphism transports and scales its birth vector.-/
+/-- The component of a generated morphism transports and scales its birth vector.
+@isnad1 id=eq.3h8v.s11.7ea023eec8e2 from=translated src=- shape=606e2bee vocab=a8c0fca3
+-/
 theorem fromGenerator_app {i j p : P} (hij : i < j) (M : PModule.{u,v,u} k P)
     (m : M.obj i) (hm : structureMapLinear M hij.le m = 0) (hip : i ≤ p)
     (x : SupportInterval.fiber (k := k) (support i j) p) :
@@ -159,7 +171,9 @@ theorem fromGenerator_app {i j p : P} (hij : i < j) (M : PModule.{u,v,u} k P)
   change generatorLinear M m p x = _
   simp [generatorLinear, hip, LinearMap.toSpanSingleton_apply]
 
-/-- The morphism built from a generator takes the unit at birth to that generator.-/
+/-- The morphism built from a generator takes the unit at birth to that generator.
+@isnad1 id=eq.2h6v.s10.78dd2eaab7c3 from=translated src=- shape=3ea5b707 vocab=c4869dff
+-/
 theorem fromGenerator_birth {i j : P} (hij : i < j) (M : PModule.{u,v,u} k P)
     (m : M.obj i) (hm : structureMapLinear M hij.le m = 0) :
     ((fromGenerator hij M m hm).app i).hom
@@ -181,7 +195,9 @@ noncomputable def homEquivKernel {i j : P} (hij : i < j) (M : PModule.{u,v,u} k 
   right_inv _x := Subtype.ext (fromGenerator_birth hij M _ _)
 
 /-- Hooks lift against rank exact quotient maps. The lift is obtained by lifting its
-birth generator while preserving the death relation.-/
+birth generator while preserving the death relation.
+@isnad1 id=ex.2h10v.s9.ee2ea0dc8dfe from=translated src=- shape=4059ab0b vocab=8023a497
+-/
 theorem exists_lift {i j : P} (hij : i < j)
     {L M N : PModule.{u,v,u} k P} {ι : L ⟶ M} {π : M ⟶ N}
     (hs : IsRankExact ι π)

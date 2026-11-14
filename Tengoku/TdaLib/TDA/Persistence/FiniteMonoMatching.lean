@@ -157,19 +157,25 @@ private theorem prefix_le_ordinal (B : Multiset (FiniteInterval s)) (b d : ℕ)
   have h := Fintype.card_le_of_injective f hf
   rwa [Fintype.card_fin, prefix_card] at h
 
-/-- An occurrence's ordinal is below the prefix count at its own birth.-/
+/-- An occurrence's ordinal is below the prefix count at its own birth.
+@isnad1 id=lt.0h3v.s5.6613bf0c2417 from=translated src=- shape=550c4dea vocab=d087637d
+-/
 theorem deathOrdinal_lt_deathPrefixCount (B : Multiset (FiniteInterval s))
     (i : BarcodeOccurrence s B) :
     deathOrdinal B i < deathPrefixCount B (occurrence B i).birth (occurrence B i).death :=
   ordinal_lt_prefix B _ ⟨i, rfl⟩
 
-/-- A cutoff before an occurrence's birth counts at most its ordinal.-/
+/-- A cutoff before an occurrence's birth counts at most its ordinal.
+@isnad1 id=le.1h4v.s5.69e3fb1cf959 from=translated src=- shape=2dc61e11 vocab=9a8f7974
+-/
 theorem deathPrefixCount_le_deathOrdinal (B : Multiset (FiniteInterval s))
     (i : BarcodeOccurrence s B) (b : ℕ) (hb : b < (occurrence B i).birth) :
     deathPrefixCount B b (occurrence B i).death ≤ deathOrdinal B i :=
   prefix_le_ordinal B b _ ⟨i, rfl⟩ hb
 
-/-- Every birth prefix is bounded by the cardinality of its death group.-/
+/-- Every birth prefix is bounded by the cardinality of its death group.
+@isnad1 id=le.0h4v.s4.5dc59475159d from=translated src=- shape=f4082985 vocab=74bb70d8
+-/
 theorem deathPrefixCount_le_card (B : Multiset (FiniteInterval s)) (b d : ℕ) :
     deathPrefixCount B b d ≤ Fintype.card (DeathOccurrence B d) := by
   rw [← prefix_card]
@@ -266,19 +272,25 @@ noncomputable def monoEmbedding (j : M ⟶ N) (hj : ∀ i, Function.Injective (j
     · exact (mapOccurrence_ordinal j hj i).symm.trans
         ((congrArg (deathOrdinal (rankBarcode N)) h).trans (mapOccurrence_ordinal j hj i'))
 
-/-- The canonical embedding preserves each observed death exactly.-/
+/-- The canonical embedding preserves each observed death exactly.
+@isnad1 id=eq.1h6v.s10.031c4942abd6 from=translated src=- shape=fe775a98 vocab=b7f13f5f
+-/
 theorem monoEmbedding_death (j : M ⟶ N) (hj : ∀ i, Function.Injective (j.app i).hom)
     (i : BarcodeOccurrence s (rankBarcode M)) :
     (occurrence (rankBarcode N) (monoEmbedding j hj i)).death =
       (occurrence (rankBarcode M) i).death := mapOccurrence_death j hj i
 
-/-- Source and target have the same ordinal in their birth/index ordered death group.-/
+/-- Source and target have the same ordinal in their birth/index ordered death group.
+@isnad1 id=eq.1h6v.s10.07d709e80d00 from=translated src=- shape=c3812f83 vocab=4f00e765
+-/
 theorem monoEmbedding_ordinal (j : M ⟶ N) (hj : ∀ i, Function.Injective (j.app i).hom)
     (i : BarcodeOccurrence s (rankBarcode M)) :
     deathOrdinal (rankBarcode N) (monoEmbedding j hj i) = deathOrdinal (rankBarcode M) i :=
   mapOccurrence_ordinal j hj i
 
-/-- The target of the canonical embedding is born no later than its source.-/
+/-- The target of the canonical embedding is born no later than its source.
+@isnad1 id=le.1h6v.s10.53d0098b18e4 from=translated src=- shape=fe775a98 vocab=3bc42e2e
+-/
 theorem monoEmbedding_birth_le (j : M ⟶ N) (hj : ∀ i, Function.Injective (j.app i).hom)
     (i : BarcodeOccurrence s (rankBarcode M)) :
     (occurrence (rankBarcode N) (monoEmbedding j hj i)).birth ≤
@@ -299,7 +311,9 @@ theorem monoEmbedding_birth_le (j : M ⟶ N) (hj : ∀ i, Function.Injective (j.
     ((deathEnumeration (rankBarcode M) I.death).symm x).val at he
   omega
 
-/-- Death and ordinal uniquely characterize the canonical correspondence.-/
+/-- Death and ordinal uniquely characterize the canonical correspondence.
+@isnad1 id=iff.1h7v.s10.f4e7a2b5ab43 from=translated src=- shape=b93e6ef1 vocab=55b4eefa
+-/
 theorem monoEmbedding_eq_iff (j : M ⟶ N) (hj : ∀ i, Function.Injective (j.app i).hom)
     (i : BarcodeOccurrence s (rankBarcode M)) (a : BarcodeOccurrence s (rankBarcode N)) :
     monoEmbedding j hj i = a ↔
@@ -313,7 +327,9 @@ theorem monoEmbedding_eq_iff (j : M ⟶ N) (hj : ∀ i, Function.Injective (j.ap
       ((monoEmbedding_death j hj i).trans hd.symm)
       ((monoEmbedding_ordinal j hj i).trans ho.symm)
 
-/-- A target occurrence is selected precisely when its ordinal fits in the source death group.-/
+/-- A target occurrence is selected precisely when its ordinal fits in the source death group.
+@isnad1 id=iff.1h6v.s10.755318633b95 from=translated src=- shape=04de3537 vocab=0a26a863
+-/
 theorem monoEmbedding_mem_range_iff (j : M ⟶ N)
     (hj : ∀ i, Function.Injective (j.app i).hom)
     (a : BarcodeOccurrence s (rankBarcode N)) :
@@ -332,7 +348,9 @@ theorem monoEmbedding_mem_range_iff (j : M ⟶ N)
     rw [ordinal_in_group (rankBarcode M) _ x]
     simp [x, q]
 
-/-- Identity monomorphisms induce identity occurrence embeddings.-/
+/-- Identity monomorphisms induce identity occurrence embeddings.
+@isnad1 id=eq.0h3v.s7.3dd16d67f73a from=translated src=- shape=13389deb vocab=1f473bf5
+-/
 theorem monoEmbedding_id (M : PModule.{u,0,u} k (Fin s))
     [∀ i, FiniteDimensional k (M.obj i)] :
     monoEmbedding (𝟙 M) (fun _ => Function.injective_id) = Function.Embedding.refl _ := by
@@ -343,7 +361,9 @@ theorem monoEmbedding_id (M : PModule.{u,0,u} k (Fin s))
     (monoEmbedding_ordinal (𝟙 M) (fun _ => Function.injective_id) i)
 
 /-- Standard ordinal embeddings compose on monomorphisms. No law for arbitrary
-persistence-module morphisms is asserted.-/
+persistence-module morphisms is asserted.
+@isnad1 id=eq.2h7v.s11.d277806efadc from=translated src=- shape=b27bc648 vocab=ca3a55b8
+-/
 theorem monoEmbedding_comp {P : PModule.{u,0,u} k (Fin s)}
     [∀ i, FiniteDimensional k (P.obj i)] (j : M ⟶ N) (l : N ⟶ P)
     (hj : ∀ i, Function.Injective (j.app i).hom) (hl : ∀ i, Function.Injective (l.app i).hom) :

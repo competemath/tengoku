@@ -26,7 +26,9 @@ def ClosedBallDoubling (Λ : ℕ) : Prop :=
   1 ≤ Λ ∧ ∀ p : V, ∀ R : ℝ, 0 < R → ∃ C : Finset V,
     C.card ≤ Λ ∧ ∀ x, dist p x ≤ R → ∃ q ∈ C, dist q x ≤ R / 2
 
-/-- Iterate the stated doubling hypothesis, keeping an explicit bound on all centers.-/
+/-- Iterate the stated doubling hypothesis, keeping an explicit bound on all centers.
+@isnad1 id=ex.2h5v.s7.1c5ba073b7a2 from=translated src=- shape=09b8f0a3 vocab=d96b0afd
+-/
 theorem ClosedBallDoubling.iterated_cover {Λ : ℕ} (hd : ClosedBallDoubling (V := V) Λ)
     (p : V) {R : ℝ} (hR : 0 < R) (h : ℕ) :
     ∃ C : Finset V, C.card ≤ Λ ^ h ∧
@@ -53,7 +55,9 @@ theorem ClosedBallDoubling.iterated_cover {Λ : ℕ} (hd : ClosedBallDoubling (V
       rw [pow_succ]
       ring
 
-/-- Uniform cardinality bound for separated points in one closed ball.-/
+/-- Uniform cardinality bound for separated points in one closed ball.
+@isnad1 id=le.5h7v.s7.fe99111105b6 from=translated src=- shape=ecf69daf vocab=087015b1
+-/
 theorem ClosedBallDoubling.packing_bound {Λ : ℕ} (hd : ClosedBallDoubling (V := V) Λ)
     (p : V) {R δ : ℝ} (hR : 0 < R) (h : ℕ)
     (hratio : 2 * (R / (2 : ℝ) ^ h) < δ) (P : Finset V)
@@ -79,7 +83,9 @@ theorem ClosedBallDoubling.packing_bound {Λ : ℕ} (hd : ClosedBallDoubling (V 
   linarith
 
 /-- Every metric subspace of the real line has the same closed-ball doubling bound,
-with all four centers chosen in the subspace itself.-/
+with all four centers chosen in the subspace itself.
+@isnad1 id=closedba.1h2v.s5.4ed102bc8fa7 from=translated src=- shape=0545331e vocab=80702cff
+-/
 theorem ClosedBallDoubling.of_isometry_real (f : V → ℝ) (hf : Isometry f) :
     ClosedBallDoubling (V := V) 4 := by
   classical

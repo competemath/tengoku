@@ -46,7 +46,9 @@ private theorem transition_double_eq_zero (A : PModule.{u,0,w} R ℝ)
   rw [he, h t, zero_comp]
 
 /-- The kernel of the forward interleaving morphism is `2ε`-trivial.
-Finite dimensionality and constructibility are not needed.-/
+Finite dimensionality and constructibility are not needed.
+@isnad1 id=eq.0h5v.s10.790107b2a86d from=translated src=- shape=51a172bb vocab=af5bdafd
+-/
 theorem kernel_transition_eq_zero (i : RealInterleaving ε M N) :
     transition (ε + ε) (kernel i.φ) = 0 := by
   apply transition_double_eq_zero
@@ -67,7 +69,9 @@ theorem kernel_transition_eq_zero (i : RealInterleaving ε M N) :
   erw [hc, zero_comp]
 
 /-- The cokernel of the forward interleaving morphism is `2ε`-trivial.
-Its target is the shifted module, so the reverse equation is evaluated at `t+ε`.-/
+Its target is the shifted module, so the reverse equation is evaluated at `t+ε`.
+@isnad1 id=eq.0h5v.s10.a61d1cdc8324 from=translated src=- shape=51a172bb vocab=c9be817e
+-/
 theorem cokernel_transition_eq_zero (i : RealInterleaving ε M N) :
     transition (ε + ε) (cokernel i.φ) = 0 := by
   apply transition_double_eq_zero

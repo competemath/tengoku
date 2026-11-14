@@ -24,7 +24,9 @@ open CategoryTheory CategoryTheory.Limits
 
 /-- Every nonempty real subset has a decreasing coinitial sequence starting at any
 specified member. A minimum is handled by an eventually constant sequence; otherwise
-rational density supplies countably many points approaching every left end.-/
+rational density supplies countably many points approaching every left end.
+@isnad1 id=ex.0h2v.s6.119df4e1c6c4 from=translated src=- shape=c27633e6 vocab=f8a9b0bb
+-/
 theorem exists_antitone_coinitial (I : Set ℝ) (t : I) :
     ∃ a : ℕ → I, a 0 = t ∧ Antitone a ∧ ∀ s : I, ∃ n, a n ≤ s := by
   classical
@@ -79,7 +81,9 @@ def sections (M : PModule.{u,v,w} R P) : Submodule R (∀ t, M.obj t) where
     intro r x hx s t h
     simp only [Pi.smul_apply, map_smul, hx s t h]
 
-/-- A compatible section agrees with each forward structure map.-/
+/-- A compatible section agrees with each forward structure map.
+@isnad1 id=eq.1h6v.s10.59d8b5194ff4 from=translated src=- shape=9693890e vocab=0e85d2b2
+-/
 theorem compatible (M : PModule.{u,v,w} R P) (x : sections M)
     {s t : P} (h : s ≤ t) : structureMapLinear M h (x.val s) = x.val t :=
   x.property s t h
@@ -90,7 +94,9 @@ def evaluation (M : PModule.{u,v,w} R P) (t : P) : sections M →ₗ[R] M.obj t 
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
-/-- Evaluation returns the corresponding component of a section.-/
+/-- Evaluation returns the corresponding component of a section.
+@isnad1 id=eq.0h5v.s12.113e29717236 from=translated src=- shape=db6190b3 vocab=f979dbb1
+-/
 @[simp] theorem evaluation_apply (M : PModule.{u,v,w} R P) (t : P) (x : sections M) :
     evaluation M t x = x.val t := rfl
 
@@ -98,7 +104,9 @@ def evaluation (M : PModule.{u,v,w} R P) (t : P) : sections M →ₗ[R] M.obj t 
 def vanishingAt (M : PModule.{u,v,w} R P) (t : P) : Submodule R (sections M) :=
   (evaluation M t).ker
 
-/-- The evaluation kernel consists exactly of sections with zero value at that index.-/
+/-- The evaluation kernel consists exactly of sections with zero value at that index.
+@isnad1 id=iff.0h5v.s12.d24373d465e2 from=translated src=- shape=75dfbb1c vocab=baf58970
+-/
 @[simp] theorem mem_vanishingAt (M : PModule.{u,v,w} R P) (t : P) (x : sections M) :
     x ∈ vanishingAt M t ↔ x.val t = 0 := Iff.rfl
 
@@ -130,7 +138,9 @@ private def sequenceFunctor : ℕᵒᵖ ⥤ Type w where
       (ha (leOfHom f.unop)) (ha (leOfHom g.unop))) x
 
 /-- Surjective forward structure maps give a compatible vector sequence through an
-arbitrary vector at the first index, using the countable surjective-limit theorem.-/
+arbitrary vector at the first index, using the countable surjective-limit theorem.
+@isnad1 id=ex.2h5v.s11.554a38c20080 from=translated src=- shape=9eae11ea vocab=56923506
+-/
 theorem exists_sequenceSection
     (hsurj : ∀ s t (h : s ≤ t), Function.Surjective (structureMapLinear M h))
     (y : M.obj (a 0)) :
@@ -182,12 +192,16 @@ noncomputable def extend : sequenceSections M a ha →ₗ[R] sections M where
     funext s
     exact map_smul _ _ _
 
-/-- The extension can be evaluated using any sequence index below the target.-/
+/-- The extension can be evaluated using any sequence index below the target.
+@isnad1 id=eq.3h7v.s12.0ef6f0bc3b58 from=translated src=- shape=5a44ce01 vocab=95894b76
+-/
 theorem extend_apply (x : sequenceSections M a ha) {s : P} {n : ℕ} (hn : a n ≤ s) :
     (extend M a ha hcoin x).val s = structureMapLinear M hn (x.val n) :=
   extensionValue_eq M a ha hcoin x hn
 
-/-- Extending a compatible sequence preserves every sequence value.-/
+/-- Extending a compatible sequence preserves every sequence value.
+@isnad1 id=eq.2h6v.s12.b27db982c84a from=translated src=- shape=b4d3d5f3 vocab=55555eed
+-/
 @[simp] theorem extend_at_sequence (x : sequenceSections M a ha) (n : ℕ) :
     (extend M a ha hcoin x).val (a n) = x.val n := by
   rw [extend_apply M a ha hcoin x (le_refl (a n))]
@@ -195,7 +209,9 @@ theorem extend_apply (x : sequenceSections M a ha) {s : P} {n : ℕ} (hn : a n �
 
 include ha hcoin in
 /-- A countable decreasing coinitial sequence turns surjective structure maps into
-surjective evaluation on the full compatible-section space.-/
+surjective evaluation on the full compatible-section space.
+@isnad1 id=surjecti.3h4v.s11.c74ab7fab7f8 from=translated src=- shape=77359ef1 vocab=e1063857
+-/
 theorem evaluation_surjective_of_coinitial
     (hsurj : ∀ s t (h : s ≤ t), Function.Surjective (structureMapLinear M h)) :
     Function.Surjective (evaluation M (a 0)) := by
@@ -208,7 +224,9 @@ theorem evaluation_surjective_of_coinitial
 end Coinitial
 
 /-- On any real subset, surjective structure maps give a compatible section through
-any prescribed vector. This includes singleton sets and unbounded or open intervals.-/
+any prescribed vector. This includes singleton sets and unbounded or open intervals.
+@isnad1 id=surjecti.1h4v.s12.8be2f1eb4d38 from=translated src=- shape=96b50346 vocab=311dcaf9
+-/
 theorem evaluation_surjective_real {I : Set ℝ} (M : PModule.{u,0,w} R I)
     (hsurj : ∀ s t (h : s ≤ t), Function.Surjective (structureMapLinear M h)) (t : I) :
     Function.Surjective (evaluation M t) := by
@@ -240,7 +258,9 @@ def subspaceModule : PModule.{u,v,w} R I where
     ext x
     exact LinearMap.congr_fun (structureMapLinear_comp M (leOfHom f) (leOfHom g)) x.val
 
-/-- The restricted module's structure map is the restricted linear map.-/
+/-- The restricted module's structure map is the restricted linear map.
+@isnad1 id=eq.2h7v.s11.1866c72ae250 from=translated src=- shape=b5e27cee vocab=bb48e8fa
+-/
 @[simp] theorem structureMapLinear_subspaceModule {s t : I} (h : s ≤ t) :
     structureMapLinear (subspaceModule M I S hS) h = subspaceMap M I S hS h := rfl
 
@@ -248,7 +268,9 @@ end Subspaces
 
 /-- A surjective system of preserved subspaces over a real subset admits compatible
 lifts through every prescribed vector. The inputs are preservation and ordinary
-pairwise preimages, rather than a supplied coherent family.-/
+pairwise preimages, rather than a supplied coherent family.
+@isnad1 id=ex.3h6v.s12.c6ab1ef840a3 from=translated src=- shape=83f913a9 vocab=838583e2
+-/
 theorem exists_compatible_lift_real (M : PModule.{u,0,w} R ℝ) (I : Set ℝ)
     (S : ∀ t : I, Submodule R (M.obj t.val))
     (hS : ∀ s t : I, ∀ (h : s ≤ t) (x : M.obj s.val),
@@ -276,14 +298,18 @@ variable (M : PModule.{u,v,w} R P) (t : P) (Q : Submodule R (M.obj t))
 def quotientEvaluation : sections M →ₗ[R] (M.obj t ⧸ Q) :=
   Q.mkQ.comp (evaluation M t)
 
-/-- The kernel of quotient evaluation is the inverse image of the target subspace.-/
+/-- The kernel of quotient evaluation is the inverse image of the target subspace.
+@isnad1 id=eq.0h5v.s11.f08944684c55 from=translated src=- shape=617d95c9 vocab=7bf8ecc1
+-/
 theorem ker_quotientEvaluation :
     (quotientEvaluation M t Q).ker = Q.comap (evaluation M t) := by
   ext x
   change (Submodule.Quotient.mk (x.val t) : M.obj t ⧸ Q) = 0 ↔ x.val t ∈ Q
   exact Submodule.Quotient.mk_eq_zero Q
 
-/-- Surjective evaluation remains surjective after passing to a target quotient.-/
+/-- Surjective evaluation remains surjective after passing to a target quotient.
+@isnad1 id=surjecti.1h5v.s12.9b9ac1e1b278 from=translated src=- shape=5f16019d vocab=9884af16
+-/
 theorem quotientEvaluation_surjective (he : Function.Surjective (evaluation M t)) :
     Function.Surjective (quotientEvaluation M t Q) :=
   Q.mkQ_surjective.comp he

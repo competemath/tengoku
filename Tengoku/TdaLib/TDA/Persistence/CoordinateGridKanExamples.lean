@@ -56,16 +56,25 @@ private theorem q_le_planarUpper (q : planarGrid.Point) : q ≤ planarUpper := b
   · norm_num [h]
   · norm_num [h]
 
+/--
+@isnad1 id=haslower.0h0v.s3.4a36d27440b0 from=translated src=- shape=fb58fac9 vocab=d2cc9853
+-/
 theorem gradeA_hasLowerPoint : planarGrid.HasLowerPoint gradeA := by
   refine ⟨planarLower, ?_⟩
   intro i
   norm_num [CoordinateGrid.embedding_apply, planarLower, gradeA]
 
+/--
+@isnad1 id=haslower.0h0v.s3.5bf1f40a72a6 from=translated src=- shape=fb58fac9 vocab=977ff5a8
+-/
 theorem gradeC_hasLowerPoint : planarGrid.HasLowerPoint gradeC := by
   refine ⟨planarLower, ?_⟩
   intro i
   norm_num [CoordinateGrid.embedding_apply, planarLower, gradeC]
 
+/--
+@isnad1 id=haslower.0h0v.s3.70f6bd93fb7b from=translated src=- shape=fb58fac9 vocab=118a171f
+-/
 theorem gradeB_hasLowerPoint : planarGrid.HasLowerPoint gradeB := by
   refine ⟨planarUpper, ?_⟩
   intro i
@@ -278,7 +287,9 @@ noncomputable def kanHookVectorAtC (k : Type) [Field k] :
   (planarGrid.appIso (finiteHook k) gradeC gradeC_hasLowerPoint).inv.hom
     (floorHookVector k gradeC gradeC_hasLowerPoint)
 
-/-- The real-grade vector remains nonzero in its actual Kan fiber.-/
+/-- The real-grade vector remains nonzero in its actual Kan fiber.
+@isnad1 id=ne.0h1v.s11.fe209246a7bf from=translated src=- shape=f9fe8704 vocab=99f155c7
+-/
 theorem kanHookVector_ne_zero (k : Type) [Field k] : kanHookVector k ≠ 0 := by
   intro hz
   have heq := congrArg
@@ -287,7 +298,9 @@ theorem kanHookVector_ne_zero (k : Type) [Field k] : kanHookVector k ≠ 0 := by
     simpa [kanHookVector] using heq
   exact floorHookVectorA_ne_zero k hfloor
 
-/-- The within-cell image at grade C is nonzero as well.-/
+/-- The within-cell image at grade C is nonzero as well.
+@isnad1 id=ne.0h1v.s11.97153c1f7db7 from=translated src=- shape=f9fe8704 vocab=ab2715de
+-/
 theorem kanHookVectorAtC_ne_zero (k : Type) [Field k] : kanHookVectorAtC k ≠ 0 := by
   intro hz
   have heq := congrArg
@@ -296,7 +309,9 @@ theorem kanHookVectorAtC_ne_zero (k : Type) [Field k] : kanHookVectorAtC k ≠ 0
     simpa [kanHookVectorAtC] using heq
   exact floorHookVectorC_ne_zero k hfloor
 
-/-- The unit vector survives a transition within the first real grid cell.-/
+/-- The unit vector survives a transition within the first real grid cell.
+@isnad1 id=eq.0h1v.s12.ab7ec429d291 from=translated src=- shape=c95d81cf vocab=8622565c
+-/
 theorem within_cell_transition_preserves_vector (k : Type) [Field k] :
     structureMapLinear (planarGrid.lan.obj (finiteHook k)) gradeA_le_gradeC
       (kanHookVector k) = kanHookVectorAtC k := by
@@ -310,7 +325,9 @@ theorem within_cell_transition_preserves_vector (k : Type) [Field k] :
     gradeA_le_gradeC gradeA_hasLowerPoint gradeC_hasLowerPoint]
   simpa [kanHookVector, kanHookVectorAtC] using floorHookVector_between k
 
-/-- The actual real structure map kills the vector after crossing the hook death.-/
+/-- The actual real structure map kills the vector after crossing the hook death.
+@isnad1 id=eq.0h1v.s13.af4a58c8fbbd from=translated src=- shape=519a2f8d vocab=b071abfe
+-/
 theorem across_cell_transition_kills_vector (k : Type) [Field k] :
     structureMapLinear (planarGrid.lan.obj (finiteHook k)) gradeC_le_gradeB
       (kanHookVectorAtC k) = 0 := by
@@ -323,7 +340,9 @@ theorem across_cell_transition_kills_vector (k : Type) [Field k] :
     gradeC_le_gradeB gradeC_hasLowerPoint gradeB_hasLowerPoint]
   simpa [kanHookVectorAtC] using floorHookVector_dies k
 
-/-- Kan extension retains the actual map of the finite-hook quotient.-/
+/-- Kan extension retains the actual map of the finite-hook quotient.
+@isnad1 id=eq.0h2v.s14.7ebeb9a43d8c from=translated src=- shape=71b69b32 vocab=ac3467ea
+-/
 theorem quotient_map_at_gradeA (k : Type) [Field k]
     (m : (planarGrid.lan.obj (FiniteHookDeflation.module (finiteHook k))).obj gradeA) :
     (planarGrid.appIso (finiteHook k) gradeA gradeA_hasLowerPoint).hom.hom
@@ -335,7 +354,9 @@ theorem quotient_map_at_gradeA (k : Type) [Field k]
   exact planarGrid.appIso_map_apply (FiniteHookDeflation.π (finiteHook k)) gradeA
     gradeA_hasLowerPoint m
 
-/-- A nonzero dying quotient vector has a nonzero lift dying at the same real grade.-/
+/-- A nonzero dying quotient vector has a nonzero lift dying at the same real grade.
+@isnad1 id=ex.0h1v.s14.3483f17cef8c from=translated src=- shape=12db07e2 vocab=e5001f4e
+-/
 theorem rankExact_lifts_nonzero_dying_vector (k : Type) [Field k] :
     ∃ m : (planarGrid.lan.obj (FiniteHookDeflation.module (finiteHook k))).obj gradeA,
       ((planarGrid.lan.map (FiniteHookDeflation.π (finiteHook k))).app gradeA).hom m =
@@ -370,7 +391,9 @@ theorem rankExact_lifts_nonzero_dying_vector (k : Type) [Field k] :
     simpa [kanHookVector] using hsource
   exact floorHookVectorA_ne_zero k hvec
 
-/-- The same actual quotient and nonzero dying lift work over characteristic two.-/
+/-- The same actual quotient and nonzero dying lift work over characteristic two.
+@isnad1 id=ex.0h0v.s15.1b26f93ce673 from=translated src=- shape=7558f681 vocab=28fca4c6
+-/
 theorem characteristic_two_nonzero_dying_lift :
     ∃ m : (planarGrid.lan.obj (FiniteHookDeflation.module (finiteHook (ZMod 2)))).obj gradeA,
       ((planarGrid.lan.map (FiniteHookDeflation.π (finiteHook (ZMod 2)))).app gradeA).hom m =
@@ -392,7 +415,9 @@ private theorem emptyGrid_no_lowerPoint (a : Fin 2 → ℝ) :
     simpa [emptyGrid] using (p 0).property
   simp at hp
 
-/-- An empty coordinate grid gives an actual zero Lan fiber at every real grade.-/
+/-- An empty coordinate grid gives an actual zero Lan fiber at every real grade.
+@isnad1 id=iszero.0h1v.s9.0a5b298c0930 from=translated src=- shape=6d529035 vocab=399942ce
+-/
 theorem empty_grid_lan_fiber_isZero (a : Fin 2 → ℝ) :
     IsZero ((emptyGrid.lan.obj (0 : PModule ℚ emptyGrid.Point)).obj a) :=
   emptyGrid.isZero_obj_of_not_hasLowerPoint _ a (emptyGrid_no_lowerPoint a)
@@ -410,7 +435,9 @@ private theorem negativeGrade_no_lowerPoint :
   · rw [h] at hp0
     norm_num at hp0
 
-/-- Grades below the least grid point have an actual zero Lan fiber.-/
+/-- Grades below the least grid point have an actual zero Lan fiber.
+@isnad1 id=iszero.0h0v.s8.d402e5c8cec1 from=translated src=- shape=3b58a4f8 vocab=620dfb8b
+-/
 theorem below_minimum_lan_fiber_isZero :
     IsZero ((planarGrid.lan.obj (finiteHook ℚ)).obj negativeGrade) :=
   planarGrid.isZero_obj_of_not_hasLowerPoint _ negativeGrade negativeGrade_no_lowerPoint
@@ -425,7 +452,9 @@ private theorem zeroInput_lan_fiber_eq_zero (a : Fin 2 → ℝ)
     exact (ModuleCat.subsingleton_of_isZero (Functor.zero_obj _)).elim _ _
   · exact planarGrid.eq_zero_of_not_hasLowerPoint _ a ha x
 
-/-- The zero input module remains zero in every actual Kan fiber.-/
+/-- The zero input module remains zero in every actual Kan fiber.
+@isnad1 id=iszero.0h1v.s9.05e41342eec1 from=translated src=- shape=6d529035 vocab=64b99aa8
+-/
 theorem zero_input_lan_fiber_isZero (a : Fin 2 → ℝ) :
     IsZero ((planarGrid.lan.obj (0 : PModule ℚ planarGrid.Point)).obj a) := by
   apply (IsZero.iff_id_eq_zero _).mpr
@@ -480,13 +509,17 @@ private theorem zeroDim_identity_rankExact :
       simp
   exact hshort.rankExact_of_section (0 : 0 ⟶ zeroDimPrincipalUpset) (by simp)
 
-/-- The one-point zero-dimensional grid carries the identity rank-exact sequence after Lan.-/
+/-- The one-point zero-dimensional grid carries the identity rank-exact sequence after Lan.
+@isnad1 id=isrankex.0h0v.s11.eea4ada4bc5c from=translated src=- shape=a5a62a94 vocab=31e500d6
+-/
 theorem zero_dim_identity_lan_rankExact :
     IsRankExact (zeroGrid.lan.map (𝟙 zeroDimPrincipalUpset))
       (zeroGrid.lan.map (0 : zeroDimPrincipalUpset ⟶ 0)) :=
   zeroGrid.lan_isRankExact zeroDim_identity_rankExact
 
-/-- The principal upset stays nonzero in the actual Lan fiber when n=0.-/
+/-- The principal upset stays nonzero in the actual Lan fiber when n=0.
+@isnad1 id=ex.0h0v.s11.635d86e54973 from=translated src=- shape=3f8dfcb7 vocab=47c81791
+-/
 theorem zero_dim_principal_upset_lan_nonzero :
     ∃ x : (zeroGrid.lan.obj zeroDimPrincipalUpset).obj zeroGridGrade, x ≠ 0 := by
   let ha := zeroGrid_hasLowerPoint
@@ -510,7 +543,9 @@ theorem zero_dim_principal_upset_lan_nonzero :
     simp [v] at he
   exact one_ne_zero hone
 
-/-- The all-tail comparison uses the principal-upset fiber and actual Kan inverse.-/
+/-- The all-tail comparison uses the principal-upset fiber and actual Kan inverse.
+@isnad1 id=ex.1h1v.s12.32402a1175dd from=translated src=- shape=8727e667 vocab=9aa4ec68
+-/
 theorem principal_upset_unbounded_tail (r : Fin 2 → ℝ) (hr : ∀ i, 2 ≤ r i) :
     ∃ x : (planarGrid.lan.obj
       (HookInfinity.module (R := ℚ) planarLower)).obj r, x ≠ 0 := by

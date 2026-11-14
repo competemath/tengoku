@@ -31,6 +31,9 @@ abbrev Face (K : PreAbstractSimplicialComplex V) (n : ℕ) :=
 /-- A finite total face set is a separate hypothesis from each face being a `Finset`.-/
 abbrev TotalFace (K : PreAbstractSimplicialComplex V) := {s : Finset V // s ∈ K}
 
+/--
+@isnad1 id=finite.0h3v.s4.a7cc5d4520c0 from=translated src=- shape=a7d7b709 vocab=cc20b844
+-/
 instance faceFiniteOfTotalFinite (K : PreAbstractSimplicialComplex V) (n : ℕ)
     [Finite (TotalFace K)] : Finite (Face K n) :=
   Finite.of_injective (fun s => (⟨s.1, s.2.1⟩ : TotalFace K)) (by
@@ -56,6 +59,9 @@ noncomputable def chainIncl {K L : PreAbstractSimplicialComplex V} (R : Type*) [
   Finsupp.lmapDomain R R (faceIncl h n)
 
 omit [LinearOrder V] in
+/--
+@isnad1 id=eq.0h4v.s7.fe27d74b4b91 from=translated src=- shape=717272a0 vocab=086a9694
+-/
 theorem chainIncl_id (K : PreAbstractSimplicialComplex V) (R : Type*) [Ring R]
     (n : ℕ) : chainIncl R (le_refl K) n = LinearMap.id := by
   have he : faceIncl (le_refl K) n = (id : Face K n → Face K n) := by
@@ -64,6 +70,9 @@ theorem chainIncl_id (K : PreAbstractSimplicialComplex V) (R : Type*) [Ring R]
   simp [chainIncl, he]
 
 omit [LinearOrder V] in
+/--
+@isnad1 id=eq.2h6v.s8.6534f796cae5 from=translated src=- shape=637e3e46 vocab=b3e600a4
+-/
 theorem chainIncl_comp {K L M : PreAbstractSimplicialComplex V} (R : Type*) [Ring R]
     (h : K ≤ L) (g : L ≤ M) (n : ℕ) :
     chainIncl R (h.trans g) n = (chainIncl R g n).comp (chainIncl R h n) := by
@@ -95,22 +104,32 @@ noncomputable def zeroBoundaryH0Iso (K : PreAbstractSimplicialComplex V)
     (zeroBoundaryH0 K R).homology ≅ ModuleCat.of R (Chain K R 0) :=
   (ShortComplex.LeftHomologyData.ofZeros (zeroBoundaryH0 K R) rfl rfl).homologyIso
 
+/--
+@isnad1 id=isempty.0h2v.s3.594b1869cbad from=translated src=- shape=479abbef vocab=1be8096f
+-/
 instance emptyFaceIsEmpty (n : ℕ) : IsEmpty (Face (⊥ : PreAbstractSimplicialComplex V) n) :=
   ⟨fun s => (Filtration.mem_bot_iff s.1).mp s.2.1⟩
 
 omit [LinearOrder V] in
-/-- The empty precomplex has zero chains in every degree.-/
+/-- The empty precomplex has zero chains in every degree.
+@isnad1 id=eq.0h4v.s6.904690684d9e from=translated src=- shape=b0b2208e vocab=e4ef7705
+-/
 theorem emptyChain_eq_zero (R : Type*) [Ring R] (n : ℕ)
     (c : Chain (⊥ : PreAbstractSimplicialComplex V) R n) : c = 0 :=
   Subsingleton.elim _ _
 
 omit [LinearOrder V] in
-/-- Its ordinary unaugmented H₀ is the zero module.-/
+/-- Its ordinary unaugmented H₀ is the zero module.
+@isnad1 id=eq.0h3v.s8.98030f6a5344 from=translated src=- shape=0593eb1e vocab=e409dfef
+-/
 theorem emptyH0_eq_zero (R : Type*) [Ring R]
     (c : (zeroBoundaryH0 (⊥ : PreAbstractSimplicialComplex V) R).homology) : c = 0 := by
   apply (zeroBoundaryH0Iso (⊥ : PreAbstractSimplicialComplex V) R).toLinearEquiv.injective
   exact Subsingleton.elim _ _
 
+/--
+@isnad1 id=subsingl.0h2v.s3.eac40047f8b2 from=translated src=- shape=84533fe5 vocab=6f77f97b
+-/
 instance singletonFaceZeroSubsingleton (x : V) :
     Subsingleton (Face (Filtration.singletonFace x) 0) := by
   constructor
@@ -124,6 +143,9 @@ instance singletonFaceZeroSubsingleton (x : V) :
 def singletonVertex (x : V) : Face (Filtration.singletonFace x) 0 :=
   ⟨{x}, (Filtration.mem_singletonFace_iff x {x}).mpr rfl, by simp⟩
 
+/--
+@isnad1 id=isempty.0h3v.s4.b351871d3aaf from=translated src=- shape=1f96a5b8 vocab=011d224b
+-/
 instance singletonFaceHigherIsEmpty (x : V) (n : ℕ) :
     IsEmpty (Face (Filtration.singletonFace x) (n + 1)) := by
   constructor
@@ -133,7 +155,9 @@ instance singletonFaceHigherIsEmpty (x : V) (n : ℕ) :
   omega
 
 omit [LinearOrder V] in
-/-- A singleton has no positive-degree chains.-/
+/-- A singleton has no positive-degree chains.
+@isnad1 id=eq.0h5v.s6.4744d44457ac from=translated src=- shape=29c59b71 vocab=8e4628d5
+-/
 theorem singletonHigherChain_eq_zero (x : V) (R : Type*) [Ring R] (n : ℕ)
     (c : Chain (Filtration.singletonFace x) R (n + 1)) : c = 0 :=
   Subsingleton.elim _ _

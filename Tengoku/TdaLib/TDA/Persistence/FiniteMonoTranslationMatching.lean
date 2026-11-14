@@ -25,7 +25,9 @@ variable {M N : PModule.{u,0,u} k (Fin s)}
 variable [∀ i, FiniteDimensional k (M.obj i)] [∀ i, FiniteDimensional k (N.obj i)]
 
 /-- Every matched pair satisfies the translated birth bound, even when the target
-bar is short. Death remains the exact death of the canonical mono embedding.-/
+bar is short. Death remains the exact death of the canonical mono embedding.
+@isnad1 id=and.3h7v.s10.3871c7582d12 from=translated src=- shape=68fa538b vocab=cae98a0f
+-/
 theorem monoEmbedding_birth_bounds_of_cokernelTrivial
     (theta : Fin s →o Fin s) (hTheta : ∀ i, i ≤ theta i) (f : M ⟶ N)
     (hf : ∀ i, Function.Injective (f.app i).hom)
@@ -62,7 +64,9 @@ theorem monoEmbedding_birth_bounds_of_cokernelTrivial
     have hshort : J.death ≤ (theta J.birthStage).val := le_of_not_gt hlong
     exact (Nat.le_of_lt I.birth_lt_death).trans (hd ▸ hshort)
 
-/-- Every target bar surviving its translated birth has exactly one canonical preimage.-/
+/-- Every target bar surviving its translated birth has exactly one canonical preimage.
+@isnad1 id=existsun.4h7v.s10.34ee90e7ef97 from=translated src=- shape=12dee385 vocab=db6399be
+-/
 theorem monoEmbedding_covers_long_of_cokernelTrivial
     (theta : Fin s →o Fin s) (hTheta : ∀ i, i ≤ theta i) (f : M ⟶ N)
     (hf : ∀ i, Function.Injective (f.app i).hom)
@@ -80,7 +84,9 @@ theorem monoEmbedding_covers_long_of_cokernelTrivial
     (hlo.trans_le (hcounts.trans hcard))
   exact ⟨i, hi, fun i' hi' => (monoEmbedding f hf).injective (hi'.trans hi.symm)⟩
 
-/-- An unmatched target must be short; short targets may also be matched.-/
+/-- An unmatched target must be short; short targets may also be matched.
+@isnad1 id=le.4h7v.s10.3b9fb07ccee5 from=translated src=- shape=ab11fbd6 vocab=399c9514
+-/
 theorem monoEmbedding_unmatched_short_of_cokernelTrivial
     (theta : Fin s →o Fin s) (hTheta : ∀ i, i ≤ theta i) (f : M ⟶ N)
     (hf : ∀ i, Function.Injective (f.app i).hom)

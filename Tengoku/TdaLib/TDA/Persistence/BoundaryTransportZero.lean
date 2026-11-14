@@ -59,7 +59,9 @@ private theorem collapsedPowerCost_lintegral_eq_depthMoment
     _ = ∫⁻ x, ENNReal.ofReal (depth x ^ p) ∂μ :=
       reservoirMeasure_boundary_moment μ R p hp
 
-/-- The all-boundary-plan infimum against zero is the source's diagonal persistence moment.-/
+/-- The all-boundary-plan infimum against zero is the source's diagonal persistence moment.
+@isnad1 id=eq.2h2v.s7.9de43c367bd3 from=translated src=- shape=a91fdfbc vocab=edb98e7a
+-/
 theorem boundaryTransportPowerValue_zero_target
     (p : ℝ) (hp : 1 ≤ p) (μ : Measure Interior) (hμtop : μ Set.univ < ∞) :
     boundaryTransportPowerValue p μ 0 =
@@ -91,14 +93,18 @@ theorem boundaryTransportPowerValue_zero_target
       boundaryTransportPowerValue_eq_reservoirPowerValue p hp μ 0 R hRtop htotal
     _ = ∫⁻ x, ENNReal.ofReal (depth x ^ p) ∂μ := hreservoir
 
-/-- The rooted zero-target value is the reciprocal-p root of the diagonal moment.-/
+/-- The rooted zero-target value is the reciprocal-p root of the diagonal moment.
+@isnad1 id=eq.2h2v.s8.48828891ae27 from=translated src=- shape=1a7c95c6 vocab=fcd0932a
+-/
 theorem boundaryTransportDistance_zero_target
     (p : ℝ) (hp : 1 ≤ p) (μ : Measure Interior) (hμtop : μ Set.univ < ∞) :
     boundaryTransportDistance p μ 0 =
       (∫⁻ x, ENNReal.ofReal (depth x ^ p) ∂μ) ^ (1 / p) := by
   rw [boundaryTransportDistance, boundaryTransportPowerValue_zero_target p hp μ hμtop]
 
-/-- The p-th power of distance to zero is exactly the diagonal persistence moment.-/
+/-- The p-th power of distance to zero is exactly the diagonal persistence moment.
+@isnad1 id=eq.2h2v.s7.c2fa94f4b4f1 from=translated src=- shape=9d405cf5 vocab=fe421bae
+-/
 theorem boundaryTransportDistance_zero_target_rpow
     (p : ℝ) (hp : 1 ≤ p) (μ : Measure Interior) (hμtop : μ Set.univ < ∞) :
     boundaryTransportDistance p μ 0 ^ p =

@@ -24,6 +24,9 @@ variable {V : Type u}
 /-- The full simplex complex, containing precisely the nonempty finite subsets.-/
 def fullComplex (V : Type u) : PreAbstractSimplicialComplex V := ⊤
 
+/--
+@isnad1 id=iff.0h2v.s4.c8f2fe5e7ebd from=translated src=- shape=f0061a66 vocab=cb6a8ced
+-/
 @[simp] theorem mem_fullComplex_iff (s : Finset V) :
     s ∈ fullComplex V ↔ s.Nonempty := Iff.rfl
 
@@ -39,19 +42,30 @@ private theorem distance_nonneg (d : MetricSpace V) (v w : V) : 0 ≤ d.dist v w
   let : MetricSpace V := d
   exact dist_nonneg
 
+/--
+@isnad1 id=eq.0h2v.s4.3078a65b3306 from=translated src=- shape=fe9fd6fa vocab=5636a631
+-/
 @[simp] theorem diameter_empty (d : MetricSpace V) : diameter d ∅ = 0 := by
   classical
   simp [diameter]
 
+/--
+@isnad1 id=eq.0h3v.s4.5857975f34e0 from=translated src=- shape=acae5dd0 vocab=6ef7d9d6
+-/
 @[simp] theorem diameter_singleton (d : MetricSpace V) (v : V) : diameter d {v} = 0 := by
   classical
   simp [diameter]
 
+/--
+@isnad1 id=le.0h3v.s4.6f9a36d58515 from=translated src=- shape=698103f3 vocab=210aa64a
+-/
 theorem diameter_nonneg (d : MetricSpace V) (s : Finset V) : 0 ≤ diameter d s := by
   classical
   exact (Finset.le_fold_max 0).mpr (Or.inl le_rfl)
 
-/-- The zero seed records the auxiliary empty-set convention explicitly.-/
+/-- The zero seed records the auxiliary empty-set convention explicitly.
+@isnad1 id=iff.0h4v.s6.6dc28d42b10d from=translated src=- shape=0ea22c41 vocab=38eb5a38
+-/
 theorem diameter_le_iff (d : MetricSpace V) (s : Finset V) (r : ℝ) :
     diameter d s ≤ r ↔ 0 ≤ r ∧ ∀ v ∈ s, ∀ w ∈ s, d.dist v w ≤ r := by
   classical
@@ -64,25 +78,35 @@ theorem diameter_le_iff (d : MetricSpace V) (s : Finset V) (r : ℝ) :
     exact ⟨hr, fun p hp => h p.1 (Finset.mem_product.mp hp).1 p.2
       (Finset.mem_product.mp hp).2⟩
 
+/--
+@isnad1 id=le.2h5v.s5.cc7185ee5c06 from=translated src=- shape=bf682743 vocab=38eb5a38
+-/
 theorem dist_le_diameter (d : MetricSpace V) {s : Finset V} {v w : V}
     (hv : v ∈ s) (hw : w ∈ s) : d.dist v w ≤ diameter d s := by
   classical
   exact (Finset.le_fold_max _).mpr
     (Or.inr ⟨(v, w), Finset.mem_product.mpr ⟨hv, hw⟩, le_rfl⟩)
 
-/-- A face with at least two vertices has positive diameter.-/
+/-- A face with at least two vertices has positive diameter.
+@isnad1 id=lt.1h3v.s5.2dee135ae6fd from=translated src=- shape=f6e4d8af vocab=b7802081
+-/
 theorem diameter_pos (d : MetricSpace V) {s : Finset V} (hs : 1 < s.card) :
     0 < diameter d s := by
   obtain ⟨v, hv, w, hw, hvw⟩ := Finset.one_lt_card.1 hs
   let : MetricSpace V := d
   exact (dist_pos.2 hvw).trans_le (dist_le_diameter d hv hw)
 
+/--
+@isnad1 id=le.1h4v.s5.91e947a8c2b3 from=translated src=- shape=8d189297 vocab=210aa64a
+-/
 theorem diameter_mono (d : MetricSpace V) {s t : Finset V} (hst : s ⊆ t) :
     diameter d s ≤ diameter d t := by
   apply (diameter_le_iff d s _).mpr
   exact ⟨diameter_nonneg d t, fun _ hv _ hw => dist_le_diameter d (hst hv) (hst hw)⟩
 
-/-- In particular, the entry time of an edge is its distance, not half its distance.-/
+/-- In particular, the entry time of an edge is its distance, not half its distance.
+@isnad1 id=eq.0h4v.s5.ce3bee20b55f from=translated src=- shape=ef58f904 vocab=feba58f7
+-/
 theorem diameter_pair [DecidableEq V] (d : MetricSpace V) (v w : V) :
     diameter d {v, w} = d.dist v w := by
   classical
@@ -100,10 +124,15 @@ noncomputable def filter (d : MetricSpace V) : FilterFunction (fullComplex V) �
   value s := diameter d s.val
   mono h := diameter_mono d h
 
+/--
+@isnad1 id=eq.0h3v.s5.237246dc151c from=translated src=- shape=665dee8b vocab=cb528e44
+-/
 @[simp] theorem filter_value (d : MetricSpace V) (s : TotalFace (fullComplex V)) :
     (filter d).value s = diameter d s.val := rfl
 
-/-- The closed Rips condition includes self-pairs, so a singleton first appears at zero.-/
+/-- The closed Rips condition includes self-pairs, so a singleton first appears at zero.
+@isnad1 id=iff.0h4v.s6.e34401de2c01 from=translated src=- shape=33f3d30d vocab=a9b782cd
+-/
 theorem mem_sublevel_iff (d : MetricSpace V) (r : ℝ) (s : Finset V) :
     s ∈ (filter d).sublevel r ↔ s.Nonempty ∧ ∀ v ∈ s, ∀ w ∈ s, d.dist v w ≤ r := by
   rw [FilterFunction.mem_sublevel_iff]
@@ -115,6 +144,9 @@ theorem mem_sublevel_iff (d : MetricSpace V) (r : ℝ) (s : Finset V) :
     obtain ⟨v, hv⟩ := hs
     simpa only [d.dist_self] using h v hv v hv
 
+/--
+@isnad1 id=eq.1h3v.s5.2415b7c340ea from=translated src=- shape=81a2bf83 vocab=e9d18f43
+-/
 theorem sublevel_eq_bot_of_neg (d : MetricSpace V) {r : ℝ} (hr : r < 0) :
     (filter d).sublevel r = ⊥ :=
   (filter d).sublevel_eq_bot_of_forall_lt r
@@ -128,29 +160,43 @@ variable [Fintype V]
 noncomputable def pairwiseDiscrepancy (d e : MetricSpace V) : ℝ :=
   Finset.univ.fold max 0 (fun p : V × V => |d.dist p.1 p.2 - e.dist p.1 p.2|)
 
+/--
+@isnad1 id=le.0h3v.s4.24549b5389d9 from=translated src=- shape=f29d4371 vocab=b996cc45
+-/
 theorem pairwiseDiscrepancy_nonneg (d e : MetricSpace V) :
     0 ≤ pairwiseDiscrepancy d e := by
   classical
   exact (Finset.le_fold_max 0).mpr (Or.inl le_rfl)
 
+/--
+@isnad1 id=le.0h5v.s5.47a45c9502fe from=translated src=- shape=5b9be147 vocab=0ccb2156
+-/
 theorem abs_dist_sub_le_pairwiseDiscrepancy (d e : MetricSpace V) (v w : V) :
     |d.dist v w - e.dist v w| ≤ pairwiseDiscrepancy d e := by
   classical
   exact (Finset.le_fold_max _).mpr
     (Or.inr ⟨(v, w), Finset.mem_univ _, le_rfl⟩)
 
+/--
+@isnad1 id=eq.0h2v.s4.56051061460e from=translated src=- shape=b81717d3 vocab=62ae70b6
+-/
 @[simp] theorem pairwiseDiscrepancy_self (d : MetricSpace V) :
     pairwiseDiscrepancy d d = 0 := by
   classical
   apply le_antisymm _ (pairwiseDiscrepancy_nonneg d d)
   exact (Finset.fold_max_le 0).mpr ⟨le_rfl, fun _ _ => by simp⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.37a507136871 from=translated src=- shape=84c687d2 vocab=bdcd4c96
+-/
 @[simp] theorem pairwiseDiscrepancy_of_isEmpty [IsEmpty V] (d e : MetricSpace V) :
     pairwiseDiscrepancy d e = 0 := by
   classical
   simp [pairwiseDiscrepancy]
 
-/-- Taking diameters cannot enlarge the maximum pairwise discrepancy.-/
+/-- Taking diameters cannot enlarge the maximum pairwise discrepancy.
+@isnad1 id=le.0h4v.s5.93119540f051 from=translated src=- shape=7c6c4df2 vocab=13a8d73a
+-/
 theorem abs_diameter_sub_le_pairwiseDiscrepancy (d e : MetricSpace V) (s : Finset V) :
     |diameter d s - diameter e s| ≤ pairwiseDiscrepancy d e := by
   have hδ := pairwiseDiscrepancy_nonneg d e

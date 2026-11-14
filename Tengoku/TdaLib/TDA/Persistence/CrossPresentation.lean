@@ -133,6 +133,9 @@ noncomputable def delaySource (ε : ℝ≥0)
     M.map (eqToHom (delayed_grade_eq_translation ε Y y).symm)
       (f.app (Y.grade y) (birth Y y)))
 
+/--
+@isnad1 id=eq.0h7v.s11.a33475cec5ba from=translated src=- shape=3b000327 vocab=557848fc
+-/
 theorem delaySource_birth (ε : ℝ≥0)
     (Y : GradedGenerators.{0,w} (Fin n → ℝ))
     (M : PModule.{u,0,max u w} R (Fin n → ℝ))
@@ -145,7 +148,9 @@ theorem delaySource_birth (ε : ℝ≥0)
   lift_birth (Y.shiftGrade (-(ε : ℝ))) M _ y
 
 /-- If the delayed birth values vanish after a map, then the original shifted
-birth values vanish too. The index equality is the actual grade arithmetic.-/
+birth values vanish too. The index equality is the actual grade arithmetic.
+@isnad1 id=eq.1h8v.s10.420831ef0e23 from=translated src=- shape=2a2aa9cc vocab=c89b5f12
+-/
 theorem delaySource_comp_zero (ε : ℝ≥0)
     (Y : GradedGenerators.{0,w} (Fin n → ℝ))
     {M N : PModule.{u,0,max u w} R (Fin n → ℝ)}
@@ -229,7 +234,9 @@ noncomputable abbrev CrossData.rightPresentation :
   relationMap := sumDesc (C.Y₁.shiftGrade (-(ε : ℝ))) C.Y₂ C.leftDelayed C.r₂
 
 /-- Finiteness of the four primitive families gives finite presentations on
-both sides.-/
+both sides.
+@isnad1 id=and.1h4v.s6.5c7e6c465de0 from=translated src=- shape=12f2d240 vocab=ebaf3da3
+-/
 theorem CrossData.finite (h : Finite C.W₁.Carrier ∧ Finite C.W₂.Carrier ∧
     Finite C.Y₁.Carrier ∧ Finite C.Y₂.Carrier) :
     C.leftPresentation.IsFinite ∧ C.rightPresentation.IsFinite := by
@@ -333,7 +340,9 @@ private theorem CrossData.oppositeLR_vanish :
   exact hv
 
 /-- Both relation families vanish after crossing and passing to the opposite
-quotient. This is the actual descent condition for the cross map.-/
+quotient. This is the actual descent condition for the cross map.
+@isnad1 id=eq.0h4v.s10.7f2a1007d9e7 from=translated src=- shape=80f38654 vocab=17fef755
+-/
 theorem CrossData.leftRelationsCross_vanish :
     C.leftPresentation.relationMap ≫ crossFreeLR ε C.W₁ C.W₂ ≫
       (CoordinateShift.shift ε).map C.rightPresentation.cover = 0 := by
@@ -371,6 +380,9 @@ noncomputable def CrossData.quotientLR :
       (CoordinateShift.shift ε).map C.rightPresentation.cover)
     (by simpa only [Category.assoc] using C.leftRelationsCross_vanish)
 
+/--
+@isnad1 id=eq.0h4v.s10.cdb298013c6c from=translated src=- shape=37e02188 vocab=a86e407c
+-/
 theorem CrossData.cover_quotientLR :
     C.leftPresentation.cover ≫ C.quotientLR =
       crossFreeLR ε C.W₁ C.W₂ ≫
@@ -461,6 +473,9 @@ private theorem CrossData.oppositeRL_vanish :
   rw [C.oppositeRL_birth y ht]
   exact hv
 
+/--
+@isnad1 id=eq.0h4v.s10.0dff253e816e from=translated src=- shape=80f38654 vocab=3724c269
+-/
 theorem CrossData.rightRelationsCross_vanish :
     C.rightPresentation.relationMap ≫ crossFreeRL ε C.W₁ C.W₂ ≫
       (CoordinateShift.shift ε).map C.leftPresentation.cover = 0 := by
@@ -497,6 +512,9 @@ noncomputable def CrossData.quotientRL :
       (CoordinateShift.shift ε).map C.leftPresentation.cover)
     (by simpa only [Category.assoc] using C.rightRelationsCross_vanish)
 
+/--
+@isnad1 id=eq.0h4v.s10.15a0117ec853 from=translated src=- shape=37e02188 vocab=8a2174d5
+-/
 theorem CrossData.cover_quotientRL :
     C.rightPresentation.cover ≫ C.quotientRL =
       crossFreeRL ε C.W₁ C.W₂ ≫
@@ -556,14 +574,18 @@ noncomputable def CrossData.zeroIso (C : CrossData.{u,w} (R := R) (n := n) 0) :
     C.leftPresentation.presented ≅ C.rightPresentation.presented :=
   C.quotientInterleaving.toIso
 
-/-- The first primitive relation family vanishes in the first quotient.-/
+/-- The first primitive relation family vanishes in the first quotient.
+@isnad1 id=eq.0h4v.s9.cef6b7bc86c8 from=translated src=- shape=1dd9f1b5 vocab=c5bba3d2
+-/
 theorem CrossData.primitive_left_vanish : C.r₁ ≫ C.leftPresentation.cover = 0 := by
   have h := congrArg (fun f => sumInl C.Y₁ (C.Y₂.shiftGrade (-(ε : ℝ))) ≫ f)
     C.leftPresentation.relations_vanish
   simpa only [CrossData.leftPresentation, ← Category.assoc, sumInl_sumDesc,
     comp_zero] using h
 
-/-- The second primitive relation family vanishes in the second quotient.-/
+/-- The second primitive relation family vanishes in the second quotient.
+@isnad1 id=eq.0h4v.s9.901ab114731f from=translated src=- shape=1dd9f1b5 vocab=abeef185
+-/
 theorem CrossData.primitive_right_vanish : C.r₂ ≫ C.rightPresentation.cover = 0 := by
   have h := congrArg (fun f => sumInr (C.Y₁.shiftGrade (-(ε : ℝ))) C.Y₂ ≫ f)
     C.rightPresentation.relations_vanish

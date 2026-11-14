@@ -147,7 +147,9 @@ private theorem reservoir_minimizer (p : ℝ) (hp : 0 ≤ p)
     ENNReal.mul_inv_cancel hRpos.ne' hRtop.ne, one_mul] using hcost
 
 /-- Every finite positive full sum-capacity reservoir admits a genuine minimizing plan.
-The continuous powered metric objective may have value infinity.-/
+The continuous powered metric objective may have value infinity.
+@isnad1 id=ex.4h4v.s8.827eb1a33aeb from=translated src=- shape=5d60ee5e vocab=5cc55835
+-/
 theorem exists_minimizing_reservoirPlan (p : ℝ) (hp : 0 ≤ p)
     (μ ν : Measure Interior) (R : ℝ≥0∞) (hRtop : R < ∞) (hRpos : 0 < R)
     (htotal : μ univ + ν univ ≤ R) :
@@ -159,7 +161,9 @@ theorem exists_minimizing_reservoirPlan (p : ℝ) (hp : 0 ≤ p)
     (le_self_add.trans htotal) (le_add_self.trans htotal)
 
 /-- Every pair of finite Borel inputs admits a genuine minimizing boundary plan,
-including when its optimal cost is infinite. No moment or support condition is needed.-/
+including when its optimal cost is infinite. No moment or support condition is needed.
+@isnad1 id=ex.1h3v.s9.7888c188a765 from=translated src=- shape=abea49e9 vocab=bee34277
+-/
 theorem exists_minimizing_boundaryPlan (p : ℝ) (hp : 1 ≤ p)
     (μ ν : Measure Interior) [IsFiniteMeasure μ] [IsFiniteMeasure ν] :
     ∃ π : Measure PlanSpace, IsBoundaryPlan π μ ν ∧
@@ -175,7 +179,9 @@ theorem exists_minimizing_boundaryPlan (p : ℝ) (hp : 1 ≤ p)
   exact hcost.trans_eq (hγcost.trans
     (boundaryTransportPowerValue_eq_reservoirPowerValue p hp μ ν R hRtop htotal).symm)
 
-/-- Finite diagonal persistence moments give a minimizing plan of finite powered cost.-/
+/-- Finite diagonal persistence moments give a minimizing plan of finite powered cost.
+@isnad1 id=ex.3h3v.s9.49f577ff5a92 from=translated src=- shape=c23ee7ca vocab=f50c044b
+-/
 theorem exists_finite_cost_minimizing_boundaryPlan (p : ℝ) (hp : 1 ≤ p)
     (μ ν : Measure Interior) [IsFiniteMeasure μ] [IsFiniteMeasure ν]
     (hμ : (∫⁻ x, ENNReal.ofReal (depth x ^ p) ∂μ) < ∞)
@@ -186,7 +192,9 @@ theorem exists_finite_cost_minimizing_boundaryPlan (p : ℝ) (hp : 1 ≤ p)
   obtain ⟨π, hπ, hcost⟩ := exists_minimizing_boundaryPlan p hp μ ν
   exact ⟨π, hπ, hcost, hcost ▸ boundaryTransportPowerValue_lt_top p μ ν hμ hν⟩
 
-/-- The same minimizing measure realizes both the powered and rooted boundary values.-/
+/-- The same minimizing measure realizes both the powered and rooted boundary values.
+@isnad1 id=ex.1h3v.s9.5ddfdff7b8ef from=translated src=- shape=17b474d2 vocab=c6109592
+-/
 theorem exists_minimizing_boundaryPlan_rooted (p : ℝ) (hp : 1 ≤ p)
     (μ ν : Measure Interior) [IsFiniteMeasure μ] [IsFiniteMeasure ν] :
     ∃ π : Measure PlanSpace, IsBoundaryPlan π μ ν ∧

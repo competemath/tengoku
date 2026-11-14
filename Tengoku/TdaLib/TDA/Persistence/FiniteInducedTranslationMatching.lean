@@ -23,7 +23,9 @@ open CategoryTheory
 variable {s : ℕ} {k : Type u} [Field k]
 variable {M N : PModule.{u,0,u} k (Fin s)}
 
-/-- Kernel shortness is unchanged by corestricting to the image.-/
+/-- Kernel shortness is unchanged by corestricting to the image.
+@isnad1 id=iff.1h6v.s7.6913a0812af4 from=translated src=- shape=e7742f86 vocab=90bb926c
+-/
 theorem kernel_translationTrivial_toFiniteImage_iff (theta : Fin s →o Fin s)
     (hTheta : ∀ i, i ≤ theta i) (f : M ⟶ N) :
     TranslationTrivial theta hTheta (finiteKernel (toFiniteImage f)) ↔
@@ -34,7 +36,9 @@ theorem kernel_translationTrivial_toFiniteImage_iff (theta : Fin s →o Fin s)
   change LinearMap.ker (f.app i).hom.rangeRestrict ≤ _ ↔ _
   rw [LinearMap.ker_rangeRestrict]
 
-/-- Cokernel shortness is unchanged by replacing the morphism with its image inclusion.-/
+/-- Cokernel shortness is unchanged by replacing the morphism with its image inclusion.
+@isnad1 id=iff.1h6v.s7.6d2341f2886a from=translated src=- shape=8c040bbd vocab=c7d4ce4b
+-/
 theorem cokernel_translationTrivial_fromFiniteImage_iff (theta : Fin s →o Fin s)
     (hTheta : ∀ i, i ≤ theta i) (f : M ⟶ N) :
     TranslationTrivial theta hTheta (finiteCokernel (fromFiniteImage f)) ↔
@@ -49,7 +53,9 @@ namespace FiniteBarcode
 
 variable [∀ i, FiniteDimensional k (M.obj i)] [∀ i, FiniteDimensional k (N.obj i)]
 
-/-- Kernel shortness controls every matched death, for an arbitrary morphism.-/
+/-- Kernel shortness controls every matched death, for an arbitrary morphism.
+@isnad1 id=and.3h8v.s9.d46c02782617 from=translated src=- shape=d5dbb83d vocab=1d5103fe
+-/
 theorem inducedMap_death_bounds_of_kernelTrivial
     (theta : Fin s →o Fin s) (hTheta : ∀ i, i ≤ theta i) (f : M ⟶ N)
     (hk : TranslationTrivial theta hTheta (finiteKernel f))
@@ -68,7 +74,9 @@ theorem inducedMap_death_bounds_of_kernelTrivial
   refine ⟨hd.trans_le he.1, ?_⟩
   exact he.2.trans_eq (FiniteInterval.translatedDeath_congr _ _ theta hd.symm)
 
-/-- Cokernel shortness controls every matched birth, for an arbitrary morphism.-/
+/-- Cokernel shortness controls every matched birth, for an arbitrary morphism.
+@isnad1 id=and.3h8v.s9.c654e4acd0af from=translated src=- shape=e23aedcb vocab=29ae09c6
+-/
 theorem inducedMap_birth_bounds_of_cokernelTrivial
     (theta : Fin s →o Fin s) (hTheta : ∀ i, i ≤ theta i) (f : M ⟶ N)
     (hc : TranslationTrivial theta hTheta (finiteCokernel f))
@@ -86,7 +94,9 @@ theorem inducedMap_birth_bounds_of_cokernelTrivial
     (fromFiniteImage f) (fromFiniteImage_injective f)
       ((cokernel_translationTrivial_fromFiniteImage_iff theta hTheta f).mpr hc) a
 
-/-- Both endpoint controls coexist, with independent kernel and cokernel translations.-/
+/-- Both endpoint controls coexist, with independent kernel and cokernel translations.
+@isnad1 id=and.5h9v.s9.461b85b28274 from=translated src=- shape=e78ef8bd vocab=43667bad
+-/
 theorem inducedMap_endpoint_bounds_of_shortness
     (thetaK thetaC : Fin s →o Fin s) (hK : ∀ i, i ≤ thetaK i) (hC : ∀ i, i ≤ thetaC i)
     (f : M ⟶ N) (hk : TranslationTrivial thetaK hK (finiteKernel f))
@@ -104,7 +114,9 @@ theorem inducedMap_endpoint_bounds_of_shortness
   have hd := inducedMap_death_bounds_of_kernelTrivial thetaK hK f hk i j h
   exact ⟨hb.1, hb.2, (inducedMap_endpoints f i j h).2.1, hd⟩
 
-/-- Every long source has exactly one selected target, using only kernel shortness.-/
+/-- Every long source has exactly one selected target, using only kernel shortness.
+@isnad1 id=existsun.3h7v.s9.8ee7299cd259 from=translated src=- shape=e9034036 vocab=af36862c
+-/
 theorem inducedMap_covers_long_source_of_kernelTrivial
     (theta : Fin s →o Fin s) (hTheta : ∀ i, i ≤ theta i) (f : M ⟶ N)
     (hk : TranslationTrivial theta hTheta (finiteKernel f))
@@ -118,7 +130,9 @@ theorem inducedMap_covers_long_source_of_kernelTrivial
   have hj := (inducedMap_eq_some_iff f i (imageTargetEmbedding f a)).mpr ⟨a, ha, rfl⟩
   exact ⟨imageTargetEmbedding f a, hj, fun _ hj' => Option.some.inj (hj'.symm.trans hj)⟩
 
-/-- Every long target has exactly one selected source, using only cokernel shortness.-/
+/-- Every long target has exactly one selected source, using only cokernel shortness.
+@isnad1 id=existsun.3h7v.s9.9af4fb206a0a from=translated src=- shape=abb85825 vocab=e331305d
+-/
 theorem inducedMap_covers_long_target_of_cokernelTrivial
     (theta : Fin s →o Fin s) (hTheta : ∀ i, i ≤ theta i) (f : M ⟶ N)
     (hc : TranslationTrivial theta hTheta (finiteCokernel f))
@@ -132,7 +146,9 @@ theorem inducedMap_covers_long_target_of_cokernelTrivial
   have hi := (inducedMap_eq_some_iff f (imageSourceEmbedding f a) j).mpr ⟨a, rfl, ha⟩
   exact ⟨imageSourceEmbedding f a, hi, fun i' hi' => inducedMap_injective f i' _ j hi' hi⟩
 
-/-- Any source on which the induced matching is undefined is kernel-short.-/
+/-- Any source on which the induced matching is undefined is kernel-short.
+@isnad1 id=le.3h7v.s9.82d62b1af9dd from=translated src=- shape=81a65e53 vocab=58ff947b
+-/
 theorem inducedMap_unmatched_source_short_of_kernelTrivial
     (theta : Fin s →o Fin s) (hTheta : ∀ i, i ≤ theta i) (f : M ⟶ N)
     (hk : TranslationTrivial theta hTheta (finiteKernel f))
@@ -145,7 +161,9 @@ theorem inducedMap_unmatched_source_short_of_kernelTrivial
   rw [hi] at hj
   contradiction
 
-/-- Any target absent from the induced range is cokernel-short.-/
+/-- Any target absent from the induced range is cokernel-short.
+@isnad1 id=le.3h7v.s9.6611154a1713 from=translated src=- shape=a0677ca6 vocab=5f86c595
+-/
 theorem inducedMap_unmatched_target_short_of_cokernelTrivial
     (theta : Fin s →o Fin s) (hTheta : ∀ i, i ≤ theta i) (f : M ⟶ N)
     (hc : TranslationTrivial theta hTheta (finiteCokernel f))

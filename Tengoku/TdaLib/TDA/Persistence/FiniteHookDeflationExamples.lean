@@ -50,6 +50,9 @@ private def birth : Bool → ForkGrade | false => .left | true => .right
 abbrev forkModule : PModule ℚ ForkGrade :=
   (Functor.const ForkGrade).obj (ModuleCat.of ℚ ℚ)
 
+/--
+@isnad1 id=finitedi.0h1v.s6.de918f8c0e8e from=translated src=- shape=1fd56d81 vocab=c83c6cd7
+-/
 instance forkModule_finiteDimensional (p : ForkGrade) : FiniteDimensional ℚ (forkModule.obj p) :=
   inferInstanceAs (FiniteDimensional ℚ ℚ)
 
@@ -132,13 +135,17 @@ private theorem merge_not_split : ¬ ∃ s : forkModule ⟶ branchSum, s ≫ mer
   rw [hv, map_zero] at h
   exact (zero_ne_one : (0 : ℚ) ≠ (1 : ℚ)) h
 
-/-- Pointwise finite dimension alone does not imply rank projectivity.-/
+/-- Pointwise finite dimension alone does not imply rank projectivity.
+@isnad1 id=not.0h0v.s2.bc776e50d674 from=translated src=- shape=6516253f vocab=2d85ffda
+-/
 theorem fork_not_rankProjective : ¬ IsRankProjective forkModule := by
   intro h
   exact merge_not_split (h _ _ _ _ _ merge_rankExact (𝟙 forkModule))
 
 /-- The constructed hook deflation is genuinely rank exact even on this
-non-projective branching module, and has no section.-/
+non-projective branching module, and has no section.
+@isnad1 id=and.0h0v.s8.115589a0d9d9 from=translated src=- shape=85f40cc5 vocab=972d24b8
+-/
 theorem fork_deflation_non_split :
     IsRankExact (kernel.ι (π forkModule)) (π forkModule) ∧
       ¬ ∃ s : forkModule ⟶ module forkModule, s ≫ π forkModule = 𝟙 forkModule :=
@@ -152,12 +159,16 @@ private instance zeroFiberSubsingleton {P : Type} [PartialOrder P] (p : P) :
 private instance zeroFiberFiniteDimensional {P : Type} [PartialOrder P] (p : P) :
     FiniteDimensional ℚ ((0 : PModule ℚ P).obj p) := by infer_instance
 
-/-- The zero module contributes no hook occurrences.-/
+/-- The zero module contributes no hook occurrences.
+@isnad1 id=eq.0h0v.s6.6dafc1d0bdcd from=translated src=- shape=718067b1 vocab=73fef2a5
+-/
 theorem zero_occurrences : Fintype.card (Index (0 : PModule ℚ ForkGrade)) = 0 := by
   rw [card_index]
   simp only [Module.finrank_zero_of_subsingleton, Finset.sum_const_zero, add_zero]
 
-/-- The empty indexing poset is included in the actual rank-exact construction.-/
+/-- The empty indexing poset is included in the actual rank-exact construction.
+@isnad1 id=and.0h0v.s10.9534e6fb8161 from=translated src=- shape=37113556 vocab=7e760839
+-/
 theorem empty_poset :
     Fintype.card (Index (0 : PModule ℚ (Fin 0))) = 0 ∧
       IsRankExact (kernel.ι (π (0 : PModule ℚ (Fin 0)))) (π (0 : PModule ℚ (Fin 0))) :=
@@ -167,11 +178,15 @@ theorem empty_poset :
 abbrev doubleModule : PModule ℚ (Fin 1) :=
   (Functor.const (Fin 1)).obj (ModuleCat.of ℚ (ℚ × ℚ))
 
-/-- The concrete multiplicity-two fiber is finite-dimensional.-/
+/-- The concrete multiplicity-two fiber is finite-dimensional.
+@isnad1 id=finitedi.0h1v.s7.623328fa3a1b from=translated src=- shape=a270787e vocab=b20f99ae
+-/
 instance doubleModule_finiteDimensional (p : Fin 1) : FiniteDimensional ℚ (doubleModule.obj p) :=
   inferInstanceAs (FiniteDimensional ℚ (ℚ × ℚ))
 
-/-- Repeated birth grades are counted with multiplicity.-/
+/-- Repeated birth grades are counted with multiplicity.
+@isnad1 id=eq.0h0v.s5.18c9a584ec30 from=translated src=- shape=9fc4802a vocab=762e2295
+-/
 theorem repeated_occurrences : Fintype.card (Index doubleModule) = 2 := by
   classical
   rw [card_index]
@@ -186,7 +201,9 @@ theorem repeated_occurrences : Fintype.card (Index doubleModule) = 2 := by
 /-- A single finite-death hook on a two-grade chain.-/
 noncomputable abbrev finiteHook : PModule ℚ (Fin 2) := Hook.module 0 1
 
-/-- A nonzero element dying at grade one has a genuinely dying lift.-/
+/-- A nonzero element dying at grade one has a genuinely dying lift.
+@isnad1 id=ex.0h0v.s12.dee20b577bd0 from=translated src=- shape=56095c2c vocab=1e083cb8
+-/
 theorem finite_death_nonzero_lift :
     ∃ m : (module finiteHook).obj 0, ((π finiteHook).app 0).hom m ≠ 0 ∧
       structureMapLinear (module finiteHook) (show (0 : Fin 2) ≤ 1 by decide) m = 0 := by
@@ -201,7 +218,9 @@ theorem finite_death_nonzero_lift :
   have hz := congrArg Subtype.val h
   exact (one_ne_zero : (1 : ℚ) ≠ 0) hz
 
-/-- Infinite-death hooks split their actual finite hook deflation.-/
+/-- Infinite-death hooks split their actual finite hook deflation.
+@isnad1 id=ex.0h0v.s10.4823358829a8 from=translated src=- shape=7f73808e vocab=61252a81
+-/
 theorem infinite_death_retract :
     ∃ s : HookInfinity.module (R := ℚ) (0 : Fin 2) ⟶
         module (HookInfinity.module (R := ℚ) (0 : Fin 2)),
@@ -213,10 +232,15 @@ theorem infinite_death_retract :
 abbrev binaryModule : PModule (ZMod 2) ForkGrade :=
   (Functor.const ForkGrade).obj (ModuleCat.of (ZMod 2) (ZMod 2))
 
+/--
+@isnad1 id=finitedi.0h1v.s8.1cf2a038ed7c from=translated src=- shape=547a81be vocab=8b3bd44d
+-/
 instance binaryModule_finiteDimensional (p : ForkGrade) : FiniteDimensional (ZMod 2) (binaryModule.obj p) :=
   inferInstanceAs (FiniteDimensional (ZMod 2) (ZMod 2))
 
-/-- Characteristic two preserves rank exactness and relative projectivity of the sum.-/
+/-- Characteristic two preserves rank exactness and relative projectivity of the sum.
+@isnad1 id=and.0h0v.s9.a281d225d2a6 from=translated src=- shape=365c2cf0 vocab=28f842da
+-/
 theorem characteristic_two :
     IsRankExact (kernel.ι (π binaryModule)) (π binaryModule) ∧
       IsRankProjective (module binaryModule) :=

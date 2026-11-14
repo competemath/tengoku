@@ -20,7 +20,9 @@ private def singletonInsert : OccurrenceMatching (Fin 0) (Fin 1) (Fin 0) (Fin 0)
   essential := Equiv.refl _
 
 /-- Reindexing both finite and essential occurrences, even with repeated values,
-does not change the diagram or its zero self-distance.-/
+does not change the diagram or its zero self-distance.
+@isnad1 id=eq.0h6v.s7.6d28ef139bf9 from=translated src=- shape=57a474bd vocab=7367d3c5
+-/
 theorem bottleneck_permuted_presentations (m n : ℕ)
     (x : Fin m → ℝ × ℝ) (b : Fin n → ℝ)
     (σ : Equiv.Perm (Fin m)) (τ : Equiv.Perm (Fin n)) :
@@ -28,7 +30,9 @@ theorem bottleneck_permuted_presentations (m n : ℕ)
   rw [orderedQ_perm]
   exact bottleneck_self _
 
-/-- Deleting one of two identical finite occurrences has positive cost.-/
+/-- Deleting one of two identical finite occurrences has positive cost.
+@isnad1 id=ne.0h0v.s6.1d491cfa021b from=translated src=- shape=17c8ecf8 vocab=377d13de
+-/
 theorem bottleneck_repeated_pair_ne_zero :
     bottleneck (orderedQ 2 0 (fun _ => ((0 : ℝ), 2), Fin.elim0))
       (orderedQ 1 0 (fun _ => ((0 : ℝ), 2), Fin.elim0)) ≠ 0 := by

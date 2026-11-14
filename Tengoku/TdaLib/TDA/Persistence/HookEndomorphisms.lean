@@ -65,14 +65,18 @@ private instance : HasBinaryBiproducts (PModule.{u,v,u} k P) :=
 
 namespace Hook
 
-/-- A death at or before birth gives the zero module, excluded from nonzero hooks.-/
+/-- A death at or before birth gives the zero module, excluded from nonzero hooks.
+@isnad1 id=iszero.1h4v.s6.53fe67f2961a from=translated src=- shape=b57e9840 vocab=e51d8120
+-/
 theorem isZero_of_le {i j : P} (hji : j ≤ i) : IsZero (module (k := k) i j) := by
   apply (IsZero.iff_id_eq_zero _).mpr
   ext p x
   exact SupportInterval.val_eq_zero (support i j)
     (fun hp => hp.2 (hji.trans hp.1)) x
 
-/-- A hook endomorphism is multiplication by its birth coefficient.-/
+/-- A hook endomorphism is multiplication by its birth coefficient.
+@isnad1 id=eq.1h5v.s11.9ad5df600a6e from=translated src=- shape=bfa5949d vocab=b36602e2
+-/
 theorem end_eq_smul_id {i j : P} (hij : i < j)
     (α : End (module (k := k) i j)) :
     α = (((α.app i).hom (SupportInterval.one (support i j) (birth_mem hij)) : k)) •
@@ -100,13 +104,17 @@ noncomputable def endRingEquiv {i j : P} (hij : i < j) :
   (RingEquiv.ofBijective (algebraMap k (End (module (k := k) i j)))
     (algebraMap_bijective hij)).symm
 
-/-- The inverse endomorphism-ring comparison is the actual scalar identity map.-/
+/-- The inverse endomorphism-ring comparison is the actual scalar identity map.
+@isnad1 id=eq.1h5v.s11.7b13fd7bc263 from=translated src=- shape=d1be7fb6 vocab=e6a749c6
+-/
 @[simp] theorem endRingEquiv_symm_apply {i j : P} (hij : i < j) (c : k) :
     (endRingEquiv (k := k) hij).symm c = c • 𝟙 (module (k := k) i j) := by
   simp only [endRingEquiv, RingEquiv.symm_symm, RingEquiv.ofBijective_apply,
     Algebra.algebraMap_eq_smul_one, End.one_def]
 
-/-- The endomorphism-ring comparison reads the birth coefficient.-/
+/-- The endomorphism-ring comparison reads the birth coefficient.
+@isnad1 id=eq.1h5v.s11.9a7a541f61e9 from=translated src=- shape=cff1e06a vocab=ff24dc08
+-/
 theorem endRingEquiv_apply {i j : P} (hij : i < j) (α : End (module (k := k) i j)) :
     endRingEquiv hij α =
       (((α.app i).hom (SupportInterval.one (support i j) (birth_mem hij))) : k) := by
@@ -114,7 +122,9 @@ theorem endRingEquiv_apply {i j : P} (hij : i < j) (α : End (module (k := k) i 
   rw [RingEquiv.symm_apply_apply, endRingEquiv_symm_apply]
   exact end_eq_smul_id hij α
 
-/-- A nonzero finite-death hook has no decomposition into two nonzero summands.-/
+/-- A nonzero finite-death hook has no decomposition into two nonzero summands.
+@isnad1 id=indecomp.1h4v.s6.d0c130449506 from=translated src=- shape=6f163303 vocab=fdef6b62
+-/
 theorem indecomposable {i j : P} (hij : i < j) :
     Indecomposable (module (k := k) i j) :=
   indecomposable_of_scalar_end (endRingEquiv hij)
@@ -123,20 +133,26 @@ end Hook
 
 namespace HookInfinity
 
-/-- The principal-upset generator has coefficient one at birth.-/
+/-- The principal-upset generator has coefficient one at birth.
+@isnad1 id=eq.0h3v.s9.3571a010fb98 from=translated src=- shape=64fd543e vocab=ba0b5bd9
+-/
 @[simp] theorem fiberEquiv_birth (i : P) :
     fiberEquivOfLe (R := k) (le_refl i) (birth i) = 1 := by
   change (Finsupp.single () (1 : k)) () = 1
   simp
 
-/-- The principal-upset birth generator is nonzero.-/
+/-- The principal-upset birth generator is nonzero.
+@isnad1 id=ne.0h3v.s8.3a0a12a11e0f from=translated src=- shape=c0968aa6 vocab=6a5128cd
+-/
 theorem birth_ne_zero (i : P) : birth (R := k) i ≠ 0 := by
   intro h
   have he := congrArg (fiberEquivOfLe (R := k) (le_refl i)) h
   rw [fiberEquiv_birth, map_zero] at he
   exact one_ne_zero he
 
-/-- An infinite-death hook endomorphism is multiplication by its birth coefficient.-/
+/-- An infinite-death hook endomorphism is multiplication by its birth coefficient.
+@isnad1 id=eq.0h4v.s12.3b425abb9914 from=translated src=- shape=490aec22 vocab=4d220d5f
+-/
 theorem end_eq_smul_id (i : P) (α : End (module (R := k) i)) :
     α = fiberEquivOfLe (le_refl i) ((α.app i).hom (birth i)) •
       𝟙 (module (R := k) i) := by
@@ -165,20 +181,26 @@ noncomputable def endRingEquiv (i : P) : End (module (R := k) i) ≃+* k :=
   (RingEquiv.ofBijective (algebraMap k (End (module (R := k) i)))
     (algebraMap_bijective i)).symm
 
-/-- The inverse principal-upset comparison is scalar multiplication by the identity.-/
+/-- The inverse principal-upset comparison is scalar multiplication by the identity.
+@isnad1 id=eq.0h4v.s11.5cb0f60ed1e6 from=translated src=- shape=b856f3cd vocab=2812e0e4
+-/
 @[simp] theorem endRingEquiv_symm_apply (i : P) (c : k) :
     (endRingEquiv (k := k) i).symm c = c • 𝟙 (module (R := k) i) := by
   simp only [endRingEquiv, RingEquiv.symm_symm, RingEquiv.ofBijective_apply,
     Algebra.algebraMap_eq_smul_one, End.one_def]
 
-/-- The principal-upset comparison reads the unique coefficient at birth.-/
+/-- The principal-upset comparison reads the unique coefficient at birth.
+@isnad1 id=eq.0h4v.s11.ad62c3e7f3fd from=translated src=- shape=9610d54e vocab=7871dcdc
+-/
 theorem endRingEquiv_apply (i : P) (α : End (module (R := k) i)) :
     endRingEquiv i α = fiberEquivOfLe (le_refl i) ((α.app i).hom (birth i)) := by
   apply (endRingEquiv i).symm.injective
   rw [RingEquiv.symm_apply_apply, endRingEquiv_symm_apply]
   exact end_eq_smul_id i α
 
-/-- Infinite-death hooks are indecomposable, including unbounded principal upsets.-/
+/-- Infinite-death hooks are indecomposable, including unbounded principal upsets.
+@isnad1 id=indecomp.0h3v.s6.c2e943cd4a94 from=translated src=- shape=6096ae36 vocab=d0b79bb4
+-/
 theorem indecomposable (i : P) : Indecomposable (module (R := k) i) :=
   indecomposable_of_scalar_end (endRingEquiv i)
 
@@ -198,7 +220,9 @@ private theorem support_subset_of_iso (S T : Set P) (hS : S.OrdConnected)
   exact (zero_ne_one : (0 : k) ≠ 1) (congrArg Subtype.val h)
 
 /-- Natural isomorphism of interval modules recovers their actual supports,
-including the empty support. Convexity alone need not imply indecomposability.-/
+including the empty support. Convexity alone need not imply indecomposability.
+@isnad1 id=eq.2h5v.s6.45214981ac33 from=translated src=- shape=2cbd67d4 vocab=560e8386
+-/
 theorem support_eq_of_iso (S T : Set P) (hS : S.OrdConnected)
     (hT : T.OrdConnected) (e : module (k := k) S hS ≅ module T hT) : S = T :=
   Set.Subset.antisymm (support_subset_of_iso S T hS hT e)
@@ -208,7 +232,9 @@ end SupportInterval
 
 namespace Hook
 
-/-- The least support point recovers the birth of an individual nonzero hook.-/
+/-- The least support point recovers the birth of an individual nonzero hook.
+@isnad1 id=eq.2h7v.s6.946fe1a626ae from=translated src=- shape=1e205b8d vocab=cf83aaf6
+-/
 theorem birth_eq_of_iso {i j i' j' : P} (hij : i < j) (hij' : i' < j')
     (e : module (k := k) i j ≅ module i' j') : i = i' := by
   have h := SupportInterval.support_eq_of_iso (support i j) (support i' j')
@@ -217,7 +243,9 @@ theorem birth_eq_of_iso {i j i' j' : P} (hij : i < j) (hij' : i' < j')
   have hi' : i' ∈ support i j := h.symm ▸ birth_mem hij'
   exact le_antisymm hi'.1 hi.1
 
-/-- Actual isomorphism recovers both finite birth and finite death.-/
+/-- Actual isomorphism recovers both finite birth and finite death.
+@isnad1 id=and.2h7v.s6.de4853c2b646 from=translated src=- shape=fdfe6b4e vocab=cf83aaf6
+-/
 theorem endpoints_eq_of_iso {i j i' j' : P} (hij : i < j) (hij' : i' < j')
     (e : module (k := k) i j ≅ module i' j') : i = i' ∧ j = j' := by
   have hi := birth_eq_of_iso hij hij' e
@@ -234,7 +262,9 @@ theorem endpoints_eq_of_iso {i j i' j' : P} (hij : i < j) (hij' : i' < j')
       have hm : j ∈ support i j' := ⟨hij.le, hj⟩
       exact death_not_mem i j (h.symm ▸ hm)
 
-/-- The isomorphism classes of individual nonzero finite hooks retain both endpoints.-/
+/-- The isomorphism classes of individual nonzero finite hooks retain both endpoints.
+@isnad1 id=iff.2h6v.s6.54c0b8e9b120 from=translated src=- shape=0b51228f vocab=fdceffb8
+-/
 theorem nonempty_iso_iff {i j i' j' : P} (hij : i < j) (hij' : i' < j') :
     Nonempty (module (k := k) i j ≅ module i' j') ↔ i = i' ∧ j = j' := by
   constructor
@@ -243,7 +273,9 @@ theorem nonempty_iso_iff {i j i' j' : P} (hij : i < j) (hij' : i' < j') :
   · rintro ⟨rfl, rfl⟩
     exact ⟨Iso.refl _⟩
 
-/-- Finite and infinite death are distinguished by actual module isomorphism.-/
+/-- Finite and infinite death are distinguished by actual module isomorphism.
+@isnad1 id=not.1h5v.s6.12e7879ffb49 from=translated src=- shape=2eced5b5 vocab=c4fa7293
+-/
 theorem not_nonempty_iso_infinity {i j i' : P} (hij : i < j) :
     ¬ Nonempty (module (k := k) i j ≅ HookInfinity.module (R := k) i') := by
   rintro ⟨e⟩
@@ -273,11 +305,15 @@ private theorem birth_le_of_iso {i i' : P}
   have hz := fiber_eq_zero_of_not_le h ((e.hom.app i).hom (birth (R := k) i))
   exact birth_ne_zero i ((e.app i).toLinearEquiv.injective (hz.trans (map_zero _).symm))
 
-/-- The birth of a principal upset is determined by its actual module.-/
+/-- The birth of a principal upset is determined by its actual module.
+@isnad1 id=eq.0h5v.s6.69724bceeb33 from=translated src=- shape=b8f80cfd vocab=8ff56f9e
+-/
 theorem birth_eq_of_iso {i i' : P} (e : module (R := k) i ≅ module i') : i = i' :=
   le_antisymm (birth_le_of_iso e.symm) (birth_le_of_iso e)
 
-/-- Individual infinite-death hooks are isomorphic exactly at equal births.-/
+/-- Individual infinite-death hooks are isomorphic exactly at equal births.
+@isnad1 id=iff.0h4v.s6.767abaeb2693 from=translated src=- shape=6ac3a990 vocab=1c472581
+-/
 theorem nonempty_iso_iff {i i' : P} :
     Nonempty (module (R := k) i ≅ module i') ↔ i = i' := by
   constructor

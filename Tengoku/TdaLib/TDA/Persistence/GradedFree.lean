@@ -45,12 +45,16 @@ def fiberEquiv (a : P) :
     fiber (R := R) W a ≃ₗ[R] ({g : W.Carrier // W.grade g ≤ a} →₀ R) :=
   Finsupp.supportedEquivFinsupp {g | W.grade g ≤ a}
 
-/-- Every generator present at `a` is present at later indices.-/
+/-- Every generator present at `a` is present at later indices.
+@isnad1 id=le.1h5v.s7.ffd371b3e8cf from=translated src=- shape=4d9d6c65 vocab=203d7bfc
+-/
 theorem fiber_mono {a b : P} (h : a ≤ b) : fiber (R := R) W a ≤ fiber W b := by
   intro x hx g hg
   exact (hx hg).trans h
 
-/-- Free fibers agree when precisely the same generators are available.-/
+/-- Free fibers agree when precisely the same generators are available.
+@isnad1 id=eq.1h5v.s6.6db1d7a53ef6 from=translated src=- shape=3ee00473 vocab=579258d8
+-/
 theorem fiber_eq_of_birth_iff {a b : P}
     (h : ∀ g : W.Carrier, W.grade g ≤ a ↔ W.grade g ≤ b) :
     fiber (R := R) W a = fiber W b := by
@@ -74,7 +78,9 @@ def module : PModule.{u,v,max u w} R P where
     apply ModuleCat.hom_ext
     rfl
 
-/-- Structure maps retain the underlying finite linear combination.-/
+/-- Structure maps retain the underlying finite linear combination.
+@isnad1 id=eq.1h6v.s10.a5048c679d0d from=translated src=- shape=091864d9 vocab=25999f88
+-/
 @[simp] theorem structureMap_apply {a b : P} (h : a ≤ b) (x : fiber (R := R) W a) :
     (structureMapLinear (module (R := R) W) h x : fiber (R := R) W b).val = x.val := rfl
 
@@ -97,7 +103,9 @@ def structureIsoOfBirthIff {a b : P} (hab : a ≤ b)
 def birth (g : W.Carrier) : (module (R := R) W).obj (W.grade g) :=
   generator (R := R) W g le_rfl
 
-/-- At any later index, a generator is the structure image of its birth vector.-/
+/-- At any later index, a generator is the structure image of its birth vector.
+@isnad1 id=eq.1h5v.s9.a6f51208308a from=translated src=- shape=3b261852 vocab=4942e2e5
+-/
 theorem generator_eq_structureMap (g : W.Carrier) {a : P} (h : W.grade g ≤ a) :
     generator (R := R) W g h =
       structureMapLinear (module (R := R) W) h (birth (R := R) W g) := rfl
@@ -108,7 +116,9 @@ def fiberLift {V : Type*} [AddCommGroup V] [Module R V] (a : P)
     (v : {g : W.Carrier // W.grade g ≤ a} → V) : fiber (R := R) W a →ₗ[R] V :=
   (Finsupp.linearCombination R v).comp (fiberEquiv (R := R) W a).toLinearMap
 
-/-- The extension evaluates to the selected vector on each basis generator.-/
+/-- The extension evaluates to the selected vector on each basis generator.
+@isnad1 id=eq.1h7v.s10.98c1e5ad4f29 from=translated src=- shape=c820f64a vocab=3e9fd458
+-/
 @[simp] theorem fiberLift_generator {V : Type*} [AddCommGroup V] [Module R V]
     (a : P) (v : {g : W.Carrier // W.grade g ≤ a} → V)
     (g : W.Carrier) (h : W.grade g ≤ a) :
@@ -121,7 +131,9 @@ def fiberLift {V : Type*} [AddCommGroup V] [Module R V] (a : P)
   rw [← heq]
   simp [fiberLift, Finsupp.linearCombination_single]
 
-/-- The available generators determine every linear map from a free fiber.-/
+/-- The available generators determine every linear map from a free fiber.
+@isnad1 id=eq.1h7v.s10.6e7c6badbe0e from=translated src=- shape=af865420 vocab=3e9fd458
+-/
 theorem fiberLift_unique {V : Type*} [AddCommGroup V] [Module R V]
     (a : P) (v : {g : W.Carrier // W.grade g ≤ a} → V)
     (f : fiber (R := R) W a →ₗ[R] V)
@@ -186,7 +198,9 @@ def lift (M : PModule.{u,v,max u w} R P)
         exact (congrArg (fun q => q (s g))
           (structureMapLinear_comp M h (leOfHom f))).symm
 
-/-- The natural extension maps a generator to its chosen image at birth.-/
+/-- The natural extension maps a generator to its chosen image at birth.
+@isnad1 id=eq.0h6v.s9.d64e7b63dbd9 from=translated src=- shape=7b3b3a96 vocab=153a5e84
+-/
 @[simp] theorem lift_birth (M : PModule.{u,v,max u w} R P)
     (s : ∀ g : W.Carrier, M.obj (W.grade g)) (g : W.Carrier) :
     (lift (R := R) W M s).app (W.grade g) (birth (R := R) W g) = s g := by
@@ -196,7 +210,9 @@ def lift (M : PModule.{u,v,max u w} R P)
   simp
 
 /-- A natural map out of the free module is fixed by its values on the
-generators at their birth grades.-/
+generators at their birth grades.
+@isnad1 id=eq.1h6v.s9.317854cc0768 from=translated src=- shape=95ce7aa8 vocab=15512954
+-/
 theorem lift_unique (M : PModule.{u,v,max u w} R P)
     (s : ∀ g : W.Carrier, M.obj (W.grade g))
     (f : module (R := R) W ⟶ M)
@@ -220,7 +236,9 @@ theorem lift_unique (M : PModule.{u,v,max u w} R P)
   simpa [structureMapLinear, structureMap, hf g] using this
 
 /-- Maps out of a graded free module lift through a natural transformation
-whose every component is surjective. No finite-generator assumption is needed.-/
+whose every component is surjective. No finite-generator assumption is needed.
+@isnad1 id=ex.1h7v.s9.2acaf54aab7b from=translated src=- shape=68d14f14 vocab=f71d932f
+-/
 theorem exists_lift_of_surjective
     {M N : PModule.{u,v,max u w} R P} (ρ : N ⟶ M)
     (hρ : ∀ a, Function.Surjective (ρ.app a))
@@ -244,7 +262,9 @@ theorem exists_lift_of_surjective
   exact h.trans (lift_unique (R := R) W M _ f (fun _ => rfl)).symm
 
 /-- Two lifts of the same map differ by an element of the cover kernel on
-each graded generator.-/
+each graded generator.
+@isnad1 id=mem.2h10v.s10.1ed859abd2a6 from=translated src=- shape=b5e3443d vocab=f209e908
+-/
 theorem sub_lifts_mem_ker
     {M N : PModule.{u,v,max u w} R P} (ρ : N ⟶ M)
     (f : module (R := R) W ⟶ M)

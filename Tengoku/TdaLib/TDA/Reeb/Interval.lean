@@ -51,17 +51,35 @@ instance : SetLike OpenInterval ℝ :=
 
 instance : PartialOrder OpenInterval := .ofSetLike OpenInterval ℝ
 
+/--
+@isnad1 id=eq.1h2v.s4.f9d8e77a38bf from=translated src=- shape=ddde6aa2 vocab=db73c242
+-/
 @[ext] theorem ext {I J : OpenInterval} (h : ∀ x, x ∈ I ↔ x ∈ J) : I = J := SetLike.ext h
 
+/--
+@isnad1 id=iff.2h2v.s5.087b3bbb6d65 from=translated src=- shape=4a1ef95f vocab=39e1b281
+-/
 @[simp] theorem mem_mk {s : Set ℝ} {h₁ h₂} {x : ℝ} :
     x ∈ (⟨s, h₁, h₂⟩ : OpenInterval) ↔ x ∈ s := Iff.rfl
 
+/--
+@isnad1 id=eq.2h1v.s4.677967c9a3a5 from=translated src=- shape=3372b4c7 vocab=51ce90b8
+-/
 @[simp] theorem coe_mk {s : Set ℝ} {h₁ h₂} : ((⟨s, h₁, h₂⟩ : OpenInterval) : Set ℝ) = s := rfl
 
+/--
+@isnad1 id=isopen.0h1v.s3.450840af894e from=translated src=- shape=16c00ebf vocab=6d6342c0
+-/
 theorem isOpen (I : OpenInterval) : IsOpen (I : Set ℝ) := I.isOpen'
 
+/--
+@isnad1 id=ordconne.0h1v.s3.824f8d8eb3af from=translated src=- shape=16c00ebf vocab=52b1474c
+-/
 theorem ordConnected (I : OpenInterval) : (I : Set ℝ).OrdConnected := I.ordConnected'
 
+/--
+@isnad1 id=iff.0h2v.s4.89f47718fac2 from=translated src=- shape=47d18fbc vocab=e2103bb4
+-/
 theorem le_iff_subset {I J : OpenInterval} : I ≤ J ↔ (I : Set ℝ) ⊆ J :=
   SetLike.coe_subset_coe.symm
 
@@ -70,7 +88,13 @@ theorem le_iff_subset {I J : OpenInterval} : I ≤ J ↔ (I : Set ℝ) ⊆ J :=
 instance : Bot OpenInterval := ⟨⟨∅, isOpen_empty, ordConnected_empty⟩⟩
 instance : Top OpenInterval := ⟨⟨univ, isOpen_univ, ordConnected_univ⟩⟩
 
+/--
+@isnad1 id=eq.0h0v.s3.1bafc43a3373 from=translated src=- shape=15f06069 vocab=ff50380e
+-/
 @[simp] theorem coe_bot : ((⊥ : OpenInterval) : Set ℝ) = ∅ := rfl
+/--
+@isnad1 id=eq.0h0v.s3.06c347264065 from=translated src=- shape=e16ba0a8 vocab=182b64b6
+-/
 @[simp] theorem coe_top : ((⊤ : OpenInterval) : Set ℝ) = univ := rfl
 
 instance : OrderBot OpenInterval where
@@ -86,8 +110,17 @@ def ioi (a : ℝ) : OpenInterval := ⟨Ioi a, isOpen_Ioi, ordConnected_Ioi⟩
 /-- Open lower ray `(-∞, b)`.-/
 def iio (b : ℝ) : OpenInterval := ⟨Iio b, isOpen_Iio, ordConnected_Iio⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.a7618c44253f from=translated src=- shape=46bac0fd vocab=8c99659f
+-/
 @[simp] theorem coe_ioo (a b : ℝ) : (ioo a b : Set ℝ) = Ioo a b := rfl
+/--
+@isnad1 id=eq.0h1v.s3.aa897563bb3a from=translated src=- shape=2e6dae47 vocab=68d1b89f
+-/
 @[simp] theorem coe_ioi (a : ℝ) : (ioi a : Set ℝ) = Ioi a := rfl
+/--
+@isnad1 id=eq.0h1v.s3.9021a522a260 from=translated src=- shape=2e6dae47 vocab=4347ab83
+-/
 @[simp] theorem coe_iio (b : ℝ) : (iio b : Set ℝ) = Iio b := rfl
 
 /-- Binary intersection is the meet of the inclusion order. The join is not provided:
@@ -99,6 +132,9 @@ instance : SemilatticeInf OpenInterval where
   inf_le_right _ _ := le_iff_subset.2 inter_subset_right
   le_inf _ _ _ h₁ h₂ := le_iff_subset.2 (subset_inter (le_iff_subset.1 h₁) (le_iff_subset.1 h₂))
 
+/--
+@isnad1 id=eq.0h2v.s5.b2ed4c926571 from=translated src=- shape=226ba417 vocab=c1c64234
+-/
 @[simp] theorem coe_inf (I J : OpenInterval) : ((I ⊓ J : OpenInterval) : Set ℝ) = (I : Set ℝ) ∩ (J : Set ℝ) := rfl
 
 /-! ### Endpoint encoding over `EReal` -/
@@ -109,6 +145,9 @@ def ofEReal (a b : EReal) : OpenInterval where
   isOpen' := isOpen_Ioo.preimage continuous_coe_real_ereal
   ordConnected' := (ordConnected_Ioo (a := a) (b := b)).preimage_mono EReal.coe_strictMono.monotone
 
+/--
+@isnad1 id=iff.0h3v.s5.a43012c14095 from=translated src=- shape=c14b8844 vocab=c822739f
+-/
 @[simp] theorem mem_ofEReal {a b : EReal} {x : ℝ} :
     x ∈ ofEReal a b ↔ a < (x : EReal) ∧ (x : EReal) < b := Iff.rfl
 
@@ -117,7 +156,9 @@ noncomputable def lower (I : OpenInterval) : EReal := sInf ((↑) '' (I : Set �
 /-- Upper endpoint in `EReal` (`⊥` for the empty set).-/
 noncomputable def upper (I : OpenInterval) : EReal := sSup ((↑) '' (I : Set ℝ))
 
-/-- Every object is recovered from its `EReal` endpoints (including `∅`, rays and `ℝ`).-/
+/-- Every object is recovered from its `EReal` endpoints (including `∅`, rays and `ℝ`).
+@isnad1 id=eq.0h1v.s3.3856dc7d19d5 from=translated src=- shape=4eb47a10 vocab=06ab311b
+-/
 theorem ofEReal_lower_upper (I : OpenInterval) : ofEReal I.lower I.upper = I := by
   ext x
   simp only [mem_ofEReal, lower, upper]
@@ -137,6 +178,9 @@ theorem ofEReal_lower_upper (I : OpenInterval) : ofEReal I.lower I.upper = I := 
     · exact EReal.coe_lt_coe_iff.2 (by linarith)
     · exact EReal.coe_lt_coe_iff.2 (by linarith)
 
+/--
+@isnad1 id=ex.0h1v.s4.6d814e97ea5a from=translated src=- shape=9007d79b vocab=29fa5472
+-/
 theorem exists_eq_ofEReal (I : OpenInterval) : ∃ a b : EReal, I = ofEReal a b :=
   ⟨_, _, (ofEReal_lower_upper I).symm⟩
 
@@ -145,17 +189,31 @@ theorem exists_eq_ofEReal (I : OpenInterval) : ∃ a b : EReal, I = ofEReal a b 
 /-- The underlying open set.-/
 def toOpens (I : OpenInterval) : TopologicalSpace.Opens ℝ := ⟨I, I.isOpen⟩
 
+/--
+@isnad1 id=eq.0h1v.s4.eb6bc6712a6b from=translated src=- shape=df77c9ce vocab=f1585e11
+-/
 @[simp] theorem coe_toOpens (I : OpenInterval) : ((toOpens I : Set ℝ)) = I := rfl
 
+/--
+@isnad1 id=monotone.0h0v.s4.24e5394014df from=translated src=- shape=4b736592 vocab=ee4c4926
+-/
 theorem toOpens_monotone : Monotone toOpens := fun _ _ h => le_iff_subset.1 h
 
+/--
+@isnad1 id=iff.0h2v.s5.ed991a478fb4 from=translated src=- shape=e651975d vocab=d5fc3e39
+-/
 theorem toOpens_le_iff {I J : OpenInterval} : toOpens I ≤ toOpens J ↔ I ≤ J := by
   rw [le_iff_subset, ← SetLike.coe_subset_coe]; rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.104601f4f07a from=translated src=- shape=568290c4 vocab=6a437bac
+-/
 theorem toOpens_inf (I J : OpenInterval) : toOpens (I ⊓ J) = toOpens I ⊓ toOpens J := by
   ext x; simp [toOpens]
 
-/-- The union equation of an interval cover transfers to `Opens ℝ`.-/
+/-- The union equation of an interval cover transfers to `Opens ℝ`.
+@isnad1 id=eq.1h3v.s6.78adaf1c0560 from=translated src=- shape=399e58f6 vocab=3ede47b1
+-/
 theorem iSup_toOpens_eq {ι : Sort*} (I : ι → OpenInterval) (U : OpenInterval)
     (hU : ⋃ i, (I i : Set ℝ) = U) : ⨆ i, toOpens (I i) = toOpens U := by
   ext x; simp [toOpens, ← hU]
@@ -168,6 +226,9 @@ def toOpensFunctor : OpenInterval ⥤ TopologicalSpace.Opens ℝ := toOpens_mono
 /-- `T_ε s = s + [-ε, ε]` on sets.-/
 def thickenSet (ε : ℝ≥0) (s : Set ℝ) : Set ℝ := s + Icc (-(ε : ℝ)) ε
 
+/--
+@isnad1 id=iff.0h3v.s5.87bb2b7d03f4 from=translated src=- shape=1fc1378d vocab=c4ad7dcd
+-/
 theorem mem_thickenSet {ε : ℝ≥0} {s : Set ℝ} {x : ℝ} :
     x ∈ thickenSet ε s ↔ ∃ y ∈ s, |x - y| ≤ ε := by
   simp only [thickenSet, mem_add, mem_Icc, abs_le]
@@ -177,9 +238,15 @@ theorem mem_thickenSet {ε : ℝ≥0} {s : Set ℝ} {x : ℝ} :
   · rintro ⟨y, hy, h₁, h₂⟩
     exact ⟨y, hy, x - y, ⟨h₁, h₂⟩, by ring⟩
 
+/--
+@isnad1 id=isopen.1h2v.s4.228d3e7ab038 from=translated src=- shape=f5706cf9 vocab=69235e3a
+-/
 theorem isOpen_thickenSet {s : Set ℝ} (hs : IsOpen s) (ε : ℝ≥0) : IsOpen (thickenSet ε s) :=
   hs.add_right
 
+/--
+@isnad1 id=ordconne.1h2v.s4.bac498a4c625 from=translated src=- shape=f5706cf9 vocab=7063bea3
+-/
 theorem ordConnected_thickenSet {s : Set ℝ} (hs : s.OrdConnected) (ε : ℝ≥0) :
     (thickenSet ε s).OrdConnected :=
   convex_iff_ordConnected.1 ((convex_iff_ordConnected.2 hs).add (convex_Icc _ _))
@@ -188,15 +255,27 @@ theorem ordConnected_thickenSet {s : Set ℝ} (hs : s.OrdConnected) (ε : ℝ≥
 def thicken (ε : ℝ≥0) (I : OpenInterval) : OpenInterval :=
   ⟨thickenSet ε I, isOpen_thickenSet I.isOpen ε, ordConnected_thickenSet I.ordConnected ε⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.6cae24c27f73 from=translated src=- shape=b230b275 vocab=eca5b0bd
+-/
 @[simp] theorem coe_thicken (ε : ℝ≥0) (I : OpenInterval) :
     (thicken ε I : Set ℝ) = (I : Set ℝ) + Icc (-(ε : ℝ)) ε := rfl
 
+/--
+@isnad1 id=iff.0h3v.s5.ece04bb21696 from=translated src=- shape=20d5f42a vocab=d34221db
+-/
 theorem mem_thicken {ε : ℝ≥0} {I : OpenInterval} {x : ℝ} :
     x ∈ thicken ε I ↔ ∃ y ∈ I, |x - y| ≤ ε := mem_thickenSet
 
+/--
+@isnad1 id=eq.0h1v.s3.15cb0069de2d from=translated src=- shape=5b483ac0 vocab=20c002ee
+-/
 @[simp] theorem thicken_zero (I : OpenInterval) : thicken 0 I = I := by
   ext x; simp [mem_thicken, sub_eq_zero]
 
+/--
+@isnad1 id=eq.0h1v.s3.1a0fbeb6bc8f from=translated src=- shape=c3797492 vocab=5820dcf9
+-/
 @[simp] theorem thicken_bot (ε : ℝ≥0) : thicken ε ⊥ = ⊥ := by
   ext x
   rw [mem_thicken]
@@ -204,25 +283,42 @@ theorem mem_thicken {ε : ℝ≥0} {I : OpenInterval} {x : ℝ} :
   · rintro ⟨y, hy, -⟩; exact (notMem_empty y hy).elim
   · intro h; exact (notMem_empty x h).elim
 
+/--
+@isnad1 id=eq.0h1v.s3.3a28683be8e3 from=translated src=- shape=c3797492 vocab=c4245eca
+-/
 @[simp] theorem thicken_top (ε : ℝ≥0) : thicken ε ⊤ = ⊤ := by
   ext x; simp only [mem_thicken]; exact ⟨fun _ => trivial, fun _ => ⟨x, trivial, by simp⟩⟩
 
+/--
+@isnad1 id=le.0h2v.s3.082fbe5b92e1 from=translated src=- shape=58a504ac vocab=1ed9fc40
+-/
 theorem le_thicken (ε : ℝ≥0) (I : OpenInterval) : I ≤ thicken ε I := fun x hx =>
   mem_thicken.2 ⟨x, hx, by simp⟩
 
+/--
+@isnad1 id=le.1h3v.s4.d6608b2b2633 from=translated src=- shape=008790cb vocab=1ed9fc40
+-/
 theorem thicken_mono {ε : ℝ≥0} {I J : OpenInterval} (h : I ≤ J) : thicken ε I ≤ thicken ε J :=
   fun x hx => by
     obtain ⟨y, hy, hxy⟩ := mem_thicken.1 hx
     exact mem_thicken.2 ⟨y, h hy, hxy⟩
 
+/--
+@isnad1 id=monotone.0h1v.s3.4ee16762d9b8 from=translated src=- shape=8735051e vocab=21517821
+-/
 theorem thicken_monotone (ε : ℝ≥0) : Monotone (thicken ε) := fun _ _ h => thicken_mono h
 
+/--
+@isnad1 id=le.1h3v.s4.01defa4f02c8 from=translated src=- shape=c88a83bf vocab=1ed9fc40
+-/
 theorem thicken_le_thicken_of_le {ε δ : ℝ≥0} (h : ε ≤ δ) (I : OpenInterval) :
     thicken ε I ≤ thicken δ I := fun x hx => by
   obtain ⟨y, hy, hxy⟩ := mem_thicken.1 hx
   exact mem_thicken.2 ⟨y, hy, hxy.trans (by exact_mod_cast h)⟩
 
-/-- Semigroup law: `T_ε (T_δ I) = T_(ε+δ) I`.-/
+/-- Semigroup law: `T_ε (T_δ I) = T_(ε+δ) I`.
+@isnad1 id=eq.0h3v.s4.4edf0a1d5894 from=translated src=- shape=24555d7c vocab=c3dd7c7d
+-/
 theorem thicken_thicken (ε δ : ℝ≥0) (I : OpenInterval) :
     thicken ε (thicken δ I) = thicken (ε + δ) I := by
   apply SetLike.coe_injective
@@ -230,17 +326,25 @@ theorem thicken_thicken (ε δ : ℝ≥0) (I : OpenInterval) :
     Set.Icc_add_Icc (by simp : -(δ : ℝ) ≤ δ) (by simp : -(ε : ℝ) ≤ ε)]
   congr 2 <;> push_cast <;> ring
 
-/-- The other composition order.-/
+/-- The other composition order.
+@isnad1 id=eq.0h3v.s4.57970fafa51f from=translated src=- shape=a8c1b836 vocab=c3dd7c7d
+-/
 theorem thicken_thicken' (ε δ : ℝ≥0) (I : OpenInterval) :
     thicken δ (thicken ε I) = thicken (ε + δ) I := by
   rw [thicken_thicken, add_comm]
 
+/--
+@isnad1 id=eq.0h3v.s4.30f1c53d5c74 from=translated src=- shape=9a3e96fd vocab=20c002ee
+-/
 theorem thicken_comm (ε δ : ℝ≥0) (I : OpenInterval) :
     thicken ε (thicken δ I) = thicken δ (thicken ε I) := by
   rw [thicken_thicken, thicken_thicken, add_comm]
 
 /-! ### Endpoint formulas -/
 
+/--
+@isnad1 id=eq.1h3v.s5.d47a6217aff0 from=translated src=- shape=ddac1db3 vocab=012cf2c8
+-/
 theorem thicken_ioo {a b : ℝ} (hab : a < b) (ε : ℝ≥0) :
     thicken ε (ioo a b) = ioo (a - ε) (b + ε) := by
   ext x
@@ -265,6 +369,9 @@ theorem thicken_ioo {a b : ℝ} (hab : a < b) (ε : ℝ≥0) :
     · rw [not_le] at hxa hxb
       exact ⟨x, ⟨hxa, hxb⟩, by linarith [ε.coe_nonneg], by linarith [ε.coe_nonneg]⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.180640a86851 from=translated src=- shape=39d2cd37 vocab=94b067a4
+-/
 theorem thicken_ioi (a : ℝ) (ε : ℝ≥0) : thicken ε (ioi a) = ioi (a - ε) := by
   ext x
   rw [mem_thicken]
@@ -277,6 +384,9 @@ theorem thicken_ioi (a : ℝ) (ε : ℝ≥0) : thicken ε (ioi a) = ioi (a - ε)
     · exact ⟨x, hxa, by linarith [ε.coe_nonneg], by linarith [ε.coe_nonneg]⟩
     · exact ⟨x + ε, by linarith, by linarith, by linarith [ε.coe_nonneg]⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.c8bcf9273834 from=translated src=- shape=39d2cd37 vocab=07a2536c
+-/
 theorem thicken_iio (b : ℝ) (ε : ℝ≥0) : thicken ε (iio b) = iio (b + ε) := by
   ext x
   rw [mem_thicken]
@@ -292,7 +402,9 @@ theorem thicken_iio (b : ℝ) (ε : ℝ≥0) : thicken ε (iio b) = iio (b + ε)
 /-! ### Comparison with `Metric.thickening` -/
 
 /-- For open `s` and `ε > 0`, `s + [-ε, ε]` is mathlib's open thickening. Fails at `ε = 0`
-(`Metric.thickening 0 s = ∅`), so `thickenSet` is not definitionally `Metric.thickening`.-/
+(`Metric.thickening 0 s = ∅`), so `thickenSet` is not definitionally `Metric.thickening`.
+@isnad1 id=eq.2h2v.s5.a6e3b9454b41 from=translated src=- shape=6a0252b2 vocab=9b782205
+-/
 theorem thickenSet_eq_thickening {s : Set ℝ} (hs : IsOpen s) {ε : ℝ≥0} (hε : 0 < ε) :
     thickenSet ε s = Metric.thickening ε s := by
   have hε' : (0 : ℝ) < ε := hε
@@ -321,6 +433,9 @@ theorem thickenSet_eq_thickening {s : Set ℝ} (hs : IsOpen s) {ε : ℝ≥0} (h
     rw [Real.dist_eq] at hxy
     exact mem_thickenSet.2 ⟨y, hy, hxy.le⟩
 
+/--
+@isnad1 id=eq.1h2v.s5.21141311a76d from=translated src=- shape=0407e7b3 vocab=16b3f5e9
+-/
 theorem coe_thicken_eq_thickening (I : OpenInterval) {ε : ℝ≥0} (hε : 0 < ε) :
     (thicken ε I : Set ℝ) = Metric.thickening ε I :=
   thickenSet_eq_thickening I.isOpen hε
@@ -330,6 +445,9 @@ theorem coe_thicken_eq_thickening (I : OpenInterval) {ε : ℝ≥0} (hε : 0 < �
 /-- Thickening as an endofunctor of the interval category.-/
 def thickenFunctor (ε : ℝ≥0) : OpenInterval ⥤ OpenInterval := (thicken_monotone ε).functor
 
+/--
+@isnad1 id=eq.0h2v.s4.c2479fd82648 from=translated src=- shape=73cc4bc2 vocab=eeb10375
+-/
 @[simp] theorem thickenFunctor_obj (ε : ℝ≥0) (I : OpenInterval) :
     (thickenFunctor ε).obj I = thicken ε I := rfl
 
@@ -350,7 +468,9 @@ def thickenCompIso (ε δ : ℝ≥0) :
     thickenFunctor ε ⋙ thickenFunctor δ ≅ thickenFunctor (ε + δ) :=
   NatIso.ofComponents (fun I => eqToIso (thicken_thicken' ε δ I))
 
-/-- Coherence is automatic in the thin category: e.g. the unit of `ε + δ` factors.-/
+/-- Coherence is automatic in the thin category: e.g. the unit of `ε + δ` factors.
+@isnad1 id=eq.0h3v.s8.77c1ab62bb25 from=translated src=- shape=b38bc6b2 vocab=742d47bd
+-/
 theorem thickenUnit_comp (ε δ : ℝ≥0) (I : OpenInterval) :
     (thickenUnit ε).app I ≫ (thickenUnit δ).app (thicken ε I) ≫
       ((thickenCompIso ε δ).hom.app I) = (thickenUnit (ε + δ)).app I :=

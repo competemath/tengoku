@@ -53,6 +53,9 @@ projection onto the first coordinate.-/
 def compositeIdentity : PModule.{u,0,u} k (Fin 3) :=
   threeStage (LinearMap.fst k k k)
 
+/--
+@isnad1 id=finitedi.0h2v.s7.82db3ff7572b from=translated src=- shape=80115c00 vocab=26cf6885
+-/
 instance compositeZeroFD (i : Fin 3) :
     FiniteDimensional k ((compositeZero (k := k)).obj i) := by
   fin_cases i
@@ -60,6 +63,9 @@ instance compositeZeroFD (i : Fin 3) :
   · change FiniteDimensional k (k × k); infer_instance
   · change FiniteDimensional k k; infer_instance
 
+/--
+@isnad1 id=finitedi.0h2v.s7.ec19a59f4261 from=translated src=- shape=80115c00 vocab=eef78420
+-/
 instance compositeIdentityFD (i : Fin 3) :
     FiniteDimensional k ((compositeIdentity (k := k)).obj i) := by
   fin_cases i
@@ -67,21 +73,27 @@ instance compositeIdentityFD (i : Fin 3) :
   · change FiniteDimensional k (k × k); infer_instance
   · change FiniteDimensional k k; infer_instance
 
-/-- Both first transitions are the inclusion `x ↦ (x, 0)`.-/
+/-- Both first transitions are the inclusion `x ↦ (x, 0)`.
+@isnad1 id=and.0h1v.s10.a928fbf0686a from=translated src=- shape=a21cbd76 vocab=144bdd42
+-/
 theorem first_maps :
     structureMapLinear (compositeZero (k := k)) (show (0 : Fin 3) ≤ 1 by decide) =
       LinearMap.inl k k k ∧
     structureMapLinear (compositeIdentity (k := k)) (show (0 : Fin 3) ≤ 1 by decide) =
       LinearMap.inl k k k := ⟨rfl, rfl⟩
 
-/-- The second transitions are the second and first projections.-/
+/-- The second transitions are the second and first projections.
+@isnad1 id=and.0h1v.s10.739f50b70fff from=translated src=- shape=5d574716 vocab=51f79a0e
+-/
 theorem second_maps :
     structureMapLinear (compositeZero (k := k)) (show (1 : Fin 3) ≤ 2 by decide) =
       LinearMap.snd k k k ∧
     structureMapLinear (compositeIdentity (k := k)) (show (1 : Fin 3) ≤ 2 by decide) =
       LinearMap.fst k k k := ⟨rfl, rfl⟩
 
-/-- The three fiber dimensions of both modules are `1, 2, 1`.-/
+/-- The three fiber dimensions of both modules are `1, 2, 1`.
+@isnad1 id=and.0h2v.s9.6d1dc93cdd8a from=translated src=- shape=dba2adaa vocab=7a60026f
+-/
 theorem stage_dimensions (i : Fin 3) :
     Module.finrank k ((compositeZero (k := k)).obj i) = (if i = 1 then 2 else 1) ∧
     Module.finrank k ((compositeIdentity (k := k)).obj i) = (if i = 1 then 2 else 1) := by
@@ -93,7 +105,9 @@ theorem stage_dimensions (i : Fin 3) :
   · change Module.finrank k k = 1 ∧ Module.finrank k k = 1
     simp [Module.finrank_self]
 
-/-- Both first transitions have rank one.-/
+/-- Both first transitions have rank one.
+@isnad1 id=and.0h1v.s6.9686f99d16f9 from=translated src=- shape=8e2d08ab vocab=004440f0
+-/
 theorem first_ranks :
     structureMapRank (compositeZero (k := k)) 0 1 (by decide) = 1 ∧
     structureMapRank (compositeIdentity (k := k)) 0 1 (by decide) = 1 := by
@@ -101,7 +115,9 @@ theorem first_ranks :
     change Module.finrank k (LinearMap.range (LinearMap.inl k k k)) = 1 <;>
     rw [LinearMap.finrank_range_of_inj LinearMap.inl_injective, Module.finrank_self]
 
-/-- Both second transitions have rank one.-/
+/-- Both second transitions have rank one.
+@isnad1 id=and.0h1v.s6.9bfd5b46468d from=translated src=- shape=8e2d08ab vocab=004440f0
+-/
 theorem second_ranks :
     structureMapRank (compositeZero (k := k)) 1 2 (by decide) = 1 ∧
     structureMapRank (compositeIdentity (k := k)) 1 2 (by decide) = 1 := by
@@ -113,7 +129,9 @@ theorem second_ranks :
     rw [LinearMap.range_eq_top.mpr LinearMap.fst_surjective, finrank_top,
       Module.finrank_self]
 
-/-- The composites have rank zero and one, respectively.-/
+/-- The composites have rank zero and one, respectively.
+@isnad1 id=and.0h1v.s6.abec80b68f57 from=translated src=- shape=8e2d08ab vocab=004440f0
+-/
 theorem composite_ranks :
     structureMapRank (compositeZero (k := k)) 0 2 (by decide) = 0 ∧
     structureMapRank (compositeIdentity (k := k)) 0 2 (by decide) = 1 := by
@@ -129,7 +147,9 @@ theorem composite_ranks :
       ext; rfl
     rw [h, LinearMap.range_id, finrank_top, Module.finrank_self]
 
-/-- The two inputs agree at every stage dimension and at both adjacent-map ranks.-/
+/-- The two inputs agree at every stage dimension and at both adjacent-map ranks.
+@isnad1 id=and.0h1v.s9.a25ffc963808 from=translated src=- shape=0791a719 vocab=dd7c9d4c
+-/
 theorem dimensions_and_adjacent_ranks_agree :
     (∀ i : Fin 3, Module.finrank k ((compositeZero (k := k)).obj i) =
       Module.finrank k ((compositeIdentity (k := k)).obj i)) ∧
@@ -141,7 +161,9 @@ theorem dimensions_and_adjacent_ranks_agree :
   · exact (first_ranks (k := k)).1.trans (first_ranks (k := k)).2.symm
   · exact (second_ranks (k := k)).1.trans (second_ranks (k := k)).2.symm
 
-/-- Equal fiber dimensions and adjacent ranks do not imply natural isomorphism.-/
+/-- Equal fiber dimensions and adjacent ranks do not imply natural isomorphism.
+@isnad1 id=not.0h1v.s6.22b93058d313 from=translated src=- shape=1e2ad73c vocab=453c3c24
+-/
 theorem not_iso : ¬ Nonempty (compositeZero (k := k) ≅ compositeIdentity (k := k)) := by
   rintro ⟨e⟩
   have h := structureMapRank_eq_of_iso e (0 : Fin 3) 2 (by decide)
@@ -165,7 +187,9 @@ private theorem self_rank (M : PModule.{u,0,u} k (Fin 3))
   unfold structureMapRank
   rw [structureMapLinear_self, LinearMap.range_id, finrank_top]
 
-/-- The canonical barcode of the module with zero composite.-/
+/-- The canonical barcode of the module with zero composite.
+@isnad1 id=eq.0h1v.s4.68719d129354 from=translated src=- shape=114678c2 vocab=232c9b4c
+-/
 theorem zero_rankBarcode : rankBarcode (compositeZero (k := k)) = zeroBarcode := by
   have h : rankBarcode (compositeZero (k := k)) =
       rankBarcode (barcodeModule (k := k) zeroBarcode) := by
@@ -190,7 +214,9 @@ theorem zero_rankBarcode : rankBarcode (compositeZero (k := k)) = zeroBarcode :=
       decide
   simpa only [rankBarcode_barcodeModule] using h
 
-/-- The canonical barcode of the module with identity composite.-/
+/-- The canonical barcode of the module with identity composite.
+@isnad1 id=eq.0h1v.s4.171e325c524e from=translated src=- shape=114678c2 vocab=ec2b5e57
+-/
 theorem identity_rankBarcode :
     rankBarcode (compositeIdentity (k := k)) = identityBarcode := by
   have h : rankBarcode (compositeIdentity (k := k)) =
@@ -230,7 +256,9 @@ noncomputable def identity_decompositionIso :
   rankBarcodeIso (compositeIdentity (k := k)) ≪≫
     eqToIso (congrArg (barcodeModule (k := k)) (identity_rankBarcode (k := k)))
 
-/-- Both stated interval decompositions exist as all-map natural isomorphisms.-/
+/-- Both stated interval decompositions exist as all-map natural isomorphisms.
+@isnad1 id=and.0h1v.s7.6115d0936344 from=translated src=- shape=9de0e87f vocab=06a4c234
+-/
 theorem decompositions :
     Nonempty (compositeZero (k := k) ≅ barcodeModule (k := k) zeroBarcode) ∧
     Nonempty (compositeIdentity (k := k) ≅ barcodeModule (k := k) identityBarcode) :=

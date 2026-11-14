@@ -27,7 +27,9 @@ def finiteRestriction (M : OccurrenceMatching I J E F) :
   essential := Equiv.refl _
 
 /-- A finite sum of matching charges is bounded by their number times the full maximum.
-The full cost is finite by `occurrenceMatching_cost_lt_top`, even with essential bars.-/
+The full cost is finite by `occurrenceMatching_cost_lt_top`, even with essential bars.
+@isnad1 id=le.0h9v.s6.8f8d93e49fa8 from=translated src=- shape=90054042 vocab=f0c61386
+-/
 theorem totalFiniteCost_finiteRestriction_le_card_mul_cost
     (M : OccurrenceMatching I J E F) (x : I → ℝ × ℝ) (y : J → ℝ × ℝ)
     (b : E → ℝ) (c : F → ℝ) :
@@ -59,7 +61,9 @@ end OccurrenceMatching
 
 /-- Compare the finite first-order minimum with a finite full bottleneck distance.
 Essential counts may be nonzero; finiteness supplies the optimal full matching.
-The hypothesis prevents the invalid conversion `ENNReal.toReal ⊤ = 0`.-/
+The hypothesis prevents the invalid conversion `ENNReal.toReal ⊤ = 0`.
+@isnad1 id=le.1h2v.s7.a6d4a542ee60 from=translated src=- shape=37b6ac26 vocab=908afca6
+-/
 theorem finiteFirstOrderMatchingCost_le_card_mul_bottleneck
     (D E : Diagram ℝ) (hfinite : bottleneck D E < ⊤) :
     finiteFirstOrderMatchingCost (fun p : D.finiteOccurrences => p.1)

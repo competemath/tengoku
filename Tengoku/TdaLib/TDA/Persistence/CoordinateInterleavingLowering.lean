@@ -24,7 +24,9 @@ namespace CoordinateInterleaving
 variable {R : Type u} [Ring R] {n : ℕ}
   {ε δ : ℝ≥0} {M N : PModule.{u,0,w} R (Fin n → ℝ)}
 
-/-- Increasing a transition parameter factors through the corresponding shift comparison.-/
+/-- Increasing a transition parameter factors through the corresponding shift comparison.
+@isnad1 id=eq.1h5v.s8.b968d1fdb687 from=translated src=- shape=ad1e0ef7 vocab=345802bd
+-/
 theorem transition_inflate (h : ε ≤ δ)
     (M : PModule.{u,0,w} R (Fin n → ℝ)) :
     transition ε M ≫ shiftLE h M = transition δ M := by
@@ -34,7 +36,9 @@ theorem transition_inflate (h : ε ≤ δ)
   rw [← M.map_comp]
   congr 1
 
-/-- Inflating the two maps of a putative interleaving inflates their composite.-/
+/-- Inflating the two maps of a putative interleaving inflates their composite.
+@isnad1 id=eq.1h8v.s11.3a7fa1fd3242 from=translated src=- shape=de281b19 vocab=12e9f5e7
+-/
 theorem inflated_composite (h : ε ≤ δ)
     (f : M ⟶ (shift ε).obj N) (g : N ⟶ (shift ε).obj M) :
     (f ≫ (shift ε).map g ≫ (compIso ε ε M).hom) ≫

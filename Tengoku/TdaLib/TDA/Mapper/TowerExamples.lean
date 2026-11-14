@@ -40,7 +40,9 @@ def selectTrue : Refinement selectorSource selectorTarget where
   subset _ := by simp [selectorSource, selectorTarget]
 
 /-- The two selectors give distinct vertex maps, while the common source point
-witnesses contiguity of their images.-/
+witnesses contiguity of their images.
+@isnad1 id=and.0h0v.s5.a08a78d700f8 from=translated src=- shape=2d046abf vocab=89cf159d
+-/
 theorem distinct_selector_maps_are_contiguous :
     nerveMap selectFalse ≠ nerveMap selectTrue ∧
       Contiguous (nerveMap selectFalse) (nerveMap selectTrue) := by
@@ -72,7 +74,9 @@ def mapToIsolated (b : Bool) : VertexMap (nerve oneSource) (nerve isolatedTarget
     simp [isolatedTarget]
 
 /-- Maps from a singleton source to two distinct isolated vertices are not
-contiguous.-/
+contiguous.
+@isnad1 id=not.0h0v.s4.78c62986d77d from=translated src=- shape=a6bcc738 vocab=ab9dd0b8
+-/
 theorem isolated_vertex_maps_are_not_contiguous :
     ¬ Contiguous (mapToIsolated false) (mapToIsolated true) := by
   intro h
@@ -89,7 +93,9 @@ theorem isolated_vertex_maps_are_not_contiguous :
 
 /-- An empty source complex makes every pair of maps contiguous, with no
 inhabitedness assumption on either ambient vertex type.  The target may have
-arbitrary unsupported ghost vertices.-/
+arbitrary unsupported ghost vertices.
+@isnad1 id=contiguo.0h5v.s5.61c97c86c3c3 from=translated src=- shape=291e7b7d vocab=0adec003
+-/
 theorem empty_source_maps_are_contiguous {I : Type*} {J : Type*}
     (L : PreAbstractSimplicialComplex J)
     (a b : VertexMap (⊥ : PreAbstractSimplicialComplex I) L) :
@@ -194,7 +200,9 @@ private theorem firstMiddleMapperMap_apply (b : Bool) :
 
 /-- The direct first-to-last Mapper map is the composite of the two adjacent
 maps, and the first transition collapses the displayed source edge to the
-middle-stage vertex.-/
+middle-stage vertex.
+@isnad1 id=and.0h0v.s9.e8bea013b1ab from=translated src=- shape=7db0d8b1 vocab=e2235b50
+-/
 theorem three_stage_tower_composite_and_collapsing_edge :
     threeStageTower.mapperMap threeStageMap first_le_last =
         VertexMap.comp

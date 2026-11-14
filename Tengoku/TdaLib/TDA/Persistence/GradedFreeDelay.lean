@@ -47,7 +47,9 @@ noncomputable def delayedShiftIso (ε : ℝ≥0)
   inv_hom_id := by apply NatTrans.ext; funext a; apply ModuleCat.hom_ext; rfl
 
 /-- The delayed birth map recovers the supplied shifted map under the canonical
-free-shift identification.-/
+free-shift identification.
+@isnad1 id=eq.0h6v.s10.c1d99b40a668 from=translated src=- shape=e9a10ef6 vocab=b648d01b
+-/
 theorem delayedShiftIso_delaySource (ε : ℝ≥0)
     (W : GradedGenerators.{0,w} (Fin n → ℝ))
     (M : PModule.{u,0,max u w} R (Fin n → ℝ))
@@ -91,7 +93,9 @@ private theorem shift_map_injective (ε : ℝ≥0)
   subst a
   exact congrArg (fun q => q.app b) h
 
-/-- Maps from a delayed free family agree when their shifted maps agree.-/
+/-- Maps from a delayed free family agree when their shifted maps agree.
+@isnad1 id=injectiv.0h5v.s10.29d8c214f70e from=translated src=- shape=ab1b47db vocab=396a88d0
+-/
 theorem delayedShiftIso_postcomp_injective (ε : ℝ≥0)
     (W : GradedGenerators.{0,w} (Fin n → ℝ))
     (M : PModule.{u,0,max u w} R (Fin n → ℝ)) :
@@ -107,7 +111,9 @@ noncomputable def delayedAdvance (ε : ℝ≥0)
       (CoordinateShift.shift ε).obj (module W) :=
   delayedInclusion ε W ≫ CoordinateShift.transition ε (module W)
 
-/-- The canonical free maps compose to the double transition.-/
+/-- The canonical free maps compose to the double transition.
+@isnad1 id=eq.0h4v.s10.aff0fafa04d5 from=translated src=- shape=447c07c1 vocab=360be13e
+-/
 theorem delayedShiftIso_advance (ε : ℝ≥0)
     (W : GradedGenerators.{0,w} (Fin n → ℝ)) :
     (delayedShiftIso (R := R) ε W).hom ≫
@@ -119,6 +125,9 @@ theorem delayedShiftIso_advance (ε : ℝ≥0)
   apply ModuleCat.hom_ext
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.9198f1c4c443 from=translated src=- shape=beb2a78b vocab=16002362
+-/
 theorem sumInl_crossFreeLR (ε : ℝ≥0)
     (W V : GradedGenerators.{0,w} (Fin n → ℝ)) :
     sumInl W (V.shiftGrade (-(ε : ℝ))) ≫ crossFreeLR (R := R) ε W V =
@@ -140,6 +149,9 @@ theorem sumInl_crossFreeLR (ε : ℝ≥0)
   exact (sumInl_generator (R := R) (W.shiftGrade (-(ε : ℝ))) V g
     (by intro i; simp)).symm
 
+/--
+@isnad1 id=eq.0h5v.s10.263ef6de63af from=translated src=- shape=b30c13e0 vocab=850511e7
+-/
 theorem sumInr_crossFreeLR (ε : ℝ≥0)
     (W V : GradedGenerators.{0,w} (Fin n → ℝ)) :
     sumInr W (V.shiftGrade (-(ε : ℝ))) ≫ crossFreeLR (R := R) ε W V =
@@ -165,6 +177,9 @@ theorem sumInr_crossFreeLR (ε : ℝ≥0)
     (by intro i; change V.grade g i ≤ (V.grade g i - -(ε : ℝ)) + (ε : ℝ)
         linarith [ε.coe_nonneg])).symm
 
+/--
+@isnad1 id=eq.0h5v.s10.7e6fe0c8465a from=translated src=- shape=503cb945 vocab=c0688e43
+-/
 theorem sumInl_crossFreeRL (ε : ℝ≥0)
     (W V : GradedGenerators.{0,w} (Fin n → ℝ)) :
     sumInl (W.shiftGrade (-(ε : ℝ))) V ≫ crossFreeRL (R := R) ε W V =
@@ -190,6 +205,9 @@ theorem sumInl_crossFreeRL (ε : ℝ≥0)
     (by intro i; change W.grade g i ≤ (W.grade g i - -(ε : ℝ)) + (ε : ℝ)
         linarith [ε.coe_nonneg])).symm
 
+/--
+@isnad1 id=eq.0h5v.s10.f1ce368f1fdf from=translated src=- shape=56c229e5 vocab=1b850ff8
+-/
 theorem sumInr_crossFreeRL (ε : ℝ≥0)
     (W V : GradedGenerators.{0,w} (Fin n → ℝ)) :
     sumInr (W.shiftGrade (-(ε : ℝ))) V ≫ crossFreeRL (R := R) ε W V =
@@ -212,7 +230,9 @@ theorem sumInr_crossFreeRL (ε : ℝ≥0)
     (by intro i; simp)).symm
 
 /-- The double-shift interleaving law makes the corresponding delayed graph
-relation redundant after composition with the other interleaving map.-/
+relation redundant after composition with the other interleaving map.
+@isnad1 id=eq.0h8v.s10.9b70ab3d0365 from=translated src=- shape=83f6b54a vocab=c1ae4643
+-/
 theorem delaySource_comp_interleaving {ε : ℝ≥0}
     {M N : PModule.{u,0,max u w} R (Fin n → ℝ)}
     (i : CoordinateInterleaving ε M N)
@@ -239,7 +259,9 @@ theorem delaySource_comp_interleaving {ε : ℝ≥0}
       simp only [Functor.map_comp, Category.assoc, CoordinateShift.compIso_naturality]
 
 /-- A delayed relation vanishes after a map exactly when its original shifted
-relation vanishes after the shifted map.-/
+relation vanishes after the shifted map.
+@isnad1 id=iff.0h8v.s10.02630923eeb5 from=translated src=- shape=5243f79d vocab=c89b5f12
+-/
 theorem delaySource_comp_zero_iff (ε : ℝ≥0)
     (W : GradedGenerators.{0,w} (Fin n → ℝ))
     {M N : PModule.{u,0,max u w} R (Fin n → ℝ)}

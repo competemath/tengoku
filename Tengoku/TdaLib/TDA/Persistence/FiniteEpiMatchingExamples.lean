@@ -109,7 +109,9 @@ private theorem single_occurrence (I : FiniteInterval 3)
       occurrence (rankBarcode (intervalModule (k := ℚ) I)) a ∈ B) (single_barcode I)) hmem
   simpa using hmem'
 
-/-- Truncation at a finite death embeds the target bar back into its longer source bar.-/
+/-- Truncation at a finite death embeds the target bar back into its longer source bar.
+@isnad1 id=ex.0h0v.s9.5946492c8d42 from=translated src=- shape=8d493c4e vocab=89a582bf
+-/
 theorem unequal_death_embedding :
     ∃ i : BarcodeOccurrence 3 (rankBarcode (intervalModule (k := ℚ) middle)),
       (occurrence _ i).death = 2 ∧
@@ -122,13 +124,17 @@ theorem unequal_death_embedding :
     congrArg FiniteInterval.death (single_occurrence long _),
     congrArg FiniteInterval.birth (single_occurrence long _)⟩
 
-/-- Nonidentity epimorphisms through three distinct deaths compose in the reverse order.-/
+/-- Nonidentity epimorphisms through three distinct deaths compose in the reverse order.
+@isnad1 id=eq.0h0v.s8.1041546c44f4 from=translated src=- shape=eb417a25 vocab=d931635c
+-/
 theorem three_death_composition :
     epiEmbedding (first ≫ second) (fun i => (second_surjective i).comp (first_surjective i)) =
       (epiEmbedding second second_surjective).trans (epiEmbedding first first_surjective) :=
   epiEmbedding_comp first second first_surjective second_surjective
 
-/-- A positive birth exercises the predecessor-image quotient and its surjection.-/
+/-- A positive birth exercises the predecessor-image quotient and its surjection.
+@isnad1 id=and.0h0v.s14.0c4999d5dc8b from=translated src=- shape=d1441dd7 vocab=6a87fa2d
+-/
 theorem positive_birth_quotient :
     birthSuffixCount (rankBarcode (intervalModule (k := ℚ) laterShort)) 1 1 = 1 ∧
     birthSuffixCount (rankBarcode (intervalModule (k := ℚ) laterShort)) 1 1 =
@@ -186,7 +192,9 @@ private theorem dropLast_surjective (i : Fin 1) : Function.Surjective (dropLast.
   change (if h : a.val < 2 then y ⟨a.val, h⟩ else 0) = y a
   rw [dite_eq_left a.isLt]
 
-/-- A genuine dimension-dropping epi retains two distinct repeated-bar occurrence labels.-/
+/-- A genuine dimension-dropping epi retains two distinct repeated-bar occurrence labels.
+@isnad1 id=ex.0h0v.s8.46de86f796fe from=translated src=- shape=036d8456 vocab=32940856
+-/
 theorem duplicate_occurrences_distinct :
     ∃ i j : BarcodeOccurrence 1 (rankBarcode (copies 2)),
       i ≠ j ∧ epiEmbedding dropLast dropLast_surjective i ≠
@@ -198,7 +206,9 @@ theorem duplicate_occurrences_distinct :
   have hne : i ≠ j := by intro h; have := congrArg Fin.val h; simp [i, j] at this
   exact ⟨i, j, hne, fun h => hne ((epiEmbedding _ _).injective h)⟩
 
-/-- The initial-stage image includes terminal repeated bars, whose embedded deaths remain terminal.-/
+/-- The initial-stage image includes terminal repeated bars, whose embedded deaths remain terminal.
+@isnad1 id=and.0h0v.s8.d0e324473fc0 from=translated src=- shape=a104a02e vocab=eb4edef6
+-/
 theorem duplicate_terminal_count : birthSuffixCount (rankBarcode (copies 2)) 0 0 = 2 ∧
     birthSuffixCount (rankBarcode (copies 2)) 0 0 = structureMapRank (copies 2) 0 0 (le_refl _) ∧
     ∀ i : BarcodeOccurrence 1 (rankBarcode (copies 2)),
@@ -217,7 +227,9 @@ theorem duplicate_terminal_count : birthSuffixCount (rankBarcode (copies 2)) 0 0
 private noncomputable def empty : PModule.{0,0,0} ℚ (Fin 0) := barcodeModule (k := ℚ) 0
 private instance empty_fd (i : Fin 0) : FiniteDimensional ℚ (empty.obj i) := i.elim0
 
-/-- The empty-chain embedding and identity law select no stage.-/
+/-- The empty-chain embedding and identity law select no stage.
+@isnad1 id=and.0h0v.s7.667d499fdd16 from=translated src=- shape=bfcac82d vocab=bc9c652d
+-/
 theorem empty_chain : IsEmpty (BarcodeOccurrence 0 (rankBarcode empty)) ∧
     epiEmbedding (𝟙 empty) (fun _ => Function.surjective_id) = Function.Embedding.refl _ := by
   refine ⟨?_, epiEmbedding_id empty⟩
@@ -226,7 +238,9 @@ theorem empty_chain : IsEmpty (BarcodeOccurrence 0 (rankBarcode empty)) ∧
   simp only [Multiset.toList_zero, List.length_nil]
   exact inferInstance
 
-/-- Structure-map rank domination alone cannot supply a birth-preserving embedding.-/
+/-- Structure-map rank domination alone cannot supply a birth-preserving embedding.
+@isnad1 id=and.0h0v.s9.09a3ac78f68e from=translated src=- shape=9ca54ded vocab=343d8546
+-/
 theorem rank_domination_insufficient :
     (∀ (i j : Fin 3) (h : i ≤ j),
       structureMapRank (barcodeModule (k := ℚ) {laterShort}) i j h ≤

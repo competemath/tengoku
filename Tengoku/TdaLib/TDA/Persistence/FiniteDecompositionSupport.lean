@@ -45,14 +45,18 @@ noncomputable def pointwiseProdIso {M M' L L' : PModule.{u,0,u} k (Fin N)}
 noncomputable def totalDimension (M : PModule.{u,0,u} k (Fin N)) : ℕ :=
   ∑ i, Module.finrank k (M.obj i)
 
-/-- Natural isomorphisms preserve the sum of stage dimensions.-/
+/-- Natural isomorphisms preserve the sum of stage dimensions.
+@isnad1 id=eq.0h5v.s6.bc17c8d6340f from=translated src=- shape=525d7d56 vocab=23a0c978
+-/
 theorem totalDimension_eq_of_iso {M L : PModule.{u,0,u} k (Fin N)} (e : M ≅ L) :
     totalDimension M = totalDimension L := by
   apply Finset.sum_congr rfl
   intro i _
   exact (e.app i).toLinearEquiv.finrank_eq
 
-/-- The dimension sum is additive under pointwise products.-/
+/-- The dimension sum is additive under pointwise products.
+@isnad1 id=eq.0h4v.s8.4f9991627cde from=translated src=- shape=7d7ee59b vocab=b4177deb
+-/
 theorem totalDimension_pointwiseProd (M L : PModule.{u,0,u} k (Fin N))
     [∀ i, FiniteDimensional k (M.obj i)] [∀ i, FiniteDimensional k (L.obj i)] :
     totalDimension (pointwiseProd M L) = totalDimension M + totalDimension L := by
@@ -84,6 +88,9 @@ noncomputable def splitComplement {A M : PModule.{u,0,u} k (Fin N)} (ret : M ⟶
     apply Subtype.ext
     simp [Functor.map_comp]
 
+/--
+@isnad1 id=finitedi.0h6v.s8.e49b015e31fc from=translated src=- shape=1a4a921d vocab=667f15c4
+-/
 instance splitComplement_finiteDimensional {A M : PModule.{u,0,u} k (Fin N)}
     [∀ i, FiniteDimensional k (M.obj i)] (ret : M ⟶ A) (i : Fin N) :
     FiniteDimensional k ((splitComplement ret).obj i) := by
@@ -140,7 +147,9 @@ noncomputable def splitIso {A M : PModule.{u,0,u} k (Fin N)}
         (M.map f).hom (x - (inc.app i).hom ((ret.app i).hom x))
       rw [map_sub, natTrans_apply ret f x, natTrans_apply inc f])
 
-/-- Each fiber of a split module has the sum of the image and kernel dimensions.-/
+/-- Each fiber of a split module has the sum of the image and kernel dimensions.
+@isnad1 id=eq.1h7v.s10.4ed6b70b38b5 from=translated src=- shape=147b0f4c vocab=aa3ea570
+-/
 theorem finrank_split {A M : PModule.{u,0,u} k (Fin N)}
     [∀ i, FiniteDimensional k (M.obj i)] [∀ i, FiniteDimensional k (A.obj i)]
     (inc : A ⟶ M) (ret : M ⟶ A) (h : inc ≫ ret = 𝟙 A) (i : Fin N) :
@@ -149,14 +158,18 @@ theorem finrank_split {A M : PModule.{u,0,u} k (Fin N)}
   rw [((splitIso inc ret h).app i).toLinearEquiv.finrank_eq]
   exact Module.finrank_prod
 
-/-- The sum of dimensions in the split image and kernel is the original sum.-/
+/-- The sum of dimensions in the split image and kernel is the original sum.
+@isnad1 id=eq.1h6v.s9.42bafba10f49 from=translated src=- shape=6e9d02eb vocab=aba4f780
+-/
 theorem totalDimension_split {A M : PModule.{u,0,u} k (Fin N)}
     [∀ i, FiniteDimensional k (M.obj i)] [∀ i, FiniteDimensional k (A.obj i)]
     (inc : A ⟶ M) (ret : M ⟶ A) (h : inc ≫ ret = 𝟙 A) :
     totalDimension M = totalDimension A + totalDimension (splitComplement ret) := by
   rw [totalDimension_eq_of_iso (splitIso inc ret h), totalDimension_pointwiseProd]
 
-/-- A zero dimension sum forces every stage to be a zero vector space.-/
+/-- A zero dimension sum forces every stage to be a zero vector space.
+@isnad1 id=subsingl.1h4v.s7.89e4531b1031 from=translated src=- shape=2b55211a vocab=ad48d3f4
+-/
 theorem subsingleton_of_totalDimension_zero (M : PModule.{u,0,u} k (Fin N))
     [∀ i, FiniteDimensional k (M.obj i)] (h : totalDimension M = 0) (i : Fin N) :
     Subsingleton (M.obj i) := by

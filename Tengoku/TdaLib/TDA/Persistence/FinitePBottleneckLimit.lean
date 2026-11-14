@@ -29,7 +29,9 @@ variable {I J A B : Type*} [Fintype I] [Fintype J] [Fintype A] [Fintype B]
 
 /-- With no essential source occurrences, every matching charge is bounded by the
 rooted sum of its finite powered charges. The matching's essential equivalence also
-forces its essential target family to be empty.-/
+forces its essential target family to be empty.
+@isnad1 id=le.1h10v.s6.a0b57d4d4ac4 from=translated src=- shape=527df9f4 vocab=cea085be
+-/
 theorem cost_le_ofReal_root_totalFinitePowerCost [IsEmpty A]
     (M : OccurrenceMatching I J A B) {p : ℝ} (hp : 1 ≤ p)
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) (b : A → ℝ) (c : B → ℝ) :
@@ -99,14 +101,18 @@ private theorem isEmpty_essentialOccurrences_of_eq_zero (D : Diagram ℝ)
   apply Fintype.card_eq_zero_iff.mp
   simp only [Multiset.card_coe, hD, Multiset.card_zero]
 
-/-- Empty essential parts guarantee that the full bottleneck is finite.-/
+/-- Empty essential parts guarantee that the full bottleneck is finite.
+@isnad1 id=lt.2h2v.s5.efe15aa0654d from=translated src=- shape=ce577125 vocab=c679fac2
+-/
 theorem bottleneck_lt_top_of_essentialParts_eq_zero (D E : Diagram ℝ)
     (hD : essentialPart D.points = 0) (hE : essentialPart E.points = 0) :
     bottleneck D E < ⊤ :=
   (bottleneck_lt_top_iff D E).mpr (by simp only [hD, hE])
 
 /-- An optimizing finite partial matching extends to a full matching when
-both essential parts are empty. Its maximum is at most its rooted powered sum.-/
+both essential parts are empty. Its maximum is at most its rooted powered sum.
+@isnad1 id=le.3h3v.s7.46e992ccfbf1 from=translated src=- shape=919bd4ec vocab=b00b4167
+-/
 theorem bottleneck_le_ofReal_finitePMatchingCost {p : ℝ} (hp : 1 ≤ p)
     (D E : Diagram ℝ) (hD : essentialPart D.points = 0) (hE : essentialPart E.points = 0) :
     bottleneck D E ≤ ENNReal.ofReal
@@ -133,7 +139,9 @@ theorem bottleneck_le_ofReal_finitePMatchingCost {p : ℝ} (hp : 1 ≤ p)
   rw [hroot] at hcost
   exact (bottleneck_le_matching D E M).trans hcost
 
-/-- Real-valued lower comparison, after establishing finiteness of the full cost.-/
+/-- Real-valued lower comparison, after establishing finiteness of the full cost.
+@isnad1 id=le.3h3v.s7.3422ee65e25f from=translated src=- shape=76884c98 vocab=b6c6b100
+-/
 theorem bottleneck_toReal_le_finitePMatchingCost {p : ℝ} (hp : 1 ≤ p)
     (D E : Diagram ℝ) (hD : essentialPart D.points = 0) (hE : essentialPart E.points = 0) :
     (bottleneck D E).toReal ≤
@@ -144,7 +152,9 @@ theorem bottleneck_toReal_le_finitePMatchingCost {p : ℝ} (hp : 1 ≤ p)
     (bottleneck_le_ofReal_finitePMatchingCost hp D E hD hE)
   simpa only [ENNReal.toReal_ofReal (finitePMatchingCost_nonneg p _ _)] using h
 
-/-- The lower comparison concerns the optimized real reservoir-plan cost.-/
+/-- The lower comparison concerns the optimized real reservoir-plan cost.
+@isnad1 id=le.3h3v.s7.93554a2e1f96 from=translated src=- shape=919bd4ec vocab=f40cebb0
+-/
 theorem bottleneck_le_ofReal_finitePBoundaryTransportCost {p : ℝ} (hp : 1 ≤ p)
     (D E : Diagram ℝ) (hD : essentialPart D.points = 0) (hE : essentialPart E.points = 0) :
     bottleneck D E ≤ ENNReal.ofReal
@@ -154,7 +164,9 @@ theorem bottleneck_le_ofReal_finitePBoundaryTransportCost {p : ℝ} (hp : 1 ≤ 
   exact bottleneck_le_ofReal_finitePMatchingCost hp D E hD hE
 
 /-- For fixed finite diagrams without essential bars, the real matching exponent
-tending to infinity recovers their full bottleneck distance.-/
+tending to infinity recovers their full bottleneck distance.
+@isnad1 id=tendsto.2h2v.s7.4bd96a9d98fb from=translated src=- shape=3ad4ce1a vocab=ff884ccf
+-/
 theorem finitePMatchingCost_tendsto_bottleneck (D E : Diagram ℝ)
     (hD : essentialPart D.points = 0) (hE : essentialPart E.points = 0) :
     Tendsto (fun p : ℝ => finitePMatchingCost p (fun q : D.finiteOccurrences => q.1)
@@ -188,7 +200,9 @@ theorem finitePMatchingCost_tendsto_bottleneck (D E : Diagram ℝ)
     · exact (eventually_ge_atTop (1 : ℝ)).mono fun p hp =>
         finitePMatchingCost_le_card_rpow_mul_bottleneck hp D E hfinite
 
-/-- The real boundary-reservoir optimum has the same bottleneck limit.-/
+/-- The real boundary-reservoir optimum has the same bottleneck limit.
+@isnad1 id=tendsto.2h2v.s7.e3f76961d0e2 from=translated src=- shape=3ad4ce1a vocab=f58c364a
+-/
 theorem finitePBoundaryTransportCost_tendsto_bottleneck (D E : Diagram ℝ)
     (hD : essentialPart D.points = 0) (hE : essentialPart E.points = 0) :
     Tendsto (fun p : ℝ => finitePBoundaryTransportCost p (fun q : D.finiteOccurrences => q.1)
@@ -197,7 +211,9 @@ theorem finitePBoundaryTransportCost_tendsto_bottleneck (D E : Diagram ℝ)
     finitePMatchingCost_tendsto_bottleneck D E hD hE
 
 /-- Extended-valued limit identifies the bottleneck, with its finiteness
-derived from empty essential parts before converting back from its real value.-/
+derived from empty essential parts before converting back from its real value.
+@isnad1 id=tendsto.2h2v.s7.a7edef20efd6 from=translated src=- shape=ff3b7e92 vocab=4aeb8897
+-/
 theorem ofReal_finitePMatchingCost_tendsto_bottleneck (D E : Diagram ℝ)
     (hD : essentialPart D.points = 0) (hE : essentialPart E.points = 0) :
     Tendsto (fun p : ℝ => ENNReal.ofReal
@@ -208,7 +224,9 @@ theorem ofReal_finitePMatchingCost_tendsto_bottleneck (D E : Diagram ℝ)
     ENNReal.tendsto_ofReal (finitePMatchingCost_tendsto_bottleneck D E hD hE)
 
 /-- The optimized real reservoir-plan cost converges to the full extended
-bottleneck value on the essential-free finite domain.-/
+bottleneck value on the essential-free finite domain.
+@isnad1 id=tendsto.2h2v.s7.0fa00b2701ac from=translated src=- shape=ff3b7e92 vocab=3be5ddfa
+-/
 theorem ofReal_finitePBoundaryTransportCost_tendsto_bottleneck (D E : Diagram ℝ)
     (hD : essentialPart D.points = 0) (hE : essentialPart E.points = 0) :
     Tendsto (fun p : ℝ => ENNReal.ofReal

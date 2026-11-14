@@ -21,7 +21,9 @@ def totalBoundaryCost (M : OccurrenceMatching I J PEmpty.{1} PEmpty.{1})
   (∑ i, match M.finite i with | some j => c i j | none => u i) +
     ∑ j, if ∃ i, M.finite i = some j then 0 else v j
 
-/-- Nonnegative coefficients give a nonnegative candidate cost.-/
+/-- Nonnegative coefficients give a nonnegative candidate cost.
+@isnad1 id=le.3h6v.s6.8fbe514767fc from=translated src=- shape=7a11d5e5 vocab=2f6aa7cd
+-/
 theorem totalBoundaryCost_nonneg (M : OccurrenceMatching I J PEmpty.{1} PEmpty.{1})
     (c : I → J → ℝ) (u : I → ℝ) (v : J → ℝ)
     (hc : ∀ i j, 0 ≤ c i j) (hu : ∀ i, 0 ≤ u i) (hv : ∀ j, 0 ≤ v j) :
@@ -38,7 +40,9 @@ theorem totalBoundaryCost_nonneg (M : OccurrenceMatching I J PEmpty.{1} PEmpty.{
     · exact le_rfl
     · exact hv j
 
-/-- Relabelling transports all three coefficient families and preserves the sum.-/
+/-- Relabelling transports all three coefficient families and preserves the sum.
+@isnad1 id=eq.0h10v.s7.bd8a20b878a4 from=translated src=- shape=a932a094 vocab=3f9ed246
+-/
 theorem totalBoundaryCost_relabel (u : I' ≃ I) (v : J' ≃ J)
     (M : OccurrenceMatching I J PEmpty.{1} PEmpty.{1})
     (c : I → J → ℝ) (uCost : I → ℝ) (vCost : J → ℝ) :

@@ -32,6 +32,9 @@ def ofIndexBars (v : Fin N → α) (hv : StrictMono v)
     rcases Multiset.mem_map.mp hp with ⟨I, _, rfl⟩
     exact ne_of_lt (indexPoint_positive v hv I)
 
+/--
+@isnad1 id=ispositi.1h4v.s5.6c1782e1485b from=translated src=- shape=a5aa3e1c vocab=dc51182c
+-/
 theorem ofIndexBars_isPositive (v : Fin N → α) (hv : StrictMono v)
     (B : Multiset (FiniteInterval N)) :
     (ofIndexBars v hv B).IsPositive := by
@@ -82,6 +85,9 @@ private theorem indexPoint_eq_essential (v : Fin N → α) (hv : StrictMono v)
     have hnot : ¬ I.death < N := by omega
     simp [indexPoint, hnot, hbi]
 
+/--
+@isnad1 id=eq.1h6v.s6.eb98565014d0 from=translated src=- shape=d3dce2a7 vocab=a56736a7
+-/
 theorem ofIndexBars_count_finite (v : Fin N → α) (hv : StrictMono v)
     (B : Multiset (FiniteInterval N)) (b d : Fin N) :
     (ofIndexBars v hv B).points.count (v b, (v d : WithTop α)) =
@@ -95,6 +101,9 @@ theorem ofIndexBars_count_finite (v : Fin N → α) (hv : StrictMono v)
   apply propext
   simpa [eq_comm] using (indexPoint_eq_finite v hv I b d)
 
+/--
+@isnad1 id=eq.1h5v.s6.2a6e5c237990 from=translated src=- shape=d514cf7a vocab=16d092fc
+-/
 theorem ofIndexBars_count_essential (v : Fin N → α) (hv : StrictMono v)
     (B : Multiset (FiniteInterval N)) (b : Fin N) :
     (ofIndexBars v hv B).points.count (v b, (⊤ : WithTop α)) =
@@ -133,6 +142,9 @@ private theorem indexPoint_injective (v : Fin N → α) (hv : StrictMono v) :
   cases I; cases J
   congr
 
+/--
+@isnad1 id=injectiv.1h3v.s5.c3a655d425bb from=translated src=- shape=33b7c253 vocab=c23ca80b
+-/
 theorem ofIndexBars_injective (v : Fin N → α) (hv : StrictMono v) :
     Function.Injective (ofIndexBars v hv) := by
   intro B C h
@@ -159,6 +171,9 @@ private theorem indexPoint_slice (v : Fin N → α) (hv : StrictMono v)
       simp [indexPoint, hterminal, j.isLt]
     exact and_congr hbirth hdeath
 
+/--
+@isnad1 id=eq.1h6v.s8.54261a1fa0a2 from=translated src=- shape=15b1acde vocab=61d23b20
+-/
 theorem ofIndexBars_countP_grades (v : Fin N → α) (hv : StrictMono v)
     (B : Multiset (FiniteInterval N)) (i j : Fin N) :
     (ofIndexBars v hv B).points.countP

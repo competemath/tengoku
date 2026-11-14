@@ -49,7 +49,9 @@ def lexKey (C : TDA.Simplicial.FiniteComplex n)
     Lex (α × Lex (ℕ × Colex (Finset (Fin n)))) :=
   _root_.toLex (f.value s, _root_.toLex (s.val.card, toColex s.val))
 
-/-- The key distinguishes faces, even when grades and cardinalities tie.-/
+/-- The key distinguishes faces, even when grades and cardinalities tie.
+@isnad1 id=injectiv.0h4v.s5.9e79153a0f02 from=translated src=- shape=967bb8cf vocab=987268fc
+-/
 theorem lexKey_injective (C : TDA.Simplicial.FiniteComplex n)
     (f : FilterFunction C.toPre α) :
     Function.Injective (lexKey C f) := by
@@ -107,7 +109,9 @@ def ofLex (C : TDA.Simplicial.FiniteComplex n)
     change lexKey C f (sorted.enum i) ≤ lexKey C f (sorted.enum j) at hkey
     exact Prod.Lex.monotone_fst _ _ hkey
 
-/-- The canonical keys strictly increase along the constructed enumeration.-/
+/-- The canonical keys strictly increase along the constructed enumeration.
+@isnad1 id=strictmo.0h4v.s7.42a5464175f3 from=translated src=- shape=4ab6de41 vocab=73ea7e6b
+-/
 theorem ofLex_key_strictMono (C : TDA.Simplicial.FiniteComplex n)
     (f : FilterFunction C.toPre α) :
     StrictMono (lexKey C f ∘ (ofLex C f).enum) := by

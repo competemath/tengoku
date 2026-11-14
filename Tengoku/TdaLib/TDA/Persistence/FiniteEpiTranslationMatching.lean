@@ -24,7 +24,9 @@ variable {M N : PModule.{u,0,u} k (Fin s)}
 variable [∀ i, FiniteDimensional k (M.obj i)] [∀ i, FiniteDimensional k (N.obj i)]
 
 /-- Every matched pair has the canonical death order and translated upper bound.
-A terminal target death is treated as the finite observation boundary.-/
+A terminal target death is treated as the finite observation boundary.
+@isnad1 id=and.3h7v.s10.d7b90e13eff9 from=translated src=- shape=da7e146a vocab=731cc122
+-/
 theorem epiEmbedding_death_bounds_of_kernelTrivial
     (theta : Fin s →o Fin s) (hTheta : ∀ i, i ≤ theta i) (p : M ⟶ N)
     (hp : ∀ i, Function.Surjective (p.app i).hom)
@@ -59,7 +61,9 @@ theorem epiEmbedding_death_bounds_of_kernelTrivial
     rw [FiniteInterval.translatedDeath_terminal J theta he]
     exact I.death_le_size
 
-/-- Every source surviving its translated birth has exactly one canonical epi preimage.-/
+/-- Every source surviving its translated birth has exactly one canonical epi preimage.
+@isnad1 id=existsun.4h7v.s10.0a2f61a90a48 from=translated src=- shape=9e142820 vocab=91fbe281
+-/
 theorem epiEmbedding_covers_long_of_kernelTrivial
     (theta : Fin s →o Fin s) (hTheta : ∀ i, i ≤ theta i) (p : M ⟶ N)
     (hp : ∀ i, Function.Surjective (p.app i).hom)
@@ -78,7 +82,9 @@ theorem epiEmbedding_covers_long_of_kernelTrivial
     (hlo.trans_le (hcounts.trans hcard))
   exact ⟨j, hj, fun j' hj' => (epiEmbedding p hp).injective (hj'.trans hj.symm)⟩
 
-/-- An unselected source is short; short source occurrences may also be selected.-/
+/-- An unselected source is short; short source occurrences may also be selected.
+@isnad1 id=le.4h7v.s10.62e55cc6f3c9 from=translated src=- shape=e0df8f93 vocab=72545f9b
+-/
 theorem epiEmbedding_unmatched_short_of_kernelTrivial
     (theta : Fin s →o Fin s) (hTheta : ∀ i, i ≤ theta i) (p : M ⟶ N)
     (hp : ∀ i, Function.Surjective (p.app i).hom)

@@ -27,7 +27,9 @@ def boolMapperVertex (b : Bool) : MapperVertex boolToUnit unitCover :=
 
 /-- The one-member constant-filter Mapper has exactly the two displayed
 vertices and no adjacency: the two points lie in distinct path components of
-the same pullback member.-/
+the same pullback member.
+@isnad1 id=and.0h0v.s6.14793041d848 from=translated src=- shape=e5f2d175 vocab=179f9756
+-/
 theorem bool_mapper_two_isolated_vertices :
     boolMapperVertex false ≠ boolMapperVertex true ∧
       (∀ v : MapperVertex boolToUnit unitCover,
@@ -54,7 +56,9 @@ def duplicateMapperVertex (i b : Bool) : MapperVertex boolToUnit duplicateUnitCo
   toMapperVertex boolToUnit duplicateUnitCover (duplicateComponentIndex i b)
 
 /-- Duplicate overlapping members retain distinct labels and give an edge
-when their represented component members share a point.-/
+when their represented component members share a point.
+@isnad1 id=and.0h0v.s5.ed9d6c46a330 from=translated src=- shape=3bf97639 vocab=6c84a839
+-/
 theorem duplicate_labels_give_distinct_adjacent_vertices :
     duplicateMapperVertex false false ≠ duplicateMapperVertex true false ∧
       (mapperOneSkeleton boolToUnit duplicateUnitCover).Adj
@@ -97,7 +101,9 @@ private theorem triangleComponentIndex_injective :
   exact congrArg Sigma.fst h
 
 /-- Three duplicate target labels over a one-point domain form a genuine
-three-vertex face, so ordinary Mapper is not globally truncated to a graph.-/
+three-vertex face, so ordinary Mapper is not globally truncated to a graph.
+@isnad1 id=and.0h0v.s9.baa6ec24f22f from=translated src=- shape=0d3d985f vocab=635bb23e
+-/
 theorem triple_duplicate_cover_has_triangle :
     ({triangleComponentIndex 0, triangleComponentIndex 1, triangleComponentIndex 2} :
         Finset (ComponentIndex triangleMap tripleUnitCover)) ∈
@@ -130,7 +136,9 @@ def rightIntervalMapperVertex : MapperVertex realMap twoIntervalCover :=
   toMapperVertex realMap twoIntervalCover
     ⟨(), ZerothHomotopy.mk rightSourcePoint⟩
 
-/-- The proper interval refinement merges two distinct source Mapper vertices.-/
+/-- The proper interval refinement merges two distinct source Mapper vertices.
+@isnad1 id=and.0h0v.s9.3ce441204485 from=translated src=- shape=91bbdfe2 vocab=a7511231
+-/
 theorem interval_mapper_refinement_is_noninjective :
     leftIntervalMapperVertex ≠ rightIntervalMapperVertex ∧
       mapperMap realMap intervalRefinement leftIntervalMapperVertex.1 =
@@ -142,14 +150,18 @@ theorem interval_mapper_refinement_is_noninjective :
 
 /-! ## Empty and isolated multiplicity-two specializations -/
 
-/-- The empty-domain fixture satisfies every target-cover multiplicity bound.-/
+/-- The empty-domain fixture satisfies every target-cover multiplicity bound.
+@isnad1 id=covermul.0h0v.s3.704f1a4359bc from=translated src=- shape=690219a0 vocab=c4c4bbb4
+-/
 theorem emptyDomain_multiplicity_two :
     CoverMultiplicityAtMost emptyDomainMap unitCover 2 := by
   intro y hy
   obtain ⟨x, _⟩ := hy
   exact isEmptyElim x
 
-/-- The empty-domain Mapper is the bottom preabstract complex.-/
+/-- The empty-domain Mapper is the bottom preabstract complex.
+@isnad1 id=eq.0h0v.s5.5a9b6201f6f8 from=translated src=- shape=0f4dd44f vocab=d12ac9ad
+-/
 theorem emptyDomain_mapper_eq_bot :
     mapper emptyDomainMap unitCover =
       (⊥ : PreAbstractSimplicialComplex (ComponentIndex emptyDomainMap unitCover)) := by
@@ -157,7 +169,9 @@ theorem emptyDomain_mapper_eq_bot :
   exact TDA.Topology.nerve_eq_bot_of_isEmpty (componentCover emptyDomainMap unitCover)
 
 /-- The multiplicity-two graph characterization specializes without an
-inhabitedness assumption to the empty Mapper.-/
+inhabitedness assumption to the empty Mapper.
+@isnad1 id=iff.0h1v.s9.81fc47d406b8 from=translated src=- shape=7938e272 vocab=fe9252bd
+-/
 theorem emptyDomain_mapper_graph_characterization
     (s : Finset (ComponentIndex emptyDomainMap unitCover)) :
     s ∈ mapper emptyDomainMap unitCover ↔
@@ -169,13 +183,17 @@ theorem emptyDomain_mapper_graph_characterization
     emptyDomainMap unitCover emptyDomain_multiplicity_two s
 
 /-- A one-member cover has multiplicity at most two on the constant Boolean
-filter's attained range.-/
+filter's attained range.
+@isnad1 id=covermul.0h0v.s3.5ec6c9da6e98 from=translated src=- shape=690219a0 vocab=102374b2
+-/
 theorem bool_multiplicity_two : CoverMultiplicityAtMost boolToUnit unitCover 2 := by
   intro _ _ t _
   exact (Finset.card_le_one_of_subsingleton t).trans (by omega)
 
 /-- The multiplicity-two graph characterization includes the isolated
-vertices of the disconnected Boolean fiber.-/
+vertices of the disconnected Boolean fiber.
+@isnad1 id=iff.0h1v.s9.199491b678be from=translated src=- shape=7938e272 vocab=c217a900
+-/
 theorem bool_mapper_graph_characterization
     (s : Finset (ComponentIndex boolToUnit unitCover)) :
     s ∈ mapper boolToUnit unitCover ↔

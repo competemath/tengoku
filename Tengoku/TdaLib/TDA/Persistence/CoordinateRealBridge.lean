@@ -51,8 +51,14 @@ def diagonal : ℝ →o (Fin 1 → ℝ) where
   toFun t := fun _ => t
   monotone' _ _ h _ := h
 
+/--
+@isnad1 id=eq.0h1v.s7.3f85ac518edc from=translated src=- shape=936283dd vocab=8dd88882
+-/
 @[simp] theorem evaluate_diagonal (t : ℝ) : evaluate (diagonal t) = t := rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.ce41bf49798d from=translated src=- shape=904ad810 vocab=8dd88882
+-/
 @[simp] theorem diagonal_evaluate (a : Fin 1 → ℝ) : diagonal (evaluate a) = a :=
   indexIso.left_inv a
 
@@ -60,6 +66,9 @@ def diagonal : ℝ →o (Fin 1 → ℝ) where
 def fromReal (M : PModule.{u,0,w} R ℝ) : PModule.{u,0,w} R (Fin 1 → ℝ) :=
   reindex evaluate M
 
+/--
+@isnad1 id=eq.0h3v.s6.f6003a9e072a from=translated src=- shape=2b3aa4b2 vocab=ccca6833
+-/
 @[simp] theorem fromReal_obj (M : PModule.{u,0,w} R ℝ) (a : Fin 1 → ℝ) :
     (fromReal M).obj a = M.obj (a 0) := rfl
 
@@ -128,7 +137,9 @@ def interleavingEquiv (ε : ℝ≥0) (M N : PModule.{u,0,w} R ℝ) :
       congr 1
       exact diagonal_evaluate a
 
-/-- Real and one-coordinate interleavings exist at precisely the same parameters.-/
+/-- Real and one-coordinate interleavings exist at precisely the same parameters.
+@isnad1 id=iff.0h4v.s5.f6e2714d3d99 from=translated src=- shape=11994f91 vocab=3b79691b
+-/
 theorem interleaving_nonempty_iff (ε : ℝ≥0)
     (M N : PModule.{u,0,w} R ℝ) :
     Nonempty (RealInterleaving ε M N) ↔
@@ -139,7 +150,9 @@ theorem interleaving_nonempty_iff (ε : ℝ≥0)
   · rintro ⟨i⟩
     exact ⟨toReal i⟩
 
-/-- The one-coordinate distance is the real interleaving distance.-/
+/-- The one-coordinate distance is the real interleaving distance.
+@isnad1 id=eq.0h3v.s5.1d20fa841cae from=translated src=- shape=20f43aba vocab=14cc5a0e
+-/
 theorem distance_eq (M N : PModule.{u,0,w} R ℝ) :
     coordinateInterleavingDistance (fromReal M) (fromReal N) =
       realInterleavingDistance M N := by

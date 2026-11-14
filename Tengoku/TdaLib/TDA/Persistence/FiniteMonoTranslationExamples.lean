@@ -25,7 +25,9 @@ private theorem theta_forward (i : Fin 4) : i ≤ theta i := by
 private theorem theta_positive (i : Fin 4) : 1 ≤ (theta i).val := by
   fin_cases i <;> decide
 
-/-- This genuine translation advances stages and identifies two different stages.-/
+/-- This genuine translation advances stages and identifies two different stages.
+@isnad1 id=and.0h0v.s8.4f32300f8bd6 from=translated src=- shape=db92c88b vocab=efaff1ca
+-/
 theorem noninjective_translation : theta 0 = 1 ∧ theta 1 = 1 ∧
     ¬ Function.Injective theta := by
   refine ⟨rfl, rfl, ?_⟩
@@ -144,7 +146,9 @@ private theorem delayed_short (d : ℕ) (hd : 1 < d) (hs : d ≤ 4) :
   rw [LinearMap.range_eq_top.mpr hsurj]
   exact le_top
 
-/-- A nonidentity inclusion attains the translated birth bound at a genuine finite death.-/
+/-- A nonidentity inclusion attains the translated birth bound at a genuine finite death.
+@isnad1 id=ex.0h0v.s9.e38dda2930f2 from=translated src=- shape=bf37e047 vocab=e1e47879
+-/
 theorem finite_birth_bound_attained :
     ∃ i : BarcodeOccurrence 4 (rankBarcode (intervalModule (k := ℚ) (late 3 (by decide) (by decide)))),
       (occurrence _ i).birth = 1 ∧
@@ -167,7 +171,9 @@ theorem finite_birth_bound_attained :
       (delayed 3 (by decide) (by decide)) (delayed_injective 3 (by decide) (by decide))
         (delayed_short 3 (by decide) (by decide)) 0 3 (by decide) (by decide)
 
-/-- Terminal targets are long and have a unique preimage; no infinite life is inferred.-/
+/-- Terminal targets are long and have a unique preimage; no infinite life is inferred.
+@isnad1 id=and.0h1v.s8.ec89333eb164 from=translated src=- shape=5e5f823f vocab=1608b6fb
+-/
 theorem terminal_coverage :
     ∀ a : BarcodeOccurrence 4 (rankBarcode (intervalModule (k := ℚ) (early 4 (by decide) (by decide)))),
       (occurrence _ a).death = 4 ∧
@@ -210,7 +216,9 @@ private theorem short_cokernel :
   rw [hy]
   exact Submodule.zero_mem _
 
-/-- At equality with the translated birth, a short target really can remain unmatched.-/
+/-- At equality with the translated birth, a short target really can remain unmatched.
+@isnad1 id=and.0h0v.s8.7ad250e8059b from=translated src=- shape=b46ff521 vocab=270cd6e1
+-/
 theorem threshold_unmatched :
     TranslationTrivial theta theta_forward (finiteCokernel shortInclusion) ∧
       ∀ a : BarcodeOccurrence 4 (rankBarcode shortTarget),
@@ -236,7 +244,9 @@ private theorem identity_short (K : PModule.{0,0,0} ℚ (Fin 4)) :
   rw [LinearMap.range_id]
   exact le_top
 
-/-- A short target can also be matched; the birth bound still holds at the exact threshold.-/
+/-- A short target can also be matched; the birth bound still holds at the exact threshold.
+@isnad1 id=ex.0h0v.s9.71cbf2ae2c8e from=translated src=- shape=7316f253 vocab=099009dc
+-/
 theorem short_matched_birth_bound :
     ∃ a : BarcodeOccurrence 4 (rankBarcode shortTarget),
       (occurrence _ a).death = (theta (occurrence _ a).birthStage).val ∧
@@ -255,7 +265,9 @@ theorem short_matched_birth_bound :
 private noncomputable abbrev duplicates : PModule.{0,0,0} ℚ (Fin 4) :=
   barcodeModule (k := ℚ) (Multiset.replicate 2 (early 4 (by decide) (by decide)))
 
-/-- Repeated long bars retain distinct target labels and unique preimages.-/
+/-- Repeated long bars retain distinct target labels and unique preimages.
+@isnad1 id=ex.0h0v.s9.472d5041b6a1 from=translated src=- shape=2b8af82f vocab=148f3ccd
+-/
 theorem duplicate_long_coverage :
     ∃ a b : BarcodeOccurrence 4 (rankBarcode duplicates), a ≠ b ∧
       (∃! i, monoEmbedding (𝟙 duplicates) (fun _ => Function.injective_id) i = a) ∧
@@ -288,7 +300,9 @@ theorem duplicate_long_coverage :
   · exact monoEmbedding_covers_long_of_cokernelTrivial theta theta_forward
       (𝟙 duplicates) (fun _ => Function.injective_id) (identity_short duplicates) b (hlong b)
 
-/-- With the identity translation the zero cokernel gives equal births and full coverage.-/
+/-- With the identity translation the zero cokernel gives equal births and full coverage.
+@isnad1 id=and.0h1v.s9.6a55c27237b5 from=translated src=- shape=62bd8a12 vocab=c03bc7aa
+-/
 theorem identity_translation :
     ∀ a : BarcodeOccurrence 4 (rankBarcode duplicates),
       (occurrence _ (monoEmbedding (𝟙 duplicates) (fun _ => Function.injective_id) a)).birth =
@@ -314,7 +328,9 @@ private noncomputable abbrev fixedTarget := intervalModule (k := ℚ) fixedBar
 private noncomputable def fixedInclusion : zeroModule ⟶ fixedTarget := 0
 
 /-- A nonzero quotient at a fixed point is not translation-trivial.
-This detects the false coarse-grid criterion based only on far-apart sample pairs.-/
+This detects the false coarse-grid criterion based only on far-apart sample pairs.
+@isnad1 id=not.0h0v.s4.014c1773e49a from=translated src=- shape=6e011ebc vocab=f7a4d71c
+-/
 theorem fixed_point_rejects_shortness :
     ¬ TranslationTrivial theta theta_forward (finiteCokernel fixedInclusion) := by
   intro hc
@@ -335,7 +351,9 @@ theorem fixed_point_rejects_shortness :
 
 private noncomputable abbrev empty : PModule.{0,0,0} ℚ (Fin 0) := barcodeModule (k := ℚ) 0
 
-/-- The empty chain has a short cokernel and empty occurrence domain.-/
+/-- The empty chain has a short cokernel and empty occurrence domain.
+@isnad1 id=and.0h0v.s7.94a9582c5b87 from=translated src=- shape=da9c0e3e vocab=f0d19f30
+-/
 theorem empty_chain :
     TranslationTrivial OrderHom.id (fun _ : Fin 0 => le_rfl) (finiteCokernel (𝟙 empty)) ∧
       IsEmpty (BarcodeOccurrence 0 (rankBarcode empty)) := by

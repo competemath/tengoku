@@ -78,14 +78,18 @@ noncomputable def extension (p : P) (M : PModule.{u,v,u} k P)
       rfl
     · simp [hr]
 
-/-- The coefficient of the coextension at any grade, including the zero boundary.-/
+/-- The coefficient of the coextension at any grade, including the zero boundary.
+@isnad1 id=eq.0h7v.s11.eab94f9a18b2 from=translated src=- shape=1567b512 vocab=c8a1042d
+-/
 theorem extension_app_val (p : P) (M : PModule.{u,v,u} k P)
     (l : M.obj p →ₗ[k] k) (q : P) (x : M.obj q) :
     (((extension p M l).app q).hom x : k) =
       if h : q ≤ p then l (structureMapLinear M h x) else 0 :=
   extensionLinear_val p M l q x
 
-/-- A coextension recovers its functional at the terminal support grade.-/
+/-- A coextension recovers its functional at the terminal support grade.
+@isnad1 id=eq.0h5v.s8.935d3fe5671c from=translated src=- shape=38b48b4f vocab=d13b6e8d
+-/
 @[simp] theorem evaluation_extension (p : P) (M : PModule.{u,v,u} k P)
     (l : M.obj p →ₗ[k] k) : evaluation p M (extension p M l) = l := by
   ext x
@@ -93,7 +97,9 @@ theorem extension_app_val (p : P) (M : PModule.{u,v,u} k P)
   rw [extension_app_val]
   simp
 
-/-- Naturality determines every coefficient from the component at `p`.-/
+/-- Naturality determines every coefficient from the component at `p`.
+@isnad1 id=eq.0h7v.s10.d7d148ec2f0d from=translated src=- shape=c305be10 vocab=4d5b0698
+-/
 theorem app_val (p : P) (M : PModule.{u,v,u} k P)
     (f : M ⟶ module p) (q : P) (x : M.obj q) :
     ((f.app q).hom x : k) =
@@ -107,13 +113,17 @@ theorem app_val (p : P) (M : PModule.{u,v,u} k P)
     simpa [h] using hn.symm
   · simpa [h] using SupportInterval.val_eq_zero (Set.Iic p) h ((f.app q).hom x)
 
-/-- A morphism into a principal downset is determined by its endpoint functional.-/
+/-- A morphism into a principal downset is determined by its endpoint functional.
+@isnad1 id=eq.1h6v.s8.12d6ecef3647 from=translated src=- shape=65106c89 vocab=d0e96531
+-/
 @[ext] theorem hom_ext (p : P) (M : PModule.{u,v,u} k P)
     {f g : M ⟶ module p} (h : evaluation p M f = evaluation p M g) : f = g := by
   ext q x
   rw [app_val, app_val, h]
 
-/-- Coextension of the endpoint functional recovers the whole morphism.-/
+/-- Coextension of the endpoint functional recovers the whole morphism.
+@isnad1 id=eq.0h5v.s7.4a22065db002 from=translated src=- shape=a38b5856 vocab=48336671
+-/
 @[simp] theorem extension_evaluation (p : P) (M : PModule.{u,v,u} k P)
     (f : M ⟶ module p) : extension p M (evaluation p M f) = f := by
   apply hom_ext p M
@@ -129,19 +139,25 @@ noncomputable def homLinearEquiv (p : P) (M : PModule.{u,v,u} k P) :
   map_add' f g := by ext x; rfl
   map_smul' c f := by ext x; rfl
 
-/-- Evaluation commutes with precomposition by a natural transformation.-/
+/-- Evaluation commutes with precomposition by a natural transformation.
+@isnad1 id=eq.0h7v.s9.4a9568772660 from=translated src=- shape=83ee45eb vocab=c58631b1
+-/
 theorem evaluation_precomp (p : P) {M N : PModule.{u,v,u} k P}
     (a : M ⟶ N) (f : N ⟶ module p) :
     evaluation p M (a ≫ f) = (evaluation p N f).comp (a.app p).hom := rfl
 
-/-- Coextension commutes with precomposition by a natural transformation.-/
+/-- Coextension commutes with precomposition by a natural transformation.
+@isnad1 id=eq.0h7v.s9.4fa4bbd62de2 from=translated src=- shape=0c61bf9f vocab=1a76d75b
+-/
 theorem extension_precomp (p : P) {M N : PModule.{u,v,u} k P}
     (a : M ⟶ N) (l : N.obj p →ₗ[k] k) :
     a ≫ extension p N l = extension p M (l.comp (a.app p).hom) := by
   apply hom_ext p M
   simp [evaluation_precomp]
 
-/-- The principal-downset module is injective against arbitrary ambient monos.-/
+/-- The principal-downset module is injective against arbitrary ambient monos.
+@isnad1 id=injectiv.0h3v.s5.479bef4eacdd from=translated src=- shape=6096ae36 vocab=52250427
+-/
 instance isInjective (p : P) : Injective (module (k := k) p) where
   factors {A B} g f _ := by
     have hinj : Function.Injective (f.app p).hom :=
@@ -153,7 +169,9 @@ instance isInjective (p : P) : Injective (module (k := k) p) where
     rw [evaluation_precomp, evaluation_extension, LinearMap.comp_assoc, hs,
       LinearMap.comp_id]
 
-/-- Every principal-downset fiber is finite-dimensional over the arbitrary field.-/
+/-- Every principal-downset fiber is finite-dimensional over the arbitrary field.
+@isnad1 id=finitedi.0h4v.s7.85c93e21afae from=translated src=- shape=072f6eea vocab=e9934fdb
+-/
 instance finiteDimensional (p q : P) : FiniteDimensional k ((module (k := k) p).obj q) := by
   change FiniteDimensional k (SupportInterval.fiber (k := k) (Set.Iic p) q)
   infer_instance

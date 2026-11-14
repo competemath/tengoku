@@ -64,21 +64,29 @@ noncomputable def appIso (a : Fin n → ℝ) (ha : G.HasLowerPoint a) :
     (G.lan.obj M).obj a ≅ M.obj (G.floor a ha) :=
   (asIso (G.kanInclusion M a ha)).symm
 
-/-- The inverse fiber comparison is precisely Kan unit followed by transition.-/
+/-- The inverse fiber comparison is precisely Kan unit followed by transition.
+@isnad1 id=eq.1h5v.s11.ba1c9f6edf4e from=translated src=- shape=8130343a vocab=ec971f74
+-/
 theorem appIso_inv (a : Fin n → ℝ) (ha : G.HasLowerPoint a) :
     (G.appIso M a ha).inv =
       (G.embedding.monotone.functor.leftKanExtensionUnit M).app (G.floor a ha) ≫
         structureMap (G.lan.obj M) (G.floor_le a ha) := rfl
 
-/-- The canonical inclusion followed by the fiber comparison is identity.-/
+/-- The canonical inclusion followed by the fiber comparison is identity.
+@isnad1 id=eq.1h5v.s9.1be9c0465ee9 from=translated src=- shape=0f5f129b vocab=7285d071
+-/
 @[simp] theorem kanInclusion_appIso_hom (a : Fin n → ℝ) (ha : G.HasLowerPoint a) :
     G.kanInclusion M a ha ≫ (G.appIso M a ha).hom = 𝟙 _ := (G.appIso M a ha).inv_hom_id
 
-/-- The fiber comparison followed by the canonical inclusion is identity.-/
+/-- The fiber comparison followed by the canonical inclusion is identity.
+@isnad1 id=eq.1h5v.s10.f061baf50520 from=translated src=- shape=76a0b516 vocab=7285d071
+-/
 @[simp] theorem appIso_hom_kanInclusion (a : Fin n → ℝ) (ha : G.HasLowerPoint a) :
     (G.appIso M a ha).hom ≫ G.kanInclusion M a ha = 𝟙 _ := (G.appIso M a ha).hom_inv_id
 
-/-- With no lower grid point, the actual Kan fiber is zero.-/
+/-- With no lower grid point, the actual Kan fiber is zero.
+@isnad1 id=iszero.1h5v.s8.1f51b4ed0cdf from=translated src=- shape=2d9f79d5 vocab=05e37e68
+-/
 theorem isZero_obj_of_not_hasLowerPoint (a : Fin n → ℝ) (ha : ¬ G.HasLowerPoint a) :
     IsZero ((G.lan.obj M).obj a) := by
   let : IsEmpty (CostructuredArrow G.embedding.monotone.functor a) :=
@@ -119,7 +127,9 @@ noncomputable def lanMapPreimage {A C : PModule.{u,0,w} R G.Point}
     G.embedding.monotone.functor.whiskerLeft f ≫
     (G.lanUnitIso C).inv
 
-/-- The Lan map of the canonical preimage is the original map.-/
+/-- The Lan map of the canonical preimage is the original map.
+@isnad1 id=eq.0h6v.s10.999c099518b7 from=translated src=- shape=0223f36b vocab=508910ff
+-/
 theorem lan_map_preimage {A C : PModule.{u,0,w} R G.Point}
     (f : G.lan.obj A ⟶ G.lan.obj C) :
     G.lan.map (G.lanMapPreimage f) = f := by
@@ -154,7 +164,9 @@ theorem lan_map_preimage {A C : PModule.{u,0,w} R G.Point}
   rw [← hn, hpre]
 
 /-- The actual Lan functor is surjective on maps between its objects. Together
-with `lan_map_injective`, this expresses full faithfulness on the grid.-/
+with `lan_map_injective`, this expresses full faithfulness on the grid.
+@isnad1 id=surjecti.0h5v.s10.c51911de7d6a from=translated src=- shape=7dd478be vocab=77129ede
+-/
 theorem lan_map_surjective {A C : PModule.{u,0,w} R G.Point} :
     Function.Surjective (fun θ : A ⟶ C => G.lan.map θ) := by
   intro f
@@ -162,7 +174,9 @@ theorem lan_map_surjective {A C : PModule.{u,0,w} R G.Point} :
 
 /-- The actual left Kan map on a coordinate grid is faithful. The Kan unit is
 an isomorphism at every embedded grid point, so restricting a Kan image to
-those points recovers the original natural transformation.-/
+those points recovers the original natural transformation.
+@isnad1 id=eq.1h7v.s10.b6a0abc41a66 from=translated src=- shape=7cf1e780 vocab=fa27e367
+-/
 theorem lan_map_injective {M N : PModule.{u,0,w} R G.Point}
     {θ θ' : M ⟶ N} (h : G.lan.map θ = G.lan.map θ') : θ = θ' := by
   apply NatTrans.ext
@@ -183,7 +197,9 @@ theorem lan_map_injective {M N : PModule.{u,0,w} R G.Point}
   letI : IsIso (ηN.app p) := hηN
   exact (cancel_mono (ηN.app p)).mp hcomp
 
-/-- Canonical inclusions commute with the actual Lan map of a natural transformation.-/
+/-- Canonical inclusions commute with the actual Lan map of a natural transformation.
+@isnad1 id=eq.1h7v.s10.7852e58882fa from=translated src=- shape=06669d9b vocab=df2bb1bd
+-/
 theorem kanInclusion_naturality (θ : M ⟶ N) (a : Fin n → ℝ) (ha : G.HasLowerPoint a) :
     G.kanInclusion M a ha ≫ (G.lan.map θ).app a =
       θ.app (G.floor a ha) ≫ G.kanInclusion N a ha := by
@@ -201,7 +217,9 @@ theorem kanInclusion_naturality (θ : M ⟶ N) (a : Fin n → ℝ) (ha : G.HasLo
     θ.app p ≫ (uN ≫ structureMap (G.lan.obj N) (G.floor_le a ha))
   rw [Category.assoc, hn, ← Category.assoc, ← hu, Category.assoc]
 
-/-- The canonical fiber comparisons are natural in the original grid module.-/
+/-- The canonical fiber comparisons are natural in the original grid module.
+@isnad1 id=eq.1h7v.s11.e5e4e63e7c88 from=translated src=- shape=138cc79c vocab=7d7170f2
+-/
 theorem appIso_naturality (θ : M ⟶ N) (a : Fin n → ℝ) (ha : G.HasLowerPoint a) :
     (G.lan.map θ).app a ≫ (G.appIso N a ha).hom =
       (G.appIso M a ha).hom ≫ θ.app (G.floor a ha) := by
@@ -210,7 +228,9 @@ theorem appIso_naturality (θ : M ⟶ N) (a : Fin n → ℝ) (ha : G.HasLowerPoi
     G.kanInclusion_appIso_hom, Category.comp_id, ← Category.assoc,
     G.kanInclusion_appIso_hom, Category.id_comp]
 
-/-- Transporting an actual Lan image reads the original grid-map image.-/
+/-- Transporting an actual Lan image reads the original grid-map image.
+@isnad1 id=eq.1h8v.s13.56ea2534dffe from=translated src=- shape=ed43f09b vocab=6c6459b9
+-/
 theorem appIso_map_apply (θ : M ⟶ N) (a : Fin n → ℝ) (ha : G.HasLowerPoint a)
     (x : (G.lan.obj M).obj a) :
     (G.appIso N a ha).hom.hom (((G.lan.map θ).app a).hom x) =
@@ -219,7 +239,9 @@ theorem appIso_map_apply (θ : M ⟶ N) (a : Fin n → ℝ) (ha : G.HasLowerPoin
 
 end Maps
 
-/-- Canonical inclusions commute with actual real-coordinate structure maps.-/
+/-- Canonical inclusions commute with actual real-coordinate structure maps.
+@isnad1 id=eq.3h6v.s10.af1632506004 from=translated src=- shape=5bc2e78e vocab=16069396
+-/
 theorem kanInclusion_structureMap {a b : Fin n → ℝ} (hab : a ≤ b)
     (ha : G.HasLowerPoint a) (hb : G.HasLowerPoint b) :
     G.kanInclusion M a ha ≫ structureMap (G.lan.obj M) hab =
@@ -238,7 +260,9 @@ theorem kanInclusion_structureMap {a b : Fin n → ℝ} (hab : a ≤ b)
     structureMap M (G.floor_mono hab ha hb) ≫ (uq ≫ structureMap (G.lan.obj M) (G.floor_le b hb))
   rw [Category.assoc, structureMap_comp, ← Category.assoc, hn, Category.assoc, structureMap_comp]
 
-/-- The actual real transition transports to the corresponding transition between floors.-/
+/-- The actual real transition transports to the corresponding transition between floors.
+@isnad1 id=eq.3h6v.s10.65e4527970f4 from=translated src=- shape=27daa6c9 vocab=c340648c
+-/
 theorem appIso_structureMap {a b : Fin n → ℝ} (hab : a ≤ b)
     (ha : G.HasLowerPoint a) (hb : G.HasLowerPoint b) :
     structureMap (G.lan.obj M) hab ≫ (G.appIso M b hb).hom =
@@ -248,7 +272,9 @@ theorem appIso_structureMap {a b : Fin n → ℝ} (hab : a ≤ b)
     G.kanInclusion_appIso_hom, Category.comp_id, ← Category.assoc,
     G.kanInclusion_appIso_hom, Category.id_comp]
 
-/-- The fiber comparison reads each actual structure-map image as its floor image.-/
+/-- The fiber comparison reads each actual structure-map image as its floor image.
+@isnad1 id=eq.3h7v.s13.7a974f193d04 from=translated src=- shape=7d19a554 vocab=9f53a6d4
+-/
 theorem appIso_structureMap_apply {a b : Fin n → ℝ} (hab : a ≤ b)
     (ha : G.HasLowerPoint a) (hb : G.HasLowerPoint b) (x : (G.lan.obj M).obj a) :
     (G.appIso M b hb).hom.hom (structureMapLinear (G.lan.obj M) hab x) =

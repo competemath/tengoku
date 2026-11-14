@@ -74,7 +74,9 @@ private def paddedRelation {α β : Type} (P : α → Prop) (Q : β → Prop)
 
 /-- Two relation-preserving injections on the selected occurrences determine
 one partial occurrence matching that covers every selected occurrence on
-both sides.-/
+both sides.
+@isnad1 id=ex.2h9v.s7.a48728311c32 from=translated src=- shape=14e79d8d vocab=b4903e41
+-/
 theorem exists_two_sided {α β : Type} [Fintype α] [Fintype β]
     (P : α → Prop) (Q : β → Prop) (r : α → β → Prop)
     (f : {a // P a} → β) (hf : Injective f) (hfr : ∀ a, r a.val (f a))

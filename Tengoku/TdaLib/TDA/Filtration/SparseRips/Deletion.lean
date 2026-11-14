@@ -33,13 +33,25 @@ def OpenActive (time : Option ℝ) (r : ℝ) : Prop :=
 def ClosedActive (time : Option ℝ) (r : ℝ) : Prop :=
   time.elim True (fun t => r ≤ t)
 
+/--
+@isnad1 id=eq.0h3v.s4.235db173b5c1 from=translated src=- shape=5ee8af76 vocab=89364a3b
+-/
 @[simp] theorem deletionTime_seed (seed : V) (η : ℝ) : deletionTime seed η seed = none := by
   simp [deletionTime]
 
+/--
+@isnad1 id=openacti.0h1v.s2.c14360fd5d11 from=translated src=- shape=1bfdc32f vocab=81c7674a
+-/
 @[simp] theorem openActive_none (r : ℝ) : OpenActive none r := trivial
 
+/--
+@isnad1 id=closedac.0h1v.s2.dde803552a8c from=translated src=- shape=1bfdc32f vocab=38d6fabf
+-/
 @[simp] theorem closedActive_none (r : ℝ) : ClosedActive none r := trivial
 
+/--
+@isnad1 id=eq.1h4v.s6.f91b2c7bf083 from=translated src=- shape=351153eb vocab=d01a0a1b
+-/
 theorem deletionTime_of_ne (seed : V) (η : ℝ) {x : V} (hx : x ≠ seed) :
     deletionTime seed η x = some
       (radius seed (insertionIndex seed x - 1) / (η * (1 - 2 * η))) := by
@@ -48,6 +60,9 @@ theorem deletionTime_of_ne (seed : V) (η : ℝ) {x : V} (hx : x ≠ seed) :
 private theorem parameter_pos {η : ℝ} (hη : 0 < η) (hη' : η ≤ 1 / 3) :
     0 < η * (1 - 2 * η) := mul_pos hη (by linarith)
 
+/--
+@isnad1 id=le.3h5v.s6.e40944e50a38 from=translated src=- shape=00762bb9 vocab=132408ee
+-/
 theorem deletionTime_nonneg (seed : V) {η : ℝ} (hη : 0 < η) (hη' : η ≤ 1 / 3)
     (x : V) : ∀ t ∈ deletionTime seed η x, 0 ≤ t := by
   intro t ht
@@ -59,7 +74,9 @@ theorem deletionTime_nonneg (seed : V) {η : ℝ} (hη : 0 < η) (hη' : η ≤ 
     rw [heq]
     exact div_nonneg (radius_nonneg seed _) (parameter_pos hη hη').le
 
-/-- The geometric witness lies beyond the deletion boundary and has weight zero.-/
+/-- The geometric witness lies beyond the deletion boundary and has weight zero.
+@isnad1 id=other.3h5v.s6.e3ad0ff73f58 from=translated src=- shape=af34ec82 vocab=0e412374
+-/
 theorem netPoint_active_weight_zero (seed : V) {η r : ℝ}
     (hη : 0 < η) (hη' : η ≤ 1 / 3) (hr : 0 ≤ r) (x : V) :
     let q := netPoint seed (η * r) (mul_nonneg hη.le hr) x
@@ -99,11 +116,17 @@ def deletionMap (seed : V) (η r : ℝ) (hη : 0 ≤ η) (hr : 0 ≤ r) (x : V) 
   exact if OpenActive (deletionTime seed η x) r then x
     else netPoint seed (η * r) (mul_nonneg hη hr) x
 
+/--
+@isnad1 id=eq.3h5v.s5.a0a278693984 from=translated src=- shape=7f18009c vocab=6efb95d0
+-/
 @[simp] theorem deletionMap_of_active (seed : V) {η r : ℝ} (hη : 0 ≤ η) (hr : 0 ≤ r)
     {x : V} (hx : OpenActive (deletionTime seed η x) r) :
     deletionMap seed η r hη hr x = x := by
   simp [deletionMap, hx]
 
+/--
+@isnad1 id=openacti.3h5v.s6.1ac138e488f4 from=translated src=- shape=7812b499 vocab=a6f753b0
+-/
 theorem deletionMap_active (seed : V) {η r : ℝ}
     (hη : 0 < η) (hη' : η ≤ 1 / 3) (hr : 0 ≤ r) (x : V) :
     OpenActive (deletionTime seed η (deletionMap seed η r hη.le hr x)) r := by
@@ -112,7 +135,9 @@ theorem deletionMap_active (seed : V) {η r : ℝ}
   · simp [deletionMap, hx]
   · simpa [deletionMap, hx] using (netPoint_active_weight_zero seed hη hη' hr x).1
 
-/-- The deletion projection satisfies the precise weighted domination inequality.-/
+/-- The deletion projection satisfies the precise weighted domination inequality.
+@isnad1 id=le.3h5v.s6.bc82ad462b4c from=translated src=- shape=077da3ca vocab=934ca0b1
+-/
 theorem deletionMap_domination (seed : V) {η r : ℝ}
     (hη : 0 < η) (hη' : η ≤ 1 / 3) (hr : 0 ≤ r) (x : V) :
     dist x (deletionMap seed η r hη.le hr x) ≤

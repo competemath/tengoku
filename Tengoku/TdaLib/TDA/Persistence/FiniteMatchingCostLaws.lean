@@ -68,7 +68,9 @@ private theorem totalFiniteCost_eq_symmetricSums
   simp_rw [hs]
   rw [Finset.sum_add_distrib]
 
-/-- Reversal preserves the real total, including both unmatched occurrence sums.-/
+/-- Reversal preserves the real total, including both unmatched occurrence sums.
+@isnad1 id=eq.0h5v.s5.1da43dd4d13b from=translated src=- shape=8f4fa6f8 vocab=804903f6
+-/
 theorem totalFiniteCost_reverse
     (M : OccurrenceMatching I J PEmpty.{1} PEmpty.{1})
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
@@ -95,7 +97,9 @@ private theorem pair_toReal_triangle (p q r : ℝ × ℝ) :
 
 /-- Compose partial injections and allocate each middle charge once.
 Selected middle labels pay for source paths; the complementary labels pay for
-remaining target paths. A middle occurrence unmatched on both sides has no endpoint.-/
+remaining target paths. A middle occurrence unmatched on both sides has no endpoint.
+@isnad1 id=le.0h8v.s6.45f125751e68 from=translated src=- shape=680d554a vocab=c6ddf361
+-/
 theorem totalFiniteCost_compose_le
     (M : OccurrenceMatching I J PEmpty.{1} PEmpty.{1})
     (N : OccurrenceMatching J K PEmpty.{1} PEmpty.{1})
@@ -264,7 +268,9 @@ end OccurrenceMatching
 
 variable {I J K : Type*} [Fintype I] [Fintype J] [Fintype K]
 
-/-- Pairing each occurrence with itself has zero total cost.-/
+/-- Pairing each occurrence with itself has zero total cost.
+@isnad1 id=eq.0h2v.s4.b726add52f8d from=translated src=- shape=404a8706 vocab=5d15fa30
+-/
 @[simp] theorem finiteFirstOrderMatchingCost_self (x : I → ℝ × ℝ) :
     finiteFirstOrderMatchingCost x x = 0 := by
   classical
@@ -275,7 +281,9 @@ variable {I J K : Type*} [Fintype I] [Fintype J] [Fintype K]
   exact le_antisymm ((finiteFirstOrderMatchingCost_le_totalFiniteCost x x M).trans_eq hcost)
     (finiteFirstOrderMatchingCost_nonneg x x)
 
-/-- Reversing attaining matchings proves symmetry of the minimum.-/
+/-- Reversing attaining matchings proves symmetry of the minimum.
+@isnad1 id=eq.0h4v.s5.61992c8e2b6d from=translated src=- shape=fc7bf61f vocab=5d15fa30
+-/
 theorem finiteFirstOrderMatchingCost_comm (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     finiteFirstOrderMatchingCost x y = finiteFirstOrderMatchingCost y x := by
   obtain ⟨M, hM⟩ := exists_minimizing_occurrenceMatching x y
@@ -290,7 +298,9 @@ theorem finiteFirstOrderMatchingCost_comm (x : I → ℝ × ℝ) (y : J → ℝ 
       _ = M.totalFiniteCost x y := M.totalFiniteCost_reverse x y
       _ = _ := hM
 
-/-- Composing attained minimizers gives the first-order triangle inequality.-/
+/-- Composing attained minimizers gives the first-order triangle inequality.
+@isnad1 id=le.0h6v.s6.f9101caff0e6 from=translated src=- shape=223f5137 vocab=0de296d9
+-/
 theorem finiteFirstOrderMatchingCost_triangle
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) (z : K → ℝ × ℝ) :
     finiteFirstOrderMatchingCost x z ≤
@@ -302,7 +312,9 @@ theorem finiteFirstOrderMatchingCost_triangle
     _ ≤ M.totalFiniteCost x y + N.totalFiniteCost y z := M.totalFiniteCost_compose_le N x y z
     _ = _ := by rw [hM, hN]
 
-/-- Value-preserving occurrence equivalences have zero cost, by reindexing self cost.-/
+/-- Value-preserving occurrence equivalences have zero cost, by reindexing self cost.
+@isnad1 id=eq.1h5v.s6.32989dbce3da from=translated src=- shape=965ff858 vocab=57d4116b
+-/
 theorem finiteFirstOrderMatchingCost_eq_zero_of_equiv
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) (e : I ≃ J) (he : ∀ i, x i = y (e i)) :
     finiteFirstOrderMatchingCost x y = 0 := by
@@ -313,7 +325,9 @@ theorem finiteFirstOrderMatchingCost_eq_zero_of_equiv
   exact h.trans (finiteFirstOrderMatchingCost_self y)
 
 /-- On positive finite diagrams, zero cost means equal values with multiplicity.
-Diagonal occurrences are excluded: they could otherwise disappear at zero cost.-/
+Diagonal occurrences are excluded: they could otherwise disappear at zero cost.
+@isnad1 id=iff.2h4v.s6.3ed8c077b1a6 from=translated src=- shape=51b742e8 vocab=6a11378d
+-/
 theorem finiteFirstOrderMatchingCost_eq_zero_iff
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ)
     (hx : ∀ i, (x i).1 < (x i).2) (hy : ∀ j, (y j).1 < (y j).2) :

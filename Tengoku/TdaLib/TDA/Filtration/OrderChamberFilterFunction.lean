@@ -14,6 +14,9 @@ variable [TopologicalSpace X] [LinearOrder β] [TopologicalSpace β]
   [OrderClosedTopology β]
 variable {K : PreAbstractSimplicialComplex V}
 
+/--
+@isnad1 id=ex.2h6v.s7.c3a66f743d32 from=translated src=- shape=67490a0e vocab=a1b4ca1d
+-/
 theorem FilterFunction.exists_open_orderingEquivalent_of_mem_orderChamber
     [Finite (TDA.Simplicial.TotalFace K)]
     (F : X → FilterFunction K β)
@@ -29,6 +32,9 @@ theorem FilterFunction.exists_open_orderingEquivalent_of_mem_orderChamber
       (fun x s => (F x).value s) hF hx₀
   exact ⟨U, hUo, hxU, hUc, fun x hx s t => hUe x hx s t⟩
 
+/--
+@isnad1 id=ex.2h7v.s7.8e0433bc102a from=translated src=- shape=77823b20 vocab=4153b209
+-/
 theorem CompatibleOrder.exists_open_sameEnum_of_mem_orderChamber
     [Fintype (TDA.Simplicial.TotalFace K)]
     (F : X → FilterFunction K β)

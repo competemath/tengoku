@@ -30,7 +30,9 @@ variable {R : Type u} [Ring R]
 def translation (ε : ℝ≥0) : ℝ →o ℝ :=
   ⟨fun t => t + (ε : ℝ), fun _ _ h => add_le_add h le_rfl⟩
 
-/-- Translation has the declared positive evaluation direction.-/
+/-- Translation has the declared positive evaluation direction.
+@isnad1 id=eq.0h2v.s5.d4b5117d47e7 from=translated src=- shape=be3f41d6 vocab=f19dd188
+-/
 @[simp] theorem translation_apply (ε : ℝ≥0) (t : ℝ) : translation ε t = t + (ε : ℝ) := rfl
 
 /-- The real shift endofunctor, including its action on natural transformations.-/
@@ -38,15 +40,21 @@ def shift (ε : ℝ≥0) : PModule.{u,0,w} R ℝ ⥤ PModule.{u,0,w} R ℝ where
   obj M := reindex (translation ε) M
   map f := reindexNatTrans (translation ε) f
 
-/-- A shift evaluates the original module at the translated real parameter.-/
+/-- A shift evaluates the original module at the translated real parameter.
+@isnad1 id=eq.0h4v.s6.e605092eee6e from=translated src=- shape=372ac008 vocab=fab89f6b
+-/
 @[simp] theorem shift_obj (ε : ℝ≥0) (M : PModule.{u,0,w} R ℝ) (t : ℝ) :
     ((shift ε).obj M).obj t = M.obj (t + (ε : ℝ)) := rfl
 
-/-- Shifted transformations use the translated components.-/
+/-- Shifted transformations use the translated components.
+@isnad1 id=eq.0h6v.s8.abe60f6e9767 from=translated src=- shape=9f7f4a39 vocab=031eb329
+-/
 @[simp] theorem shift_map_app (ε : ℝ≥0) {M N : PModule.{u,0,w} R ℝ}
     (f : M ⟶ N) (t : ℝ) : ((shift ε).map f).app t = f.app (t + (ε : ℝ)) := rfl
 
-/-- Shifted structure maps are the original maps between translated parameters.-/
+/-- Shifted structure maps are the original maps between translated parameters.
+@isnad1 id=eq.1h5v.s7.84a76821f6e7 from=translated src=- shape=55b5f4e9 vocab=ae7a74f3
+-/
 theorem shift_structureMap (ε : ℝ≥0) (M : PModule.{u,0,w} R ℝ) {s t : ℝ} (h : s ≤ t) :
     structureMap ((shift ε).obj M) h = structureMap M (add_le_add h le_rfl) := rfl
 
@@ -67,35 +75,47 @@ def compIso (ε δ : ℝ≥0) (M : PModule.{u,0,w} R ℝ) :
       change (t + (ε : ℝ)) + (δ : ℝ) = t + ((ε : ℝ) + (δ : ℝ))
       exact add_assoc _ _ _) M
 
-/-- The zero-shift component is the original module's map along index equality.-/
+/-- The zero-shift component is the original module's map along index equality.
+@isnad1 id=eq.0h3v.s8.6d8f2d820047 from=translated src=- shape=adc9fea6 vocab=ad81d618
+-/
 @[simp] theorem zeroIso_hom_app (M : PModule.{u,0,w} R ℝ) (t : ℝ) :
     (zeroIso M).hom.app t = M.map (eqToHom (add_zero t)) := rfl
 
-/-- The inverse zero-shift component transports along the reverse index equality.-/
+/-- The inverse zero-shift component transports along the reverse index equality.
+@isnad1 id=eq.0h3v.s8.e4ecdba017a5 from=translated src=- shape=390e8317 vocab=f5e7fe12
+-/
 @[simp] theorem zeroIso_inv_app (M : PModule.{u,0,w} R ℝ) (t : ℝ) :
     (zeroIso M).inv.app t = M.map (eqToHom (add_zero t).symm) := rfl
 
-/-- The composition component transports the translated index.-/
+/-- The composition component transports the translated index.
+@isnad1 id=eq.0h5v.s9.3b8853bf2a43 from=translated src=- shape=0dc07a90 vocab=15a7a1b8
+-/
 @[simp] theorem compIso_hom_app (ε δ : ℝ≥0) (M : PModule.{u,0,w} R ℝ) (t : ℝ) :
     (compIso ε δ M).hom.app t =
       M.map (eqToHom (show (t + (ε : ℝ)) + (δ : ℝ) = t + ((ε + δ : ℝ≥0) : ℝ) by
         simp [add_assoc])) := rfl
 
-/-- Zero-shift identification is natural in the module.-/
+/-- Zero-shift identification is natural in the module.
+@isnad1 id=eq.0h4v.s8.8f8bfc83374c from=translated src=- shape=a5a4e36b vocab=6d78f8be
+-/
 @[reassoc] theorem zeroIso_naturality {M N : PModule.{u,0,w} R ℝ} (f : M ⟶ N) :
     (shift 0).map f ≫ (zeroIso N).hom = (zeroIso M).hom ≫ f := by
   apply NatTrans.ext
   funext t
   exact (f.naturality (eqToHom (add_zero t))).symm
 
-/-- Naturality of the inverse shift unit.-/
+/-- Naturality of the inverse shift unit.
+@isnad1 id=eq.0h4v.s8.b5adcf90e551 from=translated src=- shape=d27a501f vocab=bf1b1b71
+-/
 @[reassoc] theorem zeroIso_inv_naturality {M N : PModule.{u,0,w} R ℝ} (f : M ⟶ N) :
     (zeroIso M).inv ≫ (shift 0).map f = f ≫ (zeroIso N).inv := by
   apply NatTrans.ext
   funext t
   exact f.naturality (eqToHom (add_zero t).symm)
 
-/-- Shift composition identification is natural in the module.-/
+/-- Shift composition identification is natural in the module.
+@isnad1 id=eq.0h6v.s10.0c3181eadcf3 from=translated src=- shape=a15827c7 vocab=da92087a
+-/
 theorem compIso_naturality (ε δ : ℝ≥0) {M N : PModule.{u,0,w} R ℝ} (f : M ⟶ N) :
     (shift ε).map ((shift δ).map f) ≫ (compIso ε δ N).hom =
       (compIso ε δ M).hom ≫ (shift (ε + δ)).map f := by
@@ -108,13 +128,17 @@ def congrIso {ε δ : ℝ≥0} (h : ε = δ) (M : PModule.{u,0,w} R ℝ) :
     (shift ε).obj M ≅ (shift δ).obj M :=
   reindexIso (fun t => congrArg (fun a : ℝ≥0 => t + (a : ℝ)) h) M
 
-/-- Equal-parameter transport is the map along equality of translated indices.-/
+/-- Equal-parameter transport is the map along equality of translated indices.
+@isnad1 id=eq.1h5v.s8.91265ab83994 from=translated src=- shape=48f00883 vocab=c65a72d1
+-/
 @[simp] theorem congrIso_hom_app {ε δ : ℝ≥0} (h : ε = δ)
     (M : PModule.{u,0,w} R ℝ) (t : ℝ) :
     (congrIso h M).hom.app t =
       M.map (eqToHom (congrArg (fun a : ℝ≥0 => t + (a : ℝ)) h)) := rfl
 
-/-- Reflexive parameter transport is the identity isomorphism.-/
+/-- Reflexive parameter transport is the identity isomorphism.
+@isnad1 id=eq.0h3v.s7.e52270e884ba from=translated src=- shape=df624b96 vocab=51516983
+-/
 @[simp] theorem congrIso_refl (ε : ℝ≥0) (M : PModule.{u,0,w} R ℝ) :
     congrIso (rfl : ε = ε) M = Iso.refl _ := by
   apply Iso.ext
@@ -122,7 +146,9 @@ def congrIso {ε δ : ℝ≥0} (h : ε = δ) (M : PModule.{u,0,w} R ℝ) :
   funext t
   exact M.map_id _
 
-/-- Left unit coherence, with the parameter equality transport displayed.-/
+/-- Left unit coherence, with the parameter equality transport displayed.
+@isnad1 id=eq.0h3v.s9.3b9161268bbd from=translated src=- shape=6a47a44a vocab=61da35f9
+-/
 @[reassoc] theorem compIso_zero_left (ε : ℝ≥0) (M : PModule.{u,0,w} R ℝ) :
     (compIso 0 ε M).hom ≫ (congrIso (zero_add ε) M).hom =
       (zeroIso ((shift ε).obj M)).hom := by
@@ -132,7 +158,9 @@ def congrIso {ε δ : ℝ≥0} (h : ε = δ) (M : PModule.{u,0,w} R ℝ) :
   rw [← M.map_comp]
   congr 1
 
-/-- Right unit coherence, with the parameter equality transport displayed.-/
+/-- Right unit coherence, with the parameter equality transport displayed.
+@isnad1 id=eq.0h3v.s9.3ed63e521bc1 from=translated src=- shape=08cb4746 vocab=ac0f5de3
+-/
 theorem compIso_zero_right (ε : ℝ≥0) (M : PModule.{u,0,w} R ℝ) :
     (compIso ε 0 M).hom ≫ (congrIso (add_zero ε) M).hom =
       (shift ε).map (zeroIso M).hom := by
@@ -142,7 +170,9 @@ theorem compIso_zero_right (ε : ℝ≥0) (M : PModule.{u,0,w} R ℝ) :
   rw [← M.map_comp]
   congr 1
 
-/-- Both parenthesizations of three shifts induce the same map of real-indexed modules.-/
+/-- Both parenthesizations of three shifts induce the same map of real-indexed modules.
+@isnad1 id=eq.0h5v.s11.3aa8c14c6195 from=translated src=- shape=20e35932 vocab=2b566137
+-/
 theorem compIso_assoc (ε δ γ : ℝ≥0) (M : PModule.{u,0,w} R ℝ) :
     (compIso ε δ ((shift γ).obj M)).hom ≫ (compIso (ε + δ) γ M).hom =
       (shift ε).map (compIso δ γ M).hom ≫ (compIso ε (δ + γ) M).hom ≫
@@ -161,18 +191,24 @@ def transition (ε : ℝ≥0) (M : PModule.{u,0,w} R ℝ) : M ⟶ (shift ε).obj
     rw [← M.map_comp, ← M.map_comp]
     congr 1
 
-/-- Transition components are the structure maps from `t` to `t + ε`.-/
+/-- Transition components are the structure maps from `t` to `t + ε`.
+@isnad1 id=eq.0h4v.s7.78f209120696 from=translated src=- shape=0e41744c vocab=5233a7b7
+-/
 @[simp] theorem transition_app (ε : ℝ≥0) (M : PModule.{u,0,w} R ℝ) (t : ℝ) :
     (transition ε M).app t = structureMap M (le_add_of_nonneg_right ε.coe_nonneg) := rfl
 
-/-- Transitions commute with every natural transformation of modules.-/
+/-- Transitions commute with every natural transformation of modules.
+@isnad1 id=eq.0h5v.s8.d444cc31f124 from=translated src=- shape=0be9aa5b vocab=2e8b6b5c
+-/
 theorem transition_naturality (ε : ℝ≥0) {M N : PModule.{u,0,w} R ℝ} (f : M ⟶ N) :
     f ≫ transition ε N = transition ε M ≫ (shift ε).map f := by
   apply NatTrans.ext
   funext t
   exact (f.naturality _).symm
 
-/-- At zero, the transition followed by the canonical unit is the identity.-/
+/-- At zero, the transition followed by the canonical unit is the identity.
+@isnad1 id=eq.0h2v.s7.75b8fb9bf905 from=translated src=- shape=40186c4b vocab=7d1795ad
+-/
 theorem transition_zero (M : PModule.{u,0,w} R ℝ) :
     transition 0 M ≫ (zeroIso M).hom = 𝟙 M := by
   apply NatTrans.ext
@@ -181,19 +217,25 @@ theorem transition_zero (M : PModule.{u,0,w} R ℝ) :
   erw [← M.map_comp]
   exact (congrArg M.map (Subsingleton.elim _ (𝟙 t))).trans (M.map_id t)
 
-/-- The zero transition is exactly the inverse canonical shift unit.-/
+/-- The zero transition is exactly the inverse canonical shift unit.
+@isnad1 id=eq.0h2v.s7.677c016df998 from=translated src=- shape=db4779a0 vocab=caa4b32a
+-/
 theorem transition_zero_eq (M : PModule.{u,0,w} R ℝ) :
     transition 0 M = (zeroIso M).inv := by
   apply (cancel_mono (zeroIso M).hom).mp
   rw [transition_zero, Iso.inv_hom_id]
 
-/-- Transition maps respect equal parameters through the canonical comparison.-/
+/-- Transition maps respect equal parameters through the canonical comparison.
+@isnad1 id=eq.1h4v.s8.aa77c5593ebc from=translated src=- shape=e486c032 vocab=58a14d2a
+-/
 theorem transition_congr {ε δ : ℝ≥0} (h : ε = δ) (M : PModule.{u,0,w} R ℝ) :
     transition ε M ≫ (congrIso h M).hom = transition δ M := by
   cases h
   simp only [congrIso_refl, Iso.refl_hom, Category.comp_id]
 
-/-- Two transitions compose to the transition by the sum.-/
+/-- Two transitions compose to the transition by the sum.
+@isnad1 id=eq.0h4v.s9.6006813fc6f3 from=translated src=- shape=6d844020 vocab=daddb6e9
+-/
 theorem transition_add (ε δ : ℝ≥0) (M : PModule.{u,0,w} R ℝ) :
     transition ε M ≫ (shift ε).map (transition δ M) ≫ (compIso ε δ M).hom =
       transition (ε + δ) M := by
@@ -225,23 +267,31 @@ namespace RealInterleaving
 
 variable {ε : ℝ≥0} {M N : PModule.{u,0,w} R ℝ}
 
-/-- Two witnesses agree when their two natural transformations agree.-/
+/-- Two witnesses agree when their two natural transformations agree.
+@isnad1 id=eq.2h6v.s7.82079b16f097 from=translated src=- shape=7afe4805 vocab=8b176807
+-/
 @[ext] theorem ext {i j : RealInterleaving ε M N} (hφ : i.φ = j.φ) (hψ : i.ψ = j.ψ) :
     i = j := by cases i; cases j; cases hφ; cases hψ; rfl
 
-/-- Objectwise form of the first double-shift identity, including the index transport.-/
+/-- Objectwise form of the first double-shift identity, including the index transport.
+@isnad1 id=eq.0h6v.s9.220b59a10a1f from=translated src=- shape=0aaa6ce0 vocab=db1f5010
+-/
 theorem φ_ψ_app (i : RealInterleaving ε M N) (t : ℝ) :
     i.φ.app t ≫ i.ψ.app (t + (ε : ℝ)) ≫ (compIso ε ε M).hom.app t =
       (transition (ε + ε) M).app t :=
   congrArg (fun f => f.app t) i.φ_ψ
 
-/-- Objectwise form of the second double-shift identity, including the index transport.-/
+/-- Objectwise form of the second double-shift identity, including the index transport.
+@isnad1 id=eq.0h6v.s9.416e01d100a6 from=translated src=- shape=e77bafba vocab=db1f5010
+-/
 theorem ψ_φ_app (i : RealInterleaving ε M N) (t : ℝ) :
     i.ψ.app t ≫ i.φ.app (t + (ε : ℝ)) ≫ (compIso ε ε N).hom.app t =
       (transition (ε + ε) N).app t :=
   congrArg (fun f => f.app t) i.ψ_φ
 
-/-- The two transformation equations are equivalent to their component equations.-/
+/-- The two transformation equations are equivalent to their component equations.
+@isnad1 id=iff.0h6v.s11.f65b45cdc6a4 from=translated src=- shape=a2a15e1a vocab=9b3c3a2f
+-/
 theorem equations_iff (f : M ⟶ (shift ε).obj N) (g : N ⟶ (shift ε).obj M) :
     (f ≫ (shift ε).map g ≫ (compIso ε ε M).hom = transition (ε + ε) M ∧
       g ≫ (shift ε).map f ≫ (compIso ε ε N).hom = transition (ε + ε) N) ↔
@@ -327,14 +377,18 @@ def zeroEquivIso : RealInterleaving 0 M N ≃ (M ≅ N) where
     change (e.hom ≫ (zeroIso N).inv) ≫ (zeroIso N).hom = e.hom
     simp [Category.assoc]
 
-/-- The shifted zero module is zero, at every finite shift parameter.-/
+/-- The shifted zero module is zero, at every finite shift parameter.
+@isnad1 id=iszero.0h2v.s6.e448eb40d594 from=translated src=- shape=3ab79b72 vocab=760512cd
+-/
 theorem shift_isZero_zero (ε : ℝ≥0) :
     IsZero ((shift ε).obj (0 : PModule.{u,0,w} R ℝ)) := by
   apply Functor.isZero
   intro t
   exact Functor.zero_obj (t + (ε : ℝ))
 
-/-- Interleaving with zero is exactly annihilation by the double-shift map.-/
+/-- Interleaving with zero is exactly annihilation by the double-shift map.
+@isnad1 id=iff.0h3v.s8.6da4b57c8dcf from=translated src=- shape=5e3e00f9 vocab=c701f7c9
+-/
 theorem nonempty_zero_iff (ε : ℝ≥0) (M : PModule.{u,0,w} R ℝ) :
     Nonempty (RealInterleaving ε M 0) ↔ transition (ε + ε) M = 0 := by
   constructor

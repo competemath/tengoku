@@ -28,6 +28,9 @@ def reservoirPowerValue (p : ℝ) (μ ν : Measure Interior) (R : ℝ≥0∞) : 
       γ.map Prod.snd = reservoirMeasure ν R),
       ∫⁻ z, collapsedPowerCost p z ∂γ
 
+/--
+@isnad1 id=le.2h5v.s7.d80987d3040c from=translated src=- shape=8ff09d93 vocab=0b7e0f45
+-/
 theorem reservoirPowerValue_le_plan (p : ℝ) (μ ν : Measure Interior)
     (R : ℝ≥0∞) (γ : Measure (Space × Space))
     (hfirst : γ.map Prod.fst = reservoirMeasure μ R)
@@ -41,7 +44,9 @@ theorem reservoirPowerValue_le_plan (p : ℝ) (μ ν : Measure Interior)
           γ.map Prod.snd = reservoirMeasure ν R =>
           ∫⁻ z, collapsedPowerCost p z ∂γ) ⟨hfirst, hsecond⟩)
 
-/-- Both directions compare every competitor, with extended values retained.-/
+/-- Both directions compare every competitor, with extended values retained.
+@isnad1 id=eq.3h4v.s7.9e49eb0c04a8 from=translated src=- shape=bfe0a3e8 vocab=2fd1d76a
+-/
 theorem boundaryTransportPowerValue_eq_reservoirPowerValue
     (p : ℝ) (hp : 1 ≤ p) (μ ν : Measure Interior)
     (R : ℝ≥0∞) (hR : R < ∞) (htotal : μ Set.univ + ν Set.univ ≤ R) :
@@ -65,7 +70,9 @@ theorem boundaryTransportPowerValue_eq_reservoirPowerValue
     exact (reservoirPowerValue_le_plan p μ ν R (collapsedAugmentation π R)
       hfirst hsecond).trans hcost
 
-/-- The powered reservoir value is independent of the admissible finite capacity.-/
+/-- The powered reservoir value is independent of the admissible finite capacity.
+@isnad1 id=eq.5h5v.s8.3923376e2df7 from=translated src=- shape=d7b60eea vocab=1004f258
+-/
 theorem reservoirPowerValue_independent
     (p : ℝ) (hp : 1 ≤ p) (μ ν : Measure Interior)
     (R S : ℝ≥0∞) (hR : R < ∞) (hS : S < ∞)
@@ -79,6 +86,9 @@ theorem reservoirPowerValue_independent
 def reservoirDistance (p : ℝ) (μ ν : Measure Interior) (R : ℝ≥0∞) : ℝ≥0∞ :=
   (reservoirPowerValue p μ ν R) ^ (1 / p)
 
+/--
+@isnad1 id=eq.3h4v.s7.f07cbdbce44f from=translated src=- shape=bfe0a3e8 vocab=a2f5ecef
+-/
 theorem boundaryTransportDistance_eq_reservoirDistance
     (p : ℝ) (hp : 1 ≤ p) (μ ν : Measure Interior)
     (R : ℝ≥0∞) (hR : R < ∞) (htotal : μ Set.univ + ν Set.univ ≤ R) :

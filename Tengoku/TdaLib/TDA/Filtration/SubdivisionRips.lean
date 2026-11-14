@@ -39,10 +39,14 @@ def mass (p : Index) : ℝ := (OrderDual.ofDual p.density).val
 /-- The numerical ball radius.-/
 def radius (p : Index) : ℝ := p.scale.val
 
-/-- Every admitted index has strictly positive mass.-/
+/-- Every admitted index has strictly positive mass.
+@isnad1 id=lt.0h1v.s3.d85e1597c20c from=translated src=- shape=b9369acb vocab=a812a67c
+-/
 @[simp] theorem mass_pos (p : Index) : 0 < mass p := (OrderDual.ofDual p.density).property
 
-/-- Every admitted index has strictly positive radius.-/
+/-- Every admitted index has strictly positive radius.
+@isnad1 id=lt.0h1v.s3.7d0199856eef from=translated src=- shape=b9369acb vocab=4fb6ff82
+-/
 @[simp] theorem radius_pos (p : Index) : 0 < radius p := p.scale.property
 
 instance : Preorder Index where
@@ -50,6 +54,9 @@ instance : Preorder Index where
   le_refl _ := ⟨le_rfl, le_rfl⟩
   le_trans _ _ _ h g := ⟨g.1.trans h.1, h.2.trans g.2⟩
 
+/--
+@isnad1 id=iff.0h2v.s4.64f0d4934135 from=translated src=- shape=0ae86468 vocab=490b3469
+-/
 @[simp] theorem index_le_iff (p q : Index) :
     p ≤ q ↔ mass q ≤ mass p ∧ radius p ≤ radius q := Iff.rfl
 
@@ -69,7 +76,9 @@ def subdivision [Fintype V] (K : PreAbstractSimplicialComplex V) (k : ℝ) :
       fun s hs t ht => hS.2.2 s (hTS hs) t (hTS ht)⟩⟩
 
 /-- Flags are nonempty, consist of sufficiently large original faces, and are
-linearly ordered by inclusion.-/
+linearly ordered by inclusion.
+@isnad1 id=iff.0h4v.s7.b7dd3cc0cb21 from=translated src=- shape=78207a22 vocab=1a4b61b9
+-/
 theorem mem_subdivision_iff [Fintype V] (K : PreAbstractSimplicialComplex V)
     (k : ℝ) (S : Finset (Finset V)) :
     S ∈ subdivision K k ↔ S.Nonempty ∧
@@ -77,7 +86,9 @@ theorem mem_subdivision_iff [Fintype V] (K : PreAbstractSimplicialComplex V)
       ∀ s ∈ S, ∀ t ∈ S, s ⊆ t ∨ t ⊆ s := Iff.rfl
 
 /-- On a flag with least member `s₀`, checking its normalized size checks
-exactly the source's minimum-simplex condition.-/
+exactly the source's minimum-simplex condition.
+@isnad1 id=iff.2h5v.s7.f5155441d2ac from=translated src=- shape=4812c66b vocab=d7d44ff7
+-/
 theorem mem_subdivision_iff_of_least [Fintype V] (K : PreAbstractSimplicialComplex V)
     (k : ℝ) (S : Finset (Finset V)) {s₀ : Finset V} (hs₀ : s₀ ∈ S)
     (hleast : ∀ s ∈ S, s₀ ⊆ s) :
@@ -93,7 +104,9 @@ theorem mem_subdivision_iff_of_least [Fintype V] (K : PreAbstractSimplicialCompl
       (by positivity)
 
 /-- Subdivision is natural for simultaneous enlargement of the complex and
-lowering of the mass threshold.-/
+lowering of the mass threshold.
+@isnad1 id=le.2h5v.s5.217959d7fd78 from=translated src=- shape=6cdfa8ee vocab=4eb49915
+-/
 theorem subdivision_mono [Fintype V] {K L : PreAbstractSimplicialComplex V}
     {k l : ℝ} (hKL : K ≤ L) (hlk : l ≤ k) :
     subdivision K k ≤ subdivision L l := by
@@ -102,7 +115,9 @@ theorem subdivision_mono [Fintype V] {K L : PreAbstractSimplicialComplex V}
     hlk.trans (hS.2.1 s hs).2⟩, hS.2.2⟩
 
 /-- A normalized threshold above one removes every flag of a nonempty finite
-carrier, independent of the underlying complex.-/
+carrier, independent of the underlying complex.
+@isnad1 id=eq.1h3v.s5.55b537155b04 from=translated src=- shape=cc45c5f3 vocab=5db06479
+-/
 theorem subdivision_eq_bot_of_one_lt [Fintype V] [Nonempty V]
     (K : PreAbstractSimplicialComplex V) {k : ℝ} (hk : 1 < k) :
     subdivision K k = ⊥ := by
@@ -115,7 +130,9 @@ theorem subdivision_eq_bot_of_one_lt [Fintype V] [Nonempty V]
   exact (not_le_of_gt hk) ((hS.2.1 s hs).2.trans hsize)
 
 /-- At normalized mass one, an existing full-carrier simplex gives exactly
-one subdivision vertex. This is a useful nonzero homology test stage.-/
+one subdivision vertex. This is a useful nonzero homology test stage.
+@isnad1 id=eq.1h2v.s5.fb70f4994fc7 from=translated src=- shape=1e8d8a0e vocab=2e849576
+-/
 theorem subdivision_one_eq_singleton [Fintype V] [Nonempty V]
     (K : PreAbstractSimplicialComplex V) (hK : Finset.univ ∈ K) :
     subdivision K 1 = singletonFace (Finset.univ : Finset V) := by
@@ -146,12 +163,16 @@ def openRips (d : MetricSpace V) (r : ℝ) : PreAbstractSimplicialComplex V wher
     exact ⟨hs.1, fun t hts ht => ⟨ht,
       fun v hv w hw => hs.2 v (hts hv) w (hts hw)⟩⟩
 
-/-- Open Rips face membership uses ball radius, rather than diameter time.-/
+/-- Open Rips face membership uses ball radius, rather than diameter time.
+@isnad1 id=iff.0h4v.s6.d8411e023fc9 from=translated src=- shape=afd29be4 vocab=fb02c1e3
+-/
 theorem mem_openRips_iff (d : MetricSpace V) (r : ℝ) (s : Finset V) :
     s ∈ openRips d r ↔ s.Nonempty ∧
       ∀ v ∈ s, ∀ w ∈ s, d.dist v w < 2 * r := Iff.rfl
 
-/-- Increasing radius preserves open Rips faces.-/
+/-- Increasing radius preserves open Rips faces.
+@isnad1 id=le.1h4v.s4.f6247d927ff1 from=translated src=- shape=2a42b89f vocab=ee8d6580
+-/
 theorem openRips_mono (d : MetricSpace V) {r q : ℝ} (h : r ≤ q) :
     openRips d r ≤ openRips d q := by
   intro s hs
@@ -165,12 +186,16 @@ def bifiltration [Fintype V] (d : MetricSpace V) :
     intro p q hpq
     exact subdivision_mono (openRips_mono d hpq.2) hpq.1
 
-/-- Every stage of the normalized bifiltration is the concrete flag complex.-/
+/-- Every stage of the normalized bifiltration is the concrete flag complex.
+@isnad1 id=eq.0h3v.s5.6f54f2283c75 from=translated src=- shape=9562d900 vocab=a3460c92
+-/
 theorem bifiltration_apply [Fintype V] (d : MetricSpace V) (p : Index) :
     bifiltration d p = subdivision (openRips d (radius p)) (mass p) := rfl
 
 /-- At positive radius, membership is equivalently the strict diameter bound.
-This makes the factor of two against the existing closed-diameter API explicit.-/
+This makes the factor of two against the existing closed-diameter API explicit.
+@isnad1 id=iff.1h4v.s6.47b0c3fd6520 from=translated src=- shape=c41ef9aa vocab=5b2231aa
+-/
 theorem mem_openRips_iff_diameter_lt (d : MetricSpace V) {r : ℝ} (hr : 0 < r)
     (s : Finset V) :
     s ∈ openRips d r ↔ s.Nonempty ∧ Rips.diameter d s < 2 * r := by
@@ -188,14 +213,18 @@ def openCech {X : Type w} [PseudoMetricSpace X] (p : V → X) (r : ℝ) :
     PreAbstractSimplicialComplex V :=
   TDA.Topology.nerve (fun v => Metric.ball (p v) r)
 
-/-- A common open-ball witness is exactly an open Čech face.-/
+/-- A common open-ball witness is exactly an open Čech face.
+@isnad1 id=iff.0h5v.s6.fd3dcf1cf61d from=translated src=- shape=16e84ab1 vocab=91524a9b
+-/
 theorem mem_openCech_iff {X : Type w} [PseudoMetricSpace X] (p : V → X)
     (r : ℝ) (s : Finset V) :
     s ∈ openCech p r ↔ s.Nonempty ∧ ∃ x, ∀ v ∈ s, dist x (p v) < r := Iff.rfl
 
 /-- In a finite sup-norm product, open Čech equals the open-radius Rips
 complex. The existing coordinatewise Helly witness is used at an intermediate
-closed radius strictly below `r`, so boundary faces are not inserted.-/
+closed radius strictly below `r`, so boundary faces are not inserted.
+@isnad1 id=eq.2h5v.s6.2f4952871530 from=translated src=- shape=0b6fa3f7 vocab=0ebde814
+-/
 theorem openCech_eq_openRips {ι : Type w} [Fintype ι] (d : MetricSpace V)
     (p : V → ι → ℝ) (hd : ∀ v w, d.dist v w = dist (p v) (p w))
     {r : ℝ} (hr : 0 < r) : openCech p r = openRips d r := by
@@ -220,7 +249,9 @@ theorem openCech_eq_openRips {ι : Type w} [Fintype ι] (d : MetricSpace V)
       fun v hv => (Cech.dist_supNormWitness_le p hs.1 hpair hv).trans_lt hqr⟩
 
 /-- The equality of open Čech and Rips holds after normalized subdivision,
-using exactly the same flags and normalization.-/
+using exactly the same flags and normalization.
+@isnad1 id=eq.1h5v.s6.a363eb16facb from=translated src=- shape=4fc68d9f vocab=8dbb04ba
+-/
 theorem subdivision_openCech_eq {ι : Type w} [Fintype ι] [Fintype V]
     (d : MetricSpace V) (p : V → ι → ℝ)
     (hd : ∀ v w, d.dist v w = dist (p v) (p w)) (a : Index) :
@@ -232,7 +263,9 @@ theorem subdivision_openCech_eq {ι : Type w} [Fintype ι] [Fintype V]
 /-- Finite distance coordinates give the finite-dimensional Kuratowski map.-/
 def distanceCoordinates (d : MetricSpace V) (v : V) : V → ℝ := fun w => d.dist w v
 
-/-- The finite distance-coordinate map preserves distances exactly.-/
+/-- The finite distance-coordinate map preserves distances exactly.
+@isnad1 id=eq.0h4v.s5.c176d5f59cf9 from=translated src=- shape=8f743acd vocab=4e6d8ec0
+-/
 theorem distanceCoordinates_dist [Fintype V] (d : MetricSpace V) (v w : V) :
     dist (distanceCoordinates d v) (distanceCoordinates d w) = d.dist v w := by
   let : MetricSpace V := d
@@ -244,7 +277,9 @@ theorem distanceCoordinates_dist [Fintype V] (d : MetricSpace V) (v w : V) :
     simpa [distanceCoordinates, Real.dist_eq] using h
 
 /-- The finite Kuratowski map is an isometric embedding into a finite sup-norm
-product, without a choice of separability data.-/
+product, without a choice of separability data.
+@isnad1 id=isometry.0h2v.s5.7d09c0a3fedc from=translated src=- shape=75f681fe vocab=bf1b99b7
+-/
 theorem isometry_distanceCoordinates [Fintype V] (d : MetricSpace V) :
     @Isometry V (V → ℝ) d.toPseudoMetricSpace.toPseudoEMetricSpace inferInstance
       (distanceCoordinates d) := by
@@ -252,7 +287,9 @@ theorem isometry_distanceCoordinates [Fintype V] (d : MetricSpace V) :
   exact Isometry.of_dist_eq (distanceCoordinates_dist d)
 
 /-- A raw additive distance bound transports concrete flags, with the factor
-of two corresponding to the source's ball-radius convention.-/
+of two corresponding to the source's ball-radius convention.
+@isnad1 id=le.3h6v.s7.55157d73a4db from=translated src=- shape=8c9d86c6 vocab=89e84c87
+-/
 theorem bifiltration_le_of_dist_le [Fintype V] (d e : MetricSpace V) (δ : ℝ≥0)
     (hde : ∀ v w, e.dist v w ≤ d.dist v w + 2 * δ)
     {p q : Index} (hk : mass q ≤ mass p) (hr : radius p + δ ≤ radius q) :
@@ -273,7 +310,9 @@ def relabelVertex (e : V ≃ W) : Finset V ↪ Finset W :=
   ⟨Finset.map e.toEmbedding, Finset.map_injective e.toEmbedding⟩
 
 /-- Normalized subdivision is invariant under a bijection preserving original
-faces. Both simplex sizes and the carrier normalization are preserved.-/
+faces. Both simplex sizes and the carrier normalization are preserved.
+@isnad1 id=iff.1h7v.s6.162e1719c491 from=translated src=- shape=6558c58a vocab=a9a3889b
+-/
 theorem mem_subdivision_relabel_iff [Fintype V] [Fintype W] (e : V ≃ W)
     (K : PreAbstractSimplicialComplex V) (L : PreAbstractSimplicialComplex W)
     (hKL : ∀ s, s.map e.toEmbedding ∈ L ↔ s ∈ K) (k : ℝ)
@@ -283,7 +322,9 @@ theorem mem_subdivision_relabel_iff [Fintype V] [Fintype W] (e : V ≃ W)
     relabelVertex, Function.Embedding.coeFn_mk, Finset.card_map, Finset.map_subset_map, hKL, ← Fintype.card_congr e]
 
 /-- Isometric bijections preserve every open Rips face at exactly the same
-radius.-/
+radius.
+@isnad1 id=iff.1h7v.s6.f0d801a69082 from=translated src=- shape=71efe4bf vocab=51ea9bc5
+-/
 theorem mem_openRips_relabel_iff (e : V ≃ W) (d : MetricSpace V) (f : MetricSpace W)
     (h : ∀ v w, f.dist (e v) (e w) = d.dist v w) (r : ℝ) (s : Finset V) :
     s.map e.toEmbedding ∈ openRips f r ↔ s ∈ openRips d r := by
@@ -291,7 +332,9 @@ theorem mem_openRips_relabel_iff (e : V ≃ W) (d : MetricSpace V) (f : MetricSp
     Equiv.coe_toEmbedding, h]
 
 /-- The concrete normalized flag faces do not depend on an isometric
-relabelling of a finite metric input.-/
+relabelling of a finite metric input.
+@isnad1 id=iff.1h7v.s7.75a6d1ae8728 from=translated src=- shape=d2c77940 vocab=232bcf4c
+-/
 theorem mem_bifiltration_relabel_iff [Fintype V] [Fintype W] (e : V ≃ W)
     (d : MetricSpace V) (f : MetricSpace W)
     (h : ∀ v w, f.dist (e v) (e w) = d.dist v w)

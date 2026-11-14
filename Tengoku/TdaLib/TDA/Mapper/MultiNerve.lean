@@ -49,22 +49,31 @@ def multiNerveMapper_projection (f : C(X, Y)) (U : I → Set Y) :
     multiNerveMapper f U → {s // s ∈ mapper f U} :=
   projection (componentCover f U)
 
+/--
+@isnad1 id=eq.0h6v.s7.a2870a48749b from=translated src=- shape=75c6309d vocab=df5f1dca
+-/
 @[simp] theorem multiNerveMapper_projection_coe (f : C(X, Y)) (U : I → Set Y)
     (c : multiNerveMapper f U) : (multiNerveMapper_projection f U c).1 = c.support := rfl
 
-/-- Every ordinary Mapper face is the support of a MultiNerve Mapper cell.-/
+/-- Every ordinary Mapper face is the support of a MultiNerve Mapper cell.
+@isnad1 id=surjecti.0h5v.s6.a8f28c853532 from=translated src=- shape=42595be6 vocab=dbcc04c6
+-/
 theorem multiNerveMapper_projection_surjective (f : C(X, Y)) (U : I → Set Y) :
     Function.Surjective (multiNerveMapper_projection f U) :=
   projection_surjective (componentCover f U)
 
-/-- The projection onto ordinary Mapper is monotone.-/
+/-- The projection onto ordinary Mapper is monotone.
+@isnad1 id=monotone.0h5v.s7.bfa20a3f52e7 from=translated src=- shape=42595be6 vocab=056c14cd
+-/
 theorem multiNerveMapper_projection_monotone (f : C(X, Y)) (U : I → Set Y) :
     Monotone (multiNerveMapper_projection f U) :=
   projection_monotone (componentCover f U)
 
 /-! ## Cells with one-element support -/
 
-/-- Every member of the path-component pullback cover is path-connected.-/
+/-- Every member of the path-component pullback cover is path-connected.
+@isnad1 id=ispathco.0h6v.s5.e50a7930fad6 from=translated src=- shape=e675f064 vocab=991b0066
+-/
 theorem componentCover_isPathConnected (f : C(X, Y)) (U : I → Set Y)
     (a : ComponentIndex f U) : IsPathConnected (componentCover f U a) := by
   rcases a with ⟨i, c⟩
@@ -73,7 +82,9 @@ theorem componentCover_isPathConnected (f : C(X, Y)) (U : I → Set Y)
       rw [componentCover_mk_eq_pathComponentIn]
       exact isPathConnected_pathComponentIn x.2
 
-/-- Over every component index there is exactly one MultiNerve Mapper cell.-/
+/-- Over every component index there is exactly one MultiNerve Mapper cell.
+@isnad1 id=existsun.0h6v.s6.120209418faf from=translated src=- shape=80de152f vocab=559d51a5
+-/
 theorem existsUnique_cell_support_singleton (f : C(X, Y)) (U : I → Set Y)
     (a : ComponentIndex f U) : ∃! c : multiNerveMapper f U, c.support = {a} := by
   have hpc : IsPathConnected (interMember (componentCover f U) {a}) := by
@@ -90,6 +101,9 @@ theorem existsUnique_cell_support_singleton (f : C(X, Y)) (U : I → Set Y)
 def vertexCell (f : C(X, Y)) (U : I → Set Y) (a : ComponentIndex f U) : multiNerveMapper f U :=
   (existsUnique_cell_support_singleton f U a).exists.choose
 
+/--
+@isnad1 id=eq.0h6v.s6.3049996872b1 from=translated src=- shape=f8a8eebf vocab=cb7679e7
+-/
 @[simp] theorem support_vertexCell (f : C(X, Y)) (U : I → Set Y) (a : ComponentIndex f U) :
     (vertexCell f U a).support = {a} :=
   (existsUnique_cell_support_singleton f U a).exists.choose_spec
@@ -114,7 +128,9 @@ def vertexCellEquiv (f : C(X, Y)) (U : I → Set Y) :
     exact Finset.singleton_inj.1 (h.symm.trans (support_vertexCell f U a))
 
 /-- The support of a cell with one-element support is the singleton of its image under
-`vertexCellEquiv`.-/
+`vertexCellEquiv`.
+@isnad1 id=eq.0h6v.s9.6db580d644b0 from=translated src=- shape=57fcb8c9 vocab=6de6ccd0
+-/
 theorem support_eq_singleton_vertexCellEquiv (f : C(X, Y)) (U : I → Set Y)
     (c : {c : multiNerveMapper f U // c.support.card = 1}) :
     c.1.support = {vertexCellEquiv f U c} :=
@@ -124,7 +140,9 @@ theorem support_eq_singleton_vertexCellEquiv (f : C(X, Y)) (U : I → Set Y)
 
 /-- Target-cover multiplicity bounds the support size of every MultiNerve Mapper cell. At
 `m = 2` every cell is a vertex or an edge cell; several edge cells may lie over one Mapper
-edge.-/
+edge.
+@isnad1 id=le.1h7v.s6.e4b2ce14c757 from=translated src=- shape=26af41fe vocab=c0a8c7bd
+-/
 theorem multiNerveMapper_card_le_of_multiplicity (f : C(X, Y)) (U : I → Set Y) {m : ℕ}
     (hmult : CoverMultiplicityAtMost f U m) (c : multiNerveMapper f U) :
     c.support.card ≤ m :=
@@ -141,7 +159,9 @@ def multiNerveMapperOrderIso (f : C(X, Y)) (U : I → Set Y)
     multiNerveMapper f U ≃o {s // s ∈ mapper f U} :=
   multiNerveOrderIso (componentCover f U) h
 
-/-- The underlying map of `multiNerveMapperOrderIso` is the projection.-/
+/-- The underlying map of `multiNerveMapperOrderIso` is the projection.
+@isnad1 id=eq.1h5v.s9.ea97038ec32f from=translated src=- shape=1272fa87 vocab=cffa9fbd
+-/
 @[simp] theorem coe_multiNerveMapperOrderIso (f : C(X, Y)) (U : I → Set Y)
     (h : IntersectionsPathSubsingleton (componentCover f U)) :
     ⇑(multiNerveMapperOrderIso f U h) = multiNerveMapper_projection f U := rfl
@@ -153,7 +173,9 @@ def PreimageIntersectionsPathConnected (f : C(X, Y)) (U : I → Set Y) : Prop :=
     IsPathConnected (f ⁻¹' ⋂ i ∈ τ, U i)
 
 /-- The target-side condition implies that every nonempty finite intersection of component
-members has at most one path component.-/
+members has at most one path component.
+@isnad1 id=intersec.1h5v.s5.1ff1ffc7ee85 from=translated src=- shape=f29d85bf vocab=8ef4693d
+-/
 theorem intersectionsPathSubsingleton_of_preimage (f : C(X, Y)) (U : I → Set Y)
     (h : PreimageIntersectionsPathConnected f U) :
     IntersectionsPathSubsingleton (componentCover f U) := by

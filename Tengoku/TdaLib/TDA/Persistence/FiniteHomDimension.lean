@@ -34,7 +34,9 @@ def componentMapPi (X Y : PModule.{u,0,u} k S) :
       (NatTrans.appLinearMap p)
 
 /-- The component-map recording map is injective by natural-transformation
-extensionality.-/
+extensionality.
+@isnad1 id=injectiv.0h4v.s12.a18fefde655f from=translated src=- shape=7203fbb1 vocab=796fd760
+-/
 theorem componentMapPi_injective (X Y : PModule.{u,0,u} k S) :
     Function.Injective (componentMapPi (k := k) X Y) := by
   intro f g h
@@ -49,7 +51,9 @@ theorem componentMapPi_injective (X Y : PModule.{u,0,u} k S) :
   simpa [componentMapPi] using hx
 
 /-- A natural-transformation space is finite-dimensional when its index set
-and all source and target fibers are finite-dimensional.-/
+and all source and target fibers are finite-dimensional.
+@isnad1 id=finitedi.2h4v.s8.0136dbb8dcf8 from=translated src=- shape=f19eae4a vocab=5af64026
+-/
 theorem finiteDimensional_hom [Fintype S]
     (X Y : PModule.{u,0,u} k S)
     (hX : ∀ p, FiniteDimensional k (X.obj p))

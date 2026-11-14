@@ -34,18 +34,24 @@ open CategoryTheory
 
 variable {α : Type v} [LinearOrder α]
 
-/-- A cut has disjoint parts.-/
+/-- A cut has disjoint parts.
+@isnad1 id=not.1h3v.s5.2df6548b43ee from=translated src=- shape=270331df vocab=4535a4f3
+-/
 theorem not_mem_upper {c : Cut α} {t : α} (ht : t ∈ c.lower) : t ∉ c.upper :=
   fun hu => lt_irrefl t (c.lower_lt_upper ht hu)
 
-/-- The lower part is closed downward.-/
+/-- The lower part is closed downward.
+@isnad1 id=mem.2h4v.s5.a79dfbdc1516 from=translated src=- shape=1767d513 vocab=5f7b1664
+-/
 theorem lower_of_le {c : Cut α} {s t : α} (hst : s ≤ t)
     (ht : t ∈ c.lower) : s ∈ c.lower := by
   rcases c.mem_lower_or_upper s with hs | hs
   · exact hs
   · exact False.elim ((not_lt_of_ge hst) (c.lower_lt_upper ht hs))
 
-/-- The upper part is closed upward.-/
+/-- The upper part is closed upward.
+@isnad1 id=mem.2h4v.s5.63b6bd24c593 from=translated src=- shape=68b6687a vocab=7dd91295
+-/
 theorem upper_of_le {c : Cut α} {s t : α} (hst : s ≤ t)
     (hs : s ∈ c.upper) : t ∈ c.upper := by
   rcases c.mem_lower_or_upper t with ht | ht
@@ -80,7 +86,9 @@ def intervalMinus (l r : Cut α) (t : α) : Submodule k (M.obj t) :=
     (imagePlus M l t ⊓ kernelMinus M r t)
 
 /-- A nonempty downward directed family of subspaces of a finite-dimensional space has
-an attained intersection. No finiteness of the underlying field or carrier is needed.-/
+an attained intersection. No finiteness of the underlying field or carrier is needed.
+@isnad1 id=ex.1h4v.s7.8279f1af9bd3 from=translated src=- shape=1f56cfad vocab=ab8a847f
+-/
 theorem exists_eq_iInf_of_directed {V : Type w} [AddCommGroup V] [Module k V]
     [FiniteDimensional k V] {ι : Type*} [Nonempty ι] (S : ι → Submodule k V)
     (hS : Directed (· ≥ ·) S) : ∃ i, S i = ⨅ j, S j := by
@@ -105,7 +113,9 @@ private theorem range_le_range {a b t : α} (hab : a ≤ b) (hbt : b ≤ t) :
   exact ⟨structureMapLinear M hab x,
     (LinearMap.congr_fun (structureMapLinear_comp M hab hbt) x).symm⟩
 
-/-- At an upper point, image-plus is the image from a single upper point.-/
+/-- At an upper point, image-plus is the image from a single upper point.
+@isnad1 id=ex.1h5v.s9.e6984b0934ce from=translated src=- shape=cc52afdb vocab=63f04c68
+-/
 theorem imagePlus_eq_range (c : Cut α) {t : α} [FiniteDimensional k (M.obj t)]
     (ht : t ∈ c.upper) :
     ∃ s : {s // s ∈ c.upper ∧ s ≤ t},
@@ -120,7 +130,9 @@ theorem imagePlus_eq_range (c : Cut α) {t : α} [FiniteDimensional k (M.obj t)]
     · exact ⟨b, range_le_range M hba a.property.2, le_rfl⟩)
   exact ⟨s, hs.symm⟩
 
-/-- Structure maps preserve image-plus.-/
+/-- Structure maps preserve image-plus.
+@isnad1 id=mem.2h7v.s11.a00b931a4107 from=translated src=- shape=3a98a304 vocab=382fb3fe
+-/
 theorem imagePlus_map_mem (c : Cut α) {p q : α} (hpq : p ≤ q)
     {x : M.obj p} (hx : x ∈ imagePlus M c p) :
     structureMapLinear M hpq x ∈ imagePlus M c q := by
@@ -133,7 +145,9 @@ theorem imagePlus_map_mem (c : Cut α) {p q : α} (hpq : p ≤ q)
   · refine ⟨structureMapLinear M hps x, ?_⟩
     exact (LinearMap.congr_fun (structureMapLinear_comp M hps s.property.2) x).symm
 
-/-- Finite dimension turns image-plus transport into a surjection.-/
+/-- Finite dimension turns image-plus transport into a surjection.
+@isnad1 id=ex.3h7v.s11.f852fccf5acf from=translated src=- shape=f31446d0 vocab=1ef67c73
+-/
 theorem imagePlus_map_surjective (c : Cut α) {p q : α}
     [FiniteDimensional k (M.obj p)] (hpq : p ≤ q) (hp : p ∈ c.upper)
     {y : M.obj q} (hy : y ∈ imagePlus M c q) :
@@ -147,7 +161,9 @@ theorem imagePlus_map_surjective (c : Cut α) {p q : α}
   · rw [structureMapLinear_comp M s.property.2 hpq, LinearMap.comp_apply] at hz
     exact hz
 
-/-- At two points in the lower part, kernel-plus pulls back along the structure map.-/
+/-- At two points in the lower part, kernel-plus pulls back along the structure map.
+@isnad1 id=iff.2h7v.s11.dda50ef249f0 from=translated src=- shape=4c48c1b2 vocab=42f025e2
+-/
 theorem kernelPlus_map_mem_iff (c : Cut α) {p q : α} (hpq : p ≤ q)
     (hq : q ∈ c.lower) (x : M.obj p) :
     structureMapLinear M hpq x ∈ kernelPlus M c q ↔ x ∈ kernelPlus M c p := by
@@ -163,7 +179,9 @@ theorem kernelPlus_map_mem_iff (c : Cut α) {p q : α} (hpq : p ≤ q)
     rw [structureMapLinear_comp M hpq r.property.2, LinearMap.comp_apply] at he
     exact he
 
-/-- Structure maps preserve interval-plus on the interval between its cuts.-/
+/-- Structure maps preserve interval-plus on the interval between its cuts.
+@isnad1 id=mem.3h8v.s11.bd847aa7e4c4 from=translated src=- shape=30ebac50 vocab=2c807bfe
+-/
 theorem intervalPlus_map_mem (l r : Cut α) {p q : α} (hpq : p ≤ q)
     (hq : q ∈ r.lower) {x : M.obj p} (hx : x ∈ intervalPlus M l r p) :
     structureMapLinear M hpq x ∈ intervalPlus M l r q :=
@@ -171,7 +189,9 @@ theorem intervalPlus_map_mem (l r : Cut α) {p q : α} (hpq : p ≤ q)
     (kernelPlus_map_mem_iff M r hpq hq x).mpr hx.2⟩
 
 /-- The transition maps of interval-plus are surjective. The only dimension assumption
-is at the source fiber; no compatible lifts or stabilization witnesses are assumed.-/
+is at the source fiber; no compatible lifts or stabilization witnesses are assumed.
+@isnad1 id=ex.4h8v.s11.29a6e606d90a from=translated src=- shape=5afd0e60 vocab=5272e0f3
+-/
 theorem intervalPlus_map_surjective (l r : Cut α) {p q : α}
     [FiniteDimensional k (M.obj p)] (hpq : p ≤ q)
     (hp : p ∈ l.upper) (hq : q ∈ r.lower)
@@ -191,7 +211,9 @@ private theorem kernel_le_kernel {t a b : α} (hta : t ≤ a) (hab : a ≤ b) :
   rw [structureMapLinear_comp M hta hab, LinearMap.comp_apply,
     LinearMap.mem_ker.mp hx, map_zero]
 
-/-- A nonempty kernel-plus intersection is attained at one upper point.-/
+/-- A nonempty kernel-plus intersection is attained at one upper point.
+@isnad1 id=ex.1h5v.s9.94733e2b6460 from=translated src=- shape=32978cda vocab=50d06521
+-/
 theorem kernelPlus_eq_kernel (c : Cut α) {t : α} [FiniteDimensional k (M.obj t)]
     (hne : ∃ r ∈ c.upper, t ≤ r) :
     ∃ r : {r // r ∈ c.upper ∧ t ≤ r},
@@ -208,7 +230,9 @@ theorem kernelPlus_eq_kernel (c : Cut α) {t : α} [FiniteDimensional k (M.obj t
     · exact ⟨b, kernel_le_kernel M b.property.2 hba, le_rfl⟩)
   exact ⟨r, hr.symm⟩
 
-/-- Every lower image satisfies all upper image conditions.-/
+/-- Every lower image satisfies all upper image conditions.
+@isnad1 id=le.0h5v.s9.0bab50c89a3f from=translated src=- shape=8b6ffeab vocab=cabf8026
+-/
 theorem imageMinus_le_imagePlus (c : Cut α) (t : α) :
     imageMinus M c t ≤ imagePlus M c t := by
   apply iSup_le
@@ -217,7 +241,9 @@ theorem imageMinus_le_imagePlus (c : Cut α) (t : α) :
   intro r
   exact range_le_range M (c.lower_lt_upper s.property.1 r.property.1).le r.property.2
 
-/-- Every lower kernel satisfies all upper kernel conditions.-/
+/-- Every lower kernel satisfies all upper kernel conditions.
+@isnad1 id=le.0h5v.s9.c7efc73a2277 from=translated src=- shape=8b6ffeab vocab=a65f9ea2
+-/
 theorem kernelMinus_le_kernelPlus (c : Cut α) (t : α) :
     kernelMinus M c t ≤ kernelPlus M c t := by
   apply iSup_le
@@ -226,13 +252,17 @@ theorem kernelMinus_le_kernelPlus (c : Cut α) (t : α) :
   intro r
   exact kernel_le_kernel M s.property.2 (c.lower_lt_upper s.property.1 r.property.1).le
 
-/-- Interval-minus is a subspace of interval-plus.-/
+/-- Interval-minus is a subspace of interval-plus.
+@isnad1 id=le.0h6v.s9.d8dc684957b0 from=translated src=- shape=5c80af5d vocab=77e80f57
+-/
 theorem intervalMinus_le_intervalPlus (l r : Cut α) (t : α) :
     intervalMinus M l r t ≤ intervalPlus M l r t :=
   sup_le (inf_le_inf_right _ (imageMinus_le_imagePlus M l t))
     (inf_le_inf_left _ (kernelMinus_le_kernelPlus M r t))
 
-/-- Image-minus transports exactly once the source lies in the upper part.-/
+/-- Image-minus transports exactly once the source lies in the upper part.
+@isnad1 id=eq.2h6v.s9.5082e0d587b8 from=translated src=- shape=884d474b vocab=3c39b30d
+-/
 theorem imageMinus_map_eq (c : Cut α) {p q : α} (hpq : p ≤ q)
     (hp : p ∈ c.upper) :
     (imageMinus M c p).map (structureMapLinear M hpq) = imageMinus M c q := by
@@ -258,7 +288,9 @@ theorem imageMinus_map_eq (c : Cut α) {p q : α} (hpq : p ≤ q)
       exact hz
 
 /-- Structure maps preserve lower kernel conditions, including when the killing point
-is passed by the structure map.-/
+is passed by the structure map.
+@isnad1 id=mem.2h7v.s11.0e880987859c from=translated src=- shape=3a98a304 vocab=b2713f50
+-/
 theorem kernelMinus_map_mem (c : Cut α) {p q : α} (hpq : p ≤ q)
     {x : M.obj p} (hx : x ∈ kernelMinus M c p) :
     structureMapLinear M hpq x ∈ kernelMinus M c q := by
@@ -280,14 +312,18 @@ theorem kernelMinus_map_mem (c : Cut α) {p q : α} (hpq : p ≤ q)
       exact Submodule.zero_mem _
   exact hle hx
 
-/-- A map to a lower point is killed inside kernel-minus at its source.-/
+/-- A map to a lower point is killed inside kernel-minus at its source.
+@isnad1 id=le.2h6v.s10.1f6c2be9599d from=translated src=- shape=4c6a4a4d vocab=e09d7f90
+-/
 theorem ker_le_kernelMinus (c : Cut α) {p q : α} (hpq : p ≤ q)
     (hq : q ∈ c.lower) :
     LinearMap.ker (structureMapLinear M hpq) ≤ kernelMinus M c p :=
   le_iSup (fun r : {r // r ∈ c.lower ∧ p ≤ r} =>
     LinearMap.ker (structureMapLinear M r.property.2)) ⟨q, hq, hpq⟩
 
-/-- The image-plus subspace has exactly the expected image under transport.-/
+/-- The image-plus subspace has exactly the expected image under transport.
+@isnad1 id=eq.2h6v.s9.eef1b9770d72 from=translated src=- shape=fd947eaf vocab=696329ca
+-/
 theorem imagePlus_map_eq (c : Cut α) {p q : α} [FiniteDimensional k (M.obj p)]
     (hpq : p ≤ q) (hp : p ∈ c.upper) :
     (imagePlus M c p).map (structureMapLinear M hpq) = imagePlus M c q := by
@@ -297,14 +333,18 @@ theorem imagePlus_map_eq (c : Cut α) {p q : α} [FiniteDimensional k (M.obj p)]
   · intro y hy
     exact imagePlus_map_surjective M c hpq hp hy
 
-/-- Kernel-plus is the pullback of kernel-plus at a later lower point.-/
+/-- Kernel-plus is the pullback of kernel-plus at a later lower point.
+@isnad1 id=eq.2h6v.s9.b7b5a078bb78 from=translated src=- shape=aa23b765 vocab=aa82560d
+-/
 theorem kernelPlus_comap_eq (c : Cut α) {p q : α} (hpq : p ≤ q)
     (hq : q ∈ c.lower) :
     (kernelPlus M c q).comap (structureMapLinear M hpq) = kernelPlus M c p := by
   ext x
   exact kernelPlus_map_mem_iff M c hpq hq x
 
-/-- At a lower point, membership in kernel-minus is witnessed by one later lower point.-/
+/-- At a lower point, membership in kernel-minus is witnessed by one later lower point.
+@isnad1 id=iff.1h6v.s11.6ac6f7523638 from=translated src=- shape=380de453 vocab=6595fed0
+-/
 theorem mem_kernelMinus_iff (c : Cut α) {t : α} (ht : t ∈ c.lower) {x : M.obj t} :
     x ∈ kernelMinus M c t ↔
       ∃ r : {r // r ∈ c.lower ∧ t ≤ r}, structureMapLinear M r.property.2 x = 0 := by
@@ -315,7 +355,9 @@ theorem mem_kernelMinus_iff (c : Cut α) {t : α} (ht : t ∈ c.lower) {x : M.ob
   · exact ⟨b, kernel_le_kernel M a.property.2 hab, le_rfl⟩
   · exact ⟨a, le_rfl, kernel_le_kernel M b.property.2 hba⟩
 
-/-- Kernel-minus also pulls back exactly between lower points.-/
+/-- Kernel-minus also pulls back exactly between lower points.
+@isnad1 id=iff.2h7v.s11.e3ab7ad30edc from=translated src=- shape=4c48c1b2 vocab=bcc6f7a2
+-/
 theorem kernelMinus_map_mem_iff (c : Cut α) {p q : α} (hpq : p ≤ q)
     (hq : q ∈ c.lower) (x : M.obj p) :
     structureMapLinear M hpq x ∈ kernelMinus M c q ↔ x ∈ kernelMinus M c p := by
@@ -330,14 +372,18 @@ theorem kernelMinus_map_mem_iff (c : Cut α) {p q : α} (hpq : p ≤ q)
     exact hr
   · exact kernelMinus_map_mem M c hpq
 
-/-- Kernel-minus is the pullback of kernel-minus at a later lower point.-/
+/-- Kernel-minus is the pullback of kernel-minus at a later lower point.
+@isnad1 id=eq.2h6v.s9.26db2b658ca9 from=translated src=- shape=aa23b765 vocab=51111737
+-/
 theorem kernelMinus_comap_eq (c : Cut α) {p q : α} (hpq : p ≤ q)
     (hq : q ∈ c.lower) :
     (kernelMinus M c q).comap (structureMapLinear M hpq) = kernelMinus M c p := by
   ext x
   exact kernelMinus_map_mem_iff M c hpq hq x
 
-/-- Interval-minus transports exactly between points of the interval.-/
+/-- Interval-minus transports exactly between points of the interval.
+@isnad1 id=eq.3h7v.s9.070ed38a64f1 from=translated src=- shape=d81b97d2 vocab=36937327
+-/
 theorem intervalMinus_map_eq (l r : Cut α) {p q : α} [FiniteDimensional k (M.obj p)]
     (hpq : p ≤ q) (hp : p ∈ l.upper) (hq : q ∈ r.lower) :
     (intervalMinus M l r p).map (structureMapLinear M hpq) = intervalMinus M l r q := by
@@ -358,13 +404,17 @@ def intervalPlusMap (l r : Cut α) {p q : α} (hpq : p ≤ q) (hq : q ∈ r.lowe
   map_add' x y := Subtype.ext (map_add (structureMapLinear M hpq) x.val y.val)
   map_smul' a x := Subtype.ext (map_smul (structureMapLinear M hpq) a x.val)
 
-/-- The interval-plus transition map evaluates to the original structure map.-/
+/-- The interval-plus transition map evaluates to the original structure map.
+@isnad1 id=eq.2h8v.s13.7f308e6acb7e from=translated src=- shape=2c56387a vocab=b6beffdb
+-/
 @[simp]
 theorem intervalPlusMap_apply (l r : Cut α) {p q : α} (hpq : p ≤ q)
     (hq : q ∈ r.lower) (x : intervalPlus M l r p) :
     (intervalPlusMap M l r hpq hq x : M.obj q) = structureMapLinear M hpq x := rfl
 
-/-- Interval-plus transition maps are surjective as maps of subspace carriers.-/
+/-- Interval-plus transition maps are surjective as maps of subspace carriers.
+@isnad1 id=surjecti.3h7v.s12.775ffc9a3d61 from=translated src=- shape=0296af8c vocab=1be55153
+-/
 theorem intervalPlusMap_surjective (l r : Cut α) {p q : α}
     [FiniteDimensional k (M.obj p)] (hpq : p ≤ q) (hp : p ∈ l.upper)
     (hq : q ∈ r.lower) : Function.Surjective (intervalPlusMap M l r hpq hq) := by
@@ -380,7 +430,9 @@ def intervalMinusInPlus (l r : Cut α) (t : α) : Submodule k (intervalPlus M l 
 abbrev intervalQuotient (l r : Cut α) (t : α) :=
   intervalPlus M l r t ⧸ intervalMinusInPlus M l r t
 
-/-- On interval-plus, the pullback of interval-minus is exactly interval-minus.-/
+/-- On interval-plus, the pullback of interval-minus is exactly interval-minus.
+@isnad1 id=eq.3h7v.s11.636e7c986985 from=translated src=- shape=11e455c2 vocab=f2e58698
+-/
 theorem intervalMinusInPlus_comap_eq (l r : Cut α) {p q : α}
     [FiniteDimensional k (M.obj p)] (hpq : p ≤ q) (hp : p ∈ l.upper)
     (hq : q ∈ r.lower) :
@@ -414,7 +466,9 @@ def intervalQuotientMap (l r : Cut α) {p q : α} [FiniteDimensional k (M.obj p)
     (intervalPlusMap M l r hpq hq)
     (le_of_eq (intervalMinusInPlus_comap_eq M l r hpq hp hq).symm)
 
-/-- Quotient transport is injective because the lower space is the exact pullback.-/
+/-- Quotient transport is injective because the lower space is the exact pullback.
+@isnad1 id=injectiv.3h7v.s12.5148eb0d61d0 from=translated src=- shape=c928b990 vocab=d65fdad0
+-/
 theorem intervalQuotientMap_injective (l r : Cut α) {p q : α}
     [FiniteDimensional k (M.obj p)] (hpq : p ≤ q) (hp : p ∈ l.upper)
     (hq : q ∈ r.lower) : Function.Injective (intervalQuotientMap M l r hpq hp hq) := by
@@ -422,7 +476,9 @@ theorem intervalQuotientMap_injective (l r : Cut α) {p q : α}
   rw [intervalQuotientMap, Submodule.ker_mapQ,
     intervalMinusInPlus_comap_eq M l r hpq hp hq, Submodule.mkQ_map_self]
 
-/-- Quotient transport is surjective because interval-plus transport is surjective.-/
+/-- Quotient transport is surjective because interval-plus transport is surjective.
+@isnad1 id=surjecti.3h7v.s12.03c4d705ce42 from=translated src=- shape=c928b990 vocab=3a8f0369
+-/
 theorem intervalQuotientMap_surjective (l r : Cut α) {p q : α}
     [FiniteDimensional k (M.obj p)] (hpq : p ≤ q) (hp : p ∈ l.upper)
     (hq : q ∈ r.lower) : Function.Surjective (intervalQuotientMap M l r hpq hp hq) := by
@@ -439,7 +495,9 @@ noncomputable def intervalQuotientEquiv (l r : Cut α) {p q : α}
     ⟨intervalQuotientMap_injective M l r hpq hp hq,
       intervalQuotientMap_surjective M l r hpq hp hq⟩
 
-/-- Quotient transport sends the class of a vector to the class of its structure-map image.-/
+/-- Quotient transport sends the class of a vector to the class of its structure-map image.
+@isnad1 id=eq.3h8v.s15.2965c21ec65d from=translated src=- shape=efb922a3 vocab=98c40073
+-/
 @[simp]
 theorem intervalQuotientEquiv_mkQ (l r : Cut α) {p q : α}
     [FiniteDimensional k (M.obj p)] (hpq : p ≤ q) (hp : p ∈ l.upper)
@@ -457,7 +515,9 @@ def intervalPlusModule (l r : Cut α) : PModule.{u,v,w} k (support l r) :=
     (fun t => intervalPlus M l r t.val)
     (fun _ t h _ hx => intervalPlus_map_mem M l r h t.property.2 hx)
 
-/-- The interval-plus module's structure maps are the restricted original maps.-/
+/-- The interval-plus module's structure maps are the restricted original maps.
+@isnad1 id=eq.1h7v.s9.dd4c89336d7a from=translated src=- shape=5f29d91f vocab=cb542e47
+-/
 @[simp]
 theorem structureMapLinear_intervalPlusModule (l r : Cut α) {s t : support l r}
     (h : s ≤ t) :
@@ -465,7 +525,9 @@ theorem structureMapLinear_intervalPlusModule (l r : Cut α) {s t : support l r}
       intervalPlusMap M l r h t.property.2 := rfl
 
 /-- Evaluation of compatible interval-plus sections is surjective for pointwise
-finite-dimensional real persistence modules.-/
+finite-dimensional real persistence modules.
+@isnad1 id=surjecti.0h5v.s13.a09a8059f825 from=translated src=- shape=15883222 vocab=e90f8a90
+-/
 theorem intervalPlus_evaluation_surjective_real (M : PModule.{u,0,w} k ℝ)
     [∀ t, FiniteDimensional k (M.obj t)] (l r : Cut ℝ) (t : support l r) :
     Function.Surjective (CompatibleSections.evaluation (intervalPlusModule M l r) t) := by
@@ -475,7 +537,9 @@ theorem intervalPlus_evaluation_surjective_real (M : PModule.{u,0,w} k ℝ)
   exact intervalPlusMap_surjective M l r h s.property.1 t.property.2
 
 /-- Every vector in interval-plus extends to a compatible family on the whole real
-interval, including open endpoints, singletons and unbounded intervals.-/
+interval, including open endpoints, singletons and unbounded intervals.
+@isnad1 id=ex.1h6v.s11.2b285c944675 from=translated src=- shape=5cbce0f6 vocab=b9b12ab2
+-/
 theorem exists_intervalPlus_compatible_lift_real (M : PModule.{u,0,w} k ℝ)
     [∀ t, FiniteDimensional k (M.obj t)] (l r : Cut ℝ) (t : support l r)
     (y : M.obj t.val) (hy : y ∈ intervalPlus M l r t.val) :
@@ -501,7 +565,9 @@ def intervalQuotientEvaluation (l r : Cut α) (t : support l r) :
       intervalQuotient M l r t.val :=
   (intervalMinusInPlus M l r t.val).mkQ.comp (intervalPlusEvaluation M l r t)
 
-/-- The kernel consists exactly of sections whose value lies in interval-minus.-/
+/-- The kernel consists exactly of sections whose value lies in interval-minus.
+@isnad1 id=iff.0h7v.s14.e9ca21ff8db2 from=translated src=- shape=7b24db18 vocab=5532c236
+-/
 theorem mem_ker_intervalQuotientEvaluation (l r : Cut α) (t : support l r)
     (x : CompatibleSections.sections (intervalPlusModule M l r)) :
     x ∈ (intervalQuotientEvaluation M l r t).ker ↔
@@ -509,7 +575,9 @@ theorem mem_ker_intervalQuotientEvaluation (l r : Cut α) (t : support l r)
   change (Submodule.Quotient.mk (x.val t) : intervalQuotient M l r t.val) = 0 ↔ _
   exact Submodule.Quotient.mk_eq_zero (p := intervalMinusInPlus M l r t.val)
 
-/-- Compatible interval-plus sections surject onto every interval-local quotient.-/
+/-- Compatible interval-plus sections surject onto every interval-local quotient.
+@isnad1 id=surjecti.0h5v.s14.a01c1161fc54 from=translated src=- shape=edf0b58c vocab=4970987a
+-/
 theorem intervalQuotientEvaluation_surjective_real (M : PModule.{u,0,w} k ℝ)
     [∀ t, FiniteDimensional k (M.obj t)] (l r : Cut ℝ) (t : support l r) :
     Function.Surjective (intervalQuotientEvaluation M l r t) := by
@@ -519,7 +587,9 @@ theorem intervalQuotientEvaluation_surjective_real (M : PModule.{u,0,w} k ℝ)
   change x.val t = z at hx
   exact ⟨x, congrArg (intervalMinusInPlus M l r t.val).mkQ hx⟩
 
-/-- Quotient evaluation commutes with every forward interval transition.-/
+/-- Quotient evaluation commutes with every forward interval transition.
+@isnad1 id=eq.1h8v.s15.c61e0671c906 from=translated src=- shape=8c81886b vocab=3750bd5b
+-/
 theorem intervalQuotientEvaluation_naturality (l r : Cut α) {s t : support l r}
     [FiniteDimensional k (M.obj s.val)] (h : s ≤ t)
     (x : CompatibleSections.sections (intervalPlusModule M l r)) :
@@ -533,7 +603,9 @@ theorem intervalQuotientEvaluation_naturality (l r : Cut α) {s t : support l r}
   exact CompatibleSections.compatible (intervalPlusModule M l r) x h
 
 /-- The kernel of global quotient evaluation is independent of the interval point.
-This supplies the common subspace used when choosing a global complement.-/
+This supplies the common subspace used when choosing a global complement.
+@isnad1 id=eq.0h7v.s14.afc5c72b511e from=translated src=- shape=18846233 vocab=84525027
+-/
 theorem ker_intervalQuotientEvaluation_eq [∀ t, FiniteDimensional k (M.obj t)]
     (l r : Cut α) (s t : support l r) :
     (intervalQuotientEvaluation M l r s).ker = (intervalQuotientEvaluation M l r t).ker := by
@@ -558,19 +630,25 @@ noncomputable def sectionComplement (l r : Cut α) (t : support l r) :
     Submodule k (CompatibleSections.sections (intervalPlusModule M l r)) :=
   ((intervalQuotientEvaluation M l r t).ker.exists_isCompl).choose
 
-/-- The chosen section space complements the quotient-evaluation kernel.-/
+/-- The chosen section space complements the quotient-evaluation kernel.
+@isnad1 id=iscompl.0h6v.s14.cb2b6b1d17c7 from=translated src=- shape=1646f93a vocab=76d49ae9
+-/
 theorem isCompl_sectionComplement (l r : Cut α) (t : support l r) :
     IsCompl (intervalQuotientEvaluation M l r t).ker (sectionComplement M l r t) :=
   ((intervalQuotientEvaluation M l r t).ker.exists_isCompl).choose_spec
 
-/-- The same chosen section complement works at every interval point.-/
+/-- The same chosen section complement works at every interval point.
+@isnad1 id=iscompl.0h7v.s14.cf0fbf73984f from=translated src=- shape=8e2899fb vocab=9f5c4c29
+-/
 theorem isCompl_sectionComplement_at [∀ t, FiniteDimensional k (M.obj t)]
     (l r : Cut α) (t s : support l r) :
     IsCompl (intervalQuotientEvaluation M l r s).ker (sectionComplement M l r t) := by
   rw [← ker_intervalQuotientEvaluation_eq M l r t s]
   exact isCompl_sectionComplement M l r t
 
-/-- The restriction of quotient evaluation to the chosen global complement is bijective.-/
+/-- The restriction of quotient evaluation to the chosen global complement is bijective.
+@isnad1 id=bijectiv.0h6v.s17.764f160be869 from=translated src=- shape=7aad5978 vocab=364aa6be
+-/
 theorem sectionComplement_quotientEvaluation_bijective_real (M : PModule.{u,0,w} k ℝ)
     [∀ t, FiniteDimensional k (M.obj t)] (l r : Cut ℝ) (t s : support l r) :
     Function.Bijective ((intervalQuotientEvaluation M l r s).comp
@@ -612,7 +690,9 @@ noncomputable def sectionComplementAt (l r : Cut α) (t s : support l r) :
     Submodule k (intervalPlus M l r s.val) :=
   (sectionComplement M l r t).map (intervalPlusEvaluation M l r s)
 
-/-- The transported global complement is a genuine local complement of interval-minus.-/
+/-- The transported global complement is a genuine local complement of interval-minus.
+@isnad1 id=iscompl.0h6v.s12.25388a3d4c8f from=translated src=- shape=ce3192a7 vocab=1f7ce160
+-/
 theorem isCompl_sectionComplementAt_real (M : PModule.{u,0,w} k ℝ)
     [∀ t, FiniteDimensional k (M.obj t)] (l r : Cut ℝ) (t s : support l r) :
     IsCompl (intervalMinusInPlus M l r s.val) (sectionComplementAt M l r t s) := by
@@ -639,7 +719,9 @@ theorem isCompl_sectionComplementAt_real (M : PModule.{u,0,w} k ℝ)
         (intervalMinusInPlus M l r s.val).mkQ x from hw, sub_self]
     exact Submodule.mem_sup.mpr ⟨x - z, hdiff, z, hz, sub_add_cancel x z⟩
 
-/-- Transition maps carry each transported complement exactly onto the next one.-/
+/-- Transition maps carry each transported complement exactly onto the next one.
+@isnad1 id=eq.1h8v.s12.c4c2ccfb4db3 from=translated src=- shape=166e2c2a vocab=436f815b
+-/
 theorem sectionComplementAt_map_eq (l r : Cut α) (t : support l r)
     {s q : support l r} (h : s ≤ q) :
     (sectionComplementAt M l r t s).map (intervalPlusMap M l r h q.property.2) =
@@ -657,7 +739,9 @@ noncomputable def sectionComplementFiber (l r : Cut α) (t : support l r) (s : �
     (sectionComplementAt M l r t ⟨s, hs⟩).map (intervalPlus M l r s).subtype else ⊥
 
 /-- The zero extension is preserved by every structure map, including transitions
-that cross the right end of the interval.-/
+that cross the right end of the interval.
+@isnad1 id=mem.2h9v.s11.f703c0e8b970 from=translated src=- shape=4f270780 vocab=75d364f1
+-/
 theorem sectionComplementFiber_map_mem (l r : Cut α) (t : support l r)
     {s q : α} (h : s ≤ q) {x : M.obj s} (hx : x ∈ sectionComplementFiber M l r t s) :
     structureMapLinear M h x ∈ sectionComplementFiber M l r t q := by
@@ -705,7 +789,9 @@ noncomputable def sectionComplementInclusion (l r : Cut α) (t : support l r) :
   app s := ModuleCat.ofHom (sectionComplementFiber M l r t s).subtype
   naturality _ _ f := by ext x; rfl
 
-/-- The chosen submodule vanishes at every point outside its interval.-/
+/-- The chosen submodule vanishes at every point outside its interval.
+@isnad1 id=eq.1h7v.s9.2eae372ce94c from=translated src=- shape=f19f3112 vocab=874013e9
+-/
 theorem sectionComplementFiber_eq_bot (l r : Cut α) (t : support l r) {s : α}
     (hs : s ∉ support l r) : sectionComplementFiber M l r t s = ⊥ := by
   classical

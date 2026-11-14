@@ -13,7 +13,9 @@ open Set MeasureTheory
 open scoped ENNReal
 namespace TDA.Persistence.BoundaryTransport
 
-/-- The literal metric `Lᵖ` norm is the rooted powered integral, including infinite values.-/
+/-- The literal metric `Lᵖ` norm is the rooted powered integral, including infinite values.
+@isnad1 id=eq.1h2v.s7.ecd6a970b566 from=translated src=- shape=e4c232b8 vocab=64275d4e
+-/
 theorem eLpNorm_dist_eq_collapsedPowerCost (p : ℝ) (hp : 0 < p)
     (γ : Measure (Space × Space)) :
     eLpNorm (fun z : Space × Space => dist z.1 z.2) (ENNReal.ofReal p) γ =
@@ -29,7 +31,9 @@ theorem eLpNorm_dist_eq_collapsedPowerCost (p : ℝ) (hp : 0 < p)
     ENNReal.ofReal_rpow_of_nonneg dist_nonneg hp.le]
 
 /-- On the collapsed metric space, the extended metric and real metric give the same
-coupling `Lᵖ` norm.-/
+coupling `Lᵖ` norm.
+@isnad1 id=eq.0h2v.s7.0850218bb46e from=translated src=- shape=d92e05cb vocab=2aa0d441
+-/
 theorem eLpNorm_edist_eq_dist (q : ℝ≥0∞) (γ : Measure (Space × Space)) :
     eLpNorm (fun z : Space × Space => edist z.1 z.2) q γ =
       eLpNorm (fun z : Space × Space => dist z.1 z.2) q γ := by

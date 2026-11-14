@@ -33,14 +33,18 @@ def mapper (f : C(X, Y)) (U : I → Set Y) :
   nerve (componentCover f U)
 
 /-- A Mapper face is a nonempty finite collection of component members with a
-common point in the domain.-/
+common point in the domain.
+@isnad1 id=iff.0h6v.s7.7a8475d4713f from=translated src=- shape=cc174582 vocab=3f903c31
+-/
 theorem mem_mapper_iff (f : C(X, Y)) (U : I → Set Y)
     (s : Finset (ComponentIndex f U)) :
     s ∈ mapper f U ↔
       s.Nonempty ∧ ∃ x : X, ∀ a ∈ s, x ∈ componentCover f U a :=
   Iff.rfl
 
-/-- Every component-cover index is a supported Mapper vertex.-/
+/-- Every component-cover index is a supported Mapper vertex.
+@isnad1 id=mem.0h6v.s6.12fedc352546 from=translated src=- shape=fd489498 vocab=d3f35f32
+-/
 theorem componentIndex_supported (f : C(X, Y)) (U : I → Set Y)
     (a : ComponentIndex f U) :
     ({a} : Finset (ComponentIndex f U)) ∈ mapper f U :=
@@ -62,7 +66,9 @@ theorem eq_of_mem_mapper_face_of_fst_eq (f : C(X, Y)) (U : I → Set Y)
   refine Sigma.ext rfl (heq_of_eq ?_)
   exact hc.symm.trans ((componentClass_proof_irrel f U hxi hxi').trans hd)
 
-/-- The projection to original cover labels is injective on every Mapper face.-/
+/-- The projection to original cover labels is injective on every Mapper face.
+@isnad1 id=injon.1h6v.s7.32801d6d107c from=translated src=- shape=4d6c5dba vocab=9a8dea24
+-/
 theorem componentLabel_injOn_face (f : C(X, Y)) (U : I → Set Y)
     {s : Finset (ComponentIndex f U)} (hs : s ∈ mapper f U) :
     Set.InjOn Sigma.fst (s : Set (ComponentIndex f U)) := by
@@ -74,7 +80,9 @@ def CoverMultiplicityAtMost (f : C(X, Y)) (U : I → Set Y) (m : ℕ) : Prop :=
   ∀ y ∈ Set.range f, ∀ t : Finset I,
     (∀ i ∈ t, y ∈ U i) → t.card ≤ m
 
-/-- Target-cover multiplicity bounds the cardinality of every Mapper face.-/
+/-- Target-cover multiplicity bounds the cardinality of every Mapper face.
+@isnad1 id=le.2h7v.s6.4a3f85ba7f22 from=translated src=- shape=b8815112 vocab=f3b1ad7f
+-/
 theorem mapper_face_card_le_of_multiplicity (f : C(X, Y)) (U : I → Set Y)
     {m : ℕ} (hmult : CoverMultiplicityAtMost f U m)
     {s : Finset (ComponentIndex f U)} (hs : s ∈ mapper f U) :
@@ -113,7 +121,9 @@ def mapperOneSkeleton (f : C(X, Y)) (U : I → Set Y) :
     exact h.1 rfl
 
 /-- Adjacency in the Mapper one-skeleton is exactly distinctness together with
-membership of the underlying two-vertex face.-/
+membership of the underlying two-vertex face.
+@isnad1 id=iff.0h7v.s8.709979330c22 from=translated src=- shape=32b741a8 vocab=f48c6d08
+-/
 theorem mapperOneSkeleton_adj_iff (f : C(X, Y)) (U : I → Set Y)
     (a b : MapperVertex f U) :
     (mapperOneSkeleton f U).Adj a b ↔
@@ -121,7 +131,9 @@ theorem mapperOneSkeleton_adj_iff (f : C(X, Y)) (U : I → Set Y)
   Iff.rfl
 
 /-- Under multiplicity at most two, every Mapper face is exactly a supported
-singleton or the underlying pair of two adjacent supported vertices.-/
+singleton or the underlying pair of two adjacent supported vertices.
+@isnad1 id=iff.1h6v.s9.5246767c3d17 from=translated src=- shape=3ced8b0c vocab=1ea47fd9
+-/
 theorem mem_mapper_iff_supported_singleton_or_adjacent_pair
     (f : C(X, Y)) (U : I → Set Y)
     (hmult : CoverMultiplicityAtMost f U 2)

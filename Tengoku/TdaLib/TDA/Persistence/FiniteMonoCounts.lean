@@ -77,7 +77,9 @@ private theorem finrank_restricted_kernel (M : PModule.{u,0,u} k (Fin s))
     (LinearMap.ker ((structureMapLinear M hcd).domRestrict U))) = _
   rw [LinearMap.ker_domRestrict, Submodule.map_comap_subtype]
 
-/-- For `b < d < s`, the same-death prefix count is the dimension of the image/kernel intersection. This statement does not form a terminal predecessor.-/
+/-- For `b < d < s`, the same-death prefix count is the dimension of the image/kernel intersection. This statement does not form a terminal predecessor.
+@isnad1 id=eq.2h5v.s10.4aeed9bf2b2f from=translated src=- shape=ac954bcc vocab=0ca4e41e
+-/
 theorem deathPrefixCount_eq_finrank (M : PModule.{u,0,u} k (Fin s))
     [∀ i, FiniteDimensional k (M.obj i)] (b d : ℕ) (hbd : b < d) (hd : d < s) :
     deathPrefixCount (rankBarcode M) b d =
@@ -100,7 +102,9 @@ theorem deathPrefixCount_eq_finrank (M : PModule.{u,0,u} k (Fin s))
   omega
 
 /-- The terminal case counts the image at the last observed stage. The hypothesis
-`b < s` implies `s > 0`; no index is formed when the chain is empty.-/
+`b < s` implies `s > 0`; no index is formed when the chain is empty.
+@isnad1 id=eq.1h4v.s7.8d04bce28289 from=translated src=- shape=036f8b96 vocab=bb90088e
+-/
 theorem deathPrefixCount_terminal (M : PModule.{u,0,u} k (Fin s))
     [∀ i, FiniteDimensional k (M.obj i)] (b : ℕ) (hb : b < s) :
     deathPrefixCount (rankBarcode M) b s =
@@ -153,7 +157,9 @@ private theorem imageMap_injective {M N : PModule.{u,0,u} k (Fin s)} (j : M ⟶ 
   exact hj _ (congrArg Subtype.val hxy)
 
 /-- A componentwise injection increases each cumulative count at one fixed death.
-The proof compares restricted subspace injections, including terminal images.-/
+The proof compares restricted subspace injections, including terminal images.
+@isnad1 id=le.3h7v.s10.e4191ab25e89 from=translated src=- shape=aaf754b8 vocab=7e3a3938
+-/
 theorem deathPrefixCount_le_of_injective {M N : PModule.{u,0,u} k (Fin s)}
     [∀ i, FiniteDimensional k (M.obj i)] [∀ i, FiniteDimensional k (N.obj i)]
     (j : M ⟶ N) (hj : ∀ i, Function.Injective (j.app i).hom) (b d : ℕ)

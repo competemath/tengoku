@@ -32,6 +32,9 @@ noncomputable def evaluation (t : ℝ) : singletonFamily.obj t →ₗ[ℚ] ℚ :
   (Submodule.subtype (SupportInterval.fiber (k := ℚ) ({t} : Set ℝ) t)).comp
     (DirectSum.component ℚ ℝ (fun j => (singletonModule j).obj t) t)
 
+/--
+@isnad1 id=surjecti.0h1v.s8.b59482384cde from=translated src=- shape=bdd786bf vocab=a43a55b1
+-/
 theorem evaluation_surjective (t : ℝ) : Function.Surjective (evaluation t) := by
   classical
   intro q
@@ -43,6 +46,9 @@ theorem evaluation_surjective (t : ℝ) : Function.Surjective (evaluation t) := 
       SupportInterval.fiber (k := ℚ) ({t} : Set ℝ) t) : ℚ) = q
   simp [v]
 
+/--
+@isnad1 id=injectiv.0h1v.s8.e8c50697f8b1 from=translated src=- shape=bdd786bf vocab=6b1f769d
+-/
 theorem evaluation_injective (t : ℝ) : Function.Injective (evaluation t) := by
   classical
   intro x y h

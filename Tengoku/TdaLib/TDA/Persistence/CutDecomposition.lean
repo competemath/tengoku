@@ -134,7 +134,9 @@ private theorem death_kernelPlus_not_le (t : α) [FiniteDimensional k (M.obj t)]
       exact False.elim (hne ⟨r.val, r.property.1, r.property.2⟩)
     exact hB (by simpa [hk] using h)
 
-/-- Every proper fiber subspace misses one interval quotient.-/
+/-- Every proper fiber subspace misses one interval quotient.
+@isnad1 id=ex.1h5v.s11.b31a863a4f43 from=translated src=- shape=c166916c vocab=f9bd0090
+-/
 theorem exists_interval_escapes (t : α) [FiniteDimensional k (M.obj t)]
     (W : Submodule k (M.obj t)) (hW : W ≠ ⊤) :
     ∃ l r : Cut α, t ∈ support l r ∧
@@ -199,6 +201,9 @@ private theorem chosenFiber_escapes_real
   change ¬ sectionComplementFiber M l r (anchor i) t ≤ W
   simpa only [sectionComplementFiber, dite_eq_left ht] using h
 
+/--
+@isnad1 id=eq.0h3v.s9.74dab27009ed from=translated src=- shape=b504472a vocab=d3ccde4f
+-/
 theorem chosenFiber_iSup_eq_top_real
     (M : PModule.{u,0,w} k ℝ) [∀ t, FiniteDimensional k (M.obj t)]
     (t : ℝ) : (⨆ i : IntervalIndex, chosenFiber M t i) = ⊤ := by
@@ -401,7 +406,9 @@ private theorem maximal_term_zero_real
   · simpa only [chosenFiber, sectionComplementFiber, dite_eq_left hti] using hv i hi
 
 /-- Distinct chosen cut-interval complements form an internal direct sum at each
-fiber. The family may be uncountable.-/
+fiber. The family may be uncountable.
+@isnad1 id=isupinde.0h3v.s8.967206e91906 from=translated src=- shape=9caeb066 vocab=346dc679
+-/
 theorem chosenFiber_iSupIndep_real
     (M : PModule.{u,0,w} k ℝ) [∀ t, FiniteDimensional k (M.obj t)]
     (t : ℝ) : iSupIndep (chosenFiber M t) := by
@@ -458,12 +465,17 @@ noncomputable def sumToM :
 
 omit [∀ t, FiniteDimensional k (M.obj t)] in
 /-- The assembled map is exactly the canonical map from an internal sum of
-the chosen fiber subspaces.-/
+the chosen fiber subspaces.
+@isnad1 id=eq.0h3v.s9.b6732b91be16 from=translated src=- shape=364ae372 vocab=47596d6e
+-/
 theorem sumToM_app (t : ℝ) :
     ((sumToM M).app t).hom = DirectSum.coeLinearMap (chosenFiber M t) := by
   classical
   rfl
 
+/--
+@isnad1 id=bijectiv.0h3v.s9.b6e940cf80e5 from=translated src=- shape=d2255a43 vocab=62997df1
+-/
 theorem sumToM_bijective (t : ℝ) :
     Function.Bijective (((sumToM M).app t).hom) := by
   classical
@@ -481,15 +493,22 @@ noncomputable def sumIso :
       (sumToM_bijective M t)).toModuleIso)
     (fun {_ _} f => (sumToM M).naturality f)
 
+/--
+@isnad1 id=eq.0h2v.s7.60514e668b63 from=translated src=- shape=342c349e vocab=1fd06d0b
+-/
 theorem sumIso_hom : (sumIso M).hom = sumToM M := rfl
 
-/-- Each parameter sees only finitely many nonzero interval subfunctors.-/
+/-- Each parameter sees only finitely many nonzero interval subfunctors.
+@isnad1 id=finite.0h3v.s7.c23bf0f7f199 from=translated src=- shape=cd20b3a5 vocab=a25f8f8a
+-/
 theorem finite_active (t : ℝ) :
     Set.Finite {i : IntervalIndex | Nontrivial ((intervalFamily M i).obj t)} := by
   exact AlgebraicFamily.finite_nontrivial_of_iso (intervalFamily M) (sumIso M).symm
     (fun s => inferInstance) t
 
-/-- A finite observation list detects only finitely many occurrences.-/
+/-- A finite observation list detects only finitely many occurrences.
+@isnad1 id=finite.0h4v.s7.143dcf3ad6e2 from=translated src=- shape=01775115 vocab=ae1bfde2
+-/
 theorem finite_observed {N : ℕ} (c : Fin N → ℝ) :
     Set.Finite {i : IntervalIndex | ∃ n, Nontrivial ((intervalFamily M i).obj (c n))} := by
   exact AlgebraicFamily.finite_observed_nontrivial (intervalFamily M)

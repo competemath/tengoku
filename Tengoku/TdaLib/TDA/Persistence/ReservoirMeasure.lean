@@ -33,6 +33,9 @@ def boundaryMomentIntegrand (p : ℝ) (x : Space) : ℝ≥0∞ :=
 def reservoirMeasure (μ : Measure Interior) (R : ℝ≥0∞) : Measure Space :=
   μ.map Space.point + (R - μ Set.univ) • Measure.dirac Space.boundary
 
+/--
+@isnad1 id=eq.2h3v.s7.9867d57a2ee8 from=translated src=- shape=61f84643 vocab=aecfc746
+-/
 theorem reservoirMeasure_apply_interior (μ : Measure Interior) (R : ℝ≥0∞)
     {s : Set Space} (hs : MeasurableSet s) (hb : Space.boundary ∉ s) :
     reservoirMeasure μ R s = μ (Space.point ⁻¹' s) := by
@@ -40,6 +43,9 @@ theorem reservoirMeasure_apply_interior (μ : Measure Interior) (R : ℝ≥0∞)
     Measure.smul_apply]
   simp [Measure.dirac_apply, hb]
 
+/--
+@isnad1 id=eq.1h2v.s6.417c78f4db3e from=translated src=- shape=7d538a44 vocab=fe56e6ea
+-/
 theorem reservoirMeasure_mass (μ : Measure Interior) (R : ℝ≥0∞)
     (hmass : μ Set.univ ≤ R) :
     reservoirMeasure μ R Set.univ = R := by
@@ -49,6 +55,9 @@ theorem reservoirMeasure_mass (μ : Measure Interior) (R : ℝ≥0∞)
   simp only [Set.indicator_univ, Pi.one_apply, mul_one]
   simpa only [add_comm] using (add_tsub_cancel_of_le hmass)
 
+/--
+@isnad1 id=eq.0h2v.s6.95b4f702b88a from=translated src=- shape=53b637f2 vocab=326aba58
+-/
 theorem reservoirMeasure_restrict_interior (μ : Measure Interior) (R : ℝ≥0∞) :
     (reservoirMeasure μ R).restrict (Set.range Space.point) = μ.map Space.point := by
   apply Measure.ext
@@ -62,6 +71,9 @@ theorem reservoirMeasure_restrict_interior (μ : Measure Interior) (R : ℝ≥0�
     Measure.map_apply continuous_point.measurable hs]
   simp [preimage_inter, preimage_range]
 
+/--
+@isnad1 id=eq.1h3v.s6.6e8f4c92199c from=translated src=- shape=0dfae8d6 vocab=e0b514aa
+-/
 theorem reservoirMeasure_boundary_moment (μ : Measure Interior) (R : ℝ≥0∞)
     (p : ℝ) (hp : 0 < p) :
     ∫⁻ x, boundaryMomentIntegrand p x ∂reservoirMeasure μ R =
@@ -76,6 +88,9 @@ theorem reservoirMeasure_boundary_moment (μ : Measure Interior) (R : ℝ≥0∞
   simp [boundaryMomentIntegrand, dist_point_boundary,
     Real.zero_rpow hp.ne']
 
+/--
+@isnad1 id=eq.0h1v.s6.79aa445fe09c from=translated src=- shape=c4f588bd vocab=b1fa811e
+-/
 @[simp] theorem reservoirMeasure_zero (R : ℝ≥0∞) :
     reservoirMeasure (0 : Measure Interior) R = R • Measure.dirac Space.boundary := by
   simp [reservoirMeasure]
@@ -84,6 +99,9 @@ theorem reservoirMeasure_boundary_moment (μ : Measure Interior) (R : ℝ≥0∞
 def normalizedReservoirMeasure (μ : Measure Interior) (R : ℝ≥0∞) : Measure Space :=
   R⁻¹ • reservoirMeasure μ R
 
+/--
+@isnad1 id=eq.3h2v.s7.2ea79481167b from=translated src=- shape=5f587af3 vocab=552bff83
+-/
 theorem normalizedReservoirMeasure_mass (μ : Measure Interior) (R : ℝ≥0∞)
     (hRtop : R < ∞) (hRpos : 0 < R)
     (hmass : μ Set.univ ≤ R) :
@@ -92,6 +110,9 @@ theorem normalizedReservoirMeasure_mass (μ : Measure Interior) (R : ℝ≥0∞)
     reservoirMeasure_mass μ R hmass]
   exact ENNReal.inv_mul_cancel hRpos.ne' hRtop.ne
 
+/--
+@isnad1 id=isprobab.3h2v.s7.c1603152aca0 from=translated src=- shape=8e902b81 vocab=14bd31e0
+-/
 theorem normalizedReservoirMeasure_isProbability (μ : Measure Interior) (R : ℝ≥0∞)
     (hRtop : R < ∞) (hRpos : 0 < R)
     (hmass : μ Set.univ ≤ R) :
@@ -103,6 +124,9 @@ def normalizedReservoirProbability (μ : Measure Interior) (R : ℝ≥0∞)
   ⟨normalizedReservoirMeasure μ R,
     normalizedReservoirMeasure_isProbability μ R hRtop hRpos hmass⟩
 
+/--
+@isnad1 id=eq.3h2v.s7.73f337cce141 from=translated src=- shape=6c9c075d vocab=76a9919c
+-/
 @[simp] theorem coe_normalizedReservoirProbability (μ : Measure Interior) (R : ℝ≥0∞)
     (hRtop : R < ∞) (hRpos : 0 < R) (hmass : μ Set.univ ≤ R) :
     (normalizedReservoirProbability μ R hRtop hRpos hmass : Measure Space) =

@@ -35,7 +35,9 @@ noncomputable def fiber (S : Set P) (p : P) : Submodule k k := by
   exact if p ∈ S then ⊤ else ⊥
 
 omit [Preorder P] in
-/-- A coefficient outside the support is zero.-/
+/-- A coefficient outside the support is zero.
+@isnad1 id=eq.1h5v.s7.7ae3b32d122f from=translated src=- shape=baf33f9b vocab=e03e844d
+-/
 theorem val_eq_zero (S : Set P) {p : P} (hp : p ∉ S)
     (x : fiber (k := k) S p) : (x : k) = 0 := by
   simpa [fiber, hp] using x.property
@@ -74,7 +76,9 @@ noncomputable def module (S : Set P) (hS : S.OrdConnected) : PModule.{u,v,u} k P
       · simp [map, hr]
     · simp [map, hp]
 
-/-- Structure maps preserve the scalar exactly on the target support.-/
+/-- Structure maps preserve the scalar exactly on the target support.
+@isnad1 id=eq.2h6v.s9.0fc5ab7ac8c3 from=translated src=- shape=bd0a1b06 vocab=01d6cfcf
+-/
 theorem structureMap_val (S : Set P) (hS : S.OrdConnected) {p q : P}
     (h : p ≤ q) (x : fiber (k := k) S p) :
     ((structureMapLinear (module S hS) h x) : k) = if q ∈ S then (x : k) else 0 := by
@@ -87,7 +91,9 @@ theorem structureMap_val (S : Set P) (hS : S.OrdConnected) {p q : P}
   · simp [map, hp, hq]
 
 /-- A transition with an endpoint outside the support is zero over any ring,
-including the zero ring.-/
+including the zero ring.
+@isnad1 id=eq.3h5v.s9.dfcfbc7b6604 from=translated src=- shape=22b1c1d4 vocab=630aa77f
+-/
 theorem structureMap_eq_zero_of_not_mem (S : Set P) (hS : S.OrdConnected)
     {p q : P} (h : p ≤ q) (hz : ¬ (p ∈ S ∧ q ∈ S)) :
     structureMapLinear (module (k := k) S hS) h = 0 := by
@@ -101,7 +107,9 @@ noncomputable def one (S : Set P) {p : P} (hp : p ∈ S) : fiber (k := k) S p :=
 
 variable [Nontrivial k]
 
-/-- A transition is zero exactly when at least one index is outside the support.-/
+/-- A transition is zero exactly when at least one index is outside the support.
+@isnad1 id=iff.2h5v.s9.c0a4615ff97f from=translated src=- shape=fa476b56 vocab=36750c54
+-/
 theorem structureMap_eq_zero_iff (S : Set P) (hS : S.OrdConnected)
     {p q : P} (h : p ≤ q) :
     structureMapLinear (module (k := k) S hS) h = 0 ↔ ¬ (p ∈ S ∧ q ∈ S) := by
@@ -162,7 +170,9 @@ noncomputable def comparison (S T : Set P) (hS : S.OrdConnected)
       · simp [hq]
     · simp [val_eq_zero S hp x]
 
-/-- The component coefficient of a comparison map.-/
+/-- The component coefficient of a comparison map.
+@isnad1 id=eq.3h7v.s10.994bd0510a30 from=translated src=- shape=15c8ec3b vocab=e4243198
+-/
 theorem comparison_app_val (S T : Set P) (hS : S.OrdConnected)
     (hT : T.OrdConnected) (c : k)
     (hcompat : ∀ p q, p ≤ q → p ∈ S → q ∈ T → (q ∈ S ↔ p ∈ T))
@@ -172,7 +182,9 @@ theorem comparison_app_val (S T : Set P) (hS : S.OrdConnected)
   comparisonLinear_val S T c p x
 
 /-- A normalized comparison is nonzero precisely when its scalar and overlap
-are nonzero. In particular, disjoint supports admit only the zero comparison.-/
+are nonzero. In particular, disjoint supports admit only the zero comparison.
+@isnad1 id=iff.3h5v.s8.8192251dbfb2 from=translated src=- shape=8b7212f6 vocab=d6690047
+-/
 theorem comparison_ne_zero_iff (S T : Set P) (hS : S.OrdConnected)
     (hT : T.OrdConnected) (c : k)
     (hcompat : ∀ p q, p ≤ q → p ∈ S → q ∈ T → (q ∈ S ↔ p ∈ T)) :
@@ -201,7 +213,9 @@ theorem comparison_ne_zero_iff (S T : Set P) (hS : S.OrdConnected)
     rw [comparison_app_val] at he
     exact hc (by simpa [ht, one] using he)
 
-/-- A component map is multiplication by its value on the unit coefficient.-/
+/-- A component map is multiplication by its value on the unit coefficient.
+@isnad1 id=eq.3h7v.s11.0b0871d9568e from=translated src=- shape=a7c898b3 vocab=1ede078e
+-/
 theorem app_val_eq_mul (S T : Set P) (hS : S.OrdConnected)
     (hT : T.OrdConnected) (α : module (k := k) S hS ⟶ module T hT)
     {p : P} (hp : p ∈ S) (x : fiber (k := k) S p) :
@@ -213,7 +227,9 @@ theorem app_val_eq_mul (S T : Set P) (hS : S.OrdConnected)
   conv_lhs => rw [hx, map_smul]
   rfl
 
-/-- A morphism is nonzero exactly when some unit coefficient is nonzero.-/
+/-- A morphism is nonzero exactly when some unit coefficient is nonzero.
+@isnad1 id=iff.2h5v.s10.97316e7b9506 from=translated src=- shape=5aa54808 vocab=18289307
+-/
 theorem ne_zero_iff_exists_coefficient (S T : Set P) (hS : S.OrdConnected)
     (hT : T.OrdConnected) (α : module (k := k) S hS ⟶ module T hT) :
     α ≠ 0 ↔ ∃ (p : P) (hp : p ∈ S),
@@ -235,7 +251,9 @@ theorem ne_zero_iff_exists_coefficient (S T : Set P) (hS : S.OrdConnected)
     rfl
 
 /-- Naturality propagates component coefficients along a comparable pair in
-the intersection of the two supports.-/
+the intersection of the two supports.
+@isnad1 id=eq.6h7v.s11.8c8e701446ad from=translated src=- shape=d5d652c1 vocab=59aa5f01
+-/
 theorem coefficient_eq_of_le (S T : Set P) (hS : S.OrdConnected)
     (hT : T.OrdConnected) (α : module (k := k) S hS ⟶ module T hT)
     {p q : P} (h : p ≤ q) (hp : p ∈ S) (hq : q ∈ S) (ht : q ∈ T) :
@@ -253,7 +271,9 @@ theorem coefficient_eq_of_le (S T : Set P) (hS : S.OrdConnected)
   exact hn.symm
 
 /-- A nonzero coefficient forces every earlier source point into the target.
-This is the lower-bound obstruction in the Hom criterion for rectangles.-/
+This is the lower-bound obstruction in the Hom criterion for rectangles.
+@isnad1 id=mem.6h7v.s10.a5129522a876 from=translated src=- shape=04ba4b50 vocab=59aa5f01
+-/
 theorem mem_target_of_nonzero (S T : Set P) (hS : S.OrdConnected)
     (hT : T.OrdConnected) (α : module (k := k) S hS ⟶ module T hT)
     {p q : P} (h : q ≤ p) (hp : p ∈ S) (hq : q ∈ S)
@@ -267,7 +287,9 @@ theorem mem_target_of_nonzero (S T : Set P) (hS : S.OrdConnected)
   exact hne he.symm
 
 /-- A nonzero coefficient forces every later target point into the source.
-This is the upper-bound obstruction in the Hom criterion for rectangles.-/
+This is the upper-bound obstruction in the Hom criterion for rectangles.
+@isnad1 id=mem.6h7v.s10.8bda002c1649 from=translated src=- shape=6bb18dd8 vocab=59aa5f01
+-/
 theorem mem_source_of_nonzero (S T : Set P) (hS : S.OrdConnected)
     (hT : T.OrdConnected) (α : module (k := k) S hS ⟶ module T hT)
     {p q : P} (h : p ≤ q) (hp : p ∈ S) (hq : q ∈ T)

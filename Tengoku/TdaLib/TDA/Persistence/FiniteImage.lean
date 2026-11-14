@@ -45,7 +45,9 @@ def finiteImage (f : M ⟶ N) : PModule.{u,0,u} k (Fin s) where
     rw [N.map_comp]
     rfl
 
-/-- Image fibers inherit finite dimensionality as submodules of the target fibers.-/
+/-- Image fibers inherit finite dimensionality as submodules of the target fibers.
+@isnad1 id=finitedi.0h6v.s8.45a40a3ec448 from=translated src=- shape=ff60253e vocab=954ded2f
+-/
 instance finiteImage_finiteDimensional (f : M ⟶ N)
     [∀ i, FiniteDimensional k (N.obj i)] (i : Fin s) :
     FiniteDimensional k ((finiteImage f).obj i) := by
@@ -67,30 +69,40 @@ def fromFiniteImage (f : M ⟶ N) : finiteImage f ⟶ N where
   app i := ModuleCat.ofHom (LinearMap.range (f.app i).hom).subtype
   naturality {_i _j} _g := rfl
 
-/-- The constructed epi–mono factors compose to the original natural transformation.-/
+/-- The constructed epi–mono factors compose to the original natural transformation.
+@isnad1 id=eq.0h5v.s8.4d15ae4723fe from=translated src=- shape=1569f776 vocab=0b323372
+-/
 theorem toFiniteImage_comp_fromFiniteImage (f : M ⟶ N) :
     toFiniteImage f ≫ fromFiniteImage f = f := by
   apply NatTrans.ext
   funext i
   rfl
 
-/-- Corestriction to a range is surjective at every stage.-/
+/-- Corestriction to a range is surjective at every stage.
+@isnad1 id=surjecti.0h6v.s10.6a185243e5c5 from=translated src=- shape=946d0568 vocab=5e92eec9
+-/
 theorem toFiniteImage_surjective (f : M ⟶ N) (i : Fin s) :
     Function.Surjective ((toFiniteImage f).app i).hom :=
   LinearMap.surjective_rangeRestrict _
 
-/-- The image inclusion is injective at every stage.-/
+/-- The image inclusion is injective at every stage.
+@isnad1 id=injectiv.0h6v.s10.614dd8f0451b from=translated src=- shape=70125b11 vocab=4c0817dc
+-/
 theorem fromFiniteImage_injective (f : M ⟶ N) (i : Fin s) :
     Function.Injective ((fromFiniteImage f).app i).hom :=
   Subtype.val_injective
 
-/-- A component injection remains injective after corestriction to its range.-/
+/-- A component injection remains injective after corestriction to its range.
+@isnad1 id=injectiv.1h6v.s10.f84926c95298 from=translated src=- shape=9bcc8ddb vocab=90a76717
+-/
 theorem toFiniteImage_injective (f : M ⟶ N)
     (hf : ∀ i, Function.Injective (f.app i).hom) (i : Fin s) :
     Function.Injective ((toFiniteImage f).app i).hom :=
   (LinearMap.injective_rangeRestrict_iff _).mpr (hf i)
 
-/-- For a componentwise surjection the image inclusion is also surjective.-/
+/-- For a componentwise surjection the image inclusion is also surjective.
+@isnad1 id=surjecti.1h6v.s10.1aadc9efbf3d from=translated src=- shape=53243a44 vocab=9b65662b
+-/
 theorem fromFiniteImage_surjective (f : M ⟶ N)
     (hf : ∀ i, Function.Surjective (f.app i).hom) (i : Fin s) :
     Function.Surjective ((fromFiniteImage f).app i).hom := by

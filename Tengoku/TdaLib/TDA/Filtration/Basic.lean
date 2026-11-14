@@ -35,27 +35,37 @@ face at that stage.-/
 def support (K : SimplicialFiltration P V) (p : P) : Set V :=
   {x | ({x} : Finset V) ∈ K p}
 
-/-- Membership in the support is equivalent to membership of the corresponding singleton face.-/
+/-- Membership in the support is equivalent to membership of the corresponding singleton face.
+@isnad1 id=iff.0h5v.s6.112bb66fc66c from=translated src=- shape=85eb1e1d vocab=c89eaf94
+-/
 theorem mem_support_iff (K : SimplicialFiltration P V) (p : P) (x : V) :
     x ∈ support K p ↔ ({x} : Finset V) ∈ K p := Iff.rfl
 
-/-- The bottom preabstract complex has no faces.-/
+/-- The bottom preabstract complex has no faces.
+@isnad1 id=iff.0h2v.s4.fc71df782288 from=translated src=- shape=791e3b42 vocab=83e521f5
+-/
 @[simp]
 theorem mem_bot_iff (s : Finset V) :
     s ∈ (⊥ : PreAbstractSimplicialComplex V) ↔ False := Iff.rfl
 
-/-- Every face present at `p` remains present at any later index `q`.-/
+/-- Every face present at `p` remains present at any later index `q`.
+@isnad1 id=mem.2h6v.s6.c8f548c11d1f from=translated src=- shape=88562ed1 vocab=9881c99d
+-/
 theorem face_mono (K : SimplicialFiltration P V) {p q : P} (hpq : p ≤ q)
     {s : Finset V} (hs : s ∈ K p) : s ∈ K q :=
   K.monotone hpq hs
 
-/-- Support can only grow along the preorder.-/
+/-- Support can only grow along the preorder.
+@isnad1 id=le.1h5v.s5.5340ab495f74 from=translated src=- shape=eb5273b9 vocab=677b505d
+-/
 theorem support_mono (K : SimplicialFiltration P V) {p q : P} (hpq : p ≤ q) :
     support K p ⊆ support K q := by
   intro x hx
   exact mem_support_iff K q x |>.2 (face_mono K hpq (mem_support_iff K p x |>.1 hx))
 
-/-- A stage whose complex is bottom has no supported vertices.-/
+/-- A stage whose complex is bottom has no supported vertices.
+@isnad1 id=eq.1h4v.s5.50a133d50f61 from=translated src=- shape=ebc7f2d4 vocab=12b3dd74
+-/
 theorem support_eq_empty_of_eq_bot (K : SimplicialFiltration P V) (p : P)
     (hp : K p = ⊥) : support K p = ∅ := by
   ext x
@@ -75,14 +85,18 @@ def singletonFace (x : V) : PreAbstractSimplicialComplex V where
       | inl h => exact (ht.ne_empty h).elim
       | inr h => exact h
 
-/-- A finite face belongs to `singletonFace x` exactly when it is `{x}`.-/
+/-- A finite face belongs to `singletonFace x` exactly when it is `{x}`.
+@isnad1 id=iff.0h3v.s5.51cf72962b1e from=translated src=- shape=797472b2 vocab=bb3e33b4
+-/
 theorem mem_singletonFace_iff (x : V) (s : Finset V) :
     s ∈ singletonFace x ↔ s = {x} := Iff.rfl
 
 /-- `addSingletons` inserts every ambient singleton, including one at a would-be empty stage.
 
 This witness is conditional on an explicit ambient vertex `x`; for an empty vertex type there is
-no such witness and no support change is asserted.-/
+no such witness and no support change is asserted.
+@isnad1 id=mem.0h2v.s4.2e98bfd57c12 from=translated src=- shape=c292e4fc vocab=2b24a40e
+-/
 theorem addSingletons_introduces_singleton (x : V) :
     ({x} : Finset V) ∈ (⊥ : PreAbstractSimplicialComplex V).addSingletons :=
   AbstractSimplicialComplex.singleton_mem _ x
@@ -92,18 +106,24 @@ def reindex {Q : Type w} [Preorder Q] (u : Q →o P) (K : SimplicialFiltration P
     SimplicialFiltration Q V :=
   K.comp u
 
-/-- Evaluation of a reindexed filtration is evaluation at the mapped index.-/
+/-- Evaluation of a reindexed filtration is evaluation at the mapped index.
+@isnad1 id=eq.0h6v.s6.b95be27dcbd0 from=translated src=- shape=cf733284 vocab=590f2901
+-/
 @[simp]
 theorem reindex_apply {Q : Type w} [Preorder Q] (u : Q →o P)
     (K : SimplicialFiltration P V) (q : Q) : reindex u K q = K (u q) := rfl
 
-/-- Reindexing by the identity order hom leaves the filtration unchanged.-/
+/-- Reindexing by the identity order hom leaves the filtration unchanged.
+@isnad1 id=eq.0h3v.s4.c96022351744 from=translated src=- shape=841bb50f vocab=af2ecd90
+-/
 theorem reindex_id (K : SimplicialFiltration P V) :
     reindex (OrderHom.id : P →o P) K = K := by
   ext p
   rfl
 
-/-- Reindexing successively by `u` and `v` is reindexing by their composite `u.comp v`.-/
+/-- Reindexing successively by `u` and `v` is reindexing by their composite `u.comp v`.
+@isnad1 id=eq.0h7v.s6.3e77b22b9eb3 from=translated src=- shape=78b83cf7 vocab=1a850147
+-/
 theorem reindex_comp {Q : Type w} [Preorder Q] {S : Type x} [Preorder S]
     (u : Q →o P) (v : S →o Q) (K : SimplicialFiltration P V) :
     reindex v (reindex u K) = reindex (u.comp v) K := by

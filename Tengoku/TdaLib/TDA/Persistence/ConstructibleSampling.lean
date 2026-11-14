@@ -40,7 +40,9 @@ noncomputable def sampleTranslation (c : Fin n ↪o ℝ) (δ : ℝ≥0) : Fin n 
   monotone' i j hij := Nat.sub_le_sub_right
     ((cellIndex c).monotone (add_le_add (c.monotone hij) (le_refl (δ : ℝ)))) 1
 
-/-- The translated parameter is in the positive cell starting at the selected value.-/
+/-- The translated parameter is in the positive cell starting at the selected value.
+@isnad1 id=eq.0h4v.s7.46af03b91d74 from=translated src=- shape=de6004a0 vocab=328290d1
+-/
 theorem sampleTranslation_succ (c : Fin n ↪o ℝ) (δ : ℝ≥0) (i : Fin n) :
     (sampleTranslation c δ i).succ = cellIndex c (c i + (δ : ℝ)) := by
   apply Fin.ext
@@ -49,7 +51,9 @@ theorem sampleTranslation_succ (c : Fin n ↪o ℝ) (δ : ℝ≥0) (i : Fin n) :
   change (cellIndex c (c i + (δ : ℝ))).val - 1 + 1 = _
   omega
 
-/-- Nonnegative real translation gives an inflationary critical-index map.-/
+/-- Nonnegative real translation gives an inflationary critical-index map.
+@isnad1 id=le.0h4v.s6.ab75540b5428 from=translated src=- shape=277c359d vocab=69c6bf0b
+-/
 theorem le_sampleTranslation (c : Fin n ↪o ℝ) (δ : ℝ≥0) (i : Fin n) :
     i ≤ sampleTranslation c δ i := by
   have hp := (lt_cellIndex_iff c i (c i + (δ : ℝ))).mpr
@@ -57,19 +61,25 @@ theorem le_sampleTranslation (c : Fin n ↪o ℝ) (δ : ℝ≥0) (i : Fin n) :
   change i.val ≤ (cellIndex c (c i + (δ : ℝ))).val - 1
   omega
 
-/-- Rounding never selects a critical value after the translated parameter.-/
+/-- Rounding never selects a critical value after the translated parameter.
+@isnad1 id=le.0h4v.s6.a8fa598cd5dd from=translated src=- shape=9fedff59 vocab=ec222a37
+-/
 theorem sampleTranslation_value_le (c : Fin n ↪o ℝ) (δ : ℝ≥0) (i : Fin n) :
     c (sampleTranslation c δ i) ≤ c i + (δ : ℝ) := by
   apply (lt_cellIndex_iff c _ _).mp
   rw [← sampleTranslation_succ c δ i]
   exact Nat.lt_succ_self _
 
-/-- The selected critical value and translated parameter lie in the same cell.-/
+/-- The selected critical value and translated parameter lie in the same cell.
+@isnad1 id=eq.0h4v.s8.e895af203315 from=translated src=- shape=d213c9c6 vocab=7401b60f
+-/
 theorem cellIndex_sampleTranslation (c : Fin n ↪o ℝ) (δ : ℝ≥0) (i : Fin n) :
     cellIndex c (c (sampleTranslation c δ i)) = cellIndex c (c i + (δ : ℝ)) := by
   rw [cellIndex_critical, sampleTranslation_succ]
 
-/-- Zero translation is the identity on critical indices.-/
+/-- Zero translation is the identity on critical indices.
+@isnad1 id=eq.0h2v.s5.abea2a94ac21 from=translated src=- shape=b55f38c4 vocab=6590bdf6
+-/
 @[simp] theorem sampleTranslation_zero (c : Fin n ↪o ℝ) :
     sampleTranslation c 0 = OrderHom.id := by
   apply DFunLike.ext
@@ -78,7 +88,9 @@ theorem cellIndex_sampleTranslation (c : Fin n ↪o ℝ) (δ : ℝ≥0) (i : Fin
   rw [sampleTranslation_succ]
   simp
 
-/-- The final observed index is fixed, even when its real cell is unbounded.-/
+/-- The final observed index is fixed, even when its real cell is unbounded.
+@isnad1 id=eq.0h3v.s8.70233311fdc7 from=translated src=- shape=66f22fb9 vocab=fd9d5c82
+-/
 @[simp] theorem sampleTranslation_last (c : Fin (n + 1) ↪o ℝ) (δ : ℝ≥0) :
     sampleTranslation c δ (Fin.last n) = Fin.last n :=
   le_antisymm (Fin.le_last _) (le_sampleTranslation c δ _)
@@ -87,7 +99,9 @@ variable {R : Type u} [Ring R] {c : Fin n ↪o ℝ}
 variable {A : PModule.{u,0,w} R ℝ}
 
 /-- Real annihilation transfers to critical samples by cancelling the
-within-cell isomorphism after the rounded endpoint.-/
+within-cell isomorphism after the rounded endpoint.
+@isnad1 id=eq.2h6v.s9.e84f222cd995 from=translated src=- shape=3f9f60bb vocab=3b6a37aa
+-/
 theorem critical_structureMap_eq_zero (hA : IsConstructible c A) (δ : ℝ≥0)
     (hz : transition δ A = 0) (i : Fin n) :
     structureMap (reindex c.toOrderHom A) (le_sampleTranslation c δ i) = 0 := by
@@ -101,13 +115,17 @@ theorem critical_structureMap_eq_zero (hA : IsConstructible c A) (δ : ℝ≥0)
 
 variable {k : Type u} [Field k] {M N : PModule.{u,0,u} k ℝ}
 
-/-- The critical sample of a constructible, real-short module is finite-translation-trivial.-/
+/-- The critical sample of a constructible, real-short module is finite-translation-trivial.
+@isnad1 id=translat.2h5v.s9.170fd0ba9bbb from=translated src=- shape=8b6defe6 vocab=3a82fffc
+-/
 theorem critical_translationTrivial (hM : IsConstructible c M) (δ : ℝ≥0)
     (hz : transition δ M = 0) :
     TranslationTrivial (sampleTranslation c δ) (le_sampleTranslation c δ)
       (reindex c.toOrderHom M) := critical_structureMap_eq_zero hM δ hz
 
-/-- A natural isomorphism transports finite shortness through its naturality square.-/
+/-- A natural isomorphism transports finite shortness through its naturality square.
+@isnad1 id=translat.2h6v.s7.84b659b63ad0 from=translated src=- shape=6145b312 vocab=5c121e61
+-/
 theorem translationTrivial_of_iso {B C : PModule.{u,0,u} k (Fin n)}
     (θ : Fin n →o Fin n) (hθ : ∀ i, i ≤ θ i) (e : B ≅ C)
     (hB : TranslationTrivial θ hθ B) : TranslationTrivial θ hθ C := by
@@ -119,7 +137,9 @@ theorem translationTrivial_of_iso {B C : PModule.{u,0,u} k (Fin n)}
   change structureMap B (hθ i) ≫ e.hom.app (θ i) = 0
   rw [hB i, zero_comp]
 
-/-- Sampling the morphism gives a finite kernel with derived shortness.-/
+/-- Sampling the morphism gives a finite kernel with derived shortness.
+@isnad1 id=translat.3h7v.s10.daa2192f31ca from=translated src=- shape=39a7ce4b vocab=13d2c4c4
+-/
 theorem criticalKernel_translationTrivial (hM : IsConstructible c M)
     (hN : IsConstructible c N) (f : M ⟶ N) (δ : ℝ≥0)
     (hz : transition δ (kernel f) = 0) :
@@ -128,7 +148,9 @@ theorem criticalKernel_translationTrivial (hM : IsConstructible c M)
   translationTrivial_of_iso _ _ (criticalKernelIso c f)
     (critical_translationTrivial (hM.kernel hN f) δ hz)
 
-/-- The finite sampled cokernel inherits real shortness through its natural comparison.-/
+/-- The finite sampled cokernel inherits real shortness through its natural comparison.
+@isnad1 id=translat.3h7v.s10.37c9e0de5dbd from=translated src=- shape=39a7ce4b vocab=7709aabd
+-/
 theorem criticalCokernel_translationTrivial (hM : IsConstructible c M)
     (hN : IsConstructible c N) (f : M ⟶ N) (δ : ℝ≥0)
     (hz : transition δ (cokernel f) = 0) :
@@ -138,7 +160,9 @@ theorem criticalCokernel_translationTrivial (hM : IsConstructible c M)
     (critical_translationTrivial (hM.cokernel hN f) δ hz)
 
 /-- An interleaving supplies constructible real defects and both finite
-sampled shortness statements on the constructed common grid. No shortness is an input.-/
+sampled shortness statements on the constructed common grid. No shortness is an input.
+@isnad1 id=other.2h9v.s10.44287fcfad35 from=translated src=- shape=94510c58 vocab=c83764a5
+-/
 theorem interleaving_critical_defects {m : ℕ} {d : Fin m ↪o ℝ} {ε : ℝ≥0}
     (hM : IsConstructible c M) (hN : IsConstructible d N) (i : RealInterleaving ε M N) :
     let e := commonGrid c (shiftGrid ε d)

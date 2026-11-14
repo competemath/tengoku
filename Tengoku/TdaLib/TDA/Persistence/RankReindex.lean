@@ -43,7 +43,9 @@ private theorem sampledEndpoint_mono (s : Fin N →o Fin L) {a b : ℕ}
   simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hj ⊢
   exact hj.trans_le hab
 
-/-- A monotone sample's endpoint cut is exactly the initial segment below that endpoint.-/
+/-- A monotone sample's endpoint cut is exactly the initial segment below that endpoint.
+@isnad1 id=iff.0h5v.s6.214124fadea5 from=translated src=- shape=8422449d vocab=206aa4b2
+-/
 theorem lt_sampledEndpoint_iff (s : Fin N →o Fin L) (e : ℕ) (j : Fin N) :
     j.val < sampledEndpoint s e ↔ (s j).val < e := by
   simpa only [sampledEndpoint] using
@@ -68,7 +70,9 @@ def restrictAlong (s : Fin N →o Fin L) (I : FiniteInterval L) :
       sampledEndpoint_le s I.death⟩
   else none
 
-/-- An interval restriction is empty exactly when no sample occurrence lies in the interval.-/
+/-- An interval restriction is empty exactly when no sample occurrence lies in the interval.
+@isnad1 id=iff.0h4v.s6.2f6571a5f907 from=translated src=- shape=a0256d4f vocab=265c4d50
+-/
 theorem restrictAlong_eq_none_iff (s : Fin N →o Fin L) (I : FiniteInterval L) :
     I.restrictAlong s = none ↔ ∀ j : Fin N, ¬ I.alive (s j) := by
   constructor
@@ -95,7 +99,9 @@ theorem restrictAlong_eq_none_iff (s : Fin N →o Fin L) (I : FiniteInterval L) 
       exact False.elim (h j hj)
     · simp [restrictAlong, hlt]
 
-/-- A retained interval is alive precisely at the occurrences sampled from the source interval.-/
+/-- A retained interval is alive precisely at the occurrences sampled from the source interval.
+@isnad1 id=iff.1h6v.s6.defcc549c6e3 from=translated src=- shape=d51ab286 vocab=4cce92e8
+-/
 theorem alive_restrictAlong (s : Fin N →o Fin L) (I : FiniteInterval L)
     (J : FiniteInterval N) (h : I.restrictAlong s = some J) (j : Fin N) :
     J.alive j ↔ I.alive (s j) := by
@@ -126,7 +132,9 @@ private instance reindex_finiteDimensional (s : Fin N →o Fin L) (i : Fin N) :
   change FiniteDimensional k (M.obj (s i))
   infer_instance
 
-/-- The sampled structure map has the rank of the source map at its sampled endpoints.-/
+/-- The sampled structure map has the rank of the source map at its sampled endpoints.
+@isnad1 id=eq.1h7v.s8.1323ecef313d from=translated src=- shape=d22f6ec2 vocab=f9524c85
+-/
 theorem structureMapRank_reindex (s : Fin N →o Fin L)
     (i j : Fin N) (hij : i ≤ j) :
     structureMapRank (reindex s M) i j hij =
@@ -216,7 +224,9 @@ private theorem multiplicity_reindex_four_ranks (s : Fin N →o Fin L)
 
 /-- A sampled integer multiplicity is the source multiplicity sum over its endpoint rectangle.
 Repeated adjacent samples can make a birth or death range empty. The outer boundaries
-use birth zero and source death `L`, with the existing integer rank sentinels.-/
+use birth zero and source death `L`, with the existing integer rank sentinels.
+@isnad1 id=eq.2h7v.s8.043b9c91463f from=translated src=- shape=cee30f35 vocab=4d2716f6
+-/
 theorem moduleMultiplicityInteger_reindex (s : Fin N →o Fin L)
     (b d : ℕ) (hbd : b < d) (hd : d ≤ N) :
     moduleMultiplicityInteger (reindex s M) b d =
@@ -319,7 +329,9 @@ private theorem countP_reindexBarcode (s : Fin N →o Fin L)
         (FiniteInterval.alive_restrictAlong s I J hres j).2 hAliveI.2⟩
 
 /-- The canonical rank barcode of a sampled module restricts every source barcode occurrence
-and discards exactly the empty restrictions. This equality requires no interval decomposition.-/
+and discards exactly the empty restrictions. This equality requires no interval decomposition.
+@isnad1 id=eq.0h5v.s7.1d0fa1c2d7b2 from=translated src=- shape=06408c12 vocab=56ef85ae
+-/
 theorem rankBarcode_reindex (s : Fin N →o Fin L) :
     rankBarcode (reindex s M) = reindexBarcode s (rankBarcode M) := by
   have hr : ∀ (i j : Fin N) (hij : i ≤ j),
@@ -348,7 +360,9 @@ theorem rankBarcode_reindex (s : Fin N →o Fin L) :
   exact heq.trans (rankBarcode_barcodeModule (k := k) (reindexBarcode s (rankBarcode M)))
 
 /-- Sampled canonical barcode multiplicities are natural source multiplicity block sums.
-The counts retain their natural values in every coefficient characteristic.-/
+The counts retain their natural values in every coefficient characteristic.
+@isnad1 id=eq.2h7v.s8.b9d7394e24bc from=translated src=- shape=631d5b22 vocab=073ac58b
+-/
 theorem barcodeMultiplicity_rankBarcode_reindex (s : Fin N →o Fin L)
     (b d : ℕ) (hbd : b < d) (hd : d ≤ N) :
     barcodeMultiplicity (rankBarcode (reindex s M)) b d =

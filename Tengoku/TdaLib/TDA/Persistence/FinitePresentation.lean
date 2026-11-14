@@ -46,6 +46,9 @@ noncomputable def Presentation.ofRelations
   relations := Y
   relationMap := lift (R := R) Y (module W) r
 
+/--
+@isnad1 id=eq.0h6v.s9.d0d3d372e474 from=translated src=- shape=734aa957 vocab=81987cfc
+-/
 @[simp] theorem Presentation.ofRelations_at_birth
     (W Y : GradedGenerators.{v,w} P)
     (r : ∀ y : Y.Carrier, (module (R := R) W).obj (Y.grade y))
@@ -66,7 +69,9 @@ noncomputable def Presentation.cover :
   cokernel.π D.relationMap
 
 /-- The canonical map from generators onto a presented module is surjective
-at every index.-/
+at every index.
+@isnad1 id=surjecti.0h4v.s9.3a80f37a7041 from=translated src=- shape=189a40a9 vocab=c3dec0bc
+-/
 theorem Presentation.cover_surjective (a : P) :
     Function.Surjective (D.cover.app a) := by
   have hcover : Epi D.cover := by
@@ -76,13 +81,17 @@ theorem Presentation.cover_surjective (a : P) :
     ((NatTrans.epi_iff_epi_app D.cover).mp hcover a)
 
 /-- Any map from a graded free module into a presented module lifts to its
-canonical free cover.-/
+canonical free cover.
+@isnad1 id=ex.0h5v.s7.9e3cbe438a3d from=translated src=- shape=0556fb1c vocab=97ce49ec
+-/
 theorem Presentation.exists_lift (W : GradedGenerators.{v,w} P)
     (f : module (R := R) W ⟶ D.presented) :
     ∃ l : module (R := R) W ⟶ module D.generators, l ≫ D.cover = f :=
   exists_lift_of_surjective (R := R) W D.cover D.cover_surjective f
 
-/-- Every relation vanishes in the presented quotient.-/
+/-- Every relation vanishes in the presented quotient.
+@isnad1 id=eq.0h3v.s7.af9c42cba923 from=translated src=- shape=8a80ed2c vocab=aa343dc7
+-/
 theorem Presentation.relations_vanish : D.relationMap ≫ D.cover = 0 :=
   cokernel.condition D.relationMap
 
@@ -93,11 +102,17 @@ noncomputable def Presentation.desc {M : PModule.{u,v,max u w} R P}
     D.presented ⟶ M :=
   cokernel.desc D.relationMap f hf
 
+/--
+@isnad1 id=eq.1h5v.s8.5ebb5ad69511 from=translated src=- shape=1d5cb0e4 vocab=3a33fe08
+-/
 @[simp] theorem Presentation.cover_desc {M : PModule.{u,v,max u w} R P}
     (f : module (R := R) D.generators ⟶ M) (hf : D.relationMap ≫ f = 0) :
     D.cover ≫ D.desc f hf = f :=
   cokernel.π_desc D.relationMap f hf
 
+/--
+@isnad1 id=eq.2h6v.s8.113816e6ccc1 from=translated src=- shape=1fbf9f11 vocab=3a33fe08
+-/
 theorem Presentation.desc_unique {M : PModule.{u,v,max u w} R P}
     (f : module (R := R) D.generators ⟶ M) (hf : D.relationMap ≫ f = 0)
     (g : D.presented ⟶ M) (hg : D.cover ≫ g = f) :
@@ -115,10 +130,16 @@ def FinitelyPresented (M : PModule.{u,v,max u w} R P) : Prop :=
   ∃ D : Presentation.{u,v,w} (R := R) (P := P),
     D.IsFinite ∧ Nonempty (D.presented ≅ M)
 
+/--
+@isnad1 id=finitely.1h3v.s5.c40ef02626d9 from=translated src=- shape=27baf343 vocab=f257598b
+-/
 theorem Presentation.finitelyPresented (hD : D.IsFinite) :
     FinitelyPresented (R := R) (P := P) D.presented :=
   ⟨D, hD, ⟨Iso.refl _⟩⟩
 
+/--
+@isnad1 id=finitely.1h5v.s5.85bbb71bf0fc from=translated src=- shape=d5eea165 vocab=d3eaa564
+-/
 theorem finitelyPresented_of_iso {M N : PModule.{u,v,max u w} R P}
     (hM : FinitelyPresented (R := R) (P := P) M) (e : M ≅ N) :
     FinitelyPresented (R := R) (P := P) N := by
@@ -140,7 +161,9 @@ noncomputable def zeroRelationPresentedIso
   cokernelZeroIsoTarget
 
 /-- A finite graded free module has a finite presentation. The relation family
-may have the same finite index type as the generators, with each relation zero.-/
+may have the same finite index type as the generators, with each relation zero.
+@isnad1 id=finitely.0h3v.s4.d8d6d484a2f7 from=translated src=- shape=c3f7c16b vocab=5e34f43a
+-/
 theorem free_finitelyPresented (W : GradedGenerators.{v,w} P)
     [Finite W.Carrier] : FinitelyPresented (R := R) (P := P) (module (R := R) W) := by
   refine ⟨zeroRelationPresentation (R := R) W W, ?_,

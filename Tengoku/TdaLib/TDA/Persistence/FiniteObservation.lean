@@ -38,7 +38,9 @@ noncomputable def sampledInterval (c : Fin N ↪o ℝ) (S : Set ℝ)
     Finset.min'_le (active c S) b (Finset.max'_mem (active c S) hne)
   exact ⟨a.val, b.val + 1, by omega, by omega⟩
 
-/-- The finite interval records exactly the observed points in the support.-/
+/-- The finite interval records exactly the observed points in the support.
+@isnad1 id=iff.2h4v.s6.d3b1d9d1f526 from=translated src=- shape=be8e9767 vocab=2e516057
+-/
 theorem sampledInterval_alive_iff (c : Fin N ↪o ℝ) (S : Set ℝ)
     (hS : S.OrdConnected) (hne : (active c S).Nonempty) (i : Fin N) :
     (sampledInterval c S hne).alive i ↔ c i ∈ S := by
@@ -105,7 +107,9 @@ private theorem sampled_structureMapRank (c : Fin N ↪o ℝ) (S : Set ℝ)
     simp [LinearMap.range_zero]
 
 /-- Every observed transition of a convex support has the same rank as its
-native finite interval restriction, including zero and singleton samples.-/
+native finite interval restriction, including zero and singleton samples.
+@isnad1 id=eq.3h6v.s6.538ae22aa927 from=translated src=- shape=991ea74b vocab=d684ba53
+-/
 theorem sampled_structureMapRank_eq_interval (c : Fin N ↪o ℝ) (S : Set ℝ)
     (hS : S.OrdConnected) (hne : (active c S).Nonempty)
     (i j : Fin N) (hij : i ≤ j) :
@@ -118,7 +122,9 @@ theorem sampled_structureMapRank_eq_interval (c : Fin N ↪o ℝ) (S : Set ℝ)
   simp only [sampledInterval_alive_iff c S hS hne]
 
 /-- Finite barcode uniqueness identifies a sampled convex support with one
-native interval, without assuming a finite decomposition of the real module.-/
+native interval, without assuming a finite decomposition of the real module.
+@isnad1 id=eq.2h4v.s6.98fd7e71e73a from=translated src=- shape=39bb8e27 vocab=d38df0e3
+-/
 theorem sampled_rankBarcode_single (c : Fin N ↪o ℝ) (S : Set ℝ)
     (hS : S.OrdConnected) (hne : (active c S).Nonempty) :
     rankBarcode (reindex c.toOrderHom (SupportInterval.module (k := k) S hS)) =
@@ -139,7 +145,9 @@ theorem sampled_rankBarcode_single (c : Fin N ↪o ℝ) (S : Set ℝ)
   exact ((rankBarcode_eq_iff _ _).2 hrank).trans
     (rankBarcode_barcodeModule ({sampledInterval c S hne} : Multiset (FiniteInterval N)))
 
-/-- A support invisible to every observation has the empty finite barcode.-/
+/-- A support invisible to every observation has the empty finite barcode.
+@isnad1 id=eq.2h4v.s6.8c9bd4f2f072 from=translated src=- shape=301db38b vocab=115a70d6
+-/
 theorem sampled_rankBarcode_empty (c : Fin N ↪o ℝ) (S : Set ℝ)
     (hS : S.OrdConnected) (hempty : active c S = ∅) :
     rankBarcode (reindex c.toOrderHom (SupportInterval.module (k := k) S hS)) = 0 := by
@@ -158,7 +166,9 @@ theorem sampled_rankBarcode_empty (c : Fin N ↪o ℝ) (S : Set ℝ)
     (rankBarcode_barcodeModule (0 : Multiset (FiniteInterval N)))
 
 /-- Local finiteness at each sampled fiber makes the family of visible
-occurrences finite, with no finiteness assumption on the full index type.-/
+occurrences finite, with no finiteness assumption on the full index type.
+@isnad1 id=finite.1h4v.s6.90fdc8d776a2 from=translated src=- shape=b086d24e vocab=6ffd78b7
+-/
 theorem finite_visible_occurrences {J : Type*} (c : Fin N ↪o ℝ) (S : J → Set ℝ)
     (hlocal : ∀ i : Fin N, {j : J | c i ∈ S j}.Finite) :
     {j : J | ∃ i : Fin N, c i ∈ S j}.Finite := by
@@ -230,6 +240,9 @@ private instance finite_sampled_family_finiteDimensional {J : Type} [Fintype J]
         (fun a => SupportInterval.module (k := k) (S a) (hS a)))).obj i) :=
   finite_family_finiteDimensional S hS (c i)
 
+/--
+@isnad1 id=eq.2h7v.s8.bb6b4041b7a3 from=translated src=- shape=fc8aceee vocab=f8f6a7f8
+-/
 theorem finite_family_sampled_rank {k : Type*} [Field k] {J : Type} [Fintype J]
     (c : Fin N ↪o ℝ) (S : J → Set ℝ) (hS : ∀ j, (S j).OrdConnected)
     (i j : Fin N) (hij : i ≤ j) :
@@ -289,7 +302,9 @@ private theorem countP_finset_sum {J A : Type*} (s : Finset J)
   | @insert a s ha ih => simp [ha, Multiset.countP_add, ih]
 
 /-- Finite barcodes of a finite family are exactly the multiset of its
-nonempty observed intersections, without assuming barcode equality.-/
+nonempty observed intersections, without assuming barcode equality.
+@isnad1 id=eq.1h5v.s6.2fa1823dad79 from=translated src=- shape=41a1d5f2 vocab=a6b891d4
+-/
 theorem finite_family_rankBarcode {k : Type*} [Field k] {J : Type} [Fintype J]
     (c : Fin N ↪o ℝ) (S : J → Set ℝ) (hS : ∀ a, (S a).OrdConnected) :
     rankBarcode (reindex c.toOrderHom (AlgebraicFamily.familyModule
@@ -451,7 +466,9 @@ private theorem support_nontrivial_iff {k : Type*} [Field k]
     · exact False.elim ∘ ht
 
 /-- Pointwise finite dimensionality of a represented real module implies
-only finitely many interval occurrences hit a finite observation list.-/
+only finitely many interval occurrences hit a finite observation list.
+@isnad1 id=finite.1h7v.s7.d53a40c6fa88 from=translated src=- shape=6f9e4cc1 vocab=bf24603b
+-/
 theorem finite_visible_of_decomposition {k : Type*} [Field k] {J : Type}
     (M : PModule.{_,0,_} k ℝ) [∀ t : ℝ, FiniteDimensional k (M.obj t)]
     (c : Fin N ↪o ℝ) (S : J → Set ℝ) (hS : ∀ a, (S a).OrdConnected)
@@ -469,7 +486,9 @@ theorem finite_visible_of_decomposition {k : Type*} [Field k] {J : Type}
 
 /-- Given an algebraic real interval decomposition, finite observation
 recovers exactly the multiset of nonempty sampled intersections. The finite
-visible subtype is derived from local activity, so `J` may be uncountable.-/
+visible subtype is derived from local activity, so `J` may be uncountable.
+@isnad1 id=eq.2h7v.s8.b3af7fcf415c from=translated src=- shape=ea49d437 vocab=bd99973c
+-/
 theorem rankBarcode_of_decomposition {k : Type*} [Field k] {J : Type}
     (M : PModule.{_,0,_} k ℝ) [∀ t : ℝ, FiniteDimensional k (M.obj t)]
     (c : Fin N ↪o ℝ) (S : J → Set ℝ) (hS : ∀ a, (S a).OrdConnected)
@@ -508,7 +527,9 @@ theorem rankBarcode_of_decomposition {k : Type*} [Field k] {J : Type}
       finite_family_rankBarcode c (fun a : V => S a.val) (fun a => hS a.val)
 
 /-- The finite-observation barcode follows from a genuine real algebraic
-interval decomposition and pointwise finite dimensionality alone.-/
+interval decomposition and pointwise finite dimensionality alone.
+@isnad1 id=eq.1h7v.s8.2385ae4066cc from=translated src=- shape=f088243f vocab=16c88371
+-/
 theorem rankBarcode_of_pfd_decomposition {k : Type*} [Field k] {J : Type}
     (M : PModule.{_,0,_} k ℝ) [∀ t : ℝ, FiniteDimensional k (M.obj t)]
     (c : Fin N ↪o ℝ) (S : J → Set ℝ) (hS : ∀ a, (S a).OrdConnected)

@@ -28,11 +28,16 @@ def GradedGenerators.shiftGrade (W : GradedGenerators.{0,w} (Fin n → ℝ))
   Carrier := W.Carrier
   grade g := fun i => W.grade g i - σ
 
+/--
+@isnad1 id=eq.0h5v.s5.089edb3e0691 from=translated src=- shape=a5b74032 vocab=2cc493fd
+-/
 @[simp] theorem GradedGenerators.shiftGrade_grade
     (W : GradedGenerators.{0,w} (Fin n → ℝ)) (σ : ℝ)
     (g : W.Carrier) (i : Fin n) : (W.shiftGrade σ).grade g i = W.grade g i - σ := rfl
 
-/-- `W(-ε)` is born `ε` later, as required by the cross-presentation convention.-/
+/-- `W(-ε)` is born `ε` later, as required by the cross-presentation convention.
+@isnad1 id=eq.0h5v.s5.3929e72ed834 from=translated src=- shape=d21f0028 vocab=1af2ecff
+-/
 @[simp] theorem GradedGenerators.shiftGrade_neg_grade
     (W : GradedGenerators.{0,w} (Fin n → ℝ)) (ε : ℝ≥0)
     (g : W.Carrier) (i : Fin n) :
@@ -40,7 +45,9 @@ def GradedGenerators.shiftGrade (W : GradedGenerators.{0,w} (Fin n → ℝ))
   simp [GradedGenerators.shiftGrade_grade]
 
 /-- At grade `a`, the shifted free fiber and the old fiber at `a + ε` have
-exactly the same supported finitely supported functions.-/
+exactly the same supported finitely supported functions.
+@isnad1 id=eq.0h5v.s7.be1582770e49 from=translated src=- shape=0b1b3917 vocab=f9f985f5
+-/
 theorem fiber_shiftGrade_eq (W : GradedGenerators.{0,w} (Fin n → ℝ))
     (ε : ℝ≥0) (a : Fin n → ℝ) :
     fiber (R := R) (W.shiftGrade (ε : ℝ)) a =
@@ -78,7 +85,9 @@ noncomputable def shiftIso (ε : ℝ≥0) (W : GradedGenerators.{0,w} (Fin n →
     apply ModuleCat.hom_ext
     rfl
 
-/-- The free-shift identification leaves the underlying basis combination intact.-/
+/-- The free-shift identification leaves the underlying basis combination intact.
+@isnad1 id=eq.0h6v.s11.cadb8a1ea1ca from=translated src=- shape=90eb036e vocab=c372f698
+-/
 @[simp] theorem shiftIso_hom_val (W : GradedGenerators.{0,w} (Fin n → ℝ))
     (ε : ℝ≥0) (a : Fin n → ℝ)
     (x : (module (R := R) (W.shiftGrade (ε : ℝ))).obj a) :
@@ -86,7 +95,9 @@ noncomputable def shiftIso (ε : ℝ≥0) (W : GradedGenerators.{0,w} (Fin n →
       fiber (R := R) W (CoordinateShift.translation ε a)).val = x.val := rfl
 
 /-- The free-shift isomorphism sends each available basis vector to the
-corresponding basis vector of the translated fiber.-/
+corresponding basis vector of the translated fiber.
+@isnad1 id=eq.1h6v.s11.2b955a72f731 from=translated src=- shape=e1cc13ba vocab=6f1192fc
+-/
 theorem shiftIso_generator (W : GradedGenerators.{0,w} (Fin n → ℝ))
     (ε : ℝ≥0) (a : Fin n → ℝ) (g : W.Carrier)
     (h : (W.shiftGrade (ε : ℝ)).grade g ≤ a) :
@@ -98,14 +109,18 @@ theorem shiftIso_generator (W : GradedGenerators.{0,w} (Fin n → ℝ))
   apply Subtype.ext
   rfl
 
-/-- The standard transition of a free module is inclusion on supported combinations.-/
+/-- The standard transition of a free module is inclusion on supported combinations.
+@isnad1 id=eq.0h6v.s11.e163a6b7aff0 from=translated src=- shape=064e2670 vocab=630fde0e
+-/
 @[simp] theorem transition_val (W : GradedGenerators.{0,w} (Fin n → ℝ))
     (ε : ℝ≥0) (a : Fin n → ℝ) (x : (module (R := R) W).obj a) :
     (((CoordinateShift.transition ε (module (R := R) W)).app a).hom x :
       fiber (R := R) W (CoordinateShift.translation ε a)).val = x.val := rfl
 
 /-- Delaying every birth by `ε` gives a submodule of the original free module
-at each fixed grade. This is the standard inclusion for `W(-ε)`.-/
+at each fixed grade. This is the standard inclusion for `W(-ε)`.
+@isnad1 id=le.0h5v.s8.33db3e824d80 from=translated src=- shape=99d84661 vocab=92a16e70
+-/
 theorem delayed_fiber_le (W : GradedGenerators.{0,w} (Fin n → ℝ))
     (ε : ℝ≥0) (a : Fin n → ℝ) :
     fiber (R := R) (W.shiftGrade (-(ε : ℝ))) a ≤ fiber (R := R) W a := by
@@ -122,7 +137,9 @@ noncomputable def delayedInclusion (ε : ℝ≥0) (W : GradedGenerators.{0,w} (F
     apply ModuleCat.hom_ext
     rfl
 
-/-- The delayed inclusion retains the same basis vector at its later birth.-/
+/-- The delayed inclusion retains the same basis vector at its later birth.
+@isnad1 id=eq.0h5v.s10.63b79655a638 from=translated src=- shape=ba6c6423 vocab=36c0cfce
+-/
 @[simp] theorem delayedInclusion_birth_val
     (W : GradedGenerators.{0,w} (Fin n → ℝ)) (ε : ℝ≥0)
     (g : W.Carrier) :
@@ -132,7 +149,9 @@ noncomputable def delayedInclusion (ε : ℝ≥0) (W : GradedGenerators.{0,w} (F
       fiber (R := R) W ((W.shiftGrade (-(ε : ℝ))).grade g)).val =
         Finsupp.single g 1 := rfl
 
-/-- Delaying births does not change the basis vector used by the inclusion.-/
+/-- Delaying births does not change the basis vector used by the inclusion.
+@isnad1 id=eq.1h6v.s10.fa7848b7a58b from=translated src=- shape=04c159ca vocab=d2dd0665
+-/
 theorem delayedInclusion_generator
     (W : GradedGenerators.{0,w} (Fin n → ℝ)) (ε : ℝ≥0)
     (a : Fin n → ℝ) (g : W.Carrier)

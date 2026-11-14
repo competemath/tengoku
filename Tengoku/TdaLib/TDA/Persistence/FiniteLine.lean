@@ -32,10 +32,15 @@ variable {N : ℕ}
 instance : Quiver (FiniteLine N) where
   Hom i j := PLift (i.index.val + 1 = j.index.val)
 
+/--
+@isnad1 id=subsingl.0h3v.s4.b3ea1246bd29 from=translated src=- shape=f9c0a247 vocab=05cf412a
+-/
 instance edgeSubsingleton (i j : FiniteLine N) : Subsingleton (i ⟶ j) :=
   inferInstanceAs (Subsingleton (PLift (i.index.val + 1 = j.index.val)))
 
-/-- Every path moves weakly forward along the finite line.-/
+/-- Every path moves weakly forward along the finite line.
+@isnad1 id=le.0h4v.s4.de9e5815c3ca from=translated src=- shape=b94c30db vocab=80deb141
+-/
 theorem le_of_path {i j : FiniteLine N} (p : Quiver.Path i j) : i.index ≤ j.index := by
   induction p with
   | nil => exact le_rfl
@@ -45,7 +50,9 @@ theorem le_of_path {i j : FiniteLine N} (p : Quiver.Path i j) : i.index ≤ j.in
     have hi : i.index.val ≤ j.index.val := ih
     omega
 
-/-- A finite line has at most one path between any two vertices.-/
+/-- A finite line has at most one path between any two vertices.
+@isnad1 id=subsingl.0h3v.s4.e5146d8902f0 from=translated src=- shape=f9c0a247 vocab=7077ec67
+-/
 instance pathSubsingleton (i j : FiniteLine N) : Subsingleton (Quiver.Path i j) where
   allEq p q := by
     induction p with
@@ -76,6 +83,9 @@ instance pathSubsingleton (i j : FiniteLine N) : Subsingleton (Quiver.Path i j) 
         congr 1
         exact Subsingleton.elim _ _
 
+/--
+@isnad1 id=subsingl.0h3v.s4.e4aaa859d502 from=translated src=- shape=22385460 vocab=efbe12c3
+-/
 instance pathCategorySubsingleton (i j : Paths (FiniteLine N)) : Subsingleton (i ⟶ j) :=
   inferInstanceAs (Subsingleton (Quiver.Path (show FiniteLine N from i) (show FiniteLine N from j)))
 
@@ -107,17 +117,23 @@ private theorem nonempty_path (i j : FiniteLine N) (h : i.index ≤ j.index) :
 noncomputable def path {i j : FiniteLine N} (h : i.index ≤ j.index) : Quiver.Path i j :=
   Classical.choice (nonempty_path i j h)
 
-/-- The canonical self path is the empty path.-/
+/-- The canonical self path is the empty path.
+@isnad1 id=eq.1h2v.s5.2388d7fb7aeb from=translated src=- shape=8dc85b21 vocab=624697e4
+-/
 @[simp]
 theorem path_self (i : FiniteLine N) (h : i.index ≤ i.index) :
     path h = (Quiver.Path.nil : Quiver.Path i i) := Subsingleton.elim _ _
 
-/-- On consecutive vertices the canonical path is the single quiver arrow.-/
+/-- On consecutive vertices the canonical path is the single quiver arrow.
+@isnad1 id=eq.1h3v.s6.2123811de4de from=translated src=- shape=3e136a93 vocab=0c2d0259
+-/
 theorem path_adjacent {i j : FiniteLine N} (h : i.index.val + 1 = j.index.val) :
     path (show i.index ≤ j.index by change i.index.val ≤ j.index.val; omega) =
       Quiver.Hom.toPath (⟨h⟩ : i ⟶ j) := Subsingleton.elim _ _
 
-/-- Concatenating chronological paths gives the chronological path for the total inequality.-/
+/-- Concatenating chronological paths gives the chronological path for the total inequality.
+@isnad1 id=eq.2h4v.s6.b68a6c7ecb7f from=translated src=- shape=471f7cef vocab=e7286c5b
+-/
 theorem path_comp {i j k : FiniteLine N} (hij : i.index ≤ j.index)
     (hjk : j.index ≤ k.index) :
     (path hij).comp (path hjk) = path (hij.trans hjk) := Subsingleton.elim _ _
@@ -157,13 +173,17 @@ noncomputable def moduleOfAdjacent (V : Fin N → ModuleCat.{w} R)
   fromFin ⋙ Paths.lift (⟨fun i => V i.index, fun {i j} e => step i.index j.index e.down⟩ :
     FiniteLine N ⥤q ModuleCat.{w} R)
 
-/-- The adjacent-map construction has exactly the supplied fibers.-/
+/-- The adjacent-map construction has exactly the supplied fibers.
+@isnad1 id=eq.0h5v.s6.3ac78022372a from=translated src=- shape=4c9cca7f vocab=7fe70e59
+-/
 @[simp]
 theorem moduleOfAdjacent_obj (V : Fin N → ModuleCat.{w} R)
     (step : ∀ (i j : Fin N), i.val + 1 = j.val → (V i ⟶ V j)) (i : Fin N) :
     (moduleOfAdjacent V step).obj i = V i := rfl
 
-/-- On consecutive vertices the constructed structure map is the supplied map.-/
+/-- On consecutive vertices the constructed structure map is the supplied map.
+@isnad1 id=eq.1h6v.s7.f222f2b9190a from=translated src=- shape=1262eb52 vocab=7d9faa3a
+-/
 @[simp]
 theorem structureMap_moduleOfAdjacent_adjacent (V : Fin N → ModuleCat.{w} R)
     (step : ∀ (i j : Fin N), i.val + 1 = j.val → (V i ⟶ V j))
@@ -174,7 +194,9 @@ theorem structureMap_moduleOfAdjacent_adjacent (V : Fin N → ModuleCat.{w} R)
   rw [path_adjacent (i := ⟨i⟩) (j := ⟨j⟩) h]
   exact Paths.lift_toPath _ _
 
-/-- Adjacent squares imply naturality for every structure map.-/
+/-- Adjacent squares imply naturality for every structure map.
+@isnad1 id=eq.2h7v.s9.c1ea2147d298 from=translated src=- shape=a73d7840 vocab=27ade8f2
+-/
 theorem naturality_of_adjacent {M W : PModule.{u,0,w} R (Fin N)}
     (α : ∀ i, M.obj i ⟶ W.obj i)
     (hα : ∀ (i j : Fin N) (h : i.val + 1 = j.val),
@@ -208,7 +230,9 @@ noncomputable def homMk {M W : PModule.{u,0,w} R (Fin N)}
   app := α
   naturality {_ _} f := naturality_of_adjacent α hα (leOfHom f)
 
-/-- The morphism constructor retains the supplied stage maps.-/
+/-- The morphism constructor retains the supplied stage maps.
+@isnad1 id=eq.1h6v.s8.b80e9a7922ae from=translated src=- shape=6a7c1217 vocab=72d62f1d
+-/
 @[simp]
 theorem homMk_app {M W : PModule.{u,0,w} R (Fin N)} (α) (hα) (i : Fin N) :
     (homMk (M := M) (W := W) α hα).app i = α i := rfl
@@ -227,7 +251,9 @@ noncomputable def homOfAdjacent (V W : Fin N → ModuleCat.{w} R)
       structureMap_moduleOfAdjacent_adjacent W step' h]
     exact hα i j h)
 
-/-- The morphism on adjacent input retains the supplied components.-/
+/-- The morphism on adjacent input retains the supplied components.
+@isnad1 id=eq.1h8v.s8.e953d933960a from=translated src=- shape=12e89ce5 vocab=546c58fc
+-/
 @[simp]
 theorem homOfAdjacent_app (V W : Fin N → ModuleCat.{w} R) (step step') (α) (hα)
     (i : Fin N) : (homOfAdjacent V W step step' α hα).app i = α i := rfl
@@ -240,17 +266,23 @@ noncomputable def isoOfAdjacent {M W : PModule.{u,0,w} R (Fin N)}
         (e i).hom ≫ structureMap W (show i ≤ j by omega)) : M ≅ W :=
   NatIso.ofComponents e (fun f => naturality_of_adjacent (fun i => (e i).hom) he (leOfHom f))
 
-/-- The adjacent-square isomorphism has the supplied forward components.-/
+/-- The adjacent-square isomorphism has the supplied forward components.
+@isnad1 id=eq.1h6v.s9.613c9e57bde9 from=translated src=- shape=12e42f16 vocab=d131751a
+-/
 @[simp]
 theorem isoOfAdjacent_hom_app {M W : PModule.{u,0,w} R (Fin N)} (e) (he) (i : Fin N) :
     (isoOfAdjacent (M := M) (W := W) e he).hom.app i = (e i).hom := rfl
 
-/-- Its inverse has the supplied inverse components.-/
+/-- Its inverse has the supplied inverse components.
+@isnad1 id=eq.1h6v.s9.27415a360531 from=translated src=- shape=6b186214 vocab=54dad4d7
+-/
 @[simp]
 theorem isoOfAdjacent_inv_app {M W : PModule.{u,0,w} R (Fin N)} (e) (he) (i : Fin N) :
     (isoOfAdjacent (M := M) (W := W) e he).inv.app i = (e i).inv := rfl
 
-/-- Structure maps are evaluated by lifting the unique chronological path.-/
+/-- Structure maps are evaluated by lifting the unique chronological path.
+@isnad1 id=eq.1h6v.s8.ea8d5d904f42 from=translated src=- shape=32a5f03d vocab=ce646c63
+-/
 theorem structureMap_moduleOfAdjacent_path (V : Fin N → ModuleCat.{w} R)
     (step : ∀ (i j : Fin N), i.val + 1 = j.val → (V i ⟶ V j))
     {i j : Fin N} (h : i ≤ j) :
@@ -260,7 +292,9 @@ theorem structureMap_moduleOfAdjacent_path (V : Fin N → ModuleCat.{w} R)
           FiniteLine N ⥤q ModuleCat.{w} R)).map (path h) := rfl
 
 /-- Chronological recursion: append the last adjacent map after the preceding structure map.
-Together with the identity case, this specifies every structure map.-/
+Together with the identity case, this specifies every structure map.
+@isnad1 id=eq.2h7v.s8.6c35dab7ea38 from=translated src=- shape=42d47b01 vocab=029b3513
+-/
 theorem structureMap_moduleOfAdjacent_last (V : Fin N → ModuleCat.{w} R)
     (step : ∀ (i j : Fin N), i.val + 1 = j.val → (V i ⟶ V j))
     {i j k : Fin N} (hij : i ≤ j) (hjk : j.val + 1 = k.val) :
@@ -283,17 +317,23 @@ noncomputable def adjacentRecovery (M : PModule.{u,0,w} R (Fin N)) :
     erw [structureMap_moduleOfAdjacent_adjacent M.obj (adjacentMap M) h]
     exact Category.comp_id _)
 
-/-- The recovery isomorphism is the identity on each supplied fiber.-/
+/-- The recovery isomorphism is the identity on each supplied fiber.
+@isnad1 id=eq.0h4v.s7.a8117cde4d1a from=translated src=- shape=885ed1fa vocab=563f2ff2
+-/
 @[simp]
 theorem adjacentRecovery_hom_app (M : PModule.{u,0,w} R (Fin N)) (i : Fin N) :
     (adjacentRecovery M).hom.app i = 𝟙 (M.obj i) := rfl
 
-/-- The inverse recovery isomorphism is also the identity on each fiber.-/
+/-- The inverse recovery isomorphism is also the identity on each fiber.
+@isnad1 id=eq.0h4v.s7.a134669f6896 from=translated src=- shape=6e1c7415 vocab=8c61b64c
+-/
 @[simp]
 theorem adjacentRecovery_inv_app (M : PModule.{u,0,w} R (Fin N)) (i : Fin N) :
     (adjacentRecovery M).inv.app i = 𝟙 (M.obj i) := rfl
 
-/-- Reconstruction recovers every original structure map, including nonadjacent maps.-/
+/-- Reconstruction recovers every original structure map, including nonadjacent maps.
+@isnad1 id=eq.1h5v.s7.0ec365ebacb1 from=translated src=- shape=a5409eaf vocab=6aa759bb
+-/
 @[simp]
 theorem structureMap_adjacentRecovery (M : PModule.{u,0,w} R (Fin N))
     {i j : Fin N} (h : i ≤ j) :
@@ -303,7 +343,9 @@ theorem structureMap_adjacentRecovery (M : PModule.{u,0,w} R (Fin N))
     𝟙 _ ≫ structureMap M h at hn
   exact (Category.comp_id _).symm.trans (hn.trans (Category.id_comp _))
 
-/-- Recovery is compatible with morphisms, not only the module fibers.-/
+/-- Recovery is compatible with morphisms, not only the module fibers.
+@isnad1 id=eq.0h5v.s9.1a9506f8ea51 from=translated src=- shape=b46141aa vocab=df6a2f03
+-/
 theorem adjacentRecovery_naturality {M W : PModule.{u,0,w} R (Fin N)} (α : M ⟶ W) :
     homOfAdjacent M.obj W.obj (adjacentMap M) (adjacentMap W) α.app
       (fun _ _ h => α.naturality (homOfLE (show _ ≤ _ by omega))) ≫
@@ -313,48 +355,64 @@ theorem adjacentRecovery_naturality {M W : PModule.{u,0,w} R (Fin N)} (α : M �
   change α.app i ≫ 𝟙 _ = 𝟙 _ ≫ α.app i
   exact (Category.comp_id _).trans (Category.id_comp _).symm
 
-/-- The indexing equivalence evaluates to the original vertex.-/
+/-- The indexing equivalence evaluates to the original vertex.
+@isnad1 id=eq.0h2v.s5.eac33d098600 from=translated src=- shape=b8213a9a vocab=de8982ae
+-/
 @[simp]
 theorem pathEquivalence_functor_obj (i : Paths (FiniteLine N)) :
     (pathEquivalence N).functor.obj i = i.index := rfl
 
-/-- The inverse indexing equivalence uses the corresponding line vertex.-/
+/-- The inverse indexing equivalence uses the corresponding line vertex.
+@isnad1 id=eq.0h2v.s5.ce175c0a2303 from=translated src=- shape=b5f7317a vocab=d7d5b78e
+-/
 @[simp]
 theorem pathEquivalence_inverse_obj (i : Fin N) :
     (pathEquivalence N).inverse.obj i = (⟨i⟩ : FiniteLine N) := rfl
 
-/-- The representation equivalence preserves the value at each vertex.-/
+/-- The representation equivalence preserves the value at each vertex.
+@isnad1 id=eq.0h4v.s7.c821173ec0c0 from=translated src=- shape=868da148 vocab=7a2f4f5b
+-/
 @[simp]
 theorem representationEquivalence_obj_obj (F : Paths (FiniteLine N) ⥤ ModuleCat.{w} R)
     (i : Fin N) :
     ((representationEquivalence R N).functor.obj F).obj i = F.obj ⟨i⟩ := rfl
 
-/-- The forward representation equivalence evaluates a structure map on the unique path.-/
+/-- The forward representation equivalence evaluates a structure map on the unique path.
+@isnad1 id=eq.1h5v.s8.0a7e6a356463 from=translated src=- shape=75e38a74 vocab=3d5e7f22
+-/
 @[simp]
 theorem representationEquivalence_structureMap
     (F : Paths (FiniteLine N) ⥤ ModuleCat.{w} R) {i j : Fin N} (h : i ≤ j) :
     structureMap ((representationEquivalence R N).functor.obj F) h = F.map (path h) := rfl
 
-/-- The representation equivalence carries the components of natural transformations.-/
+/-- The representation equivalence carries the components of natural transformations.
+@isnad1 id=eq.0h6v.s9.869aa99e8586 from=translated src=- shape=b2755c83 vocab=ec0036fc
+-/
 @[simp]
 theorem representationEquivalence_map_app
     {F G : Paths (FiniteLine N) ⥤ ModuleCat.{w} R} (α : F ⟶ G) (i : Fin N) :
     ((representationEquivalence R N).functor.map α).app i = α.app ⟨i⟩ := rfl
 
-/-- In the reverse direction, paths act by the original module's structure maps.-/
+/-- In the reverse direction, paths act by the original module's structure maps.
+@isnad1 id=eq.0h6v.s8.29af381a31ea from=translated src=- shape=4e71ac2e vocab=a81d4585
+-/
 @[simp]
 theorem representationEquivalence_inverse_map (M : PModule.{u,0,w} R (Fin N))
     {i j : Paths (FiniteLine N)} (p : i ⟶ j) :
     ((representationEquivalence R N).inverse.obj M).map p =
       structureMap M (le_of_path p) := rfl
 
-/-- The inverse equivalence also preserves the components of natural transformations.-/
+/-- The inverse equivalence also preserves the components of natural transformations.
+@isnad1 id=eq.0h6v.s9.4081cc9ecb48 from=translated src=- shape=c05a4c1a vocab=ed3e9a77
+-/
 @[simp]
 theorem representationEquivalence_inverse_map_app
     {M W : PModule.{u,0,w} R (Fin N)} (α : M ⟶ W) (i : Paths (FiniteLine N)) :
     ((representationEquivalence R N).inverse.map α).app i = α.app i.index := rfl
 
-/-- The unit of the representation equivalence is the identity at every vertex.-/
+/-- The unit of the representation equivalence is the identity at every vertex.
+@isnad1 id=eq.0h4v.s10.2bf802cdb860 from=translated src=- shape=d050b770 vocab=df7e16f8
+-/
 @[simp]
 theorem representationEquivalence_unitIso_hom_app
     (F : Paths (FiniteLine N) ⥤ ModuleCat.{w} R) (i : Paths (FiniteLine N)) :
@@ -366,7 +424,9 @@ theorem representationEquivalence_unitIso_hom_app
   erw [he, F.map_id]
   rfl
 
-/-- The counit of the representation equivalence is the identity on each module fiber.-/
+/-- The counit of the representation equivalence is the identity on each module fiber.
+@isnad1 id=eq.0h4v.s10.577a9861c4a0 from=translated src=- shape=6322b317 vocab=dac0a26c
+-/
 @[simp]
 theorem representationEquivalence_counitIso_hom_app
     (M : PModule.{u,0,w} R (Fin N)) (i : Fin N) :
@@ -376,14 +436,18 @@ theorem representationEquivalence_counitIso_hom_app
   have he : (pathEquivalence N).counitIso.hom.app i = 𝟙 i := Subsingleton.elim _ _
   rw [he, M.map_id]
 
-/-- The forward equivalence preserves identity morphisms.-/
+/-- The forward equivalence preserves identity morphisms.
+@isnad1 id=eq.0h3v.s9.241d8ef189fa from=translated src=- shape=f741673b vocab=1b3ee4e7
+-/
 @[simp]
 theorem representationEquivalence_map_id (F : Paths (FiniteLine N) ⥤ ModuleCat.{w} R) :
     (representationEquivalence R N).functor.map (𝟙 F) =
       𝟙 ((representationEquivalence R N).functor.obj F) :=
   (representationEquivalence R N).functor.map_id F
 
-/-- The forward equivalence preserves composition of natural transformations.-/
+/-- The forward equivalence preserves composition of natural transformations.
+@isnad1 id=eq.0h7v.s10.97570d1a854f from=translated src=- shape=aa7e3064 vocab=832bc1d2
+-/
 @[simp]
 theorem representationEquivalence_map_comp
     {F G H : Paths (FiniteLine N) ⥤ ModuleCat.{w} R} (α : F ⟶ G) (β : G ⟶ H) :

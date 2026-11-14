@@ -44,13 +44,17 @@ def preimageInclusion (f : C(X, Y)) {U V : TopologicalSpace.Opens Y} (hUV : U �
     C({x : X // f x ∈ U}, {x : X // f x ∈ V}) :=
   TDA.Topology.preimageSetInclusion f hUV
 
-/-- On open target sets, the raw-set inclusion is the Reeb preimage inclusion.-/
+/-- On open target sets, the raw-set inclusion is the Reeb preimage inclusion.
+@isnad1 id=eq.1h5v.s7.baf1198c4ef5 from=translated src=- shape=587793ea vocab=3cc136ec
+-/
 theorem preimageSetInclusion_eq_preimageInclusion (f : C(X, Y))
     {U V : TopologicalSpace.Opens Y} (hUV : U ≤ V) :
     TDA.Topology.preimageSetInclusion f hUV = preimageInclusion f hUV := rfl
 
 /-- The inclusion coincides definitionally with mathlib's `ContinuousMap.inclusion` on the
-inverse-image sets.-/
+inverse-image sets.
+@isnad1 id=eq.1h5v.s8.d75dec6129bc from=translated src=- shape=64df1904 vocab=3e60e68e
+-/
 theorem preimageInclusion_eq_inclusion (f : C(X, Y)) {U V : TopologicalSpace.Opens Y}
     (hUV : U ≤ V) :
     preimageInclusion f hUV =
@@ -70,28 +74,40 @@ def componentFunctor (f : C(X, Y)) : TopologicalSpace.Opens Y ⥤ Type u where
     induction c using ZerothHomotopy.rec with
     | mk x => rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.f67d9c6e1e60 from=translated src=- shape=124571c5 vocab=0ba652cb
+-/
 theorem componentFunctor_obj (f : C(X, Y)) (U : TopologicalSpace.Opens Y) :
     (componentFunctor f).obj U = ZerothHomotopy {x : X // f x ∈ U} := rfl
 
+/--
+@isnad1 id=eq.0h7v.s9.05a919d64739 from=translated src=- shape=2c7eb445 vocab=c3c1f6b7
+-/
 @[simp]
 theorem componentFunctor_map_mk (f : C(X, Y)) {U V : TopologicalSpace.Opens Y} (i : U ⟶ V)
     (x : {x : X // f x ∈ U}) :
     (componentFunctor f).map i (ZerothHomotopy.mk x) =
       ZerothHomotopy.mk (⟨x.1, leOfHom i x.2⟩ : {x : X // f x ∈ V}) := rfl
 
-/-- Bridge: the functor action is `componentMap` of the preimage inclusion.-/
+/-- Bridge: the functor action is `componentMap` of the preimage inclusion.
+@isnad1 id=eq.0h7v.s9.011c59729265 from=translated src=- shape=d6d37845 vocab=934c8518
+-/
 theorem componentFunctor_map_apply (f : C(X, Y)) {U V : TopologicalSpace.Opens Y} (i : U ⟶ V)
     (c : (componentFunctor f).obj U) :
     (componentFunctor f).map i c = componentMap (preimageInclusion f (leOfHom i)) c := rfl
 
-/-- Empty domain: every value is empty.-/
+/-- Empty domain: every value is empty.
+@isnad1 id=isempty.0h4v.s5.1d479f2d0e14 from=translated src=- shape=fa3f5639 vocab=2d54c633
+-/
 theorem componentFunctor_obj_isEmpty_of_isEmpty [IsEmpty X] (f : C(X, Y))
     (U : TopologicalSpace.Opens Y) : IsEmpty ((componentFunctor f).obj U) :=
   ⟨fun c => by
     induction c using ZerothHomotopy.rec with
     | mk x => exact isEmptyElim x.1⟩
 
-/-- Empty base, whenever a map into it exists.-/
+/-- Empty base, whenever a map into it exists.
+@isnad1 id=isempty.0h4v.s5.f4e423eb15d4 from=translated src=- shape=42a94833 vocab=2d54c633
+-/
 theorem componentFunctor_obj_isEmpty_of_base_isEmpty [IsEmpty Y] (f : C(X, Y))
     (U : TopologicalSpace.Opens Y) : IsEmpty ((componentFunctor f).obj U) :=
   ⟨fun c => by
@@ -121,18 +137,25 @@ def componentNatTrans {f : C(X, Y)} {g : C(Z, Y)} (h : C(X, Z)) (comm : ∀ x, g
     induction c using ZerothHomotopy.rec with
     | mk x => rfl
 
+/--
+@isnad1 id=eq.1h8v.s9.2ea55dc7ddd7 from=translated src=- shape=4a9630c8 vocab=b5a09299
+-/
 @[simp]
 theorem componentNatTrans_app_mk {f : C(X, Y)} {g : C(Z, Y)} (h : C(X, Z))
     (comm : ∀ x, g (h x) = f x) (U : TopologicalSpace.Opens Y) (x : {x : X // f x ∈ U}) :
     (componentNatTrans h comm).app U (ZerothHomotopy.mk x) =
       ZerothHomotopy.mk (⟨h x.1, by rw [comm]; exact x.2⟩ : {z : Z // g z ∈ U}) := rfl
 
-/-- Bridge: the component at `U` is `componentMap` of the restriction.-/
+/-- Bridge: the component at `U` is `componentMap` of the restriction.
+@isnad1 id=eq.1h8v.s9.1487d37bfabe from=translated src=- shape=e8a701bf vocab=3e16e601
+-/
 theorem componentNatTrans_app_apply {f : C(X, Y)} {g : C(Z, Y)} (h : C(X, Z))
     (comm : ∀ x, g (h x) = f x) (U : TopologicalSpace.Opens Y) (c : (componentFunctor f).obj U) :
     (componentNatTrans h comm).app U c = componentMap (preimageRestrict h comm U) c := rfl
 
-/-- The naturality square, stated pointwise on representatives.-/
+/-- The naturality square, stated pointwise on representatives.
+@isnad1 id=eq.1h10v.s10.102f209ff53f from=translated src=- shape=fd811f0a vocab=b68a1a90
+-/
 theorem componentNatTrans_naturality_mk {f : C(X, Y)} {g : C(Z, Y)} (h : C(X, Z))
     (comm : ∀ x, g (h x) = f x) {U V : TopologicalSpace.Opens Y} (i : U ⟶ V)
     (x : {x : X // f x ∈ U}) :
@@ -140,18 +163,27 @@ theorem componentNatTrans_naturality_mk {f : C(X, Y)} {g : C(Z, Y)} (h : C(X, Z)
       (componentNatTrans h comm).app V ((componentFunctor f).map i (ZerothHomotopy.mk x)) :=
   rfl
 
+/--
+@isnad1 id=eq.1h9v.s8.3eaaea83a5e6 from=translated src=- shape=4f7df2c8 vocab=a8d7296f
+-/
 theorem componentNatTrans_naturality {f : C(X, Y)} {g : C(Z, Y)} (h : C(X, Z))
     (comm : ∀ x, g (h x) = f x) {U V : TopologicalSpace.Opens Y} (i : U ⟶ V) :
     (componentFunctor f).map i ≫ (componentNatTrans h comm).app V =
       (componentNatTrans h comm).app U ≫ (componentFunctor g).map i :=
   (componentNatTrans h comm).naturality i
 
+/--
+@isnad1 id=eq.1h3v.s7.3c781aa8d115 from=translated src=- shape=6107bef2 vocab=3577b8a1
+-/
 theorem componentNatTrans_id (f : C(X, Y)) (comm : ∀ x, f (ContinuousMap.id X x) = f x) :
     componentNatTrans (ContinuousMap.id X) comm = 𝟙 (componentFunctor f) := by
   ext U c
   induction c using ZerothHomotopy.rec with
   | mk x => rfl
 
+/--
+@isnad1 id=eq.3h9v.s8.afc3f6c1f088 from=translated src=- shape=9f0e580b vocab=a6f2a8a4
+-/
 theorem componentNatTrans_comp {W : Type u} [TopologicalSpace W] {f : C(X, Y)} {g : C(Z, Y)}
     {e : C(W, Y)} (h : C(X, Z)) (hh : ∀ x, g (h x) = f x) (k : C(Z, W))
     (hk : ∀ z, e (k z) = g z) (hkh : ∀ x, e ((k.comp h) x) = f x) :
@@ -160,14 +192,18 @@ theorem componentNatTrans_comp {W : Type u} [TopologicalSpace W] {f : C(X, Y)} {
   induction c using ZerothHomotopy.rec with
   | mk x => rfl
 
-/-- Pointwise composite equation on representatives.-/
+/-- Pointwise composite equation on representatives.
+@isnad1 id=eq.2h11v.s10.71caeab979da from=translated src=- shape=3782c12d vocab=b5a09299
+-/
 theorem componentNatTrans_comp_app_mk {W : Type u} [TopologicalSpace W] {f : C(X, Y)}
     {g : C(Z, Y)} {e : C(W, Y)} (h : C(X, Z)) (hh : ∀ x, g (h x) = f x) (k : C(Z, W))
     (hk : ∀ z, e (k z) = g z) (U : TopologicalSpace.Opens Y) (x : {x : X // f x ∈ U}) :
     (componentNatTrans k hk).app U ((componentNatTrans h hh).app U (ZerothHomotopy.mk x)) =
       ZerothHomotopy.mk (⟨k (h x.1), by rw [hk, hh]; exact x.2⟩ : {w : W // e w ∈ U}) := rfl
 
-/-- The map does not depend on the commuting-equation proof.-/
+/-- The map does not depend on the commuting-equation proof.
+@isnad1 id=eq.2h6v.s7.bb8f30180ea1 from=translated src=- shape=7ee87a92 vocab=f7aca8ed
+-/
 theorem componentNatTrans_proof_irrel {f : C(X, Y)} {g : C(Z, Y)} (h : C(X, Z))
     (comm comm' : ∀ x, g (h x) = f x) :
     componentNatTrans h comm = componentNatTrans h comm' := rfl

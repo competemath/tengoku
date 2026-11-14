@@ -124,7 +124,9 @@ Positive pairs give nonempty half-open intervals; multiplicity is retained.-/
 noncomputable def realize (D : Diagram ℝ) : PModule.{u,0,u} k ℝ :=
   ofList D.points.toList
 
-/-- An empty endpoint multiset realizes the zero module.-/
+/-- An empty endpoint multiset realizes the zero module.
+@isnad1 id=iszero.1h2v.s6.e5f730bba6b3 from=translated src=- shape=947ec583 vocab=8bc17b32
+-/
 theorem realize_isZero_of_points_eq_zero (D : Diagram ℝ) (h : D.points = 0) :
     CategoryTheory.Limits.IsZero (realize (k := k) D) := by
   apply Functor.isZero
@@ -169,7 +171,9 @@ def endpoints (c : Fin n ↪o ℝ) (I : FiniteInterval n) : ℝ × WithTop ℝ :
   (c ⟨I.birth, by have := I.birth_lt_death; have := I.death_le_size; omega⟩,
     if hd : I.death < n then (c ⟨I.death, hd⟩ : WithTop ℝ) else ⊤)
 
-/-- This endpoint conversion is definitionally the existing `ofIndexBars` convention.-/
+/-- This endpoint conversion is definitionally the existing `ofIndexBars` convention.
+@isnad1 id=eq.0h3v.s5.dd8cea7ca211 from=translated src=- shape=fbe11bd3 vocab=28ae7a87
+-/
 theorem ofIndexBars_points (c : Fin n ↪o ℝ) (B : Multiset (FiniteInterval n)) :
     (ofIndexBars c c.strictMono B).points = B.map (endpoints c) := rfl
 
@@ -180,7 +184,9 @@ def dropZero (I : FiniteInterval (n + 1)) (hb : 0 < I.birth) : FiniteInterval n 
   birth_lt_death := by have := I.birth_lt_death; omega
   death_le_size := by have := I.death_le_size; omega
 
-/-- The endpoint cut for sampling at `1,...,n` subtracts one from positive endpoints.-/
+/-- The endpoint cut for sampling at `1,...,n` subtracts one from positive endpoints.
+@isnad1 id=eq.2h2v.s6.45ae458e6abc from=translated src=- shape=c156b8ef vocab=9f61bdde
+-/
 theorem sampledEndpoint_succ (e : ℕ) (he : 0 < e) (hen : e ≤ n + 1) :
     sampledEndpoint (Fin.succOrderEmb n).toOrderHom e = e - 1 := by
   unfold sampledEndpoint
@@ -193,7 +199,9 @@ theorem sampledEndpoint_succ (e : ℕ) (he : 0 < e) (hen : e ≤ n + 1) :
   change (Finset.univ.filter (fun i : Fin n => ((Fin.succOrderEmb n) i).val < e)).card = e - 1
   rw [hset, Fin.card_filter_val_lt, Nat.min_eq_right (by omega)]
 
-/-- No positive-birth interval is discarded by `Fin.succ` sampling.-/
+/-- No positive-birth interval is discarded by `Fin.succ` sampling.
+@isnad1 id=eq.1h2v.s6.f2bcd109653b from=translated src=- shape=5b481f69 vocab=8c539c53
+-/
 theorem restrictAlong_succ (I : FiniteInterval (n + 1)) (hb : 0 < I.birth) :
     I.restrictAlong (Fin.succOrderEmb n).toOrderHom = some (dropZero I hb) := by
   have hd : 0 < I.death := hb.trans I.birth_lt_death
@@ -214,7 +222,9 @@ private theorem lt_critical_iff (c : Fin n ↪o ℝ) (i : Fin n) (t : ℝ) :
   rw [← not_le, critical_le_iff]
   omega
 
-/-- Pulling back a positive-birth index interval gives exactly its real half-open support.-/
+/-- Pulling back a positive-birth index interval gives exactly its real half-open support.
+@isnad1 id=iff.1h4v.s7.72b845f36dea from=translated src=- shape=f93920d7 vocab=4fe5500f
+-/
 theorem alive_endpoints_dropZero (c : Fin n ↪o ℝ)
     (I : FiniteInterval (n + 1)) (hb : 0 < I.birth) (t : ℝ) :
     alive (endpoints c (dropZero I hb)) t ↔
@@ -257,7 +267,9 @@ noncomputable def intervalPullbackIso (c : Fin n ↪o ℝ)
     simp [e, intervalMap, TDA.Persistence.intervalMap, alive_endpoints_dropZero, hs, ht,
       LinearEquiv.coe_ofEq_apply]
 
-/-- A finite death becomes the corresponding critical value, not infinity.-/
+/-- A finite death becomes the corresponding critical value, not infinity.
+@isnad1 id=eq.2h3v.s7.4595615ceb55 from=translated src=- shape=cfd2a6c5 vocab=ca5301ad
+-/
 theorem endpoints_dropZero_finite (c : Fin n ↪o ℝ)
     (I : FiniteInterval (n + 1)) (hb : 0 < I.birth) (hd : I.death ≤ n) :
     (endpoints c (dropZero I hb)).2 =
@@ -265,13 +277,17 @@ theorem endpoints_dropZero_finite (c : Fin n ↪o ℝ)
   have hlt : I.death - 1 < n := by have := I.birth_lt_death; omega
   simp [endpoints, dropZero, hlt]
 
-/-- Survival past the last finite stage becomes an essential right tail.-/
+/-- Survival past the last finite stage becomes an essential right tail.
+@isnad1 id=eq.2h3v.s6.36c3f95b66ac from=translated src=- shape=71fa464b vocab=464fd799
+-/
 theorem endpoints_dropZero_essential (c : Fin n ↪o ℝ)
     (I : FiniteInterval (n + 1)) (hb : 0 < I.birth) (hd : I.death = n + 1) :
     (endpoints c (dropZero I hb)).2 = ⊤ := by
   simp [endpoints, dropZero, hd]
 
-/-- `Fin.succ` sampling retains every occurrence when no bar starts at zero.-/
+/-- `Fin.succ` sampling retains every occurrence when no bar starts at zero.
+@isnad1 id=eq.1h2v.s7.227a5b292bc9 from=translated src=- shape=67aee2e9 vocab=8a663e68
+-/
 theorem reindexBarcode_succ_card (B : Multiset (FiniteInterval (n + 1)))
     (hB : ∀ I ∈ B, 0 < I.birth) :
     (reindexBarcode (Fin.succOrderEmb n).toOrderHom B).card = B.card := by

@@ -22,7 +22,9 @@ namespace OccurrenceMatching
 
 variable {I J I' J' : Type*} [Fintype I] [Fintype J] [Fintype I'] [Fintype J']
 
-/-- Relabelling preserves the paired sum and both unmatched diagonal sums.-/
+/-- Relabelling preserves the paired sum and both unmatched diagonal sums.
+@isnad1 id=eq.0h9v.s6.fb88bab1ebda from=translated src=- shape=633d3f0f vocab=4ec2ad16
+-/
 theorem totalFiniteCost_relabel (u : I' ≃ I) (v : J' ≃ J)
     (M : OccurrenceMatching I J PEmpty.{1} PEmpty.{1})
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
@@ -42,7 +44,9 @@ noncomputable def finiteFirstOrderMatchingCost (x : I → ℝ × ℝ) (y : J →
   ⨅ M : OccurrenceMatching I J PEmpty.{1} PEmpty.{1}, M.totalFiniteCost x y
 
 /-- The existing nonempty finite matching family supplies a minimizer,
-including when either occurrence type is empty.-/
+including when either occurrence type is empty.
+@isnad1 id=ex.0h4v.s5.e2d95e00b849 from=translated src=- shape=02222a3f vocab=d2ec8f3d
+-/
 theorem exists_minimizing_occurrenceMatching (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     ∃ M : OccurrenceMatching I J PEmpty.{1} PEmpty.{1},
       M.totalFiniteCost x y = finiteFirstOrderMatchingCost x y := by
@@ -50,7 +54,9 @@ theorem exists_minimizing_occurrenceMatching (x : I → ℝ × ℝ) (y : J → �
     occurrenceMatching_nonempty_iff.mpr (by simp)
   exact exists_eq_ciInf_of_finite
 
-/-- Every candidate partial matching gives an upper bound on the minimum.-/
+/-- Every candidate partial matching gives an upper bound on the minimum.
+@isnad1 id=le.0h5v.s5.978341eb9536 from=translated src=- shape=499c6df1 vocab=aaeea7ef
+-/
 theorem finiteFirstOrderMatchingCost_le_totalFiniteCost
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ)
     (M : OccurrenceMatching I J PEmpty.{1} PEmpty.{1}) :
@@ -60,7 +66,9 @@ theorem finiteFirstOrderMatchingCost_le_totalFiniteCost
   rintro _ ⟨N, rfl⟩
   exact N.totalFiniteCost_nonneg x y
 
-/-- A lower bound holds for the minimum exactly when it holds for every matching.-/
+/-- A lower bound holds for the minimum exactly when it holds for every matching.
+@isnad1 id=iff.0h5v.s5.4fb9b7369ed0 from=translated src=- shape=80f4fba0 vocab=aaeea7ef
+-/
 theorem le_finiteFirstOrderMatchingCost_iff (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) (c : ℝ) :
     c ≤ finiteFirstOrderMatchingCost x y ↔
       ∀ M : OccurrenceMatching I J PEmpty.{1} PEmpty.{1}, c ≤ M.totalFiniteCost x y := by
@@ -71,11 +79,16 @@ theorem le_finiteFirstOrderMatchingCost_iff (x : I → ℝ × ℝ) (y : J → �
     obtain ⟨M, hM⟩ := exists_minimizing_occurrenceMatching x y
     exact hM ▸ h M
 
+/--
+@isnad1 id=le.0h4v.s5.dc28a08fec7d from=translated src=- shape=785132df vocab=1a00afd7
+-/
 theorem finiteFirstOrderMatchingCost_nonneg (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     0 ≤ finiteFirstOrderMatchingCost x y :=
   (le_finiteFirstOrderMatchingCost_iff x y 0).mpr (fun M => M.totalFiniteCost_nonneg x y)
 
-/-- Deleting every source and target occurrence is always feasible.-/
+/-- Deleting every source and target occurrence is always feasible.
+@isnad1 id=le.0h4v.s6.e38f419f5d52 from=translated src=- shape=c0d02f92 vocab=a642716d
+-/
 theorem finiteFirstOrderMatchingCost_le_diagonalSum (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     finiteFirstOrderMatchingCost x y ≤
       (∑ i, (diagonalCost (x i)).toReal) + ∑ j, (diagonalCost (y j)).toReal := by
@@ -86,6 +99,9 @@ theorem finiteFirstOrderMatchingCost_le_diagonalSum (x : I → ℝ × ℝ) (y : 
     _ ≤ M.totalFiniteCost x y := finiteFirstOrderMatchingCost_le_totalFiniteCost x y M
     _ = _ := by simp [M, OccurrenceMatching.totalFiniteCost]
 
+/--
+@isnad1 id=eq.0h4v.s5.6d6c795efe1f from=translated src=- shape=2b7a3f08 vocab=02b307a3
+-/
 theorem finiteFirstOrderMatchingCost_of_isEmpty_right [IsEmpty J]
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     finiteFirstOrderMatchingCost x y = ∑ i, (diagonalCost (x i)).toReal := by
@@ -98,6 +114,9 @@ theorem finiteFirstOrderMatchingCost_of_isEmpty_right [IsEmpty J]
   rw [← hM]
   simp [OccurrenceMatching.totalFiniteCost, hn]
 
+/--
+@isnad1 id=eq.0h4v.s5.a1464d38e82c from=translated src=- shape=5113c342 vocab=02b307a3
+-/
 theorem finiteFirstOrderMatchingCost_of_isEmpty_left [IsEmpty I]
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     finiteFirstOrderMatchingCost x y = ∑ j, (diagonalCost (y j)).toReal := by
@@ -106,12 +125,17 @@ theorem finiteFirstOrderMatchingCost_of_isEmpty_left [IsEmpty I]
   rw [← hM]
   simp [OccurrenceMatching.totalFiniteCost]
 
+/--
+@isnad1 id=eq.0h4v.s5.0d1f977b23ce from=translated src=- shape=21309ef5 vocab=0d441989
+-/
 @[simp] theorem finiteFirstOrderMatchingCost_empty [IsEmpty I] [IsEmpty J]
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) : finiteFirstOrderMatchingCost x y = 0 := by
   rw [finiteFirstOrderMatchingCost_of_isEmpty_right]
   exact Fintype.sum_empty _
 
-/-- Arbitrary finite occurrence equivalences preserve the minimum, including multiplicity.-/
+/-- Arbitrary finite occurrence equivalences preserve the minimum, including multiplicity.
+@isnad1 id=eq.0h8v.s6.5268cf356720 from=translated src=- shape=9e2d99af vocab=180b066b
+-/
 theorem finiteFirstOrderMatchingCost_reindex {I' J' : Type*} [Fintype I'] [Fintype J']
     (u : I' ≃ I) (v : J' ≃ J) (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     finiteFirstOrderMatchingCost (x ∘ u) (y ∘ v) = finiteFirstOrderMatchingCost x y := by

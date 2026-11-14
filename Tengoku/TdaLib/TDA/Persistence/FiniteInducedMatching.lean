@@ -57,14 +57,18 @@ private theorem source_inverse (f : M ⟶ N) (i : inducedDomain f) :
     imageSourceEmbedding f ((imageOccurrenceEquivDomain f).symm i) = i.val :=
   Equiv.apply_ofInjective_symm (imageSourceEmbedding f).injective i
 
-/-- The partial inverse followed by the mono embedding uses the same image occurrence.-/
+/-- The partial inverse followed by the mono embedding uses the same image occurrence.
+@isnad1 id=eq.0h6v.s9.4fa483b2a4b9 from=translated src=- shape=d53cdd3a vocab=0c46b126
+-/
 theorem inducedMatching_from_image (f : M ⟶ N)
     (a : BarcodeOccurrence s (rankBarcode (finiteImage f))) :
     inducedMatching f ⟨imageSourceEmbedding f a, ⟨a, rfl⟩⟩ = imageTargetEmbedding f a := by
   exact congrArg (imageTargetEmbedding f)
     (Equiv.ofInjective_symm_apply (imageSourceEmbedding f).injective a)
 
-/-- A pair is matched exactly when an intermediate occurrence produces both labels.-/
+/-- A pair is matched exactly when an intermediate occurrence produces both labels.
+@isnad1 id=iff.0h7v.s9.91da2c4b0ed8 from=translated src=- shape=ba07c161 vocab=8aedb3c2
+-/
 theorem inducedMap_eq_some_iff (f : M ⟶ N)
     (i : BarcodeOccurrence s (rankBarcode M)) (j : BarcodeOccurrence s (rankBarcode N)) :
     inducedMap f i = some j ↔
@@ -84,7 +88,9 @@ theorem inducedMap_eq_some_iff (f : M ⟶ N)
       rw [he, inducedMatching_from_image, hj]
     simp [inducedMap, hi, hm]
 
-/-- Each matched pair has exactly one intermediate occurrence, even for repeated bars.-/
+/-- Each matched pair has exactly one intermediate occurrence, even for repeated bars.
+@isnad1 id=iff.0h7v.s9.9d960493fd6a from=translated src=- shape=ba07c161 vocab=e181dd1a
+-/
 theorem inducedMap_eq_some_iff_unique (f : M ⟶ N)
     (i : BarcodeOccurrence s (rankBarcode M)) (j : BarcodeOccurrence s (rankBarcode N)) :
     inducedMap f i = some j ↔
@@ -96,7 +102,9 @@ theorem inducedMap_eq_some_iff_unique (f : M ⟶ N)
   · rintro ⟨a, ha, _⟩
     exact ⟨a, ha⟩
 
-/-- The selected domain is exactly the range of the canonical epi embedding.-/
+/-- The selected domain is exactly the range of the canonical epi embedding.
+@isnad1 id=iff.0h6v.s8.960b6660e34b from=translated src=- shape=2bb6dd5f vocab=fd83bcda
+-/
 theorem inducedMap_domain (f : M ⟶ N) (i : BarcodeOccurrence s (rankBarcode M)) :
     (∃ j, inducedMap f i = some j) ↔ i ∈ inducedDomain f := by
   constructor
@@ -106,13 +114,17 @@ theorem inducedMap_domain (f : M ⟶ N) (i : BarcodeOccurrence s (rankBarcode M)
   · rintro ⟨a, ha⟩
     exact ⟨imageTargetEmbedding f a, (inducedMap_eq_some_iff f _ _).mpr ⟨a, ha, rfl⟩⟩
 
-/-- Unselected source labels are exactly those on which the Option map is undefined.-/
+/-- Unselected source labels are exactly those on which the Option map is undefined.
+@isnad1 id=iff.0h6v.s8.aad198b09d92 from=translated src=- shape=1a990e18 vocab=4e916c0f
+-/
 theorem inducedMap_eq_none_iff (f : M ⟶ N) (i : BarcodeOccurrence s (rankBarcode M)) :
     inducedMap f i = none ↔ i ∉ inducedDomain f := by
   classical
   by_cases hi : i ∈ inducedDomain f <;> simp [inducedMap, hi]
 
-/-- The range is exactly the range of the canonical mono embedding.-/
+/-- The range is exactly the range of the canonical mono embedding.
+@isnad1 id=iff.0h6v.s9.c16a1b142297 from=translated src=- shape=43c90d7b vocab=2e98d3cf
+-/
 theorem inducedMap_range (f : M ⟶ N) (j : BarcodeOccurrence s (rankBarcode N)) :
     (∃ i, inducedMap f i = some j) ↔ j ∈ Set.range (imageTargetEmbedding f) := by
   constructor
@@ -122,7 +134,9 @@ theorem inducedMap_range (f : M ⟶ N) (j : BarcodeOccurrence s (rankBarcode N))
   · rintro ⟨a, ha⟩
     exact ⟨imageSourceEmbedding f a, (inducedMap_eq_some_iff f _ _).mpr ⟨a, rfl, ha⟩⟩
 
-/-- Selected values cannot identify distinct source occurrence labels.-/
+/-- Selected values cannot identify distinct source occurrence labels.
+@isnad1 id=eq.2h8v.s8.84293aaeaf36 from=translated src=- shape=8ece3b96 vocab=80665f7f
+-/
 theorem inducedMap_injective (f : M ⟶ N)
     (i i' : BarcodeOccurrence s (rankBarcode M)) (j : BarcodeOccurrence s (rankBarcode N))
     (hi : inducedMap f i = some j) (hi' : inducedMap f i' = some j) : i = i' := by
@@ -145,7 +159,9 @@ noncomputable def imageOccurrenceEquivPairs (f : M ⟶ N) :
       obtain ⟨a, ha, hj⟩ := (inducedMap_eq_some_iff f i j).mp h
       exact ⟨a, Subtype.ext (Prod.ext ha hj)⟩⟩
 
-/-- The intermediate interval has the source birth and the target death.-/
+/-- The intermediate interval has the source birth and the target death.
+@isnad1 id=ex.1h7v.s9.ae67d5f2197b from=translated src=- shape=25c30917 vocab=0b5f4476
+-/
 theorem inducedMap_intermediate_endpoints (f : M ⟶ N)
     (i : BarcodeOccurrence s (rankBarcode M)) (j : BarcodeOccurrence s (rankBarcode N))
     (h : inducedMap f i = some j) :
@@ -157,7 +173,9 @@ theorem inducedMap_intermediate_endpoints (f : M ⟶ N)
     (epiEmbedding_birth (toFiniteImage f) (toFiniteImage_surjective f) a).symm,
     (monoEmbedding_death (fromFiniteImage f) (fromFiniteImage_injective f) a).symm⟩
 
-/-- Every matched pair satisfies the qualitative endpoint order.-/
+/-- Every matched pair satisfies the qualitative endpoint order.
+@isnad1 id=and.1h7v.s8.66e92fae8dc2 from=translated src=- shape=7e3e85b9 vocab=ad70776a
+-/
 theorem inducedMap_endpoints (f : M ⟶ N)
     (i : BarcodeOccurrence s (rankBarcode M)) (j : BarcodeOccurrence s (rankBarcode N))
     (h : inducedMap f i = some j) :

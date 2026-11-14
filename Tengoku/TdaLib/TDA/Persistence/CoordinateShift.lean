@@ -32,6 +32,9 @@ def translation (ε : ℝ≥0) : (Fin n → ℝ) →o (Fin n → ℝ) where
     change a i + (ε : ℝ) ≤ b i + (ε : ℝ)
     exact add_le_add (h i) le_rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.0fa6fc20233f from=translated src=- shape=e585b238 vocab=12a8fd98
+-/
 @[simp] theorem translation_apply (ε : ℝ≥0) (a : Fin n → ℝ) (i : Fin n) :
     translation ε a i = a i + (ε : ℝ) := rfl
 
@@ -41,13 +44,22 @@ def shift (ε : ℝ≥0) :
   obj M := reindex (translation ε) M
   map f := reindexNatTrans (translation ε) f
 
+/--
+@isnad1 id=eq.0h5v.s8.a08a2a7ac978 from=translated src=- shape=7d07ecd2 vocab=5c37342e
+-/
 @[simp] theorem shift_obj (ε : ℝ≥0) (M : PModule.{u,0,w} R (Fin n → ℝ))
     (a : Fin n → ℝ) : ((shift ε).obj M).obj a = M.obj (translation ε a) := rfl
 
+/--
+@isnad1 id=eq.0h7v.s9.fceac25917e7 from=translated src=- shape=9348b278 vocab=53ca6ca9
+-/
 @[simp] theorem shift_map_app (ε : ℝ≥0)
     {M N : PModule.{u,0,w} R (Fin n → ℝ)} (f : M ⟶ N) (a : Fin n → ℝ) :
     ((shift ε).map f).app a = f.app (translation ε a) := rfl
 
+/--
+@isnad1 id=eq.1h6v.s9.6b61c4f5e50c from=translated src=- shape=3459ba07 vocab=db368f9b
+-/
 theorem shift_structureMap (ε : ℝ≥0) (M : PModule.{u,0,w} R (Fin n → ℝ))
     {a b : Fin n → ℝ} (h : a ≤ b) :
     structureMap ((shift ε).obj M) h = structureMap M ((translation ε).monotone' h) := rfl
@@ -72,23 +84,34 @@ def compIso (ε δ : ℝ≥0) (M : PModule.{u,0,w} R (Fin n → ℝ)) :
       funext i
       simp [add_assoc]) M
 
+/--
+@isnad1 id=eq.0h4v.s9.ab49018b8597 from=translated src=- shape=f05e220f vocab=ac1a201f
+-/
 @[simp] theorem zeroIso_hom_app (M : PModule.{u,0,w} R (Fin n → ℝ))
     (a : Fin n → ℝ) :
     (zeroIso M).hom.app a = M.map (eqToHom (show translation 0 a = a by
       funext i; simp)) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.a9642fcd19b6 from=translated src=- shape=ea1f8a8d vocab=25277b79
+-/
 @[simp] theorem zeroIso_inv_app (M : PModule.{u,0,w} R (Fin n → ℝ))
     (a : Fin n → ℝ) :
     (zeroIso M).inv.app a = M.map (eqToHom (show translation 0 a = a by
       funext i; simp).symm) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.03a07862f1f3 from=translated src=- shape=d8e0523b vocab=3162f170
+-/
 @[simp] theorem compIso_hom_app (ε δ : ℝ≥0)
     (M : PModule.{u,0,w} R (Fin n → ℝ)) (a : Fin n → ℝ) :
     (compIso ε δ M).hom.app a = M.map (eqToHom
       (show translation δ (translation ε a) = translation (ε + δ) a by
         funext i; simp [add_assoc])) := rfl
 
-/-- The zero-shift identification is natural in the module.-/
+/-- The zero-shift identification is natural in the module.
+@isnad1 id=eq.0h5v.s10.d70f48b7319d from=translated src=- shape=95e8540e vocab=79876d84
+-/
 @[reassoc] theorem zeroIso_naturality
     {M N : PModule.{u,0,w} R (Fin n → ℝ)} (f : M ⟶ N) :
     (shift 0).map f ≫ (zeroIso N).hom = (zeroIso M).hom ≫ f := by
@@ -96,6 +119,9 @@ def compIso (ε δ : ℝ≥0) (M : PModule.{u,0,w} R (Fin n → ℝ)) :
   funext a
   exact (f.naturality (eqToHom (show translation 0 a = a by funext i; simp))).symm
 
+/--
+@isnad1 id=eq.0h5v.s10.e23bc659736d from=translated src=- shape=08608a3c vocab=9b9ebaaa
+-/
 @[reassoc] theorem zeroIso_inv_naturality
     {M N : PModule.{u,0,w} R (Fin n → ℝ)} (f : M ⟶ N) :
     (zeroIso M).inv ≫ (shift 0).map f = f ≫ (zeroIso N).inv := by
@@ -103,7 +129,9 @@ def compIso (ε δ : ℝ≥0) (M : PModule.{u,0,w} R (Fin n → ℝ)) :
   funext a
   exact f.naturality (eqToHom (show translation 0 a = a by funext i; simp).symm)
 
-/-- Shift composition identification is natural in the module.-/
+/-- Shift composition identification is natural in the module.
+@isnad1 id=eq.0h7v.s11.f85d0c18f99f from=translated src=- shape=83a40344 vocab=bf702da4
+-/
 theorem compIso_naturality (ε δ : ℝ≥0)
     {M N : PModule.{u,0,w} R (Fin n → ℝ)} (f : M ⟶ N) :
     (shift ε).map ((shift δ).map f) ≫ (compIso ε δ N).hom =
@@ -118,11 +146,17 @@ def congrIso {ε δ : ℝ≥0} (h : ε = δ)
     (shift ε).obj M ≅ (shift δ).obj M :=
   reindexIso (fun p => congrArg (fun e : ℝ≥0 => translation e p) h) M
 
+/--
+@isnad1 id=eq.1h6v.s10.af65c133733b from=translated src=- shape=600c0eb3 vocab=f3c05da7
+-/
 @[simp] theorem congrIso_hom_app {ε δ : ℝ≥0} (h : ε = δ)
     (M : PModule.{u,0,w} R (Fin n → ℝ)) (a : Fin n → ℝ) :
     (congrIso h M).hom.app a =
       M.map (eqToHom (congrArg (fun e : ℝ≥0 => translation e a) h)) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.2c84dc125c13 from=translated src=- shape=31732e62 vocab=a49904d5
+-/
 @[simp] theorem congrIso_refl (ε : ℝ≥0)
     (M : PModule.{u,0,w} R (Fin n → ℝ)) :
     congrIso (rfl : ε = ε) M = Iso.refl _ := by
@@ -131,7 +165,9 @@ def congrIso {ε δ : ℝ≥0} (h : ε = δ)
   funext a
   exact M.map_id _
 
-/-- Left unit coherence for shift composition.-/
+/-- Left unit coherence for shift composition.
+@isnad1 id=eq.0h4v.s10.9b3e0214fd97 from=translated src=- shape=d8d2d008 vocab=802e05ca
+-/
 @[reassoc] theorem compIso_zero_left (ε : ℝ≥0)
     (M : PModule.{u,0,w} R (Fin n → ℝ)) :
     (compIso 0 ε M).hom ≫ (congrIso (zero_add ε) M).hom =
@@ -142,7 +178,9 @@ def congrIso {ε δ : ℝ≥0} (h : ε = δ)
   rw [← M.map_comp]
   congr 1
 
-/-- Right unit coherence for shift composition.-/
+/-- Right unit coherence for shift composition.
+@isnad1 id=eq.0h4v.s10.f9390eab39b4 from=translated src=- shape=ed0dd98d vocab=37652753
+-/
 theorem compIso_zero_right (ε : ℝ≥0)
     (M : PModule.{u,0,w} R (Fin n → ℝ)) :
     (compIso ε 0 M).hom ≫ (congrIso (add_zero ε) M).hom =
@@ -153,7 +191,9 @@ theorem compIso_zero_right (ε : ℝ≥0)
   rw [← M.map_comp]
   congr 1
 
-/-- The two parenthesizations of three shifts agree.-/
+/-- The two parenthesizations of three shifts agree.
+@isnad1 id=eq.0h6v.s12.9e2e838a211f from=translated src=- shape=4147d23e vocab=c1c72c14
+-/
 theorem compIso_assoc (ε δ γ : ℝ≥0)
     (M : PModule.{u,0,w} R (Fin n → ℝ)) :
     (compIso ε δ ((shift γ).obj M)).hom ≫ (compIso (ε + δ) γ M).hom =
@@ -176,6 +216,9 @@ def transition (ε : ℝ≥0) (M : PModule.{u,0,w} R (Fin n → ℝ)) :
     rw [← M.map_comp, ← M.map_comp]
     congr 1
 
+/--
+@isnad1 id=eq.0h5v.s9.a30776c06d8c from=translated src=- shape=31cfec94 vocab=8b4f1009
+-/
 @[simp] theorem transition_app (ε : ℝ≥0)
     (M : PModule.{u,0,w} R (Fin n → ℝ)) (a : Fin n → ℝ) :
     (transition ε M).app a = structureMap M
@@ -183,6 +226,9 @@ def transition (ε : ℝ≥0) (M : PModule.{u,0,w} R (Fin n → ℝ)) :
         change a i ≤ a i + (ε : ℝ)
         exact le_add_of_nonneg_right ε.coe_nonneg) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.6d69f959c26f from=translated src=- shape=eb0d3e77 vocab=0ede871a
+-/
 theorem transition_naturality (ε : ℝ≥0)
     {M N : PModule.{u,0,w} R (Fin n → ℝ)} (f : M ⟶ N) :
     f ≫ transition ε N = transition ε M ≫ (shift ε).map f := by
@@ -203,6 +249,9 @@ def shiftLE {ε δ : ℝ≥0} (h : ε ≤ δ)
     rw [← M.map_comp, ← M.map_comp]
     congr 1
 
+/--
+@isnad1 id=eq.1h6v.s10.3eee2f59a83c from=translated src=- shape=0da1f182 vocab=0397fcdf
+-/
 @[simp] theorem shiftLE_app {ε δ : ℝ≥0} (h : ε ≤ δ)
     (M : PModule.{u,0,w} R (Fin n → ℝ)) (a : Fin n → ℝ) :
     (shiftLE h M).app a = structureMap M
@@ -210,7 +259,9 @@ def shiftLE {ε δ : ℝ≥0} (h : ε ≤ δ)
         change a i + (ε : ℝ) ≤ a i + (δ : ℝ)
         exact add_le_add le_rfl h) := rfl
 
-/-- At zero, the transition followed by the canonical unit is the identity.-/
+/-- At zero, the transition followed by the canonical unit is the identity.
+@isnad1 id=eq.0h3v.s9.18adfac192a2 from=translated src=- shape=cfc0c839 vocab=feae2481
+-/
 theorem transition_zero (M : PModule.{u,0,w} R (Fin n → ℝ)) :
     transition 0 M ≫ (zeroIso M).hom = 𝟙 M := by
   apply NatTrans.ext
@@ -219,18 +270,26 @@ theorem transition_zero (M : PModule.{u,0,w} R (Fin n → ℝ)) :
   erw [← M.map_comp]
   exact (congrArg M.map (Subsingleton.elim _ (𝟙 a))).trans (M.map_id a)
 
+/--
+@isnad1 id=eq.0h3v.s8.9cf16ed67bc3 from=translated src=- shape=08190088 vocab=435802ae
+-/
 theorem transition_zero_eq (M : PModule.{u,0,w} R (Fin n → ℝ)) :
     transition 0 M = (zeroIso M).inv := by
   apply (cancel_mono (zeroIso M).hom).mp
   rw [transition_zero, Iso.inv_hom_id]
 
+/--
+@isnad1 id=eq.1h5v.s9.35966152b156 from=translated src=- shape=bfeeaf00 vocab=9d81d9b2
+-/
 theorem transition_congr {ε δ : ℝ≥0} (h : ε = δ)
     (M : PModule.{u,0,w} R (Fin n → ℝ)) :
     transition ε M ≫ (congrIso h M).hom = transition δ M := by
   cases h
   simp only [congrIso_refl, Iso.refl_hom, Category.comp_id]
 
-/-- Successive transitions equal the transition by the sum.-/
+/-- Successive transitions equal the transition by the sum.
+@isnad1 id=eq.0h5v.s10.632824862ff1 from=translated src=- shape=89ebe3d2 vocab=5cada142
+-/
 theorem transition_add (ε δ : ℝ≥0)
     (M : PModule.{u,0,w} R (Fin n → ℝ)) :
     transition ε M ≫ (shift ε).map (transition δ M) ≫

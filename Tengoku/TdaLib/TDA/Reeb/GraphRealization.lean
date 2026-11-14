@@ -97,7 +97,9 @@ edge summand is the sigma (disjoint-union) topology of copies of the unit interv
 instance instTopologicalSpaceCells : TopologicalSpace (Cells G) :=
   @instTopologicalSpaceSum V (Σ _ : G.Dart, unitInterval) ⊥ inferInstance
 
-/-- Each vertex cell is open: the vertex summand is discrete.-/
+/-- Each vertex cell is open: the vertex summand is discrete.
+@isnad1 id=isopen.0h3v.s5.c43b1a431bc7 from=translated src=- shape=75f80453 vocab=9f16ed3e
+-/
 theorem isOpen_vertexCell (v : V) : IsOpen ({.inl v} : Set (Cells G)) := by
   let _ : TopologicalSpace V := ⊥
   have _ : DiscreteTopology V := ⟨rfl⟩
@@ -121,13 +123,24 @@ instance instTopologicalSpaceRealization : TopologicalSpace (Realization G) :=
 /-- The quotient map from the cells.-/
 def quotMk (x : Cells G) : Realization G := Quot.mk _ x
 
+/--
+@isnad1 id=surjecti.0h2v.s3.0282c5e2569e from=translated src=- shape=15a68f90 vocab=5a4c0e60
+-/
 theorem quotMk_surjective : Function.Surjective (quotMk G) := Quot.mk_surjective
 
+/--
+@isnad1 id=isquotie.0h2v.s4.ef72bd1e480b from=translated src=- shape=15a68f90 vocab=a96ba3c4
+-/
 theorem isQuotientMap_quotMk : IsQuotientMap (quotMk G) := isQuotientMap_quot_mk
 
+/--
+@isnad1 id=continuo.0h2v.s4.2686c70ccd15 from=translated src=- shape=15a68f90 vocab=19fe6e03
+-/
 theorem continuous_quotMk : Continuous (quotMk G) := (isQuotientMap_quotMk G).continuous
 
-/-- Two cells are identified exactly when the generated equivalence relates them.-/
+/-- Two cells are identified exactly when the generated equivalence relates them.
+@isnad1 id=iff.0h4v.s5.9bad6a42c305 from=translated src=- shape=0f602107 vocab=6cebb400
+-/
 theorem quotMk_eq_quotMk_iff {x y : Cells G} :
     quotMk G x = quotMk G y ↔ Relation.EqvGen (CellRel G) x y :=
   ⟨Quot.eqvGen_exact, Quot.eqvGen_sound⟩
@@ -138,20 +151,29 @@ def vertex (v : V) : Realization G := quotMk G (.inl v)
 /-- The point with parameter `t` on the interval of the dart `d`.-/
 def edgePoint (d : G.Dart) (t : unitInterval) : Realization G := quotMk G (.inr ⟨d, t⟩)
 
-/-- Reversal: the dart `d.symm` at `1 - t` is the dart `d` at `t`.-/
+/-- Reversal: the dart `d.symm` at `1 - t` is the dart `d` at `t`.
+@isnad1 id=eq.0h4v.s4.253c2b3873e9 from=translated src=- shape=28e2ae88 vocab=a1ddbcc4
+-/
 theorem edgePoint_symm (d : G.Dart) (t : unitInterval) :
     edgePoint G d.symm (σ t) = edgePoint G d t :=
   (Quot.sound (CellRel.symm d t)).symm
 
+/--
+@isnad1 id=eq.0h3v.s5.24f4f3c9458f from=translated src=- shape=c614b582 vocab=7d416357
+-/
 theorem edgePoint_zero (d : G.Dart) : edgePoint G d 0 = vertex G d.fst :=
   Quot.sound (CellRel.start d)
 
-/-- The other endpoint equation, from reversal.-/
+/-- The other endpoint equation, from reversal.
+@isnad1 id=eq.0h3v.s5.315ffcc8b3d8 from=translated src=- shape=c614b582 vocab=c8ae7ac1
+-/
 theorem edgePoint_one (d : G.Dart) : edgePoint G d 1 = vertex G d.snd := by
   rw [← edgePoint_symm G d 1, symm_one, edgePoint_zero]
   rfl
 
-/-- Quotient induction: every point is a vertex or an edge point.-/
+/-- Quotient induction: every point is a vertex or an edge point.
+@isnad1 id=var.0h6v.s5.7cca0fb71d90 from=translated src=- shape=f1be5c6b vocab=0dd3b370
+-/
 @[elab_as_elim]
 theorem ind {p : Realization G → Prop} (vertex : ∀ v, p (vertex G v))
     (edgePoint : ∀ d t, p (edgePoint G d t)) (x : Realization G) : p x := by
@@ -160,18 +182,25 @@ theorem ind {p : Realization G → Prop} (vertex : ∀ v, p (vertex G v))
   · exact vertex v
   · exact edgePoint d t
 
-/-- Functions out of the realization agreeing on vertices and edge points are equal.-/
+/-- Functions out of the realization agreeing on vertices and edge points are equal.
+@isnad1 id=eq.2h5v.s6.743f119c7ea0 from=translated src=- shape=2086b6db vocab=0dd3b370
+-/
 theorem function_ext {Y : Sort*} {f g : Realization G → Y}
     (hv : ∀ v, f (vertex G v) = g (vertex G v))
     (he : ∀ d t, f (edgePoint G d t) = g (edgePoint G d t)) : f = g :=
   _root_.funext fun x => ind G (p := fun x => f x = g x) hv he x
 
-/-- Continuous maps out of the realization agreeing on vertices and edge points are equal.-/
+/-- Continuous maps out of the realization agreeing on vertices and edge points are equal.
+@isnad1 id=eq.2h5v.s7.bda07d68a895 from=translated src=- shape=26a0d842 vocab=ec429197
+-/
 theorem hom_ext {Y : Type*} [TopologicalSpace Y] {f g : C(Realization G, Y)}
     (hv : ∀ v, f (vertex G v) = g (vertex G v))
     (he : ∀ d t, f (edgePoint G d t) = g (edgePoint G d t)) : f = g :=
   ContinuousMap.ext fun x => ind G (p := fun x => f x = g x) hv he x
 
+/--
+@isnad1 id=continuo.0h3v.s5.c3eac5e2b5aa from=translated src=- shape=2e55edef vocab=6cca6c7f
+-/
 theorem continuous_edgePoint (d : G.Dart) : Continuous (edgePoint G d) := by
   let _ : TopologicalSpace V := ⊥
   exact (continuous_quotMk G).comp (continuous_inr.comp (continuous_sigmaMk (i := d)))
@@ -195,12 +224,20 @@ def lift (fv : V → Y) (fe : G.Dart → unitInterval → Y)
 variable (fv : V → Y) (fe : G.Dart → unitInterval → Y)
   (hsymm : ∀ d t, fe d.symm (σ t) = fe d t) (hstart : ∀ d, fe d 0 = fv d.fst)
 
+/--
+@isnad1 id=eq.2h6v.s6.2edce3a9cf18 from=translated src=- shape=a8b5d692 vocab=eabc4f0b
+-/
 @[simp] theorem lift_vertex (v : V) : lift G fv fe hsymm hstart (vertex G v) = fv v := rfl
 
+/--
+@isnad1 id=eq.2h7v.s6.1fe5743cfee1 from=translated src=- shape=1c3a2aa3 vocab=5c564118
+-/
 @[simp] theorem lift_edgePoint (d : G.Dart) (t : unitInterval) :
     lift G fv fe hsymm hstart (edgePoint G d t) = fe d t := rfl
 
-/-- The lift is continuous when every edge map is; no topology on `V` is involved.-/
+/-- The lift is continuous when every edge map is; no topology on `V` is involved.
+@isnad1 id=continuo.3h5v.s7.43b66c37db51 from=translated src=- shape=17ad6af3 vocab=a63ed64f
+-/
 theorem continuous_lift [TopologicalSpace Y] (hfe : ∀ d, Continuous (fe d)) :
     Continuous (lift G fv fe hsymm hstart) := by
   let _ : TopologicalSpace V := ⊥
@@ -208,7 +245,9 @@ theorem continuous_lift [TopologicalSpace Y] (hfe : ∀ d, Continuous (fe d)) :
   change Continuous (Sum.elim fv fun p : Σ _ : G.Dart, unitInterval => fe p.1 p.2)
   exact continuous_sum_dom.2 ⟨continuous_bot, continuous_sigma hfe⟩
 
-/-- Uniqueness among all functions.-/
+/-- Uniqueness among all functions.
+@isnad1 id=eq.4h6v.s7.22c19e683e66 from=translated src=- shape=43cd83b7 vocab=ba8c14a6
+-/
 theorem lift_unique (g : Realization G → Y) (hv : ∀ v, g (vertex G v) = fv v)
     (he : ∀ d t, g (edgePoint G d t) = fe d t) : g = lift G fv fe hsymm hstart :=
   function_ext G hv he
@@ -225,17 +264,29 @@ def continuousLift : C(Realization G, Y) :=
   ⟨lift G fv (fun d => fe d) hsymm hstart,
     continuous_lift G fv (fun d => fe d) hsymm hstart fun d => (fe d).continuous⟩
 
+/--
+@isnad1 id=eq.2h6v.s8.c3c51f63513b from=translated src=- shape=2d120a26 vocab=051ab754
+-/
 @[simp] theorem continuousLift_vertex (v : V) :
     continuousLift G fv fe hsymm hstart (vertex G v) = fv v := rfl
 
+/--
+@isnad1 id=eq.2h7v.s8.5832329d9a32 from=translated src=- shape=010a8339 vocab=5d21bf8d
+-/
 @[simp] theorem continuousLift_edgePoint (d : G.Dart) (t : unitInterval) :
     continuousLift G fv fe hsymm hstart (edgePoint G d t) = fe d t := rfl
 
+/--
+@isnad1 id=eq.4h6v.s8.77cecc57006b from=translated src=- shape=55d7b884 vocab=5257b6f7
+-/
 theorem continuousLift_unique (g : C(Realization G, Y)) (hv : ∀ v, g (vertex G v) = fv v)
     (he : ∀ d t, g (edgePoint G d t) = fe d t) : g = continuousLift G fv fe hsymm hstart :=
   hom_ext G hv he
 
 include hsymm hstart in
+/--
+@isnad1 id=existsun.2h5v.s8.cb3ba71d85e6 from=translated src=- shape=b8a0da7a vocab=f660937a
+-/
 theorem existsUnique_continuousLift :
     ∃! g : C(Realization G, Y), (∀ v, g (vertex G v) = fv v) ∧
       ∀ d t, g (edgePoint G d t) = fe d t :=
@@ -247,7 +298,9 @@ end continuousLift
 /-! ### Vertex injectivity -/
 
 /-- Distinct vertices stay distinct. The proof is set-level: the retraction to `Option V` sends a
-vertex to itself, an edge endpoint to its vertex and an interior edge point to `none`.-/
+vertex to itself, an edge endpoint to its vertex and an interior edge point to `none`.
+@isnad1 id=injectiv.0h2v.s3.4bab09e2586a from=translated src=- shape=101200ff vocab=6a11b59a
+-/
 theorem vertex_injective : Function.Injective (vertex G) := by
   classical
   have hne : ∀ t : unitInterval, t ≠ 0 → σ t ≠ 1 := fun t ht h =>
@@ -267,10 +320,16 @@ theorem vertex_injective : Function.Injective (vertex G) := by
       (fun d => by simp)
   exact fun v w h => Option.some_injective _ (congrArg r h)
 
+/--
+@isnad1 id=isempty.0h2v.s3.08cbbd57a82b from=translated src=- shape=d25ba72a vocab=469114b9
+-/
 instance instIsEmptyRealization [IsEmpty V] : IsEmpty (Realization G) :=
   ⟨fun x => ind G (p := fun _ => False) (fun v => isEmptyElim v)
     (fun d _ => isEmptyElim d.fst) x⟩
 
+/--
+@isnad1 id=nonempty.0h2v.s3.8a1ab22064c7 from=translated src=- shape=d25ba72a vocab=a1fcca10
+-/
 instance instNonemptyRealization [Nonempty V] : Nonempty (Realization G) :=
   ⟨vertex G (Classical.arbitrary V)⟩
 
@@ -283,6 +342,9 @@ def edgePath (d : G.Dart) : Path (vertex G d.fst) (vertex G d.snd) where
   source' := edgePoint_zero G d
   target' := edgePoint_one G d
 
+/--
+@isnad1 id=eq.0h4v.s6.7a39e29188aa from=translated src=- shape=7ee89bc5 vocab=fc5ab74d
+-/
 @[simp] theorem edgePath_apply (d : G.Dart) (t : unitInterval) :
     edgePath G d t = edgePoint G d t := rfl
 
@@ -291,15 +353,24 @@ def edgeSegment (d : G.Dart) (s t : unitInterval) :
     Path (edgePoint G d s) (edgePoint G d t) :=
   (edgePath G d).subpath s t
 
+/--
+@isnad1 id=eq.0h6v.s6.ffdf97fa75a4 from=translated src=- shape=1101e2fa vocab=18ab3eea
+-/
 @[simp] theorem edgeSegment_apply (d : G.Dart) (s t r : unitInterval) :
     edgeSegment G d s t r = edgePoint G d (Set.Icc.convexComb s t r) := by
   change edgePath G d (Set.Icc.convexComb s t r) = _
   exact edgePath_apply G d _
 
+/--
+@isnad1 id=eq.0h5v.s6.1e8e0cd2948f from=translated src=- shape=18694f94 vocab=0910611d
+-/
 @[simp] theorem edgeSegment_zero (d : G.Dart) (s t : unitInterval) :
     edgeSegment G d s t 0 = edgePoint G d s := by
   simp [edgeSegment, Path.subpath]
 
+/--
+@isnad1 id=eq.0h5v.s6.5b664c9cf0cc from=translated src=- shape=ae301643 vocab=0910611d
+-/
 @[simp] theorem edgeSegment_one (d : G.Dart) (s t : unitInterval) :
     edgeSegment G d s t 1 = edgePoint G d t := by
   simp [edgeSegment, Path.subpath]
@@ -309,12 +380,20 @@ def walkPath : {v w : V} → G.Walk v w → Path (vertex G v) (vertex G w)
   | _, _, .nil => Path.refl _
   | _, _, .cons h p => (edgePath G ⟨(_, _), h⟩).trans (walkPath p)
 
+/--
+@isnad1 id=eq.0h3v.s5.78d7300d3250 from=translated src=- shape=b7750695 vocab=917b40e0
+-/
 theorem walkPath_nil (v : V) : walkPath G (Walk.nil : G.Walk v v) = Path.refl _ := rfl
 
+/--
+@isnad1 id=eq.1h6v.s7.049a87328f29 from=translated src=- shape=5d17405a vocab=a6c7c5ce
+-/
 theorem walkPath_cons {u v w : V} (h : G.Adj u v) (p : G.Walk v w) :
     walkPath G (Walk.cons h p) = (edgePath G ⟨(u, v), h⟩).trans (walkPath G p) := rfl
 
-/-- Reachable vertices have joined images.-/
+/-- Reachable vertices have joined images.
+@isnad1 id=joined.1h4v.s4.e6d515ac2379 from=translated src=- shape=8a27c97d vocab=d02a338a
+-/
 theorem joined_vertex_of_reachable {v w : V} (h : G.Reachable v w) :
     Joined (vertex G v) (vertex G w) :=
   let ⟨p⟩ := h
@@ -328,7 +407,9 @@ private def pathToZero (t : unitInterval) : Path t 0 where
   source' := by ext; simp [symm_zero]
   target' := by ext; simp [symm_one]
 
-/-- Every edge point is joined to the first endpoint of its dart.-/
+/-- Every edge point is joined to the first endpoint of its dart.
+@isnad1 id=joined.0h4v.s5.dbdc842c3be7 from=translated src=- shape=0b709811 vocab=6a87b363
+-/
 theorem joined_edgePoint_vertex (d : G.Dart) (t : unitInterval) :
     Joined (edgePoint G d t) (vertex G d.fst) := by
   rw [← edgePoint_zero G d]
@@ -351,15 +432,27 @@ def realizationMap (φ : G →g H) : C(Realization G, Realization H) :=
     (fun d t => edgePoint_symm H (φ.mapDart d) t)
     (fun d => edgePoint_zero H (φ.mapDart d))
 
+/--
+@isnad1 id=eq.0h6v.s6.5cb884513f9d from=translated src=- shape=03ca429f vocab=b3fb41c2
+-/
 @[simp] theorem realizationMap_vertex (φ : G →g H) (v : V) :
     realizationMap φ (vertex G v) = vertex H (φ v) := rfl
 
+/--
+@isnad1 id=eq.0h7v.s6.7a77763254e2 from=translated src=- shape=256cab6f vocab=e6a9e595
+-/
 @[simp] theorem realizationMap_edgePoint (φ : G →g H) (d : G.Dart) (t : unitInterval) :
     realizationMap φ (edgePoint G d t) = edgePoint H (φ.mapDart d) t := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.a4cb679eade4 from=translated src=- shape=0e13f6df vocab=a8eae4ed
+-/
 theorem realizationMap_id : realizationMap (Hom.id : G →g G) = ContinuousMap.id _ :=
   hom_ext G (fun _ => rfl) fun _ _ => rfl
 
+/--
+@isnad1 id=eq.0h8v.s6.51c55b03f6a1 from=translated src=- shape=3f215547 vocab=6c16cc68
+-/
 theorem realizationMap_comp (ψ : H →g K) (φ : G →g H) :
     realizationMap (ψ.comp φ) = (realizationMap ψ).comp (realizationMap φ) :=
   hom_ext G (fun _ => rfl) fun _ _ => rfl
@@ -378,14 +471,22 @@ def componentLabel : Realization G → G.ConnectedComponent :=
   lift G G.connectedComponentMk (fun d _ => G.connectedComponentMk d.fst)
     (fun d _ => (ConnectedComponent.connectedComponentMk_eq_of_adj d.adj).symm) fun _ => rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.a679079fdbb0 from=translated src=- shape=37e3aab5 vocab=28d3aff7
+-/
 @[simp] theorem componentLabel_vertex (v : V) :
     componentLabel G (vertex G v) = G.connectedComponentMk v := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.7656f912ee0c from=translated src=- shape=f32a8f33 vocab=d973cc81
+-/
 @[simp] theorem componentLabel_edgePoint (d : G.Dart) (t : unitInterval) :
     componentLabel G (edgePoint G d t) = G.connectedComponentMk d.fst := rfl
 
 /-- The label is constant along paths: it is continuous for the discrete topology chosen locally
-on the component type, and paths in a discrete space are constant.-/
+on the component type, and paths in a discrete space are constant.
+@isnad1 id=eq.1h4v.s5.49b814ef2abc from=translated src=- shape=5482642f vocab=187cfbe5
+-/
 theorem componentLabel_eq_of_joined {x y : Realization G} (h : Joined x y) :
     componentLabel G x = componentLabel G y := by
   let _ : TopologicalSpace G.ConnectedComponent := ⊥
@@ -393,11 +494,16 @@ theorem componentLabel_eq_of_joined {x y : Realization G} (h : Joined x y) :
   exact TDA.Reeb.joined_eq_of_discrete
     (h.map (continuous_lift G _ _ _ _ fun _ => continuous_const))
 
-/-- Vertices are joined exactly when they are reachable.-/
+/-- Vertices are joined exactly when they are reachable.
+@isnad1 id=iff.0h4v.s4.b5e7f1adfa03 from=translated src=- shape=17dc9aad vocab=d02a338a
+-/
 theorem joined_vertex_iff {v w : V} : Joined (vertex G v) (vertex G w) ↔ G.Reachable v w :=
   ⟨fun h => ConnectedComponent.exact (componentLabel_eq_of_joined G h),
     joined_vertex_of_reachable G⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.cbca7e450d8c from=translated src=- shape=6929175d vocab=62e05025
+-/
 theorem mk_edgePoint (d : G.Dart) (t : unitInterval) :
     ZerothHomotopy.mk (edgePoint G d t) = ZerothHomotopy.mk (vertex G d.fst) :=
   ZerothHomotopy.sound (joined_edgePoint_vertex G d t).somePath
@@ -417,17 +523,28 @@ def componentsEquiv : ZerothHomotopy (Realization G) ≃ G.ConnectedComponent wh
     induction c using ConnectedComponent.ind with
     | h v => rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.c4c4c5d219d2 from=translated src=- shape=5173ca20 vocab=290e451e
+-/
 @[simp] theorem componentsEquiv_mk_vertex (v : V) :
     componentsEquiv G (ZerothHomotopy.mk (vertex G v)) = G.connectedComponentMk v := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.606382d5f6ac from=translated src=- shape=327b38e2 vocab=84c37daf
+-/
 @[simp] theorem componentsEquiv_mk_edgePoint (d : G.Dart) (t : unitInterval) :
     componentsEquiv G (ZerothHomotopy.mk (edgePoint G d t)) = G.connectedComponentMk d.fst := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.e24e9ee1f694 from=translated src=- shape=12a30d51 vocab=349693f1
+-/
 @[simp] theorem componentsEquiv_symm_connectedComponentMk (v : V) :
     (componentsEquiv G).symm (G.connectedComponentMk v) = ZerothHomotopy.mk (vertex G v) := rfl
 
 /-- **Naturality.** The path-component map `TDA.Reeb.componentMap` of the realized map corresponds
-to mathlib's `ConnectedComponent.map`.-/
+to mathlib's `ConnectedComponent.map`.
+@isnad1 id=eq.0h6v.s7.961e037bfc26 from=translated src=- shape=8d75cdf3 vocab=d7a9eb22
+-/
 theorem componentsEquiv_componentMap {W : Type v} {H : SimpleGraph W} (φ : G →g H)
     (c : ZerothHomotopy (Realization G)) :
     componentsEquiv H (TDA.Reeb.componentMap (realizationMap φ) c) =
@@ -438,11 +555,17 @@ theorem componentsEquiv_componentMap {W : Type v} {H : SimpleGraph W} (φ : G �
     | vertex v => rfl
     | edgePoint d t => rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.c805fee1d127 from=translated src=- shape=a5e99eec vocab=673afbfb
+-/
 theorem componentsEquiv_comp_componentMap {W : Type v} {H : SimpleGraph W} (φ : G →g H) :
     componentsEquiv H ∘ TDA.Reeb.componentMap (realizationMap φ) =
       ConnectedComponent.map φ ∘ componentsEquiv G :=
   _root_.funext (componentsEquiv_componentMap G φ)
 
+/--
+@isnad1 id=eq.0h6v.s7.ff7d4361a29e from=translated src=- shape=307ce593 vocab=e65f6edc
+-/
 theorem componentMap_componentsEquiv_symm {W : Type v} {H : SimpleGraph W} (φ : G →g H)
     (c : G.ConnectedComponent) :
     TDA.Reeb.componentMap (realizationMap φ) ((componentsEquiv G).symm c) =
@@ -450,12 +573,16 @@ theorem componentMap_componentsEquiv_symm {W : Type v} {H : SimpleGraph W} (φ :
   induction c using ConnectedComponent.ind with
   | h v => rfl
 
-/-- Functoriality of path components of realized maps, from `TDA.Reeb.componentMap_id`.-/
+/-- Functoriality of path components of realized maps, from `TDA.Reeb.componentMap_id`.
+@isnad1 id=eq.0h2v.s5.b8c326af1e37 from=translated src=- shape=c66bd8e8 vocab=89554061
+-/
 theorem componentMap_realizationMap_id :
     TDA.Reeb.componentMap (realizationMap (Hom.id : G →g G)) = id := by
   rw [realizationMap_id, TDA.Reeb.componentMap_id]
 
-/-- Functoriality of path components of realized maps, from `TDA.Reeb.componentMap_comp`.-/
+/-- Functoriality of path components of realized maps, from `TDA.Reeb.componentMap_comp`.
+@isnad1 id=eq.0h8v.s7.c0962af4a83a from=translated src=- shape=fa310483 vocab=bb2f291f
+-/
 theorem componentMap_realizationMap_comp {W : Type v} {X : Type w} {H : SimpleGraph W}
     {K : SimpleGraph X} (ψ : H →g K) (φ : G →g H) :
     TDA.Reeb.componentMap (realizationMap (ψ.comp φ)) =
@@ -463,7 +590,9 @@ theorem componentMap_realizationMap_comp {W : Type v} {X : Type w} {H : SimpleGr
   rw [realizationMap_comp, TDA.Reeb.componentMap_comp]
 
 /-- Connectedness of the graph is path-connectedness of its realization; both include
-nonemptiness.-/
+nonemptiness.
+@isnad1 id=iff.0h2v.s4.6da4e4c22a4b from=translated src=- shape=e05c0f3b vocab=9ddc45d5
+-/
 theorem connected_iff_pathConnectedSpace : G.Connected ↔ PathConnectedSpace (Realization G) := by
   rw [pathConnectedSpace_iff_zerothHomotopy, (componentsEquiv G).nonempty_congr,
     (componentsEquiv G).subsingleton_congr, connected_iff]

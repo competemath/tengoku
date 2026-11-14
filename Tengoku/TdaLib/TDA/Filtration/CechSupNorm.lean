@@ -41,7 +41,9 @@ private theorem nonneg_of_pairwise (p : V → ι → ℝ) {r : ℝ} {s : Finset 
   linarith
 
 /-- If the labels are pairwise within `2 * r`, the coordinatewise witness is within `r` of
-each of them.-/
+each of them.
+@isnad1 id=le.3h6v.s7.fa58c04b573d from=translated src=- shape=e2fe6589 vocab=feed47d3
+-/
 theorem dist_supNormWitness_le (p : V → ι → ℝ) {r : ℝ} {s : Finset V} (hs : s.Nonempty)
     (h : ∀ v ∈ s, ∀ w ∈ s, dist (p v) (p w) ≤ 2 * r) {v : V} (hv : v ∈ s) :
     dist (supNormWitness p r s hs) (p v) ≤ r := by
@@ -59,7 +61,9 @@ theorem dist_supNormWitness_le (p : V → ι → ℝ) {r : ℝ} {s : Finset V} (
   constructor <;> linarith
 
 /-- Helly in the sup-norm product: a label set is a Čech face at radius `r` exactly when it
-is nonempty and its points are pairwise within `2 * r`.-/
+is nonempty and its points are pairwise within `2 * r`.
+@isnad1 id=iff.0h5v.s6.e84f9a686886 from=translated src=- shape=a6d8fa8c vocab=e8280e71
+-/
 theorem mem_complex_iff_pairwise (p : V → ι → ℝ) (r : ℝ) (s : Finset V) :
     s ∈ complex p r ↔ s.Nonempty ∧ ∀ v ∈ s, ∀ w ∈ s, dist (p v) (p w) ≤ 2 * r := by
   constructor
@@ -70,7 +74,9 @@ theorem mem_complex_iff_pairwise (p : V → ι → ℝ) (r : ℝ) (s : Finset V)
     exact (mem_complex_iff p r s).2
       ⟨hs, supNormWitness p r s hs, fun v hv => dist_supNormWitness_le p hs h hv⟩
 
-/-- Pairwise distances at most `2 * r` bound the sup-norm Čech value by `r`.-/
+/-- Pairwise distances at most `2 * r` bound the sup-norm Čech value by `r`.
+@isnad1 id=le.1h5v.s7.4afa4bf6fd04 from=translated src=- shape=27b359a4 vocab=52bc2680
+-/
 theorem filter_value_le_of_pairwise (p : V → ι → ℝ) {r : ℝ}
     (s : TotalFace (Rips.fullComplex V))
     (h : ∀ v ∈ s.val, ∀ w ∈ s.val, dist (p v) (p w) ≤ 2 * r) :
@@ -80,7 +86,9 @@ theorem filter_value_le_of_pairwise (p : V → ι → ℝ) {r : ℝ}
     ((radiusAt_le_iff _ _ _ _).2 ⟨nonneg_of_pairwise p hv₀ h,
       fun v hv => dist_supNormWitness_le p s.property h hv⟩)
 
-/-- The sup-norm Čech complex at radius `r` is the Rips sublevel at `2 * r`.-/
+/-- The sup-norm Čech complex at radius `r` is the Rips sublevel at `2 * r`.
+@isnad1 id=eq.1h5v.s6.e0e104876953 from=translated src=- shape=0e11a9d7 vocab=2d8ed196
+-/
 theorem complex_eq_ripsSublevel_two_mul (d : MetricSpace V) (p : V → ι → ℝ)
     (hd : ∀ v w, d.dist v w = dist (p v) (p w)) (r : ℝ) :
     complex p r = (Rips.filter d).sublevel (2 * r) := by
@@ -90,7 +98,9 @@ theorem complex_eq_ripsSublevel_two_mul (d : MetricSpace V) (p : V → ι → �
     rw [← hd]
     exact h v hv w hw⟩
 
-/-- Every sup-norm Čech value is exactly half the Rips value.-/
+/-- Every sup-norm Čech value is exactly half the Rips value.
+@isnad1 id=eq.1h5v.s6.544a2e009b96 from=translated src=- shape=a1860275 vocab=b24f7d30
+-/
 theorem filter_value_eq_rips_div_two (d : MetricSpace V) (p : V → ι → ℝ)
     (hd : ∀ v w, d.dist v w = dist (p v) (p w)) (s : TotalFace (Rips.fullComplex V)) :
     (filter p).value s = (Rips.filter d).value s / 2 := by
@@ -102,7 +112,9 @@ theorem filter_value_eq_rips_div_two (d : MetricSpace V) (p : V → ι → ℝ)
   have hlo := rips_le_two_mul_filter_value d p hd s
   linarith
 
-/-- The sup-norm Čech sublevel at `r` is the Rips sublevel at `2 * r`.-/
+/-- The sup-norm Čech sublevel at `r` is the Rips sublevel at `2 * r`.
+@isnad1 id=eq.1h5v.s6.232664761e9b from=translated src=- shape=179b816b vocab=eded306f
+-/
 theorem sublevel_eq_ripsSublevel_two_mul (d : MetricSpace V) (p : V → ι → ℝ)
     (hd : ∀ v w, d.dist v w = dist (p v) (p w)) (r : ℝ) :
     (filter p).sublevel r = (Rips.filter d).sublevel (2 * r) := by
@@ -117,7 +129,9 @@ theorem sublevel_eq_ripsSublevel_two_mul (d : MetricSpace V) (p : V → ι → �
     rw [filter_value_eq_rips_div_two d p hd]
     linarith
 
-/-- The sup-norm Čech filter and the Rips filter are ordering-equivalent.-/
+/-- The sup-norm Čech filter and the Rips filter are ordering-equivalent.
+@isnad1 id=ordering.1h4v.s6.80ba3516c447 from=translated src=- shape=4132b680 vocab=278c6c3c
+-/
 theorem orderingEquivalent_rips (d : MetricSpace V) (p : V → ι → ℝ)
     (hd : ∀ v w, d.dist v w = dist (p v) (p w)) :
     OrderingEquivalent (filter p) (Rips.filter d) := by
@@ -151,13 +165,17 @@ private theorem dist_lineEmbed (q : V → ℝ) (v w : V) :
   isometry_lineEmbed.dist_eq (q v) (q w)
 
 /-- Helly on the line: a label set is a Čech face at radius `r` exactly when it is nonempty
-and its points are pairwise within `2 * r`.-/
+and its points are pairwise within `2 * r`.
+@isnad1 id=iff.0h4v.s6.125abda14ee3 from=translated src=- shape=6362ade4 vocab=a3cd9aea
+-/
 theorem mem_complex_iff_pairwise_real (q : V → ℝ) (r : ℝ) (s : Finset V) :
     s ∈ complex q r ↔ s.Nonempty ∧ ∀ v ∈ s, ∀ w ∈ s, dist (q v) (q w) ≤ 2 * r := by
   rw [← complex_lineEmbed, mem_complex_iff_pairwise]
   simp only [dist_lineEmbed]
 
-/-- On the line, the Čech complex at radius `r` is the Rips sublevel at `2 * r`.-/
+/-- On the line, the Čech complex at radius `r` is the Rips sublevel at `2 * r`.
+@isnad1 id=eq.1h4v.s6.6a83c626b3c1 from=translated src=- shape=12d5e31a vocab=c5e10431
+-/
 theorem complex_eq_ripsSublevel_two_mul_real (d : MetricSpace V) (q : V → ℝ)
     (hd : ∀ v w, d.dist v w = dist (q v) (q w)) (r : ℝ) :
     complex q r = (Rips.filter d).sublevel (2 * r) := by
@@ -165,7 +183,9 @@ theorem complex_eq_ripsSublevel_two_mul_real (d : MetricSpace V) (q : V → ℝ)
   exact complex_eq_ripsSublevel_two_mul d (lineEmbed ∘ q)
     (fun v w => (hd v w).trans (dist_lineEmbed q v w).symm) r
 
-/-- On the line, every Čech value is exactly half the Rips value.-/
+/-- On the line, every Čech value is exactly half the Rips value.
+@isnad1 id=eq.1h4v.s6.ba645b79849a from=translated src=- shape=b05eb3b1 vocab=8d11b418
+-/
 theorem filter_value_eq_rips_div_two_real (d : MetricSpace V) (q : V → ℝ)
     (hd : ∀ v w, d.dist v w = dist (q v) (q w)) (s : TotalFace (Rips.fullComplex V)) :
     (filter q).value s = (Rips.filter d).value s / 2 := by

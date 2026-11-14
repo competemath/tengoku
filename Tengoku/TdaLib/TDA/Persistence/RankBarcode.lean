@@ -72,6 +72,9 @@ private theorem rankBarcode_count (b d : ℕ) (hbd : b < d) (hd : d ≤ N) :
     · simp [h]
   · simp [fb]
 
+/--
+@isnad1 id=eq.2h5v.s7.3a032762bf41 from=translated src=- shape=f0921824 vocab=c62a5faa
+-/
 theorem barcodeMultiplicity_rankBarcode (b d : ℕ)
     (hbd : b < d) (hd : d ≤ N) :
     (barcodeMultiplicity (rankBarcode M) b d : ℤ) =
@@ -146,11 +149,17 @@ private theorem rankBarcode_integer_ranks (i j : Fin N) (hij : i ≤ j) :
   rw [moduleMultiplicityInteger_barcodeModule B b d hbd hdN,
     barcodeMultiplicity_rankBarcode M b d hbd hdN]
 
+/--
+@isnad1 id=eq.1h5v.s7.dce8adcb8665 from=translated src=- shape=8e57ffdf vocab=f5674a88
+-/
 theorem structureMapRank_rankBarcode (i j : Fin N) (hij : i ≤ j) :
     structureMapRank (barcodeModule (k := k) (rankBarcode M)) i j hij =
       structureMapRank M i j hij := by
   exact_mod_cast rankBarcode_integer_ranks M i j hij
 
+/--
+@isnad1 id=eq.0h3v.s4.062e8819028c from=translated src=- shape=de8df521 vocab=d810dd9e
+-/
 theorem rankBarcode_barcodeModule (B : Multiset (FiniteInterval N)) :
     rankBarcode (barcodeModule (k := k) B) = B := by
   apply rankBarcode_count_eq
@@ -159,6 +168,9 @@ theorem rankBarcode_barcodeModule (B : Multiset (FiniteInterval N)) :
   rw [moduleMultiplicityInteger_barcodeModule B b d hbd hd] at hnew
   exact_mod_cast hnew
 
+/--
+@isnad1 id=iff.0h4v.s8.5abcc3210a50 from=translated src=- shape=2ed06e42 vocab=f45aeee5
+-/
 theorem rankBarcode_eq_iff
     (L : PModule.{u,0,u} k (Fin N))
     [∀ i : Fin N, FiniteDimensional k (L.obj i)] :

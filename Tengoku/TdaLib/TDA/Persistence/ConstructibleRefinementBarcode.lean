@@ -116,7 +116,9 @@ private theorem ofIndexBars_refinement (h : Refines c d)
 variable {k : Type u} [Field k]
 variable (M : PModule.{u,0,u} k ℝ)
 
-/-- Original critical-fiber finiteness determines every real fiber by reconstruction.-/
+/-- Original critical-fiber finiteness determines every real fiber by reconstruction.
+@isnad1 id=finitedi.2h5v.s8.c13c2955ec67 from=translated src=- shape=ccf3eecb vocab=2ef71817
+-/
 theorem finiteDimensional_of_isConstructible (hM : IsConstructible c M)
     (hfd : ∀ i, FiniteDimensional k (M.obj (c i))) (t : ℝ) :
     FiniteDimensional k (M.obj t) := by
@@ -125,7 +127,9 @@ theorem finiteDimensional_of_isConstructible (hM : IsConstructible c M)
     exact finiteDimensional_sample c M hfd _
   exact ((reconstructionIso c M hM).app t).toLinearEquiv.finiteDimensional
 
-/-- Adding critical values changes the finite index barcode but leaves the real endpoint diagram unchanged. Finiteness at new critical values is derived.-/
+/-- Adding critical values changes the finite index barcode but leaves the real endpoint diagram unchanged. Finiteness at new critical values is derived.
+@isnad1 id=eq.3h6v.s7.6fe1043561e4 from=translated src=- shape=6bfe7783 vocab=090383b3
+-/
 theorem moduleDiagram_refinement (h : Refines c d) (hM : IsConstructible c M)
     (hfd : ∀ i, FiniteDimensional k (M.obj (c i))) :
     moduleDiagram d M (fun j => finiteDimensional_of_isConstructible M hM hfd (d j)) =

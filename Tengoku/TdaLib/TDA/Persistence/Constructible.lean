@@ -38,7 +38,9 @@ noncomputable def cellIndex (c : Fin n ↪o ℝ) : ℝ →o Fin (n + 1) where
     simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hi ⊢
     exact hi.trans h)
 
-/-- A critical value has been counted precisely when its index is below the cell count.-/
+/-- A critical value has been counted precisely when its index is below the cell count.
+@isnad1 id=iff.0h4v.s7.5f943f93ba3e from=translated src=- shape=89ab113e vocab=4d64d1ef
+-/
 theorem lt_cellIndex_iff (c : Fin n ↪o ℝ) (i : Fin n) (t : ℝ) :
     i.val < (cellIndex c t).val ↔ c i ≤ t := by
   classical
@@ -62,7 +64,9 @@ theorem lt_cellIndex_iff (c : Fin n ↪o ℝ) (i : Fin n) (t : ℝ) :
     simp only [Fin.card_Iic] at hcard
     exact hcard
 
-/-- The zero cell consists exactly of parameters below every critical value.-/
+/-- The zero cell consists exactly of parameters below every critical value.
+@isnad1 id=iff.0h3v.s7.8725605eb98d from=translated src=- shape=19ef3af2 vocab=a2b84e3f
+-/
 theorem cellIndex_eq_zero_iff (c : Fin n ↪o ℝ) (t : ℝ) :
     cellIndex c t = 0 ↔ ∀ i, t < c i := by
   constructor
@@ -82,7 +86,9 @@ theorem cellIndex_eq_zero_iff (c : Fin n ↪o ℝ) (t : ℝ) :
     have hi := (lt_cellIndex_iff c ⟨0, h0⟩ t).mp hpos
     exact (not_lt_of_ge hi) (h _)
 
-/-- Positive cell `i+1` starts at `c i` and ends before every later critical value.-/
+/-- Positive cell `i+1` starts at `c i` and ends before every later critical value.
+@isnad1 id=iff.0h4v.s7.ba51b288a90c from=translated src=- shape=da86002b vocab=39d09fb4
+-/
 theorem cellIndex_eq_succ_iff (c : Fin n ↪o ℝ) (i : Fin n) (t : ℝ) :
     cellIndex c t = i.succ ↔ c i ≤ t ∧ ∀ j, i < j → t < c j := by
   constructor
@@ -106,12 +112,16 @@ theorem cellIndex_eq_succ_iff (c : Fin n ↪o ℝ) (i : Fin n) (t : ℝ) :
       exact (not_lt_of_ge hj) (hgap j (by change i.val < i.val + 1; omega))
     simpa only [Fin.val_succ] using Nat.le_antisymm hhi hlo
 
-/-- A critical value belongs to its new cell, not the preceding cell.-/
+/-- A critical value belongs to its new cell, not the preceding cell.
+@isnad1 id=eq.0h3v.s7.142b5ae64da9 from=translated src=- shape=c49fe255 vocab=76aefd94
+-/
 @[simp] theorem cellIndex_critical (c : Fin n ↪o ℝ) (i : Fin n) :
     cellIndex c (c i) = i.succ :=
   (cellIndex_eq_succ_iff c i (c i)).mpr ⟨le_rfl, fun _ h => c.strictMono h⟩
 
-/-- Adjacent critical values bound the half-open cell.-/
+/-- Adjacent critical values bound the half-open cell.
+@isnad1 id=eq.3h5v.s7.0375e7603697 from=translated src=- shape=2924ea66 vocab=f32dbebe
+-/
 theorem cellIndex_of_adjacent (c : Fin n ↪o ℝ) (i j : Fin n)
     (hij : i.val + 1 = j.val) (t : ℝ) (hlo : c i ≤ t) (hhi : t < c j) :
     cellIndex c t = i.succ := by
@@ -121,13 +131,17 @@ theorem cellIndex_of_adjacent (c : Fin n ↪o ℝ) (i j : Fin n)
   have : i.val < k.val := hik
   omega
 
-/-- The final cell extends through the whole right tail.-/
+/-- The final cell extends through the whole right tail.
+@isnad1 id=eq.1h3v.s8.a49f03a0351e from=translated src=- shape=b966e64e vocab=af8f2149
+-/
 theorem cellIndex_of_last_le (c : Fin (n + 1) ↪o ℝ) (t : ℝ)
     (h : c (Fin.last n) ≤ t) : cellIndex c t = Fin.last (n + 1) := by
   apply (cellIndex_eq_succ_iff c (Fin.last n) t).mpr
   exact ⟨h, fun j hj => (not_lt_of_ge (Fin.le_last j) hj).elim⟩
 
-/-- With no critical values every real parameter is in the zero cell.-/
+/-- With no critical values every real parameter is in the zero cell.
+@isnad1 id=eq.0h2v.s7.1af8c2bc84de from=translated src=- shape=f6477ad8 vocab=aa0d86ec
+-/
 @[simp] theorem cellIndex_empty (c : Fin 0 ↪o ℝ) (t : ℝ) : cellIndex c t = 0 :=
   (cellIndex_eq_zero_iff c t).mpr (fun i => Fin.elim0 i)
 
@@ -166,15 +180,21 @@ noncomputable def sample (c : Fin n ↪o ℝ) (M : PModule.{u,0,w} R ℝ) :
         | zero => exact (by have := leOfHom g; simp at this)
         | succ k => exact (structureMap_comp M _ _).symm
 
-/-- The initial sample is the zero object, rather than a sentinel real grade.-/
+/-- The initial sample is the zero object, rather than a sentinel real grade.
+@isnad1 id=eq.0h4v.s7.b493d08a029f from=translated src=- shape=4c5c476d vocab=33218b49
+-/
 @[simp] theorem sample_obj_zero (c : Fin n ↪o ℝ) (M : PModule.{u,0,w} R ℝ) :
     (sample c M).obj 0 = 0 := rfl
 
-/-- Positive samples are values at critical parameters.-/
+/-- Positive samples are values at critical parameters.
+@isnad1 id=eq.0h5v.s7.3bfe41ae6d82 from=translated src=- shape=7aafb827 vocab=361832a2
+-/
 @[simp] theorem sample_obj_succ (c : Fin n ↪o ℝ) (M : PModule.{u,0,w} R ℝ)
     (i : Fin n) : (sample c M).obj i.succ = M.obj (c i) := rfl
 
-/-- Structure maps between positive samples are the original structure maps.-/
+/-- Structure maps between positive samples are the original structure maps.
+@isnad1 id=eq.1h6v.s8.88823e4139d8 from=translated src=- shape=2bdc943c vocab=c990cbd9
+-/
 @[simp] theorem sample_structureMap_succ (c : Fin n ↪o ℝ)
     (M : PModule.{u,0,w} R ℝ) {i j : Fin n} (h : i ≤ j) :
     structureMap (sample c M) (Fin.succ_le_succ_iff.mpr h) =
@@ -187,7 +207,9 @@ structure IsConstructible (c : Fin n ↪o ℝ) (M : PModule.{u,0,w} R ℝ) : Pro
   isIso_map : ∀ (s t : ℝ) (h : s ≤ t), cellIndex c s = cellIndex c t →
     IsIso (structureMap M h)
 
-/-- In the empty-critical-set case, constructibility is exactly pointwise zero.-/
+/-- In the empty-critical-set case, constructibility is exactly pointwise zero.
+@isnad1 id=iff.0h3v.s5.06cda6d95321 from=translated src=- shape=ff2ed17e vocab=11203594
+-/
 theorem isConstructible_empty_iff (c : Fin 0 ↪o ℝ) (M : PModule.{u,0,w} R ℝ) :
     IsConstructible c M ↔ ∀ t, IsZero (M.obj t) := by
   constructor
@@ -197,7 +219,9 @@ theorem isConstructible_empty_iff (c : Fin 0 ↪o ℝ) (M : PModule.{u,0,w} R �
     exact ⟨fun t _ => h t, fun s t _ _ => (h s).isIso (h t) _⟩
 
 /-- Any finite chain with zero initial fiber gives a module satisfying these strata.
-This also exhibits constructible modules without assuming a factorization in the predicate.-/
+This also exhibits constructible modules without assuming a factorization in the predicate.
+@isnad1 id=isconstr.1h4v.s7.9e782d528127 from=translated src=- shape=e2e4f417 vocab=7e321ded
+-/
 theorem isConstructible_reindex (c : Fin n ↪o ℝ)
     (A : PModule.{u,0,w} R (Fin (n + 1))) (hA : IsZero (A.obj 0)) :
     IsConstructible c (reindex (cellIndex c) A) where
@@ -257,7 +281,9 @@ private theorem isIso_comparisonMap (c : Fin n ↪o ℝ)
     apply hM.isIso_map (c i) t
     exact (cellIndex_critical c i).trans hq.symm
 
-/-- Constructibility makes the forward comparison an isomorphism at every parameter.-/
+/-- Constructibility makes the forward comparison an isomorphism at every parameter.
+@isnad1 id=isiso.1h5v.s7.07b7fad1c6c3 from=translated src=- shape=97a5efcf vocab=7cf89cc1
+-/
 theorem isIso_toOriginal_app (c : Fin n ↪o ℝ) (M : PModule.{u,0,w} R ℝ)
     (hM : IsConstructible c M) (t : ℝ) : IsIso ((toOriginal c M).app t) :=
   isIso_comparisonMap c M hM (cellIndex c t) t _ rfl
@@ -271,14 +297,18 @@ noncomputable def reconstructionIso (c : Fin n ↪o ℝ)
   exact NatIso.ofComponents (fun t => asIso ((toOriginal c M).app t))
     (fun f => (toOriginal c M).naturality f)
 
-/-- The reconstruction isomorphism uses the previously constructed forward map.-/
+/-- The reconstruction isomorphism uses the previously constructed forward map.
+@isnad1 id=eq.1h4v.s7.e6cd95173299 from=translated src=- shape=bdc4fb61 vocab=88ab559e
+-/
 @[simp] theorem reconstructionIso_hom (c : Fin n ↪o ℝ)
     (M : PModule.{u,0,w} R ℝ) (hM : IsConstructible c M) :
     (reconstructionIso c M hM).hom = toOriginal c M := by
   ext t
   rfl
 
-/-- Forward reconstruction commutes with every real structure map.-/
+/-- Forward reconstruction commutes with every real structure map.
+@isnad1 id=eq.2h6v.s9.66be95b6dfbe from=translated src=- shape=a94b10f4 vocab=4aa1b231
+-/
 theorem reconstructionIso_hom_naturality (c : Fin n ↪o ℝ)
     (M : PModule.{u,0,w} R ℝ) (hM : IsConstructible c M) {s t : ℝ} (h : s ≤ t) :
     structureMap (reindex (cellIndex c) (sample c M)) h ≫
@@ -286,7 +316,9 @@ theorem reconstructionIso_hom_naturality (c : Fin n ↪o ℝ)
     (reconstructionIso c M hM).hom.app s ≫ structureMap M h :=
   (reconstructionIso c M hM).hom.naturality (homOfLE h)
 
-/-- Inverse reconstruction also commutes with every real structure map.-/
+/-- Inverse reconstruction also commutes with every real structure map.
+@isnad1 id=eq.2h6v.s9.93a85786dac4 from=translated src=- shape=7dfdc2bb vocab=7584697b
+-/
 theorem reconstructionIso_inv_naturality (c : Fin n ↪o ℝ)
     (M : PModule.{u,0,w} R ℝ) (hM : IsConstructible c M) {s t : ℝ} (h : s ≤ t) :
     structureMap M h ≫ (reconstructionIso c M hM).inv.app t =
@@ -294,13 +326,17 @@ theorem reconstructionIso_inv_naturality (c : Fin n ↪o ℝ)
         structureMap (reindex (cellIndex c) (sample c M)) h :=
   (reconstructionIso c M hM).inv.naturality (homOfLE h)
 
-/-- Forward then inverse reconstruction is the identity on the reconstructed module.-/
+/-- Forward then inverse reconstruction is the identity on the reconstructed module.
+@isnad1 id=eq.1h4v.s9.5bcc816dc476 from=translated src=- shape=209880ba vocab=6d4765ad
+-/
 @[simp] theorem reconstructionIso_hom_inv_id (c : Fin n ↪o ℝ)
     (M : PModule.{u,0,w} R ℝ) (hM : IsConstructible c M) :
     (reconstructionIso c M hM).hom ≫ (reconstructionIso c M hM).inv = 𝟙 _ :=
   (reconstructionIso c M hM).hom_inv_id
 
-/-- Inverse then forward reconstruction is the identity on the original module.-/
+/-- Inverse then forward reconstruction is the identity on the original module.
+@isnad1 id=eq.1h4v.s8.7b01a335d83c from=translated src=- shape=cd687528 vocab=6d4765ad
+-/
 @[simp] theorem reconstructionIso_inv_hom_id (c : Fin n ↪o ℝ)
     (M : PModule.{u,0,w} R ℝ) (hM : IsConstructible c M) :
     (reconstructionIso c M hM).inv ≫ (reconstructionIso c M hM).hom = 𝟙 M :=

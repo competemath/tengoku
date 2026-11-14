@@ -131,7 +131,9 @@ noncomputable def infinityLanIso (i : G.Point) :
     simp [hx0]
 
 /-- The principal-upset comparison preserves the actual generator coefficient
-on every supported fiber.-/
+on every supported fiber.
+@isnad1 id=eq.2h6v.s13.bd79084f40c5 from=translated src=- shape=d424068c vocab=3fdcd497
+-/
 theorem infinityLanIso_apply_coefficient (i : G.Point) {a : Fin n → ℝ}
     (ha : G.HasLowerPoint a) (hia : G.embedding i ≤ a)
     (x : (G.lan.obj (HookInfinity.module (R := k) i)).obj a) :
@@ -290,7 +292,9 @@ noncomputable def hookLanIso (i d : G.Point) :
     simp [hx0]
 
 /-- The finite-hook comparison preserves the actual coefficient on every
-supported fiber.-/
+supported fiber.
+@isnad1 id=eq.2h7v.s13.6707c7889668 from=translated src=- shape=31f9baa4 vocab=2df0b396
+-/
 theorem hookLanIso_apply_coefficient (i d : G.Point) {a : Fin n → ℝ}
     (ha : G.HasLowerPoint a) (hsa : a ∈ Hook.support (G.embedding i) (G.embedding d))
     (x : (G.lan.obj (Hook.module (k := k) i d)).obj a) :
@@ -328,7 +332,9 @@ noncomputable def finiteHookDeflationLanIso
     (biproduct.mapIso (embeddedCoverFamilyIso G M))
 
 /-- Each projection of the embedded cover is the image of the original grid
-projection, followed by its actual hook comparison isomorphism.-/
+projection, followed by its actual hook comparison isomorphism.
+@isnad1 id=eq.0h5v.s11.57f2b2068305 from=translated src=- shape=24568826 vocab=2a93eda3
+-/
 theorem finiteHookDeflationLanIso_hom_π
     (M : PModule.{u,0,u} k G.Point) (t : FiniteHookDeflation.Index M) :
     (G.finiteHookDeflationLanIso M).hom ≫
@@ -350,7 +356,9 @@ theorem finiteHookDeflationLanIso_hom_π
     _ = _ := by rw [G.lanBiproductIso_hom_π]
 
 /-- Each embedded occurrence inclusion, transported through the actual
-comparison, is the Kan image of the original grid inclusion.-/
+comparison, is the Kan image of the original grid inclusion.
+@isnad1 id=eq.0h5v.s11.8096defdcc45 from=translated src=- shape=d0daf65f vocab=1261972d
+-/
 theorem finiteHookDeflationLanIso_inv_ι
     (M : PModule.{u,0,u} k G.Point) (t : FiniteHookDeflation.Index M) :
     biproduct.ι (embeddedCoverFamily G M) t ≫

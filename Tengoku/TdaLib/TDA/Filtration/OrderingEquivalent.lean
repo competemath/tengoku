@@ -36,23 +36,31 @@ namespace OrderingEquivalent
 variable {f : FilterFunction K α} {g : FilterFunction K β}
 variable {h : FilterFunction K γ}
 
-/-- Ordering equivalence is reflexive.-/
+/-- Ordering equivalence is reflexive.
+@isnad1 id=ordering.0h4v.s4.24cf27ba8462 from=translated src=- shape=e7da5a2e vocab=a9cad7cf
+-/
 theorem refl (f : FilterFunction K α) : OrderingEquivalent f f := by
   intro s t
   rfl
 
-/-- Ordering equivalence is symmetric, including across different grade types.-/
+/-- Ordering equivalence is symmetric, including across different grade types.
+@isnad1 id=ordering.1h6v.s5.9a4b6808b579 from=translated src=- shape=f683ba6d vocab=a9cad7cf
+-/
 theorem symm (hfg : OrderingEquivalent f g) : OrderingEquivalent g f := by
   intro s t
   exact (hfg s t).symm
 
-/-- Ordering equivalence composes across three independently universe-polymorphic grade types.-/
+/-- Ordering equivalence composes across three independently universe-polymorphic grade types.
+@isnad1 id=ordering.2h8v.s6.e65fc3c9b1cf from=translated src=- shape=08da7e0b vocab=a9cad7cf
+-/
 theorem trans (hfg : OrderingEquivalent f g) (hgh : OrderingEquivalent g h) :
     OrderingEquivalent f h := by
   intro s t
   exact (hfg s t).trans (hgh s t)
 
-/-- Ordering equivalence identifies exactly the same tied pairs of faces.-/
+/-- Ordering equivalence identifies exactly the same tied pairs of faces.
+@isnad1 id=iff.1h8v.s6.4e0098f6646b from=translated src=- shape=534c9f47 vocab=5215bbbd
+-/
 theorem value_eq_iff (hfg : OrderingEquivalent f g)
     (s t : TDA.Simplicial.TotalFace K) :
     f.value s = f.value t ↔ g.value s = g.value t := by
@@ -66,7 +74,9 @@ theorem value_eq_iff (hfg : OrderingEquivalent f g)
     · exact (hfg s t).mpr he.le
     · exact (hfg t s).mpr he.ge
 
-/-- Sublevels at corresponding attained grades are equal as preabstract complexes.-/
+/-- Sublevels at corresponding attained grades are equal as preabstract complexes.
+@isnad1 id=eq.1h7v.s6.7cbcef713c70 from=translated src=- shape=2443bb9d vocab=a7c439c7
+-/
 theorem sublevel_eq (hfg : OrderingEquivalent f g)
     (s : TDA.Simplicial.TotalFace K) :
     f.sublevel (f.value s) = g.sublevel (g.value s) := by
@@ -83,7 +93,9 @@ theorem sublevel_eq (hfg : OrderingEquivalent f g)
 end OrderingEquivalent
 
 /-- Ordering equivalence is equivalent to an order isomorphism of the attained value ranges
-that maps each face's value to the other filter's value on that same face.-/
+that maps each face's value to the other filter's value on that same face.
+@isnad1 id=iff.0h6v.s9.d34d7305f379 from=translated src=- shape=ee16f736 vocab=6df1d093
+-/
 theorem orderingEquivalent_iff_exists_rangeOrderIso
     (f : FilterFunction K α) (g : FilterFunction K β) :
     OrderingEquivalent f g ↔

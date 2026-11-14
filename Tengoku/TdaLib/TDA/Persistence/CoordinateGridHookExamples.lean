@@ -67,7 +67,9 @@ noncomputable def armVector (k : Type) [Field k] :
     (grid.lan.obj (Hook.module (k := k) birth death)).obj armGrade :=
   ((grid.hookLanIso birth death).inv.app armGrade).hom (realArmUnit k)
 
-/-- The canonical comparison sends the actual Lan vector to coefficient one.-/
+/-- The canonical comparison sends the actual Lan vector to coefficient one.
+@isnad1 id=eq.0h1v.s17.e41c2624c70a from=translated src=- shape=e822f1f3 vocab=d5810187
+-/
 theorem armVector_coefficient (k : Type) [Field k] :
     (((grid.hookLanIso birth death).hom.app armGrade).hom (armVector k) :
       SupportInterval.fiber (k := k) (Hook.support realBirth realDeath) armGrade) =
@@ -88,7 +90,9 @@ theorem armVector_coefficient (k : Type) [Field k] :
         CoordinateGridKan.Examples.planarLower]⟩)
     armGrade_support (armVector k)
 
-/-- The arm vector is genuinely nonzero in the actual Lan fiber.-/
+/-- The arm vector is genuinely nonzero in the actual Lan fiber.
+@isnad1 id=ne.0h1v.s11.f2c0a075ea7b from=translated src=- shape=26617a97 vocab=1f1da742
+-/
 theorem armVector_ne_zero (k : Type) [Field k] : armVector k ≠ 0 := by
   let e : grid.lan.obj (Hook.module (k := k) birth death) ≅
       Hook.module (k := k) realBirth realDeath := grid.hookLanIso birth death
@@ -115,7 +119,9 @@ private theorem realArmUnit_dies (k : Type) [Field k] :
   rw [ite_eq_right afterArmGrade_not_support] at h
   exact h
 
-/-- The actual real transition from `(10,1)` to `(10,3)` kills the arm vector.-/
+/-- The actual real transition from `(10,1)` to `(10,3)` kills the arm vector.
+@isnad1 id=eq.0h1v.s13.09dae2edebaa from=translated src=- shape=150b7f5b vocab=b7f080ac
+-/
 theorem armVector_dies_across_real_transition (k : Type) [Field k] :
     structureMapLinear (grid.lan.obj (Hook.module (k := k) birth death))
       armGrade_le_afterArmGrade (armVector k) = 0 := by
@@ -139,14 +145,18 @@ theorem armVector_dies_across_real_transition (k : Type) [Field k] :
   exact hinj (by simpa using hn)
 
 /-- The existing unbounded-tail fixture also supplies a nonzero actual Lan
-fiber for the principal-upset comparison.-/
+fiber for the principal-upset comparison.
+@isnad1 id=ex.0h0v.s12.d45ae2f21bca from=translated src=- shape=f773903d vocab=6e091fc3
+-/
 theorem principal_upset_actual_tail :
     ∃ x : (grid.lan.obj (HookInfinity.module (R := ℚ) birth)).obj
       (fun _ => 10), x ≠ 0 :=
   CoordinateGridKan.Examples.principal_upset_unbounded_tail (fun _ => 10)
     (by intro i; norm_num)
 
-/-- The principal-upset coefficient law is usable on the same actual tail.-/
+/-- The principal-upset coefficient law is usable on the same actual tail.
+@isnad1 id=eq.0h1v.s15.cbf55a9ed9f0 from=translated src=- shape=aea4e5c1 vocab=b1f2bb6c
+-/
 theorem principal_upset_tail_coefficient
     (x : (grid.lan.obj (HookInfinity.module (R := ℚ) birth)).obj (fun _ => 10)) :
     HookInfinity.fiberEquivOfLe (R := ℚ)
@@ -190,7 +200,9 @@ private theorem degenerateHookFiber_subsingleton {P : Type} [PartialOrder P]
   rw [SupportInterval.val_eq_zero (Hook.support p p) hp x,
     SupportInterval.val_eq_zero (Hook.support p p) hp y]
 
-/-- A finite hook with equal birth and death is zero at its only n=0 grade.-/
+/-- A finite hook with equal birth and death is zero at its only n=0 grade.
+@isnad1 id=iszero.0h0v.s7.4bbc132717d7 from=translated src=- shape=408ed2ce vocab=64f7a967
+-/
 theorem zero_dim_degenerate_hook_fiber_isZero :
     IsZero ((Hook.module (k := ℚ) zeroGridPoint zeroGridPoint).obj zeroGridPoint) := by
   letI : Subsingleton
@@ -206,7 +218,9 @@ noncomputable def zero_dim_degenerate_hook_lanIso :
         (zeroGrid.embedding zeroGridPoint) :=
   zeroGrid.hookLanIso zeroGridPoint zeroGridPoint
 
-/-- The principal-upset summand survives at the unique n=0 real grade.-/
+/-- The principal-upset summand survives at the unique n=0 real grade.
+@isnad1 id=ex.0h0v.s12.2a5deb9927da from=translated src=- shape=8c3a7700 vocab=e9544f42
+-/
 theorem zero_dim_infinite_hook_lan_nonzero :
     ∃ x : (zeroGrid.lan.obj
       (HookInfinity.module (R := ℚ) zeroGridPoint)).obj zeroGridGrade, x ≠ 0 :=
@@ -231,7 +245,9 @@ private noncomputable def repeatedOccurrence1 :
     FiniteHookDeflation.Index doubleModule :=
   .inr ⟨zeroGridPoint, ⟨1, by simp [doubleModule, Module.finrank_prod]⟩⟩
 
-/-- Equal endpoints at n=0 still occur twice as distinct basis occurrences.-/
+/-- Equal endpoints at n=0 still occur twice as distinct basis occurrences.
+@isnad1 id=ne.0h0v.s6.1e3225a3ef14 from=translated src=- shape=f89cf2df vocab=82e757a6
+-/
 theorem repeated_cover_occurrences_distinct :
     repeatedOccurrence0 ≠ repeatedOccurrence1 := by
   intro h
@@ -240,7 +256,9 @@ theorem repeated_cover_occurrences_distinct :
       t.elim (fun _ => 2) (fun s => s.2.val)) h
   norm_num [repeatedOccurrence0, repeatedOccurrence1] at h'
 
-/-- Both distinct occurrences retain the same actual principal-upset summand.-/
+/-- Both distinct occurrences retain the same actual principal-upset summand.
+@isnad1 id=and.0h0v.s9.68c8f0d8c266 from=translated src=- shape=7481c7d7 vocab=ddc0ac7d
+-/
 theorem repeated_cover_occurrences_same_hook :
     zeroGrid.embeddedCoverFamily doubleModule repeatedOccurrence0 =
         HookInfinity.module (R := ℚ) (zeroGrid.embedding zeroGridPoint) ∧
@@ -248,7 +266,9 @@ theorem repeated_cover_occurrences_same_hook :
         HookInfinity.module (R := ℚ) (zeroGrid.embedding zeroGridPoint) :=
   ⟨rfl, rfl⟩
 
-/-- The actual comparison preserves the first repeated occurrence's projection.-/
+/-- The actual comparison preserves the first repeated occurrence's projection.
+@isnad1 id=eq.0h0v.s12.fc6623b20e7e from=translated src=- shape=25efed6f vocab=f950dd3c
+-/
 theorem repeated_cover_first_projection_law :
     (zeroGrid.finiteHookDeflationLanIso doubleModule).hom ≫
         biproduct.π (zeroGrid.embeddedCoverFamily doubleModule) repeatedOccurrence0 =
@@ -257,7 +277,9 @@ theorem repeated_cover_first_projection_law :
         (zeroGrid.infinityLanIso zeroGridPoint).hom :=
   zeroGrid.finiteHookDeflationLanIso_hom_π doubleModule repeatedOccurrence0
 
-/-- The second occurrence has its own actual inclusion law despite its equal endpoint.-/
+/-- The second occurrence has its own actual inclusion law despite its equal endpoint.
+@isnad1 id=eq.0h0v.s12.9b06a03c87c5 from=translated src=- shape=e136fd9e vocab=6a7b5e1f
+-/
 theorem repeated_cover_second_inclusion_law :
     biproduct.ι (zeroGrid.embeddedCoverFamily doubleModule) repeatedOccurrence1 ≫
         (zeroGrid.finiteHookDeflationLanIso doubleModule).inv =
@@ -313,7 +335,9 @@ private noncomputable def mixedInfiniteOccurrence :
   .inr ⟨birth, ⟨0, gridHook_birth_finrank_pos⟩⟩
 
 /-- The actual occurrence family contains both finite death and infinite
-death hooks, and keeps their different occurrence indices.-/
+death hooks, and keeps their different occurrence indices.
+@isnad1 id=and.0h0v.s9.4d3808c65b00 from=translated src=- shape=91d69c23 vocab=983c3113
+-/
 theorem mixed_cover_family_endpoints_and_multiplicity :
     mixedFiniteOccurrence ≠ mixedInfiniteOccurrence ∧
       grid.embeddedCoverFamily gridHook mixedFiniteOccurrence =
@@ -323,7 +347,9 @@ theorem mixed_cover_family_endpoints_and_multiplicity :
   refine ⟨by simp [mixedFiniteOccurrence, mixedInfiniteOccurrence], rfl, rfl⟩
 
 /-- The finite-death summand's projection is transported through its actual
-hook comparison in the occurrence-indexed cover.-/
+hook comparison in the occurrence-indexed cover.
+@isnad1 id=eq.0h0v.s12.7174f3c61798 from=translated src=- shape=44db2b1c vocab=de326a9e
+-/
 theorem mixed_cover_finite_projection_law :
     (grid.finiteHookDeflationLanIso gridHook).hom ≫
         biproduct.π (grid.embeddedCoverFamily gridHook) mixedFiniteOccurrence =
@@ -332,7 +358,9 @@ theorem mixed_cover_finite_projection_law :
         (grid.hookLanIso birth death).hom :=
   grid.finiteHookDeflationLanIso_hom_π gridHook mixedFiniteOccurrence
 
-/-- The infinite-death summand's inclusion has the corresponding actual law.-/
+/-- The infinite-death summand's inclusion has the corresponding actual law.
+@isnad1 id=eq.0h0v.s12.a175a0bdbf66 from=translated src=- shape=e136fd9e vocab=0029acf0
+-/
 theorem mixed_cover_infinite_inclusion_law :
     biproduct.ι (grid.embeddedCoverFamily gridHook) mixedInfiniteOccurrence ≫
         (grid.finiteHookDeflationLanIso gridHook).inv =
@@ -342,7 +370,9 @@ theorem mixed_cover_infinite_inclusion_law :
   grid.finiteHookDeflationLanIso_inv_ι gridHook mixedInfiniteOccurrence
 
 /-- Relative projectivity supplies an actual lift of the identity through the
-left Kan image of the finite-hook deflation.-/
+left Kan image of the finite-hook deflation.
+@isnad1 id=ex.0h0v.s11.24c0391b8bdc from=translated src=- shape=5625348e vocab=06357c23
+-/
 theorem lan_hook_deflation_lifts_identity :
     ∃ s : grid.lan.obj gridHook ⟶
         grid.lan.obj (FiniteHookDeflation.module gridHook),
@@ -368,7 +398,9 @@ private noncomputable abbrev repeatedFiniteRealFamily :
     Fin 2 → PModule ℚ (Fin 2 → ℝ) := fun _ =>
       Hook.module (grid.embedding birth) (grid.embedding death)
 
-/-- The two finite occurrences share endpoints but remain separately indexed.-/
+/-- The two finite occurrences share endpoints but remain separately indexed.
+@isnad1 id=and.0h0v.s7.c48a9bc75e72 from=translated src=- shape=af7257fe vocab=dc9b1c64
+-/
 theorem repeated_finite_occurrences_distinct_and_equal_endpoints :
     repeatedFiniteGridFamily 0 = repeatedFiniteGridFamily 1 ∧
       (0 : Fin 2) ≠ 1 :=
@@ -382,7 +414,9 @@ noncomputable def repeatedFiniteHookLanIso :
     (biproduct.mapIso (fun _ => grid.hookLanIso birth death))
 
 /-- The first repeated finite-hook projection is the image of its own grid
-projection followed by the actual hook comparison.-/
+projection followed by the actual hook comparison.
+@isnad1 id=eq.0h0v.s12.79aebc920af8 from=translated src=- shape=af0291cd vocab=b3377d92
+-/
 theorem repeated_finite_first_projection_law :
     repeatedFiniteHookLanIso.hom ≫ biproduct.π repeatedFiniteRealFamily 0 =
       grid.lan.map (biproduct.π repeatedFiniteGridFamily 0) ≫
@@ -400,7 +434,9 @@ theorem repeated_finite_first_projection_law :
     _ = _ := by rw [grid.lanBiproductIso_hom_π]
 
 /-- The second repeated finite-hook inclusion retains its own index through
-the inverse comparison.-/
+the inverse comparison.
+@isnad1 id=eq.0h0v.s12.84614da9c82c from=translated src=- shape=ee4ad587 vocab=8f30e524
+-/
 theorem repeated_finite_second_inclusion_law :
     biproduct.ι repeatedFiniteRealFamily 1 ≫ repeatedFiniteHookLanIso.inv =
       (grid.hookLanIso birth death).inv ≫
@@ -424,13 +460,17 @@ theorem repeated_finite_second_inclusion_law :
     _ = _ := by rw [grid.lanBiproductIso_inv_ι]
 
 /-- The two repeated real summands are still distinguished by their
-off-diagonal projection/inclusion map.-/
+off-diagonal projection/inclusion map.
+@isnad1 id=eq.0h0v.s10.9ba3453aafc1 from=translated src=- shape=3f7968ef vocab=2542731a
+-/
 theorem repeated_finite_offDiagonal_zero :
     biproduct.ι repeatedFiniteRealFamily 0 ≫
       biproduct.π repeatedFiniteRealFamily 1 = 0 :=
   biproduct.ι_π_ne repeatedFiniteRealFamily (by decide)
 
-/-- The arm-vector construction also works over the field of two elements.-/
+/-- The arm-vector construction also works over the field of two elements.
+@isnad1 id=and.0h0v.s14.7fa843792e7a from=translated src=- shape=61c7b2c2 vocab=64fcb1bd
+-/
 theorem characteristic_two_arm_vector_survives_and_dies :
     armVector (ZMod 2) ≠ 0 ∧
       structureMapLinear
@@ -439,7 +479,9 @@ theorem characteristic_two_arm_vector_survives_and_dies :
   ⟨armVector_ne_zero (ZMod 2), armVector_dies_across_real_transition (ZMod 2)⟩
 
 /-- The original rational finite presentation receives the constructed actual
-finite-hook rank-exact cover.-/
+finite-hook rank-exact cover.
+@isnad1 id=ex.0h0v.s13.b90a05e87499 from=translated src=- shape=0fd405d6 vocab=428979f8
+-/
 theorem rational_presentation_actual_hook_cover :
     ∃ (G : CoordinateGrid 2) (A : PModule ℚ G.Point)
       (hA : ∀ p, FiniteDimensional ℚ (A.obj p))
@@ -457,7 +499,9 @@ theorem rational_presentation_actual_hook_cover :
     ((FinitePresentationKanExamples.presentation ℚ 2).finitelyPresented
       (FinitePresentationKanExamples.presentation_finite ℚ 2))
 
-/-- The same original-presentation consumer works in characteristic two.-/
+/-- The same original-presentation consumer works in characteristic two.
+@isnad1 id=ex.0h0v.s14.9367a3513a75 from=translated src=- shape=fb22e03c vocab=032872e6
+-/
 theorem characteristic_two_presentation_actual_hook_cover :
     ∃ (G : CoordinateGrid 2) (A : PModule (ZMod 2) G.Point)
       (hA : ∀ p, FiniteDimensional (ZMod 2) (A.obj p))

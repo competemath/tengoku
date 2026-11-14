@@ -52,7 +52,9 @@ noncomputable instance indexFintype : Fintype (Index M) := by
   unfold Index
   infer_instance
 
-/-- The number of hook occurrences counts all kernel and fiber basis vectors.-/
+/-- The number of hook occurrences counts all kernel and fiber basis vectors.
+@isnad1 id=eq.0h3v.s11.a614978b6f01 from=translated src=- shape=be5c1d11 vocab=2ef3727a
+-/
 theorem card_index : Fintype.card (Index M) =
     (∑ ab : StrictPair P, Module.finrank k (LinearMap.ker (structureMapLinear M ab.property.le))) +
       ∑ a : P, Module.finrank k (M.obj a) := by
@@ -69,14 +71,18 @@ noncomputable def family : Index M → PModule.{u,0,u} k P
 noncomputable def module : PModule.{u,0,u} k P := ⨁ family M
 
 omit [Fintype P] in
-/-- Every occurrence is rank projective by the proved hook lifting laws.-/
+/-- Every occurrence is rank projective by the proved hook lifting laws.
+@isnad1 id=isrankpr.0h4v.s5.954cec957e79 from=translated src=- shape=0443680d vocab=6228c581
+-/
 theorem family_isRankProjective (t : Index M) : IsRankProjective (family M t) := by
   cases t with
   | inl t => exact Hook.isRankProjective t.1.property
   | inr t => exact HookInfinity.isRankProjective t.1
 
 omit [Fintype P] in
-/-- Each summand fiber is finite-dimensional.-/
+/-- Each summand fiber is finite-dimensional.
+@isnad1 id=finitedi.0h5v.s7.68d20c476869 from=translated src=- shape=bf6a3457 vocab=a2d22eaa
+-/
 @[instance] theorem family_finiteDimensional (t : Index M) (p : P) :
     FiniteDimensional k ((family M t).obj p) := by
   cases t with
@@ -87,11 +93,15 @@ omit [Fintype P] in
     change FiniteDimensional k (GradedFree.fiber (R := k) (HookInfinity.generators t.1) p)
     infer_instance
 
-/-- The finite hook sum has finite-dimensional fibers.-/
+/-- The finite hook sum has finite-dimensional fibers.
+@isnad1 id=finitedi.0h4v.s7.26b80150cf59 from=translated src=- shape=62dd5a1c vocab=acdd5c21
+-/
 @[instance] theorem finiteDimensional (p : P) : FiniteDimensional k ((module M).obj p) := by
   exact FiniteBiproduct.finiteDimensional (family M) p
 
-/-- The entire finite hook sum is rank projective.-/
+/-- The entire finite hook sum is rank projective.
+@isnad1 id=isrankpr.0h3v.s5.8c150dac3287 from=translated src=- shape=ec95b8a3 vocab=26fae37a
+-/
 theorem isRankProjective : IsRankProjective (module M) :=
   IsRankProjective.biproduct (family M) (family_isRankProjective M)
 
@@ -111,11 +121,15 @@ noncomputable def summandMap : ∀ t : Index M, family M t ⟶ M
 /-- The natural map assembled from the actual hook morphisms.-/
 noncomputable def π : module M ⟶ M := biproduct.desc (summandMap M)
 
-/-- The summand inclusion followed by the deflation is the chosen hook map.-/
+/-- The summand inclusion followed by the deflation is the chosen hook map.
+@isnad1 id=eq.0h4v.s8.2a4d5368f39b from=translated src=- shape=b6413d65 vocab=10c069b1
+-/
 theorem ι_π (t : Index M) : biproduct.ι (family M) t ≫ π M = summandMap M t :=
   biproduct.ι_desc _ _
 
-/-- The inclusion/deflation equation at any grade and vector.-/
+/-- The inclusion/deflation equation at any grade and vector.
+@isnad1 id=eq.0h6v.s11.48bf3bda1a05 from=translated src=- shape=8a80b21f vocab=b87a3a94
+-/
 theorem π_ι_app (t : Index M) (p : P) (x : (family M t).obj p) :
     ((π M).app p).hom (((biproduct.ι (family M) t).app p).hom x) =
       ((summandMap M t).app p).hom x :=
@@ -138,7 +152,9 @@ private theorem π_kernel_basis (ab : StrictPair P)
     (Hook.fromGenerator_birth ab.property M (kernelBasis M ab i).val
       (kernelBasis M ab i).property)
 
-/-- Fiber-basis summands make the natural map surjective at every grade.-/
+/-- Fiber-basis summands make the natural map surjective at every grade.
+@isnad1 id=surjecti.0h4v.s9.30c9a9821e41 from=translated src=- shape=63775511 vocab=3822d300
+-/
 theorem surjective (a : P) : Function.Surjective ((π M).app a).hom := by
   intro n
   let B := fiberBasis M a
@@ -156,7 +172,9 @@ theorem surjective (a : P) : Function.Surjective ((π M).app a).hom := by
         (congrArg (fun x => B.repr n i • x) (π_fiber_basis M a i))
     _ = n := B.sum_repr n
 
-/-- Every dying element lifts to an element dying at the same grade.-/
+/-- Every dying element lifts to an element dying at the same grade.
+@isnad1 id=ex.2h6v.s11.e979a727b41b from=translated src=- shape=ac68223a vocab=36d17391
+-/
 theorem lift_kernel {a b : P} (hab : a ≤ b) (n : M.obj a)
     (hn : structureMapLinear M hab n = 0) :
     ∃ m : (module M).obj a, ((π M).app a).hom m = n ∧
@@ -197,23 +215,31 @@ theorem lift_kernel {a b : P} (hab : a ≤ b) (n : M.obj a)
     subst n
     exact ⟨0, by simp, by simp⟩
 
-/-- The actual categorical kernel sequence of the finite hook-sum map is rank exact.-/
+/-- The actual categorical kernel sequence of the finite hook-sum map is rank exact.
+@isnad1 id=isrankex.0h3v.s8.277431bed2ad from=translated src=- shape=8b312460 vocab=3373df27
+-/
 theorem rankExact : IsRankExact (kernel.ι (π M)) (π M) := by
   exact RankKernel.rankExact (π M) (surjective M) (lift_kernel M)
 
-/-- The kernel term of the rank-exact deflation has finite-dimensional fibers.-/
+/-- The kernel term of the rank-exact deflation has finite-dimensional fibers.
+@isnad1 id=finitedi.0h4v.s8.a0cad5e58d28 from=translated src=- shape=9bca3101 vocab=6d071589
+-/
 theorem kernel_finiteDimensional (p : P) :
     FiniteDimensional k ((kernel (π M)).obj p) := by
   exact RankKernel.finiteDimensional (π M) p
 
-/-- A rank-projective finite-poset module is a retract of this finite hook sum.-/
+/-- A rank-projective finite-poset module is a retract of this finite hook sum.
+@isnad1 id=ex.1h3v.s8.208a18a1e420 from=translated src=- shape=5fcbb775 vocab=f5f0b2d3
+-/
 theorem exists_retract (hM : IsRankProjective M) :
     ∃ s : M ⟶ module M, s ≫ π M = 𝟙 M :=
   hM _ _ _ _ _ (rankExact M) (𝟙 M)
 
 /-- Rank projectivity is equivalent to splitting the constructed deflation.
 The finite-poset hook-sum classification of these retracts is proved in
-`FiniteRankProjectiveClassification`.-/
+`FiniteRankProjectiveClassification`.
+@isnad1 id=iff.0h3v.s8.cc3050a3cc7e from=translated src=- shape=04551c63 vocab=f5f0b2d3
+-/
 theorem isRankProjective_iff_retract :
     IsRankProjective M ↔ ∃ s : M ⟶ module M, s ≫ π M = 𝟙 M := by
   constructor

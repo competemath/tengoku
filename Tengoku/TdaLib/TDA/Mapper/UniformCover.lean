@@ -55,18 +55,29 @@ def uniformInterval (a r g : ℝ) (k : ℕ) : OpenInterval :=
 def uniformCover (a r g : ℝ) (n : ℕ) : Fin n → OpenInterval :=
   fun k => uniformInterval a r g k
 
+/--
+@isnad1 id=eq.0h4v.s6.c1d2dfd5a8a5 from=translated src=- shape=0f0e6bf4 vocab=7b7fc492
+-/
 @[simp] theorem coe_uniformInterval (a r g : ℝ) (k : ℕ) :
     (uniformInterval a r g k : Set ℝ) = Ioo (a + k * (r - g)) (a + k * (r - g) + r) := rfl
 
+/--
+@isnad1 id=iff.0h5v.s6.6e4f23eeb9d2 from=translated src=- shape=2a8d100e vocab=e8c0ec8a
+-/
 theorem mem_uniformInterval {a r g y : ℝ} {k : ℕ} :
     y ∈ uniformInterval a r g k ↔ a + k * (r - g) < y ∧ y < a + k * (r - g) + r := Iff.rfl
 
+/--
+@isnad1 id=eq.0h5v.s4.113940cc75c5 from=translated src=- shape=5779f72e vocab=c7c57f5e
+-/
 @[simp] theorem uniformCover_apply (a r g : ℝ) (n : ℕ) (k : Fin n) :
     uniformCover a r g n k = uniformInterval a r g k := rfl
 
 /-! ## Overlaps -/
 
-/-- For `g ≤ r`, consecutive members meet in an interval of length `g`.-/
+/-- For `g ≤ r`, consecutive members meet in an interval of length `g`.
+@isnad1 id=eq.1h4v.s7.bd02e7487a81 from=translated src=- shape=f68cfc06 vocab=7b58e09a
+-/
 theorem uniformInterval_inf_succ {a r g : ℝ} (hgr : g ≤ r) (k : ℕ) :
     uniformInterval a r g k ⊓ uniformInterval a r g (k + 1) =
       ioo (a + (k + 1) * (r - g)) (a + (k + 1) * (r - g) + g) := by
@@ -81,7 +92,9 @@ theorem uniformInterval_inf_succ {a r g : ℝ} (hgr : g ≤ r) (k : ℕ) :
     refine ⟨⟨?_, ?_⟩, ?_, ?_⟩ <;> linarith
 
 /-- For `2g ≤ r`, members whose indices differ by at least two are disjoint. No sign condition
-on `r` is needed: for `r ≤ 0` every member is empty.-/
+on `r` is needed: for `r ≤ 0` every member is empty.
+@isnad1 id=disjoint.2h5v.s6.ad1adb030f84 from=translated src=- shape=8728aa3a vocab=25cb928c
+-/
 theorem uniformInterval_disjoint {a r g : ℝ} (hg : 2 * g ≤ r) {k l : ℕ}
     (hkl : k + 2 ≤ l) :
     Disjoint (uniformInterval a r g k : Set ℝ) (uniformInterval a r g l) := by
@@ -92,7 +105,9 @@ theorem uniformInterval_disjoint {a r g : ℝ} (hg : 2 * g ≤ r) {k l : ℕ}
   have := mul_le_mul_of_nonneg_right hkl' hd
   linarith [h₁.2, h₂.1]
 
-/-- The disjointness of far members as a meet of open intervals.-/
+/-- The disjointness of far members as a meet of open intervals.
+@isnad1 id=eq.2h5v.s6.2269669950ff from=translated src=- shape=66a1db41 vocab=d2e0ed05
+-/
 theorem uniformInterval_inf_eq_bot {a r g : ℝ} (hg : 2 * g ≤ r) {k l : ℕ}
     (hkl : k + 2 ≤ l) : uniformInterval a r g k ⊓ uniformInterval a r g l = ⊥ := by
   apply SetLike.coe_injective
@@ -121,7 +136,9 @@ private theorem exists_uniformInterval_of_mem {a r g : ℝ} (hg : 0 < g) :
         constructor <;> linarith
 
 /-- For `0 < g` and `0 < n`, the window `(a, a + n(r - g) + g)` lies in the union of the
-members. No relation between `g` and `r` is needed.-/
+members. No relation between `g` and `r` is needed.
+@isnad1 id=le.2h4v.s6.91831dcceba8 from=translated src=- shape=86737cb8 vocab=19e748ab
+-/
 theorem Ioo_subset_iUnion_uniformCover {a r g : ℝ} {n : ℕ} (hg : 0 < g) (hn : 0 < n) :
     Set.Ioo a (a + n * (r - g) + g) ⊆ ⋃ k : Fin n, (uniformCover a r g n k : Set ℝ) := by
   intro y hy
@@ -133,7 +150,9 @@ theorem Ioo_subset_iUnion_uniformCover {a r g : ℝ} {n : ℕ} (hg : 0 < g) (hn 
   exact Set.mem_iUnion.2 ⟨⟨k, Nat.lt_succ_of_le hk⟩, hmem⟩
 
 /-- For `0 < g ≤ r` and `0 < n`, the union of the `n` members is the window
-`(a, a + n(r - g) + g)`.-/
+`(a, a + n(r - g) + g)`.
+@isnad1 id=eq.3h4v.s6.e33510c3b761 from=translated src=- shape=88b63115 vocab=19e748ab
+-/
 theorem iUnion_uniformCover {a r g : ℝ} {n : ℕ} (hg : 0 < g) (hgr : g ≤ r) (hn : 0 < n) :
     ⋃ k : Fin n, (uniformCover a r g n k : Set ℝ) = Set.Ioo a (a + n * (r - g) + g) := by
   refine Subset.antisymm ?_ (Ioo_subset_iUnion_uniformCover hg hn)
@@ -149,7 +168,9 @@ theorem iUnion_uniformCover {a r g : ℝ} {n : ℕ} (hg : 0 < g) (hgr : g ≤ r)
 
 /-! ## The attained range of a graph-PL height -/
 
-/-- Vertex height bounds bound the graph-PL height at every point of the realization.-/
+/-- Vertex height bounds bound the graph-PL height at every point of the realization.
+@isnad1 id=mem.1h6v.s6.8968d250b377 from=translated src=- shape=3c2f003a vocab=bdd749f4
+-/
 theorem plHeight_mem_Icc_of_forall {V : Type*} {G : SimpleGraph V} {h : V → ℝ} {m M : ℝ}
     (hh : ∀ v, h v ∈ Set.Icc m M) (p : Realization G) : plHeight G h p ∈ Set.Icc m M := by
   induction p using ind G with
@@ -168,14 +189,18 @@ theorem plHeight_mem_Icc_of_forall {V : Type*} {G : SimpleGraph V} {h : V → �
           mul_nonneg ht0 (sub_nonneg.2 hs.2)]
 
 /-- Vertex height bounds bound the attained range of the graph-PL height. No connectedness of
-`G` and no nonemptiness of `V` is assumed.-/
+`G` and no nonemptiness of `V` is assumed.
+@isnad1 id=le.1h5v.s6.17c806bf82a3 from=translated src=- shape=7d778300 vocab=1219dcd5
+-/
 theorem range_plHeight_subset_Icc {V : Type*} {G : SimpleGraph V} {h : V → ℝ} {m M : ℝ}
     (hh : ∀ v, h v ∈ Set.Icc m M) : Set.range (plHeight G h) ⊆ Set.Icc m M := by
   rintro _ ⟨p, rfl⟩
   exact plHeight_mem_Icc_of_forall hh p
 
 /-- The uniform family covers the attained range of a graph-PL height whose vertex heights lie
-in `[m, M]`, as soon as the window `(a, a + n(r - g) + g)` contains `[m, M]`.-/
+in `[m, M]`, as soon as the window `(a, a + n(r - g) + g)` contains `[m, M]`.
+@isnad1 id=covers.5h9v.s7.5f22a2a6a252 from=translated src=- shape=be3e250e vocab=5855ee0b
+-/
 theorem uniformCover_covers_range {V : Type*} {G : SimpleGraph V} {h : V → ℝ}
     {a r g m M : ℝ} {n : ℕ} (hh : ∀ v, h v ∈ Set.Icc m M) (ha : a < m)
     (hM : M < a + n * (r - g) + g) (hg : 0 < g) (hn : 0 < n) :
@@ -185,7 +210,9 @@ theorem uniformCover_covers_range {V : Type*} {G : SimpleGraph V} {h : V → ℝ
   exact Set.mem_iUnion.1 (Ioo_subset_iUnion_uniformCover hg hn
     ⟨by linarith [hIcc.1], by linarith [hIcc.2]⟩)
 
-/-- For `0 < g < r`, some positive count `n` makes the window reach beyond any given `M`.-/
+/-- For `0 < g < r`, some positive count `n` makes the window reach beyond any given `M`.
+@isnad1 id=ex.2h4v.s6.e0f3d818e02f from=translated src=- shape=2fb10a0b vocab=65920cf3
+-/
 theorem exists_uniformCover_window {r g : ℝ} (hg : 0 < g) (hgr : g < r) (a M : ℝ) :
     ∃ n : ℕ, 0 < n ∧ M < a + n * (r - g) + g := by
   have hd : 0 < r - g := sub_pos.2 hgr
@@ -197,7 +224,9 @@ theorem exists_uniformCover_window {r g : ℝ} (hg : 0 < g) (hgr : g < r) (a M :
 
 /-! ## Multiplicity -/
 
-/-- For `2g ≤ r`, every real number lies in at most two members.-/
+/-- For `2g ≤ r`, every real number lies in at most two members.
+@isnad1 id=le.2h6v.s6.2ff384ff18f2 from=translated src=- shape=c6ccbe48 vocab=8318b2e3
+-/
 theorem uniformCover_card_le_two {a r g : ℝ} {n : ℕ} (hg : 2 * g ≤ r) :
     ∀ y (t : Finset (Fin n)), (∀ k ∈ t, y ∈ uniformCover a r g n k) → t.card ≤ 2 := by
   intro y t ht
@@ -218,7 +247,9 @@ theorem uniformCover_card_le_two {a r g : ℝ} {n : ℕ} (hg : 2 * g ≤ r) :
   · exact far j k hj hk h
   · exact far k j hk hj h
 
-/-- For `2g ≤ r`, the uniform family has multiplicity at most two for every continuous map.-/
+/-- For `2g ≤ r`, the uniform family has multiplicity at most two for every continuous map.
+@isnad1 id=covermul.1h6v.s6.693a9d2fe00b from=translated src=- shape=28ae11a4 vocab=ec95de3b
+-/
 theorem coverMultiplicityAtMost_uniformCover {X : Type*} [TopologicalSpace X] {a r g : ℝ}
     {n : ℕ} (hg : 2 * g ≤ r) (f : C(X, ℝ)) :
     CoverMultiplicityAtMost f (fun k => (uniformCover a r g n k : Set ℝ)) 2 :=
@@ -226,7 +257,9 @@ theorem coverMultiplicityAtMost_uniformCover {X : Type*} [TopologicalSpace X] {a
 
 /-- For `3 ≤ n` and `g < r`, every real number lies in at most two members exactly when
 `2g ≤ r`. If `r < 2g`, the midpoint of `(a + 2(r - g), a + r)` lies in the first three members.
-No sign condition on `g` is needed: `g < r < 2g` forces `0 < g`, and for `g ≤ 0` both sides hold.-/
+No sign condition on `g` is needed: `g < r < 2g` forces `0 < g`, and for `g ≤ 0` both sides hold.
+@isnad1 id=iff.2h4v.s6.6a33c05288b4 from=translated src=- shape=e8a0ab7c vocab=77234a32
+-/
 theorem uniformCover_card_le_two_iff {a r g : ℝ} {n : ℕ} (hn : 3 ≤ n) (hgr : g < r) :
     (∀ y (t : Finset (Fin n)), (∀ k ∈ t, y ∈ uniformCover a r g n k) → t.card ≤ 2) ↔
       2 * g ≤ r := by

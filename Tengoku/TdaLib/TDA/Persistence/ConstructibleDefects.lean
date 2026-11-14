@@ -81,7 +81,9 @@ private theorem cokernel_structureMap_isIso (f : M ⟶ N) {s t : ℝ} (h : s ≤
   rw [he]
   infer_instance
 
-/-- The kernel of a morphism between modules on the same grid is constructible.-/
+/-- The kernel of a morphism between modules on the same grid is constructible.
+@isnad1 id=isconstr.2h6v.s6.e09083dca5d2 from=translated src=- shape=def384b8 vocab=c3f74f87
+-/
 theorem IsConstructible.kernel (hM : IsConstructible c M) (hN : IsConstructible c N)
     (f : M ⟶ N) : IsConstructible c (kernel f) where
   zero_left t ht := IsZero.of_mono_eq_zero ((kernel.ι f).app t)
@@ -91,7 +93,9 @@ theorem IsConstructible.kernel (hM : IsConstructible c M) (hN : IsConstructible 
     have := hN.isIso_map s t h hc
     exact kernel_structureMap_isIso f h
 
-/-- The cokernel is constructible; its zero left tail comes from the target.-/
+/-- The cokernel is constructible; its zero left tail comes from the target.
+@isnad1 id=isconstr.2h6v.s6.fec7b4c12405 from=translated src=- shape=def384b8 vocab=47a86891
+-/
 theorem IsConstructible.cokernel (hM : IsConstructible c M) (hN : IsConstructible c N)
     (f : M ⟶ N) : IsConstructible c (cokernel f) where
   zero_left t ht := IsZero.of_epi_eq_zero ((cokernel.π f).app t)
@@ -107,7 +111,9 @@ noncomputable def criticalKernelIso (c : Fin n ↪o ℝ) (f : M ⟶ N) :
     reindex c.toOrderHom (kernel f) ≅ kernel (reindexNatTrans c.toOrderHom f) :=
   PreservesKernel.iso ((Functor.whiskeringLeft _ _ _).obj c.toOrderHom.toFunctor) f
 
-/-- The natural kernel comparison retains its inclusion.-/
+/-- The natural kernel comparison retains its inclusion.
+@isnad1 id=eq.0h6v.s9.61f34d6f9efb from=translated src=- shape=ab0eb7bf vocab=6f66eda6
+-/
 theorem criticalKernelIso_inv_ι (c : Fin n ↪o ℝ) (f : M ⟶ N) :
     (criticalKernelIso c f).inv ≫ reindexNatTrans c.toOrderHom (kernel.ι f) =
       kernel.ι (reindexNatTrans c.toOrderHom f) :=
@@ -118,7 +124,9 @@ noncomputable def criticalCokernelIso (c : Fin n ↪o ℝ) (f : M ⟶ N) :
     reindex c.toOrderHom (cokernel f) ≅ cokernel (reindexNatTrans c.toOrderHom f) :=
   PreservesCokernel.iso ((Functor.whiskeringLeft _ _ _).obj c.toOrderHom.toFunctor) f
 
-/-- The natural cokernel comparison retains its projection.-/
+/-- The natural cokernel comparison retains its projection.
+@isnad1 id=eq.0h6v.s9.4bf7f6705961 from=translated src=- shape=93b2e0f2 vocab=e74c1764
+-/
 theorem criticalCokernelIso_π_hom (c : Fin n ↪o ℝ) (f : M ⟶ N) :
     reindexNatTrans c.toOrderHom (cokernel.π f) ≫ (criticalCokernelIso c f).hom =
       cokernel.π (reindexNatTrans c.toOrderHom f) :=

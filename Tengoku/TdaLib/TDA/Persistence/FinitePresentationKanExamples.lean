@@ -42,11 +42,15 @@ noncomputable abbrev presentation : Presentation (R := R) (P := Fin n → ℝ) :
   Presentation.ofRelations (generators n) (relations n)
     (fun _ => GradedFree.generator (generators n) (0 : Fin 2) (birth_le_death n))
 
-/-- Both original occurrence families are finite.-/
+/-- Both original occurrence families are finite.
+@isnad1 id=isfinite.0h2v.s4.239a48c2442c from=translated src=- shape=8315debe vocab=f77d5079
+-/
 theorem presentation_finite : (presentation R n).IsFinite :=
   ⟨inferInstanceAs (Finite (Fin 2)), inferInstanceAs (Finite Unit)⟩
 
-/-- The primitive relation is nonzero over every nontrivial coefficient ring.-/
+/-- The primitive relation is nonzero over every nontrivial coefficient ring.
+@isnad1 id=ne.0h2v.s9.6087b18b16dc from=translated src=- shape=a841373c vocab=15d5a4e9
+-/
 theorem relation_nonzero [Nontrivial R] : (presentation R n).relationMap ≠ 0 := by
   intro h
   have he := congrArg (fun f : module (R := R) (relations n) ⟶ module (generators n) =>
@@ -116,14 +120,18 @@ private theorem secondValue_image :
     (1 : Fin 2)
   exact he.trans (hb.trans (ite_eq_right (by decide : (1 : Fin 2) ≠ 0)))
 
-/-- A genuine nonzero quotient remains after imposing the nonzero relation.-/
+/-- A genuine nonzero quotient remains after imposing the nonzero relation.
+@isnad1 id=ne.0h2v.s9.474eb40206b9 from=translated src=- shape=464a1c52 vocab=7481fbac
+-/
 theorem surviving_generator {k : Type u} [Field k] : secondValue k n ≠ 0 := by
   intro h
   have he := secondValue_image k n
   rw [h, map_zero] at he
   exact HookInfinity.birth_ne_zero ((generators n).grade (0 : Fin 2)) he.symm
 
-/-- Equal grid birth points retain two different free generator vectors.-/
+/-- Equal grid birth points retain two different free generator vectors.
+@isnad1 id=and.0h2v.s7.8e7f4034ad85 from=translated src=- shape=b3d65c37 vocab=11663049
+-/
 theorem repeated_births [Nontrivial R] :
     (presentation R n).generatorGridPoint (presentation_finite R n) (0 : Fin 2) =
       (presentation R n).generatorGridPoint (presentation_finite R n) (1 : Fin 2) ∧
@@ -137,14 +145,18 @@ theorem repeated_births [Nontrivial R] :
     simp only [Finsupp.single_eq_same, Finsupp.single_eq_of_ne (by decide : (0 : Fin 2) ≠ 1)] at he
     exact one_ne_zero he
 
-/-- The same genuine-relation example reconstructs over the ring of integers.-/
+/-- The same genuine-relation example reconstructs over the ring of integers.
+@isnad1 id=and.0h0v.s11.734f0f757e17 from=translated src=- shape=68b5d737 vocab=783e2b70
+-/
 theorem integer_reconstruction :
     (presentation ℤ 2).relationMap ≠ 0 ∧
     Nonempty (((presentation ℤ 2).gridCoordinates (presentation_finite ℤ 2)).embedding.monotone.functor.leftKanExtension
       ((presentation ℤ 2).gridModule (presentation_finite ℤ 2)) ≅ (presentation ℤ 2).presented) :=
   ⟨relation_nonzero ℤ 2, ⟨(presentation ℤ 2).gridKanIso (presentation_finite ℤ 2)⟩⟩
 
-/-- The field specialization supplies an actual finite grid with pfd fibers.-/
+/-- The field specialization supplies an actual finite grid with pfd fibers.
+@isnad1 id=ex.0h0v.s10.4edfb66d96fe from=translated src=- shape=3d82982d vocab=b33f330e
+-/
 theorem field_grid :
     ∃ (G : CoordinateGrid 2) (N : PModule ℚ G.Point),
       (∀ p, FiniteDimensional ℚ (N.obj p)) ∧
@@ -158,7 +170,9 @@ noncomputable def extendedDouble : (presentation ℚ 2).presented ⟶ (presentat
     (((presentation ℚ 2).gridCoordinates (presentation_finite ℚ 2)).embedding.monotone.functor.whiskerLeft
       ((2 : ℚ) • 𝟙 (presentation ℚ 2).presented))
 
-/-- The extended map agrees with the specified nonidentity map at every real grade.-/
+/-- The extended map agrees with the specified nonidentity map at every real grade.
+@isnad1 id=eq.0h0v.s12.3c8d89c12791 from=translated src=- shape=bd2ca672 vocab=a1a7427f
+-/
 theorem extendedDouble_eq : extendedDouble = (2 : ℚ) • 𝟙 (presentation ℚ 2).presented := by
   let D := presentation ℚ 2
   let hD := presentation_finite ℚ 2
@@ -167,7 +181,9 @@ theorem extendedDouble_eq : extendedDouble = (2 : ℚ) • 𝟙 (presentation �
   rw [← D.gridHomEquiv_apply hD D.presented ((2 : ℚ) • 𝟙 D.presented)]
   exact (D.gridHomEquiv hD D.presented).symm_apply_apply _
 
-/-- The extension of the nonidentity grid map is actually nonzero.-/
+/-- The extension of the nonidentity grid map is actually nonzero.
+@isnad1 id=ne.0h0v.s9.939eab4cda25 from=translated src=- shape=54e40ba2 vocab=12aa7ea3
+-/
 theorem extendedDouble_nonzero : extendedDouble ≠ 0 := by
   intro h
   rw [extendedDouble_eq] at h
@@ -176,7 +192,9 @@ theorem extendedDouble_nonzero : extendedDouble ≠ 0 := by
   change (2 : ℚ) • secondValue ℚ 2 = 0 at he
   exact (smul_ne_zero (by norm_num : (2 : ℚ) ≠ 0) (surviving_generator 2)) he
 
-/-- In characteristic two the same relation remains nonzero, while doubling extends to zero.-/
+/-- In characteristic two the same relation remains nonzero, while doubling extends to zero.
+@isnad1 id=other.0h0v.s15.e74afc6903fe from=translated src=- shape=a67908b2 vocab=656ffbd0
+-/
 theorem characteristic_two :
     let D := presentation (ZMod 2) 2
     let hD := presentation_finite (ZMod 2) 2
@@ -194,7 +212,9 @@ theorem characteristic_two :
   have h2 : (2 : ZMod 2) = 0 := by decide
   rw [h2, zero_smul]
 
-/-- The zero-direction grid has one point and the presented module is still nonzero.-/
+/-- The zero-direction grid has one point and the presented module is still nonzero.
+@isnad1 id=other.0h0v.s11.b1aa65efc6f4 from=translated src=- shape=3a7819aa vocab=efbcb95d
+-/
 theorem no_coordinates :
     let D := presentation ℚ 0
     let hD := presentation_finite ℚ 0
@@ -210,7 +230,9 @@ abbrev noGenerators (n : ℕ) : GradedGenerators (Fin n → ℝ) where
   Carrier := Empty
   grade := Empty.elim
 
-/-- An empty relation family reconstructs the actual repeated-generator free module.-/
+/-- An empty relation family reconstructs the actual repeated-generator free module.
+@isnad1 id=other.0h2v.s9.f73665e66bab from=translated src=- shape=d87525f8 vocab=980231a2
+-/
 theorem no_relations :
     let D := zeroRelationPresentation (R := R) (generators n) (noGenerators n)
     let hD : D.IsFinite := ⟨inferInstanceAs (Finite (Fin 2)), inferInstanceAs (Finite Empty)⟩
@@ -221,7 +243,9 @@ theorem no_relations :
   let hD : D.IsFinite := ⟨inferInstanceAs (Finite (Fin 2)), inferInstanceAs (Finite Empty)⟩
   exact ⟨D.gridKanIso hD ≪≫ zeroRelationPresentedIso (generators n) (noGenerators n)⟩
 
-/-- Empty generator and relation families also reconstruct the actual zero module.-/
+/-- Empty generator and relation families also reconstruct the actual zero module.
+@isnad1 id=ex.0h2v.s9.10307688a87b from=translated src=- shape=2b0cf67a vocab=5bd59a73
+-/
 theorem zero_module :
     ∃ (G : CoordinateGrid n) (N : PModule.{u,0,u} R G.Point),
       Nonempty (G.embedding.monotone.functor.leftKanExtension N ≅ (0 : PModule R (Fin n → ℝ))) := by
@@ -233,7 +257,9 @@ theorem zero_module :
   exact GradedFree.finitelyPresented_exists_finiteGridKan _
     (finitelyPresented_of_iso (free_finitelyPresented (noGenerators n)) hz.isoZero)
 
-/-- Reconstruction also works over the zero ring, without a nontriviality hypothesis.-/
+/-- Reconstruction also works over the zero ring, without a nontriviality hypothesis.
+@isnad1 id=other.0h0v.s10.6eae5ce458dd from=translated src=- shape=0bdec582 vocab=1788026a
+-/
 theorem zero_ring :
     let D := presentation (ZMod 1) 2
     let hD := presentation_finite (ZMod 1) 2

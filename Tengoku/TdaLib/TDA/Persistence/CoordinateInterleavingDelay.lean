@@ -136,7 +136,9 @@ noncomputable def transport
   ψ_φ := transport_equation cN cM i.symm
 
 /-- The transported forward map is the explicit composite through the two
-asymmetric comparison maps.-/
+asymmetric comparison maps.
+@isnad1 id=eq.0h11v.s10.c679999a6070 from=translated src=- shape=922a1df4 vocab=dd60eb05
+-/
 @[simp] theorem transport_φ
     (cM : CoordinateInterleavingDelayComparison δ M M')
     (cN : CoordinateInterleavingDelayComparison δ N N')
@@ -145,7 +147,9 @@ asymmetric comparison maps.-/
       cM.forward ≫ i.φ ≫ (shift ε).map cN.reverse ≫ (compIso ε δ N).hom := rfl
 
 /-- The transported reverse map is the explicit composite through the two
-asymmetric comparison maps.-/
+asymmetric comparison maps.
+@isnad1 id=eq.0h11v.s10.313294571203 from=translated src=- shape=1b6a41c0 vocab=c5ccd357
+-/
 @[simp] theorem transport_ψ
     (cM : CoordinateInterleavingDelayComparison δ M M')
     (cN : CoordinateInterleavingDelayComparison δ N N')
@@ -170,6 +174,9 @@ noncomputable def finiteFamilyDelayReverseComponent
   exact if hle : t i ≤ δ then shiftLE hle (X i) else 0
 
 omit [Finite ι] in
+/--
+@isnad1 id=eq.2h7v.s8.cbd2b7ea2ef1 from=translated src=- shape=a7e7d7e8 vocab=bad7ea3d
+-/
 @[simp] theorem finiteFamilyDelayReverseComponent_of_le
     (δ : ℝ≥0) (X : ι → PModule.{u,0,w} R (Fin n → ℝ))
     (t : ι → ℝ≥0) (i : ι) (h : t i ≤ δ)
@@ -179,6 +186,9 @@ omit [Finite ι] in
   simp [finiteFamilyDelayReverseComponent, h]
 
 omit [Finite ι] in
+/--
+@isnad1 id=eq.2h7v.s10.ee429adfc06b from=translated src=- shape=951d74d4 vocab=4768582b
+-/
 theorem finiteFamilyDelayReverseComponent_eq_zero
     (δ : ℝ≥0) (X : ι → PModule.{u,0,w} R (Fin n → ℝ))
     (t : ι → ℝ≥0) (i : ι) (hcase : t i ≤ δ ∨ IsZero (X i))
@@ -295,6 +305,9 @@ noncomputable def finiteFamilyDelayComparison
         exact Functor.map_isZero (shift (t i)) hzero
       exact hshift.eq_of_src _ _
 
+/--
+@isnad1 id=eq.1h7v.s10.88e47c034fd9 from=translated src=- shape=0e7dc707 vocab=3a7d553d
+-/
 @[reassoc, simp] theorem finiteFamilyDelayComparison_ι_forward
     (δ : ℝ≥0) (X : ι → PModule.{u,0,w} R (Fin n → ℝ))
     (t : ι → ℝ≥0) (hdelay : ∀ i, t i ≤ δ ∨ IsZero (X i)) (i : ι) :
@@ -303,6 +316,9 @@ noncomputable def finiteFamilyDelayComparison
   classical
   simp [finiteFamilyDelayComparison]
 
+/--
+@isnad1 id=eq.1h7v.s11.5fc56ab2492a from=translated src=- shape=2216706f vocab=38b5f644
+-/
 @[reassoc, simp] theorem finiteFamilyDelayComparison_ι_reverse
     (δ : ℝ≥0) (X : ι → PModule.{u,0,w} R (Fin n → ℝ))
     (t : ι → ℝ≥0) (hdelay : ∀ i, t i ≤ δ ∨ IsZero (X i)) (i : ι) :

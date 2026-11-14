@@ -19,7 +19,9 @@ section discrete
 
 variable {A : Type*} [TopologicalSpace A]
 
-/-- In a discrete space, joined points are equal.-/
+/-- In a discrete space, joined points are equal.
+@isnad1 id=eq.1h3v.s4.e6532eb6bff2 from=translated src=- shape=0f60ba0c vocab=2f72c178
+-/
 theorem joined_eq_of_discrete [DiscreteTopology A] {x y : A} (h : Joined x y) : x = y := by
   obtain ⟨γ⟩ := h
   simpa using PreconnectedSpace.constant (inferInstance : PreconnectedSpace unitInterval)

@@ -36,6 +36,9 @@ noncomputable def moduleMultiplicityInteger (b d : ℕ) : ℤ :=
   moduleRankInteger M (b : ℤ) (d : ℤ) +
   moduleRankInteger M ((b : ℤ) - 1) (d : ℤ)
 
+/--
+@isnad1 id=eq.1h5v.s7.485bb2e28a59 from=translated src=- shape=6c353828 vocab=75f1a56e
+-/
 theorem moduleRankInteger_fin (i j : Fin N) (hij : i ≤ j) :
     moduleRankInteger M (i.val : ℤ) (j.val : ℤ) =
       (structureMapRank M i j hij : ℤ) := by
@@ -47,10 +50,16 @@ theorem moduleRankInteger_fin (i j : Fin N) (hij : i ≤ j) :
   rw [dite_eq_left hvalid]
   dsimp
 
+/--
+@isnad1 id=eq.0h4v.s7.d40e0c45b9c3 from=translated src=- shape=bf0771ab vocab=fbd3e61c
+-/
 theorem moduleRankInteger_neg_one (j : ℤ) :
     moduleRankInteger M (-1) j = 0 := by
   simp [moduleRankInteger]
 
+/--
+@isnad1 id=eq.0h4v.s7.ed14954639c5 from=translated src=- shape=c5ddaeb9 vocab=9c6aaa69
+-/
 theorem moduleRankInteger_at_size (i : ℤ) :
     moduleRankInteger M i (N : ℤ) = 0 := by
   simp [moduleRankInteger]
@@ -62,6 +71,9 @@ private theorem image_le {a b c : Fin N} (hab : a ≤ b) (hbc : b ≤ c) :
   rw [structureMapLinear_comp M hab hbc]
   exact LinearMap.range_comp_le_range _ _
 
+/--
+@isnad1 id=le.2h6v.s7.b1032bc815ac from=translated src=- shape=fed3d9ca vocab=300f86ef
+-/
 theorem structureMapRank_mono_source (a b c : Fin N)
     (hab : a ≤ b) (hbc : b ≤ c) :
     structureMapRank M a c (hab.trans hbc) ≤ structureMapRank M b c hbc := by
@@ -77,6 +89,9 @@ private theorem range_restricted {a c d : Fin N} (hac : a ≤ c) (hcd : c ≤ d)
   rw [LinearMap.range_comp, Submodule.range_subtype]
   exact (LinearMap.range_comp (structureMapLinear M hac) (structureMapLinear M hcd)).symm
 
+/--
+@isnad1 id=eq.2h6v.s14.5c77ac7c4d98 from=translated src=- shape=0985b366 vocab=1958106c
+-/
 theorem structureMapRank_drop (a c d : Fin N)
     (hac : a ≤ c) (hcd : c ≤ d) :
     structureMapRank M a c hac =
@@ -106,6 +121,9 @@ private theorem ker_restricted_finrank {c d : Fin N} (hcd : c ≤ d)
     (LinearMap.ker ((structureMapLinear M hcd).domRestrict U))) = _
   rw [LinearMap.ker_domRestrict, Submodule.map_comap_subtype]
 
+/--
+@isnad1 id=le.3h7v.s7.4a3d3c354467 from=translated src=- shape=97c6c70c vocab=23f98f88
+-/
 theorem structureMapRank_four_le (a b c d : Fin N)
     (hab : a ≤ b) (hbc : b ≤ c) (hcd : c ≤ d) :
     structureMapRank M a c (hab.trans hbc) + structureMapRank M b d (hbc.trans hcd) ≤
@@ -134,6 +152,9 @@ private theorem rank_nat (i j : ℕ) (hij : i ≤ j) (hj : j < N) :
   exact moduleRankInteger_fin M ⟨i, by omega⟩ ⟨j, hj⟩
     (Fin.le_iff_val_le_val.mpr hij)
 
+/--
+@isnad1 id=le.2h5v.s7.fe3eb6689990 from=translated src=- shape=73f752b1 vocab=92df40cb
+-/
 theorem moduleMultiplicityInteger_nonneg (b d : ℕ) (hbd : b < d) (hd : d ≤ N) :
     0 ≤ moduleMultiplicityInteger M b d := by
   have hdpos : 0 < d := by omega

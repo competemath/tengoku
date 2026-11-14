@@ -61,7 +61,9 @@ noncomputable def inclusion (F : ι → PModule.{u,0,u} k ℝ) (i : ι) :
       (DirectSum.lof k ι (fun j => (F j).obj s) i x)
   simp
 
-/-- The inclusion retains its own fiber coordinate.-/
+/-- The inclusion retains its own fiber coordinate.
+@isnad1 id=eq.0h6v.s11.e37012250fd4 from=translated src=- shape=2d932a2f vocab=b5d4ceb3
+-/
 @[simp] theorem inclusion_apply_self (F : ι → PModule.{u,0,u} k ℝ)
     (i : ι) (t : ℝ) (x : (F i).obj t) :
     DirectSum.component k ι (fun j => (F j).obj t) i
@@ -71,7 +73,9 @@ noncomputable def inclusion (F : ι → PModule.{u,0,u} k ℝ) (i : ι) :
     (DirectSum.lof k ι (fun j => (F j).obj t) i x) = x
   simp
 
-/-- The inclusion has zero in every other fiber coordinate.-/
+/-- The inclusion has zero in every other fiber coordinate.
+@isnad1 id=eq.1h7v.s11.f233bf7dac0f from=translated src=- shape=bc15180b vocab=b5d4ceb3
+-/
 @[simp] theorem inclusion_apply_ne (F : ι → PModule.{u,0,u} k ℝ)
     {i j : ι} (hij : i ≠ j) (t : ℝ) (x : (F i).obj t) :
     DirectSum.component k ι (fun l => (F l).obj t) j
@@ -105,7 +109,9 @@ noncomputable def desc (F : ι → PModule.{u,0,u} k ℝ)
   simpa only [ModuleCat.hom_comp, LinearMap.comp_apply] using
     congrArg (fun L => L.hom x) ((η i).naturality f)
 
-/-- The assembled map agrees with the given map on each summand.-/
+/-- The assembled map agrees with the given map on each summand.
+@isnad1 id=eq.0h6v.s7.cd81dd40fe6c from=translated src=- shape=fb0f08fc vocab=f02081ee
+-/
 @[simp] theorem inclusion_desc (F : ι → PModule.{u,0,u} k ℝ)
     {M : PModule.{u,0,u} k ℝ} (η : ∀ i, F i ⟶ M) (i : ι) :
     inclusion F i ≫ desc F η = η i := by
@@ -115,7 +121,9 @@ noncomputable def desc (F : ι → PModule.{u,0,u} k ℝ)
     (DirectSum.lof k ι (fun j => (F j).obj t) i x) = ((η i).app t).hom x
   simp
 
-/-- The structure map of an algebraic sum acts in each coordinate.-/
+/-- The structure map of an algebraic sum acts in each coordinate.
+@isnad1 id=eq.1h7v.s11.34f8caca8bec from=translated src=- shape=1ca64fc1 vocab=3d768de7
+-/
 @[simp] theorem structureMap_apply (F : ι → PModule.{u,0,u} k ℝ)
     {s t : ℝ} (h : s ≤ t) (x : (familyModule F).obj s) (i : ι) :
     DirectSum.component k ι (fun j => (F j).obj t) i
@@ -141,20 +149,26 @@ noncomputable def toProduct (F : ι → PModule.{u,0,u} k ℝ) :
     funext i
     rfl
 
-/-- The canonical comparison retains every coordinate.-/
+/-- The canonical comparison retains every coordinate.
+@isnad1 id=eq.0h6v.s11.f8182a108381 from=translated src=- shape=c41ff7a6 vocab=23ae1312
+-/
 @[simp] theorem toProduct_apply (F : ι → PModule.{u,0,u} k ℝ) (t : ℝ)
     (x : (familyModule F).obj t) (i : ι) :
     ((toProduct F).app t).hom x i =
       DirectSum.component k ι (fun j => (F j).obj t) i x := rfl
 
-/-- The comparison from an algebraic sum to a product is injective at every fiber.-/
+/-- The comparison from an algebraic sum to a product is injective at every fiber.
+@isnad1 id=injectiv.0h4v.s9.c2f2c55bacca from=translated src=- shape=62951276 vocab=981337fc
+-/
 theorem toProduct_injective (F : ι → PModule.{u,0,u} k ℝ) (t : ℝ) :
     Function.Injective (((toProduct F).app t).hom) := by
   change Function.Injective (DFinsupp.coeFnLinearMap k :
     DirectSum ι (fun i => (F i).obj t) →ₗ[k] ∀ i, (F i).obj t)
   exact DFunLike.coe_injective
 
-/-- Under finite activity, every product vector has finite support.-/
+/-- Under finite activity, every product vector has finite support.
+@isnad1 id=surjecti.1h4v.s9.7ffbc18ec880 from=translated src=- shape=23f1dfae vocab=b68f238e
+-/
 theorem toProduct_surjective (F : ι → PModule.{u,0,u} k ℝ) (t : ℝ)
     (h : Set.Finite {i | Nontrivial ((F i).obj t)}) :
     Function.Surjective (((toProduct F).app t).hom) := by
@@ -181,7 +195,9 @@ noncomputable def productIso (F : ι → PModule.{u,0,u} k ℝ)
       ⟨toProduct_injective F t, toProduct_surjective F t (h t)⟩).toModuleIso)
     (fun f => (toProduct F).naturality f)
 
-/-- The natural isomorphism uses the canonical comparison as its forward map.-/
+/-- The natural isomorphism uses the canonical comparison as its forward map.
+@isnad1 id=eq.1h3v.s7.49f98b43c06e from=translated src=- shape=902fc03e vocab=b7615f03
+-/
 @[simp] theorem productIso_hom (F : ι → PModule.{u,0,u} k ℝ)
     (h : ∀ t, Set.Finite {i | Nontrivial ((F i).obj t)}) :
     (productIso F h).hom = toProduct F := rfl
@@ -194,7 +210,9 @@ noncomputable def finiteProductIso [Finite ι]
   productIso F (fun _ => Set.toFinite _)
 
 /-- Finite-dimensional algebraic sums have only finitely many nonzero summands.
-This imposes no finiteness or countability condition on the occurrence type.-/
+This imposes no finiteness or countability condition on the occurrence type.
+@isnad1 id=finite.0h4v.s7.e870d3ce8381 from=translated src=- shape=568ec481 vocab=1bcec0f4
+-/
 theorem finite_nontrivial_of_finiteDimensional (F : ι → PModule.{u,0,u} k ℝ) (t : ℝ)
     [FiniteDimensional k ((familyModule F).obj t)] :
     Set.Finite {i | Nontrivial ((F i).obj t)} := by
@@ -238,7 +256,9 @@ theorem finite_nontrivial_of_finiteDimensional (F : ι → PModule.{u,0,u} k ℝ
   exact Set.toFinite A
 
 /-- A pointwise finite-dimensional module represented by an algebraic sum has
-finite activity at each parameter; local finiteness is an output.-/
+finite activity at each parameter; local finiteness is an output.
+@isnad1 id=finite.1h6v.s7.ce5f2b4b7e18 from=translated src=- shape=710fe76a vocab=cdd2195d
+-/
 theorem finite_nontrivial_of_iso {M : PModule.{u,0,u} k ℝ}
     (F : ι → PModule.{u,0,u} k ℝ) (e : M ≅ familyModule F)
     (hM : ∀ t, FiniteDimensional k (M.obj t)) (t : ℝ) :
@@ -257,7 +277,9 @@ noncomputable def productIsoOfRepresentation {M : PModule.{u,0,u} k ℝ}
   productIso F (finite_nontrivial_of_iso F e hM)
 
 /-- Only finitely many occurrences of a locally finite family meet a finite
-observation list. No global finiteness of the family is needed.-/
+observation list. No global finiteness of the family is needed.
+@isnad1 id=finite.1h5v.s6.e5c8debe0512 from=translated src=- shape=c1305481 vocab=f072576e
+-/
 theorem finite_observed_nontrivial (F : ι → PModule.{u,0,u} k ℝ)
     (h : ∀ t, Set.Finite {i | Nontrivial ((F i).obj t)})
     {N : ℕ} (c : Fin N → ℝ) :
@@ -271,7 +293,9 @@ theorem finite_observed_nontrivial (F : ι → PModule.{u,0,u} k ℝ)
 
 /-- A finite observation list detects only finitely many summands in a pointwise
 finite-dimensional algebraic-sum representation. The occurrence type itself can
-remain infinite or uncountable.-/
+remain infinite or uncountable.
+@isnad1 id=finite.1h7v.s7.625dc8bc3899 from=translated src=- shape=6839b23a vocab=7ec57441
+-/
 theorem finite_observed_nontrivial_of_iso {M : PModule.{u,0,u} k ℝ}
     (F : ι → PModule.{u,0,u} k ℝ) (e : M ≅ familyModule F)
     (hM : ∀ t, FiniteDimensional k (M.obj t))

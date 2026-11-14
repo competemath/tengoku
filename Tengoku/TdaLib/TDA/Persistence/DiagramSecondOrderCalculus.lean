@@ -22,7 +22,9 @@ def C2ThroughAllRepresentatives (V : Diagram ℝ → ℝ) (D : Diagram ℝ) : Pr
     ∃ W : Set (DiagramCoordinates m n), IsOpen W ∧ z ∈ W ∧
       ContDiffOn ℝ 2 (V ∘ orderedQ m n) W
 
-/-- Second-order all-presentations regularity implies the existing first-order condition.-/
+/-- Second-order all-presentations regularity implies the existing first-order condition.
+@isnad1 id=c1throug.1h2v.s4.53cd45a288bb from=translated src=- shape=d1045ded vocab=0857f6cb
+-/
 theorem C2ThroughAllRepresentatives.c1 {V : Diagram ℝ → ℝ} {D : Diagram ℝ}
     (hV : C2ThroughAllRepresentatives V D) : C1ThroughAllRepresentatives V D := by
   intro m n z hz
@@ -51,7 +53,9 @@ noncomputable def secondDerivativeChain (g : F → G) (f : E → F) (x : E) :
     (ContinuousLinearMap.compL ℝ E F G (fderiv ℝ g (f x))).comp
       (fderiv ℝ (fderiv ℝ f) x)
 
-/-- Evaluation of the bilinear chain expression displays both chain-rule terms.-/
+/-- Evaluation of the bilinear chain expression displays both chain-rule terms.
+@isnad1 id=eq.0h8v.s12.801d3afe2708 from=translated src=- shape=da36329a vocab=e51289e9
+-/
 theorem secondDerivativeChain_apply (g : F → G) (f : E → F) (x h k : E) :
     secondDerivativeChain g f x h k =
       fderiv ℝ (fderiv ℝ g) (f x) (fderiv ℝ f x h) (fderiv ℝ f x k) +
@@ -59,7 +63,9 @@ theorem secondDerivativeChain_apply (g : F → G) (f : E → F) (x h k : E) :
   rfl
 
 /-- Differentiating the derivative of a `C²` composition gives the full chain expression.
-This establishes existence, and hence cannot hold merely by a default `fderiv` value.-/
+This establishes existence, and hence cannot hold merely by a default `fderiv` value.
+@isnad1 id=hasfderi.2h6v.s8.9c15338d653a from=translated src=- shape=51a73977 vocab=61b99d65
+-/
 theorem secondDerivativeChain_hasFDerivAt (g : F → G) (f : E → F) (x : E)
     (hg : ContDiffAt ℝ 2 g (f x)) (hf : ContDiffAt ℝ 2 f x) :
     HasFDerivAt (fderiv ℝ (g ∘ f)) (secondDerivativeChain g f x) x := by
@@ -78,14 +84,18 @@ theorem secondDerivativeChain_hasFDerivAt (g : F → G) (f : E → F) (x : E)
       (hfy.differentiableAt (by norm_num))
   simpa only [secondDerivativeChain, Function.comp_apply, add_comm] using hc.congr_of_eventuallyEq heq
 
-/-- Equality with the nested derivative follows from the genuine derivative theorem.-/
+/-- Equality with the nested derivative follows from the genuine derivative theorem.
+@isnad1 id=eq.2h6v.s10.515591df7c2f from=translated src=- shape=2c24490c vocab=b8635f4a
+-/
 theorem secondDerivativeChain_fderiv (g : F → G) (f : E → F) (x : E)
     (hg : ContDiffAt ℝ 2 g (f x)) (hf : ContDiffAt ℝ 2 f x) :
     fderiv ℝ (fderiv ℝ (g ∘ f)) x = secondDerivativeChain g f x :=
   (secondDerivativeChain_hasFDerivAt g f x hg hf).fderiv
 
 /-- Postcomposition by a fixed continuous linear selection differentiates twice without
-an additional term. This applies in particular to fixed face-coordinate selection.-/
+an additional term. This applies in particular to fixed face-coordinate selection.
+@isnad1 id=eq.1h6v.s13.b6969b772efe from=translated src=- shape=e53a19c1 vocab=ba6fe880
+-/
 theorem secondDerivative_linear_postcomp (R : F →L[ℝ] G) (g : E → F) (x : E)
     (hg : ContDiffAt ℝ 2 g x) :
     fderiv ℝ (fderiv ℝ (fun y => R (g y))) x =
@@ -99,7 +109,9 @@ theorem secondDerivative_linear_postcomp (R : F →L[ℝ] G) (g : E → F) (x : 
 end Chain
 
 /-- A scalar loss pulled back through a `C²` local lift is `C²` on an open
-neighborhood contained in the original carrier.-/
+neighborhood contained in the original carrier.
+@isnad1 id=ex.2h7v.s7.9d197cef8658 from=translated src=- shape=9b1784d9 vocab=58b109f5
+-/
 theorem localLift_scalar_c2 {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (B : E → Diagram ℝ) (V : Diagram ℝ → ℝ) (m n : ℕ)
     (L : LocalC2DiagramLift B m n) (x : E) (hx : x ∈ L.carrier)
@@ -120,7 +132,9 @@ theorem localLift_scalar_c2 {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ 
   rw [L.factorization y hy.1]
 
 /-- The derivative map of the scalar loss has the full bilinear chain expression
-as its derivative.-/
+as its derivative.
+@isnad1 id=hasfderi.2h7v.s9.0a9abc0fb086 from=translated src=- shape=7ab698f2 vocab=130046da
+-/
 theorem localLift_scalar_hasFDerivAt_fderiv
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (B : E → Diagram ℝ) (V : Diagram ℝ → ℝ) (m n : ℕ)
@@ -138,7 +152,9 @@ theorem localLift_scalar_hasFDerivAt_fderiv
     rw [L.factorization y hy]
   exact (secondDerivativeChain_hasFDerivAt _ _ x hg hf).congr_of_eventuallyEq heq.fderiv
 
-/-- The second derivative is the bilinear chain expression of any `C²` local lift.-/
+/-- The second derivative is the bilinear chain expression of any `C²` local lift.
+@isnad1 id=eq.2h7v.s10.e7a09b7e05e1 from=translated src=- shape=852a52a3 vocab=369204d2
+-/
 theorem localLift_scalar_second_fderiv
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (B : E → Diagram ℝ) (V : Diagram ℝ → ℝ) (m n : ℕ)
@@ -148,7 +164,9 @@ theorem localLift_scalar_second_fderiv
       secondDerivativeChain (V ∘ orderedQ m n) L.coordinates x :=
   (localLift_scalar_hasFDerivAt_fderiv B V m n L x hx hV).fderiv
 
-/-- The scalar second derivative is symmetric under the stated `C²` assumptions.-/
+/-- The scalar second derivative is symmetric under the stated `C²` assumptions.
+@isnad1 id=eq.2h9v.s11.d58e91f9a9ba from=translated src=- shape=fb0bcc2e vocab=8ab2ef5d
+-/
 theorem localLift_scalar_second_fderiv_symmetric
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (B : E → Diagram ℝ) (V : Diagram ℝ → ℝ) (m n : ℕ)
@@ -159,7 +177,9 @@ theorem localLift_scalar_second_fderiv_symmetric
   obtain ⟨U, hU, hxU, _, hs⟩ := localLift_scalar_c2 B V m n L x hx hV
   exact (hs.contDiffAt (hU.mem_nhds hxU)).isSymmSndFDerivAt (by norm_num) h k
 
-/-- Symmetry also holds directly for the bilinear expression obtained from a lift.-/
+/-- Symmetry also holds directly for the bilinear expression obtained from a lift.
+@isnad1 id=eq.2h9v.s11.3008286d7adf from=translated src=- shape=41db7a2b vocab=54295ed4
+-/
 theorem localLift_scalar_secondDerivativeChain_symmetric
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (B : E → Diagram ℝ) (V : Diagram ℝ → ℝ) (m n : ℕ)
@@ -171,7 +191,9 @@ theorem localLift_scalar_secondDerivativeChain_symmetric
   exact localLift_scalar_second_fderiv_symmetric B V m n L x hx hV h k
 
 /-- Any two admissible local presentations give the same final bilinear form,
-even with different finite and essential coordinate counts.-/
+even with different finite and essential coordinate counts.
+@isnad1 id=eq.3h10v.s9.d1bfc0ca8221 from=translated src=- shape=6cd39752 vocab=90864bbd
+-/
 theorem localLift_scalar_second_derivative_independent
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (B : E → Diagram ℝ) (V : Diagram ℝ → ℝ)

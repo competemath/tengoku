@@ -13,7 +13,9 @@ namespace TDA.Filtration.SparseRips
 
 noncomputable section
 
-/-- A continuous max/min form of the three weight branches.-/
+/-- A continuous max/min form of the three weight branches.
+@isnad1 id=eq.3h3v.s7.7abef856bee0 from=translated src=- shape=ecb13814 vocab=87e8c004
+-/
 theorem finiteWeight_eq_max_min {η t : ℝ} (hη : 0 ≤ η) (hη' : η ≤ 1 / 2)
     (ht : 0 ≤ t) (r : ℝ) :
     finiteWeight η t r = max 0 (min ((r - (1 - 2 * η) * t) / 2) (η * r)) := by
@@ -35,7 +37,9 @@ theorem finiteWeight_eq_max_min {η t : ℝ} (hη : 0 ≤ η) (hη' : η ≤ 1 /
         (show 0 ≤ r - t by linarith)]
     rw [min_eq_right hmin, max_eq_right hpos]
 
-/-- Each finite-deletion weight varies continuously with scale.-/
+/-- Each finite-deletion weight varies continuously with scale.
+@isnad1 id=continuo.3h2v.s6.c80696d69908 from=translated src=- shape=e6988650 vocab=f496a376
+-/
 theorem continuous_finiteWeight {η t : ℝ} (hη : 0 ≤ η) (hη' : η ≤ 1 / 2)
     (ht : 0 ≤ t) : Continuous (finiteWeight η t) := by
   have hfun : Continuous (fun r : ℝ =>
@@ -45,7 +49,9 @@ theorem continuous_finiteWeight {η t : ℝ} (hη : 0 ≤ η) (hη' : η ≤ 1 /
   funext r
   exact finiteWeight_eq_max_min hη hη' ht r
 
-/-- The immortal vertex has zero weight; other vertices inherit continuity.-/
+/-- The immortal vertex has zero weight; other vertices inherit continuity.
+@isnad1 id=continuo.3h2v.s6.6875b46980da from=translated src=- shape=24418297 vocab=89fc9ebf
+-/
 theorem continuous_weight {η : ℝ} (hη : 0 ≤ η) (hη' : η ≤ 1 / 2)
     (time : Option ℝ) (ht : ∀ t ∈ time, 0 ≤ t) :
     Continuous (weight η time) := by
@@ -57,7 +63,9 @@ theorem continuous_weight {η : ℝ} (hη : 0 ≤ η) (hη' : η ≤ 1 / 2)
       change Continuous (finiteWeight η t)
       exact continuous_finiteWeight hη hη' (ht t (by simp))
 
-/-- Relaxed pairwise dissimilarity is continuous in the scale.-/
+/-- Relaxed pairwise dissimilarity is continuous in the scale.
+@isnad1 id=continuo.3h5v.s6.9d5d89c8845b from=translated src=- shape=e1deaba8 vocab=346291e4
+-/
 theorem continuous_relaxedDistance {V : Type*} [MetricSpace V] {η : ℝ}
     (hη : 0 ≤ η) (hη' : η ≤ 1 / 2) (time : V → Option ℝ)
     (ht : ∀ x t, t ∈ time x → 0 ≤ t) (x y : V) :

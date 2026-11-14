@@ -59,7 +59,9 @@ private theorem essentialPart_essentialEmbed {α : Type u} [LinearOrder α]
   rw [essentialPart, Multiset.filterMap_map]
   simpa only [essentialEmbed, Function.comp_def] using (Multiset.filterMap_some s)
 
-/-- Recombine the finite and essential parts without losing occurrences.-/
+/-- Recombine the finite and essential parts without losing occurrences.
+@isnad1 id=eq.0h2v.s6.01aad2fafcf5 from=translated src=- shape=d4d61886 vocab=298ed023
+-/
 theorem parts_reconstruct {α : Type u} [LinearOrder α]
     (s : Multiset (α × WithTop α)) :
     (finitePart s).map (fun p => (p.1, (p.2 : WithTop α))) +
@@ -77,6 +79,9 @@ theorem parts_reconstruct {α : Type u} [LinearOrder α]
       simpa [finitePart, essentialPart, finiteEmbed, essentialEmbed,
         Multiset.map_cons, add_assoc, add_comm, add_left_comm] using ih
 
+/--
+@isnad1 id=eq.0h4v.s6.78f614c7d157 from=translated src=- shape=a287273f vocab=73930426
+-/
 theorem finitePart_orderedQ {α : Type u} [LinearOrder α] (m n : ℕ)
     (z : (Fin m → α × α) × (Fin n → α)) :
     finitePart (orderedQ m n z).points =
@@ -86,6 +91,9 @@ theorem finitePart_orderedQ {α : Type u} [LinearOrder α] (m n : ℕ)
     (Multiset.ofList (List.ofFn z.2)).map essentialEmbed) = _
   rw [finitePart_add, finitePart_finiteEmbed, finitePart_essentialEmbed, add_zero]
 
+/--
+@isnad1 id=eq.0h4v.s5.f0672edefeb9 from=translated src=- shape=02c5a33e vocab=096da2d6
+-/
 theorem essentialPart_orderedQ {α : Type u} [LinearOrder α] (m n : ℕ)
     (z : (Fin m → α × α) × (Fin n → α)) :
     essentialPart (orderedQ m n z).points =
@@ -112,6 +120,9 @@ private theorem finitePart_filter {α : Type u} [LinearOrder α] (D : Diagram α
     (finitePart D.points).filter (fun p => p.1 ≠ p.2) = finitePart D.points := by
   exact Multiset.filter_eq_self.mpr (finitePart_offDiagonal D)
 
+/--
+@isnad1 id=eq.0h7v.s7.03f80a5364ae from=translated src=- shape=cf4674b7 vocab=feb9b8f1
+-/
 theorem orderedQ_append {α : Type u} [LinearOrder α] (m n m' n' : ℕ)
     (z : (Fin m → α × α) × (Fin n → α))
     (w : (Fin m' → α × α) × (Fin n' → α)) :
@@ -122,6 +133,9 @@ theorem orderedQ_append {α : Type u} [LinearOrder α] (m n m' n' : ℕ)
     Multiset.filter_add, Multiset.map_add]
   ac_rfl
 
+/--
+@isnad1 id=iff.0h7v.s7.8119307e51e5 from=translated src=- shape=f8130896 vocab=a74a082a
+-/
 theorem orderedQ_eq_iff {α : Type u} [LinearOrder α] (m n m' n' : ℕ)
     (z : (Fin m → α × α) × (Fin n → α))
     (w : (Fin m' → α × α) × (Fin n' → α)) :
@@ -158,6 +172,9 @@ private theorem essentialPart_enumerate {α : Type u} [LinearOrder α] (D : Diag
   refine ⟨l.length, l.get, ?_⟩
   rw [List.ofFn_get, Multiset.coe_toList]
 
+/--
+@isnad1 id=ex.0h2v.s5.0a5613667862 from=translated src=- shape=4a2f86a4 vocab=d3115c54
+-/
 theorem orderedQ_surjective {α : Type u} [LinearOrder α] (D : Diagram α) :
     ∃ (m n : ℕ) (z : (Fin m → α × α) × (Fin n → α)),
       orderedQ m n z = D := by
@@ -186,6 +203,9 @@ private theorem ofFn_removeNth {β : Type*} {m : ℕ}
   rw [← Multiset.singleton_add]
   exact add_comm _ _
 
+/--
+@isnad1 id=eq.1h6v.s7.2bbc134f1660 from=translated src=- shape=334746a7 vocab=4015015f
+-/
 theorem orderedQ_zeroLength {α : Type u} [LinearOrder α] (m n : ℕ)
     (x : Fin (m + 1) → α × α) (y : Fin n → α)
     (k : Fin (m + 1)) (hk : (x k).1 = (x k).2) :

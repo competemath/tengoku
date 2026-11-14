@@ -70,7 +70,9 @@ private theorem previous_image_finrank (M : PModule.{u,0,u} k (Fin s))
   rw [← Submodule.finrank_map_subtype_eq, Submodule.map_comap_subtype,
     inf_of_le_right (previous_image_le M b c hb hbc hc)]
 
-/-- For a positive birth, the survival count is the dimension of the image quotient. The preceding image lies inside the current one by composition.-/
+/-- For a positive birth, the survival count is the dimension of the image quotient. The preceding image lies inside the current one by composition.
+@isnad1 id=eq.3h5v.s13.cc8789bf5d93 from=translated src=- shape=e4cd284a vocab=9c1e4ad4
+-/
 theorem birthSuffixCount_eq_finrank (M : PModule.{u,0,u} k (Fin s))
     [∀ i, FiniteDimensional k (M.obj i)] (b c : ℕ)
     (hb : 0 < b) (hbc : b ≤ c) (hc : c < s) :
@@ -90,7 +92,9 @@ theorem birthSuffixCount_eq_finrank (M : PModule.{u,0,u} k (Fin s))
   change (rankBarcode M).countP (fun I => I.birth ≤ b - 1 ∧ c < I.death) = _ at hprevious
   omega
 
-/-- Birth zero uses the first image; it never selects a preceding stage.-/
+/-- Birth zero uses the first image; it never selects a preceding stage.
+@isnad1 id=eq.1h4v.s7.e6892e166936 from=translated src=- shape=700e78f2 vocab=f814f555
+-/
 theorem birthSuffixCount_zero (M : PModule.{u,0,u} k (Fin s))
     [∀ i, FiniteDimensional k (M.obj i)] (c : ℕ) (hc : c < s) :
     birthSuffixCount (rankBarcode M) 0 c =
@@ -154,7 +158,9 @@ private theorem birthQuotientMap_surjective {M N : PModule.{u,0,u} k (Fin s)} (p
     exact ⟨Submodule.Quotient.mk x, rfl⟩
 
 /-- A componentwise surjection decreases the same-birth survival counts.
-The proof compares image quotient surjections, with birth zero handled separately.-/
+The proof compares image quotient surjections, with birth zero handled separately.
+@isnad1 id=le.3h7v.s10.54c5d7abb9cf from=translated src=- shape=4a7d2404 vocab=ec502c79
+-/
 theorem birthSuffixCount_le_of_surjective {M N : PModule.{u,0,u} k (Fin s)}
     [∀ i, FiniteDimensional k (M.obj i)] [∀ i, FiniteDimensional k (N.obj i)]
     (p : M ⟶ N) (hp : ∀ i, Function.Surjective (p.app i).hom)

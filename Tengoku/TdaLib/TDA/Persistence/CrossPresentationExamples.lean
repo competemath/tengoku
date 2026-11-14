@@ -42,11 +42,17 @@ noncomputable def delayedDeath : CrossData (R := ℤ) (n := 1) 1 where
     (fun _ => deathVector)
   r₂ := 0
 
+/--
+@isnad1 id=and.0h0v.s6.ef95f4156c5e from=translated src=- shape=a9a37909 vocab=d3a3cd58
+-/
 theorem delayedDeath_finite :
     delayedDeath.leftPresentation.IsFinite ∧ delayedDeath.rightPresentation.IsFinite :=
   delayedDeath.finite ⟨inferInstanceAs (Finite Unit), inferInstanceAs (Finite Empty),
     inferInstanceAs (Finite Unit), inferInstanceAs (Finite Empty)⟩
 
+/--
+@isnad1 id=ne.0h0v.s10.4c6e7c9801c4 from=translated src=- shape=d2f12b13 vocab=914fa258
+-/
 theorem delayedDeath_relation_ne_zero : delayedDeath.r₁ ≠ 0 := by
   intro h
   have hv := congrArg (fun f : module (R := ℤ) (oneGrade 2) ⟶
@@ -61,17 +67,24 @@ theorem delayedDeath_relation_ne_zero : delayedDeath.r₁ ≠ 0 := by
   rw [Finsupp.single_eq_same] at hv
   exact Int.one_ne_zero hv
 
+/--
+@isnad1 id=nonempty.0h0v.s6.3a9ffcc57b7a from=translated src=- shape=f50c9747 vocab=f3534ec7
+-/
 theorem delayedDeath_interleaved :
     Nonempty (CoordinateInterleaving 1 delayedDeath.leftPresentation.presented
       delayedDeath.rightPresentation.presented) :=
   ⟨delayedDeath.quotientInterleaving⟩
 
-/-- Zero-parameter descent works without changing the supplied relation families.-/
+/-- Zero-parameter descent works without changing the supplied relation families.
+@isnad1 id=nonempty.0h1v.s7.0ab80515e093 from=translated src=- shape=818bc01a vocab=1dc3ceaf
+-/
 theorem zero_parameter (C : CrossData (R := ℤ) (n := 1) 0) :
     Nonempty (C.leftPresentation.presented ≅ C.rightPresentation.presented) :=
   ⟨C.zeroIso⟩
 
-/-- The construction also includes dimension zero and the zero ring.-/
+/-- The construction also includes dimension zero and the zero ring.
+@isnad1 id=nonempty.0h2v.s7.7ae4e2dc492a from=translated src=- shape=ec9e1ed9 vocab=89356fd0
+-/
 theorem zero_ring_zero_dimension (ε : ℝ≥0)
     (C : CrossData (R := ZMod 1) (n := 0) ε) :
     Nonempty (CoordinateInterleaving ε C.leftPresentation.presented

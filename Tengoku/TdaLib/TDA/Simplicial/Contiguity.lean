@@ -28,14 +28,18 @@ def Contiguous {K : PreAbstractSimplicialComplex I}
     {L : PreAbstractSimplicialComplex J} (a b : VertexMap K L) : Prop :=
   ∀ s, s ∈ K → s.image a ∪ s.image b ∈ L
 
-/-- Every simplicial vertex map is contiguous to itself.-/
+/-- Every simplicial vertex map is contiguous to itself.
+@isnad1 id=contiguo.0h5v.s4.af55ec3a8e24 from=translated src=- shape=ae37842b vocab=903c9e63
+-/
 theorem contiguous_refl {K : PreAbstractSimplicialComplex I}
     {L : PreAbstractSimplicialComplex J} (a : VertexMap K L) :
     Contiguous a a := by
   intro s hs
   simpa using a.map_face s hs
 
-/-- Contiguity is symmetric.-/
+/-- Contiguity is symmetric.
+@isnad1 id=contiguo.1h6v.s5.d527b2c5dc86 from=translated src=- shape=7d81b514 vocab=903c9e63
+-/
 theorem Contiguous.symm {K : PreAbstractSimplicialComplex I}
     {L : PreAbstractSimplicialComplex J} {a b : VertexMap K L}
     (h : Contiguous a b) : Contiguous b a := by
@@ -43,7 +47,9 @@ theorem Contiguous.symm {K : PreAbstractSimplicialComplex I}
   simpa [Finset.union_comm] using h s hs
 
 /-- Precomposing two contiguous maps by the same simplicial map preserves
-contiguity.-/
+contiguity.
+@isnad1 id=contiguo.1h9v.s6.8845f4a75823 from=translated src=- shape=56630384 vocab=55809e8d
+-/
 theorem Contiguous.precomp {H : PreAbstractSimplicialComplex P}
     {K : PreAbstractSimplicialComplex I}
     {L : PreAbstractSimplicialComplex J} {a b : VertexMap K L}
@@ -55,7 +61,9 @@ theorem Contiguous.precomp {H : PreAbstractSimplicialComplex P}
     h (s.image e) (e.map_face s hs)
 
 /-- Postcomposing two contiguous maps by the same simplicial map preserves
-contiguity.-/
+contiguity.
+@isnad1 id=contiguo.1h9v.s6.1097c6152337 from=translated src=- shape=8416abfd vocab=55809e8d
+-/
 theorem Contiguous.postcomp {K : PreAbstractSimplicialComplex I}
     {L : PreAbstractSimplicialComplex J}
     {M : PreAbstractSimplicialComplex Q} {a b : VertexMap K L}

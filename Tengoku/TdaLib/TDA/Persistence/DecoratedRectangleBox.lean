@@ -25,7 +25,9 @@ def rectangleBox (a b c d : ℝ) (hab : a < b) (hcd : c < d) : Box (Fin 2) where
 /-- Select the minus decoration at each ordinary coordinate.-/
 noncomputable def minusCutPair (x : Fin 2 → ℝ) : Cut ℝ × Cut ℝ := (minusCut (x 0), minusCut (x 1))
 
-/-- The preimage of a decorated rectangle is the actual ordinary half-open box.-/
+/-- The preimage of a decorated rectangle is the actual ordinary half-open box.
+@isnad1 id=eq.2h4v.s6.2636d1be7bed from=translated src=- shape=e565479e vocab=f9f02f7b
+-/
 theorem preimage_rectangleCell (a b c d : ℝ) (hab : a < b) (hcd : c < d) :
     minusCutPair ⁻¹' rectangleCell a b c d = (rectangleBox a b c d hab hcd : Set (Fin 2 → ℝ)) := by
   ext x
@@ -36,27 +38,35 @@ theorem preimage_rectangleCell (a b c d : ℝ) (hab : a < b) (hcd : c < d) :
 def boxRectangleCell (I : Box (Fin 2)) : Set (Cut ℝ × Cut ℝ) :=
   rectangleCell (I.lower 0) (I.upper 0) (I.lower 1) (I.upper 1)
 
-/-- Box recovery from decorated-cell preimages needs no classification of arbitrary cuts.-/
+/-- Box recovery from decorated-cell preimages needs no classification of arbitrary cuts.
+@isnad1 id=eq.0h1v.s5.c9608eb7d31c from=translated src=- shape=23132bb3 vocab=99282bef
+-/
 theorem preimage_boxRectangleCell (I : Box (Fin 2)) :
     minusCutPair ⁻¹' boxRectangleCell I = (I : Set (Fin 2 → ℝ)) := by
   ext x
   simp [boxRectangleCell, rectangleCell, cutCell, minusCutPair, minusCut, Box.mem_def,
     Fin.forall_fin_two]
 
-/-- Distinct ordinary boxes determine distinct decorated rectangles.-/
+/-- Distinct ordinary boxes determine distinct decorated rectangles.
+@isnad1 id=injectiv.0h0v.s4.6eab904f03ec from=translated src=- shape=070003c8 vocab=63d063a7
+-/
 theorem boxRectangleCell_injective : Function.Injective boxRectangleCell := by
   intro I J h
   apply Box.injective_coe
   rw [← preimage_boxRectangleCell I, ← preimage_boxRectangleCell J, h]
 
-/-- Every box rectangle is nonempty.-/
+/-- Every box rectangle is nonempty.
+@isnad1 id=nonempty.0h1v.s4.f1308bb4c875 from=translated src=- shape=f6d3c32d vocab=651ff3e2
+-/
 theorem boxRectangleCell_nonempty (I : Box (Fin 2)) : (boxRectangleCell I).Nonempty :=
   ⟨minusCutPair I.upper, by
     have h : I.upper ∈ (I : Set (Fin 2 → ℝ)) := I.upper_mem
     rw [← preimage_boxRectangleCell I] at h
     exact h⟩
 
-/-- Every nonempty separated rectangle has a unique ordinary box representing its endpoints.-/
+/-- Every nonempty separated rectangle has a unique ordinary box representing its endpoints.
+@isnad1 id=ex.2h1v.s7.9866a179ea90 from=translated src=- shape=98472e9a vocab=fab3c4a8
+-/
 theorem exists_boxRectangleCell {U : Set (Cut ℝ × Cut ℝ)}
     (hU : U ∈ separatedRectangleCells) (hne : U ≠ ∅) :
     ∃ I : Box (Fin 2), I.upper 0 < I.lower 1 ∧ U = boxRectangleCell I := by

@@ -19,6 +19,9 @@ def finitePairCost (p q : ℝ × ℝ) : ℝ≥0∞ :=
 /-- The cost of matching two essential births.-/
 def essentialPairCost (b c : ℝ) : ℝ≥0∞ := ENNReal.ofReal |b - c|
 
+/--
+@isnad1 id=le.0h3v.s6.b8473b883a38 from=translated src=- shape=09320ab9 vocab=1ab02c5a
+-/
 theorem diagonalCost_le_max (b d a : ℝ) :
     |d - b| / 2 ≤ max |b - a| |d - a| := by
   have h := abs_sub_le d a b
@@ -27,6 +30,9 @@ theorem diagonalCost_le_max (b d a : ℝ) :
   have h₂ : |d - a| ≤ max |b - a| |d - a| := le_max_right _ _
   linarith
 
+/--
+@isnad1 id=eq.0h2v.s6.7dedc78f20e8 from=translated src=- shape=b10b1e36 vocab=49325234
+-/
 theorem diagonalCost_midpoint (b d : ℝ) :
     |d - b| / 2 = max |b - (b + d) / 2| |d - (b + d) / 2| := by
   have h₁ : b - (b + d) / 2 = (b - d) / 2 := by ring
@@ -46,6 +52,9 @@ namespace OccurrenceMatching
 variable {F₁ F₂ E₁ E₂ : Type*}
 variable [Fintype F₁] [Fintype F₂] [Fintype E₁] [Fintype E₂]
 
+/--
+@isnad1 id=eq.2h6v.s6.bded330d0b63 from=translated src=- shape=6387bc0c vocab=0c42941c
+-/
 @[ext] theorem ext {M N : OccurrenceMatching F₁ F₂ E₁ E₂}
     (hf : M.finite = N.finite) (he : M.essential = N.essential) : M = N := by
   cases M
@@ -99,7 +108,9 @@ noncomputable def cost (M : OccurrenceMatching F₁ F₂ E₁ E₂)
       if ∃ i, M.finite i = some j then 0 else diagonalCost (y j))
       ((Finset.univ : Finset E₁).sup fun k => essentialPairCost (b k) (c (M.essential k))))
 
-/-- Reindexing all four occurrence sets preserves the matching cost.-/
+/-- Reindexing all four occurrence sets preserves the matching cost.
+@isnad1 id=eq.0h17v.s7.a6705bf80437 from=translated src=- shape=816c5eb6 vocab=2da64acf
+-/
 theorem cost_relabel {F₁' F₂' E₁' E₂' : Type*}
     [Fintype F₁'] [Fintype F₂'] [Fintype E₁'] [Fintype E₂']
     (u : F₁' ≃ F₁) (v : F₂' ≃ F₂)
@@ -214,6 +225,9 @@ noncomputable def fintypeOccurrenceEquiv {A B : Type*} [Fintype A]
       rfl
   }).trans ((Finset.univ : Finset A).val.mapEquiv f)
 
+/--
+@isnad1 id=eq.0h4v.s6.e519502fe03d from=translated src=- shape=39036d1a vocab=a8e62c4c
+-/
 @[simp] theorem fintypeOccurrenceEquiv_value {A B : Type*}
     [Fintype A] [DecidableEq A] [DecidableEq B]
     (f : A → B) (a : A) :
@@ -250,6 +264,9 @@ noncomputable def presentationEquiv {A C B : Type*}
     _ = (ef a : B) := occurrenceCast_value h (ef a)
     _ = f a := hf
 
+/--
+@isnad1 id=iff.0h4v.s5.78195f9b02f5 from=translated src=- shape=1a81a554 vocab=501a974a
+-/
 theorem occurrenceMatching_nonempty_iff {F₁ F₂ E₁ E₂ : Type*}
     [Fintype F₁] [Fintype F₂] [Fintype E₁] [Fintype E₂] :
     Nonempty (OccurrenceMatching F₁ F₂ E₁ E₂) ↔ Fintype.card E₁ = Fintype.card E₂ := by
@@ -268,6 +285,9 @@ noncomputable def presentationBottleneck {F₁ F₂ E₁ E₂ : Type*}
     (b : E₁ → ℝ) (c : E₂ → ℝ) : ℝ≥0∞ :=
   ⨅ M : OccurrenceMatching F₁ F₂ E₁ E₂, M.cost x y b c
 
+/--
+@isnad1 id=eq.0h16v.s7.096363695f85 from=translated src=- shape=1ddf1894 vocab=3b14538d
+-/
 theorem presentationBottleneck_relabel {F₁ F₂ E₁ E₂ F₁' F₂' E₁' E₂' : Type*}
     [Fintype F₁] [Fintype F₂] [Fintype E₁] [Fintype E₂]
     [Fintype F₁'] [Fintype F₂'] [Fintype E₁'] [Fintype E₂']
@@ -290,6 +310,9 @@ theorem presentationBottleneck_relabel {F₁ F₂ E₁ E₂ F₁' F₂' E₁' E�
       intro M
       exact OccurrenceMatching.cost_relabel u v s t M x y b c
 
+/--
+@isnad1 id=eq.4h16v.s7.0e1b677e8bf2 from=translated src=- shape=b2f84e42 vocab=6d102ee6
+-/
 theorem presentationBottleneck_eq_of_multiset_eq
     {F₁ F₂ E₁ E₂ F₁' F₂' E₁' E₂' : Type*}
     [Fintype F₁] [Fintype F₂] [Fintype E₁] [Fintype E₂]
@@ -341,6 +364,9 @@ noncomputable def bottleneck (D E : Diagram ℝ) : ℝ≥0∞ :=
     (fun b : D.essentialOccurrences => b.1)
     (fun b : E.essentialOccurrences => b.1)
 
+/--
+@isnad1 id=eq.4h10v.s7.91e06ae7a371 from=translated src=- shape=4bb93d92 vocab=415d2fc4
+-/
 theorem bottleneck_eq_presentation (D E : Diagram ℝ)
     {F₁ F₂ E₁ E₂ : Type*}
     [Fintype F₁] [Fintype F₂] [Fintype E₁] [Fintype E₂]
@@ -364,6 +390,9 @@ theorem bottleneck_eq_presentation (D E : Diagram ℝ)
   · exact (Multiset.map_univ_coe _).trans hb.symm
   · exact (Multiset.map_univ_coe _).trans hc.symm
 
+/--
+@isnad1 id=le.0h3v.s7.f80774457357 from=translated src=- shape=8dae740e vocab=40ebb13e
+-/
 theorem bottleneck_le_matching (D E : Diagram ℝ)
     (M : OccurrenceMatching D.finiteOccurrences E.finiteOccurrences
       D.essentialOccurrences E.essentialOccurrences) :
@@ -371,7 +400,9 @@ theorem bottleneck_le_matching (D E : Diagram ℝ)
       M.cost (fun p => p.1) (fun p => p.1) (fun b => b.1) (fun b => b.1) := by
   exact iInf_le _ M
 
-/-- Every admissible matching gives an upper bound.-/
+/-- Every admissible matching gives an upper bound.
+@isnad1 id=le.0h9v.s6.670430a14587 from=translated src=- shape=4c1964a2 vocab=e213dc9f
+-/
 theorem presentationBottleneck_le_cost {F₁ F₂ E₁ E₂ : Type*}
     [Fintype F₁] [Fintype F₂] [Fintype E₁] [Fintype E₂]
     (x : F₁ → ℝ × ℝ) (y : F₂ → ℝ × ℝ)
@@ -380,6 +411,9 @@ theorem presentationBottleneck_le_cost {F₁ F₂ E₁ E₂ : Type*}
     presentationBottleneck x y b c ≤ M.cost x y b c := by
   exact iInf_le _ M
 
+/--
+@isnad1 id=lt.0h9v.s6.64e2fb9092f4 from=translated src=- shape=97489f60 vocab=fc60ec10
+-/
 theorem occurrenceMatching_cost_lt_top {F₁ F₂ E₁ E₂ : Type*}
     [Fintype F₁] [Fintype F₂] [Fintype E₁] [Fintype E₂]
     (x : F₁ → ℝ × ℝ) (y : F₂ → ℝ × ℝ)
@@ -398,6 +432,9 @@ theorem occurrenceMatching_cost_lt_top {F₁ F₂ E₁ E₂ : Type*}
   · intro k
     simp [essentialPairCost]
 
+/--
+@isnad1 id=iff.0h8v.s6.4ce9cdbac976 from=translated src=- shape=76d8d2fc vocab=dafd136b
+-/
 theorem presentationBottleneck_optimal_iff {F₁ F₂ E₁ E₂ : Type*}
     [Fintype F₁] [Fintype F₂] [Fintype E₁] [Fintype E₂]
     (x : F₁ → ℝ × ℝ) (y : F₂ → ℝ × ℝ)
@@ -414,6 +451,9 @@ theorem presentationBottleneck_optimal_iff {F₁ F₂ E₁ E₂ : Type*}
       occurrenceMatching_nonempty_iff.mpr h
     exact exists_eq_ciInf_of_finite
 
+/--
+@isnad1 id=iff.0h8v.s6.554653782c38 from=translated src=- shape=765e89ca vocab=9ec2f779
+-/
 theorem presentationBottleneck_lt_top_iff {F₁ F₂ E₁ E₂ : Type*}
     [Fintype F₁] [Fintype F₂] [Fintype E₁] [Fintype E₂]
     (x : F₁ → ℝ × ℝ) (y : F₂ → ℝ × ℝ)
@@ -432,6 +472,9 @@ theorem presentationBottleneck_lt_top_iff {F₁ F₂ E₁ E₂ : Type*}
     rw [← hm]
     exact occurrenceMatching_cost_lt_top x y b c M
 
+/--
+@isnad1 id=iff.0h2v.s5.2d9a456d6357 from=translated src=- shape=f0149447 vocab=869c20b2
+-/
 theorem bottleneck_lt_top_iff (D E : Diagram ℝ) :
     bottleneck D E < ⊤ ↔
       (essentialPart D.points).card = (essentialPart E.points).card := by
@@ -442,6 +485,9 @@ theorem bottleneck_lt_top_iff (D E : Diagram ℝ) :
       (fun b : D.essentialOccurrences => b.1)
       (fun b : E.essentialOccurrences => b.1))
 
+/--
+@isnad1 id=iff.0h2v.s7.57ca867bee12 from=translated src=- shape=4bdff0a9 vocab=d2a9d0ba
+-/
 theorem bottleneck_optimal_iff (D E : Diagram ℝ) :
     (∃ M : OccurrenceMatching D.finiteOccurrences E.finiteOccurrences
         D.essentialOccurrences E.essentialOccurrences,
@@ -455,6 +501,9 @@ theorem bottleneck_optimal_iff (D E : Diagram ℝ) :
       (fun b : D.essentialOccurrences => b.1)
       (fun b : E.essentialOccurrences => b.1))
 
+/--
+@isnad1 id=iff.0h2v.s5.8e1f6bdfb207 from=translated src=- shape=f0149447 vocab=98524a76
+-/
 theorem bottleneck_eq_top_iff (D E : Diagram ℝ) :
     bottleneck D E = ⊤ ↔
       (essentialPart D.points).card ≠ (essentialPart E.points).card := by
@@ -471,6 +520,9 @@ theorem bottleneck_eq_top_iff (D E : Diagram ℝ) :
 abbrev NonDiagonalIndices (m : ℕ) (x : Fin m → ℝ × ℝ) :=
   { i : Fin m // (x i).1 ≠ (x i).2 }
 
+/--
+@isnad1 id=eq.0h3v.s8.6f7eb7ed839f from=translated src=- shape=83c3c5fa vocab=6daef109
+-/
 theorem orderedQ_finite_occurrences (m n : ℕ)
     (z : (Fin m → ℝ × ℝ) × (Fin n → ℝ)) :
     (Finset.univ : Finset (NonDiagonalIndices m z.1)).val.map
@@ -492,6 +544,9 @@ theorem orderedQ_finite_occurrences (m n : ℕ)
       rw [← Finset.val_univ_fin, Multiset.filter_map]
       rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.d8f05d1e8f29 from=translated src=- shape=d428eb7e vocab=cc24e4d9
+-/
 theorem orderedQ_essential_occurrences (m n : ℕ)
     (z : (Fin m → ℝ × ℝ) × (Fin n → ℝ)) :
     (Finset.univ : Finset (Fin n)).val.map z.2 =
@@ -543,6 +598,9 @@ private theorem orderedQ_essential_difference_le_norm {m n : ℕ}
   have h₂ := norm_snd_le (z - w)
   simpa [Pi.sub_apply, Prod.snd_sub, Real.norm_eq_abs] using h₁.trans h₂
 
+/--
+@isnad1 id=le.0h4v.s9.b91c1e877928 from=translated src=- shape=3641749a vocab=f82475f3
+-/
 theorem orderedOccurrenceMatching_cost_le (m n : ℕ)
     (z w : (Fin m → ℝ × ℝ) × (Fin n → ℝ)) :
     (orderedOccurrenceMatching m n z w).cost
@@ -591,7 +649,9 @@ theorem orderedOccurrenceMatching_cost_le (m n : ℕ)
       exact orderedQ_essential_difference_le_norm z w k
 
 /-- The standard maximum norm on the ordered finite-pair and essential-birth
-coordinates bounds the bottleneck value, including zero-length coordinates.-/
+coordinates bounds the bottleneck value, including zero-length coordinates.
+@isnad1 id=le.0h4v.s7.7ace0306a926 from=translated src=- shape=ed80ea5b vocab=8e6425db
+-/
 theorem bottleneck_orderedQ_le_norm (m n : ℕ)
     (z w : (Fin m → ℝ × ℝ) × (Fin n → ℝ)) :
     bottleneck (orderedQ m n z) (orderedQ m n w) ≤
@@ -609,7 +669,9 @@ theorem bottleneck_orderedQ_le_norm (m n : ℕ)
       (orderedOccurrenceMatching_cost_le m n z w)
 
 /-- Ordered representatives may have different finite lengths or include arbitrary
-diagonal coordinates; equality of their Diagram values is enough.-/
+diagonal coordinates; equality of their Diagram values is enough.
+@isnad1 id=eq.2h12v.s6.9e5f808f7923 from=translated src=- shape=2e0952be vocab=d280ff66
+-/
 theorem bottleneck_orderedQ_eq_of_eq
     {m n m' n' k l k' l' : ℕ}
     {z : (Fin m → ℝ × ℝ) × (Fin n → ℝ)}
@@ -622,6 +684,9 @@ theorem bottleneck_orderedQ_eq_of_eq
       bottleneck (orderedQ m' n' z') (orderedQ k' l' w') := by
   rw [hz, hw]
 
+/--
+@isnad1 id=eq.0h1v.s6.d24ef848c2d3 from=translated src=- shape=f369a2b5 vocab=e5a2d043
+-/
 theorem presentationBottleneck_singleton_empty (p : ℝ × ℝ) :
     presentationBottleneck (fun _ : Fin 1 => p)
       (Fin.elim0 : Fin 0 → ℝ × ℝ)
@@ -639,6 +704,9 @@ theorem presentationBottleneck_singleton_empty (p : ℝ × ℝ) :
     occurrenceMatching_nonempty_iff.mpr (by simp)
   simp [presentationBottleneck, hc]
 
+/--
+@isnad1 id=eq.0h2v.s6.7e27f83936d9 from=translated src=- shape=52a000fe vocab=a263ebe2
+-/
 theorem presentationBottleneck_constant_empty {F : Type*}
     [Fintype F] [Nonempty F] (p : ℝ × ℝ) :
     presentationBottleneck (fun _ : F => p)
@@ -657,6 +725,9 @@ theorem presentationBottleneck_constant_empty {F : Type*}
     occurrenceMatching_nonempty_iff.mpr (by simp)
   simp [presentationBottleneck, hc]
 
+/--
+@isnad1 id=eq.0h2v.s6.c38f590f7074 from=translated src=- shape=70f62ddf vocab=0749204a
+-/
 theorem presentationBottleneck_finite_empty {F : Type*}
     [Fintype F] (x : F → ℝ × ℝ) :
     presentationBottleneck x (Fin.elim0 : Fin 0 → ℝ × ℝ)
@@ -676,6 +747,9 @@ theorem presentationBottleneck_finite_empty {F : Type*}
     occurrenceMatching_nonempty_iff.mpr (by simp)
   simp [presentationBottleneck, hc]
 
+/--
+@isnad1 id=eq.0h2v.s6.5597fcc537b4 from=translated src=- shape=585b442e vocab=5c18a779
+-/
 theorem presentationBottleneck_essential_singletons (b c : ℝ) :
     presentationBottleneck (Fin.elim0 : Fin 0 → ℝ × ℝ)
       (Fin.elim0 : Fin 0 → ℝ × ℝ)
@@ -689,6 +763,9 @@ theorem presentationBottleneck_essential_singletons (b c : ℝ) :
     occurrenceMatching_nonempty_iff.mpr (by simp)
   simp [presentationBottleneck, hc]
 
+/--
+@isnad1 id=eq.0h1v.s6.9c787b619d3f from=translated src=- shape=5079a031 vocab=e5a2d043
+-/
 theorem presentationBottleneck_two_equal_vs_one (p : ℝ × ℝ) :
     presentationBottleneck (fun _ : Fin 2 => p) (fun _ : Fin 1 => p)
       (Fin.elim0 : Fin 0 → ℝ) (Fin.elim0 : Fin 0 → ℝ) = diagonalCost p := by
@@ -733,7 +810,9 @@ theorem presentationBottleneck_two_equal_vs_one (p : ℝ × ℝ) :
         cases h : M.finite j <;> simp [h]
 
 /-- A finite-only diagram compared with the empty diagram has precisely the
-largest of its diagonal deletion costs.-/
+largest of its diagonal deletion costs.
+@isnad1 id=eq.1h1v.s6.95e255f7441c from=translated src=- shape=4481633c vocab=9c89bbe5
+-/
 theorem bottleneck_finite_only_empty (D : Diagram ℝ)
     (he : essentialPart D.points = 0) :
     bottleneck D (orderedQ 0 0

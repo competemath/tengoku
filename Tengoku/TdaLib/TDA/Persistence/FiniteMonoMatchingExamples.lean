@@ -85,7 +85,9 @@ private theorem first_injective (i : Fin 3) : Function.Injective (first.app i).h
 private theorem second_injective (i : Fin 3) : Function.Injective (second.app i).hom :=
   inclusion_injective middle early (by decide) rfl i
 
-/-- A genuine later-born submodule embeds into an earlier-born interval with the same death.-/
+/-- A genuine later-born submodule embeds into an earlier-born interval with the same death.
+@isnad1 id=ex.0h0v.s9.50b98727bc74 from=translated src=- shape=6b3ce766 vocab=2e145db1
+-/
 theorem unequal_birth_embedding :
     ∃ i : BarcodeOccurrence 3 (rankBarcode (intervalModule (k := ℚ) late)),
       (occurrence _ i).birth = 2 ∧
@@ -106,13 +108,17 @@ theorem unequal_birth_embedding :
   exact ⟨i, congrArg FiniteInterval.birth (hget late i),
     congrArg FiniteInterval.birth (hget middle _), congrArg FiniteInterval.death (hget middle _)⟩
 
-/-- Nonidentity inclusions through three distinct birth times satisfy the composition law.-/
+/-- Nonidentity inclusions through three distinct birth times satisfy the composition law.
+@isnad1 id=eq.0h0v.s8.ce868d0ec818 from=translated src=- shape=b089c581 vocab=8e133c18
+-/
 theorem three_birth_composition :
     monoEmbedding (first ≫ second) (fun i => (second_injective i).comp (first_injective i)) =
       (monoEmbedding first first_injective).trans (monoEmbedding second second_injective) :=
   monoEmbedding_comp first second first_injective second_injective
 
-/-- An observed finite death uses the image/kernel branch rather than the terminal image.-/
+/-- An observed finite death uses the image/kernel branch rather than the terminal image.
+@isnad1 id=and.0h0v.s11.7ec958a9747c from=translated src=- shape=d5959366 vocab=b5133c2f
+-/
 theorem finite_death_count :
     deathPrefixCount (rankBarcode (intervalModule (k := ℚ) short)) 1 2 = 1 ∧
       deathPrefixCount (rankBarcode (intervalModule (k := ℚ) short)) 1 2 =
@@ -127,7 +133,9 @@ private instance duplicates_fd (i : Fin 1) : FiniteDimensional ℚ (duplicates.o
   change FiniteDimensional ℚ ((barcodeModule (k := ℚ) (Multiset.replicate 2 oneBar)).obj i)
   infer_instance
 
-/-- Equal interval values retain two distinct occurrence labels after the canonical embedding.-/
+/-- Equal interval values retain two distinct occurrence labels after the canonical embedding.
+@isnad1 id=ex.0h0v.s9.1ecbe7981866 from=translated src=- shape=942505ed vocab=1ce2337e
+-/
 theorem duplicate_occurrences_distinct :
     ∃ i j : BarcodeOccurrence 1 (rankBarcode duplicates),
       i ≠ j ∧ monoEmbedding (𝟙 duplicates) (fun _ => Function.injective_id) i ≠
@@ -141,7 +149,9 @@ theorem duplicate_occurrences_distinct :
   have hne : i ≠ j := by intro h; have := congrArg Fin.val h; simp [i, j] at this
   exact ⟨i, j, hne, fun h => hne ((monoEmbedding _ _).injective h)⟩
 
-/-- The one-stage duplicate example also exercises the terminal image count.-/
+/-- The one-stage duplicate example also exercises the terminal image count.
+@isnad1 id=eq.0h0v.s5.ce5c93380a78 from=translated src=- shape=a88af696 vocab=5d4b4e6e
+-/
 theorem duplicate_terminal_count : deathPrefixCount (rankBarcode duplicates) 0 1 = 2 := by
   change deathPrefixCount (rankBarcode (barcodeModule (k := ℚ) (Multiset.replicate 2 oneBar))) 0 1 = 2
   rw [rankBarcode_barcodeModule]
@@ -152,7 +162,9 @@ theorem duplicate_terminal_count : deathPrefixCount (rankBarcode duplicates) 0 1
 private noncomputable def empty : PModule.{0,0,0} ℚ (Fin 0) := barcodeModule (k := ℚ) 0
 private instance empty_fd (i : Fin 0) : FiniteDimensional ℚ (empty.obj i) := i.elim0
 
-/-- The empty chain has an empty occurrence embedding, without selecting a predecessor.-/
+/-- The empty chain has an empty occurrence embedding, without selecting a predecessor.
+@isnad1 id=and.0h0v.s7.3d1cdc81b0f9 from=translated src=- shape=bfcac82d vocab=9f632084
+-/
 theorem empty_chain : IsEmpty (BarcodeOccurrence 0 (rankBarcode empty)) ∧
     monoEmbedding (𝟙 empty) (fun _ => Function.injective_id) = Function.Embedding.refl _ := by
   refine ⟨?_, monoEmbedding_id empty⟩
@@ -161,7 +173,9 @@ theorem empty_chain : IsEmpty (BarcodeOccurrence 0 (rankBarcode empty)) ∧
   simp only [Multiset.toList_zero, List.length_nil]
   exact inferInstance
 
-/-- Rank domination alone does not give a death-preserving occurrence embedding.-/
+/-- Rank domination alone does not give a death-preserving occurrence embedding.
+@isnad1 id=and.0h0v.s9.788987f0ab3f from=translated src=- shape=9ca54ded vocab=5a1f8333
+-/
 theorem rank_domination_insufficient :
     (∀ (i j : Fin 3) (h : i ≤ j),
       structureMapRank (barcodeModule (k := ℚ) {short}) i j h ≤

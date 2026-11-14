@@ -47,7 +47,9 @@ section preimage
 variable (f : C(X, Y)) (U : I → Set Y) (s : Finset (ComponentIndex f U))
 
 /-- An intersection of component members lies in the inverse image of the intersection of the
-target members with the labels of `s`.-/
+target members with the labels of `s`.
+@isnad1 id=le.0h6v.s8.94474652365f from=translated src=- shape=b7c6fa1d vocab=fce7e102
+-/
 theorem componentCover_interMember_subset_preimage :
     interMember (componentCover f U) s ⊆ f ⁻¹' ⋂ i ∈ s.image Sigma.fst, U i := by
   intro x hx
@@ -67,7 +69,9 @@ def interMemberPreimageMap :
 /-- Two points of an intersection of component members that are joined inside the inverse
 image of the intersection of the target members are joined inside the intersection of the
 component members. In particular `intersectionsPathSubsingleton_of_preimage` follows from this
-injectivity. No nonemptiness of `s` is needed.-/
+injectivity. No nonemptiness of `s` is needed.
+@isnad1 id=injectiv.0h6v.s9.02b6d8f2e27e from=translated src=- shape=5a0817d1 vocab=1b5bb4cc
+-/
 theorem interMemberPreimageMap_injective :
     Function.Injective (interMemberPreimageMap f U s) := by
   intro c d hcd
@@ -109,24 +113,33 @@ section multiNerveMapperMap
 
 variable (f : C(X, Y))
 
+/--
+@isnad1 id=eq.0h9v.s7.85569ed79f93 from=translated src=- shape=5a610218 vocab=8c03d094
+-/
 @[simp] theorem support_multiNerveMapperMap {U : I → Set Y} {V : J → Set Y}
     (R : Refinement U V) (c : multiNerveMapper f U) :
     (multiNerveMapperMap f R c).support = c.support.image (componentRefinement f R).selector :=
   rfl
 
-/-- MultiNerve Mapper maps are monotone for the face order.-/
+/-- MultiNerve Mapper maps are monotone for the face order.
+@isnad1 id=monotone.0h8v.s6.eff5671e0df1 from=translated src=- shape=dca9415d vocab=5d736981
+-/
 theorem multiNerveMapperMap_monotone {U : I → Set Y} {V : J → Set Y} (R : Refinement U V) :
     Monotone (multiNerveMapperMap f R) :=
   multiNerveMap_monotone (componentRefinement f R)
 
-/-- The identity refinement induces the identity MultiNerve Mapper map.-/
+/-- The identity refinement induces the identity MultiNerve Mapper map.
+@isnad1 id=eq.0h5v.s6.b50c211b1f77 from=translated src=- shape=c708c6ed vocab=ed732029
+-/
 theorem multiNerveMapperMap_id (U : I → Set Y) :
     multiNerveMapperMap f (Refinement.id U) = id := by
   unfold multiNerveMapperMap
   rw [componentRefinement_id]
   exact multiNerveMap_id
 
-/-- Composition of refinements induces composition of MultiNerve Mapper maps.-/
+/-- Composition of refinements induces composition of MultiNerve Mapper maps.
+@isnad1 id=eq.0h11v.s7.6d92ed7daff2 from=translated src=- shape=02ef8d1b vocab=e423daf5
+-/
 theorem multiNerveMapperMap_comp {K : Type*} {U : I → Set Y} {V : J → Set Y} {W : K → Set Y}
     (R : Refinement U V) (S : Refinement V W) :
     multiNerveMapperMap f (Refinement.comp R S) =
@@ -136,14 +149,18 @@ theorem multiNerveMapperMap_comp {K : Type*} {U : I → Set Y} {V : J → Set Y}
   exact multiNerveMap_comp _ _
 
 /-- The square with ordinary Mapper: projecting the image cell gives the image of the projected
-Mapper face under `mapperMap f R`.-/
+Mapper face under `mapperMap f R`.
+@isnad1 id=eq.0h9v.s8.90664e78b852 from=translated src=- shape=5f0c237d vocab=853b81ae
+-/
 theorem multiNerveMapper_projection_multiNerveMapperMap {U : I → Set Y} {V : J → Set Y}
     (R : Refinement U V) (c : multiNerveMapper f U) :
     (multiNerveMapper_projection f V (multiNerveMapperMap f R c)).1 =
       (multiNerveMapper_projection f U c).1.image (mapperMap f R) :=
   projection_multiNerveMap (componentRefinement f R) c
 
-/-- MultiNerve Mapper maps send vertex cells to vertex cells along `mapperMap f R`.-/
+/-- MultiNerve Mapper maps send vertex cells to vertex cells along `mapperMap f R`.
+@isnad1 id=eq.0h9v.s7.2556592a29f0 from=translated src=- shape=917971e4 vocab=0e7c2d1f
+-/
 theorem multiNerveMapperMap_vertexCell {U : I → Set Y} {V : J → Set Y} (R : Refinement U V)
     (a : ComponentIndex f U) :
     multiNerveMapperMap f R (vertexCell f U a) = vertexCell f V (mapperMap f R a) := by
@@ -165,7 +182,9 @@ def multiNerveMapperMap (f : C(X, Y)) {q r : P} (h : q ≤ r) :
   TDA.Mapper.multiNerveMapperMap f (T.refinement h)
 
 /-- A coherent cover tower induces the identity MultiNerve Mapper map on reflexive
-comparisons.-/
+comparisons.
+@isnad1 id=eq.0h6v.s6.b83f96464d1d from=translated src=- shape=cc8be6e3 vocab=e1a20e46
+-/
 theorem multiNerveMapperMap_refl (f : C(X, Y)) (q : P) :
     T.multiNerveMapperMap f (le_refl q) = id := by
   have hrefinement : T.refinement (q := q) (r := q) (le_refl q) =
@@ -177,7 +196,9 @@ theorem multiNerveMapperMap_refl (f : C(X, Y)) (q : P) :
   rw [hrefinement]
   exact TDA.Mapper.multiNerveMapperMap_id f (T.cover q)
 
-/-- MultiNerve Mapper maps of a coherent cover tower compose strictly.-/
+/-- MultiNerve Mapper maps of a coherent cover tower compose strictly.
+@isnad1 id=eq.2h8v.s7.f1692c77ffd7 from=translated src=- shape=7bab7be4 vocab=0ad6d958
+-/
 theorem multiNerveMapperMap_trans (f : C(X, Y)) {q r t : P} (h : q ≤ r) (k : r ≤ t) :
     T.multiNerveMapperMap f k ∘ T.multiNerveMapperMap f h =
       T.multiNerveMapperMap f (h.trans k) := by

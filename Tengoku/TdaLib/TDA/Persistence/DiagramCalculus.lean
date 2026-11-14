@@ -34,7 +34,9 @@ def C1ThroughAllRepresentatives (V : Diagram ℝ → ℝ) (D : Diagram ℝ) : Pr
       ContDiffOn ℝ 1 (V ∘ orderedQ m n) W
 
 /-- A scalar diagram loss is locally `C¹` when pulled back through a smooth
-local lift.-/
+local lift.
+@isnad1 id=ex.2h7v.s7.30055aeff3ae from=translated src=- shape=852121fc vocab=cc42bc84
+-/
 theorem localLift_scalar_c1 {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (B : E → Diagram ℝ) (V : Diagram ℝ → ℝ) (m n : ℕ)
     (L : LocalDiagramLift B m n) (x : E) (hx : x ∈ L.carrier)
@@ -56,7 +58,9 @@ theorem localLift_scalar_c1 {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ 
 
 /-- The ordinary Fréchet derivative of a scalar diagram loss is the chain
 rule expression for any smooth local lift.  The `HasFDerivAt` conclusion
-also certifies that this derivative exists.-/
+also certifies that this derivative exists.
+@isnad1 id=hasfderi.2h7v.s10.8644afb4c582 from=translated src=- shape=016a7c94 vocab=4b46a108
+-/
 theorem localLift_scalar_hasFDerivAt {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (B : E → Diagram ℝ) (V : Diagram ℝ → ℝ) (m n : ℕ)
     (L : LocalDiagramLift B m n) (x : E) (hx : x ∈ L.carrier)
@@ -77,7 +81,9 @@ theorem localLift_scalar_hasFDerivAt {E : Type*} [NormedAddCommGroup E] [NormedS
   rw [L.factorization y hy]
 
 /-- Equality with the unique ordinary derivative, excluding any default
-value for a nonexistent derivative.-/
+value for a nonexistent derivative.
+@isnad1 id=eq.2h7v.s10.8dbab8a073a6 from=translated src=- shape=d6d4f3f7 vocab=f02e7583
+-/
 theorem localLift_scalar_fderiv {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (B : E → Diagram ℝ) (V : Diagram ℝ → ℝ) (m n : ℕ)
     (L : LocalDiagramLift B m n) (x : E) (hx : x ∈ L.carrier)
@@ -88,7 +94,9 @@ theorem localLift_scalar_fderiv {E : Type*} [NormedAddCommGroup E] [NormedSpace 
   (localLift_scalar_hasFDerivAt B V m n L x hx hV).fderiv
 
 /-- Two smooth local presentations can have different coordinate dimensions;
-their composed derivatives still agree because both derive the same loss.-/
+their composed derivatives still agree because both derive the same loss.
+@isnad1 id=eq.3h10v.s11.0dbd3070a26f from=translated src=- shape=cd334c90 vocab=f02e7583
+-/
 theorem localLift_scalar_derivative_independent
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (B : E → Diagram ℝ) (V : Diagram ℝ → ℝ)

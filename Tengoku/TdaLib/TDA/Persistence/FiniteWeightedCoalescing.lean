@@ -26,11 +26,17 @@ namespace FiniteWeightedDiagram
 def ofIndexed (w : I → ℝ≥0) (x : I → Interior) : FiniteWeightedDiagram :=
   ∑ i, Finsupp.single (x i) (w i)
 
+/--
+@isnad1 id=eq.0h4v.s7.847b01fe54d3 from=translated src=- shape=9c1e28ac vocab=7a4255e2
+-/
 @[simp] theorem ofIndexed_apply (w : I → ℝ≥0) (x : I → Interior) (q : Interior) :
     ofIndexed w x q = ∑ i, if x i = q then w i else 0 := by
   classical
   simp [ofIndexed, Finsupp.finsetSum_apply, Finsupp.single_apply]
 
+/--
+@isnad1 id=eq.0h4v.s7.e023c4bb48e2 from=translated src=- shape=5227a5f1 vocab=5b051228
+-/
 theorem ofIndexed_apply_real (w : I → ℝ≥0) (x : I → Interior) (q : Interior) :
     ((ofIndexed w x q : ℝ≥0) : ℝ) = ∑ i, if x i = q then (w i : ℝ) else 0 := by
   rw [ofIndexed_apply]
@@ -51,7 +57,9 @@ private theorem ofIndexed_weight_zero_outside (w : I → ℝ≥0) (x : I → Int
         (fun k _ => by positivity) (Finset.mem_univ i)
   exact nonpos_iff_eq_zero.mp (le_trans hle (le_of_eq hzero))
 
-/-- A support sum against an arbitrary coefficient equals the sum over original labels.-/
+/-- A support sum against an arbitrary coefficient equals the sum over original labels.
+@isnad1 id=eq.0h4v.s8.c54f83f0c69f from=translated src=- shape=c66ce662 vocab=5978bc2e
+-/
 theorem ofIndexed_weighted_sum (w : I → ℝ≥0) (x : I → Interior)
     (f : Interior → ℝ) :
     ∑ q : (ofIndexed w x).supportLabels,
@@ -114,7 +122,9 @@ private theorem sum_fibers_weighted (w : I → ℝ≥0) (x : I → Interior)
   · have hgi := hg i hi
     simp [hgi]
 
-/-- Coalesced atoms integrate finite indexed coefficients also in extended nonnegative reals.-/
+/-- Coalesced atoms integrate finite indexed coefficients also in extended nonnegative reals.
+@isnad1 id=eq.0h4v.s8.ba7385cd0f5b from=translated src=- shape=61a04d23 vocab=9459303a
+-/
 theorem ofIndexed_weighted_sum_ennreal (w : I → ℝ≥0) (x : I → Interior)
     (f : Interior → ℝ≥0∞) :
     (∑ q : (ofIndexed w x).supportLabels,
@@ -142,7 +152,9 @@ theorem ofIndexed_weighted_sum_ennreal (w : I → ℝ≥0) (x : I → Interior)
   · have hw := ofIndexed_weight_zero_outside w x i hi
     simp [hw]
 
-/-- Coalescing preserves total mass, including zero and repeated occurrences.-/
+/-- Coalescing preserves total mass, including zero and repeated occurrences.
+@isnad1 id=eq.0h3v.s6.166a7c91b414 from=translated src=- shape=3190ec6f vocab=727b9fc9
+-/
 theorem ofIndexed_mass (w : I → ℝ≥0) (x : I → Interior) :
     ∑ q : (ofIndexed w x).supportLabels, ((ofIndexed w x).weights q : ℝ) =
       ∑ i, (w i : ℝ) := by
@@ -153,12 +165,18 @@ def splittingKernel (w : I → ℝ≥0) (x : I → Interior)
     (q : (ofIndexed w x).supportLabels) (i : I) : ℝ :=
   if x i = q.1 then (w i : ℝ) / (ofIndexed w x q.1 : ℝ) else 0
 
+/--
+@isnad1 id=le.0h5v.s5.f2659fbedb49 from=translated src=- shape=1ea18638 vocab=d42b4802
+-/
 theorem splittingKernel_nonneg (w : I → ℝ≥0) (x : I → Interior)
     (q : (ofIndexed w x).supportLabels) (i : I) :
     0 ≤ splittingKernel w x q i := by
   unfold splittingKernel
   split_ifs <;> positivity
 
+/--
+@isnad1 id=eq.0h4v.s5.c26424368931 from=translated src=- shape=7946f81c vocab=e0957f7d
+-/
 theorem splittingKernel_sum (w : I → ℝ≥0) (x : I → Interior)
     (q : (ofIndexed w x).supportLabels) :
     (∑ i, splittingKernel w x q i) = 1 := by
@@ -175,6 +193,9 @@ theorem splittingKernel_sum (w : I → ℝ≥0) (x : I → Interior)
       rw [ofIndexed_apply_real]
     _ = 1 := div_self (ne_of_gt hpos)
 
+/--
+@isnad1 id=eq.0h4v.s6.2f5f6d6e0872 from=translated src=- shape=887790ce vocab=718bb187
+-/
 theorem splittingKernel_mass (w : I → ℝ≥0) (x : I → Interior) (i : I) :
     (∑ q : (ofIndexed w x).supportLabels,
       ((ofIndexed w x).weights q : ℝ) * splittingKernel w x q i) =
@@ -399,7 +420,9 @@ def splitLift (x : I → Interior) (y : J → Interior)
       _ = (v j : ℝ) := FiniteWeightedDiagram.splittingKernel_mass v y j
   exact ⟨m, hm, hrow, hcol⟩
 
-/-- The proportional lift preserves every pair coefficient constant on coordinate fibers.-/
+/-- The proportional lift preserves every pair coefficient constant on coordinate fibers.
+@isnad1 id=eq.0h8v.s9.4701f22813cd from=translated src=- shape=82a50846 vocab=ec94c8a7
+-/
 theorem splitLift_matrix_sum (x : I → Interior) (y : J → Interior)
     (b : FiniteWeightedBoundaryPlan
       (FiniteWeightedDiagram.ofIndexed w x).weights
@@ -454,7 +477,9 @@ theorem splitLift_matrix_sum (x : I → Interior) (y : J → Interior)
       intro r _
       ring
 
-/-- Every aggregated cell is the sum of the original cells in its coordinate fibers.-/
+/-- Every aggregated cell is the sum of the original cells in its coordinate fibers.
+@isnad1 id=eq.0h9v.s9.4d0116fa8d7e from=translated src=- shape=ff2c59ba vocab=0091aeb4
+-/
 theorem aggregate_mass (a : FiniteWeightedBoundaryPlan w v)
     (x : I → Interior) (y : J → Interior)
     (q : (FiniteWeightedDiagram.ofIndexed w x).supportLabels)
@@ -463,7 +488,9 @@ theorem aggregate_mass (a : FiniteWeightedBoundaryPlan w v)
       ∑ i, if x i = q.1 then ∑ j, if y j = r.1 then a.mass i j else 0 else 0 :=
   rfl
 
-/-- Every lifted cell is split by the two normalized within-fiber kernels.-/
+/-- Every lifted cell is split by the two normalized within-fiber kernels.
+@isnad1 id=eq.0h9v.s8.c1f4b36efdee from=translated src=- shape=6804e656 vocab=fa81f631
+-/
 theorem splitLift_mass (x : I → Interior) (y : J → Interior)
     (b : FiniteWeightedBoundaryPlan
       (FiniteWeightedDiagram.ofIndexed w x).weights
@@ -491,7 +518,9 @@ private theorem matrix_indicator_sum
     simp [Subtype.coe_ne_coe.mpr hq]
   · simp
 
-/-- Aggregation preserves every pair coefficient constant on coordinate fibers.-/
+/-- Aggregation preserves every pair coefficient constant on coordinate fibers.
+@isnad1 id=eq.0h8v.s9.7323b33774bf from=translated src=- shape=c3dedad5 vocab=69a8fb9a
+-/
 theorem aggregate_matrix_sum (a : FiniteWeightedBoundaryPlan w v)
     (x : I → Interior) (y : J → Interior) (f : Interior → Interior → ℝ) :
     (∑ q : (FiniteWeightedDiagram.ofIndexed w x).supportLabels,
@@ -529,7 +558,9 @@ theorem aggregate_matrix_sum (a : FiniteWeightedBoundaryPlan w v)
         mass_eq_zero_of_target_zero a i j
           (FiniteWeightedDiagram.ofIndexed_weight_zero_outside v y j hj))
 
-/-- Aggregation retracts proportional splitting on every coalesced matrix cell.-/
+/-- Aggregation retracts proportional splitting on every coalesced matrix cell.
+@isnad1 id=eq.0h9v.s8.ea4e59dd4f6f from=translated src=- shape=df46f349 vocab=f6d8ccdb
+-/
 theorem aggregate_splitLift_mass (x : I → Interior) (y : J → Interior)
     (b : FiniteWeightedBoundaryPlan
       (FiniteWeightedDiagram.ofIndexed w x).weights
@@ -554,7 +585,9 @@ theorem aggregate_splitLift_mass (x : I → Interior) (y : J → Interior)
             b.mass q' r' * f q'.1 r'.1 := h₂
     _ = b.mass q r := hright
 
-/-- Proportional splitting preserves the full powered boundary cost.-/
+/-- Proportional splitting preserves the full powered boundary cost.
+@isnad1 id=eq.0h8v.s8.c933bfa18fcd from=translated src=- shape=1c46b694 vocab=f79e0502
+-/
 theorem powerCost_splitLift (x : I → Interior) (y : J → Interior)
     (b : FiniteWeightedBoundaryPlan
       (FiniteWeightedDiagram.ofIndexed w x).weights
@@ -578,7 +611,9 @@ theorem powerCost_splitLift (x : I → Interior) (y : J → Interior)
   simp only [FiniteWeightedDiagram.weights] at hd he ⊢
   rw [← hd, ← he, hc]
 
-/-- Aggregating duplicate coordinates preserves pair, deletion and insertion charges.-/
+/-- Aggregating duplicate coordinates preserves pair, deletion and insertion charges.
+@isnad1 id=eq.0h8v.s7.b728eb050d39 from=translated src=- shape=c9afcffa vocab=e338f011
+-/
 theorem powerCost_aggregate (a : FiniteWeightedBoundaryPlan w v) (p : ℝ)
     (x : I → Interior) (y : J → Interior) :
     (a.aggregate x y).powerCost p
@@ -605,7 +640,9 @@ end FiniteWeightedBoundaryPlan
 
 namespace FiniteWeightedDiagram
 
-/-- Indexed and coalesced powered optima agree for every real exponent.-/
+/-- Indexed and coalesced powered optima agree for every real exponent.
+@isnad1 id=eq.0h7v.s6.85227b52ae36 from=translated src=- shape=b6ea5f89 vocab=e5f3d0eb
+-/
 theorem weightedPowerBoundaryTransportCost_ofIndexed (p : ℝ)
     (w : I → ℝ≥0) (v : J → ℝ≥0)
     (x : I → Interior) (y : J → Interior) :
@@ -631,7 +668,9 @@ theorem weightedPowerBoundaryTransportCost_ofIndexed (p : ℝ)
           (fun j => (y j).1) := by
         rw [FiniteWeightedBoundaryPlan.powerCost_aggregate, ha]
 
-/-- The rooted optimized value has the same identity; rooted minimization is used for `p ≥ 1`.-/
+/-- The rooted optimized value has the same identity; rooted minimization is used for `p ≥ 1`.
+@isnad1 id=eq.0h7v.s6.d5aa7855d9e3 from=translated src=- shape=b6ea5f89 vocab=72258550
+-/
 theorem weightedPBoundaryTransportCost_ofIndexed (p : ℝ)
     (w : I → ℝ≥0) (v : J → ℝ≥0)
     (x : I → Interior) (y : J → Interior) :
@@ -639,7 +678,9 @@ theorem weightedPBoundaryTransportCost_ofIndexed (p : ℝ)
       pBoundaryTransportCost p (ofIndexed w x) (ofIndexed v y) := by
   exact congrArg (· ^ p⁻¹) (weightedPowerBoundaryTransportCost_ofIndexed p w v x y)
 
-/-- Any indexed powered optimizer aggregates to an actual native optimizer.-/
+/-- Any indexed powered optimizer aggregates to an actual native optimizer.
+@isnad1 id=eq.1h8v.s8.247861bb2a28 from=translated src=- shape=6d36c87d vocab=26e1f8b6
+-/
 theorem aggregate_minimizing_powerPlan (p : ℝ)
     (w : I → ℝ≥0) (v : J → ℝ≥0)
     (x : I → Interior) (y : J → Interior)
@@ -652,7 +693,9 @@ theorem aggregate_minimizing_powerPlan (p : ℝ)
   rw [FiniteWeightedBoundaryPlan.powerCost_aggregate, ha,
     weightedPowerBoundaryTransportCost_ofIndexed]
 
-/-- Any native powered optimizer splits to an actual indexed optimizer.-/
+/-- Any native powered optimizer splits to an actual indexed optimizer.
+@isnad1 id=eq.1h8v.s8.4e4dec3a234b from=translated src=- shape=ecfb3d81 vocab=57be5e56
+-/
 theorem splitLift_minimizing_powerPlan (p : ℝ)
     (w : I → ℝ≥0) (v : J → ℝ≥0)
     (x : I → Interior) (y : J → Interior)
@@ -667,7 +710,9 @@ theorem splitLift_minimizing_powerPlan (p : ℝ)
     weightedPowerBoundaryTransportCost_ofIndexed]
 
 /-- An indexed plan realizing the rooted value aggregates to one realizing the native root.
-For `p ≥ 1` these are rooted minimizers.-/
+For `p ≥ 1` these are rooted minimizers.
+@isnad1 id=eq.1h8v.s8.3b2c10c1eb31 from=translated src=- shape=925323f6 vocab=e55c5b8a
+-/
 theorem aggregate_minimizing_pPlan (p : ℝ)
     (w : I → ℝ≥0) (v : J → ℝ≥0)
     (x : I → Interior) (y : J → Interior)
@@ -680,7 +725,9 @@ theorem aggregate_minimizing_pPlan (p : ℝ)
   rw [FiniteWeightedBoundaryPlan.powerCost_aggregate, ha,
     weightedPBoundaryTransportCost_ofIndexed]
 
-/-- A native plan realizing the rooted value splits to one realizing the indexed root.-/
+/-- A native plan realizing the rooted value splits to one realizing the indexed root.
+@isnad1 id=eq.1h8v.s8.92e6285849d9 from=translated src=- shape=8da6539a vocab=3cdba171
+-/
 theorem splitLift_minimizing_pPlan (p : ℝ)
     (w : I → ℝ≥0) (v : J → ℝ≥0)
     (x : I → Interior) (y : J → Interior)
@@ -694,7 +741,9 @@ theorem splitLift_minimizing_pPlan (p : ℝ)
   rw [FiniteWeightedBoundaryPlan.powerCost_splitLift, hb,
     weightedPBoundaryTransportCost_ofIndexed]
 
-/-- A rooted indexed minimizer exists and aggregates to a rooted native minimizer.-/
+/-- A rooted indexed minimizer exists and aggregates to a rooted native minimizer.
+@isnad1 id=ex.1h7v.s8.eb243c13982d from=translated src=- shape=fcf9ad79 vocab=72d42b64
+-/
 theorem exists_indexed_coalesced_minimizing_pPlans {p : ℝ} (hp : 1 ≤ p)
     (w : I → ℝ≥0) (v : J → ℝ≥0)
     (x : I → Interior) (y : J → Interior) :
@@ -709,7 +758,9 @@ theorem exists_indexed_coalesced_minimizing_pPlans {p : ℝ} (hp : 1 ≤ p)
     (fun i => (x i).1) (fun j => (y j).1)
   exact ⟨a, ha, aggregate_minimizing_pPlan p w v x y a ha⟩
 
-/-- An indexed optimizer exists and its explicit aggregation is an optimizer of the coalesced diagram.-/
+/-- An indexed optimizer exists and its explicit aggregation is an optimizer of the coalesced diagram.
+@isnad1 id=ex.0h7v.s8.9743163cce5a from=translated src=- shape=fa4ba945 vocab=26e1f8b6
+-/
 theorem exists_indexed_coalesced_minimizing_powerPlans (p : ℝ)
     (w : I → ℝ≥0) (v : J → ℝ≥0)
     (x : I → Interior) (y : J → Interior) :
@@ -724,7 +775,9 @@ theorem exists_indexed_coalesced_minimizing_powerPlans (p : ℝ)
     (fun i => (x i).1) (fun j => (y j).1)
   exact ⟨a, ha, aggregate_minimizing_powerPlan p w v x y a ha⟩
 
-/-- Aggregating an existing unit-occurrence plan preserves its powered cost.-/
+/-- Aggregating an existing unit-occurrence plan preserves its powered cost.
+@isnad1 id=eq.0h6v.s8.5fa03d55703b from=translated src=- shape=da3df075 vocab=9c0d480a
+-/
 theorem powerCost_ofUnitPlan_aggregate (p : ℝ)
     (x : I → Interior) (y : J → Interior) (a : FiniteBoundaryPlan I J) :
     ((FiniteWeightedBoundaryPlan.ofUnitPlan a).aggregate x y).powerCost p
@@ -735,7 +788,9 @@ theorem powerCost_ofUnitPlan_aggregate (p : ℝ)
     FiniteWeightedBoundaryPlan.powerCost_ofUnitPlan]
 
 /-- Splitting a native unit-mass diagram plan yields an existing unit-occurrence plan
-of exactly the same powered cost. Its entries can be fractional.-/
+of exactly the same powered cost. Its entries can be fractional.
+@isnad1 id=eq.0h6v.s8.1fe586284fbb from=translated src=- shape=1a14b992 vocab=34a3e9d6
+-/
 theorem powerCost_splitLift_toUnitPlan (p : ℝ)
     (x : I → Interior) (y : J → Interior)
     (b : FiniteWeightedBoundaryPlan

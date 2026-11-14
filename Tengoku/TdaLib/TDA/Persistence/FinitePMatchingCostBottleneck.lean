@@ -21,7 +21,9 @@ namespace OccurrenceMatching
 variable {I J E F : Type*} [Fintype I] [Fintype J] [Fintype E] [Fintype F]
 
 /-- Every finite powered charge is bounded by the full matching maximum to `p`.
-The sum counts source labels and unmatched target labels, retaining multiplicity.-/
+The sum counts source labels and unmatched target labels, retaining multiplicity.
+@isnad1 id=le.1h10v.s6.22b0fbcce4db from=translated src=- shape=2851a0cc vocab=625d7196
+-/
 theorem totalFinitePowerCost_finiteRestriction_le_card_mul_cost_rpow
     (M : OccurrenceMatching I J E F) {p : ℝ} (hp : 1 ≤ p)
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) (b : E → ℝ) (c : F → ℝ) :
@@ -56,7 +58,9 @@ theorem totalFinitePowerCost_finiteRestriction_le_card_mul_cost_rpow
 end OccurrenceMatching
 
 /-- A bottleneck-minimizing full matching bounds the finite powered minimum.
-Finiteness is needed before converting the extended bottleneck value to real.-/
+Finiteness is needed before converting the extended bottleneck value to real.
+@isnad1 id=le.2h3v.s7.6e7a40a3d565 from=translated src=- shape=8d0e9122 vocab=2f112ee5
+-/
 theorem finitePowerMatchingCost_le_card_mul_bottleneck_rpow
     {p : ℝ} (hp : 1 ≤ p) (D E : Diagram ℝ) (hfinite : bottleneck D E < ⊤) :
     finitePowerMatchingCost p (fun q : D.finiteOccurrences => q.1)
@@ -73,7 +77,9 @@ theorem finitePowerMatchingCost_le_card_mul_bottleneck_rpow
         (fun q => q.1) (fun q => q.1) (fun q => q.1) (fun q => q.1)
 
 /-- Finite real-p matching distance is at most the count factor `N^(1/p)`
-times the full bottleneck value. Essential bars are absent from the left side.-/
+times the full bottleneck value. Essential bars are absent from the left side.
+@isnad1 id=le.2h3v.s7.b319443fa2ed from=translated src=- shape=2dac67ac vocab=be6670c6
+-/
 theorem finitePMatchingCost_le_card_rpow_mul_bottleneck
     {p : ℝ} (hp : 1 ≤ p) (D E : Diagram ℝ) (hfinite : bottleneck D E < ⊤) :
     finitePMatchingCost p (fun q : D.finiteOccurrences => q.1)
@@ -88,7 +94,9 @@ theorem finitePMatchingCost_le_card_rpow_mul_bottleneck
     Real.mul_rpow (Nat.cast_nonneg _) (Real.rpow_nonneg ENNReal.toReal_nonneg p),
     Real.rpow_rpow_inv ENNReal.toReal_nonneg hp0] using h
 
-/-- The bound applies to the optimum over all feasible real reservoir plans.-/
+/-- The bound applies to the optimum over all feasible real reservoir plans.
+@isnad1 id=le.2h3v.s7.a4b64f591900 from=translated src=- shape=2dac67ac vocab=ecf0ed46
+-/
 theorem finitePBoundaryTransportCost_le_card_rpow_mul_bottleneck
     {p : ℝ} (hp : 1 ≤ p) (D E : Diagram ℝ) (hfinite : bottleneck D E < ⊤) :
     finitePBoundaryTransportCost p (fun q : D.finiteOccurrences => q.1)
@@ -98,7 +106,9 @@ theorem finitePBoundaryTransportCost_le_card_rpow_mul_bottleneck
   rw [finitePBoundaryTransportCost_eq_matchingCost]
   exact finitePMatchingCost_le_card_rpow_mul_bottleneck hp D E hfinite
 
-/-- A finite bottleneck radius supplies both finiteness and a real upper bound.-/
+/-- A finite bottleneck radius supplies both finiteness and a real upper bound.
+@isnad1 id=le.3h4v.s7.6b95e458c1b9 from=translated src=- shape=55dcce7f vocab=6de1d768
+-/
 theorem finitePBoundaryTransportCost_le_card_rpow_mul_of_bottleneck_le
     {p : ℝ} (hp : 1 ≤ p) (D E : Diagram ℝ) {r : ℝ} (hr : 0 ≤ r)
     (hB : bottleneck D E ≤ ENNReal.ofReal r) :
@@ -113,7 +123,9 @@ theorem finitePBoundaryTransportCost_le_card_rpow_mul_of_bottleneck_le
   exact (finitePBoundaryTransportCost_le_card_rpow_mul_bottleneck hp D E hfinite).trans
     (mul_le_mul_of_nonneg_left hreal (Real.rpow_nonneg (Nat.cast_nonneg _) _))
 
-/-- A uniform natural cardinality budget yields a uniform real-p radius bound.-/
+/-- A uniform natural cardinality budget yields a uniform real-p radius bound.
+@isnad1 id=le.4h5v.s7.2dd84abb8488 from=translated src=- shape=588f8123 vocab=6de1d768
+-/
 theorem finitePBoundaryTransportCost_le_cardBound_rpow_mul_of_bottleneck_le
     {p : ℝ} (hp : 1 ≤ p) (D E : Diagram ℝ) {m : ℕ}
     (hcard : Fintype.card D.finiteOccurrences + Fintype.card E.finiteOccurrences ≤ m)

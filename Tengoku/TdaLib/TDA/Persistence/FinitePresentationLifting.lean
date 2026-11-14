@@ -21,7 +21,9 @@ open CategoryTheory CategoryTheory.Limits
 
 variable {R : Type u} [Ring R] {P : Type v} [Preorder P]
 
-/-- Natural maps out of a free module agree if they agree on its birth vectors.-/
+/-- Natural maps out of a free module agree if they agree on its birth vectors.
+@isnad1 id=eq.1h6v.s10.50ebc9c1f0cf from=translated src=- shape=c3294e6e vocab=01a9c83d
+-/
 theorem hom_ext_birth (W : GradedGenerators.{v,w} P)
     {M : PModule.{u,v,max u w} R P} {f g : module (R := R) W ⟶ M}
     (h : ∀ i, f.app (W.grade i) (birth (R := R) W i) =
@@ -29,7 +31,9 @@ theorem hom_ext_birth (W : GradedGenerators.{v,w} P)
   exact (lift_unique (R := R) W M _ f h).trans
     (lift_unique (R := R) W M _ g (fun _ => rfl)).symm
 
-/-- Maps from a presented module agree if they agree on its generator images.-/
+/-- Maps from a presented module agree if they agree on its generator images.
+@isnad1 id=eq.1h6v.s10.6e9c0abb9f7a from=translated src=- shape=70341378 vocab=fa950626
+-/
 theorem Presentation.hom_ext_birth
     (D : Presentation.{u,v,w} (R := R) (P := P))
     {M : PModule.{u,v,max u w} R P} {f g : D.presented ⟶ M}
@@ -41,7 +45,9 @@ theorem Presentation.hom_ext_birth
   exact (cancel_epi D.cover).mp (TDA.Persistence.GradedFree.hom_ext_birth D.generators h)
 
 /-- Injectivity on generator grades suffices for injectivity on maps from a
-presented module.-/
+presented module.
+@isnad1 id=injectiv.1h6v.s9.cbfcc5eb71ca from=translated src=- shape=b7332a28 vocab=5a3db9f3
+-/
 theorem Presentation.postcomp_injective_of_birth_injective
     (D : Presentation.{u,v,w} (R := R) (P := P))
     {M N : PModule.{u,v,max u w} R P} (ρ : M ⟶ N)
@@ -56,7 +62,9 @@ theorem Presentation.postcomp_injective_of_birth_injective
     (D.cover.app (D.generators.grade i) (birth D.generators i))) h
 
 /-- A presentation only requires surjectivity at generator grades and
-injectivity at relation grades to lift a morphism through a natural map.-/
+injectivity at relation grades to lift a morphism through a natural map.
+@isnad1 id=ex.2h7v.s10.112db4276f7c from=translated src=- shape=c05a2499 vocab=9756b30f
+-/
 theorem Presentation.exists_lift_of_birth_surjective_relation_injective
     (D : Presentation.{u,v,w} (R := R) (P := P))
     {M N : PModule.{u,v,max u w} R P} (ρ : M ⟶ N)
@@ -97,7 +105,9 @@ theorem Presentation.exists_lift_of_birth_surjective_relation_injective
   exact hl
 
 /-- A natural map that is bijective on generator grades and injective on
-relation grades induces a bijection on maps from the presented module.-/
+relation grades induces a bijection on maps from the presented module.
+@isnad1 id=bijectiv.2h6v.s10.b32e2ff959ee from=translated src=- shape=ed72ee46 vocab=93bbcea0
+-/
 theorem Presentation.postcomp_bijective_of_birth_bijective_relation_injective
     (D : Presentation.{u,v,w} (R := R) (P := P))
     {M N : PModule.{u,v,max u w} R P} (ρ : M ⟶ N)

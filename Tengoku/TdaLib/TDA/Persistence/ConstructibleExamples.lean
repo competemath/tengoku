@@ -45,7 +45,9 @@ private noncomputable def stepModule : PModule ℚ ℝ :=
 private theorem step_constructible : IsConstructible oneGrid stepModule :=
   isConstructible_reindex oneGrid _ (isZero_zero (ModuleCat ℚ))
 
-/-- The exact critical value is in the positive cell; the left parameter is in the zero cell.-/
+/-- The exact critical value is in the positive cell; the left parameter is in the zero cell.
+@isnad1 id=and.0h0v.s8.fc34805bbf98 from=translated src=- shape=eaf6bcb7 vocab=db4ba163
+-/
 theorem critical_and_left_cells :
     cellIndex oneGrid 0 = 1 ∧ cellIndex oneGrid (-1) = 0 := by
   constructor
@@ -55,15 +57,21 @@ theorem critical_and_left_cells :
     change (-1 : ℝ) < 0
     norm_num
 
-/-- The final cell contains every nonnegative real parameter.-/
+/-- The final cell contains every nonnegative real parameter.
+@isnad1 id=eq.1h1v.s7.339a285cc0b3 from=translated src=- shape=76750729 vocab=bfe47400
+-/
 theorem unbounded_final_cell (t : ℝ) (ht : 0 ≤ t) : cellIndex oneGrid t = 1 :=
   cellIndex_of_last_le oneGrid t ht
 
-/-- The entire left ray has zero fibers.-/
+/-- The entire left ray has zero fibers.
+@isnad1 id=iszero.1h1v.s5.3342197f6f0d from=translated src=- shape=f5d8e05a vocab=df14c6b7
+-/
 theorem step_zero_left (t : ℝ) (ht : t < 0) : IsZero (stepModule.obj t) :=
   step_constructible.zero_left t (fun _ => ht)
 
-/-- The final cell retains a nonzero fiber, with no terminal vanishing assumption.-/
+/-- The final cell retains a nonzero fiber, with no terminal vanishing assumption.
+@isnad1 id=not.1h1v.s5.f1c41a75242b from=translated src=- shape=5b1a227e vocab=5e0e9d65
+-/
 theorem step_nonzero_tail (t : ℝ) (ht : 0 ≤ t) : ¬ IsZero (stepModule.obj t) := by
   change ¬ IsZero ((sample oneGrid constantRationals).obj (cellIndex oneGrid t))
   rw [unbounded_final_cell t ht]
@@ -96,7 +104,9 @@ noncomputable def twistedReconstruction :
   reconstructionIso oneGrid twistedStep twisted_constructible
 
 /-- Inside one cell, the transition differs from the base step's identity transition:
-the change of coordinates multiplies it by two.-/
+the change of coordinates multiplies it by two.
+@isnad1 id=ne.0h0v.s7.77b74910b7e4 from=translated src=- shape=0625b228 vocab=a70e5742
+-/
 theorem twisted_transition_nonidentity :
     structureMap twistedStep (show (0 : ℝ) ≤ 1 by norm_num) ≠
       structureMap stepModule (show (0 : ℝ) ≤ 1 by norm_num) := by
@@ -122,7 +132,9 @@ theorem twisted_transition_nonidentity :
     exact add_left_cancel (hx'.trans (add_zero x).symm)
   exact ⟨fun x y => (hz x).trans (hz y).symm⟩
 
-/-- Equal one-dimensional fibers do not make the zero transition an isomorphism.-/
+/-- Equal one-dimensional fibers do not make the zero transition an isomorphism.
+@isnad1 id=not.0h0v.s7.fa6ffc9aa9ea from=translated src=- shape=c816cac7 vocab=632b2156
+-/
 theorem zero_transition_not_isIso :
     ¬ IsIso (structureMap (zeroTransitionDiagram ℚ)
       (show (0 : Fin 2) ≤ 1 by decide)) := by

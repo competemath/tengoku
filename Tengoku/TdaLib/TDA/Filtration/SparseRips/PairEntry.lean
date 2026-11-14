@@ -28,12 +28,18 @@ def pairEntry (x y : V) : ℝ :=
 
 include hη hη' ht
 
+/--
+@isnad1 id=isclosed.3h5v.s6.84da2434f5ed from=translated src=- shape=b9bf479c vocab=71729bb7
+-/
 theorem pairEntrySet_closed (x y : V) : IsClosed (pairEntrySet (η := η) time x y) := by
   unfold pairEntrySet
   exact isClosed_Ici.inter
     (isClosed_le (continuous_relaxedDistance hη (by linarith) time ht x y) continuous_id)
 
 omit ht in
+/--
+@isnad1 id=nonempty.2h5v.s6.a2f0e66ebe3d from=translated src=- shape=daf9fa1b vocab=c13e4c43
+-/
 theorem pairEntrySet_nonempty (x y : V) :
     (pairEntrySet (η := η) time x y).Nonempty := by
   refine ⟨3 * dist x y, ?_⟩
@@ -48,25 +54,40 @@ theorem pairEntrySet_nonempty (x y : V) :
   · nlinarith [dist_nonneg (x := x) (y := y)]
 
 omit hη hη' ht in
+/--
+@isnad1 id=bddbelow.0h5v.s4.6f475e59184c from=translated src=- shape=4a393f63 vocab=b5a7a00c
+-/
 theorem pairEntrySet_bddBelow (x y : V) :
     BddBelow (pairEntrySet (η := η) time x y) :=
   ⟨0, fun _ h => h.1⟩
 
+/--
+@isnad1 id=mem.3h5v.s6.dd83581247c7 from=translated src=- shape=79ebf3c7 vocab=1a793ae0
+-/
 theorem pairEntry_mem (x y : V) :
     pairEntry (η := η) time x y ∈ pairEntrySet (η := η) time x y :=
   (pairEntrySet_closed hη hη' time ht x y).csInf_mem
     (pairEntrySet_nonempty hη hη' time x y)
     (pairEntrySet_bddBelow (η := η) time x y)
 
+/--
+@isnad1 id=le.3h5v.s6.624157081ae9 from=translated src=- shape=4866e470 vocab=56f1a5c5
+-/
 theorem pairEntry_nonneg (x y : V) : 0 ≤ pairEntry (η := η) time x y :=
   (pairEntry_mem hη hη' time ht x y).1
 
 omit hη hη' ht in
+/--
+@isnad1 id=le.1h6v.s5.06e8ccad333c from=translated src=- shape=449eb600 vocab=0ce08414
+-/
 theorem pairEntry_le_of_mem (x y : V) {r : ℝ}
     (hr : r ∈ pairEntrySet (η := η) time x y) :
     pairEntry (η := η) time x y ≤ r :=
   csInf_le (pairEntrySet_bddBelow (η := η) time x y) hr
 
+/--
+@isnad1 id=mem.5h7v.s6.1f2ac13eb377 from=translated src=- shape=a583c7c8 vocab=b27cc7f1
+-/
 theorem pairEntrySet_mono (x y : V) {r s : ℝ}
     (hr : r ∈ pairEntrySet (η := η) time x y) (hrs : r ≤ s) :
     s ∈ pairEntrySet (η := η) time x y := by
@@ -81,6 +102,9 @@ theorem pairEntrySet_mono (x y : V) {r s : ℝ}
   · dsimp [pairEntrySet, relaxedDistance] at hr
     linarith [hr.2]
 
+/--
+@isnad1 id=iff.4h6v.s6.5eb401b37290 from=translated src=- shape=ae80643b vocab=a726af4a
+-/
 theorem pairEntry_le_iff (x y : V) {r : ℝ} (hr : 0 ≤ r) :
     pairEntry (η := η) time x y ≤ r ↔ relaxedDistance η time r x y ≤ r := by
   constructor
@@ -90,7 +114,9 @@ theorem pairEntry_le_iff (x y : V) {r : ℝ} (hr : 0 ≤ r) :
   · intro h
     exact pairEntry_le_of_mem (η := η) time x y ⟨hr, h⟩
 
-/-- Distinct pair entry cannot precede its genuine metric distance.-/
+/-- Distinct pair entry cannot precede its genuine metric distance.
+@isnad1 id=le.3h5v.s6.4ab0b46e1b07 from=translated src=- shape=259979b1 vocab=b90b41bd
+-/
 theorem dist_le_pairEntry (x y : V) :
     dist x y ≤ pairEntry (η := η) time x y := by
   have h := (pairEntry_mem hη hη' time ht x y).2

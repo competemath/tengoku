@@ -23,27 +23,35 @@ variable {α : Type v} [LinearOrder α]
 def rectangleLowerSetEquiv : (Cut α × Cut α) ≃ (LowerSet α × LowerSet α) :=
   cutLowerSetEquiv.prodCongr cutLowerSetEquiv
 
-/-- Each rectangle maps to the product of its two decorated coordinate images.-/
+/-- Each rectangle maps to the product of its two decorated coordinate images.
+@isnad1 id=eq.0h5v.s8.64dfef110e2d from=translated src=- shape=4364fc67 vocab=e79deefe
+-/
 theorem image_rectangleCell (a b c d : α) :
     rectangleLowerSetEquiv '' rectangleCell a b c d =
       (cutLowerSet '' cutCell a b) ×ˢ (cutLowerSet '' cutCell c d) :=
   Set.prodMap_image_prod cutLowerSet cutLowerSet _ _
 
-/-- Decorated rectangles are compact, with all four boundary decorations retained.-/
+/-- Decorated rectangles are compact, with all four boundary decorations retained.
+@isnad1 id=iscompac.0h5v.s8.128c210d91b4 from=translated src=- shape=b307f689 vocab=700f00ca
+-/
 theorem isCompact_image_rectangleCell [TopologicalSpace (LowerSet α)]
     [OrderTopology (LowerSet α)] (a b c d : α) :
     IsCompact (rectangleLowerSetEquiv '' rectangleCell a b c d) := by
   rw [image_rectangleCell]
   exact (isCompact_image_cutCell a b).prod (isCompact_image_cutCell c d)
 
-/-- Decorated rectangles are open, so containing zero-content cells give open covers.-/
+/-- Decorated rectangles are open, so containing zero-content cells give open covers.
+@isnad1 id=isopen.0h5v.s8.030deb51252d from=translated src=- shape=b307f689 vocab=ca44507e
+-/
 theorem isOpen_image_rectangleCell [TopologicalSpace (LowerSet α)]
     [OrderTopology (LowerSet α)] (a b c d : α) :
     IsOpen (rectangleLowerSetEquiv '' rectangleCell a b c d) := by
   rw [image_rectangleCell]
   exact (isOpen_image_cutCell a b).prod (isOpen_image_cutCell c d)
 
-/-- An inward endpoint refinement separates distinct cuts in a containing cell.-/
+/-- An inward endpoint refinement separates distinct cuts in a containing cell.
+@isnad1 id=ex.2h5v.s6.d7e358542a84 from=translated src=- shape=eee7f09a vocab=2d1efcbb
+-/
 theorem exists_subcell_separating_cuts {x y : Cut α} (hxy : x ≠ y) {a b : α}
     (hx : x ∈ cutCell a b) :
     ∃ a' b', a ≤ a' ∧ b' ≤ b ∧ x ∈ cutCell a' b' ∧ y ∉ cutCell a' b' := by
@@ -73,7 +81,9 @@ theorem exists_subcell_separating_cuts {x y : Cut α} (hxy : x ≠ y) {a b : α}
       · simpa only [min_eq_right htb] using htx
     · exact fun hy => Cut.not_mem_upper ht.1 (Cut.upper_of_le (min_le_right _ _) hy.2)
 
-/-- A source rectangle containing one cut pair can be refined to exclude any distinct pair.-/
+/-- A source rectangle containing one cut pair can be refined to exclude any distinct pair.
+@isnad1 id=ex.3h7v.s7.436acc0f31b3 from=translated src=- shape=c53f4b7f vocab=9a22904a
+-/
 theorem exists_rectangleCell_separating {p q : Cut α × Cut α} (hpq : p ≠ q)
     {a b c d : α} (hbc : b < c) (hp : p ∈ rectangleCell a b c d) :
     ∃ U ∈ separatedRectangleCells, p ∈ U ∧ q ∉ U := by

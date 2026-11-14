@@ -103,10 +103,16 @@ def boundaryPlan (γ : Measure (Space × Space)) : Measure PlanSpace :=
     (γ.restrict deleteRegion).map deleteMap +
     (γ.restrict insertRegion).map insertMap
 
+/--
+@isnad1 id=iff.0h2v.s4.3311bd278a9d from=translated src=- shape=19307bc3 vocab=0341e0e3
+-/
 @[simp] theorem interiorIncl_mem_image (x : Interior) (s : Set Interior) :
     interiorIncl x ∈ interiorIncl '' s ↔ x ∈ s := by
   exact interiorIncl_injective.mem_set_image
 
+/--
+@isnad1 id=not.0h2v.s4.ddb487f36277 from=translated src=- shape=9afb8cad vocab=9b27a31c
+-/
 @[simp] theorem diagonalProjection_not_mem_image (x : Interior) (s : Set Interior) :
     diagonalProjection x ∉ interiorIncl '' s := by
   rintro ⟨y, _, h⟩
@@ -204,7 +210,9 @@ private theorem boundaryPlan_second (γ : Measure (Space × Space)) (s : Set Int
     delete_second, measure_empty, add_zero, direct_second, insert_second]
   exact measure_inter_add_sdiff _ measurableSet_directRegion
 
-/-- Ordinary reservoir marginal equalities imply the required interior marginal equalities.-/
+/-- Ordinary reservoir marginal equalities imply the required interior marginal equalities.
+@isnad1 id=isbounda.2h4v.s6.0e1686783193 from=translated src=- shape=5ea749cd vocab=e4df3058
+-/
 theorem boundaryPlan_admissible (γ : Measure (Space × Space))
     (μ ν : Measure Interior) (R : ℝ≥0∞)
     (hfirst : γ.map Prod.fst = reservoirMeasure μ R)
@@ -337,7 +345,9 @@ private theorem boundaryPlan_cost_eq (p : ℝ) (γ : Measure (Space × Space)) :
     lintegral_add_left hD]
   rfl
 
-/-- The reverse plan never increases cost, including competitors whose cost is infinite.-/
+/-- The reverse plan never increases cost, including competitors whose cost is infinite.
+@isnad1 id=le.1h2v.s7.be745346b318 from=translated src=- shape=0f18f5d0 vocab=051fd7c1
+-/
 theorem boundaryPlan_cost_le (p : ℝ) (hp : 1 ≤ p) (γ : Measure (Space × Space)) :
     (∫⁻ z, planPowerCost p z ∂boundaryPlan γ) ≤
       ∫⁻ z, ENNReal.ofReal (dist z.1 z.2 ^ p) ∂γ := by
@@ -345,7 +355,9 @@ theorem boundaryPlan_cost_le (p : ℝ) (hp : 1 ≤ p) (γ : Measure (Space × Sp
   exact lintegral_mono (reverseCost_le p hp)
 
 /-- Every ordinary reservoir competitor produces an admissible boundary competitor
-with no greater cost. No attainment, disintegration, or finite-cost premise is used.-/
+with no greater cost. No attainment, disintegration, or finite-cost premise is used.
+@isnad1 id=ex.3h5v.s9.cdcb1d442c7b from=translated src=- shape=9d379342 vocab=629b0c20
+-/
 theorem exists_boundaryPlan_cost_le (p : ℝ) (hp : 1 ≤ p)
     (γ : Measure (Space × Space)) (μ ν : Measure Interior) (R : ℝ≥0∞)
     (hfirst : γ.map Prod.fst = reservoirMeasure μ R)
@@ -356,9 +368,15 @@ theorem exists_boundaryPlan_cost_le (p : ℝ) (hp : 1 ≤ p)
   ⟨boundaryPlan γ, boundaryPlan_admissible γ μ ν R hfirst hsecond,
     boundaryPlan_cost_le p hp γ⟩
 
+/--
+@isnad1 id=eq.0h0v.s9.8d84455f7892 from=translated src=- shape=45ba95fc vocab=5c672d9f
+-/
 theorem boundaryPlan_zero : boundaryPlan 0 = 0 := by
   simp [boundaryPlan]
 
+/--
+@isnad1 id=eq.0h0v.s9.d764a1879150 from=translated src=- shape=8220716e vocab=cac5c28c
+-/
 theorem boundaryPlan_boundaryAtom :
     boundaryPlan (Measure.dirac (Space.boundary, Space.boundary)) = 0 := by
   classical
@@ -368,7 +386,9 @@ theorem boundaryPlan_boundaryAtom :
 def farSource : Interior := ⟨(0, 2), by norm_num⟩
 def farTarget : Interior := ⟨(10, 12), by norm_num⟩
 
-/-- A distant interior pair is actually split: its squared leg cost is two.-/
+/-- A distant interior pair is actually split: its squared leg cost is two.
+@isnad1 id=eq.0h0v.s7.a4add7eb5e60 from=translated src=- shape=ffd8bf2f vocab=2f5f05cb
+-/
 theorem far_shortcut_reverse_cost :
     (∫⁻ z, planPowerCost 2 z ∂boundaryPlan
       (Measure.dirac (Space.point farSource, Space.point farTarget))) = 2 := by
@@ -377,7 +397,9 @@ theorem far_shortcut_reverse_cost :
   rw [reverseCost_points]
   norm_num [farSource, farTarget, depth_eq, Subtype.dist_eq, Prod.dist_eq, Real.dist_eq]
 
-/-- The same collapsed-space competitor pays four, so this comparison is strict.-/
+/-- The same collapsed-space competitor pays four, so this comparison is strict.
+@isnad1 id=eq.0h0v.s6.4f92e9eff81a from=translated src=- shape=6a714793 vocab=1593ba5d
+-/
 theorem far_shortcut_original_cost :
     (∫⁻ z : Space × Space, ENNReal.ofReal (dist z.1 z.2 ^ (2 : ℝ))
       ∂Measure.dirac (Space.point farSource, Space.point farTarget)) = 4 := by
@@ -391,6 +413,9 @@ def singlePairReservoirCompetitor (x y : Interior) : Measure (Space × Space) :=
   Measure.dirac (Space.point x, Space.point y) +
     Measure.dirac (Space.boundary, Space.boundary)
 
+/--
+@isnad1 id=eq.0h2v.s6.ef686afcdccc from=translated src=- shape=a0566327 vocab=5bda4fb9
+-/
 theorem singlePairReservoirCompetitor_first (x y : Interior) :
     (singlePairReservoirCompetitor x y).map Prod.fst =
       reservoirMeasure (Measure.dirac x) 2 := by
@@ -400,6 +425,9 @@ theorem singlePairReservoirCompetitor_first (x y : Interior) :
     exact ENNReal.sub_eq_of_eq_add (b := 1) (by norm_num) (by norm_num)
   simp [reservoirMeasure, Measure.map_dirac' continuous_point.measurable, hsub]
 
+/--
+@isnad1 id=eq.0h2v.s6.557a689997ef from=translated src=- shape=2edbff9f vocab=5bda4fb9
+-/
 theorem singlePairReservoirCompetitor_second (x y : Interior) :
     (singlePairReservoirCompetitor x y).map Prod.snd =
       reservoirMeasure (Measure.dirac y) 2 := by
@@ -409,13 +437,18 @@ theorem singlePairReservoirCompetitor_second (x y : Interior) :
     exact ENNReal.sub_eq_of_eq_add (b := 1) (by norm_num) (by norm_num)
   simp [reservoirMeasure, Measure.map_dirac' continuous_point.measurable, hsub]
 
+/--
+@isnad1 id=isbounda.0h2v.s5.533cafcdb537 from=translated src=- shape=16247b81 vocab=d360a1a0
+-/
 theorem singlePairReservoirCompetitor_admissible (x y : Interior) :
     IsBoundaryPlan (boundaryPlan (singlePairReservoirCompetitor x y))
       (Measure.dirac x) (Measure.dirac y) :=
   boundaryPlan_admissible _ _ _ 2 (singlePairReservoirCompetitor_first x y)
     (singlePairReservoirCompetitor_second x y)
 
-/-- The actual capacity-two reservoir competitor exhibits the strict four-to-two reduction.-/
+/-- The actual capacity-two reservoir competitor exhibits the strict four-to-two reduction.
+@isnad1 id=and.0h0v.s8.cc9ad953eb01 from=translated src=- shape=a8a3f333 vocab=80c8ddb0
+-/
 theorem far_reservoir_cost_reduction :
     (∫⁻ z, planPowerCost 2 z ∂boundaryPlan (singlePairReservoirCompetitor farSource farTarget)) = 2 ∧
     (∫⁻ z : Space × Space, ENNReal.ofReal (dist z.1 z.2 ^ (2 : ℝ))

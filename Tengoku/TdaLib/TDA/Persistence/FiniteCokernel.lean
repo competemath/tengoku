@@ -35,7 +35,9 @@ noncomputable def finiteCokernelFiberIso (f : M ⟶ N) (i : Fin s) :
   PreservesCokernel.iso ((evaluation (Fin s) (ModuleCat k)).obj i) f ≪≫
     ModuleCat.cokernelIsoRangeQuotient (f.app i)
 
-/-- This fiber identification takes the cokernel projection to the quotient map.-/
+/-- This fiber identification takes the cokernel projection to the quotient map.
+@isnad1 id=eq.0h6v.s12.90b8b4504e87 from=translated src=- shape=1ea2afd6 vocab=1bfac6e5
+-/
 theorem finiteCokernel_π_fiberIso (f : M ⟶ N) (i : Fin s) :
     (cokernel.π f).app i ≫ (finiteCokernelFiberIso f i).hom =
       ModuleCat.ofHom (LinearMap.range (f.app i).hom).mkQ := by
@@ -46,7 +48,9 @@ theorem finiteCokernel_π_fiberIso (f : M ⟶ N) (i : Fin s) :
       cokernel.π (f.app i) at hp
   rw [← Category.assoc, hp, ModuleCat.cokernel_π_cokernelIsoRangeQuotient_hom]
 
-/-- A vector is killed by the cokernel projection exactly when it is in the image.-/
+/-- A vector is killed by the cokernel projection exactly when it is in the image.
+@isnad1 id=iff.0h7v.s11.72124d5a8b36 from=translated src=- shape=891c6541 vocab=fd29b44e
+-/
 theorem finiteCokernel_π_eq_zero_iff (f : M ⟶ N) (i : Fin s) (y : N.obj i) :
     ((cokernel.π f).app i).hom y = 0 ↔ y ∈ LinearMap.range (f.app i).hom := by
   have he := congrArg (fun g : N.obj i ⟶
@@ -60,7 +64,9 @@ theorem finiteCokernel_π_eq_zero_iff (f : M ⟶ N) (i : Fin s) (y : N.obj i) :
   exact ((finiteCokernelFiberIso f i).toLinearEquiv.map_eq_zero_iff).symm
 
 /-- Cokernel structure maps vanish precisely when the target image lies in the
-component image at the later stage. No matching or dimension comparison is assumed.-/
+component image at the later stage. No matching or dimension comparison is assumed.
+@isnad1 id=iff.1h7v.s10.9c97ddf14df8 from=translated src=- shape=61deacbd vocab=8e0447d4
+-/
 theorem finiteCokernel_map_eq_zero_iff (f : M ⟶ N) {a b : Fin s} (h : a ≤ b) :
     structureMap (finiteCokernel f) h = 0 ↔
       LinearMap.range (structureMapLinear N h) ≤ LinearMap.range (f.app b).hom := by
@@ -84,7 +90,9 @@ theorem finiteCokernel_map_eq_zero_iff (f : M ⟶ N) {a b : Fin s} (h : a ≤ b)
     intro x
     exact (finiteCokernel_π_eq_zero_iff f b _).mpr (hi ⟨x, rfl⟩)
 
-/-- Shortness of the cokernel is equivalent to the target-image condition.-/
+/-- Shortness of the cokernel is equivalent to the target-image condition.
+@isnad1 id=iff.1h6v.s11.163183a8c871 from=translated src=- shape=f5057b11 vocab=8b1e92fe
+-/
 theorem cokernel_translationTrivial_iff (theta : Fin s →o Fin s)
     (hTheta : ∀ i, i ≤ theta i) (f : M ⟶ N) :
     TranslationTrivial theta hTheta (finiteCokernel f) ↔

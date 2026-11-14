@@ -36,6 +36,9 @@ def zeroDiagram (N : ℕ) : PModule.{u,0,u} k (Fin N) where
   map_id _ := by simp
   map_comp _ _ := by simp
 
+/--
+@isnad1 id=finitedi.0h3v.s6.fec710ca9db3 from=translated src=- shape=6915abb7 vocab=6c57870f
+-/
 instance zeroDiagram_finiteDimensional (N : ℕ) (i : Fin N) :
     FiniteDimensional k ((zeroDiagram (k := k) N).obj i) := by
   change FiniteDimensional k (Fin 0 → k)
@@ -71,10 +74,15 @@ noncomputable def zeroDiagramIso (N : ℕ) :
     intro x
     exact Subsingleton.elim _ _
 
+/--
+@isnad1 id=eq.0h2v.s5.e1f9d8b38c12 from=translated src=- shape=9b6b1a43 vocab=631a3745
+-/
 theorem zeroDiagram_barcode (N : ℕ) : rankBarcode (zeroDiagram (k := k) N) = 0 :=
   rankBarcode_eq_of_iso_barcodeModule 0 (zeroDiagramIso N)
 
-/-- A concrete nonempty observed index set still has the empty zero-module barcode.-/
+/-- A concrete nonempty observed index set still has the empty zero-module barcode.
+@isnad1 id=and.0h1v.s7.3fc53446a8a5 from=translated src=- shape=ce5e4cbf vocab=f664dd69
+-/
 theorem zeroThreeStages_decomposition : rankBarcode (zeroDiagram (k := k) 3) = 0 ∧
     Nonempty (zeroDiagram (k := k) 3 ≅
       barcodeModule (k := k) (0 : Multiset (FiniteInterval 3))) :=
@@ -87,11 +95,17 @@ def oneStagePair : PModule.{u,0,u} k (Fin 1) where
   map_id _ := by simp
   map_comp _ _ := by simp
 
+/--
+@isnad1 id=finitedi.0h2v.s7.4e2cec12bbfe from=translated src=- shape=80115c00 vocab=7f03f5c7
+-/
 instance oneStagePair_finiteDimensional (i : Fin 1) :
     FiniteDimensional k ((oneStagePair (k := k)).obj i) := by
   change FiniteDimensional k (k × k)
   infer_instance
 
+/--
+@isnad1 id=eq.0h1v.s5.7441137556bf from=translated src=- shape=49ab496c vocab=ba8dce5b
+-/
 theorem oneStagePair_barcode : rankBarcode (oneStagePair (k := k)) =
     Multiset.replicate 2 bar01 := by
   rw [← rankBarcode_barcodeModule (k := k) (Multiset.replicate 2 bar01)]
@@ -135,11 +149,17 @@ noncomputable def delayedBirthDiagram : PModule.{u,0,u} k (Fin 3) where
     intro x
     rfl
 
+/--
+@isnad1 id=finitedi.0h2v.s7.a95e060f9959 from=translated src=- shape=80115c00 vocab=cf50f23c
+-/
 instance delayedBirthDiagram_finiteDimensional (i : Fin 3) :
     FiniteDimensional k ((delayedBirthDiagram (k := k)).obj i) := by
   change FiniteDimensional k (delayedBirthFiber (k := k) i)
   infer_instance
 
+/--
+@isnad1 id=and.0h1v.s9.a5cd91897ec1 from=translated src=- shape=1c901908 vocab=10386698
+-/
 theorem delayedBirth_zero_initial :
     Module.finrank k ((delayedBirthDiagram (k := k)).obj (0 : Fin 3)) = 0 ∧
     Module.finrank k ((delayedBirthDiagram (k := k)).obj (1 : Fin 3)) = 0 := by
@@ -147,11 +167,17 @@ theorem delayedBirth_zero_initial :
     Module.finrank k (delayedBirthFiber (k := k) 1) = 0
   simp [delayedBirthFiber]
 
+/--
+@isnad1 id=eq.0h1v.s8.70139b0e0cd7 from=translated src=- shape=5d7db1d8 vocab=10386698
+-/
 theorem delayedBirth_final_dimension :
     Module.finrank k ((delayedBirthDiagram (k := k)).obj (2 : Fin 3)) = 1 := by
   change Module.finrank k (delayedBirthFiber (k := k) 2) = 1
   simp [delayedBirthFiber]
 
+/--
+@isnad1 id=eq.0h1v.s5.3ad7189f0389 from=translated src=- shape=f9f30ffc vocab=bcdb2828
+-/
 theorem delayedBirth_barcode : rankBarcode (delayedBirthDiagram (k := k)) =
     ({bar23} : Multiset (FiniteInterval 3)) := by
   rw [← rankBarcode_barcodeModule (k := k) ({bar23} : Multiset (FiniteInterval 3))]
@@ -174,11 +200,17 @@ def scalarTransitionDiagram (c : k) : PModule.{u,0,u} k (Fin 2) where
     have hjl : j ≤ l := leOfHom g
     fin_cases i <;> fin_cases j <;> fin_cases l <;> simp_all
 
+/--
+@isnad1 id=finitedi.0h3v.s7.5a8ca343cd3d from=translated src=- shape=76680bd6 vocab=d31791ac
+-/
 instance scalarTransitionDiagram_finiteDimensional (c : k) (i : Fin 2) :
     FiniteDimensional k ((scalarTransitionDiagram c).obj i) := by
   change FiniteDimensional k k
   infer_instance
 
+/--
+@isnad1 id=eq.0h3v.s10.bce6dcd49a6a from=translated src=- shape=eb0e5dd1 vocab=cf2a372b
+-/
 theorem scalarTransitionDiagram_map (c : k) (x : k) :
     structureMapLinear (scalarTransitionDiagram c) (show (0 : Fin 2) ≤ 1 by decide) x =
       c * x := rfl
@@ -200,19 +232,31 @@ noncomputable def scalarTransitionIso (c : k) (hc : c ≠ 0) :
   change (LinearEquiv.smulOfNeZero k k c hc).symm (c * x) = x
   exact (LinearEquiv.smulOfNeZero k k c hc).symm_apply_apply x
 
+/--
+@isnad1 id=eq.1h3v.s10.ed9e356a59c6 from=translated src=- shape=578459e8 vocab=ba0fcf2c
+-/
 theorem scalarTransitionIso_final (c : k) (hc : c ≠ 0) (x : k) :
     ((scalarTransitionIso c hc).hom.app (1 : Fin 2)).hom x = c⁻¹ * x := rfl
 
+/--
+@isnad1 id=finitedi.0h2v.s7.a2b3f85884aa from=translated src=- shape=80115c00 vocab=52224211
+-/
 instance identityTransition_finiteDimensional (i : Fin 2) :
     FiniteDimensional k ((identityTransitionDiagram k).obj i) := by
   change FiniteDimensional k k
   infer_instance
 
+/--
+@isnad1 id=finitedi.0h2v.s7.40afa7741817 from=translated src=- shape=80115c00 vocab=996af222
+-/
 instance zeroTransition_finiteDimensional (i : Fin 2) :
     FiniteDimensional k ((zeroTransitionDiagram k).obj i) := by
   change FiniteDimensional k k
   infer_instance
 
+/--
+@isnad1 id=eq.0h1v.s5.839602cc2747 from=translated src=- shape=f9f30ffc vocab=d799b1a0
+-/
 theorem identityTransition_barcode : rankBarcode (identityTransitionDiagram k) =
     ({bar02} : Multiset (FiniteInterval 2)) := by
   rw [← rankBarcode_barcodeModule (k := k) ({bar02} : Multiset (FiniteInterval 2))]
@@ -224,10 +268,16 @@ theorem identityTransition_barcode : rankBarcode (identityTransitionDiagram k) =
   fin_cases i <;> fin_cases j <;>
     simp [bar02, ← Multiset.cons_zero]
 
+/--
+@isnad1 id=eq.1h2v.s6.f0436b2e4e20 from=translated src=- shape=c1106492 vocab=42fafec5
+-/
 theorem scalarTransition_barcode (c : k) (hc : c ≠ 0) :
     rankBarcode (scalarTransitionDiagram c) = ({bar02} : Multiset (FiniteInterval 2)) := by
   rw [rankBarcode_eq_of_iso (scalarTransitionIso c hc), identityTransition_barcode]
 
+/--
+@isnad1 id=eq.0h1v.s6.1f6a04c01cf7 from=translated src=- shape=1172832f vocab=755c76f7
+-/
 theorem zeroTransition_barcode : rankBarcode (zeroTransitionDiagram k) =
     ({bar01two, bar12} : Multiset (FiniteInterval 2)) := by
   rw [← rankBarcode_barcodeModule (k := k)
@@ -252,6 +302,9 @@ theorem zeroTransition_barcode : rankBarcode (zeroTransitionDiagram k) =
     rw [LinearMap.range_id, finrank_top, Module.finrank_self]
     simp [bar01two, bar12, ← Multiset.cons_zero]
 
+/--
+@isnad1 id=and.0h1v.s9.008c1f4f0e33 from=translated src=- shape=0d572ac6 vocab=e10750c6
+-/
 theorem identity_zero_same_dimensions_different_barcodes :
     (∀ i : Fin 2, Module.finrank k ((identityTransitionDiagram k).obj i) =
       Module.finrank k ((zeroTransitionDiagram k).obj i)) ∧
@@ -268,6 +321,9 @@ theorem identity_zero_same_dimensions_different_barcodes :
 private instance emptyIndex_finiteDimensional (M : PModule.{u,0,u} k (Fin 0)) :
     ∀ i : Fin 0, FiniteDimensional k (M.obj i) := fun i => Fin.elim0 i
 
+/--
+@isnad1 id=eq.0h2v.s6.9719f25cc670 from=translated src=- shape=86000721 vocab=04e73870
+-/
 theorem emptyIndex_barcode (M : PModule.{u,0,u} k (Fin 0)) : rankBarcode M = 0 :=
   rankBarcode_eq_of_iso_barcodeModule 0 (emptyIndexIso M)
 
@@ -276,7 +332,9 @@ noncomputable def oneStagePairIso : oneStagePair (k := k) ≅
     barcodeModule (k := k) (Multiset.replicate 2 bar01) :=
   rankBarcodeIso _ ≪≫ eqToIso (congrArg (barcodeModule (k := k)) oneStagePair_barcode)
 
-/-- Every interval decomposition of the pair has these two occurrences.-/
+/-- Every interval decomposition of the pair has these two occurrences.
+@isnad1 id=eq.0h3v.s6.8a1a7e03c1e0 from=translated src=- shape=184bb5ee vocab=07fd2681
+-/
 theorem oneStagePair_decomposition_unique (B : Multiset (FiniteInterval 1))
     (e : oneStagePair (k := k) ≅ barcodeModule (k := k) B) :
     B = Multiset.replicate 2 bar01 :=

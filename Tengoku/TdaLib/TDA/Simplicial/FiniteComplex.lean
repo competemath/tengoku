@@ -42,17 +42,23 @@ instance instFintypeTotalFace (C : FiniteComplex n) :
     Fintype (TDA.Simplicial.TotalFace C.toPre) :=
   Fintype.subtype C.faces (fun _ => Iff.rfl)
 
-/-- The converted complex has precisely the stored membership predicate.-/
+/-- The converted complex has precisely the stored membership predicate.
+@isnad1 id=iff.0h3v.s5.01ce523f9e46 from=translated src=- shape=adf0819c vocab=4757ba6f
+-/
 theorem mem_toPre (C : FiniteComplex n) (s : Finset (Fin n)) :
     s ∈ C.toPre ↔ s ∈ C.faces := Iff.rfl
 
-/-- A valid presentation cannot list the empty face.-/
+/-- A valid presentation cannot list the empty face.
+@isnad1 id=not.0h2v.s5.b7c7c37a0c4a from=translated src=- shape=762b0c77 vocab=ceaa17ec
+-/
 theorem empty_not_mem_faces (C : FiniteComplex n) :
     (∅ : Finset (Fin n)) ∉ C.faces := by
   intro h
   exact (C.nonempty ∅ h).ne_empty rfl
 
-/-- Erasing membership proofs from the face enumeration recovers exactly `faces`.-/
+/-- Erasing membership proofs from the face enumeration recovers exactly `faces`.
+@isnad1 id=eq.0h2v.s6.d98e6c1deaa9 from=translated src=- shape=4be55d56 vocab=876b547e
+-/
 theorem image_univ_totalFace_val (C : FiniteComplex n) :
     (Finset.univ : Finset (TDA.Simplicial.TotalFace C.toPre)).image
       (fun s => s.val) = C.faces := by
@@ -64,12 +70,16 @@ theorem image_univ_totalFace_val (C : FiniteComplex n) :
   · intro hs
     exact Finset.mem_image.mpr ⟨⟨s, hs⟩, Finset.mem_univ _, rfl⟩
 
-/-- The executable face enumeration has one element per stored face.-/
+/-- The executable face enumeration has one element per stored face.
+@isnad1 id=eq.0h2v.s4.d735b66a82d5 from=translated src=- shape=1fe01d4a vocab=5d962b52
+-/
 theorem card_totalFace (C : FiniteComplex n) :
     Fintype.card (TDA.Simplicial.TotalFace C.toPre) = C.faces.card := by
   exact Fintype.subtype_card C.faces (fun _ => Iff.rfl)
 
-/-- Conversion to the preabstract complex faithfully determines the presentation.-/
+/-- Conversion to the preabstract complex faithfully determines the presentation.
+@isnad1 id=injectiv.0h1v.s3.eb9bd844903a from=translated src=- shape=caf4c6fc vocab=8c828797
+-/
 theorem toPre_injective :
     Function.Injective (toPre : FiniteComplex n →
       PreAbstractSimplicialComplex (Fin n)) := by

@@ -11,7 +11,9 @@ open Set MeasureTheory
 open scoped ENNReal ProbabilityTheory
 namespace TDA.Persistence.BoundaryTransport
 
-/-- Separation of finite original measures, with no persistence-moment hypothesis.-/
+/-- Separation of finite original measures, with no persistence-moment hypothesis.
+@isnad1 id=iff.1h3v.s7.017dcf33a217 from=translated src=- shape=92c0f239 vocab=43e4d22a
+-/
 theorem boundaryTransportDistance_eq_zero_iff (p : ℝ) (hp : 1 ≤ p)
     (μ ν : Measure Interior) [IsFiniteMeasure μ] [IsFiniteMeasure ν] :
     boundaryTransportDistance p μ ν = 0 ↔ μ = ν := by
@@ -79,7 +81,9 @@ private theorem glue_reservoirCouplings
       _ = σ s := congrArg (fun η : Measure (Space × Space) => η s)
         (σ.disintegrate σ.condKernel)
 
-/-- Sharp triangle inequality, using one reservoir capacity for all three finite inputs.-/
+/-- Sharp triangle inequality, using one reservoir capacity for all three finite inputs.
+@isnad1 id=le.1h4v.s7.01732caa1524 from=translated src=- shape=7f1089c1 vocab=bc22557d
+-/
 theorem boundaryTransportDistance_triangle (p : ℝ) (hp : 1 ≤ p)
     (μ ν ξ : Measure Interior)
     [IsFiniteMeasure μ] [IsFiniteMeasure ν] [IsFiniteMeasure ξ] :

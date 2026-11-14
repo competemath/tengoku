@@ -97,7 +97,9 @@ noncomputable def intervalModule {N : ℕ} {k : Type u} [Field k]
       apply Subtype.ext
       simp [intervalMap, hi]
 
-/-- Every fiber of a finite interval module is finite-dimensional over its field.-/
+/-- Every fiber of a finite interval module is finite-dimensional over its field.
+@isnad1 id=finitedi.0h4v.s7.522af410aa36 from=translated src=- shape=d73fbbe6 vocab=14f1fe83
+-/
 instance intervalModule_finiteDimensional {N : ℕ} {k : Type u} [Field k]
     (I : FiniteInterval N) (i : Fin N) :
     FiniteDimensional k ((intervalModule (k := k) I).obj i) := by
@@ -115,7 +117,9 @@ noncomputable def structureMapRank {N : ℕ} {k : Type u} [Field k]
     [FiniteDimensional k (M.obj i)] : ℕ :=
   Module.finrank k (LinearMap.range (structureMapLinear M hij))
 
-/-- The interval transition has rank one exactly when both endpoints are alive.-/
+/-- The interval transition has rank one exactly when both endpoints are alive.
+@isnad1 id=eq.1h5v.s11.e3751c0317d0 from=translated src=- shape=d4ef61c0 vocab=e8cb7957
+-/
 theorem intervalMap_finrank_range {N : ℕ} {k : Type u} [Field k]
     (I : FiniteInterval N) {i j : Fin N} (hij : i ≤ j)
     [decAlive : Decidable (I.alive i ∧ I.alive j)] :
@@ -137,7 +141,9 @@ theorem intervalMap_finrank_range {N : ℕ} {k : Type u} [Field k]
     rw [hmap]
     simp [LinearMap.range_zero]
 
-/-- On an ordered pair of indices, the active-endpoint condition is the barcode condition.-/
+/-- On an ordered pair of indices, the active-endpoint condition is the barcode condition.
+@isnad1 id=iff.1h4v.s5.692a18ee9609 from=translated src=- shape=567a1296 vocab=6841509a
+-/
 theorem interval_alive_endpoints_iff {N : ℕ} (I : FiniteInterval N)
     {i j : Fin N} (hij : i ≤ j) :
     (I.alive i ∧ I.alive j) ↔ I.birth ≤ i.val ∧ j.val < I.death := by

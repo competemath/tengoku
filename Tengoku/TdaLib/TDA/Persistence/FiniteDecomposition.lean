@@ -21,7 +21,9 @@ open CategoryTheory
 variable {N : ℕ} {k : Type u} [Field k]
 
 /-- Every pointwise finite-dimensional module on a finite chain is naturally isomorphic to
-a finite list of interval modules. The proof inducts on total fiber dimension.-/
+a finite list of interval modules. The proof inducts on total fiber dimension.
+@isnad1 id=ex.0h3v.s7.1b667815acf4 from=translated src=- shape=ee0a07e5 vocab=b128dcd8
+-/
 theorem exists_list_interval_decomposition (M : PModule.{u,0,u} k (Fin N))
     [∀ i : Fin N, FiniteDimensional k (M.obj i)] :
     ∃ xs : List (FiniteInterval N), Nonempty (M ≅ barcodeModuleOfList (k := k) xs) := by
@@ -38,14 +40,18 @@ theorem exists_list_interval_decomposition (M : PModule.{u,0,u} k (Fin N))
       exact ⟨I :: xs, ⟨e ≪≫ pointwiseProdIso (Iso.refl _) f ≪≫
         barcodeModuleOfListConsIso I xs⟩⟩
 
-/-- A finite interval decomposition exists without any supplied basis or decomposition.-/
+/-- A finite interval decomposition exists without any supplied basis or decomposition.
+@isnad1 id=ex.0h3v.s7.8b546e964418 from=translated src=- shape=ee0a07e5 vocab=6ebec044
+-/
 theorem exists_barcode_decomposition (M : PModule.{u,0,u} k (Fin N))
     [∀ i : Fin N, FiniteDimensional k (M.obj i)] :
     ∃ B : Multiset (FiniteInterval N), Nonempty (M ≅ barcodeModule (k := k) B) := by
   obtain ⟨xs, ⟨e⟩⟩ := exists_list_interval_decomposition M
   exact ⟨↑xs, ⟨e ≪≫ barcodeModuleOfListIso xs⟩⟩
 
-/-- A genuine natural isomorphism to the realization of the canonical rank barcode exists.-/
+/-- A genuine natural isomorphism to the realization of the canonical rank barcode exists.
+@isnad1 id=nonempty.0h3v.s7.bc173b847e4d from=translated src=- shape=4b270171 vocab=edeef98e
+-/
 theorem nonempty_rankBarcodeIso (M : PModule.{u,0,u} k (Fin N))
     [∀ i : Fin N, FiniteDimensional k (M.obj i)] :
     Nonempty (M ≅ barcodeModule (k := k) (rankBarcode M)) := by
@@ -65,7 +71,9 @@ variable [∀ i : Fin N, FiniteDimensional k (M.obj i)]
 variable [∀ i : Fin N, FiniteDimensional k (L.obj i)]
 
 /-- Canonical barcode equality classifies finite persistence modules up to natural isomorphism.
-The reverse implication uses the constructed interval decompositions.-/
+The reverse implication uses the constructed interval decompositions.
+@isnad1 id=iff.0h4v.s8.42cfdaeb0647 from=translated src=- shape=ee5b7fe1 vocab=a58b017d
+-/
 theorem nonempty_iso_iff_rankBarcode_eq :
     Nonempty (M ≅ L) ↔ rankBarcode M = rankBarcode L := by
   constructor
@@ -76,14 +84,18 @@ theorem nonempty_iso_iff_rankBarcode_eq :
       (rankBarcodeIso L).symm⟩
 
 /-- The ranks of all structure maps form a complete invariant. Diagonal ranks alone
-or diagonal and adjacent ranks alone do not suffice.-/
+or diagonal and adjacent ranks alone do not suffice.
+@isnad1 id=iff.0h4v.s8.2c56d78f4dd0 from=translated src=- shape=f6412109 vocab=136d5f43
+-/
 theorem nonempty_iso_iff_structureMapRank_eq :
     Nonempty (M ≅ L) ↔ ∀ (i j : Fin N) (hij : i ≤ j),
       structureMapRank M i j hij = structureMapRank L i j hij :=
   (nonempty_iso_iff_rankBarcode_eq M L).trans (rankBarcode_eq_iff M L)
 
 /-- Any two interval decompositions of the same module have the same occurrence multiset.
-This is uniqueness of multiplicities, not of generators, summands, or isomorphisms.-/
+This is uniqueness of multiplicities, not of generators, summands, or isomorphisms.
+@isnad1 id=eq.0h7v.s7.5875a3ed596a from=translated src=- shape=9ce99fa1 vocab=042357c6
+-/
 theorem barcode_decomposition_unique (B C : Multiset (FiniteInterval N))
     (e : M ≅ barcodeModule (k := k) B) (f : M ≅ barcodeModule (k := k) C) : B = C :=
   (rankBarcode_eq_of_iso_barcodeModule B e).symm.trans

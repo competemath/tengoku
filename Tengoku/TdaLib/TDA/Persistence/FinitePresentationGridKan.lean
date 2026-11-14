@@ -45,7 +45,9 @@ variable (D : Presentation.{u,0,w} (R := R) (P := Fin n → ℝ)) (hD : D.IsFini
 noncomputable def gridCoordinates : CoordinateGrid n := fun i =>
   insert 0 (D.criticalCoordinates_finite hD i).toFinset
 
-/-- Every factor of the selected grid contains zero, including empty presentations.-/
+/-- Every factor of the selected grid contains zero, including empty presentations.
+@isnad1 id=mem.1h4v.s6.3cac64804ff6 from=translated src=- shape=b4997de0 vocab=961a7b28
+-/
 theorem zero_mem_gridCoordinates (i : Fin n) : 0 ∈ D.gridCoordinates hD i := by
   classical
   exact Finset.mem_insert_self _ _
@@ -66,11 +68,15 @@ noncomputable def relationGridPoint (y : D.relations.Carrier) :
     apply Finset.mem_insert_of_mem
     exact (D.criticalCoordinates_finite hD i).mem_toFinset.mpr (Or.inr ⟨y, rfl⟩)⟩
 
-/-- The grid inclusion retains each generator birth exactly.-/
+/-- The grid inclusion retains each generator birth exactly.
+@isnad1 id=eq.1h4v.s8.53b3ed50a52f from=translated src=- shape=31443b56 vocab=61e2abf2
+-/
 @[simp] theorem embedding_generatorGridPoint (g : D.generators.Carrier) :
     (D.gridCoordinates hD).embedding (D.generatorGridPoint hD g) = D.generators.grade g := rfl
 
-/-- The grid inclusion retains each relation birth exactly.-/
+/-- The grid inclusion retains each relation birth exactly.
+@isnad1 id=eq.1h4v.s8.465fbc679916 from=translated src=- shape=31443b56 vocab=d857a323
+-/
 @[simp] theorem embedding_relationGridPoint (y : D.relations.Carrier) :
     (D.gridCoordinates hD).embedding (D.relationGridPoint hD y) = D.relations.grade y := rfl
 
@@ -92,7 +98,9 @@ noncomputable def gridKanIso :
       D.presented :=
   D.kanIso (D.gridCoordinates hD).embedding (generator_mem_grid D hD) (relation_mem_grid D hD)
 
-/-- The reconstruction satisfies the standard Kan universal property.-/
+/-- The reconstruction satisfies the standard Kan universal property.
+@isnad1 id=isleftka.1h3v.s9.79fb0cedb97a from=translated src=- shape=7494b6fc vocab=274471a5
+-/
 theorem grid_isLeftKanExtension : D.presented.IsLeftKanExtension
     (L := (D.gridCoordinates hD).embedding.monotone.functor) (𝟙 (D.gridModule hD)) :=
   D.isLeftKanExtension (D.gridCoordinates hD).embedding
@@ -105,12 +113,16 @@ noncomputable def gridHomEquiv (N : PModule.{u,0,max u w} R (Fin n → ℝ)) :
   D.restrictionHomEquiv (D.gridCoordinates hD).embedding
     (generator_mem_grid D hD) (relation_mem_grid D hD) N
 
-/-- The selected-grid map bijection is ordinary restriction in the forward direction.-/
+/-- The selected-grid map bijection is ordinary restriction in the forward direction.
+@isnad1 id=eq.1h5v.s12.0ebf9602bf10 from=translated src=- shape=4fe9e71f vocab=5c0b75fa
+-/
 theorem gridHomEquiv_apply (N : PModule.{u,0,max u w} R (Fin n → ℝ)) (f : D.presented ⟶ N) :
     D.gridHomEquiv hD N f = (D.gridCoordinates hD).embedding.monotone.functor.whiskerLeft f :=
   D.restrictionHomEquiv_apply _ _ _ N f
 
-/-- Extending a selected-grid map recovers precisely the supplied restricted map.-/
+/-- Extending a selected-grid map recovers precisely the supplied restricted map.
+@isnad1 id=eq.1h5v.s12.8f467e351f6a from=translated src=- shape=65a6d34c vocab=4be82ed7
+-/
 theorem gridHomEquiv_symm_restrict (N : PModule.{u,0,max u w} R (Fin n → ℝ))
     (α : D.gridModule hD ⟶ (D.gridCoordinates hD).embedding.monotone.functor ⋙ N) :
     (D.gridCoordinates hD).embedding.monotone.functor.whiskerLeft
@@ -120,7 +132,9 @@ theorem gridHomEquiv_symm_restrict (N : PModule.{u,0,max u w} R (Fin n → ℝ))
 end Presentation
 
 /-- Every finitely presented real-coordinate module is an actual left Kan
-extension from a finite product grid, up to a natural isomorphism.-/
+extension from a finite product grid, up to a natural isomorphism.
+@isnad1 id=ex.1h3v.s9.53ebda17e3ef from=translated src=- shape=13537e61 vocab=fdc6fc53
+-/
 theorem finitelyPresented_exists_finiteGridKan
     (M : PModule.{u,0,max u w} R (Fin n → ℝ))
     (hM : FinitelyPresented (R := R) (P := Fin n → ℝ) M) :
@@ -129,7 +143,9 @@ theorem finitelyPresented_exists_finiteGridKan
   obtain ⟨D, hD, ⟨e⟩⟩ := hM
   exact ⟨D.gridCoordinates hD, D.gridModule hD, ⟨D.gridKanIso hD ≪≫ e⟩⟩
 
-/-- Over a field the finite-grid reconstruction has finite-dimensional fibers.-/
+/-- Over a field the finite-grid reconstruction has finite-dimensional fibers.
+@isnad1 id=ex.1h3v.s9.9ca579db5579 from=translated src=- shape=e321587e vocab=cb604c4e
+-/
 theorem finitelyPresented_exists_pfd_finiteGridKan
     {k : Type u} [Field k] (M : PModule.{u,0,max u w} k (Fin n → ℝ))
     (hM : FinitelyPresented (R := k) (P := Fin n → ℝ) M) :
@@ -144,7 +160,9 @@ theorem finitelyPresented_exists_pfd_finiteGridKan
 /-- The finite presentation's actual reconstruction grid has nonempty factors.
 The same presentation, restriction, and Kan reconstruction as in
 `finitelyPresented_exists_pfd_finiteGridKan` are retained, with the already
-proved zero membership exposed for each coordinate.-/
+proved zero membership exposed for each coordinate.
+@isnad1 id=ex.1h3v.s9.252ba1a2a75d from=translated src=- shape=a055b68d vocab=2766baa6
+-/
 theorem finitelyPresented_exists_pfd_nonempty_finiteGridKan
     {k : Type u} [Field k] (M : PModule.{u,0,max u w} k (Fin n → ℝ))
     (hM : FinitelyPresented (R := k) (P := Fin n → ℝ) M) :

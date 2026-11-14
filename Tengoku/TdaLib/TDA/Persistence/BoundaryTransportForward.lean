@@ -20,6 +20,9 @@ open scoped ENNReal
 def collapsePlanPair (z : PlanSpace) : Space × Space :=
   (collapse z.1.1, collapse z.1.2)
 
+/--
+@isnad1 id=measurab.0h0v.s7.1fe29c81e179 from=translated src=- shape=1f28ec23 vocab=f6915585
+-/
 theorem measurable_collapsePlanPair : Measurable collapsePlanPair := by
   unfold collapsePlanPair
   exact (measurable_collapse.comp (by fun_prop)).prodMk
@@ -31,7 +34,9 @@ def collapsedAugmentation (π : Measure PlanSpace) (R : ℝ≥0∞) :
   π.map collapsePlanPair +
     (R - π Set.univ) • Measure.dirac (Space.boundary, Space.boundary)
 
-/-- With sufficient capacity, the augmented plan has exactly mass `R`.-/
+/-- With sufficient capacity, the augmented plan has exactly mass `R`.
+@isnad1 id=eq.1h2v.s9.0db84195d0e1 from=translated src=- shape=8fb6ec54 vocab=6bad3ae5
+-/
 theorem collapsedAugmentation_mass (π : Measure PlanSpace) (R : ℝ≥0∞)
     (hπR : π Set.univ ≤ R) :
     collapsedAugmentation π R Set.univ = R := by
@@ -129,7 +134,9 @@ private theorem measure_eq_of_away_boundary_and_mass
   · exact haway s hs hb
 
 /-- The first projection of every collapsed, padded admissible plan is the
-specified first reservoir measure.-/
+specified first reservoir measure.
+@isnad1 id=eq.3h4v.s8.c38f3bc326ac from=translated src=- shape=fc5dad75 vocab=08029a6d
+-/
 theorem collapsedAugmentation_first_marginal
     {π : Measure PlanSpace} {μ ν : Measure Interior}
     (hπ : IsBoundaryPlan π μ ν) (R : ℝ≥0∞) (hR : R < ∞)
@@ -148,7 +155,9 @@ theorem collapsedAugmentation_first_marginal
   · intro s hs hb
     exact collapsedAugmentation_first_noboundary hπ R hs hb
 
-/-- The second projection is the specified second reservoir measure.-/
+/-- The second projection is the specified second reservoir measure.
+@isnad1 id=eq.3h4v.s8.8c72679d4be7 from=translated src=- shape=46563dad vocab=08029a6d
+-/
 theorem collapsedAugmentation_second_marginal
     {π : Measure PlanSpace} {μ ν : Measure Interior}
     (hπ : IsBoundaryPlan π μ ν) (R : ℝ≥0∞) (hR : R < ∞)
@@ -171,13 +180,17 @@ theorem collapsedAugmentation_second_marginal
   · intro s hs hb
     exact collapsedAugmentation_second_noboundary hπ R hs hb
 
-/-- Pairwise collapsed distance never exceeds the original maximum-coordinate distance.-/
+/-- Pairwise collapsed distance never exceeds the original maximum-coordinate distance.
+@isnad1 id=le.0h1v.s9.ebcb421ac772 from=translated src=- shape=887732fc vocab=b58c20b6
+-/
 theorem collapsePlanPair_dist_le (z : PlanSpace) :
     dist (collapse z.1.1) (collapse z.1.2) ≤ dist z.1.1 z.1.2 := by
   have h := lipschitz_collapse.dist_le_mul z.1.1 z.1.2
   simpa using h
 
-/-- Powered cost decreases pointwise on collapse when `p` is nonnegative.-/
+/-- Powered cost decreases pointwise on collapse when `p` is nonnegative.
+@isnad1 id=le.1h2v.s8.c3bffa9de27d from=translated src=- shape=930f663a vocab=b03dfe55
+-/
 theorem collapsePlanPair_powerCost_le (p : ℝ) (hp : 0 ≤ p) (z : PlanSpace) :
     ENNReal.ofReal ((dist (collapse z.1.1) (collapse z.1.2)) ^ p) ≤
       planPowerCost p z := by
@@ -189,12 +202,17 @@ theorem collapsePlanPair_powerCost_le (p : ℝ) (hp : 0 ≤ p) (z : PlanSpace) :
 def collapsedPowerCost (p : ℝ) (z : Space × Space) : ℝ≥0∞ :=
   ENNReal.ofReal ((dist z.1 z.2) ^ p)
 
+/--
+@isnad1 id=measurab.0h1v.s3.3ba7ae657080 from=translated src=- shape=360773cc vocab=c9563cdf
+-/
 theorem measurable_collapsedPowerCost (p : ℝ) : Measurable (collapsedPowerCost p) := by
   unfold collapsedPowerCost
   fun_prop
 
 /-- Collapse plus boundary–boundary padding never raises powered cost, even for an
-original competitor of infinite cost.-/
+original competitor of infinite cost.
+@isnad1 id=le.1h3v.s8.04306cdc0722 from=translated src=- shape=ea9287d9 vocab=66e3e524
+-/
 theorem collapsedAugmentation_cost_le (π : Measure PlanSpace) (R : ℝ≥0∞)
     (p : ℝ) (hp : 0 < p) :
     (∫⁻ z, collapsedPowerCost p z ∂collapsedAugmentation π R) ≤
@@ -210,7 +228,9 @@ theorem collapsedAugmentation_cost_le (π : Measure PlanSpace) (R : ℝ≥0∞)
 
 /-- Forward boundary-to-reservoir comparison for every admissible Borel plan,
 including those with infinite powered cost. The two conclusions are literal
-pushforward marginal equalities on the collapsed metric space.-/
+pushforward marginal equalities on the collapsed metric space.
+@isnad1 id=and.4h5v.s9.b162a1dd83da from=translated src=- shape=b44bd575 vocab=18a78f2c
+-/
 theorem collapsedAugmentation_forward
     {π : Measure PlanSpace} {μ ν : Measure Interior}
     (hπ : IsBoundaryPlan π μ ν) (R : ℝ≥0∞) (hR : R < ∞)

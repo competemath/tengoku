@@ -65,7 +65,9 @@ private noncomputable def sortedEnumeration (f : FilterFunction K α) :
   change rankKey f q (e i) < rankKey f q (e j)
   exact e.strictMono hij
 
-/-- Every filter with finitely many faces admits a compatible enumeration.-/
+/-- Every filter with finitely many faces admits a compatible enumeration.
+@isnad1 id=nonempty.0h4v.s4.370bdbecab68 from=translated src=- shape=7ab365f3 vocab=87256f68
+-/
 theorem exists_compatibleOrder (f : FilterFunction K α) :
     Nonempty (CompatibleOrder f) := by
   let sorted := sortedEnumeration f
@@ -92,7 +94,9 @@ theorem exists_compatibleOrder (f : FilterFunction K α) :
       rankKey f sorted.rank (sorted.enum j) at hkey
     exact Prod.Lex.monotone_fst _ _ hkey
 
-/-- Grade monotonicity along an enumeration is equivalent to reflection of strict grade order.-/
+/-- Grade monotonicity along an enumeration is equivalent to reflection of strict grade order.
+@isnad1 id=iff.0h5v.s8.275544cd95f7 from=translated src=- shape=34875efe vocab=b76b6651
+-/
 theorem CompatibleOrder.monotone_enum_iff_reflects_lt
     (f : FilterFunction K α)
     (e : Fin (Fintype.card (TDA.Simplicial.TotalFace K)) ≃

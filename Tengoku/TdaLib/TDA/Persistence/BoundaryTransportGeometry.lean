@@ -32,13 +32,22 @@ instance : Inhabited Space := ⟨Space.boundary⟩
 /-- Distance of an interior point to the diagonal in the maximum norm.-/
 def depth (x : Interior) : ℝ := (diagonalCost x.1).toReal
 
+/--
+@isnad1 id=eq.0h1v.s6.29699ee891b0 from=translated src=- shape=ec1bf8c3 vocab=25589c23
+-/
 @[simp] theorem depth_eq (x : Interior) : depth x = (x.1.2 - x.1.1) / 2 := by
   simp [depth, diagonalCost_toReal, abs_of_pos (sub_pos.mpr x.2)]
 
+/--
+@isnad1 id=lt.0h1v.s3.934a04c52998 from=translated src=- shape=b9369acb vocab=054e59f1
+-/
 theorem depth_pos (x : Interior) : 0 < depth x := by
   rw [depth_eq]
   exact div_pos (sub_pos.mpr x.2) (by norm_num)
 
+/--
+@isnad1 id=le.0h1v.s3.47b9d742e1dd from=translated src=- shape=b9369acb vocab=dea98c38
+-/
 theorem depth_nonneg (x : Interior) : 0 ≤ depth x := (depth_pos x).le
 
 private theorem plane_depth_le_dist_add (x y : ℝ × ℝ) :
@@ -59,14 +68,29 @@ def rho : Space → Space → ℝ
   | .boundary, .point y => depth y
   | .point x, .point y => min (dist x y) (depth x + depth y)
 
+/--
+@isnad1 id=eq.0h0v.s3.01d489ca7413 from=translated src=- shape=069c4242 vocab=79367d5d
+-/
 @[simp] theorem rho_boundary_boundary : rho .boundary .boundary = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s3.cc556b9cdbd1 from=translated src=- shape=f1f81fcd vocab=ad87af2c
+-/
 @[simp] theorem rho_point_boundary (x : Interior) : rho (.point x) .boundary = depth x := rfl
+/--
+@isnad1 id=eq.0h1v.s3.4c138d49a4df from=translated src=- shape=981f0160 vocab=ad87af2c
+-/
 @[simp] theorem rho_boundary_point (x : Interior) : rho .boundary (.point x) = depth x := rfl
+/--
+@isnad1 id=eq.0h2v.s6.8a7022ca4d34 from=translated src=- shape=20b0f434 vocab=b27278ea
+-/
 @[simp] theorem rho_point_point (x y : Interior) :
     rho (.point x) (.point y) =
       min (finitePairCost x.1 y.1).toReal (depth x + depth y) := by
   simp [rho, finitePairCost_toReal, Subtype.dist_eq, dist_eq_norm]
 
+/--
+@isnad1 id=eq.0h1v.s3.b0466a15e8b9 from=translated src=- shape=34c957ae vocab=ad818cc1
+-/
 @[simp] theorem rho_self (x : Space) : rho x x = 0 := by
   cases x with
   | boundary => rfl
@@ -75,6 +99,9 @@ def rho : Space → Space → ℝ
     rw [dist_self]
     exact min_eq_left (add_nonneg (depth_nonneg x) (depth_nonneg x))
 
+/--
+@isnad1 id=eq.0h2v.s3.07a78e2bf280 from=translated src=- shape=ab795eaa vocab=ad818cc1
+-/
 theorem rho_comm (x y : Space) : rho x y = rho y x := by
   cases x <;> cases y <;> simp [rho, dist_comm, add_comm]
 
@@ -84,7 +111,9 @@ private theorem depth_le_rho_add (x y : Interior) :
   rw [min_add, le_min_iff]
   exact ⟨depth_le_dist_add x y, by linarith [depth_nonneg y]⟩
 
-/-- The shortcut metric satisfies the sharp triangle inequality.-/
+/-- The shortcut metric satisfies the sharp triangle inequality.
+@isnad1 id=le.0h3v.s4.4da399ac9551 from=translated src=- shape=5968a5f3 vocab=5b9b2fda
+-/
 theorem rho_triangle (x y z : Space) : rho x z ≤ rho x y + rho y z := by
   cases x with
   | boundary =>
@@ -116,7 +145,9 @@ theorem rho_triangle (x y z : Space) : rho x z ≤ rho x y + rho y z := by
         · rw [min_eq_right hxy, min_eq_right hyz]
           exact (min_le_right _ _).trans (by linarith [depth_nonneg y])
 
-/-- Zero collapsed distance identifies the actual points.-/
+/-- Zero collapsed distance identifies the actual points.
+@isnad1 id=iff.0h2v.s4.0849c9351431 from=translated src=- shape=51acfd4e vocab=ad818cc1
+-/
 theorem rho_eq_zero_iff (x y : Space) : rho x y = 0 ↔ x = y := by
   constructor
   · intro h
@@ -144,20 +175,34 @@ instance : MetricSpace Space where
   dist_triangle := rho_triangle
   eq_of_dist_eq_zero := (rho_eq_zero_iff _ _).mp
 
+/--
+@isnad1 id=eq.0h1v.s4.0b56ddb1377f from=translated src=- shape=3c3becf4 vocab=a12d60fe
+-/
 @[simp] theorem dist_point_boundary (x : Interior) :
     dist (.point x) (Space.boundary) = depth x := rfl
+/--
+@isnad1 id=eq.0h1v.s4.4a81bfa2a8f5 from=translated src=- shape=98bebfd6 vocab=a12d60fe
+-/
 @[simp] theorem dist_boundary_point (x : Interior) :
     dist Space.boundary (.point x) = depth x := rfl
+/--
+@isnad1 id=eq.0h2v.s5.00486954c4e9 from=translated src=- shape=25ff287c vocab=e161ecb8
+-/
 @[simp] theorem dist_point_point (x y : Interior) :
     dist (Space.point x) (Space.point y) = min (dist x y) (depth x + depth y) := rfl
 
-/-- Inclusion of the interior is distance-nonincreasing.-/
+/-- Inclusion of the interior is distance-nonincreasing.
+@isnad1 id=lipschit.0h0v.s5.350428e4e273 from=translated src=- shape=c80f5d6d vocab=5af9a85c
+-/
 theorem lipschitz_point : LipschitzWith 1 Space.point := by
   rw [lipschitzWith_iff_dist_le_mul]
   intro x y
   simp only [NNReal.coe_one, one_mul, dist_point_point]
   exact min_le_left _ _
 
+/--
+@isnad1 id=continuo.0h0v.s5.d8c7291a0380 from=translated src=- shape=54c8eceb vocab=6a65eb20
+-/
 theorem continuous_point : Continuous Space.point := lipschitz_point.continuous
 
 instance : SeparableSpace Space := by
@@ -169,7 +214,9 @@ instance : SeparableSpace Space := by
   exact (isSeparable_range continuous_point).union (Set.countable_singleton Space.boundary).isSeparable
 
 /-- A Cauchy sequence for the collapsed metric has a limit, even when its
-birth coordinates escape along the diagonal.-/
+birth coordinates escape along the diagonal.
+@isnad1 id=ex.1h1v.s5.bd2d63058546 from=translated src=- shape=37c6944e vocab=38d37868
+-/
 theorem cauchySeq_exists_tendsto (u : ℕ → Space) (hu : CauchySeq u) :
     ∃ x, Tendsto u atTop (𝓝 x) := by
   let d : ℕ → ℝ := fun n => dist (u n) Space.boundary
@@ -235,7 +282,9 @@ instance : SecondCountableTopology Space :=
 
 instance : PolishSpace Space := inferInstance
 
-/-- The metric on the interior gives exactly its ordinary half-plane topology.-/
+/-- The metric on the interior gives exactly its ordinary half-plane topology.
+@isnad1 id=isopenem.0h0v.s5.d6c4e74a63ea from=translated src=- shape=54c8eceb vocab=c602e2dc
+-/
 theorem isOpenEmbedding_point : IsOpenEmbedding Space.point := by
   apply IsOpenEmbedding.of_continuous_injective_isOpenMap continuous_point (fun _ _ h => Space.point.inj h)
   intro s hs
@@ -261,11 +310,15 @@ theorem isOpenEmbedding_point : IsOpenEmbedding Space.point := by
 instance : MeasurableSpace Space := borel Space
 instance : BorelSpace Space := ⟨rfl⟩
 
-/-- Interior Borel sets remain Borel in the collapsed metric space.-/
+/-- Interior Borel sets remain Borel in the collapsed metric space.
+@isnad1 id=measurab.0h0v.s4.26241367a40c from=translated src=- shape=54c8eceb vocab=19420314
+-/
 theorem measurableEmbedding_point : MeasurableEmbedding Space.point :=
   isOpenEmbedding_point.measurableEmbedding
 
-/-- Borel sets are precisely a Borel interior part and an arbitrary boundary atom.-/
+/-- Borel sets are precisely a Borel interior part and an arbitrary boundary atom.
+@isnad1 id=iff.0h1v.s5.a67c8dd0ccf4 from=translated src=- shape=ce012af2 vocab=c8a8e026
+-/
 theorem measurableSet_iff_interior (s : Set Space) :
     MeasurableSet s ↔ MeasurableSet (Space.point ⁻¹' s) := by
   classical
@@ -287,9 +340,15 @@ abbrev ClosedHalfPlane := {x : ℝ × ℝ // x.1 ≤ x.2}
 def collapse (x : ClosedHalfPlane) : Space :=
   if h : x.1.1 < x.1.2 then Space.point ⟨x.1, h⟩ else Space.boundary
 
+/--
+@isnad1 id=eq.0h1v.s5.2582bd6ac68d from=translated src=- shape=e3ccc5b2 vocab=30da9e35
+-/
 @[simp] theorem collapse_interior (x : Interior) : collapse ⟨x.1, x.2.le⟩ = Space.point x := by
   simp [collapse, x.2]
 
+/--
+@isnad1 id=eq.0h1v.s4.1f90371f23d6 from=translated src=- shape=b60853df vocab=df7682df
+-/
 @[simp] theorem collapse_diagonal (t : ℝ) : collapse ⟨(t, t), le_rfl⟩ = Space.boundary := by
   simp [collapse]
 
@@ -298,7 +357,9 @@ private theorem diagonalCost_eq_zero_of_not_lt (x : ClosedHalfPlane) (h : ¬ x.1
   have heq : x.1.1 = x.1.2 := le_antisymm x.2 (le_of_not_gt h)
   simp [diagonalCost_toReal, heq]
 
-/-- Collapse is distance-nonincreasing for the ordinary maximum norm.-/
+/-- Collapse is distance-nonincreasing for the ordinary maximum norm.
+@isnad1 id=lipschit.0h0v.s5.fe27492df963 from=translated src=- shape=c80f5d6d vocab=920580f2
+-/
 theorem lipschitz_collapse : LipschitzWith 1 collapse := by
   rw [lipschitzWith_iff_dist_le_mul]
   intro x y
@@ -314,18 +375,28 @@ theorem lipschitz_collapse : LipschitzWith 1 collapse := by
       plane_depth_le_dist_add y.1 x.1
   · exact dist_nonneg
 
-/-- Every point of the collapsed space comes from the closed upper half-plane.-/
+/-- Every point of the collapsed space comes from the closed upper half-plane.
+@isnad1 id=surjecti.0h0v.s2.f0c426eacbae from=translated src=- shape=54c8eceb vocab=e48a0dc8
+-/
 theorem collapse_surjective : Function.Surjective collapse := by
   intro x
   cases x with
   | boundary => exact ⟨⟨(0, 0), le_rfl⟩, collapse_diagonal 0⟩
   | point x => exact ⟨⟨x.1, x.2.le⟩, collapse_interior x⟩
 
+/--
+@isnad1 id=continuo.0h0v.s5.d54789b15bfb from=translated src=- shape=54c8eceb vocab=47ed1a23
+-/
 theorem continuous_collapse : Continuous collapse := lipschitz_collapse.continuous
 
+/--
+@isnad1 id=measurab.0h0v.s4.33b4d8fe5100 from=translated src=- shape=54c8eceb vocab=8dca6fb3
+-/
 theorem measurable_collapse : Measurable collapse := continuous_collapse.measurable
 
-/-- Distance to the boundary is exactly persistence, without a birth-coordinate moment.-/
+/-- Distance to the boundary is exactly persistence, without a birth-coordinate moment.
+@isnad1 id=eq.0h1v.s6.7dff4061abca from=translated src=- shape=d0e704f7 vocab=e8e59ffe
+-/
 theorem dist_collapse_boundary (x : ClosedHalfPlane) :
     dist (collapse x) Space.boundary = (x.1.2 - x.1.1) / 2 := by
   unfold collapse
@@ -334,14 +405,18 @@ theorem dist_collapse_boundary (x : ClosedHalfPlane) :
   · have heq : x.1.1 = x.1.2 := le_antisymm x.2 (le_of_not_gt h)
     simp [heq]
 
-/-- Direct transport between distant bars can be strictly more expensive than the shortcut.-/
+/-- Direct transport between distant bars can be strictly more expensive than the shortcut.
+@isnad1 id=eq.0h0v.s6.ac195b5133ca from=translated src=- shape=364e821c vocab=d6618462
+-/
 theorem far_points_shortcut :
     dist (Space.point ⟨(0, 2), by norm_num⟩)
       (Space.point ⟨(10, 12), by norm_num⟩) = 2 := by
   rw [dist_point_point]
   norm_num [depth_eq, Subtype.dist_eq, Prod.dist_eq, Real.dist_eq]
 
-/-- Squaring a shortcut length differs from summing the squared boundary legs.-/
+/-- Squaring a shortcut length differs from summing the squared boundary legs.
+@isnad1 id=and.0h0v.s7.b38555426ac7 from=translated src=- shape=a63dfc7a vocab=9327cf9c
+-/
 theorem far_points_squared_shortcut_and_boundary_legs :
     dist (Space.point ⟨(0, 2), by norm_num⟩)
         (Space.point ⟨(10, 12), by norm_num⟩) ^ 2 = 4 ∧
@@ -351,7 +426,9 @@ theorem far_points_squared_shortcut_and_boundary_legs :
     norm_num
   · norm_num [depth_eq]
 
-/-- The metric has arbitrarily small positive interior distances to its boundary.-/
+/-- The metric has arbitrarily small positive interior distances to its boundary.
+@isnad1 id=ex.1h1v.s5.5474cfc0883c from=translated src=- shape=4e37f659 vocab=6ef6667b
+-/
 theorem exists_point_dist_boundary_lt {ε : ℝ} (hε : 0 < ε) :
     ∃ x : Interior, 0 < dist (Space.point x) Space.boundary ∧
       dist (Space.point x) Space.boundary < ε := by
@@ -360,7 +437,9 @@ theorem exists_point_dist_boundary_lt {ε : ℝ} (hε : 0 < ε) :
   · simp only [dist_point_boundary, depth_eq, sub_zero]
     linarith
 
-/-- Interior points are dense, including at the collapsed boundary.-/
+/-- Interior points are dense, including at the collapsed boundary.
+@isnad1 id=denseran.0h0v.s3.a6dffdbb868c from=translated src=- shape=54c8eceb vocab=c4768eb9
+-/
 theorem denseRange_point : DenseRange Space.point := by
   apply Metric.denseRange_iff.mpr
   intro x ε hε

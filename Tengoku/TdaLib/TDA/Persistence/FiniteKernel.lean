@@ -33,7 +33,9 @@ noncomputable def finiteKernelFiberIso (f : M ⟶ N) (i : Fin s) :
   PreservesKernel.iso ((evaluation (Fin s) (ModuleCat k)).obj i) f ≪≫
     ModuleCat.kernelIsoKer (f.app i)
 
-/-- The fiber identification takes the kernel inclusion to the subtype map.-/
+/-- The fiber identification takes the kernel inclusion to the subtype map.
+@isnad1 id=eq.0h6v.s13.702e969ce452 from=translated src=- shape=69824ba6 vocab=0aad73fa
+-/
 theorem finiteKernel_ι_fiberIso (f : M ⟶ N) (i : Fin s) :
     (finiteKernelFiberIso f i).inv ≫ (kernel.ι f).app i =
       ModuleCat.ofHom (LinearMap.ker (f.app i).hom).subtype := by
@@ -43,7 +45,9 @@ theorem finiteKernel_ι_fiberIso (f : M ⟶ N) (i : Fin s) :
     (kernel.ι f).app i = kernel.ι (f.app i) at hp
   rw [Category.assoc, hp, ModuleCat.kernelIsoKer_inv_kernel_ι]
 
-/-- The kernel inclusion has precisely the component linear kernel as its range.-/
+/-- The kernel inclusion has precisely the component linear kernel as its range.
+@isnad1 id=eq.0h6v.s10.bbae946d2ea9 from=translated src=- shape=eab1a815 vocab=1ed749da
+-/
 theorem finiteKernel_ι_range (f : M ⟶ N) (i : Fin s) :
     LinearMap.range ((kernel.ι f).app i).hom = LinearMap.ker (f.app i).hom := by
   ext x
@@ -56,7 +60,9 @@ theorem finiteKernel_ι_range (f : M ⟶ N) (i : Fin s) :
     exact congrArg (fun g : ModuleCat.of k (LinearMap.ker (f.app i).hom) ⟶ M.obj i =>
       g.hom ⟨x, hx⟩) (finiteKernel_ι_fiberIso f i)
 
-/-- Kernel maps vanish exactly when the source transition kills the component kernel.-/
+/-- Kernel maps vanish exactly when the source transition kills the component kernel.
+@isnad1 id=iff.1h7v.s10.90f48fd1c0f0 from=translated src=- shape=21dd4d12 vocab=540449df
+-/
 theorem finiteKernel_map_eq_zero_iff (f : M ⟶ N) {a b : Fin s} (h : a ≤ b) :
     structureMap (finiteKernel f) h = 0 ↔
       LinearMap.ker (f.app a).hom ≤ LinearMap.ker (structureMapLinear M h) := by
@@ -78,7 +84,9 @@ theorem finiteKernel_map_eq_zero_iff (f : M ⟶ N) {a b : Fin s} (h : a ≤ b) :
     intro z
     exact hk (by rw [← finiteKernel_ι_range f a]; exact ⟨z, rfl⟩)
 
-/-- Shortness of the kernel is equivalent to the component kernel-killing condition.-/
+/-- Shortness of the kernel is equivalent to the component kernel-killing condition.
+@isnad1 id=iff.1h6v.s10.b168621e220e from=translated src=- shape=b32df0cb vocab=a873ab11
+-/
 theorem kernel_translationTrivial_iff (theta : Fin s →o Fin s)
     (hTheta : ∀ i, i ≤ theta i) (f : M ⟶ N) :
     TranslationTrivial theta hTheta (finiteKernel f) ↔

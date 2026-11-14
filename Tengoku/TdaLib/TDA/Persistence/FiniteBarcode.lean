@@ -58,7 +58,9 @@ noncomputable def barcodeModuleOfList {N : ℕ} {k : Type u} [Field k]
       (structureMapLinear_comp (intervalModule (k := k) (xs.get t))
         (leOfHom f) (leOfHom g))
 
-/-- Each fiber of a list-enumerated barcode is finite-dimensional.-/
+/-- Each fiber of a list-enumerated barcode is finite-dimensional.
+@isnad1 id=finitedi.0h4v.s7.aa704e887b4c from=translated src=- shape=756a29a0 vocab=681bfead
+-/
 instance barcodeModuleOfList_finiteDimensional {N : ℕ} {k : Type u} [Field k]
     (xs : List (FiniteInterval N)) (i : Fin N) :
     FiniteDimensional k ((barcodeModuleOfList (k := k) xs).obj i) := by
@@ -74,7 +76,9 @@ noncomputable def barcodeModule {N : ℕ} {k : Type u} [Field k]
     (B : Multiset (FiniteInterval N)) : PModule.{u,0,u} k (Fin N) :=
   barcodeModuleOfList (k := k) B.toList
 
-/-- Each finite barcode fiber is finite-dimensional, with one coordinate per occurrence.-/
+/-- Each finite barcode fiber is finite-dimensional, with one coordinate per occurrence.
+@isnad1 id=finitedi.0h4v.s7.0ab3cf33698d from=translated src=- shape=756a29a0 vocab=cd404cec
+-/
 instance barcodeModule_finiteDimensional {N : ℕ} {k : Type u} [Field k]
     (B : Multiset (FiniteInterval N)) (i : Fin N) :
     FiniteDimensional k ((barcodeModule (k := k) B).obj i) := by
@@ -284,7 +288,9 @@ private theorem list_get_sum_countP {α : Type*} (xs : List α) (p : α → Prop
 /-- The rank of the barcode structure map is the number of active interval summands.
 
 Rank is computed from the range of the structure map, then its finite-product range is
-identified with the product of coordinate ranges.-/
+identified with the product of coordinate ranges.
+@isnad1 id=eq.1h5v.s6.00982d1c2286 from=translated src=- shape=94f442d6 vocab=5faa2fee
+-/
 theorem rank_barcodeMap {N : ℕ} {k : Type u} [Field k]
     (B : Multiset (FiniteInterval N)) (i j : Fin N) (hij : i ≤ j) :
     structureMapRank (barcodeModule (k := k) B) i j hij =
@@ -332,7 +338,9 @@ noncomputable def barcodeRankInteger {N : ℕ} {k : Type u} [Field k]
     (structureMapRank (barcodeModule (k := k) B) fi fj hFin : ℤ)
   else 0
 
-/-- At natural valid indices, the integer extension is the cast of the range rank.-/
+/-- At natural valid indices, the integer extension is the cast of the range rank.
+@isnad1 id=eq.2h5v.s6.7d011dd44d5b from=translated src=- shape=82abcba4 vocab=8a209e52
+-/
 theorem barcodeRankInteger_nat {N : ℕ} {k : Type u} [Field k]
     (B : Multiset (FiniteInterval N)) (i j : ℕ) (hij : i ≤ j) (hj : j < N) :
     barcodeRankInteger (k := k) B (i : ℤ) (j : ℤ) =
@@ -341,14 +349,18 @@ theorem barcodeRankInteger_nat {N : ℕ} {k : Type u} [Field k]
   have h : 0 ≤ (i : ℤ) ∧ (i : ℤ) ≤ (j : ℤ) ∧ (j : ℤ) < (N : ℤ) := by omega
   simp [barcodeRankInteger, h, rank_barcodeMap]
 
-/-- Negative indices are the explicit left boundary sentinel.-/
+/-- Negative indices are the explicit left boundary sentinel.
+@isnad1 id=eq.0h4v.s5.297d1dd2c745 from=translated src=- shape=d1841f82 vocab=fd650f28
+-/
 @[simp] theorem barcodeRankInteger_neg_one {N : ℕ} {k : Type u} [Field k]
     (B : Multiset (FiniteInterval N)) (j : ℤ) :
     barcodeRankInteger (k := k) B (-1) j = 0 := by
   classical
   simp [barcodeRankInteger]
 
-/-- The index `N` is the explicit right boundary sentinel.-/
+/-- The index `N` is the explicit right boundary sentinel.
+@isnad1 id=eq.0h4v.s4.6900f60d7b9c from=translated src=- shape=391d19fb vocab=912231b7
+-/
 @[simp] theorem barcodeRankInteger_at_size {N : ℕ} {k : Type u} [Field k]
     (B : Multiset (FiniteInterval N)) (i : ℤ) :
     barcodeRankInteger (k := k) B i (N : ℤ) = 0 := by
@@ -457,7 +469,9 @@ private theorem barcodeRankInteger_birthPrev_death {N : ℕ} {k : Type u} [Field
 /-- The four integer rank differences recover every endpoint multiplicity.
 
 The predecessor is taken in `ℤ`, so `b = 0` produces the explicit `-1` sentinel rather than
-truncated natural subtraction.-/
+truncated natural subtraction.
+@isnad1 id=eq.2h5v.s7.c7ce23d65c7b from=translated src=- shape=7d0c2dbc vocab=c8defb2e
+-/
 theorem multiplicity_eq_rank_difference {N : ℕ} {k : Type u} [Field k]
     (B : Multiset (FiniteInterval N)) (b d : ℕ) (hbd : b < d) (hd : d ≤ N) :
     (barcodeMultiplicity B b d : ℤ) =
@@ -475,7 +489,9 @@ theorem multiplicity_eq_rank_difference {N : ℕ} {k : Type u} [Field k]
 
 The proof recovers the count of each valid endpoint pair from the four-rank formula, then uses
 extensionality of finite multisets. This concerns only the explicitly constructed realizations
-`barcodeModule B`; it makes no assertion that an arbitrary persistence module decomposes.-/
+`barcodeModule B`; it makes no assertion that an arbitrary persistence module decomposes.
+@isnad1 id=eq.1h4v.s5.e57b132cd8d6 from=translated src=- shape=995dd2c0 vocab=125086f7
+-/
 theorem barcodeRankInteger_injective {N : ℕ} {k : Type u} [Field k]
     {B C : Multiset (FiniteInterval N)}
     (h : ∀ i j : ℤ, barcodeRankInteger (k := k) B i j =
@@ -514,7 +530,9 @@ theorem barcodeRankInteger_injective {N : ℕ} {k : Type u} [Field k]
         (fun J _ => propext (hpred J)))
   rw [hBcount, hCcount, hB]
 
-/-- With no observed stages, the empty barcode has the zero integer rank table.-/
+/-- With no observed stages, the empty barcode has the zero integer rank table.
+@isnad1 id=eq.0h3v.s5.f4e104f3130d from=translated src=- shape=b7321faa vocab=125086f7
+-/
 @[simp] theorem emptyBarcode_rank_N0 {k : Type u} [Field k] (i j : ℤ) :
     barcodeRankInteger (k := k) (N := 0) (0 : Multiset (FiniteInterval 0)) i j = 0 := by
   classical
@@ -524,7 +542,9 @@ theorem barcodeRankInteger_injective {N : ℕ} {k : Type u} [Field k]
     omega
   · rfl
 
-/-- Every structure map of the empty finite barcode module has rank zero.-/
+/-- Every structure map of the empty finite barcode module has rank zero.
+@isnad1 id=eq.1h4v.s5.f999cdbf9913 from=translated src=- shape=1ad3dbd6 vocab=e9074c5b
+-/
 theorem rank_emptyBarcode {N : ℕ} {k : Type u} [Field k]
     (i j : Fin N) (hij : i ≤ j) :
     structureMapRank (barcodeModule (k := k) (0 : Multiset (FiniteInterval N)))
@@ -532,7 +552,9 @@ theorem rank_emptyBarcode {N : ℕ} {k : Type u} [Field k]
   rw [rank_barcodeMap]
   simp
 
-/-- The bar `[0,1)` has rank one on the only observed structure map.-/
+/-- The bar `[0,1)` has rank one on the only observed structure map.
+@isnad1 id=other.0h1v.s6.fc77af587b5f from=translated src=- shape=c42e7ef8 vocab=42a746b7
+-/
 theorem rank_single_fullInterval_N1 {k : Type u} [Field k] :
     let I : FiniteInterval 1 := ⟨0, 1, by omega, by omega⟩
     structureMapRank (barcodeModule (k := k) ({I} : Multiset (FiniteInterval 1)))
@@ -545,7 +567,9 @@ theorem rank_single_fullInterval_N1 {k : Type u} [Field k] :
   rw [Multiset.countP_cons_of_pos (s := 0) (by simp)]
   simp
 
-/-- A bar spanning `[0,N)` has rank one from the first to the last observed stage.-/
+/-- A bar spanning `[0,N)` has rank one from the first to the last observed stage.
+@isnad1 id=other.1h2v.s6.8dfe551b0f76 from=translated src=- shape=a3e7c9a0 vocab=900c226f
+-/
 theorem rank_fullObservedInterval {N : ℕ} {k : Type u} [Field k] (hN : 0 < N) :
     let I : FiniteInterval N := ⟨0, N, by omega, by omega⟩
     structureMapRank (barcodeModule (k := k) ({I} : Multiset (FiniteInterval N)))
@@ -561,7 +585,9 @@ theorem rank_fullObservedInterval {N : ℕ} {k : Type u} [Field k] (hN : 0 < N) 
   rw [Multiset.countP_cons_of_pos (s := 0) (by simp; omega)]
   simp
 
-/-- Two copies of `[0,1)` remain two distinct barcode occurrences and contribute rank two.-/
+/-- Two copies of `[0,1)` remain two distinct barcode occurrences and contribute rank two.
+@isnad1 id=other.0h1v.s7.2d9dbb5cb011 from=translated src=- shape=b803438d vocab=9c829728
+-/
 theorem rank_duplicate_fullInterval_N1 {k : Type u} [Field k] :
     let I : FiniteInterval 1 := ⟨0, 1, by omega, by omega⟩
     structureMapRank (barcodeModule (k := k)
@@ -577,7 +603,9 @@ theorem rank_duplicate_fullInterval_N1 {k : Type u} [Field k] :
   simp
 
 /-- For the full observed interval `[0,N)`, the multiplicity four-difference applies at both
-boundary conventions: birth zero uses `-1`, and death `N` uses the right sentinel.-/
+boundary conventions: birth zero uses `-1`, and death `N` uses the right sentinel.
+@isnad1 id=other.1h2v.s7.bb216f539c01 from=translated src=- shape=edae929e vocab=109d9e7b
+-/
 theorem fullInterval_boundary_difference {N : ℕ} {k : Type u} [Field k] (hN : 0 < N) :
     let I : FiniteInterval N := ⟨0, N, by omega, by omega⟩
     let B : Multiset (FiniteInterval N) := {I}
@@ -589,7 +617,9 @@ theorem fullInterval_boundary_difference {N : ℕ} {k : Type u} [Field k] (hN : 
   dsimp
   exact multiplicity_eq_rank_difference (k := k) _ 0 N (by omega) (by omega)
 
-/-- The four integer rank terms at birth zero and death `N` evaluate to one for the full bar.-/
+/-- The four integer rank terms at birth zero and death `N` evaluate to one for the full bar.
+@isnad1 id=other.1h2v.s7.2344228082ee from=translated src=- shape=b562d060 vocab=55b4e142
+-/
 theorem fullInterval_boundary_rank_sum_one {N : ℕ} {k : Type u} [Field k]
     (hN : 0 < N) :
     let I : FiniteInterval N := ⟨0, N, by omega, by omega⟩
@@ -633,7 +663,9 @@ private instance zeroTransitionDiagram_finiteDimensional {k : Type u} [Field k]
   dsimp
   infer_instance
 
-/-- Equal-dimensional two-stage modules can have different structure-map ranks.-/
+/-- Equal-dimensional two-stage modules can have different structure-map ranks.
+@isnad1 id=and.0h1v.s9.0b52c78b4213 from=translated src=- shape=76f130f7 vocab=513316ad
+-/
 theorem equal_dimensions_different_structureMapRanks {k : Type u} [Field k] :
     (∀ i : Fin 2,
       Module.finrank k ((identityTransitionDiagram k).obj i) =

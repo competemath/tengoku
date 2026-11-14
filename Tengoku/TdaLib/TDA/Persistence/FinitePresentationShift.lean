@@ -52,7 +52,9 @@ noncomputable def Presentation.shift (ε : ℝ≥0)
       (CoordinateShift.shift ε).map D.relationMap ≫
       (shiftIso (R := R) ε D.generators).inv
 
-/-- The shifted relation map commutes with both free-module identifications.-/
+/-- The shifted relation map commutes with both free-module identifications.
+@isnad1 id=eq.0h4v.s10.972cd7c83a6f from=translated src=- shape=0cb9857b vocab=8257f026
+-/
 theorem Presentation.shift_relationMap_square (ε : ℝ≥0)
     (D : Presentation.{u,0,w} (R := R) (P := Fin n → ℝ)) :
     (D.shift ε).relationMap ≫ (shiftIso (R := R) ε D.generators).hom =
@@ -60,7 +62,9 @@ theorem Presentation.shift_relationMap_square (ε : ℝ≥0)
         (CoordinateShift.shift ε).map D.relationMap := by
   simp [Presentation.shift, Category.assoc]
 
-/-- Shifting a presentation does not change either indexing family.-/
+/-- Shifting a presentation does not change either indexing family.
+@isnad1 id=isfinite.1h4v.s6.8d401706e26e from=translated src=- shape=fd34606a vocab=cbe1f4c0
+-/
 theorem Presentation.shift_finite (ε : ℝ≥0)
     (D : Presentation.{u,0,w} (R := R) (P := Fin n → ℝ))
     (hD : D.IsFinite) : (D.shift ε).IsFinite := hD
@@ -78,7 +82,9 @@ noncomputable def Presentation.presentedShiftIso (ε : ℝ≥0)
     (PreservesCokernel.iso (CoordinateShift.shift ε) D.relationMap).symm
 
 /-- Under the quotient shift isomorphism, the new free cover is the shifted
-old cover preceded by the free-module shift isomorphism.-/
+old cover preceded by the free-module shift isomorphism.
+@isnad1 id=eq.0h4v.s10.046a9245ba54 from=translated src=- shape=bf91be1f vocab=cf19a3c6
+-/
 theorem Presentation.cover_presentedShiftIso (ε : ℝ≥0)
     (D : Presentation.{u,0,w} (R := R) (P := Fin n → ℝ)) :
     (D.shift ε).cover ≫ (D.presentedShiftIso ε).hom =
@@ -115,7 +121,9 @@ theorem Presentation.cover_presentedShiftIso (ε : ℝ≥0)
       (CoordinateShift.shift ε).map (cokernel.π D.relationMap)) ≫ p.hom
   rw [Category.assoc, hp]
 
-/-- Diagonal shifts preserve the existence of a finite presentation.-/
+/-- Diagonal shifts preserve the existence of a finite presentation.
+@isnad1 id=finitely.1h4v.s7.d9868fad52dc from=translated src=- shape=8d956d2c vocab=420cb92a
+-/
 theorem finitelyPresented_shift (ε : ℝ≥0)
     {M : PModule.{u,0,max u w} R (Fin n → ℝ)}
     (hM : FinitelyPresented (R := R) (P := Fin n → ℝ) M) :

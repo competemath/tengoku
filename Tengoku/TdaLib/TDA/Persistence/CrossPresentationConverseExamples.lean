@@ -19,7 +19,9 @@ namespace TDA.Persistence.GradedFree.CrossPresentationConverseExamples
 open CategoryTheory CategoryTheory.Limits
 open scoped TDA.Persistence NNReal ZeroObject
 
-/-- Reconstruct finite shared data for the existing nonzero-relation example.-/
+/-- Reconstruct finite shared data for the existing nonzero-relation example.
+@isnad1 id=ex.0h0v.s8.fbf7cc4fdfb5 from=translated src=- shape=d58fb24f vocab=c3f25f12
+-/
 theorem reconstruct_nonzero_relation :
     ∃ C : CrossData (R := ℤ) (n := 1) 1, C.IsFinite ∧
       Nonempty (C.leftPresentation.presented ≅
@@ -44,7 +46,9 @@ private theorem basic_finite : basic.IsFinite :=
 private noncomputable abbrev redundant := basic.adjoinRedundant W (fun _ => 0)
 
 /-- A redundant generator and a redundant zero relation do not obstruct the
-zero-parameter characterization over a field.-/
+zero-parameter characterization over a field.
+@isnad1 id=ex.0h0v.s8.42b722604ad8 from=translated src=- shape=416bf47d vocab=d02e963d
+-/
 theorem zero_parameter_redundant :
     ∃ C : CrossData (R := ℚ) (n := 1) 0, C.IsFinite ∧
       Nonempty (C.leftPresentation.presented ≅ basic.presented) ∧
@@ -77,14 +81,18 @@ private noncomputable def emptyFreeIsoZero (n : ℕ) :
     exact Empty.elim g
   · exact Functor.isZero _ (fun _ => isZero_zero (ModuleCat ℚ))
 
-/-- The actual zero functor has a finite presentation with no generators.-/
+/-- The actual zero functor has a finite presentation with no generators.
+@isnad1 id=finitely.0h1v.s4.891f61024b07 from=translated src=- shape=666a31b3 vocab=97fb1d12
+-/
 theorem zero_finitelyPresented (n : ℕ) :
     FinitelyPresented (R := ℚ) (P := Fin n → ℝ)
       (zeroModule n) := by
   let : Finite (emptyFamily n).Carrier := inferInstanceAs (Finite Empty)
   exact finitelyPresented_of_iso (free_finitelyPresented (emptyFamily n)) (emptyFreeIsoZero n)
 
-/-- The finite characterization includes the actual zero module in dimension zero.-/
+/-- The finite characterization includes the actual zero module in dimension zero.
+@isnad1 id=ex.0h1v.s8.6a9e8c47ee1e from=translated src=- shape=9ed2f523 vocab=75b293a8
+-/
 theorem zero_module_zero_dimension (ε : ℝ≥0) :
     ∃ C : CrossData (R := ℚ) (n := 0) ε, C.IsFinite ∧
       Nonempty (C.leftPresentation.presented ≅ zeroModule 0) ∧
@@ -97,7 +105,9 @@ private def oneZeroGrade : GradedGenerators (Fin 0 → ℝ) where
   grade _ := Fin.elim0
 
 /-- No nontrivial-ring or positive-dimension assumption is concealed in the
-finite characterization.-/
+finite characterization.
+@isnad1 id=ex.0h1v.s9.369d4f432dfa from=translated src=- shape=15757ac6 vocab=76a91b87
+-/
 theorem zero_ring_zero_dimension (ε : ℝ≥0) :
     ∃ C : CrossData (R := ZMod 1) (n := 0) ε, C.IsFinite ∧
       Nonempty (C.leftPresentation.presented ≅ module (R := ZMod 1) oneZeroGrade) ∧
@@ -107,7 +117,9 @@ theorem zero_ring_zero_dimension (ε : ℝ≥0) :
     (free_finitelyPresented oneZeroGrade) (CoordinateInterleaving.refl ε _)
 
 /-- A genuine positive-width interleaving over a field is accepted without
-unfolding the cross-presentation construction.-/
+unfolding the cross-presentation construction.
+@isnad1 id=ex.0h0v.s8.0609cd758d80 from=translated src=- shape=524576be vocab=fe0b7a4e
+-/
 theorem positive_field_shift :
     ∃ C : CrossData (R := ℚ) (n := 1) 1, C.IsFinite ∧
       Nonempty (C.leftPresentation.presented ≅ module (R := ℚ) W) ∧
@@ -123,7 +135,9 @@ theorem positive_field_shift :
   exact finitelyPresented_exists_crossPresentation (free_finitelyPresented W)
     (free_finitelyPresented (W.shiftGrade (-1))) i
 
-/-- A consumer obtains finite quotients directly from finite primitive data.-/
+/-- A consumer obtains finite quotients directly from finite primitive data.
+@isnad1 id=and.1h2v.s6.8067b805114f from=translated src=- shape=e4c1230d vocab=f8dae030
+-/
 theorem finite_quotients {ε : ℝ≥0} (C : CrossData (R := ℚ) (n := 1) ε)
     (hC : C.IsFinite) : C.leftPresentation.IsFinite ∧ C.rightPresentation.IsFinite :=
   C.finite hC

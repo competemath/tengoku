@@ -29,6 +29,9 @@ instance instEMetricSpace : EMetricSpace (Diagram ℝ) where
   edist_triangle := bottleneck_triangle
   eq_of_edist_eq_zero := fun h => (bottleneck_eq_zero_iff _ _).mp h
 
+/--
+@isnad1 id=lipschit.0h2v.s6.a91f25cd4072 from=translated src=- shape=ad83cb05 vocab=67b67f5c
+-/
 theorem lipschitzWith_orderedQ (m n : ℕ) :
     LipschitzWith 1 (orderedQ (α := ℝ) m n) := by
   intro z w
@@ -37,10 +40,16 @@ theorem lipschitzWith_orderedQ (m n : ℕ) :
   rw [edist_dist, dist_eq_norm]
   simpa using bottleneck_orderedQ_le_norm m n z w
 
+/--
+@isnad1 id=continuo.0h2v.s6.988af4a3ecc0 from=translated src=- shape=fbe55d11 vocab=116fad2d
+-/
 theorem continuous_orderedQ (m n : ℕ) :
     Continuous (orderedQ (α := ℝ) m n) :=
   (lipschitzWith_orderedQ m n).continuous
 
+/--
+@isnad1 id=separabl.0h0v.s4.b9e0e0eeeeb7 from=translated src=- shape=87ceb31f vocab=48cc66e5
+-/
 instance instSeparableSpace : TopologicalSpace.SeparableSpace (Diagram ℝ) := by
   have hcover : (Set.univ : Set (Diagram ℝ)) =
       ⋃ p : ℕ × ℕ, Set.range (orderedQ (α := ℝ) p.1 p.2) := by
@@ -55,13 +64,22 @@ instance instSeparableSpace : TopologicalSpace.SeparableSpace (Diagram ℝ) := b
   intro p
   exact isSeparable_range (continuous_orderedQ p.1 p.2)
 
+/--
+@isnad1 id=secondco.0h0v.s4.4dea82be6435 from=translated src=- shape=87ceb31f vocab=a20a4d7c
+-/
 instance instSecondCountableTopology : SecondCountableTopology (Diagram ℝ) :=
   UniformSpace.secondCountable_of_separable (Diagram ℝ)
 
 instance instMeasurableSpace : MeasurableSpace (Diagram ℝ) := borel (Diagram ℝ)
 
+/--
+@isnad1 id=borelspa.0h0v.s4.7660613e2597 from=translated src=- shape=87ceb31f vocab=0ef9ea39
+-/
 instance instBorelSpace : BorelSpace (Diagram ℝ) := ⟨rfl⟩
 
+/--
+@isnad1 id=measurab.0h0v.s5.9a416fdd7f33 from=translated src=- shape=42673c7b vocab=5f4c6986
+-/
 theorem measurable_bottleneck :
     Measurable (fun p : Diagram ℝ × Diagram ℝ => bottleneck p.1 p.2) :=
   measurable_edist

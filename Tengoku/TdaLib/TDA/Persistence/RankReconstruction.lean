@@ -68,6 +68,9 @@ private theorem rectangle_telescope (r : ℤ → ℤ → ℤ)
         birth_telescope r a b c hab, birth_telescope r a b d hab]
       ring
 
+/--
+@isnad1 id=eq.4h7v.s8.dfe0c66bf8ae from=translated src=- shape=571ae246 vocab=1be49e6e
+-/
 theorem moduleMultiplicityInteger_sum_rectangle
     (a b c d : ℕ) (hab : a ≤ b) (hbc : b ≤ c)
     (hcd : c ≤ d) (hd : d ≤ N) :
@@ -80,6 +83,9 @@ theorem moduleMultiplicityInteger_sum_rectangle
   clear hbc hd
   exact rectangle_telescope (moduleRankInteger M) a b c d hab hcd
 
+/--
+@isnad1 id=eq.1h5v.s7.733ac467bac4 from=translated src=- shape=664cd4ae vocab=53511a33
+-/
 theorem structureMapRank_eq_sum_moduleMultiplicityInteger
     (i j : Fin N) (hij : i ≤ j) :
     (structureMapRank M i j hij : ℤ) =

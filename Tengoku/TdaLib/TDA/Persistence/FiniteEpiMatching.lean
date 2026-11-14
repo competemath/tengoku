@@ -153,19 +153,25 @@ private theorem suffix_le_ordinal (B : Multiset (FiniteInterval s)) (b c : ℕ)
   have h := Fintype.card_le_of_injective f hf
   rwa [Fintype.card_fin, suffix_card] at h
 
-/-- A surviving occurrence has ordinal below the same-birth survival count.-/
+/-- A surviving occurrence has ordinal below the same-birth survival count.
+@isnad1 id=lt.1h4v.s5.78d92213f3d3 from=translated src=- shape=7c404e9a vocab=2f7f2a2f
+-/
 theorem birthOrdinal_lt_birthSuffixCount (B : Multiset (FiniteInterval s))
     (i : BarcodeOccurrence s B) (c : ℕ) (hc : c < (occurrence B i).death) :
     birthOrdinal B i < birthSuffixCount B (occurrence B i).birth c :=
   ordinal_lt_suffix B _ c ⟨i, rfl⟩ hc
 
-/-- An occurrence dead at the cutoff follows every surviving occurrence of that birth.-/
+/-- An occurrence dead at the cutoff follows every surviving occurrence of that birth.
+@isnad1 id=le.1h4v.s5.46eb7b6ee94b from=translated src=- shape=8c502360 vocab=bab5cb22
+-/
 theorem birthSuffixCount_le_birthOrdinal (B : Multiset (FiniteInterval s))
     (i : BarcodeOccurrence s B) (c : ℕ) (hc : (occurrence B i).death ≤ c) :
     birthSuffixCount B (occurrence B i).birth c ≤ birthOrdinal B i :=
   suffix_le_ordinal B _ c ⟨i, rfl⟩ hc
 
-/-- A same-birth survival count never exceeds that birth group's cardinality.-/
+/-- A same-birth survival count never exceeds that birth group's cardinality.
+@isnad1 id=le.0h4v.s4.36df16049d31 from=translated src=- shape=50cebc64 vocab=74d8c420
+-/
 theorem birthSuffixCount_le_card (B : Multiset (FiniteInterval s)) (b c : ℕ) :
     birthSuffixCount B b c ≤ Fintype.card (BirthOccurrence B b) := by
   rw [← suffix_card]
@@ -262,19 +268,25 @@ noncomputable def epiEmbedding (p : M ⟶ N) (hp : ∀ i, Function.Surjective (p
     · exact (mapOccurrence_ordinal p hp i).symm.trans
         ((congrArg (birthOrdinal (rankBarcode M)) h).trans (mapOccurrence_ordinal p hp i'))
 
-/-- The embedding preserves each birth exactly.-/
+/-- The embedding preserves each birth exactly.
+@isnad1 id=eq.1h6v.s10.4e92c9968c3e from=translated src=- shape=7c01ba15 vocab=1d9dfb6d
+-/
 theorem epiEmbedding_birth (p : M ⟶ N) (hp : ∀ i, Function.Surjective (p.app i).hom)
     (i : BarcodeOccurrence s (rankBarcode N)) :
     (occurrence (rankBarcode M) (epiEmbedding p hp i)).birth =
       (occurrence (rankBarcode N) i).birth := mapOccurrence_birth p hp i
 
-/-- Both occurrences have the same ordinal in their death-descending birth group.-/
+/-- Both occurrences have the same ordinal in their death-descending birth group.
+@isnad1 id=eq.1h6v.s10.628e0869646e from=translated src=- shape=bf0018ec vocab=46e521fd
+-/
 theorem epiEmbedding_ordinal (p : M ⟶ N) (hp : ∀ i, Function.Surjective (p.app i).hom)
     (i : BarcodeOccurrence s (rankBarcode N)) :
     birthOrdinal (rankBarcode M) (epiEmbedding p hp i) = birthOrdinal (rankBarcode N) i :=
   mapOccurrence_ordinal p hp i
 
-/-- The corresponding source interval dies no earlier than the target interval.-/
+/-- The corresponding source interval dies no earlier than the target interval.
+@isnad1 id=le.1h6v.s10.d8590f4864df from=translated src=- shape=41e6c210 vocab=fcf2bdbd
+-/
 theorem epiEmbedding_death_le (p : M ⟶ N) (hp : ∀ i, Function.Surjective (p.app i).hom)
     (i : BarcodeOccurrence s (rankBarcode N)) :
     (occurrence (rankBarcode N) i).death ≤
@@ -298,7 +310,9 @@ theorem epiEmbedding_death_le (p : M ⟶ N) (hp : ∀ i, Function.Surjective (p.
     ((birthEnumeration (rankBarcode N) I.birth).symm x).val at he
   omega
 
-/-- Terminal survival is preserved, using the finite-chain upper bound on death.-/
+/-- Terminal survival is preserved, using the finite-chain upper bound on death.
+@isnad1 id=eq.2h6v.s10.96ddd4783f85 from=translated src=- shape=60974f07 vocab=4e045c10
+-/
 theorem epiEmbedding_terminal (p : M ⟶ N) (hp : ∀ i, Function.Surjective (p.app i).hom)
     (i : BarcodeOccurrence s (rankBarcode N)) (hi : (occurrence (rankBarcode N) i).death = s) :
     (occurrence (rankBarcode M) (epiEmbedding p hp i)).death = s := by
@@ -306,7 +320,9 @@ theorem epiEmbedding_terminal (p : M ⟶ N) (hp : ∀ i, Function.Surjective (p.
   have := (occurrence (rankBarcode M) (epiEmbedding p hp i)).death_le_size
   omega
 
-/-- Birth and ordinal uniquely characterize the canonical correspondence.-/
+/-- Birth and ordinal uniquely characterize the canonical correspondence.
+@isnad1 id=iff.1h7v.s10.fa35322b1b1a from=translated src=- shape=e9119ea3 vocab=d13755ff
+-/
 theorem epiEmbedding_eq_iff (p : M ⟶ N) (hp : ∀ i, Function.Surjective (p.app i).hom)
     (i : BarcodeOccurrence s (rankBarcode N)) (a : BarcodeOccurrence s (rankBarcode M)) :
     epiEmbedding p hp i = a ↔
@@ -320,7 +336,9 @@ theorem epiEmbedding_eq_iff (p : M ⟶ N) (hp : ∀ i, Function.Surjective (p.ap
       ((epiEmbedding_birth p hp i).trans hb.symm)
       ((epiEmbedding_ordinal p hp i).trans ho.symm)
 
-/-- A source occurrence is selected exactly when its ordinal fits in the target birth group.-/
+/-- A source occurrence is selected exactly when its ordinal fits in the target birth group.
+@isnad1 id=iff.1h6v.s10.666e0b9d196c from=translated src=- shape=1bf64da3 vocab=f22f1a9b
+-/
 theorem epiEmbedding_mem_range_iff (p : M ⟶ N)
     (hp : ∀ i, Function.Surjective (p.app i).hom)
     (a : BarcodeOccurrence s (rankBarcode M)) :
@@ -339,7 +357,9 @@ theorem epiEmbedding_mem_range_iff (p : M ⟶ N)
     rw [ordinal_in_group (rankBarcode N) _ x]
     simp [x, q]
 
-/-- Identity epimorphisms induce identity occurrence embeddings.-/
+/-- Identity epimorphisms induce identity occurrence embeddings.
+@isnad1 id=eq.0h3v.s7.f30ff1ce3144 from=translated src=- shape=13389deb vocab=fcc53205
+-/
 theorem epiEmbedding_id (M : PModule.{u,0,u} k (Fin s))
     [∀ i, FiniteDimensional k (M.obj i)] :
     epiEmbedding (𝟙 M) (fun _ => Function.surjective_id) = Function.Embedding.refl _ := by
@@ -350,7 +370,9 @@ theorem epiEmbedding_id (M : PModule.{u,0,u} k (Fin s))
     (epiEmbedding_ordinal (𝟙 M) (fun _ => Function.surjective_id) i)
 
 /-- The canonical embeddings compose contravariantly on epimorphisms.
-No composition law for arbitrary persistence-module morphisms is asserted.-/
+No composition law for arbitrary persistence-module morphisms is asserted.
+@isnad1 id=eq.2h7v.s11.aeff38d04301 from=translated src=- shape=70207be9 vocab=fcda93d5
+-/
 theorem epiEmbedding_comp {P : PModule.{u,0,u} k (Fin s)}
     [∀ i, FiniteDimensional k (P.obj i)] (p : M ⟶ N) (q : N ⟶ P)
     (hp : ∀ i, Function.Surjective (p.app i).hom) (hq : ∀ i, Function.Surjective (q.app i).hom) :

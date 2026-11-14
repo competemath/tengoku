@@ -40,6 +40,9 @@ def CrThroughAllRepresentatives (r : ℕ∞ω) (V : Diagram ℝ → ℝ)
     ∃ W : Set (DiagramCoordinates m n), IsOpen W ∧ z ∈ W ∧
       ContDiffOn ℝ r (V ∘ orderedQ m n) W
 
+/--
+@isnad1 id=crthroug.2h4v.s5.321ad946149b from=translated src=- shape=07191e76 vocab=49e78d95
+-/
 theorem CrThroughAllRepresentatives.of_le {r r' : ℕ∞ω} (h : r' ≤ r)
     {V : Diagram ℝ → ℝ} {D : Diagram ℝ}
     (hV : CrThroughAllRepresentatives r V D) :
@@ -57,6 +60,9 @@ def LocalCrDiagramLift.of_le {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ
   factorization := L.factorization
   regular := L.regular.of_le h
 
+/--
+@isnad1 id=diagramc.2h5v.s5.0e51dc1a3a0e from=translated src=- shape=38bfc26b vocab=e18b4d63
+-/
 theorem DiagramContDiffAt.of_le {E : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]
     {r r' : ℕ∞ω} (h : r' ≤ r) {B : E → Diagram ℝ} {x : E}
@@ -64,7 +70,9 @@ theorem DiagramContDiffAt.of_le {E : Type*}
   obtain ⟨m, n, L, hx⟩ := hB
   exact ⟨m, n, L.of_le h, hx⟩
 
-/-- The loss is `Cʳ` near the point, using the representative selected by the lift.-/
+/-- The loss is `Cʳ` near the point, using the representative selected by the lift.
+@isnad1 id=ex.2h8v.s7.5621c17bfa7a from=translated src=- shape=1897757b vocab=b74fce18
+-/
 theorem localLift_scalar_cr {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (r : ℕ∞ω) (B : E → Diagram ℝ) (V : Diagram ℝ → ℝ) (m n : ℕ)
     (L : LocalCrDiagramLift r B m n) (x : E) (hx : x ∈ L.carrier)
@@ -84,9 +92,15 @@ theorem localLift_scalar_cr {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ 
   simp only [Function.comp_apply]
   rw [L.factorization y hy.1]
 
+/--
+@isnad1 id=iff.0h2v.s4.640f11962a19 from=translated src=- shape=8d59771a vocab=ddf4eb7d
+-/
 theorem CrThroughAllRepresentatives.one_iff {V : Diagram ℝ → ℝ} {D : Diagram ℝ} :
     CrThroughAllRepresentatives 1 V D ↔ C1ThroughAllRepresentatives V D := Iff.rfl
 
+/--
+@isnad1 id=iff.0h2v.s4.fa7139dbe6ac from=translated src=- shape=8d59771a vocab=40ddae6b
+-/
 theorem CrThroughAllRepresentatives.two_iff {V : Diagram ℝ → ℝ} {D : Diagram ℝ} :
     CrThroughAllRepresentatives 2 V D ↔ C2ThroughAllRepresentatives V D := Iff.rfl
 
@@ -132,7 +146,9 @@ def LocalCrDiagramLift.toC2 {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ 
   smooth_two := L.regular
 
 /-- At order one the general scalar conclusion is supplied by the unchanged
-first-order lift theorem.-/
+first-order lift theorem.
+@isnad1 id=ex.2h7v.s7.6e9b297c79f6 from=translated src=- shape=780ca904 vocab=b74fce18
+-/
 theorem localLift_scalar_cr_one {E : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]
     (B : E → Diagram ℝ) (V : Diagram ℝ → ℝ) (m n : ℕ)
@@ -143,7 +159,9 @@ theorem localLift_scalar_cr_one {E : Type*}
   localLift_scalar_c1 B V m n L.toC1 x hx hV
 
 /-- At order two the general scalar conclusion is supplied by the unchanged
-second-order lift theorem.-/
+second-order lift theorem.
+@isnad1 id=ex.2h7v.s7.fb44b036f1e6 from=translated src=- shape=780ca904 vocab=b74fce18
+-/
 theorem localLift_scalar_cr_two {E : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]
     (B : E → Diagram ℝ) (V : Diagram ℝ → ℝ) (m n : ℕ)
@@ -153,7 +171,9 @@ theorem localLift_scalar_cr_two {E : Type*}
       ContDiffOn ℝ 2 (V ∘ B) U :=
   localLift_scalar_c2 B V m n L.toC2 x hx hV
 
-/-- Index zero yields ordinary continuity of the scalar pullback.-/
+/-- Index zero yields ordinary continuity of the scalar pullback.
+@isnad1 id=ex.2h7v.s7.dd24e8711ef3 from=translated src=- shape=71d51856 vocab=f7c91b8c
+-/
 theorem localLift_scalar_continuousOn {E : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]
     (B : E → Diagram ℝ) (V : Diagram ℝ → ℝ) (m n : ℕ)
@@ -185,7 +205,9 @@ noncomputable def diagonalInsertion (m t n : ℕ) :
     (diagonalInsertionLinear m t n).continuous_of_finiteDimensional⟩
 
 /-- Pulling an ordered diagram back along diagonal insertion deletes exactly
-the inserted slots, regardless of their auxiliary real values.-/
+the inserted slots, regardless of their auxiliary real values.
+@isnad1 id=eq.0h4v.s10.be85d313ccae from=translated src=- shape=ed93bb3f vocab=b9c6b2f7
+-/
 theorem orderedQ_diagonalInsertion (m t n : ℕ)
     (z : DiagramCoordinates m n × (Fin t → ℝ)) :
     orderedQ (m + t) n (diagonalInsertion m t n z) = orderedQ m n z.1 := by
@@ -199,7 +221,9 @@ theorem orderedQ_diagonalInsertion (m t n : ℕ)
 
 /-- Regularity on the diagonal subspace follows from regularity of the
 reduced pullback. This makes no assertion on an ambient open neighborhood of
-the full representative.-/
+the full representative.
+@isnad1 id=contdiff.1h6v.s10.ab778733f2d6 from=translated src=- shape=04999a22 vocab=8d07678f
+-/
 theorem contDiffOn_diagonalInsertion (r : ℕ∞ω) (m t n : ℕ)
     (V : Diagram ℝ → ℝ) (W : Set (DiagramCoordinates m n))
     (hV : ContDiffOn ℝ r (V ∘ orderedQ m n) W) :

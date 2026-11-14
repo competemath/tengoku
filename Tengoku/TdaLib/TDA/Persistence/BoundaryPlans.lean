@@ -33,7 +33,9 @@ abbrev PlanSpace := {z : ClosedHalfPlane × ClosedHalfPlane //
   z.1.1.1 < z.1.1.2 ∨ z.2.1.1 < z.2.1.2}
 
 /-- In the closed half-plane, the plan carrier is precisely the complement of
-diagonal–diagonal pairs.-/
+diagonal–diagonal pairs.
+@isnad1 id=iff.0h1v.s8.4590d482d5ee from=translated src=- shape=ba5ca204 vocab=d63231f8
+-/
 theorem planSpace_iff_not_both_diagonal (z : ClosedHalfPlane × ClosedHalfPlane) :
     z ∈ Set.range (Subtype.val : PlanSpace → ClosedHalfPlane × ClosedHalfPlane) ↔
       ¬ (z.1.1.1 = z.1.1.2 ∧ z.2.1.1 = z.2.1.2) := by
@@ -78,7 +80,9 @@ private theorem planSpace_cover :
   · intro _
     trivial
 
-/-- Every admissible boundary plan has total mass at most the two input masses.-/
+/-- Every admissible boundary plan has total mass at most the two input masses.
+@isnad1 id=le.1h3v.s9.c2a31b4e371d from=translated src=- shape=7a5df092 vocab=ca20e6cf
+-/
 theorem boundaryPlan_mass_le {π : Measure PlanSpace} {μ ν : Measure Interior}
     (hπ : IsBoundaryPlan π μ ν) : π Set.univ ≤ μ Set.univ + ν Set.univ := by
   rw [planSpace_cover]
@@ -86,13 +90,18 @@ theorem boundaryPlan_mass_le {π : Measure PlanSpace} {μ ν : Measure Interior}
     (congrArg₂ (· + ·) (hπ.first _ MeasurableSet.univ)
       (hπ.second _ MeasurableSet.univ))
 
-/-- Finite input masses force every admissible boundary plan to be finite.-/
+/-- Finite input masses force every admissible boundary plan to be finite.
+@isnad1 id=lt.1h3v.s9.496b5897f02b from=translated src=- shape=c6068e82 vocab=0f257bbc
+-/
 theorem boundaryPlan_mass_lt_top {π : Measure PlanSpace} {μ ν : Measure Interior}
     [IsFiniteMeasure μ] [IsFiniteMeasure ν] (hπ : IsBoundaryPlan π μ ν) :
     π Set.univ < ∞ :=
   (boundaryPlan_mass_le hπ).trans_lt
     (ENNReal.add_lt_top.mpr ⟨measure_lt_top μ _, measure_lt_top ν _⟩)
 
+/--
+@isnad1 id=isfinite.1h3v.s8.7233f6daf7a1 from=translated src=- shape=75d9308c vocab=7876c22f
+-/
 theorem boundaryPlan_isFiniteMeasure {π : Measure PlanSpace} {μ ν : Measure Interior}
     [IsFiniteMeasure μ] [IsFiniteMeasure ν] (hπ : IsBoundaryPlan π μ ν) :
     IsFiniteMeasure π :=
@@ -106,6 +115,9 @@ def deleteLeg (x : Interior) : PlanSpace :=
 def insertLeg (x : Interior) : PlanSpace :=
   ⟨(diagonalProjection x, interiorIncl x), Or.inr x.2⟩
 
+/--
+@isnad1 id=continuo.0h0v.s6.dd381697f2e9 from=translated src=- shape=54c8eceb vocab=85120eb8
+-/
 theorem continuous_interiorIncl : Continuous interiorIncl := by
   unfold interiorIncl
   fun_prop
@@ -115,12 +127,18 @@ private instance : PolishSpace Interior := by
     isOpen_lt continuous_fst continuous_snd
   exact h.polishSpace
 
+/--
+@isnad1 id=injectiv.0h0v.s2.f36d7a1ac369 from=translated src=- shape=54c8eceb vocab=7aacfbe2
+-/
 theorem interiorIncl_injective : Function.Injective interiorIncl := by
   intro x y h
   have h' : x.1 = y.1 := by
     simpa only [interiorIncl] using congrArg Subtype.val h
   exact Subtype.ext h'
 
+/--
+@isnad1 id=measurab.0h0v.s5.4df498c40d16 from=translated src=- shape=54c8eceb vocab=5e43f171
+-/
 theorem measurableEmbedding_interiorIncl : MeasurableEmbedding interiorIncl :=
   continuous_interiorIncl.measurableEmbedding interiorIncl_injective
 
@@ -128,21 +146,33 @@ private theorem continuous_diagonalProjection : Continuous diagonalProjection :=
   unfold diagonalProjection
   fun_prop
 
+/--
+@isnad1 id=measurab.0h0v.s7.fdd4d2db857a from=translated src=- shape=54c8eceb vocab=8e91b554
+-/
 theorem measurable_deleteLeg : Measurable deleteLeg := by
   apply Continuous.measurable
   unfold deleteLeg
   exact (continuous_interiorIncl.prodMk continuous_diagonalProjection).subtype_mk _
 
+/--
+@isnad1 id=measurab.0h0v.s7.7d54a6dd1919 from=translated src=- shape=54c8eceb vocab=03a356ae
+-/
 theorem measurable_insertLeg : Measurable insertLeg := by
   apply Continuous.measurable
   unfold insertLeg
   exact (continuous_diagonalProjection.prodMk continuous_interiorIncl).subtype_mk _
 
+/--
+@isnad1 id=measurab.1h1v.s7.c7e505afe934 from=translated src=- shape=f82cf813 vocab=792680b8
+-/
 theorem measurableSet_firstFiber {s : Set Interior} (hs : MeasurableSet s) :
     MeasurableSet (firstFiber s) := by
   exact (measurableEmbedding_interiorIncl.measurableSet_image.mpr hs).preimage
     (by fun_prop : Measurable (fun z : PlanSpace => z.1.1))
 
+/--
+@isnad1 id=measurab.1h1v.s7.e34df029d857 from=translated src=- shape=f82cf813 vocab=a842ebce
+-/
 theorem measurableSet_secondFiber {s : Set Interior} (hs : MeasurableSet s) :
     MeasurableSet (secondFiber s) := by
   exact (measurableEmbedding_interiorIncl.measurableSet_image.mpr hs).preimage
@@ -152,7 +182,9 @@ theorem measurableSet_secondFiber {s : Set Interior} (hs : MeasurableSet s) :
 def diagonalBoundaryPlan (μ ν : Measure Interior) : Measure PlanSpace :=
   μ.map deleteLeg + ν.map insertLeg
 
-/-- The explicit nearest-diagonal plan has the required marginals.-/
+/-- The explicit nearest-diagonal plan has the required marginals.
+@isnad1 id=isbounda.0h2v.s5.1c3a810f9027 from=translated src=- shape=4c3043c8 vocab=3cad9f47
+-/
 theorem diagonalBoundaryPlan_admissible (μ ν : Measure Interior) :
     IsBoundaryPlan (diagonalBoundaryPlan μ ν) μ ν := by
   have hfirstDelete (s : Set Interior) : deleteLeg ⁻¹' firstFiber s = s := by
@@ -207,7 +239,9 @@ theorem diagonalBoundaryPlan_admissible (μ ν : Measure Interior) :
     rw [hsecondDelete, hsecondInsert]
     simp
 
-/-- Its mass is exactly the sum of input masses, including zero and unequal masses.-/
+/-- Its mass is exactly the sum of input masses, including zero and unequal masses.
+@isnad1 id=eq.0h2v.s9.f940b7aa386a from=translated src=- shape=8b5b01ae vocab=df898fa7
+-/
 theorem diagonalBoundaryPlan_mass (μ ν : Measure Interior) :
     diagonalBoundaryPlan μ ν Set.univ = μ Set.univ + ν Set.univ := by
   rw [diagonalBoundaryPlan, Measure.add_apply,
@@ -215,7 +249,9 @@ theorem diagonalBoundaryPlan_mass (μ ν : Measure Interior) :
     Measure.map_apply measurable_insertLeg MeasurableSet.univ]
   simp
 
-/-- Each deletion leg realizes the native diagonal cost.-/
+/-- Each deletion leg realizes the native diagonal cost.
+@isnad1 id=eq.0h1v.s5.68cc55413876 from=translated src=- shape=ec30d5c2 vocab=1538ea08
+-/
 theorem deleteLeg_distance (x : Interior) :
     dist (interiorIncl x) (diagonalProjection x) = depth x := by
   rw [depth_eq]
@@ -225,6 +261,9 @@ theorem deleteLeg_distance (x : Interior) :
   rw [← diagonalCost_midpoint x.1.1 x.1.2]
   rw [abs_of_pos (sub_pos.mpr x.2)]
 
+/--
+@isnad1 id=eq.0h1v.s5.e8b2e22a4c2d from=translated src=- shape=ec30d5c2 vocab=1538ea08
+-/
 theorem insertLeg_distance (x : Interior) :
     dist (diagonalProjection x) (interiorIncl x) = depth x := by
   rw [dist_comm]
@@ -234,11 +273,16 @@ theorem insertLeg_distance (x : Interior) :
 def planPowerCost (p : ℝ) (z : PlanSpace) : ℝ≥0∞ :=
   ENNReal.ofReal ((dist z.1.1 z.1.2) ^ p)
 
+/--
+@isnad1 id=measurab.0h1v.s7.0c3ed06a9725 from=translated src=- shape=7000f90d vocab=777ab7db
+-/
 theorem measurable_planPowerCost (p : ℝ) : Measurable (planPowerCost p) := by
   unfold planPowerCost
   fun_prop
 
-/-- The explicit plan has exactly the two diagonal persistence moments as cost.-/
+/-- The explicit plan has exactly the two diagonal persistence moments as cost.
+@isnad1 id=eq.0h3v.s8.1e09bb385896 from=translated src=- shape=d6ab10ae vocab=4504a6eb
+-/
 theorem diagonalBoundaryPlan_cost (p : ℝ) (μ ν : Measure Interior) :
     ∫⁻ z, planPowerCost p z ∂diagonalBoundaryPlan μ ν =
       (∫⁻ x, ENNReal.ofReal (depth x ^ p) ∂μ) +
@@ -248,7 +292,9 @@ theorem diagonalBoundaryPlan_cost (p : ℝ) (μ ν : Measure Interior) :
     lintegral_map (measurable_planPowerCost p) measurable_insertLeg]
   simp only [planPowerCost, deleteLeg, insertLeg, deleteLeg_distance, insertLeg_distance]
 
-/-- Finite p-persistence on both inputs gives one finite-cost admissible plan.-/
+/-- Finite p-persistence on both inputs gives one finite-cost admissible plan.
+@isnad1 id=lt.2h3v.s8.43e106bbb7a3 from=translated src=- shape=161b2533 vocab=042e2e79
+-/
 theorem diagonalBoundaryPlan_cost_lt_top (p : ℝ) (μ ν : Measure Interior)
     (hμ : (∫⁻ x, ENNReal.ofReal (depth x ^ p) ∂μ) < ∞)
     (hν : (∫⁻ x, ENNReal.ofReal (depth x ^ p) ∂ν) < ∞) :
@@ -256,7 +302,9 @@ theorem diagonalBoundaryPlan_cost_lt_top (p : ℝ) (μ ν : Measure Interior)
   rw [diagonalBoundaryPlan_cost]
   exact ENNReal.add_lt_top.mpr ⟨hμ, hν⟩
 
-/-- The finite-persistence hypotheses provide a real admissible finite-cost competitor.-/
+/-- The finite-persistence hypotheses provide a real admissible finite-cost competitor.
+@isnad1 id=ex.2h3v.s9.a58af97c3526 from=translated src=- shape=65b9cb0f vocab=24c3a981
+-/
 theorem exists_finite_cost_boundaryPlan (p : ℝ) (μ ν : Measure Interior)
     (hμ : (∫⁻ x, ENNReal.ofReal (depth x ^ p) ∂μ) < ∞)
     (hν : (∫⁻ x, ENNReal.ofReal (depth x ^ p) ∂ν) < ∞) :
@@ -270,6 +318,9 @@ def boundaryTransportPowerValue (p : ℝ) (μ ν : Measure Interior) : ℝ≥0�
   ⨅ (π : Measure PlanSpace) (_ : IsBoundaryPlan π μ ν),
     ∫⁻ z, planPowerCost p z ∂π
 
+/--
+@isnad1 id=le.0h3v.s7.40168e3706df from=translated src=- shape=36e676e7 vocab=0000eb6d
+-/
 theorem boundaryTransportPowerValue_le_diagonalPlan (p : ℝ) (μ ν : Measure Interior) :
     boundaryTransportPowerValue p μ ν ≤
       ∫⁻ z, planPowerCost p z ∂diagonalBoundaryPlan μ ν := by
@@ -280,6 +331,9 @@ theorem boundaryTransportPowerValue_le_diagonalPlan (p : ℝ) (μ ν : Measure I
         ∫⁻ z, planPowerCost p z ∂diagonalBoundaryPlan μ ν)
         (diagonalBoundaryPlan_admissible μ ν))
 
+/--
+@isnad1 id=lt.2h3v.s7.b9dbd2899576 from=translated src=- shape=54abdec8 vocab=9b431f1d
+-/
 theorem boundaryTransportPowerValue_lt_top (p : ℝ) (μ ν : Measure Interior)
     (hμ : (∫⁻ x, ENNReal.ofReal (depth x ^ p) ∂μ) < ∞)
     (hν : (∫⁻ x, ENNReal.ofReal (depth x ^ p) ∂ν) < ∞) :

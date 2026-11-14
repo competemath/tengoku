@@ -39,12 +39,16 @@ def gradeFiltration (f : FilterFunction K α) :
     TDA.Filtration.SimplicialFiltration (Fin (f.criticalValues.card)) V :=
   TDA.Filtration.reindex f.criticalValue.toOrderHom f.sublevelFiltration
 
-/-- Membership in `criticalValues` is exactly attainment on a face.-/
+/-- Membership in `criticalValues` is exactly attainment on a face.
+@isnad1 id=iff.0h5v.s5.ab44ebf562e1 from=translated src=- shape=e6ea6822 vocab=f6f7959b
+-/
 theorem mem_criticalValues (f : FilterFunction K α) (a : α) :
     a ∈ f.criticalValues ↔ ∃ s : TDA.Simplicial.TotalFace K, f.value s = a := by
   simp [criticalValues]
 
-/-- The critical-value set is empty exactly for the bottom complex.-/
+/-- The critical-value set is empty exactly for the bottom complex.
+@isnad1 id=iff.0h4v.s5.35c1ffa0911f from=translated src=- shape=8c3d6573 vocab=151775f6
+-/
 theorem criticalValues_eq_empty_iff (f : FilterFunction K α) :
     f.criticalValues = ∅ ↔ K = ⊥ := by
   constructor
@@ -64,7 +68,9 @@ theorem criticalValues_eq_empty_iff (f : FilterFunction K α) :
     · intro ha
       simp at ha
 
-/-- Every enumerated value belongs to the critical-value set.-/
+/-- Every enumerated value belongs to the critical-value set.
+@isnad1 id=mem.0h5v.s7.c867bb52c283 from=translated src=- shape=aa266cff vocab=725a5d95
+-/
 theorem criticalValue_mem (f : FilterFunction K α)
     (i : Fin (f.criticalValues.card)) :
     f.criticalValue i ∈ f.criticalValues :=
@@ -78,19 +84,25 @@ private theorem exists_criticalValue_of_mem (f : FilterFunction K α) {a : α}
     exact ha
   exact hr
 
-/-- Each face value occurs at an enumerated grade.-/
+/-- Each face value occurs at an enumerated grade.
+@isnad1 id=ex.0h5v.s7.869c0d90456a from=translated src=- shape=55db03a6 vocab=6a75eb95
+-/
 theorem exists_criticalValue_eq (f : FilterFunction K α)
     (s : TDA.Simplicial.TotalFace K) :
     ∃ i : Fin (f.criticalValues.card), f.criticalValue i = f.value s := by
   apply f.exists_criticalValue_of_mem
   exact (f.mem_criticalValues _).2 ⟨s, rfl⟩
 
-/-- A grade is the sublevel at its enumerated critical value.-/
+/-- A grade is the sublevel at its enumerated critical value.
+@isnad1 id=eq.0h5v.s7.a6deefd7c769 from=translated src=- shape=37c20d5f vocab=1c0a7aa7
+-/
 theorem gradeFiltration_apply (f : FilterFunction K α)
     (i : Fin (f.criticalValues.card)) :
     f.gradeFiltration i = f.sublevel (f.criticalValue i) := rfl
 
-/-- A threshold below the first grade has bottom sublevel.-/
+/-- A threshold below the first grade has bottom sublevel.
+@isnad1 id=eq.2h5v.s7.b72eea8bb303 from=translated src=- shape=5cf76e2b vocab=8eeb20a6
+-/
 theorem sublevel_eq_bot_of_lt_first (f : FilterFunction K α)
     (hN : 0 < f.criticalValues.card) (r : α)
     (hr : r < f.criticalValue ⟨0, hN⟩) :
@@ -102,7 +114,9 @@ theorem sublevel_eq_bot_of_lt_first (f : FilterFunction K α)
     Fin.le_def.mpr (Nat.zero_le _)
   exact lt_of_lt_of_le hr ((f.criticalValue.monotone h0).trans_eq hi)
 
-/-- A threshold between one grade and every later grade gives that stage.-/
+/-- A threshold between one grade and every later grade gives that stage.
+@isnad1 id=eq.2h6v.s8.83ef7e1d5c9c from=translated src=- shape=ef8c42fc vocab=8ba57e46
+-/
 theorem sublevel_eq_grade_of_gap (f : FilterFunction K α)
     (i : Fin (f.criticalValues.card)) (r : α)
     (hlo : f.criticalValue i ≤ r)
@@ -122,7 +136,9 @@ theorem sublevel_eq_grade_of_gap (f : FilterFunction K α)
     exact (f.mem_sublevel_iff _ s).2 ⟨hsK, hle⟩
   · exact f.sublevel_mono hlo
 
-/-- A threshold in an adjacent grade gap gives the lower stage.-/
+/-- A threshold in an adjacent grade gap gives the lower stage.
+@isnad1 id=eq.3h7v.s8.6fa5c28d2709 from=translated src=- shape=c6f99c42 vocab=5b70d156
+-/
 theorem sublevel_eq_grade_of_adjacent (f : FilterFunction K α)
     (i j : Fin (f.criticalValues.card)) (hij : i.val + 1 = j.val)
     (r : α) (hlo : f.criticalValue i ≤ r) (hhi : r < f.criticalValue j) :
@@ -135,7 +151,9 @@ theorem sublevel_eq_grade_of_adjacent (f : FilterFunction K α)
     omega
   exact lt_of_lt_of_le hhi (f.criticalValue.monotone hjk)
 
-/-- At or above the last grade the sublevel is exactly `K`.-/
+/-- At or above the last grade the sublevel is exactly `K`.
+@isnad1 id=eq.2h5v.s7.5a38a5906848 from=translated src=- shape=e7994510 vocab=4099e3ab
+-/
 theorem sublevel_eq_self_of_last_le (f : FilterFunction K α)
     (hN : 0 < f.criticalValues.card) (r : α)
     (hr : f.criticalValue
@@ -152,7 +170,9 @@ theorem sublevel_eq_self_of_last_le (f : FilterFunction K α)
     omega
   exact (hi ▸ (f.criticalValue.monotone hilast)).trans hr
 
-/-- Every threshold gives bottom or one of the finite grade stages.-/
+/-- Every threshold gives bottom or one of the finite grade stages.
+@isnad1 id=or.0h5v.s8.369472e22baf from=translated src=- shape=321ce5d2 vocab=1a756257
+-/
 theorem sublevel_eq_bot_or_grade (f : FilterFunction K α) (r : α) :
     f.sublevel r = ⊥ ∨
       ∃ i : Fin (f.criticalValues.card),

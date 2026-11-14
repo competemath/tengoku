@@ -43,26 +43,36 @@ variable (V : CoverFamily X I)
 /-- The intersection of the members of `V` indexed by a finite index set.-/
 def interMember (σ : Finset I) : Set X := ⋂ i ∈ σ, V i
 
-/-- A point lies in a finite intersection exactly when it lies in every indexed member.-/
+/-- A point lies in a finite intersection exactly when it lies in every indexed member.
+@isnad1 id=iff.0h5v.s5.b25a0c046261 from=translated src=- shape=c5e239a5 vocab=e6478f72
+-/
 theorem mem_interMember_iff {σ : Finset I} {x : X} :
     x ∈ interMember V σ ↔ ∀ i ∈ σ, x ∈ V i :=
   Set.mem_iInter₂
 
-/-- Finite intersections are antitone in the index set.-/
+/-- Finite intersections are antitone in the index set.
+@isnad1 id=le.1h5v.s5.d27c77fad94a from=translated src=- shape=e2028a44 vocab=933e4e78
+-/
 theorem interMember_anti {σ τ : Finset I} (h : τ ⊆ σ) :
     interMember V σ ⊆ interMember V τ := fun _ hx =>
   (mem_interMember_iff V).2 fun i hi => (mem_interMember_iff V).1 hx i (h hi)
 
-/-- A finite intersection is contained in each of its members.-/
+/-- A finite intersection is contained in each of its members.
+@isnad1 id=le.1h5v.s5.fcf0444fb616 from=translated src=- shape=ca49b7cf vocab=f86c3ee0
+-/
 theorem interMember_subset {σ : Finset I} {i : I} (hi : i ∈ σ) :
     interMember V σ ⊆ V i := fun _ hx =>
   (mem_interMember_iff V).1 hx i hi
 
-/-- The intersection over a singleton is its member.-/
+/-- The intersection over a singleton is its member.
+@isnad1 id=eq.0h4v.s4.1f9cd20e34d7 from=translated src=- shape=f6801eff vocab=69005cf5
+-/
 theorem interMember_singleton (i : I) : interMember V {i} = V i :=
   Finset.set_biInter_singleton i V
 
-/-- The intersection over an inserted index splits off that member.-/
+/-- The intersection over an inserted index splits off that member.
+@isnad1 id=eq.0h5v.s5.5af26fc81f34 from=translated src=- shape=40c5ac32 vocab=00584fd1
+-/
 theorem interMember_insert [DecidableEq I] (i : I) (σ : Finset I) :
     interMember V (insert i σ) = V i ∩ interMember V σ :=
   Finset.set_biInter_insert i σ V
@@ -83,31 +93,41 @@ def faceMap {σ τ : Finset I} (h : τ ⊆ σ) :
     ZerothHomotopy (interMember V σ) → ZerothHomotopy (interMember V τ) :=
   componentMap (preimageSetInclusion (ContinuousMap.id X) (interMember_anti V h))
 
-/-- Representative formula for face maps.-/
+/-- Representative formula for face maps.
+@isnad1 id=eq.1h6v.s7.f2328106070b from=translated src=- shape=c05c5afd vocab=3ec376ea
+-/
 @[simp]
 theorem faceMap_mk {σ τ : Finset I} (h : τ ⊆ σ) (x : interMember V σ) :
     faceMap V h (ZerothHomotopy.mk x) =
       ZerothHomotopy.mk (⟨x.1, interMember_anti V h x.2⟩ : interMember V τ) := rfl
 
-/-- The face map of reflexive inclusion is the identity.-/
+/-- The face map of reflexive inclusion is the identity.
+@isnad1 id=eq.0h4v.s6.2f2e35fa160e from=translated src=- shape=0a893cf7 vocab=d3499554
+-/
 theorem faceMap_refl (σ : Finset I) : faceMap V (Finset.Subset.refl σ) = id := by
   funext c
   induction c using ZerothHomotopy.rec with
   | mk x => rfl
 
-/-- Any face map from an index set to itself is the identity.-/
+/-- Any face map from an index set to itself is the identity.
+@isnad1 id=eq.1h5v.s6.0dd0b4e0a13d from=translated src=- shape=c60a1ccb vocab=e20fa432
+-/
 theorem faceMap_self {σ : Finset I} (h : σ ⊆ σ) (c : ZerothHomotopy (interMember V σ)) :
     faceMap V h c = c :=
   congrFun (faceMap_refl V σ) c
 
-/-- Face maps compose along nested index sets.-/
+/-- Face maps compose along nested index sets.
+@isnad1 id=eq.2h6v.s7.5d7d64a31429 from=translated src=- shape=cc61d024 vocab=b73c9dfd
+-/
 theorem faceMap_trans {ρ τ σ : Finset I} (hρτ : ρ ⊆ τ) (hτσ : τ ⊆ σ) :
     faceMap V hρτ ∘ faceMap V hτσ = faceMap V (hρτ.trans hτσ) := by
   funext c
   induction c using ZerothHomotopy.rec with
   | mk x => rfl
 
-/-- Pointwise form of `faceMap_trans`.-/
+/-- Pointwise form of `faceMap_trans`.
+@isnad1 id=eq.2h7v.s6.edc894204477 from=translated src=- shape=6a3ad774 vocab=7e4f6d83
+-/
 theorem faceMap_faceMap {ρ τ σ : Finset I} (hρτ : ρ ⊆ τ) (hτσ : τ ⊆ σ)
     (c : ZerothHomotopy (interMember V σ)) :
     faceMap V hρτ (faceMap V hτσ c) = faceMap V (hρτ.trans hτσ) c :=
@@ -123,7 +143,9 @@ def MultiNerveCell (V : CoverFamily X I) : Type (max u v) :=
   Σ σ : {σ : Finset I // σ.Nonempty}, ZerothHomotopy (interMember V σ.1)
 
 /-- An intersection has no path component exactly when it is empty; such an index set carries
-no multinerve cell.-/
+no multinerve cell.
+@isnad1 id=iff.0h4v.s5.ebece29a4603 from=translated src=- shape=03337a07 vocab=70be374f
+-/
 theorem isEmpty_cellsOver_iff (V : CoverFamily X I) (σ : Finset I) :
     IsEmpty (ZerothHomotopy (interMember V σ)) ↔ interMember V σ = ∅ := by
   constructor
@@ -156,20 +178,32 @@ def carrier (a : MultiNerveCell V) : Set X :=
   {x | ∃ hx : x ∈ interMember V a.support,
     ZerothHomotopy.mk (⟨x, hx⟩ : interMember V a.support) = a.component}
 
+/--
+@isnad1 id=eq.1h5v.s5.715331af2263 from=translated src=- shape=4583c03c vocab=9175594d
+-/
 @[simp] theorem support_mk (σ : Finset I) (hσ : σ.Nonempty)
     (c : ZerothHomotopy (interMember V σ)) : (mk σ hσ c).support = σ := rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.0c1627f4824c from=translated src=- shape=49b05fe4 vocab=f44a75ed
+-/
 @[simp] theorem component_mk (σ : Finset I) (hσ : σ.Nonempty)
     (c : ZerothHomotopy (interMember V σ)) : (mk σ hσ c).component = c := rfl
 
-/-- The support of a cell is nonempty.-/
+/-- The support of a cell is nonempty.
+@isnad1 id=nonempty.0h4v.s4.10b57f45e0dd from=translated src=- shape=9a2aefec vocab=a428b985
+-/
 theorem support_nonempty (a : MultiNerveCell V) : a.support.Nonempty := a.1.2
 
-/-- Every cell is of the form `mk`.-/
+/-- Every cell is of the form `mk`.
+@isnad1 id=eq.0h4v.s5.e7d4e3ee9b3e from=translated src=- shape=1462afe3 vocab=1cd59d14
+-/
 theorem eta (a : MultiNerveCell V) : mk a.support a.support_nonempty a.component = a := rfl
 
 /-- Two cells with equal supports are equal when their components agree after transport by
-the identity face map.-/
+the identity face map.
+@isnad1 id=eq.2h5v.s6.eb215fa644d8 from=translated src=- shape=a560e52f vocab=27396798
+-/
 theorem ext_of_support_eq {a b : MultiNerveCell V} (h : b.support = a.support)
     (hc : faceMap V h.le a.component = b.component) : b = a := by
   rcases a with ⟨⟨σ, hσ⟩, c⟩
@@ -179,11 +213,15 @@ theorem ext_of_support_eq {a b : MultiNerveCell V} (h : b.support = a.support)
   obtain rfl : c = d := (faceMap_self V _ c).symm.trans hc
   rfl
 
-/-- The carrier of a cell lies in the intersection over its support.-/
+/-- The carrier of a cell lies in the intersection over its support.
+@isnad1 id=le.0h4v.s5.f90eaed85b76 from=translated src=- shape=5056a817 vocab=664e687f
+-/
 theorem carrier_subset (a : MultiNerveCell V) : a.carrier ⊆ interMember V a.support :=
   fun _ hx => hx.1
 
-/-- Every cell has a nonempty carrier.-/
+/-- Every cell has a nonempty carrier.
+@isnad1 id=nonempty.0h4v.s4.d204a8d30af6 from=translated src=- shape=1eb72552 vocab=25a0aed5
+-/
 theorem carrier_nonempty (a : MultiNerveCell V) : a.carrier.Nonempty := by
   obtain ⟨x, hx⟩ := ZerothHomotopy.mk_surjective a.component
   exact ⟨x.1, x.2, hx⟩
@@ -203,12 +241,16 @@ instance instPartialOrder : PartialOrder (MultiNerveCell V) where
     exact ext_of_support_eq (Finset.Subset.antisymm h₁ h₂) e₁
 
 /-- The face relation: `b ≤ a` exactly when the support of `b` is contained in that of `a` and
-the face map sends the component of `a` to the component of `b`.-/
+the face map sends the component of `a` to the component of `b`.
+@isnad1 id=iff.0h5v.s7.c1fe7f6b3427 from=translated src=- shape=8d786b68 vocab=c9acfd0c
+-/
 theorem le_def {a b : MultiNerveCell V} :
     b ≤ a ↔ ∃ h : b.support ⊆ a.support, faceMap V h a.component = b.component :=
   Iff.rfl
 
-/-- The face order forces containment of supports.-/
+/-- The face order forces containment of supports.
+@isnad1 id=le.1h5v.s6.23fcbb435bfc from=translated src=- shape=28dc18e9 vocab=83713496
+-/
 theorem support_mono {a b : MultiNerveCell V} (h : b ≤ a) : b.support ⊆ a.support :=
   h.1
 
@@ -217,10 +259,15 @@ def face (a : MultiNerveCell V) (τ : Finset I) (hτ : τ.Nonempty) (hτa : τ �
     MultiNerveCell V :=
   mk τ hτ (faceMap V hτa a.component)
 
+/--
+@isnad1 id=eq.2h5v.s5.1339baddb8d5 from=translated src=- shape=14b95847 vocab=c0bf3ec5
+-/
 @[simp] theorem support_face (a : MultiNerveCell V) (τ : Finset I) (hτ : τ.Nonempty)
     (hτa : τ ⊆ a.support) : (a.face τ hτ hτa).support = τ := rfl
 
-/-- Every face of a cell lies below it.-/
+/-- Every face of a cell lies below it.
+@isnad1 id=le.2h5v.s6.f9648c1ce359 from=translated src=- shape=f61efcff vocab=c0bf3ec5
+-/
 theorem face_le (a : MultiNerveCell V) (τ : Finset I) (hτ : τ.Nonempty)
     (hτa : τ ⊆ a.support) : a.face τ hτ hτa ≤ a :=
   ⟨hτa, rfl⟩
@@ -232,7 +279,9 @@ theorem eq_face_of_le {a b : MultiNerveCell V} (h : b ≤ a) :
   exact ext_of_support_eq (a := a.face b.support b.support_nonempty h) (b := b) rfl
     ((faceMap_faceMap V (Finset.Subset.refl _) h a.component).trans e)
 
-/-- Faces of one cell are ordered by inclusion of their index sets.-/
+/-- Faces of one cell are ordered by inclusion of their index sets.
+@isnad1 id=iff.4h6v.s6.5e344c0d314d from=translated src=- shape=6312106c vocab=c0bf3ec5
+-/
 theorem face_le_face_iff (a : MultiNerveCell V) {τ τ' : Finset I} (hτ : τ.Nonempty)
     (hτ' : τ'.Nonempty) (hτa : τ ⊆ a.support) (hτ'a : τ' ⊆ a.support) :
     a.face τ hτ hτa ≤ a.face τ' hτ' hτ'a ↔ τ ⊆ τ' :=
@@ -252,17 +301,24 @@ def lowerSetOrderIso (a : MultiNerveCell V) :
     exact (eq_face_of_le b.2).le.trans
       (((face_le_face_iff a _ _ _ _).2 h).trans (eq_face_of_le b'.2).ge)
 
+/--
+@isnad1 id=eq.0h5v.s9.f3a61692cd86 from=translated src=- shape=f0783246 vocab=33f08255
+-/
 @[simp] theorem lowerSetOrderIso_apply (a : MultiNerveCell V) (b : {b // b ≤ a}) :
     (lowerSetOrderIso a b).1 = b.1.support := rfl
 
 /-! ## Projection to the ordinary nerve -/
 
-/-- The support of every cell is a face of the ordinary nerve.-/
+/-- The support of every cell is a face of the ordinary nerve.
+@isnad1 id=mem.0h4v.s5.d3db50ac9001 from=translated src=- shape=4bd7cc26 vocab=3ae7f1e0
+-/
 theorem support_mem_nerve (a : MultiNerveCell V) : a.support ∈ nerve V := by
   obtain ⟨x, -⟩ := ZerothHomotopy.mk_surjective a.component
   exact (mem_nerve_iff V _).2 ⟨a.support_nonempty, x.1, (mem_interMember_iff V).1 x.2⟩
 
-/-- Every face of the ordinary nerve is the support of a cell.-/
+/-- Every face of the ordinary nerve is the support of a cell.
+@isnad1 id=ex.1h4v.s5.2e9d022f75ef from=translated src=- shape=23034854 vocab=3ae7f1e0
+-/
 theorem exists_cell_of_mem_nerve {σ : Finset I} (hσ : σ ∈ nerve V) :
     ∃ a : MultiNerveCell V, a.support = σ := by
   obtain ⟨hne, x, hx⟩ := (mem_nerve_iff V σ).1 hσ
@@ -279,12 +335,19 @@ path component.-/
 def projection : MultiNerveCell V → {s : Finset I // s ∈ nerve V} :=
   fun a => ⟨a.support, a.support_mem_nerve⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.5799a5a25008 from=translated src=- shape=9c9759f6 vocab=44a41b3e
+-/
 @[simp] theorem projection_coe (a : MultiNerveCell V) : (projection V a).1 = a.support := rfl
 
-/-- The projection is monotone for the face order and inclusion of nerve faces.-/
+/-- The projection is monotone for the face order and inclusion of nerve faces.
+@isnad1 id=monotone.0h3v.s6.409f5e4e4b01 from=translated src=- shape=d0d63fe5 vocab=4d691979
+-/
 theorem projection_monotone : Monotone (projection V) := fun _ _ h => support_mono h
 
-/-- The image of the projection is exactly the set of nerve faces (CO16-v3 Lemma 3.4).-/
+/-- The image of the projection is exactly the set of nerve faces (CO16-v3 Lemma 3.4).
+@isnad1 id=surjecti.0h3v.s5.5720eb3d26f3 from=translated src=- shape=d0d63fe5 vocab=c012301b
+-/
 theorem projection_surjective : Function.Surjective (projection V) := by
   rintro ⟨σ, hσ⟩
   obtain ⟨a, ha⟩ := exists_cell_of_mem_nerve hσ
@@ -298,6 +361,9 @@ def cellsOverEquiv (σ : Finset I) (hσ : σ.Nonempty) :
   left_inv a := Subtype.ext (ext_of_support_eq a.2.symm rfl)
   right_inv c := faceMap_self V _ c
 
+/--
+@isnad1 id=eq.1h5v.s8.e89038c1b26f from=translated src=- shape=3802e2c0 vocab=3ac55ab3
+-/
 @[simp] theorem cellsOverEquiv_symm_apply (σ : Finset I) (hσ : σ.Nonempty)
     (c : ZerothHomotopy (interMember V σ)) :
     ((cellsOverEquiv V σ hσ).symm c).1 = mk σ hσ c := rfl
@@ -309,7 +375,9 @@ def IntersectionsPathSubsingleton : Prop :=
   ∀ σ : Finset I, σ.Nonempty → Subsingleton (ZerothHomotopy (interMember V σ))
 
 /-- The projection to the ordinary nerve is injective exactly when every nonempty finite
-intersection has at most one path component.-/
+intersection has at most one path component.
+@isnad1 id=iff.0h3v.s5.93bcd9fb5d7f from=translated src=- shape=3863c279 vocab=bbd16ea9
+-/
 theorem projection_injective_iff :
     Function.Injective (projection V) ↔ IntersectionsPathSubsingleton V := by
   constructor
@@ -332,17 +400,23 @@ def multiNerveOrderIso (h : IntersectionsPathSubsingleton V) :
     change b.support ⊆ a.support ↔ b ≤ a
     exact ⟨fun hs => ⟨hs, @Subsingleton.elim _ (h _ b.support_nonempty) _ _⟩, support_mono⟩
 
-/-- The underlying map of `multiNerveOrderIso` is the projection.-/
+/-- The underlying map of `multiNerveOrderIso` is the projection.
+@isnad1 id=eq.1h3v.s7.8d265b672573 from=translated src=- shape=52112428 vocab=d33377c1
+-/
 @[simp] theorem coe_multiNerveOrderIso (h : IntersectionsPathSubsingleton V) :
     ⇑(multiNerveOrderIso V h) = projection V := rfl
 
-/-- A path-connected subspace has at most one path component.-/
+/-- A path-connected subspace has at most one path component.
+@isnad1 id=subsingl.1h2v.s4.3b1ec31d06be from=translated src=- shape=90e09d2f vocab=2f38c993
+-/
 theorem subsingleton_zerothHomotopy_of_isPathConnected {S : Set X} (hS : IsPathConnected S) :
     Subsingleton (ZerothHomotopy S) := by
   have := isPathConnected_iff_pathConnectedSpace.1 hS
   exact (pathConnectedSpace_iff_zerothHomotopy.1 inferInstance).2
 
-/-- Path-connected nonempty finite intersections give `IntersectionsPathSubsingleton`.-/
+/-- Path-connected nonempty finite intersections give `IntersectionsPathSubsingleton`.
+@isnad1 id=intersec.1h3v.s5.5dd1bbe0e0c1 from=translated src=- shape=5b556d85 vocab=faceb50f
+-/
 theorem intersectionsPathSubsingleton_of_isPathConnected
     (h : ∀ σ : Finset I, σ.Nonempty → (interMember V σ).Nonempty →
       IsPathConnected (interMember V σ)) :

@@ -12,13 +12,22 @@ private theorem ofReal_le_add_of_le {a b c : ℝ} (h : a ≤ b + c) :
     ENNReal.ofReal a ≤ ENNReal.ofReal b + ENNReal.ofReal c :=
   (ENNReal.ofReal_le_ofReal h).trans ENNReal.ofReal_add_le
 
+/--
+@isnad1 id=eq.0h1v.s3.eb66db37bc21 from=translated src=- shape=82e490f4 vocab=318c5794
+-/
 theorem finitePairCost_self (p : ℝ × ℝ) : finitePairCost p p = 0 := by
   simp [finitePairCost]
 
+/--
+@isnad1 id=eq.0h2v.s4.9b58a193e186 from=translated src=- shape=d1980aa7 vocab=318c5794
+-/
 theorem finitePairCost_comm (p q : ℝ × ℝ) :
     finitePairCost p q = finitePairCost q p := by
   simp [finitePairCost, abs_sub_comm]
 
+/--
+@isnad1 id=le.0h3v.s4.af130fd6a388 from=translated src=- shape=f16c57e7 vocab=31e2fe73
+-/
 theorem finitePairCost_triangle (p q r : ℝ × ℝ) :
     finitePairCost p r ≤ finitePairCost p q + finitePairCost q r := by
   apply ofReal_le_add_of_le
@@ -30,19 +39,30 @@ theorem finitePairCost_triangle (p q r : ℝ × ℝ) :
   have h₆ : |q.2 - r.2| ≤ max |q.1 - r.1| |q.2 - r.2| := le_max_right _ _
   exact max_le (by linarith) (by linarith)
 
+/--
+@isnad1 id=eq.0h1v.s3.ac9f48bdeb86 from=translated src=- shape=34c957ae vocab=438eaa7d
+-/
 theorem essentialPairCost_self (b : ℝ) : essentialPairCost b b = 0 := by
   simp [essentialPairCost]
 
+/--
+@isnad1 id=eq.0h2v.s3.274bc5ba7015 from=translated src=- shape=ab795eaa vocab=438eaa7d
+-/
 theorem essentialPairCost_comm (b c : ℝ) :
     essentialPairCost b c = essentialPairCost c b := by
   simp [essentialPairCost, abs_sub_comm]
 
+/--
+@isnad1 id=le.0h3v.s4.8efef6021bbc from=translated src=- shape=5968a5f3 vocab=8dde8279
+-/
 theorem essentialPairCost_triangle (b c d : ℝ) :
     essentialPairCost b d ≤ essentialPairCost b c + essentialPairCost c d :=
   ofReal_le_add_of_le (abs_sub_le b c d)
 
 /-- Moving a finite pair changes its diagonal cost by at most its maximum-coordinate cost.
-The absolute persistence also covers pairs whose death precedes birth.-/
+The absolute persistence also covers pairs whose death precedes birth.
+@isnad1 id=le.0h2v.s4.4f0cf9fe49f2 from=translated src=- shape=7c25e514 vocab=ad1c65f5
+-/
 theorem diagonalCost_le_pair_add (p q : ℝ × ℝ) :
     diagonalCost p ≤ finitePairCost p q + diagonalCost q := by
   unfold diagonalCost finitePairCost
@@ -54,6 +74,9 @@ theorem diagonalCost_le_pair_add (p q : ℝ × ℝ) :
   have h₅ : |p.2 - q.2| ≤ max |p.1 - q.1| |p.2 - q.2| := le_max_right _ _
   linarith
 
+/--
+@isnad1 id=le.0h2v.s4.94cfaf14c927 from=translated src=- shape=8f318a77 vocab=ad1c65f5
+-/
 theorem diagonalCost_le_pair_add_rev (p q : ℝ × ℝ) :
     diagonalCost q ≤ diagonalCost p + finitePairCost p q := by
   rw [add_comm, finitePairCost_comm]
@@ -68,6 +91,9 @@ noncomputable local instance : DecidableEq F₁ := Classical.decEq F₁
 noncomputable local instance : DecidableEq F₂ := Classical.decEq F₂
 noncomputable local instance : DecidableEq F₃ := Classical.decEq F₃
 
+/--
+@isnad1 id=le.0h10v.s6.5ddc02c0a0bd from=translated src=- shape=87462262 vocab=c40ac22e
+-/
 theorem source_le_cost (M : OccurrenceMatching F₁ F₂ E₁ E₂)
     (x : F₁ → ℝ × ℝ) (y : F₂ → ℝ × ℝ)
     (b : E₁ → ℝ) (c : E₂ → ℝ) (i : F₁) :
@@ -81,6 +107,9 @@ theorem source_le_cost (M : OccurrenceMatching F₁ F₂ E₁ E₂)
       | none => diagonalCost (x i)) (Finset.mem_univ i)).trans
       (le_max_left _ _)
 
+/--
+@isnad1 id=le.0h10v.s6.244fe0883466 from=translated src=- shape=07178e5d vocab=ff3c0337
+-/
 theorem target_le_cost (M : OccurrenceMatching F₁ F₂ E₁ E₂)
     (x : F₁ → ℝ × ℝ) (y : F₂ → ℝ × ℝ)
     (b : E₁ → ℝ) (c : E₂ → ℝ) (j : F₂) :
@@ -91,6 +120,9 @@ theorem target_le_cost (M : OccurrenceMatching F₁ F₂ E₁ E₂)
     (f := fun j => if ∃ i, M.finite i = some j then 0 else diagonalCost (y j))
     (Finset.mem_univ j)).trans ((le_max_left _ _).trans (le_max_right _ _))
 
+/--
+@isnad1 id=le.0h10v.s6.553fd6aa9a4c from=translated src=- shape=66ccef02 vocab=c6509c31
+-/
 theorem essential_le_cost (M : OccurrenceMatching F₁ F₂ E₁ E₂)
     (x : F₁ → ℝ × ℝ) (y : F₂ → ℝ × ℝ)
     (b : E₁ → ℝ) (c : E₂ → ℝ) (k : E₁) :
@@ -100,6 +132,9 @@ theorem essential_le_cost (M : OccurrenceMatching F₁ F₂ E₁ E₂)
     (f := fun k => essentialPairCost (b k) (c (M.essential k)))
     (Finset.mem_univ k)).trans ((le_max_right _ _).trans (le_max_right _ _))
 
+/--
+@isnad1 id=le.3h10v.s7.44240ac1945a from=translated src=- shape=b0c0f99d vocab=88c10d09
+-/
 theorem cost_le_of (M : OccurrenceMatching F₁ F₂ E₁ E₂)
     (x : F₁ → ℝ × ℝ) (y : F₂ → ℝ × ℝ)
     (b : E₁ → ℝ) (c : E₂ → ℝ) (r : ℝ≥0∞)
@@ -133,6 +168,9 @@ noncomputable def reverse (M : OccurrenceMatching F₁ F₂ E₁ E₂) :
       exact Option.some.inj (hi.symm.trans (he ▸ hi'))
   essential := M.essential.symm
 
+/--
+@isnad1 id=iff.0h7v.s5.39ee59062ae4 from=translated src=- shape=bb2a4ba0 vocab=f7dfcd90
+-/
 theorem reverse_finite_some_iff (M : OccurrenceMatching F₁ F₂ E₁ E₂)
     (j : F₂) (i : F₁) : M.reverse.finite j = some i ↔ M.finite i = some j := by
   classical
@@ -178,6 +216,9 @@ private theorem cost_reverse_le (M : OccurrenceMatching F₁ F₂ E₁ E₂)
     simpa [reverse, essentialPairCost_comm] using
       essential_le_cost M x y b c (M.essential.symm k)
 
+/--
+@isnad1 id=eq.0h5v.s5.c9512872c1ff from=translated src=- shape=b07856b6 vocab=605cf70d
+-/
 theorem reverse_reverse (M : OccurrenceMatching F₁ F₂ E₁ E₂) :
     M.reverse.reverse = M := by
   classical
@@ -199,6 +240,9 @@ theorem reverse_reverse (M : OccurrenceMatching F₁ F₂ E₁ E₂) :
   · change M.essential.symm.symm = M.essential
     simp
 
+/--
+@isnad1 id=eq.0h9v.s6.9c04639393fd from=translated src=- shape=e95ba490 vocab=82dd0b80
+-/
 theorem cost_reverse (M : OccurrenceMatching F₁ F₂ E₁ E₂)
     (x : F₁ → ℝ × ℝ) (y : F₂ → ℝ × ℝ)
     (b : E₁ → ℝ) (c : E₂ → ℝ) :
@@ -226,7 +270,9 @@ def compose (M : OccurrenceMatching F₁ F₂ E₁ E₂)
   essential := M.essential.trans N.essential
 
 /-- Every complete path or diagonal endpoint in a glued matching costs at most the
-sum of the original costs. Middle occurrences unmatched on both sides create no endpoint.-/
+sum of the original costs. Middle occurrences unmatched on both sides create no endpoint.
+@isnad1 id=le.0h14v.s7.c9c7053b7d52 from=translated src=- shape=a3a6c37f vocab=ff06c9f0
+-/
 theorem cost_compose_le (M : OccurrenceMatching F₁ F₂ E₁ E₂)
     (N : OccurrenceMatching F₂ F₃ E₂ E₃)
     (x : F₁ → ℝ × ℝ) (y : F₂ → ℝ × ℝ) (z : F₃ → ℝ × ℝ)
@@ -283,6 +329,9 @@ theorem cost_compose_le (M : OccurrenceMatching F₁ F₂ E₁ E₂)
 
 end OccurrenceMatching
 
+/--
+@isnad1 id=eq.0h1v.s3.8311d05731ee from=translated src=- shape=30ebb3a3 vocab=3795f64b
+-/
 theorem bottleneck_self (D : Diagram ℝ) : bottleneck D D = 0 := by
   classical
   let M : OccurrenceMatching D.finiteOccurrences D.finiteOccurrences
@@ -293,6 +342,9 @@ theorem bottleneck_self (D : Diagram ℝ) : bottleneck D D = 0 := by
     simp [OccurrenceMatching.cost, M, finitePairCost_self, essentialPairCost_self]
   exact le_antisymm ((bottleneck_le_matching D D M).trans_eq hc) bot_le
 
+/--
+@isnad1 id=eq.0h8v.s6.7ade5fc7ec7a from=translated src=- shape=96641baf vocab=1b1d5d26
+-/
 theorem presentationBottleneck_comm {F₁ F₂ E₁ E₂ : Type*}
     [Fintype F₁] [Fintype F₂] [Fintype E₁] [Fintype E₂]
     (x : F₁ → ℝ × ℝ) (y : F₂ → ℝ × ℝ)
@@ -308,9 +360,15 @@ theorem presentationBottleneck_comm {F₁ F₂ E₁ E₂ : Type*}
     exact (presentationBottleneck_le_cost y x c b M.reverse).trans_eq
       (OccurrenceMatching.cost_reverse M x y b c)
 
+/--
+@isnad1 id=eq.0h2v.s4.13090b95fed3 from=translated src=- shape=d879a4f1 vocab=3795f64b
+-/
 theorem bottleneck_comm (D E : Diagram ℝ) : bottleneck D E = bottleneck E D :=
   presentationBottleneck_comm _ _ _ _
 
+/--
+@isnad1 id=le.0h3v.s4.968da210cd1f from=translated src=- shape=89e796d4 vocab=225634a9
+-/
 theorem bottleneck_triangle (D E F : Diagram ℝ) :
     bottleneck D F ≤ bottleneck D E + bottleneck E F := by
   by_cases hDE : bottleneck D E = ⊤
@@ -403,6 +461,9 @@ private theorem diagram_eq_of_parts (D E : Diagram ℝ)
      (essentialPart_orderedQ m n z).symm.trans
        (he.trans (essentialPart_orderedQ m' n' w))⟩
 
+/--
+@isnad1 id=iff.0h2v.s4.0175d8999307 from=translated src=- shape=87673c1f vocab=3795f64b
+-/
 theorem bottleneck_eq_zero_iff (D E : Diagram ℝ) :
     bottleneck D E = 0 ↔ D = E := by
   classical

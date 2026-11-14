@@ -100,7 +100,9 @@ private theorem translatedBirthQuotientMap_surjective (b c : Fin s)
 include hTheta p hp hk
 
 /-- Kernel shortness bounds source survival after translation by target survival before it.
-The positive-birth quotient and initial image are compared by surjections.-/
+The positive-birth quotient and initial image are compared by surjections.
+@isnad1 id=le.4h8v.s10.437579f4dd99 from=translated src=- shape=79feabc9 vocab=587dd3ec
+-/
 theorem birthSuffixCount_translated_le_of_kernelTrivial
     [∀ i, FiniteDimensional k (M.obj i)] [∀ i, FiniteDimensional k (N.obj i)]
     (b c : Fin s) (hbc : b ≤ c) :

@@ -26,7 +26,9 @@ variable {V : Type*} [MetricSpace V] [Fintype V]
 
 local instance sparsityDecidableEq : DecidableEq V := Classical.decEq V
 
-/-- A packing depth can be chosen from the approximation parameter alone.-/
+/-- A packing depth can be chosen from the approximation parameter alone.
+@isnad1 id=ex.2h1v.s6.5fcb7edc8290 from=translated src=- shape=291bcc29 vocab=e7bc5859
+-/
 theorem exists_packing_depth {η : ℝ} (hη : 0 < η) (hη' : η ≤ 1 / 3) :
     ∃ h : ℕ, 2 / (2 : ℝ) ^ h < η * (1 - 2 * η) := by
   have hp : 0 < η * (1 - 2 * η) / 2 := by
@@ -48,9 +50,15 @@ def sparseCarrier (seed : V) (η : ℝ) : PreAbstractSimplicialComplex V where
     exact ⟨hσ.1.1, fun τ hτσ hτ =>
       ⟨a, ha, (closedActiveComplex seed η a).isRelLowerSet_faces hσ |>.2 hτσ hτ⟩⟩
 
+/--
+@isnad1 id=iff.0h4v.s6.eaad0d75ea94 from=translated src=- shape=617912b6 vocab=2e220487
+-/
 @[simp] theorem mem_sparseCarrier (seed : V) (η : ℝ) (σ : Finset V) :
     σ ∈ sparseCarrier seed η ↔ ∃ a, 0 ≤ a ∧ σ ∈ closedActiveComplex seed η a := Iff.rfl
 
+/--
+@isnad1 id=iff.0h4v.s6.e1453804b2e1 from=translated src=- shape=23fbc538 vocab=53ec7dc4
+-/
 theorem mem_sparseCarrier_iff (seed : V) (η : ℝ) (σ : Finset V) :
     σ ∈ sparseCarrier seed η ↔ ∃ r, σ ∈ sparseFiltration seed η r := by
   constructor
@@ -65,16 +73,25 @@ def laterNeighbors (seed : V) (η : ℝ) (p : V) : Finset V := by
   exact Finset.univ.filter fun q => insertionIndex seed q < insertionIndex seed p ∧
     ({p, q} : Finset V) ∈ sparseCarrier seed η
 
+/--
+@isnad1 id=iff.0h5v.s6.d431664b8291 from=translated src=- shape=05c957bb vocab=261a97fa
+-/
 @[simp] theorem mem_laterNeighbors (seed : V) (η : ℝ) (p q : V) :
     q ∈ laterNeighbors seed η p ↔ insertionIndex seed q < insertionIndex seed p ∧
       ({p, q} : Finset V) ∈ sparseCarrier seed η := by
   classical
   simp [laterNeighbors]
 
+/--
+@isnad1 id=eq.0h3v.s4.4d6483402a71 from=translated src=- shape=519c544e vocab=d27559d1
+-/
 @[simp] theorem laterNeighbors_seed (seed : V) (η : ℝ) : laterNeighbors seed η seed = ∅ := by
   ext q
   simp
 
+/--
+@isnad1 id=le.0h4v.s5.a3658212fc3b from=translated src=- shape=8b81a3b1 vocab=4e2853eb
+-/
 theorem laterNeighbors_subset_prefix (seed : V) (η : ℝ) (p : V) :
     laterNeighbors seed η p ⊆ greedyPrefix seed (insertionIndex seed p - 1) := by
   intro q hq
@@ -82,7 +99,9 @@ theorem laterNeighbors_subset_prefix (seed : V) (η : ℝ) (p : V) :
   exact prefix_mono seed (by omega) (mem_insertionIndex seed q)
 
 /-- A later neighbor stays within the finite deletion ball, even if the edge first
-appears at an earlier scale than the vertex's deletion time.-/
+appears at an earlier scale than the vertex's deletion time.
+@isnad1 id=le.3h5v.s7.0aa82e153840 from=translated src=- shape=40f9ad64 vocab=91d953f0
+-/
 theorem laterNeighbor_dist_le (seed : V) {η : ℝ} (hη : 0 < η) (p : V)
     (hp : p ≠ seed) {q : V} (hq : q ∈ laterNeighbors seed η p) :
     dist p q ≤ radius seed (insertionIndex seed p - 1) / (η * (1 - 2 * η)) := by
@@ -93,7 +112,9 @@ theorem laterNeighbor_dist_le (seed : V) {η : ℝ} (hη : 0 < η) (p : V)
   rw [deletionTime_of_ne seed η hp] at hactive
   exact hdist.trans hactive
 
-/-- The greedy orientation agrees with ordering by deletion time; ties use insertion index.-/
+/-- The greedy orientation agrees with ordering by deletion time; ties use insertion index.
+@isnad1 id=closedac.3h5v.s7.4c2c15e02226 from=translated src=- shape=75a490e8 vocab=ac637304
+-/
 theorem laterNeighbor_closedActive_at_time (seed : V) {η : ℝ}
     (hη : 0 < η) (hη' : η ≤ 1 / 3) (p : V) {q : V}
     (hq : q ∈ laterNeighbors seed η p) :
@@ -107,7 +128,9 @@ theorem laterNeighbor_closedActive_at_time (seed : V) {η : ℝ}
       insertionIndex seed p - 1 by omega)
     exact div_le_div_of_nonneg_right hrad (mul_nonneg hη.le (by linarith))
 
-/-- The number of later neighbors over all scales is independent of spread and input size.-/
+/-- The number of later neighbors over all scales is independent of spread and input size.
+@isnad1 id=le.4h6v.s7.8b31147653b7 from=translated src=- shape=bbe83691 vocab=7419eec3
+-/
 theorem laterNeighbors_card_le (seed : V) {η : ℝ} (hη : 0 < η) (hη' : η ≤ 1 / 3)
     {Λ : ℕ} (hd : ClosedBallDoubling (V := V) Λ) (h : ℕ)
     (hsmall : 2 / (2 : ℝ) ^ h < η * (1 - 2 * η)) (p : V) :
@@ -135,13 +158,18 @@ theorem laterNeighbors_card_le (seed : V) {η : ℝ} (hη : 0 < η) (hη' : η �
 def orientedEdges (seed : V) (η : ℝ) : Finset (V × V) :=
   Finset.univ.biUnion fun p => (laterNeighbors seed η p).image (fun q => (p, q))
 
+/--
+@isnad1 id=iff.0h5v.s6.964b444d7007 from=translated src=- shape=7b193356 vocab=6369f178
+-/
 @[simp] theorem mem_orientedEdges (seed : V) (η : ℝ) (p q : V) :
     (p, q) ∈ orientedEdges seed η ↔ insertionIndex seed q < insertionIndex seed p ∧
       ({p, q} : Finset V) ∈ sparseCarrier seed η := by
   classical
   simp [orientedEdges]
 
-/-- Every distinct sparse edge is counted once in one of its two orientations.-/
+/-- Every distinct sparse edge is counted once in one of its two orientations.
+@isnad1 id=iff.1h5v.s6.67473d1c7ec3 from=translated src=- shape=8c9a3b00 vocab=1bfe4650
+-/
 theorem pair_mem_carrier_iff_oriented (seed : V) (η : ℝ) {p q : V} (hpq : p ≠ q) :
     ({p, q} : Finset V) ∈ sparseCarrier seed η ↔
       (p, q) ∈ orientedEdges seed η ∨ (q, p) ∈ orientedEdges seed η := by
@@ -156,7 +184,9 @@ theorem pair_mem_carrier_iff_oriented (seed : V) (η : ℝ) {p q : V} (hpq : p �
     · exact ((mem_orientedEdges seed η p q).mp h).2
     · simpa [Finset.pair_comm] using ((mem_orientedEdges seed η q p).mp h).2
 
-/-- Uniform linear bound on directed edges in the full sparse carrier.-/
+/-- Uniform linear bound on directed edges in the full sparse carrier.
+@isnad1 id=le.4h5v.s7.4398c0c55e91 from=translated src=- shape=df96292e vocab=3947f9aa
+-/
 theorem orientedEdges_card_le (seed : V) {η : ℝ} (hη : 0 < η) (hη' : η ≤ 1 / 3)
     {Λ : ℕ} (hd : ClosedBallDoubling (V := V) Λ) (h : ℕ)
     (hsmall : 2 / (2 : ℝ) ^ h < η * (1 - 2 * η)) :
@@ -171,7 +201,9 @@ theorem orientedEdges_card_le (seed : V) {η : ℝ} (hη : 0 < η) (hη' : η �
     _ = Fintype.card V * Λ ^ h := by simp
 
 /-- Each face is assigned to its largest greedy insertion index. All other vertices
-are among that vertex's uniformly bounded neighbors.-/
+are among that vertex's uniformly bounded neighbors.
+@isnad1 id=ex.1h4v.s6.16093f791eb0 from=translated src=- shape=0374f309 vocab=d054dc4f
+-/
 theorem exists_assigned_vertex (seed : V) (η : ℝ) {σ : Finset V}
     (hσ : σ ∈ sparseCarrier seed η) :
     ∃ p ∈ σ, σ.erase p ⊆ laterNeighbors seed η p := by
@@ -210,7 +242,9 @@ private theorem faces_subset_candidates (seed : V) (η : ℝ) (j : ℕ) :
   rw [Finset.card_erase_of_mem hp, hσ'.2]
   omega
 
-/-- The uniform linear-size bound in each fixed dimension counts the union over all scales.-/
+/-- The uniform linear-size bound in each fixed dimension counts the union over all scales.
+@isnad1 id=le.4h6v.s7.b21eb2a6c9ec from=translated src=- shape=42c2911b vocab=f43842c5
+-/
 theorem facesOfDimension_card_le (seed : V) {η : ℝ} (hη : 0 < η) (hη' : η ≤ 1 / 3)
     {Λ : ℕ} (hd : ClosedBallDoubling (V := V) Λ) (h : ℕ)
     (hsmall : 2 / (2 : ℝ) ^ h < η * (1 - 2 * η)) (j : ℕ) :
@@ -235,7 +269,9 @@ def skeletonFaces (seed : V) (η : ℝ) (m : ℕ) : Finset (Finset V) := by
   classical
   exact Finset.univ.filter fun σ => σ ∈ sparseCarrier seed η ∧ σ.card ≤ m + 1
 
-/-- Fixed-dimensional skeletons have a linear bound with the explicit constant in the statement.-/
+/-- Fixed-dimensional skeletons have a linear bound with the explicit constant in the statement.
+@isnad1 id=le.4h6v.s7.7e4f3bb55f83 from=translated src=- shape=e4b080b4 vocab=4ea2c968
+-/
 theorem skeletonFaces_card_le (seed : V) {η : ℝ} (hη : 0 < η) (hη' : η ≤ 1 / 3)
     {Λ : ℕ} (hd : ClosedBallDoubling (V := V) Λ) (h : ℕ)
     (hsmall : 2 / (2 : ℝ) ^ h < η * (1 - 2 * η)) (m : ℕ) :

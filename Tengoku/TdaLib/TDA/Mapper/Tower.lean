@@ -63,7 +63,9 @@ def mapperMap (f : C(X, Y)) {q r : P} (h : q ≤ r) :
   TDA.Mapper.mapperMap f (T.refinement h)
 
 /-- A coherent cover tower induces the identity Mapper map on reflexive
-comparisons.-/
+comparisons.
+@isnad1 id=eq.0h6v.s6.b5e9e973486f from=translated src=- shape=28e8f075 vocab=18c2af97
+-/
 theorem mapperMap_refl (f : C(X, Y)) (q : P) :
     T.mapperMap f (le_refl q) = VertexMap.id (T.mapperComplex f q) := by
   have hrefinement : T.refinement (q := q) (r := q) (le_refl q) =
@@ -75,7 +77,9 @@ theorem mapperMap_refl (f : C(X, Y)) (q : P) :
   rw [hrefinement]
   exact TDA.Mapper.mapperMap_id f (T.cover q)
 
-/-- Mapper maps of a coherent cover tower compose strictly.-/
+/-- Mapper maps of a coherent cover tower compose strictly.
+@isnad1 id=eq.2h8v.s7.5a029167f185 from=translated src=- shape=ec94340c vocab=3df31cc2
+-/
 theorem mapperMap_trans (f : C(X, Y)) {q r t : P}
     (h : q ≤ r) (k : r ≤ t) :
     VertexMap.comp (T.mapperMap f h) (T.mapperMap f k) =
@@ -93,7 +97,9 @@ theorem mapperMap_trans (f : C(X, Y)) {q r t : P}
 
 end CoherentCoverTower
 
-/-- Any two selected target-cover refinements induce contiguous Mapper maps.-/
+/-- Any two selected target-cover refinements induce contiguous Mapper maps.
+@isnad1 id=contiguo.0h9v.s6.9d7050322748 from=translated src=- shape=9a3193fa vocab=724fadea
+-/
 theorem mapperMap_contiguous (f : C(X, Y))
     {I : Type w} {J : Type p} {U : I → Set Y} {V : J → Set Y}
     (R S : Refinement U V) :

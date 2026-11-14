@@ -78,7 +78,9 @@ private theorem epi_mono_cancel (g : M ⟶ N)
   simp
 
 /-- For a componentwise injection the constructed partial matching is the existing
-canonical mono embedding on every source occurrence.-/
+canonical mono embedding on every source occurrence.
+@isnad1 id=eq.1h6v.s10.f05678a58e26 from=translated src=- shape=4530b16f vocab=02f8bf1f
+-/
 theorem inducedMap_of_injective (f : M ⟶ N)
     (hf : ∀ i, Function.Injective (f.app i).hom) (i : BarcodeOccurrence s (rankBarcode M)) :
     inducedMap f i = some (monoEmbedding f hf i) := by
@@ -97,7 +99,9 @@ theorem inducedMap_of_injective (f : M ⟶ N)
   exact (inducedMap_eq_some_iff f _ _).mpr ⟨a, ha, hj⟩
 
 /-- For a componentwise surjection the constructed matching is the reverse graph
-of the existing canonical epi embedding.-/
+of the existing canonical epi embedding.
+@isnad1 id=iff.1h7v.s10.f9a5da35f852 from=translated src=- shape=2aacde7a vocab=fc65f9f3
+-/
 theorem inducedMap_of_surjective_iff (f : M ⟶ N)
     (hf : ∀ i, Function.Surjective (f.app i).hom)
     (i : BarcodeOccurrence s (rankBarcode M)) (j : BarcodeOccurrence s (rankBarcode N)) :
@@ -125,7 +129,9 @@ theorem inducedMap_of_surjective_iff (f : M ⟶ N)
       ⟨epiEmbedding (fromFiniteImage f) hs j, (hc j).symm.trans h, ?_⟩
     exact mono_epi_cancel (fromFiniteImage f) (fromFiniteImage_injective f) hs j
 
-/-- The image-induced matching of an identity matches each occurrence to itself.-/
+/-- The image-induced matching of an identity matches each occurrence to itself.
+@isnad1 id=eq.0h4v.s7.1e72e35ba487 from=translated src=- shape=8f7bc246 vocab=d3e7ff00
+-/
 theorem inducedMap_id (M : PModule.{u,0,u} k (Fin s))
     [∀ i, FiniteDimensional k (M.obj i)] (i : BarcodeOccurrence s (rankBarcode M)) :
     inducedMap (𝟙 M) i = some i := by

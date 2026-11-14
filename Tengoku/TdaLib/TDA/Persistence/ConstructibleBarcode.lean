@@ -22,7 +22,9 @@ open scoped ZeroObject
 
 variable {n : ℕ} {k : Type u} [Field k]
 
-/-- Only the critical fibers need a finite-dimensionality hypothesis for the finite sample.-/
+/-- Only the critical fibers need a finite-dimensionality hypothesis for the finite sample.
+@isnad1 id=finitedi.1h5v.s8.8add1d67d12b from=translated src=- shape=9baab582 vocab=41e8b986
+-/
 theorem finiteDimensional_sample (c : Fin n ↪o ℝ) (M : PModule.{u,0,u} k ℝ)
     (hfd : ∀ i, FiniteDimensional k (M.obj (c i))) (j : Fin (n + 1)) :
     FiniteDimensional k ((sample c M).obj j) := by
@@ -33,7 +35,9 @@ theorem finiteDimensional_sample (c : Fin n ↪o ℝ) (M : PModule.{u,0,u} k ℝ
     infer_instance
   | succ i => exact hfd i
 
-/-- A zero initial fiber excludes every birth-zero occurrence from the canonical barcode.-/
+/-- A zero initial fiber excludes every birth-zero occurrence from the canonical barcode.
+@isnad1 id=lt.2h4v.s9.0a7a07f947aa from=translated src=- shape=ab1bde5a vocab=6d0580dc
+-/
 theorem rankBarcode_birth_pos (A : PModule.{u,0,u} k (Fin (n + 1)))
     [∀ j, FiniteDimensional k (A.obj j)] (hzero : IsZero (A.obj 0))
     (I : FiniteInterval (n + 1)) (hI : I ∈ rankBarcode A) : 0 < I.birth := by
@@ -56,7 +60,9 @@ noncomputable def sampleBarcode (c : Fin n ↪o ℝ) (M : PModule.{u,0,u} k ℝ)
   letI : ∀ j, FiniteDimensional k ((sample c M).obj j) := finiteDimensional_sample c M hfd
   exact rankBarcode (sample c M)
 
-/-- Every occurrence in the sampled barcode has a genuine critical birth.-/
+/-- Every occurrence in the sampled barcode has a genuine critical birth.
+@isnad1 id=lt.2h5v.s8.173ccadc8085 from=translated src=- shape=14826f62 vocab=5848cef7
+-/
 theorem sampleBarcode_birth_pos (c : Fin n ↪o ℝ) (M : PModule.{u,0,u} k ℝ)
     (hfd : ∀ i, FiniteDimensional k (M.obj (c i)))
     (I : FiniteInterval (n + 1)) (hI : I ∈ sampleBarcode c M hfd) : 0 < I.birth := by
@@ -64,7 +70,9 @@ theorem sampleBarcode_birth_pos (c : Fin n ↪o ℝ) (M : PModule.{u,0,u} k ℝ)
     finiteDimensional_sample c M hfd
   exact rankBarcode_birth_pos (sample c M) (isZero_zero (ModuleCat k)) I hI
 
-/-- When there are no critical values the padded sample has no barcode occurrences.-/
+/-- When there are no critical values the padded sample has no barcode occurrences.
+@isnad1 id=eq.0h3v.s8.6c357530219f from=translated src=- shape=8831a942 vocab=a9cb2b7d
+-/
 theorem sampleBarcode_empty_grid (c : Fin 0 ↪o ℝ) (M : PModule.{u,0,u} k ℝ) :
     sampleBarcode c M (fun i => Fin.elim0 i) = 0 := by
   apply Multiset.eq_zero_iff_forall_notMem.mpr
@@ -81,7 +89,9 @@ noncomputable def moduleDiagram (c : Fin n ↪o ℝ) (M : PModule.{u,0,u} k ℝ)
   letI : ∀ i, FiniteDimensional k ((reindex c.toOrderHom M).obj i) := hfd
   exact ofIndexBars c c.strictMono (rankBarcode (reindex c.toOrderHom M))
 
-/-- The padded sample's barcode gives the same diagram after `Fin.succ` sampling.-/
+/-- The padded sample's barcode gives the same diagram after `Fin.succ` sampling.
+@isnad1 id=eq.1h4v.s8.6030aa54fc48 from=translated src=- shape=b4350559 vocab=728369a2
+-/
 theorem moduleDiagram_eq_reindex_sample (c : Fin n ↪o ℝ) (M : PModule.{u,0,u} k ℝ)
     (hfd : ∀ i, FiniteDimensional k (M.obj (c i))) :
     moduleDiagram c M hfd = ofIndexBars c c.strictMono
@@ -93,13 +103,17 @@ theorem moduleDiagram_eq_reindex_sample (c : Fin n ↪o ℝ) (M : PModule.{u,0,u
   rw [← rankBarcode_reindex]
   rfl
 
-/-- The resulting diagram has positive bars, including essential tails.-/
+/-- The resulting diagram has positive bars, including essential tails.
+@isnad1 id=ispositi.1h4v.s7.47637deb569f from=translated src=- shape=43009504 vocab=0791b8a8
+-/
 theorem moduleDiagram_isPositive (c : Fin n ↪o ℝ) (M : PModule.{u,0,u} k ℝ)
     (hfd : ∀ i, FiniteDimensional k (M.obj (c i))) : (moduleDiagram c M hfd).IsPositive := by
   rw [moduleDiagram_eq_reindex_sample]
   exact ofIndexBars_isPositive _ _ _
 
-/-- No critical values produce an empty endpoint diagram.-/
+/-- No critical values produce an empty endpoint diagram.
+@isnad1 id=eq.0h3v.s8.2d8b0bcae437 from=translated src=- shape=e7dfdb48 vocab=6dc66004
+-/
 theorem moduleDiagram_empty_grid (c : Fin 0 ↪o ℝ) (M : PModule.{u,0,u} k ℝ) :
     (moduleDiagram c M (fun i => Fin.elim0 i)).points = 0 := by
   rw [moduleDiagram_eq_reindex_sample, sampleBarcode_empty_grid]

@@ -37,6 +37,9 @@ noncomputable def Presentation.chosenLift :
     module (R := R) V ⟶ module D.generators :=
   Classical.choose (D.exists_lift V (D.chosenMap V chosen))
 
+/--
+@isnad1 id=eq.0h5v.s7.4e66e596aa58 from=translated src=- shape=7dd335ea vocab=c2af4a71
+-/
 @[simp] theorem Presentation.chosenLift_cover :
     D.chosenLift V chosen ≫ D.cover = D.chosenMap V chosen :=
   Classical.choose_spec (D.exists_lift V (D.chosenMap V chosen))
@@ -56,26 +59,40 @@ noncomputable def Presentation.adjoinCollapse :
     module (R := R) (D.generators.sum V) ⟶ D.presented :=
   sumDesc D.generators V D.cover (D.chosenMap V chosen)
 
+/--
+@isnad1 id=eq.0h5v.s8.7513ec81f3f8 from=translated src=- shape=878b5bfe vocab=1cecbdb8
+-/
 @[simp] theorem Presentation.sumInl_adjoinRelation :
     sumInl D.relations V ≫ (D.adjoinRedundant V chosen).relationMap =
       D.relationMap ≫ sumInl D.generators V :=
   sumInl_sumDesc D.relations V _ _
 
+/--
+@isnad1 id=eq.0h5v.s9.bab5bb6c0ad6 from=translated src=- shape=40a83e16 vocab=63d5518f
+-/
 @[simp] theorem Presentation.sumInr_adjoinRelation :
     sumInr D.relations V ≫ (D.adjoinRedundant V chosen).relationMap =
       sumInr D.generators V - D.chosenLift V chosen ≫ sumInl D.generators V :=
   sumInr_sumDesc D.relations V _ _
 
+/--
+@isnad1 id=eq.0h5v.s7.a2f35154f544 from=translated src=- shape=19c5acab vocab=64b7bd62
+-/
 @[simp] theorem Presentation.sumInl_adjoinCollapse :
     sumInl D.generators V ≫ D.adjoinCollapse V chosen = D.cover :=
   sumInl_sumDesc D.generators V _ _
 
+/--
+@isnad1 id=eq.0h5v.s7.2420af4d9b71 from=translated src=- shape=de0a0221 vocab=45d7e0a5
+-/
 @[simp] theorem Presentation.sumInr_adjoinCollapse :
     sumInr D.generators V ≫ D.adjoinCollapse V chosen = D.chosenMap V chosen :=
   sumInr_sumDesc D.generators V _ _
 
 /-- Both the old relations and the new identifying relations vanish after
-mapping the enlarged free module to the original quotient.-/
+mapping the enlarged free module to the original quotient.
+@isnad1 id=eq.0h5v.s8.774a0f71a19b from=translated src=- shape=c373a15b vocab=e8249e51
+-/
 theorem Presentation.adjoinRelation_collapse :
     (D.adjoinRedundant V chosen).relationMap ≫ D.adjoinCollapse V chosen = 0 := by
   apply sumHom_ext D.relations V
@@ -117,12 +134,17 @@ noncomputable def Presentation.adjoinForget :
   (D.adjoinRedundant V chosen).desc (D.adjoinCollapse V chosen)
     (D.adjoinRelation_collapse V chosen)
 
+/--
+@isnad1 id=eq.0h5v.s7.fdb7aef97710 from=translated src=- shape=7816911a vocab=ba39757a
+-/
 @[simp] theorem Presentation.adjoinCover_forget :
     (D.adjoinRedundant V chosen).cover ≫ D.adjoinForget V chosen =
       D.adjoinCollapse V chosen :=
   (D.adjoinRedundant V chosen).cover_desc _ _
 
-/-- The old relations vanish in the enlarged quotient.-/
+/-- The old relations vanish in the enlarged quotient.
+@isnad1 id=eq.0h5v.s8.fa23331fc7fe from=translated src=- shape=0fd5fd96 vocab=0a593d82
+-/
 theorem Presentation.oldRelation_adjoinCover :
     D.relationMap ≫
       (sumInl D.generators V ≫ (D.adjoinRedundant V chosen).cover) = 0 := by
@@ -154,13 +176,18 @@ noncomputable def Presentation.adjoinInclude :
   D.desc (sumInl D.generators V ≫ (D.adjoinRedundant V chosen).cover)
     (D.oldRelation_adjoinCover V chosen)
 
+/--
+@isnad1 id=eq.0h5v.s7.41cb23fd57c7 from=translated src=- shape=edad2397 vocab=0dff2dd6
+-/
 @[simp] theorem Presentation.cover_adjoinInclude :
     D.cover ≫ D.adjoinInclude V chosen =
       sumInl D.generators V ≫ (D.adjoinRedundant V chosen).cover :=
   D.cover_desc _ _
 
 /-- The new generator and its chosen old representative have the same class
-in the enlarged quotient.-/
+in the enlarged quotient.
+@isnad1 id=eq.0h5v.s7.8f3319be721b from=translated src=- shape=0f004296 vocab=68e0101d
+-/
 theorem Presentation.sumInr_adjoinCover :
     sumInr D.generators V ≫ (D.adjoinRedundant V chosen).cover =
       D.chosenMap V chosen ≫ D.adjoinInclude V chosen := by
@@ -201,6 +228,9 @@ theorem Presentation.sumInr_adjoinCover :
     _ = D.chosenMap V chosen ≫ D.adjoinInclude V chosen := by
       rw [D.chosenLift_cover V chosen]
 
+/--
+@isnad1 id=eq.0h5v.s7.ce2c55e3972b from=translated src=- shape=11e941b2 vocab=5af4ea6e
+-/
 theorem Presentation.adjoinInclude_forget :
     D.adjoinInclude V chosen ≫ D.adjoinForget V chosen = 𝟙 D.presented := by
   have hc : Epi D.cover := by
@@ -221,6 +251,9 @@ theorem Presentation.adjoinInclude_forget :
     _ = D.cover := D.sumInl_adjoinCollapse V chosen
     _ = D.cover ≫ 𝟙 D.presented := by simp
 
+/--
+@isnad1 id=eq.0h5v.s7.59d2c419f7af from=translated src=- shape=4f680276 vocab=5af4ea6e
+-/
 theorem Presentation.adjoinForget_include :
     D.adjoinForget V chosen ≫ D.adjoinInclude V chosen =
       𝟙 (D.adjoinRedundant V chosen).presented := by
@@ -280,7 +313,9 @@ noncomputable def Presentation.adjoinRedundantIso :
   inv_hom_id := D.adjoinInclude_forget V chosen
 
 /-- Finite generator and relation families remain finite after adjoining a
-finite redundant family.-/
+finite redundant family.
+@isnad1 id=isfinite.1h5v.s6.abd62d208f44 from=translated src=- shape=1c7f3258 vocab=076291e2
+-/
 theorem Presentation.adjoinRedundant_finite (hD : D.IsFinite) [Finite V.Carrier] :
     (D.adjoinRedundant V chosen).IsFinite := by
   classical

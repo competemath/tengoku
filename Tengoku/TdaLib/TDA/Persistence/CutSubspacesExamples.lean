@@ -28,20 +28,32 @@ def cutAfter (a : ℝ) : Cut ℝ where
     intro x y hx hy
     exact lt_of_le_of_lt hx hy
 
+/--
+@isnad1 id=eq.0h2v.s4.1a4e4335895d from=translated src=- shape=f5330bf6 vocab=a834c592
+-/
 theorem support_before_after (a b : ℝ) :
     support (cutBefore a) (cutAfter b) = Set.Icc a b := by
   ext x
   simp [support, cutBefore, cutAfter]
 
+/--
+@isnad1 id=eq.0h2v.s4.a4f10d6293e9 from=translated src=- shape=f5330bf6 vocab=76e0a426
+-/
 theorem support_after_before (a b : ℝ) :
     support (cutAfter a) (cutBefore b) = Set.Ioo a b := by
   ext x
   simp [support, cutBefore, cutAfter]
 
+/--
+@isnad1 id=eq.0h1v.s4.e1d56a78b43a from=translated src=- shape=153fb1fd vocab=3b4014d3
+-/
 theorem support_before_after_singleton (a : ℝ) :
     support (cutBefore a) (cutAfter a) = {a} := by
   simp [support_before_after]
 
+/--
+@isnad1 id=eq.1h2v.s4.2c9572e1df79 from=translated src=- shape=c8ff5f1e vocab=64db1682
+-/
 theorem support_before_after_empty_of_reversed {a b : ℝ} (hba : b < a) :
     support (cutBefore a) (cutAfter b) = ∅ := by
   rw [support_before_after]
@@ -76,21 +88,33 @@ noncomputable def ephemeralModule : PModule.{0,0,0} ℚ ℝ where
           exact hst (le_antisymm hstOrd hts)
         simp [hst, htr, hsr]
 
+/--
+@isnad1 id=finitedi.0h1v.s6.062d8538a56a from=translated src=- shape=1fd56d81 vocab=11860863
+-/
 theorem ephemeralModule_pfd (t : ℝ) :
     FiniteDimensional ℚ (ephemeralModule.obj t) := by
   change FiniteDimensional ℚ ℚ
   infer_instance
 
+/--
+@isnad1 id=eq.1h2v.s9.4337e5189f7c from=translated src=- shape=84c2590c vocab=a58de58e
+-/
 theorem ephemeralModule_strict_map_zero {s t : ℝ} (h : s < t) :
     structureMapLinear ephemeralModule h.le = 0 := by
   simp [structureMapLinear, structureMap, ephemeralModule, ne_of_lt h]
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s8.8b026da90974 from=translated src=- shape=0b1c046d vocab=7f561e00
+-/
 theorem ephemeralModule_self_map (t : ℝ) :
     structureMapLinear ephemeralModule (le_rfl : t ≤ t) = LinearMap.id := by
   simp [structureMapLinear, structureMap, ephemeralModule]
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s8.5bc7ca0efb31 from=translated src=- shape=6b3c8c63 vocab=cd43fbd6
+-/
 theorem ephemeral_imagePlus_singleton_eq_top (t : ℝ) :
     imagePlus ephemeralModule (cutBefore t) t = ⊤ := by
   apply top_unique
@@ -105,6 +129,9 @@ theorem ephemeral_imagePlus_singleton_eq_top (t : ℝ) :
   rw [hmap]
   exact ⟨x, rfl⟩
 
+/--
+@isnad1 id=eq.0h1v.s8.d8158eedb120 from=translated src=- shape=6b3c8c63 vocab=f654312a
+-/
 theorem ephemeral_imageMinus_singleton_eq_bot (t : ℝ) :
     imageMinus ephemeralModule (cutBefore t) t = ⊥ := by
   apply le_antisymm
@@ -116,6 +143,9 @@ theorem ephemeral_imageMinus_singleton_eq_bot (t : ℝ) :
     simp
   · exact bot_le
 
+/--
+@isnad1 id=eq.0h1v.s8.2b75c54cc678 from=translated src=- shape=6b3c8c63 vocab=fd5e8bf2
+-/
 theorem ephemeral_kernelPlus_singleton_eq_top (t : ℝ) :
     kernelPlus ephemeralModule (cutAfter t) t = ⊤ := by
   apply top_unique
@@ -126,6 +156,9 @@ theorem ephemeral_kernelPlus_singleton_eq_top (t : ℝ) :
   rw [ephemeralModule_strict_map_zero hts, LinearMap.mem_ker]
   simp
 
+/--
+@isnad1 id=eq.0h1v.s8.ce0aff7c725b from=translated src=- shape=6b3c8c63 vocab=6034cec0
+-/
 theorem ephemeral_kernelMinus_singleton_eq_bot (t : ℝ) :
     kernelMinus ephemeralModule (cutAfter t) t = ⊥ := by
   apply le_antisymm
@@ -144,6 +177,9 @@ theorem ephemeral_kernelMinus_singleton_eq_bot (t : ℝ) :
     simpa only [LinearMap.id_apply] using hx0
   · exact bot_le
 
+/--
+@isnad1 id=and.0h1v.s9.c42c2586a7d8 from=translated src=- shape=7cb3618c vocab=780ae344
+-/
 theorem ephemeral_singleton_interval_spaces (t : ℝ) :
     intervalPlus ephemeralModule (cutBefore t) (cutAfter t) t = ⊤ ∧
       intervalMinus ephemeralModule (cutBefore t) (cutAfter t) t = ⊥ := by

@@ -22,6 +22,9 @@ private def singleInput : (Fin 1 → ℝ × ℝ) × (Fin 0 → ℝ) :=
 private def diagonalInput : (Fin 1 → ℝ × ℝ) × (Fin 0 → ℝ) :=
   (fun _ => (7, 7), Fin.elim0)
 
+/--
+@isnad1 id=eq.0h0v.s5.774a939a9253 from=translated src=- shape=5a6cd49b vocab=c1b683f9
+-/
 theorem bottleneck_empty_empty :
     bottleneck (orderedQ 0 0 emptyRealInput) (orderedQ 0 0 emptyRealInput) = 0 := by
   have h := bottleneck_orderedQ_le_norm 0 0 emptyRealInput emptyRealInput
@@ -29,6 +32,9 @@ theorem bottleneck_empty_empty :
       (orderedQ 0 0 emptyRealInput) ≤ 0 := by simpa using h
   exact le_antisymm hz bot_le
 
+/--
+@isnad1 id=eq.0h0v.s5.3f3f852246e9 from=translated src=- shape=5a6cd49b vocab=1a70ad85
+-/
 theorem bottleneck_reversed_singleton_empty :
     bottleneck (orderedQ 1 0 reversedInput) (orderedQ 0 0 emptyRealInput) = 1 := by
   have hx := orderedQ_finite_occurrences 1 0 reversedInput
@@ -57,6 +63,9 @@ theorem bottleneck_reversed_singleton_empty :
   rw [presentationBottleneck_constant_empty]
   norm_num [diagonalCost]
 
+/--
+@isnad1 id=eq.0h0v.s5.fcd7be5019c4 from=translated src=- shape=5a6cd49b vocab=b8531d9b
+-/
 theorem bottleneck_one_sided_diagonal :
     bottleneck (orderedQ 1 0 reversedInput) (orderedQ 1 0 diagonalInput) = 1 := by
   have hd : orderedQ 1 0 diagonalInput = orderedQ 0 0 emptyRealInput := by
@@ -65,6 +74,9 @@ theorem bottleneck_one_sided_diagonal :
   rw [hd]
   exact bottleneck_reversed_singleton_empty
 
+/--
+@isnad1 id=eq.0h0v.s5.ae70af6df349 from=translated src=- shape=8ba50035 vocab=4b180882
+-/
 theorem bottleneck_essential_singletons :
     bottleneck (orderedQ 0 1 (essentialInput 1))
       (orderedQ 0 1 (essentialInput 4)) = 3 := by
@@ -86,12 +98,18 @@ theorem bottleneck_essential_singletons :
   rw [presentationBottleneck_essential_singletons]
   norm_num [essentialPairCost]
 
+/--
+@isnad1 id=eq.0h0v.s5.7cb90e60ee86 from=translated src=- shape=41e45c9f vocab=8fde185b
+-/
 theorem bottleneck_unequal_essential_counts :
     bottleneck (orderedQ 0 0 emptyRealInput)
       (orderedQ 0 1 (essentialInput 1)) = ⊤ := by
   apply (bottleneck_eq_top_iff _ _).mpr
   simp [essentialPart_orderedQ, emptyRealInput, essentialInput]
 
+/--
+@isnad1 id=eq.0h0v.s5.74321e1e1fdd from=translated src=- shape=5a6cd49b vocab=27734dc4
+-/
 theorem bottleneck_repeated_pair_detected :
     bottleneck (orderedQ 2 0 duplicatedInput) (orderedQ 1 0 singleInput) = 1 := by
   have hf₁ : (Finset.univ : Finset (Fin 2)).val.map (fun _ => ((0 : ℝ), (2 : ℝ))) =

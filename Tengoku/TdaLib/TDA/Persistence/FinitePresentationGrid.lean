@@ -27,7 +27,9 @@ open scoped TDA.Persistence
 variable {R : Type u} [Ring R] {P : Type v} [Preorder P]
 
 /-- If no generator or relation becomes available between `a` and `b`, the
-presented module's transition is an isomorphism.-/
+presented module's transition is an isomorphism.
+@isnad1 id=isiso.3h5v.s7.e9c79f47e922 from=translated src=- shape=b2b508e7 vocab=497a19b8
+-/
 theorem Presentation.structureMap_isIso_of_birth_iff
     (D : Presentation.{u,v,w} (R := R) (P := P)) {a b : P} (hab : a ≤ b)
     (hG : ∀ g : D.generators.Carrier,
@@ -84,6 +86,9 @@ def Presentation.criticalCoordinates
   Set.range (fun g : D.generators.Carrier => D.generators.grade g i) ∪
     Set.range (fun y : D.relations.Carrier => D.relations.grade y i)
 
+/--
+@isnad1 id=finite.1h4v.s5.9cc875dfa9a7 from=translated src=- shape=a53e0fdf vocab=33845e1b
+-/
 theorem Presentation.criticalCoordinates_finite
     (D : Presentation.{u,0,w} (R := R) (P := Fin n → ℝ)) (hD : D.IsFinite)
     (i : Fin n) : (D.criticalCoordinates i).Finite := by
@@ -91,6 +96,9 @@ theorem Presentation.criticalCoordinates_finite
   let : Finite D.relations.Carrier := hD.2
   exact (Set.finite_range _).union (Set.finite_range _)
 
+/--
+@isnad1 id=iff.2h6v.s7.c597d7214fdf from=translated src=- shape=99b26489 vocab=a252f6d2
+-/
 theorem Presentation.generators_birth_iff_of_no_critical
     (D : Presentation.{u,0,w} (R := R) (P := Fin n → ℝ))
     {a b : Fin n → ℝ} (hab : a ≤ b)
@@ -103,6 +111,9 @@ theorem Presentation.generators_birth_iff_of_no_critical
     by_contra h
     exact Set.disjoint_left.mp (hgap i) ⟨lt_of_not_ge h, hb i⟩ (Or.inl ⟨g, rfl⟩)
 
+/--
+@isnad1 id=iff.2h6v.s7.e65ec64a8667 from=translated src=- shape=99b26489 vocab=07836541
+-/
 theorem Presentation.relations_birth_iff_of_no_critical
     (D : Presentation.{u,0,w} (R := R) (P := Fin n → ℝ))
     {a b : Fin n → ℝ} (hab : a ≤ b)
@@ -116,7 +127,9 @@ theorem Presentation.relations_birth_iff_of_no_critical
     exact Set.disjoint_left.mp (hgap i) ⟨lt_of_not_ge h, hb i⟩ (Or.inr ⟨y, rfl⟩)
 
 /-- A presentation has invertible transition maps across coordinate gaps
-`(aᵢ, bᵢ]` that contain no presentation grade.-/
+`(aᵢ, bᵢ]` that contain no presentation grade.
+@isnad1 id=isiso.2h5v.s7.d06ebc8538a9 from=translated src=- shape=98eeed65 vocab=4065020d
+-/
 theorem Presentation.structureMap_isIso_of_no_critical
     (D : Presentation.{u,0,w} (R := R) (P := Fin n → ℝ))
     {a b : Fin n → ℝ} (hab : a ≤ b)
@@ -127,7 +140,9 @@ theorem Presentation.structureMap_isIso_of_no_critical
     (D.relations_birth_iff_of_no_critical hab hgap)
 
 /-- A finite presentation has a positive right-hand slack at every parameter:
-all smaller diagonal moves induce isomorphisms.-/
+all smaller diagonal moves induce isomorphisms.
+@isnad1 id=ex.1h4v.s8.5db16c10e76b from=translated src=- shape=b91e33fa vocab=a9c44671
+-/
 theorem Presentation.exists_pos_structureMap_isIso
     (D : Presentation.{u,0,w} (R := R) (P := Fin n → ℝ))
     (hD : D.IsFinite) (a : Fin n → ℝ) :
@@ -200,7 +215,9 @@ private theorem structureMap_isIso_of_iso
 
 /-- A finitely presented multiparameter module has finite critical coordinates;
 any comparable points whose coordinate gaps avoid them have an invertible
-transition.-/
+transition.
+@isnad1 id=ex.1h3v.s7.c589fc9adbb6 from=translated src=- shape=8f4a5839 vocab=be463122
+-/
 theorem finitelyPresented_exists_finite_criticalCoordinates
     (M : PModule.{u,0,max u w} R (Fin n → ℝ))
     (hM : FinitelyPresented (R := R) (P := Fin n → ℝ) M) :
@@ -215,7 +232,9 @@ theorem finitelyPresented_exists_finite_criticalCoordinates
     (D.structureMap_isIso_of_no_critical hab hgap)
 
 /-- Every finitely presented multiparameter module is locally constant under
-sufficiently small nonnegative diagonal moves to the right.-/
+sufficiently small nonnegative diagonal moves to the right.
+@isnad1 id=ex.1h4v.s7.726b22b26c6b from=translated src=- shape=2c29a335 vocab=ece0a71b
+-/
 theorem finitelyPresented_exists_pos_structureMap_isIso
     (M : PModule.{u,0,max u w} R (Fin n → ℝ))
     (hM : FinitelyPresented (R := R) (P := Fin n → ℝ) M)

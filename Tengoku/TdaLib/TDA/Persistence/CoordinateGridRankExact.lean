@@ -28,7 +28,9 @@ open scoped TDA.Persistence
 
 variable {k : Type u} [Field k] {n : ℕ} (G : CoordinateGrid n)
 
-/-- Actual finite-grid Kan extension preserves pointwise finite dimensionality.-/
+/-- Actual finite-grid Kan extension preserves pointwise finite dimensionality.
+@isnad1 id=finitedi.0h5v.s9.36bfb8f20acb from=translated src=- shape=189acb1f vocab=6187e55c
+-/
 theorem lan_finiteDimensional (M : PModule.{u,0,w} k G.Point)
     [∀ p, FiniteDimensional k (M.obj p)] (a : Fin n → ℝ) :
     FiniteDimensional k ((G.lan.obj M).obj a) := by
@@ -40,7 +42,9 @@ theorem lan_finiteDimensional (M : PModule.{u,0,w} k G.Point)
 
 variable {L M N : PModule.{u,0,w} k G.Point} {ι : L ⟶ M} {π : M ⟶ N}
 
-/-- The actual Lan maps preserve ordinary pointwise short exactness.-/
+/-- The actual Lan maps preserve ordinary pointwise short exactness.
+@isnad1 id=ispointw.1h8v.s10.fae0bc416a35 from=translated src=- shape=76ecdca1 vocab=7ee3ee83
+-/
 theorem lan_isPointwiseShortExact (hs : IsPointwiseShortExact ι π) :
     IsPointwiseShortExact (G.lan.map ι) (G.lan.map π) where
   injective a := by
@@ -102,7 +106,9 @@ theorem lan_isPointwiseShortExact (hs : IsPointwiseShortExact ι π) :
       · intro _
         exact ⟨0, (map_zero _).trans (G.eq_zero_of_not_hasLowerPoint M a ha z).symm⟩
 
-/-- Dying vectors lift through the actual Lan quotient without changing their death grade.-/
+/-- Dying vectors lift through the actual Lan quotient without changing their death grade.
+@isnad1 id=ex.3h11v.s14.478a73aee98c from=translated src=- shape=0457cf89 vocab=67ad3c82
+-/
 theorem lan_lift_kernel (hs : IsRankExact ι π) {a b : Fin n → ℝ} (hab : a ≤ b)
     (z : (G.lan.obj N).obj a) (hz : structureMapLinear (G.lan.obj N) hab z = 0) :
     ∃ m : (G.lan.obj M).obj a,
@@ -129,7 +135,9 @@ theorem lan_lift_kernel (hs : IsRankExact ι π) {a b : Fin n → ℝ} (hab : a 
   · exact ⟨0, (map_zero _).trans (G.eq_zero_of_not_hasLowerPoint N a ha z).symm, map_zero _⟩
 
 /-- Finite-product-grid Kan extension preserves actual rank-exact sequences.
-Ordinary exactness, pfd fibers and rank additivity are all derived.-/
+Ordinary exactness, pfd fibers and rank additivity are all derived.
+@isnad1 id=isrankex.1h8v.s10.87e8872fc820 from=translated src=- shape=76ecdca1 vocab=45b57f28
+-/
 theorem lan_isRankExact (hs : IsRankExact ι π) : IsRankExact (G.lan.map ι) (G.lan.map π) := by
   let : ∀ p, FiniteDimensional k (M.obj p) := hs.finiteDimensional
   refine

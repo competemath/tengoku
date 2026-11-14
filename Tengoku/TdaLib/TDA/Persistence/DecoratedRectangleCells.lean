@@ -40,12 +40,16 @@ private theorem min_mem_upper (q : Cut α) (a b : α) :
     · simpa only [min_eq_left hab] using ha
     · simpa only [min_eq_right hba] using hb
 
-/-- Cells whose endpoint order is reversed are empty.-/
+/-- Cells whose endpoint order is reversed are empty.
+@isnad1 id=eq.1h3v.s5.a4202e5164d9 from=translated src=- shape=efba977c vocab=b06b2cfe
+-/
 theorem cutCell_eq_empty {a b : α} (h : b ≤ a) : cutCell a b = ∅ := by
   apply Set.eq_empty_iff_forall_notMem.mpr
   exact fun q hq => (not_lt_of_ge h) (lt_of_mem_cutCell hq)
 
-/-- Intersecting cells retains the larger lower endpoint and smaller upper endpoint.-/
+/-- Intersecting cells retains the larger lower endpoint and smaller upper endpoint.
+@isnad1 id=eq.0h5v.s6.77d49083b8c8 from=translated src=- shape=ae29a638 vocab=95b650f8
+-/
 theorem cutCell_inter (a b c d : α) :
     cutCell a b ∩ cutCell c d = cutCell (max a c) (min b d) := by
   ext q
@@ -55,7 +59,9 @@ theorem cutCell_inter (a b c d : α) :
       exact and_congr (max_mem_lower q a c) (min_mem_upper q b d)]
   tauto
 
-/-- Subtracting a cell gives the two remaining endpoint strips.-/
+/-- Subtracting a cell gives the two remaining endpoint strips.
+@isnad1 id=eq.0h5v.s6.a8a92a3747f8 from=translated src=- shape=f2559c51 vocab=d7be304b
+-/
 theorem cutCell_sdiff (a b c d : α) :
     cutCell a b \ cutCell c d =
       cutCell a (min b c) ∪ cutCell (max a d) b := by
@@ -67,7 +73,9 @@ theorem cutCell_sdiff (a b c d : α) :
   simp only [mem_compl_iff]
   tauto
 
-/-- The two difference strips are disjoint when the removed cell has ordered endpoints.-/
+/-- The two difference strips are disjoint when the removed cell has ordered endpoints.
+@isnad1 id=disjoint.1h5v.s6.07f769d05011 from=translated src=- shape=f3a255a3 vocab=529d58d5
+-/
 theorem disjoint_cutCell_sdiff_strips (a b : α) {c d : α} (hcd : c ≤ d) :
     Disjoint (cutCell a (min b c)) (cutCell (max a d) b) := by
   apply Set.disjoint_left.mpr
@@ -76,7 +84,9 @@ theorem disjoint_cutCell_sdiff_strips (a b : α) {c d : α} (hcd : c ≤ d) :
   have hd : d ∈ q.lower := Cut.lower_of_le (le_max_right _ _) hq'.1
   exact (not_lt_of_ge hcd) (q.lower_lt_upper hd hc)
 
-/-- A split assigns each decorated cut to exactly one child cell.-/
+/-- A split assigns each decorated cut to exactly one child cell.
+@isnad1 id=eq.2h4v.s6.c3d43fddc700 from=translated src=- shape=30905e32 vocab=3563c8e4
+-/
 theorem cutCell_split {a e b : α} (hae : a ≤ e) (heb : e ≤ b) :
     cutCell a b = cutCell a e ∪ cutCell e b := by
   ext q
@@ -89,7 +99,9 @@ theorem cutCell_split {a e b : α} (hae : a ≤ e) (heb : e ≤ b) :
     · exact ⟨hq.1, Cut.upper_of_le heb hq.2⟩
     · exact ⟨Cut.lower_of_le hae hq.1, hq.2⟩
 
-/-- The two cells of a split are disjoint, including at the decorated boundary.-/
+/-- The two cells of a split are disjoint, including at the decorated boundary.
+@isnad1 id=disjoint.0h4v.s6.f71350af9820 from=translated src=- shape=2a7d3618 vocab=b8c4ec92
+-/
 theorem disjoint_cutCell_split (a e b : α) : Disjoint (cutCell a e) (cutCell e b) := by
   apply Set.disjoint_left.mpr
   intro q hl hr
@@ -99,14 +111,18 @@ theorem disjoint_cutCell_split (a e b : α) : Disjoint (cutCell a e) (cutCell e 
 def cutCells : Set (Set (Cut α)) :=
   {U | ∃ a b, a ≤ b ∧ U = cutCell a b}
 
-/-- Every endpoint pair defines a member, after normalizing an empty cell if necessary.-/
+/-- Every endpoint pair defines a member, after normalizing an empty cell if necessary.
+@isnad1 id=mem.0h3v.s5.62554c1957a0 from=translated src=- shape=d44a733c vocab=cf337452
+-/
 theorem cutCell_mem_cutCells (a b : α) : cutCell a b ∈ cutCells := by
   refine ⟨a, max a b, le_max_left _ _, ?_⟩
   rcases le_total a b with hab | hba
   · rw [max_eq_right hab]
   · rw [cutCell_eq_empty hba, max_eq_left hba, cutCell_eq_empty le_rfl]
 
-/-- Decorated coordinate cells satisfy the finite disjoint-difference semiring laws.-/
+/-- Decorated coordinate cells satisfy the finite disjoint-difference semiring laws.
+@isnad1 id=issetsem.0h1v.s3.2a881087b7b8 from=translated src=- shape=da9a72aa vocab=78152fda
+-/
 theorem isSetSemiring_cutCells [Nonempty α] : IsSetSemiring (cutCells (α := α)) where
   empty_mem := by
     inhabit α
@@ -140,7 +156,9 @@ def rectangleCell (a b c d : α) : Set (Cut α × Cut α) :=
 def separatedRectangleCells : Set (Set (Cut α × Cut α)) :=
   {U | U = ∅ ∨ ∃ a b c d, a < b ∧ b < c ∧ c < d ∧ U = rectangleCell a b c d}
 
-/-- Separated endpoint pairs define a rectangle cell even if one coordinate is empty.-/
+/-- Separated endpoint pairs define a rectangle cell even if one coordinate is empty.
+@isnad1 id=mem.1h5v.s6.8a574e8f8c66 from=translated src=- shape=d81149d0 vocab=9a22904a
+-/
 theorem rectangleCell_mem_separatedRectangleCells (a b c d : α) (hbc : b < c) :
     rectangleCell a b c d ∈ separatedRectangleCells := by
   by_cases hab : a < b
@@ -149,13 +167,17 @@ theorem rectangleCell_mem_separatedRectangleCells (a b c d : α) (hbc : b < c) :
     · exact Or.inl (by simp [rectangleCell, cutCell_eq_empty (le_of_not_gt hcd)])
   · exact Or.inl (by simp [rectangleCell, cutCell_eq_empty (le_of_not_gt hab)])
 
-/-- Rectangle intersection retains the four inward-facing endpoints.-/
+/-- Rectangle intersection retains the four inward-facing endpoints.
+@isnad1 id=eq.0h9v.s6.3b5556cdfa6e from=translated src=- shape=771fac78 vocab=c3512d0d
+-/
 theorem rectangleCell_inter (a b c d e f g h : α) :
     rectangleCell a b c d ∩ rectangleCell e f g h =
       rectangleCell (max a e) (min b f) (max c g) (min d h) := by
   simp only [rectangleCell, prod_inter_prod, cutCell_inter]
 
-/-- The disjoint strips in a rectangle difference retain all boundary decorations.-/
+/-- The disjoint strips in a rectangle difference retain all boundary decorations.
+@isnad1 id=eq.0h9v.s7.dbc483986fed from=translated src=- shape=09e2b026 vocab=1681d037
+-/
 theorem rectangleCell_sdiff (a b c d e f g h : α) :
     rectangleCell a b c d \ rectangleCell e f g h =
       (rectangleCell a (min b e) c d ∪ rectangleCell (max a f) b c d) ∪
@@ -169,7 +191,9 @@ theorem rectangleCell_sdiff (a b c d e f g h : α) :
     tauto
   simp only [rectangleCell, hprod, cutCell_sdiff, cutCell_inter, union_prod, prod_union]
 
-/-- Separated decorated rectangles form a semiring, with finite disjoint strip differences.-/
+/-- Separated decorated rectangles form a semiring, with finite disjoint strip differences.
+@isnad1 id=issetsem.0h1v.s4.0444b4a460bd from=translated src=- shape=39645607 vocab=ab9fb835
+-/
 theorem isSetSemiring_separatedRectangleCells :
     IsSetSemiring (separatedRectangleCells (α := α)) where
   empty_mem := Or.inl rfl

@@ -33,13 +33,17 @@ private theorem bars_birth_pos (I : FiniteInterval 3) (hI : I ∈ bars) : 0 < I.
 private noncomputable def diagram : Diagram ℝ :=
   ofIndexBars grid grid.strictMono (reindexBarcode (Fin.succOrderEmb 2).toOrderHom bars)
 
-/-- All three occurrences, including the repeated finite interval, survive unpadding.-/
+/-- All three occurrences, including the repeated finite interval, survive unpadding.
+@isnad1 id=eq.0h0v.s6.0d833430286b from=translated src=- shape=fa15e25c vocab=e9830335
+-/
 theorem all_occurrences_retained :
     (reindexBarcode (Fin.succOrderEmb 2).toOrderHom bars).card = 3 := by
   rw [RealBarcode.reindexBarcode_succ_card bars bars_birth_pos]
   rfl
 
-/-- Exact real endpoints retain both finite copies and the essential tail.-/
+/-- Exact real endpoints retain both finite copies and the essential tail.
+@isnad1 id=eq.0h0v.s6.f19e10387fe9 from=translated src=- shape=6ab66bf8 vocab=0d0ae106
+-/
 theorem diagram_points : diagram.points =
     ((-2 : ℝ), ((3 : ℝ) : WithTop ℝ)) ::ₘ (-2, ((3 : ℝ) : WithTop ℝ)) ::ₘ (3, ⊤) ::ₘ 0 := by
   unfold diagram
@@ -51,7 +55,9 @@ theorem diagram_points : diagram.points =
     Multiset.filterMap_zero, Multiset.map_cons, Multiset.map_zero]
   rfl
 
-/-- The finite interval includes its birth and excludes its finite death.-/
+/-- The finite interval includes its birth and excludes its finite death.
+@isnad1 id=and.0h0v.s6.75a0c122a614 from=translated src=- shape=dc450160 vocab=22e72b26
+-/
 theorem finite_boundary :
     RealBarcode.alive (-2, (3 : WithTop ℝ)) (-2) ∧
       ¬ RealBarcode.alive (-2, (3 : WithTop ℝ)) 3 := by
@@ -60,11 +66,15 @@ theorem finite_boundary :
   · intro h
     exact (lt_irrefl (3 : WithTop ℝ)) h.2
 
-/-- The essential interval remains alive at every parameter at or above its birth.-/
+/-- The essential interval remains alive at every parameter at or above its birth.
+@isnad1 id=alive.1h1v.s5.a2e58b17bac0 from=translated src=- shape=9c17f132 vocab=fcff1217
+-/
 theorem essential_tail (t : ℝ) (ht : 3 ≤ t) : RealBarcode.alive (3, ⊤) t :=
   ⟨ht, WithTop.coe_lt_top t⟩
 
-/-- Multiplicity is two at the finite pair and one at the essential pair.-/
+/-- Multiplicity is two at the finite pair and one at the essential pair.
+@isnad1 id=and.0h0v.s7.7e857c1362ef from=translated src=- shape=63a40073 vocab=3be66d9a
+-/
 theorem duplicate_multiplicity :
     diagram.points.count (-2, (3 : WithTop ℝ)) = 2 ∧
       diagram.points.count (3, ⊤) = 1 := by
@@ -113,11 +123,15 @@ private def emptyGrid : Fin 0 ↪o ℝ :=
 private noncomputable def zeroModule : PModule.{0,0,0} ℚ ℝ :=
   (Functor.const ℝ).obj (0 : ModuleCat ℚ)
 
-/-- The empty-grid diagram has no endpoints, so no nonexistent critical value is selected.-/
+/-- The empty-grid diagram has no endpoints, so no nonexistent critical value is selected.
+@isnad1 id=eq.0h0v.s8.28d068131144 from=translated src=- shape=bf64fdf2 vocab=88b225bd
+-/
 theorem empty_diagram : (moduleDiagram emptyGrid zeroModule (fun i => Fin.elim0 i)).points = 0 :=
   moduleDiagram_empty_grid emptyGrid zeroModule
 
-/-- The empty-grid realization is a zero module.-/
+/-- The empty-grid realization is a zero module.
+@isnad1 id=iszero.0h0v.s8.c5c8c48246bc from=translated src=- shape=60e5da98 vocab=3f9fd392
+-/
 theorem empty_realization : IsZero (RealBarcode.realize (k := ℚ)
     (moduleDiagram emptyGrid zeroModule (fun i => Fin.elim0 i))) :=
   RealBarcode.realize_isZero_of_points_eq_zero _ empty_diagram

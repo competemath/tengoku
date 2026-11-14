@@ -38,6 +38,9 @@ def atomicBoundaryPlan (D E : FiniteWeightedDiagram)
   ∑ j : E.supportLabels,
     ENNReal.ofReal (a.insertionMass j) • Measure.dirac (insertLeg j.1)
 
+/--
+@isnad1 id=iff.0h5v.s7.6f5ddf06f448 from=translated src=- shape=f1f3f95b vocab=5ed6d917
+-/
 @[simp] theorem directLeg_firstFiber {D E : FiniteWeightedDiagram}
     (i : D.supportLabels) (j : E.supportLabels) (s : Set Interior) :
     directLeg i j ∈ firstFiber s ↔ i.1 ∈ s := by
@@ -47,6 +50,9 @@ def atomicBoundaryPlan (D E : FiniteWeightedDiagram)
     exact (interiorIncl_injective heq).symm ▸ hx
   · exact fun hi => ⟨i.1, hi, rfl⟩
 
+/--
+@isnad1 id=iff.0h5v.s7.622bc31718b8 from=translated src=- shape=da178cc3 vocab=af2689dd
+-/
 @[simp] theorem directLeg_secondFiber {D E : FiniteWeightedDiagram}
     (i : D.supportLabels) (j : E.supportLabels) (s : Set Interior) :
     directLeg i j ∈ secondFiber s ↔ j.1 ∈ s := by
@@ -64,6 +70,9 @@ private theorem diagonalProjection_not_image (x : Interior) (s : Set Interior) :
     exact y.2
   simp [diagonalProjection] at h
 
+/--
+@isnad1 id=iff.0h2v.s4.34af9aa30582 from=translated src=- shape=43e10f30 vocab=032ea8fd
+-/
 @[simp] theorem deleteLeg_firstFiber (x : Interior) (s : Set Interior) :
     deleteLeg x ∈ firstFiber s ↔ x ∈ s := by
   change interiorIncl x ∈ interiorIncl '' s ↔ x ∈ s
@@ -72,6 +81,9 @@ private theorem diagonalProjection_not_image (x : Interior) (s : Set Interior) :
     exact (interiorIncl_injective heq).symm ▸ hy
   · exact fun hx => ⟨x, hx, rfl⟩
 
+/--
+@isnad1 id=iff.0h2v.s4.bcb9ffc06aee from=translated src=- shape=43e10f30 vocab=458b0b87
+-/
 @[simp] theorem insertLeg_secondFiber (x : Interior) (s : Set Interior) :
     insertLeg x ∈ secondFiber s ↔ x ∈ s := by
   change interiorIncl x ∈ interiorIncl '' s ↔ x ∈ s
@@ -80,34 +92,54 @@ private theorem diagonalProjection_not_image (x : Interior) (s : Set Interior) :
     exact (interiorIncl_injective heq).symm ▸ hy
   · exact fun hx => ⟨x, hx, rfl⟩
 
+/--
+@isnad1 id=not.0h2v.s4.f38f89aa5418 from=translated src=- shape=08339dac vocab=7efb8b2b
+-/
 @[simp] theorem insertLeg_not_firstFiber (x : Interior) (s : Set Interior) :
     insertLeg x ∉ firstFiber s := diagonalProjection_not_image x s
 
+/--
+@isnad1 id=not.0h2v.s4.4647624ffbe6 from=translated src=- shape=08339dac vocab=91c67583
+-/
 @[simp] theorem deleteLeg_not_secondFiber (x : Interior) (s : Set Interior) :
     deleteLeg x ∉ secondFiber s := diagonalProjection_not_image x s
 
+/--
+@isnad1 id=eq.1h2v.s9.0427d9b44db9 from=translated src=- shape=d9121297 vocab=c87af985
+-/
 theorem atomicMeasure_apply (D : FiniteWeightedDiagram) (s : Set Interior)
     (hs : MeasurableSet s) :
     atomicMeasure D s =
       ∑ i : D.supportLabels, if i.1 ∈ s then (D.weights i : ℝ≥0∞) else 0 := by
   simp [atomicMeasure, Set.indicator, hs]
 
+/--
+@isnad1 id=eq.0h1v.s6.2847c4e48a8c from=translated src=- shape=ce7613fc vocab=c1a4dccd
+-/
 theorem atomicMeasure_mass (D : FiniteWeightedDiagram) :
     atomicMeasure D Set.univ = ∑ i : D.supportLabels, (D.weights i : ℝ≥0∞) := by
   rw [atomicMeasure_apply D Set.univ MeasurableSet.univ]
   simp
 
+/--
+@isnad1 id=isfinite.0h1v.s4.b80a86c29e1c from=translated src=- shape=7e3c79ad vocab=2b39b117
+-/
 theorem atomicMeasure_isFinite (D : FiniteWeightedDiagram) :
     IsFiniteMeasure (atomicMeasure D) := by
   refine ⟨?_⟩
   rw [atomicMeasure_mass]
   exact ENNReal.sum_lt_top.mpr (fun i _ => ENNReal.coe_lt_top)
 
+/--
+@isnad1 id=eq.0h0v.s7.659cb8da7402 from=translated src=- shape=249d2cad vocab=d0ec95cc
+-/
 @[simp] theorem atomicMeasure_zero :
     atomicMeasure (0 : FiniteWeightedDiagram) = 0 := by
   simp [atomicMeasure]
 
-/-- Coalesced native occurrences are represented by their single Finsupp atom mass.-/
+/-- Coalesced native occurrences are represented by their single Finsupp atom mass.
+@isnad1 id=eq.0h2v.s7.1402af14eb8b from=translated src=- shape=67b49c0f vocab=bbf99e10
+-/
 theorem atomicMeasure_singleton (D : FiniteWeightedDiagram) (x : Interior) :
     atomicMeasure D {x} = (D x : ℝ≥0∞) := by
   rw [atomicMeasure_apply D {x} (measurableSet_singleton x)]
@@ -131,6 +163,9 @@ theorem atomicMeasure_singleton (D : FiniteWeightedDiagram) (x : Interior) :
       exact hx (heq ▸ i.2)
     simp [hne]
 
+/--
+@isnad1 id=eq.0h5v.s5.e59c345cc312 from=translated src=- shape=0b03a544 vocab=61ee24d2
+-/
 @[simp] theorem planPowerCost_directLeg (p : ℝ) {D E : FiniteWeightedDiagram}
     (i : D.supportLabels) (j : E.supportLabels) :
     planPowerCost p (directLeg i j) =
@@ -138,11 +173,17 @@ theorem atomicMeasure_singleton (D : FiniteWeightedDiagram) (x : Interior) :
   simp [planPowerCost, directLeg, interiorIncl, FiniteWeightedDiagram.coordinates,
     Subtype.dist_eq, finitePairCost_toReal, dist_eq_norm]
 
+/--
+@isnad1 id=eq.0h2v.s5.53b6f5604491 from=translated src=- shape=cf958af3 vocab=bafe8c70
+-/
 @[simp] theorem planPowerCost_deleteLeg (p : ℝ) (x : Interior) :
     planPowerCost p (deleteLeg x) =
       ENNReal.ofReal ((diagonalCost x.1).toReal ^ p) := by
   simp [planPowerCost, deleteLeg, deleteLeg_distance, depth]
 
+/--
+@isnad1 id=eq.0h2v.s5.8b1151def137 from=translated src=- shape=cf958af3 vocab=97b02666
+-/
 @[simp] theorem planPowerCost_insertLeg (p : ℝ) (x : Interior) :
     planPowerCost p (insertLeg x) =
       ENNReal.ofReal ((diagonalCost x.1).toReal ^ p) := by
@@ -153,6 +194,9 @@ def atomicPairCell {D E : FiniteWeightedDiagram}
     (i : D.supportLabels) (j : E.supportLabels) : Set PlanSpace :=
   firstFiber {i.1} ∩ secondFiber {j.1}
 
+/--
+@isnad1 id=measurab.0h4v.s7.07a4a33cbf18 from=translated src=- shape=149b9ffd vocab=9465ebff
+-/
 theorem measurableSet_atomicPairCell {D E : FiniteWeightedDiagram}
     (i : D.supportLabels) (j : E.supportLabels) :
     MeasurableSet (atomicPairCell i j) :=
@@ -261,11 +305,17 @@ def atomicDeleteCell {D : FiniteWeightedDiagram} (i : D.supportLabels) :
 def atomicInsertCell {E : FiniteWeightedDiagram} (j : E.supportLabels) :
     Set PlanSpace := secondFiber {j.1} \ firstFiber Set.univ
 
+/--
+@isnad1 id=measurab.0h2v.s7.719153c8488d from=translated src=- shape=595ce0b1 vocab=a962edb6
+-/
 theorem measurableSet_atomicDeleteCell {D : FiniteWeightedDiagram}
     (i : D.supportLabels) : MeasurableSet (atomicDeleteCell i) :=
   (measurableSet_firstFiber (measurableSet_singleton i.1)).diff
     (measurableSet_secondFiber MeasurableSet.univ)
 
+/--
+@isnad1 id=measurab.0h2v.s7.8397fba0df2b from=translated src=- shape=595ce0b1 vocab=5282dedf
+-/
 theorem measurableSet_atomicInsertCell {E : FiniteWeightedDiagram}
     (j : E.supportLabels) : MeasurableSet (atomicInsertCell j) :=
   (measurableSet_secondFiber (measurableSet_singleton j.1)).diff

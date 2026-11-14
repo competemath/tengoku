@@ -52,15 +52,27 @@ def deletionMass (a : FiniteBoundaryPlan I J) (i : I) : ℝ := 1 - ∑ j, a.mass
 /-- Target mass supplied by the boundary.-/
 def insertionMass (a : FiniteBoundaryPlan I J) (j : J) : ℝ := 1 - ∑ i, a.mass i j
 
+/--
+@isnad1 id=le.0h4v.s5.340bf9fde087 from=translated src=- shape=ea86867b vocab=4cd684e2
+-/
 theorem deletionMass_nonneg (a : FiniteBoundaryPlan I J) (i : I) :
     0 ≤ a.deletionMass i := sub_nonneg.mpr (a.row_le_one i)
 
+/--
+@isnad1 id=le.0h4v.s5.ae1176c933ad from=translated src=- shape=0d836ab1 vocab=28e844b6
+-/
 theorem insertionMass_nonneg (a : FiniteBoundaryPlan I J) (j : J) :
     0 ≤ a.insertionMass j := sub_nonneg.mpr (a.col_le_one j)
 
+/--
+@isnad1 id=eq.0h4v.s5.743416f7d604 from=translated src=- shape=14c875e0 vocab=f620cc9a
+-/
 theorem source_balance (a : FiniteBoundaryPlan I J) (i : I) :
     (∑ j, a.mass i j) + a.deletionMass i = 1 := by simp [deletionMass]
 
+/--
+@isnad1 id=eq.0h4v.s5.974eb9b9d382 from=translated src=- shape=f86b3818 vocab=31103aff
+-/
 theorem target_balance (a : FiniteBoundaryPlan I J) (j : J) :
     (∑ i, a.mass i j) + a.insertionMass j = 1 := by simp [insertionMass]
 
@@ -70,7 +82,9 @@ def linearCost (a : FiniteBoundaryPlan I J)
   (∑ i, ∑ j, a.mass i j * c i j) +
     (∑ i, a.deletionMass i * u i) + ∑ j, a.insertionMass j * v j
 
-/-- Nonnegative coefficients give a nonnegative real-plan cost.-/
+/-- Nonnegative coefficients give a nonnegative real-plan cost.
+@isnad1 id=le.3h6v.s6.ff53af6e57f9 from=translated src=- shape=8036df8a vocab=28fd4f37
+-/
 theorem linearCost_nonneg (a : FiniteBoundaryPlan I J)
     (c : I → J → ℝ) (u : I → ℝ) (v : J → ℝ)
     (hc : ∀ i j, 0 ≤ c i j) (hu : ∀ i, 0 ≤ u i) (hv : ∀ j, 0 ≤ v j) :
@@ -88,6 +102,9 @@ def cost (a : FiniteBoundaryPlan I J) (x : I → ℝ × ℝ) (y : J → ℝ × �
     (∑ i, a.deletionMass i * (diagonalCost (x i)).toReal) +
     ∑ j, a.insertionMass j * (diagonalCost (y j)).toReal
 
+/--
+@isnad1 id=le.0h5v.s5.1beb74f38b62 from=translated src=- shape=eb4e5d17 vocab=4298b9b1
+-/
 theorem cost_nonneg (a : FiniteBoundaryPlan I J)
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) : 0 ≤ a.cost x y := by
   apply add_nonneg
@@ -122,7 +139,9 @@ def ofMatching (M : OccurrenceMatching I J PEmpty.{1} PEmpty.{1}) :
   row_le_one i := by cases M.finite i <;> simp
   col_le_one j := by rw [incidence_col_sum]; split_ifs <;> norm_num
 
-/-- Incidence plans preserve all three coefficient families exactly.-/
+/-- Incidence plans preserve all three coefficient families exactly.
+@isnad1 id=eq.0h6v.s5.b4fe2a8ad2e2 from=translated src=- shape=284c9878 vocab=675de103
+-/
 theorem linearCost_ofMatching (M : OccurrenceMatching I J PEmpty.{1} PEmpty.{1})
     (c : I → J → ℝ) (u : I → ℝ) (v : J → ℝ) :
     (ofMatching M).linearCost c u v = M.totalBoundaryCost c u v := by
@@ -137,7 +156,9 @@ theorem linearCost_ofMatching (M : OccurrenceMatching I J PEmpty.{1} PEmpty.{1})
     simp only [insertionMass, ofMatching, incidence_col_sum]
     split_ifs <;> simp
 
-/-- Incidence plans charge exactly the original matching, without merging repeated values.-/
+/-- Incidence plans charge exactly the original matching, without merging repeated values.
+@isnad1 id=eq.0h5v.s5.f13194d3612c from=translated src=- shape=6b359188 vocab=2baa5652
+-/
 theorem cost_ofMatching (M : OccurrenceMatching I J PEmpty.{1} PEmpty.{1})
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     (ofMatching M).cost x y = M.totalFiniteCost x y :=
@@ -154,7 +175,9 @@ def augmentedMass (a : FiniteBoundaryPlan I J) : I ⊕ J → J ⊕ I → ℝ
 def paddedMatrix (a : FiniteBoundaryPlan I J) : Matrix (I ⊕ J) (I ⊕ J) ℝ :=
   fun z w => a.augmentedMass z (Equiv.sumComm I J w)
 
-/-- The explicit padding is doubly stochastic, including empty occurrence types.-/
+/-- The explicit padding is doubly stochastic, including empty occurrence types.
+@isnad1 id=mem.0h3v.s8.57c06ba3077c from=translated src=- shape=fe1e1e4f vocab=8f174848
+-/
 theorem paddedMatrix_doublyStochastic (a : FiniteBoundaryPlan I J) :
     a.paddedMatrix ∈ doublyStochastic ℝ (I ⊕ J) := by
   rw [mem_doublyStochastic_iff_sum]
@@ -201,7 +224,9 @@ private theorem assignmentLinearCost_perm (c : I → J → ℝ) (u : I → ℝ) 
     boundaryAssignmentCostWith, Equiv.trans_apply]
 
 /-- Birkhoff decomposition gives a partial matching no more expensive than
-any real plan, for arbitrary fixed pair and boundary coefficients.-/
+any real plan, for arbitrary fixed pair and boundary coefficients.
+@isnad1 id=ex.0h6v.s5.284d424443da from=translated src=- shape=f6e32038 vocab=5354516f
+-/
 theorem exists_matching_linearCost_le (a : FiniteBoundaryPlan I J)
     (c : I → J → ℝ) (u : I → ℝ) (v : J → ℝ) :
     ∃ M : OccurrenceMatching I J PEmpty.{1} PEmpty.{1},
@@ -227,7 +252,9 @@ theorem exists_matching_linearCost_le (a : FiniteBoundaryPlan I J)
     _ = assignmentLinearCost c u v a.paddedMatrix := by rw [← hdecomp]; simp
     _ = _ := assignmentLinearCost_padded a c u v
 
-/-- First-order matching remains bounded by every feasible fractional plan.-/
+/-- First-order matching remains bounded by every feasible fractional plan.
+@isnad1 id=le.0h5v.s5.d0889dcea6b1 from=translated src=- shape=2dc4c2f6 vocab=08b3762d
+-/
 theorem matchingCost_le_cost (a : FiniteBoundaryPlan I J)
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     finiteFirstOrderMatchingCost x y ≤ a.cost x y := by
@@ -245,13 +272,18 @@ variable {I J : Type*} [Fintype I] [Fintype J]
 def finiteFirstOrderBoundaryTransportCost (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) : ℝ :=
   ⨅ a : FiniteBoundaryPlan I J, a.cost x y
 
+/--
+@isnad1 id=le.0h5v.s5.2b20d7c3281f from=translated src=- shape=5dcb97f0 vocab=92f50626
+-/
 theorem finiteFirstOrderBoundaryTransportCost_le_cost
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) (a : FiniteBoundaryPlan I J) :
     finiteFirstOrderBoundaryTransportCost x y ≤ a.cost x y :=
   ciInf_le ⟨0, by rintro _ ⟨b, rfl⟩; exact b.cost_nonneg x y⟩ a
 
 /-- Exact equality of finite real reservoir transport and partial-matching optimization.
-The algebra holds for arbitrary real pairs; positive lifetimes give the PD interpretation.-/
+The algebra holds for arbitrary real pairs; positive lifetimes give the PD interpretation.
+@isnad1 id=eq.0h4v.s5.700435efd41b from=translated src=- shape=520bd244 vocab=e803f4da
+-/
 theorem finiteFirstOrderBoundaryTransportCost_eq_matchingCost
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     finiteFirstOrderBoundaryTransportCost x y = finiteFirstOrderMatchingCost x y := by
@@ -263,7 +295,9 @@ theorem finiteFirstOrderBoundaryTransportCost_eq_matchingCost
       _ = _ := by rw [FiniteBoundaryPlan.cost_ofMatching, hM]
   · exact le_ciInf fun a => a.matchingCost_le_cost x y
 
-/-- Some integral incidence plan attains the real infimum; other optima may be fractional.-/
+/-- Some integral incidence plan attains the real infimum; other optima may be fractional.
+@isnad1 id=ex.0h4v.s5.d83da1945901 from=translated src=- shape=cac33a32 vocab=b3f46a62
+-/
 theorem exists_minimizing_boundaryPlan (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     ∃ M : OccurrenceMatching I J PEmpty.{1} PEmpty.{1},
       (FiniteBoundaryPlan.ofMatching M).cost x y = finiteFirstOrderBoundaryTransportCost x y := by
@@ -271,30 +305,44 @@ theorem exists_minimizing_boundaryPlan (x : I → ℝ × ℝ) (y : J → ℝ × 
   exact ⟨M, by rw [FiniteBoundaryPlan.cost_ofMatching,
     finiteFirstOrderBoundaryTransportCost_eq_matchingCost, hM]⟩
 
-/-- Every real plan admits a partial matching of no greater cost.-/
+/-- Every real plan admits a partial matching of no greater cost.
+@isnad1 id=ex.0h5v.s5.2549b5293470 from=translated src=- shape=212b7ca9 vocab=6badd95d
+-/
 theorem FiniteBoundaryPlan.exists_matching_cost_le (a : FiniteBoundaryPlan I J)
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     ∃ M : OccurrenceMatching I J PEmpty.{1} PEmpty.{1}, M.totalFiniteCost x y ≤ a.cost x y := by
   obtain ⟨M, hM⟩ := exists_minimizing_occurrenceMatching x y
   exact ⟨M, hM.le.trans (a.matchingCost_le_cost x y)⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.701be83901d4 from=translated src=- shape=2b7a3f08 vocab=f6e315d8
+-/
 @[simp] theorem finiteFirstOrderBoundaryTransportCost_of_isEmpty_right [IsEmpty J]
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     finiteFirstOrderBoundaryTransportCost x y = ∑ i, (diagonalCost (x i)).toReal := by
   rw [finiteFirstOrderBoundaryTransportCost_eq_matchingCost,
     finiteFirstOrderMatchingCost_of_isEmpty_right]
 
+/--
+@isnad1 id=eq.0h4v.s5.d972daf517a4 from=translated src=- shape=5113c342 vocab=f6e315d8
+-/
 @[simp] theorem finiteFirstOrderBoundaryTransportCost_of_isEmpty_left [IsEmpty I]
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     finiteFirstOrderBoundaryTransportCost x y = ∑ j, (diagonalCost (y j)).toReal := by
   rw [finiteFirstOrderBoundaryTransportCost_eq_matchingCost,
     finiteFirstOrderMatchingCost_of_isEmpty_left]
 
+/--
+@isnad1 id=eq.0h4v.s5.97565fb9f0e7 from=translated src=- shape=21309ef5 vocab=d8e8e8a4
+-/
 @[simp] theorem finiteFirstOrderBoundaryTransportCost_empty [IsEmpty I] [IsEmpty J]
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) : finiteFirstOrderBoundaryTransportCost x y = 0 := by
   rw [finiteFirstOrderBoundaryTransportCost_of_isEmpty_right]
   exact Fintype.sum_empty _
 
+/--
+@isnad1 id=eq.0h8v.s6.78010d901dbe from=translated src=- shape=9e2d99af vocab=a7d2f98e
+-/
 theorem finiteFirstOrderBoundaryTransportCost_reindex {I' J' : Type*}
     [Fintype I'] [Fintype J'] (u : I' ≃ I) (v : J' ≃ J)
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :

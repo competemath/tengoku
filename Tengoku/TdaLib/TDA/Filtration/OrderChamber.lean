@@ -19,6 +19,9 @@ variable [TopologicalSpace X]
 def orderChamber (F : X → ι → β) : Set X :=
   (⋃ i, ⋃ j, frontier (eqLocus F i j))ᶜ
 
+/--
+@isnad1 id=isopen.0h4v.s4.809950c427f6 from=translated src=- shape=a962a676 vocab=fa393d02
+-/
 theorem isOpen_orderChamber [Finite ι] (F : X → ι → β) :
     IsOpen (orderChamber F) := by
   unfold orderChamber
@@ -28,6 +31,9 @@ theorem isOpen_orderChamber [Finite ι] (F : X → ι → β) :
 variable [Finite ι] [LinearOrder β] [TopologicalSpace β]
   [OrderClosedTopology β]
 
+/--
+@isnad1 id=dense.1h4v.s5.7e947f616b84 from=translated src=- shape=53691ecb vocab=8560fbb4
+-/
 theorem dense_orderChamber
     (F : X → ι → β)
     (hF : ∀ i, Continuous (fun x => F x i)) :
@@ -64,6 +70,9 @@ theorem dense_orderChamber
   rw [heq]
   exact hinter
 
+/--
+@isnad1 id=ex.2h5v.s7.9b268a5c2490 from=translated src=- shape=5285e2bb vocab=525ee651
+-/
 theorem exists_open_le_iff_of_mem_orderChamber
     (F : X → ι → β)
     (hF : ∀ i, Continuous (fun x => F x i))

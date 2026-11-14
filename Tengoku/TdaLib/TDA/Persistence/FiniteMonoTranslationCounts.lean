@@ -61,7 +61,9 @@ private theorem deathSubspace_le_map_translated (theta : Fin s →o Fin s)
   exact hk
 
 /-- Cokernel shortness gives the reverse prefix comparison after translating the birth.
-Finite deaths lift a kernel condition; terminal death compares final images.-/
+Finite deaths lift a kernel condition; terminal death compares final images.
+@isnad1 id=le.5h8v.s10.f8db0be51106 from=translated src=- shape=aefd4991 vocab=90c3f2d0
+-/
 theorem deathPrefixCount_le_translated_of_cokernelTrivial
     [∀ i, FiniteDimensional k (M.obj i)] [∀ i, FiniteDimensional k (N.obj i)]
     (theta : Fin s →o Fin s) (hTheta : ∀ i, i ≤ theta i) (f : M ⟶ N)

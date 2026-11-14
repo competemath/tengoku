@@ -72,7 +72,9 @@ private theorem two_barcode : rankBarcode two = Multiset.replicate 2 oneBar := b
   rw [one_stage_barcode]
   simp [two]
 
-/-- The rank-one endomorphism is genuinely neither componentwise injective nor surjective.-/
+/-- The rank-one endomorphism is genuinely neither componentwise injective nor surjective.
+@isnad1 id=and.0h0v.s11.b886da34ef61 from=translated src=- shape=869faf60 vocab=f3724310
+-/
 theorem proper_linear_map :
     ¬ (∀ i, Function.Injective (projection.app i).hom) ∧
       ¬ (∀ i, Function.Surjective (projection.app i).hom) := by
@@ -87,7 +89,9 @@ theorem proper_linear_map :
     change (0 : ℚ) = 1 at this
     norm_num at this
 
-/-- Two repeated source and target bars produce exactly one matched pair.-/
+/-- Two repeated source and target bars produce exactly one matched pair.
+@isnad1 id=and.0h0v.s9.ced50c21a3f5 from=translated src=- shape=d82c7e1d vocab=0af78c04
+-/
 theorem rank_one_partial_matching :
     Fintype.card (BarcodeOccurrence 1 (rankBarcode two)) = 2 ∧
     Fintype.card {p : BarcodeOccurrence 1 (rankBarcode two) × BarcodeOccurrence 1 (rankBarcode two) //
@@ -98,7 +102,9 @@ theorem rank_one_partial_matching :
   · rw [← Fintype.card_congr (imageOccurrenceEquivPairs projection)]
     simp [BarcodeOccurrence, projection_barcode]
 
-/-- Duplicate labels stay distinct under the identity induced matching.-/
+/-- Duplicate labels stay distinct under the identity induced matching.
+@isnad1 id=ex.0h0v.s8.533ee79ddcca from=translated src=- shape=cddef6ae vocab=ab51bb95
+-/
 theorem duplicate_identity :
     ∃ i j : BarcodeOccurrence 1 (rankBarcode two), i ≠ j ∧
       inducedMap (𝟙 two) i = some i ∧ inducedMap (𝟙 two) j = some j := by
@@ -108,7 +114,9 @@ theorem duplicate_identity :
   have hne : i ≠ j := by intro h; have := congrArg Fin.val h; simp [i, j] at this
   exact ⟨i, j, hne, inducedMap_id two i, inducedMap_id two j⟩
 
-/-- The matched terminal bars retain finite observed death one.-/
+/-- The matched terminal bars retain finite observed death one.
+@isnad1 id=ex.0h0v.s7.7d3132781861 from=translated src=- shape=1b7e3632 vocab=9e0fb579
+-/
 theorem terminal_pair :
     ∃ i j : BarcodeOccurrence 1 (rankBarcode two), inducedMap projection i = some j ∧
       (occurrence (rankBarcode two) i).death = 1 ∧ (occurrence (rankBarcode two) j).death = 1 := by
@@ -134,7 +142,9 @@ private theorem zero_image_barcode : rankBarcode (finiteImage (0 : two ⟶ two))
   rw [hd]
   simp
 
-/-- A zero transformation selects no occurrence, despite nonempty repeated barcodes.-/
+/-- A zero transformation selects no occurrence, despite nonempty repeated barcodes.
+@isnad1 id=eq.0h1v.s8.bf4003886f88 from=translated src=- shape=4b63e10e vocab=65aa6ab5
+-/
 theorem zero_matching (i : BarcodeOccurrence 1 (rankBarcode two)) :
     inducedMap (0 : two ⟶ two) i = none := by
   apply (inducedMap_eq_none_iff _ _).mpr
@@ -223,7 +233,9 @@ private theorem single_occurrence (I : FiniteInterval 3)
       occurrence (rankBarcode (intervalModule (k := ℚ) I)) a ∈ B) (single_barcode I)) hmem
   simpa using hmem'
 
-/-- The overlap map matches [1,3) to [0,2), exercising both strict outer endpoint changes.-/
+/-- The overlap map matches [1,3) to [0,2), exercising both strict outer endpoint changes.
+@isnad1 id=ex.0h0v.s8.228dd0d4eb7c from=translated src=- shape=9416d77b vocab=33567c43
+-/
 theorem nontrivial_endpoints :
     ∃ (i : BarcodeOccurrence 3 (rankBarcode (intervalModule (k := ℚ) sourceBar)))
       (j : BarcodeOccurrence 3 (rankBarcode (intervalModule (k := ℚ) targetBar))),
@@ -244,7 +256,9 @@ theorem nontrivial_endpoints :
 private noncomputable def empty : PModule.{0,0,0} ℚ (Fin 0) := barcodeModule (k := ℚ) 0
 private instance empty_fd (i : Fin 0) : FiniteDimensional ℚ (empty.obj i) := i.elim0
 
-/-- Empty-chain image factorization and matching retain an empty occurrence domain.-/
+/-- Empty-chain image factorization and matching retain an empty occurrence domain.
+@isnad1 id=and.0h0v.s7.eb6f1bc9139b from=translated src=- shape=5fdcadda vocab=2b8def24
+-/
 theorem empty_chain : IsEmpty (BarcodeOccurrence 0 (rankBarcode empty)) ∧
     ∀ i : BarcodeOccurrence 0 (rankBarcode empty), inducedMap (𝟙 empty) i = some i := by
   refine ⟨?_, inducedMap_id empty⟩

@@ -118,7 +118,9 @@ noncomputable def sigmaIso {κ : ι → Type}
       (δ := fun i : ι => fun j : κ i => (F ⟨i,j⟩).obj t)).toModuleIso)
     (fun {_ _} f => (sigmaMap F).naturality f)
 
-/-- The family isomorphism acts by the given summand isomorphism on each generator.-/
+/-- The family isomorphism acts by the given summand isomorphism on each generator.
+@isnad1 id=eq.0h8v.s12.ca32c19b5470 from=translated src=- shape=95981e80 vocab=24722b83
+-/
 @[simp] theorem familyIso_hom_lof (F G : ι → PModule.{u,0,u} k ℝ)
     (e : ∀ i, F i ≅ G i) (t : ℝ) (i : ι) (z : (F i).obj t) :
     (((familyIso F G e).hom).app t).hom
@@ -129,7 +131,9 @@ noncomputable def sigmaIso {κ : ι → Type}
     (DirectSum.lof k ι (fun j => (F j).obj t) i z) = _
   exact DirectSum.lmap_lof (fun j : ι => ((e j).hom.app t).hom) i z
 
-/-- Sigma regrouping carries a generator to the corresponding nested generator.-/
+/-- Sigma regrouping carries a generator to the corresponding nested generator.
+@isnad1 id=eq.0h8v.s13.8433497da1f9 from=translated src=- shape=9cd28d23 vocab=8f6b8c39
+-/
 @[simp] theorem sigmaIso_hom_lof {κ : ι → Type}
     (F : (Σ i, κ i) → PModule.{u,0,u} k ℝ)
     (t : ℝ) (i : ι) (j : κ i) (z : (F ⟨i,j⟩).obj t) :

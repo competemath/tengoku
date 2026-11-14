@@ -44,12 +44,16 @@ def prefixComplex (e : CompatibleOrder f) (k : ℕ) :
           (e.enum.symm ⟨s, hsK⟩) (by simpa using hproper)
         exact lt_trans hindex hsidx
 
-/-- Membership in a prefix is membership in `K` plus an index bound.-/
+/-- Membership in a prefix is membership in `K` plus an index bound.
+@isnad1 id=iff.0h7v.s7.7665d7ba56c6 from=translated src=- shape=01a7651f vocab=13ae7229
+-/
 theorem mem_prefixComplex (e : CompatibleOrder f) (k : ℕ) (s : Finset V) :
     s ∈ e.prefixComplex k ↔
       ∃ hs : s ∈ K, (e.enum.symm ⟨s, hs⟩).val < k := Iff.rfl
 
-/-- The zero prefix is empty.-/
+/-- The zero prefix is empty.
+@isnad1 id=eq.0h5v.s5.8e069310416f from=translated src=- shape=652d330b vocab=f0693f27
+-/
 theorem prefixComplex_zero (e : CompatibleOrder f) :
     e.prefixComplex 0 = ⊥ := by
   apply le_antisymm
@@ -58,7 +62,9 @@ theorem prefixComplex_zero (e : CompatibleOrder f) :
     omega
   · exact bot_le
 
-/-- Once the stage reaches the number of faces, the prefix is all of `K`.-/
+/-- Once the stage reaches the number of faces, the prefix is all of `K`.
+@isnad1 id=eq.1h6v.s5.fb5049ecb3e7 from=translated src=- shape=ed6d74b9 vocab=5ba35464
+-/
 theorem prefixComplex_eq_self_of_card_le (e : CompatibleOrder f) (k : ℕ)
     (hk : Fintype.card (TDA.Simplicial.TotalFace K) ≤ k) :
     e.prefixComplex k = K := by
@@ -69,7 +75,9 @@ theorem prefixComplex_eq_self_of_card_le (e : CompatibleOrder f) (k : ℕ)
   · intro hs
     exact (e.mem_prefixComplex k s).mpr ⟨hs, (e.enum.symm ⟨s, hs⟩).isLt.trans_le hk⟩
 
-/-- Prefixes are nested as their face-count stage increases.-/
+/-- Prefixes are nested as their face-count stage increases.
+@isnad1 id=monotone.0h5v.s5.02c3b99c34f1 from=translated src=- shape=d9479fba vocab=929f3911
+-/
 theorem prefixComplex_mono (e : CompatibleOrder f) :
     Monotone e.prefixComplex := by
   intro k l hkl s hs
@@ -87,13 +95,17 @@ def sublevelCount (e : CompatibleOrder f) (r : α) : ℕ :=
   (Finset.univ.filter (fun i : Fin (Fintype.card (TDA.Simplicial.TotalFace K)) =>
     f.value (e.enum i) ≤ r)).card
 
-/-- A sublevel count never exceeds the total number of faces.-/
+/-- A sublevel count never exceeds the total number of faces.
+@isnad1 id=le.0h6v.s5.8dc3cc5ec4cb from=translated src=- shape=e79ce34a vocab=e4da2b27
+-/
 theorem sublevelCount_le_card (e : CompatibleOrder f) (r : α) :
     e.sublevelCount r ≤ Fintype.card (TDA.Simplicial.TotalFace K) := by
   unfold sublevelCount
   exact (Finset.card_filter_le _ _).trans (Finset.card_fin _).le
 
-/-- Sublevel counts are monotone in the threshold.-/
+/-- Sublevel counts are monotone in the threshold.
+@isnad1 id=monotone.0h5v.s5.ecab645e214f from=translated src=- shape=e87bbd9d vocab=df058ce8
+-/
 theorem sublevelCount_mono (e : CompatibleOrder f) :
     Monotone e.sublevelCount := by
   intro r q hrq
@@ -103,7 +115,9 @@ theorem sublevelCount_mono (e : CompatibleOrder f) :
   simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hi ⊢
   exact hi.trans hrq
 
-/-- An enumerated face is below `r` exactly when its index is below the sublevel count.-/
+/-- An enumerated face is below `r` exactly when its index is below the sublevel count.
+@isnad1 id=iff.0h7v.s7.77bd78e11290 from=translated src=- shape=c237d3e7 vocab=6e933782
+-/
 theorem value_le_iff_index_lt_sublevelCount (e : CompatibleOrder f) (r : α)
     (i : Fin (Fintype.card (TDA.Simplicial.TotalFace K))) :
     f.value (e.enum i) ≤ r ↔ i.val < e.sublevelCount r := by
@@ -132,7 +146,9 @@ theorem value_le_iff_index_lt_sublevelCount (e : CompatibleOrder f) (r : α)
     rw [Fin.card_Iio] at hcard
     omega
 
-/-- Each graded sublevel is the prefix ending at its count of accepted faces.-/
+/-- Each graded sublevel is the prefix ending at its count of accepted faces.
+@isnad1 id=eq.0h6v.s5.d1e4df2f3565 from=translated src=- shape=761f6cfa vocab=00b49f18
+-/
 theorem sublevel_eq_prefixComplex (e : CompatibleOrder f) (r : α) :
     f.sublevel r = e.prefixComplex (e.sublevelCount r) := by
   ext s
@@ -158,7 +174,9 @@ def thresholdMap (e : CompatibleOrder f) : α →o ℕ where
   toFun := e.sublevelCount
   monotone' := e.sublevelCount_mono
 
-/-- Reindexing the prefix filtration by the threshold map recovers `f`'s sublevels.-/
+/-- Reindexing the prefix filtration by the threshold map recovers `f`'s sublevels.
+@isnad1 id=eq.0h5v.s6.3c374693f84b from=translated src=- shape=49e5d6e9 vocab=f6171d49
+-/
 theorem reindex_prefixFiltration (e : CompatibleOrder f) :
     TDA.Filtration.reindex e.thresholdMap e.prefixFiltration =
       f.sublevelFiltration := by

@@ -26,17 +26,23 @@ def FiniteInterval.translatedDeath {s : ℕ} (I : FiniteInterval s)
     (theta : Fin s →o Fin s) : ℕ :=
   if h : I.death < s then (theta ⟨I.death, h⟩).val else s
 
-/-- A finite observed death is translated at that stage.-/
+/-- A finite observed death is translated at that stage.
+@isnad1 id=eq.1h3v.s6.221085e842c5 from=translated src=- shape=d5647bac vocab=4375a8f3
+-/
 theorem FiniteInterval.translatedDeath_of_lt {s : ℕ} (I : FiniteInterval s)
     (theta : Fin s →o Fin s) (h : I.death < s) :
     I.translatedDeath theta = (theta ⟨I.death, h⟩).val := dite_eq_left h
 
-/-- The terminal endpoint is never selected as a stage of the finite chain.-/
+/-- The terminal endpoint is never selected as a stage of the finite chain.
+@isnad1 id=eq.1h3v.s5.a0a9425fa539 from=translated src=- shape=e47bc409 vocab=f2663014
+-/
 theorem FiniteInterval.translatedDeath_terminal {s : ℕ} (I : FiniteInterval s)
     (theta : Fin s →o Fin s) (h : I.death = s) : I.translatedDeath theta = s := by
   simp [translatedDeath, h]
 
-/-- Translated death depends only on the endpoint, not the birth or interval proof fields.-/
+/-- Translated death depends only on the endpoint, not the birth or interval proof fields.
+@isnad1 id=eq.1h4v.s5.60d3fce42529 from=translated src=- shape=c749e1eb vocab=f2663014
+-/
 theorem FiniteInterval.translatedDeath_congr {s : ℕ} (I J : FiniteInterval s)
     (theta : Fin s →o Fin s) (h : I.death = J.death) :
     I.translatedDeath theta = J.translatedDeath theta := by
@@ -47,7 +53,9 @@ theorem FiniteInterval.translatedDeath_congr {s : ℕ} (I J : FiniteInterval s)
   · have hj : ¬ J.death < s := h ▸ hi
     simp only [translatedDeath, dite_eq_right hi, dite_eq_right hj]
 
-/-- Identity translation leaves every finite or terminal endpoint unchanged.-/
+/-- Identity translation leaves every finite or terminal endpoint unchanged.
+@isnad1 id=eq.0h2v.s4.b4731e28a98b from=translated src=- shape=581ae922 vocab=f46b73e7
+-/
 theorem FiniteInterval.translatedDeath_id {s : ℕ} (I : FiniteInterval s) :
     I.translatedDeath (OrderHom.id : Fin s →o Fin s) = I.death := by
   by_cases h : I.death < s

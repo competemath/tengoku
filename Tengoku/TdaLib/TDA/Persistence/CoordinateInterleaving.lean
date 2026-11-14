@@ -39,23 +39,32 @@ namespace CoordinateInterleaving
 variable {ε δ σ : ℝ≥0}
   {M N P : PModule.{u,0,w} R (Fin n → ℝ)}
 
+/--
+@isnad1 id=eq.2h7v.s8.5b96333b3ddb from=translated src=- shape=41ffb546 vocab=3f3d3d0d
+-/
 @[ext] theorem ext {i j : CoordinateInterleaving ε M N}
     (hφ : i.φ = j.φ) (hψ : i.ψ = j.ψ) : i = j := by
   cases i; cases j; cases hφ; cases hψ; rfl
 
-/-- First interleaving equation at a coordinate grade.-/
+/-- First interleaving equation at a coordinate grade.
+@isnad1 id=eq.0h7v.s11.380ed0018f0d from=translated src=- shape=249ef189 vocab=7a016d7e
+-/
 theorem φ_ψ_app (i : CoordinateInterleaving ε M N) (a : Fin n → ℝ) :
     i.φ.app a ≫ i.ψ.app (translation ε a) ≫ (compIso ε ε M).hom.app a =
       (transition (ε + ε) M).app a :=
   congrArg (fun f => f.app a) i.φ_ψ
 
-/-- Second interleaving equation at a coordinate grade.-/
+/-- Second interleaving equation at a coordinate grade.
+@isnad1 id=eq.0h7v.s11.d9c32e4d04a7 from=translated src=- shape=c1e1284e vocab=7a016d7e
+-/
 theorem ψ_φ_app (i : CoordinateInterleaving ε M N) (a : Fin n → ℝ) :
     i.ψ.app a ≫ i.φ.app (translation ε a) ≫ (compIso ε ε N).hom.app a =
       (transition (ε + ε) N).app a :=
   congrArg (fun f => f.app a) i.ψ_φ
 
-/-- Equality of the two natural transformations is equivalent to equality at every grade.-/
+/-- Equality of the two natural transformations is equivalent to equality at every grade.
+@isnad1 id=iff.0h7v.s12.40ebdeb5bca5 from=translated src=- shape=cf69f32f vocab=31ebef7d
+-/
 theorem equations_iff (f : M ⟶ (shift ε).obj N) (g : N ⟶ (shift ε).obj M) :
     (f ≫ (shift ε).map g ≫ (compIso ε ε M).hom = transition (ε + ε) M ∧
       g ≫ (shift ε).map f ≫ (compIso ε ε N).hom = transition (ε + ε) N) ↔
@@ -143,7 +152,9 @@ def zeroEquivIso : CoordinateInterleaving 0 M N ≃ (M ≅ N) where
     change (e.hom ≫ (zeroIso N).inv) ≫ (zeroIso N).hom = e.hom
     simp [Category.assoc]
 
-/-- Every coordinate grade precedes its double nonnegative translate.-/
+/-- Every coordinate grade precedes its double nonnegative translate.
+@isnad1 id=le.0h3v.s7.57b1daab30a2 from=translated src=- shape=254ac2b7 vocab=058698de
+-/
 theorem twice_le (ε : ℝ≥0) (a : Fin n → ℝ) :
     a ≤ translation ε (translation ε a) := by
   intro j
@@ -151,7 +162,9 @@ theorem twice_le (ε : ℝ≥0) (a : Fin n → ℝ) :
   exact (le_add_of_nonneg_right ε.coe_nonneg).trans
     (le_add_of_nonneg_right ε.coe_nonneg)
 
-/-- The first equation before transporting the twice-shifted index.-/
+/-- The first equation before transporting the twice-shifted index.
+@isnad1 id=eq.0h7v.s10.6ae5d6626dd9 from=translated src=- shape=c1669640 vocab=52287a76
+-/
 @[reassoc] theorem φ_ψ_structureMap (i : CoordinateInterleaving ε M N)
     (a : Fin n → ℝ) :
     i.φ.app a ≫ i.ψ.app (translation ε a) = structureMap M (twice_le ε a) := by

@@ -38,7 +38,9 @@ noncomputable def kanComparison : D.restrictionLan e ⟶ D.presented :=
     ((embeddingFunctor e).leftKanExtensionUnit ((embeddingFunctor e) ⋙ D.presented))
     D.presented (𝟙 _)
 
-/-- The comparison extends identity on the restricted module.-/
+/-- The comparison extends identity on the restricted module.
+@isnad1 id=eq.0h5v.s8.89583c1f377a from=translated src=- shape=e49a20d9 vocab=31896edb
+-/
 theorem kanComparison_fac :
     (embeddingFunctor e).leftKanExtensionUnit ((embeddingFunctor e) ⋙ D.presented) ≫
       (embeddingFunctor e).whiskerLeft (D.kanComparison e) = 𝟙 _ :=
@@ -105,19 +107,25 @@ noncomputable def kanIso : D.restrictionLan e ≅ D.presented where
   hom_inv_id := comparison_section D e hG hY
   inv_hom_id := section_comparison D e hG hY
 
-/-- The comparison underlying the reconstruction is the canonical Kan comparison.-/
+/-- The comparison underlying the reconstruction is the canonical Kan comparison.
+@isnad1 id=eq.2h5v.s7.c6ae7d928bcd from=translated src=- shape=f00940c7 vocab=fd38700b
+-/
 theorem kanIso_hom : (D.kanIso e hG hY).hom = D.kanComparison e := rfl
 
 include hG hY in
 /-- The presented module satisfies Mathlib's left-Kan universal property for
-identity on its restriction, with no caller-supplied extension property.-/
+identity on its restriction, with no caller-supplied extension property.
+@isnad1 id=isleftka.2h5v.s7.3a7dd41a5659 from=translated src=- shape=c2efdb3c vocab=17060624
+-/
 theorem isLeftKanExtension : D.presented.IsLeftKanExtension
     (𝟙 ((embeddingFunctor e) ⋙ D.presented)) :=
   Functor.isLeftKanExtension_of_iso (D.kanIso e hG hY)
     ((embeddingFunctor e).leftKanExtensionUnit ((embeddingFunctor e) ⋙ D.presented))
     (𝟙 _) (D.kanComparison_fac e)
 
-/-- On the embedded grades, the inverse reconstruction is the original Kan unit.-/
+/-- On the embedded grades, the inverse reconstruction is the original Kan unit.
+@isnad1 id=eq.2h5v.s8.415b06c6678b from=translated src=- shape=3708dd8c vocab=ed6cd67a
+-/
 theorem kanIso_inv_restrict :
     (embeddingFunctor e).whiskerLeft (D.kanIso e hG hY).inv =
       (embeddingFunctor e).leftKanExtensionUnit ((embeddingFunctor e) ⋙ D.presented) := by
@@ -136,21 +144,27 @@ noncomputable def restrictionHomEquiv (N : PModule.{u,0,max u w} R P) :
   let := D.isLeftKanExtension e hG hY
   exact D.presented.homEquivOfIsLeftKanExtension (𝟙 _) N
 
-/-- The forward bijection is ordinary restriction of the given natural map.-/
+/-- The forward bijection is ordinary restriction of the given natural map.
+@isnad1 id=eq.2h7v.s9.952ba5f091c5 from=translated src=- shape=c0433bdb vocab=0bf94a24
+-/
 theorem restrictionHomEquiv_apply (N : PModule.{u,0,max u w} R P) (f : D.presented ⟶ N) :
     D.restrictionHomEquiv e hG hY N f = (embeddingFunctor e).whiskerLeft f := by
   change (𝟙 ((embeddingFunctor e) ⋙ D.presented)) ≫
     (embeddingFunctor e).whiskerLeft f = (embeddingFunctor e).whiskerLeft f
   exact Category.id_comp _
 
-/-- The constructed extension restricts to its given natural map.-/
+/-- The constructed extension restricts to its given natural map.
+@isnad1 id=eq.2h7v.s10.cce7a49b8c32 from=translated src=- shape=469175af vocab=692f04ad
+-/
 theorem restrictionHomEquiv_symm_restrict (N : PModule.{u,0,max u w} R P)
     (α : (embeddingFunctor e) ⋙ D.presented ⟶ (embeddingFunctor e) ⋙ N) :
     (embeddingFunctor e).whiskerLeft ((D.restrictionHomEquiv e hG hY N).symm α) = α := by
   rw [← restrictionHomEquiv_apply]
   exact (D.restrictionHomEquiv e hG hY N).apply_symm_apply α
 
-/-- Any map extending the same restricted data is the constructed extension.-/
+/-- Any map extending the same restricted data is the constructed extension.
+@isnad1 id=eq.3h8v.s10.e9a24c0d02de from=translated src=- shape=4bdeba7c vocab=692f04ad
+-/
 theorem restrictionHomEquiv_symm_unique (N : PModule.{u,0,max u w} R P)
     (α : (embeddingFunctor e) ⋙ D.presented ⟶ (embeddingFunctor e) ⋙ N)
     (f : D.presented ⟶ N) (hf : (embeddingFunctor e).whiskerLeft f = α) :

@@ -36,17 +36,24 @@ def nerveMap {U : CoverFamily X I} {V : CoverFamily X J} (R : Refinement U V) :
       obtain ⟨i, hi, rfl⟩ := Finset.mem_image.mp hj
       exact R.subset i (hx i hi) }
 
+/--
+@isnad1 id=eq.0h7v.s5.c65551ac7734 from=translated src=- shape=1d0c9bfe vocab=c42e4368
+-/
 @[simp] theorem nerveMap_apply {U : CoverFamily X I} {V : CoverFamily X J}
     (R : Refinement U V) (i : I) : nerveMap R i = R.selector i := rfl
 
-/-- Refinement identity induces vertex-map identity.-/
+/-- Refinement identity induces vertex-map identity.
+@isnad1 id=eq.0h3v.s5.91241186a1df from=translated src=- shape=1cea4a47 vocab=b99717e1
+-/
 theorem nerveMap_id (U : CoverFamily X I) :
     nerveMap (Refinement.id U) = VertexMap.id (nerve U) := by
   apply VertexMap.ext
   intro i
   rfl
 
-/-- Refinement composition induces vertex-map composition.-/
+/-- Refinement composition induces vertex-map composition.
+@isnad1 id=eq.0h9v.s6.343b51c9b7a3 from=translated src=- shape=d010cf07 vocab=834d46fb
+-/
 theorem nerveMap_comp {U : CoverFamily X I} {V : CoverFamily X J}
     {W : CoverFamily X K} (R : Refinement U V) (S : Refinement V W) :
     nerveMap (Refinement.comp R S) = VertexMap.comp (nerveMap R) (nerveMap S) := by
@@ -67,7 +74,9 @@ def reindexRefinement_symm (e : I ≃ J) (U : CoverFamily X J) :
     subset := fun j => by
       simp }
 
-/-- Relabelling followed by its inverse gives the identity on the reindexed nerve.-/
+/-- Relabelling followed by its inverse gives the identity on the reindexed nerve.
+@isnad1 id=eq.0h5v.s7.a518775ce78a from=translated src=- shape=8d2b7007 vocab=6e2ea1dd
+-/
 theorem nerveMap_reindex_comp (e : I ≃ J) (U : CoverFamily X J) :
     VertexMap.comp (nerveMap (reindexRefinement e U))
         (nerveMap (reindexRefinement_symm e U)) =
@@ -76,7 +85,9 @@ theorem nerveMap_reindex_comp (e : I ≃ J) (U : CoverFamily X J) :
   intro i
   simp [reindexRefinement, reindexRefinement_symm]
 
-/-- The inverse relabelling followed by the relabelling gives the target identity.-/
+/-- The inverse relabelling followed by the relabelling gives the target identity.
+@isnad1 id=eq.0h5v.s7.94ed6b93a27c from=translated src=- shape=3171aaaa vocab=6e2ea1dd
+-/
 theorem nerveMap_reindex_symm_comp (e : I ≃ J) (U : CoverFamily X J) :
     VertexMap.comp (nerveMap (reindexRefinement_symm e U))
         (nerveMap (reindexRefinement e U)) =

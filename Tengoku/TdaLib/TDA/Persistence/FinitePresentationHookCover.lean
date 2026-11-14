@@ -30,7 +30,9 @@ actual finite biproduct of embedded finite- and infinite-death hooks by a
 rank-exact map. The kernel has pointwise finite-dimensional fibers, and the
 cover is relative rank projective. The grid module and reconstruction
 isomorphism are exposed as witnesses; no hook decomposition of the original
-module is assumed.-/
+module is assumed.
+@isnad1 id=ex.1h3v.s13.d2fb13c9da0f from=translated src=- shape=3dea636d vocab=9e90cdaf
+-/
 theorem finitelyPresented_exists_finiteHookRankExactCover
     {M : PModule.{u,0,u} k (Fin n → ℝ)}
     (hM : FinitelyPresented (R := k) (P := Fin n → ℝ) M) :

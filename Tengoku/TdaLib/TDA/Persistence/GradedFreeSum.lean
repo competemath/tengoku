@@ -35,17 +35,25 @@ noncomputable def sumInl : module (R := R) W ⟶ module (W.sum V) :=
 noncomputable def sumInr : module (R := R) V ⟶ module (W.sum V) :=
   lift V (module (W.sum V)) (fun g => birth (W.sum V) (Sum.inr g))
 
+/--
+@isnad1 id=eq.0h5v.s9.1dd0398d3f95 from=translated src=- shape=a8399f03 vocab=247a8d1b
+-/
 @[simp] theorem sumInl_birth (g : W.Carrier) :
     (sumInl (R := R) W V).app (W.grade g) (birth W g) =
       birth (W.sum V) (Sum.inl g) :=
   lift_birth W (module (W.sum V)) _ g
 
+/--
+@isnad1 id=eq.0h5v.s9.0fa1d7b0b77a from=translated src=- shape=ec463ffd vocab=fd291b9e
+-/
 @[simp] theorem sumInr_birth (g : V.Carrier) :
     (sumInr (R := R) W V).app (V.grade g) (birth V g) =
       birth (W.sum V) (Sum.inr g) :=
   lift_birth V (module (W.sum V)) _ g
 
-/-- At every available grade, the first inclusion retains its basis vector.-/
+/-- At every available grade, the first inclusion retains its basis vector.
+@isnad1 id=eq.1h6v.s9.f437ba8fb73c from=translated src=- shape=7d0f5040 vocab=99726924
+-/
 theorem sumInl_generator (g : W.Carrier) {a : P} (h : W.grade g ≤ a) :
     (sumInl (R := R) W V).app a (generator W g h) =
       generator (W.sum V) (Sum.inl g) h := by
@@ -57,7 +65,9 @@ theorem sumInl_generator (g : W.Carrier) {a : P} (h : W.grade g ≤ a) :
   rw [sumInl_birth] at hv
   exact hv
 
-/-- At every available grade, the second inclusion retains its basis vector.-/
+/-- At every available grade, the second inclusion retains its basis vector.
+@isnad1 id=eq.1h6v.s9.69a65d40efcf from=translated src=- shape=8a1229e3 vocab=07534d9a
+-/
 theorem sumInr_generator (g : V.Carrier) {a : P} (h : V.grade g ≤ a) :
     (sumInr (R := R) W V).app a (generator V g h) =
       generator (W.sum V) (Sum.inr g) h := by
@@ -77,6 +87,9 @@ noncomputable def sumDesc {M : PModule.{u,v,max u w} R P}
     | .inl x => f.app (W.grade x) (birth W x)
     | .inr y => g.app (V.grade y) (birth V y))
 
+/--
+@isnad1 id=eq.0h8v.s10.b4224290dd79 from=translated src=- shape=c6768ad4 vocab=54982644
+-/
 @[simp] theorem sumDesc_birth_inl {M : PModule.{u,v,max u w} R P}
     (f : module (R := R) W ⟶ M) (g : module (R := R) V ⟶ M)
     (x : W.Carrier) :
@@ -84,6 +97,9 @@ noncomputable def sumDesc {M : PModule.{u,v,max u w} R P}
       f.app (W.grade x) (birth W x) :=
   lift_birth (W.sum V) M _ (Sum.inl x)
 
+/--
+@isnad1 id=eq.0h8v.s10.0bf74f5dd22a from=translated src=- shape=41fddbea vocab=24bc6788
+-/
 @[simp] theorem sumDesc_birth_inr {M : PModule.{u,v,max u w} R P}
     (f : module (R := R) W ⟶ M) (g : module (R := R) V ⟶ M)
     (y : V.Carrier) :
@@ -91,6 +107,9 @@ noncomputable def sumDesc {M : PModule.{u,v,max u w} R P}
       g.app (V.grade y) (birth V y) :=
   lift_birth (W.sum V) M _ (Sum.inr y)
 
+/--
+@isnad1 id=eq.0h7v.s7.51707fff80ea from=translated src=- shape=f54303cb vocab=b297afe7
+-/
 @[simp] theorem sumInl_sumDesc {M : PModule.{u,v,max u w} R P}
     (f : module (R := R) W ⟶ M) (g : module (R := R) V ⟶ M) :
     sumInl W V ≫ sumDesc W V f g = f := by
@@ -99,6 +118,9 @@ noncomputable def sumDesc {M : PModule.{u,v,max u w} R P}
   exact hleft.trans
     (lift_unique W M (fun x => f.app (W.grade x) (birth W x)) f (fun _ => rfl)).symm
 
+/--
+@isnad1 id=eq.0h7v.s7.c633c9398375 from=translated src=- shape=73c0debc vocab=4912d815
+-/
 @[simp] theorem sumInr_sumDesc {M : PModule.{u,v,max u w} R P}
     (f : module (R := R) W ⟶ M) (g : module (R := R) V ⟶ M) :
     sumInr W V ≫ sumDesc W V f g = g := by
@@ -107,7 +129,9 @@ noncomputable def sumDesc {M : PModule.{u,v,max u w} R P}
   exact hright.trans
     (lift_unique V M (fun y => g.app (V.grade y) (birth V y)) g (fun _ => rfl)).symm
 
-/-- The inclusion maps jointly determine a map out of a union-free module.-/
+/-- The inclusion maps jointly determine a map out of a union-free module.
+@isnad1 id=eq.0h6v.s7.f93568fd5766 from=translated src=- shape=dcda8a9c vocab=67c1590f
+-/
 theorem sumDesc_unique {M : PModule.{u,v,max u w} R P}
     (h : module (R := R) (W.sum V) ⟶ M) :
     sumDesc W V (sumInl W V ≫ h) (sumInr W V ≫ h) = h := by
@@ -133,7 +157,9 @@ theorem sumDesc_unique {M : PModule.{u,v,max u w} R P}
         rw [sumInr_birth])
   exact hdesc.trans (lift_unique (W.sum V) M s h (fun _ => rfl)).symm
 
-/-- Equality of maps out of the sum-free module reduces to both families.-/
+/-- Equality of maps out of the sum-free module reduces to both families.
+@isnad1 id=eq.2h7v.s8.2410e255d3d3 from=translated src=- shape=5c76b46d vocab=76260314
+-/
 theorem sumHom_ext {M : PModule.{u,v,max u w} R P}
     {f g : module (R := R) (W.sum V) ⟶ M}
     (hW : sumInl W V ≫ f = sumInl W V ≫ g)

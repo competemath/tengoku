@@ -40,6 +40,9 @@ def interiorQuantizer (n : ℕ) : Interior →ₛ Interior :=
 def quantizedDiagram (μ : Measure Interior) [IsFiniteMeasure μ] (n : ℕ) :
     FiniteWeightedDiagram := simpleFuncDiagram μ (interiorQuantizer n)
 
+/--
+@isnad1 id=eq.0h1v.s6.f14dc05bc7b0 from=translated src=- shape=fe3f6d8b vocab=955b16f0
+-/
 @[simp] theorem quantizedDiagram_zero (n : ℕ) :
     quantizedDiagram 0 n = 0 := simpleFuncDiagram_zero _
 

@@ -37,31 +37,41 @@ def IsRankProjective (Q : PModule.{u,0,u} k P) : Prop :=
   ∀ (L M N : PModule.{u,0,u} k P) (ι : L ⟶ M) (π : M ⟶ N),
     IsRankExact ι π → ∀ α : Q ⟶ N, ∃ β : Q ⟶ M, β ≫ π = α
 
-/-- Every nonzero finite-death hook is rank projective.-/
+/-- Every nonzero finite-death hook is rank projective.
+@isnad1 id=isrankpr.1h4v.s5.1c5d9c6b962b from=translated src=- shape=c9298acc vocab=bfc94b84
+-/
 theorem Hook.isRankProjective {i j : P} (hij : i < j) :
     IsRankProjective (module (k := k) i j) := by
   intro L M N ι π hs α
   exact exists_lift hij hs α
 
-/-- A principal upset is rank projective, including unbounded supports.-/
+/-- A principal upset is rank projective, including unbounded supports.
+@isnad1 id=isrankpr.0h3v.s4.2514e2f6622b from=translated src=- shape=15b39b5c vocab=376f64c2
+-/
 theorem HookInfinity.isRankProjective (i : P) :
     IsRankProjective (module (R := k) i) := by
   intro L M N ι π hs α
   exact exists_lift_rankExact hs α
 
-/-- A finite-death hook has at most one coefficient in each fiber.-/
+/-- A finite-death hook has at most one coefficient in each fiber.
+@isnad1 id=finitedi.0h5v.s7.9342a6f72770 from=translated src=- shape=b2fcc5d8 vocab=d2b23bf6
+-/
 @[instance] theorem Hook.finiteDimensional (i j p : P) :
     FiniteDimensional k ((module (k := k) i j).obj p) := by
   change FiniteDimensional k (SupportInterval.fiber (k := k) (support i j) p)
   infer_instance
 
-/-- Principal-upset fibers are zero or one-dimensional over the field.-/
+/-- Principal-upset fibers are zero or one-dimensional over the field.
+@isnad1 id=finitedi.0h4v.s7.d4abf32238ae from=translated src=- shape=67ba7d69 vocab=1b923e1c
+-/
 @[instance] theorem HookInfinity.finiteDimensional (i p : P) :
     FiniteDimensional k ((module (R := k) i).obj p) := by
   change FiniteDimensional k (GradedFree.fiber (R := k) (generators i) p)
   infer_instance
 
-/-- Relative projectivity is preserved by natural isomorphism.-/
+/-- Relative projectivity is preserved by natural isomorphism.
+@isnad1 id=isrankpr.1h5v.s6.f7915dbe2ddb from=translated src=- shape=4a0a8338 vocab=db16fb80
+-/
 theorem IsRankProjective.of_iso {Q Q' : PModule.{u,0,u} k P}
     (h : IsRankProjective Q) (e : Q ≅ Q') : IsRankProjective Q' := by
   intro L M N ι π hs α
@@ -69,7 +79,9 @@ theorem IsRankProjective.of_iso {Q Q' : PModule.{u,0,u} k P}
   refine ⟨e.inv ≫ β, ?_⟩
   simp [Category.assoc, hβ]
 
-/-- A finite biproduct of rank projectives is rank projective.-/
+/-- A finite biproduct of rank projectives is rank projective.
+@isnad1 id=isrankpr.1h4v.s6.17f3be3c06bf from=translated src=- shape=a86d3f26 vocab=2653f117
+-/
 theorem IsRankProjective.biproduct {J : Type} [Fintype J]
     (F : J → PModule.{u,0,u} k P) (hF : ∀ j, IsRankProjective (F j)) :
     IsRankProjective (⨁ F) := by
@@ -80,7 +92,9 @@ theorem IsRankProjective.biproduct {J : Type} [Fintype J]
   intro j
   simpa only [← Category.assoc, biproduct.ι_desc] using hβ j
 
-/-- A retract of a rank-projective module is rank projective.-/
+/-- A retract of a rank-projective module is rank projective.
+@isnad1 id=isrankpr.2h6v.s8.3a34c55111d1 from=translated src=- shape=1fd45ba3 vocab=dc2a59cd
+-/
 theorem IsRankProjective.of_retract {Q Q' : PModule.{u,0,u} k P}
     (h : IsRankProjective Q) (s : Q' ⟶ Q) (r : Q ⟶ Q') (hsr : s ≫ r = 𝟙 Q') :
     IsRankProjective Q' := by
@@ -103,7 +117,9 @@ noncomputable def fiberIsoPi {J : Type} [Fintype J]
   (Functor.mapBiproduct ((evaluation P (ModuleCat.{u} k)).obj p) F) ≪≫
     ModuleCat.biproductIsoPi (fun j => (F j).obj p)
 
-/-- The fiber comparison reads the evaluated categorical projections.-/
+/-- The fiber comparison reads the evaluated categorical projections.
+@isnad1 id=eq.0h6v.s10.311efd970aca from=translated src=- shape=ad9d6042 vocab=81a0043b
+-/
 theorem fiberIsoPi_hom_π {J : Type} [Fintype J]
     (F : J → PModule.{u,0,u} k P) (p : P) (j : J) :
     (fiberIsoPi F p).hom ≫ ModuleCat.ofHom (LinearMap.proj j) =
@@ -121,7 +137,9 @@ theorem fiberIsoPi_hom_π {J : Type} [Fintype J]
         (Functor.mapBiproduct ((evaluation P (ModuleCat.{u} k)).obj p) F).hom ≫ f) hπ
     _ = (biproduct.π F j).app p := biproduct.lift_π _ j
 
-/-- Evaluated projections distinguish vectors in a finite biproduct fiber.-/
+/-- Evaluated projections distinguish vectors in a finite biproduct fiber.
+@isnad1 id=eq.1h7v.s11.b903076a0b16 from=translated src=- shape=0e02d5cc vocab=25f81f8d
+-/
 theorem element_ext {J : Type} [Fintype J]
     (F : J → PModule.{u,0,u} k P) (p : P) {x y : (⨁ F).obj p}
     (h : ∀ j, ((biproduct.π F j).app p).hom x = ((biproduct.π F j).app p).hom y) :
@@ -134,7 +152,9 @@ theorem element_ext {J : Type} [Fintype J]
     (fiberIsoPi_hom_π F p j)
   exact hx.trans ((h j).trans hy.symm)
 
-/-- Finite-dimensional summand fibers give finite-dimensional sum fibers.-/
+/-- Finite-dimensional summand fibers give finite-dimensional sum fibers.
+@isnad1 id=finitedi.0h5v.s8.915c0a9d230a from=translated src=- shape=dcd19940 vocab=21db8e9f
+-/
 theorem finiteDimensional {J : Type} [Fintype J]
     (F : J → PModule.{u,0,u} k P) (p : P)
     [∀ j, FiniteDimensional k ((F j).obj p)] :
@@ -154,7 +174,9 @@ noncomputable def fiberIso (p : P) :
   (PreservesKernel.iso ((evaluation P (ModuleCat.{u} k)).obj p) π) ≪≫
     ModuleCat.kernelIsoKer (π.app p)
 
-/-- The inverse fiber comparison commutes with the actual kernel inclusion.-/
+/-- The inverse fiber comparison commutes with the actual kernel inclusion.
+@isnad1 id=eq.0h6v.s13.869df92de5c4 from=translated src=- shape=697e5cab vocab=ef54ac7e
+-/
 theorem fiberIso_inv_ι (p : P) :
     (fiberIso π p).inv ≫ (kernel.ι π).app p =
       ModuleCat.ofHom (LinearMap.ker (π.app p).hom).subtype := by
@@ -164,11 +186,15 @@ theorem fiberIso_inv_ι (p : P) :
   rw [PreservesKernel.iso_inv_ι]
   exact ModuleCat.kernelIsoKer_inv_kernel_ι _
 
-/-- The actual categorical kernel inclusion is injective at every grade.-/
+/-- The actual categorical kernel inclusion is injective at every grade.
+@isnad1 id=injectiv.0h6v.s10.03146eb14bb7 from=translated src=- shape=4ead7ea8 vocab=ffa38f6d
+-/
 theorem injective (p : P) : Function.Injective ((kernel.ι π).app p).hom := by
   exact (ModuleCat.mono_iff_injective _).mp inferInstance
 
-/-- The image of the actual kernel inclusion is the linear-map kernel.-/
+/-- The image of the actual kernel inclusion is the linear-map kernel.
+@isnad1 id=eq.0h6v.s10.ebf8c2e1feef from=translated src=- shape=e84026fa vocab=0b39f79c
+-/
 theorem range_eq_ker (p : P) :
     LinearMap.range ((kernel.ι π).app p).hom = LinearMap.ker (π.app p).hom := by
   ext x
@@ -181,20 +207,26 @@ theorem range_eq_ker (p : P) :
     exact congrArg (fun f : ModuleCat.of k (LinearMap.ker (π.app p).hom) ⟶ M.obj p =>
       f.hom ⟨x, hx⟩) (fiberIso_inv_ι π p)
 
-/-- Every componentwise surjection has its ordinary short exact kernel sequence.-/
+/-- Every componentwise surjection has its ordinary short exact kernel sequence.
+@isnad1 id=ispointw.1h5v.s10.80f3a9a56ff4 from=translated src=- shape=0ad070f7 vocab=d143824f
+-/
 theorem shortExact (hπ : ∀ p, Function.Surjective (π.app p).hom) :
     IsPointwiseShortExact (kernel.ι π) π where
   injective := injective π
   surjective := hπ
   range_eq_ker := range_eq_ker π
 
-/-- Kernel fibers inherit finite dimensionality from the source.-/
+/-- Kernel fibers inherit finite dimensionality from the source.
+@isnad1 id=finitedi.0h6v.s9.ab7720102b6e from=translated src=- shape=e1fab42b vocab=452e1844
+-/
 theorem finiteDimensional (p : P) [FiniteDimensional k (M.obj p)] :
     FiniteDimensional k ((kernel π).obj p) :=
   FiniteDimensional.of_injective ((kernel.ι π).app p).hom (injective π p)
 
 /-- Surjectivity together with actual dying-element lifts gives the rank-exact
-kernel sequence; rank additivity is derived rather than a premise.-/
+kernel sequence; rank additivity is derived rather than a premise.
+@isnad1 id=isrankex.2h5v.s11.4d2bab8f12e0 from=translated src=- shape=69752441 vocab=b679c053
+-/
 theorem rankExact (hπ : ∀ p, Function.Surjective (π.app p).hom)
     [∀ p, FiniteDimensional k (M.obj p)]
     (hlift : ∀ {a b : P} (hab : a ≤ b) (n : N.obj a),

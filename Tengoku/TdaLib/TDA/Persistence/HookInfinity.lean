@@ -42,17 +42,23 @@ noncomputable def fiberEquivOfLe {i a : P} (hia : i ≤ a) :
   (GradedFree.fiberEquiv (R := R) (generators i) a).trans
     (Finsupp.uniqueLinearEquiv R R ⟨(), hia⟩)
 
-/-- The supported-fiber equivalence reads the unique generator coefficient.-/
+/-- The supported-fiber equivalence reads the unique generator coefficient.
+@isnad1 id=eq.1h5v.s9.1eb353d1d6e5 from=translated src=- shape=2412273e vocab=29017513
+-/
 @[simp] theorem fiberEquivOfLe_apply {i a : P} (hia : i ≤ a)
     (x : (module (R := R) i).obj a) : fiberEquivOfLe hia x = x.val () := rfl
 
-/-- Structure maps within the principal upset preserve the coefficient.-/
+/-- Structure maps within the principal upset preserve the coefficient.
+@isnad1 id=eq.2h6v.s10.d820bddc6733 from=translated src=- shape=3c162dd7 vocab=13106fe4
+-/
 theorem fiberEquivOfLe_structureMap {i a b : P} (hia : i ≤ a) (hab : a ≤ b)
     (x : (module (R := R) i).obj a) :
     fiberEquivOfLe (hia.trans hab) (structureMapLinear (module i) hab x) =
       fiberEquivOfLe hia x := rfl
 
-/-- Outside the principal upset, the fiber consists only of zero.-/
+/-- Outside the principal upset, the fiber consists only of zero.
+@isnad1 id=eq.1h5v.s7.6cdeda697b9c from=translated src=- shape=8be2a724 vocab=8fc09975
+-/
 theorem fiber_eq_zero_of_not_le {i a : P} (hia : ¬ i ≤ a)
     (x : (module (R := R) i).obj a) : x = 0 := by
   apply Subtype.ext
@@ -66,12 +72,16 @@ noncomputable def fromBirth (i : P) (M : PModule.{u,v,u} R P) (m : M.obj i) :
     module (R := R) i ⟶ M :=
   GradedFree.lift (R := R) (generators i) M (fun _ => m)
 
-/-- The extended morphism takes the generating vector to the chosen birth value.-/
+/-- The extended morphism takes the generating vector to the chosen birth value.
+@isnad1 id=eq.0h5v.s9.7ba43f1979a7 from=translated src=- shape=74f0af45 vocab=db68017e
+-/
 @[simp] theorem fromBirth_birth (i : P) (M : PModule.{u,v,u} R P) (m : M.obj i) :
     ((fromBirth i M m).app i).hom (birth i) = m :=
   GradedFree.lift_birth (R := R) (generators i) M (fun _ => m) ()
 
-/-- Evaluation on the birth generator determines a morphism from a principal upset.-/
+/-- Evaluation on the birth generator determines a morphism from a principal upset.
+@isnad1 id=eq.1h6v.s10.d51a5e43c7a9 from=translated src=- shape=a7d7d6e4 vocab=117c05c6
+-/
 theorem hom_ext {i : P} {M : PModule.{u,v,u} R P} {α β : module (R := R) i ⟶ M}
     (h : (α.app i).hom (birth i) = (β.app i).hom (birth i)) : α = β := by
   have hα := GradedFree.lift_unique (R := R) (generators i) M
@@ -88,7 +98,9 @@ noncomputable def homEquivFiber (i : P) (M : PModule.{u,v,u} R P) :
   left_inv _α := hom_ext (fromBirth_birth i M _)
   right_inv m := fromBirth_birth i M m
 
-/-- Only surjectivity at birth is needed to lift a morphism from a principal upset.-/
+/-- Only surjectivity at birth is needed to lift a morphism from a principal upset.
+@isnad1 id=ex.1h7v.s9.fe199e04acf2 from=translated src=- shape=a1f19e9f vocab=531116aa
+-/
 theorem exists_lift_of_birth_surjective {i : P} {M N : PModule.{u,v,u} R P}
     (π : M ⟶ N) (hπ : Function.Surjective (π.app i).hom)
     (α : module (R := R) i ⟶ N) : ∃ β : module (R := R) i ⟶ M, β ≫ π = α := by
@@ -99,13 +111,17 @@ theorem exists_lift_of_birth_surjective {i : P} {M N : PModule.{u,v,u} R P}
   rw [fromBirth_birth]
   exact hm
 
-/-- Infinite-death hooks lift along every componentwise surjective natural transformation.-/
+/-- Infinite-death hooks lift along every componentwise surjective natural transformation.
+@isnad1 id=ex.1h7v.s9.72f3945973a3 from=translated src=- shape=cd4459e4 vocab=531116aa
+-/
 theorem exists_lift_of_surjective {i : P} {M N : PModule.{u,v,u} R P}
     (π : M ⟶ N) (hπ : ∀ a, Function.Surjective (π.app a).hom)
     (α : module (R := R) i ⟶ N) : ∃ β : module (R := R) i ⟶ M, β ≫ π = α :=
   exists_lift_of_birth_surjective π (hπ i) α
 
-/-- Infinite-death hooks in particular lift against rank exact quotient maps.-/
+/-- Infinite-death hooks in particular lift against rank exact quotient maps.
+@isnad1 id=ex.1h9v.s8.d2b3b4c84b2d from=translated src=- shape=067a53f9 vocab=11d347f3
+-/
 theorem exists_lift_rankExact {k : Type u} [Field k]
     {i : P} {L M N : PModule.{u,v,u} k P} {ι : L ⟶ M} {π : M ⟶ N}
     (hs : IsRankExact ι π) (α : module (R := k) i ⟶ N) :

@@ -154,7 +154,9 @@ private theorem extraction_split_identity
 
 /-- A nonzero module on a finite chain contains an interval with a natural retraction.
 The inclusion and retraction are constructed from a vector at the earliest nonzero stage and
-a dual functional at its last surviving image.-/
+a dual functional at its last surviving image.
+@isnad1 id=ex.1h3v.s9.708999bc80d2 from=translated src=- shape=a85f8484 vocab=76ceb996
+-/
 theorem exists_interval_retract (M : PModule.{u,0,u} k (Fin N))
     (hne : ∃ i, ∃ v : M.obj i, v ≠ 0) :
     ∃ (I : FiniteInterval N) (ι : intervalModule (k := k) I ⟶ M)
@@ -197,7 +199,9 @@ theorem exists_interval_retract (M : PModule.{u,0,u} k (Fin N))
     extractionRetraction M b t hbt hbefore ell,
     extraction_split_identity M b t hbt w hw hzero hbefore ell hell⟩
 
-/-- A nonempty finite interval has strictly positive total stage dimension.-/
+/-- A nonempty finite interval has strictly positive total stage dimension.
+@isnad1 id=lt.0h3v.s4.78f6a270058d from=translated src=- shape=ed300fdd vocab=2b120226
+-/
 theorem totalDimension_intervalModule_pos (I : FiniteInterval N) :
     0 < totalDimension (intervalModule (k := k) I) := by
   classical
@@ -216,7 +220,9 @@ theorem totalDimension_intervalModule_pos (I : FiniteInterval N) :
   omega
 
 /-- Extract an interval summand and a pointwise finite-dimensional kernel complement.
-The complementary module has strictly smaller total stage dimension.-/
+The complementary module has strictly smaller total stage dimension.
+@isnad1 id=ex.1h3v.s8.ffb9a5950dfa from=translated src=- shape=352a1dd9 vocab=82afae28
+-/
 theorem exists_interval_summand (M : PModule.{u,0,u} k (Fin N))
     [∀ i, FiniteDimensional k (M.obj i)] (h : 0 < totalDimension M) :
     ∃ (I : FiniteInterval N) (C : PModule.{u,0,u} k (Fin N)),

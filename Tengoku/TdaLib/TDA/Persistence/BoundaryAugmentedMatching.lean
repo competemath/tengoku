@@ -63,6 +63,9 @@ def ofBoundaryAssignment (e : (I ⊕ J) ≃ (J ⊕ I)) :
   essential := Equiv.refl _
 
 omit [Fintype I] [Fintype J] in
+/--
+@isnad1 id=iff.0h5v.s6.2db0a9b006a9 from=translated src=- shape=7af434b5 vocab=1cbd3c5c
+-/
 theorem ofBoundaryAssignment_some_iff (e : (I ⊕ J) ≃ (J ⊕ I)) (i : I) (j : J) :
     (ofBoundaryAssignment e).finite i = some j ↔ e (.inl i) = .inl j := by
   cases h : e (.inl i) <;> simp [ofBoundaryAssignment, h]
@@ -101,7 +104,9 @@ def toBoundaryAssignment (M : OccurrenceMatching I J PEmpty.{1} PEmpty.{1}) :
     have h := completionMap_leftInverse M.reverse z
     simpa only [reverse_reverse] using h
 
-/-- Completion is a section. No reverse identity for arbitrary dummy assignments is claimed.-/
+/-- Completion is a section. No reverse identity for arbitrary dummy assignments is claimed.
+@isnad1 id=eq.0h3v.s5.bd280fb5b5f5 from=translated src=- shape=659b32c6 vocab=d4b2a4fa
+-/
 theorem ofBoundaryAssignment_toBoundaryAssignment
     (M : OccurrenceMatching I J PEmpty.{1} PEmpty.{1}) :
     ofBoundaryAssignment M.toBoundaryAssignment = M := by
@@ -117,7 +122,9 @@ private def dummyTargetChargeWith (e : (I ⊕ J) ≃ (J ⊕ I)) (v : J → ℝ) 
       | .inr _ => v j
   | .inr _ => 0
 
-/-- Restriction preserves paired costs and both unmatched sums exactly.-/
+/-- Restriction preserves paired costs and both unmatched sums exactly.
+@isnad1 id=eq.0h6v.s5.67107bd9084e from=translated src=- shape=37116d92 vocab=46dfc207
+-/
 theorem totalBoundaryCost_ofBoundaryAssignment (e : (I ⊕ J) ≃ (J ⊕ I))
     (c : I → J → ℝ) (u : I → ℝ) (v : J → ℝ) :
     (ofBoundaryAssignment e).totalBoundaryCost c u v = boundaryAssignmentCostWith c u v e := by
@@ -168,7 +175,9 @@ theorem totalBoundaryCost_ofBoundaryAssignment (e : (I ⊕ J) ≃ (J ⊕ I))
       rw [Fintype.sum_sum_type, hr]
       simp [dummyTargetChargeWith]
 
-/-- The first-order restriction theorem, with its original cost convention.-/
+/-- The first-order restriction theorem, with its original cost convention.
+@isnad1 id=eq.0h5v.s5.e7364d2e8b22 from=translated src=- shape=158287e4 vocab=759bc93c
+-/
 theorem totalFiniteCost_ofBoundaryAssignment (e : (I ⊕ J) ≃ (J ⊕ I))
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     (ofBoundaryAssignment e).totalFiniteCost x y = boundaryAssignmentCost x y e := by
@@ -187,14 +196,18 @@ theorem totalFiniteCost_ofBoundaryAssignment (e : (I ⊕ J) ≃ (J ⊕ I))
       | inl i => cases e (.inl i) <;> rfl
       | inr j => cases e (.inr j) <;> rfl
 
-/-- Completion preserves arbitrary coefficient-dependent boundary cost.-/
+/-- Completion preserves arbitrary coefficient-dependent boundary cost.
+@isnad1 id=eq.0h6v.s5.662dd2635df9 from=translated src=- shape=ce8c3fff vocab=ba07aae6
+-/
 theorem boundaryAssignmentCostWith_toBoundaryAssignment
     (M : OccurrenceMatching I J PEmpty.{1} PEmpty.{1})
     (c : I → J → ℝ) (u : I → ℝ) (v : J → ℝ) :
     boundaryAssignmentCostWith c u v M.toBoundaryAssignment = M.totalBoundaryCost c u v := by
   rw [← totalBoundaryCost_ofBoundaryAssignment, ofBoundaryAssignment_toBoundaryAssignment]
 
-/-- The chosen completion has exactly the original partial-matching cost.-/
+/-- The chosen completion has exactly the original partial-matching cost.
+@isnad1 id=eq.0h5v.s5.baa6465427d4 from=translated src=- shape=13982bd2 vocab=ce2eaf7c
+-/
 theorem boundaryAssignmentCost_toBoundaryAssignment
     (M : OccurrenceMatching I J PEmpty.{1} PEmpty.{1})
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :

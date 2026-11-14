@@ -22,7 +22,9 @@ open CategoryTheory
 variable {k : Type u} [Field k] {P : Type v} [Preorder P]
 
 /-- Transport a pointwise short exact sequence along isomorphisms of its
-three objects. The new maps are the actual conjugated composites.-/
+three objects. The new maps are the actual conjugated composites.
+@isnad1 id=ispointw.1h13v.s9.2c7bfb8abedb from=translated src=- shape=e6983d46 vocab=93a0db29
+-/
 theorem of_iso {L₀ M₀ N₀ L M N : PModule.{u,v,u} k P}
     {ι : L₀ ⟶ M₀} {π : M₀ ⟶ N₀} (hs : IsPointwiseShortExact ι π)
     (eL : L₀ ≅ L) (eM : M₀ ≅ M) (eN : N₀ ≅ N) :
@@ -93,7 +95,9 @@ variable {k : Type u} [Field k] {P : Type v} [Preorder P]
 
 /-- Transport rank exactness along object isomorphisms. Rank additivity is
 derived by transporting dying-element lifts through the component
-isomorphisms.-/
+isomorphisms.
+@isnad1 id=isrankex.1h13v.s9.a8cde198a8db from=translated src=- shape=e6983d46 vocab=e267e0bd
+-/
 theorem of_iso {L₀ M₀ N₀ L M N : PModule.{u,v,u} k P}
     {ι : L₀ ⟶ M₀} {π : M₀ ⟶ N₀} (hs : IsRankExact ι π)
     (eL : L₀ ≅ L) (eM : M₀ ≅ M) (eN : N₀ ≅ N) :

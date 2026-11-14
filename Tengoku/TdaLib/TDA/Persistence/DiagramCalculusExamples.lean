@@ -27,6 +27,9 @@ private theorem sum_filter_offDiagonal (f : ℝ × ℝ → ℝ)
     · simpa [hp, hf p hp] using ih
     · simpa [hp] using congrArg (fun a : ℝ => f p + a) ih
 
+/--
+@isnad1 id=eq.0h3v.s6.b2b1bfaf970a from=translated src=- shape=cdc5b20b vocab=ed7cd1a9
+-/
 theorem signedFiniteEndpointDifference_orderedQ (m n : ℕ)
     (z : DiagramCoordinates m n) :
     signedFiniteEndpointDifference (orderedQ m n z) =
@@ -37,6 +40,9 @@ theorem signedFiniteEndpointDifference_orderedQ (m n : ℕ)
   simpa [signedFiniteEndpointDifference, orderedQ, List.sum_ofFn,
     Finset.sum_sub_distrib, Function.comp_def] using h
 
+/--
+@isnad1 id=eq.0h3v.s6.dc7b903c8839 from=translated src=- shape=a69177b9 vocab=cff47f0b
+-/
 theorem absoluteFiniteEndpointDifference_orderedQ (m n : ℕ)
     (z : DiagramCoordinates m n) :
     absoluteFiniteEndpointDifference (orderedQ m n z) =
@@ -48,7 +54,9 @@ theorem absoluteFiniteEndpointDifference_orderedQ (m n : ℕ)
     Function.comp_def] using h
 
 /-- The signed loss is `C¹` through every representative of every diagram,
-including representatives with deleted diagonal pairs.-/
+including representatives with deleted diagonal pairs.
+@isnad1 id=c1throug.0h1v.s2.2753a0f75bb1 from=translated src=- shape=cf050c78 vocab=8f7ce2a1
+-/
 theorem signedFiniteEndpointDifference_c1_all (D : Diagram ℝ) :
     C1ThroughAllRepresentatives signedFiniteEndpointDifference D := by
   intro m n z _
@@ -72,7 +80,9 @@ def constantDiagramLift {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
   factorization := by intro x hx; rfl
   smooth := contDiff_const.contDiffOn
 
-/-- Every constant diagram-valued map has a constant ordered lift.-/
+/-- Every constant diagram-valued map has a constant ordered lift.
+@isnad1 id=ex.0h2v.s5.3cb2abb65465 from=translated src=- shape=a4998b49 vocab=2efa167f
+-/
 theorem constantDiagram_hasLift {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (D : Diagram ℝ) :
     ∃ m n, Nonempty (LocalDiagramLift (fun _ : E => D) m n) := by
@@ -85,7 +95,9 @@ def emptyDiagramLift {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] :
     LocalDiagramLift (fun _ : E => orderedQ 0 0 (Fin.elim0, Fin.elim0)) 0 0 :=
   constantDiagramLift 0 0 (Fin.elim0, Fin.elim0)
 
-/-- An essential birth remains a variable even when the finite block is empty.-/
+/-- An essential birth remains a variable even when the finite block is empty.
+@isnad1 id=ne.0h0v.s6.acd90b0bf452 from=translated src=- shape=a91f933a vocab=ca954761
+-/
 theorem essentialOnly_coordinates_vary :
     orderedQ 0 1 (Fin.elim0, fun _ => (0 : ℝ)) ≠
       orderedQ 0 1 (Fin.elim0, fun _ => (1 : ℝ)) := by
@@ -93,7 +105,9 @@ theorem essentialOnly_coordinates_vary :
   have hc := congrArg (fun D : Diagram ℝ => D.points.count (0, (⊤ : WithTop ℝ))) h
   simp [orderedQ_count_essential] at hc
 
-/-- Finite endpoint coordinates remain variables when there are no essential points.-/
+/-- Finite endpoint coordinates remain variables when there are no essential points.
+@isnad1 id=ne.0h0v.s6.12d8b7157218 from=translated src=- shape=e31087af vocab=ca954761
+-/
 theorem finiteOnly_coordinates_vary :
     orderedQ 1 0 (fun _ => ((0 : ℝ), 1), Fin.elim0) ≠
       orderedQ 1 0 (fun _ => ((0 : ℝ), 2), Fin.elim0) := by
@@ -108,7 +122,9 @@ private def onePair (t : ℝ) : DiagramCoordinates 1 0 :=
   (fun _ => (0, t), Fin.elim0)
 
 /-- For one finite pair, the signed loss has birth weight `-1` and death
-weight `+1`, even if the pair is reversed or diagonal.-/
+weight `+1`, even if the pair is reversed or diagonal.
+@isnad1 id=eq.0h1v.s9.c0fdb1e14dd3 from=translated src=- shape=01c08262 vocab=dc89165f
+-/
 theorem signedFiniteEndpointDifference_onePair_fderiv (p : ℝ × ℝ) :
     fderiv ℝ
       (fun q : ℝ × ℝ => signedFiniteEndpointDifference
@@ -130,7 +146,9 @@ private theorem onePair_zero_is_empty :
   simp [orderedQ, onePair]
 
 /-- The absolute loss fails the all-presentations condition at the empty
-diagram.  The one-pair diagonal presentation exposes `|t|`.-/
+diagram.  The one-pair diagonal presentation exposes `|t|`.
+@isnad1 id=not.0h0v.s5.2bb56aef9d9f from=translated src=- shape=39815281 vocab=5ed40081
+-/
 theorem absoluteFiniteEndpointDifference_not_c1_empty :
     ¬ C1ThroughAllRepresentatives absoluteFiniteEndpointDifference
         (orderedQ 0 0 (Fin.elim0, Fin.elim0)) := by

@@ -28,6 +28,9 @@ def simpleFuncDiagram (μ : Measure Interior) [IsFiniteMeasure μ]
   FiniteWeightedDiagram.ofIndexed
     (fun q : T.range => (μ (T ⁻¹' {q.1})).toNNReal) (fun q => q.1)
 
+/--
+@isnad1 id=eq.0h1v.s7.2292ff097636 from=translated src=- shape=16a587cf vocab=820e8112
+-/
 @[simp] theorem simpleFuncDiagram_zero (T : Interior →ₛ Interior) :
     simpleFuncDiagram 0 T = 0 := by
   simp [simpleFuncDiagram, FiniteWeightedDiagram.ofIndexed]

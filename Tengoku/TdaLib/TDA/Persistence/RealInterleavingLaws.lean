@@ -31,7 +31,9 @@ def shiftLE {ε δ : ℝ≥0} (h : ε ≤ δ) (M : PModule.{u,0,w} R ℝ) :
     erw [← M.map_comp, ← M.map_comp]
     congr 1
 
-/-- Components of parameter enlargement are the translated structure maps.-/
+/-- Components of parameter enlargement are the translated structure maps.
+@isnad1 id=eq.1h5v.s8.9474ffcf9e11 from=translated src=- shape=0b672571 vocab=0f7a05f0
+-/
 @[simp] theorem shiftLE_app {ε δ : ℝ≥0} (h : ε ≤ δ)
     (M : PModule.{u,0,w} R ℝ) (t : ℝ) :
     (shiftLE h M).app t =
@@ -43,7 +45,9 @@ namespace RealInterleaving
 
 variable {ε δ σ : ℝ≥0} {M N P : PModule.{u,0,w} R ℝ}
 
-/-- The first interleaving equation before reparenthesizing the translated index.-/
+/-- The first interleaving equation before reparenthesizing the translated index.
+@isnad1 id=eq.0h6v.s8.4a6c89e942ee from=translated src=- shape=2897576a vocab=8fed6f12
+-/
 @[reassoc] theorem φ_ψ_structureMap (i : RealInterleaving ε M N) (t : ℝ) :
     i.φ.app t ≫ i.ψ.app (t + (ε : ℝ)) =
       structureMap M (show t ≤ (t + (ε : ℝ)) + (ε : ℝ) from

@@ -121,7 +121,9 @@ private theorem kernelMap_rank_formula (ι : L ⟶ M) (π : M ⟶ N)
 
 /-- In a finite dimensional short exact sequence, rank additivity at `a ≤ b` is equivalent
 to lifting every quotient element killed by `a → b` to a middle element killed by `a → b`.
-Only the source fibers need be finite dimensional.-/
+Only the source fibers need be finite dimensional.
+@isnad1 id=iff.2h9v.s12.555796ec3ed2 from=translated src=- shape=4270fe33 vocab=cbb636d3
+-/
 theorem IsPointwiseShortExact.rank_add_iff_lift_kernel
     {ι : L ⟶ M} {π : M ⟶ N} (hs : IsPointwiseShortExact ι π)
     {a b : P} (hab : a ≤ b)
@@ -158,7 +160,9 @@ theorem IsPointwiseShortExact.rank_add_iff_lift_kernel
       rw [hfull, finrank_top]
     omega
 
-/-- Rank exactness supplies lifts preserving the grade where an element dies.-/
+/-- Rank exactness supplies lifts preserving the grade where an element dies.
+@isnad1 id=ex.3h10v.s11.2a1cfbfe7b6e from=translated src=- shape=d24042c0 vocab=fd06d796
+-/
 theorem IsRankExact.lift_kernel {ι : L ⟶ M} {π : M ⟶ N} (hs : IsRankExact ι π)
     {a b : P} (hab : a ≤ b)
     (n : N.obj a) (hn : structureMapLinear N hab n = 0) :
@@ -166,7 +170,9 @@ theorem IsRankExact.lift_kernel {ι : L ⟶ M} {π : M ⟶ N} (hs : IsRankExact 
   letI := hs.finiteDimensional a
   exact (hs.toIsPointwiseShortExact.rank_add_iff_lift_kernel hab).mp (hs.rank_add hab) n hn
 
-/-- A natural section makes an ordinary short exact sequence rank exact.-/
+/-- A natural section makes an ordinary short exact sequence rank exact.
+@isnad1 id=isrankex.2h8v.s8.4cb52e360a79 from=translated src=- shape=cfec1e1e vocab=25b2941b
+-/
 theorem IsPointwiseShortExact.rankExact_of_section
     {ι : L ⟶ M} {π : M ⟶ N} (hs : IsPointwiseShortExact ι π)
     [∀ a, FiniteDimensional k (M.obj a)]
@@ -187,7 +193,9 @@ theorem IsPointwiseShortExact.rankExact_of_section
       rw [hn, map_zero] at he
       exact he.symm
 
-/-- Pointwise short exactness is preserved by restriction along any monotone map.-/
+/-- Pointwise short exactness is preserved by restriction along any monotone map.
+@isnad1 id=ispointw.1h9v.s7.c92b061ff3cc from=translated src=- shape=5754e99c vocab=1c312b49
+-/
 theorem IsPointwiseShortExact.reindex {Q : Type x} [Preorder Q]
     {ι : L ⟶ M} {π : M ⟶ N} (hs : IsPointwiseShortExact ι π) (f : Q →o P) :
     IsPointwiseShortExact (reindexNatTrans f ι) (reindexNatTrans f π) where
@@ -195,7 +203,9 @@ theorem IsPointwiseShortExact.reindex {Q : Type x} [Preorder Q]
   surjective q := hs.surjective (f q)
   range_eq_ker q := hs.range_eq_ker (f q)
 
-/-- Rank exactness is preserved by restriction; diagonal shifts are a special case.-/
+/-- Rank exactness is preserved by restriction; diagonal shifts are a special case.
+@isnad1 id=isrankex.1h9v.s7.0367dc2c9dd6 from=translated src=- shape=5754e99c vocab=85fad964
+-/
 theorem IsRankExact.reindex {Q : Type x} [Preorder Q]
     {ι : L ⟶ M} {π : M ⟶ N} (hs : IsRankExact ι π) (f : Q →o P) :
     IsRankExact (reindexNatTrans f ι) (reindexNatTrans f π) where

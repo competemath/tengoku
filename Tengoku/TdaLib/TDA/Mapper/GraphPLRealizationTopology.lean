@@ -49,11 +49,15 @@ noncomputable def barycentric : C(Realization G, V → ℝ) := by
       ext v
       simp [Pi.single_apply])
 
-/-- Barycentric coordinates on a vertex.-/
+/-- Barycentric coordinates on a vertex.
+@isnad1 id=eq.0h3v.s6.50092076c2d5 from=translated src=- shape=edb4eab2 vocab=40484141
+-/
 theorem barycentric_vertex (v : V) : barycentric G (vertex G v) = Pi.single v 1 := by
   rfl
 
-/-- Barycentric coordinates on an edge point.-/
+/-- Barycentric coordinates on an edge point.
+@isnad1 id=eq.0h4v.s7.c2c270fb2280 from=translated src=- shape=9a15a0c2 vocab=3af03f59
+-/
 theorem barycentric_edgePoint (d : G.Dart) (t : unitInterval) :
     barycentric G (edgePoint G d t) =
       (1 - (t : ℝ)) • Pi.single d.fst 1 + (t : ℝ) • Pi.single d.snd 1 := by
@@ -173,7 +177,9 @@ private theorem barycentric_edge_eq_edgePoint {d d' : G.Dart} {t t' : unitInterv
     rw [unitInterval.coe_symm_eq]
     exact heq
 
-/-- The barycentric map is injective.-/
+/-- The barycentric map is injective.
+@isnad1 id=injectiv.0h2v.s6.271e7d3ed8f8 from=translated src=- shape=97236e03 vocab=de5d6c92
+-/
 theorem barycentric_injective : Function.Injective (barycentric G) := by
   classical
   intro x
@@ -244,11 +250,15 @@ theorem barycentric_injective : Function.Injective (barycentric G) := by
               · rw [hd, ht]
               · rw [hd, ht, edgePoint_symm]
 
-/-- The realization is Hausdorff.-/
+/-- The realization is Hausdorff.
+@isnad1 id=t2space.0h2v.s3.8d124a4b0da4 from=translated src=- shape=99ed974b vocab=be64dff6
+-/
 theorem t2Space_realization : T2Space (Realization G) :=
   T2Space.of_injective_continuous (barycentric_injective G) (barycentric G).continuous
 
-/-- An edge point is a vertex exactly at one of its endpoints.-/
+/-- An edge point is a vertex exactly at one of its endpoints.
+@isnad1 id=iff.0h5v.s6.cebcb6d4e956 from=translated src=- shape=9776e28e vocab=94b77565
+-/
 theorem edgePoint_eq_vertex_iff {d : G.Dart} {t : unitInterval} {v : V} :
     edgePoint G d t = vertex G v ↔ (t = 0 ∧ d.fst = v) ∨ (t = 1 ∧ d.snd = v) := by
   constructor
@@ -258,7 +268,9 @@ theorem edgePoint_eq_vertex_iff {d : G.Dart} {t : unitInterval} {v : V} :
     · exact edgePoint_zero G d
     · exact edgePoint_one G d
 
-/-- Interior points on graph edges are identified only by reversal.-/
+/-- Interior points on graph edges are identified only by reversal.
+@isnad1 id=iff.2h6v.s6.bfe86471f8c4 from=translated src=- shape=bcc15b41 vocab=a1ddbcc4
+-/
 theorem edgePoint_eq_edgePoint_iff {d d' : G.Dart} {t t' : unitInterval}
     (ht₀ : t ≠ 0) (ht₁ : t ≠ 1) :
     edgePoint G d t = edgePoint G d' t' ↔
@@ -300,7 +312,9 @@ private theorem locallyPathConnectedSpace_unitInterval :
     have := hW.preimage_coe (U := Icc (0 : ℝ) 1) inter_subset_left
     rwa [Subtype.preimage_coe_self_inter] at this
 
-/-- The graph realization is locally path-connected.-/
+/-- The graph realization is locally path-connected.
+@isnad1 id=locallyp.0h2v.s3.6bface1dd62e from=translated src=- shape=99ed974b vocab=7054e2f1
+-/
 theorem locallyPathConnectedSpace_realization :
     LocallyPathConnectedSpace (Realization G) := by
   let _ : TopologicalSpace V := ⊥
@@ -312,7 +326,9 @@ theorem locallyPathConnectedSpace_realization :
   change LocallyPathConnectedSpace (Quot (CellRel G))
   infer_instance
 
-/-- A graph embedding induces an injective map on realizations.-/
+/-- A graph embedding induces an injective map on realizations.
+@isnad1 id=injectiv.0h5v.s6.6851ceefbdb7 from=translated src=- shape=c5e41aed vocab=bb9a1982
+-/
 theorem realizationMap_injective {W : Type v} {H : SimpleGraph W} (φ : G ↪g H) :
     Function.Injective (realizationMap φ.toHom) := by
   classical
@@ -411,7 +427,9 @@ section compact
 
 variable {V : Type u} [Finite V] (G : SimpleGraph V)
 
-/-- The graph realization is compact when its vertex type is finite.-/
+/-- The graph realization is compact when its vertex type is finite.
+@isnad1 id=compacts.0h2v.s3.d73bddc5cf6a from=translated src=- shape=1fcfa16f vocab=7bacf7a8
+-/
 theorem compactSpace_realization : CompactSpace (Realization G) := by
   classical
   let _ : TopologicalSpace V := ⊥
