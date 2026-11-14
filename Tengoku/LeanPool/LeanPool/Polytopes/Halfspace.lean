@@ -12,12 +12,12 @@ Halfspaces in inner product spaces and their basic geometric operations.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Pointwise
 
 /-- A halfspace of `E`. For convenience it is described by a continuous linear functional of
 norm `1` together with a real number bound. -/
-structure Halfspace (E : Type) [NormedAddCommGroup E] [InnerProductSpace ℝ E] where
+structure _root_.Tengoku.LeanPool.Halfspace (E : Type) [NormedAddCommGroup E] [InnerProductSpace ℝ E] where
   /-- The bounding functional, of norm `1`. -/
   f : {f : (StrongDual ℝ E) // norm f = 1}
   /-- The real bound defining the halfspace. -/
@@ -25,14 +25,14 @@ structure Halfspace (E : Type) [NormedAddCommGroup E] [InnerProductSpace ℝ E] 
 
 variable {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 
-noncomputable instance NegUnitSphereDual :
+noncomputable instance _root_.Tengoku.LeanPool.NegUnitSphereDual :
   Neg {f : (StrongDual ℝ E) // norm f = 1} :=
   ⟨fun f => ⟨-f.1, by simp [f.2]⟩⟩
 
 /--
 @isnad1 id=eq.0h2v.s9.9659c580821e from=translated src=- shape=13c19dc4 vocab=e3973173
 -/
-lemma unitSphereDual_neg :
+lemma _root_.Tengoku.LeanPool.unitSphereDual_neg :
   ∀ f : {f : (StrongDual ℝ E) // norm f = 1}, (-f).1 = -f.1 := fun f => by
   change (⟨-f.1, _ ⟩: {f : (StrongDual ℝ E) // norm f = 1}).1 = -f.1
   simp
@@ -40,7 +40,7 @@ lemma unitSphereDual_neg :
 /--
 @isnad1 id=surjecti.0h2v.s8.063286400b18 from=translated src=- shape=d6679a0e vocab=be4ad4db
 -/
-lemma unitSphereDual_surj : ∀ f : {f : (StrongDual ℝ E) // norm f = 1},
+lemma _root_.Tengoku.LeanPool.unitSphereDual_surj : ∀ f : {f : (StrongDual ℝ E) // norm f = 1},
   Function.Surjective f.val := by
   intro f
   apply LinearMap.surjective_of_ne_zero
@@ -50,11 +50,11 @@ lemma unitSphereDual_surj : ∀ f : {f : (StrongDual ℝ E) // norm f = 1},
   simp only [norm_zero, zero_ne_one] at this
 
 /-- The underlying set of points of a halfspace `H_`. -/
-def Halfspace.S (H_ : Halfspace E) : Set E := H_.f.1 ⁻¹' {x | x ≤ H_.α}
+def Tengoku.LeanPool.Halfspace.S (H_ : Halfspace E) : Set E := H_.f.1 ⁻¹' {x | x ≤ H_.α}
 
 variable [CompleteSpace E]
 
-instance Halfspace.SetLike : SetLike (Halfspace E) E where
+instance Tengoku.LeanPool.Halfspace.SetLike : SetLike (Halfspace E) E where
   coe := Halfspace.S
   coe_injective := by
     intro H1 H2 h
@@ -142,12 +142,12 @@ instance Halfspace.SetLike : SetLike (Halfspace E) E where
 /-- The coercion of a halfspace to a set equals the sublevel preimage of its functional.
 @isnad1 id=eq.0h2v.s8.ef90726f4c54 from=translated src=- shape=a8c69d29 vocab=94970eed
 -/
-lemma Halfspace.h (H_ : Halfspace E) : ↑H_ = H_.f.1 ⁻¹' {x | x ≤ H_.α} := rfl
+lemma Tengoku.LeanPool.Halfspace.h (H_ : Halfspace E) : ↑H_ = H_.f.1 ⁻¹' {x | x ≤ H_.α} := rfl
 
 /--
 @isnad1 id=iff.0h3v.s8.f0a00f0d1d67 from=translated src=- shape=ab8e61f9 vocab=413535b0
 -/
-lemma Halfspace_mem (H_ : Halfspace E) : ∀ x, x ∈ (SetLike.coe H_) ↔ H_.f.1 x ≤ H_.α := by
+lemma _root_.Tengoku.LeanPool.Halfspace_mem (H_ : Halfspace E) : ∀ x, x ∈ (SetLike.coe H_) ↔ H_.f.1 x ≤ H_.α := by
   intro x
   rw [H_.h]
   rfl
@@ -155,21 +155,21 @@ lemma Halfspace_mem (H_ : Halfspace E) : ∀ x, x ∈ (SetLike.coe H_) ↔ H_.f.
 /--
 @isnad1 id=convex.0h2v.s6.32ea2d0b0b14 from=translated src=- shape=f4edf071 vocab=86d953c7
 -/
-lemma Halfspace_convex (H_ : Halfspace E) : Convex ℝ (SetLike.coe H_) := by
+lemma _root_.Tengoku.LeanPool.Halfspace_convex (H_ : Halfspace E) : Convex ℝ (SetLike.coe H_) := by
   rw [H_.h]
   exact convex_halfSpace_le (LinearMap.isLinear H_.f.1.1) H_.α
 
 /--
 @isnad1 id=isclosed.0h2v.s5.5f0e0217f120 from=translated src=- shape=af602e8b vocab=03aeb413
 -/
-lemma Halfspace_closed (H_ : Halfspace E) : IsClosed (SetLike.coe H_) := by
+lemma _root_.Tengoku.LeanPool.Halfspace_closed (H_ : Halfspace E) : IsClosed (SetLike.coe H_) := by
   rw [H_.h]
   exact IsClosed.preimage (H_.f.1.cont) isClosed_Iic
 
 /--
 @isnad1 id=eq.0h2v.s9.9c9c187f8c21 from=translated src=- shape=0c5ac7e8 vocab=ba60496e
 -/
-lemma Halfspace_span (H_ : Halfspace E) : affineSpan ℝ (SetLike.coe H_) = ⊤ := by
+lemma _root_.Tengoku.LeanPool.Halfspace_span (H_ : Halfspace E) : affineSpan ℝ (SetLike.coe H_) = ⊤ := by
   -- affine span of a ball(simplex, in general) is entire
   apply affineSpan_eq_top_of_nonempty_interior
   apply Set.Nonempty.mono
@@ -189,13 +189,13 @@ lemma Halfspace_span (H_ : Halfspace E) : affineSpan ℝ (SetLike.coe H_) = ⊤ 
   linarith
 
 /-- The halfspace `H_` translated by the vector `x`. -/
-noncomputable def halfspaceTranslation (x : E) (H_ : Halfspace E) : Halfspace E :=
+noncomputable def _root_.Tengoku.LeanPool.halfspaceTranslation (x : E) (H_ : Halfspace E) : Halfspace E :=
   Halfspace.mk H_.f (H_.α + (H_.f.1 x))
 
 /--
 @isnad1 id=eq.0h3v.s6.bea1a99d815b from=translated src=- shape=904e9a85 vocab=1687bc22
 -/
-lemma halfspaceTranslation.S (x : E) (H_ : Halfspace E) :
+lemma Tengoku.LeanPool.halfspaceTranslation.S (x : E) (H_ : Halfspace E) :
   ↑(halfspaceTranslation x H_) = (· + x) '' ↑H_ := by
   ext y
   rw [halfspaceTranslation, Halfspace_mem, Set.image_add_right, Set.mem_preimage, ← sub_eq_add_neg,
@@ -204,7 +204,7 @@ lemma halfspaceTranslation.S (x : E) (H_ : Halfspace E) :
 /--
 @isnad1 id=iff.0h4v.s6.716db9814f6d from=translated src=- shape=4f3ec5bd vocab=434d08e8
 -/
-lemma mem_halfspaceTranslation (x : E) (H_ : Halfspace E) :
+lemma _root_.Tengoku.LeanPool.mem_halfspaceTranslation (x : E) (H_ : Halfspace E) :
   ∀ y, y ∈ (SetLike.coe <| halfspaceTranslation x H_) ↔ y - x ∈ SetLike.coe H_ := by
   intro y
   rw [halfspaceTranslation.S, Set.image_add_right, Set.mem_preimage, sub_eq_add_neg]
@@ -212,7 +212,7 @@ lemma mem_halfspaceTranslation (x : E) (H_ : Halfspace E) :
 /--
 @isnad1 id=injectiv.0h2v.s5.4e5d527a06bc from=translated src=- shape=9a4213c4 vocab=0ee9859a
 -/
-lemma halfspaceTranslation.injective (x : E) :
+lemma Tengoku.LeanPool.halfspaceTranslation.injective (x : E) :
   Function.Injective (halfspaceTranslation x · : Halfspace E → Halfspace E ) := by
   intro H1 H2 h
   rw [SetLike.ext_iff]
@@ -225,7 +225,7 @@ lemma halfspaceTranslation.injective (x : E) :
 /--
 @isnad1 id=eq.0h2v.s8.0e83de6a2514 from=translated src=- shape=a54a42b6 vocab=f1cbf6f2
 -/
-lemma frontierHalfspace_Hyperplane {Hi_ : Halfspace E} :
+lemma _root_.Tengoku.LeanPool.frontierHalfspace_Hyperplane {Hi_ : Halfspace E} :
   frontier Hi_ = {x : E | Hi_.f.1 x = Hi_.α } := by
   have := ContinuousLinearMap.frontier_preimage Hi_.f.1 (unitSphereDual_surj Hi_.f) (Set.Iic Hi_.α)
   simp only [Set.nonempty_Ioi, frontier_Iic'] at this
@@ -238,7 +238,7 @@ omit [CompleteSpace E] in
 /--
 @isnad1 id=convex.0h2v.s8.dc871a65f708 from=translated src=- shape=e90437bd vocab=b1129639
 -/
-lemma Hyperplane_convex (Hi_ : Halfspace E) :
+lemma _root_.Tengoku.LeanPool.Hyperplane_convex (Hi_ : Halfspace E) :
   Convex ℝ {x : E | Hi_.f.1 x = Hi_.α } :=
   convex_hyperplane (LinearMap.isLinear Hi_.f.1.1) Hi_.α
 
@@ -246,7 +246,7 @@ omit [CompleteSpace E] in
 /--
 @isnad1 id=mem.2h5v.s9.385a7fd8400f from=translated src=- shape=81aa3f2c vocab=5efb7bd4
 -/
-lemma Hyperplane_affineClosed (Hi_ : Halfspace E) :
+lemma _root_.Tengoku.LeanPool.Hyperplane_affineClosed (Hi_ : Halfspace E) :
   ∀ s : Fin n → E, Set.range s ⊆ {x : E | Hi_.f.1 x = Hi_.α }
     → ∀ a : Fin n → ℝ, Finset.univ.sum a = 1 →
     Finset.affineCombination ℝ Finset.univ s a ∈ {x : E | Hi_.f.1 x = Hi_.α } := by
@@ -262,7 +262,7 @@ omit [CompleteSpace E] in
 /--
 @isnad1 id=ex.0h3v.s13.0ca79eb542b1 from=translated src=- shape=01b3705c vocab=d0b31444
 -/
-lemma Halfspace.val_raw (p : Subspace ℝ E) (H_' : Halfspace p) :
+lemma Tengoku.LeanPool.Halfspace.val_raw (p : Subspace ℝ E) (H_' : Halfspace p) :
   ∃ H_ : Halfspace E, ((∀ (x : { x // x ∈ p }), H_.f.1 x = H_'.f.1 x) ∧ ‖H_.f.1‖ = ‖H_'.f.1‖) ∧
     H_.α = H_'.α := by
   rcases H_' with ⟨ ⟨ f, hf ⟩, C ⟩
@@ -270,7 +270,7 @@ lemma Halfspace.val_raw (p : Subspace ℝ E) (H_' : Halfspace p) :
   exact ⟨ ⟨ ⟨ g, hg.2 ▸ hf ⟩, C ⟩, hg, rfl ⟩
 
 /-- A halfspace of the subspace `p` extended to a halfspace of the whole space `E`. -/
-noncomputable def Halfspace.val (p : Subspace ℝ E) (H_' : Halfspace p) :
+noncomputable def Tengoku.LeanPool.Halfspace.val (p : Subspace ℝ E) (H_' : Halfspace p) :
   Halfspace E := by
   choose H_ _ using (Halfspace.val_raw p H_')
   exact H_
@@ -279,7 +279,7 @@ omit [CompleteSpace E] in
 /--
 @isnad1 id=eq.0h4v.s12.e348e3916828 from=translated src=- shape=4b4ab936 vocab=e6e50b02
 -/
-lemma Halfspace.val_f (p : Subspace ℝ E) (H_' : Halfspace p) :
+lemma Tengoku.LeanPool.Halfspace.val_f (p : Subspace ℝ E) (H_' : Halfspace p) :
   ∀ (x : { x // x ∈ p }), (Halfspace.val p H_').f.1 x = H_'.f.1 x := by
   unfold val
   exact (Classical.choose_spec (Halfspace.val_raw p H_')).1.1
@@ -288,7 +288,7 @@ omit [CompleteSpace E] in
 /--
 @isnad1 id=eq.0h3v.s8.78d2aaf763fe from=translated src=- shape=c4574f74 vocab=acfdf3b1
 -/
-lemma Halfspace.val_C (p : Subspace ℝ E) (H_' : Halfspace p) :
+lemma Tengoku.LeanPool.Halfspace.val_C (p : Subspace ℝ E) (H_' : Halfspace p) :
   (Halfspace.val p H_').α = H_'.α := by
   unfold val
   exact (Classical.choose_spec (Halfspace.val_raw p H_')).2
@@ -296,7 +296,7 @@ lemma Halfspace.val_C (p : Subspace ℝ E) (H_' : Halfspace p) :
 /--
 @isnad1 id=eq.0h3v.s9.52eead62135f from=translated src=- shape=f45d38c1 vocab=6027719c
 -/
-lemma Halfspace.val_eq (p : Subspace ℝ E) [CompleteSpace p] (H_' : Halfspace p) :
+lemma Tengoku.LeanPool.Halfspace.val_eq (p : Subspace ℝ E) [CompleteSpace p] (H_' : Halfspace p) :
   (Halfspace.val p H_' : Set E) ∩ ↑p = (Subtype.val '' (H_' : Set p)) := by
   have := Halfspace.val_f p H_'
   apply subset_antisymm <;> intro x <;> rw [Set.mem_inter_iff, Set.mem_image]
@@ -311,7 +311,7 @@ lemma Halfspace.val_eq (p : Subspace ℝ E) [CompleteSpace p] (H_' : Halfspace p
 /--
 @isnad1 id=eq.0h3v.s10.a679ec89603a from=translated src=- shape=1471a3db vocab=6027719c
 -/
-lemma Halfspace.val_eq' (p : Subspace ℝ E) [CompleteSpace p] : ∀ (H_' : Halfspace p),
+lemma Tengoku.LeanPool.Halfspace.val_eq' (p : Subspace ℝ E) [CompleteSpace p] : ∀ (H_' : Halfspace p),
   (fun H_ => (Halfspace.val p H_ : Set E) ∩ ↑p) H_' =
     (fun H_ => (@Subtype.val E fun x => x ∈ p) '' (H_ : Set p)) (SetLike.coe H_') := by
   intro H_'
@@ -324,3 +324,4 @@ lemma Halfspace.val_eq' (p : Subspace ℝ E) [CompleteSpace p] : ∀ (H_' : Half
     refine ⟨ ?_, hx'p ⟩
     rw [Halfspace_mem, ← (this ⟨ x', hx'p ⟩), ← Halfspace.val_C p H_'] at hx'H_'
     exact hx'H_'
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

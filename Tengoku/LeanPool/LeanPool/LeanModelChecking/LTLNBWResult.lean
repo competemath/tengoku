@@ -22,7 +22,7 @@ breakpoint construction squares that state space to pairs of subsets.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanModelChecking
 
 /--
@@ -40,3 +40,4 @@ theorem for_any_LTL_formula_exists_an_equivalent_NBW :
   · rw [lang_eq, ABW.toNBW.lang_eq]
 
 end LeanModelChecking
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

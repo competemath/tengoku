@@ -30,7 +30,7 @@ infinitary formulas are transported between carriers (`Infinitary/Reindex.lean`)
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe uι uκ uμ uν
 
 namespace FirstOrder
@@ -127,3 +127,4 @@ theorem pad_of_decode_some {β : Sort*} (c : IndexCoding ι κ) {default : β} {
 end IndexCoding
 
 end FirstOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

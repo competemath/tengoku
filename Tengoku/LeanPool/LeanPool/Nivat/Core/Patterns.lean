@@ -49,7 +49,7 @@ the counting step used in Lemma 5.5 (`lem:boundary-window`).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Nivat
 
 /-- The window `Rₘ,ₙ = {0, …, m-1} × {0, …, n-1}` from Section 1. -/
@@ -244,3 +244,4 @@ theorem complexity_translate_window {A : Type*} (c : Configuration A)
     simp [patternAt, sub_eq_add_neg, add_assoc, add_comm, add_left_comm]
 
 end Nivat
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

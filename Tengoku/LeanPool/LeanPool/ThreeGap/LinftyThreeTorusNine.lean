@@ -37,7 +37,7 @@ coordinates; everything is exact modular arithmetic — no square roots.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace ThreeGap.LinftyRecords3
 
 open scoped Real
@@ -1446,3 +1446,4 @@ theorem nine_attained : ∃ α : Fin 3 → ℝ, (∃ k, Irrational (α k)) ∧
       (H6_aprt s hs_pos.le hsmall) (H7_aprt s hs_pos.le hsmall) (H8_aprt s hs_pos.le hsmall)⟩
 
 end ThreeGap.LinftyRecords3
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

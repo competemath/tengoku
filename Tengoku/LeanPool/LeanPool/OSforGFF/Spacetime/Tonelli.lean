@@ -27,7 +27,7 @@ depends only on the time coordinates.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory MeasureSpace FiniteDimensional Real
 
 /-! ### Auxiliary Lemmas -/
@@ -36,7 +36,7 @@ open MeasureTheory MeasureSpace FiniteDimensional Real
     This follows from: ‖x‖² = t² + ‖v‖² ≥ ‖v‖².
 @isnad1 id=le.0h2v.s9.c3c658ea3b68 from=translated src=- shape=e80f9c32 vocab=11fb79b0
 -/
-lemma spacetimeDecomp_symm_norm_ge (t : ℝ) (v : SpatialCoords) :
+lemma _root_.Tengoku.LeanPool.spacetimeDecomp_symm_norm_ge (t : ℝ) (v : SpatialCoords) :
     ‖spacetimeDecomp.symm (t, v)‖ ≥ ‖v‖ := by
   have h_spatial : spatialPart (spacetimeDecomp.symm (t, v)) = v :=
     congr_arg Prod.snd (spacetimeDecomp.apply_symm_apply (t, v))
@@ -52,7 +52,7 @@ lemma spacetimeDecomp_symm_norm_ge (t : ℝ) (v : SpatialCoords) :
 /-- Slice integrability: for fixed t, the slice is integrable over SpatialCoords.
 @isnad1 id=integrab.0h2v.s10.06e6052bdb78 from=translated src=- shape=f4662da9 vocab=cdbbf344
 -/
-lemma schwartz_slice_integrable (f : SchwartzMap SpaceTime ℂ) (t : ℝ) :
+lemma _root_.Tengoku.LeanPool.schwartz_slice_integrable (f : SchwartzMap SpaceTime ℂ) (t : ℝ) :
     Integrable (fun v : SpatialCoords => ‖f (spacetimeDecomp.symm (t, v))‖) volume := by
   have hST_dim : Module.finrank ℝ SpaceTime < 5 := by
     simp only [SpaceTime, finrank_euclideanSpace, Fintype.card_fin]; norm_num
@@ -92,7 +92,7 @@ lemma schwartz_slice_integrable (f : SchwartzMap SpaceTime ℂ) (t : ℝ) :
 /-- Schwartz composed with spacetimeDecomp.symm is integrable on the product.
 @isnad1 id=integrab.0h1v.s10.532e3ec6084b from=translated src=- shape=53fa73de vocab=02955e81
 -/
-lemma schwartz_integrable_on_prod' (f : SchwartzMap SpaceTime ℂ) :
+lemma _root_.Tengoku.LeanPool.schwartz_integrable_on_prod' (f : SchwartzMap SpaceTime ℂ) :
     Integrable (fun p : ℝ × SpatialCoords => ‖f (spacetimeDecomp.symm p)‖) := by
   have h_mp : MeasurePreserving spacetimeDecomp (volume : Measure SpaceTime) volume :=
     spacetimeDecomp_measurePreserving
@@ -116,7 +116,7 @@ where G_f(t) = ∫ ‖f(t, v)‖ dv is the spatial integral at time t.
 This is a key tool for establishing reflection positivity (OS3) bounds.
 @isnad1 id=other.3h3v.s11.429bf0589752 from=translated src=- shape=cdb1ab66 vocab=89549ff0
 -/
-theorem schwartz_tonelli_spacetime
+theorem _root_.Tengoku.LeanPool.schwartz_tonelli_spacetime
     (f g : SchwartzMap SpaceTime ℂ)
     (K : ℝ → ℝ → ℝ)
     (hK_nn : ∀ t₁ t₂, 0 ≤ K t₁ t₂)
@@ -318,3 +318,4 @@ theorem schwartz_tonelli_spacetime
         simp only [a, G_f]
     _ = K t₁ t₂ * G_f t₁ * G_g t₂ := by
         ring
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

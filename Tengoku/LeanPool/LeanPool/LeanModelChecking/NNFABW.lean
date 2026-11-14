@@ -17,7 +17,7 @@ automaton (`ABW`) accepting the same language, establishing `exists_ABW_lang_for
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanModelChecking
 
 /-- The subtype `{ x // x ≤ v }` of elements bounded above by `v`. -/
@@ -1846,3 +1846,4 @@ theorem exists_ABW_lang_for_LTL {AP} (f : LTL AP) :
   rw [eqv, NNF.toABW_lang]
 
 end LeanModelChecking
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

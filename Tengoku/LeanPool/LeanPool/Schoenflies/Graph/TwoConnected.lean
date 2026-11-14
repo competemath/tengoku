@@ -102,7 +102,7 @@ subgraphs of the union.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set
 
 variable {α β : Type*} {G H K G₁ G₂ : Graph α β} {a b s t u v w x y z : α} {e f : β}
@@ -442,3 +442,4 @@ theorem IsTwoConnected.union (hcompat : G.Compatible H) (hG : G.IsTwoConnected)
     simp [union_sdiff_distrib]
 
 end Graph
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -42,7 +42,7 @@ All maps and elements are choice-free; the equalities use only the order on `|ù
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem ApproximableMap
@@ -193,3 +193,4 @@ theorem fixElement_iterTwice (f : ApproximableMap V V) :
 end ApproximableMap
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

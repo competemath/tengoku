@@ -44,7 +44,7 @@ The development is `sorry`-free and uses only the standard axioms
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Contrib.MaxFlowMinCut
 
 /-! ## Duplicate-free chains from reflexive-transitive-closure paths -/
@@ -737,3 +737,4 @@ theorem maxflow_eq_mincut (Net : Network N) :
 end Network
 
 end Contrib.MaxFlowMinCut
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

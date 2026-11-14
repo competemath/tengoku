@@ -33,7 +33,7 @@ one cycle at a time, and any later argument that has to see a subdivided closed 
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set
 open scoped Graph
 
@@ -115,3 +115,4 @@ theorem isTwoConnected_of_two_paths (hPK : P ≤ K) (hQK : Q ≤ K) (hV : V(K) �
     · exact (hr.trans hvu).symm
 
 end Graph
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

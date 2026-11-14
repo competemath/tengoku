@@ -20,7 +20,7 @@ what lets the process stay inside `symmetricSubspace`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace ZetaZeros
 
 open MeasureTheory
@@ -53,3 +53,4 @@ theorem integral_comp_neg_Ioo {E : Type*} [NormedAddCommGroup E] [NormedSpace ‚Ñ
     (MeasurableEquiv.neg ‚Ñù).measurableEmbedding g
 
 end ZetaZeros
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

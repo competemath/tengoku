@@ -28,7 +28,7 @@ in `Descriptive/LopezEscobar.lean`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder
 
 namespace Language
@@ -77,3 +77,4 @@ theorem lopezEscobar_easy (φ : L.Sentenceω) :
 end Language
 
 end FirstOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -25,11 +25,11 @@ This file contains the proof of the pumping lemma for context-free grammars
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /--
 @isnad1 id=le.1h5v.s6.55d1777288bf from=translated src=- shape=c0e7834d vocab=5ff558c3
 -/
-theorem pidgeonhole {α β : Type*} {A : Finset α} {B : Finset β} {f : A → B}
+theorem _root_.Tengoku.LeanPool.pidgeonhole {α β : Type*} {A : Finset α} {B : Finset β} {f : A → B}
     (hf : f.Injective) : A.card ≤ B.card := by
   if emptiness : A = ∅ then
     simp_all
@@ -54,7 +54,7 @@ universe uT uN
 
 variable {T : Type uT}
 
-namespace ChomskyNormalFormGrammar
+namespace Tengoku.LeanPool.ChomskyNormalFormGrammar
 
 /-- `generators g` is the set of nonterminals that appear in the left hand side of rules of `g` -/
 noncomputable def generators (g : ChomskyNormalFormGrammar T) [DecidableEq g.NT] :
@@ -365,7 +365,7 @@ lemma pumping {w : List T} (hwg : w ∈ g.language) (hw : w.length ≥ 2 ^ g.gen
     apply ((Derives.append_left p₂.yield_derives _).append_right _).trans
     simpa [nTimes] using Derives.refl _
 
-end ChomskyNormalFormGrammar
+end Tengoku.LeanPool.ChomskyNormalFormGrammar
 
 variable {T : Type}
 
@@ -386,3 +386,4 @@ theorem Language.IsContextFree.pumping {L : Language T} (hL : L.IsContextFree) :
   · simp [hw] at hw2
   · obtain ⟨u, v, x, y, z, hw, hvy, hvxy, hL⟩ := g.toCNF.pumping (g.toCNF_correct ▸ ⟨hwg, hw⟩) hw2
     exact ⟨u, v, x, y, z, hw, hvy, hvxy, fun i => Set.sdiff_subset (g.toCNF_correct ▸ hL i)⟩
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

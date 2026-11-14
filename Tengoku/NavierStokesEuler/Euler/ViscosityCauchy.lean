@@ -1,5 +1,5 @@
 import Tengoku.NavierStokesEuler.Euler.CorrectionViscosityStability
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace EulerViscosityCauchy
 end EulerViscosityCauchy
 namespace MeasureTheory
@@ -98,3 +98,4 @@ theorem correction_family_cauchy {q : ℕ} (hq : 6 ≤ q) (T : ℝ) (hT : 0 ≤ 
     (u m) (u n) R (huR m) (huR n) (hu m) (hu n) hz (hud m) (hud n)
 
 end EulerViscosityCauchy
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

@@ -43,7 +43,7 @@ short exact sequence
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 section group_section
 
 namespace MonoidHom
@@ -291,7 +291,7 @@ variable {ιU : Type u} {ιW : Type u} (basU : Basis ιU 𝕜 U) (basW : Basis �
 decomposition.
 @isnad1 id=isintern.3h7v.s8.2feb07d7c3b6 from=translated src=- shape=84b7fddc vocab=5adf2e44
 -/
-lemma ses_directSum_isInternal (hf : ker f = ⊥) (hfg : range f = ker g) (hgσ : g ∘ₗ σ = 1) :
+lemma _root_.Tengoku.LeanPool.ses_directSum_isInternal (hf : ker f = ⊥) (hfg : range f = ker g) (hgσ : g ∘ₗ σ = 1) :
     DirectSum.IsInternal (fun (j : Bool) ↦ if j then range f else range σ) := by
   rw [DirectSum.isInternal_submodule_iff_iSupIndep_and_iSup_eq_top]
   constructor
@@ -326,7 +326,7 @@ lemma ses_directSum_isInternal (hf : ker f = ⊥) (hfg : range f = ker g) (hgσ 
 /-- From a short exact sequence of modules, a section of it, we can construct a basis of
 the middle module from bases of the two other modules.
 (See `sesBasis` for a more conveniently indexed basis.) -/
-noncomputable def sesBasis' (hf : ker f = ⊥) (hfg : range f = ker g) (hgσ : g ∘ₗ σ = 1) :
+noncomputable def _root_.Tengoku.LeanPool.sesBasis' (hf : ker f = ⊥) (hfg : range f = ker g) (hgσ : g ∘ₗ σ = 1) :
     Basis ((j' : Bool) × (fun j ↦ if j then ιU else ιW) j') 𝕜 V := by
   apply (ses_directSum_isInternal hf hfg hgσ).collectedBasis
   let f_iso : U ≃ₗ[𝕜] range f :=
@@ -347,7 +347,7 @@ noncomputable def sesBasis' (hf : ker f = ⊥) (hfg : range f = ker g) (hgσ : g
 
 /-- From a short exact sequence of modules, a section of it, we can construct a basis of
 the middle module from bases of the two other modules. -/
-noncomputable def sesBasis (hf : ker f = ⊥) (hfg : range f = ker g) (hgσ : g ∘ₗ σ = 1) :
+noncomputable def _root_.Tengoku.LeanPool.sesBasis (hf : ker f = ⊥) (hfg : range f = ker g) (hgσ : g ∘ₗ σ = 1) :
     Basis (ιU ⊕ ιW) 𝕜 V := by
   let auxBasis := sesBasis' basU basW hf hfg hgσ
   let β : ιU ⊕ ιW ≃ ((j' : Bool) × (fun j ↦ if j then ιU else ιW) j') := {
@@ -370,7 +370,7 @@ noncomputable def sesBasis (hf : ker f = ⊥) (hfg : range f = ker g) (hgσ : g 
 /--
 @isnad1 id=eq.3h12v.s9.c8b9a629ac81 from=translated src=- shape=3b1be64f vocab=d17e6377
 -/
-@[simp] lemma ses_basis_eq_of_left (hf : ker f = ⊥) (hfg : range f = ker g) (hgσ : g ∘ₗ σ = 1)
+@[simp] lemma _root_.Tengoku.LeanPool.ses_basis_eq_of_left (hf : ker f = ⊥) (hfg : range f = ker g) (hgσ : g ∘ₗ σ = 1)
     (iu : ιU) :
     sesBasis basU basW hf hfg hgσ (Sum.inl iu) = f (basU iu) := by
   simp only [sesBasis, sesBasis', ↓dreduceIte, eq_mpr_eq_cast, Bool.false_eq_true, id_eq,
@@ -381,7 +381,7 @@ noncomputable def sesBasis (hf : ker f = ⊥) (hfg : range f = ker g) (hgσ : g 
 /--
 @isnad1 id=eq.3h12v.s9.3449a0fb9dc4 from=translated src=- shape=822554b7 vocab=186a6665
 -/
-@[simp] lemma ses_basis_eq_of_right (hf : ker f = ⊥) (hfg : range f = ker g) (hgσ : g ∘ₗ σ = 1)
+@[simp] lemma _root_.Tengoku.LeanPool.ses_basis_eq_of_right (hf : ker f = ⊥) (hfg : range f = ker g) (hgσ : g ∘ₗ σ = 1)
     (iw : ιW) :
     sesBasis basU basW hf hfg hgσ (Sum.inr iw) = σ (basW iw) := by
   simp only [sesBasis, sesBasis', ↓dreduceIte, eq_mpr_eq_cast, Bool.false_eq_true, id_eq,
@@ -394,3 +394,4 @@ end basis
 open AddHom
 
 end module_section
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

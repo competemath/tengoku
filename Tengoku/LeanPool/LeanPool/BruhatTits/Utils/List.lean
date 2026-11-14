@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /--
 @isnad1 id=eq.0h14v.s6.af28f1ae375b from=translated src=- shape=7b2d25b9 vocab=b2a25a4b
 -/
@@ -28,3 +28,4 @@ theorem List.zipWith₃_map {α α' β β' γ γ' δ : Type*} (f : α' → β' �
   | (a :: as), (b :: bs), (c :: cs) =>
       exact congrArg (List.cons (f (fa a) (fb b) (fc c)))
         (List.zipWith₃_map f fa fb fc as bs cs)
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

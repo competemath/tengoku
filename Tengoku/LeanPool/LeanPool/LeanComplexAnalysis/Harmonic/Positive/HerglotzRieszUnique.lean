@@ -19,7 +19,7 @@ identical on the unit disc, then `μ₁` = `μ₂`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.LeanComplexAnalysis
 
 open MeasureTheory Metric Complex Topology
@@ -451,3 +451,4 @@ theorem HerglotzRiesz_representation_uniqueness
   exact Subtype.ext h
 
 end LeanPool.LeanComplexAnalysis
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

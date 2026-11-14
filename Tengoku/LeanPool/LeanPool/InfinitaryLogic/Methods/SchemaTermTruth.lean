@@ -25,7 +25,7 @@ tuple-shape hypothesis, so nothing about `σ` is used beyond interpreting the ar
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open Cardinal
@@ -1152,3 +1152,4 @@ theorem schemaSeq_pairwise_ne {i j : ℕ} (hij : i ≠ j) :
 end SeedFacts
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

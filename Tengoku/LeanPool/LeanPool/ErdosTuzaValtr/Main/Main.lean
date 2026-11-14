@@ -20,7 +20,7 @@ Imported Lean Pool material for `LeanPool.ErdosTuzaValtr.Main.Main`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 variable {γ : Type _} [LinearOrder γ] (C : Config γ)
@@ -30,7 +30,7 @@ open OrderDual
 /--
 @isnad1 id=maingoal.1h3v.s4.0f57113bfc76 from=translated src=- shape=818164f8 vocab=c6dd6d1d
 -/
-theorem Config.Mirror_mainGoal (n : ℕ) : C.MainGoal n → C.Mirror.MainGoal n :=
+theorem Tengoku.LeanPool.Config.Mirror_mainGoal (n : ℕ) : C.MainGoal n → C.Mirror.MainGoal n :=
   by
   intro h Sm hSm cap4_free cup_free
   have eq_S : Sm.ofMirror.Mirror = Sm := Finset.ofMirrorMirror
@@ -60,7 +60,7 @@ private theorem hasLaced_pair {S : Finset γ} {x y : γ} (x_mem : x ∈ S) (y_me
 /--
 @isnad1 id=maingoal.0h3v.s4.003bd7dbae20 from=translated src=- shape=c33140c6 vocab=72769446
 -/
-theorem Config.main_lemma (n : ℕ) : C.MainGoal n := by
+theorem Tengoku.LeanPool.Config.main_lemma (n : ℕ) : C.MainGoal n := by
   induction n with
   | zero =>
     intro S hS cap4_free cup_free
@@ -119,3 +119,4 @@ theorem main (n : ℕ) (C : Config γ) (S : Finset γ) (hS : Nat.choose (n + 2) 
   exact C.hasInterweavedLaced_hasNGon has_cap4 laced
 
 end ErdosTuzaValtr
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

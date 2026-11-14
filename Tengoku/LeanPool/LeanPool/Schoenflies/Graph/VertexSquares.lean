@@ -58,7 +58,7 @@ Bricks B2, B3 and B4 of `lem:polygonal-redrawing`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set unitInterval
 
 namespace Schoenflies
@@ -455,3 +455,4 @@ theorem IsDrawing.exists_core (h : IsDrawing G drawing) {e : β} {v w : Plane} {
     exact hqw (hmem ▸ heq)
 
 end Graph
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

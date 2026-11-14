@@ -26,7 +26,7 @@ and `hcard` is the union-bound counting condition implied by
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory ProbabilityTheory Real
 
 namespace JL
@@ -90,3 +90,4 @@ theorem johnson_lindenstrauss {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω
   exact hmem
 
 end JL
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

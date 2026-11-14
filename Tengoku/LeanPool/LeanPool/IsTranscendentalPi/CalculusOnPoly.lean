@@ -16,7 +16,7 @@ together with the calculus identities relating them for Niven's argument.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Polynomial
 open Complex
 
@@ -26,17 +26,17 @@ open scoped BigOperators
 noncomputable section
 
 /-- The integral `∫₀¹ x * exp(-(t * x)) * T(t * x) dt`. -/
-def intExpNegPoly (T : ℤ[X]) (x : ℂ) : ℂ :=
+def _root_.Tengoku.LeanPool.intExpNegPoly (T : ℤ[X]) (x : ℂ) : ℂ :=
   ∫ t in 0..1, (fun (t : ℝ) => x * cexp (-(t * x)) * aeval (t * x) T) t
 
 /-- The polynomial `∑ᵢ₌₀ᵈ T⁽ⁱ⁾` with `d = deg(T)`. -/
-def sumDeriv {R : Type*} [Semiring R] (T : R[X]) : R[X] :=
+def _root_.Tengoku.LeanPool.sumDeriv {R : Type*} [Semiring R] (T : R[X]) : R[X] :=
   ∑ i ∈ Finset.range (T.natDegree + 1), derivative^[i] T
 
 /-- The `k`-th derivative of `z ↦ T(z)` is `z ↦ T⁽ᵏ⁾(z)`.
 @isnad1 id=eq.0h2v.s8.32244b959045 from=translated src=- shape=6fc56755 vocab=96ec2477
 -/
-lemma iteratedDeriv_aeval_fun (T : ℤ[X]) (k : ℕ) :
+lemma _root_.Tengoku.LeanPool.iteratedDeriv_aeval_fun (T : ℤ[X]) (k : ℕ) :
     iteratedDeriv k (fun z : ℂ => aeval z T) = fun z => aeval z (derivative^[k] T) := by
   induction k with
   | zero =>
@@ -49,7 +49,7 @@ lemma iteratedDeriv_aeval_fun (T : ℤ[X]) (k : ℕ) :
 /-- The equality `∫₀¹ x * exp(-(t x)) * T(t x) dt = ∑ᵢ₌₀ᵈ T⁽ⁱ⁾(0) - e^(-x) * ∑ᵢ₌₀ᵈ T⁽ⁱ⁾(x)`.
 @isnad1 id=eq.0h2v.s7.28d9044032ff from=translated src=- shape=3af2b988 vocab=ea27c8b4
 -/
-lemma int_exp_neg_mul_poly
+lemma _root_.Tengoku.LeanPool.int_exp_neg_mul_poly
   (T : ℤ[X]) (x : ℂ) :
     intExpNegPoly T x = aeval 0 (sumDeriv T) - cexp (-x) * aeval x (sumDeriv T) := by
   have hderiv_zero : derivative^[T.natDegree + 1] T = 0 :=
@@ -69,7 +69,7 @@ lemma int_exp_neg_mul_poly
 /-- If the multiplicity of `a` is `≥ m`, then `∑ᵢ₌₀ᵈ T⁽ⁱ⁾(a) = ∑ᵢ₌ₘᵈ T⁽ⁱ⁾(a)`.
 @isnad1 id=eq.1h3v.s8.3b9641d4dc70 from=translated src=- shape=09d746c3 vocab=c0b6dd54
 -/
-lemma aeval_sumDeriv_eq_sum_Icc
+lemma _root_.Tengoku.LeanPool.aeval_sumDeriv_eq_sum_Icc
     (T : ℤ[X]) (a : ℂ) (m : ℕ) (hm : m ≤ rootMultiplicity a (T.map (algebraMap ℤ ℂ))) :
     aeval a (sumDeriv T)
       = ∑ i ∈ Finset.Icc m T.natDegree, aeval a ((derivative^[i]) T) := by
@@ -88,7 +88,7 @@ lemma aeval_sumDeriv_eq_sum_Icc
 /-- On the segment `0 < t ≤ 1`, the values `‖T(t a)‖` are bounded above by a real constant.
 @isnad1 id=ex.0h2v.s7.341a9c5e38de from=translated src=- shape=89098b8c vocab=7d6f4ad4
 -/
-lemma T_bounded
+lemma _root_.Tengoku.LeanPool.T_bounded
   (T : ℤ[X]) (a : ℂ) : ∃ M : ℝ, ∀ t ∈ Set.uIoc (0 : ℝ) 1, ‖aeval (t * a) T‖ ≤ M := by
   have hcont : Continuous (fun t : ℝ => aeval (t * a) T) := by
     have hmul : Continuous (fun t : ℝ => (t : ℂ) * a) :=
@@ -97,3 +97,4 @@ lemma T_bounded
   obtain ⟨M, hM⟩ := (isCompact_uIcc : IsCompact (Set.uIcc (0 : ℝ) 1)).exists_bound_of_continuousOn
       hcont.continuousOn
   exact ⟨M, fun t ht => hM t (Set.uIoc_subset_uIcc ht)⟩
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

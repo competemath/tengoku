@@ -13,7 +13,7 @@ import Tengoku.LeanPool.LeanPool.BruhatTits.Utils.Subring
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Module
 
 open BigOperators
@@ -760,3 +760,4 @@ lemma _root_.Matrix.BlockTriangular.fin_two_iff {R : Type*} [Zero R]
 end «UpperTriangular»
 
 end Matrix
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

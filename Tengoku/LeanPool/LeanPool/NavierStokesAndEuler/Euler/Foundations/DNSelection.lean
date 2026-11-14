@@ -11,7 +11,7 @@ public import Tengoku
 /-! Quantitative endpoint selection in the activation step, equations (26)–(27). -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace EulerDNSelection
@@ -215,3 +215,4 @@ theorem select_endpoint_hilbert {E : Type*} [NormedAddCommGroup E]
       _ ≤ 8 * (C + 1) / h := hnorm
 
 end EulerDNSelection
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

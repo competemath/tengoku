@@ -27,7 +27,7 @@ outer curve separate.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set
 open scoped Graph
 
@@ -1723,3 +1723,4 @@ theorem GeneratedPair.exists_localGridSourceExtension_of_face_frontier
   }⟩
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

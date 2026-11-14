@@ -14,7 +14,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace CategoryTheory
 universe u v
 variable {C : Type u} [Category.{v} C]
@@ -712,3 +712,4 @@ lemma contains_isos_right_ort_complement (L : MorphismProperty C) :
 end Arrow
 
 end CategoryTheory
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

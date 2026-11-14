@@ -22,7 +22,7 @@ regularity and derivative-transport theorems apply directly.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped Convolution
 open scoped BigOperators
 open scoped Topology
@@ -369,3 +369,4 @@ theorem heatConv_tendsto_zero_atTop_smooth {u : Vec3 → ℝ}
   simpa only [heatConv_eq_integral, g, integral_zero] using hDCT
 
 end CKN.Foundation.Heat
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -36,7 +36,7 @@ Everything is **choice-free** (`#print axioms ⊆ {propext, Quot.sound}`).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem ApproximableMap
@@ -224,3 +224,4 @@ theorem step_eq_iff {Y : Set α} {Z : Set β} (hY : V₀.mem Y) (hZ : V₁.mem Z
     · rfl
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

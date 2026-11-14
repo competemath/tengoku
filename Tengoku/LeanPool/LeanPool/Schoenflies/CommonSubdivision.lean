@@ -31,7 +31,7 @@ the ear construction.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set
 open scoped Graph
 
@@ -1736,3 +1736,4 @@ theorem finite_transfer_toward_square [Infinite γ]
   finite_transfer_toward_square_of_commonSubdivision hH (commonSubdivision hH)
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -21,20 +21,20 @@ the RBF to the inner product kernel.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Complex BigOperators Real InnerProductSpace Matrix
 
 variable {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℝ H]
 
 /-- Definition of a positive definite kernel K : α × α → ℂ. -/
-def IsPositiveDefiniteKernel {α : Type*} (K : α → α → ℂ) : Prop :=
+def _root_.Tengoku.LeanPool.IsPositiveDefiniteKernel {α : Type*} (K : α → α → ℂ) : Prop :=
   ∀ (m : ℕ) (x : Fin m → α) (c : Fin m → ℂ),
     0 ≤ (∑ i : Fin m, ∑ j : Fin m, (star (c i)) * (c j) * K (x i) (x j)).re
 
 /-- Step 2: The inner product kernel is positive definite.
 @isnad1 id=ispositi.0h1v.s5.11d1c61228de from=translated src=- shape=cabbc910 vocab=98e5a369
 -/
-lemma innerProduct_is_pd_kernel :
+lemma _root_.Tengoku.LeanPool.innerProduct_is_pd_kernel :
     IsPositiveDefiniteKernel (fun (x y : H) => (⟪x, y⟫_ℝ : ℂ)) := by
   -- Strategy:
   -- The sum ∑∑ c_i* c_j <x_i, x_j> expands to ||∑ a_i x_i||^2 + ||∑ b_i x_i||^2 ≥ 0
@@ -101,7 +101,7 @@ lemma innerProduct_is_pd_kernel :
     Forward direction of the bridge between complex kernels and real matrices.
 @isnad1 id=possemid.3h4v.s7.a9203ee93255 from=translated src=- shape=4fcacc03 vocab=292b6f26
 -/
-lemma real_valued_PD_kernel_gives_PSD_matrix {α : Type*} (K : α → α → ℂ)
+lemma _root_.Tengoku.LeanPool.real_valued_PD_kernel_gives_PSD_matrix {α : Type*} (K : α → α → ℂ)
     (h_real : ∀ x y, (K x y).im = 0)
     (h_symm : ∀ x y, K x y = K y x) -- Symmetric (automatic for inner product kernels)
     (hK : IsPositiveDefiniteKernel K) (m : ℕ) (x : Fin m → α) :
@@ -134,7 +134,7 @@ lemma real_valued_PD_kernel_gives_PSD_matrix {α : Type*} (K : α → α → ℂ
     Uses the Hadamard series machinery from HadamardExp.lean (same as OS3 proof).
 @isnad1 id=ispositi.3h2v.s5.d4bab2010f22 from=translated src=- shape=6af04703 vocab=ed62aee5
 -/
-lemma exp_is_pd_kernel {α : Type*} (K : α → α → ℂ) (hK : IsPositiveDefiniteKernel K)
+lemma _root_.Tengoku.LeanPool.exp_is_pd_kernel {α : Type*} (K : α → α → ℂ) (hK : IsPositiveDefiniteKernel K)
     (h_real : ∀ x y, (K x y).im = 0)
     (h_symm : ∀ x y, K x y = K y x) :
     IsPositiveDefiniteKernel (fun x y => cexp (K x y)) := by
@@ -199,7 +199,7 @@ lemma exp_is_pd_kernel {α : Type*} (K : α → α → ℂ) (hK : IsPositiveDefi
 /-- The Gaussian RBF kernel is positive definite on any inner product space.
 @isnad1 id=ispositi.0h1v.s6.d646d954bf45 from=translated src=- shape=050c4887 vocab=b822451a
 -/
-theorem gaussian_rbf_pd_innerProduct_proof :
+theorem _root_.Tengoku.LeanPool.gaussian_rbf_pd_innerProduct_proof :
     GFF4D.IsPositiveDefinite (fun h : H => cexp (-(1/2 : ℂ) * (‖h‖^2 : ℝ))) := by
   -- Strategy:
   -- 1. Use the polarization identity: ‖x - y‖² = ‖x‖² + ‖y‖² - 2⟨x, y⟩
@@ -271,3 +271,4 @@ theorem gaussian_rbf_pd_innerProduct_proof :
     · intro u v
       simp only [real_inner_comm]
   exact h_exp_inner_pd m x d
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

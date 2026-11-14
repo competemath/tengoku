@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Finset NNReal WithLp Matrix PiLp Nat ContractingWith Metric Bornology Filter Function
 open scoped BigOperators
 open scoped Topology
@@ -673,3 +673,4 @@ class GeometricMixing
 end stationary_distribution
 
 end StochasticMatrix
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

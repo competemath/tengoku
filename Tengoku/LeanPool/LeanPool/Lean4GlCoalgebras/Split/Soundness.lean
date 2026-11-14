@@ -12,7 +12,7 @@ public import Tengoku
 
 /-! ## Soundness of GL-split proof system. -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 open scoped Lean4GlCoalgebras.Formula Lean4GlCoalgebras.Split
 
 
@@ -703,3 +703,4 @@ namespace Split
 
 end Split
 end Lean4GlCoalgebras
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

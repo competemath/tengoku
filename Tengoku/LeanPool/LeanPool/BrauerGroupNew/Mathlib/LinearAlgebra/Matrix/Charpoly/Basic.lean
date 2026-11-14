@@ -14,7 +14,7 @@ This file restores upstream helper lemmas for block diagonal characteristic poly
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 variable {F : Type*} [Field F]
 
 /-- A subtype of a product that depends only on the second component. -/
@@ -28,7 +28,7 @@ def Equiv.prodSubtypeSndEquivProdSubtype {α β} {p : β → Prop} :
 
 /-- The fiber of a product projection over a fixed second coordinate. -/
 @[simps!]
-def thing' {α β : Type*} (b : β) : {i : α × β // i.2 = b} ≃ α :=
+def _root_.Tengoku.LeanPool.thing' {α β : Type*} (b : β) : {i : α × β // i.2 = b} ≃ α :=
   Equiv.prodSubtypeSndEquivProdSubtype.trans (Equiv.prodUnique α {i : β // i = b})
 
 open Matrix in
@@ -81,3 +81,4 @@ lemma Matrix.reindex_diagonal_charpoly (r n m : ℕ) (eq : m = r * n)
   rw [Matrix.blockDiagonalRingHom_apply, Matrix.coe_reindexAlgEquiv,
     Matrix.charpoly_reindex, blockDiagonal_charpoly]
   simp
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

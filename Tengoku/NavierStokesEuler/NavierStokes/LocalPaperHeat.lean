@@ -13,7 +13,7 @@ the genuinely integrable pressure tail.
 -/
 
 noncomputable section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace NavierStokes.LocalPaper
 
 open Set MeasureTheory ProblemStatement
@@ -74,3 +74,4 @@ theorem Properties.exterior_radial_form
   · exact LocalHeatPressure.heatAmplitude_sq_div_integrable C hp.exponent_small.1 hh1 ht hr
 
 end NavierStokes.LocalPaper
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

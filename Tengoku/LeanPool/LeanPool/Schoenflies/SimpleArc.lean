@@ -72,7 +72,7 @@ is a general fact about preconnected sets. Both are here only because their home
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set
 open scoped Graph
 
@@ -577,3 +577,4 @@ theorem exists_simple_arc_of_isPreconnected (hΩ : IsOpen Ω) (hconn : IsPreconn
   exact ⟨poly vs, hsub, ⟨vs, rfl⟩, harc⟩
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

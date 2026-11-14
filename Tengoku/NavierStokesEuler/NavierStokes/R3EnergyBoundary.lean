@@ -9,7 +9,7 @@ Only the undifferentiated velocity needs a global `L²` bound. Every
 derivative in these estimates is multiplied by a compact cutoff.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace NavierStokes.R3EnergyBoundary
 
 open Set Filter MeasureTheory ProblemStatement InnerProductSpace
@@ -119,3 +119,4 @@ theorem transportFlux_le {φ : Space → ℝ} {w v : Space → Space} {D U : ℝ
   exact h.trans (mul_le_mul_of_nonneg_left (add_le_add hQbound le_rfl) (by positivity))
 
 end NavierStokes.R3EnergyBoundary
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

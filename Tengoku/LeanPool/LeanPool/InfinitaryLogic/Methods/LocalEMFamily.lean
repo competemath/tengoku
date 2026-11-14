@@ -47,7 +47,7 @@ syntactic.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 /-! ### Canonical (J-free) seeds over a countable language -/
@@ -310,3 +310,4 @@ theorem ΓEMlocal_nonempty : (ΓEMlocal s₀).Nonempty :=
     Or.inl (Or.inl (Or.inr ⟨⟨1, (Term.var 0, Term.var 0)⟩, rfl⟩))⟩
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

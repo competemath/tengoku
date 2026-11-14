@@ -34,7 +34,7 @@ one-bit key quantization. It is built in three increasing layers:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory ProbabilityTheory Real
 open scoped ENNReal NNReal RealInnerProductSpace
 
@@ -340,3 +340,4 @@ theorem qjlEstimator_unbiased_inner {m d : ℕ} (hm : 0 < m)
     mul_inv_cancel₀ hkne, one_mul]
 
 end JL
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

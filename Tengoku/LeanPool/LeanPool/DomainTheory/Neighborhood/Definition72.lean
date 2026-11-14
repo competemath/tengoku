@@ -71,7 +71,7 @@ deciders of Definition 7.1 and the choice-free r.e. layer of `Recursive.lean`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem Domain.Recursive ApproximableMap
@@ -105,3 +105,4 @@ theorem idMap_isComputable (P : ComputablePresentation V) :
     P.incl_computable).re
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

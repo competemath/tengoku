@@ -22,7 +22,7 @@ The normalized haar component of the Connes rigidity formalization.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Connes
 namespace NormalizedHaar
 
@@ -156,3 +156,4 @@ theorem productHaar_eq_normalizedAddHaar
 end
 end NormalizedHaar
 end Connes
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

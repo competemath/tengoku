@@ -19,7 +19,7 @@ for real/complex numbers.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter
 variable {K : Type*} [RCLike K]
 
@@ -42,14 +42,14 @@ open Pentagonal
 /--
 @isnad1 id=multipli.1h2v.s7.45ba22c9d6b4 from=translated src=- shape=c2b7a1ac vocab=614a6503
 -/
-theorem multipliable_pentagonalLhs_complex {x : K} (hx : ‖x‖ < 1) :
+theorem _root_.Tengoku.LeanPool.multipliable_pentagonalLhs_complex {x : K} (hx : ‖x‖ < 1) :
     Multipliable (fun n ↦ 1 - x ^ (n + 1)) := by
   simpa using multipliable_pentagonalLhs_complex' 0 hx
 
 /--
 @isnad1 id=summable.1h2v.s8.2f98267da6ed from=translated src=- shape=4b98ded2 vocab=ebd63206
 -/
-theorem summable_pentagonalRhs_complex {x : K} (hx : ‖x‖ < 1) :
+theorem _root_.Tengoku.LeanPool.summable_pentagonalRhs_complex {x : K} (hx : ‖x‖ < 1) :
     Summable (fun (k : ℕ) ↦
     ((-1) ^ k * (x ^ (k * (3 * k + 1) / 2) - x ^ ((k + 1) * (3 * k + 2) / 2)))) := by
   simp_rw [mul_sub]
@@ -68,7 +68,7 @@ theorem summable_pentagonalRhs_complex {x : K} (hx : ‖x‖ < 1) :
 /--
 @isnad1 id=summable.1h2v.s7.08ebcd3b24dd from=translated src=- shape=3bbf85fe vocab=86d2e8d7
 -/
-theorem summable_pentagonalRhs_intNeg_complex {x : K} (hx : ‖x‖ < 1) :
+theorem _root_.Tengoku.LeanPool.summable_pentagonalRhs_intNeg_complex {x : K} (hx : ‖x‖ < 1) :
     Summable (fun (k : ℤ) ↦ (-1) ^ k * x ^ (k * (3 * k + 1) / 2)) := by
   apply Summable.of_add_one_of_neg_add_one
   all_goals
@@ -89,10 +89,11 @@ theorem summable_pentagonalRhs_intNeg_complex {x : K} (hx : ‖x‖ < 1) :
 /--
 @isnad1 id=summable.1h2v.s7.da1c014a0d96 from=translated src=- shape=3bbf85fe vocab=bb455cc2
 -/
-theorem summable_pentagonalRhs_intPos_complex {x : K} (hx : ‖x‖ < 1) :
+theorem _root_.Tengoku.LeanPool.summable_pentagonalRhs_intPos_complex {x : K} (hx : ‖x‖ < 1) :
     Summable (fun (k : ℤ) ↦ (-1) ^ k * x ^ (k * (3 * k - 1) / 2)) := by
   rw [← neg_injective.summable_iff (by intro x hx; contrapose! hx; use -x; simp)]
   convert summable_pentagonalRhs_intNeg_complex hx
   rw [Function.comp_apply]
   congrm ?_ * x ^ ($(by ring_nf) / 2)
   rw [zpow_neg, ← inv_zpow, inv_neg, inv_one]
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

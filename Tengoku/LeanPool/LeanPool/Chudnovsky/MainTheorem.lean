@@ -36,7 +36,7 @@ originally planned for this step (PLAN A8) is kept for reference/reuse.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace Chudnovsky
@@ -252,3 +252,4 @@ and `‖E₆−1‖ ≤ 0.199` (from `Estimates.lean`).  This replaces the paper
 continuity/connectedness branch argument by a pointwise right-half-plane one. -/
 
 end Chudnovsky
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -36,7 +36,7 @@ Adapted for Lean Pool from `Timeroot/BS_Lam` at commit
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-- A finite sum of reals that are each at most one is at most the number of nonzero terms.
 This is a general `Finset` fact, stated here because Mathlib does not have it.
 @isnad1 id=le.1h3v.s6.ab3a923ac2c6 from=translated src=- shape=4e1de0fc vocab=6bb06cfb
@@ -316,3 +316,4 @@ theorem lam_sq_le_sqrt (hc : 1 ≤ F.c) :
 end CertFamily
 
 end BSLambda
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

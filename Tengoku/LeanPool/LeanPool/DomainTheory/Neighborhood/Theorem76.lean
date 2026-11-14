@@ -68,7 +68,7 @@ the flag together with the final inclusion `X_{last} ⊆ X_ℓ`. Everything audi
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem Domain.Recursive ApproximableMap
@@ -467,3 +467,4 @@ theorem fixMap_isComputable
       · simp_all
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

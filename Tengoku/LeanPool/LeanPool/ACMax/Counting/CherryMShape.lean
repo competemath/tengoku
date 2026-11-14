@@ -43,7 +43,7 @@ with every other degree-3 vertex an iso twin.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace ACMax
 
 variable {V : Type*} [Fintype V]
@@ -2393,3 +2393,4 @@ corner) via `x0_corner_close`, and `CaseCherry` (`e(M) ≥ 2`) via
 namespace ACMax
 
 end ACMax
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

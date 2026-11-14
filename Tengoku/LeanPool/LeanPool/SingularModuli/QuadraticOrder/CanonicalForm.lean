@@ -42,8 +42,8 @@ scaffolding.
 -/
 
 @[expose] public section
-
-namespace QuadraticOrder
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+namespace Tengoku.LeanPool.QuadraticOrder
 
 variable {d : ℤ} {p k m : ℕ} {A : ℤ}
 
@@ -251,4 +251,5 @@ lemma canonicalIdeal_eq_zSpan
     · exact Submodule.subset_span (Set.mem_insert _ _)
     · exact Submodule.subset_span (Set.mem_insert_of_mem _ rfl)
 
-end QuadraticOrder
+end Tengoku.LeanPool.QuadraticOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

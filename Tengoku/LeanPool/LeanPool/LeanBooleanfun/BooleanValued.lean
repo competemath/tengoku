@@ -20,7 +20,7 @@ and proves some basic properties specific to Boolean-valued functions.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace LeanPool.LeanBooleanfun.BooleanFun
@@ -356,3 +356,4 @@ theorem almost_character {ε : ℝ} (h : acceptanceProbabilityBLR f ≥ 1 - ε) 
 end BV
 
 end LeanPool.LeanBooleanfun.BooleanFun
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

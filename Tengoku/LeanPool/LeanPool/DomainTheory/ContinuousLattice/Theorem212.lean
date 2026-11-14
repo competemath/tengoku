@@ -39,7 +39,7 @@ idempotent on a complete lattice form a complete lattice
 (`IdemFix.completeLattice`).
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 attribute [local instance] Domain.ContinuousLattice.specializationPreorder
 
 
@@ -340,3 +340,4 @@ theorem lemma_3_9 (hD : IsContinuousLattice D) (hD' : IsContinuousLattice D')
 end Lemma39
 
 end Domain.ContinuousLattice
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

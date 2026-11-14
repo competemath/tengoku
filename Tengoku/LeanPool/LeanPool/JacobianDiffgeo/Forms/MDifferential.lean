@@ -25,7 +25,7 @@ Holomorphic 1-forms only — no meromorphic machinery here (meromorphic 1-forms 
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold Bundle
 open Set IsManifold
 
@@ -137,3 +137,4 @@ theorem mdifferential_const (c : ℂ) :
 end RS
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

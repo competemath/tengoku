@@ -64,7 +64,7 @@ leaves only the parity phase `(e^{-iθ/2})^{L mod 2}`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace QuantumAlg
 
 open PureState
@@ -473,3 +473,4 @@ theorem qpp_realizes_target_with_alternating_controlled_resources
 end
 
 end QuantumAlg
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

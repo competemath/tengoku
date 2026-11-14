@@ -22,7 +22,7 @@ inputs used in `prop:boundary-continuity`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter Metric Set
 open scoped Graph
 
@@ -968,3 +968,4 @@ theorem prescribedSourceAnchorSet_hasAnchorCrosscuts :
   · simpa only [hga, hgb] using hagree
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

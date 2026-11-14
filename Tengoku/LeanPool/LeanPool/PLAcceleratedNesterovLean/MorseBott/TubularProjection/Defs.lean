@@ -18,7 +18,7 @@ Core definitions (`optimalityEqn`, `IsTubularNeighborhoodOfSubmanifold`,
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter Topology Metric NNReal
 
 attribute [local instance] Classical.propDecidable
@@ -358,3 +358,4 @@ lemma tubularProj_continuousAt_of_mem {S U : Set E}
     _ = ε := by ring
 
 end PLAcceleratedNesterovLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

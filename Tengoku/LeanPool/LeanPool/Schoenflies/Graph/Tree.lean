@@ -61,7 +61,7 @@ The root `Graph` namespace, as in `Walk.lean`, `Degree.lean` and `Cycle.lean`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set
 open scoped Graph
 
@@ -442,3 +442,4 @@ theorem IsTree.three_leaves [G.Finite] (hT : G.IsTree)
     omega
 
 end Graph
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

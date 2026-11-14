@@ -15,7 +15,7 @@ the energy identity, hence the local energy inequality for nonnegative tests.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Set
 open CKN.Foundation.Parabolic CKN.ShearCalculus
 
@@ -161,3 +161,4 @@ theorem shearFlow_energyIdentity (ψ : Vec3 × ℝ → ℝ)
     ((scalar_energy hψ.1 hψ.2.1).symm.trans hright.symm)
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

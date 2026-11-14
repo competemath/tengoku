@@ -21,7 +21,7 @@ graphs then push forward by mapping their edge lists.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set
 open Schoenflies
 open unitInterval
@@ -299,3 +299,4 @@ theorem IsDrawing.relabelEdges [Nonempty β] (h : IsDrawing G drawing)
 end Drawing
 
 end Graph
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

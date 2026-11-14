@@ -15,7 +15,7 @@ maps used by the Monlib4 port.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped TensorProduct
 
 /--
@@ -80,3 +80,4 @@ lemma AlgEquiv.lTensor_symm_tmul {R A B C : Type*} [CommSemiring R] [Semiring A]
   (f : A ≃ₐ[R] B) (x : C) (y : B) :
   (AlgEquiv.lTensor C f).symm (x ⊗ₜ[R] y) = x ⊗ₜ f.symm (y) :=
 rfl
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

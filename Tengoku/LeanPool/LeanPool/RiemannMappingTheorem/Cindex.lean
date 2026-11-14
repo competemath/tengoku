@@ -12,13 +12,13 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Real Complex Function TopologicalSpace Filter Topology Metric MeasureTheory Nat
 
 /-- The argument-principle integral
 `(2πi)⁻¹ ∮_{C(z₀, r)} f'(z)/f(z) dz`, which counts zeroes of `f` inside
 the circle of radius `r` around `z₀` (with multiplicity). -/
-noncomputable def cindex (z₀ : ℂ) (r : ℝ) (f : ℂ → ℂ) : ℂ :=
+noncomputable def _root_.Tengoku.LeanPool.cindex (z₀ : ℂ) (r : ℝ) (f : ℂ → ℂ) : ℂ :=
   (2 * π * I)⁻¹ * ∮ z in C(z₀, r), deriv f z / f z
 
 section circle_integral
@@ -29,7 +29,7 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] {f g : ℂ → E
 /--
 @isnad1 id=eq.4h5v.s7.08335fc4d0aa from=translated src=- shape=75ef3670 vocab=c20a12bf
 -/
-lemma circle_integral_eq_zero (hU : IsOpen U) (hr : 0 < r) (hcr : closedBall c r ⊆ U)
+lemma _root_.Tengoku.LeanPool.circle_integral_eq_zero (hU : IsOpen U) (hr : 0 < r) (hcr : closedBall c r ⊆ U)
       (f_hol : DifferentiableOn ℂ f U) :
     (∮ z in C(c, r), f z) = 0 :=
   circleIntegral_eq_zero_of_differentiable_on_off_countable hr.le Set.countable_empty
@@ -40,7 +40,7 @@ lemma circle_integral_eq_zero (hU : IsOpen U) (hr : 0 < r) (hcr : closedBall c r
 /--
 @isnad1 id=eq.1h4v.s7.f8febdc9274a from=translated src=- shape=f10f9a5b vocab=bd9a9292
 -/
-lemma circle_integral_sub_center_inv_smul [CompleteSpace E] {v : E} (hr : 0 < r) :
+lemma _root_.Tengoku.LeanPool.circle_integral_sub_center_inv_smul [CompleteSpace E] {v : E} (hr : 0 < r) :
     (∮ z in C(c, r), (z - c)⁻¹ • v) = (2 * π * I : ℂ) • v := by
   simp [circleIntegral.integral_sub_inv_of_mem_ball (mem_ball_self hr)]
 
@@ -79,7 +79,7 @@ variable {f g : ℂ → ℂ} {p : FormalMultilinearSeries ℂ ℂ ℂ} {z z₀ c
 /--
 @isnad1 id=eq.4h5v.s8.5e1273a8fe15 from=translated src=- shape=0afee715 vocab=f0a21176
 -/
-lemma deriv_div_self_eq_div_add_deriv_div_self (hg : DifferentiableAt ℂ g z) (hgz : g z ≠ 0)
+lemma _root_.Tengoku.LeanPool.deriv_div_self_eq_div_add_deriv_div_self (hg : DifferentiableAt ℂ g z) (hgz : g z ≠ 0)
     (hfg : f =ᶠ[𝓝 z] fun w => (w - z₀) ^ n * g w) (hz : z ≠ z₀) :
     deriv f z / f z = n / (z - z₀) + deriv g z / g z := by
   have h1 : DifferentiableAt ℂ (fun y => (y - z₀) ^ n) z :=
@@ -99,7 +99,7 @@ lemma deriv_div_self_eq_div_add_deriv_div_self (hg : DifferentiableAt ℂ g z) (
 /--
 @isnad1 id=other.2h3v.s9.84b4bec82379 from=translated src=- shape=8556ac06 vocab=153d8510
 -/
-lemma eventually_deriv_div_self_eq (hp : HasFPowerSeriesAt f p z₀) (h : p ≠ 0) :
+lemma _root_.Tengoku.LeanPool.eventually_deriv_div_self_eq (hp : HasFPowerSeriesAt f p z₀) (h : p ≠ 0) :
     let g := (iterate (swap dslope z₀) p.order) f
     ∀ᶠ z in 𝓝 z₀, z ≠ z₀ → deriv f z / f z = p.order / (z - z₀) + deriv g z / g z := by
   intro g
@@ -115,7 +115,7 @@ lemma eventually_deriv_div_self_eq (hp : HasFPowerSeriesAt f p z₀) (h : p ≠ 
 /--
 @isnad1 id=eq.5h4v.s7.6399405a09c8 from=translated src=- shape=a85e8b3e vocab=b3a18829
 -/
-lemma cindex_eq_zero (hU : IsOpen U) (hr : 0 < r) (hcr : closedBall c r ⊆ U)
+lemma _root_.Tengoku.LeanPool.cindex_eq_zero (hU : IsOpen U) (hr : 0 < r) (hcr : closedBall c r ⊆ U)
     (f_hol : DifferentiableOn ℂ f U) (hf : ∀ z ∈ closedBall c r, f z ≠ 0) :
     cindex c r f = 0 := by
   set s : Set ℂ := { z ∈ U | f z ≠ 0 }
@@ -132,7 +132,7 @@ lemma cindex_eq_zero (hU : IsOpen U) (hr : 0 < r) (hcr : closedBall c r ⊆ U)
 /--
 @isnad1 id=eq.6h6v.s8.7e5b112834e7 from=translated src=- shape=5f32830e vocab=ea880b9c
 -/
-lemma cindex_eq_order_aux (hU : IsOpen U) (hr : 0 < r) (h0 : closedBall z₀ r ⊆ U)
+lemma _root_.Tengoku.LeanPool.cindex_eq_order_aux (hU : IsOpen U) (hr : 0 < r) (h0 : closedBall z₀ r ⊆ U)
     (h1 : DifferentiableOn ℂ g U) (h2 : ∀ z ∈ closedBall z₀ r, g z ≠ 0)
     (h3 : ∀ {z}, z ∈ sphere z₀ r → deriv f z / f z = c / (z - z₀) + deriv g z / g z) :
     cindex z₀ r f = c := by
@@ -158,7 +158,7 @@ lemma cindex_eq_order_aux (hU : IsOpen U) (hr : 0 < r) (h0 : closedBall z₀ r �
 /--
 @isnad1 id=ex.2h3v.s9.a52351e606de from=translated src=- shape=c991a455 vocab=eb0e896f
 -/
-lemma exists_cindex_eq_order' (hp : HasFPowerSeriesAt f p z₀) (h : p ≠ 0) :
+lemma _root_.Tengoku.LeanPool.exists_cindex_eq_order' (hp : HasFPowerSeriesAt f p z₀) (h : p ≠ 0) :
     ∃ R > (0 : ℝ), ∀ r ∈ Set.Ioo 0 R, cindex z₀ r f = p.order := by
   set g : ℂ → ℂ := iterate (swap dslope z₀) p.order f
   obtain ⟨R, hR₁, hh⟩ := Metric.mem_nhds_iff.mp
@@ -175,7 +175,7 @@ lemma exists_cindex_eq_order' (hp : HasFPowerSeriesAt f p z₀) (h : p ≠ 0) :
 /--
 @isnad1 id=ex.1h3v.s7.dadfa43290ce from=translated src=- shape=5b90539a vocab=eb0e896f
 -/
-lemma exists_cindex_eq_order (hp : HasFPowerSeriesAt f p z₀) :
+lemma _root_.Tengoku.LeanPool.exists_cindex_eq_order (hp : HasFPowerSeriesAt f p z₀) :
     ∃ R > (0 : ℝ), ∀ r ∈ Set.Ioo 0 R, cindex z₀ r f = p.order := by
   by_cases h : p = 0
   case neg => exact exists_cindex_eq_order' hp h
@@ -198,8 +198,9 @@ lemma exists_cindex_eq_order (hp : HasFPowerSeriesAt f p z₀) :
 /--
 @isnad1 id=eventual.1h3v.s7.8c25fa6c5c47 from=translated src=- shape=01bf75ce vocab=57751163
 -/
-lemma cindex_eventually_eq_order (hp : HasFPowerSeriesAt f p z₀) :
+lemma _root_.Tengoku.LeanPool.cindex_eventually_eq_order (hp : HasFPowerSeriesAt f p z₀) :
     ∀ᶠ r in 𝓝[>] 0, cindex z₀ r f = p.order := by
   obtain ⟨R, hR, hf⟩ := exists_cindex_eq_order hp
   rw [eventually_nhdsWithin_iff, Metric.eventually_nhds_iff]
   exact ⟨R, hR, fun r hr1 hr2 => hf r ⟨hr2, by simpa using lt_of_abs_lt hr1⟩⟩
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

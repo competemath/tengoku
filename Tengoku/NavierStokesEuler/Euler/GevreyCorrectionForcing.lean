@@ -1,6 +1,6 @@
 import Tengoku.NavierStokesEuler.Euler.GevreyForcingComponents
 import Tengoku.NavierStokesEuler.Euler.GevreyPressureComplete
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace EulerGevreyCorrectionForcing
 end EulerGevreyCorrectionForcing
 namespace MeasureTheory
@@ -161,3 +161,4 @@ theorem correctionForcing_bound {s : ℕ} (hs : 6 ≤ s) {A : SmoothCoefficient 
   nlinarith only [h, hp0, hp1e, hp1b]
 
 end EulerGevreyCorrectionForcing
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

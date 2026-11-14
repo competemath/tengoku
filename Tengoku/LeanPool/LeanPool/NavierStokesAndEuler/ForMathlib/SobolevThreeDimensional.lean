@@ -28,7 +28,7 @@ real-valued formulations share the same constant.
 -/
 
 public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open MeasureTheory Filter NavierStokesAndEuler.SmoothCutoff
@@ -50,3 +50,4 @@ theorem sobolevConstant_nonneg : 0 ≤ (sobolevConstant : ℝ) := NNReal.coe_non
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 
 end NavierStokesAndEuler.SobolevThreeDimensional
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

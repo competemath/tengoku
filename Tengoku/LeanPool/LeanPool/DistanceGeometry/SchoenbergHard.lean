@@ -37,7 +37,7 @@ configuration, and reverse polarization recovers `D`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Matrix
 open scoped RealInnerProductSpace
 
@@ -260,3 +260,4 @@ theorem schoenberg {D : Matrix (Fin n) (Fin n) ℝ} (hD : IsPreDistMatrix D) :
     exact schoenberg_hard hD hPSD hrank
 
 end DistanceGeometry
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

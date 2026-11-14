@@ -28,7 +28,7 @@ Unit: meromorphic-and-divisors (`docs/design/meromorphic-and-divisors.md` §4.2,
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold
 open Set Filter Topology
 
@@ -117,3 +117,4 @@ theorem MeromorphicOnX.analyticAt_codiscreteWithin [IsManifold 𝓘(ℂ) ω X]
 /-! ### The meromorphic identity dichotomy (§6.1) -/
 
 end RS
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

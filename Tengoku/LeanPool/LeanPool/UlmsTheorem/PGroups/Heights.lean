@@ -16,7 +16,7 @@ basic finite `p`-height calculus.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace UlmsTheorem
 
 variable (p : ℕ)
@@ -194,3 +194,4 @@ lemma pHeight_add_eq_min_of_ne (x y : G) (h : pHeight p x ≠ pHeight p y) :
 end HeightLemmas
 
 end UlmsTheorem
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

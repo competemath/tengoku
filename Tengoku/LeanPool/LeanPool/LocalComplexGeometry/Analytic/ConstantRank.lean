@@ -19,7 +19,7 @@ factor.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter Metric
 open scoped Topology
 
@@ -470,3 +470,4 @@ theorem holomorphic_immersion_normalForm
 end
 
 end LocalComplexGeometry
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -32,7 +32,7 @@ inner product; they are ported here to an arbitrary real normed space `E`
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators
 
 namespace LeanPool.Erdos81PaperIContrib
@@ -220,3 +220,4 @@ the `ℝ≥0`-vs-`ℝ` scalar action. -/
 open scoped BigOperators
 
 end LeanPool.Erdos81PaperIContrib
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

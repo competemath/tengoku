@@ -17,7 +17,7 @@ Standalone API — does not advance the Hanf boundary.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u v w
 
 namespace FirstOrder.Language
@@ -91,3 +91,4 @@ theorem IsLomega1omegaIndiscernible.restrict {a : I → M}
 end Indiscernible
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

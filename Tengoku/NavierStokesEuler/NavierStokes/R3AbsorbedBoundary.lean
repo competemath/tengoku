@@ -7,7 +7,7 @@ import Tengoku.NavierStokesEuler.NavierStokes.R3EnergyAbsorption
 # Uniform absorption of diffusion and transport boundary fluxes
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace NavierStokes.R3AbsorbedBoundary
 
 open Set Filter MeasureTheory ProblemStatement
@@ -73,3 +73,4 @@ theorem exists_boundary_bound {L M U ε : ℝ} (hL : 1 ≤ L) (hM : 0 ≤ M)
   exact hsmall'.trans (hfinal.trans (by dsimp [A] at *; nlinarith only [hdis']))
 
 end NavierStokes.R3AbsorbedBoundary
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

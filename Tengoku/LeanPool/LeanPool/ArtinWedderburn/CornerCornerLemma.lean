@@ -22,7 +22,7 @@ corner subring of `f` inside `eRe` agrees (as a ring) with the corner subring of
 `f` viewed in `R`.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 open scoped LeanPool.ArtinWedderburn
 
 
@@ -119,3 +119,4 @@ def cornerRingUnitalEq :
   apply cornerRingNonUnitalEq
 
 end LeanPool.ArtinWedderburn
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

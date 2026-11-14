@@ -15,7 +15,7 @@ The lemmas here are mostly from Sections 2.1 and 2.2.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace PDL
 
 /-! ## Single-step replacing -/
@@ -381,3 +381,4 @@ The following does *not* hold in general, because `frm` might be sneaky:
 -/
 
 end PDL
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -10,7 +10,7 @@ public import Tengoku.Seed.Topology.ContinuousMap.Compact
 public import Tengoku.Seed.Analysis.Calculus.ContDiff.Defs
 import Tengoku.Seed.Analysis.Calculus.ContDiff.Comp
 import Tengoku.Seed.Analysis.Calculus.MeanValue
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -281,3 +281,4 @@ theorem iteratedFDeriv_family_apply_of_neighborhood (K : Set Z) [CompactSpace K]
 end
 
 end NavierStokes.CompactSmoothFamily
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

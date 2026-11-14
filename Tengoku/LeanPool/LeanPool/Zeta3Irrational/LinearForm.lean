@@ -14,7 +14,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.Zeta3Irrational
 
 open scoped Nat
@@ -245,3 +245,4 @@ lemma linear_int_aux : ∃ a b : ℕ → ℕ → ℤ, ∀ r s : ℕ, J r s =
     simp_all
 
 end LeanPool.Zeta3Irrational
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

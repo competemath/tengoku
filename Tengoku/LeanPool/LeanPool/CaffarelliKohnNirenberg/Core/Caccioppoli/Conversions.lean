@@ -14,7 +14,7 @@ Part of the Caffarelli–Kohn–Nirenberg partial regularity proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory
 open scoped ENNReal NNReal Topology
 open CKN.Foundation.Parabolic
@@ -118,3 +118,4 @@ theorem setIntegral_eq_toReal_setLIntegral_of_nonneg
   rw [ofReal_integral_eq_lintegral_ofReal hg hgn]
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

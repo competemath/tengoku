@@ -16,7 +16,7 @@ Supporting definitions and lemmas for the Odlyzko-bound formalization.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open Complex Filter MeasureTheory Set
@@ -248,3 +248,4 @@ theorem analyticOnNhd_poitouTransform_regularizedScaledTartar
   · simp
 
 end NumberField.Odlyzko
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -50,7 +50,7 @@ Exercise 2.22 and from the `graph`-inversion.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood.Exercise327
 
 open Domain.Neighborhood NeighborhoodSystem ApproximableMap
@@ -203,3 +203,4 @@ noncomputable def funSpaceReprIso (V₀ : NeighborhoodSystem α) (V₁ : Neighbo
     ((graphEquiv V₀ V₁).symm.trans (funSpaceEquiv V₀ V₁).symm)
 
 end Domain.Neighborhood.Exercise327
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -24,7 +24,7 @@ public import Tengoku
 /-! # Definitions -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Complex Real Finset
 open scoped ENNReal NNReal
 
@@ -804,3 +804,4 @@ theorem fockNorm_eq_gaussian_integral {D : ℕ} (a : Fin D → ℂ) :
   rw [← mul_assoc, mul_comm 2, mul_assoc, radial_gaussian_integral (k.val + 1)]
 
 end FockSPR
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

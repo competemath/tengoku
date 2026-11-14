@@ -10,7 +10,7 @@ import Std.Data.DTreeMap.Internal.Operations
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LentilLib
 
 /--
@@ -143,3 +143,4 @@ theorem find_min' {p : Nat → Prop} (n : Nat) (h : p n) :
 end Nat
 
 end LentilLib
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

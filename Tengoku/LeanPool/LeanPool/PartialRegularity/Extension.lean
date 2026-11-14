@@ -12,7 +12,7 @@ This file proves a variant of the main result with an explicit constant: the cou
 of odd primes `p ≤ X` that are not `M_α(p)`-regular is bounded by `10 · X / (log X)^(2α)`. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.PartialRegularity.Extension
 
 /-- A prime `p` is `m`-regular if it has no Bernoulli numerator divisor in range. -/
@@ -741,3 +741,4 @@ lemma irregularPrimes_ncard_le_sum (α : ℝ) (X : ℕ) :
   exact_mod_cast Nat.le_trans h1 (Finset.set_ncard_biUnion_le _ _)
 
 end LeanPool.PartialRegularity.Extension
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

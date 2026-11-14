@@ -11,7 +11,7 @@ comparison argument. These are conclusions from the field's support and
 smoothness assumptions.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace NavierStokes.R3UniformBounds
 
 open Set Filter MeasureTheory ProblemStatement
@@ -97,3 +97,4 @@ theorem norm_le_of_energy_bound {u : Space → Space} (hu : AEStronglyMeasurable
   nlinarith [abs_nonneg E, le_abs_self E, sq_nonneg (|E|)]
 
 end NavierStokes.R3UniformBounds
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

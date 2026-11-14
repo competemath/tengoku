@@ -24,7 +24,7 @@ Pure syntax + set-countability; no EM, no local stack, no `Conditional/`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 variable {L : Language.{0, 0}}
@@ -247,3 +247,4 @@ theorem BoundedFormulaω.universalSigned_restrictSymbols {α : Type} {F : Set (�
   exact (universalSigned_mapLanguage (symbSublangIncl F R) s _).symm
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -22,7 +22,7 @@ homeomorphism with the closed unit disk, keeping this fact tied to the actual po
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanEval
 namespace Topology
 namespace ClassificationOfSurfaces
@@ -84,3 +84,4 @@ end PolygonCell
 end ClassificationOfSurfaces
 end Topology
 end LeanEval
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -60,7 +60,7 @@ inclusion `Ω† ⊆ Wᵢ`, which is a hypothesis here. A consumer supplies it b
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Bornology Set
 
 namespace Schoenflies
@@ -571,3 +571,4 @@ theorem crosscut_cells (hC : IsSeparating C)
   exact hne (hc₁.symm.trans hc₂)
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

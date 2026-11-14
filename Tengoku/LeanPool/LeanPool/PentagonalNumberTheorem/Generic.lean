@@ -21,13 +21,13 @@ https://math.stackexchange.com/questions/55738/how-to-prove-eulers-pentagonal-th
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter
 
 /--
 @isnad1 id=eq.2h3v.s8.50696c672b6c from=translated src=- shape=32b55848 vocab=cbb614e4
 -/
-theorem tprod_one_sub_ordererd {ι α : Type*} [CommRing α] [TopologicalSpace α] [T2Space α]
+theorem _root_.Tengoku.LeanPool.tprod_one_sub_ordererd {ι α : Type*} [CommRing α] [TopologicalSpace α] [T2Space α]
     [LinearOrder ι] [LocallyFiniteOrderBot ι] [IsTopologicalAddGroup α]
     {f : ι → α} (hsum : Summable fun i ↦ f i * ∏ j ∈ Finset.Iio i, (1 - f j))
     (hmul : Multipliable (1 - f ·)) :
@@ -177,7 +177,7 @@ $$ \prod_{n = 0}^{\infty} 1 - x^{n + 1} =
 \sum_{k=0}^{\infty} (-1)^k \left(x^{k(3k+1)/2} + x^{(k+1)(3k+2)/2}\right) $$
 @isnad1 id=eq.5h2v.s9.ac3ddba84b02 from=translated src=- shape=f19b1f19 vocab=3ccc651a
 -/
-theorem pentagonalNumberTheorem_generic [TopologicalSpace R] [IsTopologicalRing R] [T2Space R]
+theorem _root_.Tengoku.LeanPool.pentagonalNumberTheorem_generic [TopologicalSpace R] [IsTopologicalRing R] [T2Space R]
     {x : R} (hx : IsTopologicallyNilpotent x)
     (hgamma : ∀ k, Summable (Pentagonal.gamma k · x))
     (hlhs : ∀ k, Multipliable (fun n ↦ 1 - x ^ (n + k + 1)))
@@ -202,3 +202,4 @@ theorem pentagonalNumberTheorem_generic [TopologicalSpace R] [IsTopologicalRing 
   rw [show (nhds (0 : R)) = (nhds (-0)) by simp]
   apply Filter.Tendsto.neg
   apply htail
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

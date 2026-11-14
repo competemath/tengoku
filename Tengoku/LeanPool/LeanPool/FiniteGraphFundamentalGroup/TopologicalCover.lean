@@ -16,7 +16,7 @@ This module verifies the local topology needed to realize the combinatorial path
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Function
 open CategoryTheory CategoryTheory.SingleObj Quiver
 open unitInterval
@@ -1685,3 +1685,4 @@ theorem graphCoverRealizationProjection_isCovering
           exact (hedge e hy).to_isEvenlyCovered_preimage
 
 end FiniteGraphFreeGroup
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

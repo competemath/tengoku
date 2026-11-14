@@ -17,7 +17,7 @@ Part of the Caffarelli–Kohn–Nirenberg partial regularity proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators ENNReal NNReal Topology
 
 open MeasureTheory MeasureTheory.Measure Set Metric Filter
@@ -177,3 +177,4 @@ lemma heatPotential_far_shell_sum_from_six {γ : ℝ} (hγ : γ < 1)
   simpa [C₆, mul_assoc, mul_left_comm, mul_comm] using hsum
 
 end CKN.Core.HeatPotential
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

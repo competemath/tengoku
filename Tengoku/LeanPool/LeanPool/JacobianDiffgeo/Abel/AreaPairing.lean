@@ -44,7 +44,7 @@ downstream conclusion is a `Prop` quantified over a single fixed `PU`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold
 open IsManifold Metric Set MeasureTheory
 
@@ -572,3 +572,4 @@ theorem pairing_smul_right (PU : SurfPoU X) (c : ℂ) (σ : RS.Form01 X) (θ : R
 end RS.Abel
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

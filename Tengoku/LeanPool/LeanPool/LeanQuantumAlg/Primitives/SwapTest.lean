@@ -18,7 +18,7 @@ probability `(1 - |<psi|phi>|^2)/2` [BCWdW01, main.tex:328].
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace QuantumAlg
 
 open PureState Gate
@@ -98,3 +98,4 @@ theorem SwapTest.main (psi phi : PureState n) :
 end
 
 end QuantumAlg
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -19,7 +19,7 @@ the inclusions between cylinders and metric balls.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory MeasureTheory.Measure Set Metric
 open scoped ENNReal NNReal Topology
 
@@ -748,3 +748,4 @@ theorem morreyNorm_truncate_le {p q : ℝ} (hp : 0 ≤ p)
       exact max_le (by linarith only [hA, hf']) (by linarith only [hf'])
 
 end CKN.Foundation.Parabolic.Morrey
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

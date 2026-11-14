@@ -15,7 +15,7 @@ Part of the Caffarelli–Kohn–Nirenberg partial regularity proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory
 open scoped ENNReal
 open CKN.Foundation.Parabolic
@@ -27,3 +27,4 @@ def localLp (E : Set ParabolicPoint) (p : ℝ) (g : ParabolicPoint → ℝ) : Pr
   MeasureTheory.MemLp g (ENNReal.ofReal p) (volume.restrict E)
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

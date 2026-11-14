@@ -82,7 +82,7 @@ plausible one.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Lean4LPD
 
 open Finset
@@ -389,3 +389,4 @@ def trivialMultiLadder {eps : ℕ → ℕ → ℝ} {E : ℕ → ℝ} {M : ℝ}
 end MultiLadder
 
 end Lean4LPD
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

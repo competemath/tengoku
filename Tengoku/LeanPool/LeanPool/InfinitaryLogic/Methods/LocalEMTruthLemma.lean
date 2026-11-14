@@ -64,7 +64,7 @@ as is the final connection to `TailTemplateRealizable`. This is a pure file (imp
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 /-! ## Generic truth-lemma readiness
@@ -749,3 +749,4 @@ theorem LocalEMContext.truthLemmaStage_of_mem_of_skolemUniversal
 end StagedTruthLemma
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

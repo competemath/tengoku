@@ -83,7 +83,7 @@ the destructor matching `Schoenflies.mem_cover`, whose home is `Schoenflies/Pari
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set
 
 namespace Schoenflies
@@ -685,3 +685,4 @@ theorem parity_flip_carrier (P : ClosedPolygon m) {u : Plane} (hu : Plane.IsDire
 end ClosedPolygon
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

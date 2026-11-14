@@ -22,7 +22,7 @@ this defines the multiplication map $M_{n\times n} \to M_n$
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Matrix
 
 open scoped Matrix Kronecker BigOperators
@@ -31,7 +31,7 @@ section
 
 variable {R A B : Type _} [CommSemiring R]
 
-theorem commutes_with_unit_iff [Semiring A] [Semiring B] [Algebra R A] [Algebra R B]
+theorem _root_.Tengoku.LeanPool.commutes_with_unit_iff [Semiring A] [Semiring B] [Algebra R A] [Algebra R B]
     (f : A →ₗ[R] B) :
     f ∘ₗ Algebra.linearMap R A = Algebra.linearMap R B ↔ f 1 = 1 := by
   simp_rw [LinearMap.ext_iff, LinearMap.comp_apply, Algebra.linearMap_apply,
@@ -39,7 +39,7 @@ theorem commutes_with_unit_iff [Semiring A] [Semiring B] [Algebra R A] [Algebra 
   refine ⟨fun h => ?_, fun h x => by rw [h]⟩
   simpa using h 1
 
-theorem commutes_with_mul'_iff [NonUnitalNonAssocSemiring A] [Module R A]
+theorem _root_.Tengoku.LeanPool.commutes_with_mul'_iff [NonUnitalNonAssocSemiring A] [Module R A]
     [SMulCommClass R A A] [IsScalarTower R A A]
     [NonUnitalNonAssocSemiring B] [Module R B] [SMulCommClass R B B] [IsScalarTower R B B]
     (f : A →ₗ[R] B) :
@@ -129,7 +129,7 @@ theorem Matrix.KroneckerProduct.ext_iff {R P n₁ n₂ : Type _} [Finite n₁] [
   simp_rw [map_sum, _root_.map_smul, h _ _]
 
 /-- Multiplication as a linear map into continuous linear endomorphisms. -/
-def mulMapAux (𝕜 X : Type _) [RCLike 𝕜] [NormedAddCommGroupOfRing X] [NormedSpace 𝕜 X]
+def _root_.Tengoku.LeanPool.mulMapAux (𝕜 X : Type _) [RCLike 𝕜] [NormedAddCommGroupOfRing X] [NormedSpace 𝕜 X]
     [SMulCommClass 𝕜 X X] [IsScalarTower 𝕜 X X] [FiniteDimensional 𝕜 X] : X →ₗ[𝕜] X →L[𝕜] X
     where
   toFun x :=
@@ -155,3 +155,4 @@ def mulToClm (𝕜 X : Type _) [RCLike 𝕜] [NormedAddCommGroupOfRing X] [Norme
   cont := map_continuous _
 
 end LinearMap
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

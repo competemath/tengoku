@@ -17,7 +17,7 @@ input to the auxiliary integer in Niven's proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Polynomial
 open Multiset
 
@@ -27,14 +27,14 @@ open scoped BigOperators
 noncomputable section
 
 /-- The symmetric polynomial `∑ᵢ₌₀ⁿ⁻¹ T(Xᵢ)`. -/
-def MvPolynomialSumX {R : Type*} [CommSemiring R] (T : Polynomial R) (n : ℕ) :
+def _root_.Tengoku.LeanPool.MvPolynomialSumX {R : Type*} [CommSemiring R] (T : Polynomial R) (n : ℕ) :
     MvPolynomial (Fin n) R :=
   ∑ i : Fin n, Polynomial.aeval (MvPolynomial.X i) T
 
 /-- Evaluating `∑ᵢ₌₀ⁿ⁻¹ T(Xᵢ)` at `a` gives `∑ᵢ₌₀ⁿ⁻¹ T(aᵢ)`.
 @isnad1 id=eq.0h5v.s8.e90f3047a048 from=translated src=- shape=72b5f048 vocab=817f01d3
 -/
-lemma aeval_MvPolynomialSumX
+lemma _root_.Tengoku.LeanPool.aeval_MvPolynomialSumX
     {R S : Type*} [CommSemiring R] [CommSemiring S] [Algebra R S]
     (T : Polynomial R) (n : ℕ) (a : Fin n → S) :
     MvPolynomial.aeval (σ := Fin n) (R := R) (S₁ := S) a (MvPolynomialSumX T n) =
@@ -49,7 +49,7 @@ lemma aeval_MvPolynomialSumX
 /-- The polynomial `∑ᵢ₌₀ⁿ⁻¹ T(Xᵢ)` is symmetric in the variables `X₀, …, Xₙ₋₁`.
 @isnad1 id=issymmet.0h3v.s4.f8e64e7af20a from=translated src=- shape=1823459f vocab=44a6645b
 -/
-lemma MvPolynomialSumX_isSymmetric {R : Type*} [CommSemiring R] (T : Polynomial R) (n : ℕ) :
+lemma _root_.Tengoku.LeanPool.MvPolynomialSumX_isSymmetric {R : Type*} [CommSemiring R] (T : Polynomial R) (n : ℕ) :
     MvPolynomial.IsSymmetric (MvPolynomialSumX T n) := by
   intro e
   rw [MvPolynomialSumX, map_sum]
@@ -57,7 +57,7 @@ lemma MvPolynomialSumX_isSymmetric {R : Type*} [CommSemiring R] (T : Polynomial 
   exact (Equiv.sum_comp e fun i : Fin n => Polynomial.aeval (MvPolynomial.X i) T)
 
 /-- For `P = ∑ₖ₌₀ⁿ⁻¹ cₖ Xᵏ`, this defines `∑ₖ (cₖ / cᵏ) (x₁ᵏ + ⋯ + xₙᵏ)`. -/
-def scaledMvPolynomial {R K : Type*} [CommSemiring R] [Semifield K] [Algebra R K]
+def _root_.Tengoku.LeanPool.scaledMvPolynomial {R K : Type*} [CommSemiring R] [Semifield K] [Algebra R K]
     (P : Polynomial R) (c : K) (n : ℕ) : MvPolynomial (Fin n) K :=
     ∑ k ∈ Finset.range (P.natDegree + 1),
       MvPolynomial.C ((algebraMap R K (P.coeff k)) / c ^ k) * MvPolynomial.psum (Fin n) K k
@@ -65,7 +65,7 @@ def scaledMvPolynomial {R K : Type*} [CommSemiring R] [Semifield K] [Algebra R K
 /-- `∑ⱼ₌₀ⁿ⁻¹ Gₚ(aⱼ) = (1 / p!) ∑ᵢ₌ₚ^deg(Fₚ) ∑ⱼ₌₀ⁿ⁻¹ Fₚ⁽ⁱ⁾(aⱼ)`.
 @isnad1 id=eq.0h6v.s9.84a98c19bf57 from=translated src=- shape=5b00642a vocab=b650e58d
 -/
-lemma sum_aeval_Gp_eq_one_div_factorial_sum_iterate_derivative_Fp
+lemma _root_.Tengoku.LeanPool.sum_aeval_Gp_eq_one_div_factorial_sum_iterate_derivative_Fp
     {R K : Type*} [CommSemiring R] [Field K] [CharZero K] [Algebra R K]
     (Q : R[X]) (p n : ℕ) (a : Fin n → K) :
     (∑ j : Fin n, aeval (a j) (Gp Q p))
@@ -79,19 +79,19 @@ lemma sum_aeval_Gp_eq_one_div_factorial_sum_iterate_derivative_Fp
       (factorise_sumIteratedDerivPoly Q p).symm
 
 /-- The integer coefficients `cˢ⁻ᵏ · (i! / p!) · (k-Coeff of Sₚ)`. -/
-def ScaledCoeffDerivFp (T : ℤ[X]) (c : ℤ) (p s i k : ℕ) : ℤ :=
+def _root_.Tengoku.LeanPool.ScaledCoeffDerivFp (T : ℤ[X]) (c : ℤ) (p s i k : ℕ) : ℤ :=
   (c ^ (s - k)) * (((i.factorial / p.factorial : ℕ) : ℤ) * (Sp T p i).coeff k)
 
 /-- The symmetric polynomial encoding the scaled `i`-th derivative of `Fₚ` through power
 sums, i.e. `∑ₖ₌₀^deg(Fₚ) cˢ⁻ᵏ · (i! / p!) · (k-Coeff of Sₚ) · (X₀ᵏ + ⋯ + Xₙ₋₁ᵏ)` . -/
-def RpolyFp (T : ℤ[X]) (c : ℤ) (p s i n : ℕ) : MvPolynomial (Fin n) ℤ :=
+def _root_.Tengoku.LeanPool.RpolyFp (T : ℤ[X]) (c : ℤ) (p s i n : ℕ) : MvPolynomial (Fin n) ℤ :=
   ∑ k ∈ Finset.range ((Fp T p).natDegree + 1),
     MvPolynomial.C (ScaledCoeffDerivFp T c p s i k) * MvPolynomial.psum (Fin n) ℤ k
 
 /-- `((cˢ⁻ᵏ) / p!) · (k-th coeff of Fₚ⁽ⁱ⁾) = cˢ⁻ᵏ · (i! / p!) · (k-Coeff of Sₚ)`.
 @isnad1 id=eq.1h7v.s8.f98de3d0ff34 from=translated src=- shape=62dbf604 vocab=169feaef
 -/
-lemma ScaledCoeffDerivFp_from_Sp
+lemma _root_.Tengoku.LeanPool.ScaledCoeffDerivFp_from_Sp
     {K : Type*} [Field K] [CharZero K] [Algebra ℤ K]
     (T : ℤ[X]) (c : ℤ) (p s i k : ℕ) (hpi : p ≤ i) :
     c ^ (s - k) / p.factorial * ((derivative^[i] (Fp T p)).coeff k : K)
@@ -108,7 +108,7 @@ lemma ScaledCoeffDerivFp_from_Sp
 `(cˢ / p!) ∑ⱼ₌₀ⁿ⁻¹ Fₚ⁽ⁱ⁾(aⱼ)`.
 @isnad1 id=eq.3h7v.s9.3d2e043f6f52 from=translated src=- shape=75460038 vocab=02c0aab3
 -/
-lemma aeval_RpolyFp_derivative_Fp
+lemma _root_.Tengoku.LeanPool.aeval_RpolyFp_derivative_Fp
     (T : ℤ[X]) (c : ℤ) (p s i n : ℕ) (a : Fin n → ℂ)
     (hpi : p ≤ i) (hs : ((derivative^[i]) (Fp T p)).natDegree ≤ s) (hc : c ≠ 0) :
     MvPolynomial.aeval (σ := Fin n) (R := ℤ) (S₁ := ℂ) (fun m => c * a m)
@@ -143,7 +143,7 @@ lemma aeval_RpolyFp_derivative_Fp
 is symmetric.
 @isnad1 id=issymmet.0h6v.s4.797d8476625e from=translated src=- shape=e9887f36 vocab=643b2b32
 -/
-lemma RpolyFp_isSymmetric (T : ℤ[X]) (c : ℤ) (p s i n : ℕ) :
+lemma _root_.Tengoku.LeanPool.RpolyFp_isSymmetric (T : ℤ[X]) (c : ℤ) (p s i n : ℕ) :
     MvPolynomial.IsSymmetric (RpolyFp T c p s i n) := by
   intro e
   simp [RpolyFp]
@@ -154,7 +154,7 @@ roots of `T'` in `ℂ`, then evaluating
 at `(c a₀, …, c aₙ₋₁)` gives an integer polynomial expression in the coefficients `T`.
 @isnad1 id=ex.5h8v.s9.f06e6864f2ec from=translated src=- shape=cec804fd vocab=d3257211
 -/
-lemma RpolyFp_at_c_mul_eq_poly_of_monicRescaleOf
+lemma _root_.Tengoku.LeanPool.RpolyFp_at_c_mul_eq_poly_of_monicRescaleOf
     (T : ℤ[X]) (T' : ℚ[X]) (c : ℤ) (p s i d : ℕ) (a : Fin d → ℂ)
     (hc : c ≠ 0) (hmonic : T'.Monic) (hd : T'.natDegree = d)
     (hT : T.map (Int.castRingHom ℚ) = C (c : ℚ) * T')
@@ -175,7 +175,7 @@ lemma RpolyFp_at_c_mul_eq_poly_of_monicRescaleOf
 /-- The integer witness for evaluating
 `∑ₖ₌₀^deg(Fₚ) cˢ⁻ᵏ · (i! / p!) · (k-Coeff of Sₚ) · (X₀ᵏ + ⋯ + X_{d-1}ᵏ)`
 at `(c a₀, …, c a_{d-1})`. -/
-def intAevalRpoly
+def _root_.Tengoku.LeanPool.intAevalRpoly
     (T : ℤ[X]) (T' : ℚ[X]) (c : ℤ) (p s d : ℕ) (a : Fin d → ℂ) (hc : c ≠ 0) (hmonic : T'.Monic)
     (hd : T'.natDegree = d) (hT : T.map (Int.castRingHom ℚ) = C (c : ℚ) * T')
     (hroots' : T'.aroots ℂ = valuesFin a) :
@@ -186,7 +186,7 @@ def intAevalRpoly
           (RpolyFp_at_c_mul_eq_poly_of_monicRescaleOf T T' c p s i d a hc hmonic hd hT hroots'))
 
 /-- The integer witness for `cᵖᵈ⁻¹ ∑ₘ Gₚ(aₘ)`. -/
-def intSumAevalGp
+def _root_.Tengoku.LeanPool.intSumAevalGp
     (T : ℤ[X]) (T' : ℚ[X]) (c : ℤ) (d : ℕ) (a : Fin d → ℂ) (hc : c ≠ 0) (hmonic : T'.Monic)
     (hd : T'.natDegree = d) (hT : T.map (Int.castRingHom ℚ) = C (c : ℚ) * T')
     (hroots' : T'.aroots ℂ = valuesFin a) :
@@ -199,7 +199,7 @@ If `a₀, …, aₙ₋₁` are the roots of `T'` in `ℂ`, then the sum `c^(p * 
 is an integer.
 @isnad1 id=eq.6h6v.s8.c2b0c5daac3e from=translated src=- shape=8d340771 vocab=053afef8
 -/
-lemma SumAevalGp_as_intSumAevalGp
+lemma _root_.Tengoku.LeanPool.SumAevalGp_as_intSumAevalGp
     (T : ℤ[X]) (T' : ℚ[X]) (c : ℤ) (p d : ℕ) (a : Fin d → ℂ)
     (hc : c ≠ 0) (hp : 0 < p) (hmonic : T'.Monic) (hd : T'.natDegree = d)
     (hT : T.map (Int.castRingHom ℚ) = C (c : ℚ) * T')
@@ -220,3 +220,4 @@ lemma SumAevalGp_as_intSumAevalGp
   · simpa [intSumAevalGp, intAevalRpoly] using
       Classical.choose_spec (RpolyFp_at_c_mul_eq_poly_of_monicRescaleOf
                               T T' c p (p * d - 1) i d a hc hmonic hd hT hroots')
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

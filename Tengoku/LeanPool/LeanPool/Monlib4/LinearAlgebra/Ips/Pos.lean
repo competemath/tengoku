@@ -29,7 +29,7 @@ for linear maps:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open InnerProductSpace RCLike
 
 open scoped InnerProduct ComplexConjugate
@@ -423,7 +423,7 @@ theorem _root_.LinearMap.IsSymmetric.rePow_eq_rankOne {𝕜 E : Type _} [RCLike 
     LinearMap.rePow T hT r =
       ∑ i,
         ((hT.eigenvalues rfl i ^ r : ℝ) : 𝕜) •
-          (_root_.rankOne 𝕜 (hT.eigenvectorBasis rfl i) (hT.eigenvectorBasis rfl i)) := by
+          (_root_.Tengoku.LeanPool.rankOne 𝕜 (hT.eigenvectorBasis rfl i) (hT.eigenvectorBasis rfl i)) := by
   simp_rw [LinearMap.ext_iff, LinearMap.rePow_apply,
     ContinuousLinearMap.toLinearMap_sum, ContinuousLinearMap.toLinearMap_smul,
     LinearMap.sum_apply, LinearMap.smul_apply,
@@ -501,13 +501,13 @@ end LinearMap
 /--
 @isnad1 id=ispositi.0h3v.s12.c348bb9d3037 from=translated src=- shape=ad7494c9 vocab=01bd80a5
 -/
-theorem rankOne_self_isPositive {𝕜 E : Type _} [RCLike 𝕜] [NormedAddCommGroup E]
+theorem _root_.Tengoku.LeanPool.rankOne_self_isPositive {𝕜 E : Type _} [RCLike 𝕜] [NormedAddCommGroup E]
     [InnerProductSpace 𝕜 E]
     {x : E} :
-  (_root_.rankOne 𝕜 x x).IsPositive := by
+  (_root_.Tengoku.LeanPool.rankOne 𝕜 x x).IsPositive := by
   refine ⟨rankOne_self_isSymmetric, ?_⟩
   intro y
-  rw [ContinuousLinearMap.reApplyInnerSelf_apply, _root_.rankOne_apply, inner_smul_left,
+  rw [ContinuousLinearMap.reApplyInnerSelf_apply, _root_.Tengoku.LeanPool.rankOne_apply, inner_smul_left,
     RCLike.conj_mul, ← RCLike.ofReal_pow, RCLike.ofReal_re]
   exact sq_nonneg _
 
@@ -539,3 +539,4 @@ theorem LinearMap.IsSymmetric.rePowIsPositive'OfIsPositive' {𝕜 E : Type _} [R
     exact rankOne_self_isPositive
   · apply Real.rpow_nonneg
     exact hT.nonneg_eigenvalue (hT.1.hasEigenvalue_eigenvalues rfl _)
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

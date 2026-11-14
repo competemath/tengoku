@@ -16,7 +16,7 @@ import them.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Sabidussi
 
 /-- A finite labelled endpoint multigraph. Parallel edges and loops are allowed. -/
@@ -125,3 +125,4 @@ def OrdinaryCircuitDecomposition.Compatible {G : LoopMultigraph V E}
 
 end LoopMultigraph
 end Sabidussi
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

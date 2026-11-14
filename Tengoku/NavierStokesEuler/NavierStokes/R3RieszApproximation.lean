@@ -11,7 +11,7 @@ Their operators converge in tempered distributions on `L¹` inputs and
 strongly in `L²` on `L²` inputs.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace NavierStokes.R3RieszApproximation
 
 open Set Filter MeasureTheory ProblemStatement FourierTransform TemperedDistribution
@@ -204,3 +204,4 @@ theorem norm_operatorL2_le (n : ℕ) (i j : Fin 3) (g : Lp ℂ 2 (volume : Measu
   exact mul_le_of_le_one_left (norm_nonneg _) (norm_fourier_truncatedKernel_le n i j x)
 
 end NavierStokes.R3RieszApproximation
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

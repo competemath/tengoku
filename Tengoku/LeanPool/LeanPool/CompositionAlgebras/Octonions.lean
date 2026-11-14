@@ -52,16 +52,16 @@ dropped axiom. The other two remain unstated.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 /-- The octonion algebra, represented as R^8.
     Basis: e_0 = 1 (real unit), e_1 through e_7 (imaginary units). -/
-structure Octonion where
+structure _root_.Tengoku.LeanPool.Octonion where
   /-- The 8 real components. -/
   coords : Fin 8 → ℝ
 
-namespace Octonion
+namespace Tengoku.LeanPool.Octonion
 
 instance : Zero Octonion := ⟨⟨fun _ => 0⟩⟩
 instance : Add Octonion := ⟨fun a b => ⟨fun i => a.coords i + b.coords i⟩⟩
@@ -269,4 +269,5 @@ theorem smul_mul (r : ℝ) (a b : Octonion) : mul (r • a) b = r • mul a b :=
 theorem mul_smul' (r : ℝ) (a b : Octonion) : mul a (r • b) = r • mul a b := by
   ext i; fin_cases i <;> simp [mul, smul_coords, Fin.isValue] <;> ring
 
-end Octonion
+end Tengoku.LeanPool.Octonion
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

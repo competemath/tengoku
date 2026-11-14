@@ -16,7 +16,7 @@ the latent two-point parameters in the proof of Theorem 2.1.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory ProbabilityTheory Set
 
 namespace Feige
@@ -662,3 +662,4 @@ theorem fullKernelMixture_eq
 end
 
 end Feige
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

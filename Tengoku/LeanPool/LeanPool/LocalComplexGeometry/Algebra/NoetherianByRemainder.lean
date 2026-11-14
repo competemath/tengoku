@@ -16,7 +16,7 @@ then finitely many lifted remainders together with `p` generate the ideal.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set
 
 namespace LocalComplexGeometry
@@ -86,3 +86,4 @@ theorem Ideal.fg_of_remainder_kernel
   · exact hJ
 
 end LocalComplexGeometry
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

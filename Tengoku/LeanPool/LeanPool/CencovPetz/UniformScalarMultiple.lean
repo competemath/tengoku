@@ -20,7 +20,7 @@ scalar.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.CencovPetz
 open scoped BigOperators
 
@@ -412,3 +412,4 @@ lemma B_eq_smul_fisherBilin_uniform (i0 i1 : Fin n) (hi01 : i0 ≠ i1) :
 end Bilin
 end TangentFin
 end LeanPool.CencovPetz
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -28,7 +28,7 @@ than prerequisites for this TimeM layer.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace QuantumAlg
 
 universe u
@@ -254,3 +254,4 @@ theorem hasExactCounts_mk (classicalBits transmittedQubits bellPairs : ℕ) :
 end CommunicationProfile
 
 end QuantumAlg
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -47,7 +47,7 @@ all the interior rows; Morse–Hedlund gives one period for those rows.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Nivat.TwoFactors
 
 /-- An agreeing boundary block extends indefinitely to the right when the next value is
@@ -236,3 +236,4 @@ theorem common_inner_period {A : Type*} (x : Configuration A) (hx : FiniteRange 
   simpa [a, sub_eq_add_neg, add_assoc, add_comm, add_left_comm] using h
 
 end Nivat.TwoFactors
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

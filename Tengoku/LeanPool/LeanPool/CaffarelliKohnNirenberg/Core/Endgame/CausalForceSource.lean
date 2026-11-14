@@ -18,7 +18,7 @@ past. Its numerical Morrey bound follows from the original small-data sum.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Set
 open scoped ENNReal NNReal Topology
 open CKN.Foundation.Parabolic CKN.Foundation.Parabolic.Morrey
@@ -150,3 +150,4 @@ theorem causal_force_source_of_suitableWeakSolution
     causalForceComponent_paper_morrey_le q ε₀ hq hφ hφrange hsupp hsmall i hfi⟩
 
 end CKN.Core.Endgame
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

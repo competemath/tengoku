@@ -24,7 +24,7 @@ Main declarations: `RS.isOpen_coeffAt_ne_zero`, `RS.exists_coeffAt_ne_zero_notMe
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold
 open Set Filter Topology IsManifold
 
@@ -87,3 +87,4 @@ def genericKernel (s : Finset X) : Submodule ℂ (Form1 X) where
 end RS
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

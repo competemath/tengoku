@@ -15,18 +15,18 @@ matrix `W`. For the gradient identity the coupling matrix is assumed symmetric.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Real Finset
 
 /-- The weighted Kuramoto potential
 `V = -(K / 2) ∑_{i,j} W i j * cos (θ_j - θ_i)`. -/
-noncomputable def weightedKuramotoV (K : ℝ) (N : ℕ) (W : Fin N → Fin N → ℝ)
+noncomputable def _root_.Tengoku.LeanPool.weightedKuramotoV (K : ℝ) (N : ℕ) (W : Fin N → Fin N → ℝ)
     (θ : Fin N → ℝ) : ℝ :=
   -(K / 2) * ∑ i : Fin N, ∑ j : Fin N, W i j * Real.cos (θ j - θ i)
 
 /-- The weighted Kuramoto force on oscillator `i`,
 `F_i = K ∑_j W i j * sin (θ_j - θ_i)`. -/
-noncomputable def weightedKuramotoF (K : ℝ) (N : ℕ) (W : Fin N → Fin N → ℝ)
+noncomputable def _root_.Tengoku.LeanPool.weightedKuramotoF (K : ℝ) (N : ℕ) (W : Fin N → Fin N → ℝ)
     (i : Fin N) (θ : Fin N → ℝ) : ℝ :=
   K * ∑ j : Fin N, W i j * Real.sin (θ j - θ i)
 
@@ -116,7 +116,7 @@ private lemma weighted_pairDeriv_sum_eq {N : ℕ} (W : Fin N → Fin N → ℝ)
 /--
 @isnad1 id=eq.1h5v.s6.9bd780fdc28b from=translated src=- shape=70970a7b vocab=fa5a17c1
 -/
-lemma weighted_gradient_identity
+lemma _root_.Tengoku.LeanPool.weighted_gradient_identity
     (K : ℝ) (N : ℕ) (W : Fin N → Fin N → ℝ) (hW : ∀ i j, W i j = W j i)
     (θ : Fin N → ℝ) (i : Fin N) :
     weightedKuramotoF K N W i θ =
@@ -168,7 +168,7 @@ lemma weighted_gradient_identity
 /--
 @isnad1 id=eq.1h4v.s7.1724fd935a69 from=translated src=- shape=04e21b6c vocab=9c15f938
 -/
-lemma weightedKuramotoV_symm_cancel
+lemma _root_.Tengoku.LeanPool.weightedKuramotoV_symm_cancel
     (K : ℝ) (N : ℕ) (W : Fin N → Fin N → ℝ) (hW : ∀ i j, W i j = W j i)
     (θ : Fin N → ℝ) :
     ∑ i : Fin N, weightedKuramotoF K N W i θ * weightedKuramotoF K N W i θ =
@@ -188,7 +188,7 @@ lemma weightedKuramotoV_symm_cancel
 /--
 @isnad1 id=le.2h4v.s7.ae91f4e5dcda from=translated src=- shape=608726db vocab=f7442e53
 -/
-theorem weighted_lyapunov_descent
+theorem _root_.Tengoku.LeanPool.weighted_lyapunov_descent
     (K : ℝ) (_hK : 0 < K) (N : ℕ) (W : Fin N → Fin N → ℝ) (hW : ∀ i j, W i j = W j i)
     (θ : Fin N → ℝ) :
     ∑ i : Fin N, weightedKuramotoF K N W i θ *
@@ -202,3 +202,4 @@ theorem weighted_lyapunov_descent
     linarith
   rw [hderiv]
   nlinarith [sq_nonneg (weightedKuramotoF K N W i θ)]
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

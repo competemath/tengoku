@@ -25,7 +25,7 @@ These are left inverses on simplex points and tangent vectors, and are standard 
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.CencovPetz
 open scoped BigOperators
 
@@ -197,3 +197,4 @@ lemma merge_tangentPushforward_split (u : tangentSpace (α := α)) :
 
 end MarkovMorphism
 end LeanPool.CencovPetz
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

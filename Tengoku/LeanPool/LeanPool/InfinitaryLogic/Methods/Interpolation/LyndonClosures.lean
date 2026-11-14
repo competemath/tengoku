@@ -47,7 +47,7 @@ universe.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure BoundedFormulaω
@@ -375,3 +375,4 @@ theorem lyndonInsepAt_witness_of_genEx (c : ℕ) (φc : L[[ℕ]].Sentenceω)
   · exact entails_not_genEx_of_entails_not hcΔ hΔσ
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

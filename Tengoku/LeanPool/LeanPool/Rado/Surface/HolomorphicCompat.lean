@@ -43,7 +43,7 @@ proving Radó's theorem from it is strictly stronger than proving it from `ω`; 
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped Manifold ContDiff
 open Set
 
@@ -52,7 +52,7 @@ open Set
 open set is holomorphic, hence analytic.
 @isnad1 id=le.0h0v.s7.a1b976140d50 from=translated src=- shape=8541e4b2 vocab=f2b38b35
 -/
-theorem contDiffGroupoid_one_le_omega_complex :
+theorem _root_.Tengoku.LeanPool.contDiffGroupoid_one_le_omega_complex :
     contDiffGroupoid 1 (modelWithCornersSelf ℂ ℂ)
       ≤ contDiffGroupoid ω (modelWithCornersSelf ℂ ℂ) := by
   intro f hf
@@ -74,8 +74,9 @@ an analytic manifold. This is what makes
 "`X` is a Riemann surface".
 @isnad1 id=ismanifo.1h1v.s6.204b0aa8a626 from=translated src=- shape=6901ad3f vocab=fa5c4701
 -/
-theorem isManifold_omega_of_one {X : Type*} [TopologicalSpace X] [ChartedSpace ℂ X]
+theorem _root_.Tengoku.LeanPool.isManifold_omega_of_one {X : Type*} [TopologicalSpace X] [ChartedSpace ℂ X]
     (h : IsManifold (modelWithCornersSelf ℂ ℂ) 1 X) :
     IsManifold (modelWithCornersSelf ℂ ℂ) ω X :=
   { compatible := fun he he' =>
       contDiffGroupoid_one_le_omega_complex (h.compatible he he') }
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

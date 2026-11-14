@@ -30,7 +30,7 @@ These are standard ingredients for spectral-iteration proofs and compact-resolve
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace CompactSelfAdjoint
 
 open Filter Topology Metric
@@ -402,3 +402,4 @@ lemma finiteDimensional_iSup_eigenspace_norm_ge
   -- Rewrite the target `iSup` index type to `s.Elem` using definitional equality of `s`.
   exact (inferInstance : FiniteDimensional 𝕜 ((⨆ i : s.Elem, t.eigenspace i.1) : Submodule 𝕜 E))
 end CompactSelfAdjoint
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

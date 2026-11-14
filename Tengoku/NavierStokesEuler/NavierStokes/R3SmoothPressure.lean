@@ -10,7 +10,7 @@ and stress, rather than their derivatives or the pressure, require global
 integrability.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace NavierStokes.R3WeakPressure
 
 open Set Filter MeasureTheory TemperedDistribution FourierTransform
@@ -146,3 +146,4 @@ theorem smooth_pressure_gradient
   exact hrep i
 
 end NavierStokes.R3WeakPressure
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

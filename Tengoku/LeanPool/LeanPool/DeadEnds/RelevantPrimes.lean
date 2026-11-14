@@ -14,7 +14,7 @@ Bounding the finite set of primes relevant to square-divisibility violations.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.DeadEnds
 
 /-- Convert `Nat.primesBelow` to a finset of bundled primes. -/
@@ -284,3 +284,4 @@ lemma violation_count_bound (b : ℕ) (hb : 2 ≤ b) (T : Finset ℕ) (hT : T �
         linarith [mul_le_mul_of_nonneg_left hle hpos]
 
 end LeanPool.DeadEnds
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

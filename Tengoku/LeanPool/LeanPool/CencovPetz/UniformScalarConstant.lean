@@ -30,7 +30,7 @@ pointwise scalar multiple with a scalar depending on the point.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.CencovPetz
 open scoped BigOperators
 
@@ -246,3 +246,4 @@ theorem uniformScalar_eq_uniformScalar_two (G : MonotoneMetricFamily) {n : ℕ} 
 
 end MonotoneMetricFamily
 end LeanPool.CencovPetz
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

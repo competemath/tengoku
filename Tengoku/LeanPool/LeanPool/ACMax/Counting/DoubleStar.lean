@@ -45,7 +45,7 @@ private to it / shared with `h`), `intDeg g` (non-degree-3 neighbours of `g`),
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace ACMax
 
 variable {V : Type*} [Fintype V]
@@ -758,3 +758,4 @@ theorem two_hub_private_pair_twoBlock (G : SimpleGraph V) (h₁ h₂ : V)
     (fun e => hnc1 (e ▸ hb1)) (fun e => hnd1 (e ▸ hb1)) hcd
 
 end ACMax
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

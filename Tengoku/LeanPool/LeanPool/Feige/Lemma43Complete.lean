@@ -18,7 +18,7 @@ identifications.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Real Set
 open scoped ENNReal
 
@@ -284,3 +284,4 @@ theorem complete_for_density
 
 end Lemma43Complete
 end Feige
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

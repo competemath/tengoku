@@ -34,7 +34,7 @@ buying the extra half-level over the pair form `ahl_irregular_moore`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace ACMax
 
 open SimpleGraph Finset
@@ -315,3 +315,4 @@ theorem ahl_ball_girth_bound (hδ2 : ∀ v, 2 ≤ G.degree v) [Nonempty V] (hℓ
   exact absurd (ahl_ball_moore hδ2 hℓ hg) (not_le.mpr hbig)
 
 end ACMax
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -27,7 +27,7 @@ The planar input is mathlib's analytic inverse function theorem
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold
 open Set Filter Topology IsManifold
 
@@ -214,3 +214,4 @@ theorem map_nhds_eq_of_deriv_ne_zero {f : X → Y} {x : X}
   rw [h1, e.map_nhds_eq hxe, heq hxe]
 
 end RS
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

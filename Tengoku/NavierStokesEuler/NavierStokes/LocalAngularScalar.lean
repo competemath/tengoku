@@ -11,7 +11,7 @@ its angular vector field is the actual selected direct sum.
 -/
 
 noncomputable section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Filter
 open scoped Topology
 
@@ -108,3 +108,4 @@ theorem selectedDirect_eq_angularField {a : ℕ → ℕ}
       ActualCandidateConstruction.selectedThreshold_geometry j).scalar) hq hpos
 
 end NavierStokes.LocalAngularScalar
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

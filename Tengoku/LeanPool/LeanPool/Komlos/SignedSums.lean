@@ -22,7 +22,7 @@ vector, apply the induction hypothesis in `E × ℝ`, and use the pullback lemma
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Komlos
 
 open Finsupp Finset
@@ -68,3 +68,4 @@ theorem exists_isColouring_mean_add_sum_mem_convexHull (n : ℕ) :
     · simpa [Fin.sum_univ_castSucc, add_assoc] using hfinal
 
 end Komlos
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

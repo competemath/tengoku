@@ -34,7 +34,7 @@ The proof combines:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory ProbabilityTheory Real
 
 namespace JL
@@ -91,3 +91,4 @@ theorem johnson_lindenstrauss_pointset {m d k : ℕ} (hk : 0 < k)
   · exact card_condition hdim
 
 end JL
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

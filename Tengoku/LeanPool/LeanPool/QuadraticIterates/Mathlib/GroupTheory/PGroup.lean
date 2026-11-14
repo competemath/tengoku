@@ -25,12 +25,12 @@ not obvious (they sit between `GroupTheory.PGroup`, `RepresentationTheory`, and 
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-- A `2`-group acting `ZMod 2`-linearly on a nontrivial finite `𝔽₂`-module fixes some nonzero
 vector.
 @isnad1 id=ex.1h2v.s7.96b65ebed408 from=translated src=- shape=c732210f vocab=19638159
 -/
-theorem fixed_points_nontrivial {G : Type*} [Group G] (hG : IsPGroup 2 G)
+theorem _root_.Tengoku.LeanPool.fixed_points_nontrivial {G : Type*} [Group G] (hG : IsPGroup 2 G)
     {M : Type*} [AddCommGroup M] [Module (ZMod 2) M] [Finite M] [Nontrivial M]
     [DistribMulAction G M] :
     ∃ m : M, m ≠ 0 ∧ m ∈ MulAction.fixedPoints G M := by
@@ -101,7 +101,7 @@ private theorem exists_ne_zero_orbit_const_mem {G : Type*} [Group G] [Finite G] 
 pretransitively on `ι`, contains the all-ones vector.
 @isnad1 id=mem.3h3v.s11.fec032f8dc5d from=translated src=- shape=f4f48c6e vocab=767e0d6f
 -/
-theorem invariant_submodule_all_ones {G : Type*} [Group G] [Finite G] (hG : IsPGroup 2 G)
+theorem _root_.Tengoku.LeanPool.invariant_submodule_all_ones {G : Type*} [Group G] [Finite G] (hG : IsPGroup 2 G)
     {ι : Type*} [Finite ι] [Nonempty ι] [MulAction G ι] [MulAction.IsPretransitive G ι]
     (V : Submodule (ZMod 2) (ι → ZMod 2))
     (hV : ∀ (g : G) (v : ι → ZMod 2), v ∈ V → (fun i ↦ v (g⁻¹ • i)) ∈ V) (hVne : V ≠ ⊥) :
@@ -110,3 +110,4 @@ theorem invariant_submodule_all_ones {G : Type*} [Group G] [Finite G] (hG : IsPG
   rcases transitive_invariant (G := G) w hwinv with h0 | h1
   · exact absurd h0 hwne
   · exact (show w = (fun _ ↦ 1) by ext i; rw [h1]; rfl) ▸ hwV
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -14,7 +14,7 @@ public import Tengoku.LeanPool.LeanPool.MRiscX.AbstractSyntax.Instr
 This module provides core abstract-syntax types of the MRiscX assembly language.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 local notation:60 "(" k " ↦ "v"; "m")" => TMap.put k v m
 
 open Nat
@@ -32,7 +32,7 @@ map is being processed.
 Firstly a register, which will hold a value
 -/
 
-abbrev Register := UInt64
+abbrev _root_.Tengoku.LeanPool.Register := UInt64
 
 instance: Coe Register UInt64 where
  coe c := (c:UInt64)
@@ -41,16 +41,16 @@ instance: Coe Register UInt64 where
 Next, the memory address. This address will point to a certain
 address in the memory which holds some value
 -/
-abbrev MemoryAddress := UInt64
+abbrev _root_.Tengoku.LeanPool.MemoryAddress := UInt64
 
 /--
 The InstructionIndex is a serial number which points
 to a instruction in the stack
 -/
-abbrev InstructionIndex := UInt64
+abbrev _root_.Tengoku.LeanPool.InstructionIndex := UInt64
 
 /-- The program counter: the index of the instruction currently being executed. -/
-abbrev ProgramCounter := UInt64
+abbrev _root_.Tengoku.LeanPool.ProgramCounter := UInt64
 
 /--
 A total map which holds the instructions of a program
@@ -60,7 +60,7 @@ is the instruction Instr.Panic.
 IM := {uint64_1 ↦ instr_1, uint64_2 ↦ instr_2, ..., uint64_n ↦ instr_n}
 / default:  Instr.IPanic
 -/
-def InstructionMap := TMap InstructionIndex Instr
+def _root_.Tengoku.LeanPool.InstructionMap := TMap InstructionIndex Instr
 deriving Repr, Inhabited
 
 instance : ToString InstructionMap where
@@ -69,7 +69,7 @@ instance : ToString InstructionMap where
 /--
 Empty InstructionMap which serves as standard InstructionMap
 -/
-def EmptyInstructionMap : InstructionMap := TMap.empty Instr.Panic
+def _root_.Tengoku.LeanPool.EmptyInstructionMap : InstructionMap := TMap.empty Instr.Panic
 
 /--
 A partial map LabelMap, which holds all the Labels as key and links these
@@ -77,7 +77,7 @@ to an unsigned 64-bit integers.
 
 LM := {l_1 ↦ uint64_1, l_2 ↦ uint64_2, ..., l_n ↦ uint64_n}
 -/
-def LabelMap := PMap String UInt64
+def _root_.Tengoku.LeanPool.LabelMap := PMap String UInt64
 deriving Repr, Inhabited
 
 instance : ToString LabelMap where
@@ -86,13 +86,13 @@ instance : ToString LabelMap where
 /--
 Empty LabelMap which serves as standard LabelMap
 -/
-def EmptyLabels : LabelMap := PMap.empty
+def _root_.Tengoku.LeanPool.EmptyLabels : LabelMap := PMap.empty
 
 /--
 The InstructionMap and the LabelMap are combined into a single structure,
 which is refered as `Code`.
 -/
-structure Code where
+structure _root_.Tengoku.LeanPool.Code where
   /-- The instruction map, associating each instruction index with an instruction. -/
   instructionMap: InstructionMap
   /-- The label map, associating each label name with its target index. -/
@@ -101,9 +101,9 @@ structure Code where
 /--
 A default instance of Code, containing an empty `InstructionMap` and an empty `LabelMap`.
 -/
-def DefaultCode : Code := { instructionMap := EmptyInstructionMap, labels := EmptyLabels }
+def _root_.Tengoku.LeanPool.DefaultCode : Code := { instructionMap := EmptyInstructionMap, labels := EmptyLabels }
 
-namespace Code
+namespace Tengoku.LeanPool.Code
   /-- Replace the instruction map of a `Code` with `c`. -/
   def setCMap (m : Code) (c : InstructionMap) : Code :=
     { m with instructionMap := c}
@@ -141,13 +141,13 @@ namespace Code
 
   /-- Look up the instruction stored at index `l` in a `Code`. -/
   def getInstrAt (m : Code) (l : UInt64): Instr := m.instructionMap.get l
-end Code
+end Tengoku.LeanPool.Code
 
 /--
 Definiton of the registers
 R := {r_1 ↦ w_1, … , r_k ↦ w_k}
 -/
-def Registers := TMap Register UInt64
+def _root_.Tengoku.LeanPool.Registers := TMap Register UInt64
   deriving Repr
 
 /--
@@ -155,13 +155,13 @@ RegisterMap with default value 0
 
 R := {r_1 ↦ w_1, … , r_k ↦ w_k; 0}
 -/
-def EmptyRegisters : Registers := TMap.empty 0
+def _root_.Tengoku.LeanPool.EmptyRegisters : Registers := TMap.empty 0
 
 /--
 Definiton of the memory
 M := {m_1 ↦ w_1, … , m_k ↦ w_k}
 -/
-def Memory := TMap MemoryAddress UInt64
+def _root_.Tengoku.LeanPool.Memory := TMap MemoryAddress UInt64
   deriving Repr
 
 /--
@@ -169,4 +169,5 @@ MemoryMap with default value 0
 
 M := {m_1 ↦ w_1, … , m_k ↦ w_k; 0}
 -/
-def EmptyMemory : Memory := TMap.empty 0
+def _root_.Tengoku.LeanPool.EmptyMemory : Memory := TMap.empty 0
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

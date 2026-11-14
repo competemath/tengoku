@@ -27,12 +27,12 @@ The coprimality condition only requires `0 < u ≤ m` and is proved separately.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Nat Finset
 
 /-- `VWPair u m` holds `v` and `w` and states that `-u, m, v, -w` satisfy the conditions
 in Lemma 2.2. -/
-structure VWPair (u m : ℕ) where
+structure _root_.Tengoku.LeanPool.VWPair (u m : ℕ) where
   /-- `v` in the paper -/
   v : ℕ
   /-- `w` in the paper, **negated** -/
@@ -46,7 +46,7 @@ structure VWPair (u m : ℕ) where
   /-- No number in `[3,m]` divides `v` or `w` -/
   not_dvd (k) (hk : k ∈ Icc 3 m) : ¬k ∣ v ∧ ¬k ∣ w
 
-namespace VWPair
+namespace Tengoku.LeanPool.VWPair
 
 variable {v w u m p : ℕ}
 
@@ -211,7 +211,7 @@ lemma of_coprime (hu : 0 < u) (hm : u ≤ m) : (of u m).v.Coprime (of u m).w := 
   rw [(of u m).eq_add, Nat.dvd_add_left dv] at dw
   grind [le_of_dvd hu dw]
 
-end VWPair
+end Tengoku.LeanPool.VWPair
 
 open Fin Finset
 
@@ -219,7 +219,7 @@ variable {n m s B : ℕ} {vw : VWPair (m + ∑ i ∈ range n, primeChain s i) B}
 
 variable (vw) in
 /-- An `(n + 3)`-tuple reducing to `chainTup n m s`. -/
-def vwTup (i : Fin (n + 3)) : ℤ :=
+def _root_.Tengoku.LeanPool.vwTup (i : Fin (n + 3)) : ℤ :=
   i.addCases (primeChain s ·.1) fun
     | 0 => vw.v
     | 1 => -vw.w
@@ -228,7 +228,7 @@ def vwTup (i : Fin (n + 3)) : ℤ :=
 /--
 @isnad1 id=eq.0h1v.s8.fb2ff0bb88c8 from=translated src=- shape=6c726960 vocab=32b47433
 -/
-lemma vwTup_compl : {natAdd n 0, natAdd n 1}ᶜ = insert (natAdd n 2) (univ.map (castAddEmb 3)) := by
+lemma _root_.Tengoku.LeanPool.vwTup_compl : {natAdd n 0, natAdd n 1}ᶜ = insert (natAdd n 2) (univ.map (castAddEmb 3)) := by
   ext i
   simp_rw [mem_compl, mem_insert, mem_singleton, mem_map, mem_univ, true_and, coe_castAddEmb]
   cases i using addCases <;> grind
@@ -236,7 +236,7 @@ lemma vwTup_compl : {natAdd n 0, natAdd n 1}ᶜ = insert (natAdd n 2) (univ.map 
 /--
 @isnad1 id=eq.1h5v.s8.35d3af2c67d4 from=translated src=- shape=a27f3e8b vocab=ca38149c
 -/
-lemma tupReduce_vwTup {c₂ : n + 1 = n + 3 - #{natAdd n 0, natAdd n 1}} :
+lemma _root_.Tengoku.LeanPool.tupReduce_vwTup {c₂ : n + 1 = n + 3 - #{natAdd n 0, natAdd n 1}} :
     tupReduce (vwTup vw) {natAdd n 0, natAdd n 1} c₂ = chainTup n m s := by
   ext i
   unfold tupReduce
@@ -269,3 +269,4 @@ lemma tupReduce_vwTup {c₂ : n + 1 = n + 3 - #{natAdd n 0, natAdd n 1}} :
     | cast i =>
       have cast_eq : i.castSucc.castSucc = castAdd 2 i := rfl
       rw [lastCases_castSucc, addCases_left, cast_eq, addCases_left]
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

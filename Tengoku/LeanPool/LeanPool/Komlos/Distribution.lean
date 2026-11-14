@@ -22,7 +22,7 @@ probability distribution in the convex hull of its support.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Komlos
 
 open Finsupp Finset
@@ -151,3 +151,4 @@ lemma mean_mem_convexHull [AddCommGroup E] [Module ℝ E] {S : E →₀ ℝ} (hS
   · rw [← mass_eq_sum h, hS.mass_eq]
 
 end Komlos
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

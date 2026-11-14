@@ -30,7 +30,7 @@ anywhere) this file converts holomorphy of maps `Z → OnePoint ℂ` into planar
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold OnePoint
 open Set Filter Topology OnePoint
 
@@ -195,3 +195,4 @@ noncomputable def inversionDiffeomorph : Diffeomorph 𝓘(ℂ) 𝓘(ℂ) (OnePoi
 @[simp] theorem inversionDiffeomorph_apply : ⇑inversionDiffeomorph = inversion := rfl
 
 end RS.P1
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

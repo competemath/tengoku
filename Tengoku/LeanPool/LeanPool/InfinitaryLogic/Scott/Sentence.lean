@@ -34,7 +34,7 @@ The proof proceeds by showing:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u v w u'
 
 namespace FirstOrder
@@ -717,3 +717,4 @@ theorem scottSentence_characterizes_of
 end Language
 
 end FirstOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -29,11 +29,11 @@ No learning-theory types.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory
 
 /-- A random variable f : Ω → ℝ is bounded in [a, b] almost everywhere. -/
-class BoundedRandomVariable {Ω : Type*} [MeasurableSpace Ω]
+class _root_.Tengoku.LeanPool.BoundedRandomVariable {Ω : Type*} [MeasurableSpace Ω]
     (f : Ω → ℝ) (μ : MeasureTheory.Measure Ω) (a b : ℝ) : Prop where
   ae_mem_Icc : ∀ᵐ ω ∂μ, f ω ∈ Set.Icc a b
   measurable : Measurable f
@@ -48,7 +48,7 @@ attribute [local instance] Classical.propDecidable
     variance of sums, and Chebyshev's inequality.
 @isnad1 id=le.5h5v.s7.cfebdcc6f23f from=translated src=- shape=4e53204b vocab=18e2e841
 -/
-lemma chebyshev_majority_bound
+lemma _root_.Tengoku.LeanPool.chebyshev_majority_bound
     {Ω : Type*} [MeasurableSpace Ω] {μ : MeasureTheory.Measure Ω}
     [MeasureTheory.IsProbabilityMeasure μ]
     {k : ℕ} {δ : ℝ} (h_delta_pos : 0 < δ)
@@ -158,3 +158,4 @@ lemma chebyshev_majority_bound
   exact_mod_cast this
 
 end ClassicalInstances
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

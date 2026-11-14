@@ -14,7 +14,7 @@ import Tengoku.LeanPool.LeanPool.SardMoreira.ToMathlib.PR32186
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped Topology NNReal ENNReal unitInterval
 open Asymptotics Filter MeasureTheory AffineMap Set Metric
 
@@ -34,7 +34,7 @@ variable {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 /--
 @isnad1 id=le.1h3v.s7.5d23c844c294 from=translated src=- shape=d1b4d58a vocab=2620a244
 -/
-theorem openSegment_subset_ball_left {x y : E} (h : x ≠ y) :
+theorem _root_.Tengoku.LeanPool.openSegment_subset_ball_left {x y : E} (h : x ≠ y) :
     openSegment ℝ x y ⊆ ball x ‖y - x‖ := by
   rw [openSegment_eq_image_lineMap, ← mapsTo_iff_image_subset]
   intro t ht
@@ -44,7 +44,7 @@ theorem openSegment_subset_ball_left {x y : E} (h : x ≠ y) :
 /--
 @isnad1 id=le.3h6v.s9.9d144930c9ee from=translated src=- shape=e80ba0ff vocab=96f2c920
 -/
-lemma dist_le_mul_volume_of_norm_lineDeriv_le {f : E → F} {a b : E} {C : ℝ}
+lemma _root_.Tengoku.LeanPool.dist_le_mul_volume_of_norm_lineDeriv_le {f : E → F} {a b : E} {C : ℝ}
     (hfc : ContinuousOn f (segment ℝ a b))
     (hfd : ∀ t ∈ Ioo (0 : ℝ) 1, LineDifferentiableAt ℝ f (lineMap a b t) (b - a))
     (hf' : ∀ᵐ t : ℝ, t ∈ Ioo (0 : ℝ) 1 → ‖lineDeriv ℝ f (lineMap a b t) (b - a)‖ ≤ C) :
@@ -70,7 +70,7 @@ lemma dist_le_mul_volume_of_norm_lineDeriv_le {f : E → F} {a b : E} {C : ℝ}
 /--
 @isnad1 id=le.4h7v.s9.13b377316542 from=translated src=- shape=445d92b9 vocab=1a753147
 -/
-lemma dist_le_mul_volume_of_norm_fderiv_le {f : E → F} {a b : E} {C : ℝ} {s : Set E}
+lemma _root_.Tengoku.LeanPool.dist_le_mul_volume_of_norm_fderiv_le {f : E → F} {a b : E} {C : ℝ} {s : Set E}
     (hs : IsOpen s) (hf : DiffContOnCl ℝ f s) (hab : openSegment ℝ a b ⊆ s)
     (hC : ∀ x ∈ s, ‖fderiv ℝ f x‖ ≤ C) :
     ‖f b - f a‖ ≤
@@ -97,7 +97,7 @@ open UniformSpace (Completion) in
 /--
 @isnad1 id=islittle.5h7v.s10.b75a012fa038 from=translated src=- shape=a937e364 vocab=55d7e81b
 -/
-theorem sub_isLittleO_norm_rpow_add_one_of_fderiv_of_density_point [FiniteDimensional ℝ E]
+theorem _root_.Tengoku.LeanPool.sub_isLittleO_norm_rpow_add_one_of_fderiv_of_density_point [FiniteDimensional ℝ E]
     [MeasurableSpace E] [BorelSpace E] {f : E → F} {a : E} {r : ℝ}
     {μ : Measure E} [μ.IsAddHaarMeasure] {s : Set E}
     (hr : 0 ≤ r) (hdf : ∀ᶠ x in 𝓝 a, DifferentiableAt ℝ f x)
@@ -240,7 +240,7 @@ theorem sub_isLittleO_norm_rpow_add_one_of_fderiv_of_density_point [FiniteDimens
 /--
 @isnad1 id=islittle.6h7v.s9.4db25e84837a from=translated src=- shape=3480449e vocab=8bf3a936
 -/
-theorem isLittleO_norm_rpow_add_one_of_fderiv_of_density_point_of_apply_eq_zero
+theorem _root_.Tengoku.LeanPool.isLittleO_norm_rpow_add_one_of_fderiv_of_density_point_of_apply_eq_zero
    [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E] {f : E → F} {a : E} {r : ℝ}
     {μ : Measure E} [μ.IsAddHaarMeasure] {s : Set E}
     (hr : 0 ≤ r) (hdf : ∀ᶠ x in 𝓝 a, DifferentiableAt ℝ f x)
@@ -252,3 +252,4 @@ theorem isLittleO_norm_rpow_add_one_of_fderiv_of_density_point_of_apply_eq_zero
     using sub_isLittleO_norm_rpow_add_one_of_fderiv_of_density_point hr hdf hderiv hs hmeas
 
 end NormedField
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -10,7 +10,7 @@ public import Tengoku
 /-! # Definitions -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators
 
 noncomputable section
@@ -259,3 +259,4 @@ def Ccircle (p : CircleTrigPoly) (D N B : Nat) : ℝ :=
   ‖p‖ + ((D + N + B + 1 : Nat) : ℝ)
 
 end DimdPolyLEAN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

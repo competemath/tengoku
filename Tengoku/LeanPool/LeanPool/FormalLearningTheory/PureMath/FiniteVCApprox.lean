@@ -22,7 +22,7 @@ finite samples.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Finset
 
 noncomputable section
@@ -32,7 +32,7 @@ noncomputable section
 /-- Expected value `∑ h, μ.prob h * f h` of a real-valued test under a finitely supported
 distribution. The base expectation primitive of the approximation layer; specialised to
 indicator tests in `boolTestExpectation`. -/
-def trueExpectation {H : Type*} [Fintype H]
+def _root_.Tengoku.LeanPool.trueExpectation {H : Type*} [Fintype H]
     (μ : FinitePMF H) (f : H → ℝ) : ℝ :=
   ∑ h : H, μ.prob h * f h
 
@@ -40,14 +40,14 @@ def trueExpectation {H : Type*} [Fintype H]
 indicator embedding `if f h then 1 else 0`. The central quantity of the finite-VC
 approximation layer: a TV bound on distributions translates to a uniform bound on test
 expectations via `expectation_approx_of_tv`. -/
-def boolTestExpectation {H : Type*} [Fintype H]
+def _root_.Tengoku.LeanPool.boolTestExpectation {H : Type*} [Fintype H]
     (μ : FinitePMF H) (f : H → Bool) : ℝ :=
   trueExpectation μ (fun h => if f h then (1 : ℝ) else 0)
 
 /-- A convex combination of values in `{0, 1}` is nonnegative.
 @isnad1 id=le.0h3v.s4.30c8b870e62a from=translated src=- shape=627796c3 vocab=ceb396e8
 -/
-lemma boolTestExpectation_nonneg {H : Type*} [Fintype H]
+lemma _root_.Tengoku.LeanPool.boolTestExpectation_nonneg {H : Type*} [Fintype H]
     (μ : FinitePMF H) (f : H → Bool) :
     0 ≤ boolTestExpectation μ f :=
   Finset.sum_nonneg fun h _ =>
@@ -56,7 +56,7 @@ lemma boolTestExpectation_nonneg {H : Type*} [Fintype H]
 /-- A convex combination of values in `{0, 1}` is at most `1`.
 @isnad1 id=le.0h3v.s4.24cb092dfdf6 from=translated src=- shape=59de9939 vocab=ceb396e8
 -/
-lemma boolTestExpectation_le_one {H : Type*} [Fintype H]
+lemma _root_.Tengoku.LeanPool.boolTestExpectation_le_one {H : Type*} [Fintype H]
     (μ : FinitePMF H) (f : H → Bool) :
     boolTestExpectation μ f ≤ 1 := by
   simp only [boolTestExpectation, trueExpectation]
@@ -74,14 +74,14 @@ and so is carried through the rest of the layer.) The approximation metric for f
 VC approximation: two distributions close in `tvDistance` have nearly identical
 expectations on every `Bool`-valued test, which is what the compression argument needs
 to substitute an empirical distribution for the true one. -/
-def tvDistance {H : Type*} [Fintype H]
+def _root_.Tengoku.LeanPool.tvDistance {H : Type*} [Fintype H]
     (μ ν : FinitePMF H) : ℝ :=
   ∑ h : H, |μ.prob h - ν.prob h|
 
 /-- Total variation distance is nonnegative.
 @isnad1 id=le.0h3v.s4.c3611a7519d3 from=translated src=- shape=f29d4371 vocab=9add899f
 -/
-lemma tvDistance_nonneg {H : Type*} [Fintype H]
+lemma _root_.Tengoku.LeanPool.tvDistance_nonneg {H : Type*} [Fintype H]
     (μ ν : FinitePMF H) :
     0 ≤ tvDistance μ ν :=
   Finset.sum_nonneg fun _ _ => abs_nonneg _
@@ -89,7 +89,7 @@ lemma tvDistance_nonneg {H : Type*} [Fintype H]
 /-- Total variation distance is symmetric.
 @isnad1 id=eq.0h3v.s4.e14f5e00de84 from=translated src=- shape=04554202 vocab=55218dd4
 -/
-lemma tvDistance_comm {H : Type*} [Fintype H]
+lemma _root_.Tengoku.LeanPool.tvDistance_comm {H : Type*} [Fintype H]
     (μ ν : FinitePMF H) :
     tvDistance μ ν = tvDistance ν μ := by
   simp only [tvDistance, abs_sub_comm]
@@ -97,7 +97,7 @@ lemma tvDistance_comm {H : Type*} [Fintype H]
 /-- Total variation distance from a distribution to itself is zero.
 @isnad1 id=eq.0h2v.s4.31e1c619b24f from=translated src=- shape=b81717d3 vocab=55218dd4
 -/
-lemma tvDistance_self {H : Type*} [Fintype H]
+lemma _root_.Tengoku.LeanPool.tvDistance_self {H : Type*} [Fintype H]
     (μ : FinitePMF H) :
     tvDistance μ μ = 0 := by
   simp [tvDistance]
@@ -111,7 +111,7 @@ high-probability event under `μ` is approximately high-probability under `ν`, 
 slack controlled by the TV distance.
 @isnad1 id=le.1h5v.s5.5563b3f8e361 from=translated src=- shape=88fa432e vocab=e5a64a24
 -/
-theorem expectation_approx_of_tv {H : Type*} [Fintype H]
+theorem _root_.Tengoku.LeanPool.expectation_approx_of_tv {H : Type*} [Fintype H]
     (μ ν : FinitePMF H) (f : H → Bool) (δ : ℝ)
     (hδ : tvDistance μ ν ≤ δ) :
     |boolTestExpectation μ f - boolTestExpectation ν f| ≤ δ := by
@@ -138,7 +138,7 @@ actually used by the compression characterisation, where the family is the restr
 concept class.
 @isnad1 id=le.2h6v.s6.c2f50c3c1242 from=translated src=- shape=4a62a313 vocab=fbeceabc
 -/
-theorem tv_bound_implies_all_tests {H : Type*} [Fintype H]
+theorem _root_.Tengoku.LeanPool.tv_bound_implies_all_tests {H : Type*} [Fintype H]
     (μ ν : FinitePMF H) (ε : ℝ)
     (hε : tvDistance μ ν ≤ ε)
     (tests : Finset (H → Bool)) :
@@ -153,7 +153,7 @@ theorem tv_bound_implies_all_tests {H : Type*} [Fintype H]
 principle live in the same distributional framework.
 @isnad1 id=eq.1h4v.s6.b8a1e235d2a0 from=translated src=- shape=09cfca0c vocab=af2cb822
 -/
-lemma boolTestExpectation_empirical_eq_avg
+lemma _root_.Tengoku.LeanPool.boolTestExpectation_empirical_eq_avg
     {H : Type*} [Fintype H] [DecidableEq H]
     {T : ℕ} (hT : 0 < T) (hs : Fin T → H) (f : H → Bool) :
     boolTestExpectation (empiricalPMF hT hs) f =
@@ -187,7 +187,7 @@ the Bool game) with the corresponding test expectation. The translation that let
 MWU regret bound be applied directly to the compression problem.
 @isnad1 id=eq.0h5v.s5.b04f588b1215 from=translated src=- shape=f1301054 vocab=7bf4043c
 -/
-lemma boolGamePayoff_eq_boolTestExpectation
+lemma _root_.Tengoku.LeanPool.boolGamePayoff_eq_boolTestExpectation
     {R : Type*} [Fintype R]
     {C : Type*} (M : R → C → Bool) (p : FinitePMF R) (c : C) :
     boolGamePayoff M p c = boolTestExpectation p (fun r => M r c) := by
@@ -199,7 +199,7 @@ lemma boolGamePayoff_eq_boolTestExpectation
 accepting sets. The set-system view is what Mathlib's `Finset.Shatters` and
 `Finset.vcDim` consume, so this is the entry point from the function-class view to the
 combinatorial VC machinery. -/
-def boolFamilyToFinsetFamily {H : Type*} [Fintype H] [DecidableEq H]
+def _root_.Tengoku.LeanPool.boolFamilyToFinsetFamily {H : Type*} [Fintype H] [DecidableEq H]
     (A : Finset (H → Bool)) : Finset (Finset H) :=
   A.image (fun f => Finset.univ.filter (fun h => f h = true))
 
@@ -217,3 +217,4 @@ as `finite_support_vc_approx`, proved via the H ⊕ ℕ infinite-envelope route.
 -/
 
 end -- noncomputable section
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

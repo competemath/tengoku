@@ -14,11 +14,11 @@ This file restores an upstream matrix/tensor equivalence in the opposite directi
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped TensorProduct
 
 /-- Matrix algebras over `A` as scalar extension from matrices over `R`. -/
-def matrixEquivTensor' (n R A : Type*) [CommSemiring R] [CommSemiring A]
+def _root_.Tengoku.LeanPool.matrixEquivTensor' (n R A : Type*) [CommSemiring R] [CommSemiring A]
     [Algebra R A] [Fintype n] [DecidableEq n] :
     Matrix n n A ≃ₐ[A] A ⊗[R] Matrix n n R :=
   .symm <| .ofRingEquiv (f := (matrixEquivTensor n R A).symm) fun a ↦ by
@@ -28,6 +28,7 @@ def matrixEquivTensor' (n R A : Type*) [CommSemiring R] [CommSemiring A]
 /--
 @isnad1 id=eq.0h5v.s9.2d4e71214b50 from=translated src=- shape=d8201f4e vocab=050ac56b
 -/
-@[simp] lemma matrixEquivTensor'_symm_apply (n R A : Type*) [CommSemiring R] [CommSemiring A]
+@[simp] lemma _root_.Tengoku.LeanPool.matrixEquivTensor'_symm_apply (n R A : Type*) [CommSemiring R] [CommSemiring A]
     [Algebra R A] [Fintype n] [DecidableEq n] (a : A) (m : Matrix n n R) :
     (matrixEquivTensor' n R A).symm (a ⊗ₜ m) = a • (m.map (algebraMap R A)) := rfl
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

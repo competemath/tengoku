@@ -34,7 +34,7 @@ graph axioms, choice, or reconstruction enters.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure
@@ -244,3 +244,4 @@ theorem relationsIn_backTranslate_subset {n : ℕ} {θ : (graphLanguage L).Bound
   · exact absurd heq.symm (baseRelSym_ne_graphRelSym q p)
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -19,7 +19,7 @@ endpoint. No existence theorem for the manuscript's profiles is assumed here.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open Filter Set
@@ -200,3 +200,4 @@ theorem not_continuousAt_concentrating_profile {V : Type*}
   exact ⟨field, hcontinuous, Filter.Eventually.of_forall (fun _ => rfl)⟩
 
 end NavierStokes.BlowupImplication
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -19,7 +19,7 @@ for power series.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open PowerSeries Filter
 open scoped PowerSeries.WithPiTopology
 
@@ -65,7 +65,7 @@ open Pentagonal
 /--
 @isnad1 id=summable.0h1v.s8.b874cfeecf7f from=translated src=- shape=1d669d09 vocab=3e6efb8f
 -/
-theorem summable_pentagonalRhs_powerSeries
+theorem _root_.Tengoku.LeanPool.summable_pentagonalRhs_powerSeries
     [Nontrivial R] [TopologicalSpace R] :
     Summable (fun (k : ℕ) ↦
     ((-1) ^ k * (X ^ (k * (3 * k + 1) / 2) - X ^ ((k + 1) * (3 * k + 2) / 2)) : R⟦X⟧)) := by
@@ -86,7 +86,7 @@ $$ \prod_{n = 0}^{\infty} 1 - x^{n + 1} =
 \sum_{k=0}^{\infty} (-1)^k \left(x^{k(3k+1)/2} + x^{(k+1)(3k+2)/2}\right) $$
 @isnad1 id=eq.0h1v.s8.e1ffc262c25a from=translated src=- shape=389a1aea vocab=484d7daa
 -/
-theorem pentagonalNumberTheorem_powerSeries
+theorem _root_.Tengoku.LeanPool.pentagonalNumberTheorem_powerSeries
     [Nontrivial R] [TopologicalSpace R] [IsTopologicalRing R] [T2Space R] :
     ∏' n, (1 - X ^ (n + 1) : R⟦X⟧) =
     ∑' k, (-1) ^ k * (X ^ (k * (3 * k + 1) / 2) - X ^ ((k + 1) * (3 * k + 2) / 2)) := by
@@ -110,7 +110,7 @@ theorem pentagonalNumberTheorem_powerSeries
 /--
 @isnad1 id=summable.0h1v.s7.43ad5d932651 from=translated src=- shape=0fc14ac9 vocab=deb8cb28
 -/
-theorem summable_pentagonalRhs_intNeg_powerSeries
+theorem _root_.Tengoku.LeanPool.summable_pentagonalRhs_intNeg_powerSeries
     [Nontrivial R] [TopologicalSpace R] [IsTopologicalRing R] :
     Summable (fun (k : ℤ) ↦ (Int.negOnePow k : R⟦X⟧) * X ^ (k * (3 * k + 1) / 2).toNat) := by
   apply Summable.of_add_one_of_neg_add_one
@@ -128,7 +128,7 @@ theorem summable_pentagonalRhs_intNeg_powerSeries
 $$ \prod_{n = 0}^{\infty} 1 - x^{n + 1} = \sum_{k=-\infty}^{\infty} (-1)^k x^{k(3k + 1)/2} $$
 @isnad1 id=eq.0h1v.s8.82cae33bec67 from=translated src=- shape=82516fa0 vocab=c1d709f9
 -/
-theorem pentagonalNumberTheorem_intNeg_powerSeries
+theorem _root_.Tengoku.LeanPool.pentagonalNumberTheorem_intNeg_powerSeries
     [Nontrivial R] [TopologicalSpace R] [IsTopologicalRing R] [T2Space R] :
     ∏' n, (1 - X ^ (n + 1)) =
     ∑' (k : ℤ), (Int.negOnePow k : R⟦X⟧) * X ^ (k * (3 * k + 1) / 2).toNat := by
@@ -144,7 +144,7 @@ theorem pentagonalNumberTheorem_intNeg_powerSeries
 /--
 @isnad1 id=summable.0h1v.s7.1c619b39b615 from=translated src=- shape=0fc14ac9 vocab=b2befc81
 -/
-theorem summable_pentagonalRhs_intPos_powerSeries
+theorem _root_.Tengoku.LeanPool.summable_pentagonalRhs_intPos_powerSeries
     [Nontrivial R] [TopologicalSpace R] [IsTopologicalRing R] :
     Summable (fun (k : ℤ) ↦ (Int.negOnePow k : R⟦X⟧) * X ^ (k * (3 * k - 1) / 2).toNat) := by
   rw [← neg_injective.summable_iff (by intro x hx; contrapose! hx; use -x; simp)]
@@ -157,9 +157,10 @@ theorem summable_pentagonalRhs_intPos_powerSeries
 $$ \prod_{n = 0}^{\infty} 1 - x^{n + 1} = \sum_{k=-\infty}^{\infty} (-1)^k x^{k(3k - 1)/2} $$
 @isnad1 id=eq.0h1v.s8.95d72652be98 from=translated src=- shape=f7930cd4 vocab=c1d709f9
 -/
-theorem pentagonalNumberTheorem_intPos_powerSeries
+theorem _root_.Tengoku.LeanPool.pentagonalNumberTheorem_intPos_powerSeries
     [Nontrivial R] [TopologicalSpace R] [IsTopologicalRing R] [T2Space R] :
     ∏' n, (1 - X ^ (n + 1)) =
     ∑' (k : ℤ), (Int.negOnePow k : R⟦X⟧) * X ^ (k * (3 * k - 1) / 2).toNat := by
   rw [pentagonalNumberTheorem_intNeg_powerSeries, ← neg_injective.tsum_eq (by simp)]
   exact tsum_congr fun k ↦ congr($(by simp) * X ^ (Int.toNat ($(by ring_nf) / 2)))
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

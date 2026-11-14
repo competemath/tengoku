@@ -32,7 +32,7 @@ are trivial passthroughs reading the last wire of each output chain.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace CircuitComplexity
 
 /-! ## AONOp extensions -/
@@ -549,3 +549,4 @@ private def partialFold (op : AONOp) (v : Fin k → Bool) (j : Nat) : Bool :=
 end CompileAON
 
 end CircuitComplexity
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

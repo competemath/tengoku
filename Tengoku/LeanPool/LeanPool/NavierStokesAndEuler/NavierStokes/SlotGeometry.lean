@@ -13,7 +13,7 @@ public import Tengoku.Seed.Topology.Algebra.Ring.Real
 meta import Lean.Meta.Tactic.NormCast
 import Tengoku.Seed.Analysis.Normed.Group.Continuity
 import Tengoku.Seed.Analysis.Normed.MulAction
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -489,3 +489,4 @@ theorem colored_labels_have_slots {Label : Type*} (m D : ℕ) (a b : Plane)
     simpa only [heq] using h.symm
 
 end NavierStokes.SlotGeometry
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

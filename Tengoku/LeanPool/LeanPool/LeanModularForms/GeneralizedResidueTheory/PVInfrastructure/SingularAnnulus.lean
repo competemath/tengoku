@@ -12,7 +12,7 @@ import Tengoku.LeanPool.LeanPool.LeanModularForms.GeneralizedResidueTheory.PVInf
 import Tengoku.LeanPool.LeanPool.LeanModularForms.GeneralizedResidueTheory.PVInfrastructure.StepBounds
 import Tengoku.Seed.Analysis.SpecialFunctions.Trigonometric.Arctan
 import Tengoku.Seed.MeasureTheory.Covering.Besicovitch
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -734,3 +734,4 @@ lemma singular_annulus_bound_explicit
         singular_annulus_final_ratio hKmeas_pos hL_pos hε₁_pos hε₂_pos h_ratio
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

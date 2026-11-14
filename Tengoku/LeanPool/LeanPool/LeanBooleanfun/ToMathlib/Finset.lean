@@ -14,7 +14,7 @@ Small helper lemmas about `Finset` that are not specific to Boolean functions.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Finset
 
 variable {α : Type*}
@@ -33,3 +33,4 @@ lemma filter_univ_not_mem (s : Finset α) : univ.filter (· ∉ s) = sᶜ := by
 end ToDataFintypeBasic
 
 end Finset
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

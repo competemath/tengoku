@@ -33,7 +33,7 @@ Everything is **choice-free** (`#print axioms ⊆ {propext, Quot.sound}`).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem
@@ -172,3 +172,4 @@ theorem Isomorphic.prod (h₀ : V₀ ≅ᴰ V₀') (h₁ : V₁ ≅ᴰ V₁') : 
   h₀.elim fun e₀ => h₁.elim fun e₁ => ⟨prodCongrD e₀ e₁⟩
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

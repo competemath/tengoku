@@ -10,7 +10,7 @@ public import Tengoku
 /-! # ExistsUnique -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Classical
 variable {α : Sort*} {p : α → Prop} {r : α → α → Prop}
 
@@ -28,3 +28,4 @@ noncomputable def «extendedChoose!» (h : ∀ x, p x → ∃! y, r x y)
     (default : α) (x : α) : α := choose (exitsUnique_extend h default x).exists
 
 end Classical
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

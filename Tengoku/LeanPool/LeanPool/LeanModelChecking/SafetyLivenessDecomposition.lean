@@ -15,7 +15,7 @@ safety property and a liveness property, following Alpern and Schneider.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace SafetyLivenessDecomposition
 
 -- Theorem statement based on:
@@ -145,3 +145,4 @@ theorem safety_liveness_decomposition
       simp [append_slice_eq_self]
 
 end SafetyLivenessDecomposition
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

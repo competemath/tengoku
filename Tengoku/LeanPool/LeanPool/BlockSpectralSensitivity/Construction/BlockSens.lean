@@ -25,7 +25,7 @@ Adapted for Lean Pool from `Timeroot/BS_Lam` at commit
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace BSLambda
 
 namespace Construction
@@ -79,3 +79,4 @@ theorem card_le_bs [Fintype ι] [DecidableEq ι] [NeZero r] :
 end Construction
 
 end BSLambda
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -21,7 +21,7 @@ integrable function therefore applies: for any `g`, the functions
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Filter Topology
 
 noncomputable section
@@ -70,3 +70,4 @@ theorem ae_tendsto_mollify_sliceRadius {d : ℕ} {g : Vec d → ℝ}
 end CKN
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

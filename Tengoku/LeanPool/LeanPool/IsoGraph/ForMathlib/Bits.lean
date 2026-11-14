@@ -16,8 +16,8 @@ can be contributed upstream, or deleted when Mathlib grows its own.
 -/
 
 @[expose] public section
-
-theorem eq_of_testBit_lt {n a b : ℕ} (ha : a < 2 ^ n) (hb : b < 2 ^ n)
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+theorem _root_.Tengoku.LeanPool.eq_of_testBit_lt {n a b : ℕ} (ha : a < 2 ^ n) (hb : b < 2 ^ n)
     (h : ∀ k, k < n → a.testBit k = b.testBit k) : a = b := by
   refine Nat.eq_of_testBit_eq fun k ↦ ?_
   by_cases hk : k < n
@@ -29,7 +29,7 @@ theorem eq_of_testBit_lt {n a b : ℕ} (ha : a < 2 ^ n) (hb : b < 2 ^ n)
 /--
 @isnad1 id=eq.0h6v.s6.9b3e2c9a60c4 from=translated src=- shape=4b2ed0da vocab=2f306cda
 -/
-theorem testBit_foldl_or {α : Type} (f : α → ℕ) (p : α → Bool) (k : ℕ) (l : List α) (c : ℕ) :
+theorem _root_.Tengoku.LeanPool.testBit_foldl_or {α : Type} (f : α → ℕ) (p : α → Bool) (k : ℕ) (l : List α) (c : ℕ) :
     (l.foldl (fun c a ↦ if p a then c ||| 2 ^ f a else c) c).testBit k
       = (c.testBit k || l.any fun a ↦ p a && decide (f a = k)) := by
   induction l generalizing c with
@@ -43,7 +43,7 @@ theorem testBit_foldl_or {α : Type} (f : α → ℕ) (p : α → Bool) (k : ℕ
 /--
 @isnad1 id=lt.2h6v.s7.aa934d582298 from=translated src=- shape=2515e691 vocab=0a844d2e
 -/
-theorem foldl_or_lt {α : Type} (f : α → ℕ) (p : α → Bool) (m : ℕ) (l : List α)
+theorem _root_.Tengoku.LeanPool.foldl_or_lt {α : Type} (f : α → ℕ) (p : α → Bool) (m : ℕ) (l : List α)
     (hf : ∀ a ∈ l, f a < m) (c : ℕ) (hc : c < 2 ^ m) :
     l.foldl (fun c a ↦ if p a then c ||| 2 ^ f a else c) c < 2 ^ m := by
   induction l generalizing c with
@@ -60,7 +60,7 @@ theorem foldl_or_lt {α : Type} (f : α → ℕ) (p : α → Bool) (m : ℕ) (l 
 /--
 @isnad1 id=ex.2h2v.s5.77739e603245 from=translated src=- shape=38c60cde vocab=b30a5ae7
 -/
-theorem exists_testBit {n s : ℕ} (hs : s < 2 ^ n) (h0 : s ≠ 0) :
+theorem _root_.Tengoku.LeanPool.exists_testBit {n s : ℕ} (hs : s < 2 ^ n) (h0 : s ≠ 0) :
     ∃ i : Fin n, s.testBit i.1 = true := by
   by_contra h
   simp only [not_exists, Bool.not_eq_true] at h
@@ -70,7 +70,7 @@ theorem exists_testBit {n s : ℕ} (hs : s < 2 ^ n) (h0 : s ≠ 0) :
 /--
 @isnad1 id=le.1h2v.s4.3349a0e2e4e3 from=translated src=- shape=6d92ecbd vocab=795e0749
 -/
-theorem le_of_testBit_imp {a b : ℕ} (h : ∀ k, a.testBit k = true → b.testBit k = true) : a ≤ b := by
+theorem _root_.Tengoku.LeanPool.le_of_testBit_imp {a b : ℕ} (h : ∀ k, a.testBit k = true → b.testBit k = true) : a ≤ b := by
   have hab : a &&& b = a := Nat.eq_of_testBit_eq fun k ↦ by
     rw [Nat.testBit_and]
     cases ha : a.testBit k with
@@ -81,7 +81,7 @@ theorem le_of_testBit_imp {a b : ℕ} (h : ∀ k, a.testBit k = true → b.testB
 /--
 @isnad1 id=eq.0h6v.s6.6d9ade06620f from=translated src=- shape=cbbf6b34 vocab=36454638
 -/
-theorem testBit_foldl_lor {α : Type} (f : α → ℕ) (p : α → Bool) (k : ℕ) (l : List α) (c : ℕ) :
+theorem _root_.Tengoku.LeanPool.testBit_foldl_lor {α : Type} (f : α → ℕ) (p : α → Bool) (k : ℕ) (l : List α) (c : ℕ) :
     (l.foldl (fun c a ↦ if p a then c ||| f a else c) c).testBit k
       = (c.testBit k || l.any fun a ↦ p a && (f a).testBit k) := by
   induction l generalizing c with
@@ -95,7 +95,7 @@ theorem testBit_foldl_lor {α : Type} (f : α → ℕ) (p : α → Bool) (k : �
 /--
 @isnad1 id=eq.1h3v.s6.efeb347bb3c5 from=translated src=- shape=ed29ada1 vocab=8d554dc3
 -/
-theorem shl_bit (acc : UInt64) (c : Bool) (t : Nat) (ht : t < 64) :
+theorem _root_.Tengoku.LeanPool.shl_bit (acc : UInt64) (c : Bool) (t : Nat) (ht : t < 64) :
     (acc <<< 1 ||| (if c then 1 else 0)).toBitVec.getLsbD t
       = if t = 0 then c else acc.toBitVec.getLsbD (t - 1) := by
   have h : (acc <<< 1).toBitVec = acc.toBitVec <<< (1:Nat) := rfl
@@ -107,10 +107,11 @@ theorem shl_bit (acc : UInt64) (c : Bool) (t : Nat) (ht : t < 64) :
 /--
 @isnad1 id=eq.1h2v.s5.d85afc234609 from=translated src=- shape=23432f0d vocab=5af57dba
 -/
-theorem shl_natshift (acc : UInt64) (m : Nat) (hm : m < 64) :
+theorem _root_.Tengoku.LeanPool.shl_natshift (acc : UInt64) (m : Nat) (hm : m < 64) :
     (acc <<< UInt64.ofNat m).toBitVec = acc.toBitVec <<< m := by
   change acc.toBitVec <<< (((UInt64.ofNat m).toBitVec % 64).toNat) = acc.toBitVec <<< m
   congr 1
   rw [BitVec.toNat_umod]
   simp [BitVec.toNat_ofNat, Nat.mod_eq_of_lt hm,
     Nat.mod_eq_of_lt (show m < 18446744073709551616 by omega)]
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

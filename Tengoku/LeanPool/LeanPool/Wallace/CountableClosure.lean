@@ -16,7 +16,7 @@ whose indices it contains still takes only countably many new coordinates at eac
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set
 
 universe u v w
@@ -151,3 +151,4 @@ theorem preparedSupport_subset_preparedClosure (index : Code ↪ I)
 end
 
 end Wallace
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

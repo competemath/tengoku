@@ -11,7 +11,7 @@ public import Tengoku
 /-! Strong measurability using second countability of the source. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory TopologicalSpace
 
 /-- A continuous map on a second-countable source is almost everywhere strongly measurable.
@@ -24,3 +24,4 @@ theorem Continuous.aestronglyMeasurable_of_secondCountable
     {μ : Measure α} {f : α → β} (hf : Continuous f) : AEStronglyMeasurable f μ := by
   let _ := secondCountableTopologyEither_of_left α β
   exact hf.aestronglyMeasurable
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

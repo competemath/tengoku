@@ -14,34 +14,34 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Topology Filter Set Function UniformConvergence Metric
 
 variable {U : Set ℂ} {Q : Set ℂ → Set ℂ} {ι : Type*} {l : Filter ι}
 
 /-- `𝓒 U` : functions `ℂ → ℂ` equipped with the topology of locally
 uniform (compact-open) convergence on `U`. -/
-abbrev 𝓒 (U : Set ℂ) := ℂ →ᵤ[compacts U] ℂ
+abbrev _root_.Tengoku.LeanPool.𝓒 (U : Set ℂ) := ℂ →ᵤ[compacts U] ℂ
 
 /-- The complex derivative as a self-map on `𝓒 U`. -/
-noncomputable def uderiv (f : 𝓒 U) : 𝓒 U := deriv f
+noncomputable def _root_.Tengoku.LeanPool.uderiv (f : 𝓒 U) : 𝓒 U := deriv f
 
 /--
 @isnad1 id=iff.1h5v.s6.1c8875ce0fe6 from=translated src=- shape=094c0b25 vocab=dae5adc0
 -/
-lemma tendsto_𝓒_iff (hU : IsOpen U) {F : ι → 𝓒 U} {f : 𝓒 U} :
+lemma _root_.Tengoku.LeanPool.tendsto_𝓒_iff (hU : IsOpen U) {F : ι → 𝓒 U} {f : 𝓒 U} :
     Tendsto F l (𝓝 f) ↔ TendstoLocallyUniformlyOn F f l U := by
   simp only [UniformOnFun.tendsto_iff_tendstoUniformlyOn, compacts, mem_ofPred_eq, and_imp]
   exact (tendstoLocallyUniformlyOn_iff_forall_isCompact hU).symm
 
 /-- `𝓗 U` : the subspace of `𝓒 U` consisting of holomorphic
 (complex-differentiable) functions on `U`. -/
-def 𝓗 (U : Set ℂ) := {f : 𝓒 U | DifferentiableOn ℂ f U}
+def _root_.Tengoku.LeanPool.𝓗 (U : Set ℂ) := {f : 𝓒 U | DifferentiableOn ℂ f U}
 
 /--
 @isnad1 id=isclosed.1h1v.s5.77414edc5be0 from=translated src=- shape=5e516f48 vocab=fe8157a1
 -/
-lemma isClosed_𝓗 (hU : IsOpen U) : IsClosed (𝓗 U) := by
+lemma _root_.Tengoku.LeanPool.isClosed_𝓗 (hU : IsOpen U) : IsClosed (𝓗 U) := by
   refine isClosed_iff_clusterPt.2 (fun f hf => ?_)
   have : (𝓝 f ⊓ 𝓟 (𝓗 U)).NeBot := hf
   have hconv : TendstoLocallyUniformlyOn (id : 𝓒 U → 𝓒 U) f (𝓝 f ⊓ 𝓟 (𝓗 U)) U :=
@@ -54,7 +54,7 @@ lemma isClosed_𝓗 (hU : IsOpen U) : IsClosed (𝓗 U) := by
 /--
 @isnad1 id=continuo.1h1v.s5.e9c26acd7870 from=translated src=- shape=845736ed vocab=1aed165d
 -/
-lemma ContinuousOn_uderiv (hU : IsOpen U) : ContinuousOn uderiv (𝓗 U) := by
+lemma _root_.Tengoku.LeanPool.ContinuousOn_uderiv (hU : IsOpen U) : ContinuousOn uderiv (𝓗 U) := by
   rintro f -
   refine (tendsto_𝓒_iff hU).2 (TendstoLocallyUniformlyOn.deriv ?_ eventually_mem_nhdsWithin hU)
   exact (tendsto_𝓒_iff hU).1 nhdsWithin_le_nhds
@@ -62,13 +62,13 @@ lemma ContinuousOn_uderiv (hU : IsOpen U) : ContinuousOn uderiv (𝓗 U) := by
 /-- `𝓑 U Q` : the collection of holomorphic maps on `U` whose image on
 each compact `K ⊆ U` is contained in `Q K`. Used to formalise local
 boundedness conditions for normal-family arguments. -/
-def 𝓑 (U : Set ℂ) (Q : Set ℂ → Set ℂ) : Set (𝓒 U) :=
+def _root_.Tengoku.LeanPool.𝓑 (U : Set ℂ) (Q : Set ℂ → Set ℂ) : Set (𝓒 U) :=
     {f ∈ 𝓗 U | ∀ K ∈ compacts U, MapsTo f K (Q K)}
 
 /--
 @isnad1 id=eq.0h2v.s5.0e7d764b37d7 from=translated src=- shape=e753b9e0 vocab=6f398e6b
 -/
-lemma 𝓑_const {Q : Set ℂ} : 𝓑 U (fun _ => Q) = {f ∈ 𝓗 U | MapsTo f U Q} := by
+lemma _root_.Tengoku.LeanPool.𝓑_const {Q : Set ℂ} : 𝓑 U (fun _ => Q) = {f ∈ 𝓗 U | MapsTo f U Q} := by
   rw [𝓑]
   ext f
   simp only [Set.mem_ofPred_eq]
@@ -80,7 +80,7 @@ lemma 𝓑_const {Q : Set ℂ} : 𝓑 U (fun _ => Q) = {f ∈ 𝓗 U | MapsTo f 
 /--
 @isnad1 id=isclosed.2h2v.s6.76ec7988d82f from=translated src=- shape=32299fc0 vocab=f42f1fc0
 -/
-theorem isClosed_𝓑 (hU : IsOpen U) (hQ : ∀ K ∈ compacts U, IsCompact (Q K)) :
+theorem _root_.Tengoku.LeanPool.isClosed_𝓑 (hU : IsOpen U) (hQ : ∀ K ∈ compacts U, IsCompact (Q K)) :
     IsClosed (𝓑 U Q) := by
   rw [𝓑, ofPred_and]; apply (isClosed_𝓗 hU).inter
   simp only [ofPred_forall, MapsTo]
@@ -92,17 +92,17 @@ theorem isClosed_𝓑 (hU : IsOpen U) (hQ : ∀ K ∈ compacts U, IsCompact (Q K
 
 /-- `𝓜 U` : holomorphic functions on `U` whose image lies in the closed
 unit disk `closedBall 0 1 ⊆ ℂ`. -/
-def 𝓜 (U : Set ℂ) := {f ∈ 𝓗 U | MapsTo f U (closedBall (0 : ℂ) 1)}
+def _root_.Tengoku.LeanPool.𝓜 (U : Set ℂ) := {f ∈ 𝓗 U | MapsTo f U (closedBall (0 : ℂ) 1)}
 
 /--
 @isnad1 id=eq.0h1v.s5.8cb478d839a1 from=translated src=- shape=18bd0d72 vocab=0230aa3f
 -/
-lemma 𝓜_eq_𝓑 : 𝓜 U = 𝓑 U (fun _ => closedBall 0 1) := 𝓑_const.symm
+lemma _root_.Tengoku.LeanPool.𝓜_eq_𝓑 : 𝓜 U = 𝓑 U (fun _ => closedBall 0 1) := 𝓑_const.symm
 
 /--
 @isnad1 id=isclosed.1h1v.s5.3e03f82b322d from=translated src=- shape=5e516f48 vocab=c54bb1b7
 -/
-lemma IsClosed_𝓜 (hU : IsOpen U) : IsClosed (𝓜 U) := by
+lemma _root_.Tengoku.LeanPool.IsClosed_𝓜 (hU : IsOpen U) : IsClosed (𝓜 U) := by
   suffices h : IsClosed {f : 𝓒 U | MapsTo f U (closedBall 0 1)} from (isClosed_𝓗 hU).inter h
   simp_rw [MapsTo, ofPred_forall]
   refine isClosed_biInter (fun z hz => isClosed_closedBall.preimage ?_)
@@ -110,12 +110,12 @@ lemma IsClosed_𝓜 (hU : IsOpen U) : IsClosed (𝓜 U) := by
     (mem_singleton z) ⟨singleton_subset_iff.2 hz, isCompact_singleton⟩).continuous)
 
 /-- `𝓘 U` : holomorphic injections from `U` into the closed unit disk. -/
-def 𝓘 (U : Set ℂ) := {f ∈ 𝓜 U | InjOn f U}
+def _root_.Tengoku.LeanPool.𝓘 (U : Set ℂ) := {f ∈ 𝓜 U | InjOn f U}
 
 /--
 @isnad1 id=nonempty.0h1v.s3.9d5641f4d5a7 from=translated src=- shape=dc5f02b5 vocab=e109c2ee
 -/
-lemma 𝓘_nonempty [good_domain U] : (𝓘 U).Nonempty := by
+lemma _root_.Tengoku.LeanPool.𝓘_nonempty [good_domain U] : (𝓘 U).Nonempty := by
   obtain ⟨u, hu⟩ := nonempty_compl.mpr (good_domain.ne_univ : U ≠ univ)
   let f : ℂ → ℂ := fun z => z - u
   have f_inj : Injective f := fun _ _ h => sub_left_inj.mp h
@@ -156,9 +156,10 @@ lemma 𝓘_nonempty [good_domain U] : (𝓘 U).Nonempty := by
 maps `U → closedBall 0 1` that are either injective or constant.
 Hurwitz's theorem says these are the only locally uniform limits of
 elements of `𝓘 U`. -/
-def 𝓙 (U : Set ℂ) := {f ∈ 𝓜 U | InjOn f U ∨ ∃ w : ℂ, EqOn f (fun _ => w) U}
+def _root_.Tengoku.LeanPool.𝓙 (U : Set ℂ) := {f ∈ 𝓜 U | InjOn f U ∨ ∃ w : ℂ, EqOn f (fun _ => w) U}
 
 /--
 @isnad1 id=le.0h1v.s3.736606759c70 from=translated src=- shape=46d75873 vocab=bf185e2e
 -/
-lemma 𝓘_subset_𝓙 : 𝓘 U ⊆ 𝓙 U := fun _ hf => ⟨hf.1, Or.inl hf.2⟩
+lemma _root_.Tengoku.LeanPool.𝓘_subset_𝓙 : 𝓘 U ⊆ 𝓙 U := fun _ hf => ⟨hf.1, Or.inl hf.2⟩
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

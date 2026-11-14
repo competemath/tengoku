@@ -33,7 +33,7 @@ the uniform insertion lemma) needs the chain to be long enough to contain rank `
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure
@@ -129,3 +129,4 @@ def GapWitness.mono {lt : L.Relations 2} {α β : Ordinal.{0}} (hβ : β ≤ α)
   marks := W.marks
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

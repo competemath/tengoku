@@ -21,7 +21,7 @@ by `castLE`, `relabel`, `openBounds`, and `subst`, with strict decrease into eve
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u v
 
 namespace FirstOrder
@@ -177,3 +177,4 @@ theorem depth_openBounds_subst_lt
 end Language
 
 end FirstOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

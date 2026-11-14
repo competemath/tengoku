@@ -21,7 +21,7 @@ in `Komlos.Cube`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Komlos
 
 open Finset
@@ -62,3 +62,4 @@ lemma tvDist_sq_le {P Q : E →₀ ℝ} {s : Finset E} (hPs : P.support ⊆ s) (
     exact sq_nonneg _
 
 end Komlos
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -22,7 +22,7 @@ action on marked arcs; `PolygonCell.radialHomeomorph` then supplies the disk hom
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanEval.Topology.ClassificationOfSurfaces
 
 open Complex
@@ -240,3 +240,4 @@ theorem radialHomeomorph_ofCircle {n m : ℕ} (h : Circle ≃ₜ Circle)
 end PolygonCell
 
 end LeanEval.Topology.ClassificationOfSurfaces
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

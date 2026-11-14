@@ -20,7 +20,7 @@ at each site is noise.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u
 
 namespace InfinitaryLogic
@@ -67,3 +67,4 @@ theorem add_omega0_lt_omega1 {α : Ordinal.{0}} (hα : α < (Cardinal.aleph 1).o
 /-! ## Rank is monotone in the relation -/
 
 end InfinitaryLogic
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

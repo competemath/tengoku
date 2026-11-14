@@ -16,7 +16,7 @@ sub-unit power for the total mass.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Set
 open scoped ENNReal NNReal
 
@@ -57,3 +57,4 @@ theorem lintegral_rpow_le_rpow_lintegral_mul_measure
   simpa only [Pi.mul_apply, mul_one] using h
 
 end CKN.Core.Step4
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

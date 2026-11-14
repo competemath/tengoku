@@ -33,7 +33,7 @@ This file develops the canonical partition tree and extracts a live node of leng
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u
 
 namespace FirstOrder.Combinatorics.PairERGen
@@ -384,3 +384,4 @@ variable {κ : Cardinal.{0}} {C : Type}
 end BranchExtraction
 
 end FirstOrder.Combinatorics.PairERGen
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -16,7 +16,7 @@ This file defines the concept of a quasi-borel space, as given by [HeunenKSY17].
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped MeasureTheory
 
 /--
@@ -27,7 +27,7 @@ precomposition, and gluing along borel partitions.
 See [HeunenKSY17], Definition 7.
 -/
 @[ext]
-class QuasiBorelSpace (A : Type*) where
+class _root_.Tengoku.LeanPool.QuasiBorelSpace (A : Type*) where
   /--
   `IsVar φ` denotes whether `φ` is a random variable. Variables can be
   approximately thought of as the measurable functions in `ℝ → A`.
@@ -49,7 +49,7 @@ class QuasiBorelSpace (A : Type*) where
 
 variable {A B : Type*} [QuasiBorelSpace A] [QuasiBorelSpace B]
 
-namespace QuasiBorelSpace
+namespace Tengoku.LeanPool.QuasiBorelSpace
 
 attribute [fun_prop] IsVar isVar_const isVar_comp
 
@@ -134,13 +134,13 @@ See [HeunenKSY17], Proposition 14.
 instance : Inhabited (QuasiBorelSpace A) where
   default := @ofMeasurableSpace _ ⊤
 
-end QuasiBorelSpace
+end Tengoku.LeanPool.QuasiBorelSpace
 
 /--
 A _measurable quasi-borel space_ is the quasi-borel space where the notion of
 variable aligns with measurable functions.
 -/
-class MeasurableQuasiBorelSpace (A : Type*) [QuasiBorelSpace A] [MeasurableSpace A] where
+class _root_.Tengoku.LeanPool.MeasurableQuasiBorelSpace (A : Type*) [QuasiBorelSpace A] [MeasurableSpace A] where
   /-- Variables are measurable functions. -/
   isHom_iff_measurable (φ : ℝ → A) : QuasiBorelSpace.IsHom φ ↔ Measurable φ
 
@@ -148,9 +148,10 @@ class MeasurableQuasiBorelSpace (A : Type*) [QuasiBorelSpace A] [MeasurableSpace
 A _discrete quasi-borel space_ is the quasi-borel space analogue of the discrete
 measurable space.
 -/
-class DiscreteQuasiBorelSpace (A : Type*) [QuasiBorelSpace A] [MeasurableSpace A] : Prop
+class _root_.Tengoku.LeanPool.DiscreteQuasiBorelSpace (A : Type*) [QuasiBorelSpace A] [MeasurableSpace A] : Prop
   extends DiscreteMeasurableSpace A, MeasurableQuasiBorelSpace A
 
 instance {A : Type*} [QuasiBorelSpace A] [MeasurableSpace A]
     [DiscreteMeasurableSpace A] [MeasurableQuasiBorelSpace A]
     : DiscreteQuasiBorelSpace A := ⟨⟩
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

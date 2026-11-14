@@ -33,7 +33,7 @@ After cancellations the remaining coefficients are all ≤ 0:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace PLAcceleratedNesterovLean
 
 /-- The main arithmetic assembly for the flat-case Lyapunov contraction.
@@ -127,3 +127,4 @@ theorem flat_case_arithmetic
   nlinarith [hTn', h_descent, h_seg_sc, h_aim_sc, hc_ppv, hc_pv, hc_pg]
 
 end PLAcceleratedNesterovLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

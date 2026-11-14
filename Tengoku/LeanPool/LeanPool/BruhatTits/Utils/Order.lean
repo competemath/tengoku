@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 variable {α β : Type*} [PartialOrder α] [PartialOrder β] (f : α ≃o β)
 
 /--
@@ -30,3 +30,4 @@ lemma OrderIso.map_bot_iff [OrderBot α] [OrderBot β] (x : α) :
     f x = ⊥ ↔ x = ⊥ := by
   refine ⟨fun h ↦ ?_, fun h ↦ h ▸ f.map_bot⟩
   rw [← f.symm_apply_apply x, h, f.symm.map_bot]
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

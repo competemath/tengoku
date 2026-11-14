@@ -14,7 +14,7 @@ Imported Lean Pool material for `LeanPool.Rupert.Set`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped Matrix
 
 /-- The Rupert Property for a pair of subsets X, Y of ℝ³. X has the
@@ -23,7 +23,7 @@ open scoped Matrix
     transformations. By "comfortably" we mean the closure of one set is
     a subset of the interior of the other. This definition rules out
     trivial cases of a set fitting inside itself. -/
-def IsRupertPair (inner outer : Set ℝ³) : Prop :=
+def _root_.Tengoku.LeanPool.IsRupertPair (inner outer : Set ℝ³) : Prop :=
    ∃ innerRot ∈ SO3, ∃ innerOffset : ℝ², ∃ outerRot ∈ SO3,
    let inner_shadow := { innerOffset + projXy (innerRot.toEuclideanLin p) | p ∈ inner }
    let outerShadow := { projXy (outerRot.toEuclideanLin p) | p ∈  outer }
@@ -32,4 +32,5 @@ def IsRupertPair (inner outer : Set ℝ³) : Prop :=
 /-- The Rupert Property for a subset S of ℝ³. S has the Rupert property if there
     are rotations and translations such that one 2-dimensional "shadow" of S can
     be made to fit entirely inside the interior of another such "shadow". -/
-def IsRupertSet (S : Set ℝ³) : Prop := IsRupertPair S S
+def _root_.Tengoku.LeanPool.IsRupertSet (S : Set ℝ³) : Prop := IsRupertPair S S
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

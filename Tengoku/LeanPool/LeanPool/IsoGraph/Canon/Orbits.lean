@@ -25,7 +25,7 @@ Instantiated with `P w := "the subtree below the child w is dominated"` and comb
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace IsoGraph
 namespace Canon
 
@@ -162,3 +162,4 @@ theorem orbitClosure_P {n : Nat} {gens : Array (Array Nat)} {seed : Array Nat}
 
 end Canon
 end IsoGraph
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

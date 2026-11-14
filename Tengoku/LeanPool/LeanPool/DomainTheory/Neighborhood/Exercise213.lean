@@ -54,7 +54,7 @@ companions are the
 only classical pieces). -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem
@@ -164,3 +164,4 @@ theorem toElementMap_ofContinuous (c : V₀.Element → V₁.Element) (hc : Cont
 end ApproximableMap
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

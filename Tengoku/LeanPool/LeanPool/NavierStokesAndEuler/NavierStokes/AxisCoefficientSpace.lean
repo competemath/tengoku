@@ -14,7 +14,7 @@ public import Tengoku.Seed.Algebra.BigOperators.Group.Finset.Defs
 public import Tengoku.Seed.Data.Finset.NatAntidiagonal
 import Tengoku.Seed.Data.Nat.Choose.Vandermonde
 import Tengoku.Seed.Tactic.FieldSimp
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -990,3 +990,4 @@ theorem axisSpace_norm_le_iff (I : Window) {ε : ℝ} (hε : 0 < ε)
 end NavierStokes.AxisCoefficientSpace
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

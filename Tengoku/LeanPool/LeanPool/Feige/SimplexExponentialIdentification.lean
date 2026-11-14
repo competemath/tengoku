@@ -19,7 +19,7 @@ the `NNReal` coordinate model used by `expProductMeasure`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators ENNReal
 open Set MeasureTheory ProbabilityTheory
 
@@ -419,3 +419,4 @@ theorem mem_kEvent_iff_normalized_simplex_event'
       htotal, hnone, hsome]
 
 end Feige
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

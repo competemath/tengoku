@@ -16,12 +16,12 @@ Imported Lean Pool material for `LeanPool.ErdosTuzaValtr.Main.InductionStep`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 variable {α : Type _} [LinearOrder α] (C : Config α)
 
-namespace Config
+namespace Tengoku.LeanPool.Config
 
 open Classical in
 /-- The set of row-minimal points of `S` whose beta value is below `n`. -/
@@ -260,4 +260,5 @@ theorem main_induction_wlog (n : ℕ) : C.MainGoal n → C.MainGoalWlog (n + 1) 
       exact p'_lt_q'
     · exact le_of_lt (lt_of_lt_of_le q_lt_q' q'_le_r)
 
-end Config
+end Tengoku.LeanPool.Config
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -28,7 +28,7 @@ of any `Conditional` file.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure
@@ -136,3 +136,4 @@ theorem entails_restrictSymbols_singleton
     Empty.elim Fin.elim0).mpr hr₂N
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

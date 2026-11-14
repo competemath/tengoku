@@ -97,7 +97,7 @@ and `Graph.Bendable` have no consumers left.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Bornology Metric Set unitInterval
 open scoped Graph
 
@@ -988,3 +988,4 @@ theorem k33Graph_not_exists_isDrawing (x y : Fin 3 → Plane) (hx : Function.Inj
   IsK33Config.not_exists_isDrawing ⟨k33Graph_isLink x y, hx, hy, hxy⟩
 
 end Graph
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

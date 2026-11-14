@@ -23,7 +23,7 @@ Main declarations: `inversion`, `inversion_involutive`, `inversion_eq_infty_iff`
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped OnePoint
 open Set Filter Topology OnePoint
 
@@ -166,3 +166,4 @@ noncomputable def inversionHomeomorph : OnePoint ℂ ≃ₜ OnePoint ℂ where
 @[simp] theorem inversionHomeomorph_symm : inversionHomeomorph.symm = inversionHomeomorph := rfl
 
 end RS.P1
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

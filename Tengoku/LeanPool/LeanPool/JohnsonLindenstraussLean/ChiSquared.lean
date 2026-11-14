@@ -28,7 +28,7 @@ the monotonicity of an explicit auxiliary function.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory ProbabilityTheory Real
 open scoped ENNReal NNReal
 
@@ -284,3 +284,4 @@ theorem chiSq_lower_tail (k : ℕ) {ε : ℝ} (h0 : 0 < ε) (h1 : ε < 1) :
   exact pow_le_pow_left₀ (by positivity) (scalar_lower h0 h1) k
 
 end JL
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

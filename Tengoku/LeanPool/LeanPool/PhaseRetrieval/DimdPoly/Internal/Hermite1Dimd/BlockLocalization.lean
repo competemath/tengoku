@@ -21,7 +21,7 @@ import Tengoku.Seed.Tactic.NormNum.Parity
 /-! # BlockLocalization -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Complex MeasureTheory Real Finset
 open scoped BigOperators ComplexConjugate
 
@@ -117,3 +117,4 @@ theorem polynomialGaussianSeriesSummable
     (polynomialGaussianTailMajorant_summable hc m)
 
 end Hermite1DimdLEAN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

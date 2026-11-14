@@ -18,7 +18,7 @@ It corresponds to Theorem 2.13 of
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.DemazureProduct
 
 /-- The axioms characterizing inversion sets of ASP permutations: directedness,
@@ -797,3 +797,4 @@ theorem invSets_of_AspPerms (I : Set (ℤ × ℤ)) (χ : ℤ) :
 end AspSet
 
 end LeanPool.DemazureProduct
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

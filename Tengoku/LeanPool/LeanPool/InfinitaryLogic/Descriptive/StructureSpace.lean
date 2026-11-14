@@ -32,7 +32,7 @@ while `RelQuery L` and `StructureSpace L` specialize to carrier ℕ.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u v
 
 namespace FirstOrder
@@ -142,3 +142,4 @@ end StructureSpace
 end Language
 
 end FirstOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

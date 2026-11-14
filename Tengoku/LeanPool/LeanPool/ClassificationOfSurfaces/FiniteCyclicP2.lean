@@ -31,7 +31,7 @@ reversing a cut exchange the two children exactly.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanEval
 namespace Topology
 namespace ClassificationOfSurfaces
@@ -1615,3 +1615,4 @@ end FiniteCyclicPresentation
 end ClassificationOfSurfaces
 end Topology
 end LeanEval
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

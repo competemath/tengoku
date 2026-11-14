@@ -22,7 +22,7 @@ the kernel singularity cancel exactly.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Metric Set Complex
 open scoped Convolution ContDiff
 
@@ -526,3 +526,4 @@ theorem exists_dbar_solution_of_hasCompactSupport (hg : ContDiff ℝ ∞ g)
   ⟨cauchyTransform g, contDiff_cauchyTransform g hg hcs, wirtingerDbar_cauchyTransform_eq g hg hcs⟩
 
 end RS
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

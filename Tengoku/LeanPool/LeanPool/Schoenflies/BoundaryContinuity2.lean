@@ -89,7 +89,7 @@ corresponding target side, whose trace on `S` is `u(A₁)` — and `r ∉ A₁`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Bornology Filter Metric Schoenflies Set Topology
 open scoped Graph
 
@@ -751,3 +751,4 @@ theorem squareExtension_of_hasLimitHomeomorphism (h : HasLimitHomeomorphism) :
     fun _ hz => extendByBoundary_of_mem hz⟩
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

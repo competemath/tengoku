@@ -20,7 +20,7 @@ public import Tengoku
 /-! # Poincare -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Real Set intervalIntegral Filter
 
 noncomputable section
@@ -209,3 +209,4 @@ theorem poincare_interval {h : ℝ} (hh : 0 < h) {f f' : ℝ → ℂ}
 end MissingMathlib
 
 end FockSPR
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

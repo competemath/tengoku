@@ -17,7 +17,7 @@ establishing that the Hessian is μ-coercive on ker(Hess)⊥ under the PŁ condi
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter Topology Metric Submodule Asymptotics
 
 noncomputable section
@@ -420,3 +420,4 @@ theorem hessian_coercive_on_orthogonal_of_MuPL_impl (f : E → ℝ) (μ : ℝ) (
   exact le_of_mul_le_mul_right hbound hc_pos
 
 end PLAcceleratedNesterovLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

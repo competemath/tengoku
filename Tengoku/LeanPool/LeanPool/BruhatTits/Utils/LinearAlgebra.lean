@@ -11,7 +11,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Module
 
 section
@@ -140,7 +140,7 @@ variable (M)
 
 /-- As a module of the quotient ring, left tensoring a module with a quotient of the ring
 is the same as quotienting that module by the corresponding submodule. -/
-noncomputable def quotTensorEquivQuotSMul' (I : Ideal R) :
+noncomputable def _root_.Tengoku.LeanPool.quotTensorEquivQuotSMul' (I : Ideal R) :
     (R ⧸ I) ⊗[R] M ≃ₗ[R ⧸ I] M ⧸ (I • ⊤ : Submodule R M) :=
   (quotTensorEquivQuotSMul M I).extendScalarsOfSurjective Ideal.Quotient.mk_surjective
 
@@ -164,7 +164,7 @@ omit [DecidableEq ι] in
 /-- If `M` is free, the rank of `M ⧸ IM`as an `R ⧸ I`-module is the rank of `M` as an `R`-module.
 @isnad1 id=eq.0h5v.s8.c32308e0f5f5 from=translated src=- shape=e6dfba09 vocab=b52ffdb6
 -/
-lemma quotient_finrank_eq (b : Basis ι R M) :
+lemma _root_.Tengoku.LeanPool.quotient_finrank_eq (b : Basis ι R M) :
     Module.finrank (R ⧸ I) (M ⧸ (I • ⊤ : Submodule R M)) = Fintype.card ι := by
   classical
   rw [(TensorProduct.quotientEquivPiOfBasis I b).finrank_eq]
@@ -180,12 +180,12 @@ section
 
 variable {R M : Type*} [Semiring R] [AddCommMonoid M] [Module R M]
 
-instance instOrderTopSubtypeSubmoduleLeLeanPool (p : Submodule R M) :
+instance _root_.Tengoku.LeanPool.instOrderTopSubtypeSubmoduleLeLeanPool (p : Submodule R M) :
     OrderTop { p' : Submodule R M // p ≤ p' } where
   top := ⟨⊤, le_top⟩
   le_top _ _ _ := trivial
 
-instance instOrderBotSubtypeSubmoduleLeLeanPool (p : Submodule R M) :
+instance _root_.Tengoku.LeanPool.instOrderBotSubtypeSubmoduleLeLeanPool (p : Submodule R M) :
     OrderBot { p' : Submodule R M // p ≤ p' } where
   bot := ⟨p, le_rfl⟩
   bot_le p' _ hx := p'.property hx
@@ -202,7 +202,7 @@ lemma Submodule.quotient_equiv_eq_bot_iff (p : Submodule R M)
 /--
 @isnad1 id=lt.1h5v.s10.a26ee57b7afc from=translated src=- shape=ed1da8c9 vocab=597b9956
 -/
-lemma lt_of_ne_top (p : Submodule R M) {p' : Submodule R p}
+lemma _root_.Tengoku.LeanPool.lt_of_ne_top (p : Submodule R M) {p' : Submodule R p}
     (q : { q : Submodule R p // p' ≤ q})
     (h : q ≠ ⊤) : Submodule.map p.subtype q.val < p := by
   apply lt_of_le_of_ne
@@ -241,7 +241,7 @@ lemma Submodule.map_subtype_smul (I : Ideal R) (p : Submodule R M) :
 /--
 @isnad1 id=lt.1h5v.s12.3dac8f5cdf6c from=translated src=- shape=9681bcef vocab=bc47067b
 -/
-lemma ideal_smul_lt_of_ne_bot {I : Ideal R} (p : Submodule R M)
+lemma _root_.Tengoku.LeanPool.ideal_smul_lt_of_ne_bot {I : Ideal R} (p : Submodule R M)
     (q : { q : Submodule R p // (I • ⊤ : Submodule R p) ≤ q}) (h : q ≠ ⊥) :
     I • p < Submodule.map p.subtype q.val := by
   apply lt_of_le_of_ne
@@ -279,3 +279,4 @@ lemma Matrix.GeneralLinearGroup.toLin_symm_apply {n : Type*} [DecidableEq n]
   simp [Matrix.GeneralLinearGroup.toLin, LinearMap.toMatrixAlgEquiv']
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

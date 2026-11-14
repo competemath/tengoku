@@ -33,7 +33,7 @@ Step 5 consumes the returned `S` opaquely: the quotient term model realizes the 
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure
@@ -82,3 +82,4 @@ theorem exists_henkinComplete_baseDiagram [Countable (Σ l, L.Relations l)]
   exact ⟨Sstar, hsub, hcomp⟩
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

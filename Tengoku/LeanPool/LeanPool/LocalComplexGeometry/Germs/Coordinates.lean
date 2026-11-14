@@ -19,7 +19,7 @@ lower-dimensional base germs, and the resulting algebra structure.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter
 open scoped Topology
 
@@ -641,3 +641,4 @@ theorem holomorphicGermSucc_smul_eq_mul (n : ℕ)
 end
 
 end LocalComplexGeometry
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

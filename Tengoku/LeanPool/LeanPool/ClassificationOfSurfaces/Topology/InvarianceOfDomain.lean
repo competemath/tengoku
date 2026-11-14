@@ -43,7 +43,7 @@ Stone-Weierstrass approximation, and a measure-theoretic perturbation argument.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanEval.Topology.ClassificationOfSurfaces.InvarianceOfDomain
 
 open MeasureTheory Metric Set ContinuousLinearMap LinearMap _root_.Topology Polynomial
@@ -821,3 +821,4 @@ theorem mem_interior_range_of_eq_of_mem_interior_range_of_isInteriorPoint
   exact Set.mem_range_self (source w)
 
 end LeanEval.Topology.ClassificationOfSurfaces.InvarianceOfDomain
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

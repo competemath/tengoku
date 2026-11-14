@@ -1,5 +1,5 @@
 import Tengoku.NavierStokesEuler.Euler.GevreyCorrectionBound
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace EulerGevreyNonlinearEstimate
 end EulerGevreyNonlinearEstimate
 namespace MeasureTheory
@@ -155,3 +155,4 @@ theorem correctionForcing_polynomial {s : ℕ} (hs : 6 ≤ s) {A : SmoothCoeffic
     (weightedNorm_nonneg period 6 N ρ hρ e) (weightedLoss_nonneg period 6 N ρ hρ e) hv hf h
 
 end EulerGevreyNonlinearEstimate
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

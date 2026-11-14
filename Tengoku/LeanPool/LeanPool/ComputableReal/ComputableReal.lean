@@ -19,17 +19,17 @@ classical `ComputableℝSeq.sign` and are `noncomputable`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-- Computable reals, defined as the quotient of ComputableℝSeq sequences -- sequences with
   Cauchy sequences of lower and upper bounds that converge to the same value -- by the equivalence
   relation of having the same converged value. This is similar to how reals are quotients of Cauchy
   sequence (without any guarantees on lower/upper bounds). -/
-def Computableℝ :=
+def _root_.Tengoku.LeanPool.Computableℝ :=
   @Quotient ComputableℝSeq ComputableℝSeq.equiv
 
 attribute [local implicit_reducible] Computableℝ ComputableℝSeq.nzSeq
 
-namespace Computableℝ
+namespace Tengoku.LeanPool.Computableℝ
 
 /-- Definition of `mk`. -/
 def mk : ComputableℝSeq → Computableℝ :=
@@ -404,4 +404,5 @@ noncomputable instance instLinearOrder : LinearOrder Computableℝ where
 
 end ordered
 
-end Computableℝ
+end Tengoku.LeanPool.Computableℝ
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

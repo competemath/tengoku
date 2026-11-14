@@ -30,7 +30,7 @@ chart composite affine in `g (e z)`, hence analytic.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold Convex Topology
 open IsManifold Metric Set Filter
 
@@ -67,7 +67,7 @@ theorem RS.periodVector_mem_periodSubgroup {x : X} (γ : Path x x) :
   rw [heq]
   exact AddSubgroup.subset_closure ⟨(σ.trans γ).trans σ.symm, rfl⟩
 
-namespace Jacobian
+namespace Tengoku.LeanPool.Jacobian
 
 /-! ### `ofCurve` (§8.2) -/
 
@@ -120,6 +120,7 @@ theorem ofCurve_eq_of_path (P x : X) (σ : Path P x) :
 
 variable [DiscreteTopology (RS.periodSubgroup X).topologicalClosure]
 
-end Jacobian
+end Tengoku.LeanPool.Jacobian
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -31,8 +31,8 @@ reformulation.
 -/
 
 @[expose] public section
-
-namespace QuadraticOrder
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+namespace Tengoku.LeanPool.QuadraticOrder
 
 variable {d : ℤ}
 
@@ -125,4 +125,5 @@ lemma normForm_eq_mul_conj (a b : ℤ) :
     ((b : QuadraticOrder d) * (a : QuadraticOrder d)) * hsum
       + ((b : QuadraticOrder d) ^ 2) * hprod
 
-end QuadraticOrder
+end Tengoku.LeanPool.QuadraticOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

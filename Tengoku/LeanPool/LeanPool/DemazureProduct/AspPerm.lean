@@ -23,7 +23,7 @@ bounded-difference material from Section 7, of
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.DemazureProduct
 
 /-- The inversion set $\operatorname{Inv} \tau = \{(u,v) \in \mathbb{Z}^2 : u < v \text{ and }
@@ -2267,3 +2267,4 @@ theorem bdiff_iff_clifford : τ.isBdiff ↔ τ.s.isClifford := by
 end AspPerm
 
 end LeanPool.DemazureProduct
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

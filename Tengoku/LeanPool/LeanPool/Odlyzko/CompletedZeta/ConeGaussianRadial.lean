@@ -11,7 +11,7 @@ public import Tengoku
 /-! TODO: Add doc-string. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open Complex MeasureTheory NumberField NumberField.InfinitePlace Set
@@ -291,3 +291,4 @@ theorem integral_radialMellinGaussian_eq_tsum_unitSlab
       exact radialMellinGaussian_add_unitCoordinateShift K x s y z
 
 end NumberField.Odlyzko
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

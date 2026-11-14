@@ -24,7 +24,7 @@ import Tengoku.Seed.Tactic.NormNum.Parity
 /-! # FiniteBaseCircleEstimate -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace DimdPolyLEAN
@@ -4394,3 +4394,4 @@ theorem finite_base_circle_estimate_exists (D : Nat) :
   exact finite_base_circle_estimate D hL hsep q p
 
 end DimdPolyLEAN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

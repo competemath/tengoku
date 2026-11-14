@@ -14,7 +14,7 @@ Imported Lean Pool material for `LeanPool.BrauerGroupNew.MatrixEquivTensor`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped TensorProduct
 
 variable (K F : Type*) [CommSemiring K] [CommSemiring F] [Algebra F K]
@@ -23,7 +23,7 @@ variable (K F : Type*) [CommSemiring K] [CommSemiring F] [Algebra F K]
 open Matrix
 
 /-- Bilinear map sending a scalar and a matrix to the matrix obtained by tensoring entries. -/
-def toTensorMartrixToFunBilinear : K →ₗ[F] Matrix n n A →ₗ[F] Matrix n n (K ⊗[F] A) where
+def _root_.Tengoku.LeanPool.toTensorMartrixToFunBilinear : K →ₗ[F] Matrix n n A →ₗ[F] Matrix n n (K ⊗[F] A) where
   toFun k := {
     toFun M := k • Algebra.TensorProduct.includeRight.mapMatrix M
     map_add' _ _ := by simp [← smul_add, map_add]
@@ -36,18 +36,18 @@ def toTensorMartrixToFunBilinear : K →ₗ[F] Matrix n n A →ₗ[F] Matrix n n
 @isnad1 id=eq.0h6v.s11.9937bea449a1 from=translated src=- shape=ca9f5612 vocab=e1f64d8a
 -/
 @[simp]
-lemma toTensorMartrixToFunBilinear_apply (k : K) (M : Matrix n n A) :
+lemma _root_.Tengoku.LeanPool.toTensorMartrixToFunBilinear_apply (k : K) (M : Matrix n n A) :
   toTensorMartrixToFunBilinear K F A n k M =
   k • Algebra.TensorProduct.includeRight.mapMatrix M := rfl
 
 /-- The `F`-linear map induced from `toTensorMartrixToFunBilinear`. -/
-abbrev toTensorMatrixToFunFlinear : K ⊗[F] Matrix n n A →ₗ[F] Matrix n n (K ⊗[F] A) :=
+abbrev _root_.Tengoku.LeanPool.toTensorMatrixToFunFlinear : K ⊗[F] Matrix n n A →ₗ[F] Matrix n n (K ⊗[F] A) :=
   TensorProduct.lift <| toTensorMartrixToFunBilinear K F A n
 
 open TensorProduct
 
 /-- Bilinear map placing a tensor entry into the `(i,j)` matrix coefficient. -/
-def invFunToFunBilinear (i j : n) : K →ₗ[F] A →ₗ[F] K ⊗[F] Matrix n n A where
+def _root_.Tengoku.LeanPool.invFunToFunBilinear (i j : n) : K →ₗ[F] A →ₗ[F] K ⊗[F] Matrix n n A where
   toFun k := {
     toFun a := k ⊗ₜ single i j a
     map_add' _ _ := by simp [single_add, tmul_add]
@@ -61,9 +61,10 @@ omit [Fintype n] in
 @isnad1 id=eq.0h8v.s11.723914c8c362 from=translated src=- shape=4fa8fca3 vocab=5a9730cf
 -/
 @[simp]
-lemma invFunToFunBilinear_apply (i j : n) (k : K) (a : A) :
+lemma _root_.Tengoku.LeanPool.invFunToFunBilinear_apply (i j : n) (k : K) (a : A) :
   invFunToFunBilinear K F A n i j k a = k ⊗ₜ single i j a := rfl
 
 /-- The `F`-linear map induced by `invFunToFunBilinear`. -/
-abbrev invFunToFun (i j : n) : K ⊗[F] A →ₗ[F] K ⊗[F] Matrix n n A :=
+abbrev _root_.Tengoku.LeanPool.invFunToFun (i j : n) : K ⊗[F] A →ₗ[F] K ⊗[F] Matrix n n A :=
   TensorProduct.lift <| invFunToFunBilinear K F A n i j
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

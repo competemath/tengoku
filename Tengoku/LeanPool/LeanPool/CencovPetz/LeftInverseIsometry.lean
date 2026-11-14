@@ -22,7 +22,7 @@ This is the abstract lemma behind permutation invariance and replication invaria
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.CencovPetz
 open scoped BigOperators
 
@@ -84,3 +84,4 @@ lemma eq_of_left_inverse (G : MonotoneMetricFamily) {α β : Type u} [Fintype α
 
 end MonotoneMetricFamily
 end LeanPool.CencovPetz
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

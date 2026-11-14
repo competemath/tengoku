@@ -10,7 +10,7 @@ public import Tengoku.Seed.MeasureTheory.Integral.IntervalIntegral.Basic
 import Tengoku.Seed.Analysis.SpecialFunctions.Integrals.Basic
 import Tengoku.Seed.MeasureTheory.Integral.IntervalIntegral.Periodic
 public import Tengoku.Seed.Analysis.Real.Sqrt
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -769,3 +769,4 @@ def densityOfTilt (t : ℝ → ℝ) (a m ρ v : ℝ)
 end
 
 end NavierStokes.SmoothLoop
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

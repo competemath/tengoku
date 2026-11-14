@@ -30,7 +30,7 @@ This is equivalent to the stabilization ordinal approach but more compositional.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u v w
 
 namespace FirstOrder
@@ -124,3 +124,4 @@ theorem scottRank_lt_omega1 (M : Type w) [L.Structure M] [Countable M] :
 end Language
 
 end FirstOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

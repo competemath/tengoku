@@ -17,7 +17,7 @@ the homogeneous-degree sum and produces a `HasFPowerSeriesOnBall` witness.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter
 open scoped ENNReal NNReal Topology
 
@@ -116,3 +116,4 @@ theorem hasFPowerSeriesOnBall_sumTsum
   exact houter.hasSum.congr_fun (fun n ↦ hqeval n)
 
 end ClassicalComplexWPT
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

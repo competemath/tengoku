@@ -11,7 +11,7 @@ public import Tengoku
 /-! Dominated convergence in genuine L², also for Banach-valued representatives. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace EulerLpConvergence
@@ -68,3 +68,4 @@ theorem tendsto_of_dominated {ι : Type*} {l : Filter ι} [l.IsCountablyGenerate
   simpa only [Function.comp_def, Real.sqrt_sq_eq_abs, abs_norm, Real.sqrt_zero] using hroot
 
 end EulerLpConvergence
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

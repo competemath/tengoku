@@ -29,7 +29,7 @@ the shape the ω-stage completion (Layer 7b) must produce.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open Filter
@@ -148,3 +148,4 @@ theorem TailTemplateOmegaWitnessed.omegaCompleteForColim {J : Type} [LinearOrder
     (h.to_localEMOmegaHomogeneous hTail)
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

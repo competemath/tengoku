@@ -14,7 +14,7 @@ Here we define the GL-ext proof system along with finitization and basic propert
 namespace ExtSkip to distinguish from our general GL-proofs.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 open scoped Lean4GlCoalgebras.Formula
 
 
@@ -189,3 +189,4 @@ prefix:40 "⊢" => SplitSequent.isTrue
 
 end ExtSkip
 end Lean4GlCoalgebras
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

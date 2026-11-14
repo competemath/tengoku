@@ -19,7 +19,7 @@ records that variant, using the same normal-closure argument as the Mathlib theo
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Module
 open UniqueFactorizationMonoid
 open scoped nonZeroDivisors
@@ -183,3 +183,4 @@ theorem sum_normalizedFactors_relNorm_of_isSeparable
         P.inertiaDeg R * w (P.under R)).sum := rfl
 
 end Ideal
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

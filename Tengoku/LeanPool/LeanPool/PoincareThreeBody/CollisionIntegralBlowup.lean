@@ -17,7 +17,7 @@ becomes unbounded when an aligned apoapsis approaches the unit primary.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.PoincareThreeBody
 
 open Filter MeasureTheory Set Topology
@@ -300,3 +300,4 @@ theorem log_lower_bound_resonantPrimaryInverse_period_integral
       hwindow).trans hlocalLeFull
 
 end LeanPool.PoincareThreeBody
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

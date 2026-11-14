@@ -42,7 +42,7 @@ legitimately uses
 (`[propext, Quot.sound]`). -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 namespace NeighborhoodSystem
@@ -96,3 +96,4 @@ theorem exists_total_ge (x : V.Element) : ∃ t, V.IsTotal t ∧ x ≤ t := by
 end NeighborhoodSystem
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

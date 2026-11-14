@@ -13,7 +13,7 @@ public import Tengoku.LeanPool.LeanPool.DirectedTopologyLean4.Fraction
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-
   This file contains the definition of a dipath in a directed space:
   A path between two points paired with the proof that it is a dipath.
@@ -26,19 +26,19 @@ public import Tengoku.LeanPool.LeanPool.DirectedTopologyLean4.Fraction
 
 noncomputable section
 
-open DirectedMap Set
+open Tengoku.LeanPool.DirectedMap Set
 open scoped unitInterval
 
 universe u
 variable {X : Type u} [DirectedSpace X] {x y z : X}
 
 /-- A dipath is a path together with a proof that that path "is a dipath" -/
-structure Dipath (x y : X) extends Path x y where
+structure _root_.Tengoku.LeanPool.Dipath (x y : X) extends Path x y where
   dipath_toPath : IsDipath toPath
 
 instance : Coe (Dipath x y) (Path x y) := ⟨fun γ => γ.toPath⟩
 
-namespace Dipath
+namespace Tengoku.LeanPool.Dipath
 
 /--
 @isnad1 id=directed.0h4v.s5.36fe4690d007 from=translated src=- shape=a6c9aba6 vocab=e6bb14a0
@@ -66,16 +66,16 @@ instance directedMapClass : DirectedMapClass (Dipath x y) I X where
   map_continuous := fun γ => γ.continuous_toFun
   map_directed := fun γ => directed γ
 
-end Dipath
+end Tengoku.LeanPool.Dipath
 
 /--
 @isnad1 id=eq.1h5v.s6.6486e7b24ef0 from=translated src=- shape=321dc963 vocab=45fd4d4b
 -/
 @[ext]
-protected lemma Dipath.ext : ∀ {γ₁ γ₂ : Dipath x y}, (γ₁ : I → X) = γ₂ → γ₁ = γ₂ := by
+protected lemma Tengoku.LeanPool.Dipath.ext : ∀ {γ₁ γ₂ : Dipath x y}, (γ₁ : I → X) = γ₂ → γ₁ = γ₂ := by
   simp_all
 
-namespace Dipath
+namespace Tengoku.LeanPool.Dipath
 
 /-- Promote a path with a proof of directedness into a dipath. -/
 def ofIsDipath {γ : Path x y} (hγ : IsDipath γ) : Dipath x y := {
@@ -413,4 +413,5 @@ def ofProductSnd (γ : Dipath (x₀, y₀) (x₁, y₁)) : Dipath y₀ y₁ wher
   toPath := γ.toPath.map continuous_snd
   dipath_toPath := γ.dipath_toPath.2
 
-end Dipath
+end Tengoku.LeanPool.Dipath
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

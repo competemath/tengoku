@@ -17,17 +17,17 @@ See [HeunenKSY17], Proposition 18.
 -/
 
 @[expose] public section
-
-open QuasiBorelSpace
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+open Tengoku.LeanPool.QuasiBorelSpace
 
 /-- The type of morphisms between `QuasiBorelSpace`s. -/
-structure QuasiBorelHom (A B : Type*) [QuasiBorelSpace A] [QuasiBorelSpace B] where
+structure _root_.Tengoku.LeanPool.QuasiBorelHom (A B : Type*) [QuasiBorelSpace A] [QuasiBorelSpace B] where
   /-- The underlying function. -/
   toFun : A → B
   /-- The underlying function is a morphism. -/
   property : IsHom toFun := by fun_prop
 
-namespace QuasiBorelHom
+namespace Tengoku.LeanPool.QuasiBorelHom
 
 variable
   {A : Type*} {_ : QuasiBorelSpace A}
@@ -200,4 +200,5 @@ lemma eq_comp
     : comp (mk f) (mk g) = mk fun x ↦ f (g x) := by
   rfl
 
-end QuasiBorelHom
+end Tengoku.LeanPool.QuasiBorelHom
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

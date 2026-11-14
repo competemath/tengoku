@@ -51,7 +51,7 @@ surjectivity uses
 the well-ordering (`WellFounded.has_min`), so it is classical. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 namespace FinalSegment
@@ -284,3 +284,4 @@ theorem topElement_not_principal_of_noMax (hnomax : ∀ a : Δ, ∃ b, a < b) (a
 end FinalSegment
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

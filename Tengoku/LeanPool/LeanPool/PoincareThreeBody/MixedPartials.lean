@@ -15,7 +15,7 @@ parameter.  This file packages the needed Schwarz theorem for a jointly `C²` sc
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.PoincareThreeBody
 
 /-- The derivative in the distinguished real parameter direction at parameter zero. -/
@@ -202,3 +202,4 @@ theorem hasDerivAt_fderiv_curry_right
   simp
 
 end LeanPool.PoincareThreeBody
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

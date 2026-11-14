@@ -18,7 +18,7 @@ real grid by `g ↦ g / N` when `N > 0`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Komlos
 
 open Finsupp Finset
@@ -99,3 +99,4 @@ lemma mean_push [Module ℝ F] (P : E →₀ ℝ) : mean (push e he P) = P.sum f
   rw [mean, sum_push]
 
 end Komlos
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

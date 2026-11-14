@@ -72,7 +72,7 @@ Exercise 3.27 does.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood.Proposition611
 
 open Domain.Neighborhood NeighborhoodSystem Set Domain.Neighborhood.Exercise222
@@ -335,3 +335,4 @@ def subsystemReprIso (E : NeighborhoodSystem α) :
     (reprIso (subFam E) (subFam_sInter_mem E) (subFam_nonempty E) (subFam_sUnion_mem E)).symm
 
 end Domain.Neighborhood.Proposition611
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

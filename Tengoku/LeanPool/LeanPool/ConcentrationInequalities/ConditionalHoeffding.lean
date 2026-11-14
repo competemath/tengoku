@@ -26,7 +26,7 @@ Sorry-free and axiom-clean `[propext, Classical.choice, Quot.sound]`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory ProbabilityTheory
 
 namespace Contrib.ConditionalHoeffding
@@ -69,3 +69,4 @@ theorem hasCondSubgaussianMGF_of_mem_Icc [StandardBorelSpace Ω] [IsProbabilityM
     norm_num
 
 end Contrib.ConditionalHoeffding
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

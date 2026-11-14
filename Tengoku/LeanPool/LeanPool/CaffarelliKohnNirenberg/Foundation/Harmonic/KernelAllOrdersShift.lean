@@ -15,7 +15,7 @@ Part of the Caffarelli–Kohn–Nirenberg partial regularity proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators Topology
 open MeasureTheory
 open CKN.Foundation.Parabolic
@@ -122,3 +122,4 @@ theorem aestronglyMeasurable_smul_kernel_shift {F : Type*} [NormedAddCommGroup F
   exact hg.smul hmeasK
 
 end CKN.Foundation.Heat
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

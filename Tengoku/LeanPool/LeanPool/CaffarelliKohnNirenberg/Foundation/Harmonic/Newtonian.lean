@@ -20,7 +20,7 @@ input for the heat-kernel route to the pressure decomposition.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators ENNReal NNReal Topology
 
 open MeasureTheory MeasureTheory.Measure Set
@@ -142,3 +142,4 @@ lemma heatKernel_integral_Ioi {x : Vec3} (hx : x ≠ 0) :
   ring_nf
 
 end CKN.Foundation.Heat
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

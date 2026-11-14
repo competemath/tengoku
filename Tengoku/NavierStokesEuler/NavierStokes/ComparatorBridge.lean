@@ -13,7 +13,7 @@ The application to the constructed candidate is in `ComparatorTheorem`.
 -/
 
 noncomputable section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace NavierStokes.ComparatorBridge
 
 open Set Function InnerProductSpace ProblemStatement
@@ -253,3 +253,4 @@ theorem normalized_solution {ν : ℝ} (hν : 0 < ν) {f : VelocityField}
     simpa only [pow_two] using he
 
 end NavierStokes.ComparatorBridge
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

@@ -11,7 +11,7 @@ localized flux is continuous, so square time tests recover the bound at
 every interior time.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace NavierStokes.R3PhysicalPressureBound
 
 open Set Filter MeasureTheory TemperedDistribution ProblemStatement
@@ -93,3 +93,4 @@ theorem physical_flux_le {s : Set ℝ} (hs : IsOpen s)
   simpa only [Pi.mul_apply, he, integral_const_mul] using hlimbound
 
 end NavierStokes.R3PhysicalPressureBound
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

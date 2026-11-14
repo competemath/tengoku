@@ -37,7 +37,7 @@ through a chart.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold
 open Set IsManifold
 
@@ -273,3 +273,4 @@ def IsDbarOn (u : X → ℂ) (η : Form01 X) (s : Set X) : Prop := ∀ x ∈ s, 
 /-! ### Chart-disk solvability -/
 
 end RS
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -24,7 +24,7 @@ Global roadmap (matching Shannon Appendix 2):
    continuity upgrades the rational formula to all real probabilities.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPool.Shannon1948Formalization
 
 noncomputable section
@@ -154,3 +154,4 @@ def Apos
 end
 
 end LeanPool.Shannon1948Formalization
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

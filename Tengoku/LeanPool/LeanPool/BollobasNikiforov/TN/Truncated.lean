@@ -17,7 +17,7 @@ part is `max · 0`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace BollobasNikiforov
 
 open Matrix
@@ -1574,3 +1574,4 @@ lemma gridDelta_tendsto {r c : ℕ} (hr : 0 < r) (a : Fin r → ℝ) (t : Fin c 
 end
 
 end BollobasNikiforov
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

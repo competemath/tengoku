@@ -64,7 +64,7 @@ statement in the shape the theorems below consume; nothing here proves it.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set unitInterval
 open scoped Graph
 
@@ -857,3 +857,4 @@ theorem k33Graph_not_isDrawing (x y : Fin 3 → Plane) (hx : Function.Injective 
     ⟨k33Graph_isLink x y, hx, hy, hxy⟩ hbend
 
 end Graph
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

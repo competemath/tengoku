@@ -14,7 +14,7 @@ import Tengoku.LeanPool.LeanPool.RlTheoryInLean.MeasureTheory.Measure.Prod
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory MeasureTheory.Measure ProbabilityTheory.Kernel ProbabilityTheory
 open Finset Bornology NNReal ENNReal Preorder Filter
 
@@ -61,3 +61,4 @@ lemma prodMap_snd
   · measurability
 
 end ProbabilityTheory.Kernel
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

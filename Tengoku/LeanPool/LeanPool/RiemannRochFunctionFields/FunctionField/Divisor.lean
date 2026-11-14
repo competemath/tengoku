@@ -29,7 +29,7 @@ The partial order on `DivisorA` is the pointwise order on `Finsupp` from Mathlib
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped nonZeroDivisors Polynomial RatFunc
 
 noncomputable section
@@ -671,3 +671,4 @@ theorem le_iff_sub_effective {D D' : DivisorA k K} :
   simp only [Finsupp.le_def, IsEffective, Finsupp.sub_apply, sub_nonneg]
 
 end FunctionField.Chart
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

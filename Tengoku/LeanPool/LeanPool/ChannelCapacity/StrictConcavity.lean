@@ -20,7 +20,7 @@ strict concavity is phrased directly in terms of the explicit operation
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory
 open ProbabilityTheory
 open scoped BigOperators ENNReal
@@ -365,3 +365,4 @@ theorem mutualInformation_strictlyConcave_of_injectivePriorPushforward
 end Kernel
 
 end ChannelCapacity
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

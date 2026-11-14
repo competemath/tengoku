@@ -16,7 +16,7 @@ import Tengoku.Seed.RingTheory.DedekindDomain.Ideal.Lemmas
 import Tengoku.Seed.RingTheory.SimpleRing.Principal
 import Tengoku.Seed.Topology.Algebra.InfiniteSum.Order
 import Tengoku.Seed.Topology.MetricSpace.Bounded
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -228,3 +228,4 @@ lemma adjoin_height_case_bot
   exact absurd (hJ_sat.symm.trans (hmap_eq ▸ hJ'_sat)) hJJ'_ne
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

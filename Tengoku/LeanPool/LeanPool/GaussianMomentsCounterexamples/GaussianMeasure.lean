@@ -11,7 +11,7 @@ public import Tengoku
 All expectations in this development are genuine Bochner integrals. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 open MeasureTheory ProbabilityTheory
 open scoped BigOperators
@@ -167,3 +167,4 @@ def expectationLinear (n : ℕ) : MvPolynomial (Fin n) ℂ →ₗ[ℂ] ℂ where
   map_sum (expectationLinear n) P s
 
 end GaussianMomentsCounterexamples
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

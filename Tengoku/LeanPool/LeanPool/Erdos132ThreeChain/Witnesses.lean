@@ -19,7 +19,7 @@ ones).  Both have all six squared distances inside the adjacent pair `{1, 3}`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Erdos132ThreeChain
 
 /-- The rhombus of two equilateral triangles glued along an edge: five squared distances equal
@@ -123,3 +123,4 @@ theorem chainTwo_nonDiameter_support :
       · exact ⟨A, by simp, F, by simp, hAF, by rw [dAF]; norm_num, by norm_num⟩
 
 end Erdos132ThreeChain
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

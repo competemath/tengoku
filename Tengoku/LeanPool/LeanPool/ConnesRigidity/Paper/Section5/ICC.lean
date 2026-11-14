@@ -17,7 +17,7 @@ concrete product quotient.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Connes
 namespace PaperICC
 
@@ -267,3 +267,4 @@ theorem isICC_of_product_quotient
 end
 end PaperICC
 end Connes
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

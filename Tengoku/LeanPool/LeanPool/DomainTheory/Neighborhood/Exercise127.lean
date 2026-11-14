@@ -43,7 +43,7 @@ this is a
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 namespace NeighborhoodSystem
@@ -185,3 +185,4 @@ theorem bounded_iff_finite_bounded (X : Set V.Element) :
 end NeighborhoodSystem
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

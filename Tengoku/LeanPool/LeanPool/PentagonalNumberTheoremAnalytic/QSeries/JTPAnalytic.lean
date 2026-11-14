@@ -29,7 +29,7 @@ restriction $\|z\| < 1$).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Finset Filter
 open scoped Topology
 
@@ -336,3 +336,4 @@ theorem jacobiProd_eq_pow_mul_pow_choose_two_mul {q z : ℂ} (hq : ‖q‖ < 1) 
 end
 
 end QSeries
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

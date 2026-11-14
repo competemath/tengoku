@@ -26,7 +26,7 @@ Arch. Math. **59** (1992), 239-244; see `QuadraticIterates.ArchMath1992`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Polynomial
 
 namespace QuadraticIterates
@@ -478,3 +478,4 @@ lemma card_rootSet_iteratedPoly {n : ℕ} (hirr : Irreducible (fℚ[a, n])) :
 end
 
 end QuadraticIterates
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -20,7 +20,7 @@ and rescales the chain so that the shortest edge has squared length exactly the 
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Erdos132ThreeChain
 
 open Finset
@@ -166,3 +166,4 @@ theorem no_five_chain_finset {S : Finset Point} {a : ℝ} (ha : 0 < a) (hcard : 
     (hchain D hDS E hES hDE)
 
 end Erdos132ThreeChain
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -20,7 +20,7 @@ where u' = auxVarOfState at step(s), and all quantities are computed from s.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace PLAcceleratedNesterovLean
@@ -148,3 +148,4 @@ theorem auxVarOfState_step (P : E d →L[ℝ] E d) (μ' η ρ : ℝ) (π : E d �
     ← add_smul, ← add_smul, hpv_coeff, hpg_coeff]
 
 end PLAcceleratedNesterovLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

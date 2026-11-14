@@ -16,7 +16,7 @@ This file defines the conjugate of a matrix, `matrix.conj` with the notation `�
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Matrix
 
 open scoped Matrix
@@ -109,3 +109,4 @@ theorem conj_zero {α n₁ n₂ : Type _} [AddMonoid α] [StarAddMonoid α] :
   simp_rw [conj_apply, zero_apply, star_zero]
 
 end Matrix
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -14,7 +14,7 @@ Part of the Caffarelli–Kohn–Nirenberg partial regularity proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory MeasureTheory.Measure Set Metric
 open scoped ENNReal NNReal Topology
 
@@ -115,3 +115,4 @@ def parabolicTailKernelConstant (β q : ℝ) : ℝ≥0∞ :=
     ((n : ℝ) * (β - 5 / q) + 2 * (5 * (1 - 1 / q)))
 
 end CKN.Foundation.Parabolic.Morrey
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

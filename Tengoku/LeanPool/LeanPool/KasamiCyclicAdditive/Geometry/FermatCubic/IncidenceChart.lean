@@ -28,7 +28,7 @@ the three points at infinity are the three points of `K0 = ker (1+pi)`, cf. `neg
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace KasamiCyclicAdditive.FermatCubic
 
 open WeierstrassCurve
@@ -336,3 +336,4 @@ theorem exists_twisted_root_equation (h : W ^ 3 + T ^ 3 = 1) (hW : W ≠ 0) (hT 
 end Group
 
 end KasamiCyclicAdditive.FermatCubic
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

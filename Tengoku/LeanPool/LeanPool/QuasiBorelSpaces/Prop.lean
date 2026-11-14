@@ -16,13 +16,13 @@ Imported Lean Pool material for `LeanPool.QuasiBorelSpaces.Prop`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 variable
   {A : Type*} {_ : QuasiBorelSpace A}
   {B : Type*} {_ : QuasiBorelSpace B}
   {I : Sort*} [Countable I]
 
-namespace QuasiBorelSpace.Prop
+namespace Tengoku.LeanPool.QuasiBorelSpace.Prop
 
 /--
 @isnad1 id=ishom.3h7v.s6.4360e546646d from=translated src=- shape=807058b4 vocab=88d4a471
@@ -170,4 +170,5 @@ lemma isHom_decide
   subst this
   apply isHom_cases (f := fun p _ ↦ decide p) <;> fun_prop
 
-end QuasiBorelSpace.Prop
+end Tengoku.LeanPool.QuasiBorelSpace.Prop
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 variable {N₁ N₂ H₁ H₂ : Type*} [Group N₁] [Group N₂] [Group H₁] [Group H₂]
 
 variable {G : Type*} [Group G]
@@ -33,7 +33,7 @@ lemma Subgroup.comm_of_normal_and_inf_eq_bot
 
 /-- If `N` is a normal subgroup of `G` and `H` is a subgroup with `N ⊓ H = ⊥` and `N ⊔ H = ⊤`,
 then `G` is isomorphic to the semidirect product `N ⋊[φ] H` for `φ` the conjugation action. -/
-noncomputable def mulEquivSemidirectProduct
+noncomputable def _root_.Tengoku.LeanPool.mulEquivSemidirectProduct
     {N H : Subgroup G} (h : Subgroup.Normal N) (inf_eq_bot : N ⊓ H = ⊥) (sup_eq_top : N ⊔ H = ⊤)
     {φ : H →* MulAut N} (conj : φ = MulAut.conjNormal.domRestrict H) :
     G ≃* N ⋊[φ] H := by
@@ -82,7 +82,7 @@ theorem Subgroup.subgroupOf_inf {H K L : Subgroup G} :
 
 /-- Variant of `mulEquivSemidirectProduct` that works within the subgroup `N ⊔ H` rather than
 requiring `N ⊔ H = ⊤`. -/
-noncomputable def mulEquivSemidirectProduct'
+noncomputable def _root_.Tengoku.LeanPool.mulEquivSemidirectProduct'
     {N H : Subgroup G} (h : Subgroup.Normal N) (inf_eq_bot : N ⊓ H = ⊥)
     {φ : H →* MulAut N} (conj : φ = MulAut.conjNormal.domRestrict H) :
     (N ⊔ H : Subgroup G) ≃* N ⋊[φ] H := by
@@ -103,7 +103,7 @@ noncomputable def mulEquivSemidirectProduct'
 
 /-- If `N` and `H` are normal subgroups of `G` with trivial intersection that span `G`,
 then `G` is isomorphic to the direct product `N × H`. -/
-noncomputable def mulEquivProd
+noncomputable def _root_.Tengoku.LeanPool.mulEquivProd
     {N H : Subgroup G} (hN : Subgroup.Normal N) (hH : Subgroup.Normal H)
     (inf_eq_bot : N ⊓ H = ⊥) (sup_eq_top : N ⊔ H = ⊤) :
     G ≃* N × H := by
@@ -112,3 +112,4 @@ noncomputable def mulEquivProd
     ext
     simp [← Subgroup.comm_of_normal_and_inf_eq_bot N H hN hH inf_eq_bot]
   exact this ▸ SemidirectProduct.mulEquivProd
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

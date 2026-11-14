@@ -49,12 +49,12 @@ between weak and strong exactness is added, following [PalomaresPukelsheimRamire
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-- An apportionment is a vector of natural numbers representing the number of seats allocated to
 each party (at the corresponding index). -/
-abbrev Apportionment (n : ℕ) : Type := Vector ℕ n
+abbrev _root_.Tengoku.LeanPool.Apportionment (n : ℕ) : Type := Vector ℕ n
 
-namespace Apportionment
+namespace Tengoku.LeanPool.Apportionment
 
 /-- An election with a vector of votes for `n` parties (at the corresponding indices) and the total
 number of seats to be allocated. -/
@@ -217,4 +217,5 @@ lemma IsConcordant_of_IsPopulationMonotone (rule : Rule) [h_anon : IsAnonymous r
   specialize h_mono (Nat.pow_lt_pow_left h_votes (by decide)) App h_App App' h_App'
   aesop
 
-end Apportionment
+end Tengoku.LeanPool.Apportionment
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

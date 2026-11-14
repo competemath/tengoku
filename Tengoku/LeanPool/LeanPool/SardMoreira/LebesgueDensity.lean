@@ -16,14 +16,14 @@ import Tengoku.LeanPool.LeanPool.SardMoreira.Topology
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ENNReal NNReal Set.Notation Pointwise
 open MeasureTheory Filter Set Function Metric Topology
 
 /--
 @isnad1 id=absolute.0h1v.s6.e7734ede6e06 from=translated src=- shape=2a9b06d8 vocab=4d97f055
 -/
-theorem absolutelyContinuous_volumeIoiPow_left (n : ℕ) :
+theorem _root_.Tengoku.LeanPool.absolutelyContinuous_volumeIoiPow_left (n : ℕ) :
     .volumeIoiPow n ≪ .comap Subtype.val volume := by
   apply MeasureTheory.withDensity_absolutelyContinuous
 
@@ -72,7 +72,7 @@ theorem MeasureTheory.Measure.QuasiMeasurePreserving.subtypeVal_volumeIoiPow (n 
 /--
 @isnad1 id=absolute.0h1v.s6.f00d89f739e9 from=translated src=- shape=bae2c08f vocab=00506e87
 -/
-theorem absolutelyContinuous_volumeIoiPow_right (n : ℕ) :
+theorem _root_.Tengoku.LeanPool.absolutelyContinuous_volumeIoiPow_right (n : ℕ) :
     .comap Subtype.val volume ≪ .volumeIoiPow n := by
   refine MeasureTheory.withDensity_absolutelyContinuous' ?_ <| .of_forall ?_
   · fun_prop
@@ -112,7 +112,7 @@ we can choose `s = Set.Icc a (a + δ / 2)` for a large `a`,
 and get an arbitriraly large value of `μ s`.
 @isnad1 id=ex.0h0v.s6.21d98b64d42f from=translated src=- shape=8595d01b vocab=1ffdab41
 -/
-theorem exists_absolutelyContinuous_forall_pos_exists_lt_gt :
+theorem _root_.Tengoku.LeanPool.exists_absolutelyContinuous_forall_pos_exists_lt_gt :
     ∃ μ ν : Measure ℝ, μ ≪ ν ∧ ∀ C δ : ℝ≥0, δ ≠ 0 →
       ∃ s, MeasurableSet s ∧ ν s < δ ∧ μ s > C := by
   -- Define the measures μ and ν as described.
@@ -201,7 +201,7 @@ theorem MeasureTheory.Measure.AbsolutelyContinuous.exists_pos_forall_lt_imp_lt
 /--
 @isnad1 id=ex.1h4v.s9.b9da07b9949a from=translated src=- shape=a49a64b4 vocab=4525d567
 -/
-theorem exists_pos_forall_measure_le_toSphere_ge_le
+theorem _root_.Tengoku.LeanPool.exists_pos_forall_measure_le_toSphere_ge_le
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     {_ : MeasurableSpace E} [BorelSpace E] (μ : Measure E) [μ.IsAddHaarMeasure]
     {ε : ℝ≥0∞} (hε : ε ≠ 0) :
@@ -295,7 +295,7 @@ theorem exists_pos_forall_measure_le_toSphere_ge_le
 /--
 @isnad1 id=ex.1h4v.s8.8a7fb0fd9576 from=translated src=- shape=c26e42f0 vocab=a80faa5c
 -/
-theorem exists_pos_forall_measure_le_exists_mem_sphere_dist_lt_volume_smul_mem_lt
+theorem _root_.Tengoku.LeanPool.exists_pos_forall_measure_le_exists_mem_sphere_dist_lt_volume_smul_mem_lt
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     {_ : MeasurableSpace E} [BorelSpace E] (μ : Measure E) [μ.IsAddHaarMeasure]
     {ε : ℝ≥0} (hε : ε ≠ 0) :
@@ -320,7 +320,7 @@ theorem exists_pos_forall_measure_le_exists_mem_sphere_dist_lt_volume_smul_mem_l
 /--
 @isnad1 id=ex.1h2v.s8.d882abd3fe57 from=translated src=- shape=132e07b0 vocab=eb2acd5b
 -/
-theorem exists_pos_forall_measure_le_exists_mem_sphere_dist_lt_volume_lineMap_mem_lt
+theorem _root_.Tengoku.LeanPool.exists_pos_forall_measure_le_exists_mem_sphere_dist_lt_volume_lineMap_mem_lt
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     {ε : ℝ≥0} (hε : ε ≠ 0) :
     ∃ δ : ℝ≥0, 0 < δ ∧
@@ -398,7 +398,7 @@ theorem Metric.biInter_lt_rat_closedBall {X : Type*} [PseudoMetricSpace X] (x : 
 /--
 @isnad1 id=eventual.0h3v.s6.ed4b63255ef2 from=translated src=- shape=e01c0854 vocab=6beec7e0
 -/
-theorem eventually_measure_closedBall_lt_top
+theorem _root_.Tengoku.LeanPool.eventually_measure_closedBall_lt_top
     {X : Type*} [PseudoMetricSpace X] [MeasurableSpace X]
     (μ : Measure X) [IsLocallyFiniteMeasure μ] (x : X) :
     ∀ᶠ r in 𝓝 0, μ (closedBall x r) < ⊤ := by
@@ -408,7 +408,7 @@ theorem eventually_measure_closedBall_lt_top
 /--
 @isnad1 id=eventual.0h3v.s6.536e422b865f from=translated src=- shape=f4c9eab7 vocab=cd3ec5e1
 -/
-theorem eventually_forall_le_continuousWithinAt_Ici_measure_closedBall
+theorem _root_.Tengoku.LeanPool.eventually_forall_le_continuousWithinAt_Ici_measure_closedBall
     {X : Type*} [PseudoMetricSpace X] [MeasurableSpace X] [OpensMeasurableSpace X]
     (μ : Measure X) [IsLocallyFiniteMeasure μ] (x : X) :
     ∀ᶠ r : ℝ in 𝓝 0, ∀ ν ≤ μ, ContinuousWithinAt (ν <| closedBall x ·) (Set.Ici r) r := by
@@ -423,7 +423,7 @@ theorem eventually_forall_le_continuousWithinAt_Ici_measure_closedBall
 /--
 @isnad1 id=eventual.1h4v.s7.fde4115f9569 from=translated src=- shape=4ccddda4 vocab=177e4698
 -/
-theorem eventually_continuousWithinAt_Ici_measure_inter_closedBall_div
+theorem _root_.Tengoku.LeanPool.eventually_continuousWithinAt_Ici_measure_inter_closedBall_div
     {X : Type*} [PseudoMetricSpace X] [MeasurableSpace X] [OpensMeasurableSpace X]
     {μ : Measure X} [IsLocallyFiniteMeasure μ] (x : X) {s : Set X} (hs : NullMeasurableSet s μ) :
     ∀ᶠ r : ℝ in 𝓝[>] 0,
@@ -487,7 +487,7 @@ theorem IsDenseEmbedding.tendsto_nhdsWithin_preimage_iff_of_eventually_continuou
 /--
 @isnad1 id=iff.1h5v.s7.1e5fcab6b830 from=translated src=- shape=ba3c98bc vocab=0af053a1
 -/
-theorem tendsto_measure_inter_closedBall_div_iff_rat
+theorem _root_.Tengoku.LeanPool.tendsto_measure_inter_closedBall_div_iff_rat
     {X : Type*} [PseudoMetricSpace X] [MeasurableSpace X] [OpensMeasurableSpace X]
     {μ : Measure X} [IsLocallyFiniteMeasure μ] {x : X} {a : ℝ≥0∞} {s : Set X}
     (hs : NullMeasurableSet s μ) :
@@ -582,3 +582,4 @@ theorem Besicovitch.ae_tendsto_measure_sectr_inter_closedBall_div
   · rw [← measurableSet_swap_iff] at hs ⊢
     refine hs.setOf_tendsto_measure_sectl_inter_closedBall_div ν ?_
     exact (measurable_const (a := 1)).indicator hs
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

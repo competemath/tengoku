@@ -90,7 +90,7 @@ blueprint's `Q_j` never appears: only the parameter blocks `[t 0 j, t 2 j]` do.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Bornology Metric Set unitInterval
 
 namespace Schoenflies
@@ -932,3 +932,4 @@ theorem IsJordanCurve.isSeparating (harc : ∀ A : Set Plane, IsArc A → IsConn
         Set.disjoint_left.2 fun z hzC hzout => hzout.1 hzC⟩
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

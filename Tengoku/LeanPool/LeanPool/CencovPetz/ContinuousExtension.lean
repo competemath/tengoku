@@ -23,7 +23,7 @@ identity to all simplex points.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.CencovPetz
 open scoped BigOperators
 
@@ -47,3 +47,4 @@ lemma eq_of_eqOn_dense₂ {s : Set (Simplex α)} (hs : Dense s)
     Continuous.ext_on (X := ℝ) (Y := Simplex α) hs (hf u v) (hg u v) hEqOn
   exact congrArg (fun h => h p) hfun
 end LeanPool.CencovPetz
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

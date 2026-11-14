@@ -15,7 +15,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Equiv Equiv.Perm
 
 /-- A finite set closed under a fixed-point-free involution has even cardinality.
@@ -24,7 +24,7 @@ Proof by strong induction: pick any `x ∈ S`, remove the pair `{x, p x}`,
 show the remainder is still closed under `p`, and recurse.
 @isnad1 id=even.3h3v.s6.7f56ea09b6cf from=translated src=- shape=db4730ba vocab=539c6186
 -/
-lemma even_card_of_fpf_closed {α : Type*}
+lemma _root_.Tengoku.LeanPool.even_card_of_fpf_closed {α : Type*}
     {p : Perm α} (hinv : ∀ x, p (p x) = x) (hfpf : ∀ x, p x ≠ x)
     (S : Finset α) (h_closed : ∀ x ∈ S, p x ∈ S) :
     Even S.card := by
@@ -70,3 +70,4 @@ lemma even_card_of_fpf_closed {α : Type*}
       rw [hcard]
       obtain ⟨k, hk⟩ := hS'_even
       exact ⟨k + 1, by omega⟩
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

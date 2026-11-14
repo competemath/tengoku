@@ -20,7 +20,7 @@ import Tengoku.Seed.Tactic.NormNum.Parity
 /-! # ImportedAnalyticInputs -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Complex MeasureTheory Real Finset
 open scoped BigOperators ComplexConjugate
 
@@ -753,3 +753,4 @@ theorem oneVariableAngularFactorization
     mul_assoc, mul_left_comm, mul_comm]
 
 end Hermite1DimdLEAN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

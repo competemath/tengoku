@@ -43,7 +43,7 @@ At `κ = ℶ₁` every level sits below `ℶ_{ω₁}` (`finiteERBound_le_beth_om
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open FirstOrder.Combinatorics.PairERGen
 open FirstOrder.Combinatorics.EndHomogER
 
@@ -194,7 +194,7 @@ of `f : J ↪o I` is the `f`-image of a (unique) tuple in `J`. The order structu
 back through `f.lt_iff_lt`, so the preimage tuple is again an order embedding.
 @isnad1 id=ex.1h5v.s8.cd372eb7b802 from=translated src=- shape=f589c606 vocab=b7824b33
 -/
-theorem exists_orderEmbedding_factor {J I : Type*} [LinearOrder J] [LinearOrder I]
+theorem _root_.Tengoku.LeanPool.exists_orderEmbedding_factor {J I : Type*} [LinearOrder J] [LinearOrder I]
     {m : ℕ} (f : J ↪o I) (t : Fin m ↪o I) (ht : ∀ k, t k ∈ Set.range f) :
     ∃ s : Fin m ↪o J, s.trans f = t := by
   choose g hg using ht
@@ -393,7 +393,7 @@ Theory*, §5.2]: for each finite formula/arity budget `N` and cofinally many `α
 itself materializes only in the model built by Model Existence, never in the source.
 @isnad1 id=ex.2h5v.s9.7316cd007360 from=translated src=- shape=67001ede vocab=088ddc92
 -/
-theorem finiteArityHomogeneousUpTo_beth_stage (α : Ordinal.{0}) (N : ℕ)
+theorem _root_.Tengoku.LeanPool.finiteArityHomogeneousUpTo_beth_stage (α : Ordinal.{0}) (N : ℕ)
     {I : Type} [LinearOrder I] [WellFoundedLT I]
     (hI : Cardinal.beth (α + ((2 * N + 2 : ℕ) : Ordinal)) ≤ Cardinal.mk I)
     (C : ℕ → Type) (hC : ∀ n, Cardinal.mk (C n) ≤ Cardinal.beth α)
@@ -404,3 +404,4 @@ theorem finiteArityHomogeneousUpTo_beth_stage (α : Ordinal.{0}) (N : ℕ)
         c n t = c n t' :=
   finiteArityHomogeneousUpTo_all (Cardinal.beth α) (Cardinal.aleph0_le_beth α) N I
     ((finiteERBound_beth_le α N).trans hI) C hC c
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

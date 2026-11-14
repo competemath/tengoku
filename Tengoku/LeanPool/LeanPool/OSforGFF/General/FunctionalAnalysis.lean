@@ -58,7 +58,7 @@ focusing on integrability, Schwartz function properties, and L² embeddings.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory NNReal ENNReal Complex
 open TopologicalSpace Measure
 
@@ -105,18 +105,18 @@ lemma SchwartzMap.hasTemperateGrowth_general
 variable {α : Type*} [MeasurableSpace α] {μ : Measure α}
 
 -- Add measurable space instances for Lp spaces
-instance instMeasurableSpaceLpRealTwoLeanPool (μ : Measure α) : MeasurableSpace (Lp ℝ 2 μ) :=
+instance _root_.Tengoku.LeanPool.instMeasurableSpaceLpRealTwoLeanPool (μ : Measure α) : MeasurableSpace (Lp ℝ 2 μ) :=
   borel _
 /--
 @isnad1 id=borelspa.0h2v.s9.65cad7f8c171 from=translated src=- shape=15dadbc1 vocab=6aa6b41d
 -/
-instance instBorelSpaceLpRealTwoLeanPool (μ : Measure α) : BorelSpace (Lp ℝ 2 μ) := ⟨rfl⟩
-instance instMeasurableSpaceLpComplexTwoLeanPool (μ : Measure α) : MeasurableSpace (Lp ℂ 2 μ) :=
+instance _root_.Tengoku.LeanPool.instBorelSpaceLpRealTwoLeanPool (μ : Measure α) : BorelSpace (Lp ℝ 2 μ) := ⟨rfl⟩
+instance _root_.Tengoku.LeanPool.instMeasurableSpaceLpComplexTwoLeanPool (μ : Measure α) : MeasurableSpace (Lp ℂ 2 μ) :=
   borel _
 /--
 @isnad1 id=borelspa.0h2v.s9.3f628e6ba6a7 from=translated src=- shape=15dadbc1 vocab=670e1d30
 -/
-instance instBorelSpaceLpComplexTwoLeanPool (μ : Measure α) : BorelSpace (Lp ℂ 2 μ) := ⟨rfl⟩
+instance _root_.Tengoku.LeanPool.instBorelSpaceLpComplexTwoLeanPool (μ : Measure α) : BorelSpace (Lp ℂ 2 μ) := ⟨rfl⟩
 
 -- Check if Complex.ofRealCLM is an isometry
 /--
@@ -136,7 +136,7 @@ lemma Complex.ofRealCLM_continuous_compLp {α : Type*} [MeasurableSpace α] {μ 
 Compose an Lp function with a continuous linear map.
 This should be the canonical way to lift real Lp functions to complex Lp functions.
 -/
-noncomputable def composedFunction {α : Type*} [MeasurableSpace α] {μ : Measure α}
+noncomputable def _root_.Tengoku.LeanPool.composedFunction {α : Type*} [MeasurableSpace α] {μ : Measure α}
     (f : Lp ℝ 2 μ) (A : ℝ →L[ℝ] ℂ) : Lp ℂ 2 μ :=
   A.compLp f
 
@@ -145,7 +145,7 @@ noncomputable def composedFunction {α : Type*} [MeasurableSpace α] {μ : Measu
 /--
 Embedding from real Lp functions to complex Lp functions using the canonical embedding ℝ → ℂ.
 -/
-noncomputable def embeddingRealToComplex {α : Type*} [MeasurableSpace α] {μ : Measure α}
+noncomputable def _root_.Tengoku.LeanPool.embeddingRealToComplex {α : Type*} [MeasurableSpace α] {μ : Measure α}
     (φ : Lp ℝ 2 μ) : Lp ℂ 2 μ :=
   composedFunction φ (Complex.ofRealCLM)
 
@@ -156,7 +156,7 @@ variable {α : Type*} [MeasurableSpace α] {μ : Measure α}
 Lifts a probability measure from the space of real Lp functions to the space of
 complex Lp functions, with support on the real subspace.
 -/
-noncomputable def liftMeasureRealToComplex
+noncomputable def _root_.Tengoku.LeanPool.liftMeasureRealToComplex
     (dμ_real : ProbabilityMeasure (Lp ℝ 2 μ)) :
     ProbabilityMeasure (Lp ℂ 2 μ) :=
   ⟨Measure.map embeddingRealToComplex dμ_real, by
@@ -186,11 +186,11 @@ variable {d : ℕ} [NeZero d] [Fintype (Fin d)]
 
 -- Type abbreviations for clarity
 /-- The `EuclideanRd` declaration. -/
-abbrev EuclideanRd (d : ℕ) := EuclideanSpace ℝ (Fin d)
+abbrev _root_.Tengoku.LeanPool.EuclideanRd (d : ℕ) := EuclideanSpace ℝ (Fin d)
 /-- The `SchwartzRd` declaration. -/
-abbrev SchwartzRd (d : ℕ) := SchwartzMap (EuclideanRd d) ℂ
+abbrev _root_.Tengoku.LeanPool.SchwartzRd (d : ℕ) := SchwartzMap (EuclideanRd d) ℂ
 /-- The `L2Complex` declaration. -/
-abbrev L2Complex (d : ℕ) := Lp ℂ 2 (volume : Measure (EuclideanRd d))
+abbrev _root_.Tengoku.LeanPool.L2Complex (d : ℕ) := Lp ℂ 2 (volume : Measure (EuclideanRd d))
 
 /-! ### Core construction components (using Mathlib APIs) -/
 
@@ -198,7 +198,7 @@ abbrev L2Complex (d : ℕ) := Lp ℂ 2 (volume : Measure (EuclideanRd d))
     This is a continuous linear map from Schwartz space to L²(ℝᵈ, ℂ).
     OK IMPLEMENTED: Uses SchwartzMap.toLpCLM from Mathlib
 -/
-noncomputable def schwartzToL2 (d : ℕ) : SchwartzRd d →L[ℂ] L2Complex d :=
+noncomputable def _root_.Tengoku.LeanPool.schwartzToL2 (d : ℕ) : SchwartzRd d →L[ℂ] L2Complex d :=
   SchwartzMap.toLpCLM ℂ ℂ 2 (volume : Measure (EuclideanRd d))
 
 /-- Alternative embedding that produces the exact L² type expected by the unprimed theorems.
@@ -206,7 +206,7 @@ noncomputable def schwartzToL2 (d : ℕ) : SchwartzRd d →L[ℂ] L2Complex d :=
     The difference from schwartzToL2 is only in the type representation, not the mathematical
     content.
 -/
-noncomputable def schwartzToL2' (d : ℕ) [hd : NeZero d] [Fintype (Fin d)] :
+noncomputable def _root_.Tengoku.LeanPool.schwartzToL2' (d : ℕ) [hd : NeZero d] [Fintype (Fin d)] :
   SchwartzMap (EuclideanSpace ℝ (Fin d)) ℂ →L[ℂ] Lp ℂ 2 (volume : Measure (EuclideanSpace ℝ (Fin
     d))) :=
   let _ := hd
@@ -233,7 +233,7 @@ These theorems are used to construct specific multiplication operators
 /-- Given a measurable function `g` that is essentially bounded by `C`,
     multiplication by `g` defines a bounded linear operator on `L²`.
 -/
-noncomputable def linftyMulL2CLM {μ : Measure α}
+noncomputable def _root_.Tengoku.LeanPool.linftyMulL2CLM {μ : Measure α}
     (g : α → ℂ) (hg_meas : Measurable g) (C : ℝ)
     (hg_bound : ∀ᵐ x ∂μ, ‖g x‖ ≤ C) :
     Lp ℂ 2 μ →L[ℂ] Lp ℂ 2 μ :=
@@ -243,7 +243,7 @@ noncomputable def linftyMulL2CLM {μ : Measure α}
 /-- The multiplication operator acts pointwise almost everywhere on `L²`.
 @isnad1 id=eventual.2h5v.s12.381829b6bfc9 from=translated src=- shape=fd97fd69 vocab=58b42b22
 -/
-lemma linfty_mul_L2_CLM_spec {μ : Measure α}
+lemma _root_.Tengoku.LeanPool.linfty_mul_L2_CLM_spec {μ : Measure α}
     (g : α → ℂ) (hg_meas : Measurable g) (C : ℝ)
     (hg_bound : ∀ᵐ x ∂μ, ‖g x‖ ≤ C)
     (f : Lp ℂ 2 μ) :
@@ -269,7 +269,7 @@ open Set Metric in
     - Apply global lemma to g
 @isnad1 id=integrab.2h5v.s8.e948faaac9c3 from=translated src=- shape=8be74d94 vocab=31ae0a45
 -/
-lemma integrableOn_ball_of_radial {E F : Type*}
+lemma _root_.Tengoku.LeanPool.integrableOn_ball_of_radial {E F : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E] [Nontrivial E]
     [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
     [NormedAddCommGroup F] [NormedSpace ℝ F]
@@ -304,7 +304,7 @@ open Set Metric in
     If |f(x)| ≤ C‖x‖^{-α} with α < d, then f is integrable on any ball centered at 0.
 @isnad1 id=integrab.6h5v.s9.ded2a9d4f1c7 from=translated src=- shape=740139d3 vocab=10bbf5a3
 -/
-lemma integrableOn_ball_of_rpow_decay {d : ℕ} (hd : d ≥ 1)
+lemma _root_.Tengoku.LeanPool.integrableOn_ball_of_rpow_decay {d : ℕ} (hd : d ≥ 1)
     {f : EuclideanSpace ℝ (Fin d) → ℝ} {C α r : ℝ}
     (_hC : 0 < C) (hα : α < d) (hr : 0 < r)
     (h_decay : ∀ x, |f x| ≤ C * ‖x‖ ^ (-α))
@@ -350,7 +350,7 @@ lemma integrableOn_ball_of_rpow_decay {d : ℕ} (hd : d ≥ 1)
 /-- Integrability away from the origin for bounded functions on compact sets.
 @isnad1 id=integrab.5h6v.s9.6b9f6265a534 from=translated src=- shape=12d86752 vocab=a9e6e3e7
 -/
-lemma integrableOn_compact_diff_ball {d : ℕ}
+lemma _root_.Tengoku.LeanPool.integrableOn_compact_diff_ball {d : ℕ}
     {f : EuclideanSpace ℝ (Fin d) → ℝ} {C α δ : ℝ} {K : Set (EuclideanSpace ℝ (Fin d))}
     (hK : IsCompact K) (hC : 0 < C) (hδ : 0 < δ)
     (h_decay : ∀ x, |f x| ≤ C * ‖x‖ ^ (-α))
@@ -408,7 +408,7 @@ lemma integrableOn_compact_diff_ball {d : ℕ}
     For d-dimensional space, if α < d and |f(x)| ≤ C‖x‖^{-α}, then f is locally integrable.
 @isnad1 id=locallyi.5h4v.s9.c0ce829424f0 from=translated src=- shape=b2d16f62 vocab=3a1da909
 -/
-theorem locallyIntegrable_of_rpow_decay_real {d : ℕ} (hd : d ≥ 3)
+theorem _root_.Tengoku.LeanPool.locallyIntegrable_of_rpow_decay_real {d : ℕ} (hd : d ≥ 3)
     {f : EuclideanSpace ℝ (Fin d) → ℝ} {C : ℝ} {α : ℝ}
     (hC : C > 0) (hα : α < d)
     (h_decay : ∀ x, |f x| ≤ C * ‖x‖ ^ (-α))
@@ -450,7 +450,7 @@ theorem locallyIntegrable_of_rpow_decay_real {d : ℕ} (hd : d ≥ 3)
     are bounded by C·t.
 @isnad1 id=integrab.0h0v.s8.1e663aaac5ba from=translated src=- shape=8d94804c vocab=1158d1d6
 -/
-lemma polynomial_decay_integrable_3d :
+lemma _root_.Tengoku.LeanPool.polynomial_decay_integrable_3d :
     Integrable (fun x : EuclideanSpace ℝ (Fin 3) => 1 / (1 + ‖x‖)^4) volume := by
   -- Use integrable_one_add_norm: (1 + ‖x‖)^(-r) is integrable when r > dim
   have hdim : Module.finrank ℝ (EuclideanSpace ℝ (Fin 3)) = 3 := finrank_euclideanSpace
@@ -484,7 +484,7 @@ This applies to exponentially decaying kernels like the massive free covariance.
     - Then: ∫∫ |f(x) K₀(x-y) g(y)| dx dy ≤ ‖f‖_∞ · ‖K₀‖_{L¹} · ‖g‖_{L¹} < ∞
 @isnad1 id=integrab.1h4v.s10.88f81c01f4bc from=translated src=- shape=1ec3870b vocab=74b0bfd5
 -/
-theorem schwartz_bilinear_integrable_of_translationInvariant_L1
+theorem _root_.Tengoku.LeanPool.schwartz_bilinear_integrable_of_translationInvariant_L1
     {d : ℕ}
     (K₀ : EuclideanSpace ℝ (Fin d) → ℂ)
     (hK₀_int : Integrable K₀ volume)
@@ -629,13 +629,13 @@ Lemmas about complex exponentials of pure imaginary arguments, used in Fourier a
 /-- Complex exponential of pure imaginary argument has norm 1.
 @isnad1 id=eq.0h1v.s4.fe1892df74e9 from=translated src=- shape=51fb65c3 vocab=d6b61dc0
 -/
-lemma norm_exp_I_mul_real (r : ℝ) : ‖Complex.exp (Complex.I * r)‖ = 1 :=
+lemma _root_.Tengoku.LeanPool.norm_exp_I_mul_real (r : ℝ) : ‖Complex.exp (Complex.I * r)‖ = 1 :=
   norm_exp_I_mul_ofReal r
 
 /-- Complex exponential of negative pure imaginary argument has norm 1.
 @isnad1 id=eq.0h1v.s4.ee896101372d from=translated src=- shape=cec77c31 vocab=ef02fdd8
 -/
-lemma norm_exp_neg_I_mul_real (r : ℝ) : ‖Complex.exp (-Complex.I * r)‖ = 1 := by
+lemma _root_.Tengoku.LeanPool.norm_exp_neg_I_mul_real (r : ℝ) : ‖Complex.exp (-Complex.I * r)‖ = 1 := by
   rw [Complex.norm_exp]
   simp_all
 
@@ -722,13 +722,13 @@ fact in harmonic analysis: if f ∈ 𝒮(ℝⁿ), then f(· - a) ∈ 𝒮(ℝⁿ
 /-- Translation `x ↦ x - a` has temperate growth.
 @isnad1 id=hastempe.0h2v.s5.530c0957090c from=translated src=- shape=e1d34e69 vocab=a0e62e41
 -/
-lemma sub_const_hasTemperateGrowth {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] (a : E) :
+lemma _root_.Tengoku.LeanPool.sub_const_hasTemperateGrowth {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] (a : E) :
     Function.HasTemperateGrowth (fun x : E => x - a) := by fun_prop
 
 /-- Translation `x ↦ x - a` is antilipschitz (actually an isometry).
 @isnad1 id=antilips.0h2v.s5.829176770674 from=translated src=- shape=91270251 vocab=6c01fc56
 -/
-lemma sub_const_antilipschitz {E : Type*} [NormedAddCommGroup E] (a : E) :
+lemma _root_.Tengoku.LeanPool.sub_const_antilipschitz {E : Type*} [NormedAddCommGroup E] (a : E) :
     AntilipschitzWith 1 (fun x : E => x - a) := by
   intro x y
   simp [edist_dist, dist_eq_norm]
@@ -774,7 +774,7 @@ open Real
     **Reference**: Stein-Weiss, Chapter 1, Proposition 1.1
 @isnad1 id=ex.1h3v.s7.9d4591e13bba from=translated src=- shape=ad944fd5 vocab=dd471168
 -/
-theorem schwartz_integrable_decay {V : Type*} [NormedAddCommGroup V]
+theorem _root_.Tengoku.LeanPool.schwartz_integrable_decay {V : Type*} [NormedAddCommGroup V]
     [NormedSpace ℝ V]
     (f : SchwartzMap V ℂ) (N : ℕ) (_hN : Module.finrank ℝ V < N) :
     ∃ C : ℝ, 0 < C ∧ ∀ x : V, ‖f x‖ ≤ C / (1 + ‖x‖)^N := by
@@ -841,13 +841,13 @@ open scoped Pointwise BigOperators
 variable {E}
 
 /-- The self-convolution of a normalized bump function. -/
-noncomputable def bumpSelfConv (φ : ContDiffBump (0 : E)) : E → ℝ :=
+noncomputable def _root_.Tengoku.LeanPool.bumpSelfConv (φ : ContDiffBump (0 : E)) : E → ℝ :=
   (φ.normed volume) ⋆[ContinuousLinearMap.lsmul ℝ ℝ, volume] (φ.normed volume)
 
 /-- Self-convolution is nonnegative.
 @isnad1 id=le.0h3v.s6.156e976454ff from=translated src=- shape=20837d6b vocab=e1c08964
 -/
-lemma bumpSelfConv_nonneg (φ : ContDiffBump (0 : E)) (x : E) : 0 ≤ bumpSelfConv φ x := by
+lemma _root_.Tengoku.LeanPool.bumpSelfConv_nonneg (φ : ContDiffBump (0 : E)) (x : E) : 0 ≤ bumpSelfConv φ x := by
   unfold bumpSelfConv convolution
   apply integral_nonneg
   intro y
@@ -857,7 +857,7 @@ lemma bumpSelfConv_nonneg (φ : ContDiffBump (0 : E)) (x : E) : 0 ≤ bumpSelfCo
 /-- Self-convolution has mass 1: ∫(φ ⋆ φ) = (∫φ)(∫φ) = 1·1 = 1.
 @isnad1 id=eq.0h2v.s6.94dbb6db12dd from=translated src=- shape=a5ba2056 vocab=9d8f58dc
 -/
-lemma bumpSelfConv_integral (φ : ContDiffBump (0 : E)) :
+lemma _root_.Tengoku.LeanPool.bumpSelfConv_integral (φ : ContDiffBump (0 : E)) :
     ∫ x, bumpSelfConv φ x = 1 := by
   unfold bumpSelfConv
   rw [integral_convolution (L := ContinuousLinearMap.lsmul ℝ ℝ)]
@@ -870,7 +870,7 @@ lemma bumpSelfConv_integral (φ : ContDiffBump (0 : E)) :
 /-- Support of self-convolution is contained in ball of radius 2*rOut.
 @isnad1 id=le.0h2v.s7.06235cef0627 from=translated src=- shape=2d1489a5 vocab=d73fa2b2
 -/
-lemma bumpSelfConv_support_subset (φ : ContDiffBump (0 : E)) :
+lemma _root_.Tengoku.LeanPool.bumpSelfConv_support_subset (φ : ContDiffBump (0 : E)) :
     support (bumpSelfConv φ) ⊆ Metric.ball 0 (2 * φ.rOut) := by
   unfold bumpSelfConv
   intro x hx
@@ -896,7 +896,7 @@ lemma bumpSelfConv_support_subset (φ : ContDiffBump (0 : E)) :
 /-- Self-convolution support shrinks to {0} as rOut → 0.
 @isnad1 id=tendsto.1h4v.s7.b8507b0d2f61 from=translated src=- shape=5f250272 vocab=09b9aac3
 -/
-lemma bumpSelfConv_support_tendsto {ι : Type*} {l : Filter ι}
+lemma _root_.Tengoku.LeanPool.bumpSelfConv_support_tendsto {ι : Type*} {l : Filter ι}
     (φ : ι → ContDiffBump (0 : E)) (hφ : Tendsto (fun i => (φ i).rOut) l (nhds 0)) :
     Tendsto (fun i => support (bumpSelfConv (φ i))) l (𝓝 (0 : E)).smallSets := by
   rw [tendsto_smallSets_iff]
@@ -929,7 +929,7 @@ lemma bumpSelfConv_support_tendsto {ι : Type*} {l : Filter ι}
     3. Apply single-convolution theorem: (ψ ⋆ C)(a) → C(a)
 @isnad1 id=tendsto.3h6v.s8.e996c9fbdee0 from=translated src=- shape=4e0d7a2f vocab=64b6249c
 -/
-theorem double_mollifier_convergence
+theorem _root_.Tengoku.LeanPool.double_mollifier_convergence
     [NullSingletonClass (volume : Measure E)]
     (C : E → ℝ)
     (hC : ContinuousOn C {x | x ≠ 0})
@@ -1108,3 +1108,4 @@ theorem double_mollifier_convergence
   exact Tendsto.congr' h_eq' h_selfconv_limit
 
 end DoubleMollifierConvergence
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

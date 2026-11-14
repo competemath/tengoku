@@ -16,17 +16,17 @@ bound `‖R‖ ≤ 1` where `R = (∑_k exp (i θ_k)) / N`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Complex Finset
 
 /-- The Kuramoto order parameter `R = (∑_k exp (i θ_k)) / N`. -/
-noncomputable def kuramotoR (N : ℕ) (θ : Fin N → ℝ) : ℂ :=
+noncomputable def _root_.Tengoku.LeanPool.kuramotoR (N : ℕ) (θ : Fin N → ℝ) : ℂ :=
   (∑ k, Complex.exp (θ k * Complex.I)) / N
 
 /--
 @isnad1 id=le.1h2v.s5.4b1e9d2b82b6 from=translated src=- shape=733e2f21 vocab=786cdf8a
 -/
-theorem kuramotoR_norm_le_one (N : ℕ) (hN : 0 < N) (θ : Fin N → ℝ) :
+theorem _root_.Tengoku.LeanPool.kuramotoR_norm_le_one (N : ℕ) (hN : 0 < N) (θ : Fin N → ℝ) :
     ‖kuramotoR N θ‖ ≤ 1 := by
   have hnorm (k : Fin N) : ‖Complex.exp (θ k * Complex.I)‖ = 1 :=
     Complex.norm_exp_ofReal_mul_I (θ k)
@@ -47,3 +47,4 @@ theorem kuramotoR_norm_le_one (N : ℕ) (hN : 0 < N) (θ : Fin N → ℝ) :
     _ ≤ (N : ℝ) / (N : ℝ) := by
           exact div_le_div_of_nonneg_right hsum hNreal.le
     _ = 1 := div_self hNreal.ne'
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

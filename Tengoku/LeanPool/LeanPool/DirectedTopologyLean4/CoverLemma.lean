@@ -11,7 +11,7 @@ public import Tengoku
 /-! ### Auxiliary lemmas -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-
   This file contains two applications of the Lebesgue Number Lemma:
   One concerns the unit interval and the other concerns the unit square.
@@ -25,7 +25,7 @@ open scoped unitInterval
 `(2i+1)/(2n)` is contained in the interval `[i/n, (i+1)/n]`.
 @isnad1 id=mem.1h2v.s7.2566ea12abe7 from=translated src=- shape=bf38599a vocab=581f70e1
 -/
-lemma mid_point_Icc {i n : ℕ} (hn : n > 0) :
+lemma _root_.Tengoku.LeanPool.mid_point_Icc {i n : ℕ} (hn : n > 0) :
     (2 * i + 1 : ℝ)/(2 * n : ℝ) ∈ Set.Icc ((i :ℝ)/(n :ℝ)) ((i+1 :ℝ)/(n :ℝ)) := by
   have hn' : (n : ℝ) > 0 := Nat.cast_pos.mpr hn
   constructor <;>
@@ -36,7 +36,7 @@ lemma mid_point_Icc {i n : ℕ} (hn : n > 0) :
 `(2i+1)/(2n)` is contained in unit interval
 @isnad1 id=mem.1h2v.s6.ad08eef54501 from=translated src=- shape=21a308da vocab=79fe7e9f
 -/
-lemma mid_point_I {i n : ℕ} (hi : i < n) : (2 * i + 1 : ℝ)/(2 * n : ℝ) ∈ I := by
+lemma _root_.Tengoku.LeanPool.mid_point_I {i n : ℕ} (hi : i < n) : (2 * i + 1 : ℝ)/(2 * n : ℝ) ∈ I := by
   have n_cast_pos : 0 < (n : ℝ) := Nat.cast_pos.mpr (lt_of_le_of_lt (Nat.zero_le i) hi)
   have hbound : 2 * i + 1 ≤ 2 * n := by linarith
   refine ⟨div_nonneg (by positivity) (by positivity), ?_⟩
@@ -75,7 +75,7 @@ end UnitIntervalSub
 /--
 @isnad1 id=ex.2h2v.s6.e9e697231f24 from=translated src=- shape=5becf725 vocab=6196b089
 -/
-theorem lebesgue_number_lemma_unit_interval {ι : Sort u} {c : ι → Set ℝ}
+theorem _root_.Tengoku.LeanPool.lebesgue_number_lemma_unit_interval {ι : Sort u} {c : ι → Set ℝ}
   (hc₁ : ∀ (i : ι), IsOpen (c i)) (hc₂ : I ⊆ ⋃ (i : ι), c i) :
     ∃ (n : ℕ), (n > 0) ∧ ∀ (i : ℕ) (_ : i < n), ∃ (j : ι), Set.Icc ((i : ℝ) / n) ((i + 1) / n) ⊆ c j
         := by
@@ -111,17 +111,17 @@ theorem lebesgue_number_lemma_unit_interval {ι : Sort u} {c : ι → Set ℝ}
 /-! ### Covering lemma for the unit square -/
 
 /-- The full unit square as a subset of `I × I`. -/
-def UnitSquare : Set (I × I) := Set.univ
+def _root_.Tengoku.LeanPool.UnitSquare : Set (I × I) := Set.univ
 
 /--
 @isnad1 id=iscompac.0h0v.s5.fb80bbfafa82 from=translated src=- shape=6c4db19b vocab=8dfc4114
 -/
-lemma compact_unitSquare : IsCompact UnitSquare := isCompact_univ
+lemma _root_.Tengoku.LeanPool.compact_unitSquare : IsCompact UnitSquare := isCompact_univ
 
 /-- For any four natural numbers `n m i j : ℕ` such that `i < n + 1` and `j < m + 1`,
 we have the rectangle `[i/(n+1), (i+1)/(n+1)] × [j/(m+1), (j+1)/(m+1)]` in the unit square.
 -/
-def UnitSubrectangle {n m i j : ℕ} (hi : i < n.succ) (hj : j < m.succ) : Set (I × I) :=
+def _root_.Tengoku.LeanPool.UnitSubrectangle {n m i j : ℕ} (hi : i < n.succ) (hj : j < m.succ) : Set (I × I) :=
   Set.ofPred <|
   fun (a : I × I) =>
     ((Fraction (Nat.succ_pos n) (le_of_lt hi)) ≤ a.1 ∧
@@ -129,7 +129,7 @@ def UnitSubrectangle {n m i j : ℕ} (hi : i < n.succ) (hj : j < m.succ) : Set (
     (Fraction (Nat.succ_pos m) (le_of_lt hj))
         ≤ a.2 ∧ a.2 ≤ (Fraction (Nat.succ_pos m) (Nat.succ_le_of_lt hj))
 
-namespace UnitSubrectangle
+namespace Tengoku.LeanPool.UnitSubrectangle
 
 open Set
 
@@ -151,12 +151,12 @@ lemma mem_unitSubrectangle {t₀ t₁ : ℝ} {n m i j : ℕ} (hi : i < n.succ) (
       (⟨t₁, UnitIntervalSub.mem_I_of_mem_interval hj ht₁⟩ : I)) ∈ UnitSubrectangle hi hj :=
   ⟨⟨ht₀.1, ht₀.2⟩, ⟨ht₁.1, ht₁.2⟩⟩
 
-end UnitSubrectangle
+end Tengoku.LeanPool.UnitSubrectangle
 
 /--
 @isnad1 id=ex.2h2v.s7.7d7d672df4d3 from=translated src=- shape=b05ad56a vocab=35bc1d23
 -/
-theorem lebesgue_number_lemma_unitSquare {ι : Sort u} {c : ι → Set (I × I)}
+theorem _root_.Tengoku.LeanPool.lebesgue_number_lemma_unitSquare {ι : Sort u} {c : ι → Set (I × I)}
   (hc₁ : ∀ (i : ι), IsOpen (c i)) (hc₂ : UnitSquare ⊆ (⋃ (i : ι), c i)) :
     ∃ (n : ℕ), ∀ (i j : ℕ) (hi : i < n.succ)
         (hj : j < n.succ), ∃ (a : ι), UnitSubrectangle hi hj ⊆ c a := by
@@ -222,3 +222,4 @@ theorem lebesgue_number_lemma_unitSquare {ι : Sort u} {c : ι → Set (I × I)}
     rw [Real.dist_eq] at this
     exact this
   linarith
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

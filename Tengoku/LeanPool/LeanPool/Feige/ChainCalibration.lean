@@ -23,7 +23,7 @@ states form that terminal segment.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators
 
 namespace Feige
@@ -185,3 +185,4 @@ theorem exact_chain_calibration' {α : ℝ} (hα : 0 ≤ α) :
 end CalibratedChain
 
 end Feige
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

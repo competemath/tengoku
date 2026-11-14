@@ -21,7 +21,7 @@ import Tengoku.Seed.Tactic.NormNum.Parity
 /-! # ProductAnnulusCircle -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Complex MeasureTheory Real Finset
 open scoped BigOperators ComplexConjugate
 
@@ -86,3 +86,4 @@ private def localOrbit
       (fun q => (fourier (1 : ℤ) t : ℂ) * z q)
 
 end Hermite1DimdLEAN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

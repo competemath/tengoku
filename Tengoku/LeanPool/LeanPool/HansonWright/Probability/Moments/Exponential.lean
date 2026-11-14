@@ -25,7 +25,7 @@ This module introduces no new definitions.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool
 
 open MeasureTheory Set Real Filter Topology
@@ -152,3 +152,4 @@ lemma integrable_exp_add_and_integral_le {μ : Measure Ω} {Y Z : Ω → ℝ} {l
 end
 
 end LeanPool
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

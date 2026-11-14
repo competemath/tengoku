@@ -18,7 +18,7 @@ or its derivatives is used in the escape estimate.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open Set MeasureTheory Filter
@@ -211,3 +211,4 @@ theorem flow_escape_measure_le
     (hderiv x) (hstart x hx) hsR
 
 end Euler.ComparatorBridge
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

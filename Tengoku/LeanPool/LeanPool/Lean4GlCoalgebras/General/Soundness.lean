@@ -11,7 +11,7 @@ public import Tengoku
 
 /-! ## Soundness of GL-proof system. -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 open scoped Lean4GlCoalgebras.Formula
 
 
@@ -298,3 +298,4 @@ theorem soundness (Γ : Sequent) : ⊢ Γ → ⊨ Γ := by
       have ⟨m, m_prop⟩ := has_children_of_chain_model prop w_prop n
       use n + m) k
 end Lean4GlCoalgebras
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

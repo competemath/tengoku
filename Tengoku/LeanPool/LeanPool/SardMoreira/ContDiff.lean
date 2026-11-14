@@ -14,7 +14,7 @@ import Tengoku.LeanPool.LeanPool.SardMoreira.ToMathlib.ContinuousLinearMap
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped unitInterval Topology NNReal
 open Function Asymptotics Filter Set
 
@@ -140,7 +140,7 @@ variable {n : WithTop ℕ∞}
 @isnad1 id=eq.0h3v.s6.80d0feeebc1a from=translated src=- shape=eaba7b1a vocab=7a0ae62e
 -/
 @[simp]
-theorem ftaylorSeries_id (x : E) : ftaylorSeries 𝕜 id x = .id 𝕜 E x := by
+theorem _root_.Tengoku.LeanPool.ftaylorSeries_id (x : E) : ftaylorSeries 𝕜 id x = .id 𝕜 E x := by
   unfold ftaylorSeries
   ext (_ | _ | n) v <;> simp [iteratedFDeriv_succ_apply_right, FormalMultilinearSeries.id]
 
@@ -206,7 +206,7 @@ theorem OpenPartialHomeomorph.contDiffAt_symm' [CompleteSpace E] (f : OpenPartia
 /--
 @isnad1 id=eq.0h5v.s11.81befa85687d from=translated src=- shape=287f20ac vocab=c70247ba
 -/
-theorem iteratedFDeriv_one_eq (f : E → F) (x : E) :
+theorem _root_.Tengoku.LeanPool.iteratedFDeriv_one_eq (f : E → F) (x : E) :
     iteratedFDeriv 𝕜 1 f x = (continuousMultilinearCurryFin1 𝕜 E F).symm (fderiv 𝕜 f x) := by
   ext; simp
 
@@ -284,3 +284,4 @@ theorem compAlongOrderedFinpartition_sub_compAlongOrderedFinpartition_isBigO
     fun _ ↦ hq₂_bdd _ (c.partSize_le _), fun _ ↦ hqB _ (c.partSize_le _)]
 
 end FormalMultilinearSeries
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

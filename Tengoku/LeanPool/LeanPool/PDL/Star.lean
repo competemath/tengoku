@@ -16,7 +16,7 @@ closure `ReflTransGen` and the transitive closure `TransGen`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace PDL
 
 /-- A version of `Relation.ReflTransGen.cases_tail` also giving (in)equalities.
@@ -222,3 +222,4 @@ lemma Relation.TransGen.flip_iff (α : Type) {r : α → α → Prop} {a b : α}
   exact @Relation.transGen_swap α r a b
 
 end PDL
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

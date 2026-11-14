@@ -18,7 +18,7 @@ instead of more complex types when working with numbers of distinct colorings.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u v w
 
 namespace LeanPool.PolyaEnumerationTheorem
@@ -122,3 +122,4 @@ lemma numDistinctColorings_eq_numDistinctColorings_of_Fin
 end ReductionToFin
 
 end LeanPool.PolyaEnumerationTheorem
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

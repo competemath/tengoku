@@ -38,7 +38,7 @@ degree excess.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace ACMax
 
 open Finset
@@ -712,3 +712,4 @@ hoarding wall (`199985 = 6·33322 + 53`). -/
 def boundLin (C₀ : ℕ) : ℕ := max ((151 + 11 * C₀) / 2) 520
 
 end ACMax
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

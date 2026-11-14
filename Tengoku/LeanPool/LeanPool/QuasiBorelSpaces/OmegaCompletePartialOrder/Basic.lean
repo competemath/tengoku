@@ -17,7 +17,7 @@ be added here.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace OmegaCompletePartialOrder
 
 variable {A B C : Type*}
@@ -140,3 +140,4 @@ lemma ωScottContinuous_ite
   split_ifs <;> simp only [Chain.coe_map, OrderHom.coe_mk, Function.comp_apply]
 
 end OmegaCompletePartialOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

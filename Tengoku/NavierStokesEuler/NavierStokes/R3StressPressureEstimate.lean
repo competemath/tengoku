@@ -11,7 +11,7 @@ use only the velocity norms supplied by finite energy and the compact
 comparison solution.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace NavierStokes.R3StressPressureEstimate
 
 open Set Filter MeasureTheory ProblemStatement
@@ -189,3 +189,4 @@ theorem exists_regularized_pressure_bound {L M V ε : ℝ}
   exact ((hreg.trans hraw).trans hpoly).trans (hfinal.trans (by dsimp [A] at *; nlinarith only [hdis']))
 
 end NavierStokes.R3StressPressureEstimate
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

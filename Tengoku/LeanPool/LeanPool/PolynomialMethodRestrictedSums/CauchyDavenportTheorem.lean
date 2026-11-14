@@ -30,7 +30,7 @@ from the Alon-Nathanson-Ruzsa polynomial method.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Finsupp
 open scoped Finset
 open MvPolynomial
@@ -44,12 +44,12 @@ variable {p : ℕ} [Fact (Nat.Prime p)] {k : ℕ}
 
 --
 -- 1.  Fin 2
-lemma sum_fin_two {M : Type*} [AddCommMonoid M] (f : Fin 2 → M) :
+lemma _root_.Tengoku.LeanPool.sum_fin_two {M : Type*} [AddCommMonoid M] (f : Fin 2 → M) :
     ∑ i, f i = f 0 + f 1 := by
   rw [Fin.sum_univ_two]
 
 -- 2.  ZMod p
-lemma binomial_coeff_ne_zero_mod_p (n k : ℕ) (hp : p.Prime) (h_k : k ≤ n) (h_n : n < p) :
+lemma _root_.Tengoku.LeanPool.binomial_coeff_ne_zero_mod_p (n k : ℕ) (hp : p.Prime) (h_k : k ≤ n) (h_n : n < p) :
     (Nat.choose n k : ZMod p) ≠ 0 := by
   rw [ne_eq, CharP.cast_eq_zero_iff (ZMod p) p]
   intro hdiv
@@ -59,9 +59,10 @@ lemma binomial_coeff_ne_zero_mod_p (n k : ℕ) (hp : p.Prime) (h_k : k ≤ n) (h
   exact h_n.not_ge (hp.dvd_factorial.mp (dvd_trans hdiv hchoose))
 
 /-- The sumset `A + B = { a + b | a ∈ A, b ∈ B }` as a `Finset`. -/
-def sumset {α : Type*} [Add α] [DecidableEq α] (A B : Finset α) : Finset α :=
+def _root_.Tengoku.LeanPool.sumset {α : Type*} [Add α] [DecidableEq α] (A B : Finset α) : Finset α :=
   (A ×ˢ B).image (fun x => x.1 + x.2)
 
 variable {A B : Finset (ZMod p)}
 
 -- 3.  "Case 1" ()
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -19,7 +19,7 @@ MSC: 46B15
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-!
 # Schauder bases and the finite sign criterion
 
@@ -67,7 +67,7 @@ The ordered partial-sum convergence used by Schauder bases.
 `HasSchauderSum basis a x` means that
 `∑ n ∈ Finset.range N, a n • basis n` tends to `x` as `N → ∞`.
 -/
-def HasSchauderSum {𝕜 E : Type*} [NontriviallyNormedField 𝕜]
+def _root_.Tengoku.LeanPool.HasSchauderSum {𝕜 E : Type*} [NontriviallyNormedField 𝕜]
     [NormedAddCommGroup E] [NormedSpace 𝕜 E]
     (basis : ℕ → E) (a : ℕ → 𝕜) (x : E) : Prop :=
   Filter.Tendsto (fun N : ℕ => ∑ n ∈ Finset.range N, a n • basis n) atTop (𝓝 x)
@@ -79,7 +79,7 @@ For each vector `x`, the initial partial sums of the coordinate expansion
 converge to `x`, and this expansion is unique. The coordinate maps are stored
 as continuous linear maps.
 -/
-structure SchauderBasis' (𝕜 E : Type*) [NontriviallyNormedField 𝕜]
+structure _root_.Tengoku.LeanPool.SchauderBasis' (𝕜 E : Type*) [NontriviallyNormedField 𝕜]
     [NormedAddCommGroup E] [NormedSpace 𝕜 E] [CompleteSpace E] where
   /-- Basis vectors. -/
   basis : ℕ → E
@@ -92,7 +92,7 @@ structure SchauderBasis' (𝕜 E : Type*) [NontriviallyNormedField 𝕜]
     ∀ (x : E) (a : ℕ → 𝕜), HasSchauderSum basis a x →
       a = fun n : ℕ => coeff n x
 
-namespace SchauderBasis'
+namespace Tengoku.LeanPool.SchauderBasis'
 
 variable {𝕜 E : Type*} [NontriviallyNormedField 𝕜]
     [NormedAddCommGroup E] [NormedSpace 𝕜 E] [CompleteSpace E]
@@ -424,7 +424,7 @@ theorem isUnconditional_iff_tendsto_ordered_rearranged (b : SchauderBasis' 𝕜 
         simpa [f] using h x σ)
     simpa [f] using hf
 
-end SchauderBasis'
+end Tengoku.LeanPool.SchauderBasis'
 
 /--
 An unconditional Schauder basis with the usual `ℕ` index set.
@@ -433,7 +433,7 @@ This is a Schauder basis together with unconditional summability of every basis
 expansion. The classical ordered rearrangement criterion is available as
 `SchauderBasis'.isUnconditional_iff_tendsto_ordered_rearranged`.
 -/
-structure UnconditionalSchauderBasis' (𝕜 E : Type*) [NontriviallyNormedField 𝕜]
+structure _root_.Tengoku.LeanPool.UnconditionalSchauderBasis' (𝕜 E : Type*) [NontriviallyNormedField 𝕜]
     [NormedAddCommGroup E] [NormedSpace 𝕜 E] [CompleteSpace E] where
   /-- Underlying Schauder basis. -/
   toSchauderBasis : SchauderBasis' 𝕜 E
@@ -456,7 +456,7 @@ functional, and every vector has a unique unconditional expansion over the whole
 index type. This abstract version is the natural target for the finite sign
 criterion, where no preferred order on the index set is needed.
 -/
-structure UnconditionalSchauderBasisAbstractIndex (𝕜 Index E : Type*)
+structure _root_.Tengoku.LeanPool.UnconditionalSchauderBasisAbstractIndex (𝕜 Index E : Type*)
     [NontriviallyNormedField 𝕜] [NormedAddCommGroup E] [NormedSpace 𝕜 E]
     [CompleteSpace E] where
   /-- Basis vectors, indexed by an arbitrary type. -/
@@ -470,7 +470,7 @@ structure UnconditionalSchauderBasisAbstractIndex (𝕜 Index E : Type*)
     ∀ (x : E) (a : Index → 𝕜), HasSum (fun i : Index => a i • basis i) x →
       a = fun i : Index => coeff i x
 
-namespace UnconditionalSchauderBasisAbstractIndex
+namespace Tengoku.LeanPool.UnconditionalSchauderBasisAbstractIndex
 
 variable {𝕜 Index E : Type*} [NontriviallyNormedField 𝕜]
     [NormedAddCommGroup E] [NormedSpace 𝕜 E] [CompleteSpace E]
@@ -662,9 +662,9 @@ theorem range_coeff_toUnconditionalSchauderBasis
   · rintro ⟨i, rfl⟩
     exact ⟨e.symm i, by simp [toUnconditionalSchauderBasis]⟩
 
-end UnconditionalSchauderBasisAbstractIndex
+end Tengoku.LeanPool.UnconditionalSchauderBasisAbstractIndex
 
-namespace UnconditionalSchauderBasis'
+namespace Tengoku.LeanPool.UnconditionalSchauderBasis'
 
 variable {𝕜 E : Type*} [NontriviallyNormedField 𝕜]
     [NormedAddCommGroup E] [NormedSpace 𝕜 E] [CompleteSpace E]
@@ -729,7 +729,7 @@ theorem exists_unconditionalSchauderBasisAbstractIndex_nat
       b'.basis = b.basis ∧ b'.coeff = b.coeff :=
   ⟨b.toUnconditionalSchauderBasisAbstractIndex, rfl, rfl⟩
 
-end UnconditionalSchauderBasis'
+end Tengoku.LeanPool.UnconditionalSchauderBasis'
 
 /-!
 ## Finite sign criterion
@@ -1446,3 +1446,4 @@ theorem exists_unconditionalSchauderBasis_of_finiteSignBound
   rfl
 
 end UnconditionalCriterion
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

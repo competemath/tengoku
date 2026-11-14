@@ -15,7 +15,7 @@ decompositions, and cross-term vanishing for orthogonal projectors.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace PLAcceleratedNesterovLean
@@ -137,3 +137,4 @@ theorem combined_aim_segment
     Fn + sqη_ipGV - ipGE + μ'_half_Esq ≥ -εη_half_Vsq := by linarith
 
 end PLAcceleratedNesterovLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

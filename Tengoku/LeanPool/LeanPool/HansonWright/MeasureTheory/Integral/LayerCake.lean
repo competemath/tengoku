@@ -22,7 +22,7 @@ This module introduces no new definitions.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool
 
 open MeasureTheory Set Real Filter Topology
@@ -44,3 +44,4 @@ theorem lintegral_eq_lintegral_tail {μ : Measure Ω} {X : Ω → ℝ}
 end
 
 end LeanPool
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

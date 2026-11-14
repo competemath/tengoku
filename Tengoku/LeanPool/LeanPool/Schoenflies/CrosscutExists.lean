@@ -77,7 +77,7 @@ development; they are the missing companions of `Graph.IsPath.split_meet` and
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Schoenflies
 open scoped Graph
 
@@ -505,3 +505,4 @@ theorem IsPlaneChain.crosscutExists (h : IsPlaneChain Γ drawing G n) {x : Plane
 end Chain
 
 end Graph
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

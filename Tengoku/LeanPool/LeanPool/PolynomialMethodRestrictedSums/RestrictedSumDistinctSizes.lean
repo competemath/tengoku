@@ -27,7 +27,7 @@ sets `A i` have distinct sizes.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MvPolynomial
 open AddMonoidAlgebra (coeff)
 
@@ -42,20 +42,20 @@ variable {R : Type*} [CommRing R]
 variable {p : ℕ} [Fact (Nat.Prime p)] {k : ℕ}
 
 /-- S = {a + ... + a | a ∈ A, a ≠ a for all i ≠ j} -/
-def restrictedSumSet (k : ℕ) (A : Fin (k + 1) → Finset (ZMod p)) : Finset (ZMod p) :=
+def _root_.Tengoku.LeanPool.restrictedSumSet (k : ℕ) (A : Fin (k + 1) → Finset (ZMod p)) : Finset (ZMod p) :=
   ((Fintype.piFinset A).filter fun f =>
     ∀ (i j : Fin (k + 1)), i < j → f i ≠ f j)
     |>.image (fun f => ∑ i, f i)
 
 /-- Vandermonde: ∏_{i>j} (X - X) -/
-noncomputable def vandermondePolynomial (k : ℕ) : MvPolynomial (Fin (k + 1)) (ZMod p) :=
+noncomputable def _root_.Tengoku.LeanPool.vandermondePolynomial (k : ℕ) : MvPolynomial (Fin (k + 1)) (ZMod p) :=
   ∏ i : Fin (k + 1), ∏ j : Fin (k + 1),
     if j.val < i.val then (X i - X j) else 1
 
 /-- (Used in CompressedSizesRestrictedSum and DiasDaSilvaHamidoune)
 The compressed sizes b'_i defined recursively:
     b'_0 = b_0, b'_i = min{b'_{i-1} - 1, b_i} for i ≥ 1 -/
-def compressedSizes (b : Fin (k + 1) → ℕ) : Fin (k + 1) → ℕ :=
+def _root_.Tengoku.LeanPool.compressedSizes (b : Fin (k + 1) → ℕ) : Fin (k + 1) → ℕ :=
   fun i =>
     match i with
     | 0 => b 0
@@ -105,7 +105,7 @@ noncomputable section AristotleLemmas
 /-
 The total degree of the Vandermonde polynomial is (k + 1) choose 2.
 -/
-lemma vandermonde_degree_eq (k : ℕ) (p : ℕ) [Fact (Nat.Prime p)] :
+lemma _root_.Tengoku.LeanPool.vandermonde_degree_eq (k : ℕ) (p : ℕ) [Fact (Nat.Prime p)] :
   (vandermondePolynomial k : MvPolynomial (Fin (k + 1)) (ZMod p)).totalDegree = (k + 1).choose 2 :=
       by
     -- The Vandermonde polynomial is a product of linear terms, each contributing a degree of 1.
@@ -162,7 +162,7 @@ lemma vandermonde_degree_eq (k : ℕ) (p : ℕ) [Fact (Nat.Prime p)] :
 /-
 If the sum of sizes of A_i is bounded by p + (k + 2 choose 2) - 1, then m < p.
 -/
-lemma restricted_sum_m_bound (A : Fin (k + 1) → Finset (ZMod p))
+lemma _root_.Tengoku.LeanPool.restricted_sum_m_bound (A : Fin (k + 1) → Finset (ZMod p))
     (h_nonempty : ∀ i, (A i).Nonempty)
     (h_sum_bound : ∑ i, (A i).card ≤ p + (Nat.choose (k + 2) 2) - 1) :
     let c := fun i => (A i).card - 1
@@ -186,3 +186,4 @@ Vandermonde polynomial is non-zero in ZMod p, provided c_i and m are small enoug
 -/
 
 end AristotleLemmas
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -14,7 +14,7 @@ import Tengoku.LeanPool.LeanPool.LeanPolyABC.Corollaries.FltCatalan
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open scoped Polynomial
@@ -240,3 +240,4 @@ theorem no_parametrization_y2_x3_1 (chk : ¬ringChar k ∣ 6) {x y : RatFunc k}
     exact ⟨_, rfl⟩
 
 end LeanPolyABC
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

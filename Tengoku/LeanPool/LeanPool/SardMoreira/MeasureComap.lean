@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ENNReal NNReal Set.Notation Pointwise
 open MeasureTheory Filter Set Function Metric Topology
 
@@ -84,3 +84,4 @@ instance {α β : Type*} {_ : MeasurableSpace α} {_ : MeasurableSpace β} (μ :
     · exact mt And.right hf
 
 end MeasureTheory.Measure
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

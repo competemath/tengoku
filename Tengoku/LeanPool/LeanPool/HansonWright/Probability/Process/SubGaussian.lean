@@ -44,7 +44,7 @@ entropy integral bound.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool
 
 open MeasureTheory Real Set Metric Filter
@@ -899,3 +899,4 @@ lemma subGaussian_process_centered {Ω : Type*} [MeasurableSpace Ω]
 end
 
 end LeanPool
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

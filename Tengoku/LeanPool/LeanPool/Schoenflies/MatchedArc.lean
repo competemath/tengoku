@@ -22,7 +22,7 @@ those descriptions.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set unitInterval
 
 namespace Schoenflies
@@ -316,3 +316,4 @@ theorem IsDrawing.map_arcHomeo (h : IsDrawing G drawing)
       hie.map m.toFun, hif.map m.toFun⟩
 
 end Graph
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

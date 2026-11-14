@@ -26,7 +26,7 @@ convex subset of `ℝ`, hence a closed interval; pushing that interval forward i
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set
 
 namespace Schoenflies
@@ -72,3 +72,4 @@ theorem segment_inter_segment (a b c d : Plane)
   exact ⟨f t₀, f t₁, by rw [← himage, hTIcc, ← segment_eq_Icc hle, image_segment]⟩
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

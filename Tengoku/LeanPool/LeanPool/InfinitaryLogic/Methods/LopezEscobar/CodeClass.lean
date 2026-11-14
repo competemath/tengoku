@@ -23,7 +23,7 @@ sentence, read a branch off it, and land the base reduct back in `B` — **the o
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure Set
@@ -173,3 +173,4 @@ theorem pcClass_eq {B : Set (StructureSpace L)} (side : PCSide)
   Set.Subset.antisymm (pcClass_subset side T hT hinv) (subset_pcClass side T hT)
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

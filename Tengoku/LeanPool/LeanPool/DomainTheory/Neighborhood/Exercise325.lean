@@ -43,7 +43,7 @@ basic neighbourhoods.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood.Exercise325
 
 open Domain.Neighborhood NeighborhoodSystem Set
@@ -197,3 +197,4 @@ def opensReprIso (V : NeighborhoodSystem α) :
   (openIso V).trans (funSpaceEquiv V sierpinski).symm
 
 end Domain.Neighborhood.Exercise325
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

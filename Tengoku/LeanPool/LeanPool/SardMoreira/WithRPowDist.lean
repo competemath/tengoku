@@ -13,13 +13,13 @@ public import Tengoku.LeanPool.LeanPool.SardMoreira.ToMathlib.PR33114
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ENNReal NNReal Filter Uniformity Topology
 open Function
 
 noncomputable section
 
-namespace WithRPowDist
+namespace Tengoku.LeanPool.WithRPowDist
 
 variable {X : Type*} {α : ℝ} {hα₀ : 0 < α} {hα₁ : α ≤ 1}
 
@@ -58,13 +58,13 @@ theorem measurableEmbedding_mk : MeasurableEmbedding (mk : X → WithRPowDist X 
 instance [TopologicalSpace X] [BorelSpace X] : BorelSpace (WithRPowDist X α hα₀ hα₁) :=
   measurableEquiv.measurableEmbedding.borelSpace homeomorph.isInducing
 
-end WithRPowDist
+end Tengoku.LeanPool.WithRPowDist
 
 namespace MeasureTheory.Measure
 
 variable {X : Type*} [MeasurableSpace X] {α : ℝ} {hα₀ : 0 < α} {hα₁ : α ≤ 1} {μ : Measure X}
 
-open WithRPowDist
+open Tengoku.LeanPool.WithRPowDist
 
 variable (α hα₀ hα₁) in
 /-- The pushforward of a measure `μ` on `X` under the canonical map
@@ -116,3 +116,4 @@ instance [PseudoMetricSpace X] [IsUnifLocDoublingMeasure μ] :
       Real.rpow_inv_lt_iff_of_pos, *] using fun h ↦ @hr (a ^ α⁻¹) h x
 
 end MeasureTheory.Measure
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

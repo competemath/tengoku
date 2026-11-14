@@ -18,7 +18,7 @@ Part of the Caffarelli–Kohn–Nirenberg partial regularity proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory MeasureTheory.Measure Set Metric Filter
 open scoped ENNReal NNReal Topology
 open CKN.Foundation.Parabolic
@@ -453,3 +453,4 @@ theorem lambda_mono_radius_of_sws
     (ne_of_lt (sws_force_integral_lt_top h (z := z) (lt_of_lt_of_le hr₁ hrr) hsub))
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

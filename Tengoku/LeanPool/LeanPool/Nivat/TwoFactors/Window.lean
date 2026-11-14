@@ -51,7 +51,7 @@ lemma's discrepancy-crossing selection.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Nivat.TwoFactors
 
 /-- A finite set containing exactly the integer points of a convex subset of the rational plane;
@@ -442,3 +442,4 @@ theorem ShapeWindow.interior_row_blocks {A : Type*} {c : Configuration A}
   exact Finset.mem_filter.mpr ⟨hl r hr, hne⟩
 
 end Nivat.TwoFactors
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

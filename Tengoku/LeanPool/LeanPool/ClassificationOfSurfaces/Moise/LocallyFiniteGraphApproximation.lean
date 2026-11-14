@@ -22,7 +22,7 @@ closed, which is the only compactness input needed for this pointwise constructi
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanEval
 namespace Topology
 namespace ClassificationOfSurfaces
@@ -3906,3 +3906,4 @@ end Moise
 end ClassificationOfSurfaces
 end Topology
 end LeanEval
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

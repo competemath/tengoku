@@ -38,7 +38,7 @@ placeholder; nothing here uses it, and nothing here may be proved from it.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 universe u v w uCode uIndex
@@ -156,3 +156,4 @@ section UniverseGate
 end UniverseGate
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

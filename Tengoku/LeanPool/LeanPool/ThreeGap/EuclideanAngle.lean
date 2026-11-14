@@ -41,7 +41,7 @@ geometric step (sharp form = Romanov). Axiom-clean; elementary.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace ThreeGap.EuclideanAngle
 
 open RealInnerProductSpace
@@ -169,3 +169,4 @@ theorem angle_ge_pi_div_three_of_norm_sub_gt {u w : E} (hu : u â‰  0) (hw : w â‰
   linarith
 
 end ThreeGap.EuclideanAngle
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

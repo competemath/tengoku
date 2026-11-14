@@ -14,7 +14,7 @@ Imported Lean Pool material for `LeanPool.WhiteheadTheorem.Auxiliary`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace CategoryTheory
 
 lemma eq_of_comp_right_iso_eq {C : Type*} [Category C] {X Y Z : C}
@@ -165,3 +165,4 @@ theorem liftCoverClosed_coe' {i : ι} (x : α) (hx : x ∈ S i) :
   rw [← liftCoverClosed_coe]
 
 end ContinuousMap
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

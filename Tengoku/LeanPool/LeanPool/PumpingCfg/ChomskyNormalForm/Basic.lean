@@ -23,11 +23,11 @@ pair of nonterminals.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe uT uN
 
 /-- Rule that rewrites a single nonterminal to a single terminal or a pair of nonterminals. -/
-inductive ChomskyNormalFormRule (T : Type uT) (N : Type uN)
+inductive _root_.Tengoku.LeanPool.ChomskyNormalFormRule (T : Type uT) (N : Type uN)
   /-- First kind of rule, rewriting a nonterminal `n` to a single terminal `t`. -/
   | leaf (n : N) (t : T) : ChomskyNormalFormRule T N
   /-- Second kind of rule,  rewriting a nonterminal `n` to a pair of nonterminal `lr`. -/
@@ -35,7 +35,7 @@ inductive ChomskyNormalFormRule (T : Type uT) (N : Type uN)
 deriving DecidableEq
 
 /-- Chomsky normal form grammar that generates words over the alphabet `T` (a type of terminals). -/
-structure ChomskyNormalFormGrammar (T : Type uT) where
+structure _root_.Tengoku.LeanPool.ChomskyNormalFormGrammar (T : Type uT) where
   /-- Type of nonterminals. -/
   NT : Type uN
   /-- Initial nonterminal. -/
@@ -45,7 +45,7 @@ structure ChomskyNormalFormGrammar (T : Type uT) where
 
 variable {T : Type uT}
 
-namespace ChomskyNormalFormRule
+namespace Tengoku.LeanPool.ChomskyNormalFormRule
 variable {N : Type uN} {r : ChomskyNormalFormRule T N} {u v : List (Symbol T N)}
 
 /-- The input of a CNF rule, similar to `ContextFreeRule.input` -/
@@ -157,9 +157,9 @@ lemma Rewrites.match_toCFGRule {u v : List (Symbol T N)} {r : ChomskyNormalFormR
   | head => cases r <;> tauto
   | cons s _ ih => exact Rewrites.cons r s ih
 
-end ChomskyNormalFormRule
+end Tengoku.LeanPool.ChomskyNormalFormRule
 
-namespace ChomskyNormalFormGrammar
+namespace Tengoku.LeanPool.ChomskyNormalFormGrammar
 
 /-- Given a cnf grammar `g` and strings `u` and `v`
 `g.Produces u v` means that one step of a cnf transformation by a rule from `g` sends
@@ -561,4 +561,5 @@ lemma DerivesIn.head_induction_on {b : List (Symbol T g.NT)}
 
 end derivesIn
 
-end ChomskyNormalFormGrammar
+end Tengoku.LeanPool.ChomskyNormalFormGrammar
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

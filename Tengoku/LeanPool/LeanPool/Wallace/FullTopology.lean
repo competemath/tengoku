@@ -22,7 +22,7 @@ totally bounded, which is the uniform formulation of precompactness used here.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter Set Topology
 
 universe u v
@@ -291,3 +291,4 @@ abbrev RationalVectorGroupConclusion (I : Type u) : Prop :=
 end
 
 end Wallace
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

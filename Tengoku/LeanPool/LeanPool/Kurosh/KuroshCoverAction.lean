@@ -17,7 +17,7 @@ and proof organization were revised.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Function
 open CategoryTheory
 open scoped Pointwise
@@ -52,3 +52,4 @@ theorem Internal.rightCosetMk_mul_out_mk {P : Type u} [Group P]
     _ = p * r := by rw [hk]
 
 end GraphCoveringTheory.Kurosh
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

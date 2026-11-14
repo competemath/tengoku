@@ -34,7 +34,7 @@ argument (`tendsto_nhds_unique_of_eventuallyEq`).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold Topology
 open Set Filter IsManifold
 
@@ -130,3 +130,4 @@ theorem Form1.eq_of_eqOn_dense {η η' : Form1 X} {s : Set X} (hs : Dense s)
 end RS
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

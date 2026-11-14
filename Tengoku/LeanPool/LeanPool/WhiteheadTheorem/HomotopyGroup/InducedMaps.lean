@@ -14,16 +14,16 @@ Imported Lean Pool material for `LeanPool.WhiteheadTheorem.HomotopyGroup.Induced
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open CategoryTheory
 open scoped Topology Topology.Homotopy
 
 variable {X Y Z : Type u} [TopologicalSpace X] [TopologicalSpace Y] [TopologicalSpace Z]
 
 /-- `PointedTopCat` -/
-abbrev PointedTopCat := Under (TopCat.of PUnit)
+abbrev _root_.Tengoku.LeanPool.PointedTopCat := Under (TopCat.of PUnit)
 
-namespace PointedTopCat
+namespace Tengoku.LeanPool.PointedTopCat
 
 universe u
 
@@ -135,7 +135,7 @@ lemma ofHom'_comp {X Y Z : TopCat.{u}} (f : X ⟶ Y) (g : Y ⟶ Z) (point : X) :
   simp only []
   rfl
 
-end PointedTopCat
+end Tengoku.LeanPool.PointedTopCat
 
 namespace Pointed
 
@@ -473,3 +473,4 @@ lemma inducedPointedHom'_eq_comp_of_eq_comp (n : ℕ) {X Y Z : TopCat.{u}} (x₀
   rw [inducedPointedHom'.rwTargetPt_eq, inducedPointedHom'_comp]
 
 end HomotopyGroup
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

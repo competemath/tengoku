@@ -17,7 +17,7 @@ integral appearing in Niven's proof of the transcendence of `π`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Polynomial
 open Complex
 
@@ -31,7 +31,7 @@ local notation "rexp" => Real.exp
 /-- There is a uniform bound `‖Fₚ(t a)‖ ≤ ‖a‖ᵖ⁻¹ Mᵖ` for `0 < t ≤ 1`.
 @isnad1 id=ex.0h2v.s7.6312e48a0e2c from=translated src=- shape=9b32ed2c vocab=03087b7e
 -/
-lemma Fp_bounded
+lemma _root_.Tengoku.LeanPool.Fp_bounded
   (T : ℤ[X]) (a : ℂ) :
     ∃ M : ℝ, 0 ≤ M ∧ ∀ p : ℕ, ∀ t ∈ Set.uIoc (0 : ℝ) 1,
       ‖aeval (t * a) (Fp T p)‖ ≤ ‖a‖ ^ (p - 1) * M ^ p := by
@@ -55,7 +55,7 @@ lemma Fp_bounded
 `‖a * exp(-(t a)) * Fₚ(t a)‖ ≤ ‖a‖ᵖ * exp(‖a‖) * Mᵖ` for `0 < t ≤ 1`.
 @isnad1 id=ex.0h2v.s7.c7fdee077489 from=translated src=- shape=645b6735 vocab=48112d7e
 -/
-lemma Fp_cexp_bounded (T : ℤ[X]) (a : ℂ) :
+lemma _root_.Tengoku.LeanPool.Fp_cexp_bounded (T : ℤ[X]) (a : ℂ) :
     ∃ M : ℝ, 0 ≤ M ∧ ∀ p : ℕ, 0 < p → ∀ t ∈ Set.uIoc (0 : ℝ) 1,
       ‖a * cexp (-(t * a)) * aeval (t * a) (Fp T p)‖ ≤ ‖a‖ ^ p * rexp ‖a‖ * M ^ p := by
   obtain ⟨M, hM0, hFp⟩ := Fp_bounded T a
@@ -75,7 +75,7 @@ lemma Fp_cexp_bounded (T : ℤ[X]) (a : ℂ) :
 /-- The integral ``∫₀¹ a * exp(-(t a)) * T(t a) dt` is `≤ ‖a‖ᵖ * exp(‖a‖) * Mᵖ`.
 @isnad1 id=ex.0h2v.s6.06a877c1e52a from=translated src=- shape=3a9374bf vocab=8f01265c
 -/
-lemma intExpNegPoly_bounded
+lemma _root_.Tengoku.LeanPool.intExpNegPoly_bounded
   (T : ℤ[X]) (a : ℂ) :
     ∃ M : ℝ, 0 ≤ M ∧ ∀ p : ℕ, 0 < p → ‖intExpNegPoly (Fp T p) a‖
       ≤ ‖a‖ ^ p * rexp ‖a‖ * M ^ p := by
@@ -93,7 +93,7 @@ lemma intExpNegPoly_bounded
 /-- The weighted sum `∑ᵢ bᵢ exp(aᵢ) ∫₀¹ aᵢ * exp(-(t aᵢ)) * T(t aᵢ) dt` is `≤ A Bᵖ`.
 @isnad1 id=ex.1h4v.s7.22bd117e80eb from=translated src=- shape=5335d16b vocab=a0a953e0
 -/
-lemma sum_intExpNegPoly_bound
+lemma _root_.Tengoku.LeanPool.sum_intExpNegPoly_bound
   (n : ℕ) (T : ℤ[X]) (hn : 0 < n) (a b : Fin n → ℂ) :
     ∃ A B : ℝ, 0 ≤ A ∧ 0 ≤ B ∧
       (∀ p : ℕ, 0 < p → ‖∑ i : Fin n, b i * cexp (a i) * intExpNegPoly (Fp T p) (a i)‖
@@ -132,7 +132,7 @@ lemma sum_intExpNegPoly_bound
 /-- For `p` large, `cᵖ ‖∑ᵢ bᵢ exp(aᵢ) ∫₀¹ aᵢ * exp(-(t aᵢ)) * T(t aᵢ) dt‖` is `≤ (p - 1)!`.
 @isnad1 id=eventual.1h5v.s6.4e36d5d01625 from=translated src=- shape=b686ba8b vocab=12d4b55e
 -/
-lemma sum_intExpNegPoly_asym_ubound
+lemma _root_.Tengoku.LeanPool.sum_intExpNegPoly_asym_ubound
   (n : ℕ) (T : ℤ[X]) (hn : 0 < n) (a b : Fin n → ℂ) (c : ℂ) :
     ∀ᶠ (p : ℕ) in Filter.atTop,
       ‖c ^ p * (∑ i : Fin n, b i * cexp (a i) * intExpNegPoly (Fp T p) (a i))‖
@@ -158,7 +158,7 @@ lemma sum_intExpNegPoly_asym_ubound
 `((p−1)! T(0)ᵖ + p! Gₚ(0)) ∑ᵢ₌₀ⁿ⁻¹ bᵢ eᵃⁱ − p! ∑ᵢ₌₀ⁿ⁻¹ bᵢ Gₚ(aᵢ)`.
 @isnad1 id=eq.4h5v.s9.8bc641506c90 from=translated src=- shape=7debce63 vocab=e3a8eb16
 -/
-lemma sum_cexp_simp
+lemma _root_.Tengoku.LeanPool.sum_cexp_simp
   (n p : ℕ) (T : ℤ[X]) (a b : Fin n → ℂ)
   (hn : 0 < n) (hp : 0 < p)
   (ha : ∀ i : Fin n, a i ≠ 0)
@@ -180,7 +180,7 @@ lemma sum_cexp_simp
 can be as `((p−1)! T(0)ᵖ + p! Gₚ(0)) ∑ᵢ₌₀ⁿ⁻¹ bᵢ eᵃⁱ − p! ∑ᵢ₌₀ⁿ⁻¹ bᵢ Gₚ(aᵢ)`.
 @isnad1 id=eq.4h5v.s9.89bf207f757a from=translated src=- shape=4e349064 vocab=996cf139
 -/
-lemma intExpNegPoly_eq
+lemma _root_.Tengoku.LeanPool.intExpNegPoly_eq
     (n p : ℕ) (T : ℤ[X]) (a b : Fin n → ℂ)
     (hn : 0 < n) (hp : 0 < p)
     (ha : ∀ i : Fin n, a i ≠ 0)
@@ -198,7 +198,7 @@ lemma intExpNegPoly_eq
 `− (p−1)! (k cᵖ T(0)ᵖ + p (k cᵖ Gₚ(0) + f(p)))`.
 @isnad1 id=eq.2h8v.s9.9f39155bd59b from=translated src=- shape=eb3e587e vocab=7ee84f32
 -/
-lemma sum_cexp_eq
+lemma _root_.Tengoku.LeanPool.sum_cexp_eq
   (n p : ℕ) (T : ℤ[X]) (a b : Fin n → ℂ) (c k : ℤ) (f : ℕ → ℤ) (hp : 0 < p)
   (hfp : c ^ p * (∑ i : Fin n, b i * aeval (a i) (Gp T p)) = f p) :
     c ^ p * (((p - 1).factorial * (aeval (0 : ℂ) T) ^ p
@@ -227,7 +227,7 @@ lemma sum_cexp_eq
 `‖cᵖ (((p−1)! T(0)ᵖ + p! Gₚ(0)) · (-k) − p! ∑ᵢ₌₀ⁿ⁻¹ bᵢ Gₚ(aᵢ))‖ ≥ (p - 1)!`.
 @isnad1 id=eventual.4h7v.s9.f070899cd053 from=translated src=- shape=bf9c313c vocab=ecfcaa3d
 -/
-lemma sum_Gp_asym_lbound
+lemma _root_.Tengoku.LeanPool.sum_Gp_asym_lbound
   (n : ℕ) (T : ℤ[X]) (a b : Fin n → ℂ) (c k : ℤ) (f : ℕ → ℤ)
   (hc : c ≠ 0) (hk : k ≠ 0) (hT : aeval (0 : ℂ) T ≠ 0)
   (hf : ∀ᶠ p : {p : ℕ // Nat.Prime p} in Filter.atTop,
@@ -269,3 +269,4 @@ lemma sum_Gp_asym_lbound
     _ = (((p : ℕ) - 1).factorial : ℝ) * |(z : ℝ)| := by simp
     _ ≥ (((p : ℕ) - 1).factorial : ℝ) * 1 := by gcongr; exact_mod_cast Int.one_le_abs hz
     _ = _ := by ring
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

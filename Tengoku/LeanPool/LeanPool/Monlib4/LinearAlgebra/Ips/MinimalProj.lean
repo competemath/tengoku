@@ -52,7 +52,7 @@ we finally have (i) if and only if (iv) for idempotent self-adjoint operators on
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Module.End
 
 section
@@ -151,7 +151,7 @@ local notation "P" => Submodule.orthogonalProjectionOnto
   we have $pq=p$ iff $qp=p$
 @isnad1 id=iff.2h4v.s10.6d80b158e7eb from=translated src=- shape=3a8e765a vocab=66aa0ed0
 -/
-theorem self_adjoint_proj_commutes [InnerProductSpace 𝕜 E] [CompleteSpace E] {p q : E →L[𝕜] E}
+theorem _root_.Tengoku.LeanPool.self_adjoint_proj_commutes [InnerProductSpace 𝕜 E] [CompleteSpace E] {p q : E →L[𝕜] E}
     (hpa : IsSelfAdjoint p) (hqa : IsSelfAdjoint q) : p.comp q = p ↔ q.comp p = p := by
   constructor <;> intro h <;>
   · apply_fun adjoint using star_injective
@@ -164,7 +164,7 @@ open Submodule
 /--
 @isnad1 id=isselfad.0h3v.s7.32b031db9c7d from=translated src=- shape=df10f2be vocab=649aada9
 -/
-theorem orthogonalProjection_isSelfAdjoint [InnerProductSpace 𝕜 E] [CompleteSpace E]
+theorem _root_.Tengoku.LeanPool.orthogonalProjection_isSelfAdjoint [InnerProductSpace 𝕜 E] [CompleteSpace E]
     (U : Submodule 𝕜 E) [U.HasOrthogonalProjection] :
     IsSelfAdjoint (↥P U) :=
   isSelfAdjoint_starProjection U
@@ -172,7 +172,7 @@ theorem orthogonalProjection_isSelfAdjoint [InnerProductSpace 𝕜 E] [CompleteS
 /--
 @isnad1 id=iff.0h4v.s10.b173e9c3db0c from=translated src=- shape=d0a94a00 vocab=9ff79c1c
 -/
-theorem orthogonalProjection_eq_self_iff [InnerProductSpace 𝕜 E]
+theorem _root_.Tengoku.LeanPool.orthogonalProjection_eq_self_iff [InnerProductSpace 𝕜 E]
     (U : Submodule 𝕜 E) [U.HasOrthogonalProjection] {x : E} :
     (U.orthogonalProjectionOnto x : E) = x ↔ x ∈ U :=
   starProjection_eq_self_iff (K := U)
@@ -180,7 +180,7 @@ theorem orthogonalProjection_eq_self_iff [InnerProductSpace 𝕜 E]
 /--
 @isnad1 id=eq.0h5v.s11.41d765d22558 from=translated src=- shape=e01fd4cd vocab=0899d84d
 -/
-theorem inner_orthogonalProjection_left_eq_right [InnerProductSpace 𝕜 E]
+theorem _root_.Tengoku.LeanPool.inner_orthogonalProjection_left_eq_right [InnerProductSpace 𝕜 E]
     (U : Submodule 𝕜 E) [U.HasOrthogonalProjection] (x y : E) :
     inner 𝕜 (U.orthogonalProjectionOnto x : E) y =
       inner 𝕜 x (U.orthogonalProjectionOnto y : E) :=
@@ -214,7 +214,7 @@ theorem IsIdempotentElem.clm_to_lm [InnerProductSpace 𝕜 E] {T : E →L[𝕜] 
 /--
 @isnad1 id=iff.0h7v.s7.d1aba5ee1c3a from=translated src=- shape=0b95ebef vocab=9772f846
 -/
-lemma ker_to_clm
+lemma _root_.Tengoku.LeanPool.ker_to_clm
   {R R₂ M M₂ : Type*} [Semiring R]
   [Semiring R₂] [AddCommMonoid M] [AddCommMonoid M₂]
   [TopologicalSpace M] [TopologicalSpace M₂]
@@ -225,7 +225,7 @@ lemma ker_to_clm
 /--
 @isnad1 id=eq.0h4v.s10.425818ee14f9 from=translated src=- shape=1db8015c vocab=76be6d35
 -/
-lemma subtype_compL_ker [InnerProductSpace 𝕜 E] (U : Submodule 𝕜 E)
+lemma _root_.Tengoku.LeanPool.subtype_compL_ker [InnerProductSpace 𝕜 E] (U : Submodule 𝕜 E)
   (f : E →L[𝕜] U) :
     (U.subtypeL ∘L f).ker = f.ker := by
   ext x
@@ -287,12 +287,12 @@ instance LinearMap.IsSymmetric.hasLe {𝕜 E : Type _} [RCLike 𝕜] [NormedAddC
 
 /-- The subtype of symmetric linear endomorphisms of a complex inner product space. -/
 @[reducible]
-def SymmetricLM (g : Type*) [NormedAddCommGroup g] [InnerProductSpace ℂ g] :=
+def _root_.Tengoku.LeanPool.SymmetricLM (g : Type*) [NormedAddCommGroup g] [InnerProductSpace ℂ g] :=
 {x : g →ₗ[ℂ] g | LinearMap.IsSymmetric x}
 
 /-- The subtype of self-adjoint continuous linear endomorphisms of a complex Hilbert space. -/
 @[reducible]
-def SelfAdjointCLM (g : Type*) [NormedAddCommGroup g] [InnerProductSpace ℂ g]
+def _root_.Tengoku.LeanPool.SelfAdjointCLM (g : Type*) [NormedAddCommGroup g] [InnerProductSpace ℂ g]
   [CompleteSpace g] :=
 {x : g →L[ℂ] g | IsSelfAdjoint x}
 
@@ -301,7 +301,7 @@ local notation "L(" x "," y ")" => x →L[y] x
 local notation "l(" x "," y ")" => x →ₗ[y] x
 
 open scoped ComplexOrder
-instance instPartialOrderLinearMapIdLeanPool {𝕜 E : Type _} [RCLike 𝕜] [NormedAddCommGroup E]
+instance _root_.Tengoku.LeanPool.instPartialOrderLinearMapIdLeanPool {𝕜 E : Type _} [RCLike 𝕜] [NormedAddCommGroup E]
     [InnerProductSpace 𝕜 E] :
     PartialOrder (E →ₗ[𝕜] E) where
   le := fun u v => LinearMap.IsPositive' (v - u : E →ₗ[𝕜] E)
@@ -332,7 +332,7 @@ instance instPartialOrderLinearMapIdLeanPool {𝕜 E : Type _} [RCLike 𝕜] [No
 theorem LinearMap.IsPositive'.hasLe {E : Type _} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
     {p q : SymmetricLM E} : p ≤ q ↔ (q - p : l(E,ℂ)).IsPositive' := by rfl
 
-noncomputable instance IsSymmetric.hasZero {E : Type _} [NormedAddCommGroup E]
+noncomputable instance Tengoku.LeanPool.IsSymmetric.hasZero {E : Type _} [NormedAddCommGroup E]
     [InnerProductSpace ℂ E] : Zero ↥{x : E →ₗ[ℂ] E | x.IsSymmetric} :=
   ⟨⟨0, by
     simp_all⟩⟩
@@ -400,7 +400,7 @@ theorem orthogonalProjection.sub_is_positive_of [InnerProductSpace ℂ E] {U V :
   then if `Pᵥ - Pᵤ` is idempotent, then `Pᵤ Pᵥ = Pᵤ`
 @isnad1 id=eq.1h3v.s10.16d801f9c507 from=translated src=- shape=ec8256fa vocab=93476d92
 -/
-theorem orthogonal_projection_commutes_of_is_idempotent [InnerProductSpace ℂ E]
+theorem _root_.Tengoku.LeanPool.orthogonal_projection_commutes_of_is_idempotent [InnerProductSpace ℂ E]
     {U V : Submodule ℂ E} [CompleteSpace U] [CompleteSpace V]
     (h : IsIdempotentElem (↥P V - ↥P U)) : (↥P V).comp (↥P U) = ↥P U := by
   let p := ↥P U
@@ -470,7 +470,7 @@ theorem IsPositive.HasLe.sub [InnerProductSpace 𝕜 E] {p q : E →L[𝕜] E} :
 /--
 @isnad1 id=iff.4h3v.s9.c345191fe5d7 from=translated src=- shape=b2509408 vocab=b560bfb2
 -/
-theorem self_adjoint_and_idempotent_is_positive_iff_commutes
+theorem _root_.Tengoku.LeanPool.self_adjoint_and_idempotent_is_positive_iff_commutes
     [InnerProductSpace ℂ E]
     [CompleteSpace E] {p q : E →L[ℂ] E}
     (hp : IsIdempotentElem p) (hq : IsIdempotentElem q) (hpa : IsSelfAdjoint p)
@@ -501,7 +501,7 @@ theorem self_adjoint_and_idempotent_is_positive_iff_commutes
   `Pᵤ ≤ Pᵤ` iff `PᵥPᵤ = Pᵤ`
 @isnad1 id=iff.0h3v.s10.c4f517039397 from=translated src=- shape=85d95a74 vocab=0a065131
 -/
-theorem orthogonal_projection_is_le_iff_commutes [InnerProductSpace ℂ E]
+theorem _root_.Tengoku.LeanPool.orthogonal_projection_is_le_iff_commutes [InnerProductSpace ℂ E]
     {U V : Submodule ℂ E} [CompleteSpace E] [CompleteSpace U] [CompleteSpace V] :
     ↥P U ≤ ↥P V ↔ (↥P V).comp (↥P U) = ↥P U :=
   self_adjoint_and_idempotent_is_positive_iff_commutes (orthogonalProjection.isIdempotentElem U)
@@ -604,7 +604,7 @@ theorem orthogonalProjection.isMinimalProjection_of
   such that `∥y∥ = 1` where `x = r • y` for some `r ∈ ℝ`) unless `x = 0`
 @isnad1 id=or.0h2v.s7.6b84e4e76785 from=translated src=- shape=50c5c15f vocab=5e86ff90
 -/
-theorem normalize_op [InnerProductSpace ℂ E] (x : E) :
+theorem _root_.Tengoku.LeanPool.normalize_op [InnerProductSpace ℂ E] (x : E) :
     (∃ (y : E) (r : ℝ), ‖y‖ = 1 ∧ x = (r : ℂ) • y) ∨ x = 0 := by
   by_cases A : x = 0
   · exact Or.inr A
@@ -632,7 +632,7 @@ open scoped FiniteDimensional
   so it always suffices to say `p = p⋆ = p²`
 @isnad1 id=iff.0h3v.s9.4ab9117f9fdd from=translated src=- shape=229a28be vocab=6fdc1fbb
 -/
-theorem orthogonal_projection_iff [InnerProductSpace 𝕜 E] [FiniteDimensional 𝕜 E]
+theorem _root_.Tengoku.LeanPool.orthogonal_projection_iff [InnerProductSpace 𝕜 E] [FiniteDimensional 𝕜 E]
     [CompleteSpace E] {p : E →L[𝕜] E} : (∃ (U : Submodule 𝕜 E), --(hU : CompleteSpace U)
       ↥P U = p)
       ↔ IsSelfAdjoint p ∧ IsIdempotentElem p := by
@@ -678,7 +678,7 @@ private theorem starProjection_isProj [InnerProductSpace 𝕜 E] (U : Submodule 
   also see `orthogonal_projection_iff`
 @isnad1 id=iff.0h4v.s9.88fe6ce03acf from=translated src=- shape=6c071c14 vocab=158cfe22
 -/
-theorem orthogonal_projection_iff' [InnerProductSpace 𝕜 E] [FiniteDimensional 𝕜 E]
+theorem _root_.Tengoku.LeanPool.orthogonal_projection_iff' [InnerProductSpace 𝕜 E] [FiniteDimensional 𝕜 E]
     [CompleteSpace E] {p : E →L[𝕜] E} (U : Submodule 𝕜 E) :
     ↥P U = p ↔ IsSelfAdjoint p ∧ LinearMap.IsProj U p := by
   constructor
@@ -785,7 +785,7 @@ end
 /--
 @isnad1 id=iff.0h3v.s9.037fdccc3d9e from=translated src=- shape=1de35140 vocab=a4f8de47
 -/
-lemma lmul_isIdempotentElem_iff {R A : Type*} [CommSemiring R]
+lemma _root_.Tengoku.LeanPool.lmul_isIdempotentElem_iff {R A : Type*} [CommSemiring R]
   [Semiring A] [Module R A] [SMulCommClass R A A] [IsScalarTower R A A] (a : A) :
   (IsIdempotentElem (lmul a : _ →ₗ[R] _)) ↔ (IsIdempotentElem a) := by
   simp_rw [IsIdempotentElem, mul_eq_comp, lmul_eq_mul, ← LinearMap.mulLeft_mul]
@@ -797,7 +797,7 @@ lemma lmul_isIdempotentElem_iff {R A : Type*} [CommSemiring R]
 /--
 @isnad1 id=eq.0h5v.s11.6670fffa8283 from=translated src=- shape=11a9719d vocab=964b3d5f
 -/
-lemma lmul_tmul {R A B : Type*} [CommSemiring R]
+lemma _root_.Tengoku.LeanPool.lmul_tmul {R A B : Type*} [CommSemiring R]
   [Semiring A] [Semiring B] [Module R A] [Module R B] [SMulCommClass R A A]
   [SMulCommClass R B B] [IsScalarTower R A A] [IsScalarTower R B B] (a : A) (b : B) :
   lmul (a ⊗ₜ[R] b) = TensorProduct.map (lmul a) (lmul b) := by
@@ -809,7 +809,7 @@ lemma lmul_tmul {R A B : Type*} [CommSemiring R]
 /--
 @isnad1 id=iff.0h4v.s9.f6aef0f09f2c from=translated src=- shape=11251dc9 vocab=4a1c4da6
 -/
-lemma lmul_eq_lmul_iff {R A : Type*} [CommSemiring R]
+lemma _root_.Tengoku.LeanPool.lmul_eq_lmul_iff {R A : Type*} [CommSemiring R]
   [Semiring A] [Module R A] [SMulCommClass R A A] [IsScalarTower R A A] (a b : A) :
   lmul a = (lmul b : _ →ₗ[R] _) ↔ a = b := by
   refine ⟨fun h => ?_, fun h => by rw [h]⟩
@@ -821,7 +821,7 @@ lemma lmul_eq_lmul_iff {R A : Type*} [CommSemiring R]
 /--
 @isnad1 id=iff.0h5v.s6.7cbe99de117c from=translated src=- shape=304d4a29 vocab=0d221e9c
 -/
-lemma isIdempotentElem_algEquiv_iff {R A B : Type*} [CommSemiring R]
+lemma _root_.Tengoku.LeanPool.isIdempotentElem_algEquiv_iff {R A B : Type*} [CommSemiring R]
   [Semiring A] [Semiring B]
   [Algebra R A] [Algebra R B]
   (φ : A ≃ₐ[R] B)
@@ -832,7 +832,7 @@ lemma isIdempotentElem_algEquiv_iff {R A B : Type*} [CommSemiring R]
 /--
 @isnad1 id=isproj.0h3v.s8.becc7b8fc079 from=translated src=- shape=e476696e vocab=88590c1d
 -/
-theorem orthogonalProjection'_isProj {R M : Type*} [RCLike R] [NormedAddCommGroup M]
+theorem _root_.Tengoku.LeanPool.orthogonalProjection'_isProj {R M : Type*} [RCLike R] [NormedAddCommGroup M]
   [InnerProductSpace R M] (U : Submodule R M) [HasOrthogonalProjection U] :
   LinearMap.IsProj U (orthogonalProjection' U) := by
   constructor <;>
@@ -860,7 +860,7 @@ open LinearMap in
 /--
 @isnad1 id=eq.0h3v.s10.6b8e34421601 from=translated src=- shape=f22a1242 vocab=d4d55d5c
 -/
-lemma orthogonalProjection_trace {R M :
+lemma _root_.Tengoku.LeanPool.orthogonalProjection_trace {R M :
     Type*} [RCLike R] [NormedAddCommGroup M] [InnerProductSpace R M]
   [FiniteDimensional R M]
   (U : Submodule R M) :
@@ -891,7 +891,7 @@ lemma ContinuousLinearMap.eq_comp_orthogonalProjection_ker_ortho
 /--
 @isnad1 id=eq.0h2v.s8.12f231531964 from=translated src=- shape=166375d9 vocab=f5409065
 -/
-theorem orthogonalProjection_of_top {𝕜 E : Type _} [RCLike 𝕜] [NormedAddCommGroup E]
+theorem _root_.Tengoku.LeanPool.orthogonalProjection_of_top {𝕜 E : Type _} [RCLike 𝕜] [NormedAddCommGroup E]
     [InnerProductSpace 𝕜 E] :
     orthogonalProjection' (⊤ : Submodule 𝕜 E) = 1 := by
   ext1
@@ -925,3 +925,4 @@ theorem LinearMap.IsProj.codRestrict_eq_dim_iff {S M : Type*}
     intro x
     rw [← id_apply (R := S) x]
     exact hf.map_mem x
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

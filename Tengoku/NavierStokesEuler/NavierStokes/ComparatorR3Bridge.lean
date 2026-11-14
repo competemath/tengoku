@@ -11,7 +11,7 @@ hypothetical global solution.
 -/
 
 noncomputable section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace NavierStokes.ComparatorBridge
 
 open Set MeasureTheory InnerProductSpace ProblemStatement
@@ -89,3 +89,4 @@ theorem normalized_solution_Rn {ν : ℝ} (hν : 0 < ν) {f : VelocityField}
     exact mul_lt_mul_of_pos_left (hE (ν⁻¹ * t) (mul_nonneg hc.le ht)) (sq_pos_of_pos hc)
 
 end NavierStokes.ComparatorBridge
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

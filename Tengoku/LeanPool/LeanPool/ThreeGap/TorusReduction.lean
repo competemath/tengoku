@@ -32,7 +32,7 @@ Axiom-clean; elementary.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace ThreeGap.DeltaCost
 
 open ThreeGap.SimApprox ThreeGap.Chevallier
@@ -184,3 +184,4 @@ theorem nnDist_count_le_plane (α : Fin 2 → ℝ) (hr : RecordsContinue (deltaC
   simp_all
 
 end ThreeGap.DeltaCost
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

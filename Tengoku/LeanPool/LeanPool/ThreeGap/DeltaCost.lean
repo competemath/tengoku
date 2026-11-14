@@ -43,7 +43,7 @@ Axiom-clean.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace ThreeGap.DeltaCost
 
 open ThreeGap.SimApprox ThreeGap.Chevallier
@@ -154,3 +154,4 @@ theorem gap_count_supNorm_le (α : Fin d → ℝ) (hr : RecordsContinue (deltaCo
   chevallier_gap_count_le (deltaCost α) hr (2 ^ d) (bestDenom_supNorm_growth α hr) hN
 
 end ThreeGap.DeltaCost
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

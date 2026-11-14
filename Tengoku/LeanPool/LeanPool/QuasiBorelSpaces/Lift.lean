@@ -15,10 +15,10 @@ Imported Lean Pool material for `LeanPool.QuasiBorelSpaces.Lift`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 variable {A B : Type*} [QuasiBorelSpace A] [QuasiBorelSpace B]
 
-namespace QuasiBorelSpace.ULift
+namespace Tengoku.LeanPool.QuasiBorelSpace.ULift
 
 instance : QuasiBorelSpace (ULift A) := lift ULift.down
 
@@ -43,9 +43,9 @@ lemma isHom_up {f : A → B} (hf : IsHom f) : IsHom (fun x ↦ ULift.up (f x)) :
 lemma isHom_down {f : A → ULift B} (hf : IsHom f) : IsHom (fun x ↦ ULift.down (f x)) := by
   simp_all
 
-end QuasiBorelSpace.ULift
+end Tengoku.LeanPool.QuasiBorelSpace.ULift
 
-namespace QuasiBorelSpace.PLift
+namespace Tengoku.LeanPool.QuasiBorelSpace.PLift
 
 instance : QuasiBorelSpace (PLift A) := lift PLift.down
 
@@ -70,4 +70,5 @@ lemma isHom_up {f : A → B} (hf : IsHom f) : IsHom (fun x ↦ PLift.up (f x)) :
 lemma isHom_down {f : A → PLift B} (hf : IsHom f) : IsHom (fun x ↦ PLift.down (f x)) := by
   simp_all
 
-end QuasiBorelSpace.PLift
+end Tengoku.LeanPool.QuasiBorelSpace.PLift
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

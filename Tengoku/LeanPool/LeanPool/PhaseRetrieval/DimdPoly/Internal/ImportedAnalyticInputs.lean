@@ -13,7 +13,7 @@ import Tengoku.LeanPool.LeanPool.PhaseRetrieval.Constant.Internal.RotationalAver
 /-! # ImportedAnalyticInputs -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace DimdPolyLEAN
@@ -1553,3 +1553,4 @@ theorem circleFourier_exact_modulus_bridge :
   trivial
 
 end DimdPolyLEAN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

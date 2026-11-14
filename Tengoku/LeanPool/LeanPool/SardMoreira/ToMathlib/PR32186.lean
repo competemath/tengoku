@@ -15,7 +15,7 @@ the displacement (`dist (f a) (f b)`) is at most the integral of `‖deriv f‖`
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter Set MeasureTheory Measure
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -23,7 +23,7 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 /--
 @isnad1 id=le.5h5v.s7.c1d5bf960cd3 from=translated src=- shape=bb5432eb vocab=4bdc71cd
 -/
-lemma dist_le_integral_of_norm_deriv_le_of_le {f : ℝ → E} {B : ℝ → ℝ} {a b : ℝ} (hab : a ≤ b)
+lemma _root_.Tengoku.LeanPool.dist_le_integral_of_norm_deriv_le_of_le {f : ℝ → E} {B : ℝ → ℝ} {a b : ℝ} (hab : a ≤ b)
     (hfc : ContinuousOn f (Icc a b)) (hfd : DifferentiableOn ℝ f (Ioo a b))
     (hfB : ∀ᵐ t, t ∈ Ioo a b → ‖deriv f t‖ ≤ B t)
     (hBi : IntervalIntegrable B volume a b) : dist (f a) (f b) ≤ ∫ t in a..b, B t := by
@@ -60,7 +60,7 @@ lemma dist_le_integral_of_norm_deriv_le_of_le {f : ℝ → E} {B : ℝ → ℝ} 
 /--
 @isnad1 id=le.4h5v.s8.65aaf5f0a1e3 from=translated src=- shape=fe69652b vocab=46339740
 -/
-lemma dist_le_mul_volume_of_norm_deriv_le_of_le {f : ℝ → E} {a b C : ℝ} (hab : a ≤ b)
+lemma _root_.Tengoku.LeanPool.dist_le_mul_volume_of_norm_deriv_le_of_le {f : ℝ → E} {a b C : ℝ} (hab : a ≤ b)
     (hfc : ContinuousOn f (Icc a b)) (hfd : DifferentiableOn ℝ f (Ioo a b))
     (hnorm : ∀ᵐ t, t ∈ Ioo a b → ‖deriv f t‖ ≤ C) :
     dist (f a) (f b) ≤ C * volume.real {x ∈ Ioo a b | deriv f x ≠ 0} := by
@@ -83,3 +83,4 @@ lemma dist_le_mul_volume_of_norm_deriv_le_of_le {f : ℝ → E} {a b C : ℝ} (h
       simp only [s, Measure.real,
         Measure.measure_toMeasurable_inter_of_sFinite measurableSet_Ioo]
       simp only [inter_def, mem_ofPred_eq, and_comm]
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

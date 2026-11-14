@@ -36,7 +36,7 @@ Theorem 1.10 / Theorem 1.1c).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 namespace NeighborhoodSystem
@@ -157,3 +157,4 @@ theorem consistent_iff_iInter_bracket_nonempty (X : ℕ → Set α) {n : ℕ}
 end NeighborhoodSystem
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

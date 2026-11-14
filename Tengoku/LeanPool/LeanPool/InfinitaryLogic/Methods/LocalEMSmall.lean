@@ -27,7 +27,7 @@ subsingletons is countable. Transport to the original language is `Lomega1omegaS
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder
 
 namespace Language
@@ -90,3 +90,4 @@ theorem LocalEMContext.lomega1omegaSmall (ctx : LocalEMContext Λ J (M := M))
 end Language
 
 end FirstOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

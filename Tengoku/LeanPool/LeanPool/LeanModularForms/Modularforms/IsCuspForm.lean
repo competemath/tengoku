@@ -11,7 +11,7 @@ public import Tengoku.Seed.NumberTheory.ModularForms.QExpansion
 import Tengoku.LeanPool.LeanPool.LeanModularForms.Modularforms.ForMathlibCusps
 import Tengoku.LeanPool.LeanPool.LeanModularForms.Modularforms.QExpansionLems
 import Tengoku.Seed.Analysis.SpecialFunctions.Bernstein
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -173,3 +173,4 @@ lemma IsCuspForm_iff_coeffZero_eq_zero (k : ℤ) (f : ModularForm Γ(1) k) :
 lemma CuspFormSubmodule_mem_iff_coeffZero_eq_zero (k : ℤ) (f : ModularForm Γ(1) k) :
     f ∈ CuspFormSubmodule Γ(1) k ↔ (qExpansion 1 f).coeff 0 = 0 :=
   IsCuspForm_iff_coeffZero_eq_zero k f
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

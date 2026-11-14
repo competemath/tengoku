@@ -18,7 +18,7 @@ that no endpoint can receive two different edges.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.Erdos132N14
 
 noncomputable section
@@ -337,3 +337,4 @@ theorem hopfPannwitzLowMultiplicityDistance14 :
 end
 
 end LeanPool.Erdos132N14
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

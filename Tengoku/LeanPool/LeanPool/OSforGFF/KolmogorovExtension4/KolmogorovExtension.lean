@@ -15,7 +15,7 @@ Auxiliary statements for constructing measures from projective finite-dimensiona
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set
 
 open scoped ENNReal
@@ -171,3 +171,4 @@ theorem _root_.MeasureTheory.isProjectiveLimit_projectiveLimit (hP : IsProjectiv
 end Polish
 
 end MeasureTheory
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

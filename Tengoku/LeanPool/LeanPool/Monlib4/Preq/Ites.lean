@@ -14,12 +14,12 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /--
 @isnad1 id=eq.0h4v.s5.5ae063a283f9 from=translated src=- shape=4b2bac00 vocab=d6f07d20
 -/
 @[simp]
-theorem star_ite {α : Type _} [InvolutiveStar α] (P : Prop) [Decidable P] (a b : α) :
+theorem _root_.Tengoku.LeanPool.star_ite {α : Type _} [InvolutiveStar α] (P : Prop) [Decidable P] (a b : α) :
     star (ite P a b) = ite P (star a) (star b) := by
   by_cases h : a = b
   · simp_rw [h, ite_self]
@@ -32,14 +32,14 @@ theorem star_ite {α : Type _} [InvolutiveStar α] (P : Prop) [Decidable P] (a b
 /--
 @isnad1 id=eq.0h5v.s5.0fc7fd08d3c5 from=translated src=- shape=6f2decfe vocab=2504b360
 -/
-theorem coe_ite {α β : Type _} [CoeTC α β] (P : Prop) [Decidable P] (a b : α) :
+theorem _root_.Tengoku.LeanPool.coe_ite {α β : Type _} [CoeTC α β] (P : Prop) [Decidable P] (a b : α) :
     (↑(ite P a b) : β) = ite P (a : β) (b : β) :=
 by split_ifs <;> rfl
 
 /--
 @isnad1 id=eq.0h7v.s7.5a1154bb7bd6 from=translated src=- shape=72431643 vocab=d6103326
 -/
-theorem ite_apply_lm {R A B : Type _} [Semiring R] [AddCommMonoid A] [AddCommMonoid B] [Module R A]
+theorem _root_.Tengoku.LeanPool.ite_apply_lm {R A B : Type _} [Semiring R] [AddCommMonoid A] [AddCommMonoid B] [Module R A]
     [Module R B] (f g : A →ₗ[R] B) (x : A) (P : Prop) [Decidable P] :
     (if P then f else g : A →ₗ[R] B) x = if P then f x else g x := by
   by_cases h : P
@@ -58,3 +58,4 @@ theorem TensorProduct.ite_map {R M₁ M₂ M₃ M₄ : Type _} [CommSemiring R] 
     [Module R M₃] [Module R M₄] (f₁ f₂ : M₁ →ₗ[R] M₂) (g : M₃ →ₗ[R] M₄) (P : Prop) [Decidable P] :
     (ite P f₁ f₂ ⊗ₘ g) = (ite P (f₁ ⊗ₘ g) (f₂ ⊗ₘ g) : M₁ ⊗[R] M₃ →ₗ[R] M₂ ⊗[R] M₄) := by
   split_ifs <;> simp
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

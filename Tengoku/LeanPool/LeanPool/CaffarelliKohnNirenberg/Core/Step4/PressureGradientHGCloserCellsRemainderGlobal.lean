@@ -15,7 +15,7 @@ seminorm from an `L^{3/2}` temporal bound on the spatial supremum.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Set Filter
 open scoped ENNReal NNReal Topology
 open CKN.Foundation.Parabolic CKN.Foundation.Parabolic.Morrey
@@ -199,3 +199,4 @@ theorem pressure_remainder_indicator_morreyNorm_lt_top
   · exact hHfinite
 
 end CKN.Core.Step4
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

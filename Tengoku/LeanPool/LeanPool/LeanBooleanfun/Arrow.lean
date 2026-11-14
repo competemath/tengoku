@@ -31,7 +31,7 @@ This is mainly facilitated by introducing an auxiliary linear operator, see `_Tn
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace LeanPool.LeanBooleanfun.BooleanFun.BV
@@ -339,3 +339,4 @@ theorem dictator_of_condorcet_and_unanimous (h : IsUnanimous f) :
   simp
 
 end LeanPool.LeanBooleanfun.BooleanFun.BV
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

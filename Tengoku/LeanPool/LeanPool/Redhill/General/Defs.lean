@@ -18,7 +18,7 @@ The lower bound `s` for `primeChain` in `U` was originally `200 * Y F ^ 6`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace GeneralCase
 
 open Nat Fin Finset
@@ -158,3 +158,4 @@ lemma X_modEq_one_of_mem_F (lf : 3 ≤ f) : X F h ≡ 1 [MOD f] := by
 end Factors
 
 end GeneralCase
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

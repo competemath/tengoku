@@ -20,7 +20,7 @@ to be the zero germ.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter
 open scoped BigOperators Topology
 
@@ -263,3 +263,4 @@ theorem localAnalyticNullstellensatz_oneVariable
 end
 
 end LocalComplexGeometry
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

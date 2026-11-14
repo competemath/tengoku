@@ -10,7 +10,7 @@ Joint continuity on a compact time-space set supplies the dominating
 function, including continuity at the initial time.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace NavierStokes.R3CompactParametricIntegral
 
 open Set Filter MeasureTheory ProblemStatement
@@ -116,3 +116,4 @@ theorem integral_hasDerivAt_of_contDiffOn (hI : IsOpen I) (hK : IsCompact K)
   exact integral_hasDerivAt hI hK hF.continuousOn hG hs hsG hd ht
 
 end NavierStokes.R3CompactParametricIntegral
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

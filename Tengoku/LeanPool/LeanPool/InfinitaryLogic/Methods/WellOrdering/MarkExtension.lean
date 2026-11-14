@@ -35,7 +35,7 @@ like Henkin constants, as ordinary auxiliary constants with no rank insertion).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure
@@ -258,3 +258,4 @@ theorem StarWitness.mark_rat {φ : L.Sentenceω} {lt : L.Relations 2}
       exact Set.subset_insert _ _
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

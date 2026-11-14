@@ -47,7 +47,7 @@ to Helper 1, `vlasov_window_confinement`).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace IsPicardLindelof
 
 open Function intervalIntegral MeasureTheory Metric Set
@@ -129,3 +129,4 @@ theorem exists_forall_mem_closedBall_eq_forall_mem_Icc_hasDerivWithinAt_confined
   ⟨α, hα.1⟩
 
 end IsPicardLindelof
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

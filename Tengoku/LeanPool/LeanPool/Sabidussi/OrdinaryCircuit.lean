@@ -19,7 +19,7 @@ Loops and parallel edges need no exceptional representation.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Sabidussi
 namespace LoopMultigraph
 
@@ -488,3 +488,4 @@ theorem loop_sabidussi_compatibility_ordinary {G : LoopMultigraph V E} (T : G.Eu
 
 end LoopMultigraph
 end Sabidussi
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

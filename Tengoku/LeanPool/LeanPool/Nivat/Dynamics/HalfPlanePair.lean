@@ -52,7 +52,7 @@ pair.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Nivat.Dynamics
 
 open Filter Set
@@ -300,3 +300,4 @@ theorem exists_halfPlane_pair_coordinates {A : Type*} [TopologicalSpace A]
     exact hhalf z (by simpa using hz)
 
 end Nivat.Dynamics
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

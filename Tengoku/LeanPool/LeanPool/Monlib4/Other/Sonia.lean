@@ -27,7 +27,7 @@ In both of the following results, `b` is a natural number greater than `1`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators
 
 /-- `(∑ i, x i) % a = (∑ i, (x i % a)) % a`
@@ -78,7 +78,7 @@ theorem Int.hMul_nat_succ_pow_mod_nat (a : ℤ) {b n : ℕ} (hb : 1 < b) :
 /-- `(∑ i, (x i * a.succ ^ i)) % a = (∑ i, x i) % a`
 @isnad1 id=eq.1h3v.s6.161b49623b61 from=translated src=- shape=e3f933ca vocab=5e047dc2
 -/
-theorem nat_repr_mod_eq_sum_repr_mod {a n : ℕ} (x : Fin n → ℤ) (ha : 1 < a) :
+theorem _root_.Tengoku.LeanPool.nat_repr_mod_eq_sum_repr_mod {a n : ℕ} (x : Fin n → ℤ) (ha : 1 < a) :
     (∑ i, x i * (a.succ : ℕ) ^ (i : ℕ)) % a = (∑ i, x i) % a := by
   induction n with
   | zero => rfl
@@ -104,6 +104,7 @@ theorem nat_repr_mod_eq_sum_repr_mod {a n : ℕ} (x : Fin n → ℤ) (ha : 1 < a
   the sum of its digits is divisible by `a`
 @isnad1 id=iff.1h3v.s6.fdbf6233a55c from=translated src=- shape=df664978 vocab=047cd4c6
 -/
-theorem nat_dvd_repr_iff_nat_dvd_sum_repr {a n : ℕ} (x : Fin n → ℤ) (ha : 1 < a) :
+theorem _root_.Tengoku.LeanPool.nat_dvd_repr_iff_nat_dvd_sum_repr {a n : ℕ} (x : Fin n → ℤ) (ha : 1 < a) :
     (a : ℤ) ∣ ∑ i, x i * (a.succ : ℕ) ^ (i : ℕ) ↔ (a : ℤ) ∣ ∑ i, x i := by
   simp_rw [Int.dvd_iff_emod_eq_zero, nat_repr_mod_eq_sum_repr_mod _ ha]
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

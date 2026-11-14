@@ -31,7 +31,7 @@ lemma records the *ergodicity* half — provable now — not the entropy value.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Polynomial
 
 namespace LehmerE10
@@ -48,3 +48,4 @@ theorem coxeterE10_ergodic {k : ℕ} (hk : 1 ≤ k) :
   exact no_cyclotomic_divisor hk
 
 end LehmerE10
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -13,7 +13,7 @@ public import Tengoku
 Here we define the GL-proof system along with finitization and basic properties.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 open scoped Lean4GlCoalgebras.Formula
 
 
@@ -330,3 +330,4 @@ lemma inf_path_has_inf_boxes {𝕏 : Proof} (g : ℕ → 𝕏.X) (h : ∀ n, edg
     use fun m ↦ Sequent.length (f (r 𝕏.α (g (n + m))))
     exact fun m ↦ lt_if_not_box_edge ⟨h (n + m), by simp_all⟩
 end Lean4GlCoalgebras
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

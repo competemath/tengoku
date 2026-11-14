@@ -14,8 +14,8 @@ Imported Lean Pool material for `LeanPool.QuasiBorelSpaces.Rose.Encoding`.
 -/
 
 @[expose] public section
-
-namespace Rose
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+namespace Tengoku.LeanPool.Rose
 
 variable {A B C : Type*}
 
@@ -81,4 +81,5 @@ lemma encode_mk (x xs) : encode (A := A) (.mk x xs) = mk x (List.map encode xs) 
 
 end Encoding
 
-end Rose
+end Tengoku.LeanPool.Rose
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

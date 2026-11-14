@@ -14,7 +14,7 @@ public import Tengoku.LeanPool.LeanPool.DirectedTopologyLean4.CoverLemma
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-
   This file contains the definition of a (n, m)-covered (dipath) dihomotopy, covered by X₁ and X₂:
       It maps all subrectangles  [i/n, (i+1)/n] × [j/m, (j+1)/m] into either X₁ or X₂
@@ -24,12 +24,12 @@ public import Tengoku.LeanPool.LeanPool.DirectedTopologyLean4.CoverLemma
   Two paths are called (n, m)-dihomotopic if a (n, m)-covered path dihomotopy between them exists.
 -/
 
-open Set DirectedMap
+open Set Tengoku.LeanPool.DirectedMap
 open scoped unitInterval
 
 noncomputable section
 
-namespace DirectedMap
+namespace Tengoku.LeanPool.DirectedMap
 namespace Dihomotopy
 
 variable {X : dTopCat} {f g : D(I,X)} {X₀ X₁ : Set X}
@@ -365,9 +365,9 @@ lemma coveredPartwise_second_hpart {f g : D(I,X)} {F : Dihomotopy f g} {hX : X�
   · exact Or.inr (subset_trans (sph_subrectangle _ _) h)
 
 end Dihomotopy
-end DirectedMap
+end Tengoku.LeanPool.DirectedMap
 
-namespace Dipath
+namespace Tengoku.LeanPool.Dipath
 namespace Dihomotopy
 
 variable {X : dTopCat} {X₀ X₁ : Set X} {x y : X} {γ₁ γ₂ : Dipath x y}
@@ -440,4 +440,5 @@ lemma dihomotopicCovered_exists_of_preDihomotopic (hX : X₀ ∪ X₁ = univ) (h
   exact ⟨n, m, h.some, hnm⟩
 
 end Dihomotopy
-end Dipath
+end Tengoku.LeanPool.Dipath
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

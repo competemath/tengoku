@@ -27,7 +27,7 @@ See `formalize/DESIGN.md` (in the source repository) for the overall design choi
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-
 The contents of this file — `IsCoupling`, `wasserstein1Coupling`, both
 directions of KR, `IsCoupling.map`, and `wasserstein1_pushforward_le_iInf` —
@@ -1843,3 +1843,4 @@ lemma wasserstein1_pushforward_le_iInf
   rfl
 
 end Vlasov
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

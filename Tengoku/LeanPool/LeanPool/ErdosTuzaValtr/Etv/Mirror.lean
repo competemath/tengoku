@@ -17,7 +17,7 @@ Imported Lean Pool material for `LeanPool.ErdosTuzaValtr.Etv.Mirror`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open OrderDual
 
 variable {α : Type _} [LinearOrder α] {C : Config α}
@@ -84,3 +84,4 @@ theorem Mirror.hasJoin {a b : ℕ} {S : Finset α} : C.Mirror.HasJoin b a S.Mirr
     use toDual p, cr.Mirror, cl.Mirror
     rw [List.Mirror_mem_getLast, List.Mirror_mem_head]
     simp_all
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

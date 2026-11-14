@@ -20,7 +20,7 @@ import Tengoku.Seed.Tactic.NormNum.Parity
 /-! # ProductAnnulusLocalization -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory
 open scoped BigOperators
 
@@ -48,3 +48,4 @@ private def nearLowCoeffSet_wip {d : Nat} (J M : Nat) : Finset (Idx d) :=
   (nearLowBlocks_wip (d := d) J M).biUnion fun ℓ => coeffBlockFinset_wip ℓ
 
 end DimdPolyLEAN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

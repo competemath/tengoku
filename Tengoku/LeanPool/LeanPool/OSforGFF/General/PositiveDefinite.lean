@@ -22,7 +22,7 @@ Key lemmas:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Complex
 open BigOperators
 
@@ -56,3 +56,4 @@ lemma isPositiveDefinite_precomp_linear
   simpa using hPD m (fun i => T (x i)) c
 
 end GFF4D
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

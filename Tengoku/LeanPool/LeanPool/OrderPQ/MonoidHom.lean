@@ -11,7 +11,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /--
 @isnad1 id=eq.1h3v.s4.bfc6d4ddbc4e from=translated src=- shape=225b6c52 vocab=66357236
 -/
@@ -33,7 +33,7 @@ section Lemmas
 @isnad1 id=iff.0h3v.s5.f3a0d6eb9cdf from=translated src=- shape=6aef7d5c vocab=03c8be80
 -/
 @[to_additive]
-theorem zpow_eq_self_iff_modEq {x : α} {n : ℤ} : x ^ n = x ↔ n ≡ 1 [ZMOD orderOf x] := by
+theorem _root_.Tengoku.LeanPool.zpow_eq_self_iff_modEq {x : α} {n : ℤ} : x ^ n = x ↔ n ≡ 1 [ZMOD orderOf x] := by
   convert zpow_eq_zpow_iff_modEq .. using 2
   exact zpow_one x |>.symm
 
@@ -96,3 +96,4 @@ lemma MonoidHom.exists_of_generator_and_image : ∃ f : α →* β, f x = y := b
   exact Int.modEq_of_modEq_dvd (Int.ofNat_dvd.mpr hy) (orderOf_eq_nat_card hx ▸ h)
 
 end OfGenerator
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -26,7 +26,7 @@ operators such as Laplace–Beltrami).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace CompactSpectral
 
 open Filter Topology Metric
@@ -137,3 +137,4 @@ lemma tendsto_norm_apply_of_isCompactOperator_of_orthonormal (T : E →L[𝕜] E
   simpa using hT.norm
 
 end CompactSpectral
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -112,7 +112,7 @@ component is connected by construction.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set unitInterval
 open scoped Graph
 
@@ -1242,3 +1242,4 @@ theorem IsDrawing.exists_access_region [G.Finite] (h : IsDrawing G drawing) {y :
     exact Set.image_mono Ioo_subset_Ioc_self
 
 end Graph
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

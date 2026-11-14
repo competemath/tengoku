@@ -33,7 +33,7 @@ Adapted for Lean Pool from `Timeroot/BS_Lam` at commit
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace BSLambda.LLL
 
 variable {A : Type*} [Fintype A] [DecidableEq A]
@@ -221,3 +221,4 @@ theorem pr_le_pow_of_pinned {G T : Finset A} (hGT : Disjoint G T) (N : ℕ)
 end Pinned
 
 end BSLambda.LLL
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

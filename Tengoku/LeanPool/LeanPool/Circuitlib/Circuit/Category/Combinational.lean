@@ -17,7 +17,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Circuit
 
 /-- Category of combinational circuits. -/
@@ -920,3 +920,4 @@ instance : SymmetricCategory (CombinationalCircuitCategory V G) where
 end CombinationalCircuitCategory
 
 end Circuit
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

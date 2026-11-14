@@ -16,15 +16,15 @@ Imported Lean Pool material for `LeanPool.WhiteheadTheorem.RelHomotopyGroup.Defs
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped unitInterval Topology Topology.Homotopy
 
 /-- relative generalized loops -/
-def RelGenLoop (n : ℕ) (X : Type*) [TopologicalSpace X] (A : Set X) (a : A) :
+def _root_.Tengoku.LeanPool.RelGenLoop (n : ℕ) (X : Type*) [TopologicalSpace X] (A : Set X) (a : A) :
     Set C(I^ Fin n, X) :=
   {f | (∀ y ∈ ∂I^n, f y ∈ A) ∧ ∀ y ∈ ⊔I^n, f y = a}
 
-namespace RelGenLoop
+namespace Tengoku.LeanPool.RelGenLoop
 
 variable {n : ℕ} {X : Type*} [TopologicalSpace X] {A : Set X} {a : A}
 
@@ -98,22 +98,22 @@ def equivGenLoop (X : Type*) [TopologicalSpace X] (A : Set X) (a : A) :
   left_inv _ := rfl
   right_inv _ := rfl
 
-end RelGenLoop
+end Tengoku.LeanPool.RelGenLoop
 
 /-- We have defined relative homotopy "groups" as mere sets.
 The group structure is not needed for the Whitehead theorem. -/
-def RelHomotopyGroup (n : ℕ) (X : Type*) [TopologicalSpace X] (A : Set X) (a : A) :=
+def _root_.Tengoku.LeanPool.RelHomotopyGroup (n : ℕ) (X : Type*) [TopologicalSpace X] (A : Set X) (a : A) :=
   Quotient (RelGenLoop.Homotopic.setoid n X A a)
 
 -- scoped[Topology] notation "π_" => RelHomotopyGroup
 /-- `«termπ_rel»` -/
 scoped[Topology] notation "π_rel" => RelHomotopyGroup   -- U+FE4D Dashed Low Line
 
-instance RelHomotopyGroup.inhabited {n : ℕ} {X : Type*} [TopologicalSpace X] {A : Set X} {a : A} :
+instance Tengoku.LeanPool.RelHomotopyGroup.inhabited {n : ℕ} {X : Type*} [TopologicalSpace X] {A : Set X} {a : A} :
     Inhabited (RelHomotopyGroup n X A a) :=
   inferInstanceAs <| Inhabited <| Quotient (RelGenLoop.Homotopic.setoid n X A a)
 
-namespace RelHomotopyGroup
+namespace Tengoku.LeanPool.RelHomotopyGroup
 
 variable (n : ℕ) (X : Type*) [TopologicalSpace X] (A : Set X) (a : A)
 
@@ -217,9 +217,9 @@ The induced maps `iStar`, `jStar`, and `bd` preserve the distinguished point,
 i.e., they map (the homotopy class of) the constant loop to the constant loop.
 -/
 
-end RelHomotopyGroup
+end Tengoku.LeanPool.RelHomotopyGroup
 
-namespace RelGenLoop
+namespace Tengoku.LeanPool.RelGenLoop
 /-!
 Some useful lemmas for the `compression_criterion`
 -/
@@ -255,4 +255,5 @@ lemma eq (f : RelGenLoop n X A a) (g : C(I^Fin n, X))
 
 end ofHomotopyRel
 
-end RelGenLoop
+end Tengoku.LeanPool.RelGenLoop
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

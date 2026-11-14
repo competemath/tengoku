@@ -10,7 +10,7 @@ public import Tengoku
 /-!
 # LeanPool.RiemannMappingTheorem.Uniform
 -/
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 @[expose] public section
 
 open Set Filter UniformSpace Function Uniformity Topology SetRel
@@ -20,7 +20,7 @@ variable {ι α β : Type*} {a : α} {s t : Set α} {x u v : Set (α × α)}
 /--
 @isnad1 id=issymm.1h2v.s5.0bf5f396c3b4 from=translated src=- shape=7469a5cf vocab=6d76ee2b
 -/
-lemma symmetricRel_of (h : ∀ {a b : α}, (a, b) ∈ x → (b, a) ∈ x) : SetRel.IsSymm x where
+lemma _root_.Tengoku.LeanPool.symmetricRel_of (h : ∀ {a b : α}, (a, b) ∈ x → (b, a) ∈ x) : SetRel.IsSymm x where
   symm _ _ := h
 
 namespace UniformSpace -- uniform thickening
@@ -99,7 +99,7 @@ end UniformSpace
 /-- The uniform neighbourhood filter of a set `s`: filter of supersets
 of `U`-thickenings of `s` for entourages `U`. Strengthens `𝓝ˢ s` for
 locally uniform statements. -/
-def uniformNhdsSet [UniformSpace α] (s : Set α) : Filter α :=
+def _root_.Tengoku.LeanPool.uniformNhdsSet [UniformSpace α] (s : Set α) : Filter α :=
   Filter.lift' (𝓤 α) (UniformSpace.thickening · s)
 
 /-- Notation for `uniformNhdsSet`, the uniform neighbourhood filter. -/
@@ -182,21 +182,21 @@ variable {p : Filter ι}
 /--
 @isnad1 id=tendsto.0h2v.s5.7fadf30ed355 from=translated src=- shape=1e0a8d80 vocab=fa4ca1af
 -/
-lemma lemma0 [UniformSpace α] : Tendsto Prod.snd (𝓤 α ⊓ comap Prod.fst (𝓟 s)) (𝓝ᵘ s) := by
+lemma _root_.Tengoku.LeanPool.lemma0 [UniformSpace α] : Tendsto Prod.snd (𝓤 α ⊓ comap Prod.fst (𝓟 s)) (𝓝ᵘ s) := by
   simp_rw [comap_principal, uniformNhdsSet, tendsto_lift', eventually_inf_principal]
   exact fun U hU => mem_of_superset hU (fun ⟨x, y⟩ hxy hx => mem_biUnion hx hxy)
 
 /--
 @isnad1 id=tendsto.0h6v.s5.54c495335ca7 from=translated src=- shape=8aaef44f vocab=b60da96f
 -/
-lemma lemma2 {p : Filter ι} {f : α → β} {s : Set α} :
+lemma _root_.Tengoku.LeanPool.lemma2 {p : Filter ι} {f : α → β} {s : Set α} :
     Tendsto (f ∘ Prod.snd) (p ×ˢ (𝓟 s)) (𝓟 (f '' s)) :=
   (tendsto_principal_principal.mpr <| fun _ => mem_image_of_mem f).comp tendsto_snd
 
 /--
 @isnad1 id=tendsto.1h7v.s6.8167a8a2a4a4 from=translated src=- shape=3787751e vocab=02e74c9a
 -/
-lemma lemma1 {F : ι → α → β} {f : α → β} [UniformSpace β] (hF : TendstoUniformlyOn F f p s) :
+lemma _root_.Tengoku.LeanPool.lemma1 {F : ι → α → β} {f : α → β} [UniformSpace β] (hF : TendstoUniformlyOn F f p s) :
     Tendsto (fun (q : ι × α) => (f q.2, F q.1 q.2)) (p ×ˢ 𝓟 s) ((𝓟 (f '' s)) ×ˢ (𝓝ᵘ (f '' s))) := by
   rw [tendstoUniformlyOn_iff_tendsto] at hF
   refine tendsto_prod_iff'.mpr ⟨lemma2, ?h⟩
@@ -205,6 +205,7 @@ lemma lemma1 {F : ι → α → β} {f : α → β} [UniformSpace β] (hF : Tend
 /--
 @isnad1 id=tendsto.1h7v.s6.a95dc92b3515 from=translated src=- shape=c77b2762 vocab=3342ff1a
 -/
-lemma lemma13 {f : α → β} {F : ι → α → β} [UniformSpace β] (hF : TendstoUniformlyOn F f p s) :
+lemma _root_.Tengoku.LeanPool.lemma13 {f : α → β} {F : ι → α → β} [UniformSpace β] (hF : TendstoUniformlyOn F f p s) :
     Tendsto (uncurry F) (p ×ˢ 𝓟 s) (𝓝ᵘ (f '' s)) :=
   (tendsto_prod_iff'.mp (lemma1 hF)).2
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

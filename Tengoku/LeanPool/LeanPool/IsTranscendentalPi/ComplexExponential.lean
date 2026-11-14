@@ -18,7 +18,7 @@ heart of Niven's proof of the transcendence of `π`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Polynomial
 
 open Set
@@ -36,20 +36,20 @@ noncomputable section
 /-- For `x ∈ ℂ`, one has `exp(x) * exp(-x) = 1`.
 @isnad1 id=eq.0h1v.s4.3af00331c6c7 from=translated src=- shape=bae6aac5 vocab=833a9d1a
 -/
-lemma cexp_mul_cexp_neg (x : ℂ) : cexp x * cexp (-x) = 1 := by
+lemma _root_.Tengoku.LeanPool.cexp_mul_cexp_neg (x : ℂ) : cexp x * cexp (-x) = 1 := by
   rw [Complex.exp_neg, mul_inv_cancel₀ (Complex.exp_ne_zero x)]
 
 /-- For `x ∈ ℂ`, the map `t ↦ exp(-(t * x))` is continuous on `[0, 1]` at `t`.
 @isnad1 id=continuo.0h2v.s5.ffea5922b7ce from=translated src=- shape=91fc512e vocab=8aaef068
 -/
-lemma continuousWithinAt_exp_neg_mul (x : ℂ) (t : ℝ) :
+lemma _root_.Tengoku.LeanPool.continuousWithinAt_exp_neg_mul (x : ℂ) (t : ℝ) :
   ContinuousWithinAt (fun t : ℝ => cexp (-(t * x))) (uIcc (0:ℝ) 1) t :=
   (differentiableAt_exp_neg_mul x t).continuousAt.continuousWithinAt
 
 /-- For `t ∈ ℝ` and `x ∈ ℂ`, it holds that `d/dt exp(-(t * x)) = -x * exp(-(t * x))`.
 @isnad1 id=eq.0h2v.s6.220cb09ab3a6 from=translated src=- shape=70a3d7b2 vocab=293404f1
 -/
-lemma deriv_exp_neg_mul_real (x : ℂ) (t : ℝ) :
+lemma _root_.Tengoku.LeanPool.deriv_exp_neg_mul_real (x : ℂ) (t : ℝ) :
   deriv (fun t : ℝ => cexp ( -(t * x) )) t = (-x * cexp ( -(t * x) )) := by
   simpa [mul_comm] using (((hasDerivAt_mul_const x).neg.cexp.comp_ofReal : HasDerivAt
     (fun t : ℝ => cexp (-((t : ℂ) * x))) (cexp (-((t : ℂ) * x)) * -x) t).deriv)
@@ -57,7 +57,7 @@ lemma deriv_exp_neg_mul_real (x : ℂ) (t : ℝ) :
 /-- For `a ∈ ℂ` and `t ∈ [0, 1]`, one has `‖exp(-(t * a))‖ ≤ exp(‖a‖)`.
 @isnad1 id=le.1h2v.s5.f85d90a2813a from=translated src=- shape=2a55e57a vocab=e30c7f12
 -/
-lemma norm_cexp_neg_mul_le_exp_norm (a : ℂ) :
+lemma _root_.Tengoku.LeanPool.norm_cexp_neg_mul_le_exp_norm (a : ℂ) :
   ∀ t ∈ uIcc (0 : ℝ) 1, ‖cexp (-(t * a))‖ ≤ rexp ‖a‖ := by
   intro t ht
   have habs : |t| ≤ 1 := by
@@ -75,7 +75,7 @@ lemma norm_cexp_neg_mul_le_exp_norm (a : ℂ) :
 /-- If `P(π i) = 0` and `P ≠ 0`, then `∏_{x ∈ roots(P)} (1 + e^x) = 0`.
 @isnad1 id=eq.2h1v.s7.57b45001fbb3 from=translated src=- shape=025bc2a2 vocab=289daa9b
 -/
-lemma prod_one_add_cexp_aroots_eq_zero
+lemma _root_.Tengoku.LeanPool.prod_one_add_cexp_aroots_eq_zero
     (P : ℚ[X]) (hP : P ≠ 0) (hroot : aeval (π * I) P = 0) :
     (map (fun x : ℂ => 1 + cexp x) (P.aroots ℂ)).prod = 0 := by
   have hIpi_mem : π * I ∈ P.aroots ℂ :=
@@ -84,20 +84,20 @@ lemma prod_one_add_cexp_aroots_eq_zero
   exact prod_eq_zero_iff.2 (mem_map.2 ⟨π * I, hIpi_mem, hfactor_zero⟩)
 
 /-- The map `t ↦ e^(∑_{x ∈ t} x)` on multisets of complex numbers. -/
-def cexpMultisetSum : Multiset ℂ → ℂ := fun t ↦ cexp t.sum
+def _root_.Tengoku.LeanPool.cexpMultisetSum : Multiset ℂ → ℂ := fun t ↦ cexp t.sum
 
 /-- The submultisets `t ⊆ s` with `∑_{x ∈ t} x = 0`. -/
-def zeroSumPowerset (s : Multiset ℂ) : Multiset (Multiset ℂ) :=
+def _root_.Tengoku.LeanPool.zeroSumPowerset (s : Multiset ℂ) : Multiset (Multiset ℂ) :=
   s.powerset.filter (·.sum = 0)
 
 /-- The submultisets `t ⊆ s` with `∑_{x ∈ t} x ≠ 0`. -/
-def nonZeroSumPowerset (s : Multiset ℂ) : Multiset (Multiset ℂ) :=
+def _root_.Tengoku.LeanPool.nonZeroSumPowerset (s : Multiset ℂ) : Multiset (Multiset ℂ) :=
   s.powerset.filter (·.sum ≠ 0)
 
 /-- The sum `∑_{t ⊆ s} e^(∑_{x ∈ t} x)` splits into the zero-sum and nonzero-sum parts.
 @isnad1 id=eq.0h1v.s5.43177b93b6d3 from=translated src=- shape=49c0ea6f vocab=fecc3390
 -/
-lemma sum_cexp_powerset_split (s : Multiset ℂ) :
+lemma _root_.Tengoku.LeanPool.sum_cexp_powerset_split (s : Multiset ℂ) :
     (map cexpMultisetSum s.powerset).sum =
       (map cexpMultisetSum (zeroSumPowerset s)).sum +
         (map cexpMultisetSum (nonZeroSumPowerset s)).sum := by
@@ -108,7 +108,7 @@ lemma sum_cexp_powerset_split (s : Multiset ℂ) :
 `∑_{t ⊆ s, ∑_{y ∈ t} y = 0} e^(∑_{y ∈ t} y) + ∑_{t ⊆ s, ∑_{y ∈ t} y ≠ 0} e^(∑_{y ∈ t} y)`.
 @isnad1 id=eq.0h1v.s5.a5d94745b8c1 from=translated src=- shape=93497d7a vocab=709dfc6c
 -/
-lemma prod_one_add_cexp_split (s : Multiset ℂ) :
+lemma _root_.Tengoku.LeanPool.prod_one_add_cexp_split (s : Multiset ℂ) :
     (map (fun x : ℂ => 1 + cexp x) s).prod =
       (map cexpMultisetSum (zeroSumPowerset s)).sum +
         (map cexpMultisetSum (nonZeroSumPowerset s)).sum := by
@@ -117,24 +117,24 @@ lemma prod_one_add_cexp_split (s : Multiset ℂ) :
   simp [Complex.exp_multiset_sum]
 
 /-- The multiset of all subset sums of `s`, i.e. `{ ∑_{x ∈ t} x | t ⊆ s }`. -/
-def subsetSums {α : Type*} [AddCommMonoid α] (s : Multiset α) : Multiset α :=
+def _root_.Tengoku.LeanPool.subsetSums {α : Type*} [AddCommMonoid α] (s : Multiset α) : Multiset α :=
   (s.powerset).map sum
 
 /-- The multiset of all nonzero subset sums of `s`, i.e. `{ ∑_{x ∈ t} x ≠ 0 | t ⊆ s }`. -/
-def nonzeroSubsetSums {α : Type*} [AddCommMonoid α] [DecidableEq α] (s : Multiset α) :
+def _root_.Tengoku.LeanPool.nonzeroSubsetSums {α : Type*} [AddCommMonoid α] [DecidableEq α] (s : Multiset α) :
     Multiset α := (subsetSums s).filter (· ≠ 0)
 
 /-- Every element of `{ ∑_{x ∈ t} x ≠ 0 | t ⊆ s }` is nonzero.
 @isnad1 id=ne.1h3v.s5.ae2be3db5e0f from=translated src=- shape=b3d04847 vocab=a45f7ce0
 -/
-lemma ne_zero_of_mem_nonzeroSubsetSums {α : Type*} [AddCommMonoid α] [DecidableEq α]
+lemma _root_.Tengoku.LeanPool.ne_zero_of_mem_nonzeroSubsetSums {α : Type*} [AddCommMonoid α] [DecidableEq α]
     {s : Multiset α} {x : α} (hx : x ∈ nonzeroSubsetSums s) : x ≠ 0 := by
   simpa [nonzeroSubsetSums] using (Multiset.mem_filter.1 hx).2
 
 /-- If `x ∈ s` and `x ≠ 0`, then `x ∈ { ∑_{x ∈ t} x ≠ 0 | t ⊆ s }`.
 @isnad1 id=mem.2h3v.s5.931930828a2e from=translated src=- shape=3e6031b6 vocab=a45f7ce0
 -/
-lemma mem_nonzeroSubsetSums_of_mem_of_ne_zero {α : Type*} [AddCommMonoid α] [DecidableEq α]
+lemma _root_.Tengoku.LeanPool.mem_nonzeroSubsetSums_of_mem_of_ne_zero {α : Type*} [AddCommMonoid α] [DecidableEq α]
     {s : Multiset α} {x : α} (hx : x ∈ s) (hx0 : x ≠ 0) :
     x ∈ nonzeroSubsetSums s := by
   rw [nonzeroSubsetSums, subsetSums]
@@ -144,7 +144,7 @@ lemma mem_nonzeroSubsetSums_of_mem_of_ne_zero {α : Type*} [AddCommMonoid α] [D
 /-- If `t ⊆ s` and `∑_{x ∈ t} x = 0`, then `e^(∑_{x ∈ t} x) = 1`.
 @isnad1 id=eq.1h2v.s4.a11630154817 from=translated src=- shape=6c6986db vocab=f8c58afe
 -/
-lemma cexpMultisetSum_eq_one_of_mem_zeroSumPowerset {s t : Multiset ℂ}
+lemma _root_.Tengoku.LeanPool.cexpMultisetSum_eq_one_of_mem_zeroSumPowerset {s t : Multiset ℂ}
     (ht : t ∈ zeroSumPowerset s) : cexpMultisetSum t = 1 := by
   have ht0 : t.sum = 0 := by
     simp only [zeroSumPowerset, mem_filter, Multiset.mem_powerset] at ht
@@ -154,7 +154,7 @@ lemma cexpMultisetSum_eq_one_of_mem_zeroSumPowerset {s t : Multiset ℂ}
 /-- Applying `t ↦ e^(∑_{x ∈ t} x)` to all `t ⊆ s` with `∑_{x ∈ t} x = 0` gives only `1`s.
 @isnad1 id=eq.0h1v.s4.1a351fb667cd from=translated src=- shape=1d2819d9 vocab=76fe29df
 -/
-lemma map_cexpMultisetSum_zeroSumPowerset_eq_replicate (s : Multiset ℂ) :
+lemma _root_.Tengoku.LeanPool.map_cexpMultisetSum_zeroSumPowerset_eq_replicate (s : Multiset ℂ) :
     map cexpMultisetSum (zeroSumPowerset s) =
       Multiset.replicate (card (zeroSumPowerset s)) (1 : ℂ) := by
   simpa using (Multiset.eq_replicate_of_mem
@@ -168,7 +168,7 @@ lemma map_cexpMultisetSum_zeroSumPowerset_eq_replicate (s : Multiset ℂ) :
 `#{t ⊆ s | ∑_{x ∈ t} x = 0}`.
 @isnad1 id=eq.0h1v.s5.1e69b9bd104d from=translated src=- shape=8f1043f1 vocab=6222d545
 -/
-lemma sum_cexp_zeroSumPowerset_eq_count_zero_subsetSums (s : Multiset ℂ) :
+lemma _root_.Tengoku.LeanPool.sum_cexp_zeroSumPowerset_eq_count_zero_subsetSums (s : Multiset ℂ) :
     (map cexpMultisetSum (zeroSumPowerset s)).sum = (((subsetSums s).count 0 : ℤ) : ℂ) := by
   rw [map_cexpMultisetSum_zeroSumPowerset_eq_replicate, Multiset.sum_replicate]
   simp [eq_comm, count_eq_card_filter_eq, subsetSums, zeroSumPowerset, filter_map, Function.comp]
@@ -177,7 +177,7 @@ lemma sum_cexp_zeroSumPowerset_eq_count_zero_subsetSums (s : Multiset ℂ) :
 `∑_{t ⊆ roots(B), ∑_{x ∈ t} x ≠ 0} e^(∑_{x ∈ t} x) = -#{t ⊆ roots(B) | ∑_{x ∈ t} x = 0}`.
 @isnad1 id=eq.2h1v.s7.50995b3e774b from=translated src=- shape=1aab6ccd vocab=33eba9a7
 -/
-lemma sum_cexp_subsetSums_aroots_filter_ne_zero_eq_neg_count_zero
+lemma _root_.Tengoku.LeanPool.sum_cexp_subsetSums_aroots_filter_ne_zero_eq_neg_count_zero
     (B : ℚ[X]) (hB : B ≠ 0) (hroot : aeval (π * I) B = 0) :
     (map cexp (nonzeroSubsetSums (B.aroots ℂ))).sum =
       -(((subsetSums (B.aroots ℂ)).count 0) : ℂ) := by
@@ -195,7 +195,7 @@ lemma sum_cexp_subsetSums_aroots_filter_ne_zero_eq_neg_count_zero
 `t ↦ exp(-t * x) *  ( f⁽ⁿ⁾(t * x) - f(t * x) )` is continuous on `[0, 1]`.
 @isnad1 id=continuo.1h3v.s7.9836382f3903 from=translated src=- shape=9a763dce vocab=24fcd6c1
 -/
-lemma continuousOn_exp_neg_mul_iteratedDeriv_sub
+lemma _root_.Tengoku.LeanPool.continuousOn_exp_neg_mul_iteratedDeriv_sub
   (f : ℂ → ℂ) (x : ℂ) (n : ℕ)
   (hderiv : ∀ k ≤ n, ∀ t ∈ Set.uIcc (0 : ℝ) 1, DifferentiableAt ℂ (iteratedDeriv k f) (t * x)) :
     ContinuousOn (fun t : ℝ => x * cexp (-(t * x)) * (iteratedDeriv n f (t * x) - f (t * x)))
@@ -210,7 +210,7 @@ lemma continuousOn_exp_neg_mul_iteratedDeriv_sub
 `t ↦ exp(-t * x) *  ∑ₖ₌₀ⁿ⁺¹ f⁽ᵏ⁾(t * x)` is differentiable at `t`.
 @isnad1 id=differen.1h4v.s7.054e6f400cb7 from=translated src=- shape=24ae9464 vocab=22c9684a
 -/
-lemma differentiableAt_exp_neg_mul_sum_iteratedDeriv
+lemma _root_.Tengoku.LeanPool.differentiableAt_exp_neg_mul_sum_iteratedDeriv
   (f : ℂ → ℂ) (x : ℂ) (n : ℕ) (t : ℝ)
   (hderiv : ∀ k ≤ n, DifferentiableAt ℂ (iteratedDeriv k f) (t * x)) :
     DifferentiableAt ℝ (fun t : ℝ => cexp (-(t * x)) *
@@ -222,7 +222,7 @@ lemma differentiableAt_exp_neg_mul_sum_iteratedDeriv
 `d/dt (exp(-t * x) *  ∑ₖ₌₀ⁿ⁺¹ f⁽ᵏ⁾(t * x)) = x * exp(- t * x) * (f⁽ⁿ⁺¹⁾(t * x) - f(t * x))`.
 @isnad1 id=eq.1h4v.s8.644ae76d3caa from=translated src=- shape=eb51f992 vocab=b39ee0f5
 -/
-lemma deriv_exp_neg_mul_sum_iteratedDeriv
+lemma _root_.Tengoku.LeanPool.deriv_exp_neg_mul_sum_iteratedDeriv
   (f : ℂ → ℂ) (x : ℂ) (n : ℕ) (t : ℝ)
   (hderiv : ∀ k ≤ n, DifferentiableAt ℂ (iteratedDeriv k f) (t * x)) :
   deriv (fun t : ℝ => cexp (-(t * x)) * ∑ k ∈ Finset.range (n + 1), iteratedDeriv k f (t * x)) t
@@ -248,7 +248,7 @@ lemma deriv_exp_neg_mul_sum_iteratedDeriv
 `d/dt (exp(-t * x) *  ∑ₖ₌₀ⁿ⁺¹ f⁽ᵏ⁾(t * x)) = x * exp(- t * x) * (f⁽ⁿ⁺¹⁾(t * x) - f(t * x))`.
 @isnad1 id=hasderiv.1h4v.s8.b36a4869ebe5 from=translated src=- shape=55e2795e vocab=bb5d47b9
 -/
-lemma hasDerivAt_exp_neg_mul_sum_iteratedDeriv
+lemma _root_.Tengoku.LeanPool.hasDerivAt_exp_neg_mul_sum_iteratedDeriv
   (f : ℂ → ℂ) (x : ℂ) (n : ℕ) (t : ℝ)
   (hderiv : ∀ k ≤ n, DifferentiableAt ℂ (iteratedDeriv k f) (t * x)) :
     HasDerivAt (fun t : ℝ => cexp (-(t * x)) *
@@ -261,7 +261,7 @@ lemma hasDerivAt_exp_neg_mul_sum_iteratedDeriv
 `∫₀¹ x * exp(-t x) * (f⁽ⁿ⁺¹⁾(t x) - f(t x)) dt = exp(- x) * ∑ₖ₌₀ⁿ f⁽ᵏ⁾(x) - ∑ₖ₌₀ⁿ f⁽ᵏ⁾(0)`.
 @isnad1 id=eq.1h3v.s8.9cbd1f0d1718 from=translated src=- shape=bc846cbd vocab=fd51e2e8
 -/
-lemma int_exp_neg_mul_fun
+lemma _root_.Tengoku.LeanPool.int_exp_neg_mul_fun
   (f : ℂ → ℂ) (x : ℂ) (n : ℕ)
   (hderiv : ∀ k ≤ n + 1, ∀ t ∈ Set.uIcc (0 : ℝ) 1, DifferentiableAt ℂ (iteratedDeriv k f) (t * x)) :
     ∫ t in 0..1, (fun (t : ℝ) ↦ x * cexp (-(t * x)) *
@@ -287,7 +287,7 @@ lemma int_exp_neg_mul_fun
 and `bᵢ = 1` for all `i`, then `∑ᵢ bᵢ exp(aᵢ) = -k`.
 @isnad1 id=eq.5h5v.s7.a39c5a64ac73 from=translated src=- shape=07364a6f vocab=db8c74b7
 -/
-lemma sum_weighted_cexp_nonzeroSubsetSums_eq_neg_count_zero_subsetSums {n : ℕ}
+lemma _root_.Tengoku.LeanPool.sum_weighted_cexp_nonzeroSubsetSums_eq_neg_count_zero_subsetSums {n : ℕ}
   (B : ℚ[X]) (hB : B ≠ 0) (hroot : aeval (Real.pi * I) B = 0)
   (a : Fin n → ℂ) (ha : nonzeroSubsetSums (B.aroots ℂ) = valuesFin a)
   (b : Fin n → ℂ) (hb : ∀ i : Fin n, b i = 1)
@@ -295,3 +295,4 @@ lemma sum_weighted_cexp_nonzeroSubsetSums_eq_neg_count_zero_subsetSums {n : ℕ}
     ∑ i : Fin n, b i * cexp (a i) = -k := by
   simpa [hk, ha, valuesFin, hb, Fin.sum_ofFn, Function.comp_apply] using
     (sum_cexp_subsetSums_aroots_filter_ne_zero_eq_neg_count_zero B hB hroot)
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

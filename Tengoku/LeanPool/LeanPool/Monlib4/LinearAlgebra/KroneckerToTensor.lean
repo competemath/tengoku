@@ -16,7 +16,7 @@ This file contains the definition of `tensorToKronecker` and
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped TensorProduct BigOperators Kronecker
 
 section
@@ -139,13 +139,13 @@ theorem Matrix.kroneckerToTensorProduct_hMul (x y : Matrix m m R) (z w : Matrix 
 
 /-- Algebra equivalence from the tensor product of matrix algebras to Kronecker matrices. -/
 @[simps!]
-noncomputable def tensorToKronecker :
+noncomputable def _root_.Tengoku.LeanPool.tensorToKronecker :
     Matrix m m R ⊗[R] Matrix n n R ≃ₐ[R] Matrix (m × n) (m × n) R :=
   Matrix.kroneckerAlgEquiv m n R
 
 /-- Algebra equivalence from Kronecker matrices to the tensor product of matrix algebras. -/
 @[simps!]
-noncomputable def kroneckerToTensor :
+noncomputable def _root_.Tengoku.LeanPool.kroneckerToTensor :
     Matrix (m × n) (m × n) R ≃ₐ[R] Matrix m m R ⊗[R] Matrix n n R :=
   (Matrix.kroneckerAlgEquiv m n R).symm
 
@@ -162,7 +162,7 @@ theorem Matrix.kroneckerToTensorProduct_star {R m n : Type _} [Field R] [StarRin
 /--
 @isnad1 id=eq.0h3v.s9.dbcf76608912 from=translated src=- shape=5c38e98b vocab=8dcb5682
 -/
-theorem kroneckerToTensor_toLinearMap_eq :
+theorem _root_.Tengoku.LeanPool.kroneckerToTensor_toLinearMap_eq :
     (kroneckerToTensor : Matrix (n × m) (n × m) R ≃ₐ[R] _).toLinearMap =
       (kroneckerToTensorProduct : Matrix (n × m) (n × m) R →ₗ[R] Matrix n n R ⊗[R] Matrix m m R) :=
   rfl
@@ -170,7 +170,7 @@ theorem kroneckerToTensor_toLinearMap_eq :
 /--
 @isnad1 id=eq.0h3v.s9.16271e4863d2 from=translated src=- shape=041ab3b6 vocab=c2ebc2cd
 -/
-theorem tensorToKronecker_toLinearMap_eq :
+theorem _root_.Tengoku.LeanPool.tensorToKronecker_toLinearMap_eq :
     ((@tensorToKronecker R m n _ _ _ _ _ :
         Matrix m m R ⊗[R] Matrix n n R ≃ₐ[R] _).toLinearMap :
         Matrix m m R ⊗[R] Matrix n n R →ₗ[R] Matrix (m × n) (m × n) R) =
@@ -178,3 +178,4 @@ theorem tensorToKronecker_toLinearMap_eq :
   rfl
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

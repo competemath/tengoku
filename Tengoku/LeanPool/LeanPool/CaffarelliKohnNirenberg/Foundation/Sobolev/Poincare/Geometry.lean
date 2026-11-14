@@ -18,7 +18,7 @@ interfaces needed by the ball estimate while using the established CKN carriers.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace CKN
 
 open MeasureTheory
@@ -351,3 +351,4 @@ theorem segmentBlend_mem_of_isOpenBoundedConvexDomain {d : ℕ} {U : Set (Vec d)
   segmentBlend_mem hU.convex hx hy ht0 ht1
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

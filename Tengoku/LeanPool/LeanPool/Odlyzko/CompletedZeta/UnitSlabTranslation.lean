@@ -10,7 +10,7 @@ public import Tengoku.LeanPool.LeanPool.Odlyzko.CompletedZeta.UnitFundamentalDom
 /-! TODO: Add doc-string. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open MeasureTheory NumberField NumberField.InfinitePlace NumberField.Units Set
@@ -280,3 +280,4 @@ theorem integrableOn_unitFundamentalParamSet_comp_add_iff
         isAddFundamentalDomain_unitFundamentalParamSet hf
 
 end NumberField.Odlyzko
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

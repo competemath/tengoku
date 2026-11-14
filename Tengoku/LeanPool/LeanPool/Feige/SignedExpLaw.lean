@@ -17,7 +17,7 @@ used by the TP2 proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory ProbabilityTheory Set
 open scoped ENNReal
 
@@ -198,3 +198,4 @@ theorem finiteSignedExpSumSourceMeasure_eq :
 end
 end LikelihoodRatio
 end Feige
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -24,7 +24,7 @@ over that finite set realises the infimum.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace ThreeGap.SimApprox
 
 open scoped BigOperators
@@ -92,3 +92,4 @@ theorem deltaN_euclNorm_attained (α : Fin n → ℝ) (q : ℤ) :
   exact le_ciInf hall
 
 end ThreeGap.SimApprox
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

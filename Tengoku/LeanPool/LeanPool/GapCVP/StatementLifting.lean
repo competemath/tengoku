@@ -10,7 +10,7 @@ public import Tengoku
 /-! # Transporting stack-machine statements into a larger machine -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace GapCVP
 
 open Turing
@@ -83,3 +83,4 @@ theorem liftStatement_stepAux [DecidableEq K] [DecidableEq K']
   | halt => exact halt_configuration s source
 
 end GapCVP
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -18,7 +18,7 @@ development.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open CategoryTheory DirectSum
 
 universe u v w
@@ -31,7 +31,7 @@ variable (k : Type u) (A : Type v) [Field k] [Ring A] [Algebra k A]
 noncomputable section wedderburn
 
 /-- Restricts endomorphisms along a Wedderburn equivalence with a matrix algebra. -/
-abbrev endCatEquiv (n : ℕ)
+abbrev _root_.Tengoku.LeanPool.endCatEquiv (n : ℕ)
     (D : Type v) [DivisionRing D] [Algebra k D] (wdb : A ≃ₐ[k] Matrix (Fin n) (Fin n) D)
     [Module A (Fin n → D)] (smul_def : ∀ (a : A) (v : Fin n → D), a • v = wdb a • v)
     [IsScalarTower k (Matrix (Fin n) (Fin n) D) (Fin n → D)] [IsScalarTower k A (Fin n → D)]
@@ -126,7 +126,7 @@ private lemma matrixModuleEnd_apply {n : ℕ} [NeZero n]
 
 omit [IsSimpleRing A] [FiniteDimensional k A] in
 /-- The endomorphism algebra of the standard matrix module is the opposite scalar algebra. -/
-noncomputable def matrixModuleEndAlgEquivMop {n : ℕ} [NeZero n]
+noncomputable def _root_.Tengoku.LeanPool.matrixModuleEndAlgEquivMop {n : ℕ} [NeZero n]
     (D : Type v) [DivisionRing D] [Algebra k D]
     [IsScalarTower k (Matrix (Fin n) (Fin n) D) (Fin n → D)]
     [SMulCommClass (Matrix (Fin n) (Fin n) D) k (Fin n → D)] :
@@ -158,7 +158,7 @@ noncomputable def matrixModuleEndAlgEquivMop {n : ℕ} [NeZero n]
 
 end wedderburn
 
-instance instAlgebraEndOfIsScalarTowerLeanPool (M : Type v) [AddCommGroup M] [Module A M]
+instance _root_.Tengoku.LeanPool.instAlgebraEndOfIsScalarTowerLeanPool (M : Type v) [AddCommGroup M] [Module A M]
     [Module k M] [IsScalarTower k A M] :
     Algebra k (Module.End (Module.End A M) M) where
   algebraMap := {
@@ -224,7 +224,7 @@ omit [IsSimpleRing A] in
 /--
 @isnad1 id=ex.0h2v.s6.449f58f26446 from=translated src=- shape=d976fc6b vocab=f5e9a674
 -/
-lemma exists_gen (M : Type v) [AddCommGroup M]
+lemma _root_.Tengoku.LeanPool.exists_gen (M : Type v) [AddCommGroup M]
     [Module A M] [IsSimpleModule A M] :
     ∃ m : M, m ≠ 0 ∧ ∀ m', ∃ a : A, m' = a • m := by
     have i : Submodule.IsPrincipal (⊤ : Submodule A M) := inferInstance
@@ -240,7 +240,7 @@ lemma exists_gen (M : Type v) [AddCommGroup M]
     simp only [Submodule.span_zero_singleton, top_ne_bot] at this
 
 /-- A chosen nonzero generator for a simple module. -/
-noncomputable def gen (M : Type v) [AddCommGroup M]
+noncomputable def _root_.Tengoku.LeanPool.gen (M : Type v) [AddCommGroup M]
     [Module A M] [IsSimpleModule A M] : M :=
     (exists_gen A M).choose
 
@@ -248,20 +248,20 @@ omit [IsSimpleRing A] in
 /--
 @isnad1 id=ne.0h2v.s5.f152ed8195e5 from=translated src=- shape=dd5db546 vocab=0fd535f4
 -/
-lemma gen_ne_zero (M : Type v) [AddCommGroup M] [Module A M] [IsSimpleModule A M] :
+lemma _root_.Tengoku.LeanPool.gen_ne_zero (M : Type v) [AddCommGroup M] [Module A M] [IsSimpleModule A M] :
     gen A M ≠ 0 := (exists_gen A M).choose_spec.1
 
 omit [IsSimpleRing A] in
 /--
 @isnad1 id=ex.0h3v.s6.5e950dc2e4e3 from=translated src=- shape=f97e8b91 vocab=0323542b
 -/
-lemma gen_spec (M : Type v) [AddCommGroup M]
+lemma _root_.Tengoku.LeanPool.gen_spec (M : Type v) [AddCommGroup M]
     [Module A M] [IsSimpleModule A M] (m' : M) :
     ∃ a : A, m' = a • gen A M := (exists_gen A M).choose_spec.2 m'
 
 /-- The left action map into the double centralizer endomorphism algebra. -/
 @[simps]
-def toEndEnd (M : Type v) [AddCommGroup M] [Module A M] :
+def _root_.Tengoku.LeanPool.toEndEnd (M : Type v) [AddCommGroup M] [Module A M] :
     A →ₗ[A] Module.End (Module.End A M) M where
   toFun a :=
   { toFun m := a • m
@@ -275,11 +275,11 @@ omit [IsSimpleRing A] in
 @isnad1 id=eq.0h4v.s9.95a6405e1074 from=translated src=- shape=df09a32f vocab=e4465660
 -/
 @[simp]
-lemma toEndEnd_apply (M : Type v) [AddCommGroup M] [Module A M] (a : A) (m : M) :
+lemma _root_.Tengoku.LeanPool.toEndEnd_apply (M : Type v) [AddCommGroup M] [Module A M] (a : A) (m : M) :
     toEndEnd A M a m = a • m := rfl
 
 /-- The algebra homomorphism induced by the double centralizer action map. -/
-def toEndEndAlgHom (M : Type v) [AddCommGroup M] [Module A M] [Module k M] [IsScalarTower k A M] :
+def _root_.Tengoku.LeanPool.toEndEndAlgHom (M : Type v) [AddCommGroup M] [Module A M] [Module k M] [IsScalarTower k A M] :
     A →ₐ[k] Module.End (Module.End A M) M where
   __ := toEndEnd A M
   map_one' := by ext; simp
@@ -298,21 +298,21 @@ omit [FiniteDimensional k A] in
 /--
 @isnad1 id=injectiv.0h3v.s9.66a3a01a7dec from=translated src=- shape=fedfda4f vocab=56142420
 -/
-lemma toEndEnd_injective
+lemma _root_.Tengoku.LeanPool.toEndEnd_injective
     (M : Type v) [AddCommGroup M] [Module A M] [IsSimpleModule A M]
     [Module k M] [IsScalarTower k A M] :
     Function.Injective (toEndEnd A M) :=
   RingHom.injective (toEndEndAlgHom k A M).toRingHom
 
 /-- A module is balanced when the double centralizer action map is surjective. -/
-class IsBalanced (M : Type v) [AddCommGroup M] [Module A M] : Prop where
+class _root_.Tengoku.LeanPool.IsBalanced (M : Type v) [AddCommGroup M] [Module A M] : Prop where
   surj : Function.Surjective (toEndEnd A M)
 
 omit [IsSimpleRing A] in
 /--
 @isnad1 id=isbalanc.1h4v.s6.ee66794a9109 from=translated src=- shape=57bddf9b vocab=9393d5ee
 -/
-lemma IsBalanced.congr_aux (M N : Type v) [AddCommGroup M] [AddCommGroup N] [Module A M]
+lemma Tengoku.LeanPool.IsBalanced.congr_aux (M N : Type v) [AddCommGroup M] [AddCommGroup N] [Module A M]
     [Module A N] (l : M ≃ₗ[A] N) (h : IsBalanced A M) : IsBalanced A N := by
   refine ⟨fun a => ?_⟩
   let a' : Module.End (Module.End A M) M :=
@@ -337,10 +337,11 @@ omit [IsSimpleRing A] in
 /--
 @isnad1 id=iff.0h4v.s6.2cefd8f20664 from=translated src=- shape=e2daf1d0 vocab=9393d5ee
 -/
-lemma IsBalanced.congr {M N : Type v} [AddCommGroup M] [AddCommGroup N] [Module A M] [Module A N]
+lemma Tengoku.LeanPool.IsBalanced.congr {M N : Type v} [AddCommGroup M] [AddCommGroup N] [Module A M] [Module A N]
     (l : M ≃ₗ[A] N) : IsBalanced A M ↔ IsBalanced A N := by
   constructor
   · apply IsBalanced.congr_aux; exact l
   · apply IsBalanced.congr_aux; exact l.symm
 
 end simple
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -15,7 +15,7 @@ Imported Lean Pool material for `LeanPool.WhiteheadTheorem.Shapes.Cube`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped unitInterval Topology Topology.Homotopy
 
 namespace Cube
@@ -524,3 +524,4 @@ lemma castSucc_mem_sides {n : ℕ} (t : I) (y : ∂𝕀 n) :
 end cubeBoundary
 
 end TopCat
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

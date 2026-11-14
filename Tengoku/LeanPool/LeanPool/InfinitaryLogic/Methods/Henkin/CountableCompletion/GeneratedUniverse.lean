@@ -31,7 +31,7 @@ included — it drives the later term-model plumbing.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure
@@ -423,3 +423,4 @@ side-membership bound as an explicit invariant instead of instantiating this pri
 `genU_le` presently has no in-tree consumer; it is the library-level minimality statement.) -/
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

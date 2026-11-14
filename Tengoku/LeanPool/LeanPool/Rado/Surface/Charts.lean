@@ -28,7 +28,7 @@ is only needed at the very end). This file sets up the chart-level toolkit:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Topology Metric Manifold Filter
 
 namespace Rado
@@ -245,3 +245,4 @@ theorem locally_secondCountable (x : X) :
 end Instances
 
 end Rado
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

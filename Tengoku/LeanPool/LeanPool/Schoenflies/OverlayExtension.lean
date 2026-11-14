@@ -20,7 +20,7 @@ finite straight-line engine needed before the wild outer graph and the joining e
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set
 open scoped Graph
 
@@ -253,3 +253,4 @@ theorem attachGraphTrace_isTwoConnected_extendOverlay
     htwo
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

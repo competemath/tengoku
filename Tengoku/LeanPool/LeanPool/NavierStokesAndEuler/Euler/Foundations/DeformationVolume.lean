@@ -13,7 +13,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace EulerDeformationVolume
@@ -43,3 +43,4 @@ theorem measurePreserving_of_det_one (μ : Measure E) [Measure.IsAddHaarMeasure 
 end ChangeOfVariables
 
 end EulerDeformationVolume
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

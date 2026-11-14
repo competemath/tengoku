@@ -32,7 +32,7 @@ needed for that proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.CencovPetz
 open scoped BigOperators
 
@@ -74,3 +74,4 @@ noncomputable def fisherMetricFamily : MonotoneMetricFamily where
     intro α β _ _ κ p u
     exact fisherBilin_pushforward_le_of_markovMorphism (κ := κ) p u
 end LeanPool.CencovPetz
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

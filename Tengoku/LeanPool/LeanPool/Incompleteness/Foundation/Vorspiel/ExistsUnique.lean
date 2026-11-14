@@ -10,7 +10,7 @@ public import Tengoku
 /-! # ExistsUnique -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Classical
 variable {α : Sort*} {φ : α → Prop} (h : ∃! x, φ x)
 
@@ -27,3 +27,4 @@ lemma choose_uniq (hx : φ x) : x = choose! h := h.unique hx (choose!_spec h)
 lemma «choose!_eq_iff» : x = choose! h ↔ φ x := ⟨by rintro rfl; exact choose!_spec h, choose_uniq _⟩
 
 end Classical
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -27,7 +27,7 @@ import Tengoku.LeanPool.LeanPool.JacobianDiffgeo.LocalMultiplicity.KthRoot
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter Complex Metric
 open scoped Topology
 
@@ -166,3 +166,4 @@ theorem image_pow_ball {k : ℕ} (hk : k ≠ 0) {ρ : ℝ} (hρ : 0 ≤ ρ) :
         exact exp_log hv0
 
 end RS
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

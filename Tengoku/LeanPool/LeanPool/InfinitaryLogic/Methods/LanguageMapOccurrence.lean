@@ -20,7 +20,7 @@ order.  Consolidating here removes that hazard.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 variable {L L' : Language.{0, 0}} (g : L →ᴸ L')
@@ -81,3 +81,4 @@ theorem BoundedFormulaω.relationsIn_mapLanguage {L L' : Language} (g : L →ᴸ
     simp [BoundedFormulaω.mapLanguage, BoundedFormulaω.relationsIn, ih, Set.image_iUnion]
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

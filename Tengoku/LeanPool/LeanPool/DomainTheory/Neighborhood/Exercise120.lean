@@ -39,7 +39,7 @@ unlike Def 1.7's
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 namespace NeighborhoodSystem
@@ -217,3 +217,4 @@ theorem toPower_principal {X : Set α} (hX : V.mem X) :
 end NeighborhoodSystem
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -22,7 +22,7 @@ boundary-word moves can be stated independently of a presentation's original edg
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanEval
 namespace Topology
 namespace ClassificationOfSurfaces
@@ -267,3 +267,4 @@ end SurfaceCellComplex
 end ClassificationOfSurfaces
 end Topology
 end LeanEval
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

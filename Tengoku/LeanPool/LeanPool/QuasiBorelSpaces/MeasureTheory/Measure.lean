@@ -15,7 +15,7 @@ Imported Lean Pool material for `LeanPool.QuasiBorelSpaces.MeasureTheory.Measure
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace MeasureTheory.Measure
 
 variable {A B C : Type*} [MeasurableSpace A] [MeasurableSpace B] [MeasurableSpace C]
@@ -108,3 +108,4 @@ lemma lintegral_mapOption
       fun_prop
 
 end MeasureTheory.Measure
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

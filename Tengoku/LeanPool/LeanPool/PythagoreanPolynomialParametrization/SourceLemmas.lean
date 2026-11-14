@@ -16,7 +16,7 @@ small, source-located target.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.PythagoreanPolynomialParametrization
 
 /-- The rational map
@@ -301,3 +301,4 @@ theorem int_positive_iff_four_squares_add_one (n : ℤ) :
     nlinarith [sq_nonneg a, sq_nonneg b, sq_nonneg c, sq_nonneg d]
 
 end LeanPool.PythagoreanPolynomialParametrization
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

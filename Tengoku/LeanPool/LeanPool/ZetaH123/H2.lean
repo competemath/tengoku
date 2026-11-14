@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace ZetaH123.H2
 
 /-
@@ -2284,3 +2284,4 @@ theorem main (q : ℕ) (hq : q.Prime) (d k : ℕ) (hd : 1 < d) (hk : 0 < k) :
   exact extraction_strict q hq d k hd hk j hj hjpos
 
 end ZetaH123.H2
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

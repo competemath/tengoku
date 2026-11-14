@@ -16,7 +16,7 @@ coefficients.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.PoincareThreeBody
 
 open Filter MeasureTheory Topology
@@ -109,3 +109,4 @@ theorem hasFPowerSeriesOnBall_integral_of_uniform
     · exact integral_congr_ae (Filter.EventuallyEq.symm hpointwiseSum)
 
 end LeanPool.PoincareThreeBody
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

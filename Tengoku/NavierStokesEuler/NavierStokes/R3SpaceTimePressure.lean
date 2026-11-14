@@ -10,7 +10,7 @@ space-time stresses. Spatially harmonic ambiguities vanish in the Sobolev
 class supplied by the finite-energy equation.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace NavierStokes.R3SpaceTimePressure
 
 open Set Filter MeasureTheory TemperedDistribution FourierTransform R3SpaceTime
@@ -234,3 +234,4 @@ theorem stressPressure_gradient_unique
     exact hsource
 
 end NavierStokes.R3SpaceTimePressure
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

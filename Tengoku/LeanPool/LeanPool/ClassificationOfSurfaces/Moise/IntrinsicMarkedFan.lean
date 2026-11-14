@@ -20,7 +20,7 @@ that global finite edge order and its consecutive intervals.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators
 
 namespace LeanEval
@@ -3728,3 +3728,4 @@ end Moise
 end ClassificationOfSurfaces
 end Topology
 end LeanEval
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -15,7 +15,7 @@ This extension uses the upstream sequence-input model without redefining it.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace GenLimit.FiniteWitness
 
 open GenLimit.Generic
@@ -46,3 +46,4 @@ theorem setDriven_implies_ordinary {H : LanguageClass α}
   exact ⟨ofSet g, hg⟩
 
 end GenLimit.FiniteWitness
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

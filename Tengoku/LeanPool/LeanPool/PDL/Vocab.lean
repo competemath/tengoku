@@ -13,7 +13,7 @@ public import Tengoku.LeanPool.LeanPool.PDL.Syntax
 /-! # Vocabulary and other Syntax functions (part of Section 2.1) -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace PDL
 
 /-! ## Vocab -/
@@ -353,3 +353,4 @@ theorem freshVarProg_is_fresh (α) : Sum.inl (freshVarProg α) ∉ α.voc := by
   tauto
 
 end PDL
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

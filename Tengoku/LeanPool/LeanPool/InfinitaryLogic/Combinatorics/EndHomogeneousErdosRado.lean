@@ -59,7 +59,7 @@ feeding `c'` to the arity-`(n+1)` inductive hypothesis homogenizes `G` outright.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u
 
 namespace FirstOrder.Combinatorics.EndHomogER
@@ -896,3 +896,4 @@ theorem exists_endHomogeneous_of_large
 end Endgame
 
 end FirstOrder.Combinatorics.EndHomogER
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

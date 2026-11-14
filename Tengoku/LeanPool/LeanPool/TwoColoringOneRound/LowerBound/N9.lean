@@ -22,7 +22,7 @@ All proofs are kernel-checked (no `native_decide`).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Distributed2Coloring.LowerBound
 
 namespace N9
@@ -549,3 +549,4 @@ theorem monoFraction_gt_one_fifth (f : Coloring9) : (1 : ℚ) / 5 < monoFraction
 end N9
 
 end Distributed2Coloring.LowerBound
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

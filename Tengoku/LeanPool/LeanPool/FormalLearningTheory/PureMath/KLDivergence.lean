@@ -27,12 +27,12 @@ KL divergence, cross-entropy, and expected values. No learning-theory types.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Finset
 
 /-- A probability mass function over a finite type.
     Named FinitePMF to avoid conflict with Mathlib's PMF. -/
-structure FinitePMF (H : Type*) [Fintype H] where
+structure _root_.Tengoku.LeanPool.FinitePMF (H : Type*) [Fintype H] where
   /-- Probability assigned to each point. -/
   prob : H → ℝ
   prob_nonneg : ∀ h, 0 ≤ prob h
@@ -41,23 +41,24 @@ structure FinitePMF (H : Type*) [Fintype H] where
 /-- KL divergence between two FinitePMFs over a finite type.
     KL(Q‖P) = ∑_h Q(h) · log(Q(h)/P(h)).
     Convention: 0 · log(0/p) = 0. -/
-noncomputable def klDivFinitePMF {H : Type*} [Fintype H]
+noncomputable def _root_.Tengoku.LeanPool.klDivFinitePMF {H : Type*} [Fintype H]
     (Q P : FinitePMF H) : ℝ :=
   ∑ h : H, if Q.prob h = 0 then 0
     else Q.prob h * Real.log (Q.prob h / P.prob h)
 
 /-- Cross-entropy: ∑_h Q(h) · log(1/P(h)).
     Equals KL(Q‖P) + H(Q) where H(Q) is Shannon entropy. -/
-noncomputable def crossEntropyFinitePMF {H : Type*} [Fintype H]
+noncomputable def _root_.Tengoku.LeanPool.crossEntropyFinitePMF {H : Type*} [Fintype H]
     (Q P : FinitePMF H) : ℝ :=
   ∑ h : H, if Q.prob h = 0 then 0
     else Q.prob h * Real.log (1 / P.prob h)
 
 /-- Expected value of a real-valued function under a FinitePMF. -/
-noncomputable def expectFinitePMF {H : Type*} [Fintype H]
+noncomputable def _root_.Tengoku.LeanPool.expectFinitePMF {H : Type*} [Fintype H]
     (Q : FinitePMF H) (f : H → ℝ) : ℝ :=
   ∑ h : H, Q.prob h * f h
 
 /-- Typeclass asserting that a FinitePMF has strictly positive weights. -/
-class HasPositivePrior {H : Type*} [Fintype H] (P : FinitePMF H) : Prop where
+class _root_.Tengoku.LeanPool.HasPositivePrior {H : Type*} [Fintype H] (P : FinitePMF H) : Prop where
   pos : ∀ h, 0 < P.prob h
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

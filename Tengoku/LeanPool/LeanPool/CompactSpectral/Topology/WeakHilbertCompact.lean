@@ -23,7 +23,7 @@ Hilbert setting while keeping `packages/mathlib_extensions/` mathlib-only.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace CompactSpectral
 
 open scoped Topology
@@ -206,3 +206,4 @@ theorem isCompact_weakClosedBall (r : ℝ) : IsCompact (weakClosedBall (𝕜 := 
   simpa [weakDualToWeak_image_weakDualClosedBall (𝕜 := 𝕜) (E := E) r] using himage
 
 end CompactSpectral
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

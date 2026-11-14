@@ -35,7 +35,7 @@ pair `(Γ, Δ)` with `Γ ⊆ SentBnd F₁ R₁`, `Δ ⊆ SentBnd F₂ R₂`, ins
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure
@@ -901,3 +901,4 @@ theorem exists_paired_model_neg [L.IsRelational] [Countable (Σ l, L.Relations l
   exact hr2not
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -65,7 +65,7 @@ public import Tengoku.LeanPool.LeanPool.Sundogcert.MatchingNPHard
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Sundog.SATNPHard Sundog.MatchingNPHard
 
 namespace Sundog.SATReduction
@@ -180,3 +180,4 @@ theorem reduce_chain_connects (φ : Formula n m) :
     `Lean.ofReduceBool` (we never use `decide`/`native_decide` in this module). -/
 
 end Sundog.SATReduction
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

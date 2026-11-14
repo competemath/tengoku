@@ -45,61 +45,61 @@ applied to the part of the symmetric difference inside each child cylinder). A c
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Filter Topology
 
 /-! ### Words and word cylinders -/
 
 /-- The element of Cantor space that starts with the finite word `w` and continues with `x`. -/
-def prependWord (w : List Bool) (x : ℕ → Bool) : ℕ → Bool := fun n =>
+def _root_.Tengoku.LeanPool.prependWord (w : List Bool) (x : ℕ → Bool) : ℕ → Bool := fun n =>
   if n < w.length then w.getD n false else x (n - w.length)
 
 /--
 @isnad1 id=eq.1h3v.s4.44cc0b105600 from=translated src=- shape=4a9ea419 vocab=3833d6f5
 -/
-theorem prependWord_apply_of_lt {w : List Bool} {n : ℕ} (h : n < w.length) (x : ℕ → Bool) :
+theorem _root_.Tengoku.LeanPool.prependWord_apply_of_lt {w : List Bool} {n : ℕ} (h : n < w.length) (x : ℕ → Bool) :
     prependWord w x n = w.getD n false := ite_eq_left h
 
 /--
 @isnad1 id=eq.1h3v.s5.f32f6cec3c20 from=translated src=- shape=51a4f0f9 vocab=9bf7d94a
 -/
-theorem prependWord_apply_of_le {w : List Bool} {n : ℕ} (h : w.length ≤ n) (x : ℕ → Bool) :
+theorem _root_.Tengoku.LeanPool.prependWord_apply_of_le {w : List Bool} {n : ℕ} (h : w.length ≤ n) (x : ℕ → Bool) :
     prependWord w x n = x (n - w.length) := ite_eq_right (not_lt.mpr h)
 
 /-- The basic clopen set of sequences extending the word `w`. -/
 private def wordCylinder (w : List Bool) : Set (ℕ → Bool) := Set.range (prependWord w)
 
 /-- The word formed by the first `n` values of `x`. -/
-def wordOf (x : ℕ → Bool) (n : ℕ) : List Bool := List.ofFn fun i : Fin n => x i
+def _root_.Tengoku.LeanPool.wordOf (x : ℕ → Bool) (n : ℕ) : List Bool := List.ofFn fun i : Fin n => x i
 
 /--
 @isnad1 id=eq.0h2v.s3.69284ad0b7a7 from=translated src=- shape=9bea7da9 vocab=8bd60e65
 -/
-@[simp] theorem length_wordOf (x : ℕ → Bool) (n : ℕ) : (wordOf x n).length = n :=
+@[simp] theorem _root_.Tengoku.LeanPool.length_wordOf (x : ℕ → Bool) (n : ℕ) : (wordOf x n).length = n :=
   List.length_ofFn
 
 /-! ### The graphs `G_S` -/
 
 /-- The graph `G_S(2^ℕ)` on Cantor space associated to a set `S` of finite binary words:
 edges connect `s ⌢ i ⌢ x` and `s ⌢ !i ⌢ x` for `s ∈ S`. -/
-def GSGraph (S : Set (List Bool)) (y z : ℕ → Bool) : Prop :=
+def _root_.Tengoku.LeanPool.GSGraph (S : Set (List Bool)) (y z : ℕ → Bool) : Prop :=
   ∃ s ∈ S, ∃ i : Bool, ∃ x : ℕ → Bool,
     y = prependWord (s ++ [i]) x ∧ z = prependWord (s ++ [!i]) x
 
 /-- A set of words is dense if every word has an extension in it. -/
-def DenseWords (S : Set (List Bool)) : Prop :=
+def _root_.Tengoku.LeanPool.DenseWords (S : Set (List Bool)) : Prop :=
   ∀ r : List Bool, ∃ s ∈ S, r <+: s
 
 /-! ### A canonical dense and sparse set of words -/
 
 /-- An enumeration of all finite binary words. -/
-def wordEnum (n : ℕ) : List Bool := (Encodable.decode (α := List Bool) n).getD []
+def _root_.Tengoku.LeanPool.wordEnum (n : ℕ) : List Bool := (Encodable.decode (α := List Bool) n).getD []
 
 private theorem wordEnum_encode (w : List Bool) : wordEnum (Encodable.encode w) = w := by
   simp [wordEnum, Encodable.encodek]
 
 /-- Pad a word with `false` up to length `n`. -/
-def padTo (w : List Bool) (n : ℕ) : List Bool := w ++ List.replicate (n - w.length) false
+def _root_.Tengoku.LeanPool.padTo (w : List Bool) (n : ℕ) : List Bool := w ++ List.replicate (n - w.length) false
 
 private theorem length_padTo {w : List Bool} {n : ℕ} (h : w.length ≤ n) : (padTo w n).length
   = n := by
@@ -109,7 +109,7 @@ private theorem length_padTo {w : List Bool} {n : ℕ} (h : w.length ≤ n) : (p
 private theorem prefix_padTo (w : List Bool) (n : ℕ) : w <+: padTo w n := ⟨_, rfl⟩
 
 /-- A strictly increasing length schedule dominating the word enumeration. -/
-def canonicalLen : ℕ → ℕ
+def _root_.Tengoku.LeanPool.canonicalLen : ℕ → ℕ
   | 0 => (wordEnum 0).length
   | n + 1 => max (wordEnum (n + 1)).length (canonicalLen n + 1)
 
@@ -121,30 +121,31 @@ private theorem le_canonicalLen (n : ℕ) : (wordEnum n).length ≤ canonicalLen
 /--
 @isnad1 id=strictmo.0h0v.s2.d420b66387ed from=translated src=- shape=e3d48bcb vocab=9668f61d
 -/
-theorem canonicalLen_strictMono : StrictMono canonicalLen :=
+theorem _root_.Tengoku.LeanPool.canonicalLen_strictMono : StrictMono canonicalLen :=
   strictMono_nat_of_lt_succ fun _ =>
     lt_of_lt_of_le (Nat.lt_succ_self _) (le_max_right _ _)
 
 /-- The `n`-th canonical word: the `n`-th word of the enumeration, padded to the `n`-th
 length of the schedule. -/
-def canonicalWord (n : ℕ) : List Bool := padTo (wordEnum n) (canonicalLen n)
+def _root_.Tengoku.LeanPool.canonicalWord (n : ℕ) : List Bool := padTo (wordEnum n) (canonicalLen n)
 
 /--
 @isnad1 id=eq.0h1v.s3.a19d1fe76e21 from=translated src=- shape=1e92cebf vocab=e15b90bb
 -/
-theorem length_canonicalWord (n : ℕ) : (canonicalWord n).length = canonicalLen n :=
+theorem _root_.Tengoku.LeanPool.length_canonicalWord (n : ℕ) : (canonicalWord n).length = canonicalLen n :=
   length_padTo (le_canonicalLen n)
 
 /-- The canonical dense and sparse set of finite binary words. -/
-def canonicalS : Set (List Bool) := Set.range canonicalWord
+def _root_.Tengoku.LeanPool.canonicalS : Set (List Bool) := Set.range canonicalWord
 
 /--
 @isnad1 id=densewor.0h0v.s1.219edd50937c from=translated src=- shape=49959d42 vocab=eb7b0611
 -/
-theorem denseWords_canonicalS : DenseWords canonicalS := by
+theorem _root_.Tengoku.LeanPool.denseWords_canonicalS : DenseWords canonicalS := by
   intro r
   refine ⟨canonicalWord (Encodable.encode r), ⟨_, rfl⟩, ?_⟩
   rw [canonicalWord, wordEnum_encode]
   exact prefix_padTo _ _
 
 /-! ### Miller's independence lemma (Prop. 6) -/
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

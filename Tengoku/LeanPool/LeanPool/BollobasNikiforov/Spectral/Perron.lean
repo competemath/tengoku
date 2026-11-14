@@ -15,7 +15,7 @@ Rayleigh quotient, and that maximizer is an eigenvector for `lambdaMax`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace BollobasNikiforov
 
 open Matrix Module.End Metric WithLp
@@ -189,3 +189,4 @@ lemma exists_nonneg_eigenvector_lambdaMax (hB : B.IsHermitian)
   simpa [uE, ofLp_toLpLin, toLin'_apply] using congrArg ofLp hlin
 
 end BollobasNikiforov
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

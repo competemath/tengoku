@@ -28,7 +28,7 @@ All statements in this file are fully proved.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace Chudnovsky
@@ -823,3 +823,4 @@ theorem weierstrassSigma_Lτ (τ : ℍ) (z : ℂ) :
   ring
 
 end Chudnovsky
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

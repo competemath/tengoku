@@ -13,11 +13,11 @@ Polar duals and their compactness properties.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 variable {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]
 
 /-- The unit dual functional in the direction of a nonzero vector `p`. -/
-noncomputable def pointDualLin (p : {p : E // p ≠ 0}) :
+noncomputable def _root_.Tengoku.LeanPool.pointDualLin (p : {p : E // p ≠ 0}) :
   {f : (StrongDual ℝ E) // norm f = 1} :=
   ⟨ (InnerProductSpace.toDual ℝ _ ((norm p.1)⁻¹ • p.1)), (by
   simp only [ne_eq, map_smulₛₗ, map_inv₀, RCLike.conj_to_real]
@@ -28,26 +28,26 @@ noncomputable def pointDualLin (p : {p : E // p ≠ 0}) :
   ) ⟩
 
 /-- Given a nonzero vector `p`, the halfspace `{x | inner p x ≤ 1}`. -/
-noncomputable def pointDual (p : {p : E // p ≠ 0}) : Halfspace E :=
+noncomputable def _root_.Tengoku.LeanPool.pointDual (p : {p : E // p ≠ 0}) : Halfspace E :=
   Halfspace.mk (pointDualLin p) (norm p.1)⁻¹
 
 /--
 @isnad1 id=eq.0h2v.s6.06bb97d25fd4 from=translated src=- shape=46317a2d vocab=2b1756ef
 -/
-lemma pointDual.α (p : {p : E // p ≠ 0}) :
+lemma Tengoku.LeanPool.pointDual.α (p : {p : E // p ≠ 0}) :
   (pointDual p).α = (norm p.1)⁻¹ := by rfl
 
 /--
 @isnad1 id=eq.0h2v.s10.0ae23126edf2 from=translated src=- shape=e9f84d53 vocab=3828076d
 -/
-lemma pointDual.h (p : {p : E // p ≠ 0}) :
+lemma Tengoku.LeanPool.pointDual.h (p : {p : E // p ≠ 0}) :
   (pointDual p) =
     (InnerProductSpace.toDual ℝ _ ((norm p.1)⁻¹ • p.1)) ⁻¹' {x | x ≤ (norm p.1)⁻¹} := by rfl
 
 /--
 @isnad1 id=mem.0h2v.s6.1d869f27e71e from=translated src=- shape=81d8e387 vocab=c8823aef
 -/
-lemma pointDual_origin (p : {p : E // p ≠ 0}) :
+lemma _root_.Tengoku.LeanPool.pointDual_origin (p : {p : E // p ≠ 0}) :
   (0 : E) ∈ (SetLike.coe <| pointDual p) := by
   rw [pointDual.h, map_smulₛₗ, map_inv₀, RCLike.conj_to_real, Set.preimage_ofPred_eq,
     Set.mem_ofPred_eq, map_zero, ← one_div]
@@ -56,7 +56,7 @@ lemma pointDual_origin (p : {p : E // p ≠ 0}) :
 /--
 @isnad1 id=iff.0h3v.s6.d2d94443e828 from=translated src=- shape=0b2ad424 vocab=8dd5e909
 -/
-lemma mem_pointDual (p : {p : E // p ≠ 0}) (x : E) :
+lemma _root_.Tengoku.LeanPool.mem_pointDual (p : {p : E // p ≠ 0}) (x : E) :
   x ∈ (SetLike.coe <| pointDual p) ↔ inner ℝ p.1 x ≤ (1:ℝ) := by
   rw [pointDual.h, Set.mem_preimage, InnerProductSpace.toDual_apply_apply, Set.mem_ofPred,
     inner_smul_left, RCLike.conj_to_real,
@@ -66,18 +66,18 @@ lemma mem_pointDual (p : {p : E // p ≠ 0}) (x : E) :
 /--
 @isnad1 id=iff.0h3v.s7.8af110ee9262 from=translated src=- shape=32d8b346 vocab=cadade67
 -/
-lemma pointDual_comm (p q : {p : E // p ≠ 0}) :
+lemma _root_.Tengoku.LeanPool.pointDual_comm (p q : {p : E // p ≠ 0}) :
   p.1 ∈ (SetLike.coe <| pointDual q) ↔ q.1 ∈ (SetLike.coe <| pointDual p) := by
   rw [mem_pointDual, mem_pointDual, real_inner_comm]
 
 /-- The polar dual of a set `X`: `{v | ∀ x ∈ X, inner x v ≤ 1}`. -/
-noncomputable def polarDual (X : Set E) : Set E :=
+noncomputable def _root_.Tengoku.LeanPool.polarDual (X : Set E) : Set E :=
   ⋂₀ (SetLike.coe '' (pointDual '' (Subtype.val ⁻¹' X)))
 
 /--
 @isnad1 id=isclosed.0h2v.s5.1481c3e13fd6 from=translated src=- shape=1db1c0fa vocab=37b8ebf4
 -/
-lemma polarDual_closed (X : Set E) : IsClosed (polarDual X) := by
+lemma _root_.Tengoku.LeanPool.polarDual_closed (X : Set E) : IsClosed (polarDual X) := by
   apply isClosed_sInter
   intro Hi_s h
   rw [Set.mem_image] at h
@@ -87,7 +87,7 @@ lemma polarDual_closed (X : Set E) : IsClosed (polarDual X) := by
 /--
 @isnad1 id=convex.0h2v.s6.8b7ab2377949 from=translated src=- shape=89f94913 vocab=bafc03de
 -/
-lemma polarDual_convex (X : Set E) : Convex ℝ (polarDual X) := by
+lemma _root_.Tengoku.LeanPool.polarDual_convex (X : Set E) : Convex ℝ (polarDual X) := by
   apply convex_sInter
   intro Hi_s h
   rw [Set.mem_image] at h
@@ -97,7 +97,7 @@ lemma polarDual_convex (X : Set E) : Convex ℝ (polarDual X) := by
 /--
 @isnad1 id=mem.0h2v.s5.8940a97b617f from=translated src=- shape=b6899493 vocab=d6283845
 -/
-lemma polarDual_origin (X : Set E) :
+lemma _root_.Tengoku.LeanPool.polarDual_origin (X : Set E) :
   (0 : E) ∈ polarDual X := by
   intro Hi_s h
   rw [Set.mem_image] at h
@@ -109,7 +109,7 @@ lemma polarDual_origin (X : Set E) :
 /--
 @isnad1 id=iff.0h3v.s6.900450c8e6f4 from=translated src=- shape=0a0a9b60 vocab=783d0f89
 -/
-lemma mem_polarDual {X : Set E} {v : E} :
+lemma _root_.Tengoku.LeanPool.mem_polarDual {X : Set E} {v : E} :
   v ∈ polarDual X ↔ ∀ x ∈ X, inner ℝ x v ≤ (1:ℝ) := by
   unfold polarDual
   rw [Set.mem_sInter]
@@ -135,14 +135,14 @@ lemma mem_polarDual {X : Set E} {v : E} :
 /--
 @isnad1 id=iff.0h3v.s6.e7f84ce7b759 from=translated src=- shape=6760ae0b vocab=783d0f89
 -/
-lemma mem_polarDual' {X : Set E} {v : E} :
+lemma _root_.Tengoku.LeanPool.mem_polarDual' {X : Set E} {v : E} :
   v ∈ polarDual X ↔ ∀ x ∈ X, inner ℝ v x ≤ (1:ℝ) := by
   simp_rw [mem_polarDual, real_inner_comm]
 
 /--
 @isnad1 id=le.1h3v.s5.37aaae37f125 from=translated src=- shape=5fd6b962 vocab=1ab719cf
 -/
-lemma polarDual_comm_half (X Y : Set E) :
+lemma _root_.Tengoku.LeanPool.polarDual_comm_half (X Y : Set E) :
   X ⊆ polarDual Y → Y ⊆ polarDual X := by
   rw [Set.subset_def, Set.subset_def]
   intro h y hy
@@ -156,14 +156,14 @@ lemma polarDual_comm_half (X Y : Set E) :
 /--
 @isnad1 id=iff.0h3v.s5.62d2ade51a2f from=translated src=- shape=9cf366bb vocab=1ab719cf
 -/
-lemma polarDual_comm (X Y : Set E) :
+lemma _root_.Tengoku.LeanPool.polarDual_comm (X Y : Set E) :
   X ⊆ polarDual Y ↔ Y ⊆ polarDual X := by
   constructor <;> exact fun h => polarDual_comm_half _ _ h
 
 /--
 @isnad1 id=eq.3h2v.s7.b82b9a56e1ae from=translated src=- shape=d11572ac vocab=d3a1c974
 -/
-lemma doublePolarDual_self {X : Set E}
+lemma _root_.Tengoku.LeanPool.doublePolarDual_self {X : Set E}
   (hXcl : IsClosed X) (hXcv : Convex ℝ X) (hX0 : 0 ∈ X) :
   polarDual (polarDual X) = X := by
   apply subset_antisymm
@@ -190,20 +190,20 @@ lemma doublePolarDual_self {X : Set E}
 /--
 @isnad1 id=eq.0h1v.s5.cf59a9181c0c from=translated src=- shape=ec884281 vocab=a7fd42b7
 -/
-lemma polarDual_empty : polarDual (∅ : Set E) = Set.univ := by
+lemma _root_.Tengoku.LeanPool.polarDual_empty : polarDual (∅ : Set E) = Set.univ := by
   rw [polarDual, Set.preimage_empty, Set.image_empty, Set.image_empty, Set.sInter_empty]
 
 /--
 @isnad1 id=eq.0h1v.s5.bcc7b5b1dd3a from=translated src=- shape=ea8cb9a2 vocab=6e8c832c
 -/
-lemma polarDual_zero : polarDual ({0} : Set E) = Set.univ := by
+lemma _root_.Tengoku.LeanPool.polarDual_zero : polarDual ({0} : Set E) = Set.univ := by
   rw [polarDual]
   simp_all
 
 /--
 @isnad1 id=iff.1h2v.s6.28b6e564129d from=translated src=- shape=39086839 vocab=2198e757
 -/
-lemma compact_polarDual_iff [FiniteDimensional ℝ E] {X : Set E} (hXcl : IsClosed X) :
+lemma _root_.Tengoku.LeanPool.compact_polarDual_iff [FiniteDimensional ℝ E] {X : Set E} (hXcl : IsClosed X) :
   0 ∈ interior (polarDual X) ↔ IsCompact X := by
   rcases em (X \ {0}).Nonempty with hXnonempty | hXempty
   · constructor <;> rw [Metric.isCompact_iff_isClosed_bounded, isBounded_iff_forall_norm_le]
@@ -269,9 +269,10 @@ lemma compact_polarDual_iff [FiniteDimensional ℝ E] {X : Set E} (hXcl : IsClos
 /--
 @isnad1 id=iscompac.3h2v.s7.83447e5840bd from=translated src=- shape=759c3491 vocab=d1cd2217
 -/
-lemma polarDual_compact_if [FiniteDimensional ℝ E] {X : Set E} (hXcl : IsClosed X)
+lemma _root_.Tengoku.LeanPool.polarDual_compact_if [FiniteDimensional ℝ E] {X : Set E} (hXcl : IsClosed X)
   (hXcv : Convex ℝ X) :
   0 ∈ interior X → IsCompact (polarDual X) := by
   intro h
   rwa [← doublePolarDual_self hXcl hXcv (interior_subset h),
     compact_polarDual_iff (polarDual_closed _)] at h
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

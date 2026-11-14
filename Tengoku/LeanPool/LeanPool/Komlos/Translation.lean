@@ -17,7 +17,7 @@ Adapted for Lean Pool by changing module paths and selecting explicit imports.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Komlos
 
 open Finsupp Finset
@@ -84,3 +84,4 @@ lemma mean_tr [Module ℝ E] (u : E) (P : E →₀ ℝ) :
   simp only [smul_add, Finsupp.sum, Finset.sum_smul, Finset.sum_add_distrib]
 
 end Komlos
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

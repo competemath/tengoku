@@ -63,7 +63,7 @@ facts about the square.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Bornology Filter Metric Set Topology
 open scoped Graph
 
@@ -235,3 +235,4 @@ theorem F_eq_skelHomeo {n : ℕ} {x : Plane} (hx : x ∈ (T.stage n).src.skeleto
 end StageSequence
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -27,7 +27,7 @@ Adapted for Lean Pool from `Timeroot/BS_Lam` at commit
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace BSLambda
 
 open scoped Matrix Matrix.Norms.L2Operator
@@ -188,3 +188,4 @@ theorem lam_eq_of_sensAt_eq {f : Input V → Bool} {k : ℝ} (hk : 0 ≤ k)
       (funext fun x ↦ by simpa [Matrix.mulVec, dotProduct] using hs x)
 
 end BSLambda
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

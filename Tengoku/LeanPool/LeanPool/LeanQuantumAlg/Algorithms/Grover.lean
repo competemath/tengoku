@@ -34,7 +34,7 @@ closed-form rotation core used by those refinements.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace QuantumAlg
 
 open PureState Gate
@@ -225,3 +225,4 @@ theorem GroverSearch.main_success_probability_with_resources
 end
 
 end QuantumAlg
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -15,8 +15,8 @@ Imported Lean Pool material for `LeanPool.QuasiBorelSpaces.Subtype`.
 -/
 
 @[expose] public section
-
-namespace QuasiBorelSpace.Subtype
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+namespace Tengoku.LeanPool.QuasiBorelSpace.Subtype
 
 variable
   {A : Type*} {_ : QuasiBorelSpace A}
@@ -48,11 +48,11 @@ lemma isHom_mk {P : B → Prop}
 lemma isHom_val {P : B → Prop} {f : A → Subtype P} (hf : IsHom f) : IsHom (fun x ↦ (f x).val) := by
   rwa [← isHom_def]
 
-end QuasiBorelSpace.Subtype
+end Tengoku.LeanPool.QuasiBorelSpace.Subtype
 
-namespace OmegaQuasiBorelSpace.Subtype
+namespace Tengoku.LeanPool.OmegaQuasiBorelSpace.Subtype
 
-open QuasiBorelSpace
+open Tengoku.LeanPool.QuasiBorelSpace
 open OmegaCompletePartialOrder
 
 variable
@@ -70,4 +70,5 @@ variable
     · simp only [Chain.isHom_iff, Chain.coe_map, OrderHom.Subtype.val_coe, Function.comp_apply]
       fun_prop
 
-end OmegaQuasiBorelSpace.Subtype
+end Tengoku.LeanPool.OmegaQuasiBorelSpace.Subtype
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

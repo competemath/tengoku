@@ -39,7 +39,7 @@ while `⊔S` is the supremum in the subspace `D`; the retraction identity is `j(
 = ⊔S`.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 attribute [local instance] Domain.ContinuousLattice.specializationPreorder
 
 
@@ -1766,3 +1766,4 @@ theorem proposition_3_14 (_hD : IsContinuousLattice D) :
     fun _ hfix hleast f => Proposition314.fix_unique (hfix f) (fun x hx => hleast f x hx)⟩
 
 end Domain.ContinuousLattice
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

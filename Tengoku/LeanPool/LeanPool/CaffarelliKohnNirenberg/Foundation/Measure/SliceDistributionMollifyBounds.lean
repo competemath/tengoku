@@ -20,7 +20,7 @@ throughout the Caffarelli–Kohn–Nirenberg argument.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Metric
 
 namespace CKN
@@ -119,3 +119,4 @@ theorem support_mollify_subset {d : ℕ} {u : Vec d → ℝ} {ε : ℝ} (hε : 0
 end
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

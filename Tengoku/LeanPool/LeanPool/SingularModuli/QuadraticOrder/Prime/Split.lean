@@ -33,8 +33,8 @@ thesis's "p factors as two distinct primes".
 -/
 
 @[expose] public section
-
-namespace QuadraticOrder
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+namespace Tengoku.LeanPool.QuadraticOrder
 
 variable {d : ℤ} {p : ℕ}
 
@@ -81,4 +81,5 @@ theorem prime_split_iff [Fact p.Prime] (hp2 : p ≠ 2)
       -- `legendreSym p d = -1`, contradicting `h_ne_neg`.
       exact fun hmax => h_ne_neg ((prime_inert_iff hp2 hd).mp hmax)
 
-end QuadraticOrder
+end Tengoku.LeanPool.QuadraticOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

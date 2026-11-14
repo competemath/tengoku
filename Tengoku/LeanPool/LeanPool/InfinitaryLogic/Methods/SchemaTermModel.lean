@@ -31,7 +31,7 @@ that is checkpoint 5b.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open Cardinal
@@ -556,3 +556,4 @@ theorem schema_mem_iff_of_semantic_iff {m : ℕ}
     schemaLift_mem_of_semantic_imp hM u hψ t (fun σ h => (hsem σ h).mpr)⟩
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

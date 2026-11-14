@@ -35,7 +35,7 @@ already available.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory ProbabilityTheory
 open scoped ENNReal
 
@@ -139,3 +139,4 @@ theorem klDiv_compProd_right
             simp [hx]
 
 end ProbabilityTheory
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

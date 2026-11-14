@@ -13,7 +13,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace EulerMetricEnergyEvolution
@@ -119,3 +119,4 @@ theorem regularized_metric_norm_evolution (K : ℝ → H →L[ℝ] H) (e : ℝ �
     _ = _ := by dsimp [E]; field_simp
 
 end EulerMetricEnergyEvolution
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

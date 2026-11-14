@@ -77,7 +77,7 @@ Universal (non-`_On`) form via window-gluing is a deferred follow-on (C5).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Vlasov
 
 open MeasureTheory
@@ -4905,3 +4905,4 @@ theorem weak_isLagrangianVlasovSolutionOn
     hinit hcontIcc h_deriv_Ioo' s hs).aemeasurable
 
 end Vlasov
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

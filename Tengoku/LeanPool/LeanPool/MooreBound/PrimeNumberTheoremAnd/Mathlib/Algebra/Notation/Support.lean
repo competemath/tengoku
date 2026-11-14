@@ -18,7 +18,7 @@ unrelated later developments and LeanArchitect annotations are omitted.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace MooreBound
 
 namespace Function
@@ -42,3 +42,4 @@ theorem support_id' {α : Type*} [Zero α] : support (fun x : α ↦ x) = {0}ᶜ
 end Function
 
 end MooreBound
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

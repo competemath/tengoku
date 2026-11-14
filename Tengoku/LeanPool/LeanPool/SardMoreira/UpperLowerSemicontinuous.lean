@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Filter Function TopologicalSpace
 
 namespace Topology
@@ -84,3 +84,4 @@ theorem LowerSemicontinuousOn.exists_isMinOn' {X α : Type*} [TopologicalSpace X
     ∃ x ∈ s, IsMinOn f s x := by
   rw [← Topology.continuousOn_toUpper_comp_iff] at hf
   exact hs.exists_isMinOn (f := Topology.WithUpper.toUpper ∘ f) hne hf
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

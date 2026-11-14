@@ -22,7 +22,7 @@ of its sensitivity.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPoolSensitivity
 
 /-- The multilinear degree is at most the square of the sensitivity, an
@@ -41,3 +41,4 @@ theorem degree_le_sensitivity_sq {n : ℕ} (f : BoolFun n) :
     exact_mod_cast hsq
 
 end LeanPoolSensitivity
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

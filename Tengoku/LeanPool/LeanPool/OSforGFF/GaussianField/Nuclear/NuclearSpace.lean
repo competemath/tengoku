@@ -40,7 +40,7 @@ DM structure directly from the Hermite basis.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace GaussianField
@@ -495,3 +495,4 @@ theorem _root_.GaussianField.DyninMityaginSpace.toNuclearSpace (E : Type*)
         _ = ∑' m, ‖f m x‖ * c m := hsum_eq
 
 end GaussianField
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

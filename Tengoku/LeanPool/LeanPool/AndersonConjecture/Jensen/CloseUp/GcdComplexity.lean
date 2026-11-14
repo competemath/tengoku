@@ -14,7 +14,7 @@ import Tengoku.Seed.Data.EReal.Operations
 import Tengoku.Seed.RingTheory.Regular.IsSMulRegular
 import Tengoku.Seed.Topology.Algebra.InfiniteSum.Order
 import Tengoku.Seed.Topology.MetricSpace.Bounded
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -274,3 +274,4 @@ lemma gcdComplexity_div_le {R₀ : Subring T}
         ((dvd_iff_normalizedFactors_le_normalizedFactors hfx hx0).mp hdvd_x)
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

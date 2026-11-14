@@ -14,7 +14,7 @@ This file defines and proves basic results on invariant submodules.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Submodule
 
 variable {E R : Type _} [Ring R] [AddCommGroup E] [Module R E]
@@ -230,3 +230,4 @@ theorem centralizer_prod {M : Type _} [AddCommGroup M] [Module ℂ M]
       fun h y z hy hz => ⟨(h y).1 hy, (h z).2 hz⟩⟩
 
 end StarAlgebra
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

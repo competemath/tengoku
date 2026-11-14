@@ -36,7 +36,7 @@ assembly of the relationalization layer over the relational core:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure
@@ -195,3 +195,4 @@ theorem craig_pcSeparation (ψ₁ ψ₂ : L.Sentenceω) (h : Sentenceω.Entails 
     exact hMnot hψ₂
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

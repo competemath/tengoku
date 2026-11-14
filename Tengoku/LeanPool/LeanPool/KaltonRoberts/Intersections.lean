@@ -26,7 +26,7 @@ bounds needed for the mixed-intersection step.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace KaltonRoberts
 
 open Finset BigOperators
@@ -456,3 +456,4 @@ lemma WeightedCollection.mixedInter_avgDeficit_le
   · apply_rules [ mul_pos, pow_pos, WeightedCollection.totalWeight_pos ]
 
 end KaltonRoberts
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

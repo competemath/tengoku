@@ -11,7 +11,7 @@ public import Tengoku
 
 /-! # Basic -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 open scoped LO.Axioms LO.Entailment
 
 
@@ -585,3 +585,4 @@ end «lp_section_3»
 
 end Entailment
 end LO
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

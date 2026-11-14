@@ -7,7 +7,7 @@ Authors: PFR contributors
 module
 
 public import Tengoku.Seed.MeasureTheory.Measure.Map
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -132,3 +132,4 @@ lemma FiniteRange.ae_mem_toFinset {Ω G : Type*} [MeasurableSpace Ω] [Measurabl
     [MeasurableSingletonClass G] (μ : Measure Ω) (X : Ω → G) (hX : AEMeasurable X μ)
     [FiniteRange X] :
     ∀ᵐ x ∂(μ.map X), x ∈ (FiniteRange.toFinset X : Set G) := FiniteRange.null_of_compl μ X hX
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

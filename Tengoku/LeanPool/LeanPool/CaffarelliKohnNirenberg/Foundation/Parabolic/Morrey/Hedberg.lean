@@ -16,7 +16,7 @@ the exponent identities needed by its eventual proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory MeasureTheory.Measure Set Metric
 open scoped ENNReal NNReal Topology
 
@@ -85,3 +85,4 @@ theorem parabolicRieszPotential_split_le {β : ℝ} {f : ParabolicPoint → ℝ}
   exact add_le_add hnear hfar
 
 end CKN.Foundation.Parabolic.Morrey
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

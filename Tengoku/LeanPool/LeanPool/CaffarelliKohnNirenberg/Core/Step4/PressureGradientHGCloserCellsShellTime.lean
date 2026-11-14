@@ -16,7 +16,7 @@ their spatial masses have been integrated in time.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Set Filter
 open scoped ENNReal NNReal Topology BigOperators
 open CKN.Foundation.Parabolic CKN.Foundation.Parabolic.Morrey
@@ -171,3 +171,4 @@ theorem pressure_source_exterior_scale_sum_time_bound
     _ ≤ _ := mul_le_mul_right (pressure_source_dyadic_sum_bound hκ hκhi N) c
 
 end CKN.Core.Step4
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

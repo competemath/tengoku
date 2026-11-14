@@ -13,7 +13,7 @@ import Tengoku.LeanPool.LeanPool.DirectedTopologyLean4.MonotonePath
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-
   This file contains the definition of the directed unit interval.
   The directedness is induced by the preorder it inherits from ℝ.
@@ -82,3 +82,4 @@ lemma directed_path_source_le_target {t₀ t₁ : I} {γ : Path t₀ t₁} (γ_d
   monotone_path_source_le_target γ_dipath
 
 end DirectedUnitInterval
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

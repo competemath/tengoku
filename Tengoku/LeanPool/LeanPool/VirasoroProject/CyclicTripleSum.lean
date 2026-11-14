@@ -42,7 +42,7 @@ Jacobi identity, Lie algebra 2-cocycle condition
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace VirasoroProject
 
 section cyclicTripleSum
@@ -236,3 +236,4 @@ lemma _root_.VirasoroProject.cyclicTripleSumHom_apply
 end cyclicTripleSumBilin
 
 end VirasoroProject -- namespace
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

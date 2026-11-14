@@ -15,8 +15,8 @@ These are the "analytic inputs" for the ideal-counting theorems (Layer 4).
 -/
 
 @[expose] public section
-
-namespace QuadraticOrder
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+namespace Tengoku.LeanPool.QuadraticOrder
 
 open Finset
 
@@ -969,4 +969,5 @@ theorem cardSqrts_eight (u : ZMod 8) (hu : u = 1 ∨ u = 3 ∨ u = 5 ∨ u = 7) 
 
 end TwoPower
 
-end QuadraticOrder
+end Tengoku.LeanPool.QuadraticOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

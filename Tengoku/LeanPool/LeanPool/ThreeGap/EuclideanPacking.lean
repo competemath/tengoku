@@ -34,7 +34,7 @@ Axiom-clean; elementary.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace ThreeGap.EuclideanPacking
 
 open Real InnerProductGeometry
@@ -123,3 +123,4 @@ theorem not_six_separated (o : Orientation ℝ E (Fin 2)) (v : Fin 6 → E) (hv 
   exact hsep i j hne
 
 end ThreeGap.EuclideanPacking
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

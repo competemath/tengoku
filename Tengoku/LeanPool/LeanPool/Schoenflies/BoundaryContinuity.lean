@@ -50,7 +50,7 @@ An earlier version of this docstring listed those as if they were here; they nev
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set Schoenflies
 open scoped Graph
 
@@ -647,3 +647,4 @@ theorem exists_crosscut [G.Finite] (h : IsStageOn G drawing C D) {a b : Plane}
 end IsStageOn
 
 end Graph
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

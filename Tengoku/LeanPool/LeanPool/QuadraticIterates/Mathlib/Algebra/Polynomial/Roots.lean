@@ -15,7 +15,7 @@ polynomials*, Arch. Math. 59 (1992), 239-244; upstreaming candidates for Mathlib
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-- For a polynomial without repeated roots in `E`, a product over the (coerced) `rootSet` equals
 the corresponding multiset product over `aroots`.
 @isnad1 id=eq.1h5v.s7.f2d1c82a5c5c from=translated src=- shape=91474d0f vocab=3e202b67
@@ -27,3 +27,4 @@ lemma Polynomial.prod_rootSet_eq_prod_aroots {K E M : Type*} [Field K] [Field E]
   rw [Finset.prod_set_coe (f := f),
     show (p.rootSet E).toFinset = (p.aroots E).toFinset by ext x; simp [Polynomial.mem_rootSet'],
     Finset.prod_eq_multiset_prod, Multiset.toFinset_val, Multiset.dedup_eq_self.mpr hnodup]
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

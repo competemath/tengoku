@@ -12,7 +12,7 @@ import Tengoku.LeanPool.LeanPool.NavierStokesAndEuler.Euler.Foundations.MetricEn
 /-! Squared metric stability with a viscosity-sized source, including zero energy. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace EulerSquaredMetricStability
@@ -107,3 +107,4 @@ theorem linear_growth_bound (E E' : ℝ → ℝ) (A B T : ℝ) (hA : 0 ≤ A) (h
     (exp_pos _).le (mul_nonneg hB hT))
 
 end EulerSquaredMetricStability
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

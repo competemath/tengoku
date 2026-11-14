@@ -28,7 +28,7 @@ This is the countermodel that contradicts `r₁ ⊨ r₂` in the final interpola
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure BoundedFormulaω
@@ -56,3 +56,4 @@ theorem exists_budgetedPair_model {r₁ r₂ : L[[ℕ]].Sentenceω}
   rwa [Sentenceω.realize_def, BoundedFormulaω.realize_not] at this
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

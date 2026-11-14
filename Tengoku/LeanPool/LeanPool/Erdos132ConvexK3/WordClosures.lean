@@ -24,7 +24,7 @@ and cardinality bounds are conclusions of the theorems below.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.Erdos132ConvexK3
 
 /-- Translate the first center to the origin and rotate the directed center
@@ -2408,3 +2408,4 @@ theorem fullTwoRung_realization_degree_le_six
   · exact (fullTwoRung_low_degree_le_one G hVs).trans (by omega)
 
 end LeanPool.Erdos132ConvexK3
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

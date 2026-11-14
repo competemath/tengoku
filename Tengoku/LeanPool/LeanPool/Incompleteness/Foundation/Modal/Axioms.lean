@@ -11,7 +11,7 @@ public import Tengoku
 
 /-! # Axioms -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 open scoped LO.Dia
 
 
@@ -180,3 +180,4 @@ notation:max "GeachAx(" t ")" => Geach.set t
 end Axioms
 end LO
 -- Tengoku: 14 notation(s) of this module made scoped so they do not change other libraries (generated)
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

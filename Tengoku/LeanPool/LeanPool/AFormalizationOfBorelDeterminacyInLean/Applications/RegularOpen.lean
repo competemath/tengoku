@@ -14,7 +14,7 @@ Auxiliary declarations for the Borel determinacy formalization.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 variable {X : Type*} [tX : TopologicalSpace X] {A B : Set X} {U V : tX.Opens}
 
 namespace TopologicalSpace.Opens
@@ -51,7 +51,7 @@ open TopologicalSpace
 /--
 @isnad1 id=eq.0h2v.s4.68dde5a0d220 from=translated src=- shape=d1e99066 vocab=24bb4ed5
 -/
-lemma interior_closure_interior_closure_eq_interior_closure :
+lemma _root_.Tengoku.LeanPool.interior_closure_interior_closure_eq_interior_closure :
   interior (closure (interior (closure A))) = interior (closure A) :=
   subset_antisymm (interior_mono (isClosed_closure.closure_interior_subset))
     isOpen_interior.subset_interior_closure
@@ -61,3 +61,4 @@ lemma interior_closure_interior_closure_eq_interior_closure :
 lemma IsClosed.interior_isRegular (hA : IsClosed A) : Heyting.IsRegular (Opens.interior A) := by
   rw [Opens.isRegular_iff, ← hA.closure_eq, Opens.coe_interior,
     interior_closure_interior_closure_eq_interior_closure]
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

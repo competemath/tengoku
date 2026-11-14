@@ -27,7 +27,7 @@ into a single space-time statement.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory MeasureTheory.Measure
 
 noncomputable section
@@ -77,3 +77,4 @@ theorem ae_prod_of_ae_ae_snd {α β : Type*} [MeasurableSpace α] [MeasurableSpa
 end CKN
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

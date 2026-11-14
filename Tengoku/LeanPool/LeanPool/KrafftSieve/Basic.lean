@@ -26,7 +26,7 @@ primorial $q(n)$ used throughout the Krafft Sieve formalization.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace KrafftSieve
 
 open scoped BigOperators Real Nat Pointwise
@@ -122,3 +122,4 @@ lemma q_ge_q10_very_large (n : ℕ) (hn : n ≥ 10) : q n ≥ 10^20 := by
 end
 
 end KrafftSieve
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

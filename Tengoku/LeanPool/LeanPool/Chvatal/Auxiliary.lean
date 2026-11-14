@@ -49,7 +49,7 @@ arbitrary ordering of the monomials.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Chvatal
 
 open Finset
@@ -486,3 +486,4 @@ theorem support_fourier_twistedMonomial (S : Finset ι) :
   ext T; simp [Function.mem_support, fourier_twistedMonomial_ne_zero_iff]
 
 end Chvatal
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

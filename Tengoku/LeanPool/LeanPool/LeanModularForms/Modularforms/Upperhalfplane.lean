@@ -11,7 +11,7 @@ public import Tengoku
 /-! # Upperhalfplane -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open UpperHalfPlane TopologicalSpace Set
   Metric Filter Function Complex
 
@@ -20,15 +20,16 @@ open scoped Interval Real NNReal ENNReal Topology BigOperators Nat
 /--
 @isnad1 id=lt.0h2v.s5.8f84d8be154d from=translated src=- shape=ca80d708 vocab=d8120486
 -/
-lemma pnat_div_upper (n : ℕ+) (z : ℍ) : 0 < (-(n : ℂ) / z).im := im_pnat_div_pos (↑n) z
+lemma _root_.Tengoku.LeanPool.pnat_div_upper (n : ℕ+) (z : ℍ) : 0 < (-(n : ℂ) / z).im := im_pnat_div_pos (↑n) z
 
 /--
 @isnad1 id=lt.1h2v.s5.795a0844383b from=translated src=- shape=d3a36a96 vocab=115e51fd
 -/
-lemma pos_nat_div_upper (n : ℤ) (hn : 0 < n) (z : ℍ) : 0 < (-(n : ℂ) / z).im := by
+lemma _root_.Tengoku.LeanPool.pos_nat_div_upper (n : ℤ) (hn : 0 < n) (z : ℍ) : 0 < (-(n : ℂ) / z).im := by
   norm_cast
   rw [div_im, Int.cast_neg, neg_im, intCast_im, neg_zero, zero_mul, zero_div, zero_sub,
     Left.neg_pos_iff, div_neg_iff]
   right
   rw [neg_re, neg_mul, Left.neg_neg_iff, Complex.normSq_pos, ne_eq]
   exact ⟨by apply mul_pos (by simp [hn]) z.2, ne_zero z⟩
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -15,7 +15,7 @@ Imported Lean Pool material for `LeanPool.ErdosTuzaValtr.Etv.AlphaBeta`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 variable {α : Type _} [LinearOrder α] {C : Config α} {S : Finset α} (l : C.Label S)
@@ -23,7 +23,7 @@ variable {α : Type _} [LinearOrder α] {C : Config α} {S : Finset α} (l : C.L
 private theorem mem_imply_nnil {α : Type _} (a : α) {l : List α} (ha : a ∈ l) : l ≠ [] := by
   rintro rfl; simp at ha
 
-namespace Config
+namespace Tengoku.LeanPool.Config
 namespace Label
 
 /-- A candidate alpha-cup ending at `a`: in `S`, strictly sorted, with non-slope edges. -/
@@ -177,9 +177,9 @@ theorem add_alpha {a : α} (ha : a ∈ S) {n : ℕ} {c : List α} (c_in_S : c.In
         omega
 
 end Label
-end Config
+end Tengoku.LeanPool.Config
 
-namespace Config
+namespace Tengoku.LeanPool.Config
 
 variable (C) (S)
 
@@ -274,12 +274,12 @@ theorem cup_length_le_beta {a : α} {c : List α} (c_in_S : c.In S) (c_cup : C.C
       exact ⟨c_in_S, c_cup⟩
   exact List.le_of_mem_argmax c'_beta_cup h_argmax
 
-end Config
+end Tengoku.LeanPool.Config
 
 /--
 @isnad1 id=le.1h5v.s5.ee9a9a46090a from=translated src=- shape=d8e6c17f vocab=9f90ccfa
 -/
-theorem Config.Label.alpha_le_beta {a : α} (ha : a ∈ S) : l.alpha a ≤ C.beta S a := by
+theorem Tengoku.LeanPool.Config.Label.alpha_le_beta {a : α} (ha : a ∈ S) : l.alpha a ≤ C.beta S a := by
   rcases l.alphaCup ha with ⟨c, c_length, c_in, c_sorted, c_chain, c_last⟩
   have c_cup := l.alphaCup_is_cup _ c_in c_sorted c_chain
   have ineq := C.cup_length_le_beta S c_in c_cup c_last
@@ -290,7 +290,7 @@ variable {l}
 /--
 @isnad1 id=lt.4h6v.s6.877723a953a3 from=translated src=- shape=3198e04f vocab=1ce093b1
 -/
-theorem slope_ff_inc_alpha {a b : α} (sab : ¬l.Slope a b) (ha : a ∈ S) (hb : b ∈ S)
+theorem _root_.Tengoku.LeanPool.slope_ff_inc_alpha {a b : α} (sab : ¬l.Slope a b) (ha : a ∈ S) (hb : b ∈ S)
     (a_le_b : a < b) : l.alpha a < l.alpha b :=
   by
   rcases l.alphaCup ha with ⟨c, c_length, c_in, c_sorted, c_chain, c_last⟩
@@ -310,7 +310,7 @@ theorem slope_ff_inc_alpha {a b : α} (sab : ¬l.Slope a b) (ha : a ∈ S) (hb :
 /--
 @isnad1 id=lt.4h6v.s6.b20156f6ca3b from=translated src=- shape=62840414 vocab=42d27084
 -/
-theorem slope_tt_inc_beta {a b : α} (sab : l.Slope a b) (ha : a ∈ S) (hb : b ∈ S) (a_le_b : a < b) :
+theorem _root_.Tengoku.LeanPool.slope_tt_inc_beta {a b : α} (sab : l.Slope a b) (ha : a ∈ S) (hb : b ∈ S) (a_le_b : a < b) :
     C.beta S a < C.beta S b := by
   rcases C.betaCup S ha with ⟨c, c_in, ⟨c_cup, c_length⟩, c_last⟩
   rcases List.takeLast' c_last with ⟨c', c_eq⟩
@@ -330,7 +330,7 @@ variable (C)
 /--
 @isnad1 id=iff.3h6v.s6.266e68ea1a17 from=translated src=- shape=b6e01a56 vocab=cc4f4907
 -/
-theorem Config.alpha_eq_beta_inc {a b : α} (ha : a ∈ S) (hb : b ∈ S) (h : l.alpha a = l.alpha b) :
+theorem Tengoku.LeanPool.Config.alpha_eq_beta_inc {a b : α} (ha : a ∈ S) (hb : b ∈ S) (h : l.alpha a = l.alpha b) :
     a < b ↔ C.beta S a < C.beta S b := by
   constructor
   · intro hab
@@ -354,7 +354,7 @@ variable {C} (l)
 /--
 @isnad1 id=iff.3h6v.s6.4199643dcb41 from=translated src=- shape=936b3f98 vocab=cc4f4907
 -/
-theorem Config.Label.beta_eq_alpha_inc {a b : α} (ha : a ∈ S) (hb : b ∈ S)
+theorem Tengoku.LeanPool.Config.Label.beta_eq_alpha_inc {a b : α} (ha : a ∈ S) (hb : b ∈ S)
     (h : C.beta S a = C.beta S b) : a < b ↔ l.alpha a < l.alpha b := by
   constructor
   · intro hab
@@ -372,3 +372,4 @@ theorem Config.Label.beta_eq_alpha_inc {a b : α} (ha : a ∈ S) (hb : b ∈ S)
         simp_all
       · have h' := slope_ff_inc_alpha hl hb ha b_lt_a
         exact absurd (lt_trans h' hab) (lt_irrefl _)
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -42,7 +42,7 @@ nonzero decides the promise problem exactly.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace QuantumAlg
 
 open PureState Gate WalshHadamard
@@ -321,3 +321,4 @@ end DeutschJozsa
 end
 
 end QuantumAlg
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

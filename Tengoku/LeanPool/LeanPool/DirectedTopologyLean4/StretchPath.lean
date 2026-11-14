@@ -15,7 +15,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-
   This file contains definitions about stretching a (directed) path in `I` in two ways:
     If its image is contained in `[0, 1/2]`, it can be stretched upwards
@@ -27,7 +27,7 @@ public import Tengoku
 open unitIAux
 open scoped unitInterval
 
-namespace Dipath
+namespace Tengoku.LeanPool.Dipath
 
 /-### Stretching a path that only lives in the first half of the unit interval upwards -/
 
@@ -103,4 +103,5 @@ def stretchDown {t₀ t₁ : I} (γ : Dipath t₀ t₁) (ht₀ : (2⁻¹ : ℝ) 
     toPath := stretchDownPath γ ht₀
     dipath_toPath := isDipath_stretch_down γ ht₀
 
-end Dipath
+end Tengoku.LeanPool.Dipath
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

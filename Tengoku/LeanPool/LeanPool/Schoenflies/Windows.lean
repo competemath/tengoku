@@ -79,7 +79,7 @@ subset of the plane supplies a `b` as close to `x` as asked, inside `D`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter Metric Set
 
 namespace Schoenflies
@@ -341,3 +341,4 @@ theorem exists_mem_rat_supDist_lt {B : Set Plane} (hB : Dense B) (hU : IsOpen U)
   exact lt_of_lt_of_le (mem_ball.1 hbmem) (min_le_right _ _)
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

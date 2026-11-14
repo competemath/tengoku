@@ -15,56 +15,56 @@ complete lattices, in particular closure under bounded infima and suprema.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Function OrderDual Set
 
 variable {α β : Type*} [ConditionallyCompleteLattice α] [ConditionallyCompleteLattice β]
 
 /-- The `sInfClosed` declaration. -/
-def sInfClosed (S : Set α) := ∀ s ⊆ S, s.Nonempty → BddBelow s → sInf s ∈ S
+def _root_.Tengoku.LeanPool.sInfClosed (S : Set α) := ∀ s ⊆ S, s.Nonempty → BddBelow s → sInf s ∈ S
 /-- The `sSupClosed` declaration. -/
-def sSupClosed (S : Set α) := ∀ s ⊆ S, s.Nonempty → BddAbove s → sSup s ∈ S
+def _root_.Tengoku.LeanPool.sSupClosed (S : Set α) := ∀ s ⊆ S, s.Nonempty → BddAbove s → sSup s ∈ S
 
 /--
 @isnad1 id=sinfclos.0h1v.s4.293a2e971e39 from=translated src=- shape=b8471119 vocab=4d704ca2
 -/
-lemma sInfClosed_top : sInfClosed (⊤ : Set α) := by simp [sInfClosed]
+lemma _root_.Tengoku.LeanPool.sInfClosed_top : sInfClosed (⊤ : Set α) := by simp [sInfClosed]
 /--
 @isnad1 id=sinfclos.0h2v.s4.25e6d5eb297c from=translated src=- shape=101348a6 vocab=23add86d
 -/
-lemma sInfClosed_Ici (x : α) : sInfClosed (Ici x) := fun _ hsub hne _ => le_csInf hne hsub
+lemma _root_.Tengoku.LeanPool.sInfClosed_Ici (x : α) : sInfClosed (Ici x) := fun _ hsub hne _ => le_csInf hne hsub
 /--
 @isnad1 id=sinfclos.0h1v.s4.416a7824fd52 from=translated src=- shape=b8471119 vocab=e3b5e16d
 -/
-lemma sInfClosed_bot : sInfClosed (⊥ : Set α) := by simp [sInfClosed]
+lemma _root_.Tengoku.LeanPool.sInfClosed_bot : sInfClosed (⊥ : Set α) := by simp [sInfClosed]
 /--
 @isnad1 id=ssupclos.0h1v.s4.423a911e932a from=translated src=- shape=b8471119 vocab=7fa25db2
 -/
-lemma sSupClosed_top : sSupClosed (⊤ : Set α) := by simp [sSupClosed]
+lemma _root_.Tengoku.LeanPool.sSupClosed_top : sSupClosed (⊤ : Set α) := by simp [sSupClosed]
 /--
 @isnad1 id=ssupclos.0h2v.s4.72f039487ee2 from=translated src=- shape=101348a6 vocab=d526e880
 -/
-lemma sSupClosed_Iic (x : α) : sSupClosed (Iic x) := fun _ hsub hne _ => csSup_le hne hsub
+lemma _root_.Tengoku.LeanPool.sSupClosed_Iic (x : α) : sSupClosed (Iic x) := fun _ hsub hne _ => csSup_le hne hsub
 /--
 @isnad1 id=ssupclos.0h1v.s4.d7d6be7728a8 from=translated src=- shape=b8471119 vocab=d7508137
 -/
-lemma sSupClosed_bot : sSupClosed (⊥ : Set α) := by simp [sSupClosed]
+lemma _root_.Tengoku.LeanPool.sSupClosed_bot : sSupClosed (⊥ : Set α) := by simp [sSupClosed]
 
 /-- The `ContinuousOrderMap` type. -/
-class ContinuousOrderMap (f : α → β) where
+class _root_.Tengoku.LeanPool.ContinuousOrderMap (f : α → β) where
   monotone : Monotone f
   preimage_Ici_closed : ∀ x, sInfClosed (f ⁻¹' (Ici x))
   preimage_Iic_closed : ∀ x, sSupClosed (f ⁻¹' (Iic x))
 
 /-- The `ContinuousOrderMapBounded` type. -/
-class ContinuousOrderMapBounded (f : α → β) extends ContinuousOrderMap f where
+class _root_.Tengoku.LeanPool.ContinuousOrderMapBounded (f : α → β) extends ContinuousOrderMap f where
   bounded_preimage_Ici : ∀ y, BddBelow (f ⁻¹' (Ici y))
   bounded_preimage_Iic : ∀ y, BddAbove (f ⁻¹' (Iic y))
 
-namespace ContinuousOrderMap
+namespace Tengoku.LeanPool.ContinuousOrderMap
 
 variable (f : α → β) [ContinuousOrderMap f]
-open ContinuousOrderMap
+open Tengoku.LeanPool.ContinuousOrderMap
 
 instance : ContinuousOrderMap (toDual ∘ f ∘ ofDual) where
   monotone := monotone.dual
@@ -117,12 +117,12 @@ lemma map_iInf (hbdd : BddBelow (range g)) : f (⨅ i, g i) = ⨅ i, f (g i) := 
 lemma map_iSup (hbdd : BddAbove (range g)) : f (⨆ i, g i) = ⨆ i, f (g i) :=
   map_iInf (toDual ∘ f ∘ ofDual) hbdd
 
-end ContinuousOrderMap
+end Tengoku.LeanPool.ContinuousOrderMap
 
-namespace ContinuousOrderMapBounded
+namespace Tengoku.LeanPool.ContinuousOrderMapBounded
 
 variable (f : α → β) {s : Set α}
-open ContinuousOrderMapBounded ContinuousOrderMap
+open Tengoku.LeanPool.ContinuousOrderMapBounded Tengoku.LeanPool.ContinuousOrderMap
 
 variable [ContinuousOrderMapBounded f]
 
@@ -152,4 +152,5 @@ lemma bddBelow_iff : BddBelow (f '' s) ↔ BddBelow s := by
 -/
 lemma bddAbove_iff : BddAbove (f '' s) ↔ BddAbove s := bddBelow_iff (toDual ∘ f ∘ ofDual)
 
-end ContinuousOrderMapBounded
+end Tengoku.LeanPool.ContinuousOrderMapBounded
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

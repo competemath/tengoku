@@ -88,7 +88,7 @@ note), then the Henkin construction/model-existence adapter decision.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u
 
 namespace FirstOrder.Language
@@ -1300,3 +1300,4 @@ theorem MarkerConsistentFamily.mono {X X' : Set (FSentence (L'' := L'') (J := J)
 end FiniteClosure
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

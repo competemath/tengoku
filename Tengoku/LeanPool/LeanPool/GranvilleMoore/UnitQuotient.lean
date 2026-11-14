@@ -48,7 +48,7 @@ avoids truncated subtraction in the exponents that appear in the paper's proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Finset
 
 namespace GranvilleMoore
@@ -256,3 +256,4 @@ theorem dvd_unitQuot_sub_fermatQuotient {p : ℕ} (hp : p.Prime) (hodd : Odd p) 
   exact hg₀
 
 end GranvilleMoore
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

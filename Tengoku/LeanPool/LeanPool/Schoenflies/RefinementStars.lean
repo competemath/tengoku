@@ -82,7 +82,7 @@ lemma serves both.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Metric Bornology
 open scoped Graph
 
@@ -788,3 +788,4 @@ read in the target realization while the carrier is read in the source one. -/
 end CellStructure
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

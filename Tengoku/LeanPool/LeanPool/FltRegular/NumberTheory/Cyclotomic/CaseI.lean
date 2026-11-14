@@ -21,7 +21,7 @@ This file establishes the complex-conjugation congruence used in the first case 
 Theorem for regular primes.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace Tengoku.FltRegular end Tengoku.FltRegular open Tengoku.FltRegular 
 open scoped NumberField nonZeroDivisors
 
@@ -103,3 +103,4 @@ theorem exists_int_sum_eq_zero (x y i : ℤ) {u : (𝓞 K)ˣ} {α : 𝓞 K}
 
 end FltRegular.CaseI
 -- Tengoku: opens Tengoku.FltRegular: its root names moved there, and this module uses them (generated)
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

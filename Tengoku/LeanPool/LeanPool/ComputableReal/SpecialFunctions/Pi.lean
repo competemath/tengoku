@@ -19,10 +19,10 @@ bounds `piLb`/`piUb` are `noncomputable` Lean terms.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped QInterval
 
-namespace ComputableℝSeq
+namespace Tengoku.LeanPool.ComputableℝSeq
 
 section Pi
 
@@ -484,12 +484,13 @@ noncomputable def Pi : ComputableℝSeq :=
 
 end Pi
 
-end ComputableℝSeq
+end Tengoku.LeanPool.ComputableℝSeq
 
-namespace IsComputable
+namespace Tengoku.LeanPool.IsComputable
 
 noncomputable instance instComputablePi : IsComputable (Real.pi) where
   seq := ComputableℝSeq.Pi
   prop := ComputableℝSeq.mk_val_eq_val
 
-end IsComputable
+end Tengoku.LeanPool.IsComputable
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

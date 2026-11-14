@@ -1,5 +1,5 @@
 import Tengoku.NavierStokesEuler.Euler.GevreyMetricEstimate
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace EulerGevreyGrowthCoefficient
 end EulerGevreyGrowthCoefficient
 namespace EulerLiftedGradientSpace
@@ -104,3 +104,4 @@ theorem absorb_scalar_coefficients (g0 g1 f0 f1 f2 d r X Y B R C : ℝ)
   nlinarith only [h0,h1,h2,h3]
 
 end EulerGevreyGrowthCoefficient
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

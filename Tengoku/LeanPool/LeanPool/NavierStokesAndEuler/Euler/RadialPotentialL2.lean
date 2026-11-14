@@ -19,7 +19,7 @@ and finite energy are needed; no derivative integrability is assumed.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open Set MeasureTheory Filter
@@ -136,3 +136,4 @@ theorem radial_average_memLp_and_energy (u : Space → Space) (hu : Continuous u
   exact (integral_mono hint hact hb).trans_eq henergy
 
 end Euler.ComparatorBridge
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

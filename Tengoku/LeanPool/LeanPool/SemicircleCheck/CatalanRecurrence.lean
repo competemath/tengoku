@@ -31,7 +31,7 @@ import Tengoku.LeanPool.LeanPool.SemicircleCheck.RotationArithmetic
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Equiv Equiv.Perm Fintype
 
 /-! ## 1. The Translation Dictionaries -/
@@ -69,7 +69,7 @@ The bridge connects them, using several helper lemmas:
 
 /-- A pairing has a crossing if two arcs interleave on the interval:
     ∃ a < b < p(a) < p(b). -/
-def Pairing.HasCrossing {n : ℕ} (p : Pairing n) : Prop :=
+def Tengoku.LeanPool.Pairing.HasCrossing {n : ℕ} (p : Pairing n) : Prop :=
   ∃ a b : Fin (2 * n),
     a.val < b.val ∧ b.val < (p.val a).val ∧ (p.val a).val < (p.val b).val
 
@@ -692,7 +692,7 @@ private lemma deleteAdjacent_crossing_projects {n : ℕ} (p : Pairing (n + 1))
     the contracted pairing, contradicting the induction hypothesis.
 @isnad1 id=not.1h2v.s3.1c0595b39992 from=translated src=- shape=0467682d vocab=221dadc7
 -/
-theorem IsNoncrossing_imp_no_crossing {n : ℕ} (p : Pairing n)
+theorem _root_.Tengoku.LeanPool.IsNoncrossing_imp_no_crossing {n : ℕ} (p : Pairing n)
     (h : p.IsNoncrossing) : ¬p.HasCrossing := by
   induction n with
   | zero => intro ⟨a, _, _, _, _⟩; exact Fin.elim0 a
@@ -708,7 +708,7 @@ theorem IsNoncrossing_imp_no_crossing {n : ℕ} (p : Pairing n)
     a crossing in the contracted pairing lifts to one in the original).
 @isnad1 id=isnoncro.1h2v.s3.5a8a1b714565 from=translated src=- shape=e776bb1b vocab=221dadc7
 -/
-theorem no_crossing_imp_IsNoncrossing {n : ℕ} (p : Pairing n)
+theorem _root_.Tengoku.LeanPool.no_crossing_imp_IsNoncrossing {n : ℕ} (p : Pairing n)
     (h : ¬p.HasCrossing) : p.IsNoncrossing := by
   induction n with
   | zero => exact trivial
@@ -730,7 +730,7 @@ even-cardinality lemma for fixed-point-free involutions. -/
     (otherwise 0 < x < p(0) < p(x) is a crossing).
 @isnad1 id=and.3h3v.s9.3b0121a98cd5 from=translated src=- shape=00b5e838 vocab=56ae0134
 -/
-lemma shadow_closed_of_no_crossing {n : ℕ} (p : Pairing n)
+lemma _root_.Tengoku.LeanPool.shadow_closed_of_no_crossing {n : ℕ} (p : Pairing n)
     (h_nc : ¬p.HasCrossing) (x : Fin (2 * n))
     (hx_pos : 0 < x.val) (hx_shadow : x.val < (p.val ⟨0, by omega⟩).val) :
     0 < (p.val x).val ∧ (p.val x).val < (p.val ⟨0, by omega⟩).val := by
@@ -760,7 +760,7 @@ lemma shadow_closed_of_no_crossing {n : ℕ} (p : Pairing n)
 /-- Shadow closure from the recursive noncrossing definition, via the bridge.
 @isnad1 id=and.3h3v.s9.c124a95b917e from=translated src=- shape=03a792f2 vocab=6981aa16
 -/
-lemma noncrossing_mapsTo_shadow {n : ℕ} {p : Pairing n}
+lemma _root_.Tengoku.LeanPool.noncrossing_mapsTo_shadow {n : ℕ} {p : Pairing n}
     (h_nc : p.IsNoncrossing) (x : Fin (2 * n))
     (hx_low : 0 < x.val) (hx_high : x.val < (p.val ⟨0, by omega⟩).val) :
     0 < (p.val x).val ∧ (p.val x).val < (p.val ⟨0, by omega⟩).val :=
@@ -774,7 +774,7 @@ lemma noncrossing_mapsTo_shadow {n : ℕ} {p : Pairing n}
     involution, S must have even cardinality. Parity contradiction.
 @isnad1 id=odd.1h2v.s8.f55830a7f845 from=translated src=- shape=2208beb7 vocab=216ebfaa
 -/
-theorem noncrossing_zero_target_odd {n : ℕ} (p : Pairing (n + 1))
+theorem _root_.Tengoku.LeanPool.noncrossing_zero_target_odd {n : ℕ} (p : Pairing (n + 1))
     (h_nc : p.IsNoncrossing) :
     Odd (p.val ⟨0, by omega⟩).val := by
   -- Anchor zero and extract target
@@ -840,14 +840,14 @@ The full bijection NoncrossingPairing(n+1) ≃ Σ k, NCP(k) × NCP(n-k)
 that yields the Catalan recurrence when we take cardinalities. -/
 
 /-- Noncrossing pairings: the subtype of pairings that are noncrossing. -/
-def NoncrossingPairing (n : ℕ) :=
+def _root_.Tengoku.LeanPool.NoncrossingPairing (n : ℕ) :=
   { p : Pairing n // p.IsNoncrossing }
 
 /-! ### Helper: extracting k from p(0) = 2k+1 -/
 
 /-- For a noncrossing pairing p on 2(n+1) points, p(0) = 2k+1 for some k < n+1.
     Returns k as a Fin (n+1). -/
-noncomputable def extractK {n : ℕ} (p : Pairing (n + 1)) (h_nc : p.IsNoncrossing) :
+noncomputable def _root_.Tengoku.LeanPool.extractK {n : ℕ} (p : Pairing (n + 1)) (h_nc : p.IsNoncrossing) :
     Fin (n + 1) :=
   let t := (p.val ⟨0, by omega⟩).val
   have hodd := noncrossing_zero_target_odd p h_nc
@@ -857,7 +857,7 @@ noncomputable def extractK {n : ℕ} (p : Pairing (n + 1)) (h_nc : p.IsNoncrossi
 /-- The target of 0 equals 2 * extractK + 1.
 @isnad1 id=eq.1h2v.s8.8172f9ab86ec from=translated src=- shape=3e481c81 vocab=cbb14e07
 -/
-lemma extractK_spec {n : ℕ} (p : Pairing (n + 1)) (h_nc : p.IsNoncrossing) :
+lemma _root_.Tengoku.LeanPool.extractK_spec {n : ℕ} (p : Pairing (n + 1)) (h_nc : p.IsNoncrossing) :
     (p.val ⟨0, by omega⟩).val = 2 * (extractK p h_nc).val + 1 := by
   unfold extractK
   simp only
@@ -868,7 +868,7 @@ lemma extractK_spec {n : ℕ} (p : Pairing (n + 1)) (h_nc : p.IsNoncrossing) :
 /-- extractK gives a value ≤ n (so k ≤ n).
 @isnad1 id=le.1h2v.s5.0f0d93edac1e from=translated src=- shape=42546738 vocab=ad2bf145
 -/
-lemma extractK_le {n : ℕ} (p : Pairing (n + 1)) (h_nc : p.IsNoncrossing) :
+lemma _root_.Tengoku.LeanPool.extractK_le {n : ℕ} (p : Pairing (n + 1)) (h_nc : p.IsNoncrossing) :
     (extractK p h_nc).val ≤ n := by
   have := (extractK p h_nc).isLt; omega
 
@@ -882,7 +882,7 @@ lemma extractK_le {n : ℕ} (p : Pairing (n + 1)) (h_nc : p.IsNoncrossing) :
     shadow (shadow closure would force x into the shadow). So p(x) > 2k+1.
 @isnad1 id=lt.2h3v.s9.e427857bd8e2 from=translated src=- shape=ab0c536f vocab=2129bcb4
 -/
-lemma outside_closed_of_noncrossing {n : ℕ} (p : Pairing (n + 1))
+lemma _root_.Tengoku.LeanPool.outside_closed_of_noncrossing {n : ℕ} (p : Pairing (n + 1))
     (h_nc : p.IsNoncrossing) (x : Fin (2 * (n + 1)))
     (hx : 2 * (extractK p h_nc).val + 1 < x.val) :
     2 * (extractK p h_nc).val + 1 < (p.val x).val := by
@@ -944,7 +944,7 @@ private lemma inside_closed {n : ℕ} (p : Pairing (n + 1)) (h_nc : p.IsNoncross
 
 /-- The restricted permutation on the inside interval Fin(2k).
     Maps j to p(j+1) - 1. The involution of p provides the inverse. -/
-noncomputable def restrictInsidePerm {n : ℕ} (p : Pairing (n + 1))
+noncomputable def _root_.Tengoku.LeanPool.restrictInsidePerm {n : ℕ} (p : Pairing (n + 1))
     (h_nc : p.IsNoncrossing) : Perm (Fin (2 * (extractK p h_nc).val)) where
   toFun j :=
     let bounds := private_decl% (inside_closed p h_nc j)
@@ -1078,7 +1078,7 @@ private lemma restrictInsidePerm_isNoncrossing {n : ℕ} (p : Pairing (n + 1))
 
 /-- The inside noncrossing pairing extracted from a noncrossing pairing p
     on 2(n+1) points with p(0) = 2k+1. -/
-noncomputable def insidePairing {n : ℕ} (p : Pairing (n + 1))
+noncomputable def _root_.Tengoku.LeanPool.insidePairing {n : ℕ} (p : Pairing (n + 1))
     (h_nc : p.IsNoncrossing) : NoncrossingPairing (extractK p h_nc).val :=
   ⟨⟨restrictInsidePerm p h_nc, (private_decl% (restrictInsidePerm_isPairing p h_nc))⟩,
    (private_decl% (restrictInsidePerm_isNoncrossing p h_nc))⟩
@@ -1097,7 +1097,7 @@ private lemma outside_closed {n : ℕ} (p : Pairing (n + 1)) (h_nc : p.IsNoncros
 
 /-- The restricted permutation on the outside interval Fin(2(n-k)).
     Maps j to p(j + 2k + 2) - (2k + 2). -/
-noncomputable def restrictOutsidePerm {n : ℕ} (p : Pairing (n + 1))
+noncomputable def _root_.Tengoku.LeanPool.restrictOutsidePerm {n : ℕ} (p : Pairing (n + 1))
     (h_nc : p.IsNoncrossing) : Perm (Fin (2 * (n - (extractK p h_nc).val))) where
   toFun j :=
     let bound := private_decl% (outside_closed p h_nc j)
@@ -1542,7 +1542,7 @@ private lemma restrictOutsidePerm_isNoncrossing {n : ℕ} (p : Pairing (n + 1))
 
 /-- The outside noncrossing pairing extracted from a noncrossing pairing p
     on 2(n+1) points with p(0) = 2k+1. -/
-noncomputable def outsidePairing {n : ℕ} (p : Pairing (n + 1))
+noncomputable def _root_.Tengoku.LeanPool.outsidePairing {n : ℕ} (p : Pairing (n + 1))
     (h_nc : p.IsNoncrossing) :
     NoncrossingPairing (n - (extractK p h_nc).val) :=
   ⟨⟨restrictOutsidePerm p h_nc, (private_decl% (restrictOutsidePerm_isPairing p h_nc))⟩,
@@ -1556,7 +1556,7 @@ assemble a noncrossing pairing on 2(n+1) points. -/
 /-- The assembly function: given k, p_in on Fin(2k), p_out on Fin(2(n-k)),
     build the permutation on Fin(2(n+1)) that sends 0↔2k+1 and
     translates p_in to the inside interval and p_out to the outside. -/
-noncomputable def assembleF (n : ℕ) (k : Fin (n + 1))
+noncomputable def _root_.Tengoku.LeanPool.assembleF (n : ℕ) (k : Fin (n + 1))
     (p_in : Perm (Fin (2 * k.val))) (p_out : Perm (Fin (2 * (n - k.val)))) :
     Fin (2 * (n + 1)) → Fin (2 * (n + 1)) := fun x =>
   if hx0 : x.val = 0 then
@@ -1658,7 +1658,7 @@ private lemma assembleF_involutive (n : ℕ) (k : Fin (n + 1))
           exact hinv_out_val ⟨x.val - (2 * k.val + 2), hxoff_lt⟩
         omega
 /-- Build the assembled Perm from the involutive function. -/
-noncomputable def assemblePerm (n : ℕ) (k : Fin (n + 1))
+noncomputable def _root_.Tengoku.LeanPool.assemblePerm (n : ℕ) (k : Fin (n + 1))
     (p_in : Perm (Fin (2 * k.val))) (p_out : Perm (Fin (2 * (n - k.val))))
     (hinv_in : ∀ x, p_in (p_in x) = x) (hinv_out : ∀ x, p_out (p_out x) = x) :
     Perm (Fin (2 * (n + 1))) :=
@@ -1819,7 +1819,7 @@ private lemma assemblePerm_isNoncrossing (n : ℕ) (k : Fin (n + 1))
 
 /-- The inverse of catalanDecompose: assemble a noncrossing pairing from
     k and independent inside/outside pairings. -/
-noncomputable def catalanAssemble (n : ℕ)
+noncomputable def _root_.Tengoku.LeanPool.catalanAssemble (n : ℕ)
     (x : Σ (k : Fin (n + 1)), NoncrossingPairing k.val × NoncrossingPairing (n - k.val)) :
     NoncrossingPairing (n + 1) :=
   let k := x.1
@@ -1931,7 +1931,7 @@ private lemma extractK_of_assemble (n : ℕ) (k : Fin (n + 1))
 /-- The Catalan decomposition (forward direction): a noncrossing pairing
     on 2(n+1) points decomposes into k and independent noncrossing
     pairings on the inside and outside intervals. -/
-noncomputable def catalanDecompose (n : ℕ) (p : NoncrossingPairing (n + 1)) :
+noncomputable def _root_.Tengoku.LeanPool.catalanDecompose (n : ℕ) (p : NoncrossingPairing (n + 1)) :
     Σ (k : Fin (n + 1)), NoncrossingPairing k.val × NoncrossingPairing (n - k.val) :=
   let k := extractK p.val p.property
   ⟨k, insidePairing p.val p.property, outsidePairing p.val p.property⟩
@@ -2029,7 +2029,7 @@ private lemma catalanEquiv_right_inv (n : ℕ)
 /-- The Catalan decomposition: a noncrossing pairing on 2(n+1) points
     decomposes into a choice of chord target k and independent
     noncrossing pairings on the inside and outside intervals. -/
-noncomputable def catalanEquiv (n : ℕ) :
+noncomputable def _root_.Tengoku.LeanPool.catalanEquiv (n : ℕ) :
     NoncrossingPairing (n + 1) ≃
     Σ (k : Fin (n + 1)), NoncrossingPairing k.val × NoncrossingPairing (n - k.val) where
   toFun p := catalanDecompose n p
@@ -2053,16 +2053,16 @@ and the finitary cardinality machinery. The import direction
 (CatalanRecurrence imports GenusNoncrossing) makes this the only valid home. -/
 
 /-- IsNoncrossing is decidable (via the genus characterization). -/
-instance instDecidableIsNoncrossing {n : ℕ} (p : Pairing n) : Decidable p.IsNoncrossing :=
+instance _root_.Tengoku.LeanPool.instDecidableIsNoncrossing {n : ℕ} (p : Pairing n) : Decidable p.IsNoncrossing :=
   decidable_of_iff (p.genus = 0) p.genus_zero_iff_noncrossing
 
-instance instFintypeNoncrossingPairing {n : ℕ} : Fintype (NoncrossingPairing n) :=
+instance _root_.Tengoku.LeanPool.instFintypeNoncrossingPairing {n : ℕ} : Fintype (NoncrossingPairing n) :=
   Subtype.fintype _
 
 /-- The number of noncrossing pairings on 2n points equals the nth Catalan number.
 @isnad1 id=eq.0h1v.s3.0ff8f29f3305 from=translated src=- shape=c52356c6 vocab=82aa9a77
 -/
-theorem card_noncrossingPairing_eq_catalan (n : ℕ) :
+theorem _root_.Tengoku.LeanPool.card_noncrossingPairing_eq_catalan (n : ℕ) :
     Fintype.card (NoncrossingPairing n) = catalan n := by
   induction n using Nat.strongRecOn with
   | _ n ih =>
@@ -2092,9 +2092,10 @@ theorem card_noncrossingPairing_eq_catalan (n : ℕ) :
 /-- **Corollary**: the number of genus-zero pairings equals Cₙ.
 @isnad1 id=eq.0h1v.s5.225499c155f6 from=translated src=- shape=b15f01a9 vocab=d56cf0d4
 -/
-theorem Pairing.genus_zero_count {n : ℕ} :
+theorem Tengoku.LeanPool.Pairing.genus_zero_count {n : ℕ} :
     Fintype.card { p : Pairing n // p.genus = 0 } = catalan n := by
   rw [show Fintype.card { p : Pairing n // p.genus = 0 } =
     Fintype.card (NoncrossingPairing n)
     from Fintype.card_congr (Equiv.subtypeEquivRight (fun p => p.genus_zero_iff_noncrossing))]
   exact card_noncrossingPairing_eq_catalan n
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

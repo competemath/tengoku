@@ -35,7 +35,7 @@ Everything is constructive (`[propext, Quot.sound]`).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 namespace NeighborhoodSystem
@@ -120,3 +120,4 @@ theorem iUnion_le (x : ℕ → V.Element) (hmono : Monotone x) (y : V.Element)
 end NeighborhoodSystem
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

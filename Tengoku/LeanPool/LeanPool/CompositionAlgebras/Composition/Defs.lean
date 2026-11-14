@@ -54,13 +54,13 @@ Substrate for the two Hurwitz theorems. It states neither of them.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u
 
 /-- A **Euclidean composition algebra**: a unital, `ℝ`-bilinear, not necessarily associative
 product together with a symmetric positive-definite bilinear form whose quadratic form is
 multiplicative. -/
-class CompositionAlgebra (C : Type u) [NonAssocRing C] [Module ℝ C]
+class _root_.Tengoku.LeanPool.CompositionAlgebra (C : Type u) [NonAssocRing C] [Module ℝ C]
     [IsScalarTower ℝ C C] [SMulCommClass ℝ C C] where
   /-- The defining bilinear form. -/
   B : C →ₗ[ℝ] C →ₗ[ℝ] ℝ
@@ -71,7 +71,7 @@ class CompositionAlgebra (C : Type u) [NonAssocRing C] [Module ℝ C]
   /-- The **composition law**: the associated quadratic form is multiplicative. -/
   B_comp : ∀ x y : C, B (x * y) (x * y) = B x x * B y y
 
-namespace CompositionAlgebra
+namespace Tengoku.LeanPool.CompositionAlgebra
 
 variable {C : Type u} [NonAssocRing C] [Module ℝ C]
   [IsScalarTower ℝ C C] [SMulCommClass ℝ C C] [CompositionAlgebra C]
@@ -490,4 +490,5 @@ theorem isPure_impart [Nontrivial C] (x : C) : IsPure (impart x) := by
 theorem impart_add_re (x : C) : (ip x 1) • (1 : C) + impart x = x := by
   simp only [impart]; abel
 
-end CompositionAlgebra
+end Tengoku.LeanPool.CompositionAlgebra
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -35,7 +35,7 @@ rank 10, and the crossing value is Lehmer's number.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Polynomial
 
 namespace LehmerE10
@@ -180,3 +180,4 @@ theorem coxeterE10_infinite_order {n : ℕ} (hn : 0 < n) : coxeterE10 ^ n ≠ 1 
   linarith [hμnR ▸ this]
 
 end LehmerE10
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

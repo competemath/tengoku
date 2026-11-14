@@ -16,7 +16,7 @@ import Tengoku.LeanPool.LeanPool.MRiscX.AbstractSyntax.AbstractSyntax
 
 This module provides label resolution inside MRiscX Hoare syntax.
 -/
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 local notation:60 "(" k " ↦ "v"; "m")" => TMap.put k v m
 
 public meta section
@@ -51,19 +51,20 @@ private def replaceLabelsGo (fuel : Nat) :
     | _, stx => pure stx
 
 /-- Replace each label name in `stx` with the program-counter index it maps to. -/
-def replaceLabels (stx : Term) (labels : LabelMap) : TermElabM Syntax := do
+def _root_.Tengoku.LeanPool.replaceLabels (stx : Term) (labels : LabelMap) : TermElabM Syntax := do
   withFreshMacroScope do
     let (newStx, _) ← (replaceLabelsGo (syntaxSize stx) stx).run labels
     return newStx
 
 /-- Resolve labels in `stx` using the label map embedded in the code expression `e`. -/
-def replaceLabelsWithCodeExpr (stx : Term) (e : Expr) : TermElabM Syntax := do
+def _root_.Tengoku.LeanPool.replaceLabelsWithCodeExpr (stx : Term) (e : Expr) : TermElabM Syntax := do
   if e.isFVar then
     return stx
   let labels ← getLabelMapFromCodeExpr e
   return ←replaceLabels stx labels
 
 /-- Resolve labels in `stx` using the code referred to by identifier `i`. -/
-def replaceLabelsWithIdent (stx : Term) (i : Ident) : TermElabM Syntax := do
+def _root_.Tengoku.LeanPool.replaceLabelsWithIdent (stx : Term) (i : Ident) : TermElabM Syntax := do
   let e ← Term.elabTerm i none
   replaceLabelsWithCodeExpr stx e
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

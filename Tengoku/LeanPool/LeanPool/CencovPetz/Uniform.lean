@@ -23,7 +23,7 @@ calculations.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.CencovPetz
 
 open scoped BigOperators
@@ -46,3 +46,4 @@ lemma uniformDistribution_sum_one {α : Type u} [Fintype α] [Nonempty α] :
   simp_all
 
 end LeanPool.CencovPetz
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

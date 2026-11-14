@@ -10,9 +10,9 @@ public import Tengoku
 /-! # Collection -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-- Imported declaration from the Incompleteness formalization. -/
-class Cons (β : outParam Type*) (α : Type*) where
+class _root_.Tengoku.LeanPool.Cons (β : outParam Type*) (α : Type*) where
   /-- Imported declaration from the Incompleteness formalization. -/
   cons : β → α → α
 export Cons (cons)
@@ -26,7 +26,7 @@ instance (α : Type*) : Cons α (Multiset α) := ⟨Multiset.cons⟩
 instance (α : Type*) [DecidableEq α] : Cons α (Finset α) := ⟨insert⟩
 
 /-- Imported declaration from the Incompleteness formalization. -/
-class Collection (β : outParam Type*) (α : Type*) extends Membership β α, HasSubset α,
+class _root_.Tengoku.LeanPool.Collection (β : outParam Type*) (α : Type*) extends Membership β α, HasSubset α,
   EmptyCollection α, Cons β α where
   subset_iff {a b : α} : a ⊆ b ↔ ∀ x ∈ a, x ∈ b
   not_mem_empty (x : β) : ¬x ∈ (∅ : α)
@@ -56,7 +56,7 @@ instance Finset.collection [DecidableEq α] : Collection α (Finset α) where
   not_mem_empty := by simp
   mem_cons_iff := by simp [Cons.cons]
 
-namespace Collection
+namespace Tengoku.LeanPool.Collection
 
 variable {β α : Type*} [Collection β α]
 
@@ -125,7 +125,7 @@ def Finite (a : α) : Prop := (set a).Finite
 -/
 @[simp] lemma empty_finite : Finite (∅ : α) := by simp [Finite]
 
-lemma _root_.Collection.Finite.of_subset {a b : α} (ha : Finite a) (h : b ⊆ a) : Finite b :=
+lemma _root_.Tengoku.LeanPool.Collection.Finite.of_subset {a b : α} (ha : Finite a) (h : b ⊆ a) : Finite b :=
   Set.Finite.subset ha (subset_iff_set_subset_set.mp h)
 
 /--
@@ -173,7 +173,7 @@ noncomputable def _root_.Finset.toCollection : Finset β → α := fun s ↦ s.t
 @[simp] lemma finset_toCollection_finite (s : Finset β) : Finite (s.toCollection :
     α) := by simp [Finite, set]
 
-end Collection
+end Tengoku.LeanPool.Collection
 
 namespace Set
 
@@ -196,3 +196,4 @@ lemma cons_eq (a : α) (s : Set α) : cons a s = insert a s := rfl
     Collection.Finite s ↔ s.Finite := by simp [Collection.Finite]
 
 end Set
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

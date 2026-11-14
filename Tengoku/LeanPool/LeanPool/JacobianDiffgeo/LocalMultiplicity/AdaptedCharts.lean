@@ -26,7 +26,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter Set OpenPartialHomeomorph Metric
 open scoped ContDiff Manifold Topology
 
@@ -273,3 +273,4 @@ theorem exists_adaptedChartsAt {F : X → Y} {x : X}
 end Existence
 
 end RS
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

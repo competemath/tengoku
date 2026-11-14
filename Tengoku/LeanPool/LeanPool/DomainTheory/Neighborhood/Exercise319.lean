@@ -35,7 +35,7 @@ Quot.sound}`).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem ApproximableMap
@@ -118,3 +118,4 @@ theorem paired_unique (h₀ : ApproximableMap V₂ V₀) (h₁ : ApproximableMap
   rw [← hk₀, ← hk₁, paired_proj]
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

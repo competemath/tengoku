@@ -20,7 +20,7 @@ Part of the Caffarelli–Kohn–Nirenberg partial regularity proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace CKN
 
 /-!
@@ -594,3 +594,4 @@ theorem integral_rpow_norm_sub_integralAverage_le_bound_of_isOpenBoundedConvexDo
             simp [B, g]
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

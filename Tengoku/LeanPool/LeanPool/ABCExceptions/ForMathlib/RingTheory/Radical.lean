@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace UniqueFactorizationMonoid
 
 open Qq Lean Mathlib.Meta Finset
@@ -36,3 +36,4 @@ example : 0 < radical 100 := by
 end Mathlib.Meta.Positivity
 
 end UniqueFactorizationMonoid
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

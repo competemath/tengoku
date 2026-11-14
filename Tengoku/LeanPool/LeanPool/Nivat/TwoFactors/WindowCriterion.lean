@@ -48,7 +48,7 @@ to a global period. The conclusion retains which input direction supplies it.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Nivat.TwoFactors
 
 /-- Theorem 5.1 (`thm:twofactor`), after the window of Lemma 5.5 has been
@@ -115,3 +115,4 @@ theorem directional_period_of_short_window (c : Configuration ℚ) (hc : FiniteR
       (isPeriod_shift_iff c _ u).mp hLc
 
 end Nivat.TwoFactors
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

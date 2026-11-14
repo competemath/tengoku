@@ -28,7 +28,7 @@ manifold smoothness/holomorphy into planar statements about the chart composites
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold
 open Set Filter Topology IsManifold
 
@@ -189,3 +189,4 @@ theorem contMDiffOn_iff_analyticOnNhd_of_subset_source {f : X → ℂ} {s : Set 
       (h _ (mem_image_of_mem e hz))).contMDiffWithinAt
 
 end RS
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

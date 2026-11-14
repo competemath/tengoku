@@ -14,7 +14,7 @@ Imported Lean Pool material for `LeanPool.Rupert.Affine`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-- The Rupert Property for a pair of subsets X, Y of an arbitrary
     finite-dimensional real affine space P. X has the Rupert property
     with respect to Y if there exist
@@ -26,7 +26,7 @@ Imported Lean Pool material for `LeanPool.Rupert.Affine`.
     By "comfortably" we mean the closure of one set is a subset of the
     interior of the other. This definition rules out trivial cases of
     a set fitting inside itself. -/
-def IsAffineRupertPair {P : Type*} {V : Type*} [MetricSpace P] [NormedAddCommGroup V]
+def _root_.Tengoku.LeanPool.IsAffineRupertPair {P : Type*} {V : Type*} [MetricSpace P] [NormedAddCommGroup V]
     [InnerProductSpace ℝ V] [NormedAddTorsor V P] [FiniteDimensional ℝ V]
     (inner outer : Set P) : Prop :=
     ∃ (inner_isometry outer_isometry : AffineIsometry ℝ P P)
@@ -38,7 +38,8 @@ def IsAffineRupertPair {P : Type*} {V : Type*} [MetricSpace P] [NormedAddCommGro
 
 /-- The Rupert Property for a subset S of affine space P. S has the Rupert property
     if it has the pairwise Rupert property with respect to itself. -/
-def IsAffineRupertSet {P : Type*} {V : Type*} [MetricSpace P] [NormedAddCommGroup V]
+def _root_.Tengoku.LeanPool.IsAffineRupertSet {P : Type*} {V : Type*} [MetricSpace P] [NormedAddCommGroup V]
     [InnerProductSpace ℝ V] [NormedAddTorsor V P] [FiniteDimensional ℝ V]
     (S : Set P) : Prop :=
     IsAffineRupertPair S S
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

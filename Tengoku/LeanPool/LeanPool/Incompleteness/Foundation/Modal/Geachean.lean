@@ -12,9 +12,9 @@ public import Tengoku
 /-! # Geachean -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-- Imported declaration from the Incompleteness formalization. -/
-structure Geachean.Taple where
+structure Tengoku.LeanPool.Geachean.Taple where
   /-- Imported declaration from the Incompleteness formalization. -/
   i : ℕ
   /-- Imported declaration from the Incompleteness formalization. -/
@@ -25,10 +25,10 @@ structure Geachean.Taple where
   n : ℕ
 
 /-- Imported declaration from the Incompleteness formalization. -/
-def Geachean (t : Geachean.Taple) (R : Rel α α) := ∀ {x y z :
+def _root_.Tengoku.LeanPool.Geachean (t : Geachean.Taple) (R : Rel α α) := ∀ {x y z :
     α}, (R.iterate t.i x y) ∧ (R.iterate t.j x z) → ∃ u, (R.iterate t.m y u) ∧ (R.iterate t.n z u)
 
-namespace Geachean
+namespace Tengoku.LeanPool.Geachean
 
 variable {rel : Rel α α}
 
@@ -117,7 +117,8 @@ lemma dense_def : RelDense rel ↔ (Geachean ⟨0, 1, 2, 0⟩ rel) := by
 @[simp]
 lemma satisfies_eq : Geachean (α := α) t (· = ·) := by simp [Geachean];
 
-end Geachean
+end Tengoku.LeanPool.Geachean
 
 /-- Imported declaration from the Incompleteness formalization. -/
-def MultiGeachean (G : Set Geachean.Taple) (R : Rel α α) := ∀ g ∈ G, Geachean g R
+def _root_.Tengoku.LeanPool.MultiGeachean (G : Set Geachean.Taple) (R : Rel α α) := ∀ g ∈ G, Geachean g R
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

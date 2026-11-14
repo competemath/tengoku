@@ -22,7 +22,7 @@ greedy process. The formal proof instead uses the deterministic pessimistic-esti
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Finset
 
 namespace BKLOK2
@@ -257,3 +257,4 @@ theorem lemma107K2_holds :
   exact exists_matchings_of_spread hqpos.le hloop hUW hEven hmindeg hcodeg hpot
 
 end BKLOK2
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -14,18 +14,19 @@ Imported Lean Pool material for `LeanPool.Monlib4.LinearAlgebra.Matrix.PiMat`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-- Square matrices over `R` indexed by `n`. -/
-abbrev Mat (R n : Type*) := Matrix n n R
+abbrev _root_.Tengoku.LeanPool.Mat (R n : Type*) := Matrix n n R
 
 /-- Families of square matrices whose index type can vary with the family index. -/
-abbrev PiMat (R k : Type*) (s : k → Type*) :=
+abbrev _root_.Tengoku.LeanPool.PiMat (R k : Type*) (s : k → Type*) :=
 Π i, (fun j => Mat R (s j)) i
 
 /--
 @isnad1 id=eq.1h5v.s5.b77a04890bf6 from=translated src=- shape=eedfb057 vocab=264ea70b
 -/
 @[ext]
-theorem PiMat.ext {R k : Type*} {s : k → Type*} {x y : PiMat R k s}
+theorem Tengoku.LeanPool.PiMat.ext {R k : Type*} {s : k → Type*} {x y : PiMat R k s}
     (h : ∀ i, x i = y i) : x = y :=
   funext h
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

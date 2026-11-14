@@ -23,7 +23,7 @@ freeness for free), giving `card = #canonical * d`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace CriticalPortraits
 
 open Finset
@@ -727,3 +727,4 @@ theorem card_levelCanonical (d m : ℕ) (hd : 0 < d) (hm : 0 < m) :
   (Nat.div_eq_of_eq_mul_right hd (card_levelCanonical_mul d m hd hm).symm).symm
 
 end CriticalPortraits
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

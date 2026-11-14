@@ -21,7 +21,7 @@ syntactic substitution enters the induction.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder
 
 namespace Language
@@ -135,3 +135,4 @@ theorem aElementary_of_tarskiVaught {A : Fragment L} (f : N ↪[L] M)
 end Language
 
 end FirstOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -11,7 +11,7 @@ public import Tengoku
 /-! # Definitions -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Complex MeasureTheory Real Finset
 open scoped BigOperators ComplexConjugate Topology
 
@@ -349,3 +349,4 @@ def HasBandlimitedSupport (P : Circle → ℂ) (N L : ℕ) : Prop :=
   ∃ c : Fin L → ℂ, P = bandLimitedPolynomial N L c
 
 end Hermite1DimdLEAN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

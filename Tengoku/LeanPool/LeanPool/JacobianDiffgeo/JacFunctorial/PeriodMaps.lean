@@ -28,7 +28,7 @@ trace–path-integral relation are not completed, so `pullbackT`/`Jacobian.pullb
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold
 open IsManifold Module
 
@@ -130,3 +130,4 @@ end SameUniverse
 end RS
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

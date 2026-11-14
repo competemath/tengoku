@@ -35,7 +35,7 @@ makes a bound available at *every* cell scale rather than at one scale only.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 section
 
 /-!
@@ -407,3 +407,4 @@ theorem ae_exists_origin_slice_gradient_of_small_cylinders
     (vec3Ball_subset_of_origin_dom hR₀ hdom) hp (hslice k)
 
 end CKN.Core.Step4
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

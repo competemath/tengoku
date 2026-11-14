@@ -26,7 +26,7 @@ yields `≤ 4 + 1 = 5` distances. Axiom-clean.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace ThreeGap.EuclideanRecords
 
 open scoped Real
@@ -80,3 +80,4 @@ theorem nnDistE_count_le_five (α : Fin 2 → ℝ) {k₀ : Fin 2} (hirr : Irrati
   exact gap_count_euclidean_five α hirr hN
 
 end ThreeGap.EuclideanRecords
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

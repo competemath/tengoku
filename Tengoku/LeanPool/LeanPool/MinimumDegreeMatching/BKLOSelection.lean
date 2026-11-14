@@ -17,7 +17,7 @@ the `r = 2` specialization of BKLO Lemma 10.7.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Finset
 
 namespace BKLOK2
@@ -528,3 +528,4 @@ theorem exists_matchings_of_spread {H : Finset (Sym2 V)}
   exact ⟨Mx, hgood, hpair⟩
 
 end BKLOK2
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

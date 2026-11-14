@@ -47,7 +47,7 @@ permitted
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem ApproximableMap
@@ -159,3 +159,4 @@ theorem pfix_eq_fixElement_recOp (τ : ApproximableMap (prod V V) V) :
 end ApproximableMap
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -39,7 +39,7 @@ quantifying over a fresh index type at every node. Consequences:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u v u' uι w
 
 namespace FirstOrder
@@ -119,3 +119,4 @@ end BoundedFormulaInf
 end Language
 
 end FirstOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -13,7 +13,7 @@ public import Tengoku.LeanPool.LeanPool.Polylean.Complexes.Structures.Quiver
 Imported Lean Pool material for `LeanPool.Polylean.Complexes.Structures.Category`.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 open scoped LeanPool.Polylean
 
 
@@ -136,3 +136,4 @@ def toPathCategory {V : Sort _} [Q : Quiver V] : Quiver.PreFunctor Q Q.PathCateg
 
 end Quiver
 end LeanPool.Polylean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

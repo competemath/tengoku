@@ -16,7 +16,7 @@ color variants from `PartsFirstStage`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace HadwigerNelsonBounds
 
 /-- A branch in the root trie, or a leaf selecting a checked Parts tree. -/
@@ -136,3 +136,4 @@ theorem partsRootDecision_not_colorable (nodes : Array (Array PartsRootNode))
   exact partsRootVerifiesNodeB_unsat hproper hverify hroots
 
 end HadwigerNelsonBounds
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

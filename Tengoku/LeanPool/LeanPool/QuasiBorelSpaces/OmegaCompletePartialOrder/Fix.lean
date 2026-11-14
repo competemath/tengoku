@@ -14,7 +14,7 @@ Imported Lean Pool material for `LeanPool.QuasiBorelSpaces.OmegaCompletePartialO
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace OmegaCompletePartialOrder
 
 variable {α : Type*} [OmegaCompletePartialOrder α]
@@ -85,3 +85,4 @@ lemma fix_eq [OrderBot α] (f : α →𝒄 α) : fix f = f (fix f) := by
     exact le_rfl
 
 end OmegaCompletePartialOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

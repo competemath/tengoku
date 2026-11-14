@@ -18,7 +18,7 @@ relating `volume A`, the volume of the unit ball, and the volume of the
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Set
 open scoped Pointwise
 
@@ -26,7 +26,7 @@ open scoped Pointwise
 corresponding power for the unit ball times `ε`.
 @isnad1 id=eq.0h2v.s11.ee931b0df2e3 from=translated src=- shape=7d8f1859 vocab=5d6e73d4
 -/
-lemma volume_ball_relation {d : ℕ} {ε : ℝ} :
+lemma _root_.Tengoku.LeanPool.volume_ball_relation {d : ℕ} {ε : ℝ} :
     volume (Metric.ball (0 : EuclideanSpace ℝ (Fin (d + 1))) ε) ^ ((d:ℝ)+1)⁻¹
     = volume (Metric.ball (0 : EuclideanSpace ℝ (Fin (d + 1))) 1) ^ ((d:ℝ)+1)⁻¹
       * ENNReal.ofReal ε := by
@@ -36,3 +36,4 @@ lemma volume_ball_relation {d : ℕ} {ε : ℝ} :
   congr
   rw [show (d : ℝ) + 1 = (↑(d + 1) : ℝ) by simp]
   exact ENNReal.pow_rpow_inv_natCast (by linarith) (ENNReal.ofReal ε)
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

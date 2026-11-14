@@ -96,7 +96,7 @@ abstract `IsSeparating` curve, do not need it.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Bornology Metric Set
 
 namespace Schoenflies
@@ -759,3 +759,4 @@ theorem IsJordanCurve.tangent_dense (harc : ∀ A : Set Plane, IsArc A → IsCon
   tangent_dense_inside (hC.isSeparating harc)
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

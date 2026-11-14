@@ -14,7 +14,7 @@ import Tengoku.LeanPool.LeanPool.Feige.BoundaryNull
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators ENNReal
 open Set MeasureTheory ProbabilityTheory
 
@@ -210,3 +210,4 @@ theorem map_canonicalTwoPointPiVector {m : ℕ}
 end
 
 end Feige
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

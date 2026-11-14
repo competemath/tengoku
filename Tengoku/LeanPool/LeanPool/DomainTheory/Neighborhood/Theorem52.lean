@@ -42,7 +42,7 @@ uses the permitted
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem ApproximableMap
@@ -110,3 +110,4 @@ theorem beta_abs (g : ApproximableMap (prod (prod V₀ V₁) V₂) V₃) (v : V�
 end Theorem52
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -11,7 +11,7 @@ absolutely convergent kernel commutator; no integrability hypothesis is
 imposed on an arbitrary physical pressure.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace NavierStokes.R3PressureCutoff
 
 open Set Filter MeasureTheory ProblemStatement FourierTransform TemperedDistribution
@@ -270,3 +270,4 @@ theorem regularized_weighted_lpNorm_le {R L : ℝ} {φ : Space → ℝ} (hφ : C
   exact norm_regularizedWeightedPressure_le hφ n i j g hw hg₂
 
 end NavierStokes.R3PressureCutoff
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

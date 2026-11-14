@@ -6,7 +6,7 @@ Authors: Siddhartha Gadgil, Anand Rao
 module
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.Polylean
 
 universe u v w
@@ -211,3 +211,4 @@ abbrev concat : Loop A → Loop A → Loop A := Path.append
 end Loop
 end LeanPool.Polylean
 -- Tengoku: 1 notation(s) of this module made scoped so they do not change other libraries (generated)
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

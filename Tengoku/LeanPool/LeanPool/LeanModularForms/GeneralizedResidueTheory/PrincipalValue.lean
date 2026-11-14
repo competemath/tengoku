@@ -10,7 +10,7 @@ import Tengoku.Seed.CategoryTheory.Category.Init
 import Tengoku.Seed.Combinatorics.Matroid.Init
 import Tengoku.Seed.MeasureTheory.Integral.DominatedConvergence
 import Tengoku.Seed.Tactic.Positivity.Finset
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -322,3 +322,4 @@ theorem uniform_avoidance_on_compact
     Filter.eventually_principal.mp h_min⟩
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

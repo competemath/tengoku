@@ -24,18 +24,18 @@ comparison instances below are classical (`noncomputable`, via sign information 
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-- Type class stating that `x : ℝ` carries a `ComputableℝSeq`: an explicit sequence of rational
 interval approximations converging to `x`. Like `Decidable`, it carries data with it, and
 classically every real number admits such a sequence; its value lies in the explicit
 approximations it provides, not in a computability guarantee. -/
-class IsComputable (x : ℝ) : Type where
+class _root_.Tengoku.LeanPool.IsComputable (x : ℝ) : Type where
     /-- A computable sequence representing `x`. -/
     seq : ComputableℝSeq
     /-- The sequence converges to `x`. -/
     prop : seq.val = x
 
-namespace IsComputable
+namespace Tengoku.LeanPool.IsComputable
 
 /-- Turns one `IsComputable` into another one, given a proof that they're equal. This is directly
 analogous to `decidable_of_iff`, as a way to avoid `Eq.rec` on data-carrying instances. -/
@@ -166,14 +166,14 @@ noncomputable instance instDecidableLEval (x y : ComputableℝSeq) : Decidable (
 noncomputable instance instDecidableLTval (x y : ComputableℝSeq) : Decidable (x.val < y.val) :=
   @instDecidableLT x.val y.val ⟨x, rfl⟩ ⟨y,rfl⟩
 
-end IsComputable
+end Tengoku.LeanPool.IsComputable
 
 /-- This is very similar to the statement
 `TendstoLocallyUniformly (fun n x ↦ (F n x : ℝ)) (fun (q : ℚ) ↦ f q) .atTop`
 but that only uses neighborhoods within the rationals, which is a strictly
 weaker condition. This uses neighborhoods in the ambient space, the reals.
 -/
-def TendstoLocallyUniformlyWithout (F : ℕ → ℚ → ℚ) (f : ℝ → ℝ) : Prop :=
+def _root_.Tengoku.LeanPool.TendstoLocallyUniformlyWithout (F : ℕ → ℚ → ℚ) (f : ℝ → ℝ) : Prop :=
   ∀ (ε : ℝ), 0 < ε →
     ∀ (x : ℝ), ∃ t ∈ nhds x, ∃ a, ∀ (b : ℕ), a ≤ b → ∀ (y : ℚ), ↑y ∈ t →
     |f y - ↑(F b y)| < ε
@@ -181,7 +181,7 @@ def TendstoLocallyUniformlyWithout (F : ℕ → ℚ → ℚ) (f : ℝ → ℝ) :
 /--
 @isnad1 id=ex.2h3v.s7.69955dabc3cf from=translated src=- shape=bbdca296 vocab=ec752bf3
 -/
-theorem Real_mk_of_TendstoLocallyUniformly' (fImpl : ℕ → ℚ → ℚ) (f : ℝ → ℝ)
+theorem _root_.Tengoku.LeanPool.Real_mk_of_TendstoLocallyUniformly' (fImpl : ℕ → ℚ → ℚ) (f : ℝ → ℝ)
     (hfImpl : TendstoLocallyUniformlyWithout (fImpl) (f))
     (hf : Continuous f)
     (x : CauSeq ℚ abs)
@@ -221,7 +221,7 @@ theorem Real_mk_of_TendstoLocallyUniformly' (fImpl : ℕ → ℚ → ℚ) (f : �
 
 open scoped QInterval
 
-namespace ComputableℝSeq
+namespace Tengoku.LeanPool.ComputableℝSeq
 
 /-- Definition of `ofTendstoLocallyUniformlyContinuous`. -/
 def ofTendstoLocallyUniformlyContinuous
@@ -270,7 +270,7 @@ theorem val_ofTendstoLocallyUniformlyContinuous (f) (hf : Continuous f) (fI fl f
     f a.val :=
   ComputableℝSeq.mk_val_eq_val
 
-end ComputableℝSeq
+end Tengoku.LeanPool.ComputableℝSeq
 
 --mostly a helper for numerical investigation
 /-- Definition of `toDecimal`. -/
@@ -278,3 +278,4 @@ def Rat.toDecimal (q : ℚ) (prec : ℕ := 20) :=
   let p : ℚ → String := fun q ↦
     (q.floor.repr).append <| ".".append <| (10^prec * (q - q.floor)).floor.repr.leftpad prec '0'
   if q < 0 then "-".append (p (-q)) else if q = 0 then "0" else p q
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

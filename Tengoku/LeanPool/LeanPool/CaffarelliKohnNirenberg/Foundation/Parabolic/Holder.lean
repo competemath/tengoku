@@ -15,7 +15,7 @@ The measure-theoretic representative predicate records agreement on a set.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ENNReal NNReal Topology
 
 open MeasureTheory Set
@@ -68,3 +68,4 @@ theorem ParabolicHolderSeminormLE.hasRepresentative
   ⟨f, Filter.Eventually.of_forall fun _ => rfl, h⟩
 
 end CKN.Foundation.Parabolic
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -11,7 +11,7 @@ pressure distribution. This permits using slice-wise weighted estimates
 without requiring the pressure to be square-integrable in time.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace NavierStokes.R3SpaceTimeApproximation
 
 open Set Filter MeasureTheory FourierTransform TemperedDistribution
@@ -149,3 +149,4 @@ theorem actual_regularized_test_tendsto (i j : Fin 3) {g : Domain → ℂ}
   simp only [hz, smul_eq_mul]
 
 end NavierStokes.R3SpaceTimeApproximation
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

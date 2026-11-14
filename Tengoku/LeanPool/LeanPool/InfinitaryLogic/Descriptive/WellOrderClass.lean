@@ -28,7 +28,7 @@ generic code-transport API.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure Set
@@ -117,3 +117,4 @@ theorem exists_code_type_eq (lt : L.Relations 2) {β : Ordinal.{0}}
     rw [RelIso.ordinalType_congr hiso, Ordinal.type_toType]⟩
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -17,7 +17,7 @@ homeomorphism of circles.  It is the geometric core of Gallier--Xu P1 edge subdi
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanEval.Topology.ClassificationOfSurfaces
 
 namespace WeightedCircle
@@ -767,3 +767,4 @@ theorem circleHomeomorph_exp_index_add'
 end WeightedCircle
 
 end LeanEval.Topology.ClassificationOfSurfaces
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

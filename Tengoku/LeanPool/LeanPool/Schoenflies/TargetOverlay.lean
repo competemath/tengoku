@@ -58,7 +58,7 @@ reverse-transfer stage.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set
 open scoped Graph
 
@@ -1629,3 +1629,4 @@ theorem exists_scale_finite_transfer_toward_source_meshOverlay_lt
 end TargetSegmentCover
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

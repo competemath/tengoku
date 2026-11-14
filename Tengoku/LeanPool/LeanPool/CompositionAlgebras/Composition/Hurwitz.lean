@@ -66,8 +66,8 @@ dimension form.
 -/
 
 @[expose] public section
-
-namespace CompositionAlgebra
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+namespace Tengoku.LeanPool.CompositionAlgebra
 
 universe u
 
@@ -421,4 +421,5 @@ theorem finrank_eq_one_or_two_or_four_or_eight :
     rwa [finrank_span_singleton hone] at hm
   omega
 
-end CompositionAlgebra
+end Tengoku.LeanPool.CompositionAlgebra
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

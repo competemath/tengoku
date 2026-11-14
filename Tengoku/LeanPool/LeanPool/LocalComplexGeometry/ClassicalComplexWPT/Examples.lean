@@ -17,7 +17,7 @@ and `d = 0` semantics of the public interface.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators Topology
 
 namespace ClassicalComplexWPT
@@ -124,3 +124,4 @@ theorem exactOrder_nonconstantUnit :
     norm_num
 
 end ClassicalComplexWPT
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

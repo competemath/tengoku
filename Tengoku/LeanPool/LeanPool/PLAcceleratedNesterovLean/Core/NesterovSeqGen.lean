@@ -20,7 +20,7 @@ These are needed for the Nesterov algorithm with arbitrary initial state
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace PLAcceleratedNesterovLean
@@ -166,3 +166,4 @@ theorem lyapunovOfState_nonneg (P : E d →L[ℝ] E d) (μ' : ℝ) (π : E d →
   linarith
 
 end PLAcceleratedNesterovLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

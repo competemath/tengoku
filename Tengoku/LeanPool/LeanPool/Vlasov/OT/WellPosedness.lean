@@ -35,7 +35,7 @@ See `formalize/DESIGN.md` (in the source repository) for the overall design.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Vlasov
 
 open MeasureTheory ENNReal
@@ -6582,3 +6582,4 @@ theorem meanFieldLimit_coupling
     (fun _ => zero_le) hsup_bound
 
 end Vlasov
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

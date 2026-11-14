@@ -14,7 +14,7 @@ whole-space energy estimate then gives one bound up to the singular time.
 -/
 
 noncomputable section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Filter
 open scoped Topology ContDiff
 
@@ -155,3 +155,4 @@ theorem selected_candidate_one_with_initial_rest :
     TimeLocalization.activatedPressure_zero_early _ ht x⟩
 
 end NavierStokesR3.ActualCandidate
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

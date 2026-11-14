@@ -91,7 +91,7 @@ consumer discharges it from its drawing.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set
 open scoped Graph
 
@@ -384,3 +384,4 @@ theorem IsTwoConnected.grows_by_ear (hG : G.IsTwoConnected) (hK : K.IsTwoConnect
     Set.mem_union_right _ (hearP.mem_edgeSet hgD), hgK⟩
 
 end Graph
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /--
 @isnad1 id=measurab.1h4v.s5.8b8fda358a3f from=translated src=- shape=95ecf475 vocab=29d698bf
 -/
@@ -23,3 +23,4 @@ lemma Measurable.of_uncurry
     apply measurable_pi_iff.mpr
     intro a
     apply Measurable.of_uncurry_right h
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

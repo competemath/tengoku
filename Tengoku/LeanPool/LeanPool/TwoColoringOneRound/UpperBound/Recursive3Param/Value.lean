@@ -15,7 +15,7 @@ The final result is the dyadic rational value
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Distributed2Coloring
 
 open MeasureTheory
@@ -632,3 +632,4 @@ end Recursive3Param
 end UpperBound
 
 end Distributed2Coloring
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -34,7 +34,7 @@ via Fourier transform.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Complex Real Filter
 open TopologicalSpace
 open scoped Real InnerProductSpace BigOperators
@@ -48,7 +48,7 @@ noncomputable section
 of the real integral.
 @isnad1 id=eq.1h3v.s6.ce04e2c98f5c from=translated src=- shape=f6a9a324 vocab=440c0489
 -/
-theorem integral_ofReal_eq {α} [MeasurableSpace α] (μ : Measure α) (h : α → ℝ)
+theorem _root_.Tengoku.LeanPool.integral_ofReal_eq {α} [MeasurableSpace α] (μ : Measure α) (h : α → ℝ)
   (_hf : Integrable h μ) :
   ∫ x, (h x : ℂ) ∂μ = Complex.ofReal (∫ x, h x ∂μ) :=
   integral_complex_ofReal
@@ -56,7 +56,7 @@ theorem integral_ofReal_eq {α} [MeasurableSpace α] (μ : Measure α) (h : α �
 /-- Helper lemma: Schwartz functions are L²-integrable.
 @isnad1 id=integrab.0h1v.s8.873e36abd55f from=translated src=- shape=734e0078 vocab=22e85701
 -/
-lemma schwartz_L2_integrable (f : TestFunctionℂ) :
+lemma _root_.Tengoku.LeanPool.schwartz_L2_integrable (f : TestFunctionℂ) :
   Integrable (fun k => ‖f k‖^2) volume := by
   -- Using Mathlib's `SchwartzMap.memLp` we know any Schwartz function lies in every `L^p` space.
   have hf_memLp : MemLp f 2 volume :=
@@ -69,7 +69,7 @@ lemma schwartz_L2_integrable (f : TestFunctionℂ) :
 constant.
 @isnad1 id=integrab.1h4v.s6.09e870c868ab from=translated src=- shape=cba13ec4 vocab=cf15f495
 -/
-theorem integral_const_mul {α} [MeasurableSpace α] (μ : Measure α) (c : ℝ)
+theorem _root_.Tengoku.LeanPool.integral_const_mul {α} [MeasurableSpace α] (μ : Measure α) (c : ℝ)
   (f : α → ℝ) (hf : Integrable f μ) :
   Integrable (fun x => c * f x) μ :=
   MeasureTheory.Integrable.const_mul hf c
@@ -77,7 +77,7 @@ theorem integral_const_mul {α} [MeasurableSpace α] (μ : Measure α) (c : ℝ)
 /-- Helper theorem: Integral of a real constant multiple pulls out of the integral.
 @isnad1 id=eq.1h4v.s6.df99dad54972 from=translated src=- shape=69a9ef64 vocab=b6a8fbf1
 -/
-theorem integral_const_mul_eq {α} [MeasurableSpace α] (μ : Measure α) (c : ℝ)
+theorem _root_.Tengoku.LeanPool.integral_const_mul_eq {α} [MeasurableSpace α] (μ : Measure α) (c : ℝ)
   (f : α → ℝ) (_hf : Integrable f μ) :
   ∫ x, c * f x ∂ μ = c * ∫ x, f x ∂ μ :=
   MeasureTheory.integral_const_mul c f
@@ -86,7 +86,7 @@ theorem integral_const_mul_eq {α} [MeasurableSpace α] (μ : Measure α) (c : �
     assuming the larger one is integrable.
 @isnad1 id=le.3h4v.s6.de3d7f94ba5b from=translated src=- shape=1e9c6525 vocab=ddb5a115
 -/
-theorem real_integral_mono_of_le
+theorem _root_.Tengoku.LeanPool.real_integral_mono_of_le
   {α} [MeasurableSpace α] (μ : Measure α) (f g : α → ℝ)
   (hg : Integrable g μ) (hf_nonneg : ∀ x, 0 ≤ f x) (hle : ∀ x, f x ≤ g x) :
   ∫ x, f x ∂ μ ≤ ∫ x, g x ∂ μ :=
@@ -114,13 +114,13 @@ variable {m : ℝ} [Fact (0 < m)]
 /-- The free propagator in momentum space: 1/(k² + m²)
     This is the Fourier transform of the free covariance
 -/
-def freePropagatorMomentum (m : ℝ) (k : SpaceTime) : ℝ :=
+def _root_.Tengoku.LeanPool.freePropagatorMomentum (m : ℝ) (k : SpaceTime) : ℝ :=
   1 / (‖k‖^2 + m^2)
 
 /-- The free propagator is an even function: it depends only on ‖k‖.
 @isnad1 id=eq.0h2v.s5.a2a98bf074e2 from=translated src=- shape=1aff131a vocab=5c0d69b1
 -/
-lemma freePropagator_even (m : ℝ) (k : SpaceTime) :
+lemma _root_.Tengoku.LeanPool.freePropagator_even (m : ℝ) (k : SpaceTime) :
     freePropagatorMomentum m (-k) = freePropagatorMomentum m k := by
   simp [freePropagatorMomentum]
 
@@ -128,13 +128,13 @@ lemma freePropagator_even (m : ℝ) (k : SpaceTime) :
     When using Mathlib's Fourier transform convention, the propagator acquires (2π)² factors.
     This is `P_mathlib(k) = 1/((2π)²‖k‖² + m²)` which equals `P_phys(2πk)`.
 -/
-noncomputable def freePropagatorMomentumMathlib (m : ℝ) (k : SpaceTime) : ℝ :=
+noncomputable def _root_.Tengoku.LeanPool.freePropagatorMomentumMathlib (m : ℝ) (k : SpaceTime) : ℝ :=
   1 / ((2 * Real.pi)^2 * ‖k‖^2 + m^2)
 
 /-- The Mathlib propagator is positive for m > 0.
 @isnad1 id=lt.1h2v.s4.d597a5e58d89 from=translated src=- shape=9141f3a7 vocab=ca6062ca
 -/
-lemma freePropagatorMomentum_mathlib_pos (m : ℝ) (hm : 0 < m) (k : SpaceTime) :
+lemma _root_.Tengoku.LeanPool.freePropagatorMomentum_mathlib_pos (m : ℝ) (hm : 0 < m) (k : SpaceTime) :
     0 < freePropagatorMomentumMathlib m k := by
   have h2 : 0 < m^2 := sq_pos_of_pos hm
   unfold freePropagatorMomentumMathlib
@@ -143,7 +143,7 @@ lemma freePropagatorMomentum_mathlib_pos (m : ℝ) (hm : 0 < m) (k : SpaceTime) 
 /-- The Mathlib propagator is non-negative.
 @isnad1 id=le.1h2v.s4.6aa19f1a9383 from=translated src=- shape=902071bf vocab=d8f49772
 -/
-lemma freePropagatorMomentum_mathlib_nonneg (m : ℝ) (hm : 0 < m) (k : SpaceTime) :
+lemma _root_.Tengoku.LeanPool.freePropagatorMomentum_mathlib_nonneg (m : ℝ) (hm : 0 < m) (k : SpaceTime) :
     0 ≤ freePropagatorMomentumMathlib m k :=
   le_of_lt (freePropagatorMomentum_mathlib_pos m hm k)
 
@@ -159,7 +159,7 @@ lemma freePropagatorMomentum_mathlib_nonneg (m : ℝ) (hm : 0 < m) (k : SpaceTim
     We realise this as the real part of a complex Fourier integral with the
     standard 2π-normalisation.
 -/
-noncomputable def freeCovarianceRegulated (α : ℝ) (m : ℝ) (x y : SpaceTime) : ℝ :=
+noncomputable def _root_.Tengoku.LeanPool.freeCovarianceRegulated (α : ℝ) (m : ℝ) (x y : SpaceTime) : ℝ :=
   let normalisation : ℝ := (2 * Real.pi) ^ STDimension
   let regulator : SpaceTime → ℝ := fun k => Real.exp (-α * ‖k‖^2)
   let phase : SpaceTime → ℂ := fun k =>
@@ -193,7 +193,7 @@ which leads to the Bessel K₁ function.
 /-- The Schwinger integrand: exp(-t(k² + m²)) for t > 0.
     Integrating this over t ∈ (0, ∞) gives 1/(k² + m²).
 -/
-noncomputable def schwingerIntegrand (t : ℝ) (m : ℝ) (k : SpaceTime) : ℝ :=
+noncomputable def _root_.Tengoku.LeanPool.schwingerIntegrand (t : ℝ) (m : ℝ) (k : SpaceTime) : ℝ :=
   Real.exp (-t * (‖k‖^2 + m^2))
 
 /-- Integral of exp(-a*t) over (0, ∞) equals 1/a for a > 0.
@@ -201,7 +201,7 @@ noncomputable def schwingerIntegrand (t : ℝ) (m : ℝ) (k : SpaceTime) : ℝ :
     Proof: Change of variables u = at gives (1/a) ∫₀^∞ e^{-u} du = 1/a.
 @isnad1 id=eq.1h1v.s6.c4c94bda815e from=translated src=- shape=3d193e80 vocab=70fd039b
 -/
-lemma integral_exp_neg_mul_Ioi_eq_inv (a : ℝ) (ha : 0 < a) :
+lemma _root_.Tengoku.LeanPool.integral_exp_neg_mul_Ioi_eq_inv (a : ℝ) (ha : 0 < a) :
     ∫ t in Set.Ioi 0, Real.exp (-a * t) = 1 / a := by
   -- Use integral_exp_mul_Ioi with -a < 0 and c = 0
   have hna : -a < 0 := neg_neg_of_pos ha
@@ -212,7 +212,7 @@ lemma integral_exp_neg_mul_Ioi_eq_inv (a : ℝ) (ha : 0 < a) :
     This is valid when k² + m² > 0.
 @isnad1 id=eq.1h2v.s7.f6639914e0f5 from=translated src=- shape=37db746f vocab=3e6241d3
 -/
-theorem schwinger_representation (m : ℝ) (hm : 0 < m) (k : SpaceTime) :
+theorem _root_.Tengoku.LeanPool.schwinger_representation (m : ℝ) (hm : 0 < m) (k : SpaceTime) :
     ∫ t in Set.Ioi 0, schwingerIntegrand t m k = 1 / (‖k‖^2 + m^2) := by
   unfold schwingerIntegrand
   simp_rw [show ∀ t : ℝ, -t * (‖k‖^2 + m^2) = -(‖k‖^2 + m^2) * t from fun t => by ring]
@@ -221,20 +221,20 @@ theorem schwinger_representation (m : ℝ) (hm : 0 < m) (k : SpaceTime) :
 /-- The combined Gaussian factor for the Schwinger-regulated integral.
     This combines the propagator Schwinger factor with the UV regulator.
 -/
-noncomputable def schwingerGaussian (α t : ℝ) (m : ℝ) (k : SpaceTime) : ℝ :=
+noncomputable def _root_.Tengoku.LeanPool.schwingerGaussian (α t : ℝ) (m : ℝ) (k : SpaceTime) : ℝ :=
   Real.exp (-(α + t) * ‖k‖^2 - t * m^2)
 
 /-- The heat kernel in d dimensions for position space: (4πt)^{-d/2} · exp(-r²/(4t)).
     This is the Fourier transform of the Gaussian exp(-t·k²).
     Named with PositionSpace suffix to distinguish from momentum-space version.
 -/
-noncomputable def heatKernelPositionSpace (t : ℝ) (r : ℝ) : ℝ :=
+noncomputable def _root_.Tengoku.LeanPool.heatKernelPositionSpace (t : ℝ) (r : ℝ) : ℝ :=
   (4 * Real.pi * t) ^ (-(STDimension : ℝ) / 2) * Real.exp (-r^2 / (4 * t))
 
 /-- For d = 4, the heat kernel simplifies to 1/(16π²t²) · exp(-r²/(4t)).
 @isnad1 id=eq.1h2v.s7.81673561e747 from=translated src=- shape=f6051124 vocab=6c912192
 -/
-lemma heatKernelPositionSpace_4D (t : ℝ) (ht : 0 < t) (r : ℝ) :
+lemma _root_.Tengoku.LeanPool.heatKernelPositionSpace_4D (t : ℝ) (ht : 0 < t) (r : ℝ) :
     heatKernelPositionSpace t r = 1 / (16 * Real.pi^2 * t^2) * Real.exp (-r^2 / (4 * t)) := by
   unfold heatKernelPositionSpace
   have hd : (STDimension : ℝ) = 4 := by simp [STDimension]
@@ -250,7 +250,7 @@ lemma heatKernelPositionSpace_4D (t : ℝ) (ht : 0 < t) (r : ℝ) :
 /-- The heat kernel is nonnegative.
 @isnad1 id=le.1h2v.s4.8fb358cc0ba7 from=translated src=- shape=1852429d vocab=52e5ede5
 -/
-lemma heatKernelPositionSpace_nonneg (t : ℝ) (ht : 0 < t) (r : ℝ) :
+lemma _root_.Tengoku.LeanPool.heatKernelPositionSpace_nonneg (t : ℝ) (ht : 0 < t) (r : ℝ) :
     0 ≤ heatKernelPositionSpace t r := by
   unfold heatKernelPositionSpace
   exact mul_nonneg (Real.rpow_nonneg (by positivity) _) (Real.exp_nonneg _)
@@ -258,7 +258,7 @@ lemma heatKernelPositionSpace_nonneg (t : ℝ) (ht : 0 < t) (r : ℝ) :
 /-- The heat kernel is continuous in t for t > 0.
 @isnad1 id=continuo.1h2v.s5.a922db924e55 from=translated src=- shape=56c84415 vocab=a7fc70a4
 -/
-lemma heatKernelPositionSpace_continuous_at (t : ℝ) (ht : 0 < t) (r : ℝ) :
+lemma _root_.Tengoku.LeanPool.heatKernelPositionSpace_continuous_at (t : ℝ) (ht : 0 < t) (r : ℝ) :
     ContinuousAt (fun s => heatKernelPositionSpace s r) t := by
   unfold heatKernelPositionSpace
   refine ContinuousAt.mul (ContinuousAt.rpow ?_ continuousAt_const (Or.inl (by positivity)))
@@ -271,7 +271,7 @@ lemma heatKernelPositionSpace_continuous_at (t : ℝ) (ht : 0 < t) (r : ℝ) :
     Maximum of H(s,r) = (4πs)^{-d/2} exp(-r²/(4s)) occurs at s = r²/(2d).
 @isnad1 id=ex.1h1v.s5.eae182e54ec4 from=translated src=- shape=6a5bac0d vocab=caa83046
 -/
-lemma heatKernelPositionSpace_bounded (r : ℝ) (hr : 0 < r) :
+lemma _root_.Tengoku.LeanPool.heatKernelPositionSpace_bounded (r : ℝ) (hr : 0 < r) :
     ∃ C : ℝ, 0 < C ∧ ∀ s > 0, heatKernelPositionSpace s r ≤ C := by
   -- Use the bound: H(s,r) ≤ 4/(π²r⁴) derived from u² * exp(-cu) ≤ (2/c)²
   use 4 / (Real.pi^2 * r^4) + 1
@@ -364,7 +364,7 @@ lemma heatKernelPositionSpace_bounded (r : ℝ) (hr : 0 < r) :
     ∫ (4πt)^{-2} exp(-‖z‖²/(4t)) dz = (4πt)^{-2} × (4πt)² = 1
 @isnad1 id=eq.1h1v.s7.8673a1d4a1e7 from=translated src=- shape=64eaf300 vocab=e7af10ac
 -/
-theorem heatKernelPositionSpace_integral_eq_one (t : ℝ) (ht : 0 < t) :
+theorem _root_.Tengoku.LeanPool.heatKernelPositionSpace_integral_eq_one (t : ℝ) (ht : 0 < t) :
     ∫ z : SpaceTime, heatKernelPositionSpace t ‖z‖ = 1 := by
   unfold heatKernelPositionSpace
   -- The integral is (4πt)^{-d/2} × ∫ exp(-‖z‖²/(4t)) dz
@@ -405,14 +405,14 @@ theorem heatKernelPositionSpace_integral_eq_one (t : ℝ) (ht : 0 < t) :
 /-- The Schwinger representation of the position-space covariance.
     This expresses C(r) as a 1D integral over proper time.
 -/
-noncomputable def covarianceSchwingerRep (m : ℝ) (r : ℝ) : ℝ :=
+noncomputable def _root_.Tengoku.LeanPool.covarianceSchwingerRep (m : ℝ) (r : ℝ) : ℝ :=
   ∫ t in Set.Ioi 0, Real.exp (-t * m^2) * heatKernelPositionSpace t r
 
 /-- In 4D, the Schwinger representation of the covariance equals:
     (1/(16π²)) ∫₀^∞ exp(-tm²) · (1/t²) · exp(-r²/(4t)) dt
 @isnad1 id=eq.2h2v.s7.9777c751ac2f from=translated src=- shape=7f0e3ef9 vocab=d846c089
 -/
-lemma covarianceSchwingerRep_4D (m : ℝ) (_hm : 0 < m) (r : ℝ) (_hr : 0 < r) :
+lemma _root_.Tengoku.LeanPool.covarianceSchwingerRep_4D (m : ℝ) (_hm : 0 < m) (r : ℝ) (_hr : 0 < r) :
     covarianceSchwingerRep m r =
     (1 / (16 * Real.pi^2)) * ∫ t in Set.Ioi 0,
       Real.exp (-t * m^2) * (1 / t^2) * Real.exp (-r^2 / (4 * t)) := by
@@ -434,7 +434,7 @@ lemma covarianceSchwingerRep_4D (m : ℝ) (_hm : 0 < m) (r : ℝ) (_hr : 0 < r) 
     to the explicit Bessel function formula for the free scalar propagator in 4D.
 @isnad1 id=eq.2h2v.s6.a08288eefa1c from=translated src=- shape=6fd21a4d vocab=853918c4
 -/
-theorem covarianceSchwingerRep_eq_besselFormula (m r : ℝ) (hm : 0 < m) (hr : 0 < r) :
+theorem _root_.Tengoku.LeanPool.covarianceSchwingerRep_eq_besselFormula (m r : ℝ) (hm : 0 < m) (hr : 0 < r) :
     covarianceSchwingerRep m r = (m / (4 * Real.pi^2 * r)) * besselK1 (m * r) := by
   rw [covarianceSchwingerRep_4D m hm r hr]
   -- We have: (1/(16π²)) ∫₀^∞ exp(-tm²) (1/t²) exp(-r²/(4t)) dt
@@ -458,19 +458,19 @@ theorem covarianceSchwingerRep_eq_besselFormula (m r : ℝ) (hm : 0 < m) (hr : 0
     This is the explicit formula for the massive scalar field propagator in 4D.
     The formula is valid for x ≠ y and m > 0.
 -/
-noncomputable def freeCovarianceBessel (m : ℝ) (x y : SpaceTime) : ℝ :=
+noncomputable def _root_.Tengoku.LeanPool.freeCovarianceBessel (m : ℝ) (x y : SpaceTime) : ℝ :=
   let r := ‖x - y‖
   if r = 0 then 0  -- Undefined at coincident points; regularize to 0
   else (m / (4 * Real.pi^2 * r)) * besselK1 (m * r)
 
 /-- The free covariance in position space (abbreviation for the Bessel representation). -/
-noncomputable abbrev freeCovariance (m : ℝ) (x y : SpaceTime) : ℝ :=
+noncomputable abbrev _root_.Tengoku.LeanPool.freeCovariance (m : ℝ) (x y : SpaceTime) : ℝ :=
   freeCovarianceBessel m x y
 
 /-- The Bessel covariance is symmetric.
 @isnad1 id=eq.0h3v.s4.978a6b3a3fbc from=translated src=- shape=ef4233a0 vocab=6b99847d
 -/
-lemma freeCovarianceBessel_symm (m : ℝ) (x y : SpaceTime) :
+lemma _root_.Tengoku.LeanPool.freeCovarianceBessel_symm (m : ℝ) (x y : SpaceTime) :
     freeCovarianceBessel m x y = freeCovarianceBessel m y x := by
   unfold freeCovarianceBessel
   simp only [norm_sub_rev]
@@ -478,7 +478,7 @@ lemma freeCovarianceBessel_symm (m : ℝ) (x y : SpaceTime) :
 /-- The Bessel covariance is positive for distinct points and m > 0.
 @isnad1 id=lt.2h3v.s5.5ef819eb69a1 from=translated src=- shape=8be6991b vocab=8eeeb5f4
 -/
-lemma freeCovarianceBessel_pos (m : ℝ) (hm : 0 < m) (x y : SpaceTime) (hxy : x ≠ y) :
+lemma _root_.Tengoku.LeanPool.freeCovarianceBessel_pos (m : ℝ) (hm : 0 < m) (x y : SpaceTime) (hxy : x ≠ y) :
     0 < freeCovarianceBessel m x y := by
   unfold freeCovarianceBessel
   have hr : ‖x - y‖ ≠ 0 := by
@@ -516,13 +516,13 @@ is to use the Schwinger representation as an intermediate step:
 
     This is an intermediate form between the Fourier representation and the Bessel form.
 -/
-noncomputable def covarianceSchwingerRegulated (α : ℝ) (m : ℝ) (r : ℝ) : ℝ :=
+noncomputable def _root_.Tengoku.LeanPool.covarianceSchwingerRegulated (α : ℝ) (m : ℝ) (r : ℝ) : ℝ :=
   ∫ t in Set.Ioi 0, Real.exp (-t * m^2) * heatKernelPositionSpace (α + t) r
 
 /-- Integrability of exp(-tm²) on (0, ∞) for m > 0.
 @isnad1 id=integrab.1h1v.s6.724614f90d49 from=translated src=- shape=e1f328cb vocab=14bb0c8b
 -/
-lemma integrableOn_exp_neg_mul_sq_Ioi (m : ℝ) (hm : 0 < m) :
+lemma _root_.Tengoku.LeanPool.integrableOn_exp_neg_mul_sq_Ioi (m : ℝ) (hm : 0 < m) :
     IntegrableOn (fun t => Real.exp (-t * m^2)) (Set.Ioi 0) := by
   have h : -m^2 < 0 := neg_neg_of_pos (sq_pos_of_pos hm)
   have := integrableOn_exp_mul_Ioi h 0
@@ -533,7 +533,7 @@ lemma integrableOn_exp_neg_mul_sq_Ioi (m : ℝ) (hm : 0 < m) :
 /-- Integrability of exp(-tm²) * C on (0, ∞) for m > 0 and any constant C.
 @isnad1 id=integrab.1h2v.s6.c08019323b95 from=translated src=- shape=eb1a525d vocab=14bb0c8b
 -/
-lemma integrableOn_exp_neg_mul_sq_const_Ioi (m : ℝ) (hm : 0 < m) (C : ℝ) :
+lemma _root_.Tengoku.LeanPool.integrableOn_exp_neg_mul_sq_const_Ioi (m : ℝ) (hm : 0 < m) (C : ℝ) :
     IntegrableOn (fun t => Real.exp (-t * m^2) * C) (Set.Ioi 0) :=
   (integrableOn_exp_neg_mul_sq_Ioi m hm).mul_const C
 
@@ -563,7 +563,7 @@ private lemma integrableOn_exp_mul_heatKernel (m : ℝ) (hm : 0 < m) (r : ℝ) (
     This is the key identity connecting momentum and position space.
 @isnad1 id=eq.1h2v.s8.479c6ede26a1 from=translated src=- shape=93117216 vocab=2327e94a
 -/
-lemma gaussianFT_eq_heatKernel_times_norm (s : ℝ) (hs : 0 < s) (z : SpaceTime) :
+lemma _root_.Tengoku.LeanPool.gaussianFT_eq_heatKernel_times_norm (s : ℝ) (hs : 0 < s) (z : SpaceTime) :
     ∫ k : SpaceTime, Complex.exp (-(s : ℂ) * ‖k‖^2) * Complex.exp (-Complex.I * ⟪k, z⟫_ℝ) =
     ((2 * Real.pi) ^ STDimension : ℝ) * (heatKernelPositionSpace s ‖z‖ : ℂ) := by
   -- Use Mathlib's integral_cexp_neg_mul_sq_norm_add
@@ -639,7 +639,7 @@ lemma gaussianFT_eq_heatKernel_times_norm (s : ℝ) (hs : 0 < s) (z : SpaceTime)
     - The product integral converges by Tonelli since all terms are non-negative
 @isnad1 id=integrab.2h2v.s8.13cd8540aed4 from=translated src=- shape=246082d3 vocab=35c7a6fc
 -/
-theorem integrable_schwinger_fourier_integrand (α : ℝ) (hα : 0 < α) (m : ℝ) (hm : 0 < m) :
+theorem _root_.Tengoku.LeanPool.integrable_schwinger_fourier_integrand (α : ℝ) (hα : 0 < α) (m : ℝ) (hm : 0 < m) :
     Integrable (fun p : SpaceTime × ℝ =>
       if p.2 > 0 then Real.exp (-(α + p.2) * ‖p.1‖^2 - p.2 * m^2)
       else 0) (volume.prod volume) := by
@@ -741,7 +741,7 @@ theorem integrable_schwinger_fourier_integrand (α : ℝ) (hα : 0 < α) (m : �
     integrability bounds from the Gaussian decay.
 @isnad1 id=eq.3h4v.s9.4879498592ff from=translated src=- shape=84cc9fcb vocab=15a59acb
 -/
-theorem fubini_schwinger_integrand (α : ℝ) (hα : 0 < α) (m : ℝ) (hm : 0 < m)
+theorem _root_.Tengoku.LeanPool.fubini_schwinger_integrand (α : ℝ) (hα : 0 < α) (m : ℝ) (hm : 0 < m)
     (x y : SpaceTime) (_hxy : x ≠ y) :
     (∫ k : SpaceTime, (↑(∫ t in Set.Ioi 0, Real.exp (-(α + t) * ‖k‖^2) * Real.exp (-t * m^2)) : ℂ) *
       Complex.exp (-Complex.I * ⟪k, x - y⟫_ℝ)).re =
@@ -837,7 +837,7 @@ theorem fubini_schwinger_integrand (α : ℝ) (hα : 0 < α) (m : ℝ) (hm : 0 <
 /-- The regulated Fourier integral equals the Schwinger-regulated form via Fubini/Tonelli.
 @isnad1 id=eq.3h4v.s6.a0fcc842a3d5 from=translated src=- shape=62340586 vocab=aa594a01
 -/
-theorem fubini_schwinger_fourier (α : ℝ) (hα : 0 < α) (m : ℝ) (hm : 0 < m) (x y : SpaceTime) (hxy :
+theorem _root_.Tengoku.LeanPool.fubini_schwinger_fourier (α : ℝ) (hα : 0 < α) (m : ℝ) (hm : 0 < m) (x y : SpaceTime) (hxy :
   x ≠ y) :
     freeCovarianceRegulated α m x y = covarianceSchwingerRegulated α m ‖x - y‖ := by
   -- Expand definitions
@@ -1075,7 +1075,7 @@ theorem fubini_schwinger_fourier (α : ℝ) (hα : 0 < α) (m : ℝ) (hm : 0 < m
 /-- As α → 0⁺, the Schwinger-regulated covariance converges to the unregulated form.
 @isnad1 id=tendsto.2h2v.s6.4f59b1dc5d53 from=translated src=- shape=4d47d7fd vocab=a6f2a3fd
 -/
-lemma covarianceSchwingerRegulated_tendsto (m : ℝ) (hm : 0 < m) (r : ℝ) (hr : 0 < r) :
+lemma _root_.Tengoku.LeanPool.covarianceSchwingerRegulated_tendsto (m : ℝ) (hm : 0 < m) (r : ℝ) (hr : 0 < r) :
     Filter.Tendsto (fun α => covarianceSchwingerRegulated α m r)
       (nhdsWithin 0 (Set.Ioi 0))
       (nhds (covarianceSchwingerRep m r)) := by
@@ -1133,7 +1133,7 @@ lemma covarianceSchwingerRegulated_tendsto (m : ℝ) (hm : 0 < m) (r : ℝ) (hr 
 /-- The unregulated Schwinger form equals the Bessel form (for r > 0).
 @isnad1 id=eq.2h3v.s6.de7fe08da496 from=translated src=- shape=07224911 vocab=5f4e8b71
 -/
-lemma covarianceSchwingerRep_eq_freeCovarianceBessel (m : ℝ) (hm : 0 < m) (x y : SpaceTime) (hxy :
+lemma _root_.Tengoku.LeanPool.covarianceSchwingerRep_eq_freeCovarianceBessel (m : ℝ) (hm : 0 < m) (x y : SpaceTime) (hxy :
   x ≠ y) :
     covarianceSchwingerRep m ‖x - y‖ = freeCovarianceBessel m x y := by
   have hr : 0 < ‖x - y‖ := norm_pos_iff.mpr (sub_ne_zero.mpr hxy)
@@ -1148,7 +1148,7 @@ lemma covarianceSchwingerRep_eq_freeCovarianceBessel (m : ℝ) (hm : 0 < m) (x y
     3. Use `covarianceSchwingerRep_eq_freeCovarianceBessel` for Schwinger → Bessel
 @isnad1 id=tendsto.2h3v.s6.9447dff15020 from=translated src=- shape=a9762fbb vocab=3835f685
 -/
-theorem freeCovariance_regulated_tendsto_bessel (m : ℝ) (hm : 0 < m) (x y : SpaceTime) (hxy : x ≠
+theorem _root_.Tengoku.LeanPool.freeCovariance_regulated_tendsto_bessel (m : ℝ) (hm : 0 < m) (x y : SpaceTime) (hxy : x ≠
   y) :
     Filter.Tendsto (fun α => freeCovarianceRegulated α m x y)
       (nhdsWithin 0 (Set.Ioi 0))
@@ -1184,7 +1184,7 @@ theorem freeCovariance_regulated_tendsto_bessel (m : ℝ) (hm : 0 < m) (x y : Sp
     The limit exists and equals the Bessel form for x ≠ y.
 @isnad1 id=tendsto.2h3v.s6.db705a800fca from=translated src=- shape=a9762fbb vocab=26a38de9
 -/
-theorem freeCovariance_regulated_limit_eq_freeCovariance (m : ℝ) (hm : 0 < m) (x y : SpaceTime)
+theorem _root_.Tengoku.LeanPool.freeCovariance_regulated_limit_eq_freeCovariance (m : ℝ) (hm : 0 < m) (x y : SpaceTime)
   (hxy : x ≠ y) :
     Filter.Tendsto (fun α => freeCovarianceRegulated α m x y) (nhdsWithin 0 (Set.Ioi 0)) (nhds
       (freeCovariance m x y)) :=
@@ -1205,7 +1205,7 @@ theorem freeCovariance_regulated_limit_eq_freeCovariance (m : ℝ) (hm : 0 < m) 
                ≤ exp(m²) × C_Bessel(m, r)   (for α ≤ 1)
 @isnad1 id=le.4h3v.s6.da18c85fe171 from=translated src=- shape=86c13828 vocab=27da0530
 -/
-lemma covarianceSchwingerRegulated_le_const_mul (m : ℝ) (hm : 0 < m) (r : ℝ) (hr : 0 < r)
+lemma _root_.Tengoku.LeanPool.covarianceSchwingerRegulated_le_const_mul (m : ℝ) (hm : 0 < m) (r : ℝ) (hr : 0 < r)
     (α : ℝ) (hα : 0 < α) (hα1 : α ≤ 1) :
     covarianceSchwingerRegulated α m r ≤ Real.exp (m^2) * covarianceSchwingerRep m r := by
   -- **Proof outline:**
@@ -1291,7 +1291,7 @@ lemma covarianceSchwingerRegulated_le_const_mul (m : ℝ) (hm : 0 < m) (r : ℝ)
     This bound enables dominated convergence for the bilinear form.
 @isnad1 id=le.4h4v.s6.b2abf7a6adc2 from=translated src=- shape=003dbbc9 vocab=3ba47cf0
 -/
-lemma freeCovariance_regulated_le_const_mul_freeCovariance (m : ℝ) (hm : 0 < m)
+lemma _root_.Tengoku.LeanPool.freeCovariance_regulated_le_const_mul_freeCovariance (m : ℝ) (hm : 0 < m)
     (x y : SpaceTime) (hxy : x ≠ y) (α : ℝ) (hα : 0 < α) (hα1 : α ≤ 1) :
     |freeCovarianceRegulated α m x y| ≤ Real.exp (m^2) * freeCovariance m x y := by
   have hr : 0 < ‖x - y‖ := norm_pos_iff.mpr (sub_ne_zero.mpr hxy)
@@ -1317,7 +1317,7 @@ lemma freeCovariance_regulated_le_const_mul_freeCovariance (m : ℝ) (hm : 0 < m
 /-- The Gaussian regulator exp(-α‖k‖²) is integrable on SpaceTime for α > 0.
 @isnad1 id=integrab.1h1v.s7.8dc3d0f49a6d from=translated src=- shape=07a43773 vocab=86fe18a9
 -/
-lemma gaussian_regulator_integrable' (α : ℝ) (hα : 0 < α) :
+lemma _root_.Tengoku.LeanPool.gaussian_regulator_integrable' (α : ℝ) (hα : 0 < α) :
     Integrable (fun k : SpaceTime => Real.exp (-α * ‖k‖^2)) volume := by
   have hα_re : (0 : ℝ) < (α : ℂ).re := by simp [hα]
   have h := GaussianFourier.integrable_cexp_neg_mul_sq_norm_add (V := SpaceTime) hα_re 0 0
@@ -1337,7 +1337,7 @@ lemma gaussian_regulator_integrable' (α : ℝ) (hα : 0 < α) :
     - Since C_α is the real part of the integral, |C_α| ≤ M for all (x,y)
 @isnad1 id=ex.2h2v.s5.04b2268e7614 from=translated src=- shape=96ac9781 vocab=eacb5590
 -/
-lemma freeCovariance_regulated_uniformly_bounded (α : ℝ) (hα : 0 < α) (m : ℝ) (hm : 0 < m) :
+lemma _root_.Tengoku.LeanPool.freeCovariance_regulated_uniformly_bounded (α : ℝ) (hα : 0 < α) (m : ℝ) (hm : 0 < m) :
     ∃ M > 0, ∀ x y : SpaceTime, |freeCovarianceRegulated α m x y| ≤ M := by
   -- The bound is ∫ exp(-α‖k‖²) / (m² (2π)^d) dk
   -- This is finite since exp(-α‖k‖²) is integrable (Gaussian)
@@ -1425,7 +1425,7 @@ lemma freeCovariance_regulated_uniformly_bounded (α : ℝ) (hα : 0 < α) (m : 
     By Fubini theorem structure, the integral inherits measurability in (x, y).
 @isnad1 id=aestrong.2h2v.s9.248d56e977d8 from=translated src=- shape=ce1a4e0d vocab=af97f83e
 -/
-lemma aestronglyMeasurable_freeCovariance_regulated (α : ℝ) (hα : 0 < α) (m : ℝ) (hm : 0 < m) :
+lemma _root_.Tengoku.LeanPool.aestronglyMeasurable_freeCovariance_regulated (α : ℝ) (hα : 0 < α) (m : ℝ) (hm : 0 < m) :
     AEStronglyMeasurable
       (fun p : SpaceTime × SpaceTime => (freeCovarianceRegulated α m p.1 p.2 : ℂ))
       (volume.prod volume) := by
@@ -1509,7 +1509,7 @@ lemma aestronglyMeasurable_freeCovariance_regulated (α : ℝ) (hα : 0 < α) (m
     Continuity implies strong measurability, hence AEStronglyMeasurable.
 @isnad1 id=aestrong.0h1v.s9.cc73e8b1c6a3 from=translated src=- shape=448ba505 vocab=56c4aa28
 -/
-lemma aestronglyMeasurable_freeCovariance (m : ℝ) [Fact (0 < m)] :
+lemma _root_.Tengoku.LeanPool.aestronglyMeasurable_freeCovariance (m : ℝ) [Fact (0 < m)] :
     AEStronglyMeasurable
       (fun p : SpaceTime × SpaceTime => (freeCovariance m p.1 p.2 : ℂ))
       (volume.prod volume) := by
@@ -1596,7 +1596,7 @@ with Schwartz f, g.
     The RHS is integrable since f, g ∈ L¹ (Schwartz functions are integrable).
 @isnad1 id=integrab.1h4v.s9.2b1002968819 from=translated src=- shape=8ddc4d46 vocab=ea47d447
 -/
-theorem freeCovariance_regulated_bilinear_integrable (α : ℝ) (hα : 0 < α) (m : ℝ) [Fact (0 < m)]
+theorem _root_.Tengoku.LeanPool.freeCovariance_regulated_bilinear_integrable (α : ℝ) (hα : 0 < α) (m : ℝ) [Fact (0 < m)]
     (f g : TestFunctionℂ) :
     Integrable (fun p : SpaceTime × SpaceTime =>
       (f p.1) * (freeCovarianceRegulated α m p.1 p.2 : ℂ) * (g p.2)) volume := by
@@ -1654,7 +1654,7 @@ theorem freeCovariance_regulated_bilinear_integrable (α : ℝ) (hα : 0 < α) (
   exact Integrable.mono' hbound_int hmeas hnorm
 
 /-- The free covariance kernel (alternative name for compatibility) -/
-noncomputable def freeCovarianceKernel (m : ℝ) (z : SpaceTime) : ℝ :=
+noncomputable def _root_.Tengoku.LeanPool.freeCovarianceKernel (m : ℝ) (z : SpaceTime) : ℝ :=
   freeCovariance m 0 z
 
 /-- The Bessel covariance kernel is L¹ (integrable on SpaceTime).
@@ -1665,7 +1665,7 @@ noncomputable def freeCovarianceKernel (m : ℝ) (z : SpaceTime) : ℝ :=
     This is finite by `radial_besselK1_integrable`.
 @isnad1 id=integrab.1h1v.s7.cc2c796ed361 from=translated src=- shape=ed4bfb7a vocab=9b557f01
 -/
-lemma freeCovarianceKernel_integrable (m : ℝ) (hm : 0 < m) :
+lemma _root_.Tengoku.LeanPool.freeCovarianceKernel_integrable (m : ℝ) (hm : 0 < m) :
     Integrable (freeCovarianceKernel m) volume := by
   -- The kernel is a radial function: K(z) = f(‖z‖) where
   -- f(r) = (m/(4π²r)) K₁(mr) for r > 0, f(0) = 0
@@ -1699,7 +1699,7 @@ lemma freeCovarianceKernel_integrable (m : ℝ) (hm : 0 < m) :
     The bound is essential for OS1 local integrability in d=4 dimensions.
 @isnad1 id=ex.1h1v.s6.f4e07f677701 from=translated src=- shape=47625cbf vocab=f80331f4
 -/
-lemma freeCovarianceKernel_decay_bound (m : ℝ) (hm : 0 < m) :
+lemma _root_.Tengoku.LeanPool.freeCovarianceKernel_decay_bound (m : ℝ) (hm : 0 < m) :
     ∃ C : ℝ, C > 0 ∧ ∀ z : SpaceTime, |freeCovarianceKernel m z| ≤ C * ‖z‖ ^ (-2 : ℝ) := by
   -- Define the constant C = (cosh(1) + 2) / (4π²)
   -- This works for both near and far from origin
@@ -1802,7 +1802,7 @@ lemma freeCovarianceKernel_decay_bound (m : ℝ) (hm : 0 < m) :
     - The condition m‖u-v‖ ≥ 1, which implies ‖u-v‖ ≥ 1/m, so m/‖u-v‖ ≤ m²
 @isnad1 id=le.2h3v.s8.2b182ca5db1b from=translated src=- shape=67f9b449 vocab=258758f5
 -/
-lemma freeCovariance_exponential_bound (m : ℝ) (hm : 0 < m) (u v : SpaceTime)
+lemma _root_.Tengoku.LeanPool.freeCovariance_exponential_bound (m : ℝ) (hm : 0 < m) (u v : SpaceTime)
     (h_sep : 1 ≤ m * ‖u - v‖) :
     |freeCovariance m u v| ≤ (m^2 * (Real.sinh 1 + 2) / (4 * Real.pi^2)) * Real.exp (-m * ‖u - v‖)
        := by
@@ -1860,7 +1860,7 @@ for compatibility with code that uses the Fact type class.
 /-- Exponential bound with `[Fact (0 < m)]` type class.
 @isnad1 id=le.1h3v.s8.188a22427499 from=translated src=- shape=753139e6 vocab=64b18e94
 -/
-lemma freeCovariance_exponential_bound' (m : ℝ) [Fact (0 < m)] (u v : SpaceTime)
+lemma _root_.Tengoku.LeanPool.freeCovariance_exponential_bound' (m : ℝ) [Fact (0 < m)] (u v : SpaceTime)
     (h_sep : 1 ≤ m * ‖u - v‖) :
     |freeCovariance m u v| ≤ (m^2 * (Real.sinh 1 + 2) / (4 * Real.pi^2)) * Real.exp (-m * ‖u - v‖)
        :=
@@ -1878,7 +1878,7 @@ lemma freeCovariance_exponential_bound' (m : ℝ) [Fact (0 < m)] (u v : SpaceTim
     This is essential for the double mollifier convergence theorem.
 @isnad1 id=continuo.1h1v.s6.c820e4702bb3 from=translated src=- shape=45c6861b vocab=488514b2
 -/
-lemma freeCovarianceKernel_continuousOn (m : ℝ) (hm : 0 < m) :
+lemma _root_.Tengoku.LeanPool.freeCovarianceKernel_continuousOn (m : ℝ) (hm : 0 < m) :
     ContinuousOn (freeCovarianceKernel m) {z : SpaceTime | z ≠ 0} := by
   -- The kernel is f(‖z‖) where f(r) = (m/(4π²r)) K₁(mr)
   -- We show continuity by composition
@@ -1915,7 +1915,7 @@ lemma freeCovarianceKernel_continuousOn (m : ℝ) (hm : 0 < m) :
     This uses the L¹ integrability of the translation-invariant Bessel kernel.
 @isnad1 id=integrab.0h3v.s9.619f45fc54ea from=translated src=- shape=c06a79db vocab=d1c0236f
 -/
-theorem freeCovarianceℂ_bilinear_integrable' (m : ℝ) [Fact (0 < m)] (f g : TestFunctionℂ) :
+theorem _root_.Tengoku.LeanPool.freeCovarianceℂ_bilinear_integrable' (m : ℝ) [Fact (0 < m)] (f g : TestFunctionℂ) :
     Integrable (fun p : SpaceTime × SpaceTime =>
       (f p.1) * (freeCovariance m p.1 p.2 : ℂ) * (g p.2)) volume := by
   have h_transl_inv : ∀ x y, freeCovariance m x y = freeCovarianceKernel m (x - y) := by
@@ -1931,7 +1931,7 @@ theorem freeCovarianceℂ_bilinear_integrable' (m : ℝ) [Fact (0 < m)] (f g : T
     (fun z => (freeCovarianceKernel m z : ℂ)) hK_int f g
 
 /-- Negation as a linear isometry equivalence on SpaceTime. -/
-def negSpaceTime : SpaceTime ≃ₗᵢ[ℝ] SpaceTime where
+def _root_.Tengoku.LeanPool.negSpaceTime : SpaceTime ≃ₗᵢ[ℝ] SpaceTime where
   toLinearEquiv := LinearEquiv.neg ℝ
   norm_map' := norm_neg
 
@@ -1939,7 +1939,7 @@ def negSpaceTime : SpaceTime ≃ₗᵢ[ℝ] SpaceTime where
     This uses that linear isometries preserve measure on finite-dimensional inner product spaces.
 @isnad1 id=eq.0h2v.s8.cbcc2171eb61 from=translated src=- shape=3d8ce0b7 vocab=ed8e217a
 -/
-theorem integral_comp_neg_spacetime {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
+theorem _root_.Tengoku.LeanPool.integral_comp_neg_spacetime {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     (f : SpaceTime → E) : ∫ k, f (-k) = ∫ k, f k := by
   have h := (LinearIsometryEquiv.measurePreserving negSpaceTime).integral_comp
     negSpaceTime.toHomeomorph.measurableEmbedding f
@@ -1948,21 +1948,21 @@ theorem integral_comp_neg_spacetime {E : Type*} [NormedAddCommGroup E] [NormedSp
 /-- Position-space free covariance is symmetric: `C(x,y) = C(y,x)`.
 @isnad1 id=eq.0h3v.s4.16fbe4fe99c2 from=translated src=- shape=ef4233a0 vocab=bc1b6a68
 -/
-lemma freeCovariance_symmetric (m : ℝ) (x y : SpaceTime) :
+lemma _root_.Tengoku.LeanPool.freeCovariance_symmetric (m : ℝ) (x y : SpaceTime) :
     freeCovariance m x y = freeCovariance m y x :=
   freeCovarianceBessel_symm m x y
 
 /-- The position-space free covariance is real-valued after ℂ coercion.
 @isnad1 id=eq.0h3v.s5.7b2f3ddf0e57 from=translated src=- shape=1ac02a28 vocab=01ed4e18
 -/
-lemma freeCovariance_star (m : ℝ) (x y : SpaceTime) :
+lemma _root_.Tengoku.LeanPool.freeCovariance_star (m : ℝ) (x y : SpaceTime) :
   star (freeCovariance m x y : ℂ) = (freeCovariance m x y : ℂ) := by
   simp
 
 /-- Hermiticity of the complex-lifted position-space kernel.
 @isnad1 id=eq.0h3v.s5.e8275afe0707 from=translated src=- shape=c355988f vocab=01ed4e18
 -/
-lemma freeCovariance_hermitian (m : ℝ) (x y : SpaceTime) :
+lemma _root_.Tengoku.LeanPool.freeCovariance_hermitian (m : ℝ) (x y : SpaceTime) :
   (freeCovariance m x y : ℂ) = star (freeCovariance m y x : ℂ) := by
   -- symmetry plus real-valuedness
   simp [freeCovariance_symmetric m x y]
@@ -1970,7 +1970,7 @@ lemma freeCovariance_hermitian (m : ℝ) (x y : SpaceTime) :
 /-- The free propagator function is smooth (infinitely differentiable).
 @isnad1 id=contdiff.0h1v.s6.48374810c38b from=translated src=- shape=904038b7 vocab=f1496651
 -/
-lemma freePropagator_smooth (m : ℝ) [Fact (0 < m)] :
+lemma _root_.Tengoku.LeanPool.freePropagator_smooth (m : ℝ) [Fact (0 < m)] :
   ContDiff ℝ (⊤ : ℕ∞) (fun k => freePropagatorMomentum m k) := by
   unfold freePropagatorMomentum
   refine ContDiff.div contDiff_const ((contDiff_norm_sq ℝ).add contDiff_const)
@@ -1980,14 +1980,14 @@ lemma freePropagator_smooth (m : ℝ) [Fact (0 < m)] :
 /-- The complex-valued free propagator function is smooth.
 @isnad1 id=contdiff.0h1v.s6.29948b74d5b0 from=translated src=- shape=d3a0c663 vocab=37def056
 -/
-lemma freePropagator_complex_smooth (m : ℝ) [Fact (0 < m)] :
+lemma _root_.Tengoku.LeanPool.freePropagator_complex_smooth (m : ℝ) [Fact (0 < m)] :
   ContDiff ℝ (⊤ : ℕ∞) (fun k : SpaceTime => (freePropagatorMomentum m k : ℂ)) :=
   ofRealCLM.contDiff.comp (freePropagator_smooth m)
 
 /-- The free propagator is positive
 @isnad1 id=lt.0h2v.s4.047e07191088 from=translated src=- shape=37e27660 vocab=c2f85106
 -/
-lemma freePropagator_pos {m : ℝ} [Fact (0 < m)] (k : SpaceTime) : 0 < freePropagatorMomentum m k :=
+lemma _root_.Tengoku.LeanPool.freePropagator_pos {m : ℝ} [Fact (0 < m)] (k : SpaceTime) : 0 < freePropagatorMomentum m k :=
   by
   unfold freePropagatorMomentum
   exact div_pos one_pos (add_pos_of_nonneg_of_pos (sq_nonneg ‖k‖) (pow_pos (Fact.out : 0 < m) 2))
@@ -1995,7 +1995,7 @@ lemma freePropagator_pos {m : ℝ} [Fact (0 < m)] (k : SpaceTime) : 0 < freeProp
 /-- The free propagator is bounded above by 1/m²
 @isnad1 id=le.0h2v.s5.2cc590903094 from=translated src=- shape=cd3c488b vocab=c3c1b09b
 -/
-lemma freePropagator_bounded {m : ℝ} [Fact (0 < m)] (k : SpaceTime) :
+lemma _root_.Tengoku.LeanPool.freePropagator_bounded {m : ℝ} [Fact (0 < m)] (k : SpaceTime) :
   freePropagatorMomentum m k ≤ 1 / m^2 := by
   unfold freePropagatorMomentum
   exact div_le_div_of_nonneg_left one_pos.le (pow_pos (Fact.out : 0 < m) 2)
@@ -2004,7 +2004,7 @@ lemma freePropagator_bounded {m : ℝ} [Fact (0 < m)] (k : SpaceTime) :
 /-- The free propagator is continuous
 @isnad1 id=continuo.0h1v.s5.9ab89b3a9d02 from=translated src=- shape=727483bb vocab=0b7f8034
 -/
-lemma freePropagator_continuous {m : ℝ} [Fact (0 < m)] :
+lemma _root_.Tengoku.LeanPool.freePropagator_continuous {m : ℝ} [Fact (0 < m)] :
   Continuous (freePropagatorMomentum m) := by
   unfold freePropagatorMomentum
   refine Continuous.div continuous_const ((continuous_norm.pow 2).add continuous_const)
@@ -2016,50 +2016,50 @@ lemma freePropagator_continuous {m : ℝ} [Fact (0 < m)] :
 /-- The momentum-space propagator is real-valued: its star (complex conjugate) equals itself.
 @isnad1 id=eq.0h2v.s5.593f4e323dc9 from=translated src=- shape=0f153372 vocab=47279017
 -/
-@[simp] lemma freePropagatorMomentum_star (m : ℝ) (k : SpaceTime) :
+@[simp] lemma _root_.Tengoku.LeanPool.freePropagatorMomentum_star (m : ℝ) (k : SpaceTime) :
   star (freePropagatorMomentum m k : ℂ) = (freePropagatorMomentum m k : ℂ) := by
   simp
 
 /-- Same statement via the star ring endomorphism (complex conjugate).
 @isnad1 id=eq.0h2v.s5.fc9023648f3c from=translated src=- shape=56d7d816 vocab=d9ac3983
 -/
-lemma freePropagatorMomentum_starRing (m : ℝ) (k : SpaceTime) :
+lemma _root_.Tengoku.LeanPool.freePropagatorMomentum_starRing (m : ℝ) (k : SpaceTime) :
   (starRingEnd ℂ) (freePropagatorMomentum m k : ℂ) = (freePropagatorMomentum m k : ℂ) := by
   simp
 
 /-- In particular, the imaginary part of the momentum-space propagator vanishes.
 @isnad1 id=eq.0h2v.s4.ea1137993a21 from=translated src=- shape=c36bede4 vocab=c054e695
 -/
-@[simp] lemma freePropagatorMomentum_im (m : ℝ) (k : SpaceTime) :
+@[simp] lemma _root_.Tengoku.LeanPool.freePropagatorMomentum_im (m : ℝ) (k : SpaceTime) :
   (freePropagatorMomentum m k : ℂ).im = 0 := by
   simp
 
 /-! ### Momentum weight functions for L² embedding -/
 
 /-- The weight function in momentum space (physics convention): 1 / (‖k‖² + m²) -/
-noncomputable def momentumWeight (m : ℝ) (k : SpaceTime) : ℝ :=
+noncomputable def _root_.Tengoku.LeanPool.momentumWeight (m : ℝ) (k : SpaceTime) : ℝ :=
   1 / (‖k‖^2 + m^2)
 
 /-- The weight function in momentum space (Mathlib convention): 1 / ((2π)²‖k‖² + m²)
     This is the correct weight to use with Mathlib's Fourier transform.
 -/
-noncomputable def momentumWeightMathlib (m : ℝ) (k : SpaceTime) : ℝ :=
+noncomputable def _root_.Tengoku.LeanPool.momentumWeightMathlib (m : ℝ) (k : SpaceTime) : ℝ :=
   freePropagatorMomentumMathlib m k
 
 /-- The square root of the weight function (physics convention). -/
-noncomputable def momentumWeightSqrt (m : ℝ) (k : SpaceTime) : ℝ :=
+noncomputable def _root_.Tengoku.LeanPool.momentumWeightSqrt (m : ℝ) (k : SpaceTime) : ℝ :=
   1 / Real.sqrt (‖k‖^2 + m^2)
 
 /-- The square root of the weight function (Mathlib convention).
     This is the correct weight to use with Mathlib's Fourier transform.
 -/
-noncomputable def momentumWeightSqrtMathlib (m : ℝ) (k : SpaceTime) : ℝ :=
+noncomputable def _root_.Tengoku.LeanPool.momentumWeightSqrtMathlib (m : ℝ) (k : SpaceTime) : ℝ :=
   1 / Real.sqrt ((2 * Real.pi)^2 * ‖k‖^2 + m^2)
 
 /-- The square root weight is positive (Mathlib convention).
 @isnad1 id=lt.0h2v.s4.df2529410b2a from=translated src=- shape=37e27660 vocab=ccd62d5f
 -/
-lemma momentumWeightSqrt_mathlib_pos (m : ℝ) [Fact (0 < m)] (k : SpaceTime) :
+lemma _root_.Tengoku.LeanPool.momentumWeightSqrt_mathlib_pos (m : ℝ) [Fact (0 < m)] (k : SpaceTime) :
     0 < momentumWeightSqrtMathlib m k := by
   unfold momentumWeightSqrtMathlib
   refine div_pos one_pos (Real.sqrt_pos.mpr ?_)
@@ -2068,7 +2068,7 @@ lemma momentumWeightSqrt_mathlib_pos (m : ℝ) [Fact (0 < m)] (k : SpaceTime) :
 /-- The square of the sqrt weight equals the weight (Mathlib convention).
 @isnad1 id=eq.0h2v.s5.b37efee60de3 from=translated src=- shape=a6d39e1b vocab=5a87d53a
 -/
-lemma momentumWeightSqrt_mathlib_sq (m : ℝ) [Fact (0 < m)] (k : SpaceTime) :
+lemma _root_.Tengoku.LeanPool.momentumWeightSqrt_mathlib_sq (m : ℝ) [Fact (0 < m)] (k : SpaceTime) :
     (momentumWeightSqrtMathlib m k)^2 = momentumWeightMathlib m k := by
   unfold momentumWeightSqrtMathlib momentumWeightMathlib freePropagatorMomentumMathlib
   have h_pos : 0 < (2 * Real.pi)^2 * ‖k‖^2 + m^2 := by
@@ -2080,7 +2080,7 @@ lemma momentumWeightSqrt_mathlib_sq (m : ℝ) [Fact (0 < m)] (k : SpaceTime) :
 /-- The momentum weight sqrt function is continuous (physics convention).
 @isnad1 id=continuo.0h1v.s5.95dd17e84e66 from=translated src=- shape=7443d561 vocab=7acef917
 -/
-lemma momentumWeightSqrt_continuous (m : ℝ) [Fact (0 < m)] :
+lemma _root_.Tengoku.LeanPool.momentumWeightSqrt_continuous (m : ℝ) [Fact (0 < m)] :
     Continuous (fun k : SpaceTime => momentumWeightSqrt m k) := by
   unfold momentumWeightSqrt
   refine Continuous.div continuous_const (by fun_prop) (fun k => ne_of_gt ?_)
@@ -2089,7 +2089,7 @@ lemma momentumWeightSqrt_continuous (m : ℝ) [Fact (0 < m)] :
 /-- The momentum weight sqrt function is continuous (Mathlib convention).
 @isnad1 id=continuo.0h1v.s5.509960a8a937 from=translated src=- shape=7443d561 vocab=9fa2bf06
 -/
-lemma momentumWeightSqrt_mathlib_continuous (m : ℝ) [Fact (0 < m)] :
+lemma _root_.Tengoku.LeanPool.momentumWeightSqrt_mathlib_continuous (m : ℝ) [Fact (0 < m)] :
     Continuous (fun k : SpaceTime => momentumWeightSqrtMathlib m k) := by
   unfold momentumWeightSqrtMathlib
   refine Continuous.div continuous_const (by fun_prop) (fun k => ne_of_gt ?_)
@@ -2099,14 +2099,14 @@ lemma momentumWeightSqrt_mathlib_continuous (m : ℝ) [Fact (0 < m)] :
 /-- The momentum weight sqrt function is measurable (physics convention).
 @isnad1 id=measurab.0h1v.s5.8a8a0ba7bb58 from=translated src=- shape=7443d561 vocab=d649e51d
 -/
-lemma momentumWeightSqrt_measurable (m : ℝ) [Fact (0 < m)] :
+lemma _root_.Tengoku.LeanPool.momentumWeightSqrt_measurable (m : ℝ) [Fact (0 < m)] :
     Measurable (fun k : SpaceTime => momentumWeightSqrt m k) :=
   (momentumWeightSqrt_continuous m).measurable
 
 /-- The momentum weight sqrt function is measurable (Mathlib convention).
 @isnad1 id=measurab.0h1v.s5.81b0b99985c7 from=translated src=- shape=7443d561 vocab=46fe9fff
 -/
-lemma momentumWeightSqrt_mathlib_measurable (m : ℝ) [Fact (0 < m)] :
+lemma _root_.Tengoku.LeanPool.momentumWeightSqrt_mathlib_measurable (m : ℝ) [Fact (0 < m)] :
     Measurable (fun k : SpaceTime => momentumWeightSqrtMathlib m k) :=
   (momentumWeightSqrt_mathlib_continuous m).measurable
 
@@ -2120,7 +2120,7 @@ private lemma one_div_sqrt_add_sq_le_inv (m : ℝ) (hm : 0 < m) {A : ℝ} (hA : 
 /-- Helper: The weight function as an L^∞ function (essentially bounded).
 @isnad1 id=eventual.0h1v.s7.3ff5bf9e5eda from=translated src=- shape=bfbfe79f vocab=1c756975
 -/
-lemma momentumWeightSqrt_bounded_ae (m : ℝ) [Fact (0 < m)] :
+lemma _root_.Tengoku.LeanPool.momentumWeightSqrt_bounded_ae (m : ℝ) [Fact (0 < m)] :
     ∀ᵐ k ∂(volume : Measure SpaceTime), ‖(momentumWeightSqrt m k : ℂ)‖ ≤ 1 / m := by
   filter_upwards with k
   simp only [Complex.norm_real, momentumWeightSqrt, Real.norm_eq_abs,
@@ -2130,7 +2130,7 @@ lemma momentumWeightSqrt_bounded_ae (m : ℝ) [Fact (0 < m)] :
 /-- Helper: The mathlib weight function as an L^∞ function (essentially bounded).
 @isnad1 id=eventual.0h1v.s7.ee2af28e8a7f from=translated src=- shape=bfbfe79f vocab=4b90c78c
 -/
-lemma momentumWeightSqrt_mathlib_bounded_ae (m : ℝ) [Fact (0 < m)] :
+lemma _root_.Tengoku.LeanPool.momentumWeightSqrt_mathlib_bounded_ae (m : ℝ) [Fact (0 < m)] :
     ∀ᵐ k ∂(volume : Measure SpaceTime), ‖(momentumWeightSqrtMathlib m k : ℂ)‖ ≤ 1 / m := by
   filter_upwards with k
   simp only [Complex.norm_real, momentumWeightSqrtMathlib, Real.norm_eq_abs,
@@ -2140,7 +2140,7 @@ lemma momentumWeightSqrt_mathlib_bounded_ae (m : ℝ) [Fact (0 < m)] :
 /-- Multiplication by the square-root momentum weight defines a bounded
     linear operator on complex L² (physics convention).
 -/
-noncomputable def momentumWeightSqrtMulCLM (m : ℝ) [Fact (0 < m)] :
+noncomputable def _root_.Tengoku.LeanPool.momentumWeightSqrtMulCLM (m : ℝ) [Fact (0 < m)] :
     Lp ℂ 2 (volume : Measure SpaceTime) →L[ℂ]
       Lp ℂ 2 (volume : Measure SpaceTime) :=
   have hg_meas : Measurable (fun k => (momentumWeightSqrt m k : ℂ)) :=
@@ -2154,7 +2154,7 @@ noncomputable def momentumWeightSqrtMulCLM (m : ℝ) [Fact (0 < m)] :
 /-- Multiplication by the square-root momentum weight defines a bounded
     linear operator on complex L² (Mathlib convention).
 -/
-noncomputable def momentumWeightSqrtMathlibMulCLM (m : ℝ) [Fact (0 < m)] :
+noncomputable def _root_.Tengoku.LeanPool.momentumWeightSqrtMathlibMulCLM (m : ℝ) [Fact (0 < m)] :
     Lp ℂ 2 (volume : Measure SpaceTime) →L[ℂ]
       Lp ℂ 2 (volume : Measure SpaceTime) :=
   have hg_meas : Measurable (fun k => (momentumWeightSqrtMathlib m k : ℂ)) :=
@@ -2168,7 +2168,7 @@ noncomputable def momentumWeightSqrtMathlibMulCLM (m : ℝ) [Fact (0 < m)] :
 /--
 @isnad1 id=eventual.0h2v.s15.9765a2d8a6aa from=translated src=- shape=16482671 vocab=a1c04a8e
 -/
-lemma momentumWeightSqrt_mathlib_mul_CLM_spec (m : ℝ) [Fact (0 < m)]
+lemma _root_.Tengoku.LeanPool.momentumWeightSqrt_mathlib_mul_CLM_spec (m : ℝ) [Fact (0 < m)]
     (f : Lp ℂ 2 (volume : Measure SpaceTime)) :
     (momentumWeightSqrtMathlibMulCLM m f) =ᵐ[volume]
       fun k => (momentumWeightSqrtMathlib m k : ℂ) * f k := by
@@ -2178,7 +2178,8 @@ lemma momentumWeightSqrt_mathlib_mul_CLM_spec (m : ℝ) [Fact (0 < m)]
 /-- The square-root momentum weight is pointwise bounded by `1 / m` (Mathlib convention).
 @isnad1 id=le.0h2v.s5.923804a46c40 from=translated src=- shape=38f83757 vocab=93fabdae
 -/
-lemma momentumWeightSqrt_mathlib_le_inv_mass (m : ℝ) [Fact (0 < m)] :
+lemma _root_.Tengoku.LeanPool.momentumWeightSqrt_mathlib_le_inv_mass (m : ℝ) [Fact (0 < m)] :
     ∀ k : SpaceTime, momentumWeightSqrtMathlib m k ≤ 1 / m := fun k => by
   simpa [momentumWeightSqrtMathlib] using
     one_div_sqrt_add_sq_le_inv m Fact.out (A := (2 * Real.pi)^2 * ‖k‖^2) (by positivity)
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

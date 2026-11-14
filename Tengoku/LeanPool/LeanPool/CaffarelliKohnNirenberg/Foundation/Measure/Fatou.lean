@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Filter
 open scoped ENNReal Topology
 
@@ -50,3 +50,4 @@ theorem integral_le_of_ae_tendsto_nonneg {α : Type*} [MeasurableSpace α]
     exact hbound
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

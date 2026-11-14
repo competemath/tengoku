@@ -38,7 +38,7 @@ lifted variable embedding `ctxLiftEmb` (no term relabeling of built formulas).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure
@@ -278,3 +278,4 @@ theorem functionsIn_relationalizeFormula (φ : L.BoundedFormulaω α n) :
   BoundedFormulaω.functionsIn_of_isRelational _
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

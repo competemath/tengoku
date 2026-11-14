@@ -17,7 +17,7 @@ Compatibility wrappers for the part of Monlib's matrix-positive API now covered 
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Matrix
 
 variable {𝕜 m n : Type*} [RCLike 𝕜]
@@ -194,7 +194,7 @@ theorem Matrix.posSemidef_iff_vecMulVec [Finite n] {x : Matrix n n 𝕜} :
 /--
 @isnad1 id=possemid.0h3v.s6.2130ca9f4584 from=translated src=- shape=38e5b86c vocab=0f53e38f
 -/
-theorem vecMulVec_posSemidef [Finite n] (x : n → 𝕜) :
+theorem _root_.Tengoku.LeanPool.vecMulVec_posSemidef [Finite n] (x : n → 𝕜) :
     (vecMulVec x (star x)).PosSemidef :=
   Matrix.posSemidef_vecMulVec_self_star x
 
@@ -225,9 +225,9 @@ lemma Matrix.toEuclideanLin_apply' [Fintype n] [DecidableEq n]
     x.toEuclideanLin v = x.mulVec v :=
   rfl
 
-namespace rankOne
+namespace Tengoku.LeanPool.rankOne
 
-theorem _root_.rankOne.EuclideanSpace.toEuclideanLin_symm {𝕜 : Type*} [RCLike 𝕜] {n m : Type*}
+theorem _root_.Tengoku.LeanPool.rankOne.EuclideanSpace.toEuclideanLin_symm {𝕜 : Type*} [RCLike 𝕜] {n m : Type*}
     [Fintype n] [Fintype m] [DecidableEq m]
     (x : EuclideanSpace 𝕜 n) (y : EuclideanSpace 𝕜 m) :
     Matrix.toEuclideanLin.symm (rankOne 𝕜 x y).toLinearMap =
@@ -241,7 +241,7 @@ theorem _root_.rankOne.EuclideanSpace.toEuclideanLin_symm {𝕜 : Type*} [RCLike
     Matrix.conjTranspose_replicateCol]
   rfl
 
-theorem _root_.rankOne.EuclideanSpace.toMatrix' {𝕜 : Type*} [RCLike 𝕜] {n m : Type*}
+theorem _root_.Tengoku.LeanPool.rankOne.EuclideanSpace.toMatrix' {𝕜 : Type*} [RCLike 𝕜] {n m : Type*}
     [Fintype n] [Fintype m] [DecidableEq m]
     (x : EuclideanSpace 𝕜 n) (y : EuclideanSpace 𝕜 m) :
     Matrix.toEuclideanLin.symm (rankOne 𝕜 x y).toLinearMap =
@@ -249,7 +249,7 @@ theorem _root_.rankOne.EuclideanSpace.toMatrix' {𝕜 : Type*} [RCLike 𝕜] {n 
         (Matrix.replicateCol (Fin 1) (y : m → 𝕜))ᴴ :=
   rankOne.EuclideanSpace.toEuclideanLin_symm x y
 
-end rankOne
+end Tengoku.LeanPool.rankOne
 
 /--
 @isnad1 id=eq.0h3v.s7.2f723d31d184 from=translated src=- shape=7a3f2969 vocab=14bd0d27
@@ -348,7 +348,7 @@ theorem single.sum_eq_one [Fintype n] [DecidableEq n] (a : 𝕜) :
 /--
 @isnad1 id=eq.0h8v.s8.85f1d4fe58d2 from=translated src=- shape=2a689279 vocab=f77786c6
 -/
-theorem single_hMul [Fintype n] [DecidableEq n] (i j k l : n) (a b : 𝕜) :
+theorem _root_.Tengoku.LeanPool.single_hMul [Fintype n] [DecidableEq n] (i j k l : n) (a b : 𝕜) :
     single i j a * single k l b =
       ite (j = k) (1 : 𝕜) (0 : 𝕜) • single i l (a * b) := by
   ext p q
@@ -373,7 +373,7 @@ theorem Matrix.trace_iff' [Fintype n] (x : Matrix n n 𝕜) : x.trace = ∑ i : 
 /--
 @isnad1 id=existsun.0h2v.s10.c907fea347a7 from=translated src=- shape=fde1f019 vocab=bdcd939e
 -/
-theorem existsUnique_trace [Fintype n] [DecidableEq n] [Nontrivial n] :
+theorem _root_.Tengoku.LeanPool.existsUnique_trace [Fintype n] [DecidableEq n] [Nontrivial n] :
     ∃! φ : Matrix n n 𝕜 →ₗ[𝕜] 𝕜,
       (∀ a b : Matrix n n 𝕜, φ (a * b) = φ (b * a)) ∧ φ 1 = 1 := by
   use (1 / Fintype.card n : 𝕜) • traceLinearMap n 𝕜 𝕜
@@ -450,13 +450,13 @@ theorem Matrix.single_eq {R n m : Type*} [Semiring R] [DecidableEq n] [Decidable
 /--
 @isnad1 id=iff.0h3v.s7.28b1a260ebde from=translated src=- shape=d4f97978 vocab=c3ce0d0b
 -/
-theorem vecMulVec_eq_zero_iff (x : n → 𝕜) : vecMulVec x (star x) = 0 ↔ x = 0 := by
+theorem _root_.Tengoku.LeanPool.vecMulVec_eq_zero_iff (x : n → 𝕜) : vecMulVec x (star x) = 0 ↔ x = 0 := by
   simp_all
 
 /--
 @isnad1 id=eq.0h4v.s5.69cd1d6ab187 from=translated src=- shape=19ec118d vocab=17947a3f
 -/
-lemma norm_ite {α : Type*} [Norm α] (P : Prop) [Decidable P] (a b : α) :
+lemma _root_.Tengoku.LeanPool.norm_ite {α : Type*} [Norm α] (P : Prop) [Decidable P] (a b : α) :
     ‖(ite P a b : α)‖ = (ite P ‖a‖ ‖b‖) := by
   split_ifs <;> rfl
 
@@ -571,3 +571,4 @@ theorem _root_.Matrix.PosSemidef.replicateColMulConjTransposereplicateCol [Finit
   exact Matrix.posSemidef_vecMulVec_self_star x
 
 end Matrix
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

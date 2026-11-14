@@ -15,14 +15,14 @@ Imported Lean Pool material for `LeanPool.WhiteheadTheorem.Defs`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open CategoryTheory
 open scoped ContinuousMap
 
 universe u
 
 /-- `IsWeakHomotopyEquiv` -/
-def IsWeakHomotopyEquiv {X Y : Type u} [TopologicalSpace X] [TopologicalSpace Y]
+def _root_.Tengoku.LeanPool.IsWeakHomotopyEquiv {X Y : Type u} [TopologicalSpace X] [TopologicalSpace Y]
     (f : C(X, Y)) : Prop :=
   Nonempty X ∧
     ∀ n x, Function.Bijective (HomotopyGroup.inducedMap n x f)
@@ -30,7 +30,7 @@ def IsWeakHomotopyEquiv {X Y : Type u} [TopologicalSpace X] [TopologicalSpace Y]
 /--
 @isnad1 id=isiso.1h5v.s6.99ba3480879b from=translated src=- shape=48ebc23c vocab=f0c107dd
 -/
-lemma isIso_inducedPointedHom_of_isWeakHomotopyEquiv
+lemma _root_.Tengoku.LeanPool.isIso_inducedPointedHom_of_isWeakHomotopyEquiv
     {X Y : Type u} [TopologicalSpace X] [TopologicalSpace Y]
     {f : C(X, Y)} (hf : IsWeakHomotopyEquiv f) :
     ∀ n x, IsIso (HomotopyGroup.inducedPointedHom n x f) := by
@@ -40,6 +40,7 @@ lemma isIso_inducedPointedHom_of_isWeakHomotopyEquiv
   rwa [HomotopyGroup.inducedMap] at this
 
 /-- `IsHomotopyEquiv` -/
-def IsHomotopyEquiv {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
+def _root_.Tengoku.LeanPool.IsHomotopyEquiv {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
     (f : C(X, Y)) : Prop :=
   ∃ equiv : X ≃ₕ Y, equiv.toFun = f
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -30,7 +30,7 @@ given by extension-by-zero (via `Set.indicator`).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace MeasureTheory
 
 open scoped ENNReal
@@ -225,3 +225,4 @@ end
 end Lp
 
 end MeasureTheory
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

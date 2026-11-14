@@ -17,7 +17,7 @@ are retained as exact kernel inequalities.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.Erdos132ConvexK3
 
 private lemma sqrt_three_sq : (Real.sqrt 3) ^ 2 = 3 := by
@@ -458,3 +458,4 @@ theorem metric_equality_forces_long_second_center
   linarith
 
 end LeanPool.Erdos132ConvexK3
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

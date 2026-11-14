@@ -10,7 +10,7 @@ public import Tengoku
 /-! TODO: Add doc-string. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace NumberField.Odlyzko
 
 /--
@@ -116,3 +116,4 @@ theorem summable_inversePower_of_lSeriesSummable_fiberCard
     exact hsum.norm
 
 end NumberField.Odlyzko
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -16,21 +16,21 @@ Hebbian weight flow `hebbianWeightF`, and the joint Lyapunov descent property.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Real Finset
 
 /-- Update a single weight entry `W i j` to `x` (used to differentiate in that entry). -/
-noncomputable def hebbianUpdateWeight {N : ℕ} (W : Fin N → Fin N → ℝ)
+noncomputable def _root_.Tengoku.LeanPool.hebbianUpdateWeight {N : ℕ} (W : Fin N → Fin N → ℝ)
     (i j : Fin N) (x : ℝ) : Fin N → Fin N → ℝ :=
   Function.update W i (Function.update (W i) j x)
 
 /-- Joint phase/weight Lyapunov function with a Frobenius weight penalty. -/
-noncomputable def hebbianL (K lam : ℝ) (N : ℕ) (W : Fin N → Fin N → ℝ)
+noncomputable def _root_.Tengoku.LeanPool.hebbianL (K lam : ℝ) (N : ℕ) (W : Fin N → Fin N → ℝ)
     (θ : Fin N → ℝ) : ℝ :=
   weightedKuramotoV K N W θ + (lam / 2) * ∑ i : Fin N, ∑ j : Fin N, W i j * W i j
 
 /-- Unprojected Hebbian weight flow, the negative weight-gradient of `hebbianL`. -/
-noncomputable def hebbianWeightF (K lam : ℝ) (N : ℕ) (W : Fin N → Fin N → ℝ)
+noncomputable def _root_.Tengoku.LeanPool.hebbianWeightF (K lam : ℝ) (N : ℕ) (W : Fin N → Fin N → ℝ)
     (θ : Fin N → ℝ) (i j : Fin N) : ℝ :=
   (K / 2) * Real.cos (θ j - θ i) - lam * W i j
 
@@ -172,7 +172,7 @@ private lemma weight_penalty_deriv {N : ℕ} (lam : ℝ) (W : Fin N → Fin N �
 /--
 @isnad1 id=eq.0h7v.s6.368643144a75 from=translated src=- shape=af23d326 vocab=9bec45d4
 -/
-theorem hebbian_weight_gradient_identity
+theorem _root_.Tengoku.LeanPool.hebbian_weight_gradient_identity
     (K lam : ℝ) (N : ℕ) (W : Fin N → Fin N → ℝ)
     (θ : Fin N → ℝ) (i j : Fin N) :
     hebbianWeightF K lam N W θ i j =
@@ -197,7 +197,7 @@ theorem hebbian_weight_gradient_identity
 /--
 @isnad1 id=eq.1h6v.s6.ea38b7da7633 from=translated src=- shape=13563729 vocab=d50d4992
 -/
-theorem hebbian_phase_gradient_identity
+theorem _root_.Tengoku.LeanPool.hebbian_phase_gradient_identity
     (K lam : ℝ) (N : ℕ) (W : Fin N → Fin N → ℝ) (hW : ∀ i j, W i j = W j i)
     (θ : Fin N → ℝ) (i : Fin N) :
     weightedKuramotoF K N W i θ =
@@ -213,7 +213,7 @@ theorem hebbian_phase_gradient_identity
 /--
 @isnad1 id=le.1h5v.s7.c6c845d6e4f0 from=translated src=- shape=52a9aa65 vocab=f30b32b4
 -/
-theorem hebbian_joint_lyapunov_descent
+theorem _root_.Tengoku.LeanPool.hebbian_joint_lyapunov_descent
     (K lam : ℝ) (N : ℕ) (W : Fin N → Fin N → ℝ) (hW : ∀ i j, W i j = W j i)
     (θ : Fin N → ℝ) :
     (∑ i : Fin N, weightedKuramotoF K N W i θ *
@@ -241,3 +241,4 @@ theorem hebbian_joint_lyapunov_descent
       linarith
     rw [hderiv]
     nlinarith [sq_nonneg (hebbianWeightF K lam N W θ i j)]
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

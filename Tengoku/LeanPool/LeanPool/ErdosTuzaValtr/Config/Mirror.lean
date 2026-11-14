@@ -18,7 +18,7 @@ Imported Lean Pool material for `LeanPool.ErdosTuzaValtr.Config.Mirror`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 variable {α : Type _} [LinearOrder α] (C : Config α)
 
 open OrderDual
@@ -26,7 +26,7 @@ open OrderDual
 -- to_dual : α → αᵒᵈ
 -- of_dual : αᵒᵈ → α
 /-- The mirror configuration on the order dual, obtained by reversing the cup relation. -/
-def Config.Mirror : Config (OrderDual α) :=
+def Tengoku.LeanPool.Config.Mirror : Config (OrderDual α) :=
   ⟨Mirror3 C.Cup3, C.DecidableCup3.Mirror3⟩
 
 variable {C}
@@ -135,3 +135,4 @@ theorem Mirror.hasNGon {n : ℕ} {S : Finset α} : C.Mirror.HasNGon n S.Mirror �
     constructor
     · rw [← Mirror.ngon]; tauto
     · simp [List.Mirror_in]; tauto
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

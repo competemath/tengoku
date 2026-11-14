@@ -21,7 +21,7 @@ This file is independent of learning theory and is a candidate for contribution 
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Set
 
 /-- Inner regularity for analytic sets: every analytic subset of a Polish space can be
@@ -92,7 +92,7 @@ null-measurable; this is enough to run the symmetrization argument under
 the existing literature. Candidate for upstream contribution to Mathlib.
 @isnad1 id=nullmeas.1h3v.s5.f359d278d88e from=translated src=- shape=77c5ba85 vocab=6d0354ed
 -/
-theorem analyticSet_nullMeasurableSet
+theorem _root_.Tengoku.LeanPool.analyticSet_nullMeasurableSet
     {α : Type*}
     [TopologicalSpace α] [MeasurableSpace α] [BorelSpace α] [PolishSpace α]
     {μ : MeasureTheory.Measure α} [MeasureTheory.IsFiniteMeasure μ]
@@ -116,3 +116,4 @@ theorem analyticSet_nullMeasurableSet
   have h_ae : s =ᵐ[μ] t :=
     ae_eq_set.mpr ⟨by simp [Set.sdiff_eq_empty.mpr hst], hzero⟩
   exact ht_meas.nullMeasurableSet.congr h_ae.symm
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

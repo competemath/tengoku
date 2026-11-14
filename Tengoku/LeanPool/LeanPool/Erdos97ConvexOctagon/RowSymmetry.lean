@@ -19,7 +19,7 @@ and inverse permutation for every row.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Erdos97Octagon.RawIncidence
 
 private theorem rowOneOptions_eq :
@@ -201,3 +201,4 @@ theorem canonicalize_rowOne
     Q'.balanced_of_pairSparse hSparse', hrow'⟩
 
 end Erdos97Octagon.RawIncidence
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

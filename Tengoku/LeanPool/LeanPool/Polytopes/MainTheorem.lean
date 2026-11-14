@@ -19,7 +19,7 @@ Theorem : Every 𝑉-polytope is an 𝐻-polytope, and every compact 𝐻-polyto
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 variable {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]
 open Pointwise
 
@@ -28,7 +28,7 @@ omit [CompleteSpace E] in
 /--
 @isnad1 id=ex.2h5v.s8.ce21b68d3183 from=translated src=- shape=9e137a9c vocab=95cf9879
 -/
-lemma hxSegBallInterSeg : ∀ (x1 x2 : E) (ε : ℝ),
+lemma _root_.Tengoku.LeanPool.hxSegBallInterSeg : ∀ (x1 x2 : E) (ε : ℝ),
   x ∈ openSegment ℝ x1 x2 ∧ ¬ (x1 = x ∧ x2 = x) → 0 < ε →
   ∃ x1' x2', x ∈ openSegment ℝ x1' x2' ∧
   segment ℝ x1' x2' ⊆ openSegment ℝ x1 x2 ∩ Metric.ball x ε ∧ ¬ (x1' = x ∧ x2' = x) := by
@@ -117,13 +117,13 @@ lemma hxSegBallInterSeg : ∀ (x1 x2 : E) (ε : ℝ),
     simp_all
 
 /-- The halfspaces of `H_` whose boundary contains the point `x`. -/
-def Hpolytope.I (H_ : Set (Halfspace E)) (x : E) : Set (Halfspace E) :=
+def Tengoku.LeanPool.Hpolytope.I (H_ : Set (Halfspace E)) (x : E) : Set (Halfspace E) :=
   { Hi_ ∈ H_ | x ∈ (frontier <| SetLike.coe Hi_) }
 
 /--
 @isnad1 id=iff.0h4v.s6.ecbc52494695 from=translated src=- shape=c1a48834 vocab=9ba1b823
 -/
-lemma Hpolytope.I_mem {H_ : Set (Halfspace E)} (x : E) :
+lemma Tengoku.LeanPool.Hpolytope.I_mem {H_ : Set (Halfspace E)} (x : E) :
   ∀ Hi_, Hi_ ∈ Hpolytope.I H_ x ↔ Hi_ ∈ H_ ∧ x ∈ (frontier <| SetLike.coe Hi_) := by
   rintro Hi_
   unfold I
@@ -132,7 +132,7 @@ lemma Hpolytope.I_mem {H_ : Set (Halfspace E)} (x : E) :
 /--
 @isnad1 id=le.0h3v.s5.439ece980cb9 from=translated src=- shape=d31639dc vocab=75b951cf
 -/
-lemma Hpolytope.I_sub {H_ : Set (Halfspace E)} (x : E) :
+lemma Tengoku.LeanPool.Hpolytope.I_sub {H_ : Set (Halfspace E)} (x : E) :
   Hpolytope.I H_ x ⊆ H_ := by
   unfold Hpolytope.I
   simp only [Set.sep_subset]
@@ -140,7 +140,7 @@ lemma Hpolytope.I_sub {H_ : Set (Halfspace E)} (x : E) :
 /--
 @isnad1 id=iff.2h3v.s7.03a2fc13fb04 from=translated src=- shape=99d079cd vocab=d00a80cf
 -/
-lemma ExtremePointsofHpolytope {H_ : Set (Halfspace E)} (hH_ : H_.Finite) :
+lemma _root_.Tengoku.LeanPool.ExtremePointsofHpolytope {H_ : Set (Halfspace E)} (hH_ : H_.Finite) :
   ∀ x ∈ Hpolytope hH_, x ∈ Set.extremePoints ℝ (Hpolytope hH_) ↔
   ⋂₀ ((frontier <| SetLike.coe ·) '' Hpolytope.I H_ x) = {x} := by
   rintro x hxH
@@ -299,7 +299,7 @@ lemma ExtremePointsofHpolytope {H_ : Set (Halfspace E)} (hH_ : H_.Finite) :
 /--
 @isnad1 id=ex.2h2v.s7.27a23f59890c from=translated src=- shape=72ffbe54 vocab=92cbf084
 -/
-lemma DualOfVpolytope_compactHpolytope [FiniteDimensional ℝ E] {S : Set E} (hS : S.Finite)
+lemma _root_.Tengoku.LeanPool.DualOfVpolytope_compactHpolytope [FiniteDimensional ℝ E] {S : Set E} (hS : S.Finite)
   (hS0 : 0 ∈ interior (Vpolytope hS))
   : ∃ (H_ : Set (Halfspace E)) (hH_ : H_.Finite),
   Hpolytope hH_ = polarDual (Vpolytope hS) ∧ IsCompact (Hpolytope hH_):= by
@@ -358,7 +358,7 @@ lemma DualOfVpolytope_compactHpolytope [FiniteDimensional ℝ E] {S : Set E} (hS
 /--
 @isnad1 id=ex.2h2v.s6.9b0d8dfa1a67 from=translated src=- shape=16d8619e vocab=ed0abefb
 -/
-lemma Vpolytope_of_Hpolytope : ∀ {H_ : Set (Halfspace E)} (hH_ : H_.Finite),
+lemma _root_.Tengoku.LeanPool.Vpolytope_of_Hpolytope : ∀ {H_ : Set (Halfspace E)} (hH_ : H_.Finite),
   IsCompact (Hpolytope hH_) →
   ∃ (S : Set E) (hS : S.Finite), Hpolytope hH_ = Vpolytope hS := by
   intro H_ hH_ hHcpt
@@ -402,7 +402,7 @@ lemma Vpolytope_of_Hpolytope : ∀ {H_ : Set (Halfspace E)} (hH_ : H_.Finite),
 /--
 @isnad1 id=ex.2h2v.s6.7bcf15871cc8 from=translated src=- shape=a274d471 vocab=c8b541ef
 -/
-theorem Hpolytope_of_Vpolytope_subsingleton [FiniteDimensional ℝ E] [Nontrivial E] {S : Set E}
+theorem _root_.Tengoku.LeanPool.Hpolytope_of_Vpolytope_subsingleton [FiniteDimensional ℝ E] [Nontrivial E] {S : Set E}
   (hS : S.Finite) (hStrivial : Set.Subsingleton S) :
     ∃ (H_ : Set (Halfspace E)) (hH_ : H_.Finite), Hpolytope hH_ = Vpolytope hS := by
   rcases hStrivial.eq_empty_or_singleton with hSempty | hSsingleton
@@ -417,7 +417,7 @@ theorem Hpolytope_of_Vpolytope_subsingleton [FiniteDimensional ℝ E] [Nontrivia
 /--
 @isnad1 id=ex.2h2v.s7.3d97b4ff9db6 from=translated src=- shape=dbd0cd69 vocab=fa575ab1
 -/
-lemma Hpolytope_of_Vpolytope_0interior [FiniteDimensional ℝ E] {S : Set E} (hS : S.Finite)
+lemma _root_.Tengoku.LeanPool.Hpolytope_of_Vpolytope_0interior [FiniteDimensional ℝ E] {S : Set E} (hS : S.Finite)
   (hV0 : 0 ∈ interior (Vpolytope hS)) :
   ∃ (H_ : Set (Halfspace E)) (hH_ : H_.Finite), Hpolytope hH_ = Vpolytope hS := by
   rcases DualOfVpolytope_compactHpolytope hS hV0 with ⟨ H_, hH_, hH_eq, hH_cpt ⟩
@@ -431,7 +431,7 @@ lemma Hpolytope_of_Vpolytope_0interior [FiniteDimensional ℝ E] {S : Set E} (hS
     doublePolarDual_self (Closed_Vpolytope hS) (Convex_Vpolytope hS) (interior_subset hV0)]
 
 /-- Translation by `x` as a homeomorphism of `E`. -/
-def translationHomeo (x : E) : E ≃ₜ E where
+def _root_.Tengoku.LeanPool.translationHomeo (x : E) : E ≃ₜ E where
   toFun := (· + x)
   invFun := (· + -x)
   left_inv := fun y => by simp
@@ -443,13 +443,13 @@ omit [InnerProductSpace ℝ E] [CompleteSpace E] in
 /--
 @isnad1 id=eq.0h2v.s6.cbbb71cf52a6 from=translated src=- shape=5b9966d0 vocab=69dee3a6
 -/
-lemma translationHomeo.toFun.def (x : E) :
+lemma Tengoku.LeanPool.translationHomeo.toFun.def (x : E) :
   ↑(translationHomeo x) = (· + x) := rfl
 
 /--
 @isnad1 id=ex.2h2v.s6.d634ade0717a from=translated src=- shape=e0f28d9b vocab=1f48a6f7
 -/
-lemma Hpolytope_of_Vpolytope_interior [FiniteDimensional ℝ E] {S : Set E} (hS : S.Finite)
+lemma _root_.Tengoku.LeanPool.Hpolytope_of_Vpolytope_interior [FiniteDimensional ℝ E] {S : Set E} (hS : S.Finite)
   (hVinteriorNonempty : (interior (Vpolytope hS)).Nonempty) :
   ∃ (H_ : Set (Halfspace E)) (hH_ : H_.Finite), Hpolytope hH_ = Vpolytope hS := by
   let S' := S + {-hVinteriorNonempty.some}
@@ -477,7 +477,7 @@ variable {E P : Type} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [Complete
 /--
 @isnad1 id=ex.3h3v.s6.3a1e4fe45bb7 from=translated src=- shape=3819889e vocab=8e712d89
 -/
-lemma Vpolytope_of_Vpolytope_inter_cutSpace_fin {S : Set E} (hS : S.Finite)
+lemma _root_.Tengoku.LeanPool.Vpolytope_of_Vpolytope_inter_cutSpace_fin {S : Set E} (hS : S.Finite)
   (hVinterior : Set.Nonempty (interior (Vpolytope hS)))
   {H_ : Set (Halfspace E)} (hH_ : H_.Finite) :
   ∃ (S' : Set E) (hS' : S'.Finite), Vpolytope hS' = Vpolytope hS ∩ Hpolytope hH_ := by
@@ -493,7 +493,7 @@ omit [CompleteSpace E] [FiniteDimensional ℝ E] in
 /--
 @isnad1 id=eq.0h5v.s12.c4a6cf99664e from=translated src=- shape=3c396e18 vocab=9befec1a
 -/
-lemma InDown_eq_DownIn {p : AffineSubspace ℝ P} [Nonempty { x // x ∈ p }] {S : Set P} (x : p) :
+lemma _root_.Tengoku.LeanPool.InDown_eq_DownIn {p : AffineSubspace ℝ P} [Nonempty { x // x ∈ p }] {S : Set P} (x : p) :
   (AffineIsometryEquiv.VSubconst ℝ x) '' ((@Subtype.val P (fun x => x ∈ p)) ⁻¹' S) =
   (@Subtype.val E fun x => x ∈ p.direction) ⁻¹' (S -ᵥ ({x.1} : Set P)) := by
   ext y
@@ -511,7 +511,7 @@ omit [CompleteSpace E] in
 /--
 @isnad1 id=nonempty.2h3v.s13.a973894910d8 from=translated src=- shape=552a3933 vocab=7dc662b4
 -/
-lemma Nonempty_iff_Nonempty_interior_in_direction {S : Set E} {s : E} (hs : s ∈ S)
+lemma _root_.Tengoku.LeanPool.Nonempty_iff_Nonempty_interior_in_direction {S : Set E} {s : E} (hs : s ∈ S)
     (hS : Nonempty S) :
     (interior ((@AffineIsometryEquiv.VSubconst ℝ (affineSpan ℝ S).direction (affineSpan ℝ S)
       _ _ _ _ (AffineSubspace.toNormedAddTorsor (affineSpan ℝ (S)))
@@ -525,7 +525,7 @@ lemma Nonempty_iff_Nonempty_interior_in_direction {S : Set E} {s : E} (hs : s �
 /--
 @isnad1 id=and.0h1v.s7.b8d4ea2c3733 from=translated src=- shape=d81e1c1b vocab=87106d63
 -/
-theorem MainTheoremOfPolytopes [Nontrivial E] :
+theorem _root_.Tengoku.LeanPool.MainTheoremOfPolytopes [Nontrivial E] :
   (∀ (S : Set E) (hS : S.Finite),
     ∃ (H_ : Set (Halfspace E)) (hH_ : H_.Finite),
     Hpolytope hH_ = Vpolytope hS) ∧
@@ -615,3 +615,4 @@ theorem MainTheoremOfPolytopes [Nontrivial E] :
       exact Hpolytope_of_Vpolytope_subsingleton _ hStrivial
   · -- 2.
     exact Vpolytope_of_Hpolytope
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

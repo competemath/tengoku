@@ -15,7 +15,7 @@ This module exposes the free basis, rank identities, basepoint independence, and
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Function
 open CategoryTheory CategoryTheory.SingleObj Quiver FreeGroup
 
@@ -219,3 +219,4 @@ noncomputable def graphFundamentalGroupFreeAbelianizationEquiv
   MulEquiv.toAdditive (graphFundamentalGroupAbelianizationEquiv root)
 
 end FiniteGraphFreeGroup
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

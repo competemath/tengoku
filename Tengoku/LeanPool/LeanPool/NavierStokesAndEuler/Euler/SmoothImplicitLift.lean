@@ -13,7 +13,7 @@ smooth when the derivative in its value variable is invertible. The local
 inverse theorem proves regularity; no new solution is postulated. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open Filter Function
@@ -46,3 +46,4 @@ theorem contDiffAt_of_identity
   exact (hJ.comp x hH).congr_of_eventuallyEq he
 
 end EulerSmoothImplicitLift
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

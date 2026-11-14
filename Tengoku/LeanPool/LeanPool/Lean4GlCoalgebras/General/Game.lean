@@ -16,7 +16,7 @@ plays an applicable sequent `Γ` in order to construct a counter-model. Prover g
 plays rule applications `R` in order to construct a proof.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 open scoped Lean4GlCoalgebras.Formula
 
 
@@ -347,3 +347,4 @@ lemma move_iff_in_moves {g g' : coalgebraGame.Pos} : Move g g' ↔ g' ∈ coalge
 /-- We will always start the game from a sequent `Γ` and no history. -/
 abbrev startPos (Γ : Sequent) : GamePos := ⟨Sum.inl Γ, [], []⟩
 end Lean4GlCoalgebras
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

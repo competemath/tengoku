@@ -12,7 +12,7 @@ import Tengoku.Seed.Analysis.Calculus.MeanValue
 import Tengoku.Seed.CategoryTheory.Category.Init
 import Tengoku.Seed.Combinatorics.Matroid.Init
 import Tengoku.Seed.MeasureTheory.Integral.DominatedConvergence
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -616,3 +616,4 @@ theorem contourIntegral_eq_of_homotopic
     (by norm_num : (1 : ℝ) ∈ Icc 0 1)).symm
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

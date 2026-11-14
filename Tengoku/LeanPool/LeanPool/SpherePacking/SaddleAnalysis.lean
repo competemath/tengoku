@@ -15,7 +15,7 @@ import Tengoku
 
 Saddle contours, Gaussian profiles, and source estimates.
 -/
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace CohnElkies
 
 section
@@ -486,3 +486,4 @@ private noncomputable def upperGammaCubicRemainderKernel
 
 end
 end CohnElkies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -11,7 +11,7 @@ import Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Vorspiel
 /-! # Arith -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Mathlib List.Vector Part
 
 namespace Nat
@@ -727,3 +727,4 @@ inductive _root_.Nat.ArithPart₁.Code.eval : {n : ℕ} → Code n → (List.Vec
       Code.eval c f → Code.eval c.rfind (fun v => Nat.rfind fun n => Part.some (f (n ::ᵥ v) = 0))
 
 end Nat.ArithPart₁
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

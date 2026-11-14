@@ -8,7 +8,7 @@ import Tengoku.NavierStokesEuler.NavierStokes.R3PressureFlux
 # Norms and dissipation in the localized energy estimate
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace NavierStokes.R3EnergyNorms
 
 open Set Filter MeasureTheory ProblemStatement InnerProductSpace
@@ -116,3 +116,4 @@ theorem pressureFluxFactor_identity {φ : Space → ℝ} (hφ : ContDiff ℝ ∞
   ring
 
 end NavierStokes.R3EnergyNorms
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

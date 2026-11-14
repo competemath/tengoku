@@ -22,7 +22,7 @@ The distribution is the image of `cubeP d N` under coordinatewise division by `N
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Komlos
 
 open Finset Finsupp
@@ -76,3 +76,4 @@ lemma sum_smul_eq_zero_of_neg {E F : Type*} [AddCommGroup E] [AddCommGroup F] [M
     Finsupp.sum_equivMapDomain (Equiv.neg E) P (fun x r ↦ r • f x)
 
 end Komlos
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -28,7 +28,7 @@ far coefficient vanishes.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set
 
 namespace Schoenflies
@@ -107,3 +107,4 @@ theorem openSegment_right_subset (hp : p ∈ openSegment ℝ a b) :
   rw [smul_add, smul_smul, smul_smul, add_assoc, ← add_smul]
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

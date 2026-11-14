@@ -20,7 +20,7 @@ Every constant here is explicit, and no estimate below depends on the solution.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 section
 
 /-!
@@ -219,3 +219,4 @@ theorem slice_majorant_time_mass_le
     exact add_le_add le_rfl hEf
 
 end CKN.Core.Step4
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory MeasureTheory.Measure ProbabilityTheory.Kernel ProbabilityTheory
 open Finset Bornology NNReal ENNReal Preorder Filter
 
@@ -61,3 +61,4 @@ lemma iter_comp (κ : Kernel α α) (m n : ℕ) :
     simp [iter_comm]
 
 end ProbabilityTheory.Kernel
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

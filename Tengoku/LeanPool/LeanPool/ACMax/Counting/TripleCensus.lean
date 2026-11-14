@@ -17,7 +17,7 @@ inside the groups and across the first group, the six columns cannot exist.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace ACMax
 
 open Finset
@@ -273,3 +273,4 @@ theorem six_binary_columns_force_repeated_pair {α : Type*}
   exact six_triple_census_impossible B a c d hB hcols hasum hwithin hac had
 
 end ACMax
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -25,7 +25,7 @@ literally `id`/`Inv.inv` as total functions (junk values aligned by construction
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold OnePoint
 open Set Filter Topology OnePoint
 
@@ -302,3 +302,4 @@ theorem invChart_mem_maximalAtlas : invChart ∈ maximalAtlas 𝓘(ℂ) ω (OneP
   subset_maximalAtlas (by rw [atlas_eq]; exact Set.mem_insert_iff.2 (Or.inr rfl))
 
 end RS.P1
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

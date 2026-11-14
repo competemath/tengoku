@@ -48,7 +48,7 @@ interior patterns with more than one boundary extension.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Nivat.TwoFactors
 
 /-- The first `k` consecutive sites of the horizontal boundary row. Lemma 5.5
@@ -190,3 +190,4 @@ theorem ambiguous_output_budget {A B : Type*} (f : A → B) {P : Set A}
   exact (Nat.add_le_add_right hcard _).trans_eq hsum
 
 end Nivat.TwoFactors
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

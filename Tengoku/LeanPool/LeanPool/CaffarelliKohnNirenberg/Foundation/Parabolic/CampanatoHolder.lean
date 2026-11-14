@@ -15,7 +15,7 @@ Part of the Caffarelli–Kohn–Nirenberg partial regularity proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ENNReal NNReal Topology
 open MeasureTheory MeasureTheory.Measure Set Metric Filter
 noncomputable section
@@ -215,3 +215,4 @@ theorem parabolicBallRepresentative_ae_eq
   filter_upwards [hlim] with z hz
   exact hz.limUnder_eq
 end CKN.Foundation.Parabolic
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

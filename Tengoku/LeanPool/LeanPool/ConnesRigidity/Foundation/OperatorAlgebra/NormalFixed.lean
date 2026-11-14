@@ -19,7 +19,7 @@ The normal fixed component of the Connes rigidity formalization.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Connes
 
 universe u v
@@ -342,3 +342,4 @@ theorem normalFixed_orthogonalResidual_displacement_le
 end Normality
 end
 end Connes
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -38,7 +38,7 @@ The key tools are:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Set Filter
 open scoped ENNReal NNReal Topology
 
@@ -873,3 +873,4 @@ factor the triple integral into ν(univ) × double integral, which is finite by 
 open Function ENNReal
 
 end OSforGFF
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -36,7 +36,7 @@ establishes discreteness/full-rank for the actual period subgroup.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold Pointwise
 open Set Filter Topology Metric
 
@@ -566,3 +566,4 @@ theorem inducedHom_comp {V'' : Type*} [NormedAddCommGroup V''] [NormedSpace ℂ 
 end InducedHom
 
 end RS
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

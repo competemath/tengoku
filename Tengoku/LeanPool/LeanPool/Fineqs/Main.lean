@@ -13,7 +13,7 @@ Vendored from `nasqret/fineqs`. See `LeanPool/Fineqs.lean` for the project overv
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.Fineqs
 
 open scoped BigOperators
@@ -543,3 +543,4 @@ theorem remark_example (n : ℕ) (hn : n > 0) :
       _ ≤ (ZeroSet (Set.range g)).ncard := Set.ncard_le_ncard hline_subset
 
 end LeanPool.Fineqs
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -41,7 +41,7 @@ the lower bound.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Cardinal Set
 
 -- `𝓟` only; opening `Filter` itself would clash with `Set` on names like `map`.
@@ -56,7 +56,7 @@ variable {X : Type u} [TopologicalSpace X]
 /-- `A` carries a **Cantor antichain** for `r`: a continuous map from Cantor space into `A`
 sending distinct points to `r`-inequivalent ones.  This is what the Cantor-scheme builders
 produce directly, and it is the form a thinness proof must refute. -/
-def HasCantorAntichainOn (r : Setoid X) (A : Set X) : Prop :=
+def _root_.Tengoku.LeanPool.HasCantorAntichainOn (r : Setoid X) (A : Set X) : Prop :=
   ∃ f : (ℕ → Bool) → X,
     Continuous f ∧ (∀ x, f x ∈ A) ∧ ∀ x y, x ≠ y → ¬r.r (f x) (f y)
 
@@ -69,7 +69,7 @@ the scheme wrappers below conclude at the scheme's own root rather than carrying
 hypothesis.
 @isnad1 id=hascanto.2h4v.s5.fc15c65262d1 from=translated src=- shape=c3d02c23 vocab=351ad641
 -/
-theorem HasCantorAntichainOn.mono (h : HasCantorAntichainOn r A) (hAB : A ⊆ B) :
+theorem Tengoku.LeanPool.HasCantorAntichainOn.mono (h : HasCantorAntichainOn r A) (hAB : A ⊆ B) :
     HasCantorAntichainOn r B := by
   obtain ⟨f, hcont, hmem, hineq⟩ := h
   exact ⟨f, hcont, fun x => hAB (hmem x), hineq⟩
@@ -91,7 +91,7 @@ The inequivalence clause is deliberately **not** restated in the conclusion: it 
 content of `h`, and a consumer needing it should unpack `h`.  One job per adapter.
 @isnad1 id=ex.1h3v.s6.c34cdbf8f85c from=translated src=- shape=9c988d5f vocab=84d2c3ab
 -/
-theorem HasCantorAntichainOn.injective (h : HasCantorAntichainOn r A) :
+theorem Tengoku.LeanPool.HasCantorAntichainOn.injective (h : HasCantorAntichainOn r A) :
     ∃ f : (ℕ → Bool) → X, Continuous f ∧ Set.range f ⊆ A ∧ Function.Injective f := by
   obtain ⟨f, hcont, hmem, hineq⟩ := h
   exact ⟨f, hcont, Set.range_subset_iff.mpr hmem, injective_of_pairwise_inequiv hineq⟩
@@ -126,7 +126,8 @@ private theorem mk_le_continuum_of_polish {α : Type u} [MetricSpace α] [Comple
 /-- The quotient of a Polish space has cardinality ≤ continuum.
 @isnad1 id=le.0h2v.s5.5183b01bc2c9 from=translated src=- shape=9661f87a vocab=62c38678
 -/
-theorem mk_quotient_le_continuum_of_polish {α : Type u} [MetricSpace α] [CompleteSpace α]
+theorem _root_.Tengoku.LeanPool.mk_quotient_le_continuum_of_polish {α : Type u} [MetricSpace α] [CompleteSpace α]
     [SecondCountableTopology α] [Nonempty α] (r : Setoid α) :
     #(Quotient r) ≤ Cardinal.continuum :=
   (Cardinal.mk_le_of_surjective Quotient.mk_surjective).trans mk_le_continuum_of_polish
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

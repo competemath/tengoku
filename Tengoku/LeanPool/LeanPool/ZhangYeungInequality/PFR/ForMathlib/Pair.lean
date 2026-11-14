@@ -15,9 +15,9 @@ Imported Lean Pool material for `LeanPool.ZhangYeungInequality.PFR.ForMathlib.Pa
 -/
 
 public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-- The pair of two random variables -/
-abbrev prod {Ω S T : Type*} (X : Ω → S) (Y : Ω → T) (ω : Ω) : S × T := (X ω, Y ω)
+abbrev _root_.Tengoku.LeanPool.prod {Ω S T : Type*} (X : Ω → S) (Y : Ω → T) (ω : Ω) : S × T := (X ω, Y ω)
 
 @[inherit_doc prod] scoped[ZhangYeungPFR] notation3:100 "⟨" X ", " Y "⟩" => prod X Y
 
@@ -27,5 +27,6 @@ open scoped ZhangYeungPFR
 @isnad1 id=eq.0h6v.s5.b6286202e5de from=translated src=- shape=648288e8 vocab=93269e07
 -/
 @[simp]
-lemma prod_eq {Ω S T : Type*} {X : Ω → S} {Y : Ω → T} {ω : Ω} :
+lemma _root_.Tengoku.LeanPool.prod_eq {Ω S T : Type*} {X : Ω → S} {Y : Ω → T} {ω : Ω} :
     (⟨ X, Y ⟩ : Ω → S × T) ω = (X ω, Y ω) := rfl
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

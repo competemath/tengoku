@@ -17,7 +17,7 @@ which makes deletion and insertion statements literal finset identities.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.Erdos132N14
 
 open scoped BigOperators
@@ -482,3 +482,4 @@ theorem SimilarTo.distanceMultiplicity_eq
 end
 
 end LeanPool.Erdos132N14
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

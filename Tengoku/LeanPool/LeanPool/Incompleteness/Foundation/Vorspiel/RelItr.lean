@@ -10,7 +10,7 @@ public import Tengoku
 /-! # RelItr -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-- Imported declaration from the Incompleteness formalization. -/
 def Rel.iterate (R : Rel α α) : ℕ → α → α → Prop
   | 0 => (· = ·)
@@ -91,3 +91,4 @@ lemma comp : (∃ z, R.iterate n x z ∧ R.iterate m z y) ↔ R.iterate (n + m) 
 
 end iterate
 end Rel
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

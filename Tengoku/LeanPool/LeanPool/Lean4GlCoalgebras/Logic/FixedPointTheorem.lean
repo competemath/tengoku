@@ -13,7 +13,7 @@ public import Tengoku
 Here we prove the fixed-point theorem for formulas of form `□φ` and `◇φ`.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 open scoped Lean4GlCoalgebras.Formula
 
 
@@ -270,3 +270,4 @@ theorem fixed_point_theorem_modal (φ : Formula) (n : ℕ)
     have FPT_diamond_prop := FPT_diamond_vocab φ n
     exact ⟨single n ⊥ (◇ φ), FPT_diamond_prop.1, FPT_diamond φ n, FPT_diamond_prop.2⟩
 end Lean4GlCoalgebras
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

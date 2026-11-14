@@ -15,7 +15,7 @@ Imported Lean Pool material for `LeanPool.ErdosTuzaValtr.Lib.List.Defs`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 variable {α : Type _}
 
 /-- Local notion for a list whose elements all lie in a finset. -/
@@ -78,3 +78,4 @@ instance decidableChain3' [DecidableRel3 R] (l : List α) : Decidable (Chain3' R
   · exact decidableChain3 a b l
 
 end List
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

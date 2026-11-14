@@ -16,7 +16,7 @@ square lies within the required quadratic-form radius.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace HadwigerNelsonBounds
 
 private lemma cornerZeroZero_le_third {α β : ℝ}
@@ -174,3 +174,4 @@ lemma unitSquare_has_near_lattice_corner {α β : ℝ}
               hDiagonal' hβUpper hOrder' hTop'
 
 end HadwigerNelsonBounds
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

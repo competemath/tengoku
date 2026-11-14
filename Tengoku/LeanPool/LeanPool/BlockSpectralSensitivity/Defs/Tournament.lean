@@ -39,7 +39,7 @@ Adapted for Lean Pool from `Timeroot/BS_Lam` at commit
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace BSLambda
 
 open Finset
@@ -306,3 +306,4 @@ theorem card_middles [Nontrivial ι] (huv : Arc u v) : (middles Arc u v).card = 
 end IsDRTournamentWith
 
 end BSLambda
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

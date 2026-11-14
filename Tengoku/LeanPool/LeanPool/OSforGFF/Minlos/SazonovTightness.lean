@@ -28,7 +28,7 @@ spectral decomposition, and Chebyshev inequalities.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Complex Filter Topology Set InnerProductSpace Function
 open scoped Real FourierTransform
 
@@ -41,7 +41,7 @@ variable {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℝ H] [CompleteS
 /-- Sazonov continuity at 0: for every ε > 0, there exists a positive trace-class
     operator S such that ⟪x, Sx⟫ < 1 implies |1 - φ(x)| < ε.
 -/
-def SazonovContinuousAt (φ : H → ℂ) :=
+def _root_.Tengoku.LeanPool.SazonovContinuousAt (φ : H → ℂ) :=
   ∀ ε > 0, ∃ S : SazonovIndex H,
     ∀ x : H, quadForm S.op x < 1 → ‖1 - φ x‖ < ε
 
@@ -50,7 +50,7 @@ def SazonovContinuousAt (φ : H → ℂ) :=
 /-- For a family v : Fin n → H, the marginal function
     φ_v(t) = φ(∑ i, t i • v i).
 -/
-def marginalFun (φ : H → ℂ) {n : ℕ} (v : Fin n → H) :
+def _root_.Tengoku.LeanPool.marginalFun (φ : H → ℂ) {n : ℕ} (v : Fin n → H) :
     EuclideanSpace ℝ (Fin n) → ℂ :=
   fun t => φ (∑ i, t i • v i)
 
@@ -58,7 +58,7 @@ omit [CompleteSpace H] in
 /-- The marginal function of a PD function is PD.
 @isnad1 id=ispositi.1h4v.s6.91a8eafc48b4 from=translated src=- shape=55ab1eb7 vocab=ded181b3
 -/
-lemma marginalFun_isPositiveDefinite (φ : H → ℂ) (hpd : IsPositiveDefinite φ)
+lemma _root_.Tengoku.LeanPool.marginalFun_isPositiveDefinite (φ : H → ℂ) (hpd : IsPositiveDefinite φ)
     {n : ℕ} (v : Fin n → H) :
     IsPositiveDefinite (marginalFun φ v) := by
   let T : EuclideanSpace ℝ (Fin n) →ₗ[ℝ] H := {
@@ -79,19 +79,19 @@ lemma marginalFun_isPositiveDefinite (φ : H → ℂ) (hpd : IsPositiveDefinite 
 /-- 1 - exp(-t) > 0 for t > 0.
 @isnad1 id=lt.1h1v.s5.9055ee8be80f from=translated src=- shape=d8144543 vocab=6080affd
 -/
-lemma one_sub_exp_neg_pos {t : ℝ} (ht : 0 < t) : 0 < 1 - Real.exp (-t) := by
+lemma _root_.Tengoku.LeanPool.one_sub_exp_neg_pos {t : ℝ} (ht : 0 < t) : 0 < 1 - Real.exp (-t) := by
   simp_all
 
 /-- exp(-b) ≤ exp(-a) when a ≤ b.
 @isnad1 id=le.1h2v.s4.bb432488d9ac from=translated src=- shape=2d24f4ce vocab=cc057194
 -/
-lemma exp_neg_le_exp_neg {a b : ℝ} (hab : a ≤ b) :
+lemma _root_.Tengoku.LeanPool.exp_neg_le_exp_neg {a b : ℝ} (hab : a ≤ b) :
     Real.exp (-b) ≤ Real.exp (-a) := Real.exp_le_exp_of_le (neg_le_neg hab)
 
 /-- The denominator 1 - exp(-R²/2) is positive for R > 0.
 @isnad1 id=lt.1h1v.s6.620c08ca5f0e from=translated src=- shape=c2611761 vocab=c05ef28d
 -/
-lemma one_sub_exp_half_sq_pos (R : ℝ) (hR : 0 < R) :
+lemma _root_.Tengoku.LeanPool.one_sub_exp_half_sq_pos (R : ℝ) (hR : 0 < R) :
     0 < 1 - Real.exp (-(R ^ 2 / 2)) := by
   apply one_sub_exp_neg_pos; positivity
 
@@ -99,7 +99,7 @@ lemma one_sub_exp_half_sq_pos (R : ℝ) (hR : 0 < R) :
     then μ({‖y‖ ≥ R}) ≤ C / (1 - exp(-σ²R²/2)).
 @isnad1 id=le.4h5v.s8.99bdbc3e3fc9 from=translated src=- shape=12288f22 vocab=9d563780
 -/
-lemma tail_bound_from_exp_integral {V : Type*} [NormedAddCommGroup V]
+lemma _root_.Tengoku.LeanPool.tail_bound_from_exp_integral {V : Type*} [NormedAddCommGroup V]
     [MeasurableSpace V] [BorelSpace V]
     (μ : ProbabilityMeasure V) (σ : ℝ) (hσ : 0 < σ)
     (C : ℝ) (_hC0 : 0 ≤ C)
@@ -157,7 +157,7 @@ variable {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V]
   [SecondCountableTopology V]
 
 /-- Centered Gaussian density profile with scale `σ`. -/
-abbrev gaussDensity (σ : ℝ) (x : V) : ℝ :=
+abbrev _root_.Tengoku.LeanPool.gaussDensity (σ : ℝ) (x : V) : ℝ :=
   Real.exp (-(1 / (2 * σ ^ 2)) * ‖x‖ ^ 2)
 
 omit [InnerProductSpace ℝ V] [FiniteDimensional ℝ V] [MeasurableSpace V] [BorelSpace V]
@@ -165,7 +165,7 @@ omit [InnerProductSpace ℝ V] [FiniteDimensional ℝ V] [MeasurableSpace V] [Bo
 /--
 @isnad1 id=le.0h3v.s4.a2ec19f45e1c from=translated src=- shape=ba162991 vocab=cd170f18
 -/
-lemma gaussDensity_nonneg' (σ : ℝ) (x : V) : 0 ≤ gaussDensity σ x :=
+lemma _root_.Tengoku.LeanPool.gaussDensity_nonneg' (σ : ℝ) (x : V) : 0 ≤ gaussDensity σ x :=
   Real.exp_nonneg _
 
 omit [InnerProductSpace ℝ V] [FiniteDimensional ℝ V] [MeasurableSpace V] [BorelSpace V]
@@ -173,14 +173,14 @@ omit [InnerProductSpace ℝ V] [FiniteDimensional ℝ V] [MeasurableSpace V] [Bo
 /--
 @isnad1 id=continuo.0h2v.s4.a3266a15a57b from=translated src=- shape=e89acc56 vocab=835ef3d9
 -/
-lemma gaussDensity_continuous' (σ : ℝ) : Continuous (gaussDensity (V := V) σ) := by
+lemma _root_.Tengoku.LeanPool.gaussDensity_continuous' (σ : ℝ) : Continuous (gaussDensity (V := V) σ) := by
   unfold gaussDensity; fun_prop
 
 omit [SecondCountableTopology V] in
 /--
 @isnad1 id=integrab.1h2v.s6.33f7d74d8ddf from=translated src=- shape=748f5ef2 vocab=99734470
 -/
-lemma gaussDensity_integrable' (σ : ℝ) (hσ : 0 < σ) :
+lemma _root_.Tengoku.LeanPool.gaussDensity_integrable' (σ : ℝ) (hσ : 0 < σ) :
     Integrable (gaussDensity σ) (volume : Measure V) := by
   set b : ℝ := 1 / (2 * σ ^ 2)
   have hb : 0 < b := by positivity
@@ -198,7 +198,7 @@ omit [SecondCountableTopology V] in
 /--
 @isnad1 id=lt.1h2v.s6.2b1aaf7755c7 from=translated src=- shape=4c5dcccf vocab=d5c09344
 -/
-lemma gaussDensity_integral_pos' (σ : ℝ) (hσ : 0 < σ) :
+lemma _root_.Tengoku.LeanPool.gaussDensity_integral_pos' (σ : ℝ) (hσ : 0 < σ) :
     0 < ∫ x : V, gaussDensity σ x := by
   apply integral_pos_of_integrable_nonneg_nonzero (x := 0)
     (gaussDensity_continuous' σ) (gaussDensity_integrable' σ hσ)
@@ -253,7 +253,7 @@ private lemma cexp_neg_sq_integrable_prob' (μ : ProbabilityMeasure V) (σ : ℝ
 /--
 @isnad1 id=integrab.2h4v.s7.c126659481ac from=translated src=- shape=bbb4bae2 vocab=91ad00d7
 -/
-lemma gaussDensity_mul_charFun_re_integrable' (μ : ProbabilityMeasure V)
+lemma _root_.Tengoku.LeanPool.gaussDensity_mul_charFun_re_integrable' (μ : ProbabilityMeasure V)
     (φ : V → ℂ) (hφ : ∀ t, charFun μ.toMeasure t = φ t) (σ : ℝ) (hσ : 0 < σ) :
     Integrable (fun x : V => gaussDensity σ x * (φ x).re) volume := by
   have heq : (fun x => gaussDensity σ x * (φ x).re) =
@@ -290,7 +290,7 @@ private lemma gaussDensity_mul_charFun_integrable' (μ : ProbabilityMeasure V)
     ∫_μ (1-exp(-σ²‖y‖²/2)) = C⁻¹ ∫ exp(-b‖x‖²) Re(1-φ(x)) dx.
 @isnad1 id=eq.2h4v.s8.a54cc4de3db9 from=translated src=- shape=c9dd09c9 vocab=6cf316d0
 -/
-theorem fubini_gaussian_charFun
+theorem _root_.Tengoku.LeanPool.fubini_gaussian_charFun
     (μ : ProbabilityMeasure V) (φ : V → ℂ)
     (hφ : ∀ t, charFun μ.toMeasure t = φ t) (σ : ℝ) (hσ : 0 < σ) :
     ∫ y, (1 - Real.exp (-(σ ^ 2 * ‖y‖ ^ 2 / 2))) ∂μ.toMeasure =
@@ -573,7 +573,7 @@ private lemma gaussian_inner_sq_le' (σ : ℝ) (hσ : 0 < σ) (w : V) :
     Uses spectral decomposition to reduce to single-direction bounds.
 @isnad1 id=le.4h4v.s9.396a80ccb4d8 from=translated src=- shape=378ffdfd vocab=c415cd0e
 -/
-theorem gaussian_quadForm_integral_le
+theorem _root_.Tengoku.LeanPool.gaussian_quadForm_integral_le
     (σ : ℝ) (hσ : 0 < σ)
     (S : V →L[ℝ] V) (hS : S.IsPositive)
     (T : ℝ) (_hT : 0 ≤ T)
@@ -648,7 +648,7 @@ omit [SecondCountableTopology V] in
 /--
 @isnad1 id=integrab.1h3v.s7.7a775e8605ef from=translated src=- shape=f0900c94 vocab=9f68b94b
 -/
-lemma gaussDensity_mul_quadForm_integrable' (σ : ℝ) (hσ : 0 < σ)
+lemma _root_.Tengoku.LeanPool.gaussDensity_mul_quadForm_integrable' (σ : ℝ) (hσ : 0 < σ)
     (S : V →L[ℝ] V) :
     Integrable (fun x => gaussDensity σ x * quadForm S x) volume := by
   set b := 1 / (2 * σ ^ 2) with hb_def
@@ -716,7 +716,7 @@ lemma gaussDensity_mul_quadForm_integrable' (σ : ℝ) (hσ : 0 < σ)
     + Gaussian second moment E_γ[⟨x,Sx⟩] ≤ σ²·Tr(S).
 @isnad1 id=le.7h7v.s9.837dfca412d4 from=translated src=- shape=eb1d4cc2 vocab=ce2a6cee
 -/
-theorem gaussian_averaging_bound
+theorem _root_.Tengoku.LeanPool.gaussian_averaging_bound
     (μ : ProbabilityMeasure V) (φ : V → ℂ)
     (hφ : ∀ t, charFun μ.toMeasure t = φ t)
     (ε : ℝ) (hε : 0 < ε)
@@ -807,7 +807,7 @@ end GaussianAveraging
 /-- Scaled Chebyshev: combining Gaussian averaging with the tail bound.
 @isnad1 id=le.8h8v.s9.dcaa5e037f6d from=translated src=- shape=2b31c00e vocab=84f49ed5
 -/
-lemma scaled_tail_bound
+lemma _root_.Tengoku.LeanPool.scaled_tail_bound
     {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V]
     [FiniteDimensional ℝ V] [MeasurableSpace V] [BorelSpace V]
     [SecondCountableTopology V]
@@ -832,7 +832,7 @@ lemma scaled_tail_bound
 /-! ## Restriction of Operators to Marginal Subspaces -/
 
 /-- The embedding t ↦ ∑ tᵢvᵢ from EuclideanSpace to H. -/
-def embedON {n : ℕ} (v : Fin n → H) : EuclideanSpace ℝ (Fin n) →ₗ[ℝ] H :=
+def _root_.Tengoku.LeanPool.embedON {n : ℕ} (v : Fin n → H) : EuclideanSpace ℝ (Fin n) →ₗ[ℝ] H :=
   { toFun := fun t => ∑ i, t i • v i
     map_add' := fun x y => by simp [add_smul, Finset.sum_add_distrib]
     map_smul' := fun r x => by
@@ -840,7 +840,7 @@ def embedON {n : ℕ} (v : Fin n → H) : EuclideanSpace ℝ (Fin n) →ₗ[ℝ]
       congr 1; ext i; simp [smul_smul, mul_comm r] }
 
 /-- The projection x ↦ (⟪vᵢ, x⟫)ᵢ from H to EuclideanSpace. -/
-def projON {n : ℕ} (v : Fin n → H) : H →ₗ[ℝ] EuclideanSpace ℝ (Fin n) :=
+def _root_.Tengoku.LeanPool.projON {n : ℕ} (v : Fin n → H) : H →ₗ[ℝ] EuclideanSpace ℝ (Fin n) :=
   { toFun := fun x => EuclideanSpace.equiv (Fin n) ℝ |>.symm (fun i => @inner ℝ H _ (v i) x)
     map_add' := fun x y => by ext i; simp [inner_add_right]
     map_smul' := fun r x => by ext i; simp [inner_smul_right] }
@@ -849,7 +849,7 @@ def projON {n : ℕ} (v : Fin n → H) : H →ₗ[ℝ] EuclideanSpace ℝ (Fin n
     spanned by an orthonormal family v : Fin n → H. Defined as π ∘ S ∘ ι
     where ι embeds and π projects. Matrix: (S_v)_{ij} = ⟪vᵢ, S(vⱼ)⟫.
 -/
-def restrictOp (S : H →L[ℝ] H) {n : ℕ} (v : Fin n → H) :
+def _root_.Tengoku.LeanPool.restrictOp (S : H →L[ℝ] H) {n : ℕ} (v : Fin n → H) :
     EuclideanSpace ℝ (Fin n) →L[ℝ] EuclideanSpace ℝ (Fin n) :=
   LinearMap.toContinuousLinearMap (projON v ∘ₗ S.toLinearMap ∘ₗ embedON v)
 
@@ -857,7 +857,7 @@ omit [CompleteSpace H] in
 /-- Coordinate formula for restrictOp.
 @isnad1 id=eq.0h6v.s9.0a47cb256a4f from=translated src=- shape=22530aa1 vocab=9d940a32
 -/
-lemma restrictOp_apply (S : H →L[ℝ] H) {n : ℕ} (v : Fin n → H)
+lemma _root_.Tengoku.LeanPool.restrictOp_apply (S : H →L[ℝ] H) {n : ℕ} (v : Fin n → H)
     (t : EuclideanSpace ℝ (Fin n)) (i : Fin n) :
     (restrictOp S v t) i = @inner ℝ H _ (v i) (S (∑ j, t j • v j)) := by
   unfold restrictOp projON embedON; simp
@@ -866,7 +866,7 @@ omit [CompleteSpace H] in
 /-- The quadratic form of the restricted operator equals the original.
 @isnad1 id=eq.0h5v.s8.78705c1afc77 from=translated src=- shape=7fc998a6 vocab=3acb0e81
 -/
-lemma restrictOp_quadForm (S : H →L[ℝ] H) {n : ℕ} (v : Fin n → H)
+lemma _root_.Tengoku.LeanPool.restrictOp_quadForm (S : H →L[ℝ] H) {n : ℕ} (v : Fin n → H)
     (t : EuclideanSpace ℝ (Fin n)) :
     quadForm (restrictOp S v) t = quadForm S (∑ i, t i • v i) := by
   simp only [quadForm]
@@ -887,7 +887,7 @@ private lemma inner_self_adjoint_comm (S : H →L[ℝ] H) (hS : S.IsPositive)
 /-- The restriction of a positive operator is positive.
 @isnad1 id=ispositi.1h4v.s7.6e02697d0ec6 from=translated src=- shape=6dc2c377 vocab=bacaac69
 -/
-lemma restrictOp_isPositive (S : H →L[ℝ] H) (hS : S.IsPositive)
+lemma _root_.Tengoku.LeanPool.restrictOp_isPositive (S : H →L[ℝ] H) (hS : S.IsPositive)
     {n : ℕ} (v : Fin n → H) :
     (restrictOp S v).IsPositive := by
   refine ⟨?_, ?_⟩
@@ -915,7 +915,7 @@ lemma restrictOp_isPositive (S : H →L[ℝ] H) (hS : S.IsPositive)
     so the difference = ∑' k ⟪Q(bₖ), S(Q(bₖ))⟫ ≥ 0 by positivity of S.
 @isnad1 id=le.3h6v.s9.0c8746ab2529 from=translated src=- shape=acd5ed68 vocab=3abcee4c
 -/
-theorem orthonormal_diag_le_hilbert_trace (S : H →L[ℝ] H) (hS : S.IsPositive)
+theorem _root_.Tengoku.LeanPool.orthonormal_diag_le_hilbert_trace (S : H →L[ℝ] H) (hS : S.IsPositive)
     {n : ℕ} (v : Fin n → H) (hv : Orthonormal ℝ v)
     {ι : Type} (b : HilbertBasis ι ℝ H)
     (hsum : Summable (fun i => @inner ℝ H _ (b i) (S (b i)))) :
@@ -999,7 +999,7 @@ omit [CompleteSpace H] in
     EuclideanSpace, then computes the standard basis entries.
 @isnad1 id=eq.1h6v.s10.7ce2e05ede3e from=translated src=- shape=9916fc41 vocab=b7218356
 -/
-lemma restrictOp_trace_eq_diag (S : H →L[ℝ] H) {n : ℕ} (v : Fin n → H)
+lemma _root_.Tengoku.LeanPool.restrictOp_trace_eq_diag (S : H →L[ℝ] H) {n : ℕ} (v : Fin n → H)
     (_hv : Orthonormal ℝ v)
     (ι' : Type*) [Fintype ι']
     (b' : OrthonormalBasis ι' ℝ (EuclideanSpace ℝ (Fin n))) :
@@ -1033,7 +1033,7 @@ lemma restrictOp_trace_eq_diag (S : H →L[ℝ] H) {n : ℕ} (v : Fin n → H)
     EuclideanSpace with the diagonal bound.
 @isnad1 id=le.3h8v.s10.5bee576fe789 from=translated src=- shape=869f271c vocab=5293ad48
 -/
-lemma restrictOp_trace_le (S : H →L[ℝ] H) (hS : S.IsPositive)
+lemma _root_.Tengoku.LeanPool.restrictOp_trace_le (S : H →L[ℝ] H) (hS : S.IsPositive)
     {n : ℕ} (v : Fin n → H) (hv : Orthonormal ℝ v)
     {ι : Type} (b : HilbertBasis ι ℝ H)
     (hsum : Summable (fun i => @inner ℝ H _ (b i) (S (b i)))) :
@@ -1051,7 +1051,7 @@ lemma restrictOp_trace_le (S : H →L[ℝ] H) (hS : S.IsPositive)
     C / (1 - exp(-σ²R²/2)) < η.
 @isnad1 id=ex.3h3v.s7.88db5dda1445 from=translated src=- shape=abc5c3c8 vocab=a95bab30
 -/
-lemma exists_R_for_tail_bound (C η σ : ℝ) (hC : 0 < C) (hCη : C < η) (hσ : 0 < σ) :
+lemma _root_.Tengoku.LeanPool.exists_R_for_tail_bound (C η σ : ℝ) (hC : 0 < C) (hCη : C < η) (hσ : 0 < σ) :
     ∃ R > 0, C / (1 - Real.exp (-(σ ^ 2 * R ^ 2 / 2))) < η := by
   have hη : 0 < η := by linarith
   set δ := (1 - C / η) / 2 with hδ_def
@@ -1077,7 +1077,7 @@ lemma exists_R_for_tail_bound (C η σ : ℝ) (hC : 0 < C) (hCη : C < η) (hσ 
     marginal measures is uniformly tight.
 @isnad1 id=ex.5h3v.s9.d40dd5cf3c50 from=translated src=- shape=9e28d8f4 vocab=f89db435
 -/
-theorem sazonov_tightness (φ : H → ℂ) (_hpd : IsPositiveDefinite φ)
+theorem _root_.Tengoku.LeanPool.sazonov_tightness (φ : H → ℂ) (_hpd : IsPositiveDefinite φ)
     (_hnorm : φ 0 = 1) (_hcont : Continuous φ)
     (hsaz : SazonovContinuousAt φ) :
     ∀ η > 0, ∃ R > 0, ∀ (n : ℕ) (v : Fin n → H) (_ : Orthonormal ℝ v)
@@ -1132,3 +1132,4 @@ theorem sazonov_tightness (φ : H → ℂ) (_hpd : IsPositiveDefinite φ)
     _ < η := hR_bound
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

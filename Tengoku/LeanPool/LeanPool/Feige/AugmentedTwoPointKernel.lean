@@ -16,7 +16,7 @@ mean-one law supported on at most two points.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory ProbabilityTheory Set
 
 namespace Feige
@@ -180,3 +180,4 @@ theorem lintegral_augmentedTwoPointKernel_comp
 end
 
 end Feige
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

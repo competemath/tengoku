@@ -18,7 +18,7 @@ point all of whose coordinates are integers.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.SumsThreeSquares
 
 open MeasureTheory Module Submodule
@@ -131,3 +131,4 @@ theorem classical_exists_ne_zero_mem_lattice_of_measure_mul_two_pow_lt_measure
   exact ⟨x, fun h0 => hx_ne (by ext1; simp [h0]), hx_mem, fun i => x.property i⟩
 
 end LeanPool.SumsThreeSquares
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

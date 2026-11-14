@@ -15,7 +15,7 @@ convolution densities `LikelihoodRatio.fPlus` and `fMinus`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Real Set
 open scoped ENNReal
 
@@ -320,3 +320,4 @@ theorem theta_order_zPlus_zMinus
 end Lemma43Density
 
 end Feige
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

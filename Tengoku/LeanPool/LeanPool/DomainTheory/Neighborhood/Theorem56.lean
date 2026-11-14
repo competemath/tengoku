@@ -63,7 +63,7 @@ Theorem 4.1.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood.Theorem56
 
 open Domain.Neighborhood NeighborhoodSystem ApproximableMap
@@ -394,3 +394,4 @@ theorem muMap_eq_least {m n₀ : ℕ}
 end Mu
 
 end Domain.Neighborhood.Theorem56
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

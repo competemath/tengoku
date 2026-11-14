@@ -14,7 +14,7 @@ Imported Lean Pool material for `LeanPool.Monsky.Miscellaneous`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.Monsky
 open BigOperators
 open Finset
@@ -224,3 +224,4 @@ lemma infinite_imp_two_distinct_el {α : Type} {S : Set α} (hS : S.Infinite) :
 
 end Monsky
 end LeanPool
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

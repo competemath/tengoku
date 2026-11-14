@@ -14,7 +14,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Distributed2Coloring.LowerBound
 
 namespace N1000000Transitivity
@@ -276,3 +276,4 @@ theorem corrAvg_eq_of_dirMask_eq (f : Coloring n) {u v u' v' : V}
 end N1000000Transitivity
 
 end Distributed2Coloring.LowerBound
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -19,7 +19,7 @@ Key identity: $(q;q)_∞ / (q;q)_n = (q^{n+1};q)_∞$ (telescoping)
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Finset Filter
 open scoped Topology
 
@@ -132,3 +132,4 @@ theorem tsum_split_diagonal {f : ℕ × ℕ → ℂ} (hf : Summable f) :
 end
 
 end QSeries
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

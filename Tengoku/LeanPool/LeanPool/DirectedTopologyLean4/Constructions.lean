@@ -13,7 +13,7 @@ import Tengoku.LeanPool.LeanPool.DirectedTopologyLean4.MonotonePath
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-
   This file contains constructions of directed spaces such as:
   * The directed space induced by a preorder on a topological space.
@@ -23,14 +23,14 @@ import Tengoku.LeanPool.LeanPool.DirectedTopologyLean4.MonotonePath
   This file also contains lemmas about directed maps from/to these spaces.
 -/
 
-open DirectedMap
+open Tengoku.LeanPool.DirectedMap
 open scoped unitInterval
 universe u v
 
 /-- Any space with a preorder can be equiped with a directedness, by allowing all monotone paths
   as directed paths
 -/
-@[reducible] def DirectedSpace.Preorder (α : Type u) [TopologicalSpace α] [Preorder α] :
+@[reducible] def Tengoku.LeanPool.DirectedSpace.Preorder (α : Type u) [TopologicalSpace α] [Preorder α] :
     DirectedSpace α where
   IsDipath := fun {x y : α} γ => Monotone ↑γ
   isDipath_constant := fun x _ _ _ => le_refl x
@@ -55,7 +55,7 @@ universe u v
 topological space
   creates a directed structure on α by pulling back paths.
 -/
-@[reducible] def DirectedSpace.Induced {α : Type u} {β : Type v} [TopologicalSpace α]
+@[reducible] def Tengoku.LeanPool.DirectedSpace.Induced {α : Type u} {β : Type v} [TopologicalSpace α]
     [hβ : DirectedSpace β] {f : α → β} (hf : Continuous f) : DirectedSpace α where
   IsDipath := fun {x y : α} γ => IsDipath (γ.map hf)
   isDipath_constant := fun x => isDipath_constant (f x)
@@ -66,7 +66,7 @@ topological space
   isDipath_reparam := fun {x y : α} γ t₀ t₁ φ hφ_mono hγ => by
     exact isDipath_reparam hφ_mono hγ
 
-instance DirectedSubspace {α : Type u} {p : α → Prop} [DirectedSpace α] :
+instance _root_.Tengoku.LeanPool.DirectedSubspace {α : Type u} {p : α → Prop} [DirectedSpace α] :
   DirectedSpace (Subtype p) :=
   DirectedSpace.Induced continuous_induced_dom
 
@@ -75,13 +75,13 @@ section subtype
 /--
 @isnad1 id=directed.0h3v.s5.b2efc0af592f from=translated src=- shape=76c0fca8 vocab=b29ba922
 -/
-lemma directed_induced {α : Type u} {β : Type v} [TopologicalSpace α] [hβ : DirectedSpace β]
+lemma _root_.Tengoku.LeanPool.directed_induced {α : Type u} {β : Type v} [TopologicalSpace α] [hβ : DirectedSpace β]
   (f : C(α, β)) :
   @DirectedMap.Directed α β (DirectedSpace.Induced f.continuous_toFun) hβ f := fun _ _ _ hγ => hγ
 
 /-- The inclusion of a subtype with the induced directed structure into the ambient space
 is a directed map. -/
-def DirectedSubtypeInclusion {α : Type u} (p : α → Prop) [DirectedSpace α] :
+def _root_.Tengoku.LeanPool.DirectedSubtypeInclusion {α : Type u} (p : α → Prop) [DirectedSpace α] :
     D(Subtype p, α) where
   toFun := fun x => ↑x
   continuous_toFun := continuous_induced_dom
@@ -89,7 +89,7 @@ def DirectedSubtypeInclusion {α : Type u} (p : α → Prop) [DirectedSpace α] 
 
 /-- The inclusion of one subset into another, when both carry the induced directed structure,
 is a directed map. -/
-def DirectedSubsetInclusion {α : Type u} [t : DirectedSpace α] {X Y : Set α} (h : X ⊆ Y) : D(X,Y)
+def _root_.Tengoku.LeanPool.DirectedSubsetInclusion {α : Type u} [t : DirectedSpace α] {X Y : Set α} (h : X ⊆ Y) : D(X,Y)
     where
   toFun := Set.inclusion h
   continuous_toFun := continuous_inclusion h
@@ -105,7 +105,7 @@ def DirectedSubsetInclusion {α : Type u} [t : DirectedSpace α] {X Y : Set α} 
 
 end subtype
 
-instance DirectedProduct {α : Type u} {β : Type v} [t₁ : DirectedSpace α] [t₂ : DirectedSpace β] :
+instance _root_.Tengoku.LeanPool.DirectedProduct {α : Type u} {β : Type v} [t₁ : DirectedSpace α] [t₂ : DirectedSpace β] :
   DirectedSpace (α × β) where
   IsDipath := fun {x y : α × β}
       γ => (IsDipath (γ.map continuous_fst) ∧ IsDipath (γ.map continuous_snd))
@@ -119,12 +119,12 @@ instance DirectedProduct {α : Type u} {β : Type v} [t₁ : DirectedSpace α] [
       ⟨isDipath_reparam hφ_mono γ₁_dipath, isDipath_reparam hφ_mono γ₂_dipath⟩
 
 /-- The projection map `α × β → α` -/
-def directedFst {α β : Type*} [DirectedSpace α] [DirectedSpace β] : D(α × β, α) where
+def _root_.Tengoku.LeanPool.directedFst {α β : Type*} [DirectedSpace α] [DirectedSpace β] : D(α × β, α) where
   toFun := fun x => x.1
   directed_toFun := fun _ _ γ ⟨hγ₁, _⟩ => hγ₁
 
 /-- The projection map `α × β → β` -/
-def directedSnd {α β : Type*} [DirectedSpace α] [DirectedSpace β] : D(α × β, β) where
+def _root_.Tengoku.LeanPool.directedSnd {α β : Type*} [DirectedSpace α] [DirectedSpace β] : D(α × β, β) where
   toFun := fun x => x.2
   directed_toFun := fun _ _ γ ⟨_, hγ₂⟩ => hγ₂
 
@@ -135,7 +135,7 @@ variable {α β γ δ : Type*} [DirectedSpace α] [DirectedSpace β] [DirectedSp
 /-- Two directed maps `f : α → β` and `g : α → γ` can be turned into a directed map `α → β × γ` by
   mapping `a : α` to `(f a, g a)`.
 -/
-protected def DirectedMap.prodMapMk (f : D(α,β)) (g : D(α,γ)) : D(α, β × γ) where
+protected def Tengoku.LeanPool.DirectedMap.prodMapMk (f : D(α,β)) (g : D(α,γ)) : D(α, β × γ) where
   toFun := fun x => (f x, g x)
   directed_toFun := fun x y γ hγ => ⟨f.directed_toFun γ hγ, g.directed_toFun γ hγ⟩
 
@@ -143,32 +143,33 @@ protected def DirectedMap.prodMapMk (f : D(α,β)) (g : D(α,γ)) : D(α, β × 
 by
   mapping `(a, b) : α × β` to `(f a, g b)`.
 -/
-protected def DirectedMap.prodMapMk' (f : D(α,γ)) (g : D(β,δ)) : D(α × β, γ × δ) where
+protected def Tengoku.LeanPool.DirectedMap.prodMapMk' (f : D(α,γ)) (g : D(β,δ)) : D(α × β, γ × δ) where
   toFun := fun x => (f x.1, g x.2)
   directed_toFun := fun x y γ ⟨hγ₁, hγ₂⟩ => ⟨f.directed_toFun _ hγ₁, g.directed_toFun _ hγ₂⟩
 
 /-- For every `t : α`, we can convert a directed map `F : α × β → γ` to a directed map `β → γ` by
   sending `b` to `F(t, b)`
 -/
-def DirectedMap.prodConstFst (F : D(α × β,γ)) (a : α) : D(β,γ) :=
+def Tengoku.LeanPool.DirectedMap.prodConstFst (F : D(α × β,γ)) (a : α) : D(β,γ) :=
   F.comp (DirectedMap.prodMapMk (DirectedMap.const β a) (DirectedMap.id β))
 
 /--
 @isnad1 id=eq.0h6v.s6.e940f6165924 from=translated src=- shape=fcb1f546 vocab=dce5b348
 -/
-@[simp] lemma DirectedMap.prod_const_fst_apply (F : D(α × β,γ)) (a : α) (b : β) :
+@[simp] lemma Tengoku.LeanPool.DirectedMap.prod_const_fst_apply (F : D(α × β,γ)) (a : α) (b : β) :
   DirectedMap.prodConstFst F a b = F (a, b) := rfl
 
 /-- For every `t : β`, we can convert a directed map `F : α × β → γ` to a directed map `α → γ` by
   sending `a` to `F(a, t)`
 -/
-def DirectedMap.prodConstSnd (F : D(α × β,γ)) (t : β) : D(α,γ) :=
+def Tengoku.LeanPool.DirectedMap.prodConstSnd (F : D(α × β,γ)) (t : β) : D(α,γ) :=
   F.comp (DirectedMap.prodMapMk (DirectedMap.id α) (DirectedMap.const α t))
 
 /--
 @isnad1 id=eq.0h6v.s6.c3f75899741d from=translated src=- shape=9225af33 vocab=7848101f
 -/
-@[simp] lemma DirectedMap.prod_const_snd_apply (F : D(α × β,γ)) (b : β) (a : α) :
+@[simp] lemma Tengoku.LeanPool.DirectedMap.prod_const_snd_apply (F : D(α × β,γ)) (b : β) (a : α) :
   DirectedMap.prodConstSnd F b a = F (a, b) := rfl
 
 end prod
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

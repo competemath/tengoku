@@ -11,7 +11,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Function
 open Module (finrank)
 
@@ -63,3 +63,4 @@ theorem finrank_range_prod_fst_iff_comp_inr_eq_zero (f : E × F →ₗ[ℝ] G) :
   simp [finrank_range_prod_fst, range_eq_bot]
 
 end LinearMap
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

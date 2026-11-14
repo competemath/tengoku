@@ -26,7 +26,7 @@ that belongs to a consistency property has a countable model.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u v w
 
 namespace FirstOrder
@@ -86,3 +86,4 @@ refinements (`#M ≥ #J`) are deferred — the goal here is modest (`∃ M, M �
 end Language
 
 end FirstOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

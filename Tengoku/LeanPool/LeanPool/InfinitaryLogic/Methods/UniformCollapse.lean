@@ -32,7 +32,7 @@ supplied generically (`realize_mapLanguage`) and smallness descends by
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder
 
 namespace Language
@@ -201,3 +201,4 @@ theorem exists_small_model_of_hasArbLargeModels {φ : L.Sentenceω}
 end Language
 
 end FirstOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

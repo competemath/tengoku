@@ -24,7 +24,7 @@ The coloring used here is the simple rounding-based local rule from the report:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Distributed2Coloring.LowerBound
 
 namespace UpperBound
@@ -265,3 +265,4 @@ end Universal
 end UpperBound
 
 end Distributed2Coloring.LowerBound
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

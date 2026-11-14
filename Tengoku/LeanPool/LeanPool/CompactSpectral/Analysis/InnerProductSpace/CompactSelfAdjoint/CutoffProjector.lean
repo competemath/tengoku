@@ -31,7 +31,7 @@ enable spectral iteration by compressing to invariant orthogonal complements.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace CompactSelfAdjoint
 
 open Filter Topology Metric
@@ -186,3 +186,4 @@ lemma largeEigenspaceProjector_comp
             simp
   simpa [ContinuousLinearMap.comp_apply] using hPTx
 end CompactSelfAdjoint
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

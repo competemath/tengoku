@@ -14,7 +14,7 @@ Imported Lean Pool material for `LeanPool.EcTateLean.Algebra.EllipticCurve.Krone
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Nat
 
 section Obvious
@@ -22,7 +22,7 @@ section Obvious
 /--
 @isnad1 id=le.0h2v.s4.78c0ccfccaec from=translated src=- shape=e1d90369 vocab=984870c6
 -/
-lemma div_succ_le_succ_div (m n : ℕ) : succ m / succ n ≤ succ (m / succ n) := by
+lemma _root_.Tengoku.LeanPool.div_succ_le_succ_div (m n : ℕ) : succ m / succ n ≤ succ (m / succ n) := by
   rw [Nat.succ_div]
   split
   · rw [succ_eq_add_one]
@@ -31,7 +31,7 @@ lemma div_succ_le_succ_div (m n : ℕ) : succ m / succ n ≤ succ (m / succ n) :
 /--
 @isnad1 id=eq.0h1v.s5.98f73265ad93 from=translated src=- shape=2bbff847 vocab=8e86f7a1
 -/
-lemma div2_succ_succ_eq_succ_div2 (n : ℕ) : succ (succ n) / 2 = succ (n / 2) := by
+lemma _root_.Tengoku.LeanPool.div2_succ_succ_eq_succ_div2 (n : ℕ) : succ (succ n) / 2 = succ (n / 2) := by
   omega
 
 end Obvious
@@ -200,3 +200,4 @@ match p with
     | a' => kronecker ((b * b - 4 * a' * c) % (p : ℤ)) (p : ℤ) = 1
 
 end Int
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

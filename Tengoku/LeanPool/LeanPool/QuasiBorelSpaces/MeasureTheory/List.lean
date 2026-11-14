@@ -16,7 +16,7 @@ Imported Lean Pool material for `LeanPool.QuasiBorelSpaces.MeasureTheory.List`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 variable
   {A : Type*} [MeasurableSpace A]
   {B : Type*} [MeasurableSpace B]
@@ -116,3 +116,4 @@ instance [DiscreteMeasurableSpace A] [Countable A] : DiscreteMeasurableSpace (Li
     · simp_all
 
 end MeasureTheory.List
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

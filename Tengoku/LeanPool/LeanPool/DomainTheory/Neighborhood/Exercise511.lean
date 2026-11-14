@@ -52,7 +52,7 @@ the project's
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood.Exercise511
 
 open Domain.Neighborhood NeighborhoodSystem ApproximableMap
@@ -267,3 +267,4 @@ theorem component_map (x : V.Element) :
     rw [← component_tail, ht, ih, component_tail]
 
 end Domain.Neighborhood.Exercise511
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

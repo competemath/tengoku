@@ -18,7 +18,7 @@ ambient sup norm on the function space.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators ENNReal NNReal Topology
 
 open MeasureTheory MeasureTheory.Measure Set
@@ -205,3 +205,4 @@ lemma heatKernelPlus_nonneg (p : ParabolicPoint) : 0 ≤ heatKernelPlus p := by
   exact heatKernel_nonneg _ _
 
 end CKN.Foundation.Heat
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

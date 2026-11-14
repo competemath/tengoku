@@ -14,7 +14,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /--
 @isnad1 id=iff.0h7v.s8.b799232258a2 from=translated src=- shape=d8aa011b vocab=88937f89
 -/
@@ -171,7 +171,7 @@ theorem IsIdempotentElem.starAlgEquiv {R A B : Type _}
     IsIdempotentElem (f x) ↔ IsIdempotentElem x :=
 IsIdempotentElem.mulEquiv
 
-lemma _root_.isIdempotentElem_pi_iff
+lemma _root_.Tengoku.LeanPool.isIdempotentElem_pi_iff
   {ι : Type*} {A : ι → Type*} [Π i, Mul (A i)] {a : Π i, A i} :
   IsIdempotentElem a ↔ ∀ i, IsIdempotentElem (a i) := by
   simp only [IsIdempotentElem, Pi.mul_def, funext_iff]
@@ -276,3 +276,4 @@ by simp only [coe_comp, self_trans_symm]; rfl
 theorem AlgEquiv.comp_symm_toLinearMap (e : A ≃ₐ[R] B) :
   e.toLinearMap ∘ₗ e.symm.toLinearMap = LinearMap.id :=
 by simp only [coe_comp, symm_trans_self]; rfl
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

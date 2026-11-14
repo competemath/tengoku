@@ -12,7 +12,7 @@ Numeric inequalities for Tran–Vu’s covering induction (`L = 1000`).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace KahnKalai
 
 open Nat Finset
@@ -305,3 +305,4 @@ lemma occupation_mul_le (ℓ : ℕ) (hℓ : 1 ≤ ℓ) {β : ℝ}
   simpa [a, b, d] using this
 
 end KahnKalai
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

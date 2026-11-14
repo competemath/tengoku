@@ -25,7 +25,7 @@ positive multiple of `entropyNat`.
 - `entropyNat_shannonAxioms`: `ShannonEntropyAxioms entropyNat`
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPool.Shannon1948Formalization
 
 noncomputable section
@@ -107,3 +107,4 @@ theorem entropyNat_shannonAxioms : ShannonEntropyAxioms (fun {α} [Fintype α] =
 end
 
 end LeanPool.Shannon1948Formalization
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

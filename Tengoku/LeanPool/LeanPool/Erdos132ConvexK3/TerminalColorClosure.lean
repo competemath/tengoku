@@ -19,7 +19,7 @@ It closes the three terminal-color obligations left after `TailClosure.lean`:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.Erdos132ConvexK3
 
 /-- Strict order of squared Euclidean distances is strict order of distances.
@@ -2029,3 +2029,4 @@ theorem erlv_majorant_arc_nesting_complete_of_tail :
     erlv_at_vertex_exceptional_branches_impossible_of_tail
 
 end LeanPool.Erdos132ConvexK3
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

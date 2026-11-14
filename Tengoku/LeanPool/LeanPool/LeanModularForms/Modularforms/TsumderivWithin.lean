@@ -16,7 +16,7 @@ import Tengoku.Seed.Analysis.Calculus.UniformLimitsDeriv
 import Tengoku.Seed.Analysis.Normed.Group.FunctionSeries
 import Tengoku.Seed.Analysis.SpecialFunctions.ExpDeriv
 import Tengoku.Seed.Topology.ContinuousMap.Compact
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -121,3 +121,4 @@ theorem hasDerivWithinAt_tsum_fun {α : Type _} (f : α → ℂ → ℂ)
     (hf2 : ∀ (n : α) (r : s), DifferentiableAt ℂ (f n) r) :
     HasDerivWithinAt (fun z => ∑' n : α, f n z) (∑' n : α, derivWithin (fun z => f n z) s x) s x :=
   (hasDerivAt_tsum_fun f hs x hx hf hu hf2).hasDerivWithinAt
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

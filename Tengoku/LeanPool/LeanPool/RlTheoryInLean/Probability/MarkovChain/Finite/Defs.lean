@@ -15,7 +15,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory MeasureTheory.Measure ProbabilityTheory.Kernel ProbabilityTheory
 open Finset NNReal ENNReal Preorder Function StochasticMatrix Filter
 
@@ -111,3 +111,4 @@ end Finite
 end MarkovChain
 
 end ProbabilityTheory
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

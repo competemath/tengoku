@@ -54,7 +54,7 @@ Everything here is `⊆ {propext, Quot.sound}` (choice-free).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem Domain.Recursive ApproximableMap
@@ -1012,3 +1012,4 @@ theorem outMap₁_isComputable (P₀ : ComputablePresentation V₀) (P₁ : Comp
 end Sum
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

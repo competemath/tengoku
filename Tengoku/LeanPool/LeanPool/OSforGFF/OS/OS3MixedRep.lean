@@ -47,7 +47,7 @@ The mixed representation exhibits:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Complex Real Filter QFT LaplaceIntegral
 open TopologicalSpace
 open scoped Real InnerProductSpace BigOperators
@@ -62,7 +62,7 @@ variable {m : ℝ} [Fact (0 < m)]
     This follows from Mathlib's `fourierIntegral_gaussian`.
 @isnad1 id=eq.1h2v.s7.7be133621880 from=translated src=- shape=2ba85574 vocab=f42d181c
 -/
-lemma gaussian_fourier_1d (s : ℝ) (hs : 0 < s) (t : ℝ) :
+lemma _root_.Tengoku.LeanPool.gaussian_fourier_1d (s : ℝ) (hs : 0 < s) (t : ℝ) :
     ∫ k₀ : ℝ, Complex.exp (-Complex.I * k₀ * t) * Complex.exp (-(s : ℂ) * k₀^2) =
     Real.sqrt (π / s) * Complex.exp (-(t^2 / (4 * s) : ℝ)) := by
   -- Use Mathlib's fourierIntegral_gaussian with b = s and t' = -t
@@ -101,7 +101,7 @@ lemma gaussian_fourier_1d (s : ℝ) (hs : 0 < s) (t : ℝ) :
 /-- Gaussian exponential factorizes: exp(-s‖k‖²) = exp(-sk₀²) × exp(-s‖k_sp‖²)
 @isnad1 id=eq.0h2v.s7.5e81216a65bc from=translated src=- shape=650c655b vocab=abd7e997
 -/
-lemma gaussian_exp_factorize (s : ℂ) (k : SpaceTime) :
+lemma _root_.Tengoku.LeanPool.gaussian_exp_factorize (s : ℂ) (k : SpaceTime) :
     Complex.exp (-s * ‖k‖^2) =
     Complex.exp (-s * (k 0)^2) * Complex.exp (-s * ‖spatialPart k‖^2) := by
   rw [← Complex.exp_add]
@@ -123,7 +123,7 @@ lemma gaussian_exp_factorize (s : ℂ) (k : SpaceTime) :
                                 = √(π/s) exp(-z₀²/(4s)) × ∫_{k_sp} exp(-ik_sp·z_sp) exp(-s|k_sp|²)
 @isnad1 id=eq.1h2v.s10.4b5b4d26cd83 from=translated src=- shape=4fdcb407 vocab=e9a93413
 -/
-lemma k_integral_after_k0_eval (s : ℝ) (hs : 0 < s) (z : SpaceTime) :
+lemma _root_.Tengoku.LeanPool.k_integral_after_k0_eval (s : ℝ) (hs : 0 < s) (z : SpaceTime) :
     ∫ k : SpaceTime, Complex.exp (-Complex.I * ⟪k, z⟫_ℝ) * Complex.exp (-(s : ℂ) * ‖k‖^2) =
     (Real.sqrt (π / s) : ℂ) * Complex.exp (-(((z 0)^2 / (4 * s)) : ℝ)) *
       ∫ k_sp : SpatialCoords, Complex.exp (-Complex.I * spatialDot k_sp (spatialPart z)) *
@@ -206,13 +206,13 @@ lemma k_integral_after_k0_eval (s : ℝ) (hs : 0 < s) (z : SpaceTime) :
 /-- The time component of (timeReflection x - y).
 @isnad1 id=eq.0h2v.s7.72f6ca57bded from=translated src=- shape=bc99db3d vocab=9b048b45
 -/
-lemma timeReflection_sub_zero (x y : SpaceTime) :
+lemma _root_.Tengoku.LeanPool.timeReflection_sub_zero (x y : SpaceTime) :
     (timeReflection x - y) 0 = -(x 0) - y 0 := rfl
 
 /-- The spatial part of (timeReflection x - y) equals spatialPart x - spatialPart y.
 @isnad1 id=eq.0h2v.s7.cd76b950b4a6 from=translated src=- shape=5e5a7fa2 vocab=2644207e
 -/
-lemma spatialPart_timeReflection_sub (x y : SpaceTime) :
+lemma _root_.Tengoku.LeanPool.spatialPart_timeReflection_sub (x y : SpaceTime) :
     spatialPart (timeReflection x - y) = spatialPart x - spatialPart y := rfl
 
 /-- **THEOREM**: Heat kernel bilinear form after k₀ integration.
@@ -238,7 +238,7 @@ lemma spatialPart_timeReflection_sub (x y : SpaceTime) :
     The exp(-sm²) factor combines with exp(-s|pbar|²) to give exp(-s(|pbar|² + m²)).
 @isnad1 id=eq.0h2v.s11.520496e63855 from=translated src=- shape=5e420a2c vocab=7463d7f8
 -/
-theorem heatKernel_bilinear_fourier_form (m : ℝ) (f : TestFunctionℂ) :
+theorem _root_.Tengoku.LeanPool.heatKernel_bilinear_fourier_form (m : ℝ) (f : TestFunctionℂ) :
     ∫ s in Set.Ioi 0, (Real.exp (-s * m^2) : ℂ) *
       ∫ x : SpaceTime, ∫ y : SpaceTime,
         (starRingEnd ℂ (f x)) * f y * heatKernelPositionSpace s ‖timeReflection x - y‖ =
@@ -431,7 +431,7 @@ theorem heatKernel_bilinear_fourier_form (m : ℝ) (f : TestFunctionℂ) :
 /-- ω = √(‖k_sp‖² + m²) is positive for m > 0.
 @isnad1 id=lt.1h2v.s7.6757504c7379 from=translated src=- shape=4dbdcc58 vocab=17890ab0
 -/
-lemma omega_pos (k_sp : SpatialCoords) (m : ℝ) (hm : 0 < m) :
+lemma _root_.Tengoku.LeanPool.omega_pos (k_sp : SpatialCoords) (m : ℝ) (hm : 0 < m) :
     0 < Real.sqrt (‖k_sp‖^2 + m^2) := by positivity
 
 /-- The normalization constant relation:
@@ -440,7 +440,7 @@ lemma omega_pos (k_sp : SpatialCoords) (m : ℝ) (hm : 0 < m) :
     Proof: (2π)⁴ = 2 × (2π)³ × π, so π/(2π)⁴ = 1/(2(2π)³)
 @isnad1 id=eq.0h0v.s6.db50cd3307f4 from=translated src=- shape=93ed7367 vocab=e1f12ed7
 -/
-lemma normalization_constant_laplace :
+lemma _root_.Tengoku.LeanPool.normalization_constant_laplace :
     (1 / (2 * π) ^ 4 : ℝ) * π = 1 / (2 * (2 * π) ^ 3) := by field_simp
 
 /-- The s-integral evaluation for fixed (k_sp, x, y):
@@ -458,7 +458,7 @@ lemma normalization_constant_laplace :
     4. Result: √π * √(π/ω²) * exp(-2√((t²/4)*ω²)) = (π/ω) * exp(-ω|t|)
 @isnad1 id=eq.1h2v.s7.0c659786093f from=translated src=- shape=5786656a vocab=73948c8c
 -/
-lemma s_integral_eval (t : ℝ) (ω : ℝ) (hω : 0 < ω) :
+lemma _root_.Tengoku.LeanPool.s_integral_eval (t : ℝ) (ω : ℝ) (hω : 0 < ω) :
     ∫ s in Set.Ioi 0, Real.sqrt (π / s) * Real.exp (-(t^2 / (4 * s))) *
       Real.exp (-s * ω^2) = (π / ω) * Real.exp (-ω * |t|) := by
   -- Setup hypotheses
@@ -521,7 +521,7 @@ lemma s_integral_eval (t : ℝ) (ω : ℝ) (hω : 0 < ω) :
     ∫_s (↑√(π/s)) * cexp(-↑(t²/(4s))) * cexp(-↑(sω²)) ds = ↑((π/ω) * exp(-ω|t|))
 @isnad1 id=eq.1h2v.s7.77bd1c38b812 from=translated src=- shape=1019a5ae vocab=2c101409
 -/
-lemma s_integral_eval_complex (t : ℝ) (ω : ℝ) (hω : 0 < ω) :
+lemma _root_.Tengoku.LeanPool.s_integral_eval_complex (t : ℝ) (ω : ℝ) (hω : 0 < ω) :
     ∫ s in Set.Ioi 0, (Real.sqrt (π / s) : ℂ) *
       Complex.exp (-(t^2 / (4 * s) : ℝ)) *
       Complex.exp (-(s * ω^2 : ℝ)) =
@@ -557,7 +557,7 @@ lemma s_integral_eval_complex (t : ℝ) (ω : ℝ) (hω : 0 < ω) :
     where all exponentials have real arguments (cast to ℂ).
 @isnad1 id=eq.1h5v.s10.7826c77aa366 from=translated src=- shape=65f64922 vocab=d700a42e
 -/
-lemma s_integral_complex_eval (k_sp : SpatialCoords) (x y : SpaceTime) (m : ℝ) (hm : 0 < m)
+lemma _root_.Tengoku.LeanPool.s_integral_complex_eval (k_sp : SpatialCoords) (x y : SpaceTime) (m : ℝ) (hm : 0 < m)
     (f : TestFunctionℂ) :
     ∫ s in Set.Ioi 0, (starRingEnd ℂ (f x)) * f y *
       (Real.sqrt (π / s) : ℂ) * Complex.exp (-((-(x 0) - y 0)^2 / (4 * s) : ℝ)) *
@@ -646,7 +646,7 @@ lemma s_integral_complex_eval (k_sp : SpatialCoords) (x y : SpaceTime) (m : ℝ)
     `s_integral_eval` to evaluate the Laplace transform.
 @isnad1 id=eq.0h2v.s11.d324c454ae64 from=translated src=- shape=7a52b0b6 vocab=34221157
 -/
-theorem laplace_s_integral_with_norm (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ) :
+theorem _root_.Tengoku.LeanPool.laplace_s_integral_with_norm (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ) :
     (1 / (2 * π) ^ STDimension : ℝ) *
     ∫ k_sp : SpatialCoords, ∫ s in Set.Ioi 0, ∫ x : SpaceTime, ∫ y : SpaceTime,
       (starRingEnd ℂ (f x)) * f y *
@@ -743,7 +743,7 @@ theorem laplace_s_integral_with_norm (m : ℝ) [Fact (0 < m)] (f : TestFunction�
     and the set s ≤ 0 has measure zero under the restricted measure.
 @isnad1 id=integrab.0h2v.s10.9b8581176f43 from=translated src=- shape=04c7e36c vocab=d4572475
 -/
-theorem schwinger_bilinear_integrable (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ) :
+theorem _root_.Tengoku.LeanPool.schwinger_bilinear_integrable (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ) :
     Integrable (fun (p : ℝ × SpaceTime × SpaceTime) =>
       (starRingEnd ℂ (f p.2.1)) * f p.2.2 *
       Real.exp (-p.1 * m^2) * heatKernelPositionSpace p.1 ‖timeReflection p.2.1 - p.2.2‖)
@@ -879,7 +879,7 @@ private lemma measurePreserving_schwinger_tripleReorder :
     and the measure-preserving map `schwinger_tripleReorder` to connect them.
 @isnad1 id=eq.0h2v.s10.f4a6b05bfc8e from=translated src=- shape=8908d9b7 vocab=5ab023b4
 -/
-theorem schwinger_fubini_core (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ) :
+theorem _root_.Tengoku.LeanPool.schwinger_fubini_core (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ) :
     ∫ x : SpaceTime, ∫ y : SpaceTime, ∫ s in Set.Ioi 0,
       (starRingEnd ℂ (f x)) * f y *
         (Real.exp (-s * m^2) : ℂ) * heatKernelPositionSpace s ‖timeReflection x - y‖ =
@@ -955,7 +955,7 @@ theorem schwinger_fubini_core (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ) :
     3. Use the integrability hypothesis to justify the swap
 @isnad1 id=eq.0h2v.s10.64edeb9b7772 from=translated src=- shape=b65b132c vocab=5ab023b4
 -/
-theorem schwinger_fubini_swap (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ) :
+theorem _root_.Tengoku.LeanPool.schwinger_fubini_swap (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ) :
     ∫ x : SpaceTime, ∫ y : SpaceTime,
       (starRingEnd ℂ (f x)) * f y *
         (∫ s in Set.Ioi 0, (Real.exp (-s * m^2) : ℂ) *
@@ -1025,7 +1025,7 @@ theorem schwinger_fubini_swap (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ) :
     This follows from `covarianceSchwingerRep_eq_freeCovarianceBessel`.
 @isnad1 id=eq.2h3v.s7.5abfe33739e5 from=translated src=- shape=92429e32 vocab=62ed7d36
 -/
-lemma freeCovariance_eq_schwingerRep (m : ℝ) (hm : 0 < m) (x y : SpaceTime)
+lemma _root_.Tengoku.LeanPool.freeCovariance_eq_schwingerRep (m : ℝ) (hm : 0 < m) (x y : SpaceTime)
     (hxy : timeReflection x ≠ y) :
     (freeCovariance m (timeReflection x) y : ℂ) =
     ∫ s in Set.Ioi 0, (Real.exp (-s * m^2) : ℂ) *
@@ -1064,7 +1064,7 @@ lemma freeCovariance_eq_schwingerRep (m : ℝ) (hm : 0 < m) (x y : SpaceTime)
     ∫∫ conj(f(x)) C(Θx,y) f(y) dx dy = ∫₀^∞ e^{-sm²} [∫∫ conj(f) f H(s,|Θx-y|) dx dy] ds
 @isnad1 id=eq.0h2v.s10.dd1a89665f3c from=translated src=- shape=1aa20129 vocab=14477476
 -/
-theorem bilinear_schwinger_eq_heatKernel (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ) :
+theorem _root_.Tengoku.LeanPool.bilinear_schwinger_eq_heatKernel (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ) :
     ∫ x : SpaceTime, ∫ y : SpaceTime,
       (starRingEnd ℂ (f x)) * (freeCovariance m (timeReflection x) y : ℂ) * f y =
     ∫ s in Set.Ioi 0, (Real.exp (-s * m^2) : ℂ) *
@@ -1128,7 +1128,7 @@ theorem bilinear_schwinger_eq_heatKernel (m : ℝ) [Fact (0 < m)] (f : TestFunct
     - Fubini applications (require integrability - uses Schwartz decay)
 @isnad1 id=eq.1h2v.s11.8739143c4050 from=translated src=- shape=b765d3cd vocab=429e28a0
 -/
-theorem heatKernel_bilinear_to_mixed_rep (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ)
+theorem _root_.Tengoku.LeanPool.heatKernel_bilinear_to_mixed_rep (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ)
     (hf_supp : ∀ x, x 0 ≤ 0 → f x = 0) :
     ∫ s in Set.Ioi 0, (Real.exp (-s * m^2) : ℂ) *
       ∫ x : SpaceTime, ∫ y : SpaceTime,
@@ -1178,7 +1178,7 @@ theorem heatKernel_bilinear_to_mixed_rep (m : ℝ) [Fact (0 < m)] (f : TestFunct
     (Schwartz test functions provide decay even when t = 0).
 @isnad1 id=eq.1h2v.s11.aad048af675b from=translated src=- shape=1f8bdfaa vocab=9bdba0f0
 -/
-theorem bessel_bilinear_eq_mixed_representation (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ)
+theorem _root_.Tengoku.LeanPool.bessel_bilinear_eq_mixed_representation (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ)
     (hf_supp : ∀ x, x 0 ≤ 0 → f x = 0) :
   ∫ x : SpaceTime, ∫ y : SpaceTime,
     (starRingEnd ℂ (f x)) *
@@ -1205,7 +1205,7 @@ theorem bessel_bilinear_eq_mixed_representation (m : ℝ) [Fact (0 < m)] (f : Te
     So: (1/ω) exp(-ω|t|) = (1/π) ∫_{k₀} exp(-ik₀t)/(k₀²+ω²) dk₀
 @isnad1 id=other.0h3v.s8.ccbc64c07f40 from=translated src=- shape=d34df39c vocab=5438d448
 -/
-lemma mixed_rep_to_k0_inside_integrand (k_spatial : SpatialCoords) (m : ℝ) [Fact (0 < m)]
+lemma _root_.Tengoku.LeanPool.mixed_rep_to_k0_inside_integrand (k_spatial : SpatialCoords) (m : ℝ) [Fact (0 < m)]
     (t : ℝ) :
     let ω := Real.sqrt (‖k_spatial‖^2 + m^2)
     ((1 / ω : ℝ) : ℂ) * Complex.exp (-(|t| : ℝ) * ω) =
@@ -1243,7 +1243,7 @@ lemma mixed_rep_to_k0_inside_integrand (k_spatial : SpatialCoords) (m : ℝ) [Fa
     4. Combine normalizations: 1/(2(2π)^{d-1}) × (1/π) = 1/(2π)^d
 @isnad1 id=eq.1h2v.s11.f7a08063a7b9 from=translated src=- shape=100a03a0 vocab=ad0321c9
 -/
-theorem bilinear_to_k0_inside (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ)
+theorem _root_.Tengoku.LeanPool.bilinear_to_k0_inside (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ)
     (hf_supp : ∀ x, x 0 ≤ 0 → f x = 0) :
   ∫ x : SpaceTime, ∫ y : SpaceTime,
     (starRingEnd ℂ (f x)) *
@@ -1353,3 +1353,4 @@ theorem bilinear_to_k0_inside (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ)
 /-! ## Non-negativity -/
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

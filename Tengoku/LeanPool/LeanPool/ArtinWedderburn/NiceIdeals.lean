@@ -22,7 +22,7 @@ A *nice ideal* is an idempotent ideal whose corner ring is `OrtIdemDiv`. We
 prove that in a prime artinian ring, every ideal is nice.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 open scoped LeanPool.ArtinWedderburn
 
 
@@ -179,3 +179,4 @@ def extensionOfOrtIdemDiv (e : R) (idem_e : IsIdempotentElem e)
 -- induction step in the proof of Artin Wedderburn
 
 end LeanPool.ArtinWedderburn
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

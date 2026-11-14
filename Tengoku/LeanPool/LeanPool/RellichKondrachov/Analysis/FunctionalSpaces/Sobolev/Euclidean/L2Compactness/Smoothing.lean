@@ -23,7 +23,7 @@ Fréchet–Kolmogorov / Riesz–Kolmogorov approach to Euclidean Rellich–Kondr
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace RellichKondrachov
 namespace Analysis
 namespace FunctionalSpaces
@@ -273,3 +273,4 @@ end Sobolev
 end FunctionalSpaces
 end Analysis
 end RellichKondrachov
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

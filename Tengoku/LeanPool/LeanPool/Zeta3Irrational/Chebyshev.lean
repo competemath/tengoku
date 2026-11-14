@@ -16,7 +16,7 @@ upstream PrimeNumberTheoremAnd development. It gives an eventual bound
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.Zeta3Irrational
 namespace ChebyshevAux
 
@@ -599,3 +599,4 @@ theorem eventually_psi_le_mul :
 
 end ChebyshevAux
 end LeanPool.Zeta3Irrational
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

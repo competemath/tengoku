@@ -22,7 +22,7 @@ that the corrected sequence converges locally uniformly to a solution on the who
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Metric Set Complex Filter Topology
 open scoped Convolution ContDiff NNReal
 
@@ -446,3 +446,4 @@ theorem exists_dbar_solution_ball (hR : 0 < R) (hg : ContDiffOn ℝ ∞ g (ball 
   exact ⟨u, fun z hz => (hmain z hz).1.contDiffWithinAt, fun z hz => (hmain z hz).2⟩
 
 end RS
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

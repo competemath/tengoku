@@ -14,7 +14,7 @@ A handful of order-topological facts used to set up the theory of clubs.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Order Cardinal Filter Set.Notation
 
 universe u v
@@ -212,3 +212,4 @@ theorem isClosedBelowPt_derivedSet {S : Set Ordinal} :
   exact ⟨y, ⟨hy.1, ⟨hy.2.1, hy.2.2.trans hx.2.2⟩⟩⟩
 
 end Ordinal
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

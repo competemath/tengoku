@@ -13,7 +13,7 @@ by Alex Kontorovich and Terence Tao:
 `be5e07e04cde20c5ceabf63759bd097a9c88173f` (Apache-2.0). -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open Complex intervalIntegral MeasureTheory Real Set
@@ -359,3 +359,4 @@ theorem rectangleIntegral_principal
   grind
 
 end NumberField.Odlyzko
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

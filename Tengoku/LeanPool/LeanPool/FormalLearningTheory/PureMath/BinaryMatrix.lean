@@ -15,15 +15,15 @@ Pure combinatorics: VC dimension on binary matrices, bridged to Mathlib's
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Finset
 
 universe u
 
 /-- An `m x n` binary matrix, represented as `Fin m -> Fin n -> Bool`. -/
-abbrev BinaryMatrix (m n : ℕ) := Fin m → Fin n → Bool
+abbrev _root_.Tengoku.LeanPool.BinaryMatrix (m n : ℕ) := Fin m → Fin n → Bool
 
-namespace BinaryMatrix
+namespace Tengoku.LeanPool.BinaryMatrix
 
 /-- A binary matrix `M` shatters a column set `S` if for every subset `t ⊆ S`,
     there is a row `i` whose `true` columns within `S` are exactly `t`. -/
@@ -243,4 +243,5 @@ theorem assouad_transpose_vcDim {m n : ℕ} (M : BinaryMatrix m n)
     _ ≤ M.vcDim := hT_mathlib.card_le_vcDim
   omega
 
-end BinaryMatrix
+end Tengoku.LeanPool.BinaryMatrix
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

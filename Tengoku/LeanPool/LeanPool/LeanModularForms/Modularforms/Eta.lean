@@ -14,7 +14,7 @@ import Tengoku.LeanPool.LeanPool.LeanModularForms.Modularforms.Upperhalfplane
 /-! # Eta -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open ModularForm EisensteinSeries UpperHalfPlane TopologicalSpace Set MeasureTheory intervalIntegral
   Metric Filter Function Complex
 
@@ -29,7 +29,7 @@ open scoped ArithmeticFunction.sigma
 /--
 @isnad1 id=eq.0h1v.s6.dafebe4b222f from=translated src=- shape=d99e978e vocab=c8b22e8d
 -/
-lemma eta_logDeriv_eql (z : ℍ) : (logDeriv (η ∘ (fun z : ℂ => -1/z))) z =
+lemma _root_.Tengoku.LeanPool.eta_logDeriv_eql (z : ℍ) : (logDeriv (η ∘ (fun z : ℂ => -1/z))) z =
   (logDeriv ((csqrt) * η)) z := by
   have h0 : (logDeriv (η ∘ (fun z : ℂ => -1/z))) z =
             ((z :ℂ)^(2 : ℤ))⁻¹ *
@@ -101,13 +101,13 @@ lemma eta_logDeriv_eql (z : ℍ) : (logDeriv (η ∘ (fun z : ℂ => -1/z))) z =
 /--
 @isnad1 id=eqon.0h0v.s6.ebbe54576e45 from=translated src=- shape=144d0da5 vocab=8b729ea2
 -/
-lemma eta_logderivs : {z : ℂ | 0 < z.im}.EqOn (logDeriv (η ∘ (fun z : ℂ => -1/z)))
+lemma _root_.Tengoku.LeanPool.eta_logderivs : {z : ℂ | 0 < z.im}.EqOn (logDeriv (η ∘ (fun z : ℂ => -1/z)))
   (logDeriv ((csqrt) * η)) := fun z hz => eta_logDeriv_eql ⟨z, hz⟩
 
 /--
 @isnad1 id=ex.0h0v.s6.0ccfeaf49c29 from=translated src=- shape=227824c6 vocab=5073a5dd
 -/
-lemma eta_logderivs_const : ∃ z : ℂ, z ≠ 0 ∧ {z : ℂ | 0 < z.im}.EqOn ((η ∘ (fun z : ℂ => -1/z)))
+lemma _root_.Tengoku.LeanPool.eta_logderivs_const : ∃ z : ℂ, z ≠ 0 ∧ {z : ℂ | 0 < z.im}.EqOn ((η ∘ (fun z : ℂ => -1/z)))
   (z • ((csqrt) * η)) := by
   have h := eta_logderivs
   rw [logDeriv_eqOn_iff] at h
@@ -156,7 +156,7 @@ lemma eta_logderivs_const : ∃ z : ℂ, z ≠ 0 ∧ {z : ℂ | 0 < z.im}.EqOn (
 /--
 @isnad1 id=eqon.0h0v.s6.09c2de814461 from=translated src=- shape=816eb721 vocab=ea83b267
 -/
-lemma eta_equality : {z : ℂ | 0 < z.im}.EqOn ((η ∘ (fun z : ℂ => -1/z)))
+lemma _root_.Tengoku.LeanPool.eta_equality : {z : ℂ | 0 < z.im}.EqOn ((η ∘ (fun z : ℂ => -1/z)))
    ((csqrt (Complex.I))⁻¹ • ((csqrt) * η)) := by
   have h := eta_logderivs_const
   obtain ⟨z, hz, h⟩ := h
@@ -174,3 +174,4 @@ lemma eta_equality : {z : ℂ | 0 < z.im}.EqOn ((η ∘ (fun z : ℂ => -1/z)))
   have hcd := (mul_eq_right₀ he).mp h3.symm
   rw [mul_eq_one_iff_inv_eq₀ hz, inv_eq_iff_eq_inv] at hcd
   simp_all
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

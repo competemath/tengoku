@@ -15,11 +15,11 @@ Imported Lean Pool material for `LeanPool.QuasiBorelSpaces.Cont`.
 -/
 
 @[expose] public section
-
-open QuasiBorelSpace
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+open Tengoku.LeanPool.QuasiBorelSpace
 open OmegaCompletePartialOrder
 
-namespace OmegaQuasiBorelSpace
+namespace Tengoku.LeanPool.OmegaQuasiBorelSpace
 
 /-- The continuation monad in the category of `OmegaQuasiBorelSpace`s. -/
 structure Cont (R A : Type*) [OmegaQuasiBorelSpace R] [OmegaQuasiBorelSpace A] where
@@ -180,4 +180,5 @@ lemma bind_bind {C : Type*}
 
 end Cont
 
-end OmegaQuasiBorelSpace
+end Tengoku.LeanPool.OmegaQuasiBorelSpace
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

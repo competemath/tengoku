@@ -13,7 +13,7 @@ import Tengoku.Seed.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
 public import Tengoku.Seed.Analysis.Calculus.ContDiff.Defs
 public import Tengoku.Seed.MeasureTheory.Integral.IntervalIntegral.Basic
 import Tengoku.Seed.Analysis.Calculus.Deriv.Mul
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -1185,3 +1185,4 @@ theorem totalIntegral_eq_wholeAlias {a b M : ℝ} {v : E} {f : ℝ × E → F}
 end Shifted
 
 end NavierStokes.TransportPrimitive
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -35,7 +35,7 @@ The two moving parts are:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure
@@ -491,3 +491,4 @@ variable {F : Set (Σ n, L.Functions n)} {R : Set (Σ n, L.Relations n)}
 /-! ## The family closure lemmas (one per `ConsistencyPropertyEqOn` field) -/
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

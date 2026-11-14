@@ -43,7 +43,7 @@ arXiv:2609.19123. A point of the cube is its set of coordinates equal to one.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators symmDiff
 
 noncomputable section
@@ -545,3 +545,4 @@ theorem weighted_flip_energy (f g : Finset ι → ℝ) :
         (fun y => (f x - f y) ^ 2 * fourier g (x ∆ y) ^ 2)
 
 end Chvatal
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

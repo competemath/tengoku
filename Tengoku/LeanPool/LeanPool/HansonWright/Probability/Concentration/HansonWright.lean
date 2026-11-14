@@ -45,7 +45,7 @@ two-scale Chernoff bound.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool
 
 open MeasureTheory Real
@@ -2936,3 +2936,4 @@ end HansonWright
 end
 
 end LeanPool
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

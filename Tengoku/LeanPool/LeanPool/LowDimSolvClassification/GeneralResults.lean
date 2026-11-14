@@ -12,7 +12,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 ---possible generalizations to commutative rings instead of fields
 
 section linalg
@@ -50,7 +50,7 @@ theorem Basis.repr_fin_three (B : Basis (Fin 3) K L) (x : L) :
 /--
 @isnad1 id=iff.1h4v.s7.07bc55c4efc0 from=translated src=- shape=09d16bbe vocab=88015165
 -/
-lemma not_linearIndependent_pair_iff (x y : L) (hy : y ≠ 0) : ¬LinearIndependent K ![x,y] ↔
+lemma _root_.Tengoku.LeanPool.not_linearIndependent_pair_iff (x y : L) (hy : y ≠ 0) : ¬LinearIndependent K ![x,y] ↔
     ∃ (c : K), x = c • y := by
   rw [LinearIndependent.pair_iffₛ]
   constructor
@@ -645,7 +645,7 @@ theorem LieIdeal.finrank_toSubmodule {I : LieIdeal K L} :
 /--
 @isnad1 id=var.1h6v.s7.6648beeba4f5 from=translated src=- shape=799e67e3 vocab=1173123d
 -/
-lemma binary_predicate_3_choose_2 {P : Fin 3 → Fin 3 → Prop} (h₀₁ : P 0 1) (h₀₂ : P 0 2)
+lemma _root_.Tengoku.LeanPool.binary_predicate_3_choose_2 {P : Fin 3 → Fin 3 → Prop} (h₀₁ : P 0 1) (h₀₂ : P 0 2)
     (h₁₂ : P 1 2) :
     ∀ i j : Fin 3, i < j → P i j := by
   intros i j
@@ -1063,3 +1063,4 @@ noncomputable def Basis.ofEndSelf : Basis (Fin 1) K (K →ₗ[K] K)
     := Basis.map (Basis.singleton (Fin 1) K) (LinearEquiv.smulId)
 
 end dim1linalg
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -11,7 +11,7 @@ public import Tengoku
 /-! # Basic -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Fin
 
 /-- Imported declaration from the Incompleteness formalization. -/
@@ -41,3 +41,4 @@ variable {α : Type*}
     appendr u v (i.addNat m) = v i := by simp [appendr, vecAppend_eq_ite]
 
 end Matrix
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

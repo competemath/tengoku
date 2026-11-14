@@ -27,7 +27,7 @@ and the key third harmonic contribution.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace KrafftSieve
 
 open scoped BigOperators
@@ -483,3 +483,4 @@ lemma resonance_lt_mainTerm (n : ℕ) (hn : primeWindow n ≠ ∅) :
 end
 
 end KrafftSieve
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

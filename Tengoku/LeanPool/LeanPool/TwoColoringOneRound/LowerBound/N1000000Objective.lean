@@ -13,7 +13,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Distributed2Coloring.LowerBound
 
 namespace N1000000Objective
@@ -325,3 +325,4 @@ theorem xEdge_xFromColoring_eq_edgeCorrelation (f : Coloring n) :
 end N1000000Objective
 
 end Distributed2Coloring.LowerBound
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

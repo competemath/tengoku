@@ -6,7 +6,7 @@ Authors: Chris Birkbeck
 module
 
 public import Tengoku.Seed.LinearAlgebra.Matrix.SpecialLinearGroup
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -535,3 +535,4 @@ theorem SLnZ_transvec_gen (m : ℕ) (σ : Matrix.SpecialLinearGroup (Fin m) ℤ)
     change L_col.prod⁻¹ * τ =
       L_col.prod⁻¹ * L_left.prod⁻¹ * (L_left.prod * τ * L_right.prod) * L_right.prod⁻¹
     group
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

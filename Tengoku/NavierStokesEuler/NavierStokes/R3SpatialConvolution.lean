@@ -11,7 +11,7 @@ invariance give its space-time Fourier multiplier without differentiating
 in time or requiring pointwise temperedness of the physical pressure.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace NavierStokes.R3SpatialConvolution
 
 open Set Filter MeasureTheory FourierTransform R3SpaceTime ProblemStatement
@@ -117,3 +117,4 @@ theorem regularized_fourier (n : ℕ) (i j : Fin 3) {g : Domain → ℂ}
   rfl
 
 end NavierStokes.R3SpatialConvolution
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

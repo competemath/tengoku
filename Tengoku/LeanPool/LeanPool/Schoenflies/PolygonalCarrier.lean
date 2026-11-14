@@ -36,7 +36,7 @@ Brick B6 of `lem:polygonal-redrawing` (H6): polygonal connectivity one level up.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set
 
 namespace Schoenflies
@@ -248,3 +248,4 @@ theorem exists_poly_of_isPreconnected' {Ω : Set Plane} {x y : Plane} (hΩ : IsO
 -- literally the one `PolyPath` proves, proof irrelevance doing the rest.
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

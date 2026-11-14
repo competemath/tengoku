@@ -29,7 +29,7 @@ uniqueness arguments.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory
 open ProbabilityTheory
 open scoped ENNReal
@@ -134,3 +134,4 @@ noncomputable def mutualInformation (p : ProbabilityMeasure α) (k : Kernel α �
   (InformationTheory.klDiv (jointLaw k p).toMeasure (independentJointLaw k p).toMeasure).toReal
 
 end ChannelCapacity
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

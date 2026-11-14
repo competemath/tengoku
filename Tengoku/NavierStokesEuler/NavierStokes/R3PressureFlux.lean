@@ -10,7 +10,7 @@ in the Gaussian regularization index and pair the weighted pressure with an
 arbitrary square-integrable flux factor.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace NavierStokes.R3PressureFlux
 
 open Set Filter MeasureTheory ProblemStatement
@@ -84,3 +84,4 @@ theorem regularized_flux_le {R L : ℝ} {φ : Space → ℝ} (hφ : Cutoff R L �
     (mul_le_mul_of_nonneg_right hb lpNorm_nonneg)
 
 end NavierStokes.R3PressureFlux
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

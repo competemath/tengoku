@@ -15,7 +15,7 @@ an arbitrary example type.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace GenLimit.Generic
 
 /-- Every language in the class is infinite. -/
@@ -91,3 +91,4 @@ theorem uniform_implies_limit
   nonuniform_implies_limit hUUS (uniform_implies_nonuniform h)
 
 end GenLimit.Generic
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

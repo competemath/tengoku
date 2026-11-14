@@ -111,7 +111,7 @@ Root `Graph`, as fixed by `Schoenflies/Graph/Walk.lean`. The two arc lemmas are 
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set
 open scoped Graph
 
@@ -692,3 +692,4 @@ theorem IsDrawing.ends_mem_frontier_face (hG : IsDrawing G drawing)
 end Plane
 
 end Graph
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -12,32 +12,32 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Complex Metric Topology
 
 variable {z z₀ : ℂ} {U : Set ℂ}
 
 /-- `hasSqrt U` : every nowhere-zero holomorphic function on `U` has a
 holomorphic square root there. -/
-def hasSqrt (U : Set ℂ) : Prop :=
+def _root_.Tengoku.LeanPool.hasSqrt (U : Set ℂ) : Prop :=
   ∀ (f : ℂ → ℂ), (∀ z ∈ U, f z ≠ 0) → DifferentiableOn ℂ f U →
   ∃ g, DifferentiableOn ℂ g U ∧ EqOn f (g ^ 2) U
 
 /-- `hasPrimitives U` : every holomorphic function on `U` has a
 holomorphic primitive there. -/
-def hasPrimitives (U : Set ℂ) : Prop :=
+def _root_.Tengoku.LeanPool.hasPrimitives (U : Set ℂ) : Prop :=
   ∀ f : ℂ → ℂ, DifferentiableOn ℂ f U → ∃ g : ℂ → ℂ, DifferentiableOn ℂ g U ∧ EqOn (deriv g) f U
 
 /-- `hasLogs U` : every nowhere-zero holomorphic function on `U` has a
 holomorphic logarithm there. -/
-def hasLogs (U : Set ℂ) : Prop :=
+def _root_.Tengoku.LeanPool.hasLogs (U : Set ℂ) : Prop :=
   ∀ f : ℂ → ℂ, DifferentiableOn ℂ f U → (∀ z ∈ U, f z ≠ 0) →
   ∃ g : ℂ → ℂ, DifferentiableOn ℂ g U ∧ EqOn f (exp ∘ g) U
 
 /--
 @isnad1 id=eqon.6h3v.s7.b320d364dade from=translated src=- shape=3202ad2e vocab=3fa5bdb9
 -/
-lemma EqOn_zero_of_deriv_eq_zero (hU : IsOpen U) (hU' : IsPreconnected U) {f : ℂ → ℂ}
+lemma _root_.Tengoku.LeanPool.EqOn_zero_of_deriv_eq_zero (hU : IsOpen U) (hU' : IsPreconnected U) {f : ℂ → ℂ}
     (hf : DifferentiableOn ℂ f U) (hf' : EqOn (deriv f) 0 U) (hz₀ : z₀ ∈ U) (hfz₀ : f z₀ = 0) :
     EqOn f 0 U := by
   apply (hf.analyticOnNhd hU).eqOn_zero_of_preconnected_of_eventuallyEq_zero hU' hz₀
@@ -54,7 +54,7 @@ lemma EqOn_zero_of_deriv_eq_zero (hU : IsOpen U) (hU' : IsPreconnected U) {f : �
 /--
 @isnad1 id=eqon.5h3v.s7.5ae3be700614 from=translated src=- shape=9952db31 vocab=3fa5bdb9
 -/
-lemma EqOn_of_deriv_eq_zero (hU : IsOpen U) (hU' : IsPreconnected U) {f : ℂ → ℂ}
+lemma _root_.Tengoku.LeanPool.EqOn_of_deriv_eq_zero (hU : IsOpen U) (hU' : IsPreconnected U) {f : ℂ → ℂ}
     (hf : DifferentiableOn ℂ f U) (hf' : EqOn (deriv f) 0 U) (hz₀ : z₀ ∈ U) :
     EqOn f (fun _ => f z₀) U := by
   set g := fun z => f z - f z₀
@@ -66,7 +66,7 @@ lemma EqOn_of_deriv_eq_zero (hU : IsOpen U) (hU' : IsPreconnected U) {f : ℂ �
 /--
 @isnad1 id=eqon.7h4v.s8.2e1112589b5d from=translated src=- shape=efa9b800 vocab=3fa5bdb9
 -/
-lemma EqOn_of_EqOn_deriv {f g : ℂ → ℂ} (hU : IsOpen U) (hU' : IsPreconnected U)
+lemma _root_.Tengoku.LeanPool.EqOn_of_EqOn_deriv {f g : ℂ → ℂ} (hU : IsOpen U) (hU' : IsPreconnected U)
     (hf : DifferentiableOn ℂ f U) (hg : DifferentiableOn ℂ g U)
     (hfg : EqOn (deriv f) (deriv g) U) (hz₀ : z₀ ∈ U) (hfgz₀ : f z₀ = g z₀) :
     EqOn f g U := by
@@ -80,7 +80,7 @@ lemma EqOn_of_EqOn_deriv {f g : ℂ → ℂ} (hU : IsOpen U) (hU' : IsPreconnect
 /--
 @isnad1 id=hassqrt.1h1v.s3.6bb8a4f48a23 from=translated src=- shape=4c88451a vocab=5ce72f8c
 -/
-lemma hasLogs.hasSqrt (h : hasLogs U) : hasSqrt U := by
+lemma Tengoku.LeanPool.hasLogs.hasSqrt (h : hasLogs U) : hasSqrt U := by
   rintro f hfz hf
   obtain ⟨l, hl, hlf⟩ := h f hf hfz
   refine ⟨fun z => exp (l z / 2), differentiable_exp.comp_differentiableOn (hl.div_const _),
@@ -90,7 +90,7 @@ lemma hasLogs.hasSqrt (h : hasLogs U) : hasSqrt U := by
 /--
 @isnad1 id=haslogs.3h1v.s5.b3a0134842c9 from=translated src=- shape=5dc77b3c vocab=6796d60a
 -/
-lemma hasPrimitives.hasLogs (hp : hasPrimitives U) (hU : IsOpen U) (hU' : IsPreconnected U) :
+lemma Tengoku.LeanPool.hasPrimitives.hasLogs (hp : hasPrimitives U) (hU : IsOpen U) (hU' : IsPreconnected U) :
     hasLogs U := by
   by_cases h : U = ∅
   case pos => exact fun f => by simp [h, DifferentiableOn]
@@ -113,3 +113,4 @@ lemma hasPrimitives.hasLogs (hp : hasPrimitives U) (hU : IsOpen U) (hU' : IsPrec
       deriv.scomp z differentiableAt_exp (h3.differentiableAt f0)]
     have := hfz z hz
     simp [field, exp_ne_zero, hlf2 hz, show deriv g z = deriv lf z by simp [g]]
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

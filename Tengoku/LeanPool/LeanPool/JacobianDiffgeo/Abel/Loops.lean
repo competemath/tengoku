@@ -29,7 +29,7 @@ Unit: abel-theorem. Namespace `RS.Abel`. Two deliverables:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold
 
 noncomputable section
@@ -72,3 +72,4 @@ theorem mem_periodSubgroup_iff_exists_loop {v : Fin (genus X) → ℂ} :
 end RS.Abel
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

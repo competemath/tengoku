@@ -13,7 +13,7 @@ for `L²` data Plancherel gives a bounded operator.
 -/
 
 noncomputable section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace NavierStokes.R3PressureFourier
 
 open Set Filter MeasureTheory ProblemStatement TemperedDistribution FourierTransform
@@ -408,3 +408,4 @@ theorem stressPressure_gradient_unique
     exact hsource
 
 end NavierStokes.R3PressureFourier
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

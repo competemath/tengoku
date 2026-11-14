@@ -8,7 +8,7 @@ import Tengoku.NavierStokesEuler.NavierStokes.R3CompactParametricIntegral
 # Cutoff vector tests and continuity of the physical flux
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace NavierStokes.R3CutoffTestFields
 
 open Set Filter MeasureTheory ProblemStatement
@@ -96,3 +96,4 @@ theorem pressureFlux_continuousOn {s : Set ℝ} (hs : IsOpen s) {χ : Space → 
   simp [fderiv_of_notMem_tsupport ℝ hx]
 
 end NavierStokes.R3CutoffTestFields
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

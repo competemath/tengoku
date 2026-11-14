@@ -16,7 +16,7 @@ the disjoint cube family.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Set Filter
 open scoped ENNReal NNReal Topology
 open CKN.Foundation.Parabolic
@@ -314,3 +314,4 @@ theorem exists_calderonZygmund_decomposition
       bad_part_l1_sum_le := dyadicBadPart_l1_sum_le hF hpair }, rfl⟩
 
 end CKN.Foundation.Euclidean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

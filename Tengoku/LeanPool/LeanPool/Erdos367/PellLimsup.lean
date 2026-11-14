@@ -31,7 +31,7 @@ All lemmas and theorems are fully proved with no `sorry` statements.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace Erdos367
@@ -874,3 +874,4 @@ which is what turns the bound into a genuine `limsup = ∞` statement.
 end Erdos367
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

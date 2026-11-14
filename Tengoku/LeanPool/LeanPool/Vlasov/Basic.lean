@@ -30,7 +30,7 @@ mean-field theory of the Vlasov equation:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory
 
 namespace Vlasov
@@ -1857,3 +1857,4 @@ theorem meanFieldLimit
     (fun _ => zero_le) hsup_bound
 
 end Vlasov
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

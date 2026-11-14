@@ -23,7 +23,7 @@ Hilbert space.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace CompactSelfAdjoint
 
 open scoped Topology
@@ -293,3 +293,4 @@ theorem exists_hilbertBasis_hasEigenvector_of_isCompactOperator_of_isSelfAdjoint
   · simpa [hb'] using hne0
 end
 end CompactSelfAdjoint
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

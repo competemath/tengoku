@@ -17,7 +17,7 @@ This file provides the polarization identity for self adjoint continuous linear 
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 variable {𝕜 E : Type _} [RCLike 𝕜] [NormedAddCommGroup E] [InnerProductSpace 𝕜 E]
 
 local notation "⟪" x "," y "⟫" => @inner 𝕜 _ _ x y
@@ -52,3 +52,4 @@ theorem inner_map_polarization [CompleteSpace E] {T : E →L[𝕜] E} (hT : IsSe
 
 end IsSelfAdjoint
 end ContinuousLinearMap
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

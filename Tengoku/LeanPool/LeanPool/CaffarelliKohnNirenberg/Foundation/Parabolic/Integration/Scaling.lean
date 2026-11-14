@@ -17,7 +17,7 @@ particular, no source-facing quantity is introduced in this module.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory MeasureTheory.Measure Set
 open scoped ENNReal Pointwise
 
@@ -467,3 +467,4 @@ theorem timeSliceEnergyEssSup_div_radius_le {x : Vec3} {t r₁ r₂ : ℝ}
         _ = _ := by ring
 
 end CKN.Foundation.Parabolic.Integration
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

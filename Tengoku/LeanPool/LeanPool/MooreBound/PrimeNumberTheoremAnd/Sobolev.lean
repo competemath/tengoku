@@ -18,7 +18,7 @@ unrelated later developments and LeanArchitect annotations are omitted.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace MooreBound
 
 open Real Complex MeasureTheory Filter Topology BoundedContinuousFunction SchwartzMap  BigOperators
@@ -469,3 +469,4 @@ theorem W21_approximation (f : W21) (g : trunc) :
     simpa [F] using tendsto_integral_filter_of_dominated_convergence bound e1 e2 e3 e4
 
 end MooreBound
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

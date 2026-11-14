@@ -16,7 +16,7 @@ of nondeterministic Büchi automata (`NBW`), and state the theorem that every
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanModelChecking
 
 /-- A Linear Temporal Logic formula. -/
@@ -73,3 +73,4 @@ def forAnyLTLFormulaExistsAnEquivalentNBWStatement :=
   ∀ {AP} (φ : LTL AP), ∃ (A : NBW (Letter AP)), Finite A.Q ∧ φ.language = A.language
 
 end LeanModelChecking
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

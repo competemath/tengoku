@@ -25,7 +25,7 @@ import Tengoku.Seed.Tactic.NormNum.Parity
 /-! # ImportedAnalyticInputs -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Complex MeasureTheory Real Finset
 open scoped BigOperators
 
@@ -79,3 +79,4 @@ theorem phase_normalized_orthogonal_reduction
       defect hdefect_nonneg f0 hf0 C hC horth hscalar hcompare
 
 end HermitekLEAN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

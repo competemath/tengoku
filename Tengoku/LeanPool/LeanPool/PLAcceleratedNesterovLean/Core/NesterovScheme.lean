@@ -20,7 +20,7 @@ Shared definitions for the proof of local accelerated convergence:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace PLAcceleratedNesterovLean
@@ -135,3 +135,4 @@ def tangentSubspace {n : ℕ} (ι : M → E d)
   (mfderiv (modelI n) (modelWithCornersSelf ℝ (E d)) ι m).range
 
 end PLAcceleratedNesterovLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

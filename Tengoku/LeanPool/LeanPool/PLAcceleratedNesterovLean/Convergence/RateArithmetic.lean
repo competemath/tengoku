@@ -21,7 +21,7 @@ All lemmas are independent of the Lean formalization of the algorithm.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace PLAcceleratedNesterovLean
@@ -103,3 +103,4 @@ theorem hasAcceleratedRate_of_geometric_decay
         rw [← Real.exp_nat_mul]; congr 1; ring_nf
 
 end PLAcceleratedNesterovLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

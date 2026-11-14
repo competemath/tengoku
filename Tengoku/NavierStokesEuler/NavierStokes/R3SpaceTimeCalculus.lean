@@ -10,7 +10,7 @@ These lemmas identify each space-time directional derivative with the
 physical spatial or temporal derivative, including the Laplacian.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace NavierStokes.R3SpaceTimeCalculus
 
 open Set Filter MeasureTheory ProblemStatement
@@ -141,3 +141,4 @@ theorem liftVelocity_divergence {s : Set ℝ} (hs : IsOpen s) {u : VelocityField
   rfl
 
 end NavierStokes.R3SpaceTimeCalculus
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

@@ -56,7 +56,7 @@ Pinned Mathlib API: `PiLp.single`, `PiLp.single_apply`, `PiLp.norm_single`,
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace QuantumAlg
 
 /-- Raw Hilbert-space vector for an `n`-qubit pure-state register. -/
@@ -190,3 +190,4 @@ end
 end PureState
 
 end QuantumAlg
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

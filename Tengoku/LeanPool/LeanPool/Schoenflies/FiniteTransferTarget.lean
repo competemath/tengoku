@@ -58,7 +58,7 @@ incident with one unique current source face.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set
 open scoped Graph
 
@@ -1996,3 +1996,4 @@ theorem finite_transfer_toward_source_of_boundaryGeometry [Infinite γ]
       (hunique.noNew P.tgt.skeletonSet) hcycle
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

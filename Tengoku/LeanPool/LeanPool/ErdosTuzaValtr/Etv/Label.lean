@@ -18,11 +18,11 @@ Imported Lean Pool material for `LeanPool.ErdosTuzaValtr.Etv.Label`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 variable {α : Type _} [LinearOrder α] (C : Config α)
 
 /-- A labeling of the edges of `S` by a slope predicate compatible with the cup relation. -/
-structure Config.Label (S : Finset α) where
+structure Tengoku.LeanPool.Config.Label (S : Finset α) where
   /-- The slope predicate assigning a direction to each ordered edge. -/
   Slope : α → α → Prop
   -- The direction looks odd, but it is written in perspective of
@@ -36,17 +36,17 @@ structure Config.Label (S : Finset α) where
 
 /-- The canonical slope on a finset: `a, b` has this slope when every earlier
 point forms a 3-cup with `a, b`. -/
-def Cap4FreeSlope (S : Finset α) (a b : α) : Prop :=
+def _root_.Tengoku.LeanPool.Cap4FreeSlope (S : Finset α) (a b : α) : Prop :=
   ∀ c : S, ↑c < a → C.Cup3 c a b
 
-instance decidableCap4FreeSlope (S : Finset α) :
+instance _root_.Tengoku.LeanPool.decidableCap4FreeSlope (S : Finset α) :
     DecidableRel (Cap4FreeSlope C S) := fun a b => by
   rw [Cap4FreeSlope]; simp only [Subtype.forall]; infer_instance
 
 variable {C}
 
 /-- The canonical labeling of a cap-4-free finset by `Cap4FreeSlope`. -/
-def cap4FreeLabel {S : Finset α} (h : ¬C.HasNCap 4 S) : C.Label S :=
+def _root_.Tengoku.LeanPool.cap4FreeLabel {S : Finset α} (h : ¬C.HasNCap 4 S) : C.Label S :=
   by
   use Cap4FreeSlope C S
   · intro a b ha hb hab hn c hc hbc
@@ -60,7 +60,7 @@ variable {C : Config α} {S : Finset α} {label : C.Label S}
 /--
 @isnad1 id=cup.6h7v.s6.222b44b2268b from=translated src=- shape=df695cc8 vocab=805417bb
 -/
-protected theorem Config.Cup.extend_left {l : List α} (l_cup : C.Cup l) {a b : α}
+protected theorem Tengoku.LeanPool.Config.Cup.extend_left {l : List α} (l_cup : C.Cup l) {a b : α}
     (s_ab : ¬label.Slope a b) (ha : a ∈ S) (hab : a < b) (l_in_S : l.In S)
     (b_head_l : b ∈ l.head?) : C.Cup (a::l) := by
   cases l with
@@ -81,7 +81,7 @@ protected theorem Config.Cup.extend_left {l : List α} (l_cup : C.Cup l) {a b : 
 /--
 @isnad1 id=cup.6h7v.s6.3f410cadf2b3 from=translated src=- shape=96157e9c vocab=e92eece8
 -/
-protected theorem Config.Cup.extend_right {l : List α} (l_cup : C.Cup l) {a b : α}
+protected theorem Tengoku.LeanPool.Config.Cup.extend_right {l : List α} (l_cup : C.Cup l) {a b : α}
     (s_ab : label.Slope a b) (hab : a < b) (hb : b ∈ S) (l_in_S : l.In S)
     (a_last_l : a ∈ l.getLast?) : C.Cup (l ++ [b]) := by
   by_cases hl : 2 ≤ l.length
@@ -106,7 +106,7 @@ protected theorem Config.Cup.extend_right {l : List α} (l_cup : C.Cup l) {a b :
 /--
 @isnad1 id=ncup.6h8v.s6.26fecaf2a2c1 from=translated src=- shape=b461f911 vocab=9967b7ce
 -/
-protected theorem Config.NCup.extend_left {n : ℕ} {l : List α} (l_ncup : C.NCup n l) {a b : α}
+protected theorem Tengoku.LeanPool.Config.NCup.extend_left {n : ℕ} {l : List α} (l_ncup : C.NCup n l) {a b : α}
     (s_ab : ¬label.Slope a b) (ha : a ∈ S) (hab : a < b) (l_in_S : l.In S)
     (b_head_l : b ∈ l.head?) : C.NCup (n + 1) (a::l) :=
   ⟨l_ncup.left.extend_left s_ab ha hab l_in_S b_head_l, by
@@ -115,7 +115,7 @@ protected theorem Config.NCup.extend_left {n : ℕ} {l : List α} (l_ncup : C.NC
 /--
 @isnad1 id=ncup.6h8v.s6.f501cf8fc76f from=translated src=- shape=2acfa161 vocab=8e021782
 -/
-protected theorem Config.NCup.extend_right {n : ℕ} {l : List α} (l_ncup : C.NCup n l) {a b : α}
+protected theorem Tengoku.LeanPool.Config.NCup.extend_right {n : ℕ} {l : List α} (l_ncup : C.NCup n l) {a b : α}
     (s_ab : label.Slope a b) (hab : a < b) (hb : b ∈ S) (l_in_S : l.In S)
     (a_last_l : a ∈ l.getLast?) : C.NCup (n + 1) (l ++ [b]) :=
   ⟨l_ncup.left.extend_right s_ab hab hb l_in_S a_last_l, by
@@ -126,7 +126,7 @@ variable (label)
 open OrderDual
 
 /-- The mirror labeling on the order dual, induced by negating the mirrored slope. -/
-protected def Config.Label.Mirror : C.Mirror.Label S.Mirror :=
+protected def Tengoku.LeanPool.Config.Label.Mirror : C.Mirror.Label S.Mirror :=
   ⟨fun a b => ¬Mirror2 label.Slope a b,
     by
     intro a b a_in_S b_in_S hab hslope c c_in_S hbc
@@ -164,8 +164,9 @@ variable {label}
 /--
 @isnad1 id=iff.0h6v.s6.fa22a7862c32 from=translated src=- shape=1fece6ad vocab=cb7cea7b
 -/
-theorem Mirror_slope {a b : α} : ¬label.Mirror.Slope (toDual b) (toDual a) ↔ label.Slope a b := by
+theorem _root_.Tengoku.LeanPool.Mirror_slope {a b : α} : ¬label.Mirror.Slope (toDual b) (toDual a) ↔ label.Slope a b := by
   rw [Config.Label.Mirror]
   simp only [not_not]
   rw [Mirror2]
   simp only [ofDual_toDual]
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

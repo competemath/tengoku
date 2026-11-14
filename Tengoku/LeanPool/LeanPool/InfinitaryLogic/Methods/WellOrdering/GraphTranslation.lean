@@ -32,7 +32,7 @@ The four public **arbitrary-language** endpoints of issue #12 live here:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure
@@ -166,3 +166,4 @@ theorem wellOrdering_undefinable (lt : L.Relations 2) :
   exact absurd (hb.trans (lt_add_one α)) (lt_irrefl _)
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

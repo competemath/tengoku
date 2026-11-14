@@ -18,13 +18,13 @@ is the combinatorial heart of the path-following proof of Scarf's lemma.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 attribute [local instance] Classical.propDecidable
 open Finset
 
 noncomputable section
 
-namespace IndexedLOrder
+namespace Tengoku.LeanPool.IndexedLOrder
 
 variable {T I : Type*} [Inhabited T] [Fintype T] [Fintype I]
 variable [DecidableEq T] [DecidableEq I] [IST : IndexedLOrder I T]
@@ -725,6 +725,7 @@ theorem component_path_of_support_eq_component
     simpleGraphPathComponent G component :=
   ⟨u, v, p, hp, hsupp⟩
 
-end IndexedLOrder
+end Tengoku.LeanPool.IndexedLOrder
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -28,7 +28,7 @@ machine learning*.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace QuantumAlg
 
 /-- **Provable quantum-kernel learning advantage** (Liu, Arunachalam, Temme 2021), as a
@@ -124,3 +124,4 @@ theorem qka_nonempty : Nonempty (QuantumKernelAdvantage (Multiplicative (ZMod 2)
   norm_num at h
 
 end QuantumAlg
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

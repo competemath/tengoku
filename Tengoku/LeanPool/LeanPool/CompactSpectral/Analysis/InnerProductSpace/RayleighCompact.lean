@@ -30,7 +30,7 @@ compact operator the quadratic form is continuous on that weakly compact set.
 - `CompactSelfAdjoint.exists_hasEigenvector_iSup_or_iInf_of_isCompactOperator`
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace CompactSelfAdjoint
 
 open CompactSpectral
@@ -467,3 +467,4 @@ theorem exists_hasEigenvector_iSup_or_iInf_of_isCompactOperator
       exact IsSelfAdjoint.hasEigenvector_of_isMaxOn (T := T) hT hxMax_ne0 hmax_sphere'
 end
 end CompactSelfAdjoint
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

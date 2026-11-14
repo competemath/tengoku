@@ -15,11 +15,11 @@ ring structure together with the normed additive commutative group structure.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators
 
 /-- A ring whose additive group is a normed additive commutative group. -/
-class NormedAddCommGroupOfRing (B : Type*) extends Ring B, NormedAddCommGroup B
+class _root_.Tengoku.LeanPool.NormedAddCommGroupOfRing (B : Type*) extends Ring B, NormedAddCommGroup B
 
 attribute [instance] NormedAddCommGroupOfRing.toNormedAddCommGroup
 attribute [instance] NormedAddCommGroupOfRing.toRing
@@ -35,7 +35,7 @@ attribute [local instance] Algebra.ofIsScalarTowerSmulCommClass
 
 /-- The pointwise ring with the `L^2` product norm is a normed additive group of rings. -/
 @[reducible, instance]
-noncomputable def PiNormedAddCommGroupOfRing {ι : Type*} [Fintype ι] {B : ι → Type*}
+noncomputable def _root_.Tengoku.LeanPool.PiNormedAddCommGroupOfRing {ι : Type*} [Fintype ι] {B : ι → Type*}
     [Π i, NormedAddCommGroupOfRing (B i)] : NormedAddCommGroupOfRing (Π i, B i) where
   toNorm := (PiLp.normedAddCommGroupToPi (2 : ENNReal) B).toNorm
   toRing := Pi.ring
@@ -52,3 +52,4 @@ theorem Pi.normedAddCommGroupOfRing.norm_eq_sum {ι : Type*} [Fintype ι] {B : �
   change ‖WithLp.toLp (2 : ENNReal) x‖ = Real.sqrt (∑ i, ‖x i‖ ^ 2)
   rw [PiLp.norm_eq_sum h2]
   simp [Real.sqrt_eq_rpow]
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

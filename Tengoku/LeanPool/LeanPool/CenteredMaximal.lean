@@ -40,7 +40,7 @@ of the formal results.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ENNReal
 
 namespace LeanPool.CenteredMaximal
@@ -72,3 +72,4 @@ theorem ofReal_phi_le_weakTypeConstant_two : ENNReal.ofReal phi ≤ weakTypeCons
   le_weakTypeConstant fun _ hC => Lattice.ofReal_phi_le hC
 
 end LeanPool.CenteredMaximal
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -13,7 +13,7 @@ public import Tengoku
 Here we supply the semantics of GL.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 open scoped Lean4GlCoalgebras.Formula
 
 
@@ -141,3 +141,4 @@ lemma single_preserves_sem_equiv (n : Nat) (χ φ ψ : Formula)
   convert single_preserves_validity n (φ ⟷ ψ) χ φ_equiv_ψ using 1
   simp [single_iff]
 end Lean4GlCoalgebras
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

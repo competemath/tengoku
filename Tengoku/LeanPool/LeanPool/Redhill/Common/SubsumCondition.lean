@@ -12,23 +12,23 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Finset SignType
 
 variable {n k : ℕ} (a : Fin n → ℤ)
 
 /-- The subsum condition: any subset of the tuple summing to 0
 is either empty or the whole tuple. -/
-def SSC : Prop :=
+def _root_.Tengoku.LeanPool.SSC : Prop :=
   ∀ b, b.Nonempty → bᶜ.Nonempty → ∑ i ∈ b, a i ≠ 0
 
 /-- A subsum block for `a` is an index set that must be constant in any sign weighting
 of the tuple's elements that leads to a zero sum. -/
-def IsSubsumBlock (s : Finset (Fin n)) : Prop :=
+def _root_.Tengoku.LeanPool.IsSubsumBlock (s : Finset (Fin n)) : Prop :=
   ∀ b : Fin n → SignType, ∑ i, b i * a i = 0 → ∃ c, ∀ i ∈ s, b i = c
 
 /-- The strong subsum condition, defined as all `Fin n` being a subsum block. -/
-def StrongSSC : Prop :=
+def _root_.Tengoku.LeanPool.StrongSSC : Prop :=
   IsSubsumBlock a univ
 
 variable {a}
@@ -36,8 +36,8 @@ variable {a}
 /--
 @isnad1 id=ssc.1h2v.s3.00d87286d9d0 from=translated src=- shape=08c32349 vocab=1c67984d
 -/
-lemma StrongSSC.SSC (h : StrongSSC a) : SSC a := by
-  unfold _root_.SSC StrongSSC IsSubsumBlock at *
+lemma Tengoku.LeanPool.StrongSSC.SSC (h : StrongSSC a) : SSC a := by
+  unfold _root_.Tengoku.LeanPool.SSC StrongSSC IsSubsumBlock at *
   contrapose! h
   obtain ⟨b, n₁, n₂, hs⟩ := h
   refine ⟨fun i ↦ if i ∈ b then pos else zero, ?_, fun c ↦ ?_⟩
@@ -54,7 +54,7 @@ lemma StrongSSC.SSC (h : StrongSSC a) : SSC a := by
 /--
 @isnad1 id=ne.2h3v.s5.51d99ab37ef7 from=translated src=- shape=fdc00753 vocab=2c735fbc
 -/
-lemma SSC.ne_zero (ha : SSC a) (hn : 2 ≤ n) {i : Fin n} : a i ≠ 0 := by
+lemma Tengoku.LeanPool.SSC.ne_zero (ha : SSC a) (hn : 2 ≤ n) {i : Fin n} : a i ≠ 0 := by
   unfold SSC at ha
   contrapose! ha
   refine ⟨{i}, by simp, ?_, ?_⟩
@@ -65,12 +65,12 @@ lemma SSC.ne_zero (ha : SSC a) (hn : 2 ≤ n) {i : Fin n} : a i ≠ 0 := by
 /--
 @isnad1 id=ne.2h3v.s5.bdb319596189 from=translated src=- shape=fdc00753 vocab=3795942c
 -/
-lemma StrongSSC.ne_zero (ha : StrongSSC a) (hn : 2 ≤ n) {i : Fin n} : a i ≠ 0 := ha.SSC.ne_zero hn
+lemma Tengoku.LeanPool.StrongSSC.ne_zero (ha : StrongSSC a) (hn : 2 ≤ n) {i : Fin n} : a i ≠ 0 := ha.SSC.ne_zero hn
 
 /--
 @isnad1 id=strongss.1h3v.s5.b7b3b37f79ae from=translated src=- shape=a6abb424 vocab=d532f9bc
 -/
-lemma StrongSSC.perm (h : StrongSSC a) (e : Equiv.Perm (Fin n)) : StrongSSC (a ∘ e) := fun b hs ↦ by
+lemma Tengoku.LeanPool.StrongSSC.perm (h : StrongSSC a) (e : Equiv.Perm (Fin n)) : StrongSSC (a ∘ e) := fun b hs ↦ by
   have : b = (b ∘ e.symm) ∘ e := by simp [Function.comp_assoc]
   conv_lhs at hs =>
     enter [2, i]
@@ -87,14 +87,14 @@ lemma StrongSSC.perm (h : StrongSSC a) (e : Equiv.Perm (Fin n)) : StrongSSC (a �
 /--
 @isnad1 id=iff.0h3v.s5.f0cacb40cea0 from=translated src=- shape=61715c88 vocab=d532f9bc
 -/
-lemma strongSSC_perm_iff (e : Equiv.Perm (Fin n)) : StrongSSC a ↔ StrongSSC (a ∘ e) where
+lemma _root_.Tengoku.LeanPool.strongSSC_perm_iff (e : Equiv.Perm (Fin n)) : StrongSSC a ↔ StrongSSC (a ∘ e) where
   mp h := h.perm e
   mpr h := by simpa [Function.comp_assoc] using h.perm e.symm
 
 /--
 @isnad1 id=injectiv.1h2v.s4.28ca4e5e556d from=translated src=- shape=0018a448 vocab=6a270950
 -/
-lemma StrongSSC.injective (h : StrongSSC a) : a.Injective := fun i j e ↦ by
+lemma Tengoku.LeanPool.StrongSSC.injective (h : StrongSSC a) : a.Injective := fun i j e ↦ by
   unfold StrongSSC IsSubsumBlock at h
   contrapose! h
   refine ⟨fun k ↦ if k = i then pos else if k = j then neg else zero, ?_, fun c ↦ ?_⟩
@@ -118,7 +118,7 @@ lemma Finset.natAbs_prod {ι : Type*} {s : Finset ι} {f : ι → ℤ} :
 /--
 @isnad1 id=lt.2h2v.s5.06c76f474ea3 from=translated src=- shape=7fe19ad9 vocab=72b60b8b
 -/
-lemma StrongSSC.one_lt_natAbs_prod (ha : StrongSSC a) (hn : 3 ≤ n) : 1 < (∏ i, a i).natAbs := by
+lemma Tengoku.LeanPool.StrongSSC.one_lt_natAbs_prod (ha : StrongSSC a) (hn : 3 ≤ n) : 1 < (∏ i, a i).natAbs := by
   rw [Finset.natAbs_prod]
   have g (i : Fin n) : 1 ≤ (a i).natAbs := by
     rw [Nat.one_le_iff_ne_zero, Int.natAbs_ne_zero]
@@ -144,20 +144,20 @@ section TupReduce
 variable (s : Finset (Fin n)) (hk : k = n - #s)
 
 /-- The order-preserving bijection from `Fin k` to `sᶜ`, where `k = n - #s`. -/
-def complRank (i : Fin k) : Fin n :=
+def _root_.Tengoku.LeanPool.complRank (i : Fin k) : Fin n :=
   sᶜ.orderEmbOfFin (by simp [card_compl]) (i.cast hk)
 
 /--
 @isnad1 id=eq.0h1v.s7.eb3d56654cb4 from=translated src=- shape=f6228ce1 vocab=555dd4aa
 -/
-lemma complRank_01 : complRank {0, 1} (n.add_sub_cancel 2).symm = (Fin.addNat · 2) :=
+lemma _root_.Tengoku.LeanPool.complRank_01 : complRank {0, 1} (n.add_sub_cancel 2).symm = (Fin.addNat · 2) :=
   (orderEmbOfFin_unique _ (by simp [Fin.ext_iff]) (Fin.strictMono_addNat 2)).symm
 
 variable (a) in
 /-- `tupReduce a s hk` is the tuple with `∑ i ∈ s, a i` at the last index
 and the remaining elements of `a` appended in order.
 `hk : k = n - #s` mitigates definitional equality problems. -/
-def tupReduce : Fin (k + 1) → ℤ :=
+def _root_.Tengoku.LeanPool.tupReduce : Fin (k + 1) → ℤ :=
   Fin.lastCases (∑ i ∈ s, a i) fun i ↦ a (complRank s hk i)
 
 variable {s hk}
@@ -165,20 +165,20 @@ variable {s hk}
 /--
 @isnad1 id=injectiv.1h3v.s5.940fa14b1624 from=translated src=- shape=348c23c6 vocab=9dfdb01c
 -/
-lemma injective_complRank : (complRank s hk).Injective := fun i j h ↦ by
+lemma _root_.Tengoku.LeanPool.injective_complRank : (complRank s hk).Injective := fun i j h ↦ by
   simpa [complRank] using h
 
 /--
 @isnad1 id=eq.1h3v.s5.940165778c02 from=translated src=- shape=6ecebb86 vocab=32f9fd73
 -/
-lemma image_complRank_univ : univ.image (complRank s hk) = sᶜ := by
+lemma _root_.Tengoku.LeanPool.image_complRank_univ : univ.image (complRank s hk) = sᶜ := by
   unfold complRank
   subst hk
   simp_all
 
 end TupReduce
 
-namespace IsSubsumBlock
+namespace Tengoku.LeanPool.IsSubsumBlock
 
 variable {i j : Fin n} {s t : Finset (Fin n)}
 
@@ -255,4 +255,5 @@ theorem strongSSC_tupReduce (p : IsSubsumBlock a s) (hk : k = n - #s)
       exact ⟨j.castSucc, mem_univ _, by simp [hi]⟩
     · exact ⟨Fin.last _, mem_univ _, by simpa⟩
 
-end IsSubsumBlock
+end Tengoku.LeanPool.IsSubsumBlock
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

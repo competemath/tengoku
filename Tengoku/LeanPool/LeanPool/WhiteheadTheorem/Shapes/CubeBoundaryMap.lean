@@ -15,7 +15,7 @@ Imported Lean Pool material for `LeanPool.WhiteheadTheorem.Shapes.CubeBoundaryMa
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped Topology Topology.Homotopy CategoryTheory
 open unitInterval
 
@@ -204,3 +204,4 @@ lemma cubeInclToBotOrTop_mapOfBotTopSides
     rfl
 
 end TopCat.cubeBoundary  -- namespace
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -42,7 +42,7 @@ remain the author's responsibility.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators Topology goldenRatio
 open Filter Set
 
@@ -8067,3 +8067,4 @@ theorem main_valueDeletion_expanded
 end
 
 end Erdos346
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

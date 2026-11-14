@@ -49,7 +49,7 @@ edge sets.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Finset
 
 namespace ZMod
@@ -431,3 +431,4 @@ theorem exists_triangle_packing_clique (U : Finset V) :
     · intro v; exact sumZeroTriples_edgeDegree_sdiff_le rho hrhoU hrho hinj v
 
 end SumZeroTriangles
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

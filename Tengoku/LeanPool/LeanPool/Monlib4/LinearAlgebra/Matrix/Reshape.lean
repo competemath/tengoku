@@ -17,7 +17,7 @@ and shows some obvious properties of this identification.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Matrix
 
 open scoped Matrix
@@ -64,3 +64,4 @@ theorem reshape_aux_star [Star R] (x : Matrix I J R) : star (reshape x) = reshap
   simp_rw [Pi.star_apply, Matrix.reshape_apply, Matrix.conj_apply]
 
 end Matrix
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

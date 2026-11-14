@@ -20,7 +20,7 @@ inserted-chain construction used in the proof of Theorem 2.1.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Finset
 
 namespace Feige
@@ -288,3 +288,4 @@ theorem chainState_insertChainPerm_eq_insertedChainState {n : ℕ}
         using heq
 
 end Feige
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

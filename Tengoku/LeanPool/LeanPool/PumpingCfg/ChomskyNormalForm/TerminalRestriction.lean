@@ -28,7 +28,7 @@ the original
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe uN
 variable {T : Type}
 
@@ -38,45 +38,45 @@ section EmbedProject
 variable {N : Type uN}
 
 /-- Intuitive embedding of symbols of the original grammar into symbols of the new grammar's type -/
-def embedSymbol (s : Symbol T N) : Symbol T (N ⊕ T) :=
+def _root_.Tengoku.LeanPool.embedSymbol (s : Symbol T N) : Symbol T (N ⊕ T) :=
   match s with
   | Symbol.terminal t => Symbol.terminal t
   | Symbol.nonterminal n => Symbol.nonterminal (Sum.inl n)
 
 /-- Intuitive embedding of strings of the original grammar into strings of the new grammar's type -/
-abbrev embedString (u : List (Symbol T N)) : List (Symbol T (N ⊕ T)) := u.map embedSymbol
+abbrev _root_.Tengoku.LeanPool.embedString (u : List (Symbol T N)) : List (Symbol T (N ⊕ T)) := u.map embedSymbol
 
 /-- Embedding of symbols of the original grammar into nonterminals of the new grammar -/
-def rightEmbedSymbol (s : Symbol T N) : Symbol T (N ⊕ T) :=
+def _root_.Tengoku.LeanPool.rightEmbedSymbol (s : Symbol T N) : Symbol T (N ⊕ T) :=
   match s with
   | Symbol.terminal t => Symbol.nonterminal (Sum.inr t)
   | Symbol.nonterminal n => Symbol.nonterminal (Sum.inl n)
 
 /-- Embedding of strings of the original grammar into nonterminal (symbol) strings of the new
 grammar -/
-abbrev rightEmbedString (w : List (Symbol T N)) := w.map rightEmbedSymbol
+abbrev _root_.Tengoku.LeanPool.rightEmbedString (w : List (Symbol T N)) := w.map rightEmbedSymbol
 
 /-- Projection from symbols of the new grammars type into symbols of the original grammar -/
-def projectSymbol (s : Symbol T (N ⊕ T)) : Symbol T N :=
+def _root_.Tengoku.LeanPool.projectSymbol (s : Symbol T (N ⊕ T)) : Symbol T N :=
   match s with
   | Symbol.terminal t => Symbol.terminal t
   | Symbol.nonterminal (Sum.inl nt) => Symbol.nonterminal nt
   | Symbol.nonterminal (Sum.inr t) => Symbol.terminal t
 
 /-- Projection from strings of the new grammars type into strings of the original grammar -/
-def projectString (u : List (Symbol T (N ⊕ T))) : List (Symbol T N) := u.map projectSymbol
+def _root_.Tengoku.LeanPool.projectString (u : List (Symbol T (N ⊕ T))) : List (Symbol T N) := u.map projectSymbol
 
 /--
 @isnad1 id=eq.0h3v.s4.9bedb6ee2796 from=translated src=- shape=1dc5bd7f vocab=c40709a6
 -/
-lemma embedSymbol_nonterminal_eq {nt : N} :
+lemma _root_.Tengoku.LeanPool.embedSymbol_nonterminal_eq {nt : N} :
     embedSymbol (Symbol.nonterminal nt) = (@Symbol.nonterminal T (N ⊕ T)) (Sum.inl nt) := by
   rfl
 
 /--
 @isnad1 id=eq.0h3v.s4.d15eea532bf0 from=translated src=- shape=dd7916ec vocab=adc2279f
 -/
-lemma projectString_rightEmbedString_id {u : List (Symbol T N)} :
+lemma _root_.Tengoku.LeanPool.projectString_rightEmbedString_id {u : List (Symbol T N)} :
     projectString (rightEmbedString u) = u := by
   induction u with
   | nil => rfl
@@ -89,7 +89,7 @@ lemma projectString_rightEmbedString_id {u : List (Symbol T N)} :
 /--
 @isnad1 id=eq.0h3v.s5.7576fe4f9993 from=translated src=- shape=634b2382 vocab=7363a77b
 -/
-lemma projectString_terminals {u : List T} :
+lemma _root_.Tengoku.LeanPool.projectString_terminals {u : List T} :
     projectString (u.map (@Symbol.terminal T (N ⊕ T))) = u.map Symbol.terminal := by
   induction u with
   | nil => rfl
@@ -101,20 +101,20 @@ lemma projectString_terminals {u : List T} :
 /--
 @isnad1 id=eq.0h3v.s4.90d29a651eab from=translated src=- shape=dd78090c vocab=27b75e8f
 -/
-lemma projectSymbol_nonterminal {n : N} :
+lemma _root_.Tengoku.LeanPool.projectSymbol_nonterminal {n : N} :
     projectSymbol (@Symbol.nonterminal T (N ⊕ T) (Sum.inl n)) = Symbol.nonterminal n := rfl
 
 /--
 @isnad1 id=ne.1h3v.s5.60d8e411f370 from=translated src=- shape=d151af06 vocab=ca90d8f2
 -/
-lemma embedString_preserves_nonempty {u : List (Symbol T N)} (hu : u ≠ []) :
+lemma _root_.Tengoku.LeanPool.embedString_preserves_nonempty {u : List (Symbol T N)} (hu : u ≠ []) :
     embedString u ≠ [] := by
   aesop
 
 /--
 @isnad1 id=eq.0h3v.s5.666be138707f from=translated src=- shape=8f7af713 vocab=9fbfb665
 -/
-lemma embedString_terminals {u : List T} :
+lemma _root_.Tengoku.LeanPool.embedString_terminals {u : List T} :
     embedString (u.map (@Symbol.terminal T N)) = u.map Symbol.terminal := by
   cases u with
   | nil => rfl
@@ -123,13 +123,13 @@ lemma embedString_terminals {u : List T} :
 /--
 @isnad1 id=eq.0h4v.s6.48369bc68669 from=translated src=- shape=79c0328f vocab=77cf6463
 -/
-lemma embedString_append {u v : List (Symbol T N)} :
+lemma _root_.Tengoku.LeanPool.embedString_append {u v : List (Symbol T N)} :
     embedString (u ++ v) = embedString u ++ embedString v := List.map_append
 
 /--
 @isnad1 id=nonunit.2h3v.s5.ebbf69184e6e from=translated src=- shape=3672d814 vocab=38bb3575
 -/
-lemma rightEmbed_string_nonUnit {u : List (Symbol T N)} (hu : ContextFreeGrammar.NonUnit u)
+lemma _root_.Tengoku.LeanPool.rightEmbed_string_nonUnit {u : List (Symbol T N)} (hu : ContextFreeGrammar.NonUnit u)
     (hut : ∀ t, u ≠ [Symbol.terminal t]) :
     ContextFreeGrammar.NonUnit (rightEmbedString u) := match u with
   | [] => trivial
@@ -380,3 +380,4 @@ theorem restrictTerminals_correct : g.language = g.restrictTerminals.language :=
     rwa [List.map_cons, List.map_nil, projectSymbol_nonterminal] at hw'
 
 end ContextFreeGrammar
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

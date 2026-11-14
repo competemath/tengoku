@@ -53,7 +53,7 @@ import Tengoku.LeanPool.LeanPool.Sundogcert.VarWheel
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Sundog.SATReduction Sundog.SATNPHard Sundog.VarWheel
 open Sundog.SATReductionIncidence Sundog.ThreeDMReindex
 
@@ -194,3 +194,4 @@ theorem reverse (φ : Formula n m) (h : threeDMI (tripleFn φ)) :
     Expect `[propext, Classical.choice, Quot.sound]` — NO `sorryAx`, NO `Lean.ofReduceBool`. -/
 
 end Sundog.SATReductionReverse
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

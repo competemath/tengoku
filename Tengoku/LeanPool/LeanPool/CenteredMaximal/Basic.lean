@@ -18,7 +18,7 @@ public import Tengoku.LeanPool.LeanPool.CenteredMaximal.Statement
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open MeasureTheory Metric
@@ -74,3 +74,4 @@ theorem le_weakTypeConstant {c : ℝ≥0∞} (h : ∀ C, IsWeakTypeBound d C →
   le_sInf h
 
 end LeanPool.CenteredMaximal
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -13,7 +13,7 @@ public import Tengoku.LeanPool.LeanPool.DirectedTopologyLean4.DTop
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-
   If we have a dihomotopy `F` from `f : D(I,X)` to `g : D(I,X)`:
     C----- g -----D
@@ -58,12 +58,12 @@ public import Tengoku.LeanPool.LeanPool.DirectedTopologyLean4.DTop
 
 universe u v
 
-open DirectedSpace DirectedUnitInterval unitIAux DirectedMap
+open Tengoku.LeanPool.DirectedSpace DirectedUnitInterval unitIAux Tengoku.LeanPool.DirectedMap
 open scoped unitInterval
 
 noncomputable section
 
-namespace DirectedMap
+namespace Tengoku.LeanPool.DirectedMap
 namespace Dihomotopy
 
 variable {X : dTopCat} {f g : D(I,X)}
@@ -191,4 +191,5 @@ lemma hcomp'_range (F : Dihomotopy p₀.toDirectedMap q₀.toDirectedMap)
   · exact Or.inr ⟨_, ht⟩
 
 end Dihomotopy
-end DirectedMap
+end Tengoku.LeanPool.DirectedMap
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -14,7 +14,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-
   This file contains the definitions of three type of directed homotopies:
   * `Dihomotopy f g` : the type of homotopies between two directed maps `f g : D(X,Y)`.
@@ -29,9 +29,9 @@ public import Tengoku
 
 noncomputable section
 
-namespace DirectedMap
+namespace Tengoku.LeanPool.DirectedMap
 
-open DirectedMap DirectedUnitInterval
+open Tengoku.LeanPool.DirectedMap DirectedUnitInterval
 open unitIAux
 open scoped unitInterval
 
@@ -744,4 +744,5 @@ lemma equivalence : Equivalence (fun f g : D(X,Y) => DihomotopicRel S f g)
 
 end DihomotopicRel
 
-end DirectedMap
+end Tengoku.LeanPool.DirectedMap
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -21,7 +21,7 @@ harmless, unlike routing the def through the WIP-excluded `LocalEMSupport.lean`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u v
 
 namespace FirstOrder.Language
@@ -41,3 +41,4 @@ def IsLomega1omegaIndiscernibleOnTail (a : ℕ → M)
        φ.Realize (Empty.elim : Empty → M) (a ∘ t))
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

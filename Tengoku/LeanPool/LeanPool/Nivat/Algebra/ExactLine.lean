@@ -63,7 +63,7 @@ Finally, exponent reindexing transports the equality through the lattice basis.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Nivat.Algebra
 
 /-- Auxiliary to Theorem 4.1 (`thm:exact-ideal`): the first coordinate unit vector in the normalized
@@ -440,3 +440,4 @@ theorem laurentReindex_lineEval (e : Lattice ≃+ Lattice) (v : Lattice)
     rw [AddMonoidAlgebra.domCongr_single, map_nsmul]
 
 end Nivat.Algebra
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

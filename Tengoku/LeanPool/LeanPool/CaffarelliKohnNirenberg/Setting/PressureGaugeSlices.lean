@@ -34,7 +34,7 @@ Gagliardo-Nirenberg input is needed.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory MeasureTheory.Measure Set Filter Metric
 open scoped ENNReal NNReal Topology
 open CKN.Foundation.Parabolic
@@ -138,3 +138,4 @@ theorem tsupport_component_subset
   exact hz (hzero z (not_not.mp hcon))
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -46,7 +46,7 @@ Verma module
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace VirasoroProject
 
 section canonical_map_from_a_ring_to_a_submodule_generated_by_a_vector
@@ -260,3 +260,4 @@ noncomputable def _root_.VirasoroProject.IsVermaModule.equivOfIsVermaModule
 end IsVerma
 
 end VirasoroProject
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

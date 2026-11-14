@@ -91,7 +91,7 @@ this module adds a pair the blueprint's prose does not list.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Schoenflies
 open scoped Graph
 
@@ -2144,3 +2144,4 @@ theorem crosscut_cell_partition (hjordan : ∀ S : Set Plane, IsJordanCurve S �
     h.closure_side hjordan hcut, h.closure_side hjordan hcut.symm⟩
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

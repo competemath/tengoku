@@ -27,7 +27,7 @@ homotopy invariance of contour integrals.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Complex MeasureTheory Set Filter Topology
 open scoped Real Interval
 
@@ -41,7 +41,7 @@ private noncomputable instance : ContinuousSMul ℝ ℂ :=
 /-- Continuity of a parametric interval integral.
 @isnad1 id=continuo.3h4v.s7.bcf94223b879 from=translated src=- shape=c289a612 vocab=f1d014e5
 -/
-theorem intervalIntegral_continuous_on_param
+theorem _root_.Tengoku.LeanPool.intervalIntegral_continuous_on_param
     (f : ℝ → ℝ → ℂ) (a b : ℝ) (S : Set ℝ) (hab : a ≤ b)
     (hf_cont : Continuous (fun p : ℝ × ℝ => f p.1 p.2))
     (_hf_int : ∀ s ∈ S,
@@ -88,7 +88,7 @@ theorem intervalIntegral_continuous_on_param
 /--
 @isnad1 id=contdiff.1h1v.s7.e70b361edbd5 from=translated src=- shape=af48494a vocab=59ff905e
 -/
-lemma contDiff_partialDeriv_snd_of_contDiff_two
+lemma _root_.Tengoku.LeanPool.contDiff_partialDeriv_snd_of_contDiff_two
     (H : ℝ × ℝ → ℂ) (hH : ContDiff ℝ 2 H) :
     ContDiff ℝ 1 (fun p : ℝ × ℝ =>
       deriv (fun s => H (p.1, s)) p.2) := by
@@ -117,7 +117,7 @@ lemma contDiff_partialDeriv_snd_of_contDiff_two
 /--
 @isnad1 id=contdiff.1h1v.s7.e87f684b4ca6 from=translated src=- shape=4d5f9184 vocab=59ff905e
 -/
-lemma contDiff_partialDeriv_fst_of_contDiff_two
+lemma _root_.Tengoku.LeanPool.contDiff_partialDeriv_fst_of_contDiff_two
     (H : ℝ × ℝ → ℂ) (hH : ContDiff ℝ 2 H) :
     ContDiff ℝ 1 (fun p : ℝ × ℝ =>
       deriv (fun t => H (t, p.2)) p.1) := by
@@ -146,7 +146,7 @@ lemma contDiff_partialDeriv_fst_of_contDiff_two
 /-- Schwarz theorem: mixed partials of a C² function commute.
 @isnad1 id=eq.1h3v.s8.bfec74b911b1 from=translated src=- shape=8ae33b5c vocab=d6fbbc04
 -/
-lemma schwarz_partialDeriv_comm
+lemma _root_.Tengoku.LeanPool.schwarz_partialDeriv_comm
     (H : ℝ × ℝ → ℂ) (hH : ContDiff ℝ 2 H)
     (t s : ℝ) :
     deriv (fun s' =>
@@ -583,7 +583,7 @@ private lemma homotopy_J_deriv_continuousOn
 /-- Derivative of the homotopy integral vanishes.
 @isnad1 id=hasderiv.8h5v.s9.6bea54be72b9 from=translated src=- shape=fde4118e vocab=8352e1d2
 -/
-theorem hasDerivAt_homotopy_integral_zero
+theorem _root_.Tengoku.LeanPool.hasDerivAt_homotopy_integral_zero
     (f : ℂ → ℂ) (H : ℝ × ℝ → ℂ) (a b s : ℝ)
     (hab : a < b)
     (hH_smooth : ContDiff ℝ 2 H)
@@ -630,3 +630,4 @@ theorem hasDerivAt_homotopy_integral_zero
   simp_all
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

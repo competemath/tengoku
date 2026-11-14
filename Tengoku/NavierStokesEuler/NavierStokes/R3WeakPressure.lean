@@ -14,7 +14,7 @@ negative Sobolev space, where its Poisson equation determines it uniquely.
 No growth condition on the physical pressure is assumed.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace NavierStokes.R3WeakPressure
 
 open Set Filter MeasureTheory TemperedDistribution FourierTransform
@@ -183,3 +183,4 @@ theorem pressure_gradient_unique
     _ = _ := by rw [momentumGradient_divergence U V G hU hV, LineDeriv.lineDerivOp_neg]
 
 end NavierStokes.R3WeakPressure
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

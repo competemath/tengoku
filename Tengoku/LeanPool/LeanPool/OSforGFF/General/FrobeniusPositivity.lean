@@ -17,7 +17,7 @@ nonzero), and reduces to `⟪G, B⟫ = tr(H D) = ∑ i, λᵢ Hᵢᵢ > 0`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Matrix
 
 open scoped BigOperators MatrixOrder
@@ -29,7 +29,7 @@ variable {ι : Type u}
 /-- Helper: Frobenius inner product equals `trace (Gᵀ * B)` (real case).
 @isnad1 id=eq.0h3v.s6.4aa7f6d0bb7f from=translated src=- shape=e73908ec vocab=334059be
 -/
-lemma frobenius_eq_trace_transpose_mul
+lemma _root_.Tengoku.LeanPool.frobenius_eq_trace_transpose_mul
   [Fintype ι] (G B : Matrix ι ι ℝ) :
   (∑ j, ∑ l, G j l * B j l) = Matrix.trace (G.transpose * B) := by
   classical
@@ -48,7 +48,7 @@ lemma frobenius_eq_trace_transpose_mul
 If `U * Uᵀ = 1`, then `Uᵀ G U ≠ 0` whenever `G ≠ 0`.
 @isnad1 id=ne.2h3v.s7.025a104e38f7 from=translated src=- shape=d0883eab vocab=9e0825da
 -/
-lemma congr_transpose_mul_mul_ne_zero
+lemma _root_.Tengoku.LeanPool.congr_transpose_mul_mul_ne_zero
   [Fintype ι] [DecidableEq ι]
   (U G : Matrix ι ι ℝ) (hU_right : U * U.transpose = 1)
   (hG_ne_zero : G ≠ 0) :
@@ -64,7 +64,7 @@ lemma congr_transpose_mul_mul_ne_zero
 For all vectors x,y: (xᵀ H y)^2 ≤ (xᵀ H x) (yᵀ H y).
 @isnad1 id=le.1h4v.s6.9fd68fd2d54a from=translated src=- shape=7f1efb0c vocab=4bb21b9a
 -/
-lemma psd_cauchy_schwarz
+lemma _root_.Tengoku.LeanPool.psd_cauchy_schwarz
   [Fintype ι] (H : Matrix ι ι ℝ) (hH_psd : H.PosSemidef) (x y : ι → ℝ) :
   ((x ⬝ᵥ H.mulVec y)^2) ≤ (x ⬝ᵥ H.mulVec x) * (y ⬝ᵥ H.mulVec y) := by
   classical
@@ -103,7 +103,7 @@ lemma psd_cauchy_schwarz
 /-- If H is PSD over ℝ and H ii = H jj = 0 then H ij = 0.
 @isnad1 id=eq.3h4v.s5.692e1daa67d6 from=translated src=- shape=5fe3c773 vocab=8275bf92
 -/
-lemma psd_offdiag_zero_of_diag_zero
+lemma _root_.Tengoku.LeanPool.psd_offdiag_zero_of_diag_zero
   [Finite ι]
   (H : Matrix ι ι ℝ) (hH_psd : H.PosSemidef) {i j : ι}
   (hii : H i i = 0) (hjj : H j j = 0) : H i j = 0 := by
@@ -117,7 +117,7 @@ lemma psd_offdiag_zero_of_diag_zero
 /-- For a real PSD matrix, if it is nonzero then some diagonal entry is strictly positive.
 @isnad1 id=ex.2h2v.s5.2fa4f140e31d from=translated src=- shape=7ba4945f vocab=59c367fb
 -/
-lemma posSemidef_diag_pos_exists_of_ne_zero
+lemma _root_.Tengoku.LeanPool.posSemidef_diag_pos_exists_of_ne_zero
   [Finite ι]
   (H : Matrix ι ι ℝ) (hH_psd : H.PosSemidef) (hH_ne_zero : H ≠ 0) :
   ∃ i, 0 < H i i := by
@@ -152,7 +152,7 @@ High-level proof sketch (to be formalized):
 - This avoids Cholesky and uses spectral decomposition/unitary congruence invariance.
 @isnad1 id=lt.3h3v.s6.f765aa183e18 from=translated src=- shape=03907c09 vocab=32695b90
 -/
-lemma frobenius_pos_of_psd_posdef
+lemma _root_.Tengoku.LeanPool.frobenius_pos_of_psd_posdef
   [Fintype ι]
   (G B : Matrix ι ι ℝ) (hG_psd : G.PosSemidef) (hG_ne_zero : G ≠ 0) (hB : B.PosDef) :
   0 < ∑ j, ∑ l, G j l * B j l := by
@@ -229,3 +229,4 @@ lemma frobenius_pos_of_psd_posdef
   have htrace_pos' : 0 < Matrix.trace (G.transpose * B) := by
     simpa [htrace_cycle] using htrace_pos
   simpa [hfrob_trace] using htrace_pos'
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

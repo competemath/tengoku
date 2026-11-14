@@ -62,7 +62,7 @@ Choice-free (`#print axioms ⊆ {propext, Quot.sound}`) apart from the
 uniqueness step inherited from Exercise 2.8. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood.Exercise215
 
 open Domain.Neighborhood NeighborhoodSystem
@@ -330,3 +330,4 @@ def openSetEquivMap : {U : Set V.Element // IsOpen U} ≃ ApproximableMap V O wh
   right_inv f := openToMap_mapToOpen V f
 
 end Domain.Neighborhood.Exercise215
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

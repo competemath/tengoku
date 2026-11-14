@@ -24,7 +24,7 @@ This file proves that isomorphism restricted to models of a sentence is Borel
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u v
 
 namespace FirstOrder
@@ -71,3 +71,4 @@ theorem iso_borel_of_bounded_scottHeight
 end Language
 
 end FirstOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

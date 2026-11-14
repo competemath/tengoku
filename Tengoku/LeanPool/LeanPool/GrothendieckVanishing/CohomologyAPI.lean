@@ -58,7 +58,7 @@ calculations internal so downstream files never need to unfold `Sheaf.H` directl
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe w' w v u
 
 open CategoryTheory TopologicalSpace Abelian Limits Opposite
@@ -80,7 +80,7 @@ instance : IsGrothendieckAbelian.{u} AddCommGrpCat.{u} where
 instance (X : TopCat.{u}) : IsGrothendieckAbelian.{u} (TopCat.Sheaf AddCommGrpCat.{u} X) :=
   inferInstanceAs (IsGrothendieckAbelian (CategoryTheory.Sheaf _ _))
 
-instance instPreadditivePresheafLeanPool
+instance _root_.Tengoku.LeanPool.instPreadditivePresheafLeanPool
     {C : Type*} [Category C] [Preadditive C] {X : TopCat.{u}} :
     Preadditive (TopCat.Presheaf C X) := by
   delta TopCat.Presheaf
@@ -89,19 +89,19 @@ instance instPreadditivePresheafLeanPool
 /--
 @isnad1 id=hasext.0h1v.s3.9ea733865e49 from=translated src=- shape=4c19b7a8 vocab=d3537cb7
 -/
-noncomputable instance sheafHasExt (X : TopCat.{u}) :
+noncomputable instance _root_.Tengoku.LeanPool.sheafHasExt (X : TopCat.{u}) :
     HasExt.{u} (TopCat.Sheaf AddCommGrpCat.{u} X) :=
   inferInstanceAs (HasExt.{u} (TopCat.Sheaf AddCommGrpCat.{u} X))
 
 -- `TopCat.Sheaf` is a semireducible definition, so instance search cannot see through it to
 -- the site sheaves that `Ext` and `Sheaf.H` are stated for. These restate the relevant
 -- structures with `TopCat.Sheaf` in the head position.
-noncomputable instance sheafHAddCommGroup {X : TopCat.{u}}
+noncomputable instance _root_.Tengoku.LeanPool.sheafHAddCommGroup {X : TopCat.{u}}
     (F : TopCat.Sheaf AddCommGrpCat.{u} X) (n : ℕ) :
     AddCommGroup (Sheaf.H F n) :=
   Ext.instAddCommGroup
 
-noncomputable instance sheafPreadditive (X : TopCat.{u}) :
+noncomputable instance _root_.Tengoku.LeanPool.sheafPreadditive (X : TopCat.{u}) :
     Preadditive (TopCat.Sheaf AddCommGrpCat.{u} X) :=
   inferInstanceAs (Preadditive (CategoryTheory.Sheaf _ _))
 
@@ -144,7 +144,7 @@ private theorem extClass_postcomp_bijective_of_subsingleton_middle
 
 /-- The connecting morphism in the covariant long exact sequence as an additive equivalence,
     assuming the middle cohomology groups in degrees `n` and `n + 1` vanish. -/
-noncomputable def extClassPostcompAddEquivOfSubsingletonMiddle
+noncomputable def _root_.Tengoku.LeanPool.extClassPostcompAddEquivOfSubsingletonMiddle
     (Z : C') {S : ShortComplex C'} (hS : S.ShortExact) (n : ℕ)
     (h₂n : Subsingleton (Ext Z S.X₂ n))
     (h₂succ : Subsingleton (Ext Z S.X₂ (n + 1))) :
@@ -176,7 +176,7 @@ private theorem sheafH_comp_extClass_naturality {X : TopCat.{u}}
   exact congrArg (fun t ↦ y.comp t rfl) (extClass_naturality hS₁ hS₂ φ).symm
 
 /-- Successor connecting morphism attached to a short exact sequence of sheaves. -/
-noncomputable def sheafHSuccMap {X : TopCat.{u}}
+noncomputable def _root_.Tengoku.LeanPool.sheafHSuccMap {X : TopCat.{u}}
     {S : ShortComplex (TopCat.Sheaf AddCommGrpCat.{u} X)}
     (hS : S.ShortExact)
     (n : ℕ) :
@@ -189,7 +189,7 @@ noncomputable def sheafHSuccMap {X : TopCat.{u}}
 /--
 @isnad1 id=eq.1h4v.s12.760d83d10b4f from=translated src=- shape=ac1ab1e3 vocab=2c0657ed
 -/
-theorem sheafH_succ_map_apply {X : TopCat.{u}}
+theorem _root_.Tengoku.LeanPool.sheafH_succ_map_apply {X : TopCat.{u}}
     {S : ShortComplex (TopCat.Sheaf AddCommGrpCat.{u} X)}
     (hS : S.ShortExact)
     (n : ℕ)
@@ -200,7 +200,7 @@ theorem sheafH_succ_map_apply {X : TopCat.{u}}
 `H^(n+1)(S.X₁)` class comes from some `H^n(S.X₃)` class via the successor map.
 @isnad1 id=ex.2h4v.s12.e858d472b254 from=translated src=- shape=2c54885c vocab=0001f506
 -/
-theorem sheafH_succ_map_exists_preimage_of_subsingleton_middle {X : TopCat.{u}}
+theorem _root_.Tengoku.LeanPool.sheafH_succ_map_exists_preimage_of_subsingleton_middle {X : TopCat.{u}}
     {S : ShortComplex (TopCat.Sheaf AddCommGrpCat.{u} X)}
     (hS : S.ShortExact)
     (n : ℕ)
@@ -213,7 +213,7 @@ theorem sheafH_succ_map_exists_preimage_of_subsingleton_middle {X : TopCat.{u}}
 /--
 @isnad1 id=iszero.2h2v.s8.560995ec4669 from=translated src=- shape=5fa06475 vocab=e02f1b9c
 -/
-theorem sheaf_isZero_of_zero_stalks (X : TopCat.{u})
+theorem _root_.Tengoku.LeanPool.sheaf_isZero_of_zero_stalks (X : TopCat.{u})
     {F : TopCat.Presheaf AddCommGrpCat.{u} X} (hF : F.IsSheaf)
     (hstalk : ∀ (x : X)
       (a : (TopCat.Presheaf.stalkFunctor AddCommGrpCat.{u} x).obj F), a = 0) :
@@ -235,7 +235,7 @@ theorem sheaf_isZero_of_zero_stalks (X : TopCat.{u})
 /-! ## H⁰ ≅ Sections -/
 
 /-- If `F` is a sheaf, then `H F 0` is equivalent to sections on `⊤`. -/
-noncomputable def sheafH0EquivSections {X : TopCat.{u}}
+noncomputable def _root_.Tengoku.LeanPool.sheafH0EquivSections {X : TopCat.{u}}
     (F : TopCat.Sheaf AddCommGrpCat.{u} X) :
     Sheaf.H F 0 ≃+ F.obj.obj (op ⊤) :=
   Sheaf.H.equiv₀ F Limits.isTerminalTop
@@ -244,7 +244,7 @@ noncomputable def sheafH0EquivSections {X : TopCat.{u}}
     degree 0 corresponds to applying `f.app(⊤)` on sections.
 @isnad1 id=eq.0h5v.s14.655a73b1d5b7 from=translated src=- shape=756c22da vocab=a513a62f
 -/
-lemma sheafH0EquivSections_natural {X : TopCat.{u}}
+lemma _root_.Tengoku.LeanPool.sheafH0EquivSections_natural {X : TopCat.{u}}
     {F G : TopCat.Sheaf AddCommGrpCat.{u} X} (f : F ⟶ G) (x : Sheaf.H F 0) :
     sheafH0EquivSections G (x.comp (Ext.mk₀ f) (add_zero 0)) =
     ConcreteCategory.hom (f.hom.app (op ⊤)) (sheafH0EquivSections F x) :=
@@ -252,7 +252,7 @@ lemma sheafH0EquivSections_natural {X : TopCat.{u}}
 
 /-- `H¹(S.X₁)` as the cokernel of top sections for a short exact sequence of sheaves,
     assuming `H¹(S.X₂)` is subsingleton. -/
-noncomputable def sheafH1CokernelIsoOfSubsingletonMiddle {X : TopCat.{u}}
+noncomputable def _root_.Tengoku.LeanPool.sheafH1CokernelIsoOfSubsingletonMiddle {X : TopCat.{u}}
     {S : ShortComplex (TopCat.Sheaf AddCommGrpCat.{u} X)}
     (hS : S.ShortExact)
     (h₂H : Subsingleton (Sheaf.H S.X₂ 1)) :
@@ -315,7 +315,7 @@ noncomputable def sheafH1CokernelIsoOfSubsingletonMiddle {X : TopCat.{u}}
 /--
 @isnad1 id=eq.2h3v.s15.b8c887d5a89c from=translated src=- shape=fdeb5630 vocab=98f284cc
 -/
-@[simp] theorem sheafH1_cokernel_iso_of_subsingleton_middle_hom_π {X : TopCat.{u}}
+@[simp] theorem _root_.Tengoku.LeanPool.sheafH1_cokernel_iso_of_subsingleton_middle_hom_π {X : TopCat.{u}}
     {S : ShortComplex (TopCat.Sheaf AddCommGrpCat.{u} X)}
     (hS : S.ShortExact)
     (h₂H : Subsingleton (Sheaf.H S.X₂ 1))
@@ -331,7 +331,7 @@ noncomputable def sheafH1CokernelIsoOfSubsingletonMiddle {X : TopCat.{u}}
     class of the target lifts along it.
 @isnad1 id=ex.1h5v.s11.550cd783fcfd from=translated src=- shape=e6793bf4 vocab=37fb0f24
 -/
-theorem sheafH0_surj_of_epi_app_top {X : TopCat.{u}}
+theorem _root_.Tengoku.LeanPool.sheafH0_surj_of_epi_app_top {X : TopCat.{u}}
     {F G : TopCat.Sheaf AddCommGrpCat.{u} X} (f : F ⟶ G)
     (hf : Epi (f.hom.app (op ⊤))) :
     ∀ y : Sheaf.H G 0, ∃ z : Sheaf.H F 0, z.comp (Ext.mk₀ f) (add_zero 0) = y := by
@@ -359,7 +359,7 @@ private theorem subsingleton_H1_via_surj {C' : Type*} [Category C'] [Abelian C']
 /-- `H¹` vanishing via degree-zero surjectivity.
 @isnad1 id=subsingl.3h2v.s10.693dbb5b339d from=translated src=- shape=2a9a30fa vocab=dbd0f425
 -/
-theorem sheafH_subsingleton_H1_via_surj {X : TopCat.{u}}
+theorem _root_.Tengoku.LeanPool.sheafH_subsingleton_H1_via_surj {X : TopCat.{u}}
     {S : ShortComplex (TopCat.Sheaf AddCommGrpCat.{u} X)}
     (hS : S.ShortExact)
     (h₂H : Subsingleton (Sheaf.H S.X₂ 1))
@@ -371,7 +371,7 @@ theorem sheafH_subsingleton_H1_via_surj {X : TopCat.{u}}
 /-- `H¹` vanishing criterion from surjective top sections.
 @isnad1 id=subsingl.3h2v.s10.3e7ea66cbec1 from=translated src=- shape=fa545d70 vocab=d1192073
 -/
-theorem sheafH_subsingleton_H1_via_epi_app_top {X : TopCat.{u}}
+theorem _root_.Tengoku.LeanPool.sheafH_subsingleton_H1_via_epi_app_top {X : TopCat.{u}}
     {S : ShortComplex (TopCat.Sheaf AddCommGrpCat.{u} X)}
     (hS : S.ShortExact)
     (h₂H : Subsingleton (Sheaf.H S.X₂ 1))
@@ -382,7 +382,7 @@ theorem sheafH_subsingleton_H1_via_epi_app_top {X : TopCat.{u}}
 /-- Positive-degree cohomology of an injective sheaf is subsingleton.
 @isnad1 id=subsingl.0h4v.s6.ef1d7b0dad97 from=translated src=- shape=c386aff7 vocab=6f3f34a6
 -/
-theorem sheafH_subsingleton_of_injective
+theorem _root_.Tengoku.LeanPool.sheafH_subsingleton_of_injective
     {C : Type u} [Category.{v} C] {J : GrothendieckTopology C}
     [HasSheafify J AddCommGrpCat.{w}] [HasExt.{w'} (Sheaf J AddCommGrpCat.{w})]
     (I : Sheaf J AddCommGrpCat.{w}) [Injective I] (n : ℕ) :
@@ -394,7 +394,7 @@ theorem sheafH_subsingleton_of_injective
 /-- `H¹` vanishing criterion with injective middle term.
 @isnad1 id=subsingl.2h2v.s10.616889675a06 from=translated src=- shape=aa28a974 vocab=29ac0cb2
 -/
-theorem sheafH_subsingleton_H1_of_injective_of_epi_app_top {X : TopCat.{u}}
+theorem _root_.Tengoku.LeanPool.sheafH_subsingleton_H1_of_injective_of_epi_app_top {X : TopCat.{u}}
     {S : ShortComplex (TopCat.Sheaf AddCommGrpCat.{u} X)}
     (hS : S.ShortExact)
     [hI : Injective S.X₂]
@@ -409,7 +409,7 @@ theorem sheafH_subsingleton_H1_of_injective_of_epi_app_top {X : TopCat.{u}}
     and `H^n(S.X₃)=0`, then `H^(n+1)(S.X₁)=0`.
 @isnad1 id=subsingl.2h3v.s8.b1f0a83cfbac from=translated src=- shape=985965fe vocab=6fca7760
 -/
-theorem sheafH_dimension_shift_of_injective {X : TopCat.{u}}
+theorem _root_.Tengoku.LeanPool.sheafH_dimension_shift_of_injective {X : TopCat.{u}}
     {S : ShortComplex (TopCat.Sheaf AddCommGrpCat.{u} X)}
     (hS : S.ShortExact)
     [Injective S.X₂]
@@ -422,7 +422,7 @@ theorem sheafH_dimension_shift_of_injective {X : TopCat.{u}}
 
 /-- The sheaf cohomology functor `H^n : Sheaf(X, Ab) ⥤ Ab`, defined as the covariant
     Ext functor `Ext^n(ℤ_X, −)` where `ℤ_X` is the constant sheaf of integers. -/
-noncomputable def sheafCohomologyFunctor (X : TopCat.{u}) (n : ℕ) :
+noncomputable def _root_.Tengoku.LeanPool.sheafCohomologyFunctor (X : TopCat.{u}) (n : ℕ) :
     TopCat.Sheaf AddCommGrpCat.{u} X ⥤ AddCommGrpCat.{u} :=
   extFunctorObj ((constantSheaf (Opens.grothendieckTopology X) AddCommGrpCat).obj
     (AddCommGrpCat.of (ULift.{u} ℤ))) n
@@ -431,7 +431,7 @@ noncomputable def sheafCohomologyFunctor (X : TopCat.{u}) (n : ℕ) :
 @isnad1 id=eq.0h6v.s10.100dca09198b from=translated src=- shape=62e11793 vocab=d9fc28da
 -/
 @[simp]
-theorem sheafCohomologyFunctor_map_apply (X : TopCat.{u}) (n : ℕ)
+theorem _root_.Tengoku.LeanPool.sheafCohomologyFunctor_map_apply (X : TopCat.{u}) (n : ℕ)
     {F G : TopCat.Sheaf AddCommGrpCat.{u} X} (f : F ⟶ G)
     (x : Sheaf.H F n) :
     ConcreteCategory.hom ((sheafCohomologyFunctor X n).map f) x =
@@ -443,7 +443,7 @@ theorem sheafCohomologyFunctor_map_apply (X : TopCat.{u}) (n : ℕ)
     two short exact sequences of sheaves.
 @isnad1 id=eq.4h4v.s13.9c48d721495e from=translated src=- shape=b8dc91e7 vocab=7a683a19
 -/
-theorem sheafH1_cokernel_iso_of_subsingleton_middle_natural {X : TopCat.{u}}
+theorem _root_.Tengoku.LeanPool.sheafH1_cokernel_iso_of_subsingleton_middle_natural {X : TopCat.{u}}
     {S₁ S₂ : ShortComplex (TopCat.Sheaf AddCommGrpCat.{u} X)}
     (hS₁ : S₁.ShortExact) (hS₂ : S₂.ShortExact) (φ : S₁ ⟶ S₂)
     (h₁₂H : Subsingleton (Sheaf.H S₁.X₂ 1))
@@ -487,7 +487,7 @@ theorem sheafH1_cokernel_iso_of_subsingleton_middle_natural {X : TopCat.{u}}
       ((sheafH0EquivSections S₁.X₃).symm s)).symm
 
 /-- The degree-`0` sheaf cohomology functor is naturally isomorphic to taking sections on `⊤`. -/
-noncomputable def sheafH0NatIsoSections {X : TopCat.{u}} :
+noncomputable def _root_.Tengoku.LeanPool.sheafH0NatIsoSections {X : TopCat.{u}} :
     sheafCohomologyFunctor X 0 ≅
       sheafToPresheaf (Opens.grothendieckTopology X) AddCommGrpCat.{u} ⋙
         (CategoryTheory.evaluation (Opens X)ᵒᵖ AddCommGrpCat.{u}).obj (op ⊤) :=
@@ -503,7 +503,7 @@ noncomputable def sheafH0NatIsoSections {X : TopCat.{u}} :
 /-- Higher-degree connecting additive equivalence for a short exact sequence of sheaves:
 if the middle cohomology groups in degrees `n` and `n + 1` are subsingleton, then the
 connecting morphism induces an additive equivalence `H^n(S.X₃) ≃+ H^(n+1)(S.X₁)`. -/
-noncomputable def sheafHExtClassAddEquivOfSubsingletonMiddle {X : TopCat.{u}}
+noncomputable def _root_.Tengoku.LeanPool.sheafHExtClassAddEquivOfSubsingletonMiddle {X : TopCat.{u}}
     {S : ShortComplex (TopCat.Sheaf AddCommGrpCat.{u} X)}
     (hS : S.ShortExact) (n : ℕ)
     (h₂n : Subsingleton (Sheaf.H S.X₂ n))
@@ -523,7 +523,7 @@ noncomputable def sheafHExtClassAddEquivOfSubsingletonMiddle {X : TopCat.{u}}
 /-- Higher-degree connecting isomorphism for a short exact sequence of sheaves: if the
 middle cohomology groups in degrees `n` and `n + 1` are subsingleton, then the connecting
 morphism induces an isomorphism `H^n(S.X₃) ≅ H^(n+1)(S.X₁)`. -/
-noncomputable def sheafHSuccIsoOfSubsingletonMiddle {X : TopCat.{u}}
+noncomputable def _root_.Tengoku.LeanPool.sheafHSuccIsoOfSubsingletonMiddle {X : TopCat.{u}}
     {S : ShortComplex (TopCat.Sheaf AddCommGrpCat.{u} X)}
     (hS : S.ShortExact) (n : ℕ)
     (h₂n : Subsingleton (Sheaf.H S.X₂ n))
@@ -546,7 +546,7 @@ private theorem sheafH_succ_iso_of_subsingleton_middle_hom_apply {X : TopCat.{u}
 short exact sequences of sheaves.
 @isnad1 id=eq.6h5v.s11.e87f56cb1b12 from=translated src=- shape=bd527de9 vocab=76030167
 -/
-theorem sheafH_succ_iso_of_subsingleton_middle_natural {X : TopCat.{u}}
+theorem _root_.Tengoku.LeanPool.sheafH_succ_iso_of_subsingleton_middle_natural {X : TopCat.{u}}
     {S₁ S₂ : ShortComplex (TopCat.Sheaf AddCommGrpCat.{u} X)}
     (hS₁ : S₁.ShortExact) (hS₂ : S₂.ShortExact) (φ : S₁ ⟶ S₂) (n : ℕ)
     (h₁₂n : Subsingleton (Sheaf.H S₁.X₂ n))
@@ -569,3 +569,4 @@ theorem sheafH_succ_iso_of_subsingleton_middle_natural {X : TopCat.{u}}
     sheafCohomologyFunctor_map_apply, sheafCohomologyFunctor_map_apply,
     sheafH_succ_iso_of_subsingleton_middle_hom_apply]
   exact sheafH_comp_extClass_naturality hS₁ hS₂ φ n y
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

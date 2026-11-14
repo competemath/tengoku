@@ -16,16 +16,16 @@ Imported Lean Pool material for `LeanPool.QuasiBorelSpaces.FlatReal`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory
 open MeasureSpace
 
 /-- Reals with the Lebesgue measure and a discrete ωCPO structure. -/
-structure FlatReal where
+structure _root_.Tengoku.LeanPool.FlatReal where
   /-- The underlying real number. -/
   val : ℝ
 
-namespace FlatReal
+namespace Tengoku.LeanPool.FlatReal
 
 instance : Inhabited FlatReal := ⟨⟨0⟩⟩
 
@@ -109,4 +109,5 @@ lemma ωScottContinuous_of
       apply (OrderHomClass.mono c)
       simp only [zero_le]
 
-end FlatReal
+end Tengoku.LeanPool.FlatReal
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

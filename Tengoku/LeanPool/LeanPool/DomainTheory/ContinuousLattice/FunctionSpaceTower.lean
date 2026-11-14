@@ -23,7 +23,7 @@ its own function
 space* `[D_∞ → D_∞]`.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 attribute [local instance] Domain.ContinuousLattice.specializationPreorder
 
 
@@ -701,3 +701,4 @@ end Thm44d
 end LimitMaps
 
 end Domain.ContinuousLattice
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

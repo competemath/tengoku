@@ -33,7 +33,7 @@ through the cut-reversal involution `reverseCutPair`, losing at most one first c
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Erdos548
 
 /-! Reversible prefix-block rotation for finite marked-word counting. -/
@@ -682,3 +682,4 @@ lemma full_word_transfer_count {α : Type*} [DecidableEq α]
 end
 
 end Erdos548
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

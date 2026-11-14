@@ -27,7 +27,7 @@ shortest record `r(qₙ₊₄)` cannot lie in the open cone of two others, becau
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace ThreeGap.SimApprox
 
 open scoped Real
@@ -192,3 +192,4 @@ theorem euclidean_growth_four (α : Fin 2 → ℝ) (q : ℕ → ℤ) (p : ℕ �
     exact hconeW j.rev k.rev hj4 hk4 (fun h => hjk (Fin.rev_injective h))
 
 end ThreeGap.SimApprox
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

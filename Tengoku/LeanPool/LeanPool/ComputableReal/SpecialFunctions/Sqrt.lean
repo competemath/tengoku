@@ -19,8 +19,8 @@ value, so `sqrt` and the instances are `noncomputable` Lean terms.
 -/
 
 @[expose] public section
-
-namespace ComputableℝSeq
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+namespace Tengoku.LeanPool.ComputableℝSeq
 
 open scoped QInterval
 
@@ -723,9 +723,9 @@ noncomputable def sqrt : ComputableℝSeq → ComputableℝSeq :=
 
 end Sqrt
 
-end ComputableℝSeq
+end Tengoku.LeanPool.ComputableℝSeq
 
-namespace IsComputable
+namespace Tengoku.LeanPool.IsComputable
 
 noncomputable instance instComputableSqrt (x : ℝ) [hx : IsComputable x] : IsComputable (x.sqrt) :=
   .lift (Real.sqrt) ComputableℝSeq.Sqrt.sqrt
@@ -737,4 +737,5 @@ noncomputable instance instComputableGoldenRatio : IsComputable Real.goldenRatio
 noncomputable instance instComputableGoldenConj : IsComputable Real.goldenConj :=
   inferInstanceAs (IsComputable ((1 - √5) / 2))
 
-end IsComputable
+end Tengoku.LeanPool.IsComputable
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

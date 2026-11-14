@@ -29,7 +29,7 @@ Mathlib's concavity infrastructure for later proofs.
 - `entropyNat_le_log_card`: `H(p) ≤ log |α|`
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPool.Shannon1948Formalization
 
 noncomputable section
@@ -126,3 +126,4 @@ theorem entropyNat_le_log_card {α : Type} [Fintype α] [Nonempty α]
 end
 
 end LeanPool.Shannon1948Formalization
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -18,7 +18,7 @@ opposite inner product space.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Module
 
 variable {R H : Type _} [Ring R] [AddCommGroup H] [Module R H] {ι : Type _}
@@ -56,7 +56,7 @@ theorem Basis.mulOpposite_repr_apply (b : Basis ι R H) (x : Hᵐᵒᵖ) :
 /--
 @isnad1 id=finitedi.0h2v.s5.0441614bf422 from=translated src=- shape=4e9cfee5 vocab=61c4fd3f
 -/
-theorem mulOpposite_finiteDimensional {R H : Type _} [DivisionRing R] [AddCommGroup H]
+theorem _root_.Tengoku.LeanPool.mulOpposite_finiteDimensional {R H : Type _} [DivisionRing R] [AddCommGroup H]
     [Module R H] [FiniteDimensional R H] : FiniteDimensional R Hᵐᵒᵖ := by
   infer_instance
 
@@ -150,3 +150,4 @@ theorem LinearMap.op_adjoint {𝕜 A : Type*} [RCLike 𝕜] [NormedAddCommGroup 
       simp [← MulOpposite.opLinearEquiv_adjoint]
       simp [MulOpposite.opLinearEquiv_adjoint]
       rfl
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

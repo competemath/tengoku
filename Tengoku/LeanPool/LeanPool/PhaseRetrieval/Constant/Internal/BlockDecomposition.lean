@@ -30,7 +30,7 @@ public import Tengoku
 /-! # BlockDecomposition -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Finset Nat Real MeasureTheory
 
 noncomputable section
@@ -387,3 +387,4 @@ theorem monomial_peak_localization {n ℓ : ℕ} (hℓ : 1 ≤ ℓ)
     push_cast at this ⊢; linarith
 
 end FockSPR
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

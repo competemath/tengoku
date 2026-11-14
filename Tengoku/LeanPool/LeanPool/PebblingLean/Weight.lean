@@ -16,7 +16,7 @@ function: a pebble at distance `d` from a target contributes `2^{-d}`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace PebblingLean
 
 universe u
@@ -206,3 +206,4 @@ theorem one_le_weight_of_canReach [Fintype V] [DecidableEq V] (G : Graph V)
 end Pebbling
 
 end PebblingLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

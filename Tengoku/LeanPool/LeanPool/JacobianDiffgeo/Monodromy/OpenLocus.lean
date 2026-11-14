@@ -27,7 +27,7 @@ Main declarations:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold
 open TopologicalSpace Set
 
@@ -93,3 +93,4 @@ theorem Path.liftOpenLocus_extend {S : Set X} (hS : IsClosed S) {x y : X} (γ : 
 end RS.Monodromy
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

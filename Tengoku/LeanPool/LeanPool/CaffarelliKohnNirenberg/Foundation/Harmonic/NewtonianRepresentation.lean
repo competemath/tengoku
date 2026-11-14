@@ -15,7 +15,7 @@ Part of the Caffarelli–Kohn–Nirenberg partial regularity proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators ENNReal NNReal Topology Interval
 open MeasureTheory MeasureTheory.Measure Set Filter
 
@@ -64,3 +64,4 @@ lemma newtonianKernel_locallyIntegrable :
       exact mul_le_mul_of_nonneg_left hinv (by positivity)
 
 end CKN.Foundation.Heat
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

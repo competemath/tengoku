@@ -17,7 +17,7 @@ polynomials*, Arch. Math. 59 (1992), 239-244; upstreaming candidates for Mathlib
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-- If `P ≡ -Q mod m` with `Q` a unit mod `m` and `P/Q` a rational square, then `-1` is a
 square mod `m`.
 @isnad1 id=issquare.4h3v.s7.eca3ee0da6ea from=translated src=- shape=e27d5080 vocab=bba286ef
@@ -93,9 +93,10 @@ theorem Int.isSquare_abs_of_isSquare_prod_of_pairwise_isCoprime {ι : Type*} (f 
 /-- A product of fixed nonzero base and varying integer exponents collapses to a single power.
 @isnad1 id=eq.1h4v.s5.4db78b8a53b9 from=translated src=- shape=69ad0f56 vocab=4ea23e08
 -/
-theorem prod_zpow_eq_zpow_sum {ι : Type*} {x : ℚ} (hx : x ≠ 0) (s : Finset ι) (e : ι → ℤ) :
+theorem _root_.Tengoku.LeanPool.prod_zpow_eq_zpow_sum {ι : Type*} {x : ℚ} (hx : x ≠ 0) (s : Finset ι) (e : ι → ℤ) :
     ∏ p ∈ s, x ^ e p = x ^ (∑ p ∈ s, e p) := by
   classical
   induction s using Finset.induction with
   | empty => simp
   | insert a t ha ih => rw [Finset.prod_insert ha, Finset.sum_insert ha, ih, zpow_add₀ hx]
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

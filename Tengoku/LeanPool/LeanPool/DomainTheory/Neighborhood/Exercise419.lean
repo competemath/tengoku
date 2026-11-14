@@ -60,7 +60,7 @@ structurally from `T` (Example 1.2), exactly as `Example23.parityMap` and
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood.Exercise419
 
 open Domain.Neighborhood NeighborhoodSystem ApproximableMap ExampleB Example44
@@ -404,3 +404,4 @@ theorem one_def_strBot (σ : Str) : oneMap.toElementMap (strBot σ) = oneDef (st
         zeroMap_strBot, headValC_true, Exercise326.cond_false, oneMap_strBot, headValC_true]
 
 end Domain.Neighborhood.Exercise419
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

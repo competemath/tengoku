@@ -15,7 +15,7 @@ the seven-color construction.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace HadwigerNelsonBounds
 
 open SimpleGraph
@@ -144,3 +144,4 @@ lemma Q_le_third_origin {α β : ℝ} (hα : 0 ≤ α) (hβ : 0 ≤ β)
     mul_nonneg hβ (sub_nonneg.mpr h2)]
 
 end HadwigerNelsonBounds
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

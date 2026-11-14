@@ -23,7 +23,7 @@ mathlib's `integral_gaussian`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory ProbabilityTheory Real
 open scoped ENNReal NNReal
 
@@ -67,3 +67,4 @@ theorem sqGaussian_mgf {t : ℝ} (ht : t < 1 / 2) :
   field_simp
 
 end JL
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

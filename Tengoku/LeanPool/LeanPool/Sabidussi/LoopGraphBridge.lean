@@ -18,7 +18,7 @@ half-edge; the bridge therefore precomposes occurrence sides with `Fin.rev`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Sabidussi
 namespace LoopMultigraph
 
@@ -150,3 +150,4 @@ theorem loop_sabidussi_compatibility (T : G.EulerTour)
 
 end LoopMultigraph
 end Sabidussi
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

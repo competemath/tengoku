@@ -45,7 +45,7 @@ classical, exactly like
 `ext_of_toElementMap`. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem
@@ -368,3 +368,4 @@ theorem toElementMap₂_mono (f : ApproximableMap₂ V₀ V₁ V₂) {x x' : V�
 end ApproximableMap₂
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

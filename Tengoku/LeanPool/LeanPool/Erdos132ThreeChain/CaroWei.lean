@@ -21,7 +21,7 @@ independent set of size `5` once `n ≥ 13`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Erdos132ThreeChain
 
 open Finset
@@ -151,3 +151,4 @@ theorem exists_independent_five (adj : α → α → Prop) [DecidableRel adj]
   exact ⟨S, hST.trans hTV, hScard, fun p hp q hq => hTind p (hST hp) q (hST hq)⟩
 
 end Erdos132ThreeChain
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

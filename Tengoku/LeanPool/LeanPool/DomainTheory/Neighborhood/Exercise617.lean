@@ -77,7 +77,7 @@ established machinery.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem ApproximableMap Domain.Neighborhood.Exercise510
@@ -1215,3 +1215,4 @@ def CisInitial : IsInitial Calg where
   uniq := fun B h => descAlgHom_uniq B h
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

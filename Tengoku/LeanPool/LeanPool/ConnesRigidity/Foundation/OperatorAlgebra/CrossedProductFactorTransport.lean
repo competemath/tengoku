@@ -28,7 +28,7 @@ not required to preserve the addition on either compact group.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Connes
 namespace CrossedProduct
 
@@ -434,3 +434,4 @@ theorem continuousCrossedClosure_mem_iff
 end
 end CrossedProduct
 end Connes
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

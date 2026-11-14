@@ -80,7 +80,7 @@ cone, and the induction is what will discharge it.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set
 
 namespace Schoenflies
@@ -292,3 +292,4 @@ theorem polyAccessible_of_stronglyAccessible_in (h : StronglyAccessible D a)
     (accessCone_subset_cell_in habs hcover hunique hv hs hD hdisj)
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

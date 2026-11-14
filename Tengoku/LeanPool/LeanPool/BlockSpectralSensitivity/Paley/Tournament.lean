@@ -33,7 +33,7 @@ Adapted for Lean Pool from `Timeroot/BS_Lam` at commit
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Finset
 
 section QuadraticCharSums
@@ -44,7 +44,7 @@ variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
 (Section 2 of `bs_lambda.txt`.)
 @isnad1 id=eq.1h2v.s6.7c777ea55ade from=translated src=- shape=5a52c5b9 vocab=a91dd9e3
 -/
-theorem sum_quadraticChar_sub (hF : ringChar F ≠ 2) (a : F) :
+theorem _root_.Tengoku.LeanPool.sum_quadraticChar_sub (hF : ringChar F ≠ 2) (a : F) :
     ∑ z : F, quadraticChar F (z - a) = 0 := by
   rw [← quadraticChar_sum_zero hF]
   exact Fintype.sum_equiv (Equiv.subRight a) _ _ fun _ ↦ rfl
@@ -53,7 +53,7 @@ theorem sum_quadraticChar_sub (hF : ringChar F ≠ 2) (a : F) :
 This is the key identity of the character-sum calculation in Section 2 of `bs_lambda.txt`.
 @isnad1 id=eq.2h3v.s7.e3e4be356b75 from=translated src=- shape=6946bd4a vocab=143b18b9
 -/
-theorem sum_quadraticChar_mul_sub (hF : ringChar F ≠ 2) {a b : F} (hab : a ≠ b) :
+theorem _root_.Tengoku.LeanPool.sum_quadraticChar_mul_sub (hF : ringChar F ≠ 2) {a b : F} (hab : a ≠ b) :
     ∑ z : F, quadraticChar F ((z - a) * (z - b)) = -1 := by
   have hba : b - a ≠ 0 := sub_ne_zero.mpr (Ne.symm hab)
   have hza {z : F} (hz : z ∈ univ.erase a) : z - a ≠ 0 := sub_ne_zero.mpr (mem_erase.mp hz).1
@@ -109,7 +109,7 @@ theorem sum_quadraticChar_mul_sub (hF : ringChar F ≠ 2) {a b : F} (hab : a ≠
 `(k - 1) / 2` of the Paley tournament. (Section 2 of `bs_lambda.txt`.)
 @isnad1 id=eq.1h1v.s7.520bd47d7376 from=translated src=- shape=0e38d635 vocab=7f1c6310
 -/
-theorem two_mul_card_quadraticChar_eq_one (hF : ringChar F ≠ 2) :
+theorem _root_.Tengoku.LeanPool.two_mul_card_quadraticChar_eq_one (hF : ringChar F ≠ 2) :
     2 * (univ.filter fun a : F ↦ quadraticChar F a = 1).card + 1 = Fintype.card F := by
   have hval (a : F) : 1 + quadraticChar F a
       = (if a = 0 then 1 else 0) + 2 * if quadraticChar F a = 1 then (1 : ℤ) else 0 := by
@@ -127,7 +127,7 @@ theorem two_mul_card_quadraticChar_eq_one (hF : ringChar F ≠ 2) :
 character. (Section 2 of `bs_lambda.txt`.)
 @isnad1 id=eq.1h3v.s7.760016b520c4 from=translated src=- shape=f1d07121 vocab=529fe78d
 -/
-theorem quadraticChar_sub_swap (hneg : quadraticChar F (-1) = -1) (a b : F) :
+theorem _root_.Tengoku.LeanPool.quadraticChar_sub_swap (hneg : quadraticChar F (-1) = -1) (a b : F) :
     quadraticChar F (a - b) = -quadraticChar F (b - a) := by
   rw [← neg_sub b a, ← neg_one_mul, map_mul, hneg, neg_one_mul]
 
@@ -183,7 +183,7 @@ This is the common-out-neighbour count of the Paley tournament.
 (Section 2 of `bs_lambda.txt`.)
 @isnad1 id=eq.3h3v.s9.4f2e117a73a3 from=translated src=- shape=c9567c8f vocab=258855ac
 -/
-theorem four_mul_card_quadraticChar_sub_eq_one (hF : ringChar F ≠ 2)
+theorem _root_.Tengoku.LeanPool.four_mul_card_quadraticChar_sub_eq_one (hF : ringChar F ≠ 2)
     (hneg : quadraticChar F (-1) = -1) {a b : F} (hab : a ≠ b) :
     4 * (univ.filter fun z : F ↦
         quadraticChar F (z - a) = 1 ∧ quadraticChar F (z - b) = 1).card + 3
@@ -297,3 +297,4 @@ theorem paley_isDR : IsDRTournamentWith (paleyArc 14011) 7005 3502 :=
 end Paley
 
 end BSLambda
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

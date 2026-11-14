@@ -42,12 +42,12 @@ nuclear cylindrical measures. `minlos_concentration` is a convenience wrapper.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open BigOperators MeasureTheory Complex TopologicalSpace Finsupp
 
 noncomputable section
 
-private lemma real_inner_eq_mul (a b : ℝ) : @inner ℝ ℝ _ a b = b * a :=
+private lemma _root_.Tengoku.LeanPool.real_inner_eq_mul (a b : ℝ) : @inner ℝ ℝ _ a b = b * a :=
   RCLike.inner_apply a b
 
 /-! ## CF constantly 1 implies random variable is 0 a.e. -/
@@ -60,7 +60,7 @@ private lemma real_inner_eq_mul (a b : ℝ) : @inner ℝ ℝ _ a b = b * a :=
     this forces X = 0.
 @isnad1 id=eventual.2h3v.s6.1fe15ba715f6 from=translated src=- shape=f432f1ec vocab=2cc9ee4d
 -/
-lemma ae_eq_zero_of_charfun_eq_one {Ω : Type*} [MeasurableSpace Ω]
+lemma _root_.Tengoku.LeanPool.ae_eq_zero_of_charfun_eq_one {Ω : Type*} [MeasurableSpace Ω]
     {ν : Measure Ω} [IsProbabilityMeasure ν]
     {X : Ω → ℝ} (hX : Measurable X)
     (hcf : ∀ t : ℝ, ∫ ω, exp (I * ↑(t * X ω)) ∂ν = 1) :
@@ -95,7 +95,7 @@ omit [TopologicalSpace E] [IsTopologicalAddGroup E] [ContinuousSMul ℝ E] in
     of a unit-modulus function against a probability measure.
 @isnad1 id=le.1h4v.s7.422d0953a0d8 from=translated src=- shape=55059c14 vocab=6f4fdf5b
 -/
-lemma cf_norm_le_one
+lemma _root_.Tengoku.LeanPool.cf_norm_le_one
     (Φ : E → ℂ) (ν : Measure (E → ℝ)) [IsProbabilityMeasure ν]
     (h_cf_joint : ∀ (n : ℕ) (s : Fin n → ℝ) (x : Fin n → E),
       ∫ ω : E → ℝ, exp (I * ↑(∑ i, s i * ω (x i))) ∂ν =
@@ -113,7 +113,7 @@ lemma cf_norm_le_one
 /-- `1 - Re(z) ≤ 2` when `‖z‖ ≤ 1`.
 @isnad1 id=le.1h1v.s5.c51ca3b5f1c4 from=translated src=- shape=4919c83f vocab=d23eafbc
 -/
-lemma one_sub_re_le_two_of_norm_le (z : ℂ) (hz : ‖z‖ ≤ 1) : 1 - z.re ≤ 2 := by
+lemma _root_.Tengoku.LeanPool.one_sub_re_le_two_of_norm_le (z : ℂ) (hz : ‖z‖ ≤ 1) : 1 - z.re ≤ 2 := by
   have h1 : |z.re| ≤ ‖z‖ := abs_re_le_norm z
   have h2 : -1 ≤ z.re := by linarith [abs_le.mp (h1.trans hz)]
   linarith
@@ -123,7 +123,7 @@ omit [TopologicalSpace E] [IsTopologicalAddGroup E] [ContinuousSMul ℝ E] in
     then `1 - Re(Φ(x)) ≤ (2/δ²) · q(x)²`.
 @isnad1 id=le.3h5v.s8.3e6d3a380c25 from=translated src=- shape=7583d1eb vocab=89fbc091
 -/
-lemma quadratic_bound_outside
+lemma _root_.Tengoku.LeanPool.quadratic_bound_outside
     (Φ : E → ℂ) (h_norm_le : ∀ x : E, ‖Φ x‖ ≤ 1)
     (q : Seminorm ℝ E) (δ : ℝ) (hδ : 0 < δ)
     (x : E) (hx : δ ≤ q x) :
@@ -140,7 +140,7 @@ omit [AddCommGroup E] [Module ℝ E] [TopologicalSpace E]
 /-- CF norm bound gives `1 - Re(Φ(x)) ≥ 0`.
 @isnad1 id=le.1h3v.s5.84c215480a5c from=translated src=- shape=37b53f89 vocab=6e795470
 -/
-lemma one_sub_re_nonneg
+lemma _root_.Tengoku.LeanPool.one_sub_re_nonneg
     (Φ : E → ℂ) (h_norm_le : ∀ x : E, ‖Φ x‖ ≤ 1) (x : E) :
     0 ≤ 1 - (Φ x).re := by
   have h1 : |Complex.re (Φ x)| ≤ ‖Φ x‖ := abs_re_le_norm _
@@ -153,7 +153,7 @@ omit [IsTopologicalAddGroup E] [ContinuousSMul ℝ E] in
     implies `‖1 - Φ(x)‖ < ε`.
 @isnad1 id=ex.4h4v.s8.b08c77434001 from=translated src=- shape=067b50bd vocab=c5cf7600
 -/
-lemma cf_nhds_ball
+lemma _root_.Tengoku.LeanPool.cf_nhds_ball
     (Φ : E → ℂ) (h_cf_cont : Continuous Φ) (h_normalized : Φ 0 = 1)
     (p : ℕ → Seminorm ℝ E) (hp_top : WithSeminorms (fun n => p n))
     (ε : ℝ) (hε : 0 < ε) :
@@ -178,7 +178,7 @@ omit [TopologicalSpace E] [IsTopologicalAddGroup E] [ContinuousSMul ℝ E] in
 /-- From consecutive HS embeddings, `p n ≤ p m` whenever `n ≤ m`.
 @isnad1 id=le.2h4v.s8.2daa2779ebc2 from=translated src=- shape=d9ec05c0 vocab=e4a47d06
 -/
-lemma seminorm_mono_of_le (p : ℕ → Seminorm ℝ E)
+lemma _root_.Tengoku.LeanPool.seminorm_mono_of_le (p : ℕ → Seminorm ℝ E)
     (hp_hs : ∀ n, (p (n + 1)).IsHilbertSchmidtEmbedding (p n))
     {n m : ℕ} (h : n ≤ m) : p n ≤ p m := by
   induction m with
@@ -193,7 +193,7 @@ omit [TopologicalSpace E] [IsTopologicalAddGroup E] [ContinuousSMul ℝ E] in
     (which holds when `m ≥ max s`, given monotonicity).
 @isnad1 id=le.2h4v.s8.bf3b85a24b57 from=translated src=- shape=ee9188bc vocab=d700b7e9
 -/
-lemma finset_sup_le_of_mono (p : ℕ → Seminorm ℝ E)
+lemma _root_.Tengoku.LeanPool.finset_sup_le_of_mono (p : ℕ → Seminorm ℝ E)
     (hp_hs : ∀ n, (p (n + 1)).IsHilbertSchmidtEmbedding (p n))
     (s : Finset ℕ) (m : ℕ) (hm : ∀ n ∈ s, n ≤ m) :
     s.sup p ≤ p m := by
@@ -208,7 +208,7 @@ omit [IsTopologicalAddGroup E] [ContinuousSMul ℝ E] in
     and K ≥ 0 such that `1 - Re(Φ(x)) ≤ ε + K · (p m₀)(x)²` for all x.
 @isnad1 id=ex.6h5v.s9.6e01049c43b1 from=translated src=- shape=a28bd046 vocab=96f18ddc
 -/
-lemma combined_quadratic_bound
+lemma _root_.Tengoku.LeanPool.combined_quadratic_bound
     (Φ : E → ℂ) (ν : Measure (E → ℝ)) [IsProbabilityMeasure ν]
     (h_cf_cont : Continuous Φ) (h_normalized : Φ 0 = 1)
     (h_cf_joint : ∀ (n : ℕ) (s : Fin n → ℝ) (x : Fin n → E),
@@ -249,7 +249,7 @@ omit [TopologicalSpace E] [IsTopologicalAddGroup E] [ContinuousSMul ℝ E] in
     for all `ε > 0`.
 @isnad1 id=eq.2h5v.s8.b3cf3b357735 from=translated src=- shape=a49cc5c9 vocab=bbc4a115
 -/
-lemma cf_kernel_of_ball_bound
+lemma _root_.Tengoku.LeanPool.cf_kernel_of_ball_bound
     (Φ : E → ℂ)
     (q : Seminorm ℝ E) (z : E) (hz : q z = 0)
     (h_dom : ∀ ε > 0, ∃ r > 0, ∀ x, q x < r → ‖1 - Φ x‖ < ε) (t : ℝ) :
@@ -275,7 +275,7 @@ omit [TopologicalSpace E] [IsTopologicalAddGroup E] [ContinuousSMul ℝ E] in
     to hold a.e. even for real (not just rational) coefficients.
 @isnad1 id=eventual.2h6v.s8.9c13595b0db0 from=translated src=- shape=fdf415e9 vocab=caf1a4c0
 -/
-lemma linear_combination_ae
+lemma _root_.Tengoku.LeanPool.linear_combination_ae
     (Φ : E → ℂ) (ν : Measure (E → ℝ)) [IsProbabilityMeasure ν]
     (h_cf_joint : ∀ (n : ℕ) (s : Fin n → ℝ) (x : Fin n → E),
       ∫ ω : E → ℝ, exp (I * ↑(∑ i, s i * ω (x i))) ∂ν =
@@ -326,7 +326,7 @@ omit [TopologicalSpace E] [IsTopologicalAddGroup E] [ContinuousSMul ℝ E] in
     ω in the "good set" (bounded evaluation norm) respects the seminorm.
 @isnad1 id=le.5h7v.s9.5dd7b96543f5 from=translated src=- shape=47e78161 vocab=a815e4e5
 -/
-lemma bound_on_good_set
+lemma _root_.Tengoku.LeanPool.bound_on_good_set
     (p : Seminorm ℝ E) (hp : p.IsHilbertian)
     {k : ℕ} (e : Fin k → E) (he : p.IsOrthonormalSeq e)
     (R : ℝ) (hR : 0 < R)
@@ -358,7 +358,7 @@ omit [TopologicalSpace E] [IsTopologicalAddGroup E] [ContinuousSMul ℝ E] in
     is constantly 1, so ω(z) = 0 a.e. by `ae_eq_zero_of_charfun_eq_one`.
 @isnad1 id=eventual.4h5v.s9.2cfe2bef772d from=translated src=- shape=1a67c18c vocab=c02f2ad4
 -/
-lemma kernel_eval_ae_zero
+lemma _root_.Tengoku.LeanPool.kernel_eval_ae_zero
     (Φ : E → ℂ) (ν : Measure (E → ℝ)) [IsProbabilityMeasure ν]
     (h_cf_joint : ∀ (n : ℕ) (s : Fin n → ℝ) (x : Fin n → E),
       ∫ ω : E → ℝ, exp (I * ↑(∑ i, s i * ω (x i))) ∂ν =
@@ -382,7 +382,7 @@ omit [TopologicalSpace E] [IsTopologicalAddGroup E] [ContinuousSMul ℝ E] in
     is countable, plus `linear_combination_ae` for each individual `c`.
 @isnad1 id=eventual.2h4v.s8.e4daeebe3c82 from=translated src=- shape=2f59ca42 vocab=5c0ca576
 -/
-lemma q_linear_ae_all
+lemma _root_.Tengoku.LeanPool.q_linear_ae_all
     (Φ : E → ℂ) (ν : Measure (E → ℝ)) [IsProbabilityMeasure ν]
     (h_cf_joint : ∀ (n : ℕ) (s : Fin n → ℝ) (x : Fin n → E),
       ∫ ω : E → ℝ, exp (I * ↑(∑ i, s i * ω (x i))) ∂ν =
@@ -414,7 +414,7 @@ omit [TopologicalSpace E] [IsTopologicalAddGroup E] [ContinuousSMul ℝ E] in
 /-- The "bad set" for the concentration bound: the set of ω where some
     ℚ-linear combination of dense vectors violates the seminorm bound.
 -/
-def concentrationBadSet (d : ℕ → E) (p : Seminorm ℝ E) (C : ℝ) :
+def _root_.Tengoku.LeanPool.concentrationBadSet (d : ℕ → E) (p : Seminorm ℝ E) (C : ℝ) :
     Set (E → ℝ) :=
   {ω | ∃ c : ℕ →₀ ℚ,
     ¬ (|ω (c.sum fun i a => (a : ℝ) • d i)| ≤
@@ -424,7 +424,7 @@ omit [TopologicalSpace E] [IsTopologicalAddGroup E] [ContinuousSMul ℝ E] in
 /-- The "restricted bad set" B_N: bad set restricted to ℚ-linear combinations
     with support in `{0, ..., N-1}`.
 -/
-def concentrationBadSetN (d : ℕ → E) (p : Seminorm ℝ E) (C : ℝ) (N : ℕ) :
+def _root_.Tengoku.LeanPool.concentrationBadSetN (d : ℕ → E) (p : Seminorm ℝ E) (C : ℝ) (N : ℕ) :
     Set (E → ℝ) :=
   {ω | ∃ c : ℕ →₀ ℚ, c.support ⊆ Finset.range N ∧
     ¬ (|ω (c.sum fun i a => (a : ℝ) • d i)| ≤
@@ -434,7 +434,7 @@ omit [TopologicalSpace E] [IsTopologicalAddGroup E] [ContinuousSMul ℝ E] in
 /-- B_N ⊆ B_M when N ≤ M.
 @isnad1 id=le.1h6v.s6.9a83c0af5703 from=translated src=- shape=3e1b35df vocab=1c20cb85
 -/
-lemma concentrationBadSetN_mono (d : ℕ → E) (p : Seminorm ℝ E) (C : ℝ)
+lemma _root_.Tengoku.LeanPool.concentrationBadSetN_mono (d : ℕ → E) (p : Seminorm ℝ E) (C : ℝ)
     {N M : ℕ} (h : N ≤ M) :
     concentrationBadSetN d p C N ⊆ concentrationBadSetN d p C M := by
   intro ω hω
@@ -446,7 +446,7 @@ omit [TopologicalSpace E] [IsTopologicalAddGroup E] [ContinuousSMul ℝ E] in
     Every `c : ℕ →₀ ℚ` has finite support contained in some `Finset.range N`.
 @isnad1 id=eq.0h4v.s6.f75a3a83bf48 from=translated src=- shape=18f7746f vocab=a8db9123
 -/
-lemma concentrationBadSet_eq_iUnion (d : ℕ → E) (p : Seminorm ℝ E) (C : ℝ) :
+lemma _root_.Tengoku.LeanPool.concentrationBadSet_eq_iUnion (d : ℕ → E) (p : Seminorm ℝ E) (C : ℝ) :
     concentrationBadSet d p C = ⋃ N, concentrationBadSetN d p C N := by
   ext ω
   simp only [concentrationBadSet, concentrationBadSetN, Set.mem_ofPred_eq, Set.mem_iUnion]
@@ -465,7 +465,7 @@ omit [TopologicalSpace E] [IsTopologicalAddGroup E] [ContinuousSMul ℝ E] in
     Uses continuity of measure from below (`tendsto_measure_iUnion`).
 @isnad1 id=le.1h6v.s7.2c2f967d3580 from=translated src=- shape=d75429cd vocab=28db274b
 -/
-lemma concentrationBadSet_measure_le (d : ℕ → E) (p : Seminorm ℝ E) (C : ℝ)
+lemma _root_.Tengoku.LeanPool.concentrationBadSet_measure_le (d : ℕ → E) (p : Seminorm ℝ E) (C : ℝ)
     (ν : Measure (E → ℝ)) (δ : ENNReal)
     (h_bound : ∀ N, ν (concentrationBadSetN d p C N) ≤ δ) :
     ν (concentrationBadSet d p C) ≤ δ := by
@@ -527,7 +527,7 @@ omit [TopologicalSpace F] [IsTopologicalAddGroup F] [ContinuousSMul ℝ F] in
     element (where p vanishes).
 @isnad1 id=ex.1h4v.s9.11688e8d4673 from=translated src=- shape=d573b3e2 vocab=ab68b0c6
 -/
-lemma gram_schmidt_seminorm_aux (p : Seminorm ℝ F) (hp : p.IsHilbertian)
+lemma _root_.Tengoku.LeanPool.gram_schmidt_seminorm_aux (p : Seminorm ℝ F) (hp : p.IsHilbertian)
     (N : ℕ) (d : Fin N → F) :
     ∃ (k : ℕ) (e : Fin k → F),
       p.IsOrthonormalSeq e ∧
@@ -697,7 +697,7 @@ omit [TopologicalSpace E] [IsTopologicalAddGroup E] [ContinuousSMul ℝ E] in
 /--
 @isnad1 id=ex.1h4v.s9.11688e8d4673 from=translated src=- shape=d573b3e2 vocab=ab68b0c6
 -/
-lemma gram_schmidt_seminorm (p : Seminorm ℝ E) (hp : p.IsHilbertian)
+lemma _root_.Tengoku.LeanPool.gram_schmidt_seminorm (p : Seminorm ℝ E) (hp : p.IsHilbertian)
     (N : ℕ) (d : Fin N → E) :
     ∃ (k : ℕ) (e : Fin k → E),
       p.IsOrthonormalSeq e ∧
@@ -717,7 +717,7 @@ omit [TopologicalSpace E] [IsTopologicalAddGroup E] [ContinuousSMul ℝ E] in
     So B_N ⊆ {Σ ω(eⱼ)² > R²} ∪ (null set).
 @isnad1 id=le.7h9v.s10.ec1f13d72a40 from=translated src=- shape=9d9a7ef8 vocab=ff97d9cc
 -/
-lemma concentrationBadSetN_measure_bound
+lemma _root_.Tengoku.LeanPool.concentrationBadSetN_measure_bound
     (Φ : E → ℂ) (ν : Measure (E → ℝ)) [IsProbabilityMeasure ν]
     (h_cf_joint : ∀ (n : ℕ) (s : Fin n → ℝ) (x : Fin n → E),
       ∫ ω : E → ℝ, exp (I * ↑(∑ i, s i * ω (x i))) ∂ν =
@@ -828,3 +828,4 @@ the conclusion is: for any `ε > 0`, there exist `m, C : ℕ` such that
 /-! ## Main theorem -/
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

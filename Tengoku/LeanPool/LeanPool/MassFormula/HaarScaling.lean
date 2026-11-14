@@ -59,7 +59,7 @@ Modeling decisions, local to this file:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open ValuativeRel MeasureTheory Module
 open scoped ENNReal Pointwise
 
@@ -567,3 +567,4 @@ theorem measure_ball_eq_pow_mul {n : ℕ} [MeasurableSpace (Fin n → K)] [Borel
   rw [← h1, h2, pow_add, mul_assoc]
 
 end MassFormula
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

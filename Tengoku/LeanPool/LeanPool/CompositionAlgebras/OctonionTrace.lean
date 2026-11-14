@@ -52,8 +52,8 @@ octonionic matrices is built over.
 -/
 
 @[expose] public section
-
-namespace Octonion
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+namespace Tengoku.LeanPool.Octonion
 
 /-- The `Mul` instance is the explicit `Octonion.mul`.  Bridges the `*`-notation
 statements below to the `mul`-form ones used throughout `Octonions.lean`.
@@ -110,4 +110,5 @@ read at coordinate `0`.
 theorem re_mul_conj_self (x : Octonion) : re (mul x (conj x)) = normSq x := by
   rw [mul_conj]; simp only [re, one, HSMul.hSMul, SMul.smul]; norm_num
 
-end Octonion
+end Tengoku.LeanPool.Octonion
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

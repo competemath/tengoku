@@ -53,7 +53,7 @@ Pinned Mathlib API: `Complex.exp`, `Complex.exp_nat_mul`, `Complex.exp_eq_one_if
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace QuantumAlg
 
 open PureState
@@ -284,3 +284,4 @@ theorem QuantumFourierTransform.main (n : ℕ) (x : Fin (2 ^ n)) :
 end
 
 end QuantumAlg
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

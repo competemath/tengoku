@@ -15,10 +15,10 @@ Imported Lean Pool material for `LeanPool.QuasiBorelSpaces.Basic`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped MeasureTheory
 
-namespace QuasiBorelSpace
+namespace Tengoku.LeanPool.QuasiBorelSpace
 
 variable
   {A : Type*} {_ : QuasiBorelSpace A}
@@ -334,4 +334,5 @@ lemma measurableSet_toMeasurableSpace
     ↔ ∀{φ : ℝ → A}, IsHom φ → MeasurableSet (φ ⁻¹' X) := by
   rfl
 
-end QuasiBorelSpace
+end Tengoku.LeanPool.QuasiBorelSpace
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

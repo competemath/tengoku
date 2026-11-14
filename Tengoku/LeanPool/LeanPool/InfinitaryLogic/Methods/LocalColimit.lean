@@ -40,7 +40,7 @@ re-base over `localColim`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 /-- A sequential colimit of countable types is countable: the colimit is a quotient of the
@@ -276,3 +276,4 @@ theorem ΓlocalColim_countable : (ΓlocalColim s₀).Countable :=
 The wrappers the EM rebase will consume, so its proofs never touch raw `mapLanguage` equalities. -/
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

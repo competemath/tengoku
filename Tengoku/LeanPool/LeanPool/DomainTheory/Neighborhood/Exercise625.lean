@@ -65,7 +65,7 @@ choice-free.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem ApproximableMap Subsystem
@@ -235,3 +235,4 @@ theorem inj_sSup (P : ProjectionPair D E) {S : Set D.Element} (hS : D.Bounded S)
 end Subsystem.ProjectionPair
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -17,7 +17,7 @@ homological equation.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.PoincareThreeBody
 
 /--
@@ -146,3 +146,4 @@ theorem deriv_hamiltonian_mass_zero {s : PhaseSpace} (hs : (0, s) ∈ collisionF
   (hasDerivAt_hamiltonian_mass_zero hs).deriv
 
 end LeanPool.PoincareThreeBody
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

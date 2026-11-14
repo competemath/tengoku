@@ -38,7 +38,7 @@ but that weaker condition does not imply Hermitian symmetry.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Complex BigOperators
 open scoped Kronecker
 open scoped ComplexOrder
@@ -53,7 +53,7 @@ open scoped ComplexOrder
     The Hermitian condition ensures the quadratic form is real, so Re ≥ 0
     is equivalent to the full condition ≥ 0.
 -/
-structure IsPositiveDefinite {α : Type*} [AddGroup α] (φ : α → ℂ) : Prop where
+structure _root_.Tengoku.LeanPool.IsPositiveDefinite {α : Type*} [AddGroup α] (φ : α → ℂ) : Prop where
   hermitian : ∀ x : α, φ (-x) = starRingEnd ℂ (φ x)
   nonneg : ∀ (m : ℕ) (x : Fin m → α) (c : Fin m → ℂ),
     0 ≤ (∑ i, ∑ j, (starRingEnd ℂ) (c i) * c j * φ (x i - x j)).re
@@ -62,7 +62,7 @@ structure IsPositiveDefinite {α : Type*} [AddGroup α] (φ : α → ℂ) : Prop
     T : E →ₗ[ℝ] H is linear, then ψ ∘ T is positive definite on E.
 @isnad1 id=ispositi.1h4v.s6.82f7e491e5b5 from=translated src=- shape=6adf00b0 vocab=246ea1ce
 -/
-lemma isPositiveDefinite_precomp_linear
+lemma _root_.Tengoku.LeanPool.isPositiveDefinite_precomp_linear
     {E H : Type*} [AddCommGroup E] [AddCommGroup H]
     [Module ℝ E] [Module ℝ H]
     (ψ : H → ℂ) (hPD : IsPositiveDefinite ψ) (T : E →ₗ[ℝ] H) :
@@ -70,7 +70,7 @@ lemma isPositiveDefinite_precomp_linear
   hermitian x := by simp [map_neg, hPD.hermitian]
   nonneg m x c := by simpa using hPD.nonneg m (fun i => T (x i)) c
 
-namespace IsPositiveDefinite
+namespace Tengoku.LeanPool.IsPositiveDefinite
 
 variable {α : Type*} [AddGroup α] {φ : α → ℂ}
 
@@ -198,4 +198,5 @@ lemma mul (hpd : IsPositiveDefinite φ) {ψ : α → ℂ} (hψ : IsPositiveDefin
       simp [A, B, e, dotProduct, Matrix.mulVec,
         Finset.mul_sum, mul_assoc, mul_left_comm, mul_comm]
 
-end IsPositiveDefinite
+end Tengoku.LeanPool.IsPositiveDefinite
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

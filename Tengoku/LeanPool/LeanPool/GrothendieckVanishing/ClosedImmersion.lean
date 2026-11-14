@@ -36,14 +36,14 @@ Main results:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open CategoryTheory TopologicalSpace Opposite Limits
 
 universe u
 
 noncomputable section
 
-instance sheafAbelianAddCommGrp (X : TopCat.{u}) :
+instance _root_.Tengoku.LeanPool.sheafAbelianAddCommGrp (X : TopCat.{u}) :
     Abelian (TopCat.Sheaf AddCommGrpCat.{u} X) :=
   inferInstanceAs (Abelian (CategoryTheory.Sheaf _ _))
 
@@ -239,7 +239,7 @@ end TopCat
     if `x ∉ s`, every element of `stalk(i_*(G), x)` is zero.
 @isnad1 id=eq.3h5v.s10.c99cf0d4bb37 from=translated src=- shape=bb6ab71f vocab=c78d059f
 -/
-theorem pushforward_closedIncl_stalk_eq_zero
+theorem _root_.Tengoku.LeanPool.pushforward_closedIncl_stalk_eq_zero
     {X : TopCat.{u}} {s : Set X} (hs : IsClosed s)
     {G : TopCat.Presheaf AddCommGrpCat.{u} (TopCat.of s)} (hG : G.IsSheaf)
     {x : X} (hx : x ∉ s)
@@ -268,7 +268,7 @@ theorem pushforward_closedIncl_stalk_eq_zero
     Proof: stalkwise surjectivity (identity on the closed set, zero outside).
 @isnad1 id=epi.4h5v.s13.353f7878e1eb from=translated src=- shape=00b3d362 vocab=913d00fa
 -/
-theorem epi_pushforward_map_closedIncl_of_locallySurjective
+theorem _root_.Tengoku.LeanPool.epi_pushforward_map_closedIncl_of_locallySurjective
     {X : TopCat.{u}} {s : Set X} (hs : IsClosed s)
     {F G : TopCat.Presheaf AddCommGrpCat.{u} (TopCat.of s)}
     (hF : F.IsSheaf) (hG : G.IsSheaf)
@@ -351,10 +351,11 @@ end TopCat
 /-- The short exact sequence `0 → ker(η) → F → i_*(i^*F) → 0` from a closed immersion,
     where `η` is the pullback-pushforward adjunction unit and `i : Z ↪ X` is the
     inclusion of a closed subset. -/
-noncomputable def closedImmersionSES
+noncomputable def _root_.Tengoku.LeanPool.closedImmersionSES
     {X : TopCat.{u}} (Z : Set X) (hZ : IsClosed Z)
     (F : TopCat.Sheaf AddCommGrpCat.{u} X) :
     ShortComplex (TopCat.Sheaf AddCommGrpCat.{u} X) :=
   let closedIncl := TopCat.closedIncl hZ
   let η := (TopCat.Sheaf.pullbackPushforwardAdjunction AddCommGrpCat.{u} closedIncl).unit.app F
   ShortComplex.mk (kernel.ι η) η (kernel.condition η)
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

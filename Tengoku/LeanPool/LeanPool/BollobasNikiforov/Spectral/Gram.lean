@@ -26,7 +26,7 @@ with `BollobasNikiforov.MS.Basic` (pulled in by `Weighted`), and also overlaps W
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace BollobasNikiforov
@@ -632,3 +632,4 @@ lemma inner_adjMatrix_hadamard_posPart_self [Fintype V] (X : Matrix V V ℝ) :
 end BollobasNikiforov
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

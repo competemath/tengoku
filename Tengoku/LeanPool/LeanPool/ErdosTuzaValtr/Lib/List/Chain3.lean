@@ -14,7 +14,7 @@ Imported Lean Pool material for `LeanPool.ErdosTuzaValtr.Lib.List.Chain3`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 variable {α : Type _} {R : α → α → α → Prop}
 
 namespace List
@@ -202,3 +202,4 @@ theorem chain3'_mirror {l : List α} :
         exact and_comm
 
 end List
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

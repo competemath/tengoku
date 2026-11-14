@@ -29,8 +29,8 @@ exactly under the congruence hypothesis. The general form
 -/
 
 @[expose] public section
-
-namespace QuadraticOrder
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+namespace Tengoku.LeanPool.QuadraticOrder
 
 variable {d : ℤ}
 
@@ -77,4 +77,5 @@ lemma tau_sub_tauConj_sq_of_valid_disc
     Int.mul_ediv_cancel' h4dvd
   linarith
 
-end QuadraticOrder
+end Tengoku.LeanPool.QuadraticOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

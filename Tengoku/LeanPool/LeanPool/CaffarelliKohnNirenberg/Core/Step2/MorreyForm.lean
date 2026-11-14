@@ -15,7 +15,7 @@ Part of the Caffarelli–Kohn–Nirenberg partial regularity proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Set
 open scoped ENNReal NNReal Topology
 open CKN.Foundation.Parabolic
@@ -165,3 +165,4 @@ private theorem decay_bounds {Ω : Set Vec3} {I : Set ℝ} {q : ℝ}
     _ = _ := by rw [gbar_real (by linarith only [hM]) hR]
 /-! The Step 2 decay certificate is converted into the three Morrey bounds. -/
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

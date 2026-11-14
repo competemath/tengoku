@@ -28,7 +28,7 @@ Adapted for Lean Pool from `Timeroot/BS_Lam` at commit
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-! ## A missing `Set` lemma
 
 Mathlib has the `iSupIndep` analogue (`iSupIndep.injOn`) but not the `PairwiseDisjoint` one;
@@ -188,3 +188,4 @@ lemma card_le_bs_of_blocks {ι : Type*} {f : Input V → Bool} {x : Input V} {B 
   exact le_bs_of_family (isBlockFamily_image hsens hdisj)
 
 end BSLambda
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

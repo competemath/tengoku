@@ -48,7 +48,7 @@ The 1D result follows from Fourier inversion:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Complex Real
 open scoped BigOperators FourierTransform
 
@@ -92,7 +92,7 @@ private lemma measurePreserving_tripleReorder :
     then we can integrate in any order.
 @isnad1 id=eq.1h2v.s8.f80de72f8cee from=translated src=- shape=e7cdddc3 vocab=e954c0d2
 -/
-lemma fubini_triple_reorder {F : α → α → α → ℂ}
+lemma _root_.Tengoku.LeanPool.fubini_triple_reorder {F : α → α → α → ℂ}
     (hF : Integrable (fun p : α × α × α => F p.1 p.2.1 p.2.2)
       (volume.prod (volume.prod volume))) :
     ∫ x, ∫ y, ∫ k, F x y k ∂volume ∂volume ∂volume =
@@ -135,7 +135,7 @@ lemma fubini_triple_reorder {F : α → α → α → ℂ}
     - integrableOn_exp_mul_Ioi for exp(-μx) on (0, ∞) (since -μ < 0)
 @isnad1 id=integrab.1h1v.s5.ee4765f45657 from=translated src=- shape=702dd196 vocab=c5397d2b
 -/
-lemma integrable_exponential_decay (μ : ℝ) (hμ : 0 < μ) :
+lemma _root_.Tengoku.LeanPool.integrable_exponential_decay (μ : ℝ) (hμ : 0 < μ) :
     Integrable (fun x : ℝ => Real.exp (-μ * |x|)) volume := by
   rw [← integrableOn_univ, ← Set.Iic_union_Ioi (a := (0 : ℝ))]
   apply IntegrableOn.union
@@ -160,7 +160,7 @@ lemma integrable_exponential_decay (μ : ℝ) (hμ : 0 < μ) :
     which is integrable by integrable_exponential_decay.
 @isnad1 id=integrab.1h2v.s6.abf00bb5835e from=translated src=- shape=b2335685 vocab=fcd87b22
 -/
-lemma integrable_exponential_decay_fourier (μ : ℝ) (hμ : 0 < μ) (k : ℝ) :
+lemma _root_.Tengoku.LeanPool.integrable_exponential_decay_fourier (μ : ℝ) (hμ : 0 < μ) (k : ℝ) :
     Integrable (fun x : ℝ => Complex.exp (Complex.I * k * x) * Real.exp (-μ * |x|)) volume := by
   have hint : Integrable (fun x : ℝ => (Real.exp (-μ * |x|) : ℂ)) volume :=
     Integrable.ofReal (integrable_exponential_decay μ hμ)
@@ -184,7 +184,7 @@ derive the Lorentzian result.
 /-- The coefficient ik + α is nonzero when α ≠ 0 (since Re(ik + α) = α ≠ 0).
 @isnad1 id=ne.1h2v.s5.6d44df8417bf from=translated src=- shape=bfba123e vocab=a5dea1ce
 -/
-lemma ik_add_ne_zero (α : ℝ) (hα : α ≠ 0) (k : ℝ) : Complex.I * k + (α : ℂ) ≠ 0 := by
+lemma _root_.Tengoku.LeanPool.ik_add_ne_zero (α : ℝ) (hα : α ≠ 0) (k : ℝ) : Complex.I * k + (α : ℂ) ≠ 0 := by
   intro h
   have hre : (Complex.I * k + (α : ℂ)).re = 0 := by simp [h]
   simp only [Complex.add_re, Complex.mul_re, Complex.I_re, Complex.ofReal_re,
@@ -195,7 +195,7 @@ lemma ik_add_ne_zero (α : ℝ) (hα : α ≠ 0) (k : ℝ) : Complex.I * k + (α
     Proof: ‖e^{cx}‖ = e^{Re(c)·x} → 0 since Re(c) < 0 and x → +∞.
 @isnad1 id=tendsto.1h1v.s5.d2bc3f492946 from=translated src=- shape=6673219a vocab=69e4de97
 -/
-theorem tendsto_cexp_atTop_zero {c : ℂ} (hc : c.re < 0) :
+theorem _root_.Tengoku.LeanPool.tendsto_cexp_atTop_zero {c : ℂ} (hc : c.re < 0) :
     Filter.Tendsto (fun x : ℝ => Complex.exp (c * x)) Filter.atTop (nhds 0) := by
   rw [Complex.tendsto_exp_nhds_zero_iff]
   have h : ∀ x : ℝ, (c * x).re = c.re * x := by
@@ -210,7 +210,7 @@ theorem tendsto_cexp_atTop_zero {c : ℂ} (hc : c.re < 0) :
     Proof: ‖e^{cx}‖ = e^{Re(c)·x} → 0 since Re(c) > 0 and x → -∞.
 @isnad1 id=tendsto.1h1v.s5.82feebe728e3 from=translated src=- shape=6673219a vocab=77483209
 -/
-theorem tendsto_cexp_atBot_zero {c : ℂ} (hc : c.re > 0) :
+theorem _root_.Tengoku.LeanPool.tendsto_cexp_atBot_zero {c : ℂ} (hc : c.re > 0) :
     Filter.Tendsto (fun x : ℝ => Complex.exp (c * x)) Filter.atBot (nhds 0) := by
   rw [Complex.tendsto_exp_nhds_zero_iff]
   have h : ∀ x : ℝ, (c * x).re = c.re * x := by
@@ -222,7 +222,7 @@ theorem tendsto_cexp_atBot_zero {c : ℂ} (hc : c.re > 0) :
     This follows from the exponential decay since Re(ik - μ) = -μ < 0.
 @isnad1 id=integrab.1h2v.s6.dc5ca597f64a from=translated src=- shape=f7b7d2ea vocab=339173d5
 -/
-theorem integrableOn_exp_decay_Ioi (μ : ℝ) (hμ : 0 < μ) (k : ℝ) :
+theorem _root_.Tengoku.LeanPool.integrableOn_exp_decay_Ioi (μ : ℝ) (hμ : 0 < μ) (k : ℝ) :
     MeasureTheory.IntegrableOn
       (fun x : ℝ => Complex.exp ((Complex.I * k - μ) * x))
       (Set.Ioi 0) volume := by
@@ -234,7 +234,7 @@ theorem integrableOn_exp_decay_Ioi (μ : ℝ) (hμ : 0 < μ) (k : ℝ) :
     Proved by change of variables from exp_neg_integrableOn_Ioi.
 @isnad1 id=integrab.1h2v.s5.41e72c2b63c6 from=translated src=- shape=a0500236 vocab=4a18885c
 -/
-theorem exp_pos_integrableOn_Iio (a : ℝ) {b : ℝ} (h : 0 < b) :
+theorem _root_.Tengoku.LeanPool.exp_pos_integrableOn_Iio (a : ℝ) {b : ℝ} (h : 0 < b) :
     MeasureTheory.IntegrableOn (fun x => Real.exp (b * x)) (Set.Iio a) MeasureTheory.volume := by
   have h_neg : MeasureTheory.IntegrableOn (fun x => Real.exp (-b * x)) (Set.Ioi (-a))
     MeasureTheory.volume :=
@@ -250,7 +250,7 @@ theorem exp_pos_integrableOn_Iio (a : ℝ) {b : ℝ} (h : 0 < b) :
     Follows from Iio version since measure of a point is 0.
 @isnad1 id=integrab.1h2v.s5.1295fca3960c from=translated src=- shape=a0500236 vocab=4e873525
 -/
-theorem exp_pos_integrableOn_Iic (a : ℝ) {b : ℝ} (h : 0 < b) :
+theorem _root_.Tengoku.LeanPool.exp_pos_integrableOn_Iic (a : ℝ) {b : ℝ} (h : 0 < b) :
     MeasureTheory.IntegrableOn (fun x => Real.exp (b * x)) (Set.Iic a) MeasureTheory.volume :=
   integrableOn_exp_mul_Iic h a
 
@@ -258,7 +258,7 @@ theorem exp_pos_integrableOn_Iic (a : ℝ) {b : ℝ} (h : 0 < b) :
     This follows from the exponential decay since Re(ik + μ) = μ > 0.
 @isnad1 id=integrab.1h2v.s6.08bcb9da8781 from=translated src=- shape=f7b7d2ea vocab=af9d8ea8
 -/
-theorem integrableOn_exp_growth_Iic (μ : ℝ) (hμ : 0 < μ) (k : ℝ) :
+theorem _root_.Tengoku.LeanPool.integrableOn_exp_growth_Iic (μ : ℝ) (hμ : 0 < μ) (k : ℝ) :
     MeasureTheory.IntegrableOn
       (fun x : ℝ => Complex.exp ((Complex.I * k + μ) * x))
       (Set.Iic 0) volume := by
@@ -269,7 +269,7 @@ theorem integrableOn_exp_growth_Iic (μ : ℝ) (hμ : 0 < μ) (k : ℝ) :
 /-- ik - μ is nonzero when μ ≠ 0 (since Re(ik - μ) = -μ ≠ 0).
 @isnad1 id=ne.1h2v.s5.a62160ae5880 from=translated src=- shape=bfba123e vocab=d7dc4a51
 -/
-lemma ik_sub_ne_zero (μ : ℝ) (hμ : μ ≠ 0) (k : ℝ) : Complex.I * k - (μ : ℂ) ≠ 0 := by
+lemma _root_.Tengoku.LeanPool.ik_sub_ne_zero (μ : ℝ) (hμ : μ ≠ 0) (k : ℝ) : Complex.I * k - (μ : ℂ) ≠ 0 := by
   intro h
   have hre : (Complex.I * k - (μ : ℂ)).re = 0 := by simp [h]
   simp only [Complex.sub_re, Complex.mul_re, Complex.I_re, Complex.ofReal_re,
@@ -285,7 +285,7 @@ lemma ik_sub_ne_zero (μ : ℝ) (hμ : μ ≠ 0) (k : ℝ) : Complex.I * k - (μ
     Result: 0 - 1/(ik-μ) = -1/(ik-μ) = 1/(μ-ik).
 @isnad1 id=eq.1h2v.s6.d31be5c5e631 from=translated src=- shape=4af17ae1 vocab=ee09645a
 -/
-theorem fourier_exp_decay_positive_halfline (μ : ℝ) (hμ : 0 < μ) (k : ℝ) :
+theorem _root_.Tengoku.LeanPool.fourier_exp_decay_positive_halfline (μ : ℝ) (hμ : 0 < μ) (k : ℝ) :
     ∫ x : ℝ in Set.Ioi 0, Complex.exp (Complex.I * k * x) * Real.exp (-μ * x) =
       1 / (μ - Complex.I * k) := by
   -- Combine exponentials: e^{ikx} * e^{-μx} = e^{(ik-μ)x}
@@ -338,7 +338,7 @@ theorem fourier_exp_decay_positive_halfline (μ : ℝ) (hμ : 0 < μ) (k : ℝ) 
     At 0: e^0/(ik+μ) = 1/(ik+μ) = 1/(μ+ik).
 @isnad1 id=eq.1h2v.s6.dfe5c139e1cb from=translated src=- shape=c63ae8cc vocab=0d46aa8a
 -/
-theorem fourier_exp_decay_negative_halfline (μ : ℝ) (hμ : 0 < μ) (k : ℝ) :
+theorem _root_.Tengoku.LeanPool.fourier_exp_decay_negative_halfline (μ : ℝ) (hμ : 0 < μ) (k : ℝ) :
     ∫ x : ℝ in Set.Iic 0, Complex.exp (Complex.I * k * x) * Real.exp (μ * x) =
       1 / (μ + Complex.I * k) := by
   -- Combine exponentials: e^{ikx} * e^{μx} = e^{(ik+μ)x}
@@ -387,7 +387,7 @@ theorem fourier_exp_decay_negative_halfline (μ : ℝ) (hμ : 0 < μ) (k : ℝ) 
                                    = 2μ/(k² + μ²)
 @isnad1 id=eq.1h2v.s7.6928e927d728 from=translated src=- shape=c9c9b44f vocab=1e46956e
 -/
-lemma fourier_exponential_decay_split (μ : ℝ) (hμ : 0 < μ) (k : ℝ) :
+lemma _root_.Tengoku.LeanPool.fourier_exponential_decay_split (μ : ℝ) (hμ : 0 < μ) (k : ℝ) :
     (∫ x : ℝ in Set.Iic 0, Complex.exp (Complex.I * k * x) * Real.exp (μ * x)) +
     (∫ x : ℝ in Set.Ioi 0, Complex.exp (Complex.I * k * x) * Real.exp (-μ * x)) =
       2 * μ / (k^2 + μ^2) := by
@@ -430,7 +430,7 @@ This is the "forward" direction of the Fourier pair.
     This follows from splitting at x = 0 (see fourier_exponential_decay_split).
 @isnad1 id=eq.1h2v.s7.9b1d2479d10d from=translated src=- shape=81d1ab7b vocab=6f18762d
 -/
-lemma fourier_exponential_decay' (μ : ℝ) (hμ : 0 < μ) (k : ℝ) :
+lemma _root_.Tengoku.LeanPool.fourier_exponential_decay' (μ : ℝ) (hμ : 0 < μ) (k : ℝ) :
     ∫ x : ℝ, Complex.exp (Complex.I * k * x) * Real.exp (-μ * |x|) =
       2 * μ / (k^2 + μ^2) := by
   -- On Iic: |x| = -x, so e^{-μ|x|} = e^{μx}
@@ -469,7 +469,7 @@ lemma fourier_exponential_decay' (μ : ℝ) (hμ : 0 < μ) (k : ℝ) :
 /-- Variant with negative frequency convention e^{-ikx}.
 @isnad1 id=eq.1h2v.s7.426b166bd3fa from=translated src=- shape=fb8ac48c vocab=6f18762d
 -/
-lemma fourier_exponential_decay (μ : ℝ) (hμ : 0 < μ) (k : ℝ) :
+lemma _root_.Tengoku.LeanPool.fourier_exponential_decay (μ : ℝ) (hμ : 0 < μ) (k : ℝ) :
     ∫ x : ℝ, Complex.exp (-Complex.I * k * x) * Real.exp (-μ * |x|) =
       2 * μ / (k^2 + μ^2) := by
   -- e^{-ikx} = e^{i(-k)x}
@@ -505,12 +505,12 @@ If f is integrable, FT(f) is integrable, and f is continuous at x, then
 -/
 
 /-- The exponential decay function e^{-μ|x|} as a function ℝ → ℂ. -/
-noncomputable def expDecayFun (μ : ℝ) : ℝ → ℂ := fun x => Real.exp (-μ * |x|)
+noncomputable def _root_.Tengoku.LeanPool.expDecayFun (μ : ℝ) : ℝ → ℂ := fun x => Real.exp (-μ * |x|)
 
 /-- The exponential decay function is continuous.
 @isnad1 id=continuo.0h1v.s4.b8cbfb1cd199 from=translated src=- shape=9bb0b988 vocab=84dff115
 -/
-lemma continuous_expDecayFun (μ : ℝ) : Continuous (expDecayFun μ) := by
+lemma _root_.Tengoku.LeanPool.continuous_expDecayFun (μ : ℝ) : Continuous (expDecayFun μ) := by
   unfold expDecayFun
   refine Continuous.comp continuous_ofReal ?_
   refine Real.continuous_exp.comp ?_
@@ -519,7 +519,7 @@ lemma continuous_expDecayFun (μ : ℝ) : Continuous (expDecayFun μ) := by
 /-- The exponential decay function is integrable over ℝ.
 @isnad1 id=integrab.1h1v.s5.7c12c7bda654 from=translated src=- shape=b07cb5a9 vocab=c021ff31
 -/
-lemma integrable_expDecayFun (μ : ℝ) (hμ : 0 < μ) : Integrable (expDecayFun μ) volume := by
+lemma _root_.Tengoku.LeanPool.integrable_expDecayFun (μ : ℝ) (hμ : 0 < μ) : Integrable (expDecayFun μ) volume := by
   unfold expDecayFun
   exact Integrable.ofReal (integrable_exponential_decay μ hμ)
 
@@ -528,7 +528,7 @@ lemma integrable_expDecayFun (μ : ℝ) (hμ : 0 < μ) : Integrable (expDecayFun
     This follows from fourier_exponential_decay' via the substitution k = -2πξ.
 @isnad1 id=eq.1h2v.s7.bbe78fdf8619 from=translated src=- shape=115217f4 vocab=4b6cc042
 -/
-lemma fourierIntegral_expDecayFun_eq (μ : ℝ) (hμ : 0 < μ) (ξ : ℝ) :
+lemma _root_.Tengoku.LeanPool.fourierIntegral_expDecayFun_eq (μ : ℝ) (hμ : 0 < μ) (ξ : ℝ) :
     𝓕 (expDecayFun μ) ξ = 2 * μ / (4 * π^2 * ξ^2 + μ^2) := by
   rw [Real.fourier_eq']
   unfold expDecayFun
@@ -558,7 +558,7 @@ lemma fourierIntegral_expDecayFun_eq (μ : ℝ) (hμ : 0 < μ) (ξ : ℝ) :
 /-- The Mathlib Fourier transform of expDecayFun is integrable.
 @isnad1 id=integrab.1h1v.s6.8f71a78420af from=translated src=- shape=83660deb vocab=dbda4e18
 -/
-lemma integrable_fourierIntegral_expDecayFun (μ : ℝ) (hμ : 0 < μ) :
+lemma _root_.Tengoku.LeanPool.integrable_fourierIntegral_expDecayFun (μ : ℝ) (hμ : 0 < μ) :
     Integrable (𝓕 (expDecayFun μ)) volume := by
   have h_eq : 𝓕 (expDecayFun μ) =
       fun ξ : ℝ => (2 * μ / (4 * π^2 * ξ^2 + μ^2) : ℂ) := by
@@ -598,7 +598,7 @@ lemma integrable_fourierIntegral_expDecayFun (μ : ℝ) (hμ : 0 < μ) :
     combined with the explicit formula for its Fourier transform and a change of variables.
 @isnad1 id=eq.1h2v.s7.3d1eb508f297 from=translated src=- shape=2560db05 vocab=6b210817
 -/
-theorem fourier_inversion_exp_decay (μ : ℝ) (hμ : 0 < μ) (x : ℝ) :
+theorem _root_.Tengoku.LeanPool.fourier_inversion_exp_decay (μ : ℝ) (hμ : 0 < μ) (x : ℝ) :
     (1 / (2 * π) : ℂ) * ∫ k : ℝ, Complex.exp (Complex.I * k * x) * (2 * μ / (k^2 + μ^2)) =
       (Real.exp (-μ * |x|) : ℂ) := by
   -- From Mathlib's inversion theorem: 𝓕⁻ (𝓕 f) = f
@@ -677,7 +677,7 @@ We derive the Lorentzian Fourier transform from the Fourier inversion theorem.
       ∫ e^{ikx} / (k² + μ²) dk = (π/μ) e^{-μ|x|}
 @isnad1 id=eq.1h2v.s7.505e85ed0467 from=translated src=- shape=ea839713 vocab=6b210817
 -/
-theorem fourier_lorentzian_1d (μ : ℝ) (hμ : 0 < μ) (x : ℝ) :
+theorem _root_.Tengoku.LeanPool.fourier_lorentzian_1d (μ : ℝ) (hμ : 0 < μ) (x : ℝ) :
     ∫ k : ℝ, Complex.exp (Complex.I * k * x) / (k^2 + μ^2) =
       (π / μ) * Real.exp (-μ * |x|) := by
   have hπ : π ≠ 0 := Real.pi_ne_zero
@@ -723,7 +723,7 @@ theorem fourier_lorentzian_1d (μ : ℝ) (hμ : 0 < μ) (x : ℝ) :
     so e^{-μ|x-y|} = e^{-μx} · e^{-μ|y|} = e^{-μx} · e^{μy}.
 @isnad1 id=eq.2h3v.s6.88958aa65f23 from=translated src=- shape=47a087a4 vocab=6826390d
 -/
-lemma exp_factorization_reflection (μ : ℝ) (x y : ℝ) (hx : 0 ≤ x) (hy : y ≤ 0) :
+lemma _root_.Tengoku.LeanPool.exp_factorization_reflection (μ : ℝ) (x y : ℝ) (hx : 0 ≤ x) (hy : y ≤ 0) :
     Real.exp (-μ * |x - y|) = Real.exp (-μ * x) * Real.exp (μ * y) := by
   have h_diff : |x - y| = x - y := abs_of_nonneg (by linarith)
   rw [h_diff, ← Real.exp_add]
@@ -738,7 +738,7 @@ end
     Since (-k)² = k² and the integral over ℝ is symmetric, we get the same result.
 @isnad1 id=eq.1h2v.s7.b2e82b469b20 from=translated src=- shape=562b9f6a vocab=6b210817
 -/
-theorem fourier_lorentzian_1d_neg (μ : ℝ) (hμ : 0 < μ) (x : ℝ) :
+theorem _root_.Tengoku.LeanPool.fourier_lorentzian_1d_neg (μ : ℝ) (hμ : 0 < μ) (x : ℝ) :
     ∫ k : ℝ, Complex.exp (-Complex.I * k * x) / (k^2 + μ^2) =
       (π / μ) * Real.exp (-μ * |x|) := by
   -- Use fourier_lorentzian_1d with (-x), then show exp(I * k * (-x)) = exp(-I * k * x)
@@ -797,3 +797,4 @@ theorem fourier_lorentzian_1d_neg (μ : ℝ) (hμ : 0 < μ) (x : ℝ) :
 Then coerce to complex exponential and instantiate with μ = omega m k.
 -/
 /-! ## Integrability Lemmas -/
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

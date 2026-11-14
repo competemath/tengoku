@@ -14,48 +14,48 @@ import Tengoku.LeanPool.LeanPool.RiemannMappingTheorem.DerivInj
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Complex Metric Set
 
 variable {u : ℂ} {U V W : Set ℂ}
 
 /-- The collection of compact subsets of `U`. Used as the index for the
 compact-open topology `𝓒 U`. -/
-def compacts (U : Set ℂ) : Set (Set ℂ) := {K ⊆ U | IsCompact K}
+def _root_.Tengoku.LeanPool.compacts (U : Set ℂ) : Set (Set ℂ) := {K ⊆ U | IsCompact K}
 
 /--
 @isnad1 id=eq.0h1v.s3.05b422344aca from=translated src=- shape=fa6aa011 vocab=433c0779
 -/
-@[simp] lemma union_compacts : ⋃₀ compacts U = U :=
+@[simp] lemma _root_.Tengoku.LeanPool.union_compacts : ⋃₀ compacts U = U :=
   subset_antisymm (fun _ ⟨_, hK, hz⟩ => hK.1 hz)
     (fun z hz => ⟨{z}, ⟨singleton_subset_iff.2 hz, isCompact_singleton⟩, mem_singleton z⟩)
 
 /-- The open unit disk `{z : ℂ | ‖z‖ < 1}`. -/
-def 𝔻 : Set ℂ := ball 0 1
+def _root_.Tengoku.LeanPool.𝔻 : Set ℂ := ball 0 1
 
 /--
 @isnad1 id=iff.0h1v.s4.f21aa3da29f6 from=translated src=- shape=2d522c9a vocab=5091c10a
 -/
-lemma mem_𝔻_iff : u ∈ 𝔻 ↔ ‖u‖ < 1 :=
+lemma _root_.Tengoku.LeanPool.mem_𝔻_iff : u ∈ 𝔻 ↔ ‖u‖ < 1 :=
   mem_ball_zero_iff
 
 /--
 @isnad1 id=mem.1h1v.s4.802ab8cdb169 from=translated src=- shape=aa3bfa1e vocab=17520aef
 -/
-lemma neg_in_𝔻 : u ∈ 𝔻 → -u ∈ 𝔻 := by
+lemma _root_.Tengoku.LeanPool.neg_in_𝔻 : u ∈ 𝔻 → -u ∈ 𝔻 := by
   simp [𝔻]
 
 /--
 @isnad1 id=eq.0h0v.s5.6959fb58c89a from=translated src=- shape=9a744e71 vocab=f0c7052f
 -/
-lemma sqrt_𝔻_eq_𝔻 : {z : ℂ | z ^ 2 ∈ 𝔻} = 𝔻 := by
+lemma _root_.Tengoku.LeanPool.sqrt_𝔻_eq_𝔻 : {z : ℂ | z ^ 2 ∈ 𝔻} = 𝔻 := by
   simp [𝔻, ball]
 
 /-- A `good_domain` is a connected proper open nonempty subset of `ℂ` on
 which every nowhere-zero holomorphic function admits a holomorphic
 square root. The variant of the Riemann Mapping Theorem proved here
 applies to such domains. -/
-class good_domain (U : Set ℂ) : Prop where
+class _root_.Tengoku.LeanPool.good_domain (U : Set ℂ) : Prop where
   /-- `U` is open. -/
   is_open : IsOpen U
   /-- `U` is nonempty. -/
@@ -72,7 +72,7 @@ class good_domain (U : Set ℂ) : Prop where
 /-- An `embedding U V` is a holomorphic injection `ℂ → ℂ` whose
 restriction to `U` lands in `V`. Used to package the various conformal
 maps that build the Riemann-mapping isomorphism. -/
-structure embedding (U V : Set ℂ) where
+structure _root_.Tengoku.LeanPool.embedding (U V : Set ℂ) where
   /-- The underlying function `ℂ → ℂ`. -/
   toFun : ℂ → ℂ
   /-- The function is holomorphic on `U`. -/
@@ -86,14 +86,14 @@ instance {U V : Set ℂ} : CoeFun (embedding U V) (fun _ => ℂ → ℂ) := ⟨e
 
 /-- The identity embedding `U → U`, lifted to an `embedding U V` whenever
 `U = V`. -/
-@[simp] def embedding.id (hUV : U = V) : embedding U V where
+@[simp] def Tengoku.LeanPool.embedding.id (hUV : U = V) : embedding U V where
   toFun := fun x => x
   is_diff := differentiable_id.differentiableOn
   is_inj := fun _ _ _ _ z => z
   maps_to := fun _ hx => hUV ▸ hx
 
 /-- Composition of embeddings: `(f ∘ g) : embedding U W`. -/
-@[simp] def embedding.comp (f : embedding V W) (g : embedding U V) : embedding U W where
+@[simp] def Tengoku.LeanPool.embedding.comp (f : embedding V W) (g : embedding U V) : embedding U W where
   toFun := f ∘ g
   is_diff := f.is_diff.comp g.is_diff g.maps_to
   is_inj := f.is_inj.comp g.is_inj g.maps_to
@@ -101,7 +101,7 @@ instance {U V : Set ℂ} : CoeFun (embedding U V) (fun _ => ℂ → ℂ) := ⟨e
 
 /-- Lift a nowhere-zero embedding `U → V` to an embedding `U → {z | z² ∈ V}`
 by taking a holomorphic square root supplied by `good_domain.hasSqrt`. -/
-noncomputable def embedding.sqrt [good_domain U] (f : embedding U V) (hf : ∀ z ∈ U, f z ≠ 0) :
+noncomputable def Tengoku.LeanPool.embedding.sqrt [good_domain U] (f : embedding U V) (hf : ∀ z ∈ U, f z ≠ 0) :
     { g : embedding U {z | z ^ 2 ∈ V} // U.EqOn f (g.toFun ^ 2) } := by
   choose g g_diff g_sqrt using good_domain.hasSqrt f hf f.is_diff
   refine ⟨⟨g, g_diff, ?_, ?_⟩, g_sqrt⟩
@@ -110,7 +110,7 @@ noncomputable def embedding.sqrt [good_domain U] (f : embedding U V) (hf : ∀ z
 
 /-- Specialisation of `embedding.sqrt` when the codomain is the open unit
 disk `𝔻`: the square root again lands in `𝔻`. -/
-noncomputable def embedding.sqrt' [good_domain U] (f : embedding U 𝔻) (hf : ∀ z ∈ U, f z ≠ 0) :
+noncomputable def Tengoku.LeanPool.embedding.sqrt' [good_domain U] (f : embedding U 𝔻) (hf : ∀ z ∈ U, f z ≠ 0) :
     { g : embedding U 𝔻 // U.EqOn f (g.toFun ^ 2) } := by
   let ⟨g, hg⟩ := embedding.sqrt f hf
   exact ⟨(embedding.id sqrt_𝔻_eq_𝔻).comp g, hg⟩
@@ -118,7 +118,7 @@ noncomputable def embedding.sqrt' [good_domain U] (f : embedding U 𝔻) (hf : �
 /--
 @isnad1 id=ne.2h3v.s5.92c013fb49ac from=translated src=- shape=451af07f vocab=b8a104e0
 -/
-lemma ne_center_of_not_mem_closed_ball {w : ℂ} {r : ℝ} (hr : 0 ≤ r) ⦃z : ℂ⦄
+lemma _root_.Tengoku.LeanPool.ne_center_of_not_mem_closed_ball {w : ℂ} {r : ℝ} (hr : 0 ≤ r) ⦃z : ℂ⦄
     (hz : z ∈ (closedBall w r)ᶜ) : z ≠ w := by
   contrapose! hz
   simp [hz, hr]
@@ -126,7 +126,7 @@ lemma ne_center_of_not_mem_closed_ball {w : ℂ} {r : ℝ} (hr : 0 ≤ r) ⦃z :
 /-- The conformal inversion `z ↦ r / (z - w)` realised as an `embedding`
 from the complement of the closed disk `closedBall w r` into the open
 unit disk. -/
-noncomputable def embedding.inv (w : ℂ) {r : ℝ} (hr : 0 < r) :
+noncomputable def Tengoku.LeanPool.embedding.inv (w : ℂ) {r : ℝ} (hr : 0 < r) :
     embedding ((closedBall w r)ᶜ) 𝔻 where
   toFun := fun z => r / (z - w)
   is_diff := by
@@ -142,3 +142,4 @@ noncomputable def embedding.inv (w : ℂ) {r : ℝ} (hr : 0 < r) :
     simp only [mem_compl_iff, mem_closedBall, not_le, dist_eq_norm] at hx
     simpa only [𝔻, mem_ball_zero_iff, norm_div, div_lt_one (hr.trans hx), norm_real,
       Real.norm_eq_abs, abs_of_nonneg hr.le]
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

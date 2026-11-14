@@ -9,7 +9,7 @@ Using the same time cutoff in the equation and vector test produces its
 square. No global growth bound on the physical pressure is needed.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace NavierStokes.R3LocalizedPressureTests
 
 open Set Filter MeasureTheory TemperedDistribution ProblemStatement
@@ -116,3 +116,4 @@ theorem localized_pairing_tendsto {s : Set ℝ} (hs : IsOpen s)
   simpa only [eqP, eqG] using hlim
 
 end NavierStokes.R3LocalizedPressureTests
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

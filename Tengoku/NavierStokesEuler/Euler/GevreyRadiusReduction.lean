@@ -1,5 +1,5 @@
 import Tengoku.NavierStokesEuler.Euler.GevreyRestriction
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace EulerGevreyRadiusReduction
 end EulerGevreyRadiusReduction
 namespace Finset
@@ -160,3 +160,4 @@ theorem weightedNorm_derivative_half {s : ℕ} (q N : ℕ) (hN : N+q ≤ s)
         (mul_nonneg (weight_pos hR 0).le (blockNorm_nonneg (q := q) (n := 0) (toJet period u)))
 
 end EulerGevreyRadiusReduction
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

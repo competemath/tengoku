@@ -30,7 +30,7 @@ test functions, combined with Gaussian moment formulas for the time integrals.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Complex Real Filter QFT
 open TopologicalSpace
 open scoped Real InnerProductSpace BigOperators
@@ -41,19 +41,19 @@ variable {m : ℝ} [Fact (0 < m)]
 /-! ## Core Definitions -/
 
 /-- Inner product on spatial coordinates: k_spatial · x_spatial = Σᵢ kᵢ xᵢ -/
-noncomputable def spatialDot (k_spatial x_spatial : SpatialCoords) : ℝ :=
+noncomputable def _root_.Tengoku.LeanPool.spatialDot (k_spatial x_spatial : SpatialCoords) : ℝ :=
   ∑ i, k_spatial i * x_spatial i
 
 /-- Inner product on ℝ equals multiplication.
 @isnad1 id=eq.0h2v.s5.6fcc2d691146 from=translated src=- shape=d46f28a8 vocab=2c6db980
 -/
-lemma real_inner_eq_mul (x y : ℝ) : @inner ℝ ℝ _ x y = x * y := by
+lemma _root_.Tengoku.LeanPool.real_inner_eq_mul (x y : ℝ) : @inner ℝ ℝ _ x y = x * y := by
   simp [inner, mul_comm]
 
 /-- spatialDot equals the real inner product on SpatialCoords.
 @isnad1 id=eq.0h2v.s7.8da6e974821c from=translated src=- shape=f824a669 vocab=b75b753b
 -/
-lemma spatialDot_eq_inner (k_spatial x_spatial : SpatialCoords) :
+lemma _root_.Tengoku.LeanPool.spatialDot_eq_inner (k_spatial x_spatial : SpatialCoords) :
     spatialDot k_spatial x_spatial = ⟪k_spatial, x_spatial⟫_ℝ := by
   unfold spatialDot
   rw [PiLp.inner_apply]
@@ -159,7 +159,7 @@ private lemma cexp6_norm_le_ksp (f : TestFunctionℂ) (s : ℝ) (hs : 0 ≤ s)
     ⟪k, z⟫ = k₀ z₀ + ⟪k_sp, z_sp⟫ = k₀ z₀ + spatialDot(k_sp, z_sp)
 @isnad1 id=eq.0h2v.s7.33cc7a23797e from=translated src=- shape=50454f58 vocab=b389e1ef
 -/
-lemma spacetime_inner_decompose (k z : SpaceTime) :
+lemma _root_.Tengoku.LeanPool.spacetime_inner_decompose (k z : SpaceTime) :
     ⟪k, z⟫_ℝ = k 0 * z 0 + spatialDot (spatialPart k) (spatialPart z) := by
   unfold spatialDot spatialPart
   rw [PiLp.inner_apply]
@@ -179,7 +179,7 @@ lemma spacetime_inner_decompose (k z : SpaceTime) :
     supported on positive time (x₀ ≥ 0), this becomes a product of two Fourier-Laplace
     transforms, leading to the squared norm factorization.
 -/
-noncomputable def weightedLaplaceFourier (m : ℝ) (f : TestFunctionℂ) (k_spatial : SpatialCoords) :
+noncomputable def _root_.Tengoku.LeanPool.weightedLaplaceFourier (m : ℝ) (f : TestFunctionℂ) (k_spatial : SpatialCoords) :
   ℂ :=
   let ω := Real.sqrt (‖k_spatial‖^2 + m^2)
   ∫ x : SpaceTime, f x * Complex.exp (-|x 0| * ω) *
@@ -190,14 +190,14 @@ noncomputable def weightedLaplaceFourier (m : ℝ) (f : TestFunctionℂ) (k_spat
 /-- Time reflection is measure-preserving (it's a linear isometry).
 @isnad1 id=measurep.0h0v.s8.96144433c0b1 from=translated src=- shape=41b74a9e vocab=7290f746
 -/
-lemma timeReflection_measurePreserving :
+lemma _root_.Tengoku.LeanPool.timeReflection_measurePreserving :
   MeasurePreserving timeReflection (volume : Measure SpaceTime) volume :=
   timeReflectionLE.measurePreserving
 
 /-- Time reflection is an involution: Θ(Θx) = x
 @isnad1 id=eq.0h1v.s3.907a28572ca4 from=translated src=- shape=47dcad53 vocab=3c2ad1d9
 -/
-lemma timeReflection_involutive (x : SpaceTime) :
+lemma _root_.Tengoku.LeanPool.timeReflection_involutive (x : SpaceTime) :
     timeReflection (timeReflection x) = x := by
   simp [timeReflection, Function.update]
 
@@ -256,7 +256,7 @@ Since K_{1/2}(z) = √(π/(2z)) exp(-z), the identity follows.
     (1/(2π)^d) * (π/s)^{d/2} = (4πs)^{-d/2}
 @isnad1 id=eq.1h2v.s8.22014979e484 from=translated src=- shape=1f290dbf vocab=497c2c4a
 -/
-theorem heatKernel_eq_gaussianFT (s : ℝ) (hs : 0 < s) (z : SpaceTime) :
+theorem _root_.Tengoku.LeanPool.heatKernel_eq_gaussianFT (s : ℝ) (hs : 0 < s) (z : SpaceTime) :
     (heatKernelPositionSpace s ‖z‖ : ℂ) =
     (1 / (2 * π) ^ STDimension : ℝ) *
     ∫ k : SpaceTime, Complex.exp (-Complex.I * ⟪k, z⟫_ℝ) * Complex.exp (-(s : ℂ) * ‖k‖^2) := by
@@ -321,7 +321,7 @@ that are mathematically standard but require substantial Mathlib plumbing.
 /-- The heat kernel is jointly continuous on (0, ∞) × ℝ as a function of (t, r).
 @isnad1 id=continuo.0h0v.s5.41cc1fe603db from=translated src=- shape=bb18d3c3 vocab=fb47f858
 -/
-lemma heatKernelPositionSpace_continuousOn :
+lemma _root_.Tengoku.LeanPool.heatKernelPositionSpace_continuousOn :
     ContinuousOn (fun p : ℝ × ℝ => heatKernelPositionSpace p.1 p.2)
       (Set.Ioi 0 ×ˢ Set.univ) := by
   unfold heatKernelPositionSpace
@@ -380,7 +380,7 @@ private lemma heatKernelPositionSpace_comp_continuousOn :
     `(volume.restrict (Set.Ioi 0)).prod (volume.prod volume)`.
 @isnad1 id=aestrong.0h0v.s9.e1046abbb9c7 from=translated src=- shape=2a580539 vocab=24362070
 -/
-theorem heatKernelPositionSpace_aestronglyMeasurable :
+theorem _root_.Tengoku.LeanPool.heatKernelPositionSpace_aestronglyMeasurable :
     AEStronglyMeasurable
       (fun p : ℝ × SpaceTime × SpaceTime =>
         (heatKernelPositionSpace p.1 ‖timeReflection p.2.1 - p.2.2‖ : ℂ))
@@ -393,7 +393,7 @@ theorem heatKernelPositionSpace_aestronglyMeasurable :
 /-- Real-valued version of `heatKernelPositionSpace_aestronglyMeasurable`.
 @isnad1 id=aestrong.0h0v.s9.ce2bff9847d4 from=translated src=- shape=8f2f3db7 vocab=81e474eb
 -/
-theorem heatKernelPositionSpace_aestronglyMeasurable_real :
+theorem _root_.Tengoku.LeanPool.heatKernelPositionSpace_aestronglyMeasurable_real :
     AEStronglyMeasurable
       (fun p : ℝ × SpaceTime × SpaceTime =>
         heatKernelPositionSpace p.1 ‖timeReflection p.2.1 - p.2.2‖)
@@ -411,7 +411,7 @@ theorem heatKernelPositionSpace_aestronglyMeasurable_real :
     3. The heat kernel integrates to 1 (heatKernelPositionSpace_integral_eq_one)
 @isnad1 id=eq.1h2v.s7.2168a98d37e5 from=translated src=- shape=0f138469 vocab=f6c8dbb0
 -/
-lemma heatKernelPositionSpace_integral_translated (s : ℝ) (hs : 0 < s) (a : SpaceTime) :
+lemma _root_.Tengoku.LeanPool.heatKernelPositionSpace_integral_translated (s : ℝ) (hs : 0 < s) (a : SpaceTime) :
     ∫ y : SpaceTime, heatKernelPositionSpace s ‖a - y‖ = 1 := by
   -- First, ‖a - y‖ = ‖y - a‖ (norm is symmetric under negation)
   have h_norm_eq : ∀ y, ‖a - y‖ = ‖y - a‖ := fun y => by
@@ -432,7 +432,7 @@ lemma heatKernelPositionSpace_integral_translated (s : ℝ) (hs : 0 < s) (a : Sp
 /-- The translated heat kernel is integrable (since its integral equals 1).
 @isnad1 id=integrab.1h2v.s7.b404cda2aef0 from=translated src=- shape=e96e3f87 vocab=59fcd97c
 -/
-lemma heatKernelPositionSpace_integrable (s : ℝ) (hs : 0 < s) (a : SpaceTime) :
+lemma _root_.Tengoku.LeanPool.heatKernelPositionSpace_integrable (s : ℝ) (hs : 0 < s) (a : SpaceTime) :
     Integrable (fun y : SpaceTime => heatKernelPositionSpace s ‖a - y‖)
       (volume : Measure SpaceTime) := by
   apply integrable_of_integral_eq_one
@@ -441,7 +441,7 @@ lemma heatKernelPositionSpace_integrable (s : ℝ) (hs : 0 < s) (a : SpaceTime) 
 /-- Nonnegativity of the Schwinger bound integrand (fixed s > 0).
 @isnad1 id=le.2h6v.s8.5007778d523f from=translated src=- shape=ec210b2a vocab=630b207b
 -/
-lemma schwinger_bound_integrand_nonneg (s : ℝ) (hs : 0 < s)
+lemma _root_.Tengoku.LeanPool.schwinger_bound_integrand_nonneg (s : ℝ) (hs : 0 < s)
     (f : TestFunctionℂ) (Cf : ℝ) (hCf_nonneg : 0 ≤ Cf) (m : ℝ) (x y : SpaceTime) :
   0 ≤ ‖f x‖ * Cf * Real.exp (-s * m^2) *
       heatKernelPositionSpace s ‖timeReflection x - y‖ := by
@@ -456,7 +456,7 @@ lemma schwinger_bound_integrand_nonneg (s : ℝ) (hs : 0 < s)
 /-- Integrability in `y` of the Schwinger bound integrand for fixed `s > 0`, `x`.
 @isnad1 id=integrab.1h5v.s8.39eb9cd874b4 from=translated src=- shape=7dd9393d vocab=5d30d289
 -/
-lemma schwinger_bound_integrand_integrable_y (s : ℝ) (hs : 0 < s)
+lemma _root_.Tengoku.LeanPool.schwinger_bound_integrand_integrable_y (s : ℝ) (hs : 0 < s)
     (f : TestFunctionℂ) (Cf : ℝ) (m : ℝ) (x : SpaceTime) :
     Integrable (fun y : SpaceTime =>
       (‖f x‖ * Cf * Real.exp (-s * m^2)) *
@@ -470,7 +470,7 @@ lemma schwinger_bound_integrand_integrable_y (s : ℝ) (hs : 0 < s)
 /-- Evaluate the `y`-integral of the Schwinger bound integrand for fixed `s > 0`, `x`.
 @isnad1 id=eq.1h5v.s9.3b2a585f7a3e from=translated src=- shape=7621892e vocab=be73d4f8
 -/
-lemma schwinger_bound_integrand_integral_y (s : ℝ) (hs : 0 < s)
+lemma _root_.Tengoku.LeanPool.schwinger_bound_integrand_integral_y (s : ℝ) (hs : 0 < s)
     (f : TestFunctionℂ) (Cf : ℝ) (m : ℝ) (x : SpaceTime) :
     ∫ y : SpaceTime,
         (‖f x‖ * Cf * Real.exp (-s * m^2)) *
@@ -490,7 +490,7 @@ lemma schwinger_bound_integrand_integral_y (s : ℝ) (hs : 0 < s)
 /-- Integrability in `x` of the Schwinger bound integrand (after integrating in `y`).
 @isnad1 id=integrab.1h4v.s9.6515e27d62d1 from=translated src=- shape=3ade72eb vocab=19fc1f7d
 -/
-lemma schwinger_bound_integrand_integrable_x (s : ℝ)
+lemma _root_.Tengoku.LeanPool.schwinger_bound_integrand_integrable_x (s : ℝ)
     (f : TestFunctionℂ) (Cf : ℝ) (m : ℝ)
     (h_f_int : Integrable (fun x => ‖f x‖) (volume : Measure SpaceTime)) :
     Integrable (fun x : SpaceTime => ‖f x‖ * Cf * Real.exp (-s * m^2))
@@ -501,7 +501,7 @@ lemma schwinger_bound_integrand_integrable_x (s : ℝ)
 /-- Integrability of the Schwinger bound integrand on `(x,y)` for fixed `s > 0`.
 @isnad1 id=integrab.3h4v.s9.25ddbcc46195 from=translated src=- shape=ac57bc55 vocab=dc36c194
 -/
-lemma schwinger_bound_integrable_xy (s : ℝ) (hs : 0 < s)
+lemma _root_.Tengoku.LeanPool.schwinger_bound_integrable_xy (s : ℝ) (hs : 0 < s)
     (f : TestFunctionℂ) (Cf : ℝ) (m : ℝ) (hCf_nonneg : 0 ≤ Cf)
     (h_f_int : Integrable (fun x => ‖f x‖) (volume : Measure SpaceTime)) :
     Integrable
@@ -578,7 +578,7 @@ lemma schwinger_bound_integrable_xy (s : ℝ) (hs : 0 < s)
 /-- Compute the (x,y)-integral of the Schwinger bound integrand for fixed `s > 0`.
 @isnad1 id=eq.3h4v.s10.c81545673035 from=translated src=- shape=3d4136fc vocab=165feabf
 -/
-lemma schwinger_bound_integrand_integral_xy (s : ℝ) (hs : 0 < s)
+lemma _root_.Tengoku.LeanPool.schwinger_bound_integrand_integral_xy (s : ℝ) (hs : 0 < s)
     (f : TestFunctionℂ) (Cf : ℝ) (m : ℝ) (hCf_nonneg : 0 ≤ Cf)
     (h_f_int : Integrable (fun x => ‖f x‖) (volume : Measure SpaceTime)) :
     ∫ p : SpaceTime × SpaceTime,
@@ -612,7 +612,7 @@ lemma schwinger_bound_integrand_integral_xy (s : ℝ) (hs : 0 < s)
 /-- Fubini/Tonelli step for Schwinger bound integrability.
 @isnad1 id=integrab.5h3v.s10.cf3e5236c184 from=translated src=- shape=159084ed vocab=5932412f
 -/
-theorem schwinger_bound_integrable_fubini (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ)
+theorem _root_.Tengoku.LeanPool.schwinger_bound_integrable_fubini (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ)
     (Cf : ℝ) (hCf : ∀ x, ‖f x‖ ≤ Cf)
     (h_f_int : Integrable (fun x => ‖f x‖) (volume : Measure SpaceTime))
     (hCf_nonneg : 0 ≤ Cf)
@@ -728,7 +728,7 @@ theorem schwinger_bound_integrable_fubini (m : ℝ) [Fact (0 < m)] (f : TestFunc
     The proof delegates to `schwinger_bound_integrable_fubini` for the technical Tonelli step.
 @isnad1 id=integrab.1h3v.s10.49706c09811c from=translated src=- shape=4b359f01 vocab=21f35d63
 -/
-theorem schwinger_bound_integrable (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ)
+theorem _root_.Tengoku.LeanPool.schwinger_bound_integrable (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ)
     (Cf : ℝ) (hCf : ∀ x, ‖f x‖ ≤ Cf) :
     Integrable
       (fun p : ℝ × SpaceTime × SpaceTime =>
@@ -764,7 +764,7 @@ The key insight is that with f(s) = s⁻¹:
 This uses `integrableOn_image_iff_integrableOn_deriv_smul_of_antitoneOn`.
 @isnad1 id=integrab.1h1v.s6.98ecb77d2e80 from=translated src=- shape=3a899958 vocab=872dcf54
 -/
-theorem integrable_s_inv_sq_exp_neg_inv_s {a : ℝ} (ha : 0 < a) :
+theorem _root_.Tengoku.LeanPool.integrable_s_inv_sq_exp_neg_inv_s {a : ℝ} (ha : 0 < a) :
     IntegrableOn (fun s => s^((-2 : ℝ)) * Real.exp (-a / s)) (Set.Ioi 0) := by
   -- Strategy: Use the change of variables theorem
   -- IntegrableOn g (f '' s) ↔ IntegrableOn (fun x ↦ (-f' x) • g (f x)) s
@@ -815,7 +815,7 @@ theorem integrable_s_inv_sq_exp_neg_inv_s {a : ℝ} (ha : 0 < a) :
     1. Linear vanishing of f at t=0 giving s^(3/2) scaling (offsetting s^(-2) divergence).
     2. Exponential decay in mass and momentum.
 -/
-def dominateG (C : ℝ) (m : ℝ) (p : ℝ × SpatialCoords) : ℝ :=
+def _root_.Tengoku.LeanPool.dominateG (C : ℝ) (m : ℝ) (p : ℝ × SpatialCoords) : ℝ :=
   if p.1 > 0 then
     C * p.1 ^ (3 / 2 : ℝ) * Real.exp (-p.1 * (‖p.2‖^2 + m^2))
   else 0
@@ -828,7 +828,7 @@ def dominateG (C : ℝ) (m : ℝ) (p : ℝ × SpatialCoords) : ℝ :=
     The latter converges for m > 0.
 @isnad1 id=integrab.0h2v.s9.7747862182d7 from=translated src=- shape=13a80ca9 vocab=5a3fcc17
 -/
-theorem integrable_dominate_G (C : ℝ) (m : ℝ) [Fact (0 < m)] :
+theorem _root_.Tengoku.LeanPool.integrable_dominate_G (C : ℝ) (m : ℝ) [Fact (0 < m)] :
     Integrable (dominateG C m) ((volume.restrict (Set.Ioi 0)).prod volume) := by
   have hm : 0 < m := Fact.out
   let μ : Measure (ℝ × SpatialCoords) := (volume.restrict (Set.Ioi 0)).prod volume
@@ -1020,7 +1020,7 @@ theorem integrable_dominate_G (C : ℝ) (m : ℝ) [Fact (0 < m)] :
 /-- spatialPart is continuous (projection followed by continuous linear equiv).
 @isnad1 id=continuo.0h0v.s6.8aad47eb68a2 from=translated src=- shape=54c8eceb vocab=2ae41273
 -/
-lemma continuous_spatialPart : Continuous spatialPart := by
+lemma _root_.Tengoku.LeanPool.continuous_spatialPart : Continuous spatialPart := by
   unfold spatialPart
   apply (EuclideanSpace.equiv (Fin (STDimension - 1)) ℝ).symm.continuous.comp
   apply continuous_pi
@@ -1031,7 +1031,7 @@ lemma continuous_spatialPart : Continuous spatialPart := by
 /-- `spatialPart` is measurable.
 @isnad1 id=measurab.0h0v.s7.c980e02b62f8 from=translated src=- shape=54c8eceb vocab=0bfa3344
 -/
-lemma spatialPart_measurable : Measurable (spatialPart : SpaceTime → SpatialCoords) :=
+lemma _root_.Tengoku.LeanPool.spatialPart_measurable : Measurable (spatialPart : SpaceTime → SpatialCoords) :=
   continuous_spatialPart.measurable
 
 /-- The integrand for `fubini_s_ksp_swap` is strongly measurable.
@@ -1046,7 +1046,7 @@ lemma spatialPart_measurable : Measurable (spatialPart : SpaceTime → SpatialCo
     This is a product of continuous/measurable functions, hence measurable.
 @isnad1 id=strongly.0h2v.s10.a5926ce79a53 from=translated src=- shape=e275e934 vocab=f66098c5
 -/
-lemma fubini_s_ksp_integrand_stronglyMeasurable (m : ℝ) (f : TestFunctionℂ) :
+lemma _root_.Tengoku.LeanPool.fubini_s_ksp_integrand_stronglyMeasurable (m : ℝ) (f : TestFunctionℂ) :
     StronglyMeasurable (Function.uncurry fun (x : (ℝ × SpatialCoords) × SpaceTime) (y : SpaceTime)
       =>
       (starRingEnd ℂ (f x.2)) * f y *
@@ -1081,7 +1081,7 @@ This is done via change of variables u = x₀ + y₀, v = x₀ - y₀ and standa
     - = 8s²
 @isnad1 id=eq.1h1v.s7.92507e5174ec from=translated src=- shape=e4025f7b vocab=73872b06
 -/
-lemma integral_u_cubed_gaussian (s : ℝ) (hs : 0 < s) :
+lemma _root_.Tengoku.LeanPool.integral_u_cubed_gaussian (s : ℝ) (hs : 0 < s) :
     ∫ u in Set.Ioi 0, u^3 * Real.exp (-u^2 / (4 * s)) = 8 * s^2 := by
   have hb : 0 < 1 / (4 * s) := by positivity
   -- Rewrite to use rpow throughout
@@ -1127,7 +1127,7 @@ lemma integral_u_cubed_gaussian (s : ℝ) (hs : 0 < s) :
     3. Apply Fubini to swap the order of integration
 @isnad1 id=eq.2h1v.s8.e22e63590f80 from=translated src=- shape=dc31fc8e vocab=79ea4b06
 -/
-lemma triangular_fubini_quadrant {f : ℝ → ℝ → ℝ}
+lemma _root_.Tengoku.LeanPool.triangular_fubini_quadrant {f : ℝ → ℝ → ℝ}
     (_hf_nn : ∀ x y, 0 ≤ x → 0 ≤ y → 0 ≤ f x (x + y))
     (hf_int : MeasureTheory.Integrable (fun p : ℝ × ℝ =>
       Set.indicator (Set.Ioi 0 ×ˢ Set.Ioi 0) (fun q => f q.1 (q.1 + q.2)) p) volume) :
@@ -1292,7 +1292,7 @@ lemma triangular_fubini_quadrant {f : ℝ → ℝ → ℝ}
           = (4/3)√π · s^(3/2)
 @isnad1 id=eq.1h1v.s7.fd6884b6322e from=translated src=- shape=0b97b106 vocab=2bad9fd1
 -/
-lemma heat_kernel_moment_integral (s : ℝ) (hs : 0 < s) :
+lemma _root_.Tengoku.LeanPool.heat_kernel_moment_integral (s : ℝ) (hs : 0 < s) :
     ∫ x₀ in Set.Ioi 0, ∫ y₀ in Set.Ioi 0,
       x₀ * y₀ * Real.sqrt (π / s) * Real.exp (-(x₀ + y₀)^2 / (4 * s)) =
     (4/3) * Real.sqrt π * s^(3/2 : ℝ) := by
@@ -1512,7 +1512,7 @@ lemma heat_kernel_moment_integral (s : ℝ) (hs : 0 < s) :
     **Proof**: Uses `heat_kernel_moment_integral` and the bound (4/3)√π < 10.
 @isnad1 id=le.1h1v.s7.28221fab4b7d from=translated src=- shape=d0a45b8d vocab=980d61c8
 -/
-lemma heat_kernel_moment_integral_bound (s : ℝ) (hs : 0 < s) :
+lemma _root_.Tengoku.LeanPool.heat_kernel_moment_integral_bound (s : ℝ) (hs : 0 < s) :
     ∫ x₀ in Set.Ioi 0, ∫ y₀ in Set.Ioi 0,
       x₀ * y₀ * Real.sqrt (π / s) * Real.exp (-(x₀ + y₀)^2 / (4 * s)) ≤
     10 * s^(3/2 : ℝ) := by
@@ -1535,7 +1535,7 @@ lemma heat_kernel_moment_integral_bound (s : ℝ) (hs : 0 < s) :
     This follows from `integrable_mul_exp_neg_mul_sq` restricted to positive reals.
 @isnad1 id=integrab.1h1v.s6.182156e37e7a from=translated src=- shape=7d57c6c5 vocab=14bb0c8b
 -/
-lemma gaussian_moment_integrableOn_Ioi {b : ℝ} (hb : 0 < b) :
+lemma _root_.Tengoku.LeanPool.gaussian_moment_integrableOn_Ioi {b : ℝ} (hb : 0 < b) :
     MeasureTheory.IntegrableOn (fun t => t * Real.exp (-b * t^2)) (Set.Ioi 0) := by
   -- |t| * exp(-b*t²) is integrable on all of ℝ
   have h_int : MeasureTheory.Integrable (fun t => |t| * Real.exp (-b * t^2)) volume := by
@@ -1556,7 +1556,7 @@ lemma gaussian_moment_integrableOn_Ioi {b : ℝ} (hb : 0 < b) :
     t₂ * exp(-t₂²/(4s)) which is integrable by `gaussian_moment_integrableOn_Ioi`.
 @isnad1 id=integrab.2h2v.s6.4c37d2ae1ce9 from=translated src=- shape=8bd14d0a vocab=8f080d56
 -/
-lemma heat_kernel_inner_integrableOn {s t₁ : ℝ} (hs : 0 < s) (ht₁ : 0 ≤ t₁) :
+lemma _root_.Tengoku.LeanPool.heat_kernel_inner_integrableOn {s t₁ : ℝ} (hs : 0 < s) (ht₁ : 0 ≤ t₁) :
     MeasureTheory.IntegrableOn
       (fun t₂ => t₂ * Real.exp (-(t₁ + t₂)^2 / (4 * s))) (Set.Ioi 0) := by
   have hb : 0 < 1 / (4 * s) := by positivity
@@ -1590,7 +1590,7 @@ lemma heat_kernel_inner_integrableOn {s t₁ : ℝ} (hs : 0 < s) (ht₁ : 0 ≤ 
     This is the key integrability result extracted from heat_kernel_moment_integral.
 @isnad1 id=integrab.1h1v.s7.0ff6f62bb6f0 from=translated src=- shape=765a8450 vocab=9d014209
 -/
-lemma heat_kernel_moment_integrableOn_quadrant (s : ℝ) (hs : 0 < s) :
+lemma _root_.Tengoku.LeanPool.heat_kernel_moment_integrableOn_quadrant (s : ℝ) (hs : 0 < s) :
     MeasureTheory.IntegrableOn
       (fun z : ℝ × ℝ => z.1 * z.2 * Real.sqrt (π/s) * Real.exp (-(z.1 + z.2)^2 / (4 * s)))
       (Set.Ioi 0 ×ˢ Set.Ioi 0) (volume.prod volume) := by
@@ -1650,7 +1650,7 @@ the integrand to be zero outside the region of interest, then use global Fubini 
 /-- Heat kernel moment integrand extended by zero outside (0,∞)².
     F(t₁, t₂) = t₁ · t₂ · √(π/s) · exp(-(t₁+t₂)²/(4s)) for t₁, t₂ > 0, else 0.
 -/
-def heatKernelMomentExt (s : ℝ) : ℝ × ℝ → ℝ := fun p =>
+def _root_.Tengoku.LeanPool.heatKernelMomentExt (s : ℝ) : ℝ × ℝ → ℝ := fun p =>
   if p.1 > 0 ∧ p.2 > 0 then
     p.1 * p.2 * Real.sqrt (π / s) * Real.exp (-(p.1 + p.2)^2 / (4 * s))
   else 0
@@ -1666,7 +1666,7 @@ def heatKernelMomentExt (s : ℝ) : ℝ × ℝ → ℝ := fun p =>
     **Reference**: Rudin "Real and Complex Analysis" Ch.8 (Tonelli).
 @isnad1 id=integrab.1h1v.s5.086d4d674fbf from=translated src=- shape=35916557 vocab=ecf572d8
 -/
-lemma heatKernelMomentExt_integrable (s : ℝ) (hs : 0 < s) :
+lemma _root_.Tengoku.LeanPool.heatKernelMomentExt_integrable (s : ℝ) (hs : 0 < s) :
     MeasureTheory.Integrable (heatKernelMomentExt s) (volume.prod volume) := by
   -- heatKernelMomentExt is the indicator of the heat kernel moment on (0,∞)²
   have h_eq : heatKernelMomentExt s = (Set.Ioi 0 ×ˢ Set.Ioi 0).indicator
@@ -1687,14 +1687,14 @@ lemma heatKernelMomentExt_integrable (s : ℝ) (hs : 0 < s) :
     then t₁ ↦ ∫ t₂, f(t₁, t₂) is integrable.
 @isnad1 id=integrab.1h1v.s6.162f5ac7648a from=translated src=- shape=44139b0a vocab=f3675458
 -/
-lemma heatKernelMomentExt_parametric_integrable (s : ℝ) (hs : 0 < s) :
+lemma _root_.Tengoku.LeanPool.heatKernelMomentExt_parametric_integrable (s : ℝ) (hs : 0 < s) :
     MeasureTheory.Integrable (fun t₁ => ∫ t₂, heatKernelMomentExt s (t₁, t₂)) volume :=
   (heatKernelMomentExt_integrable s hs).integral_prod_left
 
 /-- The parametric integral of the extended function gives a set integral for t₁ > 0.
 @isnad1 id=eq.1h2v.s7.bc8199649042 from=translated src=- shape=8e680725 vocab=16a77b8c
 -/
-lemma heatKernelMomentExt_parametric_eq_setIntegral (s : ℝ) (t₁ : ℝ) (ht₁ : 0 < t₁) :
+lemma _root_.Tengoku.LeanPool.heatKernelMomentExt_parametric_eq_setIntegral (s : ℝ) (t₁ : ℝ) (ht₁ : 0 < t₁) :
     ∫ t₂, heatKernelMomentExt s (t₁, t₂) =
     ∫ t₂ in Set.Ioi 0, t₁ * t₂ * Real.sqrt (π / s) * Real.exp (-(t₁ + t₂)^2 / (4 * s)) := by
   have h_eq : ∀ t₂, heatKernelMomentExt s (t₁, t₂) =
@@ -1720,7 +1720,7 @@ lemma heatKernelMomentExt_parametric_eq_setIntegral (s : ℝ) (t₁ : ℝ) (ht�
     4. Multiply by constant c preserves integrability
 @isnad1 id=integrab.1h2v.s7.aace758b0729 from=translated src=- shape=aa6c4566 vocab=076b92c6
 -/
-lemma heatKernelMoment_setIntegral_integrableOn (s : ℝ) (hs : 0 < s) (c : ℝ) :
+lemma _root_.Tengoku.LeanPool.heatKernelMoment_setIntegral_integrableOn (s : ℝ) (hs : 0 < s) (c : ℝ) :
     MeasureTheory.IntegrableOn
       (fun t₁ => ∫ t₂ in Set.Ioi 0,
         c * t₁ * t₂ * Real.sqrt (π / s) * Real.exp (-(t₁ + t₂)^2 / (4 * s)))
@@ -1911,7 +1911,7 @@ private lemma heat_kernel_spatial_integral_bound (s : ℝ) (hs : 0 < s)
                   Standard heat kernel estimates.
 @isnad1 id=ex.1h1v.s10.4bd776ad4008 from=translated src=- shape=314d7093 vocab=a3387cb0
 -/
-lemma spacetime_fubini_linear_vanishing_bound (f : TestFunctionℂ)
+lemma _root_.Tengoku.LeanPool.spacetime_fubini_linear_vanishing_bound (f : TestFunctionℂ)
     (hf_supp : ∀ x : SpaceTime, x 0 ≤ 0 → f x = 0) :
     ∃ K : ℝ, 0 < K ∧ ∀ (s : ℝ) (_hs : 0 < s),
       ∫ x : SpaceTime, ∫ y : SpaceTime, ‖f x‖ * ‖f y‖ * Real.sqrt (π / s) *
@@ -2074,7 +2074,7 @@ lemma spacetime_fubini_linear_vanishing_bound (f : TestFunctionℂ)
                   Folland "Real Analysis" Ch.2.
 @isnad1 id=aestrong.1h5v.s9.723979d85922 from=translated src=- shape=815bc630 vocab=c5c45b97
 -/
-lemma schwartz_heat_product_aestronglymeasurable (f : TestFunctionℂ)
+lemma _root_.Tengoku.LeanPool.schwartz_heat_product_aestronglymeasurable (f : TestFunctionℂ)
     (x : SpaceTime) (c₁ c₂ : ℝ) (s : ℝ) (_hs : 0 < s) :
     AEStronglyMeasurable (fun a : SpaceTime =>
       ‖f x‖ * ‖f a‖ * c₁ * Real.exp (-(x 0 + a 0)^2 / (4 * s)) * c₂) volume := by
@@ -2098,7 +2098,7 @@ lemma schwartz_heat_product_aestronglymeasurable (f : TestFunctionℂ)
                   Folland "Real Analysis" Ch.2 (Tonelli).
 @isnad1 id=integrab.2h4v.s10.153bda61d0c8 from=translated src=- shape=01c237a1 vocab=7f74b478
 -/
-lemma schwartz_iterated_integral_integrable (f : TestFunctionℂ)
+lemma _root_.Tengoku.LeanPool.schwartz_iterated_integral_integrable (f : TestFunctionℂ)
     (hf_int_norm : Integrable (fun x => ‖f x‖) volume)
     (c₁ c₂ : ℝ) (s : ℝ) (hs : 0 < s) :
     Integrable (fun x : SpaceTime => ∫ y : SpaceTime,
@@ -2184,7 +2184,7 @@ lemma schwartz_iterated_integral_integrable (f : TestFunctionℂ)
     The constant C comes from schwartz_vanishing_linear_bound (derivative bound via MVT).
 @isnad1 id=ex.1h2v.s10.f39a87ea8ffe from=translated src=- shape=bea3a1cf vocab=ad554348
 -/
-lemma F_norm_bound_via_linear_vanishing (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ)
+lemma _root_.Tengoku.LeanPool.F_norm_bound_via_linear_vanishing (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ)
     (hf_supp : ∀ x : SpaceTime, x 0 ≤ 0 → f x = 0) :
     ∃ C_bound : ℝ, 0 < C_bound ∧ ∀ (s : ℝ) (_hs : 0 < s) (k_sp : SpatialCoords),
       let F_val := ∫ x : SpaceTime, ∫ y : SpaceTime,
@@ -2359,7 +2359,7 @@ lemma F_norm_bound_via_linear_vanishing (m : ℝ) [Fact (0 < m)] (f : TestFuncti
     handle the s^{-1/2} * exp(-t²/(4s)) term via substitution z = 1/s.
 @isnad1 id=eq.1h2v.s11.ce519c15d322 from=translated src=- shape=d7c87ad0 vocab=6d894149
 -/
-theorem fubini_s_ksp_swap (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ)
+theorem _root_.Tengoku.LeanPool.fubini_s_ksp_swap (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ)
     (hf_supp : ∀ x, x 0 ≤ 0 → f x = 0) :
     ∫ s in Set.Ioi 0, ∫ k_sp : SpatialCoords, ∫ x : SpaceTime, ∫ y : SpaceTime,
       (starRingEnd ℂ (f x)) * f y *
@@ -2479,27 +2479,27 @@ theorem fubini_s_ksp_swap (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ)
 /-- Schwartz function norm is integrable.
 @isnad1 id=integrab.0h1v.s8.4161f7b4140a from=translated src=- shape=3ebb34e7 vocab=34bfc434
 -/
-lemma schwartz_norm_integrable (f : TestFunctionℂ) :
+lemma _root_.Tengoku.LeanPool.schwartz_norm_integrable (f : TestFunctionℂ) :
     MeasureTheory.Integrable (fun x : SpaceTime => ‖f x‖) :=
   (SchwartzMap.integrable f).norm
 
 /-- Product of Schwartz norms is integrable on SpaceTime × SpaceTime.
 @isnad1 id=integrab.0h1v.s9.3b245d3fd39c from=translated src=- shape=c65f8dcd vocab=c93bfaaa
 -/
-lemma schwartz_norm_prod_integrable (f : TestFunctionℂ) :
+lemma _root_.Tengoku.LeanPool.schwartz_norm_prod_integrable (f : TestFunctionℂ) :
     MeasureTheory.Integrable
       (fun p : SpaceTime × SpaceTime => ‖f p.1‖ * ‖f p.2‖)
       (MeasureTheory.volume.prod MeasureTheory.volume) :=
   (schwartz_norm_integrable f).mul_prod (schwartz_norm_integrable f)
 
 /-- Bound function for s_xy_swap. -/
-def sXYSwapBound (f : TestFunctionℂ) (m : ℝ) (p : ℝ × SpaceTime × SpaceTime) : ℝ :=
+def _root_.Tengoku.LeanPool.sXYSwapBound (f : TestFunctionℂ) (m : ℝ) (p : ℝ × SpaceTime × SpaceTime) : ℝ :=
   Real.sqrt (π / p.1) * ‖f p.2.1‖ * ‖f p.2.2‖ * Real.exp (-p.1 * m^2)
 
 /--
 @isnad1 id=integrab.0h2v.s9.9b7ae9f822d0 from=translated src=- shape=8e997a24 vocab=efa32ced
 -/
-lemma s_xy_swap_bound_integrable (f : TestFunctionℂ) (m : ℝ) [Fact (0 < m)] :
+lemma _root_.Tengoku.LeanPool.s_xy_swap_bound_integrable (f : TestFunctionℂ) (m : ℝ) [Fact (0 < m)] :
     Integrable (sXYSwapBound f m)
       ((volume.restrict (Set.Ioi 0)).prod (volume.prod volume)) := by
   let g_s : ℝ → ℝ := fun s => Real.sqrt π * s ^ (-(1:ℝ)/2) * Real.exp (-m^2 * s)
@@ -2662,7 +2662,7 @@ private lemma fubini_s_xy_swap_integrable (m : ℝ) [Fact (0 < m)]
     The bound function is `s^{-1/2} * exp(-s*m^2) * |f(x)| * |f(y)|`.
 @isnad1 id=eq.0h3v.s11.f24040237927 from=translated src=- shape=bfc7959a vocab=6d1318b3
 -/
-theorem fubini_s_xy_swap (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ) (k_sp : SpatialCoords) :
+theorem _root_.Tengoku.LeanPool.fubini_s_xy_swap (m : ℝ) [Fact (0 < m)] (f : TestFunctionℂ) (k_sp : SpatialCoords) :
     ∫ s in Set.Ioi 0, ∫ x : SpaceTime, ∫ y : SpaceTime,
       (starRingEnd ℂ (f x)) * f y *
         (Real.sqrt (π / s) : ℂ) * Complex.exp (-((-(x 0) - y 0)^2 / (4 * s) : ℝ)) *
@@ -2797,7 +2797,7 @@ which factors and is therefore integrable on the product space.
 /-- The Gaussian exp(-s‖k‖²) is integrable over SpatialCoords for s > 0.
 @isnad1 id=integrab.1h1v.s9.db11ad6c26e5 from=translated src=- shape=07a43773 vocab=0003222e
 -/
-lemma gaussian_integrable_spatialCoords (s : ℝ) (hs : 0 < s) :
+lemma _root_.Tengoku.LeanPool.gaussian_integrable_spatialCoords (s : ℝ) (hs : 0 < s) :
     MeasureTheory.Integrable (fun k_sp : SpatialCoords => Real.exp (-s * ‖k_sp‖^2)) := by
   have hs' : 0 < (s : ℂ).re := by simp [hs]
   -- Use Mathlib's Gaussian integrability (with c=0, w=0)
@@ -2822,7 +2822,7 @@ lemma gaussian_integrable_spatialCoords (s : ℝ) (hs : 0 < s) :
     3. The product factorizes on independent spaces
 @isnad1 id=integrab.1h2v.s10.1d3e449e5679 from=translated src=- shape=28764cfe vocab=0c76a0fc
 -/
-lemma fubini_ksp_xy_integrand_integrable (s : ℝ) (hs : 0 < s) (f : TestFunctionℂ) :
+lemma _root_.Tengoku.LeanPool.fubini_ksp_xy_integrand_integrable (s : ℝ) (hs : 0 < s) (f : TestFunctionℂ) :
     MeasureTheory.Integrable
       (fun p : SpatialCoords × SpaceTime × SpaceTime =>
         ‖f p.2.1‖ * ‖f p.2.2‖ * Real.exp (-s * ‖p.1‖^2))
@@ -2860,7 +2860,7 @@ lemma fubini_ksp_xy_integrand_integrable (s : ℝ) (hs : 0 < s) (f : TestFunctio
     - |exp(pure imaginary)| = 1
 @isnad1 id=integrab.1h2v.s11.8db90b57d7e9 from=translated src=- shape=910e68f0 vocab=fd749740
 -/
-lemma fubini_ksp_xy_full_integrand_integrable (s : ℝ) (hs : 0 < s) (f : TestFunctionℂ) :
+lemma _root_.Tengoku.LeanPool.fubini_ksp_xy_full_integrand_integrable (s : ℝ) (hs : 0 < s) (f : TestFunctionℂ) :
     MeasureTheory.Integrable
       (fun p : SpatialCoords × SpaceTime × SpaceTime =>
         (starRingEnd ℂ (f p.2.1)) * f p.2.2 *
@@ -3000,7 +3000,7 @@ private lemma fubini_ksp_xy_inner_integrable (s : ℝ) (hs : 0 < s)
     2. Apply Fubini (integral_integral_swap) to swap x,y,k_sp to k_sp,x,y
 @isnad1 id=eq.1h2v.s11.82bfc8413a64 from=translated src=- shape=16927c12 vocab=4edb93eb
 -/
-theorem fubini_ksp_xy_swap (s : ℝ) (hs : 0 < s) (f : TestFunctionℂ) :
+theorem _root_.Tengoku.LeanPool.fubini_ksp_xy_swap (s : ℝ) (hs : 0 < s) (f : TestFunctionℂ) :
     ∫ x : SpaceTime, ∫ y : SpaceTime,
       (starRingEnd ℂ (f x)) * f y *
         (Real.sqrt (π / s) : ℂ) * Complex.exp (-((-(x 0) - y 0)^2 / (4 * s) : ℝ)) *
@@ -3155,3 +3155,4 @@ theorem fubini_ksp_xy_swap (s : ℝ) (hs : 0 < s) (f : TestFunctionℂ) :
       (MeasureTheory.volume.prod MeasureTheory.volume) :=
     h_F_integrable.integral_prod_left
   exact MeasureTheory.integral_integral_swap h_outer
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

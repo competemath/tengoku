@@ -23,7 +23,7 @@ through the public theorem statement.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory
 open ProbabilityTheory
 open scoped BigOperators ENNReal
@@ -731,3 +731,4 @@ end
 end EntropyFormula
 
 end ChannelCapacity
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

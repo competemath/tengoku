@@ -30,7 +30,7 @@ Both are placed in `Conditional/` to make the external dependency visible.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u v
 
 namespace FirstOrder
@@ -291,3 +291,4 @@ end HeightCex
 
 end FirstOrder.Language
 -- lean4:disprove-end txn=e12264ecbafc
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

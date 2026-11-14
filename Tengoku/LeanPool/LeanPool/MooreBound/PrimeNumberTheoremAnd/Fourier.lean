@@ -19,7 +19,7 @@ unrelated later developments and LeanArchitect annotations are omitted.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace MooreBound
 
 open FourierTransform Real Complex MeasureTheory Filter Topology BoundedContinuousFunction
@@ -245,3 +245,4 @@ lemma norm_oscillatory_integral_le_integral_deriv_div_abs
   rw [hden]
 
 end MooreBound
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

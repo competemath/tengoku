@@ -29,7 +29,7 @@ embedding travels WITH the code, expansion is a total function (`LocatedTermCode
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder
 
 namespace Language
@@ -156,3 +156,4 @@ theorem LocalEMContext.mk_carrier_eq (ctx : LocalEMContext Λ J (M := M))
 end Language
 
 end FirstOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -15,7 +15,7 @@ tubular neighborhoods, first-order algorithm model, convergence rate, and manifo
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace PLAcceleratedNesterovLean
@@ -118,3 +118,4 @@ def modelI (n : ℕ) : ModelWithCorners ℝ (ManifoldModel n) (ManifoldModel n) 
   modelWithCornersSelf ℝ (ManifoldModel n)
 
 end PLAcceleratedNesterovLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

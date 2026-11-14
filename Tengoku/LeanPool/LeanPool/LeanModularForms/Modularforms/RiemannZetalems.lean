@@ -11,7 +11,7 @@ public import Tengoku
 /-! # RiemannZetalems -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open TopologicalSpace Set MeasureTheory intervalIntegral
   Metric Filter Function Complex
 
@@ -20,7 +20,7 @@ open scoped Interval Real NNReal ENNReal Topology BigOperators Nat
 /--
 @isnad1 id=eq.0h0v.s6.03be7d4ccd70 from=translated src=- shape=28b830c9 vocab=043bbe84
 -/
-lemma zeta_two_eqn : ∑' (n : ℤ), ((n : ℂ) ^ 2)⁻¹ = 2 * riemannZeta 2 := by
+lemma _root_.Tengoku.LeanPool.zeta_two_eqn : ∑' (n : ℤ), ((n : ℂ) ^ 2)⁻¹ = 2 * riemannZeta 2 := by
   have := tsum_nat_add_neg (f := fun n => 1/((n : ℂ) ^ 2)) ?_
   · simp only [Int.cast_natCast, one_div, Int.cast_neg, even_two, Even.neg_pow, Int.cast_zero,
       ne_eq, OfNat.ofNat_ne_zero, not_false_eq_true, zero_pow, div_zero, add_zero] at this
@@ -43,3 +43,4 @@ lemma zeta_two_eqn : ∑' (n : ℤ), ((n : ℂ) ^ 2)⁻¹ = 2 * riemannZeta 2 :=
   apply this.congr
   intro b
   congr
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

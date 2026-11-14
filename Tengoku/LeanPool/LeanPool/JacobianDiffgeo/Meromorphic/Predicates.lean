@@ -26,7 +26,7 @@ Unit: meromorphic-and-divisors (`docs/design/meromorphic-and-divisors.md` §4.1)
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold
 open Set Filter Topology
 
@@ -468,3 +468,4 @@ theorem ordAtX_of_contMDiffAt_eq_zero (hf : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω f
   meromorphicOrderAt_chart_of_eq_zero hf h0
 
 end RS
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

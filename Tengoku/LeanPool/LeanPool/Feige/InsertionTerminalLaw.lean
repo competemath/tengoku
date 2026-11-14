@@ -20,7 +20,7 @@ coordinates, with the distinguished positive exponential removed.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Set
 
 namespace Feige
@@ -73,3 +73,4 @@ theorem terminalCommonLaw_Ioi_zero {n : ℕ}
 end
 
 end Feige
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

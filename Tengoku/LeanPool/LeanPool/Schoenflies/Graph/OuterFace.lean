@@ -30,7 +30,7 @@ been, so "the outer face" is "the face through any point far enough out".
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set Schoenflies unitInterval
 open scoped Graph
 
@@ -158,3 +158,4 @@ theorem unbounded_face_unique [G.Finite] (h : IsDrawing G drawing) {b c : Plane}
   rw [e1, e2]
 
 end Graph
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

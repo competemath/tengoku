@@ -27,7 +27,7 @@ lattice-theoretic description `g₂³/Δ` becomes a lemma (proved in `Fourier.le
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace Chudnovsky
@@ -163,3 +163,4 @@ lemma τ₈_mem_Region : τ₈ ∈ Region := by
   nlinarith [Real.sq_sqrt (by norm_num : (2 : ℝ) ≥ 0).le, Real.sqrt_nonneg (2 : ℝ)]
 
 end Chudnovsky
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

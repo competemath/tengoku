@@ -30,7 +30,7 @@ used directly as the formal interface; no second recursive beth is introduced.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder
 
 namespace HanfLadder
@@ -135,3 +135,4 @@ theorem iSup_beth_add_one_omega1 :
 end HanfLadder
 
 end FirstOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

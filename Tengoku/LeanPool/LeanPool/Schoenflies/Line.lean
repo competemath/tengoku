@@ -53,7 +53,7 @@ subset of `ℝ` is an open interval whose endpoints are outside the set.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Bornology Metric Set
 
 namespace Schoenflies
@@ -368,3 +368,4 @@ theorem affineMap_ext_of_affineIndependent {p : Fin 3 → Plane} (hp : AffineInd
 end Plane
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

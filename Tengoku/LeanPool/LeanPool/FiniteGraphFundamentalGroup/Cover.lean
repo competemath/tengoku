@@ -14,7 +14,7 @@ This module constructs the standard combinatorial unfolding of a rooted quiver.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open CategoryTheory Quiver
 
 noncomputable section
@@ -140,3 +140,4 @@ theorem graphCoverProjection_isCovering {V : Type u} [Quiver.{u} V] (root : V) :
     fun x => (graphCoverCostarEquiv root x).bijective⟩
 
 end FiniteGraphFreeGroup
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -29,7 +29,7 @@ the current Mathlib `WellQuasiOrdered.exists_monotone_subseq`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set
 
 noncomputable section
@@ -89,3 +89,4 @@ theorem WellQuasiOrdered.exists_monotone_subseq_lt (h : WellQuasiOrdered r) (f :
     exact absurd hr (hbad m n hmn)
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

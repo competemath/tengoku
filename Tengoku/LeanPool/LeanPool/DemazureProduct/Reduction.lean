@@ -18,7 +18,7 @@ This file formalizes the main theorems from the introduction of
 It corresponds roughly to Section 6 of the paper. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.DemazureProduct
 
 namespace Reduction
@@ -166,3 +166,4 @@ theorem reduceList :
 end Reduction
 
 end LeanPool.DemazureProduct
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

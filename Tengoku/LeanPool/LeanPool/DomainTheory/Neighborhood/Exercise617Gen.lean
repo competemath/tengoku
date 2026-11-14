@@ -39,7 +39,7 @@ and the data
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood.Exercise617Gen
 
 open Domain.Neighborhood NeighborhoodSystem ApproximableMap Domain.Neighborhood.Exercise510
@@ -1930,3 +1930,4 @@ theorem Cfin_domain_equation (n : ℕ) : Cn (Fin (n + 1)) ≅ᴰ CCn (Fin (n + 1
 def CfinIsInitial (n : ℕ) : IsInitial (Cnalg (Fin (n + 1))) := CnisInitial (Fin (n + 1))
 
 end Domain.Neighborhood.Exercise617Gen
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

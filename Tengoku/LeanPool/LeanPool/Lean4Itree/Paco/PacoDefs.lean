@@ -10,7 +10,7 @@ import Std.Data.DTreeMap.Internal.Balancing
 import Std.Tactic.BVDecide.Normalize.Prop
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Lean.Order.CompleteLattice
 
 open PartialOrder
@@ -241,3 +241,4 @@ theorem plfp_acc [Lean.Order.CompleteLattice α] {f : α → α} (hm : monotone 
   · apply meet_le_right' _ rel_refl
 
 end Lean4Itree
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

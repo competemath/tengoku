@@ -28,7 +28,7 @@ proof the internal variables get replaced by other formulas.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace PDL
 
 /-! ## Definition 9.15: the language `L_Q` -/
@@ -359,3 +359,4 @@ lemma not_mem_vars_gfp [DecidableEq Var] (x : Var) (ι : QFormula Var) :
 end QFormula
 
 end PDL
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

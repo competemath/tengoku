@@ -11,7 +11,7 @@ The spatial second derivatives of a Gaussian are integrable. Their Fourier
 transforms provide smooth approximations to the second-order Riesz symbol.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace NavierStokes.R3GaussianPressure
 
 open Set Filter MeasureTheory ProblemStatement FourierTransform InnerProductSpace
@@ -218,3 +218,4 @@ theorem fourier_gaussian {a : ℝ} (ha : 0 < a) (ξ : Space) :
   rfl
 
 end NavierStokes.R3GaussianPressure
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

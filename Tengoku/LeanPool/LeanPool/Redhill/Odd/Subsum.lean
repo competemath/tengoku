@@ -16,7 +16,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace OddCase
 
 open Fin Finset
@@ -210,3 +210,4 @@ lemma tupReduce_tup {c₁ : n + 2 = n + 5 - #(univ.map redEmb1)} :
       fin_cases i <;> rfl
 
 end OddCase
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

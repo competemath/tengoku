@@ -34,7 +34,7 @@ De Morgan duality (`CNF.neg`).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace CircuitComplexity
 
 /-- Any DNF computing N-variable XOR requires at least `2^{N-1}` terms.
@@ -60,3 +60,4 @@ theorem CNF.xorBool_complexity_lb (φ : CNF N) (hN : 1 ≤ N)
     rw [Schnorr.xorBool_flip, Bool.not_not]
 
 end CircuitComplexity
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -18,8 +18,8 @@ below uses these facts together with `units_pm_one`, `theta_irreducible`,
 -/
 
 @[expose] public section
-
-namespace RamanujanNagell
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+namespace Tengoku.LeanPool.RamanujanNagell
 
 open Polynomial QuadraticAlgebra Algebra Nat
   UniqueFactorizationMonoid
@@ -1134,14 +1134,14 @@ lemma helper_5
     rcases (sq_eq_sq_iff_eq_or_eq_neg.mp h₁ : x = 181 ∨ x = -181) with h | h <;>
       subst h h₂ <;> tauto
 
-end RamanujanNagell
+end Tengoku.LeanPool.RamanujanNagell
 
-open RamanujanNagell
+open Tengoku.LeanPool.RamanujanNagell
 
 /-- The Ramanujan-Nagell theorem.
 @isnad1 id=or.1h2v.s8.5d78dd635782 from=translated src=- shape=c0992579 vocab=c4f021a0
 -/
-theorem RamanujanNagell :
+theorem _root_.Tengoku.LeanPool.RamanujanNagell :
   ∀ x : ℤ, ∀ n : ℕ, x ^ 2 + 7 = 2 ^ n →
     (x, n) = (1, 3) ∨ (x, n) = (-1, 3)
   ∨ (x, n) = (3, 4) ∨ (x, n) = (-3, 4)
@@ -1200,7 +1200,7 @@ theorem RamanujanNagell :
     `(±5, 5)`, `(±11, 7)`, and `(±181, 15)`.
 @isnad1 id=iff.0h2v.s8.1fa578b55d72 from=translated src=- shape=05785a74 vocab=c4f021a0
 -/
-theorem ramanujanNagellExact :
+theorem _root_.Tengoku.LeanPool.ramanujanNagellExact :
   ∀ x : ℤ, ∀ n : ℕ, x ^ 2 + 7 = 2 ^ n ↔
     (x, n) = (1, 3) ∨ (x, n) = (-1, 3)
   ∨ (x, n) = (3, 4) ∨ (x, n) = (-3, 4)
@@ -1213,3 +1213,4 @@ theorem ramanujanNagellExact :
   · intro h
     rcases h with h | h | h | h | h | h | h | h | h | h <;>
       (rw [Prod.mk.injEq] at h; obtain ⟨hx, hn⟩ := h; subst hx; subst hn; norm_num)
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -36,7 +36,7 @@ in Lω₁ω (countable infinitary logic with countable conjunctions/disjunctions
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u v w w'
 
 namespace FirstOrder
@@ -222,3 +222,4 @@ theorem Theoryω.Model.of_equiv {T : L.Theoryω} {M N : Type w} [L.Structure M]
 end Language
 
 end FirstOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

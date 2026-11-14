@@ -19,7 +19,7 @@ instance required by metric covering arguments.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ENNReal NNReal Topology
 
 open MeasureTheory MeasureTheory.Measure Set Metric
@@ -97,3 +97,4 @@ lemma volume_parabolicCylinder_time (x : Vec3) (t₁ t₂ r : ℝ) :
   rw [volume_parabolicCylinder, volume_parabolicCylinder]
 
 end CKN.Foundation.Parabolic
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -39,7 +39,7 @@ minimisation compose. The capstone is `partrec_lamDef` and the 1-ary corollary
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood.Theorem56Full
 
 open Domain.Neighborhood NeighborhoodSystem ApproximableMap
@@ -1016,3 +1016,4 @@ theorem partrec_one {h : ℕ →. ℕ}
     refine hφ.strict 𝒩.bot (fun j => Or.inl (component_bot j)) 0 (by omega) (component_bot 0)
 
 end Domain.Neighborhood.Theorem56Full
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

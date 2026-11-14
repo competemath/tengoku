@@ -46,7 +46,7 @@ The three clauses of `Graph.IsDrawing` come out as follows.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set
 open scoped Graph
 
@@ -476,3 +476,4 @@ theorem polygonal_overlay (pieces : List Piece) (hnd : ∀ P ∈ pieces, P.Nonde
     overlayGraph_pointSet pieces points⟩
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

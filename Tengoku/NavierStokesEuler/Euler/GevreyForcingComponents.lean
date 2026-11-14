@@ -1,7 +1,7 @@
 import Tengoku.NavierStokesEuler.Euler.GevreyBaseTransport
 import Tengoku.NavierStokesEuler.Euler.GevreyPressureEnergy
 import Tengoku.NavierStokesEuler.Euler.WeightedForcingAlgebra
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace EulerGevreyForcingComponents
 end EulerGevreyForcingComponents
 namespace MeasureTheory
@@ -163,3 +163,4 @@ theorem basePressureForcing_bound {s : ℕ} {A : SmoothCoefficient period}
   exact h.trans_eq (by simp only [Fintype.sum_sigma, basePressureNorm, basePressureBlock, Finset.mul_sum])
 
 end EulerGevreyForcingComponents
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

@@ -21,7 +21,7 @@ No topology on the free Abelian group and no compactness conclusion is stored in
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter Set Topology
 
 universe u
@@ -145,3 +145,4 @@ end SeparationPackage
 end
 
 end Wallace
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

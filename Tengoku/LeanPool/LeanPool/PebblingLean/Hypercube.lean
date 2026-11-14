@@ -17,7 +17,7 @@ coordinate.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace PebblingLean
 
 /-- Vertices of the `n`-cube. -/
@@ -186,3 +186,4 @@ theorem dist_adj_le_succ {n : ℕ} {x y t : HypercubeVertex n}
 end Hypercube
 
 end PebblingLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

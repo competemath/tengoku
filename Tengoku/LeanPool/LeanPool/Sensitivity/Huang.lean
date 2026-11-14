@@ -41,7 +41,7 @@ archived at https://github.com/leanprover-community/mathlib/blob/master/archive/
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPoolSensitivity.Huang
 
 /-! The next two lines assert we do not want to give a constructive proof,
@@ -508,3 +508,4 @@ theorem huang_degree_theorem (H : Set (Q m.succ)) (hH : Card H ≥ 2 ^ m + 1) :
 end
 
 end LeanPoolSensitivity.Huang
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

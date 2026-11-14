@@ -50,7 +50,7 @@ The proof follows from
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Complex Metric Real Set
 
 namespace LeanPool.LeanComplexAnalysis
@@ -572,3 +572,4 @@ theorem circleAverage_of_diffContOnCl_disc
         poisson_integral_of_diffContOnCl_disc_ker_re hf hz]
 
 end LeanPool.LeanComplexAnalysis
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

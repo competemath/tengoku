@@ -50,7 +50,7 @@ completed proof map.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Function MeasureTheory
 
 /-! ### Independent sets and neighborhoods -/
@@ -60,13 +60,13 @@ section Independence
 variable {α : Type*}
 
 /-- A set is independent for a relation `G` (a set of pairs) if it contains no `G`-edge. -/
-def RelIndependent (G : Set (α × α)) (A : Set α) : Prop :=
+def _root_.Tengoku.LeanPool.RelIndependent (G : Set (α × α)) (A : Set α) : Prop :=
   ∀ ⦃a⦄, a ∈ A → ∀ ⦃b⦄, b ∈ A → (a, b) ∉ G
 
 /--
 @isnad1 id=relindep.2h4v.s4.f0b9699ef2f7 from=translated src=- shape=a62ef908 vocab=411393ab
 -/
-theorem RelIndependent.mono {G : Set (α × α)} {A B : Set α} (hBA : B ⊆ A)
+theorem Tengoku.LeanPool.RelIndependent.mono {G : Set (α × α)} {A B : Set α} (hBA : B ⊆ A)
     (hA : RelIndependent G A) : RelIndependent G B :=
   fun _ ha _ hb => hA (hBA ha) (hBA hb)
 
@@ -74,7 +74,7 @@ theorem RelIndependent.mono {G : Set (α × α)} {A B : Set α} (hBA : B ⊆ A)
 private def relNbhd (G : Set (α × α)) (C : Set α) : Set α :=
   {x | ∃ y ∈ C, (x, y) ∈ G ∨ (y, x) ∈ G}
 
-private theorem RelIndependent.disjoint_relNbhd {G : Set (α × α)} {A : Set α}
+private theorem Tengoku.LeanPool.RelIndependent.disjoint_relNbhd {G : Set (α × α)} {A : Set α}
     (hA : RelIndependent G A) : Disjoint A (relNbhd G A) := by
   rw [Set.disjoint_left]
   rintro x hxA ⟨y, hyA, he | he⟩
@@ -163,14 +163,14 @@ variable {α : Type*} [MeasurableSpace α]
 /-- A family `Φ` of assignments `ι → α` is **small** for `G` if countably many Borel
 `G`-independent sets capture a value of every member of `Φ`. This is Miller's ideal `I_n`
 on the spaces of partial homomorphisms. -/
-def SmallFam (G : Set (α × α)) {ι : Type*} (Φ : Set (ι → α)) : Prop :=
+def _root_.Tengoku.LeanPool.SmallFam (G : Set (α × α)) {ι : Type*} (Φ : Set (ι → α)) : Prop :=
   ∃ C : ℕ → Set α, (∀ k, MeasurableSet (C k) ∧ RelIndependent G (C k)) ∧
     ∀ φ ∈ Φ, ∃ i : ι, ∃ k : ℕ, φ i ∈ C k
 
 /--
 @isnad1 id=smallfam.2h5v.s5.71e7e7fc8ac1 from=translated src=- shape=86293563 vocab=4fb22302
 -/
-theorem SmallFam.mono {G : Set (α × α)} {ι : Type*} {Φ Ψ : Set (ι → α)}
+theorem Tengoku.LeanPool.SmallFam.mono {G : Set (α × α)} {ι : Type*} {Φ Ψ : Set (ι → α)}
     (hΨΦ : Ψ ⊆ Φ) (h : SmallFam G Φ) : SmallFam G Ψ := by
   obtain ⟨C, hC, hcap⟩ := h
   exact ⟨C, hC, fun φ hφ => hcap φ (hΨΦ hφ)⟩
@@ -178,12 +178,12 @@ theorem SmallFam.mono {G : Set (α × α)} {ι : Type*} {Φ Ψ : Set (ι → α)
 /--
 @isnad1 id=smallfam.0h3v.s4.c6ae35d198e4 from=translated src=- shape=9cda8f3e vocab=61b534b2
 -/
-theorem SmallFam.empty {G : Set (α × α)} {ι : Type*} :
+theorem Tengoku.LeanPool.SmallFam.empty {G : Set (α × α)} {ι : Type*} :
     SmallFam G (∅ : Set (ι → α)) :=
   ⟨fun _ => ∅, fun _ => ⟨MeasurableSet.empty, fun _ h => h.elim⟩, fun _ h => h.elim⟩
 
 /-- Smallness is countably additive. -/
-private theorem SmallFam.iUnion_of_forall {G : Set (α × α)} {ι : Type*} {Ψ : ℕ → Set (ι → α)}
+private theorem Tengoku.LeanPool.SmallFam.iUnion_of_forall {G : Set (α × α)} {ι : Type*} {Ψ : ℕ → Set (ι → α)}
     (h : ∀ n, SmallFam G (Ψ n)) : SmallFam G (⋃ n, Ψ n) := by
   choose C hC hcap using h
   refine ⟨fun k => C (Nat.unpair k).1 (Nat.unpair k).2, fun k => hC _ _, ?_⟩
@@ -197,7 +197,7 @@ non-small piece. Used to refine positive families by vertex-value and witness-pr
 constraints.
 @isnad1 id=ex.2h5v.s6.fd218fea1c6e from=translated src=- shape=f5e6f90e vocab=0584873c
 -/
-theorem exists_not_smallFam_inter {G : Set (α × α)} {ι : Type*} {Φ : Set (ι → α)}
+theorem _root_.Tengoku.LeanPool.exists_not_smallFam_inter {G : Set (α × α)} {ι : Type*} {Φ : Set (ι → α)}
     (hΦ : ¬ SmallFam G Φ) {Ψ : ℕ → Set (ι → α)} (hcov : Φ ⊆ ⋃ n, Ψ n) :
     ∃ n, ¬ SmallFam G (Φ ∩ Ψ n) := by
   by_contra h
@@ -214,7 +214,7 @@ theorem exists_not_smallFam_inter {G : Set (α × α)} {ι : Type*} {Φ : Set (�
 /-- Non-small families are nonempty.
 @isnad1 id=nonempty.1h4v.s4.91676187f600 from=translated src=- shape=5f297a64 vocab=a327f1ad
 -/
-theorem nonempty_of_not_smallFam {G : Set (α × α)} {ι : Type*} {Φ : Set (ι → α)}
+theorem _root_.Tengoku.LeanPool.nonempty_of_not_smallFam {G : Set (α × α)} {ι : Type*} {Φ : Set (ι → α)}
     (hΦ : ¬ SmallFam G Φ) : Φ.Nonempty := by
   by_contra h
   rw [Set.not_nonempty_iff_eq_empty] at h
@@ -237,7 +237,7 @@ full family of assignments is not small for the complement graph — a countable
 family of independent (hence single-class) Borel sets would make the quotient countable.
 @isnad1 id=not.1h3v.s5.9aa5d369d847 from=translated src=- shape=497b497f vocab=4ff03dbe
 -/
-theorem not_smallFam_univ {ι : Type*} [_nonemptyι : Nonempty ι] (r : Setoid α)
+theorem _root_.Tengoku.LeanPool.not_smallFam_univ {ι : Type*} [_nonemptyι : Nonempty ι] (r : Setoid α)
     (hunc : ¬ Countable (Quotient r)) :
     ¬ SmallFam {p : α × α | ¬ r.r p.1 p.2} (univ : Set (ι → α)) := by
   rintro ⟨C, hC, hcap⟩
@@ -269,7 +269,7 @@ theorem not_smallFam_univ {ι : Type*} [_nonemptyι : Nonempty ι] (r : Setoid �
 /-- Smallness is binary additive.
 @isnad1 id=smallfam.2h5v.s5.7d9654ad6fe4 from=translated src=- shape=8c3a2a8b vocab=37313683
 -/
-theorem SmallFam.union {G : Set (α × α)} {ι : Type*} {Φ₁ Φ₂ : Set (ι → α)}
+theorem Tengoku.LeanPool.SmallFam.union {G : Set (α × α)} {ι : Type*} {Φ₁ Φ₂ : Set (ι → α)}
     (h₁ : SmallFam G Φ₁) (h₂ : SmallFam G Φ₂) : SmallFam G (Φ₁ ∪ Φ₂) := by
   have hcov : Φ₁ ∪ Φ₂ = ⋃ n : ℕ, if n = 0 then Φ₁ else Φ₂ := by
     ext φ
@@ -339,7 +339,7 @@ omit [TopologicalSpace α] [PolishSpace α] [BorelSpace α] in
 combining pairs from a positive family yields a positive family.
 @isnad1 id=not.2h6v.s7.bbc42ebad58b from=translated src=- shape=69c9da02 vocab=0a1ba770
 -/
-theorem not_smallFam_comb_pairs {Φ : Set (ι → α)} (hΦ : ¬ SmallFam G Φ)
+theorem _root_.Tengoku.LeanPool.not_smallFam_comb_pairs {Φ : Set (ι → α)} (hΦ : ¬ SmallFam G Φ)
     (comb : (ι → α) → (ι → α) → κ → α)
     (hvals : ∀ φ₀ φ₁ : ι → α, ∀ v : κ,
       (∃ i, comb φ₀ φ₁ v = φ₀ i) ∨ (∃ i, comb φ₀ φ₁ v = φ₁ i)) :
@@ -362,7 +362,7 @@ analytic `G`-independent set, and the KST superset lemma yields a single Borel i
 set capturing `Φ'` — contradiction.
 @isnad1 id=not.4h7v.s7.77db53a54f18 from=translated src=- shape=43ad197f vocab=f18f0306
 -/
-theorem not_smallFam_comb_cross [Countable ι] (hG : AnalyticSet G)
+theorem _root_.Tengoku.LeanPool.not_smallFam_comb_cross [Countable ι] (hG : AnalyticSet G)
     {Φ : Set (ι → α)} (hΦa : AnalyticSet Φ) (hΦ : ¬ SmallFam G Φ) (s : ι)
     (comb : (ι → α) → (ι → α) → κ → α)
     (hvals : ∀ φ₀ φ₁ : ι → α, ∀ v : κ,
@@ -410,7 +410,7 @@ omit [PolishSpace α] [MeasurableSpace α] [BorelSpace α] in
 /-- Analyticity of the plain combined family.
 @isnad1 id=analytic.2h5v.s7.1d1573f4db85 from=translated src=- shape=469a85e9 vocab=01e0a8ae
 -/
-theorem analyticSet_comb_pairs {Φ : Set (ι → α)} (hΦa : AnalyticSet Φ)
+theorem _root_.Tengoku.LeanPool.analyticSet_comb_pairs {Φ : Set (ι → α)} (hΦa : AnalyticSet Φ)
     (comb : (ι → α) → (ι → α) → κ → α)
     (hcomb : Continuous fun p : (ι → α) × (ι → α) => comb p.1 p.2) :
     AnalyticSet {ψ : κ → α | ∃ φ₀ ∈ Φ, ∃ φ₁ ∈ Φ, ψ = comb φ₀ φ₁} := by
@@ -429,7 +429,7 @@ omit [MeasurableSpace α] [BorelSpace α] in
 /-- Analyticity of the combined family with a fresh edge constraint.
 @isnad1 id=analytic.3h7v.s7.d049b19f2fb5 from=translated src=- shape=44752ade vocab=c36bb25e
 -/
-theorem analyticSet_comb_cross [Countable ι] (hG : AnalyticSet G)
+theorem _root_.Tengoku.LeanPool.analyticSet_comb_cross [Countable ι] (hG : AnalyticSet G)
     {Φ : Set (ι → α)} (hΦa : AnalyticSet Φ) (s : ι)
     (comb : (ι → α) → (ι → α) → κ → α)
     (hcomb : Continuous fun p : (ι → α) × (ι → α) => comb p.1 p.2) :
@@ -450,3 +450,4 @@ theorem analyticSet_comb_cross [Countable ι] (hG : AnalyticSet G)
   exact ((hΦa.prod hΦa).inter hpre).image_of_continuous hcomb
 
 end Combination
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

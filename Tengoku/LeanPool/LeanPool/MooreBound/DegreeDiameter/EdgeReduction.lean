@@ -20,7 +20,7 @@ The port adds a namespace and adapts proofs to the current Mathlib APIs and repo
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace MooreBound
 
 open Set
@@ -524,3 +524,4 @@ theorem lemma_4_1 (H : SimpleGraph V) :
 end DegreeDiameter
 
 end MooreBound
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

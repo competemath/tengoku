@@ -26,7 +26,7 @@ import Tengoku.Seed.Tactic.NormNum.Parity
 /-! # ImportedAnalyticInputs -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Complex MeasureTheory Real Finset
 open scoped BigOperators
 
@@ -160,3 +160,4 @@ theorem phase_normalized_orthogonal_reduction
     nlinarith [hh_main, ha_simple, hx_sq, hdefect_nonneg h, hC, abs_nonneg a]
 
 end HermiteLEAN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

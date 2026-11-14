@@ -70,7 +70,7 @@ unavoidable, as it extracts a `Fintype` from `Finite` and a surjection's section
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem ApproximableMap
@@ -189,3 +189,4 @@ theorem isomorphic_of_finite_system (hD : D.IsFinite) (hE : E.IsFinite)
   exact isomorphic_of_trianglelefteq_both h₁ h₂
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

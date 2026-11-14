@@ -32,7 +32,7 @@ fill it in, and every consumer written in the meantime would have been built on 
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Schoenflies
 open scoped Graph
 
@@ -60,3 +60,4 @@ theorem outer_chain' (h : IsPlaneChain Γ drawing G n) (hout : OuterOnPairs Γ d
 end IsPlaneChain
 
 end Graph
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -34,7 +34,7 @@ Main declarations:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold
 open Set Filter Topology IsManifold RS Metric
 open scoped Convex
@@ -202,3 +202,4 @@ theorem genus_eq_zero_of_simplyConnectedSpace [SimplyConnectedSpace X] : genus X
   genus_eq_zero_iff_subsingleton.mpr inferInstance
 
 end RS.SphereTopology
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

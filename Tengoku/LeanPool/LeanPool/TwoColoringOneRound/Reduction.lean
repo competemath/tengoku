@@ -29,7 +29,7 @@ conclude `p ≤ 0.24118` for some `ClassicalAlgorithm`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Distributed2Coloring
 
 open MeasureTheory
@@ -361,3 +361,4 @@ theorem exists_algorithm_p_le_24118 :
   Reduction.exists_algorithm_p_le_24118
 
 end Distributed2Coloring
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

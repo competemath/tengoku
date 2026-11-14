@@ -81,7 +81,7 @@ theorem, and is exactly the freedom `Graph.IsK33Config.not_isDrawing` reserves f
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set unitInterval
 
 namespace Schoenflies
@@ -1821,3 +1821,4 @@ theorem exists_closedPolygon_arcs_ordered {C A₁ A₂ : Set Plane} (hJ : IsJord
       exact Or.inr ⟨hqa, hpa⟩
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

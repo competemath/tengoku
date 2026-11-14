@@ -16,7 +16,7 @@ the short proof of Petrov and Pohoata via the Croot-Lev-Pach lemma.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MvPolynomial
 
 namespace BannaiBannaiStanton
@@ -799,3 +799,4 @@ which is bounded by Nat.choose (d + s) s.
 end MainResult
 
 end BannaiBannaiStanton
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

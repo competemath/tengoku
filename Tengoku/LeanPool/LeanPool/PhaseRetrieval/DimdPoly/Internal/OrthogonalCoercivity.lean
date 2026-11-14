@@ -24,7 +24,7 @@ import Tengoku.Seed.Tactic.NormNum.Parity
 /-! # OrthogonalCoercivity -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Complex
 open scoped BigOperators
 
@@ -68,3 +68,4 @@ private def defectFunctionPkappa_wip
 end
 
 end DimdPolyLEAN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

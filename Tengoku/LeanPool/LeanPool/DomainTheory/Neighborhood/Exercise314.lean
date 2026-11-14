@@ -40,7 +40,7 @@ Everything is **choice-free** (`#print axioms ⊆ {propext, Quot.sound}`).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem ApproximableMap
@@ -83,3 +83,4 @@ theorem proj₁_comp_diag : (proj₁ V V).comp (diag V) = idMap V :=
   proj₁_comp_paired (idMap V) (idMap V)
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

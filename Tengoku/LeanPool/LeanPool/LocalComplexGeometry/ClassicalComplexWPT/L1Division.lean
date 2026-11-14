@@ -20,7 +20,7 @@ complex-analytic Weierstrass preparation.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Finset
 open scoped ENNReal NNReal Topology
 noncomputable section
@@ -713,3 +713,4 @@ theorem seqDivisionGlobal_factorization (d : ℕ) (p f : L1Coeff ℕ) (hp : ‖p
 end NatDivision
 
 end ClassicalComplexWPT
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

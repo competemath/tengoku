@@ -48,7 +48,7 @@ project's permitted `Element.ext` / `ext_of_toElementMap`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem ApproximableMap
@@ -131,3 +131,4 @@ theorem fix_eq_fixElement_bigPsi (V : NeighborhoodSystem α) :
   · exact fixElement_le_of_toElementMap_le (bigPsi V) (le_of_eq (bigPsi_fix V))
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

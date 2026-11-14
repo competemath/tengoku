@@ -26,7 +26,7 @@ must have a "majority" parity-sign class strictly larger than `2^{n-1}`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPoolSensitivity
 
 variable {n : ℕ}
@@ -245,3 +245,4 @@ theorem fullDegree_imbalance (f : BoolFun n) (hn : 0 < n)
     simp_all
 
 end LeanPoolSensitivity
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

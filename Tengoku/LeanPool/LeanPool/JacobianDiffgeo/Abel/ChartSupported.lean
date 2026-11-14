@@ -37,7 +37,7 @@ Also here: the inverse-derivative units `deriv_trans_mul_deriv_trans_symm` /
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold
 open IsManifold Metric Set MeasureTheory
 
@@ -276,3 +276,4 @@ variable [CompactSpace X]
 end RS.Abel
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

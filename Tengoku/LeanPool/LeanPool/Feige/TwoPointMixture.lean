@@ -16,7 +16,7 @@ and constructs the mean-one two-point law `Q_{x,y}`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Set
 
 namespace Feige
@@ -329,3 +329,4 @@ theorem twoPointMixture_dichotomy
 end
 
 end Feige
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

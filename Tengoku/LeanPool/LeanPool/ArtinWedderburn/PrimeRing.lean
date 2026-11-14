@@ -17,7 +17,7 @@ elementwise version `aRb = 0 → a = 0 ∨ b = 0` and to the two-sided ideal ver
 Concludes that simple rings are prime.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 open scoped LeanPool.ArtinWedderburn
 
 
@@ -418,3 +418,4 @@ theorem simple_ring_is_prime [IsSimpleRing R] : IsPrimeRing R := by
       simp_all
 
 end LeanPool.ArtinWedderburn
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

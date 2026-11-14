@@ -29,7 +29,7 @@ remainder is the `T`-Schur complement of `E` and is PSD (EL13–EL14).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Matrix Function
 
 namespace BollobasNikiforov
@@ -2342,3 +2342,4 @@ lemma M_eq_elimC0_add_extend (s t : Fin k → ℝ) (ρ x : Fin p → ℝ)
 end
 
 end BollobasNikiforov
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

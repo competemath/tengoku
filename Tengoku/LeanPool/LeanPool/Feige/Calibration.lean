@@ -15,7 +15,7 @@ Vlassis--Thomas theorem and the reduction to Feige's inequality.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory ProbabilityTheory
 
 namespace Feige
@@ -42,3 +42,4 @@ def UniversalCalibration {n : ℕ} (K : (Fin n → ℝ) → ℝ) : Prop :=
     CalibrationProperty μ K
 
 end Feige
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

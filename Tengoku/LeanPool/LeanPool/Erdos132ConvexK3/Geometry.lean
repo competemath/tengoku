@@ -17,7 +17,7 @@ uniqueness for two-circle intersections.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.Erdos132ConvexK3
 
 /-- Regard a Cartesian point as a complex number. -/
@@ -573,3 +573,4 @@ theorem two_rung_sum_identity_with_classes
   rw [two_rung_sum_identity hconstraint, hclasses]
 
 end LeanPool.Erdos132ConvexK3
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

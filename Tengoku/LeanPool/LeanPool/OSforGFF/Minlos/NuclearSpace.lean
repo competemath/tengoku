@@ -21,7 +21,7 @@ via Hilbert-Schmidt embeddings. Adapted from OSforGFF/IsHilbertNuclear.lean.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators
 
 noncomputable section
@@ -31,7 +31,7 @@ noncomputable section
 /-- A continuous linear map between normed spaces is **nuclear** if it admits a
     representation T(x) = ∑ₙ (φₙ x) • yₙ where ∑ₙ ‖φₙ‖ · ‖yₙ‖ < ∞.
 -/
-def IsNuclearMap {E F : Type*}
+def _root_.Tengoku.LeanPool.IsNuclearMap {E F : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup F] [NormedSpace ℝ F] [hF : CompleteSpace F]
     (T : E →L[ℝ] F) : Prop :=
@@ -79,7 +79,7 @@ def Seminorm.IsHilbertSchmidtEmbedding {E : Type*} [AddCommGroup E] [Module ℝ 
     **Reference:** Trèves, "Topological Vector Spaces", Ch. 50, Thm 50.1;
     Gel'fand-Vilenkin Vol. 4, Ch. 3-4.
 -/
-class IsHilbertNuclear (E : Type*) [AddCommGroup E] [Module ℝ E] [TopologicalSpace E] : Prop where
+class _root_.Tengoku.LeanPool.IsHilbertNuclear (E : Type*) [AddCommGroup E] [Module ℝ E] [TopologicalSpace E] : Prop where
   nuclear_hilbert_embeddings :
     ∃ (p : ℕ → Seminorm ℝ E),
       (∀ n, (p n).IsHilbertian) ∧
@@ -95,7 +95,7 @@ variable {E : Type*} [AddCommGroup E] [Module ℝ E] [TopologicalSpace E]
     (Bogachev, "Gaussian Measures", Thm 3.6.1), so using it directly
     avoids needing to prove that difficult direction.
 -/
-instance instMeasurableSpaceWeakDualRealLeanPool : MeasurableSpace (WeakDual ℝ E) :=
+instance _root_.Tengoku.LeanPool.instMeasurableSpaceWeakDualRealLeanPool : MeasurableSpace (WeakDual ℝ E) :=
   ⨆ (f : E), (borel ℝ).comap (fun l : WeakDual ℝ E => (l : E →L[ℝ] ℝ) f)
 
 /-- Each evaluation map `l ↦ l(f)` is measurable w.r.t. the cylinder σ-algebra.
@@ -108,3 +108,4 @@ lemma WeakDual.eval_measurable (f : E) :
     (borel ℝ).comap (fun l : WeakDual ℝ E => (l : E →L[ℝ] ℝ) g)) f
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

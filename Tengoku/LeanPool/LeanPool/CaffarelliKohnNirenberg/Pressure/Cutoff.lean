@@ -23,7 +23,7 @@ the stated Euclidean radii literal while avoiding an implicit change of norm.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set MeasureTheory Metric
 open scoped Convolution
 
@@ -687,3 +687,4 @@ theorem mollifiedBallCutoff_second_derivative_bound (x₀ : Vec 3) {ρ : ℝ}
       field_simp [hρ.ne']
 
 end CKN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

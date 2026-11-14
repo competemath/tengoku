@@ -23,7 +23,7 @@ proof fields of `Simplex` are propositions, this agrees with the usual subspace 
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.CencovPetz
 open scoped BigOperators
 
@@ -50,3 +50,4 @@ lemma continuous_eval (a : α) : Continuous fun p : Simplex α => p.p a :=
 
 end Simplex
 end LeanPool.CencovPetz
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

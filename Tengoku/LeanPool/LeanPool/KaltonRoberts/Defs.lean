@@ -21,7 +21,7 @@ Core definitions used throughout the formalization of the companion paper.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace KaltonRoberts
 
 open Finset BigOperators
@@ -272,3 +272,4 @@ structure DualCertificate {U : Type*} [DecidableEq U] [Fintype U]
   neg_support : ∀ S : Finset U, lam S < 0 → f S = -M
 
 end KaltonRoberts
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

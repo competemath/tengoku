@@ -38,7 +38,7 @@ Lie algebra, central extension, 2-cocycle
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace VirasoroProject
 
 universe u
@@ -328,3 +328,4 @@ end LieTwoCocycle -- namespace
 end LieTwoCocycle.CentralExtension -- section
 
 end VirasoroProject -- namespace
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

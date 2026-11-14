@@ -15,7 +15,7 @@ This module constructs cellwise contraction data from the unique paths in an arb
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Function
 open CategoryTheory CategoryTheory.SingleObj Quiver
 open unitInterval
@@ -465,3 +465,4 @@ theorem graphRealization_tree_simplyConnected :
 end
 
 end FiniteGraphFreeGroup
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

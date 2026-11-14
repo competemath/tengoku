@@ -14,7 +14,7 @@ Imported Lean Pool material for `LeanPool.Rupert.FinCases`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /--
 Lemma for helping with goals such as
 ```
@@ -31,8 +31,9 @@ apply all_fin_8_vec <;> norm_num
 ```
 @isnad1 id=var.0h19v.s7.1e1575d581c0 from=translated src=- shape=f73cb8dc vocab=4e3792ea
 -/
-lemma all_fin_8_vec {α : Type} {a b c d e f g h : α} (p : α → Prop) :
+lemma _root_.Tengoku.LeanPool.all_fin_8_vec {α : Type} {a b c d e f g h : α} (p : α → Prop) :
     p a → p b → p c → p d → p e → p f → p g → p h →
     ∀ ii : Fin 8, p (![a, b, c, d, e, f, g, h] ii) := by
   intro ha hb hc hd he hf hg hh ii
   fin_cases ii <;> simp_all
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

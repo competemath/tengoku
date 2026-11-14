@@ -18,7 +18,7 @@ when doubled.  The theorem below uses the subtraction-free parameterization
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace GKPCarry
 
 open scoped BigOperators
@@ -177,3 +177,4 @@ theorem card_allTernaryWords (n : ℕ) :
   simp
 
 end GKPCarry
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

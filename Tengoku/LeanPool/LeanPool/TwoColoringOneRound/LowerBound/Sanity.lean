@@ -18,7 +18,7 @@ with monochromatic edge fraction exactly `1/5`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Distributed2Coloring.LowerBound
 
 namespace Sanity
@@ -201,3 +201,4 @@ theorem monoFraction_f5 : monoFraction f5 = (1 : ℚ) / 5 := by
 end Sanity
 
 end Distributed2Coloring.LowerBound
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -17,7 +17,7 @@ and proof organization were revised.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Function
 open CategoryTheory
 open scoped Pointwise
@@ -477,3 +477,4 @@ theorem Internal.coverPrefunctor_isCovering {ι : Type v}
     Internal.coverPrefunctor_costar_bijective G H⟩
 
 end GraphCoveringTheory.Kurosh
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

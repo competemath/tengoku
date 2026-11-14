@@ -71,7 +71,7 @@ Neither is a restatement of anything proved here.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Bornology Set unitInterval
 
 namespace Schoenflies
@@ -640,3 +640,4 @@ theorem general_crosscut_three_regions
     h.frontier_side hjordan hcut, h.frontier_side hjordan hcut.symm⟩
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -34,7 +34,7 @@ original language (except for the empty string)
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe uN
 
 variable {T : Type}
@@ -241,3 +241,4 @@ theorem toCNF_correct : g.language \ {[]} = g.toCNF.language := by
             simp_all
 
 end ContextFreeGrammar
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

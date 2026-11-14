@@ -12,7 +12,7 @@ public import Tengoku.Seed.Analysis.Calculus.IteratedDeriv.Defs
 import Tengoku.LeanPool.LeanPool.NavierStokesAndEuler.NavierStokes.CompactSmoothFamily
 import Tengoku.Seed.Analysis.Calculus.ParametricIntervalIntegral
 import Tengoku.Seed.Analysis.Complex.CauchyIntegral
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -883,3 +883,4 @@ end SmoothInputs
 end NavierStokes.VolterraRegularity
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

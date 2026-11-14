@@ -11,7 +11,7 @@ public import Tengoku
 /-! # Iteratedderivs -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open  UpperHalfPlane TopologicalSpace Set
   Metric Filter Function Complex
 
@@ -20,7 +20,7 @@ open scoped Interval Real NNReal ENNReal Topology BigOperators Nat
 /--
 @isnad1 id=ne.0h2v.s4.d8c3949c55b2 from=translated src=- shape=91928213 vocab=22487bd0
 -/
-theorem upper_ne_int (x : ℍ) (d : ℤ) : (x : ℂ) + d ≠ 0 := by
+theorem _root_.Tengoku.LeanPool.upper_ne_int (x : ℍ) (d : ℤ) : (x : ℂ) + d ≠ 0 := by
   intro h
   have h1 : 0 < (x : ℂ).im := by simpa using im_pos x
   simp [add_eq_zero_iff_eq_neg.mp h] at h1
@@ -28,7 +28,7 @@ theorem upper_ne_int (x : ℍ) (d : ℤ) : (x : ℂ) + d ≠ 0 := by
 /--
 @isnad1 id=eqon.0h2v.s7.0ce1a199f341 from=translated src=- shape=f654d280 vocab=8fc0ca8a
 -/
-theorem aut_iter_deriv (d : ℤ) (k : ℕ) :
+theorem _root_.Tengoku.LeanPool.aut_iter_deriv (d : ℤ) (k : ℕ) :
     EqOn (iteratedDerivWithin k (fun z : ℂ => 1 / (z + d)) {z : ℂ | 0 < z.im})
       (fun t : ℂ => (-1) ^ k * k ! * (1 / (t + d) ^ (k + 1))) {z : ℂ | 0 < z.im} := by
   intro x hx
@@ -91,7 +91,7 @@ theorem aut_iter_deriv (d : ℤ) (k : ℕ) :
 /--
 @isnad1 id=eqon.0h2v.s7.20059ef8347f from=translated src=- shape=1280a7c9 vocab=1cfc4055
 -/
-theorem aut_iter_deriv' (d : ℤ) (k : ℕ) :
+theorem _root_.Tengoku.LeanPool.aut_iter_deriv' (d : ℤ) (k : ℕ) :
     EqOn (iteratedDerivWithin k (fun z : ℂ => 1 / (z - d)) {z : ℂ | 0 < z.im})
       (fun t : ℂ => (-1) ^ k * k ! * (1 / (t - d) ^ (k + 1))) {z : ℂ | 0 < z.im} := by
   intro x hx; simp_rw [sub_eq_add_neg]; simpa using aut_iter_deriv (-d : ℤ) k hx
@@ -99,7 +99,7 @@ theorem aut_iter_deriv' (d : ℤ) (k : ℕ) :
 /--
 @isnad1 id=contdiff.0h2v.s6.62a29ce3d4e0 from=translated src=- shape=f3a0a15d vocab=da457002
 -/
-theorem aut_contDiffOn (d : ℤ) (k : ℕ) : ContDiffOn ℂ k (fun z : ℂ => 1 / (z - d))
+theorem _root_.Tengoku.LeanPool.aut_contDiffOn (d : ℤ) (k : ℕ) : ContDiffOn ℂ k (fun z : ℂ => 1 / (z - d))
     {z : ℂ | 0 < z.im} := by
   simp only [one_div]
   apply ContDiffOn.inv
@@ -111,7 +111,7 @@ theorem aut_contDiffOn (d : ℤ) (k : ℕ) : ContDiffOn ℂ k (fun z : ℂ => 1 
 /--
 @isnad1 id=eqon.0h2v.s8.370c0182eb25 from=translated src=- shape=f0482f1a vocab=1cfc4055
 -/
-theorem iter_div_aut_add (d : ℤ) (k : ℕ) :
+theorem _root_.Tengoku.LeanPool.iter_div_aut_add (d : ℤ) (k : ℕ) :
     EqOn (iteratedDerivWithin k (fun z : ℂ => 1 / (z - d) + 1 / (z + d)) {z : ℂ | 0 < z.im})
       ((fun t : ℂ => (-1) ^ k * k ! * (1 / (t - d) ^ (k + 1))) + fun t : ℂ =>
         (-1) ^ k * k ! * (1 / (t + d) ^ (k + 1))) {z : ℂ | 0 < z.im} := by
@@ -141,10 +141,11 @@ variable {𝕜 : Type*} [NontriviallyNormedField 𝕜] {F : Type*}
 /--
 @isnad1 id=eqon.0h2v.s7.ac729e930814 from=translated src=- shape=6f3ebcbf vocab=e29cfc19
 -/
-theorem exp_iter_deriv_within (n m : ℕ) :
+theorem _root_.Tengoku.LeanPool.exp_iter_deriv_within (n m : ℕ) :
     EqOn (iteratedDerivWithin n (fun s : ℂ => Complex.exp (2 * ↑π * Complex.I * m * s))
            {z : ℂ | 0 < z.im})
       (fun t => (2 * ↑π * Complex.I * m) ^ n * Complex.exp (2 * ↑π * Complex.I * m * t))
       {z : ℂ | 0 < z.im} := by
   apply EqOn.trans (iteratedDerivWithin_of_isOpen (isOpen_lt (by fun_prop) (by fun_prop)))
   exact fun x _ => congr_fun (iteratedDeriv_cexp_const_mul ..) x
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

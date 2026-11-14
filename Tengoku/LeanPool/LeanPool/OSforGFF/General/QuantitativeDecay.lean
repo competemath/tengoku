@@ -39,7 +39,7 @@ for any α > 0.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Complex SchwartzMap Filter Set Function Metric
 open scoped Real Topology
 
@@ -53,7 +53,7 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 /-- A function f has polynomial decay of order N with constant C if
     ‖f(x)‖ ≤ C / (1 + ‖x‖)^N for all x.
 -/
-structure PolynomialDecayBound {E F : Type*} [NormedAddCommGroup E]
+structure _root_.Tengoku.LeanPool.PolynomialDecayBound {E F : Type*} [NormedAddCommGroup E]
     [NormedAddCommGroup F] (f : E → F) (N : ℝ) where
   /-- Positive constant controlling the polynomial decay bound. -/
   C : ℝ
@@ -67,7 +67,7 @@ This follows from SchwartzMap.one_add_le_sup_seminorm_apply:
 
 Taking n = 0 and rearranging gives ‖f(x)‖ ≤ C * (1 + ‖x‖)^{-k}.
 -/
-def schwartzHasPolynomialDecay (f : SchwartzMap E ℂ) (k : ℕ) :
+def _root_.Tengoku.LeanPool.schwartzHasPolynomialDecay (f : SchwartzMap E ℂ) (k : ℕ) :
     PolynomialDecayBound f (k : ℝ) := by
   -- Use SchwartzMap.one_add_le_sup_seminorm_apply with m = (k, 0)
   have h := SchwartzMap.one_add_le_sup_seminorm_apply (𝕜 := ℂ) (m := (k, 0))
@@ -98,7 +98,7 @@ def schwartzHasPolynomialDecay (f : SchwartzMap E ℂ) (k : ℕ) :
         linarith
 
 /-- Schwartz functions have polynomial decay at any real rate (via ceiling). -/
-def schwartzHasPolynomialDecayReal (f : SchwartzMap E ℂ) (N : ℝ) (_hN : N > 0) :
+def _root_.Tengoku.LeanPool.schwartzHasPolynomialDecayReal (f : SchwartzMap E ℂ) (N : ℝ) (_hN : N > 0) :
     PolynomialDecayBound f N := by
   let _ := _hN
   obtain ⟨C, hC_pos, hbound⟩ := schwartzHasPolynomialDecay f (⌈N⌉₊)
@@ -119,7 +119,7 @@ def schwartzHasPolynomialDecayReal (f : SchwartzMap E ℂ) (N : ℝ) (_hN : N > 
 This uses the fact that x^α * exp(-mx) is bounded (it tends to 0 at infinity).
 @isnad1 id=ex.2h2v.s6.be153550d3f0 from=translated src=- shape=7f408445 vocab=8466c757
 -/
-lemma exp_decay_implies_polynomial_decay (m α : ℝ) (hm : m > 0) (hα : α > 0) :
+lemma _root_.Tengoku.LeanPool.exp_decay_implies_polynomial_decay (m α : ℝ) (hm : m > 0) (hα : α > 0) :
     ∃ C : ℝ, C > 0 ∧ ∀ x : ℝ, x ≥ 0 → Real.exp (-m * x) ≤ C * (1 + x)^(-α) := by
   -- We show (1+x)^α * exp(-mx) is bounded using u^p ≤ (p/|t|)^p * exp(|t|u)
   -- Applied to u = 1 + x, we get a bound involving exp(m(1+x))
@@ -155,7 +155,7 @@ lemma exp_decay_implies_polynomial_decay (m α : ℝ) (hm : m > 0) (hα : α > 0
           nlinarith
 
 /-- Exponential decay of norms implies polynomial decay bounds. -/
-def normExpDecayImpliesPolynomialDecay {F : Type*} [NormedAddCommGroup F]
+def _root_.Tengoku.LeanPool.normExpDecayImpliesPolynomialDecay {F : Type*} [NormedAddCommGroup F]
     (g : E → F) (m C_exp R₀ : ℝ) (hm : m > 0) (hC_exp : C_exp > 0) (hR₀ : R₀ > 0)
     (hg_decay : ∀ z : E, ‖z‖ ≥ R₀ → ‖g z‖ ≤ C_exp * Real.exp (-m * ‖z‖))
     (hg_bdd : ∃ M : ℝ, ∀ z : E, ‖g z‖ ≤ M)  -- g is globally bounded
@@ -231,7 +231,7 @@ def normExpDecayImpliesPolynomialDecay {F : Type*} [NormedAddCommGroup F]
 This follows from 1 + x ≤ 2 + x = 2(1 + x/2), so (1+x)^N ≤ 2^N(1+x/2)^N.
 @isnad1 id=le.2h2v.s6.453131dcf8d6 from=translated src=- shape=d01c12ea vocab=f83af973
 -/
-lemma one_add_half_pow_le (x : ℝ) (hx : x ≥ 0) (N : ℝ) (hN : N > 0) :
+lemma _root_.Tengoku.LeanPool.one_add_half_pow_le (x : ℝ) (hx : x ≥ 0) (N : ℝ) (hN : N > 0) :
     (1 + x/2)^(-N) ≤ (2:ℝ)^N * (1 + x)^(-N) := by
   have h1 : 0 < 1 + x/2 := by linarith
   have h2 : 0 < 1 + x := by positivity
@@ -419,7 +419,7 @@ private lemma convolution_polynomial_decay_exists
 
 /-- If two integrable functions have polynomial decay of order `N > dim E`, then their convolution
 has polynomial decay of the same order. -/
-def convolutionPolynomialDecay
+def _root_.Tengoku.LeanPool.convolutionPolynomialDecay
     {u v : E → ℂ} {N : ℝ} (hN_dim : N > Module.finrank ℝ E)
     (hu_decay : PolynomialDecayBound u N)
     (hv_decay : PolynomialDecayBound v N)
@@ -595,7 +595,7 @@ private lemma convolution_compactSupport_decay_exists (f : SchwartzMap E ℂ) (K
 
 /-- Convolution of a Schwartz function with the compactly supported singular kernel part has
 polynomial decay. -/
-def convolutionCompactSupportDecay (f : SchwartzMap E ℂ) (K : E → ℝ) (R₀ : ℝ)
+def _root_.Tengoku.LeanPool.convolutionCompactSupportDecay (f : SchwartzMap E ℂ) (K : E → ℝ) (R₀ : ℝ)
     (hR₀ : R₀ > 0) (hK_loc : LocallyIntegrable K volume)
     (N : ℕ) (_hN : N > 0) :
     PolynomialDecayBound (fun y => ∫ x, f x * (kernelSingular K R₀ (x - y) : ℂ)) (N : ℝ) :=
@@ -714,7 +714,7 @@ private lemma convolution_expDecay_polynomial_decay_exists (f : SchwartzMap E �
 
 /-- Convolution of a Schwartz function with the exponentially decaying kernel tail has polynomial
 decay at any rate above the dimension. -/
-def convolutionExpDecayPolynomialDecay (f : SchwartzMap E ℂ) (K : E → ℝ)
+def _root_.Tengoku.LeanPool.convolutionExpDecayPolynomialDecay (f : SchwartzMap E ℂ) (K : E → ℝ)
     (R₀ m C_K : ℝ) (hR₀ : R₀ > 0) (hm : m > 0) (hC_K : C_K > 0)
     (hK_loc : LocallyIntegrable K volume)
     (hK_decay : ∀ z : E, ‖z‖ ≥ R₀ → |K z| ≤ C_K * Real.exp (-m * ‖z‖))
@@ -741,7 +741,7 @@ The proof structure:
 4. Apply convolutionPolynomialDecay to get the result
 @isnad1 id=ex.8h8v.s9.04b4bd0c0630 from=translated src=- shape=398406ad vocab=be0da3c3
 -/
-theorem schwartz_bilinear_translation_decay_polynomial_proof
+theorem _root_.Tengoku.LeanPool.schwartz_bilinear_translation_decay_polynomial_proof
     (f g : SchwartzMap E ℂ)
     (K : E → ℝ)
     (hK_meas : Measurable K)
@@ -997,3 +997,4 @@ theorem schwartz_bilinear_translation_decay_polynomial_proof
       _ ≤ C_conv * (1 + ‖a‖)^(-α) := h_conv_to_goal
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

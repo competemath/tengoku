@@ -13,7 +13,7 @@ import Tengoku.LeanPool.LeanPool.ConnesKreimer.PowerSeriesLogMul
     lifts it to equality of linear maps. LOCAL — not part of the published godsil tree. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped TensorProduct
 
 namespace CK
@@ -1340,3 +1340,4 @@ theorem _root_.CK.eulerCoef_eq_coeff_log (j : ℕ) :
 truncation collapses to the eigenvector itself (only the weight-1 term survives). -/
 
 end CK
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

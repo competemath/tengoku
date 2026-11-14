@@ -48,7 +48,7 @@ embedding relation (`TwoBQO.embedForAll_wqo`).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Preorder
 
 noncomputable section
@@ -58,9 +58,9 @@ noncomputable section
 -/
 
 /-- A **pair-sequence** in `α` assigns a value to every pair `(m, n)` with `m < n`. -/
-abbrev PairSeq (α : Type*) := ∀ m n : ℕ, m < n → α
+abbrev _root_.Tengoku.LeanPool.PairSeq (α : Type*) := ∀ m n : ℕ, m < n → α
 
-namespace PairSeq
+namespace Tengoku.LeanPool.PairSeq
 
 /-- Restrict a pair-sequence along a strictly monotone reindexing. -/
 def restrict {α : Type*} (f : PairSeq α) (e : ℕ → ℕ) (he_mono : StrictMono e) : PairSeq α :=
@@ -98,21 +98,21 @@ theorem perfect_or_bad {α : Type*} (r : α → α → Prop) (f : PairSeq α) :
     rw [hk_true] at h_color
     simpa [restrict, decide_eq_true_eq] using h_color
 
-end PairSeq
+end Tengoku.LeanPool.PairSeq
 
 /-- `r` is **2-BQO** if there is no bad pair-sequence for `r`. -/
-def TwoBQON {α : Type*} (r : α → α → Prop) : Prop :=
+def _root_.Tengoku.LeanPool.TwoBQON {α : Type*} (r : α → α → Prop) : Prop :=
   ¬ ∃ f : PairSeq α, PairSeq.IsBad r f
 
 /-- `r` is **2-BQO** if every pair-sequence has a good triple `m < n < l`, i.e.
 `r (f m n) (f n l)`. -/
-def TwoBQO {α : Type*} (r : α → α → Prop) : Prop :=
+def _root_.Tengoku.LeanPool.TwoBQO {α : Type*} (r : α → α → Prop) : Prop :=
   ∀ f : PairSeq α, ∃ m n l : ℕ, ∃ (hmn : m < n) (hnl : n < l), r (f m n hmn) (f n l hnl)
 
 /--
 @isnad1 id=iff.0h2v.s3.396f8fd575a0 from=translated src=- shape=eb3d60d9 vocab=0e7e5c16
 -/
-theorem TwoBQO.iff_noBad {α : Type*} (r : α → α → Prop) : TwoBQO r ↔ TwoBQON r := by
+theorem Tengoku.LeanPool.TwoBQO.iff_noBad {α : Type*} (r : α → α → Prop) : TwoBQO r ↔ TwoBQON r := by
   simp only [TwoBQON, PairSeq.IsBad, not_exists, not_forall, not_not]
   exact Iff.symm (Eq.to_iff rfl)
 
@@ -124,7 +124,7 @@ theorem TwoBQO.iff_noBad {α : Type*} (r : α → α → Prop) : TwoBQO r ↔ Tw
 `(m, n, _) ↦ g m`. A good triple `m < n < l` yields `r (g m) (g n)`.
 @isnad1 id=wellquas.1h2v.s3.985cca60a5c0 from=translated src=- shape=6e704b37 vocab=bf85b8c9
 -/
-theorem TwoBQO.wellQuasiOrdered {α : Type*} {r : α → α → Prop} (h : TwoBQO r) :
+theorem Tengoku.LeanPool.TwoBQO.wellQuasiOrdered {α : Type*} {r : α → α → Prop} (h : TwoBQO r) :
     WellQuasiOrdered r := fun g =>
   let ⟨m, n, _, hmn, _, hrel⟩ := h fun m _ _ => g m
   ⟨m, n, hmn, hrel⟩
@@ -140,7 +140,7 @@ good. In particular, if `r` is a preorder whose induced partial order on `r`-equ
 has finitely many classes, taking `c` to be the quotient map gives `TwoBQO r`.
 @isnad1 id=twobqo.0h5v.s5.11125fe83f2d from=translated src=- shape=4dc28672 vocab=e3113b14
 -/
-theorem TwoBQO.of_finite_coloring {α κ : Type*} [Finite κ] (r : α → α → Prop) (c : α → κ)
+theorem Tengoku.LeanPool.TwoBQO.of_finite_coloring {α κ : Type*} [Finite κ] (r : α → α → Prop) (c : α → κ)
     (hc : ∀ a b, c a = c b → r a b) : TwoBQO r := by
   intro f
   obtain ⟨e, he, k, hk⟩ := infinite_ramsey_pairs fun m n h => c (f m n h)
@@ -155,7 +155,7 @@ theorem TwoBQO.of_finite_coloring {α κ : Type*} [Finite κ] (r : α → α →
 is strictly decreasing, contradicting well-foundedness.
 @isnad1 id=twobqo.0h1v.s5.8218d6d676da from=translated src=- shape=b3291310 vocab=ff91ce78
 -/
-theorem TwoBQO.of_wellFoundedLT {α : Type*} [LinearOrder α] [WellFoundedLT α] :
+theorem Tengoku.LeanPool.TwoBQO.of_wellFoundedLT {α : Type*} [LinearOrder α] [WellFoundedLT α] :
     TwoBQO (α := α) (· ≤ ·) := by
   rw [TwoBQO.iff_noBad]
   intro ⟨f, hbad⟩
@@ -181,7 +181,7 @@ theorem Ordinal.isTwoBQO : TwoBQO (α := Ordinal) (· ≤ ·) :=
 2-BQO, then the pullback of `r` along `φ` is 2-BQO.
 @isnad1 id=twobqo.1h4v.s5.a9862f1b7057 from=translated src=- shape=ef954b7a vocab=bbeb188f
 -/
-theorem TwoBQO.comap {α β : Type*} {r : α → α → Prop} (h : TwoBQO r) (φ : β → α) :
+theorem Tengoku.LeanPool.TwoBQO.comap {α β : Type*} {r : α → α → Prop} (h : TwoBQO r) (φ : β → α) :
     TwoBQO fun a b => r (φ a) (φ b) := by
   rw [TwoBQO.iff_noBad] at h ⊢
   intro ⟨f, hbad⟩
@@ -190,14 +190,14 @@ theorem TwoBQO.comap {α β : Type*} {r : α → α → Prop} (h : TwoBQO r) (φ
 /-- **Subtype closure.**
 @isnad1 id=twobqo.1h3v.s5.6e176d6c9dfe from=translated src=- shape=f497cb8f vocab=83a4183c
 -/
-theorem TwoBQO.subtype {α : Type*} {r : α → α → Prop} (h : TwoBQO r) (p : α → Prop) :
+theorem Tengoku.LeanPool.TwoBQO.subtype {α : Type*} {r : α → α → Prop} (h : TwoBQO r) (p : α → Prop) :
     TwoBQO fun a b : Subtype p => r a.val b.val :=
   h.comap Subtype.val
 
 /--
 @isnad1 id=twobqo.1h4v.s5.512829a75099 from=translated src=- shape=48e7cf05 vocab=bbeb188f
 -/
-theorem TwoBQO.mono {α : Type*} {r s : α → α → Prop} (h : TwoBQO r)
+theorem Tengoku.LeanPool.TwoBQO.mono {α : Type*} {r s : α → α → Prop} (h : TwoBQO r)
     (hincl : ∀ a b, r a b → s a b) : TwoBQO s := by
   rw [TwoBQO.iff_noBad] at h ⊢
   intro ⟨f, hbad⟩
@@ -218,7 +218,7 @@ sub-part `{x // p x}` and `{x // q x}`, then `r` is 2-BQO on `α`.
 restriction landing wholly in one part, where the corresponding 2-BQO supplies a good triple.
 @isnad1 id=twobqo.3h4v.s6.29609f00853d from=translated src=- shape=3c7abe85 vocab=83a4183c
 -/
-theorem TwoBQO.union {α : Type*} (r : α → α → Prop) (p q : α → Prop) (hcover : ∀ a, p a ∨ q a)
+theorem Tengoku.LeanPool.TwoBQO.union {α : Type*} (r : α → α → Prop) (p q : α → Prop) (hcover : ∀ a, p a ∨ q a)
     (hp : TwoBQO (fun a b : {x : α // p x} => r a.val b.val))
     (hq : TwoBQO (fun a b : {x : α // q x} => r a.val b.val)) :
     TwoBQO r := by
@@ -246,7 +246,7 @@ then the componentwise product `fun (a₁,b₁) (a₂,b₂) => r a₁ a₂ ∧ s
 2-BQO.
 @isnad1 id=twobqo.2h4v.s5.f523424f506d from=translated src=- shape=c13544be vocab=862dee5b
 -/
-theorem TwoBQO.prod {α β : Type*} {r : α → α → Prop} {s : β → β → Prop} (hr : TwoBQO r)
+theorem Tengoku.LeanPool.TwoBQO.prod {α β : Type*} {r : α → α → Prop} {s : β → β → Prop} (hr : TwoBQO r)
     (hs : TwoBQO s) : TwoBQO fun x y : α × β => r x.1 y.1 ∧ s x.2 y.2 := by
   rw [TwoBQO.iff_noBad] at hr hs ⊢
   intro ⟨f, hbad⟩
@@ -266,7 +266,7 @@ theorem TwoBQO.prod {α β : Type*} {r : α → α → Prop} {s : β → β → 
 quasi-order is 2-BQO when each component is.
 @isnad1 id=twobqo.1h3v.s6.480665703e8b from=translated src=- shape=9a4d5269 vocab=f44430ff
 -/
-theorem TwoBQO.pi : ∀ (n : ℕ) (α : Fin n → Type*) (r : ∀ i : Fin n, α i → α i → Prop),
+theorem Tengoku.LeanPool.TwoBQO.pi : ∀ (n : ℕ) (α : Fin n → Type*) (r : ∀ i : Fin n, α i → α i → Prop),
     (∀ i, TwoBQO (r i)) → TwoBQO fun f g : ∀ i, α i => ∀ i, r i (f i) (g i) := by
   intro n
   induction n with
@@ -289,7 +289,7 @@ theorem TwoBQO.pi : ∀ (n : ℕ) (α : Fin n → Type*) (r : ∀ i : Fin n, α 
 /--
 @isnad1 id=twobqo.0h1v.s4.e484426bd8c2 from=translated src=- shape=f6e52a3f vocab=682cc972
 -/
-theorem TwoBQO.prodN : ∀ n : ℕ, TwoBQO fun f g : Fin n → ℕ => ∀ i, f i ≤ g i := fun n =>
+theorem Tengoku.LeanPool.TwoBQO.prodN : ∀ n : ℕ, TwoBQO fun f g : Fin n → ℕ => ∀ i, f i ≤ g i := fun n =>
   TwoBQO.pi n (fun _ => ℕ) (fun _ => (· ≤ ·)) fun _ => TwoBQO.of_wellFoundedLT
 
 /-!
@@ -302,7 +302,7 @@ fibre). This is Pequignot's Proposition 2.4(iii) lifted to 2-BQO.
 
 /-- The **lexicographic sum order along a partial order** on `Σ i, α i`: `(i,x) ≤ (j,y)` iff
 `r i j` and `i ≠ j` (strictly above in `r`), or `i = j` and `x ≤ y` in `t i`. -/
-def TwoBQO.LexSumRelQO {ι : Type*} (r : ι → ι → Prop) (s : ι → Type*)
+def Tengoku.LeanPool.TwoBQO.LexSumRelQO {ι : Type*} (r : ι → ι → Prop) (s : ι → Type*)
     (t : ∀ i, s i → s i → Prop) : (Σ i, s i) → (Σ i, s i) → Prop
   | ⟨i, x⟩, ⟨j, y⟩ => (r i j ∧ i ≠ j) ∨ ∃ h : i = j, t i x (h ▸ y)
 
@@ -311,7 +311,7 @@ variable {ι : Type*} (r : ι → ι → Prop) (s : ι → Type*) (t : ∀ i, s 
 /-- `TwoBQO.LexSumRelQO r s t` is reflexive whenever each `t i` is.
 @isnad1 id=lexsumre.0h6v.s5.578c509c9431 from=translated src=- shape=d6cd4d02 vocab=f6771be5
 -/
-theorem TwoBQO.LexSumRelQO.refl (ht_refl : ∀ i (x : s i), t i x x) (σ : Σ i, s i) :
+theorem Tengoku.LeanPool.TwoBQO.LexSumRelQO.refl (ht_refl : ∀ i (x : s i), t i x x) (σ : Σ i, s i) :
     TwoBQO.LexSumRelQO r s t σ σ := by
   obtain ⟨i, x⟩ := σ
   exact Or.inr ⟨rfl, ht_refl i x⟩
@@ -320,7 +320,7 @@ theorem TwoBQO.LexSumRelQO.refl (ht_refl : ∀ i (x : s i), t i x x) (σ : Σ i,
 transitive, and each `t i` is transitive.
 @isnad1 id=lexsumre.3h10v.s7.7d0c49ab24b0 from=translated src=- shape=e7b4a88b vocab=f6771be5
 -/
-theorem TwoBQO.LexSumRelQO.trans (hr_refl : ∀ i, r i i)
+theorem Tengoku.LeanPool.TwoBQO.LexSumRelQO.trans (hr_refl : ∀ i, r i i)
     (hr_antisymm : ∀ i j, r i j → r j i → i = j) (hr_trans : ∀ i j k, r i j → r j k → r i k)
     (ht_trans : ∀ i (x y z : s i), t i x y → t i y z → t i x z) {σ₁ σ₂ σ₃ : Σ i, s i}
     (h₁₂ : TwoBQO.LexSumRelQO r s t σ₁ σ₂) (h₂₃ : TwoBQO.LexSumRelQO r s t σ₂ σ₃) :
@@ -350,7 +350,7 @@ bad for `LexSumRelQO r s t`, then some restriction of `f` either has a bad index
 pair-sequence for `t i`. The constructive content underlying `TwoBQO.lexSigmaQO`.
 @isnad1 id=ex.1h5v.s8.dcec67d31696 from=translated src=- shape=e1bbd0ed vocab=b273daba
 -/
-theorem TwoBQO.lexSigmaQO_reflect {ι : Type*} (r : ι → ι → Prop) (s : ι → Type*)
+theorem Tengoku.LeanPool.TwoBQO.lexSigmaQO_reflect {ι : Type*} (r : ι → ι → Prop) (s : ι → Type*)
     (t : ∀ i, s i → s i → Prop) (f : PairSeq (Σ i, s i))
     (hf_bad : PairSeq.IsBad (TwoBQO.LexSumRelQO r s t) f) :
     ∃ (e : ℕ → ℕ) (he_mono : StrictMono e),
@@ -394,7 +394,7 @@ theorem TwoBQO.lexSigmaQO_reflect {ι : Type*} (r : ι → ι → Prop) (s : ι 
 `s i` is 2-BQO, then `Σ i, s i` with `LexSumRelQO r s t` is 2-BQO.
 @isnad1 id=twobqo.2h4v.s5.98dcc26906c1 from=translated src=- shape=08f27da8 vocab=b4985ab0
 -/
-theorem TwoBQO.lexSigmaQO {ι : Type*} (r : ι → ι → Prop) (hr : TwoBQO r) (s : ι → Type*)
+theorem Tengoku.LeanPool.TwoBQO.lexSigmaQO {ι : Type*} (r : ι → ι → Prop) (hr : TwoBQO r) (s : ι → Type*)
     (t : ∀ i, s i → s i → Prop) (ht : ∀ i, TwoBQO (t i)) : TwoBQO (TwoBQO.LexSumRelQO r s t) := by
   rw [TwoBQO.iff_noBad]
   rintro ⟨f, hf⟩
@@ -407,7 +407,7 @@ theorem TwoBQO.lexSigmaQO {ι : Type*} (r : ι → ι → Prop) (hr : TwoBQO r) 
 -/
 
 /-- `X` **dominates** into `Y`: every element of `X` is `r`-below some element of `Y`. -/
-def DomOrder {α : Type*} (r : α → α → Prop) (X Y : Set α) : Prop := ∀ x ∈ X, ∃ y ∈ Y, r x y
+def _root_.Tengoku.LeanPool.DomOrder {α : Type*} (r : α → α → Prop) (X Y : Set α) : Prop := ∀ x ∈ X, ∃ y ∈ Y, r x y
 
 /-- A bad sequence for `DomOrder r` yields a bad pair-sequence for the underlying `r`: pick, for
 each `m < n`, an element of `f m` that is not `r`-below anything in `f n` (available since
@@ -433,7 +433,7 @@ private theorem badSeq_dom_to_pairSeq {α : Type*} {r : α → α → Prop} (f :
 /-- **The domination order on subsets of a 2-BQO is WQO.**
 @isnad1 id=wellquas.1h2v.s4.e3353c888898 from=translated src=- shape=81668525 vocab=880b5615
 -/
-theorem TwoBQO.dom_twoBQO {α : Type*} {r : α → α → Prop} (hr : TwoBQO r) :
+theorem Tengoku.LeanPool.TwoBQO.dom_twoBQO {α : Type*} {r : α → α → Prop} (hr : TwoBQO r) :
     WellQuasiOrdered (DomOrder r) := by
   intro g
   by_contra hcon
@@ -450,7 +450,7 @@ Infinite sequences `ℕ → Q` in a 2-BQO `Q` are WQO under `EmbedForAll`.
 
 /-- `s` **embeds pointwise** into `s'`: there is a strictly monotone reindexing `e` with
 `r (s n) (s' (e n))` for every `n`. -/
-def EmbedForAll {α : Type*} (r : α → α → Prop) (s s' : ℕ → α) : Prop :=
+def _root_.Tengoku.LeanPool.EmbedForAll {α : Type*} (r : α → α → Prop) (s s' : ℕ → α) : Prop :=
   ∃ e : ℕ → ℕ, StrictMono e ∧ ∀ n, r (s n) (s' (e n))
 
 private theorem exists_strictMono_of_greedy {P : ℕ → ℕ → Prop}
@@ -535,7 +535,7 @@ pointwise embedding of the head `w a` into `w b`; `embed_combine` splices the tw
 embedding of `F a` into `F b`.
 @isnad1 id=wellquas.1h2v.s4.fe332d91312b from=translated src=- shape=e98c9a35 vocab=495653c4
 -/
-theorem TwoBQO.embedForAll_wqo {α : Type*} {r : α → α → Prop} [IsPreorder α r] (hr : TwoBQO r) :
+theorem Tengoku.LeanPool.TwoBQO.embedForAll_wqo {α : Type*} {r : α → α → Prop} [IsPreorder α r] (hr : TwoBQO r) :
     WellQuasiOrdered (EmbedForAll r) := by
   intro F
   have hreg : ∀ n, ∃ k, IsRegularSeq r fun i => F n (i + k) :=
@@ -589,3 +589,4 @@ theorem TwoBQO.embedForAll_wqo {α : Type*} {r : α → α → Prop} [IsPreorder
     exact heG_rel
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

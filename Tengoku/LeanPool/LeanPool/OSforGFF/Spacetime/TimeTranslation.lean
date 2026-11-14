@@ -42,7 +42,7 @@ from Reed-Simon V.3 and Hörmander Ch. 7).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Real
 open TopologicalSpace
 open scoped BigOperators
@@ -889,3 +889,4 @@ lemma timeTranslationDistribution_zero (ω : FieldConfiguration) :
   simp_all
 
 end TimeTranslation
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -10,7 +10,7 @@ public import Tengoku.LeanPool.LeanPool.Odlyzko.CompletedZeta.ConeGaussianIntegr
 /-! TODO: Add doc-string. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open Complex Ideal IsDedekindDomain MeasureTheory NumberField NumberField.Units
@@ -124,3 +124,4 @@ theorem summable_integral_norm_idealSet_complexPlaceMellinGaussian
   simp
 
 end NumberField.Odlyzko
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

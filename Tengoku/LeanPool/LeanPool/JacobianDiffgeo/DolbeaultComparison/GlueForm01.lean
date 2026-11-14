@@ -27,7 +27,7 @@ chart-subordinate cover determine a UNIQUE global `Form01` solving `dbaru_i = ω
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold
 open Set IsManifold TopologicalSpace
 
@@ -252,3 +252,4 @@ theorem isDbarOn_form (i : Fin d.n) : IsDbarOn (d.u i) d.form (d.V i) := by
 end DbarGlueData
 
 end RS
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -35,7 +35,7 @@ expansion `p(x) ≤ Σₖ |fₖ(x)| · cₖ` with `|fₖ| ≤ q`), we:
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators
 
 noncomputable section
@@ -49,7 +49,7 @@ there exist CLFs `fₙ` and non-negative reals `cₙ` with `Σ cₙ < ∞`, and 
 continuous seminorm `q ≥ p`, such that `|fₙ(x)| ≤ q(x)` and
 `p(x) ≤ Σₙ |fₙ(x)| · cₙ`.
 -/
-def IsNuclear (E : Type*) [AddCommGroup E] [Module ℝ E]
+def _root_.Tengoku.LeanPool.IsNuclear (E : Type*) [AddCommGroup E] [Module ℝ E]
     [TopologicalSpace E] : Prop :=
   ∀ (p : Seminorm ℝ E), Continuous p →
     ∃ (q : Seminorm ℝ E), Continuous q ∧ (∀ x, p x ≤ q x) ∧
@@ -64,7 +64,7 @@ def IsNuclear (E : Type*) [AddCommGroup E] [Module ℝ E]
 This uses the bound `|fₙ(x)| ≤ q(x)` to dominate by `q(x)² · ∑ cₙ`.
 @isnad1 id=summable.3h5v.s8.fa330557ef63 from=translated src=- shape=68063656 vocab=3d73c3fd
 -/
-lemma summable_sq_mul_of_bounded (f : ℕ → (E →L[ℝ] ℝ)) (c : ℕ → ℝ)
+lemma _root_.Tengoku.LeanPool.summable_sq_mul_of_bounded (f : ℕ → (E →L[ℝ] ℝ)) (c : ℕ → ℝ)
     (hc_nn : ∀ n, 0 ≤ c n) (hc_sum : Summable c)
     (q : Seminorm ℝ E) (hfq : ∀ n x, |f n x| ≤ q x) (x : E) :
     Summable (fun n => (f n x) ^ 2 * c n) := by
@@ -83,7 +83,7 @@ lemma summable_sq_mul_of_bounded (f : ℕ → (E →L[ℝ] ℝ)) (c : ℕ → �
 /-- Nonnegativity of the weighted square series.
 @isnad1 id=le.1h4v.s7.3c5fbecadad2 from=translated src=- shape=8a639017 vocab=005269a3
 -/
-lemma tsum_sq_mul_nonneg (f : ℕ → (E →L[ℝ] ℝ)) (c : ℕ → ℝ)
+lemma _root_.Tengoku.LeanPool.tsum_sq_mul_nonneg (f : ℕ → (E →L[ℝ] ℝ)) (c : ℕ → ℝ)
     (hc_nn : ∀ n, 0 ≤ c n) (x : E) :
     0 ≤ ∑' n, (f n x) ^ 2 * c n := tsum_nonneg (fun n => mul_nonneg (sq_nonneg _) (hc_nn n))
 
@@ -94,7 +94,7 @@ seminorm via Cauchy-Schwarz.
 The bound `|fₙ(x)| ≤ q(x)` ensures the series converges and the
 triangle inequality holds (Minkowski's inequality for weighted ℓ²).
 -/
-def hilbertianLift (f : ℕ → (E →L[ℝ] ℝ)) (c : ℕ → ℝ)
+def _root_.Tengoku.LeanPool.hilbertianLift (f : ℕ → (E →L[ℝ] ℝ)) (c : ℕ → ℝ)
     (hc_nn : ∀ n, 0 ≤ c n) (hc_sum : Summable c)
     (q : Seminorm ℝ E) (hfq : ∀ n x, |f n x| ≤ q x) : Seminorm ℝ E :=
   Seminorm.of
@@ -176,7 +176,7 @@ def hilbertianLift (f : ℕ → (E →L[ℝ] ℝ)) (c : ℕ → ℝ)
 /-- The Hilbertian lift evaluates as `r(x) = √(Σₖ fₖ(x)² · cₖ)`.
 @isnad1 id=eq.3h5v.s9.6f3275d0eae1 from=translated src=- shape=5adae6b9 vocab=d584fb86
 -/
-theorem hilbertianLift_apply (f : ℕ → (E →L[ℝ] ℝ)) (c : ℕ → ℝ)
+theorem _root_.Tengoku.LeanPool.hilbertianLift_apply (f : ℕ → (E →L[ℝ] ℝ)) (c : ℕ → ℝ)
     (hc_nn : ∀ n, 0 ≤ c n) (hc_sum : Summable c)
     (q : Seminorm ℝ E) (hfq : ∀ n x, |f n x| ≤ q x) (x : E) :
     hilbertianLift f c hc_nn hc_sum q hfq x = Real.sqrt (∑' n, (f n x) ^ 2 * c n) := rfl
@@ -187,7 +187,7 @@ Proof: `fₙ(x+y)² + fₙ(x-y)² = (fₙx + fₙy)² + (fₙx - fₙy)² = 2(f�
 for each `n` (using linearity of `fₙ`), then sum and take √.
 @isnad1 id=ishilber.3h4v.s8.ae37932734e2 from=translated src=- shape=c9301832 vocab=7c3a8f8d
 -/
-theorem hilbertianLift_isHilbertian (f : ℕ → (E →L[ℝ] ℝ)) (c : ℕ → ℝ)
+theorem _root_.Tengoku.LeanPool.hilbertianLift_isHilbertian (f : ℕ → (E →L[ℝ] ℝ)) (c : ℕ → ℝ)
     (hc_nn : ∀ n, 0 ≤ c n) (hc_sum : Summable c)
     (q : Seminorm ℝ E) (hfq : ∀ n x, |f n x| ≤ q x) :
     (hilbertianLift f c hc_nn hc_sum q hfq).IsHilbertian := by
@@ -212,7 +212,7 @@ theorem hilbertianLift_isHilbertian (f : ℕ → (E →L[ℝ] ℝ)) (c : ℕ →
   `Σₖ |fₖ(x)|·cₖ ≤ √(Σₖ fₖ(x)²·cₖ) · √(Σₖ cₖ) = √(Σcₖ) · r(x)`
 @isnad1 id=le.3h5v.s9.1426162d01a9 from=translated src=- shape=893df909 vocab=f37b59f6
 -/
-theorem hilbertianLift_dominates (f : ℕ → (E →L[ℝ] ℝ)) (c : ℕ → ℝ)
+theorem _root_.Tengoku.LeanPool.hilbertianLift_dominates (f : ℕ → (E →L[ℝ] ℝ)) (c : ℕ → ℝ)
     (hc_nn : ∀ n, 0 ≤ c n) (hc_sum : Summable c)
     (q : Seminorm ℝ E) (hfq : ∀ n x, |f n x| ≤ q x)
     (x : E) :
@@ -251,7 +251,7 @@ theorem hilbertianLift_dominates (f : ℕ → (E →L[ℝ] ℝ)) (c : ℕ → �
 Hilbertian lift: `r(x) ≤ √(Σcₖ) · q(x)`.
 @isnad1 id=le.3h5v.s9.4469077959d5 from=translated src=- shape=95bc6c00 vocab=f37b59f6
 -/
-theorem hilbertianLift_le_dominator (f : ℕ → (E →L[ℝ] ℝ)) (c : ℕ → ℝ)
+theorem _root_.Tengoku.LeanPool.hilbertianLift_le_dominator (f : ℕ → (E →L[ℝ] ℝ)) (c : ℕ → ℝ)
     (hc_nn : ∀ n, 0 ≤ c n) (hc_sum : Summable c)
     (q : Seminorm ℝ E) (hfq : ∀ n x, |f n x| ≤ q x)
     (x : E) :
@@ -452,7 +452,7 @@ by linearity `φ(w) = Σⱼ φ(vⱼ)²`, and `|φ(w)| ≤ R(w)`.
 So `S ≤ R(w) = √S`, giving `S ≤ 1`.
 @isnad1 id=le.3h5v.s8.b598541da68e from=translated src=- shape=a4af8681 vocab=0539f6a5
 -/
-theorem bessel_hilbertian {N : ℕ}
+theorem _root_.Tengoku.LeanPool.bessel_hilbertian {N : ℕ}
     (R : Seminorm ℝ E) (hR : R.IsHilbertian)
     (φ : E →L[ℝ] ℝ) (hφ : ∀ x, |φ x| ≤ R x)
     (v : Fin N → E) (hv : R.IsOrthonormalSeq v) :
@@ -480,7 +480,7 @@ For any finite R-orthonormal sequence `{eⱼ}`:
 ```
 @isnad1 id=ishilber.6h5v.s9.ea463935c685 from=translated src=- shape=04545657 vocab=2f7bb520
 -/
-theorem isHilbertSchmidtEmbedding_of_nuclear
+theorem _root_.Tengoku.LeanPool.isHilbertSchmidtEmbedding_of_nuclear
     (p R : Seminorm ℝ E)
     (hR : R.IsHilbertian)
     (hp_le_R : ∀ x, p x ≤ R x)
@@ -827,7 +827,7 @@ The proof constructs a recursive family of Hilbertian seminorms from the
 Pietsch factorizations and shows they have Hilbert-Schmidt embeddings.
 @isnad1 id=ishilber.3h2v.s8.f333c0631234 from=translated src=- shape=fc5c7dff vocab=719a251f
 -/
-theorem isHilbertNuclear_of_nuclear
+theorem _root_.Tengoku.LeanPool.isHilbertNuclear_of_nuclear
     [IsTopologicalAddGroup E] [ContinuousSMul ℝ E]
     (hPN : IsNuclear E)
     (q₀ : ℕ → Seminorm ℝ E) (hq₀ : WithSeminorms q₀)
@@ -844,3 +844,4 @@ theorem isHilbertNuclear_of_nuclear
       exact buildHilbertianFamily_hs hPN q₀ hq₀_cont
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -23,7 +23,7 @@ Language-independent lemmas consumed by BOTH the original `skolemColim`-based EM
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 /-- The variables of a relabeled term are the image of the original variables (a Mathlib gap).
@@ -119,3 +119,4 @@ theorem orderEmbOfFin_deepRank (S : Finset J) {k : ℕ} (h : S.card = k) {j : J}
   exact Fin.ext (deepRank_orderEmbOfFin J S h i)
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

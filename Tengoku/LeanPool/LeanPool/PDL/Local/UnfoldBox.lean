@@ -14,7 +14,7 @@ public import Tengoku.LeanPool.LeanPool.PDL.Star
 /-! # Local Box Unfolding (Section 3.1) -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace PDL
 
 /-! ## Preparation for Boxes: Test Profiles -/
@@ -1516,3 +1516,4 @@ theorem existsBoxFP γ (v_γ_w : relate M γ v w) (ℓ : TP γ) (v_conF : (M, v)
       use u
 
 end PDL
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

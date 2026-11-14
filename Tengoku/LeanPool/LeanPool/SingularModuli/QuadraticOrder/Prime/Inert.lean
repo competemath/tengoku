@@ -26,10 +26,10 @@ rather than via the thesis's direct index computation in `ℤ/pᵏ[x]/g(x)`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Polynomial
 
-namespace QuadraticOrder
+namespace Tengoku.LeanPool.QuadraticOrder
 
 /-- The ideal `(p)` in `QuadraticOrder d` is maximal iff `polyMod d p` is
 irreducible in `(ZMod p)[X]`. This is the ideal-theoretic inert
@@ -90,4 +90,5 @@ theorem prime_inert_iff
   rw [span_p_isMaximal_iff_irreducible_polyMod,
       polyMod_irreducible_iff_legendreSym_eq_neg_one hp2 hd]
 
-end QuadraticOrder
+end Tengoku.LeanPool.QuadraticOrder
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

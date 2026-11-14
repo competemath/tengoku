@@ -21,7 +21,7 @@ Adapted for Lean Pool from `Timeroot/BS_Lam` at commit
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-- The symmetric difference of two distinct singletons is the corresponding pair.  This is a
 general `Finset` fact, stated here because Mathlib does not have it.
 @isnad1 id=eq.1h3v.s5.d8b44d4ca250 from=translated src=- shape=e2b9e2d9 vocab=beaa6940
@@ -205,3 +205,4 @@ lemma hammingDist_flipSet_singleton (x : Input V) (v : V) : hammingDist x (flipS
 end Fintype
 
 end BSLambda
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

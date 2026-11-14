@@ -61,7 +61,7 @@ realisation is a single arc and not a Jordan curve.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Schoenflies unitInterval
 open scoped Graph
 
@@ -271,3 +271,4 @@ theorem IsDrawing.isPolygonal_edgesCover (hd : IsDrawing G drawing)
         ⟨w, (hd.edge_isArcBetween hl).right_mem, hW.left_mem_edgesCover hd hWne⟩)
 
 end Graph
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

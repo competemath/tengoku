@@ -19,7 +19,7 @@ Local Lipschitz control for the (forward) extended chart on a Riemannian manifol
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace RellichKondrachov
 namespace Geometry
 namespace Manifold
@@ -293,3 +293,4 @@ end Riemannian
 end Manifold
 end Geometry
 end RellichKondrachov
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

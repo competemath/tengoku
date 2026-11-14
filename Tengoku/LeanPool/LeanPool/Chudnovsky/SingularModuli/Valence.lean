@@ -59,7 +59,7 @@ Both halves of the §4.3 valence theory (`j_injective_mod_Γ` and `j_surjective`
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace Chudnovsky
@@ -961,3 +961,4 @@ theorem j_surjective : Function.Surjective (j : ℍ → ℂ) := by
   exact hw
 
 end Chudnovsky
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

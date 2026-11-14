@@ -37,7 +37,7 @@ with `queryCode` of the base-reduct code `pulledCode`); the tree pinning as an *
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure Set
@@ -534,3 +534,4 @@ theorem realize_functionalTheta [Countable (Σ l, L.Relations l)]
   rfl
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

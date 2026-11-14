@@ -12,7 +12,7 @@ public import Tengoku.LeanPool.LeanPool.DirectedTopologyLean4.DirectedSpace
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /-
   # Definition of directed maps
   This file defines the directed map between two directed spaces `X` and `Y` :
@@ -24,16 +24,16 @@ public import Tengoku.LeanPool.LeanPool.DirectedTopologyLean4.DirectedSpace
   * Composition of directed maps
 -/
 
-namespace DirectedMap
+namespace Tengoku.LeanPool.DirectedMap
 
 /-- A continuous map between two directed spaces is `Directed` if it maps dipaths to dipaths. -/
 def Directed {α β : Type*} [DirectedSpace α] [DirectedSpace β] (f : C(α, β)) : Prop :=
   ∀ ⦃x y : α⦄ (γ : Path x y), IsDipath γ → IsDipath (γ.map f.continuous_toFun)
 
-end DirectedMap
+end Tengoku.LeanPool.DirectedMap
 
 /-- Define the type of a directed map -/
-structure DirectedMap (α β : Type*) [DirectedSpace α] [DirectedSpace β]
+structure _root_.Tengoku.LeanPool.DirectedMap (α β : Type*) [DirectedSpace α] [DirectedSpace β]
     extends ContinuousMap α β where
   protected directed_toFun : DirectedMap.Directed toContinuousMap
 
@@ -43,7 +43,7 @@ notation "D("α","β")" => DirectedMap α β
 section
 
 /-- Type class for the bundled directed maps from `α` to `β`. -/
-class DirectedMapClass (F : Type*) (α β : outParam <| Type*) [DirectedSpace α] [DirectedSpace β]
+class _root_.Tengoku.LeanPool.DirectedMapClass (F : Type*) (α β : outParam <| Type*) [DirectedSpace α] [DirectedSpace β]
   [FunLike F α β] : Prop extends ContinuousMapClass F α β where
   /-- Each element of the class is directed when viewed as a continuous map. -/
   map_directed (f : F) : DirectedMap.Directed (f : C(α, β))
@@ -57,14 +57,14 @@ section DirectedMapClass
 variable {F α β : Type*} [DirectedSpace α] [DirectedSpace β] [FunLike F α β]
     [hF : DirectedMapClass F α β]
 /-- Coerce a member of a `DirectedMapClass` to the bundled directed map type `D(α, β)`. -/
-@[coe] def toDirectedMap (f : F) : D(α,β) := ⟨f, map_directed f⟩
+@[coe] def _root_.Tengoku.LeanPool.toDirectedMap (f : F) : D(α,β) := ⟨f, map_directed f⟩
 instance : CoeTC F D(α,β) := ⟨toDirectedMap⟩
 
 end DirectedMapClass
 
 variable {α β γ δ : Type*} [DirectedSpace α] [DirectedSpace β] [DirectedSpace γ] [DirectedSpace δ]
 
-namespace DirectedMap
+namespace Tengoku.LeanPool.DirectedMap
 
 instance instFunLike : FunLike D(α,β) α β where
   coe := fun f => f.toFun
@@ -182,4 +182,5 @@ def comp (f : D(β,γ)) (g : D(α,β)) : D(α,γ) where
 lemma coe_injective : @Function.Injective D(α,β) (α → β) (↑) :=
   fun f g h => by cases f; cases g; congr; exact ContinuousMap.ext (congrFun h)
 
-end DirectedMap
+end Tengoku.LeanPool.DirectedMap
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

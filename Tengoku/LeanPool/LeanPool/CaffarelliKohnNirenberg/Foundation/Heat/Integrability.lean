@@ -17,7 +17,7 @@ Part of the Caffarelli–Kohn–Nirenberg partial regularity proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped BigOperators ENNReal NNReal Topology
 
 open MeasureTheory MeasureTheory.Measure Set
@@ -282,3 +282,4 @@ lemma heatKernelGradientNorm_eq_zero_of_nonpos {x : Vec3} {t : ℝ}
   simp [not_lt.mpr ht]
 
 end CKN.Foundation.Heat
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

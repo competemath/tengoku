@@ -15,7 +15,7 @@ separate from the theorem-facing API.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Finset
 
 namespace BKLOK2
@@ -338,3 +338,4 @@ theorem matching_data_of_involution {N : Finset V} {x : V} (hx : x ∉ N) {A : F
     exact hadj a ha
 
 end BKLOK2
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -11,7 +11,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Module
 
 variable {α β γ : Type*}
@@ -19,7 +19,7 @@ variable {α β γ : Type*}
 /--
 @isnad1 id=eq.0h5v.s5.abdaea5945f9 from=translated src=- shape=55135154 vocab=7b7cdadb
 -/
-lemma lambda_comp (f : α → β) (g : β → γ) :
+lemma _root_.Tengoku.LeanPool.lambda_comp (f : α → β) (g : β → γ) :
     (fun b ↦ g b) ∘ (fun a ↦ f a) = g ∘ f :=
   rfl
 
@@ -28,20 +28,20 @@ variable {Γ₀ : Type*} [LinearOrderedCommGroupWithZero Γ₀]
 /--
 @isnad1 id=le.3h4v.s7.a05b85370a98 from=translated src=- shape=0fabbe0f vocab=ca11cbdf
 -/
-lemma exp_le_exp_of_pow_le_pow (a : Γ₀) (hlt : a < 1) (h₀ : a ≠ 0) {n m : ℤ} (hle : a ^ n ≤ a ^ m) :
+lemma _root_.Tengoku.LeanPool.exp_le_exp_of_pow_le_pow (a : Γ₀) (hlt : a < 1) (h₀ : a ≠ 0) {n m : ℤ} (hle : a ^ n ≤ a ^ m) :
     m ≤ n := by
   rwa [zpow_le_zpow_iff_right_of_lt_one₀ (zero_lt_iff.mpr h₀) hlt] at hle
 
 /--
 @isnad1 id=eq.1h2v.s6.299d9dfbec26 from=translated src=- shape=6ce4d2df vocab=701f8ca8
 -/
-lemma exp_zero_of_pow_eq_one_aux {n : ℕ} (ha : (0 : Γ₀) ^ n = 1) : n = 0 := by
+lemma _root_.Tengoku.LeanPool.exp_zero_of_pow_eq_one_aux {n : ℕ} (ha : (0 : Γ₀) ^ n = 1) : n = 0 := by
   simp_all
 
 /--
 @isnad1 id=eq.1h2v.s6.dde67424e012 from=translated src=- shape=6ce4d2df vocab=67039016
 -/
-lemma exp_zero_of_zpow_eq_one' {n : ℤ} (ha : (0 : Γ₀) ^ n = 1) : n = 0 := by
+lemma _root_.Tengoku.LeanPool.exp_zero_of_zpow_eq_one' {n : ℤ} (ha : (0 : Γ₀) ^ n = 1) : n = 0 := by
   have haux (n : ℤ) (ha : (0 : Γ₀) ^ n = 1) (hn : n ≥ 0) : n = 0 := by
     have : n.toNat = 0 := by
       apply exp_zero_of_pow_eq_one_aux (Γ₀ := Γ₀)
@@ -59,7 +59,7 @@ lemma exp_zero_of_zpow_eq_one' {n : ℤ} (ha : (0 : Γ₀) ^ n = 1) : n = 0 := b
 /--
 @isnad1 id=eq.2h3v.s6.5e1c0a4fb378 from=translated src=- shape=7df26bd6 vocab=9dafe959
 -/
-lemma exp_zero_of_zpow_eq_one {a : Γ₀} (h : a < 1) {n : ℤ} (han : a ^ n = 1) : n = 0 := by
+lemma _root_.Tengoku.LeanPool.exp_zero_of_zpow_eq_one {a : Γ₀} (h : a < 1) {n : ℤ} (han : a ^ n = 1) : n = 0 := by
   by_cases ha : a = 0
   · subst ha
     exact exp_zero_of_zpow_eq_one' han
@@ -159,3 +159,4 @@ lemma MulAction.mem_stabilizer_pi {ι : Type*} {α : ι → Type*} {G : Type*} [
     [∀ i, MulAction G (α i)] (x : ∀ i, α i) (g : G) :
     g ∈ MulAction.stabilizer G x ↔ ∀ i, g ∈ MulAction.stabilizer G (x i) := by
   simp [funext_iff]
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

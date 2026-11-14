@@ -14,7 +14,7 @@ import Tengoku.LeanPool.LeanPool.Odlyzko.DedekindZeta.PrimeIdealSummability
 /-! TODO: Add doc-string. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace NumberField.Odlyzko
@@ -645,3 +645,4 @@ theorem dedekindZeta_primeIdeal_eulerProduct_tprod {s : ℂ} (hs : 1 < s.re) :
 end NumberField.Odlyzko
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

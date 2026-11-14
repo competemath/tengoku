@@ -15,7 +15,7 @@ supported in one parabolic cylinder.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory MeasureTheory.Measure Set Metric
 open scoped ENNReal NNReal Topology
 
@@ -149,3 +149,4 @@ theorem morreyNorm_bounded_support {p q q' : ℝ} (hp : 1 ≤ p)
   exact morreyCell_bounded_support hp0 hpq hpq' hq'q hR hsupp z r.2
 
 end CKN.Foundation.Parabolic.Morrey
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

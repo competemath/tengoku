@@ -23,7 +23,7 @@ construction of matrix units from `OrtIdemDiv`, and the explicit ring
 isomorphism `R ≃+* Matrix (Fin n) (Fin n) (e₀₀ R e₀₀)`.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 open scoped LeanPool.ArtinWedderburn
 
 
@@ -403,3 +403,4 @@ def HasMatrixUnitsToHasMatrixUnits (mu : HasMatrixUnits R n) : hasMatrixUnits R 
       mul_ij_kl_eq_kron_delta_jk_mul_es_il := h_diag }
 
 end LeanPool.ArtinWedderburn
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

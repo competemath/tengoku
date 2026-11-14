@@ -10,7 +10,7 @@ public import Tengoku
 
 /-! # Coding -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 open scoped LO LO.FirstOrder.Language
 
 
@@ -100,3 +100,4 @@ end Semiformula
 
 end FirstOrder
 end LO
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

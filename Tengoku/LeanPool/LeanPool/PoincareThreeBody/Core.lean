@@ -16,7 +16,7 @@ module: the solution and challenge environments must remain separately exportabl
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.PoincareThreeBody
 
 open Set
@@ -177,3 +177,4 @@ lemma hamiltonian_not_independent (δ : ℝ) : ¬IsIndependentSomewhere δ hamil
   norm_num at hindex
 
 end LeanPool.PoincareThreeBody
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

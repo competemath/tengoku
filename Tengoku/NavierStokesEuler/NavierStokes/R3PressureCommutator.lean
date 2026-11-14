@@ -12,7 +12,7 @@ near and remainder convolutions gives an `L²` estimate using only weighted
 `L^(3/2)` and unweighted `L¹` norms of its input.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace NavierStokes.R3PressureCommutator
 
 open Set Filter MeasureTheory ProblemStatement R3ConvolutionYoung R3PressureNearKernel
@@ -253,3 +253,4 @@ theorem commutator_tendsto_lpNorm {R L C : ℝ} {φ : Space → ℝ}
     (commutator_tendsto_ae hφ hK hg hg₁ hw hlim)
 
 end NavierStokes.R3PressureCommutator
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

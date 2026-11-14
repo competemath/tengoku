@@ -1,7 +1,7 @@
 import Tengoku.NavierStokesEuler.Euler.CorrectionStabilityBudget
 
 /-! Tengoku repair: `correction_viscosity_pointwise` ran out of heartbeats in the tree; `synthInstance.maxHeartbeats` is 160000 for it (was 20000). -/
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace EulerCorrectionViscosityStability
 end EulerCorrectionViscosityStability
 namespace MeasureTheory
@@ -146,3 +146,4 @@ theorem correction_viscosity_pointwise {q : ℕ} (hq : 6 ≤ q) (T : ℝ) (hT : 
   exact hdiv.trans_eq (by unfold StabilityBudget.comparisonConstant; dsimp [P]; ring)
 
 end EulerCorrectionViscosityStability
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

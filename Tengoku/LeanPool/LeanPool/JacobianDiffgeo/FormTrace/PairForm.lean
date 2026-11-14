@@ -49,7 +49,7 @@ than assumed away (see `ResidueTraceCompat.lean`).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open scoped ContDiff Manifold
 open Filter Topology Metric Function Set
 
@@ -241,3 +241,4 @@ theorem resAtX_const_mul (c : ℂ) {F : X → Y} {h : X → ℂ} {x : X} :
   rw [heq, resAt_const_mul]
 
 end RS.FormTrace
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

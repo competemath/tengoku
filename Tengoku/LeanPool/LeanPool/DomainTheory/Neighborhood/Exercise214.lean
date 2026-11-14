@@ -49,7 +49,7 @@ order-theoretic proofs of
 `rel_ofIso_iff`/`phi_inter` are otherwise choice-free (`propext`, `Quot.sound`). -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem ApproximableMap
@@ -151,3 +151,4 @@ theorem phi_inter (e : V₀.Element ≃o V₁.Element) {X X' : Set α}
   exact Set.Subset.antisymm hsubInter hsub2
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

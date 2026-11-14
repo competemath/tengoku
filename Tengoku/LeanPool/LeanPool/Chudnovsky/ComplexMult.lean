@@ -32,7 +32,7 @@ At `τ₁₆₃` : `41 − τ + τ² = 0`, i.e. `A = 41, B = −1, C = 1`, `D = 
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace Chudnovsky
@@ -1046,3 +1046,4 @@ theorem theoezweisternrest_of_isIntegral_j (τ : ℍ) {A B C : ℤ}
   exact (isIntegral_sum_mul_weierstrassP_latHat τ hj M s hs0).mul (isIntegral_C_mul_conj hCM)
 
 end Chudnovsky
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

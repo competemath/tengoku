@@ -24,7 +24,7 @@ take the model itself, and the oracle factors through them.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u v w
 
 namespace FirstOrder.Language
@@ -151,3 +151,4 @@ instead of the full `IsLomega1omegaIndiscernible a`, and state their
 conclusions against `(templateOfSeq a).truth` rather than `h.template.truth`. -/
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

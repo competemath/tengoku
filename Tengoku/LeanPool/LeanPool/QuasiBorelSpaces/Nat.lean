@@ -16,8 +16,8 @@ Imported Lean Pool material for `LeanPool.QuasiBorelSpaces.Nat`.
 -/
 
 @[expose] public section
-
-namespace QuasiBorelSpace.Nat
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
+namespace Tengoku.LeanPool.QuasiBorelSpace.Nat
 
 variable
   {A : Type*} [QuasiBorelSpace A]
@@ -113,11 +113,12 @@ lemma isHom_find
     apply Prop.isHom_forall fun hmn ↦ ?_
     fun_prop
 
-end QuasiBorelSpace.Nat
+end Tengoku.LeanPool.QuasiBorelSpace.Nat
 
-namespace QuasiBorelSpace.Fin
+namespace Tengoku.LeanPool.QuasiBorelSpace.Fin
 
 @[simps!]
 instance {n} : QuasiBorelSpace (Fin n) := ofMeasurableSpace
 
-end QuasiBorelSpace.Fin
+end Tengoku.LeanPool.QuasiBorelSpace.Fin
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

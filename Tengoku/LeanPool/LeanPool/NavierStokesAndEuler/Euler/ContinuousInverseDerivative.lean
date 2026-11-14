@@ -13,7 +13,7 @@ This is the easy half of the inverse function theorem; no differentiability
 of the inverse is an independent assumption. -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open scoped Topology
@@ -35,3 +35,4 @@ theorem hasFDerivAt_inverse
   simpa only [ContinuousLinearMap.comp_id] using h
 
 end EulerContinuousInverseDerivative
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

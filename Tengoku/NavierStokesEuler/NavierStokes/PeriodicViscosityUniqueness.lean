@@ -13,7 +13,7 @@ initial time agree throughout the reduction.
 -/
 
 noncomputable section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set
 open scoped ContDiff
 
@@ -113,3 +113,4 @@ theorem classical_uniqueness_on_Icc {ν a b : ℝ} (hν : 0 < ν)
     simp only [rescale, ← mul_assoc, inv_mul_cancel₀ hν.ne', one_mul, hinitial]
 
 end NavierStokes.PeriodicViscosityUniqueness
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

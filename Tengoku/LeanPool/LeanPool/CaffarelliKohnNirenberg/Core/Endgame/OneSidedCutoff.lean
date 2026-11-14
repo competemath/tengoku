@@ -21,7 +21,7 @@ negative-time derivatives do not acquire domain-dependent constants.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Metric Filter
 open scoped Topology
 open CKN.Foundation.Parabolic
@@ -99,3 +99,4 @@ theorem exists_localBox_around_closed_unit
       by linarith only [hz.2.2, hδ]⟩⟩
 
 end CKN.Core.Endgame
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

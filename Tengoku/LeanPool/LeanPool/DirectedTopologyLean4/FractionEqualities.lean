@@ -12,7 +12,7 @@ public import Tengoku.LeanPool.LeanPool.DirectedTopologyLean4.Fraction
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FractionEqualities
 
 /--
@@ -70,3 +70,4 @@ lemma cancel_common_factor {i n : ℕ} (i_pos : 0 < i)
   field_simp
 
 end FractionEqualities
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

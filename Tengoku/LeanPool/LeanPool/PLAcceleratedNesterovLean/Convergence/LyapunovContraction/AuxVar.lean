@@ -16,7 +16,7 @@ the state-based one-step identity `auxVarOfState_step`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace PLAcceleratedNesterovLean
@@ -51,3 +51,4 @@ theorem auxVar_recursion (P : E d →L[ℝ] E d) (μ' η ρ : ℝ) (π : E d →
       hρ ha_pos hη_pos hμ_pos
 
 end PLAcceleratedNesterovLean
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

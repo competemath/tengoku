@@ -15,7 +15,7 @@ Part of the Caffarelli–Kohn–Nirenberg partial regularity proof.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory Set
 open CKN.Foundation.Parabolic
 open scoped ENNReal
@@ -64,3 +64,4 @@ theorem integrable_mul_of_tsupport_subset {α : Type*}
     rw [image_eq_zero_of_notMem_tsupport (f := g) (fun h => hx (hsupport h)), mul_zero])
 
 end CKN.Foundation.Measure
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

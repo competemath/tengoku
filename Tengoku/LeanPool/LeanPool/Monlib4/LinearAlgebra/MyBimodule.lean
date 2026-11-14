@@ -19,7 +19,7 @@ properties of them.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 variable {R H₁ H₂ : Type _} [CommSemiring R] [Semiring H₁] [Semiring H₂] [Algebra R H₁]
   [Algebra R H₂]
 
@@ -284,3 +284,4 @@ Submodule.coe_sum _ _ _
 theorem LinearMap.mem_isBimoduleMaps_iff {x : l(R,H₁ ⊗[R] H₂)} :
   x ∈ LinearMap.IsBimoduleMaps R H₁ H₂ ↔ x.IsBimoduleMap :=
 by rfl
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

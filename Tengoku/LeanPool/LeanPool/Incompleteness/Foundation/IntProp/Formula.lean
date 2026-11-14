@@ -11,7 +11,7 @@ public import Tengoku
 /-! # Formula -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LO
 namespace IntProp
 
@@ -222,3 +222,4 @@ abbrev FormulaFinset (α : Type u) := Finset (Formula α)
 
 end IntProp
 end LO
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -15,12 +15,12 @@ Imported Lean Pool material for `LeanPool.QuasiBorelSpaces.RoseTree.Basic`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe u
 
 variable {A B C D : Type*}
 
-namespace Rose
+namespace Tengoku.LeanPool.Rose
 
 /--
 @isnad1 id=eq.0h2v.s4.9debb0df6ed2 from=translated src=- shape=0913e22b vocab=3b580621
@@ -369,4 +369,5 @@ instance [PartialOrder A] : PartialOrder (Rose A) where
           simp only [List.forall₂_cons] at h₂ h₄
           grind
 
-end Rose
+end Tengoku.LeanPool.Rose
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

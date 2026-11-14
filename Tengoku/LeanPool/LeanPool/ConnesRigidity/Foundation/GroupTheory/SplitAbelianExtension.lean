@@ -20,7 +20,7 @@ The split abelian extension component of the Connes rigidity formalization.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Connes
 
 universe u v
@@ -108,3 +108,4 @@ theorem invariant_of_kernel_and_quotient
 
 end SplitAbelianExtension
 end Connes
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

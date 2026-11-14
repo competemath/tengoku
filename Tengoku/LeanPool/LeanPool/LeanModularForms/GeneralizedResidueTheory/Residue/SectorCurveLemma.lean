@@ -17,7 +17,7 @@ import Tengoku.Seed.Combinatorics.Matroid.Init
 import Tengoku.Seed.MeasureTheory.Covering.Besicovitch
 import Tengoku.Seed.MeasureTheory.Integral.DivergenceTheorem
 import Tengoku.Seed.MeasureTheory.Integral.DominatedConvergence
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -427,3 +427,4 @@ theorem pv_sector_negative_power (r : ℝ) (hr : 0 < r) (α : ℝ)
   exact ⟨⟨0, h_tendsto⟩, h_tendsto.limUnder_eq⟩
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

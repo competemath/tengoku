@@ -34,7 +34,7 @@ many later terms. This file shows that in a WQO every sequence has a regular tai
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Preorder
 
 noncomputable section
@@ -187,3 +187,4 @@ theorem WellQuasiOrdered.sublistForall₂ {Q : Type*} {r : Q → Q → Prop} [Is
   simpa [Set.eq_univ_iff_forall] using h.partiallyWellOrderedOn_sublistForall₂ r
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -16,7 +16,7 @@ and proof organization were revised.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Set Function
 open CategoryTheory
 open scoped Pointwise
@@ -28,3 +28,4 @@ universe u v
 namespace GraphCoveringTheory.Kurosh
 
 end GraphCoveringTheory.Kurosh
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

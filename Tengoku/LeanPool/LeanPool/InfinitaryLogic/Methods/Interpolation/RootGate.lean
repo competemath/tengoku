@@ -25,7 +25,7 @@ turns that *syntactic* left inverse into the *semantic* bridge the argument need
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FirstOrder.Language
 
 open FirstOrder Structure
@@ -92,3 +92,4 @@ theorem entails_singleton_of_neg_entails_neg {r₂ θ : L.Sentenceω}
   exact this (hmodel θ (Set.mem_singleton _))
 
 end FirstOrder.Language
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

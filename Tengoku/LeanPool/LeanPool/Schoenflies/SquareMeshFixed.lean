@@ -115,7 +115,7 @@ hypothesis giving two distinct fresh points.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set
 open scoped Graph
 
@@ -1185,3 +1185,4 @@ theorem squareMesh_outer_cycleGraph_isTwoConnected_of_subdividesToPath {fresh : 
   exact ⟨e, u, D, Graph.IsLongCycle.isTwoConnected hlc, hcov⟩
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

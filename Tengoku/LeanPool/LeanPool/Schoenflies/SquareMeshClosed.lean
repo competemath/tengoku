@@ -105,7 +105,7 @@ genuine cycle rather than a point set — `Schoenflies.squareMesh_isLongCycle_ou
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set
 open scoped Graph
 
@@ -1401,3 +1401,4 @@ theorem squareMesh_isTwoConnected {fresh : List Plane} (hfresh : ∀ x ∈ fresh
   exact meshGraph_isTwoConnected (two_le_meshCount δ) hfresh anchors hz hw hzw
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -15,14 +15,14 @@ intended for upstreaming into Mathlib alongside the Chomsky-normal-form developm
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 universe uT uN
 variable {T : Type uT}
 
 /--
 @isnad1 id=false.1h5v.s5.ee42860a5e22 from=translated src=- shape=5cd88271 vocab=a934a6ba
 -/
-lemma ChomskyNormalFormRule.Rewrites.word {N : Type uN} {r : ChomskyNormalFormRule T N}
+lemma Tengoku.LeanPool.ChomskyNormalFormRule.Rewrites.word {N : Type uN} {r : ChomskyNormalFormRule T N}
     {u : List T} {v : List (Symbol T N)}
     (hruv : r.Rewrites (u.map Symbol.terminal) v) :
     False := by
@@ -35,8 +35,9 @@ lemma ChomskyNormalFormRule.Rewrites.word {N : Type uN} {r : ChomskyNormalFormRu
 /--
 @isnad1 id=produces.1h3v.s6.c41cba53b866 from=translated src=- shape=7e689eac vocab=d216c2fa
 -/
-lemma ChomskyNormalFormGrammar.Produces.input_output
+lemma Tengoku.LeanPool.ChomskyNormalFormGrammar.Produces.input_output
     {g : ChomskyNormalFormGrammar T} {r : ChomskyNormalFormRule T g.NT}
     (hrg : r ∈ g.rules) :
     g.Produces [.nonterminal r.input] r.output :=
   ⟨r, hrg, ChomskyNormalFormRule.Rewrites.input_output⟩
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

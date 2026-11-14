@@ -46,7 +46,7 @@ folding `insert`. Every declaration here is audited to depend only on
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Constructive
 
 variable {α : Type*} [DecidableEq α]
@@ -130,3 +130,4 @@ theorem funion_subset_iff {u v w : Finset α} : u ∪' v ⊆ w ↔ u ⊆ w ∧ v
     exacts [hu h, hv h]
 
 end Domain.Constructive
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

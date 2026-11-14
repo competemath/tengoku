@@ -17,7 +17,7 @@ the comparison velocity is assumed.
 -/
 
 noncomputable section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace NavierStokes.R3LocalizedEnergyLimit
 
 open Set Filter MeasureTheory ProblemStatement
@@ -141,3 +141,4 @@ theorem comparison_of_localized_differential_inequality
   ring
 
 end NavierStokes.R3LocalizedEnergyLimit
+-- Tengoku: opens Tengoku.LeanPool: its root names moved there, and this module uses them (generated)

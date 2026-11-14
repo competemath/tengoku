@@ -6,7 +6,7 @@ Authors: Chris Birkbeck
 module
 
 public import Tengoku.LeanPool.LeanPool.LeanModularForms.ValenceFormula.Definitions
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -382,3 +382,4 @@ theorem exists_height_cusp_nonvanishing_above (hf : f ≠ 0) (Hmin : ℝ) :
     cusp_nonvanishing_height_mono f (le_max_left _ _) hH₀_nonvan⟩
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

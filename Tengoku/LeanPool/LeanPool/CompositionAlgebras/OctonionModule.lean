@@ -37,12 +37,12 @@ is no `Module ℝ Octonion` for `CompositionAlgebra Octonion` to be stated over.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 /-! ## `Octonion` as an `ℝ`-module -/
 
-namespace Octonion
+namespace Tengoku.LeanPool.Octonion
 
 instance instAddCommGroup : AddCommGroup Octonion where
   add := (· + ·)
@@ -215,4 +215,5 @@ def coordsEquiv : Octonion ≃ₗ[ℝ] (Fin 8 → ℝ) where
 instance instFiniteDimensional : FiniteDimensional ℝ Octonion :=
   Module.Finite.equiv coordsEquiv.symm
 
-end Octonion
+end Tengoku.LeanPool.Octonion
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

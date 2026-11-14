@@ -11,7 +11,7 @@ public import Tengoku.LeanPool.LeanPool.LeanModularForms.GeneralizedResidueTheor
 import Tengoku.Seed.Analysis.SpecialFunctions.Integrals.Basic
 import Tengoku.Seed.CategoryTheory.Category.Init
 import Tengoku.Seed.Combinatorics.Matroid.Init
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -203,3 +203,4 @@ def externalWindingContribution (γ : PiecewiseC1Immersion)
     (angleAtCrossing γ t₀ ht₀ : ℂ) / (2 * Real.pi)
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

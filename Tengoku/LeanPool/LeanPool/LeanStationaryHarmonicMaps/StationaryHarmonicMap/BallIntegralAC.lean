@@ -17,7 +17,7 @@ of scalar ball-integral radius functions.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open MeasureTheory Set
@@ -402,3 +402,4 @@ end StationaryHarmonicMap
 end LeanStationaryHarmonicMaps
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

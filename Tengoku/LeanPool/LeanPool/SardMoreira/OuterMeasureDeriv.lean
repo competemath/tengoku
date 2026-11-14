@@ -13,7 +13,7 @@ import Tengoku.LeanPool.LeanPool.SardMoreira.UnifDoublingCover
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace MeasureTheory.Measure
 
 open scoped ENNReal NNReal Topology
@@ -455,3 +455,4 @@ lemma hasudorffMeasure_image_le_mul {X : Type*} [MetricSpace X] [MeasurableSpace
   · exact hasudorffMeasure_image_le_mul' hsC holderExp_pos hμ_dim hμball₀ hμball hdim hdimDom h
 
 end MeasureTheory.Measure
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

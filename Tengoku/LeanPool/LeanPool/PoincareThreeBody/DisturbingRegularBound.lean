@@ -16,7 +16,7 @@ resonant ellipse approaches its apoapsis collision boundary.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace LeanPool.PoincareThreeBody
 
 /-- The part of the resonant disturbing function which is regular at the unit primary. -/
@@ -230,3 +230,4 @@ theorem abs_integral_resonantRegularPart_le_collision_bound
       ring
 
 end LeanPool.PoincareThreeBody
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

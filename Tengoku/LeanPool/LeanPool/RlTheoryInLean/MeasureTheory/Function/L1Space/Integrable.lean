@@ -14,7 +14,7 @@ public import Tengoku.Seed.MeasureTheory.Function.L1Space.Integrable
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter
 
 namespace MeasureTheory
@@ -41,3 +41,4 @@ lemma Integrable.finset_sum
     simp_all
 
 end MeasureTheory
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -20,7 +20,7 @@ here.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MeasureTheory MeasureTheory.Measure Set
 open scoped ENNReal
 
@@ -222,3 +222,4 @@ theorem setAverage_mono_of_ae {α : Type*} [MeasurableSpace α]
     (inv_nonneg.mpr ENNReal.toReal_nonneg)
 
 end CKN.Foundation.Parabolic.Integration
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

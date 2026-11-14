@@ -40,7 +40,7 @@ This file covers chapter 6 of Milla's proof of the Chudnovsky formula (arXiv:180
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 open Nat FormalMultilinearSeries
@@ -56,14 +56,14 @@ variable {𝕂 : Type*} (𝔸 : Type*) [Field 𝕂] [Ring 𝔸] [Algebra 𝕂 �
 
 /-- The coefficients in the generalized hypergeometric sum:
 `(α)ₙ(β)ₙ(γ)ₙ / ((δ)ₙ(ε)ₙ n!)`, mirroring `ordinaryHypergeometricCoefficient`. -/
-abbrev generalizedHypergeometricCoefficient (α β γ δ ε : 𝕂) (n : ℕ) : 𝕂 :=
+abbrev _root_.Tengoku.LeanPool.generalizedHypergeometricCoefficient (α β γ δ ε : 𝕂) (n : ℕ) : 𝕂 :=
   (n !⁻¹ : 𝕂) * (ascPochhammer 𝕂 n).eval α * (ascPochhammer 𝕂 n).eval β *
     (ascPochhammer 𝕂 n).eval γ * ((ascPochhammer 𝕂 n).eval δ)⁻¹ *
     ((ascPochhammer 𝕂 n).eval ε)⁻¹
 
 /-- `generalizedHypergeometricSeries 𝔸 (α β γ δ ε : 𝕂)` is a `FormalMultilinearSeries`.
 Its sum is the `generalizedHypergeometric` map. -/
-def generalizedHypergeometricSeries (α β γ δ ε : 𝕂) : FormalMultilinearSeries 𝕂 𝔸 𝔸 :=
+def _root_.Tengoku.LeanPool.generalizedHypergeometricSeries (α β γ δ ε : 𝕂) : FormalMultilinearSeries 𝕂 𝔸 𝔸 :=
   ofScalars 𝔸 (generalizedHypergeometricCoefficient α β γ δ ε)
 
 variable {𝔸} (α β γ δ ε : 𝕂)
@@ -73,7 +73,7 @@ hypergeometric map, defined as the sum of the `FormalMultilinearSeries`
 `generalizedHypergeometricSeries 𝔸 α β γ δ ε`.
 
 Note that this takes the junk value `0` outside the radius of convergence. -/
-def generalizedHypergeometric (x : 𝔸) : 𝔸 :=
+def _root_.Tengoku.LeanPool.generalizedHypergeometric (x : 𝔸) : 𝔸 :=
   (generalizedHypergeometricSeries 𝔸 α β γ δ ε).sum x
 
 @[inherit_doc]
@@ -82,7 +82,7 @@ notation "₃F₂" => generalizedHypergeometric
 /--
 @isnad1 id=eq.0h9v.s7.97ddb124673b from=translated src=- shape=0074d39f vocab=6096ea5d
 -/
-theorem generalizedHypergeometricSeries_apply_eq (x : 𝔸) (n : ℕ) :
+theorem _root_.Tengoku.LeanPool.generalizedHypergeometricSeries_apply_eq (x : 𝔸) (n : ℕ) :
     (generalizedHypergeometricSeries 𝔸 α β γ δ ε n fun _ => x) =
       generalizedHypergeometricCoefficient α β γ δ ε n • x ^ n := by
   rw [generalizedHypergeometricSeries, ofScalars_apply_eq]
@@ -90,7 +90,7 @@ theorem generalizedHypergeometricSeries_apply_eq (x : 𝔸) (n : ℕ) :
 /--
 @isnad1 id=eq.0h8v.s7.21eb7c57b487 from=translated src=- shape=3b1aac79 vocab=b07d5957
 -/
-theorem generalizedHypergeometric_sum_eq (x : 𝔸) :
+theorem _root_.Tengoku.LeanPool.generalizedHypergeometric_sum_eq (x : 𝔸) :
     (generalizedHypergeometricSeries 𝔸 α β γ δ ε).sum x =
       ∑' n : ℕ, generalizedHypergeometricCoefficient α β γ δ ε n • x ^ n :=
   tsum_congr fun n => generalizedHypergeometricSeries_apply_eq α β γ δ ε x n
@@ -98,14 +98,14 @@ theorem generalizedHypergeometric_sum_eq (x : 𝔸) :
 /--
 @isnad1 id=eq.0h7v.s6.ecb1b3c3ced8 from=translated src=- shape=d9e41324 vocab=e3e5111d
 -/
-theorem generalizedHypergeometric_eq_tsum : ₃F₂ α β γ δ ε =
+theorem _root_.Tengoku.LeanPool.generalizedHypergeometric_eq_tsum : ₃F₂ α β γ δ ε =
     fun x : 𝔸 => ∑' n : ℕ, generalizedHypergeometricCoefficient α β γ δ ε n • x ^ n :=
   funext (generalizedHypergeometric_sum_eq α β γ δ ε)
 
 /--
 @isnad1 id=eq.0h8v.s7.ee29697349d5 from=translated src=- shape=7564c2a0 vocab=b425d379
 -/
-theorem generalizedHypergeometricSeries_apply_zero (n : ℕ) :
+theorem _root_.Tengoku.LeanPool.generalizedHypergeometricSeries_apply_zero (n : ℕ) :
     (generalizedHypergeometricSeries 𝔸 α β γ δ ε n fun _ => 0) =
       Pi.single (M := fun _ => 𝔸) 0 1 n := by
   rw [generalizedHypergeometricSeries, ofScalars_apply_eq]
@@ -115,7 +115,7 @@ theorem generalizedHypergeometricSeries_apply_zero (n : ℕ) :
 @isnad1 id=eq.0h7v.s6.e1d6087bd2e7 from=translated src=- shape=69dad90d vocab=bbc26e53
 -/
 @[simp]
-theorem generalizedHypergeometric_zero : ₃F₂ α β γ δ ε (0 : 𝔸) = 1 := by
+theorem _root_.Tengoku.LeanPool.generalizedHypergeometric_zero : ₃F₂ α β γ δ ε (0 : 𝔸) = 1 := by
   simp [generalizedHypergeometric_eq_tsum, ← generalizedHypergeometricSeries_apply_eq,
     generalizedHypergeometricSeries_apply_zero]
 
@@ -128,7 +128,7 @@ open Filter Topology in
 parameters are non-positive integers, mirroring `ordinaryHypergeometricSeries_radius_eq_one`.
 @isnad1 id=eq.1h7v.s8.3ed77214db71 from=translated src=- shape=3ce4917a vocab=261f04ce
 -/
-theorem generalizedHypergeometricSeries_radius_eq_one {𝕂 : Type*} (𝔸 : Type*) [RCLike 𝕂]
+theorem _root_.Tengoku.LeanPool.generalizedHypergeometricSeries_radius_eq_one {𝕂 : Type*} (𝔸 : Type*) [RCLike 𝕂]
     [NormedDivisionRing 𝔸] [NormedAlgebra 𝕂 𝔸] (α β γ δ ε : 𝕂)
     (h : ∀ kn : ℕ, (kn : 𝕂) ≠ -α ∧ (kn : 𝕂) ≠ -β ∧ (kn : 𝕂) ≠ -γ ∧ (kn : 𝕂) ≠ -δ ∧
       (kn : 𝕂) ≠ -ε) :
@@ -210,7 +210,7 @@ open Filter Topology in
 `ordinaryHypergeometricSeries_radius_eq_one`.
 @isnad1 id=summable.1h6v.s6.1818d65a1a45 from=translated src=- shape=1a40da28 vocab=ce7281d2
 -/
-theorem generalizedHypergeometric_summable (α β γ δ ε : ℂ) {z : ℂ} (hz : ‖z‖ < 1) :
+theorem _root_.Tengoku.LeanPool.generalizedHypergeometric_summable (α β γ δ ε : ℂ) {z : ℂ} (hz : ‖z‖ < 1) :
     Summable fun n : ℕ => generalizedHypergeometricCoefficient α β γ δ ε n * z ^ n := by
   by_cases hnz : ∀ kn : ℕ, (kn : ℂ) ≠ -α ∧ (kn : ℂ) ≠ -β ∧ (kn : ℂ) ≠ -γ ∧ (kn : ℂ) ≠ -δ ∧
       (kn : ℂ) ≠ -ε
@@ -446,7 +446,7 @@ The non-degeneracy hypotheses `h₁`, `h₂` on the lower parameters are implici
 (they hold in the only instance used, `a = 1/12`, `b = 5/12`).
 @isnad1 id=eq.3h3v.s8.669080830c81 from=translated src=- shape=94c92b80 vocab=cca231cb
 -/
-theorem clausen_formula (a b : ℂ)
+theorem _root_.Tengoku.LeanPool.clausen_formula (a b : ℂ)
     (h₁ : ∀ k : ℕ, (k : ℂ) ≠ -(a + b + 1 / 2)) (h₂ : ∀ k : ℕ, (k : ℂ) ≠ -(2 * a + 2 * b))
     {z : ℂ} (hz : ‖z‖ < 1) :
     ₂F₁ a b (a + b + 1 / 2) z ^ 2
@@ -481,7 +481,7 @@ theorem clausen_formula (a b : ℂ)
 `ℚ → ℂ` coercion.
 @isnad1 id=eq.0h2v.s4.273c17d52418 from=translated src=- shape=7da0db75 vocab=b6b9007d
 -/
-theorem ascPochhammer_eval_ratCast (n : ℕ) (q : ℚ) :
+theorem _root_.Tengoku.LeanPool.ascPochhammer_eval_ratCast (n : ℕ) (q : ℚ) :
     (((ascPochhammer ℚ n).eval q : ℚ) : ℂ) = (ascPochhammer ℂ n).eval (q : ℂ) := by
   induction n with
   | zero => simp
@@ -493,7 +493,7 @@ theorem ascPochhammer_eval_ratCast (n : ℕ) (q : ℚ) :
 /-- The `₂F₁` coefficient commutes with the `ℚ → ℂ` coercion.
 @isnad1 id=eq.0h4v.s5.2b748c59a3ad from=translated src=- shape=478ab6eb vocab=b8c9821b
 -/
-theorem ordinaryHypergeometricCoefficient_ratCast (a b c : ℚ) (n : ℕ) :
+theorem _root_.Tengoku.LeanPool.ordinaryHypergeometricCoefficient_ratCast (a b c : ℚ) (n : ℕ) :
     ((ordinaryHypergeometricCoefficient a b c n : ℚ) : ℂ) =
       ordinaryHypergeometricCoefficient (a : ℂ) (b : ℂ) (c : ℂ) n := by
   simp only [ordinaryHypergeometricCoefficient, Rat.cast_mul, Rat.cast_inv, Rat.cast_natCast,
@@ -502,7 +502,7 @@ theorem ordinaryHypergeometricCoefficient_ratCast (a b c : ℚ) (n : ℕ) :
 /-- The `₃F₂` coefficient commutes with the `ℚ → ℂ` coercion.
 @isnad1 id=eq.0h6v.s5.ffe2f9c00fb4 from=translated src=- shape=97ad79d1 vocab=e617ae53
 -/
-theorem generalizedHypergeometricCoefficient_ratCast (α β γ δ ε : ℚ) (n : ℕ) :
+theorem _root_.Tengoku.LeanPool.generalizedHypergeometricCoefficient_ratCast (α β γ δ ε : ℚ) (n : ℕ) :
     ((generalizedHypergeometricCoefficient α β γ δ ε n : ℚ) : ℂ) =
       generalizedHypergeometricCoefficient (α : ℂ) (β : ℂ) (γ : ℂ) (δ : ℂ) (ε : ℂ) n := by
   simp only [generalizedHypergeometricCoefficient, Rat.cast_mul, Rat.cast_inv, Rat.cast_natCast,
@@ -512,7 +512,7 @@ theorem generalizedHypergeometricCoefficient_ratCast (α β γ δ ε : ℚ) (n :
 for `‖z‖ < 1` (norm-summable coefficients). Mirrors `generalizedHypergeometric_summable`.
 @isnad1 id=summable.2h4v.s6.24764a31c5da from=translated src=- shape=e0a4638a vocab=c0007374
 -/
-theorem ordinaryHypergeometric_norm_summable (a b c : ℂ)
+theorem _root_.Tengoku.LeanPool.ordinaryHypergeometric_norm_summable (a b c : ℂ)
     (h : ∀ kn : ℕ, (kn : ℂ) ≠ -a ∧ (kn : ℂ) ≠ -b ∧ (kn : ℂ) ≠ -c) {z : ℂ} (hz : ‖z‖ < 1) :
     Summable fun n : ℕ => ‖ordinaryHypergeometricCoefficient a b c n * z ^ n‖ := by
   have hrad := ordinaryHypergeometricSeries_radius_eq_one ℂ a b c h
@@ -815,3 +815,4 @@ theorem hyp2F1_sq_eq_tsum {z : ℂ} (hz : ‖z‖ < 1) :
   linear_combination (z ^ n) * hprod
 
 end Chudnovsky
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

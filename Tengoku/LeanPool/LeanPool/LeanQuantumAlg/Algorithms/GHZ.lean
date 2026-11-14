@@ -43,7 +43,7 @@ locally-equivalent three-qubit state powers Mermin's game
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace QuantumAlg
 
 open PureState Gate
@@ -112,3 +112,4 @@ theorem norm_ghz : ‖ghz‖ = 1 := ghz.norm_eq_one
 end
 
 end QuantumAlg
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -24,7 +24,7 @@ import Tengoku.Seed.Topology.Algebra.Module.Cardinality
 /-! # ExactModulusRecovery -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 noncomputable section
 
 namespace DimdPolyLEAN
@@ -5836,3 +5836,4 @@ theorem ambiguity_eq_to_skappa_phase
     exact ⟨w, hw, lift_unimodular_phase_L2_to_Skappa hd kappa hL2⟩
 
 end DimdPolyLEAN
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

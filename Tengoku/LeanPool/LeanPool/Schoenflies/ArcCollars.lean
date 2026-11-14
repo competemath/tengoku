@@ -89,7 +89,7 @@ arc, and `Schoenflies.isPolyArcCarrier_segment` exhibits one.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set
 
 namespace Schoenflies
@@ -2425,3 +2425,4 @@ None of the three is formalised for an arc. The remaining results require no suc
 -/
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -42,7 +42,7 @@ Everything is **choice-free** (`#print axioms ⊆ {propext, Quot.sound}`).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace Domain.Neighborhood
 
 open NeighborhoodSystem ApproximableMap Domain.Neighborhood.Exercise619
@@ -1186,3 +1186,4 @@ theorem naryOtimes_singleton_subsystem (a : GExpr) (l : List GExpr)
 end Exercise619
 
 end Domain.Neighborhood
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -14,7 +14,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /- This file contains definitions for splitting a directed path `γ : Dipath x y` at some point
   `T : I` yielding two different directed paths:
   * Its first part, from `x` to `γ T`, given by evaluating `γ` on `[0, T]`.
@@ -123,3 +123,4 @@ lemma first_trans_second_reparam_eq_self (γ : Dipath x₀ x₁) {T : I} (hT₀ 
   exact first_trans_second_reparam_eq_self_aux (γ : Path x₀ x₁) t hT₀ hT₁
 
 end SplitDipath
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

@@ -11,7 +11,7 @@ public import Tengoku
 /-! # LogicSymbol -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Function
 
 namespace LO
@@ -741,3 +741,4 @@ end List
 
 end «lp_section_1»
 -- Tengoku: 1 notation(s) of this module made scoped so they do not change other libraries (generated)
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

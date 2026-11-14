@@ -12,13 +12,13 @@ TODO: Use `Pointed` (the category of pointed types) in Mathlib.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 /- A pointed map from `(X, x₀)` to `(Y, y₀)` is a function `f : X → Y` such that `f x₀ = y₀`. -/
 /-- `IsPointedMap` -/
-class IsPointedMap {X Y : Type*} [Inhabited X] [Inhabited Y] (f : X → Y) : Prop where
+class _root_.Tengoku.LeanPool.IsPointedMap {X Y : Type*} [Inhabited X] [Inhabited Y] (f : X → Y) : Prop where
   map_default : f default = default
 
-namespace IsPointedMap
+namespace Tengoku.LeanPool.IsPointedMap
 
 variable {X Y : Type*} [Inhabited X] [Inhabited Y] (f : X → Y) [IsPointedMap f]
 
@@ -51,7 +51,7 @@ lemma default_eq_image_preimage_default : {default} = f '' (f ⁻¹' {default}) 
   apply default_mem_image_of_default_mem
   exact default_mem_preimage_default f
 
-end IsPointedMap
+end Tengoku.LeanPool.IsPointedMap
 
 namespace ExactSeq
 
@@ -132,3 +132,4 @@ theorem unique_mid_of_five (a : A → B) (b : B → C) (c : C → D) (d : D → 
         simp only [Set.mem_univ] }
 
 end ExactSeq
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

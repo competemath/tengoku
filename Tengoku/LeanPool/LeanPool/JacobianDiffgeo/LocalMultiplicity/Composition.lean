@@ -29,7 +29,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Filter Set OpenPartialHomeomorph Metric
 open scoped ContDiff Manifold Topology
 
@@ -266,3 +266,4 @@ theorem eventually_multiplicity_eq_one (hF : ContMDiffAt 𝓘(ℂ) 𝓘(ℂ) ω 
 end MultiplicityOne
 
 end RS
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

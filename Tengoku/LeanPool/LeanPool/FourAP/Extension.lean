@@ -24,7 +24,7 @@ immediate corollary `safe_extend`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 namespace FourAP
 
 /-- The normalized parity-`p` elements of the target set in Lemma 2.
@@ -197,3 +197,4 @@ theorem safe_extend (P : List ℕ) (hP : Safe bits P) (T : Finset ℕ) :
   ⟨extendAlgorithm P T, extendAlgorithm_spec P T hP⟩
 
 end FourAP
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

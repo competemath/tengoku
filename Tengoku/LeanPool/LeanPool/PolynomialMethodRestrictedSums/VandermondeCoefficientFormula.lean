@@ -16,7 +16,7 @@ culminating in `Vandermonde_coefficient_formula`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open MvPolynomial
 open AddMonoidAlgebra (coeff)
 open Finset
@@ -26,26 +26,26 @@ open BigOperators
 variable {k : ℕ}
 
 /-- Falling factorial (s)_r = s(s-1)...(s-r + 1) -/
-def fallingFactorial (s : ℕ) (r : ℕ) : ℕ :=
+def _root_.Tengoku.LeanPool.fallingFactorial (s : ℕ) (r : ℕ) : ℕ :=
   if r = 0 then 1
   else ∏ i ∈ range r, (s - i)
 
 /-- Vandermonde matrix (c^j) -/
-def vandermondeMatrix (c : Fin (k + 1) → ℕ) : Matrix (Fin (k + 1)) (Fin (k + 1)) ℚ :=
+def _root_.Tengoku.LeanPool.vandermondeMatrix (c : Fin (k + 1) → ℕ) : Matrix (Fin (k + 1)) (Fin (k + 1)) ℚ :=
   Matrix.of (fun i j : Fin (k + 1) => (c i : ℚ) ^ (j : ℕ))
 
 /-- Falling factorial matrix ((c)_j) -/
-def fallingFactorialMatrix (c : Fin (k + 1) → ℕ) : Matrix (Fin (k + 1)) (Fin (k + 1)) ℚ :=
+def _root_.Tengoku.LeanPool.fallingFactorialMatrix (c : Fin (k + 1) → ℕ) : Matrix (Fin (k + 1)) (Fin (k + 1)) ℚ :=
   Matrix.of (fun i j : Fin (k + 1) => (fallingFactorial (c i) j : ℚ))
 
 /-- Expected value: m! / (∏ c!) * ∏_{i>j} (c - c) -/
-def expectedValue (c : Fin (k + 1) → ℕ) (m : ℕ) : ℚ :=
+def _root_.Tengoku.LeanPool.expectedValue (c : Fin (k + 1) → ℕ) (m : ℕ) : ℚ :=
   (m.factorial : ℚ) * (∏ i : Fin (k + 1), ∏ j : Fin (k + 1),
     if j.val < i.val then ((c i : ℚ) - (c j : ℚ)) else 1) /
     (∏ i : Fin (k + 1), ((c i).factorial : ℚ))
 
 /-- Convert a function c : Fin (k + 1) → ℕ to Finsupp -/
-def toFinsupp (c : Fin (k + 1) → ℕ) : (Fin (k + 1)) →₀ ℕ :=
+def _root_.Tengoku.LeanPool.toFinsupp (c : Fin (k + 1) → ℕ) : (Fin (k + 1)) →₀ ℕ :=
   ⟨Finset.univ.filter (fun i => c i ≠ 0), c, fun i => by simp⟩
 
 /- Vandermonde Coefficient Formula (Lemma 3.1):
@@ -84,7 +84,7 @@ noncomputable section AristotleLemmas
 /--
 @isnad1 id=eq.0h2v.s6.66e17027bf45 from=translated src=- shape=6040750a vocab=e3984b84
 -/
-lemma det_fallingFactorial_eq_det_vandermonde (c : Fin (k + 1) → ℕ) :
+lemma _root_.Tengoku.LeanPool.det_fallingFactorial_eq_det_vandermonde (c : Fin (k + 1) → ℕ) :
   (fallingFactorialMatrix c).det = (vandermondeMatrix c).det := by
     -- By definition of $V$, we can write $F$ as $V * M$ where $M$ is an upper triangular matrix
     -- with ones on the diagonal.
@@ -189,7 +189,7 @@ lemma det_fallingFactorial_eq_det_vandermonde (c : Fin (k + 1) → ℕ) :
 /--
 @isnad1 id=eq.0h2v.s5.237752dd102f from=translated src=- shape=f6331ba5 vocab=15525733
 -/
-lemma fallingFactorial_eq_factorial_div (n k : ℕ) :
+lemma _root_.Tengoku.LeanPool.fallingFactorial_eq_factorial_div (n k : ℕ) :
   fallingFactorial n k = if k ≤ n then n.factorial / (n - k).factorial else 0 := by
     unfold fallingFactorial
     rcases le_or_gt k n with hn | hk
@@ -223,7 +223,7 @@ lemma fallingFactorial_eq_factorial_div (n k : ℕ) :
 
 /-- Symmetric group sum expression C = ∑_{σ∈S_{k + 1}} (-1)^{sign(σ)} * m! / ∏ᵢ (cᵢ - σ(i))!
     Corrected to use proper sign and handle 0 case. -/
-def symmetricSumFixed (c : Fin (k + 1) → ℕ) (m : ℕ) : ℚ :=
+def _root_.Tengoku.LeanPool.symmetricSumFixed (c : Fin (k + 1) → ℕ) (m : ℕ) : ℚ :=
   ∑ σ : Equiv.Perm (Fin (k + 1)),
     if (∀ i, σ i ≤ c i) then
       ((σ.sign : ℤ) : ℚ) *
@@ -233,7 +233,7 @@ def symmetricSumFixed (c : Fin (k + 1) → ℕ) (m : ℕ) : ℚ :=
 /--
 @isnad1 id=eq.0h3v.s4.ea68c75a0976 from=translated src=- shape=930423c8 vocab=2c568bcc
 -/
-lemma symmetricSumFixed_eq_expectedValue (c : Fin (k + 1) → ℕ) (m : ℕ) :
+lemma _root_.Tengoku.LeanPool.symmetricSumFixed_eq_expectedValue (c : Fin (k + 1) → ℕ) (m : ℕ) :
   symmetricSumFixed c m = expectedValue c m := by
     -- By definition of $expected\_value$, we know that
     -- $expected\_value c m = \frac{m!}{\prod_{i=0}^k c_i!} \cdot \prod_{i > j} (c_i - c_j)$.
@@ -311,3 +311,4 @@ lemma symmetricSumFixed_eq_expectedValue (c : Fin (k + 1) → ℕ) (m : ℕ) :
     split_ifs <;> ring
 
 end AristotleLemmas
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)

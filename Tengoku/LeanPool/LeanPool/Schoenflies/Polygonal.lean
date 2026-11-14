@@ -26,7 +26,7 @@ segment itself, and the distinctness of its ends is already part of well-formedn
 -/
 
 @[expose] public section
-
+namespace Tengoku.LeanPool end Tengoku.LeanPool open Tengoku.LeanPool 
 open Metric Set
 
 namespace Schoenflies
@@ -189,3 +189,4 @@ theorem IsPolygonal.union {A B : Set Plane} (hA : IsPolygonal A) (hB : IsPolygon
   rw [poly_append (by simp) z (Y ++ [z]) hlast, hX, hY]
 
 end Schoenflies
+-- Tengoku: root names of this library moved to Tengoku.LeanPool so they do not collide with other libraries (generated)
