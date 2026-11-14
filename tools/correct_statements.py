@@ -22,22 +22,32 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import lean_extract  # noqa: E402
 
 
-def _moves_only_from_validator():
-    """validate_records.py runs on import (it reads argv), so the rule is taken from its source: the helper never drifts from what the gate accepts."""
+def _rules_from_validator():
+    """validate_records.py runs on import (it reads argv), so its rules are taken from its source: the helper never drifts from what the gate accepts (moves_only, SEAM, AT_RE)."""
     import ast
 
     src = (Path(__file__).resolve().parent.parent / "scripts" / "ci" / "validate_records.py").read_text(encoding="utf-8")
-    tree = ast.parse(src)
-    env: dict = {}
-    for node in tree.body:
-        if (isinstance(node, ast.Assign) and any(getattr(t, "id", "") == "SEAM" for t in node.targets)) or (
-            isinstance(node, ast.FunctionDef) and node.name == "moves_only"
-        ):
+    env: dict = {"re": re}
+    for node in ast.parse(src).body:
+        is_name = isinstance(node, ast.Assign) and any(getattr(t, "id", "") in ("SEAM", "AT_RE") for t in node.targets)
+        if is_name or (isinstance(node, ast.FunctionDef) and node.name == "moves_only"):
             exec(compile(ast.Module([node], []), "validate_records.py", "exec"), env)
-    return env["moves_only"]
+    return env["moves_only"], env["AT_RE"]
 
 
-moves_only = _moves_only_from_validator()
+moves_only, AT_RE = _rules_from_validator()
+
+
+def trusted_names(root: Path) -> set[str]:
+    """The names of data/trusted, found as validate_records.trusted_names finds them: the gate refuses a correction of a trusted name (its text is the compiled one)."""
+    out: set[str] = set()
+    for f in (root / "data" / "trusted").rglob("*.jsonl"):
+        with f.open("rb") as fh:
+            for line in fh:
+                m = re.search(rb'"name"\s*:\s*"([^"]+)"', line)
+                if m:
+                    out.add(m.group(1).decode())
+    return out
 
 
 def squash(s: str) -> str:
@@ -70,7 +80,7 @@ def acceptable(old: tuple[str, str], new: tuple[str, str]) -> bool:
     return moves_only(os_, op, ns, np) and ns.rstrip().startswith(os_.rstrip())
 
 
-def corrections(text: str, by: str, at: str, reason: str) -> list[dict]:
+def corrections(text: str, by: str, at: str, reason: str, trusted: frozenset[str] | set[str] = frozenset()) -> list[dict]:
     """The correction lines for the records of one tentative file's text (the newest correction of a name is the record's current text)."""
     current: dict[str, tuple[str, str]] = {}
     retracted: set[str] = set()
@@ -90,7 +100,7 @@ def corrections(text: str, by: str, at: str, reason: str) -> list[dict]:
             current[r["name"]] = (r["statement"], r["proof"])
     out = []
     for name, old in current.items():
-        if name in retracted:
+        if name in retracted or name in trusted:
             continue
         new = resplit(name, *old)
         if new is not None and acceptable(old, new):
@@ -106,11 +116,15 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--reason", required=True)
     ap.add_argument("--write", action="store_true")
     a = ap.parse_args(argv)
+    if not AT_RE.fullmatch(a.at) or not a.reason.strip() or "\n" in a.reason or len(a.reason) > 300:
+        print("--at is a date (YYYY-MM-DD) and --reason one line of at most 300 characters, as the gate wants them", file=sys.stderr)
+        return 2
+    trusted = trusted_names(Path(__file__).resolve().parent.parent)
     total = 0
     for f in a.files:
         p = Path(f)
         text = p.read_text(encoding="utf-8")
-        lines = [json.dumps(c, ensure_ascii=False) + "\n" for c in corrections(text, a.by, a.at, a.reason)]
+        lines = [json.dumps(c, ensure_ascii=False) + "\n" for c in corrections(text, a.by, a.at, a.reason, trusted)]
         print(f"{f}: {len(lines)} statement corrections")
         total += len(lines)
         if a.write and lines:
@@ -118,7 +132,7 @@ def main(argv: list[str]) -> int:
                 if text and not text.endswith("\n"):
                     fh.write("\n")
                 fh.writelines(lines)
-    return 0 if total or not a.write else 0
+    return 0
 
 
 if __name__ == "__main__":

@@ -11,7 +11,9 @@ Invariants:
   2. No correction of a real match-arm record is made, and none of the corrections of invariant 1 has a match arm in its statement.
   3. Mutant: the helper that joins by a space only (the first version) DOES correct real match-arm records, with the arm inside the statement: the test of invariant 2 fails on it.
   4. A second run over the file with its corrections appended makes no line (the newest correction of a name is its current text); a retracted name and a line that is no record are left alone.
-  5. The helper takes `moves_only` from the validator's source: with that rule made stricter the helper makes fewer lines."""
+  5. The helper takes `moves_only` and the date rule from the validator's source: with that rule made stricter the helper makes fewer lines.
+  6. A name that is in data/trusted gets no line (the gate refuses it: its text is the compiled one); the names are found as validate_records.trusted_names finds them, in the real data/trusted.
+  7. `--at` that is no date, and a `--reason` that is empty, has a newline or is longer than 300 characters, write nothing and exit with 2 (the gate would reject the lines); a good run exits with 0."""
 
 from __future__ import annotations
 
@@ -19,6 +21,7 @@ import gzip
 import importlib.util
 import json
 import re
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -124,6 +127,41 @@ class Behaviour(unittest.TestCase):
             cs.moves_only = original
         self.assertGreater(before, 20)
         self.assertEqual(after, 0)
+
+
+class TrustedAndArguments(unittest.TestCase):
+    def test_a_trusted_name_gets_no_line(self):
+        recs = by_lib(TRUNCATED)["abel-formalization"]
+        lines = cs.corrections(file_text(recs), "t", "2026-11-14", "r")
+        self.assertGreater(len(lines), 20)
+        name = lines[0]["statement_correction"]
+        after = {c["statement_correction"] for c in cs.corrections(file_text(recs), "t", "2026-11-14", "r", {name})}
+        self.assertNotIn(name, after)
+        self.assertEqual(len(after), len(lines) - 1)
+
+    def test_trusted_names_are_read_from_the_real_data_trusted(self):
+        names = cs.trusted_names(ROOT)
+        self.assertGreater(len(names), 100_000)
+        self.assertEqual(cs.trusted_names(Path(tempfile.mkdtemp())), set())
+
+    def test_arguments_the_gate_would_reject_write_nothing(self):
+        recs = by_lib(TRUNCATED)["rankamplificationtotient"]
+        good = ["--by", "t", "--at", "2026-11-14", "--reason", "r"]
+        with tempfile.TemporaryDirectory() as d:
+            f = Path(d) / "x.jsonl"
+            f.write_text(file_text(recs), encoding="utf-8")
+            before = f.read_text(encoding="utf-8")
+            for bad in (
+                ["--by", "t", "--at", "14 Nov", "--reason", "r"],
+                ["--by", "t", "--at", "2026-11-14", "--reason", ""],
+                ["--by", "t", "--at", "2026-11-14", "--reason", "a\nb"],
+                ["--by", "t", "--at", "2026-11-14", "--reason", "x" * 301],
+            ):
+                self.assertEqual(cs.main([str(f), *bad, "--write"]), 2)
+                self.assertEqual(f.read_text(encoding="utf-8"), before)
+            self.assertEqual(cs.main([str(f), *good, "--write"]), 0)
+            self.assertGreater(len(f.read_text(encoding="utf-8")), len(before))
+            self.assertEqual(cs.main([str(f), *good, "--write"]), 0)
 
 
 if __name__ == "__main__":
