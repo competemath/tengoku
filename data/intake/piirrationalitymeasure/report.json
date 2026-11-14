@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "72f69b851cea15a3b3ca3eb15cf7ed4e9b2d9c6937d26d49d8df4e4aaa2f08aa",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "piirrationalitymeasure",
+ "lint_mode": "proposed",
+ "modules": 215,
+ "part": 1,
+ "theorems": 1488
+}
