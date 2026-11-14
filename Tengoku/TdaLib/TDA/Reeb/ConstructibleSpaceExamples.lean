@@ -44,7 +44,13 @@ def S01 : CriticalValues 1 where
   value i := ((i : ℕ) : ℝ)
   strictMono _ _ h := Nat.cast_lt.2 h
 
+/--
+@isnad1 id=eq.0h0v.s5.08d1b879a54a from=translated src=- shape=86c017ca vocab=b522ac88
+-/
 @[simp] theorem S01_value_zero : S01.value 0 = 0 := by simp [S01]
+/--
+@isnad1 id=eq.0h0v.s5.65f61c3b8430 from=translated src=- shape=86c017ca vocab=b522ac88
+-/
 @[simp] theorem S01_value_one : S01.value 1 = 1 := by simp [S01]
 
 /-- The regular height `1/2` of the single gap.-/
@@ -55,6 +61,9 @@ def half : (S01.K 0 : Set ℝ) := ⟨1 / 2, by
 
 /-! ### `n = 0`: the realization is `V 0` at the single height -/
 
+/--
+@isnad1 id=surjecti.0h2v.s6.a1079fd93902 from=translated src=- shape=50a68ba8 vocab=9598ec2d
+-/
 theorem ofVertex_surjective_zero (S : CriticalValues 0) (P : CylinderPresentation.{u} 0) :
     Function.Surjective (P.ofVertex S 0) := by
   intro q
@@ -68,6 +77,9 @@ def homeomorphZero (S : CriticalValues 0) (P : CylinderPresentation.{u} 0) :
     P.V 0 ≃ₜ P.Realization S :=
   (P.isEmbedding_ofVertex S 0).toHomeomorphOfSurjective (ofVertex_surjective_zero S P)
 
+/--
+@isnad1 id=eq.0h3v.s7.56fe9ee396c8 from=translated src=- shape=e4b77dc1 vocab=85640a23
+-/
 theorem height_zero (S : CriticalValues 0) (P : CylinderPresentation.{u} 0)
     (q : P.Realization S) : P.height S q = S.value 0 := by
   obtain ⟨v, rfl⟩ := ofVertex_surjective_zero S P q
@@ -80,10 +92,16 @@ def emptyData (n : ℕ) : FiniteReebData.{0} n :=
   ⟨fun _ => Empty, fun _ => Empty, fun _ => inferInstance, fun _ => inferInstance,
     fun _ x => x.elim, fun _ x => x.elim⟩
 
+/--
+@isnad1 id=isempty.0h2v.s4.ad1f896dd82f from=translated src=- shape=8df9c3e6 vocab=ec18e33b
+-/
 instance emptyData_isEmpty_V (n : ℕ) (i : Fin (n + 1)) :
     IsEmpty ((ofFiniteData (emptyData n)).V i) :=
   inferInstanceAs (IsEmpty Empty)
 
+/--
+@isnad1 id=isempty.0h2v.s3.8f048aa03e06 from=translated src=- shape=dd07d98b vocab=5a3ab4c0
+-/
 theorem emptyData_isEmpty (n : ℕ) (S : CriticalValues n) :
     IsEmpty ((ofFiniteData (emptyData n)).Realization S) :=
   (ofFiniteData (emptyData n)).isEmpty_realization S
@@ -95,6 +113,9 @@ def gapData : FiniteReebData.{0} 1 :=
   ⟨fun _ => Unit, fun _ => Empty, fun _ => inferInstance, fun _ => inferInstance,
     fun _ x => x.elim, fun _ x => x.elim⟩
 
+/--
+@isnad1 id=not.0h0v.s4.0fcff2645f45 from=translated src=- shape=545df194 vocab=675d24a7
+-/
 theorem gapData_not_preconnected :
     ¬ PreconnectedSpace ((ofFiniteData gapData).Realization S01) := by
   intro h
@@ -113,13 +134,17 @@ theorem gapData_not_preconnected :
 
 /-! ### An empty vertex piece -/
 
-/-- An empty vertex piece forces the adjacent edge piece empty.-/
+/-- An empty vertex piece forces the adjacent edge piece empty.
+@isnad1 id=isempty.1h1v.s6.c9dcbc45eb88 from=translated src=- shape=dd306b3f vocab=db30328a
+-/
 theorem isEmpty_E_zero (P : CylinderPresentation.{u} 1) (h : IsEmpty (P.V 0)) :
     IsEmpty (P.E 0) :=
   P.isEmpty_E_of_left (e := 0) h
 
 /-- Quotient-level companion: if `V e.castSucc` is empty, the realization has no point with
-height in `[a e, a (e+1))`.-/
+height in `[a e, a (e+1))`.
+@isnad1 id=eq.1h4v.s6.de6dbe2e7a31 from=translated src=- shape=400c6f57 vocab=6483d77a
+-/
 theorem height_preimage_Ico_eq_empty {n : ℕ} (S : CriticalValues n)
     (P : CylinderPresentation.{u} n) (e : Fin n) (h : IsEmpty (P.V e.castSucc)) :
     P.height S ⁻¹' Ico (S.value e.castSucc) (S.value e.succ) = ∅ := by
@@ -139,12 +164,18 @@ def leftEmptyData : FiniteReebData.{0} 1 :=
   ⟨fun i => Fin i.val, fun _ => Empty, fun _ => inferInstance, fun _ => inferInstance,
     fun _ x => x.elim, fun _ x => x.elim⟩
 
+/--
+@isnad1 id=eq.0h0v.s7.63f9a1686d17 from=translated src=- shape=592ebd9e vocab=9afd22bb
+-/
 theorem leftEmpty_preimage_Ico :
     (ofFiniteData leftEmptyData).height S01 ⁻¹'
       Ico (S01.value (Fin.castSucc 0)) (S01.value (Fin.succ 0)) = ∅ :=
   height_preimage_Ico_eq_empty S01 (ofFiniteData leftEmptyData) 0
     (inferInstanceAs (IsEmpty (Fin 0)))
 
+/--
+@isnad1 id=isempty.0h0v.s7.a8bfc45b9f98 from=translated src=- shape=72d5eb5a vocab=2e7e0b69
+-/
 theorem leftEmpty_criticalFiber_isEmpty :
     IsEmpty ((ofFiniteData leftEmptyData).height S01 ⁻¹' {S01.value 0}) :=
   ⟨fun q => (show IsEmpty ((ofFiniteData leftEmptyData).V 0) from
@@ -163,33 +194,53 @@ def pinchData : FiniteReebData.{0} 1 :=
 /-- The presentation of `pinchData`.-/
 abbrev pinch := ofFiniteData pinchData
 
+/--
+@isnad1 id=not.0h0v.s8.e743ac7d48c3 from=translated src=- shape=d8445eac vocab=29a59fa6
+-/
 theorem pinch_left_not_injective : ¬ Function.Injective (pinch.left 0) := fun h =>
   Bool.false_ne_true (h (a₁ := (false : pinchData.E 0)) (a₂ := true) rfl)
 
+/--
+@isnad1 id=eq.0h0v.s7.a397a1d01048 from=translated src=- shape=05b560a5 vocab=302c285f
+-/
 theorem pinch_segBot_glued :
     pinch.ofCylinder S01 0 (false, segBot S01 0) = pinch.ofCylinder S01 0 (true, segBot S01 0) :=
   (pinch.ofCylinder_segBot S01 0 false).trans (pinch.ofCylinder_segBot S01 0 true).symm
 
-/-- The closed cylinder does not embed: its two bottom ends are identified.-/
+/-- The closed cylinder does not embed: its two bottom ends are identified.
+@isnad1 id=not.0h0v.s5.93efe2e2dab1 from=translated src=- shape=17386ea9 vocab=84861e53
+-/
 theorem pinch_ofCylinder_not_injective : ¬ Function.Injective (pinch.ofCylinder S01 0) :=
   fun h => Bool.false_ne_true (congrArg Prod.fst (h pinch_segBot_glued))
 
+/--
+@isnad1 id=ne.0h0v.s7.b2f5c111573f from=translated src=- shape=05b560a5 vocab=3116d3c4
+-/
 theorem pinch_segTop_separate :
     pinch.ofCylinder S01 0 (false, segTop S01 0) ≠ pinch.ofCylinder S01 0 (true, segTop S01 0) :=
   fun h => Bool.false_ne_true (pinch.ofVertex_injective S01 _
     (((pinch.ofCylinder_segTop S01 0 false).symm.trans h).trans
       (pinch.ofCylinder_segTop S01 0 true)))
 
+/--
+@isnad1 id=ne.0h0v.s7.fa8537097140 from=translated src=- shape=0bef7d05 vocab=109df900
+-/
 theorem pinch_regular_separate :
     pinch.ofStrip S01 0 (false, half) ≠ pinch.ofStrip S01 0 (true, half) := fun h =>
   Bool.false_ne_true (congrArg Prod.fst (pinch.ofStrip_injective S01 0 h))
 
 /-! ### Exterior heights -/
 
+/--
+@isnad1 id=eq.0h0v.s6.658d0ece5227 from=translated src=- shape=67c6caef vocab=cce086e5
+-/
 theorem pinch_fiber_lowerTail : pinch.height S01 ⁻¹' {-1} = ∅ :=
   pinch.height_preimage_eq_empty_of_mem_lowerTail S01
     (S01.mem_lowerTail.2 (by rw [S01_value_zero]; norm_num))
 
+/--
+@isnad1 id=eq.0h0v.s6.717ce6cd0614 from=translated src=- shape=511cbe6d vocab=aa89d033
+-/
 theorem pinch_fiber_upperTail : pinch.height S01 ⁻¹' {2} = ∅ :=
   pinch.height_preimage_eq_empty_of_mem_upperTail S01
     (S01.mem_upperTail.2 (by rw [show Fin.last 1 = 1 from rfl, S01_value_one]; norm_num))
@@ -201,12 +252,18 @@ def parallelData : FiniteReebData.{0} 1 :=
   ⟨fun _ => Unit, fun _ => Bool, fun _ => inferInstance, fun _ => inferInstance,
     fun _ _ => (), fun _ _ => ()⟩
 
+/--
+@isnad1 id=eq.0h0v.s7.d5cdc60d8c8e from=translated src=- shape=87c0ce82 vocab=c9808df2
+-/
 theorem parallel_regularFiber_card :
     Nat.card ((ofFiniteData parallelData).height S01 ⁻¹' {(half : ℝ)}) = 2 := by
   rw [← Nat.card_congr ((ofFiniteData parallelData).regularFiberHomeomorph S01 0 half).toEquiv]
   exact Nat.card_eq_two_iff' false |>.2 ⟨true, Bool.false_ne_true.symm, fun b hb => by
     cases b <;> simp_all⟩
 
+/--
+@isnad1 id=subsingl.0h1v.s7.4a836510501b from=translated src=- shape=1cd39393 vocab=a18d6d3c
+-/
 theorem parallel_criticalFiber_subsingleton (i : Fin 2) :
     Subsingleton ((ofFiniteData parallelData).height S01 ⁻¹' {S01.value i}) :=
   have : Subsingleton ((ofFiniteData parallelData).V i) := inferInstanceAs (Subsingleton Unit)
@@ -230,6 +287,9 @@ def twoSegLabel : C((ofFiniteData twoSegData).Realization S01, Bool) :=
       segBot_eq := fun _ _ => rfl
       segTop_eq := fun _ _ => rfl }
 
+/--
+@isnad1 id=not.0h0v.s4.8718dd47b429 from=translated src=- shape=545df194 vocab=12e4ca19
+-/
 theorem twoSeg_not_preconnected :
     ¬ PreconnectedSpace ((ofFiniteData twoSegData).Realization S01) := fun h =>
   Bool.false_ne_true (PreconnectedSpace.constant h twoSegLabel.continuous

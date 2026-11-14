@@ -28,7 +28,9 @@ private theorem interval_qTame (p : ℝ × WithTop ℝ) :
   infer_instance
 
 /-- Positive-parameter interleaving transports a nonzero rectangle count, including
-birth and death on the upper edges of the expanded rectangle.-/
+birth and death on the upper edges of the expanded rectangle.
+@isnad1 id=le.0h1v.s8.922c93996597 from=translated src=- shape=f3a031db vocab=2d21134d
+-/
 theorem displaced_interval_box_nonzero :
     1 ≤ persistenceMeasureValue
       (RealBarcode.intervalModule (k := k) (1 / 4, (9 / 4 : ℝ)))

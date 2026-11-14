@@ -33,12 +33,16 @@ that this minimum is attained.-/
 noncomputable def contentMultiplicity (m : AddContent ℕ C) (x : X) : ℕ :=
   sInf {n | ∃ U ∈ C, x ∈ U ∧ m U = n}
 
-/-- Point multiplicity is bounded by every containing cell's content.-/
+/-- Point multiplicity is bounded by every containing cell's content.
+@isnad1 id=le.2h5v.s6.724a0021c2b6 from=translated src=- shape=932b81d1 vocab=8657be9e
+-/
 theorem contentMultiplicity_le (m : AddContent ℕ C) {x : X} {U : Set X}
     (hU : U ∈ C) (hx : x ∈ U) : contentMultiplicity m x ≤ m U :=
   csInf_le' ⟨U, hU, hx, rfl⟩
 
-/-- A point seen by the cells has a cell attaining its multiplicity.-/
+/-- A point seen by the cells has a cell attaining its multiplicity.
+@isnad1 id=ex.1h4v.s6.de1788715aec from=translated src=- shape=da68c6d3 vocab=f945587b
+-/
 theorem exists_cell_eq_contentMultiplicity (m : AddContent ℕ C) (x : X)
     (hx : ∃ U ∈ C, x ∈ U) :
     ∃ U ∈ C, x ∈ U ∧ m U = contentMultiplicity m x := by
@@ -46,7 +50,9 @@ theorem exists_cell_eq_contentMultiplicity (m : AddContent ℕ C) (x : X)
     obtain ⟨U, hU, hxU⟩ := hx
     exact ⟨m U, U, hU, hxU, rfl⟩)
 
-/-- Compactness and integer-valued finite additivity produce an actual positive point atom.-/
+/-- Compactness and integer-valued finite additivity produce an actual positive point atom.
+@isnad1 id=ex.5h4v.s6.52fcf70b6f82 from=translated src=- shape=cbee1632 vocab=f6c2fae1
+-/
 theorem exists_positive_content_atom [TopologicalSpace X] (hC : IsSetSemiring C)
     (m : AddContent ℕ C) (hOpen : ∀ U ∈ C, IsOpen U) {K : Set X}
     (hK : K ∈ C) (hCompact : IsCompact K) (hpos : 0 < m K) :
@@ -105,7 +111,9 @@ noncomputable def pointContent (x : X) : AddContent ℕ C := by
     have hxU : x ∉ U := fun hxU => hx (mem_sUnion.mpr ⟨U, hUI, hxU⟩)
     simp [hxU]
 
-/-- A positive point multiplicity permits subtracting one copy of its point content.-/
+/-- A positive point multiplicity permits subtracting one copy of its point content.
+@isnad1 id=le.2h5v.s6.6827951512c0 from=translated src=- shape=4305b331 vocab=703b6654
+-/
 theorem pointContent_le (m : AddContent ℕ C) {x : X}
     (hx : 0 < contentMultiplicity m x) {U : Set X} (hU : U ∈ C) :
     pointContent (C := C) x U ≤ m U := by
@@ -131,13 +139,17 @@ noncomputable def subtractPointContent (m : AddContent ℕ C) (x : X)
     rw [addContent_sUnion (m := pointContent (C := C) x) hIC hdis hUnion, hright]
     exact addContent_sUnion hIC hdis hUnion
 
-/-- Removing a point subtracts its incidence from every set's value.-/
+/-- Removing a point subtracts its incidence from every set's value.
+@isnad1 id=eq.1h5v.s6.9f705d746b0e from=translated src=- shape=ee763527 vocab=653cdb22
+-/
 theorem subtractPointContent_apply (m : AddContent ℕ C) (x : X)
     (hx : 0 < contentMultiplicity m x) (U : Set X) :
     subtractPointContent m x hx U = m U - if x ∈ U then 1 else 0 := rfl
 
 /-- Every compact cell has a finite atomic representation of all its subcell counts.
-The multiset is local to this compact cell; no global finiteness is asserted.-/
+The multiset is local to this compact cell; no global finiteness is asserted.
+@isnad1 id=ex.4h4v.s7.d40e971681cb from=translated src=- shape=d8af2a6c vocab=3e75645e
+-/
 theorem exists_local_atomic_representation [TopologicalSpace X] (hC : IsSetSemiring C)
     (m : AddContent ℕ C) (hOpen : ∀ U ∈ C, IsOpen U) {K : Set X}
     (hK : K ∈ C) (hCompact : IsCompact K) :
@@ -183,7 +195,9 @@ theorem exists_local_atomic_representation [TopologicalSpace X] (hC : IsSetSemir
           simpa only [Multiset.filter_cons_of_neg _ hxU] using hcount
   exact haux (m K) m rfl
 
-/-- Finitely many points can be separated from a point inside a prescribed cell.-/
+/-- Finitely many points can be separated from a point inside a prescribed cell.
+@isnad1 id=ex.4h5v.s7.dab29331df46 from=translated src=- shape=8443e384 vocab=471ed106
+-/
 theorem exists_cell_separating_multiset (hC : IsSetSemiring C) {x : X}
     (hSep : ∀ y : X, x ≠ y → ∃ U ∈ C, x ∈ U ∧ y ∉ U)
     (points : Multiset X) {K : Set X} (hK : K ∈ C) (hxK : x ∈ K) :
@@ -207,7 +221,9 @@ theorem exists_cell_separating_multiset (hC : IsSetSemiring C) {x : X}
       · exact hpoints z hz hzUV.1
 
 /-- On a cell with a finite atomic representation, minimum cell content recovers each
-point's actual multiplicity. Separation of points is the uniqueness hypothesis.-/
+point's actual multiplicity. Separation of points is the uniqueness hypothesis.
+@isnad1 id=eq.5h6v.s7.7bef53e0f153 from=translated src=- shape=56b3d4ac vocab=6851189b
+-/
 theorem contentMultiplicity_eq_count (hC : IsSetSemiring C) {x : X}
     (hSep : ∀ y : X, x ≠ y → ∃ U ∈ C, x ∈ U ∧ y ∉ U)
     (m : AddContent ℕ C) {K : Set X} (hK : K ∈ C) (points : Multiset X)
@@ -241,7 +257,9 @@ theorem contentMultiplicity_eq_count (hC : IsSetSemiring C) {x : X}
       _ = contentMultiplicity m x := hmin
 
 /-- Positive multiplicity has finite support on every compact cell of a separating open
-semiring. This is local finiteness, without asserting finite global support.-/
+semiring. This is local finiteness, without asserting finite global support.
+@isnad1 id=finite.5h4v.s7.08a9196c59f3 from=translated src=- shape=085aaac4 vocab=7d3894b9
+-/
 theorem finite_positive_content_support [TopologicalSpace X] (hC : IsSetSemiring C)
     (m : AddContent ℕ C) (hOpen : ∀ U ∈ C, IsOpen U)
     {K : Set X} (hSep : ∀ x ∈ K, ∀ y : X, x ≠ y → ∃ U ∈ C, x ∈ U ∧ y ∉ U)
@@ -255,7 +273,9 @@ theorem finite_positive_content_support [TopologicalSpace X] (hC : IsSetSemiring
   rw [contentMultiplicity_eq_count hC (hSep x hx.1) m hK points hRepr hx.1] at hx
   exact Multiset.mem_toFinset.mpr (Multiset.count_pos.mp hx.2)
 
-/-- The minimum-cell multiplicity reconstructs the mass of every compact cell exactly.-/
+/-- The minimum-cell multiplicity reconstructs the mass of every compact cell exactly.
+@isnad1 id=ex.5h4v.s7.d1926ed0f5d6 from=translated src=- shape=438daa32 vocab=60705929
+-/
 theorem content_eq_sum_multiplicity [TopologicalSpace X] (hC : IsSetSemiring C)
     (m : AddContent ℕ C) (hOpen : ∀ U ∈ C, IsOpen U)
     {K : Set X} (hSep : ∀ x ∈ K, ∀ y : X, x ≠ y → ∃ U ∈ C, x ∈ U ∧ y ∉ U)

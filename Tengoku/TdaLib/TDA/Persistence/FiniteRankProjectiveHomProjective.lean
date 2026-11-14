@@ -87,7 +87,9 @@ private theorem endRing_projective :
 
 /-- The Hom module from the finite hook generator into any one of its hook
 summands is projective over the opposite endomorphism algebra. The field `k`
-is arbitrary.-/
+is arbitrary.
+@isnad1 id=projecti.0h3v.s8.a443d2ecb358 from=translated src=- shape=18c93423 vocab=ed37331c
+-/
 theorem hookHom_isProjective (t : HookTag (S := S)) :
     Module.Projective (HomScalars (k := k) (S := S))
       (HookSum (k := k) (S := S) ⟶ hookFamily (k := k) (S := S) t) := by
@@ -138,7 +140,9 @@ def homBiproductEquivPi {I : Type} [Fintype I]
     exact Category.assoc _ _ _
 
 /-- The finite-biproduct comparison reads each coordinate by composing with the
-corresponding categorical projection.-/
+corresponding categorical projection.
+@isnad1 id=eq.0h6v.s12.4c4a2bedf53c from=translated src=- shape=00abb026 vocab=3a2adc3a
+-/
 @[simp] theorem homBiproductEquivPi_apply {I : Type} [Fintype I]
     (F : I → PModule.{u,0,u} k S) (f : HookSum (k := k) (S := S) ⟶ ⨁ F) (i : I) :
     homBiproductEquivPi (k := k) (S := S) F f i = f ≫ biproduct.π F i := rfl
@@ -156,7 +160,9 @@ private theorem family_eq_hookFamily {M : PModule.{u,0,u} k S}
 
 /-- For any pointwise finite-dimensional rank-projective over a finite lattice,
 precomposition from the finite hook generator produces a projective module over
-its opposite endomorphism algebra. The field `k` is arbitrary.-/
+its opposite endomorphism algebra. The field `k` is arbitrary.
+@isnad1 id=projecti.2h3v.s9.f7660e8f77d9 from=translated src=- shape=a32bfeb2 vocab=074d8144
+-/
 theorem hom_from_hookSum_isProjective (M : PModule.{u,0,u} k S)
     (hfd : ∀ p, FiniteDimensional k (M.obj p)) (hRP : IsRankProjective M) :
     Module.Projective (HomScalars (k := k) (S := S))

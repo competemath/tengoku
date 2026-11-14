@@ -78,7 +78,9 @@ Every source fiber has exactly the capacity of its target δ-ball, and every tar
 with exit greater than δ has a source δ-neighbor. If source point values are separated
 by more than `2 * δ`, a finite Hall argument matches every source token injectively;
 the exact cluster counts also force every target with exit greater than δ into the
-image. No separation condition is imposed on target point values.-/
+image. No separation condition is imposed on target point values.
+@isnad1 id=ex.5h6v.s8.e8c044bfcd75 from=translated src=- shape=95f772eb vocab=a5336eae
+-/
 theorem exists_finite_window_matching_of_center_counts
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) (exit : ℝ × ℝ → ℝ) {δ : ℝ}
     (hδ : 0 ≤ δ)

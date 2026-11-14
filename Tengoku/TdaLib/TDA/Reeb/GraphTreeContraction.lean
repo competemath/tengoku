@@ -80,9 +80,15 @@ variable {V : Type u} (G : SimpleGraph V)
 def deleteVertexInclusion (ℓ : V) : C(Realization (G.induce ({ℓ}ᶜ : Set V)), Realization G) :=
   realizationMap (Embedding.induce ({ℓ}ᶜ : Set V)).toHom
 
+/--
+@isnad1 id=eq.0h4v.s8.10914f24addc from=translated src=- shape=df499d83 vocab=4fc92a6b
+-/
 @[simp] theorem deleteVertexInclusion_vertex (ℓ : V) (v : ({ℓ}ᶜ : Set V)) :
     deleteVertexInclusion G ℓ (vertex _ v) = vertex G v := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.aa24cad91026 from=translated src=- shape=c0c3b5a8 vocab=51552490
+-/
 @[simp] theorem deleteVertexInclusion_edgePoint (ℓ : V) (d : (G.induce ({ℓ}ᶜ : Set V)).Dart)
     (t : unitInterval) :
     deleteVertexInclusion G ℓ (edgePoint _ d t) =
@@ -147,26 +153,40 @@ def leafCollapse : C(Realization G, Realization (G.induce ({ℓ}ᶜ : Set V))) :
   continuousLift G (collapseVertex hadj) (collapseEdge hadj) (collapseEdge_symm hadj)
     (collapseEdge_zero hadj huniq)
 
+/--
+@isnad1 id=eq.2h4v.s8.bb606bf14829 from=translated src=- shape=266d0396 vocab=fdaafc82
+-/
 theorem leafCollapse_vertex_self :
     leafCollapse hadj huniq (vertex G ℓ) = vertex _ ⟨m, hadj.ne'⟩ := by
   simp [leafCollapse, collapseVertex]
 
+/--
+@isnad1 id=eq.3h5v.s8.d2393d09f8e2 from=translated src=- shape=62bf478d vocab=72493ca3
+-/
 theorem leafCollapse_vertex_of_ne {v : V} (h : v ≠ ℓ) :
     leafCollapse hadj huniq (vertex G v) = vertex _ ⟨v, h⟩ := by
   simp [leafCollapse, collapseVertex, h]
 
+/--
+@isnad1 id=eq.4h6v.s8.0ed2dff3e646 from=translated src=- shape=452df6db vocab=db666910
+-/
 theorem leafCollapse_edgePoint_of_ne (d : G.Dart) (h₁ : d.fst ≠ ℓ) (h₂ : d.snd ≠ ℓ)
     (t : unitInterval) :
     leafCollapse hadj huniq (edgePoint G d t) =
       edgePoint _ ⟨(⟨d.fst, h₁⟩, ⟨d.snd, h₂⟩), d.adj⟩ t :=
   collapseEdge_of_ne hadj d h₁ h₂ t
 
+/--
+@isnad1 id=eq.3h6v.s8.7b9dd7507d46 from=translated src=- shape=ea553ab7 vocab=349aa221
+-/
 theorem leafCollapse_edgePoint_of_eq (d : G.Dart) (h : d.fst = ℓ ∨ d.snd = ℓ)
     (t : unitInterval) :
     leafCollapse hadj huniq (edgePoint G d t) = vertex _ ⟨m, hadj.ne'⟩ :=
   collapseEdge_of_not hadj d (fun h' => h.elim h'.1 h'.2) t
 
-/-- Collapsing after including the induced realization is the identity.-/
+/-- Collapsing after including the induced realization is the identity.
+@isnad1 id=eq.2h4v.s8.8124cde71662 from=translated src=- shape=449599a2 vocab=f717a5b6
+-/
 theorem leafCollapse_comp_deleteVertexInclusion :
     (leafCollapse hadj huniq).comp (deleteVertexInclusion G ℓ) = ContinuousMap.id _ := by
   refine hom_ext _ (fun v => ?_) fun d t => ?_
@@ -318,22 +338,37 @@ def leafHomotopy :
   map_zero_left := slide_zero hadj huniq
   map_one_left := slide_one hadj huniq
 
+/--
+@isnad1 id=eq.2h5v.s8.2553810edaf8 from=translated src=- shape=091bed4b vocab=f916d64d
+-/
 theorem leafHomotopy_vertex_self (s : unitInterval) :
     leafHomotopy hadj huniq (s, vertex G ℓ) = edgePoint G ⟨(ℓ, m), hadj⟩ s :=
   slideVertex_self hadj s
 
+/--
+@isnad1 id=eq.3h6v.s8.75a09ccbc0a1 from=translated src=- shape=1345c9c6 vocab=9419b312
+-/
 theorem leafHomotopy_vertex_of_ne {v : V} (h : v ≠ ℓ) (s : unitInterval) :
     leafHomotopy hadj huniq (s, vertex G v) = vertex G v :=
   slideVertex_of_ne hadj h s
 
+/--
+@isnad1 id=eq.3h7v.s8.631b14c38e19 from=translated src=- shape=414cff90 vocab=a04a7e53
+-/
 theorem leafHomotopy_edgePoint_of_fst_eq {d : G.Dart} (hd : d.fst = ℓ) (s t : unitInterval) :
     leafHomotopy hadj huniq (s, edgePoint G d t) = edgePoint G d (σ (σ t * σ s)) :=
   (congrArg (edgePoint G d) (slideParam_of_fst_eq hd t s) :)
 
+/--
+@isnad1 id=eq.3h7v.s8.0a65f763ceef from=translated src=- shape=b6048ee9 vocab=a0f8cb05
+-/
 theorem leafHomotopy_edgePoint_of_snd_eq {d : G.Dart} (hd : d.snd = ℓ) (s t : unitInterval) :
     leafHomotopy hadj huniq (s, edgePoint G d t) = edgePoint G d (t * σ s) :=
   (congrArg (edgePoint G d) (slideParam_of_snd_eq hd t s) :)
 
+/--
+@isnad1 id=eq.4h7v.s8.172ded3253ef from=translated src=- shape=686b196b vocab=8feb3735
+-/
 theorem leafHomotopy_edgePoint_of_ne {d : G.Dart} (h₁ : d.fst ≠ ℓ) (h₂ : d.snd ≠ ℓ)
     (s t : unitInterval) : leafHomotopy hadj huniq (s, edgePoint G d t) = edgePoint G d t :=
   (congrArg (edgePoint G d) (slideParam_of_ne h₁ h₂ t s) :)
@@ -350,7 +385,9 @@ end homotopy
 
 /-! ### Finite trees -/
 
-/-- **Finite trees.** The realization of a tree on a finite vertex type is contractible.-/
+/-- **Finite trees.** The realization of a tree on a finite vertex type is contractible.
+@isnad1 id=contract.1h2v.s4.878ee906ab09 from=translated src=- shape=e5a7d800 vocab=c39fefed
+-/
 theorem contractibleSpace_realization_of_isTree [Finite V] (h : G.IsTree) :
     ContractibleSpace (Realization G) := by
   suffices key : ∀ (n : ℕ) {V : Type u} [Finite V] (G : SimpleGraph V), Nat.card V = n + 1 →
@@ -386,19 +423,25 @@ theorem contractibleSpace_realization_of_isTree [Finite V] (h : G.IsTree) :
     have := ih (G.induce ({ℓ}ᶜ : Set V)) hcard' htree
     exact (leafHomotopyEquiv hadj huniq).contractibleSpace
 
-/-- The realization of a tree on a finite vertex type is simply connected.-/
+/-- The realization of a tree on a finite vertex type is simply connected.
+@isnad1 id=simplyco.1h2v.s4.10b819b808a2 from=translated src=- shape=e5a7d800 vocab=1912553c
+-/
 theorem simplyConnectedSpace_realization_of_isTree [Finite V] (h : G.IsTree) :
     SimplyConnectedSpace (Realization G) :=
   have := contractibleSpace_realization_of_isTree G h
   inferInstance
 
 /-- **Tree criterion.** A graph on a finite vertex type is a tree exactly when its realization is
-simply connected.-/
+simply connected.
+@isnad1 id=iff.0h2v.s4.a54293f302fe from=translated src=- shape=4b5b542b vocab=1912553c
+-/
 theorem isTree_iff_simplyConnectedSpace_realization [Finite V] :
     G.IsTree ↔ SimplyConnectedSpace (Realization G) :=
   ⟨simplyConnectedSpace_realization_of_isTree G, isTree_of_simplyConnectedSpace G⟩
 
-/-- A graph on a finite vertex type is a tree exactly when its realization is contractible.-/
+/-- A graph on a finite vertex type is a tree exactly when its realization is contractible.
+@isnad1 id=iff.0h2v.s4.f1286c8df819 from=translated src=- shape=4b5b542b vocab=c39fefed
+-/
 theorem isTree_iff_contractibleSpace_realization [Finite V] :
     G.IsTree ↔ ContractibleSpace (Realization G) :=
   ⟨contractibleSpace_realization_of_isTree G, fun _ =>

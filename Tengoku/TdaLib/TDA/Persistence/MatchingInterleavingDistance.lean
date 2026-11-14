@@ -24,7 +24,9 @@ variable {k : Type u} [Field k]
 
 namespace RealBarcode
 
-/-- Every occurrence matching bounds the interleaving distance by its finite cost.-/
+/-- Every occurrence matching bounds the interleaving distance by its finite cost.
+@isnad1 id=le.2h4v.s7.a3b4e079dde1 from=translated src=- shape=18f21630 vocab=ba879540
+-/
 theorem distance_le_matching_cost (D E : Diagram ℝ) (hD : D.IsPositive) (hE : E.IsPositive)
     (M : OccurrenceMatching D.finiteOccurrences E.finiteOccurrences
       D.essentialOccurrences E.essentialOccurrences) :
@@ -37,7 +39,9 @@ theorem distance_le_matching_cost (D E : Diagram ℝ) (hD : D.IsPositive) (hE : 
   simpa only [ENNReal.coe_toNNReal hC] using i.distance_le
 
 /-- The finite positive half-open matching-to-interleaving distance inequality.
-The matching type may be empty, in which case the right side is infinity.-/
+The matching type may be empty, in which case the right side is infinity.
+@isnad1 id=le.2h3v.s5.8a5226589f7d from=translated src=- shape=10c64f52 vocab=7e3aa6ca
+-/
 theorem distance_le_bottleneck (D E : Diagram ℝ) (hD : D.IsPositive) (hE : E.IsPositive) :
     realInterleavingDistance (realize (k := k) D) (realize E) ≤ bottleneck D E := by
   exact le_iInf fun M => distance_le_matching_cost D E hD hE M
@@ -64,7 +68,9 @@ noncomputable def matchingInterleaving (c : Fin n ↪o ℝ) (d : Fin m ↪o ℝ)
       (barcodeRealizationIso c M hM hfdM).symm (barcodeRealizationIso d N hN hfdN).symm
 
 /-- Interleaving distance is bounded by the bottleneck of the two grid-based diagrams.
-The critical grids may have different sizes; essential tails and empty grids are allowed.-/
+The critical grids may have different sizes; essential tails and empty grids are allowed.
+@isnad1 id=le.4h7v.s8.fc70acf77c10 from=translated src=- shape=db279c73 vocab=21c81a54
+-/
 theorem distance_le_bottleneck (c : Fin n ↪o ℝ) (d : Fin m ↪o ℝ)
     (M N : PModule.{u,0,u} k ℝ) (hM : IsConstructible c M) (hN : IsConstructible d N)
     (hfdM : ∀ i, FiniteDimensional k (M.obj (c i)))

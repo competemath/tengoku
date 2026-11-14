@@ -62,11 +62,17 @@ noncomputable def chainInclusionMatrix
 
 variable (K : PreAbstractSimplicialComplex V) (R : Type v) [CommRing R]
 
+/--
+@isnad1 id=eq.0h6v.s9.c5691c861241 from=translated src=- shape=fd2357a1 vocab=64c30409
+-/
 theorem chainCoordinates_apply (n : ℕ) [Finite (Face K n)]
     (c : Chain K R n) (s : Face K n) :
     chainCoordinates K R n c s = c s := by
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.3421b23127f9 from=translated src=- shape=548a43dd vocab=9b5d5baf
+-/
 theorem boundaryMatrix_apply (n : ℕ)
     [Fintype (Face K (n + 1))] [DecidableEq (Face K (n + 1))]
     [Finite (Face K n)] (τ : Face K n) (σ : Face K (n + 1)) :
@@ -91,6 +97,9 @@ private theorem deletedFace_injective (n : ℕ) (σ : Face K (n + 1)) :
   have : vi ∈ σ.1.erase vi := hmem
   simpa using this
 
+/--
+@isnad1 id=eq.0h6v.s7.d8a560e774c9 from=translated src=- shape=9a828c04 vocab=9e7f4120
+-/
 theorem boundaryMatrix_deletedFace (n : ℕ)
     [Fintype (Face K (n + 1))] [DecidableEq (Face K (n + 1))]
     [Finite (Face K n)] (σ : Face K (n + 1)) (i : Fin (n + 2)) :
@@ -101,6 +110,9 @@ theorem boundaryMatrix_deletedFace (n : ℕ)
   simp only [(deletedFace_injective K n σ).eq_iff]
   simp
 
+/--
+@isnad1 id=eq.1h6v.s7.7034fea4670e from=translated src=- shape=667a6099 vocab=b0f9f9e2
+-/
 theorem boundaryMatrix_eq_zero_of_not_deletedFace (n : ℕ)
     [Fintype (Face K (n + 1))] [DecidableEq (Face K (n + 1))]
     [Finite (Face K n)] (τ : Face K n) (σ : Face K (n + 1))
@@ -109,6 +121,9 @@ theorem boundaryMatrix_eq_zero_of_not_deletedFace (n : ℕ)
   rw [boundaryMatrix_apply]
   simp [hτ]
 
+/--
+@isnad1 id=eq.0h5v.s10.0e13780c01c1 from=translated src=- shape=53d123fd vocab=28b61d30
+-/
 theorem boundaryMatrix_mulVec (n : ℕ)
     [Fintype (Face K (n + 1))] [DecidableEq (Face K (n + 1))]
     [Finite (Face K n)] (c : Chain K R (n + 1)) :
@@ -117,6 +132,9 @@ theorem boundaryMatrix_mulVec (n : ℕ)
   exact LinearMap.toMatrix_mulVec_repr (faceBasis K R (n + 1))
     (faceBasis K R n) (boundary K R n) c
 
+/--
+@isnad1 id=eq.0h4v.s11.be417fd370e7 from=translated src=- shape=0ac96e49 vocab=bc059d84
+-/
 theorem boundaryMatrix_toLin (n : ℕ)
     [Fintype (Face K (n + 1))] [DecidableEq (Face K (n + 1))]
     [Finite (Face K n)] :
@@ -125,6 +143,9 @@ theorem boundaryMatrix_toLin (n : ℕ)
   exact Matrix.toLin_toMatrix (faceBasis K R (n + 1))
     (faceBasis K R n) (boundary K R n)
 
+/--
+@isnad1 id=eq.0h4v.s8.92878e324f27 from=translated src=- shape=7d472d60 vocab=c3d70900
+-/
 theorem boundaryMatrix_mul_boundaryMatrix (n : ℕ)
     [Fintype (Face K (n + 2))] [DecidableEq (Face K (n + 2))]
     [Fintype (Face K (n + 1))] [DecidableEq (Face K (n + 1))]
@@ -136,6 +157,9 @@ theorem boundaryMatrix_mul_boundaryMatrix (n : ℕ)
   rw [boundary_comp_boundary K R n, map_zero] at hc
   simpa only [boundaryMatrix, Nat.add_assoc] using hc.symm
 
+/--
+@isnad1 id=eq.0h4v.s11.0ce1ffdc4552 from=translated src=- shape=83bdbedf vocab=337d6a8b
+-/
 theorem simplicialChainComplex_d_zero_toMatrix (j : ℕ)
     [Fintype (Face K 0)] [DecidableEq (Face K 0)]
     [Finite (Face K j)] :
@@ -149,6 +173,9 @@ section Inclusion
 
 variable {K L : PreAbstractSimplicialComplex V}
 
+/--
+@isnad1 id=eq.1h7v.s7.64659acd9426 from=translated src=- shape=8bfdc933 vocab=ba7048a5
+-/
 theorem chainInclusionMatrix_apply (R : Type v) [CommRing R] (h : K ≤ L) (n : ℕ)
     [Fintype (Face K n)] [DecidableEq (Face K n)] [Finite (Face L n)]
     (τ : Face L n) (σ : Face K n) :
@@ -158,6 +185,9 @@ theorem chainInclusionMatrix_apply (R : Type v) [CommRing R] (h : K ≤ L) (n : 
   simp only [faceBasis, Finsupp.coe_basisSingleOne, chainIncl_single]
   simp [Finsupp.basisSingleOne_repr, Finsupp.single_apply]
 
+/--
+@isnad1 id=eq.1h6v.s10.c709971f7f0f from=translated src=- shape=3bb7cf42 vocab=0f43c3af
+-/
 theorem chainInclusionMatrix_mulVec (R : Type v) [CommRing R] (h : K ≤ L) (n : ℕ)
     [Fintype (Face K n)] [DecidableEq (Face K n)] [Finite (Face L n)]
     (c : Chain K R n) :
@@ -166,6 +196,9 @@ theorem chainInclusionMatrix_mulVec (R : Type v) [CommRing R] (h : K ≤ L) (n :
   exact LinearMap.toMatrix_mulVec_repr (faceBasis K R n)
     (faceBasis L R n) (chainIncl R h n) c
 
+/--
+@isnad1 id=eq.1h5v.s8.8b1bc6f09a1f from=translated src=- shape=eee5b2e2 vocab=4ea03e55
+-/
 theorem boundaryMatrix_chainInclusionMatrix (R : Type v) [CommRing R]
     (h : K ≤ L) (n : ℕ)
     [Fintype (Face K (n + 1))] [DecidableEq (Face K (n + 1))]

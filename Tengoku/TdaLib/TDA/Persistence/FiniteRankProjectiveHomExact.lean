@@ -49,15 +49,24 @@ noncomputable def postcompose {M N : PModule.{u,0,u} k S} (f : M ⟶ N) :
     change (r.unop ≫ g) ≫ f = r.unop ≫ (g ≫ f)
     exact Category.assoc _ _ _
 
+/--
+@isnad1 id=eq.0h6v.s11.5d3f22d76a59 from=translated src=- shape=16f3d70f vocab=61b41e38
+-/
 @[simp] theorem postcompose_apply {M N : PModule.{u,0,u} k S} (f : M ⟶ N)
     (g : HookSum (k := k) (S := S) ⟶ M) :
     postcompose (k := k) (S := S) f g = g ≫ f := rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.b1d4eae4eca2 from=translated src=- shape=f091c8a3 vocab=79e6804e
+-/
 @[simp] theorem postcompose_id (M : PModule.{u,0,u} k S) :
     postcompose (k := k) (S := S) (𝟙 M) = LinearMap.id := by
   ext g
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s11.05219dca4803 from=translated src=- shape=93b3b182 vocab=50ed7069
+-/
 @[simp] theorem postcompose_comp {M N Q : PModule.{u,0,u} k S}
     (f : M ⟶ N) (g : N ⟶ Q) :
     postcompose (k := k) (S := S) (f ≫ g) =
@@ -81,11 +90,16 @@ noncomputable abbrev homFunctor :
     ext h
     rfl
 
+/--
+@isnad1 id=eq.0h6v.s13.c01043e48072 from=translated src=- shape=5bfd0a5e vocab=9a7c806d
+-/
 @[simp] theorem homFunctor_map_apply {M N : PModule.{u,0,u} k S}
     (f : M ⟶ N) (g : HookSum (k := k) (S := S) ⟶ M) :
     ((homFunctor (k := k) (S := S)).map f).hom g = g ≫ f := rfl
 
-/-- The finite hook generator is rank projective.-/
+/-- The finite hook generator is rank projective.
+@isnad1 id=isrankpr.0h2v.s4.d958f68020e5 from=translated src=- shape=e069298f vocab=4340e761
+-/
 theorem hookSum_isRankProjective :
     IsRankProjective (HookSum (k := k) (S := S)) :=
   IsRankProjective.biproduct (hookFamily (k := k) (S := S)) (by
@@ -95,7 +109,9 @@ theorem hookSum_isRankProjective :
     | inr a => exact HookInfinity.isRankProjective a)
 
 /-- Rank exactness of a pointwise short exact row is equivalent to surjectivity
-of postcomposition on maps from the finite hook generator.-/
+of postcomposition on maps from the finite hook generator.
+@isnad1 id=iff.2h7v.s11.78df4804af1b from=translated src=- shape=2ee5208a vocab=44d139f9
+-/
 theorem rankExact_iff_postcompose_surjective
     {A B C : PModule.{u,0,u} k S} {ι : A ⟶ B} {π : B ⟶ C}
     (hs : IsPointwiseShortExact ι π)
@@ -168,7 +184,9 @@ noncomputable def homShortComplex
 
 /-- Ordinary left exactness of maps out of the hook generator along a
 pointwise short exact row. This uses only the actual categorical kernel
-factorization and does not require rank exactness or finite-dimensionality.-/
+factorization and does not require rank exactness or finite-dimensionality.
+@isnad1 id=exact.1h7v.s9.bad165b2ef7f from=translated src=- shape=71a4f36a vocab=7a12ff2e
+-/
 theorem homShortComplex_exact
     {A B C : PModule.{u,0,u} k S} {ι : A ⟶ B} {π : B ⟶ C}
     (hs : IsPointwiseShortExact ι π) :
@@ -199,7 +217,9 @@ theorem homShortComplex_exact
 
 /-- Postcomposition sends a rank-exact row to a short exact row in the actual
 module category over the opposite endomorphism algebra. In particular the
-first map is injective and the middle term is the kernel of the last map.-/
+first map is injective and the middle term is the kernel of the last map.
+@isnad1 id=shortexa.1h7v.s9.5f2e1e60a165 from=translated src=- shape=990c0ea5 vocab=99215e53
+-/
 theorem homFunctor_map_shortExact
     {A B C : PModule.{u,0,u} k S} {ι : A ⟶ B} {π : B ⟶ C}
     (hs : IsRankExact ι π) :

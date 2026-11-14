@@ -56,13 +56,17 @@ noncomputable def SupNormWitness.interleaving {δ : ℝ≥0} (s : SupNormWitness
   letI : BorelSpace ((X ⊕ Y) → ℝ) := ⟨rfl⟩
   topologicalInterleaving (uniformMeasure s.left) (uniformMeasure s.right) δ s.cost_lt
 
-/-- The first restriction is precisely the multicover of the first uniform sample.-/
+/-- The first restriction is precisely the multicover of the first uniform sample.
+@isnad1 id=eq.0h4v.s7.f6b660e2a60f from=translated src=- shape=c68be798 vocab=5663d089
+-/
 theorem SupNormWitness.interleaving_left {δ : ℝ≥0} (s : SupNormWitness X Y δ) :
     letI : MeasurableSpace ((X ⊕ Y) → ℝ) := borel _
     letI : BorelSpace ((X ⊕ Y) → ℝ) := ⟨rfl⟩
     (copy δ false).toFunctor ⋙ s.interleaving = topologicalDiagram (uniformMeasure s.left) := rfl
 
-/-- The second restriction is precisely the multicover of the second uniform sample.-/
+/-- The second restriction is precisely the multicover of the second uniform sample.
+@isnad1 id=eq.0h4v.s7.402af2caf217 from=translated src=- shape=d2588291 vocab=30316461
+-/
 theorem SupNormWitness.interleaving_right {δ : ℝ≥0} (s : SupNormWitness X Y δ) :
     letI : MeasurableSpace ((X ⊕ Y) → ℝ) := borel _
     letI : BorelSpace ((X ⊕ Y) → ℝ) := ⟨rfl⟩

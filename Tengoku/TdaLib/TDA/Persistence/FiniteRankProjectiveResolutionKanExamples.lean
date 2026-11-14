@@ -27,7 +27,9 @@ open scoped ZeroObject
 variable {k : Type u} [Field k] {n : ℕ}
 
 /-- A nonzero principal-upset free module has a finite rank-projective
-resolution by the finite-presentation existence theorem.-/
+resolution by the finite-presentation existence theorem.
+@isnad1 id=nonempty.1h3v.s6.67474a0fccd6 from=translated src=- shape=5ef6e37f vocab=16213c8e
+-/
 theorem principalUpset_has_finiteRankProjectiveResolution
     (hn : 0 < n) (a : Fin n → ℝ) :
     Nonempty (FiniteRankProjectiveResolution
@@ -38,7 +40,9 @@ theorem principalUpset_has_finiteRankProjectiveResolution
     (HookInfinity.generators (P := Fin n → ℝ) a)
 
 /-- The nonzero principal-upset free module has a finite resolution whose
-actual quotient rows all satisfy the transferred projective-cover certificate.-/
+actual quotient rows all satisfy the transferred projective-cover certificate.
+@isnad1 id=and.1h3v.s10.8706260787fb from=translated src=- shape=8a231787 vocab=7e497272
+-/
 theorem principalUpset_has_minimalFiniteRankProjectiveResolution
     (hn : 0 < n) (a : Fin n → ℝ) :
     (∃ R : MinimalFiniteRankProjectiveResolution (k := k)
@@ -75,7 +79,9 @@ private theorem identity_isRankProjectiveCover
     infer_instance
 
 /-- The zero object satisfies the public cover certificate, including its
-empty-fiber boundary case.-/
+empty-fiber boundary case.
+@isnad1 id=isrankpr.0h0v.s8.65956c611b81 from=translated src=- shape=12bccded vocab=3c5b1a53
+-/
 theorem zero_identity_isRankProjectiveCover :
     IsRankProjectiveCover (𝟙 (0 : PModule ℚ (Fin 2))) := by
   apply identity_isRankProjectiveCover
@@ -92,6 +98,9 @@ noncomputable def zeroSelectedMinimalHookSumCover :
   Classical.choice <| exists_minimalHookSumCover
     (0 : PModule ℚ ForkGrade) (by intro p; infer_instance)
 
+/--
+@isnad1 id=isempty.0h0v.s6.9163781a211a from=translated src=- shape=93f688d9 vocab=0f8fc40b
+-/
 theorem zero_selected_minimal_cover_index_isEmpty :
     IsEmpty zeroSelectedMinimalHookSumCover.cover.Index := by
   apply Fintype.card_eq_zero_iff.mp
@@ -102,12 +111,17 @@ theorem zero_selected_minimal_cover_index_isEmpty :
   rw [zero_occurrences] at hminimal
   omega
 
+/--
+@isnad1 id=isrankpr.0h0v.s8.0fb59e94a841 from=translated src=- shape=5ed187af vocab=700951fa
+-/
 theorem zero_selected_minimal_cover_is_projective_cover :
     IsRankProjectiveCover zeroSelectedMinimalHookSumCover.cover.quotient :=
   zeroSelectedMinimalHookSumCover.isRankProjectiveCover
 
 /-- A principal-upset projective also satisfies the public cover certificate
-for its identity quotient.-/
+for its identity quotient.
+@isnad1 id=isrankpr.0h1v.s7.f0e4230d962f from=translated src=- shape=515d36f2 vocab=fa15ab36
+-/
 theorem principalUpset_identity_isRankProjectiveCover (a : Fin 2) :
     IsRankProjectiveCover
       (𝟙 (HookInfinity.module (R := ℚ) a)) := by
@@ -124,7 +138,9 @@ noncomputable def principalUpsetSelectedMinimalHookSumCover (a : Fin 2) :
     (HookInfinity.module (R := ℚ) a) (by intro p; infer_instance)
 
 /-- The identity cover and a selected minimal hook-sum cover of a nonzero
-principal upset are isomorphic over their shared target.-/
+principal upset are isomorphic over their shared target.
+@isnad1 id=and.0h1v.s11.34bf66f5c041 from=translated src=- shape=b9c2e833 vocab=129d62c3
+-/
 theorem principalUpset_identity_iso_minimal_cover (a : Fin 2) :
     (∃ e : HookInfinity.module (R := ℚ) a ≅
         (⨁ (principalUpsetSelectedMinimalHookSumCover a).cover.summand),
@@ -149,10 +165,16 @@ noncomputable def forkSelectedMinimalHookSumCover :
   Classical.choice <| exists_minimalHookSumCover forkModule
     (fun p => forkModule_finiteDimensional p)
 
+/--
+@isnad1 id=isrankpr.0h0v.s7.23941c0362a3 from=translated src=- shape=9fb6433c vocab=95b73c11
+-/
 theorem fork_selected_cover_is_projective_cover :
     IsRankProjectiveCover forkSelectedMinimalHookSumCover.cover.quotient :=
   forkSelectedMinimalHookSumCover.isRankProjectiveCover
 
+/--
+@isnad1 id=not.0h0v.s7.77cb684bd6c3 from=translated src=- shape=7996667e vocab=1511fc4c
+-/
 theorem fork_selected_cover_kernel_nonzero :
     ¬ IsZero (kernel forkSelectedMinimalHookSumCover.cover.quotient) := by
   intro hkernel
@@ -187,6 +209,9 @@ private theorem doubleCanonicalHookSumCover_tag (i : doubleCanonicalHookSumCover
           FiniteRankProjectiveClassification.RankProjectiveHookTag (Fin 1))
       rw [hgrade]
 
+/--
+@isnad1 id=and.0h0v.s7.8e00a8c517ab from=translated src=- shape=dce47241 vocab=907eb56a
+-/
 theorem double_canonical_cover_retains_repeated_occurrences :
     Fintype.card doubleCanonicalHookSumCover.Index = 2 ∧
       ∀ i j : doubleCanonicalHookSumCover.Index,

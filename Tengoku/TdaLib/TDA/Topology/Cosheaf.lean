@@ -59,7 +59,9 @@ def overlapRel (F : α ⥤ Type w₀) (U : ι → α) (p q : Σ i, F.obj (U i)) 
   ∃ c : F.obj (U p.1 ⊓ U q.1),
     F.map (homOfLE inf_le_left) c = p.2 ∧ F.map (homOfLE inf_le_right) c = q.2
 
-/-- Invariance of a compatible family along the equivalence closure of `overlapRel`.-/
+/-- Invariance of a compatible family along the equivalence closure of `overlapRel`.
+@isnad1 id=eq.2h8v.s9.fa6eb3e57dd3 from=translated src=- shape=b751c3ea vocab=a97757a2
+-/
 theorem eqvGen_overlapRel_apply_eq (F : α ⥤ Type w₀) (U : ι → α) {A : Sort*}
     (a : ∀ i, F.obj (U i) → A)
     (ha : ∀ i j (c : F.obj (U i ⊓ U j)),
@@ -81,7 +83,9 @@ member and two local values have the same image iff they are related by the equi
 of `overlapRel`. The cocone legs are arbitrary, so this covers `coverCocone` and
 `Pairwise.cocone`. Condition (ii) is stated as an implication only: its converse holds for every
 cocone, because `α` is thin, so both images over the apex of an overlap value `c` over
-`U i ⊓ U j` equal its image along the leg at `pair i j`.-/
+`U i ⊓ U j` equal its image along the leg at `pair i j`.
+@isnad1 id=iff.0h5v.s11.7533e9a06111 from=translated src=- shape=650daebc vocab=f0703a4b
+-/
 theorem nonempty_isColimit_mapCocone_iff (F : α ⥤ Type w₀) (U : ι → α)
     (c : Cocone (Pairwise.diagram U)) :
     Nonempty (IsColimit (F.mapCocone c)) ↔
@@ -158,7 +162,9 @@ theorem nonempty_isColimit_mapCocone_iff (F : α ⥤ Type w₀) (U : ι → α)
       exact ⟨G.ιColimitType (.single i) e, rfl⟩
 
 /-- Raw universal property from the elementary form: a family `a i : F (U i) → A` that agrees on
-every overlap object glues uniquely along `c`. The test object `A : Sort*` is unrestricted.-/
+every overlap object glues uniquely along `c`. The test object `A : Sort*` is unrestricted.
+@isnad1 id=existsun.3h7v.s12.4ecbd79eaf0d from=translated src=- shape=641f2562 vocab=f85991e1
+-/
 theorem existsUnique_glue_of_surjective_of_eqvGen (F : α ⥤ Type w₀) (U : ι → α)
     (c : Cocone (Pairwise.diagram U))
     (hsurj : ∀ x : F.obj c.pt, ∃ i, ∃ e : F.obj (U i), F.map (c.ι.app (.single i)) e = x)
@@ -193,12 +199,16 @@ universe u
 
 variable {α : Type*} [Preorder α] (F : α ⥤ Type u)
 
-/-- A `Type`-valued functor out of a preorder identifies parallel morphisms pointwise.-/
+/-- A `Type`-valued functor out of a preorder identifies parallel morphisms pointwise.
+@isnad1 id=eq.0h7v.s8.4c74a997220c from=translated src=- shape=b79495c8 vocab=aa178e2c
+-/
 theorem map_apply_eq_of_thin {a b : α} (f g : a ⟶ b) (x : F.obj a) : F.map f x = F.map g x := by
   rw [Subsingleton.elim f g]
 
 /-- A composite of images of preorder morphisms, applied to an element, is the image of any
-morphism with the same ends.-/
+morphism with the same ends.
+@isnad1 id=eq.0h9v.s8.835d4f681df2 from=translated src=- shape=05b0a6c2 vocab=aa178e2c
+-/
 theorem map_map_apply_of_thin {a b c : α} (f : a ⟶ b) (g : b ⟶ c) (h : a ⟶ c) (x : F.obj a) :
     F.map g (F.map f x) = F.map h x := by
   change (F.map f ≫ F.map g) x = _

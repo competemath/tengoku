@@ -77,7 +77,9 @@ noncomputable def exact_endpoint_displacement :
     (by intro i; norm_num) (by intro i; norm_num) 1 singletonMatching
   norm_num [OccurrenceMatching.cost, singletonMatching, finitePairCost]
 
-/-- At contact, one comparison in that matched pair is identically zero.-/
+/-- At contact, one comparison in that matched pair is identically zero.
+@isnad1 id=eq.0h1v.s9.c9eaa6bcf379 from=translated src=- shape=7e216d5b vocab=e2960359
+-/
 theorem reverse_comparison_zero :
     (interleavingOfBounds (k := k) 1 (0, (2 : WithTop ℝ)) (1, (3 : WithTop ℝ))
       (by norm_num) (by norm_num)
@@ -88,7 +90,9 @@ theorem reverse_comparison_zero :
     (by exact WithTop.coe_le_coe.mpr (show (2 : ℝ) ≤ 3 + 1 by norm_num))
     (by norm_num)
 
-/-- The opposite map in the same pair really is nonzero.-/
+/-- The opposite map in the same pair really is nonzero.
+@isnad1 id=ne.0h1v.s9.3c9ec2998791 from=translated src=- shape=45cd98d5 vocab=8cce5ee8
+-/
 theorem forward_comparison_ne_zero :
     (comparison (k := k) 1 (0, (2 : WithTop ℝ)) (1, (3 : WithTop ℝ))
       (by norm_num) (by norm_num [← WithTop.coe_add, WithTop.coe_le_coe])) ≠ 0 := by
@@ -106,7 +110,9 @@ noncomputable def exact_deletion_length :
     (by intro i; norm_num) (by intro i; exact Fin.elim0 i) 1 deletionMatching
   norm_num [OccurrenceMatching.cost, deletionMatching, diagonalCost]
 
-/-- A longer finite interval fails the zero-module criterion.-/
+/-- A longer finite interval fails the zero-module criterion.
+@isnad1 id=not.0h1v.s6.92583b5c5bc4 from=translated src=- shape=f385f341 vocab=5556340c
+-/
 theorem longer_interval_fails :
     ¬ Nonempty (RealInterleaving 1 (RealBarcode.intervalModule (k := k) (0, (3 : WithTop ℝ))) 0) := by
   intro h
@@ -124,12 +130,16 @@ noncomputable def essential_birth_displacement :
     (by intro i; exact Fin.elim0 i) (by intro i; exact Fin.elim0 i) 1 essentialMatching
   norm_num [OccurrenceMatching.cost, essentialMatching, essentialPairCost]
 
-/-- Essential deletion fails for arbitrary births and finite parameters.-/
+/-- Essential deletion fails for arbitrary births and finite parameters.
+@isnad1 id=not.0h3v.s6.310917ca081d from=translated src=- shape=7909a504 vocab=ddb135c3
+-/
 theorem essential_deletion_fails (ε : ℝ≥0) (b : ℝ) :
     ¬ Nonempty (RealInterleaving ε (RealBarcode.intervalModule (k := k) (b, ⊤)) 0) :=
   essential_not_interleaved_zero ε b
 
-/-- A finite bar cannot replace an essential occurrence in this matching model.-/
+/-- A finite bar cannot replace an essential occurrence in this matching model.
+@isnad1 id=not.0h0v.s4.9cd00c354fb4 from=translated src=- shape=9b0a9038 vocab=7999e0e8
+-/
 theorem finite_essential_no_matching :
     ¬ Nonempty (OccurrenceMatching (Fin 1) (Fin 0) (Fin 0) (Fin 1)) := by
   rw [occurrenceMatching_nonempty_iff]

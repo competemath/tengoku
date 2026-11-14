@@ -28,13 +28,17 @@ abbrev PersistenceTailSpace {a b c : ℝ} (hab : a ≤ b) (hbc : b ≤ c) :=
 noncomputable def persistenceTailMeasureValue {a b c : ℝ} (hab : a ≤ b) (hbc : b ≤ c) : ℕ :=
   Module.finrank k (PersistenceTailSpace M hab hbc)
 
-/-- A finite crossing image makes the tail image quotient finite-dimensional.-/
+/-- A finite crossing image makes the tail image quotient finite-dimensional.
+@isnad1 id=finitedi.2h5v.s12.f600c73d63fd from=translated src=- shape=03174ba2 vocab=09b1591e
+-/
 theorem persistenceTailSpace_finiteDimensional {a b c : ℝ} (hab : a ≤ b) (hbc : b ≤ c)
     [FiniteDimensional k (persistenceImage M hbc)] :
     FiniteDimensional k (PersistenceTailSpace M hab hbc) := by
   infer_instance
 
-/-- Rank formula for the finite-target strip count.-/
+/-- Rank formula for the finite-target strip count.
+@isnad1 id=eq.2h5v.s11.a61a56745109 from=translated src=- shape=64658adc vocab=4100cb4d
+-/
 theorem persistenceTailMeasureValue_add_image {a b c : ℝ} (hab : a ≤ b) (hbc : b ≤ c)
     [FiniteDimensional k (persistenceImage M hbc)] :
     persistenceTailMeasureValue M hab hbc +
@@ -45,7 +49,9 @@ theorem persistenceTailMeasureValue_add_image {a b c : ℝ} (hab : a ≤ b) (hbc
   rw [(Submodule.comapSubtypeEquivOfLe (persistenceImage_mono M hab hbc)).finrank_eq] at h
   exact h
 
-/-- The mass lost from a tail strip is precisely the intervening rectangle mass.-/
+/-- The mass lost from a tail strip is precisely the intervening rectangle mass.
+@isnad1 id=eq.3h6v.s9.8f92ebcd9590 from=translated src=- shape=ad6bb6a8 vocab=08e8be33
+-/
 theorem persistenceMeasureValue_add_tail {a b c d : ℝ}
     (hab : a ≤ b) (hbc : b ≤ c) (hcd : c ≤ d)
     [FiniteDimensional k (persistenceImage M hbc)] :
@@ -59,7 +65,9 @@ theorem persistenceMeasureValue_add_tail {a b c d : ℝ}
   have h₃ := persistenceMeasureValue_four_rank M hab hbc hcd
   omega
 
-/-- Tail-strip counts decrease with the target.-/
+/-- Tail-strip counts decrease with the target.
+@isnad1 id=le.3h6v.s9.fb835d136c85 from=translated src=- shape=fcbbd8c6 vocab=790fa880
+-/
 theorem persistenceTailMeasureValue_antitone {a b c d : ℝ}
     (hab : a ≤ b) (hbc : b ≤ c) (hcd : c ≤ d)
     [FiniteDimensional k (persistenceImage M hbc)] :
@@ -68,7 +76,9 @@ theorem persistenceTailMeasureValue_antitone {a b c d : ℝ}
   have := persistenceMeasureValue_add_tail M hab hbc hcd
   omega
 
-/-- Splitting a finite-target birth strip is additive.-/
+/-- Splitting a finite-target birth strip is additive.
+@isnad1 id=eq.3h6v.s9.9c8bfff96c55 from=translated src=- shape=f3118719 vocab=fe91c01d
+-/
 theorem persistenceTailMeasureValue_split_birth {a x b c : ℝ}
     (hax : a ≤ x) (hxb : x ≤ b) (hbc : b ≤ c)
     [FiniteDimensional k (persistenceImage M hbc)] :
@@ -87,12 +97,16 @@ For a q-tame module this is the eventual finite-target strip count.-/
 noncomputable def essentialMeasureValue {a b : ℝ} (hab : a ≤ b) : ℕ :=
   sInf {n | ∃ (c : ℝ) (hbc : b < c), persistenceTailMeasureValue M hab hbc.le = n}
 
-/-- The essential strip count is a lower bound for every finite-target count.-/
+/-- The essential strip count is a lower bound for every finite-target count.
+@isnad1 id=le.2h5v.s5.058ca4c4fb8a from=translated src=- shape=34b5c4ed vocab=3b20035a
+-/
 theorem essentialMeasureValue_le_tail {a b c : ℝ} (hab : a ≤ b) (hbc : b < c) :
     essentialMeasureValue M hab ≤ persistenceTailMeasureValue M hab hbc.le :=
   csInf_le' ⟨c, hbc, rfl⟩
 
-/-- The essential boundary count is locally finite, bounded by any strict crossing rank.-/
+/-- The essential boundary count is locally finite, bounded by any strict crossing rank.
+@isnad1 id=le.2h5v.s10.8cd95477f297 from=translated src=- shape=8792796f vocab=79ea0a48
+-/
 theorem essentialMeasureValue_le_crossing_rank {a b c : ℝ} (hab : a ≤ b) (hbc : b < c)
     [FiniteDimensional k (persistenceImage M hbc.le)] :
     essentialMeasureValue M hab ≤ Module.finrank k (persistenceImage M hbc.le) := by
@@ -100,7 +114,9 @@ theorem essentialMeasureValue_le_crossing_rank {a b c : ℝ} (hab : a ≤ b) (hb
   have h' := essentialMeasureValue_le_tail M hab hbc
   omega
 
-/-- The minimum defining the essential boundary is attained at a finite target.-/
+/-- The minimum defining the essential boundary is attained at a finite target.
+@isnad1 id=ex.1h4v.s5.0f6a1d6e61db from=translated src=- shape=57a6c27d vocab=3b20035a
+-/
 theorem exists_tail_eq_essentialMeasureValue {a b : ℝ} (hab : a ≤ b) :
     ∃ (c : ℝ) (hbc : b < c),
       persistenceTailMeasureValue M hab hbc.le = essentialMeasureValue M hab := by
@@ -110,7 +126,9 @@ theorem exists_tail_eq_essentialMeasureValue {a b : ℝ} (hab : a ≤ b) :
       b + 1, by linarith, rfl⟩
 
 /-- For a q-tame module the essential strip count is attained permanently.
-This is an eventual-value construction, rather than an assumption about essential bars.-/
+This is an eventual-value construction, rather than an assumption about essential bars.
+@isnad1 id=ex.2h4v.s6.37729d7d1277 from=translated src=- shape=ad5b472c vocab=767faa9c
+-/
 theorem PModule.QTame.essentialMeasureValue_eventually (hM : M.QTame)
     {a b : ℝ} (hab : a ≤ b) :
     ∃ (c : ℝ) (hbc : b < c), ∀ (d : ℝ) (hcd : c ≤ d),
@@ -122,7 +140,9 @@ theorem PModule.QTame.essentialMeasureValue_eventually (hM : M.QTame)
   · exact (persistenceTailMeasureValue_antitone M hab hbc.le hcd).trans_eq hc
   · exact essentialMeasureValue_le_tail M hab (hbc.trans_le hcd)
 
-/-- After a sufficiently late target, a fixed birth strip has no further finite deaths.-/
+/-- After a sufficiently late target, a fixed birth strip has no further finite deaths.
+@isnad1 id=ex.2h4v.s6.159ca401a949 from=translated src=- shape=9ad3a5c3 vocab=e47f80a7
+-/
 theorem PModule.QTame.persistenceMeasureValue_eventually_zero (hM : M.QTame)
     {a b : ℝ} (hab : a ≤ b) :
     ∃ (c : ℝ) (hbc : b < c), ∀ (d : ℝ) (hcd : c ≤ d),
@@ -134,7 +154,9 @@ theorem PModule.QTame.persistenceMeasureValue_eventually_zero (hM : M.QTame)
   rw [hc d hcd, hc c le_rfl] at h
   omega
 
-/-- Essential boundary mass is additive under birth-coordinate splitting.-/
+/-- Essential boundary mass is additive under birth-coordinate splitting.
+@isnad1 id=eq.3h5v.s6.34707f57c3c0 from=translated src=- shape=98b58b23 vocab=e5f184a6
+-/
 theorem PModule.QTame.essentialMeasureValue_split_birth (hM : M.QTame)
     {a x b : ℝ} (hax : a ≤ x) (hxb : x ≤ b) :
     essentialMeasureValue M (hax.trans hxb) =
@@ -152,7 +174,9 @@ theorem PModule.QTame.essentialMeasureValue_split_birth (hM : M.QTame)
   rw [h₀ d h₀d, h₁ d h₁d, h₂ d h₂d] at h
   exact h
 
-/-- A degenerate birth strip has zero essential boundary measure.-/
+/-- A degenerate birth strip has zero essential boundary measure.
+@isnad1 id=eq.1h3v.s5.e6b1ae307e01 from=translated src=- shape=28c0f392 vocab=a85466c9
+-/
 @[simp] theorem PModule.QTame.essentialMeasureValue_self (hM : M.QTame) (a : ℝ) :
     essentialMeasureValue M (le_refl a) = 0 := by
   have h := PModule.QTame.essentialMeasureValue_split_birth M hM (le_refl a) (le_refl a)

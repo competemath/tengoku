@@ -20,6 +20,9 @@ def twoOpens : Bool → TopologicalSpace.Opens ℝ
   | false => ⟨Iio (2 / 3), isOpen_Iio⟩
   | true => ⟨Ioi (1 / 3), isOpen_Ioi⟩
 
+/--
+@isnad1 id=le.0h0v.s7.20553d1c3300 from=translated src=- shape=cf9a99ac vocab=fe160e79
+-/
 theorem twoOpens_cover : (⊤ : TopologicalSpace.Opens ℝ) ≤ ⨆ b, twoOpens b := fun z _ => by
   refine TopologicalSpace.Opens.mem_iSup.2 ?_
   rcases lt_or_ge z (2 / 3) with h | h
@@ -27,7 +30,9 @@ theorem twoOpens_cover : (⊤ : TopologicalSpace.Opens ℝ) ≤ ⨆ b, twoOpens 
   · exact ⟨true, show (1 / 3 : ℝ) < z by linarith⟩
 
 /-- The points `0` and `1` of `ℝ = id ⁻¹ ⊤` are linked by a chain whose links have equal classes
-over a single member of `twoOpens`.-/
+over a single member of `twoOpens`.
+@isnad1 id=refltran.0h0v.s11.bb102a24a830 from=translated src=- shape=78706649 vocab=3113758a
+-/
 theorem twoOpens_zero_one_chain :
     Relation.ReflTransGen
       (fun a b : {x : ℝ // ContinuousMap.id ℝ x ∈ (⊤ : TopologicalSpace.Opens ℝ)} =>
@@ -43,7 +48,9 @@ theorem twoOpens_zero_one_chain :
          source' := rfl
          target' := rfl }⟩)
 
-/-- No single link relates `0` and `1`: no member of `twoOpens` contains both points.-/
+/-- No single link relates `0` and `1`: no member of `twoOpens` contains both points.
+@isnad1 id=not.0h0v.s9.92567f15b091 from=translated src=- shape=15be169d vocab=4cff140d
+-/
 theorem twoOpens_zero_one_not_single_link :
     ¬ ∃ i, ∃ (ha : ContinuousMap.id ℝ 0 ∈ twoOpens i) (hb : ContinuousMap.id ℝ 1 ∈ twoOpens i),
       (ZerothHomotopy.mk ⟨0, ha⟩ : (componentFunctor (ContinuousMap.id ℝ)).obj (twoOpens i)) =

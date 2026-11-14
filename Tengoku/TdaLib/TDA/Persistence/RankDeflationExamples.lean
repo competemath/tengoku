@@ -35,7 +35,9 @@ private theorem birthVector_dies :
     structureMapLinear dyingModule (show (0 : Fin 2) ≤ 1 by decide) birthVector = 0 :=
   Hook.generator_dies (by decide : (0 : Fin 2) < 1) (𝟙 dyingModule)
 
-/-- Composing two actual finite hook deflations has its actual rank-exact kernel.-/
+/-- Composing two actual finite hook deflations has its actual rank-exact kernel.
+@isnad1 id=isrankex.0h0v.s10.e1ec30a7ab03 from=translated src=- shape=ed4115c1 vocab=61f5dd2c
+-/
 theorem composed_actual_kernel :
     IsRankExact (kernel.ι (FiniteHookDeflation.π (FiniteHookDeflation.module dyingModule) ≫
       FiniteHookDeflation.π dyingModule))
@@ -44,7 +46,9 @@ theorem composed_actual_kernel :
   ((FiniteHookDeflation.rankExact (FiniteHookDeflation.module dyingModule)).isRankDeflation.comp
     (FiniteHookDeflation.rankExact dyingModule).isRankDeflation).rankExact_kernel
 
-/-- A nonzero dying vector lifts through both constructed quotient maps.-/
+/-- A nonzero dying vector lifts through both constructed quotient maps.
+@isnad1 id=ex.0h0v.s12.e9670da3f6b0 from=translated src=- shape=de4771f1 vocab=9cd0d146
+-/
 theorem composed_dying_nonzero :
     ∃ x : (FiniteHookDeflation.module (FiniteHookDeflation.module dyingModule)).obj 0,
       (((FiniteHookDeflation.π (FiniteHookDeflation.module dyingModule) ≫
@@ -58,13 +62,17 @@ theorem composed_dying_nonzero :
 /-- A nonidentity base-change map on the dying module.-/
 noncomputable def twice : dyingModule ⟶ dyingModule := (2 : ℚ) • 𝟙 dyingModule
 
-/-- The actual pullback projection along the nonidentity map is rank exact.-/
+/-- The actual pullback projection along the nonidentity map is rank exact.
+@isnad1 id=isrankex.0h0v.s9.f8fb6c4a1043 from=translated src=- shape=79c49f89 vocab=74cea971
+-/
 theorem pulled_actual_kernel :
     IsRankExact (kernel.ι (pullback.snd (FiniteHookDeflation.π dyingModule) twice))
       (pullback.snd (FiniteHookDeflation.π dyingModule) twice) :=
   ((FiniteHookDeflation.rankExact dyingModule).isRankDeflation.pullback_snd twice).rankExact_kernel
 
-/-- A genuinely dying nonzero vector survives the actual pullback lift.-/
+/-- A genuinely dying nonzero vector survives the actual pullback lift.
+@isnad1 id=ex.0h0v.s13.4e997ac756a7 from=translated src=- shape=b1a0721b vocab=f6467782
+-/
 theorem pulled_dying_nonzero :
     ∃ x : (pullback (FiniteHookDeflation.π dyingModule) twice).obj 0,
       (((pullback.snd (FiniteHookDeflation.π dyingModule) twice).app 0).hom x) ≠ 0 ∧
@@ -74,7 +82,9 @@ theorem pulled_dying_nonzero :
     (show (0 : Fin 2) ≤ 1 by decide) birthVector birthVector_dies
   exact ⟨x, by rw [hx]; exact birthVector_ne_zero, hdie⟩
 
-/-- At zero base change the second coordinate can be nonzero while the first is zero.-/
+/-- At zero base change the second coordinate can be nonzero while the first is zero.
+@isnad1 id=ex.0h0v.s13.694f9e7771ec from=translated src=- shape=f1dc59d5 vocab=2bfb3821
+-/
 theorem zero_pair_vector :
     ∃ x : (pullback (FiniteHookDeflation.π dyingModule) (0 : dyingModule ⟶ dyingModule)).obj 0,
       (((pullback.fst (FiniteHookDeflation.π dyingModule) (0 : dyingModule ⟶ dyingModule)).app 0).hom x)
@@ -87,7 +97,9 @@ theorem zero_pair_vector :
   · rw [PullbackFiber.snd_mk]
     exact birthVector_ne_zero
 
-/-- Even zero base change produces an actual rank-exact kernel sequence.-/
+/-- Even zero base change produces an actual rank-exact kernel sequence.
+@isnad1 id=isrankex.0h0v.s11.f372f42052b0 from=translated src=- shape=77a66d5b vocab=8ea6f983
+-/
 theorem zero_basechange_rankExact :
     IsRankExact (kernel.ι (pullback.snd (FiniteHookDeflation.π dyingModule)
       (0 : dyingModule ⟶ dyingModule)))
@@ -129,7 +141,9 @@ private theorem ordinaryQuotient_not_admissible : ¬ IsRankDeflation ordinaryQuo
   rw [hm0, map_zero] at hm
   exact birthVector_ne_zero hm.symm
 
-/-- Pointwise surjectivity is strictly weaker than rank-exact admissibility.-/
+/-- Pointwise surjectivity is strictly weaker than rank-exact admissibility.
+@isnad1 id=and.0h0v.s10.94c9d29e9a78 from=translated src=- shape=9f993c34 vocab=07482808
+-/
 theorem epi_not_rankDeflation :
     (∀ p, Function.Surjective (ordinaryQuotient.app p).hom) ∧
       ¬ IsRankDeflation ordinaryQuotient :=
@@ -141,17 +155,23 @@ private instance (p : Fin 1) : Subsingleton ((0 : PModule ℚ (Fin 1)).obj p) :=
 private instance (p : Fin 1) : FiniteDimensional ℚ ((0 : PModule ℚ (Fin 1)).obj p) := by
   infer_instance
 
-/-- The zero module on a nonempty grade set is included.-/
+/-- The zero module on a nonempty grade set is included.
+@isnad1 id=isrankde.0h0v.s8.d8de3665f38f from=translated src=- shape=12bccded vocab=43bd94d8
+-/
 theorem zero_module : IsRankDeflation (𝟙 (0 : PModule ℚ (Fin 1))) :=
   IsRankDeflation.id _
 
-/-- The empty grade set is included without inventing a supported generator.-/
+/-- The empty grade set is included without inventing a supported generator.
+@isnad1 id=isrankde.0h0v.s8.ef511244bdca from=translated src=- shape=12bccded vocab=43bd94d8
+-/
 theorem empty_poset : IsRankDeflation (𝟙 (0 : PModule ℚ (Fin 0))) := by
   let : ∀ p : Fin 0, FiniteDimensional ℚ ((0 : PModule ℚ (Fin 0)).obj p) :=
     fun p => Fin.elim0 p
   exact IsRankDeflation.id _
 
-/-- The base change equal to twice the identity is zero in characteristic two.-/
+/-- The base change equal to twice the identity is zero in characteristic two.
+@isnad1 id=other.0h0v.s12.6f1298dadc32 from=translated src=- shape=64e2fcb9 vocab=f961551c
+-/
 theorem characteristic_two :
     let N := Hook.module (k := ZMod 2) (0 : Fin 2) 1
     let f : N ⟶ N := (2 : ZMod 2) • 𝟙 N

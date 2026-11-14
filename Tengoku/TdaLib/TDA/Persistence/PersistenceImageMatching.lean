@@ -16,7 +16,9 @@ namespace TDA.Persistence.PersistenceImage
 open MeasureTheory Set
 
 /-- Apply Gaussian PI stability to an attained minimizing finite matching.
-No essential part or measure-transport identification is used.-/
+No essential part or measure-transport identification is used.
+@isnad1 id=le.7h10v.s8.450ef354ac45 from=translated src=- shape=cd3ce03d vocab=d73d1a62
+-/
 theorem norm_image_sub_le_finiteFirstOrderMatchingCost
     {I J K : Type*} [Fintype I] [Fintype J] [Fintype K]
     {σ A B : ℝ} (hσ : 0 < σ) (hA : 0 ≤ A) (hB : 0 ≤ B) (w : Weight A B)

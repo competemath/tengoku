@@ -50,6 +50,9 @@ structure LocallyFiniteDecoratedDiagram where
   locallyFiniteTail : ∀ (a b c : ℝ) (hab : a < b) (hbc : b < c),
     Set.Finite {p | p ∈ tailRectangleCell a b c ∧ 0 < multiplicity p}
 
+/--
+@isnad1 id=eq.1h2v.s4.277b1a7aae6e from=translated src=- shape=d3c0bdbb vocab=36d1edd1
+-/
 @[ext] theorem LocallyFiniteDecoratedDiagram.ext
     {D E : LocallyFiniteDecoratedDiagram}
     (h : D.multiplicity = E.multiplicity) : D = E := by
@@ -538,7 +541,9 @@ private theorem matchingCost_eq_cost
 /-- The locally finite bottleneck restricts to the existing finite bottleneck on
 positive finite diagrams. Positivity is necessary because the source `Diagram`
 type also permits reverse bars, while q-tame finite deaths are supported only
-on the positive half of the decorated endpoint plane.-/
+on the positive half of the decorated endpoint plane.
+@isnad1 id=eq.2h2v.s4.43dede428c6c from=translated src=- shape=335048cc vocab=b154812d
+-/
 theorem bottleneck_toLocallyFinite (D E : Diagram ℝ)
     (hD : D.IsPositive) (hE : E.IsPositive) :
     (D.toLocallyFinite hD).bottleneck (E.toLocallyFinite hE) = bottleneck D E := by

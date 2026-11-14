@@ -40,7 +40,9 @@ private theorem injective_postcomp_shiftLE_congr
   exact h
 
 /-- A sufficiently small increase of a fixed interleaving parameter can be
-removed for finitely presented modules.-/
+removed for finitely presented modules.
+@isnad1 id=ex.2h5v.s7.17e417576802 from=translated src=- shape=d1de30b2 vocab=13ff2fbe
+-/
 theorem finitelyPresented_exists_pos_interleaving_lowering
     (hM : FinitelyPresented (R := R) M) (hN : FinitelyPresented (R := R) N)
     (ε : ℝ≥0) :
@@ -90,7 +92,9 @@ theorem finitelyPresented_exists_pos_interleaving_lowering
     (hMN δ hδ₁).2 (hNM δ hδ₂).2 hMM' hNN'⟩
 
 /-- Every finite bound on the interleaving distance is attained by an actual
-interleaving at that parameter.-/
+interleaving at that parameter.
+@isnad1 id=iff.2h5v.s6.2f526d0ce872 from=translated src=- shape=b25796ef vocab=54a06245
+-/
 theorem finitelyPresented_distance_le_iff_interleaving
     (hM : FinitelyPresented (R := R) M) (hN : FinitelyPresented (R := R) N)
     (ε : ℝ≥0) :
@@ -106,7 +110,9 @@ theorem finitelyPresented_distance_le_iff_interleaving
     exact hlower η le_rfl ⟨i.mono (ENNReal.coe_lt_coe.mp hδ).le⟩
   · exact coordinateInterleavingDistance_le_of_nonempty
 
-/-- A finite interleaving distance of finitely presented modules is attained.-/
+/-- A finite interleaving distance of finitely presented modules is attained.
+@isnad1 id=nonempty.3h4v.s6.84ee712c9a8f from=translated src=- shape=ece85202 vocab=ff18b93f
+-/
 theorem finitelyPresented_interleaving_at_distance
     (hM : FinitelyPresented (R := R) M) (hN : FinitelyPresented (R := R) N)
     (hf : coordinateInterleavingDistance M N ≠ ⊤) :
@@ -115,7 +121,9 @@ theorem finitelyPresented_interleaving_at_distance
   exact (ENNReal.coe_toNNReal hf).symm.le
 
 /-- On finitely presented multiparameter modules, distance zero is precisely
-natural isomorphism.-/
+natural isomorphism.
+@isnad1 id=iff.2h4v.s7.45a09fbf58e5 from=translated src=- shape=3ab50c79 vocab=916a0e42
+-/
 theorem finitelyPresented_distance_eq_zero_iff_iso
     (hM : FinitelyPresented (R := R) M) (hN : FinitelyPresented (R := R) N) :
     coordinateInterleavingDistance M N = 0 ↔ Nonempty (M ≅ N) := by
@@ -128,7 +136,9 @@ theorem finitelyPresented_distance_eq_zero_iff_iso
     exact coordinateInterleavingDistance_eq_zero_of_iso e
 
 /-- For finite distance, the admissible parameters form the closed upper ray
-starting at the distance.-/
+starting at the distance.
+@isnad1 id=eq.3h4v.s6.6ab3618a0b7e from=translated src=- shape=27f1fa29 vocab=e4c7454e
+-/
 theorem finitelyPresented_interleaving_parameters_eq_Ici
     (hM : FinitelyPresented (R := R) M) (hN : FinitelyPresented (R := R) N)
     (hf : coordinateInterleavingDistance M N ≠ ⊤) :
@@ -139,7 +149,9 @@ theorem finitelyPresented_interleaving_parameters_eq_Ici
     ← ENNReal.coe_toNNReal hf, ENNReal.coe_le_coe]
   rfl
 
-/-- The finite interleaving parameter set is closed, including when it is empty.-/
+/-- The finite interleaving parameter set is closed, including when it is empty.
+@isnad1 id=isclosed.2h4v.s6.05442638b120 from=translated src=- shape=abc55cfd vocab=a4874882
+-/
 theorem finitelyPresented_isClosed_interleaving_parameters
     (hM : FinitelyPresented (R := R) M) (hN : FinitelyPresented (R := R) N) :
     IsClosed {ε : ℝ≥0 | Nonempty (CoordinateInterleaving ε M N)} := by

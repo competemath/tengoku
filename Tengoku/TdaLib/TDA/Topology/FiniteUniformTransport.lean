@@ -18,7 +18,9 @@ variable {X : Type u} {Y : Type v} {V : Type w} {W : Type z}
 variable [MeasurableSpace X] [MeasurableSpace Y]
 variable [Fintype V] [Nonempty V]
 
-/-- Labelwise set membership transports finite uniform masses.-/
+/-- Labelwise set membership transports finite uniform masses.
+@isnad1 id=le.3h7v.s6.7c95b5270ddc from=translated src=- shape=304a3342 vocab=8ebaa1ed
+-/
 theorem uniformMeasure_apply_le_of_label_mem (p : V → X) (q : V → Y)
     {A : Set X} {B : Set Y} (hA : MeasurableSet A) (hB : MeasurableSet B)
     (h : ∀ v, p v ∈ A → q v ∈ B) : uniformMeasure p A ≤ uniformMeasure q B := by
@@ -35,7 +37,9 @@ variable [MetricSpace X] [OpensMeasurableSpace X] [MetricSpace Y] [OpensMeasurab
 variable [Fintype W] [Nonempty W]
 
 /-- Cross distances alone control transport of ambient Prokhorov cost between
-two finite labelled uniform laws.-/
+two finite labelled uniform laws.
+@isnad1 id=le.1h8v.s7.ec91269c0ec5 from=translated src=- shape=b721a773 vocab=c71b5f86
+-/
 theorem levyProkhorovDist_uniform_le_of_cross_dist_le
     (p : V → X) (q : W → X) (p' : V → Y) (q' : W → Y)
     (hcross : ∀ v w, dist (p v) (q w) ≤ dist (p' v) (q' w)) :
@@ -66,7 +70,9 @@ theorem levyProkhorovDist_uniform_le_of_cross_dist_le
   rw [ENNReal.toReal_ofReal hεpos.le] at hm
   exact hleft.trans (hm.trans (add_le_add hright le_rfl))
 
-/-- Extended-distance form of cross-distance contraction.-/
+/-- Extended-distance form of cross-distance contraction.
+@isnad1 id=le.1h8v.s7.700f901f1ea0 from=translated src=- shape=3f03bd31 vocab=b51c3fd7
+-/
 theorem levyProkhorovEDist_uniform_le_of_cross_dist_le
     (p : V → X) (q : W → X) (p' : V → Y) (q' : W → Y)
     (hcross : ∀ v w, dist (p v) (q w) ≤ dist (p' v) (q' w)) :
@@ -79,7 +85,9 @@ theorem levyProkhorovEDist_uniform_le_of_cross_dist_le
     ENNReal.ofReal_toReal (levyProkhorovEDist_ne_top (uniformMeasure p') (uniformMeasure q'))] using h
 
 /-- Isometric finite-support replacement preserves the exact ambient
-Prokhorov cost, including when the labels have multiplicities.-/
+Prokhorov cost, including when the labels have multiplicities.
+@isnad1 id=eq.1h8v.s7.613c7b4ec191 from=translated src=- shape=3f03bd31 vocab=4a68f405
+-/
 theorem levyProkhorovEDist_uniform_eq_of_cross_dist_eq
     (p : V → X) (q : W → X) (p' : V → Y) (q' : W → Y)
     (hcross : ∀ v w, dist (p v) (q w) = dist (p' v) (q' w)) :
@@ -89,7 +97,9 @@ theorem levyProkhorovEDist_uniform_eq_of_cross_dist_eq
     (levyProkhorovEDist_uniform_le_of_cross_dist_le p q p' q' (fun v w => (hcross v w).le))
     (levyProkhorovEDist_uniform_le_of_cross_dist_le p' q' p q (fun v w => (hcross v w).ge))
 /-- For finite uniform laws, testing closed sets is sufficient to bound
-mathlib's measurable-set Prokhorov distance.-/
+mathlib's measurable-set Prokhorov distance.
+@isnad1 id=le.2h6v.s7.71ba075dedc2 from=translated src=- shape=97d1b741 vocab=1a7e43bc
+-/
 theorem levyProkhorovDist_uniform_le_of_isClosed (p : V → X) (q : W → X)
     {δ : ℝ} (hδ : 0 ≤ δ)
     (h : ∀ ε A, δ < ε → IsClosed A →

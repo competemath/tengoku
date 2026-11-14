@@ -73,7 +73,9 @@ noncomputable def boolRegularSourceUnit (k : Type) [Field k] :
       boolSource boolSource le_rfl = _
   simp [rightIncidenceMatrixUnit_mul]
 
-/-- The actual off-diagonal transition sends the regular diagonal unit to its matrix unit.-/
+/-- The actual off-diagonal transition sends the regular diagonal unit to its matrix unit.
+@isnad1 id=eq.0h1v.s12.08bc40cc765b from=translated src=- shape=d5151492 vocab=d5886a29
+-/
 theorem boolRegular_transition_value {k : Type} [Field k] :
     (vertexStructureMap (k := k) (S := Bool) (boolRegular k)
       boolSource_le_target (boolRegularSourceUnit k) : boolRegular k) =
@@ -86,7 +88,9 @@ theorem boolRegular_transition_value {k : Type} [Field k] :
       boolSource boolSource le_rfl = _
   simp [rightIncidenceMatrixUnit_mul]
 
-/-- This off-diagonal matrix unit is nonzero over every field.-/
+/-- This off-diagonal matrix unit is nonzero over every field.
+@isnad1 id=ne.0h1v.s7.63dd9c6c8edb from=translated src=- shape=196e9b5c vocab=8193639e
+-/
 theorem boolRegular_transition_nonzero {k : Type} [Field k] :
     IncidenceQuotientBaseChange.rightIncidenceMatrixUnit (k := k) (S := Bool)
       boolSource boolTarget boolSource_le_target ≠ 0 := by
@@ -97,7 +101,9 @@ theorem boolRegular_transition_nonzero {k : Type} [Field k] :
   simp [IncidenceQuotientBaseChange.rightIncidenceMatrixUnit,
     FiniteRankProjectiveEndAlgebra.delta_apply] at hcoeff
 
-/-- Every fixed fiber of the actual zero module is a subsingleton.-/
+/-- Every fixed fiber of the actual zero module is a subsingleton.
+@isnad1 id=subsingl.0h2v.s12.3bf941e3d30e from=translated src=- shape=f696f80b vocab=59f994bc
+-/
 theorem boolZero_fibers_subsingleton {k : Type} [Field k] :
     ∀ p : PairPoset Bool,
       Subsingleton (vertexFiber (k := k) (S := Bool)
@@ -108,7 +114,9 @@ theorem boolZero_fibers_subsingleton {k : Type} [Field k] :
   apply Subtype.ext
   exact Subsingleton.elim _ _
 
-/-- The actual regular module is finite-dimensional by its incidence-function embedding.-/
+/-- The actual regular module is finite-dimensional by its incidence-function embedding.
+@isnad1 id=finitedi.0h1v.s8.be477f24c1e2 from=translated src=- shape=bb47c726 vocab=73597781
+-/
 theorem boolRegular_finiteDimensional {k : Type} [Field k] :
     FiniteDimensional k (restrictedKModule (k := k) (S := Bool) (boolRegular k)) := by
   change FiniteDimensional k (RightIncidence (k := k) (S := Bool))
@@ -123,7 +131,9 @@ theorem boolRegular_finiteDimensional {k : Type} [Field k] :
 private def boolRegularDoubleEnd : boolRegular ℚ ⟶ boolRegular ℚ :=
   ModuleCat.ofHom (LinearMap.mulRight (RightIncidence (k := ℚ) (S := Bool)) 2)
 
-/-- Multiplication by two is an actual nonidentity endomorphism of the regular module.-/
+/-- Multiplication by two is an actual nonidentity endomorphism of the regular module.
+@isnad1 id=ne.0h0v.s10.4b9c028a267a from=translated src=- shape=f89eab85 vocab=7a8107a7
+-/
 theorem boolRegularDoubleEnd_ne_identity : boolRegularDoubleEnd ≠ 𝟙 _ := by
   intro h
   have hval : (2 : RightIncidence (k := ℚ) (S := Bool)) = 1 := by
@@ -149,7 +159,9 @@ theorem boolRegularDoubleEnd_ne_identity : boolRegularDoubleEnd ≠ 𝟙 _ := by
       _ = 0 := sub_self _
   exact one_ne_zero hzero
 
-/-- Full faithfulness recovers a nonidentity regular-module morphism exactly.-/
+/-- Full faithfulness recovers a nonidentity regular-module morphism exactly.
+@isnad1 id=eq.0h0v.s13.24a9b711d1fc from=translated src=- shape=91a463f8 vocab=e4482541
+-/
 theorem boolRegularDoubleEnd_recovered :
     (vertexFunctorHomEquiv (k := ℚ) (S := Bool)
       (boolRegular ℚ) (boolRegular ℚ)).symm
@@ -207,7 +219,9 @@ private theorem boolSplitShortComplex_shortExact : boolSplitShortComplex.ShortEx
     exact LinearMap.snd_surjective)
   exact ⟨hexact⟩
 
-/-- The split regular-module row remains short exact on every vertex fiber.-/
+/-- The split regular-module row remains short exact on every vertex fiber.
+@isnad1 id=ispointw.0h0v.s11.83d372093b76 from=translated src=- shape=06815e3e vocab=ba92c07d
+-/
 theorem boolSplitShortComplex_vertexPointwise :
     IsPointwiseShortExact
       ((vertexFunctor (k := ℚ) (S := Bool)).map boolSplitInclusion)

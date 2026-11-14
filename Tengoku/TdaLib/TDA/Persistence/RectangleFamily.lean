@@ -50,18 +50,26 @@ noncomputable def projection {ι : Type} [Finite ι] (R : ι → Rectangle n) (i
     module (k := k) R ⟶ (R i).module :=
   biproduct.π (fun i : ι => (R i).module (k := k)) i
 
+/--
+@isnad1 id=eq.0h5v.s8.c6f64e30fd7c from=translated src=- shape=1fb6c79a vocab=7df7b068
+-/
 @[simp] theorem inclusion_projection_self {ι : Type} [Finite ι]
     (R : ι → Rectangle n) (i : ι) :
     inclusion (k := k) R i ≫ projection R i = 𝟙 ((R i).module) := by
   exact biproduct.ι_π_self (fun j : ι => (R j).module (k := k)) i
 
+/--
+@isnad1 id=eq.1h6v.s9.64d6ef7779f8 from=translated src=- shape=5d9498e7 vocab=37d468cf
+-/
 @[simp] theorem inclusion_projection_ne {ι : Type} [Finite ι]
     (R : ι → Rectangle n) {i j : ι} (h : i ≠ j) :
     inclusion (k := k) R i ≫ projection R j = 0 := by
   exact biproduct.ι_π_ne (fun j : ι => (R j).module (k := k)) h
 
 /-- The finite family identity is the sum of its coordinate projections and
-inclusions. This is the algebraic expansion used in Lemma 4.9.-/
+inclusions. This is the algebraic expansion used in Lemma 4.9.
+@isnad1 id=eq.0h4v.s9.87b7358e480c from=translated src=- shape=d2b6dd92 vocab=8bd4164c
+-/
 theorem sum_projection_inclusion {ι : Type} [Fintype ι]
     (R : ι → Rectangle n) :
     ∑ i, projection (k := k) R i ≫ inclusion R i = 𝟙 (module (k := k) R) :=
@@ -75,7 +83,9 @@ noncomputable def component {ι κ : Type} [Finite ι] [Finite κ]
   inclusion (k := k) R i ≫ f ≫ (shift ε).map (projection (k := k) S j)
 
 /-- The matrix entries of a composite across the middle finite family sum
-to the entry of the composite.-/
+to the entry of the composite.
+@isnad1 id=eq.0h13v.s12.62dd2dae1392 from=translated src=- shape=1d91004e vocab=7716ef77
+-/
 theorem component_composite {ι κ ν : Type}
     [Finite ι] [Fintype κ] [Finite ν]
     (R : ι → Rectangle n) (S : κ → Rectangle n) (T : ν → Rectangle n)
@@ -103,7 +113,9 @@ theorem component_composite {ι κ ν : Type}
 
 /-- The two interleaving maps give the actual finite sum of two-step
 component paths. The right-hand side is the family structure map, restricted
-to its source and target occurrences.-/
+to its source and target occurrences.
+@isnad1 id=eq.0h10v.s11.85f1d2018633 from=translated src=- shape=78c9cf2c vocab=68206dad
+-/
 theorem component_interleaving_sum {ι κ : Type}
     [Fintype ι] [Fintype κ]
     (R : ι → Rectangle n) (S : κ → Rectangle n) (ε : ℝ≥0)
@@ -121,7 +133,9 @@ theorem component_interleaving_sum {ι κ : Type}
   simp only [← Category.assoc, I.φ_ψ]
 
 /-- Distinct rectangle occurrences give zero entries in the interleaving
-composite matrix.-/
+composite matrix.
+@isnad1 id=eq.1h10v.s11.71726b8075c4 from=translated src=- shape=a618ccb2 vocab=df75eeb7
+-/
 theorem component_interleaving_sum_ne {ι κ : Type}
     [Fintype ι] [Fintype κ]
     (R : ι → Rectangle n) (S : κ → Rectangle n) (ε : ℝ≥0)
@@ -137,7 +151,9 @@ theorem component_interleaving_sum_ne {ι κ : Type}
     Functor.map_zero, comp_zero]
 
 /-- A diagonal entry of the interleaving composite matrix is precisely the
-rectangle's own structure map.-/
+rectangle's own structure map.
+@isnad1 id=eq.0h9v.s11.cb5c250e8761 from=translated src=- shape=77b3fa9b vocab=0401981e
+-/
 theorem component_interleaving_sum_self {ι κ : Type}
     [Fintype ι] [Fintype κ]
     (R : ι → Rectangle n) (S : κ → Rectangle n) (ε : ℝ≥0)

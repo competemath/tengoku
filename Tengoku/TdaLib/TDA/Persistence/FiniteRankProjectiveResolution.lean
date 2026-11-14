@@ -33,6 +33,9 @@ noncomputable def rankOfStructureMap (M : PModule.{u,v,u} k P) {a b : P}
     (hab : a ≤ b) : ℕ :=
   Module.finrank k (LinearMap.range (structureMapLinear M hab))
 
+/--
+@isnad1 id=eq.1h4v.s6.a34eb19edcf4 from=translated src=- shape=bc784915 vocab=cb4a70a1
+-/
 @[simp] theorem rankOfStructureMap_zero {a b : P} (hab : a ≤ b) :
     rankOfStructureMap (0 : PModule.{u,v,u} k P) hab = 0 := by
   unfold rankOfStructureMap
@@ -43,7 +46,9 @@ noncomputable def rankOfStructureMap (M : PModule.{u,v,u} k P) {a b : P}
     ⟨fun x y => Subtype.ext (htarget.elim x.val y.val)⟩
   exact @Module.finrank_zero_of_subsingleton k _ _ _ _ _ hrange
 
-/-- Natural isomorphisms preserve the ranks of corresponding structure maps.-/
+/-- Natural isomorphisms preserve the ranks of corresponding structure maps.
+@isnad1 id=eq.1h7v.s6.a43ab8304022 from=translated src=- shape=3996c80b vocab=a23699c6
+-/
 theorem rankOfStructureMap_iso {M N : PModule.{u,v,u} k P} {a b : P}
     (hab : a ≤ b) (e : M ≅ N) :
     rankOfStructureMap M hab = rankOfStructureMap N hab := by
@@ -137,7 +142,9 @@ private theorem alternatingRowSum :
 
 /-- For every `a ≤ b`, the module rank is the integer alternating sum of the indexed
 middle-term ranks. The equality follows by applying `IsRankExact.rank_add` to every actual
-row and telescoping the kernel ranks.-/
+row and telescoping the kernel ranks.
+@isnad1 id=eq.1h6v.s7.8abc77739d78 from=translated src=- shape=1429157c vocab=687b1de2
+-/
 theorem rank_eq_alternating_sum (R : FiniteRankExactResolution M)
     {a b : P} (hab : a ≤ b) :
     (rankOfStructureMap M hab : ℤ) =
@@ -169,7 +176,9 @@ namespace FiniteRankProjectiveResolution
 
 variable {P : Type} [PartialOrder P] {M : PModule.{u,0,u} k P}
 
-/-- The Euler formula for a finite rank-exact projective resolution.-/
+/-- The Euler formula for a finite rank-exact projective resolution.
+@isnad1 id=eq.1h6v.s7.b00275e8a349 from=translated src=- shape=ee539730 vocab=781d0066
+-/
 theorem rank_eq_alternating_sum (R : FiniteRankProjectiveResolution M)
     {a b : P} (hab : a ≤ b) :
     (rankOfStructureMap M hab : ℤ) =

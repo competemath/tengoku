@@ -16,11 +16,17 @@ def oneStageDiagram : PModule.{u,0,u} k (Fin 1) where
   map_id _ := by simp
   map_comp _ _ := by simp
 
+/--
+@isnad1 id=finitedi.0h2v.s7.6e889ded49a2 from=translated src=- shape=80115c00 vocab=6e6599f8
+-/
 instance oneStageFD (i : Fin 1) :
     FiniteDimensional k ((oneStageDiagram (k := k)).obj i) := by
   change FiniteDimensional k k
   infer_instance
 
+/--
+@isnad1 id=eq.0h2v.s8.2041fb7bfe00 from=translated src=- shape=5935befe vocab=d5ba4daf
+-/
 theorem oneStageMultiplicity (M : PModule.{u,0,u} k (Fin 1))
     [∀ i : Fin 1, FiniteDimensional k (M.obj i)] :
     moduleMultiplicityInteger M 0 1 = Module.finrank k (M.obj 0) := by
@@ -37,12 +43,18 @@ theorem oneStageMultiplicity (M : PModule.{u,0,u} k (Fin 1))
   rw [hself, hr]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s5.69a73f09c7ab from=translated src=- shape=b7c5a94b vocab=1e28c857
+-/
 theorem oneStageField : moduleMultiplicityInteger (oneStageDiagram (k := k)) 0 1 = 1 := by
   rw [oneStageMultiplicity]
   change ((Module.finrank k k : ℕ) : ℤ) = 1
   rw [Module.finrank_self]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.46a696328780 from=translated src=- shape=7f549011 vocab=6fc3442a
+-/
 theorem oneStageZeroFiber (M : PModule.{u,0,u} k (Fin 1))
     [∀ i : Fin 1, FiniteDimensional k (M.obj i)]
     [Subsingleton (M.obj (0 : Fin 1))] : moduleMultiplicityInteger M 0 1 = 0 := by
@@ -55,11 +67,17 @@ def oneStageZeroDiagram : PModule.{u,0,u} k (Fin 1) where
   map_id _ := by simp
   map_comp _ _ := by simp
 
+/--
+@isnad1 id=finitedi.0h2v.s7.39e881ecb562 from=translated src=- shape=80115c00 vocab=d1755737
+-/
 instance oneStageZeroFD (i : Fin 1) :
     FiniteDimensional k ((oneStageZeroDiagram (k := k)).obj i) := by
   change FiniteDimensional k (Fin 0 → k)
   infer_instance
 
+/--
+@isnad1 id=eq.0h1v.s5.006d1e7f4a40 from=translated src=- shape=b7c5a94b vocab=927c4e70
+-/
 theorem oneStageZero : moduleMultiplicityInteger (oneStageZeroDiagram (k := k)) 0 1 = 0 := by
   have hzero : Subsingleton ((oneStageZeroDiagram (k := k)).obj (0 : Fin 1)) := by
     change Subsingleton (Fin 0 → k)
@@ -67,6 +85,9 @@ theorem oneStageZero : moduleMultiplicityInteger (oneStageZeroDiagram (k := k)) 
   exact @oneStageZeroFiber k _ (oneStageZeroDiagram (k := k))
     (fun i => oneStageZeroFD i) hzero
 
+/--
+@isnad1 id=and.0h2v.s9.98f9cb5f5be2 from=translated src=- shape=dafb197b vocab=c931b8df
+-/
 theorem twoStageValues (M : PModule.{u,0,u} k (Fin 2))
     [∀ i : Fin 2, FiniteDimensional k (M.obj i)] :
     moduleMultiplicityInteger M 0 1 =
@@ -101,27 +122,42 @@ theorem twoStageValues (M : PModule.{u,0,u} k (Fin 2))
   · ring
   · constructor <;> ring
 
+/--
+@isnad1 id=finitedi.0h2v.s7.a2b3f85884aa from=translated src=- shape=80115c00 vocab=52224211
+-/
 instance identityTwoStageFD (i : Fin 2) :
     FiniteDimensional k ((identityTransitionDiagram k).obj i) := by
   change FiniteDimensional k k
   infer_instance
 
+/--
+@isnad1 id=finitedi.0h2v.s7.40afa7741817 from=translated src=- shape=80115c00 vocab=996af222
+-/
 instance zeroTwoStageFD (i : Fin 2) :
     FiniteDimensional k ((zeroTransitionDiagram k).obj i) := by
   change FiniteDimensional k k
   infer_instance
 
+/--
+@isnad1 id=eq.0h1v.s5.77620dd2273a from=translated src=- shape=4c5f2ad4 vocab=5dd89d60
+-/
 theorem identityTwoStageRanks :
     structureMapRank (identityTransitionDiagram k) 0 1 (by decide) = 1 := by
   change Module.finrank k (LinearMap.range (LinearMap.id : k →ₗ[k] k)) = 1
   rw [LinearMap.range_id, finrank_top]
   exact Module.finrank_self k
 
+/--
+@isnad1 id=eq.0h1v.s5.da699fa96c60 from=translated src=- shape=4c5f2ad4 vocab=b52cc8fd
+-/
 theorem zeroTwoStageRanks :
     structureMapRank (zeroTransitionDiagram k) 0 1 (by decide) = 0 := by
   change Module.finrank k (LinearMap.range (0 : k →ₗ[k] k)) = 0
   simp
 
+/--
+@isnad1 id=and.0h1v.s6.d92d6e6de246 from=translated src=- shape=488f7417 vocab=7d204eaf
+-/
 theorem identityTwoStage :
     moduleMultiplicityInteger (identityTransitionDiagram k) 0 1 = 0 ∧
     moduleMultiplicityInteger (identityTransitionDiagram k) 0 2 = 1 ∧
@@ -133,6 +169,9 @@ theorem identityTwoStage :
     show Module.finrank k ((identityTransitionDiagram k).obj (1 : Fin 2)) = 1
       from Module.finrank_self k, Nat.cast_one, sub_self] using h
 
+/--
+@isnad1 id=and.0h1v.s6.b2104f3efd5b from=translated src=- shape=488f7417 vocab=8206ac35
+-/
 theorem zeroTwoStage :
     moduleMultiplicityInteger (zeroTransitionDiagram k) 0 1 = 1 ∧
     moduleMultiplicityInteger (zeroTransitionDiagram k) 0 2 = 0 ∧

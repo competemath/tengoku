@@ -67,7 +67,9 @@ private def positiveIso :
           MatrixSequenceExamples.compositeZero _ _ (by decide)]
       rfl)
 
-/-- The original endpoints survive conversion from rectangular matrices.-/
+/-- The original endpoints survive conversion from rectangular matrices.
+@isnad1 id=eq.0h0v.s6.00ae30068938 from=translated src=- shape=d92f16f5 vocab=9be707b4
+-/
 theorem real_endpoints : (observations.realDiagram coarse).points =
     ((-1 : ℝ), (4 : WithTop ℝ)) ::ₘ (1 / 10, ⊤) ::ₘ 0 := by
   letI : ∀ i : Fin 3, FiniteDimensional ℚ
@@ -80,7 +82,9 @@ theorem real_endpoints : (observations.realDiagram coarse).points =
   rw [MatrixSequenceExamples.compositeZero_barcode, RealBarcode.ofIndexBars_points]
   rfl
 
-/-- Inserting an observation inside a cell retains both endpoint values and the essential tail.-/
+/-- Inserting an observation inside a cell retains both endpoint values and the essential tail.
+@isnad1 id=eq.0h0v.s8.234e4f9778bc from=translated src=- shape=bc92f4dc vocab=31cb558c
+-/
 theorem refined_real_endpoints :
     (moduleDiagram fine (observations.realModule coarse) (fun _ => inferInstance)).points =
       ((-1 : ℝ), (4 : WithTop ℝ)) ::ₘ (1 / 10, ⊤) ::ₘ 0 := by
@@ -92,7 +96,9 @@ def reconstruction : observations.realModule coarse ≅
     RealBarcode.realize (k := ℚ) (observations.realDiagram coarse) :=
   observations.realBarcodeIso coarse initial_zero
 
-/-- Critical instants belong to the new cell, and the final observation persists to the right.-/
+/-- Critical instants belong to the new cell, and the final observation persists to the right.
+@isnad1 id=and.0h0v.s9.5d58ea7f825f from=translated src=- shape=93bd36b4 vocab=64bf2f64
+-/
 theorem critical_and_tail_indices :
     cellIndex coarse (-1) = 1 ∧ cellIndex coarse (1 / 10) = 2 ∧
       cellIndex coarse 4 = 3 ∧ cellIndex coarse 100 = 3 := by

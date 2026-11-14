@@ -43,6 +43,9 @@ local instance : DecidableLT (PairPoset S) := Classical.decRel _
 local instance : LocallyFiniteOrder (PairPoset S) := Fintype.toLocallyFiniteOrder
 local instance : DecidableEq (PairPoset S) := Classical.decEq _
 local instance : Fintype (ComparablePair S) := Fintype.ofFinite _
+/--
+@isnad1 id=istwosid.0h2v.s6.c3d15d6296f4 from=translated src=- shape=3e603a0f vocab=12df1b8e
+-/
 local instance diagonalIdealTwoSided :
     (DiagonalIdeal (k := k) (S := S)).IsTwoSided :=
   diagonalIdeal_isTwoSided (k := k) (S := S)
@@ -114,18 +117,27 @@ noncomputable def extensionProjectiveResolution
           (k := k) (S := S) N P (n + 1) (by omega)
       · exact ChainComplex.exactAt_succ_single_obj _ _⟩
 
+/--
+@isnad1 id=eq.0h5v.s11.f022143c6aa2 from=translated src=- shape=76c6700d vocab=3e7ffcf9
+-/
 @[simp] theorem extensionProjectiveResolution_complex_X
     (N : ModuleCat.{u} (C (k := k) (S := S)))
     (P : ProjectiveResolution ((Res (k := k) (S := S)).obj N)) (n : ℕ) :
     (extensionProjectiveResolution (k := k) (S := S) N P).complex.X n =
       (E (k := k) (S := S)).obj (P.complex.X n) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s13.16607e11f5e5 from=translated src=- shape=f2839644 vocab=86d83b6b
+-/
 @[simp] theorem extensionProjectiveResolution_complex_d
     (N : ModuleCat.{u} (C (k := k) (S := S)))
     (P : ProjectiveResolution ((Res (k := k) (S := S)).obj N)) (i j : ℕ) :
     (extensionProjectiveResolution (k := k) (S := S) N P).complex.d i j =
       (E (k := k) (S := S)).map (P.complex.d i j) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s14.12151363ba23 from=translated src=- shape=172eea4d vocab=367bb156
+-/
 @[simp] theorem extensionProjectiveResolution_augmentation
     (N : ModuleCat.{u} (C (k := k) (S := S)))
     (P : ProjectiveResolution ((Res (k := k) (S := S)).obj N)) :
@@ -134,6 +146,9 @@ noncomputable def extensionProjectiveResolution
         (extensionRestrictionIso (k := k) (S := S)).hom.app N := by
   exact ChainComplex.toSingle₀Equiv_symm_apply_f_zero _ _
 
+/--
+@isnad1 id=eq.0h5v.s17.8d15b560dd1e from=translated src=- shape=220b33e0 vocab=863fbe9a
+-/
 @[simp] theorem extensionProjectiveResolution_augmentation_class
     (N : ModuleCat.{u} (C (k := k) (S := S)))
     (P : ProjectiveResolution ((Res (k := k) (S := S)).obj N)) (x : P.complex.X 0) :
@@ -148,7 +163,9 @@ noncomputable def extensionProjectiveResolution
   rw [extensionMap_mkQ]
   exact extensionRestrictionIso_hom_mkQ (k := k) (S := S) N (p₀.hom x)
 
-/-- Extension transports a zero term of an actual restricted-module resolution.-/
+/-- Extension transports a zero term of an actual restricted-module resolution.
+@isnad1 id=iszero.1h5v.s11.7535acd6cb60 from=translated src=- shape=d6c44e36 vocab=5b57cbdc
+-/
 theorem extensionProjectiveResolution_isZero_term
     (N : ModuleCat.{u} (C (k := k) (S := S)))
     (P : ProjectiveResolution ((Res (k := k) (S := S)).obj N)) (n : ℕ)
@@ -157,7 +174,9 @@ theorem extensionProjectiveResolution_isZero_term
   change IsZero ((E (k := k) (S := S)).obj (P.complex.X n))
   exact Functor.map_isZero (E (k := k) (S := S)) h
 
-/-- Extension transports any supplied vanishing-above-degree condition on an actual resolution.-/
+/-- Extension transports any supplied vanishing-above-degree condition on an actual resolution.
+@isnad1 id=iszero.2h6v.s11.bedfbbdad628 from=translated src=- shape=98f50ae0 vocab=7ea897da
+-/
 theorem extensionProjectiveResolution_isZero_above
     (N : ModuleCat.{u} (C (k := k) (S := S)))
     (P : ProjectiveResolution ((Res (k := k) (S := S)).obj N)) (d : ℕ)
@@ -168,7 +187,9 @@ theorem extensionProjectiveResolution_isZero_above
   exact extensionProjectiveResolution_isZero_term (k := k) (S := S) N P n (h n hn)
 
 /-- Extension carries a short exact row to a short exact row whenever the assembly map on its
-right endpoint is injective.-/
+right endpoint is injective.
+@isnad1 id=shortexa.2h3v.s16.ec155ad76b63 from=translated src=- shape=55743efc vocab=ad082b4c
+-/
 theorem extension_map_shortExact_of_assemble_injective
     (T : ShortComplex (ModuleCat.{u} (R (k := k) (S := S)))) (hT : T.ShortExact)
     (hτ : Function.Injective (assembleAction (k := k) (S := S) T.X₃)) :
@@ -248,7 +269,9 @@ theorem extension_map_shortExact_of_assemble_injective
       ⟨CokernelCofork.mapIsColimit _ hT.gIsCokernel E⟩
   exact { exact := hright.1, mono_f := hmono, epi_g := hright.2 }
 
-/-- Assembly is injective on a kernel in a short exact row with projective middle term.-/
+/-- Assembly is injective on a kernel in a short exact row with projective middle term.
+@isnad1 id=injectiv.1h3v.s16.7f0e5762e9a4 from=translated src=- shape=a5182579 vocab=0f5e216d
+-/
 theorem assembleAction_injective_of_shortExact_projective_middle
     (T : ShortComplex (ModuleCat.{u} (R (k := k) (S := S)))) (hT : T.ShortExact)
     [Projective T.X₂] :
@@ -271,7 +294,9 @@ theorem assembleAction_injective_of_shortExact_projective_middle
   exact hGmono (hτP hτmap)
 
 /-- A finite projective-dimension bound passes through extension whenever the source assembly map
-is injective.-/
+is injective.
+@isnad1 id=hasproje.2h4v.s13.e67b954bdc82 from=translated src=- shape=88bcddbc vocab=c2b533d3
+-/
 theorem extension_hasProjectiveDimensionLE_of_assemble_injective
     (M : ModuleCat.{u} (R (k := k) (S := S))) (d : ℕ) :
     Function.Injective (assembleAction (k := k) (S := S) M) →
@@ -304,7 +329,9 @@ theorem extension_hasProjectiveDimensionLE_of_assemble_injective
         Functor.projective_obj_of_projective (E (k := k) (S := S)) (by infer_instance)
       exact (hET.hasProjectiveDimensionLT_X₃_iff d hEP).mpr hEK
 
-/-- Restricted quotient modules have injective assembly, since their fixed-column object is zero.-/
+/-- Restricted quotient modules have injective assembly, since their fixed-column object is zero.
+@isnad1 id=injectiv.0h3v.s16.4563a0539f61 from=translated src=- shape=ed81b50f vocab=fc35fa24
+-/
 theorem assembleAction_restrict_injective
     (N : ModuleCat.{u} (C (k := k) (S := S))) :
     Function.Injective
@@ -318,7 +345,9 @@ theorem assembleAction_restrict_injective
   intro x y hxy
   exact Subsingleton.elim _ _
 
-/-- Quotient extension does not increase finite projective-dimension bounds on restricted modules.-/
+/-- Quotient extension does not increase finite projective-dimension bounds on restricted modules.
+@isnad1 id=hasproje.1h4v.s10.e6b6d1f2af61 from=translated src=- shape=ebe3f109 vocab=f1103ad3
+-/
 theorem extension_hasProjectiveDimensionLE_restricted
     (N : ModuleCat.{u} (C (k := k) (S := S))) (d : ℕ)
     (hN : HasProjectiveDimensionLE ((Res (k := k) (S := S)).obj N) d) :
@@ -331,7 +360,9 @@ theorem extension_hasProjectiveDimensionLE_restricted
   exact hasProjectiveDimensionLT_of_iso (quotientCounitAt (k := k) (S := S) N) (d + 1)
 
 /-- Strict projective-dimension bounds pass through extension for any module with injective
-assembly.-/
+assembly.
+@isnad1 id=hasproje.2h4v.s13.5adf1207b4fc from=translated src=- shape=88bcddbc vocab=e6155ed1
+-/
 theorem extension_hasProjectiveDimensionLT_of_assemble_injective
     (M : ModuleCat.{u} (R (k := k) (S := S))) (n : ℕ)
     (hτ : Function.Injective (assembleAction (k := k) (S := S) M))
@@ -349,7 +380,9 @@ theorem extension_hasProjectiveDimensionLT_of_assemble_injective
         (k := k) (S := S) M n hτ hM
 
 /-- Quotient extension lowers projective dimension in the extended naturals for any module with
-injective assembly.-/
+injective assembly.
+@isnad1 id=le.1h3v.s13.b6821f6f7710 from=translated src=- shape=04e7eb61 vocab=8aebc45e
+-/
 theorem extension_projectiveDimension_le_of_assemble_injective
     (M : ModuleCat.{u} (R (k := k) (S := S)))
     (hτ : Function.Injective (assembleAction (k := k) (S := S) M)) :
@@ -365,7 +398,9 @@ theorem extension_projectiveDimension_le_of_assemble_injective
     (k := k) (S := S) M i hτ (hn i hi)
 
 /-- For an actual quotient module, extension never increases projective dimension, including zero
-objects and infinite projective dimension.-/
+objects and infinite projective dimension.
+@isnad1 id=le.0h3v.s10.859bc043563e from=translated src=- shape=b8bb7abc vocab=c3cee46f
+-/
 theorem projectiveDimension_le_restriction
     (N : ModuleCat.{u} (C (k := k) (S := S))) :
     CategoryTheory.projectiveDimension N ≤

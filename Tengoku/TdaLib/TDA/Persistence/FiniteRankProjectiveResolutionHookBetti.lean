@@ -48,6 +48,9 @@ def hookTagMultiset : ∀ {m : ℕ}, (Fin m → RealHookTag (n := n)) →
   | 0, _ => 0
   | m + 1, tag => {tag 0} + hookTagMultiset (fun i => tag i.succ)
 
+/--
+@isnad1 id=eq.0h4v.s9.8ef45cf14553 from=translated src=- shape=9ea1e3eb vocab=9df9c07f
+-/
 @[simp] theorem hookTagMultiset_count {m : ℕ}
     (tag : Fin m → RealHookTag (n := n)) (c : RealHookTag (n := n)) :
     (hookTagMultiset tag).count c = Fintype.card {i : Fin m // tag i = c} := by
@@ -64,7 +67,9 @@ def hookTagMultiset : ∀ {m : ℕ}, (Fin m → RealHookTag (n := n)) →
 
 /-- The tag multiset depends only on the isomorphism class of its presented
 module. Multiplicities are counted by occurrences, so repeated hooks are
-retained.-/
+retained.
+@isnad1 id=eq.0h7v.s7.72168ed826cf from=translated src=- shape=36c962c5 vocab=3c9a8b95
+-/
 theorem FiniteHookSumPresentation.tagMultiset_eq_of_iso
     {A B : PModule.{u,0,u} k (Fin n → ℝ)}
     (P : FiniteHookSumPresentation (k := k) (n := n) A)
@@ -100,7 +105,9 @@ namespace FiniteRankProjectiveResolution
 resolution whose every zero-padded term is an actual finite sum of real hooks.
 The witness is obtained from the constructed finite-grid resolution, carried
 through its genuine Lan biproduct and hook isomorphisms, and then through the
-presentation reconstruction.-/
+presentation reconstruction.
+@isnad1 id=ex.1h3v.s6.66f36c9d62da from=translated src=- shape=62a7b1cd vocab=8d17191e
+-/
 theorem finitelyPresented_exists_minimal_resolution_with_hook_sum_terms
     (M : PModule.{u,0,u} k (Fin n → ℝ))
     (hM : GradedFree.FinitelyPresented.{u,0,0} (R := k) (P := Fin n → ℝ) M) :
@@ -166,7 +173,9 @@ end FiniteRankProjectiveResolution
 /-- Every zero-padded term of any certified minimal resolution of a finitely
 presented real-coordinate module admits an actual finite hook-sum
 presentation. The constructed resolution supplies the decomposition; the
-termwise comparison theorem transports it to the given resolution.-/
+termwise comparison theorem transports it to the given resolution.
+@isnad1 id=nonempty.1h5v.s6.0a71675e7858 from=translated src=- shape=f9886c77 vocab=8d17191e
+-/
 theorem MinimalFiniteRankProjectiveResolution.exists_hook_sum_presentation
     (M : PModule.{u,0,u} k (Fin n → ℝ))
     (hM : GradedFree.FinitelyPresented.{u,0,0} (R := k) (P := Fin n → ℝ) M)
@@ -191,7 +200,9 @@ noncomputable def MinimalFiniteRankProjectiveResolution.hookBettiMultiset
     (Classical.choice (R.exists_hook_sum_presentation (k := k) (n := n) M hM j)).tag
 
 /-- Relate the chosen degreewise multiset to any supplied actual hook-sum
-presentation, without unfolding the choice-based definition.-/
+presentation, without unfolding the choice-based definition.
+@isnad1 id=eq.1h6v.s7.951322141832 from=translated src=- shape=7191848e vocab=9fffdb2a
+-/
 theorem MinimalFiniteRankProjectiveResolution.hookBettiMultiset_eq_tagMultiset
     (M : PModule.{u,0,u} k (Fin n → ℝ))
     (hM : GradedFree.FinitelyPresented.{u,0,0} (R := k) (P := Fin n → ℝ) M)
@@ -206,7 +217,9 @@ theorem MinimalFiniteRankProjectiveResolution.hookBettiMultiset_eq_tagMultiset
 
 /-- Degreewise hook multiplicities do not depend on the chosen minimal finite
 resolution. This combines zero-padded term isomorphism with finite hook-sum
-multiplicity uniqueness.-/
+multiplicity uniqueness.
+@isnad1 id=eq.1h6v.s6.e7942fc7a3ad from=translated src=- shape=0b218ff5 vocab=91819715
+-/
 theorem MinimalFiniteRankProjectiveResolution.hookBettiMultiset_eq
     (M : PModule.{u,0,u} k (Fin n → ℝ))
     (hM : GradedFree.FinitelyPresented.{u,0,0} (R := k) (P := Fin n → ℝ) M)
@@ -223,7 +236,9 @@ theorem MinimalFiniteRankProjectiveResolution.hookBettiMultiset_eq
 
 /-- A zero-padded term beyond the actual resolution length has the empty hook
 multiset. This makes the finite parity sums independent of raw resolution
-length.-/
+length.
+@isnad1 id=eq.2h5v.s7.9b23a500f67b from=translated src=- shape=1f21eadf vocab=3f1e0afe
+-/
 theorem MinimalFiniteRankProjectiveResolution.hookBettiMultiset_eq_zero_of_length_le
     (M : PModule.{u,0,u} k (Fin n → ℝ))
     (hM : GradedFree.FinitelyPresented.{u,0,0} (R := k) (P := Fin n → ℝ) M)
@@ -251,7 +266,9 @@ theorem MinimalFiniteRankProjectiveResolution.hookBettiMultiset_eq_zero_of_lengt
     hookTagMultiset, P, Q] using h
 
 /-- Any is-zero resolution term has no hook occurrences, including terms
-vanishing because the module is already projective.-/
+vanishing because the module is already projective.
+@isnad1 id=eq.2h5v.s7.b22e9ab2ff52 from=translated src=- shape=fa8f92ea vocab=26bd86b6
+-/
 theorem MinimalFiniteRankProjectiveResolution.hookBettiMultiset_eq_zero_of_term_isZero
     (M : PModule.{u,0,u} k (Fin n → ℝ))
     (hM : GradedFree.FinitelyPresented.{u,0,0} (R := k) (P := Fin n → ℝ) M)
@@ -305,7 +322,9 @@ noncomputable def MinimalFiniteRankProjectiveResolution.oddHookBetti
     R.hookBettiMultiset (k := k) (n := n) M hM j
 
 /-- The even-degree hook sum is independent of the chosen minimal resolution,
-including when their raw lengths differ.-/
+including when their raw lengths differ.
+@isnad1 id=eq.1h5v.s6.16e4cfe624c2 from=translated src=- shape=c7ab4b50 vocab=be273c94
+-/
 theorem MinimalFiniteRankProjectiveResolution.evenHookBetti_eq
     (M : PModule.{u,0,u} k (Fin n → ℝ))
     (hM : GradedFree.FinitelyPresented.{u,0,0} (R := k) (P := Fin n → ℝ) M)
@@ -350,7 +369,9 @@ theorem MinimalFiniteRankProjectiveResolution.evenHookBetti_eq
   exact R.hookBettiMultiset_eq M hM S j
 
 /-- The odd-degree hook sum is independent of the chosen minimal resolution,
-including when their raw lengths differ.-/
+including when their raw lengths differ.
+@isnad1 id=eq.1h5v.s6.17d43a61ba7f from=translated src=- shape=c7ab4b50 vocab=a8aaa94e
+-/
 theorem MinimalFiniteRankProjectiveResolution.oddHookBetti_eq
     (M : PModule.{u,0,u} k (Fin n → ℝ))
     (hM : GradedFree.FinitelyPresented.{u,0,0} (R := k) (P := Fin n → ℝ) M)
@@ -410,7 +431,9 @@ noncomputable def MinimalFiniteRankProjectiveResolution.signedHookBarcode
     R.oddHookBetti (k := k) (n := n) M hM⟩
 
 /-- The signed hook barcode of a finitely presented module is independent of
-the chosen certified minimal finite rank-projective resolution.-/
+the chosen certified minimal finite rank-projective resolution.
+@isnad1 id=eq.1h5v.s6.326d896aada2 from=translated src=- shape=a7c6211b vocab=d2f8cb47
+-/
 theorem MinimalFiniteRankProjectiveResolution.signedHookBarcode_eq
     (M : PModule.{u,0,u} k (Fin n → ℝ))
     (hM : GradedFree.FinitelyPresented.{u,0,0} (R := k) (P := Fin n → ℝ) M)

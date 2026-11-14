@@ -54,7 +54,9 @@ private theorem reverse_boxes (p : ℝ × ℝ) (r : ℝ)
     fin_cases j <;> fin_cases j' <;> norm_num [f, Fin.ext_iff] at *
 
 /-- Repeated source occurrences can move by a nonzero amount while an extra short
-interval is left for the diagonal. Both box bounds are verified directly.-/
+interval is left for the diagonal. Both box bounds are verified directly.
+@isnad1 id=ex.0h0v.s7.220d2ed36b98 from=translated src=- shape=7b058343 vocab=78e514f0
+-/
 theorem duplicated_shift_with_short_target :
     ∃ M : OccurrenceMatching (Fin 2) (Fin 3) PEmpty.{1} PEmpty.{1},
       (∀ i, ∃ j, M.finite i = some j) ∧

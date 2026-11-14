@@ -34,7 +34,9 @@ private theorem unitBars_coordinates (n : ℕ) (q : (unitBars n).finiteOccurrenc
   have h := Multiset.coe_mem (x := q)
   exact Multiset.eq_of_mem_replicate (by simpa only [unitBars_finitePart] using h)
 
-/-- Every retained finite occurrence has strictly positive lifetime.-/
+/-- Every retained finite occurrence has strictly positive lifetime.
+@isnad1 id=ispositi.0h1v.s2.210344d8c040 from=translated src=- shape=1a6c1393 vocab=a5757951
+-/
 theorem unitBars_positive (n : ℕ) : (unitBars n).IsPositive := by
   apply (orderedQ_isPositive_iff _ _ _).mpr
   intro i
@@ -43,6 +45,9 @@ theorem unitBars_positive (n : ℕ) : (unitBars n).IsPositive := by
 private instance empty_occurrences : IsEmpty (unitBars 0).finiteOccurrences :=
   Fintype.card_eq_zero_iff.mp (unitBars_card 0)
 
+/--
+@isnad1 id=eq.0h0v.s5.d0aa81c74459 from=translated src=- shape=c5cc0ad7 vocab=289563b6
+-/
 theorem empty_occurrence_count :
     Fintype.card (unitBars 0).finiteOccurrences +
       Fintype.card (unitBars 0).finiteOccurrences = 0 := by
@@ -70,7 +75,9 @@ private theorem unitBars_bottleneck_empty (n : ℕ) (hn : 0 < n) :
   norm_num [diagonalCost]
   exact Finset.sup_const Finset.univ_nonempty 1
 
-/-- Empty finite occurrence families exercise the zero-cardinality branch.-/
+/-- Empty finite occurrence families exercise the zero-cardinality branch.
+@isnad1 id=eventual.0h0v.s8.a804885b4f3d from=translated src=- shape=a128cb86 vocab=194e6999
+-/
 theorem empty_costs_eventually_zero :
     (∀ᶠ p : ℝ in atTop,
       finitePMatchingCost p (fun q : (unitBars 0).finiteOccurrences => q.1)
@@ -80,9 +87,15 @@ theorem empty_costs_eventually_zero :
   filter_upwards [eventually_ge_atTop (1 : ℝ)] with p hp
   exact ⟨finitePMatchingCost_empty hp _ _, finitePBoundaryTransportCost_empty hp _ _⟩
 
+/--
+@isnad1 id=eq.0h0v.s4.b65faeefc3df from=translated src=- shape=de7997e1 vocab=5d20493e
+-/
 theorem empty_bottleneck_zero : bottleneck (unitBars 0) (unitBars 0) = 0 :=
   bottleneck_empty_empty
 
+/--
+@isnad1 id=and.0h0v.s8.58eb34dfa705 from=translated src=- shape=c20fe6eb vocab=eca2ac06
+-/
 theorem empty_costs_tendsto_zero :
     Tendsto (fun p : ℝ => finitePMatchingCost p
       (fun q : (unitBars 0).finiteOccurrences => q.1)
@@ -98,7 +111,9 @@ theorem empty_costs_tendsto_zero :
       finitePBoundaryTransportCost_tendsto_bottleneck _ _ (unitBars_essentialPart 0)
         (unitBars_essentialPart 0)
 
-/-- One unit-height bar has matching and real-plan distance one from empty.-/
+/-- One unit-height bar has matching and real-plan distance one from empty.
+@isnad1 id=and.1h1v.s8.36fccddf1337 from=translated src=- shape=e595f544 vocab=49380f47
+-/
 theorem singleton_empty_costs {p : ℝ} (_hp : 1 ≤ p) :
     finitePMatchingCost p (fun q : (unitBars 1).finiteOccurrences => q.1)
         (fun q : (unitBars 0).finiteOccurrences => q.1) = 1 ∧
@@ -107,10 +122,15 @@ theorem singleton_empty_costs {p : ℝ} (_hp : 1 ≤ p) :
   simp only [finitePBoundaryTransportCost_eq_matchingCost, unitBars_to_empty,
     Nat.cast_one, Real.one_rpow, and_self]
 
+/--
+@isnad1 id=eq.0h0v.s4.56f08aecbc95 from=translated src=- shape=de7997e1 vocab=5d20493e
+-/
 theorem singleton_empty_bottleneck : bottleneck (unitBars 1) (unitBars 0) = 1 :=
   unitBars_bottleneck_empty 1 (by norm_num)
 
-/-- Both copies contribute separately to the unnormalized powered sum.-/
+/-- Both copies contribute separately to the unnormalized powered sum.
+@isnad1 id=and.0h1v.s8.ec870f918c03 from=translated src=- shape=14813f93 vocab=8d1b0831
+-/
 theorem duplicate_empty_costs (p : ℝ) :
     finitePMatchingCost p (fun q : (unitBars 2).finiteOccurrences => q.1)
         (fun q : (unitBars 0).finiteOccurrences => q.1) = (2 : ℝ) ^ p⁻¹ ∧
@@ -119,19 +139,31 @@ theorem duplicate_empty_costs (p : ℝ) :
   simp only [finitePBoundaryTransportCost_eq_matchingCost, unitBars_to_empty,
     Nat.cast_ofNat, and_self]
 
+/--
+@isnad1 id=eq.0h0v.s7.d52cf498121e from=translated src=- shape=86674726 vocab=11abb8d6
+-/
 theorem duplicate_empty_first_order :
     finitePMatchingCost 1 (fun q : (unitBars 2).finiteOccurrences => q.1)
       (fun q : (unitBars 0).finiteOccurrences => q.1) = 2 := by
   simpa using (duplicate_empty_costs 1).1
 
+/--
+@isnad1 id=eq.0h0v.s7.f783b517b6ec from=translated src=- shape=99f4e592 vocab=044c6c71
+-/
 theorem duplicate_empty_three_halves :
     finitePMatchingCost ((3 : ℝ) / 2) (fun q : (unitBars 2).finiteOccurrences => q.1)
       (fun q : (unitBars 0).finiteOccurrences => q.1) = (2 : ℝ) ^ ((2 : ℝ) / 3) := by
   simpa using (duplicate_empty_costs ((3 : ℝ) / 2)).1
 
+/--
+@isnad1 id=eq.0h0v.s4.56272d0fb4a7 from=translated src=- shape=de7997e1 vocab=5d20493e
+-/
 theorem duplicate_empty_bottleneck : bottleneck (unitBars 2) (unitBars 0) = 1 :=
   unitBars_bottleneck_empty 2 (by norm_num)
 
+/--
+@isnad1 id=and.0h0v.s8.86d42cebf257 from=translated src=- shape=c20fe6eb vocab=eca2ac06
+-/
 theorem duplicate_empty_costs_tendsto_one :
     Tendsto (fun p : ℝ => finitePMatchingCost p
       (fun q : (unitBars 2).finiteOccurrences => q.1)
@@ -154,10 +186,15 @@ private def pairAndDelete : OccurrenceMatching (Fin 2) (Fin 1) PEmpty.{1} PEmpty
     fin_cases i <;> fin_cases i' <;> simp_all
   essential := Equiv.refl _
 
+/--
+@isnad1 id=eq.0h0v.s4.8aa07693900e from=translated src=- shape=de7997e1 vocab=5d20493e
+-/
 theorem duplicate_singleton_bottleneck : bottleneck (unitBars 2) (unitBars 1) = 1 :=
   bottleneck_repeated_pair_detected
 
-/-- Pair one occurrence and delete the other, then compare with the full bottleneck.-/
+/-- Pair one occurrence and delete the other, then compare with the full bottleneck.
+@isnad1 id=and.1h1v.s8.d4a828d4c3e0 from=translated src=- shape=e595f544 vocab=49380f47
+-/
 theorem duplicate_singleton_costs {p : ℝ} (hp : 1 ≤ p) :
     finitePMatchingCost p (fun q : (unitBars 2).finiteOccurrences => q.1)
         (fun q : (unitBars 1).finiteOccurrences => q.1) = 1 ∧
@@ -185,6 +222,9 @@ theorem duplicate_singleton_costs {p : ℝ} (hp : 1 ≤ p) :
   have heq := le_antisymm hu hl
   exact ⟨heq, by rw [finitePBoundaryTransportCost_eq_matchingCost]; exact heq⟩
 
+/--
+@isnad1 id=and.0h0v.s8.2ce50d0129bf from=translated src=- shape=c20fe6eb vocab=eca2ac06
+-/
 theorem duplicate_singleton_costs_tendsto_one :
     Tendsto (fun p : ℝ => finitePMatchingCost p
       (fun q : (unitBars 2).finiteOccurrences => q.1)
@@ -203,11 +243,17 @@ theorem duplicate_singleton_costs_tendsto_one :
 /-- A diagram consisting of one essential birth.-/
 def essentialBirth (b : ℝ) : Diagram ℝ := orderedQ 0 1 (Fin.elim0, fun _ => b)
 
+/--
+@isnad1 id=ispositi.0h1v.s2.326114c31e9d from=translated src=- shape=6da4ece3 vocab=f162b08b
+-/
 theorem essentialBirth_positive (b : ℝ) : (essentialBirth b).IsPositive := by
   apply (orderedQ_isPositive_iff _ _ _).mpr
   intro i
   exact Fin.elim0 i
 
+/--
+@isnad1 id=and.1h1v.s7.81298fa91090 from=translated src=- shape=3b8dc6f5 vocab=661cbd9d
+-/
 theorem essential_births_zero_one {p : ℝ} (hp : 1 ≤ p) :
     finitePMatchingCost p (fun q : (essentialBirth 0).finiteOccurrences => q.1)
         (fun q : (essentialBirth 1).finiteOccurrences => q.1) = 0 ∧

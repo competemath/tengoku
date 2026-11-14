@@ -46,7 +46,9 @@ private theorem forward_coefficient (a : ℝ) :
     norm_num [Rectangle.support, BoundedInterval.support, closedBar, translation_apply]
 
 /-- A bar of width two overlaps its twice-shifted copy at just its lower
-endpoint; this certifies the critical support geometry of the next example.-/
+endpoint; this certifies the critical support geometry of the next example.
+@isnad1 id=eq.0h1v.s8.edf49024602f from=translated src=- shape=81efd829 vocab=320e6e55
+-/
 theorem closed_double_overlap (a : ℝ) :
     {p : Fin 1 → ℝ | p ∈ (closedBar a).support ∧
       translation 2 p ∈ (closedBar a).support} = {fun _ => a} := by
@@ -68,7 +70,9 @@ theorem closed_double_overlap (a : ℝ) :
       norm_num [Rectangle.support, BoundedInterval.support, closedBar, translation_apply]
 
 /-- The twice-shifted overlap is a single closed endpoint. The composition
-law still gives one, so the path is nonzero at the critical significance bound.-/
+law still gives one, so the path is nonzero at the critical significance bound.
+@isnad1 id=eq.0h1v.s11.bb46f810c3ed from=translated src=- shape=aa8d3466 vocab=5812e88a
+-/
 theorem closed_boundary_composite (a : ℝ) :
     shiftedCoefficient (closedBar a) (closedBar a) (1 + 1)
       (forward a ≫ (shift 1).map (forward a) ≫
@@ -89,7 +93,9 @@ private def halfOpenBar : Rectangle 1 := fun _ =>
   { lower := 0, upper := 2, lowerClosed := true, upperClosed := false
     nonempty := Or.inl (by norm_num) }
 
-/-- Excluding the final endpoint kills the transition at exactly the width.-/
+/-- Excluding the final endpoint kills the transition at exactly the width.
+@isnad1 id=not.0h0v.s4.e10eff4dd8c8 from=translated src=- shape=f2524f98 vocab=2a9962fe
+-/
 theorem halfOpen_dies_at_width : ¬ Significant 2 halfOpenBar := by
   rintro ⟨p, hp, hp'⟩
   have h := hp 0
@@ -100,7 +106,9 @@ theorem halfOpen_dies_at_width : ¬ Significant 2 halfOpenBar := by
     (rcases h'.2 with h' | ⟨_, h'⟩ <;> simp_all <;> linarith)
 
 /-- Two equal occurrences still require two target occurrences at positive
-width; the proof consumes the actual family interleaving.-/
+width; the proof consumes the actual family interleaving.
+@isnad1 id=le.0h0v.s5.77b29de1158b from=translated src=- shape=7d8fef40 vocab=fac80695
+-/
 theorem repeated_occurrences :
     2 ≤ (neighbors (k := ℚ)
       (fun _ : Bool => closedBar 0) (fun _ : Bool => closedBar 0)
@@ -116,7 +124,9 @@ private def closedSquare : Rectangle 2 := fun _ =>
     nonempty := Or.inl (by norm_num) }
 
 /-- The two-coordinate coefficient is three; closed squares of width six
-remain significant at its doubled threshold.-/
+remain significant at its doubled threshold.
+@isnad1 id=le.0h0v.s5.39b2f80d6509 from=translated src=- shape=df013eb5 vocab=c09f4a63
+-/
 theorem two_parameter_occurrences :
     2 ≤ (neighbors (k := ℚ)
       (fun _ : Bool => closedSquare) (fun _ : Bool => closedSquare)
@@ -135,7 +145,9 @@ private def closedPoint : Rectangle 1 := fun _ =>
   { lower := 0, upper := 0, lowerClosed := true, upperClosed := true
     nonempty := Or.inr ⟨rfl, rfl, rfl⟩ }
 
-/-- Closed singletons survive at zero and count as significant occurrences.-/
+/-- Closed singletons survive at zero and count as significant occurrences.
+@isnad1 id=le.0h0v.s5.7a15f7ab28d7 from=translated src=- shape=2dd293e7 vocab=fb1508ce
+-/
 theorem zero_parameter_singleton :
     1 ≤ (neighbors (k := ℚ)
       (fun _ : Unit => closedPoint) (fun _ : Unit => closedPoint)
@@ -149,7 +161,9 @@ theorem zero_parameter_singleton :
     (fun i hi => by simpa [stabilityRadius] using hp)
   exact h
 
-/-- Both empty family indices are accepted by the same matrix argument.-/
+/-- Both empty family indices are accepted by the same matrix argument.
+@isnad1 id=le.0h1v.s6.6098abf13c04 from=translated src=- shape=eeefccf5 vocab=fd657220
+-/
 theorem empty_families (ε : ℝ≥0) :
     (Finset.univ : Finset (Fin 0)).card ≤
       (neighbors (n := 1) (k := ℚ) (fun i : Fin 0 => i.elim0)
@@ -158,7 +172,9 @@ theorem empty_families (ε : ℝ≥0) :
     (fun i : Fin 0 => i.elim0) (fun i : Fin 0 => i.elim0) ε
     (CoordinateInterleaving.refl ε _) Finset.univ (fun i _ => i.elim0)
 
-/-- An empty selection uses the same public Hall theorem.-/
+/-- An empty selection uses the same public Hall theorem.
+@isnad1 id=le.0h1v.s5.5c770d3059ea from=translated src=- shape=01588fa9 vocab=99e8af92
+-/
 theorem empty_selection (ε : ℝ≥0) :
     0 ≤ (neighbors (k := ℚ) (fun _ : Bool => closedBar 0)
       (fun _ : Bool => closedBar 0) ∅ (stabilityRadius 1 ε)).card := by

@@ -21,7 +21,9 @@ noncomputable section
 
 local instance (α : Type*) : DecidableEq α := Classical.decEq α
 
-/-- A refinement can collapse the edge from two duplicate members to one vertex.-/
+/-- A refinement can collapse the edge from two duplicate members to one vertex.
+@isnad1 id=and.0h0v.s6.7229fe04854e from=translated src=- shape=51d3e6a9 vocab=d9c5471e
+-/
 theorem duplicate_edge_maps_to_singleton :
     ({false, true} : Finset Bool).image
           (nerveMap ProbeFixtures.mergeDuplicated : Bool → Unit) =
@@ -43,7 +45,9 @@ theorem duplicate_edge_maps_to_singleton :
 
 private def swapEquiv : Fin 2 ≃ Fin 2 := Equiv.swap 0 1
 
-/-- A nontrivial relabelling and its inverse induce inverse vertex maps.-/
+/-- A nontrivial relabelling and its inverse induce inverse vertex maps.
+@isnad1 id=and.0h0v.s10.e33fc9f265e3 from=translated src=- shape=3b96e447 vocab=59c050ec
+-/
 theorem permutation_reindex_inverse_fixture :
     swapEquiv 0 = 1 ∧
       VertexMap.comp
@@ -73,7 +77,9 @@ private def secondRefinement : Refinement secondFamily thirdFamily :=
   { selector := fun _ => 0
     subset := by simp [secondFamily, thirdFamily] }
 
-/-- Two nonidentity composable refinements have the asserted direct selector.-/
+/-- Two nonidentity composable refinements have the asserted direct selector.
+@isnad1 id=and.0h0v.s8.3b8bf104f686 from=translated src=- shape=351ea6c3 vocab=6b159483
+-/
 theorem composable_refinements_have_direct_composite :
     firstRefinement.selector 0 = 1 ∧
       secondRefinement.selector 0 = 0 ∧

@@ -115,14 +115,18 @@ noncomputable def interleaving (c d : Bool) (ε : ℝ≥0) (hε : 0 < ε) :
     exact (structureMap_val d heq.le _).trans
       (structureMap_val d (le_add_of_nonneg_right (ε + ε).coe_nonneg) x).symm
 
-/-- Closing or opening the birth endpoint does not change interleaving distance.-/
+/-- Closing or opening the birth endpoint does not change interleaving distance.
+@isnad1 id=eq.0h3v.s5.b54f217ae177 from=translated src=- shape=698de3c5 vocab=cc5085a5
+-/
 theorem distance_eq_zero (c d : Bool) :
     realInterleavingDistance (module (k := k) c) (module d) = 0 := by
   apply realInterleavingDistance_eq_zero_iff.mpr
   intro ε hε
   exact ⟨interleaving c d ε hε⟩
 
-/-- The closed and open rays are distinguished by the fiber at their birth.-/
+/-- The closed and open rays are distinguished by the fiber at their birth.
+@isnad1 id=not.0h1v.s5.133a0d740632 from=translated src=- shape=6c6b213d vocab=6df7f92b
+-/
 theorem not_nonempty_iso : ¬ Nonempty (module (k := k) true ≅ module false) := by
   rintro ⟨e⟩
   let x : (module (k := k) true).obj 0 :=
@@ -138,7 +142,9 @@ theorem not_nonempty_iso : ¬ Nonempty (module (k := k) true ≅ module false) :
   have h := congrArg (fun y : (module (k := k) true).obj 0 => (y : k)) hx0
   exact one_ne_zero h
 
-/-- The zero distance of the two rays is not attained by a zero-interleaving.-/
+/-- The zero distance of the two rays is not attained by a zero-interleaving.
+@isnad1 id=not.0h1v.s4.4919cebf339f from=translated src=- shape=b808fa64 vocab=54ae55d8
+-/
 theorem not_nonempty_zero_interleaving :
     ¬ Nonempty (RealInterleaving 0 (module (k := k) true) (module false)) := by
   rintro ⟨i⟩

@@ -37,7 +37,9 @@ namespace TDA.Persistence.Reduction
 
 variable {m : ℕ} {k : Type*} [Field k] [DecidableEq k]
 
-/-- A matrix that does not mix grades preserves every homogeneous vector.-/
+/-- A matrix that does not mix grades preserves every homogeneous vector.
+@isnad1 id=homogene.2h6v.s6.3c2b8d25a059 from=translated src=- shape=bc5fe566 vocab=61ca7098
+-/
 theorem grade_preserving_mulVec (degree : Fin m → ℕ)
     (A : Matrix (Fin m) (Fin m) k)
     (hA : ∀ r i, degree r ≠ degree i → A r i = 0)
@@ -52,6 +54,9 @@ theorem grade_preserving_mulVec (degree : Fin m → ℕ)
     simp [hA r i hri]
   · simp [hx i hi]
 
+/--
+@isnad1 id=eq.2h5v.s7.724234305b21 from=translated src=- shape=873c508f vocab=11b589ee
+-/
 theorem normalMatrix_mulVec_inv (R V : Matrix (Fin m) (Fin m) k)
     (hV : V.IsUpperTriangular) (hdiag : ∀ i, V i i = 1)
     (x : Fin m → k) :
@@ -59,6 +64,9 @@ theorem normalMatrix_mulVec_inv (R V : Matrix (Fin m) (Fin m) k)
   rw [Matrix.mulVec_mulVec, normalMatrix_mul_inv R V hV hdiag]
   simp
 
+/--
+@isnad1 id=eq.2h5v.s7.bfe780059d8e from=translated src=- shape=eb848b36 vocab=11b589ee
+-/
 theorem normalMatrix_inv_mulVec (R V : Matrix (Fin m) (Fin m) k)
     (hV : V.IsUpperTriangular) (hdiag : ∀ i, V i i = 1)
     (x : Fin m → k) :
@@ -66,6 +74,9 @@ theorem normalMatrix_inv_mulVec (R V : Matrix (Fin m) (Fin m) k)
   rw [Matrix.mulVec_mulVec, normalMatrix_inv_mul R V hV hdiag]
   simp
 
+/--
+@isnad1 id=eq.4h8v.s8.7662b9a18c24 from=translated src=- shape=45836487 vocab=acea4572
+-/
 theorem normalMatrix_boundary_mulVec (degree : Fin m → ℕ)
     (D R V W : Matrix (Fin m) (Fin m) k)
     (hD2 : D * D = 0) (hR : R = D * V)
@@ -86,6 +97,9 @@ def OriginalBoundary (degree : Fin m → ℕ)
   ∃ y : Fin m → k, PrefixSupported t y ∧ Homogeneous degree (p + 1) y ∧
     D.mulVec y = x
 
+/--
+@isnad1 id=iff.5h10v.s8.d45f827fdbdb from=translated src=- shape=425e2d35 vocab=7f493b48
+-/
 theorem normalCycle_iff_originalCycle (degree : Fin m → ℕ)
     (D R V W : Matrix (Fin m) (Fin m) k)
     (hD2 : D * D = 0) (hR : R = D * V)
@@ -121,6 +135,9 @@ theorem normalCycle_iff_originalCycle (degree : Fin m → ℕ)
     rw [normalMatrix_inv_mulVec R V hcert.upper hcert.diag] at hz'
     simpa using hz'
 
+/--
+@isnad1 id=iff.5h10v.s8.ea9637839302 from=translated src=- shape=425e2d35 vocab=4a221172
+-/
 theorem normalBoundary_iff_originalBoundary (degree : Fin m → ℕ)
     (D R V W : Matrix (Fin m) (Fin m) k)
     (hD2 : D * D = 0) (hR : R = D * V)
@@ -236,6 +253,9 @@ abbrev originalHomology (degree : Fin m → ℕ)
   (originalCycleSpace degree D p t) ⧸
     LinearMap.ker (originalLiveMap degree D R V W hD2 hR hcert hRdegree hpiv p t)
 
+/--
+@isnad1 id=surjecti.5h9v.s11.37c05dada85a from=translated src=- shape=47a237b5 vocab=721449aa
+-/
 theorem originalLiveMap_surjective (degree : Fin m → ℕ)
     (D R V W : Matrix (Fin m) (Fin m) k)
     (hD2 : D * D = 0) (hR : R = D * V)
@@ -260,6 +280,9 @@ noncomputable def originalHomologyEquivAlive (degree : Fin m → ℕ)
   (originalLiveMap degree D R V W hD2 hR hcert hRdegree hpiv p t).quotKerEquivOfSurjective
     (originalLiveMap_surjective degree D R V W hD2 hR hcert hRdegree hpiv p t)
 
+/--
+@isnad1 id=iff.5h10v.s11.bc8590397b15 from=translated src=- shape=cd2c270b vocab=9dcb0ced
+-/
 theorem originalHomology_kernel_eq_boundaries (degree : Fin m → ℕ)
     (D R V W : Matrix (Fin m) (Fin m) k)
     (hD2 : D * D = 0) (hR : R = D * V)
@@ -295,6 +318,9 @@ noncomputable def originalHomologyMap (degree : Fin m → ℕ)
     ((aliveSpaceMap degree R p s t).comp
       (originalHomologyEquivAlive degree D R V W hD2 hR hcert hRdegree hpiv p s).toLinearMap)
 
+/--
+@isnad1 id=eq.5h11v.s14.89f6e2937108 from=translated src=- shape=2bd0a271 vocab=c2a00175
+-/
 theorem originalHomologyMap_transport (degree : Fin m → ℕ)
     (D R V W : Matrix (Fin m) (Fin m) k)
     (hD2 : D * D = 0) (hR : R = D * V)
@@ -309,7 +335,9 @@ theorem originalHomologyMap_transport (degree : Fin m → ℕ)
   simp [originalHomologyMap]
 
 /-- On a class represented by an original `D`-cycle, the transition takes
-the same chain into the later prefix and projects its normal coordinates.-/
+the same chain into the later prefix and projects its normal coordinates.
+@isnad1 id=eq.6h11v.s14.1d6f3a5d078e from=translated src=- shape=3e2135ae vocab=7265d3a8
+-/
 theorem originalHomologyMap_mk (degree : Fin m → ℕ)
     (D R V W : Matrix (Fin m) (Fin m) k)
     (hD2 : D * D = 0) (hR : R = D * V)
@@ -364,7 +392,9 @@ noncomputable def originalHomologyMap_rangeEquiv (degree : Fin m → ℕ)
 
 /-- Simultaneous prefix-homology rank formula for the original differential.
 The rank counts deaths `j` with pivot `i(j)<s` and `t≤j`, plus essential
-births `i<s`, in degree `p`.-/
+births `i<s`, in degree `p`.
+@isnad1 id=eq.7h10v.s14.069d35841b55 from=translated src=- shape=b31acd68 vocab=5425b738
+-/
 theorem originalHomologyMap_rank_formula (degree : Fin m → ℕ)
     (D R V W : Matrix (Fin m) (Fin m) k)
     (hD2 : D * D = 0) (hR : R = D * V)
@@ -379,7 +409,9 @@ theorem originalHomologyMap_rank_formula (degree : Fin m → ℕ)
   exact aliveSpaceMap_rank_formula degree R hpiv p s t hst
 
 /-- The concrete reducer supplies the whole input to the original-boundary
-interval rank formula; no normal form is assumed.-/
+interval rank formula; no normal form is assumed.
+@isnad1 id=other.5h7v.s14.a968c31081de from=translated src=- shape=14d5c04f vocab=bb10079f
+-/
 theorem matrixReductionTrace_originalHomologyMap_rank_formula
     (degree : Fin m → ℕ) (D : Matrix (Fin m) (Fin m) k)
     (hD2 : D * D = 0) (hstrict : StrictBoundary D)
@@ -403,6 +435,9 @@ theorem matrixReductionTrace_originalHomologyMap_rank_formula
   exact originalHomologyMap_rank_formula degree D _ _ _ hD2 h.1 h.2.1
     h.2.2.1 h.2.2.2.2.1 p s t hst ht
 
+/--
+@isnad1 id=eq.5h9v.s12.a7db672d5815 from=translated src=- shape=9bf8101e vocab=ed56f2c7
+-/
 theorem originalHomologyMap_id (degree : Fin m → ℕ)
     (D R V W : Matrix (Fin m) (Fin m) k)
     (hD2 : D * D = 0) (hR : R = D * V)
@@ -417,6 +452,9 @@ theorem originalHomologyMap_id (degree : Fin m → ℕ)
   rw [originalHomologyMap_transport, LinearMap.id_apply,
     aliveSpaceMap_id, LinearMap.id_apply]
 
+/--
+@isnad1 id=eq.7h11v.s13.e7b3b68dc51c from=translated src=- shape=f644cfdf vocab=328675b0
+-/
 theorem originalHomologyMap_comp (degree : Fin m → ℕ)
     (D R V W : Matrix (Fin m) (Fin m) k)
     (hD2 : D * D = 0) (hR : R = D * V)

@@ -36,7 +36,9 @@ noncomputable def mapOfComponents {ι κ : Type} [Fintype ι] [Fintype κ]
     module (k := k) R ⟶ (shift ε).obj (module S) :=
   ∑ i, ∑ j, projection R i ≫ f i j ≫ (shift ε).map (inclusion S j)
 
-/-- Reading a component of the assembled matrix returns the supplied map.-/
+/-- Reading a component of the assembled matrix returns the supplied map.
+@isnad1 id=eq.0h10v.s9.952377a275b4 from=translated src=- shape=db2f869e vocab=8f3ff4a3
+-/
 theorem component_mapOfComponents {ι κ : Type} [Fintype ι] [Fintype κ]
     (R : ι → Rectangle n) (S : κ → Rectangle n) (ε : ℝ≥0)
     (f : ∀ i j, (R i).module (k := k) ⟶ (shift ε).obj (S j).module)
@@ -59,7 +61,9 @@ theorem component_mapOfComponents {ι κ : Type} [Fintype ι] [Fintype κ]
       zero_comp, Finset.sum_const_zero]
   · simp
 
-/-- The occurrence matrix determines the original family map.-/
+/-- The occurrence matrix determines the original family map.
+@isnad1 id=eq.0h8v.s9.269d8577372f from=translated src=- shape=5ab162c1 vocab=5ef3eaa7
+-/
 theorem mapOfComponents_component {ι κ : Type} [Fintype ι] [Fintype κ]
     (R : ι → Rectangle n) (S : κ → Rectangle n) (ε : ℝ≥0)
     (f : module (k := k) R ⟶ (shift ε).obj (module S)) :
@@ -75,7 +79,9 @@ theorem mapOfComponents_component {ι κ : Type} [Fintype ι] [Fintype κ]
         ← Preadditive.sum_comp, Category.id_comp]
       simp
 
-/-- Equality of every shifted occurrence component implies equality of maps.-/
+/-- Equality of every shifted occurrence component implies equality of maps.
+@isnad1 id=eq.1h9v.s10.6f7d82a6f793 from=translated src=- shape=91977b13 vocab=6e9dd055
+-/
 theorem component_ext {ι κ : Type} [Fintype ι] [Fintype κ]
     (R : ι → Rectangle n) (S : κ → Rectangle n) (ε : ℝ≥0)
     {f g : module (k := k) R ⟶ (shift ε).obj (module S)}
@@ -85,7 +91,9 @@ theorem component_ext {ι κ : Type} [Fintype ι] [Fintype κ]
   funext i j
   exact h i j
 
-/-- A family composite expands into the finite sum of its shifted component paths.-/
+/-- A family composite expands into the finite sum of its shifted component paths.
+@isnad1 id=eq.0h13v.s12.a3407085356b from=translated src=- shape=77aee7f4 vocab=bfd8265a
+-/
 theorem component_composite_shift {ι κ ν : Type}
     [Fintype ι] [Fintype κ] [Fintype ν]
     (R : ι → Rectangle n) (S : κ → Rectangle n) (T : ν → Rectangle n) (ε : ℝ≥0)
@@ -98,7 +106,9 @@ theorem component_composite_shift {ι κ ν : Type}
   simp only [component, Category.assoc]
   rw [compIso_naturality ε ε (projection (k := k) T l)]
 
-/-- The diagonal transition component is the original rectangle transition.-/
+/-- The diagonal transition component is the original rectangle transition.
+@isnad1 id=eq.0h6v.s8.f5a027db8dfd from=translated src=- shape=f6eca18f vocab=a73d6251
+-/
 theorem component_transition_self {ι : Type} [Fintype ι]
     (R : ι → Rectangle n) (ε : ℝ≥0) (i : ι) :
     component R R ε (transition ε (module (k := k) R)) i i =
@@ -108,7 +118,9 @@ theorem component_transition_self {ι : Type} [Fintype ι]
   simp only [Category.assoc, ← Functor.map_comp, inclusion_projection_self]
   simp
 
-/-- Different occurrence indices have zero transition components.-/
+/-- Different occurrence indices have zero transition components.
+@isnad1 id=eq.1h7v.s9.79d568b87747 from=translated src=- shape=8be42228 vocab=a73d6251
+-/
 theorem component_transition_ne {ι : Type} [Fintype ι]
     (R : ι → Rectangle n) (ε : ℝ≥0) {i l : ι} (h : i ≠ l) :
     component R R ε (transition ε (module (k := k) R)) i l = 0 := by
@@ -225,7 +237,9 @@ noncomputable def IsMatching.interleaving {ι κ : Type} [Fintype ι] [Fintype �
     simpa only [RectangleHall.significant_iff_transition_ne_zero (k := k), not_not] using h
 
 /-- Each matched edge of the assembled maps comes from the same actual
-interleaving of its two rectangle summands.-/
+interleaving of its two rectangle summands.
+@isnad1 id=ex.2h10v.s9.914e85b96f6f from=translated src=- shape=67b422cd vocab=5039f857
+-/
 theorem IsMatching.interleaving_components {ι κ : Type} [Fintype ι] [Fintype κ]
     {R : ι → Rectangle n} {S : κ → Rectangle n} {ε : ℝ≥0}
     {M : OccurrenceMatching ι κ PEmpty.{1} PEmpty.{1}}
@@ -238,7 +252,9 @@ theorem IsMatching.interleaving_components {ι κ : Type} [Fintype ι] [Fintype 
   · have hr := (M.reverse_finite_some_iff j i).mpr h
     simp [IsMatching.interleaving, selectedInterleaving, component_mapOfComponents, entry, hr]
 
-/-- A forward component outside the matching graph is zero.-/
+/-- A forward component outside the matching graph is zero.
+@isnad1 id=eq.2h10v.s9.74430ae52895 from=translated src=- shape=728f9ea9 vocab=7965e892
+-/
 theorem IsMatching.interleaving_component_zero {ι κ : Type} [Fintype ι] [Fintype κ]
     {R : ι → Rectangle n} {S : κ → Rectangle n} {ε : ℝ≥0}
     {M : OccurrenceMatching ι κ PEmpty.{1} PEmpty.{1}}
@@ -246,7 +262,9 @@ theorem IsMatching.interleaving_component_zero {ι κ : Type} [Fintype ι] [Fint
     component R S ε hM.interleaving.φ i j = 0 := by
   simp [IsMatching.interleaving, selectedInterleaving, component_mapOfComponents, entry, h]
 
-/-- A reverse component outside the same matching graph is zero.-/
+/-- A reverse component outside the same matching graph is zero.
+@isnad1 id=eq.2h10v.s9.24ba1c29f078 from=translated src=- shape=1a004fee vocab=11b68c16
+-/
 theorem IsMatching.interleaving_reverse_component_zero {ι κ : Type} [Fintype ι] [Fintype κ]
     {R : ι → Rectangle n} {S : κ → Rectangle n} {ε : ℝ≥0}
     {M : OccurrenceMatching ι κ PEmpty.{1} PEmpty.{1}}
@@ -256,7 +274,9 @@ theorem IsMatching.interleaving_reverse_component_zero {ι κ : Type} [Fintype �
   simp [IsMatching.interleaving, selectedInterleaving, component_mapOfComponents, entry, hr]
 
 /-- Reversing an occurrence matching reverses its pair interleavings and
-exchanges its two sets of actual zero interleavings.-/
+exchanges its two sets of actual zero interleavings.
+@isnad1 id=ismatchi.1h8v.s5.e2b8c6944ad9 from=translated src=- shape=fe932518 vocab=39f4332c
+-/
 theorem IsMatching.reverse {ι κ : Type} [Fintype ι] [Fintype κ]
     {R : ι → Rectangle n} {S : κ → Rectangle n} {ε : ℝ≥0}
     {M : OccurrenceMatching ι κ PEmpty.{1} PEmpty.{1}}

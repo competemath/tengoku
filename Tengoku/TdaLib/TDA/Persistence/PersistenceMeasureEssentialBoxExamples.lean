@@ -21,7 +21,9 @@ private theorem interval_qTame (p : ℝ × WithTop ℝ) :
   infer_instance
 
 /-- The `1/4`-interleaving of `[0,∞)` and `[1/4,∞)` transports essential mass to a
-strip whose upper birth edge is the shifted birth. Finite-death rectangles miss it.-/
+strip whose upper birth edge is the shifted birth. Finite-death rectangles miss it.
+@isnad1 id=le.0h1v.s7.6566571189a2 from=translated src=- shape=02c4493e vocab=bc69b493
+-/
 theorem displaced_essential_interval_box_nonzero :
     1 ≤ essentialMeasureValue (RealBarcode.intervalModule (k := k) (1 / 4, ⊤))
       (show (-5 / 4 : ℝ) ≤ 1 / 4 by norm_num) := by

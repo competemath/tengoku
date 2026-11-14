@@ -44,14 +44,18 @@ section components
 
 variable {X : Type u} {Y : Type v} [TopologicalSpace X] [TopologicalSpace Y] {ι : Type w}
 
-/-- A point lying in two members gives an overlap step between its two local classes.-/
+/-- A point lying in two members gives an overlap step between its two local classes.
+@isnad1 id=overlapr.2h8v.s8.c38e461a15eb from=translated src=- shape=91f10907 vocab=c6d3dcc5
+-/
 theorem overlapRel_mk (f : C(X, Y)) (U : ι → TopologicalSpace.Opens Y) {p q : ι} (z : X)
     (hp : f z ∈ U p) (hq : f z ∈ U q) :
     overlapRel (componentFunctor f) U ⟨p, ZerothHomotopy.mk ⟨z, hp⟩⟩
       ⟨q, ZerothHomotopy.mk ⟨z, hq⟩⟩ :=
   ⟨ZerothHomotopy.mk ⟨z, TopologicalSpace.Opens.mem_inf.2 ⟨hp, hq⟩⟩, rfl, rfl⟩
 
-/-- Surjectivity: every class over `W` is the image of a class over some member.-/
+/-- Surjectivity: every class over `W` is the image of a class over some member.
+@isnad1 id=ex.2h7v.s8.b63cc922785f from=translated src=- shape=f730e1ce vocab=b3eda8f9
+-/
 theorem componentFunctor_exists_map_eq (f : C(X, Y)) {W : TopologicalSpace.Opens Y}
     (U : ι → TopologicalSpace.Opens Y) (hU : ∀ i, U i ≤ W) (hcov : W ≤ ⨆ i, U i)
     (x : (componentFunctor f).obj W) :
@@ -62,7 +66,9 @@ theorem componentFunctor_exists_map_eq (f : C(X, Y)) {W : TopologicalSpace.Opens
     exact ⟨i, ZerothHomotopy.mk ⟨a.1, hi⟩, rfl⟩
 
 /-- Class form (coequaliser kernel): two local classes have the same image over `W` iff they are
-related by the equivalence closure of `overlapRel`.-/
+related by the equivalence closure of `overlapRel`.
+@isnad1 id=iff.2h10v.s9.4c108c0fb324 from=translated src=- shape=a97d02d4 vocab=291a2f1b
+-/
 theorem componentFunctor_map_eq_iff_eqvGen (f : C(X, Y)) {W : TopologicalSpace.Opens Y}
     (U : ι → TopologicalSpace.Opens Y) (hU : ∀ i, U i ≤ W) (hcov : W ≤ ⨆ i, U i) {i j : ι}
     (e : (componentFunctor f).obj (U i)) (e' : (componentFunctor f).obj (U j)) :
@@ -112,7 +118,9 @@ theorem componentFunctor_map_eq_iff_eqvGen (f : C(X, Y)) {W : TopologicalSpace.O
 
 /-- Raw gluing universal property: for an open cover `U` of `W`, a family of maps
 `a i : C_f(U i) → A` agreeing after both inclusions from `C_f(U i ⊓ U j)` has a unique
-`g : C_f(W) → A` with `g ∘ C_f(U i ≤ W) = a i`. `A : Sort*`; the empty cover is included.-/
+`g : C_f(W) → A` with `g ∘ C_f(U i ≤ W) = a i`. `A : Sort*`; the empty cover is included.
+@isnad1 id=existsun.3h8v.s10.781390d7eb8f from=translated src=- shape=1f2d9301 vocab=cd303851
+-/
 theorem componentFunctor_existsUnique_glue (f : C(X, Y)) {W : TopologicalSpace.Opens Y}
     (U : ι → TopologicalSpace.Opens Y) (hU : ∀ i, U i ≤ W) (hcov : W ≤ ⨆ i, U i) {A : Sort*}
     (a : ∀ i, (componentFunctor f).obj (U i) → A)
@@ -126,7 +134,9 @@ theorem componentFunctor_existsUnique_glue (f : C(X, Y)) {W : TopologicalSpace.O
     (componentFunctor_exists_map_eq f U hU hcov)
     (fun _ _ e e' h => (componentFunctor_map_eq_iff_eqvGen f U hU hcov e e').1 h) a ha
 
-/-- Colimit form for any cocone over the pairwise-intersection diagram whose apex is covered.-/
+/-- Colimit form for any cocone over the pairwise-intersection diagram whose apex is covered.
+@isnad1 id=nonempty.1h6v.s8.890d7c8590d5 from=translated src=- shape=eace7571 vocab=dbe48755
+-/
 theorem componentFunctor_isColimit (f : C(X, Y)) (U : ι → TopologicalSpace.Opens Y)
     (c : Cocone (Pairwise.diagram U)) (hcov : c.pt ≤ ⨆ i, U i) :
     Nonempty (IsColimit ((componentFunctor f).mapCocone c)) := by
@@ -135,20 +145,26 @@ theorem componentFunctor_isColimit (f : C(X, Y)) (U : ι → TopologicalSpace.Op
     ⟨componentFunctor_exists_map_eq f U hU hcov, fun _ _ e e' h => ?_⟩
   exact (componentFunctor_map_eq_iff_eqvGen f U hU hcov e e').1 h
 
-/-- Colimit form for an open cover `U` of `W` (`coverCocone`, apex `W`).-/
+/-- Colimit form for an open cover `U` of `W` (`coverCocone`, apex `W`).
+@isnad1 id=nonempty.2h6v.s7.1ecdd7637c11 from=translated src=- shape=ef609ff1 vocab=f6d05186
+-/
 theorem componentFunctor_isColimit_coverCocone (f : C(X, Y)) {W : TopologicalSpace.Opens Y}
     (U : ι → TopologicalSpace.Opens Y) (hU : ∀ i, U i ≤ W) (hcov : W ≤ ⨆ i, U i) :
     Nonempty (IsColimit ((componentFunctor f).mapCocone (coverCocone U hU))) :=
   componentFunctor_isColimit f U _ hcov
 
 /-- The component functor is a cosheaf in the pairwise-intersection sense, for every cover-index
-universe `w`.-/
+universe `w`.
+@isnad1 id=ispairwi.0h3v.s4.5beacced0a41 from=translated src=- shape=70630907 vocab=c0313ce1
+-/
 theorem componentFunctor_isPairwiseCosheaf (f : C(X, Y)) :
     IsPairwiseCosheaf.{w} (componentFunctor f) :=
   fun _ U => componentFunctor_isColimit f U (Pairwise.cocone U) le_rfl
 
 /-- Naturality of gluing under a continuous commuting map `h` (`g ∘ h = f`): the glue of the
-pulled-back family is the glue for `g` precomposed with `componentNatTrans h`.-/
+pulled-back family is the glue for `g` precomposed with `componentNatTrans h`.
+@isnad1 id=eq.5h13v.s10.fa3c3913402b from=translated src=- shape=c83b4c40 vocab=a365a93e
+-/
 theorem componentFunctor_glue_natTrans {Z : Type u} [TopologicalSpace Z] {f : C(X, Y)}
     {g : C(Z, Y)} (h : C(X, Z)) (comm : ∀ x, g (h x) = f x) {W : TopologicalSpace.Opens Y}
     (U : ι → TopologicalSpace.Opens Y) (hU : ∀ i, U i ≤ W) (hcov : W ≤ ⨆ i, U i) {A : Sort*}

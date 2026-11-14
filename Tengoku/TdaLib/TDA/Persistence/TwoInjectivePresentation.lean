@@ -51,7 +51,9 @@ def quotientProjection (M : PModule.{u,0,u} k S)
     [∀ p, FiniteDimensional k (M.obj p)] : firstInjective M ⟶ quotient M :=
   cokernel.π (firstEmbedding M)
 
-/-- The cokernel projection is surjective in every fiber.-/
+/-- The cokernel projection is surjective in every fiber.
+@isnad1 id=surjecti.0h4v.s10.443fb3320973 from=translated src=- shape=5e2ac49f vocab=bec6bf3b
+-/
 theorem quotientProjection_surjective (M : PModule.{u,0,u} k S)
     [∀ p, FiniteDimensional k (M.obj p)] (p : S) :
     Function.Surjective ((quotientProjection M).app p).hom := by
@@ -64,7 +66,9 @@ theorem quotientProjection_surjective (M : PModule.{u,0,u} k S)
   exact (ModuleCat.epi_iff_surjective _).mp hApp
 
 /-- The actual cokernel remains pointwise finite-dimensional, by the epic
-projection from the already finite-dimensional first injective.-/
+projection from the already finite-dimensional first injective.
+@isnad1 id=finitedi.0h4v.s8.bd850efec862 from=translated src=- shape=53d3fa37 vocab=b4362bfd
+-/
 theorem quotient_finiteDimensional (M : PModule.{u,0,u} k S)
     [∀ p, FiniteDimensional k (M.obj p)] (p : S) :
     FiniteDimensional k ((quotient M).obj p) := by
@@ -89,11 +93,16 @@ def differential (M : PModule.{u,0,u} k S)
     [∀ p, FiniteDimensional k (M.obj p)] :
     firstInjective M ⟶ secondInjective M := quotientProjection M ≫ secondEmbedding M
 
+/--
+@isnad1 id=eq.0h3v.s8.7e78675f0594 from=translated src=- shape=63e9642f vocab=c43cb332
+-/
 @[simp] theorem differential_eq (M : PModule.{u,0,u} k S)
     [∀ p, FiniteDimensional k (M.obj p)] :
     differential M = quotientProjection M ≫ secondEmbedding M := rfl
 
-/-- The defining composition is zero.-/
+/-- The defining composition is zero.
+@isnad1 id=eq.0h3v.s9.42dfd637de03 from=translated src=- shape=608541a2 vocab=ee7d61fe
+-/
 @[reassoc (attr := simp)] theorem firstEmbedding_comp_differential
     (M : PModule.{u,0,u} k S) [∀ p, FiniteDimensional k (M.obj p)] :
     firstEmbedding M ≫ differential M = 0 := by
@@ -106,34 +115,46 @@ def differential (M : PModule.{u,0,u} k S)
           simp [differential, Category.assoc]
     _ = 0 := by rw [hzero, zero_comp]
 
-/-- The first coordinate injective is an ordinary injective object.-/
+/-- The first coordinate injective is an ordinary injective object.
+@isnad1 id=injectiv.0h3v.s6.0abba381f3f9 from=translated src=- shape=67a361e9 vocab=d6b78a96
+-/
 theorem firstInjective_injective (M : PModule.{u,0,u} k S) :
     Injective (firstInjective M) := inferInstance
 
-/-- The second coordinate injective is an ordinary injective object.-/
+/-- The second coordinate injective is an ordinary injective object.
+@isnad1 id=injectiv.0h3v.s7.ec80ac83b103 from=translated src=- shape=751bcb6f vocab=4526d8aa
+-/
 theorem secondInjective_injective (M : PModule.{u,0,u} k S)
     [∀ p, FiniteDimensional k (M.obj p)] :
     Injective (secondInjective M) := inferInstance
 
-/-- The first coordinate embedding is monic.-/
+/-- The first coordinate embedding is monic.
+@isnad1 id=mono.0h3v.s7.63a416a01f73 from=translated src=- shape=203ae674 vocab=0b1af8c8
+-/
 theorem firstEmbedding_mono (M : PModule.{u,0,u} k S)
     [∀ p, FiniteDimensional k (M.obj p)] : Mono (firstEmbedding M) := inferInstance
 
-/-- The second coordinate embedding is monic.-/
+/-- The second coordinate embedding is monic.
+@isnad1 id=mono.0h3v.s7.89f8eb30824f from=translated src=- shape=fa28fcb4 vocab=bf7832c6
+-/
 theorem secondEmbedding_mono (M : PModule.{u,0,u} k S)
     [∀ p, FiniteDimensional k (M.obj p)] : Mono (secondEmbedding M) := by
   letI : ∀ p, FiniteDimensional k ((quotient M).obj p) := quotient_finiteDimensional M
   exact FiniteInjectivePresentation.embedding_mono (quotient M)
 
 /-- Projection onto a selected first-injective summand recovers its coordinate
-coextension.-/
+coextension.
+@isnad1 id=eq.0h4v.s8.3787c668a469 from=translated src=- shape=fe2413f9 vocab=6fe801f1
+-/
 @[reassoc] theorem firstEmbedding_π (M : PModule.{u,0,u} k S)
     [∀ p, FiniteDimensional k (M.obj p)] (t : Index M) :
     firstEmbedding M ≫ biproduct.π (family M) t = summandMap M t :=
   embedding_π M t
 
 /-- The projected coefficient of the first embedding is the transported basis
-coordinate, and is zero outside the selected downset.-/
+coordinate, and is zero outside the selected downset.
+@isnad1 id=eq.0h6v.s13.fbcab2792316 from=translated src=- shape=58a394bf vocab=e9dcb13b
+-/
 theorem firstEmbedding_π_app_val (M : PModule.{u,0,u} k S)
     [∀ p, FiniteDimensional k (M.obj p)] (t : Index M) (q : S) (x : M.obj q) :
     (((biproduct.π (family M) t).app q).hom
@@ -157,7 +178,9 @@ def cokernelRow (M : PModule.{u,0,u} k S)
 
 /-- The actual two-injective sequence is exact at the first injective: the
 first embedding is monic and its image is exactly the kernel of the composed
-map to the second injective.-/
+map to the second injective.
+@isnad1 id=eq.0h4v.s10.21d9e12f9567 from=translated src=- shape=3a1027b1 vocab=1c9fb787
+-/
 theorem range_firstEmbedding_eq_ker_differential
     (M : PModule.{u,0,u} k S) [∀ p, FiniteDimensional k (M.obj p)] (p : S) :
     LinearMap.range ((firstEmbedding M).app p).hom =
@@ -197,6 +220,9 @@ def shortComplex (M : PModule.{u,0,u} k S)
     (by
       apply firstEmbedding_comp_differential)
 
+/--
+@isnad1 id=exact.0h3v.s8.359ed4e10fe3 from=translated src=- shape=751bcb6f vocab=1c93b1ab
+-/
 theorem shortComplex_exact (M : PModule.{u,0,u} k S)
     [∀ p, FiniteDimensional k (M.obj p)] : (shortComplex M).Exact := by
   let S' := shortComplex M

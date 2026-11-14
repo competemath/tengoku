@@ -42,6 +42,9 @@ local instance : DecidableLT (PairPoset S) := Classical.decRel _
 local instance : LocallyFiniteOrder (PairPoset S) := Fintype.toLocallyFiniteOrder
 local instance : DecidableEq (PairPoset S) := Classical.decEq _
 local instance : Fintype (ComparablePair S) := Fintype.ofFinite _
+/--
+@isnad1 id=istwosid.0h2v.s6.c3d15d6296f4 from=translated src=- shape=3e603a0f vocab=12df1b8e
+-/
 local instance diagonalIdealTwoSided :
     (DiagonalIdeal (k := k) (S := S)).IsTwoSided :=
   diagonalIdeal_isTwoSided (k := k) (S := S)
@@ -50,7 +53,9 @@ abbrev R := RightIncidence (k := k) (S := S)
 abbrev C := RightQuotient (k := k) (S := S)
 
 /-- The actual quotient-extension of every projective resolution is exact at each degree at
-least two.-/
+least two.
+@isnad1 id=exactat.0h5v.s10.04bee7216358 from=translated src=- shape=a415954b vocab=8e98fb98
+-/
 theorem extensionMappedResolution_exactAt_add_two
     (M : ModuleCat.{u} (R (k := k) (S := S))) (P : ProjectiveResolution M) (m : ℕ) :
     (TDA.Persistence.IncidenceQuotientDerivedOne.extensionMappedResolution
@@ -149,7 +154,9 @@ theorem extensionMappedResolution_exactAt_add_two
     (Submodule.Quotient.mk_eq_zero Q₂).2 hτwRel
   rw [map_sub, hmkW, sub_zero, hy]
 
-/-- Exactness of the mapped resolution at any specified degree at least two.-/
+/-- Exactness of the mapped resolution at any specified degree at least two.
+@isnad1 id=exactat.1h5v.s10.0b97dbe4f766 from=translated src=- shape=83298058 vocab=84f5b4f4
+-/
 theorem extensionMappedResolution_exactAt
     (M : ModuleCat.{u} (R (k := k) (S := S))) (P : ProjectiveResolution M)
     (n : ℕ) (hn : 2 ≤ n) :
@@ -159,7 +166,9 @@ theorem extensionMappedResolution_exactAt
   simpa [Nat.sub_add_cancel hn] using h
 
 /-- The actual higher left-derived quotient extension vanishes on every right-incidence module.
-This theorem is restricted to positive degrees at least two.-/
+This theorem is restricted to positive degrees at least two.
+@isnad1 id=iszero.1h4v.s10.6c0ab3e48fea from=translated src=- shape=c67e24c4 vocab=4da0f124
+-/
 theorem extension_leftDerived_isZero_atLeastTwo
     (M : ModuleCat.{u} (R (k := k) (S := S))) (n : ℕ) (hn : 2 ≤ n) :
     IsZero (((TDA.Persistence.IncidenceQuotientBaseChange.extensionFunctor
@@ -176,7 +185,9 @@ theorem extension_leftDerived_isZero_atLeastTwo
 
 /-- On a restricted quotient module, exactness holds in every positive degree: the existing
 `extensionMappedResolution_exactAt_one` theorem supplies degree one, and the projective-column
-argument supplies all degrees at least two.-/
+argument supplies all degrees at least two.
+@isnad1 id=exactat.1h5v.s11.e16c38b12dd8 from=translated src=- shape=f8985a15 vocab=5a107f17
+-/
 theorem extensionMappedResolution_exactAt_positive_restricted
     (N : ModuleCat.{u} (C (k := k) (S := S)))
     (P : ProjectiveResolution
@@ -194,7 +205,9 @@ theorem extensionMappedResolution_exactAt_positive_restricted
       simpa using extensionMappedResolution_exactAt_add_two (k := k) (S := S)
         ((ModuleCat.restrictScalars (quotientHom (k := k) (S := S))).obj N) P m
 
-/-- Every positive left-derived quotient extension vanishes on a restricted quotient module.-/
+/-- Every positive left-derived quotient extension vanishes on a restricted quotient module.
+@isnad1 id=iszero.1h4v.s10.a18114186575 from=translated src=- shape=16f48955 vocab=fba42f93
+-/
 theorem extension_leftDerived_positive_isZero
     (N : ModuleCat.{u} (C (k := k) (S := S))) (n : ℕ) (hn : 0 < n) :
     IsZero (((TDA.Persistence.IncidenceQuotientBaseChange.extensionFunctor
@@ -212,7 +225,9 @@ theorem extension_leftDerived_positive_isZero
     exact hExact
   exact IsZero.of_iso hHomology (P.isoLeftDerivedObj E n)
 
-/-- Positive derived quotient extension vanishes on every actual strict-vertex module.-/
+/-- Positive derived quotient extension vanishes on every actual strict-vertex module.
+@isnad1 id=iszero.1h4v.s10.ad8e361202b7 from=translated src=- shape=d7d6003b vocab=bd7f15fd
+-/
 theorem rightVertexExtension_leftDerived_positive_isZero
     (v : TDA.Persistence.FiniteRankProjectiveEndAlgebra.StrictVertex S)
     (n : ℕ) (hn : 0 < n) :

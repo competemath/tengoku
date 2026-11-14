@@ -216,7 +216,9 @@ private noncomputable def hookSumGridTagLanIso {ι : Type} [Fintype ι]
 /-- Isomorphic finite sums of real-coordinate finite-death and infinite-death
 hooks have the same multiplicity for every tag. The endpoint grid is built
 from both occurrence families and the queried tag, so no endpoint-membership
-hypothesis or decomposition of an ambient module is required.-/
+hypothesis or decomposition of an ambient module is required.
+@isnad1 id=eq.1h7v.s10.6c94abecd39b from=translated src=- shape=2f810c8e vocab=f083763d
+-/
 theorem rankProjectiveHookSum_multiplicity_unique_of_iso
     {m r : ℕ} (F : Fin m → RankProjectiveHookTag (Fin n → ℝ))
     (H : Fin r → RankProjectiveHookTag (Fin n → ℝ))
@@ -297,7 +299,9 @@ theorem rankProjectiveHookSum_multiplicity_unique_of_iso
 
 /-- A finitely presented rank-projective module on real coordinate space is a
 finite direct sum of finite-death hooks and principal-upset hooks. The `Fin m`
-family records every occurrence, including repeated isomorphism classes.-/
+family records every occurrence, including repeated isomorphism classes.
+@isnad1 id=iff.1h3v.s8.fe5f735ac910 from=translated src=- shape=13a9d59f vocab=500b1cb2
+-/
 theorem finitelyPresented_rankProjective_iff_exists_hook_sum
     {M : PModule.{u,0,u} k (Fin n → ℝ)}
     (hM : FinitelyPresented (R := k) (P := Fin n → ℝ) M) :

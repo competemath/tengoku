@@ -50,6 +50,9 @@ noncomputable abbrev Presentation.cokernelPresentation
   relations := E.relations.sum D.generators
   relationMap := sumDesc E.relations D.generators E.relationMap α
 
+/--
+@isnad1 id=eq.0h5v.s7.e5f7dbe5da5b from=translated src=- shape=1f2eb347 vocab=5a36f693
+-/
 @[reassoc (attr := simp)]
 theorem Presentation.sumInl_cokernelPresentation_relationMap
     (D E : Presentation.{u,v,w} (R := R) (P := P))
@@ -58,6 +61,9 @@ theorem Presentation.sumInl_cokernelPresentation_relationMap
         (D.cokernelPresentation E α).relationMap = E.relationMap := by
   simp [Presentation.cokernelPresentation]
 
+/--
+@isnad1 id=eq.0h5v.s7.714bfe9d75e6 from=translated src=- shape=6c9143b8 vocab=faefcaf2
+-/
 @[reassoc (attr := simp)]
 theorem Presentation.sumInr_cokernelPresentation_relationMap
     (D E : Presentation.{u,v,w} (R := R) (P := P))
@@ -85,6 +91,9 @@ noncomputable def Presentation.cokernelTargetMap
         simp
   exact hErel
 
+/--
+@isnad1 id=eq.0h5v.s7.c565a4e9af2a from=translated src=- shape=047b57d2 vocab=02d5791c
+-/
 @[reassoc (attr := simp)]
 theorem Presentation.cokernelTargetMap_cover
     (D E : Presentation.{u,v,w} (R := R) (P := P))
@@ -185,6 +194,9 @@ noncomputable def Presentation.cokernelComparison
         rw [Category.assoc, Limits.cokernel.π_desc]
         exact Presentation.cokernelTargetMap_cover D E α
 
+/--
+@isnad1 id=eq.1h6v.s9.57cb595898ed from=translated src=- shape=881c85ac vocab=d38b8421
+-/
 @[reassoc (attr := simp)]
 theorem Presentation.cokernelComparison_π
     (D E : Presentation.{u,v,w} (R := R) (P := P))
@@ -195,6 +207,9 @@ theorem Presentation.cokernelComparison_π
       D.cokernelTargetMap E α := by
   simp [Presentation.cokernelComparison]
 
+/--
+@isnad1 id=eq.1h6v.s9.db092b65d7c8 from=translated src=- shape=42e805c1 vocab=5c20ddd7
+-/
 @[reassoc (attr := simp)]
 theorem Presentation.cokernelComparison_cover
     (D E : Presentation.{u,v,w} (R := R) (P := P))
@@ -216,6 +231,9 @@ noncomputable abbrev Presentation.biprodPresentation
     (D.relationMap ≫ sumInl D.generators E.generators)
     (E.relationMap ≫ sumInr D.generators E.generators)
 
+/--
+@isnad1 id=eq.0h4v.s8.c241794a5774 from=translated src=- shape=9297e80b vocab=be094bd6
+-/
 @[reassoc (attr := simp)]
 theorem Presentation.sumInl_biprodPresentation_relationMap
     (D E : Presentation.{u,v,w} (R := R) (P := P)) :
@@ -223,6 +241,9 @@ theorem Presentation.sumInl_biprodPresentation_relationMap
       D.relationMap ≫ sumInl D.generators E.generators := by
   simp [Presentation.biprodPresentation]
 
+/--
+@isnad1 id=eq.0h4v.s8.11ef93dc6992 from=translated src=- shape=5ba2f8dc vocab=5ecbaf55
+-/
 @[reassoc (attr := simp)]
 theorem Presentation.sumInr_biprodPresentation_relationMap
     (D E : Presentation.{u,v,w} (R := R) (P := P)) :
@@ -368,6 +389,9 @@ noncomputable def Presentation.biprodComparison
         _ = E.cover ≫ qE := by simp [toF, Category.assoc]
         _ = sumInr D.generators E.generators ≫ F.cover := hqE
 
+/--
+@isnad1 id=eq.0h4v.s8.cfd129f9a69d from=translated src=- shape=0de19da1 vocab=a445ee89
+-/
 @[reassoc (attr := simp)]
 theorem Presentation.biprodComparison_inl_cover
     (D E : Presentation.{u,v,w} (R := R) (P := P)) :
@@ -375,6 +399,9 @@ theorem Presentation.biprodComparison_inl_cover
       sumInl D.generators E.generators ≫ (D.biprodPresentation E).cover := by
   simp [Presentation.biprodComparison]
 
+/--
+@isnad1 id=eq.0h4v.s8.fa2feac5f6bf from=translated src=- shape=f1f4e389 vocab=49aec6ef
+-/
 @[reassoc (attr := simp)]
 theorem Presentation.biprodComparison_inr_cover
     (D E : Presentation.{u,v,w} (R := R) (P := P)) :
@@ -382,6 +409,9 @@ theorem Presentation.biprodComparison_inr_cover
       sumInr D.generators E.generators ≫ (D.biprodPresentation E).cover := by
   simp [Presentation.biprodComparison]
 
+/--
+@isnad1 id=eq.0h4v.s9.5fabb988b131 from=translated src=- shape=8946a7bf vocab=325bd732
+-/
 @[reassoc (attr := simp)]
 theorem Presentation.biprodComparison_cover
     (D E : Presentation.{u,v,w} (R := R) (P := P)) :
@@ -391,7 +421,9 @@ theorem Presentation.biprodComparison_cover
   simp [Presentation.biprodComparison]
 
 /-- Finite presentation is closed under the actual categorical cokernel of a
-map between finitely presented modules.-/
+map between finitely presented modules.
+@isnad1 id=finitely.2h5v.s6.5ab7414972f5 from=translated src=- shape=dff9773b vocab=d7c6a78d
+-/
 theorem finitelyPresented_cokernel
     {M N : PModule.{u,v,max u w} R P} (f : M ⟶ N)
     (hM : FinitelyPresented.{u,v,w} (R := R) (P := P) M)
@@ -418,7 +450,9 @@ theorem finitelyPresented_cokernel
   exact finitelyPresented_of_iso hFP' inputIso
 
 /-- Finite presentation is closed under the actual binary biproduct of two
-finitely presented modules.-/
+finitely presented modules.
+@isnad1 id=finitely.2h4v.s6.f936c27ea748 from=translated src=- shape=9710d4b0 vocab=b8bf1028
+-/
 theorem finitelyPresented_biprod
     {M N : PModule.{u,v,max u w} R P}
     (hM : FinitelyPresented.{u,v,w} (R := R) (P := P) M)

@@ -33,7 +33,9 @@ open scoped TDA.Persistence NNReal
 def Significant {n : ℕ} (δ : ℝ≥0) (R : Rectangle n) : Prop :=
   ∃ p, p ∈ R.support ∧ translation δ p ∈ R.support
 
-/-- Significance persists when the transition length is decreased.-/
+/-- Significance persists when the transition length is decreased.
+@isnad1 id=signific.2h4v.s4.ca52947e0a45 from=translated src=- shape=14128737 vocab=e722d0d7
+-/
 theorem Significant.of_le {n : ℕ} {δ ρ : ℝ≥0} (hδρ : δ ≤ ρ)
     {R : Rectangle n} (h : Significant ρ R) : Significant δ R := by
   obtain ⟨p, hp, hp'⟩ := h
@@ -55,7 +57,9 @@ noncomputable def shiftedCoefficientAt {n : ℕ} {k : Type*} [Field k]
     (f.app p).hom (SupportInterval.one (k := k) R.support hpR)) : k)
 
 /-- Naturality makes the scalar coefficient of a shifted rectangle map
-constant along comparable points of its overlap.-/
+constant along comparable points of its overlap.
+@isnad1 id=eq.4h8v.s8.532cd7a7ebe0 from=translated src=- shape=cd6e3995 vocab=9d8f9e3e
+-/
 theorem shifted_coefficient_eq_of_le {n : ℕ} {k : Type*} [Field k]
     (R S : Rectangle n) (ε : ℝ≥0)
     (f : R.module (k := k) ⟶ (shift ε).obj S.module)
@@ -99,7 +103,9 @@ theorem shifted_coefficient_eq_of_le {n : ℕ} {k : Type*} [Field k]
   simpa only [shiftedCoefficientAt] using hn.symm
 
 /-- Every nonzero shifted rectangle map has one scalar coefficient across its
-entire overlap, including open and closed endpoint cases.-/
+entire overlap, including open and closed endpoint cases.
+@isnad1 id=eq.4h8v.s9.7b5ae7b0fdcc from=translated src=- shape=c63cb470 vocab=2c0fac9d
+-/
 theorem shifted_coefficient_eq {n : ℕ} {k : Type*} [Field k]
     (R S : Rectangle n) (ε : ℝ≥0)
     (f : R.module (k := k) ⟶ (shift ε).obj S.module)
@@ -129,7 +135,9 @@ noncomputable def shiftedCoefficient {n : ℕ} {k : Type*} [Field k]
     shiftedCoefficientAt R S ε f (Classical.choose h) (Classical.choose_spec h).1
   else 0
 
-/-- Any grade of the overlap computes the support-independent scalar.-/
+/-- Any grade of the overlap computes the support-independent scalar.
+@isnad1 id=eq.2h7v.s8.7e272c2ee219 from=translated src=- shape=a52ed560 vocab=8123d283
+-/
 theorem shiftedCoefficient_eq_at {n : ℕ} {k : Type*} [Field k]
     (R S : Rectangle n) (ε : ℝ≥0)
     (f : R.module (k := k) ⟶ (shift ε).obj S.module)
@@ -142,6 +150,9 @@ theorem shiftedCoefficient_eq_at {n : ℕ} {k : Type*} [Field k]
   exact shifted_coefficient_eq R S ε f
     (Classical.choose_spec h).1 (Classical.choose_spec h).2 hpR hpS
 
+/--
+@isnad1 id=eq.0h5v.s9.c380ff345a1f from=translated src=- shape=7da574f8 vocab=cccc1146
+-/
 @[simp] theorem shiftedCoefficient_zero {n : ℕ} {k : Type*} [Field k]
     (R S : Rectangle n) (ε : ℝ≥0) :
     shiftedCoefficient (k := k) R S ε 0 = 0 := by
@@ -151,6 +162,9 @@ theorem shiftedCoefficient_eq_at {n : ℕ} {k : Type*} [Field k]
   · rfl
   · rfl
 
+/--
+@isnad1 id=eq.0h7v.s10.66614128d3b4 from=translated src=- shape=c98dc7c8 vocab=2b06a585
+-/
 theorem shiftedCoefficient_add {n : ℕ} {k : Type*} [Field k]
     (R S : Rectangle n) (ε : ℝ≥0)
     (f g : R.module (k := k) ⟶ (shift ε).obj S.module) :
@@ -162,6 +176,9 @@ theorem shiftedCoefficient_add {n : ℕ} {k : Type*} [Field k]
   · rfl
   · exact (add_zero (0 : k)).symm
 
+/--
+@isnad1 id=eq.0h8v.s9.6fe8f6b88816 from=translated src=- shape=d79fd3ba vocab=8d83de9a
+-/
 theorem shiftedCoefficient_sum {n : ℕ} {k : Type*} [Field k]
     {ι : Type*} (R S : Rectangle n) (ε : ℝ≥0) (A : Finset ι)
     (f : ι → (R.module (k := k) ⟶ (shift ε).obj S.module)) :
@@ -172,7 +189,9 @@ theorem shiftedCoefficient_sum {n : ℕ} {k : Type*} [Field k]
   | empty => simp
   | @insert i A hi ih => simp [hi, shiftedCoefficient_add, ih]
 
-/-- A shifted rectangle map acts by its coefficient on every active overlap.-/
+/-- A shifted rectangle map acts by its coefficient on every active overlap.
+@isnad1 id=eq.2h8v.s11.26d27e3226a7 from=translated src=- shape=8b55ba62 vocab=77885a21
+-/
 theorem shifted_app_val {n : ℕ} {k : Type*} [Field k]
     (R S : Rectangle n) (ε : ℝ≥0)
     (f : R.module (k := k) ⟶ (shift ε).obj S.module)
@@ -193,7 +212,9 @@ theorem shifted_app_val {n : ℕ} {k : Type*} [Field k]
     _ = _ := by rw [map_smul]; rfl
 
 /-- A normalized endpoint comparison has scalar one whenever its overlap
-is nonempty, including a singleton overlap at closed endpoints.-/
+is nonempty, including a singleton overlap at closed endpoints.
+@isnad1 id=eq.3h6v.s7.7e1991ed3b20 from=translated src=- shape=32b8fdcd vocab=2bb79093
+-/
 theorem shiftedCoefficient_comparison {n : ℕ} {k : Type*} [Field k]
     (R S : Rectangle n) (ε : ℝ≥0)
     (h : ∀ j, RectangleStabilityGeometry.decoratedLE
@@ -212,7 +233,9 @@ theorem shiftedCoefficient_comparison {n : ℕ} {k : Type*} [Field k]
     if translation ε p ∈ S.support then 1 else 0 at hv
   simpa only [ite_eq_left hpS] using hv
 
-/-- Nonzero morphisms have nonzero scalars, and conversely.-/
+/-- Nonzero morphisms have nonzero scalars, and conversely.
+@isnad1 id=iff.0h6v.s10.9b4eae61da35 from=translated src=- shape=ed8e9dce vocab=cccc1146
+-/
 theorem shiftedCoefficient_ne_zero_iff {n : ℕ} {k : Type*} [Field k]
     (R S : Rectangle n) (ε : ℝ≥0)
     (f : R.module (k := k) ⟶ (shift ε).obj S.module) :
@@ -267,7 +290,9 @@ private theorem shiftedCoefficient_composite_at {n : ℕ} {k : Type*} [Field k]
 
 /-- Scalar products really compute composition for α-ordered significant
 endpoints. Nonvanishing of the composite is proved by the common-grade
-geometry, rather than assumed as a compatibility axiom.-/
+geometry, rather than assumed as a compatibility axiom.
+@isnad1 id=eq.4h8v.s11.3bf38f996040 from=translated src=- shape=788b5c47 vocab=14d34ced
+-/
 theorem shiftedCoefficient_composite {n : ℕ} (hn : 0 < n)
     {k : Type*} [Field k] (R S T : Rectangle n) (ε : ℝ≥0)
     (hRT : RectangleStabilityGeometry.alphaLE R T)
@@ -293,7 +318,9 @@ theorem shiftedCoefficient_composite {n : ℕ} (hn : 0 < n)
   exact shiftedCoefficient_composite_at R S T ε f g hpR hpS hpT
 
 /-- Ordered significant endpoints prevent cancellation of a path consisting
-of two nonzero shifted rectangle maps.-/
+of two nonzero shifted rectangle maps.
+@isnad1 id=ne.6h8v.s12.592c15f3de86 from=translated src=- shape=0b295635 vocab=1cc6b6ee
+-/
 theorem composite_ne_zero_of_significant {n : ℕ} (hn : 0 < n)
     {k : Type*} [Field k] (R S T : Rectangle n) (ε : ℝ≥0)
     (hRT : RectangleStabilityGeometry.alphaLE R T)
@@ -314,7 +341,9 @@ theorem composite_ne_zero_of_significant {n : ℕ} (hn : 0 < n)
     simp
   exact hne (hc.symm.trans hc₀)
 
-/-- A rectangle transition that survives somewhere has coefficient one.-/
+/-- A rectangle transition that survives somewhere has coefficient one.
+@isnad1 id=eq.1h4v.s7.d57ce9a71a31 from=translated src=- shape=2958b385 vocab=84ac2f30
+-/
 theorem shiftedCoefficient_transition {n : ℕ} {k : Type*} [Field k]
     (R : Rectangle n) (δ : ℝ≥0)
     (h : ∃ p, p ∈ R.support ∧ translation δ p ∈ R.support) :
@@ -329,7 +358,9 @@ theorem shiftedCoefficient_transition {n : ℕ} {k : Type*} [Field k]
   change (if translation δ p ∈ R.support then (1 : k) else 0) = 1
   rw [ite_eq_left hp']
 
-/-- The support criterion is exactly nonvanishing of the actual transition.-/
+/-- The support criterion is exactly nonvanishing of the actual transition.
+@isnad1 id=iff.0h4v.s9.ae5aecb09f77 from=translated src=- shape=933c5de4 vocab=738aea9e
+-/
 theorem significant_iff_transition_ne_zero {n : ℕ} {k : Type*} [Field k]
     (R : Rectangle n) (δ : ℝ≥0) :
     Significant δ R ↔ transition δ (R.module (k := k)) ≠ 0 := by
@@ -352,7 +383,9 @@ def Neighbor {n : ℕ} {k : Type*} [Field k] (ρ : ℝ≥0)
 
 /-- An intermediate rectangle outside both endpoint neighborhoods cannot
 contribute to a forward α-ordered path. This is Lemma 4.7 applied to actual
-component maps of a finite-family interleaving.-/
+component maps of a finite-family interleaving.
+@isnad1 id=eq.4h8v.s11.e753e20750fc from=translated src=- shape=f4389a3c vocab=fcae7343
+-/
 theorem path_eq_zero_of_not_neighbor {n : ℕ} (hn : 0 < n)
     {k : Type*} [Field k] (R S T : Rectangle n) (ε : ℝ≥0)
     (hRT : RectangleStabilityGeometry.alphaLE R T)
@@ -381,7 +414,9 @@ noncomputable def neighbors {n : ℕ} {k : Type*} [Field k]
   exact Finset.univ.filter (fun j => ∃ i ∈ A, Neighbor (k := k) ρ (R i) (S j))
 
 /-- A path through an occurrence outside the selected neighborhood vanishes
-whenever its source and target are selected and ordered by α.-/
+whenever its source and target are selected and ordered by α.
+@isnad1 id=eq.5h13v.s11.ce05afba4061 from=translated src=- shape=4b71d3f6 vocab=0507b517
+-/
 theorem component_path_zero_outside {n : ℕ} (hn : 0 < n)
     {k : Type*} [Field k] {ι κ : Type} [Finite ι] [Fintype κ]
     (R : ι → Rectangle n) (S : κ → Rectangle n) (ε : ℝ≥0)
@@ -412,7 +447,9 @@ theorem component_path_zero_outside {n : ℕ} (hn : 0 < n)
 
 /-- In the lower triangular and diagonal positions of Lemma 4.9, the
 interleaving sum can be restricted to actual neighbors of the selected finite
-family.-/
+family.
+@isnad1 id=eq.4h12v.s12.557e731b62ec from=translated src=- shape=bf5fc087 vocab=d74197ca
+-/
 theorem component_sum_neighbors {n : ℕ} (hn : 0 < n)
     {k : Type*} [Field k] {ι κ : Type} [Finite ι] [Fintype κ]
     (R : ι → Rectangle n) (S : κ → Rectangle n) (ε : ℝ≥0)
@@ -434,7 +471,9 @@ theorem component_sum_neighbors {n : ℕ} (hn : 0 < n)
 
 /-- An upper triangular scalar product with unit diagonal must have at least
 as many intermediate coordinates as source rectangles. The occurrence index
-can be empty.-/
+can be empty.
+@isnad1 id=le.2h5v.s7.30a5167cbcdc from=translated src=- shape=05ab6509 vocab=73dbbab9
+-/
 theorem card_le_of_triangular_product
     {k : Type*} [Field k] {ι κ : Type*}
     [Fintype ι] [LinearOrder ι] [Fintype κ]
@@ -458,7 +497,9 @@ theorem card_le_of_triangular_product
 
 /-- The actual interleaving of finite rectangle sums implies the Hall
 neighbor inequality for every selected family of significant occurrences.
-No Hall inequality, matrix compatibility or matching is assumed.-/
+No Hall inequality, matrix compatibility or matching is assumed.
+@isnad1 id=le.2h9v.s6.bf0961ff6c5a from=translated src=- shape=5301a809 vocab=a4aec995
+-/
 theorem card_le_neighbors {n : ℕ} (hn : 0 < n)
     {k : Type*} [Field k] {ι κ : Type} [Fintype ι] [Fintype κ]
     (R : ι → Rectangle n) (S : κ → Rectangle n) (ε : ℝ≥0)

@@ -47,7 +47,9 @@ structure IsRankProjectiveCover {P : Type} [PartialOrder P]
 namespace IsRankProjectiveCover
 
 /-- Two rank-projective covers of the same target are naturally isomorphic
-through an isomorphism commuting with their quotient maps.-/
+through an isomorphism commuting with their quotient maps.
+@isnad1 id=ex.2h7v.s8.bdd12345bae6 from=translated src=- shape=85d2f0fb vocab=508aa829
+-/
 theorem exists_iso_over_quotient {P : Type} [PartialOrder P]
     {A B C : PModule.{u,0,u} k P} {π : A ⟶ C} {ρ : B ⟶ C}
     (hπ : IsRankProjectiveCover π) (hρ : IsRankProjectiveCover ρ) :
@@ -100,7 +102,9 @@ namespace FiniteRankProjectiveResolution
 
 /-- A nonzero map of finite-death hooks can only move both endpoints down in
 the coordinatewise order. This is the finite-poset direction used to prove
-termination of minimal hook resolutions.-/
+termination of minimal hook resolutions.
+@isnad1 id=and.3h7v.s8.62666b33af64 from=translated src=- shape=19601b93 vocab=b4cccf07
+-/
 theorem hook_hom_nonzero_implies_endpoint_order
     {P : Type} [PartialOrder P] {i j m n : P} (hij : i < j) (_hmn : m < n)
     (f : Hook.module (k := k) i j ⟶ Hook.module (k := k) m n) (hf : f ≠ 0) :
@@ -162,7 +166,9 @@ attribute [instance] HookSumCover.instFintypeIndex
 noncomputable def HookSumCover.length {P : Type} [PartialOrder P] [Fintype P]
     {M : PModule.{u,0,u} k P} (C : HookSumCover M) : ℕ := Fintype.card C.Index
 
-/-- The finite middle term of a hook-sum cover is rank projective.-/
+/-- The finite middle term of a hook-sum cover is rank projective.
+@isnad1 id=isrankpr.0h4v.s7.40fa439dbfde from=translated src=- shape=2e6cb3bd vocab=2ea1a10b
+-/
 theorem HookSumCover.term_isRankProjective {P : Type} [PartialOrder P] [Fintype P]
     {M : PModule.{u,0,u} k P} (C : HookSumCover M) :
     IsRankProjective (⨁ C.summand) := by
@@ -214,7 +220,9 @@ structure MinimalHookSumCover {P : Type} [PartialOrder P] [Fintype P]
   minimal : ∀ C : HookSumCover M, cover.length ≤ C.length
 
 /-- Pointwise finite-dimensional modules on finite posets admit a shortest
-finite hook-sum rank-exact cover.-/
+finite hook-sum rank-exact cover.
+@isnad1 id=nonempty.1h3v.s7.1ef8365e6d18 from=translated src=- shape=fe7f73c6 vocab=bbcce41f
+-/
 theorem exists_minimalHookSumCover {P : Type} [PartialOrder P] [Fintype P]
     (M : PModule.{u,0,u} k P) (hfd : ∀ p, FiniteDimensional k (M.obj p)) :
     Nonempty (MinimalHookSumCover M) := by
@@ -234,7 +242,9 @@ theorem exists_minimalHookSumCover {P : Type} [PartialOrder P] [Fintype P]
 /-- A rank-exact hook-sum cover can discard one occurrence whenever its quotient
 kernel contains a copy of that occurrence which splits the corresponding
 projection. The quotient is transported to the complementary finite sum by
-the explicit section, preserving the dying-element lift condition.-/
+the explicit section, preserving the dying-element lift condition.
+@isnad1 id=ex.2h6v.s9.fa241cb6c647 from=translated src=- shape=7b305c78 vocab=d6a89eb4
+-/
 theorem HookSumCover.exists_smaller_of_kernel_section
     {P : Type} [PartialOrder P] [Fintype P] {M : PModule.{u,0,u} k P}
     (C : HookSumCover M) (i : C.Index)
@@ -405,7 +415,9 @@ private theorem rankProjectiveHookEnd_isIso_of_ne_zero
 /-- In a shortest hook-sum rank-exact cover, every map from a summand into the
 quotient kernel has zero diagonal component. A nonzero diagonal component is
 an automorphism because the hook endomorphism ring is the field; it would split
-off that occurrence and produce a shorter cover.-/
+off that occurrence and produce a shorter cover.
+@isnad1 id=eq.0h6v.s10.6b98c14a2a0c from=translated src=- shape=bf90d449 vocab=62d6f496
+-/
 theorem MinimalHookSumCover.kernel_diagonal_component_eq_zero
     {P : Type} [PartialOrder P] [Fintype P] {M : PModule.{u,0,u} k P}
     (C : MinimalHookSumCover M) (i : C.cover.Index)
@@ -453,7 +465,9 @@ theorem MinimalHookSumCover.kernel_diagonal_component_eq_zero
   exact (not_lt_of_ge (C.minimal D)) hD
 
 /-- A hook isomorphism type equal to a cover summand cannot map into the cover
-kernel with a nonzero component on that occurrence.-/
+kernel with a nonzero component on that occurrence.
+@isnad1 id=eq.0h8v.s10.e27c35c3a8db from=translated src=- shape=02ff6bdd vocab=409d0021
+-/
 theorem MinimalHookSumCover.kernel_component_eq_zero_of_iso
     {P : Type} [PartialOrder P] [Fintype P] {M : PModule.{u,0,u} k P}
     (C : MinimalHookSumCover M) (i : C.cover.Index)
@@ -479,7 +493,9 @@ theorem MinimalHookSumCover.kernel_component_eq_zero_of_iso
 
 /-- Minimal covers have no unused hook occurrence: every summand has a nonzero
 component in the quotient. Otherwise that summand itself splits off inside the
-kernel and the deletion lemma shortens the cover.-/
+kernel and the deletion lemma shortens the cover.
+@isnad1 id=ne.0h5v.s9.9ca9233fcb37 from=translated src=- shape=b384624c vocab=fcaa05c1
+-/
 theorem MinimalHookSumCover.quotient_component_ne_zero
     {P : Type} [PartialOrder P] [Fintype P] {M : PModule.{u,0,u} k P}
     (C : MinimalHookSumCover M) (i : C.cover.Index) :
@@ -499,6 +515,9 @@ noncomputable def finitePosetRank {P : Type} [PartialOrder P] [Fintype P] (a : P
     classical
     exact Fintype.card {b : P // b ≤ a}
 
+/--
+@isnad1 id=le.1h3v.s5.4be75f8c0663 from=translated src=- shape=3c0280fd vocab=0d993805
+-/
 theorem finitePosetRank_mono {P : Type} [PartialOrder P] [Fintype P]
     {a b : P} (hab : a ≤ b) : finitePosetRank a ≤ finitePosetRank b := by
   classical
@@ -508,6 +527,9 @@ theorem finitePosetRank_mono {P : Type} [PartialOrder P] [Fintype P]
       intro x y h
       exact Subtype.ext (congrArg (fun z : {p : P // p ≤ b} => (z : P)) h))
 
+/--
+@isnad1 id=lt.1h3v.s5.7e9c9b4cba7e from=translated src=- shape=3c0280fd vocab=bfad085e
+-/
 theorem finitePosetRank_strictMono {P : Type} [PartialOrder P] [Fintype P]
     {a b : P} (hab : a < b) : finitePosetRank a < finitePosetRank b := by
   classical
@@ -530,6 +552,9 @@ noncomputable def rankProjectiveHookTagWeight
   | .inl ab => finitePosetRank ab.val.1 + finitePosetRank ab.val.2
   | .inr a => finitePosetRank a + 2 * Fintype.card P + 1
 
+/--
+@isnad1 id=lt.2h3v.s5.42d2d0c07929 from=translated src=- shape=5af6218a vocab=f2c53b3d
+-/
 theorem rankProjectiveHookHomOrder_weight_strict
     {P : Type} [PartialOrder P] [Fintype P]
     (s t : FiniteRankProjectiveClassification.RankProjectiveHookTag P)
@@ -577,7 +602,9 @@ theorem rankProjectiveHookHomOrder_weight_strict
 
 /-- Every nonzero hook component follows the finite endpoint order. This is the
 strictness input for finite termination once minimality rules out equal-hook
-components in successive differentials.-/
+components in successive differentials.
+@isnad1 id=rankproj.1h5v.s8.fda8000a6ca8 from=translated src=- shape=a9f979c1 vocab=bc1f645e
+-/
 theorem rankProjectiveHook_hom_nonzero_order
     {P : Type} [PartialOrder P]
     (s t : FiniteRankProjectiveClassification.RankProjectiveHookTag P)
@@ -644,7 +671,9 @@ theorem rankProjectiveHook_hom_nonzero_order
 
 /-- The differential between two successive minimal hook-sum covers has only
 strictly decreasing hook weights among its nonzero matrix components. Equal-tag
-components vanish because they factor through the preceding cover's kernel.-/
+components vanish because they factor through the preceding cover's kernel.
+@isnad1 id=lt.1h7v.s12.213089847de7 from=translated src=- shape=abdb9693 vocab=716fd4af
+-/
 theorem minimalHookCover_differential_component_weight_strict
     {P : Type} [PartialOrder P] [Fintype P] {M : PModule.{u,0,u} k P}
     (C : MinimalHookSumCover M)
@@ -699,7 +728,9 @@ theorem minimalHookCover_differential_component_weight_strict
 /-- For an endomorphism fixed by the quotient of a shortest hook-sum cover,
 every nonzero component of its difference from the identity strictly lowers
 the finite hook weight. Equal-tag components vanish, including components
-between distinct repeated occurrences, by the shortest-cover property.-/
+between distinct repeated occurrences, by the shortest-cover property.
+@isnad1 id=lt.2h7v.s11.00cc3a9039c5 from=translated src=- shape=fcdbc04d vocab=d93c8547
+-/
 theorem MinimalHookSumCover.endomorphism_sub_id_component_weight_strict
     {P : Type} [PartialOrder P] [Fintype P] {M : PModule.{u,0,u} k P}
     (C : MinimalHookSumCover M)
@@ -773,7 +804,9 @@ theorem MinimalHookSumCover.endomorphism_sub_id_component_weight_strict
   exact rankProjectiveHookHomOrder_weight_strict
     (C.cover.tag i) (C.cover.tag j) horder htags
 
-/-- Every finite hook-sum term is pointwise finite dimensional.-/
+/-- Every finite hook-sum term is pointwise finite dimensional.
+@isnad1 id=finitedi.0h5v.s8.868f7e7c7e4f from=translated src=- shape=699ac296 vocab=1860c222
+-/
 theorem HookSumCover.term_finiteDimensional
     {P : Type} [PartialOrder P] [Fintype P] {M : PModule.{u,0,u} k P}
     (C : HookSumCover M) (p : P) :
@@ -791,7 +824,9 @@ theorem HookSumCover.term_finiteDimensional
   exact FiniteBiproduct.finiteDimensional C.summand p
 
 /-- The kernel of a hook-sum cover is pointwise finite dimensional whenever
-the covered module is.-/
+the covered module is.
+@isnad1 id=finitedi.0h5v.s9.7697dd3ca4ec from=translated src=- shape=fb25e2d7 vocab=119f7e7a
+-/
 theorem HookSumCover.kernel_finiteDimensional
     {P : Type} [PartialOrder P] [Fintype P] {M : PModule.{u,0,u} k P}
     (C : HookSumCover M) :
@@ -810,7 +845,9 @@ noncomputable def emptyBiproductIsoZero
       (biproduct.bicone F).toCone) (biproduct.isLimit F)
   exact ((isZero_zero (PModule.{u,0,u} k P)).isoIsTerminal hterm).symm
 
-/-- A hook-sum cover with no summands can only cover the zero module.-/
+/-- A hook-sum cover with no summands can only cover the zero module.
+@isnad1 id=iszero.0h4v.s6.9ea5a3648235 from=translated src=- shape=8777cc5c vocab=77267d8d
+-/
 theorem HookSumCover.isZero_of_isEmpty_index
     {P : Type} [PartialOrder P] [Fintype P] {M : PModule.{u,0,u} k P}
     (C : HookSumCover M) [IsEmpty C.Index] : IsZero M := by
@@ -1030,7 +1067,9 @@ private theorem nilpotent_of_strictly_lowering_biproduct_components
 
 /-- Every endomorphism of the middle term of a shortest hook-sum cover that is
 fixed by the quotient is an isomorphism. The difference from the identity has
-strictly weight-lowering occurrence components, hence is nilpotent.-/
+strictly weight-lowering occurrence components, hence is nilpotent.
+@isnad1 id=isiso.1h5v.s9.396fe1a2f36d from=translated src=- shape=fd2a0897 vocab=60824c72
+-/
 theorem MinimalHookSumCover.endomorphism_over_quotient_isIso
     {P : Type} [PartialOrder P] [Fintype P] {M : PModule.{u,0,u} k P}
     (C : MinimalHookSumCover M)
@@ -1058,7 +1097,9 @@ theorem MinimalHookSumCover.endomorphism_over_quotient_isIso
     exact hunit
   exact CategoryTheory.isUnit_iff_isIso _ |>.mp hunit'
 
-/-- The quotient of any shortest hook-sum cover is a rank-projective cover.-/
+/-- The quotient of any shortest hook-sum cover is a rank-projective cover.
+@isnad1 id=isrankpr.0h4v.s7.85ea7bd16b6b from=translated src=- shape=b356049e vocab=c7d147a8
+-/
 theorem MinimalHookSumCover.isRankProjectiveCover
     {P : Type} [PartialOrder P] [Fintype P] {M : PModule.{u,0,u} k P}
     (C : MinimalHookSumCover M) : IsRankProjectiveCover C.cover.quotient := by
@@ -1103,7 +1144,9 @@ private noncomputable def ofPointwisePfdFinitePoset
 
 /-- The chosen finite-poset construction has this recorded number of middle
 terms. This records one existing witness and makes no assertion about other
-resolutions of the same module.-/
+resolutions of the same module.
+@isnad1 id=ex.1h3v.s7.42b3f15b6b71 from=translated src=- shape=cee5df87 vocab=54723b7b
+-/
 theorem exists_finiteRankProjectiveResolution_with_recorded_length
     {P : Type} [PartialOrder P] [Fintype P]
     (M : PModule.{u,0,u} k P) (hM : ∀ p, FiniteDimensional k (M.obj p)) :
@@ -1113,7 +1156,9 @@ theorem exists_finiteRankProjectiveResolution_with_recorded_length
   rfl
 
 /-- Every pointwise finite-dimensional module on a finite poset admits an
-actual finite rank-projective resolution.-/
+actual finite rank-projective resolution.
+@isnad1 id=nonempty.1h3v.s7.b3ff2db37eb0 from=translated src=- shape=fe7f73c6 vocab=083629f3
+-/
 theorem exists_finiteRankProjectiveResolution_of_pfd_finitePoset
     {P : Type} [PartialOrder P] [Fintype P]
     (M : PModule.{u,0,u} k P) (hM : ∀ p, FiniteDimensional k (M.obj p)) :
@@ -1123,7 +1168,9 @@ theorem exists_finiteRankProjectiveResolution_of_pfd_finitePoset
 /-- Every pointwise finite-dimensional module on a finite poset has a finite
 rank-projective resolution whose every row quotient is a rank-projective
 cover. The certificate is obtained from the same iterated shortest covers as
-the finite-resolution construction.-/
+the finite-resolution construction.
+@isnad1 id=nonempty.1h3v.s7.d338fa0b282c from=translated src=- shape=fe7f73c6 vocab=328c8b49
+-/
 theorem exists_minimalFiniteRankProjectiveResolution_of_pfd_finitePoset
     {P : Type} [PartialOrder P] [Fintype P]
     (M : PModule.{u,0,u} k P) (hM : ∀ p, FiniteDimensional k (M.obj p)) :
@@ -1137,7 +1184,9 @@ theorem exists_minimalFiniteRankProjectiveResolution_of_pfd_finitePoset
 
 /-- The finite-poset construction retains an occurrence-indexed finite hook
 sum presentation of every term. The family is reindexed to `Fin` without
-identifying repeated tags.-/
+identifying repeated tags.
+@isnad1 id=ex.1h3v.s8.1404c7ceb3e0 from=translated src=- shape=300ecc39 vocab=463b2a7c
+-/
 theorem exists_minimalFiniteRankProjectiveResolution_with_hook_sum_terms_of_pfd_finitePoset
     {P : Type} [PartialOrder P] [Fintype P]
     (M : PModule.{u,0,u} k P) (hM : ∀ p, FiniteDimensional k (M.obj p)) :
@@ -1323,7 +1372,9 @@ noncomputable def lanMinimalFiniteRankProjectiveResolutionObj (G : CoordinateGri
     rw [← hmap]
     exact hLanIso
 
-/-- Left Kan extension preserves the certified minimality of every row.-/
+/-- Left Kan extension preserves the certified minimality of every row.
+@isnad1 id=nonempty.0h5v.s8.369601a2e563 from=translated src=- shape=2b2fac71 vocab=87ba4328
+-/
 theorem lanMinimalFiniteRankProjectiveResolution (G : CoordinateGrid n)
     {A : PModule.{u,0,u} k G.Point}
     (R : MinimalFiniteRankProjectiveResolution (k := k) (M := A)) :
@@ -1347,7 +1398,9 @@ namespace FiniteRankProjectiveResolution
 poset has an actual finite rank-projective resolution. The finite presentation
 is used only to reconstruct the module from a finite grid with pfd fibers;
 resolution existence is then proved on that finite poset and transported by
-the actual left Kan extension.-/
+the actual left Kan extension.
+@isnad1 id=nonempty.2h3v.s6.ec5ff783fa8b from=translated src=- shape=f08cffc3 vocab=391f7476
+-/
 theorem finitelyPresented_exists_finiteRankProjectiveResolution
     {n : ℕ} (_hn : 0 < n) (M : PModule.{u,0,u} k (Fin n → ℝ))
     (hM : GradedFree.FinitelyPresented.{u,0,0}
@@ -1365,7 +1418,9 @@ coordinate poset has an actual finite rank-projective resolution whose every
 quotient row is certified as a projective cover. The construction reconstructs
 the presentation on a finite grid, transfers its minimal resolution through
 the actual left Kan extension, then transports the rows across the reconstruction
-isomorphism.-/
+isomorphism.
+@isnad1 id=nonempty.2h3v.s6.fb60e29fd2dc from=translated src=- shape=f08cffc3 vocab=d316a377
+-/
 theorem finitelyPresented_exists_minimalFiniteRankProjectiveResolution
     {n : ℕ} (_hn : 0 < n) (M : PModule.{u,0,u} k (Fin n → ℝ))
     (hM : GradedFree.FinitelyPresented.{u,0,0}

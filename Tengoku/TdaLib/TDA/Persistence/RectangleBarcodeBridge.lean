@@ -44,13 +44,17 @@ private noncomputable def fromRealZeroIso :
 def halfOpenRectangle (p : ℝ × ℝ) (hp : p.1 < p.2) : Rectangle 1 :=
   fun _ => ⟨p.1, p.2, true, false, Or.inl hp⟩
 
-/-- The coordinate support agrees with the existing half-open convention.-/
+/-- The coordinate support agrees with the existing half-open convention.
+@isnad1 id=iff.1h2v.s6.6cffdaf5f7cd from=translated src=- shape=5cd53240 vocab=1bfd37b9
+-/
 theorem halfOpen_support (p : ℝ × ℝ) (hp : p.1 < p.2) (a : Fin 1 → ℝ) :
     a ∈ (halfOpenRectangle p hp).support ↔ p.1 ≤ a 0 ∧ a 0 < p.2 := by
   simp [Rectangle.support, halfOpenRectangle, BoundedInterval.support,
     Fin.forall_fin_one, le_iff_lt_or_eq]
 
-/-- A single rectangle has the existing real barcode module after reindexing.-/
+/-- A single rectangle has the existing real barcode module after reindexing.
+@isnad1 id=eq.1h2v.s6.1c08c0751c7a from=translated src=- shape=5e5eafad vocab=64146a36
+-/
 theorem interval_module_eq (p : ℝ × ℝ) (hp : p.1 < p.2) :
     (halfOpenRectangle p hp).module (k := k) =
       CoordinateRealBridge.fromReal (RealBarcode.intervalModule (k := k)
@@ -70,7 +74,9 @@ noncomputable def intervalIso (p : ℝ × ℝ) (hp : p.1 < p.2) :
         (p.1, (p.2 : WithTop ℝ))) :=
   eqToIso (interval_module_eq p hp)
 
-/-- Half-open deletion uses the closed length threshold, including equality.-/
+/-- Half-open deletion uses the closed length threshold, including equality.
+@isnad1 id=iff.1h3v.s8.dbf2f24a12b1 from=translated src=- shape=f147ea53 vocab=4658f8dc
+-/
 theorem halfOpen_interleaved_zero_iff (p : ℝ × ℝ) (hp : p.1 < p.2) (ε : ℝ≥0) :
     Nonempty (CoordinateInterleaving ε ((halfOpenRectangle p hp).module (k := k)) 0) ↔
       p.2 - p.1 ≤ 2 * (ε : ℝ) := by
@@ -83,7 +89,9 @@ theorem halfOpen_interleaved_zero_iff (p : ℝ × ℝ) (hp : p.1 < p.2) (ε : �
     exact ⟨(CoordinateRealBridge.toCoordinate I).congr (intervalIso p hp).symm fromRealZeroIso⟩
 
 /-- A surviving summand forces both endpoint coordinates of its interleaved
-partner to be within the parameter. No endpoint-decoration hypothesis is used.-/
+partner to be within the parameter. No endpoint-decoration hypothesis is used.
+@isnad1 id=le.1h5v.s7.0e51f23937a8 from=translated src=- shape=25caf731 vocab=cab329cc
+-/
 theorem pairCost_le_of_significant (R S : Rectangle 1) (ε : ℝ≥0)
     (I : CoordinateInterleaving ε (R.module (k := k)) S.module)
     (h : Significant (ε + ε) R ∨ Significant (ε + ε) S) :
@@ -160,7 +168,9 @@ private theorem trim_some_iff {ι κ : Type}
 
 variable {ι κ : Type} [Fintype ι] [Fintype κ]
 
-/-- A numerical cost bound supplies all actual pair and deletion witnesses.-/
+/-- A numerical cost bound supplies all actual pair and deletion witnesses.
+@isnad1 id=ismatchi.3h7v.s6.a21f8d9e808c from=translated src=- shape=38843db0 vocab=cc9a3324
+-/
 theorem isMatching_of_cost (x : ι → ℝ × ℝ) (y : κ → ℝ × ℝ)
     (hx : ∀ i, (x i).1 < (x i).2) (hy : ∀ j, (y j).1 < (y j).2)
     (ε : ℝ≥0) (M : OccurrenceMatching ι κ PEmpty.{1} PEmpty.{1})
@@ -188,7 +198,9 @@ theorem isMatching_of_cost (x : ι → ℝ × ℝ) (y : κ → ℝ × ℝ)
     exact (halfOpen_interleaved_zero_iff (y j) (hy j) ε).mpr (by linarith)
 
 /-- Removing excessive-cost pairs from an actual matching gives an endpoint
-matching at the same radius. Both ends of each removed pair are short.-/
+matching at the same radius. Both ends of each removed pair are short.
+@isnad1 id=ex.3h7v.s7.5c1712921bd6 from=translated src=- shape=14443e29 vocab=cc9a3324
+-/
 theorem exists_cost_matching (x : ι → ℝ × ℝ) (y : κ → ℝ × ℝ)
     (hx : ∀ i, (x i).1 < (x i).2) (hy : ∀ j, (y j).1 < (y j).2)
     (ε : ℝ≥0) (M : OccurrenceMatching ι κ PEmpty.{1} PEmpty.{1})
@@ -230,7 +242,9 @@ theorem exists_cost_matching (x : ι → ℝ × ℝ) (y : κ → ℝ × ℝ)
       exact hj ⟨i, (trim_some_iff x y ε M i j).mpr ⟨hi, hc⟩⟩
 
 /-- Equality of the actual-rectangle matching infimum and the existing
-numerical finite-endpoint bottleneck. No minimizing matching is assumed.-/
+numerical finite-endpoint bottleneck. No minimizing matching is assumed.
+@isnad1 id=eq.2h5v.s6.b3d6dd3ab538 from=translated src=- shape=63319ccc vocab=b1a629fd
+-/
 theorem bottleneck_eq_presentation (x : ι → ℝ × ℝ) (y : κ → ℝ × ℝ)
     (hx : ∀ i, (x i).1 < (x i).2) (hy : ∀ j, (y j).1 < (y j).2) :
     RectangleMatching.bottleneckDistance (k := k)
@@ -284,7 +298,9 @@ noncomputable def familyIso (x : ι → ℝ × ℝ) (hx : ∀ i, (x i).1 < (x i)
   biproduct.mapIso (fun i => intervalIso (x i) (hx i)) ≪≫
     (biproduct.isLimit _).conePointUniqueUpToIso (familyIsLimit _)
 
-/-- The family comparison retains the original projection at each occurrence.-/
+/-- The family comparison retains the original projection at each occurrence.
+@isnad1 id=eq.1h6v.s12.20db3a1e22f6 from=translated src=- shape=615b984c vocab=f6d34abb
+-/
 theorem familyIso_hom_apply (x : ι → ℝ × ℝ) (hx : ∀ i, (x i).1 < (x i).2)
     (a : Fin 1 → ℝ)
     (v : (RectangleFamily.module (k := k) (fun i => halfOpenRectangle (x i) (hx i))).obj a)
@@ -312,21 +328,27 @@ noncomputable def diagram (x : ι → ℝ × ℝ) (hx : ∀ i, (x i).1 < (x i).2
     obtain ⟨i, _, rfl⟩ := Multiset.mem_map.mp hp
     exact ne_of_lt (WithTop.coe_lt_coe.mpr (hx i))
 
-/-- Endpoint conversion remains positive, rather than merely off the diagonal.-/
+/-- Endpoint conversion remains positive, rather than merely off the diagonal.
+@isnad1 id=ispositi.1h2v.s5.96ce000c15bf from=translated src=- shape=fb4a041a vocab=230360ed
+-/
 theorem diagram_isPositive (x : ι → ℝ × ℝ) (hx : ∀ i, (x i).1 < (x i).2) :
     (diagram x hx).IsPositive := by
   intro p hp
   obtain ⟨i, _, rfl⟩ := Multiset.mem_map.mp hp
   exact WithTop.coe_lt_coe.mpr (hx i)
 
-/-- Every finite pair occurrence survives, including repetitions.-/
+/-- Every finite pair occurrence survives, including repetitions.
+@isnad1 id=eq.1h2v.s5.4f0f28fe7f7e from=translated src=- shape=3ed8fa40 vocab=426dc616
+-/
 theorem diagram_finitePart (x : ι → ℝ × ℝ) (hx : ∀ i, (x i).1 < (x i).2) :
     finitePart (diagram x hx).points = (Finset.univ : Finset ι).val.map x := by
   unfold diagram finitePart
   rw [Multiset.filterMap_map]
   exact congrFun (Multiset.filterMap_eq_map x) (Finset.univ : Finset ι).val
 
-/-- Bounded rectangle endpoints create no essential occurrence.-/
+/-- Bounded rectangle endpoints create no essential occurrence.
+@isnad1 id=eq.1h2v.s5.daa39f517474 from=translated src=- shape=cff92a7f vocab=f036868d
+-/
 theorem diagram_essentialPart (x : ι → ℝ × ℝ) (hx : ∀ i, (x i).1 < (x i).2) :
     essentialPart (diagram x hx).points = 0 := by
   apply Multiset.eq_zero_iff_forall_notMem.mpr
@@ -335,7 +357,9 @@ theorem diagram_essentialPart (x : ι → ℝ × ℝ) (hx : ∀ i, (x i).1 < (x 
     Multiset.mem_filterMap]
 
 /-- The endpoint diagram bottleneck is exactly the existing occurrence
-presentation value; its essential occurrence sets are empty.-/
+presentation value; its essential occurrence sets are empty.
+@isnad1 id=eq.2h4v.s6.af8e4b931379 from=translated src=- shape=fbb90926 vocab=d99a37ab
+-/
 theorem diagram_bottleneck_eq_presentation (x : ι → ℝ × ℝ) (y : κ → ℝ × ℝ)
     (hx : ∀ i, (x i).1 < (x i).2) (hy : ∀ j, (y j).1 < (y j).2) :
     bottleneck (diagram x hx) (diagram y hy) =
@@ -378,7 +402,9 @@ noncomputable def realizationIso (x : ι → ℝ × ℝ) (hx : ∀ i, (x i).1 < 
     (diagramFamilyIso x hx)
 
 /-- On the common positive finite half-open class, rectangle matching and
-the original endpoint diagram bottleneck have the same value.-/
+the original endpoint diagram bottleneck have the same value.
+@isnad1 id=eq.2h5v.s6.44d1380b17af from=translated src=- shape=0e0990ef vocab=14010b50
+-/
 theorem rectangle_bottleneck_eq_diagram (x : ι → ℝ × ℝ) (y : κ → ℝ × ℝ)
     (hx : ∀ i, (x i).1 < (x i).2) (hy : ∀ j, (y j).1 < (y j).2) :
     RectangleMatching.bottleneckDistance (k := k)
@@ -387,7 +413,9 @@ theorem rectangle_bottleneck_eq_diagram (x : ι → ℝ × ℝ) (y : κ → ℝ 
   (bottleneck_eq_presentation x y hx hy).trans (diagram_bottleneck_eq_presentation x y hx hy).symm
 
 /-- The proved n=1 rectangle equality agrees with the original real-indexed
-interleaving distance, through the actual realization isomorphisms.-/
+interleaving distance, through the actual realization isomorphisms.
+@isnad1 id=eq.2h5v.s6.63cd5d3610e9 from=translated src=- shape=05190989 vocab=5ac93365
+-/
 theorem rectangle_bottleneck_eq_real_distance (x : ι → ℝ × ℝ) (y : κ → ℝ × ℝ)
     (hx : ∀ i, (x i).1 < (x i).2) (hy : ∀ j, (y j).1 < (y j).2) :
     RectangleMatching.bottleneckDistance (k := k)
@@ -400,7 +428,9 @@ theorem rectangle_bottleneck_eq_real_distance (x : ι → ℝ × ℝ) (y : κ �
   exact CoordinateRealBridge.distance_eq _ _
 
 /-- The original numerical diagram bottleneck and original real barcode
-realizations agree on this finite bounded half-open subclass.-/
+realizations agree on this finite bounded half-open subclass.
+@isnad1 id=eq.2h5v.s6.70f3d009463f from=translated src=- shape=03d6882b vocab=4a4e1f41
+-/
 theorem diagram_bottleneck_eq_real_distance (x : ι → ℝ × ℝ) (y : κ → ℝ × ℝ)
     (hx : ∀ i, (x i).1 < (x i).2) (hy : ∀ j, (y j).1 < (y j).2) :
     bottleneck (diagram x hx) (diagram y hy) =
@@ -410,7 +440,9 @@ theorem diagram_bottleneck_eq_real_distance (x : ι → ℝ × ℝ) (y : κ → 
     (rectangle_bottleneck_eq_real_distance x y hx hy)
 
 /-- Zero distance detects endpoint diagrams on the common positive half-open
-class. This does not discard endpoint decorations on other rectangle families.-/
+class. This does not discard endpoint decorations on other rectangle families.
+@isnad1 id=iff.2h5v.s6.5cd600f6c24a from=translated src=- shape=c178e8e6 vocab=b038c282
+-/
 theorem real_distance_zero_iff_diagram_eq (x : ι → ℝ × ℝ) (y : κ → ℝ × ℝ)
     (hx : ∀ i, (x i).1 < (x i).2) (hy : ∀ j, (y j).1 < (y j).2) :
     realInterleavingDistance (RealBarcode.realize (k := k) (diagram x hx))
@@ -419,7 +451,9 @@ theorem real_distance_zero_iff_diagram_eq (x : ι → ℝ × ℝ) (y : κ → �
   exact bottleneck_eq_zero_iff _ _
 
 /-- Within this common subclass zero distance does give a natural isomorphism.
-The closed-singleton counterexample belongs to the larger decorated domain.-/
+The closed-singleton counterexample belongs to the larger decorated domain.
+@isnad1 id=iff.2h5v.s7.1b6645bf19d3 from=translated src=- shape=dc148eb2 vocab=c4083e9a
+-/
 theorem real_distance_zero_iff_iso (x : ι → ℝ × ℝ) (y : κ → ℝ × ℝ)
     (hx : ∀ i, (x i).1 < (x i).2) (hy : ∀ j, (y j).1 < (y j).2) :
     realInterleavingDistance (RealBarcode.realize (k := k) (diagram x hx))
@@ -455,7 +489,9 @@ noncomputable def ofRealInterleaving (x : ι → ℝ × ℝ) (y : κ → ℝ × 
     (realizationIso x hx).symm (realizationIso y hy).symm
 
 /-- On the common subclass, actual real interleavings and cost-bounded
-endpoint matchings exist at precisely the same radii, including zero.-/
+endpoint matchings exist at precisely the same radii, including zero.
+@isnad1 id=iff.2h6v.s6.8a4035365f84 from=translated src=- shape=de35484e vocab=c80ab562
+-/
 theorem interleaving_iff_cost_matching (x : ι → ℝ × ℝ) (y : κ → ℝ × ℝ)
     (hx : ∀ i, (x i).1 < (x i).2) (hy : ∀ j, (y j).1 < (y j).2) (ε : ℝ≥0) :
     Nonempty (RealInterleaving ε (RealBarcode.realize (k := k) (diagram x hx))
@@ -475,14 +511,18 @@ theorem interleaving_iff_cost_matching (x : ι → ℝ × ℝ) (y : κ → ℝ �
   · rintro ⟨M, hM⟩
     exact ⟨toRealInterleaving x y hx hy (isMatching_of_cost x y hx hy ε M hM).interleaving⟩
 
-/-- The nonempty-rectangle contract forces positive length for half-open endpoints.-/
+/-- The nonempty-rectangle contract forces positive length for half-open endpoints.
+@isnad1 id=lt.1h1v.s6.1aefd7c10bbd from=translated src=- shape=66f33ba8 vocab=cdd2818e
+-/
 theorem upperOpen_lower_lt_upper (R : Rectangle 1) (hu : (R 0).upperClosed = false) :
     (R 0).lower < (R 0).upper := by
   rcases (R 0).nonempty with h | ⟨_, _, h⟩
   · exact h
   · simp [hu] at h
 
-/-- Every rectangle with the common endpoint convention is produced by the bridge.-/
+/-- Every rectangle with the common endpoint convention is produced by the bridge.
+@isnad1 id=eq.2h1v.s6.7538de13bcca from=translated src=- shape=03eefb61 vocab=c72134d1
+-/
 theorem rectangle_eq_halfOpen (R : Rectangle 1)
     (hl : (R 0).lowerClosed = true) (hu : (R 0).upperClosed = false) :
     R = halfOpenRectangle ((R 0).lower, (R 0).upper) (upperOpen_lower_lt_upper R hu) := by
@@ -494,7 +534,9 @@ theorem rectangle_eq_halfOpen (R : Rectangle 1)
   simpa only [true_and] using And.intro hl hu
 
 /-- Empty, equal-endpoint and reversed half-open intervals in the legacy raw
-constructor are zero modules; they are outside the nonempty rectangle domain.-/
+constructor are zero modules; they are outside the nonempty rectangle domain.
+@isnad1 id=iszero.1h2v.s6.f90c651b1ac1 from=translated src=- shape=4ddda797 vocab=17faf242
+-/
 theorem empty_interval_isZero (p : ℝ × ℝ) (h : p.2 ≤ p.1) :
     IsZero (RealBarcode.intervalModule (k := k) (p.1, (p.2 : WithTop ℝ))) := by
   apply Functor.isZero

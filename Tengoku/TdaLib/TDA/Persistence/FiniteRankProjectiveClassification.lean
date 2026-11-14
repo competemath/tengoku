@@ -31,7 +31,9 @@ variable {k : Type u} [Field k] {P : Type} [PartialOrder P] [Fintype P]
 private instance : HasFiniteBiproducts (PModule.{u,0,u} k P) :=
   HasFiniteBiproducts.of_hasFiniteProducts
 
-/-- On a finite poset, one Fitting exponent works at every grade.-/
+/-- On a finite poset, one Fitting exponent works at every grade.
+@isnad1 id=ex.1h4v.s12.21af81c68d80 from=translated src=- shape=2067d776 vocab=3d97dca1
+-/
 theorem exists_uniform_fitting_complement (X : PModule.{u,0,u} k P)
     (hX : ∀ p, FiniteDimensional k (X.obj p)) (f : End X) :
     ∃ n : ℕ, 0 < n ∧ ∀ p,
@@ -359,7 +361,9 @@ private theorem natTrans_app_hom_pow {X : PModule.{u,0,u} k P}
 
 /-- On an indecomposable pointwise finite-dimensional module, every endomorphism
 is either invertible or nilpotent. This is the Fitting dichotomy needed for
-finite cancellation.-/
+finite cancellation.
+@isnad1 id=or.2h4v.s9.402b187cef2c from=translated src=- shape=ecd710e0 vocab=5f74e0d3
+-/
 theorem indecomposable_endomorphism_dichotomy {X : PModule.{u,0,u} k P}
     (hX : Indecomposable X) (hfd : ∀ p, FiniteDimensional k (X.obj p))
     (f : End X) : IsIso f ∨ ∃ n : ℕ, f ^ n = 0 := by
@@ -412,7 +416,9 @@ theorem indecomposable_endomorphism_dichotomy {X : PModule.{u,0,u} k P}
     exact Or.inr ⟨n, by simpa [g] using hg0⟩
 
 /-- A sum of two endomorphisms of an indecomposable cannot be the identity
-unless at least one summand is invertible.-/
+unless at least one summand is invertible.
+@isnad1 id=or.3h5v.s9.fa1020f123bb from=translated src=- shape=14b79f96 vocab=b7c41344
+-/
 theorem indecomposable_sum_eq_one_has_isIso {X : PModule.{u,0,u} k P}
     (hX : Indecomposable X) (hfd : ∀ p, FiniteDimensional k (X.obj p))
     (a b : End X) (hab : a + b = 1) : IsIso a ∨ IsIso b := by
@@ -470,7 +476,9 @@ private theorem indecomposable_finset_sum_isIso {X : PModule.{u,0,u} k P}
         exact ⟨j, Finset.mem_insert_of_mem hjs, hjIso⟩
 
 /-- An indecomposable retract of a finite biproduct of indecomposables is
-isomorphic to one of its summands.-/
+isomorphic to one of its summands.
+@isnad1 id=ex.4h7v.s9.86346f718d87 from=translated src=- shape=f7063c21 vocab=a2cfef22
+-/
 theorem indecomposable_biproduct_summand {X : PModule.{u,0,u} k P}
     {ι : Type} [Fintype ι] (F : ι → PModule.{u,0,u} k P)
     (hX : Indecomposable X) (hfd : ∀ p, FiniteDimensional k (X.obj p))
@@ -833,7 +841,9 @@ private theorem exists_finite_indecomposable_decomposition
   exact aux (totalFiberDimension M) M rfl hM
 
 /-- Every indecomposable finite-dimensional rank-projective on a finite poset
-is one of the actual hook occurrences in its canonical finite-hook cover.-/
+is one of the actual hook occurrences in its canonical finite-hook cover.
+@isnad1 id=ex.3h3v.s8.eb4f33128f0b from=translated src=- shape=3916e192 vocab=776be045
+-/
 theorem indecomposable_rankProjective_iso_hook
     (M : PModule.{u,0,u} k P) (hM : ∀ p, FiniteDimensional k (M.obj p))
     (hI : Indecomposable M) (hR : IsRankProjective M) :
@@ -1273,7 +1283,9 @@ private theorem hookTag_sum_multiplicity_unique [DecidableEq P] :
 
 /-- Isomorphic finite sums of nonzero finite or infinite hooks have the same
 multiplicity for each birth/death tag. The statement retains repeated hooks
-through the subtype cardinalities.-/
+through the subtype cardinalities.
+@isnad1 id=eq.1h7v.s8.2045e7b3c259 from=translated src=- shape=04e7f478 vocab=e6228c5f
+-/
 theorem rankProjectiveHookSum_multiplicity_unique [DecidableEq P]
     {n m : ℕ} (F : Fin n → RankProjectiveHookTag P)
     (G : Fin m → RankProjectiveHookTag P)
@@ -1489,7 +1501,9 @@ private theorem exists_hookTag_preserving_embedding [DecidableEq P]
 
 /-- A pointwise finite-dimensional rank-projective on a finite poset is a
 finite direct sum of selected occurrences in its canonical finite-hook cover.
-The occurrence indices retain the multiplicity supplied by that cover.-/
+The occurrence indices retain the multiplicity supplied by that cover.
+@isnad1 id=iff.1h3v.s8.a6bcbc3a597d from=translated src=- shape=153151cd vocab=6ec396f1
+-/
 theorem rankProjective_iff_exists_canonical_subfamily
     (M : PModule.{u,0,u} k P) (hM : ∀ p, FiniteDimensional k (M.obj p)) :
     IsRankProjective M ↔

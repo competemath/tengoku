@@ -49,7 +49,9 @@ private theorem repeatedPresentation_finitelyPresented
     (FinitePresentationKanExamples.presentation_finite k n)
 
 /-- A nonzero quotient of the repeated-grade, genuinely related example has a
-finite presentation as an actual categorical cokernel.-/
+finite presentation as an actual categorical cokernel.
+@isnad1 id=and.0h2v.s13.2cd8b477f21f from=translated src=- shape=2ee04b5b vocab=05ae031e
+-/
 theorem repeated_nonzero_quotient_cokernel_finitelyPresented
     {k : Type u} [Field k] {n : ℕ} :
     FinitelyPresented.{u,0,0} (R := k) (P := Fin n → ℝ)
@@ -80,7 +82,9 @@ theorem repeated_nonzero_quotient_cokernel_finitelyPresented
 
 /-- The actual cokernel of the nonzero relation map, from the free module on
 the relation born at grade two to the free module on two generators born at
-grade zero, is finitely presented and keeps a nonzero vector at grade zero.-/
+grade zero, is finitely presented and keeps a nonzero vector at grade zero.
+@isnad1 id=and.0h2v.s12.a109b0d27264 from=translated src=- shape=cb4de7ac vocab=3624c399
+-/
 theorem relation_cokernel_finitelyPresented {k : Type u} [Field k] {n : ℕ} :
     (FinitePresentationKanExamples.presentation k n).relationMap ≠ 0 ∧
       FinitelyPresented.{u,0,0} (R := k) (P := Fin n → ℝ)
@@ -101,7 +105,9 @@ private abbrev redundantGenerators (n : ℕ) : GradedGenerators (Fin n → ℝ) 
   grade _ := (FinitePresentationKanExamples.generators n).grade (0 : Fin 2)
 
 /-- Repeated births and redundant relations remain separate finite occurrences
-in the explicit presentation after the redundant-generator construction.-/
+in the explicit presentation after the redundant-generator construction.
+@isnad1 id=other.0h2v.s11.a607fa9dd380 from=translated src=- shape=1a75998d vocab=c9eb2739
+-/
 theorem repeated_redundant_presentation_finitelyPresented
     {k : Type u} [Field k] {n : ℕ} :
     let D := FinitePresentationKanExamples.presentation k n
@@ -122,7 +128,9 @@ theorem repeated_redundant_presentation_finitelyPresented
   exact ⟨hE, E.finitelyPresented hE⟩
 
 /-- Empty generators and relations give the zero object, and the actual
-cokernel and pushout boundary objects remain finitely presented.-/
+cokernel and pushout boundary objects remain finitely presented.
+@isnad1 id=and.0h2v.s11.152294d2e44d from=translated src=- shape=a3593e52 vocab=5c515325
+-/
 theorem empty_zero_colimits_finitelyPresented {k : Type u} [Field k] {n : ℕ} :
     FinitelyPresented.{u,0,0} (R := k) (P := Fin n → ℝ)
         (Limits.cokernel (0 : (0 : PModule.{u,0,u} k (Fin n → ℝ)) ⟶ 0)) ∧
@@ -155,7 +163,9 @@ private theorem identityQuotient_rankExact
 
 /-- For every field, the original repeated-grade presentation supports the
 actual rank-exact pushout consumer with the smallest presentation-index
-universe. The resulting middle object is the actual pushout and is nonzero.-/
+universe. The resulting middle object is the actual pushout and is nonzero.
+@isnad1 id=other.0h1v.s15.bef9e0180df1 from=translated src=- shape=985f22b6 vocab=11845ba4
+-/
 theorem arbitrary_field_rank_exact_pushout_finitelyPresented
     {k : Type u} [Field k] :
     let D := FinitePresentationKanExamples.presentation k 2

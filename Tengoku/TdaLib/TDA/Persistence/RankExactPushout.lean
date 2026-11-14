@@ -55,11 +55,17 @@ noncomputable def pushoutQuotient (hs : IsPointwiseShortExact ι π) (f : L ⟶ 
     Limits.pushout ι f ⟶ N :=
   Limits.pushout.desc π 0 (by rw [pointwiseCompZero hs]; simp)
 
+/--
+@isnad1 id=eq.1h9v.s8.922ba10dac47 from=translated src=- shape=6e931e69 vocab=8bdf5037
+-/
 @[reassoc (attr := simp)]
 theorem pushoutQuotient_inl (hs : IsPointwiseShortExact ι π) (f : L ⟶ L') :
     Limits.pushout.inl ι f ≫ hs.pushoutQuotient f = π := by
   exact Limits.pushout.inl_desc π 0 _
 
+/--
+@isnad1 id=eq.1h9v.s9.d4d3ec1e201a from=translated src=- shape=6bbce7db vocab=e3f21e1e
+-/
 @[reassoc (attr := simp)]
 theorem pushoutQuotient_inr (hs : IsPointwiseShortExact ι π) (f : L ⟶ L') :
     Limits.pushout.inr ι f ≫ hs.pushoutQuotient f = 0 := by
@@ -197,7 +203,9 @@ private theorem pushoutObjIso_quotient (hs : IsPointwiseShortExact ι π) (f : L
       _ = pushout.inr (ι.app p) (f.app p) ≫ fiberPushoutQuotient hs p (f.app p) := by
         exact (Limits.pushout.inr_desc (π.app p) 0 _).symm
 
-/-- Pushing out the first map preserves pointwise short exactness.-/
+/-- Pushing out the first map preserves pointwise short exactness.
+@isnad1 id=ispointw.1h9v.s8.c7e3f1dad6e0 from=translated src=- shape=df395194 vocab=ad1dc0dd
+-/
 theorem pushout_pointwise (hs : IsPointwiseShortExact ι π) (f : L ⟶ L') :
     IsPointwiseShortExact (Limits.pushout.inr ι f) (hs.pushoutQuotient f) where
   injective p := by
@@ -299,7 +307,9 @@ private theorem pushoutFiber_finiteDimensional (hs : IsRankExact ι π) (f : L �
   exact FiniteDimensional.of_injective e.hom.hom
     ((ModuleCat.mono_iff_injective _).mp inferInstance)
 
-/-- Pushout closure for rank-exact sequences over arbitrary partial orders.-/
+/-- Pushout closure for rank-exact sequences over arbitrary partial orders.
+@isnad1 id=isrankex.1h9v.s8.41c5b512462d from=translated src=- shape=fb24d4da vocab=be040e2d
+-/
 theorem IsRankExact.pushout (hs : IsRankExact ι π) (f : L ⟶ L')
     [∀ p, FiniteDimensional k (L'.obj p)] :
     IsRankExact (Limits.pushout.inr ι f) (hs.toIsPointwiseShortExact.pushoutQuotient f) := by

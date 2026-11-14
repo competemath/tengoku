@@ -204,7 +204,9 @@ noncomputable def interleaving :
           exact congrArg₂ (· * ·) (coefficient_entry true i j) (coefficient_entry false j l)
         _ = _ := matrix_inverse true i l)
 
-/-- Reading the forward maps recovers the source's coefficient matrix.-/
+/-- Reading the forward maps recovers the source's coefficient matrix.
+@isnad1 id=eq.0h3v.s8.2816f12ccdd1 from=translated src=- shape=6d3752bf vocab=697d1266
+-/
 theorem forward_component_coefficient (i j : Fin 3) :
     shiftedCoefficient (source i) (target j) 1
       (component source target 1 (interleaving (k := k)).φ i j) =
@@ -218,7 +220,9 @@ theorem forward_component_coefficient (i j : Fin 3) :
     _ = (matrix false i j : k) := h
     _ = _ := by fin_cases i <;> fin_cases j <;> norm_num [matrix]
 
-/-- Reading the reverse maps recovers the integral inverse matrix.-/
+/-- Reading the reverse maps recovers the integral inverse matrix.
+@isnad1 id=eq.0h3v.s8.dde4673b2164 from=translated src=- shape=9b464a9c vocab=8284d973
+-/
 theorem reverse_component_coefficient (i j : Fin 3) :
     shiftedCoefficient (target i) (source j) 1
       (component target source 1 (interleaving (k := k)).ψ i j) =
@@ -243,7 +247,9 @@ private theorem endpointClose_three (i j : Fin 3) : endpointClose 3 (source i) (
   fin_cases i <;> fin_cases j <;> fin_cases c <;> cases e <;>
     norm_num [endpointClose, decoratedLE, endpoint, plus, source, target, openInterval]
 
-/-- Every paired module really is 3-interleaved; the matching has no deletions.-/
+/-- Every paired module really is 3-interleaved; the matching has no deletions.
+@isnad1 id=ismatchi.0h1v.s5.d53384500cdf from=translated src=- shape=7dbec85d vocab=0ed2792a
+-/
 theorem isMatching_three : IsMatching (k := k) 3 source target matching where
   paired := by
     intro i j h
@@ -273,7 +279,9 @@ private theorem forced_partner {ρ : ℝ≥0} (hρ : ρ < 3)
   all_goals linarith
 
 /-- Below radius 3 the two significant occurrences `source 1` and `source 2`
-would both have to match `target 0`, contradicting occurrence injectivity.-/
+would both have to match `target 0`, contradicting occurrence injectivity.
+@isnad1 id=le.1h3v.s6.109136874d13 from=translated src=- shape=66bba402 vocab=4587af86
+-/
 theorem matching_radius_ge_three {ρ : ℝ≥0}
     {M : OccurrenceMatching (Fin 3) (Fin 3) PEmpty.{1} PEmpty.{1}}
     (hM : IsMatching (k := k) ρ source target M) : 3 ≤ ρ := by
@@ -292,7 +300,9 @@ theorem matching_radius_ge_three {ρ : ℝ≥0}
   have he := M.finite_injective 1 2 0 hj hl
   exact (by decide : (1 : Fin 3) ≠ 2) he
 
-/-- The infimum over actual occurrence matching radii is exactly 3.-/
+/-- The infimum over actual occurrence matching radii is exactly 3.
+@isnad1 id=eq.0h1v.s5.f095c09307a8 from=translated src=- shape=f2edf39a vocab=3517b3d0
+-/
 theorem bottleneckDistance_eq_three : bottleneckDistance (k := k) source target = 3 := by
   apply le_antisymm
   · exact bottleneckDistance_le_of_matching isMatching_three
@@ -301,7 +311,9 @@ theorem bottleneckDistance_eq_three : bottleneckDistance (k := k) source target 
     exact_mod_cast matching_radius_ge_three hM
 
 /-- Every actual interleaving has radius at least 1. This follows from the
-proved factor-three matching theorem and the explicit matching obstruction.-/
+proved factor-three matching theorem and the explicit matching obstruction.
+@isnad1 id=le.0h3v.s6.e566cf8501a8 from=translated src=- shape=ef2ef4e5 vocab=1070890f
+-/
 theorem interleaving_radius_ge_one {ε : ℝ≥0}
     (I : CoordinateInterleaving ε (module (k := k) source) (module target)) : 1 ≤ ε := by
   obtain ⟨M, hM⟩ := exists_matching (by decide : 0 < 2) source target ε I
@@ -310,7 +322,9 @@ theorem interleaving_radius_ge_one {ε : ℝ≥0}
     simpa [stabilityRadius] using (show (3 : ℝ) ≤ (stabilityRadius 2 ε : ℝ) from h)
   exact_mod_cast (by linarith : (1 : ℝ) ≤ (ε : ℝ))
 
-/-- The infimum over actual natural-transformation interleavings is exactly 1.-/
+/-- The infimum over actual natural-transformation interleavings is exactly 1.
+@isnad1 id=eq.0h1v.s5.319a38985955 from=translated src=- shape=85fb2739 vocab=be4c5906
+-/
 theorem interleavingDistance_eq_one :
     coordinateInterleavingDistance (module (k := k) source) (module target) = 1 := by
   apply le_antisymm
@@ -320,19 +334,25 @@ theorem interleavingDistance_eq_one :
     exact_mod_cast interleaving_radius_ge_one I
 
 /-- Factor three is attained, so no universal coefficient below three works
-for finite bounded open rectangles in dimension two.-/
+for finite bounded open rectangles in dimension two.
+@isnad1 id=eq.0h1v.s6.848c464ae082 from=translated src=- shape=608af3d6 vocab=248e6390
+-/
 theorem sharp_factor : bottleneckDistance (k := k) source target =
     3 * coordinateInterleavingDistance (module (k := k) source) (module target) := by
   rw [bottleneckDistance_eq_three, interleavingDistance_eq_one, mul_one]
 
-/-- The two distances disagree even for these finite sums of open rectangles.-/
+/-- The two distances disagree even for these finite sums of open rectangles.
+@isnad1 id=lt.0h1v.s6.dab4c42d39b6 from=translated src=- shape=6c7dc6f3 vocab=1fbd98f8
+-/
 theorem interleavingDistance_lt_bottleneckDistance :
     coordinateInterleavingDistance (module (k := k) source) (module target) <
       bottleneckDistance (k := k) source target := by
   rw [interleavingDistance_eq_one, bottleneckDistance_eq_three]
   norm_num
 
-/-- Every smaller proposed coefficient fails on this same fixed pair.-/
+/-- Every smaller proposed coefficient fails on this same fixed pair.
+@isnad1 id=not.1h2v.s6.61f0ad651c82 from=translated src=- shape=79bafce1 vocab=0fe1d358
+-/
 theorem fails_smaller_constant {c : ℝ≥0∞} (hc : c < 3) :
     ¬ bottleneckDistance (k := k) source target ≤
       c * coordinateInterleavingDistance (module (k := k) source) (module target) := by

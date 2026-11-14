@@ -28,10 +28,16 @@ def measureDistortion (a b : X × Y) : ℝ≥0∞ :=
   distortion a b
 
 omit [MeasurableSpace X] [MeasurableSpace Y] in
+/--
+@isnad1 id=eq.0h3v.s4.8a6a1de44118 from=translated src=- shape=8e4ede1a vocab=f68731cb
+-/
 @[simp] theorem measureDistortion_self (a : X × Y) : measureDistortion a a = 0 := by
   exact distortion_self a
 
 omit [MeasurableSpace X] [MeasurableSpace Y] in
+/--
+@isnad1 id=eq.0h4v.s5.5a0f6ce2a6bd from=translated src=- shape=bd75494e vocab=f68731cb
+-/
 theorem measureDistortion_comm (a b : X × Y) :
     measureDistortion a b = measureDistortion b a := by
   exact distortion_comm a b

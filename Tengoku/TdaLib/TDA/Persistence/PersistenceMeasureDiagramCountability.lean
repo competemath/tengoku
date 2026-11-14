@@ -23,7 +23,9 @@ private abbrev RationalRectangle :=
 
 variable {k : Type u} [Field k] (M : PModule.{u,0,w} k ℝ)
 
-/-- Local finiteness and rational rectangle covers imply countable finite-death support.-/
+/-- Local finiteness and rational rectangle covers imply countable finite-death support.
+@isnad1 id=countabl.1h2v.s5.9338e3263cf8 from=translated src=- shape=d2229270 vocab=227e737a
+-/
 theorem moduleDiagramMultiplicity_countable_support (hM : M.QTame) :
     Set.Countable {p | 0 < moduleDiagramMultiplicity M hM p} := by
   let T : RationalRectangle → Set (Cut ℝ × Cut ℝ) := fun q =>
@@ -50,7 +52,9 @@ theorem moduleDiagramMultiplicity_countable_support (hM : M.QTame) :
     exact ⟨⟨⟨Cut.lower_of_le hAa.le hpU.1.1, Cut.upper_of_le hbB.le hpU.1.2⟩,
       ⟨Cut.lower_of_le hCc.le hpU.2.1, Cut.upper_of_le hdD.le hpU.2.2⟩⟩, hp⟩
 
-/-- Essential support is countable by rational birth-cell covers.-/
+/-- Essential support is countable by rational birth-cell covers.
+@isnad1 id=countabl.1h2v.s5.57e25463a4b3 from=translated src=- shape=37860c5f vocab=f752fc75
+-/
 theorem moduleEssentialMultiplicity_countable_support (hM : M.QTame) :
     Set.Countable {birth | 0 < moduleEssentialMultiplicity M hM birth} := by
   let T : (ℚ × ℚ) → Set (Cut ℝ) := fun q =>
@@ -67,7 +71,9 @@ theorem moduleEssentialMultiplicity_countable_support (hM : M.QTame) :
   exact mem_iUnion.mpr ⟨(A, B), ⟨⟨Cut.lower_of_le hAa.le hbU.1,
     Cut.upper_of_le hbB.le hbU.2⟩, hb⟩⟩
 
-/-- The actual diagram with its essential boundary has countable global positive support.-/
+/-- The actual diagram with its essential boundary has countable global positive support.
+@isnad1 id=countabl.1h2v.s5.ca185640b3b4 from=translated src=- shape=d2229270 vocab=29031e5a
+-/
 theorem moduleExtendedDiagramMultiplicity_countable_support (hM : M.QTame) :
     Set.Countable {p | 0 < moduleExtendedDiagramMultiplicity M hM p} := by
   have hfinite := moduleDiagramMultiplicity_countable_support M hM

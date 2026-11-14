@@ -47,19 +47,34 @@ abbrev ColumnModule := PairPoset S → Incidence (k := k) (S := S)
 def diagonalFloor (q : PairPoset S) : PairPoset S :=
   ⟨(q.val.1, q.val.1), le_rfl⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.79fa6b1fdaa8 from=translated src=- shape=5ccdb514 vocab=518f9de1
+-/
 @[simp] theorem diagonalFloor_fst (q : PairPoset S) :
     (diagonalFloor (S := S) q).val.1 = q.val.1 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.b9060a5326e2 from=translated src=- shape=b9d90c40 vocab=518f9de1
+-/
 @[simp] theorem diagonalFloor_snd (q : PairPoset S) :
     (diagonalFloor (S := S) q).val.2 = q.val.1 := rfl
 
+/--
+@isnad1 id=isdiagon.0h2v.s4.c61aa1e0cc51 from=translated src=- shape=146b975e vocab=aab70f72
+-/
 theorem diagonalFloor_isDiagonal (q : PairPoset S) :
     IsDiagonal (S := S) (diagonalFloor (S := S) q) := rfl
 
+/--
+@isnad1 id=le.0h2v.s6.6031eeb7991a from=translated src=- shape=3e6324c1 vocab=db133827
+-/
 theorem diagonalFloor_le (q : PairPoset S) : diagonalFloor (S := S) q ≤ q := by
   change q.val.1 ≤ q.val.1 ∧ q.val.1 ≤ q.val.2
   exact ⟨le_rfl, q.property⟩
 
+/--
+@isnad1 id=iff.0h3v.s6.bdd8f4a810bb from=translated src=- shape=66830723 vocab=c4426e62
+-/
 theorem le_diagonalFloor_iff_crossesDiagonal (p q : PairPoset S) :
     p ≤ diagonalFloor (S := S) q ↔ CrossesDiagonal (S := S) p q := by
   change (p.val.1 ≤ q.val.1 ∧ p.val.2 ≤ q.val.1) ↔ p.val.2 ≤ q.val.1
@@ -70,7 +85,9 @@ theorem le_diagonalFloor_iff_crossesDiagonal (p q : PairPoset S) :
 
 /-- A coefficient of an ideal element can be nonzero only when its interval
 meets the diagonal.  The assertion also covers incomparable pairs, whose
-incidence coefficients already vanish by definition.-/
+incidence coefficients already vanish by definition.
+@isnad1 id=eq.1h5v.s10.3ba1ab522037 from=translated src=- shape=4fe8455e vocab=b63bc3e6
+-/
 theorem diagonalIdeal_coeff_zero_of_not_crosses
     (f : DiagonalIdeal (k := k) (S := S)) (p q : PairPoset S)
     (h : ¬ CrossesDiagonal (S := S) p q) : f.1 p q = 0 := by
@@ -82,7 +99,9 @@ theorem diagonalIdeal_coeff_zero_of_not_crosses
   · exact f.1.eq_zero_of_not_le' hpq
 
 /-- The diagonal ideal is characterized by its coefficients on crossing
-intervals.-/
+intervals.
+@isnad1 id=iff.0h3v.s9.4f84a6bfbc40 from=translated src=- shape=bac7526a vocab=e2fd9254
+-/
 theorem mem_diagonalIdeal_iff_coeff_zero_of_not_crosses (f : Incidence (k := k) (S := S)) :
     f ∈ DiagonalIdeal (k := k) (S := S) ↔
       ∀ p q : PairPoset S, ¬ CrossesDiagonal (S := S) p q → f p q = 0 := by
@@ -170,12 +189,17 @@ def includeColumns :
             ((le_diagonalFloor_iff_crossesDiagonal (S := S) x q).2 hcross))
     · simp [IncidenceAlgebra.mul_apply, includeColumn, ht]
 
+/--
+@isnad1 id=eq.0h6v.s12.cdb59ee7d826 from=translated src=- shape=42a4560b vocab=e52c8732
+-/
 @[simp] theorem includeColumns_apply
     (f : DiagonalIdeal (k := k) (S := S)) (q p t : PairPoset S) :
     includeColumns (k := k) (S := S) f q p t =
       if t = diagonalFloor (S := S) q then f.1 p q else 0 := rfl
 
-/-- Right multiplication by `δ_{d,q}` places the `d`-column at `q`.-/
+/-- Right multiplication by `δ_{d,q}` places the `d`-column at `q`.
+@isnad1 id=eq.1h7v.s8.0f5e785d5ab2 from=translated src=- shape=bf10209b vocab=32867e32
+-/
 theorem mul_delta_right_apply_column
     (a : Incidence (k := k) (S := S)) (d q p t : PairPoset S)
     (hdq : d ≤ q) :
@@ -210,7 +234,9 @@ theorem mul_delta_right_apply_column
     simp [delta_apply, ht]
 
 /-- Each included diagonal-floor column is fixed by right multiplication by its
-diagonal-floor idempotent.-/
+diagonal-floor idempotent.
+@isnad1 id=eq.0h4v.s13.fdddb4b952cb from=translated src=- shape=fba0290a vocab=751094bc
+-/
 theorem includeColumns_mul_diagonalFloorIdempotent
     (f : DiagonalIdeal (k := k) (S := S)) (q : PairPoset S) :
     includeColumns (k := k) (S := S) f q *
@@ -275,6 +301,9 @@ def assembleColumns :
       change g q x (diagonalFloor (S := S) q) = 0
       exact (g q).eq_zero_of_not_le' hxr
 
+/--
+@isnad1 id=eq.0h5v.s12.9ce65b245e6b from=translated src=- shape=6a6b240a vocab=3521a093
+-/
 @[simp] theorem assembleColumns_apply
     (g : ColumnModule (k := k) (S := S)) (p q : PairPoset S) :
     (assembleColumns (k := k) (S := S) g).1 p q =
@@ -290,7 +319,9 @@ private theorem incidenceFinsetSum_apply_column {ι : Type}
   | @insert i s hi ih => simp [hi, IncidenceAlgebra.add_apply, ih]
 
 /-- Reassembly is the sum of the chosen terminal columns multiplied by their
-diagonal-floor matrix units.-/
+diagonal-floor matrix units.
+@isnad1 id=eq.0h3v.s12.2f60fb3672b5 from=translated src=- shape=dc355f0f vocab=b93f97f0
+-/
 theorem assembleColumns_eq_sum_mul_delta
     (g : ColumnModule (k := k) (S := S)) :
     (assembleColumns (k := k) (S := S) g).1 =
@@ -303,7 +334,9 @@ theorem assembleColumns_eq_sum_mul_delta
   simp_rw [mul_delta_right_apply_column]
   simp
 
-/-- Reassembling the included columns returns the original ideal element.-/
+/-- Reassembling the included columns returns the original ideal element.
+@isnad1 id=eq.0h2v.s12.e98685f9a7c4 from=translated src=- shape=51e51265 vocab=298b6889
+-/
 theorem assembleColumns_comp_includeColumns :
     (assembleColumns (k := k) (S := S)).comp
       (includeColumns (k := k) (S := S)) = LinearMap.id := by
@@ -314,7 +347,9 @@ theorem assembleColumns_comp_includeColumns :
   simp [includeColumns, assembleColumns, assembleValue, includeColumn]
 
 /-- The actual finite family of incidence columns is free over the incidence
-algebra.-/
+algebra.
+@isnad1 id=projecti.0h2v.s8.9cf3b06059af from=translated src=- shape=3e603a0f vocab=77ad8be6
+-/
 theorem columnModule_projective :
     Module.Projective (Incidence (k := k) (S := S))
       (ColumnModule (k := k) (S := S)) := by
@@ -322,7 +357,9 @@ theorem columnModule_projective :
     (Pi.basisFun (Incidence (k := k) (S := S)) (PairPoset S))
 
 /-- The diagonal ideal is a direct summand of the finite free column module,
-and hence projective as a left incidence-algebra module.-/
+and hence projective as a left incidence-algebra module.
+@isnad1 id=projecti.0h2v.s10.29bf5a0ce555 from=translated src=- shape=6c9466ce vocab=4fc47a75
+-/
 theorem diagonalIdeal_projective :
     Module.Projective (Incidence (k := k) (S := S))
       (DiagonalIdeal (k := k) (S := S)) := by
@@ -333,7 +370,9 @@ theorem diagonalIdeal_projective :
     (assembleColumns_comp_includeColumns (k := k) (S := S))
 
 /-- The diagonal ideal is also projective in the category of left incidence
-algebra modules.-/
+algebra modules.
+@isnad1 id=projecti.0h2v.s10.53e0b1a52a15 from=translated src=- shape=26ac0fb3 vocab=29116094
+-/
 theorem diagonalIdeal_projective_object :
     CategoryTheory.Projective
       (ModuleCat.of (Incidence (k := k) (S := S))

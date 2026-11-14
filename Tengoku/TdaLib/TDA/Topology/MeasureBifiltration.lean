@@ -52,7 +52,9 @@ instance interleavingIndexPreorder (δ : ℝ≥0) : Preorder (InterleavingIndex 
       simp only [penalty, Bool.false_eq_true, Bool.true_eq_false, ↓reduceIte] at * <;>
       constructor <;> linarith [hpq.1, hpq.2, hqr.1, hqr.2]
 
-/-- Characteristic arrow inequalities for the two-copy preorder.-/
+/-- Characteristic arrow inequalities for the two-copy preorder.
+@isnad1 id=iff.0h3v.s6.6a036ef6992d from=translated src=- shape=49985a56 vocab=fb8add7f
+-/
 @[simp] theorem interleavingIndex_le_iff (δ : ℝ≥0) (p q : InterleavingIndex δ) :
     p ≤ q ↔ mass q.point + penalty δ p.side q.side ≤ mass p.point ∧
       radius p.point + penalty δ p.side q.side ≤ radius q.point := Iff.rfl
@@ -64,7 +66,9 @@ def copy (δ : ℝ≥0) (b : Bool) : Index →o InterleavingIndex δ where
     intro p q hpq
     simpa [interleavingIndex_le_iff, penalty] using hpq
 
-/-- For distinct copies this is exactly the restricted translation criterion.-/
+/-- For distinct copies this is exactly the restricted translation criterion.
+@isnad1 id=iff.0h3v.s5.1afd635f015e from=translated src=- shape=f8d25159 vocab=274a180b
+-/
 theorem cross_le_iff (δ : ℝ≥0) (p q : Index) :
     (⟨p, false⟩ : InterleavingIndex δ) ≤ ⟨q, true⟩ ↔
       mass q ≤ mass p - δ ∧ radius p + δ ≤ radius q := by
@@ -79,14 +83,18 @@ def stage (μ : Measure X) (p : Index) : Set X :=
   {x | mass p ≤ μ.real (ball x (radius p))}
 
 omit [OpensMeasurableSpace X] in
-/-- Ordinary structure arrows are inclusions of subsets of the same ambient space.-/
+/-- Ordinary structure arrows are inclusions of subsets of the same ambient space.
+@isnad1 id=le.1h4v.s5.684562812388 from=translated src=- shape=e6148aa9 vocab=28111f12
+-/
 theorem stage_mono (μ : Measure X) [IsFiniteMeasure μ] {p q : Index} (hpq : p ≤ q) :
     stage μ p ⊆ stage μ q := by
   intro x hx
   exact hpq.1.trans (hx.trans (measureReal_mono (μ := μ) (ball_subset_ball (x := x) hpq.2)))
 
 /-- The measurable-set Prokhorov inequality controls open balls with the
-additive radius shift. No compactness or properness assumption is needed.-/
+additive radius shift. No compactness or properness assumption is needed.
+@isnad1 id=le.1h6v.s6.6d4dfc16af10 from=translated src=- shape=96e1a18b vocab=4d585511
+-/
 theorem ball_mass_le (μ ν : Measure X) [IsFiniteMeasure ν]
     (δ : ℝ≥0) (h : levyProkhorovEDist μ ν < (δ : ℝ≥0∞)) (x : X) (r : ℝ) :
     μ.real (ball x r) ≤ ν.real (ball x (r + δ)) + δ := by
@@ -106,7 +114,9 @@ theorem ball_mass_le (μ ν : Measure X) [IsFiniteMeasure ν]
     ENNReal.coe_toReal, Measure.real] using ht
 
 /-- Every cross arrow gives a concrete inclusion. This statement also covers
-arrows whose target lies strictly beyond the translated source.-/
+arrows whose target lies strictly beyond the translated source.
+@isnad1 id=le.2h6v.s6.14e8d0332380 from=translated src=- shape=2fe913b9 vocab=8f5db64b
+-/
 theorem stage_cross (μ ν : Measure X) [IsFiniteMeasure ν]
     (δ : ℝ≥0) (h : levyProkhorovEDist μ ν < (δ : ℝ≥0∞))
     {p q : Index} (hpq : mass q ≤ mass p - δ ∧ radius p + δ ≤ radius q) :
@@ -148,12 +158,16 @@ def interleavingDiagram (μ ν : Measure X) [IsFiniteMeasure μ] [IsFiniteMeasur
   map_id _ := rfl
   map_comp _ _ := rfl
 
-/-- The first copy recovers the original measure diagram exactly.-/
+/-- The first copy recovers the original measure diagram exactly.
+@isnad1 id=eq.1h4v.s6.243bf8a69297 from=translated src=- shape=e3f19090 vocab=aa77ece4
+-/
 theorem interleavingDiagram_left (μ ν : Measure X) [IsFiniteMeasure μ] [IsFiniteMeasure ν]
     (δ : ℝ≥0) (h : levyProkhorovEDist μ ν < (δ : ℝ≥0∞)) :
     (copy δ false).toFunctor ⋙ interleavingDiagram μ ν δ h = diagram μ := rfl
 
-/-- The second copy recovers the other measure diagram exactly.-/
+/-- The second copy recovers the other measure diagram exactly.
+@isnad1 id=eq.1h4v.s6.e09bfdaaea9d from=translated src=- shape=48f5dd8d vocab=23c500d8
+-/
 theorem interleavingDiagram_right (μ ν : Measure X) [IsFiniteMeasure μ] [IsFiniteMeasure ν]
     (δ : ℝ≥0) (h : levyProkhorovEDist μ ν < (δ : ℝ≥0∞)) :
     (copy δ true).toFunctor ⋙ interleavingDiagram μ ν δ h = diagram ν := rfl
@@ -177,13 +191,17 @@ def topologicalInterleaving (μ ν : Measure X) [IsFiniteMeasure μ] [IsFiniteMe
   map_id _ := by ext; rfl
   map_comp _ _ := by ext; rfl
 
-/-- The topological interleaving restricts to its first measure diagram.-/
+/-- The topological interleaving restricts to its first measure diagram.
+@isnad1 id=eq.1h4v.s6.10aa933a6d0a from=translated src=- shape=eb4e9371 vocab=27bdeedf
+-/
 theorem topologicalInterleaving_left (μ ν : Measure X)
     [IsFiniteMeasure μ] [IsFiniteMeasure ν] (δ : ℝ≥0)
     (h : levyProkhorovEDist μ ν < (δ : ℝ≥0∞)) :
     (copy δ false).toFunctor ⋙ topologicalInterleaving μ ν δ h = topologicalDiagram μ := rfl
 
-/-- The topological interleaving restricts to its second measure diagram.-/
+/-- The topological interleaving restricts to its second measure diagram.
+@isnad1 id=eq.1h4v.s6.433336fa3c67 from=translated src=- shape=14f109d9 vocab=51e6db35
+-/
 theorem topologicalInterleaving_right (μ ν : Measure X)
     [IsFiniteMeasure μ] [IsFiniteMeasure ν] (δ : ℝ≥0)
     (h : levyProkhorovEDist μ ν < (δ : ℝ≥0∞)) :
@@ -198,6 +216,9 @@ labels retain their multiplicity in this probability measure.-/
 noncomputable def uniformMeasure (p : V → X) : Measure X :=
   ((PMF.uniformOfFintype V).map p).toMeasure
 
+/--
+@isnad1 id=isprobab.0h3v.s4.c972c86972f4 from=translated src=- shape=8328bbdd vocab=f4ab2493
+-/
 instance uniformMeasure_probability (p : V → X) : IsProbabilityMeasure (uniformMeasure p) := by
   unfold uniformMeasure
   infer_instance
@@ -208,7 +229,9 @@ noncomputable def labelCount (p : V → X) (A : Set X) : ℕ := by
   exact (Finset.univ.filter (fun v => p v ∈ A)).card
 
 omit [MetricSpace X] [OpensMeasurableSpace X] in
-/-- The ambient measure is exactly normalized counting of labels.-/
+/-- The ambient measure is exactly normalized counting of labels.
+@isnad1 id=eq.1h4v.s6.8ce520662cb5 from=translated src=- shape=135609ee vocab=e250934a
+-/
 theorem uniformMeasure_apply (p : V → X) {A : Set X} (hA : MeasurableSet A) :
     uniformMeasure p A =
       (labelCount p A : ℝ≥0∞) / Fintype.card V := by
@@ -223,7 +246,9 @@ theorem uniformMeasure_apply (p : V → X) {A : Set X} (hA : MeasurableSet A) :
 
 omit [MetricSpace X] [OpensMeasurableSpace X] in
 /-- In real-valued form, the mass is the same cardinality ratio as the
-normalized subdivision threshold.-/
+normalized subdivision threshold.
+@isnad1 id=eq.1h4v.s5.165800ccf83c from=translated src=- shape=220cadf0 vocab=ccd186cf
+-/
 theorem uniformMeasure_real (p : V → X) {A : Set X} (hA : MeasurableSet A) :
     (uniformMeasure p).real A =
       (labelCount p A : ℝ) / Fintype.card V := by

@@ -65,7 +65,9 @@ private theorem shifted_threshold_one_nonzero :
   exact threshold_map_nonzero _ (by norm_num [alive]) (by norm_num [alive]) ht
 
 /-- Both defects attain the factor-two threshold: their two-transitions
-vanish, while their one-transitions are nonzero. In particular both objects are nonzero.-/
+vanish, while their one-transitions are nonzero. In particular both objects are nonzero.
+@isnad1 id=and.0h0v.s12.10dab79fd6d0 from=translated src=- shape=740bd3b2 vocab=539b05d4
+-/
 theorem defects_threshold :
     transition (1 + 1) (kernel zeroMaps.φ) = 0 ∧
     transition (1 + 1) (cokernel zeroMaps.φ) = 0 ∧
@@ -95,7 +97,9 @@ private theorem isZero_of_zero_double_transition {A : PModule.{0,0,0} ℤ ℝ}
   exact ht.symm
 
 /-- A zero-interleaving over the integers has zero defects,
-even though its source and target have nonzero fibers.-/
+even though its source and target have nonzero fibers.
+@isnad1 id=and.0h0v.s7.c4504f9f0a11 from=translated src=- shape=e04e3bd5 vocab=2cab43e3
+-/
 theorem integer_zero_parameter :
     ¬ IsZero integerConstant ∧ IsZero (kernel integerWitness.φ) ∧
       IsZero (cokernel integerWitness.φ) := by

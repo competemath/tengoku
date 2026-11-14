@@ -31,7 +31,9 @@ def occurrencePoint (D : Diagram ℝ) : Occurrences D → ℝ × WithTop ℝ
   | .inl p => (p.1.1, (p.1.2 : WithTop ℝ))
   | .inr b => (b.1, ⊤)
 
-/-- The finite/essential occurrence presentation has exactly the diagram point multiset.-/
+/-- The finite/essential occurrence presentation has exactly the diagram point multiset.
+@isnad1 id=eq.0h1v.s5.fe509f144b19 from=translated src=- shape=b0764834 vocab=637968ad
+-/
 theorem occurrencePoint_multiset (D : Diagram ℝ) :
     (Finset.univ : Finset (Occurrences D)).val.map (occurrencePoint D) = D.points := by
   rw [← Finset.univ_disjSum_univ, Finset.val_disjSum, Multiset.disjSum, Multiset.map_add,
@@ -216,7 +218,9 @@ private theorem selection_reverse {D E : Diagram ℝ}
       simp only [Option.some.injEq, Sum.inr.injEq]
       exact M.essential.eq_symm_apply.symm.trans eq_comm
 
-/-- Each finite occurrence of a positive diagram has strictly ordered endpoints.-/
+/-- Each finite occurrence of a positive diagram has strictly ordered endpoints.
+@isnad1 id=lt.1h2v.s6.3c18dbb02d61 from=translated src=- shape=22e94f50 vocab=e0d9cd5c
+-/
 theorem finite_positive {D : Diagram ℝ} (hD : D.IsPositive)
     (i : D.finiteOccurrences) : i.1.1 < i.1.2 := by
   obtain ⟨⟨b, d⟩, hmem, heq⟩ :=

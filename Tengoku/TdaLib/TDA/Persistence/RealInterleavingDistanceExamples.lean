@@ -80,39 +80,53 @@ private theorem ephemeral_transition_zero (ε : ℝ≥0) (hε : 0 < ε) :
   simp [transition, structureMap, ephemeral, pointMap, hn']
   rfl
 
-/-- Every positive parameter admits zero comparison maps for the ephemeral module.-/
+/-- Every positive parameter admits zero comparison maps for the ephemeral module.
+@isnad1 id=nonempty.1h1v.s6.e5dbe1060794 from=translated src=- shape=09635938 vocab=d207cbe0
+-/
 theorem ephemeral_positive_interleaving (ε : ℝ≥0) (hε : 0 < ε) :
     Nonempty (RealInterleaving ε ephemeral 0) :=
   (RealInterleaving.nonempty_zero_iff ε ephemeral).mpr (ephemeral_transition_zero ε hε)
 
-/-- The ephemeral module is not naturally isomorphic to zero.-/
+/-- The ephemeral module is not naturally isomorphic to zero.
+@isnad1 id=isempty.0h0v.s6.12e0bff562f3 from=translated src=- shape=ed1d0c5a vocab=275f9f9e
+-/
 theorem ephemeral_not_iso_zero : IsEmpty (ephemeral ≅ 0) :=
   ⟨fun e => ephemeral_not_isZero ((isZero_zero _).of_iso e)⟩
 
-/-- Zero distance need not admit a zero-interleaving.-/
+/-- Zero distance need not admit a zero-interleaving.
+@isnad1 id=and.0h0v.s6.5a8c253db6f8 from=translated src=- shape=e0b7eb0e vocab=1924c8b1
+-/
 theorem ephemeral_distance_unattained :
     realInterleavingDistance ephemeral 0 = 0 ∧ IsEmpty (RealInterleaving 0 ephemeral 0) := by
   refine ⟨realInterleavingDistance_eq_zero_iff.mpr ephemeral_positive_interleaving, ?_⟩
   exact ⟨fun i => ephemeral_not_iso_zero.false i.toIso⟩
 
-/-- An essential interval has infinite distance to zero over a nontrivial field.-/
+/-- An essential interval has infinite distance to zero over a nontrivial field.
+@isnad1 id=eq.0h1v.s6.48669a17db25 from=translated src=- shape=76d2867e vocab=ced50877
+-/
 theorem essential_distance_top (b : ℝ) :
     realInterleavingDistance (RealBarcode.intervalModule (k := ℚ) (b, ⊤)) 0 = ⊤ :=
   realInterleavingDistance_eq_top_iff.mpr fun ε =>
     not_nonempty_iff.mp (RealBarcode.essential_not_interleaved_zero ε b)
 
-/-- Strict approximation at the zero extended bound has no witnesses.-/
+/-- Strict approximation at the zero extended bound has no witnesses.
+@isnad1 id=not.0h2v.s5.4d907d94165a from=translated src=- shape=01e42afe vocab=c052763e
+-/
 theorem strict_zero (M N : PModule.{0,0,0} ℚ ℝ) :
     ¬ ∃ ε : ℝ≥0, (ε : ℝ≥0∞) < 0 ∧ Nonempty (RealInterleaving ε M N) := by
   rw [← realInterleavingDistance_lt_iff]
   exact not_lt_of_ge bot_le
 
-/-- At the infinite bound, strict approximation is precisely existence of a finite witness.-/
+/-- At the infinite bound, strict approximation is precisely existence of a finite witness.
+@isnad1 id=iff.0h2v.s5.42dd62a02a6c from=translated src=- shape=427c54d7 vocab=3c6d87e5
+-/
 theorem strict_top (M N : PModule.{0,0,0} ℚ ℝ) :
     realInterleavingDistance M N < ⊤ ↔ ∃ ε : ℝ≥0, Nonempty (RealInterleaving ε M N) := by
   simp only [realInterleavingDistance_lt_iff, ENNReal.coe_lt_top, true_and]
 
-/-- The unconditional triangle law includes an infinite summand.-/
+/-- The unconditional triangle law includes an infinite summand.
+@isnad1 id=le.1h3v.s6.fa564d643e53 from=translated src=- shape=3b281066 vocab=0fd93a2c
+-/
 theorem infinite_triangle (M N P : PModule.{0,0,0} ℚ ℝ)
     (h : realInterleavingDistance M N = ⊤) :
     realInterleavingDistance M P ≤ realInterleavingDistance M N +

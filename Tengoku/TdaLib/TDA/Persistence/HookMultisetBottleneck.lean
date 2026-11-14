@@ -71,7 +71,9 @@ noncomputable def FiniteHookSumPresentation.biproduct
     (eInner.trans eReindex.symm)
 
 /-- Flattening a finite family of hook presentations adds their tag
-multisets, preserving the multiplicity of every tag.-/
+multisets, preserving the multiplicity of every tag.
+@isnad1 id=eq.0h5v.s8.58238e6ef249 from=translated src=- shape=4c9360a1 vocab=1bd84589
+-/
 theorem FiniteHookSumPresentation.hookTagMultiset_biproduct
     {J : Type} [Fintype J]
     (X : J → PModule.{u,0,u} k (Fin n → ℝ))
@@ -120,7 +122,9 @@ def HasMultisetMatching (ρ : ℝ≥0)
         HookMatching.IsMatching (k := k) ρ F G M
 
 /-- Package exact multiset enumerations and an actual occurrence matching as
-a matching witness for their multiset values.-/
+a matching witness for their multiset values.
+@isnad1 id=hasmulti.3h10v.s6.9a3d25397d01 from=translated src=- shape=942ee513 vocab=c51c41fc
+-/
 theorem HasMultisetMatching.intro {ρ : ℝ≥0}
     {A B : Multiset (RealHookTag (n := n))} {m ℓ : ℕ}
     (F : Fin m → RealHookTag (n := n)) (G : Fin ℓ → RealHookTag (n := n))
@@ -131,7 +135,9 @@ theorem HasMultisetMatching.intro {ρ : ℝ≥0}
   ⟨m, ℓ, F, G, hF, hG, M, hM⟩
 
 /-- Extract the finite enumerations and actual occurrence matching from a
-multiset matching witness.-/
+multiset matching witness.
+@isnad1 id=ex.1h5v.s6.6f29e42dba68 from=translated src=- shape=3d45b9bb vocab=c51c41fc
+-/
 theorem HasMultisetMatching.elim {ρ : ℝ≥0}
     {A B : Multiset (RealHookTag (n := n))}
     (h : HasMultisetMatching (k := k) ρ A B) :
@@ -147,7 +153,9 @@ noncomputable def hookMultisetBottleneckDistance
     (A B : Multiset (RealHookTag (n := n))) : ℝ≥0∞ :=
   ⨅ (ρ : ℝ≥0) (_ : HasMultisetMatching (k := k) ρ A B), (ρ : ℝ≥0∞)
 
-/-- Any actual multiset matching bounds the bottleneck infimum.-/
+/-- Any actual multiset matching bounds the bottleneck infimum.
+@isnad1 id=le.1h5v.s5.e8955dae3230 from=translated src=- shape=2f7646a1 vocab=ced7b825
+-/
 theorem hookMultisetBottleneckDistance_le_of_matching
     {A B : Multiset (RealHookTag (n := n))} {ρ : ℝ≥0}
     (h : HasMultisetMatching (k := k) ρ A B) :
@@ -155,7 +163,9 @@ theorem hookMultisetBottleneckDistance_le_of_matching
   iInf_le_of_le ρ (iInf_le _ h)
 
 /-- A lower bound for the hook-multiset bottleneck distance is equivalent to
-the same bound for every radius admitting an actual matching.-/
+the same bound for every radius admitting an actual matching.
+@isnad1 id=iff.0h5v.s5.fdda41ad8458 from=translated src=- shape=690cba4b vocab=ced7b825
+-/
 theorem le_hookMultisetBottleneckDistance_iff
     (A B : Multiset (RealHookTag (n := n))) (r : ℝ≥0∞) :
     r ≤ hookMultisetBottleneckDistance (k := k) A B ↔
@@ -163,7 +173,9 @@ theorem le_hookMultisetBottleneckDistance_iff
   simp only [hookMultisetBottleneckDistance, le_iInf_iff]
 
 /-- Strictly above the hook-multiset bottleneck infimum is equivalent to
-being above the radius of some actual matching; no minimizer is required.-/
+being above the radius of some actual matching; no minimizer is required.
+@isnad1 id=iff.0h5v.s5.f8ece7bb93aa from=translated src=- shape=654f68f3 vocab=ba23def4
+-/
 theorem hookMultisetBottleneckDistance_lt_iff
     (A B : Multiset (RealHookTag (n := n))) (r : ℝ≥0∞) :
     hookMultisetBottleneckDistance (k := k) A B < r ↔

@@ -30,7 +30,9 @@ private instance zero_finiteDimensional (p : P) :
   infer_instance
 
 /-- A nonzero finite-death hook is classified by a selected subfamily of its
-canonical finite-hook cover.-/
+canonical finite-hook cover.
+@isnad1 id=ex.1h4v.s8.a9a8a2700f25 from=translated src=- shape=98831b5a vocab=aba42b6c
+-/
 theorem nonzero_finite_hook_has_canonical_classification (i d : P) (hid : i < d) :
     ∃ S : Finset (FiniteHookDeflation.Index (Hook.module (k := k) i d)),
       Nonempty (Hook.module (k := k) i d ≅
@@ -40,7 +42,9 @@ theorem nonzero_finite_hook_has_canonical_classification (i d : P) (hid : i < d)
   exact Hook.isRankProjective hid
 
 /-- The zero module has a classification with an empty canonical occurrence
-selection.-/
+selection.
+@isnad1 id=ex.0h2v.s10.1b108c8236a9 from=translated src=- shape=11a05722 vocab=20b35f43
+-/
 theorem zero_has_empty_canonical_classification :
     ∃ S : Finset (FiniteHookDeflation.Index (0 : PModule.{u,0,u} k P)),
       S = ∅ ∧ Nonempty ((0 : PModule.{u,0,u} k P) ≅

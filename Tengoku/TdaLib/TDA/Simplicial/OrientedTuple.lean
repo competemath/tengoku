@@ -28,7 +28,9 @@ def deletedPerm {n : ℕ} (p : Equiv.Perm (Fin (n + 1))) (i : Fin (n + 1)) :
     ((p.subtypeEquiv (fun x => (show x ≠ i ↔ p x ≠ p i from p.injective.ne_iff.symm))).trans
       (finSuccAboveEquiv (p i)).symm)
 
-/-- A permutation commutes with deletion after applying its induced permutation.-/
+/-- A permutation commutes with deletion after applying its induced permutation.
+@isnad1 id=eq.0h4v.s8.a120a19ebff2 from=translated src=- shape=07d48adc vocab=24df97ac
+-/
 theorem deletedPerm_succAbove {n : ℕ} (p : Equiv.Perm (Fin (n + 1)))
     (i : Fin (n + 1)) (j : Fin n) :
     (p i).succAbove (deletedPerm p i j) = p (i.succAbove j) := by
@@ -36,7 +38,9 @@ theorem deletedPerm_succAbove {n : ℕ} (p : Equiv.Perm (Fin (n + 1)))
     ((p.subtypeEquiv (fun x => (show x ≠ i ↔ p x ≠ p i from p.injective.ne_iff.symm))) (finSuccAboveEquiv i j))
   exact congrArg Subtype.val h
 
-/-- Removing one position changes the sign by the two removed-position signs.-/
+/-- Removing one position changes the sign by the two removed-position signs.
+@isnad1 id=eq.0h3v.s9.1cc4bd60cdf1 from=translated src=- shape=74fa8c75 vocab=937ccd24
+-/
 theorem sign_deletedPerm {n : ℕ} (p : Equiv.Perm (Fin (n + 1)))
     (i : Fin (n + 1)) :
     Equiv.Perm.sign (deletedPerm p i) =
@@ -82,12 +86,17 @@ def orientedTuple (K : PreAbstractSimplicialComplex V) (R : Type v) [Ring R]
     else 0
   else 0
 
+/--
+@isnad1 id=eq.1h5v.s6.b946432ebe4b from=translated src=- shape=d7dd3c16 vocab=321c401f
+-/
 @[simp] theorem orientedTuple_of_not_injective (K : PreAbstractSimplicialComplex V)
     (R : Type v) [Ring R] {n : ℕ} (x : Fin (n + 1) → V)
     (hx : ¬Function.Injective x) : orientedTuple K R x = 0 := by
   simp [orientedTuple, hx]
 
-/-- An injective tuple contributes its sorted face with its orientation sign.-/
+/-- An injective tuple contributes its sorted face with its orientation sign.
+@isnad1 id=eq.2h5v.s9.018a3355ca01 from=translated src=- shape=bb86c45d vocab=6d13cfa5
+-/
 theorem orientedTuple_of_injective (K : PreAbstractSimplicialComplex V)
     (R : Type v) [Ring R] {n : ℕ} (x : Fin (n + 1) → V)
     (hx : Function.Injective x) (hk : Finset.univ.image x ∈ K) :
@@ -104,7 +113,9 @@ private theorem sort_comp_of_injective {n : ℕ} (x : Fin n → V)
   apply hx
   simpa using congrFun (Tuple.comp_perm_comp_sort_eq_comp_sort (f := x) (σ := p)) i
 
-/-- Reordering any tuple multiplies its oriented chain by the permutation sign.-/
+/-- Reordering any tuple multiplies its oriented chain by the permutation sign.
+@isnad1 id=eq.0h6v.s9.a0bfcaf129f8 from=translated src=- shape=590eb3a8 vocab=f4381282
+-/
 theorem orientedTuple_comp_perm (K : PreAbstractSimplicialComplex V)
     (R : Type v) [Ring R] {n : ℕ} (x : Fin (n + 1) → V)
     (p : Equiv.Perm (Fin (n + 1))) :
@@ -146,7 +157,9 @@ def tupleBoundarySum (K : PreAbstractSimplicialComplex V) (R : Type v) [Ring R]
     {n : ℕ} (x : Fin (n + 2) → V) : Chain K R n :=
   ∑ i : Fin (n + 2), (-1 : ℤ) ^ (i : ℕ) • orientedTuple K R (x ∘ i.succAbove)
 
-/-- The alternating deletion sum also changes by the sign of a permutation.-/
+/-- The alternating deletion sum also changes by the sign of a permutation.
+@isnad1 id=eq.0h6v.s9.32a2c64f8b2b from=translated src=- shape=590eb3a8 vocab=6835e585
+-/
 theorem tupleBoundarySum_comp_perm (K : PreAbstractSimplicialComplex V)
     (R : Type v) [Ring R] {n : ℕ} (x : Fin (n + 2) → V)
     (p : Equiv.Perm (Fin (n + 2))) :
@@ -191,7 +204,9 @@ private theorem delete_other_not_injective {n : ℕ} (x : Fin (n + 2) → V)
   have h : r.castSucc = r.succ := by rw [← ha, ← hb, hab]
   exact ((Fin.castSucc_lt_succ (i := r))).ne h
 
-/-- If two adjacent entries agree, the entire alternating deletion sum cancels.-/
+/-- If two adjacent entries agree, the entire alternating deletion sum cancels.
+@isnad1 id=eq.1h6v.s6.e73fa55bdb94 from=translated src=- shape=61cb2b41 vocab=a30c266f
+-/
 theorem tupleBoundarySum_eq_zero_of_adjacent (K : PreAbstractSimplicialComplex V)
     (R : Type v) [Ring R] {n : ℕ} (x : Fin (n + 2) → V)
     (r : Fin (n + 1)) (hr : x r.castSucc = x r.succ) :
@@ -218,7 +233,9 @@ theorem tupleBoundarySum_eq_zero_of_adjacent (K : PreAbstractSimplicialComplex V
   rw [hs, delete_adjacent_eq x r hr, pow_succ]
   simp
 
-/-- Repetitions force cancellation in the alternating deletion sum over every ring.-/
+/-- Repetitions force cancellation in the alternating deletion sum over every ring.
+@isnad1 id=eq.1h5v.s6.838abfb2ebcb from=translated src=- shape=d7dd3c16 vocab=e3040c37
+-/
 theorem tupleBoundarySum_eq_zero_of_not_injective (K : PreAbstractSimplicialComplex V)
     (R : Type v) [Ring R] {n : ℕ} (x : Fin (n + 2) → V)
     (hx : ¬Function.Injective x) : tupleBoundarySum K R x = 0 := by
@@ -263,6 +280,9 @@ private theorem tupleImage_delete {n : ℕ} (x : Fin (n + 2) → V)
     obtain ⟨k, hk⟩ := Fin.exists_succAbove_eq (fun h : j = i => hne (congrArg x h))
     exact ⟨k, congrArg x hk⟩
 
+/--
+@isnad1 id=mem.1h5v.s7.f2cb34455ed4 from=translated src=- shape=11d2ec7e vocab=e8b2ad27
+-/
 theorem tupleImage_delete_mem (K : PreAbstractSimplicialComplex V)
     {n : ℕ} (x : Fin (n + 2) → V) (hk : Finset.univ.image x ∈ K)
     (i : Fin (n + 2)) : Finset.univ.image (x ∘ i.succAbove) ∈ K := by
@@ -272,7 +292,9 @@ theorem tupleImage_delete_mem (K : PreAbstractSimplicialComplex V)
     exact Finset.mem_image.mpr ⟨i.succAbove j, Finset.mem_univ _, rfl⟩
   · exact Finset.image_nonempty.mpr Finset.univ_nonempty
 
-/-- A monotone injective tuple has its increasing-face orientation.-/
+/-- A monotone injective tuple has its increasing-face orientation.
+@isnad1 id=eq.3h5v.s7.270c00d313e3 from=translated src=- shape=461ae6a1 vocab=3f739f39
+-/
 theorem orientedTuple_of_monotone (K : PreAbstractSimplicialComplex V)
     (R : Type v) [Ring R] {n : ℕ} (x : Fin (n + 1) → V)
     (hx : Function.Injective x) (hk : Finset.univ.image x ∈ K) (hm : Monotone x) :
@@ -316,7 +338,9 @@ private theorem boundary_orientedTuple_of_monotone (K : PreAbstractSimplicialCom
     tupleFace_delete K x hx hk hm i]
   simp [Finsupp.smul_single]
 
-/-- The signed boundary is the alternating deletion sum, including repeated vertices.-/
+/-- The signed boundary is the alternating deletion sum, including repeated vertices.
+@isnad1 id=eq.1h5v.s8.32077af737d3 from=translated src=- shape=5574b9dc vocab=6b844194
+-/
 theorem boundary_orientedTuple (K : PreAbstractSimplicialComplex V)
     (R : Type v) [Ring R] {n : ℕ} (x : Fin (n + 2) → V)
     (hk : Finset.univ.image x ∈ K) :
@@ -335,7 +359,9 @@ theorem boundary_orientedTuple (K : PreAbstractSimplicialComplex V)
   · rw [orientedTuple_of_not_injective K R x hx, map_zero,
       tupleBoundarySum_eq_zero_of_not_injective K R x hx]
 
-/-- The image-face enumeration is the sorted version of the original tuple.-/
+/-- The image-face enumeration is the sorted version of the original tuple.
+@isnad1 id=eq.2h4v.s8.82278458dbc1 from=translated src=- shape=be96f857 vocab=15b48a57
+-/
 theorem tupleFace_sorted_enumeration (K : PreAbstractSimplicialComplex V)
     {n : ℕ} (x : Fin (n + 1) → V) (hx : Function.Injective x)
     (hk : Finset.univ.image x ∈ K) :
@@ -347,7 +373,9 @@ theorem tupleFace_sorted_enumeration (K : PreAbstractSimplicialComplex V)
     exact Finset.mem_image.mpr ⟨Tuple.sort x i, Finset.mem_univ _, rfl⟩
   · exact (Tuple.monotone_sort x).strictMono_of_injective (hx.comp (Tuple.sort x).injective)
 
-/-- The increasing enumeration of a present face is its unit oriented chain.-/
+/-- The increasing enumeration of a present face is its unit oriented chain.
+@isnad1 id=eq.0h5v.s7.cfa3ccb67dc2 from=translated src=- shape=4db64c7f vocab=f3f6512d
+-/
 theorem orientedTuple_face (K : PreAbstractSimplicialComplex V)
     (R : Type v) [Ring R] {n : ℕ} (s : Face K n) :
     orientedTuple K R (s.1.orderEmbOfFin s.2.2) = Finsupp.single s (1 : R) := by

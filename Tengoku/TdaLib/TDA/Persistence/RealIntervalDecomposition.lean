@@ -30,7 +30,9 @@ open TDA.Persistence.CutDecomposition
 variable {k : Type u} [Field k]
   (M : PModule.{u,0,u} k ℝ) [∀ t, FiniteDimensional k (M.obj t)]
 
-/-- Every pair of cuts has order-convex support.-/
+/-- Every pair of cuts has order-convex support.
+@isnad1 id=ordconne.0h2v.s4.916c770bd0f6 from=translated src=- shape=0078bb49 vocab=af52353b
+-/
 theorem support_ordConnected (l r : Cut ℝ) : (support l r).OrdConnected := by
   refine ⟨?_⟩
   intro a ha b hb x hx
@@ -333,16 +335,25 @@ def scalarSupport (j : ScalarIndex M) : Set ℝ :=
   support j.1.val.1 j.1.val.2
 
 omit [∀ t, FiniteDimensional k (M.obj t)] in
+/--
+@isnad1 id=nonempty.0h3v.s4.b7c135715ec1 from=translated src=- shape=93f54f6c vocab=51219421
+-/
 theorem scalarSupport_nonempty (j : ScalarIndex M) :
     (scalarSupport M j).Nonempty :=
   j.1.property
 
 omit [∀ t, FiniteDimensional k (M.obj t)] in
+/--
+@isnad1 id=ordconne.0h3v.s4.f4a1133bc450 from=translated src=- shape=93f54f6c vocab=6df00a03
+-/
 theorem scalarSupport_ordConnected (j : ScalarIndex M) :
     (scalarSupport M j).OrdConnected :=
   support_ordConnected j.1.val.1 j.1.val.2
 
 omit [∀ t, FiniteDimensional k (M.obj t)] in
+/--
+@isnad1 id=iff.0h4v.s6.8c9460e72795 from=translated src=- shape=3b998e4d vocab=a8e29af7
+-/
 theorem scalarFiber_nontrivial_iff (j : ScalarIndex M) (t : ℝ) :
     Nontrivial ((scalarFamily M j).obj t) ↔ t ∈ scalarSupport M j := by
   classical
@@ -378,7 +389,9 @@ noncomputable def scalarIso :
       (intervalFamily M) (copiesIso M)).trans (sumIso M))
 
 /-- Pointwise finite dimension forces only finitely many scalar occurrences
-through each parameter.-/
+through each parameter.
+@isnad1 id=finite.0h3v.s7.fcf773192a9b from=translated src=- shape=0687f2eb vocab=c12b5c94
+-/
 theorem scalar_finite_active (t : ℝ) :
     Set.Finite {j : ScalarIndex M | t ∈ scalarSupport M j} := by
   have h := AlgebraicFamily.finite_nontrivial_of_iso
@@ -391,7 +404,9 @@ theorem scalar_finite_active (t : ℝ) :
   rwa [heq]
 
 /-- Every pointwise finite-dimensional real persistence module admits an
-algebraic interval decomposition with finite activity at every parameter.-/
+algebraic interval decomposition with finite activity at every parameter.
+@isnad1 id=ex.0h2v.s7.2d1460626759 from=translated src=- shape=f499168e vocab=92a36afc
+-/
 theorem exists_interval_decomposition :
     ∃ (J : Type) (I : J → Set ℝ) (hI : ∀ j, (I j).OrdConnected),
       (∀ j, (I j).Nonempty) ∧

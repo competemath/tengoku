@@ -75,7 +75,9 @@ private theorem shifted_naturality (f : M ⟶ (RealShift.shift ε).obj N)
       (structureMapLinear N (add_le_add h (le_refl (ε : ℝ)))).comp (f.app s).hom := by
   exact congrArg ModuleCat.Hom.hom (f.naturality (homOfLE h))
 
-/-- A crossing structure map factors through the crossing image of the other module.-/
+/-- A crossing structure map factors through the crossing image of the other module.
+@isnad1 id=eq.1h7v.s11.95aadea47eae from=translated src=- shape=cdf19dbd vocab=098e19bc
+-/
 theorem crossing_factorization (i : RealInterleaving ε M N) {b C : ℝ}
     (h : b + (ε : ℝ) ≤ C) :
     (i.ψ.app C).hom.comp
@@ -141,7 +143,9 @@ private theorem measure_box_shifted (i : RealInterleaving ε M N)
     exact hi.symm
 
 /-- The box inequality needs only a finite crossing image in the expanded rectangle.
-The original module may have infinite-dimensional fibers and need not be q-tame.-/
+The original module may have infinite-dimensional fibers and need not be q-tame.
+@isnad1 id=le.3h9v.s10.2879f9fa3a58 from=translated src=- shape=5628aeee vocab=ed6758b1
+-/
 theorem persistenceMeasureValue_box_le (i : RealInterleaving ε M N)
     {a b c d : ℝ} (hab : a ≤ b) (hcd : c ≤ d)
     (hgap : b + (ε : ℝ) ≤ c - (ε : ℝ))
@@ -157,7 +161,9 @@ theorem persistenceMeasureValue_box_le (i : RealInterleaving ε M N)
   simpa only [sub_add_cancel] using h
 
 /-- Q-tameness gives the box inequality whenever the thickened rectangle is strictly
-above the diagonal. This is the finite-rectangle part of CDSGO Lemma 4.22.-/
+above the diagonal. This is the finite-rectangle part of CDSGO Lemma 4.22.
+@isnad1 id=le.4h9v.s8.077e9f942977 from=translated src=- shape=4f685642 vocab=5e7d286b
+-/
 theorem persistenceMeasureValue_box_le_of_qTame (i : RealInterleaving ε M N)
     (hN : N.QTame) {a b c d : ℝ} (hab : a ≤ b) (hcd : c ≤ d)
     (hgap : 2 * (ε : ℝ) < c - b) :

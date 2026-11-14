@@ -330,17 +330,26 @@ private theorem columnReductionTraceAux_step_spec
             simpa only [replay_cons] using
               ih (M * head.1.toMatrix) rest htail
 
+/--
+@isnad1 id=eq.1h5v.s6.b0399b303691 from=translated src=- shape=f4236553 vocab=c2930064
+-/
 theorem columnReductionTrace_target
     (M : Matrix (Fin m) (Fin m) k) (j : Fin m)
     (op : EarlierColumnOp m k) (hop : op ∈ columnReductionTrace M j) :
     op.1.j = j := by
   exact columnReductionTraceAux_target j _ M op hop
 
+/--
+@isnad1 id=eq.1h5v.s5.4736dc1f1694 from=translated src=- shape=57853615 vocab=62c60a52
+-/
 theorem columnReductionTrace_col_of_ne
     (M : Matrix (Fin m) (Fin m) k) (j q : Fin m) (hq : q ≠ j) :
     (replay M (columnReductionTrace M j)).col q = M.col q := by
   exact columnReductionTraceAux_col_of_ne j q hq _ M
 
+/--
+@isnad1 id=other.1h7v.s8.56de72ff224f from=translated src=- shape=0791bd54 vocab=5d2224db
+-/
 theorem columnReductionTrace_step_spec
     (M : Matrix (Fin m) (Fin m) k) (j : Fin m)
     (pre post : List (EarlierColumnOp m k)) (op : EarlierColumnOp m k)
@@ -355,18 +364,27 @@ theorem columnReductionTrace_step_spec
         pivotHeight (columnPivot (A.col j)) := by
   exact columnReductionTraceAux_step_spec j _ M pre post op htrace
 
+/--
+@isnad1 id=le.0h4v.s5.382a4e81bca0 from=translated src=- shape=ea7dbf4b vocab=1b1adb95
+-/
 theorem columnReductionTrace_length_le
     (M : Matrix (Fin m) (Fin m) k) (j : Fin m) :
     (columnReductionTrace M j).length ≤
       pivotHeight (columnPivot (M.col j)) := by
   exact columnReductionTraceAux_length_le j _ M
 
+/--
+@isnad1 id=ne.2h6v.s6.3c936b5a3d44 from=translated src=- shape=5ec18f1f vocab=08d4f6eb
+-/
 theorem columnReductionTrace_terminal
     (M : Matrix (Fin m) (Fin m) k) (j i : Fin m) (hij : i < j)
     (p : Fin m) (hi : columnPivot (M.col i) = some p) :
     columnPivot ((replay M (columnReductionTrace M j)).col j) ≠ some p := by
   exact columnReductionTraceAux_terminal j _ M (le_refl _) i hij p hi
 
+/--
+@isnad1 id=iff.0h4v.s6.3434985cf5d2 from=translated src=- shape=dc7ca721 vocab=14d25255
+-/
 theorem columnReductionTrace_eq_nil_iff
     (M : Matrix (Fin m) (Fin m) k) (j : Fin m) :
     columnReductionTrace M j = [] ↔
@@ -384,6 +402,9 @@ theorem columnReductionTrace_eq_nil_iff
         simp only [columnReductionTraceAux]
         rw [(nextColumnOp_none_iff M j).mpr h]
 
+/--
+@isnad1 id=traceres.1h5v.s5.5fab77660ee9 from=translated src=- shape=1abd0e90 vocab=f0e4fc16
+-/
 theorem columnReductionTrace_respectsDegree
     (degree : Fin m → ℕ) (M : Matrix (Fin m) (Fin m) k) (j : Fin m)
     (hM : LowersDegree degree M) :

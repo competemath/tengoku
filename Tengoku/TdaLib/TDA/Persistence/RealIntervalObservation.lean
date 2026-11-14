@@ -20,7 +20,9 @@ namespace TDA.Persistence.RealIntervalDecomposition
 variable {k : Type u} [Field k]
   (M : PModule.{u,0,u} k ℝ) [∀ t, FiniteDimensional k (M.obj t)]
 
-/-- A finite sample meets only finitely many occurrences of the chosen real decomposition.-/
+/-- A finite sample meets only finitely many occurrences of the chosen real decomposition.
+@isnad1 id=finite.0h4v.s7.1c0f8cbc92a2 from=translated src=- shape=51c92035 vocab=07ba1076
+-/
 theorem finite_observed_scalar {N : ℕ} (c : Fin N ↪o ℝ) :
     Set.Finite {j : ScalarIndex M | ∃ i : Fin N, c i ∈ scalarSupport M j} :=
   FiniteObservation.finite_visible_occurrences c (scalarSupport M)
@@ -36,7 +38,9 @@ noncomputable def sampledBarcode {N : ℕ} (c : Fin N ↪o ℝ) :
       scalarSupport M j.val)
 
 /-- Every real pointwise finite-dimensional module has precisely the observed
-barcode of its scalar interval decomposition, with no finite-grid hypothesis.-/
+barcode of its scalar interval decomposition, with no finite-grid hypothesis.
+@isnad1 id=eq.0h4v.s7.e5b2886f9773 from=translated src=- shape=09e49c69 vocab=c4474b46
+-/
 theorem rankBarcode_eq_sampledBarcode {N : ℕ} (c : Fin N ↪o ℝ) :
     rankBarcode (reindex c.toOrderHom M) = sampledBarcode M c := by
   exact FiniteObservation.rankBarcode_of_pfd_decomposition M c

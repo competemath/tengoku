@@ -22,9 +22,15 @@ noncomputable def density1D (σ u x : ℝ) : ℝ :=
 /-- Maximum value of the one-dimensional density.-/
 noncomputable def peak (σ : ℝ) : ℝ := (Real.sqrt (2 * Real.pi * σ ^ 2))⁻¹
 
+/--
+@isnad1 id=le.0h3v.s4.fe403d19129d from=translated src=- shape=ac9c39a3 vocab=58c8ef41
+-/
 theorem density1D_nonneg (σ u x : ℝ) : 0 ≤ density1D σ u x :=
   ProbabilityTheory.gaussianPDFReal_nonneg _ _ _
 
+/--
+@isnad1 id=eq.1h3v.s7.3396acbcfbb7 from=translated src=- shape=ecb6baca vocab=f5b759b3
+-/
 theorem density1D_formula {σ : ℝ} (hσ : 0 < σ) (u x : ℝ) :
     density1D σ u x = (σ * Real.sqrt (2 * Real.pi))⁻¹ *
       Real.exp (-(x - u) ^ 2 / (2 * σ ^ 2)) := by
@@ -33,9 +39,15 @@ theorem density1D_formula {σ : ℝ} (hσ : 0 < σ) (u x : ℝ) :
   rw [Real.sqrt_mul (show 0 ≤ 2 * Real.pi by positivity),
     Real.sqrt_sq_eq_abs, abs_of_pos hσ, mul_comm (Real.sqrt (2 * Real.pi)) σ]
 
+/--
+@isnad1 id=integrab.0h2v.s5.9912842cf80a from=translated src=- shape=8b62f561 vocab=d6ff3c73
+-/
 theorem integrable_density1D (σ u : ℝ) : Integrable (density1D σ u) :=
   ProbabilityTheory.integrable_gaussianPDFReal _ _
 
+/--
+@isnad1 id=eq.1h2v.s5.17506ac9239b from=translated src=- shape=7003550d vocab=70207057
+-/
 theorem integral_density1D {σ : ℝ} (hσ : 0 < σ) (u : ℝ) :
     ∫ x, density1D σ u x = 1 := by
   apply ProbabilityTheory.integral_gaussianPDFReal_eq_one
@@ -43,8 +55,14 @@ theorem integral_density1D {σ : ℝ} (hσ : 0 < σ) (u : ℝ) :
     exact_mod_cast sq_pos_of_pos hσ
   exact ne_of_gt h
 
+/--
+@isnad1 id=le.0h1v.s3.ee0fe164c46c from=translated src=- shape=8a62b088 vocab=5fda629c
+-/
 theorem peak_nonneg (σ : ℝ) : 0 ≤ peak σ := by unfold peak; positivity
 
+/--
+@isnad1 id=le.0h3v.s3.0c57bd2a41c0 from=translated src=- shape=0e6e9c15 vocab=ee2b8cac
+-/
 theorem density1D_le_peak (σ u x : ℝ) : density1D σ u x ≤ peak σ := by
   change peak σ * Real.exp (-(x - u) ^ 2 / (2 * σ ^ 2)) ≤ peak σ
   have he : Real.exp (-(x - u) ^ 2 / (2 * σ ^ 2)) ≤ 1 := by
@@ -136,7 +154,9 @@ private theorem integral_abs_sub_of_le {σ u v : ℝ} (hσ : 0 < σ) (huv : u �
   rw [hsplit, hinterval]
   linarith
 
-/-- Translation in one dimension, with twice the density maximum as constant.-/
+/-- Translation in one dimension, with twice the density maximum as constant.
+@isnad1 id=le.1h3v.s6.1606170623ea from=translated src=- shape=d8e1397c vocab=e9b38edc
+-/
 theorem integral_abs_density1D_sub_le {σ : ℝ} (hσ : 0 < σ) (u v : ℝ) :
     (∫ x, |density1D σ u x - density1D σ v x|) ≤ 2 * peak σ * |u - v| := by
   rcases le_total u v with huv | hvu
@@ -147,9 +167,15 @@ theorem integral_abs_density1D_sub_le {σ : ℝ} (hσ : 0 < σ) (u v : ℝ) :
 /-- The translation coefficient in terms of bandwidth, rather than variance.-/
 noncomputable def translationConstant (σ : ℝ) : ℝ := Real.sqrt (2 / Real.pi) / σ
 
+/--
+@isnad1 id=le.1h1v.s4.80e70f61b89e from=translated src=- shape=a8dc2df9 vocab=76fa82b6
+-/
 theorem translationConstant_nonneg {σ : ℝ} (hσ : 0 < σ) :
     0 ≤ translationConstant σ := by unfold translationConstant; positivity
 
+/--
+@isnad1 id=eq.1h1v.s5.1e7887f7d2b8 from=translated src=- shape=af92b084 vocab=ec45ca30
+-/
 theorem two_mul_peak {σ : ℝ} (hσ : 0 < σ) :
     2 * peak σ = translationConstant σ := by
   unfold peak translationConstant
@@ -166,12 +192,21 @@ theorem two_mul_peak {σ : ℝ} (hσ : 0 < σ) :
 noncomputable def density2D (σ : ℝ) (u z : ℝ × ℝ) : ℝ :=
   density1D σ u.1 z.1 * density1D σ u.2 z.2
 
+/--
+@isnad1 id=le.0h3v.s4.d97bc99aa036 from=translated src=- shape=95131c85 vocab=0c72ec64
+-/
 theorem density2D_nonneg (σ : ℝ) (u z : ℝ × ℝ) : 0 ≤ density2D σ u z :=
   mul_nonneg (density1D_nonneg _ _ _) (density1D_nonneg _ _ _)
 
+/--
+@isnad1 id=integrab.0h2v.s5.a34a99562152 from=translated src=- shape=4f5cd1a4 vocab=01fd8d8b
+-/
 theorem integrable_density2D (σ : ℝ) (u : ℝ × ℝ) : Integrable (density2D σ u) :=
   (integrable_density1D σ u.1).mul_prod (integrable_density1D σ u.2)
 
+/--
+@isnad1 id=eq.1h2v.s6.1609b2b07f44 from=translated src=- shape=5b0f91d8 vocab=cd55de03
+-/
 theorem integral_density2D {σ : ℝ} (hσ : 0 < σ) (u : ℝ × ℝ) :
     ∫ z, density2D σ u z = 1 := by
   change (∫ z, density1D σ u.1 z.1 * density1D σ u.2 z.2
@@ -179,7 +214,9 @@ theorem integral_density2D {σ : ℝ} (hσ : 0 < σ) (u : ℝ × ℝ) :
   rw [integral_prod_mul, integral_density1D hσ, integral_density1D hσ, one_mul]
 
 /-- L¹ translation is controlled by coordinate ℓ¹ displacement of the centers.
-This does not use the default maximum norm on the real product.-/
+This does not use the default maximum norm on the real product.
+@isnad1 id=le.1h3v.s7.7725aa7a36ea from=translated src=- shape=bc1b29d8 vocab=e652306e
+-/
 theorem integral_abs_density2D_sub_le {σ : ℝ} (hσ : 0 < σ) (u v : ℝ × ℝ) :
     (∫ z, |density2D σ u z - density2D σ v z|) ≤
       translationConstant σ * (|u.1 - v.1| + |u.2 - v.2|) := by

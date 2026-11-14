@@ -22,7 +22,9 @@ open scoped NNReal ZeroObject
 private noncomputable def constantUnit : PModule.{0,0,0} ℚ ℝ :=
   (Functor.const ℝ).obj (ModuleCat.of ℚ ℚ)
 
-/-- The zero-interleaving example really has nonzero fibers.-/
+/-- The zero-interleaving example really has nonzero fibers.
+@isnad1 id=not.0h0v.s4.702cd337af6a from=translated src=- shape=c7342af8 vocab=1315fa2c
+-/
 theorem constantUnit_not_isZero : ¬ IsZero constantUnit := by
   intro h
   have : Subsingleton ℚ := ModuleCat.isZero_iff_subsingleton.mp (h.obj 0)
@@ -32,7 +34,9 @@ theorem constantUnit_not_isZero : ¬ IsZero constantUnit := by
 noncomputable def constantZeroInterleaving : RealInterleaving 0 constantUnit constantUnit :=
   RealInterleaving.zeroEquivIso.symm (Iso.refl constantUnit)
 
-/-- The constructed zero witness converts back to the original natural isomorphism.-/
+/-- The constructed zero witness converts back to the original natural isomorphism.
+@isnad1 id=eq.0h0v.s8.057436afdb55 from=translated src=- shape=978f8219 vocab=99c363ad
+-/
 theorem constant_zero_roundtrip :
     RealInterleaving.zeroEquivIso constantZeroInterleaving = Iso.refl constantUnit :=
   RealInterleaving.zeroEquivIso.apply_symm_apply _
@@ -79,7 +83,9 @@ private theorem interval_map_ne_zero (p : ℝ × WithTop ℝ) {s t : ℝ} (h : s
   rw [hcoeff] at hx
   exact one_ne_zero hx
 
-/-- At the exact length `2ε`, the half-open finite interval has zero double-shift map.-/
+/-- At the exact length `2ε`, the half-open finite interval has zero double-shift map.
+@isnad1 id=eq.0h1v.s9.cff904b45649 from=translated src=- shape=69999654 vocab=0ab4de90
+-/
 theorem short_interval_transition_zero :
     transition (1 + 1) (RealBarcode.intervalModule (k := k) (0, (2 : WithTop ℝ))) = 0 := by
   apply NatTrans.ext
@@ -93,12 +99,16 @@ theorem short_interval_transition_zero :
   norm_num at hd
   linarith
 
-/-- `[0,2)` and zero are one-interleaved, including the length-equals-`2ε` boundary.-/
+/-- `[0,2)` and zero are one-interleaved, including the length-equals-`2ε` boundary.
+@isnad1 id=nonempty.0h1v.s6.e1c5a3a1e2d8 from=translated src=- shape=fc28d870 vocab=5556340c
+-/
 theorem short_interval_one_interleaved :
     Nonempty (RealInterleaving 1 (RealBarcode.intervalModule (k := k) (0, (2 : WithTop ℝ))) 0) :=
   (RealInterleaving.nonempty_zero_iff _ _).mpr short_interval_transition_zero
 
-/-- `[0,3)` is not one-interleaved with zero; the parameter here is specifically one.-/
+/-- `[0,3)` is not one-interleaved with zero; the parameter here is specifically one.
+@isnad1 id=not.0h1v.s6.92583b5c5bc4 from=translated src=- shape=f385f341 vocab=5556340c
+-/
 theorem long_interval_not_one_interleaved :
     ¬ Nonempty (RealInterleaving 1
       (RealBarcode.intervalModule (k := k) (0, (3 : WithTop ℝ))) 0) := by
@@ -112,7 +122,9 @@ theorem long_interval_not_one_interleaved :
     ⟨by positivity, WithTop.coe_lt_coe.mpr (by norm_num)⟩ h0
 
 /-- A field has `0 ≠ 1`, so the essential interval cannot interleave with zero at any
-finite nonnegative parameter. No shift by infinity occurs in this statement.-/
+finite nonnegative parameter. No shift by infinity occurs in this statement.
+@isnad1 id=not.0h2v.s6.a5498edc7067 from=translated src=- shape=5ee43291 vocab=ddb135c3
+-/
 theorem essential_interval_not_interleaved (ε : ℝ≥0) :
     ¬ Nonempty (RealInterleaving ε (RealBarcode.intervalModule (k := k) (0, ⊤)) 0) := by
   intro h

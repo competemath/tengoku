@@ -35,7 +35,9 @@ private def swapMap : VertexMap (⊤ : PreAbstractSimplicialComplex (Fin 3))
         swapVertex s).Nonempty
       exact hne }
 
-/-- A noninjective simplicial map sends the source edge to one target vertex.-/
+/-- A noninjective simplicial map sends the source edge to one target vertex.
+@isnad1 id=and.0h0v.s8.fb5d1282fde6 from=translated src=- shape=3904f304 vocab=0ce0c1a4
+-/
 theorem edge_collapse_fixture :
     ({0, 1} : Finset (Fin 2)).image (fun _ : Fin 2 => (0 : Fin 2)) =
         ({0} : Finset (Fin 2)) ∧
@@ -44,7 +46,9 @@ theorem edge_collapse_fixture :
   · decide
   · simp [TDA.Filtration.mem_singletonFace_iff]
 
-/-- A proper target complex need not contain singleton faces for ghost vertices.-/
+/-- A proper target complex need not contain singleton faces for ghost vertices.
+@isnad1 id=and.0h0v.s7.cff245d94039 from=translated src=- shape=f6763ae1 vocab=48022cfe
+-/
 theorem ghost_vertices_are_not_forced :
     ¬ ({1} : Finset (Fin 2)) ∈ TDA.Filtration.singletonFace (0 : Fin 2) ∧
       @PreAbstractSimplicialComplex.map (Fin 2) (Fin 2) (Classical.decEq (Fin 2))

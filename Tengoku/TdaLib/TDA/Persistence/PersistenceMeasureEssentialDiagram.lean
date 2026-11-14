@@ -46,7 +46,9 @@ variable {k : Type u} [Field k] (M : PModule.{u,0,w} k ℝ)
 noncomputable def moduleEssentialMultiplicity (hM : M.QTame) (birth : Cut ℝ) : ℕ :=
   contentMultiplicity (essentialCutContent M hM) birth
 
-/-- Positive essential multiplicities have finite support on every finite birth cell.-/
+/-- Positive essential multiplicities have finite support on every finite birth cell.
+@isnad1 id=finite.2h3v.s6.34587d0e2cc6 from=translated src=- shape=756491eb vocab=ad2ae40a
+-/
 theorem moduleEssentialMultiplicity_locally_finite (hM : M.QTame)
     {K : Set (Cut ℝ)} (hK : K ∈ cutCells) :
     Set.Finite {birth | birth ∈ K ∧ 0 < moduleEssentialMultiplicity M hM birth} := by
@@ -55,7 +57,9 @@ theorem moduleEssentialMultiplicity_locally_finite (hM : M.QTame)
   exact finite_positive_content_support isSetSemiring_cutCells
     (essentialCutContent M hM) hOpen (cutCells_separate hK) hK (hCompact K hK)
 
-/-- The essential multiplicities recover every actual essential birth-cell content.-/
+/-- The essential multiplicities recover every actual essential birth-cell content.
+@isnad1 id=ex.2h3v.s7.2bdc14ade42a from=translated src=- shape=ece92bc8 vocab=53c67965
+-/
 theorem moduleEssentialMultiplicity_content_counts (hM : M.QTame)
     {K : Set (Cut ℝ)} (hK : K ∈ cutCells) :
     ∃ S : Finset (Cut ℝ),
@@ -66,7 +70,9 @@ theorem moduleEssentialMultiplicity_content_counts (hM : M.QTame)
   exact content_eq_sum_multiplicity isSetSemiring_cutCells
     (essentialCutContent M hM) hOpen (cutCells_separate hK) hK (hCompact K hK)
 
-/-- Essential strip quotient counts equal the sums of the actual extracted boundary points.-/
+/-- Essential strip quotient counts equal the sums of the actual extracted boundary points.
+@isnad1 id=ex.2h4v.s6.a92789446735 from=translated src=- shape=8b686f54 vocab=ef03d1f2
+-/
 theorem moduleEssentialMultiplicity_strip_counts (hM : M.QTame) {a b : ℝ} (hab : a ≤ b) :
     ∃ S : Finset (Cut ℝ),
       (∀ birth, birth ∈ S ↔ birth ∈ cutCell a b ∧ 0 < moduleEssentialMultiplicity M hM birth) ∧
@@ -75,7 +81,9 @@ theorem moduleEssentialMultiplicity_strip_counts (hM : M.QTame) {a b : ℝ} (hab
     (cutCell_mem_cutCells a b)
   exact ⟨S, hS, (essentialCutContent_apply M hM hab).symm.trans hcount⟩
 
-/-- A positive essential birth-strip count produces a genuine positive essential atom.-/
+/-- A positive essential birth-strip count produces a genuine positive essential atom.
+@isnad1 id=ex.3h3v.s6.e06dd93672e9 from=translated src=- shape=a37b6a6f vocab=c286dd19
+-/
 theorem exists_moduleEssential_atom_of_positive (hM : M.QTame)
     {K : Set (Cut ℝ)} (hK : K ∈ cutCells) (hpos : 0 < essentialCutContent M hM K) :
     ∃ birth ∈ K, 0 < moduleEssentialMultiplicity M hM birth := by
@@ -84,13 +92,17 @@ theorem exists_moduleEssential_atom_of_positive (hM : M.QTame)
   exact exists_positive_content_atom isSetSemiring_cutCells
     (essentialCutContent M hM) hOpen hK (hCompact K hK) hpos
 
-/-- Each containing essential cell bounds its point multiplicities.-/
+/-- Each containing essential cell bounds its point multiplicities.
+@isnad1 id=le.3h4v.s6.07b94b8f4602 from=translated src=- shape=3593691c vocab=62fcc105
+-/
 theorem moduleEssentialMultiplicity_le_content (hM : M.QTame)
     {K : Set (Cut ℝ)} (hK : K ∈ cutCells) {birth : Cut ℝ} (hb : birth ∈ K) :
     moduleEssentialMultiplicity M hM birth ≤ essentialCutContent M hM K :=
   contentMultiplicity_le _ hK hb
 
-/-- A positive essential birth is seen by a finite birth cell.-/
+/-- A positive essential birth is seen by a finite birth cell.
+@isnad1 id=ex.2h3v.s6.ab8b2da52cd0 from=translated src=- shape=cef15b1f vocab=bb30bfea
+-/
 theorem moduleEssentialMultiplicity_visible_of_pos (hM : M.QTame)
     {birth : Cut ℝ} (hb : 0 < moduleEssentialMultiplicity M hM birth) :
     ∃ U ∈ cutCells, birth ∈ U := by

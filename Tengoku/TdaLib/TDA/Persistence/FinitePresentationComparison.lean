@@ -37,7 +37,9 @@ noncomputable def Presentation.fiberIsoRangeQuotient (a : P) :
   PreservesCokernel.iso ((evaluation P (ModuleCat.{max u w} R)).obj a)
     E.relationMap ≪≫ ModuleCat.cokernelIsoRangeQuotient (E.relationMap.app a)
 
-/-- Under the fiber quotient identification, the free cover is the quotient map.-/
+/-- Under the fiber quotient identification, the free cover is the quotient map.
+@isnad1 id=eq.0h4v.s12.2be5c96f4f9e from=translated src=- shape=5d824469 vocab=2a5828ff
+-/
 theorem Presentation.cover_fiberIsoRangeQuotient (a : P) :
     E.cover.app a ≫ (E.fiberIsoRangeQuotient a).hom =
       ModuleCat.ofHom (LinearMap.range (E.relationMap.app a).hom).mkQ := by
@@ -53,7 +55,9 @@ theorem Presentation.cover_fiberIsoRangeQuotient (a : P) :
   rw [← Category.assoc, hp, ModuleCat.cokernel_π_cokernelIsoRangeQuotient_hom]
 
 /-- The kernel of the canonical cover at each grade is exactly the image of
-the relation map at that grade.-/
+the relation map at that grade.
+@isnad1 id=iff.0h5v.s10.aec8aff2014f from=translated src=- shape=e75417ce vocab=c48956b7
+-/
 theorem Presentation.cover_eq_zero_iff_mem_relation_range (a : P)
     (y : (module (R := R) E.generators).obj a) :
     (E.cover.app a).hom y = 0 ↔
@@ -70,7 +74,9 @@ theorem Presentation.cover_eq_zero_iff_mem_relation_range (a : P)
   exact ((E.fiberIsoRangeQuotient a).toLinearEquiv.map_eq_zero_iff).symm
 
 /-- Every morphism of presented modules is induced by a commuting pair of
-maps on their graded free generators and relations.-/
+maps on their graded free generators and relations.
+@isnad1 id=ex.0h5v.s9.6dfccf681f03 from=translated src=- shape=5a5cbaa3 vocab=aa343dc7
+-/
 theorem Presentation.exists_chainMap_lift
     (D : Presentation.{u,v,w} (R := R) (P := P))
     (f : D.presented ⟶ E.presented) :

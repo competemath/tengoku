@@ -139,7 +139,9 @@ private instance : (F (k := k) (S := S)).PreservesZeroMorphisms where
     ext g
     simp
 
-/-- The hook-generator Hom functor detects zero persistence modules.-/
+/-- The hook-generator Hom functor detects zero persistence modules.
+@isnad1 id=iff.0h3v.s8.72e94cd5674a from=translated src=- shape=ac2a2dff vocab=c146a783
+-/
 theorem isZero_hom_obj_iff (M : PModule.{u,0,u} k S) :
     IsZero ((homFunctor (k := k) (S := S)).obj M) ↔ IsZero M := by
   constructor
@@ -153,7 +155,9 @@ theorem isZero_hom_obj_iff (M : PModule.{u,0,u} k S) :
 
 /-- Any supplied finite rank-projective resolution bounds ordinary projective
 dimension after applying the hook-generator Hom functor. No minimality is needed;
-a length-zero resolution has zero target.-/
+a length-zero resolution has zero target.
+@isnad1 id=hasproje.0h4v.s9.177af6896b92 from=translated src=- shape=b8327c3e vocab=edd311a3
+-/
 theorem hasProjectiveDimensionLT_length
     {M : PModule.{u,0,u} k S} (R : FiniteRankProjectiveResolution M) :
     HasProjectiveDimensionLT ((homFunctor (k := k) (S := S)).obj M) R.length := by
@@ -174,7 +178,9 @@ theorem hasProjectiveDimensionLT_length
     ((F (k := k) (S := S)).mapIso R.initial_iso) R.length
 
 /-- The finite rows of every supplied certified minimal resolution compute
-the ordinary Ext-based projective-dimension bound after applying Hom.-/
+the ordinary Ext-based projective-dimension bound after applying Hom.
+@isnad1 id=iff.0h5v.s9.cb11f1d06570 from=translated src=- shape=2485f40d vocab=aa4d1e2f
+-/
 theorem hasProjectiveDimensionLE_iff_recorded_terms
     {M : PModule.{u,0,u} k S}
     (R : MinimalFiniteRankProjectiveResolution (k := k) (M := M)) (d : ℕ) :
@@ -208,7 +214,9 @@ theorem hasProjectiveDimensionLE_iff_recorded_terms
     exact (isZero_hom_obj_iff _).mpr (hz j hj)
 
 /-- An ordinary projective-dimension bound is equivalent to vanishing of
-all higher zero-padded terms of any certified minimal resolution.-/
+all higher zero-padded terms of any certified minimal resolution.
+@isnad1 id=iff.0h5v.s9.f122fab9c9b5 from=translated src=- shape=7ed04385 vocab=6077830d
+-/
 theorem hasProjectiveDimensionLE_iff
     {M : PModule.{u,0,u} k S}
     (R : MinimalFiniteRankProjectiveResolution (k := k) (M := M)) (d : ℕ) :
@@ -226,7 +234,9 @@ theorem hasProjectiveDimensionLE_iff
     simpa only [R.termAt_eq j.isLt] using h j.val hj
 
 /-- Mathlib's ordinary projective dimension has the same degree bound as
-the zero-padded terms of a certified minimal rank-projective resolution.-/
+the zero-padded terms of a certified minimal rank-projective resolution.
+@isnad1 id=iff.0h5v.s9.9991c6f838e8 from=translated src=- shape=eb97dcaa vocab=274cb5ee
+-/
 theorem projectiveDimension_le_iff
     {M : PModule.{u,0,u} k S}
     (R : MinimalFiniteRankProjectiveResolution (k := k) (M := M)) (d : ℕ) :

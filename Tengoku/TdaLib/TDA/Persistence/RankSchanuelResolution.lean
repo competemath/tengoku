@@ -895,6 +895,9 @@ noncomputable def appendZeros {M : PModule.{u,0,u} k (Fin n → ℝ)}
   | 0 => R
   | count + 1 => (appendZeros R count).appendZero
 
+/--
+@isnad1 id=eq.0h5v.s7.83575bb86f48 from=translated src=- shape=cc01d9ba vocab=99b70dfd
+-/
 theorem appendZeros_length {M : PModule.{u,0,u} k (Fin n → ℝ)}
     (R : FiniteRankProjectiveResolution M) (count : ℕ) :
     (R.appendZeros count).length = R.length + count := by
@@ -910,16 +913,25 @@ noncomputable def termAt {M : PModule.{u,0,u} k (Fin n → ℝ)}
     PModule.{u,0,u} k (Fin n → ℝ) :=
   if hj : j < R.length then R.term ⟨j, hj⟩ else 0
 
+/--
+@isnad1 id=eq.1h5v.s7.059efb0b852b from=translated src=- shape=e02bc39b vocab=d1733a6c
+-/
 @[simp] theorem termAt_eq_term {M : PModule.{u,0,u} k (Fin n → ℝ)}
     (R : FiniteRankProjectiveResolution M) {j : ℕ} (hj : j < R.length) :
     R.termAt j = R.term ⟨j, hj⟩ := by
   simp [termAt, hj]
 
+/--
+@isnad1 id=eq.1h5v.s7.160c3788d1fa from=translated src=- shape=71f72865 vocab=249abc37
+-/
 @[simp] theorem termAt_eq_zero {M : PModule.{u,0,u} k (Fin n → ℝ)}
     (R : FiniteRankProjectiveResolution M) {j : ℕ} (hj : R.length ≤ j) :
     R.termAt j = 0 := by
   simp [termAt, not_lt.mpr hj]
 
+/--
+@isnad1 id=eq.0h5v.s6.72d514e481fc from=translated src=- shape=ef38c335 vocab=1658a3bb
+-/
 theorem termAt_appendZero {M : PModule.{u,0,u} k (Fin n → ℝ)}
     (R : FiniteRankProjectiveResolution M) (j : ℕ) :
     (R.appendZero).termAt j = R.termAt j := by
@@ -949,6 +961,9 @@ theorem termAt_appendZero {M : PModule.{u,0,u} k (Fin n → ℝ)}
       simp
     · simp [termAt, hj']
 
+/--
+@isnad1 id=eq.0h6v.s6.855ea2403fa9 from=translated src=- shape=4478aafc vocab=97f16ea8
+-/
 theorem termAt_appendZeros {M : PModule.{u,0,u} k (Fin n → ℝ)}
     (R : FiniteRankProjectiveResolution M) (count j : ℕ) :
     (R.appendZeros count).termAt j = R.termAt j := by
@@ -1176,11 +1191,17 @@ noncomputable def FiniteRankProjectiveResolution.tail
   · intro i
     exact (R.term_rank_projective (tidx i)).of_iso (eqToIso (hM i))
 
+/--
+@isnad1 id=eq.1h4v.s8.a111603c42f6 from=translated src=- shape=31c40368 vocab=63fd032e
+-/
 @[simp] theorem FiniteRankProjectiveResolution.length_tail
     {M : PModule.{u,0,u} k (Fin n → ℝ)}
     (R : FiniteRankProjectiveResolution M) (hpos : 0 < R.length) :
     (R.tail hpos).length = R.length - 1 := rfl
 
+/--
+@isnad1 id=eq.1h5v.s8.a68e37474135 from=translated src=- shape=01242cd7 vocab=27f36ee7
+-/
 theorem FiniteRankProjectiveResolution.termAt_tail
     {M : PModule.{u,0,u} k (Fin n → ℝ)}
     (R : FiniteRankProjectiveResolution M) (hpos : 0 < R.length) (j : ℕ) :

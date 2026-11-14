@@ -154,7 +154,9 @@ private theorem matrixReductionTraceAux_prefix_invariant
         rw [hjcol] at hlocal
         simpa only [List.length_append, hsum] using Nat.add_le_add hlen hlocal
 
-/-- Present pivots of distinct final columns cannot agree.-/
+/-- Present pivots of distinct final columns cannot agree.
+@isnad1 id=eq.2h6v.s6.887b4ab7045a from=translated src=- shape=53ac6499 vocab=4493614f
+-/
 theorem matrixReductionTrace_pivots_distinct
     (M : Matrix (Fin m) (Fin m) k) (i j p : Fin m)
     (hi : columnPivot ((replay M (matrixReductionTrace M)).col i) = some p)
@@ -164,7 +166,9 @@ theorem matrixReductionTrace_pivots_distinct
   rw [prefix_full] at hp
   exact hp i j p i.isLt j.isLt hi hj
 
-/-- The number of emitted operations is bounded by original column heights.-/
+/-- The number of emitted operations is bounded by original column heights.
+@isnad1 id=le.0h3v.s5.524d5cec2abb from=translated src=- shape=91dd5d5c vocab=86dea8dc
+-/
 theorem matrixReductionTrace_length_le
     (M : Matrix (Fin m) (Fin m) k) :
     (matrixReductionTrace M).length ≤
@@ -195,14 +199,18 @@ private theorem matrixReductionTraceAux_respectsDegree
       · exact hb op h
       · exact ht op h
 
-/-- Every emitted operation joins columns of equal degree.-/
+/-- Every emitted operation joins columns of equal degree.
+@isnad1 id=traceres.1h4v.s5.eecd87048e43 from=translated src=- shape=495f4f77 vocab=883be4ea
+-/
 theorem matrixReductionTrace_respectsDegree
     (degree : Fin m → ℕ) (M : Matrix (Fin m) (Fin m) k)
     (hM : LowersDegree degree M) :
     TraceRespectsDegree degree (matrixReductionTrace M) := by
   exact matrixReductionTraceAux_respectsDegree degree M (List.finRange m) hM
 
-/-- The generated ungraded trace has the existing product, inverse and prefix certificates.-/
+/-- The generated ungraded trace has the existing product, inverse and prefix certificates.
+@isnad1 id=other.0h3v.s9.c0ea493360f5 from=translated src=- shape=dfa1dfcd vocab=faf367d4
+-/
 theorem matrixReductionTrace_certificate
     (M : Matrix (Fin m) (Fin m) k) :
     let ops := matrixReductionTrace M
@@ -225,7 +233,9 @@ theorem matrixReductionTrace_certificate
     replay_inverseTrace M ops,
     fun s => prefixSpan_replay M ops s⟩
 
-/-- The generated graded trace also preserves degree lowering.-/
+/-- The generated graded trace also preserves degree lowering.
+@isnad1 id=other.1h4v.s9.b37f1e7c6026 from=translated src=- shape=463acf46 vocab=ed7f2e81
+-/
 theorem matrixReductionTrace_graded_certificate
     (degree : Fin m → ℕ) (M : Matrix (Fin m) (Fin m) k)
     (hM : LowersDegree degree M) :
@@ -311,7 +321,9 @@ private theorem matrixReductionTraceAux_step_spec
         have htail' := ih M' a b htail
         simpa only [replay_append] using htail'
 
-/-- Each operation is selected from the matrix after precisely the preceding operations.-/
+/-- Each operation is selected from the matrix after precisely the preceding operations.
+@isnad1 id=other.1h6v.s9.aca9b01168a0 from=translated src=- shape=0a3dadd4 vocab=38d6d608
+-/
 theorem matrixReductionTrace_step_spec
     (M : Matrix (Fin m) (Fin m) k)
     (pre post : List (EarlierColumnOp m k)) (op : EarlierColumnOp m k)

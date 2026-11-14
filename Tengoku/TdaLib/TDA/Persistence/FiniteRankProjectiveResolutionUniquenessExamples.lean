@@ -40,7 +40,9 @@ noncomputable def principalHookMinimalResolution :
     exact TDA.Persistence.FiniteRankProjectiveResolutionKanExamples.principalUpset_identity_isRankProjectiveCover 0
 
 /-- Since the principal-upset module is already projective, every certified
-minimal finite resolution has zero terms in positive degree.-/
+minimal finite resolution has zero terms in positive degree.
+@isnad1 id=iszero.1h2v.s6.ecc9f5aae165 from=translated src=- shape=ba36cd62 vocab=0ede75e7
+-/
 theorem principalHook_positive_terms_are_zero
     (R : MinimalFiniteRankProjectiveResolution (k := ℚ) (M := principalHook))
     {j : ℕ} (hj : 0 < j) : IsZero (R.termAt j) := by

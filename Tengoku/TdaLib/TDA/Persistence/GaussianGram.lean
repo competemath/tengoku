@@ -39,7 +39,9 @@ private theorem PosSemidef.real_quad {M : Matrix ι ι ℝ} (hM : M.PosSemidef) 
   simpa using hM.2 x
 
 /-- The real inner-product kernel of any family is positive semidefinite, for an arbitrary
-index type; mathlib's `Matrix.posSemidef_gram` is the finite-index case.-/
+index type; mathlib's `Matrix.posSemidef_gram` is the finite-index case.
+@isnad1 id=possemid.0h3v.s6.01e6a75af74d from=translated src=- shape=191c00d3 vocab=d422cee7
+-/
 theorem posSemidef_innerKernel {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     (v : ι → E) : (Matrix.of fun i j => ⟪v i, v j⟫_ℝ).PosSemidef := by
   refine posSemidef_of_real (fun i j => by simp [real_inner_comm]) fun x => ?_
@@ -54,7 +56,9 @@ theorem posSemidef_innerKernel {E : Type*} [NormedAddCommGroup E] [InnerProductS
   exact real_inner_self_nonneg
 
 /-- Hadamard powers of a positive semidefinite real matrix; the zeroth power is the
-all-ones matrix.-/
+all-ones matrix.
+@isnad1 id=possemid.1h3v.s5.7e884dc12042 from=translated src=- shape=3c6b6c07 vocab=f1985010
+-/
 theorem posSemidef_map_pow {M : Matrix ι ι ℝ} (hM : M.PosSemidef) :
     ∀ n : ℕ, (M.map (· ^ n)).PosSemidef
   | 0 => by
@@ -72,7 +76,9 @@ theorem posSemidef_map_pow {M : Matrix ι ι ℝ} (hM : M.PosSemidef) :
 
 /-- The entrywise exponential of a positive semidefinite real matrix is positive
 semidefinite. Each quadratic form is the sum of the exponential series of quadratic forms
-of Hadamard powers.-/
+of Hadamard powers.
+@isnad1 id=possemid.1h2v.s4.a6d22bb9c452 from=translated src=- shape=67a353a9 vocab=0a7596c0
+-/
 theorem posSemidef_map_exp {M : Matrix ι ι ℝ} (hM : M.PosSemidef) :
     (M.map Real.exp).PosSemidef := by
   refine posSemidef_of_real (fun i j => by simp [PosSemidef.real_symm hM i j]) fun x => ?_
@@ -95,7 +101,9 @@ theorem posSemidef_map_exp {M : Matrix ι ι ℝ} (hM : M.PosSemidef) :
   exact Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => by ring
 
 /-- Rescaling rows and columns by the same real vector preserves positive semidefiniteness.
-The rescaled matrix is the Hadamard product with the rank-one kernel of `d`.-/
+The rescaled matrix is the Hadamard product with the rank-one kernel of `d`.
+@isnad1 id=possemid.1h3v.s6.2d0ce9130522 from=translated src=- shape=f3279e5f vocab=0af4ff88
+-/
 theorem posSemidef_diag_mul_mul_diag {M : Matrix ι ι ℝ} (hM : M.PosSemidef) (d : ι → ℝ) :
     (Matrix.of fun i j => d i * M i j * d j).PosSemidef := by
   have heq : (Matrix.of fun i j => d i * M i j * d j) =
@@ -115,7 +123,9 @@ product space.-/
 noncomputable def gaussianGram (σ : ℝ) (v : ι → E) : Matrix ι ι ℝ :=
   Matrix.of fun i j => Real.exp (-‖v i - v j‖ ^ 2 / (2 * σ ^ 2))
 
-/-- The Gaussian Gram matrix is positive semidefinite for every real bandwidth.-/
+/-- The Gaussian Gram matrix is positive semidefinite for every real bandwidth.
+@isnad1 id=possemid.0h4v.s5.00f1f2a46693 from=translated src=- shape=7b1f703d vocab=3db5b2da
+-/
 theorem posSemidef_gaussianGram (σ : ℝ) (v : ι → E) : (gaussianGram σ v).PosSemidef := by
   have hc : (0 : ℝ) ≤ 2 * (2 * σ ^ 2)⁻¹ := by positivity
   have h := posSemidef_diag_mul_mul_diag
@@ -137,28 +147,44 @@ end Gaussian
 noncomputable def kernel (σ : ℝ) (p q : ℝ × ℝ) : ℝ :=
   Real.exp (-((p.1 - q.1) ^ 2 + (p.2 - q.2) ^ 2) / (2 * σ ^ 2))
 
-/-- The kernel is the Gaussian of the Euclidean norm on `WithLp 2 (ℝ × ℝ)`.-/
+/-- The kernel is the Gaussian of the Euclidean norm on `WithLp 2 (ℝ × ℝ)`.
+@isnad1 id=eq.0h3v.s8.9c7f53662c11 from=translated src=- shape=8dd41bd5 vocab=f6b3eb08
+-/
 theorem kernel_eq_gaussian (σ : ℝ) (p q : ℝ × ℝ) :
     kernel σ p q =
       Real.exp (-‖WithLp.toLp 2 p - WithLp.toLp 2 q‖ ^ 2 / (2 * σ ^ 2)) := by
   rw [kernel, WithLp.prod_norm_sq_eq_of_L2]
   simp [Real.norm_eq_abs, sq_abs]
 
+/--
+@isnad1 id=eq.0h3v.s4.1862091908ca from=translated src=- shape=322cc3dd vocab=934a095b
+-/
 theorem kernel_symm (σ : ℝ) (p q : ℝ × ℝ) : kernel σ p q = kernel σ q p := by
   simp only [kernel]
   congr 1
   ring
 
+/--
+@isnad1 id=eq.0h2v.s4.ac29b047304f from=translated src=- shape=636a8485 vocab=934a095b
+-/
 @[simp] theorem kernel_self (σ : ℝ) (p : ℝ × ℝ) : kernel σ p p = 1 := by
   simp [kernel]
 
+/--
+@isnad1 id=lt.0h3v.s4.295c0efe13d7 from=translated src=- shape=95131c85 vocab=b864e742
+-/
 theorem kernel_pos (σ : ℝ) (p q : ℝ × ℝ) : 0 < kernel σ p q := Real.exp_pos _
 
+/--
+@isnad1 id=le.0h3v.s4.efa6b02d430e from=translated src=- shape=6df2d9ff vocab=77fe25ef
+-/
 theorem kernel_le_one (σ : ℝ) (p q : ℝ × ℝ) : kernel σ p q ≤ 1 := by
   refine Real.exp_le_one_iff.mpr (div_nonpos_of_nonpos_of_nonneg ?_ (by positivity))
   exact neg_nonpos.mpr (by positivity)
 
-/-- The birth–death Gaussian kernel is positive semidefinite on the whole plane.-/
+/-- The birth–death Gaussian kernel is positive semidefinite on the whole plane.
+@isnad1 id=possemid.0h1v.s6.432e7583a5a2 from=translated src=- shape=8e1ae803 vocab=e8a95bc3
+-/
 theorem posSemidef_kernel (σ : ℝ) :
     (Matrix.of (kernel σ) : Matrix (ℝ × ℝ) (ℝ × ℝ) ℝ).PosSemidef := by
   have h := posSemidef_gaussianGram σ (WithLp.toLp 2 : ℝ × ℝ → WithLp 2 (ℝ × ℝ))
@@ -167,7 +193,9 @@ theorem posSemidef_kernel (σ : ℝ) :
   simp only [Matrix.of_apply, gaussianGram, kernel_eq_gaussian]
 
 /-- The kernel matrix of every occurrence family is positive semidefinite; equal points
-at distinct labels are kept.-/
+at distinct labels are kept.
+@isnad1 id=possemid.0h3v.s6.5e6460f026e7 from=translated src=- shape=97b0176a vocab=e8a95bc3
+-/
 theorem posSemidef_kernel_family {I : Type*} (σ : ℝ) (x : I → ℝ × ℝ) :
     (Matrix.of fun i j => kernel σ (x i) (x j)).PosSemidef :=
   (posSemidef_kernel σ).submatrix x

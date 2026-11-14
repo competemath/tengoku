@@ -35,6 +35,9 @@ local instance : LocallyFiniteOrder (PairPoset Bool) :=
 local instance : DecidableEq (PairPoset Bool) :=
   TDA.Persistence.FiniteRankProjectiveEndAlgebra.instDecidableEqPairPoset
 local instance : Fintype (ComparablePair Bool) := Fintype.ofFinite _
+/--
+@isnad1 id=istwosid.0h1v.s7.e74a92d13edd from=translated src=- shape=177e3479 vocab=3c9f39f6
+-/
 local instance diagonalIdealTwoSidedBool {k : Type} [Field k] :
     (TDA.Persistence.FiniteRankProjectiveDiagonalIdealProjective.DiagonalIdeal
       (k := k) (S := Bool)).IsTwoSided :=
@@ -43,7 +46,9 @@ local instance diagonalIdealTwoSidedBool {k : Type} [Field k] :
 private def boolStrictVertex : StrictVertex Bool :=
   ⟨⟨((false : WithTop Bool), (true : WithTop Bool)), by simp⟩, by simp⟩
 
-/-- Extension of the zero module remains zero on underlying elements.-/
+/-- Extension of the zero module remains zero on underlying elements.
+@isnad1 id=eq.0h3v.s10.7d8ad25f8274 from=translated src=- shape=0712f023 vocab=61a60a66
+-/
 theorem zeroModule_extension_subsingleton {k : Type} [Field k] :
     ∀ x y : quotientModule (k := k) (S := Bool)
       (ModuleCat.of (RightIncidence (k := k) (S := Bool)) PUnit), x = y := by
@@ -59,20 +64,26 @@ theorem zeroModule_extension_subsingleton {k : Type} [Field k] :
       (ModuleCat.of (RightIncidence (k := k) (S := Bool)) PUnit)).mkQ a)
       (Subsingleton.elim m n)
 
-/-- The regular module is free, and hence projective, before quotient base change.-/
+/-- The regular module is free, and hence projective, before quotient base change.
+@isnad1 id=projecti.0h1v.s8.c3ecc8c3be5a from=translated src=- shape=dc28ac5f vocab=0e63a88e
+-/
 theorem bool_regularIncidence_projective {k : Type} [Field k] :
     Projective (regularRightIncidenceModule (k := k) (S := Bool)) := by
   exact ModuleCat.projective_of_free
     (Module.Basis.singleton Unit (RightIncidence (k := k) (S := Bool)))
 
-/-- The quotient regular module is projective by projective transport and the regular isomorphism.-/
+/-- The quotient regular module is projective by projective transport and the regular isomorphism.
+@isnad1 id=projecti.0h1v.s8.91980c4e9cad from=translated src=- shape=dc28ac5f vocab=805d7ba9
+-/
 theorem bool_regularQuotient_projective {k : Type} [Field k] :
     Projective (regularRightQuotientModule (k := k) (S := Bool)) := by
   apply Projective.of_iso (regularExtensionIso (k := k) (S := Bool))
   exact Functor.projective_obj_of_projective (extensionFunctor (k := k) (S := Bool))
     (bool_regularIncidence_projective (k := k))
 
-/-- The actual restricted Bool vertex is simple over every field.-/
+/-- The actual restricted Bool vertex is simple over every field.
+@isnad1 id=issimple.0h1v.s9.8ab48b5eca26 from=translated src=- shape=e0b00cff vocab=8cae2409
+-/
 theorem bool_restricted_vertex_is_simple {k : Type} [Field k] :
     IsSimpleModule (RightIncidence (k := k) (S := Bool))
       (RightVertexRestrictedModule (k := k) (S := Bool) boolStrictVertex) :=
@@ -103,6 +114,9 @@ local instance : LocallyFiniteOrder (PairPoset Unit) :=
 local instance : DecidableEq (PairPoset Unit) :=
   TDA.Persistence.FiniteRankProjectiveEndAlgebra.instDecidableEqPairPoset
 local instance : Fintype (ComparablePair Unit) := Fintype.ofFinite _
+/--
+@isnad1 id=istwosid.0h1v.s7.9c3d57f512eb from=translated src=- shape=177e3479 vocab=00129756
+-/
 local instance diagonalIdealTwoSidedUnit {k : Type} [Field k] :
     (TDA.Persistence.FiniteRankProjectiveDiagonalIdealProjective.DiagonalIdeal
       (k := k) (S := Unit)).IsTwoSided :=
@@ -111,7 +125,9 @@ local instance diagonalIdealTwoSidedUnit {k : Type} [Field k] :
 private def unitStrictVertex : StrictVertex Unit :=
   ⟨⟨((), ⊤), le_top⟩, by simp⟩
 
-/-- The rational singleton vertex counit sends a class to its representative.-/
+/-- The rational singleton vertex counit sends a class to its representative.
+@isnad1 id=eq.0h1v.s14.4eb1a5193efd from=translated src=- shape=94ba0879 vocab=0f8fd7fe
+-/
 theorem rational_unit_counit_class
     (t : RightVertexModule (k := ℚ) (S := Unit) unitStrictVertex) :
     (extensionRightVertexIso (k := ℚ) (S := Unit) unitStrictVertex).hom
@@ -153,11 +169,17 @@ def rationalUnitDoubleMap :
       RightVertexModule (k := ℚ) (S := Unit) unitStrictVertex :=
   ModuleCat.ofHom rationalUnitDoubleLinearMap
 
+/--
+@isnad1 id=eq.0h0v.s12.b8b2bfc35cfc from=translated src=- shape=2b64eff9 vocab=8209e96f
+-/
 @[simp] theorem rationalUnitDoubleMap_apply_one :
     rationalUnitDoubleMap.hom (1 : ℚ) = (2 : ℚ) := by
   change (1 : ℚ) + (1 : ℚ) = (2 : ℚ)
   norm_num
 
+/--
+@isnad1 id=ne.0h0v.s10.dcc2de4df069 from=translated src=- shape=9ff7fa2c vocab=65e37de6
+-/
 theorem rationalUnitDoubleMap_ne_identity :
     rationalUnitDoubleMap ≠ 𝟙 _ := by
   intro h
@@ -168,7 +190,9 @@ theorem rationalUnitDoubleMap_ne_identity :
   change (2 : ℚ) = (1 : ℚ) at h1
   norm_num at h1
 
-/-- The induced quotient-module map is natural with respect to this nontrivial endomorphism.-/
+/-- The induced quotient-module map is natural with respect to this nontrivial endomorphism.
+@isnad1 id=eq.0h0v.s13.c67036b0da7b from=translated src=- shape=a4fb0fde vocab=32fb014d
+-/
 theorem rationalUnitDoubleMap_extension_naturality :
     (extensionFunctor (k := ℚ) (S := Unit)).map
         ((ModuleCat.restrictScalars (quotientHom (k := ℚ) (S := Unit))).map

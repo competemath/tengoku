@@ -148,14 +148,18 @@ private theorem pointwise2 : IsPointwiseShortExact (diagonal k) (quotient2 k) wh
         have he := congrArg Neg.neg (eq_neg_of_add_eq_zero_left hsum)
         simpa only [neg_neg] using he
 
-/-- A rank-exact sequence with the original hook as its noncanonical kernel term.-/
+/-- A rank-exact sequence with the original hook as its noncanonical kernel term.
+@isnad1 id=isrankex.0h1v.s5.e4d6171c4ca8 from=translated src=- shape=5a22780c vocab=40f07cbe
+-/
 theorem rankExact2 : IsRankExact (diagonal k) (quotient2 k) :=
   (pointwise2 k).rankExact_of_section biprod.inl (quotient2_section k)
 
 private theorem quotient3_section : (biprod.inr : hook k ⟶ cover3 k) ≫ quotient3 k = 𝟙 _ :=
   biprod.inr_desc _ _
 
-/-- The three-copy cover has its actual rank-exact categorical kernel sequence.-/
+/-- The three-copy cover has its actual rank-exact categorical kernel sequence.
+@isnad1 id=isrankex.0h1v.s8.41d7053c3a4b from=translated src=- shape=ce274754 vocab=81d2177e
+-/
 theorem rankExact3 : IsRankExact (kernel.ι (quotient3 k)) (quotient3 k) := by
   have hsurj : ∀ a, Function.Surjective ((quotient3 k).app a).hom := by
     intro a x
@@ -172,7 +176,9 @@ noncomputable def positiveInterleaving :
     (CoordinateInterleaving.refl 1 (hook k)) (rankExact2 k) (rankExact3 k)
     (cover_projective k) (cover3_projective k)
 
-/-- The same actual noncanonical sequence works at width zero.-/
+/-- The same actual noncanonical sequence works at width zero.
+@isnad1 id=nonempty.0h1v.s10.a42edd156d48 from=translated src=- shape=70f5bd62 vocab=fc89d38d
+-/
 theorem zero_width :
     Nonempty ((cover k ⊞ (shift 0).obj (kernel (quotient3 k))) ≅
       ((shift 0).obj (hook k) ⊞ cover3 k)) :=
@@ -180,7 +186,9 @@ theorem zero_width :
     (CoordinateInterleaving.refl 0 (hook k)) (rankExact2 k) (rankExact3 k)
     (cover_projective k) (cover3_projective k)).toIso⟩
 
-/-- Static Schanuel is constructed for the two actual categorical kernels.-/
+/-- Static Schanuel is constructed for the two actual categorical kernels.
+@isnad1 id=nonempty.0h1v.s9.69b0d3c372c2 from=translated src=- shape=d752e8da vocab=d47587b5
+-/
 theorem static_kernel_sum :
     Nonempty ((cover k ⊞ kernel (quotient3 k)) ≅ (kernel (quotient2 k) ⊞ cover3 k)) :=
   ⟨RankSchanuel.kernelSumIso (quotient2 k) (quotient3 k)
@@ -195,7 +203,9 @@ private theorem unitAtBirth_ne_zero : unitAtBirth k ≠ 0 := by
   have he := congrArg (fun x : (hook k).obj birthGrade => (x : k)) h
   exact one_ne_zero he
 
-/-- Both redundant covers have genuinely nonzero categorical kernels.-/
+/-- Both redundant covers have genuinely nonzero categorical kernels.
+@isnad1 id=and.0h1v.s12.6814078ea6f3 from=translated src=- shape=7cbf1151 vocab=5cfcd352
+-/
 theorem kernels_nonzero :
     (∃ x : (kernel (quotient2 k)).obj birthGrade, x ≠ 0) ∧
       (∃ x : (kernel (quotient3 k)).obj birthGrade, x ≠ 0) := by
@@ -233,7 +243,9 @@ theorem kernels_nonzero :
     rw [hz, map_zero, map_zero, map_zero] at he
     exact unitAtBirth_ne_zero k he.symm
 
-/-- The positive-width construction and its nonzero kernels work in characteristic two.-/
+/-- The positive-width construction and its nonzero kernels work in characteristic two.
+@isnad1 id=and.0h0v.s13.e92e475bf058 from=translated src=- shape=fb8d6aaf vocab=7bde6fca
+-/
 theorem characteristic_two :
     Nonempty (CoordinateInterleaving 1
       (cover (ZMod 2) ⊞ (shift 1).obj (kernel (quotient3 (ZMod 2))))
@@ -242,7 +254,9 @@ theorem characteristic_two :
       (∃ x : (kernel (quotient3 (ZMod 2))).obj birthGrade, x ≠ 0) :=
   ⟨⟨positiveInterleaving (ZMod 2)⟩, kernels_nonzero (ZMod 2)⟩
 
-/-- The construction also admits zero coordinate directions, where the grade poset is a singleton.-/
+/-- The construction also admits zero coordinate directions, where the grade poset is a singleton.
+@isnad1 id=other.0h0v.s11.8bf0418b3cad from=translated src=- shape=2152122b vocab=0e4d0cbf
+-/
 theorem no_coordinates :
     let a : Fin 0 → ℝ := fun _ => 0
     let M := HookInfinity.module (R := ℚ) a
@@ -256,7 +270,9 @@ theorem no_coordinates :
     (HookInfinity.isRankProjective a) (HookInfinity.isRankProjective a)⟩,
     HookInfinity.birth_ne_zero a⟩
 
-/-- A public component law detects a nonzero forward map at strictly positive width.-/
+/-- A public component law detects a nonzero forward map at strictly positive width.
+@isnad1 id=other.0h1v.s12.3943e82179e4 from=translated src=- shape=cdcbf626 vocab=84ba56fa
+-/
 theorem positive_pullback_forward_nonzero :
     let M := HookInfinity.module (R := k) birthGrade
     RankSchanuel.forward (𝟙 M) (𝟙 M) (CoordinateInterleaving.refl 1 M) ≠ 0 := by
@@ -301,7 +317,9 @@ private theorem zero_projective : IsRankProjective (0 : PModule ℚ (Fin 2 → �
   intro L M N ι π hs α
   exact ⟨0, (isZero_zero _).eq_of_src _ _⟩
 
-/-- Zero modules also give an actual Schanuel interleaving at positive width.-/
+/-- Zero modules also give an actual Schanuel interleaving at positive width.
+@isnad1 id=other.0h0v.s10.5191c3649de0 from=translated src=- shape=2be66b2f vocab=b5b3d553
+-/
 theorem zero_module :
     let M : PModule ℚ (Fin 2 → ℝ) := 0
     Nonempty (CoordinateInterleaving 1 (M ⊞ (shift 1).obj (kernel (𝟙 M)))

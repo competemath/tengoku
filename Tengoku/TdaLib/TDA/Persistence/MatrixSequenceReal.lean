@@ -29,31 +29,41 @@ The initial stage is the entire left tail, so constructibility requires it to be
 def realModule (A : MatrixSequence k (n + 1)) (c : Fin n ↪o ℝ) :
     PModule.{u,0,u} k ℝ := reindex (cellIndex c) A.toPModule
 
-/-- Evaluation selects the coordinate space of the grid cell containing the real parameter.-/
+/-- Evaluation selects the coordinate space of the grid cell containing the real parameter.
+@isnad1 id=eq.0h5v.s7.9e6e37902daf from=translated src=- shape=b7f37f73 vocab=39e121c2
+-/
 @[simp] theorem realModule_obj (A : MatrixSequence k (n + 1))
     (c : Fin n ↪o ℝ) (t : ℝ) :
     (A.realModule c).obj t = A.stage (cellIndex c t) := rfl
 
-/-- Every real structure map is the chronological matrix product between its selected cells.-/
+/-- Every real structure map is the chronological matrix product between its selected cells.
+@isnad1 id=eq.1h6v.s14.8c759aad50d3 from=translated src=- shape=5bf7705a vocab=9515f27c
+-/
 theorem realModule_structureMapLinear (A : MatrixSequence k (n + 1))
     (c : Fin n ↪o ℝ) {s t : ℝ} (h : s ≤ t) :
     structureMapLinear (A.realModule c) h =
       (A.compositeMatrix ((cellIndex c).monotone h)).toLin' := by
   exact (A.toLin_compositeMatrix _).symm
 
-/-- A critical value is included in its new, positive-indexed cell.-/
+/-- A critical value is included in its new, positive-indexed cell.
+@isnad1 id=eq.0h5v.s6.eed148b2bd2f from=translated src=- shape=d70e7f8c vocab=560c201c
+-/
 @[simp] theorem realModule_obj_critical (A : MatrixSequence k (n + 1))
     (c : Fin n ↪o ℝ) (i : Fin n) :
     (A.realModule c).obj (c i) = A.stage i.succ := by
   rw [realModule_obj, cellIndex_critical]
 
-/-- Every real fiber is one of the finite coordinate spaces.-/
+/-- Every real fiber is one of the finite coordinate spaces.
+@isnad1 id=finitedi.0h5v.s7.847a193d1d21 from=translated src=- shape=f31dd751 vocab=0fc83708
+-/
 instance realModule_finiteDimensional (A : MatrixSequence k (n + 1))
     (c : Fin n ↪o ℝ) (t : ℝ) : FiniteDimensional k ((A.realModule c).obj t) := by
   change FiniteDimensional k (A.toPModule.obj (cellIndex c t))
   infer_instance
 
-/-- Zero initial coordinates give the zero stage required by reconstruction.-/
+/-- Zero initial coordinates give the zero stage required by reconstruction.
+@isnad1 id=iszero.1h3v.s7.f432f0051e3c from=translated src=- shape=5d5793af vocab=931d851b
+-/
 theorem isZero_initial (A : MatrixSequence k (n + 1)) (hA : A.dim 0 = 0) :
     IsZero (A.toPModule.obj 0) := by
   have : Subsingleton (A.toPModule.obj 0) := by
@@ -62,7 +72,9 @@ theorem isZero_initial (A : MatrixSequence k (n + 1)) (hA : A.dim 0 = 0) :
     infer_instance
   exact ModuleCat.isZero_of_subsingleton _
 
-/-- The grid extension has the existing left-zero, half-open constructibility contract.-/
+/-- The grid extension has the existing left-zero, half-open constructibility contract.
+@isnad1 id=isconstr.1h4v.s6.e4d2b0fe9130 from=translated src=- shape=d7396bbd vocab=5c6b7005
+-/
 theorem realModule_isConstructible (A : MatrixSequence k (n + 1))
     (c : Fin n ↪o ℝ) (hA : A.dim 0 = 0) : IsConstructible c (A.realModule c) :=
   isConstructible_reindex c A.toPModule (A.isZero_initial hA)
@@ -85,7 +97,9 @@ def realDiagram (A : MatrixSequence k (n + 1)) (c : Fin n ↪o ℝ) : Diagram �
   moduleDiagram c (A.realModule c) (fun _ => inferInstance)
 
 /-- Real endpoints are obtained from the barcode of the positive observed stages.
-In particular, the critical values are retained instead of their ordinal labels.-/
+In particular, the critical values are retained instead of their ordinal labels.
+@isnad1 id=eq.0h4v.s7.a16d326c7a07 from=translated src=- shape=29b47180 vocab=85ca049d
+-/
 theorem realDiagram_eq_ofIndexBars (A : MatrixSequence k (n + 1)) (c : Fin n ↪o ℝ) :
     A.realDiagram c = ofIndexBars c c.strictMono
       (rankBarcode (reindex (Fin.succOrderEmb n).toOrderHom A.toPModule)) := by
@@ -105,7 +119,9 @@ def realBarcodeIso (A : MatrixSequence k (n + 1)) (c : Fin n ↪o ℝ)
   barcodeRealizationIso c (A.realModule c) (A.realModule_isConstructible c hA)
     (fun _ => inferInstance)
 
-/-- Inserting critical observations changes neither real endpoints nor multiplicities.-/
+/-- Inserting critical observations changes neither real endpoints nor multiplicities.
+@isnad1 id=eq.2h6v.s8.3da0528e288f from=translated src=- shape=ef7e8cae vocab=cd149520
+-/
 theorem realDiagram_refinement (A : MatrixSequence k (n + 1))
     (c : Fin n ↪o ℝ) (d : Fin m ↪o ℝ) (hA : A.dim 0 = 0) (h : Refines c d) :
     moduleDiagram d (A.realModule c) (fun _ => inferInstance) = A.realDiagram c :=

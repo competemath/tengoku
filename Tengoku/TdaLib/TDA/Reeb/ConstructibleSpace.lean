@@ -56,7 +56,9 @@ namespace TDA.Reeb.CriticalValues
 
 variable {n : ℕ} (S : CriticalValues n)
 
-/-- The two endpoint levels of a gap are strictly ordered.-/
+/-- The two endpoint levels of a gap are strictly ordered.
+@isnad1 id=lt.0h3v.s4.d25f3368a5f9 from=translated src=- shape=7119adf4 vocab=d67b2b04
+-/
 theorem value_castSucc_lt_succ (e : Fin n) : S.value e.castSucc < S.value e.succ :=
   S.strictMono Fin.castSucc_lt_succ
 
@@ -74,7 +76,9 @@ theorem eq_of_mem_K_of_mem_Icc {e e' : Fin n} {t : ℝ} (h : t ∈ (S.K e : Set 
 def IsCollarWidth (δ : ℝ) : Prop :=
   0 < δ ∧ ∀ e : Fin n, 2 * δ ≤ S.value e.succ - S.value e.castSucc
 
-/-- A collar width exists.-/
+/-- A collar width exists.
+@isnad1 id=ex.0h2v.s3.ff9ae043123f from=translated src=- shape=c5ee3676 vocab=f786e55a
+-/
 theorem exists_collarWidth : ∃ δ, S.IsCollarWidth δ := by
   have h : ∀ e : Fin n, ∀ᶠ δ in 𝓝[>] (0 : ℝ), 2 * δ ≤ S.value e.succ - S.value e.castSucc :=
     fun e => by
@@ -158,10 +162,19 @@ instance : TopologicalSpace (P.Realization S) :=
 /-- The quotient map from the raw sum.-/
 def quotMk (x : P.Raw S) : P.Realization S := Quotient.mk (P.setoid S) x
 
+/--
+@isnad1 id=surjecti.0h3v.s4.8f88a057c213 from=translated src=- shape=55748505 vocab=cb002918
+-/
 theorem quotMk_surjective : Function.Surjective (P.quotMk S) := Quotient.mk_surjective
 
+/--
+@isnad1 id=isquotie.0h3v.s6.8a0cb91cc837 from=translated src=- shape=55748505 vocab=a8459890
+-/
 theorem isQuotientMap_quotMk : IsQuotientMap (P.quotMk S) := isQuotientMap_quotient_mk'
 
+/--
+@isnad1 id=continuo.0h3v.s6.617479c8a393 from=translated src=- shape=55748505 vocab=9387dc6e
+-/
 theorem continuous_quotMk : Continuous (P.quotMk S) := (P.isQuotientMap_quotMk S).continuous
 
 /-! ### Normal form of the relation -/
@@ -176,16 +189,28 @@ def nfCyl (c : P.CylinderPiece S) : P.Raw S :=
 fixed.-/
 def nf : P.Raw S → P.Raw S := Sum.elim Sum.inl (P.nfCyl S)
 
+/--
+@isnad1 id=eq.0h4v.s5.5969eb695c2f from=translated src=- shape=d6d7a75b vocab=84ad8fc7
+-/
 @[simp] theorem nf_inl (p : P.VertexPiece) : P.nf S (.inl p) = .inl p := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.0889610bbd3d from=translated src=- shape=e23fffed vocab=49c067a4
+-/
 theorem nf_segBot (e : Fin n) (y : P.E e) :
     P.nf S (.inr ⟨e, y, segBot S e⟩) = .inl ⟨e.castSucc, P.left e y⟩ := by
   simp [nf, nfCyl, segBot]
 
+/--
+@isnad1 id=eq.0h5v.s7.da7c86ac850c from=translated src=- shape=e23fffed vocab=448a3e0d
+-/
 theorem nf_segTop (e : Fin n) (y : P.E e) :
     P.nf S (.inr ⟨e, y, segTop S e⟩) = .inl ⟨e.succ, P.right e y⟩ := by
   simp [nf, nfCyl, segTop, (S.value_castSucc_lt_succ e).ne']
 
+/--
+@isnad1 id=eqvgen.0h4v.s4.3f1444595dd6 from=translated src=- shape=5a8df92c vocab=6b249faa
+-/
 theorem eqvGen_nf (x : P.Raw S) : Relation.EqvGen (P.EndpointRel S) x (P.nf S x) := by
   rcases x with p | ⟨e, y, t⟩
   · exact .refl _
@@ -197,6 +222,9 @@ theorem eqvGen_nf (x : P.Raw S) : Relation.EqvGen (P.EndpointRel S) x (P.nf S x)
       exact .rel _ _ (.right e y)
     · exact .refl _
 
+/--
+@isnad1 id=eq.1h5v.s5.035cfaae62be from=translated src=- shape=616d45d9 vocab=6b249faa
+-/
 theorem nf_eq_of_eqvGen {x y : P.Raw S} (h : Relation.EqvGen (P.EndpointRel S) x y) :
     P.nf S x = P.nf S y := by
   induction h with
@@ -209,7 +237,9 @@ theorem nf_eq_of_eqvGen {x y : P.Raw S} (h : Relation.EqvGen (P.EndpointRel S) x
   | trans _ _ _ _ _ ih₁ ih₂ => exact ih₁.trans ih₂
 
 /-- The equivalence closure of the endpoint relation is exactly "same canonical
-representative".-/
+representative".
+@isnad1 id=iff.0h5v.s5.5412b88c1425 from=translated src=- shape=1e8f5bdf vocab=6b249faa
+-/
 theorem eqvGen_iff {x y : P.Raw S} :
     Relation.EqvGen (P.EndpointRel S) x y ↔ P.nf S x = P.nf S y := by
   refine ⟨P.nf_eq_of_eqvGen S, fun h => ?_⟩
@@ -217,6 +247,9 @@ theorem eqvGen_iff {x y : P.Raw S} :
   rw [← h] at h₂
   exact .trans _ _ _ (P.eqvGen_nf S x) h₂
 
+/--
+@isnad1 id=iff.0h5v.s5.84ba67f3ed49 from=translated src=- shape=b6494800 vocab=27d1dfbb
+-/
 theorem quotMk_eq_iff {x y : P.Raw S} : P.quotMk S x = P.quotMk S y ↔ P.nf S x = P.nf S y :=
   ⟨fun h => (P.eqvGen_iff S).1 (Quotient.exact h), fun h => Quotient.sound ((P.eqvGen_iff S).2 h)⟩
 
@@ -236,20 +269,35 @@ def ofVertex (i : Fin (n + 1)) (v : P.V i) : P.Realization S := P.quotMk S (.inl
 /-- A point of the closed cylinder of edge `e`.-/
 def ofCylinder (e : Fin n) (p : P.Cylinder S e) : P.Realization S := P.quotMk S (.inr ⟨e, p⟩)
 
+/--
+@isnad1 id=eq.0h5v.s6.2230e177adc9 from=translated src=- shape=c77ed75a vocab=6907e6a0
+-/
 theorem ofCylinder_segBot (e : Fin n) (y : P.E e) :
     P.ofCylinder S e (y, segBot S e) = P.ofVertex S e.castSucc (P.left e y) :=
   Quotient.sound (Relation.EqvGen.rel _ _ (EndpointRel.left e y))
 
+/--
+@isnad1 id=eq.0h5v.s6.27000961589f from=translated src=- shape=c77ed75a vocab=7bd2fc8e
+-/
 theorem ofCylinder_segTop (e : Fin n) (y : P.E e) :
     P.ofCylinder S e (y, segTop S e) = P.ofVertex S e.succ (P.right e y) :=
   Quotient.sound (Relation.EqvGen.rel _ _ (EndpointRel.right e y))
 
+/--
+@isnad1 id=continuo.0h4v.s5.d09556ac488c from=translated src=- shape=2427d6c7 vocab=82164f3c
+-/
 theorem continuous_ofVertex (i : Fin (n + 1)) : Continuous (P.ofVertex S i) :=
   (P.continuous_quotMk S).comp (continuous_inl.comp continuous_sigmaMk)
 
+/--
+@isnad1 id=continuo.0h4v.s6.b95a97f2e684 from=translated src=- shape=2690a229 vocab=cb57176c
+-/
 theorem continuous_ofCylinder (e : Fin n) : Continuous (P.ofCylinder S e) :=
   (P.continuous_quotMk S).comp (continuous_inr.comp continuous_sigmaMk)
 
+/--
+@isnad1 id=injectiv.0h4v.s5.c121b9b2fa5d from=translated src=- shape=2427d6c7 vocab=aaf5493b
+-/
 theorem ofVertex_injective (i : Fin (n + 1)) : Function.Injective (P.ofVertex S i) := by
   intro v w h
   have := (P.quotMk_eq_iff S).1 h
@@ -257,7 +305,9 @@ theorem ofVertex_injective (i : Fin (n + 1)) : Function.Injective (P.ofVertex S 
   exact sigma_mk_injective this
 
 /-- Vertex classes are not merged with each other: two vertex points are identified only
-when equal in the vertex sum.-/
+when equal in the vertex sum.
+@isnad1 id=iff.0h7v.s7.bfd595553d05 from=translated src=- shape=8a3a0ad1 vocab=d2f14b85
+-/
 theorem ofVertex_eq_ofVertex_iff {i j : Fin (n + 1)} {v : P.V i} {w : P.V j} :
     P.ofVertex S i v = P.ofVertex S j w ↔ (⟨i, v⟩ : P.VertexPiece) = ⟨j, w⟩ := by
   rw [ofVertex, ofVertex, quotMk_eq_iff, nf_inl, nf_inl, Sum.inl.injEq]
@@ -268,11 +318,17 @@ theorem ofVertex_eq_ofVertex_iff {i j : Fin (n + 1)} {v : P.V i} {w : P.V j} :
 cylinder.-/
 def rawHeight : P.Raw S → ℝ := Sum.elim (fun p => S.value p.1) fun c => (c.2.2 : ℝ)
 
+/--
+@isnad1 id=continuo.0h3v.s6.f831f9bcbcc3 from=translated src=- shape=cf1106fc vocab=e384b61d
+-/
 theorem continuous_rawHeight : Continuous (P.rawHeight S) :=
   Continuous.sumElim
     (continuous_sigma fun i => (continuous_const : Continuous fun _ : P.V i => S.value i))
     (continuous_sigma fun _ => continuous_subtype_val.comp continuous_snd)
 
+/--
+@isnad1 id=eq.0h4v.s4.75aa45b2516d from=translated src=- shape=aed52418 vocab=95b96534
+-/
 theorem rawHeight_nf (x : P.Raw S) : P.rawHeight S (P.nf S x) = P.rawHeight S x := by
   rcases x with p | ⟨e, y, t⟩
   · rfl
@@ -288,9 +344,15 @@ def height : C(P.Realization S, ℝ) :=
       rw [← P.rawHeight_nf S x, ← P.rawHeight_nf S y, (P.eqvGen_iff S).1 h],
     (P.continuous_rawHeight S).quotient_lift _⟩
 
+/--
+@isnad1 id=eq.0h5v.s6.f1dc1f732b78 from=translated src=- shape=ac8416a7 vocab=401166ef
+-/
 @[simp] theorem height_ofVertex (i : Fin (n + 1)) (v : P.V i) :
     P.height S (P.ofVertex S i v) = S.value i := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.29348e114d9c from=translated src=- shape=cd1da7ec vocab=741e2bcf
+-/
 @[simp] theorem height_ofCylinder (e : Fin n) (p : P.Cylinder S e) :
     P.height S (P.ofCylinder S e p) = p.2 := rfl
 
@@ -317,10 +379,16 @@ namespace CompatibleMaps
 def raw (k : P.CompatibleMaps S Z) : P.Raw S → Z :=
   Sum.elim (fun p => k.vertex p.1 p.2) fun c => k.cylinder c.1 c.2
 
+/--
+@isnad1 id=continuo.0h5v.s7.e83f45523447 from=translated src=- shape=23e666a1 vocab=538e77a2
+-/
 theorem continuous_raw (k : P.CompatibleMaps S Z) : Continuous k.raw :=
   Continuous.sumElim (continuous_sigma fun i => (k.vertex i).continuous)
     (continuous_sigma fun e => (k.cylinder e).continuous)
 
+/--
+@isnad1 id=eq.0h6v.s5.a6a2cb0c6233 from=translated src=- shape=377c9be4 vocab=7c5c3068
+-/
 theorem raw_nf (k : P.CompatibleMaps S Z) (x : P.Raw S) : k.raw (P.nf S x) = k.raw x := by
   rcases x with p | ⟨e, y, t⟩
   · rfl
@@ -340,14 +408,22 @@ def lift (k : P.CompatibleMaps S Z) : C(P.Realization S, Z) :=
       rw [← k.raw_nf x, ← k.raw_nf y, (P.eqvGen_iff S).1 h],
     k.continuous_raw.quotient_lift _⟩
 
+/--
+@isnad1 id=eq.0h7v.s7.71480a455bb9 from=translated src=- shape=80925048 vocab=4d0b3ab5
+-/
 @[simp] theorem lift_ofVertex (k : P.CompatibleMaps S Z) (i : Fin (n + 1)) (v : P.V i) :
     lift k (P.ofVertex S i v) = k.vertex i v := rfl
 
+/--
+@isnad1 id=eq.0h7v.s7.d9bece53f833 from=translated src=- shape=10f6f6b5 vocab=eee3d6b7
+-/
 @[simp] theorem lift_ofCylinder (k : P.CompatibleMaps S Z) (e : Fin n) (p : P.Cylinder S e) :
     lift k (P.ofCylinder S e p) = k.cylinder e p := rfl
 
 /-- Continuous maps out of the realization agreeing on all vertex and cylinder points are
-equal.-/
+equal.
+@isnad1 id=eq.2h6v.s7.66d8bfd215bf from=translated src=- shape=a3b55e2a vocab=c5f0700e
+-/
 theorem hom_ext {g g' : C(P.Realization S, Z)}
     (hv : ∀ i v, g (P.ofVertex S i v) = g' (P.ofVertex S i v))
     (hc : ∀ e p, g (P.ofCylinder S e p) = g' (P.ofCylinder S e p)) : g = g' := by
@@ -357,6 +433,9 @@ theorem hom_ext {g g' : C(P.Realization S, Z)}
   · exact hv i v
   · exact hc e p
 
+/--
+@isnad1 id=eq.2h6v.s8.ac2e032997f7 from=translated src=- shape=b059021b vocab=c1d04931
+-/
 theorem lift_unique (k : P.CompatibleMaps S Z) (g : C(P.Realization S, Z))
     (hv : ∀ i v, g (P.ofVertex S i v) = k.vertex i v)
     (hc : ∀ e p, g (P.ofCylinder S e p) = k.cylinder e p) : g = lift k :=
@@ -378,6 +457,9 @@ def liftEquiv : P.CompatibleMaps S Z ≃ C(P.Realization S, Z) where
   left_inv _ := rfl
   right_inv g := (lift_unique _ g (fun _ _ => rfl) fun _ _ => rfl).symm
 
+/--
+@isnad1 id=existsun.0h5v.s8.ae49aea9da38 from=translated src=- shape=fbcd4e66 vocab=823336b2
+-/
 theorem existsUnique_lift (k : P.CompatibleMaps S Z) :
     ∃! g : C(P.Realization S, Z), (∀ i v, g (P.ofVertex S i v) = k.vertex i v) ∧
       ∀ e p, g (P.ofCylinder S e p) = k.cylinder e p :=
@@ -398,32 +480,53 @@ def rawStrip (e : Fin n) (p : P.E e × (S.K e : Set ℝ)) : P.Raw S :=
 def ofStrip (e : Fin n) (p : P.E e × (S.K e : Set ℝ)) : P.Realization S :=
   P.quotMk S (P.rawStrip S e p)
 
+/--
+@isnad1 id=eq.0h5v.s6.4d34c67e3bfa from=translated src=- shape=772fa4d9 vocab=a3dc4a2b
+-/
 theorem ofStrip_eq_ofCylinder (e : Fin n) (p : P.E e × (S.K e : Set ℝ)) :
     P.ofStrip S e p = P.ofCylinder S e (p.1, gapIncl S e p.2) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.a8eea512e561 from=translated src=- shape=96a62466 vocab=d076afc7
+-/
 @[simp] theorem height_ofStrip (e : Fin n) (p : P.E e × (S.K e : Set ℝ)) :
     P.height S (P.ofStrip S e p) = p.2 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.432b92e14570 from=translated src=- shape=4bc2624f vocab=d082e776
+-/
 theorem nf_rawStrip (e : Fin n) (p : P.E e × (S.K e : Set ℝ)) :
     P.nf S (P.rawStrip S e p) = P.rawStrip S e p := by
   simp [nf, nfCyl, rawStrip, gapIncl, p.2.2.1.ne', p.2.2.2.ne]
 
+/--
+@isnad1 id=injectiv.0h4v.s5.e1f81f4250ec from=translated src=- shape=e46cd4c2 vocab=941ec8d2
+-/
 theorem rawStrip_injective (e : Fin n) : Function.Injective (P.rawStrip S e) := by
   intro p p' h
   simp only [rawStrip, gapIncl, Sum.inr.injEq, Sigma.mk.inj_iff, heq_eq_eq, true_and,
     Prod.mk.injEq, Subtype.mk.injEq] at h
   exact Prod.ext h.1 (Subtype.ext h.2)
 
+/--
+@isnad1 id=injectiv.0h4v.s5.7a2e7e9d5347 from=translated src=- shape=e46cd4c2 vocab=fb192ded
+-/
 theorem ofStrip_injective (e : Fin n) : Function.Injective (P.ofStrip S e) := by
   intro p p' h
   have := (P.quotMk_eq_iff S).1 h
   rw [nf_rawStrip, nf_rawStrip] at this
   exact P.rawStrip_injective S e this
 
+/--
+@isnad1 id=continuo.0h4v.s6.71faab3f2018 from=translated src=- shape=e46cd4c2 vocab=d12cf8e4
+-/
 theorem continuous_ofStrip (e : Fin n) : Continuous (P.ofStrip S e) :=
   (P.continuous_ofCylinder S e).comp
     (continuous_fst.prodMk ((continuous_subtype_val.comp continuous_snd).subtype_mk _))
 
+/--
+@isnad1 id=isopenma.0h3v.s6.05d96592331c from=translated src=- shape=ab57e4cb vocab=bffa7bae
+-/
 theorem isOpenMap_gapIncl (e : Fin n) : IsOpenMap (gapIncl S e) := by
   intro O hO
   have hO' : IsOpen (Subtype.val '' O : Set ℝ) :=
@@ -438,10 +541,15 @@ theorem isOpenMap_gapIncl (e : Fin n) : IsOpenMap (gapIncl S e) := by
   rw [this]
   exact hO'.preimage continuous_subtype_val
 
+/--
+@isnad1 id=isopenma.0h4v.s7.e2e2d9078aa5 from=translated src=- shape=e46cd4c2 vocab=7c68c831
+-/
 theorem isOpenMap_rawStrip (e : Fin n) : IsOpenMap (P.rawStrip S e) :=
   isOpenMap_inr.comp (isOpenMap_sigmaMk.comp (IsOpenMap.id.prodMap (isOpenMap_gapIncl S e)))
 
-/-- The open strip is an open embedding of `E e × K e`.-/
+/-- The open strip is an open embedding of `E e × K e`.
+@isnad1 id=isopenem.0h4v.s6.4a24e44c922d from=translated src=- shape=e46cd4c2 vocab=3a2d005e
+-/
 theorem isOpenEmbedding_ofStrip (e : Fin n) : IsOpenEmbedding (P.ofStrip S e) := by
   refine .of_continuous_injective_isOpenMap (P.continuous_ofStrip S e) (P.ofStrip_injective S e)
     fun O hO => ?_
@@ -459,7 +567,9 @@ theorem isOpenEmbedding_ofStrip (e : Fin n) : IsOpenEmbedding (P.ofStrip S e) :=
 
 /-! ### Normal forms of points and fibers -/
 
-/-- Every point is a vertex point or an open-strip point.-/
+/-- Every point is a vertex point or an open-strip point.
+@isnad1 id=or.0h4v.s6.416335882020 from=translated src=- shape=285ea481 vocab=cb034437
+-/
 theorem exists_rep (q : P.Realization S) :
     (∃ i v, q = P.ofVertex S i v) ∨ ∃ e p, q = P.ofStrip S e p := by
   obtain ⟨x, rfl⟩ := P.quotMk_surjective S q
@@ -473,12 +583,18 @@ theorem exists_rep (q : P.Realization S) :
       exact .inl ⟨_, _, P.ofCylinder_segTop S e y⟩
     exact .inr ⟨e, (y, ⟨t, lt_of_le_of_ne t.2.1 (Ne.symm h₁), lt_of_le_of_ne t.2.2 h₂⟩), rfl⟩
 
+/--
+@isnad1 id=ne.0h7v.s6.ded56f57d9da from=translated src=- shape=91de4e76 vocab=cb034437
+-/
 theorem ofVertex_ne_ofStrip (i : Fin (n + 1)) (v : P.V i) (e : Fin n)
     (p : P.E e × (S.K e : Set ℝ)) : P.ofVertex S i v ≠ P.ofStrip S e p := fun h => by
   have h' := congrArg (P.height S) h
   rw [height_ofVertex, height_ofStrip] at h'
   exact S.value_notMem_K e i (by rw [h']; exact p.2.2)
 
+/--
+@isnad1 id=eq.0h4v.s6.aaff9752d5d3 from=translated src=- shape=cb1db23d vocab=9f3815b8
+-/
 theorem range_ofVertex (i : Fin (n + 1)) :
     range (P.ofVertex S i) = P.height S ⁻¹' {S.value i} := by
   ext q
@@ -493,6 +609,9 @@ theorem range_ofVertex (i : Fin (n + 1)) :
       rw [height_ofStrip] at hq'
       exact absurd (hq' ▸ p.2.2) (S.value_notMem_K e i)
 
+/--
+@isnad1 id=eq.0h4v.s6.4cb407ea83b7 from=translated src=- shape=28267354 vocab=f8f791c9
+-/
 theorem range_ofStrip (e : Fin n) :
     range (P.ofStrip S e) = P.height S ⁻¹' (S.K e : Set ℝ) := by
   ext q
@@ -509,6 +628,9 @@ theorem range_ofStrip (e : Fin n) :
       obtain rfl : e = e' := S.eq_of_mem_K_of_mem_Icc hq' (Ioo_subset_Icc_self p.2.2)
       exact ⟨p, rfl⟩
 
+/--
+@isnad1 id=isopen.0h4v.s6.13058ab48a48 from=translated src=- shape=630917cc vocab=d9067927
+-/
 theorem isOpen_strip (e : Fin n) : IsOpen (P.height S ⁻¹' (S.K e : Set ℝ)) :=
   (S.K e).isOpen.preimage (P.height S).continuous
 
@@ -519,16 +641,28 @@ def stripHomeomorph (e : Fin n) :
   (P.isOpenEmbedding_ofStrip S e).isEmbedding.toHomeomorph.trans
     (Homeomorph.setCongr (P.range_ofStrip S e))
 
+/--
+@isnad1 id=eq.0h5v.s9.63fc0431a371 from=translated src=- shape=32c99b9a vocab=ec6b94dc
+-/
 @[simp] theorem stripHomeomorph_apply (e : Fin n) (p : P.E e × (S.K e : Set ℝ)) :
     (P.stripHomeomorph S e p : P.Realization S) = P.ofStrip S e p := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.4f5ded67bea1 from=translated src=- shape=ae839814 vocab=2743378b
+-/
 theorem height_stripHomeomorph (e : Fin n) (p : P.E e × (S.K e : Set ℝ)) :
     P.height S (P.stripHomeomorph S e p) = p.2 := rfl
 
+/--
+@isnad1 id=isembedd.0h5v.s6.e1b216a91b58 from=translated src=- shape=ee3f7e10 vocab=fe3eff49
+-/
 theorem isEmbedding_ofStrip_at (e : Fin n) (t : (S.K e : Set ℝ)) :
     IsEmbedding fun y : P.E e => P.ofStrip S e (y, t) :=
   (P.isOpenEmbedding_ofStrip S e).isEmbedding.comp (isEmbedding_prodMkLeft t)
 
+/--
+@isnad1 id=eq.0h5v.s7.0ca937be3cb9 from=translated src=- shape=73254321 vocab=6135f785
+-/
 theorem range_ofStrip_at (e : Fin n) (t : (S.K e : Set ℝ)) :
     range (fun y : P.E e => P.ofStrip S e (y, t)) = P.height S ⁻¹' {(t : ℝ)} := by
   ext q
@@ -553,12 +687,17 @@ def regularFiberHomeomorph (e : Fin n) (t : (S.K e : Set ℝ)) :
   (P.isEmbedding_ofStrip_at S e t).toHomeomorph.trans
     (Homeomorph.setCongr (P.range_ofStrip_at S e t))
 
+/--
+@isnad1 id=eq.0h6v.s9.7fe74993928c from=translated src=- shape=994b323e vocab=18cfab19
+-/
 @[simp] theorem regularFiberHomeomorph_apply (e : Fin n) (t : (S.K e : Set ℝ)) (y : P.E e) :
     (P.regularFiberHomeomorph S e t y : P.Realization S) = P.ofStrip S e (y, t) := rfl
 
 /-! ### Exterior heights -/
 
-/-- Every height lies in the critical range `[a 0, a n]`.-/
+/-- Every height lies in the critical range `[a 0, a n]`.
+@isnad1 id=mem.0h4v.s6.da5d382267c9 from=translated src=- shape=cc115b43 vocab=144a7e66
+-/
 theorem height_mem_Icc (q : P.Realization S) :
     P.height S q ∈ Icc (S.value 0) (S.value (Fin.last n)) := by
   rcases P.exists_rep S q with ⟨i, v, rfl⟩ | ⟨e, p, rfl⟩
@@ -567,25 +706,37 @@ theorem height_mem_Icc (q : P.Realization S) :
     exact ⟨(S.strictMono.monotone (Fin.zero_le _)).trans p.2.2.1.le,
       p.2.2.2.le.trans (S.strictMono.monotone (Fin.le_last _))⟩
 
-/-- Fibers outside the critical range are empty.-/
+/-- Fibers outside the critical range are empty.
+@isnad1 id=eq.1h4v.s7.bedf3b5d4c90 from=translated src=- shape=4bf92635 vocab=84a4f941
+-/
 theorem height_preimage_eq_empty {t : ℝ} (ht : t ∉ Icc (S.value 0) (S.value (Fin.last n))) :
     P.height S ⁻¹' {t} = ∅ :=
   eq_empty_iff_forall_notMem.2 fun q (hq : P.height S q = t) => ht (hq ▸ P.height_mem_Icc S q)
 
-/-- No point lies over the lower tail `(-∞, a 0)`.-/
+/-- No point lies over the lower tail `(-∞, a 0)`.
+@isnad1 id=eq.0h3v.s6.62220c2a2966 from=translated src=- shape=de490337 vocab=7969c1e6
+-/
 theorem height_preimage_lowerTail : P.height S ⁻¹' (S.lowerTail : Set ℝ) = ∅ :=
   eq_empty_iff_forall_notMem.2 fun q hq =>
     absurd (S.mem_lowerTail.1 hq) (not_lt.2 (P.height_mem_Icc S q).1)
 
-/-- No point lies over the upper tail `(a n, ∞)`.-/
+/-- No point lies over the upper tail `(a n, ∞)`.
+@isnad1 id=eq.0h3v.s6.413db5c4a4e8 from=translated src=- shape=de490337 vocab=0ef3ba78
+-/
 theorem height_preimage_upperTail : P.height S ⁻¹' (S.upperTail : Set ℝ) = ∅ :=
   eq_empty_iff_forall_notMem.2 fun q hq =>
     absurd (S.mem_upperTail.1 hq) (not_lt.2 (P.height_mem_Icc S q).2)
 
+/--
+@isnad1 id=eq.1h4v.s6.c14932ee5c6e from=translated src=- shape=cd04f306 vocab=0be5e6b8
+-/
 theorem height_preimage_eq_empty_of_mem_lowerTail {t : ℝ} (ht : t ∈ S.lowerTail) :
     P.height S ⁻¹' {t} = ∅ :=
   P.height_preimage_eq_empty S fun h => absurd h.1 (not_le.2 (S.mem_lowerTail.1 ht))
 
+/--
+@isnad1 id=eq.1h4v.s6.b47d7d4b51d6 from=translated src=- shape=cd04f306 vocab=59d2ad50
+-/
 theorem height_preimage_eq_empty_of_mem_upperTail {t : ℝ} (ht : t ∈ S.upperTail) :
     P.height S ⁻¹' {t} = ∅ :=
   P.height_preimage_eq_empty S fun h => absurd h.2 (not_le.2 (S.mem_upperTail.1 ht))
@@ -606,7 +757,9 @@ def InCollar (W : Set P.VertexPiece) (δ : ℝ) : P.Raw S → Prop :=
       (S.value c.1.succ - δ < c.2.2 ∧ P.rightEnd S c ∈ W)
 
 variable {S} in
-/-- The raw collar is saturated for a collar width.-/
+/-- The raw collar is saturated for a collar width.
+@isnad1 id=iff.1h6v.s5.c4faea59e8d2 from=translated src=- shape=f07e8da0 vocab=66e93027
+-/
 theorem inCollar_nf {δ : ℝ} (hδ : S.IsCollarWidth δ) (W : Set P.VertexPiece) (x : P.Raw S) :
     P.InCollar S W δ (P.nf S x) ↔ P.InCollar S W δ x := by
   rcases x with p | ⟨e, y, t⟩
@@ -633,7 +786,9 @@ theorem inCollar_nf {δ : ℝ} (hδ : S.IsCollarWidth δ) (W : Set P.VertexPiece
         · exact h
     · rfl
 
-/-- The raw collar of an open set is open, by continuity of the endpoint maps.-/
+/-- The raw collar of an open set is open, by continuity of the endpoint maps.
+@isnad1 id=isopen.1h5v.s7.e712e371f6df from=translated src=- shape=fedea827 vocab=d0f16606
+-/
 theorem isOpen_inCollar {W : Set P.VertexPiece} (hW : IsOpen W) (δ : ℝ) :
     IsOpen {x | P.InCollar S W δ x} := by
   refine isOpen_sum_iff.2 ⟨hW, ?_⟩
@@ -658,16 +813,24 @@ def collar (W : Set P.VertexPiece) {δ : ℝ} (hδ : S.IsCollarWidth δ) : Set (
     (P.inCollar_nf hδ W x).symm.trans (by rw [(P.eqvGen_iff S).1 h]; exact P.inCollar_nf hδ W y)) q}
 
 variable {S} in
+/--
+@isnad1 id=isopen.2h5v.s6.d3f809ea9024 from=translated src=- shape=02995901 vocab=15ca0b9e
+-/
 theorem isOpen_collar {W : Set P.VertexPiece} (hW : IsOpen W) {δ : ℝ} (hδ : S.IsCollarWidth δ) :
     IsOpen (P.collar W hδ) :=
   (P.isQuotientMap_quotMk S).isOpen_preimage.1 (P.isOpen_inCollar S hW δ)
 
 variable {S} in
+/--
+@isnad1 id=iff.1h7v.s6.dd21060de17e from=translated src=- shape=e7dcaddc vocab=3b46d1a3
+-/
 theorem ofVertex_mem_collar (W : Set P.VertexPiece) {δ : ℝ} (hδ : S.IsCollarWidth δ)
     (i : Fin (n + 1)) (v : P.V i) : P.ofVertex S i v ∈ P.collar W hδ ↔ ⟨i, v⟩ ∈ W := Iff.rfl
 
 variable {S} in
-/-- Collars of disjoint sets are disjoint (uses `2 δ ≤` every gap).-/
+/-- Collars of disjoint sets are disjoint (uses `2 δ ≤` every gap).
+@isnad1 id=disjoint.2h6v.s7.a0122895492c from=translated src=- shape=c02f6049 vocab=e6ee032d
+-/
 theorem disjoint_collar {W W' : Set P.VertexPiece} (hWW' : Disjoint W W') {δ : ℝ}
     (hδ : S.IsCollarWidth δ) : Disjoint (P.collar W hδ) (P.collar W' hδ) := by
   rw [Set.disjoint_left]
@@ -685,7 +848,9 @@ theorem disjoint_collar {W W' : Set P.VertexPiece} (hWW' : Disjoint W W') {δ : 
     · exact Set.disjoint_left.1 hWW' h₂ h₂'
 
 /-- A vertex piece carries the subspace topology: every open set of `V i` is the trace of an
-open collar. No separation hypothesis is used.-/
+open collar. No separation hypothesis is used.
+@isnad1 id=isinduci.0h4v.s5.6ec5d4064f18 from=translated src=- shape=2427d6c7 vocab=f0002548
+-/
 theorem isInducing_ofVertex (i : Fin (n + 1)) : IsInducing (P.ofVertex S i) := by
   obtain ⟨δ, hδ⟩ := S.exists_collarWidth
   refine ⟨le_antisymm (P.continuous_ofVertex S i).le_induced ?_⟩
@@ -696,6 +861,9 @@ theorem isInducing_ofVertex (i : Fin (n + 1)) : IsInducing (P.ofVertex S i) := b
   ext v
   exact sigma_mk_injective.mem_set_image
 
+/--
+@isnad1 id=isembedd.0h4v.s5.9270bf32bc90 from=translated src=- shape=2427d6c7 vocab=8b097460
+-/
 theorem isEmbedding_ofVertex (i : Fin (n + 1)) : IsEmbedding (P.ofVertex S i) :=
   ⟨P.isInducing_ofVertex S i, P.ofVertex_injective S i⟩
 
@@ -703,13 +871,18 @@ theorem isEmbedding_ofVertex (i : Fin (n + 1)) : IsEmbedding (P.ofVertex S i) :=
 def criticalFiberHomeomorph (i : Fin (n + 1)) : P.V i ≃ₜ P.height S ⁻¹' {S.value i} :=
   (P.isEmbedding_ofVertex S i).toHomeomorph.trans (Homeomorph.setCongr (P.range_ofVertex S i))
 
+/--
+@isnad1 id=eq.0h5v.s9.647b21e105f1 from=translated src=- shape=db307cda vocab=7bbc8c60
+-/
 @[simp] theorem criticalFiberHomeomorph_apply (i : Fin (n + 1)) (v : P.V i) :
     (P.criticalFiberHomeomorph S i v : P.Realization S) = P.ofVertex S i v := rfl
 
 /-! ### Global topological properties -/
 
 /-- Hausdorffness from Hausdorff pieces and continuous endpoint maps only (no compactness,
-properness or local path-connectedness).-/
+properness or local path-connectedness).
+@isnad1 id=t2space.0h3v.s5.1c946ee98f67 from=translated src=- shape=1e9a484e vocab=c4976baa
+-/
 theorem t2Space [∀ i, T2Space (P.V i)] [∀ e, T2Space (P.E e)] : T2Space (P.Realization S) := by
   refine ⟨fun q q' hne => ?_⟩
   by_cases hh : P.height S q = P.height S q'
@@ -738,12 +911,16 @@ theorem t2Space [∀ i, T2Space (P.V i)] [∀ e, T2Space (P.E e)] : T2Space (P.R
     exact ⟨_, _, hU.preimage (P.height S).continuous, hU'.preimage (P.height S).continuous,
       h₁, h₂, hUU'.preimage _⟩
 
-/-- Compactness from compact pieces (finite sum, compact segments, quotient).-/
+/-- Compactness from compact pieces (finite sum, compact segments, quotient).
+@isnad1 id=compacts.0h3v.s5.f6ef54835070 from=translated src=- shape=1e9a484e vocab=102b9403
+-/
 theorem compactSpace [∀ i, CompactSpace (P.V i)] [∀ e, CompactSpace (P.E e)] :
     CompactSpace (P.Realization S) :=
   Quotient.compactSpace
 
-/-- Each closed segment is locally path-connected: a basis of convex neighbourhoods.-/
+/-- Each closed segment is locally path-connected: a basis of convex neighbourhoods.
+@isnad1 id=locallyp.0h3v.s5.b55c421fa3c4 from=translated src=- shape=09132237 vocab=c5e2bfd0
+-/
 theorem locallyPathConnectedSpace_seg (e : Fin n) : LocallyPathConnectedSpace (Seg S e) := by
   refine LocallyPathConnectedSpace.of_bases (p := fun _ (ε : ℝ) => 0 < ε)
     (s := fun x ε => ((↑) : Seg S e → ℝ) ⁻¹' Ioo ((x : ℝ) - ε) (x + ε)) (fun x => ?_)
@@ -756,7 +933,9 @@ theorem locallyPathConnectedSpace_seg (e : Fin n) : LocallyPathConnectedSpace (S
     have := hW.preimage_coe (U := Seg S e) inter_subset_left
     rwa [Subtype.preimage_coe_self_inter] at this
 
-/-- Local path-connectedness from locally path-connected pieces.-/
+/-- Local path-connectedness from locally path-connected pieces.
+@isnad1 id=locallyp.0h3v.s5.bddb93990ddc from=translated src=- shape=1e9a484e vocab=90107389
+-/
 theorem locallyPathConnectedSpace [∀ i, LocallyPathConnectedSpace (P.V i)]
     [∀ e, LocallyPathConnectedSpace (P.E e)] : LocallyPathConnectedSpace (P.Realization S) := by
   have : ∀ e, LocallyPathConnectedSpace (Seg S e) := locallyPathConnectedSpace_seg S
@@ -764,14 +943,21 @@ theorem locallyPathConnectedSpace [∀ i, LocallyPathConnectedSpace (P.V i)]
 
 attribute [instance] t2Space compactSpace locallyPathConnectedSpace
 
-/-- An empty vertex piece forces the adjacent edge pieces to be empty.-/
+/-- An empty vertex piece forces the adjacent edge pieces to be empty.
+@isnad1 id=isempty.1h3v.s4.0375be84ba26 from=translated src=- shape=dd677b5a vocab=8d6ac28d
+-/
 theorem isEmpty_E_of_left {e : Fin n} (h : IsEmpty (P.V e.castSucc)) : IsEmpty (P.E e) :=
   ⟨fun y => h.false (P.left e y)⟩
 
+/--
+@isnad1 id=isempty.1h3v.s4.d60fcfa6b0e2 from=translated src=- shape=dd677b5a vocab=26c118a9
+-/
 theorem isEmpty_E_of_right {e : Fin n} (h : IsEmpty (P.V e.succ)) : IsEmpty (P.E e) :=
   ⟨fun y => h.false (P.right e y)⟩
 
-/-- Empty vertex pieces give an empty realization.-/
+/-- Empty vertex pieces give an empty realization.
+@isnad1 id=isempty.0h3v.s5.04f7ac135a6c from=translated src=- shape=aebd8e68 vocab=c9236a6c
+-/
 theorem isEmpty_realization [∀ i, IsEmpty (P.V i)] : IsEmpty (P.Realization S) :=
   ⟨fun q => by
     rcases P.exists_rep S q with ⟨i, v, -⟩ | ⟨e, p, -⟩
@@ -790,14 +976,32 @@ def ofFiniteData (D : FiniteReebData.{u} n) : CylinderPresentation.{u} n where
   left e := @ContinuousMap.mk _ _ ⊥ ⊥ (D.left e) continuous_bot
   right e := @ContinuousMap.mk _ _ ⊥ ⊥ (D.right e) continuous_bot
 
+/--
+@isnad1 id=eq.0h2v.s4.3257e02b054f from=translated src=- shape=ea9096b9 vocab=d5425b01
+-/
 @[simp] theorem ofFiniteData_V (D : FiniteReebData.{u} n) : (ofFiniteData D).V = D.V := rfl
+/--
+@isnad1 id=eq.0h2v.s4.074eedc228a6 from=translated src=- shape=7ff1592d vocab=2d9e1758
+-/
 @[simp] theorem ofFiniteData_E (D : FiniteReebData.{u} n) : (ofFiniteData D).E = D.E := rfl
+/--
+@isnad1 id=eq.0h3v.s7.f4abe4b428bf from=translated src=- shape=0bee1642 vocab=578ac8d9
+-/
 @[simp] theorem ofFiniteData_topV (D : FiniteReebData.{u} n) (i : Fin (n + 1)) :
     (ofFiniteData D).topV i = ⊥ := rfl
+/--
+@isnad1 id=eq.0h3v.s7.7db91dee0891 from=translated src=- shape=7b83bc4e vocab=c23355e9
+-/
 @[simp] theorem ofFiniteData_topE (D : FiniteReebData.{u} n) (e : Fin n) :
     (ofFiniteData D).topE e = ⊥ := rfl
+/--
+@isnad1 id=eq.0h4v.s6.b424d1ed334b from=translated src=- shape=65eebb28 vocab=68ed193c
+-/
 @[simp] theorem ofFiniteData_left_apply (D : FiniteReebData.{u} n) (e : Fin n) (y : D.E e) :
     (ofFiniteData D).left e y = D.left e y := rfl
+/--
+@isnad1 id=eq.0h4v.s6.e076d67095a1 from=translated src=- shape=65eebb28 vocab=a8039112
+-/
 @[simp] theorem ofFiniteData_right_apply (D : FiniteReebData.{u} n) (e : Fin n) (y : D.E e) :
     (ofFiniteData D).right e y = D.right e y := rfl
 
@@ -812,12 +1016,21 @@ instance (D : FiniteReebData.{u} n) (e : Fin n) : Finite ((ofFiniteData D).E e) 
 
 /-! The conditional instances resolve for finite data with no further hypothesis. -/
 
+/--
+@isnad1 id=t2space.0h3v.s4.0f25c2018b9f from=translated src=- shape=25ad3105 vocab=1088ae91
+-/
 theorem finiteData_t2Space (D : FiniteReebData.{u} n) :
     T2Space ((ofFiniteData D).Realization S) := inferInstance
 
+/--
+@isnad1 id=compacts.0h3v.s4.c2e570c75c82 from=translated src=- shape=25ad3105 vocab=cc4f2956
+-/
 theorem finiteData_compactSpace (D : FiniteReebData.{u} n) :
     CompactSpace ((ofFiniteData D).Realization S) := inferInstance
 
+/--
+@isnad1 id=locallyp.0h3v.s4.3396cff46e25 from=translated src=- shape=25ad3105 vocab=0d7ae84a
+-/
 theorem finiteData_locallyPathConnectedSpace (D : FiniteReebData.{u} n) :
     LocallyPathConnectedSpace ((ofFiniteData D).Realization S) := inferInstance
 
@@ -838,18 +1051,25 @@ def realizeHom {D D' : FiniteReebData.{u} n} (φ : D.Hom D') :
         ((ofFiniteData D').ofCylinder_segTop S e (φ.e e y)).trans
           (congrArg ((ofFiniteData D').ofVertex S e.succ) (φ.right_comm e y)) }
 
+/--
+@isnad1 id=eq.0h6v.s7.bc0c42d24b30 from=translated src=- shape=d2d52d06 vocab=0c3289f0
+-/
 theorem height_realizeHom {D D' : FiniteReebData.{u} n} (φ : D.Hom D')
     (q : (ofFiniteData D).Realization S) :
     (ofFiniteData D').height S (realizeHom S φ q) = (ofFiniteData D).height S q := by
   obtain ⟨x, rfl⟩ := (ofFiniteData D).quotMk_surjective S q
   rcases x with ⟨i, v⟩ | ⟨e, p⟩ <;> rfl
 
-/-- The identity map of finite data realizes to the identity.-/
+/-- The identity map of finite data realizes to the identity.
+@isnad1 id=eq.0h3v.s5.1fcc375fcb16 from=translated src=- shape=b48fc712 vocab=57852e98
+-/
 theorem realizeHom_id (D : FiniteReebData.{u} n) :
     realizeHom S (FiniteReebData.Hom.id D) = ContinuousMap.id _ :=
   hom_ext (fun _ _ => rfl) (fun _ _ => rfl)
 
-/-- Realization of finite maps preserves composition.-/
+/-- Realization of finite maps preserves composition.
+@isnad1 id=eq.0h7v.s6.add5d9464ad8 from=translated src=- shape=904c8307 vocab=3eda3ec7
+-/
 theorem realizeHom_comp {D D' D'' : FiniteReebData.{u} n} (φ : D.Hom D') (ψ : D'.Hom D'') :
     realizeHom S (φ.comp ψ) = (realizeHom S ψ).comp (realizeHom S φ) :=
   hom_ext (fun _ _ => rfl) (fun _ _ => rfl)

@@ -26,6 +26,9 @@ open scoped InnerProductSpace ComplexConjugate
 abbrev Plane := WithLp 2 (ℝ × ℝ)
 
 instance instMeasurableSpacePlane : MeasurableSpace Plane := borel Plane
+/--
+@isnad1 id=borelspa.0h0v.s4.fe78f8634df9 from=translated src=- shape=49959d42 vocab=32c9196a
+-/
 instance instBorelSpacePlane : BorelSpace Plane := ⟨rfl⟩
 
 private def phase (σ : ℝ) (p ω : Plane) : ℂ :=

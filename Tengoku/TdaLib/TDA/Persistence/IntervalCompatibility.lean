@@ -23,14 +23,18 @@ variable {k : Type u} [Field k]
 /-- The support of an existing real barcode endpoint pair.-/
 def support (p : ℝ × WithTop ℝ) : Set ℝ := {t | RealBarcode.alive p t}
 
-/-- Half-open supports, including empty supports and infinite death, are order-convex.-/
+/-- Half-open supports, including empty supports and infinite death, are order-convex.
+@isnad1 id=ordconne.0h1v.s3.963fc4b0be93 from=translated src=- shape=0cf87884 vocab=d5daa0a9
+-/
 theorem support_ordConnected (p : ℝ × WithTop ℝ) : (support p).OrdConnected := by
   refine ⟨?_⟩
   intro s hs t ht r hr
   exact ⟨hs.1.trans hr.1, lt_of_le_of_lt (WithTop.coe_le_coe.mpr hr.2) ht.2⟩
 
 /-- The generic supported module has exactly the same real fibers and maps as
-the existing half-open interval module.-/
+the existing half-open interval module.
+@isnad1 id=eq.0h2v.s5.e7ee54203b2b from=translated src=- shape=2917c39e vocab=bfc766c8
+-/
 theorem support_module_eq (p : ℝ × WithTop ℝ) :
     SupportInterval.module (k := k) (support p) (support_ordConnected p) =
       RealBarcode.intervalModule (k := k) p := by

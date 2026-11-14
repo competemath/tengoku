@@ -25,7 +25,9 @@ private theorem crossing_eq_zero_of_isZero {b c : ℝ} (hbc : b ≤ c)
   rw [hb.eq_of_src (structureMap M hbc) 0]
   rfl
 
-/-- A birth cell below a module's zero tail contains no finite-death diagram points.-/
+/-- A birth cell below a module's zero tail contains no finite-death diagram points.
+@isnad1 id=eq.4h6v.s6.10c88f76a011 from=translated src=- shape=83158669 vocab=c272ce4f
+-/
 theorem moduleDiagramMultiplicity_zero_below_birth_cell (hM : M.QTame)
     (T : ℝ) (hzero : ∀ t < T, IsZero (M.obj t)) {a b : ℝ} (hbT : b < T)
     {p : Cut ℝ × Cut ℝ} (hpBirth : p.1 ∈ cutCell a b) :
@@ -48,7 +50,9 @@ theorem moduleDiagramMultiplicity_zero_below_birth_cell (hM : M.QTame)
       persistenceMeasureValue_eq_zero_of_crossing_eq_zero M _ _ _ hmap] at hle
     omega
 
-/-- A birth cell below a module's zero tail contains no essential diagram points.-/
+/-- A birth cell below a module's zero tail contains no essential diagram points.
+@isnad1 id=eq.4h6v.s6.0fbe1b1a1318 from=translated src=- shape=de6b18de vocab=5aac659f
+-/
 theorem moduleEssentialMultiplicity_zero_below_birth_cell (hM : M.QTame)
     (T : ℝ) (hzero : ∀ t < T, IsZero (M.obj t)) {a b : ℝ} (hbT : b < T)
     {birth : Cut ℝ} (hb : birth ∈ cutCell a b) :
@@ -75,7 +79,9 @@ private theorem exists_cell_below_of_endpoint_lt {birth : Cut ℝ} {a b T : ℝ}
   have hu := (birth.mem_lower_or_upper u).resolve_left huNot
   exact ⟨a, u, huT, hb.1, hu⟩
 
-/-- For a lower-bounded module, every finite or essential extracted birth respects the bound.-/
+/-- For a lower-bounded module, every finite or essential extracted birth respects the bound.
+@isnad1 id=le.3h4v.s6.2b8598eb1b2b from=translated src=- shape=a608a4d5 vocab=a8821eb2
+-/
 theorem moduleExtendedDiagramMultiplicity_birth_lower_bound (hM : M.QTame)
     (T : ℝ) (hzero : ∀ t < T, IsZero (M.obj t)) {p : Cut ℝ × Cut ℝ}
     (hp : 0 < moduleExtendedDiagramMultiplicity M hM p) : T ≤ cutEndpoint p.1 := by

@@ -41,18 +41,26 @@ noncomputable def pullbackInclusion (hs : IsPointwiseShortExact ι π)
   Limits.pullback.lift ι 0 (by
     rw [zero_comp, hs.comp_eq_zero])
 
+/--
+@isnad1 id=eq.1h9v.s8.7fca21c6e394 from=translated src=- shape=67dd5925 vocab=de0fc6aa
+-/
 @[reassoc (attr := simp)]
 theorem pullbackInclusion_fst (hs : IsPointwiseShortExact ι π) (f : T ⟶ N) :
     hs.pullbackInclusion f ≫ Limits.pullback.fst π f = ι :=
   Limits.pullback.lift_fst _ _ _
 
+/--
+@isnad1 id=eq.1h9v.s9.b14ba3321ced from=translated src=- shape=9bd3f10a vocab=f44f9cd6
+-/
 @[reassoc (attr := simp)]
 theorem pullbackInclusion_snd (hs : IsPointwiseShortExact ι π) (f : T ⟶ N) :
     hs.pullbackInclusion f ≫ Limits.pullback.snd π f = 0 :=
   Limits.pullback.lift_snd _ _ _
 
 /-- Pulling back the quotient map preserves ordinary pointwise short
-exactness, with the actual categorical pullback and its second projection.-/
+exactness, with the actual categorical pullback and its second projection.
+@isnad1 id=ispointw.1h9v.s8.2c97e6d2f929 from=translated src=- shape=474ea48f vocab=e0c3e0ee
+-/
 theorem pullback_pointwise (hs : IsPointwiseShortExact ι π) (f : T ⟶ N) :
     IsPointwiseShortExact (hs.pullbackInclusion f) (Limits.pullback.snd π f) where
   injective p := by
@@ -120,7 +128,9 @@ end IsPointwiseShortExact
 /-- Finite presentation is closed under an ordinary pointwise short exact
 extension. The result assumes finite presentations only for the two outer
 objects, with no pointwise finite-dimensionality or rank-exactness hypothesis
-on the given row.-/
+on the given row.
+@isnad1 id=finitely.3h7v.s7.4ca2b73b06a9 from=translated src=- shape=dd34b920 vocab=e998f665
+-/
 theorem IsPointwiseShortExact.finitelyPresented_middle
     (hs : IsPointwiseShortExact ι π)
     (hL : FinitelyPresented.{u,0,0} (R := k) (P := P) L)

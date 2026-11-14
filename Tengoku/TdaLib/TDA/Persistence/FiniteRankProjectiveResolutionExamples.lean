@@ -155,12 +155,16 @@ noncomputable def zeroLengthResolution :
   }
   term_rank_projective := fun i => Fin.elim0 i
 
-/-- At zero length, both the resolved module rank and its empty alternating sum are zero.-/
+/-- At zero length, both the resolved module rank and its empty alternating sum are zero.
+@isnad1 id=eq.1h2v.s6.c7e0f95c4a75 from=translated src=- shape=4da76319 vocab=832cffa6
+-/
 theorem zeroLength_rank_zero {a b : Fin 2} (hab : a ≤ b) :
     (rankOfStructureMap zeroModule hab : ℤ) = 0 := by
   exact_mod_cast rankOfStructureMap_zero hab
 
-/-- The zero-length resolution satisfies the empty alternating-sum formula.-/
+/-- The zero-length resolution satisfies the empty alternating-sum formula.
+@isnad1 id=eq.1h2v.s8.d8bd299c77f5 from=translated src=- shape=d0fe5476 vocab=586eea16
+-/
 theorem zeroLength_euler {a b : Fin 2} (hab : a ≤ b) :
     (rankOfStructureMap zeroModule hab : ℤ) =
       ∑ i : Fin zeroLengthResolution.length, (-1 : ℤ) ^ i.val *
@@ -182,7 +186,9 @@ noncomputable def oneTermHookResolution :
   }
   term_rank_projective := oneTermProjective
 
-/-- The one-term hook is projective and its birth structure map has rank one.-/
+/-- The one-term hook is projective and its birth structure map has rank one.
+@isnad1 id=and.0h0v.s7.bd3fb1e4f103 from=translated src=- shape=38e44990 vocab=80e6949a
+-/
 theorem oneTermHook_is_nonzero_projective :
     IsRankProjective nonzeroHook ∧
       0 < rankOfStructureMap nonzeroHook (show (0 : Fin 2) ≤ 0 from le_rfl) := by
@@ -191,7 +197,9 @@ theorem oneTermHook_is_nonzero_projective :
   · rw [nonzeroHook_birth_rank]
     norm_num
 
-/-- The one-term example realizes the Euler formula at its birth grade.-/
+/-- The one-term example realizes the Euler formula at its birth grade.
+@isnad1 id=eq.0h0v.s8.a91e85c82532 from=translated src=- shape=a8302ba8 vocab=2be54e88
+-/
 theorem oneTermHook_rank_euler :
     (rankOfStructureMap nonzeroHook (show (0 : Fin 2) ≤ 0 from le_rfl) : ℤ) =
       ∑ i : Fin oneTermHookResolution.length, (-1 : ℤ) ^ i.val *
@@ -214,19 +222,25 @@ noncomputable def contractibleZeroResolution :
   }
   term_rank_projective := contractibleProjective
 
-/-- The indexed terms are equal as modules, but remain distinct summands in the finite sum.-/
+/-- The indexed terms are equal as modules, but remain distinct summands in the finite sum.
+@isnad1 id=eq.0h0v.s7.463b73868a1a from=translated src=- shape=ca6a6a2c vocab=5543f75e
+-/
 theorem contractibleZero_repeated_terms :
     contractibleZeroResolution.term (0 : Fin 2) =
       contractibleZeroResolution.term (1 : Fin 2) := by
   change contractibleTerm (0 : Fin 2) = contractibleTerm (1 : Fin 2)
   rfl
 
-/-- The map between the repeated hook terms is the identity, so the two-term complex contracts.-/
+/-- The map between the repeated hook terms is the identity, so the two-term complex contracts.
+@isnad1 id=eq.0h0v.s9.24b89b83edc3 from=translated src=- shape=283a3e74 vocab=ef78ef94
+-/
 theorem contractibleZero_differential_is_identity :
     contractibleZeroResolution.quotient (1 : Fin 2) ≫
         contractibleZeroResolution.inclusion (0 : Fin 2) = 𝟙 nonzeroHook := rfl
 
-/-- The repeated nonzero projective terms cancel in the alternating sum.-/
+/-- The repeated nonzero projective terms cancel in the alternating sum.
+@isnad1 id=eq.0h0v.s8.78a2bdcda542 from=translated src=- shape=bfac388a vocab=eb8cbb1d
+-/
 theorem contractibleZero_rank_cancellation :
     ∑ i : Fin contractibleZeroResolution.length, (-1 : ℤ) ^ i.val *
       (rankOfStructureMap (contractibleZeroResolution.term i)

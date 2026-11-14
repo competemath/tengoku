@@ -24,16 +24,24 @@ variable {X : Type u} {Y : Type v} {Z : Type w} {W : Type z}
 /-- Expectation of a nonnegative extended-real cost.-/
 def expectation (μ : PMF X) (f : X → ℝ≥0∞) : ℝ≥0∞ := ∑' x, μ x * f x
 
+/--
+@isnad1 id=eq.0h3v.s4.f87988010cbc from=translated src=- shape=e9783546 vocab=0d0e4ecd
+-/
 @[simp] theorem expectation_const (μ : PMF X) (c : ℝ≥0∞) :
     expectation μ (fun _ => c) = c := by
   simp [expectation, ENNReal.tsum_mul_right, μ.tsum_coe]
 
+/--
+@isnad1 id=eq.0h3v.s4.0064350cb9f3 from=translated src=- shape=81243ce1 vocab=f142ec2b
+-/
 @[simp] theorem expectation_pure (x : X) (f : X → ℝ≥0∞) :
     expectation (PMF.pure x) f = f x := by
   classical
   simp [expectation, PMF.pure_apply]
 
-/-- The pushforward identity holds without a measurable-space choice on the ground type.-/
+/-- The pushforward identity holds without a measurable-space choice on the ground type.
+@isnad1 id=eq.0h5v.s5.5d232674713b from=translated src=- shape=34d13af5 vocab=6c0e0816
+-/
 theorem expectation_map (μ : PMF X) (g : X → Y) (f : Y → ℝ≥0∞) :
     expectation (μ.map g) f = expectation μ (fun x => f (g x)) := by
   classical
@@ -43,13 +51,18 @@ theorem expectation_map (μ : PMF X) (g : X → Y) (f : Y → ℝ≥0∞) :
   funext x
   simp
 
-/-- Iterated independent sampling obeys the usual iterated expectation identity.-/
+/-- Iterated independent sampling obeys the usual iterated expectation identity.
+@isnad1 id=eq.0h5v.s5.e30a6ba96a98 from=translated src=- shape=969ab4aa vocab=34f70fdd
+-/
 theorem expectation_bind (μ : PMF X) (ν : X → PMF Y) (f : Y → ℝ≥0∞) :
     expectation (μ.bind ν) f = expectation μ (fun x => expectation (ν x) f) := by
   simp only [expectation, PMF.bind_apply, ← ENNReal.tsum_mul_right]
   rw [ENNReal.tsum_comm]
   simp only [mul_assoc, ENNReal.tsum_mul_left]
 
+/--
+@isnad1 id=le.1h4v.s5.27829c1a2e97 from=translated src=- shape=a1ebe783 vocab=02d29569
+-/
 theorem expectation_mono (μ : PMF X) {f g : X → ℝ≥0∞} (h : ∀ x, f x ≤ g x) :
     expectation μ f ≤ expectation μ g :=
   ENNReal.tsum_le_tsum fun x => mul_le_mul_right (h x) _
@@ -92,14 +105,18 @@ def map (π : Coupling μ ν) (f : X → Z) (g : Y → W) :
     rw [← PMF.map_comp, π.snd_map]
 
 /-- On finite input types, the joint law is a nonnegative matrix with the
-prescribed row sums.-/
+prescribed row sums.
+@isnad1 id=eq.0h6v.s6.a1198ac6b617 from=translated src=- shape=2baebabc vocab=54dd57cf
+-/
 theorem row_sum [Fintype X] [Fintype Y] (π : Coupling μ ν) (x : X) :
     ∑ y, π.joint (x, y) = μ x := by
   classical
   have h := congrArg (fun p : PMF X => p x) π.fst_map
   simpa [PMF.map_apply, tsum_fintype, Fintype.sum_prod_type, Finset.sum_comm] using h
 
-/-- Every column also preserves its full prescribed probability mass.-/
+/-- Every column also preserves its full prescribed probability mass.
+@isnad1 id=eq.0h6v.s6.160f7f6eb614 from=translated src=- shape=56caf3cd vocab=54dd57cf
+-/
 theorem col_sum [Fintype X] [Fintype Y] (π : Coupling μ ν) (y : Y) :
     ∑ x, π.joint (x, y) = ν y := by
   classical
@@ -110,6 +127,9 @@ theorem col_sum [Fintype X] [Fintype Y] (π : Coupling μ ν) (y : Y) :
 def cost (π : Coupling μ ν) (c : X → Y → ℝ≥0∞) : ℝ≥0∞ :=
   expectation π.joint (fun xy => c xy.1 xy.2)
 
+/--
+@isnad1 id=eq.0h10v.s6.98b2b8c3780e from=translated src=- shape=e7d240a0 vocab=97ade764
+-/
 @[simp] theorem cost_map (π : Coupling μ ν) (f : X → Z) (g : Y → W)
     (c : Z → W → ℝ≥0∞) :
     (π.map f g).cost c = π.cost (fun x y => c (f x) (g y)) :=
@@ -122,12 +142,20 @@ def iid (μ : PMF X) : (n : ℕ) → PMF (Fin n → X)
   | 0 => PMF.pure Fin.elim0
   | n + 1 => μ.bind fun x => (iid μ n).map (Fin.cons x)
 
+/--
+@isnad1 id=eq.0h2v.s5.c72fc4c98cc6 from=translated src=- shape=f1b12abb vocab=43d98b7c
+-/
 @[simp] theorem iid_zero (μ : PMF X) : iid μ 0 = PMF.pure Fin.elim0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.d13cb3f934f1 from=translated src=- shape=c710bf8e vocab=b9fcf3f6
+-/
 @[simp] theorem iid_succ (μ : PMF X) (n : ℕ) :
     iid μ (n + 1) = μ.bind (fun x => (iid μ n).map (Fin.cons x)) := rfl
 
-/-- Independent sampling commutes with a deterministic map of each draw.-/
+/-- Independent sampling commutes with a deterministic map of each draw.
+@isnad1 id=eq.0h5v.s5.526927a970e8 from=translated src=- shape=c9f043b2 vocab=98f03d97
+-/
 theorem iid_map (μ : PMF X) (f : X → Y) (n : ℕ) :
     (iid μ n).map (fun t i => f (t i)) = iid (μ.map f) n := by
   induction n with
@@ -171,6 +199,9 @@ def Coupling.sampleLaw {μ : PMF X} {ν : PMF Y} (π : Coupling μ ν) (n : ℕ)
 def transportCost (c : X → Y → ℝ≥0∞) (μ : PMF X) (ν : PMF Y) : ℝ≥0∞ :=
   ⨅ π : Coupling μ ν, π.cost c
 
+/--
+@isnad1 id=le.0h6v.s5.c6e4a85d7e2b from=translated src=- shape=470d39fb vocab=63f52c20
+-/
 theorem transportCost_le_coupling (c : X → Y → ℝ≥0∞) (μ : PMF X) (ν : PMF Y)
     (π : Coupling μ ν) : transportCost c μ ν ≤ π.cost c := iInf_le _ π
 
@@ -179,7 +210,9 @@ def wasserstein (p : ℝ) (c : X → Y → ℝ≥0∞) (μ : PMF X) (ν : PMF Y)
   transportCost (fun x y => c x y ^ p) μ ν ^ p⁻¹
 
 /-- Taking the root after the infimum equals the infimum of the rooted costs,
-so the atomic definition agrees with the usual optimal-transport convention.-/
+so the atomic definition agrees with the usual optimal-transport convention.
+@isnad1 id=eq.1h6v.s6.93177cd1ee8b from=translated src=- shape=135cd806 vocab=e3e1a949
+-/
 theorem wasserstein_eq_iInf {p : ℝ} (hp : 0 < p) (c : X → Y → ℝ≥0∞)
     (μ : PMF X) (ν : PMF Y) :
     wasserstein p c μ ν = ⨅ π : Coupling μ ν, π.cost (fun x y => c x y ^ p) ^ p⁻¹ := by
@@ -189,6 +222,9 @@ theorem wasserstein_eq_iInf {p : ℝ} (hp : 0 < p) (c : X → Y → ℝ≥0∞)
 def essentialSup (μ : PMF X) (f : X → ℝ≥0∞) : ℝ≥0∞ :=
   ⨆ x ∈ μ.support, f x
 
+/--
+@isnad1 id=eq.0h5v.s5.c8537c57deed from=translated src=- shape=34d13af5 vocab=1527d029
+-/
 theorem essentialSup_map (μ : PMF X) (g : X → Y) (f : Y → ℝ≥0∞) :
     essentialSup (μ.map g) f = essentialSup μ (fun x => f (g x)) := by
   apply le_antisymm

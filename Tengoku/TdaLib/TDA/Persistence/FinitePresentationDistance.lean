@@ -66,13 +66,18 @@ noncomputable def distance
       exact coordinateInterleavingDistance_congr e f)
     x y
 
+/--
+@isnad1 id=eq.0h4v.s7.17a0e105d270 from=translated src=- shape=2e08607d vocab=82e7c871
+-/
 @[simp]
 theorem distance_classOf
     (M N : FinitelyPresentedModule (R := R) (n := n)) :
     distance (classOf M) (classOf N) =
       coordinateInterleavingDistance M.1 N.1 := rfl
 
-/-- Isomorphic representatives have the same distance to any isomorphic pair.-/
+/-- Isomorphic representatives have the same distance to any isomorphic pair.
+@isnad1 id=eq.0h8v.s8.c566b6b1fe3c from=translated src=- shape=5faf3f09 vocab=2730b514
+-/
 theorem distance_congr
     {M M' N N' : FinitelyPresentedModule (R := R) (n := n)}
     (e : M.1 ≅ M'.1) (f : N.1 ≅ N'.1) :
@@ -80,7 +85,9 @@ theorem distance_congr
   rw [distance_classOf, distance_classOf]
   exact coordinateInterleavingDistance_congr e f
 
-/-- Every isomorphism class has zero distance from itself.-/
+/-- Every isomorphism class has zero distance from itself.
+@isnad1 id=eq.0h3v.s4.cc524bf95ba4 from=translated src=- shape=e4b56650 vocab=4216ec41
+-/
 theorem distance_self (x : FinitePresentationIsoClasses (R := R) (n := n)) :
     distance x x = 0 := by
   induction x using Quotient.inductionOn with
@@ -89,7 +96,9 @@ theorem distance_self (x : FinitePresentationIsoClasses (R := R) (n := n)) :
     rw [distance_classOf]
     exact coordinateInterleavingDistance_self M.1
 
-/-- The quotient distance is symmetric.-/
+/-- The quotient distance is symmetric.
+@isnad1 id=eq.0h4v.s4.b05e2f3a73b3 from=translated src=- shape=9af7f099 vocab=4216ec41
+-/
 theorem distance_comm (x y : FinitePresentationIsoClasses (R := R) (n := n)) :
     distance x y = distance y x := by
   induction x using Quotient.inductionOn with
@@ -100,7 +109,9 @@ theorem distance_comm (x y : FinitePresentationIsoClasses (R := R) (n := n)) :
       rw [distance_classOf, distance_classOf]
       exact coordinateInterleavingDistance_comm M.1 N.1
 
-/-- The quotient distance satisfies the extended triangle inequality.-/
+/-- The quotient distance satisfies the extended triangle inequality.
+@isnad1 id=le.0h5v.s5.2f5487210e16 from=translated src=- shape=4df0f0c4 vocab=904d8760
+-/
 theorem distance_triangle
     (x y z : FinitePresentationIsoClasses (R := R) (n := n)) :
     distance x z ≤ distance x y + distance y z := by
@@ -115,14 +126,18 @@ theorem distance_triangle
         rw [distance_classOf, distance_classOf, distance_classOf]
         exact coordinateInterleavingDistance_triangle M.1 N.1 P.1
 
-/-- On presented representatives, zero distance is equivalent to natural isomorphism.-/
+/-- On presented representatives, zero distance is equivalent to natural isomorphism.
+@isnad1 id=iff.0h4v.s7.0dae5f8108df from=translated src=- shape=45ea3b20 vocab=885d5d31
+-/
 theorem distance_classOf_eq_zero_iff_iso
     (M N : FinitelyPresentedModule (R := R) (n := n)) :
     distance (classOf M) (classOf N) = 0 ↔ Nonempty (M.1 ≅ N.1) := by
   rw [distance_classOf]
   exact finitelyPresented_distance_eq_zero_iff_iso M.2 N.2
 
-/-- Zero distance on the quotient is equality of isomorphism classes.-/
+/-- Zero distance on the quotient is equality of isomorphism classes.
+@isnad1 id=iff.0h4v.s5.2a8db290f730 from=translated src=- shape=c6db8ed5 vocab=4216ec41
+-/
 theorem distance_eq_zero_iff_eq
     (x y : FinitePresentationIsoClasses (R := R) (n := n)) :
     distance x y = 0 ↔ x = y := by
@@ -150,7 +165,9 @@ noncomputable instance emetricSpace :
     change distance x y = 0 at h
     exact distance_eq_zero_iff_eq x y |>.mp h
 
-/-- The `edist` instance agrees with the original distance on representatives.-/
+/-- The `edist` instance agrees with the original distance on representatives.
+@isnad1 id=eq.0h4v.s7.8507059d1fd6 from=translated src=- shape=5e4dfa42 vocab=e02b441f
+-/
 @[simp]
 theorem edist_classOf
     (M N : FinitelyPresentedModule (R := R) (n := n)) :

@@ -90,7 +90,9 @@ def tuples (π : MeasureCoupling μ ν) (n : ℕ) :
       congrArg (fun ρ : Measure Y => Measure.pi (fun _ : Fin n => ρ)) hsnd
 
 /-- Integrating a cost after the iid pair coupling is the product-sample
-integral of that cost on the two coordinate tuples.-/
+integral of that cost on the two coordinate tuples.
+@isnad1 id=eq.1h7v.s8.47cdac5d7d8e from=translated src=- shape=2dfb751a vocab=b66c5738
+-/
 theorem cost_tuples (π : MeasureCoupling μ ν) (n : ℕ)
     (c : (Fin n → X) → (Fin n → Y) → ℝ≥0∞)
     (hc : Measurable (fun ts : (Fin n → X) × (Fin n → Y) => c ts.1 ts.2)) :
@@ -183,7 +185,9 @@ private theorem lintegral_iid_pair (μ : ProbabilityMeasure X) (n : ℕ)
       rw [iidMeasure, ProbabilityMeasure.toMeasure_pi]
       rw [iid_pair_map μ n i j hij]
 
-/-- The unordered pair energy has the exact iid expectation.-/
+/-- The unordered pair energy has the exact iid expectation.
+@isnad1 id=eq.1h4v.s7.6fbf521b82ac from=translated src=- shape=692e8d20 vocab=5b9d359f
+-/
 theorem lintegral_iid_pairEnergy (μ : ProbabilityMeasure X) (n : ℕ)
     (c : X → X → ℝ≥0∞) (hc : Measurable (fun xy : X × X => c xy.1 xy.2)) :
     ∫⁻ t, pairEnergy c t ∂(iidMeasure μ n : Measure (Fin n → X)) =
@@ -210,7 +214,9 @@ theorem lintegral_iid_pairEnergy (μ : ProbabilityMeasure X) (n : ℕ)
     fun_prop
 
 /-- Sharp finite-p bound for the maximum of a distance matrix from an iid
-sample. The diagonal-zero condition is essential for nonatomic laws.-/
+sample. The diagonal-zero condition is essential for nonatomic laws.
+@isnad1 id=le.4h5v.s7.85daf773641b from=translated src=- shape=c6432659 vocab=22c4c96a
+-/
 theorem lintegral_iid_pairMaximum_rpow_le (μ : ProbabilityMeasure X) (n : ℕ)
     (c : X → X → ℝ≥0∞) (hc : ∀ x, c x x = 0)
     (hs : ∀ x y, c x y = c y x) {p : ℝ} (hp : 0 < p)

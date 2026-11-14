@@ -37,7 +37,9 @@ def support (I : BoundedInterval) : Set ℝ :=
   {x | (I.lower < x ∨ (I.lower = x ∧ I.lowerClosed = true)) ∧
     (x < I.upper ∨ (x = I.upper ∧ I.upperClosed = true))}
 
-/-- Every bounded interval is order-convex.-/
+/-- Every bounded interval is order-convex.
+@isnad1 id=ordconne.0h1v.s2.ccc53f9dccf5 from=translated src=- shape=1a6c1393 vocab=581d95de
+-/
 theorem ordConnected (I : BoundedInterval) : I.support.OrdConnected := by
   constructor
   intro x hx y hy z hz
@@ -56,7 +58,9 @@ theorem ordConnected (I : BoundedInterval) : I.support.OrdConnected := by
       · exact Or.inl (hy ▸ lt_of_le_of_ne hz.2 h)
 
 /-- A nonnegative translation fits inside an interval exactly at the strict
-length bound, or at equality with both endpoints included.-/
+length bound, or at equality with both endpoints included.
+@isnad1 id=iff.1h2v.s6.e180542ea54a from=translated src=- shape=a5437444 vocab=671ba790
+-/
 theorem exists_mem_add_iff (I : BoundedInterval) (δ : ℝ) (hδ : 0 ≤ δ) :
     (∃ x, x ∈ I.support ∧ x + δ ∈ I.support) ↔
       δ < I.upper - I.lower ∨
@@ -93,7 +97,9 @@ theorem exists_mem_add_iff (I : BoundedInterval) (δ : ℝ) (hδ : 0 ≤ δ) :
             exact Or.inl (by linarith)
         · exact Or.inr ⟨by linarith, hu⟩
 
-/-- The endpoint validity condition ensures that the support is nonempty.-/
+/-- The endpoint validity condition ensures that the support is nonempty.
+@isnad1 id=nonempty.0h1v.s2.14d9764a463a from=translated src=- shape=1a6c1393 vocab=bccfe822
+-/
 theorem support_nonempty (I : BoundedInterval) : I.support.Nonempty := by
   have h : (0 : ℝ) < I.upper - I.lower ∨
       (0 = I.upper - I.lower ∧ I.lowerClosed = true ∧ I.upperClosed = true) := by
@@ -117,19 +123,25 @@ open scoped TDA.Persistence
 def support {n : ℕ} (R : Rectangle n) : Set (Fin n → ℝ) :=
   {p | ∀ i, p i ∈ (R i).support}
 
-/-- The support of a rectangle is order-convex for the coordinatewise order.-/
+/-- The support of a rectangle is order-convex for the coordinatewise order.
+@isnad1 id=ordconne.0h2v.s4.0124c0481121 from=translated src=- shape=6b40eb30 vocab=fc677d38
+-/
 theorem ordConnected {n : ℕ} (R : Rectangle n) : R.support.OrdConnected := by
   constructor
   intro p hp q hq r hr i
   exact (R i).ordConnected.out (hp i) (hq i) ⟨hr.1 i, hr.2 i⟩
 
-/-- Every rectangle has a point, including products with singleton coordinates.-/
+/-- Every rectangle has a point, including products with singleton coordinates.
+@isnad1 id=nonempty.0h2v.s3.44ff0b568858 from=translated src=- shape=6b40eb30 vocab=08dbf2a1
+-/
 theorem support_nonempty {n : ℕ} (R : Rectangle n) : R.support.Nonempty := by
   classical
   choose p hp using fun i => (R i).support_nonempty
   exact ⟨p, hp⟩
 
-/-- Coordinatewise minima stay in a rectangle, for every endpoint convention.-/
+/-- Coordinatewise minima stay in a rectangle, for every endpoint convention.
+@isnad1 id=mem.2h4v.s6.04311e3162bd from=translated src=- shape=9a0d8abf vocab=9d280e1e
+-/
 theorem inf_mem {n : ℕ} (R : Rectangle n) {p q : Fin n → ℝ}
     (hp : p ∈ R.support) (hq : q ∈ R.support) : p ⊓ q ∈ R.support := by
   intro i
@@ -147,7 +159,9 @@ noncomputable def module {n : ℕ} {k : Type u} [Field k] (R : Rectangle n) :
 
 /-- A morphism between rectangle modules has the same scalar coefficient at
 every point of the overlap. Coordinatewise minima connect any two points.
-This is the rectangle case of Bjerkevik's scalar-constancy argument.-/
+This is the rectangle case of Bjerkevik's scalar-constancy argument.
+@isnad1 id=eq.4h7v.s11.88aefc036568 from=translated src=- shape=95cd8a10 vocab=04c3da7a
+-/
 theorem hom_coefficient_eq {n : ℕ} {k : Type u} [Field k]
     (R S : Rectangle n) (α : R.module (k := k) ⟶ S.module)
     {p q : Fin n → ℝ} (hpR : p ∈ R.support) (hpS : p ∈ S.support)
@@ -162,7 +176,9 @@ theorem hom_coefficient_eq {n : ℕ} {k : Type u} [Field k]
   exact hmp.symm.trans hmq
 
 /-- On a nonempty overlap, a single scalar coefficient determines the entire
-morphism between rectangle modules.-/
+morphism between rectangle modules.
+@isnad1 id=eq.3h7v.s11.c48b5665d5ef from=translated src=- shape=97da7ad5 vocab=04c3da7a
+-/
 theorem hom_ext {n : ℕ} {k : Type u} [Field k]
     (R S : Rectangle n) (α β : R.module (k := k) ⟶ S.module)
     {p : Fin n → ℝ} (hpR : p ∈ R.support) (hpS : p ∈ S.support)
@@ -183,7 +199,9 @@ theorem hom_ext {n : ℕ} {k : Type u} [Field k]
     simp [hx]
 
 /-- A diagonal translation preserves a point of the support exactly when it
-fits in every coordinate interval, including the equality endpoint case.-/
+fits in every coordinate interval, including the equality endpoint case.
+@isnad1 id=iff.1h3v.s7.033b7ecc80c3 from=translated src=- shape=6f406982 vocab=e5b0176b
+-/
 theorem exists_mem_add_iff {n : ℕ} (R : Rectangle n) (δ : ℝ) (hδ : 0 ≤ δ) :
     (∃ p, p ∈ R.support ∧ (fun i => p i + δ) ∈ R.support) ↔
       ∀ i, δ < (R i).upper - (R i).lower ∨
@@ -198,7 +216,9 @@ theorem exists_mem_add_iff {n : ℕ} (R : Rectangle n) (δ : ℝ) (hδ : 0 ≤ �
     exact ⟨p, hp, hq⟩
 
 /-- All diagonal structure maps vanish exactly when one coordinate fails the
-length test. At equality, including both endpoints prevents vanishing.-/
+length test. At equality, including both endpoints prevents vanishing.
+@isnad1 id=iff.1h4v.s10.2185144b54d2 from=translated src=- shape=bc224e12 vocab=0a4a9bfd
+-/
 theorem diagonal_maps_eq_zero_iff {n : ℕ} {k : Type u} [Field k]
     (R : Rectangle n) (δ : ℝ) (hδ : 0 ≤ δ) :
     (∀ p : Fin n → ℝ,

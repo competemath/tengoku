@@ -26,7 +26,9 @@ noncomputable section
 /-- The family of singletons on the discrete Boolean space.-/
 def singletonFamily : CoverFamily Bool Bool := fun b => {b}
 
-/-- The two singleton members have empty intersection.-/
+/-- The two singleton members have empty intersection.
+@isnad1 id=eq.0h0v.s4.e9648933fc7a from=translated src=- shape=94ed072e vocab=31e0dcf3
+-/
 theorem singletonFamily_interMember_pair :
     interMember singletonFamily {false, true} = ∅ := by
   rw [interMember_insert, interMember_singleton]
@@ -34,7 +36,9 @@ theorem singletonFamily_interMember_pair :
   cases x <;> simp [singletonFamily]
 
 /-- A pair of indices with disjoint members has no path component of its intersection, no
-multinerve cell over it, and is not a nerve face.-/
+multinerve cell over it, and is not a nerve face.
+@isnad1 id=and.0h0v.s6.d5675293c5f7 from=translated src=- shape=76c8093b vocab=b3abf22f
+-/
 theorem singletonFamily_no_cell_over_pair :
     IsEmpty (ZerothHomotopy (interMember singletonFamily {false, true})) ∧
       (¬ ∃ a : MultiNerveCell singletonFamily, a.support = {false, true}) ∧
@@ -60,7 +64,9 @@ def duplicateCell (σ : Finset Bool) (hσ : σ.Nonempty) : MultiNerveCell duplic
   mk σ hσ (ZerothHomotopy.mk ⟨(), unit_mem_duplicate σ⟩)
 
 /-- The two labels give two distinct vertex cells, both faces of the cell over the pair, while
-their supports are distinct nerve vertices.-/
+their supports are distinct nerve vertices.
+@isnad1 id=and.0h0v.s7.30c4d9ec9d71 from=translated src=- shape=3d685d7c vocab=9d5b309c
+-/
 theorem duplicate_labels_distinct_vertex_cells :
     duplicateCell {false} (by simp) ≠ duplicateCell {true} (by simp) ∧
       duplicateCell {false} (by simp) ≤ duplicateCell {false, true} (by simp) ∧

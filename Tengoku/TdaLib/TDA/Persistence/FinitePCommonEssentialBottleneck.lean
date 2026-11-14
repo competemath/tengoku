@@ -80,7 +80,9 @@ private theorem commonEssential_bottleneck_toReal_le_matching {p : ℝ} (hp : 1 
   simpa only [ENNReal.toReal_ofReal (finitePMatchingCost_nonneg p _ _)] using hreal
 
 /-- A count budget and bottleneck radius give one error bound for pairs with
-the same essential-birth multiset. `max 1 m` includes the zero-count case.-/
+the same essential-birth multiset. `max 1 m` includes the zero-count case.
+@isnad1 id=le.5h5v.s7.271c4917a013 from=translated src=- shape=27021a1e vocab=c3accdde
+-/
 theorem finitePMatchingCost_abs_sub_bottleneck_le_uniformBound_of_essentialParts_eq
     {p : ℝ} (hp : 1 ≤ p) (D E : Diagram ℝ)
     (he : essentialPart D.points = essentialPart E.points)
@@ -111,7 +113,9 @@ theorem finitePMatchingCost_abs_sub_bottleneck_le_uniformBound_of_essentialParts
     _ = ((((max 1 m : ℕ) : ℝ) ^ p⁻¹) - 1) * (bottleneck D E).toReal := by ring
     _ ≤ _ := mul_le_mul_of_nonneg_left hb (sub_nonneg.mpr hfactor)
 
-/-- The same error bound holds for the optimized cost over all real plans.-/
+/-- The same error bound holds for the optimized cost over all real plans.
+@isnad1 id=le.5h5v.s7.0bc24d2986e6 from=translated src=- shape=27021a1e vocab=3fa8d46e
+-/
 theorem finitePBoundaryTransportCost_abs_sub_bottleneck_le_uniformBound_of_essentialParts_eq
     {p : ℝ} (hp : 1 ≤ p) (D E : Diagram ℝ)
     (he : essentialPart D.points = essentialPart E.points)
@@ -139,7 +143,9 @@ private theorem uniform_errorEnvelope_tendsto (m : ℕ) (R : ℝ) :
   simpa only [sub_self, zero_mul] using (hfactor.sub_const 1).mul_const R
 
 /-- One exponent tail works for all pairs with equal essential-birth multisets
-within the count and radius budgets. Occurrence types may vary with the pair.-/
+within the count and radius budgets. Occurrence types may vary with the pair.
+@isnad1 id=tendstou.1h2v.s8.2dce46ab453d from=translated src=- shape=08c6a901 vocab=35873b11
+-/
 theorem finitePMatchingCost_tendstoUniformlyOn_bottleneck_of_essentialParts_eq
     (m : ℕ) (R : ℝ) (hR : 0 ≤ R) :
     TendstoUniformlyOn
@@ -160,7 +166,9 @@ theorem finitePMatchingCost_tendstoUniformlyOn_bottleneck_of_essentialParts_eq
   exact (finitePMatchingCost_abs_sub_bottleneck_le_uniformBound_of_essentialParts_eq hp z.1 z.2
     hz.1 hz.2.1 hR hz.2.2).trans_lt herror
 
-/-- Uniform recovery for the optimized real boundary-reservoir cost.-/
+/-- Uniform recovery for the optimized real boundary-reservoir cost.
+@isnad1 id=tendstou.1h2v.s8.0fffa323a42e from=translated src=- shape=08c6a901 vocab=f244fbde
+-/
 theorem finitePBoundaryTransportCost_tendstoUniformlyOn_bottleneck_of_essentialParts_eq
     (m : ℕ) (R : ℝ) (hR : 0 ≤ R) :
     TendstoUniformlyOn

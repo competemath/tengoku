@@ -24,7 +24,9 @@ open scoped InnerProductSpace
 /-! ## The scalar inequality and the unit-vector lemma -/
 
 /-- `2 - 2 exp (-r² / (2s²)) ≤ r² / s²`, from `1 - t ≤ exp (-t)`. Both sides vanish at
-`s = 0`.-/
+`s = 0`.
+@isnad1 id=le.0h2v.s7.2595a8871ac9 from=translated src=- shape=38daebe4 vocab=4684e443
+-/
 theorem two_sub_two_mul_exp_le (r s : ℝ) :
     2 - 2 * Real.exp (-r ^ 2 / (2 * s ^ 2)) ≤ r ^ 2 / s ^ 2 := by
   rcases eq_or_ne s 0 with rfl | _
@@ -36,7 +38,9 @@ theorem two_sub_two_mul_exp_le (r s : ℝ) :
 
 variable {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℝ H]
 
-/-- The squared distance of two unit vectors with a Gaussian inner product.-/
+/-- The squared distance of two unit vectors with a Gaussian inner product.
+@isnad1 id=eq.3h5v.s8.66c058b487ae from=translated src=- shape=171fe5a4 vocab=8e186398
+-/
 theorem norm_sub_sq_eq_of_inner_eq_gaussian {u v : H} (hu : ‖u‖ = 1) (hv : ‖v‖ = 1)
     {r s : ℝ} (huv : ⟪u, v⟫_ℝ = Real.exp (-r ^ 2 / (2 * s ^ 2))) :
     ‖u - v‖ ^ 2 = 2 - 2 * Real.exp (-r ^ 2 / (2 * s ^ 2)) := by
@@ -44,7 +48,9 @@ theorem norm_sub_sq_eq_of_inner_eq_gaussian {u v : H} (hu : ‖u‖ = 1) (hv : �
   ring
 
 /-- Gaussian unit-vector lemma, KFH18 Lemma 16, eq. (25), in an arbitrary real inner
-product space.-/
+product space.
+@isnad1 id=le.3h5v.s7.477ebcf78660 from=translated src=- shape=eaaa8c6a vocab=128c7dd7
+-/
 theorem norm_sub_le_of_inner_eq_gaussian {u v : H} (hu : ‖u‖ = 1) (hv : ‖v‖ = 1)
     {r s : ℝ} (huv : ⟪u, v⟫_ℝ = Real.exp (-r ^ 2 / (2 * s ^ 2))) :
     ‖u - v‖ ≤ |r| / |s| := by
@@ -65,6 +71,9 @@ noncomputable def gaussianKernelOp (τ : ℝ) : Matrix E E (ℝ →L[ℝ] ℝ) :
   Matrix.of fun a b => gaussianGram τ (id : E → E) a b • ContinuousLinearMap.id ℝ ℝ
 
 omit [InnerProductSpace ℝ E] in
+/--
+@isnad1 id=eq.0h5v.s7.1038170c4c7d from=translated src=- shape=78f24d4e vocab=48e53712
+-/
 theorem gaussianKernelOp_apply (τ : ℝ) (a b : E) (t : ℝ) :
     gaussianKernelOp τ a b t = Real.exp (-‖a - b‖ ^ 2 / (2 * τ ^ 2)) * t := rfl
 

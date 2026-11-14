@@ -19,6 +19,9 @@ namespace ProbeFixtures
 def emptyFamily : CoverFamily Bool Empty := Empty.elim
 
 /-! An empty-index family covers exactly the empty support. -/
+/--
+@isnad1 id=iff.0h1v.s4.531303176fef from=translated src=- shape=0e13bd38 vocab=1d666a36
+-/
 theorem emptyFamily_covers_iff (A : Set Bool) : Covers emptyFamily A ↔ A = ∅ := by
   constructor
   · intro h
@@ -33,6 +36,9 @@ theorem emptyFamily_covers_iff (A : Set Bool) : Covers emptyFamily A ↔ A = ∅
     exact False.elim (by simpa [hA] using hx)
 
 /-! The empty-index family is not a full cover of a nonempty concrete type. -/
+/--
+@isnad1 id=not.0h0v.s2.e7e2ada83cce from=translated src=- shape=504fa7ea vocab=72439084
+-/
 theorem emptyFamily_not_full : ¬ Covers emptyFamily (Set.univ : Set Bool) := by
   intro h
   obtain ⟨i, _⟩ := h false (Set.mem_univ false)
@@ -50,6 +56,9 @@ def mergeDuplicated : Refinement duplicatedFamily singletonFamily :=
     subset := fun _ => subset_rfl }
 
 /-! The duplicated singleton member has a selected refinement that merges its labels. -/
+/--
+@isnad1 id=and.0h0v.s5.df0f37f8d042 from=translated src=- shape=8779fc32 vocab=e2028016
+-/
 theorem duplicated_singleton_fixture :
     duplicatedFamily false = duplicatedFamily true ∧ false ≠ true ∧
       mergeDuplicated.selector false = () ∧ mergeDuplicated.selector true = () ∧
@@ -65,11 +74,17 @@ def boolCode : Bool → Nat := fun b => if b then 1 else 0
 def rangeFamily : CoverFamily Nat Unit := fun _ => Set.range boolCode
 
 /-! The range family covers its specified range. -/
+/--
+@isnad1 id=covers.0h0v.s3.21d126a99efe from=translated src=- shape=cf69038a vocab=5624e44a
+-/
 theorem rangeFamily_covers_range : Covers rangeFamily (Set.range boolCode) := by
   intro y hy
   exact ⟨(), hy⟩
 
 /-! The range family does not cover a natural number outside the attained range. -/
+/--
+@isnad1 id=not.0h0v.s2.1c63d7395ee1 from=translated src=- shape=504fa7ea vocab=f7f962b6
+-/
 theorem rangeFamily_not_full : ¬ Covers rangeFamily (Set.univ : Set Nat) := by
   intro h
   obtain ⟨_, hy⟩ := h 2 (Set.mem_univ 2)
@@ -77,6 +92,9 @@ theorem rangeFamily_not_full : ¬ Covers rangeFamily (Set.univ : Set Nat) := by
   cases b <;> simp [boolCode] at hb
 
 /-! A range-only cover pulls back to a full cover of its concrete domain. -/
+/--
+@isnad1 id=covers.0h0v.s3.f9e0ea9e00c4 from=translated src=- shape=3245175d vocab=c2ac5c05
+-/
 theorem range_pullback_full :
     Covers (pullback boolCode rangeFamily) (Set.univ : Set Bool) :=
   covers_range_pullback boolCode rangeFamily_covers_range
@@ -85,6 +103,9 @@ theorem range_pullback_full :
 def missingRangeFamily : CoverFamily Nat Unit := fun _ => ({2} : Set Nat)
 
 /-! The retained unit index labels an empty pullback member. -/
+/--
+@isnad1 id=ex.0h0v.s4.defe7381204d from=translated src=- shape=548dc2ff vocab=b78cacfe
+-/
 theorem missingRange_pullback_empty :
     ∃ i : Unit, pullback boolCode missingRangeFamily i = (∅ : Set Bool) := by
   refine ⟨(), ?_⟩
@@ -112,6 +133,9 @@ def swappedSelector : Refinement (allFamily (X := Unit) (I := Bool))
     subset := fun _ _ _ => trivial }
 
 /-! The two valid selectors remain distinguishable as index functions. -/
+/--
+@isnad1 id=ne.0h0v.s4.644ed81d74d0 from=translated src=- shape=4d9c73ed vocab=be7d2ccf
+-/
 theorem selectors_are_distinct :
     identitySelector.selector ≠ swappedSelector.selector := by
   intro h

@@ -25,7 +25,9 @@ private theorem exampleInterval_qTame (p : ℝ × WithTop ℝ) :
     change FiniteDimensional k (RealBarcode.fiber (k := k) p t)
     infer_instance)
 
-/-- The module-to-content-to-multiplicity construction extracts an actual unit atom.-/
+/-- The module-to-content-to-multiplicity construction extracts an actual unit atom.
+@isnad1 id=ex.0h1v.s6.3d2b0f88fb0b from=translated src=- shape=91dd92d2 vocab=bcd25bca
+-/
 theorem interval_has_decorated_unit_atom :
     ∃ p ∈ rectangleCell (-1 : ℝ) 0 1 2,
       moduleDiagramMultiplicity
@@ -44,7 +46,9 @@ theorem interval_has_decorated_unit_atom :
   change moduleDiagramMultiplicity M hM p = 1
   omega
 
-/-- The existing module with infinite-dimensional ephemeral fibers really extracts to zero.-/
+/-- The existing module with infinite-dimensional ephemeral fibers really extracts to zero.
+@isnad1 id=eq.0h2v.s4.03b4180fcd53 from=translated src=- shape=fb7ff15a vocab=0c4f5651
+-/
 theorem infinite_ephemeral_extracted_diagram_zero (p : Cut ℝ × Cut ℝ) :
     moduleDiagramMultiplicity _
       (PersistenceMeasureExamples.infinite_ephemeral_qTame (k := k)) p = 0 := by

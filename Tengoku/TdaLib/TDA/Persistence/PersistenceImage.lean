@@ -23,10 +23,15 @@ noncomputable def pixelIntegral (P : K → Set (ℝ × ℝ)) (f : ℝ × ℝ →
     PiLp 1 (fun _ : K => ℝ) := WithLp.toLp 1 (fun k => ∫ z in P k, f z)
 
 omit [Fintype K] in
+/--
+@isnad1 id=eq.0h4v.s6.a9984d112fbb from=translated src=- shape=0c10df23 vocab=8436c4b7
+-/
 @[simp] theorem pixelIntegral_apply (P : K → Set (ℝ × ℝ)) (f : ℝ × ℝ → ℝ) (k : K) :
     pixelIntegral P f k = ∫ z in P k, f z := rfl
 
-/-- Disjoint pixels cannot increase the L¹ norm of an integrable surface.-/
+/-- Disjoint pixels cannot increase the L¹ norm of an integrable surface.
+@isnad1 id=le.3h3v.s7.b9f5c98d7fd4 from=translated src=- shape=b2b1477d vocab=9b0ab7ec
+-/
 theorem norm_pixelIntegral_le (P : K → Set (ℝ × ℝ))
     (hm : ∀ k, MeasurableSet (P k)) (hd : Pairwise (fun i j => Disjoint (P i) (P j)))
     (f : ℝ × ℝ → ℝ) (hf : Integrable f) :
@@ -44,7 +49,9 @@ theorem norm_pixelIntegral_le (P : K → Set (ℝ × ℝ))
       (integral_iUnion_fintype hm hd (fun _ => hf.abs.integrableOn)).symm
     _ ≤ _ := setIntegral_le_integral hf.abs (ae_of_all _ (fun z => abs_nonneg (f z)))
 
-/-- Pixel integration also contracts integrable surface differences in ℓ¹.-/
+/-- Pixel integration also contracts integrable surface differences in ℓ¹.
+@isnad1 id=le.4h4v.s8.b703bf576053 from=translated src=- shape=ea2ab1da vocab=e3aeae78
+-/
 theorem norm_pixelIntegral_sub_le (P : K → Set (ℝ × ℝ))
     (hm : ∀ k, MeasurableSet (P k)) (hd : Pairwise (fun i j => Disjoint (P i) (P j)))
     (f g : ℝ × ℝ → ℝ) (hf : Integrable f) (hg : Integrable g) :
@@ -57,6 +64,9 @@ theorem norm_pixelIntegral_sub_le (P : K → Set (ℝ × ℝ))
   rw [he]
   exact norm_pixelIntegral_le P hm hd _ (hf.sub hg)
 
+/--
+@isnad1 id=le.3h4v.s7.78323d517ee7 from=translated src=- shape=283fa9f0 vocab=54fd5846
+-/
 theorem norm_gaussianPixels_le_one {σ : ℝ} (hσ : 0 < σ) (P : K → Set (ℝ × ℝ))
     (hm : ∀ k, MeasurableSet (P k)) (hd : Pairwise (fun i j => Disjoint (P i) (P j)))
     (u : ℝ × ℝ) : ‖pixelIntegral P (density2D σ u)‖ ≤ 1 := by
@@ -67,6 +77,9 @@ theorem norm_gaussianPixels_le_one {σ : ℝ} (hσ : 0 < σ) (P : K → Set (ℝ
       simp_rw [abs_of_nonneg (density2D_nonneg σ u _)]
       exact integral_density2D hσ u
 
+/--
+@isnad1 id=le.3h5v.s8.b9ef55ccbca7 from=translated src=- shape=57c15851 vocab=aa5fe45a
+-/
 theorem norm_gaussianPixels_sub_le {σ : ℝ} (hσ : 0 < σ) (P : K → Set (ℝ × ℝ))
     (hm : ∀ k, MeasurableSet (P k)) (hd : Pairwise (fun i j => Disjoint (P i) (P j)))
     (u v : ℝ × ℝ) :
@@ -92,7 +105,9 @@ noncomputable def feature {A B : ℝ} (σ : ℝ) (w : Weight A B)
   w (birthPersistence p) • pixelIntegral P (density2D σ (birthPersistence p))
 
 omit [Fintype K] in
-/-- Each feature coordinate is the integral of the weighted density.-/
+/-- Each feature coordinate is the integral of the weighted density.
+@isnad1 id=eq.0h8v.s6.4b3499df47da from=translated src=- shape=cc9495bb vocab=73005d0a
+-/
 theorem feature_apply {A B : ℝ} (σ : ℝ) (w : Weight A B)
     (P : K → Set (ℝ × ℝ)) (p : ℝ × ℝ) (k : K) :
     feature σ w P p k = ∫ z in P k, w (birthPersistence p) *
@@ -100,11 +115,17 @@ theorem feature_apply {A B : ℝ} (σ : ℝ) (w : Weight A B)
   change w (birthPersistence p) * (∫ z in P k, density2D σ (birthPersistence p) z) = _
   exact (integral_const_mul _ _).symm
 
+/--
+@isnad1 id=integrab.0h5v.s6.1da0c2949c1b from=translated src=- shape=e647f9f7 vocab=287ae540
+-/
 theorem integrable_weighted_density {A B : ℝ} (σ : ℝ) (w : Weight A B)
     (p : ℝ × ℝ) : Integrable (fun z => w (birthPersistence p) *
       density2D σ (birthPersistence p) z) :=
   (integrable_density2D σ (birthPersistence p)).const_mul _
 
+/--
+@isnad1 id=le.3h7v.s7.a5de61437ecb from=translated src=- shape=aed15c28 vocab=43cfe36d
+-/
 theorem norm_feature_le_weight {σ A B : ℝ} (hσ : 0 < σ) (w : Weight A B)
     (P : K → Set (ℝ × ℝ)) (hm : ∀ k, MeasurableSet (P k))
     (hd : Pairwise (fun i j => Disjoint (P i) (P j))) (p : ℝ × ℝ) :
@@ -114,7 +135,9 @@ theorem norm_feature_le_weight {σ A B : ℝ} (hσ : 0 < σ) (w : Weight A B)
     (norm_gaussianPixels_le_one hσ P hm hd (birthPersistence p)) (w.nonneg _)
 
 /-- The coordinate ℓ¹ displacement of T is at most three times the birth–death
-maximum-norm displacement.-/
+maximum-norm displacement.
+@isnad1 id=le.0h2v.s6.2e6451af73bc from=translated src=- shape=a9faec4e vocab=2961c849
+-/
 theorem birthPersistence_l1_sub_le (p q : ℝ × ℝ) :
     |(birthPersistence p).1 - (birthPersistence q).1| +
       |(birthPersistence p).2 - (birthPersistence q).2| ≤ 3 * ‖p - q‖ := by
@@ -131,13 +154,18 @@ theorem birthPersistence_l1_sub_le (p q : ℝ × ℝ) :
 noncomputable def stabilityConstant (σ A B : ℝ) : ℝ :=
   2 * A + 3 * B * translationConstant σ
 
+/--
+@isnad1 id=le.3h3v.s5.6fed62587fc6 from=translated src=- shape=2275529e vocab=ca8edffd
+-/
 theorem stabilityConstant_nonneg {σ A B : ℝ} (hσ : 0 < σ) (hA : 0 ≤ A) (hB : 0 ≤ B) :
     0 ≤ stabilityConstant σ A B := by
   unfold stabilityConstant
   have hc := translationConstant_nonneg hσ
   positivity
 
-/-- The Gaussian and pixel estimates discharge the paired feature-map hypothesis.-/
+/-- The Gaussian and pixel estimates discharge the paired feature-map hypothesis.
+@isnad1 id=le.5h8v.s8.010196fc3f1c from=translated src=- shape=a9515dbe vocab=af8bff86
+-/
 theorem norm_feature_sub_le {σ A B : ℝ} (hσ : 0 < σ) (hA : 0 ≤ A) (hB : 0 ≤ B)
     (w : Weight A B) (P : K → Set (ℝ × ℝ)) (hm : ∀ k, MeasurableSet (P k))
     (hd : Pairwise (fun i j => Disjoint (P i) (P j))) (p q : ℝ × ℝ) :
@@ -175,7 +203,9 @@ theorem norm_feature_sub_le {σ A B : ℝ} (hσ : 0 < σ) (hA : 0 ≤ A) (hB : 0
         (mul_le_mul hwb hg (norm_nonneg _) hB)
     _ = _ := by unfold stabilityConstant; ring
 
-/-- Vanishing of the weight at persistence zero discharges the diagonal hypothesis.-/
+/-- Vanishing of the weight at persistence zero discharges the diagonal hypothesis.
+@isnad1 id=le.5h7v.s7.e062c7d4cfe4 from=translated src=- shape=5eef3d44 vocab=19c8ec18
+-/
 theorem norm_feature_diagonal_le {σ A B : ℝ} (hσ : 0 < σ) (hB : 0 ≤ B)
     (w : Weight A B) (P : K → Set (ℝ × ℝ)) (hm : ∀ k, MeasurableSet (P k))
     (hd : Pairwise (fun i j => Disjoint (P i) (P j))) (p : ℝ × ℝ) (hp : p.1 < p.2) :
@@ -204,7 +234,9 @@ noncomputable def image {I : Type*} [Fintype I] {A B : ℝ} (σ : ℝ) (w : Weig
   finiteFeatureSum (feature σ w P) x
 
 omit [Fintype K] in
-/-- The image coordinates are integrals of the finite weighted Gaussian surface.-/
+/-- The image coordinates are integrals of the finite weighted Gaussian surface.
+@isnad1 id=eq.0h9v.s7.fa4ce23cb0ee from=translated src=- shape=1bc18625 vocab=38247f28
+-/
 theorem image_apply {I : Type*} [Fintype I] {A B : ℝ} (σ : ℝ) (w : Weight A B)
     (P : K → Set (ℝ × ℝ)) (x : I → ℝ × ℝ) (k : K) :
     image σ w P x k = ∫ z in P k, ∑ i, w (birthPersistence (x i)) *
@@ -222,7 +254,9 @@ theorem image_apply {I : Type*} [Fintype I] {A B : ℝ} (σ : ℝ) (w : Weight A
     (integrable_weighted_density σ w (x i)).integrableOn)).symm
 
 /-- Gaussian PI stability for every finite partial occurrence matching.
-The norm is the pixel vector ℓ¹ norm; all deaths are finite and essential bars are absent.-/
+The norm is the pixel vector ℓ¹ norm; all deaths are finite and essential bars are absent.
+@isnad1 id=le.7h11v.s8.9aecdd42d963 from=translated src=- shape=5f5e3cdc vocab=1ddefe1a
+-/
 theorem norm_image_sub_le_matching {I J : Type*} [Fintype I] [Fintype J]
     {σ A B : ℝ} (hσ : 0 < σ) (hA : 0 ≤ A) (hB : 0 ≤ B) (w : Weight A B)
     (P : K → Set (ℝ × ℝ)) (hm : ∀ k, MeasurableSet (P k))

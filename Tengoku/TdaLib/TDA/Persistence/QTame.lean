@@ -21,7 +21,9 @@ open scoped NNReal
 
 variable {k : Type u} [Field k]
 
-/-- A linear map factoring through a finite-dimensional space has finite-dimensional image.-/
+/-- A linear map factoring through a finite-dimensional space has finite-dimensional image.
+@isnad1 id=finitedi.1h7v.s8.4006fbefdded from=translated src=- shape=01372fe1 vocab=96308bbc
+-/
 theorem finiteDimensional_range_of_factorization
     {U : Type v} {V : Type w} {W : Type z}
     [AddCommGroup U] [Module k U] [AddCommGroup V] [Module k V]
@@ -38,7 +40,9 @@ def QTame (M : PModule.{u,0,w} k ℝ) : Prop :=
   ∀ (a b : ℝ) (hab : a < b),
     FiniteDimensional k (LinearMap.range (structureMapLinear M hab.le))
 
-/-- Finite-dimensional fibers imply q-tameness.-/
+/-- Finite-dimensional fibers imply q-tameness.
+@isnad1 id=qtame.1h2v.s6.c4a95f932143 from=translated src=- shape=24f02ab1 vocab=e14752b9
+-/
 theorem qTame_of_finiteDimensional (M : PModule.{u,0,w} k ℝ)
     (hM : ∀ t, FiniteDimensional k (M.obj t)) : M.QTame := by
   intro a b hab
@@ -51,7 +55,9 @@ namespace RealInterleaving
 
 variable {ε : ℝ≥0} {M N : PModule.{u,0,w} k ℝ}
 
-/-- The interleaving equation factors the double-shift structure map through the middle fiber.-/
+/-- The interleaving equation factors the double-shift structure map through the middle fiber.
+@isnad1 id=finitedi.0h6v.s11.60939b00c3dd from=translated src=- shape=6d09a1b5 vocab=2290b644
+-/
 theorem finiteDimensional_range_structureMap (i : RealInterleaving ε M N) (a : ℝ)
     [FiniteDimensional k (N.obj (a + (ε : ℝ)))] :
     FiniteDimensional k (LinearMap.range (structureMapLinear M

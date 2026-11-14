@@ -39,23 +39,35 @@ local instance : Fintype (ComparablePair Bool) := Fintype.ofFinite _
 private def boolStrictVertex : StrictVertex Bool :=
   ⟨⟨(true, ⊤), le_top⟩, by simp⟩
 
+/--
+@isnad1 id=iszero.0h1v.s9.954d66b87e63 from=translated src=- shape=49ab559a vocab=d4d4c5e6
+-/
 theorem bool_degree_one_leftDerived_isZero {k : Type} [Field k] :
     IsZero (((vertexTensor (k := k) (S := Bool) boolStrictVertex).leftDerived 1).obj
       (diagonalQuotientModule (k := k) (S := Bool))) :=
   diagonalQuotient_leftDerived_pos_isZero (k := k) (S := Bool) boolStrictVertex 1
     (Nat.zero_lt_succ 0)
 
+/--
+@isnad1 id=iszero.0h1v.s9.fc51514327a1 from=translated src=- shape=49ab559a vocab=d4d4c5e6
+-/
 theorem bool_degree_three_leftDerived_isZero {k : Type} [Field k] :
     IsZero (((vertexTensor (k := k) (S := Bool) boolStrictVertex).leftDerived 3).obj
       (diagonalQuotientModule (k := k) (S := Bool))) :=
   diagonalQuotient_leftDerived_pos_isZero (k := k) (S := Bool) boolStrictVertex 3
     (Nat.zero_lt_succ 2)
 
+/--
+@isnad1 id=not.0h1v.s9.4d9a17804217 from=translated src=- shape=d6a20d40 vocab=d4d4c5e6
+-/
 theorem bool_degree_zero_leftDerived_not_isZero {k : Type} [Field k] :
     ¬ IsZero (((vertexTensor (k := k) (S := Bool) boolStrictVertex).leftDerived 0).obj
       (diagonalQuotientModule (k := k) (S := Bool))) :=
   diagonalQuotient_leftDerivedZero_not_isZero (k := k) (S := Bool) boolStrictVertex
 
+/--
+@isnad1 id=eq.0h1v.s14.6407a5fd592f from=translated src=- shape=1b1195f2 vocab=efcfc88f
+-/
 theorem bool_degree_zero_unit_law {k : Type} [Field k] :
     (diagonalQuotient_leftDerivedZeroIso (k := k) (S := Bool) boolStrictVertex).hom
       (((Functor.leftDerivedZeroIsoSelf
@@ -84,23 +96,35 @@ local instance : Fintype (ComparablePair Unit) := Fintype.ofFinite _
 private def singletonStrictVertex : StrictVertex Unit :=
   ⟨⟨((), ⊤), le_top⟩, by simp⟩
 
+/--
+@isnad1 id=iszero.0h1v.s9.b32f24cab0dc from=translated src=- shape=49ab559a vocab=5bfbf0ef
+-/
 theorem singleton_degree_one_leftDerived_isZero {k : Type} [Field k] :
     IsZero (((vertexTensor (k := k) (S := Unit) singletonStrictVertex).leftDerived 1).obj
       (diagonalQuotientModule (k := k) (S := Unit))) :=
   diagonalQuotient_leftDerived_pos_isZero (k := k) (S := Unit) singletonStrictVertex 1
     (Nat.zero_lt_succ 0)
 
+/--
+@isnad1 id=iszero.0h1v.s9.5e7f5941f3a7 from=translated src=- shape=49ab559a vocab=5bfbf0ef
+-/
 theorem singleton_degree_two_leftDerived_isZero {k : Type} [Field k] :
     IsZero (((vertexTensor (k := k) (S := Unit) singletonStrictVertex).leftDerived 2).obj
       (diagonalQuotientModule (k := k) (S := Unit))) :=
   diagonalQuotient_leftDerived_pos_isZero (k := k) (S := Unit) singletonStrictVertex 2
     (Nat.zero_lt_succ 1)
 
+/--
+@isnad1 id=not.0h1v.s9.cfb749d9b0db from=translated src=- shape=d6a20d40 vocab=5bfbf0ef
+-/
 theorem singleton_degree_zero_leftDerived_not_isZero {k : Type} [Field k] :
     ¬ IsZero (((vertexTensor (k := k) (S := Unit) singletonStrictVertex).leftDerived 0).obj
       (diagonalQuotientModule (k := k) (S := Unit))) :=
   diagonalQuotient_leftDerivedZero_not_isZero (k := k) (S := Unit) singletonStrictVertex
 
+/--
+@isnad1 id=eq.0h1v.s14.c3464cf4d349 from=translated src=- shape=1b1195f2 vocab=0ae320b6
+-/
 theorem singleton_degree_zero_unit_law {k : Type} [Field k] :
     (diagonalQuotient_leftDerivedZeroIso (k := k) (S := Unit) singletonStrictVertex).hom
       (((Functor.leftDerivedZeroIsoSelf
@@ -111,6 +135,9 @@ theorem singleton_degree_zero_unit_law {k : Type} [Field k] :
   diagonalQuotient_leftDerivedZeroIso_hom_unit
     (k := k) (S := Unit) singletonStrictVertex
 
+/--
+@isnad1 id=infinite.0h0v.s1.eeec4529fb6b from=translated src=- shape=49959d42 vocab=0171e214
+-/
 theorem rationalField_infinite : Infinite ℚ := inferInstance
 
 end

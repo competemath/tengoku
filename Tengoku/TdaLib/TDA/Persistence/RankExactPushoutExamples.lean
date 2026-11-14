@@ -55,14 +55,18 @@ private noncomputable abbrev zeroModule : PModule.{0,0,0} ℚ (Fin 2) := 0
 
 private noncomputable abbrev zeroToLine : zeroModule ⟶ constantLine := 0
 
-/-- The canonical row from the actual pushout is rank exact.-/
+/-- The canonical row from the actual pushout is rank exact.
+@isnad1 id=isrankex.0h0v.s9.9730ceac9e51 from=translated src=- shape=8882025e vocab=2628cf99
+-/
 theorem pushed_row_rankExact :
     IsRankExact (Limits.pushout.inr zeroToLine zeroToLine)
       (identityQuotient.toIsPointwiseShortExact.pushoutQuotient zeroToLine) := by
   letI : ∀ p : Fin 2, FiniteDimensional ℚ (constantLine.obj p) := fun _ => inferInstance
   exact identityQuotient.pushout zeroToLine
 
-/-- The pushout middle fiber contains the image of a nonzero vector.-/
+/-- The pushout middle fiber contains the image of a nonzero vector.
+@isnad1 id=ex.0h0v.s10.868858fa6ac0 from=translated src=- shape=0b5c0593 vocab=1b24d78a
+-/
 theorem pushed_middle_nontrivial :
     ∃ x : (Limits.pushout zeroToLine zeroToLine).obj 0, x ≠ 0 := by
   have hnontrivial : Nontrivial (constantLine.obj (0 : Fin 2)) := by
@@ -145,7 +149,9 @@ private noncomputable def truncation : upset ⟶ dying :=
 /-- The rank-exact pushout law on a split row with a nonzero left term, pushed
 out along the nonzero truncation map. The pushed row is rank exact; its middle
 fiber at `0` contains a nonzero vector from the new left term, and a vector
-that dies at `1` while its quotient image is nonzero.-/
+that dies at `1` while its quotient image is nonzero.
+@isnad1 id=and.0h0v.s14.da3c2af4a886 from=translated src=- shape=a7a4ab50 vocab=599cd83d
+-/
 theorem truncation_pushout_rankExact_dying :
     (∃ l : upset.obj 0, l ≠ 0) ∧ truncation ≠ 0 ∧
     IsRankExact (Limits.pushout.inr (biprod.inl : upset ⟶ upset ⊞ dying) truncation)

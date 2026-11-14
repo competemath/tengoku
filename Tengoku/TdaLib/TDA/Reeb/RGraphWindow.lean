@@ -72,16 +72,22 @@ def fragAff (a d ε c u s : ℝ) : ℝ :=
   max a (u - ε) + (s - max a (c - ε)) *
     ((min d (u + ε) - max a (u - ε)) / (min d (c + ε) - max a (c - ε)))
 
-/-- Joint continuity in the parameter `s` and the height `u`.-/
+/-- Joint continuity in the parameter `s` and the height `u`.
+@isnad1 id=continuo.0h4v.s5.d00e871762b2 from=translated src=- shape=34ecb619 vocab=d72037f1
+-/
 theorem continuous_fragAff (a d ε c : ℝ) : Continuous fun p : ℝ × ℝ => fragAff a d ε c p.2 p.1 := by
   unfold fragAff
   fun_prop
 
-/-- The lower fragment end goes to the lower fragment end.-/
+/-- The lower fragment end goes to the lower fragment end.
+@isnad1 id=eq.0h5v.s5.1b682810c34c from=translated src=- shape=51e89b14 vocab=4f8d2680
+-/
 theorem fragAff_left (a d ε c u : ℝ) : fragAff a d ε c u (max a (c - ε)) = max a (u - ε) := by
   simp [fragAff]
 
-/-- The upper fragment end goes to the upper fragment end, for a nondegenerate source fragment.-/
+/-- The upper fragment end goes to the upper fragment end, for a nondegenerate source fragment.
+@isnad1 id=eq.1h5v.s6.6da76c3fd023 from=translated src=- shape=009aa34b vocab=735958bc
+-/
 theorem fragAff_right (h : max a (c - ε) < min d (c + ε)) :
     fragAff a d ε c u (min d (c + ε)) = min d (u + ε) := by
   have h' : min d (c + ε) - max a (c - ε) ≠ 0 := (sub_pos.2 h).ne'
@@ -93,7 +99,9 @@ theorem fragAff_right (h : max a (c - ε) < min d (c + ε)) :
   rw [hm]
   ring
 
-/-- Fragment to fragment, whenever the target fragment is nonempty.-/
+/-- Fragment to fragment, whenever the target fragment is nonempty.
+@isnad1 id=mem.2h6v.s6.0376adc320aa from=translated src=- shape=522e80e0 vocab=e2bedbb7
+-/
 theorem fragAff_mem (hu : max a (u - ε) ≤ min d (u + ε))
     (hs : s ∈ Icc (max a (c - ε)) (min d (c + ε))) :
     fragAff a d ε c u s ∈ Icc (max a (u - ε)) (min d (u + ε)) := by
@@ -117,13 +125,17 @@ theorem fragAff_mem (hu : max a (u - ε) ≤ min d (u + ε))
   unfold fragAff
   exact ⟨by linarith, by linarith⟩
 
-/-- **Endpoint collapse.** When the target fragment is a point, the map is constant.-/
+/-- **Endpoint collapse.** When the target fragment is a point, the map is constant.
+@isnad1 id=eq.1h6v.s5.ae06daa49cca from=translated src=- shape=cfa17148 vocab=bc2fe72a
+-/
 theorem fragAff_collapse (hu : max a (u - ε) = min d (u + ε)) (c s : ℝ) :
     fragAff a d ε c u s = max a (u - ε) := by
   simp [fragAff, hu]
 
 /-- **Interior inverse.** For two nondegenerate fragments the maps `c → u` and `u → c` are
-mutually inverse.-/
+mutually inverse.
+@isnad1 id=eq.2h6v.s6.25fdd8fa3188 from=translated src=- shape=1d6992a3 vocab=735958bc
+-/
 theorem fragAff_fragAff (hc : max a (c - ε) < min d (c + ε))
     (hu : max a (u - ε) < min d (u + ε)) (s : ℝ) :
     fragAff a d ε u c (fragAff a d ε c u s) = s := by
@@ -137,7 +149,9 @@ theorem fragAff_fragAff (hc : max a (c - ε) < min d (c + ε))
   linear_combination (s - max a (c - ε)) * hAB
 
 /-- **Fixed positive denominator.** A nonempty fragment of `[a, d]` at a height `c` that avoids
-the four events `a ± ε`, `d ± ε` is nondegenerate when `ε > 0`.-/
+the four events `a ± ε`, `d ± ε` is nondegenerate when `ε > 0`.
+@isnad1 id=lt.6h4v.s6.d880b65f67a0 from=translated src=- shape=7ace8bc9 vocab=47ad3b95
+-/
 theorem fragLo_lt_fragHi (had : a < d) (hε : 0 < ε) (h1 : a ≤ c + ε) (h1' : c ≠ a - ε)
     (h2 : c - ε ≤ d) (h2' : c ≠ d + ε) : max a (c - ε) < min d (c + ε) := by
   refine max_lt (lt_min had (lt_of_le_of_ne h1 ?_)) (lt_min (lt_of_le_of_ne h2 ?_) (by linarith))
@@ -152,7 +166,9 @@ end Fragment
 
 /-- Closed real intervals are locally path-connected (convex subsets of `ℝ`). The pinned mathlib
 has no such instance; this theorem is activated as a local instance where fragments need it, not
-as a global instance on every real interval.-/
+as a global instance on every real interval.
+@isnad1 id=locallyp.0h2v.s5.e887aeaa56b5 from=translated src=- shape=8c829296 vocab=71128ee9
+-/
 theorem locallyPathConnectedSpace_Icc (a b : ℝ) : LocallyPathConnectedSpace (Icc a b) :=
   (convex_Icc a b).locallyPathConnectedSpace
 
@@ -166,6 +182,9 @@ variable {n : ℕ} (S : CriticalValues n) (D : FiniteReebData.{u} n)
 def window (lo hi : ℝ) : Set ((ofFiniteData D).Realization S) :=
   (ofFiniteData D).height S ⁻¹' Icc lo hi
 
+/--
+@isnad1 id=iff.0h6v.s6.255362c55441 from=translated src=- shape=469287b4 vocab=03ea7671
+-/
 theorem mem_window {lo hi : ℝ} {x : (ofFiniteData D).Realization S} :
     x ∈ window S D lo hi ↔ (ofFiniteData D).height S x ∈ Icc lo hi :=
   Iff.rfl
@@ -176,10 +195,16 @@ abbrev frag (e : Fin n) (lo hi : ℝ) : Set ℝ :=
   Icc (max (S.value e.castSucc) lo) (min (S.value e.succ) hi)
 
 variable {S} in
+/--
+@isnad1 id=le.0h5v.s4.45d07700d35d from=translated src=- shape=ff7d0d64 vocab=e14e0531
+-/
 theorem frag_subset_seg {e : Fin n} {lo hi : ℝ} : frag S e lo hi ⊆ Seg S e :=
   Icc_subset_Icc (le_max_left _ _) (min_le_left _ _)
 
 variable {S} in
+/--
+@isnad1 id=le.0h5v.s4.6e830e821f09 from=translated src=- shape=27be40cb vocab=14c89647
+-/
 theorem frag_subset_Icc {e : Fin n} {lo hi : ℝ} : frag S e lo hi ⊆ Icc lo hi :=
   Icc_subset_Icc (le_max_right _ _) (min_le_right _ _)
 
@@ -196,11 +221,17 @@ abbrev WindowRaw (lo hi : ℝ) := WindowV S D lo hi ⊕ WindowE S D lo hi
 def windowIncl (lo hi : ℝ) : WindowRaw S D lo hi → (ofFiniteData D).Raw S :=
   Sum.map Subtype.val fun c => ⟨c.1.1, c.1.2, ⟨c.2.1, frag_subset_seg c.2.2⟩⟩
 
+/--
+@isnad1 id=continuo.0h5v.s8.52afe08692b4 from=translated src=- shape=83aecb39 vocab=08eb9695
+-/
 theorem continuous_windowIncl (lo hi : ℝ) : Continuous (windowIncl S D lo hi) :=
   continuous_subtype_val.sumMap (continuous_sigma fun c => by
     dsimp only
     exact continuous_sigmaMk.comp (continuous_const.prodMk (continuous_subtype_val.subtype_mk _)))
 
+/--
+@isnad1 id=mem.0h6v.s5.1c31171741ee from=translated src=- shape=1cb166bb vocab=f257cf2a
+-/
 theorem windowIncl_mem {lo hi : ℝ} (r : WindowRaw S D lo hi) :
     (ofFiniteData D).quotMk S (windowIncl S D lo hi r) ∈ window S D lo hi := by
   rcases r with p | c
@@ -213,6 +244,9 @@ def windowCover (lo hi : ℝ) : C(WindowRaw S D lo hi, window S D lo hi) where
   continuous_toFun :=
     (((ofFiniteData D).continuous_quotMk S).comp (continuous_windowIncl S D lo hi)).subtype_mk _
 
+/--
+@isnad1 id=eq.0h6v.s9.96468105ad46 from=translated src=- shape=d04b8435 vocab=cebe05ed
+-/
 theorem coe_windowCover {lo hi : ℝ} (r : WindowRaw S D lo hi) :
     (windowCover S D lo hi r : (ofFiniteData D).Realization S) =
       (ofFiniteData D).quotMk S (windowIncl S D lo hi r) :=
@@ -220,13 +254,18 @@ theorem coe_windowCover {lo hi : ℝ} (r : WindowRaw S D lo hi) :
 
 /-- **Exact gluing.** Two raw window points are identified exactly when their merged normal forms
 agree: a fragment end is glued to its original vertex precisely when it is that vertex's level,
-and nothing else is glued.-/
+and nothing else is glued.
+@isnad1 id=iff.0h7v.s10.2a8d9144f9b4 from=translated src=- shape=5c2b1c57 vocab=3c4b62bf
+-/
 theorem windowCover_eq_iff {lo hi : ℝ} {r r' : WindowRaw S D lo hi} :
     windowCover S D lo hi r = windowCover S D lo hi r' ↔
       (ofFiniteData D).nf S (windowIncl S D lo hi r) =
         (ofFiniteData D).nf S (windowIncl S D lo hi r') :=
   Subtype.ext_iff.trans ((ofFiniteData D).quotMk_eq_iff S)
 
+/--
+@isnad1 id=surjecti.0h5v.s9.2ce9a146d034 from=translated src=- shape=81210e27 vocab=a7d3796f
+-/
 theorem windowCover_surjective (lo hi : ℝ) : Function.Surjective (windowCover S D lo hi) := by
   rintro ⟨x, hx⟩
   rcases (ofFiniteData D).exists_rep S x with ⟨i, v, rfl⟩ | ⟨e, ⟨y, t⟩, rfl⟩
@@ -235,23 +274,40 @@ theorem windowCover_surjective (lo hi : ℝ) : Function.Surjective (windowCover 
     exact ⟨.inr ⟨⟨e, y⟩, ⟨t, max_le t.2.1.le ht.1, le_min t.2.2.le ht.2⟩⟩, rfl⟩
 
 /-- **The topology bridge.** The raw cover is a quotient map: a continuous surjection from a
-compact space onto a Hausdorff subspace of the graph realization.-/
+compact space onto a Hausdorff subspace of the graph realization.
+@isnad1 id=isquotie.0h5v.s9.72b762cf8cc6 from=translated src=- shape=81210e27 vocab=b2029757
+-/
 theorem isQuotientMap_windowCover (lo hi : ℝ) : IsQuotientMap (windowCover S D lo hi) :=
   IsQuotientMap.of_surjective_continuous (windowCover_surjective S D lo hi)
     (windowCover S D lo hi).continuous
 
+/--
+@isnad1 id=compacts.0h5v.s6.492ec73672aa from=translated src=- shape=35edfcda vocab=e3ba3f9d
+-/
 instance instCompactSpaceWindow (lo hi : ℝ) : CompactSpace (window S D lo hi) :=
   Function.Surjective.compactSpace (windowCover S D lo hi).continuous
     (windowCover_surjective S D lo hi)
 
+/--
+@isnad1 id=locallyp.0h5v.s6.cc6237dd46d8 from=translated src=- shape=35edfcda vocab=f4c63bc9
+-/
 instance instLocallyPathConnectedSpaceWindow (lo hi : ℝ) :
     LocallyPathConnectedSpace (window S D lo hi) :=
   (isQuotientMap_windowCover S D lo hi).locallyPathConnectedSpace
 
+/--
+@isnad1 id=t2space.0h5v.s6.62d1472c37f5 from=translated src=- shape=35edfcda vocab=a88b3fd4
+-/
 theorem window_t2Space (lo hi : ℝ) : T2Space (window S D lo hi) := inferInstance
 
+/--
+@isnad1 id=compacts.0h5v.s6.492ec73672aa from=translated src=- shape=35edfcda vocab=e3ba3f9d
+-/
 theorem window_compactSpace (lo hi : ℝ) : CompactSpace (window S D lo hi) := inferInstance
 
+/--
+@isnad1 id=locallyp.0h5v.s6.cc6237dd46d8 from=translated src=- shape=35edfcda vocab=f4c63bc9
+-/
 theorem window_locallyPathConnectedSpace (lo hi : ℝ) :
     LocallyPathConnectedSpace (window S D lo hi) := inferInstance
 

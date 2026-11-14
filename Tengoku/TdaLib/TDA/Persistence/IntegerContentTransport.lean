@@ -31,7 +31,9 @@ noncomputable def preimageContent {X : Type v} {Y : Type w} {G : Type*} [AddComm
       exact (hdis hU hV hUV).preimage g
     · simpa only [preimage_sUnion, Finset.mem_coe] using hD _ hUnion
 
-/-- Transported values are the original content of the preimage.-/
+/-- Transported values are the original content of the preimage.
+@isnad1 id=eq.1h8v.s6.86481043818c from=translated src=- shape=948c48f7 vocab=0c38c3cc
+-/
 theorem preimageContent_apply {X : Type v} {Y : Type w} {G : Type*} [AddCommMonoid G]
     {C : Set (Set Y)} {D : Set (Set X)} (m : AddContent G C) (g : Y → X)
     (hD : ∀ U ∈ D, g ⁻¹' U ∈ C) (U : Set X) :
@@ -49,7 +51,9 @@ noncomputable def naturalContentOfNonnegative {X : Type v} {C : Set (Set X)}
     rw [addContent_sUnion hSC hdis hUnion]
     exact Finset.sum_congr rfl fun U hU => (Int.toNat_of_nonneg (hm U (hSC hU))).symm
 
-/-- Converting a nonnegative integer content keeps its natural value.-/
+/-- Converting a nonnegative integer content keeps its natural value.
+@isnad1 id=eq.1h4v.s6.ca9d6f51de81 from=translated src=- shape=7dbe7bf3 vocab=64c5e1c5
+-/
 theorem naturalContentOfNonnegative_apply {X : Type v} {C : Set (Set X)}
     (m : AddContent ℤ C) (hm : ∀ U ∈ C, 0 ≤ m U) (U : Set X) :
     naturalContentOfNonnegative m hm U = (m U).toNat := rfl

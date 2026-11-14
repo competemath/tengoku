@@ -27,7 +27,9 @@ private theorem box_significant (n : ℕ) : Significant 6 (closedBox n) := by
     norm_num [Rectangle.support, BoundedInterval.support, closedBox, translation_apply]
 
 /-- The same matching covers all two source and two target occurrences,
-although every rectangle has the same value. The radius in dimension two is 3.-/
+although every rectangle has the same value. The radius in dimension two is 3.
+@isnad1 id=ex.0h0v.s6.ad469e01a7b7 from=translated src=- shape=62b47f7a vocab=c4a814bd
+-/
 theorem repeated_two_sided :
     ∃ M : OccurrenceMatching Bool Bool PEmpty.{1} PEmpty.{1},
       IsMatching (k := ℚ) 3 (fun _ => closedBox 2) (fun _ => closedBox 2) M ∧
@@ -51,7 +53,9 @@ private theorem singleton_significant_zero : Significant 0 singleton := by
   refine ⟨fun _ => 0, ?_, ?_⟩ <;> intro j <;>
     norm_num [Rectangle.support, BoundedInterval.support, singleton, translation_apply]
 
-/-- At ε=0 even repeated singleton rectangles must all be paired on both sides.-/
+/-- At ε=0 even repeated singleton rectangles must all be paired on both sides.
+@isnad1 id=ex.0h0v.s6.f80b75d577b5 from=translated src=- shape=fcc2881f vocab=5d9efcf5
+-/
 theorem zero_parameter_coverage :
     ∃ M : OccurrenceMatching Bool Bool PEmpty.{1} PEmpty.{1},
       IsMatching (k := ℚ) 0 (fun _ => singleton) (fun _ => singleton) M ∧
@@ -69,7 +73,9 @@ private def bar (closed : Bool) : Rectangle 1 := fun _ =>
   { lower := 0, upper := 2, lowerClosed := true, upperClosed := closed
     nonempty := Or.inl (by norm_num) }
 
-/-- A half-open bar at its exact double-shift width can be deleted.-/
+/-- A half-open bar at its exact double-shift width can be deleted.
+@isnad1 id=nonempty.0h0v.s7.160a9862fcfa from=translated src=- shape=908d8f67 vocab=9ec10d63
+-/
 theorem halfOpen_zero :
     Nonempty (CoordinateInterleaving 1 ((bar false).module (k := ℚ)) 0) := by
   apply (interleaved_zero_iff _ _).mpr
@@ -82,7 +88,9 @@ theorem halfOpen_zero :
   rcases h.1 with h | ⟨h, _⟩ <;>
     (rcases h'.2 with h' | ⟨_, h'⟩ <;> simp_all <;> linarith)
 
-/-- Including the final endpoint prevents deletion at that same parameter.-/
+/-- Including the final endpoint prevents deletion at that same parameter.
+@isnad1 id=not.0h0v.s7.29a6724b3773 from=translated src=- shape=de6620bc vocab=6216c0b6
+-/
 theorem closed_not_zero :
     ¬ Nonempty (CoordinateInterleaving 1 ((bar true).module (k := ℚ)) 0) := by
   rw [interleaved_zero_iff, not_not]
@@ -107,7 +115,9 @@ private noncomputable def deleteBar : CoordinateInterleaving 1
     (RectangleFamily.module (fun i : Fin 0 => Fin.elim0 i)) :=
   halfOpen_zero.some.congr singleIso.symm emptyIso.symm
 
-/-- The capstone supplies an actual source deletion when the target is empty.-/
+/-- The capstone supplies an actual source deletion when the target is empty.
+@isnad1 id=ex.0h0v.s6.e816e4e41a75 from=translated src=- shape=03c32d0c vocab=0ac2359c
+-/
 theorem empty_target_deletion :
     ∃ M : OccurrenceMatching Unit (Fin 0) PEmpty.{1} PEmpty.{1},
       IsMatching (k := ℚ) 1 (fun _ => bar false) (fun i => Fin.elim0 i) M ∧
@@ -119,7 +129,9 @@ theorem empty_target_deletion :
     | none => rfl
     | some j => exact Fin.elim0 j
 
-/-- Reversing that actual interleaving exercises target deletion in the same API.-/
+/-- Reversing that actual interleaving exercises target deletion in the same API.
+@isnad1 id=ex.0h0v.s8.54864f05e97d from=translated src=- shape=bfcc0880 vocab=1d359f9c
+-/
 theorem empty_source_deletion :
     ∃ M : OccurrenceMatching (Fin 0) Unit PEmpty.{1} PEmpty.{1},
       IsMatching (k := ℚ) 1 (fun i => Fin.elim0 i) (fun _ => bar false) M ∧
@@ -129,7 +141,9 @@ theorem empty_source_deletion :
     simpa [RectangleStabilityGeometry.stabilityRadius] using hM
   exact ⟨M, hM', hM'.target_zero () (fun i => Fin.elim0 i)⟩
 
-/-- Empty occurrence types are admitted by the actual matching capstone.-/
+/-- Empty occurrence types are admitted by the actual matching capstone.
+@isnad1 id=ex.0h0v.s6.299d9f620e6c from=translated src=- shape=c824af85 vocab=1fe2667c
+-/
 theorem empty_families :
     ∃ M : OccurrenceMatching (Fin 0) (Fin 0) PEmpty.{1} PEmpty.{1},
       IsMatching (k := ℚ) (n := 1) 0 (fun i => Fin.elim0 i) (fun i => Fin.elim0 i) M := by

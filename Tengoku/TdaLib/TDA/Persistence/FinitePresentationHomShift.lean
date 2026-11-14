@@ -48,7 +48,9 @@ private theorem finite_uniform_right_slack {ι : Type v} (S : Set ι) (hS : S.Fi
 variable {R : Type u} [Ring R] {n : ℕ}
 
 /-- Hom sets from a finitely presented module are unchanged by a sufficiently
-small increase of a fixed shift of another finitely presented module.-/
+small increase of a fixed shift of another finitely presented module.
+@isnad1 id=ex.2h5v.s9.bd02f75c807d from=translated src=- shape=e776ccbe vocab=1c01a5a3
+-/
 theorem finitelyPresented_exists_pos_postcomp_shiftLE_bijective
     (M N : PModule.{u,0,max u w} R (Fin n → ℝ))
     (hM : FinitelyPresented (R := R) M) (hN : FinitelyPresented (R := R) N)

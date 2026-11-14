@@ -33,7 +33,9 @@ def pivotHeight : Option (Fin m) → ℕ
 def cancelColumn (a b : Fin m → k) (p : Fin m) : Fin m → k :=
   b - (b p / a p) • a
 
-/-- The pivot is absent exactly when every coefficient vanishes.-/
+/-- The pivot is absent exactly when every coefficient vanishes.
+@isnad1 id=iff.0h3v.s5.6647683422f0 from=translated src=- shape=86de8f88 vocab=379b69bc
+-/
 theorem columnPivot_none_iff [DecidableEq k] (c : Fin m → k) :
     columnPivot c = none ↔ ∀ r, c r = 0 := by
   classical
@@ -54,7 +56,9 @@ theorem columnPivot_none_iff [DecidableEq k] (c : Fin m → k) :
       exact (hnonzero (hc r)).elim
     · simp [hne]
 
-/-- The zero coefficient vector has no pivot.-/
+/-- The zero coefficient vector has no pivot.
+@isnad1 id=eq.0h2v.s5.346e084dc9ea from=translated src=- shape=8f6034a2 vocab=379b69bc
+-/
 @[simp]
 theorem columnPivot_zero [DecidableEq k] :
     columnPivot (0 : Fin m → k) = none := by
@@ -62,7 +66,9 @@ theorem columnPivot_zero [DecidableEq k] :
   intro r
   rfl
 
-/-- A present pivot is nonzero and every coefficient above it vanishes.-/
+/-- A present pivot is nonzero and every coefficient above it vanishes.
+@isnad1 id=iff.0h4v.s6.4bcec3523578 from=translated src=- shape=6e1aa1d0 vocab=d50a0cb8
+-/
 theorem columnPivot_some_iff [DecidableEq k] (c : Fin m → k) (p : Fin m) :
     columnPivot c = some p ↔ c p ≠ 0 ∧ ∀ r, p < r → c r = 0 := by
   classical
@@ -101,20 +107,28 @@ theorem columnPivot_some_iff [DecidableEq k] (c : Fin m → k) (p : Fin m) :
       have hfalse : False := hne ⟨p, by simp [nz, hp]⟩
       exact hfalse.elim
 
-/-- The zero vector has height zero.-/
+/-- The zero vector has height zero.
+@isnad1 id=eq.0h1v.s3.bfebdc18532a from=translated src=- shape=b53d8fdf vocab=0072d1db
+-/
 @[simp]
 theorem pivotHeight_none : pivotHeight (none : Option (Fin m)) = 0 := rfl
 
-/-- The height of a present pivot is one plus its zero-based index.-/
+/-- The height of a present pivot is one plus its zero-based index.
+@isnad1 id=eq.0h2v.s4.934030bb8e06 from=translated src=- shape=922ef880 vocab=bffc1650
+-/
 @[simp]
 theorem pivotHeight_some (p : Fin m) : pivotHeight (some p) = p.val + 1 := rfl
 
-/-- Height zero characterizes the absent pivot.-/
+/-- Height zero characterizes the absent pivot.
+@isnad1 id=iff.0h2v.s4.af5208907bd3 from=translated src=- shape=ee99fd6f vocab=6b1da5a4
+-/
 theorem pivotHeight_eq_zero_iff (q : Option (Fin m)) :
     pivotHeight q = 0 ↔ q = none := by
   cases q <;> simp [pivotHeight]
 
-/-- A common source pivot is canceled at the pivot row.-/
+/-- A common source pivot is canceled at the pivot row.
+@isnad1 id=eq.1h5v.s6.2c083ad8fd56 from=translated src=- shape=6f294264 vocab=7e8931a7
+-/
 theorem cancelColumn_apply_pivot [DecidableEq k] (a b : Fin m → k) (p : Fin m)
     (ha : columnPivot a = some p) : cancelColumn a b p p = 0 := by
   have hden : a p ≠ 0 := (columnPivot_some_iff a p).mp ha |>.1
@@ -122,7 +136,9 @@ theorem cancelColumn_apply_pivot [DecidableEq k] (a b : Fin m → k) (p : Fin m)
   rw [div_mul_cancel₀ (b p) hden]
   exact sub_self _
 
-/-- A common pivot operation remains zero at every row above the pivot.-/
+/-- A common pivot operation remains zero at every row above the pivot.
+@isnad1 id=eq.3h6v.s6.32ef1039b239 from=translated src=- shape=dba30d9d vocab=3f665e65
+-/
 theorem cancelColumn_apply_above [DecidableEq k] (a b : Fin m → k) (p r : Fin m)
     (ha : columnPivot a = some p) (hb : columnPivot b = some p) (hpr : p < r) :
     cancelColumn a b p r = 0 := by
@@ -130,7 +146,9 @@ theorem cancelColumn_apply_above [DecidableEq k] (a b : Fin m → k) (p r : Fin 
   have hbAbove := (columnPivot_some_iff b p).mp hb |>.2 r hpr
   simp [cancelColumn, haAbove, hbAbove]
 
-/-- One common-pivot cancellation strictly lowers pivot height, possibly to zero.-/
+/-- One common-pivot cancellation strictly lowers pivot height, possibly to zero.
+@isnad1 id=lt.2h5v.s6.f10a36e95f1a from=translated src=- shape=b3e8de64 vocab=daaa22fa
+-/
 theorem pivotHeight_cancelColumn_lt [DecidableEq k] (a b : Fin m → k) (p : Fin m)
     (ha : columnPivot a = some p) (hb : columnPivot b = some p) :
     pivotHeight (columnPivot (cancelColumn a b p)) < pivotHeight (some p) := by
@@ -159,13 +177,17 @@ theorem pivotHeight_cancelColumn_lt [DecidableEq k] (a b : Fin m → k) (p : Fin
     have hval : q.val < p.val := Fin.lt_def.mp hqp
     omega
 
-/-- Right multiplication by a transvection adds `c` times column `i` to column `j`.-/
+/-- Right multiplication by a transvection adds `c` times column `i` to column `j`.
+@isnad1 id=eq.0h6v.s7.a32425469578 from=translated src=- shape=a0e42b05 vocab=a9b974e5
+-/
 theorem col_mul_transvection (M : Matrix (Fin m) (Fin m) k) (i j : Fin m) (c : k) :
     (M * Matrix.transvection i j c).col j = M.col j + c • M.col i := by
   ext r
   simp [smul_eq_mul]
 
-/-- Right multiplication by a transvection fixes every column except its target column.-/
+/-- Right multiplication by a transvection fixes every column except its target column.
+@isnad1 id=eq.1h7v.s6.961a459abcbb from=translated src=- shape=61358e3f vocab=af92e875
+-/
 theorem col_mul_transvection_of_ne (M : Matrix (Fin m) (Fin m) k)
     (i j q : Fin m) (c : k) (hq : q ≠ j) :
     (M * Matrix.transvection i j c).col q = M.col q := by
@@ -174,7 +196,9 @@ theorem col_mul_transvection_of_ne (M : Matrix (Fin m) (Fin m) k)
 
 /-- A filtration-ordered right transvection cancels a common pivot in the target column.
 The strict height bound is the vector cancellation theorem, and the source column is unchanged
-because `i < j` implies `i ≠ j`.-/
+because `i < j` implies `i ≠ j`.
+@isnad1 id=lt.3h6v.s7.258582e84394 from=translated src=- shape=0fba9750 vocab=810909bc
+-/
 theorem pivotHeight_mul_transvection_lt [DecidableEq k]
     (M : Matrix (Fin m) (Fin m) k) (i j p : Fin m) (hij : i < j)
     (hi : columnPivot (M.col i) = some p) (hj : columnPivot (M.col j) = some p) :

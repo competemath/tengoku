@@ -24,13 +24,17 @@ noncomputable def prefixSpan (M : Matrix (Fin m) (Fin m) k) (t : ℕ) :
   Submodule.span k
     (Set.range (fun q : {q : Fin m // q.val < t} => M.col q.1))
 
-/-- Every column whose index is in the prefix is a member of its span.-/
+/-- Every column whose index is in the prefix is a member of its span.
+@isnad1 id=mem.1h5v.s7.08448e3bbbab from=translated src=- shape=c8d1a861 vocab=076f3c11
+-/
 theorem col_mem_prefixSpan (M : Matrix (Fin m) (Fin m) k)
     (t : ℕ) (q : Fin m) (hq : q.val < t) :
     M.col q ∈ prefixSpan M t := by
   exact Submodule.subset_span ⟨⟨q, hq⟩, rfl⟩
 
-/-- The empty prefix spans only the zero vector.-/
+/-- The empty prefix spans only the zero vector.
+@isnad1 id=eq.0h3v.s7.d99c7847cd0e from=translated src=- shape=6859a5a8 vocab=d8385402
+-/
 theorem prefixSpan_zero (M : Matrix (Fin m) (Fin m) k) :
     prefixSpan M 0 = ⊥ := by
   have h : (Set.range (fun q : {q : Fin m // q.val < 0} => M.col q.1)) = ∅ := by
@@ -41,7 +45,9 @@ theorem prefixSpan_zero (M : Matrix (Fin m) (Fin m) k) :
     · simp
   simp [prefixSpan, h]
 
-/-- Increasing the prefix length can only enlarge its column span.-/
+/-- Increasing the prefix length can only enlarge its column span.
+@isnad1 id=le.1h5v.s8.1087bf51437d from=translated src=- shape=615f9536 vocab=00a5cfbe
+-/
 theorem prefixSpan_mono (M : Matrix (Fin m) (Fin m) k)
     (s t : ℕ) (hst : s ≤ t) :
     prefixSpan M s ≤ prefixSpan M t := by
@@ -49,7 +55,9 @@ theorem prefixSpan_mono (M : Matrix (Fin m) (Fin m) k)
   rintro x ⟨q, rfl⟩
   exact ⟨⟨q.1, lt_of_lt_of_le q.2 hst⟩, rfl⟩
 
-/-- A prefix of length at least the matrix dimension contains every column.-/
+/-- A prefix of length at least the matrix dimension contains every column.
+@isnad1 id=eq.1h4v.s7.cb870e89da63 from=translated src=- shape=86b64447 vocab=37c3a7d0
+-/
 theorem prefixSpan_eq_full (M : Matrix (Fin m) (Fin m) k)
     (t : ℕ) (ht : m ≤ t) :
     prefixSpan M t = Submodule.span k (Set.range M.col) := by
@@ -80,7 +88,9 @@ private theorem prefixSpan_range_update_add_smul (M : Matrix (Fin m) (Fin m) k)
     (Submodule.span_range_update_add_smul hne
       (fun q : {q : Fin m // q.val < t} => M.col q.1) c)
 
-/-- Right multiplication by an earlier-column transvection preserves every column prefix.-/
+/-- Right multiplication by an earlier-column transvection preserves every column prefix.
+@isnad1 id=eq.1h7v.s7.489ba7d8742c from=translated src=- shape=2343d54e vocab=f27dfa71
+-/
 theorem prefixSpan_mul_transvection (M : Matrix (Fin m) (Fin m) k)
     (i j : Fin m) (c : k) (hij : i < j) (t : ℕ) :
     prefixSpan (M * Matrix.transvection i j c) t = prefixSpan M t := by
@@ -118,7 +128,9 @@ theorem prefixSpan_mul_transvection (M : Matrix (Fin m) (Fin m) k)
     unfold prefixSpan
     rw [hfun]
 
-/-- The cancellation coefficient is a specialization of the universal scalar operation.-/
+/-- The cancellation coefficient is a specialization of the universal scalar operation.
+@isnad1 id=eq.1h7v.s7.4b607efd0966 from=translated src=- shape=84751593 vocab=f9df586e
+-/
 theorem prefixSpan_cancel (M : Matrix (Fin m) (Fin m) k)
     (i j p : Fin m) (hij : i < j) (t : ℕ) :
     prefixSpan (M * Matrix.transvection i j (-(M p j / M p i))) t =

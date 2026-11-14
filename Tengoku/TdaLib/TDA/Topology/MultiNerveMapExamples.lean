@@ -23,7 +23,9 @@ open TDA.Topology.MultiNerveExamples (singletonFamily)
 noncomputable section
 
 /-- In a discrete space, the carrier of every multinerve cell has at most one point: a path is
-constant.-/
+constant.
+@isnad1 id=subsingl.0h4v.s4.7d52caf404b1 from=translated src=- shape=36f676c4 vocab=5d575273
+-/
 theorem carrier_subsingleton_of_discrete {X I : Type*} [TopologicalSpace X] [DiscreteTopology X]
     {V : CoverFamily X I} (a : MultiNerveCell V) : a.carrier.Subsingleton := by
   rintro x ⟨hx, hcx⟩ y ⟨hy, hcy⟩
@@ -51,7 +53,9 @@ def pointCell (b : Bool) : MultiNerveCell singletonFamily :=
   MultiNerveCell.mk {b} (Finset.singleton_nonempty b)
     (ZerothHomotopy.mk ⟨b, mem_interMember_singleton b⟩)
 
-/-- The ordinary nerve map identifies both vertices, so it is not injective.-/
+/-- The ordinary nerve map identifies both vertices, so it is not injective.
+@isnad1 id=and.0h0v.s5.c4698791c15b from=translated src=- shape=28e4acb0 vocab=4ec1a953
+-/
 theorem collapse_nerveMap_not_injective :
     nerveMap collapseRefinement false = nerveMap collapseRefinement true ∧
       ¬ Function.Injective (nerveMap collapseRefinement) := by
@@ -59,7 +63,9 @@ theorem collapse_nerveMap_not_injective :
   exact ⟨h, fun hinj => Bool.false_ne_true (hinj h)⟩
 
 /-- The multinerve map keeps what the nerve map collapses: the two distinct vertex cells go to
-two distinct cells over `{()}`, represented by `false` and `true`.-/
+two distinct cells over `{()}`, represented by `false` and `true`.
+@isnad1 id=and.0h0v.s6.368d75d689f2 from=translated src=- shape=14105dd4 vocab=e8d685d5
+-/
 theorem collapse_multiNerveMap_separates :
     pointCell false ≠ pointCell true ∧
       (∀ b, (multiNerveMap collapseRefinement (pointCell b)).support = {()}) ∧
@@ -76,7 +82,9 @@ theorem collapse_multiNerveMap_separates :
     rw [h] at hf
     exact Bool.false_ne_true (carrier_subsingleton_of_discrete _ hf (hmem true))
 
-/-- The identity refinement fixes a vertex cell.-/
+/-- The identity refinement fixes a vertex cell.
+@isnad1 id=eq.0h1v.s4.2013b65fada8 from=translated src=- shape=90d24ca8 vocab=80eee6f7
+-/
 theorem multiNerveMap_id_pointCell (b : Bool) :
     multiNerveMap (Refinement.id singletonFamily) (pointCell b) = pointCell b :=
   congrFun multiNerveMap_id (pointCell b)

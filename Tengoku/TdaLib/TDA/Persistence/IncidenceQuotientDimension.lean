@@ -52,6 +52,9 @@ local instance : LocallyFiniteOrder (PairPoset S) := Fintype.toLocallyFiniteOrde
 local instance : DecidableEq (PairPoset S) := Classical.decEq _
 local instance : Fintype (ComparablePair S) := Fintype.ofFinite _
 
+/--
+@isnad1 id=istwosid.0h2v.s6.5fb0cc4ecdd2 from=translated src=- shape=3e603a0f vocab=6fb7f2e7
+-/
 local instance diagonalIdealTwoSided :
     (IncidenceQuotientSimple.DiagonalIdeal (k := k) (S := S)).IsTwoSided :=
   diagonalIdeal_isTwoSided (k := k) (S := S)
@@ -92,7 +95,9 @@ private theorem finiteLength_bound_of_vertex_modules
       (hasProjectiveDimensionLT_of_iso e.symm n)
 
 /-- A common Ext-vanishing degree for the actual strict-vertex modules bounds every
-finite-length right module over the diagonal quotient.-/
+finite-length right module over the diagonal quotient.
+@isnad1 id=hasproje.2h4v.s10.585685b21739 from=translated src=- shape=9f682e0c vocab=ac82205e
+-/
 theorem hasProjectiveDimensionLT_of_vertex_bound
     (n : ℕ)
     (hvertex : ∀ v : StrictVertex S,
@@ -103,7 +108,9 @@ theorem hasProjectiveDimensionLT_of_vertex_bound
   finiteLength_bound_of_vertex_modules n hvertex M hM
 
 /-- A common natural projective-dimension bound on the strict-vertex modules
-bounds every finite-length right quotient module.-/
+bounds every finite-length right quotient module.
+@isnad1 id=hasproje.2h4v.s10.00047f278124 from=translated src=- shape=9f682e0c vocab=28ee7500
+-/
 theorem hasProjectiveDimensionLE_of_vertex_bound
     (d : ℕ)
     (hvertex : ∀ v : StrictVertex S,
@@ -115,7 +122,9 @@ theorem hasProjectiveDimensionLE_of_vertex_bound
   exact hasProjectiveDimensionLT_of_vertex_bound (k := k) (S := S) (d + 1)
     hvertex M hM
 
-/-- Every strict-vertex module is finite length, because it is simple.-/
+/-- Every strict-vertex module is finite length, because it is simple.
+@isnad1 id=isfinite.0h3v.s8.297117e64b50 from=translated src=- shape=d3076729 vocab=c03aef7a
+-/
 theorem rightVertexModule_isFiniteLength (v : StrictVertex S) :
     IsFiniteLength (RightQuotient (k := k) (S := S))
       (RightVertexModule (k := k) (S := S) v) := by
@@ -131,7 +140,9 @@ theorem rightVertexModule_isFiniteLength (v : StrictVertex S) :
     IsFiniteLength.of_subsingleton
 
 /-- The arbitrary-field inequality: the projective dimension of a finite-length
-right quotient module is at most the supremum of the actual vertex dimensions.-/
+right quotient module is at most the supremum of the actual vertex dimensions.
+@isnad1 id=le.1h3v.s10.8027c930b03c from=translated src=- shape=843078de vocab=5728923c
+-/
 theorem projectiveDimension_le_iSup_vertex
     (M : ModuleCat.{u} (RightQuotient (k := k) (S := S)))
     (hM : IsFiniteLength (RightQuotient (k := k) (S := S)) M) :
@@ -154,7 +165,9 @@ theorem projectiveDimension_le_iSup_vertex
       projectiveDimension (RightVertexModule (k := k) (S := S) v)) v).trans_lt hi
 
 /-- A uniform natural bound on the vertex modules is equivalent to the same bound
-for every finite-length right module over the quotient.-/
+for every finite-length right module over the quotient.
+@isnad1 id=iff.0h3v.s10.00945732bfe0 from=translated src=- shape=eaa015cd vocab=28ee7500
+-/
 theorem finiteLength_uniform_projectiveDimensionLE_iff (d : ℕ) :
     (∀ M : ModuleCat.{u} (RightQuotient (k := k) (S := S)),
       IsFiniteLength (RightQuotient (k := k) (S := S)) M →
@@ -168,7 +181,9 @@ theorem finiteLength_uniform_projectiveDimensionLE_iff (d : ℕ) :
     exact hasProjectiveDimensionLE_of_vertex_bound (k := k) (S := S) d h M hM
 
 /-- A quotient module finite-dimensional under its actual restricted `k`-action has finite length
-over the quotient.-/
+over the quotient.
+@isnad1 id=isfinite.1h3v.s9.4c4b36aedecd from=translated src=- shape=296fa5bc vocab=bf5aa839
+-/
 theorem isFiniteLength_of_finiteDimensional
     (M : ModuleCat.{u} (RightQuotient (k := k) (S := S)))
     (hM : FiniteDimensional k
@@ -187,7 +202,9 @@ theorem isFiniteLength_of_finiteDimensional
     ⟨inferInstance, inferInstance⟩
 
 /-- Each actual vertex module is one-dimensional over the field after restriction
-along the existing quotient scalar action.-/
+along the existing quotient scalar action.
+@isnad1 id=finitedi.0h3v.s6.342c6acaf8f8 from=translated src=- shape=616a6e87 vocab=847ca6bf
+-/
 theorem rightVertexModule_finiteDimensional (v : StrictVertex S) :
     FiniteDimensional k
       (restrictRightQuotientModule (k := k) (S := S)
@@ -195,7 +212,9 @@ theorem rightVertexModule_finiteDimensional (v : StrictVertex S) :
   exact ((rightVertexModule_restrictKIso (k := k) (S := S) v).symm.toLinearEquiv).finiteDimensional
 
 /-- The dimension inequality also applies to every module finite-dimensional over
-the underlying restricted `k`-module.-/
+the underlying restricted `k`-module.
+@isnad1 id=le.1h3v.s9.a47a72b63e90 from=translated src=- shape=2df4ee38 vocab=66493dd2
+-/
 theorem projectiveDimension_le_iSup_vertex_of_finiteDimensional
     (M : ModuleCat.{u} (RightQuotient (k := k) (S := S)))
     (hM : FiniteDimensional k
@@ -207,7 +226,9 @@ theorem projectiveDimension_le_iSup_vertex_of_finiteDimensional
     (isFiniteLength_of_finiteDimensional (k := k) (S := S) M hM)
 
 /-- A uniform natural bound on all finite-dimensional right quotient modules is
-equivalent to that bound on the actual strict-vertex modules.-/
+equivalent to that bound on the actual strict-vertex modules.
+@isnad1 id=iff.0h3v.s9.6364c0b5fe42 from=translated src=- shape=3ac3d479 vocab=ed0838cc
+-/
 theorem finiteDimensional_uniform_projectiveDimensionLE_iff (d : ℕ) :
     (∀ M : ModuleCat.{u} (RightQuotient (k := k) (S := S)),
       FiniteDimensional k (restrictRightQuotientModule (k := k) (S := S) M) →

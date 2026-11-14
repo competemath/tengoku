@@ -84,7 +84,9 @@ private theorem tail_box_shifted (i : RealInterleaving ε M N)
     (LinearMap.finrank_le_finrank_of_injective hj)
 
 /-- Finite-target birth strips obey the box inequality when the expanded crossing
-image is finite-dimensional. No finiteness assumption on either fiber is needed.-/
+image is finite-dimensional. No finiteness assumption on either fiber is needed.
+@isnad1 id=le.2h8v.s10.3b58dd3a815a from=translated src=- shape=8e4adb2e vocab=660b3356
+-/
 theorem persistenceTailMeasureValue_box_le (i : RealInterleaving ε M N)
     {a b c : ℝ} (hab : a ≤ b) (hgap : b + (ε : ℝ) ≤ c - (ε : ℝ))
     [FiniteDimensional k (persistenceImage N hgap)] :
@@ -98,7 +100,9 @@ theorem persistenceTailMeasureValue_box_le (i : RealInterleaving ε M N)
 
 /-- The defined natural-valued `Module.finrank` minima obey a box inequality under an actual interleaving.
 Only target q-tameness is needed for this inequality. Interpreting the source minimum
-as its eventual essential boundary count additionally requires source q-tameness.-/
+as its eventual essential boundary count additionally requires source q-tameness.
+@isnad1 id=le.2h7v.s6.8fdee9ce80a3 from=translated src=- shape=c55d2b86 vocab=c4be7bed
+-/
 theorem essentialMeasureValue_box_le_of_qTame (i : RealInterleaving ε M N)
     (hN : N.QTame) {a b : ℝ} (hab : a ≤ b) :
     essentialMeasureValue M hab ≤ essentialMeasureValue N

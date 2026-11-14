@@ -85,19 +85,31 @@ structure TraceChangeCertificate (degree : Fin m → ℕ)
   degree_support : ∀ i j, degree i ≠ degree j → V i j = 0
   inv_degree_support : ∀ i j, degree i ≠ degree j → W i j = 0
 
+/--
+@isnad1 id=eq.0h2v.s6.68779254312d from=translated src=- shape=51a4295c vocab=55545f89
+-/
 theorem traceChangeInv_nil :
     traceChangeInv ([] : List (EarlierColumnOp m k)) = 1 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.9a2a12262f4d from=translated src=- shape=dbbb4c02 vocab=ad5cb4e4
+-/
 theorem traceChangeInv_cons (op : EarlierColumnOp m k)
     (ops : List (EarlierColumnOp m k)) :
     traceChangeInv (op :: ops) = traceChangeInv ops * op.1.inv.toMatrix := by
   simp [traceChangeInv, inverseTrace, inverseEarlierColumnOp, traceChange]
 
+/--
+@isnad1 id=eq.0h4v.s6.cfece0785fd0 from=translated src=- shape=d6d01503 vocab=54d55f91
+-/
 theorem traceChangeInv_append (xs ys : List (EarlierColumnOp m k)) :
     traceChangeInv (xs ++ ys) = traceChangeInv ys * traceChangeInv xs := by
   simp [traceChangeInv, inverseTrace, List.reverse_append, List.map_append,
     traceChange_append]
 
+/--
+@isnad1 id=eq.0h3v.s6.491e435e0a5d from=translated src=- shape=755441ff vocab=6e4db751
+-/
 theorem traceChange_mul_traceChangeInv (ops : List (EarlierColumnOp m k)) :
     traceChange ops * traceChangeInv ops = 1 := by
   let L := ops.map Subtype.val
@@ -105,6 +117,9 @@ theorem traceChange_mul_traceChangeInv (ops : List (EarlierColumnOp m k)) :
   simpa [traceChange, traceChangeInv, inverseTrace, inverseEarlierColumnOp,
     L, List.map_reverse, List.map_map, Function.comp_def] using h
 
+/--
+@isnad1 id=eq.0h3v.s6.be8c64ed223c from=translated src=- shape=755441ff vocab=6e4db751
+-/
 theorem traceChangeInv_mul_traceChange (ops : List (EarlierColumnOp m k)) :
     traceChangeInv ops * traceChange ops = 1 := by
   let L := ops.map Subtype.val
@@ -117,6 +132,9 @@ private theorem single_upper (op : EarlierColumnOp m k) :
   simpa only [Matrix.TransvectionStruct.toMatrix] using
     (Matrix.blockTriangular_transvection (b := id) (le_of_lt op.2) op.1.c)
 
+/--
+@isnad1 id=isuppert.0h3v.s5.cc9f0061f62a from=translated src=- shape=a1d00d71 vocab=4e59c83b
+-/
 theorem traceChange_isUpperTriangular (ops : List (EarlierColumnOp m k)) :
     (traceChange ops).IsUpperTriangular := by
   induction ops with
@@ -125,6 +143,9 @@ theorem traceChange_isUpperTriangular (ops : List (EarlierColumnOp m k)) :
       rw [traceChange_cons]
       exact (single_upper op).mul ih
 
+/--
+@isnad1 id=eq.0h4v.s5.1f312a1c2b21 from=translated src=- shape=ed9171ea vocab=40814653
+-/
 theorem traceChange_apply_diag (ops : List (EarlierColumnOp m k)) (i : Fin m) :
     traceChange ops i i = 1 := by
   induction ops with
@@ -140,6 +161,9 @@ theorem traceChange_apply_diag (ops : List (EarlierColumnOp m k)) (i : Fin m) :
       · rw [Matrix.transvection_mul_apply_of_ne (ha := h)]
         exact ih
 
+/--
+@isnad1 id=traceres.1h4v.s5.3e5a1fe7a9c4 from=translated src=- shape=681f607f vocab=07c494e9
+-/
 theorem traceRespectsDegree_inverseTrace (degree : Fin m → ℕ)
     (ops : List (EarlierColumnOp m k)) (hops : TraceRespectsDegree degree ops) :
     TraceRespectsDegree degree (inverseTrace ops) := by
@@ -177,6 +201,9 @@ private theorem degree_support_mul (degree : Fin m → ℕ)
     simp [hB q c hqc]
   · simp [hA r q hrq]
 
+/--
+@isnad1 id=eq.2h6v.s5.cb8274f4493b from=translated src=- shape=3fa202c8 vocab=ba4a095c
+-/
 theorem traceChange_apply_of_degree_ne (degree : Fin m → ℕ)
     (ops : List (EarlierColumnOp m k)) (hops : TraceRespectsDegree degree ops)
     (i j : Fin m) (hij : degree i ≠ degree j) :
@@ -194,6 +221,9 @@ theorem traceChange_apply_of_degree_ne (degree : Fin m → ℕ)
         exact ih (by intro x hx; exact hops x (by simp [hx])) r c h
       · exact hij
 
+/--
+@isnad1 id=tracecha.1h4v.s5.8dcf6a16c9c3 from=translated src=- shape=098e742b vocab=12d63528
+-/
 theorem traceChange_certificate (degree : Fin m → ℕ)
     (ops : List (EarlierColumnOp m k)) (hops : TraceRespectsDegree degree ops) :
     TraceChangeCertificate degree (traceChange ops) (traceChangeInv ops) := by
@@ -205,6 +235,9 @@ theorem traceChange_certificate (degree : Fin m → ℕ)
   · exact traceChange_apply_of_degree_ne degree (inverseTrace ops)
       (traceRespectsDegree_inverseTrace degree ops hops)
 
+/--
+@isnad1 id=eq.0h4v.s5.cadb618c2fb7 from=translated src=- shape=8c3c1b75 vocab=f80c94a8
+-/
 theorem replay_inverseTrace (M : Matrix (Fin m) (Fin m) k)
     (ops : List (EarlierColumnOp m k)) :
     replay (replay M ops) (inverseTrace ops) = M := by
@@ -229,6 +262,9 @@ private theorem lowersDegree_mul_degree_support (degree : Fin m → ℕ)
       simp [hV q c hqc]
   exact hn hz
 
+/--
+@isnad1 id=lowersde.2h5v.s5.4c42751b49c8 from=translated src=- shape=500c0ba1 vocab=3b68a12d
+-/
 theorem replay_lowersDegree (degree : Fin m → ℕ)
     (M : Matrix (Fin m) (Fin m) k) (ops : List (EarlierColumnOp m k))
     (hM : LowersDegree degree M) (hops : TraceRespectsDegree degree ops) :
@@ -237,6 +273,9 @@ theorem replay_lowersDegree (degree : Fin m → ℕ)
   exact lowersDegree_mul_degree_support degree M (traceChange ops) hM
     (traceChange_apply_of_degree_ne degree ops hops)
 
+/--
+@isnad1 id=eq.3h7v.s6.0c4d54c4c97c from=translated src=- shape=64b6768a vocab=410ff95f
+-/
 theorem degree_eq_of_common_pivot [DecidableEq k] (degree : Fin m → ℕ)
     (M : Matrix (Fin m) (Fin m) k) (hM : LowersDegree degree M)
     (i j p : Fin m) (hi : columnPivot (M.col i) = some p)

@@ -28,7 +28,9 @@ universe u v
 
 variable {X : Type u} {Y : Type v} [TopologicalSpace X] [TopologicalSpace Y] {ι : Sort*}
 
-/-- Equality of classes in `(componentFunctor f).obj W` is joinedness inside `f ⁻¹ W`.-/
+/-- Equality of classes in `(componentFunctor f).obj W` is joinedness inside `f ⁻¹ W`.
+@isnad1 id=iff.0h6v.s8.fb1e83d4013a from=translated src=- shape=1d14a277 vocab=f6029a5d
+-/
 theorem componentFunctor_mk_eq_iff_joined (f : C(X, Y)) (W : TopologicalSpace.Opens Y)
     (a b : {x : X // f x ∈ W}) :
     (ZerothHomotopy.mk a : (componentFunctor f).obj W) = ZerothHomotopy.mk b ↔ Joined a b :=
@@ -36,7 +38,9 @@ theorem componentFunctor_mk_eq_iff_joined (f : C(X, Y)) (W : TopologicalSpace.Op
 
 /-- Point-form component consequence of the path-local cover lemma: if `a` and `b` have the same
 class over `W` and the opens `U i` cover `W`, then they are linked by a finite chain in which
-each link has equal classes over a single `U i`. `U i ≤ W` is not needed.-/
+each link has equal classes over a single `U i`. `U i ≤ W` is not needed.
+@isnad1 id=refltran.2h8v.s10.b9223035d438 from=translated src=- shape=fafaafa5 vocab=5e7425d0
+-/
 theorem componentFunctor_reflTransGen_of_mk_eq (f : C(X, Y)) {W : TopologicalSpace.Opens Y}
     (U : ι → TopologicalSpace.Opens Y) (hcov : W ≤ ⨆ i, U i) {a b : {x : X // f x ∈ W}}
     (h : (ZerothHomotopy.mk a : (componentFunctor f).obj W) = ZerothHomotopy.mk b) :

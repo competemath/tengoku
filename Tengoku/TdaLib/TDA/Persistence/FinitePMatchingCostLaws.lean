@@ -82,7 +82,9 @@ private theorem totalFinitePowerCost_eq_symmetricSums
   simp_rw [hs]
   rw [Finset.sum_add_distrib]
 
-/-- Reversal exchanges the two unmatched parts and preserves every powered pair charge.-/
+/-- Reversal exchanges the two unmatched parts and preserves every powered pair charge.
+@isnad1 id=eq.0h6v.s5.ff15ccb8e6a0 from=translated src=- shape=b35f82dd vocab=e21396f6
+-/
 theorem totalFinitePowerCost_reverse
     (M : OccurrenceMatching I J PEmpty.{1} PEmpty.{1}) (p : ℝ)
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
@@ -214,7 +216,9 @@ private theorem sum_middle_powers
 
 /-- Finite gluing followed by Minkowski bounds rooted candidate costs sharply.
 The three common index blocks are source paths, remaining middle paths, and
-targets unmatched by N. Their p-power sums recover each original cost exactly.-/
+targets unmatched by N. Their p-power sums recover each original cost exactly.
+@isnad1 id=le.1h9v.s7.1af2203456d9 from=translated src=- shape=c1734472 vocab=791e3087
+-/
 theorem totalFinitePowerCost_compose_root_le
     (M : OccurrenceMatching I J PEmpty.{1} PEmpty.{1})
     (N : OccurrenceMatching J K PEmpty.{1} PEmpty.{1}) {p : ℝ} (hp : 1 ≤ p)
@@ -324,7 +328,9 @@ private theorem finitePowerMatchingCost_eq_zero_iff_firstOrder_eq_zero
     exact le_antisymm ((finitePowerMatchingCost_le_matching p x y M).trans_eq hzero)
       (finitePowerMatchingCost_nonneg p x y)
 
-/-- Pairing each occurrence with itself gives zero rooted cost for every real p≥1.-/
+/-- Pairing each occurrence with itself gives zero rooted cost for every real p≥1.
+@isnad1 id=eq.1h3v.s5.0528e0a2fcfb from=translated src=- shape=1936145e vocab=6af3225b
+-/
 @[simp] theorem finitePMatchingCost_self {p : ℝ} (hp : 1 ≤ p) (x : I → ℝ × ℝ) :
     finitePMatchingCost p x x = 0 := by
   have hp0 : p ≠ 0 := ne_of_gt (lt_of_lt_of_le zero_lt_one hp)
@@ -332,7 +338,9 @@ private theorem finitePowerMatchingCost_eq_zero_iff_firstOrder_eq_zero
     (finiteFirstOrderMatchingCost_self x)
   simp only [finitePMatchingCost, hz, Real.zero_rpow (inv_ne_zero hp0)]
 
-/-- Powered minima are symmetric because reversal preserves each candidate cost.-/
+/-- Powered minima are symmetric because reversal preserves each candidate cost.
+@isnad1 id=eq.0h5v.s5.dd1eb53b3ec5 from=translated src=- shape=1701ac39 vocab=4fd0a905
+-/
 theorem finitePowerMatchingCost_comm (p : ℝ) (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     finitePowerMatchingCost p x y = finitePowerMatchingCost p y x := by
   obtain ⟨M, hM⟩ := exists_minimizing_powerMatching p x y
@@ -347,12 +355,16 @@ theorem finitePowerMatchingCost_comm (p : ℝ) (x : I → ℝ × ℝ) (y : J →
       _ = M.totalFinitePowerCost p x y := M.totalFinitePowerCost_reverse p x y
       _ = _ := hM
 
-/-- Symmetry also holds for the supporting rooted algebra outside the PD exponent domain.-/
+/-- Symmetry also holds for the supporting rooted algebra outside the PD exponent domain.
+@isnad1 id=eq.0h5v.s5.8be2a79e37b1 from=translated src=- shape=1701ac39 vocab=01915809
+-/
 theorem finitePMatchingCost_comm (p : ℝ) (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     finitePMatchingCost p x y = finitePMatchingCost p y x := by
   simp only [finitePMatchingCost, finitePowerMatchingCost_comm p x y]
 
-/-- Compose two minimizing matchings, then apply the rooted candidate inequality.-/
+/-- Compose two minimizing matchings, then apply the rooted candidate inequality.
+@isnad1 id=le.1h7v.s6.4040bba202b2 from=translated src=- shape=8e9d1e7e vocab=0093e9cc
+-/
 theorem finitePMatchingCost_triangle {p : ℝ} (hp : 1 ≤ p)
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) (z : K → ℝ × ℝ) :
     finitePMatchingCost p x z ≤ finitePMatchingCost p x y + finitePMatchingCost p y z := by
@@ -365,7 +377,9 @@ theorem finitePMatchingCost_triangle {p : ℝ} (hp : 1 ≤ p)
       M.totalFinitePowerCost_compose_root_le N hp x y z
     _ = _ := by rw [hM, hN]
 
-/-- A value-preserving equivalence has zero rooted cost, independently of the occurrence labels.-/
+/-- A value-preserving equivalence has zero rooted cost, independently of the occurrence labels.
+@isnad1 id=eq.2h6v.s6.dc01406976c2 from=translated src=- shape=e0427b73 vocab=d293a9f9
+-/
 theorem finitePMatchingCost_eq_zero_of_equiv {p : ℝ} (hp : 1 ≤ p)
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) (e : I ≃ J) (he : ∀ i, x i = y (e i)) :
     finitePMatchingCost p x y = 0 := by
@@ -374,7 +388,9 @@ theorem finitePMatchingCost_eq_zero_of_equiv {p : ℝ} (hp : 1 ≤ p)
   rw [hx] at h
   exact h.trans (finitePMatchingCost_self hp y)
 
-/-- Positive lifetimes make zero cost equivalent to equal values with multiplicity.-/
+/-- Positive lifetimes make zero cost equivalent to equal values with multiplicity.
+@isnad1 id=iff.3h5v.s6.1f70a436a85d from=translated src=- shape=286c105c vocab=4e8e6242
+-/
 theorem finitePMatchingCost_eq_zero_iff {p : ℝ} (hp : 1 ≤ p)
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ)
     (hx : ∀ i, (x i).1 < (x i).2) (hy : ∀ j, (y j).1 < (y j).2) :

@@ -57,7 +57,9 @@ private theorem exists_small_radius (y : J → ℝ × ℝ) (p : ℝ × ℝ)
   exact ⟨t, ht, htρ, fun j => hts j (Finset.mem_univ _)⟩
 
 /-- Finite support lets positive-radius box inequalities pass to closed limiting squares,
-including radius zero. Only the expanded square must remain above the diagonal.-/
+including radius zero. Only the expanded square must remain above the diagonal.
+@isnad1 id=le.3h7v.s7.34cd8801c256 from=translated src=- shape=4acb025b vocab=5026323a
+-/
 theorem finiteBoxCount_box_le (x : I → ℝ × ℝ) (y : J → ℝ × ℝ)
     {ε : ℝ} (hbox : ∀ (p : ℝ × ℝ) (r : ℝ), 0 < r →
       2 * (r + ε) < p.2 - p.1 → finiteBoxCount x p r ≤ finiteBoxCount y p (r + ε))
@@ -159,7 +161,9 @@ private theorem separated_cluster_counts
 bounds give a matching of cost at most `ε`. Repeated occurrences are retained, all
 source occurrences are matched, and every unmatched target is close to the diagonal.
 The strict source bounds are the local small-parameter hypotheses of CDSGO,
-Theorem 4.25, Part 2(ii); they cannot be dropped using box comparisons alone.-/
+Theorem 4.25, Part 2(ii); they cannot be dropped using box comparisons alone.
+@isnad1 id=ex.6h5v.s8.563c2daf5f0b from=translated src=- shape=484b1cc8 vocab=c382b933
+-/
 theorem exists_matching_of_separated_box_bounds
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) {ε : ℝ} (hε : 0 ≤ ε)
     (hy : ∀ j, (y j).1 ≤ (y j).2)

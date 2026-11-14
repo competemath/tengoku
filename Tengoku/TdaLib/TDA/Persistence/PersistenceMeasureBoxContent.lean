@@ -27,7 +27,9 @@ noncomputable def persistenceBoxValue (I : Box (Fin 2)) : ℕ :=
     persistenceMeasureValue M (I.lower_lt_upper 0).le h.le (I.lower_lt_upper 1).le
   else 0
 
-/-- The box function is the actual image-and-kernel quotient dimension above the diagonal.-/
+/-- The box function is the actual image-and-kernel quotient dimension above the diagonal.
+@isnad1 id=eq.1h3v.s7.4f3f42692691 from=translated src=- shape=90e389a3 vocab=09253b89
+-/
 theorem persistenceBoxValue_of_separated (I : Box (Fin 2)) (hI : I.upper 0 < I.lower 1) :
     persistenceBoxValue M I =
       persistenceMeasureValue M (I.lower_lt_upper 0).le hI.le (I.lower_lt_upper 1).le := by
@@ -57,12 +59,16 @@ noncomputable def persistenceBoxAdditiveMap (hM : M.QTame) (I : Box (Fin 2))
         (persistenceMeasureValue_split_death M (J.lower_lt_upper 0).le hsep.le
           hx.1.le hx.2.le).symm)
 
-/-- The bundled box-additive map retains the module's actual rectangle values.-/
+/-- The bundled box-additive map retains the module's actual rectangle values.
+@isnad1 id=eq.2h4v.s7.cbd386209567 from=translated src=- shape=d45515a7 vocab=2c72b396
+-/
 theorem persistenceBoxAdditiveMap_apply (hM : M.QTame) (I : Box (Fin 2))
     (hI : I.upper 0 < I.lower 1) (J : Box (Fin 2)) :
     persistenceBoxAdditiveMap M hM I hI J = persistenceBoxValue M J := rfl
 
-/-- Arbitrary finite box tilings of a separated rectangle preserve its persistence count.-/
+/-- Arbitrary finite box tilings of a separated rectangle preserve its persistence count.
+@isnad1 id=eq.3h4v.s7.44783f30afda from=translated src=- shape=14299bb5 vocab=da24f91b
+-/
 theorem persistenceBoxValue_sum_partition (hM : M.QTame) (I : Box (Fin 2))
     (hI : I.upper 0 < I.lower 1) (π : Prepartition I) (hπ : π.IsPartition) :
     ∑ J ∈ π.boxes, persistenceBoxValue M J = persistenceBoxValue M I :=

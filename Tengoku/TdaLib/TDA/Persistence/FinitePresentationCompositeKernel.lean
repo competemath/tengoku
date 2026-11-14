@@ -94,7 +94,9 @@ noncomputable def kernelCompIsoPullback (π : M ⟶ N) (σ : N ⟶ O) :
               Limits.pullback.condition
 
 /-- The comparison's first projection is the canonical inclusion into the
-source of the composite.-/
+source of the composite.
+@isnad1 id=eq.0h7v.s10.3ec24128b964 from=translated src=- shape=40ff82bb vocab=4a426443
+-/
 @[reassoc (attr := simp)]
 theorem kernelCompIsoPullback_hom_fst (π : M ⟶ N) (σ : N ⟶ O) :
     (kernelCompIsoPullback π σ).hom ≫ Limits.pullback.fst π (Limits.kernel.ι σ) =
@@ -103,7 +105,9 @@ theorem kernelCompIsoPullback_hom_fst (π : M ⟶ N) (σ : N ⟶ O) :
   rw [compositeKernelPullbackForward, Limits.pullback.lift_fst]
 
 /-- The comparison's second projection is the canonical factor into the
-second actual kernel.-/
+second actual kernel.
+@isnad1 id=eq.0h7v.s10.cd00fe27e95b from=translated src=- shape=f9449504 vocab=d35ad57d
+-/
 @[reassoc (attr := simp)]
 theorem kernelCompIsoPullback_hom_snd (π : M ⟶ N) (σ : N ⟶ O) :
     (kernelCompIsoPullback π σ).hom ≫ Limits.pullback.snd π (Limits.kernel.ι σ) =
@@ -112,7 +116,9 @@ theorem kernelCompIsoPullback_hom_snd (π : M ⟶ N) (σ : N ⟶ O) :
   rw [compositeKernelPullbackForward, Limits.pullback.lift_snd, compositeKernelToSecond]
 
 /-- The inverse comparison followed by the composite-kernel inclusion is the
-first pullback projection.-/
+first pullback projection.
+@isnad1 id=eq.0h7v.s10.3d28923a8bc0 from=translated src=- shape=33a5583f vocab=10de35f4
+-/
 @[reassoc (attr := simp)]
 theorem kernelCompIsoPullback_inv_ι (π : M ⟶ N) (σ : N ⟶ O) :
     (kernelCompIsoPullback π σ).inv ≫ Limits.kernel.ι (π ≫ σ) =
@@ -122,7 +128,9 @@ theorem kernelCompIsoPullback_inv_ι (π : M ⟶ N) (σ : N ⟶ O) :
 
 /-- Composites of rank-exact deflations have finitely presented actual kernels
 when the original left terms in the two supplied rows are finitely presented.
-The canonical actual kernel row is rank exact.-/
+The canonical actual kernel row is rank exact.
+@isnad1 id=and.4h11v.s9.1a881f225864 from=translated src=- shape=7c6828d2 vocab=fcf0a987
+-/
 theorem IsRankExact.comp_finitelyPresented
     (hsπ : IsRankExact ι π) (hsσ : IsRankExact κ σ)
     (hL : FinitelyPresented.{u,0,0} (R := k) (P := P) L)

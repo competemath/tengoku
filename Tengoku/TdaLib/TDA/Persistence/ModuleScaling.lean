@@ -34,7 +34,9 @@ namespace PModule
 noncomputable def scaleHom (c : ℝ) (hc : 0 < c) : ℝ →o ℝ :=
   (OrderIso.mulLeft₀ c⁻¹ (inv_pos.2 hc)).toOrderEmbedding.toOrderHom
 
-/-- Scaling reindexes a module at `t` by the original parameter `c⁻¹ * t`.-/
+/-- Scaling reindexes a module at `t` by the original parameter `c⁻¹ * t`.
+@isnad1 id=eq.1h2v.s5.b14ff0262cbd from=translated src=- shape=3d950481 vocab=c49c4e5d
+-/
 @[simp] theorem scaleHom_apply (c : ℝ) (hc : 0 < c) (t : ℝ) :
     scaleHom c hc t = c⁻¹ * t := rfl
 
@@ -43,11 +45,15 @@ noncomputable def scale (c : ℝ) (hc : 0 < c) (M : PModule.{u,0,w} R ℝ) :
     PModule.{u,0,w} R ℝ :=
   reindex (scaleHom c hc) M
 
-/-- The object of a scaled module at `t` is the original object at `c⁻¹ * t`.-/
+/-- The object of a scaled module at `t` is the original object at `c⁻¹ * t`.
+@isnad1 id=eq.1h4v.s6.3b3c027f6eb1 from=translated src=- shape=039d2edd vocab=b09920fb
+-/
 @[simp] theorem scale_obj (c : ℝ) (hc : 0 < c) (M : PModule.{u,0,w} R ℝ) (t : ℝ) :
     (scale c hc M).obj t = M.obj (c⁻¹ * t) := rfl
 
-/-- Scaling preserves the original structure map at the reindexed inequality.-/
+/-- Scaling preserves the original structure map at the reindexed inequality.
+@isnad1 id=eq.2h5v.s7.83f190398c8e from=translated src=- shape=e00953ff vocab=139a2b77
+-/
 theorem structureMap_scale (c : ℝ) (hc : 0 < c) (M : PModule.{u,0,w} R ℝ)
     {s t : ℝ} (h : s ≤ t) :
     structureMap (scale c hc M) h =
@@ -110,11 +116,15 @@ noncomputable def scaleOneIso (M : PModule.{u,0,w} R ℝ) : scale 1 one_pos M �
   change reindex (scaleHom 1 one_pos) M ≅ reindex (OrderHom.id : ℝ →o ℝ) M
   exact reindexIso scaleOneIndex' M
 
-/-- The component of the scaling unit is transport along `1⁻¹ * t = t`.-/
+/-- The component of the scaling unit is transport along `1⁻¹ * t = t`.
+@isnad1 id=eq.0h3v.s7.ff6012163a56 from=translated src=- shape=f43e96c3 vocab=fc960a83
+-/
 @[simp] theorem scaleOneIso_hom_app (M : PModule.{u,0,w} R ℝ) (t : ℝ) :
     (scaleOneIso M).hom.app t = M.map (eqToHom (scaleOneIndex t)) := rfl
 
-/-- The scaling unit is natural in the module.-/
+/-- The scaling unit is natural in the module.
+@isnad1 id=eq.0h4v.s8.ab4627f2715f from=translated src=- shape=418c10dc vocab=b9ef05ce
+-/
 theorem scaleOneIso_naturality {M N : PModule.{u,0,w} R ℝ} (f : M ⟶ N) :
     reindexNatTrans (scaleHom 1 one_pos) f ≫ (scaleOneIso N).hom =
       (scaleOneIso M).hom ≫ f := by
@@ -130,13 +140,17 @@ noncomputable def scaleScaleIso (a b : ℝ) (ha : 0 < a) (hb : 0 < b)
     reindex (scaleHom (b * a) (mul_pos hb ha)) M
   exact reindexIso (scaleScaleIndex' a b ha hb) M
 
-/-- The component of successive scaling coherence is transport along the composite index equality.-/
+/-- The component of successive scaling coherence is transport along the composite index equality.
+@isnad1 id=eq.2h5v.s8.283c5f23ed5e from=translated src=- shape=214ce8fc vocab=2ac69844
+-/
 @[simp] theorem scaleScaleIso_hom_app (a b : ℝ) (ha : 0 < a) (hb : 0 < b)
     (M : PModule.{u,0,w} R ℝ) (t : ℝ) :
     (scaleScaleIso a b ha hb M).hom.app t =
       M.map (eqToHom (scaleScaleIndex a b ha hb t)) := rfl
 
-/-- Successive scaling coherence is natural in the module.-/
+/-- Successive scaling coherence is natural in the module.
+@isnad1 id=eq.2h6v.s8.19d7873756ad from=translated src=- shape=476fac5a vocab=273fa954
+-/
 theorem scaleScaleIso_naturality (a b : ℝ) (ha : 0 < a) (hb : 0 < b)
     {M N : PModule.{u,0,w} R ℝ} (f : M ⟶ N) :
     reindexNatTrans (scaleHom b hb) (reindexNatTrans (scaleHom a ha) f) ≫
@@ -154,12 +168,16 @@ noncomputable def scaleInvIso {c : ℝ} (hc : 0 < c) (M : PModule.{u,0,w} R ℝ)
     reindex (OrderHom.id : ℝ →o ℝ) M
   exact reindexIso (scaleInvIndex' c hc) M
 
-/-- The inverse-scaling component is transport along `c⁻¹ * (c * t) = t`.-/
+/-- The inverse-scaling component is transport along `c⁻¹ * (c * t) = t`.
+@isnad1 id=eq.1h4v.s7.073e5be7d84f from=translated src=- shape=f37604cc vocab=89389a33
+-/
 @[simp] theorem scaleInvIso_hom_app {c : ℝ} (hc : 0 < c)
     (M : PModule.{u,0,w} R ℝ) (t : ℝ) :
     (scaleInvIso hc M).hom.app t = M.map (eqToHom (scaleInvIndex c hc t)) := rfl
 
-/-- Inverse-scaling coherence is natural in the module.-/
+/-- Inverse-scaling coherence is natural in the module.
+@isnad1 id=eq.1h5v.s8.1026992cd908 from=translated src=- shape=6ffcf0e1 vocab=4b16f94d
+-/
 theorem scaleInvIso_naturality {c : ℝ} (hc : 0 < c)
     {M N : PModule.{u,0,w} R ℝ} (f : M ⟶ N) :
     reindexNatTrans (scaleHom c⁻¹ (inv_pos.2 hc))
@@ -179,7 +197,9 @@ noncomputable def scaleShiftIso (c : ℝ) (hc : 0 < c) (ε : ℝ≥0)
     reindex (scaleHom c hc) (reindex (translation ε) M)
   exact reindexIso (scaleShiftIndex' c hc ε) M
 
-/-- The shift-comparison component is transport along `c⁻¹(t+cε)=c⁻¹t+ε`.-/
+/-- The shift-comparison component is transport along `c⁻¹(t+cε)=c⁻¹t+ε`.
+@isnad1 id=eq.1h5v.s9.3e3164cf1a49 from=translated src=- shape=8d573165 vocab=230cf575
+-/
 @[simp] theorem scaleShiftIso_hom_app (c : ℝ) (hc : 0 < c) (ε : ℝ≥0)
     (M : PModule.{u,0,w} R ℝ) (t : ℝ) :
     (scaleShiftIso c hc ε M).hom.app t =
@@ -190,7 +210,9 @@ private theorem scaleShiftIso_inv_app (c : ℝ) (hc : 0 < c) (ε : ℝ≥0)
     (scaleShiftIso c hc ε M).inv.app t =
       M.map (eqToHom (scaleShiftIndex c hc ε t).symm) := rfl
 
-/-- The shift comparison is natural in the module.-/
+/-- The shift comparison is natural in the module.
+@isnad1 id=eq.1h6v.s9.c2858c6c59c1 from=translated src=- shape=1150daec vocab=3770bdc5
+-/
 theorem scaleShiftIso_naturality (c : ℝ) (hc : 0 < c) (ε : ℝ≥0)
     {M N : PModule.{u,0,w} R ℝ} (f : M ⟶ N) :
     (shift (Real.toNNReal c * ε)).map (reindexNatTrans (scaleHom c hc) f) ≫
@@ -249,14 +271,18 @@ noncomputable def scale (i : RealInterleaving ε M N) (c : ℝ) (hc : 0 < c) :
     (scale_equation i.symm c hc)
 
 /-- The first component of a scaled interleaving is the reindexed original component followed by
-the inverse shift comparison.-/
+the inverse shift comparison.
+@isnad1 id=eq.1h7v.s9.b293dc90319b from=translated src=- shape=3ef25ea7 vocab=2d52ba94
+-/
 @[simp] theorem scale_φ_app (i : RealInterleaving ε M N) (c : ℝ) (hc : 0 < c) (t : ℝ) :
     (i.scale c hc).φ.app t =
       i.φ.app (PModule.scaleHom c hc t) ≫
         (PModule.scaleShiftIso c hc ε N).inv.app t := rfl
 
 /-- The second component of a scaled interleaving is the reindexed original component followed by
-the inverse shift comparison.-/
+the inverse shift comparison.
+@isnad1 id=eq.1h7v.s9.0d50c409376a from=translated src=- shape=b44de1ae vocab=a4d8b542
+-/
 @[simp] theorem scale_ψ_app (i : RealInterleaving ε M N) (c : ℝ) (hc : 0 < c) (t : ℝ) :
     (i.scale c hc).ψ.app t =
       i.ψ.app (PModule.scaleHom c hc t) ≫
@@ -266,7 +292,9 @@ end RealInterleaving
 
 variable {M N : PModule.{u,0,w} R ℝ}
 
-/-- A finite-parameter interleaving exists after positive scaling exactly when it existed before.-/
+/-- A finite-parameter interleaving exists after positive scaling exactly when it existed before.
+@isnad1 id=iff.1h5v.s6.ba6872c65505 from=translated src=- shape=e617c1e1 vocab=dddbe6ec
+-/
 theorem nonempty_realInterleaving_scale_iff (c : ℝ) (hc : 0 < c) (ε : ℝ≥0) :
     Nonempty (RealInterleaving (Real.toNNReal c * ε)
       (PModule.scale c hc M) (PModule.scale c hc N)) ↔
@@ -284,7 +312,9 @@ theorem nonempty_realInterleaving_scale_iff (c : ℝ) (hc : 0 < c) (ε : ℝ≥0
     exact ⟨i.scale c hc⟩
 
 /-- Positive scaling multiplies the real interleaving distance by `ENNReal.ofReal c`, including
-the case where the distance is infinite.-/
+the case where the distance is infinite.
+@isnad1 id=eq.1h4v.s6.e5eb8f0af70a from=translated src=- shape=128632b0 vocab=9b0172ab
+-/
 theorem realInterleavingDistance_scale (c : ℝ) (hc : 0 < c)
     (M N : PModule.{u,0,w} R ℝ) :
     realInterleavingDistance (PModule.scale c hc M) (PModule.scale c hc N) =
@@ -324,7 +354,9 @@ theorem realInterleavingDistance_scale (c : ℝ) (hc : 0 < c)
             ((Real.toNNReal c⁻¹ * δ : ℝ≥0) : ℝ≥0∞) = δ
         rw [← ENNReal.coe_mul, ← mul_assoc, h, one_mul]
 
-/-- The positive-scaling distance law preserves whether the distance is infinite.-/
+/-- The positive-scaling distance law preserves whether the distance is infinite.
+@isnad1 id=iff.1h4v.s5.2c8caf46814c from=translated src=- shape=c7f6456c vocab=b5c4f9b8
+-/
 theorem realInterleavingDistance_scale_eq_top_iff (c : ℝ) (hc : 0 < c)
     (M N : PModule.{u,0,w} R ℝ) :
     realInterleavingDistance (PModule.scale c hc M) (PModule.scale c hc N) = ⊤ ↔

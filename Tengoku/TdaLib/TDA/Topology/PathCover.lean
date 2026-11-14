@@ -31,7 +31,9 @@ namespace TDA.Topology
 
 variable {X : Type*} [TopologicalSpace X] {ι : Sort*} {x y : X}
 
-/-- Finite subdivision: segment `k` of `[0, 1]` maps into the cover member `U (i k)`.-/
+/-- Finite subdivision: segment `k` of `[0, 1]` maps into the cover member `U (i k)`.
+@isnad1 id=ex.2h6v.s8.c4a32e5c095f from=translated src=- shape=995ec45e vocab=7ff53b62
+-/
 theorem exists_subdivision (γ : Path x y) {U : ι → Set X} (hU : ∀ i, IsOpen (U i))
     (hcov : range γ ⊆ ⋃ i, U i) :
     ∃ (n : ℕ) (t : Fin (n + 1) → I) (i : Fin n → ι), t 0 = 0 ∧ t (last n) = 1 ∧
@@ -45,7 +47,9 @@ theorem exists_subdivision (γ : Path x y) {U : ι → Set X} (hU : ∀ i, IsOpe
   rw [image_subset_iff]
   simpa using hi k
 
-/-- Restricted-path form: each segment's subpath of `γ` stays inside its cover member.-/
+/-- Restricted-path form: each segment's subpath of `γ` stays inside its cover member.
+@isnad1 id=ex.2h6v.s8.58e289be2aac from=translated src=- shape=3dd4db30 vocab=5c8ee8af
+-/
 theorem exists_subpath_chain (γ : Path x y) {U : ι → Set X} (hU : ∀ i, IsOpen (U i))
     (hcov : range γ ⊆ ⋃ i, U i) :
     ∃ (n : ℕ) (t : Fin (n + 1) → I) (i : Fin n → ι), t 0 = 0 ∧ t (last n) = 1 ∧
@@ -56,7 +60,9 @@ theorem exists_subpath_chain (γ : Path x y) {U : ι → Set X} (hU : ∀ i, IsO
   exact hsub k
 
 /-- Overlap-chain form: `x` and `y` are linked by finitely many points, consecutive ones joined
-inside one cover member; each junction lies in the overlap of the two adjacent members.-/
+inside one cover member; each junction lies in the overlap of the two adjacent members.
+@isnad1 id=ex.2h6v.s8.efbe6dd1c6bc from=translated src=- shape=f319ad8a vocab=1af208b1
+-/
 theorem exists_overlap_chain (γ : Path x y) {U : ι → Set X} (hU : ∀ i, IsOpen (U i))
     (hcov : range γ ⊆ ⋃ i, U i) :
     ∃ (n : ℕ) (p : Fin (n + 1) → X) (i : Fin n → ι), p 0 = x ∧ p (last n) = y ∧
@@ -71,7 +77,9 @@ theorem exists_overlap_chain (γ : Path x y) {U : ι → Set X} (hU : ∀ i, IsO
   · exact (hJ ⟨k + 1, hk⟩).source_mem
 
 /-- Relational overlap-chain form, the shape a gluing proof eliminates: `x` and `y` are related
-by the reflexive-transitive closure of "joined inside a single cover member".-/
+by the reflexive-transitive closure of "joined inside a single cover member".
+@isnad1 id=refltran.2h6v.s6.2aced8c7c13f from=translated src=- shape=9b9bb5a5 vocab=da44976e
+-/
 theorem reflTransGen_of_path (γ : Path x y) {U : ι → Set X} (hU : ∀ i, IsOpen (U i))
     (hcov : range γ ⊆ ⋃ i, U i) :
     Relation.ReflTransGen (fun a b => ∃ i, JoinedIn (U i) a b) x y := by
@@ -87,7 +95,9 @@ theorem reflTransGen_of_path (γ : Path x y) {U : ι → Set X} (hU : ∀ i, IsO
   have := key n (by omega)
   rwa [p0, show (⟨n, by omega⟩ : Fin (n + 1)) = last n from rfl, pn] at this
 
-/-- `Joined` form: it suffices that the cover covers the path component of `x`.-/
+/-- `Joined` form: it suffices that the cover covers the path component of `x`.
+@isnad1 id=refltran.3h5v.s6.4cf60bf3caae from=translated src=- shape=b2accce7 vocab=cd769296
+-/
 theorem reflTransGen_of_joined (h : Joined x y) {U : ι → Set X} (hU : ∀ i, IsOpen (U i))
     (hcov : pathComponent x ⊆ ⋃ i, U i) :
     Relation.ReflTransGen (fun a b => ∃ i, JoinedIn (U i) a b) x y := by
@@ -97,7 +107,9 @@ theorem reflTransGen_of_joined (h : Joined x y) {U : ι → Set X} (hU : ∀ i, 
   exact hcov ⟨(γ.subpath 0 s).cast (by simp) rfl⟩
 
 /-- `TopologicalSpace.Opens` form: the image of `γ` lies in an open `W`, and the open family `V`
-covers `W`. The openness of `W` is not used.-/
+covers `W`. The openness of `W` is not used.
+@isnad1 id=ex.2h7v.s8.8b22fcb9c3df from=translated src=- shape=f50c6eb6 vocab=5f374957
+-/
 theorem exists_subdivision_opens (γ : Path x y) {W : TopologicalSpace.Opens X}
     (V : ι → TopologicalSpace.Opens X) (hγ : ∀ s, γ s ∈ W) (hWV : W ≤ ⨆ i, V i) :
     ∃ (n : ℕ) (t : Fin (n + 1) → I) (i : Fin n → ι), t 0 = 0 ∧ t (last n) = 1 ∧
@@ -108,7 +120,9 @@ theorem exists_subdivision_opens (γ : Path x y) {W : TopologicalSpace.Opens X}
 
 /-- Preimage-subspace form, the topological input of component gluing: a path inside the
 preimage subspace `f ⁻¹ W` gives a chain of points, consecutive ones joined inside a single
-preimage subspace `f ⁻¹ (V i)`. `V i ≤ W` is not assumed, and no component functor is used.-/
+preimage subspace `f ⁻¹ (V i)`. `V i ≤ W` is not assumed, and no component functor is used.
+@isnad1 id=refltran.2h8v.s9.57e5d65362f1 from=translated src=- shape=bb137cf0 vocab=119f4a7d
+-/
 theorem reflTransGen_preimage {Y : Type*} [TopologicalSpace Y] (f : C(X, Y))
     {W : TopologicalSpace.Opens Y} (V : ι → TopologicalSpace.Opens Y) (hWV : W ≤ ⨆ i, V i)
     {a b : {x : X // f x ∈ W}} (h : Joined a b) :

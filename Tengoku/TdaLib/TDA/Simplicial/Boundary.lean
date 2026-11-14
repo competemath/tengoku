@@ -34,7 +34,9 @@ def deletedFace (n : ℕ) (s : Face K (n + 1)) (i : Fin (n + 2)) : Face K n := b
   exact ⟨s.1.erase (s.1.orderEmbOfFin s.2.2 i), hmem, hcard⟩
 
 /-- The increasing enumeration of the erased face is the original enumeration with
-the deleted position skipped.-/
+the deleted position skipped.
+@isnad1 id=eq.1h6v.s10.e497692762d8 from=translated src=- shape=dad89524 vocab=c7da0c6b
+-/
 theorem enumerationAfterDeletion (n : ℕ) (s : Face K (n + 1)) (i : Fin (n + 2))
     (hc : (s.1.erase (s.1.orderEmbOfFin s.2.2 i)).card = n + 1)
     (j : Fin (n + 1)) :
@@ -65,7 +67,9 @@ noncomputable def boundary (n : ℕ) :
     ∑ i : Fin (n + 2),
       Finsupp.single (deletedFace K n s i) ((-1 : R) ^ (i : ℕ)))
 
-/-- Boundary on a basis chain is its signed ordered deletion sum.-/
+/-- Boundary on a basis chain is its signed ordered deletion sum.
+@isnad1 id=eq.0h6v.s9.3ae27b5044b3 from=translated src=- shape=37d3e7b6 vocab=70cfc96c
+-/
 theorem boundary_single (n : ℕ) (s : Face K (n + 1)) (a : R) :
     boundary K R n (Finsupp.single s a) =
       a • (∑ i : Fin (n + 2),

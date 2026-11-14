@@ -52,6 +52,9 @@ abbrev DiagonalQuotient := Incidence (k := k) (S := S) ⧸ DiagonalIdeal (k := k
 abbrev RightIncidence := (Incidence (k := k) (S := S))ᵐᵒᵖ
 abbrev RightQuotient := (DiagonalQuotient (k := k) (S := S))ᵐᵒᵖ
 
+/--
+@isnad1 id=istwosid.0h2v.s6.c3d15d6296f4 from=translated src=- shape=3e603a0f vocab=12df1b8e
+-/
 local instance diagonalIdealTwoSided :
     (DiagonalIdeal (k := k) (S := S)).IsTwoSided :=
   diagonalIdeal_isTwoSided (k := k) (S := S)
@@ -60,7 +63,9 @@ local instance diagonalIdealTwoSided :
 def quotientHom : RightIncidence (k := k) (S := S) →+* RightQuotient (k := k) (S := S) :=
   (Ideal.Quotient.mk (DiagonalIdeal (k := k) (S := S))).op
 
-/-- The right-module quotient map is surjective.-/
+/-- The right-module quotient map is surjective.
+@isnad1 id=surjecti.0h2v.s8.c505f99a3427 from=translated src=- shape=f1f2b1d4 vocab=ba1b67df
+-/
 theorem quotientHom_surjective :
     Function.Surjective (quotientHom (k := k) (S := S)) := by
   intro c
@@ -92,7 +97,9 @@ private theorem kernel_smul_class_eq_zero
         (z.1 : RightIncidence (k := k) (S := S)) • z.2)
     ⟨(⟨a, ha⟩, m), rfl⟩)
 
-/-- Every element in the kernel of the quotient map acts by zero on the quotient.-/
+/-- Every element in the kernel of the quotient map acts by zero on the quotient.
+@isnad1 id=eq.1h5v.s11.e28d1fb9dd9a from=translated src=- shape=33b2f2ef vocab=7a4e8081
+-/
 theorem kernel_action_annihilates
     (M : ModuleCat (RightIncidence (k := k) (S := S)))
     (a : RightIncidence (k := k) (S := S))
@@ -126,7 +133,9 @@ noncomputable def quotientAction
         (quotient (k := k) (S := S) M),
       kernel_le_action_ker (k := k) (S := S) M⟩
 
-/-- The descended action agrees with the original action after quotient projection.-/
+/-- The descended action agrees with the original action after quotient projection.
+@isnad1 id=eq.0h5v.s12.d5b744cb6aba from=translated src=- shape=42f8c783 vocab=5e5464ab
+-/
 @[simp] theorem quotientAction_comp_apply
     (M : ModuleCat (RightIncidence (k := k) (S := S)))
     (r : RightIncidence (k := k) (S := S)) (x : quotient (k := k) (S := S) M) :
@@ -152,11 +161,17 @@ noncomputable def quotientModule
     ModuleCat (RightQuotient (k := k) (S := S)) :=
   ModuleCat.of (RightQuotient (k := k) (S := S)) (quotient (k := k) (S := S) M)
 
+/--
+@isnad1 id=eq.0h5v.s12.9dfe87d068b6 from=translated src=- shape=717aa8fa vocab=1dcb8d5a
+-/
 @[simp] theorem quotientModule_smul
     (M : ModuleCat (RightIncidence (k := k) (S := S)))
     (c : RightQuotient (k := k) (S := S)) (x : quotientModule (k := k) (S := S) M) :
     c • x = quotientAction (k := k) (S := S) M c x := rfl
 
+/--
+@isnad1 id=eq.0h5v.s14.a506b025be7a from=translated src=- shape=cde042ac vocab=5633f2ac
+-/
 @[simp] theorem quotientModule_class_smul
     (M : ModuleCat (RightIncidence (k := k) (S := S)))
     (r : RightIncidence (k := k) (S := S)) (m : M) :
@@ -214,6 +229,9 @@ noncomputable def quotientProjection
         quotientProjectionHom (k := k) (S := S) M (r • (m : M))
       exact (quotientProjectionHom (k := k) (S := S) M).map_smul r (m : M) |>.symm)
 
+/--
+@isnad1 id=eq.0h4v.s13.66e7c1093b51 from=translated src=- shape=c4f23cbb vocab=a23955c2
+-/
 @[simp] theorem quotientProjection_apply
     (M : ModuleCat (RightIncidence (k := k) (S := S))) (m : M) :
     (quotientProjection (k := k) (S := S) M).hom m =
@@ -239,6 +257,9 @@ def mapQuotient {M N : ModuleCat (RightIncidence (k := k) (S := S))}
   (relation (k := k) (S := S) M).mapQ
     (relation (k := k) (S := S) N) g.hom (relation_map_le (k := k) (S := S) g)
 
+/--
+@isnad1 id=eq.0h6v.s14.7864cb7ed9f4 from=translated src=- shape=fa77567c vocab=4d4adfe3
+-/
 @[simp] theorem mapQuotient_mkQ {M N : ModuleCat (RightIncidence (k := k) (S := S))}
     (g : M ⟶ N) (m : M) :
     mapQuotient (k := k) (S := S) g ((relation (k := k) (S := S) M).mkQ m) =
@@ -276,6 +297,9 @@ def extensionMap {M N : ModuleCat (RightIncidence (k := k) (S := S))}
               rw [mapQuotient_mkQ]
   }
 
+/--
+@isnad1 id=eq.0h6v.s14.3fca8a40fc6b from=translated src=- shape=e080faa5 vocab=8d6f5ca7
+-/
 @[simp] theorem extensionMap_mkQ {M N : ModuleCat (RightIncidence (k := k) (S := S))}
     (g : M ⟶ N) (m : M) :
     (extensionMap (k := k) (S := S) g).hom
@@ -340,6 +364,9 @@ noncomputable def liftQuotient
   (relation (k := k) (S := S) M).liftQ g.hom
     (relation_le_ker_of_restrictedMap (k := k) (S := S) g)
 
+/--
+@isnad1 id=eq.0h6v.s14.07c1819ce67d from=translated src=- shape=8b1f543e vocab=fe960e7b
+-/
 @[simp] theorem liftQuotient_mkQ
     {M : ModuleCat (RightIncidence (k := k) (S := S))}
     {N : ModuleCat (RightQuotient (k := k) (S := S))}
@@ -375,6 +402,9 @@ noncomputable def liftCLinearMap
               p ((relation (k := k) (S := S) M).mkQ m) := by rw [liftQuotient_mkQ]
   }
 
+/--
+@isnad1 id=eq.0h6v.s14.580b175e1557 from=translated src=- shape=eb9b2172 vocab=79dad221
+-/
 @[simp] theorem liftCLinearMap_mkQ
     {M : ModuleCat (RightIncidence (k := k) (S := S))}
     {N : ModuleCat (RightQuotient (k := k) (S := S))}
@@ -391,6 +421,9 @@ noncomputable def liftMap
     quotientModule (k := k) (S := S) M ⟶ N :=
   ModuleCat.ofHom (liftCLinearMap (k := k) (S := S) g)
 
+/--
+@isnad1 id=eq.0h6v.s14.ac4112e7bae4 from=translated src=- shape=5618178e vocab=2152f2af
+-/
 @[simp] theorem liftMap_mkQ
     {M : ModuleCat (RightIncidence (k := k) (S := S))}
     {N : ModuleCat (RightQuotient (k := k) (S := S))}
@@ -403,6 +436,9 @@ noncomputable def liftMap
       ((relation (k := k) (S := S) M).mkQ m) = _
     exact liftCLinearMap_mkQ (k := k) (S := S) g m
 
+/--
+@isnad1 id=additive.0h2v.s9.e14f36388e24 from=translated src=- shape=7569227f vocab=fa36c573
+-/
 instance extensionFunctor_additive :
     (extensionFunctor (k := k) (S := S)).Additive where
   map_add {M N} f g := by
@@ -488,7 +524,9 @@ noncomputable def extensionAdjunction :
   }
 
 /-- Restriction along a ring map preserves epimorphisms because it does not change the underlying
-function.-/
+function.
+@isnad1 id=preserve.0h2v.s9.2b07e28a9449 from=translated src=- shape=cc14ec97 vocab=96159e05
+-/
 instance restrictionPreservesEpimorphisms :
     (ModuleCat.restrictScalars (quotientHom (k := k) (S := S))).PreservesEpimorphisms where
   preserves {X Y} f hf := by
@@ -500,13 +538,17 @@ instance restrictionPreservesEpimorphisms :
     change f.hom x = (show Y from y)
     exact hx
 
-/-- Extension sends projectives to projectives by the adjunction criterion.-/
+/-- Extension sends projectives to projectives by the adjunction criterion.
+@isnad1 id=preserve.0h2v.s8.59d3c59b463a from=translated src=- shape=7569227f vocab=ec3edc95
+-/
 instance extensionFunctor_preservesProjectiveObjects :
     (extensionFunctor (k := k) (S := S)).PreservesProjectiveObjects :=
   Functor.preservesProjectiveObjects_of_adjunction_of_preservesEpimorphisms
     (extensionAdjunction (k := k) (S := S))
 
-/-- As a left adjoint, extension preserves finite colimits.-/
+/-- As a left adjoint, extension preserves finite colimits.
+@isnad1 id=preserve.0h2v.s8.3f702a7e44e8 from=translated src=- shape=7569227f vocab=99a7f52f
+-/
 instance extensionFunctor_preservesFiniteColimits :
     PreservesFiniteColimits (extensionFunctor (k := k) (S := S)) := by
   letI : PreservesColimitsOfSize.{0, 0} (extensionFunctor (k := k) (S := S)) :=
@@ -577,6 +619,9 @@ noncomputable def extensionRestrictionIso :
       rw [liftCLinearMap_mkQ, liftCLinearMap_mkQ]
       rfl)
 
+/--
+@isnad1 id=eq.0h4v.s15.eea873610a33 from=translated src=- shape=42a3d23c vocab=615943f2
+-/
 @[simp] theorem extensionRestrictionIso_hom_mkQ
     (N : ModuleCat (RightQuotient (k := k) (S := S))) (n : N) :
     (extensionRestrictionIso (k := k) (S := S)).hom.app N
@@ -593,6 +638,9 @@ noncomputable def extensionRestrictionIso :
   rw [liftCLinearMap_mkQ]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s15.2ab8daac1e74 from=translated src=- shape=24c84385 vocab=ef6830d7
+-/
 @[simp] theorem extensionRestrictionIso_inv_apply
     (N : ModuleCat (RightQuotient (k := k) (S := S))) (n : N) :
     (extensionRestrictionIso (k := k) (S := S)).inv.app N n =
@@ -600,7 +648,9 @@ noncomputable def extensionRestrictionIso :
         ((ModuleCat.restrictScalars (quotientHom (k := k) (S := S))).obj N)).mkQ n := by
   rfl
 
-/-- The natural isomorphism above is the counit of the constructed adjunction.-/
+/-- The natural isomorphism above is the counit of the constructed adjunction.
+@isnad1 id=eq.0h3v.s12.20704075f26d from=translated src=- shape=446e7e9f vocab=57743a02
+-/
 theorem extensionAdjunction_counit_eq_extensionRestrictionIso
     (N : ModuleCat (RightQuotient (k := k) (S := S))) :
     (extensionAdjunction (k := k) (S := S)).counit.app N =
@@ -659,6 +709,9 @@ noncomputable def regularExtensionMap :
       regularRightQuotientModule (k := k) (S := S) :=
   liftMap (k := k) (S := S) (quotientHomOnRegular (k := k) (S := S))
 
+/--
+@isnad1 id=eq.0h3v.s13.dc279af9001e from=translated src=- shape=3afce007 vocab=41fcab99
+-/
 @[simp] theorem regularExtensionMap_mkQ (a : RightIncidence (k := k) (S := S)) :
     (regularExtensionMap (k := k) (S := S)).hom
       ((relation (k := k) (S := S)
@@ -736,6 +789,9 @@ noncomputable def regularExtensionIso :
       regularRightQuotientModule (k := k) (S := S) :=
   (regularExtensionEquiv (k := k) (S := S)).toModuleIso
 
+/--
+@isnad1 id=eq.0h3v.s13.d90fb3019634 from=translated src=- shape=4a846e51 vocab=4cd001f3
+-/
 @[simp] theorem regularExtensionIso_hom_mkQ (a : RightIncidence (k := k) (S := S)) :
     (regularExtensionIso (k := k) (S := S)).hom
       ((relation (k := k) (S := S)
@@ -748,6 +804,9 @@ def rightIncidenceMatrixUnit (p q : PairPoset S) (hpq : p ≤ q) :
     RightIncidence (k := k) (S := S) :=
   MulOpposite.op (FiniteRankProjectiveEndAlgebra.delta (k := k) (S := S) p q hpq)
 
+/--
+@isnad1 id=eq.1h4v.s9.4de31b1b14a3 from=translated src=- shape=a035dc61 vocab=f2a0d057
+-/
 @[simp] theorem quotientHom_rightIncidenceMatrixUnit (p q : PairPoset S) (hpq : p ≤ q) :
     quotientHom (k := k) (S := S)
         (rightIncidenceMatrixUnit (k := k) (S := S) p q hpq) =
@@ -766,6 +825,9 @@ abbrev RightVertexRestrictedModule (v : StrictVertex S) :
   (ModuleCat.restrictScalars (quotientHom (k := k) (S := S))).obj
     (RightVertexModule (k := k) (S := S) v)
 
+/--
+@isnad1 id=surjecti.0h3v.s7.79ddcaac60e2 from=translated src=- shape=b9d4efdd vocab=69df1a0f
+-/
 theorem rightVertexRestrictedCharacter_surjective (v : StrictVertex S) :
     Function.Surjective (rightVertexRestrictedCharacter (k := k) (S := S) v) := by
   intro a
@@ -778,6 +840,9 @@ local instance rightVertexRestrictedModule_k (v : StrictVertex S) :
   change Module k (RightVertexModule (k := k) (S := S) v)
   infer_instance
 
+/--
+@isnad1 id=eq.0h5v.s12.c34f1ce36fd8 from=translated src=- shape=86642b11 vocab=2c3cbff5
+-/
 @[simp] theorem rightVertexRestrictedModule_smul (v : StrictVertex S)
     (r : RightIncidence (k := k) (S := S)) (t : RightVertexRestrictedModule (k := k) (S := S) v) :
     r • t = rightVertexRestrictedCharacter (k := k) (S := S) v r • t := by
@@ -787,6 +852,9 @@ local instance rightVertexRestrictedModule_k (v : StrictVertex S) :
   exact rightVertexModule_smul (k := k) (S := S) v
     (quotientHom (k := k) (S := S) r) t
 
+/--
+@isnad1 id=eq.1h6v.s12.ca31f8df1b81 from=translated src=- shape=f7ba0c8f vocab=bb447428
+-/
 @[simp] theorem rightIncidenceMatrixUnit_smul (v : StrictVertex S)
     (p q : PairPoset S) (hpq : p ≤ q) (t : RightVertexRestrictedModule (k := k) (S := S) v) :
     rightIncidenceMatrixUnit (k := k) (S := S) p q hpq • t =
@@ -806,7 +874,9 @@ local instance rightVertexRestrictedModule_k (v : StrictVertex S) :
             (rightMatrixUnit (k := k) (S := S) p q hpq) t).symm
     _ = _ := rightMatrixUnit_smul (k := k) (S := S) v p q hpq t
 
-/-- Restriction along the surjective quotient preserves the simplicity of each vertex module.-/
+/-- Restriction along the surjective quotient preserves the simplicity of each vertex module.
+@isnad1 id=issimple.0h3v.s8.3c51d47ace07 from=translated src=- shape=d3076729 vocab=f86481a3
+-/
 theorem rightVertexRestrictedModule_isSimpleModule (v : StrictVertex S) :
     IsSimpleModule (RightIncidence (k := k) (S := S))
       (RightVertexRestrictedModule (k := k) (S := S) v) := by
@@ -835,6 +905,9 @@ noncomputable def extensionRightVertexIso (v : StrictVertex S) :
   (extensionRestrictionIso (k := k) (S := S)).app
     (RightVertexModule (k := k) (S := S) v)
 
+/--
+@isnad1 id=eq.0h4v.s13.0f6cca831e2f from=translated src=- shape=b5308641 vocab=394282eb
+-/
 @[simp] theorem extensionRightVertexIso_hom_mkQ (v : StrictVertex S)
     (t : RightVertexModule (k := k) (S := S) v) :
     (extensionRightVertexIso (k := k) (S := S) v).hom

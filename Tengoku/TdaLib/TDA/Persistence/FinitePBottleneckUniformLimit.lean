@@ -28,7 +28,9 @@ open Filter
 open scoped Topology
 
 /-- A count budget and bottleneck radius give one error bound for every
-essential-free pair. `max 1 m` includes the zero-count case in the same formula.-/
+essential-free pair. `max 1 m` includes the zero-count case in the same formula.
+@isnad1 id=le.6h5v.s8.0df855a94036 from=translated src=- shape=0666caa0 vocab=c3accdde
+-/
 theorem finitePMatchingCost_abs_sub_bottleneck_le_uniformBound
     {p : ℝ} (hp : 1 ≤ p) (D E : Diagram ℝ)
     (hD : essentialPart D.points = 0) (hE : essentialPart E.points = 0)
@@ -59,7 +61,9 @@ theorem finitePMatchingCost_abs_sub_bottleneck_le_uniformBound
     _ = ((((max 1 m : ℕ) : ℝ) ^ p⁻¹) - 1) * (bottleneck D E).toReal := by ring
     _ ≤ _ := mul_le_mul_of_nonneg_left hb (sub_nonneg.mpr hfactor)
 
-/-- The same error bound holds for the optimized cost over all real plans.-/
+/-- The same error bound holds for the optimized cost over all real plans.
+@isnad1 id=le.6h5v.s8.62017c4d713d from=translated src=- shape=0666caa0 vocab=3fa8d46e
+-/
 theorem finitePBoundaryTransportCost_abs_sub_bottleneck_le_uniformBound
     {p : ℝ} (hp : 1 ≤ p) (D E : Diagram ℝ)
     (hD : essentialPart D.points = 0) (hE : essentialPart E.points = 0)
@@ -86,7 +90,9 @@ private theorem uniform_errorEnvelope_tendsto (m : ℕ) (R : ℝ) :
   simpa only [sub_self, zero_mul] using (hfactor.sub_const 1).mul_const R
 
 /-- One exponent tail works for all essential-free diagram pairs within the
-specified count and radius budgets. Occurrence types may vary with the pair.-/
+specified count and radius budgets. Occurrence types may vary with the pair.
+@isnad1 id=tendstou.1h2v.s8.b500dbdc99e4 from=translated src=- shape=b57f6a5d vocab=35873b11
+-/
 theorem finitePMatchingCost_tendstoUniformlyOn_bottleneck
     (m : ℕ) (R : ℝ) (hR : 0 ≤ R) :
     TendstoUniformlyOn
@@ -107,7 +113,9 @@ theorem finitePMatchingCost_tendstoUniformlyOn_bottleneck
   exact (finitePMatchingCost_abs_sub_bottleneck_le_uniformBound hp z.1 z.2
     hz.1 hz.2.1 hz.2.2.1 hR hz.2.2.2).trans_lt herror
 
-/-- Uniform recovery for the optimized real boundary-reservoir cost.-/
+/-- Uniform recovery for the optimized real boundary-reservoir cost.
+@isnad1 id=tendstou.1h2v.s8.facb591c566e from=translated src=- shape=b57f6a5d vocab=f244fbde
+-/
 theorem finitePBoundaryTransportCost_tendstoUniformlyOn_bottleneck
     (m : ℕ) (R : ℝ) (hR : 0 ≤ R) :
     TendstoUniformlyOn

@@ -75,7 +75,9 @@ def incidenceToFunctions :
   map_add' f g := by ext a b; rfl
   map_smul' c f := by ext a b; rfl
 
-/-- Incidence coefficients determine the full finite function table.-/
+/-- Incidence coefficients determine the full finite function table.
+@isnad1 id=injectiv.0h2v.s9.4af742b160ee from=translated src=- shape=1d978a64 vocab=003115c1
+-/
 theorem incidenceToFunctions_injective : Function.Injective
     (incidenceToFunctions (k := k) (S := S)) := by
   intro f g h
@@ -115,7 +117,9 @@ private theorem regularCoefficients_injective : Function.Injective
     (regularIncidenceLinearEquiv (k := k) (S := S)).injective
 
 /-- The actual regular right-incidence module is finite-dimensional over the
-canonical restricted field scalars.-/
+canonical restricted field scalars.
+@isnad1 id=finitedi.0h2v.s7.0e265e8b0d7a from=translated src=- shape=2e1aea89 vocab=3f816a91
+-/
 theorem regular_finiteDimensional :
     FiniteDimensional k
       (restrictedKModule (k := k) (S := S) (regular (k := k) (S := S))) := by
@@ -126,7 +130,9 @@ theorem regular_finiteDimensional :
     (regularCoefficients_injective (k := k) (S := S))
 
 /-- The natural incidence algebra is finite-dimensional over `k`, by the
-generic canonical restricted-scalar result for the regular module.-/
+generic canonical restricted-scalar result for the regular module.
+@isnad1 id=finitedi.0h2v.s7.86a24d0df7f3 from=translated src=- shape=ba9541c7 vocab=f5933a8b
+-/
 theorem incidence_finiteDimensional :
     FiniteDimensional k (FiniteRankProjectiveEndAlgebra.Incidence (k := k) (S := S)) := by
   letI : FiniteDimensional k
@@ -344,7 +350,9 @@ noncomputable def regularVertexIso :
 
 /-- Under the public regular-vertex identification, the coefficient at `a`
 of a fixed vector in the `q`-fiber is the `(a,q)` coefficient of its
-unop-incidence element.-/
+unop-incidence element.
+@isnad1 id=eq.0h5v.s12.135820abe784 from=translated src=- shape=d075a3a9 vocab=7eb862bb
+-/
 theorem regularVertexIso_hom_coefficient
     (q a : FiniteRankProjectiveEndAlgebra.PairPoset S)
     (x : vertexFiber (k := k) (S := S) (regular (k := k) (S := S)) q) :
@@ -357,7 +365,9 @@ theorem regularVertexIso_hom_coefficient
   exact columnMap_apply (k := k) (S := S) q x a
 
 /-- The public regular-vertex identification sends the diagonal projector to
-the free generator born at that vertex.-/
+the free generator born at that vertex.
+@isnad1 id=eq.0h3v.s12.3f93569f72ea from=translated src=- shape=8a7e281c vocab=22a44da0
+-/
 theorem regularVertexIso_hom_birth (p : FiniteRankProjectiveEndAlgebra.PairPoset S) :
     (regularVertexIso (k := k) (S := S)).hom.app p
       (projectToVertexFiber (k := k) (S := S) (regular (k := k) (S := S)) p 1) =
@@ -366,7 +376,9 @@ theorem regularVertexIso_hom_birth (p : FiniteRankProjectiveEndAlgebra.PairPoset
     (projectToVertexFiber (k := k) (S := S) (regular (k := k) (S := S)) p 1) = _
   exact columnMap_birth (k := k) (S := S) p
 
-/-- The graded free vertex module is projective in the actual persistence-module category.-/
+/-- The graded free vertex module is projective in the actual persistence-module category.
+@isnad1 id=projecti.0h2v.s7.136787d80c04 from=translated src=- shape=f5e3fc0f vocab=9fabaf22
+-/
 instance freeVertexModule_projective :
     Projective (freeVertexModule (k := k) (S := S)) where
   factors {E X} f e he := by
@@ -377,7 +389,9 @@ instance freeVertexModule_projective :
     exact GradedFree.exists_lift_of_surjective (R := k) (generators (S := S))
       e hsurj f
 
-/-- The vertex image of the actual regular right-incidence module is projective.-/
+/-- The vertex image of the actual regular right-incidence module is projective.
+@isnad1 id=projecti.0h2v.s9.95aa68708335 from=translated src=- shape=0fa59b0a vocab=0c844e6c
+-/
 theorem regularVertex_projective :
     Projective ((IncidenceVertexRepresentation.vertexFunctor (k := k) (S := S)).obj
       (regular (k := k) (S := S))) := by
@@ -388,7 +402,9 @@ theorem regularVertex_projective :
 abbrev finiteFreeModule (n : ℕ) : ModuleCat.{u} (RightIncidence (k := k) (S := S)) :=
   ModuleCat.of (RightIncidence (k := k) (S := S)) (Fin n → RightIncidence (k := k) (S := S))
 
-/-- The ordinary finite free right-incidence module is projective.-/
+/-- The ordinary finite free right-incidence module is projective.
+@isnad1 id=projecti.0h3v.s7.0a0febbfb131 from=translated src=- shape=bb717bcc vocab=9907ff51
+-/
 instance finiteFreeModule_projective (n : ℕ) :
     Projective (finiteFreeModule (k := k) (S := S) n) := by
   exact ModuleCat.projective_of_free (Pi.basisFun (RightIncidence (k := k) (S := S)) (Fin n))
@@ -412,7 +428,9 @@ noncomputable def finiteFreeVertexBiproductIso (n : ℕ) :
     (IncidenceVertexRepresentation.vertexFunctor (k := k) (S := S)).mapIso
       (ModuleCat.biproductIsoPi (regularFamily (k := k) (S := S) n))
 
-/-- Every finite free module has a projective vertex image.-/
+/-- Every finite free module has a projective vertex image.
+@isnad1 id=projecti.0h3v.s9.75bb1041f063 from=translated src=- shape=45612b97 vocab=330c306c
+-/
 theorem finiteFreeVertex_projective (n : ℕ) :
     Projective ((IncidenceVertexRepresentation.vertexFunctor (k := k) (S := S)).obj
       (finiteFreeModule (k := k) (S := S) n)) := by
@@ -434,7 +452,9 @@ theorem finiteFreeVertex_projective (n : ℕ) :
   exact Projective.of_iso (finiteFreeVertexBiproductIso (k := k) (S := S) n) hF
 
 /-- The actual finite free right-incidence module is finite-dimensional over
-the canonical restricted field scalars.-/
+the canonical restricted field scalars.
+@isnad1 id=finitedi.0h3v.s7.b06125bf6898 from=translated src=- shape=a671393a vocab=f9926305
+-/
 theorem finiteFreeModule_finiteDimensional (n : ℕ) :
     FiniteDimensional k
       (restrictedKModule (k := k) (S := S) (finiteFreeModule (k := k) (S := S) n)) := by
@@ -455,7 +475,9 @@ theorem finiteFreeModule_finiteDimensional (n : ℕ) :
       (Fin n → restrictedKModule (k := k) (S := S) (regular (k := k) (S := S))) := inferInstance
   exact e.finiteDimensional
 
-/-- The vertex functor preserves actual epimorphisms.-/
+/-- The vertex functor preserves actual epimorphisms.
+@isnad1 id=preserve.0h2v.s8.df226f5b9080 from=translated src=- shape=642e3974 vocab=e84cea50
+-/
 instance vertexFunctor_preservesEpimorphisms :
     Functor.PreservesEpimorphisms
       (IncidenceVertexRepresentation.vertexFunctor (k := k) (S := S)) where
@@ -468,7 +490,9 @@ instance vertexFunctor_preservesEpimorphisms :
     exact (ModuleCat.epi_iff_surjective _).mp hf
 
 /-- Ordinary projectivity of a vertex representation reflects to its actual
-right-incidence module, using full faithfulness and epimorphism preservation.-/
+right-incidence module, using full faithfulness and epimorphism preservation.
+@isnad1 id=projecti.1h3v.s9.eaf3e9064734 from=translated src=- shape=8b9728f0 vocab=b78bf39a
+-/
 theorem projective_of_vertex_projective
     (M : ModuleCat.{u} (RightIncidence (k := k) (S := S)))
     (hM : Projective ((IncidenceVertexRepresentation.vertexFunctor (k := k) (S := S)).obj M)) :

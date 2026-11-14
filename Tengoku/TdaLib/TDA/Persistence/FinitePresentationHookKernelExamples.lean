@@ -22,7 +22,9 @@ open CategoryTheory CategoryTheory.Limits GradedFree
 open scoped TDA.Persistence ZeroObject
 
 /-- The actual finite-hook cover kernel of the nonzero rational presentation
-with its repeated birth and nonzero relation is finitely presented.-/
+with its repeated birth and nonzero relation is finitely presented.
+@isnad1 id=ex.0h0v.s13.af3a13889beb from=translated src=- shape=925269ee vocab=5552bfd4
+-/
 theorem rational_presentation_actual_cover_kernel_finitelyPresented :
     ∃ (G : CoordinateGrid 2) (A : PModule ℚ G.Point)
       (hA : ∀ p, FiniteDimensional ℚ (A.obj p))
@@ -43,7 +45,9 @@ theorem rational_presentation_actual_cover_kernel_finitelyPresented :
   exact ⟨G, A, hA, e, hrank, hprojective, hkernel⟩
 
 /-- The same nonzero presentation has a finitely presented actual cover
-kernel over the field of two elements.-/
+kernel over the field of two elements.
+@isnad1 id=ex.0h0v.s14.a79bf5ed1dfc from=translated src=- shape=c2106917 vocab=597b33ff
+-/
 theorem characteristic_two_presentation_actual_cover_kernel_finitelyPresented :
     ∃ (G : CoordinateGrid 2) (A : PModule (ZMod 2) G.Point)
       (hA : ∀ p, FiniteDimensional (ZMod 2) (A.obj p))
@@ -64,7 +68,9 @@ theorem characteristic_two_presentation_actual_cover_kernel_finitelyPresented :
   exact ⟨G, A, hA, e, hrank, hprojective, hkernel⟩
 
 /-- Left Kan extension preserves finite presentation for the empty free
-family, including an empty occurrence index.-/
+family, including an empty occurrence index.
+@isnad1 id=finitely.0h3v.s8.f19d00acdf96 from=translated src=- shape=23df402f vocab=960ec06a
+-/
 theorem empty_family_lan_finitelyPresented
     {k : Type} [Field k] {n : ℕ} (G : CoordinateGrid n) :
     FinitelyPresented.{0,0,0}
@@ -76,7 +82,9 @@ theorem empty_family_lan_finitelyPresented
 
 /-- The zero module on the zero-dimensional ambient coordinate poset is a
 finite-hook cover kernel with a finite presentation. The source presentation
-has no generator or relation occurrences.-/
+has no generator or relation occurrences.
+@isnad1 id=ex.0h1v.s12.dd31492c7023 from=translated src=- shape=9a42c3aa vocab=455116a6
+-/
 theorem zero_empty_index_actual_cover_kernel_finitelyPresented
     (k : Type) [Field k] :
     ∃ (G : CoordinateGrid 0) (A : PModule k G.Point)
@@ -101,7 +109,9 @@ theorem zero_empty_index_actual_cover_kernel_finitelyPresented
 
 /-- The actual finite-hook cover kernel supplied for a finitely presented
 real-coordinate module has finite-dimensional fibers. The only input about
-the original module is its finite presentation.-/
+the original module is its finite presentation.
+@isnad1 id=ex.1h3v.s13.effb5175f6e8 from=translated src=- shape=9753621f vocab=9e90cdaf
+-/
 theorem finitelyPresented_actual_cover_kernel_finiteDimensional
     {k : Type u} [Field k] {n : ℕ}
     {M : PModule.{u,0,u} k (Fin n → ℝ)}

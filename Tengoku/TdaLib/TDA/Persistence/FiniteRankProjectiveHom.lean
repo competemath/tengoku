@@ -57,21 +57,33 @@ def HomCondition (s t : HookTag P) : Prop :=
     (endpoints t).2 ≤ (endpoints s).2 ∧
     ¬ (endpoints t).2 ≤ (endpoints s).1
 
+/--
+@isnad1 id=iff.0h3v.s7.7d6302e66d45 from=translated src=- shape=6d07f176 vocab=a1d104f8
+-/
 @[simp] theorem homCondition_finite_finite (ab cd : FiniteHookDeflation.StrictPair P) :
     HomCondition (.inl ab) (.inl cd) ↔
       cd.val.1 ≤ ab.val.1 ∧ cd.val.2 ≤ ab.val.2 ∧ ¬ cd.val.2 ≤ ab.val.1 := by
   simp [HomCondition, endpoints, birth, death]
 
+/--
+@isnad1 id=not.0h3v.s4.62132017030d from=translated src=- shape=a4cfb080 vocab=716b8504
+-/
 @[simp] theorem homCondition_finite_infinite (ab : FiniteHookDeflation.StrictPair P)
     (c : P) : ¬ HomCondition (.inl ab) (.inr c) := by
   simp [HomCondition, endpoints, birth, death]
 
+/--
+@isnad1 id=iff.0h3v.s6.b34bce9d6e98 from=translated src=- shape=f0c17ec7 vocab=b7503e8a
+-/
 @[simp] theorem homCondition_infinite_finite (a : P)
     (cd : FiniteHookDeflation.StrictPair P) :
     HomCondition (.inr a) (.inl cd) ↔
       cd.val.1 ≤ a ∧ ¬ cd.val.2 ≤ a := by
   simp [HomCondition, endpoints, birth, death]
 
+/--
+@isnad1 id=iff.0h3v.s5.4361ce9e6015 from=translated src=- shape=3db24b8b vocab=43e7c03b
+-/
 @[simp] theorem homCondition_infinite_infinite (a b : P) :
     HomCondition (.inr a) (.inr b) ↔ b ≤ a := by
   simp [HomCondition, endpoints, birth, death]
@@ -90,7 +102,9 @@ noncomputable def unitAt (t : HookTag P) (p : P) (hp : birth t ≤ p) :
     (hookModule (k := k) t).obj p :=
   structureMapLinear (hookModule (k := k) t) hp (birthUnit (k := k) t)
 
-/-- The transported birth unit is nonzero exactly while the hook is supported.-/
+/-- The transported birth unit is nonzero exactly while the hook is supported.
+@isnad1 id=ne.2h4v.s8.db9e81b57e96 from=translated src=- shape=92d5af82 vocab=f1e5d90c
+-/
 theorem unitAt_ne_zero (t : HookTag P) (p : P) (hp : birth t ≤ p)
     (hdeath : ¬ death t ≤ p) : unitAt (k := k) t p hp ≠ 0 := by
   cases t with
@@ -195,7 +209,9 @@ noncomputable def normalizedHom (s t : HookTag P) (h : HomCondition s t) :
             (unitAt (k := k) (.inr b) a (by simpa [birth] using hc))
 
 /-- The normalized morphism sends the source birth unit to the target's unit
-at that grade.-/
+at that grade.
+@isnad1 id=eq.1h4v.s9.6701ea0cd1ce from=translated src=- shape=46f20c7d vocab=ec3c3faf
+-/
 @[simp] theorem normalizedHom_app_birth (s t : HookTag P) (h : HomCondition s t) :
     ((normalizedHom (k := k) s t h).app (birth s)).hom (birthUnit (k := k) s) =
       unitAt (k := k) t (birth s) h.1 := by
@@ -239,7 +255,9 @@ noncomputable def unitCoefficient (t : HookTag P) (p : P) (hp : birth t ≤ p)
   | inr a => exact HookInfinity.fiberEquivOfLe (R := k) (by simpa [birth] using hp) x
 
 /-- Every vector in a hook fiber is its birth unit multiplied by its unique
-coefficient. In an inactive finite-hook fiber both sides are zero.-/
+coefficient. In an inactive finite-hook fiber both sides are zero.
+@isnad1 id=eq.1h5v.s10.d8948f61b9c7 from=translated src=- shape=95fffbd1 vocab=0d7bf292
+-/
 theorem unitAt_span (t : HookTag P) (p : P) (hp : birth t ≤ p)
     (x : (hookModule (k := k) t).obj p) :
     x = unitCoefficient (k := k) t p hp x • unitAt (k := k) t p hp := by
@@ -285,7 +303,9 @@ theorem unitAt_span (t : HookTag P) (p : P) (hp : birth t ≤ p)
       simp only [unitCoefficient, smul_eq_mul, mul_one]
 
 /-- Every morphism between two hooks satisfying the endpoint criterion is a
-scalar multiple of the normalized generator.-/
+scalar multiple of the normalized generator.
+@isnad1 id=ex.1h5v.s11.d93e1839c57e from=translated src=- shape=972b3a8e vocab=f572bc51
+-/
 theorem hom_eq_smul_normalized (s t : HookTag P) (h : HomCondition s t)
     (f : hookModule (k := k) s ⟶ hookModule (k := k) t) :
     ∃ c : k, f = c • normalizedHom (k := k) s t h := by
@@ -359,7 +379,9 @@ theorem hom_eq_smul_normalized (s t : HookTag P) (h : HomCondition s t)
           exact hfirst.trans (hsecond.trans hthird)
 
 /-- The scalar coefficient in the normalized-generator classification is
-unique, so each nonzero hook Hom space is one-dimensional.-/
+unique, so each nonzero hook Hom space is one-dimensional.
+@isnad1 id=existsun.1h5v.s11.0e19939f9c6f from=translated src=- shape=972b3a8e vocab=e56f1b52
+-/
 theorem hom_scalar_unique (s t : HookTag P) (h : HomCondition s t)
     (f : hookModule (k := k) s ⟶ hookModule (k := k) t) :
     ∃! c : k, f = c • normalizedHom (k := k) s t h := by
@@ -425,7 +447,9 @@ theorem hom_scalar_unique (s t : HookTag P) (h : HomCondition s t)
 /-! The Hom classification includes both existence and vanishing outside the
 endpoint region. -/
 
-/-- The normalized generator is nonzero exactly on its stated endpoint region.-/
+/-- The normalized generator is nonzero exactly on its stated endpoint region.
+@isnad1 id=ne.1h4v.s8.d3571a718949 from=translated src=- shape=42c3c34e vocab=07ae5e1e
+-/
 theorem normalizedHom_ne_zero (s t : HookTag P) (h : HomCondition s t) :
     normalizedHom (k := k) s t h ≠ 0 := by
   intro hz
@@ -437,7 +461,9 @@ theorem normalizedHom_ne_zero (s t : HookTag P) (h : HomCondition s t) :
 
 /-- A nonzero map between finite rank-projective hooks can occur only when its
 target endpoints lie below the source endpoints and the target has not died at
-the source birth.-/
+the source birth.
+@isnad1 id=homcondi.1h5v.s8.9afdffb39e59 from=translated src=- shape=a9f979c1 vocab=caa474e7
+-/
 theorem hom_nonzero_implies_condition (s t : HookTag P)
     (f : hookModule (k := k) s ⟶ hookModule (k := k) t) (hf : f ≠ 0) :
     HomCondition s t := by
@@ -486,7 +512,9 @@ theorem hom_nonzero_implies_condition (s t : HookTag P)
           simpa [HomCondition, endpoints, birth, death,
             FiniteRankProjectiveResolution.rankProjectiveHookHomOrder] using horder
 
-/-- Existence of a nonzero map is equivalent to the endpoint criterion.-/
+/-- Existence of a nonzero map is equivalent to the endpoint criterion.
+@isnad1 id=iff.0h4v.s8.89706f5d89d6 from=translated src=- shape=8689c5e9 vocab=caa474e7
+-/
 theorem exists_nonzero_hom_iff (s t : HookTag P) :
     (∃ f : hookModule (k := k) s ⟶ hookModule (k := k) t, f ≠ 0) ↔
       HomCondition s t := by
@@ -496,7 +524,9 @@ theorem exists_nonzero_hom_iff (s t : HookTag P) :
   · intro h
     exact ⟨normalizedHom (k := k) s t h, normalizedHom_ne_zero (k := k) s t h⟩
 
-/-- If the endpoint criterion fails, every map between the two hook modules is zero.-/
+/-- If the endpoint criterion fails, every map between the two hook modules is zero.
+@isnad1 id=eq.1h5v.s8.2241f914f373 from=translated src=- shape=619c388a vocab=caa474e7
+-/
 theorem hom_eq_zero_of_not_condition (s t : HookTag P) (h : ¬ HomCondition s t)
     (f : hookModule (k := k) s ⟶ hookModule (k := k) t) : f = 0 := by
   by_contra hf
@@ -505,7 +535,9 @@ theorem hom_eq_zero_of_not_condition (s t : HookTag P) (h : ¬ HomCondition s t)
 /-! The normalization is preserved by structure maps on the source support. -/
 
 /-- Naturality propagates the normalized coefficient from source birth along
-every grade on which the source hook remains active.-/
+every grade on which the source hook remains active.
+@isnad1 id=eq.2h5v.s9.3dc5436daee1 from=translated src=- shape=c4063644 vocab=33fa73ff
+-/
 theorem normalizedHom_app_unitAt (s t : HookTag P) (h : HomCondition s t)
     {p : P} (hp : birth s ≤ p) :
     ((normalizedHom (k := k) s t h).app p).hom
@@ -539,7 +571,9 @@ theorem normalizedHom_app_unitAt (s t : HookTag P) (h : HomCondition s t)
   exact hcomp
 
 /-- When the composite endpoints still avoid the diagonal, normalized maps
-compose to the normalized map.-/
+compose to the normalized map.
+@isnad1 id=eq.3h5v.s7.6add10611cc4 from=translated src=- shape=27d018f5 vocab=261e878c
+-/
 theorem normalizedHom_comp_of_condition (s t u : HookTag P)
     (hst : HomCondition s t) (htu : HomCondition t u) (hsu : HomCondition s u) :
     normalizedHom (k := k) s t hst ≫ normalizedHom (k := k) t u htu =
@@ -579,14 +613,18 @@ theorem normalizedHom_comp_of_condition (s t u : HookTag P)
       exact hbirth
 
 /-- Endpoint order is transitive along a composable pair of admissible hook
-maps.-/
+maps.
+@isnad1 id=and.2h4v.s6.9b6d0ef7a961 from=translated src=- shape=473305db vocab=5ca83b8b
+-/
 theorem composite_endpoint_order (s t u : HookTag P)
     (hst : HomCondition s t) (htu : HomCondition t u) :
     birth u ≤ birth s ∧ death u ≤ death s :=
   ⟨htu.1.trans hst.1, htu.2.1.trans hst.2.1⟩
 
 /-- If the composite endpoints cross the diagonal, the composite of the
-normalized generators vanishes.-/
+normalized generators vanishes.
+@isnad1 id=eq.3h5v.s8.721799ffc692 from=translated src=- shape=a50328ec vocab=261e878c
+-/
 theorem normalizedHom_comp_of_not_condition (s t u : HookTag P)
     (hst : HomCondition s t) (htu : HomCondition t u)
     (hsu : ¬ HomCondition s u) :
@@ -594,7 +632,9 @@ theorem normalizedHom_comp_of_not_condition (s t u : HookTag P)
   hom_eq_zero_of_not_condition (k := k) s u hsu _
 
 /-- Under the endpoint order forced by the two input maps, the composite avoids
-the diagonal exactly when the target has not died by the source birth.-/
+the diagonal exactly when the target has not died by the source birth.
+@isnad1 id=iff.2h4v.s5.58c0cec8490d from=translated src=- shape=78af36db vocab=4eb0c437
+-/
 theorem composite_condition_iff_no_diagonal (s t u : HookTag P)
     (hst : HomCondition s t) (htu : HomCondition t u) :
     HomCondition s u ↔ ¬ death u ≤ birth s := by
@@ -603,7 +643,9 @@ theorem composite_condition_iff_no_diagonal (s t u : HookTag P)
   · exact fun h => h.2.2
   · exact fun h => ⟨hbirth, hdeath, h⟩
 
-/-- Crossing the diagonal forces the normalized composite to vanish.-/
+/-- Crossing the diagonal forces the normalized composite to vanish.
+@isnad1 id=eq.3h5v.s8.e32288011c01 from=translated src=- shape=b228fa6b vocab=69e5faa8
+-/
 theorem normalizedHom_comp_of_diagonal (s t u : HookTag P)
     (hst : HomCondition s t) (htu : HomCondition t u)
     (hdiag : death u ≤ birth s) :

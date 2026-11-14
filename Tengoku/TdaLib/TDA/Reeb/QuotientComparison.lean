@@ -43,7 +43,9 @@ section map
 variable {X : Type u} {Y : Type v} {Z : Type w}
   [TopologicalSpace X] [TopologicalSpace Y] [TopologicalSpace Z]
 
-/-- A height-preserving map respects the Reeb relation: compose the constant-value path.-/
+/-- A height-preserving map respects the Reeb relation: compose the constant-value path.
+@isnad1 id=reebrel.2h8v.s7.047f9dc79f2c from=translated src=- shape=a0866da0 vocab=a206a1d4
+-/
 theorem ReebRel.map {f : C(X, Y)} {g : C(Z, Y)} (h : C(X, Z)) (comm : ∀ x, g (h x) = f x)
     {x x' : X} (hr : ReebRel f x x') : ReebRel g (h x) (h x') := by
   obtain ⟨γ, hγ⟩ := hr
@@ -57,41 +59,62 @@ def map {f : C(X, Y)} {g : C(Z, Y)} (h : C(X, Z)) (comm : ∀ x, g (h x) = f x) 
     C(ReebQuotient f, ReebQuotient g) :=
   lift ((proj g).comp h) fun _ _ hr => (mk_eq_mk_iff g).2 (hr.map h comm)
 
+/--
+@isnad1 id=eq.1h7v.s7.d15e04d36e05 from=translated src=- shape=0de8471c vocab=c0476cb9
+-/
 @[simp]
 theorem map_mk {f : C(X, Y)} {g : C(Z, Y)} (h : C(X, Z)) (comm : ∀ x, g (h x) = f x) (x : X) :
     map h comm (mk f x) = mk g (h x) := rfl
 
-/-- `Q_h ∘ q_f = q_g ∘ h`.-/
+/-- `Q_h ∘ q_f = q_g ∘ h`.
+@isnad1 id=eq.1h6v.s7.2a58b1a09319 from=translated src=- shape=5d2e2fd1 vocab=811f28f5
+-/
 theorem map_comp_proj {f : C(X, Y)} {g : C(Z, Y)} (h : C(X, Z)) (comm : ∀ x, g (h x) = f x) :
     (map h comm).comp (proj f) = (proj g).comp h := rfl
 
-/-- `Q_h` is the unique continuous map with `Q_h ∘ q_f = q_g ∘ h`.-/
+/-- `Q_h` is the unique continuous map with `Q_h ∘ q_f = q_g ∘ h`.
+@isnad1 id=eq.2h7v.s8.462f7237f9bd from=translated src=- shape=47a7f49a vocab=c0476cb9
+-/
 theorem map_unique {f : C(X, Y)} {g : C(Z, Y)} (h : C(X, Z)) (comm : ∀ x, g (h x) = f x)
     (k : C(ReebQuotient f, ReebQuotient g)) (hk : ∀ x, k (mk f x) = mk g (h x)) :
     k = map h comm :=
   hom_ext hk
 
-/-- `ḡ ∘ Q_h = f̄`: `Q_h` is height-preserving.-/
+/-- `ḡ ∘ Q_h = f̄`: `Q_h` is height-preserving.
+@isnad1 id=eq.1h7v.s8.352a495b3e1d from=translated src=- shape=ab2b6d3f vocab=4ea1fc4f
+-/
 @[simp]
 theorem height_map_apply {f : C(X, Y)} {g : C(Z, Y)} (h : C(X, Z)) (comm : ∀ x, g (h x) = f x)
     (q : ReebQuotient f) : height g (map h comm q) = height f q := by
   induction q using ReebQuotient.ind with
   | h x => exact comm x
 
+/--
+@isnad1 id=eq.1h6v.s7.9bed6644bad1 from=translated src=- shape=9599e0af vocab=184586a9
+-/
 theorem height_comp_map {f : C(X, Y)} {g : C(Z, Y)} (h : C(X, Z)) (comm : ∀ x, g (h x) = f x) :
     (height g).comp (map h comm) = height f :=
   ContinuousMap.ext (height_map_apply h comm)
 
+/--
+@isnad1 id=eq.1h3v.s6.9bdef3d2da4b from=translated src=- shape=b3d88183 vocab=12f8764d
+-/
 theorem map_id (f : C(X, Y)) (comm : ∀ x, f (ContinuousMap.id X x) = f x) :
     map (ContinuousMap.id X) comm = ContinuousMap.id (ReebQuotient f) :=
   hom_ext fun _ => rfl
 
+/--
+@isnad1 id=eq.3h9v.s8.49de96b416db from=translated src=- shape=c91e0ed0 vocab=0f68e25e
+-/
 theorem map_comp {W : Type*} [TopologicalSpace W] {f : C(X, Y)} {g : C(Z, Y)} {e : C(W, Y)}
     (h : C(X, Z)) (hh : ∀ x, g (h x) = f x) (k : C(Z, W)) (hk : ∀ z, e (k z) = g z)
     (hkh : ∀ x, e ((k.comp h) x) = f x) :
     map (k.comp h) hkh = (map k hk).comp (map h hh) :=
   hom_ext fun _ => rfl
 
+/--
+@isnad1 id=surjecti.2h6v.s7.37c18b0bc863 from=translated src=- shape=714964fe vocab=ada9b07b
+-/
 theorem map_surjective {f : C(X, Y)} {g : C(Z, Y)} (h : C(X, Z)) (comm : ∀ x, g (h x) = f x)
     (hs : Function.Surjective h) : Function.Surjective (map h comm) := by
   intro q
@@ -121,21 +144,27 @@ Example 3.21, machine-checked as
 def componentComparison (f : C(X, Y)) : componentFunctor f ⟶ componentFunctor (height f) :=
   componentNatTrans (proj f) (fun _ => rfl)
 
-/-- Representative formula for `η`.-/
+/-- Representative formula for `η`.
+@isnad1 id=eq.0h5v.s9.d0e25a09947a from=translated src=- shape=e2a5aa40 vocab=ee372ad4
+-/
 @[simp]
 theorem componentComparison_app_mk (f : C(X, Y)) (U : TopologicalSpace.Opens Y)
     (x : {x : X // f x ∈ U}) :
     (componentComparison f).app U (ZerothHomotopy.mk x) =
       ZerothHomotopy.mk (⟨mk f x.1, x.2⟩ : {q : ReebQuotient f // height f q ∈ U}) := rfl
 
-/-- Naturality in `U`, pointwise (the `NatTrans` field).-/
+/-- Naturality in `U`, pointwise (the `NatTrans` field).
+@isnad1 id=eq.0h6v.s8.3eb68e4b6f20 from=translated src=- shape=d05d910f vocab=826f3ff8
+-/
 theorem componentComparison_naturality (f : C(X, Y)) {U V : TopologicalSpace.Opens Y}
     (i : U ⟶ V) :
     (componentFunctor f).map i ≫ (componentComparison f).app V =
       (componentComparison f).app U ≫ (componentFunctor (height f)).map i :=
   (componentComparison f).naturality i
 
-/-- Naturality in the height-preserving map `h`: `C_h ≫ η_g = η_f ≫ C_{Q_h}`.-/
+/-- Naturality in the height-preserving map `h`: `C_h ≫ η_g = η_f ≫ C_{Q_h}`.
+@isnad1 id=eq.1h6v.s8.8dadf8d70d03 from=translated src=- shape=611cd507 vocab=f5f7ccda
+-/
 theorem componentComparison_natural {f : C(X, Y)} {g : C(Z, Y)} (h : C(X, Z))
     (comm : ∀ x, g (h x) = f x) :
     componentNatTrans h comm ≫ componentComparison g =
@@ -144,7 +173,9 @@ theorem componentComparison_natural {f : C(X, Y)} {g : C(Z, Y)} (h : C(X, Z))
   induction c using ZerothHomotopy.rec with
   | mk x => rfl
 
-/-- `η_f` is surjective on every open: every point of `f̄ ⁻¹ U` is `q_f x` with `f x ∈ U`.-/
+/-- `η_f` is surjective on every open: every point of `f̄ ⁻¹ U` is `q_f x` with `f x ∈ U`.
+@isnad1 id=surjecti.0h4v.s8.106a75fc3ba2 from=translated src=- shape=dc0ff9c1 vocab=bda4609a
+-/
 theorem componentComparison_app_surjective (f : C(X, Y)) (U : TopologicalSpace.Opens Y) :
     Function.Surjective ((componentComparison f).app U) := by
   intro c
@@ -166,6 +197,9 @@ section overBase
 def overBaseMap {Y : Type u} [TopologicalSpace Y] (A : Over (TopCat.of Y)) : C(A.left, Y) :=
   A.hom.hom
 
+/--
+@isnad1 id=eq.0h5v.s8.e79bd2c1ad26 from=translated src=- shape=8ce467e7 vocab=3443260c
+-/
 theorem overBaseMap_comm {Y : Type u} [TopologicalSpace Y] {A B : Over (TopCat.of Y)}
     (φ : A ⟶ B) (x : A.left) : overBaseMap B (φ.left.hom x) = overBaseMap A x := by
   rw [overBaseMap, overBaseMap, ← Over.w φ]

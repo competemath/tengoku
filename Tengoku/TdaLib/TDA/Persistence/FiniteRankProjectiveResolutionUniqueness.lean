@@ -29,7 +29,9 @@ variable {M : PModule.{u,0,u} k P}
 namespace IsRankProjectiveCover
 
 /-- Transport a cover certificate along isomorphisms of its source and target.
-The quotient map is conjugated by the actual isomorphisms.-/
+The quotient map is conjugated by the actual isomorphisms.
+@isnad1 id=isrankpr.1h9v.s8.cc895797b8d4 from=translated src=- shape=666331e9 vocab=98f9028e
+-/
 theorem ofIso {A₀ B₀ A B : PModule.{u,0,u} k P} {π : A₀ ⟶ B₀}
     (hπ : IsRankProjectiveCover π) (eA : A₀ ≅ A) (eB : B₀ ≅ B) :
     IsRankProjectiveCover (eA.inv ≫ π ≫ eB.hom) := by
@@ -50,7 +52,9 @@ theorem ofIso {A₀ B₀ A B : PModule.{u,0,u} k P} {π : A₀ ⟶ B₀}
     infer_instance
 
 /-- Postcomposing a rank-projective cover with an isomorphism of targets
-preserves its cover certificate.-/
+preserves its cover certificate.
+@isnad1 id=isrankpr.1h7v.s7.0d8df5f477bc from=translated src=- shape=53a60ec2 vocab=508aa829
+-/
 theorem postcomposeIso {A B C : PModule.{u,0,u} k P} {π : A ⟶ B}
     (hπ : IsRankProjectiveCover π) (e : B ≅ C) :
     IsRankProjectiveCover (π ≫ e.hom) := by
@@ -96,11 +100,17 @@ noncomputable def MinimalFiniteRankProjectiveResolution.termAt
     PModule.{u,0,u} k P :=
   if h : j < R.resolution.length then R.resolution.term ⟨j, h⟩ else 0
 
+/--
+@isnad1 id=eq.1h5v.s7.046ab6881a25 from=translated src=- shape=85360661 vocab=886ca0c7
+-/
 @[simp] theorem MinimalFiniteRankProjectiveResolution.termAt_eq_zero
     (R : MinimalFiniteRankProjectiveResolution (k := k) (M := M)) {j : ℕ}
     (h : R.resolution.length ≤ j) : R.termAt j = 0 := by
   simp [MinimalFiniteRankProjectiveResolution.termAt, Nat.not_lt.mpr h]
 
+/--
+@isnad1 id=eq.1h5v.s6.548b53fadfb6 from=translated src=- shape=cf84815f vocab=96ef090d
+-/
 theorem MinimalFiniteRankProjectiveResolution.termAt_eq
     (R : MinimalFiniteRankProjectiveResolution (k := k) (M := M)) {j : ℕ}
     (h : j < R.resolution.length) :
@@ -281,14 +291,18 @@ private noncomputable def MinimalFiniteRankProjectiveResolution.kernelIsoAt
 
 /-- Any two minimal finite rank-projective resolutions of the same module
 have isomorphic terms in every degree after zero padding. The result does not
-assert equality of their raw lengths or choose a comparison isomorphism.-/
+assert equality of their raw lengths or choose a comparison isomorphism.
+@isnad1 id=nonempty.0h6v.s6.5ff9e0bd0a87 from=translated src=- shape=d1388cfe vocab=2c5188b6
+-/
 theorem MinimalFiniteRankProjectiveResolution.termAt_nonempty_iso
     (R S : MinimalFiniteRankProjectiveResolution (k := k) (M := M)) (j : ℕ) :
     Nonempty (R.termAt j ≅ S.termAt j) := by
   exact ⟨(R.compareStage S j (R.kernelIsoAt S j)).termIso⟩
 
 /-- The ranks of corresponding structure maps in zero-padded resolution terms
-are independent of the chosen certified minimal resolution.-/
+are independent of the chosen certified minimal resolution.
+@isnad1 id=eq.1h8v.s6.2e2c2504bac8 from=translated src=- shape=1a97d9c2 vocab=df978951
+-/
 theorem MinimalFiniteRankProjectiveResolution.termAt_rank_eq
     (R S : MinimalFiniteRankProjectiveResolution (k := k) (M := M)) (j : ℕ)
     {a b : P} (hab : a ≤ b) :

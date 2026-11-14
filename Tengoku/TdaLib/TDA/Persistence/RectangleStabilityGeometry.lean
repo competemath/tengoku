@@ -47,7 +47,9 @@ def alphaLE {n : ℕ} (R S : Rectangle n) : Prop :=
     (alphaValue R = alphaValue S ∧ alphaPlus R ≤ alphaPlus S)
 
 /-- If `R ≤α T`, then a middle rectangle lies on the forward side of at
-least one of the two adjacent pairs.-/
+least one of the two adjacent pairs.
+@isnad1 id=or.1h4v.s4.1de9977949ec from=translated src=- shape=7c7d412a vocab=c1b16240
+-/
 theorem alphaLE_chain_split {n : ℕ} (R S T : Rectangle n)
     (hRT : alphaLE R T) : alphaLE R S ∨ alphaLE S T := by
   by_cases hRS : alphaLE R S
@@ -74,16 +76,28 @@ theorem alphaLE_chain_split {n : ℕ} (R S T : Rectangle n)
 def decoratedLE (a b : ℝ) (p q : Bool) : Prop :=
   a < b ∨ (a = b ∧ p ≤ q)
 
+/--
+@isnad1 id=decorate.0h2v.s3.60c75f6edea3 from=translated src=- shape=8f3ff834 vocab=9d8e9015
+-/
 theorem decoratedLE_refl (a : ℝ) (p : Bool) : decoratedLE a a p p :=
   Or.inr ⟨rfl, le_rfl⟩
 
+/--
+@isnad1 id=le.1h4v.s4.e9a240085fcb from=translated src=- shape=1ac60b2c vocab=43b62404
+-/
 theorem decoratedLE_value {a b : ℝ} {p q : Bool}
     (h : decoratedLE a b p q) : a ≤ b :=
   h.elim le_of_lt (fun x => x.1.le)
 
+/--
+@isnad1 id=decorate.1h4v.s4.94f9793c7c37 from=translated src=- shape=240bda0f vocab=3137c7af
+-/
 theorem decoratedLE_of_lt {a b : ℝ} (h : a < b) (p q : Bool) :
     decoratedLE a b p q := Or.inl h
 
+/--
+@isnad1 id=decorate.2h6v.s5.24b0fee0023e from=translated src=- shape=4271e938 vocab=e582e4e9
+-/
 theorem decoratedLE_add_mono {a b δ ρ : ℝ} {p q : Bool}
     (h : decoratedLE a (b + δ) p q) (hδρ : δ ≤ ρ) :
     decoratedLE a (b + ρ) p q := by
@@ -253,7 +267,9 @@ private theorem upper_mem_of_bound (A B : BoundedInterval) (ρ : ℝ)
 
 /-- Forward decorated endpoint bounds make the normalized overlap comparison
 natural: an earlier source point and a later shifted-target point force both
-intermediate fibers to be present.-/
+intermediate fibers to be present.
+@isnad1 id=and.4h6v.s8.0b10c0d90600 from=translated src=- shape=a9d11d16 vocab=dc45f36e
+-/
 theorem compatible_of_endpoint_bounds {n : ℕ} (R S : Rectangle n) (ρ : ℝ≥0)
     (h : ∀ j, decoratedLE (endpoint S j)
       (endpoint R j + (ρ : ℝ)) (plus S j) (plus R j))
@@ -339,7 +355,9 @@ noncomputable def comparison {n : ℕ} {k : Type u} [Field k]
       · simp [hqS]
     · simp [SupportInterval.val_eq_zero R.support hpR x]
 
-/-- A comparison keeps the coefficient at each shifted-target point.-/
+/-- A comparison keeps the coefficient at each shifted-target point.
+@isnad1 id=eq.1h7v.s11.cb64fa29bcc3 from=translated src=- shape=5799d4b3 vocab=38b5d846
+-/
 theorem comparison_app_val {n : ℕ} {k : Type u} [Field k]
     (R S : Rectangle n) (ρ : ℝ≥0)
     (h : ∀ j, decoratedLE (endpoint S j)
@@ -453,7 +471,9 @@ private theorem sum_reverse_decorated {ι : Type*} [Fintype ι] [DecidableEq ι]
   cases hpr : pr j <;> cases hps : ps j <;> simp_all; omega
 
 /-- Numeric part of the α argument: among `2n` endpoints, one can lag by at
-most `(2n−1)δ` if every other endpoint advances by at most `δ`.-/
+most `(2n−1)δ` if every other endpoint advances by at most `δ`.
+@isnad1 id=le.2h5v.s6.a6ddc99016d7 from=translated src=- shape=59362593 vocab=31726d79
+-/
 theorem reverse_value_of_alphaLE {n : ℕ} (R S : Rectangle n) (δ : ℝ)
     (hf : ∀ j, endpoint S j ≤ endpoint R j + δ)
     (ha : alphaLE R S) (j : Fin n × Bool) :
@@ -465,7 +485,9 @@ theorem reverse_value_of_alphaLE {n : ℕ} (R S : Rectangle n) (δ : ℝ)
     Nat.cast_mul, mul_comm] using h
 
 /-- Full decorated α bound, including the equality case for open and closed
-endpoints. This is the finite-sum step in Bjerkevik's Lemma 4.7.-/
+endpoints. This is the finite-sum step in Bjerkevik's Lemma 4.7.
+@isnad1 id=decorate.2h5v.s6.83b60d3bad5c from=translated src=- shape=7858b7cf vocab=244dce8e
+-/
 theorem reverse_endpoint_bounds_of_alphaLE {n : ℕ}
     (R S : Rectangle n) (δ : ℝ)
     (hf : ∀ j, decoratedLE (endpoint S j) (endpoint R j + δ)
@@ -480,7 +502,9 @@ theorem reverse_endpoint_bounds_of_alphaLE {n : ℕ}
     Fintype.card_bool, Nat.cast_mul, mul_comm] using h
 
 /-- A nonzero shifted morphism has a nonzero scalar component at a point
-belonging to the source and to the translated target.-/
+belonging to the source and to the translated target.
+@isnad1 id=ex.1h6v.s12.937e8afe944e from=translated src=- shape=1a737636 vocab=ebccd955
+-/
 theorem exists_nonzero_shifted_component {n : ℕ} {k : Type u} [Field k]
     (R S : Rectangle n) (ε : ℝ≥0)
     (f : R.module (k := k) ⟶ (shift ε).obj S.module) (hf : f ≠ 0) :
@@ -510,7 +534,9 @@ theorem exists_nonzero_shifted_component {n : ℕ} {k : Type u} [Field k]
     exact map_zero _
 
 /-- Naturality propagates a nonzero shifted component back through source
-structure maps.-/
+structure maps.
+@isnad1 id=mem.4h8v.s12.d2192b20d61e from=translated src=- shape=787509dc vocab=b106e7a2
+-/
 theorem mem_shifted_target_of_le {n : ℕ} {k : Type u} [Field k]
     (R S : Rectangle n) (ε : ℝ≥0)
     (f : R.module (k := k) ⟶ (shift ε).obj S.module)
@@ -538,7 +564,9 @@ theorem mem_shifted_target_of_le {n : ℕ} {k : Type u} [Field k]
   exact hne hnat
 
 /-- Naturality propagates a nonzero shifted component forward through target
-structure maps.-/
+structure maps.
+@isnad1 id=mem.5h8v.s12.e20632ae1fe7 from=translated src=- shape=d0f9b4c5 vocab=b106e7a2
+-/
 theorem mem_source_of_le_shifted {n : ℕ} {k : Type u} [Field k]
     (R S : Rectangle n) (ε : ℝ≥0)
     (f : R.module (k := k) ⟶ (shift ε).obj S.module)
@@ -608,7 +636,9 @@ private theorem translation_withCoord_mem {n : ℕ} (S : Rectangle n) (ε : ℝ�
 
 /-- The shifted version of the necessary half of the decorated rectangle Hom
 criterion: nonzero natural transformations force both lower and upper endpoint
-bounds in the direction target ≤ source + shift.-/
+bounds in the direction target ≤ source + shift.
+@isnad1 id=decorate.1h7v.s10.99f91d19f7d2 from=translated src=- shape=d6fc79e0 vocab=2db9209b
+-/
 theorem shifted_hom_endpoint_bounds {n : ℕ} {k : Type u} [Field k]
     (R S : Rectangle n) (ε : ℝ≥0)
     (f : R.module (k := k) ⟶ (shift ε).obj S.module) (hf : f ≠ 0)
@@ -646,7 +676,9 @@ def endpointClose {n : ℕ} (ρ : ℝ) (R S : Rectangle n) : Prop :=
     decoratedLE (endpoint S j) (endpoint R j + ρ) (plus S j) (plus R j)
 
 /-- Every point surviving a double shift through R crosses S at the
-intermediate shifted grade when all decorated endpoint bounds hold.-/
+intermediate shifted grade when all decorated endpoint bounds hold.
+@isnad1 id=mem.3h5v.s7.32229bf1a024 from=translated src=- shape=b83a44ba vocab=a099952a
+-/
 theorem middle_mem_of_endpointClose {n : ℕ} (R S : Rectangle n)
     (ρ : ℝ≥0)
     (h : endpointClose (ρ : ℝ) R S) (p : Fin n → ℝ)
@@ -668,7 +700,9 @@ theorem middle_mem_of_endpointClose {n : ℕ} (R S : Rectangle n)
     exact hu
 
 /-- The normalized comparisons compose to the original double-shift
-transition. Endpoint closeness supplies the intermediate support point.-/
+transition. Endpoint closeness supplies the intermediate support point.
+@isnad1 id=eq.1h5v.s10.5e66aff64ca4 from=translated src=- shape=bff9b335 vocab=9d9263b0
+-/
 theorem comparison_composite {n : ℕ} {k : Type u} [Field k]
     (R S : Rectangle n) (ρ : ℝ≥0)
     (h : endpointClose (ρ : ℝ) R S) :
@@ -727,7 +761,9 @@ private theorem epsilon_le_stability_radius {n : ℕ} (hn : 0 < n) (ε : ℝ≥0
 
 /-- The decisive geometric half of Bjerkevik's Lemma 4.7. The morphisms
 are directed `R → S[ε]` and `S → T[ε]`; if `R ≤α T`, then S is within
-`(2n−1)ε` of one adjacent rectangle at every decorated endpoint.-/
+`(2n−1)ε` of one adjacent rectangle at every decorated endpoint.
+@isnad1 id=or.4h8v.s11.78b666331af0 from=translated src=- shape=311d1aef vocab=9eaee206
+-/
 theorem nonzero_path_endpointClose {n : ℕ} (hn : 0 < n)
     {k : Type u} [Field k] (R S T : Rectangle n) (ε : ℝ≥0)
     (hRT : alphaLE R T)
@@ -762,7 +798,9 @@ private theorem stabilityRadius_coe {n : ℕ} (hn : 0 < n) (ε : ℝ≥0) :
 /-- Bjerkevik's rectangle geometry edge (published Lemma 4.7), specialized
 to nonempty bounded rectangles with arbitrary open/closed decorations. Two
 nonzero shifted natural transformations along `R → S → T` and `R ≤α T`
-produce an actual `(2n−1)ε` interleaving of S with R or T.-/
+produce an actual `(2n−1)ε` interleaving of S with R or T.
+@isnad1 id=or.4h8v.s11.80747b5937e2 from=translated src=- shape=28c9a26c vocab=534c673e
+-/
 theorem nonzero_path_interleaving {n : ℕ} (hn : 0 < n)
     {k : Type u} [Field k] (R S T : Rectangle n) (ε : ℝ≥0)
     (hRT : alphaLE R T)
@@ -807,7 +845,9 @@ private theorem cross_coordinate_bound {n : ℕ} (R T : Rectangle n)
 /-- Long α-ordered endpoints of a nonzero two-step path have a common
 source, middle and twice-shifted target grade. This is the specialization of
 Bjerkevik's Lemma 4.8 at the significance threshold required by the finite
-Hall inequality.-/
+Hall inequality.
+@isnad1 id=ex.6h8v.s11.cd23cc021b3c from=translated src=- shape=5f303360 vocab=6cf25011
+-/
 theorem nonzero_path_support {n : ℕ} (hn : 0 < n)
     {k : Type u} [Field k] (R S T : Rectangle n) (ε : ℝ≥0)
     (hRT : alphaLE R T)

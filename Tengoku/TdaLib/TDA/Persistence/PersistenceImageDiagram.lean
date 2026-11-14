@@ -14,7 +14,9 @@ factor, and hence bounds the existing Gaussian pixel ℓ¹ image.
 
 namespace TDA.Persistence
 
-/-- Positive diagrams give strictly positive lengths at every finite occurrence.-/
+/-- Positive diagrams give strictly positive lengths at every finite occurrence.
+@isnad1 id=lt.1h2v.s6.3c18dbb02d61 from=translated src=- shape=22e94f50 vocab=e0d9cd5c
+-/
 theorem Diagram.IsPositive.finiteOccurrence {D : Diagram ℝ} (hD : D.IsPositive)
     (p : D.finiteOccurrences) : p.1.1 < p.1.2 := by
   have hp : p.1 ∈ finitePart D.points := Multiset.coe_mem (x := p)
@@ -38,7 +40,9 @@ noncomputable def finiteDiagramImage {K : Type*} [Fintype K] {A B : ℝ}
     PiLp 1 (fun _ : K => ℝ) :=
   image σ w P (fun p : D.finiteOccurrences => p.1)
 
-/-- Empty finite parts, including essential-only diagrams, have zero image.-/
+/-- Empty finite parts, including essential-only diagrams, have zero image.
+@isnad1 id=eq.1h7v.s7.b49fb5f18581 from=translated src=- shape=e8d0877b vocab=5ae52178
+-/
 theorem finiteDiagramImage_eq_zero_of_finitePart_eq_zero
     {K : Type*} [Fintype K] {A B : ℝ} (σ : ℝ) (w : Weight A B)
     (P : K → Set (ℝ × ℝ)) (D : Diagram ℝ) (hD : finitePart D.points = 0) :
@@ -50,7 +54,9 @@ theorem finiteDiagramImage_eq_zero_of_finitePart_eq_zero
   exact finiteFeatureSum_empty _ _
 
 /-- Count-dependent bottleneck stability for finite-diagram Gaussian images.
-Both the finite bottleneck and positive-length hypotheses are explicit.-/
+Both the finite bottleneck and positive-length hypotheses are explicit.
+@isnad1 id=le.8h8v.s8.b27f4150c5ee from=translated src=- shape=7f5284ae vocab=3a0aa15d
+-/
 theorem norm_finiteDiagramImage_sub_le_card_mul_bottleneck
     {K : Type*} [Fintype K] {σ A B : ℝ}
     (hσ : 0 < σ) (hA : 0 ≤ A) (hB : 0 ≤ B) (w : Weight A B)

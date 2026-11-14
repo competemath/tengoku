@@ -59,7 +59,9 @@ private theorem diagram_numeric_eq {I J : Type} [Fintype I] [Fintype J]
   · simp [diagram_essentialPart]
   · simp [diagram_essentialPart]
 
-/-- All three existing values are exactly one for the shifted, permuted long bars.-/
+/-- All three existing values are exactly one for the shifted, permuted long bars.
+@isnad1 id=and.0h0v.s6.8def30eaac77 from=translated src=- shape=92017a02 vocab=cf88efb1
+-/
 theorem shifted_exact_distances :
     bottleneck (diagram source source_pos) (diagram target target_pos) = 1 ∧
     realInterleavingDistance (RealBarcode.realize (k := ℚ) (diagram source source_pos))
@@ -90,7 +92,9 @@ private theorem copies_pos (b : Bool) : (copies b).1 < (copies b).2 := by norm_n
 private def empty : Fin 0 → ℝ × ℝ := Fin.elim0
 private theorem empty_pos (i : Fin 0) : (empty i).1 < (empty i).2 := Fin.elim0 i
 
-/-- Two equal endpoint values remain two occurrences in the original diagram domain.-/
+/-- Two equal endpoint values remain two occurrences in the original diagram domain.
+@isnad1 id=eq.0h0v.s6.910946f4ec77 from=translated src=- shape=c278fb96 vocab=bb00ff62
+-/
 theorem repeated_occurrences :
     (diagram copies copies_pos).points.count (0, (2 : WithTop ℝ)) = 2 := by
   norm_num [diagram, copies, Multiset.map_const]
@@ -116,7 +120,9 @@ noncomputable def copiesDeletion :
   toRealInterleaving copies empty copies_pos empty_pos
     (isMatching_of_cost copies empty copies_pos empty_pos 1 eraseCopies eraseCopies_cost).interleaving
 
-/-- The threshold is the actual original real-module distance, rather than just a bound.-/
+/-- The threshold is the actual original real-module distance, rather than just a bound.
+@isnad1 id=eq.0h0v.s5.6efe3f37b0fc from=translated src=- shape=92ac2731 vocab=254229a7
+-/
 theorem copies_exact_distance :
     realInterleavingDistance (RealBarcode.realize (k := ℚ) (diagram copies copies_pos))
       (RealBarcode.realize (diagram empty empty_pos)) = 1 := by
@@ -126,7 +132,9 @@ theorem copies_exact_distance :
   rw [presentationBottleneck_constant_empty]
   norm_num [diagonalCost]
 
-/-- The exact parameter set here is closed, in contrast to the closed-point fixture.-/
+/-- The exact parameter set here is closed, in contrast to the closed-point fixture.
+@isnad1 id=iff.0h1v.s5.bd246b1da2df from=translated src=- shape=1fc100a3 vocab=b0c10e35
+-/
 theorem copies_interleaving_iff (ε : ℝ≥0) :
     Nonempty (RealInterleaving ε
       (RealBarcode.realize (k := ℚ) (diagram copies copies_pos))
@@ -187,7 +195,9 @@ private theorem farMatching_actual : RectangleMatching.IsMatching (k := ℚ) 1
     simp [farMatching] at h
 
 /-- A valid short-pair matching can have cost 100 at radius one. The bridge
-produces another matching which deletes the pair and has cost at most one.-/
+produces another matching which deletes the pair and has cost at most one.
+@isnad1 id=ex.0h0v.s6.d3f873436670 from=translated src=- shape=b80b883a vocab=f172448a
+-/
 theorem short_far_pruning :
     ∃ M : OccurrenceMatching Unit Unit PEmpty.{1} PEmpty.{1},
       RectangleMatching.IsMatching (k := ℚ) 1
@@ -207,7 +217,9 @@ theorem short_far_pruning :
       have h := (A.source_le_cost farSource farTarget PEmpty.elim PEmpty.elim ()).trans hA
       norm_num [ha, farSource, farTarget, finitePairCost] at h
 
-/-- Raw half-open constructors with empty or reversed support are genuinely zero.-/
+/-- Raw half-open constructors with empty or reversed support are genuinely zero.
+@isnad1 id=and.0h0v.s6.bf31a001f840 from=translated src=- shape=9051b68a vocab=e4ea73f9
+-/
 theorem empty_and_reversed_zero :
     IsZero (RealBarcode.intervalModule (k := ℚ) (0, (0 : WithTop ℝ))) ∧
     IsZero (RealBarcode.intervalModule (k := ℚ) (2, (1 : WithTop ℝ))) :=
@@ -216,7 +228,9 @@ theorem empty_and_reversed_zero :
 private def closedPoint : Rectangle 1 := fun _ => ⟨0, 0, true, true, Or.inr ⟨rfl, rfl, rfl⟩⟩
 
 /-- A closed singleton is retained by rectangles, unlike an empty half-open
-interval. Its zero distance still has no parameter-zero family interleaving.-/
+interval. Its zero distance still has no parameter-zero family interleaving.
+@isnad1 id=and.0h0v.s7.a8125de1b1e6 from=translated src=- shape=e49c49ab vocab=ea29b36f
+-/
 theorem decorated_singleton_boundary :
     IsZero (RealBarcode.intervalModule (k := ℚ) (0, (0 : WithTop ℝ))) ∧
     RectangleMatching.bottleneckDistance (k := ℚ) (fun _ : Unit => closedPoint)

@@ -34,6 +34,9 @@ local instance : LocallyFiniteOrder (PairPoset Unit) :=
 local instance : DecidableEq (PairPoset Unit) :=
   TDA.Persistence.FiniteRankProjectiveEndAlgebra.instDecidableEqPairPoset
 local instance : Fintype (ComparablePair Unit) := Fintype.ofFinite _
+/--
+@isnad1 id=istwosid.0h1v.s7.9c3d57f512eb from=translated src=- shape=177e3479 vocab=dd46d519
+-/
 local instance diagonalIdealTwoSidedUnit {k : Type} [Field k] :
     (TDA.Persistence.FiniteRankProjectiveDiagonalIdealProjective.DiagonalIdeal
       (k := k) (S := Unit)).IsTwoSided :=
@@ -43,14 +46,18 @@ private def unitStrictVertex :
     TDA.Persistence.FiniteRankProjectiveEndAlgebra.StrictVertex Unit :=
   ⟨⟨((), ⊤), le_top⟩, by simp⟩
 
-/-- The first left-derived extension of the singleton zero module is zero.-/
+/-- The first left-derived extension of the singleton zero module is zero.
+@isnad1 id=iszero.0h0v.s11.da10f2e5933e from=translated src=- shape=503c6208 vocab=4b1f7e7d
+-/
 theorem rational_unit_zero_derived_one_isZero :
     IsZero (((extensionFunctor (k := ℚ) (S := Unit)).leftDerived 1).obj
       ((ModuleCat.restrictScalars (quotientHom (k := ℚ) (S := Unit))).obj
         (ModuleCat.of (RightQuotient (k := ℚ) (S := Unit)) PUnit))) :=
   extension_leftDerived_one_isZero_zero (k := ℚ) (S := Unit)
 
-/-- The actual restricted singleton vertex has zero first derived quotient extension.-/
+/-- The actual restricted singleton vertex has zero first derived quotient extension.
+@isnad1 id=iszero.0h0v.s11.54fdaabe6383 from=translated src=- shape=b013ca51 vocab=3200bb88
+-/
 theorem rational_unit_vertex_derived_one_isZero :
     IsZero (((extensionFunctor (k := ℚ) (S := Unit)).leftDerived 1).obj
       (RightVertexRestrictedModule (k := ℚ) (S := Unit) unitStrictVertex)) :=

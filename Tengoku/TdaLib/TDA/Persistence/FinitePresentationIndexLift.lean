@@ -100,7 +100,9 @@ noncomputable def Presentation.liftIndexUniversePresentedIso
   simp [D', Presentation.liftIndexUniverse, Category.assoc]
 
 /-- Original finite presentations with index carriers in `Type 0` can be
-used by APIs requiring carriers in the module universe.-/
+used by APIs requiring carriers in the module universe.
+@isnad1 id=finitely.1h3v.s4.2e88518b46a6 from=translated src=- shape=ffeb61ea vocab=03bf021b
+-/
 theorem finitelyPresented_liftIndexUniverse
     (M : PModule.{u,v,u} R P)
     (hM : FinitelyPresented.{u,v,0} (R := R) (P := P) M) :
@@ -166,7 +168,9 @@ noncomputable def GradedGenerators.lowerFiniteIndexUniverseIso
 /-- Finite presentations with index carriers in the module universe `Type u`
 can be reindexed to carriers in `Type 0`. Together with
 `finitelyPresented_liftIndexUniverse`, the two universe choices for finite
-presentations of a module in `PModule.{u,v,u}` are equivalent.-/
+presentations of a module in `PModule.{u,v,u}` are equivalent.
+@isnad1 id=finitely.1h3v.s4.6d4abb1f0e64 from=translated src=- shape=ffeb61ea vocab=03bf021b
+-/
 theorem finitelyPresented_lowerIndexUniverse
     (M : PModule.{u,v,u} R P)
     (hM : FinitelyPresented.{u,v,u} (R := R) (P := P) M) :

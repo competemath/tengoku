@@ -59,7 +59,9 @@ private theorem rankExact_zeroQuotient
   exact hs.rankExact_of_section (0 : (0 : PModule.{u,0,u} k P) ⟶ M) (by simp)
 
 /-- An arbitrary-field repeated-grade example has finitely presented original
-left terms and a nonzero actual kernel of the composite deflation.-/
+left terms and a nonzero actual kernel of the composite deflation.
+@isnad1 id=and.0h1v.s15.00eb1c7ac604 from=translated src=- shape=6e7fdbbc vocab=7b78d22b
+-/
 theorem arbitrary_field_nonzero_composite_kernel {k : Type u} [Field k] :
     FinitelyPresented.{u,0,0} (R := k) (P := Fin 2 → ℝ)
       (Limits.kernel
@@ -119,7 +121,9 @@ theorem arbitrary_field_nonzero_composite_kernel {k : Type u} [Field k] :
   exact ⟨hresult.1, hresult.2, ⟨x, hx⟩⟩
 
 /-- The empty zero presentation also has a finitely presented composite kernel
-and its canonical rank-exact kernel row.-/
+and its canonical rank-exact kernel row.
+@isnad1 id=and.0h1v.s13.c6bc03c1ea82 from=translated src=- shape=a33babae vocab=fcd0e259
+-/
 theorem empty_zero_composite_kernel_finitelyPresented {k : Type u} [Field k] :
     FinitelyPresented.{u,0,0} (R := k) (P := Fin 2 → ℝ)
       (Limits.kernel
@@ -184,7 +188,9 @@ private noncomputable abbrev secondSplitQuotient (k : Type u) [Field k] :
 /-- The composite-kernel theorem on two split rank-exact rows whose outer terms
 are nonzero finite biproducts of the repeated-grade module `X`. The actual composite kernel is
 finitely presented, its kernel row is rank exact, and it contains a vector at
-grade zero whose image under the first deflation is nonzero.-/
+grade zero whose image under the first deflation is nonzero.
+@isnad1 id=and.0h1v.s14.bd4e2d947f41 from=translated src=- shape=5b6bee93 vocab=168de9c7
+-/
 theorem arbitrary_field_split_composite_kernel {k : Type u} [Field k] :
     FinitelyPresented.{u,0,0} (R := k) (P := Fin 2 → ℝ)
         (Limits.kernel (firstSplitQuotient k ≫ secondSplitQuotient k)) ∧

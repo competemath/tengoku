@@ -49,6 +49,9 @@ local instance restrictedScalars
     Module k M :=
   restrictedScalarsStructure (k := k) (S := S) M
 
+/--
+@isnad1 id=isscalar.0h3v.s12.e86b36e1fa06 from=translated src=- shape=97bc486f vocab=078e5bfa
+-/
 local instance scalarTower
     (M : ModuleCat (FiniteRankProjectiveEndAlgebra.Incidence (k := k) (S := S))) :
     IsScalarTower k (FiniteRankProjectiveEndAlgebra.Incidence (k := k) (S := S)) M :=
@@ -59,6 +62,9 @@ abbrev DiagonalIdeal := FiniteRankProjectiveDiagonalIdealProjective.DiagonalIdea
   (k := k) (S := S)
 abbrev DiagonalQuotient := Incidence (k := k) (S := S) ⧸ DiagonalIdeal (k := k) (S := S)
 
+/--
+@isnad1 id=istwosid.0h2v.s6.ed79d60f9e36 from=translated src=- shape=3e603a0f vocab=2f7efba6
+-/
 local instance diagonalIdealTwoSided :
     (DiagonalIdeal (k := k) (S := S)).IsTwoSided :=
   diagonalIdeal_isTwoSided (k := k) (S := S)
@@ -79,6 +85,9 @@ abbrev diagonalQuotientModule : ModuleCat (Incidence (k := k) (S := S)) :=
 def zeroModule : ModuleCat (Incidence (k := k) (S := S)) :=
   ModuleCat.of (Incidence (k := k) (S := S)) PUnit
 
+/--
+@isnad1 id=iszero.0h2v.s7.929497db38ab from=translated src=- shape=b8ca083a vocab=2ece6512
+-/
 theorem zeroModule_isZero : IsZero (zeroModule (k := k) (S := S)) :=
   ModuleCat.isZero_of_subsingleton (ModuleCat.of (Incidence (k := k) (S := S)) PUnit)
 
@@ -92,7 +101,9 @@ def diagonalQuotientProjection : regularModule (k := k) (S := S) ⟶
     diagonalQuotientModule (k := k) (S := S) :=
   ModuleCat.ofHom (DiagonalIdeal (k := k) (S := S)).mkQ
 
-/-- The augmentation is the quotient map on elements of the regular module.-/
+/-- The augmentation is the quotient map on elements of the regular module.
+@isnad1 id=eq.0h3v.s12.99bc7d075a07 from=translated src=- shape=6e45d403 vocab=52ffb713
+-/
 @[simp] theorem diagonalQuotientProjection_apply (a : Incidence (k := k) (S := S)) :
     (diagonalQuotientProjection (k := k) (S := S)).hom a =
       (DiagonalIdeal (k := k) (S := S)).mkQ a := rfl
@@ -110,7 +121,9 @@ def diagonalIdealQuotientRow : ShortComplex (ModuleCat (Incidence (k := k) (S :=
         (LinearMap.exact_subtype_mkQ (DiagonalIdeal (k := k) (S := S))) x)
 
 /-- The ideal row is the actual short exact sequence of the diagonal ideal, incidence algebra,
-and quotient.-/
+and quotient.
+@isnad1 id=shortexa.0h2v.s8.d5df9a5e7e48 from=translated src=- shape=b8ca083a vocab=2ede5db1
+-/
 theorem diagonalIdealQuotientRow_shortExact :
     (diagonalIdealQuotientRow (k := k) (S := S)).ShortExact := by
   refine ShortComplex.ShortExact.mk' ?_ ?_ ?_
@@ -121,18 +134,24 @@ theorem diagonalIdealQuotientRow_shortExact :
   · exact (ModuleCat.epi_iff_surjective (diagonalQuotientProjection (k := k) (S := S))).2
       (Submodule.mkQ_surjective _)
 
-/-- The actual inclusion and quotient maps form the degree-zero exact row.-/
+/-- The actual inclusion and quotient maps form the degree-zero exact row.
+@isnad1 id=eq.0h2v.s12.070dcf51f8de from=translated src=- shape=6c77bb46 vocab=0177628d
+-/
 @[simp] theorem diagonalIdealQuotientRow_f_comp_g :
     (diagonalIdealQuotientRow (k := k) (S := S)).f ≫
       (diagonalIdealQuotientRow (k := k) (S := S)).g = 0 :=
   (diagonalIdealQuotientRow (k := k) (S := S)).zero
 
-/-- The regular left module is free on one generator, hence projective.-/
+/-- The regular left module is free on one generator, hence projective.
+@isnad1 id=projecti.0h2v.s7.2754ae2ec741 from=translated src=- shape=b8ca083a vocab=6fc05ca2
+-/
 theorem regularModule_projective : Projective (regularModule (k := k) (S := S)) := by
   exact ModuleCat.projective_of_free
     (Module.Basis.singleton Unit (Incidence (k := k) (S := S)))
 
-/-- The actual diagonal ideal is projective by the proved split-column projectivity result.-/
+/-- The actual diagonal ideal is projective by the proved split-column projectivity result.
+@isnad1 id=projecti.0h2v.s7.5d7ac7bb51f6 from=translated src=- shape=b8ca083a vocab=aa822fc2
+-/
 theorem diagonalIdealModule_projective :
     Projective (diagonalIdealModule (k := k) (S := S)) :=
   diagonalIdeal_projective_object (k := k) (S := S)
@@ -150,18 +169,30 @@ abbrev diagonalQuotientResolutionComplex : ChainComplex
       | _ => 0)
     (by intro n; cases n <;> simp)
 
+/--
+@isnad1 id=eq.0h2v.s9.5b26bcc5e6d9 from=translated src=- shape=e7d43e18 vocab=bc10ae35
+-/
 @[simp] theorem diagonalQuotientResolutionComplex_term_zero :
     (diagonalQuotientResolutionComplex (k := k) (S := S)).X 0 =
       regularModule (k := k) (S := S) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.29214009bb1b from=translated src=- shape=e7d43e18 vocab=d8b42d2c
+-/
 @[simp] theorem diagonalQuotientResolutionComplex_term_one :
     (diagonalQuotientResolutionComplex (k := k) (S := S)).X 1 =
       diagonalIdealModule (k := k) (S := S) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.07eb4b3ddc8f from=translated src=- shape=6898b72f vocab=909a0822
+-/
 @[simp] theorem diagonalQuotientResolutionComplex_term_two_and_above (n : ℕ) :
     (diagonalQuotientResolutionComplex (k := k) (S := S)).X (n + 2) =
       zeroModule (k := k) (S := S) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.6fb5df32ee41 from=translated src=- shape=5c1b21a9 vocab=fbf3092e
+-/
 @[simp] theorem diagonalQuotientResolutionComplex_differential_one :
     (diagonalQuotientResolutionComplex (k := k) (S := S)).d 1 0 =
       diagonalIdealInclusion (k := k) (S := S) := by
@@ -182,6 +213,9 @@ abbrev diagonalQuotientResolutionComplex : ChainComplex
       | 0 => diagonalIdealInclusion (k := k) (S := S)
       | _ => 0) 0)
 
+/--
+@isnad1 id=eq.0h3v.s12.58823a6f1cf9 from=translated src=- shape=3a117d9e vocab=d846fa04
+-/
 @[simp] theorem diagonalQuotientResolutionComplex_differential_two_and_above (n : ℕ) :
     (diagonalQuotientResolutionComplex (k := k) (S := S)).d (n + 2) (n + 1) = 0 := by
   cases n <;> rfl
@@ -264,7 +298,9 @@ noncomputable def diagonalQuotientProjectiveResolution :
           exact zeroModule_isZero (k := k) (S := S)
       · apply ChainComplex.exactAt_succ_single_obj
 
-/-- The chain augmentation at degree zero is exactly the actual quotient projection.-/
+/-- The chain augmentation at degree zero is exactly the actual quotient projection.
+@isnad1 id=eq.0h2v.s12.0d376477eaec from=translated src=- shape=469a350f vocab=3989f81c
+-/
 @[simp] theorem diagonalQuotientProjectiveResolution_augmentation :
     (diagonalQuotientProjectiveResolution (k := k) (S := S)).π.f 0 =
       diagonalQuotientProjection (k := k) (S := S) := by
@@ -311,7 +347,9 @@ private noncomputable def diagonalQuotientVertexCoinvariantsEquiv :=
     (fun _ _ => rfl)
 
 /-- The scalar-transport equivalence preserves the representative `b` of a diagonal quotient
-class.-/
+class.
+@isnad1 id=eq.0h4v.s15.15d46e545f03 from=translated src=- shape=69fac858 vocab=a7c364de
+-/
 @[simp] theorem diagonalQuotientVertexCoinvariantsEquiv_mkQ
     (b : DiagonalQuotient (k := k) (S := S)) :
     diagonalQuotientVertexCoinvariantsEquiv (k := k) (S := S) v
@@ -343,7 +381,9 @@ abbrev mappedDiagonalQuotientResolution : ChainComplex (ModuleCat k) ℕ :=
 
 set_option maxHeartbeats 1000000 in
 /-- The degree-one term of the mapped resolution is zero by the ideal character-coinvariant
-calculation.-/
+calculation.
+@isnad1 id=iszero.0h3v.s6.0e9047094009 from=translated src=- shape=82f91536 vocab=6781f1d7
+-/
 theorem mappedResolution_term_one_isZero :
     IsZero ((mappedDiagonalQuotientResolution (k := k) (S := S) v).X 1) := by
   change IsZero (coinvariants (k := k) (S := S) v
@@ -356,7 +396,9 @@ theorem mappedResolution_term_one_isZero :
     (diagonalIdealVertexCoinvariants_eq_zero (k := k) (S := S) v _).symm
 
 /-- Every term of the mapped resolution from degree two onward is zero because `F_v` is additive
-and hence sends the actual zero module to zero.-/
+and hence sends the actual zero module to zero.
+@isnad1 id=iszero.1h4v.s6.89369bfb7952 from=translated src=- shape=6f9425e6 vocab=1cb29a6d
+-/
 theorem mappedResolution_term_isZero_of_two_le (n : ℕ) (hn : 2 ≤ n) :
     IsZero ((mappedDiagonalQuotientResolution (k := k) (S := S) v).X n) := by
   cases n with
@@ -370,7 +412,9 @@ theorem mappedResolution_term_isZero_of_two_le (n : ℕ) (hn : 2 ≤ n) :
       exact (vertexTensor (k := k) (S := S) v).map_isZero
         (zeroModule_isZero (k := k) (S := S))
 
-/-- The mapped complex is exact at every positive degree since its positive terms are zero.-/
+/-- The mapped complex is exact at every positive degree since its positive terms are zero.
+@isnad1 id=exactat.1h4v.s6.24dd8b5b9c0c from=translated src=- shape=8453a7b6 vocab=4147e5fe
+-/
 theorem mappedResolution_exactAt_pos (n : ℕ) (hn : 0 < n) :
     (mappedDiagonalQuotientResolution (k := k) (S := S) v).ExactAt n := by
   cases n with
@@ -383,7 +427,9 @@ theorem mappedResolution_exactAt_pos (n : ℕ) (hn : 0 < n) :
       apply mappedResolution_term_isZero_of_two_le (k := k) (S := S) v (n + 2)
       omega
 
-/-- Positive homology of the actual mapped projective resolution vanishes.-/
+/-- Positive homology of the actual mapped projective resolution vanishes.
+@isnad1 id=iszero.1h4v.s7.04e19587f582 from=translated src=- shape=7cc6ee25 vocab=2885171b
+-/
 theorem mappedResolution_homology_pos_isZero (n : ℕ) (hn : 0 < n) :
     IsZero ((HomologicalComplex.homologyFunctor (ModuleCat k) (ComplexShape.down ℕ) n).obj
       (mappedDiagonalQuotientResolution (k := k) (S := S) v)) := by
@@ -392,7 +438,9 @@ theorem mappedResolution_homology_pos_isZero (n : ℕ) (hn : 0 < n) :
   exact mappedResolution_exactAt_pos (k := k) (S := S) v n hn
 
 /-- Every positive left-derived vertex tensor of the actual diagonal quotient is zero, including
-degree one.-/
+degree one.
+@isnad1 id=iszero.1h4v.s9.973000ad5474 from=translated src=- shape=4ee32bac vocab=5c1bd702
+-/
 theorem diagonalQuotient_leftDerived_pos_isZero (n : ℕ) (hn : 0 < n) :
     IsZero (((vertexTensor (k := k) (S := S) v).leftDerived n).obj
       (diagonalQuotientModule (k := k) (S := S))) := by
@@ -409,7 +457,9 @@ noncomputable def diagonalQuotientVertexCoinvariantsIso :
     (diagonalQuotientVertexTensorEquiv (k := k) (S := S) v)).toModuleIso
 
 /-- The quotient coinvariants isomorphism evaluates every representative by the actual vertex
-character.-/
+character.
+@isnad1 id=eq.0h4v.s11.e8acfa19b234 from=translated src=- shape=56f7d5ba vocab=2d7c5bfe
+-/
 @[simp] theorem diagonalQuotientVertexCoinvariantsIso_hom_mkQ
     (b : DiagonalQuotient (k := k) (S := S)) :
     (diagonalQuotientVertexCoinvariantsIso (k := k) (S := S) v).hom
@@ -432,7 +482,9 @@ noncomputable def diagonalQuotient_leftDerivedZeroIso :
     diagonalQuotientVertexCoinvariantsIso (k := k) (S := S) v
 
 /-- The degree-zero derived comparison sends the actual coinvariant class of the quotient unit to
-`1 : k`.-/
+`1 : k`.
+@isnad1 id=eq.0h3v.s13.8dea530541a4 from=translated src=- shape=905cac94 vocab=8fdcbf32
+-/
 @[simp] theorem diagonalQuotient_leftDerivedZeroIso_hom_unit :
     (diagonalQuotient_leftDerivedZeroIso (k := k) (S := S) v).hom
       (((Functor.leftDerivedZeroIsoSelf (vertexTensor (k := k) (S := S) v)).app
@@ -450,7 +502,9 @@ noncomputable def diagonalQuotient_leftDerivedZeroIso :
   rw [Iso.inv_hom_id_apply]
   simpa using diagonalQuotientVertexCoinvariantsIso_hom_mkQ (k := k) (S := S) v 1
 
-/-- The degree-zero left-derived quotient tensor is not zero.-/
+/-- The degree-zero left-derived quotient tensor is not zero.
+@isnad1 id=not.0h3v.s9.25c1e4a1a845 from=translated src=- shape=4ad33aae vocab=5f23200f
+-/
 theorem diagonalQuotient_leftDerivedZero_not_isZero :
     ¬ IsZero (((vertexTensor (k := k) (S := S) v).leftDerived 0).obj
       (diagonalQuotientModule (k := k) (S := S))) := by

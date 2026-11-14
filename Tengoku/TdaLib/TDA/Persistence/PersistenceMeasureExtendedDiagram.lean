@@ -22,15 +22,21 @@ open scoped Classical
 /-- The upper infinite cut, with every real point in its lower part.-/
 noncomputable def infinityCut : Cut ℝ := cutOfLowerSet ⊤
 
-/-- Every finite grade belongs to the lower part of the infinite death cut.-/
+/-- Every finite grade belongs to the lower part of the infinite death cut.
+@isnad1 id=mem.0h1v.s3.e118fb7ec309 from=translated src=- shape=245eddce vocab=31d1e36a
+-/
 @[simp] theorem mem_lower_infinityCut (t : ℝ) : t ∈ infinityCut.lower := by
   simp [infinityCut, cutOfLowerSet]
 
-/-- No finite grade belongs to the upper part of the infinite death cut.-/
+/-- No finite grade belongs to the upper part of the infinite death cut.
+@isnad1 id=not.0h1v.s3.1bf5852fb3bf from=translated src=- shape=3d79d993 vocab=4cae6e64
+-/
 @[simp] theorem not_mem_upper_infinityCut (t : ℝ) : t ∉ infinityCut.upper := by
   simp [infinityCut, cutOfLowerSet]
 
-/-- The infinite death cut is excluded from every finite coordinate cell.-/
+/-- The infinite death cut is excluded from every finite coordinate cell.
+@isnad1 id=not.0h2v.s4.8f8f71abacdd from=translated src=- shape=d3fe55c5 vocab=3add56a6
+-/
 theorem infinityCut_not_mem_cutCell (a b : ℝ) : infinityCut ∉ cutCell a b :=
   fun h => not_mem_upper_infinityCut b h.2
 
@@ -46,13 +52,17 @@ noncomputable def moduleExtendedDiagramMultiplicity (hM : M.QTame)
   if p.2 = infinityCut then moduleEssentialMultiplicity M hM p.1
   else moduleDiagramMultiplicity M hM p
 
-/-- Points on the infinite-death boundary have the extracted essential birth multiplicity.-/
+/-- Points on the infinite-death boundary have the extracted essential birth multiplicity.
+@isnad1 id=eq.1h3v.s5.617a9f907b12 from=translated src=- shape=4a3eb9f1 vocab=637d7772
+-/
 @[simp] theorem moduleExtendedDiagramMultiplicity_infinity (hM : M.QTame) (birth : Cut ℝ) :
     moduleExtendedDiagramMultiplicity M hM (birth, infinityCut) =
       moduleEssentialMultiplicity M hM birth := by
   simp [moduleExtendedDiagramMultiplicity]
 
-/-- Finite rectangles retain exactly the finite-death multiplicities.-/
+/-- Finite rectangles retain exactly the finite-death multiplicities.
+@isnad1 id=eq.2h7v.s6.d40b2994aa1c from=translated src=- shape=59513faf vocab=06f50755
+-/
 theorem moduleExtendedDiagramMultiplicity_of_mem_rectangleCell (hM : M.QTame)
     {a b c d : ℝ} {p : Cut ℝ × Cut ℝ} (hp : p ∈ rectangleCell a b c d) :
     moduleExtendedDiagramMultiplicity M hM p = moduleDiagramMultiplicity M hM p := by
@@ -61,7 +71,9 @@ theorem moduleExtendedDiagramMultiplicity_of_mem_rectangleCell (hM : M.QTame)
     exact infinityCut_not_mem_cutCell c d (h ▸ hp.2)
   exact ite_eq_right hne
 
-/-- Finite rectangle quotient dimensions are the exact sums of the extended diagram.-/
+/-- Finite rectangle quotient dimensions are the exact sums of the extended diagram.
+@isnad1 id=ex.4h6v.s7.ab96abce05a2 from=translated src=- shape=b6891942 vocab=01f8ea31
+-/
 theorem moduleExtendedDiagramMultiplicity_rectangle_counts (hM : M.QTame)
     (a b c d : ℝ) (hab : a < b) (hbc : b < c) (hcd : c < d) :
     ∃ S : Finset (Cut ℝ × Cut ℝ),
@@ -83,7 +95,9 @@ theorem moduleExtendedDiagramMultiplicity_rectangle_counts (hM : M.QTame)
     intro p hp
     exact (moduleExtendedDiagramMultiplicity_of_mem_rectangleCell M hM ((hS p).mp hp).1).symm
 
-/-- Essential birth-strip dimensions count the points on the actual infinite-death boundary.-/
+/-- Essential birth-strip dimensions count the points on the actual infinite-death boundary.
+@isnad1 id=ex.2h4v.s7.7a1f0267c748 from=translated src=- shape=8e1fac77 vocab=7784f789
+-/
 theorem moduleExtendedDiagramMultiplicity_essential_counts (hM : M.QTame)
     {a b : ℝ} (hab : a ≤ b) :
     ∃ S : Finset (Cut ℝ),
@@ -95,7 +109,9 @@ theorem moduleExtendedDiagramMultiplicity_essential_counts (hM : M.QTame)
     moduleEssentialMultiplicity_strip_counts M hM hab
 
 /-- Every tail rectangle has finite positive support and counts the module's actual tail
-image quotient, including its essential points.-/
+image quotient, including its essential points.
+@isnad1 id=ex.3h5v.s7.592f1d841c1e from=translated src=- shape=221395b5 vocab=ee313f9b
+-/
 theorem moduleExtendedDiagramMultiplicity_tail_counts (hM : M.QTame)
     (a b c : ℝ) (hab : a < b) (hbc : b < c) :
     ∃ S : Finset (Cut ℝ × Cut ℝ),
@@ -188,7 +204,9 @@ theorem moduleExtendedDiagramMultiplicity_tail_counts (hM : M.QTame)
     exact h
   exact ⟨S, hSupport, hsum.symm⟩
 
-/-- Local finiteness holds in full tail rectangles, including neighborhoods of infinity.-/
+/-- Local finiteness holds in full tail rectangles, including neighborhoods of infinity.
+@isnad1 id=finite.3h5v.s6.46bd88ee4ff6 from=translated src=- shape=92fc6666 vocab=7057c8b6
+-/
 theorem moduleExtendedDiagramMultiplicity_tail_locally_finite (hM : M.QTame)
     (a b c : ℝ) (hab : a < b) (hbc : b < c) :
     Set.Finite {p | p ∈ tailRectangleCell a b c ∧

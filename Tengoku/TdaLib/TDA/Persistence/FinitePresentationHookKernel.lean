@@ -28,7 +28,9 @@ variable {k : Type u} [Field k] {P : Type} [PartialOrder P] [Fintype P]
 
 /-- Every pointwise finite-dimensional module on a finite poset has a finite
 graded-free presentation. Generators are bases of its fibers, and relations
-are bases of the kernels of the resulting free cover.-/
+are bases of the kernels of the resulting free cover.
+@isnad1 id=finitely.1h3v.s7.590f9e0213f0 from=translated src=- shape=d5cbc3c1 vocab=f8914097
+-/
 theorem pfd_finitelyPresented_of_finite_poset
     (A : PModule.{u,0,u} k P) (hA : ∀ p, FiniteDimensional k (A.obj p)) :
     FinitelyPresented.{u,0,0} (R := k) (P := P) A := by
@@ -278,7 +280,9 @@ private instance lan_preserves_cokernel (G : CoordinateGrid n)
 
 /-- Finite-grid left Kan extension carries every finite graded-free
 presentation to a finite graded-free presentation. The relation map is the
-actual Kan image conjugated by the free-module occurrence comparisons.-/
+actual Kan image conjugated by the free-module occurrence comparisons.
+@isnad1 id=finitely.1h4v.s8.0d1f2b4b0602 from=translated src=- shape=fcc21ea1 vocab=d81b6a73
+-/
 theorem finitelyPresented_lan_of_finiteGrid
     (G : CoordinateGrid n)
     {A : PModule.{u,0,u} k G.Point}
@@ -315,7 +319,9 @@ the kernel of that displayed cover map is finitely presented. The proof
 constructs a finite-poset presentation of the finite-dimensional grid kernel,
 extends that presentation through the actual Lan, then identifies its Lan
 with the actual cover kernel using the transported pointwise short-exact
-comparison.-/
+comparison.
+@isnad1 id=ex.1h3v.s13.88b3b69317b1 from=translated src=- shape=a10dc42f vocab=9e90cdaf
+-/
 theorem finitelyPresented_exists_finiteHookRankExactCoverKernel
     {M : PModule.{u,0,u} k (Fin n → ℝ)}
     (hM : FinitelyPresented (R := k) (P := Fin n → ℝ) M) :

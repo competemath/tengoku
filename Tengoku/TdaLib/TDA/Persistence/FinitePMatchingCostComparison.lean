@@ -185,7 +185,9 @@ private theorem root_totalFinitePowerCost_comparison
 end OccurrenceMatching
 variable {I J : Type*} [Fintype I] [Fintype J]
 
-/-- Use a first-order minimizer to bound the rooted p minimum.-/
+/-- Use a first-order minimizer to bound the rooted p minimum.
+@isnad1 id=le.1h5v.s5.8606bece10f0 from=translated src=- shape=ca7657ea vocab=b3311658
+-/
 theorem finitePMatchingCost_le_firstOrder {p : ℝ} (hp : 1 ≤ p)
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     finitePMatchingCost p x y ≤ finiteFirstOrderMatchingCost x y := by
@@ -193,7 +195,9 @@ theorem finitePMatchingCost_le_firstOrder {p : ℝ} (hp : 1 ≤ p)
   exact (finitePMatchingCost_le_matching hp x y M).trans
     ((M.root_totalFinitePowerCost_le_totalFiniteCost hp x y).trans_eq hM)
 
-/-- Use a p minimizer; the cardinal factor counts both label families, including empties.-/
+/-- Use a p minimizer; the cardinal factor counts both label families, including empties.
+@isnad1 id=le.1h5v.s6.22b67c5fc710 from=translated src=- shape=ee42e636 vocab=5838d36a
+-/
 theorem finiteFirstOrderMatchingCost_le_card_rpow_mul_p {p : ℝ} (hp : 1 ≤ p)
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     finiteFirstOrderMatchingCost x y ≤
@@ -202,7 +206,9 @@ theorem finiteFirstOrderMatchingCost_le_card_rpow_mul_p {p : ℝ} (hp : 1 ≤ p)
   exact (finiteFirstOrderMatchingCost_le_totalFiniteCost x y M).trans
     (by simpa only [hM] using M.totalFiniteCost_le_card_rpow_mul_root hp x y)
 
-/-- Comparison of finite-real-plan optima, via the proved assignment equality.-/
+/-- Comparison of finite-real-plan optima, via the proved assignment equality.
+@isnad1 id=le.1h5v.s5.464970c85bdd from=translated src=- shape=ca7657ea vocab=5420877d
+-/
 theorem finitePBoundaryTransportCost_le_firstOrder {p : ℝ} (hp : 1 ≤ p)
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     finitePBoundaryTransportCost p x y ≤ finiteFirstOrderBoundaryTransportCost x y := by
@@ -210,7 +216,9 @@ theorem finitePBoundaryTransportCost_le_firstOrder {p : ℝ} (hp : 1 ≤ p)
     finiteFirstOrderBoundaryTransportCost_eq_matchingCost]
   exact finitePMatchingCost_le_firstOrder hp x y
 
-/-- The cardinal upper comparison holds for optimized real plans, without a chosen plan.-/
+/-- The cardinal upper comparison holds for optimized real plans, without a chosen plan.
+@isnad1 id=le.1h5v.s6.39deea01b7f0 from=translated src=- shape=ee42e636 vocab=27b41c88
+-/
 theorem finiteFirstOrderBoundaryTransportCost_le_card_rpow_mul_p {p : ℝ} (hp : 1 ≤ p)
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     finiteFirstOrderBoundaryTransportCost x y ≤
@@ -220,7 +228,9 @@ theorem finiteFirstOrderBoundaryTransportCost_le_card_rpow_mul_p {p : ℝ} (hp :
     finiteFirstOrderBoundaryTransportCost_eq_matchingCost]
   exact finiteFirstOrderMatchingCost_le_card_rpow_mul_p hp x y
 
-/-- Changing the exponent may change the optimizer; use a minimizer at `r`.-/
+/-- Changing the exponent may change the optimizer; use a minimizer at `r`.
+@isnad1 id=le.2h6v.s5.8aa1c6df72d6 from=translated src=- shape=6b699673 vocab=6af3225b
+-/
 theorem finitePMatchingCost_le_of_exponent_le {r s : ℝ} (hr : 1 ≤ r) (hrs : r ≤ s)
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     finitePMatchingCost s x y ≤ finitePMatchingCost r x y := by
@@ -228,7 +238,9 @@ theorem finitePMatchingCost_le_of_exponent_le {r s : ℝ} (hr : 1 ≤ r) (hrs : 
   exact (finitePMatchingCost_le_matching (hr.trans hrs) x y M).trans
     ((M.root_totalFinitePowerCost_comparison hr hrs x y).1.trans_eq hM)
 
-/-- Use a separate minimizer at `s`; both occurrence families count in the factor.-/
+/-- Use a separate minimizer at `s`; both occurrence families count in the factor.
+@isnad1 id=le.2h6v.s6.8eb9ae94102a from=translated src=- shape=c3548282 vocab=b0a1196b
+-/
 theorem finitePMatchingCost_le_card_rpow_mul_of_exponent_le {r s : ℝ}
     (hr : 1 ≤ r) (hrs : r ≤ s) (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     finitePMatchingCost r x y ≤
@@ -238,14 +250,18 @@ theorem finitePMatchingCost_le_card_rpow_mul_of_exponent_le {r s : ℝ}
   exact (finitePMatchingCost_le_matching hr x y M).trans
     (by simpa only [hM] using (M.root_totalFinitePowerCost_comparison hr hrs x y).2)
 
-/-- Antitonicity of the real-plan optimum, with linear transported masses.-/
+/-- Antitonicity of the real-plan optimum, with linear transported masses.
+@isnad1 id=le.2h6v.s5.54854d146100 from=translated src=- shape=6b699673 vocab=4273cd30
+-/
 theorem finitePBoundaryTransportCost_le_of_exponent_le {r s : ℝ}
     (hr : 1 ≤ r) (hrs : r ≤ s) (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     finitePBoundaryTransportCost s x y ≤ finitePBoundaryTransportCost r x y := by
   rw [finitePBoundaryTransportCost_eq_matchingCost, finitePBoundaryTransportCost_eq_matchingCost]
   exact finitePMatchingCost_le_of_exponent_le hr hrs x y
 
-/-- The finite cardinal comparison concerns optimized plans, including empty families.-/
+/-- The finite cardinal comparison concerns optimized plans, including empty families.
+@isnad1 id=le.2h6v.s6.46d974a058b0 from=translated src=- shape=c3548282 vocab=846d6bca
+-/
 theorem finitePBoundaryTransportCost_le_card_rpow_mul_of_exponent_le {r s : ℝ}
     (hr : 1 ≤ r) (hrs : r ≤ s) (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     finitePBoundaryTransportCost r x y ≤
@@ -254,13 +270,17 @@ theorem finitePBoundaryTransportCost_le_card_rpow_mul_of_exponent_le {r s : ℝ}
   rw [finitePBoundaryTransportCost_eq_matchingCost, finitePBoundaryTransportCost_eq_matchingCost]
   exact finitePMatchingCost_le_card_rpow_mul_of_exponent_le hr hrs x y
 
-/-- The unnormalized unit-occurrence matching distance decreases on real exponents ≥ 1.-/
+/-- The unnormalized unit-occurrence matching distance decreases on real exponents ≥ 1.
+@isnad1 id=antitone.0h4v.s5.7d900a9fb3a7 from=translated src=- shape=b965b831 vocab=60cc5318
+-/
 theorem finitePMatchingCost_antitoneOn (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     AntitoneOn (fun p : ℝ => finitePMatchingCost p x y) (Set.Ici 1) := by
   intro r hr s _ hrs
   exact finitePMatchingCost_le_of_exponent_le hr hrs x y
 
-/-- The finite real-plan distance decreases on real exponents ≥ 1.-/
+/-- The finite real-plan distance decreases on real exponents ≥ 1.
+@isnad1 id=antitone.0h4v.s5.6d3413766fd8 from=translated src=- shape=b965b831 vocab=0dd604c3
+-/
 theorem finitePBoundaryTransportCost_antitoneOn (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     AntitoneOn (fun p : ℝ => finitePBoundaryTransportCost p x y) (Set.Ici 1) := by
   intro r hr s _ hrs

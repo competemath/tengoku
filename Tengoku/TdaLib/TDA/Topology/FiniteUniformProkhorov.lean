@@ -18,14 +18,18 @@ open MeasureTheory Metric CategoryTheory
 
 variable {X : Type u} {V : Type v} {W : Type w}
 
-/-- A label count is at most the finite carrier size.-/
+/-- A label count is at most the finite carrier size.
+@isnad1 id=le.0h4v.s4.62479ae213f8 from=translated src=- shape=56e2b9f6 vocab=4be2a8dd
+-/
 theorem labelCount_le_card [Fintype V] (p : V → X) (A : Set X) :
     labelCount p A ≤ Fintype.card V := by
   classical
   simpa [labelCount] using Finset.card_filter_le (Finset.univ : Finset V) (fun v => p v ∈ A)
 
 /-- Passing from a labelled subcollection to the full collection increases
-unnormalized counts, without a condition on the locations of extra labels.-/
+unnormalized counts, without a condition on the locations of extra labels.
+@isnad1 id=le.0h6v.s5.c5dfda229300 from=translated src=- shape=7f736dc4 vocab=427104e9
+-/
 theorem labelCount_comp_embedding_le [Fintype V] [Fintype W]
     (i : V ↪ W) (p : W → X) (A : Set X) :
     labelCount (p ∘ i) A ≤ labelCount p A := by
@@ -42,7 +46,9 @@ variable [Fintype V] [Nonempty V] [Fintype W] [Nonempty W]
 
 omit [MetricSpace X] [OpensMeasurableSpace X] in
 /-- The normalized mass of a subcollection exceeds that of the enlarged
-collection by at most the missing fraction of labels.-/
+collection by at most the missing fraction of labels.
+@isnad1 id=le.1h6v.s6.49bb5929ba57 from=translated src=- shape=06ae8867 vocab=5a281453
+-/
 theorem uniformMeasure_real_comp_embedding_le (i : V ↪ W) (p : W → X)
     {A : Set X} (hA : MeasurableSet A) :
     (uniformMeasure (p ∘ i)).real A ≤ (uniformMeasure p).real A +
@@ -62,7 +68,9 @@ theorem uniformMeasure_real_comp_embedding_le (i : V ↪ W) (p : W → X)
   nlinarith
 
 /-- Enlarging a finite uniform sample costs at most the outlier mass in
-ambient Prokhorov distance, regardless of how far the added labels lie.-/
+ambient Prokhorov distance, regardless of how far the added labels lie.
+@isnad1 id=le.0h5v.s6.ea42b542161f from=translated src=- shape=74dd51c6 vocab=c4b546fa
+-/
 theorem levyProkhorovDist_uniform_embedding_le (i : V ↪ W) (p : W → X) :
     levyProkhorovDist (uniformMeasure (p ∘ i)) (uniformMeasure p) ≤
       ((Fintype.card W : ℝ) - Fintype.card V) / Fintype.card W := by
@@ -84,7 +92,9 @@ theorem levyProkhorovDist_uniform_embedding_le (i : V ↪ W) (p : W → X) :
     _ ≤ uniformMeasure p (thickening ε A) + ENNReal.ofReal ε :=
       add_le_add (measure_mono (self_subset_thickening hεpos A)) le_rfl
 
-/-- The extended-distance version of the same ambient outlier estimate.-/
+/-- The extended-distance version of the same ambient outlier estimate.
+@isnad1 id=le.0h5v.s6.372ba5747e75 from=translated src=- shape=918d509e vocab=2dcd8c52
+-/
 theorem levyProkhorovEDist_uniform_embedding_le (i : V ↪ W) (p : W → X) :
     levyProkhorovEDist (uniformMeasure (p ∘ i)) (uniformMeasure p) ≤
       ENNReal.ofReal (((Fintype.card W : ℝ) - Fintype.card V) / Fintype.card W) := by
@@ -104,13 +114,17 @@ noncomputable def uniformOutlierInterleaving (i : V ↪ W) (p : W → X) (δ : �
     exact (levyProkhorovEDist_uniform_embedding_le i p).trans_lt
       ((ENNReal.ofReal_lt_coe_iff hn).2 hδ))
 
-/-- The outlier interleaving restricts exactly to the original uniform sample.-/
+/-- The outlier interleaving restricts exactly to the original uniform sample.
+@isnad1 id=eq.1h6v.s7.419f2013538c from=translated src=- shape=540376c9 vocab=7bf95ec8
+-/
 theorem uniformOutlierInterleaving_left (i : V ↪ W) (p : W → X) (δ : ℝ≥0)
     (hδ : ((Fintype.card W : ℝ) - Fintype.card V) / Fintype.card W < δ) :
     (copy δ false).toFunctor ⋙ uniformOutlierInterleaving i p δ hδ =
       topologicalDiagram (uniformMeasure (p ∘ i)) := rfl
 
-/-- The other restriction is the sample with all additional labels.-/
+/-- The other restriction is the sample with all additional labels.
+@isnad1 id=eq.1h6v.s7.8cea1ba2da36 from=translated src=- shape=faf41eba vocab=9facd940
+-/
 theorem uniformOutlierInterleaving_right (i : V ↪ W) (p : W → X) (δ : ℝ≥0)
     (hδ : ((Fintype.card W : ℝ) - Fintype.card V) / Fintype.card W < δ) :
     (copy δ true).toFunctor ⋙ uniformOutlierInterleaving i p δ hδ =

@@ -29,7 +29,9 @@ def faceRegion (p : V → X) (r : ℝ) (s : Finset V) : Set X :=
   {x | ∀ v ∈ s, dist x (p v) < r}
 
 /-- A finite uniform multicover is covered exactly by intersections indexed by
-Čech simplices whose normalized cardinality reaches the positive mass threshold.-/
+Čech simplices whose normalized cardinality reaches the positive mass threshold.
+@isnad1 id=iff.0h5v.s6.758ae3ec34ef from=translated src=- shape=0293eb1e vocab=1e2a4258
+-/
 theorem mem_stage_uniform_iff_large_face (p : V → X) (a : Index) (x : X) :
     x ∈ stage (uniformMeasure p) a ↔ ∃ s : Finset V,
       s ∈ openCech p (radius a) ∧ mass a ≤ (s.card : ℝ) / Fintype.card V ∧
@@ -63,7 +65,9 @@ theorem mem_stage_uniform_iff_large_face (p : V → X) (a : Index) (x : X) :
       (by positivity)
 
 /-- The canonical large-face cover has precisely the actual multicover stage
-as union, rather than merely an objectwise combinatorial surrogate.-/
+as union, rather than merely an objectwise combinatorial surrogate.
+@isnad1 id=eq.0h4v.s7.2d3fe205bd16 from=translated src=- shape=51eaf4a8 vocab=9626b982
+-/
 theorem stage_uniform_eq_iUnion_large_face (p : V → X) (a : Index) :
     stage (uniformMeasure p) a =
       ⋃ (s : Finset V) (_ : s ∈ openCech p (radius a))
@@ -72,7 +76,9 @@ theorem stage_uniform_eq_iUnion_large_face (p : V → X) (a : Index) :
   simpa only [Set.mem_iUnion, exists_prop] using mem_stage_uniform_iff_large_face p a x
 
 omit [MeasurableSpace X] [OpensMeasurableSpace X] [Fintype V] [Nonempty V] in
-/-- Every intersection in the cover is open.-/
+/-- Every intersection in the cover is open.
+@isnad1 id=isopen.0h5v.s5.d960feb77c5c from=translated src=- shape=43195230 vocab=77747875
+-/
 theorem isOpen_faceRegion (p : V → X) (r : ℝ) (s : Finset V) :
     IsOpen (faceRegion p r s) := by
   classical
@@ -88,7 +94,9 @@ noncomputable def largeFaceCover (p : V → X) (a : Index) (s : Finset V) : Set 
     faceRegion p (radius a) s else ∅
 
 omit [MeasurableSpace X] [OpensMeasurableSpace X] [Nonempty V] in
-/-- The large-face cover is monotone in both filtration coordinates.-/
+/-- The large-face cover is monotone in both filtration coordinates.
+@isnad1 id=le.1h6v.s5.4a4887017ae8 from=translated src=- shape=983edb59 vocab=ef5ddf94
+-/
 theorem largeFaceCover_mono (p : V → X) {a b : Index} (hab : a ≤ b) (s : Finset V) :
     largeFaceCover p a s ⊆ largeFaceCover p b s := by
   classical
@@ -104,7 +112,9 @@ theorem largeFaceCover_mono (p : V → X) {a b : Index} (hab : a ≤ b) (s : Fin
 
 omit [MeasurableSpace X] [OpensMeasurableSpace X] [Nonempty V] in
 /-- Every normalized Čech flag is a face of the nerve of the actual large-face
-cover. A maximal member supplies a common center for the entire flag.-/
+cover. A maximal member supplies a common center for the entire flag.
+@isnad1 id=le.0h4v.s5.ffa533cb4525 from=translated src=- shape=7921a468 vocab=238d7f61
+-/
 theorem subdivision_openCech_le_largeFaceNerve (p : V → X) (a : Index) :
     subdivision (openCech p (radius a)) (mass a) ≤ TDA.Topology.nerve (largeFaceCover p a) := by
   classical
@@ -122,7 +132,9 @@ theorem subdivision_openCech_le_largeFaceNerve (p : V → X) (a : Index) :
   rw [ite_eq_left (hS.2.1 t ht)]
   exact fun v hv => hx v (hts hv)
 
-/-- The cover has the actual multicover stage as union on its fixed index type.-/
+/-- The cover has the actual multicover stage as union on its fixed index type.
+@isnad1 id=eq.0h4v.s5.bec4eebfdc7d from=translated src=- shape=d5d376b1 vocab=17a8b7fe
+-/
 theorem stage_uniform_eq_iUnion_largeFaceCover (p : V → X) (a : Index) :
     stage (uniformMeasure p) a = ⋃ s : Finset V, largeFaceCover p a s := by
   classical
@@ -144,7 +156,9 @@ theorem stage_uniform_eq_iUnion_largeFaceCover (p : V → X) (a : Index) :
 
 omit [MeasurableSpace X] [OpensMeasurableSpace X] [Nonempty V] in
 /-- An intersection of large-face cover members is nonempty precisely when
-the union of their labels is a Čech simplex.-/
+the union of their labels is a Čech simplex.
+@isnad1 id=iff.0h5v.s7.e5edb2d419b5 from=translated src=- shape=2fd47366 vocab=c336cc5d
+-/
 theorem mem_largeFaceNerve_iff (p : V → X) (a : Index) (S : Finset (Finset V)) :
     S ∈ TDA.Topology.nerve (largeFaceCover p a) ↔
       S.Nonempty ∧ (∀ s ∈ S, s ∈ openCech p (radius a) ∧
@@ -185,7 +199,9 @@ def largeFaceNerveBifiltration (p : V → X) :
 
 omit [MeasurableSpace X] [OpensMeasurableSpace X] [Nonempty V] in
 /-- Every member of the fixed large-face cover is open, including its invalid
-indices, which contribute the empty set.-/
+indices, which contribute the empty set.
+@isnad1 id=isopen.0h5v.s5.f148b962cca7 from=translated src=- shape=4121cbe4 vocab=d9306b27
+-/
 theorem isOpen_largeFaceCover (p : V → X) (a : Index) (s : Finset V) :
     IsOpen (largeFaceCover p a s) := by
   classical
@@ -198,7 +214,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 omit [Fintype V] [Nonempty V] in
 /-- Common ball intersections are convex in the finite sup-norm ambient used
-for the Čech/Rips identification, and in every real normed ambient space.-/
+for the Čech/Rips identification, and in every real normed ambient space.
+@isnad1 id=convex.0h5v.s6.5ee894e4c781 from=translated src=- shape=71b9ede3 vocab=4e7b4e40
+-/
 theorem convex_faceRegion (p : V → E) (r : ℝ) (s : Finset V) :
     Convex ℝ (faceRegion p r s) := by
   have heq : faceRegion p r s = ⋂ v ∈ s, ball (p v) r := by ext x; simp [faceRegion]
@@ -206,7 +224,9 @@ theorem convex_faceRegion (p : V → E) (r : ℝ) (s : Finset V) :
   exact convex_iInter₂ (fun _ _ => convex_ball _ _)
 
 omit [Nonempty V] in
-/-- Empty invalid members and valid ball intersections are both convex.-/
+/-- Empty invalid members and valid ball intersections are both convex.
+@isnad1 id=convex.0h5v.s6.9575e023c207 from=translated src=- shape=2dacad43 vocab=67838c48
+-/
 theorem convex_largeFaceCover (p : V → E) (a : Index) (s : Finset V) :
     Convex ℝ (largeFaceCover p a s) := by
   classical
@@ -217,7 +237,9 @@ theorem convex_largeFaceCover (p : V → E) (a : Index) (s : Finset V) :
 
 omit [Nonempty V] in
 /-- Every nonempty finite intersection in the actual multicover cover is
-contractible, discharging the good-cover hypothesis in a real normed ambient.-/
+contractible, discharging the good-cover hypothesis in a real normed ambient.
+@isnad1 id=contract.1h5v.s7.5c002ff7299a from=translated src=- shape=e1db1183 vocab=7d03ecca
+-/
 theorem contractibleSpace_largeFaceCover_intersection (p : V → E) (a : Index)
     (S : Finset (Finset V))
     (h : (⋂ s ∈ S, largeFaceCover p a s).Nonempty) :

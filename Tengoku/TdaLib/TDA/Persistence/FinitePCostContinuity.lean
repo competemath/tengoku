@@ -68,28 +68,36 @@ private theorem finitePMatchingCost_continuousAt_pos {p : ℝ} (hp : 0 < p)
   exact (finitePowerMatchingCost_continuousAt_pos hp x y).rpow
     (continuousAt_id.inv₀ hp.ne') (Or.inr (inv_pos.mpr hp))
 
-/-- The finite powered minimum is continuous in the real exponent on the PD domain.-/
+/-- The finite powered minimum is continuous in the real exponent on the PD domain.
+@isnad1 id=continuo.0h4v.s5.75ad98f8ac03 from=translated src=- shape=b965b831 vocab=2300a1de
+-/
 theorem finitePowerMatchingCost_continuousOn (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     ContinuousOn (fun p : ℝ => finitePowerMatchingCost p x y) (Set.Ici 1) := by
   intro p hp
   exact (finitePowerMatchingCost_continuousAt_pos
     (lt_of_lt_of_le zero_lt_one hp) x y).continuousWithinAt
 
-/-- Rooting preserves exponent continuity even when the optimized cost is zero.-/
+/-- Rooting preserves exponent continuity even when the optimized cost is zero.
+@isnad1 id=continuo.0h4v.s5.1a02956c45ef from=translated src=- shape=b965b831 vocab=a73bcfcb
+-/
 theorem finitePMatchingCost_continuousOn (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     ContinuousOn (fun p : ℝ => finitePMatchingCost p x y) (Set.Ici 1) := by
   intro p hp
   exact (finitePMatchingCost_continuousAt_pos
     (lt_of_lt_of_le zero_lt_one hp) x y).continuousWithinAt
 
-/-- Continuity of the powered infimum over all feasible real reservoir matrices.-/
+/-- Continuity of the powered infimum over all feasible real reservoir matrices.
+@isnad1 id=continuo.0h4v.s5.2602c3136206 from=translated src=- shape=b965b831 vocab=80aa545b
+-/
 theorem finitePowerBoundaryTransportCost_continuousOn
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     ContinuousOn (fun p : ℝ => finitePowerBoundaryTransportCost p x y) (Set.Ici 1) := by
   simpa only [finitePowerBoundaryTransportCost_eq_matchingCost] using
     finitePowerMatchingCost_continuousOn x y
 
-/-- Continuity of the rooted real-plan optimum, including empty and zero-cost inputs.-/
+/-- Continuity of the rooted real-plan optimum, including empty and zero-cost inputs.
+@isnad1 id=continuo.0h4v.s5.74c41b726dc1 from=translated src=- shape=b965b831 vocab=a495b690
+-/
 theorem finitePBoundaryTransportCost_continuousOn
     (x : I → ℝ × ℝ) (y : J → ℝ × ℝ) :
     ContinuousOn (fun p : ℝ => finitePBoundaryTransportCost p x y) (Set.Ici 1) := by

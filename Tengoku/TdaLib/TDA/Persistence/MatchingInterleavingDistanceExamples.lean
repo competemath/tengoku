@@ -33,12 +33,16 @@ private theorem essential_positive : essentialDiagram.IsPositive := by
   rw [essentialDiagram, orderedQ_isPositive_iff]
   exact fun i => Fin.elim0 i
 
-/-- Empty barcodes have zero interleaving distance, without a nonemptiness premise.-/
+/-- Empty barcodes have zero interleaving distance, without a nonemptiness premise.
+@isnad1 id=eq.0h0v.s4.ba96e65f6938 from=translated src=- shape=c43d1e9c vocab=8fa86e28
+-/
 theorem empty_distance :
     realInterleavingDistance (realize (k := ℚ) emptyDiagram) (realize emptyDiagram) = 0 :=
   realInterleavingDistance_self _
 
-/-- Both repeated bars may be deleted at the exact length `2ε` boundary.-/
+/-- Both repeated bars may be deleted at the exact length `2ε` boundary.
+@isnad1 id=le.0h0v.s4.05389de1561b from=translated src=- shape=a97e57f6 vocab=480ed790
+-/
 theorem duplicate_deletion_bound :
     realInterleavingDistance (realize (k := ℚ) copies) (realize emptyDiagram) ≤ 1 := by
   have hp : bottleneck copies emptyDiagram = 1 := by
@@ -55,7 +59,9 @@ theorem duplicate_deletion_bound :
   exact (RealBarcode.distance_le_bottleneck copies emptyDiagram copies_positive
     empty_positive).trans_eq hp
 
-/-- Essential cardinality mismatch gives an empty matching type.-/
+/-- Essential cardinality mismatch gives an empty matching type.
+@isnad1 id=isempty.0h0v.s3.28bfcf72105c from=translated src=- shape=c8a8d4d9 vocab=ed9f7eb3
+-/
 theorem essential_matching_empty : IsEmpty (OccurrenceMatching essentialDiagram.finiteOccurrences
     emptyDiagram.finiteOccurrences essentialDiagram.essentialOccurrences
     emptyDiagram.essentialOccurrences) := by
@@ -63,7 +69,9 @@ theorem essential_matching_empty : IsEmpty (OccurrenceMatching essentialDiagram.
   rw [occurrenceMatching_nonempty_iff]
   simp [Diagram.essentialOccurrences, essentialDiagram, emptyDiagram, essentialPart_orderedQ]
 
-/-- The one-sided inequality includes infinite bottleneck without deleting an essential bar.-/
+/-- The one-sided inequality includes infinite bottleneck without deleting an essential bar.
+@isnad1 id=and.0h0v.s4.cca3c804a5cb from=translated src=- shape=321d08f5 vocab=85150e0e
+-/
 theorem essential_mismatch_bound : bottleneck essentialDiagram emptyDiagram = ⊤ ∧
     realInterleavingDistance (realize (k := ℚ) essentialDiagram) (realize emptyDiagram) ≤
       bottleneck essentialDiagram emptyDiagram := by
@@ -123,7 +131,9 @@ private theorem step_finite (t : ℝ) : FiniteDimensional ℚ (step.obj t) := by
       ModuleCat.isZero_iff_subsingleton.mp (isZero_zero (ModuleCat ℚ))
     infer_instance
 
-/-- The differing-grid consumer has a nonzero fiber at its critical birth.-/
+/-- The differing-grid consumer has a nonzero fiber at its critical birth.
+@isnad1 id=not.0h0v.s5.9006db48f5b8 from=translated src=- shape=5762c3b5 vocab=4dacb932
+-/
 theorem different_grids_nonzero : ¬ IsZero (step.obj 0) := by
   change ¬ IsZero ((sample oneGrid constantRationals).obj (cellIndex oneGrid 0))
   rw [show cellIndex oneGrid 0 = 1 from cellIndex_critical oneGrid 0]
@@ -131,7 +141,9 @@ theorem different_grids_nonzero : ¬ IsZero (step.obj 0) := by
   rw [ModuleCat.isZero_iff_subsingleton]
   exact not_subsingleton ℚ
 
-/-- The module inequality accepts one and two critical values for the same nonzero module.-/
+/-- The module inequality accepts one and two critical values for the same nonzero module.
+@isnad1 id=le.0h0v.s5.c9692b7cf40e from=translated src=- shape=98c9f7d9 vocab=fcbc38e3
+-/
 theorem different_grid_bound : realInterleavingDistance step step ≤
     bottleneck (moduleDiagram oneGrid step (fun i => step_finite (oneGrid i)))
       (moduleDiagram twoGrid step (fun j => step_finite (twoGrid j))) :=
@@ -145,7 +157,9 @@ private theorem zero_constructible : IsConstructible emptyGrid (0 : PModule.{0,0
   (isConstructible_empty_iff emptyGrid _).mpr
     (fun t => (isZero_zero (PModule.{0,0,0} ℚ ℝ)).obj t)
 
-/-- The constructible capstone also covers zero modules on empty grids.-/
+/-- The constructible capstone also covers zero modules on empty grids.
+@isnad1 id=le.0h0v.s9.ca01bf816288 from=translated src=- shape=c241001e vocab=0ae19da9
+-/
 theorem empty_grid_bound : realInterleavingDistance (0 : PModule.{0,0,0} ℚ ℝ) 0 ≤
     bottleneck (moduleDiagram (k := ℚ) emptyGrid 0 (fun i => Fin.elim0 i))
       (moduleDiagram (k := ℚ) emptyGrid 0 (fun i => Fin.elim0 i)) :=

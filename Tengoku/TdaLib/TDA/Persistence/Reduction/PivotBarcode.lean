@@ -78,6 +78,9 @@ def essentialIndex (I : FiniteInterval (m + 1)) : Option (Fin m) :=
       by have := I.birth_lt_death; have := I.death_le_size; omega⟩
   else none
 
+/--
+@isnad1 id=eq.2h5v.s6.a3fb4b08583e from=translated src=- shape=0001432b vocab=9d0a4f72
+-/
 theorem finiteIndexPair_paired (R : Matrix (Fin m) (Fin m) k)
     (hstrict : StrictBoundary R) (j i : Fin m)
     (hji : columnPivot (R.col j) = some i) :
@@ -86,12 +89,18 @@ theorem finiteIndexPair_paired (R : Matrix (Fin m) (Fin m) k)
   have hd : j.val + 1 ≤ m := by omega
   simp [finiteIndexPair, pairedInterval, hb, hd]
 
+/--
+@isnad1 id=eq.0h2v.s4.031769cd7c8a from=translated src=- shape=4d8ad7fc vocab=ae71e73a
+-/
 theorem finiteIndexPair_essential (i : Fin m) :
     finiteIndexPair (essentialInterval i) = none := by
   have hb : 0 < i.val + 1 := by omega
   have hd : ¬m + 1 ≤ m := by omega
   simp [finiteIndexPair, essentialInterval, hb, hd]
 
+/--
+@isnad1 id=eq.2h5v.s6.3fe510f46ee5 from=translated src=- shape=cf2be97e vocab=8af50ca9
+-/
 theorem essentialIndex_paired (R : Matrix (Fin m) (Fin m) k)
     (hstrict : StrictBoundary R) (j i : Fin m)
     (hji : columnPivot (R.col j) = some i) :
@@ -100,6 +109,9 @@ theorem essentialIndex_paired (R : Matrix (Fin m) (Fin m) k)
   have hd : j.val + 1 ≤ m := by omega
   simp [essentialIndex, pairedInterval, hb, hd]
 
+/--
+@isnad1 id=eq.0h2v.s4.5e348e2cfc39 from=translated src=- shape=e515e695 vocab=eaa94f7b
+-/
 theorem essentialIndex_essential (i : Fin m) :
     essentialIndex (essentialInterval i) = some i := by
   have hb : 0 < i.val + 1 := by omega
@@ -107,7 +119,9 @@ theorem essentialIndex_essential (i : Fin m) :
   simp [essentialIndex, essentialInterval, hb, hd]
 
 /-- Stage-to-face conversion of reducer occurrences recovers exactly its
-zero-based finite pivot pairs, including a pivot in row zero.-/
+zero-based finite pivot pairs, including a pivot in row zero.
+@isnad1 id=eq.1h5v.s6.a14f76337971 from=translated src=- shape=89b723ef vocab=cd94b106
+-/
 theorem pivotBarcode_pairs (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (hstrict : StrictBoundary R) (p : ℕ) :
     (pivotBarcode degree R hstrict p).filterMap finiteIndexPair =
@@ -118,7 +132,9 @@ theorem pivotBarcode_pairs (degree : Fin m → ℕ)
   simp only [Function.comp_def, finiteIndexPair_paired, finiteIndexPair_essential,
     filterMap_some_map, filterMap_none_zero, add_zero]
 
-/-- Stage-to-face conversion recovers exactly the unpaired zero indices.-/
+/-- Stage-to-face conversion recovers exactly the unpaired zero indices.
+@isnad1 id=eq.1h5v.s6.6407474d4744 from=translated src=- shape=adeab7a9 vocab=b7f5a567
+-/
 theorem pivotBarcode_essential (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (hstrict : StrictBoundary R) (p : ℕ) :
     (pivotBarcode degree R hstrict p).filterMap essentialIndex =
@@ -130,7 +146,9 @@ theorem pivotBarcode_essential (degree : Fin m → ℕ)
     filterMap_some_map, filterMap_none_zero, zero_add]
 
 /-- A pivot occurrence survives a structure map precisely when its row was
-born before the source stage and its death column enters after the target.-/
+born before the source stage and its death column enters after the target.
+@isnad1 id=eq.1h7v.s7.d11eb49436e7 from=translated src=- shape=73ae049e vocab=a2211746
+-/
 theorem pivotPairIntervals_count (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (hstrict : StrictBoundary R)
     (p s t : ℕ) :
@@ -163,7 +181,9 @@ theorem pivotPairIntervals_count (degree : Fin m → ℕ)
     change i.val + 1 ≤ s ∧ t < (deathOfPivot R i hpiv).val + 1
     omega
 
-/-- An essential occurrence survives exactly when born before the source.-/
+/-- An essential occurrence survives exactly when born before the source.
+@isnad1 id=eq.2h7v.s7.3730aaf0e340 from=translated src=- shape=80c03a8f vocab=1391e1ae
+-/
 theorem pivotEssentialIntervals_count (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (p s t : ℕ) (_hst : s ≤ t)
     (ht : t ≤ m) :
@@ -194,7 +214,9 @@ theorem pivotEssentialIntervals_count (degree : Fin m → ℕ)
     dsimp only [essentialInterval, x]
     omega
 
-/-- Rank count of the occurrence multiset, in the reducer's death-column form.-/
+/-- Rank count of the occurrence multiset, in the reducer's death-column form.
+@isnad1 id=eq.4h7v.s7.86ac7bdce7b0 from=translated src=- shape=263720a8 vocab=c613ebd7
+-/
 theorem pivotBarcode_rank (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (hstrict : StrictBoundary R)
     (hpiv : DistinctPivots R) (p s t : ℕ) (hst : s ≤ t)
@@ -207,7 +229,9 @@ theorem pivotBarcode_rank (degree : Fin m → ℕ)
     pivotPairIntervals_count, pivotEssentialIntervals_count degree R p s t hst ht,
     pair_survivor_card_eq_death_card degree R hpiv p s t]
 
-/-- Distinct pivot-row indices give distinct finite pair occurrences, even without reducedness.-/
+/-- Distinct pivot-row indices give distinct finite pair occurrences, even without reducedness.
+@isnad1 id=nodup.0h5v.s5.2f54e143c885 from=translated src=- shape=962c7d1e vocab=436f3689
+-/
 theorem pivotIndexPairs_nodup (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (p : ℕ) :
     (pivotIndexPairs degree R p).Nodup := by
@@ -217,7 +241,9 @@ theorem pivotIndexPairs_nodup (degree : Fin m → ℕ)
   intro x y h
   exact Subtype.ext (congrArg Prod.fst h)
 
-/-- For distinct pivots, membership records the exact degree and row/death-column pairing.-/
+/-- For distinct pivots, membership records the exact degree and row/death-column pairing.
+@isnad1 id=iff.1h7v.s6.824f23211c72 from=translated src=- shape=c5a2cf34 vocab=7b3de4d0
+-/
 theorem mem_pivotIndexPairs_iff (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (hpiv : DistinctPivots R)
     (p : ℕ) (i j : Fin m) :
@@ -235,7 +261,9 @@ theorem mem_pivotIndexPairs_iff (degree : Fin m → ℕ)
     let x : {i : Fin m // IsPivot R i ∧ degree i = p} := ⟨i, ⟨j,hj⟩,hd⟩
     exact ⟨x, Prod.ext rfl (deathOfPivot_unique R hpiv i j x.property.1 hj)⟩
 
-/-- Unpaired zero columns contribute distinct essential index occurrences.-/
+/-- Unpaired zero columns contribute distinct essential index occurrences.
+@isnad1 id=nodup.0h5v.s5.e2afdde6904b from=translated src=- shape=431e5cf8 vocab=deb65a99
+-/
 theorem pivotEssentialIndices_nodup (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (p : ℕ) :
     (pivotEssentialIndices degree R p).Nodup := by
@@ -243,7 +271,9 @@ theorem pivotEssentialIndices_nodup (degree : Fin m → ℕ)
   unfold pivotEssentialIndices
   exact Multiset.Nodup.map Subtype.val_injective (Finset.univ.nodup)
 
-/-- Essential-index membership records an unpaired zero column of the requested degree.-/
+/-- Essential-index membership records an unpaired zero column of the requested degree.
+@isnad1 id=iff.0h6v.s5.7d70ad3240a0 from=translated src=- shape=7f989c3e vocab=7a55beec
+-/
 theorem mem_pivotEssentialIndices_iff (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (p : ℕ) (i : Fin m) :
     i ∈ pivotEssentialIndices degree R p ↔ IsEssential R i ∧ degree i = p := by
@@ -251,7 +281,9 @@ theorem mem_pivotEssentialIndices_iff (degree : Fin m → ℕ)
   simp [pivotEssentialIndices]
 
 /-- Convert stage endpoints to zero-based face occurrences. Death `m + 1` is the
-finite observation sentinel, not an infinite grade.-/
+finite observation sentinel, not an infinite grade.
+@isnad1 id=eq.1h5v.s7.7f34036f0bfc from=translated src=- shape=e7e4015e vocab=76b10e23
+-/
 theorem pivotBarcode_endpoints (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (hs : StrictBoundary R) (p : ℕ) :
     (pivotBarcode degree R hs p).map (fun I => (I.birth, I.death)) =

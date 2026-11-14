@@ -71,7 +71,9 @@ private theorem infinityHook_finitelyPresented :
     GradedFree.finitelyPresented_lan_of_finiteGrid grid hA
   exact GradedFree.finitelyPresented_of_iso hLan (grid.infinityLanIso gridOrigin)
 
-/-- The theorem classifies a concrete nonzero finite-death hook.-/
+/-- The theorem classifies a concrete nonzero finite-death hook.
+@isnad1 id=and.0h0v.s9.612caf3fc4af from=translated src=- shape=2fe9f6b0 vocab=e65cd75f
+-/
 theorem nonzero_finite_hook_classifies :
     (∃ x : (Hook.module (k := ℚ) birth death).obj birth, x ≠ 0) ∧
       ∃ m : ℕ, ∃ t : Fin m → RankProjectiveHookTag P,
@@ -89,7 +91,9 @@ theorem nonzero_finite_hook_classifies :
         (Hook.isRankProjective birth_lt_death)
 
 /-- The principal upset has a nonzero fiber above every grade, and the theorem
-classifies it using the infinite-death tag.-/
+classifies it using the infinite-death tag.
+@isnad1 id=and.0h0v.s10.fe3f91ee5354 from=translated src=- shape=80e1ae49 vocab=2dad8158
+-/
 theorem unbounded_principal_upset_classifies :
     (∀ r : P, ∃ a : P, r ≤ a ∧
       ∃ x : (HookInfinity.module (R := ℚ) birth).obj a, x ≠ 0) ∧
@@ -124,7 +128,9 @@ private noncomputable def mixedHookTags : Fin 3 → RankProjectiveHookTag P := f
   if i.val = 1 then infiniteTag else finiteTag
 
 /-- Reordering a mixed sum with repeated finite hooks preserves every
-finite-death and infinite-death occurrence count.-/
+finite-death and infinite-death occurrence count.
+@isnad1 id=eq.0h1v.s10.155634e542f6 from=translated src=- shape=99cc1f3d vocab=96df1a01
+-/
 theorem reordered_mixed_hook_sum_preserves_every_multiplicity
     (c : RankProjectiveHookTag P) :
     Fintype.card {i : Fin 3 // mixedHookTags i = c} =
@@ -147,7 +153,9 @@ theorem reordered_mixed_hook_sum_preserves_every_multiplicity
     GradedFree.rankProjectiveHookSum_multiplicity_unique_of_iso
       (k := ℚ) (n := 1) mixedHookTags reordered ⟨e⟩ c
 
-/-- Empty occurrence families have equal multiplicity for every real tag.-/
+/-- Empty occurrence families have equal multiplicity for every real tag.
+@isnad1 id=eq.0h1v.s9.4c794f0bb82f from=translated src=- shape=01424984 vocab=42135bc0
+-/
 theorem empty_hook_sums_have_equal_every_multiplicity
     (c : RankProjectiveHookTag P) :
     Fintype.card {i : Fin 0 // (Fin.elim0 i : RankProjectiveHookTag P) = c} =
@@ -182,7 +190,9 @@ private theorem repeatedFiniteHook_finitelyPresented :
   exact GradedFree.finitelyPresented_of_iso hLan e
 
 /-- The repeated nonzero hook sum is classified as a finite hook sum; the multiplicity itself is
-not stated here (see `rankProjectiveHookSum_multiplicity_unique_of_iso`).-/
+not stated here (see `rankProjectiveHookSum_multiplicity_unique_of_iso`).
+@isnad1 id=and.0h0v.s9.b80488d84796 from=translated src=- shape=6cfbe7d3 vocab=e72eac5e
+-/
 theorem repeated_finite_hook_classifies :
     IsRankProjective (⨁ fun _ : Fin 2 => rankProjectiveHookModule (k := ℚ) finiteTag) ∧
       ∃ m : ℕ, ∃ t : Fin m → RankProjectiveHookTag P,
@@ -216,7 +226,9 @@ private theorem emptyTaggedSum_isZero (t : Fin 0 → RankProjectiveHookTag P) :
   intro i
   exact Fin.elim0 i
 
-/-- The public iff accepts the zero module as the empty tagged sum.-/
+/-- The public iff accepts the zero module as the empty tagged sum.
+@isnad1 id=and.0h0v.s9.a01450513add from=translated src=- shape=ea0859e0 vocab=0866b9bd
+-/
 theorem zero_empty_tagged_sum_classifies :
     IsRankProjective (0 : PModule ℚ P) ∧
       ∃ t : Fin 0 → RankProjectiveHookTag P,

@@ -40,14 +40,18 @@ structure CommonAmbient where
 
 variable {X Y}
 
-/-- The ambient comparison really uses isometric embeddings of the first input.-/
+/-- The ambient comparison really uses isometric embeddings of the first input.
+@isnad1 id=isometry.0h3v.s5.2892083ff69c from=translated src=- shape=e224cbca vocab=8ee54c05
+-/
 theorem CommonAmbient.isometry_left (a : CommonAmbient X Y) :
     letI := a.metric
     Isometry a.left := by
   let : MetricSpace a.carrier := a.metric
   exact Isometry.of_dist_eq a.left_dist
 
-/-- The second map is likewise an isometric embedding.-/
+/-- The second map is likewise an isometric embedding.
+@isnad1 id=isometry.0h3v.s5.f1f5e56df799 from=translated src=- shape=f185a23d vocab=3e3ea27b
+-/
 theorem CommonAmbient.isometry_right (a : CommonAmbient X Y) :
     letI := a.metric
     Isometry a.right := by
@@ -78,7 +82,9 @@ variable {Z : Type w} [MetricSpace Z] {I : Type*} [Fintype I]
 def landmarkCoordinates (p : I → Z) (z : Z) : I → ℝ := fun i => dist (p i) z
 
 /-- Finite distance coordinates preserve a distance whenever one endpoint is
-a landmark. No finiteness of the original ambient space is required.-/
+a landmark. No finiteness of the original ambient space is required.
+@isnad1 id=eq.0h5v.s5.9a19f1c23962 from=translated src=- shape=8155d4f9 vocab=f13f1b73
+-/
 theorem landmarkCoordinates_dist (p : I → Z) (i : I) (z : Z) :
     dist (landmarkCoordinates p (p i)) (landmarkCoordinates p z) = dist (p i) z := by
   apply le_antisymm
@@ -115,17 +121,23 @@ noncomputable def gromovProkhorovEDist (X : Type u) (Y : Type v)
     [MetricSpace X] [MetricSpace Y] [Fintype X] [Nonempty X] [Fintype Y] [Nonempty Y] : ℝ≥0∞ :=
   ⨅ a : CommonAmbient X Y, a.cost
 
-/-- Every actual common-ambient realization bounds the GP infimum.-/
+/-- Every actual common-ambient realization bounds the GP infimum.
+@isnad1 id=le.0h3v.s5.b2949bd77764 from=translated src=- shape=d4aa841c vocab=f45aaef4
+-/
 theorem gromovProkhorovEDist_le_cost (a : CommonAmbient X Y) :
     gromovProkhorovEDist X Y ≤ a.cost := iInf_le _ a
 
 /-- A parameter strictly above GP admits an actual common-ambient Prokhorov
-witness below that same parameter.-/
+witness below that same parameter.
+@isnad1 id=iff.0h3v.s6.e755e1fda1b4 from=translated src=- shape=a86ab6f8 vocab=ffa28587
+-/
 theorem gromovProkhorovEDist_lt_iff {δ : ℝ≥0∞} :
     gromovProkhorovEDist X Y < δ ↔ ∃ a : CommonAmbient X Y, a.cost < δ :=
   iInf_lt_iff
 
-/-- The common ambient cost is symmetric.-/
+/-- The common ambient cost is symmetric.
+@isnad1 id=eq.0h3v.s5.94ba8ca41feb from=translated src=- shape=a2c69787 vocab=07268060
+-/
 theorem CommonAmbient.cost_symm (a : CommonAmbient X Y) : a.symm.cost = a.cost := by
   let : MetricSpace a.carrier := a.metric
   let : MeasurableSpace a.carrier := borel _
@@ -133,7 +145,9 @@ theorem CommonAmbient.cost_symm (a : CommonAmbient X Y) : a.symm.cost = a.cost :
     levyProkhorovEDist (uniformMeasure a.left) (uniformMeasure a.right)
   exact levyProkhorovEDist_comm _ _
 
-/-- Interchanging the finite inputs does not change their GP infimum.-/
+/-- Interchanging the finite inputs does not change their GP infimum.
+@isnad1 id=eq.0h2v.s5.34ebb9ab1bb2 from=translated src=- shape=a4407623 vocab=bafdf209
+-/
 theorem gromovProkhorovEDist_comm :
     gromovProkhorovEDist X Y = gromovProkhorovEDist Y X := by
   apply le_antisymm
@@ -145,7 +159,9 @@ theorem gromovProkhorovEDist_comm :
     exact (gromovProkhorovEDist_le_cost a.symm).trans_eq a.cost_symm
 
 /-- Finite distance coordinates preserve the exact ambient Prokhorov cost.
-This applies to an original ambient in any universe.-/
+This applies to an original ambient in any universe.
+@isnad1 id=eq.2h5v.s6.4254dd4afda1 from=translated src=- shape=445fad8b vocab=e281704f
+-/
 theorem coordinatesAmbient_cost [MeasurableSpace Z] [OpensMeasurableSpace Z]
     (p : X → Z) (q : Y → Z) (hp : Isometry p) (hq : Isometry q) :
     (coordinatesAmbient p q hp hq).cost =
@@ -157,14 +173,18 @@ theorem coordinatesAmbient_cost [MeasurableSpace Z] [OpensMeasurableSpace Z]
     (fun x y => landmarkCoordinates_dist (Sum.elim p q) (Sum.inl x) (q y))
 
 /-- Every common ambient, without a universe or finiteness restriction on its
-carrier, gives an upper bound on the finite-input GP infimum.-/
+carrier, gives an upper bound on the finite-input GP infimum.
+@isnad1 id=le.2h5v.s6.26a0a841ddaa from=translated src=- shape=3967ce20 vocab=6a3f1e48
+-/
 theorem gromovProkhorovEDist_le_ambient [MeasurableSpace Z] [OpensMeasurableSpace Z]
     (p : X → Z) (q : Y → Z) (hp : Isometry p) (hq : Isometry q) :
     gromovProkhorovEDist X Y ≤ levyProkhorovEDist (uniformMeasure p) (uniformMeasure q) :=
   (gromovProkhorovEDist_le_cost (coordinatesAmbient p q hp hq)).trans_eq
     (coordinatesAmbient_cost p q hp hq)
 
-/-- Probability normalization bounds every common-ambient cost by one.-/
+/-- Probability normalization bounds every common-ambient cost by one.
+@isnad1 id=le.0h3v.s5.79c500705bb7 from=translated src=- shape=e7030b5d vocab=dc8dde1a
+-/
 theorem CommonAmbient.cost_le_one (a : CommonAmbient X Y) : a.cost ≤ 1 := by
   let : MetricSpace a.carrier := a.metric
   let : MeasurableSpace a.carrier := borel _
@@ -172,7 +192,9 @@ theorem CommonAmbient.cost_le_one (a : CommonAmbient X Y) : a.cost ≤ 1 := by
   simpa only [measure_univ, max_self] using
     levyProkhorovEDist_le_max_measure_univ (uniformMeasure a.left) (uniformMeasure a.right)
 
-/-- Finite uniform GP is bounded by one; the ambient infimum is nonvacuous.-/
+/-- Finite uniform GP is bounded by one; the ambient infimum is nonvacuous.
+@isnad1 id=le.0h2v.s5.a1f0d2f0bf54 from=translated src=- shape=de34edb6 vocab=b81de716
+-/
 theorem gromovProkhorovEDist_le_one : gromovProkhorovEDist X Y ≤ 1 :=
   (gromovProkhorovEDist_le_cost (disjointAmbient (X := X) (Y := Y))).trans
     (CommonAmbient.cost_le_one _)
@@ -188,7 +210,9 @@ def inclusionAmbient (i : X ↪ Y) (hi : Isometry i) : CommonAmbient X Y where
   right_dist _ _ := rfl
 
 /-- Adding any number of points at arbitrary distances costs at most their
-fraction of the enlarged finite uniform sample in common-ambient GP distance.-/
+fraction of the enlarged finite uniform sample in common-ambient GP distance.
+@isnad1 id=le.1h3v.s6.a4aebe969296 from=translated src=- shape=38e7904a vocab=6b555628
+-/
 theorem gromovProkhorovEDist_embedding_le (i : X ↪ Y) (hi : Isometry i) :
     gromovProkhorovEDist X Y ≤
       ENNReal.ofReal (((Fintype.card Y : ℝ) - Fintype.card X) / Fintype.card Y) := by
@@ -197,7 +221,9 @@ theorem gromovProkhorovEDist_embedding_le (i : X ↪ Y) (hi : Isometry i) :
   apply (gromovProkhorovEDist_le_cost (inclusionAmbient i hi)).trans
   exact levyProkhorovEDist_uniform_embedding_le i (fun y : Y => (⟨y⟩ : ULift.{u} Y))
 
-/-- A space has zero GP distance from itself.-/
+/-- A space has zero GP distance from itself.
+@isnad1 id=eq.0h1v.s4.1dbd0ecfffb4 from=translated src=- shape=da19f194 vocab=bafdf209
+-/
 @[simp] theorem gromovProkhorovEDist_self : gromovProkhorovEDist X X = 0 := by
   apply le_antisymm _ bot_le
   simpa using gromovProkhorovEDist_embedding_le (Function.Embedding.refl X) isometry_id

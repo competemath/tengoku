@@ -33,14 +33,18 @@ def persistenceKernel {b c d : ℝ} (hbc : b ≤ c) (hcd : c ≤ d) :
     Submodule k (M.obj c) :=
   persistenceImage M hbc ⊓ LinearMap.ker (structureMapLinear M hcd)
 
-/-- Earlier images are contained in later images at a common target.-/
+/-- Earlier images are contained in later images at a common target.
+@isnad1 id=le.2h5v.s9.55a79248cbb6 from=translated src=- shape=b6bc41c1 vocab=a1c50b96
+-/
 theorem persistenceImage_mono {a b c : ℝ} (hab : a ≤ b) (hbc : b ≤ c) :
     persistenceImage M (hab.trans hbc) ≤ persistenceImage M hbc := by
   unfold persistenceImage
   rw [structureMapLinear_comp M hab hbc]
   exact LinearMap.range_comp_le_range _ _
 
-/-- The earlier born-and-killed subspace is contained in the later one.-/
+/-- The earlier born-and-killed subspace is contained in the later one.
+@isnad1 id=le.3h6v.s9.6fb0ada7c197 from=translated src=- shape=87b3b8bc vocab=fcf9b5c9
+-/
 theorem persistenceKernel_mono {a b c d : ℝ}
     (hab : a ≤ b) (hbc : b ≤ c) (hcd : c ≤ d) :
     persistenceKernel M (hab.trans hbc) hcd ≤ persistenceKernel M hbc hcd :=
@@ -80,7 +84,9 @@ private theorem restricted_kernel_finrank {c d : ℝ} (hcd : c ≤ d)
     (LinearMap.ker ((structureMapLinear M hcd).domRestrict U))) = _
   rw [LinearMap.ker_domRestrict, Submodule.map_comap_subtype]
 
-/-- Rank-nullity within an image, valid even when the ambient fibers are infinite.-/
+/-- Rank-nullity within an image, valid even when the ambient fibers are infinite.
+@isnad1 id=eq.2h5v.s11.a6b71a4f415e from=translated src=- shape=2d0cba8c vocab=eb06ec62
+-/
 theorem persistenceImage_finrank_drop {b c d : ℝ} (hbc : b ≤ c) (hcd : c ≤ d)
     [FiniteDimensional k (persistenceImage M hbc)] :
     Module.finrank k (persistenceImage M hbc) =
@@ -91,7 +97,9 @@ theorem persistenceImage_finrank_drop {b c d : ℝ} (hbc : b ≤ c) (hcd : c ≤
   rw [image_restricted_range M hbc hcd, restricted_kernel_finrank M hcd] at h
   exact h.symm
 
-/-- A finite crossing image makes the image quotient finite-dimensional.-/
+/-- A finite crossing image makes the image quotient finite-dimensional.
+@isnad1 id=finitedi.3h6v.s12.f695d6d210f6 from=translated src=- shape=9ce2fd63 vocab=ca6567c1
+-/
 theorem persistenceMeasureSpace_finiteDimensional {a b c d : ℝ}
     (hab : a ≤ b) (hbc : b ≤ c) (hcd : c ≤ d)
     [FiniteDimensional k (persistenceImage M hbc)] :
@@ -100,14 +108,18 @@ theorem persistenceMeasureSpace_finiteDimensional {a b c d : ℝ}
     Submodule.finiteDimensional_of_le inf_le_left
   infer_instance
 
-/-- Q-tameness supplies local finiteness on every rectangle separated from the diagonal.-/
+/-- Q-tameness supplies local finiteness on every rectangle separated from the diagonal.
+@isnad1 id=finitedi.4h6v.s11.1acd548b7ba2 from=translated src=- shape=1aff72ed vocab=563f9bfe
+-/
 theorem PModule.QTame.persistenceMeasureSpace_finiteDimensional
     (hM : M.QTame) {a b c d : ℝ} (hab : a ≤ b) (hbc : b < c) (hcd : c ≤ d) :
     FiniteDimensional k (PersistenceMeasureSpace M hab hbc.le hcd) := by
   have : FiniteDimensional k (persistenceImage M hbc.le) := hM b c hbc
   exact TDA.Persistence.persistenceMeasureSpace_finiteDimensional M hab hbc.le hcd
 
-/-- The measure plus the earlier born-and-killed dimension is the later dimension.-/
+/-- The measure plus the earlier born-and-killed dimension is the later dimension.
+@isnad1 id=eq.3h6v.s11.ddddfbfbebbc from=translated src=- shape=424ad7df vocab=4f2b7800
+-/
 theorem persistenceMeasureValue_add_kernel {a b c d : ℝ}
     (hab : a ≤ b) (hbc : b ≤ c) (hcd : c ≤ d)
     [FiniteDimensional k (persistenceImage M hbc)] :
@@ -123,7 +135,9 @@ theorem persistenceMeasureValue_add_kernel {a b c d : ℝ}
     (persistenceKernel_mono M hab hbc hcd)).finrank_eq] at h
   exact h
 
-/-- Four-rank formula for the persistence measure. Only the crossing image must be finite.-/
+/-- Four-rank formula for the persistence measure. Only the crossing image must be finite.
+@isnad1 id=eq.3h6v.s11.e73096c8c4dc from=translated src=- shape=458919b1 vocab=27429e2b
+-/
 theorem persistenceMeasureValue_four_rank {a b c d : ℝ}
     (hab : a ≤ b) (hbc : b ≤ c) (hcd : c ≤ d)
     [FiniteDimensional k (persistenceImage M hbc)] :
@@ -139,7 +153,9 @@ theorem persistenceMeasureValue_four_rank {a b c d : ℝ}
   have h₃ := persistenceMeasureValue_add_kernel M hab hbc hcd
   omega
 
-/-- A later target retains finite-dimensionality of an already finite image.-/
+/-- A later target retains finite-dimensionality of an already finite image.
+@isnad1 id=finitedi.2h5v.s10.184ac8c19809 from=translated src=- shape=dddfa6bf vocab=d7eec17b
+-/
 theorem persistenceImage_finiteDimensional_target {b c d : ℝ}
     (hbc : b ≤ c) (hcd : c ≤ d)
     [FiniteDimensional k (persistenceImage M hbc)] :
@@ -148,7 +164,9 @@ theorem persistenceImage_finiteDimensional_target {b c d : ℝ}
   infer_instance
 
 /-- Finite additivity when splitting the birth coordinate. The shared boundary is handled
-by the intermediate image, so its contributions cancel exactly.-/
+by the intermediate image, so its contributions cancel exactly.
+@isnad1 id=eq.4h7v.s9.e340d78d30b6 from=translated src=- shape=db812837 vocab=ebe731e8
+-/
 theorem persistenceMeasureValue_split_birth {a x b c d : ℝ}
     (hax : a ≤ x) (hxb : x ≤ b) (hbc : b ≤ c) (hcd : c ≤ d)
     [FiniteDimensional k (persistenceImage M hbc)] :
@@ -162,7 +180,9 @@ theorem persistenceMeasureValue_split_birth {a x b c d : ℝ}
   have h₂ := persistenceMeasureValue_four_rank M hxb hbc hcd
   omega
 
-/-- Finite additivity when splitting the death coordinate.-/
+/-- Finite additivity when splitting the death coordinate.
+@isnad1 id=eq.4h7v.s9.b2a9687faa00 from=translated src=- shape=9b30f552 vocab=ebe731e8
+-/
 theorem persistenceMeasureValue_split_death {a b c y d : ℝ}
     (hab : a ≤ b) (hbc : b ≤ c) (hcy : c ≤ y) (hyd : y ≤ d)
     [FiniteDimensional k (persistenceImage M hbc)] :
@@ -176,7 +196,9 @@ theorem persistenceMeasureValue_split_death {a b c y d : ℝ}
   have h₂ := persistenceMeasureValue_four_rank M hab (hbc.trans hcy) hyd
   omega
 
-/-- Every rectangle count is bounded by its finite crossing rank.-/
+/-- Every rectangle count is bounded by its finite crossing rank.
+@isnad1 id=le.3h6v.s10.b9e2afa33ce7 from=translated src=- shape=f882cc7c vocab=60f71af1
+-/
 theorem persistenceMeasureValue_le_crossing_rank {a b c d : ℝ}
     (hab : a ≤ b) (hbc : b ≤ c) (hcd : c ≤ d)
     [FiniteDimensional k (persistenceImage M hbc)] :
@@ -185,7 +207,9 @@ theorem persistenceMeasureValue_le_crossing_rank {a b c d : ℝ}
   have h₂ := persistenceImage_finrank_drop M hbc hcd
   omega
 
-/-- Restricting either coordinate of a rectangle cannot increase its measure.-/
+/-- Restricting either coordinate of a rectangle cannot increase its measure.
+@isnad1 id=le.7h10v.s9.4d4046426be8 from=translated src=- shape=1e1d7645 vocab=2a8ec177
+-/
 theorem persistenceMeasureValue_mono {a a' b' b c c' d' d : ℝ}
     (haa : a ≤ a') (hab : a' ≤ b') (hbb : b' ≤ b) (hbc : b ≤ c)
     (hcc : c ≤ c') (hcd : c' ≤ d') (hdd : d' ≤ d)
@@ -208,7 +232,9 @@ theorem persistenceMeasureValue_mono {a a' b' b c c' d' d : ℝ}
   omega
 
 /-- A zero crossing map carries no rectangle mass. In particular ephemeral information
-cannot be recovered from separated persistence rectangles.-/
+cannot be recovered from separated persistence rectangles.
+@isnad1 id=eq.4h6v.s10.2b9d74bac8e7 from=translated src=- shape=0b3faee3 vocab=58c36d71
+-/
 theorem persistenceMeasureValue_eq_zero_of_crossing_eq_zero {a b c d : ℝ}
     (hab : a ≤ b) (hbc : b ≤ c) (hcd : c ≤ d)
     (hzero : structureMapLinear M hbc = 0) :
@@ -219,7 +245,9 @@ theorem persistenceMeasureValue_eq_zero_of_crossing_eq_zero {a b c d : ℝ}
   rw [h]
   exact Module.finrank_eq_zero_of_subsingleton k _
 
-/-- A degenerate birth strip carries no measure.-/
+/-- A degenerate birth strip carries no measure.
+@isnad1 id=eq.2h5v.s5.32519214d48e from=translated src=- shape=7671c3ed vocab=2336c66e
+-/
 @[simp] theorem persistenceMeasureValue_birth_self {a c d : ℝ}
     (hac : a ≤ c) (hcd : c ≤ d) :
     persistenceMeasureValue M (le_refl a) hac hcd = 0 := by
@@ -228,7 +256,9 @@ theorem persistenceMeasureValue_eq_zero_of_crossing_eq_zero {a b c d : ℝ}
   rw [Submodule.comap_subtype_self]
   exact Module.finrank_eq_zero_of_subsingleton k _
 
-/-- A degenerate death strip carries no measure.-/
+/-- A degenerate death strip carries no measure.
+@isnad1 id=eq.2h5v.s5.d6e901f7d3af from=translated src=- shape=5e9df83f vocab=2336c66e
+-/
 @[simp] theorem persistenceMeasureValue_death_self {a b c : ℝ}
     (hab : a ≤ b) (hbc : b ≤ c) :
     persistenceMeasureValue M hab hbc (le_refl c) = 0 := by

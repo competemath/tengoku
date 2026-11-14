@@ -68,6 +68,9 @@ def map (π : MeasureCoupling μ ν) (f : X → Z) (g : Y → W)
 def cost (π : MeasureCoupling μ ν) (c : X → Y → ℝ≥0∞) : ℝ≥0∞ :=
   ∫⁻ xy, c xy.1 xy.2 ∂(π.joint : Measure (X × Y))
 
+/--
+@isnad1 id=eq.3h10v.s7.be9793d727c3 from=translated src=- shape=232fd348 vocab=0cce9e84
+-/
 @[simp] theorem cost_map (π : MeasureCoupling μ ν) (f : X → Z) (g : Y → W)
     [MeasurableSpace Z] [MeasurableSpace W] (hf : Measurable f) (hg : Measurable g)
     (c : Z → W → ℝ≥0∞) (hc : Measurable (fun xy : Z × W => c xy.1 xy.2)) :
@@ -84,6 +87,9 @@ extended nonnegative ground cost.-/
 def measureTransportCost (c : X → Y → ℝ≥0∞) (μ : ProbabilityMeasure X)
     (ν : ProbabilityMeasure Y) : ℝ≥0∞ := ⨅ π : MeasureCoupling μ ν, π.cost c
 
+/--
+@isnad1 id=le.0h6v.s5.74f425bd6123 from=translated src=- shape=5a6a4fa3 vocab=f07ad986
+-/
 theorem measureTransportCost_le_coupling (c : X → Y → ℝ≥0∞)
     (μ : ProbabilityMeasure X) (ν : ProbabilityMeasure Y) (π : MeasureCoupling μ ν) :
     measureTransportCost c μ ν ≤ π.cost c := iInf_le _ π
@@ -93,7 +99,9 @@ def measureWasserstein (p : ℝ) (c : X → Y → ℝ≥0∞) (μ : ProbabilityM
     (ν : ProbabilityMeasure Y) : ℝ≥0∞ :=
   measureTransportCost (fun x y => c x y ^ p) μ ν ^ p⁻¹
 
-/-- Rooting after the infimum is the infimum of rooted coupling costs.-/
+/-- Rooting after the infimum is the infimum of rooted coupling costs.
+@isnad1 id=eq.1h6v.s6.b40d609ac411 from=translated src=- shape=b5636cc1 vocab=360e527c
+-/
 theorem measureWasserstein_eq_iInf {p : ℝ} (hp : 0 < p) (c : X → Y → ℝ≥0∞)
     (μ : ProbabilityMeasure X) (ν : ProbabilityMeasure Y) :
     measureWasserstein p c μ ν =

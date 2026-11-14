@@ -98,7 +98,9 @@ private theorem finitePMatchingCost_joint_continuousAt_pos
   exact (finitePowerMatchingCost_joint_continuousAt_pos hp).rpow
     (continuous_fst.continuousAt.inv₀ hp.ne') (Or.inr (inv_pos.mpr hp))
 
-/-- Joint continuity in the exponent and both finite coordinate families on p ≥ 1.-/
+/-- Joint continuity in the exponent and both finite coordinate families on p ≥ 1.
+@isnad1 id=continuo.0h2v.s7.2dc662d99ffb from=translated src=- shape=cfea325b vocab=77e554ad
+-/
 theorem finitePowerMatchingCost_joint_continuousOn :
     ContinuousOn (fun z : ℝ × ((I → ℝ × ℝ) × (J → ℝ × ℝ)) =>
       finitePowerMatchingCost z.1 z.2.1 z.2.2) {z | 1 ≤ z.1} := by
@@ -106,7 +108,9 @@ theorem finitePowerMatchingCost_joint_continuousOn :
   exact (finitePowerMatchingCost_joint_continuousAt_pos
     (lt_of_lt_of_le zero_lt_one hz)).continuousWithinAt
 
-/-- Joint continuity of the rooted optimum, including nonempty zero-cost inputs.-/
+/-- Joint continuity of the rooted optimum, including nonempty zero-cost inputs.
+@isnad1 id=continuo.0h2v.s7.33f2eba821b3 from=translated src=- shape=cfea325b vocab=912071e6
+-/
 theorem finitePMatchingCost_joint_continuousOn :
     ContinuousOn (fun z : ℝ × ((I → ℝ × ℝ) × (J → ℝ × ℝ)) =>
       finitePMatchingCost z.1 z.2.1 z.2.2) {z | 1 ≤ z.1} := by
@@ -114,14 +118,18 @@ theorem finitePMatchingCost_joint_continuousOn :
   exact (finitePMatchingCost_joint_continuousAt_pos
     (lt_of_lt_of_le zero_lt_one hz)).continuousWithinAt
 
-/-- Joint continuity of the powered infimum over all feasible real reservoir plans.-/
+/-- Joint continuity of the powered infimum over all feasible real reservoir plans.
+@isnad1 id=continuo.0h2v.s7.5f986682014e from=translated src=- shape=cfea325b vocab=74624708
+-/
 theorem finitePowerBoundaryTransportCost_joint_continuousOn :
     ContinuousOn (fun z : ℝ × ((I → ℝ × ℝ) × (J → ℝ × ℝ)) =>
       finitePowerBoundaryTransportCost z.1 z.2.1 z.2.2) {z | 1 ≤ z.1} := by
   simpa only [finitePowerBoundaryTransportCost_eq_matchingCost] using
     (finitePowerMatchingCost_joint_continuousOn (I := I) (J := J))
 
-/-- Joint continuity of the rooted real-plan optimum on the PH exponent domain.-/
+/-- Joint continuity of the rooted real-plan optimum on the PH exponent domain.
+@isnad1 id=continuo.0h2v.s7.6853e3db0b34 from=translated src=- shape=cfea325b vocab=e4566940
+-/
 theorem finitePBoundaryTransportCost_joint_continuousOn :
     ContinuousOn (fun z : ℝ × ((I → ℝ × ℝ) × (J → ℝ × ℝ)) =>
       finitePBoundaryTransportCost z.1 z.2.1 z.2.2) {z | 1 ≤ z.1} := by

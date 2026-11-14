@@ -47,11 +47,15 @@ namespace FiniteReebData
 
 variable {n : ℕ}
 
-/-- Finiteness of the vertex types as an instance.-/
+/-- Finiteness of the vertex types as an instance.
+@isnad1 id=finite.0h3v.s4.ca339e420249 from=translated src=- shape=2d42acdc vocab=3f559785
+-/
 instance instFiniteV (D : FiniteReebData.{u} n) (i : Fin (n + 1)) : Finite (D.V i) :=
   D.finiteV i
 
-/-- Finiteness of the edge types as an instance.-/
+/-- Finiteness of the edge types as an instance.
+@isnad1 id=finite.0h3v.s3.8aa0737d2601 from=translated src=- shape=3c29c769 vocab=9d83339e
+-/
 instance instFiniteE (D : FiniteReebData.{u} n) (e : Fin n) : Finite (D.E e) :=
   D.finiteE e
 
@@ -95,11 +99,17 @@ noncomputable def inv (φ : Hom D D') (hv : ∀ i, Function.Bijective (φ.v i))
     rw [← φ.right_comm, Equiv.ofBijective_apply_symm_apply _ (he i),
       Equiv.ofBijective_apply_symm_apply _ (hv i.succ)])
 
+/--
+@isnad1 id=eq.2h4v.s6.6f8aecc323ca from=translated src=- shape=3e646eed vocab=d30d27f6
+-/
 theorem comp_inv (φ : Hom D D') (hv : ∀ i, Function.Bijective (φ.v i))
     (he : ∀ i, Function.Bijective (φ.e i)) : φ.comp (φ.inv hv he) = Hom.id D :=
   Hom.ext (funext fun i => funext fun x => Equiv.ofBijective_symm_apply_apply _ (hv i) x)
     (funext fun i => funext fun x => Equiv.ofBijective_symm_apply_apply _ (he i) x)
 
+/--
+@isnad1 id=eq.2h4v.s6.3c7f7a02d5d8 from=translated src=- shape=2d0247e2 vocab=d30d27f6
+-/
 theorem inv_comp (φ : Hom D D') (hv : ∀ i, Function.Bijective (φ.v i))
     (he : ∀ i, Function.Bijective (φ.e i)) : (φ.inv hv he).comp φ = Hom.id D' :=
   Hom.ext (funext fun i => funext fun x => Equiv.ofBijective_apply_symm_apply _ (hv i) x)

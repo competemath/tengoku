@@ -45,16 +45,24 @@ variable (χ : R →ₐ[k] k)
 /-- The right action on the one-dimensional character module.-/
 def vertexRightAction (x : k) (a : R) : k := x * χ a
 
+/--
+@isnad1 id=eq.0h4v.s6.231fcabc58e8 from=translated src=- shape=2f7aef44 vocab=8c0314a7
+-/
 @[simp] theorem vertexRightAction_one (x : k) :
     vertexRightAction χ x 1 = x := by simp [vertexRightAction]
 
+/--
+@isnad1 id=eq.0h6v.s6.cf125fe54903 from=translated src=- shape=ecc849c5 vocab=ea928cf2
+-/
 @[simp] theorem vertexRightAction_mul (x : k) (a b : R) :
     vertexRightAction χ (vertexRightAction χ x a) b =
       vertexRightAction χ x (a * b) := by
   simp [vertexRightAction, map_mul, mul_assoc]
 
 omit [IsScalarTower k R N] in
-/-- The relation quotient identifies the two sides of character balancing.-/
+/-- The relation quotient identifies the two sides of character balancing.
+@isnad1 id=eq.0h6v.s9.3aec3420a388 from=translated src=- shape=36549c56 vocab=e1e830cc
+-/
 theorem vertexRelation_mkQ (a : R) (n : N) :
     (vertexRelation (k := k) (R := R) (N := N) χ).mkQ (a • n) =
       χ a • (vertexRelation (k := k) (R := R) (N := N) χ).mkQ n := by
@@ -86,10 +94,15 @@ def vertexPureBilinear :
     ext n
     simp [vertexPureRight, vertexPure, smul_smul, mul_comm]
 
+/--
+@isnad1 id=eq.0h6v.s10.b011eaf4f499 from=translated src=- shape=32779d4b vocab=4211f74f
+-/
 @[simp] theorem vertexPureBilinear_apply (x : k) (n : N) :
     vertexPureBilinear χ x n = vertexPure χ x n := rfl
 
-/-- The pure-element map is balanced for the right action `x • a = x * χ a`.-/
+/-- The pure-element map is balanced for the right action `x • a = x * χ a`.
+@isnad1 id=eq.0h7v.s8.1483e005c247 from=translated src=- shape=daa33e72 vocab=beb7b81c
+-/
 theorem vertexPure_balanced (x : k) (a : R) (n : N) :
     vertexPure χ (x * χ a) n = vertexPure χ x (a • n) := by
   change (x * χ a) • (vertexRelation (k := k) (R := R) (N := N) χ).mkQ n =
@@ -126,7 +139,9 @@ noncomputable def vertexBalancedFactor {V : Type*} [AddCommGroup V] [Module k V]
   exact (vertexRelation (k := k) (R := R) (N := N) χ).liftQ f₁ hrel
 
 /-- A balanced bilinear map factors through the vertex coinvariants with the
-expected value on every pure element.-/
+expected value on every pure element.
+@isnad1 id=eq.1h8v.s10.7793a5350791 from=translated src=- shape=c6ebc216 vocab=a7ac2e66
+-/
 @[simp] theorem vertexBalancedFactor_pure {V : Type*} [AddCommGroup V] [Module k V]
     (f : k →ₗ[k] N →ₗ[k] V) (hbal : IsVertexBalanced χ f)
     (x : k) (n : N) :
@@ -142,7 +157,9 @@ expected value on every pure element.-/
   exact houter.symm
 
 /-- The vertex coinvariants represent all `A`-balanced `k`-bilinear maps:
-factorization, computation on pure elements, and uniqueness.-/
+factorization, computation on pure elements, and uniqueness.
+@isnad1 id=existsun.1h6v.s10.5212f67cd890 from=translated src=- shape=705de416 vocab=66031610
+-/
 theorem vertexBalanced_universal {V : Type*} [AddCommGroup V] [Module k V]
     (f : k →ₗ[k] N →ₗ[k] V) (hbal : IsVertexBalanced χ f) :
     ∃! F : VertexCoinvariants (k := k) (R := R) (N := N) χ →ₗ[k] V,
@@ -192,6 +209,9 @@ abbrev DiagonalIdeal :=
   FiniteRankProjectiveDiagonalIdealProjective.DiagonalIdeal (k := k) (S := S)
 abbrev DiagonalQuotient := Incidence (k := k) (S := S) ⧸ DiagonalIdeal (k := k) (S := S)
 
+/--
+@isnad1 id=istwosid.0h2v.s6.0c576a880fc5 from=translated src=- shape=3e603a0f vocab=9fd4fb9f
+-/
 local instance diagonalIdealTwoSided :
     (DiagonalIdeal (k := k) (S := S)).IsTwoSided :=
   diagonalIdeal_isTwoSided (k := k) (S := S)
@@ -213,32 +233,49 @@ def vertexCharacter (v : FiniteRankProjectiveEndAlgebra.StrictVertex S) :
   map_zero' := by simp
   map_add' f g := by simp [IncidenceAlgebra.add_apply]
 
+/--
+@isnad1 id=eq.0h4v.s9.f688e4b5e35b from=translated src=- shape=1784eaec vocab=f9c06d5b
+-/
 @[simp] theorem vertexCharacter_apply (v : FiniteRankProjectiveEndAlgebra.StrictVertex S)
     (f : Incidence (k := k) (S := S)) :
     vertexCharacter (k := k) (S := S) v f = f v.1 v.1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.bee3dd96b2fd from=translated src=- shape=1d50feba vocab=2e9606de
+-/
 @[simp] theorem vertexCharacter_one (v : FiniteRankProjectiveEndAlgebra.StrictVertex S) :
     vertexCharacter (k := k) (S := S) v (1 : Incidence (k := k) (S := S)) = 1 :=
   map_one (vertexCharacter (k := k) (S := S) v)
 
+/--
+@isnad1 id=eq.0h5v.s10.8df5227108c9 from=translated src=- shape=c0ce4ded vocab=27d166e1
+-/
 @[simp] theorem vertexCharacter_mul (v : FiniteRankProjectiveEndAlgebra.StrictVertex S)
     (f g : Incidence (k := k) (S := S)) :
     vertexCharacter (k := k) (S := S) v (f * g) =
       vertexCharacter (k := k) (S := S) v f * vertexCharacter (k := k) (S := S) v g :=
   map_mul (vertexCharacter (k := k) (S := S) v) f g
 
+/--
+@isnad1 id=eq.0h4v.s9.b45558e68fd9 from=translated src=- shape=c996706d vocab=6a362ca7
+-/
 @[simp] theorem vertexCharacter_algebraMap (v : FiniteRankProjectiveEndAlgebra.StrictVertex S)
     (c : k) :
     vertexCharacter (k := k) (S := S) v (algebraMap k (Incidence (k := k) (S := S)) c) = c :=
   AlgHom.commutes (vertexCharacter (k := k) (S := S) v) c
 
+/--
+@isnad1 id=eq.1h5v.s10.1de649e1b6e7 from=translated src=- shape=b84e044a vocab=59a7d95e
+-/
 @[simp] theorem vertexCharacter_delta (v : FiniteRankProjectiveEndAlgebra.StrictVertex S)
     (p q : PairPoset S) (hpq : p ≤ q) :
     vertexCharacter (k := k) (S := S) v (delta (k := k) (S := S) p q hpq) =
       if v.1 = p ∧ v.1 = q then 1 else 0 := by
   simp [vertexCharacter, delta_apply]
 
-/-- The vertex character vanishes on the actual two-sided diagonal ideal.-/
+/-- The vertex character vanishes on the actual two-sided diagonal ideal.
+@isnad1 id=eq.1h4v.s9.04f59685b16b from=translated src=- shape=70a69827 vocab=d010a1ba
+-/
 theorem vertexCharacter_vanishes_on_diagonalIdeal
     (v : FiniteRankProjectiveEndAlgebra.StrictVertex S)
     (f : Incidence (k := k) (S := S))
@@ -250,6 +287,9 @@ theorem vertexCharacter_vanishes_on_diagonalIdeal
       intro hcross
       exact (not_le_of_gt v.property) hcross)
 
+/--
+@isnad1 id=eq.0h4v.s10.d7751829f21e from=translated src=- shape=46fb9969 vocab=cf4c59f0
+-/
 theorem vertexCharacter_zero_on_diagonalIdeal
     (v : FiniteRankProjectiveEndAlgebra.StrictVertex S)
     (f : DiagonalIdeal (k := k) (S := S)) :
@@ -264,6 +304,9 @@ noncomputable def vertexQuotientCharacter
     (vertexCharacter (k := k) (S := S) v)
     (vertexCharacter_vanishes_on_diagonalIdeal (k := k) (S := S) v)
 
+/--
+@isnad1 id=eq.0h4v.s11.aaabf54ee165 from=translated src=- shape=f5469d76 vocab=a56b4a3c
+-/
 @[simp] theorem vertexQuotientCharacter_mk
     (v : FiniteRankProjectiveEndAlgebra.StrictVertex S)
     (f : Incidence (k := k) (S := S)) :
@@ -293,7 +336,9 @@ abbrev diagonalIdealVertexRelation
 
 /-- A strict vertex character kills every crossing interval matrix unit in the
 coinvariants of the actual diagonal ideal. The factorization uses the diagonal
-floor `r` of the terminal vertex `q`.-/
+floor `r` of the terminal vertex `q`.
+@isnad1 id=eq.2h5v.s15.b99d34348792 from=translated src=- shape=90762349 vocab=ee6acc2f
+-/
 theorem crossingDelta_killed_in_diagonalIdealVertexCoinvariants
     (v : FiniteRankProjectiveEndAlgebra.StrictVertex S)
     (p q : PairPoset S) (hpq : p ≤ q)
@@ -335,7 +380,9 @@ theorem crossingDelta_killed_in_diagonalIdealVertexCoinvariants
   simp
 
 /-- The actual vertex coinvariants of the diagonal ideal vanish, by its
-crossing-delta spanning theorem and the preceding factorization.-/
+crossing-delta spanning theorem and the preceding factorization.
+@isnad1 id=eq.0h4v.s15.a32dcbdc8efa from=translated src=- shape=6243238f vocab=0d3aff28
+-/
 theorem diagonalIdealVertexCoinvariants_mkQ_eq_zero
     (v : FiniteRankProjectiveEndAlgebra.StrictVertex S)
     (f : DiagonalIdeal (k := k) (S := S)) :
@@ -383,7 +430,9 @@ theorem diagonalIdealVertexCoinvariants_mkQ_eq_zero
   exact hkill hfspan f.2
 
 set_option maxHeartbeats 1000000 in
-/-- Every element of the actual diagonal-ideal vertex tensor is zero.-/
+/-- Every element of the actual diagonal-ideal vertex tensor is zero.
+@isnad1 id=eq.0h4v.s11.cc199f4317a9 from=translated src=- shape=5ab96427 vocab=78a728e1
+-/
 theorem diagonalIdealVertexCoinvariants_eq_zero
     (v : FiniteRankProjectiveEndAlgebra.StrictVertex S)
     (x : DiagonalIdealVertexCoinvariants (k := k) (S := S) v) : x = 0 := by
@@ -414,7 +463,9 @@ abbrev diagonalQuotientVertexRelation
     (vertexCharacter (k := k) (S := S) v)
 
 /-- The quotient character intertwines the actual projected action and the
-strict-vertex character on the incidence algebra.-/
+strict-vertex character on the incidence algebra.
+@isnad1 id=eq.0h5v.s11.98dfa3e5860a from=translated src=- shape=cdd607dc vocab=fc140d1a
+-/
 theorem vertexQuotientCharacter_smul
     (v : FiniteRankProjectiveEndAlgebra.StrictVertex S)
     (a : Incidence (k := k) (S := S)) (b : DiagonalQuotient (k := k) (S := S)) :
@@ -425,7 +476,9 @@ theorem vertexQuotientCharacter_smul
   rw [map_mul, vertexQuotientCharacter_mk]
 
 /-- The descended character vanishes on the character-balancing relations
-for the actual quotient module.-/
+for the actual quotient module.
+@isnad1 id=le.0h3v.s12.e4e0b8f7339e from=translated src=- shape=a3aff70b vocab=f62e6fc9
+-/
 theorem diagonalQuotientVertexCharacter_balances
     (v : FiniteRankProjectiveEndAlgebra.StrictVertex S) :
     diagonalQuotientVertexRelation (k := k) (S := S) v ≤
@@ -445,6 +498,9 @@ noncomputable def diagonalQuotientVertexTensorEvaluation
     (vertexQuotientCharacter (k := k) (S := S) v).toLinearMap
     (diagonalQuotientVertexCharacter_balances (k := k) (S := S) v)
 
+/--
+@isnad1 id=eq.0h4v.s14.92d4fd9d9180 from=translated src=- shape=f81d0ba6 vocab=c16d03b2
+-/
 @[simp] theorem diagonalQuotientVertexTensorEvaluation_mk
     (v : FiniteRankProjectiveEndAlgebra.StrictVertex S)
     (b : DiagonalQuotient (k := k) (S := S)) :
@@ -465,6 +521,9 @@ def diagonalQuotientVertexTensorUnit
     DiagonalQuotientVertexCoinvariants (k := k) (S := S) v :=
   (diagonalQuotientVertexRelation (k := k) (S := S) v).mkQ (1 : DiagonalQuotient (k := k) (S := S))
 
+/--
+@isnad1 id=eq.0h3v.s12.0d850aef011c from=translated src=- shape=4ed3aa11 vocab=f99652b4
+-/
 @[simp] theorem diagonalQuotientVertexTensorEvaluation_unit
     (v : FiniteRankProjectiveEndAlgebra.StrictVertex S) :
     diagonalQuotientVertexTensorEvaluation (k := k) (S := S) v
@@ -473,7 +532,9 @@ def diagonalQuotientVertexTensorUnit
   exact map_one (vertexQuotientCharacter (k := k) (S := S) v)
 
 /-- Each quotient-module class is its character coefficient times the unit
-class.-/
+class.
+@isnad1 id=eq.0h4v.s13.5fd8d1ba9417 from=translated src=- shape=7b1dcc86 vocab=fae05143
+-/
 theorem diagonalQuotientVertexTensor_reconstruct
     (v : FiniteRankProjectiveEndAlgebra.StrictVertex S)
     (x : DiagonalQuotientVertexCoinvariants (k := k) (S := S) v) :
@@ -511,6 +572,9 @@ noncomputable def diagonalQuotientVertexTensorEquiv
   map_add' := (diagonalQuotientVertexTensorEvaluation (k := k) (S := S) v).map_add'
   map_smul' := (diagonalQuotientVertexTensorEvaluation (k := k) (S := S) v).map_smul'
 
+/--
+@isnad1 id=eq.0h4v.s14.8ddf23778b74 from=translated src=- shape=097b64a6 vocab=ac7dfd5f
+-/
 @[simp] theorem diagonalQuotientVertexTensorEquiv_mk
     (v : FiniteRankProjectiveEndAlgebra.StrictVertex S)
     (b : DiagonalQuotient (k := k) (S := S)) :
@@ -519,12 +583,17 @@ noncomputable def diagonalQuotientVertexTensorEquiv
         vertexQuotientCharacter (k := k) (S := S) v b := by
   exact diagonalQuotientVertexTensorEvaluation_mk (k := k) (S := S) v b
 
+/--
+@isnad1 id=eq.0h4v.s14.d43414c111c5 from=translated src=- shape=00367443 vocab=14025946
+-/
 @[simp] theorem diagonalQuotientVertexTensorEquiv_symm_apply (v :
     FiniteRankProjectiveEndAlgebra.StrictVertex S) (c : k) :
     (diagonalQuotientVertexTensorEquiv (k := k) (S := S) v).symm c =
       c • diagonalQuotientVertexTensorUnit (k := k) (S := S) v := rfl
 
-/-- The class of the quotient unit survives in the actual tensor.-/
+/-- The class of the quotient unit survives in the actual tensor.
+@isnad1 id=ne.0h3v.s10.8d00b70f845a from=translated src=- shape=cfb51e5e vocab=93de6c54
+-/
 theorem diagonalQuotientVertexTensorUnit_ne_zero
     (v : FiniteRankProjectiveEndAlgebra.StrictVertex S) :
     diagonalQuotientVertexTensorUnit (k := k) (S := S) v ≠ 0 := by
@@ -532,7 +601,9 @@ theorem diagonalQuotientVertexTensorUnit_ne_zero
   have h' := congrArg (diagonalQuotientVertexTensorEvaluation (k := k) (S := S) v) h
   simpa using h'
 
-/-- Evaluation on a right multiple obeys the character coefficient law.-/
+/-- Evaluation on a right multiple obeys the character coefficient law.
+@isnad1 id=eq.0h5v.s15.d14a14937d53 from=translated src=- shape=f5cf8bb1 vocab=b6b1469f
+-/
 theorem diagonalQuotientVertexTensorEvaluation_mul
     (v : FiniteRankProjectiveEndAlgebra.StrictVertex S)
     (b c : DiagonalQuotient (k := k) (S := S)) :

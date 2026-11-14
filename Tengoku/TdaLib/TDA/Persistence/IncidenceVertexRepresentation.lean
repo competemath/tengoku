@@ -67,13 +67,18 @@ noncomputable def rightMatrixUnitAction
   Algebra.lsmul k k M
     (IncidenceQuotientBaseChange.rightIncidenceMatrixUnit (k := k) (S := S) p q hpq)
 
+/--
+@isnad1 id=eq.1h6v.s11.cd34bd1a1f87 from=translated src=- shape=37ed77e6 vocab=7d115d4c
+-/
 @[simp] theorem rightMatrixUnitAction_apply
     (M : ModuleCat.{u} (RightIncidence (k := k) (S := S)))
     (p q : PairPoset S) (hpq : p ≤ q) (m : M) :
     rightMatrixUnitAction (k := k) (S := S) M p q hpq m =
       IncidenceQuotientBaseChange.rightIncidenceMatrixUnit (k := k) (S := S) p q hpq • m := rfl
 
-/-- Opposite multiplication reverses the interval endpoints in the actual unit rule.-/
+/-- Opposite multiplication reverses the interval endpoints in the actual unit rule.
+@isnad1 id=eq.2h6v.s9.970319e8c249 from=translated src=- shape=9633f06a vocab=8326e69d
+-/
 @[simp] theorem rightIncidenceMatrixUnit_mul
     (p q r s : PairPoset S) (hpq : p ≤ q) (hrs : r ≤ s) :
     IncidenceQuotientBaseChange.rightIncidenceMatrixUnit (k := k) (S := S) p q hpq *
@@ -89,7 +94,9 @@ noncomputable def rightMatrixUnitAction
   rw [FiniteRankProjectiveEndAlgebra.delta_mul]
   split_ifs <;> simp_all
 
-/-- The diagonal units sum to the identity of the actual opposite incidence ring.-/
+/-- The diagonal units sum to the identity of the actual opposite incidence ring.
+@isnad1 id=eq.0h2v.s7.6f1adf91f8fb from=translated src=- shape=7aa21e22 vocab=145084cd
+-/
 @[simp] theorem rightIncidence_diagonal_sum :
     (∑ p : PairPoset S,
       IncidenceQuotientBaseChange.rightIncidenceMatrixUnit (k := k) (S := S) p p le_rfl) =
@@ -106,6 +113,9 @@ noncomputable def diagonalProjector
       restrictedKModule (k := k) (S := S) M :=
   rightMatrixUnitAction (k := k) (S := S) M p p le_rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.091418924611 from=translated src=- shape=00ba65a4 vocab=29247b3e
+-/
 theorem diagonalProjector_idempotent
     (M : ModuleCat.{u} (RightIncidence (k := k) (S := S))) (p : PairPoset S)
     (m : restrictedKModule (k := k) (S := S) M) :
@@ -127,6 +137,9 @@ def vertexFiber
     Submodule k (restrictedKModule (k := k) (S := S) M) :=
   LinearMap.eqLocus (diagonalProjector (k := k) (S := S) M p) LinearMap.id
 
+/--
+@isnad1 id=iff.0h5v.s9.99bc430a880f from=translated src=- shape=67ed029e vocab=86661b13
+-/
 @[simp] theorem mem_vertexFiber_iff
     (M : ModuleCat.{u} (RightIncidence (k := k) (S := S))) (p : PairPoset S)
     (m : restrictedKModule (k := k) (S := S) M) :
@@ -151,12 +164,18 @@ noncomputable def projectToVertexFiber
       (diagonalProjector (k := k) (S := S) M p m) |>.2
       (diagonalProjector_idempotent (k := k) (S := S) M p m))
 
+/--
+@isnad1 id=eq.0h5v.s11.9ffb2f26e2df from=translated src=- shape=3d77bbb3 vocab=e56a7c0b
+-/
 @[simp] theorem projectToVertexFiber_val
     (M : ModuleCat.{u} (RightIncidence (k := k) (S := S))) (p : PairPoset S)
     (m : restrictedKModule (k := k) (S := S) M) :
     (projectToVertexFiber (k := k) (S := S) M p m : M) =
       diagonalProjector (k := k) (S := S) M p m := rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.bed64b0fa6bb from=translated src=- shape=d94b7013 vocab=7476bfa0
+-/
 @[simp] theorem diagonalProjector_apply_vertex
     (M : ModuleCat.{u} (RightIncidence (k := k) (S := S))) (p q : PairPoset S)
     (x : vertexFiber (k := k) (S := S) M q) :
@@ -178,7 +197,9 @@ noncomputable def projectToVertexFiber
     rw [← hx, smul_smul, hmul]
     exact zero_smul (RightIncidence (k := k) (S := S)) (x : M)
 
-/-- The sum of the diagonal projectors reconstructs every module element.-/
+/-- The sum of the diagonal projectors reconstructs every module element.
+@isnad1 id=eq.0h4v.s9.83d1427c568b from=translated src=- shape=60f1ddd9 vocab=7a14a414
+-/
 theorem diagonalProjector_sum
     (M : ModuleCat.{u} (RightIncidence (k := k) (S := S)))
     (m : restrictedKModule (k := k) (S := S) M) :
@@ -233,6 +254,9 @@ noncomputable def vertexStructureMap
       simp
     )).comp (vertexFiber (k := k) (S := S) M p).subtype
 
+/--
+@isnad1 id=eq.1h6v.s12.68bf224a2187 from=translated src=- shape=bec7208a vocab=a7e05dd0
+-/
 @[simp] theorem vertexStructureMap_val
     (M : ModuleCat.{u} (RightIncidence (k := k) (S := S)))
     {p q : PairPoset S} (hpq : p ≤ q) (x : vertexFiber (k := k) (S := S) M p) :
@@ -263,6 +287,9 @@ noncomputable def vertexRepresentation
       smul_smul, rightIncidenceMatrixUnit_mul]
     simp
 
+/--
+@isnad1 id=eq.0h4v.s7.ea94487b374f from=translated src=- shape=9385556e vocab=a7a10978
+-/
 @[simp] theorem vertexRepresentation_obj
     (M : ModuleCat.{u} (RightIncidence (k := k) (S := S))) (p : PairPoset S) :
     (vertexRepresentation (k := k) (S := S) M).obj p =
@@ -283,6 +310,9 @@ noncomputable def mapOnVertexFiber
       rw [← f.hom.map_smul]
       exact congrArg f.hom ((mem_vertexFiber_iff (k := k) (S := S) M p m).1 m.property))
 
+/--
+@isnad1 id=eq.0h7v.s12.326840e02d62 from=translated src=- shape=55a38a4c vocab=726b1692
+-/
 @[simp] theorem mapOnVertexFiber_val
     {M N : ModuleCat.{u} (RightIncidence (k := k) (S := S))} (f : M ⟶ N)
     (p : PairPoset S) (x : vertexFiber (k := k) (S := S) M p) :
@@ -318,6 +348,9 @@ noncomputable def vertexFunctor :
     ext p x
     rfl
 
+/--
+@isnad1 id=additive.0h2v.s9.232011f8c734 from=translated src=- shape=642e3974 vocab=f6962bd9
+-/
 noncomputable instance vertexFunctor_additive :
     Functor.Additive (vertexFunctor (k := k) (S := S)) where
   map_add := by
@@ -325,7 +358,9 @@ noncomputable instance vertexFunctor_additive :
     ext p x
     rfl
 
-/-- A comparable-pair unit acts on a fixed vertex fiber only at its source vertex.-/
+/-- A comparable-pair unit acts on a fixed vertex fiber only at its source vertex.
+@isnad1 id=eq.1h7v.s11.605fb48fe768 from=translated src=- shape=49b84499 vocab=7d2446c5
+-/
 theorem rightMatrixUnit_smul_vertex
     (M : ModuleCat.{u} (RightIncidence (k := k) (S := S)))
     {p q : PairPoset S} (hpq : p ≤ q) {r : PairPoset S}
@@ -350,7 +385,9 @@ theorem rightMatrixUnit_smul_vertex
     rw [ite_eq_right hr, ← hx, smul_smul, hmul]
     exact zero_smul (RightIncidence (k := k) (S := S)) (x : M)
 
-/-- A comparable-pair unit only sees the corresponding projector of an arbitrary element.-/
+/-- A comparable-pair unit only sees the corresponding projector of an arbitrary element.
+@isnad1 id=eq.1h6v.s11.d98f03200e66 from=translated src=- shape=191f93eb vocab=16e8ef47
+-/
 theorem rightMatrixUnit_smul_projector
     (M : ModuleCat.{u} (RightIncidence (k := k) (S := S)))
     {p q : PairPoset S} (hpq : p ≤ q)
@@ -420,6 +457,9 @@ noncomputable def reconstructVertexNaturalTransformation
       (naturalTransformationComponent (k := k) (S := S) α p)).comp
         (projectToVertexFiber (k := k) (S := S) M p)
 
+/--
+@isnad1 id=eq.0h6v.s12.213ecf86eedf from=translated src=- shape=b2d7816b vocab=6577af3e
+-/
 @[simp] theorem reconstructVertexNaturalTransformation_apply
     {M N : ModuleCat.{u} (RightIncidence (k := k) (S := S))}
     (α : vertexRepresentation (k := k) (S := S) M ⟶
@@ -431,7 +471,9 @@ noncomputable def reconstructVertexNaturalTransformation
           (projectToVertexFiber (k := k) (S := S) M p m)) : N) := by
   simp [reconstructVertexNaturalTransformation]
 
-/-- On an element already in one vertex fiber, reconstruction is the corresponding component.-/
+/-- On an element already in one vertex fiber, reconstruction is the corresponding component.
+@isnad1 id=eq.0h7v.s12.88098d42cd54 from=translated src=- shape=1a8e0f82 vocab=bfd3fb78
+-/
 theorem reconstructVertexNaturalTransformation_apply_vertex
     {M N : ModuleCat.{u} (RightIncidence (k := k) (S := S))}
     (α : vertexRepresentation (k := k) (S := S) M ⟶
@@ -467,7 +509,9 @@ theorem reconstructVertexNaturalTransformation_apply_vertex
           ((naturalTransformationComponent (k := k) (S := S) α q).map_zero)
     _ = ((naturalTransformationComponent (k := k) (S := S) α p x) : N) := by simp
 
-/-- Projecting a reconstructed map recovers exactly the corresponding component map.-/
+/-- Projecting a reconstructed map recovers exactly the corresponding component map.
+@isnad1 id=eq.0h7v.s12.82f705932c33 from=translated src=- shape=e95d3a47 vocab=fc4f8a9c
+-/
 theorem projectToVertexFiber_reconstructVertexNaturalTransformation
     {M N : ModuleCat.{u} (RightIncidence (k := k) (S := S))}
     (α : vertexRepresentation (k := k) (S := S) M ⟶
@@ -496,7 +540,9 @@ theorem projectToVertexFiber_reconstructVertexNaturalTransformation
     simpa using h
   · simp
 
-/-- A component of a natural transformation commutes with the vertex structure maps.-/
+/-- A component of a natural transformation commutes with the vertex structure maps.
+@isnad1 id=eq.1h8v.s13.972e8a93977d from=translated src=- shape=ec86b847 vocab=83a62f6f
+-/
 theorem naturalTransformationComponent_naturality
     {M N : ModuleCat.{u} (RightIncidence (k := k) (S := S))}
     (α : vertexRepresentation (k := k) (S := S) M ⟶
@@ -510,7 +556,9 @@ theorem naturalTransformationComponent_naturality
     vertexStructureMap (k := k) (S := S) N hpq ((α.app p).hom x)
   exact congrArg (fun f => f.hom x) (α.naturality (homOfLE hpq))
 
-/-- The reconstructed `k`-linear map commutes with each actual incidence matrix unit.-/
+/-- The reconstructed `k`-linear map commutes with each actual incidence matrix unit.
+@isnad1 id=eq.1h8v.s11.0449b5663776 from=translated src=- shape=d8bffdab vocab=86d74060
+-/
 theorem reconstructVertexNaturalTransformation_map_rightMatrixUnit
     {M N : ModuleCat.{u} (RightIncidence (k := k) (S := S))}
     (α : vertexRepresentation (k := k) (S := S) M ⟶
@@ -638,7 +686,9 @@ noncomputable def naturalTransformationToRightIncidenceHom
       vertexRepresentation (k := k) (S := S) N) : M ⟶ N :=
   ModuleCat.ofHom (reconstructVertexNaturalTransformationRLinear (k := k) (S := S) α)
 
-/-- Reconstructing the image of an actual module map returns that map.-/
+/-- Reconstructing the image of an actual module map returns that map.
+@isnad1 id=eq.0h5v.s10.d849d3a3628a from=translated src=- shape=bc3759d6 vocab=86940bc4
+-/
 theorem reconstructVertexNaturalTransformationRLinear_vertexFunctor_map
     {M N : ModuleCat.{u} (RightIncidence (k := k) (S := S))} (f : M ⟶ N) :
     reconstructVertexNaturalTransformationRLinear (k := k) (S := S)
@@ -669,7 +719,9 @@ theorem reconstructVertexNaturalTransformationRLinear_vertexFunctor_map
         congr 1
         exact diagonalProjector_sum (k := k) (S := S) M m
 
-/-- The component maps of a natural transformation followed by reconstruction recover it.-/
+/-- The component maps of a natural transformation followed by reconstruction recover it.
+@isnad1 id=eq.0h5v.s10.f4787a919f6c from=translated src=- shape=60215228 vocab=47c9ae3a
+-/
 theorem vertexFunctor_map_naturalTransformationToRightIncidenceHom
     {M N : ModuleCat.{u} (RightIncidence (k := k) (S := S))}
     (α : vertexRepresentation (k := k) (S := S) M ⟶
@@ -714,21 +766,32 @@ noncomputable def vertexFunctorFullyFaithful :
     exact reconstructVertexNaturalTransformationRLinear_vertexFunctor_map
       (k := k) (S := S) f
 
+/--
+@isnad1 id=full.0h2v.s8.cdcada994a59 from=translated src=- shape=642e3974 vocab=6a9e72f8
+-/
 noncomputable instance vertexFunctor_full :
     Functor.Full (vertexFunctor (k := k) (S := S)) :=
   (vertexFunctorFullyFaithful (k := k) (S := S)).full
 
+/--
+@isnad1 id=faithful.0h2v.s8.c81b6d49fa02 from=translated src=- shape=642e3974 vocab=cc2c8237
+-/
 noncomputable instance vertexFunctor_faithful :
     Functor.Faithful (vertexFunctor (k := k) (S := S)) :=
   (vertexFunctorFullyFaithful (k := k) (S := S)).faithful
 
+/--
+@isnad1 id=eq.0h6v.s12.f9390c4e3da4 from=translated src=- shape=747ae72d vocab=97a7c561
+-/
 @[simp] theorem vertexFunctor_map_app_hom
     {M N : ModuleCat.{u} (RightIncidence (k := k) (S := S))} (f : M ⟶ N)
     (p : PairPoset S) :
     (((vertexFunctor (k := k) (S := S)).map f).app p).hom =
       mapOnVertexFiber (k := k) (S := S) f p := rfl
 
-/-- Projectors commute with every actual module map.-/
+/-- Projectors commute with every actual module map.
+@isnad1 id=eq.0h7v.s13.61d09ecf3d55 from=translated src=- shape=d3eb857d vocab=f5439194
+-/
 theorem projectToVertexFiber_map
     {M N : ModuleCat.{u} (RightIncidence (k := k) (S := S))} (f : M ⟶ N)
     (p : PairPoset S) (m : restrictedKModule (k := k) (S := S) M) :
@@ -742,7 +805,9 @@ theorem projectToVertexFiber_map
           p p le_rfl • m)
   rw [← f.hom.map_smul]
 
-/-- Injectivity of an actual module map is detected on all fixed vertex fibers.-/
+/-- Injectivity of an actual module map is detected on all fixed vertex fibers.
+@isnad1 id=iff.0h5v.s12.80899471c8e2 from=translated src=- shape=be9ce442 vocab=cba27b72
+-/
 theorem rightIncidenceMap_injective_iff_vertexFibers
     {M N : ModuleCat.{u} (RightIncidence (k := k) (S := S))} (f : M ⟶ N) :
     Function.Injective f.hom ↔
@@ -770,7 +835,9 @@ theorem rightIncidenceMap_injective_iff_vertexFibers
             exact congrArg Subtype.val (hproj p)
       _ = y := diagonalProjector_sum (k := k) (S := S) M y
 
-/-- Surjectivity of an actual module map is detected on all fixed vertex fibers.-/
+/-- Surjectivity of an actual module map is detected on all fixed vertex fibers.
+@isnad1 id=iff.0h5v.s12.8b84d887ef8a from=translated src=- shape=be9ce442 vocab=76ffbf87
+-/
 theorem rightIncidenceMap_surjective_iff_vertexFibers
     {M N : ModuleCat.{u} (RightIncidence (k := k) (S := S))} (f : M ⟶ N) :
     Function.Surjective f.hom ↔
@@ -804,7 +871,9 @@ theorem rightIncidenceMap_surjective_iff_vertexFibers
             exact congrArg Subtype.val (hx p)
       _ = y := diagonalProjector_sum (k := k) (S := S) N y
 
-/-- The image-kernel equality of an actual module pair is detected on its fixed fibers.-/
+/-- The image-kernel equality of an actual module pair is detected on its fixed fibers.
+@isnad1 id=iff.1h7v.s12.1faca7220c78 from=translated src=- shape=28072d0b vocab=1dcbf4c9
+-/
 theorem rightIncidenceRange_eq_ker_iff_vertexFibers
     {L M N : ModuleCat.{u} (RightIncidence (k := k) (S := S))}
     (f : L ⟶ M) (g : M ⟶ N) (hfg : f ≫ g = 0) :
@@ -889,7 +958,9 @@ theorem rightIncidenceRange_eq_ker_iff_vertexFibers
               exact congrArg Subtype.val (hx p)
         _ = y := diagonalProjector_sum (k := k) (S := S) M y
 
-/-- An actual module short complex is short exact exactly when every fixed-fiber row is.-/
+/-- An actual module short complex is short exact exactly when every fixed-fiber row is.
+@isnad1 id=iff.1h7v.s12.5cde4669d3ea from=translated src=- shape=5a7ea965 vocab=946bf957
+-/
 theorem rightIncidenceShortExact_iff_vertexPointwise
     {L M N : ModuleCat.{u} (RightIncidence (k := k) (S := S))}
     (f : L ⟶ M) (g : M ⟶ N) (hfg : f ≫ g = 0) :
@@ -940,7 +1011,9 @@ theorem rightIncidenceShortExact_iff_vertexPointwise
     letI : Epi C.g := (ModuleCat.epi_iff_surjective g).2 hsurj
     exact ⟨hexact⟩
 
-/-- Finite dimensionality over the coefficient field is detected on every vertex fiber.-/
+/-- Finite dimensionality over the coefficient field is detected on every vertex fiber.
+@isnad1 id=iff.0h3v.s9.38e1a754a8a4 from=translated src=- shape=09736c45 vocab=85d85f72
+-/
 theorem finiteDimensional_iff_vertexFibers
     (M : ModuleCat.{u} (RightIncidence (k := k) (S := S))) :
     FiniteDimensional k (restrictedKModule (k := k) (S := S) M) ↔

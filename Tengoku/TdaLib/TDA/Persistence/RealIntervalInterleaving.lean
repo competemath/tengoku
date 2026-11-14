@@ -27,7 +27,9 @@ private theorem val_eq_zero {p : ℝ × WithTop ℝ} {t : ℝ}
     (h : ¬ alive p t) (x : fiber (k := k) p t) : (x : k) = 0 := by
   simpa only [fiber, ite_eq_right h, Submodule.mem_bot] using x.property
 
-/-- The interval structure map preserves coefficients until the excluded death.-/
+/-- The interval structure map preserves coefficients until the excluded death.
+@isnad1 id=eq.0h6v.s10.831bdbc45367 from=translated src=- shape=ef2d16b0 vocab=fef94317
+-/
 theorem map_val (p : ℝ × WithTop ℝ) {s t : ℝ} (f : s ⟶ t)
     (x : fiber (k := k) p s) :
     ((show fiber (k := k) p t from ((intervalModule p).map f).hom x) : k) = if alive p t then (x : k) else 0 := by
@@ -90,7 +92,9 @@ noncomputable def comparison (ε : ℝ≥0) (p q : ℝ × WithTop ℝ)
       · simp [ht]
     · simp [val_eq_zero hs x]
 
-/-- Comparison components preserve the coefficient exactly on the target support.-/
+/-- Comparison components preserve the coefficient exactly on the target support.
+@isnad1 id=eq.2h6v.s10.81eba39a453a from=translated src=- shape=91cc2283 vocab=c47e80fb
+-/
 theorem comparison_app_val (ε : ℝ≥0) (p q : ℝ × WithTop ℝ)
     (hb : q.1 ≤ p.1 + (ε : ℝ))
     (hd : q.2 ≤ p.2 + ((ε : ℝ) : WithTop ℝ)) (t : ℝ)
@@ -149,7 +153,9 @@ noncomputable def interleavingOfBounds (ε : ℝ≥0) (p q : ℝ × WithTop ℝ)
     (comp p q hpq hqp hdpq hdqp) (comp q p hqp hpq hdqp hdpq)
 
 /-- A finite half-open interval has zero double-shift map exactly at the closed
-length bound. No positive-lifetime hypothesis is needed for this criterion.-/
+length bound. No positive-lifetime hypothesis is needed for this criterion.
+@isnad1 id=iff.0h4v.s9.8f934adaf772 from=translated src=- shape=811b568c vocab=c798416b
+-/
 theorem transition_eq_zero_iff (ε : ℝ≥0) (b d : ℝ) :
     transition (ε + ε) (intervalModule (k := k) (b, (d : WithTop ℝ))) = 0 ↔
       d - b ≤ 2 * (ε : ℝ) := by
@@ -196,14 +202,18 @@ theorem transition_eq_zero_iff (ε : ℝ≥0) (b d : ℝ) :
       simp only [ite_eq_right ht]
     · simp [val_eq_zero hs x]
 
-/-- Exact finite-interval criterion for interleaving with zero, including length `2ε`.-/
+/-- Exact finite-interval criterion for interleaving with zero, including length `2ε`.
+@isnad1 id=iff.0h4v.s6.7853d4103082 from=translated src=- shape=056be300 vocab=8bc8e6d4
+-/
 theorem interleaved_zero_iff (ε : ℝ≥0) (b d : ℝ) :
     Nonempty (RealInterleaving ε (intervalModule (k := k) (b, (d : WithTop ℝ))) 0) ↔
       d - b ≤ 2 * (ε : ℝ) :=
   (RealInterleaving.nonempty_zero_iff _ _).trans (transition_eq_zero_iff ε b d)
 
 /-- When the shifted target dies at or before the source birth, the normalized
-comparison is zero. Equality is excluded by the half-open support.-/
+comparison is zero. Equality is excluded by the half-open support.
+@isnad1 id=eq.3h4v.s9.bc64327e47c2 from=translated src=- shape=16310a5c vocab=6ebde96a
+-/
 theorem comparison_eq_zero_of_death_le (ε : ℝ≥0) (p q : ℝ × WithTop ℝ)
     (hb : q.1 ≤ p.1 + (ε : ℝ))
     (hd : q.2 ≤ p.2 + ((ε : ℝ) : WithTop ℝ))
@@ -227,7 +237,9 @@ theorem comparison_eq_zero_of_death_le (ε : ℝ≥0) (p q : ℝ × WithTop ℝ)
   · simp [val_eq_zero hs x]
 
 /-- For a positive source and the stated endpoint bounds, the normalized comparison
-is nonzero exactly when the shifted source birth lies strictly before target death.-/
+is nonzero exactly when the shifted source birth lies strictly before target death.
+@isnad1 id=iff.3h4v.s9.95c9649e53c9 from=translated src=- shape=ee2de1fc vocab=956e8b73
+-/
 theorem comparison_ne_zero_iff (ε : ℝ≥0) (p q : ℝ × WithTop ℝ)
     (hp : (p.1 : WithTop ℝ) < p.2)
     (hb : q.1 ≤ p.1 + (ε : ℝ))
@@ -249,7 +261,9 @@ theorem comparison_ne_zero_iff (ε : ℝ≥0) (p q : ℝ × WithTop ℝ)
     change (if alive q (p.1 + (ε : ℝ)) then (1 : k) else 0) = 0 at hv
     exact one_ne_zero (by simpa only [ite_eq_left hq] using hv)
 
-/-- An essential interval cannot be deleted by a finite shift over a field.-/
+/-- An essential interval cannot be deleted by a finite shift over a field.
+@isnad1 id=not.0h3v.s6.310917ca081d from=translated src=- shape=7909a504 vocab=ddb135c3
+-/
 theorem essential_not_interleaved_zero (ε : ℝ≥0) (b : ℝ) :
     ¬ Nonempty (RealInterleaving ε (intervalModule (k := k) (b, ⊤)) 0) := by
   intro hi

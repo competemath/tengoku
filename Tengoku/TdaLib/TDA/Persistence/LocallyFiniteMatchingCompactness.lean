@@ -1061,7 +1061,9 @@ private theorem occurrenceMatchingOfSection_cost_le
 /-- The bottleneck distance between finite-birth decorated diagrams extracted from actual
 q-tame modules is bounded by every actual real interleaving parameter. The proof obtains
 one occurrence matching from finite saturation on all finite index sets; no decomposition
-or global-matching hypothesis is assumed.-/
+or global-matching hypothesis is assumed.
+@isnad1 id=ex.2h5v.s6.ec47e1b27c03 from=translated src=- shape=cc91285f vocab=bff737b3
+-/
 theorem exists_occurrenceMatching_cost_le_of_realInterleaving
     {k : Type u} [Field k] {ε : ℝ≥0} {M N : PModule.{u,0,w} k ℝ}
     (i : RealInterleaving ε M N) (hM : M.QTame) (hN : N.QTame) :
@@ -1075,6 +1077,9 @@ theorem exists_occurrenceMatching_cost_le_of_realInterleaving
   obtain ⟨u⟩ := exists_qModule_coherent_matchingStates i hM hN
   exact ⟨occurrenceMatchingOfSection _ _ ε u, occurrenceMatchingOfSection_cost_le _ _ ε u⟩
 
+/--
+@isnad1 id=le.2h5v.s6.a923c1be0b88 from=translated src=- shape=37f68b61 vocab=728291e2
+-/
 theorem qTame_bottleneck_le_of_realInterleaving
     {k : Type u} [Field k] {ε : ℝ≥0} {M N : PModule.{u,0,w} k ℝ}
     (i : RealInterleaving ε M N) (hM : M.QTame) (hN : N.QTame) :

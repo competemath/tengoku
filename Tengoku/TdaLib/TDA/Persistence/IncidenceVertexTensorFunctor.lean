@@ -53,10 +53,16 @@ abbrev restrictedScalarsStructure (M : ModuleCat (Incidence (k := k) (S := S))) 
 local instance restrictedScalars (M : ModuleCat (Incidence (k := k) (S := S))) :
     Module k M := restrictedScalarsStructure (k := k) (S := S) M
 
+/--
+@isnad1 id=isscalar.0h3v.s12.65e0b6708c42 from=translated src=- shape=97bc486f vocab=475586d7
+-/
 theorem restrictedScalarsTower (M : ModuleCat (Incidence (k := k) (S := S))) :
     IsScalarTower k (Incidence (k := k) (S := S)) M :=
   IsScalarTower.of_compHom k (Incidence (k := k) (S := S)) M
 
+/--
+@isnad1 id=isscalar.0h3v.s12.65e0b6708c42 from=translated src=- shape=97bc486f vocab=475586d7
+-/
 local instance scalarTower (M : ModuleCat (Incidence (k := k) (S := S))) :
     IsScalarTower k (Incidence (k := k) (S := S)) M :=
   restrictedScalarsTower (k := k) (S := S) M
@@ -115,7 +121,9 @@ def coinvariantsEquiv {N : Type u} [AddCommGroup N] [Module k N]
         a • m - vertexCharacter (k := k) (S := S) v a • m
     rw [map_sub, hA, hk, e.apply_symm_apply]
 
-/-- The transported quotient equivalence sends a quotient class to the class of its image.-/
+/-- The transported quotient equivalence sends a quotient class to the class of its image.
+@isnad1 id=eq.2h7v.s14.dbc7fcf69fab from=translated src=- shape=f443560c vocab=997a0108
+-/
 @[simp] theorem coinvariantsEquiv_mkQ {N : Type u} [AddCommGroup N] [Module k N]
     [Module (Incidence (k := k) (S := S)) N]
     (e : M ≃+ N)
@@ -164,6 +172,9 @@ def map {M N : ModuleCat (Incidence (k := k) (S := S))} (f : M ⟶ N) :
     (relation (k := k) (S := S) v N) (restrictMap (k := k) (S := S) f)
     (relation_map_le (k := k) (S := S) v f)
 
+/--
+@isnad1 id=eq.0h7v.s13.8184364071d1 from=translated src=- shape=07765d52 vocab=a17b3d41
+-/
 @[simp] theorem map_mkQ {M N : ModuleCat (Incidence (k := k) (S := S))}
     (f : M ⟶ N) (m : M) :
     map (k := k) (S := S) v f ((relation (k := k) (S := S) v M).mkQ m) =
@@ -195,7 +206,9 @@ def mk (M : ModuleCat (Incidence (k := k) (S := S))) (x : M) :
   (relation (k := k) (S := S) v M).mkQ x
 
 /-- The equivalence on actual coinvariant classes induced by a scalar-compatible module
-equivalence.-/
+equivalence.
+@isnad1 id=eq.2h7v.s14.e4c8dd0dd4a8 from=translated src=- shape=5218aebc vocab=927a70c9
+-/
 @[simp] theorem coinvariantsEquiv_mk {N : Type u} [AddCommGroup N] [Module k N]
     [Module (Incidence (k := k) (S := S)) N]
     (e : M ≃+ N)
@@ -209,6 +222,9 @@ equivalence.-/
           (N := N) (vertexCharacter (k := k) (S := S) v)).mkQ (e x) := by
   exact coinvariantsEquiv_mkQ (k := k) (S := S) (v := v) e hk hA x
 
+/--
+@isnad1 id=additive.0h3v.s8.65acb9a6a099 from=translated src=- shape=526e2ff9 vocab=5122b8dd
+-/
 instance vertexTensor_additive : (vertexTensor (k := k) (S := S) v).Additive where
   map_add {M N} f g := by
     apply ModuleCat.hom_ext
@@ -222,12 +238,17 @@ instance vertexTensor_additive : (vertexTensor (k := k) (S := S) v).Additive whe
     rw [show (f + g).hom = f.hom + g.hom by rfl]
     simp
 
+/--
+@isnad1 id=eq.0h7v.s13.8780abf487f2 from=translated src=- shape=a09865fd vocab=26bea1e4
+-/
 @[simp] theorem vertexTensor_map_apply_mkQ {M N : ModuleCat (Incidence (k := k) (S := S))}
     (f : M ⟶ N) (m : M) :
     (vertexTensor (k := k) (S := S) v).map f ((relation (k := k) (S := S) v M).mkQ m) =
       (relation (k := k) (S := S) v N).mkQ (f.hom m) := map_mkQ (k := k) (S := S) v f m
 
-/-- The quotient map to vertex coinvariants obeys the actual character relation.-/
+/-- The quotient map to vertex coinvariants obeys the actual character relation.
+@isnad1 id=eq.0h6v.s13.a2a7094d4b22 from=translated src=- shape=c1d1d5a8 vocab=01c1d6a3
+-/
 @[simp] theorem mkQ_smul (M : ModuleCat (Incidence (k := k) (S := S)))
     (a : Incidence (k := k) (S := S)) (m : M) :
     (relation (k := k) (S := S) v M).mkQ (a • m) =
@@ -442,6 +463,9 @@ def vertexTensorAdjunction :
     homEquiv_naturality_right := fun f g =>
       homEquiv_naturality_right (k := k) (S := S) v f g }
 
+/--
+@isnad1 id=preserve.0h3v.s7.7fd24e8d51ec from=translated src=- shape=526e2ff9 vocab=35aeb804
+-/
 instance vertexTensor_preservesFiniteColimits :
     Limits.PreservesFiniteColimits (vertexTensor (k := k) (S := S) v) := by
   have h : Limits.PreservesColimitsOfSize.{0, 0}

@@ -76,7 +76,9 @@ def DistinctPivots (R : Matrix (Fin m) (Fin m) k) : Prop :=
 def IsDeath (R : Matrix (Fin m) (Fin m) k) (j : Fin m) : Prop :=
   (columnPivot (R.col j)).isSome
 
-/-- A reduced linear relation has zero coefficient at every nonzero column.-/
+/-- A reduced linear relation has zero coefficient at every nonzero column.
+@isnad1 id=eq.3h5v.s6.9dd817bf55de from=translated src=- shape=bb860d2e vocab=65a14302
+-/
 theorem reduced_mulVec_kernel (R : Matrix (Fin m) (Fin m) k)
     (hpiv : DistinctPivots R) (a : Fin m → k) (hker : R.mulVec a = 0)
     (j : Fin m) (hj : IsDeath R j) : a j = 0 := by
@@ -134,7 +136,9 @@ private theorem col_mul_eq_mulVec (A B : Matrix (Fin m) (Fin m) k) (j : Fin m) :
 def StrictBoundary (D : Matrix (Fin m) (Fin m) k) : Prop :=
   ∀ r c, D r c ≠ 0 → r < c
 
-/-- The right-reduced boundary retains strict upper triangularity.-/
+/-- The right-reduced boundary retains strict upper triangularity.
+@isnad1 id=strictbo.3h5v.s6.170da912bb66 from=translated src=- shape=82d714c1 vocab=f4111508
+-/
 theorem reduced_strict (D V R : Matrix (Fin m) (Fin m) k)
     (hD : StrictBoundary D) (hV : V.IsUpperTriangular) (hR : R = D * V) :
     StrictBoundary R := by
@@ -152,7 +156,9 @@ theorem reduced_strict (D V R : Matrix (Fin m) (Fin m) k)
       simp [hV hqc]
   exact hrc hz
 
-/-- Degree zero is unaugmented: no degree-zero generator has a boundary.-/
+/-- Degree zero is unaugmented: no degree-zero generator has a boundary.
+@isnad1 id=eq.2h5v.s6.26194c41a0e1 from=translated src=- shape=4549f37f vocab=6210aaca
+-/
 theorem degree_zero_boundary (degree : Fin m → ℕ)
     (D : Matrix (Fin m) (Fin m) k) (hdegree : LowersDegree degree D)
     (j : Fin m) (hj : degree j = 0) : D.col j = 0 := by
@@ -181,7 +187,9 @@ private theorem inverse_mulVec_pivot
     _ = R i j := by simp [hdiag]
 
 /-- A pivot index cannot itself be a death column. The square-zero hypothesis is
-used on `D`, and the inverse certificate preserves the top coordinate.-/
+used on `D`, and the inverse certificate preserves the top coordinate.
+@isnad1 id=eq.5h9v.s8.c41bfea899de from=translated src=- shape=c654513c vocab=874da801
+-/
 theorem pivot_column_zero (degree : Fin m → ℕ)
     (D R V W : Matrix (Fin m) (Fin m) k)
     (hD2 : D * D = 0) (hR : R = D * V)
@@ -219,16 +227,25 @@ def IsEssential (R : Matrix (Fin m) (Fin m) k) (i : Fin m) : Prop :=
 noncomputable def deathOfPivot (R : Matrix (Fin m) (Fin m) k)
     (i : Fin m) (hi : IsPivot R i) : Fin m := Classical.choose hi
 
+/--
+@isnad1 id=eq.1h4v.s5.645ab8b010bd from=translated src=- shape=fab9f46c vocab=838b2004
+-/
 theorem deathOfPivot_spec (R : Matrix (Fin m) (Fin m) k)
     (i : Fin m) (hi : IsPivot R i) :
     columnPivot (R.col (deathOfPivot R i hi)) = some i := Classical.choose_spec hi
 
+/--
+@isnad1 id=eq.3h5v.s6.27c736a6f7c6 from=translated src=- shape=9d0c9f78 vocab=55868641
+-/
 theorem deathOfPivot_unique (R : Matrix (Fin m) (Fin m) k)
     (hpiv : DistinctPivots R) (i j : Fin m)
     (hi : IsPivot R i) (hj : columnPivot (R.col j) = some i) :
     deathOfPivot R i hi = j :=
   hpiv _ _ i (deathOfPivot_spec R i hi) hj
 
+/--
+@isnad1 id=eq.5h8v.s7.99a3961ce3ea from=translated src=- shape=245bbb07 vocab=b6b5b9f6
+-/
 theorem pivot_not_death (degree : Fin m → ℕ)
     (D R V W : Matrix (Fin m) (Fin m) k)
     (hD2 : D * D = 0) (hR : R = D * V)
@@ -238,7 +255,9 @@ theorem pivot_not_death (degree : Fin m → ℕ)
   obtain ⟨j, hj⟩ := hi
   exact pivot_column_zero degree D R V W hD2 hR hcert hpiv j i hj
 
-/-- Every index has exactly one of the pivot, death, or essential roles.-/
+/-- Every index has exactly one of the pivot, death, or essential roles.
+@isnad1 id=or.4h8v.s8.561340b27e91 from=translated src=- shape=182241d3 vocab=104e839d
+-/
 theorem pivot_death_essential (degree : Fin m → ℕ)
     (D R V W : Matrix (Fin m) (Fin m) k)
     (hD2 : D * D = 0) (hR : R = D * V)
@@ -270,7 +289,9 @@ theorem pivot_death_essential (degree : Fin m → ℕ)
         | some j => exact (hd (by simp [IsDeath, h])).elim
       exact ⟨⟨hz, hp⟩, hp, hd⟩
 
-/-- Every nonzero reduced column is strictly earlier-supported and degree-lowering.-/
+/-- Every nonzero reduced column is strictly earlier-supported and degree-lowering.
+@isnad1 id=and.3h6v.s6.64fb6dc2fd94 from=translated src=- shape=5189ff61 vocab=589531de
+-/
 theorem pivot_order_degree (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k)
     (hstrict : StrictBoundary R) (hdegree : LowersDegree degree R)
@@ -291,6 +312,9 @@ noncomputable def normalColumn (R V : Matrix (Fin m) (Fin m) k)
 noncomputable def normalMatrix (R V : Matrix (Fin m) (Fin m) k) :
     Matrix (Fin m) (Fin m) k := Matrix.of (fun r i => normalColumn R V i r)
 
+/--
+@isnad1 id=eq.1h5v.s6.39255a320d57 from=translated src=- shape=a58b5104 vocab=2eec6980
+-/
 theorem normalColumn_pivot (R V : Matrix (Fin m) (Fin m) k)
     (i : Fin m) (hi : IsPivot R i) :
     normalColumn R V i =
@@ -298,11 +322,17 @@ theorem normalColumn_pivot (R V : Matrix (Fin m) (Fin m) k)
   classical
   simp [normalColumn, dite_eq_left hi]
 
+/--
+@isnad1 id=eq.1h5v.s5.1e0f25db3c72 from=translated src=- shape=d4d973d7 vocab=863802f9
+-/
 theorem normalColumn_nonpivot (R V : Matrix (Fin m) (Fin m) k)
     (i : Fin m) (hi : ¬ IsPivot R i) : normalColumn R V i = V.col i := by
   classical
   simp [normalColumn, dite_eq_right hi]
 
+/--
+@isnad1 id=isuppert.1h4v.s6.1c4c219680f1 from=translated src=- shape=269d5922 vocab=2595d44e
+-/
 theorem normalMatrix_upper (R V : Matrix (Fin m) (Fin m) k)
     (hV : V.IsUpperTriangular) : (normalMatrix R V).IsUpperTriangular := by
   intro r i hir
@@ -317,6 +347,9 @@ theorem normalMatrix_upper (R V : Matrix (Fin m) (Fin m) k)
       normalColumn_nonpivot R V i hi]
     exact hV hir
 
+/--
+@isnad1 id=eq.1h5v.s6.4250315e1eea from=translated src=- shape=b356a68a vocab=c024de0c
+-/
 theorem normalMatrix_diag (R V : Matrix (Fin m) (Fin m) k)
     (hV : ∀ i, V i i = 1) (i : Fin m) : normalMatrix R V i i = 1 := by
   by_cases hi : IsPivot R i
@@ -330,6 +363,9 @@ theorem normalMatrix_diag (R V : Matrix (Fin m) (Fin m) k)
       normalColumn_nonpivot R V i hi]
     exact hV i
 
+/--
+@isnad1 id=eq.3h7v.s6.21b2507959b6 from=translated src=- shape=cdea68eb vocab=9b9cd28c
+-/
 theorem normalMatrix_degree (degree : Fin m → ℕ)
     (R V : Matrix (Fin m) (Fin m) k)
     (hdegree : LowersDegree degree R)
@@ -350,20 +386,27 @@ theorem normalMatrix_degree (degree : Fin m → ℕ)
       normalColumn_nonpivot R V i hi]
     exact hV r i hri
 
-/-- The normal matrix has determinant one over every coefficient field.-/
+/-- The normal matrix has determinant one over every coefficient field.
+@isnad1 id=eq.2h4v.s6.1c1dbb9acea2 from=translated src=- shape=d6d3a461 vocab=041afce8
+-/
 theorem normalMatrix_det (R V : Matrix (Fin m) (Fin m) k)
     (hV : V.IsUpperTriangular) (hdiag : ∀ i, V i i = 1) :
     (normalMatrix R V).det = 1 := by
   rw [Matrix.det_of_isUpperTriangular (normalMatrix_upper R V hV)]
   simp [normalMatrix_diag R V hdiag]
 
-/-- A fixed inverse exists without requiring a second reduction algorithm.-/
+/-- A fixed inverse exists without requiring a second reduction algorithm.
+@isnad1 id=isunit.2h4v.s6.6d46482216e4 from=translated src=- shape=e6500b6c vocab=58f730da
+-/
 theorem normalMatrix_isUnit (R V : Matrix (Fin m) (Fin m) k)
     (hV : V.IsUpperTriangular) (hdiag : ∀ i, V i i = 1) :
     IsUnit (normalMatrix R V) := by
   rw [Matrix.isUnit_iff_isUnit_det, normalMatrix_det R V hV hdiag]
   exact isUnit_one
 
+/--
+@isnad1 id=eq.2h4v.s7.806ac6b1be28 from=translated src=- shape=d85b8597 vocab=b1b32af9
+-/
 theorem normalMatrix_mul_inv (R V : Matrix (Fin m) (Fin m) k)
     (hV : V.IsUpperTriangular) (hdiag : ∀ i, V i i = 1) :
     normalMatrix R V * (normalMatrix R V)⁻¹ = 1 := by
@@ -372,6 +415,9 @@ theorem normalMatrix_mul_inv (R V : Matrix (Fin m) (Fin m) k)
   exact Matrix.mul_nonsing_inv _ ((Matrix.isUnit_iff_isUnit_det _).mp
     (normalMatrix_isUnit R V hV hdiag))
 
+/--
+@isnad1 id=eq.2h4v.s7.450e8a69f550 from=translated src=- shape=abf9a5b7 vocab=b1b32af9
+-/
 theorem normalMatrix_inv_mul (R V : Matrix (Fin m) (Fin m) k)
     (hV : V.IsUpperTriangular) (hdiag : ∀ i, V i i = 1) :
     (normalMatrix R V)⁻¹ * normalMatrix R V = 1 := by
@@ -380,6 +426,9 @@ theorem normalMatrix_inv_mul (R V : Matrix (Fin m) (Fin m) k)
   exact Matrix.nonsing_inv_mul _ ((Matrix.isUnit_iff_isUnit_det _).mp
     (normalMatrix_isUnit R V hV hdiag))
 
+/--
+@isnad1 id=isuppert.2h4v.s6.de24336279ff from=translated src=- shape=1e168006 vocab=adaf97e0
+-/
 theorem normalMatrix_inv_upper (R V : Matrix (Fin m) (Fin m) k)
     (hV : V.IsUpperTriangular) (hdiag : ∀ i, V i i = 1) :
     ((normalMatrix R V)⁻¹).IsUpperTriangular := by
@@ -387,6 +436,9 @@ theorem normalMatrix_inv_upper (R V : Matrix (Fin m) (Fin m) k)
     (normalMatrix_isUnit R V hV hdiag).nonempty_invertible.some
   exact Matrix.blockTriangular_inv_of_blockTriangular (normalMatrix_upper R V hV)
 
+/--
+@isnad1 id=eq.5h7v.s7.585f98bf0627 from=translated src=- shape=a698e1fd vocab=3ba5938a
+-/
 theorem normalMatrix_inv_degree (degree : Fin m → ℕ)
     (R V : Matrix (Fin m) (Fin m) k)
     (hVupper : V.IsUpperTriangular) (hVdiag : ∀ i, V i i = 1)
@@ -410,6 +462,9 @@ theorem normalMatrix_inv_degree (degree : Fin m → ℕ)
 def PrefixSupported (t : ℕ) (x : Fin m → k) : Prop :=
   ∀ i, t ≤ i.val → x i = 0
 
+/--
+@isnad1 id=prefixsu.2h5v.s6.25253e345c7f from=translated src=- shape=70130bbd vocab=42e486f0
+-/
 theorem upper_mulVec_prefix (A : Matrix (Fin m) (Fin m) k)
     (hA : A.IsUpperTriangular) (t : ℕ) (x : Fin m → k)
     (hx : PrefixSupported t x) : PrefixSupported t (A.mulVec x) := by
@@ -422,18 +477,27 @@ theorem upper_mulVec_prefix (A : Matrix (Fin m) (Fin m) k)
     simp [hA hqi]
   · simp [hx q (by omega)]
 
+/--
+@isnad1 id=prefixsu.2h6v.s6.b8a98501ef8f from=translated src=- shape=37c9e8e0 vocab=55e4f5b9
+-/
 theorem normalMatrix_prefix (R V : Matrix (Fin m) (Fin m) k)
     (hV : V.IsUpperTriangular) (t : ℕ) (x : Fin m → k)
     (hx : PrefixSupported t x) :
     PrefixSupported t ((normalMatrix R V).mulVec x) :=
   upper_mulVec_prefix _ (normalMatrix_upper R V hV) t x hx
 
+/--
+@isnad1 id=prefixsu.3h6v.s7.aced510140d2 from=translated src=- shape=54d787ba vocab=28b107a2
+-/
 theorem normalMatrix_inv_prefix (R V : Matrix (Fin m) (Fin m) k)
     (hV : V.IsUpperTriangular) (hdiag : ∀ i, V i i = 1)
     (t : ℕ) (x : Fin m → k) (hx : PrefixSupported t x) :
     PrefixSupported t (((normalMatrix R V)⁻¹).mulVec x) :=
   upper_mulVec_prefix _ (normalMatrix_inv_upper R V hV hdiag) t x hx
 
+/--
+@isnad1 id=prefixsu.2h5v.s5.42fecb3c540b from=translated src=- shape=963f69db vocab=5d0b0894
+-/
 theorem strict_boundary_prefix (D : Matrix (Fin m) (Fin m) k)
     (hD : StrictBoundary D) (t : ℕ) (x : Fin m → k)
     (hx : PrefixSupported t x) : PrefixSupported t (D.mulVec x) := by
@@ -444,7 +508,9 @@ theorem strict_boundary_prefix (D : Matrix (Fin m) (Fin m) k)
   · exact hx
 
 /-- The reducer supplies the generic normal-form inputs for every graded
-square-zero, strictly upper-triangular boundary.-/
+square-zero, strictly upper-triangular boundary.
+@isnad1 id=other.3h4v.s8.0463df5cf2ee from=translated src=- shape=81152e68 vocab=2c7fc8df
+-/
 theorem matrixReductionTrace_normalForm_input (degree : Fin m → ℕ)
     (D : Matrix (Fin m) (Fin m) k)
     (hD2 : D * D = 0) (hstrict : StrictBoundary D)
@@ -468,7 +534,9 @@ theorem matrixReductionTrace_normalForm_input (degree : Fin m → ℕ)
   exact ⟨hR, hcert, hRdegree, reduced_strict D V R hstrict hcert.upper hR,
     hpiv, fun j i hji => pivot_column_zero degree D R V W hD2 hR hcert hpiv j i hji⟩
 
-/-- Every paired normal column is a cycle in the original differential.-/
+/-- Every paired normal column is a cycle in the original differential.
+@isnad1 id=eq.3h8v.s8.4e7af19e36a0 from=translated src=- shape=32535725 vocab=b4e762a3
+-/
 theorem normalColumn_pivot_boundary (degree : Fin m → ℕ)
     (D R V W : Matrix (Fin m) (Fin m) k)
     (hD2 : D * D = 0) (hR : R = D * V)
@@ -480,7 +548,9 @@ theorem normalColumn_pivot_boundary (degree : Fin m → ℕ)
   ext r
   simp
 
-/-- A zero reduced column gives a cycle in the fixed normal basis.-/
+/-- A zero reduced column gives a cycle in the fixed normal basis.
+@isnad1 id=eq.3h6v.s7.eb00a03c2693 from=translated src=- shape=7075029b vocab=7bbef5a2
+-/
 theorem normalColumn_zero_boundary (D R V : Matrix (Fin m) (Fin m) k)
     (hR : R = D * V) (i : Fin m)
     (hzero : columnPivot (R.col i) = none)
@@ -490,7 +560,9 @@ theorem normalColumn_zero_boundary (D R V : Matrix (Fin m) (Fin m) k)
     ext r; exact he r
 
 /-- A death column kills exactly its normalized paired cycle, with its
-nonzero coefficient in the original differential.-/
+nonzero coefficient in the original differential.
+@isnad1 id=eq.5h9v.s8.8c83f35e0e75 from=translated src=- shape=d7ac1446 vocab=65b523e5
+-/
 theorem normalColumn_death_boundary (degree : Fin m → ℕ)
     (D R V W : Matrix (Fin m) (Fin m) k)
     (hD2 : D * D = 0) (hR : R = D * V)
@@ -517,12 +589,18 @@ noncomputable def normalDifferential (R : Matrix (Fin m) (Fin m) k) :
     Matrix (Fin m) (Fin m) k :=
   Matrix.of fun r j => if columnPivot (R.col j) = some r then R r j else 0
 
+/--
+@isnad1 id=eq.1h4v.s6.cc99fff42669 from=translated src=- shape=5f2f775b vocab=264afe7c
+-/
 theorem normalDifferential_zero_column (R : Matrix (Fin m) (Fin m) k)
     (j : Fin m) (hj : columnPivot (R.col j) = none) :
     (normalDifferential R).col j = 0 := by
   ext r
   simp [normalDifferential, hj]
 
+/--
+@isnad1 id=eq.1h5v.s7.d0f39ba20418 from=translated src=- shape=3de98466 vocab=c55dbf15
+-/
 theorem normalDifferential_pair_column (R : Matrix (Fin m) (Fin m) k)
     (j i : Fin m) (hji : columnPivot (R.col j) = some i) :
     (normalDifferential R).col j = R i j • Pi.single i (1 : k) := by
@@ -533,7 +611,9 @@ theorem normalDifferential_pair_column (R : Matrix (Fin m) (Fin m) k)
   · simp [normalDifferential, hji, hri, Ne.symm hri]
 
 /-- The new basis conjugates the *original* boundary to the sparse pair
-differential. It does not assert that `R` itself is square-zero.-/
+differential. It does not assert that `R` itself is square-zero.
+@isnad1 id=eq.4h7v.s8.b4d12e28b828 from=translated src=- shape=ea83b24a vocab=90895c22
+-/
 theorem normalMatrix_conjugates_boundary (degree : Fin m → ℕ)
     (D R V W : Matrix (Fin m) (Fin m) k)
     (hD2 : D * D = 0) (hR : R = D * V)
@@ -571,7 +651,9 @@ theorem normalMatrix_conjugates_boundary (degree : Fin m → ℕ)
       exact congrFun (hl.trans hr.symm) r
 
 /-- At a pivot row, the sparse boundary reads the coefficient of its unique
-death generator.-/
+death generator.
+@isnad1 id=eq.2h5v.s6.0a4e0fbf2a32 from=translated src=- shape=f362462f vocab=6fa9ee3f
+-/
 theorem normalDifferential_mulVec_pivot (R : Matrix (Fin m) (Fin m) k)
     (hpiv : DistinctPivots R) (x : Fin m → k)
     (i : Fin m) (hi : IsPivot R i) :
@@ -591,7 +673,9 @@ theorem normalDifferential_mulVec_pivot (R : Matrix (Fin m) (Fin m) k)
     _ = R i (deathOfPivot R i hi) * x (deathOfPivot R i hi) := by
       simp [normalDifferential, deathOfPivot_spec R i hi]
 
-/-- Rows that are not pivots vanish identically in the sparse differential.-/
+/-- Rows that are not pivots vanish identically in the sparse differential.
+@isnad1 id=eq.1h5v.s6.40882441d83b from=translated src=- shape=94a86345 vocab=db117e74
+-/
 theorem normalDifferential_mulVec_nonpivot (R : Matrix (Fin m) (Fin m) k)
     (x : Fin m → k) (i : Fin m) (hi : ¬ IsPivot R i) :
     (normalDifferential R).mulVec x i = 0 := by
@@ -601,7 +685,9 @@ theorem normalDifferential_mulVec_nonpivot (R : Matrix (Fin m) (Fin m) k)
   have hji : columnPivot (R.col j) ≠ some i := fun h => hi ⟨j, h⟩
   simp [normalDifferential, hji]
 
-/-- A vector is a cycle precisely when each death coordinate is zero.-/
+/-- A vector is a cycle precisely when each death coordinate is zero.
+@isnad1 id=iff.1h4v.s6.dba187ba6185 from=translated src=- shape=dfc2fd33 vocab=5d673b8d
+-/
 theorem normalDifferential_cycle_iff (R : Matrix (Fin m) (Fin m) k)
     (hpiv : DistinctPivots R) (x : Fin m → k) :
     (normalDifferential R).mulVec x = 0 ↔
@@ -628,12 +714,17 @@ theorem normalDifferential_cycle_iff (R : Matrix (Fin m) (Fin m) k)
     · rw [normalDifferential_mulVec_nonpivot R x i hi]
       rfl
 
-/-- A normal boundary has no coordinate outside the pivot rows.-/
+/-- A normal boundary has no coordinate outside the pivot rows.
+@isnad1 id=eq.1h5v.s6.40882441d83b from=translated src=- shape=94a86345 vocab=db117e74
+-/
 theorem normalDifferential_image_nonpivot (R : Matrix (Fin m) (Fin m) k)
     (x : Fin m → k) (i : Fin m) (hi : ¬ IsPivot R i) :
     (normalDifferential R).mulVec x i = 0 :=
   normalDifferential_mulVec_nonpivot R x i hi
 
+/--
+@isnad1 id=strictbo.1h3v.s5.a41363700749 from=translated src=- shape=e4da3791 vocab=75f16653
+-/
 theorem normalDifferential_strict (R : Matrix (Fin m) (Fin m) k)
     (hR : StrictBoundary R) : StrictBoundary (normalDifferential R) := by
   intro r j hn
@@ -642,6 +733,9 @@ theorem normalDifferential_strict (R : Matrix (Fin m) (Fin m) k)
     simp [normalDifferential, hz] at hn
   exact hR r j hrj
 
+/--
+@isnad1 id=lowersde.1h4v.s5.2c06eee69e90 from=translated src=- shape=7568be2d vocab=2fea249c
+-/
 theorem normalDifferential_degree (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k)
     (hR : LowersDegree degree R) :

@@ -312,7 +312,9 @@ private theorem finite_negPart_measure (L : C₀(X, ℝ) →L[ℝ] ℝ) :
     (L.le_opNorm (g : C₀(X, ℝ))).trans <| by nlinarith [norm_nonneg L]
 
 omit [MeasurableSpace X] [BorelSpace X] in
-/-- Compactly supported continuous functions are uniformly dense in C₀.-/
+/-- Compactly supported continuous functions are uniformly dense in C₀.
+@isnad1 id=denseran.0h1v.s6.4a29e754328a from=translated src=- shape=3bb7f840 vocab=0011527f
+-/
 theorem denseRange_compactlySupported :
     DenseRange (fun f : C_c(X, ℝ) => (f : C₀(X, ℝ))) := by
   intro f
@@ -344,7 +346,9 @@ theorem denseRange_compactlySupported :
 
 /-- Every bounded real functional on C₀ is represented by a difference of finite regular
 measures. In particular the representing measures have finite mass on the whole space,
-not only on compact subsets.-/
+not only on compact subsets.
+@isnad1 id=ex.0h2v.s8.033b633b9d44 from=translated src=- shape=d7a7f69c vocab=05db3932
+-/
 theorem exists_finite_regular_measure_sub (L : C₀(X, ℝ) →L[ℝ] ℝ) :
     ∃ μ ν : Measure X, IsFiniteMeasure μ ∧ IsFiniteMeasure ν ∧ μ.Regular ∧ ν.Regular ∧
       ∀ f : C₀(X, ℝ), L f = (∫ x, f x ∂μ) - ∫ x, f x ∂ν := by

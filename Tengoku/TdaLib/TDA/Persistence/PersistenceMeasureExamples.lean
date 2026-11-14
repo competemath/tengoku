@@ -46,7 +46,9 @@ private theorem ephemeral_strict_map {a b : ℝ} (hab : a < b) :
   simp only [structureMapLinear, structureMap, ephemeralModule, ite_eq_right hab.ne]
   rfl
 
-/-- Infinite-dimensional fibers can be entirely ephemeral and still be q-tame.-/
+/-- Infinite-dimensional fibers can be entirely ephemeral and still be q-tame.
+@isnad1 id=qtame.0h1v.s3.26659303373e from=translated src=- shape=84bfdc15 vocab=4c269e30
+-/
 theorem infinite_ephemeral_qTame : (ephemeralModule (k := k)).QTame := by
   intro a b hab
   rw [ephemeral_strict_map hab]
@@ -54,7 +56,9 @@ theorem infinite_ephemeral_qTame : (ephemeralModule (k := k)).QTame := by
   rw [LinearMap.range_zero]
   infer_instance
 
-/-- The ephemeral fixture really has infinite-dimensional fibers.-/
+/-- The ephemeral fixture really has infinite-dimensional fibers.
+@isnad1 id=not.0h2v.s6.11f6a1c6a4d5 from=translated src=- shape=4a3c55f7 vocab=830feae4
+-/
 theorem infinite_ephemeral_not_finiteDimensional (t : ℝ) :
     ¬ FiniteDimensional k ((ephemeralModule (k := k)).obj t) := by
   intro h
@@ -63,7 +67,9 @@ theorem infinite_ephemeral_not_finiteDimensional (t : ℝ) :
     (Finsupp.basisSingleOne : Module.Basis ℕ k (ℕ →₀ k))
   exact not_finite ℕ
 
-/-- Separated rectangles discard diagonal ephemeral information.-/
+/-- Separated rectangles discard diagonal ephemeral information.
+@isnad1 id=eq.3h5v.s5.8c5157d170cb from=translated src=- shape=1f4d7ca8 vocab=9712d7eb
+-/
 theorem infinite_ephemeral_rectangle_zero {a b c d : ℝ}
     (hab : a ≤ b) (hbc : b < c) (hcd : c ≤ d) :
     persistenceMeasureValue (ephemeralModule (k := k)) hab hbc.le hcd = 0 :=
@@ -120,7 +126,9 @@ private instance intervalImage_finiteDimensional (p : ℝ × WithTop ℝ)
     infer_instance
   exact LinearMap.finiteDimensional_range _
 
-/-- The closed birth and excluded death of `[0,2)` are counted on the upper edges.-/
+/-- The closed birth and excluded death of `[0,2)` are counted on the upper edges.
+@isnad1 id=eq.0h1v.s7.d7e9db87e73e from=translated src=- shape=cb745311 vocab=db104925
+-/
 theorem upper_edges_count_one :
     persistenceMeasureValue (RealBarcode.intervalModule (k := k) (0, (2 : WithTop ℝ)))
       (show (-1 : ℝ) ≤ 0 by norm_num) (show (0 : ℝ) ≤ 1 by norm_num)
@@ -133,7 +141,9 @@ theorem upper_edges_count_one :
   norm_num [RealBarcode.alive] at h
   exact_mod_cast h
 
-/-- An interval already alive on the lower birth edge is excluded.-/
+/-- An interval already alive on the lower birth edge is excluded.
+@isnad1 id=eq.0h1v.s7.0acb80d2adb2 from=translated src=- shape=ed9c52c8 vocab=873fe2af
+-/
 theorem lower_birth_edge_count_zero :
     persistenceMeasureValue (RealBarcode.intervalModule (k := k) (0, (2 : WithTop ℝ)))
       (show (0 : ℝ) ≤ 1 by norm_num) (show (1 : ℝ) ≤ 3 / 2 by norm_num)
@@ -146,7 +156,9 @@ theorem lower_birth_edge_count_zero :
   norm_num [RealBarcode.alive] at h
   exact_mod_cast h
 
-/-- An essential interval contributes to no finite-death rectangle.-/
+/-- An essential interval contributes to no finite-death rectangle.
+@isnad1 id=eq.3h5v.s6.f4d61f543998 from=translated src=- shape=d836287c vocab=32afd362
+-/
 theorem essential_interval_finite_rectangle_zero {a b c d : ℝ}
     (hab : a ≤ b) (hbc : b ≤ c) (hcd : c ≤ d) :
     persistenceMeasureValue (RealBarcode.intervalModule (k := k) (0, ⊤)) hab hbc hcd = 0 := by
@@ -164,7 +176,9 @@ theorem essential_interval_finite_rectangle_zero {a b c d : ℝ}
   simp only [h₁, h₂, h₃, h₄] at h
   omega
 
-/-- The essential interval has one occurrence on the death-at-infinity boundary.-/
+/-- The essential interval has one occurrence on the death-at-infinity boundary.
+@isnad1 id=eq.0h1v.s6.66357f4cba44 from=translated src=- shape=b5e7ab85 vocab=02a9fc37
+-/
 theorem essential_interval_count_one :
     essentialMeasureValue (RealBarcode.intervalModule (k := k) (0, ⊤))
       (show (-1 : ℝ) ≤ 0 by norm_num) = 1 := by

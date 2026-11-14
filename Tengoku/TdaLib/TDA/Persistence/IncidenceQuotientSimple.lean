@@ -56,6 +56,9 @@ abbrev DiagonalIdeal := FiniteRankProjectiveDiagonalIdealProjective.DiagonalIdea
 abbrev DiagonalQuotient := Incidence (k := k) (S := S) ⧸ DiagonalIdeal (k := k) (S := S)
 abbrev RightQuotient := (DiagonalQuotient (k := k) (S := S))ᵐᵒᵖ
 
+/--
+@isnad1 id=istwosid.0h2v.s6.5fb0cc4ecdd2 from=translated src=- shape=3e603a0f vocab=6fb7f2e7
+-/
 local instance diagonalIdealTwoSided :
     (DiagonalIdeal (k := k) (S := S)).IsTwoSided :=
   diagonalIdeal_isTwoSided (k := k) (S := S)
@@ -66,16 +69,25 @@ def rightVertexCharacter (v : StrictVertex S) : RightQuotient (k := k) (S := S) 
     (vertexQuotientCharacter (k := k) (S := S) v).toRingHom
     (fun _ _ => Commute.all _ _)
 
+/--
+@isnad1 id=eq.0h4v.s9.19ee8afb4e45 from=translated src=- shape=a9186d2c vocab=bec3e0e3
+-/
 @[simp] theorem rightVertexCharacter_apply (v : StrictVertex S)
     (c : RightQuotient (k := k) (S := S)) :
     rightVertexCharacter (k := k) (S := S) v c =
       vertexQuotientCharacter (k := k) (S := S) v (MulOpposite.unop c) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.71e8194f7f0f from=translated src=- shape=aed5bd79 vocab=08cb7797
+-/
 @[simp] theorem rightVertexCharacter_algebraMap (v : StrictVertex S) (a : k) :
     rightVertexCharacter (k := k) (S := S) v
       (algebraMap k (RightQuotient (k := k) (S := S)) a) = a := by
   simp [rightVertexCharacter]
 
+/--
+@isnad1 id=surjecti.0h3v.s8.fadd3d6682e1 from=translated src=- shape=b9d4efdd vocab=ad3a02a6
+-/
 theorem rightVertexCharacter_surjective (v : StrictVertex S) :
     Function.Surjective (rightVertexCharacter (k := k) (S := S) v) := by
   intro a
@@ -97,6 +109,9 @@ private theorem incidence_sum_apply {ι : Type} (s : Finset ι)
   | empty => simp
   | @insert i s hi ih => simp [hi, IncidenceAlgebra.add_apply, ih]
 
+/--
+@isnad1 id=eq.0h2v.s7.ab59dfd686e0 from=translated src=- shape=7aa21e22 vocab=dc473363
+-/
 theorem incidence_sum_diagonal_delta :
     (∑ p : PairPoset S, delta (k := k) (S := S) p p le_rfl) =
       (1 : Incidence (k := k) (S := S)) := by
@@ -116,6 +131,9 @@ theorem incidence_sum_diagonal_delta :
       simp [h, eq_comm]
     · simp [hap]
 
+/--
+@isnad1 id=eq.0h2v.s8.c96487da48b9 from=translated src=- shape=18df18f4 vocab=5f81a888
+-/
 @[simp] theorem rightMatrixUnit_diagonal_sum :
     (∑ p : PairPoset S,
       rightMatrixUnit (k := k) (S := S) p p le_rfl) = 1 := by
@@ -125,6 +143,9 @@ theorem incidence_sum_diagonal_delta :
     incidence_sum_diagonal_delta]
   simp
 
+/--
+@isnad1 id=eq.2h6v.s9.b4bfa5b4fecc from=translated src=- shape=9633f06a vocab=2244e397
+-/
 @[simp] theorem rightMatrixUnit_mul (p q r s : PairPoset S)
     (hpq : p ≤ q) (hrs : r ≤ s) :
     rightMatrixUnit (k := k) (S := S) p q hpq *
@@ -138,6 +159,9 @@ theorem incidence_sum_diagonal_delta :
   rw [← map_mul, delta_mul]
   split_ifs <;> simp_all
 
+/--
+@isnad1 id=eq.1h5v.s10.30b17a6a7695 from=translated src=- shape=0e415995 vocab=8a2ca1c1
+-/
 @[simp] theorem rightVertexCharacter_rightMatrixUnit (v : StrictVertex S)
     (p q : PairPoset S) (hpq : p ≤ q) :
     rightVertexCharacter (k := k) (S := S) v
@@ -151,6 +175,9 @@ abbrev RightVertexModule (v : StrictVertex S) : ModuleCat (RightQuotient (k := k
   (ModuleCat.restrictScalars
     (rightVertexCharacter (k := k) (S := S) v)).obj (ModuleCat.of k k)
 
+/--
+@isnad1 id=eq.1h6v.s12.c817f63241f5 from=translated src=- shape=f7ba0c8f vocab=a1e8f17f
+-/
 @[simp] theorem rightMatrixUnit_smul (v : StrictVertex S)
     (p q : PairPoset S) (hpq : p ≤ q) (t : RightVertexModule (k := k) (S := S) v) :
     rightMatrixUnit (k := k) (S := S) p q hpq • t =
@@ -159,11 +186,17 @@ abbrev RightVertexModule (v : StrictVertex S) : ModuleCat (RightQuotient (k := k
       (rightMatrixUnit (k := k) (S := S) p q hpq) • t = _
   simp [rightMatrixUnit, rightVertexCharacter, vertexQuotientCharacter_mk]
 
+/--
+@isnad1 id=eq.0h5v.s12.b31d5e8928cf from=translated src=- shape=86642b11 vocab=fddd0447
+-/
 @[simp] theorem rightVertexModule_smul (v : StrictVertex S)
     (c : RightQuotient (k := k) (S := S))
     (t : RightVertexModule (k := k) (S := S) v) :
     c • t = rightVertexCharacter (k := k) (S := S) v c • t := rfl
 
+/--
+@isnad1 id=eq.1h6v.s10.f8ba34aa4565 from=translated src=- shape=692d2aa5 vocab=c44c7927
+-/
 theorem rightVertexCharacter_matrixScalar (v : StrictVertex S)
     (p q : PairPoset S) (hpq : p ≤ q) (a : k) :
     rightVertexCharacter (k := k) (S := S) v
@@ -173,7 +206,9 @@ theorem rightVertexCharacter_matrixScalar (v : StrictVertex S)
         (rightMatrixUnit (k := k) (S := S) p q hpq) := by
   simp [map_mul]
 
-/-- A diagonal matrix idempotent is killed by the actual quotient ideal.-/
+/-- A diagonal matrix idempotent is killed by the actual quotient ideal.
+@isnad1 id=eq.1h3v.s8.508941b1211a from=translated src=- shape=dad4ef73 vocab=79c73d6f
+-/
 theorem rightMatrixUnit_eq_zero_of_isDiagonal (p : PairPoset S)
     (hp : IsDiagonal (S := S) p) :
     rightMatrixUnit (k := k) (S := S) p p le_rfl = 0 := by
@@ -191,11 +226,17 @@ theorem rightMatrixUnit_eq_zero_of_isDiagonal (p : PairPoset S)
 local instance rightQuotientModuleK (M : ModuleCat (RightQuotient (k := k) (S := S))) :
     Module k M := Module.compHom M (algebraMap k (RightQuotient (k := k) (S := S)))
 
+/--
+@isnad1 id=isscalar.0h3v.s12.f8792dcce585 from=translated src=- shape=97bc486f vocab=3afd727e
+-/
 local instance rightQuotientScalarTower
     (M : ModuleCat (RightQuotient (k := k) (S := S))) :
     IsScalarTower k (RightQuotient (k := k) (S := S)) M :=
   IsScalarTower.of_compHom k (RightQuotient (k := k) (S := S)) M
 
+/--
+@isnad1 id=issimple.0h3v.s8.4fc3b82d99c6 from=translated src=- shape=d3076729 vocab=72130182
+-/
 theorem rightVertexModule_isSimpleModule (v : StrictVertex S) :
     IsSimpleModule (RightQuotient (k := k) (S := S))
       (RightVertexModule (k := k) (S := S) v) := by
@@ -412,6 +453,9 @@ def rightVertexModuleGeneratedMap
                 rw [← IsScalarTower.algebraMap_smul (R := k)
                   (A := RightQuotient (k := k) (S := S))] }
 
+/--
+@isnad1 id=eq.2h6v.s13.d49b957967ef from=translated src=- shape=40e924e6 vocab=c47b8cb2
+-/
 @[simp] theorem rightVertexModuleGeneratedMap_apply
     [Module (RightQuotient (k := k) (S := S)) k]
     (M : ModuleCat (RightQuotient (k := k) (S := S)))
@@ -424,7 +468,9 @@ def rightVertexModuleGeneratedMap
     rightVertexModuleGeneratedMap (k := k) (S := S) M v x hscalar hχ t =
       algebraMap k (RightQuotient (k := k) (S := S)) t • x := rfl
 
-/-- Two right vertex modules are isomorphic exactly when their strict vertices agree.-/
+/-- Two right vertex modules are isomorphic exactly when their strict vertices agree.
+@isnad1 id=iff.0h4v.s8.b4145d51e43b from=translated src=- shape=21846c3f vocab=71357dd4
+-/
 theorem rightVertexModule_iso_iff (v w : StrictVertex S) :
     Nonempty (RightVertexModule (k := k) (S := S) v ≅
       RightVertexModule (k := k) (S := S) w) ↔ v = w := by
@@ -477,6 +523,9 @@ theorem rightVertexModule_iso_iff (v w : StrictVertex S) :
     subst w
     exact ⟨Iso.refl _⟩
 
+/--
+@isnad1 id=existsun.0h3v.s9.2db6831112f2 from=translated src=- shape=1867c909 vocab=ceb6d65c
+-/
 theorem simpleModule_existsUnique_vertex
     (M : ModuleCat (RightQuotient (k := k) (S := S)))
     [IsSimpleModule (RightQuotient (k := k) (S := S)) M] :
@@ -608,7 +657,9 @@ noncomputable def simpleModule_leftDerivedZeroIso
       (k := k) (S := S) v).symm
 
 /-- Every simple right quotient module has a unique strict vertex; its underlying `k`-module is
-isomorphic to the corresponding degree-zero left-derived vertex tensor.-/
+isomorphic to the corresponding degree-zero left-derived vertex tensor.
+@isnad1 id=existsun.0h3v.s10.4f21596e6f17 from=translated src=- shape=a83bfd3b vocab=02bfd42a
+-/
 theorem simpleModule_existsUnique_vertex_and_derivedZero
     (M : ModuleCat (RightQuotient (k := k) (S := S)))
     [IsSimpleModule (RightQuotient (k := k) (S := S)) M] :
@@ -624,7 +675,9 @@ theorem simpleModule_existsUnique_vertex_and_derivedZero
   exact hunique w hw.1
 
 /-- The unique vertex of a simple module has the all-positive left-derived vanishing proved in
-`IncidenceVertexTor`.-/
+`IncidenceVertexTor`.
+@isnad1 id=existsun.1h4v.s10.6bfa3fd69a5d from=translated src=- shape=231558a0 vocab=a6b749d7
+-/
 theorem simpleModule_existsUnique_vertex_positiveLeftDerived_isZero
     (M : ModuleCat (RightQuotient (k := k) (S := S)))
     [IsSimpleModule (RightQuotient (k := k) (S := S)) M]

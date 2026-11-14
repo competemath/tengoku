@@ -37,7 +37,9 @@ private theorem interval_zero_below_zero (d : WithTop ℝ) (t : ℝ) (ht : t < 0
   rw [hbot]
   infer_instance
 
-/-- The actual essential interval extracts the unit atom at its exact decorated coordinates.-/
+/-- The actual essential interval extracts the unit atom at its exact decorated coordinates.
+@isnad1 id=eq.0h1v.s5.47442e601b59 from=translated src=- shape=4ffeb739 vocab=5207c2a9
+-/
 theorem essential_interval_exact_boundary_atom :
     moduleExtendedDiagramMultiplicity (RealBarcode.intervalModule (k := k) (0, ⊤))
       (interval_qTame _) (minusCut 0, infinityCut) = 1 := by
@@ -67,7 +69,9 @@ theorem essential_interval_exact_boundary_atom :
   rw [← hbirth]
   exact hbunit
 
-/-- The essential interval has no extracted finite-death point.-/
+/-- The essential interval has no extracted finite-death point.
+@isnad1 id=eq.1h2v.s5.72f8e1e95a80 from=translated src=- shape=b0102054 vocab=084b7aec
+-/
 theorem essential_interval_no_finite_death_atom (p : Cut ℝ × Cut ℝ) (hp : p.2 ≠ infinityCut) :
     moduleExtendedDiagramMultiplicity (RealBarcode.intervalModule (k := k) (0, ⊤))
       (interval_qTame _) p = 0 := by

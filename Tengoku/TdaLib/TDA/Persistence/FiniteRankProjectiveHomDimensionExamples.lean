@@ -26,12 +26,16 @@ private abbrev F := homFunctor (k := ℚ) (S := Fin 2)
 private abbrev H := HookInfinity.module (R := ℚ) (0 : Fin 2)
 private abbrev Z := (0 : PModule.{0,0,0} ℚ (Fin 2))
 
-/-- The zero Hom module has Mathlib projective dimension bottom.-/
+/-- The zero Hom module has Mathlib projective dimension bottom.
+@isnad1 id=eq.0h0v.s10.29dadd40c64f from=translated src=- shape=4ae819ac vocab=1bcd45f1
+-/
 theorem zero_projectiveDimension : projectiveDimension (F.obj Z) = ⊥ := by
   exact (projectiveDimension_eq_bot_iff _).mpr
     ((isZero_hom_obj_iff Z).mpr (isZero_zero _))
 
-/-- A nonzero principal-upset hook has ordinary Hom projective dimension zero.-/
+/-- A nonzero principal-upset hook has ordinary Hom projective dimension zero.
+@isnad1 id=eq.0h0v.s10.82c7fee682b0 from=translated src=- shape=2bfe7958 vocab=d88d1a38
+-/
 theorem principalHook_projectiveDimension : projectiveDimension (F.obj H) = 0 := by
   apply (projectiveDimension_eq_zero_iff _).mpr
   constructor
@@ -46,7 +50,9 @@ theorem principalHook_projectiveDimension : projectiveDimension (F.obj H) = 0 :=
     exact HookInfinity.birth_ne_zero (k := ℚ) (0 : Fin 2) (by simpa using hb)
 
 /-- The degree-one term at the end of the one-term hook resolution vanishes
-by the public dimension comparison.-/
+by the public dimension comparison.
+@isnad1 id=iszero.0h0v.s6.4f179ac6f63a from=translated src=- shape=6d9f209f vocab=4d000408
+-/
 theorem principalHook_padding_boundary :
     IsZero (principalHookMinimalResolution.termAt 1) := by
   have hd : projectiveDimension (F.obj H) ≤ (0 : ℕ) := by
@@ -91,7 +97,9 @@ def paddedZeroMinimalResolution (m : ℕ) :
     FiniteRankProjectiveResolutionKanExamples.zero_identity_isRankProjectiveCover
 
 /-- A degree-one bound applies to a three-term minimal resolution with
-terminal zero padding, including its recorded degree-two term.-/
+terminal zero padding, including its recorded degree-two term.
+@isnad1 id=and.0h0v.s7.a3f3bc1cc9ee from=translated src=- shape=9798f4f4 vocab=3d921ec9
+-/
 theorem paddedZero_higher_degree :
     (paddedZeroMinimalResolution 3).resolution.length = 3 ∧
       IsZero ((paddedZeroMinimalResolution 3).termAt 2) := by

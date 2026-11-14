@@ -28,7 +28,9 @@ variable {ι : L ⟶ M} {π : M ⟶ N}
 
 /-- For `π : M ⟶ N` in a pointwise short exact row and `f : T ⟶ N`, the actual
 categorical pullback is finitely presented when `L` and `T` are finitely
-presented.-/
+presented.
+@isnad1 id=finitely.3h9v.s8.deacfba704f2 from=translated src=- shape=d9e56703 vocab=1ce0737e
+-/
 theorem IsPointwiseShortExact.finitelyPresented_pullback
     (hs : IsPointwiseShortExact ι π) (f : T ⟶ N)
     (hL : FinitelyPresented.{u,0,0} (R := k) (P := P) L)
@@ -38,7 +40,9 @@ theorem IsPointwiseShortExact.finitelyPresented_pullback
 
 /-- For an actual rank-exact deflation `π : M ⟶ N` and any map `f : T ⟶ N`,
 the pullback has a finitely presented middle object, its actual categorical
-kernel is finitely presented, and the canonical kernel row is rank exact.-/
+kernel is finitely presented, and the canonical kernel row is rank exact.
+@isnad1 id=and.3h9v.s9.407d303553e8 from=translated src=- shape=f9a0b9ff vocab=1a932b7d
+-/
 theorem IsRankExact.pullback_finitelyPresented
     (hs : IsRankExact ι π) (f : T ⟶ N)
     (hL : FinitelyPresented.{u,0,0} (R := k) (P := P) L)

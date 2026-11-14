@@ -20,10 +20,16 @@ open scoped ENNReal
 
 variable {X : Type u}
 
+/--
+@isnad1 id=eq.0h4v.s5.f983c5f24d90 from=translated src=- shape=fbf14d92 vocab=84e585e3
+-/
 theorem expectation_add (μ : PMF X) (f g : X → ℝ≥0∞) :
     expectation μ (fun x => f x + g x) = expectation μ f + expectation μ g := by
   simp only [expectation, mul_add, ENNReal.tsum_add]
 
+/--
+@isnad1 id=eq.0h5v.s5.0a57eede6096 from=translated src=- shape=e3b9b124 vocab=24c2cf06
+-/
 theorem expectation_sum (μ : PMF X) {I : Type*} (s : Finset I) (f : I → X → ℝ≥0∞) :
     expectation μ (fun x => ∑ i ∈ s, f i x) = ∑ i ∈ s, expectation μ (f i) := by
   classical
@@ -31,7 +37,9 @@ theorem expectation_sum (μ : PMF X) {I : Type*} (s : Finset I) (f : I → X →
   | empty => simp [expectation]
   | @insert i s hi ih => simp [hi, expectation_add, ih]
 
-/-- Every coordinate of the iid tuple has the original law.-/
+/-- Every coordinate of the iid tuple has the original law.
+@isnad1 id=eq.0h4v.s5.f962065a1409 from=translated src=- shape=49ef944b vocab=98f03d97
+-/
 theorem iid_eval (μ : PMF X) {n : ℕ} (i : Fin n) :
     (iid μ n).map (fun t => t i) = μ := by
   induction n with
@@ -49,13 +57,21 @@ def pairEnergy (c : X → X → ℝ≥0∞) : {n : ℕ} → (Fin n → X) → �
   | 0, _ => 0
   | n + 1, t => pairEnergy c (fun i => t i.succ) + ∑ j : Fin n, c (t 0) (t j.succ)
 
+/--
+@isnad1 id=eq.0h3v.s5.f1e6d129f879 from=translated src=- shape=85535b08 vocab=f6323242
+-/
 @[simp] theorem pairEnergy_zero (c : X → X → ℝ≥0∞) (t : Fin 0 → X) :
     pairEnergy c t = 0 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.22bbffe57041 from=translated src=- shape=0aa25abf vocab=2fd12181
+-/
 @[simp] theorem pairEnergy_succ (c : X → X → ℝ≥0∞) {n : ℕ} (t : Fin (n+1) → X) :
     pairEnergy c t = pairEnergy c (fun i => t i.succ) + ∑ j : Fin n, c (t 0) (t j.succ) := rfl
 
-/-- Each off-diagonal cost is one of the nonnegative summands of the pair energy.-/
+/-- Each off-diagonal cost is one of the nonnegative summands of the pair energy.
+@isnad1 id=le.2h6v.s6.0b00c9dfb590 from=translated src=- shape=bf141230 vocab=f9f98b48
+-/
 theorem cost_le_pairEnergy (c : X → X → ℝ≥0∞)
     (hc : ∀ x, c x x = 0) (hs : ∀ x y, c x y = c y x)
     {n : ℕ} (t : Fin n → X) (i j : Fin n) : c (t i) (t j) ≤ pairEnergy c t := by
@@ -76,7 +92,9 @@ theorem cost_le_pairEnergy (c : X → X → ℝ≥0∞)
       · exact (ih (fun a => t a.succ) i' j').trans (le_add_right le_rfl)
 
 /-- The expectation of the unordered-pair energy is exactly the two-draw moment
-multiplied by the number of distinct pairs. No replacement restriction is imposed.-/
+multiplied by the number of distinct pairs. No replacement restriction is imposed.
+@isnad1 id=eq.0h4v.s6.6b9ddc9035fd from=translated src=- shape=11a538b5 vocab=e37b7128
+-/
 theorem expectation_pairEnergy (μ : PMF X) (c : X → X → ℝ≥0∞) (n : ℕ) :
     expectation (iid μ n) (pairEnergy c) =
       (n.choose 2 : ℝ≥0∞) * expectation μ (fun x => expectation μ (c x)) := by
@@ -101,13 +119,18 @@ theorem expectation_pairEnergy (μ : PMF X) (c : X → X → ℝ≥0∞) (n : �
 def pairMaximum (c : X → X → ℝ≥0∞) {n : ℕ} (t : Fin n → X) : ℝ≥0∞ :=
   Finset.univ.sup (fun ij : Fin n × Fin n => c (t ij.1) (t ij.2))
 
+/--
+@isnad1 id=le.0h6v.s5.885daa6b315b from=translated src=- shape=3df304d3 vocab=f6fb6ec4
+-/
 theorem cost_le_pairMaximum (c : X → X → ℝ≥0∞) {n : ℕ} (t : Fin n → X)
     (i j : Fin n) : c (t i) (t j) ≤ pairMaximum c t := by
   exact Finset.le_sup (f := fun ij : Fin n × Fin n => c (t ij.1) (t ij.2))
     (Finset.mem_univ (i, j))
 
 /-- The p-th power of a maximum is bounded by the sum of p-th powers over
-unordered pairs, for every positive real exponent.-/
+unordered pairs, for every positive real exponent.
+@isnad1 id=le.3h5v.s6.9c82ff23565b from=translated src=- shape=d0e909a7 vocab=9dc95909
+-/
 theorem pairMaximum_rpow_le_pairEnergy (c : X → X → ℝ≥0∞)
     (hc : ∀ x, c x x = 0) (hs : ∀ x y, c x y = c y x)
     {p : ℝ} (hp : 0 < p) {n : ℕ} (t : Fin n → X) :
@@ -119,7 +142,9 @@ theorem pairMaximum_rpow_le_pairEnergy (c : X → X → ℝ≥0∞)
   exact cost_le_pairEnergy _ (fun x => by simp [hc, hp])
     (fun x y => by rw [hs]) t ij.1 ij.2
 
-/-- Sharp iid bound on the moment of the entire distance-matrix maximum.-/
+/-- Sharp iid bound on the moment of the entire distance-matrix maximum.
+@isnad1 id=le.3h5v.s7.b2108b5e51c9 from=translated src=- shape=ebb21f0b vocab=269f6231
+-/
 theorem expectation_pairMaximum_rpow_le (μ : PMF X) (c : X → X → ℝ≥0∞)
     (hc : ∀ x, c x x = 0) (hs : ∀ x y, c x y = c y x)
     {p : ℝ} (hp : 0 < p) (n : ℕ) :
@@ -128,14 +153,18 @@ theorem expectation_pairMaximum_rpow_le (μ : PMF X) (c : X → X → ℝ≥0∞
   exact (expectation_mono _ (fun t => pairMaximum_rpow_le_pairEnergy c hc hs hp t)).trans_eq
     (expectation_pairEnergy μ _ n)
 
-/-- A tuple with positive probability uses only positive-probability values.-/
+/-- A tuple with positive probability uses only positive-probability values.
+@isnad1 id=mem.1h5v.s5.cf60599bfe4d from=translated src=- shape=e1015c97 vocab=32b78494
+-/
 theorem mem_support_of_mem_support_iid (μ : PMF X) {n : ℕ} {t : Fin n → X}
     (ht : t ∈ (iid μ n).support) (i : Fin n) : t i ∈ μ.support := by
   rw [← iid_eval μ i]
   exact (PMF.mem_support_map_iff _ _ _).mpr ⟨t, ht, rfl⟩
 
 /-- The maximum between draws in a supported tuple is bounded by the two-draw
-essential supremum, independent of the number of draws.-/
+essential supremum, independent of the number of draws.
+@isnad1 id=le.0h4v.s5.708bc5b0bf36 from=translated src=- shape=df0ca0de vocab=045c9da9
+-/
 theorem essentialSup_pairMaximum_le (μ : PMF X) (c : X → X → ℝ≥0∞) (n : ℕ) :
     essentialSup (iid μ n) (pairMaximum c) ≤
       essentialSup μ (fun x => essentialSup μ (c x)) := by

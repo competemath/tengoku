@@ -74,7 +74,9 @@ noncomputable def principalHookIdentityMinimalResolution :
     exact principalHook_identity_isRankProjectiveCover
 
 /-- Since a principal upset is projective, every certified minimal resolution
-has zero positive-degree terms and therefore no positive-degree hook tags.-/
+has zero positive-degree terms and therefore no positive-degree hook tags.
+@isnad1 id=eq.1h2v.s6.29f29f67482d from=translated src=- shape=b4f7feed vocab=c08db77a
+-/
 theorem principalHook_positive_degree_terms_have_empty_hook_multiset
     (R : MinimalFiniteRankProjectiveResolution (k := ℚ) (M := principalHook))
     {j : ℕ} (hj : 0 < j) :

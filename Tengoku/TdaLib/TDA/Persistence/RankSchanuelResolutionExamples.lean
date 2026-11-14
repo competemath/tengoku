@@ -115,7 +115,9 @@ noncomputable def twoTermZeroResolution :
   }
   term_rank_projective := fun _ => hook_projective
 
-/-- The homological tail really contains the nonzero hook, rather than zero padding.-/
+/-- The homological tail really contains the nonzero hook, rather than zero padding.
+@isnad1 id=ex.0h0v.s11.afb74a8f5b2d from=translated src=- shape=d0db95b3 vocab=972f0d27
+-/
 theorem twoTerm_tail_nonzero :
     ∃ x : (twoTermZeroResolution.term (1 : Fin 2)).obj (0 : Fin 0 → ℝ), x ≠ 0 := by
   change ∃ x : (hookModule).obj (0 : Fin 0 → ℝ), x ≠ 0

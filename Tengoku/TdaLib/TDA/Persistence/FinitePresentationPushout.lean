@@ -36,6 +36,9 @@ noncomputable def pushoutCokernelComparison
   exact (cokernelIsCokernel (biprod.lift f (-g))).coconePointUniqueUpToIso
     (CategoryTheory.Abelian.BiproductToPushoutIsCokernel.isColimitBiproductToPushout f g)
 
+/--
+@isnad1 id=eq.0h7v.s9.b0e8d367b391 from=translated src=- shape=5f604d18 vocab=1d78ce0a
+-/
 @[reassoc (attr := simp)]
 theorem pushoutCokernelComparison_π
     {X Y Z : PModule.{u,v,max u w} R P} (f : X ⟶ Y) (g : X ⟶ Z) :
@@ -47,6 +50,9 @@ theorem pushoutCokernelComparison_π
     CategoryTheory.Abelian.BiproductToPushoutIsCokernel.biproductToPushout] using
       (IsColimit.comp_coconePointUniqueUpToIso_hom hc hp WalkingParallelPair.one)
 
+/--
+@isnad1 id=eq.0h7v.s9.345aacb1ac71 from=translated src=- shape=713f56b3 vocab=dba6a4cb
+-/
 @[reassoc (attr := simp)]
 theorem pushoutCokernelComparison_inl
     {X Y Z : PModule.{u,v,max u w} R P} (f : X ⟶ Y) (g : X ⟶ Z) :
@@ -54,6 +60,9 @@ theorem pushoutCokernelComparison_inl
         (pushoutCokernelComparison f g).hom = Limits.pushout.inl f g := by
   simp
 
+/--
+@isnad1 id=eq.0h7v.s9.117c0529c0aa from=translated src=- shape=66643a50 vocab=d3e4146d
+-/
 @[reassoc (attr := simp)]
 theorem pushoutCokernelComparison_inr
     {X Y Z : PModule.{u,v,max u w} R P} (f : X ⟶ Y) (g : X ⟶ Z) :
@@ -62,7 +71,9 @@ theorem pushoutCokernelComparison_inr
   simp
 
 /-- Finite presentation is closed under the actual categorical pushout of two
-maps between finitely presented persistence modules.-/
+maps between finitely presented persistence modules.
+@isnad1 id=finitely.3h7v.s7.32230059879d from=translated src=- shape=9ce81735 vocab=454e8719
+-/
 theorem finitelyPresented_pushout
     {X Y Z : PModule.{u,v,max u w} R P} (f : X ⟶ Y) (g : X ⟶ Z)
     (hX : FinitelyPresented.{u,v,w} (R := R) (P := P) X)
@@ -90,7 +101,9 @@ variable {ι : L ⟶ M} {π : M ⟶ N}
 /-- An actual rank-exact pushout row has finitely presented middle object when
 its original left and middle objects and its new left object are finitely
 presented. Pointwise finite-dimensionality of the new left object is derived
-from finite presentation before applying the existing rank-exact pushout law.-/
+from finite presentation before applying the existing rank-exact pushout law.
+@isnad1 id=and.4h9v.s8.d89e9aa5981b from=translated src=- shape=f55020ca vocab=899fb4d8
+-/
 theorem IsRankExact.pushout_finitelyPresented
     (hs : IsRankExact ι π) (f : L ⟶ L')
     (hL : FinitelyPresented.{u,0,0} (R := k) (P := P) L)

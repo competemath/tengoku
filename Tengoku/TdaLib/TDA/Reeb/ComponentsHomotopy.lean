@@ -20,7 +20,9 @@ section components
 
 variable {A B : Type*} [TopologicalSpace A] [TopologicalSpace B]
 
-/-- Homotopic maps induce the same map on path components.-/
+/-- Homotopic maps induce the same map on path components.
+@isnad1 id=eq.1h4v.s5.276101b74284 from=translated src=- shape=51f25c5f vocab=2a0ea681
+-/
 theorem componentMap_eq_of_homotopic {f g : C(A, B)} (h : f.Homotopic g) :
     componentMap f = componentMap g := by
   funext c
@@ -47,6 +49,9 @@ def componentEquivOfHomotopyEquiv (e : ContinuousMap.HomotopyEquiv A B) :
     rw [componentMap_comp, componentMap_id] at this
     exact congrFun this c
 
+/--
+@isnad1 id=eq.0h4v.s6.d11fdc334294 from=translated src=- shape=39df202e vocab=eac78b76
+-/
 @[simp] theorem componentEquivOfHomotopyEquiv_mk (e : ContinuousMap.HomotopyEquiv A B) (a : A) :
     componentEquivOfHomotopyEquiv e (ZerothHomotopy.mk a) = ZerothHomotopy.mk (e.toFun a) :=
   rfl

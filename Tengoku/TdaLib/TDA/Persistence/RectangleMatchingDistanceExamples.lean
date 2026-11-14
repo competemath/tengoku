@@ -49,7 +49,9 @@ private theorem point_zero (a : ℝ) (ε : ℝ≥0) (hε : 0 < ε) :
   have he : 0 < (ε : ℝ) := hε
   linarith
 
-/-- A closed singleton cannot be deleted at parameter zero.-/
+/-- A closed singleton cannot be deleted at parameter zero.
+@isnad1 id=not.0h1v.s7.ab5bf90b80fb from=translated src=- shape=9450cad2 vocab=1b813c2d
+-/
 theorem point_not_zero (a : ℝ) :
     ¬ Nonempty (CoordinateInterleaving 0 ((point a).module (k := ℚ)) 0) := by
   rw [interleaved_zero_iff, not_not]
@@ -97,7 +99,9 @@ noncomputable def mixedInterleaving :
   mixed_matching.interleaving
 
 /-- The swapped long interval gives a nonzero component, while both deletion
-directions give zero components. These use the public component interface.-/
+directions give zero components. These use the public component interface.
+@isnad1 id=and.0h0v.s12.255e2111cebb from=translated src=- shape=3d8f0b39 vocab=e29cf1e0
+-/
 theorem mixed_components :
     component source target 1 mixedInterleaving.φ (some false) (some true) ≠ 0 ∧
     component source target 1 mixedInterleaving.φ none (some false) = 0 ∧
@@ -117,7 +121,9 @@ theorem mixed_components :
   · exact ⟨mixed_matching.interleaving_component_zero none (some false) (by decide),
       mixed_matching.interleaving_reverse_component_zero (some false) none (by decide)⟩
 
-/-- The assembled positive-radius witness bounds both infima.-/
+/-- The assembled positive-radius witness bounds both infima.
+@isnad1 id=and.0h0v.s6.3d68949158f3 from=translated src=- shape=39917613 vocab=a23fb457
+-/
 theorem mixed_distance_bounds :
     coordinateInterleavingDistance (module (k := ℚ) source) (module target) ≤ 1 ∧
     bottleneckDistance (k := ℚ) source target ≤ 1 :=
@@ -137,7 +143,9 @@ private theorem point_matching (ε : ℝ≥0) (hε : 0 < ε) :
   · intro i _; exact point_zero 0 ε hε
   · intro j; exact Fin.elim0 j
 
-/-- There are matching witnesses at every positive radius, but the infimum is zero.-/
+/-- There are matching witnesses at every positive radius, but the infimum is zero.
+@isnad1 id=eq.0h0v.s5.be803a386dba from=translated src=- shape=ba240feb vocab=cc61f0cb
+-/
 theorem point_bottleneck_zero :
     bottleneckDistance (k := ℚ) (fun _ : Unit => point 0) empty = 0 := by
   apply nonpos_iff_eq_zero.mp
@@ -145,7 +153,9 @@ theorem point_bottleneck_zero :
   intro ε hε _
   simpa using bottleneckDistance_le_of_matching (point_matching ε hε)
 
-/-- The corresponding actual family interleaving distance is also zero.-/
+/-- The corresponding actual family interleaving distance is also zero.
+@isnad1 id=eq.0h0v.s5.78884cd273b2 from=translated src=- shape=791d8f40 vocab=5a96d343
+-/
 theorem point_interleavingDistance_zero :
     coordinateInterleavingDistance (module (k := ℚ) (fun _ : Unit => point 0))
       (module empty) = 0 := by
@@ -153,7 +163,9 @@ theorem point_interleavingDistance_zero :
   simpa [point_bottleneck_zero] using
     interleavingDistance_le_bottleneckDistance (k := ℚ) (fun _ : Unit => point 0) empty
 
-/-- No zero-radius matching exists, although its bottleneck infimum is zero.-/
+/-- No zero-radius matching exists, although its bottleneck infimum is zero.
+@isnad1 id=not.0h0v.s5.a3a47a39d1e6 from=translated src=- shape=e734eecd vocab=eed8548b
+-/
 theorem point_no_zero_matching :
     ¬ ∃ M : OccurrenceMatching Unit (Fin 0) PEmpty.{1} PEmpty.{1},
       IsMatching (k := ℚ) 0 (fun _ => point 0) empty M := by
@@ -164,7 +176,9 @@ theorem point_no_zero_matching :
     | some j => exact Fin.elim0 j
   exact point_not_zero 0 (hM.source_zero () hm)
 
-/-- Zero interleaving distance here has no actual parameter-zero witness.-/
+/-- Zero interleaving distance here has no actual parameter-zero witness.
+@isnad1 id=not.0h0v.s5.fe43f9b93e65 from=translated src=- shape=4733bfa0 vocab=c1114b31
+-/
 theorem point_no_zero_interleaving :
     ¬ Nonempty (CoordinateInterleaving 0
       (module (k := ℚ) (fun _ : Unit => point 0)) (module empty)) := by
@@ -194,7 +208,9 @@ private def criticalClosed : Rectangle 1 := fun _ =>
   { lower := 0, upper := 2, lowerClosed := true, upperClosed := true
     nonempty := Or.inl (by norm_num) }
 
-/-- Closing the upper endpoint excludes deletion at that exact same radius.-/
+/-- Closing the upper endpoint excludes deletion at that exact same radius.
+@isnad1 id=not.0h0v.s5.0441259df562 from=translated src=- shape=be609f86 vocab=3aec8530
+-/
 theorem critical_closed_no_matching :
     ¬ ∃ M : OccurrenceMatching Unit (Fin 0) PEmpty.{1} PEmpty.{1},
       IsMatching (k := ℚ) 1 (fun _ => criticalClosed) empty M := by
@@ -219,7 +235,9 @@ noncomputable def repeated_zero_assembly : CoordinateInterleaving 0
     he ▸ hMraw
   exact hM.interleaving
 
-/-- Empty two-coordinate families satisfy the same distance capstone.-/
+/-- Empty two-coordinate families satisfy the same distance capstone.
+@isnad1 id=eq.0h0v.s5.cdf1c746c545 from=translated src=- shape=4bbe6e42 vocab=02cc5baf
+-/
 theorem empty_bottleneck_zero : bottleneckDistance (k := ℚ) (n := 2)
     (fun i : Fin 0 => Fin.elim0 i) (fun i : Fin 0 => Fin.elim0 i) = 0 := by
   apply nonpos_iff_eq_zero.mp

@@ -113,7 +113,9 @@ private theorem double_sum_zero (n : ℕ) (s : Face K (n + 2)) :
     (fun _ _ => Finset.mem_univ _)
     (fun x _ => swapDeletion_involutive (n + 1) x))
 
-/-- The signed boundary on ordered faces squares to zero.-/
+/-- The signed boundary on ordered faces squares to zero.
+@isnad1 id=eq.0h4v.s9.58e76039c41a from=translated src=- shape=bc335f70 vocab=b67c5c0a
+-/
 theorem boundary_comp_boundary (n : ℕ) :
     (boundary K R n).comp (boundary K R (n + 1)) = 0 := by
   apply Finsupp.lhom_ext
@@ -133,11 +135,17 @@ noncomputable def simplicialChainComplex : ChainComplex (ModuleCat R) ℕ :=
       apply ModuleCat.hom_ext
       exact boundary_comp_boundary K R n)
 
+/--
+@isnad1 id=eq.0h4v.s6.ee7602fd47f5 from=translated src=- shape=2b00f4b3 vocab=c263d6f3
+-/
 @[simp]
 theorem simplicialChainComplex_X (n : ℕ) :
     (simplicialChainComplex K R).X n = ModuleCat.of R (Chain K R n) :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.98ba730b3ee2 from=translated src=- shape=5f48366e vocab=ed45bd2b
+-/
 @[simp]
 theorem simplicialChainComplex_d (n : ℕ) :
     (simplicialChainComplex K R).d (n + 1) n =
@@ -145,6 +153,9 @@ theorem simplicialChainComplex_d (n : ℕ) :
   exact ChainComplex.of_d (fun q => ModuleCat.of R (Chain K R q))
     (fun q => ModuleCat.ofHom (boundary K R q)) n
 
+/--
+@isnad1 id=eq.0h4v.s8.0593320d2e0d from=translated src=- shape=3760d109 vocab=52cc4fe1
+-/
 @[simp]
 theorem simplicialChainComplex_d_zero (j : ℕ) :
     (simplicialChainComplex K R).d 0 j = 0 := by

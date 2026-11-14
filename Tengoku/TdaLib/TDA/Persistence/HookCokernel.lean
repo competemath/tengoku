@@ -27,7 +27,9 @@ noncomputable def inclusion {i j : P} (h : i ≤ j) :
   HookInfinity.fromBirth j _
     (structureMapLinear (HookInfinity.module (R := k) i) h (HookInfinity.birth i))
 
-/-- A hook with equal endpoints is the zero module.-/
+/-- A hook with equal endpoints is the zero module.
+@isnad1 id=iszero.0h3v.s5.b8305a426045 from=translated src=- shape=9f42a1a6 vocab=4a2d8c9a
+-/
 theorem hook_isZero (i : P) : IsZero (Hook.module (k := k) i i) := by
   rw [Functor.isZero_iff]
   intro p
@@ -46,7 +48,9 @@ noncomputable def projection (i j : P) :
   exact if h : i ∈ Hook.support i j then HookInfinity.fromBirth i _
     (SupportInterval.one (Hook.support i j) h) else 0
 
-/-- The hook projection has coefficient one on its birth generator when the endpoints differ.-/
+/-- The hook projection has coefficient one on its birth generator when the endpoints differ.
+@isnad1 id=eq.1h4v.s9.5169a8c589fc from=translated src=- shape=8c063c67 vocab=d812cf75
+-/
 @[simp] theorem projection_birth {i j : P} (h : i < j) :
     ((projection (k := k) i j).app i).hom (HookInfinity.birth i) =
       SupportInterval.one (Hook.support i j) (Hook.birth_mem h) := by
@@ -54,7 +58,9 @@ noncomputable def projection (i j : P) :
   rw [dite_eq_left (Hook.birth_mem h)]
   exact HookInfinity.fromBirth_birth _ _ _
 
-/-- The principal inclusion is killed by the hook projection, including equal endpoints.-/
+/-- The principal inclusion is killed by the hook projection, including equal endpoints.
+@isnad1 id=eq.1h4v.s8.6ddfdc11c4f5 from=translated src=- shape=b3fd359e vocab=6d6b3956
+-/
 @[reassoc (attr := simp)] theorem inclusion_projection {i j : P} (h : i ≤ j) :
     inclusion (k := k) h ≫ projection i j = 0 := by
   apply HookInfinity.hom_ext
@@ -81,7 +87,9 @@ noncomputable def desc {i j : P} (h : i ≤ j) {M : PModule.{u,0,u} k P}
     Hook.fromGenerator hij M ((φ.app i).hom (HookInfinity.birth i)) (dies h φ hφ)
   else 0
 
-/-- The hook factorization recovers the supplied principal-upset map.-/
+/-- The hook factorization recovers the supplied principal-upset map.
+@isnad1 id=eq.2h6v.s9.0d1943139841 from=translated src=- shape=805b9bca vocab=90675901
+-/
 @[reassoc (attr := simp)] theorem projection_desc {i j : P} (h : i ≤ j)
     {M : PModule.{u,0,u} k P} (φ : HookInfinity.module (R := k) i ⟶ M)
     (hφ : inclusion h ≫ φ = 0) :
@@ -101,7 +109,9 @@ noncomputable def desc {i j : P} (h : i ≤ j) {M : PModule.{u,0,u} k P}
     have hzero : φ = 0 := by simpa [hinc] using hφ
     simp [desc, hzero]
 
-/-- Maps out of a hook are determined after precomposition with its principal projection.-/
+/-- Maps out of a hook are determined after precomposition with its principal projection.
+@isnad1 id=eq.2h7v.s8.9131871c4eae from=translated src=- shape=72b388f8 vocab=9b378262
+-/
 theorem hom_ext {i j : P} (h : i ≤ j) {M : PModule.{u,0,u} k P}
     {a b : Hook.module (k := k) i j ⟶ M}
     (hab : projection i j ≫ a = projection i j ≫ b) : a = b := by
@@ -127,13 +137,17 @@ noncomputable def iso {i j : P} (h : i ≤ j) :
   (cokernelIsCokernel (inclusion (k := k) h)).coconePointUniqueUpToIso
     (isCokernel (k := k) h)
 
-/-- The canonical cokernel isomorphism identifies the actual projection with the hook projection.-/
+/-- The canonical cokernel isomorphism identifies the actual projection with the hook projection.
+@isnad1 id=eq.1h4v.s9.ab4d863784fd from=translated src=- shape=9d310a3d vocab=a104020b
+-/
 @[reassoc (attr := simp)] theorem projection_iso {i j : P} (h : i ≤ j) :
     cokernel.π (inclusion (k := k) h) ≫ (iso (k := k) h).hom = projection i j := by
   exact (cokernelIsCokernel (inclusion (k := k) h)).comp_coconePointUniqueUpToIso_hom
     (isCokernel (k := k) h) WalkingParallelPair.one
 
-/-- Hooks with weakly ordered endpoints are rank projective, including zero hooks.-/
+/-- Hooks with weakly ordered endpoints are rank projective, including zero hooks.
+@isnad1 id=isrankpr.1h4v.s5.b458ed63a137 from=translated src=- shape=c9298acc vocab=83e00c17
+-/
 theorem rankProjective {i j : P} (h : i ≤ j) :
     IsRankProjective (Hook.module (k := k) i j) := by
   by_cases hij : i < j

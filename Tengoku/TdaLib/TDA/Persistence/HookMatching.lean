@@ -50,16 +50,25 @@ noncomputable def projection {m : ℕ} (F : Fin m → RealHookTag (n := n)) (i :
     familyModule (k := k) F ⟶ tagModule (k := k) (F i) :=
   biproduct.π (fun i : Fin m => tagModule (k := k) (F i)) i
 
+/--
+@isnad1 id=eq.0h5v.s8.2b8e8288301d from=translated src=- shape=49b06ec3 vocab=4d340248
+-/
 @[simp] theorem inclusion_projection_self {m : ℕ}
     (F : Fin m → RealHookTag (n := n)) (i : Fin m) :
     inclusion (k := k) F i ≫ projection F i = 𝟙 (tagModule (k := k) (F i)) :=
   biproduct.ι_π_self (fun j : Fin m => tagModule (k := k) (F j)) i
 
+/--
+@isnad1 id=eq.1h6v.s9.fc05262ba091 from=translated src=- shape=055f06f9 vocab=e9e0157f
+-/
 @[simp] theorem inclusion_projection_ne {m : ℕ}
     (F : Fin m → RealHookTag (n := n)) {i j : Fin m} (h : i ≠ j) :
     inclusion (k := k) F i ≫ projection F j = 0 :=
   biproduct.ι_π_ne (fun j : Fin m => tagModule (k := k) (F j)) h
 
+/--
+@isnad1 id=eq.0h4v.s9.d094fef6462e from=translated src=- shape=eb2914c7 vocab=124c0a66
+-/
 theorem sum_projection_inclusion {m : ℕ} (F : Fin m → RealHookTag (n := n)) :
     ∑ i, projection (k := k) F i ≫ inclusion F i = 𝟙 (familyModule (k := k) F) :=
   biproduct.total (f := fun i : Fin m => tagModule (k := k) (F i))
@@ -72,7 +81,9 @@ noncomputable def component {m ℓ : ℕ} (F : Fin m → RealHookTag (n := n))
     tagModule (k := k) (F i) ⟶ (shift ε).obj (tagModule (k := k) (G j)) :=
   inclusion (k := k) F i ≫ f ≫ (shift ε).map (projection (k := k) G j)
 
-/-- A composite between finite hook-sum matrices is the sum of its paths.-/
+/-- A composite between finite hook-sum matrices is the sum of its paths.
+@isnad1 id=eq.0h13v.s12.555a94da0396 from=translated src=- shape=59d4aadf vocab=ece2dd3b
+-/
 theorem component_composite {m ℓ q : ℕ}
     (F : Fin m → RealHookTag (n := n)) (G : Fin ℓ → RealHookTag (n := n))
     (H : Fin q → RealHookTag (n := n)) (ε : ℝ≥0)
@@ -98,7 +109,9 @@ theorem component_composite {m ℓ q : ℕ}
   simp only [Functor.map_comp, Category.assoc]
 
 /-- The two maps of an interleaving give the actual finite sum of component
-paths, with the diagonal and off-diagonal transitions kept distinct.-/
+paths, with the diagonal and off-diagonal transitions kept distinct.
+@isnad1 id=eq.0h10v.s11.1287b08769bf from=translated src=- shape=8a95e335 vocab=cca8fa32
+-/
 theorem component_interleaving_sum {m ℓ : ℕ}
     (F : Fin m → RealHookTag (n := n)) (G : Fin ℓ → RealHookTag (n := n))
     (ε : ℝ≥0)
@@ -115,6 +128,9 @@ theorem component_interleaving_sum {m ℓ : ℕ}
   rw [compIso_naturality ε ε (projection (k := k) F i')]
   simp only [← Category.assoc, I.φ_ψ]
 
+/--
+@isnad1 id=eq.1h10v.s11.cb28e9239d04 from=translated src=- shape=49383655 vocab=0c5dae2b
+-/
 theorem component_interleaving_sum_ne {m ℓ : ℕ}
     (F : Fin m → RealHookTag (n := n)) (G : Fin ℓ → RealHookTag (n := n))
     (ε : ℝ≥0) (I : CoordinateInterleaving ε (familyModule (k := k) F)
@@ -128,6 +144,9 @@ theorem component_interleaving_sum_ne {m ℓ : ℕ}
   simp only [Category.assoc, ← Functor.map_comp, inclusion_projection_ne F h,
     Functor.map_zero, comp_zero]
 
+/--
+@isnad1 id=eq.0h9v.s11.6db61a212f22 from=translated src=- shape=a1c52969 vocab=08309c53
+-/
 theorem component_interleaving_sum_self {m ℓ : ℕ}
     (F : Fin m → RealHookTag (n := n)) (G : Fin ℓ → RealHookTag (n := n))
     (ε : ℝ≥0) (I : CoordinateInterleaving ε (familyModule (k := k) F)
@@ -168,7 +187,9 @@ def tagOrderValue (t : RealHookTag (n := n)) : ℝ :=
   | .inl ab => (∑ i, ab.val.1 i) + ∑ i, ab.val.2 i
   | .inr a => ∑ i, a i
 
-/-- The occurrence multiset has one entry for each family index.-/
+/-- The occurrence multiset has one entry for each family index.
+@isnad1 id=eq.0h3v.s4.dc0c0a69de7d from=translated src=- shape=1ed69ac0 vocab=ec879ca0
+-/
 theorem hookTagMultiset_card {m : ℕ}
     (F : Fin m → RealHookTag (n := n)) :
     Multiset.card (hookTagMultiset F) = m := by
@@ -178,7 +199,9 @@ theorem hookTagMultiset_card {m : ℕ}
     simp [hookTagMultiset, ih]
 
 /-- At zero interleaving distance, two finite hook sums have a matching by
-equal hook tags, with every repeated occurrence retained.-/
+equal hook tags, with every repeated occurrence retained.
+@isnad1 id=ex.0h7v.s6.e5be07114570 from=translated src=- shape=a67852f9 vocab=f13bbd01
+-/
 theorem exists_matching_of_zero_interleaving {m ℓ : ℕ}
     (F : Fin m → RealHookTag (n := n))
     (G : Fin ℓ → RealHookTag (n := n))
@@ -258,7 +281,9 @@ abbrev FiniteHookTag :=
 
 /-- A nonzero map between shifted finite-death hooks forces the target birth
 and death to lie below the corresponding translated source endpoints. This is
-the endpoint input for the ordered-hook geometry in the matching proof.-/
+the endpoint input for the ordered-hook geometry in the matching proof.
+@isnad1 id=and.2h8v.s10.5528230b5d44 from=translated src=- shape=869e4a2f vocab=f3e36d61
+-/
 theorem nonzero_finiteHook_map_endpoint_bounds {a b c d : Fin n → ℝ}
     (hab : a < b) (ε : ℝ≥0)
     (f : Hook.module (k := k) a b ⟶
@@ -300,7 +325,9 @@ theorem nonzero_finiteHook_map_endpoint_bounds {a b c d : Fin n → ℝ}
     by_contra hdb
     exact hpEnd ⟨hbirth, hdb⟩⟩
 
-/-- A nonzero map out of a finite hook is already nonzero on its birth unit.-/
+/-- A nonzero map out of a finite hook is already nonzero on its birth unit.
+@isnad1 id=ne.2h8v.s12.b0302d778557 from=translated src=- shape=b533c82d vocab=1b0ba767
+-/
 theorem finiteHook_map_birth_value_ne_zero {a b c d : Fin n → ℝ} (hab : a < b)
     (ε : ℝ≥0)
     (f : Hook.module (k := k) a b ⟶
@@ -313,7 +340,9 @@ theorem finiteHook_map_birth_value_ne_zero {a b c d : Fin n → ℝ} (hab : a < 
   rw [hz]
   simp only [NatTrans.app_zero, ModuleCat.hom_zero, LinearMap.zero_apply]
 
-/-- A nonzero hook map has an active target fiber at the translated birth.-/
+/-- A nonzero hook map has an active target fiber at the translated birth.
+@isnad1 id=mem.2h8v.s10.b1b6add44e9a from=translated src=- shape=41669a55 vocab=e44a8945
+-/
 theorem finiteHook_map_birth_active {a b c d : Fin n → ℝ}
     (hab : a < b) (ε : ℝ≥0)
     (f : Hook.module (k := k) a b ⟶
@@ -330,7 +359,9 @@ theorem finiteHook_map_birth_active {a b c d : Fin n → ℝ}
   exact SupportInterval.val_eq_zero (Hook.support c d) h y
 
 /-- Naturality carries the nonzero birth coefficient of a hook map to any
-comparable active overlap point.-/
+comparable active overlap point.
+@isnad1 id=ne.5h9v.s12.073fdd84ed93 from=translated src=- shape=f421ab79 vocab=9317c0cb
+-/
 theorem finiteHook_map_component_ne_zero {a b c d p : Fin n → ℝ}
     (hab : a < b) (ε : ℝ≥0)
     (f : Hook.module (k := k) a b ⟶
@@ -396,7 +427,9 @@ private theorem finiteHookCoefficient_zero_aux {a b c d : Fin n → ℝ}
   rfl
 
 /-- Naturality identifies the birth coefficient with every supported component
-of a finite-hook map.-/
+of a finite-hook map.
+@isnad1 id=eq.4h9v.s11.722993504ded from=translated src=- shape=2df65e04 vocab=96db6d99
+-/
 theorem finiteHookCoefficient_eq_at {a b c d p : Fin n → ℝ}
     (hab : a < b) (ε : ℝ≥0)
     (f : Hook.module (k := k) a b ⟶
@@ -432,7 +465,9 @@ theorem finiteHookCoefficient_eq_at {a b c d p : Fin n → ℝ}
   rw [hs] at hn
   exact hn.symm
 
-/-- A finite-hook map is nonzero precisely when its birth coefficient is.-/
+/-- A finite-hook map is nonzero precisely when its birth coefficient is.
+@isnad1 id=iff.1h8v.s10.7d06afb2a7ec from=translated src=- shape=0e4733c7 vocab=4e880094
+-/
 theorem finiteHookCoefficient_ne_zero_iff {a b c d : Fin n → ℝ}
     (hab : a < b) (ε : ℝ≥0)
     (f : Hook.module (k := k) a b ⟶
@@ -466,7 +501,9 @@ noncomputable def principalHookCoefficient {a c : Fin n → ℝ} (ε : ℝ≥0)
   else 0
 
 /-- A principal-upset map is nonzero precisely when its source birth has a
-nonzero coefficient in an active target fiber.-/
+nonzero coefficient in an active target fiber.
+@isnad1 id=iff.0h6v.s10.49da609d9e09 from=translated src=- shape=8ef07a30 vocab=80a7eb38
+-/
 theorem principalHookCoefficient_ne_zero_iff {a c : Fin n → ℝ} (ε : ℝ≥0)
     (f : HookInfinity.module (R := k) a ⟶
       (CoordinateShift.shift ε).obj (HookInfinity.module (R := k) c)) :
@@ -505,6 +542,9 @@ theorem principalHookCoefficient_ne_zero_iff {a c : Fin n → ℝ} (ε : ℝ≥0
       exact HookInfinity.fiber_eq_zero_of_not_le (R := k) ha
         ((f.app a).hom (HookInfinity.birth a))
 
+/--
+@isnad1 id=eq.0h5v.s9.e03ca1def51b from=translated src=- shape=269a6547 vocab=80a7eb38
+-/
 @[simp] theorem principalHookCoefficient_zero {a c : Fin n → ℝ} (ε : ℝ≥0) :
     principalHookCoefficient (k := k) ε
       (0 : HookInfinity.module (R := k) a ⟶
@@ -517,6 +557,9 @@ theorem principalHookCoefficient_ne_zero_iff {a c : Fin n → ℝ} (ε : ℝ≥0
     exact map_zero (HookInfinity.fiberEquivOfLe (R := k) h).toLinearMap
   · rfl
 
+/--
+@isnad1 id=eq.0h7v.s10.90e1825aea03 from=translated src=- shape=653d5c64 vocab=8c989994
+-/
 theorem principalHookCoefficient_add {a c : Fin n → ℝ} (ε : ℝ≥0)
     (f g : HookInfinity.module (R := k) a ⟶
       (CoordinateShift.shift ε).obj (HookInfinity.module (R := k) c)) :
@@ -530,6 +573,9 @@ theorem principalHookCoefficient_add {a c : Fin n → ℝ} (ε : ℝ≥0)
     exact (HookInfinity.fiberEquivOfLe (R := k) h).map_add _ _
   · simp
 
+/--
+@isnad1 id=eq.0h8v.s10.340d8335d382 from=translated src=- shape=86ae40b6 vocab=60da097c
+-/
 theorem principalHookCoefficient_sum {a c : Fin n → ℝ} {ι : Type*}
     (ε : ℝ≥0) (A : Finset ι)
     (f : ι → (HookInfinity.module (R := k) a ⟶
@@ -592,7 +638,9 @@ private theorem principalHook_birth_span {a p : Fin n → ℝ} (hap : a ≤ p)
 
 /-- Coefficients multiply under composition of shifted principal-upset maps.
 The activation inequalities are consequences of nonzero source and middle
-maps, so no common grade is assumed.-/
+maps, so no common grade is assumed.
+@isnad1 id=eq.0h8v.s11.872a48524b64 from=translated src=- shape=f5b3fffe vocab=d32c644e
+-/
 theorem principalHookCoefficient_composite {a c e : Fin n → ℝ}
     (ε : ℝ≥0)
     (f : HookInfinity.module (R := k) a ⟶
@@ -708,7 +756,9 @@ theorem principalHookCoefficient_composite {a c e : Fin n → ℝ}
   simpa [principalHookCoefficient, hfinal] using hcompVal
 
 /-- The diagonal coefficient of a principal-upset transition is one: unlike a
-finite-death hook, a principal upset survives every finite translation.-/
+finite-death hook, a principal upset survives every finite translation.
+@isnad1 id=eq.0h4v.s6.59d7ed1eb091 from=translated src=- shape=5ac578c1 vocab=8232dff6
+-/
 theorem principalHookCoefficient_transition {a : Fin n → ℝ} (δ : ℝ≥0) :
     principalHookCoefficient (k := k) δ
       (CoordinateShift.transition δ (HookInfinity.module (R := k) a)) = 1 := by
@@ -848,7 +898,9 @@ private theorem hook_sum_reverse_bound {ι : Type*} [Fintype ι] [DecidableEq ι
   linarith
 
 /-- Endpoint-sum order along two nonzero principal-upset maps forces their
-first adjacent pair to be close at the finite-hook stability radius.-/
+first adjacent pair to be close at the finite-hook stability radius.
+@isnad1 id=and.4h6v.s7.a6206249057f from=translated src=- shape=650ef6a0 vocab=a0d35dd8
+-/
 theorem principal_hook_path_birth_close (hn : 0 < n) (ε : ℝ≥0)
     {a c e : Fin n → ℝ}
     (hAE : (∑ i, a i) ≤ ∑ i, e i)
@@ -889,7 +941,9 @@ theorem principal_hook_path_birth_close (hn : 0 < n) (ε : ℝ≥0)
       _ = c i + (2 * (n : ℝ) - 1) * (ε : ℝ) := by ring
 
 /-- Nonzero maps between principal upsets force the one-sided birth bounds
-used by the endpoint-sum path argument.-/
+used by the endpoint-sum path argument.
+@isnad1 id=le.1h7v.s10.0b9203d4fff1 from=translated src=- shape=0c1f2ddc vocab=5d5cd7d5
+-/
 theorem nonzero_principalHook_map_birth_bound {a c : Fin n → ℝ}
     (ε : ℝ≥0)
     (f : HookInfinity.module (R := k) a ⟶
@@ -908,7 +962,9 @@ theorem nonzero_principalHook_map_birth_bound {a c : Fin n → ℝ}
   exact hcoeff (by simp [principalHookCoefficient, hnot])
 
 /-- The ordered two-step path through a principal hook contains an actual
-interleaving edge at the matching radius.-/
+interleaving edge at the matching radius.
+@isnad1 id=nonempty.4h8v.s11.2d1fba9e1a70 from=translated src=- shape=0fd25283 vocab=a07fd042
+-/
 theorem principal_hook_path_neighbor_of_maps (hn : 0 < n) (ε : ℝ≥0)
     {a c e : Fin n → ℝ}
     (hAE : (∑ i, a i) ≤ ∑ i, e i)
@@ -927,7 +983,9 @@ theorem principal_hook_path_neighbor_of_maps (hn : 0 < n) (ε : ℝ≥0)
     (fun i => (hclose i).1) (fun i => (hclose i).2)⟩
 
 /-- Every map from a finite-death hook to a shifted principal upset vanishes:
-the source generator dies while every later target structure map is injective.-/
+the source generator dies while every later target structure map is injective.
+@isnad1 id=eq.1h7v.s10.e6699e86bbd8 from=translated src=- shape=6ec64790 vocab=1a46a0cd
+-/
 theorem finiteHook_to_principal_zero {a b c : Fin n → ℝ} (hab : a < b)
     (ε : ℝ≥0)
     (f : Hook.module (k := k) a b ⟶
@@ -961,7 +1019,9 @@ theorem finiteHook_to_principal_zero {a b c : Fin n → ℝ} (hab : a < b)
 
 /-- A finite hook and a principal upset cannot interleave at any finite
 parameter: the principal transition never vanishes, while the finite-to-
-principal block is zero.-/
+principal block is zero.
+@isnad1 id=not.1h6v.s6.8696a00e4cee from=translated src=- shape=cb4a80ce vocab=bad638b9
+-/
 theorem not_interleaved_finite_principal {a b c : Fin n → ℝ}
     (hab : a < b) (ρ : ℝ≥0) :
     ¬ Nonempty (CoordinateInterleaving ρ (Hook.module (k := k) a b)
@@ -976,7 +1036,9 @@ theorem not_interleaved_finite_principal {a b c : Fin n → ℝ}
   exact zero_ne_one hcoeff
 
 /-- The reverse type order is also impossible by the other double-shift
-equation and the same nonvanishing principal-upset transition.-/
+equation and the same nonvanishing principal-upset transition.
+@isnad1 id=not.1h6v.s6.fa52876366ee from=translated src=- shape=79ec22d2 vocab=bad638b9
+-/
 theorem not_interleaved_principal_finite {a b c : Fin n → ℝ}
     (hab : a < b) (ρ : ℝ≥0) :
     ¬ Nonempty (CoordinateInterleaving ρ (HookInfinity.module (R := k) c)
@@ -1023,7 +1085,9 @@ noncomputable def finiteHookMapOfDeathBound {a b c d : Fin n → ℝ}
     (Hook.module (k := k) c d)) y hdie
 
 /-- The constructed map sends the source birth unit to its prescribed target
-birth vector.-/
+birth vector.
+@isnad1 id=eq.2h7v.s11.1023897bca7c from=translated src=- shape=e26e6aa8 vocab=8deb3ea9
+-/
 @[simp] theorem finiteHookMapOfDeathBound_birth {a b c d : Fin n → ℝ}
     (hab : a < b) (ε : ℝ≥0) (hdb : ∀ i, d i ≤ b i + (ε : ℝ)) :
     ((finiteHookMapOfDeathBound (k := k) hab ε hdb).app a).hom
@@ -1033,7 +1097,9 @@ birth vector.-/
   exact Hook.fromGenerator_birth hab _ _ _
 
 /-- At every supported source grade, the constructed comparison map is the
-target structure map applied to its birth vector.-/
+target structure map applied to its birth vector.
+@isnad1 id=eq.3h9v.s12.e76978652d18 from=translated src=- shape=86022164 vocab=fcaacd29
+-/
 theorem finiteHookMapOfDeathBound_app {a b c d p : Fin n → ℝ}
     (hab : a < b) (ε : ℝ≥0) (hdb : ∀ i, d i ≤ b i + (ε : ℝ))
     (hap : a ≤ p) (x : SupportInterval.fiber (k := k) (Hook.support a b) p) :
@@ -1060,7 +1126,9 @@ private theorem shiftedHook_app_val_eq_mul {S T : Set (Fin n → ℝ)}
   rfl
 
 /-- On a common active grade, the coefficient of a composite of two shifted
-finite-hook maps is the product of their coefficients.-/
+finite-hook maps is the product of their coefficients.
+@isnad1 id=eq.6h12v.s11.3a3968d38418 from=translated src=- shape=c6063992 vocab=c9cac0a9
+-/
 theorem finiteHookCoefficient_composite_at {a b c d e f p : Fin n → ℝ}
     (hab : a < b) (hcd : c < d) (ε : ℝ≥0)
     (u : Hook.module (k := k) a b ⟶
@@ -1253,7 +1321,9 @@ private theorem finiteHook_pair_composite {a b c d : Fin n → ℝ}
 
 /-- The endpoint inequalities for two finite-death hooks construct an actual
 interleaving: the forward and reverse maps are the generator maps whose death
-bounds are exactly the corresponding inequalities.-/
+bounds are exactly the corresponding inequalities.
+@isnad1 id=nonempty.6h7v.s7.17052a5b2af8 from=translated src=- shape=b449c116 vocab=14724f6a
+-/
 theorem finiteHook_endpoint_close_interleaving {a b c d : Fin n → ℝ}
     (hab : a < b) (hcd : c < d) (ρ : ℝ≥0)
     (hca : ∀ i, c i ≤ a i + (ρ : ℝ))
@@ -1272,7 +1342,9 @@ theorem finiteHook_endpoint_close_interleaving {a b c d : Fin n → ℝ}
     by simpa [forward, reverse] using hreverse⟩⟩
 
 /-- Endpoint-sum order upgrades the one-sided bounds of a nonzero map to
-two-sided endpoint closeness at radius `(2n - 1) ε`.-/
+two-sided endpoint closeness at radius `(2n - 1) ε`.
+@isnad1 id=and.4h6v.s8.729384c8d6d6 from=translated src=- shape=86aeffd1 vocab=03815fd8
+-/
 theorem finite_endpoint_reverse_bounds (hn : 0 < n) (ε : ℝ≥0)
     {a b c d : Fin n → ℝ} (hα :
       (∑ i, a i) + (∑ i, b i) ≤ (∑ i, c i) + (∑ i, d i))
@@ -1346,7 +1418,9 @@ def FiniteEndpointClose (ρ : ℝ) (a b c d : Fin n → ℝ) : Prop :=
 
 /-- The finite-hook path lemma behind Theorem 4.1(1): endpoint-sum order and
 two actual nonzero shifted maps force one adjacent pair to be close at the
-constant `(2n - 1) ε`.-/
+constant `(2n - 1) ε`.
+@isnad1 id=or.6h8v.s8.4599fdf60ac6 from=translated src=- shape=28b95fad vocab=c398f019
+-/
 theorem finite_hook_path_endpoint_close (hn : 0 < n) (ε : ℝ≥0)
     {a b c d e f : Fin n → ℝ}
     (hRT : (∑ i, a i) + (∑ i, b i) ≤ (∑ i, e i) + (∑ i, f i))
@@ -1379,7 +1453,9 @@ theorem finite_hook_path_endpoint_close (hn : 0 < n) (ε : ℝ≥0)
 
 /-- Actual nonzero maps of finite hooks supply the endpoint inequalities in the
 ordered-path lemma, so its conclusion applies to interleaving components
-without assuming their endpoint bounds separately.-/
+without assuming their endpoint bounds separately.
+@isnad1 id=or.6h11v.s11.e7b14ed629c6 from=translated src=- shape=a19c294f vocab=6f6c5442
+-/
 theorem finite_hook_path_endpoint_close_of_maps (hn : 0 < n) (ε : ℝ≥0)
     {a b c d e f : Fin n → ℝ}
     (hRT : (∑ i, a i) + (∑ i, b i) ≤ (∑ i, e i) + (∑ i, f i))
@@ -1398,7 +1474,9 @@ theorem finite_hook_path_endpoint_close_of_maps (hn : 0 < n) (ε : ℝ≥0)
 /-- Along an ordered path of two nonzero finite-hook maps, one of its two
 edges is an actual interleaving at the stability radius. Endpoint closeness
 is converted to concrete generator maps; the conclusion is not a hom
-nonvanishing surrogate.-/
+nonvanishing surrogate.
+@isnad1 id=or.7h11v.s11.5a101d75e604 from=translated src=- shape=023f99e3 vocab=a9c1a6c3
+-/
 theorem finite_hook_path_neighbor_of_maps (hn : 0 < n) (ε : ℝ≥0)
     {a b c d e f : Fin n → ℝ}
     (hRT : (∑ i, a i) + (∑ i, b i) ≤ (∑ i, e i) + (∑ i, f i))
@@ -1457,7 +1535,9 @@ def tagSignificant (δ : ℝ≥0) : RealHookTag (n := n) → Prop
   | .inr _ => True
 
 /-- The support of a finite-death hook meets its `δ`-translate precisely when
-one coordinate gap is strictly greater than `δ`.-/
+one coordinate gap is strictly greater than `δ`.
+@isnad1 id=iff.0h3v.s8.7bb2d9ada411 from=translated src=- shape=e28af9fc vocab=ae610bfe
+-/
 theorem finiteHook_support_transition_iff (δ : ℝ≥0)
     (ab : FiniteHookTag (n := n)) :
     (∃ p : Fin n → ℝ, p ∈ Hook.support ab.val.1 ab.val.2 ∧
@@ -1482,7 +1562,9 @@ theorem finiteHook_support_transition_iff (δ : ℝ≥0)
       exact (not_le_of_gt hi) (h i)
 
 /-- A support interval has a nonzero transition exactly when some point and
-its translate both belong to its support.-/
+its translate both belong to its support.
+@isnad1 id=iff.1h4v.s10.9a97d7cb1aaf from=translated src=- shape=d3d0620c vocab=80449507
+-/
 theorem transition_ne_zero_iff_support {S : Set (Fin n → ℝ)}
     (hS : S.OrdConnected) (δ : ℝ≥0) :
     CoordinateShift.transition δ (SupportInterval.module (k := k) S hS) ≠ 0 ↔
@@ -1522,7 +1604,9 @@ theorem transition_ne_zero_iff_support {S : Set (Fin n → ℝ)}
     exact one_ne_zero hv
 
 /-- A finite-death hook survives its `δ`-transition exactly at the strict
-coordinate-gap threshold.-/
+coordinate-gap threshold.
+@isnad1 id=iff.0h4v.s11.1dfc2b3093e3 from=translated src=- shape=9b3455f4 vocab=33e7c6f1
+-/
 theorem finiteSignificant_iff_transition_ne_zero (δ : ℝ≥0)
     (ab : FiniteHookTag (n := n)) :
     finiteSignificant δ ab ↔
@@ -1562,7 +1646,9 @@ private theorem sum_lt_sum_add_const_sub {m : ℕ} (x y : Fin m → ℝ)
 
 /-- The endpoint bounds from two nonzero maps force the second translate of
 the first birth into the final hook whenever the two end hooks are significant
-and ordered by the sum of their endpoints.-/
+and ordered by the sum of their endpoints.
+@isnad1 id=mem.9h11v.s11.d9a2fe98bce1 from=translated src=- shape=74bf6e22 vocab=eea904da
+-/
 theorem finiteHook_composite_birth_target_of_significant (hn : 0 < n)
     (ε : ℝ≥0) {a b c d e f : Fin n → ℝ}
     (hab : a < b) (hcd : c < d) (hef : e < f)
@@ -1661,7 +1747,9 @@ theorem finiteHook_composite_birth_target_of_significant (hn : 0 < n)
 
 /-- Ordered significant finite hooks have a noncancelling two-step map. The
 common active grade is derived from the endpoint bounds, significance, and the
-endpoint-sum order, then the actual scalar coefficient product is used.-/
+endpoint-sum order, then the actual scalar coefficient product is used.
+@isnad1 id=ne.9h11v.s12.99b33e0ea158 from=translated src=- shape=2760dabf vocab=f71906f4
+-/
 theorem finiteHook_composite_ne_zero_of_significant (hn : 0 < n) (ε : ℝ≥0)
     {a b c d e f : Fin n → ℝ} (hab : a < b) (hcd : c < d) (hef : e < f)
     (hα : (∑ i, a i) + (∑ i, b i) ≤ (∑ i, e i) + (∑ i, f i))
@@ -1790,7 +1878,9 @@ theorem finiteHook_composite_ne_zero_of_significant (hn : 0 < n) (ε : ℝ≥0)
 
 /-- Coefficient multiplication for an ordered significant finite-hook path.
 When either component map vanishes both sides are zero; otherwise the common
-active grade is supplied by the endpoint geometry above.-/
+active grade is supplied by the endpoint geometry above.
+@isnad1 id=eq.7h11v.s11.b90ca491b25d from=translated src=- shape=0e663f33 vocab=860d4847
+-/
 theorem finiteHookCoefficient_composite_ordered (hn : 0 < n) (ε : ℝ≥0)
     {a b c d e f : Fin n → ℝ}
     (hab : a < b) (hcd : c < d) (hef : e < f)
@@ -1836,7 +1926,9 @@ theorem finiteHookCoefficient_composite_ordered (hn : 0 < n) (ε : ℝ≥0)
 
 /-- The same-type hook coefficient respects two-step composition. When the
 middle tag has the opposite type, one of the two maps is the vanishing
-finite-to-principal block, so the product and composite coefficient are zero.-/
+finite-to-principal block, so the product and composite coefficient are zero.
+@isnad1 id=eq.4h8v.s11.829f2d300547 from=translated src=- shape=bfa80bd7 vocab=60f58a76
+-/
 theorem tagScalar_composite (hn : 0 < n) (ε : ℝ≥0)
     {t s u : RealHookTag (n := n)}
     (hα : tagOrderValue t ≤ tagOrderValue u)
@@ -1936,7 +2028,9 @@ noncomputable def finiteInterleavingZero (ab : FiniteHookTag (n := n))
   ψ_φ := by exact Subsingleton.elim _ _
 
 /-- A finite hook is actually `ρ`-interleaved with zero exactly when its
-double-shift transition vanishes, including the endpoint and `ρ = 0` cases.-/
+double-shift transition vanishes, including the endpoint and `ρ = 0` cases.
+@isnad1 id=iff.0h4v.s8.e68481629846 from=translated src=- shape=580a63fe vocab=d475ab4e
+-/
 theorem finiteInterleaved_zero_iff (ab : FiniteHookTag (n := n)) (ρ : ℝ≥0) :
     Nonempty (CoordinateInterleaving ρ
       (Hook.module (k := k) ab.val.1 ab.val.2) 0) ↔
@@ -1954,6 +2048,9 @@ theorem finiteInterleaved_zero_iff (ab : FiniteHookTag (n := n)) (ρ : ℝ≥0) 
   · intro h
     exact ⟨finiteInterleavingZero (k := k) ab ρ h⟩
 
+/--
+@isnad1 id=eq.1h7v.s9.c5dc708a288d from=translated src=- shape=eabc22b4 vocab=4e880094
+-/
 @[simp] theorem finiteHookCoefficient_zero {a b c d : Fin n → ℝ}
     (hab : a < b) (ε : ℝ≥0) :
     finiteHookCoefficient (k := k) hab ε
@@ -1964,6 +2061,9 @@ theorem finiteInterleaved_zero_iff (ab : FiniteHookTag (n := n)) (ρ : ℝ≥0) 
   change (0 : k) = 0
   rfl
 
+/--
+@isnad1 id=eq.1h9v.s11.faf22e16e379 from=translated src=- shape=527dfe2d vocab=2640aada
+-/
 theorem finiteHookCoefficient_add {a b c d : Fin n → ℝ}
     (hab : a < b) (ε : ℝ≥0)
     (f g : Hook.module (k := k) a b ⟶
@@ -1977,6 +2077,9 @@ theorem finiteHookCoefficient_add {a b c d : Fin n → ℝ}
     (SupportInterval.fiber (k := k) (Hook.support c d)
       (CoordinateShift.translation ε a))).map_add _ _
 
+/--
+@isnad1 id=eq.1h10v.s10.62902094fd64 from=translated src=- shape=ae7984d1 vocab=af1d76d0
+-/
 theorem finiteHookCoefficient_sum {a b c d : Fin n → ℝ} {ι : Type*}
     (hab : a < b) (ε : ℝ≥0) (A : Finset ι)
     (f : ι → (Hook.module (k := k) a b ⟶
@@ -1990,7 +2093,9 @@ theorem finiteHookCoefficient_sum {a b c d : Fin n → ℝ} {ι : Type*}
       simp only [Finset.sum_insert hi, finiteHookCoefficient_add, ih]
 
 /-- The diagonal hook coefficient is one whenever the double-shift transition
-survives.-/
+survives.
+@isnad1 id=eq.1h4v.s9.9361421b8b9e from=translated src=- shape=8fd8af75 vocab=2330dd7e
+-/
 theorem finiteHookCoefficient_transition {ab : FiniteHookTag (n := n)}
     (δ : ℝ≥0) (h : finiteSignificant δ ab) :
     finiteHookCoefficient (k := k) ab.property δ
@@ -2289,6 +2394,9 @@ private theorem tagNeighbor_symm {ρ : ℝ≥0} {t s : RealHookTag (n := n)}
   rcases h with ⟨I⟩
   exact ⟨I.symm⟩
 
+/--
+@isnad1 id=le.2h9v.s7.777a669c04f4 from=translated src=- shape=7ac20abb vocab=344a0632
+-/
 theorem card_le_neighbors (hn : 0 < n)
     {m ℓ : ℕ} (F : Fin m → RealHookTag (n := n))
     (G : Fin ℓ → RealHookTag (n := n)) (ε : ℝ≥0)
@@ -2397,7 +2505,9 @@ theorem card_le_neighbors (hn : 0 < n)
 
 /-- Every hook significant at the `(2n-1)ε` threshold has a distinct
 `(2n-1)ε`-interleaved partner on the opposite side. The actual finite-sum
-interleaving supplies the Hall inequalities; they are not assumptions.-/
+interleaving supplies the Hall inequalities; they are not assumptions.
+@isnad1 id=ex.1h8v.s7.8612821e786b from=translated src=- shape=32144925 vocab=5ffce2df
+-/
 theorem exists_significant_injection (hn : 0 < n)
     {m ℓ : ℕ} (F : Fin m → RealHookTag (n := n))
     (G : Fin ℓ → RealHookTag (n := n)) (ε : ℝ≥0)
@@ -2448,7 +2558,9 @@ private theorem tagInterleavedZero_of_not_significant
 partial matching at radius `(2n-1)ε`. Paired entries and every deletion on
 either side carry actual coordinate interleavings. Repeated tags remain
 separate occurrences, principal-upset supports are included, and the zero
-boundary is settled from the rank-exact multiplicity theorem.-/
+boundary is settled from the rank-exact multiplicity theorem.
+@isnad1 id=ex.1h8v.s6.8d90397fa6a7 from=translated src=- shape=3796a5b0 vocab=a19d42d3
+-/
 theorem exists_matching (hn : 0 < n)
     {m ℓ : ℕ} (F : Fin m → RealHookTag (n := n))
     (G : Fin ℓ → RealHookTag (n := n)) (ε : ℝ≥0)

@@ -30,7 +30,9 @@ private instance : HasBinaryBiproducts (PModule.{u,0,u} k P) :=
 
 namespace IsPointwiseShortExact
 
-/-- The composite of the two maps of a pointwise short exact sequence is zero.-/
+/-- The composite of the two maps of a pointwise short exact sequence is zero.
+@isnad1 id=eq.1h7v.s8.2c141eb31388 from=translated src=- shape=12f198dd vocab=a00766b8
+-/
 theorem comp_eq_zero (hs : IsPointwiseShortExact ι π) : ι ≫ π = 0 := by
   ext p x
   have hx : (ι.app p).hom x ∈ LinearMap.range (ι.app p).hom := ⟨x, rfl⟩
@@ -73,14 +75,18 @@ noncomputable def kernelIso (hs : IsPointwiseShortExact ι π) : L ≅ kernel π
   let : IsIso (kernelComparison hs) := NatIso.isIso_of_isIso_app _
   exact asIso (kernelComparison hs)
 
-/-- The comparison preserves the original kernel inclusion.-/
+/-- The comparison preserves the original kernel inclusion.
+@isnad1 id=eq.1h7v.s9.b4966297aa98 from=translated src=- shape=68acbbd1 vocab=374476b7
+-/
 theorem kernelIso_hom_ι (hs : IsPointwiseShortExact ι π) :
     hs.kernelIso.hom ≫ kernel.ι π = ι := kernelComparison_ι hs
 
 /-- A pointwise short exact sequence of persistence modules is short exact in
 the actual functor category. The proof identifies the given first object with
 the categorical kernel and uses pointwise surjectivity for the categorical
-epimorphism.-/
+epimorphism.
+@isnad1 id=shortexa.1h7v.s8.9d6bfa788c55 from=translated src=- shape=8af72433 vocab=db01cc37
+-/
 theorem shortExact (hs : IsPointwiseShortExact ι π) :
     (ShortComplex.mk ι π hs.comp_eq_zero).ShortExact := by
   let Q := ShortComplex.mk ι π hs.comp_eq_zero
@@ -114,13 +120,17 @@ noncomputable def splitKernelIso (hs : IsRankDeflation π) (hN : IsRankProjectiv
   exact (ShortComplex.Splitting.ofExactOfSection S (ShortComplex.exact_kernel π)
     s hsec inferInstance).isoBinaryBiproduct
 
-/-- The splitting recovers the original quotient map as its second projection.-/
+/-- The splitting recovers the original quotient map as its second projection.
+@isnad1 id=eq.2h5v.s9.ead93a45a1f7 from=translated src=- shape=ebdf4f1d vocab=5f24efe9
+-/
 theorem splitKernelIso_hom_snd (hs : IsRankDeflation π) (hN : IsRankProjective N) :
     (hs.splitKernelIso hN).hom ≫ biprod.snd = π := by
   change biprod.lift _ π ≫ biprod.snd = π
   exact biprod.lift_snd _ _
 
-/-- The inverse splitting recovers the actual kernel inclusion on its first summand.-/
+/-- The inverse splitting recovers the actual kernel inclusion on its first summand.
+@isnad1 id=eq.2h5v.s9.2538a7591287 from=translated src=- shape=fb1eb4ca vocab=d4966b76
+-/
 theorem splitKernelIso_inl_inv (hs : IsRankDeflation π) (hN : IsRankProjective N) :
     biprod.inl ≫ (hs.splitKernelIso hN).inv = kernel.ι π := by
   change biprod.inl ≫ biprod.desc (kernel.ι π) _ = kernel.ι π

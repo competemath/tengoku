@@ -33,9 +33,15 @@ variable {X : Type u} [TopologicalSpace X]
 def intervalComponents (f : C(X, ℝ)) : OpenInterval ⥤ Type u :=
   toOpensFunctor ⋙ componentFunctor f
 
+/--
+@isnad1 id=eq.0h3v.s6.037a94edd258 from=translated src=- shape=bb297810 vocab=85bba202
+-/
 theorem intervalComponents_obj (f : C(X, ℝ)) (I : OpenInterval) :
     (intervalComponents f).obj I = ZerothHomotopy {x : X // f x ∈ I} := rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.080efbb77a26 from=translated src=- shape=ce5f9832 vocab=86654fbd
+-/
 @[simp]
 theorem intervalComponents_map_mk (f : C(X, ℝ)) {I J : OpenInterval} (i : I ⟶ J)
     (x : {x : X // f x ∈ toOpens I}) :
@@ -44,7 +50,9 @@ theorem intervalComponents_map_mk (f : C(X, ℝ)) {I J : OpenInterval} (i : I �
         (⟨x.1, OpenInterval.le_iff_subset.1 (leOfHom i) x.2⟩ : {x : X // f x ∈ toOpens J}) :=
   rfl
 
-/-- The empty interval has no components.-/
+/-- The empty interval has no components.
+@isnad1 id=isempty.0h2v.s5.1e8f530d42b4 from=translated src=- shape=52b71c31 vocab=03fde144
+-/
 instance intervalComponents_obj_bot_isEmpty (f : C(X, ℝ)) :
     IsEmpty ((intervalComponents f).obj ⊥) :=
   ⟨fun c => by

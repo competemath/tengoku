@@ -29,23 +29,33 @@ def traceChange (ops : List (EarlierColumnOp m k)) :
     Matrix (Fin m) (Fin m) k :=
   (ops.map (fun op => op.1.toMatrix)).prod
 
-/-- Replaying the empty trace leaves its input unchanged.-/
+/-- Replaying the empty trace leaves its input unchanged.
+@isnad1 id=eq.0h3v.s4.f17bd9c5646e from=translated src=- shape=05069cd1 vocab=25e80dce
+-/
 theorem replay_nil (M : Matrix (Fin m) (Fin m) k) : replay M [] = M := rfl
 
-/-- Replaying a cons first performs its head operation, then its tail.-/
+/-- Replaying a cons first performs its head operation, then its tail.
+@isnad1 id=eq.0h5v.s7.7cd560949d1c from=translated src=- shape=e7c3c156 vocab=c22930d8
+-/
 theorem replay_cons (M : Matrix (Fin m) (Fin m) k)
     (op : EarlierColumnOp m k) (ops : List (EarlierColumnOp m k)) :
     replay M (op :: ops) = replay (M * op.1.toMatrix) ops := rfl
 
-/-- The empty trace has identity change matrix.-/
+/-- The empty trace has identity change matrix.
+@isnad1 id=eq.0h2v.s6.2632be5f323f from=translated src=- shape=51a4295c vocab=8f9fa80b
+-/
 theorem traceChange_nil : traceChange ([] : List (EarlierColumnOp m k)) = 1 := rfl
 
-/-- A trace change matrix is the head operation followed by the tail product.-/
+/-- A trace change matrix is the head operation followed by the tail product.
+@isnad1 id=eq.0h4v.s6.6ad325a20948 from=translated src=- shape=a3198e2c vocab=c4cf642d
+-/
 theorem traceChange_cons (op : EarlierColumnOp m k)
     (ops : List (EarlierColumnOp m k)) :
     traceChange (op :: ops) = op.1.toMatrix * traceChange ops := rfl
 
-/-- The replayed matrix is the initial matrix multiplied by the chronological trace product.-/
+/-- The replayed matrix is the initial matrix multiplied by the chronological trace product.
+@isnad1 id=eq.0h4v.s6.d94f58fee15a from=translated src=- shape=90b690ce vocab=e9ba2e53
+-/
 theorem replay_eq_mul_traceChange (M : Matrix (Fin m) (Fin m) k)
     (ops : List (EarlierColumnOp m k)) :
     replay M ops = M * traceChange ops := by
@@ -54,7 +64,9 @@ theorem replay_eq_mul_traceChange (M : Matrix (Fin m) (Fin m) k)
   | cons op ops ih =>
       rw [replay_cons, ih, traceChange_cons, Matrix.mul_assoc]
 
-/-- Replaying a concatenated trace is replaying the first part and then the second.-/
+/-- Replaying a concatenated trace is replaying the first part and then the second.
+@isnad1 id=eq.0h5v.s6.a89a26f52caf from=translated src=- shape=da67e4d6 vocab=a0604ea8
+-/
 theorem replay_append (M : Matrix (Fin m) (Fin m) k)
     (xs ys : List (EarlierColumnOp m k)) :
     replay M (xs ++ ys) = replay (replay M xs) ys := by
@@ -64,7 +76,9 @@ theorem replay_append (M : Matrix (Fin m) (Fin m) k)
       simp only [List.cons_append, replay_cons]
       exact ih (M * op.1.toMatrix)
 
-/-- Concatenating traces concatenates their chronological right-products.-/
+/-- Concatenating traces concatenates their chronological right-products.
+@isnad1 id=eq.0h4v.s6.153b68aba8f3 from=translated src=- shape=6f6ada91 vocab=79b29fd4
+-/
 theorem traceChange_append (xs ys : List (EarlierColumnOp m k)) :
     traceChange (xs ++ ys) = traceChange xs * traceChange ys := by
   have replay_one (ops : List (EarlierColumnOp m k)) :
@@ -77,7 +91,9 @@ theorem traceChange_append (xs ys : List (EarlierColumnOp m k)) :
     _ = replay (traceChange xs) ys := by rw [replay_one xs]
     _ = traceChange xs * traceChange ys := replay_eq_mul_traceChange _ _
 
-/-- Every replayed finite trace preserves every natural-number column prefix.-/
+/-- Every replayed finite trace preserves every natural-number column prefix.
+@isnad1 id=eq.0h5v.s6.8b86f84a1399 from=translated src=- shape=a9b12e67 vocab=35f14f22
+-/
 theorem prefixSpan_replay (M : Matrix (Fin m) (Fin m) k)
     (ops : List (EarlierColumnOp m k)) (t : ℕ) :
     prefixSpan (replay M ops) t = prefixSpan M t := by
@@ -92,7 +108,9 @@ theorem prefixSpan_replay (M : Matrix (Fin m) (Fin m) k)
           simpa only [Matrix.TransvectionStruct.toMatrix] using
             prefixSpan_mul_transvection M op.1.i op.1.j op.1.c op.2 t
 
-/-- The product form of a trace also preserves every natural-number column prefix.-/
+/-- The product form of a trace also preserves every natural-number column prefix.
+@isnad1 id=eq.0h5v.s7.1c5569ef0b0e from=translated src=- shape=6223a946 vocab=aa4aa304
+-/
 theorem prefixSpan_mul_traceChange (M : Matrix (Fin m) (Fin m) k)
     (ops : List (EarlierColumnOp m k)) (t : ℕ) :
     prefixSpan (M * traceChange ops) t = prefixSpan M t := by

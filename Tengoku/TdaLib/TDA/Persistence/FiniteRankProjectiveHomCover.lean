@@ -33,7 +33,9 @@ private abbrev E := HomScalars (k := k) (S := S)
 private abbrev L := FiniteRankProjectiveEndAlgebra.HookSum (k := k) (S := S)
 
 /-- The actual Hom functor preserves and reflects invertibility of persistence
-endomorphisms.-/
+endomorphisms.
+@isnad1 id=iff.0h4v.s10.3f3d0563bff2 from=translated src=- shape=76553c60 vocab=01cf9451
+-/
 theorem isIso_map_iff {A : PModule.{u,0,u} k S} (t : End A) :
     IsIso ((F (k := k) (S := S)).map t) ↔ IsIso t := by
   constructor
@@ -44,7 +46,9 @@ theorem isIso_map_iff {A : PModule.{u,0,u} k S} (t : End A) :
     letI : IsIso t := h
     exact (F (k := k) (S := S)).map_isIso t
 
-/-- The equation fixing a quotient is reflected by the actual Hom functor.-/
+/-- The equation fixing a quotient is reflected by the actual Hom functor.
+@isnad1 id=iff.0h6v.s11.4da3a9189013 from=translated src=- shape=4c63201c vocab=d0d33a91
+-/
 theorem map_comp_eq_map_iff {A B : PModule.{u,0,u} k S}
     (π : A ⟶ B) (t : End A) :
     ((F (k := k) (S := S)).map t) ≫ ((F (k := k) (S := S)).map π) =
@@ -53,7 +57,9 @@ theorem map_comp_eq_map_iff {A B : PModule.{u,0,u} k S}
   exact (F (k := k) (S := S)).map_injective.eq_iff
 
 /-- Right minimality of a persistence quotient agrees with right minimality
-of its actual hook-generator Hom map.-/
+of its actual hook-generator Hom map.
+@isnad1 id=iff.0h5v.s11.c0b47a490389 from=translated src=- shape=abb92811 vocab=0b502f25
+-/
 theorem rightMinimal_iff {A B : PModule.{u,0,u} k S} (π : A ⟶ B) :
     (∀ t : End A, t ≫ π = π → IsIso t) ↔
       (∀ T : End ((F (k := k) (S := S)).obj A),
@@ -73,7 +79,9 @@ theorem rightMinimal_iff {A B : PModule.{u,0,u} k S} (π : A ⟶ B) :
     exact h _ ((map_comp_eq_map_iff (k := k) (S := S) π t).mpr ht)
 
 /-- Surjectivity of Hom postcomposition forces every component of the
-persistence quotient to be surjective.-/
+persistence quotient to be surjective.
+@isnad1 id=surjecti.1h6v.s11.a5de0505e504 from=translated src=- shape=25b50107 vocab=05fe787a
+-/
 theorem pointwise_surjective_of_postcompose_surjective
     {A B : PModule.{u,0,u} k S} (π : A ⟶ B)
     (hsurj : Function.Surjective (postcompose (k := k) (S := S) π))
@@ -94,7 +102,9 @@ theorem pointwise_surjective_of_postcompose_surjective
   exact h
 
 /-- A pointwise finite-dimensional rank-projective cover is precisely a
-projective, surjective and right-minimal map under the actual Hom functor.-/
+projective, surjective and right-minimal map under the actual Hom functor.
+@isnad1 id=iff.1h5v.s12.bbe19a8e61a5 from=translated src=- shape=84954377 vocab=4e1368bc
+-/
 theorem rankProjectiveCover_iff {A B : PModule.{u,0,u} k S}
     (π : A ⟶ B) (hfd : ∀ a, FiniteDimensional k (A.obj a)) :
     IsRankProjectiveCover π ↔
@@ -120,7 +130,9 @@ theorem rankProjectiveCover_iff {A B : PModule.{u,0,u} k S}
     exact (rankExact_iff_postcompose_surjective hshort hfd).mpr hsurj
 
 /-- Every certified minimal resolution row becomes an ordinary right-minimal
-projective epimorphism of hook-generator Hom modules.-/
+projective epimorphism of hook-generator Hom modules.
+@isnad1 id=and.0h5v.s12.ea76f5594ce1 from=translated src=- shape=ae50d294 vocab=d0ffebab
+-/
 theorem minimalResolution_row_homCover
     {M : PModule.{u,0,u} k S}
     (R : MinimalFiniteRankProjectiveResolution (k := k) (M := M))
@@ -143,7 +155,9 @@ private noncomputable abbrev QF := F (k := ℚ) (S := Fin 2)
 private abbrev QE := E (k := ℚ) (S := Fin 2)
 private noncomputable abbrev QL := L (k := ℚ) (S := Fin 2)
 
-/-- The zero identity cover satisfies the ordinary Hom cover conditions.-/
+/-- The zero identity cover satisfies the ordinary Hom cover conditions.
+@isnad1 id=and.0h0v.s14.f5bc837315ef from=translated src=- shape=2f8b8333 vocab=fd183f69
+-/
 theorem zero_identity_homCover :
     Module.Projective QE (QL ⟶ (0 : PModule ℚ (Fin 2))) ∧
     Function.Surjective (postcompose (k := ℚ) (S := Fin 2)
@@ -156,7 +170,9 @@ theorem zero_identity_homCover :
     FiniteRankProjectiveResolutionKanExamples.zero_identity_isRankProjectiveCover
 
 /-- The nonzero principal upset identity cover satisfies the ordinary Hom
-conditions, and its birth fiber has a nonzero vector.-/
+conditions, and its birth fiber has a nonzero vector.
+@isnad1 id=and.0h1v.s13.53f5b6cc8fe7 from=translated src=- shape=f6ef423f vocab=bf117c28
+-/
 theorem principalUpset_identity_homCover (a : Fin 2) :
     (Module.Projective QE (QL ⟶ HookInfinity.module (R := ℚ) a) ∧
     Function.Surjective (postcompose (k := ℚ) (S := Fin 2)

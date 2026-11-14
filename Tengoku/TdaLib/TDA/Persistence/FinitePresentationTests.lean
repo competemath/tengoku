@@ -23,7 +23,9 @@ open CategoryTheory
 variable {R : Type u} [Ring R] {P : Type v} [Preorder P]
 
 /-- Maps from a finitely presented module are controlled by bijectivity at a
-finite set of parameter grades.-/
+finite set of parameter grades.
+@isnad1 id=ex.1h3v.s9.c06ee47f7f8b from=translated src=- shape=42e87bb2 vocab=c28387d9
+-/
 theorem finitelyPresented_exists_finite_postcomp_tests
     (M : PModule.{u,v,max u w} R P)
     (hM : FinitelyPresented (R := R) (P := P) M) :

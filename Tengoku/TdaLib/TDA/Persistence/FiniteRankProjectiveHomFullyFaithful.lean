@@ -52,6 +52,9 @@ noncomputable def encode (M : PModule.{u,0,u} k S) (a : S) (x : M.obj a) :
     L (k := k) (S := S) ⟶ M :=
   projection (k := k) (S := S) a ≫ HookInfinity.fromBirth a M x
 
+/--
+@isnad1 id=eq.0h5v.s10.bab29134fd5d from=translated src=- shape=2798d21a vocab=d051f5e7
+-/
 @[simp] theorem encode_birth (M : PModule.{u,0,u} k S) (a : S) (x : M.obj a) :
     (((inclusion (k := k) (S := S) a ≫ encode M a x).app a).hom
       (HookInfinity.birth a)) = x := by
@@ -61,7 +64,9 @@ noncomputable def encode (M : PModule.{u,0,u} k S) (a : S) (x : M.obj a) :
   rw [← Category.assoc, inclusion_projection, Category.id_comp]
   exact HookInfinity.fromBirth_birth a M x
 
-/-- The zero birth vector gives the zero map from the hook generator.-/
+/-- The zero birth vector gives the zero map from the hook generator.
+@isnad1 id=eq.0h4v.s9.7ac2976a00b9 from=translated src=- shape=7742c145 vocab=99bcc4e8
+-/
 @[simp] theorem encode_zero (M : PModule.{u,0,u} k S) (a : S) :
     encode M a 0 = 0 := by
   have h : HookInfinity.fromBirth a M 0 = 0 := by
@@ -69,7 +74,9 @@ noncomputable def encode (M : PModule.{u,0,u} k S) (a : S) (x : M.obj a) :
     simp
   simp [encode, h]
 
-/-- The birth generator of a principal upset recovers its summand identity.-/
+/-- The birth generator of a principal upset recovers its summand identity.
+@isnad1 id=eq.0h3v.s8.90146213e239 from=translated src=- shape=e8b97cf3 vocab=f41e5539
+-/
 theorem encode_birth_generator (a : S) :
     inclusion (k := k) (S := S) a ≫
       encode (HookInfinity.module (R := k) a) a (HookInfinity.birth a) =
@@ -195,7 +202,9 @@ noncomputable def preimage (M N : PModule.{u,0,u} k S)
       structureMapLinear N hab' (fiberMap M N T a x)
     rw [← hgy, ← evaluate M N T g b y, hTy]
 
-/-- Birth-fiber formula for the reconstructed persistence morphism.-/
+/-- Birth-fiber formula for the reconstructed persistence morphism.
+@isnad1 id=eq.0h7v.s12.75d8e661979f from=translated src=- shape=1f22ac2d vocab=202d9384
+-/
 theorem preimage_app (M N : PModule.{u,0,u} k S)
     (T : (L (k := k) (S := S) ⟶ M) →ₗ[E (k := k) (S := S)]
       (L (k := k) (S := S) ⟶ N)) (a : S) (x : M.obj a) :
@@ -203,6 +212,9 @@ theorem preimage_app (M N : PModule.{u,0,u} k S)
       (((inclusion (k := k) (S := S) a ≫ T (encode M a x)).app a).hom
         (HookInfinity.birth a)) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.261776cf60c6 from=translated src=- shape=1a75ddce vocab=e196d022
+-/
 @[simp] theorem postcompose_preimage (M N : PModule.{u,0,u} k S)
     (T : (L (k := k) (S := S) ⟶ M) →ₗ[E (k := k) (S := S)]
       (L (k := k) (S := S) ⟶ N)) :
@@ -216,6 +228,9 @@ theorem preimage_app (M N : PModule.{u,0,u} k S)
   intro x
   exact (evaluate M N T g a x).symm
 
+/--
+@isnad1 id=eq.0h5v.s7.a12b367fdf24 from=translated src=- shape=4925f193 vocab=ba0e889f
+-/
 @[simp] theorem preimage_postcompose (M N : PModule.{u,0,u} k S)
     (f : M ⟶ N) :
     preimage M N (postcompose (k := k) (S := S) f) = f := by
@@ -250,16 +265,24 @@ noncomputable def homFunctor_fullyFaithful :
     apply ModuleCat.hom_ext
     exact postcompose_preimage M N T.hom
 
+/--
+@isnad1 id=full.0h2v.s7.af2057c11b29 from=translated src=- shape=ed09b284 vocab=bd59a287
+-/
 noncomputable instance homFunctor_full :
     (homFunctor (k := k) (S := S)).Full :=
   (homFunctor_fullyFaithful (k := k) (S := S)).full
 
+/--
+@isnad1 id=faithful.0h2v.s7.492387be5d31 from=translated src=- shape=ed09b284 vocab=18faf7c6
+-/
 instance homFunctor_faithful :
     (homFunctor (k := k) (S := S)).Faithful :=
   (homFunctor_fullyFaithful (k := k) (S := S)).faithful
 
 /-- Rank projectivity of a pointwise finite-dimensional persistence module is
-equivalent to ordinary projectivity of its hook-generator Hom module.-/
+equivalent to ordinary projectivity of its hook-generator Hom module.
+@isnad1 id=iff.1h3v.s9.2695721fe094 from=translated src=- shape=1cd61596 vocab=e215c8ae
+-/
 theorem rankProjective_iff_homProjective (M : PModule.{u,0,u} k S)
     (hfd : ∀ a, FiniteDimensional k (M.obj a)) :
     IsRankProjective M ↔

@@ -44,6 +44,9 @@ local instance : DecidableLT (PairPoset S) := Classical.decRel _
 local instance : LocallyFiniteOrder (PairPoset S) := Fintype.toLocallyFiniteOrder
 local instance : DecidableEq (PairPoset S) := Classical.decEq _
 local instance : Fintype (ComparablePair S) := Fintype.ofFinite _
+/--
+@isnad1 id=istwosid.0h2v.s6.8b41970a24b5 from=translated src=- shape=3e603a0f vocab=990ddb3d
+-/
 local instance diagonalIdealTwoSided :
     (FiniteRankProjectiveDiagonalIdealProjective.DiagonalIdeal
       (k := k) (S := S)).IsTwoSided :=
@@ -76,6 +79,9 @@ def fixedColumn (M : ModuleCat (R (k := k) (S := S))) (q : Pair (S := S)) : AddS
     change columnProjector (k := k) (S := S) q • (-x) = -x
     rw [smul_neg, hx]
 
+/--
+@isnad1 id=iff.0h5v.s11.d6d81278b592 from=translated src=- shape=3f3244a2 vocab=790b235f
+-/
 @[simp] theorem mem_fixedColumn_iff
     (M : ModuleCat (R (k := k) (S := S))) (q : Pair (S := S)) (m : M) :
     m ∈ fixedColumn (k := k) (S := S) M q ↔
@@ -123,6 +129,9 @@ noncomputable def columnAction :
     funext q
     exact Subtype.ext rfl
 
+/--
+@isnad1 id=additive.0h2v.s8.50419cfd568d from=translated src=- shape=ca9b8755 vocab=9aa401fb
+-/
 instance columnAction_additive :
     Functor.Additive (columnAction (k := k) (S := S)) where
   map_add := by
@@ -132,6 +141,9 @@ instance columnAction_additive :
     funext q
     exact Subtype.ext rfl
 
+/--
+@isnad1 id=eq.0h7v.s12.afa117ee17cb from=translated src=- shape=823bcb7d vocab=cc002514
+-/
 @[simp] theorem columnAction_map_apply
     {M N : ModuleCat (R (k := k) (S := S))} (f : M ⟶ N)
     (x : ColumnObject (k := k) (S := S) M) (q : Pair (S := S)) :
@@ -149,12 +161,18 @@ def assembleAction (M : ModuleCat (R (k := k) (S := S))) :
         (∑ q : Pair (S := S), columnAssembler (k := k) (S := S) q • (y q : M))
     simp only [Pi.add_apply, AddSubgroup.coe_add, Finset.sum_add_distrib, smul_add]
 
+/--
+@isnad1 id=eq.0h4v.s13.d60ae46a94f8 from=translated src=- shape=f778e476 vocab=be4b33ba
+-/
 @[simp] theorem assembleAction_apply
     (M : ModuleCat (R (k := k) (S := S)))
     (x : ColumnObject (k := k) (S := S) M) :
     assembleAction (k := k) (S := S) M x =
       ∑ q : Pair (S := S), columnAssembler (k := k) (S := S) q • (x q : M) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s15.23dff2d451fd from=translated src=- shape=2abf5765 vocab=5ba7860f
+-/
 theorem assembleAction_natural
     {M N : ModuleCat (R (k := k) (S := S))} (f : M ⟶ N)
     (x : ColumnObject (k := k) (S := S) M) :
@@ -289,7 +307,9 @@ private theorem kernel_smul_mem_assembleRange
     _ = a • m := by simp [u]
 
 /-- The image of the additive assembly map is exactly the underlying additive subgroup
-of the existing quotient relation submodule.-/
+of the existing quotient relation submodule.
+@isnad1 id=eq.0h3v.s11.c806723443a6 from=translated src=- shape=41b9ffd8 vocab=323534e2
+-/
 theorem assembleAction_range_eq_relation
     (M : ModuleCat (R (k := k) (S := S))) :
     (assembleAction (k := k) (S := S) M).range =
@@ -341,7 +361,9 @@ theorem assembleAction_range_eq_relation
         exact ih (s * r)
     simpa using hspan m hm 1
 
-/-- The fixed-column object of a restricted quotient module is zero.-/
+/-- The fixed-column object of a restricted quotient module is zero.
+@isnad1 id=iszero.0h3v.s9.1e52a8a48e45 from=translated src=- shape=bfe3dd3e vocab=94f26911
+-/
 theorem columnAction_restrict_isZero
     (N : ModuleCat (C (k := k) (S := S))) :
     IsZero ((columnAction (k := k) (S := S)).obj
@@ -459,7 +481,9 @@ private theorem assembleAction_regular_eq_zero
     ((x q : regularColumnModule (k := k) (S := S)) : R (k := k) (S := S)) = 0
   simpa [g, regularColumns] using hg q
 
-/-- Assembly is injective on the regular right incidence module.-/
+/-- Assembly is injective on the regular right incidence module.
+@isnad1 id=injectiv.0h2v.s13.457f7882d091 from=translated src=- shape=c843d9e2 vocab=40bad2d8
+-/
 theorem assembleAction_regular_injective :
     Function.Injective
       (assembleAction (k := k) (S := S)
@@ -526,7 +550,9 @@ private theorem assembleAction_projective_eq_zero
   change (x q : M) = 0
   simpa only [map_zero, hs (x q : M)] using hr
 
-/-- Assembly is injective on every categorical projective right incidence module.-/
+/-- Assembly is injective on every categorical projective right incidence module.
+@isnad1 id=injectiv.0h3v.s13.a426e06cc319 from=translated src=- shape=0fe640dc vocab=2d64e669
+-/
 theorem assembleAction_projective_injective
     (M : ModuleCat.{u} (R (k := k) (S := S))) [Projective M] :
     Function.Injective (assembleAction (k := k) (S := S) M) := by
@@ -538,7 +564,9 @@ theorem assembleAction_projective_injective
   exact sub_eq_zero.mp hsub
 
 /-- The additive column functor carries every exact module short complex to an exact
-short complex of abelian groups.-/
+short complex of abelian groups.
+@isnad1 id=exact.1h3v.s10.d142841eb57e from=translated src=- shape=e65fb029 vocab=d0b82aaf
+-/
 theorem columnAction_map_exact
     (T : ShortComplex (ModuleCat (R (k := k) (S := S)))) (hT : T.Exact) :
     (T.map (columnAction (k := k) (S := S))).Exact := by
@@ -578,7 +606,9 @@ theorem columnAction_map_exact
     _ = x q := (x q).property
 
 /-- The additive column functor carries short-exact module rows to short-exact rows.
-The endpoint maps remain injective and surjective coordinatewise.-/
+The endpoint maps remain injective and surjective coordinatewise.
+@isnad1 id=shortexa.1h3v.s10.ee5c2c838c79 from=translated src=- shape=e65fb029 vocab=a896f5c6
+-/
 theorem columnAction_map_shortExact
     (T : ShortComplex (ModuleCat (R (k := k) (S := S)))) (hT : T.ShortExact) :
     (T.map (columnAction (k := k) (S := S))).ShortExact := by

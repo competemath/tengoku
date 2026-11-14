@@ -60,7 +60,9 @@ private theorem identityQuotient_rankExact
 
 /-- The repeated-grade, genuinely related finite presentation supports the
 ordinary extension theorem and the actual rank-exact pullback consumer over
-every field. The resulting actual pullback has a nonzero fiber.-/
+every field. The resulting actual pullback has a nonzero fiber.
+@isnad1 id=and.0h1v.s13.c9eb409ecb9b from=translated src=- shape=c0fa1ec1 vocab=2c752418
+-/
 theorem arbitrary_field_repeated_extension_and_pullback
     {k : Type u} [Field k] :
     FinitelyPresented.{u,0,0} (R := k) (P := Fin 2 → ℝ)
@@ -106,7 +108,9 @@ theorem arbitrary_field_repeated_extension_and_pullback
   exact ⟨hMiddle, hPullback.1, hPullback.2.1, hPullback.2.2, ⟨x, hx⟩⟩
 
 /-- An empty generator and relation family presents zero; its actual pullback
-and canonical kernel row satisfy the same closure result.-/
+and canonical kernel row satisfy the same closure result.
+@isnad1 id=and.0h1v.s13.1659e8025490 from=translated src=- shape=889ff31a vocab=4dc9cb1a
+-/
 theorem empty_zero_pullback_finitelyPresented {k : Type u} [Field k] :
     FinitelyPresented.{u,0,0} (R := k) (P := Fin 2 → ℝ)
       (Limits.pullback (𝟙 (0 : PModule.{u,0,u} k (Fin 2 → ℝ)))
@@ -201,7 +205,9 @@ private theorem relationRow_shortExact {k : Type u} [Field k] :
 genuine relation, whose outer terms are both nonzero. The ordinary extension
 theorem recovers the free middle term. The actual pullback of the quotient map
 along itself is finitely presented and, at the relation grade, contains a pair
-with distinct coordinates: the first generator paired with zero.-/
+with distinct coordinates: the first generator paired with zero.
+@isnad1 id=and.0h1v.s14.8c6c1e0bcb6b from=translated src=- shape=bfa8e0e3 vocab=169e5c15
+-/
 theorem arbitrary_field_relation_row_extension_and_pullback {k : Type u} [Field k] :
     (FinitePresentationKanExamples.presentation k 2).relationMap ≠ 0 ∧
       (∃ x : (FinitePresentationKanExamples.presentation k 2).presented.obj

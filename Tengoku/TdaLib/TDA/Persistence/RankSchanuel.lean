@@ -134,7 +134,9 @@ noncomputable def forward : leftPullback α β i ⟶ (shift ε).obj (rightPullba
         (forwardLinear α β i a x)).symm
       exact h₁.trans (h₂.trans (h₃.trans h₄))
 
-/-- The first output coordinate is the first cover's double transition.-/
+/-- The first output coordinate is the first cover's double transition.
+@isnad1 id=eq.0h12v.s14.27bbf1f8bd34 from=translated src=- shape=e1e0c15c vocab=67b62e92
+-/
 theorem forward_fst_app (a : Fin n → ℝ) (x : (leftPullback α β i).obj a) :
     ((pullback.fst ((shift ε).map α) (β ≫ i.ψ)).app (translation ε a)).hom
       (((forward α β i).app a).hom x) =
@@ -142,7 +144,9 @@ theorem forward_fst_app (a : Fin n → ℝ) (x : (leftPullback α β i).obj a) :
           (((pullback.snd ((shift ε).map β) (α ≫ i.φ)).app a).hom x) :=
   forwardLinear_fst α β i a x
 
-/-- The second output coordinate retains the already shifted second cover.-/
+/-- The second output coordinate retains the already shifted second cover.
+@isnad1 id=eq.0h12v.s14.f804b0d8047a from=translated src=- shape=7c52e9ea vocab=fa2ab12f
+-/
 theorem forward_snd_app (a : Fin n → ℝ) (x : (leftPullback α β i).obj a) :
     ((pullback.snd ((shift ε).map α) (β ≫ i.ψ)).app (translation ε a)).hom
       (((forward α β i).app a).hom x) =
@@ -153,7 +157,9 @@ theorem forward_snd_app (a : Fin n → ℝ) (x : (leftPullback α β i).obj a) :
 noncomputable def reverse : rightPullback α β i ⟶ (shift ε).obj (leftPullback α β i) :=
   forward β α i.symm
 
-/-- The first reverse coordinate transports the second cover by twice ε.-/
+/-- The first reverse coordinate transports the second cover by twice ε.
+@isnad1 id=eq.0h12v.s14.138903ef6ce0 from=translated src=- shape=f1499589 vocab=de0c1189
+-/
 theorem reverse_fst_app (a : Fin n → ℝ) (x : (rightPullback α β i).obj a) :
     ((pullback.fst ((shift ε).map β) (α ≫ i.φ)).app (translation ε a)).hom
       (((reverse α β i).app a).hom x) =
@@ -161,14 +167,18 @@ theorem reverse_fst_app (a : Fin n → ℝ) (x : (rightPullback α β i).obj a) 
           (((pullback.snd ((shift ε).map α) (β ≫ i.ψ)).app a).hom x) :=
   forward_fst_app β α i.symm a x
 
-/-- The second reverse coordinate retains the already shifted first cover.-/
+/-- The second reverse coordinate retains the already shifted first cover.
+@isnad1 id=eq.0h12v.s14.d7cf85b07fe1 from=translated src=- shape=d805de28 vocab=e5f6fc62
+-/
 theorem reverse_snd_app (a : Fin n → ℝ) (x : (rightPullback α β i).obj a) :
     ((pullback.snd ((shift ε).map β) (α ≫ i.φ)).app (translation ε a)).hom
       (((reverse α β i).app a).hom x) =
         ((pullback.fst ((shift ε).map α) (β ≫ i.ψ)).app a).hom x :=
   forward_snd_app β α i.symm a x
 
-/-- The two actual crossed maps compose to the double transition.-/
+/-- The two actual crossed maps compose to the double transition.
+@isnad1 id=eq.0h11v.s10.262bbb9846f1 from=translated src=- shape=8db14ffd vocab=9468ba91
+-/
 theorem forward_reverse_app (a : Fin n → ℝ) :
     (forward α β i).app a ≫ (reverse α β i).app (translation ε a) =
       structureMap (leftPullback α β i) (CoordinateInterleaving.twice_le ε a) := by
@@ -189,7 +199,9 @@ theorem forward_reverse_app (a : Fin n → ℝ) :
       (CoordinateInterleaving.twice_le ε a) x).symm
     exact h₁.trans (h₂.trans h₃)
 
-/-- The symmetric composite is the other double transition.-/
+/-- The symmetric composite is the other double transition.
+@isnad1 id=eq.0h11v.s10.5adcad2fbeba from=translated src=- shape=8db14ffd vocab=9468ba91
+-/
 theorem reverse_forward_app (a : Fin n → ℝ) :
     (reverse α β i).app a ≫ (forward α β i).app (translation ε a) =
       structureMap (rightPullback α β i) (CoordinateInterleaving.twice_le ε a) :=

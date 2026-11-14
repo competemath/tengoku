@@ -18,12 +18,16 @@ namespace TDA.Persistence.RectangleMeasure
 open Set MeasureTheory
 open scoped Classical
 
-/-- The lower edge excludes the minus cut and includes the plus cut.-/
+/-- The lower edge excludes the minus cut and includes the plus cut.
+@isnad1 id=and.0h0v.s6.4eca76f25df1 from=translated src=- shape=ecf9be33 vocab=53335c23
+-/
 theorem cutCell_lower_decoration_example :
     minusCut (0 : ℝ) ∉ cutCell 0 1 ∧ plusCut (0 : ℝ) ∈ cutCell 0 1 := by
   norm_num [cutCell, minusCut, plusCut]
 
-/-- The upper edge includes the minus cut and excludes the plus cut.-/
+/-- The upper edge includes the minus cut and excludes the plus cut.
+@isnad1 id=and.0h0v.s6.f5bd5fb92a64 from=translated src=- shape=c76d60b9 vocab=53335c23
+-/
 theorem cutCell_upper_decoration_example :
     minusCut (1 : ℝ) ∈ cutCell 0 1 ∧ plusCut (1 : ℝ) ∉ cutCell 0 1 := by
   norm_num [cutCell, minusCut, plusCut]
@@ -42,7 +46,9 @@ noncomputable def finiteNatCountingContent : AddContent ℕ {U : Set ℕ | U.Fin
   IsSetRing.addContent_of_union Set.ncard finiteNatCells_ring (by simp)
     (fun hU hV hdis => Set.ncard_union_eq hdis hU hV)
 
-/-- The extracted point multiplicities of counting content are one at every natural number.-/
+/-- The extracted point multiplicities of counting content are one at every natural number.
+@isnad1 id=eq.0h1v.s4.4ae27ab09a9c from=translated src=- shape=676408e1 vocab=b6b3caec
+-/
 theorem counting_contentMultiplicity (n : ℕ) :
     contentMultiplicity finiteNatCountingContent n = 1 := by
   have hle := contentMultiplicity_le finiteNatCountingContent (finite_singleton n)
@@ -56,13 +62,17 @@ theorem counting_contentMultiplicity (n : ℕ) :
     exact (Set.ncard_pos hU).mpr ⟨n, hnU⟩
   omega
 
-/-- Local atomic extraction permits infinite global support.-/
+/-- Local atomic extraction permits infinite global support.
+@isnad1 id=infinite.0h0v.s4.dd62e31f3962 from=translated src=- shape=3fb9cf1e vocab=fb30e0d0
+-/
 theorem counting_content_infinite_support :
     Set.Infinite {n : ℕ | 0 < contentMultiplicity finiteNatCountingContent n} := by
   simpa only [counting_contentMultiplicity, Nat.zero_lt_one, ofPred_true] using
     (Set.infinite_univ : Set.Infinite (Set.univ : Set ℕ))
 
-/-- Every finite portion nevertheless has a genuine finite local representation.-/
+/-- Every finite portion nevertheless has a genuine finite local representation.
+@isnad1 id=ex.1h1v.s6.bdb030ba7715 from=translated src=- shape=31b8034f vocab=09d7983c
+-/
 theorem counting_content_local_representation (K : Set ℕ) (hK : K.Finite) :
     ∃ points : Multiset ℕ, (∀ n ∈ points, n ∈ K) ∧
       ∀ U : Set ℕ, U.Finite → U ⊆ K → U.ncard = (points.filter (· ∈ U)).card := by

@@ -1852,7 +1852,9 @@ def FiniteSaturatingMatching (ε : ℝ≥0) (Dₘ Dₙ : LocallyFiniteDecoratedD
 saturate any prescribed finite set of finite-death tokens longer than 2ε and
 any prescribed finite set of essential tokens on each side. The edge sets are
 injective in both coordinates; finite-pair and essential-birth costs are at most
-ε. No matching or decomposition hypothesis is part of the input.-/
+ε. No matching or decomposition hypothesis is part of the input.
+@isnad1 id=finitesa.4h9v.s8.2f1d81c23116 from=translated src=- shape=b97659cd vocab=f9ca087d
+-/
 theorem RealInterleaving.exists_finite_saturating_matching
     {k : Type u} [Field k] {ε : ℝ≥0} {M N : PModule.{u,0,w} k ℝ}
     (i : RealInterleaving ε M N) (hM : M.QTame) (hN : N.QTame)

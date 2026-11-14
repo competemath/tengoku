@@ -24,14 +24,18 @@ open scoped Classical
 noncomputable def rectangleCellBox (U : Set (Cut ℝ × Cut ℝ)) : Box (Fin 2) :=
   if h : ∃ I : Box (Fin 2), U = boxRectangleCell I then h.choose else default
 
-/-- Choosing a box from its decorated rectangle recovers that box.-/
+/-- Choosing a box from its decorated rectangle recovers that box.
+@isnad1 id=eq.0h1v.s4.0bcc420d0319 from=translated src=- shape=cecdf08b vocab=c7b99941
+-/
 theorem rectangleCellBox_boxRectangleCell (I : Box (Fin 2)) :
     rectangleCellBox (boxRectangleCell I) = I := by
   have h : ∃ J : Box (Fin 2), boxRectangleCell I = boxRectangleCell J := ⟨I, rfl⟩
   simp only [rectangleCellBox, h, dite_eq_left]
   exact (boxRectangleCell_injective h.choose_spec).symm
 
-/-- The chosen box recovers every nonempty source rectangle exactly.-/
+/-- The chosen box recovers every nonempty source rectangle exactly.
+@isnad1 id=eq.2h1v.s6.34c1fa9a6f3b from=translated src=- shape=ac264656 vocab=1b44cfde
+-/
 theorem boxRectangleCell_rectangleCellBox {U : Set (Cut ℝ × Cut ℝ)}
     (hU : U ∈ separatedRectangleCells) (hne : U ≠ ∅) :
     U = boxRectangleCell (rectangleCellBox U) := by
@@ -44,11 +48,15 @@ variable {k : Type u} [Field k] (M : PModule.{u,0,w} k ℝ)
 noncomputable def moduleRectangleValue (U : Set (Cut ℝ × Cut ℝ)) : ℕ :=
   if U = ∅ then 0 else persistenceBoxValue M (rectangleCellBox U)
 
-/-- The empty rectangle has zero content.-/
+/-- The empty rectangle has zero content.
+@isnad1 id=eq.0h2v.s5.4e9df5898b86 from=translated src=- shape=e04cdc41 vocab=47f2718b
+-/
 theorem moduleRectangleValue_empty : moduleRectangleValue M ∅ = 0 := by
   simp [moduleRectangleValue]
 
-/-- A nonempty rectangle's value is the actual persistence box value.-/
+/-- A nonempty rectangle's value is the actual persistence box value.
+@isnad1 id=eq.0h3v.s5.09779c5cea52 from=translated src=- shape=58477b51 vocab=d4a23719
+-/
 theorem moduleRectangleValue_boxRectangleCell (I : Box (Fin 2)) :
     moduleRectangleValue M (boxRectangleCell I) = persistenceBoxValue M I := by
   rw [moduleRectangleValue, ite_eq_right (boxRectangleCell_nonempty I).ne_empty,
@@ -136,7 +144,9 @@ noncomputable def moduleRectangleContent (hM : M.QTame) :
         _ = ∑ U ∈ S, moduleRectangleValue M U := hsumErase
 
 /-- The constructed content evaluates to the module's quotient dimension on every strict
-separated rectangle.-/
+separated rectangle.
+@isnad1 id=eq.4h6v.s6.c4048ef54033 from=translated src=- shape=64123a48 vocab=98e01f44
+-/
 theorem moduleRectangleContent_apply (hM : M.QTame) (a b c d : ℝ)
     (hab : a < b) (hbc : b < c) (hcd : c < d) :
     moduleRectangleContent M hM (rectangleCell a b c d) =

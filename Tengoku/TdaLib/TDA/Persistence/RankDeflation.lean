@@ -51,7 +51,9 @@ noncomputable def mk (p : P) (m : M.obj p) (t : T.obj p)
   ((pullback.lift (HookInfinity.fromBirth p M m) (HookInfinity.fromBirth p T t)
     (fromBirth_condition π f p m t h)).app p).hom (HookInfinity.birth p)
 
-/-- The first projection reads the first entry of the compatible pair.-/
+/-- The first projection reads the first entry of the compatible pair.
+@isnad1 id=eq.1h10v.s10.60a451388cf8 from=translated src=- shape=182e80f9 vocab=a9bac5a3
+-/
 @[simp] theorem fst_mk (p : P) (m : M.obj p) (t : T.obj p)
     (h : (π.app p).hom m = (f.app p).hom t) :
     ((pullback.fst π f).app p).hom (mk π f p m t h) = m := by
@@ -61,7 +63,9 @@ noncomputable def mk (p : P) (m : M.obj p) (t : T.obj p)
         (HookInfinity.fromBirth p T t) (fromBirth_condition π f p m t h))
   exact he.trans (HookInfinity.fromBirth_birth p M m)
 
-/-- The second projection reads the second entry of the compatible pair.-/
+/-- The second projection reads the second entry of the compatible pair.
+@isnad1 id=eq.1h10v.s10.96b0fb3b080f from=translated src=- shape=816c0d9e vocab=fad8a095
+-/
 @[simp] theorem snd_mk (p : P) (m : M.obj p) (t : T.obj p)
     (h : (π.app p).hom m = (f.app p).hom t) :
     ((pullback.snd π f).app p).hom (mk π f p m t h) = t := by
@@ -71,7 +75,9 @@ noncomputable def mk (p : P) (m : M.obj p) (t : T.obj p)
         (HookInfinity.fromBirth p T t) (fromBirth_condition π f p m t h))
   exact he.trans (HookInfinity.fromBirth_birth p T t)
 
-/-- The two actual pullback projections distinguish vectors at every grade.-/
+/-- The two actual pullback projections distinguish vectors at every grade.
+@isnad1 id=eq.2h10v.s11.c4b3b74e7508 from=translated src=- shape=d7fa30c5 vocab=c00a5d79
+-/
 theorem element_ext (p : P) {x y : (pullback π f).obj p}
     (hfst : ((pullback.fst π f).app p).hom x = ((pullback.fst π f).app p).hom y)
     (hsnd : ((pullback.snd π f).app p).hom x = ((pullback.snd π f).app p).hom y) : x = y := by
@@ -96,7 +102,9 @@ theorem element_ext (p : P) {x y : (pullback π f).obj p}
     (fun α : HookInfinity.module (R := R) p ⟶ pullback π f =>
       (α.app p).hom (HookInfinity.birth p)) he
 
-/-- The pair with two zero entries is the zero vector.-/
+/-- The pair with two zero entries is the zero vector.
+@isnad1 id=eq.0h8v.s9.67439aa76542 from=translated src=- shape=e16a0f84 vocab=a4265622
+-/
 @[simp] theorem mk_zero (p : P) :
     mk π f p 0 0 (by simp) = 0 := by
   apply element_ext π f p <;> simp
@@ -117,13 +125,17 @@ noncomputable def liftLinear (p : P) (a : V →ₗ[R] M.obj p) (b : V →ₗ[R] 
     · simp only [fst_mk, map_smul, RingHom.id_apply]
     · simp only [snd_mk, map_smul, RingHom.id_apply]
 
-/-- The first projection of a linear pullback lift is the given first map.-/
+/-- The first projection of a linear pullback lift is the given first map.
+@isnad1 id=eq.1h12v.s11.d32f86f258d5 from=translated src=- shape=035a9d85 vocab=95b38acd
+-/
 @[simp] theorem fst_liftLinear (p : P) (a : V →ₗ[R] M.obj p) (b : V →ₗ[R] T.obj p)
     (h : ∀ x, (π.app p).hom (a x) = (f.app p).hom (b x)) (x : V) :
     ((pullback.fst π f).app p).hom (liftLinear π f p a b h x) = a x :=
   fst_mk π f p (a x) (b x) (h x)
 
-/-- The second projection of a linear pullback lift is the given second map.-/
+/-- The second projection of a linear pullback lift is the given second map.
+@isnad1 id=eq.1h12v.s11.b93816263e00 from=translated src=- shape=4d4968fa vocab=59da5008
+-/
 @[simp] theorem snd_liftLinear (p : P) (a : V →ₗ[R] M.obj p) (b : V →ₗ[R] T.obj p)
     (h : ∀ x, (π.app p).hom (a x) = (f.app p).hom (b x)) (x : V) :
     ((pullback.snd π f).app p).hom (liftLinear π f p a b h x) = b x :=
@@ -136,7 +148,9 @@ section Field
 variable {k : Type u} [Field k] {P : Type v} [Preorder P]
     {M N T : PModule.{u,v,u} k P} (π : M ⟶ N) (f : T ⟶ N)
 
-/-- The pullback fiber embeds linearly in the product of its two source fibers.-/
+/-- The pullback fiber embeds linearly in the product of its two source fibers.
+@isnad1 id=finitedi.0h8v.s9.bf49af862046 from=translated src=- shape=59dbc1b0 vocab=0dc401a9
+-/
 theorem finiteDimensional (p : P) [FiniteDimensional k (M.obj p)]
     [FiniteDimensional k (T.obj p)] : FiniteDimensional k ((pullback π f).obj p) := by
   let F := ((pullback.fst π f).app p).hom.prod ((pullback.snd π f).app p).hom
@@ -155,21 +169,27 @@ variable {k : Type u} [Field k] {P : Type} [PartialOrder P]
 def IsRankDeflation (π : M ⟶ N) : Prop :=
   ∃ (L : PModule.{u,0,u} k P) (ι : L ⟶ M), IsRankExact ι π
 
-/-- An actual rank-exact sequence gives a deflation.-/
+/-- An actual rank-exact sequence gives a deflation.
+@isnad1 id=isrankde.1h7v.s7.233d5a59112c from=translated src=- shape=4a0a3556 vocab=edcdc325
+-/
 theorem IsRankExact.isRankDeflation {L : PModule.{u,0,u} k P}
     {ι : L ⟶ M} {π : M ⟶ N} (h : IsRankExact ι π) : IsRankDeflation π :=
   ⟨L, ι, h⟩
 
 namespace IsRankDeflation
 
-/-- Every rank deflation has its actual categorical rank-exact kernel sequence.-/
+/-- Every rank deflation has its actual categorical rank-exact kernel sequence.
+@isnad1 id=isrankex.1h5v.s8.303e0414dde1 from=translated src=- shape=fcc7355c vocab=e512733c
+-/
 theorem rankExact_kernel {π : M ⟶ N} (h : IsRankDeflation π) :
     IsRankExact (kernel.ι π) π := by
   obtain ⟨L, ι, hs⟩ := h
   let : ∀ p, FiniteDimensional k (M.obj p) := hs.finiteDimensional
   exact RankKernel.rankExact π hs.surjective hs.lift_kernel
 
-/-- Identity on a pfd module is a rank-exact deflation.-/
+/-- Identity on a pfd module is a rank-exact deflation.
+@isnad1 id=isrankde.0h3v.s7.87e07430d556 from=translated src=- shape=549febc4 vocab=d010a046
+-/
 theorem id (M : PModule.{u,0,u} k P) [∀ p, FiniteDimensional k (M.obj p)] :
     IsRankDeflation (𝟙 M) := by
   apply IsRankExact.isRankDeflation (ι := kernel.ι (𝟙 M))
@@ -179,7 +199,9 @@ theorem id (M : PModule.{u,0,u} k P) [∀ p, FiniteDimensional k (M.obj p)] :
   · intro a b hab n hn
     exact ⟨n, rfl, hn⟩
 
-/-- Successive same-death lifts prove closure under composition.-/
+/-- Successive same-death lifts prove closure under composition.
+@isnad1 id=isrankde.2h7v.s7.f056c338fd8d from=translated src=- shape=1e8229f4 vocab=628275d2
+-/
 theorem comp {π : M ⟶ N} {σ : N ⟶ O}
     (hπ : IsRankDeflation π) (hσ : IsRankDeflation σ) : IsRankDeflation (π ≫ σ) := by
   obtain ⟨L, ι, hπ⟩ := hπ
@@ -197,7 +219,9 @@ theorem comp {π : M ⟶ N} {σ : N ⟶ O}
     rw [hl, hm]
 
 /-- Pullback along any map from a pfd module preserves rank-exact deflations.
-The source is the actual categorical pullback; no lifting or rank equality is assumed.-/
+The source is the actual categorical pullback; no lifting or rank equality is assumed.
+@isnad1 id=isrankde.1h7v.s8.d1357fd259ef from=translated src=- shape=aba8a9f0 vocab=8350ddce
+-/
 theorem pullback_snd {π : M ⟶ N} (hπ : IsRankDeflation π) (f : T ⟶ N)
     [∀ p, FiniteDimensional k (T.obj p)] : IsRankDeflation (pullback.snd π f) := by
   obtain ⟨L, ι, hs⟩ := hπ

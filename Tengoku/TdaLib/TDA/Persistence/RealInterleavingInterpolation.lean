@@ -1593,7 +1593,9 @@ private theorem qTame_cokernel {A B : PModule.{u,0,w} k ℝ} (f : A ⟶ B)
   rw [hrange, hfactor]
   exact finiteDimensional_range_of_factorization _ _ _ rfl
 
-/-- Every module in the quotient interpolation family is q-tame.-/
+/-- Every module in the quotient interpolation family is q-tame.
+@isnad1 id=qtame.2h6v.s5.e747e3be6963 from=translated src=- shape=246a491d vocab=f42bdb9c
+-/
 theorem interpolatingModule_qTame (i : RealInterleaving ε M N)
     (hM : M.QTame) (hN : N.QTame) (s : InterpolationTime ε) :
     (interpolatingModule i s).QTame := by
@@ -1837,7 +1839,9 @@ noncomputable def interpolatingModuleInterleaving
 /-- The quotient family `interpolatingModule i` is a q-tame algebraic
 interpolation between q-tame `M` and `N`: its endpoint modules are naturally
 isomorphic to the inputs, every member is q-tame, and every pair of members is
-actually interleaved by their nonnegative real parameter distance.-/
+actually interleaved by their nonnegative real parameter distance.
+@isnad1 id=and.2h5v.s7.20b135401ebc from=translated src=- shape=7a54b6c4 vocab=40776187
+-/
 theorem interpolatingModule_qTame_interpolation
     (i : RealInterleaving ε M N) (hM : M.QTame) (hN : N.QTame) :
     Nonempty (interpolatingModule i (startTime ε) ≅ M) ∧
@@ -1854,7 +1858,9 @@ q-tame interpolation on the closed parameter interval.  The endpoint modules
 are naturally isomorphic to the inputs, and every pair of family members is
 actually interleaved by their nonnegative real parameter distance.  The
 witness is `interpolatingModule i`; see
-`interpolatingModule_qTame_interpolation`.-/
+`interpolatingModule_qTame_interpolation`.
+@isnad1 id=ex.2h5v.s7.5a1a99a8d4df from=translated src=- shape=78ae6459 vocab=1dafb3bd
+-/
 theorem exists_qTame_interpolating_family
     (i : RealInterleaving ε M N) (hM : M.QTame) (hN : N.QTame) :
     ∃ F : InterpolationTime ε → PModule.{u,0,w} k ℝ,

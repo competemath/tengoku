@@ -94,25 +94,36 @@ def edgeWindingCell (d₀ d : G.Dart) : C(unitInterval, AddCircle (1 : ℝ)) :=
       (AddCircle.continuous_mk' (1 : ℝ)).comp (continuous_const.sub continuous_subtype_val)⟩
   else ContinuousMap.const _ 0
 
+/--
+@isnad1 id=eq.0h4v.s7.3771396cf510 from=translated src=- shape=7f5bf89d vocab=ca2a6768
+-/
 theorem edgeWindingCell_self (d₀ : G.Dart) (t : unitInterval) :
     edgeWindingCell G d₀ d₀ t = ((t : ℝ) : AddCircle (1 : ℝ)) := by
   unfold edgeWindingCell
   rw [ite_eq_left rfl]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.b602f199fb16 from=translated src=- shape=5871b529 vocab=c81a4369
+-/
 theorem edgeWindingCell_symm_self (d₀ : G.Dart) (t : unitInterval) :
     edgeWindingCell G d₀ d₀.symm t = ((1 - (t : ℝ) : ℝ) : AddCircle (1 : ℝ)) := by
   unfold edgeWindingCell
   rw [ite_eq_right d₀.symm_ne, ite_eq_left rfl]
   rfl
 
+/--
+@isnad1 id=eq.2h5v.s7.93a72637f32c from=translated src=- shape=7b4fb88b vocab=c31e8bc4
+-/
 theorem edgeWindingCell_of_ne (d₀ d : G.Dart) (hd : d ≠ d₀) (hd' : d ≠ d₀.symm)
     (t : unitInterval) : edgeWindingCell G d₀ d t = 0 := by
   unfold edgeWindingCell
   rw [ite_eq_right hd, ite_eq_right hd']
   rfl
 
-/-- Reversal: the two selected cases agree, since `1 - (1 - t) = t`.-/
+/-- Reversal: the two selected cases agree, since `1 - (1 - t) = t`.
+@isnad1 id=eq.0h5v.s8.f7036ec45657 from=translated src=- shape=c6917d90 vocab=6695b79f
+-/
 theorem edgeWindingCell_symm (d₀ d : G.Dart) (t : unitInterval) :
     edgeWindingCell G d₀ d.symm (σ t) = edgeWindingCell G d₀ d t := by
   by_cases h₁ : d = d₀
@@ -125,7 +136,9 @@ theorem edgeWindingCell_symm (d₀ d : G.Dart) (t : unitInterval) :
       have h₂' : d.symm ≠ d₀.symm := fun h => h₁ (by rw [← Dart.symm_symm d, h, Dart.symm_symm])
       rw [edgeWindingCell_of_ne G d₀ _ h₁' h₂', edgeWindingCell_of_ne G d₀ _ h₁ h₂]
 
-/-- Start compatibility: every dart starts at `0`.-/
+/-- Start compatibility: every dart starts at `0`.
+@isnad1 id=eq.0h4v.s7.a7205534c8d7 from=translated src=- shape=1f3b1edd vocab=98690c9a
+-/
 theorem edgeWindingCell_zero (d₀ d : G.Dart) : edgeWindingCell G d₀ d 0 = 0 := by
   by_cases h₁ : d = d₀
   · subst h₁
@@ -141,50 +154,72 @@ def edgeWinding (d₀ : G.Dart) : C(Realization G, AddCircle (1 : ℝ)) :=
   continuousLift G (fun _ => 0) (edgeWindingCell G d₀) (edgeWindingCell_symm G d₀)
     (edgeWindingCell_zero G d₀)
 
+/--
+@isnad1 id=eq.0h4v.s7.8e668aa2bca2 from=translated src=- shape=8dc58a77 vocab=0b3e5f70
+-/
 @[simp] theorem edgeWinding_vertex (d₀ : G.Dart) (v : V) :
     edgeWinding G d₀ (vertex G v) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.ebdb6ff80924 from=translated src=- shape=fb05d85f vocab=ecc1c3a2
+-/
 theorem edgeWinding_edgePoint (d₀ d : G.Dart) (t : unitInterval) :
     edgeWinding G d₀ (edgePoint G d t) = edgeWindingCell G d₀ d t := rfl
 
-/-- On the selected dart, the winding map is the class of the parameter.-/
+/-- On the selected dart, the winding map is the class of the parameter.
+@isnad1 id=eq.0h4v.s7.82f87ba9f88f from=translated src=- shape=77a380d1 vocab=77065a8a
+-/
 theorem edgeWinding_edgePoint_self (d₀ : G.Dart) (t : unitInterval) :
     edgeWinding G d₀ (edgePoint G d₀ t) = ((t : ℝ) : AddCircle (1 : ℝ)) :=
   edgeWindingCell_self G d₀ t
 
-/-- On the reversed dart, the winding map is the class of the reversed parameter.-/
+/-- On the reversed dart, the winding map is the class of the reversed parameter.
+@isnad1 id=eq.0h4v.s7.a65a37c38491 from=translated src=- shape=28297711 vocab=f27f1bfe
+-/
 theorem edgeWinding_edgePoint_symm_self (d₀ : G.Dart) (t : unitInterval) :
     edgeWinding G d₀ (edgePoint G d₀.symm t) = ((1 - (t : ℝ) : ℝ) : AddCircle (1 : ℝ)) :=
   edgeWindingCell_symm_self G d₀ t
 
-/-- On every dart other than `d₀` and `d₀.symm`, the winding map is `0`.-/
+/-- On every dart other than `d₀` and `d₀.symm`, the winding map is `0`.
+@isnad1 id=eq.2h5v.s7.c0623d65de8a from=translated src=- shape=5de3bd65 vocab=8539b2e2
+-/
 theorem edgeWinding_edgePoint_of_ne (d₀ d : G.Dart) (hd : d ≠ d₀) (hd' : d ≠ d₀.symm)
     (t : unitInterval) : edgeWinding G d₀ (edgePoint G d t) = 0 :=
   edgeWindingCell_of_ne G d₀ d hd hd' t
 
-/-- On every dart whose unoriented edge differs from that of `d₀`, the winding map is `0`.-/
+/-- On every dart whose unoriented edge differs from that of `d₀`, the winding map is `0`.
+@isnad1 id=eq.1h5v.s7.88dc1ed9a3e9 from=translated src=- shape=5dc7af17 vocab=3ba15408
+-/
 theorem edgeWinding_edgePoint_of_edge_ne (d₀ d : G.Dart) (hd : d.edge ≠ d₀.edge)
     (t : unitInterval) : edgeWinding G d₀ (edgePoint G d t) = 0 :=
   edgeWinding_edgePoint_of_ne G d₀ d (fun h => hd (by rw [h]))
     (fun h => hd (by rw [h, Dart.edge_symm])) t
 
-/-- Endpoint compatibility at the start of the selected dart.-/
+/-- Endpoint compatibility at the start of the selected dart.
+@isnad1 id=eq.0h3v.s7.4d693337ddd5 from=translated src=- shape=2b9675cb vocab=5caa84e9
+-/
 theorem edgeWinding_edgePoint_self_zero (d₀ : G.Dart) :
     edgeWinding G d₀ (edgePoint G d₀ 0) = 0 :=
   edgeWindingCell_zero G d₀ d₀
 
-/-- Endpoint compatibility at the end of the selected dart: the class of `1` is `0`.-/
+/-- Endpoint compatibility at the end of the selected dart: the class of `1` is `0`.
+@isnad1 id=eq.0h3v.s7.f5c9b179289c from=translated src=- shape=2b9675cb vocab=5caa84e9
+-/
 theorem edgeWinding_edgePoint_self_one (d₀ : G.Dart) :
     edgeWinding G d₀ (edgePoint G d₀ 1) = 0 := by
   rw [edgeWinding_edgePoint_self, Set.Icc.coe_one]
   exact AddCircle.coe_period (1 : ℝ)
 
-/-- Endpoint compatibility at the start of the reversed dart: the class of `1 - 0` is `0`.-/
+/-- Endpoint compatibility at the start of the reversed dart: the class of `1 - 0` is `0`.
+@isnad1 id=eq.0h3v.s7.193e637496d0 from=translated src=- shape=b7801db9 vocab=8539b2e2
+-/
 theorem edgeWinding_edgePoint_symm_self_zero (d₀ : G.Dart) :
     edgeWinding G d₀ (edgePoint G d₀.symm 0) = 0 :=
   edgeWindingCell_zero G d₀ d₀.symm
 
-/-- Endpoint compatibility at the end of the reversed dart.-/
+/-- Endpoint compatibility at the end of the reversed dart.
+@isnad1 id=eq.0h3v.s7.3945ae641175 from=translated src=- shape=b7801db9 vocab=8539b2e2
+-/
 theorem edgeWinding_edgePoint_symm_self_one (d₀ : G.Dart) :
     edgeWinding G d₀ (edgePoint G d₀.symm 1) = 0 := by
   rw [edgeWinding_edgePoint_symm_self, Set.Icc.coe_one, sub_self, AddCircle.coe_zero]
@@ -192,7 +227,9 @@ theorem edgeWinding_edgePoint_symm_self_one (d₀ : G.Dart) :
 /-! ### Deleted-edge return walks -/
 
 /-- The winding map vanishes along every walk of `G.deleteEdges {d₀.edge}` mapped into `G`: each
-traversed dart has unoriented edge different from that of `d₀`.-/
+traversed dart has unoriented edge different from that of `d₀`.
+@isnad1 id=eq.0h7v.s8.fbeefd0385d8 from=translated src=- shape=72e97fa1 vocab=a3134818
+-/
 theorem edgeWinding_walkPath_deleteEdges (d₀ : G.Dart) {a b : V}
     (q : (G.deleteEdges {d₀.edge}).Walk a b) (t : unitInterval) :
     edgeWinding G d₀ (walkPath G (q.mapLe (G.deleteEdges_le {d₀.edge})) t) = 0 := by
@@ -214,6 +251,9 @@ def returnLoop (d₀ : G.Dart) (q : (G.deleteEdges {d₀.edge}).Walk d₀.snd d�
     Path (vertex G d₀.fst) (vertex G d₀.fst) :=
   (edgePath G d₀).trans (walkPath G (q.mapLe (G.deleteEdges_le {d₀.edge})))
 
+/--
+@isnad1 id=eq.0h4v.s7.add76698be37 from=translated src=- shape=b803d898 vocab=e5c4e117
+-/
 theorem returnLoop_eq (d₀ : G.Dart) (q : (G.deleteEdges {d₀.edge}).Walk d₀.snd d₀.fst) :
     returnLoop G d₀ q =
       (edgePath G d₀).trans (walkPath G (q.mapLe (G.deleteEdges_le {d₀.edge}))) := rfl
@@ -221,24 +261,41 @@ theorem returnLoop_eq (d₀ : G.Dart) (q : (G.deleteEdges {d₀.edge}).Walk d₀
 /-- The lift of the winding of a return loop: `s ↦ min (2 * s) 1`.-/
 def returnLift : C(unitInterval, ℝ) := ⟨fun s => min (2 * (s : ℝ)) 1, by fun_prop⟩
 
+/--
+@isnad1 id=eq.0h1v.s6.e191c9bd2113 from=translated src=- shape=ec1d5549 vocab=c268b74b
+-/
 theorem returnLift_apply (s : unitInterval) : returnLift s = min (2 * (s : ℝ)) 1 := rfl
 
+/--
+@isnad1 id=eq.1h1v.s7.b29501e4294b from=translated src=- shape=9f09cbcb vocab=c3158397
+-/
 theorem returnLift_of_le {s : unitInterval} (hs : (s : ℝ) ≤ 1 / 2) :
     returnLift s = 2 * (s : ℝ) :=
   min_eq_left (by linarith)
 
+/--
+@isnad1 id=eq.1h1v.s6.482f4bf96bed from=translated src=- shape=bfbf921c vocab=2512faf4
+-/
 theorem returnLift_of_ge {s : unitInterval} (hs : 1 / 2 ≤ (s : ℝ)) : returnLift s = 1 :=
   min_eq_right (by linarith)
 
+/--
+@isnad1 id=eq.0h0v.s6.4fdf58093382 from=translated src=- shape=99ce8d25 vocab=4ace09b1
+-/
 theorem returnLift_zero : returnLift 0 = 0 := by
   rw [returnLift_of_le (by norm_num)]
   simp
 
+/--
+@isnad1 id=eq.0h0v.s6.069342d2e31a from=translated src=- shape=99ce8d25 vocab=4ace09b1
+-/
 theorem returnLift_one : returnLift 1 = 1 :=
   returnLift_of_ge (by norm_num)
 
 /-- Along the return loop, the winding map is the class of `min (2 * s) 1`: one full turn along
-`d₀`, then constant along the return walk.-/
+`d₀`, then constant along the return walk.
+@isnad1 id=eq.0h5v.s8.f2addfa6760b from=translated src=- shape=36bf012b vocab=fdf9bd4e
+-/
 theorem edgeWinding_returnLoop (d₀ : G.Dart) (q : (G.deleteEdges {d₀.edge}).Walk d₀.snd d₀.fst)
     (s : unitInterval) :
     edgeWinding G d₀ (returnLoop G d₀ q s) = ((returnLift s : ℝ) : AddCircle (1 : ℝ)) := by
@@ -249,13 +306,18 @@ theorem edgeWinding_returnLoop (d₀ : G.Dart) (q : (G.deleteEdges {d₀.edge}).
   · rw [returnLift_of_ge (not_le.mp hs).le, edgeWinding_walkPath_deleteEdges]
     exact (AddCircle.coe_period (1 : ℝ)).symm
 
+/--
+@isnad1 id=eq.0h4v.s9.568a29345466 from=translated src=- shape=6d2945fe vocab=ad93887e
+-/
 theorem edgeWinding_returnLoop_zero (d₀ : G.Dart)
     (q : (G.deleteEdges {d₀.edge}).Walk d₀.snd d₀.fst) :
     ((returnLoop G d₀ q).map (edgeWinding G d₀).continuous) 0 = ((0 : ℝ) : AddCircle (1 : ℝ)) :=
   ((returnLoop G d₀ q).map (edgeWinding G d₀).continuous).source.trans (edgeWinding_vertex G d₀ _)
 
 /-- `returnLift` is the lift, through the covering `ℝ → AddCircle (1 : ℝ)` and starting at `0`,
-of the winding of the return loop.-/
+of the winding of the return loop.
+@isnad1 id=eq.0h4v.s9.cb1bd834dc34 from=translated src=- shape=ff0cd01e vocab=ead2a40a
+-/
 theorem returnLift_eq_liftPath (d₀ : G.Dart)
     (q : (G.deleteEdges {d₀.edge}).Walk d₀.snd d₀.fst) :
     returnLift = (AddCircle.isCoveringMap_coe (1 : ℝ)).liftPath
@@ -265,7 +327,9 @@ theorem returnLift_eq_liftPath (d₀ : G.Dart)
     ⟨_root_.funext fun s => (edgeWinding_returnLoop G d₀ q s).symm, returnLift_zero⟩
 
 /-- **The return loop is not null-homotopic.** It is not homotopic, with fixed endpoints, to the
-constant loop: lifted through the winding map, it ends at `1` and the constant loop at `0`.-/
+constant loop: lifted through the winding map, it ends at `1` and the constant loop at `0`.
+@isnad1 id=not.0h4v.s6.f2ce57ece680 from=translated src=- shape=eee34bef vocab=89d8a742
+-/
 theorem not_homotopic_returnLoop (d₀ : G.Dart)
     (q : (G.deleteEdges {d₀.edge}).Walk d₀.snd d₀.fst) :
     ¬ (returnLoop G d₀ q).Homotopic (Path.refl (vertex G d₀.fst)) := by
@@ -292,14 +356,18 @@ theorem not_homotopic_returnLoop (d₀ : G.Dart)
 
 /-! ### Graph consequences -/
 
-/-- A deleted-edge return walk obstructs simple connectivity of the realization.-/
+/-- A deleted-edge return walk obstructs simple connectivity of the realization.
+@isnad1 id=not.0h4v.s5.2c7618632ab3 from=translated src=- shape=1fdab3d9 vocab=e6ba78ca
+-/
 theorem not_simplyConnectedSpace_of_returnWalk (d₀ : G.Dart)
     (q : (G.deleteEdges {d₀.edge}).Walk d₀.snd d₀.fst) :
     ¬ SimplyConnectedSpace (Realization G) := fun _ =>
   not_homotopic_returnLoop G d₀ q (SimplyConnectedSpace.paths_homotopic _ _)
 
 /-- **Cycle obstruction.** A graph with simply connected realization is acyclic: every edge is a
-bridge, since a return walk avoiding it would give a loop that is not null-homotopic.-/
+bridge, since a return walk avoiding it would give a loop that is not null-homotopic.
+@isnad1 id=isacycli.1h2v.s4.00fcd498b5f6 from=translated src=- shape=81434ddb vocab=3a86e33f
+-/
 theorem isAcyclic_of_simplyConnectedSpace (h : SimplyConnectedSpace (Realization G)) :
     G.IsAcyclic := by
   rw [isAcyclic_iff_forall_adj_isBridge]
@@ -311,12 +379,16 @@ theorem isAcyclic_of_simplyConnectedSpace (h : SimplyConnectedSpace (Realization
   exact not_simplyConnectedSpace_of_returnWalk G d₀ q h
 
 /-- **Necessary tree condition.** A graph with simply connected realization is a tree. Its
-connectedness, including nonemptiness, comes from path connectedness of the realization.-/
+connectedness, including nonemptiness, comes from path connectedness of the realization.
+@isnad1 id=istree.1h2v.s4.86b5ba684c0c from=translated src=- shape=81434ddb vocab=aaa7c1d8
+-/
 theorem isTree_of_simplyConnectedSpace (h : SimplyConnectedSpace (Realization G)) :
     G.IsTree :=
   ⟨(connected_iff_pathConnectedSpace G).2 inferInstance, isAcyclic_of_simplyConnectedSpace G h⟩
 
-/-- A graph that is not a tree has a realization that is not simply connected.-/
+/-- A graph that is not a tree has a realization that is not simply connected.
+@isnad1 id=not.1h2v.s4.c1c6d7a080e1 from=translated src=- shape=3766d604 vocab=aaa7c1d8
+-/
 theorem not_simplyConnectedSpace_of_not_isTree (hG : ¬ G.IsTree) :
     ¬ SimplyConnectedSpace (Realization G) := fun h =>
   hG (isTree_of_simplyConnectedSpace G h)

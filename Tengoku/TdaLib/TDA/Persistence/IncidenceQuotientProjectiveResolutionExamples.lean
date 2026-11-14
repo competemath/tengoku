@@ -37,6 +37,9 @@ local instance : LocallyFiniteOrder (PairPoset Unit) :=
 local instance : DecidableEq (PairPoset Unit) :=
   TDA.Persistence.FiniteRankProjectiveEndAlgebra.instDecidableEqPairPoset
 local instance : Fintype (ComparablePair Unit) := Fintype.ofFinite _
+/--
+@isnad1 id=istwosid.0h1v.s7.9c3d57f512eb from=translated src=- shape=177e3479 vocab=c2293d14
+-/
 local instance diagonalIdealTwoSidedUnit {k : Type} [Field k] :
     (TDA.Persistence.FiniteRankProjectiveDiagonalIdealProjective.DiagonalIdeal
       (k := k) (S := Unit)).IsTwoSided :=
@@ -71,7 +74,9 @@ noncomputable def rational_unit_vertex_extendedProjectiveResolution :
   extensionProjectiveResolution (k := ℚ) (S := Unit) unitVertexQuotient
     rational_unit_vertex_projectiveResolution
 
-/-- Both sides of the extended-natural comparison for the zero module are bottom.-/
+/-- Both sides of the extended-natural comparison for the zero module are bottom.
+@isnad1 id=and.0h0v.s9.6cd2495f3d41 from=translated src=- shape=6d975ece vocab=49dd3b31
+-/
 theorem rational_unit_zero_projective_dimensions_are_bot :
     CategoryTheory.projectiveDimension unitZeroQuotient = ⊥ ∧
       CategoryTheory.projectiveDimension unitZeroRestricted = ⊥ := by
@@ -83,19 +88,25 @@ theorem rational_unit_zero_projective_dimensions_are_bot :
   exact ⟨(CategoryTheory.projectiveDimension_eq_bot_iff unitZeroQuotient).2 hzero,
     (CategoryTheory.projectiveDimension_eq_bot_iff unitZeroRestricted).2 hrestricted⟩
 
-/-- The general dimension comparison specializes to the zero quotient module.-/
+/-- The general dimension comparison specializes to the zero quotient module.
+@isnad1 id=le.0h0v.s9.ceb359834db8 from=translated src=- shape=8eabcbae vocab=a9d42b91
+-/
 theorem rational_unit_zero_projectiveDimension_le_restriction :
     CategoryTheory.projectiveDimension unitZeroQuotient ≤
       CategoryTheory.projectiveDimension unitZeroRestricted :=
   projectiveDimension_le_restriction (k := ℚ) (S := Unit) unitZeroQuotient
 
-/-- The regular right-incidence module is projective.-/
+/-- The regular right-incidence module is projective.
+@isnad1 id=projecti.0h0v.s8.4811fcda94a7 from=translated src=- shape=41fbe2dc vocab=554c0992
+-/
 theorem rational_unit_regular_incidence_projective :
     Projective (regularRightIncidenceModule (k := ℚ) (S := Unit)) :=
   ModuleCat.projective_of_free
     (Module.Basis.singleton Unit (RightIncidence (k := ℚ) (S := Unit)))
 
-/-- The projective-dimension transport theorem covers the degree-zero projective boundary.-/
+/-- The projective-dimension transport theorem covers the degree-zero projective boundary.
+@isnad1 id=hasproje.0h0v.s10.436f0d721ac4 from=translated src=- shape=fccc3ae3 vocab=f3efb5d6
+-/
 theorem rational_unit_regular_extension_hasProjectiveDimensionLE_zero :
     HasProjectiveDimensionLE
       ((extensionFunctor (k := ℚ) (S := Unit)).obj
@@ -109,13 +120,17 @@ theorem rational_unit_regular_extension_hasProjectiveDimensionLE_zero :
       rational_unit_regular_incidence_projective)
 
 /-- For the actual rational strict vertex, quotient projective dimension is bounded by the
-restricted incidence-module dimension.-/
+restricted incidence-module dimension.
+@isnad1 id=le.0h0v.s10.2b71fe80d4a7 from=translated src=- shape=8eabcbae vocab=df749703
+-/
 theorem rational_unit_vertex_projectiveDimension_le_restriction :
     CategoryTheory.projectiveDimension unitVertexQuotient ≤
       CategoryTheory.projectiveDimension unitVertexRestricted :=
   projectiveDimension_le_restriction (k := ℚ) (S := Unit) unitVertexQuotient
 
-/-- The augmented resolution's map on a representative class is the original augmentation.-/
+/-- The augmented resolution's map on a representative class is the original augmentation.
+@isnad1 id=eq.0h1v.s17.cf6d406f637e from=translated src=- shape=12b2e896 vocab=8769c78b
+-/
 theorem rational_unit_vertex_augmentation_class
     (x : rational_unit_vertex_projectiveResolution.complex.X 0) :
     (rational_unit_vertex_extendedProjectiveResolution.π.f 0).hom
@@ -126,7 +141,9 @@ theorem rational_unit_vertex_augmentation_class
     (k := ℚ) (S := Unit) unitVertexQuotient
     rational_unit_vertex_projectiveResolution x
 
-/-- A zero term in an actual restricted strict-vertex resolution stays zero after augmentation.-/
+/-- A zero term in an actual restricted strict-vertex resolution stays zero after augmentation.
+@isnad1 id=iszero.1h1v.s12.001952d3402d from=translated src=- shape=a0605336 vocab=07bf9be5
+-/
 theorem rational_unit_vertex_resolution_zero_term
     (n : ℕ)
     (h : IsZero (rational_unit_vertex_projectiveResolution.complex.X n)) :
@@ -136,7 +153,9 @@ theorem rational_unit_vertex_resolution_zero_term
     rational_unit_vertex_projectiveResolution n h
 
 /-- Any supplied termwise vanishing bound on a restricted strict-vertex resolution is transported
-to its actual augmented quotient resolution.-/
+to its actual augmented quotient resolution.
+@isnad1 id=iszero.2h2v.s12.8c4c7b2d49a8 from=translated src=- shape=c00885d7 vocab=1c3fe7dd
+-/
 theorem rational_unit_vertex_resolution_zero_above
     (d : ℕ)
     (h : ∀ n, d < n → IsZero

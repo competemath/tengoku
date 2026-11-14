@@ -114,6 +114,9 @@ noncomputable def essentialInterval (i : Fin m) :
     TDA.Persistence.FiniteInterval (m + 1) :=
   ⟨i.val + 1, m + 1, by omega, le_refl _⟩
 
+/--
+@isnad1 id=iff.2h6v.s7.ff982edcd0ec from=translated src=- shape=97567921 vocab=6eea6b4d
+-/
 theorem pairedInterval_alive_iff (R : Matrix (Fin m) (Fin m) k)
     (hstrict : StrictBoundary R) (j i : Fin m)
     (hji : columnPivot (R.col j) = some i) (t : Fin (m + 1)) :
@@ -122,11 +125,17 @@ theorem pairedInterval_alive_iff (R : Matrix (Fin m) (Fin m) k)
   simp only [TDA.Persistence.FiniteInterval.alive, pairedInterval]
   omega
 
+/--
+@isnad1 id=iff.0h3v.s5.ab570d5d58a6 from=translated src=- shape=56370c5b vocab=9ad00d8d
+-/
 theorem essentialInterval_alive_iff (i : Fin m) (t : Fin (m + 1)) :
     (essentialInterval i).alive t ↔ i.val < t.val := by
   simp only [TDA.Persistence.FiniteInterval.alive, essentialInterval]
   omega
 
+/--
+@isnad1 id=iff.1h5v.s6.3b9a1b397a6e from=translated src=- shape=2c19ee2f vocab=34f83be5
+-/
 theorem essentialAlive_iff_essentialInterval (R : Matrix (Fin m) (Fin m) k)
     (i : Fin m) (hi : IsEssential R i) (t : Fin (m + 1)) :
     EssentialAlive R t.val i ↔ (essentialInterval i).alive t := by
@@ -136,6 +145,9 @@ theorem essentialAlive_iff_essentialInterval (R : Matrix (Fin m) (Fin m) k)
 def Homogeneous (degree : Fin m → ℕ) (p : ℕ) (x : Fin m → k) : Prop :=
   ∀ i, degree i ≠ p → x i = 0
 
+/--
+@isnad1 id=homogene.2h6v.s6.6df2a5402303 from=translated src=- shape=1dd497ea vocab=96de8326
+-/
 theorem lowers_mulVec_homogeneous (degree : Fin m → ℕ)
     (M : Matrix (Fin m) (Fin m) k) (hM : LowersDegree degree M)
     (p : ℕ) (x : Fin m → k) (hx : Homogeneous degree (p + 1) x) :
@@ -163,6 +175,9 @@ def NormalBoundary (degree : Fin m → ℕ)
   ∃ y : Fin m → k, PrefixSupported t y ∧ Homogeneous degree (p + 1) y ∧
     (normalDifferential R).mulVec y = x
 
+/--
+@isnad1 id=iff.1h5v.s5.9fe03e1e4a96 from=translated src=- shape=5dfa3c8c vocab=7343b9f2
+-/
 theorem pivotAlive_iff (R : Matrix (Fin m) (Fin m) k)
     (t : ℕ) (i : Fin m) (hi : IsPivot R i) :
     PivotAlive R t i ↔ i.val < t ∧ t ≤ (deathOfPivot R i hi).val := by
@@ -174,7 +189,9 @@ theorem pivotAlive_iff (R : Matrix (Fin m) (Fin m) k)
     exact ⟨hi, h⟩
 
 /-- Each pivot coordinate is present exactly on the corresponding finite
-interval, with birth `i+1` and death `j+1`.-/
+interval, with birth `i+1` and death `j+1`.
+@isnad1 id=iff.2h5v.s6.8120ba4f1130 from=translated src=- shape=8ea5dcff vocab=9615da8f
+-/
 theorem pivotAlive_iff_pairedInterval (R : Matrix (Fin m) (Fin m) k)
     (hstrict : StrictBoundary R) (i : Fin m) (hi : IsPivot R i)
     (t : Fin (m + 1)) :
@@ -184,7 +201,9 @@ theorem pivotAlive_iff_pairedInterval (R : Matrix (Fin m) (Fin m) k)
   rw [pivotAlive_iff R t.val i hi,
     pairedInterval_alive_iff R hstrict _ i (deathOfPivot_spec R i hi) t]
 
-/-- Boundaries have zero coefficient on every live homology coordinate.-/
+/-- Boundaries have zero coefficient on every live homology coordinate.
+@isnad1 id=eq.3h8v.s6.182cf959d0e6 from=translated src=- shape=0498a1da vocab=3460e2a5
+-/
 theorem normalBoundary_alive_zero (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (hpivR : DistinctPivots R) (p t : ℕ)
     (x : Fin m → k) (hx : NormalBoundary degree R p t x)
@@ -210,6 +229,9 @@ noncomputable def expiredPreimage (degree : Fin m → ℕ)
     | none => 0
     | some i => if j.val < t ∧ degree i = p then x i / R i j else 0
 
+/--
+@isnad1 id=prefixsu.0h7v.s5.52335bf93056 from=translated src=- shape=7e89911f vocab=e801a2b5
+-/
 theorem expiredPreimage_prefix (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (p t : ℕ) (x : Fin m → k) :
     PrefixSupported t (expiredPreimage degree R p t x) := by
@@ -219,6 +241,9 @@ theorem expiredPreimage_prefix (degree : Fin m → ℕ)
   · rfl
   · simp [show ¬j.val < t by omega]
 
+/--
+@isnad1 id=homogene.1h7v.s6.bed5ec2f2d5d from=translated src=- shape=09edf61b vocab=eb396f76
+-/
 theorem expiredPreimage_degree (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k)
     (hdegree : LowersDegree degree R) (p t : ℕ) (x : Fin m → k) :
@@ -233,6 +258,9 @@ theorem expiredPreimage_degree (degree : Fin m → ℕ)
         exact (hj ((hdegree i j hn).trans (congrArg (· + 1) h.2))).elim
       · simp [h]
 
+/--
+@isnad1 id=eq.1h9v.s7.751411089a6e from=translated src=- shape=a97ee3b7 vocab=796c4ea3
+-/
 theorem expiredPreimage_pivot (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (p t : ℕ)
     (x : Fin m → k) (j i : Fin m)
@@ -247,6 +275,9 @@ theorem expiredPreimage_pivot (degree : Fin m → ℕ)
       subst i'
       rfl
 
+/--
+@isnad1 id=eq.2h8v.s7.85724c05b10e from=translated src=- shape=5d8c5a44 vocab=37e6ba1c
+-/
 theorem expiredBoundary_pivot (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (hpiv : DistinctPivots R)
     (p t : ℕ) (x : Fin m → k) (i : Fin m) (hi : IsPivot R i) :
@@ -262,6 +293,9 @@ theorem expiredBoundary_pivot (degree : Fin m → ℕ)
     field_simp [hn]
   · simp [h]
 
+/--
+@isnad1 id=eq.4h8v.s8.31c32d37187f from=translated src=- shape=6b355255 vocab=676b80c1
+-/
 theorem normalDifferential_sq_zero (degree : Fin m → ℕ)
     (D R V W : Matrix (Fin m) (Fin m) k)
     (hD2 : D * D = 0) (hR : R = D * V)
@@ -276,6 +310,9 @@ theorem normalDifferential_sq_zero (degree : Fin m → ℕ)
     simp [IsDeath, hz] at hj
   exact normalDifferential_mulVec_nonpivot R x j hn
 
+/--
+@isnad1 id=eq.5h10v.s8.298daf63b0e0 from=translated src=- shape=7082243a vocab=9541d26b
+-/
 theorem normalBoundary_isCycle (degree : Fin m → ℕ)
     (D R V W : Matrix (Fin m) (Fin m) k)
     (hD2 : D * D = 0) (hR : R = D * V)
@@ -286,6 +323,9 @@ theorem normalBoundary_isCycle (degree : Fin m → ℕ)
   obtain ⟨y, _, _, rfl⟩ := hx
   exact normalDifferential_sq_zero degree D R V W hD2 hR hcert hpiv y
 
+/--
+@isnad1 id=prefixsu.0h7v.s5.d3c88000cf63 from=translated src=- shape=7e89911f vocab=200520d1
+-/
 theorem aliveRepresentative_prefix (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (p t : ℕ) (x : Fin m → k) :
     PrefixSupported t (aliveRepresentative degree R p t x) := by
@@ -296,6 +336,9 @@ theorem aliveRepresentative_prefix (degree : Fin m → ℕ)
     · exact (not_lt_of_ge hi) he.2
   simp [aliveRepresentative, hnot]
 
+/--
+@isnad1 id=homogene.0h7v.s5.96e8578f2a81 from=translated src=- shape=81878db5 vocab=518dd65a
+-/
 theorem aliveRepresentative_degree (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (p t : ℕ) (x : Fin m → k) :
     Homogeneous degree p (aliveRepresentative degree R p t x) := by
@@ -303,6 +346,9 @@ theorem aliveRepresentative_degree (degree : Fin m → ℕ)
   have hnot : ¬ AliveCoordinate degree R p t i := fun h => hi h.1
   simp [aliveRepresentative, hnot]
 
+/--
+@isnad1 id=normalcy.4h10v.s7.f20d4104e284 from=translated src=- shape=4c82177b vocab=ac2d32db
+-/
 theorem aliveRepresentative_cycle (degree : Fin m → ℕ)
     (D R V W : Matrix (Fin m) (Fin m) k)
     (hD2 : D * D = 0) (hR : R = D * V)
@@ -322,7 +368,9 @@ theorem aliveRepresentative_cycle (degree : Fin m → ℕ)
   simp [aliveRepresentative, hnot]
 
 /-- Every graded prefix cycle is a live-coordinate representative plus the
-boundary of the explicit expired-coordinate preimage.-/
+boundary of the explicit expired-coordinate preimage.
+@isnad1 id=eq.5h10v.s8.9a496b8bdbb7 from=translated src=- shape=09378b9e vocab=96fd7d91
+-/
 theorem normalCycle_decompose (degree : Fin m → ℕ)
     (D R V W : Matrix (Fin m) (Fin m) k)
     (hD2 : D * D = 0) (hR : R = D * V)
@@ -390,7 +438,9 @@ theorem normalCycle_decompose (degree : Fin m → ℕ)
 
 /-- Two cycles represent the same prefix-homology class exactly when all
 live coordinates agree. In particular, this is an explicit family of
-homology bases, not merely a stagewise dimension calculation.-/
+homology bases, not merely a stagewise dimension calculation.
+@isnad1 id=iff.6h10v.s8.d50a12a2f522 from=translated src=- shape=9b4645e6 vocab=ef9abf79
+-/
 theorem normalCycle_boundary_iff_live_zero (degree : Fin m → ℕ)
     (D R V W : Matrix (Fin m) (Fin m) k)
     (hD2 : D * D = 0) (hR : R = D * V)
@@ -414,7 +464,9 @@ theorem normalCycle_boundary_iff_live_zero (degree : Fin m → ℕ)
       expiredPreimage_degree degree R hdegreeR p t x, ?_⟩
     simpa [hzero] using hd.symm
 
-/-- Prefix inclusion is the identity on a cycle's original coordinate vector.-/
+/-- Prefix inclusion is the identity on a cycle's original coordinate vector.
+@isnad1 id=normalcy.2h8v.s5.76e9ccecb6c8 from=translated src=- shape=924a558f vocab=0ad45c0f
+-/
 theorem normalCycle_prefix_inclusion (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (p s t : ℕ) (hst : s ≤ t)
     (x : Fin m → k) (hx : NormalCycle degree R p s x) :
@@ -423,6 +475,9 @@ theorem normalCycle_prefix_inclusion (degree : Fin m → ℕ)
   intro i hi
   exact hx.1 i (le_trans hst hi)
 
+/--
+@isnad1 id=normalbo.2h8v.s5.e41c914c6913 from=translated src=- shape=924a558f vocab=f4b69e69
+-/
 theorem normalBoundary_prefix_inclusion (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (p s t : ℕ) (hst : s ≤ t)
     (x : Fin m → k) (hx : NormalBoundary degree R p s x) :
@@ -431,7 +486,9 @@ theorem normalBoundary_prefix_inclusion (degree : Fin m → ℕ)
   exact ⟨y, fun i hi => hy i (le_trans hst hi), hg, he⟩
 
 /-- The coefficient map of every prefix inclusion is coordinate projection:
-live generators survive unchanged, and expired ones go to zero.-/
+live generators survive unchanged, and expired ones go to zero.
+@isnad1 id=eq.2h8v.s6.0d805d4dd1ff from=translated src=- shape=50a64b63 vocab=386dc1d0
+-/
 theorem aliveRepresentative_transition (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (p s t : ℕ) (hst : s ≤ t)
     (x : Fin m → k) (hx : PrefixSupported s x) :
@@ -452,7 +509,9 @@ theorem aliveRepresentative_transition (degree : Fin m → ℕ)
   · simp [aliveRepresentative, ht]
 
 /-- The coordinate-level interval map sends a live pivot or essential class
-identically while it remains live, and sends it to zero after death.-/
+identically while it remains live, and sends it to zero after death.
+@isnad1 id=eq.1h7v.s7.3193f79c25ed from=translated src=- shape=371d7806 vocab=14b85133
+-/
 theorem aliveRepresentative_single_survives (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (p t : ℕ)
     (i : Fin m) (hi : AliveCoordinate degree R p t i) :
@@ -465,6 +524,9 @@ theorem aliveRepresentative_single_survives (degree : Fin m → ℕ)
     simp [aliveRepresentative, hi]
   · simp [aliveRepresentative, Pi.single_apply, hji]
 
+/--
+@isnad1 id=eq.1h7v.s6.ac689c635887 from=translated src=- shape=acaa17a8 vocab=14b85133
+-/
 theorem aliveRepresentative_single_dies (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (p t : ℕ)
     (i : Fin m) (hi : ¬ AliveCoordinate degree R p t i) :
@@ -516,13 +578,18 @@ noncomputable def aliveSpace (degree : Fin m → ℕ)
     intro c x hx i hi
     simp [hx i hi]
 
+/--
+@isnad1 id=mem.0h7v.s7.4eb72809bac7 from=translated src=- shape=d0dabe08 vocab=d3914dda
+-/
 theorem aliveRepresentative_mem_aliveSpace (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (p t : ℕ) (x : Fin m → k) :
     aliveRepresentative degree R p t x ∈ aliveSpace degree R p t := by
   intro i hi
   simp [aliveRepresentative, hi]
 
-/-- Every live-coordinate vector already is its own representative.-/
+/-- Every live-coordinate vector already is its own representative.
+@isnad1 id=eq.1h7v.s7.da90fe257ed0 from=translated src=- shape=1de91858 vocab=d3914dda
+-/
 theorem aliveRepresentative_of_mem (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (p t : ℕ)
     (x : Fin m → k) (hx : x ∈ aliveSpace degree R p t) :
@@ -551,6 +618,9 @@ noncomputable def cycleLiveMap (degree : Fin m → ℕ)
     · simp [aliveRepresentative, hi]
     · simp [aliveRepresentative, hi]
 
+/--
+@isnad1 id=surjecti.4h9v.s11.2d0626dbad20 from=translated src=- shape=3f3434bd vocab=12293515
+-/
 theorem cycleLiveMap_surjective (degree : Fin m → ℕ)
     (D R V W : Matrix (Fin m) (Fin m) k)
     (hD2 : D * D = 0) (hR : R = D * V)
@@ -582,6 +652,9 @@ noncomputable def normalHomologyEquivAlive (degree : Fin m → ℕ)
   (cycleLiveMap degree R p t).quotKerEquivOfSurjective
     (cycleLiveMap_surjective degree D R V W hD2 hR hcert hpiv p t)
 
+/--
+@isnad1 id=iff.5h10v.s11.f0183f51ed20 from=translated src=- shape=13d46942 vocab=32882642
+-/
 theorem normalHomology_kernel_eq_boundaries (degree : Fin m → ℕ)
     (D R V W : Matrix (Fin m) (Fin m) k)
     (hD2 : D * D = 0) (hR : R = D * V)
@@ -603,6 +676,9 @@ theorem normalHomology_kernel_eq_boundaries (degree : Fin m → ℕ)
     exact (normalCycle_boundary_iff_live_zero degree D R V W hD2 hR hcert
       hdegreeR hpiv p t x.1 x.2).mp h
 
+/--
+@isnad1 id=eq.0h6v.s6.9e0133ccd7f1 from=translated src=- shape=a0ef37c9 vocab=57f4a1d6
+-/
 theorem aliveSpace_eq_spanSubset (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (p t : ℕ) :
     aliveSpace degree R p t =
@@ -610,6 +686,9 @@ theorem aliveSpace_eq_spanSubset (degree : Fin m → ℕ)
   ext x
   exact (Pi.mem_spanSubset_iff (R := k)).symm
 
+/--
+@isnad1 id=prefixsu.0h7v.s8.6ecf8a59ba14 from=translated src=- shape=6c4475af vocab=58bd6a2f
+-/
 theorem aliveSpace_prefix (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (p t : ℕ)
     (x : aliveSpace degree R p t) : PrefixSupported t x.1 := by
@@ -635,6 +714,9 @@ noncomputable def aliveSpaceMap (degree : Fin m → ℕ)
     · simp [aliveRepresentative, hi]
     · simp [aliveRepresentative, hi]
 
+/--
+@isnad1 id=eq.0h6v.s10.451f1b4c04a0 from=translated src=- shape=b6eb3120 vocab=b93cfc92
+-/
 theorem aliveSpaceMap_id (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (p t : ℕ) :
     aliveSpaceMap degree R p t t = LinearMap.id := by
@@ -642,6 +724,9 @@ theorem aliveSpaceMap_id (degree : Fin m → ℕ)
   change aliveRepresentative degree R p t x.1 i = x.1 i
   rw [aliveRepresentative_of_mem degree R p t x.1 x.2]
 
+/--
+@isnad1 id=eq.2h8v.s10.335aa1ffd093 from=translated src=- shape=676dc503 vocab=851573e9
+-/
 theorem aliveSpaceMap_comp (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (p s t u : ℕ)
     (hst : s ≤ t) (htu : t ≤ u) :
@@ -668,7 +753,9 @@ noncomputable def normalHomologyMap (degree : Fin m → ℕ)
       (normalHomologyEquivAlive degree D R V W hD2 hR hcert hpiv p s).toLinearMap)
 
 /-- The homology transition is exactly the coordinate projection of the
-underlying inclusion of prefix cycles.-/
+underlying inclusion of prefix cycles.
+@isnad1 id=eq.5h11v.s14.1f97855a7f21 from=translated src=- shape=726830e5 vocab=33a967d3
+-/
 theorem normalHomologyMap_mk (degree : Fin m → ℕ)
     (D R V W : Matrix (Fin m) (Fin m) k)
     (hD2 : D * D = 0) (hR : R = D * V)
@@ -700,6 +787,9 @@ noncomputable def survivorFinset (degree : Fin m → ℕ)
   classical
   exact Finset.univ.filter (fun i => Survivor degree R p s t i)
 
+/--
+@isnad1 id=iff.0h8v.s11.d092b21471e0 from=translated src=- shape=bdcb05e3 vocab=f7c23587
+-/
 theorem aliveSpaceMap_range_iff (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (p s t : ℕ)
     (y : aliveSpace degree R p t) :
@@ -745,7 +835,9 @@ noncomputable def aliveSpaceMap_rangeEquiv (degree : Fin m → ℕ)
   map_smul' := by intro c x; apply Subtype.ext; rfl
 
 /-- The rank of the coefficient map is the number of coordinates live at
-both stages.-/
+both stages.
+@isnad1 id=eq.0h7v.s12.63e4a6d4fda4 from=translated src=- shape=a75bc181 vocab=aa4e0160
+-/
 theorem aliveSpaceMap_rank (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (p s t : ℕ) :
     Module.finrank k (LinearMap.range (aliveSpaceMap degree R p s t)) =
@@ -759,6 +851,9 @@ theorem aliveSpaceMap_rank (degree : Fin m → ℕ)
   rw [hset]
   simp
 
+/--
+@isnad1 id=iff.1h8v.s6.1891011681e7 from=translated src=- shape=dfe3821e vocab=caf011d5
+-/
 theorem survivor_iff_pairs_or_essential (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (p s t : ℕ) (hst : s ≤ t)
     (i : Fin m) :
@@ -804,6 +899,9 @@ noncomputable def deathSurvivorFinset (degree : Fin m → ℕ)
   exact Finset.univ.filter (fun j => ∃ i, columnPivot (R.col j) = some i ∧
     degree i = p ∧ i.val < s ∧ t ≤ j.val)
 
+/--
+@isnad1 id=eq.1h7v.s6.528563728aa8 from=translated src=- shape=c68081a0 vocab=993512e7
+-/
 theorem survivorFinset_partition (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (p s t : ℕ) (hst : s ≤ t) :
     survivorFinset degree R p s t =
@@ -815,6 +913,9 @@ theorem survivorFinset_partition (degree : Fin m → ℕ)
     Finset.mem_union, Finset.mem_filter, Finset.mem_univ, true_and]
   exact survivor_iff_pairs_or_essential degree R p s t hst i
 
+/--
+@isnad1 id=disjoint.0h7v.s5.c98394487132 from=translated src=- shape=4f2948d2 vocab=1b505256
+-/
 theorem pair_essential_disjoint (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (p s t : ℕ) :
     Disjoint (pairSurvivorFinset degree R p s t)
@@ -826,6 +927,9 @@ theorem pair_essential_disjoint (degree : Fin m → ℕ)
   have he' := (Finset.mem_filter.mp he).2
   exact he'.1.2 hp'.choose
 
+/--
+@isnad1 id=eq.1h7v.s5.180787c10a00 from=translated src=- shape=e2cd89c8 vocab=111b3da1
+-/
 theorem pair_survivor_card_eq_death_card (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (hpiv : DistinctPivots R)
     (p s t : ℕ) :
@@ -865,7 +969,9 @@ theorem pair_survivor_card_eq_death_card (degree : Fin m → ℕ)
       (Finset.mem_filter.mp himem).2.choose hji
 
 /-- Rank count in the issue's death-column/essential-column indexing.
-The two sums count occurrences, so identical endpoint values retain multiplicity.-/
+The two sums count occurrences, so identical endpoint values retain multiplicity.
+@isnad1 id=eq.2h7v.s12.a12c2fd1063d from=translated src=- shape=0a68397e vocab=7092d64b
+-/
 theorem aliveSpaceMap_rank_formula (degree : Fin m → ℕ)
     (R : Matrix (Fin m) (Fin m) k) (hpiv : DistinctPivots R)
     (p s t : ℕ) (hst : s ≤ t) :
@@ -876,6 +982,9 @@ theorem aliveSpaceMap_rank_formula (degree : Fin m → ℕ)
     Finset.card_union_of_disjoint (pair_essential_disjoint degree R p s t),
     pair_survivor_card_eq_death_card degree R hpiv p s t]
 
+/--
+@isnad1 id=eq.4h11v.s14.6490d43e5be4 from=translated src=- shape=40ac57e2 vocab=454b1761
+-/
 theorem normalHomologyMap_transport (degree : Fin m → ℕ)
     (D R V W : Matrix (Fin m) (Fin m) k)
     (hD2 : D * D = 0) (hR : R = D * V)
@@ -926,7 +1035,9 @@ noncomputable def normalHomologyMap_rangeEquiv (degree : Fin m → ℕ)
     apply Subtype.ext
     simp
 
-/-- Structure-map rank on the quotient homology spaces.-/
+/-- Structure-map rank on the quotient homology spaces.
+@isnad1 id=eq.5h10v.s14.97ccaff71202 from=translated src=- shape=f18f515d vocab=9b1a55d5
+-/
 theorem normalHomologyMap_rank_formula (degree : Fin m → ℕ)
     (D R V W : Matrix (Fin m) (Fin m) k)
     (hD2 : D * D = 0) (hR : R = D * V)

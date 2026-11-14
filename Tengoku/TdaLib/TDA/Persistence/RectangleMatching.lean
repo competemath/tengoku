@@ -39,7 +39,9 @@ noncomputable def interleavingZero (R : Rectangle n) (ρ : ℝ≥0)
   φ_ψ := by simp [h]
   ψ_φ := by exact Subsingleton.elim _ _
 
-/-- The significance threshold includes endpoint decorations and ρ=0 exactly.-/
+/-- The significance threshold includes endpoint decorations and ρ=0 exactly.
+@isnad1 id=iff.0h4v.s7.84b22adbf9a8 from=translated src=- shape=62b90a49 vocab=165c719d
+-/
 theorem interleaved_zero_iff (R : Rectangle n) (ρ : ℝ≥0) :
     Nonempty (CoordinateInterleaving ρ (R.module (k := k)) 0) ↔
       ¬ Significant (ρ + ρ) R := by
@@ -68,7 +70,9 @@ structure IsMatching {ι κ : Type} (ρ : ℝ≥0)
   target_zero : ∀ j, (∀ i, M.finite i ≠ some j) →
     Nonempty (CoordinateInterleaving ρ ((S j).module (k := k)) 0)
 
-/-- Every significant source occurrence has a partner in an admissible matching.-/
+/-- Every significant source occurrence has a partner in an admissible matching.
+@isnad1 id=ex.2h9v.s6.ad5be9990cf8 from=translated src=- shape=d54e5c23 vocab=fc628648
+-/
 theorem IsMatching.source_covered {ι κ : Type} {ρ : ℝ≥0}
     {R : ι → Rectangle n} {S : κ → Rectangle n}
     {M : OccurrenceMatching ι κ PEmpty.{1} PEmpty.{1}}
@@ -79,7 +83,9 @@ theorem IsMatching.source_covered {ι κ : Type} {ρ : ℝ≥0}
   | none => exact False.elim ((interleaved_zero_iff (k := k) (R i) ρ).mp
       (hM.source_zero i h) hi)
 
-/-- Every significant target occurrence is in the range of the same matching.-/
+/-- Every significant target occurrence is in the range of the same matching.
+@isnad1 id=ex.2h9v.s6.f975c07205d5 from=translated src=- shape=a5c1c7ee vocab=fc628648
+-/
 theorem IsMatching.target_covered {ι κ : Type} {ρ : ℝ≥0}
     {R : ι → Rectangle n} {S : κ → Rectangle n}
     {M : OccurrenceMatching ι κ PEmpty.{1} PEmpty.{1}}
@@ -91,7 +97,9 @@ theorem IsMatching.target_covered {ι κ : Type} {ρ : ℝ≥0}
   exact (interleaved_zero_iff (k := k) (S j) ρ).mp (hM.target_zero j h) hj
 
 /-- Hall's proved inequalities produce distinct admissible partners for every
-significant source occurrence. These are outputs of the actual interleaving.-/
+significant source occurrence. These are outputs of the actual interleaving.
+@isnad1 id=ex.1h8v.s7.9d13b8908587 from=translated src=- shape=668ed042 vocab=3de78b14
+-/
 theorem exists_significant_injection (hn : 0 < n)
     {ι κ : Type} [Fintype ι] [Fintype κ]
     (R : ι → Rectangle n) (S : κ → Rectangle n) (ε : ℝ≥0)
@@ -129,7 +137,9 @@ theorem exists_significant_injection (hn : 0 < n)
 
 /-- An actual ε-interleaving yields one radius-(2n−1)ε partial occurrence
 matching, with actual zero interleavings for all unmatched occurrences on
-both sides. No Hall or matching assumption is supplied to this theorem.-/
+both sides. No Hall or matching assumption is supplied to this theorem.
+@isnad1 id=ex.1h8v.s6.e67e2d305d3a from=translated src=- shape=fb384751 vocab=5c9c668c
+-/
 theorem exists_matching (hn : 0 < n)
     {ι κ : Type} [Fintype ι] [Fintype κ]
     (R : ι → Rectangle n) (S : κ → Rectangle n) (ε : ℝ≥0)

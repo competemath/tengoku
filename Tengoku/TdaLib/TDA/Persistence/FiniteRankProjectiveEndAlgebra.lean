@@ -57,6 +57,9 @@ def tagPoint (t : FiniteRankProjectiveClassification.RankProjectiveHookTag S) :
         WithTop.coe_le_coe.mpr (le_of_lt ab.property)⟩
   | inr a => exact ⟨((a : WithTop S), ⊤), le_top⟩
 
+/--
+@isnad1 id=lt.0h2v.s6.eb4ad853cc72 from=translated src=- shape=e45c6190 vocab=45ddb9fa
+-/
 @[simp] theorem tagPoint_strict
     (t : FiniteRankProjectiveClassification.RankProjectiveHookTag S) :
     (tagPoint t).val.1 < (tagPoint t).val.2 := by
@@ -152,11 +155,16 @@ noncomputable def incidenceComponent (f : Incidence (k := k) (S := S))
 noncomputable def strictTag (p : StrictVertex S) : HookTag (S := S) :=
   tagPointEquiv (S := S).symm p
 
+/--
+@isnad1 id=eq.0h2v.s7.d4cbccf9f0a6 from=translated src=- shape=91387a81 vocab=8bf84e44
+-/
 @[simp] theorem tagPoint_strictTag (p : StrictVertex S) :
     tagPoint (strictTag (S := S) p) = p.val :=
   congrArg Subtype.val ((tagPointEquiv (S := S)).apply_symm_apply p)
 
-/-- Hook-map admissibility is interval-pair order together with avoidance of the diagonal.-/
+/-- Hook-map admissibility is interval-pair order together with avoidance of the diagonal.
+@isnad1 id=iff.0h3v.s7.87e9ac6236c5 from=translated src=- shape=53c656bb vocab=b8b623cd
+-/
 theorem homCondition_iff_pairRel (s t : HookTag (S := S)) :
     HomCondition (P := S) s t ↔
       tagPoint (S := S) t ≤ tagPoint (S := S) s ∧
@@ -164,6 +172,9 @@ theorem homCondition_iff_pairRel (s t : HookTag (S := S)) :
   cases s <;> cases t <;>
     simp [HomCondition, endpoints, birth, death, tagPoint, and_assoc]
 
+/--
+@isnad1 id=iff.0h3v.s7.e9f186b54901 from=translated src=- shape=c621ac67 vocab=6c3db323
+-/
 @[simp] theorem tagPoint_eq_strictTag_iff (t : HookTag (S := S))
     (p : StrictVertex S) :
     tagPoint (S := S) t = p.val ↔ t = strictTag (S := S) p := by
@@ -181,6 +192,9 @@ noncomputable def hookMatrixUnit (s t : HookTag (S := S))
     normalizedHom (k := k) s t h ≫
     biproduct.ι (hookFamily (k := k) (S := S)) t
 
+/--
+@isnad1 id=eq.3h5v.s7.c99b2647cd44 from=translated src=- shape=9a12efa1 vocab=4ae6b923
+-/
 theorem hookMatrixUnit_comp (s t u : HookTag (S := S))
     (hst : HomCondition (P := S) s t) (htu : HomCondition (P := S) t u)
     (hsu : HomCondition (P := S) s u) :
@@ -210,6 +224,9 @@ theorem hookMatrixUnit_comp (s t u : HookTag (S := S))
       rw [hcomp]
     _ = _ := by rfl
 
+/--
+@isnad1 id=eq.3h6v.s8.a7487dc960d4 from=translated src=- shape=249923fc vocab=4ae6b923
+-/
 theorem hookMatrixUnit_comp_of_ne (s t r u : HookTag (S := S))
     (hst : HomCondition (P := S) s t) (hru : HomCondition (P := S) r u)
     (htr : t ≠ r) :
@@ -225,6 +242,9 @@ theorem hookMatrixUnit_comp_of_ne (s t r u : HookTag (S := S))
           biproduct.ι (hookFamily (k := k) (S := S)) u := by cat_disch
     _ = 0 := by simp [biproduct.ι_π, htr]
 
+/--
+@isnad1 id=eq.3h5v.s8.364a2ff4730a from=translated src=- shape=34b937ce vocab=4ae6b923
+-/
 theorem hookMatrixUnit_comp_of_not_condition (s t u : HookTag (S := S))
     (hst : HomCondition (P := S) s t) (htu : HomCondition (P := S) t u)
     (hsu : ¬ HomCondition (P := S) s u) :
@@ -245,6 +265,9 @@ theorem hookMatrixUnit_comp_of_not_condition (s t u : HookTag (S := S))
       rw [normalizedHom_comp_of_not_condition (k := k) s t u hst htu hsu]
       simp
 
+/--
+@isnad1 id=eq.4h6v.s7.1f60a5c09f97 from=translated src=- shape=c7c78ca6 vocab=4ae6b923
+-/
 theorem hookMatrixUnit_comp_of_middle_eq (s t r u : HookTag (S := S))
     (hst : HomCondition (P := S) s t) (hru : HomCondition (P := S) r u)
     (htr : t = r) (hsu : HomCondition (P := S) s u) :
@@ -254,6 +277,9 @@ theorem hookMatrixUnit_comp_of_middle_eq (s t r u : HookTag (S := S))
   cases htr
   exact hookMatrixUnit_comp (k := k) (S := S) s t u hst hru hsu
 
+/--
+@isnad1 id=eq.4h6v.s8.be90fd1b7661 from=translated src=- shape=873f4c42 vocab=4ae6b923
+-/
 theorem hookMatrixUnit_comp_of_middle_eq_not_condition
     (s t r u : HookTag (S := S))
     (hst : HomCondition (P := S) s t) (hru : HomCondition (P := S) r u)
@@ -263,6 +289,9 @@ theorem hookMatrixUnit_comp_of_middle_eq_not_condition
   cases htr
   exact hookMatrixUnit_comp_of_not_condition (k := k) (S := S) s t u hst hru hsu
 
+/--
+@isnad1 id=eq.1h4v.s8.8f245896de5d from=translated src=- shape=e334e2e5 vocab=51cc54e9
+-/
 @[simp] theorem hookMatrixUnit_diagonal_components (s t : HookTag (S := S))
     (h : HomCondition (P := S) s t) :
     biproduct.components (hookMatrixUnit (k := k) (S := S) s t h) s t =
@@ -280,6 +309,9 @@ theorem hookMatrixUnit_comp_of_middle_eq_not_condition
             biproduct.π (hookFamily (k := k) (S := S)) t) := by cat_disch
     _ = _ := by simp
 
+/--
+@isnad1 id=eq.2h6v.s8.22fb7ce04562 from=translated src=- shape=7e03ecc9 vocab=22191aea
+-/
 @[simp] theorem hookMatrixUnit_components_zero_of_left_ne
     (s t : HookTag (S := S)) (h : HomCondition (P := S) s t)
     (a b : HookTag (S := S)) (ha : a ≠ s) :
@@ -297,6 +329,9 @@ theorem hookMatrixUnit_comp_of_middle_eq_not_condition
           biproduct.π (hookFamily (k := k) (S := S)) b := by cat_disch
     _ = 0 := by simp [ha]
 
+/--
+@isnad1 id=eq.2h6v.s8.09be2a01098e from=translated src=- shape=38676e6e vocab=22191aea
+-/
 @[simp] theorem hookMatrixUnit_components_zero_of_right_ne
     (s t : HookTag (S := S)) (h : HomCondition (P := S) s t)
     (a b : HookTag (S := S)) (hb : b ≠ t) :
@@ -411,6 +446,9 @@ def delta (p q : PairPoset S) (hpq : p ≤ q) : Incidence (k := k) (S := S) := b
     exact (hxy hpq).elim
   · simp [h]
 
+/--
+@isnad1 id=eq.1h6v.s8.38442cb0954c from=translated src=- shape=fbdc439c vocab=45602735
+-/
 @[simp] theorem delta_apply (p q : PairPoset S) (hpq : p ≤ q) (x y : PairPoset S) :
     delta (k := k) (S := S) p q hpq x y = if x = p ∧ y = q then 1 else 0 := by
   classical
@@ -435,6 +473,9 @@ private theorem incidence_sum_apply {ι : Type} (s : Finset ι)
   | empty => simp
   | @insert i s hi ih => simp [hi, IncidenceAlgebra.add_apply, ih]
 
+/--
+@isnad1 id=eq.0h3v.s5.4fa491eb6e4d from=translated src=- shape=3a54d132 vocab=a77f8c84
+-/
 theorem incidence_eq_deltaExpansion (f : Incidence (k := k) (S := S)) :
     f = deltaExpansion (k := k) (S := S) f := by
   classical
@@ -451,6 +492,9 @@ theorem incidence_eq_deltaExpansion (f : Incidence (k := k) (S := S)) :
     simp [IncidenceAlgebra.constSMul_apply, delta_apply, hneq]
   · simp
 
+/--
+@isnad1 id=eq.2h6v.s9.bdf381072e4d from=translated src=- shape=3b2d182b vocab=b83789d0
+-/
 theorem delta_mul (p q r s : PairPoset S) (hpq : p ≤ q) (hrs : r ≤ s) :
     delta (k := k) (S := S) p q hpq * delta (k := k) (S := S) r s hrs =
       if h : q = r then delta (k := k) (S := S) p s (by
@@ -491,6 +535,9 @@ def IsDiagonal (p : PairPoset S) : Prop := p.val.1 = p.val.2
 death endpoint of `p` is at or before the birth endpoint of `q`.-/
 def CrossesDiagonal (p q : PairPoset S) : Prop := p.val.2 ≤ q.val.1
 
+/--
+@isnad1 id=iff.1h3v.s8.cc375d4539ee from=translated src=- shape=1da4a8b2 vocab=abf1e111
+-/
 theorem diagonal_between_iff_crosses (p q : PairPoset S) (hpq : p ≤ q) :
     (∃ d : PairPoset S, IsDiagonal (S := S) d ∧ p ≤ d ∧ d ≤ q) ↔
       CrossesDiagonal (S := S) p q := by
@@ -512,6 +559,9 @@ theorem diagonal_between_iff_crosses (p q : PairPoset S) (hpq : p ≤ q) :
     · change q.val.1 ≤ q.val.1 ∧ q.val.1 ≤ q.val.2
       exact ⟨le_rfl, q.property⟩
 
+/--
+@isnad1 id=lt.2h3v.s7.7be0628b7b0a from=translated src=- shape=aa8f5ece vocab=3348bfb3
+-/
 theorem left_strict_of_not_crosses (p q : PairPoset S) (hpq : p ≤ q)
     (h : ¬ CrossesDiagonal (S := S) p q) : p.val.1 < p.val.2 := by
   refine lt_of_le_of_ne p.property ?_
@@ -521,6 +571,9 @@ theorem left_strict_of_not_crosses (p q : PairPoset S) (hpq : p ≤ q)
   rw [← heq]
   exact hpq.1
 
+/--
+@isnad1 id=lt.2h3v.s7.b97efdb7972a from=translated src=- shape=c2f3d025 vocab=3348bfb3
+-/
 theorem right_strict_of_not_crosses (p q : PairPoset S) (hpq : p ≤ q)
     (h : ¬ CrossesDiagonal (S := S) p q) : q.val.1 < q.val.2 := by
   refine lt_of_le_of_ne q.property ?_
@@ -530,6 +583,9 @@ theorem right_strict_of_not_crosses (p q : PairPoset S) (hpq : p ≤ q)
   rw [heq]
   exact hpq.2
 
+/--
+@isnad1 id=eq.2h4v.s10.4fb3daf05d13 from=translated src=- shape=fe3615b2 vocab=329c7ebe
+-/
 theorem incidenceToEnd_delta_of_no_cross
     (p q : StrictVertex S) (hpq : p.val ≤ q.val)
     (hcross : ¬ CrossesDiagonal (S := S) p.val q.val) :
@@ -604,6 +660,9 @@ def noCrossHomCondition (p q : PairPoset S) (hpq : p ≤ q)
       by simpa [CrossesDiagonal, tagPoint_strictTag,
         noCrossSourceVertex, noCrossTargetVertex] using hcross⟩
 
+/--
+@isnad1 id=eq.2h4v.s10.1b33187c7b5c from=translated src=- shape=82db1b5c vocab=96a0de82
+-/
 theorem incidenceToEnd_delta_of_no_cross_pair
     (p q : PairPoset S) (hpq : p ≤ q)
     (hcross : ¬ CrossesDiagonal (S := S) p q) :
@@ -617,6 +676,9 @@ theorem incidenceToEnd_delta_of_no_cross_pair
   simpa [hp, hq, noCrossTargetVertex, noCrossSourceVertex] using
     incidenceToEnd_delta_of_no_cross (k := k) hp hq hpq hcross
 
+/--
+@isnad1 id=eq.2h4v.s10.7bc92bac066d from=translated src=- shape=c6bc5671 vocab=d25b979e
+-/
 theorem incidenceToEnd_delta_of_cross
     (p q : PairPoset S) (hpq : p ≤ q)
     (hcross : CrossesDiagonal (S := S) p q) :
@@ -648,6 +710,9 @@ theorem incidenceToEnd_delta_of_cross
         tagPoint_eq_strictTag_iff]
   · simp [incidenceComponent, hst]
 
+/--
+@isnad1 id=eq.1h4v.s10.6d28f1913d3f from=translated src=- shape=0a2b99f8 vocab=78051a14
+-/
 theorem incidenceToEnd_delta_cases (p q : PairPoset S) (hpq : p ≤ q) :
     incidenceToEndLinear (k := k) (S := S) (delta (k := k) p q hpq) =
       if h : CrossesDiagonal (S := S) p q then 0 else
@@ -660,6 +725,9 @@ theorem incidenceToEnd_delta_cases (p q : PairPoset S) (hpq : p ≤ q) :
   · simp [h, incidenceToEnd_delta_of_cross (k := k) p q hpq h]
   · simp [h, incidenceToEnd_delta_of_no_cross_pair (k := k) p q hpq h]
 
+/--
+@isnad1 id=eq.1h3v.s7.f5485192110e from=translated src=- shape=3c64d673 vocab=109a2e48
+-/
 theorem normalizedHom_self (s : HookTag (S := S))
     (h : HomCondition (P := S) s s) :
     normalizedHom (k := k) s s h = 𝟙 (hookModule (k := k) s) := by
@@ -688,6 +756,9 @@ theorem normalizedHom_self (s : HookTag (S := S))
       rw [structureMapLinear_self]
       rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.08a5676cb371 from=translated src=- shape=8db0ea51 vocab=d56af82a
+-/
 theorem incidenceToEndLinear_map_one :
     incidenceToEndLinear (k := k) (S := S) (1 : Incidence (k := k) (S := S)) =
       1 := by
@@ -712,6 +783,9 @@ theorem incidenceToEndLinear_map_one :
       exact hst (tagPoint_injective h.symm)
     simp [incidenceComponent, hst, hpoints, biproduct.components]
 
+/--
+@isnad1 id=eq.2h6v.s12.b1b73b9e6546 from=translated src=- shape=d1d47652 vocab=d7b316a0
+-/
 theorem incidenceToEndLinear_map_mul_delta
     (p q r s : PairPoset S) (hpq : p ≤ q) (hrs : r ≤ s) :
     incidenceToEndLinear (k := k) (S := S)
@@ -870,6 +944,9 @@ private theorem incidence_mul_delta_double_sum
       intro j hj
       rw [smul_mul_smul_eq]
 
+/--
+@isnad1 id=eq.0h4v.s11.7729f49fd8f5 from=translated src=- shape=bca5a209 vocab=6a1de566
+-/
 theorem incidenceToEndLinear_map_mul (f g : Incidence (k := k) (S := S)) :
     incidenceToEndLinear (k := k) (S := S) (f * g) =
       incidenceToEndLinear (k := k) (S := S) f *
@@ -932,6 +1009,9 @@ noncomputable def incidenceToEndAlgHom :
     simp only [Algebra.algebraMap_eq_smul_one, map_smul,
       incidenceToEndLinear_map_one]
 
+/--
+@isnad1 id=eq.0h5v.s10.a3b0e6d0b626 from=translated src=- shape=803ebe76 vocab=a73cd893
+-/
 @[simp] theorem incidenceToEndLinear_components
     (f : Incidence (k := k) (S := S)) (s t : HookTag (S := S)) :
     biproduct.components (incidenceToEndLinear (k := k) (S := S) f) s t =
@@ -971,6 +1051,9 @@ private theorem strictTag_of_tagPoint (s : HookTag (S := S)) :
   exact (tagPoint_eq_strictTag_iff (S := S) s
     ⟨tagPoint (S := S) s, tagPoint_strict (S := S) s⟩).1 rfl
 
+/--
+@isnad1 id=surjecti.0h2v.s10.73fa7db87532 from=translated src=- shape=b2e7f4c6 vocab=8c5cd1b6
+-/
 theorem incidenceToEndAlgHom_surjective :
     Function.Surjective (incidenceToEndAlgHom (k := k) (S := S)) := by
   classical
@@ -1031,6 +1114,9 @@ def diagonalIdempotent : Incidence (k := k) (S := S) := by
     exact (hxy le_rfl).elim
   · simp [h]
 
+/--
+@isnad1 id=eq.0h4v.s7.60e5c3c5e820 from=translated src=- shape=14bd915d vocab=5648c4d1
+-/
 @[simp] theorem diagonalIdempotent_apply (x y : PairPoset S) :
     diagonalIdempotent (k := k) (S := S) x y =
       if x = y ∧ IsDiagonal x then 1 else 0 := by
@@ -1080,7 +1166,9 @@ private theorem diagonalIdempotent_eq_diagonalDeltaExpansion :
     · rw [dite_eq_right hpd]
       simp
 
-/-- The diagonal support function is an idempotent in the incidence algebra.-/
+/-- The diagonal support function is an idempotent in the incidence algebra.
+@isnad1 id=eq.0h2v.s7.e7e468d73b98 from=translated src=- shape=83f0f7af vocab=03d5a079
+-/
 theorem diagonalIdempotent_mul_self :
     diagonalIdempotent (k := k) (S := S) *
         diagonalIdempotent (k := k) (S := S) =
@@ -1129,6 +1217,9 @@ def diagonalIdeal : Ideal (Incidence (k := k) (S := S)) := by
   Ideal.span (Set.range fun z : Incidence (k := k) (S := S) ×
       Incidence (k := k) (S := S) => z.1 * diagonalIdempotent (k := k) (S := S) * z.2)
 
+/--
+@isnad1 id=mem.2h4v.s9.2461dddc9580 from=translated src=- shape=bb7c0b98 vocab=3383c395
+-/
 theorem diagonalIdeal_mem_delta_of_cross (p q : PairPoset S)
     (hpq : p ≤ q) (hcross : CrossesDiagonal (S := S) p q) :
     delta (k := k) p q hpq ∈ diagonalIdeal (k := k) (S := S) := by
@@ -1159,6 +1250,9 @@ def crossingDeltaSpan : Submodule k (Incidence (k := k) (S := S)) :=
     {r : ComparablePair S // CrossesDiagonal (S := S) r.val.1 r.val.2} =>
       delta (k := k) c.val.val.1 c.val.val.2 c.val.property)
 
+/--
+@isnad1 id=eq.2h6v.s8.794f6d4634fb from=translated src=- shape=7ab8125f vocab=7b4365ce
+-/
 theorem diagonalGenerator_apply_eq_zero_of_not_crosses
     (a b : Incidence (k := k) (S := S))
     (p q : PairPoset S) (hpq : p ≤ q)
@@ -1183,6 +1277,9 @@ theorem diagonalGenerator_apply_eq_zero_of_not_crosses
     · simp [diagonalIdempotent_apply, hdx]
   simp [hleft]
 
+/--
+@isnad1 id=mem.1h3v.s10.0f47e390e547 from=translated src=- shape=c926b012 vocab=07f4abfe
+-/
 theorem crossingDeltaSpan_le_diagonalIdeal (f : Incidence (k := k) (S := S))
     (hf : f ∈ crossingDeltaSpan (k := k) (S := S)) :
     f ∈ diagonalIdeal (k := k) (S := S) := by
@@ -1202,6 +1299,9 @@ theorem crossingDeltaSpan_le_diagonalIdeal (f : Incidence (k := k) (S := S))
         (algebraMap k (Incidence (k := k) (S := S)) c) hf)
 
 set_option maxHeartbeats 1000000 in
+/--
+@isnad1 id=istwosid.0h2v.s6.968f6d92c6fd from=translated src=- shape=3e603a0f vocab=2e809a26
+-/
 theorem diagonalIdeal_isTwoSided :
     (diagonalIdeal (k := k) (S := S)).IsTwoSided := by
   refine ⟨fun {a} b ha => ?_⟩
@@ -1220,10 +1320,16 @@ theorem diagonalIdeal_isTwoSided :
     simpa [smul_eq_mul, mul_assoc] using
       (Ideal.mul_mem_left (diagonalIdeal (k := k) (S := S)) c ih)
 
+/--
+@isnad1 id=istwosid.0h2v.s6.968f6d92c6fd from=translated src=- shape=3e603a0f vocab=2e809a26
+-/
 local instance diagonalIdealTwoSided :
     (diagonalIdeal (k := k) (S := S)).IsTwoSided :=
   diagonalIdeal_isTwoSided (k := k) (S := S)
 
+/--
+@isnad1 id=eq.0h2v.s10.1e727102c4c2 from=translated src=- shape=8726097b vocab=8c94e2cf
+-/
 theorem incidenceToEndAlgHom_diagonalIdempotent_eq_zero :
     incidenceToEndAlgHom (k := k) (S := S)
         (diagonalIdempotent (k := k) (S := S)) = 0 := by
@@ -1245,6 +1351,9 @@ theorem incidenceToEndAlgHom_diagonalIdempotent_eq_zero :
       biproduct.components]
   · simp [incidenceComponent, hst, biproduct.components]
 
+/--
+@isnad1 id=le.0h2v.s10.4b15fb14542d from=translated src=- shape=b477aac4 vocab=9d786071
+-/
 theorem diagonalIdeal_le_incidenceToEndAlgHom_ker :
     diagonalIdeal (k := k) (S := S) ≤
       RingHom.ker (incidenceToEndAlgHom (k := k) (S := S)) := by
@@ -1255,6 +1364,9 @@ theorem diagonalIdeal_le_incidenceToEndAlgHom_ker :
   simp only [map_mul, incidenceToEndAlgHom_diagonalIdempotent_eq_zero,
     mul_zero, zero_mul]
 
+/--
+@isnad1 id=eq.3h5v.s10.5d574cc1d7ff from=translated src=- shape=ade2c6de vocab=c639720e
+-/
 theorem incidenceToEndAlgHom_kernel_coefficient_zero
     (f : Incidence (k := k) (S := S))
     (hker : incidenceToEndAlgHom (k := k) (S := S) f = 0)
@@ -1282,6 +1394,9 @@ theorem incidenceToEndAlgHom_kernel_coefficient_zero
   · exact hzero
   · exact (normalizedHom_ne_zero (k := k) source target hst hnorm).elim
 
+/--
+@isnad1 id=eq.2h5v.s9.95198d78cfbf from=translated src=- shape=4c5f1f67 vocab=eeab204d
+-/
 theorem crossingDeltaSpan_coeff_zero_of_not_crosses
     (f : Incidence (k := k) (S := S))
     (hf : f ∈ crossingDeltaSpan (k := k) (S := S))
@@ -1358,6 +1473,9 @@ private theorem diagonalGenerator_mem_crossingDeltaSpan
     rw [hzero]
     simp
 
+/--
+@isnad1 id=mem.1h3v.s10.3daa8bace1e3 from=translated src=- shape=5413dfde vocab=07f4abfe
+-/
 theorem diagonalIdeal_le_crossingDeltaSpan (f : Incidence (k := k) (S := S))
     (hf : f ∈ diagonalIdeal (k := k) (S := S)) :
     f ∈ crossingDeltaSpan (k := k) (S := S) := by
@@ -1376,6 +1494,9 @@ theorem diagonalIdeal_le_crossingDeltaSpan (f : Incidence (k := k) (S := S))
     simpa only [smul_eq_mul] using
       crossingDeltaSpan_mul_left (k := k) (S := S) a f hf
 
+/--
+@isnad1 id=iff.0h3v.s10.bf0a3c6d20ab from=translated src=- shape=20bc8201 vocab=07f4abfe
+-/
 theorem mem_diagonalIdeal_iff_mem_crossingDeltaSpan
     (f : Incidence (k := k) (S := S)) :
     f ∈ diagonalIdeal (k := k) (S := S) ↔
@@ -1383,6 +1504,9 @@ theorem mem_diagonalIdeal_iff_mem_crossingDeltaSpan
   ⟨diagonalIdeal_le_crossingDeltaSpan (k := k) (S := S) f,
     crossingDeltaSpan_le_diagonalIdeal (k := k) (S := S) f⟩
 
+/--
+@isnad1 id=le.0h2v.s10.0ce5266bd6da from=translated src=- shape=10756d2b vocab=9d786071
+-/
 theorem incidenceToEndAlgHom_ker_le_diagonalIdeal :
     RingHom.ker (incidenceToEndAlgHom (k := k) (S := S)) ≤
       diagonalIdeal (k := k) (S := S) := by
@@ -1405,6 +1529,9 @@ theorem incidenceToEndAlgHom_ker_le_diagonalIdeal :
       (k := k) (S := S) f hf c.val.1 c.val.2 c.property hcross
     simp [hcoef]
 
+/--
+@isnad1 id=eq.0h2v.s10.9646561fb9c7 from=translated src=- shape=b477aac4 vocab=9d786071
+-/
 theorem diagonalIdeal_eq_incidenceToEndAlgHom_ker :
     diagonalIdeal (k := k) (S := S) =
       RingHom.ker (incidenceToEndAlgHom (k := k) (S := S)) := by
@@ -1448,6 +1575,9 @@ noncomputable def hookEndAlgEquivIncidenceQuotient :
     (delta (k := k) p q hpq) = _
   exact incidenceToEnd_delta_cases (k := k) (S := S) p q hpq
 
+/--
+@isnad1 id=eq.1h4v.s12.0521e0894b7a from=translated src=- shape=f52bfa0c vocab=3ef5b946
+-/
 @[simp] theorem hookEndAlgEquivIncidenceQuotient_symm_mk_delta
     (p q : PairPoset S) (hpq : p ≤ q) :
     (hookEndAlgEquivIncidenceQuotient (k := k) (S := S)).symm

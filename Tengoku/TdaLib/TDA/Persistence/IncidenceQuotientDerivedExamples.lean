@@ -37,6 +37,9 @@ local instance : LocallyFiniteOrder (PairPoset Unit) :=
 local instance : DecidableEq (PairPoset Unit) :=
   TDA.Persistence.FiniteRankProjectiveEndAlgebra.instDecidableEqPairPoset
 local instance : Fintype (ComparablePair Unit) := Fintype.ofFinite _
+/--
+@isnad1 id=istwosid.0h1v.s7.9c3d57f512eb from=translated src=- shape=177e3479 vocab=fc375734
+-/
 local instance diagonalIdealTwoSidedUnit {k : Type} [Field k] :
     (TDA.Persistence.FiniteRankProjectiveDiagonalIdealProjective.DiagonalIdeal
       (k := k) (S := Unit)).IsTwoSided :=
@@ -48,7 +51,9 @@ private def unitStrictVertex717 : StrictVertex Unit :=
 private abbrev unitVertexModule717 :=
   RightVertexRestrictedModule (k := ℚ) (S := Unit) unitStrictVertex717
 
-/-- The actual rational strict vertex vanishes in degree one by the restricted-module result.-/
+/-- The actual rational strict vertex vanishes in degree one by the restricted-module result.
+@isnad1 id=iszero.0h0v.s11.2912ce33184f from=translated src=- shape=228469ce vocab=d1995605
+-/
 theorem rational_unit_vertex_derived_one_isZero :
     IsZero (((extensionFunctor (k := ℚ) (S := Unit)).leftDerived 1).obj
       unitVertexModule717) :=
@@ -56,14 +61,18 @@ theorem rational_unit_vertex_derived_one_isZero :
     (k := ℚ) (S := Unit) unitStrictVertex717 1 (by norm_num)
 
 /-- The same actual rational strict vertex vanishes in degree two by the higher projective-column
-argument.-/
+argument.
+@isnad1 id=iszero.0h0v.s11.0bc9fb3a9588 from=translated src=- shape=228469ce vocab=d1995605
+-/
 theorem rational_unit_vertex_derived_two_isZero :
     IsZero (((extensionFunctor (k := ℚ) (S := Unit)).leftDerived 2).obj
       unitVertexModule717) :=
   rightVertexExtension_leftDerived_positive_isZero
     (k := ℚ) (S := Unit) unitStrictVertex717 2 (by norm_num)
 
-/-- Every actual resolution of the rational strict vertex maps to a complex exact at degree two.-/
+/-- Every actual resolution of the rational strict vertex maps to a complex exact at degree two.
+@isnad1 id=exactat.0h1v.s10.8f02e8c667a1 from=translated src=- shape=2e2b2528 vocab=80c638fe
+-/
 theorem rational_unit_vertex_resolution_exact_two
     (P : ProjectiveResolution unitVertexModule717) :
     (TDA.Persistence.IncidenceQuotientDerivedOne.extensionMappedResolution
@@ -72,7 +81,9 @@ theorem rational_unit_vertex_resolution_exact_two
     (k := ℚ) (S := Unit)
     (RightVertexModule (k := ℚ) (S := Unit) unitStrictVertex717) P 2 (by norm_num)
 
-/-- The restricted zero module has zero second derived extension.-/
+/-- The restricted zero module has zero second derived extension.
+@isnad1 id=iszero.0h0v.s11.a5068f53c601 from=translated src=- shape=503c6208 vocab=9c7cb488
+-/
 theorem rational_unit_zero_derived_two_isZero :
     IsZero (((extensionFunctor (k := ℚ) (S := Unit)).leftDerived 2).obj
       ((ModuleCat.restrictScalars (quotientHom (k := ℚ) (S := Unit))).obj
@@ -84,7 +95,9 @@ theorem rational_unit_zero_derived_two_isZero :
       (k := ℚ) (S := Unit)) PUnit.{1}) 2 (by norm_num)
 
 /-- Every actual resolution of the rational zero quotient module maps to a complex exact at
-degree two.-/
+degree two.
+@isnad1 id=exactat.0h1v.s11.d8f7874ab8e9 from=translated src=- shape=69556a85 vocab=a18bee01
+-/
 theorem rational_unit_zero_resolution_exact_two
     (P : ProjectiveResolution
       ((ModuleCat.restrictScalars (quotientHom (k := ℚ) (S := Unit))).obj
