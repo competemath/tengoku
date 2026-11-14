@@ -195,7 +195,9 @@ private theorem fixedField_separableExtension_bridge
 /-- 有限 Galois 扩张中，正式自同构子群正规，当且仅当其固定域在基域上
 构成 Galois 扩张。
 
-> **Entry**: abstract-algebra.field.galois-normality-/
+> **Entry**: abstract-algebra.field.galois-normality
+@isnad1 id=iff.2h4v.s6.cba805620c12 from=translated src=- shape=a2eb655a vocab=46a26020
+-/
 theorem subgroup_normal_iff_fixedField_galoisExtension
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (hfin : FiniteFieldExtension e)
@@ -217,7 +219,9 @@ theorem subgroup_normal_iff_fixedField_galoisExtension
 /-- 有限 Galois 扩张中，正式自同构子群正规，当且仅当其固定域在基域上
 正规。固定域子扩张的可分性由环境有限 Galois 性自动提供。
 
-> **Entry**: abstract-algebra.field.galois-normality-/
+> **Entry**: abstract-algebra.field.galois-normality
+@isnad1 id=iff.2h4v.s6.888a91ed4b05 from=translated src=- shape=5dfa8a74 vocab=5333fad5
+-/
 theorem subgroup_normal_iff_fixedField_normalExtension
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (hfin : FiniteFieldExtension e)

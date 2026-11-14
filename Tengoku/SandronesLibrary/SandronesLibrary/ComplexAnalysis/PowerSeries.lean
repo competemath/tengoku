@@ -38,7 +38,9 @@ noncomputable def termwiseDerivativePowerSeries (a : ℕ → ℂ) (c z : ℂ) : 
   (FormalMultilinearSeries.ofScalars ℂ a).derivSeries.sum (z - c) 1
 
 /-- 底层形式幂级数与教材中的显式级数 `∑ aₙ(z-c)ⁿ` 相同。
-> **Entry**: complex-analysis.holomorphic.power-series-/
+> **Entry**: complex-analysis.holomorphic.power-series
+@isnad1 id=eq.0h3v.s6.e9a3fe86bbd9 from=translated src=- shape=bcfd7809 vocab=f3b47579
+-/
 theorem complexPowerSeries_eq_tsum (a : ℕ → ℂ) (c z : ℂ) :
     complexPowerSeries a c z = ∑' n : ℕ, a n * (z - c) ^ n := by
   apply tsum_congr
@@ -46,7 +48,9 @@ theorem complexPowerSeries_eq_tsum (a : ℕ → ℂ) (c z : ℂ) :
   simp [mul_comm]
 
 /-- 在收敛圆内，形式导级数恰为 `∑ (n+1)aₙ₊₁(z-c)ⁿ`。
-> **Entry**: complex-analysis.holomorphic.power-series-/
+> **Entry**: complex-analysis.holomorphic.power-series
+@isnad1 id=eq.1h3v.s7.c89e8157ad04 from=translated src=- shape=decc32a3 vocab=d9b11040
+-/
 theorem termwiseDerivativePowerSeries_eq_tsum (a : ℕ → ℂ) (c z : ℂ)
     (hz : z ∈ Metric.eball c (powerSeriesRadius a)) :
     termwiseDerivativePowerSeries a c z =
@@ -72,7 +76,9 @@ theorem termwiseDerivativePowerSeries_eq_tsum (a : ℕ → ℂ) (c z : ℂ)
   simp [p, FormalMultilinearSeries.derivSeries_coeff_one, mul_comm]
 
 /-- **收敛圆内全纯**：正收敛半径的幂级数在开收敛圆中逐点复可微。
-> **Entry**: complex-analysis.holomorphic.power-series-/
+> **Entry**: complex-analysis.holomorphic.power-series
+@isnad1 id=holomorp.1h2v.s6.e41527be4275 from=translated src=- shape=4ec9d23e vocab=37ec52d1
+-/
 theorem powerSeries_holomorphicOn_convergenceDisc (a : ℕ → ℂ) (c : ℂ)
     (hR : 0 < powerSeriesRadius a) :
     HolomorphicOnTextbook (complexPowerSeries a c)
@@ -86,7 +92,9 @@ theorem powerSeries_holomorphicOn_convergenceDisc (a : ℕ → ℂ) (c : ℂ)
   exact hp.differentiableOn
 
 /-- **逐项求导**：收敛圆内每点的导数等于形式导级数的和。
-> **Entry**: complex-analysis.holomorphic.power-series-/
+> **Entry**: complex-analysis.holomorphic.power-series
+@isnad1 id=hasderiv.1h3v.s6.5f1c85390044 from=translated src=- shape=a0935b10 vocab=0e24be35
+-/
 theorem powerSeries_hasDerivAt_termwise {a : ℕ → ℂ} {c z : ℂ}
     (hz : z ∈ Metric.eball c (powerSeriesRadius a)) :
     HasDerivAt (complexPowerSeries a c) (termwiseDerivativePowerSeries a c z) z := by

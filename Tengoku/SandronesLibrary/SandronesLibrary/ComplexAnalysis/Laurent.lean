@@ -34,7 +34,9 @@ def HasLaurentExpansionOnAnnulus (f : ℂ → ℂ) (center : ℂ)
 
 /-- The constant function has a Laurent expansion supported at exponent zero.
 
-> **Entry**: complex-analysis.series.laurent-foundation-/
+> **Entry**: complex-analysis.series.laurent-foundation
+@isnad1 id=haslaure.0h4v.s5.0c1b7aa97cbb from=translated src=- shape=6fa7ba04 vocab=4f042d11
+-/
 theorem hasLaurentExpansionOnAnnulus_const (c center : ℂ) (inner outer : ℝ) :
     HasLaurentExpansionOnAnnulus (fun _ ↦ c) center inner outer
       (fun n ↦ if n = 0 then c else 0) := by
@@ -47,7 +49,9 @@ theorem hasLaurentExpansionOnAnnulus_const (c center : ℂ) (inner outer : ℝ) 
 
 /-- A simple pole has a Laurent expansion supported at exponent negative one.
 
-> **Entry**: complex-analysis.series.laurent-foundation-/
+> **Entry**: complex-analysis.series.laurent-foundation
+@isnad1 id=haslaure.1h3v.s6.09f7c4e6f1a1 from=translated src=- shape=e4e81b5b vocab=6d02906e
+-/
 theorem hasLaurentExpansionOnAnnulus_inv_sub (center : ℂ) {inner outer : ℝ}
     (hinner : 0 ≤ inner) :
     HasLaurentExpansionOnAnnulus (fun z ↦ (z - center)⁻¹) center inner outer

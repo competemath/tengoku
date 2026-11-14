@@ -29,7 +29,9 @@ Lebesgue 积分。
 这个定理是后续放宽积分区域要求的核心接口；Jordan 边界零测只是产生“几乎处处
 连续”的一种充分条件。
 
-> **Entry**: analysis.multivariable.jordan-riemann-bridge-/
+> **Entry**: analysis.multivariable.jordan-riemann-bridge
+@isnad1 id=hasriema.4h4v.s8.405afbccb570 from=translated src=- shape=6048b983 vocab=756c5b5c
+-/
 theorem hasRiemannBoxIntegral_indicator_eq_setIntegral_of_aeContinuous {n : ℕ}
     {s : Set (JordanEuc n)} {f : JordanEuc n → ℝ}
     (hs : NullMeasurableSet s volume) (I : RiemannBox n)
@@ -54,14 +56,18 @@ theorem hasRiemannBoxIntegral_indicator_eq_setIntegral_of_aeContinuous {n : ℕ}
   rw [← heq]
   exact hbox
 
-/-- 连续函数在 Jordan 区域上的零延拓除边界外处处连续。-/
+/-- 连续函数在 Jordan 区域上的零延拓除边界外处处连续。
+@isnad1 id=eventual.2h3v.s7.970be82ebefb from=translated src=- shape=35b5e15b vocab=70519d16
+-/
 lemma jordan_indicator_ae_continuous {n : ℕ} {s : Set (JordanEuc n)}
     {f : JordanEuc n → ℝ} (hs : IsJordanMeasurable s) (hf : Continuous f) :
     ∀ᵐ x ∂volume, ContinuousAt (s.indicator f) x := by
   filter_upwards [compl_mem_ae_iff.mpr hs.2] with x hx
   exact hf.continuousOn.continuousAt_indicator hx
 
-/-- 连续函数的 Jordan 零延拓在任意闭盒上有界。-/
+/-- 连续函数的 Jordan 零延拓在任意闭盒上有界。
+@isnad1 id=ex.1h4v.s7.87d69a36457b from=translated src=- shape=d8ee1daa vocab=ededc311
+-/
 lemma jordan_indicator_bounded_on_box {n : ℕ} {s : Set (JordanEuc n)}
     {f : JordanEuc n → ℝ} (hf : Continuous f) (I : RiemannBox n) :
     ∃ C : ℝ, ∀ x ∈ Box.Icc I, ‖s.indicator f x‖ ≤ C := by
@@ -73,7 +79,9 @@ lemma jordan_indicator_bounded_on_box {n : ℕ} {s : Set (JordanEuc n)}
   · exact norm_zero.trans_le (le_max_left 0 C₀)
 
 /-- **Jordan 区域积分桥**：在任意包含区域的盒上对零延拓取多元 Riemann 积分，
-所得值等于区域上的 Lebesgue 积分。-/
+所得值等于区域上的 Lebesgue 积分。
+@isnad1 id=hasriema.3h4v.s7.cd4c29a90d76 from=translated src=- shape=45d3358c vocab=b0bd5273
+-/
 theorem hasRiemannBoxIntegral_indicator_eq_setIntegral {n : ℕ}
     {s : Set (JordanEuc n)} {f : JordanEuc n → ℝ} (hs : IsJordanMeasurable s)
     (hf : Continuous f) (I : RiemannBox n) (hsub : s ⊆ (I : Set (JordanEuc n))) :
@@ -83,7 +91,9 @@ theorem hasRiemannBoxIntegral_indicator_eq_setIntegral {n : ℕ}
       (jordan_indicator_ae_continuous hs hf) hsub
 
 /-- 每个 Jordan 可测区域都能放进一个闭盒，并在该盒上通过零延拓取得 Riemann
-积分；该积分值就是区域 Lebesgue 积分。-/
+积分；该积分值就是区域 Lebesgue 积分。
+@isnad1 id=ex.2h3v.s7.20268221efa7 from=translated src=- shape=3065a40f vocab=b0bd5273
+-/
 theorem exists_box_hasRiemannIntegral_jordan {n : ℕ} {s : Set (JordanEuc n)}
     {f : JordanEuc n → ℝ} (hs : IsJordanMeasurable s) (hf : Continuous f) :
     ∃ I : RiemannBox n, s ⊆ (I : Set (JordanEuc n)) ∧
@@ -92,7 +102,9 @@ theorem exists_box_hasRiemannIntegral_jordan {n : ℕ} {s : Set (JordanEuc n)}
   exact ⟨I, hsub, hasRiemannBoxIntegral_indicator_eq_setIntegral hs hf I hsub⟩
 
 /-- **外包盒无关性**：两个包含同一 Jordan 区域的盒给出的零延拓 Riemann 积分值
-相同，并都等于区域 Lebesgue 积分。-/
+相同，并都等于区域 Lebesgue 积分。
+@isnad1 id=eq.4h5v.s6.ce2f34de8b4d from=translated src=- shape=09e537b8 vocab=8e36f3b6
+-/
 theorem riemannIntegral_jordan_independent_of_box {n : ℕ}
     {s : Set (JordanEuc n)} {f : JordanEuc n → ℝ} (hs : IsJordanMeasurable s)
     (hf : Continuous f) (I J : RiemannBox n)

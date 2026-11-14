@@ -86,7 +86,9 @@ def FieldEmbedding.comp {K L M : Type*} [Field K] [Field L] [Field M]
   injective := g.injective.comp e.injective
 
 /-- **逆元保持**：显式域嵌入把 `x⁻¹` 映为 `(e x)⁻¹`，包括 `x = 0` 的域逆元约定。
-> **Entry**: abstract-algebra.field.extension-/
+> **Entry**: abstract-algebra.field.extension
+@isnad1 id=eq.0h4v.s6.4a00d7b93e71 from=translated src=- shape=103c51f1 vocab=4549efac
+-/
 theorem FieldEmbedding.map_inv {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (x : K) : e x⁻¹ = (e x)⁻¹ := by
   exact map_inv₀ e.toRingHom x
@@ -107,18 +109,24 @@ def IntermediateFieldSet {K L : Type*} [Field K] [Field L]
   SubfieldSet S ∧ Set.range e.toFun ⊆ S
 
 /-- **最大子域集合**：全集对所有域运算封闭，因此是所在域自身对应的子域集合。
-> **Entry**: abstract-algebra.field.extension-/
+> **Entry**: abstract-algebra.field.extension
+@isnad1 id=subfield.0h1v.s3.d07088d90e4f from=translated src=- shape=84bfdc15 vocab=84cc45f0
+-/
 theorem subfieldSet_univ {L : Type*} [Field L] : SubfieldSet (Set.univ : Set L) := by
   simp [SubfieldSet, SubringSet]
 
 /-- **最大中间域集合**：目标域全集既是子域，又显然包含基域嵌入的全部像。
-> **Entry**: abstract-algebra.field.extension-/
+> **Entry**: abstract-algebra.field.extension
+@isnad1 id=intermed.0h3v.s4.2f708905bdc0 from=translated src=- shape=ad2ae334 vocab=f195bab7
+-/
 theorem intermediateFieldSet_univ {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) : IntermediateFieldSet e (Set.univ : Set L) := by
   exact ⟨subfieldSet_univ, Set.subset_univ _⟩
 
 /-- **子域对任意交封闭**：若一族集合各自为子域，则它们的逐点交集仍对全部域运算封闭。
-> **Entry**: abstract-algebra.field.extension-/
+> **Entry**: abstract-algebra.field.extension
+@isnad1 id=subfield.1h3v.s5.1f2488ba44be from=translated src=- shape=64831ca3 vocab=3f3199af
+-/
 theorem subfieldSet_iInter {L ι : Type*} [Field L] {F : ι → Set L}
     (hF : ∀ i, SubfieldSet (F i)) : SubfieldSet (⋂ i, F i) := by
   refine ⟨⟨?_, ?_, ?_, ?_, ?_⟩, ?_⟩
@@ -140,7 +148,9 @@ theorem subfieldSet_iInter {L ι : Type*} [Field L] {F : ι → Set L}
     exact fun i => (hF i).2 (hx i) hne
 
 /-- **中间域对任意交封闭**：任意交保留子域封闭性，并继续包含基域嵌入的每个像。
-> **Entry**: abstract-algebra.field.extension-/
+> **Entry**: abstract-algebra.field.extension
+@isnad1 id=intermed.1h5v.s5.8b5ee672f2ae from=translated src=- shape=026fb6f0 vocab=51306f73
+-/
 theorem intermediateFieldSet_iInter {K L ι : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) {F : ι → Set L}
     (hF : ∀ i, IntermediateFieldSet e (F i)) :
@@ -160,7 +170,9 @@ def generatedIntermediateFieldSet {K L : Type*} [Field K] [Field L]
   {x | ∀ T : Set L, IntermediateFieldSet e T → S ⊆ T → x ∈ T}
 
 /-- **生成集合确为中间域**：交集式定义对域运算封闭，并包含基域嵌入的全部像。
-> **Entry**: abstract-algebra.field.extension-/
+> **Entry**: abstract-algebra.field.extension
+@isnad1 id=intermed.0h4v.s5.d5fb62593180 from=translated src=- shape=61ca9d3d vocab=7a05b4a9
+-/
 theorem generatedIntermediateFieldSet_isIntermediateField {K L : Type*}
     [Field K] [Field L] (e : FieldEmbedding K L) (S : Set L) :
     IntermediateFieldSet e (generatedIntermediateFieldSet e S) := by
@@ -181,7 +193,9 @@ theorem generatedIntermediateFieldSet_isIntermediateField {K L : Type*}
     exact hT.2 hx
 
 /-- **生成集包含性**：每个生成元都属于所有包含生成集的候选中间域，因而属于生成中间域。
-> **Entry**: abstract-algebra.field.extension-/
+> **Entry**: abstract-algebra.field.extension
+@isnad1 id=le.0h4v.s5.6d9de0d46f6d from=translated src=- shape=cff4f7eb vocab=1233e22c
+-/
 theorem subset_generatedIntermediateFieldSet {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (S : Set L) :
     S ⊆ generatedIntermediateFieldSet e S := by
@@ -189,7 +203,9 @@ theorem subset_generatedIntermediateFieldSet {K L : Type*} [Field K] [Field L]
   exact hST hx
 
 /-- **基域像包含性**：生成中间域作为中间域，必包含显式嵌入的全部基域元素。
-> **Entry**: abstract-algebra.field.extension-/
+> **Entry**: abstract-algebra.field.extension
+@isnad1 id=le.0h4v.s5.ce48247ec436 from=translated src=- shape=b9b79832 vocab=d2c40951
+-/
 theorem range_subset_generatedIntermediateFieldSet {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (S : Set L) :
     Set.range e.toFun ⊆ generatedIntermediateFieldSet e S := by
@@ -197,7 +213,9 @@ theorem range_subset_generatedIntermediateFieldSet {K L : Type*} [Field K] [Fiel
 
 /-- **生成中间域的最小性**：任何包含 `S` 的中间域都包含 `S` 所生成的中间域。
 这是交集式生成构造的教材泛性质。
-> **Entry**: abstract-algebra.field.extension-/
+> **Entry**: abstract-algebra.field.extension
+@isnad1 id=le.2h5v.s5.cafb078bb9f3 from=translated src=- shape=0a96152a vocab=20ab0a42
+-/
 theorem generatedIntermediateFieldSet_least {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) {S T : Set L}
     (hT : IntermediateFieldSet e T) (hST : S ⊆ T) :
@@ -206,7 +224,9 @@ theorem generatedIntermediateFieldSet_least {K L : Type*} [Field K] [Field L]
   exact hx T hT hST
 
 /-- **生成构造的单调性**：若 `S ⊆ T`，则由 `S` 生成的中间域包含于由 `T` 生成的中间域。
-> **Entry**: abstract-algebra.field.extension-/
+> **Entry**: abstract-algebra.field.extension
+@isnad1 id=le.1h5v.s5.5a9287469a76 from=translated src=- shape=a3343d1e vocab=1233e22c
+-/
 theorem generatedIntermediateFieldSet_mono {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) {S T : Set L} (hST : S ⊆ T) :
     generatedIntermediateFieldSet e S ⊆ generatedIntermediateFieldSet e T := by
@@ -224,27 +244,35 @@ def evaluateOver {K L : Type*} [Field K] [Field L]
   Polynomial.eval₂ e.toRingHom a p
 
 /-- **常数求值公式**：常数多项式 `C c` 沿嵌入求值后等于基域元素 `c` 的像 `e c`。
-> **Entry**: abstract-algebra.field.extension-/
+> **Entry**: abstract-algebra.field.extension
+@isnad1 id=eq.0h5v.s7.a841100a04bd from=translated src=- shape=f4dcf3cc vocab=98013124
+-/
 theorem evaluateOver_C {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (c : K) (a : L) :
     evaluateOver e (C c) a = e c := by
   exact Polynomial.eval₂_C e.toRingHom a
 
 /-- **不定元求值公式**：把不定元 `X` 代入 `a` 的结果恰为 `a`。
-> **Entry**: abstract-algebra.field.extension-/
+> **Entry**: abstract-algebra.field.extension
+@isnad1 id=eq.0h4v.s5.3e552148f7b8 from=translated src=- shape=58fccfcb vocab=4b340d91
+-/
 theorem evaluateOver_X {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (a : L) : evaluateOver e X a = a := by
   exact Polynomial.eval₂_X e.toRingHom a
 
 /-- **求值保持加法**：两个 `K` 系数多项式之和在 `a` 处的值等于各自求值之和。
-> **Entry**: abstract-algebra.field.extension-/
+> **Entry**: abstract-algebra.field.extension
+@isnad1 id=eq.0h6v.s7.540f06d4c884 from=translated src=- shape=e5e7ebc6 vocab=fedc599e
+-/
 theorem evaluateOver_add {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (p q : Polynomial K) (a : L) :
     evaluateOver e (p + q) a = evaluateOver e p a + evaluateOver e q a := by
   exact Polynomial.eval₂_add (p := p) (q := q) e.toRingHom a
 
 /-- **求值保持乘法**：两个 `K` 系数多项式之积在 `a` 处的值等于各自求值之积。
-> **Entry**: abstract-algebra.field.extension-/
+> **Entry**: abstract-algebra.field.extension
+@isnad1 id=eq.0h6v.s7.5d471320f967 from=translated src=- shape=e5e7ebc6 vocab=aa99d86d
+-/
 theorem evaluateOver_mul {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (p q : Polynomial K) (a : L) :
     evaluateOver e (p * q) a = evaluateOver e p a * evaluateOver e q a := by
@@ -266,7 +294,9 @@ def TranscendentalElement {K L : Type*} [Field K] [Field L]
   ¬ AlgebraicElement e a
 
 /-- **基域像都是代数元**：`e x` 被一次多项式 `X - C x` 湮灭，因此在扩张上代数。
-> **Entry**: abstract-algebra.field.extension-/
+> **Entry**: abstract-algebra.field.extension
+@isnad1 id=algebrai.0h4v.s4.a771de673e8a from=translated src=- shape=637b049f vocab=31576d60
+-/
 theorem base_image_algebraic {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (x : K) : AlgebraicElement e (e x) := by
   refine ⟨X - C x, Polynomial.X_sub_C_ne_zero x, ?_⟩
@@ -278,7 +308,9 @@ theorem base_image_algebraic {K L : Type*} [Field K] [Field L]
   exact add_neg_cancel (e x)
 
 /-- **超越性的逐多项式判据**：`a` 超越，当且仅当每个非零 `K` 系数多项式在 `a` 处均非零。
-> **Entry**: abstract-algebra.field.extension-/
+> **Entry**: abstract-algebra.field.extension
+@isnad1 id=iff.0h4v.s6.8f3fd7b3b032 from=translated src=- shape=4d12a21a vocab=28578b27
+-/
 theorem transcendentalElement_iff {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (a : L) :
     TranscendentalElement e a ↔
@@ -340,7 +372,9 @@ private theorem minpoly_isMinimalPolynomialOf {K L : Type*} [Field K] [Field L]
     rwa [aeval_eq_evaluateOver e]
 
 /-- **最小多项式存在性**：每个代数元都有满足首一、湮灭和整除泛性质的多项式。
-> **Entry**: abstract-algebra.field.extension-/
+> **Entry**: abstract-algebra.field.extension
+@isnad1 id=ex.1h4v.s5.251fadba3b3b from=translated src=- shape=978201a7 vocab=3949c08e
+-/
 theorem minimalPolynomialOf_exists {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) {a : L} (ha : AlgebraicElement e a) :
     ∃ p : Polynomial K, MinimalPolynomialOf e a p := by
@@ -348,7 +382,9 @@ theorem minimalPolynomialOf_exists {K L : Type*} [Field K] [Field L]
   exact ⟨minpoly K a, minpoly_isMinimalPolynomialOf e ha⟩
 
 /-- **最小多项式唯一性**：两个满足教材泛性质的多项式互相整除；首一性消除单位倍数后严格相等。
-> **Entry**: abstract-algebra.field.extension-/
+> **Entry**: abstract-algebra.field.extension
+@isnad1 id=eq.2h6v.s6.8bf77583b1f3 from=translated src=- shape=20d1d06a vocab=4775785f
+-/
 theorem minimalPolynomialOf_unique {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) {a : L} {p q : Polynomial K}
     (hp : MinimalPolynomialOf e a p) (hq : MinimalPolynomialOf e a q) : p = q := by
@@ -359,7 +395,9 @@ theorem minimalPolynomialOf_unique {K L : Type*} [Field K] [Field L]
   · rw [hp.1.leadingCoeff, hq.1.leadingCoeff]
 
 /-- **最小多项式非零**：满足教材泛性质的多项式首一，而域上的首一多项式不可能为零。
-> **Entry**: abstract-algebra.field.extension-/
+> **Entry**: abstract-algebra.field.extension
+@isnad1 id=ne.1h5v.s6.c76ee9454731 from=translated src=- shape=9efa3760 vocab=4775785f
+-/
 theorem minimalPolynomialOf_ne_zero {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) {a : L} {p : Polynomial K}
     (hp : MinimalPolynomialOf e a p) : p ≠ 0 := by
@@ -367,7 +405,9 @@ theorem minimalPolynomialOf_ne_zero {K L : Type*} [Field K] [Field L]
 
 /-- **最小多项式不可约**：代数元的首一最小多项式在基域多项式环中不可约。
 证明后端将教材泛性质唯一识别为 Mathlib `minpoly`，公开结论不暴露其结构。
-> **Entry**: abstract-algebra.field.extension-/
+> **Entry**: abstract-algebra.field.extension
+@isnad1 id=irreduci.2h5v.s6.651360383565 from=translated src=- shape=247de262 vocab=a9281c6d
+-/
 theorem minimalPolynomialOf_irreducible {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) {a : L} {p : Polynomial K}
     (ha : AlgebraicElement e a) (hp : MinimalPolynomialOf e a p) :
@@ -388,14 +428,18 @@ def SimpleExtension {K L : Type*} [Field K] [Field L]
   generatedIntermediateFieldSet e ({a} : Set L) = Set.univ
 
 /-- **单扩张的展开判据**：单扩张等价于生成元 `a` 所生成的中间域集合等于全集。
-> **Entry**: abstract-algebra.field.extension-/
+> **Entry**: abstract-algebra.field.extension
+@isnad1 id=iff.0h4v.s5.e4f2fdf0c88a from=translated src=- shape=7d625909 vocab=1f699631
+-/
 theorem simpleExtension_iff {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (a : L) :
     SimpleExtension e a ↔ generatedIntermediateFieldSet e ({a} : Set L) = Set.univ := by
   rfl
 
 /-- **生成元属于生成域**：元素 `a` 必属于由单元素集合 `{a}` 生成的中间域。
-> **Entry**: abstract-algebra.field.extension-/
+> **Entry**: abstract-algebra.field.extension
+@isnad1 id=mem.0h4v.s5.85b6ca8d7dbb from=translated src=- shape=db3a5616 vocab=6d2324d6
+-/
 theorem generator_mem_generatedIntermediateFieldSet {K L : Type*}
     [Field K] [Field L] (e : FieldEmbedding K L) (a : L) :
     a ∈ generatedIntermediateFieldSet e ({a} : Set L) := by

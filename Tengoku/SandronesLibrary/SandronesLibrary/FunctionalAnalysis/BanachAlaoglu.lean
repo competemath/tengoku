@@ -21,17 +21,23 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 /-- 对偶范数闭球在弱星拓扑下是闭集。
 
-> **Entry**: functional-analysis.banach-alaoglu-/
+> **Entry**: functional-analysis.banach-alaoglu
+@isnad1 id=isclosed.0h3v.s10.f410aa87403f from=translated src=- shape=d25ce911 vocab=d7badac0
+-/
 theorem weakStar_isClosed_closedBall (f : StrongDual ℝ E) (r : ℝ) :
     IsClosed (WeakDual.toStrongDual ⁻¹' Metric.closedBall f r) := by
   exact WeakDual.isClosed_closedBall f r
 
-/-- Banach–Alaoglu：对偶范数闭球在弱星拓扑下紧致。-/
+/-- Banach–Alaoglu：对偶范数闭球在弱星拓扑下紧致。
+@isnad1 id=iscompac.0h3v.s10.695a558a3b91 from=translated src=- shape=d25ce911 vocab=17b9fb1d
+-/
 theorem weakStar_isCompact_closedBall (f : StrongDual ℝ E) (r : ℝ) :
     IsCompact (WeakDual.toStrongDual ⁻¹' Metric.closedBall f r) := by
   exact WeakDual.isCompact_closedBall f r
 
-/-- Banach–Alaoglu 的闭单位球形式。-/
+/-- Banach–Alaoglu 的闭单位球形式。
+@isnad1 id=iscompac.0h1v.s10.c2ebf92d11ce from=translated src=- shape=3a53bfbb vocab=17b9fb1d
+-/
 theorem weakStar_isCompact_unitBall :
     IsCompact (WeakDual.toStrongDual ⁻¹' Metric.closedBall (0 : StrongDual ℝ E) 1) := by
   exact weakStar_isCompact_closedBall 0 1

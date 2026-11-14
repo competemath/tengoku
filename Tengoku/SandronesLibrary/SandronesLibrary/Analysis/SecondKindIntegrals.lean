@@ -52,7 +52,9 @@ def secondKindCurveIntegral {n : ℕ} (ω : DifferentialForm (Fin n → ℝ) 1)
 
 /-- 复合换参数后的 1-形式密度多出参数导数因子。
 
-这里没有绝对值：若参数导数为负，密度随之变号，这正是有向积分的行为。-/
+这里没有绝对值：若参数导数为负，密度随之变号，这正是有向积分的行为。
+@isnad1 id=eq.2h5v.s8.80aec408fd9f from=translated src=- shape=4bfc72cb vocab=1407dca5
+-/
 theorem curveFormIntegrand_comp {n : ℕ} (ω : DifferentialForm (Fin n → ℝ) 1)
     (γ : ParametrizedCurve n) (φ : ℝ → ℝ) (t : ℝ)
     (hγ : DifferentiableAt ℝ γ (φ t)) (hφ : DifferentiableAt ℝ φ t) :
@@ -67,7 +69,9 @@ theorem curveFormIntegrand_comp {n : ℕ} (ω : DifferentialForm (Fin n → ℝ)
 /-- **保向换参数不变性**：若 `φ' ≥ 0`，则复合参数化不改变第二型曲线积分。
 
 右侧端点自动变为 `φ(c)` 与 `φ(d)`。定理允许导数在个别点为零，因此也覆盖
-不严格但从不反向的参数变化。-/
+不严格但从不反向的参数变化。
+@isnad1 id=eq.3h6v.s8.bc7e3ccde583 from=translated src=- shape=a60694d4 vocab=cb4e0f62
+-/
 theorem secondKindCurveIntegral_comp_of_deriv_nonneg {n : ℕ}
     (ω : DifferentialForm (Fin n → ℝ) 1) (γ : ParametrizedCurve n)
     (φ : ℝ → ℝ) (c d : ℝ)
@@ -83,7 +87,9 @@ theorem secondKindCurveIntegral_comp_of_deriv_nonneg {n : ℕ}
     (fun t _ ↦ (hφ t).hasDerivAt)
     (fun t _ ↦ hφnonneg t)
 
-/-- 势函数外微分沿曲线的密度，就是复合函数 `f ∘ γ` 的一元导数。-/
+/-- 势函数外微分沿曲线的密度，就是复合函数 `f ∘ γ` 的一元导数。
+@isnad1 id=eq.2h4v.s8.c2df19d74359 from=translated src=- shape=6db447b7 vocab=76a8ab28
+-/
 theorem exactOneForm_curveFormIntegrand {n : ℕ} (f : (Fin n → ℝ) → ℝ)
     (γ : ParametrizedCurve n) (t : ℝ)
     (hf : DifferentiableAt ℝ f (γ t)) (hγ : DifferentiableAt ℝ γ t) :
@@ -96,7 +102,9 @@ theorem exactOneForm_curveFormIntegrand {n : ℕ} (f : (Fin n → ℝ) → ℝ)
 
 /-- **第二型曲线积分基本定理**：恰当 1-形式的积分只取决于两个端点。
 
-这是多元版本的 Newton–Leibniz 公式，也是“梯度场的曲线积分与路径无关”的核心。-/
+这是多元版本的 Newton–Leibniz 公式，也是“梯度场的曲线积分与路径无关”的核心。
+@isnad1 id=eq.3h5v.s8.f962aa1be781 from=translated src=- shape=3916beb7 vocab=57113ae2
+-/
 theorem secondKindCurveIntegral_exact {n : ℕ} (f : (Fin n → ℝ) → ℝ)
     (γ : ParametrizedCurve n) (a b : ℝ)
     (hf : Differentiable ℝ f) (hγ : Differentiable ℝ γ)
@@ -120,7 +128,9 @@ def secondKindSurfaceIntegral {n : ℕ} (ω : DifferentialForm (Fin n → ℝ) 2
     (σ : ParametrizedSurface n) (a b c d : ℝ) : ℝ :=
   rectangleIntegral (surfaceFormIntegrand ω σ) a b c d
 
-/-- 在两个 1-形式密度都可积时，第二型曲线积分对形式可加。-/
+/-- 在两个 1-形式密度都可积时，第二型曲线积分对形式可加。
+@isnad1 id=eq.2h6v.s9.6dbb69712d6d from=translated src=- shape=566528d7 vocab=7e2029ad
+-/
 theorem secondKindCurveIntegral_add {n : ℕ}
     (ω η : DifferentialForm (Fin n → ℝ) 1) (γ : ParametrizedCurve n) (a b : ℝ)
     (hω : IntervalIntegrable (curveFormIntegrand ω γ) volume a b)
@@ -131,7 +141,9 @@ theorem secondKindCurveIntegral_add {n : ℕ}
   simp only [curveFormIntegrand, Pi.add_apply, ContinuousAlternatingMap.add_apply]
   exact intervalIntegral.integral_add hω hη
 
-/-- 在两个有向面积密度都可积时，第二型曲面积分对形式可加。-/
+/-- 在两个有向面积密度都可积时，第二型曲面积分对形式可加。
+@isnad1 id=eq.2h8v.s9.8636009ed544 from=translated src=- shape=654a7f67 vocab=67d6619e
+-/
 theorem secondKindSurfaceIntegral_add {n : ℕ}
     (ω η : DifferentialForm (Fin n → ℝ) 2) (σ : ParametrizedSurface n)
     (a b c d : ℝ)
@@ -158,7 +170,9 @@ def covectorFieldAsOneForm {n : ℕ}
     DifferentialForm (Fin n → ℝ) 1 :=
   fun x ↦ ContinuousAlternatingMap.ofSubsingleton ℝ (Fin n → ℝ) ℝ (0 : Fin 1) (A x)
 
-/-- 协向量场版本恢复教材中的 `A(γ(t))(γ'(t))` 被积式。-/
+/-- 协向量场版本恢复教材中的 `A(γ(t))(γ'(t))` 被积式。
+@isnad1 id=eq.0h4v.s7.5df898fffbe1 from=translated src=- shape=679c8f1b vocab=9018d00e
+-/
 theorem curveFormIntegrand_covectorField {n : ℕ}
     (A : (Fin n → ℝ) → (Fin n → ℝ) →L[ℝ] ℝ)
     (γ : ParametrizedCurve n) (t : ℝ) :
@@ -172,7 +186,9 @@ def reverseCurve {n : ℕ} (γ : ParametrizedCurve n) (a b : ℝ) : Parametrized
 
 /-- **反向变号**：曲线参数方向反转后，第二型积分改变符号。
 
-第一型弧长在同一操作下保持不变；这一正负号差异正是两类曲线积分的本质区别。-/
+第一型弧长在同一操作下保持不变；这一正负号差异正是两类曲线积分的本质区别。
+@isnad1 id=eq.1h5v.s7.95b6265d23c2 from=translated src=- shape=7255e1ed vocab=f8584add
+-/
 theorem secondKindCurveIntegral_reverse {n : ℕ}
     (ω : DifferentialForm (Fin n → ℝ) 1) (γ : ParametrizedCurve n)
     (a b : ℝ) (hγ : Differentiable ℝ γ) :
@@ -205,7 +221,9 @@ theorem secondKindCurveIntegral_reverse {n : ℕ}
 
 /-- **闭曲线上的恰当形式积分为零**。
 
-若 `γ(a)=γ(b)`，端点差公式的右端为零。这是保守场沿闭路做功为零的微分形式版本。-/
+若 `γ(a)=γ(b)`，端点差公式的右端为零。这是保守场沿闭路做功为零的微分形式版本。
+@isnad1 id=eq.4h5v.s8.7170c34a84c2 from=translated src=- shape=0ed2666a vocab=c38748d5
+-/
 theorem secondKindCurveIntegral_exact_closed {n : ℕ}
     (f : (Fin n → ℝ) → ℝ) (γ : ParametrizedCurve n) (a b : ℝ)
     (hf : Differentiable ℝ f) (hγ : Differentiable ℝ γ)

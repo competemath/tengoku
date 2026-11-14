@@ -35,7 +35,9 @@ omit [NormedLinearSpace ℝ F] in
 /-- Removing a finite prefix preserves unbounded output norms. This gives the textbook
 quantifiers for `limsup ‖a q‖ = ∞` from ordinary unboundedness.
 
-> **Entry**: functional-analysis.condensation-/
+> **Entry**: functional-analysis.condensation
+@isnad1 id=ex.1h4v.s5.d4f2a1d0b766 from=translated src=- shape=2915f5c4 vocab=69744159
+-/
 theorem unbounded_on_tail_of_unbounded {a : ℕ → F}
     (h : ∀ C : ℝ, ∃ q, C < ‖a q‖) (C : ℝ) (N : ℕ) :
     ∃ q, N ≤ q ∧ C < ‖a q‖ := by
@@ -47,7 +49,9 @@ theorem unbounded_on_tail_of_unbounded {a : ℕ → F}
     Finset.single_le_sum (fun i _ => norm_nonneg (a i)) hmem
   exact (not_lt_of_ge (hsum.trans (le_max_right _ _))) hq
 
-/-- The points where at least one operator exceeds a fixed threshold form an open set.-/
+/-- The points where at least one operator exceeds a fixed threshold form an open set.
+@isnad1 id=isopen.0h4v.s7.a81b04fd10bc from=translated src=- shape=12f22037 vocab=4e642980
+-/
 theorem isOpen_norm_exceeds_set (g : ℕ → E →L[ℝ] F) (C : ℝ) :
     IsOpen {x : E | ∃ q, C < ‖g q x‖} := by
   have heq : {x : E | ∃ q, C < ‖g q x‖} = ⋃ q, {x : E | C < ‖g q x‖} := by
@@ -57,7 +61,9 @@ theorem isOpen_norm_exceeds_set (g : ℕ → E →L[ℝ] F) (C : ℝ) :
   exact isOpen_iUnion (fun q => isOpen_lt continuous_const (g q).continuous.norm)
 
 /-- A row unbounded at one point exceeds each threshold somewhere in every nonempty open ball.
-Completeness is unnecessary for this local step.-/
+Completeness is unnecessary for this local step.
+@isnad1 id=dense.1h4v.s8.b20ad2d843d1 from=translated src=- shape=f04379ca vocab=efc33321
+-/
 theorem dense_norm_exceeds_set_of_unbounded {g : ℕ → E →L[ℝ] F}
     (h : ∃ z : E, ∀ C : ℝ, ∃ q, C < ‖g q z‖) (C : ℝ) :
     Dense {x : E | ∃ q, C < ‖g q x‖} := by
@@ -98,7 +104,9 @@ variable {F : ℕ → Type*} [∀ p, NormedAddCommGroup (F p)]
 variable [∀ p, NormedLinearSpace ℝ (F p)]
 
 /-- **Condensation of singularities**: the points at which every row is unbounded form a dense
-Gδ set. This is the category conclusion in the proof of Theorem I of Banach–Steinhaus (1927).-/
+Gδ set. This is the category conclusion in the proof of Theorem I of Banach–Steinhaus (1927).
+@isnad1 id=and.1h3v.s9.f281d7610f64 from=translated src=- shape=f4e50f99 vocab=5ac3b249
+-/
 theorem condensation_dense_Gδ {g : ∀ p : ℕ, ℕ → E →L[ℝ] F p}
     (h : ∀ p, ∃ z : E, ∀ C : ℝ, ∃ q, C < ‖g p q z‖) :
     Dense {x : E | ∀ p, ∀ C : ℝ, ∃ q, C < ‖g p q x‖} ∧
@@ -125,7 +133,9 @@ theorem condensation_dense_Gδ {g : ∀ p : ℕ, ℕ → E →L[ℝ] F p}
     (fun p => banach_dense_iInter_of_isOpen (hOpen p) (hDense p)), IsGδ.iInter hGδ⟩
 
 /-- **Theorem I, explicit infinite-limsup form**: a common point exceeds every threshold in
-every tail of every row. The witness point is chosen before all three universal quantifiers.-/
+every tail of every row. The witness point is chosen before all three universal quantifiers.
+@isnad1 id=ex.1h3v.s9.989d074280c3 from=translated src=- shape=e672f75c vocab=8cf2ebee
+-/
 theorem condensation_exists {g : ∀ p : ℕ, ℕ → E →L[ℝ] F p}
     (h : ∀ p, ∃ z : E, ∀ C : ℝ, ∃ q, C < ‖g p q z‖) :
     ∃ x : E, ∀ p, ∀ C : ℝ, ∀ N : ℕ, ∃ q, N ≤ q ∧ C < ‖g p q x‖ := by
@@ -133,7 +143,9 @@ theorem condensation_exists {g : ∀ p : ℕ, ℕ → E →L[ℝ] F p}
   exact ⟨x, fun p C N => unbounded_on_tail_of_unbounded (hx p) C N⟩
 
 /-- Unbounded operator norms in each row imply a common point of infinite output limsup.
-The existing uniform boundedness principle supplies individual unbounded-output witnesses.-/
+The existing uniform boundedness principle supplies individual unbounded-output witnesses.
+@isnad1 id=ex.1h3v.s8.fc4aa6da3b15 from=translated src=- shape=df02d6a3 vocab=8cf2ebee
+-/
 theorem condensation_of_unbounded_operatorNorm {g : ∀ p : ℕ, ℕ → E →L[ℝ] F p}
     (h : ∀ p, ∀ C : ℝ, ∃ q, C < ‖g p q‖) :
     ∃ x : E, ∀ p, ∀ C : ℝ, ∀ N : ℕ, ∃ q, N ≤ q ∧ C < ‖g p q x‖ := by

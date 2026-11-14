@@ -29,7 +29,9 @@ namespace SandronesLibrary.ComplexAnalysis
 segment in that set.  The use of `HasDerivWithinAt` is essential at boundary points of a closed
 triangle.
 
-> **Entry**: complex-analysis.cauchy.triangle-/
+> **Entry**: complex-analysis.cauchy.triangle
+@isnad1 id=eq.5h5v.s7.2e7b44afa638 from=translated src=- shape=d2f4b8e2 vocab=6458ee49
+-/
 theorem pathIntegral_segment_eq_sub_of_primitiveWithin_convex
     {f g : ℂ → ℂ} {T : Set ℂ} {a b : ℂ}
     (hT : Convex ℝ T) (ha : a ∈ T) (hb : b ∈ T)
@@ -63,7 +65,9 @@ theorem pathIntegral_segment_eq_sub_of_primitiveWithin_convex
 the closed real convex hull of `a`, `b`, and `c`, then its integral around the oriented triangle
 boundary is zero.  Unlike the earlier foundation theorem, the ambient open set need not be a ball.
 
-> **Entry**: complex-analysis.cauchy.triangle-/
+> **Entry**: complex-analysis.cauchy.triangle
+@isnad1 id=eq.3h5v.s8.32581f9f2582 from=translated src=- shape=bb74f85f vocab=5a7e292b
+-/
 theorem pathIntegral_triangle_eq_zero_of_holomorphicOnTextbook
     {f : ℂ → ℂ} {U : Set ℂ} {a b c : ℂ}
     (hU : IsOpen U) (hf : HolomorphicOnTextbook f U)

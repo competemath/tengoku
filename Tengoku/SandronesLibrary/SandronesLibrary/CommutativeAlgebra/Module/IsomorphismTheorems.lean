@@ -53,7 +53,9 @@ noncomputable def firstIsoHom {R M N : Type*} [CommRing R] [AddCommGroup M] [Add
 
 /-- **第一同构定理诱导映射在陪集上的取值**：`firstIsoHom f (mk x) = f x`。
 这是教材里 `x + ker f ↦ f(x)` 的精确形式。
-> **Entry**: commutative-algebra.module.isomorphism-theorems-/
+> **Entry**: commutative-algebra.module.isomorphism-theorems
+@isnad1 id=eq.0h5v.s10.2e152a71ec02 from=translated src=- shape=fba70b65 vocab=98daf12c
+-/
 theorem firstIsoHom_mk {R M N : Type*} [CommRing R] [AddCommGroup M] [AddCommGroup N]
     [Module R M] [Module R N] (f : M →ₗ[R] N) (x : M) :
     firstIsoHom f (Submodule.Quotient.mk x) = ⟨f x, ⟨x, rfl⟩⟩ :=
@@ -61,7 +63,9 @@ theorem firstIsoHom_mk {R M N : Type*} [CommRing R] [AddCommGroup M] [AddCommGro
 
 /-- **第一同构定理诱导映射的核**：`ker (firstIsoHom f) = ⊥`。教材的证明是「`f(x) = 0` 当且仅当
 `x ∈ ker f`，而后者当且仅当 `x + ker f` 是零陪集」；这条等价正是单射性的全部内容。
-> **Entry**: commutative-algebra.module.isomorphism-theorems-/
+> **Entry**: commutative-algebra.module.isomorphism-theorems
+@isnad1 id=eq.0h4v.s9.aa04c8b914d1 from=translated src=- shape=09107e41 vocab=ef674d97
+-/
 theorem firstIsoHom_ker {R M N : Type*} [CommRing R] [AddCommGroup M] [AddCommGroup N]
     [Module R M] [Module R N] (f : M →ₗ[R] N) : LinearMap.ker (firstIsoHom f) = ⊥ := by
   rw [Submodule.eq_bot_iff]
@@ -74,14 +78,18 @@ theorem firstIsoHom_ker {R M N : Type*} [CommRing R] [AddCommGroup M] [AddCommGr
   exact LinearMap.mem_ker.mpr hm
 
 /-- **第一同构定理诱导映射是单射**。
-> **Entry**: commutative-algebra.module.isomorphism-theorems-/
+> **Entry**: commutative-algebra.module.isomorphism-theorems
+@isnad1 id=injectiv.0h4v.s10.6142c8c6ccf3 from=translated src=- shape=3bebd3fc vocab=fb6888ef
+-/
 theorem firstIsoHom_injective {R M N : Type*} [CommRing R] [AddCommGroup M] [AddCommGroup N]
     [Module R M] [Module R N] (f : M →ₗ[R] N) : Function.Injective (firstIsoHom f) :=
   LinearMap.ker_eq_bot.mp (firstIsoHom_ker f)
 
 /-- **第一同构定理诱导映射是满射**：`im f` 的每个元素都是某个 `f x`，而 `f x` 就是陪集
 `x + ker f` 的像。这是教材「满射」那一半的证明链。
-> **Entry**: commutative-algebra.module.isomorphism-theorems-/
+> **Entry**: commutative-algebra.module.isomorphism-theorems
+@isnad1 id=surjecti.0h4v.s10.5e4b882c3144 from=translated src=- shape=3bebd3fc vocab=9467515e
+-/
 theorem firstIsoHom_surjective {R M N : Type*} [CommRing R] [AddCommGroup M] [AddCommGroup N]
     [Module R M] [Module R N] (f : M →ₗ[R] N) : Function.Surjective (firstIsoHom f) := by
   rintro ⟨y, x, rfl⟩
@@ -105,7 +113,9 @@ noncomputable def first_iso_of_surjective {R M N : Type*} [CommRing R] [AddCommG
 
 /-- **第一同构定理在陪集上的取值**：`first_iso f (mk x)` 的底层元素就是 `f x`。
 教材用它做具体计算；本定理让「同构」不只是存在性，而是可以逐点求值。
-> **Entry**: commutative-algebra.module.isomorphism-theorems-/
+> **Entry**: commutative-algebra.module.isomorphism-theorems
+@isnad1 id=eq.0h5v.s10.85c8e9bb2711 from=translated src=- shape=221828d3 vocab=9c779c58
+-/
 theorem first_iso_mk {R M N : Type*} [CommRing R] [AddCommGroup M] [AddCommGroup N]
     [Module R M] [Module R N] (f : M →ₗ[R] N) (x : M) :
     (first_iso f (Submodule.Quotient.mk x) : N) = f x :=
@@ -123,7 +133,9 @@ noncomputable def secondIsoHom {R M : Type*} [CommRing R] [AddCommGroup M] [Modu
 
 /-- **第二同构定理诱导映射的核**：`ker = S ∩ T`（写成 `comap S.subtype T`）。
 教材的证明是「`x ∈ S` 的陪集 `x + T` 为零，当且仅当 `x ∈ T`，即 `x ∈ S ∩ T`」。
-> **Entry**: commutative-algebra.module.isomorphism-theorems-/
+> **Entry**: commutative-algebra.module.isomorphism-theorems
+@isnad1 id=eq.0h4v.s11.b001474ec12f from=translated src=- shape=be7bba53 vocab=b87c1a87
+-/
 theorem secondIsoHom_ker {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     (S T : Submodule R M) :
     LinearMap.ker (secondIsoHom S T) = Submodule.comap S.subtype T := by
@@ -134,7 +146,9 @@ theorem secondIsoHom_ker {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M
 
 /-- **`S ∩ T` 在 `↥S` 中的写法**：`x : ↥S` 属于 `comap S.subtype T` 当且仅当它作为 `M` 的元素
 属于 `S ⊓ T`。这条桥让教材记号 `S ∩ T` 与 Lean 的 `comap S.subtype T` 可以互相翻译。
-> **Entry**: commutative-algebra.module.isomorphism-theorems-/
+> **Entry**: commutative-algebra.module.isomorphism-theorems
+@isnad1 id=iff.0h5v.s9.944d6fd7397b from=translated src=- shape=06fa6da8 vocab=c257b2c9
+-/
 theorem second_iso_mem_comap_iff {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     (S T : Submodule R M) (x : ↥S) :
     x ∈ Submodule.comap S.subtype T ↔ (x : M) ∈ S ⊓ T := by
@@ -154,7 +168,9 @@ noncomputable def secondIsoMap {R M : Type*} [CommRing R] [AddCommGroup M] [Modu
 /-- **第二同构定理的商映射是单射**：核为 `⊥`。教材的读法是「`x + (S ∩ T)` 与 `x' + (S ∩ T)`
 在 `(S + T)/T` 中有相同像 ⟹ `x - x' ∈ T`，而 `x - x' ∈ S`，故 `x - x' ∈ S ∩ T`」。
 Lean 侧走 `Submodule.ker_liftQ_eq_bot`：因为 `ker (secondIsoHom S T) = S ⊓ T` 恰好等于被商的子模。
-> **Entry**: commutative-algebra.module.isomorphism-theorems-/
+> **Entry**: commutative-algebra.module.isomorphism-theorems
+@isnad1 id=eq.0h4v.s12.80f6a7477708 from=translated src=- shape=eb83b993 vocab=70365550
+-/
 theorem secondIsoMap_ker {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     (S T : Submodule R M) : LinearMap.ker (secondIsoMap S T) = ⊥ :=
   Submodule.ker_liftQ_eq_bot (Submodule.comap S.subtype T) (secondIsoHom S T) _
@@ -162,7 +178,9 @@ theorem secondIsoMap_ker {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M
 
 /-- **第二同构定理的商映射是满射**：`(S + T)/T` 的任一元素可写成 `x + T`（`x ∈ S + T`）；
 把 `x` 拆成 `s + t`（`s ∈ S`，`t ∈ T`），则 `x + T = s + T`，落在 `s + (S ∩ T)` 的像上。
-> **Entry**: commutative-algebra.module.isomorphism-theorems-/
+> **Entry**: commutative-algebra.module.isomorphism-theorems
+@isnad1 id=surjecti.0h4v.s13.a2457d1071d2 from=translated src=- shape=8da36742 vocab=ffa59cb6
+-/
 theorem secondIsoMap_surjective {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     (S T : Submodule R M) : Function.Surjective (secondIsoMap S T) := by
   intro y
@@ -191,7 +209,9 @@ noncomputable def second_iso {R M : Type*} [CommRing R] [AddCommGroup M] [Module
 
 /-- **第二同构定理在陪集上的取值**：`second_iso S T (mk x) = mk (inclusion x)`，
 即 `x + (S ∩ T) ↦ x + T`。教材用它把同构写成可计算的形式。
-> **Entry**: commutative-algebra.module.isomorphism-theorems-/
+> **Entry**: commutative-algebra.module.isomorphism-theorems
+@isnad1 id=eq.0h5v.s14.4f46f1cfc2d4 from=translated src=- shape=fde974b3 vocab=4518c891
+-/
 theorem second_iso_mk {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     (S T : Submodule R M) (x : ↥S) :
     second_iso S T (Submodule.Quotient.mk x) =
@@ -205,7 +225,9 @@ theorem second_iso_mk {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
 /-- **第三同构定理的核计算**：`S ≤ T` 时商映射 `M ⧸ S →ₗ[R] M ⧸ T` 的核恰是 `T` 在 `M ⧸ S` 中的
 像 `T.map S.mkQ`（教材写作 `T/S`）。正向：`x + S` 落到零陪集即 `x ∈ T`；反向：若 `x - t ∈ S`
 （`t ∈ T`）则由 `S ≤ T` 得 `x ∈ T`。
-> **Entry**: commutative-algebra.module.isomorphism-theorems-/
+> **Entry**: commutative-algebra.module.isomorphism-theorems
+@isnad1 id=eq.1h4v.s8.7c4ee6a191b0 from=translated src=- shape=26b65e10 vocab=15897910
+-/
 theorem factor_ker {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     {S T : Submodule R M} (h : S ≤ T) :
     LinearMap.ker (Submodule.factor h) = T.map S.mkQ := by
@@ -235,14 +257,18 @@ noncomputable def thirdIsoMap {R M : Type*} [CommRing R] [AddCommGroup M] [Modul
 
 /-- **第三同构定理的商映射是单射**：核为 `⊥`，由 `factor_ker` 与
 `Submodule.ker_liftQ_eq_bot` 直接给出——「被商的子模恰好是核」正是单射性的全部内容。
-> **Entry**: commutative-algebra.module.isomorphism-theorems-/
+> **Entry**: commutative-algebra.module.isomorphism-theorems
+@isnad1 id=eq.1h4v.s10.cfe1ca83fdda from=translated src=- shape=68915db0 vocab=7512e246
+-/
 theorem thirdIsoMap_ker {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     {S T : Submodule R M} (h : S ≤ T) : LinearMap.ker (thirdIsoMap h) = ⊥ :=
   Submodule.ker_liftQ_eq_bot (T.map S.mkQ) (Submodule.factor h) _ (le_of_eq (factor_ker h))
 
 /-- **第三同构定理的商映射是满射**：`M ⧸ T` 的元素是 `x + T`，而它就是双重陪集
 `(x + S) + (T/S)` 的像。
-> **Entry**: commutative-algebra.module.isomorphism-theorems-/
+> **Entry**: commutative-algebra.module.isomorphism-theorems
+@isnad1 id=surjecti.1h4v.s10.471ef273584d from=translated src=- shape=d6aec3be vocab=6fcfc5e6
+-/
 theorem thirdIsoMap_surjective {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     {S T : Submodule R M} (h : S ≤ T) : Function.Surjective (thirdIsoMap h) := by
   intro y
@@ -260,7 +286,9 @@ noncomputable def third_iso {R M : Type*} [CommRing R] [AddCommGroup M] [Module 
 
 /-- **第三同构定理在双重陪集上的取值**：`third_iso h (mk (mk x)) = mk x`，
 即 `(x + S) + (T/S) ↦ x + T`。
-> **Entry**: commutative-algebra.module.isomorphism-theorems-/
+> **Entry**: commutative-algebra.module.isomorphism-theorems
+@isnad1 id=eq.1h5v.s11.422f82a1b292 from=translated src=- shape=d9e103ce vocab=b52c7968
+-/
 theorem third_iso_mk_mk {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     {S T : Submodule R M} (h : S ≤ T) (x : M) :
     third_iso h (Submodule.Quotient.mk (S.mkQ x)) = Submodule.Quotient.mk x := by

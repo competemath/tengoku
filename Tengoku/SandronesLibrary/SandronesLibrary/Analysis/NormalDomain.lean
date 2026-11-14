@@ -32,20 +32,26 @@ open SandronesLibrary.RealAnalysis.Riemann
 def xNormalDomain (a b : ℝ) (lower upper : ℝ → ℝ) : Set (ℝ × ℝ) :=
   {p | p.1 ∈ Icc a b ∧ p.2 ∈ Icc (lower p.1) (upper p.1)}
 
-/-- 可测上下边界已经足以保证 `x`-型正常区域可测；连续性不是 Fubini 的必要条件。-/
+/-- 可测上下边界已经足以保证 `x`-型正常区域可测；连续性不是 Fubini 的必要条件。
+@isnad1 id=measurab.2h4v.s5.f09ce87bc32c from=translated src=- shape=5b65dbf3 vocab=e1fb438e
+-/
 theorem measurableSet_xNormalDomain_of_measurable {a b : ℝ} {lower upper : ℝ → ℝ}
     (hlower : Measurable lower) (hupper : Measurable upper) :
     MeasurableSet (xNormalDomain a b lower upper) := by
   unfold xNormalDomain
   measurability
 
-/-- 连续上下边界围成的 `x`-型正常区域可测。-/
+/-- 连续上下边界围成的 `x`-型正常区域可测。
+@isnad1 id=measurab.2h4v.s5.52d53dbfa481 from=translated src=- shape=5b65dbf3 vocab=c6da4ef0
+-/
 theorem measurableSet_xNormalDomain {a b : ℝ} {lower upper : ℝ → ℝ}
     (hlower : Continuous lower) (hupper : Continuous upper) :
     MeasurableSet (xNormalDomain a b lower upper) := by
   exact measurableSet_xNormalDomain_of_measurable hlower.measurable hupper.measurable
 
-/-- `x`-型正常区域的示性函数按竖直截面分解。-/
+/-- `x`-型正常区域的示性函数按竖直截面分解。
+@isnad1 id=eq.0h6v.s6.84cc48ec27e7 from=translated src=- shape=f73f9971 vocab=652b87de
+-/
 lemma indicator_xNormalDomain_section (f : ℝ × ℝ → ℝ) (a b : ℝ)
     (lower upper : ℝ → ℝ) (x : ℝ) :
     (fun y ↦ (xNormalDomain a b lower upper).indicator f (x, y)) =
@@ -62,7 +68,9 @@ lemma indicator_xNormalDomain_section (f : ℝ × ℝ → ℝ) (a b : ℝ)
     simp [Set.indicator, xNormalDomain, hx]
 
 /-- **正常区域累次积分公式**：`x`-型区域上的二重积分等于先沿竖直截面积分，
-再对 `x` 积分。-/
+再对 `x` 积分。
+@isnad1 id=eq.3h5v.s7.6fd5d58956b0 from=translated src=- shape=6919988a vocab=1c53da08
+-/
 theorem integral_xNormalDomain_eq_iterated {f : ℝ × ℝ → ℝ} {a b : ℝ}
     {lower upper : ℝ → ℝ} (hlower : Continuous lower) (hupper : Continuous upper)
     (hf : IntegrableOn f (xNormalDomain a b lower upper) (volume.prod volume)) :
@@ -87,7 +95,9 @@ theorem integral_xNormalDomain_eq_iterated {f : ℝ × ℝ → ℝ} {a b : ℝ}
       simp_rw [integral_indicator measurableSet_Icc]
 
 /-- **可测正常区域的 Fubini 公式**：上下边界只需可测。连续边界版本是它的教材型
-特例；真正执行降维的是区域可测性和被积函数的可积性。-/
+特例；真正执行降维的是区域可测性和被积函数的可积性。
+@isnad1 id=eq.3h5v.s7.56fe68616f0b from=translated src=- shape=6919988a vocab=830b49f2
+-/
 theorem integral_xNormalDomain_eq_iterated_of_measurable
     {f : ℝ × ℝ → ℝ} {a b : ℝ} {lower upper : ℝ → ℝ}
     (hlower : Measurable lower) (hupper : Measurable upper)
@@ -125,7 +135,9 @@ def xNormalDomainFin (a b : ℝ) (lower upper : ℝ → ℝ) : Set (Fin 2 → �
 /-- `Fin 2` 坐标上的正常区域 Lebesgue 积分等于积坐标版本。
 
 这里使用 `finTwoArrow` 的保体积性；它正是从多元盒积分坐标进入 Fubini 所需的
-坐标桥，不涉及任何积分计算。-/
+坐标桥，不涉及任何积分计算。
+@isnad1 id=eq.2h5v.s8.4569409caad1 from=translated src=- shape=db539d1a vocab=ca3176ce
+-/
 lemma integral_xNormalDomainFin_eq_prod
     (f : ℝ × ℝ → ℝ) (a b : ℝ) (lower upper : ℝ → ℝ)
     (hlower : Continuous lower) (hupper : Continuous upper) :
@@ -156,7 +168,9 @@ lemma integral_xNormalDomainFin_eq_prod
 这里不假设正常区域是 Jordan 可测，也不要求边界连续。核心假设直接落在真正需要
 Riemann 可积的对象——区域零延拓——上：它在外包盒中有界且几乎处处连续。区域
 本身只需由可测边界给出，因而 Fubini 可以使用。随后每条截面连续即可把一维
-Lebesgue 积分改写成本库的一维 Riemann 积分。-/
+Lebesgue 积分改写成本库的一维 Riemann 积分。
+@isnad1 id=eq.8h6v.s10.ba84b21e19bc from=translated src=- shape=35ddbc77 vocab=6ea8c11e
+-/
 theorem riemannBoxIntegral_xNormalDomain_eq_integral_riemann_of_aeContinuous
     {f : ℝ × ℝ → ℝ} {a b : ℝ} {lower upper : ℝ → ℝ}
     (hlower : Measurable lower) (hupper : Measurable upper)
@@ -220,7 +234,9 @@ theorem riemannBoxIntegral_xNormalDomain_eq_integral_riemann_of_aeContinuous
 3. Fubini 将二重积分化为竖直截面的累次 Lebesgue 积分；
 4. 每个截面再由本库的一维 Riemann–Lebesgue 数值桥改写成 Riemann 积分。
 
-外层暂时保留为 Lebesgue 积分，因此本定理不需要预先证明截面积分关于 `x` 连续。-/
+外层暂时保留为 Lebesgue 积分，因此本定理不需要预先证明截面积分关于 `x` 连续。
+@isnad1 id=eq.7h6v.s8.b299305aa6a5 from=translated src=- shape=15494390 vocab=102035fd
+-/
 theorem riemannBoxIntegral_xNormalDomain_eq_integral_riemann
     {f : ℝ × ℝ → ℝ} {a b : ℝ} {lower upper : ℝ → ℝ}
     (hlower : Continuous lower) (hupper : Continuous upper)
@@ -244,7 +260,9 @@ theorem riemannBoxIntegral_xNormalDomain_eq_integral_riemann
     (jordan_indicator_ae_continuous hs hfFin) hsub
 
 /-- 若截面 Riemann 积分关于外层变量连续，则外层 Lebesgue 积分也可由一维数值桥
-转回 Riemann 积分。于是左端的多元 Riemann 积分等于完整的二次 Riemann 积分。-/
+转回 Riemann 积分。于是左端的多元 Riemann 积分等于完整的二次 Riemann 积分。
+@isnad1 id=eq.9h6v.s8.6facffa8531d from=translated src=- shape=ef8a2e1a vocab=c5a16bd8
+-/
 theorem riemannBoxIntegral_xNormalDomain_eq_iteratedRiemann
     {f : ℝ × ℝ → ℝ} {a b : ℝ} {lower upper : ℝ → ℝ}
     (hab : a < b) (hlower : Continuous lower) (hupper : Continuous upper)
@@ -270,14 +288,18 @@ theorem riemannBoxIntegral_xNormalDomain_eq_iteratedRiemann
 def yNormalDomain (c d : ℝ) (left right : ℝ → ℝ) : Set (ℝ × ℝ) :=
   {p | p.2 ∈ Icc c d ∧ p.1 ∈ Icc (left p.2) (right p.2)}
 
-/-- 可测左右边界围成的 `y`-型正常区域可测。-/
+/-- 可测左右边界围成的 `y`-型正常区域可测。
+@isnad1 id=measurab.2h4v.s5.d9622164cc56 from=translated src=- shape=5b65dbf3 vocab=66336ce7
+-/
 theorem measurableSet_yNormalDomain_of_measurable {c d : ℝ} {left right : ℝ → ℝ}
     (hleft : Measurable left) (hright : Measurable right) :
     MeasurableSet (yNormalDomain c d left right) := by
   unfold yNormalDomain
   measurability
 
-/-- `y`-型正常区域的示性函数按水平截面分解。-/
+/-- `y`-型正常区域的示性函数按水平截面分解。
+@isnad1 id=eq.0h6v.s6.cfd83c090c64 from=translated src=- shape=1a8d5c29 vocab=3b7840a5
+-/
 lemma indicator_yNormalDomain_section (f : ℝ × ℝ → ℝ) (c d : ℝ)
     (left right : ℝ → ℝ) (y : ℝ) :
     (fun x ↦ (yNormalDomain c d left right).indicator f (x, y)) =
@@ -294,7 +316,9 @@ lemma indicator_yNormalDomain_section (f : ℝ × ℝ → ℝ) (c d : ℝ)
     simp [Set.indicator, yNormalDomain, hy]
 
 /-- **`y`-型正常区域的 Fubini 公式**：先沿水平截面对 `x` 积分，再对 `y` 积分。
-左右边界只需可测。-/
+左右边界只需可测。
+@isnad1 id=eq.3h5v.s7.1297c9609f11 from=translated src=- shape=0ab96b85 vocab=66996b36
+-/
 theorem integral_yNormalDomain_eq_iterated_of_measurable
     {f : ℝ × ℝ → ℝ} {c d : ℝ} {left right : ℝ → ℝ}
     (hleft : Measurable left) (hright : Measurable right)
@@ -326,7 +350,9 @@ def yNormalDomainFin (c d : ℝ) (left right : ℝ → ℝ) : Set (Fin 2 → ℝ
 
 /-- **`y`-型区域的 Riemann--Fubini 计算桥**：多元 Riemann 积分先变成 Lebesgue
 积分，交换 Fubini 次序后，再把每条水平截面转回一维 Riemann 积分。区域不需要
-Jordan 可测，左右边界也只需可测。-/
+Jordan 可测，左右边界也只需可测。
+@isnad1 id=eq.8h6v.s10.79a49a6b2c37 from=translated src=- shape=5f6c3ad9 vocab=2ca42e4d
+-/
 theorem riemannBoxIntegral_yNormalDomain_eq_integral_riemann_of_aeContinuous
     {f : ℝ × ℝ → ℝ} {c d : ℝ} {left right : ℝ → ℝ}
     (hleft : Measurable left) (hright : Measurable right)

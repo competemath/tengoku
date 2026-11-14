@@ -58,7 +58,9 @@ structure PiecewiseSmoothRegion {ι ε : Type*} (patches : Finset ι) (edges : F
   gluing : ∀ e ∈ edges, externalIncidence e = ∑ i ∈ patches, localIncidence i e
 
 /-- 当所有参数片共用同一个拉回密度 `curlDensity` 时，分段光滑区域的测度数据就是一
-个 `GreenFiniteDecomposition`；这给出二维 Green 装配所需的桥。-/
+个 `GreenFiniteDecomposition`；这给出二维 Green 装配所需的桥。
+@isnad1 id=greenfin.2h9v.s6.f1dfb24b58d3 from=translated src=- shape=6a653c7f vocab=28b7398f
+-/
 theorem PiecewiseSmoothRegion.toGreenFiniteDecomposition
     {ι ε : Type*} {patches : Finset ι} {edges : Finset ε}
     {parameterDomain : ι → Set (ℝ × ℝ)} {pulledBackDensity : ι → ℝ × ℝ → ℝ}
@@ -82,7 +84,9 @@ theorem PiecewiseSmoothRegion.toGreenFiniteDecomposition
 `finiteAtlasSurfaceIntegral`。
 
 这是教材“把区域分成有限多个参数片、在每片上分别用 Stokes 公式、公共边相消”的代数
-装配层：分析内容全部由假设 `hlocal` 提供，几何抵消由 `gluing` 保证。-/
+装配层：分析内容全部由假设 `hlocal` 提供，几何抵消由 `gluing` 保证。
+@isnad1 id=eq.2h9v.s7.3f2cd20216cf from=translated src=- shape=907b2409 vocab=6aa4bdca
+-/
 theorem stokes_piecewiseSmoothRegion
     {ι ε : Type*} (patches : Finset ι) (edges : Finset ε)
     (parameterDomain : ι → Set (ℝ × ℝ)) (pulledBackDensity : ι → ℝ × ℝ → ℝ)
@@ -101,7 +105,9 @@ theorem stokes_piecewiseSmoothRegion
 /-- **闭分段光滑区域上的 Stokes 推论。**
 
 若整体外边界的每条边关联数都为零，则所有参数片上拉回外微分密度的积分之和为零。
-这是“闭曲面（无边界区域）上外微分积分消失”的装配版本。-/
+这是“闭曲面（无边界区域）上外微分积分消失”的装配版本。
+@isnad1 id=eq.3h9v.s7.f4c4973adcca from=translated src=- shape=0bfbaedb vocab=6aa4bdca
+-/
 theorem stokes_closed_piecewiseSmoothRegion
     {ι ε : Type*} (patches : Finset ι) (edges : Finset ε)
     (parameterDomain : ι → Set (ℝ × ℝ)) (pulledBackDensity : ι → ℝ × ℝ → ℝ)
@@ -121,7 +127,9 @@ theorem stokes_closed_piecewiseSmoothRegion
 
 把分段光滑区域直接读作平面有限分片：每片参数域就是平面区域单元 `cell`，各片共用一个
 旋度密度 `curlDensity`（由 `hdensity` 保证逐片密度与之一致）。在每片上用局部 Green 公式
-（由 `hlocal` 提供），公共边关联数相消后得到整体并区域的旋度积分。-/
+（由 `hlocal` 提供），公共边关联数相消后得到整体并区域的旋度积分。
+@isnad1 id=eq.3h10v.s8.4f1a909696b0 from=translated src=- shape=ce59f4c0 vocab=d1713b04
+-/
 theorem green_piecewiseSmoothRegion
     {ι ε : Type*} (pieces : Finset ι) (edges : Finset ε)
     (cell : ι → Set (ℝ × ℝ)) (pulledBackDensity : ι → ℝ × ℝ → ℝ)
@@ -144,7 +152,9 @@ theorem green_piecewiseSmoothRegion
 
 每个体元带自己的散度密度；局部外向通量由 `hlocal` 给出为体元上的散度积分，公共面上
 两个相反的外法向关联数相消，剩下整体外边界通量。三维情形无法复用二维的
-`PiecewiseSmoothRegion`，故这里直接接收 `GaussFiniteDecomposition`。-/
+`PiecewiseSmoothRegion`，故这里直接接收 `GaussFiniteDecomposition`。
+@isnad1 id=eq.3h9v.s8.73b9997bb485 from=translated src=- shape=a30e27c6 vocab=a603a710
+-/
 theorem gauss_piecewiseSmoothRegion
     {ι φ : Type*} (pieces : Finset ι) (faces : Finset φ)
     (cell : ι → Set (Fin 3 → ℝ)) (divDensity : (Fin 3 → ℝ) → ℝ)
@@ -162,7 +172,9 @@ theorem gauss_piecewiseSmoothRegion
 
 /-! ## 两片共享边的显式抵消 -/
 
-/-- 两片共享一条边且局部关联数相反时，整体外边界在该共享边上的关联数为零。-/
+/-- 两片共享一条边且局部关联数相反时，整体外边界在该共享边上的关联数为零。
+@isnad1 id=eq.3h5v.s7.d5229acaf7ae from=translated src=- shape=e1622e5e vocab=44b54098
+-/
 theorem twoPatch_sharedEdge_externalIncidence_zero
     {ε : Type*} (edges : Finset ε) (localIncidence : Fin 2 → ε → ℤ)
     (externalIncidence : ε → ℤ) (shared : ε)
@@ -175,7 +187,9 @@ theorem twoPatch_sharedEdge_externalIncidence_zero
 /-- 共享边的局部关联数相反时，从整体外边界值中删去这条边不改变结果。
 
 这是“公共边贡献相消”的显式版本：外部关联数在共享边上的值为零，所以该边在
-`orientedBoundaryValue` 中的单项贡献为零，可以整条删去。-/
+`orientedBoundaryValue` 中的单项贡献为零，可以整条删去。
+@isnad1 id=and.3h6v.s7.02f883964abc from=translated src=- shape=450fbf80 vocab=749cf7a2
+-/
 theorem twoPatch_sharedEdge_cancellation
     {ε : Type*} [DecidableEq ε] (edges : Finset ε) (localIncidence : Fin 2 → ε → ℤ)
     (externalIncidence : ε → ℤ) (edgeIntegral : ε → ℝ) (shared : ε)
@@ -210,7 +224,9 @@ theorem twoPatch_sharedEdge_cancellation
 等价地，共享边的贡献在两片之间抵消。
 
 证明先由 `gluing` 把整体关联数换成两片之和，再用 `orientedBoundaryValue_sum` 把
-关联数之和的边界值拆成两片边界值之和，最后代入每片的局部积分公式。-/
+关联数之和的边界值拆成两片边界值之和，最后代入每片的局部积分公式。
+@isnad1 id=and.4h8v.s8.4bf361a13d66 from=translated src=- shape=bf177c85 vocab=534736c7
+-/
 theorem stokes_twoPatch_sharedEdge
     {ε : Type*} (edges : Finset ε)
     (parameterDomain : Fin 2 → Set (ℝ × ℝ))
@@ -264,7 +280,9 @@ private def twoPatchParameterDomain (i : Fin 2) : Set (ℝ × ℝ) :=
 private def twoPatchLocalIncidence (i : Fin 2) (_ : Fin 1) : ℤ :=
   if i = 0 then 1 else -1
 
-/-- 显式证明两个矩形参数片构成一个分段光滑区域。-/
+/-- 显式证明两个矩形参数片构成一个分段光滑区域。
+@isnad1 id=piecewis.0h0v.s6.d4c51d5fd6d7 from=translated src=- shape=735a71d2 vocab=88bb6307
+-/
 theorem twoPatchRegion_example :
     PiecewiseSmoothRegion (Finset.univ : Finset (Fin 2)) (Finset.univ : Finset (Fin 1))
       twoPatchParameterDomain (fun _ _ => 0) twoPatchLocalIncidence (fun _ => 0) := by
@@ -302,7 +320,9 @@ theorem twoPatchRegion_example :
   · intro e _
     simp [twoPatchLocalIncidence, Fin.sum_univ_two]
 
-/-- 显式实例上的 Stokes 装配：外边界值等于两个参数片上拉回密度（恒为零）积分之和。-/
+/-- 显式实例上的 Stokes 装配：外边界值等于两个参数片上拉回密度（恒为零）积分之和。
+@isnad1 id=eq.0h0v.s6.408ada9159ab from=translated src=- shape=3abd50f3 vocab=cd7ef119
+-/
 theorem twoPatchRegion_stokes_example :
     orientedBoundaryValue (Finset.univ : Finset (Fin 1)) (fun _ => 0) (fun _ => 0) =
       finiteAtlasSurfaceIntegral (Finset.univ : Finset (Fin 2))

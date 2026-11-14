@@ -42,14 +42,18 @@ namespace CommutativeAlgebra.Module
 /-- **生成子模包含原集合**（Atiyah–Macdonald 第 2 章）：`s ⊆ ⟨s⟩`。
 `Submodule.span R s` 是教材 `⟨s⟩` 的语义一致的正式承载；这条是「含 `s`」那一半，
 与下面的最小性合起来才是「含 `s` 的最小子模」。
-> **Entry**: commutative-algebra.module.generated-/
+> **Entry**: commutative-algebra.module.generated
+@isnad1 id=le.0h3v.s6.ebe5ff094670 from=translated src=- shape=2279147b vocab=d6440462
+-/
 theorem subset_span {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     {s : Set M} : s ⊆ Submodule.span R s :=
   Submodule.subset_span
 
 /-- **最小性（元素层）**（Atiyah–Macdonald 第 2 章）：`x ∈ ⟨s⟩` 当且仅当 `x` 属于每个
 包含 `s` 的子模。这是「最小」在元素上的展开：属于 `⟨s⟩` 就是被所有含 `s` 的子模共享。
-> **Entry**: commutative-algebra.module.generated-/
+> **Entry**: commutative-algebra.module.generated
+@isnad1 id=iff.0h4v.s7.07d5a17abe62 from=translated src=- shape=5d6900ce vocab=a843c67b
+-/
 theorem mem_span_iff {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     (s : Set M) (x : M) :
     x ∈ Submodule.span R s ↔ ∀ p : Submodule R M, s ⊆ p → x ∈ p :=
@@ -58,7 +62,9 @@ theorem mem_span_iff {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
 /-- **最小性（序层，伴随形式）**（Atiyah–Macdonald 第 2 章）：`⟨s⟩ ≤ p` 当且仅当 `s ⊆ p`。
 这是「最小」作为子模格中最小上界的标准形式：`span R` 是含入函子 `s ↦ s` 的左伴随，
 `⟨s⟩` 是 `s` 在子模格里的下界中最小的那个。
-> **Entry**: commutative-algebra.module.generated-/
+> **Entry**: commutative-algebra.module.generated
+@isnad1 id=iff.0h4v.s7.6085cce5758b from=translated src=- shape=84a6d88f vocab=d6440462
+-/
 theorem span_le_iff_subset {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     (s : Set M) (p : Submodule R M) :
     Submodule.span R s ≤ p ↔ s ⊆ p :=
@@ -68,7 +74,9 @@ theorem span_le_iff_subset {R M : Type*} [CommRing R] [AddCommGroup M] [Module R
 `p` 包含 `s`，且 `p` 含于每个包含 `s` 的子模。这是教材原话「`⟨s⟩` 是包含 `s` 的最小子模」
 的直接形式化：右式的第一条说 `p` 有资格当候选，第二条说它是最小的那个。
 正向由 `subset_span` 与 `span_le_iff_subset` 给出，反向由子模格的反对称性给出。
-> **Entry**: commutative-algebra.module.generated-/
+> **Entry**: commutative-algebra.module.generated
+@isnad1 id=iff.0h4v.s7.986ac79d934c from=translated src=- shape=99752d75 vocab=d6440462
+-/
 theorem span_eq_iff_subset_and_le {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     (s : Set M) (p : Submodule R M) :
     Submodule.span R s = p ↔ s ⊆ p ∧ ∀ q : Submodule R M, s ⊆ q → p ≤ q := by
@@ -84,7 +92,9 @@ theorem span_eq_iff_subset_and_le {R M : Type*} [CommRing R] [AddCommGroup M] [M
 两种写法在本条目里互为对照。本版 Mathlib 直接把 `Submodule.span R s` 定义为
 `sInf {p | s ⊆ p}`，所以这条在本版是定义展开（`rfl`），不是需要另找证明的数学内容；
 证明体写成 `rfl` 也顺带避免了走 `le_sInf`/`sInf_le` 把 `Classical.choice` 带进公理档案。
-> **Entry**: commutative-algebra.module.generated-/
+> **Entry**: commutative-algebra.module.generated
+@isnad1 id=eq.0h3v.s7.1cf2849ab862 from=translated src=- shape=aeb59dec vocab=a3ee7e2e
+-/
 theorem span_eq_sInf {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     (s : Set M) :
     Submodule.span R s = sInf {p : Submodule R M | s ⊆ p} :=
@@ -95,7 +105,9 @@ theorem span_eq_sInf {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
 `0`、`+`、`•` 生成」的严格说法：任何包含 `s` 且对三条运算封闭的性质都自动在整个 `⟨s⟩` 上成立。
 Mathlib 的 `Submodule.span_induction` 用的是带证明项的 motive
 `p : (x : M) → x ∈ span R s → Prop`，本条把它包装成教材的 `P : M → Prop` 形式。
-> **Entry**: commutative-algebra.module.generated-/
+> **Entry**: commutative-algebra.module.generated
+@isnad1 id=var.1h9v.s7.4ee9570712e8 from=translated src=- shape=eb0ae8e0 vocab=8f990830
+-/
 theorem span_induction {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     {s : Set M} {P : M → Prop}
     (mem : ∀ x ∈ s, P x) (zero : P 0) (add : ∀ x y, P x → P y → P (x + y))
@@ -110,14 +122,18 @@ theorem span_induction {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
 证明体正是这个推导（复用本文件的 `span_le_iff_subset` 与 `subset_span`，不走 Mathlib
 `Submodule.span_mono`）；合成 `s ⊆ t ⊆ ⟨t⟩` 时用显式 `Set.Subset.trans` 而不是点记号 `h.trans`，
 后者会经 `Trans` 实例把 `Classical.choice` 带进公理档案（见本条目文档「应用与陷阱」）。
-> **Entry**: commutative-algebra.module.generated-/
+> **Entry**: commutative-algebra.module.generated
+@isnad1 id=le.1h4v.s6.9d04492591d4 from=translated src=- shape=39007377 vocab=20f00c09
+-/
 theorem span_mono {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     {s t : Set M} (h : s ⊆ t) : Submodule.span R s ≤ Submodule.span R t :=
   (span_le_iff_subset s (Submodule.span R t)).mpr (Set.Subset.trans h subset_span)
 
 /-- **子模的生成幂等**（Atiyah–Macdonald 第 2 章）：若生成集本身是子模 `p` 的载体，
 则 `⟨p⟩ = p`。这正是「子模已经对 `0`、`+`、`•` 封闭，无需再生成」。
-> **Entry**: commutative-algebra.module.generated-/
+> **Entry**: commutative-algebra.module.generated
+@isnad1 id=eq.0h3v.s6.0ae0cb0296ce from=translated src=- shape=6ac48322 vocab=26a7a75e
+-/
 theorem span_eq_of_submodule {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     (p : Submodule R M) : Submodule.span R (p : Set M) = p :=
   Submodule.span_eq p
@@ -125,7 +141,9 @@ theorem span_eq_of_submodule {R M : Type*} [CommRing R] [AddCommGroup M] [Module
 /-- **生成子的生成幂等**（Atiyah–Macdonald 第 2 章）：`⟨⟨s⟩⟩ = ⟨s⟩`。
 由 `span_eq_of_submodule` 作用在子模 `⟨s⟩` 上得到，说明「生成」这一操作是幂等的
 （闭包算子的三条性质在本条目里分别是 `subset_span`、`span_mono`、本条）。
-> **Entry**: commutative-algebra.module.generated-/
+> **Entry**: commutative-algebra.module.generated
+@isnad1 id=eq.0h3v.s6.a815e54de0bf from=translated src=- shape=f514e38d vocab=7d41c471
+-/
 theorem span_span {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     (s : Set M) :
     Submodule.span R (Submodule.span R s : Set M) = Submodule.span R s :=
@@ -135,7 +153,9 @@ theorem span_span {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
 空集没有元素可生成，最小的候选只剩零子模；证明用最小性（`⟨∅⟩ ≤ ⊥`，因为 `∅ ⊆ ⊥`）
 与 `⊥` 的最小性两条夹出，不走 Mathlib `Submodule.span_empty` 的 `GaloisInsertion` 证明路径
 （那条路径会把 `Classical.choice` 带进公理档案，见本条目文档的「Mathlib 角色分类」一节）。
-> **Entry**: commutative-algebra.module.generated-/
+> **Entry**: commutative-algebra.module.generated
+@isnad1 id=eq.0h2v.s6.1eea339d4c53 from=translated src=- shape=1edd8097 vocab=dd3853d9
+-/
 theorem span_empty {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M] :
     Submodule.span R (∅ : Set M) = ⊥ :=
   le_antisymm (Submodule.span_le.2 (Set.empty_subset _)) bot_le
@@ -143,7 +163,9 @@ theorem span_empty {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M] :
 /-- **全集生成整个模**（Atiyah–Macdonald 第 2 章）：`⟨univ⟩ = ⊤`。
 整个模本身就含 `univ` 且是子模，由最小性即得；证明用 `eq_top_iff'`（每个 `x` 都在 `univ` 里，
 再由 `subset_span` 属于 `⟨univ⟩`）配合 `⊤` 的最大性，复用本文件的 `subset_span`。
-> **Entry**: commutative-algebra.module.generated-/
+> **Entry**: commutative-algebra.module.generated
+@isnad1 id=eq.0h2v.s6.81b944a09e98 from=translated src=- shape=141a0f04 vocab=bdff5e15
+-/
 theorem span_univ {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M] :
     Submodule.span R (Set.univ : Set M) = ⊤ :=
   Submodule.eq_top_iff'.mpr fun x => subset_span (Set.mem_univ x)
@@ -154,7 +176,9 @@ theorem span_univ {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M] :
 诚实披露：本条的类型含子模格的 `⊔`，而本版 Mathlib 的 `Sup (Submodule R M)` 实例定义体
 是经典的，所以 `#print axioms` 会报 `Classical.choice`；这是类型级噪声（Playbook §3.3），
 不是本条的数学内容需要选择公理。
-> **Entry**: commutative-algebra.module.generated-/
+> **Entry**: commutative-algebra.module.generated
+@isnad1 id=eq.0h4v.s7.c9bf0787cf96 from=translated src=- shape=5b1151ae vocab=6421a370
+-/
 theorem span_union {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     (s t : Set M) :
     Submodule.span R (s ∪ t) = Submodule.span R s ⊔ Submodule.span R t := by
@@ -172,7 +196,9 @@ theorem span_union {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
 /-- **零子模判定**（Atiyah–Macdonald 第 2 章）：`⟨s⟩ = ⊥` 当且仅当 `s` 的每个元素都是 `0`。
 左到右是「`s ⊆ ⟨s⟩ = ⊥`」，右到左是「零子模含 `s`，由最小性 `⟨s⟩ ≤ ⊥`」；
 证明体按这两句话写出（复用本文件的 `subset_span` 与 `span_le_iff_subset`）。
-> **Entry**: commutative-algebra.module.generated-/
+> **Entry**: commutative-algebra.module.generated
+@isnad1 id=iff.0h3v.s6.d2af86447364 from=translated src=- shape=602943d9 vocab=34c3573c
+-/
 theorem span_eq_bot_iff {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     {s : Set M} : Submodule.span R s = ⊥ ↔ ∀ x ∈ s, x = 0 :=
   ⟨fun h x hx => by
@@ -185,7 +211,9 @@ theorem span_eq_bot_iff {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
 /-- **单元素生成的子模**（Atiyah–Macdonald 第 2 章）：`x ∈ R ∙ y` 当且仅当 `x` 是 `y` 的
 纯量倍，即存在 `a : R` 使 `a • y = x`。`R ∙ y` 是 Mathlib 对 `Submodule.span R {y}` 的记号，
 本条是教材「由一个元素生成的子模」的成员刻画。
-> **Entry**: commutative-algebra.module.generated-/
+> **Entry**: commutative-algebra.module.generated
+@isnad1 id=iff.0h4v.s7.4cf0c651d96c from=translated src=- shape=07acfbff vocab=f70b7265
+-/
 theorem mem_span_singleton_iff {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     (x y : M) : x ∈ R ∙ y ↔ ∃ a : R, a • y = x :=
   Submodule.mem_span_singleton
@@ -198,7 +226,9 @@ theorem mem_span_singleton_iff {R M : Type*} [CommRing R] [AddCommGroup M] [Modu
 合成自动提供，不会作为假设出现在本条的公开签名里。证明按教材的两个包含直接写出
 （`map F ⟨s⟩ ≤ ⟨F '' s⟩` 用 `map_le_iff_le_comap` 与最小性；反向用最小性与 `mem_map_of_mem`），
 既不需要 `RingHomSurjective`，也不走 Mathlib `map_span` 的证明路径。
-> **Entry**: commutative-algebra.module.generated-/
+> **Entry**: commutative-algebra.module.generated
+@isnad1 id=eq.0h5v.s7.037eb4636ff6 from=translated src=- shape=0f5c537c vocab=4c97d63b
+-/
 theorem map_span {R M N : Type*} [CommRing R] [AddCommGroup M] [AddCommGroup N]
     [Module R M] [Module R N] (F : M →ₗ[R] N) (s : Set M) :
     Submodule.map F (Submodule.span R s) = Submodule.span R (F '' s) := by

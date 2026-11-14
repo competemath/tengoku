@@ -29,16 +29,22 @@ variable [NormedLinearSpace ℝ E] [NormedLinearSpace ℝ F]
 
 这正是正式承载 `E →L[ℝ] F` 所对应的教材“有界性”。
 
-> **Entry**: functional-analysis.operator.continuous-linear-map-/
+> **Entry**: functional-analysis.operator.continuous-linear-map
+@isnad1 id=ex.0h3v.s7.f9b46628c208 from=translated src=- shape=3f20a513 vocab=7f5be49a
+-/
 theorem continuousLinearMap_exists_bound (T : E →L[ℝ] F) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ x : E, ‖T x‖ ≤ C * ‖x‖ := by
   exact ⟨‖T‖, norm_nonneg T, T.le_opNorm⟩
 
-/-- 连续线性算子忘掉线性结构后，其底层函数仍然连续。-/
+/-- 连续线性算子忘掉线性结构后，其底层函数仍然连续。
+@isnad1 id=continuo.0h3v.s7.5c58de7842dc from=translated src=- shape=6d532841 vocab=100a5164
+-/
 theorem continuousLinearMap_continuous (T : E →L[ℝ] F) : Continuous T := by
   exact T.continuous
 
-/-- 零算子的输出范数恒为零，因此全局界可以取 `C = 0`；这是正式承载的最简单具体例子。-/
+/-- 零算子的输出范数恒为零，因此全局界可以取 `C = 0`；这是正式承载的最简单具体例子。
+@isnad1 id=le.0h3v.s8.83125e63c7c3 from=translated src=- shape=2d0ab570 vocab=7f5be49a
+-/
 theorem continuousLinearMap_zero_bound :
     ∀ x : E, ‖(0 : E →L[ℝ] F) x‖ ≤ 0 * ‖x‖ := by
   intro x
@@ -49,7 +55,9 @@ theorem continuousLinearMap_zero_bound :
 正向由连续线性映射的算子范数给出界；反向则用该界把普通线性映射升级成连续线性映射。这就是
 泛函分析中“线性算子连续”等价于“线性算子有界”的标准定理。
 
-> **Entry**: functional-analysis.operator.bounded-iff-/
+> **Entry**: functional-analysis.operator.bounded-iff
+@isnad1 id=iff.0h3v.s8.fdefa5816add from=translated src=- shape=ae22a0ff vocab=d7af2855
+-/
 theorem linearMap_continuous_iff_exists_bound (T : E →ₗ[ℝ] F) :
     Continuous T ↔ ∃ C : ℝ, 0 ≤ C ∧ ∀ x : E, ‖T x‖ ≤ C * ‖x‖ := by
   constructor

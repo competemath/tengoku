@@ -35,14 +35,18 @@ def surfaceIntegralFirstKind3 (f : (Fin 3 → ℝ) → ℝ)
     (σ : ParametrizedSurface 3) (s : Set (ℝ × ℝ)) : ℝ :=
   ∫ p in s, f (σ p) * surfaceAreaElement3 σ p ∂(volume.prod volume)
 
-/-- 常密度的第一型曲线积分等于常数乘弧长。-/
+/-- 常密度的第一型曲线积分等于常数乘弧长。
+@isnad1 id=eq.0h5v.s5.3fcc2ac31377 from=translated src=- shape=68a325f8 vocab=b6a97470
+-/
 theorem curveIntegralFirstKind_const {n : ℕ} (c : ℝ)
     (γ : ParametrizedCurve n) (a b : ℝ) :
     curveIntegralFirstKind (fun _ ↦ c) γ a b = c * curveArcLength γ a b := by
   rw [curveIntegralFirstKind, curveArcLength,
     intervalIntegral.integral_const_mul]
 
-/-- 第一型曲线积分在导数非负的保向可微换参数下不变。-/
+/-- 第一型曲线积分在导数非负的保向可微换参数下不变。
+@isnad1 id=eq.3h6v.s7.8783609a349f from=translated src=- shape=d22941f0 vocab=0f98b746
+-/
 theorem curveIntegralFirstKind_comp_of_deriv_nonneg {n : ℕ}
     (f : (Fin n → ℝ) → ℝ) (γ : ParametrizedCurve n) (φ : ℝ → ℝ) (c d : ℝ)
     (hγ : Differentiable ℝ γ) (hφ : Differentiable ℝ φ)
@@ -59,7 +63,9 @@ theorem curveIntegralFirstKind_comp_of_deriv_nonneg {n : ℕ}
     (fun t _ ↦ hφnonneg t)
   simpa only [Function.comp_apply, mul_assoc] using hsub
 
-/-- 常密度的第一型曲面积分等于常数乘曲面面积。-/
+/-- 常密度的第一型曲面积分等于常数乘曲面面积。
+@isnad1 id=eq.0h3v.s5.04016bd89dd8 from=translated src=- shape=95a101f8 vocab=4c53b160
+-/
 theorem surfaceIntegralFirstKind3_const (c : ℝ)
     (σ : ParametrizedSurface 3) (s : Set (ℝ × ℝ)) :
     surfaceIntegralFirstKind3 (fun _ ↦ c) σ s = c * surfaceAreaOn3 σ s := by
@@ -70,7 +76,9 @@ theorem surfaceIntegralFirstKind3_const (c : ℝ)
 
 若 `s` 可测、`φ` 全局可微且在 `s` 上单射，则复合参数化在 `s` 上的第一型积分，
 等于原参数化在像域 `φ '' s` 上的第一型积分。Jacobian 因子由面积元变换公式给出，
-再由二维积分换元公式吸收。-/
+再由二维积分换元公式吸收。
+@isnad1 id=eq.4h4v.s8.d2821f068b60 from=translated src=- shape=d6f44fbb vocab=49c3db69
+-/
 theorem surfaceIntegralFirstKind3_comp_reparam
     (f : (Fin 3 → ℝ) → ℝ)
     (σ : ParametrizedSurface 3) (φ : ℝ × ℝ → ℝ × ℝ)

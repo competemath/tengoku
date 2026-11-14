@@ -403,7 +403,9 @@ private theorem fieldBasis_reindex_bridge {K L ι κ : Type*}
 有限指标类型允许把任意有限支撑关系统一
 扩张到 `Finset.univ`，反向则直接把全指标关系视为一般有限关系。
 
-> **Entry**: abstract-algebra.field.degree-/
+> **Entry**: abstract-algebra.field.degree
+@isnad1 id=iff.0h5v.s5.7a7083c96404 from=translated src=- shape=a1a76dd6 vocab=38a42763
+-/
 theorem finFieldBasis_iff_fieldBasis {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) {n : ℕ} (v : Fin n → L) :
     FinFieldBasis e v ↔ FieldBasis e v := by
@@ -413,7 +415,9 @@ theorem finFieldBasis_iff_fieldBasis {K L : Type*} [Field K] [Field L]
 所得系数函数以 `Fin n → K` 表示，其显式有限
 线性组合在嵌入 `e` 下恰好等于给定元素。
 
-> **Entry**: abstract-algebra.field.degree-/
+> **Entry**: abstract-algebra.field.degree
+@isnad1 id=ex.1h6v.s5.c4688cb2a65f from=translated src=- shape=5a151e0e vocab=ee173f7f
+-/
 theorem finFieldBasis_coordinates_exists {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) {n : ℕ} {b : Fin n → L}
     (hb : FinFieldBasis e b) (x : L) :
@@ -424,7 +428,9 @@ theorem finFieldBasis_coordinates_exists {K L : Type*} [Field K] [Field L]
 证明把两组表示相减形成零线性关系，
 再由有限基的线性无关部分逐坐标消去。
 
-> **Entry**: abstract-algebra.field.degree-/
+> **Entry**: abstract-algebra.field.degree
+@isnad1 id=eq.3h8v.s6.a4cdf4714e7f from=translated src=- shape=2d7f067a vocab=ee173f7f
+-/
 theorem finFieldBasis_coordinates_unique {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) {n : ℕ} {b : Fin n → L}
     (hb : FinFieldBasis e b) (x : L) {c d : Fin n → K}
@@ -436,7 +442,9 @@ theorem finFieldBasis_coordinates_unique {K L : Type*} [Field K] [Field L]
 该定理把前述坐标存在性和坐标唯一性
 组装为教材常用的 `∃!` 形式。
 
-> **Entry**: abstract-algebra.field.degree-/
+> **Entry**: abstract-algebra.field.degree
+@isnad1 id=existsun.1h6v.s5.06ea0ab69eb3 from=translated src=- shape=5a151e0e vocab=ad2e9eb4
+-/
 theorem finFieldBasis_coordinates_exists_unique {K L : Type*}
     [Field K] [Field L] (e : FieldEmbedding K L)
     {n : ℕ} {b : Fin n → L} (hb : FinFieldBasis e b) (x : L) :
@@ -450,7 +458,9 @@ theorem finFieldBasis_coordinates_exists_unique {K L : Type*}
 私有证明后端把它们转成 Mathlib 基并
 比较有限维数，公开结论只保留两个自然数相等。
 
-> **Entry**: abstract-algebra.field.degree-/
+> **Entry**: abstract-algebra.field.degree
+@isnad1 id=eq.2h7v.s5.86202bbc4fe6 from=translated src=- shape=a3a0ab72 vocab=44961fac
+-/
 theorem fieldExtensionBasis_card_eq {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) {m n : ℕ} {b : Fin m → L} {c : Fin n → L}
     (hb : FinFieldBasis e b) (hc : FinFieldBasis e c) : m = n := by
@@ -460,7 +470,9 @@ theorem fieldExtensionBasis_card_eq {K L : Type*} [Field K] [Field L]
 任意两个 `HasExtensionDegree` 见证都给出有限基，
 故由有限基长度不变性得到相同次数。
 
-> **Entry**: abstract-algebra.field.degree-/
+> **Entry**: abstract-algebra.field.degree
+@isnad1 id=eq.2h5v.s5.9d7270736f72 from=translated src=- shape=cab1b648 vocab=347fc93e
+-/
 theorem extensionDegree_unique {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) {m n : ℕ}
     (hm : HasExtensionDegree e m) (hn : HasExtensionDegree e n) : m = n := by
@@ -470,7 +482,9 @@ theorem extensionDegree_unique {K L : Type*} [Field K] [Field L]
 因为 `Fin 0` 上的线性组合恒为零，它无法表示目标域
 中的单位元 `1`。
 
-> **Entry**: abstract-algebra.field.degree-/
+> **Entry**: abstract-algebra.field.degree
+@isnad1 id=not.0h3v.s4.32f083f407bf from=translated src=- shape=67f0fbbb vocab=347fc93e
+-/
 theorem not_hasExtensionDegree_zero {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) : ¬HasExtensionDegree e 0 := by
   exact (extensionDegree_basic_package e).1
@@ -479,7 +493,9 @@ theorem not_hasExtensionDegree_zero {K L : Type*} [Field K] [Field L]
 该结论由零维不可能性排除 `n = 0`，给出教材中
 有限扩张次数总为正整数的表述。
 
-> **Entry**: abstract-algebra.field.degree-/
+> **Entry**: abstract-algebra.field.degree
+@isnad1 id=lt.1h4v.s5.6a0fd54b94e8 from=translated src=- shape=dd36aeb2 vocab=baa47e80
+-/
 theorem extensionDegree_pos {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) {n : ℕ} (hn : HasExtensionDegree e n) : 0 < n := by
   exact (extensionDegree_basic_package e).2.1 n hn
@@ -490,7 +506,9 @@ theorem extensionDegree_pos {K L : Type*} [Field K] [Field L]
 任意元素就是自身乘以 `1`，而一项零线性关系
 立即迫使唯一系数为零。
 
-> **Entry**: abstract-algebra.field.degree-/
+> **Entry**: abstract-algebra.field.degree
+@isnad1 id=finfield.0h1v.s5.be127342122f from=translated src=- shape=63349176 vocab=14d7d937
+-/
 theorem finFieldBasis_id_one (K : Type*) [Field K] :
     FinFieldBasis (FieldEmbedding.id K) (fun _ : Fin 1 => (1 : K)) := by
   exact (identity_degree_package K).1
@@ -498,7 +516,9 @@ theorem finFieldBasis_id_one (K : Type*) [Field K] :
 /-- 恒等扩张的次数为一。该结果以显式的一元基为见证，直接建立
 `HasExtensionDegree (FieldEmbedding.id K) 1`。
 
-> **Entry**: abstract-algebra.field.degree-/
+> **Entry**: abstract-algebra.field.degree
+@isnad1 id=hasexten.0h1v.s4.1222da994e23 from=translated src=- shape=f3cef437 vocab=680e6728
+-/
 theorem extensionDegree_id_one (K : Type*) [Field K] :
     HasExtensionDegree (FieldEmbedding.id K) 1 := by
   exact (identity_degree_package K).2.1
@@ -507,7 +527,9 @@ theorem extensionDegree_id_one (K : Type*) [Field K] :
 正向由次数唯一性与已构造的一元基
 得到，反向则把等式改写后复用次数为一的见证。
 
-> **Entry**: abstract-algebra.field.degree-/
+> **Entry**: abstract-algebra.field.degree
+@isnad1 id=iff.0h2v.s4.48be59f9b9c8 from=translated src=- shape=a4406793 vocab=680e6728
+-/
 theorem extensionDegree_id_iff (K : Type*) [Field K] (n : ℕ) :
     HasExtensionDegree (FieldEmbedding.id K) n ↔ n = 1 := by
   exact (identity_degree_package K).2.2 n
@@ -518,7 +540,9 @@ theorem extensionDegree_id_iff (K : Type*) [Field K] (n : ℕ) :
 证明后端由有限基安装有限生成结构，调用成熟的
 有限扩张代数性定理，再桥回 A3.5 的显式 `AlgebraicElement`。
 
-> **Entry**: abstract-algebra.field.degree-/
+> **Entry**: abstract-algebra.field.degree
+@isnad1 id=algebrai.1h3v.s4.3b1d3b7e81e1 from=translated src=- shape=f61ba1fe vocab=5a18151c
+-/
 theorem finiteFieldExtension_isAlgebraic {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (hfin : FiniteFieldExtension e) :
     AlgebraicExtension e := by
@@ -540,7 +564,9 @@ def towerBasisFamily {L M : Type*} [Field L] [Field M]
 私有证明用标量塔上的基乘积
 验证线性无关与张成，公开结论仍使用显式 `FieldBasis`。
 
-> **Entry**: abstract-algebra.field.degree-/
+> **Entry**: abstract-algebra.field.degree
+@isnad1 id=fieldbas.2h9v.s6.b465456bdcd7 from=translated src=- shape=441a1837 vocab=bd90c840
+-/
 theorem towerBasisFamily_isBasis {K L M : Type*} [Field K] [Field L] [Field M]
     (e : FieldEmbedding K L) (f : FieldEmbedding L M)
     {m n : ℕ} {b : Fin m → L} {c : Fin n → M}
@@ -552,7 +578,9 @@ theorem towerBasisFamily_isBasis {K L M : Type*} [Field K] [Field L] [Field M]
 新族在指标 `j` 处取原族的 `h.symm j` 项，
 因此只改变编号而不改变向量集合、线性无关性或张成性。
 
-> **Entry**: abstract-algebra.field.degree-/
+> **Entry**: abstract-algebra.field.degree
+@isnad1 id=fieldbas.1h7v.s6.fa29848ed1b1 from=translated src=- shape=1373fd67 vocab=b8053ec8
+-/
 theorem fieldBasis_reindex {K L ι κ : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (v : ι → L) (h : ι ≃ κ)
     (hv : FieldBasis e v) : FieldBasis e (fun j : κ => v (h.symm j)) := by
@@ -578,7 +606,9 @@ private theorem extensionDegree_tower_bridge {K L M : Type*}
 乘积基先由 `Fin m × Fin n` 编号，
 再通过标准等价重编号为 `Fin (m * n)`。
 
-> **Entry**: abstract-algebra.field.degree-/
+> **Entry**: abstract-algebra.field.degree
+@isnad1 id=hasexten.2h7v.s6.2268ec51be72 from=translated src=- shape=f2c76f6a vocab=a7110e05
+-/
 theorem extensionDegree_tower {K L M : Type*} [Field K] [Field L] [Field M]
     (e : FieldEmbedding K L) (f : FieldEmbedding L M) {m n : ℕ}
     (he : HasExtensionDegree e m) (hf : HasExtensionDegree f n) :
@@ -598,7 +628,9 @@ private theorem finiteFieldExtension_comp_bridge {K L M : Type*}
 分别取两层有限次数见证后，塔式乘法定理
 给出复合嵌入的有限次数见证。
 
-> **Entry**: abstract-algebra.field.degree-/
+> **Entry**: abstract-algebra.field.degree
+@isnad1 id=finitefi.2h5v.s5.38d1d15c684b from=translated src=- shape=0718caa8 vocab=42cef999
+-/
 theorem finiteFieldExtension_comp {K L M : Type*} [Field K] [Field L] [Field M]
     (e : FieldEmbedding K L) (f : FieldEmbedding L M)
     (he : FiniteFieldExtension e) (hf : FiniteFieldExtension f) :

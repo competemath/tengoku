@@ -29,14 +29,18 @@ dense.
 
 The family is indexed by `ℕ`, matching the textbook meaning of “countably many”.
 
-> **Entry**: functional-analysis.baire.theorem-/
+> **Entry**: functional-analysis.baire.theorem
+@isnad1 id=dense.2h2v.s6.63ead4c18126 from=translated src=- shape=3ee2cc32 vocab=463643bf
+-/
 theorem banach_dense_iInter_of_isOpen {U : ℕ → Set E}
     (hOpen : ∀ n, IsOpen (U n)) (hDense : ∀ n, Dense (U n)) :
     Dense (⋂ n, U n) := by
   exact dense_iInter_of_isOpen_nat hOpen hDense
 
 /-- Closed-cover form of Baire: if countably many closed sets cover a nonempty Banach space, one
-of them has nonempty interior.-/
+of them has nonempty interior.
+@isnad1 id=ex.2h2v.s6.8166711d535d from=translated src=- shape=51b4942a vocab=8d31e600
+-/
 theorem banach_nonempty_interior_of_iUnion_of_closed [Nonempty E] {F : ℕ → Set E}
     (hClosed : ∀ n, IsClosed (F n)) (hCover : ⋃ n, F n = Set.univ) :
     ∃ n, (interior (F n)).Nonempty := by

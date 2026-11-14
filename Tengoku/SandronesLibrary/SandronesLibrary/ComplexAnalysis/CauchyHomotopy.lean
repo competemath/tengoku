@@ -51,7 +51,9 @@ def HomotopicWithin (U : Set ℂ) {a b : ℂ} (gamma delta : Path a b) : Prop :=
 /-- `HomotopicWithin` 的逐点展开：教材写法的 `∀ s t, F (s,t) ∈ U` 与方形载体
 `pathHomotopySquare` 的写法等价。
 
-> **Entry**: complex-analysis.cauchy.homotopy-/
+> **Entry**: complex-analysis.cauchy.homotopy
+@isnad1 id=iff.0h5v.s8.7abc0f279bd1 from=translated src=- shape=8959eafc vocab=4d2e913f
+-/
 theorem homotopicWithin_iff {U : Set ℂ} {a b : ℂ} (gamma delta : Path a b) :
     HomotopicWithin U gamma delta ↔
       ∃ F : gamma.Homotopy delta, ∀ s t : unitInterval, F (s, t) ∈ U := by
@@ -64,7 +66,9 @@ theorem homotopicWithin_iff {U : Set ℂ} {a b : ℂ} (gamma delta : Path a b) :
 /-- 可积正则道路是分段 C1 道路：把原函数构造所用的 `AdmissiblePath` 承载接到同伦不变性所需的
 `Path.PiecewiseC1` 承载上。归纳结构逐条对应，`PathIntegrable` 与像集信息在本条中不使用。
 
-> **Entry**: complex-analysis.cauchy.homotopy-/
+> **Entry**: complex-analysis.cauchy.homotopy
+@isnad1 id=piecewis.1h5v.s5.736c626d6fe0 from=translated src=- shape=6b78d7af vocab=30888bf3
+-/
 theorem AdmissiblePath.piecewiseC1 {f : ℂ → ℂ} {U : Set ℂ} {a b : ℂ} {gamma : Path a b}
     (h : AdmissiblePath f U gamma) : Path.PiecewiseC1 gamma := by
   induction h with
@@ -75,7 +79,9 @@ theorem AdmissiblePath.piecewiseC1 {f : ℂ → ℂ} {U : Set ℂ} {a b : ℂ} {
 `U` 内。证明把两条道路提升为子类型 `U` 上的道路，用单连通性给出的子类型同伦，再沿
 `Subtype.val` 搬回复平面；像集控制由子类型第二分量直接读出。道路本身无需分段 C1。
 
-> **Entry**: complex-analysis.cauchy.homotopy-/
+> **Entry**: complex-analysis.cauchy.homotopy
+@isnad1 id=homotopi.5h5v.s7.fcdde2c7d881 from=translated src=- shape=fc6d1fb0 vocab=3e6bbb3c
+-/
 theorem homotopicWithin_of_isSimplyConnected {U : Set ℂ} (hU : IsSimplyConnected U)
     {a b : ℂ} (ha : a ∈ U) (hb : b ∈ U) (gamma delta : Path a b)
     (hgamma : ∀ t, gamma t ∈ U) (hdelta : ∀ t, delta t ∈ U) :
@@ -97,7 +103,9 @@ theorem homotopicWithin_of_isSimplyConnected {U : Set ℂ} (hU : IsSimplyConnect
 集成的 `pathIntegral_eq_of_piecewiseC1_homotopyWithin` 的原始同伦假设包装成课程谓词
 `HomotopicWithin`，正则化与消内部边的证明仍由该已验收条目承担。
 
-> **Entry**: complex-analysis.cauchy.homotopy-/
+> **Entry**: complex-analysis.cauchy.homotopy
+@isnad1 id=eq.5h6v.s6.1ce388201001 from=translated src=- shape=f3d7b146 vocab=9aac8daa
+-/
 theorem pathIntegral_eq_of_homotopicWithin {U : Set ℂ} {f : ℂ → ℂ} {a b : ℂ}
     {gamma delta : Path a b} (hU : IsOpen U) (hf : HolomorphicOnTextbook f U)
     (hgamma : Path.PiecewiseC1 gamma) (hdelta : Path.PiecewiseC1 delta)
@@ -109,7 +117,9 @@ theorem pathIntegral_eq_of_homotopicWithin {U : Set ℂ} {f : ℂ → ℂ} {a b 
 /-- 单连通开域上的一般同伦形式：两条同端点分段 C1 道路（像在 `U` 内）的路径积分相等。同伦本身
 由 `homotopicWithin_of_isSimplyConnected` 提供，不需要使用者给出。
 
-> **Entry**: complex-analysis.cauchy.homotopy-/
+> **Entry**: complex-analysis.cauchy.homotopy
+@isnad1 id=eq.7h6v.s7.8313414220d6 from=translated src=- shape=8884742e vocab=949cbfde
+-/
 theorem pathIntegral_eq_of_isSimplyConnected {U : Set ℂ} {f : ℂ → ℂ} {a b : ℂ}
     {gamma delta : Path a b} (hU : IsOpen U) (hf : HolomorphicOnTextbook f U)
     (hconn : IsSimplyConnected U) (hgamma : Path.PiecewiseC1 gamma)
@@ -123,7 +133,9 @@ theorem pathIntegral_eq_of_isSimplyConnected {U : Set ℂ} {f : ℂ → ℂ} {a 
 
 /-- 单连通开域上的路径无关性：可积正则道路的积分只依赖端点。这是原函数构造所缺的那一步。
 
-> **Entry**: complex-analysis.cauchy.homotopy-/
+> **Entry**: complex-analysis.cauchy.homotopy
+@isnad1 id=pathinte.3h2v.s5.d33f360e68f0 from=translated src=- shape=9ecc0254 vocab=57ef1864
+-/
 theorem pathIntegralIndependentOn_of_isSimplyConnected {f : ℂ → ℂ} {U : Set ℂ}
     (hU : IsOpen U) (hf : HolomorphicOnTextbook f U) (hconn : IsSimplyConnected U) :
     PathIntegralIndependentOn f U := by
@@ -140,7 +152,9 @@ theorem pathIntegralIndependentOn_of_isSimplyConnected {f : ℂ → ℂ} {U : Se
 可积正则道路的积分等于原函数在端点的差。证明把新证的路径无关性喂给
 `exists_primitive_of_isSimplyConnected_of_pathIntegralIndependentOn`；后者只负责从基点的积分构造。
 
-> **Entry**: complex-analysis.cauchy.homotopy-/
+> **Entry**: complex-analysis.cauchy.homotopy
+@isnad1 id=ex.3h2v.s6.4ae1830c6231 from=translated src=- shape=7df0f8c6 vocab=d2beaadc
+-/
 theorem exists_primitive_of_isSimplyConnected {f : ℂ → ℂ} {U : Set ℂ}
     (hU : IsOpen U) (hf : HolomorphicOnTextbook f U) (hconn : IsSimplyConnected U) :
     ∃ g : ℂ → ℂ, ∀ z ∈ U, HasDerivAt g (f z) z :=
@@ -150,7 +164,9 @@ theorem exists_primitive_of_isSimplyConnected {f : ℂ → ℂ} {U : Set ℂ}
 /-- 单连通开域上的 Cauchy 定理：闭分段 C1 道路的积分为零。把闭路与常值道路比较，常值道路积分
 为零。
 
-> **Entry**: complex-analysis.cauchy.homotopy-/
+> **Entry**: complex-analysis.cauchy.homotopy
+@isnad1 id=eq.5h4v.s7.48e2cbe83ce9 from=translated src=- shape=60820a1e vocab=949cbfde
+-/
 theorem pathIntegral_eq_zero_of_isSimplyConnected {f : ℂ → ℂ} {U : Set ℂ} {a : ℂ}
     {gamma : Path a a} (hU : IsOpen U) (hf : HolomorphicOnTextbook f U)
     (hconn : IsSimplyConnected U) (hgamma : Path.PiecewiseC1 gamma)

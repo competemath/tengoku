@@ -40,7 +40,9 @@ def absJacobianWithin {n : ℕ} (φ : JordanEuc n → JordanEuc n)
 `∫_{φ(s)} g(y) dy = ∫_s g(φ(x)) |det Dφ(x)| dx`。
 
 该等式对不可积函数仍按 Bochner 积分的底层约定成立；需要传递可积性时使用下一条
-等价定理。-/
+等价定理。
+@isnad1 id=eq.3h4v.s8.3d915204ab54 from=translated src=- shape=2d8ec0d5 vocab=0ce5b6aa
+-/
 theorem integral_image_eq_integral_absJacobian_mul {n : ℕ}
     {s : Set (JordanEuc n)} {φ : JordanEuc n → JordanEuc n}
     (hs : MeasurableSet s) (hφ : DifferentiableOn ℝ φ s) (hinj : InjOn φ s)
@@ -52,7 +54,9 @@ theorem integral_image_eq_integral_absJacobian_mul {n : ℕ}
       (μ := volume) hs (fun x hx ↦ (hφ x hx).hasFDerivWithinAt) hinj g)
 
 /-- **换元后的可积性判据**：`g` 在像区域 `φ(s)` 上可积，当且仅当拉回并乘以
-Jacobian 绝对值后的函数在原区域 `s` 上可积。-/
+Jacobian 绝对值后的函数在原区域 `s` 上可积。
+@isnad1 id=iff.3h4v.s8.37313413023a from=translated src=- shape=417693cd vocab=10e28673
+-/
 theorem integrableOn_image_iff_integrableOn_absJacobian_mul {n : ℕ}
     {s : Set (JordanEuc n)} {φ : JordanEuc n → JordanEuc n}
     (hs : MeasurableSet s) (hφ : DifferentiableOn ℝ φ s) (hinj : InjOn φ s)
@@ -67,7 +71,9 @@ theorem integrableOn_image_iff_integrableOn_absJacobian_mul {n : ℕ}
 
 `vol(φ(s)) = ∫_s |det Dφ(x)| dx`。
 
-使用 `lintegral` 是为了允许区域具有无限体积，而不引入额外有限性假设。-/
+使用 `lintegral` 是为了允许区域具有无限体积，而不引入额外有限性假设。
+@isnad1 id=eq.3h3v.s8.9d56565c5025 from=translated src=- shape=a6f25a80 vocab=c6cbe7d8
+-/
 theorem volume_image_eq_lintegral_absJacobian {n : ℕ}
     {s : Set (JordanEuc n)} {φ : JordanEuc n → JordanEuc n}
     (hs : MeasurableSet s) (hφ : DifferentiableOn ℝ φ s) (hinj : InjOn φ s) :

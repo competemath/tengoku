@@ -62,7 +62,9 @@ def SatisfiesCauchyRiemannAt (f : ℂ → ℂ) (z : ℂ) : Prop :=
 
 /-- 两条坐标 CR 方程恰好表示实 Fréchet 导数尊重乘以 `I`：`L(I)=I·L(1)`。
 这是本库教材坐标定义与 Mathlib 复线性导数后端之间的显式桥。
-> **Entry**: complex-analysis.holomorphic.cauchy-riemann-/
+> **Entry**: complex-analysis.holomorphic.cauchy-riemann
+@isnad1 id=iff.0h2v.s9.e105df7791cc from=translated src=- shape=596f1603 vocab=d7830ef8
+-/
 theorem cauchyRiemann_iff_realFDeriv_map_I (f : ℂ → ℂ) (z : ℂ) :
     SatisfiesCauchyRiemannAt f z ↔
       fderiv ℝ f z I = I * fderiv ℝ f z 1 := by
@@ -80,7 +82,9 @@ theorem cauchyRiemann_iff_realFDeriv_map_I (f : ℂ → ℂ) (z : ℂ) :
 
 /-- **Cauchy–Riemann 方程的必要性**：若 `f` 按本库差商定义在 `z` 复可微，则它作为
 实平面映射在该点实 Fréchet 可微，并满足 `uₓ=vᵧ`、`uᵧ=-vₓ`。
-> **Entry**: complex-analysis.holomorphic.cauchy-riemann-/
+> **Entry**: complex-analysis.holomorphic.cauchy-riemann
+@isnad1 id=and.1h2v.s6.563f63aa42a9 from=translated src=- shape=b2206f4b vocab=10f6cc89
+-/
 theorem complexDifferentiableAt_cauchyRiemann {f : ℂ → ℂ} {z : ℂ}
     (hf : ComplexDifferentiableAtTextbook f z) :
     DifferentiableAt ℝ f z ∧ SatisfiesCauchyRiemannAt f z := by
@@ -92,7 +96,9 @@ theorem complexDifferentiableAt_cauchyRiemann {f : ℂ → ℂ} {z : ℂ}
 
 /-- **Cauchy–Riemann 方程的充分性**：实 Fréchet 可微且满足 CR 方程的函数，按本库
 差商定义在该点复可微。实可微性把两个方向等式提升为统一的一阶近似，不能省略。
-> **Entry**: complex-analysis.holomorphic.cr-sufficient-/
+> **Entry**: complex-analysis.holomorphic.cr-sufficient
+@isnad1 id=complexd.2h2v.s6.6fe0fc90fa7d from=translated src=- shape=6399f6bc vocab=10f6cc89
+-/
 theorem complexDifferentiableAt_of_realDifferentiableAt_cauchyRiemann
     {f : ℂ → ℂ} {z : ℂ} (hreal : DifferentiableAt ℝ f z)
     (hcr : SatisfiesCauchyRiemannAt f z) :
@@ -104,7 +110,9 @@ theorem complexDifferentiableAt_of_realDifferentiableAt_cauchyRiemann
 
 /-- 在充分性定理的条件下，复导数等于实 Fréchet 导数沿 x 方向 `1` 的值，亦即
 `uₓ+i vₓ`。本定理给出导数值而不只给出复可微性的存在结论。
-> **Entry**: complex-analysis.holomorphic.cr-sufficient-/
+> **Entry**: complex-analysis.holomorphic.cr-sufficient
+@isnad1 id=hasderiv.2h2v.s9.99e14ccc3de4 from=translated src=- shape=f47f922b vocab=d972a559
+-/
 theorem hasComplexDerivAt_of_realDifferentiableAt_cauchyRiemann
     {f : ℂ → ℂ} {z : ℂ} (hreal : DifferentiableAt ℝ f z)
     (hcr : SatisfiesCauchyRiemannAt f z) :

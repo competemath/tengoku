@@ -50,7 +50,9 @@ def fractionPairEquivalent {R : Type*} [CommRing R] (S : MultiplicativeSet R)
     u * (p.numerator * q.denominator - q.numerator * p.denominator) = 0
 
 /-- 分式对关系满足自反、对称和传递，因而确实是等价关系。
-> **Entry**: abstract-algebra.ring.localization-/
+> **Entry**: abstract-algebra.ring.localization
+@isnad1 id=equivale.0h2v.s5.b1a93b388aa6 from=translated src=- shape=18cb2c77 vocab=53da7940
+-/
 theorem fractionPairEquivalent_equivalence {R : Type*} [CommRing R]
     (S : MultiplicativeSet R) : Equivalence (fractionPairEquivalent S) := by
   refine ⟨?_, ?_, ?_⟩
@@ -94,7 +96,9 @@ def localizationFraction {R : Type*} [CommRing R] (S : MultiplicativeSet R)
   Quotient.mk _ ⟨a, b, hb⟩
 
 /-- 两个具体分式在局部化中相等，当且仅当存在乘法集中的额外乘子消去交叉乘积差。
-> **Entry**: abstract-algebra.ring.localization-/
+> **Entry**: abstract-algebra.ring.localization
+@isnad1 id=iff.2h6v.s7.19d95f34bfd5 from=translated src=- shape=c6b42e20 vocab=8d22dca9
+-/
 theorem localizationFraction_eq_iff {R : Type*} [CommRing R]
     (S : MultiplicativeSet R) (a b c d : R)
     (hb : b ∈ S.carrier) (hd : d ∈ S.carrier) :
@@ -214,7 +218,9 @@ instance {R : Type*} [CommRing R] (S : MultiplicativeSet R) : One (LocalizationR
   ⟨localizationOne S⟩
 
 /-- 两个具体分式相加的通分计算公式。
-> **Entry**: abstract-algebra.ring.localization-/
+> **Entry**: abstract-algebra.ring.localization
+@isnad1 id=eq.2h6v.s7.85e3c8c5991a from=translated src=- shape=dec356cd vocab=8bcf39d3
+-/
 @[simp] theorem localizationFraction_add {R : Type*} [CommRing R]
     (S : MultiplicativeSet R) (a b c d : R)
     (hb : b ∈ S.carrier) (hd : d ∈ S.carrier) :
@@ -223,7 +229,9 @@ instance {R : Type*} [CommRing R] (S : MultiplicativeSet R) : One (LocalizationR
   rfl
 
 /-- 两个具体分式相乘的计算公式。
-> **Entry**: abstract-algebra.ring.localization-/
+> **Entry**: abstract-algebra.ring.localization
+@isnad1 id=eq.2h6v.s7.a869a48faf44 from=translated src=- shape=24b5cdf5 vocab=b6f41463
+-/
 @[simp] theorem localizationFraction_mul {R : Type*} [CommRing R]
     (S : MultiplicativeSet R) (a b c d : R)
     (hb : b ∈ S.carrier) (hd : d ∈ S.carrier) :
@@ -232,7 +240,9 @@ instance {R : Type*} [CommRing R] (S : MultiplicativeSet R) : One (LocalizationR
   rfl
 
 /-- 具体分式取负时只需对分子取负。
-> **Entry**: abstract-algebra.ring.localization-/
+> **Entry**: abstract-algebra.ring.localization
+@isnad1 id=eq.1h4v.s6.54844a0d27cb from=translated src=- shape=775e40c3 vocab=a778df01
+-/
 @[simp] theorem localizationFraction_neg {R : Type*} [CommRing R]
     (S : MultiplicativeSet R) (a b : R) (hb : b ∈ S.carrier) :
     -(localizationFraction S a b hb) = localizationFraction S (-a) b hb := by
@@ -246,7 +256,9 @@ private theorem localizationFraction_eq_of_cross_mul {R : Type*} [CommRing R]
   exact ⟨1, S.one_mem, by simp [h]⟩
 
 /-- 下降后的五种运算满足本库逐条列出的全部环公理。
-> **Entry**: abstract-algebra.ring.localization-/
+> **Entry**: abstract-algebra.ring.localization
+@isnad1 id=ringaxio.0h2v.s5.4b8f1e8dd553 from=translated src=- shape=1fcfa16f vocab=98f4d15f
+-/
 theorem localizationRing_ringAxioms {R : Type*} [CommRing R] (S : MultiplicativeSet R) :
     RingAxioms (LocalizationRing S) := by
   refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
@@ -354,7 +366,9 @@ def localizationMap {R : Type*} [CommRing R] (S : MultiplicativeSet R) :
   fun a => localizationFraction S a 1 S.one_mem
 
 /-- 规范映射保持零、单位、加法、乘法与取负，是本库意义下的环同态。
-> **Entry**: abstract-algebra.ring.localization-/
+> **Entry**: abstract-algebra.ring.localization
+@isnad1 id=ringhomo.0h2v.s6.e0eefdc998ea from=translated src=- shape=40e80979 vocab=163f99be
+-/
 theorem localizationMap_is_ringHomomorphism {R : Type*} [CommRing R]
     (S : MultiplicativeSet R) : RingHomomorphism (localizationMap S) := by
   refine ⟨?_, ?_, ?_, ?_, ?_⟩
@@ -370,7 +384,9 @@ theorem localizationMap_is_ringHomomorphism {R : Type*} [CommRing R]
     rfl
 
 /-- 每个乘法集元素经规范映射后成为本库 `UnitElement`；其逆由分式 `1/s` 给出。
-> **Entry**: abstract-algebra.ring.localization-/
+> **Entry**: abstract-algebra.ring.localization
+@isnad1 id=unitelem.1h3v.s6.949c49ce42cb from=translated src=- shape=cae41a03 vocab=55b7661e
+-/
 theorem localizationMap_denominator_is_unit {R : Type*} [CommRing R]
     (S : MultiplicativeSet R) {s : R} (hs : s ∈ S.carrier) :
     UnitElement (localizationMap S s) := by
@@ -381,7 +397,9 @@ theorem localizationMap_denominator_is_unit {R : Type*} [CommRing R]
     ring
 
 /-- 局部化中的每个元素都可写成一个分子除以一个来自 `S` 的分母：`x·ι(b)=ι(a)`。
-> **Entry**: abstract-algebra.ring.localization-/
+> **Entry**: abstract-algebra.ring.localization
+@isnad1 id=ex.0h3v.s7.b70309e07585 from=translated src=- shape=107de990 vocab=158310e6
+-/
 theorem localizationRing_every_element_is_fraction {R : Type*} [CommRing R]
     (S : MultiplicativeSet R) (x : LocalizationRing S) :
     ∃ a b : R, ∃ _hb : b ∈ S.carrier,
@@ -461,7 +479,9 @@ noncomputable def localizationLift {R T : Type*} [CommRing R] [CommRing T]
     exact fractionPairEvaluate_eq S f hf hunit hpq)
 
 /-- 提升在具体分式上的分母消去公式：提升值乘以 `f(b)` 等于 `f(a)`。
-> **Entry**: abstract-algebra.ring.localization-/
+> **Entry**: abstract-algebra.ring.localization
+@isnad1 id=eq.3h6v.s8.e01c4599b01c from=translated src=- shape=0a41bcf0 vocab=0591fc7c
+-/
 @[simp] theorem localizationLift_fraction {R T : Type*} [CommRing R] [CommRing T]
     (S : MultiplicativeSet R) (f : R → T) (hf : RingHomomorphism f)
     (hunit : ∀ s : R, s ∈ S.carrier → UnitElement (f s))
@@ -482,7 +502,9 @@ private theorem eq_of_mul_eq_mul_of_unit {T : Type*} [CommRing T]
     _ = y := by rw [huv, mul_one]
 
 /-- 局部化提升保持全部环运算，因而是本库意义下的环同态。
-> **Entry**: abstract-algebra.ring.localization-/
+> **Entry**: abstract-algebra.ring.localization
+@isnad1 id=ringhomo.2h4v.s8.32882ec6e735 from=translated src=- shape=c3a6928d vocab=03571467
+-/
 theorem localizationLift_is_ringHomomorphism {R T : Type*} [CommRing R] [CommRing T]
     (S : MultiplicativeSet R) (f : R → T) (hf : RingHomomorphism f)
     (hunit : ∀ s : R, s ∈ S.carrier → UnitElement (f s)) :
@@ -548,7 +570,9 @@ theorem localizationLift_is_ringHomomorphism {R T : Type*} [CommRing R] [CommRin
       _ = -f a := by rw [localizationLift_fraction]
 
 /-- 提升与规范映射的复合等于原同态 `f`。
-> **Entry**: abstract-algebra.ring.localization-/
+> **Entry**: abstract-algebra.ring.localization
+@isnad1 id=eq.2h5v.s7.bb6d280f4866 from=translated src=- shape=53b968a1 vocab=494d571c
+-/
 @[simp] theorem localizationLift_map {R T : Type*} [CommRing R] [CommRing T]
     (S : MultiplicativeSet R) (f : R → T) (hf : RingHomomorphism f)
     (hunit : ∀ s : R, s ∈ S.carrier → UnitElement (f s)) (a : R) :
@@ -557,7 +581,9 @@ theorem localizationLift_is_ringHomomorphism {R T : Type*} [CommRing R] [CommRin
   simpa [hf.2.1] using localizationLift_fraction S f hf hunit a 1 S.one_mem
 
 /-- **提升唯一性**：任何在规范映射上与 `f` 相容的环同态都等于规范提升。
-> **Entry**: abstract-algebra.ring.localization-/
+> **Entry**: abstract-algebra.ring.localization
+@isnad1 id=eq.4h5v.s8.36446cd9d124 from=translated src=- shape=2c114210 vocab=483c6bb2
+-/
 theorem localizationLift_unique {R T : Type*} [CommRing R] [CommRing T]
     (S : MultiplicativeSet R) (f : R → T) (hf : RingHomomorphism f)
     (hunit : ∀ s : R, s ∈ S.carrier → UnitElement (f s))
@@ -586,7 +612,9 @@ theorem localizationLift_unique {R T : Type*} [CommRing R] [CommRing T]
       (localizationLift_fraction S f hf hunit a b hb).symm
 
 /-- **局部化泛性质**：把 `S` 送到单位元的环同态唯一地经局部化分解。
-> **Entry**: abstract-algebra.ring.localization-/
+> **Entry**: abstract-algebra.ring.localization
+@isnad1 id=existsun.2h4v.s8.22e30eddb63d from=translated src=- shape=a981879d vocab=48e1ecd1
+-/
 theorem localizationRing_universal_property {R T : Type*} [CommRing R] [CommRing T]
     (S : MultiplicativeSet R) (f : R → T) (hf : RingHomomorphism f)
     (hunit : ∀ s : R, s ∈ S.carrier → UnitElement (f s)) :
@@ -608,7 +636,9 @@ def nonzeroMultiplicativeSet {R : Type*} [CommRing R] (hR : IntegralDomainAxioms
 
 /-- **分式域定理**：整环在全部非零元素处的局部化满足本库 `FieldAxioms`。
 每个非零分式 `a/b` 的逆由 `b/a` 给出。
-> **Entry**: abstract-algebra.ring.localization-/
+> **Entry**: abstract-algebra.ring.localization
+@isnad1 id=fieldaxi.1h1v.s6.5c181b2e79ed from=translated src=- shape=939dd3e7 vocab=697936d4
+-/
 theorem fractionField_fieldAxioms {R : Type*} [CommRing R]
     (hR : IntegralDomainAxioms R) :
     FieldAxioms (LocalizationRing (nonzeroMultiplicativeSet hR)) := by

@@ -30,30 +30,40 @@ noncomputable def dualOperator (T : E →L[ℝ] F) :
     StrongDual ℝ F →L[ℝ] StrongDual ℝ E :=
   T.precomp ℝ
 
-/-- 对偶算子的元素化定义是 `(T' f)(x) = f(Tx)`。-/
+/-- 对偶算子的元素化定义是 `(T' f)(x) = f(Tx)`。
+@isnad1 id=eq.0h5v.s10.62d4c19cd2c0 from=translated src=- shape=ac18b96a vocab=06349de4
+-/
 @[simp]
 theorem dualOperator_apply (T : E →L[ℝ] F) (f : StrongDual ℝ F) (x : E) :
     dualOperator T f x = f (T x) := by
   rfl
 
-/-- 对偶算子在每个泛函上满足标准范数估计。-/
+/-- 对偶算子在每个泛函上满足标准范数估计。
+@isnad1 id=le.0h4v.s10.92db3ed8b4c3 from=translated src=- shape=a8f0ea0a vocab=e10fc1c5
+-/
 theorem norm_dualOperator_apply_le (T : E →L[ℝ] F) (f : StrongDual ℝ F) :
     ‖dualOperator T f‖ ≤ ‖T‖ * ‖f‖ := by
   simpa [dualOperator, mul_comm] using f.opNorm_comp_le T
 
-/-- 对偶算子的算子范数不超过原算子范数。-/
+/-- 对偶算子的算子范数不超过原算子范数。
+@isnad1 id=le.0h3v.s9.996765b175eb from=translated src=- shape=8b27dfa1 vocab=c632f63e
+-/
 theorem norm_dualOperator_le (T : E →L[ℝ] F) : ‖dualOperator T‖ ≤ ‖T‖ := by
   apply (dualOperator T).opNorm_le_bound (norm_nonneg T)
   intro f
   exact norm_dualOperator_apply_le T f
 
-/-- 对偶算子将复合次序反转。-/
+/-- 对偶算子将复合次序反转。
+@isnad1 id=eq.0h5v.s10.4f4cb472150c from=translated src=- shape=29dc9f13 vocab=134638db
+-/
 theorem dualOperator_comp (S : F →L[ℝ] G) (T : E →L[ℝ] F) :
     dualOperator (S.comp T) = (dualOperator T).comp (dualOperator S) := by
   ext f x
   rfl
 
-/-- 恒等算子的对偶仍是恒等算子。-/
+/-- 恒等算子的对偶仍是恒等算子。
+@isnad1 id=eq.0h1v.s9.fe6f467f3976 from=translated src=- shape=2151ff52 vocab=0e89ad83
+-/
 theorem dualOperator_id :
     dualOperator (ContinuousLinearMap.id ℝ E) = ContinuousLinearMap.id ℝ (StrongDual ℝ E) := by
   ext f x

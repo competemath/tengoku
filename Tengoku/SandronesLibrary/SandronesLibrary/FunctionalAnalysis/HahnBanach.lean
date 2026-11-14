@@ -23,7 +23,9 @@ variable {E : Type*}
 /-- 实 Hahn–Banach 定理的支配形式。`N_hom` 与 `N_add` 正是函数 `N` 的正齐次性和次可加性，
 也就是本条所称的次线性条件。
 
-> **Entry**: functional-analysis.hahn-banach.extension-/
+> **Entry**: functional-analysis.hahn-banach.extension
+@isnad1 id=ex.3h4v.s9.bd3b1a91a709 from=translated src=- shape=4d6dd3a2 vocab=f0968ab3
+-/
 theorem hahnBanach_dominated_extension [AddCommGroup E] [Module ℝ E]
     (S : Submodule ℝ E) (f : S →ₗ[ℝ] ℝ) (N : E → ℝ)
     (N_hom : ∀ c : ℝ, 0 < c → ∀ x, N (c • x) = c * N x)
@@ -32,13 +34,17 @@ theorem hahnBanach_dominated_extension [AddCommGroup E] [Module ℝ E]
     ∃ g : E →ₗ[ℝ] ℝ, (∀ x : S, g x = f x) ∧ ∀ x, g x ≤ N x := by
   exact exists_extension_of_le_sublinear (⟨S, f⟩ : E →ₗ.[ℝ] ℝ) N N_hom N_add hf
 
-/-- 赋范 Hahn–Banach 定理：子空间上的连续线性泛函可延拓到全空间且算子范数不变。-/
+/-- 赋范 Hahn–Banach 定理：子空间上的连续线性泛函可延拓到全空间且算子范数不变。
+@isnad1 id=ex.0h3v.s10.5140b320a96c from=translated src=- shape=7f9fbe91 vocab=adcab272
+-/
 theorem hahnBanach_exists_extension_norm_eq [SeminormedAddCommGroup E] [NormedSpace ℝ E]
     (S : Subspace ℝ E) (f : StrongDual ℝ S) :
     ∃ g : StrongDual ℝ E, (∀ x : S, g x = f x) ∧ ‖g‖ = ‖f‖ := by
   exact exists_extension_norm_eq S f
 
-/-- 等范数延拓特别给出一个不增范数、并在原子空间上逐点一致的全空间泛函。-/
+/-- 等范数延拓特别给出一个不增范数、并在原子空间上逐点一致的全空间泛函。
+@isnad1 id=ex.0h3v.s10.077dfbbcb860 from=translated src=- shape=b3d06e32 vocab=b72af1e2
+-/
 theorem hahnBanach_exists_extension_norm_le [SeminormedAddCommGroup E] [NormedSpace ℝ E]
     (S : Subspace ℝ E) (f : StrongDual ℝ S) :
     ∃ g : StrongDual ℝ E, (∀ x : S, g x = f x) ∧ ‖g‖ ≤ ‖f‖ := by

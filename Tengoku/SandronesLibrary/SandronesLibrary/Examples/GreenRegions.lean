@@ -37,6 +37,9 @@ open SandronesLibrary.Analysis.GreenGaussStokes
 def standardRightTriangle : Set (ℝ × ℝ) :=
   {z | 0 ≤ z.1 ∧ 0 ≤ z.2 ∧ z.1 + z.2 ≤ 1}
 
+/--
+@isnad1 id=eq.0h0v.s5.45469289fe03 from=translated src=- shape=462ce7d7 vocab=6a847d85
+-/
 lemma standardRightTriangle_eq_xNormal :
     standardRightTriangle = xNormalDomain 0 1 (fun _ ↦ 0) (fun x ↦ 1 - x) := by
   ext z
@@ -47,6 +50,9 @@ lemma standardRightTriangle_eq_xNormal :
   · rintro ⟨⟨hx, _⟩, hy, hyu⟩
     exact ⟨hx, hy, by linarith⟩
 
+/--
+@isnad1 id=eq.0h0v.s5.9685b069e990 from=translated src=- shape=462ce7d7 vocab=42bc3c18
+-/
 lemma standardRightTriangle_eq_yNormal :
     standardRightTriangle = yNormalDomain 0 1 (fun _ ↦ 0) (fun y ↦ 1 - y) := by
   ext z
@@ -62,7 +68,9 @@ def standardRightTriangleBoundaryIntegral (P Q : ℝ × ℝ → ℝ) : ℝ :=
   (∫ x in Icc (0 : ℝ) 1, P (x, 0) - P (x, 1 - x)) +
     ∫ y in Icc (0 : ℝ) 1, Q (1 - y, y) - Q (0, y)
 
-/-- **标准直角三角形上的 Green 公式**。-/
+/-- **标准直角三角形上的 Green 公式**。
+@isnad1 id=eq.6h2v.s9.3dea7df62965 from=translated src=- shape=9ca6f2d0 vocab=62ff8c1a
+-/
 theorem green_standardRightTriangle
     (P Q : ℝ × ℝ → ℝ)
     (hPy : IntegrableOn (fun z ↦ deriv (fun y ↦ P (z.1, y)) z.2)
@@ -101,7 +109,9 @@ theorem green_standardRightTriangle
   simpa [standardRightTriangleBoundaryIntegral, normalDomainBoundaryIntegral,
     ← standardRightTriangle_eq_xNormal] using h
 
-/-- 用 `(P,Q)=(0,x)` 得到三角形面积型边界积分 `1/2`。-/
+/-- 用 `(P,Q)=(0,x)` 得到三角形面积型边界积分 `1/2`。
+@isnad1 id=eq.0h0v.s5.256782133ddb from=translated src=- shape=7b0db2ca vocab=edbc09a0
+-/
 theorem standardRightTriangleBoundaryIntegral_zero_fst :
     standardRightTriangleBoundaryIntegral (fun _ ↦ 0) (fun z ↦ z.1) = 1 / 2 := by
   have honeSub : (∫ y in Icc (0 : ℝ) 1, 1 - y) = 1 / 2 := by
@@ -122,7 +132,9 @@ theorem standardRightTriangleBoundaryIntegral_zero_fst :
 /-- 闭单位圆盘 `x²+y²≤1`。-/
 def unitDisk : Set (ℝ × ℝ) := {z | z.1 ^ 2 + z.2 ^ 2 ≤ 1}
 
-/-- 单位圆盘的竖直正常域表示。-/
+/-- 单位圆盘的竖直正常域表示。
+@isnad1 id=eq.0h0v.s6.8951b53acf1e from=translated src=- shape=f4233a76 vocab=2276f432
+-/
 lemma unitDisk_eq_xNormal : unitDisk =
     xNormalDomain (-1) 1 (fun x ↦ -√(1 - x ^ 2)) (fun x ↦ √(1 - x ^ 2)) := by
   ext z
@@ -144,7 +156,9 @@ lemma unitDisk_eq_xNormal : unitDisk =
     rw [Real.sq_sqrt hA] at hySq
     nlinarith
 
-/-- 单位圆盘的水平正常域表示。-/
+/-- 单位圆盘的水平正常域表示。
+@isnad1 id=eq.0h0v.s6.f691fc86969f from=translated src=- shape=f4233a76 vocab=e4970d8c
+-/
 lemma unitDisk_eq_yNormal : unitDisk =
     yNormalDomain (-1) 1 (fun y ↦ -√(1 - y ^ 2)) (fun y ↦ √(1 - y ^ 2)) := by
   ext z
@@ -173,7 +187,9 @@ def unitDiskBoundaryIntegral (P Q : ℝ × ℝ → ℝ) : ℝ :=
     ∫ y in Icc (-1 : ℝ) 1,
       Q (√(1 - y ^ 2), y) - Q (-√(1 - y ^ 2), y)
 
-/-- **闭单位圆盘上的 Green 公式**。-/
+/-- **闭单位圆盘上的 Green 公式**。
+@isnad1 id=eq.6h2v.s9.815cf4a30143 from=translated src=- shape=270185cb vocab=20d316d3
+-/
 theorem green_unitDisk
     (P Q : ℝ × ℝ → ℝ)
     (hPy : IntegrableOn (fun z ↦ deriv (fun y ↦ P (z.1, y)) z.2)
@@ -232,7 +248,9 @@ def standardRightTriangleBoundaryIntegralRev (P Q : ℝ × ℝ → ℝ) : ℝ :=
   (∫ x in Icc (0 : ℝ) 1, P (x, 1 - x) - P (x, 0)) +
     ∫ y in Icc (0 : ℝ) 1, Q (0, y) - Q (1 - y, y)
 
-/-- **反向遍历只改符号**：直角三角形的顺时针边界积分等于逆时针边界积分的相反数。-/
+/-- **反向遍历只改符号**：直角三角形的顺时针边界积分等于逆时针边界积分的相反数。
+@isnad1 id=eq.0h2v.s4.3d816d42e7c8 from=translated src=- shape=120d02a6 vocab=978d6b60
+-/
 theorem standardRightTriangleBoundaryIntegralRev_eq_neg (P Q : ℝ × ℝ → ℝ) :
     standardRightTriangleBoundaryIntegralRev P Q =
       -standardRightTriangleBoundaryIntegral P Q := by
@@ -255,7 +273,9 @@ theorem standardRightTriangleBoundaryIntegralRev_eq_neg (P Q : ℝ × ℝ → �
 /-- **定向反例（直角三角形）**：取 `(P,Q)=(0,x)` 时逆时针边界积分为 `1/2`（三角形面积），
 顺时针为 `-1/2`，两者不等。这反驳「边界积分与遍历方向无关」这一误认：Green 公式
 `standardRightTriangleBoundaryIntegral P Q = ∬(∂Q/∂x-∂P/∂y)` 的右端不随定向改变，
-因此反向定向后公式必然失败。-/
+因此反向定向后公式必然失败。
+@isnad1 id=ne.0h0v.s5.98309669b2db from=translated src=- shape=02864fe7 vocab=cbde184e
+-/
 theorem standardRightTriangle_rev_ne_ccw :
     standardRightTriangleBoundaryIntegralRev (fun _ ↦ 0) (fun z ↦ z.1) ≠
       standardRightTriangleBoundaryIntegral (fun _ ↦ 0) (fun z ↦ z.1) := by
@@ -268,7 +288,9 @@ def unitDiskBoundaryIntegralRev (P Q : ℝ × ℝ → ℝ) : ℝ :=
   (∫ x in Icc (-1 : ℝ) 1, P (x, √(1 - x ^ 2)) - P (x, -√(1 - x ^ 2))) +
     ∫ y in Icc (-1 : ℝ) 1, Q (-√(1 - y ^ 2), y) - Q (√(1 - y ^ 2), y)
 
-/-- **反向遍历只改符号**：单位圆盘的顺时针边界积分等于逆时针边界积分的相反数。-/
+/-- **反向遍历只改符号**：单位圆盘的顺时针边界积分等于逆时针边界积分的相反数。
+@isnad1 id=eq.0h2v.s4.69dc5fa310d4 from=translated src=- shape=120d02a6 vocab=5cea0662
+-/
 theorem unitDiskBoundaryIntegralRev_eq_neg (P Q : ℝ × ℝ → ℝ) :
     unitDiskBoundaryIntegralRev P Q = -unitDiskBoundaryIntegral P Q := by
   have h1 : (∫ x in Icc (-1 : ℝ) 1, P (x, √(1 - x ^ 2)) - P (x, -√(1 - x ^ 2))) =
@@ -288,7 +310,9 @@ theorem unitDiskBoundaryIntegralRev_eq_neg (P Q : ℝ × ℝ → ℝ) :
 
 /-- **定向反例（单位圆盘）**：只要逆时针边界积分非零，顺时针值就与它不同。
 取 `(P,Q)=(0,x)` 时逆时针值是圆盘面积 `π`（由 `green_unitDisk` 化为 `∬1`），
-顺时针值是 `-π`——定向同样不可省略。-/
+顺时针值是 `-π`——定向同样不可省略。
+@isnad1 id=ne.1h2v.s5.de7ae2f7dd85 from=translated src=- shape=bc684e25 vocab=a02a81fd
+-/
 theorem unitDisk_rev_ne_ccw_of_ne_zero {P Q : ℝ × ℝ → ℝ}
     (h : unitDiskBoundaryIntegral P Q ≠ 0) :
     unitDiskBoundaryIntegralRev P Q ≠ unitDiskBoundaryIntegral P Q := by

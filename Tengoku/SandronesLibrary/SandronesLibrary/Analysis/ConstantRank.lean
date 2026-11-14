@@ -35,7 +35,9 @@ abbrev Euc (n : ℕ) := EuclideanSpace ℝ (Fin n)
 
 variable {n m r : ℕ}
 
-/-- Rudin 证明中 `Y₁ = range A` 上的线性右逆 `S`，即公式 (68)。-/
+/-- Rudin 证明中 `Y₁ = range A` 上的线性右逆 `S`，即公式 (68)。
+@isnad1 id=ex.0h3v.s13.b5e133ae8f5a from=translated src=- shape=f48e90ff vocab=98d5208f
+-/
 lemma range_right_inverse
     (A : Euc n →L[ℝ] Euc m) :
     ∃ S : A.range →L[ℝ] Euc n,
@@ -46,7 +48,9 @@ lemma range_right_inverse
   have hy := DFunLike.congr_fun hS y
   exact congr_arg Subtype.val hy
 
-/-- Rudin 公式 (69) 的纯微分与代数部分：构造 `G`，证明 `G'(a)=I` 和公式 (70)。-/
+/-- Rudin 公式 (69) 的纯微分与代数部分：构造 `G`，证明 `G'(a)=I` 和公式 (70)。
+@isnad1 id=ex.5h8v.s14.cf29251ae9da from=translated src=- shape=ea2cba3a vocab=596fd936
+-/
 lemma rudin_coordinate_map
     {E : Set (Euc n)} {F : Euc n → Euc m} {a : Euc n}
     (hF : ContDiffOn ℝ 1 F E)
@@ -110,7 +114,9 @@ lemma rudin_coordinate_map
       exact DFunLike.congr_fun hPA x]
     abel
 
-/-- 由 `G'(a)=I` 和导数连续性，缩到一个导数处处可逆的邻域，并取得 `C¹` 局部逆。-/
+/-- 由 `G'(a)=I` 和导数连续性，缩到一个导数处处可逆的邻域，并取得 `C¹` 局部逆。
+@isnad1 id=ex.4h4v.s11.808fe8ca223e from=translated src=- shape=823a5046 vocab=b0ecd24c
+-/
 lemma rudin_local_diffeomorph_near
     {E : Set (Euc n)} {G : Euc n → Euc n} {a : Euc n}
     (hE : IsOpen E) (ha : a ∈ E) (hG : ContDiffOn ℝ 1 G E)
@@ -180,7 +186,9 @@ lemma rudin_local_diffeomorph_near
   exact ⟨e₁, ha₁, hsource₁, he₁, he₁inv, hHinv,
     fun x hx ↦ by rw [he₁G]⟩
 
-/-- 将局部微分同胚的目标限制到包含基点像的开球；新目标凸，其他性质保持不变。-/
+/-- 将局部微分同胚的目标限制到包含基点像的开球；新目标凸，其他性质保持不变。
+@isnad1 id=ex.6h5v.s12.44eb35be575a from=translated src=- shape=d159a5dc vocab=3c435616
+-/
 lemma rudin_restrict_target_to_convex_ball
     {E : Set (Euc n)} {G : Euc n → Euc n} {a : Euc n}
     (e₁ : OpenPartialHomeomorph (Euc n) (Euc n))
@@ -224,7 +232,9 @@ lemma rudin_restrict_target_to_convex_ball
     rw [hcoe]
     exact heG x (hsource_e1 hx)
 
-/-- 反函数定理与缩邻域步骤：把 `G'(a)=I` 提升为局部 `C¹` 双射，并将目标缩成凸球。-/
+/-- 反函数定理与缩邻域步骤：把 `G'(a)=I` 提升为局部 `C¹` 双射，并将目标缩成凸球。
+@isnad1 id=ex.4h4v.s11.e49bc8c7f397 from=translated src=- shape=c053a553 vocab=0d894549
+-/
 lemma rudin_shrink_local_diffeomorph
     {E : Set (Euc n)} {G : Euc n → Euc n} {a : Euc n}
     (hE : IsOpen E) (ha : a ∈ E) (hG : ContDiffOn ℝ 1 G E)
@@ -239,7 +249,9 @@ lemma rudin_shrink_local_diffeomorph
   exact rudin_restrict_target_to_convex_ball e₁ ha₁ hsource he heinv hHinv heG
 
 /-- Rudin 公式 (69)：`G(x)=x+SP(F(x)-Ax)` 在 `a` 附近给出局部 `C¹` 坐标变换。
-其局部逆记作 `H=e.symm`；目标邻域被缩小为凸集，以便随后沿线段积分。-/
+其局部逆记作 `H=e.symm`；目标邻域被缩小为凸集，以便随后沿线段积分。
+@isnad1 id=ex.7h8v.s14.953a2435fa66 from=translated src=- shape=4c668770 vocab=6da6ebb5
+-/
 lemma rudin_coordinate_change
     {E : Set (Euc n)} {F : Euc n → Euc m} {a : Euc n}
     (hE : IsOpen E) (ha : a ∈ E) (hF : ContDiffOn ℝ 1 F E)
@@ -270,7 +282,9 @@ lemma rudin_coordinate_change
     exact h.symm
 
 /-- Rudin 公式 (75)--(78) 的微分核心：若 `Φ=F∘H` 的秩与 `A` 相同且
-`P ∘ Φ' = A`，则 `ker A ⊆ ker Φ'`。-/
+`P ∘ Φ' = A`，则 `ker A ⊆ ker Φ'`。
+@isnad1 id=eq.5h7v.s12.2f1c0f958dc7 from=translated src=- shape=d4ef5242 vocab=5878282c
+-/
 lemma transformed_derivative_vanishes_on_kernel
     (A : Euc n →L[ℝ] Euc m) (P : Euc m →L[ℝ] Euc m)
     (L : Euc n →L[ℝ] Euc m)
@@ -305,7 +319,9 @@ lemma transformed_derivative_vanishes_on_kernel
   change P (L h) = P 0
   simpa using hh.trans hAh
 
-/-- Rudin 公式 (77)--(78) 的链式法则步骤：纤维端点之间的线段函数导数恒为零。-/
+/-- Rudin 公式 (77)--(78) 的链式法则步骤：纤维端点之间的线段函数导数恒为零。
+@isnad1 id=hasderiv.8h8v.s12.17784820576c from=translated src=- shape=cdf86691 vocab=4e8ce842
+-/
 lemma fiber_path_hasDerivAt_zero
     {V : Set (Euc n)} (hVopen : IsOpen V) (hV : Convex ℝ V)
     {ψ : Euc n → Euc m} (hψ : DifferentiableOn ℝ ψ V)
@@ -325,7 +341,9 @@ lemma fiber_path_hasDerivAt_zero
   change HasDerivAt (ψ ∘ AffineMap.lineMap x₁ x₂) 0 t
   exact (hψt.hasFDerivAt.comp_hasDerivAt t AffineMap.hasDerivAt_lineMap).congr_deriv hzero
 
-/-- 一元中值定理步骤：闭区间上导数恒为零时，两端函数值相同。-/
+/-- 一元中值定理步骤：闭区间上导数恒为零时，两端函数值相同。
+@isnad1 id=eq.1h2v.s8.9141bbf47f6a from=translated src=- shape=ec75a20a vocab=c37a8f16
+-/
 lemma interval_endpoints_eq_of_hasDerivAt_zero
     {g : ℝ → Euc m}
     (hg : ∀ t ∈ Icc (0 : ℝ) 1, HasDerivAt g 0 t) :
@@ -341,7 +359,9 @@ lemma interval_endpoints_eq_of_hasDerivAt_zero
   · exact right_mem_Icc.mpr zero_le_one
 
 /-- 在开凸集 `V` 上，若 `ψ'` 消灭 `ker A`，则 `ψ` 在 `A` 的每条纤维上为常值；
-这是 Rudin 的公式 (74)。-/
+这是 Rudin 的公式 (74)。
+@isnad1 id=eq.7h7v.s11.1d0b84ba6910 from=translated src=- shape=45ec003d vocab=68e32e43
+-/
 lemma residual_constant_on_fibers
     {V : Set (Euc n)} (hVopen : IsOpen V) (hV : Convex ℝ V)
     {ψ : Euc n → Euc m} (hψ : DifferentiableOn ℝ ψ V)
@@ -354,7 +374,9 @@ lemma residual_constant_on_fibers
   simpa using hend
 
 /-- Rudin 公式 (79)--(80)：纤维常值的 `ψ` 唯一下降为 `A(V)` 上取值于 `ker P`
-的 `C¹` 映射 `φ`。-/
+的 `C¹` 映射 `φ`。
+@isnad1 id=ex.5h7v.s14.2465df46e71e from=translated src=- shape=cdbddf7b vocab=da4c0b23
+-/
 lemma residual_descends_contDiff
     {V : Set (Euc n)} (hVopen : IsOpen V)
     {ψ : Euc n → Euc m} (hψ : ContDiffOn ℝ 1 ψ V)
@@ -431,7 +453,9 @@ lemma residual_descends_contDiff
       (P.ker.orthogonalProjectionOnto_mem_subspace_eq_self
         ⟨ψ x₀, hψker x₀ hx₀⟩).symm
 
-/-- 公式 (72) 中剩余项 `ψ=F∘H-A` 仍为 `C¹`。-/
+/-- 公式 (72) 中剩余项 `ψ=F∘H-A` 仍为 `C¹`。
+@isnad1 id=contdiff.3h6v.s10.305e0d02030e from=translated src=- shape=6d2e79b5 vocab=f1f523dd
+-/
 lemma residual_contDiff
     {E : Set (Euc n)} {F : Euc n → Euc m}
     {e : OpenPartialHomeomorph (Euc n) (Euc n)}
@@ -443,7 +467,9 @@ lemma residual_contDiff
     (hF.mono hsource).comp (fun x hx ↦ heinv x hx) e.mapsTo_symm
   exact hcomp.sub A.contDiff.contDiffOn
 
-/-- 由 Rudin 公式 (71) `PF(Hx)=Ax` 与 `PA=A`，剩余项 `ψ` 取值于 `ker P`。-/
+/-- 由 Rudin 公式 (71) `PF(Hx)=Ax` 与 `PA=A`，剩余项 `ψ` 取值于 `ker P`。
+@isnad1 id=eq.3h7v.s11.02e0271edbbc from=translated src=- shape=69c8246b vocab=4131db79
+-/
 lemma residual_mem_projection_kernel
     {F : Euc n → Euc m} {e : OpenPartialHomeomorph (Euc n) (Euc n)}
     (A : Euc n →L[ℝ] Euc m) (P : Euc m →L[ℝ] Euc m)
@@ -457,7 +483,9 @@ lemma residual_mem_projection_kernel
   rw [hPAx, sub_self]
 
 /-- 将公式 (75)--(78) 专门应用于 `Φ=F∘H` 和 `ψ=Φ-A`，得到
-`ker A ⊆ ker ψ'(x)`。-/
+`ker A ⊆ ker ψ'(x)`。
+@isnad1 id=eq.11h10v.s13.85bda09921b5 from=translated src=- shape=152c698f vocab=c17b0a49
+-/
 lemma rudin_residual_derivative_vanishes
     {E : Set (Euc n)} {F : Euc n → Euc m}
     {e : OpenPartialHomeomorph (Euc n) (Euc n)}
@@ -517,7 +545,9 @@ lemma rudin_residual_derivative_vanishes
 
 `F(H(x)) = A x + φ(A x)`。
 
-这里 `e.symm` 就是 Rudin 的 `H : V → U`，`e.source=U`、`e.target=V`。-/
+这里 `e.symm` 就是 Rudin 的 `H : V → U`，`e.source=U`、`e.target=V`。
+@isnad1 id=ex.6h7v.s14.38afe57fbf2a from=translated src=- shape=e90e63b6 vocab=a9db0f46
+-/
 theorem constant_rank_theorem_rudin_9_32
     {E : Set (Euc n)} {F : Euc n → Euc m} {a : Euc n}
     (hE : IsOpen E) (ha : a ∈ E) (hF : ContDiffOn ℝ 1 F E)

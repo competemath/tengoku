@@ -38,7 +38,9 @@ variable {A : Type*} [NormedRing A] [NormedAlgebra ℂ A]
 Mathlib 只有不同元素在同一谱参数处的第二预解恒等式 `spectrum.resolvent_sub_resolvent`；
 这里补上同一元素在两个谱参数处的第一预解恒等式，它由 `Ring.inverse_sub_inverse` 直接给出。
 
-> **Entry**: functional-analysis.functional-calculus.resolvent-integrand-/
+> **Entry**: functional-analysis.functional-calculus.resolvent-integrand
+@isnad1 id=eq.2h4v.s7.725ee9201bfa from=translated src=- shape=e639f1f5 vocab=5733f4af
+-/
 theorem resolvent_sub_resolvent_same (a : A) {z w : ℂ}
     (hz : z ∈ resolventSet ℂ a) (hw : w ∈ resolventSet ℂ a) :
     resolvent a z - resolvent a w =
@@ -60,7 +62,9 @@ theorem resolvent_sub_resolvent_same (a : A) {z w : ℂ}
     _ = (w - z) • (resolvent a z * resolvent a w) := rfl
 
 /-- 同一元素在两个谱参数处的预解元乘法交换。这里不需要预解集假设：`Ring.inverse` 把
-不可逆元的逆约定为零，而 `z·1-a` 与 `w·1-a` 总交换，故交换性无条件成立。-/
+不可逆元的逆约定为零，而 `z·1-a` 与 `w·1-a` 总交换，故交换性无条件成立。
+@isnad1 id=eq.0h4v.s6.2029b1f13894 from=translated src=- shape=53ead712 vocab=09ad474c
+-/
 theorem resolvent_mul_comm (a : A) (z w : ℂ) :
     resolvent a z * resolvent a w = resolvent a w * resolvent a z := by
   have hx : Commute (algebraMap ℂ A z) a := Algebra.commute_algebraMap_left z a
@@ -71,7 +75,9 @@ theorem resolvent_mul_comm (a : A) (z w : ℂ) :
     (hxy.sub_right hx).sub_left (hy.symm.sub_right (Commute.refl a))
   exact (commute_iff_eq _ _).mp h.ringInverse_ringInverse
 
-/-- 第一预解恒等式的交换次序形式：乘积写成 `resolvent a w * resolvent a z`。-/
+/-- 第一预解恒等式的交换次序形式：乘积写成 `resolvent a w * resolvent a z`。
+@isnad1 id=eq.2h4v.s7.dee2b65040b9 from=translated src=- shape=6daa0cbf vocab=5733f4af
+-/
 theorem resolvent_sub_resolvent_same_mul_comm (a : A) {z w : ℂ}
     (hz : z ∈ resolventSet ℂ a) (hw : w ∈ resolventSet ℂ a) :
     resolvent a z - resolvent a w =
@@ -83,23 +89,31 @@ variable [CompleteSpace A]
 /-! ## 预解映射的复可微性与全纯性 -/
 
 /-- 预解映射在预解集上复可微；证明直接消费 Mathlib 的
-`spectrum.hasDerivAt_resolvent_const_left`。-/
+`spectrum.hasDerivAt_resolvent_const_left`。
+@isnad1 id=differen.0h2v.s6.b59948b9d3c9 from=translated src=- shape=b8060c07 vocab=477b2d50
+-/
 theorem differentiableOn_resolvent (a : A) :
     DifferentiableOn ℂ (resolvent a) (resolventSet ℂ a) :=
   fun _ hz =>
     (spectrum.hasDerivAt_resolvent_const_left hz).differentiableAt.differentiableWithinAt
 
-/-- 预解集内每一点处预解映射复可微。-/
+/-- 预解集内每一点处预解映射复可微。
+@isnad1 id=differen.1h3v.s7.ed97f9fe1f13 from=translated src=- shape=daeceae3 vocab=0454dedf
+-/
 theorem differentiableAt_resolvent {a : A} {z : ℂ} (hz : z ∈ resolventSet ℂ a) :
     DifferentiableAt ℂ (resolvent a) z :=
   (spectrum.hasDerivAt_resolvent_const_left hz).differentiableAt
 
-/-- 预解映射在预解集上全纯（作为开集上的解析函数）。-/
+/-- 预解映射在预解集上全纯（作为开集上的解析函数）。
+@isnad1 id=analytic.0h2v.s6.bf47f906fd13 from=translated src=- shape=b8060c07 vocab=6b410c28
+-/
 theorem analyticOnNhd_resolvent (a : A) :
     AnalyticOnNhd ℂ (resolvent a) (resolventSet ℂ a) :=
   (differentiableOn_resolvent a).analyticOnNhd (spectrum.isOpen_resolventSet a)
 
-/-- 预解映射在预解集上连续。-/
+/-- 预解映射在预解集上连续。
+@isnad1 id=continuo.0h2v.s6.684ce1f6f0e2 from=translated src=- shape=48e52719 vocab=c9f38e86
+-/
 theorem continuousOn_resolvent (a : A) :
     ContinuousOn (resolvent a) (resolventSet ℂ a) :=
   (differentiableOn_resolvent a).continuousOn
@@ -116,21 +130,27 @@ noncomputable def resolventIntegrand (a : A) (f : ℂ → ℂ) : ℂ → A :=
   f • resolvent a
 
 /-- 若 `f` 在开集 `U` 上复可微，则 Dunford 被积函数在共同有效开集 `U ∩ resolventSet ℂ a`
-上复可微。-/
+上复可微。
+@isnad1 id=differen.1h4v.s7.4407b4d2a682 from=translated src=- shape=84ce60c0 vocab=08cb156a
+-/
 theorem differentiableOn_resolventIntegrand (a : A) {f : ℂ → ℂ} {U : Set ℂ}
     (hf : DifferentiableOn ℂ f U) :
     DifferentiableOn ℂ (resolventIntegrand a f) (U ∩ resolventSet ℂ a) :=
   (hf.mono inter_subset_left).smul
     ((differentiableOn_resolvent a).mono inter_subset_right)
 
-/-- 同一共同有效开集上 Dunford 被积函数连续；由复可微性推出。-/
+/-- 同一共同有效开集上 Dunford 被积函数连续；由复可微性推出。
+@isnad1 id=continuo.1h4v.s7.9d9437eebf0a from=translated src=- shape=de7cd7b9 vocab=b7ddb876
+-/
 theorem continuousOn_resolventIntegrand (a : A) {f : ℂ → ℂ} {U : Set ℂ}
     (hf : DifferentiableOn ℂ f U) :
     ContinuousOn (resolventIntegrand a f) (U ∩ resolventSet ℂ a) :=
   (differentiableOn_resolventIntegrand a hf).continuousOn
 
 /-- 对谱邻域全纯函数，存在见证开邻域 `U`，Dunford 被积函数在 `U ∩ resolventSet ℂ a`
-上复可微。此处真实复用本库的 `HolomorphicOnNhdSpectrum`。-/
+上复可微。此处真实复用本库的 `HolomorphicOnNhdSpectrum`。
+@isnad1 id=ex.1h3v.s7.c79ea8653356 from=translated src=- shape=2fa9b23d vocab=d2b513ca
+-/
 theorem HolomorphicOnNhdSpectrum.resolventIntegrand_differentiableOn {a : A} {f : ℂ → ℂ}
     (hf : HolomorphicOnNhdSpectrum a f) :
     ∃ U : Set ℂ, IsOpen U ∧ spectrum ℂ a ⊆ U ∧
@@ -138,7 +158,9 @@ theorem HolomorphicOnNhdSpectrum.resolventIntegrand_differentiableOn {a : A} {f 
   obtain ⟨U, hU, haU, hfU⟩ := hf
   exact ⟨U, hU, haU, differentiableOn_resolventIntegrand a hfU⟩
 
-/-- 对谱邻域全纯函数，Dunford 被积函数在共同有效开集上连续。-/
+/-- 对谱邻域全纯函数，Dunford 被积函数在共同有效开集上连续。
+@isnad1 id=ex.1h3v.s7.44f140047c66 from=translated src=- shape=cf18c078 vocab=bd415d31
+-/
 theorem HolomorphicOnNhdSpectrum.resolventIntegrand_continuousOn {a : A} {f : ℂ → ℂ}
     (hf : HolomorphicOnNhdSpectrum a f) :
     ∃ U : Set ℂ, IsOpen U ∧ spectrum ℂ a ⊆ U ∧
@@ -148,7 +170,9 @@ theorem HolomorphicOnNhdSpectrum.resolventIntegrand_continuousOn {a : A} {f : �
 
 /-- 紧集上的 Bochner 可积性：若紧集 `K` 同时含于 `f` 的复可微开集 `U` 与预解集，
 则 Dunford 被积函数在 `K` 上可积。这是后续沿紧路径积分真正需要的可积性引理，只使用
-Mathlib 现有的 Banach 值 Bochner 积分接口。-/
+Mathlib 现有的 Banach 值 Bochner 积分接口。
+@isnad1 id=integrab.4h5v.s7.6eb307d82335 from=translated src=- shape=5e47d31e vocab=48a400e4
+-/
 theorem integrableOn_resolventIntegrand_compact (a : A) {f : ℂ → ℂ} {U K : Set ℂ}
     (hK : IsCompact K) (hKU : K ⊆ U) (hKV : K ⊆ resolventSet ℂ a)
     (hf : DifferentiableOn ℂ f U) :

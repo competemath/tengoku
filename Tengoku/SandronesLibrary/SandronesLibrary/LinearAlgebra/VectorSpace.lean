@@ -72,20 +72,26 @@ def IsBasis (𝕜 : Type*) {V : Type*} [Field 𝕜] [AddCommGroup V] [LinearSpac
   LinearIndependent 𝕜 b ∧ Submodule.span 𝕜 (Set.range b) = ⊤
 
 /-- 数域 K 作为它自身的向量空间，维数为 1：dim K K = 1。 
-> **Entry**: linear-algebra.vector-space.def-/
+> **Entry**: linear-algebra.vector-space.def
+@isnad1 id=eq.0h1v.s4.658590b9f866 from=translated src=- shape=c5f47e06 vocab=26f175ec
+-/
 lemma dim_self (𝕜 : Type*) [Field 𝕜] : dim 𝕜 𝕜 = 1 :=
   Module.finrank_self 𝕜
 
 /-- 函数空间 K^I 的维数等于指标集 I 的大小：dim K (K^I) = |I|。
   （即标准基有 |I| 个向量，故 dim ℝⁿ = n。） 
-> **Entry**: linear-algebra.vector-space.def-/
+> **Entry**: linear-algebra.vector-space.def
+@isnad1 id=eq.0h2v.s5.88cfb948a093 from=translated src=- shape=ae475428 vocab=74792c38
+-/
 lemma dim_pi {𝕜 : Type*} {ι : Type*} [Field 𝕜] [Fintype ι] :
     dim 𝕜 (ι → 𝕜) = Fintype.card ι := by
   unfold dim
   rw [Module.finrank_pi]
 
 /-- 线性无关组的长度不超过所在空间的维数：任何线性无关的向量组至多有 dim V 个向量。 
-> **Entry**: linear-algebra.vector-space.independent-/
+> **Entry**: linear-algebra.vector-space.independent
+@isnad1 id=le.1h4v.s5.08b867f2bad8 from=translated src=- shape=0cde8d47 vocab=300784da
+-/
 lemma card_le_dim_of_linearIndependent {𝕜 : Type*} {V : Type*} [Field 𝕜]
     [AddCommGroup V] [LinearSpace 𝕜 V] [IsFiniteDimensional 𝕜 V]
     {ι : Type*} [Fintype ι] {v : ι → V}
@@ -95,7 +101,9 @@ lemma card_le_dim_of_linearIndependent {𝕜 : Type*} {V : Type*} [Field 𝕜]
   exact LinearIndependent.fintype_card_le_finrank h
 
 /-- 基的元素个数等于维数：若 {bᵢ} 是 V 的一组基，则 dim V = 该基的大小。 
-> **Entry**: linear-algebra.vector-space.basis-/
+> **Entry**: linear-algebra.vector-space.basis
+@isnad1 id=eq.1h4v.s5.5b13f86bfe02 from=translated src=- shape=39371c9e vocab=23af4c4a
+-/
 lemma dim_eq_card_basis {𝕜 : Type*} {V : Type*} [Field 𝕜]
     [AddCommGroup V] [LinearSpace 𝕜 V]
     {ι : Type*} [Fintype ι] {b : ι → V} (h : IsBasis 𝕜 b) : dim 𝕜 V = Fintype.card ι := by
@@ -108,7 +116,9 @@ lemma dim_eq_card_basis {𝕜 : Type*} {V : Type*} [Field 𝕜]
 
 /-- 有限维空间中，维数为零当且仅当空间是平凡空间：`dim V = 0 ↔ Subsingleton V`。
   无限维时 mathlib 的 `finrank` 按约定为 0，故该等价必须带有限维假设。
-> **Entry**: linear-algebra.vector-space.dimension-/
+> **Entry**: linear-algebra.vector-space.dimension
+@isnad1 id=iff.0h2v.s5.67775973bd48 from=translated src=- shape=d71e28ef vocab=ab9c90bc
+-/
 lemma dim_eq_zero_iff_subsingleton {𝕜 : Type*} {V : Type*} [Field 𝕜]
     [AddCommGroup V] [LinearSpace 𝕜 V] [IsFiniteDimensional 𝕜 V] :
     dim 𝕜 V = 0 ↔ Subsingleton V := by
@@ -116,7 +126,9 @@ lemma dim_eq_zero_iff_subsingleton {𝕜 : Type*} {V : Type*} [Field 𝕜]
   exact Module.finrank_zero_iff
 
 /-- 有限维空间中，维数与基数秩一致：`(dim V : Cardinal) = Module.rank 𝕜 V`。
-> **Entry**: linear-algebra.vector-space.dimension-/
+> **Entry**: linear-algebra.vector-space.dimension
+@isnad1 id=eq.0h2v.s5.fff5374985bb from=translated src=- shape=f6d91ade vocab=cf35b320
+-/
 lemma dim_eq_rank {𝕜 : Type*} {V : Type*} [Field 𝕜]
     [AddCommGroup V] [LinearSpace 𝕜 V] [IsFiniteDimensional 𝕜 V] :
     (dim 𝕜 V : Cardinal) = Module.rank 𝕜 V := by

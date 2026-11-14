@@ -40,7 +40,9 @@ private theorem dense_iSup_eigenspaces_of_orthogonal_eq_bot
 `star μ = μ` 在 `𝕜 = ℂ` 时正是特征值 `μ` 为实数。最后一项只对非零特征值断言有限维；核可以
 是无限维的。
 
-> **Entry**: functional-analysis.hilbert.compact-selfadjoint-spectral-/
+> **Entry**: functional-analysis.hilbert.compact-selfadjoint-spectral
+@isnad1 id=and.2h3v.s11.16ad33b2ff3b from=translated src=- shape=5f128170 vocab=2c6ae855
+-/
 theorem compact_isSymmetric_spectral_decomposition {T : E →L[𝕜] E}
     (hK : IsCompactOperator T) (hT : (T : E →ₗ[𝕜] E).IsSymmetric) :
     (∀ μ, HasEigenvalue (T : End 𝕜 E) μ → star μ = μ) ∧

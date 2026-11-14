@@ -20,13 +20,17 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 /-- 若原空间可分且典范嵌入满射，则连续双对偶可分。
 
-> **Entry**: functional-analysis.separable.dual-/
+> **Entry**: functional-analysis.separable.dual
+@isnad1 id=separabl.1h1v.s12.6f774437892d from=translated src=- shape=606e45b1 vocab=e65d6a19
+-/
 theorem separable_bidual_of_reflexive [TopologicalSpace.SeparableSpace E]
     (hE : Function.Surjective (NormedSpace.inclusionInDoubleDual ℝ E)) :
     TopologicalSpace.SeparableSpace (StrongDual ℝ (StrongDual ℝ E)) := by
   exact hE.denseRange.separableSpace (NormedSpace.inclusionInDoubleDual ℝ E).continuous
 
-/-- 若连续对偶可分，则原赋范空间可分。-/
+/-- 若连续对偶可分，则原赋范空间可分。
+@isnad1 id=separabl.0h1v.s6.9ca124b0bd5a from=translated src=- shape=2cabd5fe vocab=26e49f23
+-/
 theorem separable_of_separable_dual
     [TopologicalSpace.SeparableSpace (StrongDual ℝ E)] :
     TopologicalSpace.SeparableSpace E := by
@@ -88,7 +92,9 @@ theorem separable_of_separable_dual
     (Set.countable_range x).isSeparable.span
   exact hSdense.isSeparable_iff.mp hSseparable
 
-/-- 可分自反空间的连续对偶可分。-/
+/-- 可分自反空间的连续对偶可分。
+@isnad1 id=separabl.1h1v.s12.feab66b96af8 from=translated src=- shape=6f3e846f vocab=e65d6a19
+-/
 theorem separable_dual_of_reflexive [TopologicalSpace.SeparableSpace E]
     (hE : Function.Surjective (NormedSpace.inclusionInDoubleDual ℝ E)) :
     TopologicalSpace.SeparableSpace (StrongDual ℝ E) := by

@@ -46,17 +46,23 @@ inductive Path.PiecewiseC1 : {x y : E} → Path x y → Prop
   | cast {x y x' y' : E} (gamma : Path x y) (hgamma : Path.PiecewiseC1 gamma)
       (hx : x' = x) (hy : y' = y) : Path.PiecewiseC1 (gamma.cast hx hy)
 
-/-- 整体 C1 道路是分段 C1 道路。-/
+/-- 整体 C1 道路是分段 C1 道路。
+@isnad1 id=piecewis.1h4v.s7.87fb04f12453 from=translated src=- shape=797911ea vocab=36be452a
+-/
 theorem Path.piecewiseC1_of_contDiffOn {x y : E} (gamma : Path x y)
     (regular : ContDiffOn ℝ 1 gamma.extend (Icc 0 1)) : Path.PiecewiseC1 gamma :=
   .of_contDiffOn gamma regular
 
-/-- 常道路是分段 C1 道路。-/
+/-- 常道路是分段 C1 道路。
+@isnad1 id=piecewis.0h2v.s5.7f540463f689 from=translated src=- shape=f9399930 vocab=b8793be1
+-/
 theorem Path.piecewiseC1_refl (x : E) : Path.PiecewiseC1 (Path.refl x) := by
   apply Path.piecewiseC1_of_contDiffOn
   apply contDiffOn_const
 
-/-- 赋范实线性空间中的线段是分段 C1 道路。-/
+/-- 赋范实线性空间中的线段是分段 C1 道路。
+@isnad1 id=piecewis.0h3v.s5.fc612929efa5 from=translated src=- shape=57aa64b1 vocab=6e93ef7e
+-/
 theorem Path.piecewiseC1_segment (a b : E) :
     Path.PiecewiseC1 (Path.segment a b) := by
   apply Path.piecewiseC1_of_contDiffOn
@@ -65,7 +71,9 @@ theorem Path.piecewiseC1_segment (a b : E) :
   rw [Path.extend_apply _ ht]
   rfl
 
-/-- 有限条整体 C1 道路的规范拼接是分段 C1 道路。-/
+/-- 有限条整体 C1 道路的规范拼接是分段 C1 道路。
+@isnad1 id=piecewis.1h4v.s7.8c5b4afdf3de from=translated src=- shape=ee9bd01d vocab=fecf08d4
+-/
 theorem Path.piecewiseC1_concat
     {n : ℕ} (vertices : Fin (n + 1) → E)
     (pieces : (i : Fin n) → Path (vertices i.castSucc) (vertices i.succ))
@@ -82,7 +90,9 @@ theorem Path.piecewiseC1_concat
           (fun i => regular i.castSucc))
         (.of_contDiffOn _ (regular (Fin.last n)))
 
-/-- 反向保持道路的分段 C1 性。-/
+/-- 反向保持道路的分段 C1 性。
+@isnad1 id=piecewis.1h4v.s5.8d155add26eb from=translated src=- shape=a1e398fd vocab=2c948752
+-/
 theorem Path.PiecewiseC1.symm
     {x y : E} {gamma : Path x y} (hgamma : Path.PiecewiseC1 gamma) :
     Path.PiecewiseC1 gamma.symm := by
@@ -100,7 +110,9 @@ theorem Path.PiecewiseC1.symm
   | cast gamma _ hx hy ih =>
       simpa using Path.PiecewiseC1.cast gamma.symm ih hy hx
 
-/-- R3a 的规范网格折线路径是分段 C1 道路。-/
+/-- R3a 的规范网格折线路径是分段 C1 道路。
+@isnad1 id=piecewis.1h5v.s5.df29a3b0ae53 from=translated src=- shape=b866015c vocab=678ea843
+-/
 theorem Path.meshPolygonal_piecewiseC1
     {x y : E} (p : Path x y) (N : ℕ) (hN : 0 < N) :
     Path.PiecewiseC1 (Path.meshPolygonal p N hN) := by
@@ -116,7 +128,9 @@ theorem Path.meshPolygonal_piecewiseC1
   rfl
 
 /-- 任意落在开集内的道路，都能在该开集内相对端点同伦到一条分段 C1 道路；结论保留替换道路
-及整个同伦的像集控制。-/
+及整个同伦的像集控制。
+@isnad1 id=ex.2h5v.s9.f23197a649db from=translated src=- shape=eee9357b vocab=b18ed88b
+-/
 theorem Path.exists_piecewiseC1_range_subset_open_and_homotopyWithin
     {x y : E} (p : Path x y) {U : Set E}
     (hU : IsOpen U) (hpU : ∀ t, p t ∈ U) :

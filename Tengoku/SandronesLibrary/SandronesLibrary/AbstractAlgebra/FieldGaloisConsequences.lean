@@ -65,7 +65,9 @@ noncomputable def fixedFieldIntermediateField
 扩张中的
 子群恢复把该 fixing 集合识别回 `H`。公开签名直接接受正式子群。
 
-> **Entry**: abstract-algebra.field.galois-consequences-/
+> **Entry**: abstract-algebra.field.galois-consequences
+@isnad1 id=hasexten.2h4v.s7.4d7461de1ce6 from=translated src=- shape=71b8a3e4 vocab=524737c9
+-/
 theorem finiteGalois_fixedField_relativeDegree_eq_card
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (hfin : FiniteFieldExtension e)
@@ -229,7 +231,9 @@ private theorem intermediate_extensionDegree_tower_bridge
 的总次数公式把右端识别为全自同构群阶，而 Lagrange 公式给出
 `|H| [G : H] = |G|`。由于相对次数 `|H|` 严格为正，可消去公共因子。
 
-> **Entry**: abstract-algebra.field.galois-consequences-/
+> **Entry**: abstract-algebra.field.galois-consequences
+@isnad1 id=hasexten.2h4v.s6.5ef076574d6b from=translated src=- shape=d2a08554 vocab=4c48e6a3
+-/
 theorem finiteGalois_fixedField_degree_eq_index
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (hfin : FiniteFieldExtension e)

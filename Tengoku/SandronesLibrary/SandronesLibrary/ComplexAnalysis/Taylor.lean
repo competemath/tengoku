@@ -44,7 +44,9 @@ def taylorExpansion (f : ℂ → ℂ) (c z : ℂ) : ℂ :=
 at every point of that same disc. This guarantees convergence throughout the given disc; it does
 not assert that `R` is the exact or maximal radius of convergence.
 
-> **Entry**: complex-analysis.series.taylor-/
+> **Entry**: complex-analysis.series.taylor
+@isnad1 id=hassum.2h4v.s6.da3b62b3de92 from=translated src=- shape=a99480e4 vocab=7a128acf
+-/
 theorem hasSum_taylorSeries_on_ball {f : ℂ → ℂ} {c z : ℂ} {R : ℝ}
     (hf : HolomorphicOnTextbook f (Metric.ball c R)) (hz : z ∈ Metric.ball c R) :
     HasSum (fun n : ℕ ↦ taylorCoefficient f c n * (z - c) ^ n) (f z) := by
@@ -56,7 +58,9 @@ theorem hasSum_taylorSeries_on_ball {f : ℂ → ℂ} {c z : ℂ} {R : ℝ}
 /-- Pointwise equality between a holomorphic function and its Taylor expansion on the stated open
 disc.
 
-> **Entry**: complex-analysis.series.taylor-/
+> **Entry**: complex-analysis.series.taylor
+@isnad1 id=eq.2h4v.s5.e3281e778861 from=translated src=- shape=c5409390 vocab=f1b5c38c
+-/
 theorem taylorExpansion_eq_on_ball {f : ℂ → ℂ} {c z : ℂ} {R : ℝ}
     (hf : HolomorphicOnTextbook f (Metric.ball c R)) (hz : z ∈ Metric.ball c R) :
     taylorExpansion f c z = f z := by
@@ -66,7 +70,9 @@ theorem taylorExpansion_eq_on_ball {f : ℂ → ℂ} {c z : ℂ} {R : ℝ}
 /-- Cauchy's formula identifies the derivative-defined Taylor coefficient with its circle-integral
 formula. Holomorphy is assumed on the closed disc so that the boundary integral is available.
 
-> **Entry**: complex-analysis.series.taylor-/
+> **Entry**: complex-analysis.series.taylor
+@isnad1 id=eq.2h4v.s7.9be37a5b82c5 from=translated src=- shape=ab68002f vocab=3c77edd0
+-/
 theorem taylorCoefficient_eq_circleIntegral {f : ℂ → ℂ} {c : ℂ} {R : ℝ}
     (hf : HolomorphicOnTextbook f (Metric.closedBall c R)) (hR : 0 < R) (n : ℕ) :
     taylorCoefficient f c n =
@@ -80,7 +86,9 @@ theorem taylorCoefficient_eq_circleIntegral {f : ℂ → ℂ} {c : ℂ} {R : ℝ
 derivative-defined Taylor coefficients cannot be replaced by a different local coefficient sequence
 representing the same function at the same centre.
 
-> **Entry**: complex-analysis.series.taylor-/
+> **Entry**: complex-analysis.series.taylor
+@isnad1 id=eq.2h4v.s7.c30028e28ff6 from=translated src=- shape=0d3b0c63 vocab=9a6dc27b
+-/
 theorem powerSeriesCoefficients_unique {f : ℂ → ℂ} {c : ℂ} {a b : ℕ → ℂ}
     (ha : HasFPowerSeriesAt f (FormalMultilinearSeries.ofScalars ℂ a) c)
     (hb : HasFPowerSeriesAt f (FormalMultilinearSeries.ofScalars ℂ b) c) :

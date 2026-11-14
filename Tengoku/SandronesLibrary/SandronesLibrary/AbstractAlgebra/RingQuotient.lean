@@ -31,7 +31,9 @@ def idealCongruent {R : Type*} [Sub R] (I : Set R) (x y : R) : Prop :=
 
 /-- 若 `I` 满足本库双边理想判据，则“差属于 `I`”是 `R` 上的等价关系：零元给出
 自反性，取负给出对称性，加法封闭给出传递性。
-> **Entry**: abstract-algebra.ring.quotient-/
+> **Entry**: abstract-algebra.ring.quotient
+@isnad1 id=equivale.1h2v.s5.0fe97ff17d4d from=translated src=- shape=b161458b vocab=f4cf9442
+-/
 theorem idealCongruent_equivalence {R : Type*} [Ring R] {I : Set R}
     (hI : TwoSidedIdealSet I) : Equivalence (idealCongruent I) := by
   refine ⟨?_, ?_, ?_⟩
@@ -66,7 +68,9 @@ def quotientRingProjection {R : Type*} [Ring R] (I : Set R) (hI : TwoSidedIdealS
 
 /-- 两个元素经商投影后相等，当且仅当它们关于 `I` 理想同余，即 `x-y ∈ I`。这是
 商环中等式的基本判定准则。
-> **Entry**: abstract-algebra.ring.quotient-/
+> **Entry**: abstract-algebra.ring.quotient
+@isnad1 id=iff.1h4v.s6.98fbe14e6a1f from=translated src=- shape=0f063016 vocab=2c3b26fa
+-/
 theorem quotientRingProjection_eq_iff {R : Type*} [Ring R] {I : Set R}
     (hI : TwoSidedIdealSet I) (x y : R) :
     quotientRingProjection I hI x = quotientRingProjection I hI y ↔ idealCongruent I x y := by
@@ -74,7 +78,9 @@ theorem quotientRingProjection_eq_iff {R : Type*} [Ring R] {I : Set R}
 
 /-- 理想同余与加法相容：若 `a ≡ a'` 且 `b ≡ b'` 模 `I`，则
 `a+b ≡ a'+b'` 模 `I`。
-> **Entry**: abstract-algebra.ring.quotient-/
+> **Entry**: abstract-algebra.ring.quotient
+@isnad1 id=idealcon.3h6v.s6.10b97e6943e9 from=translated src=- shape=e6300839 vocab=767c7035
+-/
 theorem idealCongruent_add {R : Type*} [Ring R] {I : Set R}
     (hI : TwoSidedIdealSet I) {a a' b b' : R}
     (ha : idealCongruent I a a') (hb : idealCongruent I b b') :
@@ -86,7 +92,9 @@ theorem idealCongruent_add {R : Type*} [Ring R] {I : Set R}
 
 /-- 理想同余与乘法相容：双边吸收性分别控制乘积差的左右两项，从而代表元的乘积
 给出良定义的商类。
-> **Entry**: abstract-algebra.ring.quotient-/
+> **Entry**: abstract-algebra.ring.quotient
+@isnad1 id=idealcon.3h6v.s6.e10b41ee1858 from=translated src=- shape=e6300839 vocab=bfabeee2
+-/
 theorem idealCongruent_mul {R : Type*} [Ring R] {I : Set R}
     (hI : TwoSidedIdealSet I) {a a' b b' : R}
     (ha : idealCongruent I a a') (hb : idealCongruent I b b') :
@@ -99,7 +107,9 @@ theorem idealCongruent_mul {R : Type*} [Ring R] {I : Set R}
   all_goals noncomm_ring
 
 /-- 理想同余与取负相容：`a-b ∈ I` 蕴含其负元属于 `I`，故 `-a ≡ -b` 模 `I`。
-> **Entry**: abstract-algebra.ring.quotient-/
+> **Entry**: abstract-algebra.ring.quotient
+@isnad1 id=idealcon.2h4v.s6.95faef6da4a5 from=translated src=- shape=6a7d869e vocab=10c0f941
+-/
 theorem idealCongruent_neg {R : Type*} [Ring R] {I : Set R}
     (hI : TwoSidedIdealSet I) {a b : R} (hab : idealCongruent I a b) :
     idealCongruent I (-a) (-b) := by
@@ -163,7 +173,9 @@ instance quotientRingSetZero : Zero (quotientRingSet I hI) := ⟨quotientZero I 
 instance quotientRingSetOne : One (quotientRingSet I hI) := ⟨quotientOne I hI⟩
 
 /-- 商投影保持加法的计算公式：两个投影类之和等于代表元之和的投影类。
-> **Entry**: abstract-algebra.ring.quotient-/
+> **Entry**: abstract-algebra.ring.quotient
+@isnad1 id=eq.1h4v.s6.56371f9d7708 from=translated src=- shape=521935bf vocab=10437ca1
+-/
 @[simp] theorem quotientAdd_projection (a b : R) :
     quotientRingProjection I hI a + quotientRingProjection I hI b =
       quotientRingProjection I hI (a + b) := by
@@ -172,7 +184,9 @@ instance quotientRingSetOne : One (quotientRingSet I hI) := ⟨quotientOne I hI�
   apply Quotient.map₂_mk
 
 /-- 商投影保持乘法的计算公式：两个投影类之积等于代表元之积的投影类。
-> **Entry**: abstract-algebra.ring.quotient-/
+> **Entry**: abstract-algebra.ring.quotient
+@isnad1 id=eq.1h4v.s6.3b7282f7d317 from=translated src=- shape=521935bf vocab=7b0c7f68
+-/
 @[simp] theorem quotientMul_projection (a b : R) :
     quotientRingProjection I hI a * quotientRingProjection I hI b =
       quotientRingProjection I hI (a * b) := by
@@ -181,7 +195,9 @@ instance quotientRingSetOne : One (quotientRingSet I hI) := ⟨quotientOne I hI�
   apply Quotient.map₂_mk
 
 /-- 商投影保持取负的计算公式：投影类的负元就是负代表元的投影类。
-> **Entry**: abstract-algebra.ring.quotient-/
+> **Entry**: abstract-algebra.ring.quotient
+@isnad1 id=eq.1h3v.s6.30c4d7df28ad from=translated src=- shape=af99af35 vocab=cb826a3b
+-/
 @[simp] theorem quotientNeg_projection (a : R) :
     -(quotientRingProjection I hI a) = quotientRingProjection I hI (-a) := by
   change quotientNeg I hI (Quotient.mk _ a) = Quotient.mk _ (-a)
@@ -189,20 +205,26 @@ instance quotientRingSetOne : One (quotientRingSet I hI) := ⟨quotientOne I hI�
   apply Quotient.map_mk
 
 /-- 商集合零元按定义等于 `0 : R` 的投影类。
-> **Entry**: abstract-algebra.ring.quotient-/
+> **Entry**: abstract-algebra.ring.quotient
+@isnad1 id=eq.1h2v.s6.8e395dfc618d from=translated src=- shape=3e90ec3a vocab=dc92c4e0
+-/
 @[simp] theorem quotientZero_eq_projection :
     (0 : quotientRingSet I hI) = quotientRingProjection I hI 0 := by
   rfl
 
 /-- 商集合单位元按定义等于 `1 : R` 的投影类。
-> **Entry**: abstract-algebra.ring.quotient-/
+> **Entry**: abstract-algebra.ring.quotient
+@isnad1 id=eq.1h2v.s6.208cabd20532 from=translated src=- shape=3e90ec3a vocab=dc92c4e0
+-/
 @[simp] theorem quotientOne_eq_projection :
     (1 : quotientRingSet I hI) = quotientRingProjection I hI 1 := by
   rfl
 
 /-- 下降到 `R/I` 的五种运算满足本库逐条列出的全部环公理。证明对商类作归纳，并将
 每条等式化归为代表元所在环 `R` 的对应公理。
-> **Entry**: abstract-algebra.ring.quotient-/
+> **Entry**: abstract-algebra.ring.quotient
+@isnad1 id=ringaxio.1h2v.s6.39b925a2371a from=translated src=- shape=d5b4db11 vocab=089814a0
+-/
 theorem quotientRingSet_ringAxioms : RingAxioms (quotientRingSet I hI) := by
   refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
   · intro x y z
@@ -261,7 +283,9 @@ theorem quotientRingSet_ringAxioms : RingAxioms (quotientRingSet I hI) := by
     rw [add_mul]
 
 /-- 商投影是本库意义下的环同态：它保持零元、单位元、加法、乘法与取负。
-> **Entry**: abstract-algebra.ring.quotient-/
+> **Entry**: abstract-algebra.ring.quotient
+@isnad1 id=ringhomo.1h2v.s6.11d6cf4b2486 from=translated src=- shape=3d392d3a vocab=2c015092
+-/
 theorem quotientRingProjection_is_ringHomomorphism :
     RingHomomorphism (quotientRingProjection I hI) := by
   exact ⟨(quotientZero_eq_projection I hI).symm,
@@ -271,7 +295,9 @@ theorem quotientRingProjection_is_ringHomomorphism :
     fun x => (quotientNeg_projection I hI x).symm⟩
 
 /-- 商投影的核恰为原双边理想 `I`：元素投影为商环零元，当且仅当该元素属于 `I`。
-> **Entry**: abstract-algebra.ring.quotient-/
+> **Entry**: abstract-algebra.ring.quotient
+@isnad1 id=eq.1h2v.s6.3f2ae45da3be from=translated src=- shape=15fb9814 vocab=bd123236
+-/
 theorem quotientRingProjection_kernel :
     {x : R | quotientRingProjection I hI x = 0} = I := by
   ext x
@@ -305,14 +331,18 @@ def quotientRingSetLift (_hf : RingHomomorphism f)
     exact sub_eq_zero.mp hsub)
 
 /-- 提升函数与商投影组成交换三角：对每个 `x : R`，先投影再提升得到原值 `f x`。
-> **Entry**: abstract-algebra.ring.quotient-/
+> **Entry**: abstract-algebra.ring.quotient
+@isnad1 id=eq.3h5v.s7.bd038d8feb80 from=translated src=- shape=c7631434 vocab=1c82d190
+-/
 @[simp] theorem quotientRingSetLift_projection (x : R) :
     quotientRingSetLift I hI f hf hker (quotientRingProjection I hI x) = f x := by
   unfold quotientRingSetLift quotientRingProjection
   apply Quotient.lift_mk
 
 /-- 商环提升保持零元、单位元、加法、乘法和取负，因而是本库意义下的环同态。
-> **Entry**: abstract-algebra.ring.quotient-/
+> **Entry**: abstract-algebra.ring.quotient
+@isnad1 id=ringhomo.3h4v.s7.95e5dcf25c88 from=translated src=- shape=f22a9313 vocab=d2616e20
+-/
 theorem quotientRingSetLift_is_ringHomomorphism :
     RingHomomorphism (quotientRingSetLift I hI f hf hker) := by
   refine ⟨?_, ?_, ?_, ?_, ?_⟩
@@ -338,7 +368,9 @@ theorem quotientRingSetLift_is_ringHomomorphism :
 
 /-- 提升的逐点唯一性：任意函数 `g : R/I → S` 只要在所有投影类上等于 `f`，就必然
 等于规范提升；这里不额外要求 `g` 已被证明为环同态。
-> **Entry**: abstract-algebra.ring.quotient-/
+> **Entry**: abstract-algebra.ring.quotient
+@isnad1 id=eq.4h5v.s7.10267b120a70 from=translated src=- shape=8e473eb7 vocab=9a083aa3
+-/
 theorem quotientRingSetLift_pointwise_unique (g : quotientRingSet I hI → S)
     (htriangle : ∀ x : R, g (quotientRingProjection I hI x) = f x) :
     g = quotientRingSetLift I hI f hf hker := by
@@ -349,7 +381,9 @@ theorem quotientRingSetLift_pointwise_unique (g : quotientRingSet I hI → S)
 
 /-- 商环同态提升的唯一性版本：若环同态 `g` 与商投影的复合等于 `f`，则 `g` 等于
 规范提升。参数 `_hg` 明示候选函数是环同态，唯一性本身由投影类覆盖商集得到。
-> **Entry**: abstract-algebra.ring.quotient-/
+> **Entry**: abstract-algebra.ring.quotient
+@isnad1 id=eq.5h5v.s8.f9fb5876389e from=translated src=- shape=e9174aa7 vocab=9a083aa3
+-/
 theorem quotientRingSetLift_unique (g : quotientRingSet I hI → S)
     (_hg : RingHomomorphism g)
     (htriangle : ∀ x : R, g (quotientRingProjection I hI x) = f x) :
@@ -359,7 +393,9 @@ theorem quotientRingSetLift_unique (g : quotientRingSet I hI → S)
 include hf hker
 /-- **商环泛性质**：每个在双边理想 `I` 上为零的环同态 `f : R → S`，唯一分解为
 商投影 `R → R/I` 后接一个本库意义下的环同态 `R/I → S`。
-> **Entry**: abstract-algebra.ring.quotient-/
+> **Entry**: abstract-algebra.ring.quotient
+@isnad1 id=existsun.3h4v.s8.7391768fbb4a from=translated src=- shape=962bb04f vocab=08090856
+-/
 theorem quotientRingSet_universal_property :
     ∃! g : quotientRingSet I hI → S,
       RingHomomorphism g ∧

@@ -33,7 +33,9 @@ def IsSkewSymmetric {n R : Type*} [Neg R] (A : Matrix n n R) : Prop :=
 
 /-- 对称矩阵的逐元素判据：关于主对角线镜像的两个元素相等。
 
-> **Entry**: linear-algebra.matrix.symmetric-/
+> **Entry**: linear-algebra.matrix.symmetric
+@isnad1 id=iff.0h3v.s4.6f8e495f3e14 from=translated src=- shape=93dda660 vocab=78e438c0
+-/
 theorem isSymmetric_iff_entries {n R : Type*} {A : Matrix n n R} :
     IsSymmetric A ↔ ∀ i j, A i j = A j i := by
   constructor
@@ -44,14 +46,18 @@ theorem isSymmetric_iff_entries {n R : Type*} {A : Matrix n n R} :
     ext i j
     exact h j i
 
-/-- 本库教材定义与 Mathlib 的 `Matrix.IsSymm` 完全等价。-/
+/-- 本库教材定义与 Mathlib 的 `Matrix.IsSymm` 完全等价。
+@isnad1 id=iff.0h3v.s4.053095b0a117 from=translated src=- shape=dd144532 vocab=f85b6a7f
+-/
 theorem isSymmetric_iff_mathlib {n R : Type*} {A : Matrix n n R} :
     IsSymmetric A ↔ A.IsSymm := by
   rfl
 
 /-- 反对称矩阵的逐元素判据：`aᵢⱼ=-aⱼᵢ`。
 
-> **Entry**: linear-algebra.matrix.skew-symmetric-/
+> **Entry**: linear-algebra.matrix.skew-symmetric
+@isnad1 id=iff.0h3v.s5.f318a1cc1e25 from=translated src=- shape=69c369f9 vocab=70129679
+-/
 theorem isSkewSymmetric_iff_entries {n R : Type*} [AddGroup R] {A : Matrix n n R} :
     IsSkewSymmetric A ↔ ∀ i j, A i j = -A j i := by
   constructor
@@ -62,19 +68,25 @@ theorem isSkewSymmetric_iff_entries {n R : Type*} [AddGroup R] {A : Matrix n n R
     ext i j
     simpa using h j i
 
-/-- 两个对称矩阵的和仍是对称矩阵。-/
+/-- 两个对称矩阵的和仍是对称矩阵。
+@isnad1 id=issymmet.2h4v.s5.a99cff13b270 from=translated src=- shape=9ecd016e vocab=c483a857
+-/
 theorem isSymmetric_add {n R : Type*} [Add R] {A B : Matrix n n R}
     (hA : IsSymmetric A) (hB : IsSymmetric B) : IsSymmetric (A + B) := by
   rw [IsSymmetric, Matrix.transpose_add, hA, hB]
 
-/-- 两个反对称矩阵的和仍是反对称矩阵。-/
+/-- 两个反对称矩阵的和仍是反对称矩阵。
+@isnad1 id=isskewsy.2h4v.s6.f9ed9277f3b3 from=translated src=- shape=9ecd016e vocab=d465cea8
+-/
 theorem isSkewSymmetric_add {n R : Type*} [AddCommGroup R] {A B : Matrix n n R}
     (hA : IsSkewSymmetric A) (hB : IsSkewSymmetric B) : IsSkewSymmetric (A + B) := by
   rw [IsSkewSymmetric, Matrix.transpose_add, hA, hB, neg_add_rev]
   exact add_comm _ _
 
 /-- 在特征零域上，反对称矩阵的每个主对角元都等于零。证明使用
-`aᵢᵢ=-aᵢᵢ`，从而 `2aᵢᵢ=0`。-/
+`aᵢᵢ=-aᵢᵢ`，从而 `2aᵢᵢ=0`。
+@isnad1 id=eq.1h4v.s6.b30251723600 from=translated src=- shape=8787bf25 vocab=42ea63d5
+-/
 theorem isSkewSymmetric_diagonal_eq_zero {n K : Type*} [Field K] [CharZero K]
     {A : Matrix n n K} (hA : IsSkewSymmetric A) (i : n) : A i i = 0 := by
   have hii : A i i = -A i i := (isSkewSymmetric_iff_entries.mp hA) i i
@@ -94,14 +106,18 @@ noncomputable def skewSymmetricPart {n K : Type*} [Field K]
     (A : Matrix n n K) : Matrix n n K :=
   (2 : K)⁻¹ • (A - A.transpose)
 
-/-- `(A+Aᵀ)/2` 确实是对称矩阵。-/
+/-- `(A+Aᵀ)/2` 确实是对称矩阵。
+@isnad1 id=issymmet.0h3v.s4.58996efe1d08 from=translated src=- shape=dc13abc4 vocab=4c7ed745
+-/
 theorem symmetricPart_isSymmetric {n K : Type*} [Field K] (A : Matrix n n K) :
     IsSymmetric (symmetricPart A) := by
   rw [isSymmetric_iff_entries]
   intro i j
   simp [symmetricPart, add_comm]
 
-/-- `(A-Aᵀ)/2` 确实是反对称矩阵。-/
+/-- `(A-Aᵀ)/2` 确实是反对称矩阵。
+@isnad1 id=isskewsy.0h3v.s5.0a27e8103d15 from=translated src=- shape=dc13abc4 vocab=ddc8aebb
+-/
 theorem skewSymmetricPart_isSkewSymmetric {n K : Type*} [Field K]
     (A : Matrix n n K) : IsSkewSymmetric (skewSymmetricPart A) := by
   rw [isSkewSymmetric_iff_entries]
@@ -109,7 +125,9 @@ theorem skewSymmetricPart_isSkewSymmetric {n K : Type*} [Field K]
   simp [skewSymmetricPart]
   ring
 
-/-- **对称—反对称分解**：特征零域上的任意方阵都等于其对称部分与反对称部分之和。-/
+/-- **对称—反对称分解**：特征零域上的任意方阵都等于其对称部分与反对称部分之和。
+@isnad1 id=eq.0h3v.s6.d44512cb6468 from=translated src=- shape=5759c925 vocab=1b82989c
+-/
 theorem symmetricPart_add_skewSymmetricPart {n K : Type*} [Field K] [CharZero K]
     (A : Matrix n n K) : symmetricPart A + skewSymmetricPart A = A := by
   ext i j

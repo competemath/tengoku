@@ -44,7 +44,9 @@ open SandronesLibrary.LinearAlgebra.VectorSpace
 结合律、单位律与两条零律。`Module R M` 是语义一致的正式承载：前四条与 `r • 0 = 0` 来自其父类
 `DistribMulAction`/`SMulZeroClass`，`Module` 自有字段只有 `(r + s) • x = r • x + s • x` 与
 `(0 : R) • x = 0`。
-> **Entry**: commutative-algebra.module.definition-/
+> **Entry**: commutative-algebra.module.definition
+@isnad1 id=and.0h6v.s9.5fecb96cb39c from=translated src=- shape=2acb3ed5 vocab=0c9fb63a
+-/
 theorem module_axioms {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M] (r s : R) (x y : M) :
     r • (x + y) = r • x + r • y ∧ (r + s) • x = r • x + s • x ∧
       (r * s) • x = r • (s • x) ∧ (1 : R) • x = x ∧ (0 : R) • x = 0 ∧ r • (0 : M) = 0 :=
@@ -52,7 +54,9 @@ theorem module_axioms {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M] (
 
 /-- **子模的三条封闭性**（Atiyah–Macdonald 第 2 章）：子模含零元、对加法封闭、对数乘封闭。
 `Submodule R M` 是子模的语义一致的正式承载（Mathlib 以 `carrier` 加三条封闭性字段打包）。
-> **Entry**: commutative-algebra.module.definition-/
+> **Entry**: commutative-algebra.module.definition
+@isnad1 id=and.0h3v.s8.0e404d05918a from=translated src=- shape=4f470085 vocab=7cb90b23
+-/
 theorem submodule_closure {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     (S : Submodule R M) :
     (0 : M) ∈ S ∧ (∀ x ∈ S, ∀ y ∈ S, x + y ∈ S) ∧ (∀ (a : R) (x : M), x ∈ S → a • x ∈ S) :=
@@ -60,7 +64,9 @@ theorem submodule_closure {R M : Type*} [CommRing R] [AddCommGroup M] [Module R 
 
 /-- **由封闭性构造子模**：给定子集 `s` 含零元、对加法封闭、对数乘封闭，则存在以 `s` 为载体的
 子模。这是 `Submodule R M` 作为正式承载的反向构造（教材「子模的等价定义」一侧）。
-> **Entry**: commutative-algebra.module.definition-/
+> **Entry**: commutative-algebra.module.definition
+@isnad1 id=ex.3h3v.s7.91279bacc667 from=translated src=- shape=a73c72bd vocab=8588586e
+-/
 theorem submodule_of_closure {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     {s : Set M} (h0 : (0 : M) ∈ s) (hadd : ∀ x ∈ s, ∀ y ∈ s, x + y ∈ s)
     (hsmul : ∀ (a : R) (x : M), x ∈ s → a • x ∈ s) :
@@ -70,7 +76,9 @@ theorem submodule_of_closure {R M : Type*} [CommRing R] [AddCommGroup M] [Module
 
 /-- **子模的外延性**：两个子模相等当且仅当它们有相同的元素。`Submodule R M` 是语义一致的
 正式承载，`SetLike.ext_iff` 给出该外延性原理。
-> **Entry**: commutative-algebra.module.definition-/
+> **Entry**: commutative-algebra.module.definition
+@isnad1 id=iff.0h4v.s7.35f71746f8bc from=translated src=- shape=180357c0 vocab=ed2040f0
+-/
 theorem submodule_eq_iff {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     {S T : Submodule R M} : S = T ↔ ∀ x, x ∈ S ↔ x ∈ T :=
   SetLike.ext_iff
@@ -79,7 +87,9 @@ theorem submodule_eq_iff {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M
 与数乘。`LinearMap R M N` 是模同态的语义一致的正式承载（本版 Mathlib 的父结构是 `AddHom`，
 `AddMonoidHom.toLinearMap` 不存在）；正向由 `F.map_add`/`F.map_smul` 给出，反向用
 `LinearMap.mk (AddHom.mk f …) …` 组装。
-> **Entry**: commutative-algebra.module.definition-/
+> **Entry**: commutative-algebra.module.definition
+@isnad1 id=iff.0h4v.s8.fbae15e4ddc7 from=translated src=- shape=f9e9222e vocab=6777bc87
+-/
 theorem linearMap_iff {R M N : Type*} [CommRing R] [AddCommGroup M] [AddCommGroup N]
     [Module R M] [Module R N] (f : M → N) :
     (∃ F : M →ₗ[R] N, ⇑F = f) ↔
@@ -94,7 +104,9 @@ theorem linearMap_iff {R M N : Type*} [CommRing R] [AddCommGroup M] [AddCommGrou
 
 /-- **模同态的外延性**：两个模同态相等当且仅当它们在每个元素上取值相同。`LinearMap R M N` 是
 语义一致的正式承载，`LinearMap.ext` 给出该外延性原理。
-> **Entry**: commutative-algebra.module.definition-/
+> **Entry**: commutative-algebra.module.definition
+@isnad1 id=iff.0h5v.s8.190f7d11105b from=translated src=- shape=7d368693 vocab=f991c150
+-/
 theorem linearMap_ext_iff {R M N : Type*} [CommRing R] [AddCommGroup M] [AddCommGroup N]
     [Module R M] [Module R N] {F G : M →ₗ[R] N} : F = G ↔ ∀ x, F x = G x :=
   ⟨fun h x => by rw [h], fun h => LinearMap.ext h⟩
@@ -103,14 +115,18 @@ theorem linearMap_ext_iff {R M N : Type*} [CommRing R] [AddCommGroup M] [AddComm
 `AddMonoidHomClass` 实例给出的派生性质（`F.map_zero`，证明走 `F 0 = F (0 • 0) = 0 • F 0 = 0`），
 不需要单独假设；`LinearMap` 的父结构 `AddHom` 本身不含零元字段，所以用 `LinearMap.mk` 构造时
 也无须给出（多写一个 `map_zero'` 字段会被编译器拒绝）。
-> **Entry**: commutative-algebra.module.definition-/
+> **Entry**: commutative-algebra.module.definition
+@isnad1 id=eq.0h4v.s7.73bf43b38298 from=translated src=- shape=9c466843 vocab=f991c150
+-/
 theorem linearMap_map_zero {R M N : Type*} [CommRing R] [AddCommGroup M] [AddCommGroup N]
     [Module R M] [Module R N] (F : M →ₗ[R] N) : F 0 = 0 :=
   F.map_zero
 
 /-- **核的成员刻画**（Atiyah–Macdonald 第 2 章）：`x` 属于 `F` 的核当且仅当 `F x = 0`。
 `LinearMap.ker F` 的类型是 `Submodule R M`——这是子模承载在 Mathlib 里的真实上层使用者。
-> **Entry**: commutative-algebra.module.definition-/
+> **Entry**: commutative-algebra.module.definition
+@isnad1 id=iff.0h5v.s7.fece7c125ec2 from=translated src=- shape=37b41a83 vocab=db2898fd
+-/
 theorem linearMap_mem_ker_iff {R M N : Type*} [CommRing R] [AddCommGroup M] [AddCommGroup N]
     [Module R M] [Module R N] (F : M →ₗ[R] N) (x : M) :
     x ∈ LinearMap.ker F ↔ F x = 0 :=
@@ -119,7 +135,9 @@ theorem linearMap_mem_ker_iff {R M N : Type*} [CommRing R] [AddCommGroup M] [Add
 /-- **像的成员刻画**（Atiyah–Macdonald 第 2 章）：`y` 属于 `F` 的像当且仅当存在原像。
 `LinearMap.range F` 的类型是 `Submodule R N`，`LinearMap.mem_range` 需要
 `RingHomSurjective (RingHom.id R)`，该实例对恒等环同态自动合成。
-> **Entry**: commutative-algebra.module.definition-/
+> **Entry**: commutative-algebra.module.definition
+@isnad1 id=iff.0h5v.s7.a532142620e8 from=translated src=- shape=4b2ede38 vocab=0798a488
+-/
 theorem linearMap_mem_range_iff {R M N : Type*} [CommRing R] [AddCommGroup M] [AddCommGroup N]
     [Module R M] [Module R N] (F : M →ₗ[R] N) (y : N) :
     y ∈ LinearMap.range F ↔ ∃ x, F x = y :=
@@ -129,7 +147,9 @@ theorem linearMap_mem_range_iff {R M N : Type*} [CommRing R] [AddCommGroup M] [A
 正式承载 `Submodule K V` 等价。`IsSubspace` 是本库 L1 的语义一致的教材记号，`Submodule` 是
 Mathlib 的正式承载，本定理是两者之间的桥：正向由「非空 + 数乘封闭 ⟹ 0 ∈ W」补出零元，
 再套本文件的 `submodule_of_closure`；反向由 `Submodule` 的三条封闭性回填 `IsSubspace`。
-> **Entry**: commutative-algebra.module.definition-/
+> **Entry**: commutative-algebra.module.definition
+@isnad1 id=iff.0h3v.s6.f54845c63df7 from=translated src=- shape=9e4b8872 vocab=3c1d88a3
+-/
 theorem isSubspace_iff_exists_submodule {K V : Type*} [Field K] [AddCommGroup V]
     [LinearSpace K V] (W : Set V) :
     IsSubspace K W ↔ ∃ S : Submodule K V, (S : Set V) = W := by
@@ -151,7 +171,9 @@ theorem isSubspace_iff_exists_submodule {K V : Type*} [Field K] [AddCommGroup V]
 语义一致的教材记号（交换环中左右两侧吸收等价），`Submodule R R` 是 Mathlib 的正式承载，
 本定理是两者之间的桥：正向复用 `submodule_of_closure`（正则模的数量乘即环乘法）；反向的负元由
 `(-1 : R) • x` 给出，右吸收在交换环里用 `mul_comm` 把 `r * x` 换成 `x * r`。
-> **Entry**: commutative-algebra.module.definition-/
+> **Entry**: commutative-algebra.module.definition
+@isnad1 id=iff.0h2v.s7.2aad635378b5 from=translated src=- shape=21c55de9 vocab=7eb35918
+-/
 theorem twoSidedIdealSet_iff_exists_submodule_self {R : Type*} [CommRing R] (I : Set R) :
     AbstractAlgebra.Ring.TwoSidedIdealSet I ↔ ∃ S : Submodule R R, (S : Set R) = I := by
   constructor

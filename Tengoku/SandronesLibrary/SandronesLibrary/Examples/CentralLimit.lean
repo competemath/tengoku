@@ -35,35 +35,47 @@ abbrev gaussianSpace : Measure (ℕ → ℝ) := Measure.infinitePi fun _ => gaus
 /-- **坐标随机变量** `X k (ω) = ω k`。-/
 abbrev coordinate (k : ℕ) : (ℕ → ℝ) → ℝ := fun ω => ω k
 
-/-- 坐标随机变量可测。-/
+/-- 坐标随机变量可测。
+@isnad1 id=measurab.0h1v.s4.78f64ac2a0c1 from=translated src=- shape=c6bcc799 vocab=b190abb1
+-/
 theorem coordinate_measurable (k : ℕ) : Measurable (coordinate k) :=
   measurable_pi_apply k
 
-/-- 坐标随机变量几乎处处可测（可测性的推论，供概率接口使用）。-/
+/-- 坐标随机变量几乎处处可测（可测性的推论，供概率接口使用）。
+@isnad1 id=aemeasur.0h1v.s4.fcdca8d75455 from=translated src=- shape=92dd855b vocab=a1ebe983
+-/
 theorem coordinate_aemeasurable (k : ℕ) : AEMeasurable (coordinate k) gaussianSpace :=
   (coordinate_measurable k).aemeasurable
 
-/-- **每个坐标的分布都是标准正态**：`(gaussianSpace).map (coordinate k) = gaussianReal 0 1`。-/
+/-- **每个坐标的分布都是标准正态**：`(gaussianSpace).map (coordinate k) = gaussianReal 0 1`。
+@isnad1 id=eq.0h1v.s5.3b15bf439a12 from=translated src=- shape=e88a74f4 vocab=3c6c0ba9
+-/
 theorem coordinate_law (k : ℕ) :
     gaussianSpace.map (coordinate k) = gaussianReal 0 1 := by
   simpa [gaussianSpace, coordinate] using
     Measure.infinitePi_map_eval (fun _ : ℕ => gaussianReal 0 1) k
 
-/-- **独立性**：坐标随机变量族 `iIndepFun`。这是乘积测度的定义性性质。-/
+/-- **独立性**：坐标随机变量族 `iIndepFun`。这是乘积测度的定义性性质。
+@isnad1 id=iindepfu.0h0v.s4.64227c742db3 from=translated src=- shape=f58bff7a vocab=79b0825c
+-/
 theorem coordinate_iIndepFun : iIndepFun coordinate gaussianSpace := by
   simpa [gaussianSpace, coordinate] using
     (iIndepFun_infinitePi (Ω := fun _ : ℕ => ℝ) (𝓧 := fun _ : ℕ => ℝ)
       (P := fun _ : ℕ => gaussianReal 0 1) (X := fun _ => id)
       (fun _ => measurable_id))
 
-/-- **同分布**：任意两个坐标同分布（由 `coordinate_law` 都等于标准正态）。-/
+/-- **同分布**：任意两个坐标同分布（由 `coordinate_law` 都等于标准正态）。
+@isnad1 id=identdis.0h1v.s5.989ba0505a7b from=translated src=- shape=b9508bdd vocab=523edc70
+-/
 theorem coordinate_identDistrib (i : ℕ) :
     IdentDistrib (coordinate i) (coordinate 0) gaussianSpace gaussianSpace where
   aemeasurable_fst := coordinate_aemeasurable i
   aemeasurable_snd := coordinate_aemeasurable 0
   map_eq := by rw [coordinate_law i, coordinate_law 0]
 
-/-- **二阶矩有限**：`coordinate 0 ∈ L²(gaussianSpace)`。-/
+/-- **二阶矩有限**：`coordinate 0 ∈ L²(gaussianSpace)`。
+@isnad1 id=memlp.0h0v.s6.25197c7053c2 from=translated src=- shape=addefb49 vocab=1b28a7dd
+-/
 theorem coordinate_memLp_two : MemLp (coordinate 0) 2 gaussianSpace := by
   have h := (memLp_map_measure_iff (μ := gaussianSpace) (f := coordinate 0) (g := id)
     (p := 2) aestronglyMeasurable_id (coordinate_aemeasurable 0)).1 ?_
@@ -71,7 +83,9 @@ theorem coordinate_memLp_two : MemLp (coordinate 0) 2 gaussianSpace := by
   · rw [coordinate_law 0]
     exact memLp_id_gaussianReal 2
 
-/-- **均值计算**：`𝔼[coordinate 0] = 0`。-/
+/-- **均值计算**：`𝔼[coordinate 0] = 0`。
+@isnad1 id=eq.0h0v.s5.5f78ad6c6410 from=translated src=- shape=05065e58 vocab=6d4e2b07
+-/
 theorem coordinate_integral : gaussianSpace[coordinate 0] = 0 := by
   have h : gaussianSpace[coordinate 0] =
       ∫ x : ℝ, x ∂(gaussianSpace.map (coordinate 0)) :=
@@ -79,7 +93,9 @@ theorem coordinate_integral : gaussianSpace[coordinate 0] = 0 := by
   rw [h, coordinate_law 0]
   exact integral_id_gaussianReal
 
-/-- **方差计算**：`Var[coordinate 0] = 1`。-/
+/-- **方差计算**：`Var[coordinate 0] = 1`。
+@isnad1 id=eq.0h0v.s4.8fcacaa09cf3 from=translated src=- shape=8c8c222b vocab=abc9ff7b
+-/
 theorem coordinate_variance : variance (coordinate 0) gaussianSpace = 1 := by
   have h : variance (coordinate 0) gaussianSpace =
       Var[id; gaussianSpace.map (coordinate 0)] :=
@@ -90,7 +106,9 @@ theorem coordinate_variance : variance (coordinate 0) gaussianSpace = 1 := by
 
 /-- **一般 CLT 在具体正态坐标空间上的实例化**：中心化按 `σ√n`（此处 `μ=0`、`σ=1`）缩放的
 前 `n` 项和之分布弱收敛到标准正态。这是 `probability.clt.central-limit-theorem` 的一个
-可直接核对的真实使用者。-/
+可直接核对的真实使用者。
+@isnad1 id=tendsto.0h0v.s6.3aac1e379d63 from=translated src=- shape=6fc44be7 vocab=080712e7
+-/
 theorem clt_gaussianCoordinates :
     Tendsto
       (fun n : ℕ => centeredScaledSumLaw coordinate
@@ -100,7 +118,9 @@ theorem clt_gaussianCoordinates :
     coordinate_integral (by simpa using coordinate_variance) (by norm_num)
 
 /-- **接上 Lévy 连续性接口**：标准化和的特征函数逐点收敛到标准正态特征函数
-`exp (-t²/2)`。-/
+`exp (-t²/2)`。
+@isnad1 id=tendsto.0h1v.s6.b3dca01da393 from=translated src=- shape=a38d48c9 vocab=b94fc2c6
+-/
 theorem clt_gaussianCoordinates_charFun (t : ℝ) :
     Tendsto
       (fun n : ℕ => charFun (centeredScaledSumLaw coordinate

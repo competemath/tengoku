@@ -402,7 +402,9 @@ open SandronesLibrary.Topology
 /-- Cellwise exactness on a finite raw open grid forces the integral along its
 four original outer sides to vanish. Internal raw edges may be regularized,
 but the four boundary families are retained definitionally by their chosen
-replacements.-/
+replacements.
+@isnad1 id=eq.1h2v.s9.44a5108ee0e8 from=translated src=- shape=2b55c967 vocab=b3f5d028
+-/
 theorem finiteRawOpenPathGrid_outerBoundaryIntegral_eq_zero
     {f : ℂ → ℂ} (R : FiniteRawOpenPathGrid ℂ)
     (hexact : ∀ i j, Complex.IsExactOn f (R.cellSet i j)) :

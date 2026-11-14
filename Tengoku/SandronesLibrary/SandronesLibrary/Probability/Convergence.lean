@@ -35,7 +35,9 @@ noncomputable section
 open Filter MeasureTheory ProbabilityTheory
 open scoped Topology ENNReal
 
-/-- 几乎必然收敛的教材展开：在 `μ`-几乎每个样本点上，数列在值域拓扑中收敛。-/
+/-- 几乎必然收敛的教材展开：在 `μ`-几乎每个样本点上，数列在值域拓扑中收敛。
+@isnad1 id=iff.0h5v.s6.929666d00bbd from=translated src=- shape=3b6b3c2c vocab=49cad320
+-/
 theorem almostSurelyConverges_iff_ae_tendsto
     {Ω E : Type*} [MeasurableSpace Ω] [TopologicalSpace E]
     (μ : Measure Ω) (X : ℕ → Ω → E) (Z : Ω → E) :
@@ -43,7 +45,9 @@ theorem almostSurelyConverges_iff_ae_tendsto
       ∀ᵐ ω ∂μ, Tendsto (fun n ↦ X n ω) atTop (𝓝 (Z ω)) :=
   Iff.rfl
 
-/-- 概率测度下，`TendstoInMeasure` 等价于教材的概率收敛定义。-/
+/-- 概率测度下，`TendstoInMeasure` 等价于教材的概率收敛定义。
+@isnad1 id=iff.0h5v.s6.8f29fec0da7b from=translated src=- shape=a2313c29 vocab=a187ba0f
+-/
 theorem convergesInProbability_iff_measureReal_dist
     {Ω E : Type*} [MeasurableSpace Ω] [PseudoMetricSpace E]
     (μ : Measure Ω) [IsProbabilityMeasure μ]
@@ -53,7 +57,9 @@ theorem convergesInProbability_iff_measureReal_dist
         Tendsto (fun n ↦ μ.real {ω | ε ≤ dist (X n ω) (Z ω)}) atTop (𝓝 0) :=
   tendstoInMeasure_iff_measureReal_dist
 
-/-- 概率空间上的几乎必然收敛蕴含概率收敛。-/
+/-- 概率空间上的几乎必然收敛蕴含概率收敛。
+@isnad1 id=tendstoi.2h5v.s6.25f040452271 from=translated src=- shape=7e7912a8 vocab=23bc5841
+-/
 theorem almostSurelyConverges_inProbability
     {Ω E : Type*} [MeasurableSpace Ω] [PseudoEMetricSpace E]
     (μ : Measure Ω) [IsProbabilityMeasure μ]
@@ -66,7 +72,9 @@ theorem almostSurelyConverges_inProbability
 /-- `Lᵖ` 收敛蕴含概率收敛。
 
 这里直接对普通函数使用扩展 `Lᵖ` 范数 `eLpNorm`，不要求先把随机变量打包为 `Lp` 商空间元素。
-条件 `p ≠ 0` 是 Markov 型估计所需的真实指数边界；定理同时覆盖 `p = ∞`。-/
+条件 `p ≠ 0` 是 Markov 型估计所需的真实指数边界；定理同时覆盖 `p = ∞`。
+@isnad1 id=tendstoi.4h6v.s7.f5fd3c341a8d from=translated src=- shape=1645b5c9 vocab=8776f970
+-/
 theorem convergesInLp_inProbability
     {Ω E : Type*} [MeasurableSpace Ω] [NormedAddCommGroup E]
     (μ : Measure Ω) {p : ℝ≥0∞} (hp : p ≠ 0)
@@ -77,7 +85,9 @@ theorem convergesInLp_inProbability
     TendstoInMeasure μ X atTop Z :=
   tendstoInMeasure_of_tendsto_eLpNorm hp hX hZ hXZ
 
-/-- 在 Borel 度量值域中，概率收敛蕴含分布收敛。-/
+/-- 在 Borel 度量值域中，概率收敛蕴含分布收敛。
+@isnad1 id=tendstoi.2h5v.s6.b09bce927e9a from=translated src=- shape=e6b302fd vocab=b57ae0de
+-/
 theorem convergesInProbability_inDistribution
     {Ω E : Type*} [MeasurableSpace Ω] [PseudoEMetricSpace E]
     [MeasurableSpace E] [BorelSpace E]
@@ -88,7 +98,9 @@ theorem convergesInProbability_inDistribution
     TendstoInDistribution X atTop Z (fun _ ↦ μ) μ :=
   hXZ.tendstoInDistribution hX
 
-/-- 几乎必然收敛通过“a.s. → 概率 → 分布”的正式链蕴含分布收敛。-/
+/-- 几乎必然收敛通过“a.s. → 概率 → 分布”的正式链蕴含分布收敛。
+@isnad1 id=tendstoi.2h5v.s6.c63fb283d888 from=translated src=- shape=f979f9c3 vocab=7a2e915b
+-/
 theorem almostSurelyConverges_inDistribution
     {Ω E : Type*} [MeasurableSpace Ω] [PseudoEMetricSpace E]
     [MeasurableSpace E] [BorelSpace E]
@@ -102,7 +114,9 @@ theorem almostSurelyConverges_inDistribution
 
 /-- 概率收敛序列存在一个严格递增子列，沿该子列几乎必然收敛到同一极限。
 
-结论只涉及选出的子列 `X (ns k)`，不能误读为原序列已经几乎必然收敛。-/
+结论只涉及选出的子列 `X (ns k)`，不能误读为原序列已经几乎必然收敛。
+@isnad1 id=ex.1h5v.s6.8e61e45f664d from=translated src=- shape=1fae7aec vocab=29696ba8
+-/
 theorem convergesInProbability_has_almostSurelyConvergent_subsequence
     {Ω E : Type*} [MeasurableSpace Ω] [PseudoEMetricSpace E]
     {μ : Measure Ω} {X : ℕ → Ω → E} {Z : Ω → E}
@@ -111,7 +125,9 @@ theorem convergesInProbability_has_almostSurelyConvergent_subsequence
       ∀ᵐ ω ∂μ, Tendsto (fun k ↦ X (ns k) ω) atTop (𝓝 (Z ω)) :=
   hXZ.exists_seq_tendsto_ae
 
-/-- 分布收敛的连续映射定理：连续函数保持分布收敛。-/
+/-- 分布收敛的连续映射定理：连续函数保持分布收敛。
+@isnad1 id=tendstoi.2h7v.s7.6e743b2dac7c from=translated src=- shape=7945c710 vocab=7da88cd9
+-/
 theorem convergenceInDistribution_continuousMapping
     {Ω E F : Type*} [MeasurableSpace Ω]
     [TopologicalSpace E] [MeasurableSpace E] [OpensMeasurableSpace E]

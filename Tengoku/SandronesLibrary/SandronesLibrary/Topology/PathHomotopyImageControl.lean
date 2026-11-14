@@ -43,13 +43,18 @@ def Path.affineHomotopy {x y : E} (p q : Path x y) : p.Homotopy q where
     · simp
     · simp
 
+/--
+@isnad1 id=eq.0h7v.s9.86649b68112f from=translated src=- shape=2453638b vocab=0a5b2b99
+-/
 @[simp] theorem Path.affineHomotopy_apply {x y : E} (p q : Path x y)
     (t s : unitInterval) :
     SandronesLibrary.Topology.Path.affineHomotopy p q (t, s) =
       Path.segment (p s) (q s) t :=
   rfl
 
-/-- 若凸集逐点包含两条道路，则端点相对仿射同伦中的每条中间道路也位于该凸集内。-/
+/-- 若凸集逐点包含两条道路，则端点相对仿射同伦中的每条中间道路也位于该凸集内。
+@isnad1 id=mem.3h8v.s9.5e4170bf1e4e from=translated src=- shape=38cc6a13 vocab=87b946db
+-/
 theorem Path.affineHomotopy_mapsTo_convex {x y : E} (p q : Path x y)
     {S : Set E} (hS : Convex ℝ S) (hp : ∀ s, p s ∈ S) (hq : ∀ s, q s ∈ S) :
     ∀ t s : unitInterval,
@@ -57,7 +62,9 @@ theorem Path.affineHomotopy_mapsTo_convex {x y : E} (p q : Path x y)
   intro t s
   exact hS.lineMap_mem (hp s) (hq s) t.2
 
-/-- 若两条道路都位于同一开球内，则它们之间的仿射同伦全部位于该球内。-/
+/-- 若两条道路都位于同一开球内，则它们之间的仿射同伦全部位于该球内。
+@isnad1 id=mem.2h9v.s9.3930563edb71 from=translated src=- shape=a5626a8e vocab=6b9a5481
+-/
 theorem Path.affineHomotopy_mapsTo_ball {x y : E} (p q : Path x y)
     (c : E) (r : ℝ) (hp : ∀ s, p s ∈ Metric.ball c r)
     (hq : ∀ s, q s ∈ Metric.ball c r) :
@@ -67,6 +74,9 @@ theorem Path.affineHomotopy_mapsTo_ball {x y : E} (p q : Path x y)
     p q (convex_ball c r) hp hq
 
 /- 若两个端点相对道路同伦都不离开集合 `S`，则它们的水平复合也不离开 `S`。 -/
+/--
+@isnad1 id=mem.2h13v.s9.206e3052741c from=translated src=- shape=c35e12b4 vocab=3469b461
+-/
 theorem Path.Homotopy.hcomp_mapsTo
     {x₀ x₁ x₂ : X}
     {p₀ q₀ : Path x₀ x₁} {p₁ q₁ : Path x₁ x₂}
@@ -81,6 +91,9 @@ theorem Path.Homotopy.hcomp_mapsTo
   · apply hG
 
 /- 道路同伦的竖直复合保持任意给定的像集界。 -/
+/--
+@isnad1 id=mem.2h11v.s9.ba8dac03241f from=translated src=- shape=e6df1410 vocab=a16aaf2d
+-/
 theorem Path.Homotopy.trans_mapsTo
     {x y : X} {p q r : Path x y}
     (F : p.Homotopy q) (G : q.Homotopy r) {S : Set X}
@@ -94,6 +107,9 @@ theorem Path.Homotopy.trans_mapsTo
   · apply hG
 
 /- Mathlib 的道路重参数化同伦的所有取值都来自原道路。 -/
+/--
+@isnad1 id=mem.4h8v.s8.745814ce2cb1 from=translated src=- shape=37ee13f8 vocab=a860f2d0
+-/
 theorem Path.Homotopy.reparam_mapsTo
     {x y : X} (p : Path x y) (f : unitInterval → unitInterval)
     (hf : Continuous f) (hf₀ : f 0 = 0) (hf₁ : f 1 = 1)
@@ -104,6 +120,9 @@ theorem Path.Homotopy.reparam_mapsTo
   exact hp _
 
 /- 删去末尾常值道路只是重参数化，因而不会离开原道路的像。 -/
+/--
+@isnad1 id=mem.1h7v.s8.0146ca22a957 from=translated src=- shape=52f4c7cb vocab=75d295ff
+-/
 theorem Path.Homotopy.transRefl_mapsTo
     {x y : X} (p : Path x y) {S : Set X} (hp : ∀ s, p s ∈ S) :
     ∀ t s : unitInterval, Path.Homotopy.transRefl p (t, s) ∈ S := by
@@ -115,6 +134,9 @@ theorem Path.Homotopy.transRefl_mapsTo
   exact hp
 
 /- 两条相邻子道路的结合同伦只在不同区间参数处计算原道路。 -/
+/--
+@isnad1 id=mem.1h10v.s9.2e125fbaab23 from=translated src=- shape=e1a98404 vocab=76487b05
+-/
 theorem Path.Homotopy.subpathTransSubpathRefl_mapsTo
     {x y : X} (p : Path x y) (t₀ t₁ t₂ : unitInterval)
     {S : Set X} (hp : ∀ s, p s ∈ S) :
@@ -130,6 +152,9 @@ theorem Path.Homotopy.subpathTransSubpathRefl_mapsTo
   · apply hp
 
 /- 删去多余的末尾常值子道路保持同一像集界，因此公开的 `subpathTransSubpath` 同伦始终位于 `p` 的像上。 -/
+/--
+@isnad1 id=mem.1h10v.s9.3e2f5073774c from=translated src=- shape=63724fa3 vocab=ca0675d1
+-/
 theorem Path.Homotopy.subpathTransSubpath_mapsTo
     {x y : X} (p : Path x y) (t₀ t₁ t₂ : unitInterval)
     {S : Set X} (hp : ∀ s, p s ∈ S) :
@@ -144,6 +169,9 @@ theorem Path.Homotopy.subpathTransSubpath_mapsTo
   · exact Path.Homotopy.transRefl_mapsTo (p.subpath t₀ t₂) (fun _ ↦ hp _)
 
 /- 道路上的常值同伦保持任何包含该道路像的集合。 -/
+/--
+@isnad1 id=mem.1h7v.s8.be79f710d383 from=translated src=- shape=43dbf460 vocab=5aa183ff
+-/
 theorem Path.Homotopy.refl_mapsTo
     {x y : X} (p : Path x y) {S : Set X} (hp : ∀ s, p s ∈ S) :
     ∀ t s : unitInterval, Path.Homotopy.refl p (t, s) ∈ S := by
@@ -240,6 +268,9 @@ def Path.Homotopy.concatWithMapsTo
 /- 若所有顶点和组成道路都位于 `S`，则有限拼接的整个像也位于 `S`。Mathlib 已提供二元的
 `Path.trans_range`；本定理是它对有限 `Path.concat` 的对应版本。 -/
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=le.2h5v.s7.e6cb6b69460a from=translated src=- shape=1b62c7ab vocab=badbcd55
+-/
 theorem Path.concat_range_subset
     {n : ℕ} (vertices : Fin (n + 1) → X)
     (pieces : (i : Fin n) → Path (vertices i.castSucc) (vertices i.succ))

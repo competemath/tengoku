@@ -58,7 +58,9 @@ private def cauchyPointsSubmodule (g : ℕ → E →L[ℝ] F) : Submodule ℝ E 
 /-- Uniformly bounded operator norms make the set of Cauchy points closed.
 This is the approximation mechanism of Lemma 4 in Banach–Steinhaus (1927).
 
-> **Entry**: functional-analysis.condensation.divergence-/
+> **Entry**: functional-analysis.condensation.divergence
+@isnad1 id=isclosed.2h4v.s8.8019856baf3b from=translated src=- shape=0672e6fd vocab=37a4f69a
+-/
 theorem isClosed_cauchy_points_of_operatorNorm_bound {g : ℕ → E →L[ℝ] F}
     {C : ℝ} (hC : 0 ≤ C) (h : ∀ q, ‖g q‖ ≤ C) :
     IsClosed {x : E | CauchySeq (fun q => g q x)} := by
@@ -97,7 +99,9 @@ theorem isClosed_cauchy_points_of_operatorNorm_bound {g : ℕ → E →L[ℝ] F}
   linarith [hdist m, hdist n, hN m hm n hn]
 
 /-- For a uniformly norm-bounded row that fails to be Cauchy at one point, the non-Cauchy
-points form a dense open set.-/
+points form a dense open set.
+@isnad1 id=and.3h4v.s9.ad42db888873 from=translated src=- shape=d9e98f22 vocab=a72d16a7
+-/
 theorem dense_open_nonCauchy_points_of_operatorNorm_bound {g : ℕ → E →L[ℝ] F}
     {C : ℝ} (hC : 0 ≤ C) (h : ∀ q, ‖g q‖ ≤ C)
     (hz : ∃ z : E, ¬ CauchySeq (fun q => g q z)) :
@@ -118,7 +122,9 @@ theorem dense_open_nonCauchy_points_of_operatorNorm_bound {g : ℕ → E →L[�
 variable [BanachSpace E]
 
 /-- Whenever one point is non-Cauchy for a row, a dense Gδ set of points is non-Cauchy
-for that row. The proof splits according to boundedness of the operator norms.-/
+for that row. The proof splits according to boundedness of the operator norms.
+@isnad1 id=ex.1h3v.s8.1223b6d32798 from=translated src=- shape=76ebfbad vocab=d43ce125
+-/
 theorem exists_dense_Gδ_nonCauchy_points {g : ℕ → E →L[ℝ] F}
     (hz : ∃ z : E, ¬ CauchySeq (fun q => g q z)) :
     ∃ S : Set E, Dense S ∧ IsGδ S ∧ S ⊆ {x : E | ¬ CauchySeq (fun q => g q x)} := by
@@ -149,7 +155,9 @@ variable {F : ℕ → Type*} [∀ p, NormedAddCommGroup (F p)]
 variable [∀ p, NormedLinearSpace ℝ (F p)]
 
 /-- **Theorem II, category conclusion**: if each row is non-Cauchy at some point, the points
-where all rows are non-Cauchy are dense. Codomains may depend on the row.-/
+where all rows are non-Cauchy are dense. Codomains may depend on the row.
+@isnad1 id=dense.1h3v.s9.fef1d5bd05ff from=translated src=- shape=c93af280 vocab=adf4184f
+-/
 theorem condensation_divergence_dense {g : ∀ p : ℕ, ℕ → E →L[ℝ] F p}
     (h : ∀ p, ∃ z : E, ¬ CauchySeq (fun q => g p q z)) :
     Dense {x : E | ∀ p, ¬ CauchySeq (fun q => g p q x)} := by
@@ -158,14 +166,18 @@ theorem condensation_divergence_dense {g : ∀ p : ℕ, ℕ → E →L[ℝ] F p}
   intro x hx p
   exact hSub p (mem_iInter.mp hx p)
 
-/-- **Theorem II, Cauchy form**: one common point makes every row non-Cauchy.-/
+/-- **Theorem II, Cauchy form**: one common point makes every row non-Cauchy.
+@isnad1 id=ex.1h3v.s9.84f41eea0160 from=translated src=- shape=9f44d224 vocab=20573f72
+-/
 theorem condensation_divergence_exists {g : ∀ p : ℕ, ℕ → E →L[ℝ] F p}
     (h : ∀ p, ∃ z : E, ¬ CauchySeq (fun q => g p q z)) :
     ∃ x : E, ∀ p, ¬ CauchySeq (fun q => g p q x) :=
   (condensation_divergence_dense h).nonempty
 
 /-- **Theorem II, limit form**: for complete row codomains, if each row fails to converge at
-some point, one common point makes every row fail to converge.-/
+some point, one common point makes every row fail to converge.
+@isnad1 id=ex.1h3v.s9.0a68397d11bb from=translated src=- shape=bed34ecc vocab=7a4ccd3a
+-/
 theorem condensation_nonconvergence_exists [∀ p, BanachSpace (F p)]
     {g : ∀ p : ℕ, ℕ → E →L[ℝ] F p}
     (h : ∀ p, ∃ z : E, ¬ ∃ y : F p, Tendsto (fun q => g p q z) atTop (𝓝 y)) :

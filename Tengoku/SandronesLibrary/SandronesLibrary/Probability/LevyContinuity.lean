@@ -28,7 +28,9 @@ namespace SandronesLibrary.Probability
 open MeasureTheory Filter
 open scoped Topology
 
-/-- 实直线上的概率测度弱收敛，当且仅当其特征函数对每个实参数逐点收敛到目标测度的特征函数。-/
+/-- 实直线上的概率测度弱收敛，当且仅当其特征函数对每个实参数逐点收敛到目标测度的特征函数。
+@isnad1 id=iff.0h2v.s6.97a5f3d1b28b from=translated src=- shape=be557cc7 vocab=2bc7f759
+-/
 theorem probabilityMeasure_tendsto_iff_charFun
     {μ : ℕ → ProbabilityMeasure ℝ} {μ₀ : ProbabilityMeasure ℝ} :
     Tendsto μ atTop (𝓝 μ₀) ↔
@@ -37,7 +39,9 @@ theorem probabilityMeasure_tendsto_iff_charFun
 
 /-- 若概率测度序列的特征函数逐点趋于一个在零点连续的函数，则该测度序列构成紧测度族。
 
-结论只是 tightness；它没有单独断言任意点态极限 `f` 已经是某个概率测度的特征函数。-/
+结论只是 tightness；它没有单独断言任意点态极限 `f` 已经是某个概率测度的特征函数。
+@isnad1 id=istightm.2h2v.s6.bb5a825e4d42 from=translated src=- shape=e0925912 vocab=3ef15a0f
+-/
 theorem tight_of_charFun_tendsto_continuousAt_zero
     {μ : ℕ → Measure ℝ} [∀ n, IsProbabilityMeasure (μ n)]
     {f : ℝ → ℂ} (hf : ContinuousAt f 0)

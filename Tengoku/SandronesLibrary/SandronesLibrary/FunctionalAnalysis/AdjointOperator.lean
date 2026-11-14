@@ -36,20 +36,28 @@ theorem eq_adjoint_iff_inner_transfer (A : E →L[ℝ] F) (B : F →L[ℝ] E) :
   · simpa [real_inner_comm] using (h y x).symm
   · simpa [real_inner_comm] using (h y x).symm
 
-/-- Mathlib 的正式伴随满足内积转移公式。-/
+/-- Mathlib 的正式伴随满足内积转移公式。
+@isnad1 id=eq.0h5v.s11.fa2573ecf65c from=translated src=- shape=9c055578 vocab=e9cb67aa
+-/
 theorem adjoint_inner_transfer (A : E →L[ℝ] F) (x : E) (y : F) :
     inner ℝ (A x) y = inner ℝ x ((A†) y) := by
   exact (ContinuousLinearMap.adjoint_inner_right A x y).symm
 
-/-- 取两次伴随回到原算子。-/
+/-- 取两次伴随回到原算子。
+@isnad1 id=eq.0h3v.s12.723509feaef8 from=translated src=- shape=d5991c5e vocab=11983c79
+-/
 theorem adjoint_involutive (A : E →L[ℝ] F) : A†† = A := by
   exact ContinuousLinearMap.adjoint_adjoint A
 
-/-- 伴随保持算子范数。-/
+/-- 伴随保持算子范数。
+@isnad1 id=eq.0h3v.s11.f21f8e1b1633 from=translated src=- shape=ba512061 vocab=fcd140fd
+-/
 theorem norm_adjoint_eq (A : E →L[ℝ] F) : ‖A†‖ = ‖A‖ := by
   exact (ContinuousLinearMap.adjoint : (E →L[ℝ] F) ≃ₗᵢ⋆[ℝ] F →L[ℝ] E).norm_map A
 
-/-- 复合的伴随按相反次序复合。-/
+/-- 复合的伴随按相反次序复合。
+@isnad1 id=eq.0h5v.s13.da5055d2cfdb from=translated src=- shape=7046fd05 vocab=3bd3d333
+-/
 theorem adjoint_comp_reverse (A : F →L[ℝ] G) (B : E →L[ℝ] F) :
     (A ∘L B)† = B† ∘L A† := by
   exact ContinuousLinearMap.adjoint_comp A B

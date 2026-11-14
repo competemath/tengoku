@@ -62,7 +62,9 @@ def FixingAutomorphismSet {K L : Type*} [Field K] [Field L]
 
 /-- Fixing 自同构集合的成员关系展开。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=iff.0h5v.s6.c9f1e4e42500 from=translated src=- shape=8dc070ad vocab=0639b5fd
+-/
 theorem mem_fixingAutomorphismSet_iff
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (E : Set L) (σ : FieldAutomorphismOver e) :
@@ -101,7 +103,9 @@ private theorem fixingAutomorphismSet_antitone_bridge
 这是从首选正式 fixing 子群 carrier 退回集合式封闭判据的兼容接口；
 正式子群本身不再依赖该旧判定定理构造。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=subgroup.0h4v.s5.04dfc0603457 from=translated src=- shape=26a8c300 vocab=22af4432
+-/
 theorem fixingAutomorphismSet_isSubgroup
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (E : Set L) :
@@ -126,7 +130,9 @@ noncomputable def fixingAutomorphismSubgroup
 /-- fixing 正式子群的成员关系就是逐点固定给定集合。这个展开式允许
 教材证明直接使用元素条件，而无需展开 `Subgroup` 的实现字段。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=iff.0h5v.s6.fdf0f0e6af5b from=translated src=- shape=0d5401e4 vocab=39d368a0
+-/
 @[simp] theorem mem_fixingAutomorphismSubgroup_iff
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (E : Set L)
@@ -139,7 +145,9 @@ noncomputable def fixingAutomorphismSubgroup
 /-- fixing 正式子群强制转换回集合后，严格等于原有教材 fixing 集合。
 该等式是旧集合接口与首选正式接口之间的 carrier 兼容桥。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=eq.0h4v.s6.237225bef757 from=translated src=- shape=4578d8c2 vocab=141060c5
+-/
 @[simp] theorem fixingAutomorphismSubgroup_carrier
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (E : Set L) :
@@ -150,7 +158,9 @@ noncomputable def fixingAutomorphismSubgroup
 
 /-- 被要求逐点固定的集合越大，满足条件的基域自同构越少。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=le.1h5v.s5.c9c07e889da0 from=translated src=- shape=0b04e3fa vocab=8dee0345
+-/
 theorem fixingAutomorphismSet_antitone
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L}
     {E F : Set L} (hEF : E ⊆ F) :
@@ -173,7 +183,9 @@ private theorem intermediate_subset_fixedFieldSet_iff_bridge
 /-- 固定域与 fixing 自同构集合满足反变 Galois connection：`E` 包含于
 `H` 的固定域，当且仅当 `H` 中每个自同构逐点固定 `E`。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=iff.0h5v.s6.4f6485f95872 from=translated src=- shape=2af0e77f vocab=301aadff
+-/
 theorem intermediate_subset_fixedFieldSet_iff
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L}
     (E : Set L) (H : Set (FieldAutomorphismOver e)) :
@@ -182,7 +194,9 @@ theorem intermediate_subset_fixedFieldSet_iff
 
 /-- 每个集合都包含于“固定该集合的全部自同构”的固定域中。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=le.0h4v.s5.b092a538c90a from=translated src=- shape=3d1dd70e vocab=4bf92ff9
+-/
 theorem subset_fixedFieldSet_fixingAutomorphismSet
     {K L : Type*} [Field K] [Field L] (e : FieldEmbedding K L)
     (E : Set L) :
@@ -192,7 +206,9 @@ theorem subset_fixedFieldSet_fixingAutomorphismSet
 
 /-- 每个自同构族都包含于“其固定域的 fixing 自同构集合”中。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=le.0h4v.s5.55a23a5ff5dd from=translated src=- shape=0db8e9c8 vocab=301aadff
+-/
 theorem subset_fixingAutomorphismSet_fixedFieldSet
     {K L : Type*} [Field K] [Field L] (e : FieldEmbedding K L)
     (H : Set (FieldAutomorphismOver e)) :
@@ -310,7 +326,9 @@ private theorem intermediateFieldBaseEmbedding_apply_bridge
 
 /-- 基域嵌入在中间域载体中计算后再包含回 `L`，等于原嵌入。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=eq.0h5v.s6.6d4616766be3 from=translated src=- shape=194a7ce8 vocab=e627651d
+-/
 theorem intermediateFieldBaseEmbedding_apply
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L}
     (F : ExplicitIntermediateField e) (x : K) :
@@ -378,7 +396,9 @@ private theorem restrictEmbedding_apply_bridge
 
 /-- 限制嵌入逐点等于原自同构的正向映射。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=eq.1h6v.s7.86d16e11a5d8 from=translated src=- shape=d46c885b vocab=4939df07
+-/
 theorem restrictEmbedding_apply
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L}
     (F : ExplicitIntermediateField e) (σ : FieldAutomorphismOver e)
@@ -419,7 +439,9 @@ private theorem inverse_preservesIntermediateField_bridge
 
 /-- 恒等自同构保持任意显式中间域。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=preserve.0h4v.s5.e4d4fc94addf from=translated src=- shape=69beaf90 vocab=1abdc57e
+-/
 theorem identity_preservesIntermediateField
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L}
     (F : ExplicitIntermediateField e) :
@@ -428,7 +450,9 @@ theorem identity_preservesIntermediateField
 
 /-- 保持显式中间域的性质对自同构复合封闭。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=preserve.2h6v.s6.aebe8ca434df from=translated src=- shape=6acfd465 vocab=0abba064
+-/
 theorem comp_preservesIntermediateField
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L}
     (F : ExplicitIntermediateField e) (σ τ : FieldAutomorphismOver e)
@@ -438,7 +462,9 @@ theorem comp_preservesIntermediateField
 
 /-- 保持显式中间域的性质对自同构取逆封闭。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=preserve.1h5v.s5.073b1ede9a6d from=translated src=- shape=29abacce vocab=2268ee95
+-/
 theorem inverse_preservesIntermediateField
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L}
     (F : ExplicitIntermediateField e) (σ : FieldAutomorphismOver e)
@@ -469,7 +495,9 @@ private theorem restrictEmbedding_comp_apply_bridge
 
 /-- 恒等自同构的限制嵌入逐点为恒等。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=eq.0h5v.s6.a27eaeef0c27 from=translated src=- shape=90711a5e vocab=c8443720
+-/
 theorem restrictEmbedding_identity_apply
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L}
     (F : ExplicitIntermediateField e) (x : IntermediateFieldCarrier F) :
@@ -478,7 +506,9 @@ theorem restrictEmbedding_identity_apply
 
 /-- 限制嵌入与自同构复合逐点相容。结论不比较封闭性证明参数。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=eq.2h7v.s7.f3b23a0c8ad5 from=translated src=- shape=198701a2 vocab=2d6e759c
+-/
 theorem restrictEmbedding_comp_apply
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L}
     (F : ExplicitIntermediateField e) (σ τ : FieldAutomorphismOver e)
@@ -535,7 +565,9 @@ private theorem restrictAutomorphism_apply_bridge
 
 /-- 限制自同构逐点等于原自同构的正向映射。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=eq.1h6v.s7.73e16bc49da0 from=translated src=- shape=b6e39538 vocab=7f17f617
+-/
 theorem restrictAutomorphism_apply
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L}
     (F : ExplicitIntermediateField e) (σ : FieldAutomorphismOver e)
@@ -579,7 +611,9 @@ private theorem restrictAutomorphism_inverse_apply_bridge
 /-- 恒等自同构的限制逐点为恒等。证明参数可能不同，因此采用教材所需的
 逐点等式而不伪造依赖证明之间的结构相等。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=eq.0h5v.s7.e593cb569fd4 from=translated src=- shape=2755d201 vocab=9ffed772
+-/
 theorem restrictAutomorphism_identity_apply
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L}
     (F : ExplicitIntermediateField e) (x : IntermediateFieldCarrier F) :
@@ -588,7 +622,9 @@ theorem restrictAutomorphism_identity_apply
 
 /-- 限制与自同构复合相容，结论采用逐点等式以屏蔽封闭性证明参数。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=eq.2h7v.s8.a8124559763a from=translated src=- shape=3603a24b vocab=0cd6687d
+-/
 theorem restrictAutomorphism_comp_apply
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L}
     (F : ExplicitIntermediateField e) (σ τ : FieldAutomorphismOver e)
@@ -602,7 +638,9 @@ theorem restrictAutomorphism_comp_apply
 
 /-- 限制与自同构取逆相容，结论采用逐点等式。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=eq.1h6v.s8.101fc7ce9d21 from=translated src=- shape=3bcd33cd vocab=2d517f9c
+-/
 theorem restrictAutomorphism_inverse_apply
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L}
     (F : ExplicitIntermediateField e) (σ : FieldAutomorphismOver e)
@@ -655,7 +693,9 @@ private theorem fixing_iff_restrictAutomorphism_eq_identity_bridge
 
 /-- 逐点固定显式中间域的自同构必然保持该中间域。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=preserve.1h5v.s6.f62639a7357e from=translated src=- shape=d09b04b2 vocab=8a449209
+-/
 theorem fixing_preservesIntermediateField
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L}
     (F : ExplicitIntermediateField e) (σ : FieldAutomorphismOver e)
@@ -666,7 +706,9 @@ theorem fixing_preservesIntermediateField
 /-- 对任意给定的保持性证明，自同构逐点固定显式中间域，当且仅当它在
 该载体上的限制自同构等于恒等。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=iff.1h5v.s7.fd5efb460e8d from=translated src=- shape=261f0a8a vocab=8a22db62
+-/
 theorem fixing_iff_restrictAutomorphism_eq_identity
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L}
     (F : ExplicitIntermediateField e) (σ : FieldAutomorphismOver e)
@@ -819,7 +861,9 @@ private theorem galoisExtension_mathlibIsGalois_bridge
 /-- 本库有限 Galois 假设可一次性安装为 Mathlib 的有限维和 `IsGalois`
 证明对象。该后端包只供后续证明局部使用，不改变公开教材谓词。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=and.2h3v.s6.d71a0f88702d from=translated src=- shape=e055e7bb vocab=60b032d5
+-/
 theorem finiteGalois_mathlibBackend
     {K L : Type*} [Field K] [Field L] (e : FieldEmbedding K L)
     (hfin : FiniteFieldExtension e) (hgal : GaloisExtension e) :
@@ -1309,7 +1353,9 @@ noncomputable def fixingClosureIntermediateField
 /-- 显式中间域与其 fixing 闭包拥有完全相同的逐点固定自同构集合。
 这是固定域与 fixing 运算形成 Galois connection 后的闭包稳定性。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=eq.0h4v.s5.41ea61d24ac9 from=translated src=- shape=1eb4326e vocab=2a1abbe3
+-/
 theorem fixingAutomorphismSet_eq_fixingClosure
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L}
     (F : ExplicitIntermediateField e) :
@@ -1320,7 +1366,9 @@ theorem fixingAutomorphismSet_eq_fixingClosure
 /-- 在有限 Galois 扩张中，存在一个自然数同时表示 `L/F` 的显式扩张
 次数以及逐点固定 `F` 的基域自同构数目。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=ex.2h4v.s6.dd9e4bfbc280 from=translated src=- shape=e3876751 vocab=2570be6e
+-/
 theorem finiteGalois_fixing_card_eq_relativeDegree
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (hfin : FiniteFieldExtension e)
@@ -1335,7 +1383,9 @@ theorem finiteGalois_fixing_card_eq_relativeDegree
 本模块已经验证过的显式自同构与 Mathlib 后端对齐封装起来，使后续的
 次数—指数推论无需重复建立 `GaloisExtension` 到 `IsGalois` 的私有桥。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=eq.2h4v.s5.68607b219773 from=translated src=- shape=e28f92e1 vocab=e9647644
+-/
 theorem finiteGalois_automorphism_card_eq_degree
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (hgal : GaloisExtension e) {d : ℕ}
@@ -1357,7 +1407,9 @@ theorem finiteGalois_automorphism_card_eq_degree
 /-- 有限 Galois 扩张中，中间域及其 fixing 闭包到 `L` 的相对扩张次数
 相同。证明比较两边相同的 fixing 自同构集合基数。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=ex.2h4v.s6.f39fc3d770ed from=translated src=- shape=de1bff41 vocab=85f9a938
+-/
 theorem finiteGalois_intermediate_fixingClosure_sameDegree
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (hfin : FiniteFieldExtension e)
@@ -1384,7 +1436,9 @@ theorem finiteGalois_intermediate_fixingClosure_sameDegree
 /-- 若显式中间域 `F` 包含于 `G`，且二者到目标域 `L` 的有限扩张次数
 相同，则维数消去迫使二者的底层集合严格相等。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=eq.3h6v.s6.f180534d44fe from=translated src=- shape=33af43c9 vocab=5e5da31f
+-/
 theorem intermediateFieldCarrier_eq_of_subset_sameDegree
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L}
     (F G : ExplicitIntermediateField e) (hFG : F.carrier ⊆ G.carrier)
@@ -1396,7 +1450,9 @@ theorem intermediateFieldCarrier_eq_of_subset_sameDegree
 /-- 在有限扩张中，一个显式自同构子群集合与“先取固定域、再取 fixing
 自同构”所得闭包具有相同的有限基数。该结论是子群恢复的数值核心。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=eq.2h4v.s7.fdc32d351c32 from=translated src=- shape=519b5946 vocab=fdfd01a2
+-/
 theorem finiteExtension_subgroup_card_eq_fixingFixed
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (hfin : FiniteFieldExtension e)
@@ -1415,7 +1471,9 @@ theorem finiteExtension_subgroup_card_eq_fixingFixed
 显式自同构与 Mathlib `AlgEquiv` 子群的等价比较基数。旧集合接口反向
 包装本定理，而不再拥有独立证明链。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=eq.1h4v.s7.8e26c4438bd2 from=translated src=- shape=55b3646e vocab=8fe7726b
+-/
 theorem finiteExtension_subgroup_card_eq_fixingFixed_subgroup
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (hfin : FiniteFieldExtension e)
@@ -1474,7 +1532,9 @@ private theorem finiteExtension_fixingAutomorphismSubgroup_fixedFieldSet_bridge
 /-- 有限 Galois 扩张中，每个显式中间域集合都由逐点固定它的全部
 基域自同构的共同固定域严格恢复。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=eq.3h4v.s5.87a9c729919c from=translated src=- shape=a310e677 vocab=9f47f784
+-/
 theorem finiteGalois_fixedFieldSet_fixingAutomorphismSet
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L)
@@ -1487,7 +1547,9 @@ theorem finiteGalois_fixedFieldSet_fixingAutomorphismSet
 /-- 在任意有限显式扩张中，自同构子群集合都由其固定域的全部 fixing
 自同构严格恢复；这个方向不额外要求整个扩张是 Galois。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=eq.2h4v.s6.11c8d0c62ed2 from=translated src=- shape=9f6ad06e vocab=07257ef5
+-/
 theorem finiteExtension_fixingAutomorphismSet_fixedFieldSet
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (hfin : FiniteFieldExtension e)
@@ -1508,7 +1570,9 @@ theorem finiteExtension_fixingAutomorphismSet_fixedFieldSet
 该定理是 Consequences 与 Restriction 模块应使用的首选恢复接口；旧的
 `Set` 加 `SubgroupSet` 版本仅保留作兼容边界。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=eq.1h4v.s6.ded34c9dbe2b from=translated src=- shape=eaa6d8a3 vocab=14cb8d33
+-/
 theorem finiteExtension_fixingAutomorphismSubgroup_fixedFieldSet
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (hfin : FiniteFieldExtension e)
@@ -1522,7 +1586,9 @@ theorem finiteExtension_fixingAutomorphismSubgroup_fixedFieldSet
 恢复。该表述保留集合式中间域教材 API，同时把群一侧升级为正式
 `Subgroup` 承载。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=eq.3h4v.s6.4b7b389faadd from=translated src=- shape=66f27973 vocab=db2f54ca
+-/
 theorem finiteGalois_fixedFieldSet_fixingAutomorphismSubgroup
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L)
@@ -1542,7 +1608,9 @@ theorem finiteGalois_fixedFieldSet_fixingAutomorphismSubgroup
 本身只需要有限性的精确数学边界。新课程代码应优先使用下方接受正式
 `Subgroup` 的 `finiteGalois_fundamental_correspondence_subgroup`。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=and.2h3v.s6.b5a0eab42a3f from=translated src=- shape=182ab1d4 vocab=78b48f4a
+-/
 theorem finiteGalois_fundamental_correspondence
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L)
@@ -1561,7 +1629,9 @@ theorem finiteGalois_fundamental_correspondence
 谓词，群一侧则直接量化 Mathlib 正式 `Subgroup`；两个恢复方向分别复用
 上方正式薄接口，不建立第二套基本对应证明链。
 
-> **Entry**: abstract-algebra.field.galois-correspondence-/
+> **Entry**: abstract-algebra.field.galois-correspondence
+@isnad1 id=and.2h3v.s7.56bc61e073ff from=translated src=- shape=b1f23326 vocab=db2f54ca
+-/
 theorem finiteGalois_fundamental_correspondence_subgroup
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L)

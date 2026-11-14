@@ -39,7 +39,9 @@ def MaximalIdealSet {R : Type*} [Zero R] [One R] [Add R] [Mul R] [Neg R]
 
 /-- **Mathlib 素理想兼容桥**：集合层素理想恰好是某个 Mathlib 素理想的底层集合。
 这是允许在公开签名中出现 `Ideal` 与 `IsPrime` 的两条明确兼容桥之一。
-> **Entry**: abstract-algebra.ring.prime-ideal-/
+> **Entry**: abstract-algebra.ring.prime-ideal
+@isnad1 id=iff.0h2v.s6.f17bc32dde0f from=translated src=- shape=14b5be8e vocab=75873a59
+-/
 theorem primeIdealSet_iff_exists_ideal_isPrime {R : Type*} [CommRing R] (I : Set R) :
     PrimeIdealSet I ↔ ∃ J : Ideal R, (J : Set R) = I ∧ J.IsPrime := by
   constructor
@@ -87,7 +89,9 @@ theorem primeIdealSet_iff_exists_ideal_isPrime {R : Type*} [CommRing R] (I : Set
 
 /-- **Mathlib 极大理想兼容桥**：集合层极大理想恰好是某个 Mathlib 极大理想的底层集合。
 这是允许在公开签名中出现 `Ideal` 与 `IsMaximal` 的两条明确兼容桥之一。
-> **Entry**: abstract-algebra.ring.prime-ideal-/
+> **Entry**: abstract-algebra.ring.prime-ideal
+@isnad1 id=iff.0h2v.s6.ad8ee0e13b67 from=translated src=- shape=14b5be8e vocab=8b0c2659
+-/
 theorem maximalIdealSet_iff_exists_ideal_isMaximal {R : Type*} [CommRing R] (I : Set R) :
     MaximalIdealSet I ↔ ∃ J : Ideal R, (J : Set R) = I ∧ J.IsMaximal := by
   constructor
@@ -142,7 +146,9 @@ theorem maximalIdealSet_iff_exists_ideal_isMaximal {R : Type*} [CommRing R] (I :
         rw [← hJI, ← hLK, hJL_eq]
 
 /-- **极大理想必为素理想**：交换环中的每个极大理想集合都是素理想集合。
-> **Entry**: abstract-algebra.ring.prime-ideal-/
+> **Entry**: abstract-algebra.ring.prime-ideal
+@isnad1 id=primeide.1h2v.s6.f45420c234f6 from=translated src=- shape=93e860ac vocab=442ecf15
+-/
 theorem maximalIdealSet_is_prime {R : Type*} [CommRing R] {I : Set R}
     (hI : MaximalIdealSet I) : PrimeIdealSet I := by
   obtain ⟨J, hJI, hJ⟩ := (maximalIdealSet_iff_exists_ideal_isMaximal I).mp hI
@@ -150,7 +156,9 @@ theorem maximalIdealSet_is_prime {R : Type*} [CommRing R] {I : Set R}
     ⟨J, hJI, is_maximal_implies_is_prime J hJ⟩
 
 /-- **商类为零判据**：商环投影的像为零，当且仅当原元素属于给定理想集合。
-> **Entry**: abstract-algebra.ring.prime-ideal-/
+> **Entry**: abstract-algebra.ring.prime-ideal
+@isnad1 id=iff.1h3v.s6.368cd73f14b8 from=translated src=- shape=7af2515b vocab=3c29a1f7
+-/
 theorem quotientRingProjection_eq_zero_iff {R : Type*} [CommRing R] {I : Set R}
     (hI : TwoSidedIdealSet I) (x : R) :
     quotientRingProjection I hI x = 0 ↔ x ∈ I := by
@@ -158,7 +166,9 @@ theorem quotientRingProjection_eq_zero_iff {R : Type*} [CommRing R] {I : Set R}
     quotientRingProjection_eq_iff hI x 0
 
 /-- **商环非平凡判据**：集合商环中零不等于一，当且仅当被商去的理想集合不是全集。
-> **Entry**: abstract-algebra.ring.prime-ideal-/
+> **Entry**: abstract-algebra.ring.prime-ideal
+@isnad1 id=iff.1h2v.s6.766931d7874e from=translated src=- shape=82b5705e vocab=7cd8bd4e
+-/
 theorem quotientRingSet_zero_ne_one_iff {R : Type*} [CommRing R] {I : Set R}
     (hI : TwoSidedIdealSet I) :
     (0 : quotientRingSet I hI) ≠ 1 ↔ I ≠ Set.univ := by
@@ -186,14 +196,18 @@ theorem quotientRingSet_zero_ne_one_iff {R : Type*} [CommRing R] {I : Set R}
     exact quotientRingProjection_eq_zero_iff hI x |>.mp hx0
 
 /-- **商环乘积为零判据**：两个代表元像的乘积为零，当且仅当代表元乘积属于理想集合。
-> **Entry**: abstract-algebra.ring.prime-ideal-/
+> **Entry**: abstract-algebra.ring.prime-ideal
+@isnad1 id=iff.1h4v.s7.3b74e3eb94a4 from=translated src=- shape=bd4108c4 vocab=cacb8b0a
+-/
 theorem quotientRingSet_mul_eq_zero_iff {R : Type*} [CommRing R] {I : Set R}
     (hI : TwoSidedIdealSet I) (a b : R) :
     quotientRingProjection I hI a * quotientRingProjection I hI b = 0 ↔ a * b ∈ I := by
   rw [quotientMul_projection, quotientRingProjection_eq_zero_iff]
 
 /-- **商环投影可逆判据**：代表元的像是单位元，当且仅当存在 `b` 使 `a * b - 1` 属于理想集合。
-> **Entry**: abstract-algebra.ring.prime-ideal-/
+> **Entry**: abstract-algebra.ring.prime-ideal
+@isnad1 id=iff.1h3v.s7.93f15d719ca9 from=translated src=- shape=1e7c88e7 vocab=e322401d
+-/
 theorem quotientRingSet_projection_unit_iff {R : Type*} [CommRing R] {I : Set R}
     (hI : TwoSidedIdealSet I) (a : R) :
     UnitElement (quotientRingProjection I hI a) ↔
@@ -220,7 +234,9 @@ theorem quotientRingSet_projection_unit_iff {R : Type*} [CommRing R] {I : Set R}
       simpa [idealCongruent, mul_comm] using hab
 
 /-- **商环交换环公理**：交换环按双边理想集合得到的集合商环满足本库显式交换环公理。
-> **Entry**: abstract-algebra.ring.prime-ideal-/
+> **Entry**: abstract-algebra.ring.prime-ideal
+@isnad1 id=commutat.1h2v.s6.7f6507243f75 from=translated src=- shape=d5b4db11 vocab=72adc493
+-/
 theorem quotientRingSet_commutativeRingAxioms {R : Type*} [CommRing R]
     (I : Set R) (hI : TwoSidedIdealSet I) :
     CommutativeRingAxioms (quotientRingSet I hI) := by
@@ -232,7 +248,9 @@ theorem quotientRingSet_commutativeRingAxioms {R : Type*} [CommRing R]
   rw [mul_comm]
 
 /-- **素理想商环刻画**：理想集合为素理想，当且仅当对应集合商环满足本库显式整环公理。
-> **Entry**: abstract-algebra.ring.prime-ideal-/
+> **Entry**: abstract-algebra.ring.prime-ideal
+@isnad1 id=iff.1h2v.s7.ddb5b3705633 from=translated src=- shape=0a5d8173 vocab=330f7c66
+-/
 theorem primeIdealSet_iff_quotient_integralDomainAxioms {R : Type*} [CommRing R]
     (I : Set R) (hI : TwoSidedIdealSet I) :
     PrimeIdealSet I ↔ IntegralDomainAxioms (quotientRingSet I hI) := by
@@ -262,7 +280,9 @@ theorem primeIdealSet_iff_quotient_integralDomainAxioms {R : Type*} [CommRing R]
       exact (quotientRingProjection_eq_zero_iff hI b).mp hb
 
 /-- **极大理想商环刻画**：理想集合为极大理想，当且仅当对应集合商环满足本库显式域公理。
-> **Entry**: abstract-algebra.ring.prime-ideal-/
+> **Entry**: abstract-algebra.ring.prime-ideal
+@isnad1 id=iff.1h2v.s7.fd7a619476a7 from=translated src=- shape=0a5d8173 vocab=26681a94
+-/
 theorem maximalIdealSet_iff_quotient_fieldAxioms {R : Type*} [CommRing R]
     (I : Set R) (hI : TwoSidedIdealSet I) :
     MaximalIdealSet I ↔ FieldAxioms (quotientRingSet I hI) := by

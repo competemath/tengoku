@@ -93,7 +93,9 @@ noncomputable def cycleIntegral {F : Type*} [NormedAddCommGroup F] [NormedSpace 
 membership form of `Finsupp.support_add`; it avoids `DecidableEq ClosedPath`, which does
 not exist.
 
-> **Entry**: complex-analysis.integral.finite-cycle-foundation-/
+> **Entry**: complex-analysis.integral.finite-cycle-foundation
+@isnad1 id=or.1h3v.s6.e27e2329be0d from=translated src=- shape=92127288 vocab=87f52388
+-/
 theorem mem_support_or {γ δ : Cycle} {c : ClosedPath} (hc : c ∈ (γ + δ).support) :
     c ∈ γ.support ∨ c ∈ δ.support := by
   have hne : γ c + δ c ≠ 0 := Finsupp.mem_support_iff.mp hc
@@ -105,7 +107,9 @@ theorem mem_support_or {γ δ : Cycle} {c : ClosedPath} (hc : c ∈ (γ + δ).su
 
 /-- Evaluation of the cycle integral as the ℤ-weighted sum of the piece integrals.
 
-> **Entry**: complex-analysis.integral.finite-cycle-foundation-/
+> **Entry**: complex-analysis.integral.finite-cycle-foundation
+@isnad1 id=eq.0h3v.s7.d5cb37a3ae7d from=translated src=- shape=217153f4 vocab=1a9fc0ec
+-/
 theorem cycleIntegral_apply {F : Type*} [NormedAddCommGroup F] [NormedSpace ℂ F]
     (f : ℂ → F) (γ : Cycle) :
     cycleIntegral f γ = γ.sum (fun c n => n • banachPathIntegral f c.2) :=
@@ -113,7 +117,9 @@ theorem cycleIntegral_apply {F : Type*} [NormedAddCommGroup F] [NormedSpace ℂ 
 
 /-- The cycle integral of the zero cycle vanishes.
 
-> **Entry**: complex-analysis.integral.finite-cycle-foundation-/
+> **Entry**: complex-analysis.integral.finite-cycle-foundation
+@isnad1 id=eq.0h2v.s6.7b49745a604d from=translated src=- shape=5e6492da vocab=b5007edd
+-/
 @[simp]
 theorem cycleIntegral_zero {F : Type*} [NormedAddCommGroup F] [NormedSpace ℂ F]
     (f : ℂ → F) : cycleIntegral f (0 : Cycle) = 0 :=
@@ -121,7 +127,9 @@ theorem cycleIntegral_zero {F : Type*} [NormedAddCommGroup F] [NormedSpace ℂ F
 
 /-- The cycle integral of a single closed path is the integer multiple of its path integral.
 
-> **Entry**: complex-analysis.integral.finite-cycle-foundation-/
+> **Entry**: complex-analysis.integral.finite-cycle-foundation
+@isnad1 id=eq.0h4v.s7.57047cd3ca18 from=translated src=- shape=9ed14e98 vocab=2fb00902
+-/
 @[simp]
 theorem cycleIntegral_single {F : Type*} [NormedAddCommGroup F] [NormedSpace ℂ F]
     (f : ℂ → F) (c : ClosedPath) (n : ℤ) :
@@ -132,7 +140,9 @@ theorem cycleIntegral_single {F : Type*} [NormedAddCommGroup F] [NormedSpace ℂ
 
 /-- The cycle integral is additive in the cycle.
 
-> **Entry**: complex-analysis.integral.finite-cycle-foundation-/
+> **Entry**: complex-analysis.integral.finite-cycle-foundation
+@isnad1 id=eq.0h4v.s8.6f28c448afe7 from=translated src=- shape=4f5e1b6b vocab=650692eb
+-/
 theorem cycleIntegral_add {F : Type*} [NormedAddCommGroup F] [NormedSpace ℂ F]
     (f : ℂ → F) (γ δ : Cycle) :
     cycleIntegral f (γ + δ) = cycleIntegral f γ + cycleIntegral f δ :=
@@ -140,7 +150,9 @@ theorem cycleIntegral_add {F : Type*} [NormedAddCommGroup F] [NormedSpace ℂ F]
 
 /-- The cycle integral is ℤ-homogeneous in the cycle.
 
-> **Entry**: complex-analysis.integral.finite-cycle-foundation-/
+> **Entry**: complex-analysis.integral.finite-cycle-foundation
+@isnad1 id=eq.0h4v.s7.fdd21ab3c88c from=translated src=- shape=a10adc10 vocab=3d8849be
+-/
 theorem cycleIntegral_smul {F : Type*} [NormedAddCommGroup F] [NormedSpace ℂ F]
     (f : ℂ → F) (n : ℤ) (γ : Cycle) :
     cycleIntegral f (n • γ) = n • cycleIntegral f γ :=
@@ -148,7 +160,9 @@ theorem cycleIntegral_smul {F : Type*} [NormedAddCommGroup F] [NormedSpace ℂ F
 
 /-- Negating the cycle negates its integral.
 
-> **Entry**: complex-analysis.integral.finite-cycle-foundation-/
+> **Entry**: complex-analysis.integral.finite-cycle-foundation
+@isnad1 id=eq.0h3v.s7.5964214ab468 from=translated src=- shape=7b14ee33 vocab=8b8884da
+-/
 theorem cycleIntegral_neg {F : Type*} [NormedAddCommGroup F] [NormedSpace ℂ F]
     (f : ℂ → F) (γ : Cycle) :
     cycleIntegral f (-γ) = -cycleIntegral f γ :=
@@ -156,7 +170,9 @@ theorem cycleIntegral_neg {F : Type*} [NormedAddCommGroup F] [NormedSpace ℂ F]
 
 /-- Subtracting cycles subtracts their integrals.
 
-> **Entry**: complex-analysis.integral.finite-cycle-foundation-/
+> **Entry**: complex-analysis.integral.finite-cycle-foundation
+@isnad1 id=eq.0h4v.s8.d7561e1871ad from=translated src=- shape=4f5e1b6b vocab=50a21c9b
+-/
 theorem cycleIntegral_sub {F : Type*} [NormedAddCommGroup F] [NormedSpace ℂ F]
     (f : ℂ → F) (γ δ : Cycle) :
     cycleIntegral f (γ - δ) = cycleIntegral f γ - cycleIntegral f δ :=
@@ -164,7 +180,9 @@ theorem cycleIntegral_sub {F : Type*} [NormedAddCommGroup F] [NormedSpace ℂ F]
 
 /-- Linearity in the integrand, under per-piece integrability.
 
-> **Entry**: complex-analysis.integral.finite-cycle-foundation-/
+> **Entry**: complex-analysis.integral.finite-cycle-foundation
+@isnad1 id=eq.2h3v.s8.cade5331becd from=translated src=- shape=1280cf7a vocab=c29237d3
+-/
 theorem cycleIntegral_add_integrand (f g : ℂ → ℂ) (γ : Cycle)
     (hf : γ.Integrable f) (hg : γ.Integrable g) :
     cycleIntegral (fun z => f z + g z) γ = cycleIntegral f γ + cycleIntegral g γ := by
@@ -181,7 +199,9 @@ theorem cycleIntegral_add_integrand (f g : ℂ → ℂ) (γ : Cycle)
 
 /-- The sum of two piecewise-C¹ cycles is piecewise C¹.
 
-> **Entry**: complex-analysis.integral.finite-cycle-foundation-/
+> **Entry**: complex-analysis.integral.finite-cycle-foundation
+@isnad1 id=piecewis.2h2v.s4.44f88c3c6ade from=translated src=- shape=255dce7b vocab=af998082
+-/
 theorem Cycle.PiecewiseC1.add {γ δ : Cycle} (hγ : γ.PiecewiseC1) (hδ : δ.PiecewiseC1) :
     (γ + δ).PiecewiseC1 := by
   intro c hc
@@ -191,7 +211,9 @@ theorem Cycle.PiecewiseC1.add {γ δ : Cycle} (hγ : γ.PiecewiseC1) (hδ : δ.P
 
 /-- The sum of two cycles supported in `U` is supported in `U`.
 
-> **Entry**: complex-analysis.integral.finite-cycle-foundation-/
+> **Entry**: complex-analysis.integral.finite-cycle-foundation
+@isnad1 id=supporte.2h3v.s4.90aeedb59b39 from=translated src=- shape=17092177 vocab=d91e2d6c
+-/
 theorem Cycle.SupportedIn.add {γ δ : Cycle} {U : Set ℂ}
     (hγ : γ.SupportedIn U) (hδ : δ.SupportedIn U) : (γ + δ).SupportedIn U := by
   intro c hc
@@ -201,7 +223,9 @@ theorem Cycle.SupportedIn.add {γ δ : Cycle} {U : Set ℂ}
 
 /-- The sum of two cycles integrable for `f` is integrable for `f`.
 
-> **Entry**: complex-analysis.integral.finite-cycle-foundation-/
+> **Entry**: complex-analysis.integral.finite-cycle-foundation
+@isnad1 id=integrab.2h4v.s5.c7441be23089 from=translated src=- shape=661501e8 vocab=aa81b8be
+-/
 theorem Cycle.Integrable.add {F : Type*} [NormedAddCommGroup F] [NormedSpace ℂ F]
     {f : ℂ → F} {γ δ : Cycle}
     (hγ : γ.Integrable f) (hδ : δ.Integrable f) : (γ + δ).Integrable f := by
@@ -212,14 +236,18 @@ theorem Cycle.Integrable.add {F : Type*} [NormedAddCommGroup F] [NormedSpace ℂ
 
 /-- Unfolding the trace of a cycle.
 
-> **Entry**: complex-analysis.integral.finite-cycle-foundation-/
+> **Entry**: complex-analysis.integral.finite-cycle-foundation
+@isnad1 id=iff.0h2v.s7.fcfe5bffffd8 from=translated src=- shape=79924d24 vocab=72412408
+-/
 theorem Cycle.mem_trace {γ : Cycle} {w : ℂ} :
     w ∈ γ.trace ↔ ∃ c ∈ γ.support, w ∈ Set.range c.2 :=
   Iff.rfl
 
 /-- The trace of a sum is contained in the union of the traces.
 
-> **Entry**: complex-analysis.integral.finite-cycle-foundation-/
+> **Entry**: complex-analysis.integral.finite-cycle-foundation
+@isnad1 id=le.0h2v.s5.59dcdcaad16b from=translated src=- shape=33640edd vocab=28bc0e00
+-/
 theorem Cycle.trace_add_subset {γ δ : Cycle} : (γ + δ).trace ⊆ γ.trace ∪ δ.trace := by
   intro w hw
   rcases (Cycle.mem_trace.mp hw) with ⟨c, hc, hrange⟩
@@ -229,7 +257,9 @@ theorem Cycle.trace_add_subset {γ δ : Cycle} : (γ + δ).trace ⊆ γ.trace �
 
 /-- A cycle integral over a finite ℤ-combination vanishes as soon as every piece does.
 
-> **Entry**: complex-analysis.integral.finite-cycle-foundation-/
+> **Entry**: complex-analysis.integral.finite-cycle-foundation
+@isnad1 id=eq.1h3v.s7.7b775f5c440a from=translated src=- shape=aacb3605 vocab=db3cc6f2
+-/
 theorem cycleIntegral_eq_zero_of_forall_piece_eq_zero
     {F : Type*} [NormedAddCommGroup F] [NormedSpace ℂ F]
     (f : ℂ → F) (γ : Cycle)
@@ -243,7 +273,9 @@ theorem cycleIntegral_eq_zero_of_forall_piece_eq_zero
 /-- A cycle integral of a derivative (`f = g'` on `U`) over a cycle supported in `U` vanishes.
 This is the textbook "integral of a derivative around a closed cycle" statement.
 
-> **Entry**: complex-analysis.integral.finite-cycle-foundation-/
+> **Entry**: complex-analysis.integral.finite-cycle-foundation
+@isnad1 id=eq.4h4v.s7.650f130919a9 from=translated src=- shape=b34f0338 vocab=fdd1cdfa
+-/
 theorem cycleIntegral_eq_zero_of_primitive
     {U : Set ℂ} {f g : ℂ → ℂ} (γ : Cycle)
     (hC1 : γ.PiecewiseC1) (hUγ : γ.SupportedIn U)

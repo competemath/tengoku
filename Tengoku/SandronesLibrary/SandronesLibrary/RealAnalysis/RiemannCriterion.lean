@@ -66,6 +66,9 @@ def RiemannIntegrableWithBound (f : ℝ → ℝ) (a b : ℝ) : Prop :=
 /- **证明路线 A：把函数有界性传给振荡定义**。
   后续 `oscillationWithin` 使用 `Metric.ediam`，所以先把实值有界性转成
   `Bornology.IsBounded (f '' Icc)`，再得到振荡不为 `⊤`。 -/
+/--
+@isnad1 id=isbounde.2h3v.s5.d5d02a9d00a6 from=translated src=- shape=bd3a3324 vocab=aa837581
+-/
 theorem boundedOn_image_isBounded {f : ℝ → ℝ} {a b : ℝ}
     (hab : a ≤ b) (hb : BoundedOn f (Set.Icc a b)) :
     Bornology.IsBounded (f '' Set.Icc a b) := by
@@ -84,6 +87,9 @@ theorem boundedOn_image_isBounded {f : ℝ → ℝ} {a b : ℝ}
   have hy'' := (abs_le.mp (hC y hy)).1
   constructor <;> linarith [hC0]
 
+/--
+@isnad1 id=lt.3h4v.s6.159c70b74ee1 from=translated src=- shape=797d53f9 vocab=d6c57570
+-/
 theorem oscillationWithin_lt_top_of_boundedOn {f : ℝ → ℝ} {a b x : ℝ}
     (hab : a ≤ b) (hx : x ∈ Set.Icc a b) (hb : BoundedOn f (Set.Icc a b)) :
     oscillationWithin f (Set.Icc a b) x < ⊤ := by
@@ -101,6 +107,9 @@ theorem oscillationWithin_lt_top_of_boundedOn {f : ℝ → ℝ} {a b x : ℝ}
     exact iInf_le_of_le (f '' Set.Icc a b) (iInf_le_of_le hmem le_rfl)
   exact lt_of_le_of_lt hle (lt_top_iff_ne_top.mpr hbounded.ediam_ne_top)
 
+/--
+@isnad1 id=ex.2h1v.s6.b46ab490d13a from=translated src=- shape=f465f425 vocab=e0a3dcb7
+-/
 theorem positive_threshold_exists {r : ENNReal} (hr0 : 0 < r) (hrt : r < ⊤) :
     ∃ n : ℕ, ENNReal.ofReal (1 / (n + 1 : ℝ)) ≤ r := by
   have hr0' : r ≠ 0 := ne_of_gt hr0
@@ -123,6 +132,9 @@ theorem positive_threshold_exists {r : ENNReal} (hr0 : 0 < r) (hrt : r < ⊤) :
         simpa [mul_comm] using hmul
       exact hstrict.le
 
+/--
+@isnad1 id=eq.0h3v.s5.d801c745309d from=translated src=- shape=c44aeb47 vocab=f69381f2
+-/
 theorem finite_partition_points_null {a b : ℝ} (P : DarbouxPartition a b) :
     volume {x : ℝ | ∃ i ≤ P.n, x = P.x i} = 0 := by
   have hfinite : Set.Finite {x : ℝ | ∃ i ≤ P.n, x = P.x i} := by
@@ -132,11 +144,17 @@ theorem finite_partition_points_null {a b : ℝ} (P : DarbouxPartition a b) :
     exact ⟨i, Set.mem_Iic.mpr hi, rfl⟩
   exact hfinite.measure_zero volume
 
+/--
+@isnad1 id=boundedo.1h3v.s4.d5bb1154923c from=translated src=- shape=e1ddc50d vocab=4430cee4
+-/
 theorem riemannIntegrableWithBound_boundedOn {f : ℝ → ℝ} {a b : ℝ} :
     RiemannIntegrableWithBound f a b → BoundedOn f (Set.Icc a b) := by
   intro h
   exact h.1
 
+/--
+@isnad1 id=iff.0h3v.s6.cf522a225115 from=translated src=- shape=4283195f vocab=04a75042
+-/
 theorem ae_continuousOn_iff_ae_oscillationWithin_eq_zero {f : ℝ → ℝ} {a b : ℝ} :
     AlmostEverywhereContinuousOn f a b ↔
       ∀ᵐ x ∂volume.restrict (Set.Icc a b),
@@ -156,6 +174,9 @@ theorem ae_continuousOn_iff_ae_oscillationWithin_eq_zero {f : ℝ → ℝ} {a b 
 def positiveOscillationLayer (f : ℝ → ℝ) (a b : ℝ) (ε : ℝ) : Set ℝ :=
   {x ∈ Set.Icc a b | (ENNReal.ofReal ε) ≤ oscillationWithin f (Set.Icc a b) x}
 
+/--
+@isnad1 id=le.5h5v.s6.958a28d46ad8 from=translated src=- shape=cce034d9 vocab=141beed7
+-/
 theorem subinterval_oscillation_nonneg {f : ℝ → ℝ} {a b p q : ℝ}
     (hab : a ≤ b) (hpq : p ≤ q) (hp : p ∈ Set.Icc a b) (hq : q ∈ Set.Icc a b)
     (hb : BoundedOn f (Set.Icc a b)) :
@@ -172,6 +193,9 @@ theorem subinterval_oscillation_nonneg {f : ℝ → ℝ} {a b p q : ℝ}
     exact (abs_le.mp (hC x (Set.Icc_subset_Icc hp.1 hq.2 hx))).2
   exact sub_nonneg.mpr (csInf_le_csSup hne hbelow habove)
 
+/--
+@isnad1 id=le.3h5v.s6.d1a2014bca32 from=translated src=- shape=9442bbcf vocab=7f315b58
+-/
 theorem partition_oscillation_nonneg {f : ℝ → ℝ} {a b : ℝ}
     (hab : a ≤ b) (hb : BoundedOn f (Set.Icc a b))
     (P : DarbouxPartition a b) :
@@ -186,6 +210,9 @@ theorem partition_oscillation_nonneg {f : ℝ → ℝ} {a b : ℝ}
     partition_point_mem hab P.x0 P.xN P.strict (Nat.succ_le_of_lt hi_lt)
   exact subinterval_oscillation_nonneg hab (P.strict i hi_lt).le hpi hpi1 hb
 
+/--
+@isnad1 id=le.5h5v.s7.4febb32d440d from=translated src=- shape=9d7a398d vocab=5b74df2a
+-/
 theorem subinterval_ediam_le_of_boundedOn {f : ℝ → ℝ} {a b p q : ℝ}
     (hab : a ≤ b) (hpq : p ≤ q) (hp : p ∈ Set.Icc a b) (hq : q ∈ Set.Icc a b)
     (hb : BoundedOn f (Set.Icc a b)) :
@@ -218,6 +245,9 @@ noncomputable def badPartitionIndices (f : ℝ → ℝ) (P : DarbouxPartition a 
       ε ≤ sSup (f '' Set.Icc (P.x i) (P.x (i + 1))) -
         sInf (f '' Set.Icc (P.x i) (P.x (i + 1))))
 
+/--
+@isnad1 id=le.2h4v.s6.65db9d96fa99 from=translated src=- shape=f5037333 vocab=7e52d4e0
+-/
 theorem oscillationWithin_le_subinterval_ediam {f : ℝ → ℝ} {p q x : ℝ}
     (hpq : p ≤ q) (hx : x ∈ Set.Icc p q) :
     oscillationWithin f (Set.Icc p q) x ≤ Metric.ediam (f '' Set.Icc p q) := by
@@ -229,6 +259,9 @@ theorem oscillationWithin_le_subinterval_ediam {f : ℝ → ℝ} {p q x : ℝ}
   rw [oscillationWithin]
   exact iInf_le_of_le (f '' Set.Icc p q) (iInf_le_of_le hmem le_rfl)
 
+/--
+@isnad1 id=ex.3h4v.s6.ca8687183fad from=translated src=- shape=cd4d3544 vocab=6fde4e61
+-/
 theorem partition_cover_off_points {a b : ℝ} (hab : a ≤ b)
     (P : DarbouxPartition a b) {x : ℝ} (hx : x ∈ Set.Icc a b)
     (hnot : x ∉ {y : ℝ | ∃ i ≤ P.n, y = P.x i}) :
@@ -243,6 +276,9 @@ theorem partition_cover_off_points {a b : ℝ} (hab : a ≤ b)
   exact partition_cover P.x0 P.xN P.strict hxioc
 
 /- **正向链的覆盖步骤**：去掉有限个分割点后，每个正振荡层点落在一个坏半开区间内。 -/
+/--
+@isnad1 id=le.3h5v.s7.82727271acc7 from=translated src=- shape=b6ab059a vocab=cbc55146
+-/
 theorem positiveLayer_subset_badIntervals {f : ℝ → ℝ} {a b : ℝ}
     (hab : a ≤ b) (hb : BoundedOn f (Set.Icc a b))
     (P : DarbouxPartition a b) {ε : ℝ} (hε : 0 < ε) :
@@ -289,6 +325,9 @@ theorem positiveLayer_subset_badIntervals {f : ℝ → ℝ} {a b : ℝ}
   refine Set.mem_iUnion.mpr ⟨i, Set.mem_iUnion.mpr ⟨?_, hxi⟩⟩
   exact Finset.mem_filter.mpr ⟨Finset.mem_range.mpr hi, hreal⟩
 
+/--
+@isnad1 id=le.3h5v.s6.134cca57e7d8 from=translated src=- shape=7bfdbf97 vocab=9fafea2a
+-/
 theorem badIntervals_length_le_upper_sub_lower {f : ℝ → ℝ} {a b : ℝ}
     (hab : a ≤ b) (hb : BoundedOn f (Set.Icc a b))
     (P : DarbouxPartition a b) {ε : ℝ} (hε : 0 < ε) :
@@ -333,6 +372,9 @@ theorem badIntervals_length_le_upper_sub_lower {f : ℝ → ℝ} {a b : ℝ}
     _ ≤ ∑ i ∈ Finset.range P.n, g i := hbad
     _ = upperSum f P - lowerSum f P := hdiff.symm
 
+/--
+@isnad1 id=le.3h5v.s6.3e81f0ea1ae9 from=translated src=- shape=98a50273 vocab=461695dd
+-/
 theorem positiveLayer_measure_le_of_partition {f : ℝ → ℝ} {a b : ℝ}
     (hab : a ≤ b) (hb : BoundedOn f (Set.Icc a b))
     (P : DarbouxPartition a b) {ε : ℝ} (hε : 0 < ε) :
@@ -377,6 +419,9 @@ theorem positiveLayer_measure_le_of_partition {f : ℝ → ℝ} {a b : ℝ}
         (P.x (i + 1) - P.x i)) := hbad
 
 /- **正向链的零测步骤**：先用覆盖估计测量正层，再用黎曼可积性让坏区间长度趋于零。 -/
+/--
+@isnad1 id=eq.3h4v.s6.5dd9cd86164b from=translated src=- shape=023401aa vocab=e8866874
+-/
 theorem positiveOscillationLayer_null {f : ℝ → ℝ} {a b : ℝ} (hab : a ≤ b)
     (h : RiemannIntegrableWithBound f a b) {ε : ℝ} (hε : 0 < ε) :
     volume (positiveOscillationLayer f a b ε) = 0 := by
@@ -400,6 +445,9 @@ theorem positiveOscillationLayer_null {f : ℝ → ℝ} {a b : ℝ} (hab : a ≤
   · exact bot_le
 
 /- **可数层组装**：所有正阈值层的并是零测；层外振荡若为正，必落入某个层，矛盾。 -/
+/--
+@isnad1 id=eventual.3h3v.s6.037aaacf8695 from=translated src=- shape=0f7f6e91 vocab=24677501
+-/
 theorem ae_oscillationWithin_eq_zero_of_layers_null {f : ℝ → ℝ} {a b : ℝ} (hab : a ≤ b)
     (hb : BoundedOn f (Set.Icc a b))
     (hzero : ∀ {ε : ℝ}, 0 < ε → volume (positiveOscillationLayer f a b ε) = 0) :
@@ -433,6 +481,9 @@ theorem ae_oscillationWithin_eq_zero_of_layers_null {f : ℝ → ℝ} {a b : ℝ
   apply Set.mem_iUnion.mpr
   exact ⟨n, ⟨hxmem, hn⟩⟩
 
+/--
+@isnad1 id=ex.1h3v.s6.c7f2bdfb3800 from=translated src=- shape=e60aa4cf vocab=0c871f10
+-/
 theorem ae_continuity_exceptional_measurable_hull {f : ℝ → ℝ} {a b : ℝ}
     (hc : AlmostEverywhereContinuousOn f a b) :
     ∃ N : Set ℝ, MeasurableSet N ∧
@@ -455,6 +506,9 @@ theorem ae_continuity_exceptional_measurable_hull {f : ℝ → ℝ} {a b : ℝ}
   rw [measure_toMeasurable]
   simpa [E] using hc
 
+/--
+@isnad1 id=eq.1h3v.s6.1a440365280d from=translated src=- shape=0ced63da vocab=96c08e84
+-/
 theorem ae_continuity_exceptional_set_null {f : ℝ → ℝ} {a b : ℝ}
     (hc : AlmostEverywhereContinuousOn f a b) :
     volume {x : ℝ | x ∈ Set.Icc a b ∧
@@ -472,6 +526,9 @@ theorem ae_continuity_exceptional_set_null {f : ℝ → ℝ} {a b : ℝ}
   exact hc
 
 /- **反向链第一步**：在例外开集外，连续点的局部邻域覆盖闭区间；紧性把它缩成有限覆盖。 -/
+/--
+@isnad1 id=ex.3h4v.s7.bf82d14c12c4 from=translated src=- shape=8a8852df vocab=d421fd74
+-/
 theorem finite_continuity_cover_off_open
     {f : ℝ → ℝ} {a b : ℝ} (hab : a ≤ b) (U : Set ℝ)
     (hUopen : IsOpen U)
@@ -496,6 +553,9 @@ theorem finite_continuity_cover_off_open
   rcases Set.mem_iUnion.1 hy with ⟨hyS, hxy⟩
   exact ⟨y, hyS, hxy⟩
 
+/--
+@isnad1 id=ex.3h3v.s6.0cfe94e5e9f4 from=translated src=- shape=62927485 vocab=23cd60b5
+-/
 theorem compact_uniform_continuity_control
     {f : ℝ → ℝ} {K : Set ℝ} (hK : IsCompact K)
     (hf : ContinuousOn f K) {η : ℝ} (hη : 0 < η) :
@@ -511,6 +571,9 @@ noncomputable section
 
 local instance propDecidable (p : Prop) : Decidable p := Classical.propDecidable p
 
+/--
+@isnad1 id=ex.4h5v.s9.217a69af8ed8 from=translated src=- shape=27cc74bb vocab=627b86bd
+-/
 theorem finite_local_oscillation_cover
     {f : ℝ → ℝ} {a b δ : ℝ} (hab : a ≤ b) (hδ : 0 < δ)
     (U : Set ℝ) (hUopen : IsOpen U)
@@ -547,6 +610,9 @@ theorem finite_local_oscillation_cover
 
 /- **Lebesgue 数引理**：有限开覆盖给出统一半径 `ρ`，使每个长度小于 `ρ` 的分割区间
   落入某个覆盖成员。 -/
+/--
+@isnad1 id=ex.5h5v.s9.a8e86fff57d3 from=translated src=- shape=8b591be7 vocab=38446d17
+-/
 theorem finite_open_cover_has_lebesgue_number
     {a b : ℝ} (hab : a ≤ b) (U : Set ℝ)
     (hUopen : IsOpen U)
@@ -584,6 +650,9 @@ theorem finite_open_cover_has_lebesgue_number
     constructor <;> linarith [hy1.1, hy1.2]
   simpa [dist_comm, Real.dist_eq, abs_sub_comm] using hy'
 
+/--
+@isnad1 id=ex.2h3v.s6.ab0ee82c03ab from=translated src=- shape=335f7add vocab=e5e24ae5
+-/
 theorem darboux_partition_with_mesh_lt
     {a b ρ : ℝ} (hab : a ≤ b) (hρ : 0 < ρ) :
     ∃ P : DarbouxPartition a b,
@@ -612,6 +681,9 @@ theorem darboux_partition_with_mesh_lt
    part and the finitely covered continuity part.  The upper theorem below
    assembles this interface with the two quantitative estimates. -/
 /- **区间分类**：按“整个区间是否落入例外开集”过滤出 `bad/good`，并证明互补、互斥及覆盖语义。 -/
+/--
+@isnad1 id=ex.7h10v.s9.4d53492fe823 from=translated src=- shape=0cbfce38 vocab=af8ff970
+-/
 theorem interval_classification_partition
     {f : ℝ → ℝ} {a b C δ ρ : ℝ} (hab : a ≤ b)
     (hb : ∀ x ∈ Set.Icc a b, |f x| ≤ C) (hδ : 0 < δ)
@@ -660,6 +732,9 @@ theorem interval_classification_partition
     · exact hV
   exact ⟨bad, good, hbad_sub, hgood_sub, hdisj, hunion, hbad_cover, hgood_cover⟩
 
+/--
+@isnad1 id=le.3h4v.s5.efbda0dabad1 from=translated src=- shape=7c05bf4b vocab=cba06ccd
+-/
 theorem partition_points_mono_local
     {x : ℕ → ℝ} {n i j : ℕ}
     (hstrict : ∀ k < n, x k < x (k + 1))
@@ -669,6 +744,9 @@ theorem partition_points_mono_local
   | @step j hij ih =>
       exact (ih (le_trans (Nat.le_succ j) hj)).trans (hstrict j (by omega)).le
 
+/--
+@isnad1 id=pairwise.2h3v.s6.f00639b00747 from=translated src=- shape=6540c8d7 vocab=5edf8292
+-/
 theorem partition_Ioc_pairwise_disjoint_local
     {x : ℕ → ℝ} {n : ℕ} (hstrict : ∀ k < n, x k < x (k + 1))
     (s : Finset ℕ) (hs : s ⊆ Finset.range n) :
@@ -684,6 +762,9 @@ theorem partition_Ioc_pairwise_disjoint_local
     exact (Set.Ioc_disjoint_Ioc_of_le hle).symm
 
 /- Lower framework TODO 2a-i: disjoint bad intervals are controlled by U. -/
+/--
+@isnad1 id=le.2h5v.s7.a70e2a1a03c8 from=translated src=- shape=ea61ff26 vocab=e7fdcdb5
+-/
 theorem bad_intervals_length_le_volume
     {a b : ℝ} {U : Set ℝ} {P : DarbouxPartition a b} (bad : Finset ℕ)
     (hbad : bad ⊆ Finset.range P.n)
@@ -741,6 +822,9 @@ theorem bad_intervals_length_le_volume
 -/
 
 /- Lower framework TODO 2a-ii: convert the measure estimate to the target bound. -/
+/--
+@isnad1 id=lt.7h7v.s8.bcf16460d24c from=translated src=- shape=65f29c09 vocab=134d25cb
+-/
 theorem bad_intervals_length_arithmetic
     {a b C δ : ℝ} (hab : a ≤ b) (hδ : 0 < δ) (hC : 0 ≤ C)
     (U : Set ℝ) (hUmeasure : volume U < ENNReal.ofReal (δ / (4 * (C + 1))))
@@ -779,6 +863,9 @@ theorem bad_intervals_length_arithmetic
 
 /- Lower framework TODO 2a: the exceptional intervals consume little length. -/
 /- **坏区间估计**：例外区间并集的测度控制其长度和，再转成带 `2*C` 权重的误差预算。 -/
+/--
+@isnad1 id=lt.6h8v.s8.404f51578379 from=translated src=- shape=37f3b94f vocab=134d25cb
+-/
 theorem bad_interval_length_sum_bound
     {f : ℝ → ℝ} {a b C δ : ℝ} (hab : a ≤ b)
     (hδ : 0 < δ) (hC : 0 ≤ C) (U : Set ℝ)
@@ -791,6 +878,9 @@ theorem bad_interval_length_sum_bound
   exact lt_of_le_of_lt (bad_intervals_length_le_volume bad hbad hbadCover) hUmeasure
 
 /- Lower framework TODO 2b-i-a: approximate the lower endpoint of the image. -/
+/--
+@isnad1 id=ex.3h6v.s7.92a05fc69503 from=translated src=- shape=2264a838 vocab=f2fa0d76
+-/
 theorem interval_inf_approx
     {f : ℝ → ℝ} {a b : ℝ} {P : DarbouxPartition a b} (i : ℕ) (hi : i < P.n)
     (η : ℝ) (hη : 0 < η)
@@ -812,6 +902,9 @@ theorem interval_inf_approx
   exact ⟨x, hx, by linarith⟩
 
 /- Lower framework TODO 2b-i-b: approximate the upper endpoint of the image. -/
+/--
+@isnad1 id=ex.3h6v.s7.e2c50f0c67f4 from=translated src=- shape=18bbc4e4 vocab=c357d4da
+-/
 theorem interval_sup_approx
     {f : ℝ → ℝ} {a b : ℝ} {P : DarbouxPartition a b} (i : ℕ) (hi : i < P.n)
     (η : ℝ) (hη : 0 < η)
@@ -833,6 +926,9 @@ theorem interval_sup_approx
   exact ⟨x, hx, hzlt⟩
 
 /- Lower framework TODO 2b-i-c: combine the two approximants through hosc. -/
+/--
+@isnad1 id=le.7h9v.s9.da2bc253a5fb from=translated src=- shape=02c7dff1 vocab=39117673
+-/
 theorem good_interval_oscillation_from_approximants
     {f : ℝ → ℝ} {a b δ : ℝ} {U : Set ℝ} (hab : a ≤ b) (hδ : 0 < δ)
     {P : DarbouxPartition a b} (i : ℕ) (hi : i < P.n)
@@ -868,6 +964,9 @@ theorem good_interval_oscillation_from_approximants
   linarith [abs_lt.mp hosc']
 
 /- Lower framework TODO 2b-i: continuity neighborhoods control one good interval. -/
+/--
+@isnad1 id=le.7h9v.s9.da2bc253a5fb from=translated src=- shape=02c7dff1 vocab=39117673
+-/
 theorem good_interval_oscillation_le
     {f : ℝ → ℝ} {a b δ : ℝ} {U : Set ℝ} (hab : a ≤ b) (hδ : 0 < δ)
     {P : DarbouxPartition a b} (i : ℕ) (hi : i < P.n)
@@ -885,6 +984,9 @@ theorem good_interval_oscillation_le
 
 /- Lower framework TODO 2b-ii: finite weighted assembly of local bounds. -/
 /- **好区间估计**：局部振荡控制逐项乘以区间长度，并利用所有分割长度总和为 `b-a`。 -/
+/--
+@isnad1 id=lt.6h10v.s9.3a6f6dbbdf93 from=translated src=- shape=d60dfad9 vocab=2e58c299
+-/
 theorem good_interval_oscillation_sum_bound
     {f : ℝ → ℝ} {a b C δ : ℝ} (hab : a ≤ b)
     (hb : ∀ x ∈ Set.Icc a b, |f x| ≤ C) (hδ : 0 < δ) {P : DarbouxPartition a b} (good : Finset ℕ)
@@ -960,6 +1062,9 @@ theorem good_interval_oscillation_sum_bound
 
 /- Lower framework TODO 2: quantitative estimates for a classification. -/
 /- **定量组装**：坏区间预算与好区间预算各占误差的一半。 -/
+/--
+@isnad1 id=and.11h11v.s9.e27185052f3e from=translated src=- shape=1f96ce86 vocab=638fa407
+-/
 theorem interval_classification_quantitative_bounds
     {f : ℝ → ℝ} {a b C δ : ℝ} (hab : a ≤ b)
     (hb : ∀ x ∈ Set.Icc a b, |f x| ≤ C) (hδ : 0 < δ)
@@ -985,6 +1090,9 @@ theorem interval_classification_quantitative_bounds
   have hgoodSum := good_interval_oscillation_sum_bound (C := C) (f := f) hab hb hδ good hgood U s V hosc hgoodCover
   exact ⟨hbadSum, hgoodSum⟩
 
+/--
+@isnad1 id=ex.7h10v.s9.7b07b5ae271d from=translated src=- shape=4ce77e09 vocab=638fa407
+-/
 theorem interval_classification_and_bounds
     {f : ℝ → ℝ} {a b C δ ρ : ℝ} (hab : a ≤ b)
     (hb : ∀ x ∈ Set.Icc a b, |f x| ≤ C) (hδ : 0 < δ)
@@ -1011,6 +1119,9 @@ theorem interval_classification_and_bounds
       hdisj hunion U hUmeasure s V hosc hbadCover hgoodCover
   exact ⟨bad, good, hbad', hgood', hdisj, hunion, hbadSum, hgoodSum⟩
 
+/--
+@isnad1 id=le.3h6v.s6.29cd23c68e20 from=translated src=- shape=b3e4e4ac vocab=68271a26
+-/
 theorem interval_sup_le_C
     {f : ℝ → ℝ} {a b C : ℝ} (hab : a ≤ b)
     (hb : ∀ x ∈ Set.Icc a b, |f x| ≤ C) (P : DarbouxPartition a b)
@@ -1027,6 +1138,9 @@ theorem interval_sup_le_C
     exact ⟨le_trans hmem.1 hx.1, le_trans hx.2 hright.2⟩
   exact (abs_le.mp (hb x hxab)).2
 
+/--
+@isnad1 id=le.3h6v.s6.9ac51e403efe from=translated src=- shape=3d71048b vocab=02593585
+-/
 theorem interval_inf_ge_neg_C
     {f : ℝ → ℝ} {a b C : ℝ} (hab : a ≤ b)
     (hb : ∀ x ∈ Set.Icc a b, |f x| ≤ C) (P : DarbouxPartition a b)
@@ -1043,6 +1157,9 @@ theorem interval_inf_ge_neg_C
     exact ⟨le_trans hmem.1 hx.1, le_trans hx.2 hright.2⟩
   exact (abs_le.mp (hb x hxab)).1
 
+/--
+@isnad1 id=le.3h6v.s7.1d7e0e123705 from=translated src=- shape=1e70dc2f vocab=ba57c6cc
+-/
 theorem bad_oscillation_sum_le_twoC
     {f : ℝ → ℝ} {a b C : ℝ} (hab : a ≤ b)
     (hb : ∀ x ∈ Set.Icc a b, |f x| ≤ C) (P : DarbouxPartition a b)
@@ -1061,6 +1178,9 @@ theorem bad_oscillation_sum_le_twoC
   gcongr
   linarith
 
+/--
+@isnad1 id=lt.8h8v.s8.46b7f16ea0ea from=translated src=- shape=f4275d3f vocab=679b2fbf
+-/
 theorem partition_gap_sum_from_bounds
     {f : ℝ → ℝ} {a b C δ : ℝ} (hab : a ≤ b)
     (hb : ∀ x ∈ Set.Icc a b, |f x| ≤ C) (P : DarbouxPartition a b)
@@ -1098,6 +1218,9 @@ theorem partition_gap_sum_from_bounds
     _ < δ / 2 + δ / 2 := hsum
     _ = δ := by ring
 
+/--
+@isnad1 id=lt.7h8v.s8.ade25c0dc65b from=translated src=- shape=c4ffd2d2 vocab=5c4ff5ee
+-/
 theorem partition_gap_split_arithmetic
     {f : ℝ → ℝ} {a b C δ : ℝ} (P : DarbouxPartition a b)
     (bad good : Finset ℕ) (hbad : bad ⊆ Finset.range P.n)
@@ -1138,6 +1261,9 @@ theorem partition_gap_split_arithmetic
     _ = δ := by ring
 
 /- **Darboux 夹逼**：分类后的两项误差相加，得到 `upperSum - lowerSum < δ`。 -/
+/--
+@isnad1 id=lt.7h10v.s9.f8d65f886fa8 from=translated src=- shape=28ad6763 vocab=5dd846aa
+-/
 theorem partition_gap_sum_from_interval_classification
     {f : ℝ → ℝ} {a b C δ ρ : ℝ} (hab : a ≤ b)
     (hb : ∀ x ∈ Set.Icc a b, |f x| ≤ C) (hδ : 0 < δ)
@@ -1156,6 +1282,9 @@ theorem partition_gap_sum_from_interval_classification
   exact partition_gap_sum_from_bounds hab hb P bad good hbadS hgoodS hdisj hunion
     hbadSum hgoodSum
 
+/--
+@isnad1 id=lt.8h10v.s9.7da5724612ea from=translated src=- shape=3c1de40c vocab=5dd846aa
+-/
 theorem interval_gap_control_from_cover
     {f : ℝ → ℝ} {a b C δ ρ : ℝ} (hab : a ≤ b)
     (hb : ∀ x ∈ Set.Icc a b, |f x| ≤ C) (hδ : 0 < δ)
@@ -1192,6 +1321,9 @@ theorem interval_gap_control_from_cover
   · exact Or.inl (fun z hz ↦ hsub ⟨hinterval hz, hzmem z hz⟩)
   · exact Or.inr ⟨y, hy, fun z hz ↦ hsub ⟨hinterval hz, hzmem z hz⟩⟩
 
+/--
+@isnad1 id=lt.10h10v.s9.5dbe1df0b66a from=translated src=- shape=771554a4 vocab=a53921ae
+-/
 theorem partition_gap_from_lebesgue_data
     {f : ℝ → ℝ} {a b C δ : ℝ} (hab : a ≤ b)
     (hb : ∀ x ∈ Set.Icc a b, |f x| ≤ C) (hδ : 0 < δ)
@@ -1211,6 +1343,9 @@ theorem partition_gap_from_lebesgue_data
   exact interval_gap_control_from_cover hab hb hδ U hUmeasure s V hosc P hρ hmesh hLeb
 
 /- **从有限局部覆盖构造分割**：先取 Lebesgue 数，再选网格小于该数的 Darboux 分割。 -/
+/--
+@isnad1 id=ex.6h6v.s9.ff157d320b01 from=translated src=- shape=b3cfa9de vocab=68248229
+-/
 theorem partition_from_finite_local_oscillation_cover
     {f : ℝ → ℝ} {a b C δ : ℝ} (hab : a ≤ b)
     (hb : ∀ x ∈ Set.Icc a b, |f x| ≤ C) (hδ : 0 < δ)
@@ -1247,6 +1382,9 @@ theorem partition_from_finite_local_oscillation_cover
       · exact ⟨W, Or.inr ⟨y, hy, hWy.symm⟩, hsub⟩)
     P hmesh
 
+/--
+@isnad1 id=ex.4h5v.s9.e69518b6b6b8 from=translated src=- shape=6c3a6166 vocab=8c0e353c
+-/
 theorem finite_local_oscillation_cover_from_relative
     {f : ℝ → ℝ} {a b δ : ℝ} (hab : a ≤ b) (hδ : 0 < δ)
     (U : Set ℝ) (hUopen : IsOpen U)
@@ -1275,6 +1413,9 @@ theorem finite_local_oscillation_cover_from_relative
     · exact ⟨hWsub ⟨hVW hz.1, hz.2⟩, hz.2⟩
   exact finite_local_oscillation_cover hab hδ U hUopen hopen_local
 
+/--
+@isnad1 id=ex.6h6v.s8.6c4fd124c3b9 from=translated src=- shape=e252dabc vocab=46f8bbb2
+-/
 theorem partition_gap_from_local_data
     {f : ℝ → ℝ} {a b C δ : ℝ} (hab : a ≤ b)
     (hb : ∀ x ∈ Set.Icc a b, |f x| ≤ C) (hδ : 0 < δ)
@@ -1291,6 +1432,9 @@ theorem partition_gap_from_local_data
   exact partition_from_finite_local_oscillation_cover hab hb hδ U hUopen
     hUmeasure ⟨s, V, hs, hsIcc, hosc, hcover⟩
 
+/--
+@isnad1 id=ex.6h6v.s8.6c4fd124c3b9 from=translated src=- shape=e252dabc vocab=46f8bbb2
+-/
 theorem partition_gap_from_local_oscillation_control
     {f : ℝ → ℝ} {a b C δ : ℝ} (hab : a ≤ b)
     (hb : ∀ x ∈ Set.Icc a b, |f x| ≤ C) (hδ : 0 < δ)
@@ -1304,6 +1448,9 @@ theorem partition_gap_from_local_oscillation_control
       upperSum f P - lowerSum f P < δ := by
   exact partition_gap_from_local_data hab hb hδ U hUopen hUmeasure hlocal
 
+/--
+@isnad1 id=ex.5h6v.s7.7a080a435b61 from=translated src=- shape=1741fb42 vocab=f88cb439
+-/
 theorem local_oscillation_from_continuity
     {f : ℝ → ℝ} {a b δ : ℝ} {U : Set ℝ}
     (hab : a ≤ b) (hδ : 0 < δ)
@@ -1340,6 +1487,9 @@ theorem local_oscillation_from_continuity
   rw [htarget] at hdist
   exact hdist
 
+/--
+@isnad1 id=ex.6h6v.s7.fdb82e5de500 from=translated src=- shape=671ad431 vocab=6e28f700
+-/
 theorem partition_gap_small_from_continuity_data
     {f : ℝ → ℝ} {a b C : ℝ} (hab : a ≤ b)
     (hb : ∀ x ∈ Set.Icc a b, |f x| ≤ C)
@@ -1354,6 +1504,9 @@ theorem partition_gap_small_from_continuity_data
 
 /- **反向主链**：零测例外集的开覆盖加上连续部分的有限局部振荡覆盖，
   通过上一组定量引理构造误差小于 `δ` 的分割。 -/
+/--
+@isnad1 id=ex.6h6v.s7.fdb82e5de500 from=translated src=- shape=671ad431 vocab=6e28f700
+-/
 theorem partition_gap_small_of_open_exceptional_cover
     {f : ℝ → ℝ} {a b C : ℝ} (hab : a ≤ b)
     (hb : ∀ x ∈ Set.Icc a b, |f x| ≤ C)
@@ -1366,6 +1519,9 @@ theorem partition_gap_small_of_open_exceptional_cover
   exact partition_gap_small_from_continuity_data hab hb δ hδ U hUopen hUmeasure hcont
 
 /- **例外集开覆盖**：由几乎处处连续得到一个小测度的开集，并保证开集外处处连续。 -/
+/--
+@isnad1 id=ex.4h5v.s7.b5401484a04f from=translated src=- shape=2b0b00c1 vocab=44471762
+-/
 theorem choose_exceptional_open_cover
     {f : ℝ → ℝ} {a b C δ : ℝ} (hab : a ≤ b)
     (hb : ∀ x ∈ Set.Icc a b, |f x| ≤ C)
@@ -1394,6 +1550,9 @@ theorem choose_exceptional_open_cover
   exact hNU (hEN ⟨hxI, hxc⟩)
 
 /- **反向方向总组装**：有界且几乎处处连续 ⟹ 任意误差下存在 Darboux 分割。 -/
+/--
+@isnad1 id=ex.4h4v.s6.08ccf8a685c3 from=translated src=- shape=6229b097 vocab=a08bfdf3
+-/
 theorem upper_sub_lower_small_of_boundedOn_ae_continuousOn
     {f : ℝ → ℝ} {a b : ℝ} (hab : a ≤ b)
     (hb : BoundedOn f (Set.Icc a b))
@@ -1408,6 +1567,9 @@ theorem upper_sub_lower_small_of_boundedOn_ae_continuousOn
     (fun x hx ↦ hC x hx) δ hδ U hUopen hUmeasure hcont
 
 /- **正向方向总组装**：Riemann 可积且有界 ⟹ 几乎处处连续。 -/
+/--
+@isnad1 id=almostev.2h3v.s4.71d56351dbc0 from=translated src=- shape=6f4d3892 vocab=f0280bae
+-/
 theorem riemannIntegrableWithBound_ae_continuousOn {f : ℝ → ℝ} {a b : ℝ}
     (hab : a ≤ b) (h : RiemannIntegrableWithBound f a b) :
     AlmostEverywhereContinuousOn f a b := by
@@ -1417,6 +1579,9 @@ theorem riemannIntegrableWithBound_ae_continuousOn {f : ℝ → ℝ} {a b : ℝ}
   exact positiveOscillationLayer_null hab h hε
 
 /- **Lebesgue 判据最终组装**：固定区间上，有界的黎曼可积性与几乎处处连续等价。 -/
+/--
+@isnad1 id=riemanni.3h3v.s4.a80b101e2185 from=translated src=- shape=52f0caac vocab=c3602868
+-/
 theorem boundedOn_ae_continuousOn_riemannIntegrableWithBound {f : ℝ → ℝ} {a b : ℝ}
     (hab : a ≤ b) (hb : BoundedOn f (Set.Icc a b))
     (hc : AlmostEverywhereContinuousOn f a b) : RiemannIntegrableWithBound f a b := by
@@ -1425,7 +1590,9 @@ theorem boundedOn_ae_continuousOn_riemannIntegrableWithBound {f : ℝ → ℝ} {
 
 /-- **Lebesgue 判据（临时框架）**：闭区间上的函数黎曼可积，当且仅当其不连续点集
   在 Lebesgue 测度下为零。
-> **Entry**: real-analysis.riemann.lebesgue-criterion-/
+> **Entry**: real-analysis.riemann.lebesgue-criterion
+@isnad1 id=iff.1h3v.s4.8b831fa1bf31 from=translated src=- shape=66022afb vocab=c3602868
+-/
 theorem riemannIntegrable_iff_boundedOn_ae_continuousOn {f : ℝ → ℝ} {a b : ℝ}
     (hab : a ≤ b) :
     RiemannIntegrableWithBound f a b ↔

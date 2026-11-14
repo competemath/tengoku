@@ -29,7 +29,9 @@ namespace SandronesLibrary.ComplexAnalysis
 of the primitive at the endpoints.  Differentiability and integrability of the parametrization are
 spelled out, so this theorem does not silently treat every continuous `Path` as piecewise `C¹`.
 
-> **Entry**: complex-analysis.cauchy.path-independence-primitive-/
+> **Entry**: complex-analysis.cauchy.path-independence-primitive
+@isnad1 id=eq.4h6v.s9.1e2c27d046fc from=translated src=- shape=a5c06946 vocab=45ed7af6
+-/
 theorem pathIntegral_eq_sub_of_primitive
     {f g : ℂ → ℂ} {U : Set ℂ} {a b : ℂ} (gamma : Path a b)
     (hmem : MapsTo gamma.extend (uIcc 0 1) U)
@@ -55,7 +57,9 @@ theorem pathIntegral_eq_sub_of_primitive
 homotopy argument records the textbook situation, although exactness proves the stronger statement
 without using the particular homotopy.
 
-> **Entry**: complex-analysis.cauchy.path-independence-primitive-/
+> **Entry**: complex-analysis.cauchy.path-independence-primitive
+@isnad1 id=eq.7h8v.s10.631f04aa4704 from=translated src=- shape=3cac879c vocab=1a5d792c
+-/
 theorem pathIntegral_homotopyInvariant_of_primitive
     {f g : ℂ → ℂ} {U : Set ℂ} {a b : ℂ} {gamma delta : Path a b}
     (_homotopy : (gamma : C(Icc (0 : ℝ) 1, ℂ)).Homotopy delta)
@@ -74,7 +78,9 @@ theorem pathIntegral_homotopyInvariant_of_primitive
 
 /-- The primitive endpoint formula specialized to a line segment.
 
-> **Entry**: complex-analysis.cauchy.triangle-ball-/
+> **Entry**: complex-analysis.cauchy.triangle-ball
+@isnad1 id=eq.3h5v.s7.f2c73d529133 from=translated src=- shape=ed3aec0c vocab=510da7a5
+-/
 theorem pathIntegral_segment_eq_sub_of_primitive
     {f g : ℂ → ℂ} {U : Set ℂ} {a b : ℂ}
     (hseg : [a -[ℝ] b] ⊆ U) (hf : ContinuousOn f U)
@@ -100,7 +106,9 @@ theorem pathIntegral_segment_eq_sub_of_primitive
 /-- If `f` has a primitive on a set containing the three edges, its integral around the oriented
 triangle boundary is zero.
 
-> **Entry**: complex-analysis.cauchy.triangle-ball-/
+> **Entry**: complex-analysis.cauchy.triangle-ball
+@isnad1 id=eq.5h6v.s8.adaf3bc89e46 from=translated src=- shape=b8931238 vocab=f92276ac
+-/
 theorem pathIntegral_triangle_eq_zero_of_primitive
     {f g : ℂ → ℂ} {U : Set ℂ} {a b c : ℂ}
     (hab : [a -[ℝ] b] ⊆ U) (hbc : [b -[ℝ] c] ⊆ U) (hca : [c -[ℝ] a] ⊆ U)
@@ -115,7 +123,9 @@ theorem pathIntegral_triangle_eq_zero_of_primitive
 /-- A holomorphic function on a ball integrates to zero around any triangle whose vertices lie in
 the ball.  Convexity keeps all three edges in the ball, and Mathlib supplies a primitive there.
 
-> **Entry**: complex-analysis.cauchy.triangle-ball-/
+> **Entry**: complex-analysis.cauchy.triangle-ball
+@isnad1 id=eq.4h6v.s8.0a479b85343b from=translated src=- shape=609c107b vocab=71f82c74
+-/
 theorem pathIntegral_triangle_eq_zero_of_holomorphicOnTextbook_ball
     {f : ℂ → ℂ} {center a b c : ℂ} {r : ℝ}
     (hf : HolomorphicOnTextbook f (ball center r))

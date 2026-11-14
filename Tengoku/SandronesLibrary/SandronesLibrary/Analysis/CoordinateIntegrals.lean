@@ -30,12 +30,16 @@ open Set MeasureTheory Real
 def polarMap (p : ℝ × ℝ) : ℝ × ℝ :=
   (p.1 * cos p.2, p.1 * sin p.2)
 
-/-- 本库极坐标映射就是 Mathlib 极坐标局部同胚的逆向映射。-/
+/-- 本库极坐标映射就是 Mathlib 极坐标局部同胚的逆向映射。
+@isnad1 id=eq.0h0v.s6.b516cb66c634 from=translated src=- shape=ad82fb7f vocab=d5dca6d2
+-/
 theorem polarMap_eq_polarCoord_symm : polarMap = polarCoord.symm := by
   rfl
 
 /-- **极坐标 Jacobian**：极坐标映射的导数行列式为半径 `r`。因此在 `r>0`
-的标准坐标区域上，换元权重的绝对值就是 `r`。-/
+的标准坐标区域上，换元权重的绝对值就是 `r`。
+@isnad1 id=eq.0h1v.s7.040ab985e7af from=translated src=- shape=a899a184 vocab=f082148f
+-/
 theorem det_fderiv_polarMap (p : ℝ × ℝ) :
     (fderiv ℝ polarMap p).det = p.1 := by
   rw [polarMap_eq_polarCoord_symm,
@@ -46,7 +50,9 @@ theorem det_fderiv_polarMap (p : ℝ × ℝ) :
 
 `∫_{ℝ²} f(x,y) dxdy = ∫_{r>0,-π<θ<π} r f(r cos θ,r sin θ) drdθ`。
 
-负实轴和原点构成零测集，因此标准极坐标目标区域已经覆盖全平面积分。-/
+负实轴和原点构成零测集，因此标准极坐标目标区域已经覆盖全平面积分。
+@isnad1 id=eq.0h1v.s7.ad6beaf7937d from=translated src=- shape=9bc84633 vocab=fde5e838
+-/
 theorem integral_plane_eq_polar (f : ℝ × ℝ → ℝ) :
     (∫ z, f z) =
       ∫ p in Ioi (0 : ℝ) ×ˢ Ioo (-π) π, p.1 * f (polarMap p) := by
@@ -54,7 +60,9 @@ theorem integral_plane_eq_polar (f : ℝ × ℝ → ℝ) :
     (integral_comp_polarCoord_symm f).symm
 
 /-- 若极坐标拉回后的函数可积，则全平面积分可进一步写成先对角度、再对半径的
-累次积分。显式的可积性假设保证 Fubini 换序合法。-/
+累次积分。显式的可积性假设保证 Fubini 换序合法。
+@isnad1 id=eq.1h1v.s7.1d83ff383ba0 from=translated src=- shape=1549df6f vocab=e7603b32
+-/
 theorem integral_plane_eq_iterated_polar (f : ℝ × ℝ → ℝ)
     (hf : IntegrableOn (fun p ↦ p.1 * f (polarMap p))
       (Ioi (0 : ℝ) ×ˢ Ioo (-π) π) (volume.prod volume)) :
@@ -79,7 +87,9 @@ def cylindricalMap (p : (ℝ × ℝ) × ℝ) : (ℝ × ℝ) × ℝ :=
 `∫_{ℝ³} f = ∫₀^∞ ∫_{-π}^π ∫_{-∞}^∞ r f(r cosθ,r sinθ,z) dz dθ dr`。
 
 证明把柱坐标视为“二维极坐标 × 恒等坐标”：先用 Fubini 分离竖直坐标，再应用
-二维极坐标公式，最后再次使用 Fubini 展开成三重累次积分。-/
+二维极坐标公式，最后再次使用 Fubini 展开成三重累次积分。
+@isnad1 id=eq.2h1v.s8.401c395fc2c2 from=translated src=- shape=7ce0db35 vocab=39ec6586
+-/
 theorem integral_space_eq_iterated_cylindrical (f : (ℝ × ℝ) × ℝ → ℝ)
     (hf : Integrable f ((volume.prod volume).prod volume))
     (hcyl : IntegrableOn (fun p ↦ p.1.1 * f (cylindricalMap p))
@@ -155,7 +165,9 @@ def sphericalDerivative (p : Euclidean3) : Euclidean3 →L[ℝ] Euclidean3 :=
 /-- 球坐标映射的 Fréchet 导数就是显式 Jacobian 矩阵对应的线性映射。
 
 证明逐坐标调用一维的 `sin`、`cos` 导数，再用乘积法则组装三个坐标函数；
-最后将三个标量导数拼成向量值导数，并核对它与教材矩阵逐项一致。-/
+最后将三个标量导数拼成向量值导数，并核对它与教材矩阵逐项一致。
+@isnad1 id=hasfderi.0h1v.s7.18232e120b6c from=translated src=- shape=fb308d54 vocab=66049993
+-/
 theorem hasFDerivAt_sphericalMap (p : Euclidean3) :
     HasFDerivAt sphericalMap (sphericalDerivative p) p := by
   have hρ : HasFDerivAt (fun q : Euclidean3 ↦ q 0)
@@ -214,7 +226,9 @@ theorem hasFDerivAt_sphericalMap (p : Euclidean3) :
   exact hD
 
 /-- 球坐标 Jacobian 矩阵的行列式。负号来自本库采用的坐标顺序
-`(ρ,θ,φ)`；教材常用的 `(ρ,φ,θ)` 交换了后两列。-/
+`(ρ,θ,φ)`；教材常用的 `(ρ,φ,θ)` 交换了后两列。
+@isnad1 id=eq.0h1v.s6.d87be6224511 from=translated src=- shape=9a299e13 vocab=51108d41
+-/
 theorem det_sphericalDerivativeMatrix (p : Euclidean3) :
     (sphericalDerivativeMatrix p).det = -((p 0) ^ 2 * sin (p 2)) := by
   rw [Matrix.det_fin_three]
@@ -228,28 +242,38 @@ theorem det_sphericalDerivativeMatrix (p : Euclidean3) :
     _ = _ := by rw [hθ, hφ]; ring
 
 /-- 球坐标映射的导数行列式为 `-ρ² sin φ`。因此在标准区域
-`ρ > 0, 0 < φ < π` 上，换元公式中的绝对 Jacobian 是 `ρ² sin φ`。-/
+`ρ > 0, 0 < φ < π` 上，换元公式中的绝对 Jacobian 是 `ρ² sin φ`。
+@isnad1 id=eq.0h1v.s8.feedc2bde2f1 from=translated src=- shape=aac1a437 vocab=490e2e2f
+-/
 theorem det_fderiv_sphericalMap (p : Euclidean3) :
     (fderiv ℝ sphericalMap p).det = -((p 0) ^ 2 * sin (p 2)) := by
   rw [(hasFDerivAt_sphericalMap p).fderiv]
   simpa [sphericalDerivative, ContinuousLinearMap.det,
     LinearMap.det_toMatrix'] using det_sphericalDerivativeMatrix p
 
-/-- 球坐标映射在全空间上 Fréchet 可微。-/
+/-- 球坐标映射在全空间上 Fréchet 可微。
+@isnad1 id=differen.0h0v.s7.cb1dca549d82 from=translated src=- shape=07be6169 vocab=0d172409
+-/
 theorem differentiable_sphericalMap : Differentiable ℝ sphericalMap := by
   rw [differentiable_pi]
   intro i
   fin_cases i <;> simp [sphericalMap] <;> fun_prop
 
-/-- 球坐标映射的第一坐标。-/
+/-- 球坐标映射的第一坐标。
+@isnad1 id=eq.0h1v.s6.f60859134471 from=translated src=- shape=289d08c2 vocab=f8ac05b9
+-/
 theorem sphericalMap_apply_zero (p : Euclidean3) :
     sphericalMap p 0 = p 0 * sin (p 2) * cos (p 1) := by rfl
 
-/-- 球坐标映射的第二坐标。-/
+/-- 球坐标映射的第二坐标。
+@isnad1 id=eq.0h1v.s6.3bfe7c84f754 from=translated src=- shape=289d08c2 vocab=c131bffe
+-/
 theorem sphericalMap_apply_one (p : Euclidean3) :
     sphericalMap p 1 = p 0 * sin (p 2) * sin (p 1) := by rfl
 
-/-- 球坐标映射的第三坐标。-/
+/-- 球坐标映射的第三坐标。
+@isnad1 id=eq.0h1v.s6.09a23907c5a7 from=translated src=- shape=62e6ae7d vocab=5591df97
+-/
 theorem sphericalMap_apply_two (p : Euclidean3) :
     sphericalMap p 2 = p 0 * cos (p 2) := by rfl
 
@@ -260,10 +284,16 @@ theorem sphericalMap_apply_two (p : Euclidean3) :
 def sphericalSource : Set Euclidean3 :=
   {p | p 0 ∈ Ioi (0 : ℝ) ∧ p 1 ∈ Ioo (-π) π ∧ p 2 ∈ Ioo (0 : ℝ) π}
 
+/--
+@isnad1 id=measurab.0h0v.s4.ae61c14e2a31 from=translated src=- shape=25b03439 vocab=e1341704
+-/
 theorem measurableSet_sphericalSource : MeasurableSet sphericalSource := by
   unfold sphericalSource
   measurability
 
+/--
+@isnad1 id=isopen.0h0v.s4.cda391029754 from=translated src=- shape=25b03439 vocab=d61aadc4
+-/
 theorem isOpen_sphericalSource : IsOpen sphericalSource := by
   rw [show sphericalSource =
       (fun p : Euclidean3 ↦ p 0) ⁻¹' Ioi 0 ∩
@@ -275,13 +305,18 @@ theorem isOpen_sphericalSource : IsOpen sphericalSource := by
     ((isOpen_Ioo.preimage (by fun_prop)).inter
       (isOpen_Ioo.preimage (by fun_prop)))
 
+/--
+@isnad1 id=differen.0h0v.s7.f9c33a5843a1 from=translated src=- shape=996807f9 vocab=21a2c3da
+-/
 theorem differentiableOn_sphericalMap :
     DifferentiableOn ℝ sphericalMap sphericalSource :=
   differentiable_sphericalMap.differentiableOn
 
 /-- 球坐标映射在标准参数域上单射。证明依次从像点恢复半径、极角和方位角：
 三坐标平方和给出正半径，第三坐标给出 `cos φ`，前两坐标给出 `cos θ` 与
-`sin θ`。开区间条件消除了三角函数的周期歧义。-/
+`sin θ`。开区间条件消除了三角函数的周期歧义。
+@isnad1 id=injon.0h0v.s2.3faf208fef3f from=translated src=- shape=4ce37f0a vocab=e091d029
+-/
 theorem injOn_sphericalMap : InjOn sphericalMap sphericalSource := by
   intro p hp q hq hpq
   have h0 := congrFun hpq (0 : Fin 3)
@@ -350,7 +385,9 @@ theorem injOn_sphericalMap : InjOn sphericalMap sphericalSource := by
   · exact hphi
 
 /-- 在标准参数域内部，区域内导数等于全导数，且 Jacobian 的绝对值为
-`ρ² sin φ`。-/
+`ρ² sin φ`。
+@isnad1 id=eq.1h1v.s6.7a1ff55f1dd3 from=translated src=- shape=1e66b94b vocab=b3fa8434
+-/
 theorem absJacobianWithin_sphericalMap (p : Euclidean3) (hp : p ∈ sphericalSource) :
     absJacobianWithin sphericalMap sphericalSource p = (p 0) ^ 2 * sin (p 2) := by
   unfold absJacobianWithin
@@ -360,7 +397,9 @@ theorem absJacobianWithin_sphericalMap (p : Euclidean3) (hp : p ∈ sphericalSou
     (sin_pos_of_pos_of_lt_pi hp.2.2.1 hp.2.2.2))
 
 /-- **标准域球坐标换元公式**：球坐标像区域上的积分等于参数域上乘以
-`rho² sin phi` 后的积分。全空间版本还需证明像的补集为零测集。-/
+`rho² sin phi` 后的积分。全空间版本还需证明像的补集为零测集。
+@isnad1 id=eq.0h1v.s8.b673a5eb3b3e from=translated src=- shape=dc0ce1e4 vocab=bcfea5dc
+-/
 theorem integral_spherical_image (f : Euclidean3 → ℝ) :
     (∫ x in sphericalMap '' sphericalSource, f x) =
       ∫ p in sphericalSource, (p 0) ^ 2 * sin (p 2) * f (sphericalMap p) := by
@@ -375,7 +414,9 @@ theorem integral_spherical_image (f : Euclidean3 → ℝ) :
 
 证明避免重新发展反三角函数：先对 `(x,y)` 使用二维极坐标恢复 `(r,θ)`，再对
 `(z,r)` 使用二维极坐标恢复 `(ρ,φ)`。由于 `y ≠ 0`，有 `r > 0`，从而第二次
-得到的极角严格位于 `(0,π)`。-/
+得到的极角严格位于 `(0,π)`。
+@isnad1 id=mem.1h1v.s5.0c01154bc3ad from=translated src=- shape=6bd27955 vocab=e217b5c7
+-/
 theorem mem_spherical_image_of_coord_one_ne_zero (x : Euclidean3) (hx : x 1 ≠ 0) :
     x ∈ sphericalMap '' sphericalSource := by
   let a : ℝ × ℝ := polarCoord (x 0, x 1)
@@ -411,14 +452,18 @@ theorem mem_spherical_image_of_coord_one_ne_zero (x : Euclidean3) (hx : x 1 ≠ 
       exact congrArg Prod.fst hbinv
 
 /-- 标准球坐标像的补集包含在坐标超平面 `y = 0` 中。这个上界略大于实际的
-角度割面，但足以证明补集为零测集。-/
+角度割面，但足以证明补集为零测集。
+@isnad1 id=le.0h0v.s5.197645cab6a9 from=translated src=- shape=d3d480e6 vocab=9ec8e175
+-/
 theorem spherical_image_compl_subset_hyperplane :
     (sphericalMap '' sphericalSource)ᶜ ⊆ {x : Euclidean3 | x 1 = 0} := by
   intro x hx
   by_contra h
   exact hx (mem_spherical_image_of_coord_one_ne_zero x h)
 
-/-- 标准球坐标像几乎处处等于整个三维空间；遗漏的角度割面为零测集。-/
+/-- 标准球坐标像几乎处处等于整个三维空间；遗漏的角度割面为零测集。
+@isnad1 id=eventual.0h0v.s6.14f7473f7190 from=translated src=- shape=e05ec6a2 vocab=9371ccc0
+-/
 theorem spherical_image_ae_eq_univ :
     sphericalMap '' sphericalSource =ᵐ[volume] (univ : Set Euclidean3) := by
   rw [ae_eq_univ]
@@ -427,7 +472,9 @@ theorem spherical_image_ae_eq_univ :
   exact Measure.pi_hyperplane (fun _ : Fin 3 ↦ volume) (1 : Fin 3) 0
 
 /-- **全空间球坐标公式**：标准球坐标像仅遗漏零测割面，故像区域换元公式可以
-直接升级为整个 `ℝ³` 上的积分公式。-/
+直接升级为整个 `ℝ³` 上的积分公式。
+@isnad1 id=eq.0h1v.s8.a0d7eb173483 from=translated src=- shape=6213244c vocab=368fa7b2
+-/
 theorem integral_space_eq_spherical (f : Euclidean3 → ℝ) :
     (∫ x, f x) =
       ∫ p in sphericalSource, (p 0) ^ 2 * sin (p 2) * f (sphericalMap p) := by
@@ -443,12 +490,17 @@ def sphericalParamsEquiv : ℝ × (ℝ × ℝ) ≃ᵐ Euclidean3 :=
       (MeasurableEquiv.finTwoArrow (α := ℝ)).symm).trans
     (MeasurableEquiv.piFinSuccAbove (fun _ : Fin 3 ↦ ℝ) 0).symm
 
+/--
+@isnad1 id=eq.0h1v.s7.888268acfed6 from=translated src=- shape=9dfe83ef vocab=89c009c9
+-/
 theorem sphericalParamsEquiv_apply (p : ℝ × (ℝ × ℝ)) :
     sphericalParamsEquiv p = ![p.1, p.2.1, p.2.2] := by
   funext i
   fin_cases i <;> rfl
 
-/-- 坐标重排 `(ρ,(θ,φ)) ↔ ![ρ,θ,φ]` 保持三维 Lebesgue 体积。-/
+/-- 坐标重排 `(ρ,(θ,φ)) ↔ ![ρ,θ,φ]` 保持三维 Lebesgue 体积。
+@isnad1 id=measurep.0h0v.s7.c82dde5b9fe8 from=translated src=- shape=532e3077 vocab=4495f685
+-/
 theorem measurePreserving_sphericalParamsEquiv :
     MeasurePreserving sphericalParamsEquiv := by
   apply MeasurePreserving.trans
@@ -459,12 +511,18 @@ theorem measurePreserving_sphericalParamsEquiv :
     · exact Measure.volume_eq_prod ℝ (ℝ × ℝ)
   · exact (volume_preserving_piFinSuccAbove (fun _ : Fin 3 ↦ ℝ) 0).symm
 
+/--
+@isnad1 id=eq.0h0v.s7.0d1f99cb1320 from=translated src=- shape=e54f8a0c vocab=9e9b4f7d
+-/
 theorem sphericalParamsEquiv_preimage_source :
     sphericalParamsEquiv ⁻¹' sphericalSource =
       Ioi (0 : ℝ) ×ˢ (Ioo (-π) π ×ˢ Ioo (0 : ℝ) π) := by
   ext p
   simp [sphericalSource, sphericalParamsEquiv_apply]
 
+/--
+@isnad1 id=eq.0h1v.s8.791d687626db from=translated src=- shape=34a4cccc vocab=a811cb0e
+-/
 theorem sphericalParamsEquiv_map (p : ℝ × (ℝ × ℝ)) :
     sphericalMap (sphericalParamsEquiv p) =
       ![p.1 * sin p.2.2 * cos p.2.1,
@@ -476,7 +534,9 @@ theorem sphericalParamsEquiv_map (p : ℝ × (ℝ × ℝ)) :
 参数域可积，则 Fubini 定理把全空间积分展开为先极角、再方位角、最后半径的积分。
 
 截面可积性无需额外假设：它由整体可积性通过 Fubini 自动在几乎处处的半径上成立，
-这已经足以在外层集合积分中替换内层二重积分。-/
+这已经足以在外层集合积分中替换内层二重积分。
+@isnad1 id=eq.1h1v.s9.f7495e2264fa from=translated src=- shape=130e39b1 vocab=a285f11e
+-/
 theorem integral_space_eq_iterated_spherical (f : Euclidean3 → ℝ)
     (hf : IntegrableOn
       (fun p : ℝ × (ℝ × ℝ) ↦

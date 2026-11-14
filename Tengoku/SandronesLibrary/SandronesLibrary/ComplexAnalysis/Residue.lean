@@ -28,13 +28,17 @@ noncomputable def circleResidue (f : ℂ → ℂ) (a : ℂ) (R : ℝ) : ℂ :=
 
 /-- `circleResidue` 的定义展开。
 
-> **Entry**: complex-analysis.residue.circle-foundation-/
+> **Entry**: complex-analysis.residue.circle-foundation
+@isnad1 id=eq.0h3v.s6.09e1eb434843 from=translated src=- shape=1ba51e73 vocab=be35d49c
+-/
 theorem circleResidue_eq_normalized_circleIntegral (f : ℂ → ℂ) (a : ℂ) (R : ℝ) :
     circleResidue f a R = (2 * Real.pi * Complex.I)⁻¹ * (∮ z in C(a, R), f z) := rfl
 
 /-- 单极点特例：若 `g` 在闭圆盘附近全纯，则 `g(z)/(z-a)` 的圆周残数是 `g(a)`。
 
-> **Entry**: complex-analysis.residue.simple-pole-/
+> **Entry**: complex-analysis.residue.simple-pole
+@isnad1 id=eq.2h3v.s6.a686377f4572 from=translated src=- shape=41625ab2 vocab=cd9e258b
+-/
 theorem circleResidue_div_sub {g : ℂ → ℂ} {a : ℂ} {R : ℝ}
     (hg : HolomorphicOnTextbook g (closedBall a R)) (hR : 0 < R) :
     circleResidue (fun z => g z / (z - a)) a R = g a := by
@@ -43,7 +47,9 @@ theorem circleResidue_div_sub {g : ℂ → ℂ} {a : ℂ} {R : ℝ}
 
 /-- 圆周积分与它的正规化圆周残数之间的恒等式。
 
-> **Entry**: complex-analysis.residue.circle-foundation-/
+> **Entry**: complex-analysis.residue.circle-foundation
+@isnad1 id=eq.0h3v.s6.e4655036ee66 from=translated src=- shape=9e4a464e vocab=ac87647f
+-/
 theorem circleIntegral_eq_two_pi_I_mul_circleResidue (f : ℂ → ℂ) (a : ℂ) {R : ℝ} :
     (∮ z in C(a, R), f z) = 2 * Real.pi * Complex.I * circleResidue f a R := by
   rw [circleResidue]
@@ -51,7 +57,9 @@ theorem circleIntegral_eq_two_pi_I_mul_circleResidue (f : ℂ → ℂ) (a : ℂ)
 
 /-- Cauchy 核 `(z-a)⁻¹` 关于任意非退化中心圆的圆周残数为 `1`。
 
-> **Entry**: complex-analysis.residue.simple-pole-/
+> **Entry**: complex-analysis.residue.simple-pole
+@isnad1 id=eq.1h2v.s5.63bd86f432df from=translated src=- shape=0f20c72f vocab=75d2cc2b
+-/
 theorem circleResidue_sub_center_inv (a : ℂ) {R : ℝ} (hR : R ≠ 0) :
     circleResidue (fun z => (z - a)⁻¹) a R = 1 := by
   rw [circleResidue, circleIntegral.integral_sub_center_inv a hR]
@@ -60,7 +68,9 @@ theorem circleResidue_sub_center_inv (a : ℂ) {R : ℝ} (hR : R ≠ 0) :
 /-- 实积分例题：`∫_ℝ 1/(1+x²) dx = π`。这里准确复用 Mathlib 的广义积分后端，
 不将它伪称为一般残数计算定理。
 
-> **Entry**: complex-analysis.residue.real-integral-example-/
+> **Entry**: complex-analysis.residue.real-integral-example
+@isnad1 id=eq.0h0v.s5.2ded07e6f049 from=translated src=- shape=17ff72c3 vocab=9863e834
+-/
 theorem real_integral_inv_one_add_sq :
     (∫ x : ℝ, (1 + x ^ 2)⁻¹) = Real.pi := by
   exact integral_univ_inv_one_add_sq

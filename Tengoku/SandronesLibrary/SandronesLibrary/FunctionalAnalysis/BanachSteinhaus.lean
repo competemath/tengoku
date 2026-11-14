@@ -28,7 +28,9 @@ variable [NormedLinearSpace ℝ E] [NormedLinearSpace ℝ F] [BanachSpace E]
 /-- **Banach–Steinhaus uniform boundedness principle**: a pointwise bounded family of continuous
 linear maps on a Banach space has uniformly bounded operator norms.
 
-> **Entry**: functional-analysis.banach-steinhaus-/
+> **Entry**: functional-analysis.banach-steinhaus
+@isnad1 id=ex.1h4v.s8.4a828c5d22a4 from=translated src=- shape=59d6efe2 vocab=fefdf5e0
+-/
 theorem uniform_operatorNorm_bound_of_pointwise_bounded {ι : Type*} {g : ι → E →L[ℝ] F}
     (hPointwise : ∀ x : E, ∃ C : ℝ, ∀ i : ι, ‖g i x‖ ≤ C) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ i : ι, ‖g i‖ ≤ C := by
@@ -36,7 +38,9 @@ theorem uniform_operatorNorm_bound_of_pointwise_bounded {ι : Type*} {g : ι →
   exact ⟨max C 0, le_max_right C 0, fun i ↦ (hC i).trans (le_max_left C 0)⟩
 
 /-- Pointwise consequence with the same uniform constant: every operator in the family satisfies
-`‖gᵢ x‖ ≤ C ‖x‖`.-/
+`‖gᵢ x‖ ≤ C ‖x‖`.
+@isnad1 id=ex.1h4v.s8.d2139ed85de9 from=translated src=- shape=8f412887 vocab=8f4768ca
+-/
 theorem uniform_apply_bound_of_pointwise_bounded {ι : Type*} {g : ι → E →L[ℝ] F}
     (hPointwise : ∀ x : E, ∃ C : ℝ, ∀ i : ι, ‖g i x‖ ≤ C) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ i : ι, ∀ x : E, ‖g i x‖ ≤ C * ‖x‖ := by

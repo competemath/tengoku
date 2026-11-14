@@ -30,7 +30,9 @@ namespace SetTheory.Cardinal
 > **一句话**: 集合可数 ⟺ 存在到 ℕ 的单射（元素可以被自然数"编号"）。
 > **直觉**: 能逐个数过来的集合就是可数的；"编号"即单射，保证一个元素只有一个号码。
 > **依赖**: 无（mathlib 对 Countable 的定义本身）
-> **mathlib**: `countable_iff_exists_injective`-/
+> **mathlib**: `countable_iff_exists_injective`
+@isnad1 id=iff.0h1v.s4.3fdf9ee78b0e from=translated src=- shape=db8df96e vocab=c1679749
+-/
 theorem countable_iff_injective_nat (α : Type*) :
     Countable α ↔ ∃ f : α → ℕ, Function.Injective f := by
   -- 思路：这是 mathlib 中 Countable 的可操作刻画。若单射 f 存在，
@@ -42,7 +44,9 @@ theorem countable_iff_injective_nat (α : Type*) :
 > **一句话**: 有理数集是可数的。
 > **直觉**: 分数 p/q 用两个自然数 (p,q) 编码，两个 ℕ 可以配对成一个 ℕ——于是可数。
 > **依赖**: 无（mathlib 实例）
-> **mathlib**: `Countable ℚ`（实例）-/
+> **mathlib**: `Countable ℚ`（实例）
+@isnad1 id=countabl.0h0v.s1.8c196269e1f9 from=translated src=- shape=49959d42 vocab=4105dc83
+-/
 theorem countable_rat : Countable ℚ := by
   -- 思路：mathlib 已构造好实例（Cantor 配对 + 分数编码）。数学直觉是：
   -- ℚ 可以沿"分子分母绝对值之和"（高度）逐层枚举，每层有限个，合起来可数。
@@ -54,7 +58,9 @@ theorem countable_rat : Countable ℚ := by
 > **直觉**: Cantor 对角线：把 [0,1) 的实数排成任何"可数名单"，总能构造一个
 >   不在名单里的新实数（在每一位上故意挑一个不同的数字）。
 > **依赖**: 无（mathlib 实例）
-> **mathlib**: `Uncountable ℝ`（实例）、`not_countable`-/
+> **mathlib**: `Uncountable ℝ`（实例）、`not_countable`
+@isnad1 id=not.0h0v.s1.73f345f599cc from=translated src=- shape=87ceb31f vocab=d5176180
+-/
 theorem uncountable_real : ¬ Countable ℝ := by
   -- 思路：直接引用 mathlib 的不可数实例。数学证明（对角线）在叙述层讲，
   -- 因为"名单缺一个"的构造论证在形式化里很长，且 mathlib 已把它做成实例。
@@ -66,7 +72,9 @@ theorem uncountable_real : ¬ Countable ℝ := by
 > **直觉**: 把每个集合里"第 m 个元素"放到"第 n 个集合"的 (n, m) 位置上，
 >   再用配对把 (n,m) 编码成自然数——合并起来仍可枚举。
 > **依赖**: 无
-> **mathlib**: `Set.countable_iUnion`-/
+> **mathlib**: `Set.countable_iUnion`
+@isnad1 id=countabl.1h3v.s4.6c19c2ae62df from=translated src=- shape=0d459599 vocab=a1606114
+-/
 theorem countable_iUnion {ι α : Type*} [Countable ι] (s : ι → Set α)
     (hs : ∀ i : ι, (s i).Countable) : (⋃ i, s i).Countable := by
   -- 思路：这是"可数个可数集的并可数"的集合形式。数学上靠的是

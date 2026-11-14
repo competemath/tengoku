@@ -59,7 +59,9 @@ def RingIsomorphism.ofRingEquiv
         e.symm.map_mul, e.symm.map_neg⟩ }
 
 /-- 正式环同构经旧兼容载体往返后保持不变。
-> **Entry**: abstract-algebra.ring.iso-theorems-/
+> **Entry**: abstract-algebra.ring.iso-theorems
+@isnad1 id=eq.0h3v.s6.a9f06073a364 from=translated src=- shape=dcd7fad7 vocab=0849e199
+-/
 @[simp] theorem RingIsomorphism.toRingEquiv_ofRingEquiv
     {R S : Type*} [Ring R] [Ring S] (e : R ≃+* S) :
     (RingIsomorphism.ofRingEquiv e).toRingEquiv = e := by
@@ -68,7 +70,9 @@ def RingIsomorphism.ofRingEquiv
   rfl
 
 /-- 旧兼容载体经正式环同构往返后保持不变。
-> **Entry**: abstract-algebra.ring.iso-theorems-/
+> **Entry**: abstract-algebra.ring.iso-theorems
+@isnad1 id=eq.0h3v.s5.f0dca93fec70 from=translated src=- shape=dcd7fad7 vocab=6017557e
+-/
 @[simp] theorem RingIsomorphism.ofRingEquiv_toRingEquiv
     {R S : Type*} [Ring R] [Ring S] (e : RingIsomorphism R S) :
     RingIsomorphism.ofRingEquiv e.toRingEquiv = e := by
@@ -106,12 +110,18 @@ def TwoSidedIdealCarrier.ofTwoSidedIdeal {R : Type*} [Ring R]
         ⟨I.zero_mem, (fun _ _ => I.add_mem), (fun _ => I.neg_mem),
           (fun _ _ h => I.mul_mem_right _ _ h)⟩⟩ }
 
+/--
+@isnad1 id=eq.0h2v.s5.701eb3edd464 from=translated src=- shape=bc2b8d2b vocab=44f4a8b3
+-/
 @[simp] theorem TwoSidedIdealCarrier.coe_toTwoSidedIdeal
     {R : Type*} [Ring R] (I : TwoSidedIdealCarrier R) :
     (I.toTwoSidedIdeal : Set R) = I.carrier := by
   unfold TwoSidedIdealCarrier.toTwoSidedIdeal
   apply TwoSidedIdeal.coe_mk'
 
+/--
+@isnad1 id=eq.0h2v.s4.44c4ba4f9e92 from=translated src=- shape=2896fe98 vocab=8459f46a
+-/
 @[simp] theorem TwoSidedIdealCarrier.toTwoSidedIdeal_ofTwoSidedIdeal
     {R : Type*} [Ring R] (I : TwoSidedIdeal R) :
     (TwoSidedIdealCarrier.ofTwoSidedIdeal I).toTwoSidedIdeal = I := by
@@ -120,6 +130,9 @@ def TwoSidedIdealCarrier.ofTwoSidedIdeal {R : Type*} [Ring R]
   simp [TwoSidedIdealCarrier.toTwoSidedIdeal,
     TwoSidedIdealCarrier.ofTwoSidedIdeal, TwoSidedIdeal.mem_mk']
 
+/--
+@isnad1 id=eq.0h2v.s4.f61f4512eef6 from=translated src=- shape=2896fe98 vocab=224da93e
+-/
 @[simp] theorem TwoSidedIdealCarrier.ofTwoSidedIdeal_toTwoSidedIdeal
     {R : Type*} [Ring R] (I : TwoSidedIdealCarrier R) :
     TwoSidedIdealCarrier.ofTwoSidedIdeal I.toTwoSidedIdeal = I := by
@@ -154,7 +167,9 @@ def ringHomKernelSet {R S : Type*} [Ring R] [Ring S] (f : R → S) : Set R :=
   {x | f x = 0}
 
 /-- 环同态核对加法、取负和双侧乘法封闭，因而是双边理想。
-> **Entry**: abstract-algebra.ring.iso-theorems-/
+> **Entry**: abstract-algebra.ring.iso-theorems
+@isnad1 id=twosided.1h3v.s7.3ac9d73f2718 from=translated src=- shape=9374fb76 vocab=7fee25c7
+-/
 theorem ringHomKernelSet_isTwoSidedIdeal {R S : Type*} [Ring R] [Ring S]
     (f : R → S) (hf : RingHomomorphism f) :
     TwoSidedIdealSet (ringHomKernelSet f) := by
@@ -184,7 +199,9 @@ def ringHomKernel {R S : Type*} [Ring R] [Ring S]
   TwoSidedIdealCarrier.ofTwoSidedIdeal
     (TwoSidedIdeal.ker (ringHomOfRingHomomorphism f hf))
 
-/-- 旧核载体转换后正是正式 `TwoSidedIdeal.ker`。-/
+/-- 旧核载体转换后正是正式 `TwoSidedIdeal.ker`。
+@isnad1 id=eq.1h3v.s7.e63383651cbb from=translated src=- shape=78e71b06 vocab=5acee5cd
+-/
 @[simp] theorem ringHomKernel_toTwoSidedIdeal {R S : Type*} [Ring R] [Ring S]
     (f : R → S) (hf : RingHomomorphism f) :
     (ringHomKernel f hf).toTwoSidedIdeal =
@@ -249,7 +266,9 @@ def ringHomRangeMap {R S : Type*} [Ring R] [Ring S]
   fun x ↦ ⟨f x, x, rfl⟩
 
 /-- 到教材像承载的规范映射是本库意义下的环同态。
-> **Entry**: abstract-algebra.ring.iso-theorems-/
+> **Entry**: abstract-algebra.ring.iso-theorems
+@isnad1 id=ringhomo.1h3v.s7.312a2ab90834 from=translated src=- shape=1a6f6f4f vocab=f05b49e7
+-/
 theorem ringHomRangeMap_is_ringHomomorphism {R S : Type*} [Ring R] [Ring S]
     (f : R → S) (hf : RingHomomorphism f) :
     RingHomomorphism (ringHomRangeMap f hf) := by
@@ -317,7 +336,9 @@ noncomputable def ringFirstIsomorphism {R S : Type*} [Ring R] [Ring S]
   RingIsomorphism.ofRingEquiv (ringFirstEquiv f hf)
 
 /-- 正式第一同构在投影代表元上的显式公式：`[x]` 被送到像中的 `f(x)`。
-> **Entry**: abstract-algebra.ring.iso-theorems-/
+> **Entry**: abstract-algebra.ring.iso-theorems
+@isnad1 id=eq.1h4v.s8.e9d80e0feab1 from=translated src=- shape=2c94cfd3 vocab=109dbcbc
+-/
 @[simp] theorem ringFirstEquiv_projection {R S : Type*} [Ring R] [Ring S]
     (f : R → S) (hf : RingHomomorphism f) (x : R) :
     ringFirstEquiv f hf
@@ -329,7 +350,9 @@ noncomputable def ringFirstIsomorphism {R S : Type*} [Ring R] [Ring S]
   rfl
 
 /-- 旧第一同构兼容接口的代表元公式。
-> **Entry**: abstract-algebra.ring.iso-theorems-/
+> **Entry**: abstract-algebra.ring.iso-theorems
+@isnad1 id=eq.1h4v.s7.d1815fccc641 from=translated src=- shape=43fe242b vocab=49c88149
+-/
 @[simp] theorem ringFirstIsomorphism_projection {R S : Type*} [Ring R] [Ring S]
     (f : R → S) (hf : RingHomomorphism f) (x : R) :
     ringFirstIsomorphism f hf
@@ -379,6 +402,9 @@ def idealComap {R S : Type*} [Ring R] [Ring S]
   TwoSidedIdealCarrier.ofTwoSidedIdeal
     (TwoSidedIdeal.comap (ringHomOfRingHomomorphism f hf) J.toTwoSidedIdeal)
 
+/--
+@isnad1 id=eq.1h4v.s8.64d1fee957a1 from=translated src=- shape=17e8524b vocab=1b84c5ce
+-/
 @[simp] theorem idealComap_toTwoSidedIdeal {R S : Type*} [Ring R] [Ring S]
     (f : R → S) (hf : RingHomomorphism f) (J : TwoSidedIdealCarrier S) :
     (idealComap f hf J).toTwoSidedIdeal =
@@ -386,7 +412,9 @@ def idealComap {R S : Type*} [Ring R] [Ring S]
   apply TwoSidedIdealCarrier.toTwoSidedIdeal_ofTwoSidedIdeal
 
 /-- 元素属于理想逆像，当且仅当其函数值属于目标理想。
-> **Entry**: abstract-algebra.ring.iso-theorems-/
+> **Entry**: abstract-algebra.ring.iso-theorems
+@isnad1 id=iff.1h5v.s7.cafdfc42de11 from=translated src=- shape=0c375fbf vocab=78dfdae8
+-/
 @[simp] theorem mem_idealComap_iff {R S : Type*} [Ring R] [Ring S]
     (f : R → S) (hf : RingHomomorphism f) (J : TwoSidedIdealCarrier S) (x : R) :
     x ∈ idealComap f hf J ↔ f x ∈ J := by
@@ -455,6 +483,9 @@ def idealMapOfSurjective {R S : Type*} [Ring R] [Ring S]
   TwoSidedIdealCarrier.ofTwoSidedIdeal
     (TwoSidedIdeal.map (ringHomOfRingHomomorphism f hf) I.toTwoSidedIdeal)
 
+/--
+@isnad1 id=eq.2h4v.s7.35e39d6e257a from=translated src=- shape=49293d3a vocab=e15af904
+-/
 @[simp] theorem idealMapOfSurjective_toTwoSidedIdeal
     {R S : Type*} [Ring R] [Ring S]
     (f : R → S) (hf : RingHomomorphism f) (hsurj : Function.Surjective f)
@@ -464,7 +495,9 @@ def idealMapOfSurjective {R S : Type*} [Ring R] [Ring S]
   apply TwoSidedIdealCarrier.toTwoSidedIdeal_ofTwoSidedIdeal
 
 /-- 元素属于满射理想像的存在原像刻画。
-> **Entry**: abstract-algebra.ring.iso-theorems-/
+> **Entry**: abstract-algebra.ring.iso-theorems
+@isnad1 id=iff.2h5v.s7.c44a8d043024 from=translated src=- shape=a66226d9 vocab=26a7a4fe
+-/
 @[simp] theorem mem_idealMapOfSurjective_iff {R S : Type*} [Ring R] [Ring S]
     (f : R → S) (hf : RingHomomorphism f) (hsurj : Function.Surjective f)
     (I : TwoSidedIdealCarrier R) (y : S) :
@@ -477,7 +510,9 @@ def idealMapOfSurjective {R S : Type*} [Ring R] [Ring S]
   rfl
 
 /-- 理想逆像保持包含关系。
-> **Entry**: abstract-algebra.ring.iso-theorems-/
+> **Entry**: abstract-algebra.ring.iso-theorems
+@isnad1 id=monotone.1h3v.s7.da5bec9dccb5 from=translated src=- shape=0fb96cde vocab=c4202915
+-/
 theorem idealComap_mono {R S : Type*} [Ring R] [Ring S]
     (f : R → S) (hf : RingHomomorphism f) :
     Monotone (idealComap f hf) := by
@@ -485,7 +520,9 @@ theorem idealComap_mono {R S : Type*} [Ring R] [Ring S]
   exact hIJ hx
 
 /-- 满射理想像保持包含关系。
-> **Entry**: abstract-algebra.ring.iso-theorems-/
+> **Entry**: abstract-algebra.ring.iso-theorems
+@isnad1 id=monotone.2h3v.s7.e76845a4a942 from=translated src=- shape=1aa4b384 vocab=176cf8a7
+-/
 theorem idealMapOfSurjective_mono {R S : Type*} [Ring R] [Ring S]
     (f : R → S) (hf : RingHomomorphism f) (hsurj : Function.Surjective f) :
     Monotone (idealMapOfSurjective f hf hsurj) := by
@@ -496,7 +533,9 @@ theorem idealMapOfSurjective_mono {R S : Type*} [Ring R] [Ring S]
     ⟨x, hIJ hx, rfl⟩
 
 /-- 本库商投影是满射：每个商类都有代表元。
-> **Entry**: abstract-algebra.ring.iso-theorems-/
+> **Entry**: abstract-algebra.ring.iso-theorems
+@isnad1 id=surjecti.1h2v.s5.d71237b07127 from=translated src=- shape=3d392d3a vocab=7ffead96
+-/
 theorem quotientRingProjection_surjective {R : Type*} [Ring R]
     (I : Set R) (hI : TwoSidedIdealSet I) :
     Function.Surjective (quotientRingProjection I hI) := by
@@ -506,7 +545,9 @@ theorem quotientRingProjection_surjective {R : Type*} [Ring R]
   exact ⟨x, rfl⟩
 
 /-- 若 `K ≤ I`，先沿 `R → R/K` 取理想像再取逆像，逐元素恰好回到 `I`。
-> **Entry**: abstract-algebra.ring.iso-theorems-/
+> **Entry**: abstract-algebra.ring.iso-theorems
+@isnad1 id=iff.1h4v.s6.7fa90999a570 from=translated src=- shape=a7e7de70 vocab=60e300a1
+-/
 theorem quotientIdealComapMap_membership {R : Type*} [Ring R]
     (K I : TwoSidedIdealCarrier R) (hKI : K ≤ I) (x : R) :
     x ∈ idealComap (quotientRingProjection K.carrier K.isTwoSided)
@@ -527,7 +568,9 @@ theorem quotientIdealComapMap_membership {R : Type*} [Ring R]
     exact ⟨x, hx, rfl⟩
 
 /-- 商环理想先取逆像再沿商投影取像，逐元素恰好回到原理想。
-> **Entry**: abstract-algebra.ring.iso-theorems-/
+> **Entry**: abstract-algebra.ring.iso-theorems
+@isnad1 id=iff.0h4v.s7.5a31053c9898 from=translated src=- shape=65b2828f vocab=a7141e53
+-/
 theorem quotientIdealMapComap_membership {R : Type*} [Ring R]
     (K : TwoSidedIdealCarrier R)
     (J : TwoSidedIdealCarrier (quotientRingSet K.carrier K.isTwoSided))
@@ -727,6 +770,9 @@ def QuotientIdealOrderEquivalence.ofOrderIso
   monotone_toFun := e.monotone
   monotone_inverse := e.symm.monotone
 
+/--
+@isnad1 id=eq.0h3v.s7.043d3cd5e552 from=translated src=- shape=d270cb9c vocab=3ca127e6
+-/
 @[simp] theorem QuotientIdealOrderEquivalence.toOrderIso_ofOrderIso
     {R : Type*} [Ring R] {K : TwoSidedIdealCarrier R}
     (e : {I : TwoSidedIdealCarrier R // K ≤ I} ≃o
@@ -735,6 +781,9 @@ def QuotientIdealOrderEquivalence.ofOrderIso
   apply OrderIso.ext
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.b535c2f06fab from=translated src=- shape=d3018184 vocab=2b556110
+-/
 @[simp] theorem QuotientIdealOrderEquivalence.ofOrderIso_toOrderIso
     {R : Type*} [Ring R] {K : TwoSidedIdealCarrier R}
     (e : QuotientIdealOrderEquivalence R K) :
@@ -893,7 +942,9 @@ noncomputable def ringThirdIsomorphism {R : Type*} [Ring R]
   RingIsomorphism.ofRingEquiv (ringThirdEquiv I J hIJ)
 
 /-- 正式第三同构的代表元公式：二重自然投影后应用同构，等于直接模去 `J`。
-> **Entry**: abstract-algebra.ring.iso-theorems-/
+> **Entry**: abstract-algebra.ring.iso-theorems
+@isnad1 id=eq.1h4v.s9.a26d6c81d312 from=translated src=- shape=f11ea208 vocab=197e360b
+-/
 @[simp] theorem ringThirdEquiv_projection_projection
     {R : Type*} [Ring R] (I J : TwoSidedIdealCarrier R) (hIJ : I ≤ J) (x : R) :
     ringThirdEquiv I J hIJ
@@ -911,7 +962,9 @@ noncomputable def ringThirdIsomorphism {R : Type*} [Ring R]
   rfl
 
 /-- 旧第三同构兼容接口的代表元公式。
-> **Entry**: abstract-algebra.ring.iso-theorems-/
+> **Entry**: abstract-algebra.ring.iso-theorems
+@isnad1 id=eq.1h4v.s8.e7084061592e from=translated src=- shape=ff3c9b31 vocab=de03ccb7
+-/
 @[simp] theorem ringThirdIsomorphism_projection_projection
     {R : Type*} [Ring R] (I J : TwoSidedIdealCarrier R) (hIJ : I ≤ J) (x : R) :
     ringThirdIsomorphism I J hIJ
@@ -986,6 +1039,9 @@ def subringIdealIntersection {R : Type*} [Ring R]
     · intro a ha; exact I.isTwoSided.2.2.2.1 ha
     · intro r a ha; exact I.isTwoSided.2.2.2.2 r.1 ha
 
+/--
+@isnad1 id=iff.0h4v.s7.2591bda6c002 from=translated src=- shape=4c3ee932 vocab=e9af1261
+-/
 @[simp] theorem mem_subringIdealIntersection_iff {R : Type*} [Ring R]
     (A : SubringCarrier R) (I : TwoSidedIdealCarrier R) (a : A) :
     a ∈ subringIdealIntersection A I ↔ a.1 ∈ I := by
@@ -1014,6 +1070,9 @@ def subringIdealSum {R : Type*} [Ring R]
     exact ⟨-a, A.isSubring.2.2.2.2 ha, -i,
       I.isTwoSided.1.2.2.1 hi, by abel⟩
 
+/--
+@isnad1 id=iff.0h4v.s6.95cc1aa005b2 from=translated src=- shape=ccf00b81 vocab=a43fe71d
+-/
 @[simp] theorem mem_subringIdealSum_iff {R : Type*} [Ring R]
     (A : SubringCarrier R) (I : TwoSidedIdealCarrier R) (x : R) :
     x ∈ subringIdealSum A I ↔ ∃ a : R, a ∈ A ∧ ∃ i : R, i ∈ I ∧ a + i = x := by
@@ -1052,6 +1111,9 @@ def secondIsomorphismCanonicalMap {R : Type*} [Ring R]
   exact fun a ↦ quotientRingProjection (subringIdealInSum A I).carrier
     (subringIdealInSum A I).isTwoSided (subringIdealSumInclusion A I a)
 
+/--
+@isnad1 id=ringhomo.0h3v.s8.dd46e1f28001 from=translated src=- shape=aa53e349 vocab=73d4ffb5
+-/
 theorem secondIsomorphismCanonicalMap_is_ringHomomorphism {R : Type*} [Ring R]
     (A : SubringCarrier R) (I : TwoSidedIdealCarrier R) :
     RingHomomorphism (secondIsomorphismCanonicalMap A I) := by
@@ -1083,6 +1145,9 @@ theorem secondIsomorphismCanonicalMap_is_ringHomomorphism {R : Type*} [Ring R]
       rw [hι.2.2.2.2]
       exact (quotientNeg_projection L.carrier L.isTwoSided _).symm⟩
 
+/--
+@isnad1 id=surjecti.0h3v.s6.6e14b8bde7c2 from=translated src=- shape=aa53e349 vocab=f4a6cc3c
+-/
 theorem secondIsomorphismCanonicalMap_surjective {R : Type*} [Ring R]
     (A : SubringCarrier R) (I : TwoSidedIdealCarrier R) :
     Function.Surjective (secondIsomorphismCanonicalMap A I) := by
@@ -1104,6 +1169,9 @@ theorem secondIsomorphismCanonicalMap_surjective {R : Type*} [Ring R]
   rw [← hai]
   abel
 
+/--
+@isnad1 id=eq.0h3v.s7.3548788e25d8 from=translated src=- shape=cddbb804 vocab=273ba89e
+-/
 theorem secondIsomorphismCanonicalMap_kernel {R : Type*} [Ring R]
     (A : SubringCarrier R) (I : TwoSidedIdealCarrier R) :
     ringHomKernelSet (secondIsomorphismCanonicalMap A I) =
@@ -1173,6 +1241,9 @@ private theorem quotientRingEquivOfEqualIdeals_projection
   subst hJ
   rfl
 
+/--
+@isnad1 id=eq.3h4v.s7.7ff45d18922d from=translated src=- shape=c5e308b9 vocab=4a547256
+-/
 @[simp] theorem quotientRingIsomorphismOfEqualIdeals_projection
     {R : Type*} [Ring R] (I J : Set R) (hI : TwoSidedIdealSet I)
     (hJ : TwoSidedIdealSet J) (hEq : I = J) (x : R) :
@@ -1215,7 +1286,9 @@ noncomputable def ringSecondIsomorphism {R : Type*} [Ring R]
   RingIsomorphism.ofRingEquiv (ringSecondEquiv A I)
 
 /-- 正式第二同构的代表元公式：`a` 的左侧商类映到其在 `(A+I)/I` 中的自然商类。
-> **Entry**: abstract-algebra.ring.iso-theorems-/
+> **Entry**: abstract-algebra.ring.iso-theorems
+@isnad1 id=eq.0h4v.s10.5ebb7dd62a8a from=translated src=- shape=ac2b8abb vocab=f69fe027
+-/
 @[simp] theorem ringSecondEquiv_projection {R : Type*} [Ring R]
     (A : SubringCarrier R) (I : TwoSidedIdealCarrier R) (a : A) :
     ringSecondEquiv A I
@@ -1231,7 +1304,9 @@ noncomputable def ringSecondIsomorphism {R : Type*} [Ring R]
   rfl
 
 /-- 旧第二同构兼容接口的代表元公式。
-> **Entry**: abstract-algebra.ring.iso-theorems-/
+> **Entry**: abstract-algebra.ring.iso-theorems
+@isnad1 id=eq.0h4v.s8.a99d677f17e6 from=translated src=- shape=65be1175 vocab=31116528
+-/
 @[simp] theorem ringSecondIsomorphism_projection {R : Type*} [Ring R]
     (A : SubringCarrier R) (I : TwoSidedIdealCarrier R) (a : A) :
     ringSecondIsomorphism A I

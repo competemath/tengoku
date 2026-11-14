@@ -47,7 +47,9 @@ def EssentialSingularityAtTextbook (f : ℂ → ℂ) (a : ℂ) : Prop :=
 
 /-- The logical trichotomy of the three textbook singularity predicates.
 
-> **Entry**: complex-analysis.singularity.classification-foundation-/
+> **Entry**: complex-analysis.singularity.classification-foundation
+@isnad1 id=or.1h2v.s4.3acb5625551d from=translated src=- shape=7d5c4c75 vocab=63f4bac5
+-/
 theorem isolatedSingularity_classification
     {f : ℂ → ℂ} {a : ℂ} (h : IsolatedSingularityAtTextbook f a) :
     RemovableSingularityAtTextbook f a ∨ PoleAtTextbook f a ∨
@@ -61,7 +63,9 @@ theorem isolatedSingularity_classification
 
 /-- For a meromorphic isolated singularity, removability is equivalent to nonnegative order.
 
-> **Entry**: complex-analysis.singularity.classification-foundation-/
+> **Entry**: complex-analysis.singularity.classification-foundation
+@isnad1 id=iff.2h2v.s6.18b19721b221 from=translated src=- shape=a4fce879 vocab=d4b43030
+-/
 theorem removableSingularityAtTextbook_iff_order_nonneg
     {f : ℂ → ℂ} {a : ℂ} (hiso : IsolatedSingularityAtTextbook f a)
     (hf : MeromorphicAt f a) :
@@ -71,7 +75,9 @@ theorem removableSingularityAtTextbook_iff_order_nonneg
 
 /-- For a meromorphic isolated singularity, being a pole is equivalent to negative order.
 
-> **Entry**: complex-analysis.singularity.classification-foundation-/
+> **Entry**: complex-analysis.singularity.classification-foundation
+@isnad1 id=iff.2h2v.s6.86c0b971215e from=translated src=- shape=8e0b7f67 vocab=70a22c39
+-/
 theorem poleAtTextbook_iff_order_neg
     {f : ℂ → ℂ} {a : ℂ} (hiso : IsolatedSingularityAtTextbook f a)
     (hf : MeromorphicAt f a) :
@@ -81,7 +87,9 @@ theorem poleAtTextbook_iff_order_neg
 
 /-- A meromorphic germ cannot be an essential singularity.
 
-> **Entry**: complex-analysis.singularity.classification-foundation-/
+> **Entry**: complex-analysis.singularity.classification-foundation
+@isnad1 id=not.1h2v.s4.38617fe931ba from=translated src=- shape=a4af027b vocab=d685c6ea
+-/
 theorem meromorphicAt_not_essential
     {f : ℂ → ℂ} {a : ℂ} (hf : MeromorphicAt f a) :
     ¬ EssentialSingularityAtTextbook f a := by

@@ -163,7 +163,9 @@ private theorem fieldAutomorphismOver_mul_inv_bridge
 
 /-- 两个基域自同构若正向函数逐点相同，则整个正逆同构结构相等。
 
-> **Entry**: abstract-algebra.field.galois-definitions-/
+> **Entry**: abstract-algebra.field.galois-definitions
+@isnad1 id=eq.1h5v.s6.bcc1d01ece59 from=translated src=- shape=d30c0e48 vocab=a5424383
+-/
 @[ext] theorem FieldAutomorphismOver.ext
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L}
     {σ τ : FieldAutomorphismOver e}
@@ -172,7 +174,9 @@ private theorem fieldAutomorphismOver_mul_inv_bridge
 
 /-- 自同构乘法逐点就是函数复合，外层先应用 `σ`。
 
-> **Entry**: abstract-algebra.field.galois-definitions-/
+> **Entry**: abstract-algebra.field.galois-definitions
+@isnad1 id=eq.0h6v.s6.970fbdae9d3c from=translated src=- shape=f7a1cf14 vocab=300c7bf7
+-/
 theorem fieldAutomorphismOver_comp_apply
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L}
     (σ τ : FieldAutomorphismOver e) (x : L) :
@@ -180,14 +184,18 @@ theorem fieldAutomorphismOver_comp_apply
 
 /-- 恒等自同构逐点固定目标域中的每个元素。
 
-> **Entry**: abstract-algebra.field.galois-definitions-/
+> **Entry**: abstract-algebra.field.galois-definitions
+@isnad1 id=eq.0h4v.s5.13e07f6f50ef from=translated src=- shape=e1eb6ae9 vocab=a5424383
+-/
 theorem fieldAutomorphismOver_identity_apply
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L} (x : L) :
     (1 : FieldAutomorphismOver e).forward x = x := rfl
 
 /-- 逆自同构的正向函数就是原同构中保存的逆向域嵌入。
 
-> **Entry**: abstract-algebra.field.galois-definitions-/
+> **Entry**: abstract-algebra.field.galois-definitions
+@isnad1 id=eq.0h5v.s6.488f3d34e99c from=translated src=- shape=09b6e8c5 vocab=d2638757
+-/
 theorem fieldAutomorphismOver_inverse_apply
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L}
     (σ : FieldAutomorphismOver e) (x : L) :
@@ -195,7 +203,9 @@ theorem fieldAutomorphismOver_inverse_apply
 
 /-- 基域自同构的复合满足结合律。
 
-> **Entry**: abstract-algebra.field.galois-definitions-/
+> **Entry**: abstract-algebra.field.galois-definitions
+@isnad1 id=eq.0h6v.s7.aa6fde3297c1 from=translated src=- shape=fa3c97c8 vocab=c1c55788
+-/
 theorem fieldAutomorphismOver_mul_assoc
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L}
     (σ τ υ : FieldAutomorphismOver e) : (σ * τ) * υ = σ * (τ * υ) :=
@@ -203,7 +213,9 @@ theorem fieldAutomorphismOver_mul_assoc
 
 /-- 恒等基域自同构是复合运算的左单位元。
 
-> **Entry**: abstract-algebra.field.galois-definitions-/
+> **Entry**: abstract-algebra.field.galois-definitions
+@isnad1 id=eq.0h4v.s6.8cf0ba52a407 from=translated src=- shape=057f9e03 vocab=c1c55788
+-/
 theorem fieldAutomorphismOver_one_mul
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L}
     (σ : FieldAutomorphismOver e) : 1 * σ = σ :=
@@ -211,7 +223,9 @@ theorem fieldAutomorphismOver_one_mul
 
 /-- 恒等基域自同构是复合运算的右单位元。
 
-> **Entry**: abstract-algebra.field.galois-definitions-/
+> **Entry**: abstract-algebra.field.galois-definitions
+@isnad1 id=eq.0h4v.s6.ed6742e179d1 from=translated src=- shape=c8fc1d81 vocab=c1c55788
+-/
 theorem fieldAutomorphismOver_mul_one
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L}
     (σ : FieldAutomorphismOver e) : σ * 1 = σ :=
@@ -219,7 +233,9 @@ theorem fieldAutomorphismOver_mul_one
 
 /-- 逆基域自同构满足左逆律。
 
-> **Entry**: abstract-algebra.field.galois-definitions-/
+> **Entry**: abstract-algebra.field.galois-definitions
+@isnad1 id=eq.0h4v.s6.42bc37dc9aab from=translated src=- shape=ad064468 vocab=e37696fb
+-/
 theorem fieldAutomorphismOver_inv_mul
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L}
     (σ : FieldAutomorphismOver e) : σ⁻¹ * σ = 1 :=
@@ -227,7 +243,9 @@ theorem fieldAutomorphismOver_inv_mul
 
 /-- 逆基域自同构满足右逆律。
 
-> **Entry**: abstract-algebra.field.galois-definitions-/
+> **Entry**: abstract-algebra.field.galois-definitions
+@isnad1 id=eq.0h4v.s6.df71713394bb from=translated src=- shape=3e31cd51 vocab=e37696fb
+-/
 theorem fieldAutomorphismOver_mul_inv
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L}
     (σ : FieldAutomorphismOver e) : σ * σ⁻¹ = 1 :=
@@ -236,7 +254,9 @@ theorem fieldAutomorphismOver_mul_inv
 /-- 恒等、复合和逆运算满足本库逐条列出的全部群公理，因而显式
 基域自同构在教材意义下组成一个群。
 
-> **Entry**: abstract-algebra.field.galois-definitions-/
+> **Entry**: abstract-algebra.field.galois-definitions
+@isnad1 id=groupaxi.0h3v.s5.f9405ee349f0 from=translated src=- shape=272b61da vocab=30c018b2
+-/
 theorem fieldAutomorphismOver_groupAxioms
     {K L : Type*} [Field K] [Field L] (e : FieldEmbedding K L) :
     GroupAxioms (FieldAutomorphismOver e) :=
@@ -272,7 +292,9 @@ private theorem fixedFieldSet_isSubfield_bridge
 
 /-- 固定域成员关系展开为被给定自同构族中的每个元素逐点固定。
 
-> **Entry**: abstract-algebra.field.galois-definitions-/
+> **Entry**: abstract-algebra.field.galois-definitions
+@isnad1 id=iff.0h5v.s6.cd36d8fe3362 from=translated src=- shape=04c08281 vocab=06e7c5c1
+-/
 theorem mem_fixedFieldSet_iff
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (H : Set (FieldAutomorphismOver e)) (x : L) :
@@ -280,7 +302,9 @@ theorem mem_fixedFieldSet_iff
 
 /-- 空自同构族不施加固定条件，故其固定域集合是整个目标域。
 
-> **Entry**: abstract-algebra.field.galois-definitions-/
+> **Entry**: abstract-algebra.field.galois-definitions
+@isnad1 id=eq.0h3v.s5.346aecd7a250 from=translated src=- shape=5968bfa2 vocab=bba07e4a
+-/
 theorem fixedFieldSet_empty
     {K L : Type*} [Field K] [Field L] (e : FieldEmbedding K L) :
     FixedFieldSet e ∅ = Set.univ := by
@@ -289,7 +313,9 @@ theorem fixedFieldSet_empty
 
 /-- 全体基域自同构的固定域成员恰为被每个基域自同构固定的元素。
 
-> **Entry**: abstract-algebra.field.galois-definitions-/
+> **Entry**: abstract-algebra.field.galois-definitions
+@isnad1 id=iff.0h4v.s6.4868f8886d44 from=translated src=- shape=39919709 vocab=f6db9c2b
+-/
 theorem mem_fixedFieldSet_univ_iff
     {K L : Type*} [Field K] [Field L] (e : FieldEmbedding K L) (x : L) :
     x ∈ FixedFieldSet e Set.univ ↔
@@ -298,7 +324,9 @@ theorem mem_fixedFieldSet_univ_iff
 
 /-- 任意自同构族的共同固定元素对全部域运算封闭，构成子域集合。
 
-> **Entry**: abstract-algebra.field.galois-definitions-/
+> **Entry**: abstract-algebra.field.galois-definitions
+@isnad1 id=subfield.0h4v.s5.e3e2ef63ea4b from=translated src=- shape=7e7d181c vocab=3b1917af
+-/
 theorem fixedFieldSet_isSubfield
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (H : Set (FieldAutomorphismOver e)) :
@@ -307,7 +335,9 @@ theorem fixedFieldSet_isSubfield
 
 /-- 每个基域自同构都固定所选基域嵌入的全部像。
 
-> **Entry**: abstract-algebra.field.galois-definitions-/
+> **Entry**: abstract-algebra.field.galois-definitions
+@isnad1 id=le.0h4v.s5.24bff7d6966b from=translated src=- shape=c194c88f vocab=489c1e75
+-/
 theorem base_range_subset_fixedFieldSet
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (H : Set (FieldAutomorphismOver e)) :
@@ -318,7 +348,9 @@ theorem base_range_subset_fixedFieldSet
 /-- 固定域集合既是目标域的子域，又包含显式基域嵌入的像，因而满足
 本库 `IntermediateFieldSet` 教材判据。
 
-> **Entry**: abstract-algebra.field.galois-definitions-/
+> **Entry**: abstract-algebra.field.galois-definitions
+@isnad1 id=intermed.0h4v.s5.f0e112fa59aa from=translated src=- shape=f2618e85 vocab=5e7de01e
+-/
 theorem fixedFieldSet_isIntermediateField
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (H : Set (FieldAutomorphismOver e)) :
@@ -327,7 +359,9 @@ theorem fixedFieldSet_isIntermediateField
 
 /-- 自同构族越大，共同固定元素越少，因此固定域集合随自同构族反变。
 
-> **Entry**: abstract-algebra.field.galois-definitions-/
+> **Entry**: abstract-algebra.field.galois-definitions
+@isnad1 id=le.1h5v.s6.0ad8664a8ef6 from=translated src=- shape=38cf818d vocab=9301d4ef
+-/
 theorem fixedFieldSet_antitone
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L}
     {H J : Set (FieldAutomorphismOver e)} (hHJ : H ⊆ J) :
@@ -346,28 +380,36 @@ def GaloisExtension {K L : Type*} [Field K] [Field L]
 
 /-- Galois 扩张定义展开为可分扩张与正规扩张的合取。
 
-> **Entry**: abstract-algebra.field.galois-definitions-/
+> **Entry**: abstract-algebra.field.galois-definitions
+@isnad1 id=iff.0h3v.s5.9951e3f282fe from=translated src=- shape=a74ed316 vocab=df5ce968
+-/
 theorem galoisExtension_iff
     {K L : Type*} [Field K] [Field L] (e : FieldEmbedding K L) :
     GaloisExtension e ↔ SeparableExtension e ∧ NormalExtension e := Iff.rfl
 
 /-- Galois 扩张的可分性投影。
 
-> **Entry**: abstract-algebra.field.galois-definitions-/
+> **Entry**: abstract-algebra.field.galois-definitions
+@isnad1 id=separabl.1h3v.s4.b42d7826210b from=translated src=- shape=f61ba1fe vocab=d8b34cfb
+-/
 theorem GaloisExtension.isSeparable
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L}
     (h : GaloisExtension e) : SeparableExtension e := h.1
 
 /-- Galois 扩张的正规性投影。
 
-> **Entry**: abstract-algebra.field.galois-definitions-/
+> **Entry**: abstract-algebra.field.galois-definitions
+@isnad1 id=normalex.1h3v.s4.7c9160071c0f from=translated src=- shape=f61ba1fe vocab=f3824908
+-/
 theorem GaloisExtension.isNormal
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L}
     (h : GaloisExtension e) : NormalExtension e := h.2
 
 /-- Galois 扩张必为代数扩张，这是正规性分量的直接推论。
 
-> **Entry**: abstract-algebra.field.galois-definitions-/
+> **Entry**: abstract-algebra.field.galois-definitions
+@isnad1 id=algebrai.1h3v.s4.6eb7b9267818 from=translated src=- shape=f61ba1fe vocab=a86eddf4
+-/
 theorem GaloisExtension.isAlgebraic
     {K L : Type*} [Field K] [Field L] {e : FieldEmbedding K L}
     (h : GaloisExtension e) : AlgebraicExtension e := h.isNormal.isAlgebraic
@@ -375,7 +417,9 @@ theorem GaloisExtension.isAlgebraic
 /-- Galois 扩张等价于可分且代数，并且每个在目标域中有根的基域
 不可约多项式都在目标域中完全分裂。这是 A3.8 第二批正规性刻画的展开。
 
-> **Entry**: abstract-algebra.field.galois-definitions-/
+> **Entry**: abstract-algebra.field.galois-definitions
+@isnad1 id=iff.0h3v.s6.e05756b8b346 from=translated src=- shape=5b42c0de vocab=adf3bb20
+-/
 theorem galoisExtension_iff_irreducible_with_root_splits
     {K L : Type*} [Field K] [Field L] (e : FieldEmbedding K L) :
     GaloisExtension e ↔

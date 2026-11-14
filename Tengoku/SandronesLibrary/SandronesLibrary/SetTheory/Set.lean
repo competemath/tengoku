@@ -36,7 +36,9 @@ namespace SetTheory.Set
 > **一句话**: 两个集合相等当且仅当它们的元素完全相同（外延性原理）。
 > **直觉**: 集合由它的元素唯一决定——"集合相等"永远可以退化为"逐元素检查"。
 > **依赖**: 无（直接使用 mathlib 的 `Set.ext`）
-> **mathlib**: `Set.ext`-/
+> **mathlib**: `Set.ext`
+@isnad1 id=iff.0h3v.s5.c4a136a48907 from=translated src=- shape=2d9db661 vocab=a4f200f1
+-/
 theorem set_ext {α : Type*} (A B : Set α) : A = B ↔ ∀ x : α, x ∈ A ↔ x ∈ B := by
   -- 思路：这是集合语言的地基，等价关系 "A = B" 与 "逐元素互属" 互推。
   constructor
@@ -54,7 +56,9 @@ theorem set_ext {α : Type*} (A B : Set α) : A = B ↔ ∀ x : α, x ∈ A ↔ 
 > **直觉**: 集合恒等式 = "把集合语言翻译成命题逻辑，再翻译回来"。
 >   外延性把等式化成逐元素判断，逻辑层的分配律自动完成其余工作。
 > **依赖**: `settheory.set.ext`
-> **mathlib**: `Set.inter_union_distrib_left`-/
+> **mathlib**: `Set.inter_union_distrib_left`
+@isnad1 id=eq.0h4v.s5.60b04fd9db20 from=translated src=- shape=6925cec3 vocab=be3e25d8
+-/
 theorem inter_distrib_left {α : Type*} (A B C : Set α) :
     A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C) := by
   -- 思路（思维脉络）：目标是一个集合等式。第一反应永远是用外延性（Set.ext）
@@ -76,7 +80,9 @@ theorem inter_distrib_left {α : Type*} (A B C : Set α) :
 > **一句话**: `A ⊆ B` 当且仅当 `A` 的每个元素都属于 `B`。
 > **直觉**: 子集不是额外的代数结构；它就是一个逐元素的全称命题。
 > **依赖**: 无
-> **mathlib**: 无（`Set.Subset` 的定义展开）-/
+> **mathlib**: 无（`Set.Subset` 的定义展开）
+@isnad1 id=iff.0h3v.s5.522b96ba9cc2 from=translated src=- shape=8ccc5ba7 vocab=6641aca1
+-/
 theorem subset_iff_forall_mem {α : Type*} (A B : Set α) :
     A ⊆ B ↔ ∀ x : α, x ∈ A → x ∈ B := by
   -- `A ⊆ B` 在 Lean 中定义为右侧的逐元素函数类型，因此两边定义相同。
@@ -87,7 +93,9 @@ theorem subset_iff_forall_mem {α : Type*} (A B : Set α) :
 > **一句话**: 集合包含关系是传递的：A ⊆ B 且 B ⊆ C ⇒ A ⊆ C。
 > **直觉**: "子集"链可以一路延伸——元素属于 A 就属于 B，属于 B 就属于 C。
 > **依赖**: 无
-> **mathlib**: `Set.Subset.trans`-/
+> **mathlib**: `Set.Subset.trans`
+@isnad1 id=le.2h4v.s5.9101181de213 from=translated src=- shape=dfa7b16b vocab=9cb0124d
+-/
 theorem subset_trans {α : Type*} {A B C : Set α} (hAB : A ⊆ B) (hBC : B ⊆ C) : A ⊆ C := by
   -- 思路：展开 A ⊆ C 为逐元素判断；x ∈ A 经 hAB 得 x ∈ B，再经 hBC 得 x ∈ C。
   intro x hxA
@@ -98,7 +106,9 @@ theorem subset_trans {α : Type*} {A B C : Set α} (hAB : A ⊆ B) (hBC : B ⊆ 
 > **一句话**: 双向包含推出相等：A ⊆ B 且 B ⊆ A ⇒ A = B（包含关系的反对称性）。
 > **直觉**: 外延性原理的"包含形式"——两边互相装下对方，就是同一个集合。
 > **依赖**: `settheory.set.ext`
-> **mathlib**: `Set.Subset.antisymm`-/
+> **mathlib**: `Set.Subset.antisymm`
+@isnad1 id=eq.2h3v.s4.3846df1ef5b3 from=translated src=- shape=24bfee2c vocab=9cb0124d
+-/
 theorem subset_antisymm {α : Type*} (A B : Set α) (hAB : A ⊆ B) (hBA : B ⊆ A) : A = B := by
   -- 思路：用外延性（settheory.set.ext）把"相等"降到逐元素双向属于；
   -- 两个方向正是手里的两条包含。
@@ -115,7 +125,9 @@ theorem subset_antisymm {α : Type*} (A B : Set α) (hAB : A ⊆ B) (hBA : B ⊆
 > **一句话**: 空集是任何集合的子集：∅ ⊆ A。
 > **直觉**: "没有一个元素需要检查"，所以条件空真（vacuous truth）。
 > **依赖**: 无
-> **mathlib**: `Set.empty_subset`-/
+> **mathlib**: `Set.empty_subset`
+@isnad1 id=le.0h2v.s4.306142e74d95 from=translated src=- shape=bb6dcd58 vocab=b0a1a931
+-/
 theorem empty_subset {α : Type*} (A : Set α) : (∅ : Set α) ⊆ A := by
   -- 思路：x ∈ ∅ 是不可能的（x ∈ ∅ 定义上就是 False），无事可证。
   intro x hx
@@ -126,7 +138,9 @@ theorem empty_subset {α : Type*} (A : Set α) : (∅ : Set α) ⊆ A := by
 > **一句话**: 德摩根律（之一）：并集的补集 = 补集的交集：`(A ∪ B)ᶜ = Aᶜ ∩ Bᶜ`。
 > **直觉**: "既不属于 A 也不属于 B" 就是 "不属于 A 且不属于 B"——取补把 ∪ 换成 ∩。
 > **依赖**: 无
-> **mathlib**: `Set.compl_union`-/
+> **mathlib**: `Set.compl_union`
+@isnad1 id=eq.0h3v.s5.2df7e97143a9 from=translated src=- shape=be87d72e vocab=005029cb
+-/
 theorem complement_union {α : Type*} (A B : Set α) : (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ := by
   -- 思路（构造性）：外延性把等式降到逐元素判断。
   --   x ∈ (A∪B)ᶜ ⟺ ¬(x∈A ∨ x∈B)；
@@ -150,7 +164,9 @@ theorem complement_union {α : Type*} (A B : Set α) : (A ∪ B)ᶜ = Aᶜ ∩ B
 > **一句话**: 德摩根律（之二）：交集的补集 = 补集的并集：`(A ∩ B)ᶜ = Aᶜ ∪ Bᶜ`。
 > **直觉**: "不属于 A 或不属于 B"（不是"同时属于 A 与 B"）——取补把 ∩ 换成 ∪。
 > **依赖**: 无
-> **mathlib**: `Set.compl_inter`-/
+> **mathlib**: `Set.compl_inter`
+@isnad1 id=eq.0h3v.s5.37cf132f7ddf from=translated src=- shape=be87d72e vocab=005029cb
+-/
 theorem complement_inter {α : Type*} (A B : Set α) : (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ := by
   -- 思路（经典，必要）：这是德摩根的另一半，正向方向
   --   ¬(x∈A ∧ x∈B) ⟹ ¬(x∈A) ∨ ¬(x∈B) 在直觉主义逻辑里不可证
@@ -163,7 +179,9 @@ theorem complement_inter {α : Type*} (A B : Set α) : (A ∩ B)ᶜ = Aᶜ ∪ B
 > **一句话**: 差集可以写作"属于 A 且不属于 B"：`A \ B = A ∩ Bᶜ`。
 > **直觉**: 差集 A∖B 就是"从 A 里划掉 B 的部分"，翻译成交集与补集的语言。
 > **依赖**: 无
-> **mathlib**: `Set.diff_eq`-/
+> **mathlib**: `Set.diff_eq`
+@isnad1 id=eq.0h3v.s4.cf48e940b1b3 from=translated src=- shape=a95f84b8 vocab=61490da6
+-/
 theorem diff_inter_complement {α : Type*} (A B : Set α) : A \ B = A ∩ Bᶜ := by
   -- 思路：mathlib 把差集直接定义为 `s \ t = s ∩ tᶜ`，这就是定义本身。
   exact Set.sdiff_eq A B

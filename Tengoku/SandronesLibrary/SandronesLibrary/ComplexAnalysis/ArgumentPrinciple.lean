@@ -27,14 +27,18 @@ noncomputable def circleArgumentIntegral (f : ℂ → ℂ) (c : ℂ) (R : ℝ) :
 
 /-- 线性函数 `z-c` 的对数导数是 `(z-c)⁻¹`。
 
-> **Entry**: complex-analysis.argument-principle.linear-special-case-/
+> **Entry**: complex-analysis.argument-principle.linear-special-case
+@isnad1 id=eq.0h2v.s5.a7a84bff5a4d from=translated src=- shape=515ce273 vocab=fcfbc9ae
+-/
 theorem logDeriv_sub_const (c z : ℂ) :
     logDeriv (fun w : ℂ => w - c) z = (z - c)⁻¹ := by
   simp [logDeriv]
 
 /-- 辐角原理的线性特例：`z-c` 沿以 `c` 为中心的非退化正向圆周计数为 `1`。
 
-> **Entry**: complex-analysis.argument-principle.linear-special-case-/
+> **Entry**: complex-analysis.argument-principle.linear-special-case
+@isnad1 id=eq.1h2v.s5.606125ae6876 from=translated src=- shape=d5e76011 vocab=ad38da13
+-/
 theorem argumentPrinciple_linear (c : ℂ) {R : ℝ} (hR : R ≠ 0) :
     circleArgumentIntegral (fun z => z - c) c R = 1 := by
   rw [circleArgumentIntegral]
@@ -45,7 +49,9 @@ theorem argumentPrinciple_linear (c : ℂ) {R : ℝ} (hR : R ≠ 0) :
 /-- Rouché 的线性常数扰动特例：若 `‖b‖<R`，则边界上 `b` 严格小于 `z-c`，
 而 `(z-c)+b` 在圆内恰有零点 `c-b`。
 
-> **Entry**: complex-analysis.argument-principle.linear-special-case-/
+> **Entry**: complex-analysis.argument-principle.linear-special-case
+@isnad1 id=and.1h3v.s6.238c874b47fa from=translated src=- shape=d2e3dd32 vocab=64fe3d1d
+-/
 theorem rouche_linear_constant {c b : ℂ} {R : ℝ} (hb : ‖b‖ < R) :
     (∀ z ∈ sphere c R, ‖b‖ < ‖z - c‖) ∧
       (c - b ∈ ball c R) ∧

@@ -43,6 +43,9 @@ structure UniqueFactorizationDomainAxioms (R : Type*) [CommRing R] : Prop where
   atomic : AtomicFactorizationAxiom R
   irreducible_prime : ∀ p : R, IrreducibleElement p → PrimeElement p
 
+/--
+@isnad1 id=principa.0h1v.s5.c63214539370 from=translated src=- shape=d568defb vocab=2db3a269
+-/
 theorem zeroIdeal_principal {R : Type*} [CommRing R] :
     PrincipalIdealSet ({0} : Set R) := by
   refine ⟨0, ?_⟩
@@ -56,6 +59,9 @@ theorem zeroIdeal_principal {R : Type*} [CommRing R] :
     change x = 0
     rw [hc, zero_mul]
 
+/--
+@isnad1 id=principa.0h2v.s3.a8fe97c12b8c from=translated src=- shape=c612a321 vocab=02b01949
+-/
 theorem euclideanDomain_implies_principalIdealDomain
     {R : Type*} [CommRing R] (E : EuclideanDomainAxioms R) :
     PrincipalIdealDomainAxioms R := by
@@ -109,6 +115,9 @@ theorem euclideanDomain_implies_principalIdealDomain
     · rintro ⟨q, rfl⟩
       simpa [mul_comm] using hI.1.2.2.2 q hdI
 
+/--
+@isnad1 id=uniquefa.1h1v.s3.e6764f73a9e2 from=translated src=- shape=c612a321 vocab=9b1a61b8
+-/
 theorem principalIdealDomain_implies_uniqueFactorizationDomain
     {R : Type*} [CommRing R] (P : PrincipalIdealDomainAxioms R) :
     UniqueFactorizationDomainAxioms R := by
@@ -148,6 +157,9 @@ theorem principalIdealDomain_implies_uniqueFactorizationDomain
     exact (primeElement_iff_prime).mpr
       ((irreducibleElement_iff_irreducible P.domain).mp hp).prime
 
+/--
+@isnad1 id=uniquefa.0h2v.s3.11bbb6482c92 from=translated src=- shape=c612a321 vocab=47d515eb
+-/
 theorem euclideanDomain_implies_uniqueFactorizationDomain
     {R : Type*} [CommRing R] (E : EuclideanDomainAxioms R) :
     UniqueFactorizationDomainAxioms R := by

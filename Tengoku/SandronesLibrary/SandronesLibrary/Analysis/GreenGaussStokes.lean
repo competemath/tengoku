@@ -50,7 +50,9 @@ def rectangleBoundaryIntegral (P Q : ℝ × ℝ → ℝ) (a₁ a₂ b₁ b₂ : 
 /-- **矩形 Green 公式**：逆时针边界上的 `P dx+Q dy` 等于区域内旋度积分。
 
 `P' z`、`Q' z` 是两个函数在 `z` 处的 Fréchet 导数；在标准坐标方向求值后，
-`Q' z (1,0)` 是 `∂Q/∂x`，`P' z (0,1)` 是 `∂P/∂y`。-/
+`Q' z (1,0)` 是 `∂Q/∂x`，`P' z (0,1)` 是 `∂P/∂y`。
+@isnad1 id=eq.5h8v.s10.63c08e6d3a3c from=translated src=- shape=00256328 vocab=f56b5b4c
+-/
 theorem green_rectangle
     (P Q : ℝ × ℝ → ℝ)
     (P' Q' : ℝ × ℝ → ℝ × ℝ →L[ℝ] ℝ)
@@ -88,7 +90,9 @@ theorem green_rectangle
 /-- 矩形沿竖线 `x=c` 分成两块时，两块公共边方向相反，边界积分相消。
 
 右侧两块分别沿各自边界逆时针遍历，所以公共竖边在左块中向上、在右块中向下；
-这两个积分在展开式中直接抵消。外边界的两条水平边则由区间积分的可加性重新拼合。-/
+这两个积分在展开式中直接抵消。外边界的两条水平边则由区间积分的可加性重新拼合。
+@isnad1 id=eq.4h7v.s7.c5848d84d57e from=translated src=- shape=d1123f72 vocab=ad871329
+-/
 theorem rectangleBoundaryIntegral_split_vertical
     (P Q : ℝ × ℝ → ℝ) (a c b d e : ℝ)
     (hPac : IntervalIntegrable (fun x ↦ P (x, d)) volume a c)
@@ -106,7 +110,9 @@ theorem rectangleBoundaryIntegral_split_vertical
 
 /-- 矩形沿横线 `y=c` 分成两块时，两块公共边方向相反，边界积分相消。
 
-公共横边在下块中向左、在上块中向右；外边界的两条竖边由区间积分可加性拼合。-/
+公共横边在下块中向左、在上块中向右；外边界的两条竖边由区间积分可加性拼合。
+@isnad1 id=eq.4h7v.s7.a7253feadbd5 from=translated src=- shape=98cdf82c vocab=ad871329
+-/
 theorem rectangleBoundaryIntegral_split_horizontal
     (P Q : ℝ × ℝ → ℝ) (a b d c e : ℝ)
     (hQdc : IntervalIntegrable (fun y ↦ Q (b, y)) volume d c)
@@ -141,7 +147,9 @@ def normalDomainBoundaryIntegral
 `left y ≤ x ≤ right y`。分别对 `-∂P/∂y` 使用竖直截面、对 `∂Q/∂x` 使用水平截面，
 再在每条一维截面上应用 Newton–Leibniz 公式，即得到曲边区域的 Green 公式。
 
-这一版本已超出矩形：圆盘、椭圆以及许多由四条函数图像围成的区域都可直接套用。-/
+这一版本已超出矩形：圆盘、椭圆以及许多由四条函数图像围成的区域都可直接套用。
+@isnad1 id=eq.13h10v.s9.37aa9a34b54a from=translated src=- shape=ce26d7a6 vocab=22d8380a
+-/
 theorem green_binormal_domain
     (P Q : ℝ × ℝ → ℝ) (a b c d : ℝ)
     (lower upper left right : ℝ → ℝ)
@@ -241,7 +249,9 @@ structure GreenFiniteDecomposition {ι : Type*} (pieces : Finset ι)
 
 定理把一般分片 Jordan 域证明分成两个独立任务：分析上对每个正常片使用局部 Green
 公式；几何上证明公共边在两片中的方向相反。完成这两个任务后，整体结论由有限可加性
-自动得到。-/
+自动得到。
+@isnad1 id=eq.3h6v.s7.e76dfa01e58a from=translated src=- shape=9f495150 vocab=0f438f69
+-/
 theorem green_finite_decomposition
     {ι : Type*} (pieces : Finset ι)
     (cell : ι → Set (ℝ × ℝ)) (curlDensity : ℝ × ℝ → ℝ)
@@ -273,7 +283,9 @@ def orientedBoundaryValue {ε : Type*} (edges : Finset ε)
     (incidence : ε → ℤ) (edgeIntegral : ε → ℝ) : ℝ :=
   ∑ e ∈ edges, incidence e • edgeIntegral e
 
-/-- 逐边相加局部边界出现次数，等价于相加各片的边界积分。-/
+/-- 逐边相加局部边界出现次数，等价于相加各片的边界积分。
+@isnad1 id=eq.0h6v.s5.6355c8b26191 from=translated src=- shape=6a6795c1 vocab=d9595a87
+-/
 theorem orientedBoundaryValue_sum {ι ε : Type*}
     (pieces : Finset ι) (edges : Finset ε)
     (incidence : ι → ε → ℤ) (edgeIntegral : ε → ℝ) :
@@ -286,7 +298,9 @@ theorem orientedBoundaryValue_sum {ι ε : Type*}
   intro e _
   rw [Finset.sum_smul]
 
-/-- 同一组边以相反方向各出现一次时，总边界积分为零。-/
+/-- 同一组边以相反方向各出现一次时，总边界积分为零。
+@isnad1 id=eq.0h4v.s5.4e96e0abd242 from=translated src=- shape=e3ad24e8 vocab=1a920419
+-/
 @[simp] theorem orientedBoundaryValue_add_neg {ε : Type*} (edges : Finset ε)
     (incidence : ε → ℤ) (edgeIntegral : ε → ℝ) :
     orientedBoundaryValue edges (fun e ↦ incidence e + -incidence e) edgeIntegral = 0 := by
@@ -297,7 +311,9 @@ theorem orientedBoundaryValue_sum {ι ε : Type*}
 若外边界中每条有向边的系数等于它在所有局部边界中的系数之和，则内部公共边的
 `+1` 与 `-1` 自动抵消，无需另行假设边界积分的实数等式。与
 `green_finite_decomposition` 相比，本定理把“公共边抵消”从一个待手证的数值等式
-提升为逐边的整数关联数核对。-/
+提升为逐边的整数关联数核对。
+@isnad1 id=eq.3h9v.s8.cee0ce850ac4 from=translated src=- shape=6152fb67 vocab=52bbf4d4
+-/
 theorem green_finite_decomposition_of_edge_incidence
     {ι ε : Type*} (pieces : Finset ι) (edges : Finset ε)
     (cell : ι → Set (ℝ × ℝ)) (curlDensity : ℝ × ℝ → ℝ)
@@ -344,7 +360,9 @@ def boxBoundaryFlux3 (F : (Fin (2 + 1) → ℝ) → (Fin (2 + 1) → ℝ))
       ∫ y in Icc (a ∘ i.succAbove) (b ∘ i.succAbove),
         F (i.insertNth (a i) y) i)
 
-/-- **三维盒上的 Gauss 散度公式**：六面外向通量等于盒内散度的体积分。-/
+/-- **三维盒上的 Gauss 散度公式**：六面外向通量等于盒内散度的体积分。
+@isnad1 id=eq.4h4v.s11.c1d40cfba698 from=translated src=- shape=8201673f vocab=612b0f5a
+-/
 theorem gauss_box3 (a b : Fin (2 + 1) → ℝ) (hab : a ≤ b)
     (F : (Fin (2 + 1) → ℝ) → (Fin (2 + 1) → ℝ))
     (F' : (Fin (2 + 1) → ℝ) →
@@ -377,7 +395,9 @@ structure GaussFiniteDecomposition {ι : Type*} (pieces : Finset ι)
 /-- **有限体元 Gauss 拼接定理**。
 
 每个体元上若“外向通量 = 散度体积分”，并且局部通量之和等于整体外边界通量，
-则有限可加性给出整个剖分区域上的 Gauss 公式。-/
+则有限可加性给出整个剖分区域上的 Gauss 公式。
+@isnad1 id=eq.3h6v.s8.da49f0f1eee5 from=translated src=- shape=ead1280f vocab=4367ef88
+-/
 theorem gauss_finite_decomposition
     {ι : Type*} (pieces : Finset ι)
     (cell : ι → Set (Fin 3 → ℝ)) (divDensity : (Fin 3 → ℝ) → ℝ)
@@ -400,7 +420,9 @@ theorem gauss_finite_decomposition
 /-- **按有向面关联数自动拼接 Gauss 公式**。
 
 每个面选定参考方向；局部体元外法向与参考方向相同时记 `+1`，相反时记 `-1`。
-内部公共面由两个相邻体元给出相反系数，故自动消失，剩下的恰是整体外边界。-/
+内部公共面由两个相邻体元给出相反系数，故自动消失，剩下的恰是整体外边界。
+@isnad1 id=eq.3h9v.s8.73b9997bb485 from=translated src=- shape=a30e27c6 vocab=a603a710
+-/
 theorem gauss_finite_decomposition_of_face_incidence
     {ι φ : Type*} (pieces : Finset ι) (faces : Finset φ)
     (cell : ι → Set (Fin 3 → ℝ)) (divDensity : (Fin 3 → ℝ) → ℝ)
@@ -445,7 +467,9 @@ def surfacePullbackCoeff₂
 空间 1-形式沿曲面参数化拉回后写成 `P du + Q dv`。曲面边界上的有向积分等于
 参数矩形边界上的拉回积分；Green 公式再把它化为
 `∬(∂Q/∂u-∂P/∂v) du dv`。切向量次序 `(∂ᵤσ,∂ᵥσ)` 决定曲面方向，矩形边界
-随之取相容的逆时针方向。-/
+随之取相容的逆时针方向。
+@isnad1 id=eq.5h8v.s10.2ec9ad67e542 from=translated src=- shape=78c5f128 vocab=af6346ef
+-/
 theorem stokes_parametrized_rectangle
     (A : (Fin 3 → ℝ) → (Fin 3 → ℝ) →L[ℝ] ℝ)
     (σ : ParametrizedSurface 3)
@@ -485,7 +509,9 @@ def curlMatrix3 (J : Matrix (Fin 3) (Fin 3) ℝ) : Fin 3 → ℝ :=
 /-- 旋度与有向面积向量的配对，等于 Jacobian 反对称部分在两条切向量上的值。
 
 这是经典 Stokes 公式中坐标记号与微分形式记号之间的核心代数恒等式：
-`curl F · (u × v) = DF(u) · v - DF(v) · u`。-/
+`curl F · (u × v) = DF(u) · v - DF(v) · u`。
+@isnad1 id=eq.0h3v.s10.7e9f3fd3c3d1 from=translated src=- shape=c98eee61 vocab=a1a55f79
+-/
 theorem curlMatrix3_dot_cross (J : Matrix (Fin 3) (Fin 3) ℝ)
     (u v : Fin 3 → ℝ) :
     curlMatrix3 J ⬝ᵥ (u ⨯₃ v) =
@@ -495,7 +521,9 @@ theorem curlMatrix3_dot_cross (J : Matrix (Fin 3) (Fin 3) ℝ)
   ring
 
 /-- 若拉回 1-形式的外微分密度已经写成 Jacobian 的反对称部分，
-则它正是经典向量记号 `curl F · (σᵤ × σᵥ)`。-/
+则它正是经典向量记号 `curl F · (σᵤ × σᵥ)`。
+@isnad1 id=eq.2h5v.s10.be9ff52922ca from=translated src=- shape=cdbfee09 vocab=a1a55f79
+-/
 theorem pullback_curl_density_eq_dot_cross
     (J : Matrix (Fin 3) (Fin 3) ℝ) (u v : Fin 3 → ℝ)
     (Puv Quv : ℝ)
@@ -508,7 +536,9 @@ theorem pullback_curl_density_eq_dot_cross
 
 假设拉回形式的二维旋度密度已经由链式法则整理成空间 Jacobian 的反对称部分，
 前一个代数恒等式便把 Green 公式的被积函数改写为
-`curl F · (∂ᵤσ × ∂ᵥσ)`。叉积的次序与参数曲面的既定方向一致。-/
+`curl F · (∂ᵤσ × ∂ᵥσ)`。叉积的次序与参数曲面的既定方向一致。
+@isnad1 id=eq.6h9v.s12.f212f62d83cc from=translated src=- shape=495fdb38 vocab=e282b7f5
+-/
 theorem stokes_parametrized_rectangle_curl
     (A : (Fin 3 → ℝ) → (Fin 3 → ℝ) →L[ℝ] ℝ)
     (σ : ParametrizedSurface 3)
@@ -553,7 +583,9 @@ theorem stokes_parametrized_rectangle_curl
 
 这里假设各片来自同一个参数平面的互不相交子域，因此可复用二维有限分片的测度结构；
 曲面片在三维空间中的公共边，则由有向边标签和关联数记录。多个互不相关坐标图的情形
-还需要先把参数域做成带图标签的不交并。-/
+还需要先把参数域做成带图标签的不交并。
+@isnad1 id=eq.3h9v.s8.cee0ce850ac4 from=translated src=- shape=6152fb67 vocab=52bbf4d4
+-/
 theorem stokes_finite_patches_of_edge_incidence
     {ι ε : Type*} (patches : Finset ι) (edges : Finset ε)
     (parameterCell : ι → Set (ℝ × ℝ))
@@ -594,7 +626,9 @@ def finiteAtlasSurfaceIntegral {ι : Type*} (patches : Finset ι)
 相反诱导方向自动抵消，留下整体外边界。
 
 本定理完成了从单一矩形参数片到有限图册曲面的代数拼接层。进一步处理光滑流形上的
-一般 Stokes 定理，还需要图册细化、单位分解以及坐标无关的曲面积分结构。-/
+一般 Stokes 定理，还需要图册细化、单位分解以及坐标无关的曲面积分结构。
+@isnad1 id=eq.2h9v.s7.69b40e87a1b1 from=translated src=- shape=b2e6caf5 vocab=a79e8a70
+-/
 theorem stokes_finite_atlas_of_edge_incidence
     {ι ε : Type*} (patches : Finset ι) (edges : Finset ε)
     (parameterDomain : ι → Set (ℝ × ℝ))
@@ -630,7 +664,9 @@ theorem stokes_finite_atlas_of_edge_incidence
 /-- **闭曲面的 Stokes 推论**：无边界有限曲面上，外微分的曲面积分为零。
 
 经典向量语言中，这给出闭曲面上旋度通量为零。证明只需观察整体外边界的每条边
-关联数都为零，再应用有限坐标图 Stokes 拼接定理。-/
+关联数都为零，再应用有限坐标图 Stokes 拼接定理。
+@isnad1 id=eq.3h9v.s7.159679f610f5 from=translated src=- shape=e6583726 vocab=a79e8a70
+-/
 theorem stokes_closed_finite_atlas
     {ι ε : Type*} (patches : Finset ι) (edges : Finset ε)
     (parameterDomain : ι → Set (ℝ × ℝ))

@@ -34,7 +34,9 @@ open Filter
 存在以 `f` 为正向映射的局部同胚；它包含 `a` 与 `f(a)`，局部逆仍为 `C¹`，并且
 其在 `f(a)` 处的导数是 `L⁻¹`。
 
-> **Entry**: analysis.multivariable.inverse-function-/
+> **Entry**: analysis.multivariable.inverse-function
+@isnad1 id=ex.2h5v.s9.9fedd67af243 from=translated src=- shape=9b4f53c1 vocab=1162d6a6
+-/
 theorem inverse_function_theorem {E F : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
     [NormedAddCommGroup F] [NormedSpace ℝ F]
@@ -66,7 +68,9 @@ theorem inverse_function_theorem {E F : Type*}
 `D₂f(u)` 可逆，则存在局部隐函数 `ψ`：它通过基点、局部满足原方程、仍为 `C¹`，
 并满足标准导数公式 `Dψ=-(D₂f)⁻¹∘D₁f`。
 
-> **Entry**: analysis.multivariable.implicit-function-/
+> **Entry**: analysis.multivariable.implicit-function
+@isnad1 id=ex.2h5v.s10.47b78de20435 from=translated src=- shape=1f40ab52 vocab=d574754b
+-/
 theorem implicit_function_theorem {E₁ E₂ F : Type*}
     [NormedAddCommGroup E₁] [NormedSpace ℝ E₁] [CompleteSpace E₁]
     [NormedAddCommGroup E₂] [NormedSpace ℝ E₂] [CompleteSpace E₂]
@@ -91,7 +95,9 @@ theorem implicit_function_theorem {E₁ E₂ F : Type*}
 `f(v)=f(u)` 在 `u` 的某个邻域内恰好是图像 `v₂=ψ(v₁)`。这给出秩等于值域维数时
 秩定理的标准局部正规形，也是正则水平集定理的函数空间版本。
 
-> **Entry**: analysis.multivariable.full-rank-theorem-/
+> **Entry**: analysis.multivariable.full-rank-theorem
+@isnad1 id=ex.2h5v.s9.1b803c5269b8 from=translated src=- shape=cbc71f8d vocab=a6591abc
+-/
 theorem full_rank_level_set_normal_form {E₁ E₂ F : Type*}
     [NormedAddCommGroup E₁] [NormedSpace ℝ E₁] [CompleteSpace E₁]
     [NormedAddCommGroup E₂] [NormedSpace ℝ E₂] [CompleteSpace E₂]

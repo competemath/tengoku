@@ -29,7 +29,9 @@ variable [NormedAddCommGroup F] [NormedSpace ℝ F]
 
 /-- 对偶算子的核精确是原算子值域的连续零化子。
 
-> **Entry**: functional-analysis.closed-range-/
+> **Entry**: functional-analysis.closed-range
+@isnad1 id=eq.0h3v.s9.5dea8b868b0c from=translated src=- shape=ef0428d1 vocab=8357cd01
+-/
 theorem dualOperator_ker_eq_range_annihilator (T : E →L[ℝ] F) :
     (dualOperator T).ker = StrongDual.polarSubmodule ℝ T.range := by
   ext f
@@ -42,7 +44,9 @@ theorem dualOperator_ker_eq_range_annihilator (T : E →L[ℝ] F) :
     ext x
     exact hf (T x) (T.mem_range_self x)
 
-/-- 对偶算子的值域总包含在原算子核的连续零化子中。-/
+/-- 对偶算子的值域总包含在原算子核的连续零化子中。
+@isnad1 id=le.0h3v.s10.1aa076db697b from=translated src=- shape=42e7afd4 vocab=090f168e
+-/
 theorem dualOperator_range_le_ker_annihilator (T : E →L[ℝ] F) :
     (dualOperator T).range ≤ StrongDual.polarSubmodule ℝ T.ker := by
   intro f hf
@@ -53,7 +57,9 @@ theorem dualOperator_range_le_ker_annihilator (T : E →L[ℝ] F) :
   change g (T x) = 0
   rw [hTx, map_zero]
 
-/-- 连续零化子是范数对偶中的闭线性子空间。-/
+/-- 连续零化子是范数对偶中的闭线性子空间。
+@isnad1 id=isclosed.0h2v.s9.8f3685425e97 from=translated src=- shape=6f66ed18 vocab=99878fcc
+-/
 theorem continuousAnnihilator_isClosed (S : Submodule ℝ E) :
     IsClosed (StrongDual.polarSubmodule ℝ S : Set (StrongDual ℝ E)) := by
   rw [show (StrongDual.polarSubmodule ℝ S : Set (StrongDual ℝ E)) =
@@ -129,7 +135,9 @@ private noncomputable def quotientKerFunctional (T : E →L[ℝ] F)
     quotientKerFunctional T f hf (T.ker.mkQ x) = f x := by
   rfl
 
-/-- 原算子值域闭时，对偶算子的值域精确等于原算子核的连续零化子。-/
+/-- 原算子值域闭时，对偶算子的值域精确等于原算子核的连续零化子。
+@isnad1 id=eq.1h3v.s10.5e7a7207ca9f from=translated src=- shape=0688b753 vocab=5540d9ff
+-/
 theorem dualOperator_range_eq_ker_annihilator_of_isClosed_range
     [CompleteSpace E] [CompleteSpace F] (T : E →L[ℝ] F)
     (hT : IsClosed (Set.range T)) :
@@ -168,7 +176,9 @@ theorem dualOperator_range_eq_ker_annihilator_of_isClosed_range
   rw [hgTx]
   exact happly
 
-/-- 若对偶算子的值域已经等于原算子核的零化子，则原算子值域闭。-/
+/-- 若对偶算子的值域已经等于原算子核的零化子，则原算子值域闭。
+@isnad1 id=isclosed.1h3v.s10.0786b96ed76f from=translated src=- shape=e7f138ec vocab=5540d9ff
+-/
 theorem isClosed_range_of_dualOperator_range_eq_ker_annihilator
     [CompleteSpace E] [CompleteSpace F] (T : E →L[ℝ] F)
     (heq : (dualOperator T).range = StrongDual.polarSubmodule ℝ T.ker) :
@@ -238,7 +248,9 @@ theorem isClosed_range_of_dualOperator_range_eq_ker_annihilator
     hanti.isClosed_range Q.uniformContinuous
   rwa [quotientKerOperator_range] at hclosedQ
 
-/-- 闭值域与“对偶值域等于核的零化子”的充要刻画。-/
+/-- 闭值域与“对偶值域等于核的零化子”的充要刻画。
+@isnad1 id=iff.0h3v.s10.913d80479cbe from=translated src=- shape=58fecb00 vocab=5540d9ff
+-/
 theorem isClosed_range_iff_dualOperator_range_eq_ker_annihilator
     [CompleteSpace E] [CompleteSpace F] (T : E →L[ℝ] F) :
     IsClosed (Set.range T) ↔

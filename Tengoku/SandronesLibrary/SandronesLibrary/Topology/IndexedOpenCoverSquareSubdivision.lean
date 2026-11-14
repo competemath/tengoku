@@ -129,7 +129,9 @@ private theorem exists_indexedOpenCoverSquareSubdivision_atLeastDepth {ι : Type
   exact Classical.choose_spec (hchoice i j) (Metric.mem_ball.mpr hdist)
 
 /-- Consumer-facing dyadic data form: the cell indices are definitionally
-`Fin (2^n)`, avoiding downstream transports through a stored `steps` field.-/
+`Fin (2^n)`, avoiding downstream transports through a stored `steps` field.
+@isnad1 id=ex.2h5v.s9.2ab29656c1ef from=translated src=- shape=b32f9651 vocab=bb695e28
+-/
 theorem exists_indexedOpenCoverSquareSubdivisionData_atLeastDepth {ι : Type*}
     (H : C(unitInterval × unitInterval, X)) (W : ι → Set X)
     (hW : ∀ k, IsOpen (W k)) (hH : ∀ z, ∃ k, H z ∈ W k)

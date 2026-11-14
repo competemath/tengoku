@@ -46,13 +46,17 @@ def HasFrechetDerivativeAtTextbook (f : E → F) (A : TotalDerivative (E := E) (
   Filter.Tendsto (fun y => ‖y - x‖⁻¹ * ‖f y - f x - A (y - x)‖)
     (nhds x) (nhds 0)
 
-/-- 本库余项比值定义与 Mathlib 的 `HasFDerivAt` 完全等价。-/
+/-- 本库余项比值定义与 Mathlib 的 `HasFDerivAt` 完全等价。
+@isnad1 id=iff.0h5v.s6.a093cd3d45a8 from=translated src=- shape=fb3f1d81 vocab=362362e0
+-/
 theorem hasFrechetDerivativeAtTextbook_iff_hasFDerivAt
     {f : E → F} {A : TotalDerivative (E := E) (F := F)} {x : E} :
     HasFrechetDerivativeAtTextbook f A x ↔ HasFDerivAt f A x := by
   exact (hasFDerivAt_iff_tendsto (f := f) (f' := A) (x := x)).symm
 
-/-- 教材余项接口下 Fréchet 导数唯一。-/
+/-- 教材余项接口下 Fréchet 导数唯一。
+@isnad1 id=eq.2h6v.s6.e2e15c88cbc3 from=translated src=- shape=af9795d6 vocab=ee518173
+-/
 theorem hasFrechetDerivativeAtTextbook_unique
     {f : E → F} {A B : TotalDerivative (E := E) (F := F)} {x : E}
     (hA : HasFrechetDerivativeAtTextbook f A x)
@@ -65,13 +69,17 @@ theorem hasFrechetDerivativeAtTextbook_unique
 def HasDirectionalDerivativeAtTextbook (f : E → F) (d : F) (x v : E) : Prop :=
   Filter.Tendsto (fun t : ℝ ↦ t⁻¹ • (f (x + t • v) - f x)) (nhdsWithin 0 {0}ᶜ) (nhds d)
 
-/-- 教材方向差商定义与 Mathlib 的沿直线导数谓词完全等价。-/
+/-- 教材方向差商定义与 Mathlib 的沿直线导数谓词完全等价。
+@isnad1 id=iff.0h6v.s6.c12ae25079e5 from=translated src=- shape=f448033d vocab=3ae8c934
+-/
 theorem hasDirectionalDerivativeAtTextbook_iff_hasLineDerivAt
     {f : E → F} {d : F} {x v : E} :
     HasDirectionalDerivativeAtTextbook f d x v ↔ HasLineDerivAt ℝ f d x v := by
   exact hasLineDerivAt_iff_tendsto_slope_zero.symm
 
-/-- 固定点和方向上的教材方向导数唯一。-/
+/-- 固定点和方向上的教材方向导数唯一。
+@isnad1 id=eq.2h7v.s6.932d905cc27d from=translated src=- shape=10396d9d vocab=f228a67b
+-/
 theorem hasDirectionalDerivativeAtTextbook_unique
     {f : E → F} {d₁ d₂ : F} {x v : E}
     (h₁ : HasDirectionalDerivativeAtTextbook f d₁ x v)
@@ -80,7 +88,9 @@ theorem hasDirectionalDerivativeAtTextbook_unique
     (hasDirectionalDerivativeAtTextbook_iff_hasLineDerivAt.mp h₂)
 
 /-- Fréchet 可微蕴含每个固定方向上的教材方向导数，导数值为 `A v`。
-反向一般不成立，因此这里只提供单向桥。-/
+反向一般不成立，因此这里只提供单向桥。
+@isnad1 id=hasdirec.1h6v.s7.6a751dc7b9a0 from=translated src=- shape=a2492cd6 vocab=d98913d4
+-/
 theorem frechetDerivativeTextbook_hasDirectionalDerivativeAtTextbook
     {f : E → F} {A : TotalDerivative (E := E) (F := F)} {x v : E}
     (h : HasFrechetDerivativeAtTextbook f A x) :
@@ -93,29 +103,39 @@ theorem frechetDerivativeTextbook_hasDirectionalDerivativeAtTextbook
 noncomputable def DirectionalDerivative (f : E → F) (x v : E) : F :=
   fderiv ℝ f x v
 
-/-- 已知的全微分等于 Mathlib 选出的 Fréchet 导数。-/
+/-- 已知的全微分等于 Mathlib 选出的 Fréchet 导数。
+@isnad1 id=eq.1h5v.s8.6738b15a8bdb from=translated src=- shape=b7e576c4 vocab=e7d5b0f3
+-/
 theorem totalDerivative_unique {f : E → F} {x : E} {A : E →L[ℝ] F}
     (h : HasFDerivAt f A x) : fderiv ℝ f x = A := by
   exact h.fderiv
 
-/-- Fréchet 可微蕴含在该点连续。-/
+/-- Fréchet 可微蕴含在该点连续。
+@isnad1 id=continuo.1h4v.s6.72c0db370863 from=translated src=- shape=e0d20722 vocab=6bdf1193
+-/
 theorem differentiable_continuousAt {f : E → F} {x : E}
     (h : DifferentiableAt ℝ f x) : ContinuousAt f x := by
   exact h.continuousAt
 
-/-- 恒等映射的全微分是恒等连续线性映射。-/
+/-- 恒等映射的全微分是恒等连续线性映射。
+@isnad1 id=hasfderi.0h2v.s6.e8846c44f233 from=translated src=- shape=b186a30b vocab=4644dba2
+-/
 theorem totalDerivative_id (x : E) :
     HasFDerivAt id (ContinuousLinearMap.id ℝ E) x := by
   exact hasFDerivAt_id x
 
-/-- **多元链式法则**：复合函数的全微分是两个全微分的复合。-/
+/-- **多元链式法则**：复合函数的全微分是两个全微分的复合。
+@isnad1 id=hasfderi.2h8v.s8.046647f48c1f from=translated src=- shape=9cdd0d8b vocab=5ef388df
+-/
 theorem totalDerivative_chain {f : E → F} {g : F → G}
     {x : E} {A : E →L[ℝ] F} {B : F →L[ℝ] G}
     (hf : HasFDerivAt f A x) (hg : HasFDerivAt g B (f x)) :
     HasFDerivAt (g ∘ f) (B.comp A) x := by
   exact hg.comp x hf
 
-/-- 可微时，方向导数就是全微分作用于方向向量。-/
+/-- 可微时，方向导数就是全微分作用于方向向量。
+@isnad1 id=eq.1h6v.s8.21d75346ab9d from=translated src=- shape=1f0d3781 vocab=4c757bb9
+-/
 theorem directionalDerivative_eq {f : E → F} {x v : E} {A : E →L[ℝ] F}
     (h : HasFDerivAt f A x) : DirectionalDerivative f x v = A v := by
   simp [DirectionalDerivative, h.fderiv]
@@ -126,13 +146,17 @@ variable {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℝ H] [CompleteS
 
 /-- 梯度通过内积给出实值函数的全微分。
 
-> **Entry**: analysis.multivariable.gradient-/
+> **Entry**: analysis.multivariable.gradient
+@isnad1 id=hasfderi.1h4v.s10.df31f3d0c968 from=translated src=- shape=ca080452 vocab=09f22c8b
+-/
 theorem gradient_totalDerivative {f : H → ℝ} {x grad : H}
     (h : HasGradientAt f grad x) :
     HasFDerivAt f (InnerProductSpace.toDual ℝ H grad) x := by
   exact h.hasFDerivAt
 
-/-- **方向导数—梯度公式**：`D_v f(x)=⟪∇f(x),v⟫`。-/
+/-- **方向导数—梯度公式**：`D_v f(x)=⟪∇f(x),v⟫`。
+@isnad1 id=eq.1h5v.s6.bb583bd4f06e from=translated src=- shape=7053fffc vocab=354f1bc1
+-/
 theorem directionalDerivative_eq_inner_gradient {f : H → ℝ} {x grad v : H}
     (h : HasGradientAt f grad x) :
     DirectionalDerivative f x v = inner ℝ grad v := by
@@ -167,14 +191,18 @@ noncomputable def jacobian {n m : ℕ} (f : (Fin n → ℝ) → (Fin m → ℝ))
 
 /-- 已知 Fréchet 导数 `A` 时，第 `j` 个偏导向量就是 `A eⱼ`。
 
-> **Entry**: analysis.multivariable.coordinates-/
+> **Entry**: analysis.multivariable.coordinates
+@isnad1 id=eq.1h6v.s8.0fb8b41a809c from=translated src=- shape=e12e25c2 vocab=97b6839a
+-/
 theorem partialDerivative_eq {n m : ℕ} {f : (Fin n → ℝ) → (Fin m → ℝ)}
     {x : Fin n → ℝ} {A : (Fin n → ℝ) →L[ℝ] (Fin m → ℝ)}
     (h : HasFDerivAt f A x) (j : Fin n) :
     partialDerivative f x j = A (Pi.single j 1) := by
   exact directionalDerivative_eq h
 
-/-- Jacobian 元素公式：`Jf(x)ᵢⱼ = (Df(x)eⱼ)ᵢ`。-/
+/-- Jacobian 元素公式：`Jf(x)ᵢⱼ = (Df(x)eⱼ)ᵢ`。
+@isnad1 id=eq.1h7v.s8.12aafa940e61 from=translated src=- shape=a61cc020 vocab=8f72c5ab
+-/
 theorem jacobian_apply {n m : ℕ} {f : (Fin n → ℝ) → (Fin m → ℝ)}
     {x : Fin n → ℝ} {A : (Fin n → ℝ) →L[ℝ] (Fin m → ℝ)}
     (h : HasFDerivAt f A x) (i : Fin m) (j : Fin n) :
@@ -182,7 +210,9 @@ theorem jacobian_apply {n m : ℕ} {f : (Fin n → ℝ) → (Fin m → ℝ)}
   rw [jacobian, partialDerivative_eq h]
 
 /-- **全微分的 Jacobian 表示**：在标准坐标中，全微分作用于向量 `v` 等于
-Jacobian 矩阵乘以列向量 `v`。这是抽象 Fréchet 导数与教材矩阵记法之间的桥。-/
+Jacobian 矩阵乘以列向量 `v`。这是抽象 Fréchet 导数与教材矩阵记法之间的桥。
+@isnad1 id=eq.1h6v.s8.75978ab82314 from=translated src=- shape=92027ef1 vocab=73d978a6
+-/
 theorem totalDerivative_apply_eq_jacobian_mulVec {n m : ℕ}
     {f : (Fin n → ℝ) → (Fin m → ℝ)} {x v : Fin n → ℝ}
     {A : (Fin n → ℝ) →L[ℝ] (Fin m → ℝ)} (h : HasFDerivAt f A x) :
@@ -198,7 +228,9 @@ theorem totalDerivative_apply_eq_jacobian_mulVec {n m : ℕ}
   ext i
   simp [Matrix.mulVec, dotProduct, jacobian_apply h, mul_comm]
 
-/-- 恒等映射在任意点的 Jacobian 都是单位矩阵。-/
+/-- 恒等映射在任意点的 Jacobian 都是单位矩阵。
+@isnad1 id=eq.0h2v.s5.84d786f57b89 from=translated src=- shape=8e52d387 vocab=2b9724de
+-/
 theorem jacobian_id {n : ℕ} (x : Fin n → ℝ) :
     jacobian id x = (1 : Matrix (Fin n) (Fin n) ℝ) := by
   classical
@@ -207,7 +239,9 @@ theorem jacobian_id {n : ℕ} (x : Fin n → ℝ) :
   simp [Pi.single_apply, Matrix.one_apply]
 
 /-- **Jacobian 链式法则**：复合映射的 Jacobian 是两个 Jacobian 的矩阵乘积。
-矩阵次序与函数复合次序相反：先作用 `Jf(x)`，再作用 `Jg(f(x))`。-/
+矩阵次序与函数复合次序相反：先作用 `Jf(x)`，再作用 `Jg(f(x))`。
+@isnad1 id=eq.2h8v.s8.a19461cf7374 from=translated src=- shape=b753e217 vocab=65c5bde0
+-/
 theorem jacobian_chain {n m p : ℕ}
     {f : (Fin n → ℝ) → (Fin m → ℝ)} {g : (Fin m → ℝ) → (Fin p → ℝ)}
     {x : Fin n → ℝ}
@@ -257,7 +291,9 @@ noncomputable def multivariableTaylorPolynomial {E F : Type*}
 /-- **Hessian 对称性**：若 `f` 在 `x` 处二阶连续可微，则 Hessian 是对称矩阵。
 这就是混合偏导交换定理在标准坐标中的矩阵形式。
 
-> **Entry**: analysis.multivariable.hessian-taylor-/
+> **Entry**: analysis.multivariable.hessian-taylor
+@isnad1 id=issymmet.1h3v.s6.b2f96500d415 from=translated src=- shape=e6915041 vocab=0e80aec8
+-/
 theorem hessian_symmetric {n : ℕ} {f : (Fin n → ℝ) → ℝ} {x : Fin n → ℝ}
     (hf : ContDiffAt ℝ 2 f x) :
     SandronesLibrary.LinearAlgebra.Matrix.IsSymmetric (hessian f x) := by
@@ -272,7 +308,9 @@ theorem hessian_symmetric {n : ℕ} {f : (Fin n → ℝ) → ℝ} {x : Fin n →
 处处 `Cᴺ⁺¹`，则函数值等于 `N` 阶 Taylor 多项式加上
 `1/N! ∫₀¹ (1-t)ᴺ Dᴺ⁺¹f(x+ty)[y,…,y] dt`。
 
-公式对一般实赋范空间到完备实赋范空间的映射成立；有限维多元函数只是其特例。-/
+公式对一般实赋范空间到完备实赋范空间的映射成立；有限维多元函数只是其特例。
+@isnad1 id=eq.1h6v.s9.0efaf5b8ece9 from=translated src=- shape=3b57d369 vocab=1c8dc84e
+-/
 theorem multivariable_taylor_integral_remainder {E F : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup F] [NormedSpace ℝ F] [CompleteSpace F]
@@ -285,7 +323,9 @@ theorem multivariable_taylor_integral_remainder {E F : Type*}
     (map_add_eq_sum_add_integral_iteratedFDeriv (n := N) hf)
 
 /-- Taylor 积分余项公式的零阶（亦即一阶微积分基本定理）特例：函数增量等于
-全微分沿连接线段的积分。该公式也是多元 Taylor 定理归约到线段的最基本情形。-/
+全微分沿连接线段的积分。该公式也是多元 Taylor 定理归约到线段的最基本情形。
+@isnad1 id=eq.1h5v.s9.9be3b81b4e56 from=translated src=- shape=8866df5e vocab=74e76939
+-/
 theorem multivariable_taylor_first_order {E F : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup F] [NormedSpace ℝ F] [CompleteSpace F]

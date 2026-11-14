@@ -48,7 +48,9 @@ def HolomorphicOnTextbook (f : ℂ → ℂ) (U : Set ℂ) : Prop :=
   ∀ z ∈ U, ComplexDifferentiableAtTextbook f z
 
 /-- The punctured-neighborhood difference-quotient definition is equivalent to Mathlib's
-complex-scalar differentiability at a point.-/
+complex-scalar differentiability at a point.
+@isnad1 id=iff.0h2v.s6.c90650715d1f from=translated src=- shape=06792558 vocab=f3b35a2e
+-/
 theorem complexDifferentiableAtTextbook_iff_differentiableAt {f : ℂ → ℂ} {z : ℂ} :
     ComplexDifferentiableAtTextbook f z ↔ DifferentiableAt ℂ f z := by
   constructor
@@ -64,7 +66,9 @@ theorem complexDifferentiableAtTextbook_iff_differentiableAt {f : ℂ → ℂ} {
     rw [hfun]
     exact hf.hasDerivAt.tendsto_slope
 
-/-- Holomorphy on a set is pointwise Mathlib complex differentiability in full neighborhoods.-/
+/-- Holomorphy on a set is pointwise Mathlib complex differentiability in full neighborhoods.
+@isnad1 id=iff.0h2v.s6.b6e7aafe45b9 from=translated src=- shape=0adfc85a vocab=c4682b61
+-/
 theorem holomorphicOnTextbook_iff_forall_differentiableAt {f : ℂ → ℂ} {U : Set ℂ} :
     HolomorphicOnTextbook f U ↔ ∀ z ∈ U, DifferentiableAt ℂ f z := by
   constructor
@@ -74,7 +78,9 @@ theorem holomorphicOnTextbook_iff_forall_differentiableAt {f : ℂ → ℂ} {U :
     exact complexDifferentiableAtTextbook_iff_differentiableAt.mpr (hf z hz)
 
 /-- On an open set, the textbook full-neighborhood definition is equivalent to Mathlib's relative
-`DifferentiableOn ℂ` predicate.  The openness hypothesis is essential for this reverse bridge.-/
+`DifferentiableOn ℂ` predicate.  The openness hypothesis is essential for this reverse bridge.
+@isnad1 id=iff.1h2v.s6.77d0f3c5613a from=translated src=- shape=880912c3 vocab=870132b7
+-/
 theorem holomorphicOnTextbook_iff_differentiableOn {f : ℂ → ℂ} {U : Set ℂ}
     (hU : IsOpen U) : HolomorphicOnTextbook f U ↔ DifferentiableOn ℂ f U := by
   rw [holomorphicOnTextbook_iff_forall_differentiableAt]
@@ -86,7 +92,9 @@ theorem holomorphicOnTextbook_iff_differentiableOn {f : ℂ → ℂ} {U : Set �
 
 /-- The sum of two functions holomorphic on `U` is holomorphic on `U`.
 
-> **Entry**: complex-analysis.holomorphic.algebra-/
+> **Entry**: complex-analysis.holomorphic.algebra
+@isnad1 id=holomorp.2h3v.s5.021481b47bf9 from=translated src=- shape=c0bdd3f6 vocab=5559f42a
+-/
 theorem holomorphicOnTextbook_add {f g : ℂ → ℂ} {U : Set ℂ}
     (hf : HolomorphicOnTextbook f U) (hg : HolomorphicOnTextbook g U) :
     HolomorphicOnTextbook (fun z ↦ f z + g z) U := by
@@ -95,7 +103,9 @@ theorem holomorphicOnTextbook_add {f g : ℂ → ℂ} {U : Set ℂ}
   exact (complexDifferentiableAtTextbook_iff_differentiableAt.mp (hf z hz)).add
     (complexDifferentiableAtTextbook_iff_differentiableAt.mp (hg z hz))
 
-/-- The product of two functions holomorphic on `U` is holomorphic on `U`.-/
+/-- The product of two functions holomorphic on `U` is holomorphic on `U`.
+@isnad1 id=holomorp.2h3v.s5.d54e95f50434 from=translated src=- shape=c0bdd3f6 vocab=d069645b
+-/
 theorem holomorphicOnTextbook_mul {f g : ℂ → ℂ} {U : Set ℂ}
     (hf : HolomorphicOnTextbook f U) (hg : HolomorphicOnTextbook g U) :
     HolomorphicOnTextbook (fun z ↦ f z * g z) U := by
@@ -105,7 +115,9 @@ theorem holomorphicOnTextbook_mul {f g : ℂ → ℂ} {U : Set ℂ}
     (complexDifferentiableAtTextbook_iff_differentiableAt.mp (hg z hz))
 
 /-- A quotient of functions holomorphic on `U` is holomorphic wherever the denominator is
-nonzero.-/
+nonzero.
+@isnad1 id=holomorp.3h3v.s5.8fe91c507857 from=translated src=- shape=e51f4f25 vocab=39770abf
+-/
 theorem holomorphicOnTextbook_div {f g : ℂ → ℂ} {U : Set ℂ}
     (hf : HolomorphicOnTextbook f U) (hg : HolomorphicOnTextbook g U)
     (hg0 : ∀ z ∈ U, g z ≠ 0) :
@@ -116,7 +128,9 @@ theorem holomorphicOnTextbook_div {f g : ℂ → ℂ} {U : Set ℂ}
     (complexDifferentiableAtTextbook_iff_differentiableAt.mp (hg z hz)) (hg0 z hz)
 
 /-- If `g` maps `U` into `V`, composing a function holomorphic on `V` with one holomorphic on `U`
-gives a function holomorphic on `U`.-/
+gives a function holomorphic on `U`.
+@isnad1 id=holomorp.3h4v.s5.b9564668d313 from=translated src=- shape=f80bea62 vocab=34796aff
+-/
 theorem holomorphicOnTextbook_comp {f g : ℂ → ℂ} {U V : Set ℂ}
     (hf : HolomorphicOnTextbook f V) (hg : HolomorphicOnTextbook g U)
     (hmap : MapsTo g U V) :

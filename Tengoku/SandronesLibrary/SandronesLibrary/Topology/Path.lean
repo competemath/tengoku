@@ -31,7 +31,9 @@ variable {X : Type*}
 /-- Mathlib 的 `Path x y` 恰好打包一条从闭单位区间到空间的连续函数，以及它在零、一端点的
 取值。这是教材道路定义的数据展开。
 
-> **Entry**: topology.homotopy.path-definition-foundation-/
+> **Entry**: topology.homotopy.path-definition-foundation
+@isnad1 id=iff.0h3v.s6.f5ea51781cb4 from=translated src=- shape=74415f1b vocab=ea2a3bc0
+-/
 theorem nonempty_path_iff_exists_continuous [TopologicalSpace X] (x y : X) :
     Nonempty (_root_.Path x y) ↔
       ∃ f : unitInterval → X, _root_.Continuous f ∧
@@ -44,20 +46,26 @@ theorem nonempty_path_iff_exists_continuous [TopologicalSpace X] (x y : X) :
 
 /-- Mathlib 的逆道路用单位区间反射重新参数化，因此在参数 `t` 处取原道路在 `1-t` 处的值。
 
-> **Entry**: topology.homotopy.path-reversal-foundation-/
+> **Entry**: topology.homotopy.path-reversal-foundation
+@isnad1 id=eq.0h5v.s6.eb89abbc6aa7 from=translated src=- shape=6ffc82b2 vocab=0084fe4c
+-/
 theorem path_symm_apply [TopologicalSpace X] {x y : X}
     (γ : _root_.Path x y) (t : unitInterval) :
     γ.symm t = γ (unitInterval.symm t) := by
   exact _root_.Path.symm_apply γ t
 
-/-- 道路反向两次严格恢复原道路；这是参数函数的严格等式，不需要道路同伦。-/
+/-- 道路反向两次严格恢复原道路；这是参数函数的严格等式，不需要道路同伦。
+@isnad1 id=eq.0h4v.s5.200f0a07b699 from=translated src=- shape=d9486c31 vocab=de4bfb46
+-/
 theorem path_symm_symm [TopologicalSpace X] {x y : X} (γ : _root_.Path x y) :
     γ.symm.symm = γ :=
   γ.symm_symm
 
 /-- 在参数区间左半段，Mathlib 道路拼接以双倍速度沿第一条道路前进。
 
-> **Entry**: topology.homotopy.path-concatenation-foundation-/
+> **Entry**: topology.homotopy.path-concatenation-foundation
+@isnad1 id=eq.1h7v.s7.b6340308e52d from=translated src=- shape=d6b2aec0 vocab=87105995
+-/
 theorem path_trans_apply_of_le [TopologicalSpace X] {x y z : X}
     (γ : _root_.Path x y) (δ : _root_.Path y z) (t : unitInterval)
     (h : (t : ℝ) ≤ 1 / 2) :
@@ -65,7 +73,9 @@ theorem path_trans_apply_of_le [TopologicalSpace X] {x y z : X}
   rw [_root_.Path.trans_apply]
   simp only [dite_eq_left h]
 
-/-- 在参数区间右半段，Mathlib 道路拼接以双倍速度沿第二条道路前进。-/
+/-- 在参数区间右半段，Mathlib 道路拼接以双倍速度沿第二条道路前进。
+@isnad1 id=eq.1h7v.s8.08914f1da10e from=translated src=- shape=2b2ca113 vocab=438682a0
+-/
 theorem path_trans_apply_of_not_le [TopologicalSpace X] {x y z : X}
     (γ : _root_.Path x y) (δ : _root_.Path y z) (t : unitInterval)
     (h : ¬(t : ℝ) ≤ 1 / 2) :
@@ -113,6 +123,9 @@ namespace Path
 instance {τX : TextbookTopology X} {a b : X} : CoeFun (Path τX a b) (fun _ ↦ UnitInterval → X) :=
   ⟨Path.toFun⟩
 
+/--
+@isnad1 id=eq.1h6v.s5.a51952c34dbe from=translated src=- shape=da3fcb79 vocab=3667b01f
+-/
 @[ext]
 theorem ext {τX : TextbookTopology X} {a b : X} {γ δ : Path τX a b}
     (h : ∀ t, γ t = δ t) : γ = δ := by
@@ -131,6 +144,9 @@ def refl (τX : TextbookTopology X) (a : X) : Path τX a a where
   source := rfl
   target := rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.7ff5bd33b66b from=translated src=- shape=a8f0dfd3 vocab=58dfc768
+-/
 @[simp] theorem refl_apply (τX : TextbookTopology X) (a : X) (t : UnitInterval) :
     refl τX a t = a :=
   rfl
@@ -144,6 +160,9 @@ def map {τX : TextbookTopology X} {τY : TextbookTopology Y} {a b : X}
   source := by simp [γ.source]
   target := by simp [γ.target]
 
+/--
+@isnad1 id=eq.1h9v.s6.44be8110e717 from=translated src=- shape=229e281e vocab=debc5c46
+-/
 @[simp] theorem map_apply {τX : TextbookTopology X} {τY : TextbookTopology Y} {a b : X}
     (γ : Path τX a b) (f : X → Y) (hf : Continuous τX τY f) (t : UnitInterval) :
     γ.map f hf t = f (γ t) :=
@@ -158,11 +177,17 @@ def symm {τX : TextbookTopology X} {a b : X} (γ : Path τX a b) : Path τX b a
   source := by simp [γ.target]
   target := by simp [γ.source]
 
+/--
+@isnad1 id=eq.0h6v.s5.b9f5578537ad from=translated src=- shape=4aeed84b vocab=1eb24591
+-/
 @[simp]
 theorem symm_apply {τX : TextbookTopology X} {a b : X}
     (γ : Path τX a b) (t : UnitInterval) : γ.symm t = γ t.reflect :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.af894c52f027 from=translated src=- shape=c80317aa vocab=6e81247f
+-/
 @[simp]
 theorem symm_symm {τX : TextbookTopology X} {a b : X} (γ : Path τX a b) :
     γ.symm.symm = γ := by
@@ -180,6 +205,9 @@ noncomputable def transFun (gamma : Path tau a b) (delta : Path tau b c) (t : Un
   if h : t.1 ≤ (1 / 2 : ℝ) then gamma (UnitInterval.leftDouble t h)
   else delta (UnitInterval.rightDouble t h)
 
+/--
+@isnad1 id=eq.1h8v.s6.d50691996a58 from=translated src=- shape=fc49d997 vocab=2e5743af
+-/
 theorem transFun_of_le (gamma : Path tau a b) (delta : Path tau b c) (t : UnitInterval)
     (h : t.1 ≤ (1 / 2 : ℝ)) :
     transFun gamma delta t = gamma (UnitInterval.leftDouble t h) := by
@@ -188,6 +216,9 @@ theorem transFun_of_le (gamma : Path tau a b) (delta : Path tau b c) (t : UnitIn
   · rfl
   · contradiction
 
+/--
+@isnad1 id=eq.1h8v.s6.0b8b24ced297 from=translated src=- shape=fa1eefbe vocab=0ffc792b
+-/
 theorem transFun_of_not_le (gamma : Path tau a b) (delta : Path tau b c) (t : UnitInterval)
     (h : ¬ t.1 ≤ (1 / 2 : ℝ)) :
     transFun gamma delta t = delta (UnitInterval.rightDouble t h) := by
@@ -196,7 +227,9 @@ theorem transFun_of_not_le (gamma : Path tau a b) (delta : Path tau b c) (t : Un
   · contradiction
   · rfl
 
-/-- The two halves of `transFun` glue continuously at their common endpoint.-/
+/-- The two halves of `transFun` glue continuously at their common endpoint.
+@isnad1 id=continuo.0h7v.s5.1d1a54f42a64 from=translated src=- shape=29647a35 vocab=c97a3509
+-/
 theorem continuous_transFun (gamma : Path tau a b) (delta : Path tau b c) :
     Continuous unitInterval tau (transFun gamma delta) := by
   rw [continuous_from_unitInterval_iff]
@@ -291,13 +324,17 @@ noncomputable def trans (gamma : Path tau a b) (delta : Path tau b c) : Path tau
         norm_num [UnitInterval.rightDouble, UnitInterval.one]]
     exact delta.target
 
-/-- On the left half, concatenation follows the first path at twice the speed.-/
+/-- On the left half, concatenation follows the first path at twice the speed.
+@isnad1 id=eq.1h8v.s6.dbcce69934e8 from=translated src=- shape=49d3a06b vocab=7558d343
+-/
 theorem trans_apply_of_le (gamma : Path tau a b) (delta : Path tau b c) (t : UnitInterval)
     (h : t.1 ≤ (1 / 2 : ℝ)) :
     gamma.trans delta t = gamma (UnitInterval.leftDouble t h) :=
   transFun_of_le gamma delta t h
 
-/-- On the right half, concatenation follows the second path at twice the speed.-/
+/-- On the right half, concatenation follows the second path at twice the speed.
+@isnad1 id=eq.1h8v.s6.21bf5358042c from=translated src=- shape=981b7bf6 vocab=4f96f8b5
+-/
 theorem trans_apply_of_not_le (gamma : Path tau a b) (delta : Path tau b c) (t : UnitInterval)
     (h : ¬ t.1 ≤ (1 / 2 : ℝ)) :
     gamma.trans delta t = delta (UnitInterval.rightDouble t h) :=

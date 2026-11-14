@@ -22,27 +22,37 @@ variable {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 /-- 连续线性映射紧，当且仅当开单位球像的闭包紧。
 
-> **Entry**: functional-analysis.compact-operator.definition-/
+> **Entry**: functional-analysis.compact-operator.definition
+@isnad1 id=iff.0h3v.s8.2e4e92c1c5b1 from=translated src=- shape=0b6aea98 vocab=3295410d
+-/
 theorem compactOperator_iff_isCompact_closure_image_unitBall (T : E →L[ℝ] F) :
     IsCompactOperator T ↔
       IsCompact (closure (T '' Metric.ball (0 : E) 1)) := by
   exact isCompactOperator_iff_isCompact_closure_image_ball T.toLinearMap zero_lt_one
 
-/-- 零算子是紧算子。-/
+/-- 零算子是紧算子。
+@isnad1 id=iscompac.0h2v.s8.89fa5577fec1 from=translated src=- shape=c3e62e4f vocab=446f6d60
+-/
 theorem zero_isCompactOperator : IsCompactOperator (0 : E →L[ℝ] F) := by
   exact isCompactOperator_zero
 
-/-- 值域有限维的连续线性映射是紧算子。-/
+/-- 值域有限维的连续线性映射是紧算子。
+@isnad1 id=iscompac.0h3v.s7.f03a4858cc14 from=translated src=- shape=0662aab2 vocab=60159028
+-/
 theorem isCompactOperator_of_finiteDimensional_codomain [FiniteDimensional ℝ F]
     (T : E →L[ℝ] F) : IsCompactOperator T := by
   exact isCompactOperator_of_locallyCompactSpace_dom T
 
-/-- 定义域有限维的连续线性映射是紧算子。-/
+/-- 定义域有限维的连续线性映射是紧算子。
+@isnad1 id=iscompac.0h3v.s7.87baf8b6d2e0 from=translated src=- shape=aa6b5e12 vocab=60159028
+-/
 theorem isCompactOperator_of_finiteDimensional_domain [FiniteDimensional ℝ E]
     (T : E →L[ℝ] F) : IsCompactOperator T := by
   exact isCompactOperator_of_locallyCompactSpace_rng T
 
-/-- 恒等算子紧当且仅当空间有限维。-/
+/-- 恒等算子紧当且仅当空间有限维。
+@isnad1 id=iff.0h1v.s7.e1c21a6a59e5 from=translated src=- shape=d2aeb951 vocab=17f1a439
+-/
 theorem identity_isCompactOperator_iff_finiteDimensional :
     IsCompactOperator (ContinuousLinearMap.id ℝ E) ↔ FiniteDimensional ℝ E := by
   change IsCompactOperator (id : E → E) ↔ FiniteDimensional ℝ E

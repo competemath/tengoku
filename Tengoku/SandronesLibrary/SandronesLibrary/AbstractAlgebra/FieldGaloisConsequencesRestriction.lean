@@ -121,7 +121,9 @@ noncomputable def fixedFieldRestrictionHom
 /-- 限制同态的逐点计算公式：在固定域元素 `x` 上，限制后的自同构与
 原自同构 `σ` 具有相同的底层 `L` 中取值。
 
-> **Entry**: abstract-algebra.field.galois-restriction-/
+> **Entry**: abstract-algebra.field.galois-restriction
+@isnad1 id=eq.1h6v.s9.38eeda032644 from=translated src=- shape=2300a2bf vocab=b39843bb
+-/
 theorem fixedFieldRestrictionHom_apply
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (H : Subgroup (FieldAutomorphismOver e))
@@ -159,7 +161,9 @@ private theorem fixedFieldRestrictionHom_ker_bridge
 自同构限制为恒等，当且仅当它逐点固定 `Lᴴ`，而有限 Galois 对应把这组
 自同构恢复为原子群。
 
-> **Entry**: abstract-algebra.field.galois-restriction-/
+> **Entry**: abstract-algebra.field.galois-restriction
+@isnad1 id=eq.2h4v.s8.ff8906279d76 from=translated src=- shape=338dc056 vocab=44f8e8b8
+-/
 theorem fixedFieldRestrictionHom_ker
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (hfin : FiniteFieldExtension e)
@@ -223,7 +227,9 @@ private theorem fixedFieldRestrictionHom_surjective_bridge
 /-- 有限 Galois 扩张中，对正规子群固定域的限制同态是满射。每个
 `K`-自同构 `Lᴴ → Lᴴ` 都能提升为 `L/K` 的自同构。
 
-> **Entry**: abstract-algebra.field.galois-restriction-/
+> **Entry**: abstract-algebra.field.galois-restriction
+@isnad1 id=surjecti.3h4v.s9.fdcee25461be from=translated src=- shape=cb585a28 vocab=8ab36752
+-/
 theorem fixedFieldRestrictionHom_surjective
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (hfin : FiniteFieldExtension e)
@@ -234,7 +240,9 @@ theorem fixedFieldRestrictionHom_surjective
 /-- 满射性的子群表述：固定域限制同态的 range 是整个固定域
 自同构群 `⊤`。
 
-> **Entry**: abstract-algebra.field.galois-restriction-/
+> **Entry**: abstract-algebra.field.galois-restriction
+@isnad1 id=eq.3h4v.s8.63ac12e760d6 from=translated src=- shape=d0d6915c vocab=f2a6731c
+-/
 theorem fixedFieldRestrictionHom_range
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (hfin : FiniteFieldExtension e)
@@ -289,7 +297,9 @@ noncomputable def fixedFieldQuotientEquiv
 /-- 商群同构的自然投影公式：自同构 `σ` 的陪集映到 `σ` 在固定域上的
 真实限制。该公式表明商群同构与前述 restriction hom 严格相容。
 
-> **Entry**: abstract-algebra.field.galois-restriction-/
+> **Entry**: abstract-algebra.field.galois-restriction
+@isnad1 id=eq.3h5v.s10.a0390cb00c83 from=translated src=- shape=7e45445d vocab=3f48aecd
+-/
 theorem fixedFieldQuotientEquiv_mk_apply
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (hfin : FiniteFieldExtension e)

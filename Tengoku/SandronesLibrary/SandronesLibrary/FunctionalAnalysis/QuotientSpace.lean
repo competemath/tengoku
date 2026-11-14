@@ -26,28 +26,38 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedLinearSpace ℝ E]
 
 教材公式 `‖x + S‖ = inf {‖x - s‖ | s ∈ S}` 在 Lean 中由 `Metric.infDist` 表达。
 
-> **Entry**: functional-analysis.subspace.quotient-/
+> **Entry**: functional-analysis.subspace.quotient
+@isnad1 id=eq.0h3v.s7.a09ba50ec0ce from=translated src=- shape=5919ffd4 vocab=496062cc
+-/
 theorem quotientNorm_eq_infDist (S : Submodule ℝ E) (x : E) :
     ‖(Submodule.Quotient.mk x : E ⧸ S)‖ = Metric.infDist x S := by
   exact QuotientAddGroup.norm_mk x
 
-/-- 不假设子空间闭时，商范数为零只能推出 `x` 属于该子空间的闭包。-/
+/-- 不假设子空间闭时，商范数为零只能推出 `x` 属于该子空间的闭包。
+@isnad1 id=iff.0h3v.s7.cd8f5d78fb3f from=translated src=- shape=d0bcfcbb vocab=b8e87c63
+-/
 theorem quotientNorm_eq_zero_iff_mem_closure (S : Submodule ℝ E) (x : E) :
     ‖(Submodule.Quotient.mk x : E ⧸ S)‖ = 0 ↔ x ∈ closure (S : Set E) := by
   exact QuotientAddGroup.norm_mk_eq_zero_iff_mem_closure
 
-/-- 子空间闭时，商范数为零当且仅当 `x` 属于子空间，也就是该陪集确实为零。-/
+/-- 子空间闭时，商范数为零当且仅当 `x` 属于子空间，也就是该陪集确实为零。
+@isnad1 id=iff.1h3v.s8.333bb38ddfb2 from=translated src=- shape=a7d8fa9d vocab=ad7152ad
+-/
 theorem quotientNorm_eq_zero_iff_mem (S : Submodule ℝ E) (hS : IsClosed (S : Set E))
     (x : E) : ‖(Submodule.Quotient.mk x : E ⧸ S)‖ = 0 ↔ x ∈ S := by
   let _ : IsClosed (S : Set E) := hS
   exact QuotientAddGroup.norm_mk_eq_zero
 
-/-- 规范商映射不会增大范数。-/
+/-- 规范商映射不会增大范数。
+@isnad1 id=le.0h3v.s7.17e5872d20fb from=translated src=- shape=427bdad1 vocab=ed70e249
+-/
 theorem quotientMap_norm_le (S : Submodule ℝ E) (x : E) :
     ‖(Submodule.Quotient.mk x : E ⧸ S)‖ ≤ ‖x‖ := by
   exact Submodule.Quotient.norm_mk_le S x
 
-/-- Banach 空间对闭线性子空间取商后仍然完备。闭性正是保证商范数分离点并得到完备性的关键。-/
+/-- Banach 空间对闭线性子空间取商后仍然完备。闭性正是保证商范数分离点并得到完备性的关键。
+@isnad1 id=complete.1h2v.s7.4b0302d6ddd2 from=translated src=- shape=6e67f3df vocab=6a24b6ad
+-/
 theorem closedSubspace_quotient_complete (S : Submodule ℝ E) (hS : IsClosed (S : Set E))
     [BanachSpace E] : CompleteSpace (E ⧸ S) := by
   let _ : IsClosed (S : Set E) := hS

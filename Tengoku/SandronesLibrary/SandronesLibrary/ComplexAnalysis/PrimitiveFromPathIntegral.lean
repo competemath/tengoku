@@ -45,6 +45,9 @@ inductive AdmissiblePath (f : ℂ → ℂ) (U : Set ℂ) : {a b : ℂ} → Path 
 
 namespace AdmissiblePath
 
+/--
+@isnad1 id=le.1h5v.s6.fd50b895d7cf from=translated src=- shape=1f90139f vocab=2697920c
+-/
 theorem range_subset {f : ℂ → ℂ} {U : Set ℂ} {a b : ℂ} {gamma : Path a b}
     (hgamma : AdmissiblePath f U gamma) : range gamma ⊆ U := by
   induction hgamma with
@@ -53,6 +56,9 @@ theorem range_subset {f : ℂ → ℂ} {U : Set ℂ} {a b : ℂ} {gamma : Path a
       rw [Path.trans_range]
       exact union_subset ihgamma ihdelta
 
+/--
+@isnad1 id=pathinte.1h5v.s5.2d905b051466 from=translated src=- shape=2a9f1f66 vocab=c6b5e7dd
+-/
 theorem pathIntegrable {f : ℂ → ℂ} {U : Set ℂ} {a b : ℂ} {gamma : Path a b}
     (hgamma : AdmissiblePath f U gamma) : PathIntegrable f gamma := by
   induction hgamma with
@@ -65,7 +71,9 @@ end AdmissiblePath
 primitive at the endpoints.  The proof applies the fundamental theorem of calculus to each `C¹`
 piece and then adds the resulting endpoint differences.
 
-> **Entry**: complex-analysis.cauchy.primitive-from-path-independence-foundation-/
+> **Entry**: complex-analysis.cauchy.primitive-from-path-independence-foundation
+@isnad1 id=eq.2h6v.s6.ecf246108d7e from=translated src=- shape=e2116b05 vocab=1d991a39
+-/
 theorem pathIntegral_eq_sub_of_primitive_of_admissiblePath
     {f g : ℂ → ℂ} {U : Set ℂ} {a b : ℂ} {gamma : Path a b}
     (hgamma : AdmissiblePath f U gamma) (hg : ∀ z ∈ U, HasDerivAt g (f z) z) :
@@ -111,7 +119,9 @@ def PathIntegralIndependentOn (f : ℂ → ℂ) (U : Set ℂ) : Prop :=
 
 /-- A primitive makes admissible path integrals depend only on their endpoints.
 
-> **Entry**: complex-analysis.cauchy.primitive-from-path-independence-foundation-/
+> **Entry**: complex-analysis.cauchy.primitive-from-path-independence-foundation
+@isnad1 id=pathinte.1h3v.s6.90785d8c0d01 from=translated src=- shape=de03d0cd vocab=8e4df5b6
+-/
 theorem pathIntegralIndependentOn_of_primitive
     {f g : ℂ → ℂ} {U : Set ℂ} (hg : ∀ z ∈ U, HasDerivAt g (f z) z) :
     PathIntegralIndependentOn f U := by
@@ -126,7 +136,9 @@ on `U`.
 This is the analytic construction needed for the simply-connected-domain theorem.  The hypotheses
 deliberately state the remaining global path problem instead of assuming a primitive in disguise.
 
-> **Entry**: complex-analysis.cauchy.primitive-from-path-independence-foundation-/
+> **Entry**: complex-analysis.cauchy.primitive-from-path-independence-foundation
+@isnad1 id=ex.4h3v.s7.2eb9641bd55b from=translated src=- shape=1f10c54f vocab=8c8093f4
+-/
 theorem exists_primitive_of_pathIntegralIndependentOn
     {f : ℂ → ℂ} {U : Set ℂ} {c : ℂ}
     (hU : IsOpen U) (hf : HolomorphicOnTextbook f U)

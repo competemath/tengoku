@@ -24,7 +24,9 @@ open SandronesLibrary.Topology
 
 /-- The topology-owned `PiecewiseC1` certificate,
 together with range control and continuity on the ambient open set, produces
-the existing complex-analysis `AdmissiblePath` certificate.-/
+the existing complex-analysis `AdmissiblePath` certificate.
+@isnad1 id=admissib.3h5v.s7.adb5cfaf2bb0 from=translated src=- shape=38487726 vocab=55f1ce13
+-/
 theorem admissiblePath_of_piecewiseC1
     {f : ℂ → ℂ} {U : Set ℂ} {a b : ℂ} {gamma : Path a b}
     (hgamma : Path.PiecewiseC1 gamma)
@@ -443,7 +445,9 @@ private theorem pathIntegral_eq_sum_dyadicSubpaths :
 
 /-- Final scalar assembly for a dyadic homotopy grid: if the two horizontal
 outer sides contribute zero and the oriented outer-boundary sum vanishes, then
-the complete source and target path integrals agree.-/
+the complete source and target path integrals agree.
+@isnad1 id=eq.7h10v.s10.5247f7c8eab1 from=translated src=- shape=5da69d22 vocab=261b0535
+-/
 theorem pathIntegral_eq_of_dyadicOuterBoundary
     {f : ℂ → ℂ} {a b : ℂ} (gamma delta : Path a b) (n : ℕ)
     (hgammaLeaf : ∀ i : Fin (2 ^ n), PathIntegrable f

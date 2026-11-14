@@ -70,12 +70,16 @@ def generatedSubgroupSet {G : Type*} [One G] [Mul G] [Inv G] (S : Set G) : Set G
   {x | ∀ H : Set G, SubgroupSet H → S ⊆ H → x ∈ H}
 
 /-- 每个 Mathlib 群实例都满足本库逐条列出的群公理。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=groupaxi.0h1v.s5.bd9f746afc18 from=translated src=- shape=c6850a32 vocab=a9db842d
+-/
 theorem group_has_groupAxioms (G : Type*) [Group G] : GroupAxioms G := by
   exact ⟨mul_assoc, one_mul, mul_one, (fun a => by simp), (fun a => by simp)⟩
 
 /-- 每个 Mathlib 交换群实例都满足本库交换群公理。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=commutat.0h1v.s5.0b6130f2caaf from=translated src=- shape=c6850a32 vocab=0124fbbe
+-/
 theorem commGroup_has_commutativeGroupAxioms (G : Type*) [CommGroup G] :
     CommutativeGroupAxioms G :=
   ⟨group_has_groupAxioms G, mul_comm⟩
@@ -92,14 +96,18 @@ def SubgroupSet.toSubgroup {G : Type*} [Group G]
     inv_mem' := fun hx => hH.2.2 hx }
 
 /-- 直接桥不改变成员关系：在转换后的正式子群中，元素属于关系仍然是 `x ∈ H`。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=iff.1h3v.s6.926a77d076b5 from=translated src=- shape=0ec5a722 vocab=b92347be
+-/
 @[simp] theorem SubgroupSet.mem_toSubgroup_iff {G : Type*} [Group G]
     (H : Set G) (hH : SubgroupSet H) (x : G) :
     x ∈ SubgroupSet.toSubgroup H hH ↔ x ∈ H := by
   rfl
 
 /-- 直接桥所得正式子群的承载集就是原集合。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=eq.1h2v.s5.c238a4b7692e from=translated src=- shape=60a2c0a0 vocab=92d4e9c2
+-/
 theorem SubgroupSet.coe_toSubgroup {G : Type*} [Group G]
     (H : Set G) (hH : SubgroupSet H) :
     ((SubgroupSet.toSubgroup H hH : Subgroup G) : Set G) = H := by
@@ -112,7 +120,9 @@ namespace Subgroup
 
 /-- 任意正式子群的承载集都满足旧的 `SubgroupSet` 封闭性判据。这是从正式载体退回
 集合式判定语言的兼容桥；新接口仍应直接接收 `Subgroup G`。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=subgroup.0h2v.s5.0a551664b8f9 from=translated src=- shape=c88c809d vocab=a25883dd
+-/
 theorem subgroupSet {G : Type*} [Group G] (H : Subgroup G) :
     SandronesLibrary.AbstractAlgebra.Group.SubgroupSet (H : Set G) :=
   ⟨H.one_mem, (fun {_ _} hx hy => H.mul_mem hx hy),
@@ -126,7 +136,9 @@ namespace AbstractAlgebra.Group
 open scoped Pointwise
 
 /-- 正式子群取承载集、再由直接桥打包后保持不变。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=eq.0h2v.s4.ae1890af3056 from=translated src=- shape=fb27971b vocab=1bc89453
+-/
 @[simp] theorem SubgroupSet.toSubgroup_subgroupSet {G : Type*} [Group G]
     (H : Subgroup G) :
     SubgroupSet.toSubgroup (H : Set G) H.subgroupSet = H := by
@@ -136,21 +148,27 @@ open scoped Pointwise
 /-- 直接桥所得子群包含于任意正式子群 `K`，恰当且仅当原集合逐点包含于 `K`。
 这个通用序关系接口表明后续理论可以直接量化 `K : Subgroup G`，不必继续传播
 `Set G` 与额外的 `SubgroupSet` 证明。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=iff.1h3v.s6.8bd7e35f5008 from=translated src=- shape=e47074dd vocab=aeeb4af8
+-/
 theorem SubgroupSet.toSubgroup_le_iff {G : Type*} [Group G]
     (H : Set G) (hH : SubgroupSet H) (K : Subgroup G) :
     SubgroupSet.toSubgroup H hH ≤ K ↔ H ⊆ (K : Set G) := by
   rfl
 
 /-- 任意正式子群 `K` 包含于直接桥所得子群，恰当且仅当 `K` 的承载集包含于原集合。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=iff.1h3v.s6.a4aa528e6958 from=translated src=- shape=de8d072e vocab=aeeb4af8
+-/
 theorem SubgroupSet.le_toSubgroup_iff {G : Type*} [Group G]
     (H : Set G) (hH : SubgroupSet H) (K : Subgroup G) :
     K ≤ SubgroupSet.toSubgroup H hH ↔ (K : Set G) ⊆ H := by
   rfl
 
 /-- 本库子群集合判据与“存在底层集合恰为 `H` 的 Mathlib 子群”完全等价。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=iff.0h2v.s5.adf6e0a3bce5 from=translated src=- shape=98bf3d85 vocab=3d56a259
+-/
 theorem subgroupSet_iff_exists_subgroup {G : Type*} [Group G] (H : Set G) :
     SubgroupSet H ↔ ∃ K : Subgroup G, (K : Set G) = H := by
   constructor
@@ -160,19 +178,25 @@ theorem subgroupSet_iff_exists_subgroup {G : Type*} [Group G] (H : Set G) :
     exact K.subgroupSet
 
 /-- 打包的 Mathlib 同态满足本库逐运算群同态谓词。
-> **Entry**: abstract-algebra.group.hom-/
+> **Entry**: abstract-algebra.group.hom
+@isnad1 id=grouphom.0h3v.s7.72a402a3a101 from=translated src=- shape=bb88c798 vocab=7f933ae8
+-/
 theorem monoidHom_is_groupHomomorphism {G H : Type*} [Group G] [Group H]
     (f : G →* H) : GroupHomomorphism f :=
   ⟨f.map_one, f.map_mul, f.map_inv⟩
 
 /-- 满足本库群同态谓词的普通函数可以打包成 Mathlib `MonoidHom`，且底层函数不变。
-> **Entry**: abstract-algebra.group.hom-/
+> **Entry**: abstract-algebra.group.hom
+@isnad1 id=ex.1h3v.s7.ed36431ee94f from=translated src=- shape=909581d3 vocab=7f933ae8
+-/
 theorem groupHomomorphism_exists_monoidHom {G H : Type*} [Group G] [Group H]
     (f : G → H) (hf : GroupHomomorphism f) : ∃ F : G →* H, ⇑F = f := by
   exact ⟨{ toFun := f, map_one' := hf.1, map_mul' := hf.2.1 }, rfl⟩
 
 /-- 由 `S` 生成的集合确实满足子群集合判据。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=subgroup.0h2v.s6.5c5db0939d62 from=translated src=- shape=ed10201d vocab=a111aad8
+-/
 theorem generatedSubgroupSet_is_subgroup {G : Type*} [Group G] (S : Set G) :
     SubgroupSet (generatedSubgroupSet S) := by
   refine ⟨?_, ?_, ?_⟩
@@ -184,21 +208,27 @@ theorem generatedSubgroupSet_is_subgroup {G : Type*} [Group G] (S : Set G) :
     exact hH.2.2 (hx H hH hSH)
 
 /-- 每个生成元都属于生成子群集合。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=le.0h2v.s5.cf266e111f67 from=translated src=- shape=1b31f6ab vocab=de3339d0
+-/
 theorem subset_generatedSubgroupSet {G : Type*} [Group G] (S : Set G) :
     S ⊆ generatedSubgroupSet S := by
   intro x hx H hH hSH
   exact hSH hx
 
 /-- **生成子群的最小性**：任何包含 `S` 的子群集合都包含 `generatedSubgroupSet S`。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=le.2h3v.s6.c21648ef75ac from=translated src=- shape=de7d2ea6 vocab=aaca5187
+-/
 theorem generatedSubgroupSet_least {G : Type*} [Group G] {S H : Set G}
     (hH : SubgroupSet H) (hSH : S ⊆ H) : generatedSubgroupSet S ⊆ H := by
   intro x hx
   exact hx H hH hSH
 
 /-- 本库生成子群集合与 Mathlib `Subgroup.closure` 的底层集合相同；后者从此只作为承载桥。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=eq.0h2v.s5.0b03b14e7397 from=translated src=- shape=91989d87 vocab=21269b77
+-/
 theorem generatedSubgroupSet_eq_mathlib_closure {G : Type*} [Group G] (S : Set G) :
     generatedSubgroupSet S = ((Subgroup.closure S : Subgroup G) : Set G) := by
   ext x
@@ -216,43 +246,57 @@ theorem generatedSubgroupSet_eq_mathlib_closure {G : Type*} [Group G] (S : Set G
 /-! ### 群公理的直接推论 -/
 
 /-- 左单位元是唯一的：若 `e * x = x` 对所有 x 成立，则 `e = 1`。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=eq.1h2v.s5.1ad2c5d4b952 from=translated src=- shape=37ef972c vocab=596f6a00
+-/
 theorem left_identity_unique {G : Type*} [Group G] (e : G)
     (he : ∀ x : G, e * x = x) : e = 1 := by
   simpa using he 1
 
 /-- 右单位元是唯一的。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=eq.1h2v.s5.a617f71b68ee from=translated src=- shape=8678bedb vocab=596f6a00
+-/
 theorem right_identity_unique {G : Type*} [Group G] (e : G)
     (he : ∀ x : G, x * e = x) : e = 1 := by
   simpa using he 1
 
 /-- 左逆元是唯一的：`yx=1` 蕴含 `y=x⁻¹`。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=eq.1h3v.s5.da6d8f6865d2 from=translated src=- shape=9fb857af vocab=9f72dee7
+-/
 theorem left_inverse_unique {G : Type*} [Group G] {x y : G}
     (h : y * x = 1) : y = x⁻¹ := by
   exact eq_inv_of_mul_eq_one_left h
 
 /-- 右逆元是唯一的：`xy=1` 蕴含 `y=x⁻¹`。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=eq.1h3v.s5.1be4ecce1958 from=translated src=- shape=721d1926 vocab=9f72dee7
+-/
 theorem right_inverse_unique {G : Type*} [Group G] {x y : G}
     (h : x * y = 1) : y = x⁻¹ := by
   exact eq_inv_of_mul_eq_one_right h
 
 /-- 群乘法的左消去律。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=eq.1h4v.s5.0bd3e3509aaf from=translated src=- shape=2dde546d vocab=596f6a00
+-/
 theorem group_mul_left_cancel {G : Type*} [Group G] {a x y : G}
     (h : a * x = a * y) : x = y := by
   exact mul_left_cancel h
 
 /-- 群乘法的右消去律。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=eq.1h4v.s5.209218a3d78a from=translated src=- shape=8728bc9b vocab=596f6a00
+-/
 theorem group_mul_right_cancel {G : Type*} [Group G] {a x y : G}
     (h : x * a = y * a) : x = y := by
   exact mul_right_cancel h
 
 /-- 左乘方程 `ax=b` 的唯一解是 `x=a⁻¹b`。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=iff.0h4v.s6.ced04b9d93bf from=translated src=- shape=8b5283ab vocab=9f72dee7
+-/
 theorem solve_mul_left_iff {G : Type*} [Group G] (a x b : G) :
     a * x = b ↔ x = a⁻¹ * b := by
   constructor <;> intro h
@@ -262,7 +306,9 @@ theorem solve_mul_left_iff {G : Type*} [Group G] (a x b : G) :
     group
 
 /-- 右乘方程 `xa=b` 的唯一解是 `x=ba⁻¹`。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=iff.0h4v.s6.1c8619961e03 from=translated src=- shape=eef7366c vocab=9f72dee7
+-/
 theorem solve_mul_right_iff {G : Type*} [Group G] (a x b : G) :
     x * a = b ↔ x = b * a⁻¹ := by
   constructor <;> intro h
@@ -272,41 +318,55 @@ theorem solve_mul_right_iff {G : Type*} [Group G] (a x b : G) :
     group
 
 /-- 乘积取逆时次序反转：`(ab)⁻¹=b⁻¹a⁻¹`。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=eq.0h3v.s6.57e8b61526f3 from=translated src=- shape=0ef92c39 vocab=9f72dee7
+-/
 theorem inverse_mul_reverse {G : Type*} [Group G] (a b : G) :
     (a * b)⁻¹ = b⁻¹ * a⁻¹ := by
   exact mul_inv_rev a b
 
 /-- 整数零次幂等于单位元。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=eq.0h2v.s5.eb448b76965a from=translated src=- shape=57d5120f vocab=a14a814c
+-/
 theorem zpow_zero_basic {G : Type*} [Group G] (a : G) : a ^ (0 : ℤ) = 1 := by
   exact zpow_zero a
 
 /-- 整数一次幂等于自身。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=eq.0h2v.s4.a059cbaac73a from=translated src=- shape=cd21215d vocab=a14a814c
+-/
 theorem zpow_one_basic {G : Type*} [Group G] (a : G) : a ^ (1 : ℤ) = a := by
   exact zpow_one a
 
 /-- 同底整数幂相乘：`a^(m+n)=a^m a^n`。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=eq.0h4v.s6.345d53aa1554 from=translated src=- shape=0db19f4a vocab=f1ad85a2
+-/
 theorem zpow_add_basic {G : Type*} [Group G] (a : G) (m n : ℤ) :
     a ^ (m + n) = a ^ m * a ^ n := by
   exact zpow_add a m n
 
 /-- 负整数幂等于对应幂的逆。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=eq.0h3v.s5.41c66a46e5f3 from=translated src=- shape=6c45bcb1 vocab=b5097ec8
+-/
 theorem zpow_neg_basic {G : Type*} [Group G] (a : G) (n : ℤ) :
     a ^ (-n) = (a ^ n)⁻¹ := by
   exact zpow_neg a n
 
 /-- 整数幂的幂法则：`a^(mn)=(a^m)^n`。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=eq.0h4v.s6.a43b5257e6f6 from=translated src=- shape=6ce5c1ad vocab=bbb95578
+-/
 theorem zpow_mul_basic {G : Type*} [Group G] (a : G) (m n : ℤ) :
     a ^ (m * n) = (a ^ m) ^ n := by
   exact zpow_mul a m n
 
 /-- **子群判定定理**（教材核心判据）：子集 S 含单位元、对乘法与取逆封闭 ⟹ S 是子群。 
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=ex.3h2v.s7.69218a3aad1d from=translated src=- shape=5ce0c9fc vocab=c1aaf060
+-/
 theorem subgroup_of_closed {G : Type*} [Group G] (S : Set G)
     (h1 : 1 ∈ S) (hmul : ∀ {x y : G}, x ∈ S → y ∈ S → x * y ∈ S)
     (hinv : ∀ {x : G}, x ∈ S → x⁻¹ ∈ S) :
@@ -319,25 +379,33 @@ theorem subgroup_of_closed {G : Type*} [Group G] (S : Set G)
   constructor <;> intro hx <;> exact hx
 
 /-- **子群含单位元**：任何子群都包含单位元。 
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=mem.0h2v.s5.551596c986c2 from=translated src=- shape=5d14e585 vocab=fe63e27a
+-/
 theorem subgroup_one_mem {G : Type*} [Group G] (H : Subgroup G) : 1 ∈ H := by
   exact H.one_mem
 
 /-- **子群外延性**：成员一致的两个子群相等。 
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=eq.1h3v.s5.152212b4dfb8 from=translated src=- shape=b6dfcf64 vocab=fe63e27a
+-/
 theorem subgroup_ext {G : Type*} [Group G] {H K : Subgroup G}
     (h : ∀ x : G, x ∈ H ↔ x ∈ K) : H = K := by
   exact Subgroup.ext h
 
 /-- **平凡子群**：只含单位元的子群（最小子群）。 
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=eq.0h1v.s5.4fc3c0438129 from=translated src=- shape=20d492fb vocab=b7a7f71d
+-/
 theorem subgroup_bot_eq_singleton {G : Type*} [Group G] :
     ((⊥ : Subgroup G) : Set G) = {1} := by
   ext x
   exact Subgroup.mem_bot
 
 /-- **全子群**：整个群自身是子群（最大子群）。 
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=eq.0h1v.s4.d27fcf518e24 from=translated src=- shape=2100d262 vocab=3d88e1de
+-/
 theorem subgroup_top_eq_univ {G : Type*} [Group G] :
     ((⊤ : Subgroup G) : Set G) = Set.univ := by
   ext x
@@ -356,86 +424,112 @@ def generatedSubgroup {G : Type*} [Group G] (S : Set G) : Subgroup G :=
   Subgroup.closure S
 
 /-- 每个生成元都属于它们生成的子群，即 `S ⊆ ⟨S⟩`。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=le.0h2v.s4.93baaf7cf2f5 from=translated src=- shape=01bbfb71 vocab=19fe9b51
+-/
 theorem subset_generatedSubgroup {G : Type*} [Group G] (S : Set G) :
     S ⊆ generatedSubgroup S := by
   exact Subgroup.subset_closure
 
 /-- **生成子群的最小性**：`⟨S⟩ ≤ H` 当且仅当 `H` 包含所有生成元。
 这是从生成元定义同态、证明两个子群相等时最常用的消去原则。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=iff.0h3v.s5.e46c0b0dbf0c from=translated src=- shape=3d3cab5f vocab=19fe9b51
+-/
 theorem generatedSubgroup_le_iff {G : Type*} [Group G]
     (S : Set G) (H : Subgroup G) :
     generatedSubgroup S ≤ H ↔ S ⊆ H := by
   exact Subgroup.closure_le H
 
 /-- 扩大生成元集合只会扩大生成子群。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=le.1h3v.s5.3d04029f0a75 from=translated src=- shape=e4a3c269 vocab=cfaf472e
+-/
 theorem generatedSubgroup_mono {G : Type*} [Group G]
     {S T : Set G} (hST : S ⊆ T) :
     generatedSubgroup S ≤ generatedSubgroup T := by
   exact Subgroup.closure_mono hST
 
 /-- 一个子群的底层集合重新生成出的子群仍是它自身。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=eq.0h2v.s4.a7312b9e88eb from=translated src=- shape=ff2dbb92 vocab=402200f9
+-/
 theorem generatedSubgroup_coe {G : Type*} [Group G] (H : Subgroup G) :
     generatedSubgroup (H : Set G) = H := by
   exact Subgroup.closure_eq H
 
 /-- 两组生成元的并生成两个生成子群在子群格中的上确界。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=eq.0h3v.s5.7c89546a17fc from=translated src=- shape=19128959 vocab=19c734dd
+-/
 theorem generatedSubgroup_union {G : Type*} [Group G] (S T : Set G) :
     generatedSubgroup (S ∪ T) = generatedSubgroup S ⊔ generatedSubgroup T := by
   exact Subgroup.closure_union S T
 
 /-- 两个子群的下确界就是它们的集合交：元素属于 `H ⊓ K` 当且仅当同时属于二者。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=iff.0h4v.s6.a3b8991d251b from=translated src=- shape=11a26329 vocab=8d473ea7
+-/
 theorem mem_subgroup_inf_iff {G : Type*} [Group G]
     (H K : Subgroup G) (x : G) :
     x ∈ H ⊓ K ↔ x ∈ H ∧ x ∈ K := by
   exact Subgroup.mem_inf
 
 /-- 任意族子群的下确界就是共同交集。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=iff.0h4v.s5.f6aee86286e0 from=translated src=- shape=585c5c6e vocab=3517975a
+-/
 theorem mem_subgroup_iInf_iff {G : Type*} [Group G]
     {ι : Sort*} (H : ι → Subgroup G) (x : G) :
     x ∈ ⨅ i, H i ↔ ∀ i, x ∈ H i := by
   exact Subgroup.mem_iInf
 
 /-- 子群上确界的序刻画：`H ⊔ K ≤ L` 当且仅当 H、K 都包含于 L。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=iff.0h4v.s6.f1e7a8ad8c21 from=translated src=- shape=188c5ef6 vocab=c6aa82f3
+-/
 theorem subgroup_sup_le_iff {G : Type*} [Group G] (H K L : Subgroup G) :
     H ⊔ K ≤ L ↔ H ≤ L ∧ K ≤ L := by
   exact sup_le_iff
 
 /-- 子群下确界的序刻画：`L ≤ H ⊓ K` 当且仅当 L 同时包含于 H、K。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=iff.0h4v.s6.fd5271bbdb9b from=translated src=- shape=0c0163b4 vocab=8387834c
+-/
 theorem subgroup_le_inf_iff {G : Type*} [Group G] (H K L : Subgroup G) :
     L ≤ H ⊓ K ↔ L ≤ H ∧ L ≤ K := by
   exact le_inf_iff
 
 /-- 单元素集合生成的子群就是该元素的所有整数次幂组成的子群。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=eq.0h2v.s4.0b5ecaf21e0a from=translated src=- shape=8814e1a4 vocab=80ab562a
+-/
 theorem generatedSubgroup_singleton_eq_zpowers {G : Type*} [Group G] (g : G) :
     generatedSubgroup ({g} : Set G) = Subgroup.zpowers g := by
   exact (Subgroup.zpowers_eq_closure g).symm
 
 /-- 同态把由 S 生成的子群映到由 `f(S)` 生成的子群。
 这使得只在生成元上指定映射成为可能。
-> **Entry**: abstract-algebra.group.def-/
+> **Entry**: abstract-algebra.group.def
+@isnad1 id=eq.0h4v.s6.6b9c18275136 from=translated src=- shape=10a9425e vocab=ddd491de
+-/
 theorem map_generatedSubgroup {G N : Type*} [Group G] [Group N]
     (f : G →* N) (S : Set G) :
     Subgroup.map f (generatedSubgroup S) = generatedSubgroup (f '' S) := by
   exact MonoidHom.map_closure f S
 
 /-- **左陪集元素刻画**：x ∈ aH ⟺ a⁻¹·x ∈ H（左陪集 aH = { a·h | h ∈ H }）。 
-> **Entry**: abstract-algebra.group.coset-/
+> **Entry**: abstract-algebra.group.coset
+@isnad1 id=iff.0h4v.s6.6d7f82855fc9 from=translated src=- shape=3a7faf00 vocab=7ee12dd3
+-/
 theorem left_coset_mem_iff {G : Type*} [Group G] (H : Subgroup G) (a x : G) :
     x ∈ a • (H : Set G) ↔ a⁻¹ * x ∈ H := by
   exact mem_leftCoset_iff (a := a)
 
 /-- **左陪集相等判据**：aH = bH ⟺ b⁻¹·a ∈ H（两个陪集相等当且仅当代表元素差落在 H 中）。 
-> **Entry**: abstract-algebra.group.coset-/
+> **Entry**: abstract-algebra.group.coset
+@isnad1 id=iff.0h4v.s7.d8308864e9a3 from=translated src=- shape=b77a7d7b vocab=7ee12dd3
+-/
 theorem left_coset_eq_iff {G : Type*} [Group G] (H : Subgroup G) (a b : G) :
     a • (H : Set G) = b • (H : Set G) ↔ b⁻¹ * a ∈ H := by
   constructor
@@ -445,33 +539,43 @@ theorem left_coset_eq_iff {G : Type*} [Group G] (H : Subgroup G) (a b : G) :
     exact ((leftCoset_eq_iff (s := H) (x := b) (y := a)).mpr h).symm
 
 /-- **自身在陪集中**：对任意 a，a ∈ aH。 
-> **Entry**: abstract-algebra.group.coset-/
+> **Entry**: abstract-algebra.group.coset
+@isnad1 id=mem.0h3v.s5.65465a6824bf from=translated src=- shape=25399d3e vocab=6549bbc9
+-/
 theorem left_coset_mem_self {G : Type*} [Group G] (H : Subgroup G) (a : G) :
     a ∈ a • (H : Set G) := by
   exact mem_own_leftCoset (s := H.toSubmonoid) a
 
 /-- **单位元陪集**：1H = H。 
-> **Entry**: abstract-algebra.group.coset-/
+> **Entry**: abstract-algebra.group.coset
+@isnad1 id=eq.0h2v.s6.cbe5a07be268 from=translated src=- shape=39bb22c4 vocab=36802d7b
+-/
 theorem one_left_coset {G : Type*} [Group G] (H : Subgroup G) :
     (1 : G) • (H : Set G) = (H : Set G) := by
   exact one_leftCoset (s := (H : Set G))
 
 /-- **右陪集元素刻画**：`x ∈ Ha` 当且仅当 `x a⁻¹ ∈ H`。
 它与左陪集判据互为镜像，但在非交换群中二者不能混用。
-> **Entry**: abstract-algebra.group.coset-/
+> **Entry**: abstract-algebra.group.coset
+@isnad1 id=iff.0h4v.s6.aead70e0bc0d from=translated src=- shape=d89d35db vocab=8fd5f76f
+-/
 theorem right_coset_mem_iff {G : Type*} [Group G] (H : Subgroup G) (a x : G) :
     x ∈ MulOpposite.op a • (H : Set G) ↔ x * a⁻¹ ∈ H := by
   exact mem_rightCoset_iff a
 
 /-- **右陪集相等判据**：`Ha = Hb` 当且仅当 `b a⁻¹ ∈ H`。
-> **Entry**: abstract-algebra.group.coset-/
+> **Entry**: abstract-algebra.group.coset
+@isnad1 id=iff.0h4v.s7.6f7b793ff502 from=translated src=- shape=5502f81e vocab=8fd5f76f
+-/
 theorem right_coset_eq_iff {G : Type*} [Group G] (H : Subgroup G) (a b : G) :
     MulOpposite.op a • (H : Set G) = MulOpposite.op b • (H : Set G) ↔
       b * a⁻¹ ∈ H := by
   exact _root_.rightCoset_eq_iff H
 
 /-- 每个代表元都属于自己的右陪集 `Ha`。
-> **Entry**: abstract-algebra.group.coset-/
+> **Entry**: abstract-algebra.group.coset
+@isnad1 id=mem.0h3v.s6.7b9afa929bea from=translated src=- shape=287b65c8 vocab=4ef11321
+-/
 theorem right_coset_mem_self {G : Type*} [Group G] (H : Subgroup G) (a : G) :
     a ∈ MulOpposite.op a • (H : Set G) := by
   exact mem_own_rightCoset H.toSubmonoid a
@@ -480,7 +584,9 @@ theorem right_coset_mem_self {G : Type*} [Group G] (H : Subgroup G) (a : G) :
 
 向前方向取公共元素 `x`，则 `a⁻¹x,b⁻¹x ∈ H`，所以
 `a⁻¹b = (a⁻¹x)(b⁻¹x)⁻¹ ∈ H`，由陪集相等判据得到结论。
-> **Entry**: abstract-algebra.group.coset-/
+> **Entry**: abstract-algebra.group.coset
+@isnad1 id=iff.0h4v.s7.d1aa672fa1f7 from=translated src=- shape=83b8e20f vocab=fc15848f
+-/
 theorem left_coset_inter_nonempty_iff_eq {G : Type*} [Group G]
     (H : Subgroup G) (a b : G) :
     (a • (H : Set G) ∩ b • (H : Set G)).Nonempty ↔
@@ -498,7 +604,9 @@ theorem left_coset_inter_nonempty_iff_eq {G : Type*} [Group G]
 
 /-- **陪集分割的核心性质**：任意两个左陪集或者相等，或者不相交。
 配合每个元素属于自己的陪集，这说明左陪集把整个群分割成等势的块。
-> **Entry**: abstract-algebra.group.coset-/
+> **Entry**: abstract-algebra.group.coset
+@isnad1 id=or.0h4v.s7.9ff26f89274f from=translated src=- shape=02fb8079 vocab=78c0018a
+-/
 theorem left_cosets_eq_or_disjoint {G : Type*} [Group G]
     (H : Subgroup G) (a b : G) :
     a • (H : Set G) = b • (H : Set G) ∨
@@ -511,68 +619,88 @@ theorem left_cosets_eq_or_disjoint {G : Type*} [Group G]
     exact hab ((left_coset_inter_nonempty_iff_eq H a b).1 ⟨x, hxa, hxb⟩)
 
 /-- **陪集与子群等势**：左陪集 aH 与子群 H 的元素个数相同（陪集都是"同样大小"）。 
-> **Entry**: abstract-algebra.group.coset-/
+> **Entry**: abstract-algebra.group.coset
+@isnad1 id=eq.0h3v.s6.be117db07fa6 from=translated src=- shape=ba20ceae vocab=8043409f
+-/
 theorem leftCoset_card_eq {G : Type*} [Group G] (H : Subgroup G) (a : G) :
     Nat.card ({x : G // x ∈ a • (H : Set G)}) = Nat.card (↥H) := by
   exact Nat.card_congr (Subgroup.leftCosetEquivSubgroup (s := H) a)
 
 /-- **Lagrange 定理**：对有限群 G，|H| · [G:H] = |G|（子群阶整除群阶）。 
-> **Entry**: abstract-algebra.group.coset-/
+> **Entry**: abstract-algebra.group.coset
+@isnad1 id=eq.0h2v.s5.36b3ad427e54 from=translated src=- shape=ef522877 vocab=0025e72a
+-/
 theorem lagrange {G : Type*} [Group G] (H : Subgroup G) :
     Nat.card ↥H * H.index = Nat.card G := by
   exact Subgroup.card_mul_index H
 
 /-- **Lagrange 的整除形式**：子群的阶整除群的阶。
 这里使用 `Nat.card`，有限群时就是通常的有限基数；等式中的商因子正是子群指数。
-> **Entry**: abstract-algebra.group.coset-/
+> **Entry**: abstract-algebra.group.coset
+@isnad1 id=dvd.0h2v.s5.ba8278c10388 from=translated src=- shape=89254009 vocab=ec7511c1
+-/
 theorem subgroup_card_dvd_group_card {G : Type*} [Group G] (H : Subgroup G) :
     Nat.card H ∣ Nat.card G := by
   exact ⟨H.index, (lagrange H).symm⟩
 
 /-- **元素阶整除群阶**：有限群中每个元素生成的循环子群之阶整除群阶。
 这是 Lagrange 定理应用于循环子群 `⟨x⟩` 的标准推论。
-> **Entry**: abstract-algebra.group.coset-/
+> **Entry**: abstract-algebra.group.coset
+@isnad1 id=dvd.0h2v.s4.835f8dd5e584 from=translated src=- shape=ba085434 vocab=be222833
+-/
 theorem element_order_dvd_group_order {G : Type*} [Group G] [Fintype G] (x : G) :
     orderOf x ∣ Fintype.card G := by
   exact orderOf_dvd_card
 
 /-- **有限群中的幂公式**：对每个 `x ∈ G`，都有 `x ^ |G| = 1`。
 它由元素阶整除群阶立即得到，是 Euler 与 Fermat 型合同的群论原型。
-> **Entry**: abstract-algebra.group.coset-/
+> **Entry**: abstract-algebra.group.coset
+@isnad1 id=eq.0h2v.s5.d212287d95b9 from=translated src=- shape=26c38832 vocab=eb3e912c
+-/
 theorem pow_group_order_eq_one {G : Type*} [Group G] [Fintype G] (x : G) :
     x ^ Fintype.card G = 1 := by
   exact pow_card_eq_one
 
 /-- **正规子群的共轭封闭性**：H 正规 ⟹ 对 n ∈ H、任意 g，共轭 g·n·g⁻¹ ∈ H。
   这是正规子群的定义本质（教材定义）。 
-> **Entry**: abstract-algebra.group.normal-/
+> **Entry**: abstract-algebra.group.normal
+@isnad1 id=mem.2h4v.s6.30d2475ef798 from=translated src=- shape=c883b77a vocab=6d99c8a4
+-/
 theorem normal_conj_mem {G : Type*} [Group G] (H : Subgroup G) (nH : H.Normal)
     (n : G) (hn : n ∈ H) (g : G) : g * n * g⁻¹ ∈ H := by
   exact nH.conj_mem n hn g
 
 /-- **正规性的陪集刻画**：H 正规当且仅当每个元素对应的左陪集与右陪集相等，
 即 `gH = Hg`。这是从陪集进入商群的关键判据。
-> **Entry**: abstract-algebra.group.normal-/
+> **Entry**: abstract-algebra.group.normal
+@isnad1 id=iff.0h2v.s6.26d38a367326 from=translated src=- shape=a736baf3 vocab=0c7ea6a6
+-/
 theorem normal_iff_left_coset_eq_right_coset {G : Type*} [Group G]
     (H : Subgroup G) :
     H.Normal ↔ ∀ g : G, g • (H : Set G) = MulOpposite.op g • (H : Set G) := by
   exact _root_.normal_iff_eq_cosets (s := H)
 
 /-- 群同态的核总是正规子群。
-> **Entry**: abstract-algebra.group.normal-/
+> **Entry**: abstract-algebra.group.normal
+@isnad1 id=normal.0h3v.s5.ca7fffb79fdc from=translated src=- shape=46c930e2 vocab=ffedef61
+-/
 theorem kernel_is_normal {G N : Type*} [Group G] [Group N] (f : G →* N) :
     f.ker.Normal := by
   infer_instance
 
 /-- 正规子群沿任意群同态的逆像仍正规。
-> **Entry**: abstract-algebra.group.normal-/
+> **Entry**: abstract-algebra.group.normal
+@isnad1 id=normal.1h4v.s5.22b43be19e3a from=translated src=- shape=d052f1ac vocab=9048af64
+-/
 theorem normal_comap {G N : Type*} [Group G] [Group N]
     (f : G →* N) (H : Subgroup N) (hH : H.Normal) :
     (Subgroup.comap f H).Normal := by
   exact hH.comap f
 
 /-- 正规子群沿满群同态的像仍正规。满射条件确保目标群中的任意共轭元都能提升。
-> **Entry**: abstract-algebra.group.normal-/
+> **Entry**: abstract-algebra.group.normal
+@isnad1 id=normal.2h4v.s6.2eb86427a00f from=translated src=- shape=6dcd17dd vocab=99d66890
+-/
 theorem normal_map_of_surjective {G N : Type*} [Group G] [Group N]
     (f : G →* N) (hf : Function.Surjective f)
     (H : Subgroup G) (hH : H.Normal) :
@@ -580,7 +708,9 @@ theorem normal_map_of_surjective {G N : Type*} [Group G] [Group N]
   exact hH.map f hf
 
 /-- 两个正规子群的交仍是正规子群。
-> **Entry**: abstract-algebra.group.normal-/
+> **Entry**: abstract-algebra.group.normal
+@isnad1 id=normal.2h3v.s5.41547159c40a from=translated src=- shape=0540dca0 vocab=1d3185e6
+-/
 theorem normal_inf {G : Type*} [Group G] (H K : Subgroup G)
     (hH : H.Normal) (hK : K.Normal) : (H ⊓ K).Normal := by
   refine Subgroup.Normal.mk ?_
@@ -589,7 +719,9 @@ theorem normal_inf {G : Type*} [Group G] (H K : Subgroup G)
   exact ⟨hH.conj_mem n hn.1 g, hK.conj_mem n hn.2 g⟩
 
 /-- **正规子群的交换性**：H 正规 ⟹ a·b ∈ H ⟹ b·a ∈ H。 
-> **Entry**: abstract-algebra.group.normal-/
+> **Entry**: abstract-algebra.group.normal
+@isnad1 id=mem.2h4v.s6.3a13bf3b2cc7 from=translated src=- shape=a2621656 vocab=d0cd5788
+-/
 theorem normal_mem_comm {G : Type*} [Group G] (H : Subgroup G) (nH : H.Normal)
     {a b : G} (h : a * b ∈ H) : b * a ∈ H := by
   -- 因 H 正规，共轭 b·(a·b)·b⁻¹ ∈ H；化简得 b·a ∈ H
@@ -599,7 +731,9 @@ theorem normal_mem_comm {G : Type*} [Group G] (H : Subgroup G) (nH : H.Normal)
   rwa [this] at h2
 
 /-- **平凡子群正规**：只含单位元的子群是正规子群。 
-> **Entry**: abstract-algebra.group.normal-/
+> **Entry**: abstract-algebra.group.normal
+@isnad1 id=normal.0h1v.s3.592b3b0ea76b from=translated src=- shape=b8471119 vocab=5e661df4
+-/
 theorem normal_bot {G : Type*} [Group G] : (⊥ : Subgroup G).Normal := by
   refine Subgroup.Normal.mk ?_
   intro n hn g
@@ -608,27 +742,35 @@ theorem normal_bot {G : Type*} [Group G] : (⊥ : Subgroup G).Normal := by
   exact Subgroup.mem_bot.mpr rfl
 
 /-- **全子群正规**：整个群自身是正规子群。 
-> **Entry**: abstract-algebra.group.normal-/
+> **Entry**: abstract-algebra.group.normal
+@isnad1 id=normal.0h1v.s3.149b0b4bbfc0 from=translated src=- shape=b8471119 vocab=9886ee10
+-/
 theorem normal_top {G : Type*} [Group G] : (⊤ : Subgroup G).Normal := by
   refine Subgroup.Normal.mk ?_
   intro n hn g
   exact Subgroup.mem_top (g * n * g⁻¹)
 
 /-- **商群投影保乘法**：自然同态 `mk : G → G⧸H` 是同态（`↑(a*b) = ↑a * ↑b`）。 
-> **Entry**: abstract-algebra.group.normal-/
+> **Entry**: abstract-algebra.group.normal
+@isnad1 id=eq.1h4v.s7.141228c9bbec from=translated src=- shape=cfc6e96d vocab=1f9cb73f
+-/
 theorem quotient_mk_mul {G : Type*} [Group G] (H : Subgroup G) (nH : H.Normal) (a b : G) :
     QuotientGroup.mk (s := H) (a * b) =
       QuotientGroup.mk (s := H) a * QuotientGroup.mk (s := H) b := by
   exact QuotientGroup.mk_mul H a b
 
 /-- **商群单位元**：商群的单位元是 `↑1`（H 所在的陪集）。 
-> **Entry**: abstract-algebra.group.normal-/
+> **Entry**: abstract-algebra.group.normal
+@isnad1 id=eq.1h2v.s6.ecbf19c664dd from=translated src=- shape=fdb20fe9 vocab=c6ac894a
+-/
 theorem quotient_mk_one {G : Type*} [Group G] (H : Subgroup G) (nH : H.Normal) :
     QuotientGroup.mk (s := H) (1 : G) = 1 := by
   exact QuotientGroup.mk_one H
 
 /-- **商群取逆保持**：商群中 `↑(a⁻¹) = (↑a)⁻¹`。 
-> **Entry**: abstract-algebra.group.normal-/
+> **Entry**: abstract-algebra.group.normal
+@isnad1 id=eq.1h3v.s6.34ac0dc12e64 from=translated src=- shape=03c9e607 vocab=406a9db8
+-/
 theorem quotient_mk_inv {G : Type*} [Group G] (H : Subgroup G) (nH : H.Normal) (a : G) :
     QuotientGroup.mk (s := H) (a⁻¹) = (QuotientGroup.mk (s := H) a)⁻¹ := by
   exact QuotientGroup.mk_inv H a
@@ -636,7 +778,9 @@ theorem quotient_mk_inv {G : Type*} [Group G] (H : Subgroup G) (nH : H.Normal) (
 /-! ### 商映射的泛性质 -/
 
 /-- 商投影 `G → G/H` 的核恰好是 H。
-> **Entry**: abstract-algebra.group.normal-/
+> **Entry**: abstract-algebra.group.normal
+@isnad1 id=eq.0h2v.s6.2a7f142733d8 from=translated src=- shape=f94a3a2b vocab=a068858a
+-/
 theorem quotient_projection_kernel {G : Type*} [Group G]
     (H : Subgroup G) [H.Normal] :
     (QuotientGroup.mk' H).ker = H := by
@@ -651,14 +795,18 @@ def quotientLift {G N : Type*} [Group G] [Group N]
   QuotientGroup.lift H f hker
 
 /-- 下降同态在陪集代表元上的计算公式：`f̄(gH)=f(g)`。
-> **Entry**: abstract-algebra.group.normal-/
+> **Entry**: abstract-algebra.group.normal
+@isnad1 id=eq.1h5v.s8.1d20f1562de5 from=translated src=- shape=91b0e93e vocab=6ccf5445
+-/
 theorem quotientLift_mk {G N : Type*} [Group G] [Group N]
     (H : Subgroup G) [H.Normal] (f : G →* N) (hker : H ≤ f.ker) (g : G) :
     quotientLift H f hker (QuotientGroup.mk' H g) = f g := by
   exact QuotientGroup.lift_mk' H hker g
 
 /-- 下降同态与商投影复合后恢复原同态。
-> **Entry**: abstract-algebra.group.normal-/
+> **Entry**: abstract-algebra.group.normal
+@isnad1 id=eq.1h4v.s7.ae587b432db8 from=translated src=- shape=fb364ace vocab=b2e701d7
+-/
 theorem quotientLift_comp_projection {G N : Type*} [Group G] [Group N]
     (H : Subgroup G) [H.Normal] (f : G →* N) (hker : H ≤ f.ker) :
     (quotientLift H f hker).comp (QuotientGroup.mk' H) = f := by
@@ -666,7 +814,9 @@ theorem quotientLift_comp_projection {G N : Type*} [Group G] [Group N]
 
 /-- **商群泛性质的唯一性部分**：任何与商投影复合后等于 f 的同态，都等于规范下降
 `quotientLift H f hker`。证明利用商投影满射，把商群元素取成某个代表元的像。
-> **Entry**: abstract-algebra.group.normal-/
+> **Entry**: abstract-algebra.group.normal
+@isnad1 id=eq.2h5v.s8.a2079dcaca58 from=translated src=- shape=6ad357f1 vocab=b2e701d7
+-/
 theorem quotientLift_unique {G N : Type*} [Group G] [Group N]
     (H : Subgroup G) [H.Normal] (f : G →* N) (hker : H ≤ f.ker)
     (q : G ⧸ H →* N) (hq : q.comp (QuotientGroup.mk' H) = f) :
@@ -680,74 +830,98 @@ theorem quotientLift_unique {G N : Type*} [Group G] [Group N]
 
 /-- **指数 2 子群必正规**：若 H 在 G 中的指数 [G:H] = 2（恰有两个陪集），则 H 是正规子群。
   教材经典定理：指数最小的非平凡子群必正规。 
-> **Entry**: abstract-algebra.group.index-two-/
+> **Entry**: abstract-algebra.group.index-two
+@isnad1 id=normal.1h2v.s4.8764d0a5409d from=translated src=- shape=280f4ce5 vocab=1ee12fd6
+-/
 theorem normal_of_index_two {G : Type*} [Group G] (H : Subgroup G) (hH : H.index = 2) :
     H.Normal := by
   exact Subgroup.normal_of_index_eq_two hH
 
 /-- **同态核元素刻画**：x 在核中 ⟺ f(x) = 1（核 = 映到单位元的元素集）。 
-> **Entry**: abstract-algebra.group.hom-/
+> **Entry**: abstract-algebra.group.hom
+@isnad1 id=iff.0h4v.s6.46af5c278e18 from=translated src=- shape=09d48707 vocab=1d678faf
+-/
 theorem hom_mem_ker {G M : Type*} [Group G] [MulOneClass M] (f : G →* M) (x : G) :
     x ∈ f.ker ↔ f x = 1 := by
   exact MonoidHom.mem_ker (f := f)
 
 /-- 恒等同态在每个元素上的值就是该元素本身。
-> **Entry**: abstract-algebra.group.hom-/
+> **Entry**: abstract-algebra.group.hom
+@isnad1 id=eq.0h2v.s6.53c68bcb4c2d from=translated src=- shape=1233aa71 vocab=961e3b4b
+-/
 theorem hom_id_apply {G : Type*} [Group G] (x : G) :
     MonoidHom.id G x = x := by rfl
 
 /-- 复合同态逐点满足 `(g ∘ f)(x)=g(f(x))`。
-> **Entry**: abstract-algebra.group.hom-/
+> **Entry**: abstract-algebra.group.hom
+@isnad1 id=eq.0h6v.s7.e94913a146ba from=translated src=- shape=80d14110 vocab=73ce4beb
+-/
 theorem hom_comp_apply {G N P : Type*} [Group G] [Group N] [Group P]
     (g : N →* P) (f : G →* N) (x : G) :
     g.comp f x = g (f x) := by rfl
 
 /-- 子群逆像的元素刻画：`x ∈ f⁻¹(H)` 当且仅当 `f(x) ∈ H`。
-> **Entry**: abstract-algebra.group.hom-/
+> **Entry**: abstract-algebra.group.hom
+@isnad1 id=iff.0h5v.s6.f69be02ae3df from=translated src=- shape=5d84066b vocab=8bbc4408
+-/
 theorem hom_mem_comap {G N : Type*} [Group G] [Group N]
     (f : G →* N) (H : Subgroup N) (x : G) :
     x ∈ Subgroup.comap f H ↔ f x ∈ H := by rfl
 
 /-- 子群像的元素刻画：`y ∈ f(H)` 当且仅当存在 `x ∈ H` 使 `f(x)=y`。
-> **Entry**: abstract-algebra.group.hom-/
+> **Entry**: abstract-algebra.group.hom
+@isnad1 id=iff.0h5v.s7.66d908ffca8b from=translated src=- shape=17c11200 vocab=cc46abce
+-/
 theorem hom_mem_map {G N : Type*} [Group G] [Group N]
     (f : G →* N) (H : Subgroup G) (y : N) :
     y ∈ Subgroup.map f H ↔ ∃ x, x ∈ H ∧ f x = y := by
   rfl
 
 /-- 复合同态的核是后一同态之核沿前一同态的逆像。
-> **Entry**: abstract-algebra.group.hom-/
+> **Entry**: abstract-algebra.group.hom
+@isnad1 id=eq.0h5v.s6.0636da054c7d from=translated src=- shape=b96709fa vocab=47be687f
+-/
 theorem hom_ker_comp {G N P : Type*} [Group G] [Group N] [Group P]
     (g : N →* P) (f : G →* N) :
     (g.comp f).ker = Subgroup.comap f g.ker := by
   rfl
 
 /-- 复合同态的像是前一同态像在后一同态下的像。
-> **Entry**: abstract-algebra.group.hom-/
+> **Entry**: abstract-algebra.group.hom
+@isnad1 id=eq.0h5v.s6.970001b81157 from=translated src=- shape=1e79b5ad vocab=5153211f
+-/
 theorem hom_range_comp {G N P : Type*} [Group G] [Group N] [Group P]
     (g : N →* P) (f : G →* N) :
     (g.comp f).range = Subgroup.map g f.range := by
   exact MonoidHom.range_comp g f
 
 /-- **同态值域元素刻画**：y 在值域中 ⟺ 存在 x 使 f(x) = y。 
-> **Entry**: abstract-algebra.group.hom-/
+> **Entry**: abstract-algebra.group.hom
+@isnad1 id=iff.0h4v.s6.7820d9202706 from=translated src=- shape=08667cdb vocab=16a03966
+-/
 theorem hom_mem_range {G N : Type*} [Group G] [Group N] (f : G →* N) (y : N) :
     y ∈ f.range ↔ ∃ x : G, f x = y := by
   exact MonoidHom.mem_range (f := f)
 
 /-- **同态保单位元**：f(1) = 1。 
-> **Entry**: abstract-algebra.group.hom-/
+> **Entry**: abstract-algebra.group.hom
+@isnad1 id=eq.0h3v.s6.c19057043da3 from=translated src=- shape=602c6a13 vocab=cbc599dc
+-/
 theorem hom_map_one {G M : Type*} [Group G] [Group M] (f : G →* M) : f 1 = 1 := by
   exact f.map_one
 
 /-- **同态保乘法**：f(a·b) = f(a)·f(b)。 
-> **Entry**: abstract-algebra.group.hom-/
+> **Entry**: abstract-algebra.group.hom
+@isnad1 id=eq.0h5v.s7.2997631d83c7 from=translated src=- shape=b19c81f2 vocab=83e74ce3
+-/
 theorem hom_map_mul {G M : Type*} [Group G] [Monoid M] (f : G →* M) (a b : G) :
     f (a * b) = f a * f b := by
   exact f.map_mul a b
 
 /-- **同态保逆**：f(a⁻¹) = (f a)⁻¹。 
-> **Entry**: abstract-algebra.group.hom-/
+> **Entry**: abstract-algebra.group.hom
+@isnad1 id=eq.0h4v.s7.b8d69d04e91e from=translated src=- shape=603bf7ae vocab=ac65afea
+-/
 theorem hom_map_inv {G N : Type*} [Group G] [Group N] (f : G →* N) (a : G) :
     f a⁻¹ = (f a)⁻¹ := by
   -- f a⁻¹ · f a = f(a⁻¹·a) = f 1 = 1，故 f a⁻¹ = (f a)⁻¹
@@ -758,13 +932,17 @@ theorem hom_map_inv {G N : Type*} [Group G] [Group N] (f : G →* N) (a : G) :
     _ = 1 := by rw [f.map_one]
 
 /-- **单射 ⟺ 核平凡**：群同态 f 是单射当且仅当其核只含单位元。 
-> **Entry**: abstract-algebra.group.hom-/
+> **Entry**: abstract-algebra.group.hom
+@isnad1 id=iff.0h3v.s6.d7f658d6d8bc from=translated src=- shape=15c111fa vocab=1c331e36
+-/
 theorem hom_injective_iff_ker_bot {G M : Type*} [Group G] [MulOneClass M] (f : G →* M) :
     f.ker = ⊥ ↔ Function.Injective f := by
   exact MonoidHom.ker_eq_bot_iff f
 
 /-- **满射 ⟺ 值域为全群**：群同态 f 是满射当且仅当其值域是整个 N。 
-> **Entry**: abstract-algebra.group.hom-/
+> **Entry**: abstract-algebra.group.hom
+@isnad1 id=iff.0h3v.s6.16852340ea73 from=translated src=- shape=a265ac6f vocab=4e6aa442
+-/
 theorem hom_surjective_iff_range_top {G N : Type*} [Group G] [Group N] (f : G →* N) :
     f.range = ⊤ ↔ Function.Surjective f := by
   exact MonoidHom.range_eq_top (f := f)
@@ -783,7 +961,9 @@ noncomputable def firstIsomorphism {G N : Type*} [Group G] [Group N]
   QuotientGroup.quotientKerEquivRange f
 
 /-- 第一同构定理的规范同构把 `x ker(f)` 送到值域中的 `f(x)`。
-> **Entry**: abstract-algebra.group.hom-/
+> **Entry**: abstract-algebra.group.hom
+@isnad1 id=eq.0h4v.s10.36f92fb9dccf from=translated src=- shape=24ba16a9 vocab=d915650e
+-/
 theorem firstIsomorphism_apply_mk {G N : Type*} [Group G] [Group N]
     (f : G →* N) (x : G) :
     firstIsomorphism f (QuotientGroup.mk' f.ker x) =
@@ -792,20 +972,26 @@ theorem firstIsomorphism_apply_mk {G N : Type*} [Group G] [Group N]
 
 /-- **同态基本定理（第一同构定理）**：G/ker(f) ≅ im(f)。
   商群 G/ker f 与 f 的值域同构。 
-> **Entry**: abstract-algebra.group.hom-/
+> **Entry**: abstract-algebra.group.hom
+@isnad1 id=nonempty.0h3v.s7.e31e343753df from=translated src=- shape=6fa1c248 vocab=f0f0be51
+-/
 theorem first_isomorphism_theorem {G N : Type*} [Group G] [Group N] (f : G →* N) :
     Nonempty (G ⧸ f.ker ≃* f.range) := by
   exact ⟨firstIsomorphism f⟩
 
 /-- 群同构保持元素阶。
-> **Entry**: abstract-algebra.group.hom-/
+> **Entry**: abstract-algebra.group.hom
+@isnad1 id=eq.0h4v.s7.2542bb39ce56 from=translated src=- shape=0f94ccfc vocab=6b1c433c
+-/
 theorem mulEquiv_preserves_order {G N : Type*} [Group G] [Group N]
     (e : G ≃* N) (x : G) :
     orderOf (e x) = orderOf x := by
   exact e.orderOf_eq x
 
 /-- 群同构保持群的基数。
-> **Entry**: abstract-algebra.group.hom-/
+> **Entry**: abstract-algebra.group.hom
+@isnad1 id=eq.0h3v.s5.2b3594012cbd from=translated src=- shape=ba7140be vocab=961d2660
+-/
 theorem mulEquiv_preserves_card {G N : Type*} [Group G] [Group N]
     (e : G ≃* N) : Nat.card G = Nat.card N := by
   exact Nat.card_congr e.toEquiv

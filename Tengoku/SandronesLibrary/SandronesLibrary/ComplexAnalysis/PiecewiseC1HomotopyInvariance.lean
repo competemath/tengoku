@@ -26,7 +26,9 @@ namespace SandronesLibrary.ComplexAnalysis
 open SandronesLibrary.Topology
 
 /-- Final endpoint for the local-primitive square-grid route: a holomorphic
-integrand has equal integrals on relatively homotopic piecewise-C1 paths.-/
+integrand has equal integrals on relatively homotopic piecewise-C1 paths.
+@isnad1 id=eq.5h7v.s8.4a471b09cf5e from=translated src=- shape=42bcd10b vocab=bfaa6b22
+-/
 theorem pathIntegral_eq_of_piecewiseC1_homotopyWithin
     {U : Set ℂ} {f : ℂ → ℂ} {a b : ℂ} {gamma delta : Path a b}
     (hU : IsOpen U) (hf : HolomorphicOnTextbook f U)
@@ -214,7 +216,9 @@ theorem pathIntegral_eq_of_piecewiseC1_homotopyWithin
     exact houter
 
 /-- A piecewise-C1 loop that is continuously null-homotopic inside the
-holomorphy domain has zero integral.-/
+holomorphy domain has zero integral.
+@isnad1 id=eq.4h5v.s8.70fc587b3f53 from=translated src=- shape=32e345c2 vocab=b4a443aa
+-/
 theorem pathIntegral_eq_zero_of_piecewiseC1_nullHomotopyWithin
     {U : Set ℂ} {f : ℂ → ℂ} {a : ℂ} {gamma : Path a a}
     (hU : IsOpen U) (hf : HolomorphicOnTextbook f U)

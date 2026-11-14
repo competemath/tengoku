@@ -28,7 +28,9 @@ open scoped Interval Topology
 
 /-- **微积分基本定理（第二形式，FTC-2）**：f 在 [a,b] 上可导且 f' 可积，则
   ∫ₐᵇ f'(x) dx = f(b) - f(a)。 
-> **Entry**: real-analysis.calculus.ftc-/
+> **Entry**: real-analysis.calculus.ftc
+@isnad1 id=eq.2h4v.s6.7b03baff37c1 from=translated src=- shape=55642d3a vocab=8dc551e1
+-/
 theorem ftc_2 {a b : ℝ} {f : ℝ → ℝ} {f' : ℝ → ℝ}
     (hderiv : ∀ x ∈ [[a, b]], HasDerivAt f (f' x) x)
     (hint : IntervalIntegrable f' volume a b) :
@@ -37,7 +39,9 @@ theorem ftc_2 {a b : ℝ} {f : ℝ → ℝ} {f' : ℝ → ℝ}
 
 /-- **微积分基本定理（第一形式，FTC-1）**：f 在 [a,b] 上可积且在 b 连续，
   则变上限积分 u ↦ ∫ₐᵘ f 在 b 可导，导数 = f(b)。 
-> **Entry**: real-analysis.calculus.ftc-differentiate-/
+> **Entry**: real-analysis.calculus.ftc-differentiate
+@isnad1 id=hasstric.3h3v.s6.0bf25989553c from=translated src=- shape=75f79f34 vocab=84d28cd2
+-/
 theorem ftc_1_right {a b : ℝ} {f : ℝ → ℝ} (hf : IntervalIntegrable f volume a b)
     (hmeas : StronglyMeasurableAtFilter f (𝓝 b)) (hb : ContinuousAt f b) :
     HasStrictDerivAt (fun u : ℝ => ∫ x in a..u, f x) (f b) b := by

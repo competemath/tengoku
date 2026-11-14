@@ -44,13 +44,17 @@ open scoped Real Topology
 variable {Ω : Type*} {mΩ : MeasurableSpace Ω} {P : Measure Ω}
   {X : ℕ → Ω → ℝ}
 
-/-- 逐项中心化再除以常数保持独立同分布：`Yₖ = (Xₖ - μ)/σ` 仍 `iIndepFun`。-/
+/-- 逐项中心化再除以常数保持独立同分布：`Yₖ = (Xₖ - μ)/σ` 仍 `iIndepFun`。
+@isnad1 id=iindepfu.1h6v.s6.28bae1693171 from=translated src=- shape=4f39d8e6 vocab=f8f38975
+-/
 theorem iIndepFun_centeredScaled (hindep : iIndepFun X P) (μ σ : ℝ) :
     iIndepFun (fun k ω ↦ (X k ω - μ) / σ) P :=
   hindep.comp (fun _ x ↦ (x - μ) / σ) (fun _ ↦ by fun_prop)
 
 /-- 逐项中心化再除以常数保持同分布：`IdentDistrib (X i) (X 0)` 传递到
-`IdentDistrib ((X i - μ)/σ) ((X 0 - μ)/σ)`。-/
+`IdentDistrib ((X i - μ)/σ) ((X 0 - μ)/σ)`。
+@isnad1 id=identdis.1h7v.s6.683542501a9c from=translated src=- shape=f4245044 vocab=e8695d4e
+-/
 theorem identDistrib_centeredScaled
     (hident : ∀ i, IdentDistrib (X i) (X 0) P P) (μ σ : ℝ) :
     ∀ i, IdentDistrib (fun ω ↦ (X i ω - μ) / σ)
@@ -59,7 +63,9 @@ theorem identDistrib_centeredScaled
 
 variable [IsProbabilityMeasure P]
 
-/-- 标准化的均值条件：`P[X₀] = μ` 时 `P[(X₀ - μ)/σ] = 0`（要求 `X₀` 可积）。-/
+/-- 标准化的均值条件：`P[X₀] = μ` 时 `P[(X₀ - μ)/σ] = 0`（要求 `X₀` 可积）。
+@isnad1 id=eq.2h6v.s7.0f032048bba5 from=translated src=- shape=8576c228 vocab=19c15df1
+-/
 theorem integral_centeredScaled_eq_zero
     (hint : Integrable (X 0) P) (hmean : P[X 0] = μ) :
     P[fun ω ↦ (X 0 ω - μ) / σ] = 0 := by
@@ -67,7 +73,9 @@ theorem integral_centeredScaled_eq_zero
   simp
 
 omit [IsProbabilityMeasure P] in
-/-- 标准化的二阶矩条件：二阶中心矩为 `σ²` 时 `P[((X₀ - μ)/σ)²] = 1`（要求 `σ ≠ 0`）。-/
+/-- 标准化的二阶矩条件：二阶中心矩为 `σ²` 时 `P[((X₀ - μ)/σ)²] = 1`（要求 `σ ≠ 0`）。
+@isnad1 id=eq.2h6v.s7.0edd85be1c40 from=translated src=- shape=aa255e9f vocab=5fc704bf
+-/
 theorem integral_sq_centeredScaled_eq_one
     (hvar : P[fun ω ↦ (X 0 ω - μ) ^ 2] = σ ^ 2) (hσ : σ ≠ 0) :
     P[fun ω ↦ ((X 0 ω - μ) / σ) ^ 2] = 1 := by
@@ -84,7 +92,9 @@ noncomputable def centeredScaledSumLaw (X : ℕ → Ω → ℝ) (hX : ∀ i, AEM
     Measure.isProbabilityMeasure_map
       ((Finset.aemeasurable_fun_sum _ fun i _ ↦ (hX i).sub_const μ).const_mul (σ * √n)⁻¹)⟩
 
-/-- 标准化序列的归一化和律与中心化缩放和律是同一个推前测度，逐点由域的乘法结合律给出。-/
+/-- 标准化序列的归一化和律与中心化缩放和律是同一个推前测度，逐点由域的乘法结合律给出。
+@isnad1 id=eq.1h7v.s6.16e78d834380 from=translated src=- shape=3afffd39 vocab=7b02fd2c
+-/
 theorem centeredScaledSumLaw_eq_normalizedSumLaw
     (hident : ∀ i, IdentDistrib (X i) (X 0) P P) (μ σ : ℝ) (n : ℕ) :
     normalizedSumLaw (fun k ω ↦ (X k ω - μ) / σ)
@@ -101,7 +111,9 @@ theorem centeredScaledSumLaw_eq_normalizedSumLaw
 `P[X₀] = μ`、`Var[X₀] = σ²` 且 `σ > 0`，则中心化并按 `σ √n` 缩放的 `n` 项和的分布弱收敛到
 标准正态 `gaussianReal 0 1`。
 
-证明把 `Yₖ = (Xₖ - μ)/σ` 代入已验收的标准化核心；不调用 Mathlib 最终 CLT。-/
+证明把 `Yₖ = (Xₖ - μ)/σ` 代入已验收的标准化核心；不调用 Mathlib 最终 CLT。
+@isnad1 id=tendsto.6h6v.s8.367710fe8473 from=translated src=- shape=506c4d9a vocab=5fed4aa3
+-/
 theorem iid_centeredScaled_clt
     (hindep : iIndepFun X P)
     (hident : ∀ i, IdentDistrib (X i) (X 0) P P)
@@ -123,7 +135,9 @@ theorem iid_centeredScaled_clt
     centeredScaledSumLaw_eq_normalizedSumLaw hident μ σ n)
 
 /-- **一般 iid 中心极限定理的随机变量层消费者**。在上一段弱收敛之外，若 `Z` 的分布是标准正态，
-则中心化缩放和依分布收敛到 `Z`（`TendstoInDistribution`）。-/
+则中心化缩放和依分布收敛到 `Z`（`TendstoInDistribution`）。
+@isnad1 id=tendstoi.8h10v.s8.dac387be0776 from=translated src=- shape=aab27284 vocab=b813dc14
+-/
 theorem iid_centeredScaled_clt_tendstoInDistribution
     {Ω' : Type*} {mΩ' : MeasurableSpace Ω'} {P' : Measure Ω'} [IsProbabilityMeasure P']
     {Z : Ω' → ℝ} (hZ : AEMeasurable Z P') (hZlaw : P'.map Z = gaussianReal 0 1)
@@ -145,7 +159,9 @@ theorem iid_centeredScaled_clt_tendstoInDistribution
 
 /-- **退化方差边界**。若 `X₀ ∈ L²`、`P[X₀] = μ` 且 `Var[X₀] = 0`，则 `X₀` 几乎必然等于 `μ`；
 同分布把这一点传给每一项，于是中心化归一化和几乎必然为零，其分布恒为 `gaussianReal 0 0`
-（即 `dirac 0`）。-/
+（即 `dirac 0`）。
+@isnad1 id=tendsto.4h5v.s8.ef548deea06a from=translated src=- shape=33db3111 vocab=a9c0b1c7
+-/
 theorem degenerateVariance_centeredSum_tendsto
     (hident : ∀ i, IdentDistrib (X i) (X 0) P P)
     (hXmem : MemLp (X 0) 2 P) (hmean : P[X 0] = μ)

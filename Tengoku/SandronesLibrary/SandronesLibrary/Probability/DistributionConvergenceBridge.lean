@@ -45,7 +45,9 @@ noncomputable def lawProbabilityMeasure (Y : Ω → ℝ) (hY : AEMeasurable Y P)
 `Z` 的分布恰为标准正态，则 `Y` 依分布收敛到 `Z`。
 
 这是 `TendstoInDistribution` 的构造形式：`tendsto` 字段只要求推前测度的弱收敛。把 `Z` 的
-分布改写为 `gaussianReal 0 1` 后，假设 `h` 就是所需的弱收敛证明。-/
+分布改写为 `gaussianReal 0 1` 后，假设 `h` 就是所需的弱收敛证明。
+@isnad1 id=tendstoi.4h8v.s7.4f1ed16cf134 from=translated src=- shape=cede7f7c vocab=e81fcebf
+-/
 theorem tendstoInDistribution_of_tendsto_law_gaussian
     {Ω' : Type*} {mΩ' : MeasurableSpace Ω'} {P' : Measure Ω'} [IsProbabilityMeasure P']
     {Y : ℕ → Ω → ℝ} {Z : Ω' → ℝ}

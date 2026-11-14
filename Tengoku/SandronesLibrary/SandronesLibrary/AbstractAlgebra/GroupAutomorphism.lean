@@ -29,17 +29,23 @@ abbrev AutomorphismGroup (G : Type*) [Group G] := MulAut G
 def identityAutomorphism {G : Type*} [Group G] : AutomorphismGroup G := 1
 
 /-- 恒等自同构逐点固定 `G` 中的元素。
-> **Entry**: abstract-algebra.group.automorphism-/
+> **Entry**: abstract-algebra.group.automorphism
+@isnad1 id=eq.0h2v.s6.79b4121dbfe8 from=translated src=- shape=1233aa71 vocab=8f675e45
+-/
 theorem identityAutomorphism_apply {G : Type*} [Group G] (x : G) :
     identityAutomorphism x = x := rfl
 
 /-- `Aut(G)` 的乘法是函数复合：`(σ τ)(x)=σ(τ(x))`。
-> **Entry**: abstract-algebra.group.automorphism-/
+> **Entry**: abstract-algebra.group.automorphism
+@isnad1 id=eq.0h4v.s8.54a99c4865d0 from=translated src=- shape=5da52639 vocab=8c57acc8
+-/
 theorem automorphism_comp_apply {G : Type*} [Group G]
     (σ τ : AutomorphismGroup G) (x : G) : (σ * τ) x = σ (τ x) := rfl
 
 /-- 自同构的逆元是其逆函数，故 `σ⁻¹(σ(x))=x`。
-> **Entry**: abstract-algebra.group.automorphism-/
+> **Entry**: abstract-algebra.group.automorphism
+@isnad1 id=eq.0h3v.s7.b51ef51e19a7 from=translated src=- shape=8f779e83 vocab=9fa80c0e
+-/
 theorem automorphism_inv_apply_apply {G : Type*} [Group G]
     (σ : AutomorphismGroup G) (x : G) : σ⁻¹ (σ x) = x := by
   exact MulAut.inv_apply_self G σ x
@@ -51,7 +57,9 @@ def innerAutomorphismHom (G : Type*) [Group G] : G →* AutomorphismGroup G :=
   MulAut.conj
 
 /-- 内自同构的逐点计算公式。
-> **Entry**: abstract-algebra.group.automorphism-/
+> **Entry**: abstract-algebra.group.automorphism
+@isnad1 id=eq.0h3v.s7.d81909b6ef61 from=translated src=- shape=d77f0bce vocab=936a6fb7
+-/
 theorem innerAutomorphismHom_apply {G : Type*} [Group G] (g x : G) :
     innerAutomorphismHom G g x = g * x * g⁻¹ := rfl
 
@@ -62,7 +70,9 @@ def innerAutomorphismGroup (G : Type*) [Group G] : Subgroup (AutomorphismGroup G
   (innerAutomorphismHom G).range
 
 /-- 共轭同态的核恰为群的中心：`conj(g)` 是恒等映射，当且仅当 `g` 与所有元素交换。
-> **Entry**: abstract-algebra.group.automorphism-/
+> **Entry**: abstract-algebra.group.automorphism
+@isnad1 id=eq.0h1v.s5.8fa614e95a9f from=translated src=- shape=75af4a2c vocab=78744146
+-/
 theorem innerAutomorphismHom_ker {G : Type*} [Group G] :
     (innerAutomorphismHom G).ker = Subgroup.center G := by
   ext g

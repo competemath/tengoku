@@ -31,18 +31,24 @@ spaces is continuous.
 
 The forward map is given as an algebraic `LinearEquiv`; continuity upgrades both directions.
 
-> **Entry**: functional-analysis.inverse-operator-/
+> **Entry**: functional-analysis.inverse-operator
+@isnad1 id=continuo.1h3v.s8.04a329f46fbc from=translated src=- shape=1586fcca vocab=e85d8fd2
+-/
 theorem linearEquiv_inverse_continuous (e : E ≃ₗ[ℝ] F) (he : Continuous e) :
     Continuous e.symm := by
   exact e.continuous_symm he
 
 /-- A continuous algebraic linear equivalence between Banach spaces canonically upgrades to a
-continuous linear equivalence with the same forward map.-/
+continuous linear equivalence with the same forward map.
+@isnad1 id=ex.1h3v.s9.db6b1a487dfe from=translated src=- shape=30138623 vocab=30be09aa
+-/
 theorem linearEquiv_upgrades_to_continuousLinearEquiv (e : E ≃ₗ[ℝ] F) (he : Continuous e) :
     ∃ eL : E ≃L[ℝ] F, ∀ x : E, eL x = e x := by
   exact ⟨e.toContinuousLinearEquivOfContinuous he, fun _ ↦ rfl⟩
 
-/-- Quantitative bounded-inverse form: the inverse satisfies a global norm estimate.-/
+/-- Quantitative bounded-inverse form: the inverse satisfies a global norm estimate.
+@isnad1 id=ex.1h3v.s8.1d3c70a119a1 from=translated src=- shape=c260b14c vocab=d292acc5
+-/
 theorem linearEquiv_inverse_exists_norm_bound (e : E ≃ₗ[ℝ] F) (he : Continuous e) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ y : F, ‖e.symm y‖ ≤ C * ‖y‖ := by
   let eL : E ≃L[ℝ] F := e.toContinuousLinearEquivOfContinuous he

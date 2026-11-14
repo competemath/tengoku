@@ -46,92 +46,122 @@ def ContinuousOnTextbook (f : ℝ → ℝ) (s : Set ℝ) : Prop :=
 def UniformContinuousOnTextbook (f : ℝ → ℝ) (s : Set ℝ) : Prop :=
   ∀ ε > 0, ∃ δ > 0, ∀ x ∈ s, ∀ y ∈ s, |x - y| < δ → |f x - f y| < ε
 
-/-- 本库点连续定义与 Mathlib 的 `ContinuousAt` 完全等价。-/
+/-- 本库点连续定义与 Mathlib 的 `ContinuousAt` 完全等价。
+@isnad1 id=iff.0h2v.s4.4aa2bfbbadf2 from=translated src=- shape=2e5b2db7 vocab=bdb5828b
+-/
 theorem continuousAtTextbook_iff_continuousAt {f : ℝ → ℝ} {a : ℝ} :
     ContinuousAtTextbook f a ↔ ContinuousAt f a := by
   simpa [ContinuousAtTextbook, Real.dist_eq] using
     (Metric.continuousAt_iff (f := f) (a := a)).symm
 
-/-- 本库集合上逐点连续定义与 Mathlib 的 `ContinuousOn` 完全等价。-/
+/-- 本库集合上逐点连续定义与 Mathlib 的 `ContinuousOn` 完全等价。
+@isnad1 id=iff.0h2v.s4.61585b9ad14c from=translated src=- shape=ace22b9e vocab=15679c81
+-/
 theorem continuousOnTextbook_iff_continuousOn {f : ℝ → ℝ} {s : Set ℝ} :
     ContinuousOnTextbook f s ↔ ContinuousOn f s := by
   simpa [ContinuousOnTextbook, Real.dist_eq] using
     (Metric.continuousOn_iff (f := f) (s := s)).symm
 
-/-- 本库集合上一致连续定义与 Mathlib 的 `UniformContinuousOn` 完全等价。-/
+/-- 本库集合上一致连续定义与 Mathlib 的 `UniformContinuousOn` 完全等价。
+@isnad1 id=iff.0h2v.s4.22f88e6d8ef7 from=translated src=- shape=ace22b9e vocab=45f337e0
+-/
 theorem uniformContinuousOnTextbook_iff_uniformContinuousOn {f : ℝ → ℝ} {s : Set ℝ} :
     UniformContinuousOnTextbook f s ↔ UniformContinuousOn f s := by
   simpa [UniformContinuousOnTextbook, Real.dist_eq] using
     (Metric.uniformContinuousOn_iff (f := f) (s := s)).symm
 
-/-- 常函数在每一点满足教材连续定义。-/
+/-- 常函数在每一点满足教材连续定义。
+@isnad1 id=continuo.0h2v.s3.99776ccb68c9 from=translated src=- shape=0cede64c vocab=4e338c41
+-/
 theorem continuousAtTextbook_const (c a : ℝ) :
     ContinuousAtTextbook (fun _ : ℝ => c) a := by
   exact continuousAtTextbook_iff_continuousAt.mpr continuousAt_const
 
-/-- 每点全邻域教材连续推出集合上的教材连续。-/
+/-- 每点全邻域教材连续推出集合上的教材连续。
+@isnad1 id=continuo.1h2v.s4.5ceb7bb21612 from=translated src=- shape=3e0f3618 vocab=247bb42d
+-/
 theorem continuousOnTextbook_of_forall_continuousAtTextbook {f : ℝ → ℝ} {s : Set ℝ}
     (h : ∀ x ∈ s, ContinuousAtTextbook f x) : ContinuousOnTextbook f s := by
   apply continuousOnTextbook_iff_continuousOn.mpr
   intro x hx
   exact (continuousAtTextbook_iff_continuousAt.mp (h x hx)).continuousWithinAt
 
-/-- 教材一致连续定义推出集合上的教材逐点连续。-/
+/-- 教材一致连续定义推出集合上的教材逐点连续。
+@isnad1 id=continuo.1h2v.s3.90cbade3ebfc from=translated src=- shape=6c3d5413 vocab=fb75bc52
+-/
 theorem continuousOnTextbook_of_uniformContinuousOnTextbook {f : ℝ → ℝ} {s : Set ℝ}
     (h : UniformContinuousOnTextbook f s) : ContinuousOnTextbook f s := by
   exact continuousOnTextbook_iff_continuousOn.mpr
     (uniformContinuousOnTextbook_iff_uniformContinuousOn.mp h).continuousOn
 
 /-- 常函数连续。 
-> **Entry**: analysis.continuity.const-/
+> **Entry**: analysis.continuity.const
+@isnad1 id=continuo.0h1v.s4.a4cb0c0e9e18 from=translated src=- shape=cb6dd7df vocab=94fb4e4c
+-/
 lemma continuous_const_real (c : ℝ) : Continuous fun _ : ℝ => c :=
   continuous_const
 
 /-- 恒等函数连续。 
-> **Entry**: analysis.continuity.identity-/
+> **Entry**: analysis.continuity.identity
+@isnad1 id=continuo.0h0v.s3.d29116529a6e from=translated src=- shape=651f2a5f vocab=c68423fd
+-/
 lemma continuous_id_real : Continuous (id : ℝ → ℝ) :=
   continuous_id
 
 /-- 连续函数之和连续。 
-> **Entry**: analysis.continuity.add-/
+> **Entry**: analysis.continuity.add
+@isnad1 id=continuo.2h2v.s6.41564f853b31 from=translated src=- shape=714a14f8 vocab=d24a345a
+-/
 lemma continuous_add {f g : ℝ → ℝ} (hf : Continuous f) (hg : Continuous g) :
     Continuous (fun x => f x + g x) :=
   hf.add hg
 
 /-- 连续函数之积连续。 
-> **Entry**: analysis.continuity.mul-/
+> **Entry**: analysis.continuity.mul
+@isnad1 id=continuo.2h2v.s6.1792dd0f8b0c from=translated src=- shape=714a14f8 vocab=f9ae4f76
+-/
 lemma continuous_mul {f g : ℝ → ℝ} (hf : Continuous f) (hg : Continuous g) :
     Continuous (fun x => f x * g x) :=
   hf.mul hg
 
 /-- 连续函数之商连续（分母处处非零）。 
-> **Entry**: analysis.continuity.div-/
+> **Entry**: analysis.continuity.div
+@isnad1 id=continuo.3h2v.s6.33da815fbf92 from=translated src=- shape=7f214b04 vocab=d4d2f7e5
+-/
 lemma continuous_div {f g : ℝ → ℝ} (hf : Continuous f) (hg : Continuous g)
     (h0 : ∀ x, g x ≠ 0) : Continuous (fun x => f x / g x) :=
   hf.div hg h0
 
 /-- 复合连续：连续函数复合仍连续。 
-> **Entry**: analysis.continuity.comp-/
+> **Entry**: analysis.continuity.comp
+@isnad1 id=continuo.2h2v.s5.28ce1e537f89 from=translated src=- shape=6f0b350a vocab=94fb4e4c
+-/
 lemma continuous_comp {f : ℝ → ℝ} {g : ℝ → ℝ} (hg : Continuous g) (hf : Continuous f) :
     Continuous (fun x => g (f x)) :=
   hg.comp hf
 
 /-- 点连续的复合。 
-> **Entry**: analysis.continuity.comp-/
+> **Entry**: analysis.continuity.comp
+@isnad1 id=continuo.2h3v.s6.fbe73b6ada7d from=translated src=- shape=6b622afd vocab=5877e0e3
+-/
 lemma continuousAt_comp {f : ℝ → ℝ} {g : ℝ → ℝ} {x : ℝ}
     (hg : ContinuousAt g (f x)) (hf : ContinuousAt f x) :
     ContinuousAt (fun y => g (f y)) x :=
   hg.comp hf
 
 /-- 连续函数在某区间上的限制连续。 
-> **Entry**: analysis.continuity.intermediate-value-/
+> **Entry**: analysis.continuity.intermediate-value
+@isnad1 id=continuo.1h3v.s5.d1cc571f274a from=translated src=- shape=b9fd552b vocab=00c51f55
+-/
 lemma continuousOn_Icc {f : ℝ → ℝ} (hf : Continuous f) {a b : ℝ} :
     ContinuousOn f (Set.Icc a b) :=
   hf.continuousOn
 
 /-- 介值定理：闭区间上连续函数 f 在端点值之间取遍所有中间值。
   即 f(a) ≤ y ≤ f(b)（或反向）时，存在 x ∈ [a,b] 使 f x = y。 
-> **Entry**: analysis.continuity.intermediate-value-/
+> **Entry**: analysis.continuity.intermediate-value
+@isnad1 id=ex.3h4v.s6.406bb1eeac5d from=translated src=- shape=6a50c784 vocab=0819db9d
+-/
 theorem intermediate_value {f : ℝ → ℝ} {a b : ℝ} (hab : a ≤ b)
     (hf : ContinuousOn f (Set.Icc a b)) {y : ℝ} (h : y ∈ Set.Icc (f a) (f b)) :
     ∃ x ∈ Set.Icc a b, f x = y := by
@@ -143,7 +173,9 @@ theorem intermediate_value {f : ℝ → ℝ} {a b : ℝ} (hab : a ≤ b)
 /-- 最值定理（最大值）：闭区间上连续函数必取到最大值。
   证明：把 f 限制到紧集 Icc a b，其值域也是紧集（连续像紧），
   紧集含上确界，故存在 x 使 f x 为最大。 
-> **Entry**: analysis.continuity.max-min-/
+> **Entry**: analysis.continuity.max-min
+@isnad1 id=ex.2h3v.s6.b20df93580b1 from=translated src=- shape=105c2435 vocab=0819db9d
+-/
 theorem exists_isGreatest_on_Icc {f : ℝ → ℝ} {a b : ℝ} (hab : a ≤ b)
     (hf : ContinuousOn f (Set.Icc a b)) :
     ∃ x ∈ Set.Icc a b, ∀ y ∈ Set.Icc a b, f y ≤ f x := by
@@ -161,7 +193,9 @@ theorem exists_isGreatest_on_Icc {f : ℝ → ℝ} {a b : ℝ} (hab : a ≤ b)
   exact hM.2 hyin
 
 /-- 最值定理（最小值）：闭区间上连续函数必取到最小值。 
-> **Entry**: analysis.continuity.max-min-/
+> **Entry**: analysis.continuity.max-min
+@isnad1 id=ex.2h3v.s6.adddcb32b3b3 from=translated src=- shape=12530276 vocab=0819db9d
+-/
 theorem exists_isLeast_on_Icc {f : ℝ → ℝ} {a b : ℝ} (hab : a ≤ b)
     (hf : ContinuousOn f (Set.Icc a b)) :
     ∃ x ∈ Set.Icc a b, ∀ y ∈ Set.Icc a b, f x ≤ f y := by
@@ -180,7 +214,9 @@ theorem exists_isLeast_on_Icc {f : ℝ → ℝ} {a b : ℝ} (hab : a ≤ b)
 
 /-- 一致连续：存在与点无关的 δ（ε-δ 判据）。
   `Metric.uniformContinuous_iff` 把 `UniformContinuous` 展开成教材的 ε-δ 形式。 
-> **Entry**: analysis.continuity.uniform-/
+> **Entry**: analysis.continuity.uniform
+@isnad1 id=iff.0h1v.s6.8b6ffdcad654 from=translated src=- shape=cf61d642 vocab=6d60bf9f
+-/
 theorem uniformContinuous_iff_eps_delta {f : ℝ → ℝ} :
     UniformContinuous f ↔
       ∀ ε > 0, ∃ δ > 0, ∀ x y, |x - y| < δ → |f x - f y| < ε := by
@@ -198,7 +234,9 @@ theorem uniformContinuous_iff_eps_delta {f : ℝ → ℝ} :
     simpa [Real.dist_eq] using hδδ a b hab
 
 /-- 一致连续函数必连续（点连续是局部性质，一致连续更强）。 
-> **Entry**: analysis.continuity.uniform-/
+> **Entry**: analysis.continuity.uniform
+@isnad1 id=continuo.1h1v.s4.af4aecb91c1f from=translated src=- shape=5995b9e6 vocab=94a65642
+-/
 theorem continuous_of_uniformContinuous {f : ℝ → ℝ} (hf : UniformContinuous f) :
     Continuous f := by
   rw [continuous_iff_continuousAt]
@@ -217,13 +255,17 @@ noncomputable def mono_inv {f : ℝ → ℝ} (hf : StrictMono f) : ↑(Set.range
   (StrictMono.orderIso f hf).symm
 
 /-- **反函数严格单调**：严格递增函数的反函数仍严格递增。 
-> **Entry**: analysis.continuity.inverse-/
+> **Entry**: analysis.continuity.inverse
+@isnad1 id=strictmo.1h1v.s5.975a19663f33 from=translated src=- shape=b915e599 vocab=29570053
+-/
 lemma mono_inv_strictMono {f : ℝ → ℝ} (hf : StrictMono f) : StrictMono (mono_inv hf) := by
   unfold mono_inv
   exact (StrictMono.orderIso f hf).symm.strictMono
 
 /-- **f(反函数(y)) = y**：反函数的定义性质。 
-> **Entry**: analysis.continuity.inverse-/
+> **Entry**: analysis.continuity.inverse
+@isnad1 id=eq.1h2v.s5.4f1d13723ca7 from=translated src=- shape=8f235d54 vocab=6b50ee4e
+-/
 lemma mono_inv_apply {f : ℝ → ℝ} (hf : StrictMono f) (y : ↑(Set.range f)) :
     f (mono_inv hf y) = y.val := by
   unfold mono_inv
@@ -232,14 +274,18 @@ lemma mono_inv_apply {f : ℝ → ℝ} (hf : StrictMono f) (y : ↑(Set.range f)
   exact congrArg Subtype.val hz
 
 /-- **反函数保序**：g y₁ < g y₂ ⟺ y₁ < y₂。 
-> **Entry**: analysis.continuity.inverse-/
+> **Entry**: analysis.continuity.inverse
+@isnad1 id=iff.1h3v.s5.bc23d3957874 from=translated src=- shape=f176025d vocab=87cd7e83
+-/
 lemma mono_inv_lt_iff {f : ℝ → ℝ} (hf : StrictMono f) (y1 y2 : ↑(Set.range f)) :
     mono_inv hf y1 < mono_inv hf y2 ↔ y1 < y2 := by
   unfold mono_inv
   exact OrderIso.lt_iff_lt (StrictMono.orderIso f hf).symm
 
 /-- **反函数在特殊点的取值**：g(⟨f t, _⟩) = t。 
-> **Entry**: analysis.continuity.inverse-/
+> **Entry**: analysis.continuity.inverse
+@isnad1 id=eq.1h2v.s5.5e36d4efa037 from=translated src=- shape=b35913cb vocab=37938c8a
+-/
 lemma mono_inv_sub_apply {f : ℝ → ℝ} (hf : StrictMono f) (t : ℝ) :
     mono_inv hf ⟨f t, ⟨t, rfl⟩⟩ = t := by
   unfold mono_inv
@@ -248,7 +294,9 @@ lemma mono_inv_sub_apply {f : ℝ → ℝ} (hf : StrictMono f) (t : ℝ) :
 /-- **反函数连续**（教材 ε-δ）：严格单调函数 f 的反函数在值域上连续。
   对 y₀ = f(x₀)，取 δ = min(y₀ − f(x₀−ε), f(x₀+ε) − y₀)，由 f 严格单调与 g 保序，
   |y − y₀| < δ ⟹ x₀−ε < g y < x₀+ε。 
-> **Entry**: analysis.continuity.inverse-/
+> **Entry**: analysis.continuity.inverse
+@isnad1 id=continuo.1h1v.s5.db191bde945b from=translated src=- shape=eea52b27 vocab=fe4de360
+-/
 theorem inverse_continuous {f : ℝ → ℝ} (hf : StrictMono f) : Continuous (mono_inv hf) := by
   rw [Metric.continuous_iff]
   intro y₀ ε hε
@@ -293,14 +341,18 @@ theorem inverse_continuous {f : ℝ → ℝ} (hf : StrictMono f) : Continuous (m
   simpa [Real.dist_eq]
 
 /-- 对紧集上逐点连续性的展开：给定误差，每一点都有自己的局部控制半径。
-> **Entry**: analysis.continuity.uniform-compact-/
+> **Entry**: analysis.continuity.uniform-compact
+@isnad1 id=ex.3h5v.s7.9efb6faf418f from=translated src=- shape=5f148ba5 vocab=c87e8f2c
+-/
 theorem hpt_theorem {X : Type} [MetricSpace X] {s : Set X} {f : X → ℝ}
     (hf : ContinuousOn f s) {ε : ℝ} (hε : 0 < ε) :
     ∀ x ∈ s, ∃ δx > 0, ∀ y ∈ s, dist y x < δx → |f y - f x| < ε / 2 := by
   intro x hx
   exact Metric.continuousOn_iff.mp hf x hx (ε / 2) (by positivity)
 
-/-- 各点的局部控制球覆盖整个集合，这是随后用紧性抽取有限子覆盖的入口。-/
+/-- 各点的局部控制球覆盖整个集合，这是随后用紧性抽取有限子覆盖的入口。
+@isnad1 id=le.1h4v.s8.b873df67bff8 from=translated src=- shape=a4cd3365 vocab=a7018331
+-/
 theorem cover_theorem {X : Type} [MetricSpace X] {s : Set X} {f : X → ℝ} {ε : ℝ}
     (hpt : ∀ x ∈ s, ∃ δx > 0, ∀ y ∈ s, dist y x < δx → |f y - f x| < ε / 2) :
     s ⊆ ⋃ x : s, Metric.ball x.1 ((hpt x.1 x.2).choose / 2) := by
@@ -312,7 +364,9 @@ theorem cover_theorem {X : Type} [MetricSpace X] {s : Set X} {f : X → ℝ} {ε
   exact div_pos hδ (by norm_num)
 
 /-- **紧集上连续 ⟹ 一致连续**（Lebesgue 数引理法）：紧集 s 上连续的函数在 s 上一致连续。
-  教材定理：紧性把"逐点连续"提升为"一致连续"。-/
+  教材定理：紧性把"逐点连续"提升为"一致连续"。
+@isnad1 id=uniformc.3h3v.s5.bd5efb46f2fd from=translated src=- shape=7e82bed4 vocab=44c5a4f3
+-/
 theorem continuousOn_compact_uniformContinuousOn {X : Type} [MetricSpace X] {s : Set X} {f : X → ℝ}
     (hs : IsCompact s) (hsne : s.Nonempty) (hf : ContinuousOn f s) :
     UniformContinuousOn f s := by

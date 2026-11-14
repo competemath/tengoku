@@ -48,13 +48,17 @@ def IsOrientationReversing {E : Type u} [AddCommGroup E] [Module ℝ E] {n : ℕ
     (o : VectorOrientation E n) (f : E ≃ₗ[ℝ] E) : Prop :=
   _root_.Orientation.map (Fin n) f o = -o
 
-/-- 恒等线性同构保持任意定向。-/
+/-- 恒等线性同构保持任意定向。
+@isnad1 id=isorient.0h3v.s5.d77055ed37c6 from=translated src=- shape=3e16b796 vocab=302752d7
+-/
 theorem isOrientationPreserving_refl {E : Type u} [AddCommGroup E] [Module ℝ E]
     {n : ℕ} (o : VectorOrientation E n) :
     IsOrientationPreserving o (LinearEquiv.refl ℝ E) := by
   simp [IsOrientationPreserving]
 
-/-- 在维数匹配时，每个线性自同构或者保向，或者反向。-/
+/-- 在维数匹配时，每个线性自同构或者保向，或者反向。
+@isnad1 id=or.1h4v.s6.fa5fea4a3180 from=translated src=- shape=f83c667e vocab=7a5c496c
+-/
 theorem preserving_or_reversing {E : Type u} [AddCommGroup E] [Module ℝ E]
     [FiniteDimensional ℝ E] {n : ℕ} (o : VectorOrientation E n)
     (f : E ≃ₗ[ℝ] E) (hdim : n = Module.finrank ℝ E) :
@@ -62,7 +66,9 @@ theorem preserving_or_reversing {E : Type u} [AddCommGroup E] [Module ℝ E]
   exact _root_.Orientation.eq_or_eq_neg
     (_root_.Orientation.map (Fin n) f o) o (by simpa using hdim)
 
-/-- **保向的行列式判据**：线性自同构保向，当且仅当其行列式为正。-/
+/-- **保向的行列式判据**：线性自同构保向，当且仅当其行列式为正。
+@isnad1 id=iff.1h4v.s9.c43f609e203a from=translated src=- shape=551a323c vocab=57c11161
+-/
 theorem isOrientationPreserving_iff_det_pos
     {E : Type u} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E] {n : ℕ} (o : VectorOrientation E n)
@@ -70,7 +76,9 @@ theorem isOrientationPreserving_iff_det_pos
     IsOrientationPreserving o f ↔ 0 < LinearMap.det (f : E →ₗ[ℝ] E) := by
   exact _root_.Orientation.map_eq_iff_det_pos o f (by simpa using hdim)
 
-/-- **反向的行列式判据**：线性自同构反向，当且仅当其行列式为负。-/
+/-- **反向的行列式判据**：线性自同构反向，当且仅当其行列式为负。
+@isnad1 id=iff.1h4v.s9.f8f1c436cac5 from=translated src=- shape=1dd18c28 vocab=99d0298e
+-/
 theorem isOrientationReversing_iff_det_neg
     {E : Type u} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E] {n : ℕ} (o : VectorOrientation E n)
@@ -78,7 +86,9 @@ theorem isOrientationReversing_iff_det_neg
     IsOrientationReversing o f ↔ LinearMap.det (f : E →ₗ[ℝ] E) < 0 := by
   exact _root_.Orientation.map_eq_neg_iff_det_neg o f (by simpa using hdim)
 
-/-- 调整基的最后一个向量后，可以让任意基符合指定定向。-/
+/-- 调整基的最后一个向量后，可以让任意基符合指定定向。
+@isnad1 id=eq.0h4v.s6.702881860e3f from=translated src=- shape=aadeb4ca vocab=d512b448
+-/
 theorem adjustedBasis_has_orientation
     {E : Type u} [AddCommGroup E] [Module ℝ E] {n : ℕ} [NeZero n]
     (b : Module.Basis (Fin n) ℝ E) (o : VectorOrientation E n) :

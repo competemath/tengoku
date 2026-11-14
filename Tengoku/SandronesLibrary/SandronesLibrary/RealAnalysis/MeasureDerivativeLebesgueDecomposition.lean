@@ -51,14 +51,18 @@ variable {α : Type*} [MeasurableSpace α]
 /-- **Lebesgue 分解的存在性（σ-有限情形，Folland §3.2）**：设 `μ` 是 `SFinite`（可数可加意义下
 σ-有限的推广）测度、`ν` 是 σ-有限测度，则 `μ` 关于 `ν` 有 Lebesgue 分解，即存在与 `ν` 互相奇异的
 `μ.singularPart ν` 和绝对连续部分 `ν.withDensity (μ.rnDeriv ν)` 使 `μ` 为其和。
-> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition-/
+> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition
+@isnad1 id=havelebe.0h3v.s4.15517e22194b from=translated src=- shape=fcab8703 vocab=59e357bc
+-/
 theorem haveLebesgueDecomposition_of_sigmaFinite (μ ν : Measure α) [SFinite μ] [SigmaFinite ν] :
     μ.HaveLebesgueDecomposition ν :=
   Measure.haveLebesgueDecomposition_of_sigmaFinite μ ν
 
 /-- **Lebesgue 分解等式（Folland §3.2 主等式）**：`μ = μ.singularPart ν + ν.withDensity (μ.rnDeriv ν)`。
 右端两项分别是对 `ν` 奇异的部分与关于 `ν` 绝对连续的部分。
-> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition-/
+> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition
+@isnad1 id=eq.0h3v.s5.05b071a434a1 from=translated src=- shape=b89ee865 vocab=0ec30c0c
+-/
 theorem haveLebesgueDecomposition_add (μ ν : Measure α) [μ.HaveLebesgueDecomposition ν] :
     μ = μ.singularPart ν + ν.withDensity (μ.rnDeriv ν) :=
   Measure.haveLebesgueDecomposition_add μ ν
@@ -66,23 +70,31 @@ theorem haveLebesgueDecomposition_add (μ ν : Measure α) [μ.HaveLebesgueDecom
 /-! ## 2. 两部分的基本刻画 -/
 
 /-- **奇异部分与 `ν` 互相奇异**：`μ.singularPart ν ⟂ₘ ν`；这正是教材中“分解的奇异部分”。
-> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition-/
+> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition
+@isnad1 id=mutually.0h3v.s4.77ceed728676 from=translated src=- shape=e6810096 vocab=38cb6911
+-/
 theorem mutuallySingular_singularPart (μ ν : Measure α) : μ.singularPart ν ⟂ₘ ν :=
   Measure.mutuallySingular_singularPart μ ν
 
 /-- **奇异部分被 `μ` 控制**：`μ.singularPart ν ≤ μ`，即分解的两项都逐集不超过原测度。
-> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition-/
+> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition
+@isnad1 id=le.0h3v.s5.a7e7137fc4c8 from=translated src=- shape=15c574b2 vocab=38f24bfc
+-/
 theorem singularPart_le (μ ν : Measure α) : μ.singularPart ν ≤ μ :=
   Measure.singularPart_le μ ν
 
 /-- **密度部分被 `μ` 控制**：`ν.withDensity (μ.rnDeriv ν) ≤ μ`。
-> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition-/
+> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition
+@isnad1 id=le.0h3v.s5.dba17b206fdb from=translated src=- shape=4ef4e6aa vocab=aca7f0de
+-/
 theorem withDensity_rnDeriv_le (μ ν : Measure α) : ν.withDensity (μ.rnDeriv ν) ≤ μ :=
   Measure.withDensity_rnDeriv_le μ ν
 
 /-- **Lebesgue 分解的合取刻画**：给定 `μ.HaveLebesgueDecomposition ν`，Radon–Nikodym 导数可测、
 奇异部分与 `ν` 互相奇异、且分解等式成立；这是教材对分解三要素（可测密度、奇异、等式）的一步陈述。
-> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition-/
+> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition
+@isnad1 id=and.0h3v.s6.c5d08c09f86c from=translated src=- shape=b281a942 vocab=d437051f
+-/
 theorem haveLebesgueDecomposition_spec (μ ν : Measure α) [μ.HaveLebesgueDecomposition ν] :
     Measurable (μ.rnDeriv ν) ∧ μ.singularPart ν ⟂ₘ ν ∧
       μ = μ.singularPart ν + ν.withDensity (μ.rnDeriv ν) :=
@@ -93,14 +105,18 @@ theorem haveLebesgueDecomposition_spec (μ ν : Measure α) [μ.HaveLebesgueDeco
 
 /-- **奇异部分唯一性（Folland §3.2）**：设 `s ⟂ₘ ν`、`f` 可测且 `μ = s + ν.withDensity f`，
 则 `s = μ.singularPart ν`；即分解中与 `ν` 奇异的测度部分是唯一的。
-> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition-/
+> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition
+@isnad1 id=eq.3h5v.s6.14a9e1b8f1be from=translated src=- shape=766905bd vocab=ff7a7e6a
+-/
 theorem singularPart_unique {μ ν s : Measure α} {f : α → ℝ≥0∞} (hf : Measurable f)
     (hs : s ⟂ₘ ν) (hμ : μ = s + ν.withDensity f) : s = μ.singularPart ν :=
   Measure.eq_singularPart hf hs hμ
 
 /-- **密度唯一性（a.e.，Folland §3.2）**：在 σ-有限 `ν` 下，设 `s ⟂ₘ ν`、`f` 可测且
 `μ = s + ν.withDensity f`，则 `f =ᵐ[ν] μ.rnDeriv ν`；即 Radon–Nikodym 导数在 `ν`-a.e. 意义下唯一。
-> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition-/
+> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition
+@isnad1 id=eventual.3h5v.s6.7792c162e551 from=translated src=- shape=c682a9d6 vocab=236dd209
+-/
 theorem rnDeriv_unique {μ ν : Measure α} [SigmaFinite ν] {s : Measure α} {f : α → ℝ≥0∞}
     (hf : Measurable f) (hs : s ⟂ₘ ν) (hμ : μ = s + ν.withDensity f) :
     f =ᵐ[ν] μ.rnDeriv ν :=
@@ -110,42 +126,56 @@ theorem rnDeriv_unique {μ ν : Measure α} [SigmaFinite ν] {s : Measure α} {f
 
 /-- **互相奇异测度的分解**：若 `μ ⟂ₘ ν`，则 `μ` 关于 `ν` 有 Lebesgue 分解（取奇异部分为 `μ`、
 密度部分为 `0`）；教材中奇异测度是分解的极端情形。
-> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition-/
+> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition
+@isnad1 id=havelebe.1h3v.s4.cdc98bbd945a from=translated src=- shape=176112c9 vocab=85536593
+-/
 theorem mutuallySingular_haveLebesgueDecomposition {μ ν : Measure α} (h : μ ⟂ₘ ν) :
     μ.HaveLebesgueDecomposition ν :=
   h.haveLebesgueDecomposition
 
 /-- **奇异部分为零的刻画**：`μ.singularPart ν = 0 ↔ μ ≪ ν`；即分解的奇异部分消失当且仅当
 `μ` 关于 `ν` 绝对连续。
-> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition-/
+> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition
+@isnad1 id=iff.0h3v.s5.83b98e4dabf9 from=translated src=- shape=153102e4 vocab=c6a6cdfc
+-/
 theorem singularPart_eq_zero_iff (μ ν : Measure α) [μ.HaveLebesgueDecomposition ν] :
     μ.singularPart ν = 0 ↔ μ ≪ ν :=
   Measure.singularPart_eq_zero μ ν
 
 /-- **绝对连续 ⇒ 奇异部分为零**：若 `μ ≪ ν`，则 `μ.singularPart ν = 0`。
-> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition-/
+> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition
+@isnad1 id=eq.1h3v.s5.1f47142d0b86 from=translated src=- shape=b6bd752e vocab=0ac9252e
+-/
 theorem singularPart_eq_zero_of_absolutelyContinuous {μ ν : Measure α} (h : μ ≪ ν) :
     μ.singularPart ν = 0 :=
   Measure.singularPart_eq_zero_of_ac h
 
 /-- **奇异部分自反为零**：`μ.singularPart μ = 0`（`μ` 关于自身绝对连续）。
-> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition-/
+> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition
+@isnad1 id=eq.0h2v.s4.faad84a46afc from=translated src=- shape=9cec0db8 vocab=46ede2d0
+-/
 theorem singularPart_self (μ : Measure α) : μ.singularPart μ = 0 :=
   Measure.singularPart_self μ
 
 /-- **奇异部分等于全测度的刻画**：`μ.singularPart ν = μ ↔ μ ⟂ₘ ν`。
-> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition-/
+> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition
+@isnad1 id=iff.0h3v.s4.73ea2a55a085 from=translated src=- shape=4d68fd28 vocab=38cb6911
+-/
 theorem singularPart_eq_self_iff {μ ν : Measure α} : μ.singularPart ν = μ ↔ μ ⟂ₘ ν :=
   Measure.singularPart_eq_self
 
 /-- **Radon–Nikodym 导数的可测性**：`μ.rnDeriv ν` 总是可测函数。
-> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition-/
+> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition
+@isnad1 id=measurab.0h3v.s4.7cff0ad06021 from=translated src=- shape=d5eebde3 vocab=18a31aae
+-/
 theorem measurable_rnDeriv (μ ν : Measure α) : Measurable (μ.rnDeriv ν) :=
   Measure.measurable_rnDeriv μ ν
 
 /-- **密度测度的分解**：对可测 `f`，`μ.withDensity f` 关于 `μ` 有 Lebesgue 分解
 （密度部分即 `f`，奇异部分为零）。
-> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition-/
+> **Entry**: real-analysis.measure-derivative.lebesgue-decomposition
+@isnad1 id=havelebe.1h3v.s4.75dfffad7c71 from=translated src=- shape=c0b51f38 vocab=cf94fa90
+-/
 theorem haveLebesgueDecomposition_withDensity (μ : Measure α) {f : α → ℝ≥0∞}
     (hf : Measurable f) : (μ.withDensity f).HaveLebesgueDecomposition μ :=
   Measure.haveLebesgueDecomposition_withDensity μ hf

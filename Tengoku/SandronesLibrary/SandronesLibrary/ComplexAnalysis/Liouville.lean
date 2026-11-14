@@ -18,7 +18,9 @@ namespace SandronesLibrary.ComplexAnalysis
 
 /-- **Liouville 定理**：若复函数在整个复平面上全纯且范数全局有界，则它等于某个常数。
 
-> **Entry**: complex-analysis.liouville-/
+> **Entry**: complex-analysis.liouville
+@isnad1 id=ex.2h1v.s5.d95e8da9f4fe from=translated src=- shape=fd2c1b7e vocab=1a497a70
+-/
 theorem liouville {f : ℂ → ℂ}
     (hf : HolomorphicOnTextbook f Set.univ)
     (hbounded : ∃ C : ℝ, ∀ z : ℂ, ‖f z‖ ≤ C) :
@@ -31,7 +33,9 @@ theorem liouville {f : ℂ → ℂ}
   rw [isBounded_iff_forall_norm_le]
   exact ⟨C, by rintro _ ⟨z, rfl⟩; exact hC z⟩
 
-/-- Liouville 定理的两点形式：有界整函数在任意两点取相同值。-/
+/-- Liouville 定理的两点形式：有界整函数在任意两点取相同值。
+@isnad1 id=eq.2h3v.s5.e848f5e45fd6 from=translated src=- shape=6f6a0b92 vocab=1a497a70
+-/
 theorem liouville_eq {f : ℂ → ℂ}
     (hf : HolomorphicOnTextbook f Set.univ)
     (hbounded : ∃ C : ℝ, ∀ z : ℂ, ‖f z‖ ≤ C) (z w : ℂ) :

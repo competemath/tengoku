@@ -34,7 +34,9 @@ def IsFinitelyGeneratedGroup (G : Type*) [Group G] : Prop :=
 
 /-- 本库有限生成定义与底层 `Group.FG` 实现等价。底层结构只用于调用已经验证的分类
 算法；后续公开主定理仍以 `IsFinitelyGeneratedGroup` 为前提。
-> **Entry**: abstract-algebra.group.abelian-structure-/
+> **Entry**: abstract-algebra.group.abelian-structure
+@isnad1 id=iff.0h1v.s3.da754497ff88 from=translated src=- shape=aa7e0af4 vocab=bbe5ff79
+-/
 theorem isFinitelyGeneratedGroup_iff_mathlib {G : Type*} [Group G] :
     IsFinitelyGeneratedGroup G ↔ Group.FG G := by
   rw [Group.fg_iff]
@@ -42,7 +44,9 @@ theorem isFinitelyGeneratedGroup_iff_mathlib {G : Type*} [Group G] :
   exact exists_congr fun S => and_comm
 
 /-- 每个有限群都是有限生成群：可直接取全体群元素作为有限生成集。
-> **Entry**: abstract-algebra.group.abelian-structure-/
+> **Entry**: abstract-algebra.group.abelian-structure
+@isnad1 id=isfinite.0h1v.s3.ae86df290dd9 from=translated src=- shape=c612a321 vocab=4647869d
+-/
 theorem finite_group_isFinitelyGenerated (G : Type*) [Group G] [Finite G] :
     IsFinitelyGeneratedGroup G := by
   exact isFinitelyGeneratedGroup_iff_mathlib.mpr inferInstance
@@ -53,7 +57,9 @@ theorem finite_group_isFinitelyGenerated (G : Type*) [Group G] [Finite G] :
 `G ≅ ℤ^r × ∏ i, ℤ/(pᵢ ^ eᵢ)ℤ`。
 
 `r` 是自由秩；每个 `p i` 都是素数。指数为零的因子是平凡群，不影响同构类型。
-> **Entry**: abstract-algebra.group.abelian-structure-/
+> **Entry**: abstract-algebra.group.abelian-structure
+@isnad1 id=ex.1h1v.s8.b6421c3b841f from=translated src=- shape=ea8a0b42 vocab=3a30a9b8
+-/
 theorem finitely_generated_abelian_structure (G : Type*) [CommGroup G]
     (hG : IsFinitelyGeneratedGroup G) :
     ∃ (r : ℕ) (ι : Type) (_ : Fintype ι) (p : ι → ℕ)
@@ -71,7 +77,9 @@ theorem finitely_generated_abelian_structure (G : Type*) [CommGroup G]
 
 /-- **有限交换群基本定理（初等因子形式）**：有限交换群是有限多个素数幂阶循环群
 的直积。与一般结构定理相比，有限性迫使自由秩为零。
-> **Entry**: abstract-algebra.group.abelian-structure-/
+> **Entry**: abstract-algebra.group.abelian-structure
+@isnad1 id=ex.0h1v.s7.c8e5a9373dbb from=translated src=- shape=b03a69e1 vocab=4959985a
+-/
 theorem finite_abelian_prime_power_structure (G : Type*) [CommGroup G] [Finite G] :
     ∃ (ι : Type) (_ : Fintype ι) (p : ι → ℕ)
       (_ : ∀ i, Nat.Prime (p i)) (e : ι → ℕ),
@@ -84,7 +92,9 @@ theorem finite_abelian_prime_power_structure (G : Type*) [CommGroup G] [Finite G
 
 /-- **有限交换群基本定理（循环因子存在形式）**：有限交换群同构于有限多个阶大于
 `1` 的循环群的直积。这里删除了所有平凡因子，但不要求各阶满足整除链。
-> **Entry**: abstract-algebra.group.abelian-structure-/
+> **Entry**: abstract-algebra.group.abelian-structure
+@isnad1 id=ex.0h1v.s6.ca968c331a1e from=translated src=- shape=e33d503a vocab=c297667a
+-/
 theorem finite_abelian_cyclic_structure (G : Type*) [CommGroup G] [Finite G] :
     ∃ (ι : Type) (_ : Fintype ι) (n : ι → ℕ),
       (∀ i, 1 < n i) ∧
@@ -97,7 +107,9 @@ theorem finite_abelian_cyclic_structure (G : Type*) [CommGroup G] [Finite G] :
 正向是有限交换群结构定理；反向来自每个 `ZMod (n i)` 在 `n i > 1` 时有限，以及有限
 指标直积保持有限性。这个双向版本明确说明右侧标准模型恰好刻画有限交换群，而不只是为
 已有有限群提供一种表示。
-> **Entry**: abstract-algebra.group.abelian-structure-/
+> **Entry**: abstract-algebra.group.abelian-structure
+@isnad1 id=iff.0h1v.s6.f8455f2fe7a5 from=translated src=- shape=f233a62a vocab=c297667a
+-/
 theorem finite_abelian_iff_cyclic_product (G : Type*) [CommGroup G] :
     Finite G ↔
       ∃ (ι : Type) (_ : Fintype ι) (n : ι → ℕ),

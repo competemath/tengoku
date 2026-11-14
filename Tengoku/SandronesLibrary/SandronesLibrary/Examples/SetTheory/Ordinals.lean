@@ -35,67 +35,91 @@ universe u
 def omegaPlusOne : Ordinal :=
   ordinalAdd Ordinal.omega0 1
 
-/-- **定义展开**：`omegaPlusOne` 就是 `ordinalAdd ω 1`。-/
+/-- **定义展开**：`omegaPlusOne` 就是 `ordinalAdd ω 1`。
+@isnad1 id=eq.0h0v.s3.ae3fe74c4954 from=translated src=- shape=de2a588a vocab=f938efa5
+-/
 theorem omegaPlusOne_def : omegaPlusOne = ordinalAdd Ordinal.omega0 1 := rfl
 
-/-- **`ω + 1` 是 `ω` 的后继**：`1 = succ 0`，再用加法在后继处的递推式。-/
+/-- **`ω + 1` 是 `ω` 的后继**：`1 = succ 0`，再用加法在后继处的递推式。
+@isnad1 id=eq.0h0v.s3.70093828160b from=translated src=- shape=dfaa3aa7 vocab=6d191815
+-/
 theorem omegaPlusOne_eq_succ_omega : omegaPlusOne = Order.succ Ordinal.omega0 := by
   rw [omegaPlusOne_def]
   have h1 : Order.succ (0 : Ordinal) = 1 := by rw [Order.succ_eq_add_one, zero_add]
   rw [← h1, ordinalAdd_succ, ordinalAdd_zero]
 
-/-- **后继严格更大**：`ω < ω + 1`，因为 `ω + 1 = succ ω` 而后继严格大于原序数。-/
+/-- **后继严格更大**：`ω < ω + 1`，因为 `ω + 1 = succ ω` 而后继严格大于原序数。
+@isnad1 id=lt.0h0v.s3.b9b7b5781d67 from=translated src=- shape=54c8eceb vocab=b12a652d
+-/
 theorem omega_lt_omegaPlusOne : Ordinal.omega0 < omegaPlusOne := by
   rw [omegaPlusOne_eq_succ_omega]
   exact Order.lt_succ Ordinal.omega0
 
 /-- **序关系链**：`0 < 1 < 2 < ω < ω + 1`。前两项由 `norm_num` 在序数上真算，
-`2 < ω` 用「每个自然数序数都小于 `ω`」，最后一项是上一句。-/
+`2 < ω` 用「每个自然数序数都小于 `ω`」，最后一项是上一句。
+@isnad1 id=and.0h0v.s6.a0ad7f1145b8 from=translated src=- shape=5d72b60f vocab=8681accd
+-/
 theorem zero_lt_one_lt_two_lt_omega_lt_omegaPlusOne :
     (0 : Ordinal) < 1 ∧ (1 : Ordinal) < 2 ∧ (2 : Ordinal) < Ordinal.omega0 ∧
       Ordinal.omega0 < omegaPlusOne :=
   ⟨by norm_num, by norm_num, Ordinal.natCast_lt_omega0 2, omega_lt_omegaPlusOne⟩
 
-/-- **`ω` 是极限序数**：取本库 `successor_and_limit` 的第三个合取项。-/
+/-- **`ω` 是极限序数**：取本库 `successor_and_limit` 的第三个合取项。
+@isnad1 id=issuccli.0h0v.s2.251ffa9c9c45 from=translated src=- shape=25b03439 vocab=80423b5e
+-/
 theorem omega_is_limit : Order.IsSuccLimit (Ordinal.omega0.{u}) := by
   obtain ⟨-, -, h⟩ := successor_and_limit.{u, u} (0 : Ordinal.{u})
   exact h
 
-/-- **后继序数不是极限序数**：对任意序数 `a`，`succ a` 都不满足 `IsSuccLimit`。-/
+/-- **后继序数不是极限序数**：对任意序数 `a`，`succ a` 都不满足 `IsSuccLimit`。
+@isnad1 id=not.0h1v.s3.9cea01d3292e from=translated src=- shape=035e92e5 vocab=c404de7e
+-/
 theorem succ_not_limit (a : Ordinal) : ¬ Order.IsSuccLimit (Order.succ a) :=
   Order.not_isSuccLimit_succ a
 
-/-- **后继紧邻原序数**：`a < succ a`，且没有序数严格落在两者之间。-/
+/-- **后继紧邻原序数**：`a < succ a`，且没有序数严格落在两者之间。
+@isnad1 id=and.0h1v.s5.81dfe0bc0d74 from=translated src=- shape=5aebb456 vocab=62355138
+-/
 theorem succ_is_immediate (a : Ordinal.{u}) :
     a < Order.succ a ∧ ∀ b : Ordinal.{u}, a < b → ¬ b < Order.succ a := by
   obtain ⟨h1, h2, -⟩ := successor_and_limit.{u, u} a
   exact ⟨h1, h2⟩
 
-/-- **后继／极限辨析的具体实例**：`ω` 是极限序数，而 `ω + 1` 是后继序数、不是极限序数。-/
+/-- **后继／极限辨析的具体实例**：`ω` 是极限序数，而 `ω + 1` 是后继序数、不是极限序数。
+@isnad1 id=and.0h0v.s3.79ca93867def from=translated src=- shape=2095e89f vocab=e7418ecc
+-/
 theorem omega_limit_but_omegaPlusOne_not :
     Order.IsSuccLimit Ordinal.omega0 ∧ ¬ Order.IsSuccLimit omegaPlusOne := by
   refine ⟨omega_is_limit, ?_⟩
   rw [omegaPlusOne_eq_succ_omega]
   exact Order.not_isSuccLimit_succ Ordinal.omega0
 
-/-- **`ω + 1` 确实是后继序数**：存在原序数 `ω` 使 `ω + 1 = succ ω`。-/
+/-- **`ω + 1` 确实是后继序数**：存在原序数 `ω` 使 `ω + 1 = succ ω`。
+@isnad1 id=ex.0h0v.s3.e540e7293a46 from=translated src=- shape=30272e1b vocab=87a47ff3
+-/
 theorem omegaPlusOne_is_successor : ∃ a : Ordinal, omegaPlusOne = Order.succ a :=
   ⟨Ordinal.omega0, omegaPlusOne_eq_succ_omega⟩
 
-/-- **左加 `ω` 的吸收**：`1 + ω = ω`（把 `1` 接在 `ω` 前面不改变序型）。-/
+/-- **左加 `ω` 的吸收**：`1 + ω = ω`（把 `1` 接在 `ω` 前面不改变序型）。
+@isnad1 id=eq.0h0v.s3.da1d0f390271 from=translated src=- shape=dae634ac vocab=58a2cec0
+-/
 theorem one_add_omega_eq_omega :
     ordinalAdd (1 : Ordinal.{u}) (Ordinal.omega0.{u}) = Ordinal.omega0.{u} := by
   obtain ⟨h, -⟩ := addition_not_commutative.{u, u}
   exact h
 
-/-- **右加 `1` 不是吸收**：`ω + 1 ≠ ω`，由 `ω < ω + 1` 直接得到。-/
+/-- **右加 `1` 不是吸收**：`ω + 1 ≠ ω`，由 `ω < ω + 1` 直接得到。
+@isnad1 id=ne.0h0v.s2.15cb89148b57 from=translated src=- shape=54c8eceb vocab=9266ee16
+-/
 theorem omega_add_one_ne_omega : omegaPlusOne ≠ Ordinal.omega0 :=
   ne_of_gt omega_lt_omegaPlusOne
 
 /-- **反例：序数加法不交换**。交换两个加数得到不同结果：
 `1 + ω = ω`，而 `ω + 1 ≠ ω`，所以 `1 + ω ≠ ω + 1`。
 这否定了「序数加法像自然数加法那样交换」这一误认；`addition_not_commutative` 是本库给出的
-一般性结论，本定理是它在 `(1, ω)` 这一对具体序数上的实例。-/
+一般性结论，本定理是它在 `(1, ω)` 这一对具体序数上的实例。
+@isnad1 id=ne.0h0v.s3.9f76c9ec745b from=translated src=- shape=dae634ac vocab=f938efa5
+-/
 theorem one_add_omega_ne_omega_add_one :
     ordinalAdd (1 : Ordinal) Ordinal.omega0 ≠ omegaPlusOne := by
   rw [one_add_omega_eq_omega]

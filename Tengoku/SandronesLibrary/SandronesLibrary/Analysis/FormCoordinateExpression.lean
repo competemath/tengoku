@@ -35,7 +35,9 @@ def coordinateForm {n : ℕ} (i : Fin n) : DifferentialForm (Fin n → ℝ) 1 :=
   fun _ => (ContinuousAlternatingMap.ofSubsingletonLIE (𝕜 := ℝ) (E := Fin n → ℝ) (F := ℝ)
     (0 : Fin 1)) (ContinuousLinearMap.proj i)
 
-/-- 坐标 1-形式在单个切向量上的取值就是该向量的第 `i` 个坐标。-/
+/-- 坐标 1-形式在单个切向量上的取值就是该向量的第 `i` 个坐标。
+@isnad1 id=eq.0h4v.s8.58d42d3902d2 from=translated src=- shape=83c4e15b vocab=f8ff8b16
+-/
 @[simp]
 theorem coordinateForm_apply {n : ℕ} (i : Fin n) (x : Fin n → ℝ) (v : Fin 1 → Fin n → ℝ) :
     coordinateForm i x v = v 0 i := by
@@ -45,7 +47,9 @@ theorem coordinateForm_apply {n : ℕ} (i : Fin n) (x : Fin n → ℝ) (v : Fin 
 /-! ## 两个 1 次交替映射的楔积 -/
 
 /-- 两个 1 次交替映射的楔积在二元组上的显式取值。这是 `coordinateTwoForm_apply`
-的核心技术引理：`k = l = 1` 时 shuffle 和只有两个置换类，逐项计算即可。-/
+的核心技术引理：`k = l = 1` 时 shuffle 和只有两个置换类，逐项计算即可。
+@isnad1 id=eq.0h4v.s9.6ed48c3f3791 from=translated src=- shape=eb5acd93 vocab=61242668
+-/
 theorem alternatingWedge_one_apply {E : Type u} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (a b : E [⋀^Fin 1]→ₗ[ℝ] ℝ) (v : Fin 2 → E) :
     alternatingWedge a b v =
@@ -115,7 +119,9 @@ theorem alternatingWedge_one_apply {E : Type u} [NormedAddCommGroup E] [NormedSp
 def coordinateTwoForm {n : ℕ} (i j : Fin n) : DifferentialForm (Fin n → ℝ) 2 :=
   formWedge (coordinateForm i) (coordinateForm j)
 
-/-- 坐标 2-形式在二元组上的取值是 `2×2` 子式。-/
+/-- 坐标 2-形式在二元组上的取值是 `2×2` 子式。
+@isnad1 id=eq.0h5v.s8.2c518387fa03 from=translated src=- shape=34d13392 vocab=367f8603
+-/
 theorem coordinateTwoForm_apply {n : ℕ} (i j : Fin n) (x : Fin n → ℝ) (v : Fin 2 → Fin n → ℝ) :
     coordinateTwoForm i j x v = v 0 i * v 1 j - v 1 i * v 0 j := by
   rw [coordinateTwoForm, formWedge_apply, alternatingWedge_one_apply]
@@ -123,7 +129,9 @@ theorem coordinateTwoForm_apply {n : ℕ} (i j : Fin n) (x : Fin n → ℝ) (v :
 
 /-! ## 展开 -/
 
-/-- 1 次形式沿标准基的坐标展开。-/
+/-- 1 次形式沿标准基的坐标展开。
+@isnad1 id=eq.0h3v.s10.18dda8ec7713 from=translated src=- shape=7d497ca4 vocab=bc9d193c
+-/
 theorem oneForm_coordinate_expansion {n : ℕ} (ω : DifferentialForm (Fin n → ℝ) 1)
     (x : Fin n → ℝ) :
     ω x = ∑ i, (ω x ![Pi.single i 1]) • coordinateForm i x := by
@@ -142,7 +150,9 @@ theorem oneForm_coordinate_expansion {n : ℕ} (ω : DifferentialForm (Fin n →
     rw [Matrix.cons_val_zero, Pi.single_eq_of_ne hb, smul_zero]
   · intro h; exact absurd (Finset.mem_univ _) h
 
-/-- `ℝ²` 上 2 次形式沿唯一坐标 2-形式的展开。-/
+/-- `ℝ²` 上 2 次形式沿唯一坐标 2-形式的展开。
+@isnad1 id=eq.0h2v.s11.47771cbedb18 from=translated src=- shape=0d16a5d5 vocab=6774dd44
+-/
 theorem twoForm_coordinate_expansion_plane (ω : DifferentialForm (Fin 2 → ℝ) 2)
     (x : Fin 2 → ℝ) :
     ω x = (ω x ![Pi.single 0 1, Pi.single 1 1]) • coordinateTwoForm 0 1 x := by
@@ -211,7 +221,9 @@ private theorem fin_two_three_classification (v : Fin 2 → Fin 3) (hv : Functio
   · exact Or.inr (Or.inr (Or.inr (Or.inr (Or.inr ⟨h0, h1⟩))))
   · exact absurd (hv (h0.trans h1.symm)) (by decide)
 
-/-- `ℝ³` 上 2 次形式沿坐标 2-形式族 `i < j` 的展开。-/
+/-- `ℝ³` 上 2 次形式沿坐标 2-形式族 `i < j` 的展开。
+@isnad1 id=eq.0h2v.s11.04dad360cb5f from=translated src=- shape=0ebf0e85 vocab=5b81ecd3
+-/
 theorem twoForm_coordinate_expansion_space (ω : DifferentialForm (Fin 3 → ℝ) 2)
     (x : Fin 3 → ℝ) :
     ω x = ∑ p ∈ (Finset.univ.filter (fun p : Fin 3 × Fin 3 => p.1 < p.2)),
@@ -305,7 +317,9 @@ private theorem basis_det_norm_bound (v : Fin 3 → (Fin 3 → ℝ)) :
 def coordinateThreeForm : DifferentialForm (Fin 3 → ℝ) 3 :=
   fun _ => ((Pi.basisFun ℝ (Fin 3)).det).mkContinuous 6 basis_det_norm_bound
 
-/-- `ℝ³` 上 3 次形式沿体积形式的展开。-/
+/-- `ℝ³` 上 3 次形式沿体积形式的展开。
+@isnad1 id=eq.0h2v.s11.ef3f39f3b51d from=translated src=- shape=c259353d vocab=cc32e931
+-/
 theorem threeForm_coordinate_expansion_space (ω : DifferentialForm (Fin 3 → ℝ) 3)
     (x : Fin 3 → ℝ) :
     ω x = (ω x ![Pi.single 0 1, Pi.single 1 1, Pi.single 2 1]) • coordinateThreeForm x := by

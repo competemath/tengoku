@@ -32,33 +32,43 @@ omit [NormOneClass A] in
 Mathlib 的证明正是教材所用的 Liouville 路线：若谱为空，则预解映射在整个复平面上全纯，
 并由无穷远处趋零推出恒为零，这与预解元可逆矛盾。
 
-> **Entry**: functional-analysis.spectrum.nonempty-compact-/
+> **Entry**: functional-analysis.spectrum.nonempty-compact
+@isnad1 id=nonempty.0h2v.s5.916562438de6 from=translated src=- shape=b157228b vocab=1b4f6580
+-/
 theorem complexSpectrum_nonempty (a : A) :
     (spectrum ℂ a).Nonempty :=
   spectrum.nonempty a
 
 omit [NormOneClass A] [Nontrivial A] in
 /-- 复 Banach 代数元素的谱是紧集。闭性来自可逆元集合的开放性，有界性来自 Neumann 级数：
-`‖a‖ < ‖z‖` 时 `z·1-a` 可逆。-/
+`‖a‖ < ‖z‖` 时 `z·1-a` 可逆。
+@isnad1 id=iscompac.0h2v.s5.792467cc3f07 from=translated src=- shape=03844cc0 vocab=d6a64f13
+-/
 theorem complexSpectrum_isCompact (a : A) :
     IsCompact (spectrum ℂ a) :=
   spectrum.isCompact a
 
 omit [Nontrivial A] in
-/-- 每个谱值都落在以零为中心、半径 `‖a‖` 的闭球中。-/
+/-- 每个谱值都落在以零为中心、半径 `‖a‖` 的闭球中。
+@isnad1 id=le.1h3v.s6.132be340242a from=translated src=- shape=f4c478b8 vocab=01b3347e
+-/
 theorem norm_spectrum_le (a : A) {z : ℂ} (hz : z ∈ spectrum ℂ a) :
     ‖z‖ ≤ ‖a‖ :=
   spectrum.norm_le_norm_of_mem hz
 
 omit [Nontrivial A] in
-/-- 谱半径不超过代数元素的范数。结果保留 Mathlib 的 `ℝ≥0∞` 谱半径 carrier。-/
+/-- 谱半径不超过代数元素的范数。结果保留 Mathlib 的 `ℝ≥0∞` 谱半径 carrier。
+@isnad1 id=le.0h2v.s6.0a1891a4695c from=translated src=- shape=df38300e vocab=63f40da5
+-/
 theorem spectralRadius_le_nnnorm (a : A) :
     spectralRadius ℂ a ≤ (‖a‖₊ : ℝ≥0∞) :=
   spectrum.spectralRadius_le_nnnorm a
 
 omit [NormOneClass A] in
 /-- 非空紧谱上的范数取得最大值；这个最大值恰为谱半径。这里把“非空 + 紧致 + 上确界定义”
-组合成教材中 `max_{z ∈ σ(a)} ‖z‖` 的可用见证。-/
+组合成教材中 `max_{z ∈ σ(a)} ‖z‖` 的可用见证。
+@isnad1 id=ex.0h2v.s6.d12dd4cd5712 from=translated src=- shape=30e1fdfa vocab=01c5bb88
+-/
 theorem exists_spectrum_nnnorm_eq_spectralRadius (a : A) :
     ∃ z ∈ spectrum ℂ a, (‖z‖₊ : ℝ≥0∞) = spectralRadius ℂ a :=
   spectrum.exists_nnnorm_eq_spectralRadius a
@@ -66,7 +76,9 @@ theorem exists_spectrum_nnnorm_eq_spectralRadius (a : A) :
 omit [NormOneClass A] [Nontrivial A] in
 /-- Gelfand 谱半径公式：幂范数的 `n` 次根在 `ℝ≥0∞` 中收敛到谱半径。
 
-`n = 0` 没有被排除；表达式采用 Mathlib 的总函数幂约定。有限个首项不影响 `atTop` 极限。-/
+`n = 0` 没有被排除；表达式采用 Mathlib 的总函数幂约定。有限个首项不影响 `atTop` 极限。
+@isnad1 id=tendsto.0h2v.s6.3438bf7937ae from=translated src=- shape=50103a2a vocab=e9826d8b
+-/
 theorem tendsto_nthRoot_nnnorm_pow_spectralRadius (a : A) :
     Tendsto (fun n : ℕ => (‖a ^ n‖₊ : ℝ≥0∞) ^ (1 / n : ℝ))
       atTop (𝓝 (spectralRadius ℂ a)) :=

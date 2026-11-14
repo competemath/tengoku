@@ -23,26 +23,36 @@ namespace Analysis.Constants
 noncomputable def e : ℝ := Real.exp 1
 
 /-- `e` 展开为指数函数在 `1` 点的值。
-> **Entry**: analysis.constants.e-definition-/
+> **Entry**: analysis.constants.e-definition
+@isnad1 id=eq.0h0v.s3.683608dd9081 from=translated src=- shape=e75ac6ed vocab=2d6c3575
+-/
 theorem e_eq_exp_one : e = Real.exp 1 := by
   rfl
 
-/-- 自然常数 `e` 为正。-/
+/-- 自然常数 `e` 为正。
+@isnad1 id=lt.0h0v.s3.92e4128bbf69 from=translated src=- shape=ff3a10fc vocab=1a3b06df
+-/
 theorem e_pos : 0 < e := by
   rw [e_eq_exp_one]
   exact Real.exp_pos 1
 
-/-- 自然常数 `e` 严格大于 `2`。-/
+/-- 自然常数 `e` 严格大于 `2`。
+@isnad1 id=lt.0h0v.s3.cee4e7c27d92 from=translated src=- shape=ff3a10fc vocab=19e9a60e
+-/
 theorem e_gt_two : 2 < e := by
   rw [e_eq_exp_one]
   exact Real.exp_one_gt_two
 
-/-- 自然常数 `e` 严格小于 `3`。-/
+/-- 自然常数 `e` 严格小于 `3`。
+@isnad1 id=lt.0h0v.s3.2713f544930e from=translated src=- shape=ffdda526 vocab=19e9a60e
+-/
 theorem e_lt_three : e < 3 := by
   rw [e_eq_exp_one]
   exact Real.exp_one_lt_three
 
-/-- 自然对数在 `e` 点的值为 `1`。-/
+/-- 自然对数在 `e` 点的值为 `1`。
+@isnad1 id=eq.0h0v.s3.3eb176150697 from=translated src=- shape=b0ae1d2b vocab=35043ca7
+-/
 theorem log_e : Real.log e = 1 := by
   rw [e_eq_exp_one]
   exact Real.log_exp 1
@@ -131,7 +141,9 @@ private lemma factorial_mul_exp_one_sub_partial_sum_lt_one (n : ℕ) (hn : 0 < n
 若 `e=q∈ℚ`，取 `n=q.den`。上面的两个整数性引理说明
 `n!e-n!∑ₖ₌₀ⁿ1/k!` 是整数；两个尾项引理却说明它严格位于 `0` 与 `1`
 之间，矛盾。
-> **Entry**: analysis.constants.e-irrational-/
+> **Entry**: analysis.constants.e-irrational
+@isnad1 id=irration.0h0v.s1.f3a3641a05da from=translated src=- shape=49959d42 vocab=68792402
+-/
 theorem e_irrational : Irrational e := by
   rw [e_eq_exp_one]
   rintro ⟨q, hq⟩
@@ -157,31 +169,43 @@ theorem e_irrational : Irrational e := by
 noncomputable def pi : ℝ := Real.pi
 
 /-- 本库的 `π` 接口就是 Mathlib 的实圆周率。
-> **Entry**: analysis.constants.pi-definition-/
+> **Entry**: analysis.constants.pi-definition
+@isnad1 id=eq.0h0v.s2.350f8c2aff21 from=translated src=- shape=54c8eceb vocab=da69d4e7
+-/
 theorem pi_eq_real_pi : pi = Real.pi := by
   rfl
 
-/-- 圆周率为正。-/
+/-- 圆周率为正。
+@isnad1 id=lt.0h0v.s3.debf3f8f794c from=translated src=- shape=ff3a10fc vocab=b701b16f
+-/
 theorem pi_pos : 0 < pi := by
   rw [pi_eq_real_pi]
   exact Real.pi_pos
 
-/-- 圆周率非零。-/
+/-- 圆周率非零。
+@isnad1 id=ne.0h0v.s3.446c597775d6 from=translated src=- shape=ffdda526 vocab=abc1ab77
+-/
 theorem pi_ne_zero : pi ≠ 0 := by
   rw [pi_eq_real_pi]
   exact Real.pi_ne_zero
 
-/-- `sin π = 0`。-/
+/-- `sin π = 0`。
+@isnad1 id=eq.0h0v.s3.d9dd9d6d0ae9 from=translated src=- shape=b0ae1d2b vocab=afef79c2
+-/
 theorem sin_pi : Real.sin pi = 0 := by
   rw [pi_eq_real_pi]
   exact Real.sin_pi
 
-/-- `cos π = -1`。-/
+/-- `cos π = -1`。
+@isnad1 id=eq.0h0v.s3.02053546e9b9 from=translated src=- shape=f7285ee8 vocab=1a18c8a1
+-/
 theorem cos_pi : Real.cos pi = -1 := by
   rw [pi_eq_real_pi]
   exact Real.cos_pi
 
-/-- 周期量 `2π` 为正。-/
+/-- 周期量 `2π` 为正。
+@isnad1 id=lt.0h0v.s4.67f5c75370af from=translated src=- shape=33ba5777 vocab=2ee0a3dc
+-/
 theorem two_pi_pos : 0 < 2 * pi := by
   rw [pi_eq_real_pi]
   exact Real.two_pi_pos
@@ -190,54 +214,76 @@ theorem two_pi_pos : 0 < 2 * pi := by
 
 本库的 `pi` 按定义就是 `Real.pi`，因此该结论直接继承 Mathlib 中 Cartwright
 积分法的完整形式化证明。
-> **Entry**: analysis.constants.pi-irrational-/
+> **Entry**: analysis.constants.pi-irrational
+@isnad1 id=irration.0h0v.s1.ce7adf14ac72 from=translated src=- shape=49959d42 vocab=f2e0d8e2
+-/
 theorem pi_irrational : Irrational pi := by
   rw [pi_eq_real_pi]
   exact irrational_pi
 
 /-! ### 初等函数的常用特殊值 -/
 
-/-- 指数函数在零点的值。-/
+/-- 指数函数在零点的值。
+@isnad1 id=eq.0h0v.s3.58584c4bc729 from=translated src=- shape=3c26ae4f vocab=32ad2a50
+-/
 theorem exp_zero : Real.exp 0 = 1 := by
   exact Real.exp_zero
 
-/-- 指数函数在一点的值就是自然常数 `e`。-/
+/-- 指数函数在一点的值就是自然常数 `e`。
+@isnad1 id=eq.0h0v.s3.3e030628e139 from=translated src=- shape=0ae4dc79 vocab=2d6c3575
+-/
 theorem exp_one : Real.exp 1 = e := by
   rfl
 
-/-- 自然对数在 `1` 点的值。-/
+/-- 自然对数在 `1` 点的值。
+@isnad1 id=eq.0h0v.s3.241f64c15961 from=translated src=- shape=3c26ae4f vocab=cc746364
+-/
 theorem log_one : Real.log 1 = 0 := by
   exact Real.log_one
 
-/-- 正弦函数在零点的值。-/
+/-- 正弦函数在零点的值。
+@isnad1 id=eq.0h0v.s3.4c2116bf92b2 from=translated src=- shape=3c26ae4f vocab=5d2bb7ec
+-/
 theorem sin_zero : Real.sin 0 = 0 := by
   exact Real.sin_zero
 
-/-- 余弦函数在零点的值。-/
+/-- 余弦函数在零点的值。
+@isnad1 id=eq.0h0v.s3.8aaf4a475129 from=translated src=- shape=3c26ae4f vocab=4930e5f5
+-/
 theorem cos_zero : Real.cos 0 = 1 := by
   exact Real.cos_zero
 
 /-- 正弦函数在 `π/2` 点的值。
-> **Entry**: analysis.constants.special-values-/
+> **Entry**: analysis.constants.special-values
+@isnad1 id=eq.0h0v.s4.9a050988cb16 from=translated src=- shape=15fd1593 vocab=74a5bcd6
+-/
 theorem sin_pi_div_two : Real.sin (Real.pi / 2) = 1 := by
   exact Real.sin_pi_div_two
 
-/-- 余弦函数在 `π/2` 点的值。-/
+/-- 余弦函数在 `π/2` 点的值。
+@isnad1 id=eq.0h0v.s4.f3e9d65c1b8e from=translated src=- shape=15fd1593 vocab=5d5e6df5
+-/
 theorem cos_pi_div_two : Real.cos (Real.pi / 2) = 0 := by
   exact Real.cos_pi_div_two
 
-/-- 正弦函数在 `π` 点的值。-/
+/-- 正弦函数在 `π` 点的值。
+@isnad1 id=eq.0h0v.s3.edab8e6b02fe from=translated src=- shape=b0ae1d2b vocab=3032846d
+-/
 theorem sin_pi_value : Real.sin Real.pi = 0 := by
   exact Real.sin_pi
 
-/-- 余弦函数在 `π` 点的值。-/
+/-- 余弦函数在 `π` 点的值。
+@isnad1 id=eq.0h0v.s3.48148659f80e from=translated src=- shape=f7285ee8 vocab=d34af7ca
+-/
 theorem cos_pi_value : Real.cos Real.pi = -1 := by
   exact Real.cos_pi
 
 /-! ### 非完全幂的整数根无理性 -/
 
 /-- 若实数的正整数次幂是整数，但该整数不是整数的同次幂，则该实数无理。
-> **Entry**: analysis.constants.nth-root-irrational-/
+> **Entry**: analysis.constants.nth-root-irrational
+@isnad1 id=irration.3h3v.s6.5b30def76167 from=translated src=- shape=6924b53c vocab=9eefec14
+-/
 theorem irrational_nth_root_of_not_perfect {x : ℝ} {n : ℕ} {m : ℤ}
     (hpow : x ^ n = (m : ℝ))
     (hnot : ¬ ∃ z : ℤ, (z : ℝ) ^ n = (m : ℝ))

@@ -22,19 +22,25 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 /-- 属于连续零化子，等价于在原子空间每个向量上取零。
 
-> **Entry**: functional-analysis.subspace.annihilator-closure-/
+> **Entry**: functional-analysis.subspace.annihilator-closure
+@isnad1 id=iff.0h3v.s10.b49ee98432fd from=translated src=- shape=1eb92925 vocab=7a5150c4
+-/
 theorem mem_continuousAnnihilator_iff (S : Submodule ℝ E) (f : StrongDual ℝ E) :
     f ∈ StrongDual.polarSubmodule ℝ S ↔ ∀ x ∈ S, f x = 0 := by
   exact StrongDual.mem_polarSubmodule ℝ S f
 
-/-- 连续零化子反转子空间包含关系。-/
+/-- 连续零化子反转子空间包含关系。
+@isnad1 id=le.1h3v.s10.d4ff8e77c719 from=translated src=- shape=c45c141d vocab=f6d9b373
+-/
 theorem continuousAnnihilator_anti {S T : Submodule ℝ E} (hST : S ≤ T) :
     StrongDual.polarSubmodule ℝ T ≤ StrongDual.polarSubmodule ℝ S := by
   intro f hf
   rw [mem_continuousAnnihilator_iff] at hf ⊢
   exact fun x hx ↦ hf x (hST hx)
 
-/-- 双零化子闭包刻画：一个向量属于 `S` 的闭包，当且仅当所有消灭 `S` 的连续泛函也消灭它。-/
+/-- 双零化子闭包刻画：一个向量属于 `S` 的闭包，当且仅当所有消灭 `S` 的连续泛函也消灭它。
+@isnad1 id=iff.0h3v.s10.98769a53b78d from=translated src=- shape=eeefe22d vocab=fae831f1
+-/
 theorem mem_topologicalClosure_iff_forall_annihilator (S : Submodule ℝ E) (x : E) :
     x ∈ S.topologicalClosure ↔
       ∀ f : StrongDual ℝ E, f ∈ StrongDual.polarSubmodule ℝ S → f x = 0 := by
@@ -62,7 +68,9 @@ theorem mem_topologicalClosure_iff_forall_annihilator (S : Submodule ℝ E) (x :
     rw [hfxzero] at hcfx
     linarith
 
-/-- 对闭子空间，连续泛函的共同零点精确恢复该子空间。-/
+/-- 对闭子空间，连续泛函的共同零点精确恢复该子空间。
+@isnad1 id=iff.1h3v.s10.6d291771eea3 from=translated src=- shape=06d0035b vocab=bd1f6243
+-/
 theorem mem_closedSubspace_iff_forall_annihilator (S : Submodule ℝ E)
     (hS : IsClosed (S : Set E)) (x : E) :
     x ∈ S ↔ ∀ f : StrongDual ℝ E, f ∈ StrongDual.polarSubmodule ℝ S → f x = 0 := by

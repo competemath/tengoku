@@ -30,7 +30,9 @@ def IsPrimePowerGroup (p : ℕ) (G : Type*) [Group G] : Prop :=
   ∀ g : G, ∃ k : ℕ, g ^ (p ^ k) = 1
 
 /-- 本库 `p`-群定义与底层实现之间的桥。它是定义展开后的同一命题，而非额外数学假设。
-> **Entry**: abstract-algebra.group.sylow-/
+> **Entry**: abstract-algebra.group.sylow
+@isnad1 id=iff.0h2v.s4.4187c5162c39 from=translated src=- shape=d60dca08 vocab=1b67eb4b
+-/
 theorem isPrimePowerGroup_iff_mathlib {p : ℕ} {G : Type*} [Group G] :
     IsPrimePowerGroup p G ↔ IsPGroup p G := by
   rfl
@@ -50,11 +52,15 @@ def SylowSubgroup (p : ℕ) (G : Type*) [Group G] :=
 
 namespace IsSylowSubgroup
 
-/-- Sylow `p`-子群首先是一个 `p`-子群。-/
+/-- Sylow `p`-子群首先是一个 `p`-子群。
+@isnad1 id=isprimep.1h3v.s5.e7a4418c95d4 from=translated src=- shape=1615f58c vocab=26351572
+-/
 theorem isPGroup {G : Type*} [Group G] {p : ℕ} {P : Subgroup G}
     (hP : IsSylowSubgroup p P) : IsPrimePowerGroup p P := hP.1
 
-/-- Sylow `p`-子群在 `p`-子群中关于包含关系极大。-/
+/-- Sylow `p`-子群在 `p`-子群中关于包含关系极大。
+@isnad1 id=eq.3h4v.s6.0d2252e5ade6 from=translated src=- shape=00aaf04a vocab=3ac5f360
+-/
 theorem maximal {G : Type*} [Group G] {p : ℕ} {P Q : Subgroup G}
     (hP : IsSylowSubgroup p P) (hQ : IsPrimePowerGroup p Q) (hPQ : P ≤ Q) : Q = P :=
   hP.2 hQ hPQ
@@ -85,7 +91,9 @@ private def sylowEquivMathlib (p : ℕ) (G : Type*) [Group G] :
     simp [fromMathlibSylow, toMathlibSylow]
 
 /-- **Cauchy 定理**：若素数 `p` 整除有限群 `G` 的阶，则 `G` 中存在阶为 `p` 的元素。
-> **Entry**: abstract-algebra.group.sylow-/
+> **Entry**: abstract-algebra.group.sylow
+@isnad1 id=ex.1h2v.s5.c0ab2fa31bb0 from=translated src=- shape=d09e8b43 vocab=a48775b6
+-/
 theorem cauchy_theorem {G : Type*} [Group G] [Finite G]
     (p : ℕ) [Fact p.Prime] (hp : p ∣ Nat.card G) :
     ∃ g : G, orderOf g = p := by
@@ -93,13 +101,17 @@ theorem cauchy_theorem {G : Type*} [Group G] [Finite G]
 
 /-- **Sylow 第一定理（存在性）**：每个群都存在 Sylow `p`-子群。
 在有限群且 `p` 为素数时，后面的 `sylow_card` 给出它的精确阶。
-> **Entry**: abstract-algebra.group.sylow-/
+> **Entry**: abstract-algebra.group.sylow
+@isnad1 id=nonempty.0h2v.s3.0de82dd14c8b from=translated src=- shape=62a8e1b3 vocab=e9f45f1a
+-/
 theorem sylow_exists (G : Type*) [Group G] (p : ℕ) :
     Nonempty (SylowSubgroup p G) := by
   exact Nonempty.map (sylowEquivMathlib p G).symm Sylow.nonempty
 
 /-- Sylow 第一定理的包含形式：每个 `p`-子群都包含于某个 Sylow `p`-子群。
-> **Entry**: abstract-algebra.group.sylow-/
+> **Entry**: abstract-algebra.group.sylow
+@isnad1 id=ex.1h3v.s6.6545a3014239 from=translated src=- shape=23e65192 vocab=f9a7ed88
+-/
 theorem pSubgroup_le_sylow {G : Type*} [Group G] {p : ℕ}
     {H : Subgroup G} (hH : IsPrimePowerGroup p H) :
     ∃ P : SylowSubgroup p G, H ≤ P.1 := by
@@ -107,7 +119,9 @@ theorem pSubgroup_le_sylow {G : Type*} [Group G] {p : ℕ}
   exact ⟨fromMathlibSylow P, hHP⟩
 
 /-- 有限群的 Sylow `p`-子群阶为 `p ^ v_p(|G|)`，即群阶中最大的 `p` 次幂因子。
-> **Entry**: abstract-algebra.group.sylow-/
+> **Entry**: abstract-algebra.group.sylow
+@isnad1 id=eq.0h3v.s6.e749ca0fea2a from=translated src=- shape=423e75d8 vocab=79892d35
+-/
 theorem sylow_card {G : Type*} [Group G] [Finite G]
     {p : ℕ} [Fact p.Prime] (P : SylowSubgroup p G) :
     Nat.card P.1 = p ^ (Nat.card G).factorization p := by
@@ -115,7 +129,9 @@ theorem sylow_card {G : Type*} [Group G] [Finite G]
 
 /-- **Sylow 第二定理**：任意两个 Sylow `p`-子群在 `G` 中互为共轭。这里共轭子群
 写作自同构 `x ↦ g x g⁻¹` 对子群的像。
-> **Entry**: abstract-algebra.group.sylow-/
+> **Entry**: abstract-algebra.group.sylow
+@isnad1 id=ex.0h4v.s8.84c05f59fe17 from=translated src=- shape=a69542eb vocab=9f6b14b9
+-/
 theorem sylow_conjugate {G : Type*} [Group G] {p : ℕ}
     [Fact p.Prime] [Finite (SylowSubgroup p G)] (P Q : SylowSubgroup p G) :
     ∃ g : G, P.1.map (MulAut.conj g).toMonoidHom = Q.1 := by
@@ -128,7 +144,9 @@ theorem sylow_conjugate {G : Type*} [Group G] {p : ℕ}
   simpa [toMathlibSylow] using hsub
 
 /-- **Sylow 第三定理（同余条件）**：Sylow `p`-子群个数 `nₚ` 模 `p` 余一。
-> **Entry**: abstract-algebra.group.sylow-/
+> **Entry**: abstract-algebra.group.sylow
+@isnad1 id=modeq.0h2v.s4.81316c3e99b0 from=translated src=- shape=15dc3d9d vocab=08e6df6b
+-/
 theorem sylow_number_mod_prime {G : Type*} [Group G] (p : ℕ)
     [Fact p.Prime] [Finite (SylowSubgroup p G)] :
     Nat.card (SylowSubgroup p G) ≡ 1 [MOD p] := by
@@ -138,7 +156,9 @@ theorem sylow_number_mod_prime {G : Type*} [Group G] (p : ℕ)
 
 /-- **Sylow 第三定理（整除条件）**：`nₚ` 整除任一 Sylow `p`-子群在 `G` 中的指数。
 在有限群中，该指数是 `|G| / |P|`。
-> **Entry**: abstract-algebra.group.sylow-/
+> **Entry**: abstract-algebra.group.sylow
+@isnad1 id=dvd.0h3v.s5.f47c61cc41e3 from=translated src=- shape=ae13fec5 vocab=57a22212
+-/
 theorem sylow_number_dvd_index {G : Type*} [Group G] {p : ℕ}
     [Fact p.Prime] [Finite (SylowSubgroup p G)] (P : SylowSubgroup p G) :
     Nat.card (SylowSubgroup p G) ∣ P.1.index := by
@@ -147,7 +167,9 @@ theorem sylow_number_dvd_index {G : Type*} [Group G] {p : ℕ}
   exact (toMathlibSylow P).card_dvd_index
 
 /-- 若 Sylow `p`-子群唯一，则它正规：任意共轭仍是 Sylow 子群，唯一性迫使共轭固定它。
-> **Entry**: abstract-algebra.group.sylow-/
+> **Entry**: abstract-algebra.group.sylow
+@isnad1 id=normal.1h3v.s5.eeb9366999a7 from=translated src=- shape=016ae285 vocab=cf20e87b
+-/
 theorem sylow_normal_of_unique {G : Type*} [Group G] {p : ℕ}
     (P : SylowSubgroup p G) (hP : ∀ Q : SylowSubgroup p G, Q = P) : P.1.Normal := by
   let _ : Subsingleton (SylowSubgroup p G) := ⟨fun Q R => (hP Q).trans (hP R).symm⟩
@@ -156,7 +178,9 @@ theorem sylow_normal_of_unique {G : Type*} [Group G] {p : ℕ}
 
 /-- 反之，正规的 Sylow `p`-子群唯一。结合上一条可得教材判据：Sylow `p`-子群正规
 当且仅当 `nₚ = 1`。
-> **Entry**: abstract-algebra.group.sylow-/
+> **Entry**: abstract-algebra.group.sylow
+@isnad1 id=eq.1h4v.s5.97c9f5fec41d from=translated src=- shape=37348e8b vocab=e64b1443
+-/
 theorem sylow_unique_of_normal {G : Type*} [Group G] {p : ℕ}
     [Fact p.Prime] [Finite (SylowSubgroup p G)] (P : SylowSubgroup p G) (hP : P.1.Normal) :
     ∀ Q : SylowSubgroup p G, Q = P := by
@@ -170,7 +194,9 @@ theorem sylow_unique_of_normal {G : Type*} [Group G] {p : ℕ}
 
 证明利用 `p`-群作用的中心非平凡性：中心阶只能为 `p` 或 `p²`；前者使中心商为
 素数阶循环群，后者使中心等于全群，两种情形都推出交换性。
-> **Entry**: abstract-algebra.group.sylow-/
+> **Entry**: abstract-algebra.group.sylow
+@isnad1 id=ismulcom.1h2v.s5.b6edae91534f from=translated src=- shape=602e5f67 vocab=6dbcda5a
+-/
 theorem prime_square_group_commutative {G : Type*} [Group G] [Finite G]
     {p : ℕ} [Fact p.Prime] (hG : Nat.card G = p ^ 2) :
     IsMulCommutative G := by

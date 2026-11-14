@@ -224,7 +224,9 @@ private lemma integral_le_upperSum_of_riemannIntegrableWithBound {f : ℝ → �
 第一方向对所有下和取上确界；第二方向选择上下和间隙小于任意 `ε > 0` 的分划，
 并把 Lebesgue 积分夹在该分划的下和与上和之间。
 
-> **Entry**: real-analysis.riemann.eq-lebesgue-general-/
+> **Entry**: real-analysis.riemann.eq-lebesgue-general
+@isnad1 id=eq.2h3v.s5.67069f572668 from=translated src=- shape=0b557429 vocab=e7665729
+-/
 theorem riemannIntegral_eq_interval_of_riemannIntegrableWithBound {f : ℝ → ℝ} {a b : ℝ}
     (hab : a < b) (h : RiemannIntegrableWithBound f a b) :
     riemannIntegral f a b = ∫ x in Set.Ioc a b, f x ∂volume := by
@@ -254,7 +256,9 @@ theorem riemannIntegral_eq_interval_of_riemannIntegrableWithBound {f : ℝ → �
 /-- **Newton–Leibniz 公式**：连续函数若有原函数，则其 Riemann 积分等于原函数的
 端点差。
 
-> **Entry**: real-analysis.riemann.ftc-/
+> **Entry**: real-analysis.riemann.ftc
+@isnad1 id=eq.3h4v.s6.9ae4849a4f64 from=translated src=- shape=cd4e858e vocab=1b22885a
+-/
 theorem riemannIntegral_eq_sub_of_hasDerivAt {a b : ℝ} {F f : ℝ → ℝ}
     (hab : a < b) (hf : ContinuousOn f (Set.Icc a b))
     (hderiv : ∀ x ∈ Set.Icc a b, HasDerivAt F (f x) x) :
@@ -268,7 +272,9 @@ theorem riemannIntegral_eq_sub_of_hasDerivAt {a b : ℝ} {F f : ℝ → ℝ}
     exact hf'.intervalIntegrable
 
 /-- **微积分基本定理第一形式**：连续函数的变上限 Riemann 积分在 `x>a` 处的
-导数等于被积函数在 `x` 处的值。-/
+导数等于被积函数在 `x` 处的值。
+@isnad1 id=hasderiv.2h3v.s6.e9a65cea4d25 from=translated src=- shape=95811a0b vocab=d3ed4575
+-/
 theorem hasDerivAt_riemannIntegral_right {a x : ℝ} {f : ℝ → ℝ}
     (hax : a < x) (hf : Continuous f) :
     HasDerivAt (fun u => riemannIntegral f a u) (f x) x := by
@@ -284,7 +290,9 @@ theorem hasDerivAt_riemannIntegral_right {a x : ℝ} {f : ℝ → ℝ}
 
 /-- **分部积分公式**：`∫ u v' = u(b)v(b)-u(a)v(a)-∫u'v`。
 
-> **Entry**: real-analysis.riemann.parts-substitution-/
+> **Entry**: real-analysis.riemann.parts-substitution
+@isnad1 id=eq.7h6v.s8.c3941dc8a53f from=translated src=- shape=8fde59be vocab=f99e6fe8
+-/
 theorem riemannIntegral_mul_deriv_eq_deriv_mul {a b : ℝ}
     {u v u' v' : ℝ → ℝ} (hab : a < b)
     (hu : ContinuousOn u (Set.Icc a b)) (hv : ContinuousOn v (Set.Icc a b))
@@ -308,7 +316,9 @@ theorem riemannIntegral_mul_deriv_eq_deriv_mul {a b : ℝ}
     exact hv''.intervalIntegrable
 
 /-- **换元积分公式**：若 `φ'=φ'` 且 `g` 连续，则
-`∫ₐᵇ g(φ(x))φ'(x) dx = ∫_{φ(a)}^{φ(b)} g(u) du`。-/
+`∫ₐᵇ g(φ(x))φ'(x) dx = ∫_{φ(a)}^{φ(b)} g(u) du`。
+@isnad1 id=eq.6h5v.s7.b4335d1e8ee0 from=translated src=- shape=bc059aed vocab=c0b9d24d
+-/
 theorem riemannIntegral_comp_mul_deriv {a b : ℝ} {φ φ' g : ℝ → ℝ}
     (hab : a < b) (hφab : φ a < φ b)
     (hφ : ContinuousOn φ (Set.Icc a b))
@@ -328,7 +338,9 @@ theorem riemannIntegral_comp_mul_deriv {a b : ℝ} {φ φ' g : ℝ → ℝ}
   · simpa [Set.uIcc_of_le hab.le] using hφ'
   · exact hg
 
-/-- 分部积分例：`∫ₐᵇ x eˣ dx = b eᵇ-a eᵃ-(eᵇ-eᵃ)`。-/
+/-- 分部积分例：`∫ₐᵇ x eˣ dx = b eᵇ-a eᵃ-(eᵇ-eᵃ)`。
+@isnad1 id=eq.1h2v.s6.2fd1479ec986 from=translated src=- shape=6ef0a8fd vocab=e77a4bad
+-/
 theorem riemannIntegral_id_mul_exp {a b : ℝ} (hab : a < b) :
     riemannIntegral (fun x => x * Real.exp x) a b =
       b * Real.exp b - a * Real.exp a - (Real.exp b - Real.exp a) := by
@@ -345,7 +357,9 @@ theorem riemannIntegral_id_mul_exp {a b : ℝ} (hab : a < b) :
   rw [hexp] at hparts
   simpa using hparts
 
-/-- 线性换元例：`c>0` 时，`∫ₐᵇ c exp(cx+d) dx = exp(cb+d)-exp(ca+d)`。-/
+/-- 线性换元例：`c>0` 时，`∫ₐᵇ c exp(cx+d) dx = exp(cb+d)-exp(ca+d)`。
+@isnad1 id=eq.2h4v.s6.caedded57664 from=translated src=- shape=8f44db78 vocab=15779463
+-/
 theorem riemannIntegral_const_mul_exp_affine {a b c d : ℝ}
     (hab : a < b) (hc : 0 < c) :
     riemannIntegral (fun x => Real.exp (c * x + d) * c) a b =
@@ -370,7 +384,9 @@ theorem riemannIntegral_const_mul_exp_affine {a b c d : ℝ}
 
 /-- **幂函数积分**：`∫ₐᵇ xⁿ dx = bⁿ⁺¹/(n+1)-aⁿ⁺¹/(n+1)`。
 
-> **Entry**: analysis.integral.examples-/
+> **Entry**: analysis.integral.examples
+@isnad1 id=eq.1h3v.s7.c5557c7dbf4c from=translated src=- shape=6a8339df vocab=da1cc87e
+-/
 theorem riemannIntegral_pow {a b : ℝ} (n : ℕ) (hab : a < b) :
     riemannIntegral (fun x : ℝ => x ^ n) a b =
       b ^ (n + 1) / (n + 1) - a ^ (n + 1) / (n + 1) := by
@@ -380,19 +396,25 @@ theorem riemannIntegral_pow {a b : ℝ} (n : ℕ) (hab : a < b) :
   simpa [Nat.add_sub_cancel, hn] using
     (hasDerivAt_pow (n + 1) x).div_const (n + 1 : ℝ)
 
-/-- **指数函数积分**：`∫ₐᵇ eˣ dx=eᵇ-eᵃ`。-/
+/-- **指数函数积分**：`∫ₐᵇ eˣ dx=eᵇ-eᵃ`。
+@isnad1 id=eq.1h2v.s4.57b4a3619669 from=translated src=- shape=d2ade15d vocab=6b2a0735
+-/
 theorem riemannIntegral_exp {a b : ℝ} (hab : a < b) :
     riemannIntegral Real.exp a b = Real.exp b - Real.exp a := by
   exact riemannIntegral_eq_sub_of_hasDerivAt hab Real.continuous_exp.continuousOn
     (fun x _ => Real.hasDerivAt_exp x)
 
-/-- **余弦函数积分**：`∫ₐᵇ cos x dx=sin b-sin a`。-/
+/-- **余弦函数积分**：`∫ₐᵇ cos x dx=sin b-sin a`。
+@isnad1 id=eq.1h2v.s4.25f5a3c0e170 from=translated src=- shape=fef9f537 vocab=a312ff79
+-/
 theorem riemannIntegral_cos {a b : ℝ} (hab : a < b) :
     riemannIntegral Real.cos a b = Real.sin b - Real.sin a := by
   exact riemannIntegral_eq_sub_of_hasDerivAt hab Real.continuous_cos.continuousOn
     (fun x _ => Real.hasDerivAt_sin x)
 
-/-- **正弦函数积分**：`∫ₐᵇ sin x dx=cos a-cos b`。-/
+/-- **正弦函数积分**：`∫ₐᵇ sin x dx=cos a-cos b`。
+@isnad1 id=eq.1h2v.s4.b29664bba7b8 from=translated src=- shape=ab0f0913 vocab=a312ff79
+-/
 theorem riemannIntegral_sin {a b : ℝ} (hab : a < b) :
     riemannIntegral Real.sin a b = Real.cos a - Real.cos b := by
   have h := riemannIntegral_eq_sub_of_hasDerivAt
@@ -400,7 +422,9 @@ theorem riemannIntegral_sin {a b : ℝ} (hab : a < b) :
     (fun x _ => (Real.hasDerivAt_cos x).neg.congr_deriv (neg_neg _))
   linarith
 
-/-- **线性三角换元例**：`c>0` 时，`∫ₐᵇ c cos(cx+d) dx` 等于相应正弦端点差。-/
+/-- **线性三角换元例**：`c>0` 时，`∫ₐᵇ c cos(cx+d) dx` 等于相应正弦端点差。
+@isnad1 id=eq.2h4v.s6.bb2f094ac7a1 from=translated src=- shape=f3f49a55 vocab=e1b1a48d
+-/
 theorem riemannIntegral_const_mul_cos_affine {a b c d : ℝ}
     (hab : a < b) (hc : 0 < c) :
     riemannIntegral (fun x => Real.cos (c * x + d) * c) a b =

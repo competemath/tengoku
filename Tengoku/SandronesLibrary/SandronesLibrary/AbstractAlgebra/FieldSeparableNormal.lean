@@ -207,7 +207,9 @@ private theorem normalExtension_iff_mathlib {K L : Type*}
 /-- 本库显式可分扩张谓词与由同一域嵌入诱导的 Mathlib 可分扩张类完全等价。
 这是跨模块复用的正式桥；后续证明不应再次展开最小多项式转换链。
 
-> **Entry**: abstract-algebra.field.separable-normal-/
+> **Entry**: abstract-algebra.field.separable-normal
+@isnad1 id=iff.0h3v.s5.c9a03f104a32 from=translated src=- shape=416502ef vocab=68fada8f
+-/
 theorem separableExtension_iff_mathlibIsSeparable {K L : Type*}
     [Field K] [Field L] (e : FieldEmbedding K L) :
     letI : Algebra K L := e.toRingHom.toAlgebra
@@ -217,7 +219,9 @@ theorem separableExtension_iff_mathlibIsSeparable {K L : Type*}
 /-- 本库显式正规扩张谓词与由同一域嵌入诱导的 Mathlib `Normal` 类完全等价。
 该桥集中封装代数性、最小多项式和分裂语义的对齐，避免上层模块重复证明。
 
-> **Entry**: abstract-algebra.field.separable-normal-/
+> **Entry**: abstract-algebra.field.separable-normal
+@isnad1 id=iff.0h3v.s5.2d24ac8b300b from=translated src=- shape=416502ef vocab=6247c201
+-/
 theorem normalExtension_iff_mathlibNormal {K L : Type*}
     [Field K] [Field L] (e : FieldEmbedding K L) :
     letI : Algebra K L := e.toRingHom.toAlgebra
@@ -366,7 +370,9 @@ private theorem finite_base_finite_extension_separable_bridge {K L : Type*}
 /-- 展开 `SeparablePolynomial`：可分性恰好是多项式与其导数满足 Bézout
 恒等式。该形式为后续导数和根的判据提供直接入口。
 
-> **Entry**: abstract-algebra.field.separable-normal-/
+> **Entry**: abstract-algebra.field.separable-normal
+@isnad1 id=iff.0h2v.s9.7b2ab7841d2e from=translated src=- shape=086d1bd1 vocab=ec788592
+-/
 theorem separablePolynomial_iff_bezout_derivative {K : Type*} [Field K]
     (p : Polynomial K) :
     SeparablePolynomial p ↔
@@ -376,7 +382,9 @@ theorem separablePolynomial_iff_bezout_derivative {K : Type*} [Field K]
 /-- 可分多项式非零。若原多项式为零，其导数也为零，任何两个倍数之和
 仍为零，不可能等于单位多项式。
 
-> **Entry**: abstract-algebra.field.separable-normal-/
+> **Entry**: abstract-algebra.field.separable-normal
+@isnad1 id=ne.1h2v.s5.f4ceb2652d80 from=translated src=- shape=4ceda3f7 vocab=369969ed
+-/
 theorem separablePolynomial_ne_zero {K : Type*} [Field K]
     {p : Polynomial K} (hp : SeparablePolynomial p) : p ≠ 0 := by
   exact (separablePolynomial_iff_mathlib p).mp hp |>.ne_zero
@@ -384,7 +392,9 @@ theorem separablePolynomial_ne_zero {K : Type*} [Field K]
 /-- 沿显式域嵌入映射全部系数前后，可分性等价。域嵌入的单射性保证
 映射不会制造或消除多项式与导数之间的公因子。
 
-> **Entry**: abstract-algebra.field.separable-normal-/
+> **Entry**: abstract-algebra.field.separable-normal
+@isnad1 id=iff.0h4v.s5.ed87dc23c0c2 from=translated src=- shape=b3131f1c vocab=2341c4d2
+-/
 theorem separablePolynomial_map_iff {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (p : Polynomial K) :
     SeparablePolynomial (p.map e.toRingHom) ↔ SeparablePolynomial p := by
@@ -395,7 +405,9 @@ theorem separablePolynomial_map_iff {K L : Type*} [Field K] [Field L]
 不可约性把“与导数互素”化为导数不被原多项式整除，
 而次数严格下降排除非零整除。
 
-> **Entry**: abstract-algebra.field.separable-normal-/
+> **Entry**: abstract-algebra.field.separable-normal
+@isnad1 id=iff.1h2v.s8.ea8f65b41a8d from=translated src=- shape=6aa2f9f4 vocab=15204b76
+-/
 theorem irreducible_separablePolynomial_iff_derivative_ne_zero
     {K : Type*} [Field K] {p : Polynomial K} (hp : Irreducible p) :
     SeparablePolynomial p ↔ p.derivative ≠ 0 := by
@@ -405,7 +417,9 @@ theorem irreducible_separablePolynomial_iff_derivative_ne_zero
 /-- 可分多项式在任意显式扩域中的根都不是其形式导数的根。把 Bézout
 恒等式在该点求值后，若两者同时为零便会得到 `0 = 1`。
 
-> **Entry**: abstract-algebra.field.separable-normal-/
+> **Entry**: abstract-algebra.field.separable-normal
+@isnad1 id=ne.2h5v.s8.b693c303f9e8 from=translated src=- shape=1bc9e95d vocab=ee2ff487
+-/
 theorem separablePolynomial_root_derivative_ne_zero {K L : Type*}
     [Field K] [Field L] (e : FieldEmbedding K L) (p : Polynomial K) (x : L)
     (hp : SeparablePolynomial p) (hx : evaluateOver e p x = 0) :
@@ -417,7 +431,9 @@ theorem separablePolynomial_root_derivative_ne_zero {K L : Type*}
 /-- 每个可分元都是 A3.5 意义下的代数元。其可分最小多项式非零并在
 该元素处显式求值为零，因而直接给出代数性见证。
 
-> **Entry**: abstract-algebra.field.separable-normal-/
+> **Entry**: abstract-algebra.field.separable-normal
+@isnad1 id=algebrai.1h4v.s5.d5fcd2b2f491 from=translated src=- shape=1c0fac9a vocab=ba041a33
+-/
 theorem separableElement_isAlgebraic {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) {x : L} (hx : SeparableElement e x) :
     AlgebraicElement e x := by
@@ -428,7 +444,9 @@ theorem separableElement_isAlgebraic {K L : Type*} [Field K] [Field L]
 /-- 给定元素代数性及一个满足 A3.5 泛性质的最小多项式后，元素可分
 当且仅当这个具体多项式可分。最小多项式唯一性消除了见证选择。
 
-> **Entry**: abstract-algebra.field.separable-normal-/
+> **Entry**: abstract-algebra.field.separable-normal
+@isnad1 id=iff.2h5v.s5.58aedf639ed2 from=translated src=- shape=dfeab284 vocab=dc3df72d
+-/
 theorem separableElement_iff_minimalPolynomial {K L : Type*}
     [Field K] [Field L] (e : FieldEmbedding K L) {x : L} {p : Polynomial K}
     (ha : AlgebraicElement e x) (hp : MinimalPolynomialOf e x p) :
@@ -442,7 +460,9 @@ theorem separableElement_iff_minimalPolynomial {K L : Type*}
 /-- 可分扩张必为代数扩张。逐个元素应用“可分元必代数”即可得到
 A3.6 的 `AlgebraicExtension`。
 
-> **Entry**: abstract-algebra.field.separable-normal-/
+> **Entry**: abstract-algebra.field.separable-normal
+@isnad1 id=algebrai.1h3v.s4.4f82a415d146 from=translated src=- shape=f61ba1fe vocab=265b8dc7
+-/
 theorem separableExtension_isAlgebraic {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (hsep : SeparableExtension e) :
     AlgebraicExtension e := by
@@ -454,7 +474,9 @@ theorem separableExtension_isAlgebraic {K L : Type*} [Field K] [Field L]
 /-- 正规扩张首先是代数扩张。这是 `NormalExtension` 定义的第一分量，
 明确正规性不适用于本模块未处理的超越扩张。
 
-> **Entry**: abstract-algebra.field.separable-normal-/
+> **Entry**: abstract-algebra.field.separable-normal
+@isnad1 id=algebrai.1h3v.s4.e13638bda30e from=translated src=- shape=f61ba1fe vocab=fa9ee731
+-/
 theorem NormalExtension.isAlgebraic {K L : Type*} [Field K] [Field L]
     {e : FieldEmbedding K L} (h : NormalExtension e) : AlgebraicExtension e :=
   h.1
@@ -462,7 +484,9 @@ theorem NormalExtension.isAlgebraic {K L : Type*} [Field K] [Field L]
 /-- 正规扩张中，每个元素的任意教材最小多项式都在目标域中分裂。
 该投影是正规性的主要操作接口，并保留显式基域嵌入。
 
-> **Entry**: abstract-algebra.field.separable-normal-/
+> **Entry**: abstract-algebra.field.separable-normal
+@isnad1 id=polynomi.2h5v.s5.6a324601de28 from=translated src=- shape=8e896ebb vocab=abedbba5
+-/
 theorem NormalExtension.minimalPolynomial_splits {K L : Type*}
     [Field K] [Field L] {e : FieldEmbedding K L} (h : NormalExtension e)
     (x : L) (p : Polynomial K) (hp : MinimalPolynomialOf e x p) :
@@ -472,7 +496,9 @@ theorem NormalExtension.minimalPolynomial_splits {K L : Type*}
 /-- 非零多项式的分裂域是正规扩张。证明后端把 A3.7 的分裂且由根生成
 条件对齐到成熟分裂域接口，再调用分裂域正规性定理。
 
-> **Entry**: abstract-algebra.field.separable-normal-/
+> **Entry**: abstract-algebra.field.separable-normal
+@isnad1 id=normalex.1h4v.s5.17444741cdf4 from=translated src=- shape=8a1cdd60 vocab=0627b642
+-/
 theorem splittingFieldFor_normalExtension {K L : Type*}
     [Field K] [Field L] (e : FieldEmbedding K L) (p : Polynomial K)
     (h : SplittingFieldFor e p) : NormalExtension e := by
@@ -486,7 +512,9 @@ theorem splittingFieldFor_normalExtension {K L : Type*}
 /-- 显式扩张有限且正规，当且仅当它满足某个非零多项式的
 `SplittingFieldFor`。非零条件与 A3.7 的零多项式边界保持一致。
 
-> **Entry**: abstract-algebra.field.separable-normal-/
+> **Entry**: abstract-algebra.field.separable-normal
+@isnad1 id=iff.0h3v.s5.b043cdc0c426 from=translated src=- shape=5ab89d26 vocab=0b93dc00
+-/
 theorem finite_normalExtension_iff_exists_splittingFieldFor {K L : Type*}
     [Field K] [Field L] (e : FieldEmbedding K L) :
     FiniteFieldExtension e ∧ NormalExtension e ↔
@@ -509,7 +537,9 @@ theorem finite_normalExtension_iff_exists_splittingFieldFor {K L : Type*}
 /-- 有限基域上的每个显式有限扩张都是可分扩张。有限域是完美域，而
 有限扩张先由 A3.6 得到代数性，因此每个最小多项式均可分。
 
-> **Entry**: abstract-algebra.field.separable-normal-/
+> **Entry**: abstract-algebra.field.separable-normal
+@isnad1 id=separabl.1h3v.s5.c4c988afed14 from=translated src=- shape=5edc50de vocab=f934c642
+-/
 theorem finiteFieldExtension_over_finiteField_isSeparable {K L : Type*}
     [Field K] [Field L] [Finite K] (e : FieldEmbedding K L)
     (hfin : FiniteFieldExtension e) : SeparableExtension e := by

@@ -19,14 +19,18 @@ open Filter Topology
 namespace SandronesLibrary
 namespace Analysis.ClassicalLimits
 
-/-- 正弦函数的基本重要极限。-/
+/-- 正弦函数的基本重要极限。
+@isnad1 id=tendsto.0h0v.s5.aa63196f82ac from=translated src=- shape=413bf0c6 vocab=655351be
+-/
 theorem tendsto_sin_div_id :
     Tendsto (fun x : ℝ => Real.sin x / x) (𝓝[≠] 0) (𝓝 1) := by
   simpa [one_div, div_eq_mul_inv, mul_comm, Real.cos_zero] using
     (Real.hasDerivAt_sin 0).tendsto_slope_zero
 
 /-- 由正弦基本极限推出的余弦二阶重要极限。
-> **Entry**: analysis.limits.classical-/
+> **Entry**: analysis.limits.classical
+@isnad1 id=tendsto.0h0v.s6.29f68ebe4a97 from=translated src=- shape=ac5c01db vocab=195b1370
+-/
 theorem tendsto_one_sub_cos_div_sq :
     Tendsto (fun x : ℝ => (1 - Real.cos x) / x ^ 2) (𝓝[≠] 0) (𝓝 (1 / 2)) := by
   have hhalf : Tendsto (fun x : ℝ => x / 2) (𝓝[≠] 0) (𝓝[≠] 0) := by
@@ -57,13 +61,17 @@ theorem tendsto_one_sub_cos_div_sq :
   rw [hfun]
   simpa using hlim
 
-/-- 指数函数在零点的基本重要极限。-/
+/-- 指数函数在零点的基本重要极限。
+@isnad1 id=tendsto.0h0v.s6.ac978db8891c from=translated src=- shape=56dd3525 vocab=ba4bc76d
+-/
 theorem tendsto_exp_sub_one_div :
     Tendsto (fun x : ℝ => (Real.exp x - 1) / x) (𝓝[≠] 0) (𝓝 1) := by
   simpa [one_div, div_eq_mul_inv, mul_comm] using
     (Real.hasDerivAt_exp 0).tendsto_slope_zero
 
-/-- 对数函数在一附近的基本重要极限。-/
+/-- 对数函数在一附近的基本重要极限。
+@isnad1 id=tendsto.0h0v.s6.cc408cf42e6b from=translated src=- shape=ed8681a9 vocab=ddef8b0d
+-/
 theorem tendsto_log_one_add_div :
     Tendsto (fun x : ℝ => Real.log (1 + x) / x) (𝓝[≠] 0) (𝓝 1) := by
   simpa [one_div, div_eq_mul_inv, mul_comm, Real.log_one, add_comm] using

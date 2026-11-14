@@ -26,39 +26,51 @@ def cyclicSubgroup {G : Type*} [Group G] (g : G) : Subgroup G :=
   Subgroup.zpowers g
 
 /-- `x ∈ ⟨g⟩` 当且仅当存在整数 `n` 使 `gⁿ = x`。这正是循环子群的元素刻画。
-> **Entry**: abstract-algebra.group.cyclic-/
+> **Entry**: abstract-algebra.group.cyclic
+@isnad1 id=iff.0h3v.s5.64ca56f2ef41 from=translated src=- shape=43237c85 vocab=c11774cf
+-/
 theorem mem_cyclicSubgroup_iff {G : Type*} [Group G] (g x : G) :
     x ∈ cyclicSubgroup g ↔ ∃ n : ℤ, g ^ n = x := by
   exact Subgroup.mem_zpowers_iff
 
 /-- 循环子群 `⟨g⟩` 的基数等于元素 `g` 的阶。无限阶时两边按 `Nat.card` 约定均为零。
-> **Entry**: abstract-algebra.group.cyclic-/
+> **Entry**: abstract-algebra.group.cyclic
+@isnad1 id=eq.0h2v.s5.331fa8e62428 from=translated src=- shape=2724daa3 vocab=14fb1f84
+-/
 theorem cyclicSubgroup_card {G : Type*} [Group G] (g : G) :
     Nat.card (cyclicSubgroup g) = orderOf g := by
   exact Nat.card_zpowers g
 
 /-- **循环群的生成元判据**：`G` 是循环群，当且仅当存在 `g` 使 `⟨g⟩ = G`。
-> **Entry**: abstract-algebra.group.cyclic-/
+> **Entry**: abstract-algebra.group.cyclic
+@isnad1 id=iff.0h1v.s5.c929380f49b1 from=translated src=- shape=59ecdcff vocab=e13c4ef7
+-/
 theorem cyclic_iff_exists_generator {G : Type*} [Group G] :
     IsCyclic G ↔ ∃ g : G, cyclicSubgroup g = ⊤ := by
   exact isCyclic_iff_exists_zpowers_eq_top
 
 /-- 若 `g` 生成整个群，则 `g` 的阶等于群的阶。
-> **Entry**: abstract-algebra.group.cyclic-/
+> **Entry**: abstract-algebra.group.cyclic
+@isnad1 id=eq.1h2v.s5.cdb2df0df760 from=translated src=- shape=78fd5d17 vocab=3e0caeb0
+-/
 theorem generator_order_eq_group_card {G : Type*} [Group G] {g : G}
     (hg : cyclicSubgroup g = ⊤) :
     orderOf g = Nat.card G := by
   exact orderOf_eq_card_of_zpowers_eq_top hg
 
 /-- **循环群的子群仍是循环群**。
-> **Entry**: abstract-algebra.group.cyclic-/
+> **Entry**: abstract-algebra.group.cyclic
+@isnad1 id=iscyclic.0h2v.s5.10c305d024ed from=translated src=- shape=2737fe64 vocab=3d66f7e8
+-/
 theorem subgroup_of_cyclic_is_cyclic {G : Type*} [Group G] [IsCyclic G]
     (H : Subgroup G) : IsCyclic H := by
   infer_instance
 
 /-- **循环群子群的形状**：若 `H ≤ ⟨g⟩`，则存在自然数 `n` 使 `H = ⟨gⁿ⟩`。
 这给出了循环群子群分类的核心存在性陈述。
-> **Entry**: abstract-algebra.group.cyclic-/
+> **Entry**: abstract-algebra.group.cyclic
+@isnad1 id=ex.1h3v.s5.5627d7bed255 from=translated src=- shape=a39fe70c vocab=92ae8c08
+-/
 theorem subgroup_of_cyclic_eq_cyclicSubgroup {G : Type*} [Group G]
     (g : G) (H : Subgroup G) (hH : H ≤ cyclicSubgroup g) :
     ∃ n : ℕ, H = cyclicSubgroup (g ^ n) := by
@@ -66,7 +78,9 @@ theorem subgroup_of_cyclic_eq_cyclicSubgroup {G : Type*} [Group G]
 
 /-- **素数阶群是循环群**：更强地，任意非单位元都生成全群。
 这是 Lagrange 定理与“素数只有平凡因子”的直接结合。
-> **Entry**: abstract-algebra.group.cyclic-/
+> **Entry**: abstract-algebra.group.cyclic
+@isnad1 id=eq.2h3v.s5.ab82b73f6850 from=translated src=- shape=c58847b7 vocab=0676059f
+-/
 theorem prime_card_group_generated_by_nonidentity {G : Type*} [Group G]
     {p : ℕ} [Fact p.Prime] (hcard : Nat.card G = p)
     {g : G} (hg : g ≠ 1) : cyclicSubgroup g = ⊤ := by
@@ -84,7 +98,9 @@ noncomputable def zmodEquivOfGenerator {G : Type*} [Group G]
 
 /-- 上述同构把整数 k 的剩余类送到 `g^k`。这既说明映射的计算规则，也说明指数
 相差 n 的整数给出同一个群元素。
-> **Entry**: abstract-algebra.group.cyclic-/
+> **Entry**: abstract-algebra.group.cyclic
+@isnad1 id=eq.2h4v.s7.e016351d9af7 from=translated src=- shape=42642b5a vocab=8a001a62
+-/
 theorem zmodEquivOfGenerator_apply_intCast {G : Type*} [Group G]
     {g : G} {n : ℕ} (hg : cyclicSubgroup g = ⊤) (hn : Nat.card G = n)
     (k : ℤ) :
@@ -93,7 +109,9 @@ theorem zmodEquivOfGenerator_apply_intCast {G : Type*} [Group G]
     (fun x => hg.ge (Subgroup.mem_top x)) hn k
 
 /-- 特别地，`1 mod n` 在指定生成元同构下映到 g。
-> **Entry**: abstract-algebra.group.cyclic-/
+> **Entry**: abstract-algebra.group.cyclic
+@isnad1 id=eq.2h3v.s7.2168834bd039 from=translated src=- shape=ac8ac7bf vocab=fd284baf
+-/
 theorem zmodEquivOfGenerator_apply_one {G : Type*} [Group G]
     {g : G} {n : ℕ} (hg : cyclicSubgroup g = ⊤) (hn : Nat.card G = n) :
     zmodEquivOfGenerator hg hn (Multiplicative.ofAdd 1) = g := by

@@ -45,15 +45,23 @@ def GreatestCommonDivisor {R : Type*} [Mul R] (d a b : R) : Prop :=
   DividesElement d a ∧ DividesElement d b ∧
     ∀ c : R, DividesElement c a → DividesElement c b → DividesElement c d
 
-/-- 本库显式整除定义与 Lean 基础整除记号的具名桥。-/
+/-- 本库显式整除定义与 Lean 基础整除记号的具名桥。
+@isnad1 id=iff.0h3v.s4.0bf84f2040ab from=translated src=- shape=865b2251 vocab=907932db
+-/
 theorem dividesElement_iff_dvd {R : Type*} [Semigroup R] {a b : R} :
     DividesElement a b ↔ a ∣ b := by
   exact dvd_def.symm
 
+/--
+@isnad1 id=dividese.0h2v.s4.c22ded0d80c6 from=translated src=- shape=e6608552 vocab=a9fe658c
+-/
 theorem dividesElement_refl {R : Type*} [Monoid R] (a : R) :
     DividesElement a a := by
   exact ⟨1, (mul_one a).symm⟩
 
+/--
+@isnad1 id=dividese.2h4v.s5.babcf1dfcb3a from=translated src=- shape=ed0e08c7 vocab=8ae5b50c
+-/
 theorem dividesElement_trans {R : Type*} [Semigroup R] {a b c : R}
     (hab : DividesElement a b) (hbc : DividesElement b c) :
     DividesElement a c := by
@@ -61,6 +69,9 @@ theorem dividesElement_trans {R : Type*} [Semigroup R] {a b c : R}
   obtain ⟨y, rfl⟩ := hbc
   exact ⟨x * y, mul_assoc a x y⟩
 
+/--
+@isnad1 id=dividese.1h3v.s5.604a92781fa7 from=translated src=- shape=5a9a4837 vocab=52892e9a
+-/
 theorem unitElement_divides {R : Type*} [Monoid R] {u : R}
     (hu : UnitElement u) (a : R) : DividesElement u a := by
   obtain ⟨v, huv, hvu⟩ := hu
@@ -70,16 +81,25 @@ theorem unitElement_divides {R : Type*} [Monoid R] {u : R}
     _ = (u * v) * a := by rw [huv]
     _ = u * (v * a) := mul_assoc u v a
 
+/--
+@isnad1 id=associat.0h2v.s4.c05f94a27b10 from=translated src=- shape=e6608552 vocab=5199422b
+-/
 theorem associateElements_refl {R : Type*} [Monoid R] (a : R) :
     AssociateElements a a := by
   exact ⟨1, ⟨1, mul_one 1, mul_one 1⟩, (mul_one a).symm⟩
 
+/--
+@isnad1 id=associat.1h3v.s5.8c218f41417c from=translated src=- shape=2da0c23b vocab=df7d2e4f
+-/
 theorem associateElements_symm {R : Type*} [CommMonoid R] {a b : R}
     (hab : AssociateElements a b) : AssociateElements b a := by
   obtain ⟨u, ⟨v, huv, hvu⟩, rfl⟩ := hab
   refine ⟨v, ⟨u, hvu, huv⟩, ?_⟩
   rw [mul_assoc, huv, mul_one]
 
+/--
+@isnad1 id=associat.2h4v.s6.2eae9b567eb8 from=translated src=- shape=ed0e08c7 vocab=df7d2e4f
+-/
 theorem associateElements_trans {R : Type*} [CommMonoid R] {a b c : R}
     (hab : AssociateElements a b) (hbc : AssociateElements b c) :
     AssociateElements a c := by
@@ -89,6 +109,9 @@ theorem associateElements_trans {R : Type*} [CommMonoid R] {a b c : R}
   exact (unitElement_iff_isUnit (u * v)).mpr
     (((unitElement_iff_isUnit u).mp hu).mul ((unitElement_iff_isUnit v).mp hv))
 
+/--
+@isnad1 id=and.1h3v.s5.0508a0f935a7 from=translated src=- shape=421f8bea vocab=5e0ab2d9
+-/
 theorem associateElements_implies_mutual_divisibility
     {R : Type*} [CommMonoid R] {a b : R} (h : AssociateElements a b) :
     DividesElement a b ∧ DividesElement b a := by
@@ -99,7 +122,9 @@ theorem associateElements_implies_mutual_divisibility
     obtain ⟨v, _hv, hav⟩ := hs
     exact ⟨v, hav⟩
 
-/-- 交换整环中互相整除的元素相伴。-/
+/-- 交换整环中互相整除的元素相伴。
+@isnad1 id=associat.3h3v.s6.31af9a74cdab from=translated src=- shape=fa17130a vocab=71f4c927
+-/
 theorem mutual_divisibility_implies_associateElements
     {R : Type*} [CommRing R] (hR : IntegralDomainAxioms R) {a b : R}
     (hab : DividesElement a b) (hba : DividesElement b a) :
@@ -120,7 +145,9 @@ theorem mutual_divisibility_implies_associateElements
         _ = a * 1 := (mul_one a).symm
     exact ⟨x, ⟨y, hxy, by simpa [mul_comm] using hxy⟩, hbx⟩
 
-/-- 本库相伴定义与 Mathlib `Associated` 的兼容桥。-/
+/-- 本库相伴定义与 Mathlib `Associated` 的兼容桥。
+@isnad1 id=iff.1h3v.s6.2357ae8d628e from=translated src=- shape=579c48f1 vocab=b96ff8df
+-/
 theorem associateElements_iff_associated
     {R : Type*} [CommRing R] (hR : IntegralDomainAxioms R) {a b : R} :
     AssociateElements a b ↔ Associated a b := by
@@ -135,6 +162,9 @@ theorem associateElements_iff_associated
     exact mutual_divisibility_implies_associateElements hR
       (dividesElement_iff_dvd.mpr hm.1) (dividesElement_iff_dvd.mpr hm.2)
 
+/--
+@isnad1 id=irreduci.2h2v.s6.644a3b40efe3 from=translated src=- shape=b0c8cbfb vocab=9d541429
+-/
 theorem primeElement_implies_irreducibleElement
     {R : Type*} [CommRing R] (hR : IntegralDomainAxioms R) {p : R}
     (hp : PrimeElement p) : IrreducibleElement p := by
@@ -163,7 +193,9 @@ theorem primeElement_implies_irreducibleElement
         _ = p * 1 := (mul_one p).symm
     exact Or.inl ⟨c, hac, by simpa [mul_comm] using hac⟩
 
-/-- 本库不可约元定义与 Mathlib `Irreducible` 的兼容桥。-/
+/-- 本库不可约元定义与 Mathlib `Irreducible` 的兼容桥。
+@isnad1 id=iff.1h2v.s6.2442363313d5 from=translated src=- shape=c7f12f28 vocab=df1281e1
+-/
 theorem irreducibleElement_iff_irreducible
     {R : Type*} [CommRing R] (hR : IntegralDomainAxioms R) {p : R} :
     IrreducibleElement p ↔ Irreducible p := by
@@ -182,7 +214,9 @@ theorem irreducibleElement_iff_irreducible
         (fun ha ↦ (unitElement_iff_isUnit a).mpr ha)
         (fun hb ↦ (unitElement_iff_isUnit b).mpr hb)⟩
 
-/-- 本库素元定义与 Mathlib `Prime` 的兼容桥。-/
+/-- 本库素元定义与 Mathlib `Prime` 的兼容桥。
+@isnad1 id=iff.0h2v.s5.7beb1a89a84b from=translated src=- shape=bc057928 vocab=3b3234e6
+-/
 theorem primeElement_iff_prime
     {R : Type*} [CommRing R] {p : R} :
     PrimeElement p ↔ Prime p := by
@@ -197,6 +231,9 @@ theorem primeElement_iff_prime
       (hp a b (dividesElement_iff_dvd.mp hab)).imp
         dividesElement_iff_dvd.mpr dividesElement_iff_dvd.mpr⟩
 
+/--
+@isnad1 id=associat.3h5v.s6.ffe14c52062e from=translated src=- shape=f0ab33c8 vocab=82dbef68
+-/
 theorem greatestCommonDivisor_unique_up_to_associates
     {R : Type*} [CommRing R] (hR : IntegralDomainAxioms R) {d e a b : R}
     (hd : GreatestCommonDivisor d a b) (he : GreatestCommonDivisor e a b) :

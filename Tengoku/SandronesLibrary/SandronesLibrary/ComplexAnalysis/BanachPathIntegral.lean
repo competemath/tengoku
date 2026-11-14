@@ -48,7 +48,9 @@ def banachOneForm (f : ℂ → F) : ℂ → ℂ →L[ℂ] F :=
 
 /-- Evaluation of the Banach-valued one-form.
 
-> **Entry**: complex-analysis.integral.banach-path-foundation-/
+> **Entry**: complex-analysis.integral.banach-path-foundation
+@isnad1 id=eq.0h4v.s7.3820eb54f2b2 from=translated src=- shape=c647cd5e vocab=6e521efc
+-/
 @[simp]
 theorem banachOneForm_apply (f : ℂ → F) (z v : ℂ) : banachOneForm f z v = v • f z := by
   simp [banachOneForm]
@@ -69,7 +71,9 @@ def banachPathIntegral (f : ℂ → F) {a b : ℂ} (γ : Path a b) : F :=
 /-- Specialising the Banach-valued path integral to `F = ℂ` recovers the existing scalar
 `pathIntegral`; the two one-forms are definitionally identical.
 
-> **Entry**: complex-analysis.integral.banach-path-foundation-/
+> **Entry**: complex-analysis.integral.banach-path-foundation
+@isnad1 id=eq.0h4v.s5.5c9fad27d7b1 from=translated src=- shape=e8771dce vocab=72d69544
+-/
 @[simp]
 theorem banachPathIntegral_complex_eq_pathIntegral (f : ℂ → ℂ) {a b : ℂ} (γ : Path a b) :
     banachPathIntegral (F := ℂ) f γ = pathIntegral f γ := by
@@ -77,7 +81,9 @@ theorem banachPathIntegral_complex_eq_pathIntegral (f : ℂ → ℂ) {a b : ℂ}
 
 /-- The integral of the zero Banach-valued integrand vanishes.
 
-> **Entry**: complex-analysis.integral.banach-path-foundation-/
+> **Entry**: complex-analysis.integral.banach-path-foundation
+@isnad1 id=eq.0h4v.s6.5fa32b6466a2 from=translated src=- shape=b391cb0a vocab=e0cc31ef
+-/
 theorem banachPathIntegral_zero {a b : ℂ} (γ : Path a b) :
     banachPathIntegral (fun _ : ℂ => (0 : F)) γ = 0 := by
   have h : banachOneForm (fun _ : ℂ => (0 : F)) = 0 := by
@@ -90,7 +96,9 @@ theorem banachPathIntegral_zero {a b : ℂ} (γ : Path a b) :
 
 /-- The Banach-valued path integral is additive in the integrand.
 
-> **Entry**: complex-analysis.integral.banach-path-foundation-/
+> **Entry**: complex-analysis.integral.banach-path-foundation
+@isnad1 id=eq.2h6v.s7.8d6917e7a6ed from=translated src=- shape=6b4b8235 vocab=74f1be29
+-/
 theorem banachPathIntegral_add {a b : ℂ} {f g : ℂ → F} {γ : Path a b}
     (hf : BanachPathIntegrable f γ) (hg : BanachPathIntegrable g γ) :
     banachPathIntegral (fun z => f z + g z) γ =
@@ -108,7 +116,9 @@ theorem banachPathIntegral_add {a b : ℂ} {f g : ℂ → F} {γ : Path a b}
 
 /-- The Banach-valued path integral is ℂ-homogeneous in the integrand.
 
-> **Entry**: complex-analysis.integral.banach-path-foundation-/
+> **Entry**: complex-analysis.integral.banach-path-foundation
+@isnad1 id=eq.0h6v.s7.b801e82d6d0a from=translated src=- shape=cb84d147 vocab=114ef2d8
+-/
 theorem banachPathIntegral_smul {a b : ℂ} (c : ℂ) (f : ℂ → F) (γ : Path a b) :
     banachPathIntegral (fun z => c • f z) γ = c • banachPathIntegral f γ := by
   have h : banachOneForm (fun z => c • f z) = c • banachOneForm f := by
@@ -122,7 +132,9 @@ theorem banachPathIntegral_smul {a b : ℂ} (c : ℂ) (f : ℂ → F) (γ : Path
 
 /-- Negating the Banach-valued integrand negates the integral.
 
-> **Entry**: complex-analysis.integral.banach-path-foundation-/
+> **Entry**: complex-analysis.integral.banach-path-foundation
+@isnad1 id=eq.0h5v.s6.c47eb659a99d from=translated src=- shape=4fe9737c vocab=3230354d
+-/
 theorem banachPathIntegral_neg {a b : ℂ} (f : ℂ → F) (γ : Path a b) :
     banachPathIntegral (fun z => -f z) γ = -banachPathIntegral f γ := by
   have h : banachOneForm (fun z => -f z) = -banachOneForm f := by
@@ -135,7 +147,9 @@ theorem banachPathIntegral_neg {a b : ℂ} (f : ℂ → F) (γ : Path a b) :
 
 /-- The integral along a constant path vanishes.
 
-> **Entry**: complex-analysis.integral.banach-path-foundation-/
+> **Entry**: complex-analysis.integral.banach-path-foundation
+@isnad1 id=eq.0h3v.s5.168ea2ca804d from=translated src=- shape=57afdf08 vocab=fd33d218
+-/
 theorem banachPathIntegral_refl (f : ℂ → F) (a : ℂ) :
     banachPathIntegral f (Path.refl a) = 0 := by
   show curveIntegral (banachOneForm f) (Path.refl a) = 0
@@ -143,7 +157,9 @@ theorem banachPathIntegral_refl (f : ℂ → F) (a : ℂ) :
 
 /-- Reversing a path negates the Banach-valued path integral.
 
-> **Entry**: complex-analysis.integral.banach-path-foundation-/
+> **Entry**: complex-analysis.integral.banach-path-foundation
+@isnad1 id=eq.0h5v.s6.4a2407ab0dcf from=translated src=- shape=21d69c8e vocab=9218badc
+-/
 theorem banachPathIntegral_symm {a b : ℂ} (f : ℂ → F) (γ : Path a b) :
     banachPathIntegral f γ.symm = -banachPathIntegral f γ := by
   show curveIntegral (banachOneForm f) γ.symm = -curveIntegral (banachOneForm f) γ
@@ -151,7 +167,9 @@ theorem banachPathIntegral_symm {a b : ℂ} (f : ℂ → F) (γ : Path a b) :
 
 /-- Reversal preserves Banach-valued path integrability.
 
-> **Entry**: complex-analysis.integral.banach-path-foundation-/
+> **Entry**: complex-analysis.integral.banach-path-foundation
+@isnad1 id=banachpa.1h5v.s6.a41867417105 from=translated src=- shape=c2ba999b vocab=3db62e62
+-/
 protected theorem BanachPathIntegrable.symm {a b : ℂ} {f : ℂ → F} {γ : Path a b}
     (h : BanachPathIntegrable f γ) : BanachPathIntegrable f γ.symm := by
   have h' : CurveIntegrable (banachOneForm f) γ := h
@@ -160,7 +178,9 @@ protected theorem BanachPathIntegrable.symm {a b : ℂ} {f : ℂ → F} {γ : Pa
 /-- Two integrable Banach-valued paths with a common endpoint have an integrable
 concatenation.
 
-> **Entry**: complex-analysis.integral.banach-path-foundation-/
+> **Entry**: complex-analysis.integral.banach-path-foundation
+@isnad1 id=banachpa.2h7v.s6.733c2b4c54ff from=translated src=- shape=1b609653 vocab=253be37a
+-/
 protected theorem BanachPathIntegrable.trans {a b c : ℂ} {f : ℂ → F}
     {γ : Path a b} {δ : Path b c} (hγ : BanachPathIntegrable f γ) (hδ : BanachPathIntegrable f δ) :
     BanachPathIntegrable f (γ.trans δ) := by
@@ -170,7 +190,9 @@ protected theorem BanachPathIntegrable.trans {a b c : ℂ} {f : ℂ → F}
 
 /-- The Banach-valued integral along a concatenation is the sum of the two integrals.
 
-> **Entry**: complex-analysis.integral.banach-path-foundation-/
+> **Entry**: complex-analysis.integral.banach-path-foundation
+@isnad1 id=eq.2h7v.s7.d743b2dd203a from=translated src=- shape=aed55b60 vocab=3ee2ba66
+-/
 theorem banachPathIntegral_trans {a b c : ℂ} (f : ℂ → F) (γ : Path a b) (δ : Path b c)
     (hγ : BanachPathIntegrable f γ) (hδ : BanachPathIntegrable f δ) :
     banachPathIntegral f (γ.trans δ) = banachPathIntegral f γ + banachPathIntegral f δ := by
@@ -182,7 +204,9 @@ theorem banachPathIntegral_trans {a b c : ℂ} (f : ℂ → F) (γ : Path a b) (
 
 /-- The Banach-valued integral is invariant under casting the endpoints of a path.
 
-> **Entry**: complex-analysis.integral.banach-path-foundation-/
+> **Entry**: complex-analysis.integral.banach-path-foundation
+@isnad1 id=eq.2h7v.s6.5a4d9602cb68 from=translated src=- shape=a9132c56 vocab=09fb1fad
+-/
 theorem banachPathIntegral_cast {a b c d : ℂ} (f : ℂ → F) (γ : Path a b) (hc : c = a)
     (hd : d = b) :
     banachPathIntegral f (γ.cast hc hd) = banachPathIntegral f γ := by

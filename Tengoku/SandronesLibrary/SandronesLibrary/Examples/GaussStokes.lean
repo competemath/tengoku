@@ -45,7 +45,9 @@ def unitCubeUpper : Fin 3 → ℝ := fun _ ↦ 1
 /-- **Gauss 例题**：单位立方体上位置向量场 `F(x)=x` 的总外向通量等于 `3`。
 
 位置向量场的 Fréchet 导数是恒等映射，故散度为 `1+1+1=3`。调用盒上的 Gauss
-公式后，右端成为常数 `3` 在体积为 `1` 的单位立方体上的积分。-/
+公式后，右端成为常数 `3` 在体积为 `1` 的单位立方体上的积分。
+@isnad1 id=eq.0h0v.s4.09d958d71782 from=translated src=- shape=91a03b66 vocab=d965542c
+-/
 theorem gauss_unitCube_identity :
     boxBoundaryFlux3 (fun x : Fin 3 → ℝ ↦ x) unitCubeLower unitCubeUpper = 3 := by
   let F' : (Fin 3 → ℝ) → (Fin 3 → ℝ) →L[ℝ] (Fin 3 → ℝ) :=
@@ -83,7 +85,9 @@ def xDyForm (x : Fin 3 → ℝ) : (Fin 3 → ℝ) →L[ℝ] ℝ :=
 /-- **Stokes 例题**：水平单位正方形上 `x dy` 的边界环流等于 `1`。
 
 参数化拉回后，`du` 系数为 `0`，`dv` 系数为 `u`，所以外微分密度为 `1`。
-参数曲面 Stokes 公式把边界环流化为单位参数正方形上常数 `1` 的积分。-/
+参数曲面 Stokes 公式把边界环流化为单位参数正方形上常数 `1` 的积分。
+@isnad1 id=eq.0h0v.s5.8fde968ee97f from=translated src=- shape=74c11966 vocab=5a231c23
+-/
 theorem stokes_horizontalUnitSquare_xDy :
     rectangleBoundaryIntegral
       (surfacePullbackCoeff₁ xDyForm horizontalUnitSquare)
@@ -122,7 +126,9 @@ def boxBoundaryFlux3Inward (F : (Fin 3 → ℝ) → (Fin 3 → ℝ)) (a b : Fin 
     ((∫ y in Icc (a ∘ i.succAbove) (b ∘ i.succAbove), F (i.insertNth (a i) y) i) -
       ∫ y in Icc (a ∘ i.succAbove) (b ∘ i.succAbove), F (i.insertNth (b i) y) i)
 
-/-- **内向通量只改符号**：六个面逐面取反，总和取反。-/
+/-- **内向通量只改符号**：六个面逐面取反，总和取反。
+@isnad1 id=eq.0h3v.s5.c9ba6c19c68c from=translated src=- shape=c5290468 vocab=2c6ead85
+-/
 theorem boxBoundaryFlux3Inward_eq_neg (F : (Fin 3 → ℝ) → (Fin 3 → ℝ))
     (a b : Fin 3 → ℝ) :
     boxBoundaryFlux3Inward F a b = -boxBoundaryFlux3 F a b := by
@@ -133,7 +139,9 @@ theorem boxBoundaryFlux3Inward_eq_neg (F : (Fin 3 → ℝ) → (Fin 3 → ℝ))
 
 /-- **定向反例（Gauss）**：单位立方体上位置向量场的外向通量为 `3`，内向通量为 `-3`，
 两者不等。这反驳「通量与法向定向无关」这一误认：`gauss_box3` 的右端散度积分不随定向
-改变，故内向约定下公式必然差一个符号。-/
+改变，故内向约定下公式必然差一个符号。
+@isnad1 id=ne.0h0v.s4.01d273742f34 from=translated src=- shape=cb7c17b2 vocab=f765347e
+-/
 theorem gauss_inward_ne_outward :
     boxBoundaryFlux3Inward (fun x : Fin 3 → ℝ ↦ x) unitCubeLower unitCubeUpper ≠
       boxBoundaryFlux3 (fun x : Fin 3 → ℝ ↦ x) unitCubeLower unitCubeUpper := by
@@ -147,7 +155,9 @@ def horizontalUnitSquareRev : ParametrizedSurface 3 :=
 /-- **定向反例（Stokes）**：在反向参数化 `σ(u,v)=(v,u,0)` 下，同一 1-形式 `x dy`
 的拉回变成 `v du`，其外微分密度为 `-1`，于是边界环流为 `-1`，而原参数化下为 `1`。
 这反驳「Stokes 公式的环流与曲面定向无关」这一误认：切向量次序 `(∂ᵤσ,∂ᵥσ)` 决定曲面
-方向，交换次序恰好改变符号。-/
+方向，交换次序恰好改变符号。
+@isnad1 id=eq.0h0v.s5.b616e63de836 from=translated src=- shape=8b0249f0 vocab=e2a6138e
+-/
 theorem stokes_horizontalUnitSquareRev_xDy :
     rectangleBoundaryIntegral
       (surfacePullbackCoeff₁ xDyForm horizontalUnitSquareRev)

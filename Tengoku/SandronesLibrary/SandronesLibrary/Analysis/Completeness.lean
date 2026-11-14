@@ -47,7 +47,9 @@ namespace Analysis.Completeness
 > **依赖**: `analysis.sequence.monotone-convergence`、`analysis.real.sup`
 > **mathlib**: `Real.isLUB_sSup`, `IsLUB`
 
-闭区间套的非空交：sSup {aₙ} 同时是每个下界序列项的下界、每个上界序列项的上界。-/
+闭区间套的非空交：sSup {aₙ} 同时是每个下界序列项的下界、每个上界序列项的上界。
+@isnad1 id=ex.3h2v.s5.b5dd330ec939 from=translated src=- shape=540f0ecc vocab=1d753401
+-/
 theorem nested_intervals_nonempty {a b : ℕ → ℝ}
     (hmono_A : Monotone a) (hanti_B : Antitone b) (hle : ∀ n, a n ≤ b n) :
     ∃ x : ℝ, ∀ n, x ∈ Set.Icc (a n) (b n) := by
@@ -78,7 +80,9 @@ theorem nested_intervals_nonempty {a b : ℕ → ℝ}
         a k ≤ b k := hle k
         _ ≤ b n := hanti_B hn
 
-/-- 闭区间套 + 长度趋于 0 ⟹ 交为单点（长度合拢后两个极限点无从分离）。-/
+/-- 闭区间套 + 长度趋于 0 ⟹ 交为单点（长度合拢后两个极限点无从分离）。
+@isnad1 id=existsun.4h2v.s6.10367397e03a from=translated src=- shape=1d3045bd vocab=3ddc68e6
+-/
 theorem nested_intervals_singleton {a b : ℕ → ℝ}
     (hmono_A : Monotone a) (hanti_B : Antitone b) (hle : ∀ n, a n ≤ b n)
     (hshr : Tendsto (fun n ↦ b n - a n) atTop (𝓝 0)) :
@@ -118,7 +122,9 @@ theorem nested_intervals_singleton {a b : ℕ → ℝ}
 > **依赖**: 无（直接来自 ℝ 的紧性实例）
 > **mathlib**: `CompactIccSpace.isCompact_Icc`, `IsCompact.elim_finite_subcover`
 
-闭区间上任意指标族开覆盖 ⟹ 有限子覆盖（指标族本身可以是无穷的）。-/
+闭区间上任意指标族开覆盖 ⟹ 有限子覆盖（指标族本身可以是无穷的）。
+@isnad1 id=ex.2h4v.s6.9a34516127c0 from=translated src=- shape=7c642ff2 vocab=5327b194
+-/
 theorem finite_cover_principle {a b : ℝ} {ι : Type*} (U : ι → Set ℝ)
     (hUo : ∀ i, IsOpen (U i)) (hcover : Set.Icc a b ⊆ ⋃ i, U i) :
     ∃ t : Finset ι, Set.Icc a b ⊆ ⋃ i ∈ t, U i :=
@@ -132,7 +138,9 @@ theorem finite_cover_principle {a b : ℝ} {ι : Type*} (U : ι → Set ℝ)
 > **依赖**: `analysis.sequence.bolzano-weierstrass`（精神同源）、`analysis.real.bounded-sets`
 > **mathlib**: `Set.Infinite.exists_accPt_of_subset_isCompact`, `AccPt`
 
-有界无限集必有聚点：x ∈ 落在 [sInf s, sSup s] 内且是 s 的聚点。-/
+有界无限集必有聚点：x ∈ 落在 [sInf s, sSup s] 内且是 s 的聚点。
+@isnad1 id=ex.3h1v.s5.7edc008d9bb9 from=translated src=- shape=f70ee03f vocab=921c091e
+-/
 theorem accumulation_point_of_infinite_bounded {s : Set ℝ}
     (hs : s.Infinite) (hb : BddAbove s) (hbdl : BddBelow s) :
     ∃ x : ℝ, AccPt x (𝓟 s) := by
@@ -194,7 +202,9 @@ def CauchyConvergenceProperty : Prop :=
 > **证明类别**: B（语义化组装：h 负责给出 IsLUB，专门定理负责给出收敛）；
 >   不涉及手工 ε-N，因为 `tendsto_atTop_ciSup` 已经把最重的力学做完了。
 > **依赖**: `analysis.real.sup`（IsLUB 的语言）
-> **mathlib**: `tendsto_atTop_ciSup`, `IsLUB.ciSup_eq`-/
+> **mathlib**: `tendsto_atTop_ciSup`, `IsLUB.ciSup_eq`
+@isnad1 id=monotone.1h0v.s1.66d8f24fc58f from=translated src=- shape=1d48f1ac vocab=bcb174fe
+-/
 theorem monotone_convergence_of_sup (h : SupProperty) : MonotoneConvergenceProperty := by
   intro u hu hb
   rcases h (Set.range u) (Set.range_nonempty u) hb with ⟨x, hx⟩
@@ -202,7 +212,9 @@ theorem monotone_convergence_of_sup (h : SupProperty) : MonotoneConvergencePrope
   have ht : Tendsto u atTop (𝓝 (⨆ i : ℕ, u i)) := tendsto_atTop_ciSup hu hb
   simpa [hx.ciSup_eq] using ht
 
-/-- 单调序列收敛于 L ⟹ 每一项都在 L 下方（aₙ ≤ L）。-/
+/-- 单调序列收敛于 L ⟹ 每一项都在 L 下方（aₙ ≤ L）。
+@isnad1 id=le.2h3v.s5.a733c1fd51a5 from=translated src=- shape=e81db19d vocab=59189f4b
+-/
 lemma monotone_le_limit {u : ℕ → ℝ} (hu : Monotone u) {L : ℝ}
     (hL : Tendsto u atTop (𝓝 L)) (n : ℕ) : u n ≤ L := by
   by_contra h
@@ -220,7 +232,9 @@ lemma monotone_le_limit {u : ℕ → ℝ} (hu : Monotone u) {L : ℝ}
       _ = |u m - L| := (abs_of_nonneg hposm).symm
   linarith
 
-/-- 反单调序列收敛于 L ⟹ 每一项都在 L 上方（L ≤ vₙ）。-/
+/-- 反单调序列收敛于 L ⟹ 每一项都在 L 上方（L ≤ vₙ）。
+@isnad1 id=le.2h3v.s5.da96fbd94ff2 from=translated src=- shape=bd0d1fd2 vocab=a6483e07
+-/
 lemma antitone_limit_le {v : ℕ → ℝ} (hv : Antitone v) {L : ℝ}
     (hL : Tendsto v atTop (𝓝 L)) (n : ℕ) : L ≤ v n := by
   have hc : Monotone (fun m : ℕ => -v m) := by
@@ -238,7 +252,9 @@ lemma antitone_limit_le {v : ℕ → ℝ} (hv : Antitone v) {L : ℝ}
 >   关键落点：x₁ ≤ -y（对区间长度做中点裁决），于是 x₁ 落在每个 [aₙ, bₙ] 里。
 > **证明类别**: B（真刀真枪的 ε 论证，但只做了一次"中间点裁决"，其余由单调性包揽）。
 > **依赖**: `analysis.completeness.equivalence-cycle.sup-to-mct`（同款思想）
-> **mathlib**: `Metric.tendsto_atTop`, `abs_lt`, `Filter.Tendsto.neg`-/
+> **mathlib**: `Metric.tendsto_atTop`, `abs_lt`, `Filter.Tendsto.neg`
+@isnad1 id=nestedin.1h0v.s1.702004eeb6b1 from=translated src=- shape=1d48f1ac vocab=b4b0a715
+-/
 theorem nested_intervals_of_monotone_convergence
     (h : MonotoneConvergenceProperty) : NestedIntervalsProperty := by
   intro a b hma hnb hle
@@ -332,7 +348,9 @@ noncomputable def halfbiseq (U : ι → Set ℝ) (a b : ℝ) : ℕ → ℝ × �
       if _h : NoFiniteCover U l ((l + r) / 2) then (l, (l + r) / 2)
       else ((l + r) / 2, r)
 
-/-- 中点分裂：若左右两半各有一族有限子覆盖，合起来覆盖整段，故此段也有限可覆盖。-/
+/-- 中点分裂：若左右两半各有一族有限子覆盖，合起来覆盖整段，故此段也有限可覆盖。
+@isnad1 id=ex.4h5v.s7.33f96ebcb5c7 from=translated src=- shape=e952343a vocab=06507150
+-/
 lemma finite_cover_halves (U : ι → Set ℝ) {l m r : ℝ} (_hlm : l ≤ m) (_hmr : m ≤ r)
     (hc₁ : ∃ t : Finset ι, ∀ x ∈ Set.Icc l m, ∃ i ∈ t, x ∈ U i)
     (hc₂ : ∃ t : Finset ι, ∀ x ∈ Set.Icc m r, ∃ i ∈ t, x ∈ U i) :
@@ -349,7 +367,9 @@ lemma finite_cover_halves (U : ι → Set ℝ) {l m r : ℝ} (_hlm : l ≤ m) (_
     rcases ht₂ x ⟨hmx, hx.2⟩ with ⟨i, hit, hxi⟩
     exact ⟨i, ⟨Finset.mem_union_right t₁ hit, hxi⟩⟩
 
-/-- 二分保持性质：整段无有限子覆盖、左半有有限子覆盖 ⟹ 右半必无有限子覆盖。-/
+/-- 二分保持性质：整段无有限子覆盖、左半有有限子覆盖 ⟹ 右半必无有限子覆盖。
+@isnad1 id=nofinite.4h5v.s5.9c5a507eb70e from=translated src=- shape=902269a1 vocab=00986864
+-/
 lemma right_half_no_finite_cover (U : ι → Set ℝ) {l m r : ℝ} (hlm : l ≤ m) (hmr : m ≤ r)
     (hnc : NoFiniteCover U l r) (hnl : ¬ NoFiniteCover U l m) : NoFiniteCover U m r := by
   classical
@@ -358,7 +378,9 @@ lemma right_half_no_finite_cover (U : ι → Set ℝ) {l m r : ℝ} (hlm : l ≤
   rcases h with ⟨t₂, ht₂⟩
   exact hnc (finite_cover_halves U hlm hmr ⟨t₁, ht₁⟩ ⟨t₂, ht₂⟩)
 
-/-- 二分每层长度恰好减半：lenₙ₊₁ = lenₙ / 2。-/
+/-- 二分每层长度恰好减半：lenₙ₊₁ = lenₙ / 2。
+@isnad1 id=eq.0h5v.s6.e01de573c9aa from=translated src=- shape=439f2508 vocab=1d88cc94
+-/
 lemma halfbiseq_length_step (U : ι → Set ℝ) (a b : ℝ) (n : ℕ) :
     (halfbiseq U a b (n + 1)).2 - (halfbiseq U a b (n + 1)).1
       = ((halfbiseq U a b n).2 - (halfbiseq U a b n).1) / 2 := by
@@ -370,7 +392,9 @@ lemma halfbiseq_length_step (U : ι → Set ℝ) (a b : ℝ) (n : ℕ) :
     rw [dite_eq_right h]
     ring
 
-/-- 二分各层的长度：rₙ − lₙ = (b − a) / 2ⁿ。-/
+/-- 二分各层的长度：rₙ − lₙ = (b − a) / 2ⁿ。
+@isnad1 id=eq.0h5v.s6.7d4e4198f20a from=translated src=- shape=f28076c2 vocab=f7a17587
+-/
 lemma halfbiseq_length (U : ι → Set ℝ) (a b : ℝ) :
     ∀ n, (halfbiseq U a b n).2 - (halfbiseq U a b n).1 = (b - a) / 2 ^ n := by
   intro n
@@ -382,7 +406,9 @@ lemma halfbiseq_length (U : ι → Set ℝ) (a b : ℝ) :
       field_simp
       ring
 
-/-- 二分各层保持 lₙ ≤ rₙ（a ≤ b 起步）。-/
+/-- 二分各层保持 lₙ ≤ rₙ（a ≤ b 起步）。
+@isnad1 id=le.1h5v.s5.8bd67cb6cc03 from=translated src=- shape=0b5e0a91 vocab=51332401
+-/
 lemma halfbiseq_le (U : ι → Set ℝ) (a b : ℝ) (hab : a ≤ b) :
     ∀ n, (halfbiseq U a b n).1 ≤ (halfbiseq U a b n).2 := by
   intro n
@@ -397,7 +423,9 @@ lemma halfbiseq_le (U : ι → Set ℝ) (a b : ℝ) (hab : a ≤ b) :
         rw [dite_eq_right h]
         nlinarith
 
-/-- 左端点单调不减：lₙ ≤ lₙ₊₁。-/
+/-- 左端点单调不减：lₙ ≤ lₙ₊₁。
+@isnad1 id=le.1h5v.s5.a897e7817d7f from=translated src=- shape=697e88bc vocab=77a9c479
+-/
 lemma halfbiseq_left_mono_step (U : ι → Set ℝ) (a b : ℝ) (hab : a ≤ b) (n : ℕ) :
     (halfbiseq U a b n).1 ≤ (halfbiseq U a b (n + 1)).1 := by
   by_cases h : NoFiniteCover U (halfbiseq U a b n).1 (((halfbiseq U a b n).1 + (halfbiseq U a b n).2) / 2)
@@ -408,7 +436,9 @@ lemma halfbiseq_left_mono_step (U : ι → Set ℝ) (a b : ℝ) (hab : a ≤ b) 
     have hle : (halfbiseq U a b n).1 ≤ (halfbiseq U a b n).2 := halfbiseq_le U a b hab n
     nlinarith
 
-/-- 右端点单调不增：rₙ₊₁ ≤ rₙ。-/
+/-- 右端点单调不增：rₙ₊₁ ≤ rₙ。
+@isnad1 id=le.1h5v.s5.23adfa9ce48c from=translated src=- shape=eb295128 vocab=8e28bf24
+-/
 lemma halfbiseq_right_antitone_step (U : ι → Set ℝ) (a b : ℝ) (hab : a ≤ b) (n : ℕ) :
     (halfbiseq U a b (n + 1)).2 ≤ (halfbiseq U a b n).2 := by
   by_cases h : NoFiniteCover U (halfbiseq U a b n).1 (((halfbiseq U a b n).1 + (halfbiseq U a b n).2) / 2)
@@ -419,7 +449,9 @@ lemma halfbiseq_right_antitone_step (U : ι → Set ℝ) (a b : ℝ) (hab : a �
   · simp only [halfbiseq]
     rw [dite_eq_right h]
 
-/-- 无有限子覆盖性质逐层传递：整段无 ⟹ 每一层区间都无。-/
+/-- 无有限子覆盖性质逐层传递：整段无 ⟹ 每一层区间都无。
+@isnad1 id=nofinite.2h5v.s5.e2e6e9f367d2 from=translated src=- shape=e7b728aa vocab=21afd780
+-/
 lemma halfbiseq_nofinite_cover (U : ι → Set ℝ) {a b : ℝ} (hab : a ≤ b)
     (hnc : NoFiniteCover U a b) :
     ∀ n, NoFiniteCover U (halfbiseq U a b n).1 (halfbiseq U a b n).2 := by
@@ -449,7 +481,9 @@ lemma halfbiseq_nofinite_cover (U : ι → Set ℝ) {a b : ℝ} (hab : a ≤ b)
 > **证明类别**: C（核心手工构造：二分进程 halfbiseq 的全程机械构造 + 末端 ε 球收纳）。
 > **依赖**: 本文件 §3 的 `halfbiseq_*` 引理族、`right_half_no_finite_cover`
 > **mathlib**: `monotone_nat_of_le_succ`, `antitone_nat_of_succ_le`,
->   `Metric.isOpen_iff`, `tendsto_pow_atTop_nhds_zero_of_norm_lt_one`-/
+>   `Metric.isOpen_iff`, `tendsto_pow_atTop_nhds_zero_of_norm_lt_one`
+@isnad1 id=finiteco.1h0v.s1.9738c743f28b from=translated src=- shape=1d48f1ac vocab=f6fe5d05
+-/
 theorem finite_cover_of_nested_intervals (h : NestedIntervalsProperty) : FiniteCoverProperty := by
   intro a b ι U hUo hcover
   by_cases hab : a ≤ b
@@ -514,7 +548,9 @@ theorem finite_cover_of_nested_intervals (h : NestedIntervalsProperty) : FiniteC
 
 /-! ### 第四道（B 类）：有限覆盖 ⟹ 聚点 —— 反证 + 开覆盖构造 -/
 
-/-- 非聚点的开邻域刻画：x 不是 s 的聚点 ⟺ 存在邻域 U，U 里 s 的点至多只有 x 自己。-/
+/-- 非聚点的开邻域刻画：x 不是 s 的聚点 ⟺ 存在邻域 U，U 里 s 的点至多只有 x 自己。
+@isnad1 id=iff.0h2v.s5.39433363dbd6 from=translated src=- shape=7fd58918 vocab=21972fc9
+-/
 lemma not_accPt_iff_exists_nhds {s : Set ℝ} {x : ℝ} :
     ¬ AccPt x (𝓟 s) ↔ ∃ U ∈ 𝓝 x, U ∩ s ⊆ {x} := by
   constructor
@@ -541,7 +577,9 @@ lemma not_accPt_iff_exists_nhds {s : Set ℝ} {x : ℝ} :
 > **证明类别**: B（反证 + 开覆盖构造 + 有限子覆盖收尾，无重型手工 ε）。
 > **依赖**: 本文件 §3 `not_accPt_iff_exists_nhds`
 > **mathlib**: `accPt_iff_nhds`, `Metric.mem_nhds_iff`, `Metric.mem_ball_self`,
->   `Finset.finite_toSet`, `Set.Infinite.not_finite`-/
+>   `Finset.finite_toSet`, `Set.Infinite.not_finite`
+@isnad1 id=accumula.1h0v.s1.c986610bf432 from=translated src=- shape=1d48f1ac vocab=255956ed
+-/
 theorem accumulation_point_of_finite_cover (h : FiniteCoverProperty) : AccumulationPointProperty := by
   intro s hs_inf hb_above hb_below
   have hnonempty : s.Nonempty := hs_inf.nonempty
@@ -575,7 +613,9 @@ theorem accumulation_point_of_finite_cover (h : FiniteCoverProperty) : Accumulat
 
 /-! ### 第五道（C 类）：聚点 ⟹ Cauchy 收敛 —— 有界 + 聚点 + 子列 -/
 
-/-- Cauchy 序列有界：值域上下有界。-/
+/-- Cauchy 序列有界：值域上下有界。
+@isnad1 id=and.1h1v.s4.f3c54d1703c0 from=translated src=- shape=c6f5f4de vocab=cd29b7c1
+-/
 lemma cauchy_seq_bounded {u : ℕ → ℝ} (hu : CauchySeq u) :
     BddAbove (Set.range u) ∧ BddBelow (Set.range u) := by
   rcases cauchySeq_bdd hu with ⟨R, _hR, hbd⟩
@@ -594,7 +634,9 @@ lemma cauchy_seq_bounded {u : ℕ → ℝ} (hu : CauchySeq u) :
     have hle : -R ≤ u n - u 0 := (abs_le.mp (le_of_lt (hbd0 n))).1
     linarith
 
-/-- 核心桥：x 是 range u 的聚点 ⟹ x 是序列 u 的 cluster point（沿 atTop）。-/
+/-- 核心桥：x 是 range u 的聚点 ⟹ x 是序列 u 的 cluster point（沿 atTop）。
+@isnad1 id=mapclust.1h2v.s5.13b7c15f3eac from=translated src=- shape=5f7c27d3 vocab=efdf35b7
+-/
 lemma mapClusterPt_of_accPt_range {u : ℕ → ℝ} {x : ℝ}
     (h : AccPt x (𝓟 (Set.range u))) : MapClusterPt x atTop u := by
   rw [mapClusterPt_iff_frequently]
@@ -624,14 +666,18 @@ lemma mapClusterPt_of_accPt_range {u : ℕ → ℝ} {x : ℝ}
   rcases hnonempty with ⟨y, hy⟩
   exact hy.1.2 ⟨hy.1.1, hy.2⟩
 
-/-- Cauchy 序列的聚点即其极限。-/
+/-- Cauchy 序列的聚点即其极限。
+@isnad1 id=tendsto.2h2v.s5.387f8bf9d451 from=translated src=- shape=16647608 vocab=9041e148
+-/
 lemma tendsto_of_cauchySeq_of_accPt_range {u : ℕ → ℝ} (hu : CauchySeq u) {x : ℝ}
     (hx : AccPt x (𝓟 (Set.range u))) : Tendsto u atTop (𝓝 x) := by
   have hmap : MapClusterPt x atTop u := mapClusterPt_of_accPt_range hx
   rcases MapClusterPt.tendsto_subseq hmap with ⟨φ, hφ, hsub⟩
   exact tendsto_nhds_of_cauchySeq_of_subseq hu hφ.tendsto_atTop hsub
 
-/-- 有限值域的 Cauchy 列收敛：鸽笼得常值子列，Cauchy 再把它拉成整体收敛。-/
+/-- 有限值域的 Cauchy 列收敛：鸽笼得常值子列，Cauchy 再把它拉成整体收敛。
+@isnad1 id=ex.2h1v.s5.8bd79bc43f62 from=translated src=- shape=ef486da8 vocab=92543105
+-/
 lemma cauchySeq_tendsto_of_finite_range {u : ℕ → ℝ} (hu : CauchySeq u)
     (hfin : (Set.range u).Finite) : ∃ l : ℝ, Tendsto u atTop (𝓝 l) := by
   have hinf_fiber : ∃ c ∈ Set.range u, Set.Infinite {m : ℕ | u m = c} := by
@@ -668,7 +714,9 @@ lemma cauchySeq_tendsto_of_finite_range {u : ℕ → ℝ} (hu : CauchySeq u)
 > **依赖**: 本文件 §3 `cauchy_seq_bounded`、`mapClusterPt_of_accPt_range`、
 >   `tendsto_of_cauchySeq_of_accPt_range`、`cauchySeq_tendsto_of_finite_range`
 > **mathlib**: `cauchySeq_bdd`, `Nat.exists_strictMono_subsequence`,
->   `tendsto_nhds_of_cauchySeq_of_subseq`, `Set.Finite.biUnion`-/
+>   `tendsto_nhds_of_cauchySeq_of_subseq`, `Set.Finite.biUnion`
+@isnad1 id=cauchyco.1h0v.s1.e98041ad50d0 from=translated src=- shape=1d48f1ac vocab=98db7acc
+-/
 theorem cauchy_convergence_of_accumulation_point (h : AccumulationPointProperty) :
     CauchyConvergenceProperty := by
   intro u hu
@@ -704,7 +752,9 @@ noncomputable def bisect_upper (s : Set ℝ) (a b : ℝ) : ℕ → ℝ × ℝ
       if _h : (l + r) / 2 ∈ upperBounds s then (l, (l + r) / 2)
       else ((l + r) / 2, r)
 
-/-- 二分各层保持 lₙ ≤ rₙ。-/
+/-- 二分各层保持 lₙ ≤ rₙ。
+@isnad1 id=le.1h4v.s5.f3d20616926a from=translated src=- shape=14d82cc9 vocab=553be030
+-/
 lemma bisect_upper_le (s : Set ℝ) (a b : ℝ) (hab : a ≤ b) :
     ∀ n, (bisect_upper s a b n).1 ≤ (bisect_upper s a b n).2 := by
   intro n
@@ -719,7 +769,9 @@ lemma bisect_upper_le (s : Set ℝ) (a b : ℝ) (hab : a ≤ b) :
         rw [dite_eq_right h]
         nlinarith
 
-/-- 左端点单调不减。-/
+/-- 左端点单调不减。
+@isnad1 id=le.1h4v.s5.4d50f9cb0228 from=translated src=- shape=3e1ad1ad vocab=b2d20568
+-/
 lemma bisect_upper_left_mono_step (s : Set ℝ) (a b : ℝ) (hab : a ≤ b) (n : ℕ) :
     (bisect_upper s a b n).1 ≤ (bisect_upper s a b (n + 1)).1 := by
   by_cases h : ((bisect_upper s a b n).1 + (bisect_upper s a b n).2) / 2 ∈ upperBounds s
@@ -730,7 +782,9 @@ lemma bisect_upper_left_mono_step (s : Set ℝ) (a b : ℝ) (hab : a ≤ b) (n :
     have hle : (bisect_upper s a b n).1 ≤ (bisect_upper s a b n).2 := bisect_upper_le s a b hab n
     nlinarith
 
-/-- 右端点单调不增。-/
+/-- 右端点单调不增。
+@isnad1 id=le.1h4v.s5.5487bc8b95de from=translated src=- shape=51504691 vocab=3e34e717
+-/
 lemma bisect_upper_right_antitone_step (s : Set ℝ) (a b : ℝ) (hab : a ≤ b) (n : ℕ) :
     (bisect_upper s a b (n + 1)).2 ≤ (bisect_upper s a b n).2 := by
   by_cases h : ((bisect_upper s a b n).1 + (bisect_upper s a b n).2) / 2 ∈ upperBounds s
@@ -741,7 +795,9 @@ lemma bisect_upper_right_antitone_step (s : Set ℝ) (a b : ℝ) (hab : a ≤ b)
   · simp only [bisect_upper]
     rw [dite_eq_right h]
 
-/-- 二分每层长度恰好减半。-/
+/-- 二分每层长度恰好减半。
+@isnad1 id=eq.0h4v.s6.f1fd74213202 from=translated src=- shape=eb2238c4 vocab=d089d676
+-/
 lemma bisect_upper_length_step (s : Set ℝ) (a b : ℝ) (n : ℕ) :
     (bisect_upper s a b (n + 1)).2 - (bisect_upper s a b (n + 1)).1
       = ((bisect_upper s a b n).2 - (bisect_upper s a b n).1) / 2 := by
@@ -753,7 +809,9 @@ lemma bisect_upper_length_step (s : Set ℝ) (a b : ℝ) (n : ℕ) :
     rw [dite_eq_right h]
     ring
 
-/-- 二分各层长度：rₙ − lₙ = (b − a) / 2ⁿ。-/
+/-- 二分各层长度：rₙ − lₙ = (b − a) / 2ⁿ。
+@isnad1 id=eq.0h4v.s6.8cc51bcddc19 from=translated src=- shape=7d297913 vocab=e1fe9faf
+-/
 lemma bisect_upper_length (s : Set ℝ) (a b : ℝ) :
     ∀ n, (bisect_upper s a b n).2 - (bisect_upper s a b n).1 = (b - a) / 2 ^ n := by
   intro n
@@ -765,7 +823,9 @@ lemma bisect_upper_length (s : Set ℝ) (a b : ℝ) :
       field_simp
       ring
 
-/-- 不变量：右端点 rₙ 恒为 s 的上界。-/
+/-- 不变量：右端点 rₙ 恒为 s 的上界。
+@isnad1 id=mem.1h4v.s5.19c214d836ad from=translated src=- shape=9c227ce7 vocab=5cc03950
+-/
 lemma bisect_upper_right_upper (s : Set ℝ) {a b : ℝ} (hb : b ∈ upperBounds s) :
     ∀ n, (bisect_upper s a b n).2 ∈ upperBounds s := by
   intro n
@@ -780,7 +840,9 @@ lemma bisect_upper_right_upper (s : Set ℝ) {a b : ℝ} (hb : b ∈ upperBounds
         rw [dite_eq_right h]
         exact ih
 
-/-- 不变量：左端点 lₙ 恒非 s 的上界。-/
+/-- 不变量：左端点 lₙ 恒非 s 的上界。
+@isnad1 id=not.1h4v.s5.f9ec51493e85 from=translated src=- shape=0a6e4c6e vocab=d5a10980
+-/
 lemma bisect_upper_left_not_upper (s : Set ℝ) {a b : ℝ} (ha : a ∉ upperBounds s) :
     ∀ n, (bisect_upper s a b n).1 ∉ upperBounds s := by
   intro n
@@ -795,7 +857,9 @@ lemma bisect_upper_left_not_upper (s : Set ℝ) {a b : ℝ} (ha : a ∉ upperBou
         rw [dite_eq_right h]
         exact h
 
-/-- 二分左端点序列 lₙ 是 Cauchy：区间直径趋于 0，lₙ 夹在 [l_N, r_N] 里。-/
+/-- 二分左端点序列 lₙ 是 Cauchy：区间直径趋于 0，lₙ 夹在 [l_N, r_N] 里。
+@isnad1 id=cauchyse.1h3v.s4.3a52144bde9c from=translated src=- shape=b3420b51 vocab=0b92cec0
+-/
 lemma bisect_upper_left_cauchy (s : Set ℝ) {a b : ℝ} (hab : a ≤ b) :
     CauchySeq (fun n => (bisect_upper s a b n).1) := by
   rw [Metric.cauchySeq_iff]
@@ -840,7 +904,9 @@ lemma bisect_upper_left_cauchy (s : Set ℝ) {a b : ℝ} (hab : a ≤ b) :
   rw [Real.dist_eq]
   nlinarith
 
-/-- 二分右端点序列 rₙ 是 Cauchy。-/
+/-- 二分右端点序列 rₙ 是 Cauchy。
+@isnad1 id=cauchyse.1h3v.s4.db6466e8124f from=translated src=- shape=b3420b51 vocab=34966689
+-/
 lemma bisect_upper_right_cauchy (s : Set ℝ) {a b : ℝ} (hab : a ≤ b) :
     CauchySeq (fun n => (bisect_upper s a b n).2) := by
   rw [Metric.cauchySeq_iff]
@@ -885,7 +951,9 @@ lemma bisect_upper_right_cauchy (s : Set ℝ) {a b : ℝ} (hab : a ≤ b) :
   rw [Real.dist_eq]
   nlinarith
 
-/-- c / 2ⁿ → 0（阿基米德原理的体现）。-/
+/-- c / 2ⁿ → 0（阿基米德原理的体现）。
+@isnad1 id=tendsto.0h1v.s5.4b86c840d2fa from=translated src=- shape=5818500f vocab=aaf022dd
+-/
 lemma tendsto_div_two_pow {c : ℝ} : Tendsto (fun n : ℕ => c / 2 ^ n) atTop (𝓝 0) := by
   have hpow : Tendsto (fun n : ℕ => ((1 / 2 : ℝ) ^ n)) atTop (𝓝 0) :=
     tendsto_pow_atTop_nhds_zero_of_norm_lt_one (by norm_num : ‖(1 / 2 : ℝ)‖ < 1)
@@ -905,7 +973,9 @@ lemma tendsto_div_two_pow {c : ℝ} : Tendsto (fun n : ℕ => c / 2 ^ n) atTop (
 >   Cauchy 给同一极限 x，x 正是 s 的上确界。
 > **证明类别**: C（核心手工构造：二分进程 bisect_upper 全程 + Cauchy 收极限 + IsLUB 两件套）。
 > **依赖**: 本文件 §3 `bisect_upper_*` 引理族
-> **mathlib**: `ge_of_tendsto`, `tendsto_nhds_unique`, `tendsto_pow_atTop_nhds_zero_of_norm_lt_one`-/
+> **mathlib**: `ge_of_tendsto`, `tendsto_nhds_unique`, `tendsto_pow_atTop_nhds_zero_of_norm_lt_one`
+@isnad1 id=supprope.1h0v.s1.9d6c835011d5 from=translated src=- shape=1d48f1ac vocab=3bd91f06
+-/
 theorem sup_of_cauchy_convergence (h : CauchyConvergenceProperty) : SupProperty := by
   intro s hs_nonempty hbdd
   rcases hs_nonempty with ⟨x₀, hx₀⟩

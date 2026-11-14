@@ -55,25 +55,40 @@ def curveArcLength {n : ℕ} (γ : ParametrizedCurve n) (a b : ℝ) : ℝ :=
 def affineLine {n : ℕ} (p v : Fin n → ℝ) : ParametrizedCurve n :=
   fun t ↦ p + t • v
 
+/--
+@isnad1 id=hasderiv.0h4v.s6.be8e76fe0040 from=translated src=- shape=583cbf03 vocab=fa5b6a2a
+-/
 theorem hasDerivAt_affineLine {n : ℕ} (p v : Fin n → ℝ) (t : ℝ) :
     HasDerivAt (affineLine p v) v t := by
   change HasDerivAt (fun s : ℝ ↦ p + s • v) v t
   simpa only [id_eq, one_smul] using
     ((hasDerivAt_id t).smul_const v |>.const_add p)
 
+/--
+@isnad1 id=eq.0h4v.s4.884b5dab1484 from=translated src=- shape=83c72b29 vocab=d1972fdc
+-/
 theorem curveVelocity_affineLine {n : ℕ} (p v : Fin n → ℝ) (t : ℝ) :
     curveVelocity (affineLine p v) t = v := by
   exact (hasDerivAt_affineLine p v t).deriv
 
+/--
+@isnad1 id=eq.0h4v.s5.c0af82f304d6 from=translated src=- shape=8ef2dbfb vocab=ce930112
+-/
 theorem curveSpeed_affineLine {n : ℕ} (p v : Fin n → ℝ) (t : ℝ) :
     curveSpeed (affineLine p v) t = ‖v‖ := by
   rw [curveSpeed, curveVelocity_affineLine]
 
+/--
+@isnad1 id=iff.0h4v.s5.55b27ebeac0a from=translated src=- shape=dbbfd711 vocab=f525b9fa
+-/
 theorem curveRegularAt_affineLine_iff {n : ℕ} (p v : Fin n → ℝ) (t : ℝ) :
     CurveRegularAt (affineLine p v) t ↔ v ≠ 0 := by
   simp [CurveRegularAt, (hasDerivAt_affineLine p v t).differentiableAt,
     curveVelocity_affineLine]
 
+/--
+@isnad1 id=eq.0h5v.s6.e89808379e95 from=translated src=- shape=47c159a9 vocab=1f42816e
+-/
 theorem curveArcLength_affineLine {n : ℕ} (p v : Fin n → ℝ) (a b : ℝ) :
     curveArcLength (affineLine p v) a b = (b - a) * ‖v‖ := by
   simp [curveArcLength, curveSpeed_affineLine, intervalIntegral.integral_const,
@@ -81,20 +96,26 @@ theorem curveArcLength_affineLine {n : ℕ} (p v : Fin n → ℝ) (a b : ℝ) :
 
 /-! ## 弧长与保向换参数 -/
 
-/-- 曲线复合标量参数变换后的速度满足链式法则。-/
+/-- 曲线复合标量参数变换后的速度满足链式法则。
+@isnad1 id=eq.2h4v.s7.386b4adece74 from=translated src=- shape=9d531785 vocab=31d04894
+-/
 theorem curveVelocity_comp {n : ℕ} (γ : ParametrizedCurve n) (φ : ℝ → ℝ) (t : ℝ)
     (hγ : DifferentiableAt ℝ γ (φ t)) (hφ : DifferentiableAt ℝ φ t) :
     curveVelocity (γ ∘ φ) t = deriv φ t • curveVelocity γ (φ t) := by
   exact (hγ.hasDerivAt.scomp t hφ.hasDerivAt).deriv
 
-/-- 换参数后的速率等于原速率乘参数变化率的绝对值。-/
+/-- 换参数后的速率等于原速率乘参数变化率的绝对值。
+@isnad1 id=eq.2h4v.s7.305503d23ae6 from=translated src=- shape=e8e57593 vocab=6e429540
+-/
 theorem curveSpeed_comp {n : ℕ} (γ : ParametrizedCurve n) (φ : ℝ → ℝ) (t : ℝ)
     (hγ : DifferentiableAt ℝ γ (φ t)) (hφ : DifferentiableAt ℝ φ t) :
     curveSpeed (γ ∘ φ) t = |deriv φ t| * curveSpeed γ (φ t) := by
   rw [curveSpeed, curveVelocity_comp γ φ t hγ hφ, norm_smul, curveSpeed]
   exact congrArg (fun r ↦ r * ‖curveVelocity γ (φ t)‖) (Real.norm_eq_abs _)
 
-/-- 对保向参数变换，参数导数非负，速率公式中的绝对值可以去掉。-/
+/-- 对保向参数变换，参数导数非负，速率公式中的绝对值可以去掉。
+@isnad1 id=eq.3h4v.s8.6980b2d61eea from=translated src=- shape=ecf17f14 vocab=46b20a43
+-/
 theorem curveSpeed_comp_of_deriv_nonneg {n : ℕ}
     (γ : ParametrizedCurve n) (φ : ℝ → ℝ) (t : ℝ)
     (hγ : DifferentiableAt ℝ γ (φ t)) (hφ : DifferentiableAt ℝ φ t)
@@ -105,7 +126,9 @@ theorem curveSpeed_comp_of_deriv_nonneg {n : ℕ}
 /-- 弧长在保向可微换参数下不变。
 
 右端端点自动变为 `φ c`、`φ d`。假设 `deriv φ ≥ 0` 表示参数变换保向；
-允许导数在个别位置为零，因此该结论也覆盖非严格但不反向的参数变化。-/
+允许导数在个别位置为零，因此该结论也覆盖非严格但不反向的参数变化。
+@isnad1 id=eq.3h5v.s7.f591de93d04c from=translated src=- shape=2af27af9 vocab=3557f371
+-/
 theorem curveArcLength_comp_of_deriv_nonneg {n : ℕ}
     (γ : ParametrizedCurve n) (φ : ℝ → ℝ) (c d : ℝ)
     (hγ : Differentiable ℝ γ) (hφ : Differentiable ℝ φ)
@@ -120,7 +143,9 @@ theorem curveArcLength_comp_of_deriv_nonneg {n : ℕ}
       (fun t _ ↦ (hφ t).hasDerivAt)
       (fun t _ ↦ hφnonneg t))
 
-/-- 若换参数保持指定端点，则新旧参数化在相应区间上的弧长完全相同。-/
+/-- 若换参数保持指定端点，则新旧参数化在相应区间上的弧长完全相同。
+@isnad1 id=eq.5h7v.s7.a5866323aa5d from=translated src=- shape=f53bbfb3 vocab=3557f371
+-/
 theorem curveArcLength_comp_of_deriv_nonneg_of_endpoints {n : ℕ}
     (γ : ParametrizedCurve n) (φ : ℝ → ℝ) (a b c d : ℝ)
     (hγ : Differentiable ℝ γ) (hφ : Differentiable ℝ φ)
@@ -153,12 +178,17 @@ def SurfaceRegularOn {n : ℕ} (σ : ParametrizedSurface n) (s : Set (ℝ × ℝ
 def affinePlane {n : ℕ} (p u v : Fin n → ℝ) : ParametrizedSurface n :=
   fun a ↦ p + a.1 • u + a.2 • v
 
+/--
+@isnad1 id=differen.0h4v.s7.a4159814655c from=translated src=- shape=c05c0417 vocab=e2546117
+-/
 theorem differentiable_affinePlane {n : ℕ} (p u v : Fin n → ℝ) :
     Differentiable ℝ (affinePlane p u v) := by
   unfold affinePlane
   fun_prop
 
-/-- 仿射平面的微分与基点、参数点无关，并把参数增量 `(s,t)` 映到 `s u + t v`。-/
+/-- 仿射平面的微分与基点、参数点无关，并把参数增量 `(s,t)` 映到 `s u + t v`。
+@isnad1 id=hasfderi.0h5v.s9.58ca9cb7fc0f from=translated src=- shape=b5b4a2c4 vocab=ceeff714
+-/
 theorem hasFDerivAt_affinePlane {n : ℕ} (p u v : Fin n → ℝ) (a : ℝ × ℝ) :
     HasFDerivAt (affinePlane p u v)
       ((ContinuousLinearMap.fst ℝ ℝ ℝ).smulRight u +
@@ -166,13 +196,17 @@ theorem hasFDerivAt_affinePlane {n : ℕ} (p u v : Fin n → ℝ) (a : ℝ × �
   unfold affinePlane
   fun_prop
 
-/-- 仿射平面沿第一个参数方向的切向量就是第一个生成向量。-/
+/-- 仿射平面沿第一个参数方向的切向量就是第一个生成向量。
+@isnad1 id=eq.0h5v.s5.89e62577adb0 from=translated src=- shape=67a5229c vocab=fececfb8
+-/
 theorem surfaceTangent₁_affinePlane {n : ℕ} (p u v : Fin n → ℝ) (a : ℝ × ℝ) :
     surfaceTangent₁ (affinePlane p u v) a = u := by
   rw [surfaceTangent₁, (hasFDerivAt_affinePlane p u v a).fderiv]
   simp
 
-/-- 仿射平面沿第二个参数方向的切向量就是第二个生成向量。-/
+/-- 仿射平面沿第二个参数方向的切向量就是第二个生成向量。
+@isnad1 id=eq.0h5v.s5.8c927a115c49 from=translated src=- shape=ecc8cfd8 vocab=5226acc5
+-/
 theorem surfaceTangent₂_affinePlane {n : ℕ} (p u v : Fin n → ℝ) (a : ℝ × ℝ) :
     surfaceTangent₂ (affinePlane p u v) a = v := by
   rw [surfaceTangent₂, (hasFDerivAt_affinePlane p u v a).fderiv]
@@ -180,7 +214,9 @@ theorem surfaceTangent₂_affinePlane {n : ℕ} (p u v : Fin n → ℝ) (a : ℝ
 
 /-- 仿射平面正则当且仅当两个生成方向线性无关。
 
-这把“微分为单射”的坐标无关定义还原成教材中熟悉的判据：切平面的两个坐标方向不能退化到同一直线上。-/
+这把“微分为单射”的坐标无关定义还原成教材中熟悉的判据：切平面的两个坐标方向不能退化到同一直线上。
+@isnad1 id=iff.0h5v.s6.955e527a6c5b from=translated src=- shape=7f6889e1 vocab=c54af2db
+-/
 theorem surfaceRegularAt_affinePlane_iff {n : ℕ} (p u v : Fin n → ℝ) (a : ℝ × ℝ) :
     SurfaceRegularAt (affinePlane p u v) a ↔ LinearIndependent ℝ ![u, v] := by
   rw [SurfaceRegularAt, (hasFDerivAt_affinePlane p u v a).fderiv]
@@ -213,7 +249,9 @@ theorem surfaceRegularAt_affinePlane_iff {n : ℕ} (p u v : Fin n → ℝ) (a : 
 def affinePlaneSet {n : ℕ} (p u v : Fin n → ℝ) : Set (Fin n → ℝ) :=
   {x | x - p ∈ Submodule.span ℝ ({u, v} : Set (Fin n → ℝ))}
 
-/-- 参数化 `p + s u + t v` 的值域恰好是仿射点集 `p + span{u,v}`。-/
+/-- 参数化 `p + s u + t v` 的值域恰好是仿射点集 `p + span{u,v}`。
+@isnad1 id=eq.0h4v.s5.930c2c4d53b1 from=translated src=- shape=64209c11 vocab=5b8831be
+-/
 theorem range_affinePlane {n : ℕ} (p u v : Fin n → ℝ) :
     Set.range (affinePlane p u v) = affinePlaneSet p u v := by
   ext x
@@ -236,7 +274,9 @@ theorem range_affinePlane {n : ℕ} (p u v : Fin n → ℝ) :
 
 /-- 仿射平面不依赖于生成方向的具体选择，只依赖于它们张成的子空间。
 
-因此，对方向组作任意可逆线性换基不会改变参数化的像集；改变的只是同一平面上的参数坐标。-/
+因此，对方向组作任意可逆线性换基不会改变参数化的像集；改变的只是同一平面上的参数坐标。
+@isnad1 id=eq.1h6v.s7.abd7d1dd3a81 from=translated src=- shape=196602c8 vocab=cb428646
+-/
 theorem range_affinePlane_eq_of_span_eq {n : ℕ}
     (p u v u' v' : Fin n → ℝ)
     (hspan : Submodule.span ℝ ({u, v} : Set (Fin n → ℝ)) =
@@ -259,12 +299,16 @@ def surfaceAreaElement3 (σ : ParametrizedSurface 3) (p : ℝ × ℝ) : ℝ :=
 def surfaceAreaOn3 (σ : ParametrizedSurface 3) (s : Set (ℝ × ℝ)) : ℝ :=
   ∫ p in s, surfaceAreaElement3 σ p ∂(volume.prod volume)
 
-/-- 曲面面积元总是非负。-/
+/-- 曲面面积元总是非负。
+@isnad1 id=le.0h2v.s4.9654b7845d38 from=translated src=- shape=194c25b6 vocab=a25b5a1b
+-/
 theorem surfaceAreaElement3_nonneg (σ : ParametrizedSurface 3) (p : ℝ × ℝ) :
     0 ≤ surfaceAreaElement3 σ p := by
   exact norm_nonneg _
 
-/-- 仿射平面的面积元是常数 `‖u × v‖`。-/
+/-- 仿射平面的面积元是常数 `‖u × v‖`。
+@isnad1 id=eq.0h4v.s10.87b1da9ee18f from=translated src=- shape=745ccc6a vocab=459f7d65
+-/
 theorem surfaceAreaElement3_affinePlane
     (p u v : Fin 3 → ℝ) (a : ℝ × ℝ) :
     surfaceAreaElement3 (affinePlane p u v) a = ‖u ⨯₃ v‖ := by
@@ -273,7 +317,9 @@ theorem surfaceAreaElement3_affinePlane
 
 /-- 三维仿射平面在一点正则，当且仅当该点的面积元非零。
 
-对仿射参数化而言，两条切向量恒为 `u,v`；叉积非零恰好刻画这两个向量线性无关。-/
+对仿射参数化而言，两条切向量恒为 `u,v`；叉积非零恰好刻画这两个向量线性无关。
+@isnad1 id=iff.0h4v.s6.a5f72cf3a64b from=translated src=- shape=8c0feec9 vocab=597e7bde
+-/
 theorem surfaceRegularAt_affinePlane_iff_areaElement_ne_zero
     (p u v : Fin 3 → ℝ) (a : ℝ × ℝ) :
     SurfaceRegularAt (affinePlane p u v) a ↔
@@ -282,7 +328,9 @@ theorem surfaceRegularAt_affinePlane_iff_areaElement_ne_zero
   simpa only [norm_ne_zero_iff] using
     (crossProduct_ne_zero_iff_linearIndependent (v := u) (w := v)).symm
 
-/-- 仿射平面在闭参数矩形上的面积：参数矩形面积乘以平行四边形面积 `‖u×v‖`。-/
+/-- 仿射平面在闭参数矩形上的面积：参数矩形面积乘以平行四边形面积 `‖u×v‖`。
+@isnad1 id=eq.2h7v.s10.230f8221b35f from=translated src=- shape=14d4e582 vocab=41410359
+-/
 theorem surfaceAreaOn3_affinePlane_closedRectangle
     (p u v : Fin 3 → ℝ) (a b c d : ℝ) (hab : a ≤ b) (hcd : c ≤ d) :
     surfaceAreaOn3 (affinePlane p u v) (closedRectangle a b c d) =
@@ -302,7 +350,9 @@ theorem surfaceAreaOn3_affinePlane_closedRectangle
 def jacobianDet2 (L : ℝ × ℝ →L[ℝ] ℝ × ℝ) : ℝ :=
   (L (1, 0)).1 * (L (0, 1)).2 - (L (1, 0)).2 * (L (0, 1)).1
 
-/-- 抽象线性映射行列式与标准基坐标公式 `jacobianDet2` 一致。-/
+/-- 抽象线性映射行列式与标准基坐标公式 `jacobianDet2` 一致。
+@isnad1 id=eq.0h1v.s6.bc16b290ccd8 from=translated src=- shape=7c2e5379 vocab=039b7cb6
+-/
 theorem det_eq_jacobianDet2 (L : ℝ × ℝ →L[ℝ] ℝ × ℝ) :
     L.det = jacobianDet2 L := by
   unfold ContinuousLinearMap.det
@@ -311,7 +361,9 @@ theorem det_eq_jacobianDet2 (L : ℝ × ℝ →L[ℝ] ℝ × ℝ) :
   simp [LinearMap.toMatrix_apply, jacobianDet2, Module.Basis.coe_finTwoProd_repr]
   ring
 
-/-- 复合参数化的第一条切向量是原两条切向量按 `Dφ(1,0)` 坐标作线性组合。-/
+/-- 复合参数化的第一条切向量是原两条切向量按 `Dφ(1,0)` 坐标作线性组合。
+@isnad1 id=eq.2h3v.s10.26bdad359e64 from=translated src=- shape=dc85b503 vocab=58ad58d9
+-/
 theorem surfaceTangent₁_comp_reparam
     (σ : ParametrizedSurface 3) (φ : ℝ × ℝ → ℝ × ℝ) (p : ℝ × ℝ)
     (hσ : DifferentiableAt ℝ σ (φ p)) (hφ : DifferentiableAt ℝ φ p) :
@@ -331,7 +383,9 @@ theorem surfaceTangent₁_comp_reparam
           (fderiv ℝ φ p (1, 0)).2 • (0, 1)) := congrArg _ hw
     _ = _ := by rw [map_add, map_smul, map_smul]
 
-/-- 复合参数化的第二条切向量是原两条切向量按 `Dφ(0,1)` 坐标作线性组合。-/
+/-- 复合参数化的第二条切向量是原两条切向量按 `Dφ(0,1)` 坐标作线性组合。
+@isnad1 id=eq.2h3v.s10.b5bb8cc27ba4 from=translated src=- shape=a03da571 vocab=58ad58d9
+-/
 theorem surfaceTangent₂_comp_reparam
     (σ : ParametrizedSurface 3) (φ : ℝ × ℝ → ℝ × ℝ) (p : ℝ × ℝ)
     (hσ : DifferentiableAt ℝ σ (φ p)) (hφ : DifferentiableAt ℝ φ p) :
@@ -351,7 +405,9 @@ theorem surfaceTangent₂_comp_reparam
           (fderiv ℝ φ p (0, 1)).2 • (0, 1)) := congrArg _ hw
     _ = _ := by rw [map_add, map_smul, map_smul]
 
-/-- 两组线性组合的叉积等于系数矩阵行列式乘原叉积。-/
+/-- 两组线性组合的叉积等于系数矩阵行列式乘原叉积。
+@isnad1 id=eq.0h6v.s11.ffc139e8601e from=translated src=- shape=2b30c716 vocab=19e22b6d
+-/
 theorem cross_linear_combinations
     (u v : Fin 3 → ℝ) (a b c d : ℝ) :
     (a • u + b • v) ⨯₃ (c • u + d • v) =
@@ -362,7 +418,9 @@ theorem cross_linear_combinations
 /-- **曲面面积元的一般换参数公式**。
 
 复合参数化的两条切向量由链式法则给出；叉积的双线性使其获得二维 Jacobian
-行列式因子，取范数后只保留行列式绝对值。-/
+行列式因子，取范数后只保留行列式绝对值。
+@isnad1 id=eq.2h3v.s8.25e33fbb811e from=translated src=- shape=6ff36836 vocab=60601305
+-/
 theorem surfaceAreaElement3_comp_reparam
     (σ : ParametrizedSurface 3) (φ : ℝ × ℝ → ℝ × ℝ) (p : ℝ × ℝ)
     (hσ : DifferentiableAt ℝ σ (φ p)) (hφ : DifferentiableAt ℝ φ p) :
@@ -379,7 +437,9 @@ theorem surfaceAreaElement3_comp_reparam
 
 设 `s` 是可测参数域，`φ` 是在 `s` 上单射的全局可微参数变换。点态面积元公式给出
 Jacobian 绝对值因子；一般二维积分换元公式恰好吸收该因子，因此复合参数化在 `s`
-上的面积等于原参数化在像域 `φ '' s` 上的面积。-/
+上的面积等于原参数化在像域 `φ '' s` 上的面积。
+@isnad1 id=eq.4h3v.s8.e72c1c4139ae from=translated src=- shape=f1084953 vocab=2250574d
+-/
 theorem surfaceAreaOn3_comp_reparam
     (σ : ParametrizedSurface 3) (φ : ℝ × ℝ → ℝ × ℝ)
     (s : Set (ℝ × ℝ)) (hs : MeasurableSet s)
@@ -401,7 +461,9 @@ theorem surfaceAreaOn3_comp_reparam
 
 /-! ## 交换曲面参数 -/
 
-/-- 交换两个参数后，第一条坐标切向量变为原参数化的第二条切向量。-/
+/-- 交换两个参数后，第一条坐标切向量变为原参数化的第二条切向量。
+@isnad1 id=eq.1h2v.s7.a5744b51ee2a from=translated src=- shape=49cdaa41 vocab=9c0a9b74
+-/
 theorem surfaceTangent₁_comp_swap (σ : ParametrizedSurface 3) (p : ℝ × ℝ)
     (hσ : DifferentiableAt ℝ σ p.swap) :
     surfaceTangent₁ (σ ∘ Prod.swap) p = surfaceTangent₂ σ p.swap := by
@@ -413,7 +475,9 @@ theorem surfaceTangent₁_comp_swap (σ : ParametrizedSurface 3) (p : ℝ × ℝ
   rw [surfaceTangent₁, hcomp.fderiv, surfaceTangent₂, hσ.hasFDerivAt.fderiv]
   simp
 
-/-- 交换两个参数后，第二条坐标切向量变为原参数化的第一条切向量。-/
+/-- 交换两个参数后，第二条坐标切向量变为原参数化的第一条切向量。
+@isnad1 id=eq.1h2v.s7.fca4560f96da from=translated src=- shape=49cdaa41 vocab=9c0a9b74
+-/
 theorem surfaceTangent₂_comp_swap (σ : ParametrizedSurface 3) (p : ℝ × ℝ)
     (hσ : DifferentiableAt ℝ σ p.swap) :
     surfaceTangent₂ (σ ∘ Prod.swap) p = surfaceTangent₁ σ p.swap := by
@@ -425,7 +489,9 @@ theorem surfaceTangent₂_comp_swap (σ : ParametrizedSurface 3) (p : ℝ × ℝ
   rw [surfaceTangent₂, hcomp.fderiv, surfaceTangent₁, hσ.hasFDerivAt.fderiv]
   simp
 
-/-- 交换参数会反转有向面积向量，但不会改变面积元。-/
+/-- 交换参数会反转有向面积向量，但不会改变面积元。
+@isnad1 id=eq.1h2v.s7.0c94a6db45ad from=translated src=- shape=20467ed1 vocab=5ffd5ceb
+-/
 theorem surfaceAreaElement3_comp_swap (σ : ParametrizedSurface 3) (p : ℝ × ℝ)
     (hσ : DifferentiableAt ℝ σ p.swap) :
     surfaceAreaElement3 (σ ∘ Prod.swap) p = surfaceAreaElement3 σ p.swap := by
@@ -437,7 +503,9 @@ theorem surfaceAreaElement3_comp_swap (σ : ParametrizedSurface 3) (p : ℝ × �
 /-- **曲面面积的参数交换不变性**。
 
 若原参数域为 `s × t`，交换参数后的区域为 `t × s`。面积元的点态不变性配合
-乘积测度的交换不变性，说明两个参数化给出的曲面面积完全相同。-/
+乘积测度的交换不变性，说明两个参数化给出的曲面面积完全相同。
+@isnad1 id=eq.1h3v.s7.0a30377e68e6 from=translated src=- shape=41c63b96 vocab=40627f6b
+-/
 theorem surfaceAreaOn3_comp_swap_prod (σ : ParametrizedSurface 3)
     (s t : Set ℝ) (hσ : Differentiable ℝ σ) :
     surfaceAreaOn3 (σ ∘ Prod.swap) (t ×ˢ s) = surfaceAreaOn3 σ (s ×ˢ t) := by

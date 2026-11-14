@@ -104,7 +104,9 @@ private theorem normalExtension_irreducible_root_bridge
 每个元素作为根的重数都至多为一。非根的根重数为零，因此也自然满足
 同一上界。
 
-> **Entry**: abstract-algebra.field.separable-normal-characterizations-/
+> **Entry**: abstract-algebra.field.separable-normal-characterizations
+@isnad1 id=le.1h5v.s6.cc1a05f331e7 from=translated src=- shape=b6a37d95 vocab=6e2c7d4c
+-/
 theorem separablePolynomial_rootMultiplicity_le_one
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) {p : Polynomial K}
@@ -116,7 +118,9 @@ theorem separablePolynomial_rootMultiplicity_le_one
 则它可分，当且仅当映射后的多项式在扩域中每一点的根重数都至多为一。
 分裂假设保证逐根检查覆盖多项式的全部不可约因子。
 
-> **Entry**: abstract-algebra.field.separable-normal-characterizations-/
+> **Entry**: abstract-algebra.field.separable-normal-characterizations
+@isnad1 id=iff.2h4v.s6.faabe0be961a from=translated src=- shape=5b36ab62 vocab=509a20e6
+-/
 theorem separablePolynomial_iff_rootMultiplicity_le_one_of_splits
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) {p : Polynomial K}
@@ -131,7 +135,9 @@ theorem separablePolynomial_iff_rootMultiplicity_le_one_of_splits
 它首先是代数扩张，并且每个在目标域中至少获得一个根的基域不可约
 多项式，都沿该嵌入在目标域中完全分裂。
 
-> **Entry**: abstract-algebra.field.separable-normal-characterizations-/
+> **Entry**: abstract-algebra.field.separable-normal-characterizations
+@isnad1 id=iff.0h3v.s6.7988bc523c29 from=translated src=- shape=8e4e90b0 vocab=4b6a99fa
+-/
 theorem normalExtension_iff_irreducible_with_root_splits
     {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) :

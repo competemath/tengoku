@@ -23,7 +23,9 @@ open Metric
 /-- **Cauchy 积分公式**：若 `f` 在闭圆盘每点的一个完整邻域内全纯，则对任意内点
 `w` ，沿正向边界圆周的积分等于 `2πi f(w)`。
 
-> **Entry**: complex-analysis.cauchy.formula-/
+> **Entry**: complex-analysis.cauchy.formula
+@isnad1 id=eq.2h4v.s6.37582c1bb928 from=translated src=- shape=8cd7db93 vocab=74782d07
+-/
 theorem cauchy_integral_formula {f : ℂ → ℂ} {c w : ℂ} {R : ℝ}
     (hf : HolomorphicOnTextbook f (closedBall c R)) (hw : w ∈ ball c R) :
     (∮ z in C(c, R), f z / (z - w)) = 2 * Real.pi * Complex.I * f w := by
@@ -34,7 +36,9 @@ theorem cauchy_integral_formula {f : ℂ → ℂ} {c w : ℂ} {R : ℝ}
 
 /-- **Cauchy 高阶导数公式**：圆心处的 `n` 阶导数由边界圆周积分给出。
 
-> **Entry**: complex-analysis.cauchy.derivatives-/
+> **Entry**: complex-analysis.cauchy.derivatives
+@isnad1 id=eq.2h4v.s7.2ce9520fbaf7 from=translated src=- shape=936183f6 vocab=ffcd6ab1
+-/
 theorem cauchy_integral_formula_iteratedDeriv {f : ℂ → ℂ} {c : ℂ} {R : ℝ}
     (hf : HolomorphicOnTextbook f (closedBall c R)) (hR : 0 < R) (n : ℕ) :
     (∮ z in C(c, R), f z / (z - c) ^ (n + 1)) =
@@ -48,7 +52,9 @@ theorem cauchy_integral_formula_iteratedDeriv {f : ℂ → ℂ} {c : ℂ} {R : �
 /-- **Cauchy 估计**：若边界圆周上 `‖f z‖ ≤ C`，则圆心处 `n` 阶导数的范数不超过
 `n! C / Rⁿ`。
 
-> **Entry**: complex-analysis.cauchy.derivatives-/
+> **Entry**: complex-analysis.cauchy.derivatives
+@isnad1 id=le.3h5v.s7.99c4ffdc9b3b from=translated src=- shape=c6541fa0 vocab=834dd33f
+-/
 theorem cauchy_estimate {f : ℂ → ℂ} {c : ℂ} {R C : ℝ}
     (hf : HolomorphicOnTextbook f (closedBall c R)) (hR : 0 < R)
     (hC : ∀ z ∈ sphere c R, ‖f z‖ ≤ C) (n : ℕ) :

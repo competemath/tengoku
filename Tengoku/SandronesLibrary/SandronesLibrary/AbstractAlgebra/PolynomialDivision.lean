@@ -40,7 +40,9 @@ open SandronesLibrary.AbstractAlgebra.PolynomialDefinition
 /-- **正式承载上的首一除法恒等式**：对交换环上的 Mathlib 多项式 `p,d`，若除式 `d`
 首一，则 `p` 等于 `d` 乘以首一商，再加首一余数。该接口直接使用成熟的
 `divByMonic` 与 `modByMonic` 运算，供仍以 `Polynomial R` 为承载的下游代码复用。
-> **Entry**: abstract-algebra.poly.division-/
+> **Entry**: abstract-algebra.poly.division
+@isnad1 id=eq.1h3v.s7.494113cafbfc from=translated src=- shape=3df75bc8 vocab=b706a3c6
+-/
 theorem mathlib_monic_division_identity {R : Type*} [CommRing R]
     (p d : Polynomial R) (_hd : d.Monic) :
     p = d * p.divByMonic d + p.modByMonic d := by
@@ -48,7 +50,9 @@ theorem mathlib_monic_division_identity {R : Type*} [CommRing R]
 
 /-- **正式承载上的首一余数次数界**：在非平凡交换环上，以首一多项式 `d` 除 `p`，
 所得 `modByMonic` 余数的次数严格小于 `d` 的次数；零余数的次数 `⊥` 也包含在结论中。
-> **Entry**: abstract-algebra.poly.division-/
+> **Entry**: abstract-algebra.poly.division
+@isnad1 id=lt.1h3v.s6.f83f21ec4898 from=translated src=- shape=a66dbf6e vocab=f3db58fc
+-/
 theorem mathlib_monic_remainder_degree_lt {R : Type*} [CommRing R] [Nontrivial R]
     (p d : Polynomial R) (hd : d.Monic) :
     (p.modByMonic d).degree < d.degree := by
@@ -56,7 +60,9 @@ theorem mathlib_monic_remainder_degree_lt {R : Type*} [CommRing R] [Nontrivial R
 
 /-- **正式承载上的首一整除判据**：对首一除式 `d`，`p` 的首一余数为零，当且仅当
 `d` 整除 `p`。这是余数计算与环论整除关系之间的标准接口。
-> **Entry**: abstract-algebra.poly.division-/
+> **Entry**: abstract-algebra.poly.division
+@isnad1 id=iff.1h3v.s7.9120ed5b73ec from=translated src=- shape=898d2caa vocab=432408b3
+-/
 theorem mathlib_monic_remainder_eq_zero_iff_dvd {R : Type*} [CommRing R]
     (p d : Polynomial R) (hd : d.Monic) :
     p.modByMonic d = 0 ↔ d ∣ p := by
@@ -64,7 +70,9 @@ theorem mathlib_monic_remainder_eq_zero_iff_dvd {R : Type*} [CommRing R]
 
 /-- **正式承载上的首一商余唯一性**：若 `p = d*q+r`，`d` 首一且 `r` 的次数严格小于
 `d` 的次数，则候选商 `q` 和余数 `r` 分别等于 `divByMonic` 与 `modByMonic` 给出的结果。
-> **Entry**: abstract-algebra.poly.division-/
+> **Entry**: abstract-algebra.poly.division
+@isnad1 id=and.3h5v.s7.36bda7935cbf from=translated src=- shape=d651b964 vocab=56ad131f
+-/
 theorem mathlib_monic_quotient_remainder_unique
     {R : Type*} [CommRing R] [Nontrivial R]
     (p d q r : Polynomial R) (hd : d.Monic)
@@ -102,7 +110,9 @@ private theorem mathlibPolynomialDegreeMeasure_lt_of_degree_lt
 
 /-- **正式承载上的域多项式除法恒等式**：域上每个非零多项式 `d` 都可作为除式，且
 `p = d * (p / d) + p % d`。商和余数直接采用 Mathlib 多项式 EuclideanDomain 运算。
-> **Entry**: abstract-algebra.poly.division-/
+> **Entry**: abstract-algebra.poly.division
+@isnad1 id=eq.1h3v.s8.88c4a59a8070 from=translated src=- shape=b54688f4 vocab=3aeb8f7f
+-/
 theorem mathlib_polynomial_division_identity {K : Type*} [Field K]
     (p d : Polynomial K) (_hd : d ≠ 0) :
     p = d * (p / d) + p % d := by
@@ -110,7 +120,9 @@ theorem mathlib_polynomial_division_identity {K : Type*} [Field K]
 
 /-- **正式承载上的余数度量下降**：域上以非零 `d` 除 `p` 时，余数 `p % d` 的
 零安全自然数度量严格小于 `d` 的度量，为本库 Euclidean 递归提供终止依据。
-> **Entry**: abstract-algebra.poly.division-/
+> **Entry**: abstract-algebra.poly.division
+@isnad1 id=lt.1h3v.s6.7f5fdfad8550 from=translated src=- shape=7d0e3c46 vocab=9f643ed4
+-/
 theorem mathlib_polynomial_remainder_measure_lt {K : Type*} [Field K]
     (p d : Polynomial K) (hd : d ≠ 0) :
     mathlibPolynomialDegreeMeasure (p % d) < mathlibPolynomialDegreeMeasure d := by
@@ -134,7 +146,9 @@ noncomputable def mathlibPolynomialEuclideanDomainAxioms
 
 /-- **正式承载上的最大公因数泛性质**：本库 Euclidean 算法作用于 `Polynomial K` 后得到的
 `euclideanGCD` 同时整除 `a,b`，并被 `a,b` 的每个公因子整除。
-> **Entry**: abstract-algebra.poly.division-/
+> **Entry**: abstract-algebra.poly.division
+@isnad1 id=greatest.0h3v.s6.e9f0fbacca01 from=translated src=- shape=330f650c vocab=e8acf448
+-/
 theorem mathlibPolynomialGCD_isGreatestCommonDivisor {K : Type*} [Field K]
     (a b : Polynomial K) :
     GreatestCommonDivisor
@@ -144,7 +158,9 @@ theorem mathlibPolynomialGCD_isGreatestCommonDivisor {K : Type*} [Field K]
 
 /-- **正式承载上的 Bézout 恒等式**：对域上的任意 Mathlib 多项式 `a,b`，存在多项式
 `s,t`，使 Euclidean 算法所得 gcd 等于 `s*a+t*b`。
-> **Entry**: abstract-algebra.poly.division-/
+> **Entry**: abstract-algebra.poly.division
+@isnad1 id=ex.0h3v.s7.eb550e305968 from=translated src=- shape=693ae9bd vocab=e1637adc
+-/
 theorem mathlibPolynomialGCD_bezout {K : Type*} [Field K]
     (a b : Polynomial K) :
     ∃ s t : Polynomial K,
@@ -163,7 +179,9 @@ def Monic {R : Type*} [CommRing R] (p : PolynomialSequence R) : Prop :=
 
 /-- 本库逐系数首一定义与具名 Mathlib 多项式桥后的首一谓词等价。证明分别处理零环和非平凡环；
 该定理是明确的兼容边界，后续公开除法定理仍以本库 `Monic` 为前提。
-> **Entry**: abstract-algebra.poly.division-/
+> **Entry**: abstract-algebra.poly.division
+@isnad1 id=iff.0h2v.s5.4a6f0e3febff from=translated src=- shape=1f4bb101 vocab=1d9c4237
+-/
 theorem monic_iff_mathlib_monic {R : Type*} [CommRing R]
     (p : PolynomialSequence R) :
     Monic p ↔ (toMathlibPolynomial p).Monic := by
@@ -218,7 +236,9 @@ noncomputable def monicRemainder {R : Type*} [CommRing R]
 /-- **首一商的承载一致性桥**：把本库 `monicQuotient p d` 转到 Mathlib 正式多项式承载后，
 恰好得到 `toMathlibPolynomial p` 除以 `toMathlibPolynomial d` 的 `divByMonic` 首一商。
 该桥对任意交换环及任意除式成立；首一性只在商的数学性质中需要。
-> **Entry**: abstract-algebra.poly.division-/
+> **Entry**: abstract-algebra.poly.division
+@isnad1 id=eq.0h3v.s6.25cde08cb9af from=translated src=- shape=dd5798f7 vocab=86a5b695
+-/
 theorem toMathlibPolynomial_monicQuotient {R : Type*} [CommRing R]
     (p d : PolynomialSequence R) :
     toMathlibPolynomial (monicQuotient p d) =
@@ -227,7 +247,9 @@ theorem toMathlibPolynomial_monicQuotient {R : Type*} [CommRing R]
 
 /-- **首一余数的承载一致性桥**：把本库 `monicRemainder p d` 转到 Mathlib 正式承载后，
 恰好得到对应两多项式的 `modByMonic` 首一余数。该等式直接记录双向承载转换互为逆映射。
-> **Entry**: abstract-algebra.poly.division-/
+> **Entry**: abstract-algebra.poly.division
+@isnad1 id=eq.0h3v.s6.a7e173e7bdb2 from=translated src=- shape=dd5798f7 vocab=c306ed0b
+-/
 theorem toMathlibPolynomial_monicRemainder {R : Type*} [CommRing R]
     (p d : PolynomialSequence R) :
     toMathlibPolynomial (monicRemainder p d) =
@@ -236,7 +258,9 @@ theorem toMathlibPolynomial_monicRemainder {R : Type*} [CommRing R]
 
 /-- **首一带余除法恒等式**：若 `d` 首一，则被除式等于除式乘商再加余数，
 `p = d * monicQuotient p d + monicRemainder p d`。
-> **Entry**: abstract-algebra.poly.division-/
+> **Entry**: abstract-algebra.poly.division
+@isnad1 id=eq.1h3v.s7.07a01ca7342f from=translated src=- shape=3df75bc8 vocab=b094cdca
+-/
 theorem monic_division_identity {R : Type*} [CommRing R]
     (p d : PolynomialSequence R) (_hd : Monic d) :
     p = d * monicQuotient p d + monicRemainder p d := by
@@ -248,7 +272,9 @@ theorem monic_division_identity {R : Type*} [CommRing R]
 
 /-- **首一余数的次数界**：在非平凡交换环上，以首一多项式 `d` 作除式所得余数次数严格小于
 `d` 的次数。次数取值于 `WithBot ℕ`，所以零余数的次数 `⊥` 也被诚实包含在结论中。
-> **Entry**: abstract-algebra.poly.division-/
+> **Entry**: abstract-algebra.poly.division
+@isnad1 id=lt.1h3v.s5.c4c9ab08e194 from=translated src=- shape=a66dbf6e vocab=fec31557
+-/
 theorem monic_remainder_degree_lt {R : Type*} [CommRing R] [Nontrivial R]
     (p d : PolynomialSequence R) (hd : Monic d) :
     degree (monicRemainder p d) < degree d := by
@@ -258,7 +284,9 @@ theorem monic_remainder_degree_lt {R : Type*} [CommRing R] [Nontrivial R]
 
 /-- **余数为零的整除判据**：对首一除式 `d`，`p` 除以 `d` 的余数为零，当且仅当按本库
 显式乘子定义的 `DividesElement d p` 成立。结论不以 Lean 的整除记号作为公开接口。
-> **Entry**: abstract-algebra.poly.division-/
+> **Entry**: abstract-algebra.poly.division
+@isnad1 id=iff.1h3v.s6.267228a55e1c from=translated src=- shape=898d2caa vocab=b7cad0cc
+-/
 theorem monic_remainder_eq_zero_iff_dividesElement {R : Type*} [CommRing R]
     (p d : PolynomialSequence R) (hd : Monic d) :
     monicRemainder p d = 0 ↔ DividesElement d p := by
@@ -279,7 +307,9 @@ theorem monic_remainder_eq_zero_iff_dividesElement {R : Type*} [CommRing R]
 
 /-- **首一带余除法的唯一性**：若 `q,r` 已满足 `p = d*q+r`，且 `r` 的次数严格小于首一除式
 `d` 的次数，则 `q,r` 必分别等于本模块定义的 `monicQuotient` 与 `monicRemainder`。
-> **Entry**: abstract-algebra.poly.division-/
+> **Entry**: abstract-algebra.poly.division
+@isnad1 id=and.3h5v.s7.0396bfc6a4cb from=translated src=- shape=d651b964 vocab=61b69c35
+-/
 theorem monic_quotient_remainder_unique {R : Type*} [CommRing R] [Nontrivial R]
     (p d q r : PolynomialSequence R) (hd : Monic d)
     (hidentity : p = d * q + r) (hdegree : degree r < degree d) :
@@ -321,7 +351,9 @@ noncomputable def polynomialRemainder {K : Type*} [Field K]
 /-- **域上多项式商的承载一致性桥**：本库 `polynomialQuotient p d` 经具名桥转换后，
 等于 Mathlib 正式承载上的商 `toMathlibPolynomial p / toMathlibPolynomial d`。
 该桥包括 Mathlib 对零除式采用的总函数约定，不额外要求 `d ≠ 0`。
-> **Entry**: abstract-algebra.poly.division-/
+> **Entry**: abstract-algebra.poly.division
+@isnad1 id=eq.0h3v.s6.1e413cbf610e from=translated src=- shape=e5844b44 vocab=623b4a01
+-/
 theorem toMathlibPolynomial_polynomialQuotient {K : Type*} [Field K]
     (p d : PolynomialSequence K) :
     toMathlibPolynomial (polynomialQuotient p d) =
@@ -331,7 +363,9 @@ theorem toMathlibPolynomial_polynomialQuotient {K : Type*} [Field K]
 /-- **域上多项式余数的承载一致性桥**：本库 `polynomialRemainder p d` 经具名桥转换后，
 等于 Mathlib 正式承载上的余数 `toMathlibPolynomial p % toMathlibPolynomial d`。
 它使两套除法接口的余数定理可以直接互相搬运。
-> **Entry**: abstract-algebra.poly.division-/
+> **Entry**: abstract-algebra.poly.division
+@isnad1 id=eq.0h3v.s6.75d829323807 from=translated src=- shape=e5844b44 vocab=764ef79c
+-/
 theorem toMathlibPolynomial_polynomialRemainder {K : Type*} [Field K]
     (p d : PolynomialSequence K) :
     toMathlibPolynomial (polynomialRemainder p d) =
@@ -351,7 +385,9 @@ noncomputable def polynomialDegreeMeasure {K : Type*} [Field K]
 /-- **零安全次数度量的承载一致性桥**：本库系数序列 `p` 的 `polynomialDegreeMeasure`
 等于其 Mathlib 正式承载的 `mathlibPolynomialDegreeMeasure`。两侧都把零多项式映为 `0`，
 把非零 `n` 次多项式映为 `n+1`，一致性仅依赖现有次数桥。
-> **Entry**: abstract-algebra.poly.division-/
+> **Entry**: abstract-algebra.poly.division
+@isnad1 id=eq.0h2v.s5.ce6b398773a4 from=translated src=- shape=74cdc287 vocab=469e06f5
+-/
 theorem polynomialDegreeMeasure_eq_mathlibPolynomialDegreeMeasure
     {K : Type*} [Field K] (p : PolynomialSequence K) :
     polynomialDegreeMeasure p =
@@ -377,7 +413,9 @@ private theorem polynomialDegreeMeasure_lt_of_degree_lt {K : Type*} [Field K]
 
 /-- **域上多项式带余除法恒等式**：若 `d ≠ 0`，则任意 `p` 都分解为
 `p = d * polynomialQuotient p d + polynomialRemainder p d`。
-> **Entry**: abstract-algebra.poly.division-/
+> **Entry**: abstract-algebra.poly.division
+@isnad1 id=eq.1h3v.s7.a1c9fd553a21 from=translated src=- shape=290998c6 vocab=c64f59e6
+-/
 theorem polynomial_division_identity {K : Type*} [Field K]
     (p d : PolynomialSequence K) (_hd : d ≠ 0) :
     p = d * polynomialQuotient p d + polynomialRemainder p d := by
@@ -389,7 +427,9 @@ theorem polynomial_division_identity {K : Type*} [Field K]
 
 /-- **余数度量严格下降**：非零除式 `d` 下，余数的零安全自然数度量严格小于 `d` 的度量。
 这是把通常的严格次数界转写为本库 Euclidean 算法递归所需的自然数终止条件。
-> **Entry**: abstract-algebra.poly.division-/
+> **Entry**: abstract-algebra.poly.division
+@isnad1 id=lt.1h3v.s6.52426fbe85c8 from=translated src=- shape=8a711b1b vocab=cd1fd1ec
+-/
 theorem polynomial_remainder_measure_lt {K : Type*} [Field K]
     (p d : PolynomialSequence K) (hd : d ≠ 0) :
     polynomialDegreeMeasure (polynomialRemainder p d) < polynomialDegreeMeasure d := by
@@ -422,7 +462,9 @@ noncomputable def polynomialEuclideanDomainAxioms (K : Type*) [Field K] :
 /-- **多项式 Euclidean 最大公因数的泛性质**：由本库 Euclidean 算法得到的多项式
 `euclideanGCD` 同时整除 `a,b`，并被 `a,b` 的每个公因子整除，即满足本库
 `GreatestCommonDivisor` 定义。
-> **Entry**: abstract-algebra.poly.division-/
+> **Entry**: abstract-algebra.poly.division
+@isnad1 id=greatest.0h3v.s6.c235f5193800 from=translated src=- shape=330f650c vocab=a7529b6c
+-/
 theorem polynomialGCD_isGreatestCommonDivisor {K : Type*} [Field K]
     (a b : PolynomialSequence K) :
     GreatestCommonDivisor
@@ -432,7 +474,9 @@ theorem polynomialGCD_isGreatestCommonDivisor {K : Type*} [Field K]
 /-- **多项式 gcd 的 Bézout 恒等式**：域上任意本库多项式 `a,b` 存在本库多项式系数
 `s,t`，使 Euclidean 算法给出的 gcd 等于 `s*a+t*b`。该结论直接复用环论层扩展 Euclidean
 算法，不引入模或理想作为公开对象。
-> **Entry**: abstract-algebra.poly.division-/
+> **Entry**: abstract-algebra.poly.division
+@isnad1 id=ex.0h3v.s8.9b69a6660138 from=translated src=- shape=693ae9bd vocab=28244161
+-/
 theorem polynomialGCD_bezout {K : Type*} [Field K]
     (a b : PolynomialSequence K) :
     ∃ s t : PolynomialSequence K,

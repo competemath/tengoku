@@ -32,7 +32,9 @@ namespace SandronesLibrary.Probability
 open MeasureTheory ProbabilityTheory
 open scoped ComplexConjugate
 
-/-- 随机变量的分布特征函数等于教材中的复指数期望。可测性保证推前积分公式适用。-/
+/-- 随机变量的分布特征函数等于教材中的复指数期望。可测性保证推前积分公式适用。
+@isnad1 id=eq.1h4v.s6.e4af9d50354a from=translated src=- shape=7f3b4900 vocab=4bfbf166
+-/
 theorem realCharFun_eq_integral
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
     {X : Ω → ℝ} (hX : AEMeasurable X μ) (t : ℝ) :
@@ -43,7 +45,9 @@ theorem realCharFun_eq_integral
     rfl
   · fun_prop
 
-/-- 概率分布的特征函数在零点取值为一。-/
+/-- 概率分布的特征函数在零点取值为一。
+@isnad1 id=eq.1h3v.s6.ace85839243c from=translated src=- shape=805c5740 vocab=3b250cf6
+-/
 theorem realCharFun_zero
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} (hX : AEMeasurable X μ) :
@@ -51,14 +55,18 @@ theorem realCharFun_zero
   rw [charFun_zero, Measure.real_def, Measure.map_apply_of_aemeasurable hX .univ]
   simp
 
-/-- 实值随机变量的特征函数连续；不需要任何矩存在。-/
+/-- 实值随机变量的特征函数连续；不需要任何矩存在。
+@isnad1 id=continuo.1h3v.s6.014b0e3e69ff from=translated src=- shape=8dbff5a6 vocab=36b32be4
+-/
 theorem realCharFun_continuous
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} (_hX : AEMeasurable X μ) :
     Continuous (charFun (μ.map X)) := by
   exact continuous_charFun
 
-/-- 概率特征函数的复模不超过一。-/
+/-- 概率特征函数的复模不超过一。
+@isnad1 id=le.1h4v.s6.ab2c449f03bb from=translated src=- shape=e5d3cc22 vocab=7b9b129a
+-/
 theorem norm_realCharFun_le_one
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} (hX : AEMeasurable X μ) (t : ℝ) :
@@ -66,21 +74,27 @@ theorem norm_realCharFun_le_one
   let _ : IsProbabilityMeasure (μ.map X) := Measure.isProbabilityMeasure_map hX
   exact norm_charFun_le_one t
 
-/-- 在负参数处的特征函数值是原值的复共轭。-/
+/-- 在负参数处的特征函数值是原值的复共轭。
+@isnad1 id=eq.1h4v.s7.3c42f5c45455 from=translated src=- shape=5abfb3db vocab=c58c03c0
+-/
 theorem realCharFun_neg
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
     {X : Ω → ℝ} (_hX : AEMeasurable X μ) (t : ℝ) :
     charFun (μ.map X) (-t) = conj (charFun (μ.map X) t) := by
   exact charFun_neg t
 
-/-- 随机变量缩放把特征函数的参数按同一实数缩放。-/
+/-- 随机变量缩放把特征函数的参数按同一实数缩放。
+@isnad1 id=eq.1h5v.s6.8dad63377aaa from=translated src=- shape=7f683296 vocab=edf0eb51
+-/
 theorem realCharFun_scale
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
     {X : Ω → ℝ} (hX : AEMeasurable X μ) (r t : ℝ) :
     charFun (μ.map (fun ω ↦ r * X ω)) t = charFun (μ.map X) (r * t) := by
   exact charFun_map_mul_comp hX r t
 
-/-- 随机变量平移 `a` 后，特征函数乘上相位因子 `exp (i a t)`。-/
+/-- 随机变量平移 `a` 后，特征函数乘上相位因子 `exp (i a t)`。
+@isnad1 id=eq.1h5v.s7.067d9263d80f from=translated src=- shape=81a331d9 vocab=59e4a56f
+-/
 theorem realCharFun_translate
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
     {X : Ω → ℝ} (hX : AEMeasurable X μ) (a t : ℝ) :
@@ -92,7 +106,9 @@ theorem realCharFun_translate
   · fun_prop
   · exact hX
 
-/-- 独立实值随机变量之和的特征函数等于两个特征函数的逐点乘积。-/
+/-- 独立实值随机变量之和的特征函数等于两个特征函数的逐点乘积。
+@isnad1 id=eq.3h4v.s7.69655bd4aa75 from=translated src=- shape=1a79696c vocab=66d828c0
+-/
 theorem realCharFun_independent_add
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X Y : Ω → ℝ} (hX : AEMeasurable X μ) (hY : AEMeasurable Y μ)
@@ -101,7 +117,9 @@ theorem realCharFun_independent_add
       charFun (μ.map X) * charFun (μ.map Y) := by
   exact hXY.charFun_map_fun_add_eq_mul hX hY
 
-/-- 两个实值随机变量同分布，当且仅当它们的特征函数处处相同。-/
+/-- 两个实值随机变量同分布，当且仅当它们的特征函数处处相同。
+@isnad1 id=iff.2h6v.s7.2fe7152735e9 from=translated src=- shape=2ad3e7a7 vocab=1e47e6cc
+-/
 theorem identDistrib_iff_realCharFun_eq
     {Ω Ω' : Type*} [MeasurableSpace Ω] [MeasurableSpace Ω']
     {μ : Measure Ω} {ν : Measure Ω'} [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]

@@ -26,7 +26,9 @@ attribute [local instance] quotientRingSetRing
 def ComaximalIdealSets {R : Type*} [Ring R] (I J : Set R) : Prop :=
   idealSetSum I J = Set.univ
 
-/-- 两个双边理想的交仍是双边理想。-/
+/-- 两个双边理想的交仍是双边理想。
+@isnad1 id=twosided.2h3v.s7.07e3f69c8d36 from=translated src=- shape=0540dca0 vocab=da7dc750
+-/
 theorem idealSetIntersection_is_ideal {R : Type*} [Ring R] {I J : Set R}
     (hI : TwoSidedIdealSet I) (hJ : TwoSidedIdealSet J) :
     TwoSidedIdealSet (I ∩ J) := by
@@ -40,7 +42,9 @@ theorem idealSetIntersection_is_ideal {R : Type*} [Ring R] {I J : Set R}
       (by intro x hx; exact ⟨hI.2.2.2.1 hx.1, hJ.2.2.2.1 hx.2⟩),
       by intro r x hx; exact ⟨hI.2.2.2.2 r hx.1, hJ.2.2.2.2 r hx.2⟩⟩
 
-/-- 互素性等价地给出 `1 = i + j` 型见证。-/
+/-- 互素性等价地给出 `1 = i + j` 型见证。
+@isnad1 id=iff.2h3v.s7.b685d01351ce from=translated src=- shape=46547770 vocab=e715e6a4
+-/
 theorem comaximalIdealSets_iff_exists_add_eq_one {R : Type*} [Ring R]
     {I J : Set R} (hI : TwoSidedIdealSet I) (hJ : TwoSidedIdealSet J) :
     ComaximalIdealSets I J ↔ ∃ i ∈ I, ∃ j ∈ J, i + j = 1 := by
@@ -62,7 +66,9 @@ def chineseRemainderMap {R : Type*} [Ring R] (I J : Set R)
     R → quotientRingSet I hI × quotientRingSet J hJ :=
   fun x ↦ (quotientRingProjection I hI x, quotientRingProjection J hJ x)
 
-/-- 中国剩余规范映射是本库意义下的环同态。-/
+/-- 中国剩余规范映射是本库意义下的环同态。
+@isnad1 id=ringhomo.2h3v.s7.469a2c75d194 from=translated src=- shape=0aacde88 vocab=e7e4ca63
+-/
 theorem chineseRemainderMap_is_ringHomomorphism {R : Type*} [Ring R]
     (I J : Set R) (hI : TwoSidedIdealSet I) (hJ : TwoSidedIdealSet J) :
     RingHomomorphism (chineseRemainderMap I J hI hJ) := by
@@ -73,7 +79,9 @@ theorem chineseRemainderMap_is_ringHomomorphism {R : Type*} [Ring R]
     (fun x y ↦ Prod.ext (hπI.2.2.2.1 x y) (hπJ.2.2.2.1 x y)),
     fun x ↦ Prod.ext (hπI.2.2.2.2 x) (hπJ.2.2.2.2 x)⟩
 
-/-- 规范映射的核正是两个理想的交。-/
+/-- 规范映射的核正是两个理想的交。
+@isnad1 id=iff.2h4v.s7.6e7cae88f453 from=translated src=- shape=658045e7 vocab=9b439968
+-/
 theorem chineseRemainderMap_eq_zero_iff {R : Type*} [Ring R]
     (I J : Set R) (hI : TwoSidedIdealSet I) (hJ : TwoSidedIdealSet J)
     (x : R) :
@@ -96,7 +104,9 @@ theorem chineseRemainderMap_eq_zero_iff {R : Type*} [Ring R]
       apply (quotientRingProjection_eq_iff hJ _ _).2
       simpa [idealCongruent] using hx.2
 
-/-- 交换环中，互素理想使中国剩余规范映射满射。-/
+/-- 交换环中，互素理想使中国剩余规范映射满射。
+@isnad1 id=surjecti.3h3v.s7.7c1e1b7331e6 from=translated src=- shape=7eac2bae vocab=b5fcbab7
+-/
 theorem chineseRemainderMap_surjective {R : Type*} [CommRing R]
     (I J : Set R) (hI : TwoSidedIdealSet I) (hJ : TwoSidedIdealSet J)
     (hcomax : ComaximalIdealSets I J) :
@@ -133,7 +143,9 @@ def chineseRemainderQuotientMap {R : Type*} [Ring R]
     (chineseRemainderMap_is_ringHomomorphism I J hI hJ)
     (fun x hx ↦ (chineseRemainderMap_eq_zero_iff I J hI hJ x).2 hx)
 
-/-- 下降后的映射在代表元上的计算公式。-/
+/-- 下降后的映射在代表元上的计算公式。
+@isnad1 id=eq.2h4v.s7.b2882dd4e726 from=translated src=- shape=78e8ffc2 vocab=4280da4a
+-/
 @[simp] theorem chineseRemainderQuotientMap_projection {R : Type*} [Ring R]
     (I J : Set R) (hI : TwoSidedIdealSet I) (hJ : TwoSidedIdealSet J)
     (x : R) :
@@ -205,7 +217,9 @@ noncomputable def chineseRemainderIsomorphism {R : Type*} [CommRing R]
       (quotientRingSet I hI × quotientRingSet J hJ) :=
   RingIsomorphism.ofRingEquiv (chineseRemainderEquiv I J hI hJ hcomax)
 
-/-- 正式中国剩余同构在代表元上就是同时取两个剩余类。-/
+/-- 正式中国剩余同构在代表元上就是同时取两个剩余类。
+@isnad1 id=eq.3h4v.s9.af96f473528b from=translated src=- shape=01a2f43f vocab=714c567a
+-/
 @[simp] theorem chineseRemainderEquiv_projection {R : Type*} [CommRing R]
     (I J : Set R) (hI : TwoSidedIdealSet I) (hJ : TwoSidedIdealSet J)
     (hcomax : ComaximalIdealSets I J) (x : R) :
@@ -216,7 +230,9 @@ noncomputable def chineseRemainderIsomorphism {R : Type*} [CommRing R]
   dsimp only
   rfl
 
-/-- 旧二元中国剩余同构兼容接口的代表元公式。-/
+/-- 旧二元中国剩余同构兼容接口的代表元公式。
+@isnad1 id=eq.3h4v.s7.ccbc513e1ac0 from=translated src=- shape=e6a40d41 vocab=3fe000cd
+-/
 @[simp] theorem chineseRemainderIsomorphism_projection {R : Type*} [CommRing R]
     (I J : Set R) (hI : TwoSidedIdealSet I) (hJ : TwoSidedIdealSet J)
     (hcomax : ComaximalIdealSets I J) (x : R) :
@@ -235,7 +251,9 @@ def PairwiseComaximalIdealSets {R ι : Type*} [Ring R] (I : ι → Set R) : Prop
 def finiteIdealIntersection {R ι : Type*} (I : ι → Set R) : Set R :=
   {x | ∀ i, x ∈ I i}
 
-/-- 有限个双边理想的集合型交仍是双边理想。-/
+/-- 有限个双边理想的集合型交仍是双边理想。
+@isnad1 id=twosided.1h3v.s6.f025407efe03 from=translated src=- shape=3e204cd2 vocab=57449905
+-/
 theorem finiteIdealIntersection_is_ideal {R ι : Type*} [Ring R]
     (I : ι → Set R) (hI : ∀ i, TwoSidedIdealSet (I i)) :
     TwoSidedIdealSet (finiteIdealIntersection I) := by
@@ -261,7 +279,9 @@ def finiteChineseRemainderMap {R ι : Type*} [Ring R]
     R → ∀ i, quotientRingSet (I i) (hI i) :=
   fun x i ↦ quotientRingProjection (I i) (hI i) x
 
-/-- 有限族规范映射是本库意义下的环同态。-/
+/-- 有限族规范映射是本库意义下的环同态。
+@isnad1 id=ringhomo.1h3v.s7.3f16599867af from=translated src=- shape=2afbe0e7 vocab=e431e96b
+-/
 theorem finiteChineseRemainderMap_is_ringHomomorphism {R ι : Type*} [Ring R]
     (I : ι → Set R) (hI : ∀ i, TwoSidedIdealSet (I i)) :
     RingHomomorphism (finiteChineseRemainderMap I hI) := by
@@ -278,7 +298,9 @@ theorem finiteChineseRemainderMap_is_ringHomomorphism {R ι : Type*} [Ring R]
     funext i
     exact (quotientRingProjection_is_ringHomomorphism (I i) (hI i)).2.2.2.2 x
 
-/-- 有限族规范映射的核正是全部理想的交。-/
+/-- 有限族规范映射的核正是全部理想的交。
+@isnad1 id=iff.1h4v.s7.08c30d26114c from=translated src=- shape=fcd632de vocab=43457c77
+-/
 theorem finiteChineseRemainderMap_eq_zero_iff {R ι : Type*} [Ring R]
     (I : ι → Set R) (hI : ∀ i, TwoSidedIdealSet (I i)) (x : R) :
     finiteChineseRemainderMap I hI x = 0 ↔ x ∈ finiteIdealIntersection I := by
@@ -293,7 +315,9 @@ theorem finiteChineseRemainderMap_eq_zero_iff {R ι : Type*} [Ring R]
     apply (quotientRingProjection_eq_iff (hI i) _ _).2
     simpa [idealCongruent] using hx i
 
-/-- 有限交换环情形中，两两互素保证规范映射满射。-/
+/-- 有限交换环情形中，两两互素保证规范映射满射。
+@isnad1 id=surjecti.2h3v.s6.3e24c9fe1e15 from=translated src=- shape=b8a6336e vocab=dd07f0e2
+-/
 theorem finiteChineseRemainderMap_surjective {R ι : Type*} [CommRing R]
     [Finite ι]
     (I : ι → Set R) (hI : ∀ i, TwoSidedIdealSet (I i))
@@ -337,7 +361,9 @@ def finiteChineseRemainderQuotientMap {R ι : Type*} [Ring R]
     (finiteChineseRemainderMap_is_ringHomomorphism I hI)
     (fun x hx ↦ (finiteChineseRemainderMap_eq_zero_iff I hI x).2 hx)
 
-/-- 有限族下降映射在代表元上的计算公式。-/
+/-- 有限族下降映射在代表元上的计算公式。
+@isnad1 id=eq.1h4v.s6.3d3b5eb74163 from=translated src=- shape=12a889a1 vocab=d063a552
+-/
 @[simp] theorem finiteChineseRemainderQuotientMap_projection
     {R ι : Type*} [Ring R] (I : ι → Set R)
     (hI : ∀ i, TwoSidedIdealSet (I i)) (x : R) :
@@ -411,7 +437,9 @@ noncomputable def finiteChineseRemainderIsomorphism
       (∀ i, quotientRingSet (I i) (hI i)) :=
   RingIsomorphism.ofRingEquiv (finiteChineseRemainderEquiv I hI hpairwise)
 
-/-- 正式有限中国剩余同构在代表元上同时取每个理想的剩余类。-/
+/-- 正式有限中国剩余同构在代表元上同时取每个理想的剩余类。
+@isnad1 id=eq.2h4v.s8.afdd1070ceec from=translated src=- shape=a2a12ea4 vocab=44861426
+-/
 @[simp] theorem finiteChineseRemainderEquiv_projection
     {R ι : Type*} [CommRing R] [Finite ι]
     (I : ι → Set R) (hI : ∀ i, TwoSidedIdealSet (I i))
@@ -424,7 +452,9 @@ noncomputable def finiteChineseRemainderIsomorphism
   dsimp only
   rfl
 
-/-- 旧有限中国剩余同构兼容接口的代表元公式。-/
+/-- 旧有限中国剩余同构兼容接口的代表元公式。
+@isnad1 id=eq.2h4v.s7.4c55966dc997 from=translated src=- shape=8245431d vocab=17c96ec8
+-/
 @[simp] theorem finiteChineseRemainderIsomorphism_projection
     {R ι : Type*} [CommRing R] [Finite ι]
     (I : ι → Set R) (hI : ∀ i, TwoSidedIdealSet (I i))

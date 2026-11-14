@@ -36,7 +36,9 @@ inductive Path.DyadicC1AtDepth : {x y : E} → Path x y → ℕ → Prop
       (hgamma : Path.DyadicC1AtDepth gamma n) (hx : x' = x) (hy : y' = y) :
       Path.DyadicC1AtDepth (gamma.cast hx hy) n
 
-/-- Increasing the dyadic depth preserves an alignment certificate.-/
+/-- Increasing the dyadic depth preserves an alignment certificate.
+@isnad1 id=dyadicc1.2h6v.s5.8c7c66b5c5b3 from=translated src=- shape=f1e03fa2 vocab=5c19a759
+-/
 theorem Path.DyadicC1AtDepth.mono
     {x y : E} {gamma : Path x y} {n m : ℕ}
     (hgamma : Path.DyadicC1AtDepth gamma n) (hnm : n ≤ m) :
@@ -55,7 +57,9 @@ theorem Path.DyadicC1AtDepth.mono
       exact .cast (ih hnm) hx hy
 
 /-- Forgetting the alignment depth recovers the original piecewise-C1
-predicate.-/
+predicate.
+@isnad1 id=piecewis.1h5v.s5.2039cf4e4add from=translated src=- shape=39cf387f vocab=5666ef5e
+-/
 theorem Path.DyadicC1AtDepth.piecewiseC1
     {x y : E} {gamma : Path x y} {n : ℕ}
     (hgamma : Path.DyadicC1AtDepth gamma n) : Path.PiecewiseC1 gamma := by
@@ -69,7 +73,9 @@ theorem Path.DyadicC1AtDepth.piecewiseC1
 
 /-- Every value of the existing `PiecewiseC1 : Prop` has some finite common
 dyadic alignment depth. The witness is existential because Lean correctly
-forbids computing data directly by eliminating a proof in `Prop`.-/
+forbids computing data directly by eliminating a proof in `Prop`.
+@isnad1 id=ex.1h4v.s5.435626dcc049 from=translated src=- shape=fc17da51 vocab=5666ef5e
+-/
 theorem Path.PiecewiseC1.exists_dyadicC1AtDepth
     {x y : E} {gamma : Path x y} (hgamma : Path.PiecewiseC1 gamma) :
     ∃ n : ℕ, Path.DyadicC1AtDepth gamma n := by
@@ -348,7 +354,9 @@ private theorem Path.DyadicC1AtDepth.dyadicSegment_piecewiseC1_aux
 /-- Every elementary interval of the dyadic grid certified by
 `DyadicC1AtDepth` is piecewise C1. The public statement uses the shared
 `unitIntervalMeshPoint` interface rather than exposing an implementation-local
-dyadic abbreviation.-/
+dyadic abbreviation.
+@isnad1 id=piecewis.1h6v.s8.f5cb3d7ca548 from=translated src=- shape=4eef7795 vocab=9c523d0b
+-/
 theorem Path.DyadicC1AtDepth.dyadicSegment_piecewiseC1
     {x y : E} {gamma : Path x y} {n : ℕ}
     (hgamma : Path.DyadicC1AtDepth gamma n) (i : Fin (2 ^ n)) :
@@ -359,7 +367,9 @@ theorem Path.DyadicC1AtDepth.dyadicSegment_piecewiseC1
 
 /-- Every piecewise-C1 path has a uniform dyadic grid on which each elementary
 subpath is again piecewise C1. Unlike arbitrary `Path.subpath` closure, this
-statement is valid for the midpoint-based inductive carrier.-/
+statement is valid for the midpoint-based inductive carrier.
+@isnad1 id=ex.1h4v.s8.711ec6dafc25 from=translated src=- shape=757ecdb5 vocab=b7bf2fff
+-/
 theorem Path.PiecewiseC1.exists_dyadicGrid_segments_piecewiseC1
     {x y : E} {gamma : Path x y} (hgamma : Path.PiecewiseC1 gamma) :
     ∃ n : ℕ, ∀ i : Fin (2 ^ n),
@@ -370,7 +380,9 @@ theorem Path.PiecewiseC1.exists_dyadicGrid_segments_piecewiseC1
   exact ⟨n, hn.dyadicSegment_piecewiseC1⟩
 
 /-- The bottom horizontal edge of a relative path-homotopy square is constant,
-hence piecewise C1.-/
+hence piecewise C1.
+@isnad1 id=piecewis.1h8v.s8.3e6277ee3f29 from=translated src=- shape=f18b5799 vocab=74b8d14b
+-/
 theorem pathHomotopySquare_horizontal_zero_piecewiseC1
     {x y : E} {gamma delta : Path x y} (F : gamma.Homotopy delta)
     (N : ℕ) (hN : 0 < N) (i : Fin N) :
@@ -390,7 +402,9 @@ theorem pathHomotopySquare_horizontal_zero_piecewiseC1
     simp [squareGridHorizontalEdge]
   rwa [heq] at hcast
 
-/-- The top horizontal edge of a relative path-homotopy square is constant.-/
+/-- The top horizontal edge of a relative path-homotopy square is constant.
+@isnad1 id=piecewis.1h8v.s7.3fae21411eaf from=translated src=- shape=b0ccee74 vocab=6346f3c6
+-/
 theorem pathHomotopySquare_horizontal_last_piecewiseC1
     {x y : E} {gamma delta : Path x y} (F : gamma.Homotopy delta)
     (N : ℕ) (hN : 0 < N) (i : Fin N) :
@@ -413,7 +427,9 @@ theorem pathHomotopySquare_horizontal_last_piecewiseC1
   rwa [heq] at hcast
 
 /-- At dyadic scale `2^n`, the left vertical grid edges are exactly the
-certified dyadic subpaths of the source path.-/
+certified dyadic subpaths of the source path.
+@isnad1 id=piecewis.1h8v.s8.91f2747d336d from=translated src=- shape=a17e2167 vocab=247d53d6
+-/
 theorem Path.DyadicC1AtDepth.pathHomotopySquare_vertical_zero_piecewiseC1
     {x y : E} {gamma delta : Path x y} (F : gamma.Homotopy delta)
     {n : ℕ} (hgamma : Path.DyadicC1AtDepth gamma n) (i : Fin (2 ^ n)) :
@@ -441,7 +457,9 @@ theorem Path.DyadicC1AtDepth.pathHomotopySquare_vertical_zero_piecewiseC1
   rwa [heq] at hcast
 
 /-- At dyadic scale `2^n`, the right vertical grid edges are exactly the
-certified dyadic subpaths of the target path.-/
+certified dyadic subpaths of the target path.
+@isnad1 id=piecewis.1h8v.s8.4f596fcbd2d4 from=translated src=- shape=01d971d1 vocab=850a137b
+-/
 theorem Path.DyadicC1AtDepth.pathHomotopySquare_vertical_last_piecewiseC1
     {x y : E} {gamma delta : Path x y} (F : gamma.Homotopy delta)
     {n : ℕ} (hdelta : Path.DyadicC1AtDepth delta n) (i : Fin (2 ^ n)) :

@@ -32,17 +32,23 @@ local instance : LinearSpace ℝ E where
 /-- 两个向量正交，意为它们的内积为零。-/
 def AreOrthogonal (x y : E) : Prop := inner ℝ x y = 0
 
-/-- 实内积空间中的 Cauchy–Schwarz 不等式。-/
+/-- 实内积空间中的 Cauchy–Schwarz 不等式。
+@isnad1 id=le.0h3v.s5.fa3ae78d9242 from=translated src=- shape=23d428e3 vocab=26a1b885
+-/
 theorem cauchy_schwarz (x y : E) :
     |inner ℝ x y| ≤ ‖x‖ * ‖y‖ :=
   abs_real_inner_le_norm x y
 
-/-- 向量与自身的内积等于范数平方。-/
+/-- 向量与自身的内积等于范数平方。
+@isnad1 id=eq.0h2v.s5.e3b80848f502 from=translated src=- shape=4ca600f4 vocab=d01ce673
+-/
 theorem inner_self_eq_norm_sq (x : E) :
     inner ℝ x x = ‖x‖ ^ 2 :=
   real_inner_self_eq_norm_sq x
 
-/-- 正交关系具有对称性。-/
+/-- 正交关系具有对称性。
+@isnad1 id=iff.0h3v.s4.4f42858a4fb6 from=translated src=- shape=0e68a6f8 vocab=5bba0595
+-/
 theorem orthogonal_symm {x y : E} :
     AreOrthogonal x y ↔ AreOrthogonal y x := by
   exact inner_eq_zero_symm
@@ -51,13 +57,17 @@ theorem orthogonal_symm {x y : E} :
 noncomputable def orthonormalize {n : ℕ} (v : Fin n → E) : Fin n → E :=
   InnerProductSpace.gramSchmidtNormed ℝ v
 
-/-- 线性无关向量组经 Gram–Schmidt 后成为标准正交组。-/
+/-- 线性无关向量组经 Gram–Schmidt 后成为标准正交组。
+@isnad1 id=orthonor.1h3v.s5.75240abf549a from=translated src=- shape=c05121b4 vocab=c2c3de74
+-/
 theorem orthonormalize_is_orthonormal {n : ℕ} {v : Fin n → E}
     (hv : IsLinearIndependent ℝ v) :
     Orthonormal ℝ (orthonormalize v) := by
   exact InnerProductSpace.gramSchmidtNormed_orthonormal hv
 
-/-- Gram–Schmidt 保持线性无关性。-/
+/-- Gram–Schmidt 保持线性无关性。
+@isnad1 id=islinear.1h3v.s5.b00d244735a9 from=translated src=- shape=7745ab5a vocab=06ac82e6
+-/
 theorem orthonormalize_is_linearly_independent {n : ℕ} {v : Fin n → E}
     (hv : IsLinearIndependent ℝ v) :
     IsLinearIndependent ℝ (orthonormalize v) := by
@@ -75,7 +85,9 @@ private theorem orthonormalize_span_eq {n : ℕ} (v : Fin n → E) :
     _ = Submodule.span ℝ (Set.range v) :=
       InnerProductSpace.span_gramSchmidt ℝ v
 
-/-- 一组基经 Gram–Schmidt 后仍是基，并且成为标准正交基。-/
+/-- 一组基经 Gram–Schmidt 后仍是基，并且成为标准正交基。
+@isnad1 id=and.1h3v.s6.9bb5db3b84b7 from=translated src=- shape=c255e890 vocab=26f35fed
+-/
 theorem orthonormalize_basis {n : ℕ} {b : Fin n → E}
     (hb : IsBasis ℝ b) :
     IsBasis ℝ (orthonormalize b) ∧ Orthonormal ℝ (orthonormalize b) := by
@@ -96,7 +108,9 @@ def IsOrthogonalToFamily {n : ℕ} (x : E) (v : Fin n → E) : Prop :=
   ∀ i, AreOrthogonal x (v i)
 
 /-- 有限维实内积空间中的正交分解：任意向量都能唯一地写成给定有限向量组的
-线性组合与一个垂直于该向量组的向量之和。-/
+线性组合与一个垂直于该向量组的向量之和。
+@isnad1 id=existsun.0h4v.s6.a766b9f2b98b from=translated src=- shape=76fd3a45 vocab=7aa0e220
+-/
 theorem orthogonal_decomposition {n : ℕ} [FiniteDimensional ℝ E]
     (v : Fin n → E) (x : E) :
     ∃! yz : E × E,
@@ -146,7 +160,9 @@ noncomputable def adjointOperator [FiniteDimensional ℝ E]
     (T : E →ₗ[ℝ] E) : E →ₗ[ℝ] E :=
   T.adjoint
 
-/-- 伴随算子的刻画公式：`⟪x,T*y⟫ = ⟪Tx,y⟫`。-/
+/-- 伴随算子的刻画公式：`⟪x,T*y⟫ = ⟪Tx,y⟫`。
+@isnad1 id=eq.0h4v.s8.eeecd78ff88c from=translated src=- shape=0ab6017b vocab=25581b6d
+-/
 theorem adjoint_characterization [FiniteDimensional ℝ E]
     (T : E →ₗ[ℝ] E) (x y : E) :
     inner ℝ x (adjointOperator T y) = inner ℝ (T x) y :=
@@ -156,7 +172,9 @@ theorem adjoint_characterization [FiniteDimensional ℝ E]
 def IsSelfAdjointOperator (T : E →ₗ[ℝ] E) : Prop :=
   ∀ x y, inner ℝ (T x) y = inner ℝ x (T y)
 
-/-- 在有限维实内积空间中，一个算子自伴当且仅当它等于自己的伴随。-/
+/-- 在有限维实内积空间中，一个算子自伴当且仅当它等于自己的伴随。
+@isnad1 id=iff.0h2v.s7.8261879c6ae4 from=translated src=- shape=7f4a1945 vocab=55cdbb99
+-/
 theorem self_adjoint_iff_eq_adjoint [FiniteDimensional ℝ E]
     (T : E →ₗ[ℝ] E) :
     IsSelfAdjointOperator T ↔ adjointOperator T = T := by

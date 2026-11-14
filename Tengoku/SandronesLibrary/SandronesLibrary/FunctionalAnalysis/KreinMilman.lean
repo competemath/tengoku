@@ -27,7 +27,9 @@ variable {K F : Set E} {x : E}
 教材中的 face 还要求 `F` 非空且凸；Mathlib 的 `IsExtreme ℝ K F` 只承载“开线段内点落入 `F`
 则两端点落入 `F`”的极性条件，因此正式教材承载是三项合取，而不是另建一个同义谓词。
 
-> **Entry**: functional-analysis.krein-milman-/
+> **Entry**: functional-analysis.krein-milman
+@isnad1 id=iff.0h3v.s8.24b5ab1ab252 from=translated src=- shape=4f0b51eb vocab=2008c706
+-/
 theorem textbookFace_iff_nonempty_convex_isExtreme :
     F.Nonempty ∧ Convex ℝ F ∧ IsExtreme ℝ K F ↔
       F.Nonempty ∧ Convex ℝ F ∧ F ⊆ K ∧
@@ -46,7 +48,9 @@ theorem textbookFace_iff_nonempty_convex_isExtreme :
 /-- Salamon Definition 3.5.1 的 extremal point 展开：`x` 属于 `K`，且任何以 `x` 为严格内点、
 端点属于 `K` 的线段都是平凡线段。
 
-> **Entry**: functional-analysis.krein-milman-/
+> **Entry**: functional-analysis.krein-milman
+@isnad1 id=iff.0h3v.s7.5b54e772d2bb from=translated src=- shape=8762673f vocab=3decf66f
+-/
 theorem mem_extremePoints_iff_textbook :
     x ∈ K.extremePoints ℝ ↔
       x ∈ K ∧ ∀ x₀ ∈ K, ∀ x₁ ∈ K,
@@ -56,7 +60,9 @@ theorem mem_extremePoints_iff_textbook :
 /-- 一个点是 `K` 的极点，当且仅当其 singleton 是 Mathlib 意义下的 extreme subset。这是教材
 “extremal point 等价于 singleton face”的极性部分；完整 face 还需另加非空与凸性。
 
-> **Entry**: functional-analysis.krein-milman-/
+> **Entry**: functional-analysis.krein-milman
+@isnad1 id=iff.0h3v.s7.19ac446842a6 from=translated src=- shape=a877b746 vocab=5f6ad4f8
+-/
 theorem singleton_isExtreme_iff_mem_extremePoints :
     IsExtreme ℝ K {x} ↔ x ∈ K.extremePoints ℝ :=
   isExtreme_singleton
@@ -69,7 +75,9 @@ variable [TopologicalSpace E] [T2Space E] [IsTopologicalAddGroup E]
 /-- Salamon Theorem 3.5.2，以 Mathlib `closedConvexHull` 语言组装：紧凸集等于其极点的闭凸包。
 证明直接复用 Mathlib Krein--Milman 最终定理，不建立平行最终接口或重复证明链。
 
-> **Entry**: functional-analysis.krein-milman-/
+> **Entry**: functional-analysis.krein-milman
+@isnad1 id=eq.2h2v.s8.d3219aea4f25 from=translated src=- shape=4fb32577 vocab=d6aa2f69
+-/
 theorem closedConvexHull_extremePoints_eq (hKcpt : IsCompact K) (hKconv : Convex ℝ K) :
     closedConvexHull ℝ (K.extremePoints ℝ) = K := by
   rw [closedConvexHull_eq_closure_convexHull]
@@ -78,7 +86,9 @@ theorem closedConvexHull_extremePoints_eq (hKcpt : IsCompact K) (hKconv : Convex
 /-- Salamon Theorem 3.5.2 的存在性推论：非空紧凸集具有极点。Mathlib 的底层存在性引理事实上
 不需要凸性；这里保留教材环境，并显式复用该更强引理。
 
-> **Entry**: functional-analysis.krein-milman-/
+> **Entry**: functional-analysis.krein-milman
+@isnad1 id=ex.3h2v.s7.9adc776e93d3 from=translated src=- shape=f2fc5483 vocab=ae87970a
+-/
 theorem exists_extremePoint_of_nonempty_compact_convex
     (hKne : K.Nonempty) (hKcpt : IsCompact K) (_hKconv : Convex ℝ K) :
     ∃ x, x ∈ K.extremePoints ℝ :=

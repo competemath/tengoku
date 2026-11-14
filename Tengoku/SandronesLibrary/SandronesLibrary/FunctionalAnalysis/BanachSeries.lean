@@ -28,18 +28,24 @@ variable [NormedAddCommGroup E] [NormedLinearSpace ℝ E] [BanachSpace E]
 
 教材中的“范数级数收敛”直接写成 `Summable (fun n ↦ ‖f n‖)`；这里不再建立同义包装谓词。
 
-> **Entry**: functional-analysis.series.summable-/
+> **Entry**: functional-analysis.series.summable
+@isnad1 id=summable.1h2v.s5.9f253a550c84 from=translated src=- shape=3c16d2d2 vocab=90e73311
+-/
 theorem summable_of_summable_norm {f : ℕ → E}
     (hf : Summable (fun n ↦ ‖f n‖)) : Summable f := by
   exact hf.of_norm
 
-/-- 绝对可和时，前 `N` 项的普通部分和趋于 Mathlib 记号 `∑' n, f n` 表示的级数总和。-/
+/-- 绝对可和时，前 `N` 项的普通部分和趋于 Mathlib 记号 `∑' n, f n` 表示的级数总和。
+@isnad1 id=tendsto.1h2v.s6.9c1bf78369f2 from=translated src=- shape=d1b00974 vocab=c24d0abb
+-/
 theorem tendsto_partialSums_tsum_of_summable_norm {f : ℕ → E}
     (hf : Summable (fun n ↦ ‖f n‖)) :
     Tendsto (fun N : ℕ ↦ ∑ n ∈ range N, f n) atTop (nhds (∑' n, f n)) := by
   exact (summable_of_summable_norm hf).hasSum.tendsto_sum_nat
 
-/-- 绝对收敛向量级数的总和范数不超过各项范数之和，这是无穷级数版本的三角不等式。-/
+/-- 绝对收敛向量级数的总和范数不超过各项范数之和，这是无穷级数版本的三角不等式。
+@isnad1 id=le.1h2v.s6.1869e887f5e8 from=translated src=- shape=f75b4c68 vocab=9810d6a3
+-/
 theorem norm_tsum_le_tsum_norm_of_summable {f : ℕ → E}
     (hf : Summable (fun n ↦ ‖f n‖)) :
     ‖∑' n, f n‖ ≤ ∑' n, ‖f n‖ := by

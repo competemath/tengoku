@@ -25,18 +25,24 @@ variable {A : Type*} [NormedRing A] [NormedAlgebra ℂ A]
 omit [NormedAlgebra ℂ A] [CompleteSpace A] [NormOneClass A] in
 /-- Banach 代数乘法的次乘性由 `NormedRing` 直接承载。
 
-> **Entry**: functional-analysis.banach-algebra.foundation-/
+> **Entry**: functional-analysis.banach-algebra.foundation
+@isnad1 id=le.0h3v.s5.c2067e75b15e from=translated src=- shape=716764db vocab=986bbf18
+-/
 theorem banachAlgebra_norm_mul_le (a b : A) : ‖a * b‖ ≤ ‖a‖ * ‖b‖ :=
   norm_mul_le a b
 
 omit [NormedAlgebra ℂ A] [NormOneClass A] in
-/-- 范数小于一的元素的 Neumann 级数收敛到 `1-a` 的环论逆元。-/
+/-- 范数小于一的元素的 Neumann 级数收敛到 `1-a` 的环论逆元。
+@isnad1 id=hassum.1h2v.s6.c43e7dcba32a from=translated src=- shape=04f1074b vocab=db20b2fb
+-/
 theorem banachAlgebra_hasSum_geometric_inverse (a : A) (ha : ‖a‖ < 1) :
     HasSum (fun n : ℕ ↦ a ^ n) (Ring.inverse (1 - a)) :=
   hasSum_geom_series_inverse a ha
 
 omit [NormedAlgebra ℂ A] [NormOneClass A] in
-/-- Neumann 级数判据：若 `‖a‖<1`，则 `1-a` 可逆。-/
+/-- Neumann 级数判据：若 `‖a‖<1`，则 `1-a` 可逆。
+@isnad1 id=isunit.1h2v.s6.0c574de26a04 from=translated src=- shape=4c7b959c vocab=95738061
+-/
 theorem banachAlgebra_one_sub_isUnit (a : A) (ha : ‖a‖ < 1) :
     IsUnit (1 - a) :=
   isUnit_one_sub_of_norm_lt_one ha
@@ -49,17 +55,24 @@ variable {B : Type*} [NonUnitalNormedRing B] [NormedSpace ℂ B]
 
 omit [NormedSpace ℂ B] [SMulCommClass ℂ B B] [IsScalarTower ℂ B B]
   [RegularNormedAlgebra ℂ B] in
-/-- Mathlib 的单位化 `Unitization ℂ B` 仍是完备的复赋范代数。-/
+/-- Mathlib 的单位化 `Unitization ℂ B` 仍是完备的复赋范代数。
+@isnad1 id=complete.0h1v.s4.a133cbbd7b12 from=translated src=- shape=72288e2b vocab=a185f2ef
+-/
 theorem complexUnitization_complete : CompleteSpace (Unitization ℂ B) :=
   inferInstance
 
 omit [CompleteSpace B] in
-/-- 非幺 Banach 代数到其单位化的典范嵌入是等距映射。-/
+/-- 非幺 Banach 代数到其单位化的典范嵌入是等距映射。
+@isnad1 id=isometry.0h1v.s8.dde8ce018f59 from=translated src=- shape=227fc1ee vocab=b6a7df15
+-/
 theorem complexUnitization_inclusion_isometry :
     Isometry ((↑) : B → Unitization ℂ B) :=
   Unitization.isometry_inr
 
 omit [CompleteSpace B] in
+/--
+@isnad1 id=eq.0h2v.s8.96c1275706ac from=translated src=- shape=2a1cb12e vocab=e83f9859
+-/
 @[simp]
 theorem norm_complexUnitization_inclusion (b : B) :
     ‖(b : Unitization ℂ B)‖ = ‖b‖ :=
@@ -73,13 +86,17 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
   [CompleteSpace E] [Nontrivial E]
 
 omit [Nontrivial E] in
-/-- 有界算子代数中的 Neumann 级数。这个实例桥是后续算子谱与预解集的基础。-/
+/-- 有界算子代数中的 Neumann 级数。这个实例桥是后续算子谱与预解集的基础。
+@isnad1 id=hassum.1h2v.s10.45a1da2c73bb from=translated src=- shape=040969de vocab=d7d635b4
+-/
 theorem operator_hasSum_geometric_inverse (T : E →L[ℂ] E) (hT : ‖T‖ < 1) :
     HasSum (fun n : ℕ ↦ T ^ n) (Ring.inverse (1 - T)) :=
   hasSum_geom_series_inverse T hT
 
 omit [Nontrivial E] in
-/-- 范数小于一的有界算子 `T` 使 `I-T` 在有界算子代数中可逆。-/
+/-- 范数小于一的有界算子 `T` 使 `I-T` 在有界算子代数中可逆。
+@isnad1 id=isunit.1h2v.s9.0fe627dee01f from=translated src=- shape=47c5d34d vocab=bff5bfef
+-/
 theorem operator_one_sub_isUnit (T : E →L[ℂ] E) (hT : ‖T‖ < 1) :
     IsUnit (1 - T) :=
   isUnit_one_sub_of_norm_lt_one hT

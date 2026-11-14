@@ -65,7 +65,9 @@ private theorem scalarOneFormFDeriv_symmetric (f : ℂ → ℂ) (z u v : ℂ) :
 inside the holomorphy domain.  No primitive is assumed: closedness of `f(z) dz` follows from complex
 differentiability, and the two side paths of a relative-endpoint homotopy are constant.
 
-> **Entry**: complex-analysis.cauchy.smooth-homotopy-foundation-/
+> **Entry**: complex-analysis.cauchy.smooth-homotopy-foundation
+@isnad1 id=eq.3h6v.s6.e6cb5e231f84 from=translated src=- shape=74e462c5 vocab=e295c73e
+-/
 theorem pathIntegral_eq_of_C2HomotopicWithin
     {f : ℂ → ℂ} {U : Set ℂ} {a b : ℂ} {gamma delta : Path a b}
     (hU : IsOpen U) (hf : HolomorphicOnTextbook f U)
@@ -105,7 +107,9 @@ theorem pathIntegral_eq_of_C2HomotopicWithin
 
 /-- A smoothly null-homotopic loop has zero integral for every textbook-holomorphic integrand.
 
-> **Entry**: complex-analysis.cauchy.smooth-homotopy-foundation-/
+> **Entry**: complex-analysis.cauchy.smooth-homotopy-foundation
+@isnad1 id=eq.3h4v.s6.302e140ef396 from=translated src=- shape=0ec51ba2 vocab=5308bcfd
+-/
 theorem pathIntegral_eq_zero_of_C2NullHomotopicWithin
     {f : ℂ → ℂ} {U : Set ℂ} {a : ℂ} {gamma : Path a a}
     (hU : IsOpen U) (hf : HolomorphicOnTextbook f U)

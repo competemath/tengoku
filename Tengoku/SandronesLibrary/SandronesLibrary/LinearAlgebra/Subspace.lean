@@ -37,21 +37,27 @@ def IsSubspace (K : Type*) {V : Type*} [Field K] [AddCommGroup V] [LinearSpace K
     (∀ (c : K) ⦃v⦄, v ∈ W → c • v ∈ W)
 
 /-- **子空间的加法封闭性**：u, v ∈ W ⟹ u + v ∈ W。 
-> **Entry**: linear-algebra.vector-space.subspace-/
+> **Entry**: linear-algebra.vector-space.subspace
+@isnad1 id=mem.3h5v.s6.093893f5dc24 from=translated src=- shape=4ec4686a vocab=927e4bbc
+-/
 theorem subspace_add_mem {K : Type*} {V : Type*} [Field K]
     [AddCommGroup V] [LinearSpace K V] {W : Set V} (hW : IsSubspace K W)
     {u v : V} (hu : u ∈ W) (hv : v ∈ W) : u + v ∈ W :=
   hW.2.1 hu hv
 
 /-- **子空间的数乘封闭性**：v ∈ W ⟹ c·v ∈ W。 
-> **Entry**: linear-algebra.vector-space.subspace-/
+> **Entry**: linear-algebra.vector-space.subspace
+@isnad1 id=mem.2h5v.s6.2ac33dbc9a67 from=translated src=- shape=f1e53e46 vocab=02340a17
+-/
 theorem subspace_smul_mem {K : Type*} {V : Type*} [Field K]
     [AddCommGroup V] [LinearSpace K V] {W : Set V} (hW : IsSubspace K W)
     (c : K) {v : V} (hv : v ∈ W) : c • v ∈ W :=
   hW.2.2 c hv
 
 /-- **子空间包含零向量**：子空间非空，故含 0。 
-> **Entry**: linear-algebra.vector-space.subspace-/
+> **Entry**: linear-algebra.vector-space.subspace
+@isnad1 id=mem.1h3v.s5.80eae090fd5f from=translated src=- shape=f9b12f65 vocab=1a243fdf
+-/
 theorem subspace_zero_mem {K : Type*} {V : Type*} [Field K]
     [AddCommGroup V] [LinearSpace K V] {W : Set V} (hW : IsSubspace K W) :
     (0 : V) ∈ W := by
@@ -66,7 +72,9 @@ noncomputable def span (K : Type*) {V : Type*} [Field K] [AddCommGroup V] [Linea
   ↑(Submodule.span K s)
 
 /-- **生成子空间包含原集合**：s ⊆ span(s)。 
-> **Entry**: linear-algebra.vector-space.span-/
+> **Entry**: linear-algebra.vector-space.span
+@isnad1 id=le.0h3v.s5.e9d2d6356506 from=translated src=- shape=59c3ec63 vocab=b2cb29d8
+-/
 theorem subset_span {K : Type*} {V : Type*} [Field K]
     [AddCommGroup V] [LinearSpace K V] {s : Set V} : s ⊆ span K s := by
   intro x hx
@@ -74,7 +82,9 @@ theorem subset_span {K : Type*} {V : Type*} [Field K]
   exact Submodule.subset_span hx
 
 /-- **生成子空间的单调性**：s ⊆ t ⟹ span(s) ⊆ span(t)。 
-> **Entry**: linear-algebra.vector-space.span-/
+> **Entry**: linear-algebra.vector-space.span
+@isnad1 id=le.1h4v.s5.d6fe35dbf7b7 from=translated src=- shape=9ad97dc0 vocab=b2cb29d8
+-/
 theorem span_mono {K : Type*} {V : Type*} [Field K]
     [AddCommGroup V] [LinearSpace K V] {s t : Set V} (h : s ⊆ t) :
     span K s ⊆ span K t := by

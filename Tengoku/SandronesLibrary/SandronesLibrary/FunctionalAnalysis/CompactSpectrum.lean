@@ -28,7 +28,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] [CompleteSpace E
 这里的 `HasEigenvalue` 使用底层线性映射 `(T : Module.End ℂ E)`；谱仍使用连续线性自同态
 Banach 代数上的 `spectrum ℂ T`。
 
-> **Entry**: functional-analysis.compact-spectrum-/
+> **Entry**: functional-analysis.compact-spectrum
+@isnad1 id=iff.2h3v.s8.c842bef6b2d1 from=translated src=- shape=b2a9c794 vocab=35821ab6
+-/
 theorem compact_hasEigenvalue_iff_mem_spectrum (T : E →L[ℂ] E)
     (hT : IsCompactOperator T) {μ : ℂ} (hμ : μ ≠ 0) :
     HasEigenvalue (T : Module.End ℂ E) μ ↔ μ ∈ spectrum ℂ T :=
@@ -37,7 +39,9 @@ theorem compact_hasEigenvalue_iff_mem_spectrum (T : E →L[ℂ] E)
 /-- 一般复 Banach 空间上，紧算子的每个非零特征空间都是有限维的。
 
 证明把 `T` 限制到 `μ`-特征空间。在该空间上限制算子等于 `μ • id`；因 `μ ≠ 0`，其紧性
-等价于恒等算子的紧性，Riesz 有限维判据于是给出结论。这个证明不需要内积或自伴性。-/
+等价于恒等算子的紧性，Riesz 有限维判据于是给出结论。这个证明不需要内积或自伴性。
+@isnad1 id=finitedi.2h3v.s9.85119ee498be from=translated src=- shape=b70af8e7 vocab=1d381cb9
+-/
 theorem finiteDimensional_eigenspace_of_compact (T : E →L[ℂ] E)
     (hT : IsCompactOperator T) (μ : ℂ) (hμ : μ ≠ 0) :
     FiniteDimensional ℂ (eigenspace T.toLinearMap μ) := by
@@ -127,7 +131,9 @@ private theorem finiteDimensional_kernel_pow_identity_sub_complex
   exact finiteDimensional_kernel_identity_sub_complex R hR
 
 omit [CompleteSpace E] in
-/-- 紧算子每个非零特征值的任意有限阶广义特征空间都是有限维的。-/
+/-- 紧算子每个非零特征值的任意有限阶广义特征空间都是有限维的。
+@isnad1 id=finitedi.2h4v.s10.76a519ef93f8 from=translated src=- shape=35427f68 vocab=08efdd04
+-/
 theorem finiteDimensional_genEigenspace_of_compact (T : E →L[ℂ] E)
     (hT : IsCompactOperator T) (μ : ℂ) (hμ : μ ≠ 0) (n : ℕ) :
     FiniteDimensional ℂ (Module.End.genEigenspace (T : Module.End ℂ E) μ n) := by
@@ -161,7 +167,9 @@ theorem finiteDimensional_genEigenspace_of_compact (T : E →L[ℂ] E)
 
 这是“零是非零谱唯一可能聚点”的定量形式。证明若存在无限多个彼此不同且远离零的特征值，
 就在相应特征向量的递增有限维张成中逐次应用 Riesz 引理；所得有界向量序列的 `T`-像两两保持
-固定正距离，违背紧性。-/
+固定正距离，违背紧性。
+@isnad1 id=finite.2h3v.s8.955307cb6354 from=translated src=- shape=02f24792 vocab=fb039f4e
+-/
 theorem finite_spectrum_norm_ge_of_compact (T : E →L[ℂ] E)
     (hT : IsCompactOperator T) {ε : ℝ} (hε : 0 < ε) :
     {μ : ℂ | μ ∈ spectrum ℂ T ∧ ε ≤ ‖μ‖}.Finite := by
@@ -302,7 +310,9 @@ theorem finite_spectrum_norm_ge_of_compact (T : E →L[ℂ] E)
 
 这准确表达“零是谱的唯一可能聚点”：对每个 `ε > 0`，前一定理给出有限个模至少为 `ε`
 的谱点；序列的单射性保证它最终避开这有限集。定理不声称 `0` 必然属于谱或必然真是聚点，
-因为有限秩算子以及有限维空间都可能只有有限谱。-/
+因为有限秩算子以及有限维空间都可能只有有限谱。
+@isnad1 id=tendsto.3h3v.s8.8d37240f92ed from=translated src=- shape=cc2be1a1 vocab=fd3862fc
+-/
 theorem tendsto_zero_of_injective_spectrum_sequence (T : E →L[ℂ] E)
     (hT : IsCompactOperator T) (μ : ℕ → ℂ) (hμ : ∀ n, μ n ∈ spectrum ℂ T)
     (hμinj : Function.Injective μ) :

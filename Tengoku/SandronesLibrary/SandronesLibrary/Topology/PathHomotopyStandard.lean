@@ -32,7 +32,9 @@ variable {x y : X} {p q r : _root_.Path x y}
 /-- 标准道路同伦恰好是正方形上的连续映射：时间零与时间一切片分别为两条道路，并且两个道路
 端点在全部时间内保持固定。第一坐标是同伦时间，第二坐标是道路位置。
 
-> **Entry**: topology.homotopy.path-homotopy-standard-/
+> **Entry**: topology.homotopy.path-homotopy-standard
+@isnad1 id=iff.0h5v.s8.59d796def29c from=translated src=- shape=8ae9fd69 vocab=61dd5b8d
+-/
 theorem nonempty_pathHomotopy_iff_exists_fixed_endpoint_deformation :
     Nonempty (p.Homotopy q) ↔
       ∃ F : unitInterval × unitInterval → X, Continuous F ∧
@@ -58,26 +60,34 @@ theorem nonempty_pathHomotopy_iff_exists_fixed_endpoint_deformation :
     · exact (hsource t).trans p.source.symm
     · exact (htarget t).trans p.target.symm
 
-/-- 反身道路同伦在同伦时间方向保持常值。-/
+/-- 反身道路同伦在同伦时间方向保持常值。
+@isnad1 id=eq.0h5v.s8.9d0077b3baa6 from=translated src=- shape=b5e48838 vocab=37a2408a
+-/
 theorem pathHomotopy_refl_apply (p : _root_.Path x y)
     (z : unitInterval × unitInterval) :
     _root_.Path.Homotopy.refl p z = p z.2 := by
   exact _root_.Path.Homotopy.refl_apply p z
 
-/-- 道路同伦的对称操作只反射时间坐标，并不反转其中的道路。-/
+/-- 道路同伦的对称操作只反射时间坐标，并不反转其中的道路。
+@isnad1 id=eq.0h7v.s9.b1dbf9f054f6 from=translated src=- shape=816a67be vocab=4ed105a6
+-/
 theorem pathHomotopy_symm_apply (H : p.Homotopy q)
     (z : unitInterval × unitInterval) :
     H.symm z = H (unitInterval.symm z.1, z.2) := by
   exact _root_.Path.Homotopy.symm_apply H z
 
-/-- 复合同伦的前半段把时间加倍后送入第一个变形。-/
+/-- 复合同伦的前半段把时间加倍后送入第一个变形。
+@isnad1 id=eq.1h9v.s9.7d75bffb4421 from=translated src=- shape=d5865b63 vocab=16e89fba
+-/
 theorem pathHomotopy_trans_apply_of_le (H : p.Homotopy q) (K : q.Homotopy r)
     (z : unitInterval × unitInterval) (h : (z.1 : ℝ) ≤ 1 / 2) :
     H.trans K z = H (⟨2 * z.1, by constructor <;> linarith [z.1.2.1, z.1.2.2]⟩, z.2) := by
   rw [_root_.Path.Homotopy.trans_apply]
   simp only [dite_eq_left h]
 
-/-- 复合同伦的后半段用平移后的二倍时间走过第二个变形。-/
+/-- 复合同伦的后半段用平移后的二倍时间走过第二个变形。
+@isnad1 id=eq.1h9v.s9.1c9fd5661cbc from=translated src=- shape=7bec05bf vocab=555ea172
+-/
 theorem pathHomotopy_trans_apply_of_not_le (H : p.Homotopy q) (K : q.Homotopy r)
     (z : unitInterval × unitInterval) (h : ¬(z.1 : ℝ) ≤ 1 / 2) :
     H.trans K z = K (⟨2 * z.1 - 1, by constructor <;> linarith [z.1.2.1, z.1.2.2]⟩, z.2) := by

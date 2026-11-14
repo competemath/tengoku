@@ -42,27 +42,35 @@ def RiemannIntegrableOnBox {n : ℕ} (f : (Fin n → ℝ) → ℝ)
 def riemannBoxIntegral {n : ℕ} (f : (Fin n → ℝ) → ℝ) (I : RiemannBox n) : ℝ :=
   BoxIntegral.integral I IntegrationParams.Riemann f BoxAdditiveMap.volume
 
-/-- Riemann 积分值满足 `HasRiemannBoxIntegral`。-/
+/-- Riemann 积分值满足 `HasRiemannBoxIntegral`。
+@isnad1 id=eq.1h4v.s4.b44b0434e14f from=translated src=- shape=016def88 vocab=a4799ceb
+-/
 theorem HasRiemannBoxIntegral.integral_eq {n : ℕ} {f : (Fin n → ℝ) → ℝ}
     {I : RiemannBox n} {y : ℝ} (h : HasRiemannBoxIntegral f I y) :
     riemannBoxIntegral f I = y := by
   exact BoxIntegral.HasIntegral.integral_eq h
 
-/-- 连续函数在闭盒上 Riemann 可积。-/
+/-- 连续函数在闭盒上 Riemann 可积。
+@isnad1 id=riemanni.1h3v.s6.1edf27f5befb from=translated src=- shape=8d52357f vocab=427be353
+-/
 theorem continuousOn_riemannIntegrableOnBox {n : ℕ} {f : (Fin n → ℝ) → ℝ}
     {I : RiemannBox n} (hf : ContinuousOn f (Box.Icc I)) :
     RiemannIntegrableOnBox f I := by
   have hbox := MeasureTheory.ContinuousOn.hasBoxIntegral volume hf IntegrationParams.Riemann
   exact BoxIntegral.HasIntegral.integrable hbox
 
-/-- 连续函数的多元 Riemann 积分值等于闭盒上的 Lebesgue 积分。-/
+/-- 连续函数的多元 Riemann 积分值等于闭盒上的 Lebesgue 积分。
+@isnad1 id=eq.1h3v.s7.be20793fca4f from=translated src=- shape=48465f8d vocab=5d3180bd
+-/
 theorem riemannBoxIntegral_eq_setIntegral {n : ℕ} {f : (Fin n → ℝ) → ℝ}
     {I : RiemannBox n} (hf : ContinuousOn f (Box.Icc I)) :
     riemannBoxIntegral f I = ∫ x in (I : Set (Fin n → ℝ)), f x := by
   have hbox := MeasureTheory.ContinuousOn.hasBoxIntegral volume hf IntegrationParams.Riemann
   exact BoxIntegral.HasIntegral.integral_eq hbox
 
-/-- 常函数 `1` 的多元 Riemann 积分等于各边长之积。-/
+/-- 常函数 `1` 的多元 Riemann 积分等于各边长之积。
+@isnad1 id=eq.0h2v.s5.29641543c581 from=translated src=- shape=b287ef96 vocab=61dc2a02
+-/
 theorem riemannBoxIntegral_one {n : ℕ} (I : RiemannBox n) :
     riemannBoxIntegral (fun _ ↦ 1) I = ∏ i, (I.upper i - I.lower i) := by
   simp [riemannBoxIntegral, BoxIntegral.integral_const, BoxAdditiveMap.volume_apply]

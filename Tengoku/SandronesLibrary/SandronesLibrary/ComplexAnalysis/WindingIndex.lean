@@ -61,14 +61,18 @@ noncomputable def windingNumber (γ : Cycle) (w : ℂ) : ℂ :=
 
 /-- The winding number is additive in the cycle.
 
-> **Entry**: complex-analysis.integral.winding-number-foundation-/
+> **Entry**: complex-analysis.integral.winding-number-foundation
+@isnad1 id=eq.0h3v.s5.b86b6e45c372 from=translated src=- shape=e7d4cb01 vocab=a9c50731
+-/
 theorem windingNumber_add (γ δ : Cycle) (w : ℂ) :
     windingNumber (γ + δ) w = windingNumber γ w + windingNumber δ w := by
   simp only [windingNumber, cycleIntegral_add, mul_add]
 
 /-- The winding number is `ℤ`-homogeneous in the cycle.
 
-> **Entry**: complex-analysis.integral.winding-number-foundation-/
+> **Entry**: complex-analysis.integral.winding-number-foundation
+@isnad1 id=eq.0h3v.s5.9a02bb462772 from=translated src=- shape=17ac4a7d vocab=1f69a0e7
+-/
 theorem windingNumber_smul (n : ℤ) (γ : Cycle) (w : ℂ) :
     windingNumber (n • γ) w = n • windingNumber γ w := by
   simp only [windingNumber, map_smul, zsmul_eq_mul]
@@ -76,20 +80,26 @@ theorem windingNumber_smul (n : ℤ) (γ : Cycle) (w : ℂ) :
 
 /-- Negating the cycle negates the winding number.
 
-> **Entry**: complex-analysis.integral.winding-number-foundation-/
+> **Entry**: complex-analysis.integral.winding-number-foundation
+@isnad1 id=eq.0h2v.s4.00f4b451272a from=translated src=- shape=b11e7be8 vocab=9bc5dbee
+-/
 theorem windingNumber_neg (γ : Cycle) (w : ℂ) : windingNumber (-γ) w = -windingNumber γ w := by
   simp only [windingNumber, map_neg]
   ring
 
 /-- The winding number of the zero cycle vanishes.
 
-> **Entry**: complex-analysis.integral.winding-number-foundation-/
+> **Entry**: complex-analysis.integral.winding-number-foundation
+@isnad1 id=eq.0h1v.s4.ac22e0ea41fe from=translated src=- shape=a0dd47fb vocab=9b7b09de
+-/
 theorem windingNumber_zero (w : ℂ) : windingNumber (0 : Cycle) w = 0 := by
   simp [windingNumber]
 
 /-- The winding number is additive in the negative direction as well.
 
-> **Entry**: complex-analysis.integral.winding-number-foundation-/
+> **Entry**: complex-analysis.integral.winding-number-foundation
+@isnad1 id=eq.0h3v.s5.b0e01ad7605f from=translated src=- shape=e7d4cb01 vocab=b363ee67
+-/
 theorem windingNumber_sub (γ δ : Cycle) (w : ℂ) :
     windingNumber (γ - δ) w = windingNumber γ w - windingNumber δ w := by
   simp only [windingNumber, map_sub, mul_sub]
@@ -97,7 +107,9 @@ theorem windingNumber_sub (γ δ : Cycle) (w : ℂ) :
 /-- The winding number of a single closed path with multiplicity `n`: the index of the path,
 scaled by `n`.  This is the definitional generator case, made usable by `simp`.
 
-> **Entry**: complex-analysis.integral.winding-number-foundation-/
+> **Entry**: complex-analysis.integral.winding-number-foundation
+@isnad1 id=eq.0h3v.s7.5a175260f4a6 from=translated src=- shape=824a5290 vocab=a50f2f3c
+-/
 @[simp]
 theorem windingNumber_single (c : ClosedPath) (n : ℤ) (w : ℂ) :
     windingNumber (Finsupp.single c n) w =
@@ -129,14 +141,18 @@ def IsHomologousIn (γ₁ γ₂ : Cycle) (U : Set ℂ) : Prop :=
 /-- The null-homology predicate is its supported-and-vanishing quantifier by definition; this
 is the public unfolding used downstream.
 
-> **Entry**: complex-analysis.integral.winding-number-foundation-/
+> **Entry**: complex-analysis.integral.winding-number-foundation
+@isnad1 id=iff.0h2v.s5.d1907bc68c9b from=translated src=- shape=7070de87 vocab=b933cb20
+-/
 theorem isNullHomologousIn_iff (γ : Cycle) (U : Set ℂ) :
     IsNullHomologousIn γ U ↔ γ.SupportedIn U ∧ ∀ w, w ∉ U → windingNumber γ w = 0 :=
   Iff.rfl
 
 /-- The zero cycle is null-homologous in every set.
 
-> **Entry**: complex-analysis.integral.winding-number-foundation-/
+> **Entry**: complex-analysis.integral.winding-number-foundation
+@isnad1 id=isnullho.0h1v.s4.1df62de5f849 from=translated src=- shape=4583a4a8 vocab=0efcdad8
+-/
 theorem isNullHomologousIn_zero (U : Set ℂ) : IsNullHomologousIn (0 : Cycle) U := by
   refine ⟨?_, ?_⟩
   · intro c hc
@@ -148,7 +164,9 @@ theorem isNullHomologousIn_zero (U : Set ℂ) : IsNullHomologousIn (0 : Cycle) U
 /-- Null-homology is closed under addition, with no additional hypothesis: the supported
 conjunct passes to the sum through pieces of the summands, and the winding numbers add.
 
-> **Entry**: complex-analysis.integral.winding-number-foundation-/
+> **Entry**: complex-analysis.integral.winding-number-foundation
+@isnad1 id=isnullho.2h3v.s4.eef28e01526a from=translated src=- shape=17092177 vocab=70dd2603
+-/
 theorem isNullHomologousIn_add {γ δ : Cycle} {U : Set ℂ}
     (hγ : IsNullHomologousIn γ U) (hδ : IsNullHomologousIn δ U) :
     IsNullHomologousIn (γ + δ) U := by
@@ -161,7 +179,9 @@ number at every point outside `U`.  This is the working winding-number character
 relative homology; its equivalence with a chain-level "difference is null-homologous"
 formulation has not been proved in this batch.
 
-> **Entry**: complex-analysis.integral.winding-number-foundation-/
+> **Entry**: complex-analysis.integral.winding-number-foundation
+@isnad1 id=iff.0h3v.s5.550df4be23be from=translated src=- shape=67ca0d19 vocab=fdbaf712
+-/
 theorem isHomologousIn_iff_windingNumber_eq (γ₁ γ₂ : Cycle) (U : Set ℂ) :
     IsHomologousIn γ₁ γ₂ U ↔
       γ₁.SupportedIn U ∧ γ₂.SupportedIn U ∧
@@ -170,7 +190,9 @@ theorem isHomologousIn_iff_windingNumber_eq (γ₁ γ₂ : Cycle) (U : Set ℂ) 
 
 /-- The inverse difference `z ↦ (z - w)⁻¹` is holomorphic on any set avoiding `w`.
 
-> **Entry**: complex-analysis.integral.winding-number-foundation-/
+> **Entry**: complex-analysis.integral.winding-number-foundation
+@isnad1 id=holomorp.1h2v.s4.9c5798c07ff1 from=translated src=- shape=75799dc9 vocab=b9d2e276
+-/
 theorem holomorphicOnTextbook_inv_sub {U : Set ℂ} {w : ℂ} (hw : w ∉ U) :
     HolomorphicOnTextbook (fun z : ℂ => (z - w)⁻¹) U := by
   rw [holomorphicOnTextbook_iff_forall_differentiableAt]
@@ -181,7 +203,9 @@ theorem holomorphicOnTextbook_inv_sub {U : Set ℂ} {w : ℂ} (hw : w ∉ U) :
 /-- A holomorphic integrand has zero integral over a cycle all of whose closed pieces are
 null-homotopic inside `U` (with the square image staying in `U`).
 
-> **Entry**: complex-analysis.integral.winding-number-foundation-/
+> **Entry**: complex-analysis.integral.winding-number-foundation
+@isnad1 id=eq.4h3v.s9.ac4cd026e68c from=translated src=- shape=2fa99131 vocab=73947b7d
+-/
 theorem cycleIntegral_eq_zero_of_piecewiseC1_nullHomotopic
     {U : Set ℂ} {f : ℂ → ℂ} (hU : IsOpen U) (hf : HolomorphicOnTextbook f U)
     (γ : Cycle) (hC1 : γ.PiecewiseC1)
@@ -197,7 +221,9 @@ theorem cycleIntegral_eq_zero_of_piecewiseC1_nullHomotopic
 /-- The winding number about a point outside `U` of a cycle whose pieces are null-homotopic in
 `U` vanishes.
 
-> **Entry**: complex-analysis.integral.winding-number-foundation-/
+> **Entry**: complex-analysis.integral.winding-number-foundation
+@isnad1 id=eq.4h3v.s9.3b8c3888e53c from=translated src=- shape=2556022a vocab=bf26691f
+-/
 theorem windingNumber_eq_zero_of_piecewiseC1_nullHomotopic
     {U : Set ℂ} {w : ℂ} (hU : IsOpen U) (hw : w ∉ U)
     (γ : Cycle) (hC1 : γ.PiecewiseC1)
@@ -211,7 +237,9 @@ theorem windingNumber_eq_zero_of_piecewiseC1_nullHomotopic
 /-- A cycle whose pieces are all null-homotopic in `U` is null-homologous in `U`.  This is the
 first real consumer of the `IsNullHomologousIn` predicate.
 
-> **Entry**: complex-analysis.integral.winding-number-foundation-/
+> **Entry**: complex-analysis.integral.winding-number-foundation
+@isnad1 id=isnullho.4h2v.s9.d455917ff0e7 from=translated src=- shape=50677f60 vocab=aa376d6c
+-/
 theorem isNullHomologousIn_of_piecewiseC1_nullHomotopic
     {U : Set ℂ} (hU : IsOpen U)
     (γ : Cycle) (hC1 : γ.PiecewiseC1) (hUγ : γ.SupportedIn U)

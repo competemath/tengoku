@@ -32,11 +32,17 @@ structure EuclideanDomainAxioms (R : Type*) [CommRing R] where
   divisionWithRemainder : ∀ a b : R, b ≠ 0 →
     DivisionWithRemainder measure a b (quotient a b) (remainder a b)
 
+/--
+@isnad1 id=eq.1h4v.s6.7fbaa4e8c778 from=translated src=- shape=219e3bdf vocab=512e720a
+-/
 theorem EuclideanDomainAxioms.division {R : Type*} [CommRing R]
     (E : EuclideanDomainAxioms R) (a b : R) (hb : b ≠ 0) :
     a = b * E.quotient a b + E.remainder a b :=
   (E.divisionWithRemainder a b hb).1
 
+/--
+@isnad1 id=lt.1h4v.s5.b54c55f4f0d6 from=translated src=- shape=e2618e3f vocab=3e70d11e
+-/
 theorem EuclideanDomainAxioms.remainder_lt {R : Type*} [CommRing R]
     (E : EuclideanDomainAxioms R) (a b : R) (hb : b ≠ 0) :
     E.measure (E.remainder a b) < E.measure b :=
@@ -50,11 +56,17 @@ noncomputable def euclideanGCD {R : Type*} [CommRing R]
 termination_by E.measure b
 decreasing_by exact E.remainder_lt a b hb
 
+/--
+@isnad1 id=eq.0h3v.s5.e21d82607df8 from=translated src=- shape=151a424f vocab=18175bba
+-/
 @[simp] theorem euclideanGCD_zero {R : Type*} [CommRing R]
     (E : EuclideanDomainAxioms R) (a : R) : euclideanGCD E a 0 = a := by
   rw [euclideanGCD]
   simp
 
+/--
+@isnad1 id=eq.1h4v.s5.e9cdbe93aeee from=translated src=- shape=d132aa23 vocab=c21fe095
+-/
 theorem euclideanGCD_nonzero {R : Type*} [CommRing R]
     (E : EuclideanDomainAxioms R) (a b : R) (hb : b ≠ 0) :
     euclideanGCD E a b = euclideanGCD E b (E.remainder a b) := by
@@ -72,6 +84,9 @@ noncomputable def extendedEuclidean {R : Type*} [CommRing R]
 termination_by E.measure b
 decreasing_by exact E.remainder_lt a b hb
 
+/--
+@isnad1 id=eq.0h4v.s5.f10a5beb43d3 from=translated src=- shape=8a1df2e6 vocab=fee78f1b
+-/
 theorem extendedEuclidean_gcd {R : Type*} [CommRing R]
     (E : EuclideanDomainAxioms R) (a b : R) :
     (extendedEuclidean E a b).1 = euclideanGCD E a b := by
@@ -83,6 +98,9 @@ theorem extendedEuclidean_gcd {R : Type*} [CommRing R]
 termination_by E.measure b
 decreasing_by exact E.remainder_lt a b ‹b ≠ 0›
 
+/--
+@isnad1 id=eq.0h4v.s6.d58d2dbf2761 from=translated src=- shape=ca5921b9 vocab=d6e0a06e
+-/
 theorem extendedEuclidean_bezout {R : Type*} [CommRing R]
     (E : EuclideanDomainAxioms R) (a b : R) :
     (extendedEuclidean E a b).1 =
@@ -104,6 +122,9 @@ theorem extendedEuclidean_bezout {R : Type*} [CommRing R]
 termination_by E.measure b
 decreasing_by exact E.remainder_lt a b ‹b ≠ 0›
 
+/--
+@isnad1 id=greatest.0h4v.s5.8b001237705f from=translated src=- shape=e04b2824 vocab=3ab0d57f
+-/
 theorem euclideanGCD_isGreatestCommonDivisor {R : Type*} [CommRing R]
     (E : EuclideanDomainAxioms R) (a b : R) :
     GreatestCommonDivisor (euclideanGCD E a b) a b := by
@@ -143,6 +164,9 @@ theorem euclideanGCD_isGreatestCommonDivisor {R : Type*} [CommRing R]
 termination_by E.measure b
 decreasing_by exact E.remainder_lt a b ‹b ≠ 0›
 
+/--
+@isnad1 id=ex.0h4v.s6.d7468ba1ed28 from=translated src=- shape=68fb9b6a vocab=7993b5a3
+-/
 theorem euclideanDomain_bezout_for_gcd {R : Type*} [CommRing R]
     (E : EuclideanDomainAxioms R) (a b : R) :
     ∃ s t : R, euclideanGCD E a b = s * a + t * b := by

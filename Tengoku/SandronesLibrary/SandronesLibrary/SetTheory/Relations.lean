@@ -30,7 +30,9 @@ namespace SetTheory.Relations
 > **一句话**: 两个元素的等价类相等，当且仅当它们等价：⟦x⟧ = ⟦y⟧ ↔ x ≈ y。
 > **直觉**: 商集就是把"等价的元素钉成同一个点"——钉到一起 ⟺ 本来就等价。
 > **依赖**: 无（直接使用 mathlib 的 Quotient.eq，即商集的定义本质）
-> **mathlib**: `Quotient.eq`-/
+> **mathlib**: `Quotient.eq`
+@isnad1 id=iff.0h4v.s4.59e59f4257a9 from=translated src=- shape=5680b761 vocab=9429db4e
+-/
 theorem equivalence_class_eq {α : Type*} (s : Setoid α) (x y : α) :
     Quotient.mk s x = Quotient.mk s y ↔ s x y := by
   -- 思路：这不是"要证明的结论"，而是商集构造的消元公理本身（Quotient.eq）。
@@ -42,7 +44,9 @@ theorem equivalence_class_eq {α : Type*} (s : Setoid α) (x y : α) :
 > **一句话**: 商映射 π : x ↦ ⟦x⟧ 是满射。
 > **直觉**: 商集没有"多余"元素——每个商元素都来自原集合的某个代表元。
 > **依赖**: 无
-> **mathlib**: `Quotient.mk_surjective`-/
+> **mathlib**: `Quotient.mk_surjective`
+@isnad1 id=surjecti.0h2v.s3.f8a24e89f0dc from=translated src=- shape=101200ff vocab=a1a2f990
+-/
 theorem quotient_surjective {α : Type*} (s : Setoid α) :
     Function.Surjective (Quotient.mk s) := by
   -- 思路：展开"满射"即 ∀ q, ∃ x, ⟦x⟧ = q。商类型的任何元素 q 由某个 x 生成

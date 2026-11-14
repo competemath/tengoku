@@ -38,7 +38,9 @@ open scoped Real Topology
 variable {Ω : Type*} {mΩ : MeasurableSpace Ω} {P : Measure Ω}
   {X : ℕ → Ω → ℝ}
 
-/-- 独立同分布序列的归一化前 `n` 项和，其特征函数等于单项特征函数在 `t/√n` 处的 `n` 次幂。-/
+/-- 独立同分布序列的归一化前 `n` 项和，其特征函数等于单项特征函数在 `t/√n` 处的 `n` 次幂。
+@isnad1 id=eq.2h6v.s7.7024cc082034 from=translated src=- shape=8cb7882c vocab=2c879681
+-/
 theorem normalizedSum_charFun_eq_pow
     (hindep : iIndepFun X P)
     (hident : ∀ i, IdentDistrib (X i) (X 0) P P) {n : ℕ} {t : ℝ} :
@@ -61,7 +63,9 @@ noncomputable def normalizedSumLaw
       ((Finset.aemeasurable_fun_sum (Finset.range n) (fun i _ ↦ hX i)).const_mul (√n)⁻¹)⟩
 
 /-- 若 `Z` 中心为零且二阶矩为一，则其特征函数在 `t/√n` 处的 `n` 次幂趋于
-`exp (-t²/2)`。-/
+`exp (-t²/2)`。
+@isnad1 id=tendsto.3h5v.s7.2495c36c18de from=translated src=- shape=966ad40f vocab=d0396a2d
+-/
 theorem centeredVarianceOne_charFun_pow_tendsto
     {Z : Ω → ℝ} (hZ : AEMeasurable Z P)
     (h0 : P[Z] = 0) (h1 : P[Z ^ 2] = 1) (t : ℝ) :
@@ -83,7 +87,9 @@ theorem centeredVarianceOne_charFun_pow_tendsto
   simp
   ring
 
-/-- 中心零、二阶矩一的实值 iid 归一化和之分布，弱收敛到标准正态分布。-/
+/-- 中心零、二阶矩一的实值 iid 归一化和之分布，弱收敛到标准正态分布。
+@isnad1 id=tendsto.4h4v.s7.17ea18a342d9 from=translated src=- shape=4d808a8b vocab=614c38bc
+-/
 theorem normalizedSum_probabilityMeasure_tendsto_standardGaussian
     (hindep : iIndepFun X P)
     (hident : ∀ i, IdentDistrib (X i) (X 0) P P)

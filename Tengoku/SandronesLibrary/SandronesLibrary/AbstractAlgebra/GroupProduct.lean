@@ -30,7 +30,9 @@ def directProductAssoc {G H K : Type*} [Group G] [Group H] [Group K] :
   MulEquiv.prodAssoc
 
 /-- 直积中分别来自两个因子的元素彼此交换。
-> **Entry**: abstract-algebra.group.product-/
+> **Entry**: abstract-algebra.group.product
+@isnad1 id=commute.0h4v.s7.a53a4c8de7ab from=translated src=- shape=47362464 vocab=90ce0c8e
+-/
 theorem directProduct_factors_commute {G H : Type*} [Group G] [Group H]
     (g : G) (h : H) :
     Commute (MonoidHom.inl G H g) (MonoidHom.inr G H h) := by
@@ -50,7 +52,9 @@ noncomputable def internalDirectProductEquiv {G : Type*} [Group G]
     (MonoidHom.noncommCoprod H.subtype K.subtype hcomm) hcompl
 
 /-- 内部直积同构按教材公式 `(h,k) ↦ hk` 工作。
-> **Entry**: abstract-algebra.group.product-/
+> **Entry**: abstract-algebra.group.product
+@isnad1 id=eq.2h4v.s9.3484aa2f1ea9 from=translated src=- shape=c309de91 vocab=8ccc0b02
+-/
 theorem internalDirectProductEquiv_apply {G : Type*} [Group G]
     (H K : Subgroup G)
     (hcomm : ∀ h : H, ∀ k : K, Commute (h : G) (k : G))
@@ -59,14 +63,18 @@ theorem internalDirectProductEquiv_apply {G : Type*} [Group G]
   rfl
 
 /-- 半直积的乘法公式：`(n₁,g₁)(n₂,g₂)=(n₁ φ(g₁)(n₂),g₁g₂)`。
-> **Entry**: abstract-algebra.group.product-/
+> **Entry**: abstract-algebra.group.product
+@isnad1 id=eq.0h5v.s9.4e204bc0d6ad from=translated src=- shape=62f833b8 vocab=d99e28bc
+-/
 theorem semidirectProduct_mul {N G : Type*} [Group N] [Group G]
     (φ : G →* MulAut N) (x y : N ⋊[φ] G) :
     x * y = ⟨x.left * φ x.right y.left, x.right * y.right⟩ := by
   rfl
 
 /-- 半直积中每个元素按坐标分解成左因子与右因子的乘积。
-> **Entry**: abstract-algebra.group.product-/
+> **Entry**: abstract-algebra.group.product
+@isnad1 id=eq.0h4v.s8.5f088131bd0f from=translated src=- shape=24542d7f vocab=2bcede68
+-/
 theorem semidirectProduct_decomposition {N G : Type*} [Group N] [Group G]
     (φ : G →* MulAut N) (x : N ⋊[φ] G) :
     SemidirectProduct.inl x.left * SemidirectProduct.inr x.right = x := by
@@ -88,7 +96,9 @@ noncomputable def internalSemidirectProductEquiv {G : Type*} [Group G]
   SemidirectProduct.mulEquivSubgroup h
 
 /-- 内部半直积同构同样按坐标乘法 `(h,k) ↦ hk` 工作。
-> **Entry**: abstract-algebra.group.product-/
+> **Entry**: abstract-algebra.group.product
+@isnad1 id=eq.1h4v.s12.e7ef8084c24b from=translated src=- shape=b92de874 vocab=ede945c4
+-/
 theorem internalSemidirectProductEquiv_apply {G : Type*} [Group G]
     (H K : Subgroup G) [H.Normal] (h : H.IsComplement' K)
     (x : H ⋊[(H.normalizerMonoidHom).comp

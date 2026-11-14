@@ -29,14 +29,18 @@ namespace SandronesLibrary.Examples.CoordinateIntegrals
 open Set MeasureTheory Real
 open scoped Interval
 
-/-- 极角积分 `∫₀^π sin φ dφ = 2`。开区间与有向区间的端点只差零测集。-/
+/-- 极角积分 `∫₀^π sin φ dφ = 2`。开区间与有向区间的端点只差零测集。
+@isnad1 id=eq.0h0v.s5.bb8bfa0728a0 from=translated src=- shape=aadd246c vocab=267f7558
+-/
 theorem integral_Ioo_sin_zero_pi :
     (∫ φ in Ioo (0 : ℝ) π, sin φ) = 2 := by
   rw [← integral_Ioc_eq_integral_Ioo, ← intervalIntegral.integral_of_le pi_pos.le]
   rw [integral_sin]
   norm_num
 
-/-- 径向积分 `∫₀ʳ ρ² dρ = R³/3`。-/
+/-- 径向积分 `∫₀ʳ ρ² dρ = R³/3`。
+@isnad1 id=eq.1h1v.s6.92faf18285cc from=translated src=- shape=b44ff4da vocab=f21dc1cb
+-/
 theorem integral_Ioo_sq_zero_radius {R : ℝ} (hR : 0 ≤ R) :
     (∫ ρ in Ioo (0 : ℝ) R, ρ ^ 2) = R ^ 3 / 3 := by
   rw [← integral_Ioc_eq_integral_Ioo, ← intervalIntegral.integral_of_le hR]
@@ -44,7 +48,9 @@ theorem integral_Ioo_sq_zero_radius {R : ℝ} (hR : 0 ≤ R) :
   norm_num
 
 /-- **球体体积的球坐标计算**：半径 `R` 的球体在标准球坐标参数盒中的 Jacobian
-积分为 `4πR³/3`。这就是教材中球体体积计算的数值步骤。-/
+积分为 `4πR³/3`。这就是教材中球体体积计算的数值步骤。
+@isnad1 id=eq.1h1v.s7.ad33fb4d74dc from=translated src=- shape=ae00bc6a vocab=de8a92c8
+-/
 theorem spherical_ball_jacobian_integral {R : ℝ} (hR : 0 ≤ R) :
     (∫ ρ in Ioo (0 : ℝ) R, ∫ _θ in Ioo (-π) π,
       ∫ φ in Ioo (0 : ℝ) π, ρ ^ 2 * sin φ) =
@@ -63,7 +69,9 @@ theorem spherical_ball_jacobian_integral {R : ℝ} (hR : 0 ≤ R) :
   ring
 
 /-- **均匀球体的质量**：若密度为常数 `δ`，则半径 `R` 的球体质量积分为
-`4πδR³/3`。-/
+`4πδR³/3`。
+@isnad1 id=eq.1h2v.s7.9b84b497e458 from=translated src=- shape=44dfa6d9 vocab=de8a92c8
+-/
 theorem uniform_ball_mass_jacobian_integral (δ : ℝ) {R : ℝ} (hR : 0 ≤ R) :
     (∫ ρ in Ioo (0 : ℝ) R, ∫ _θ in Ioo (-π) π,
       ∫ φ in Ioo (0 : ℝ) π, δ * (ρ ^ 2 * sin φ)) =

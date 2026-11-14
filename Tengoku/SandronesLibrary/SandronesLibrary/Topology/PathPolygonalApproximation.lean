@@ -66,7 +66,9 @@ structure Path.MeshBallSubdivision {x y : E} (p : Path x y) (U : Set E) where
         (p (unitIntervalMeshPoint steps steps_pos i.succ)) u ∈
       Metric.ball (p (unitIntervalMeshPoint steps steps_pos i.castSucc)) radius
 
-/-- 紧性与一致连续性在任何包含道路像的开集内给出带公共球半径的有限网格细分。-/
+/-- 紧性与一致连续性在任何包含道路像的开集内给出带公共球半径的有限网格细分。
+@isnad1 id=nonempty.2h5v.s6.e7d4324fdc5a from=translated src=- shape=253219a5 vocab=862e3ef9
+-/
 theorem Path.exists_meshBallSubdivision {x y : E} (p : Path x y)
     {U : Set E} (hU : IsOpen U) (hpU : ∀ t, p t ∈ U) :
     Nonempty (SandronesLibrary.Topology.Path.MeshBallSubdivision p U) := by
@@ -113,7 +115,9 @@ theorem Path.exists_meshBallSubdivision {x y : E} (p : Path x y)
     exact (convex_ball (p a) δ).lineMap_mem
       (Metric.mem_ball_self hδpos) hab u.2
 
-/-- 若道路像位于开集中，则存在正的一致网格，使每对相邻样本点之间的直线段仍位于该开集。-/
+/-- 若道路像位于开集中，则存在正的一致网格，使每对相邻样本点之间的直线段仍位于该开集。
+@isnad1 id=ex.2h5v.s8.9c6ce4bd9aca from=translated src=- shape=256735ae vocab=1be580ca
+-/
 theorem Path.exists_mesh_segments_subset_open {x y : E} (p : Path x y)
     {U : Set E} (hU : IsOpen U) (hpU : ∀ t, p t ∈ U) :
     ∃ N : ℕ, ∃ hN : 0 < N, ∀ i : Fin N,
@@ -137,7 +141,9 @@ def Path.meshPolygonal {x y : E} (p : Path x y) (N : ℕ) (hN : 0 < N) :
     (by simp) (by simp)
 
 /-- 网格折线道路的公开一步展开：先用有限 `Path.concat` 拼接连结相邻一致网格样本点的
-`Path.segment`，最后只作端点类型转换。-/
+`Path.segment`，最后只作端点类型转换。
+@isnad1 id=eq.1h5v.s8.876845dda84f from=translated src=- shape=de20240a vocab=5fc21241
+-/
 theorem Path.meshPolygonal_eq_concat {x y : E} (p : Path x y)
     (N : ℕ) (hN : 0 < N) :
     SandronesLibrary.Topology.Path.meshPolygonal p N hN =
@@ -293,7 +299,9 @@ def Path.meshPolygonalHomotopyWithMapsTo
       exact reparam.2 _ _)
     straight.2
 
-/-- 选定 `exists_mesh_segments_subset_open` 给出的网格直线段后，所得完整折线道路也留在原开集中。-/
+/-- 选定 `exists_mesh_segments_subset_open` 给出的网格直线段后，所得完整折线道路也留在原开集中。
+@isnad1 id=le.3h6v.s8.ca69cbf1ef81 from=translated src=- shape=dac7bfdc vocab=c0277bfd
+-/
 theorem Path.meshPolygonal_range_subset_open {x y : E} (p : Path x y)
     {U : Set E} (N : ℕ) (hN : 0 < N) (hpU : ∀ t, p t ∈ U)
     (hsegments : ∀ i : Fin N,
@@ -313,7 +321,9 @@ theorem Path.meshPolygonal_range_subset_open {x y : E} (p : Path x y)
       (fun i ↦ hpU (unitIntervalMeshPoint N hN i)) hsegments) t
 
 /-- 实赋范线性空间的开集中，每条道路都有一条位于同一开集的有限折线替代；原道路到该替代的
-端点相对同伦的完整像也位于该开集。-/
+端点相对同伦的完整像也位于该开集。
+@isnad1 id=ex.2h5v.s9.45cdfd38be83 from=translated src=- shape=407b8a5d vocab=5d3c2e53
+-/
 theorem Path.exists_meshPolygonal_range_subset_open_and_homotopyWithin
     {x y : E} (p : Path x y) {U : Set E}
     (hU : IsOpen U) (hpU : ∀ t, p t ∈ U) :
@@ -333,7 +343,9 @@ theorem Path.exists_meshPolygonal_range_subset_open_and_homotopyWithin
         rcases hz with ⟨u, rfl⟩
         exact D.ball_subset i (D.segment_mem i u))
 
-/-- 强的开集内折线化定理的环境空间同伦推论：遗忘同伦像的开集内证书。-/
+/-- 强的开集内折线化定理的环境空间同伦推论：遗忘同伦像的开集内证书。
+@isnad1 id=ex.2h5v.s7.8684742ae15a from=translated src=- shape=9d067dfe vocab=e664b732
+-/
 theorem Path.exists_meshPolygonal_range_subset_open_and_homotopy
     {x y : E} (p : Path x y) {U : Set E}
     (hU : IsOpen U) (hpU : ∀ t, p t ∈ U) :

@@ -30,6 +30,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 noncomputable def identitySubCompact (K : E →L[ℝ] E) : E →L[ℝ] E :=
   ContinuousLinearMap.id ℝ E - K
 
+/--
+@isnad1 id=eq.0h3v.s8.04b6109b8458 from=translated src=- shape=70275291 vocab=cdb78b82
+-/
 @[simp]
 theorem identitySubCompact_apply (K : E →L[ℝ] E) (x : E) :
     identitySubCompact K x = x - K x := by
@@ -58,7 +61,9 @@ private theorem compactOnIdentitySubCompactKernel_apply (K : E →L[ℝ] E)
 /-- 紧算子 `K` 的恒等扰动 `I-K` 具有有限维核。
 
 在核上 `K` 就是恒等算子；紧性在定义域限制和闭值域限制下保持，因此核上的恒等算子
-是紧算子。Riesz 有限维判据随即给出结论。-/
+是紧算子。Riesz 有限维判据随即给出结论。
+@isnad1 id=finitedi.1h2v.s9.95f4ab2b5d8a from=translated src=- shape=3f3d8ff0 vocab=32c43d36
+-/
 theorem finiteDimensional_kernel_identitySubCompact [CompleteSpace E]
     (K : E →L[ℝ] E) (hK : IsCompactOperator K) :
     FiniteDimensional ℝ (identitySubCompact K).ker := by
@@ -137,7 +142,9 @@ private theorem identitySubCompact_antilipschitz_on_complement [CompleteSpace E]
 /-- 紧算子 `K` 的恒等扰动 `I-K` 具有闭值域。
 
 证明在有限维核的闭补空间上使用紧性反证得到正下界；该限制算子的值域因而闭，且补空间
-与核直和为全空间，所以它与 `I-K` 的完整值域相同。-/
+与核直和为全空间，所以它与 `I-K` 的完整值域相同。
+@isnad1 id=isclosed.1h2v.s8.a5dd25dcd604 from=translated src=- shape=2ac0fd49 vocab=c8873987
+-/
 theorem isClosed_range_identitySubCompact [CompleteSpace E]
     (K : E →L[ℝ] E) (hK : IsCompactOperator K) :
     IsClosed (Set.range (identitySubCompact K)) := by

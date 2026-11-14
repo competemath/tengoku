@@ -52,7 +52,9 @@ private theorem admissiblePath_segment_of_ball
 /-- In an open preconnected set, every point can be reached from a fixed member by an admissible
 path for any continuous integrand.
 
-> **Entry**: complex-analysis.cauchy.admissible-path-connectivity-foundation-/
+> **Entry**: complex-analysis.cauchy.admissible-path-connectivity-foundation
+@isnad1 id=ex.5h4v.s7.de5a38ecc85b from=translated src=- shape=76b759f0 vocab=7d1f0a5b
+-/
 theorem exists_admissiblePath_of_isPreconnected
     {f : ℂ → ℂ} {U : Set ℂ} {c : ℂ}
     (hU : IsOpen U) (hf : ContinuousOn f U) (hc : c ∈ U)
@@ -105,7 +107,9 @@ theorem exists_admissiblePath_of_isPreconnected
 /-- On an open preconnected domain, endpoint-independence alone now suffices for a holomorphic
 function to have a primitive: admissible paths from the base point are supplied automatically.
 
-> **Entry**: complex-analysis.cauchy.admissible-path-connectivity-foundation-/
+> **Entry**: complex-analysis.cauchy.admissible-path-connectivity-foundation
+@isnad1 id=ex.5h3v.s6.918c45941e58 from=translated src=- shape=3134dff9 vocab=30e17a59
+-/
 theorem exists_primitive_of_isPreconnected_of_pathIntegralIndependentOn
     {f : ℂ → ℂ} {U : Set ℂ} {c : ℂ}
     (hU : IsOpen U) (hf : HolomorphicOnTextbook f U) (hc : c ∈ U)
@@ -119,7 +123,9 @@ theorem exists_primitive_of_isPreconnected_of_pathIntegralIndependentOn
 /-- For a standard simply connected open set, the reachability hypothesis in the path-integral
 construction is automatic.  Thus path-integral independence is the only remaining hypothesis.
 
-> **Entry**: complex-analysis.cauchy.admissible-path-connectivity-foundation-/
+> **Entry**: complex-analysis.cauchy.admissible-path-connectivity-foundation
+@isnad1 id=ex.4h2v.s6.be1960126697 from=translated src=- shape=7406aa6c vocab=dd7a4c8d
+-/
 theorem exists_primitive_of_isSimplyConnected_of_pathIntegralIndependentOn
     {f : ℂ → ℂ} {U : Set ℂ}
     (hU : IsOpen U) (hf : HolomorphicOnTextbook f U)

@@ -29,7 +29,9 @@ namespace SandronesLibrary.Topology
 
 /-- 标准实数拓扑中的开集，恰好满足教材的正半径绝对值邻域刻画。
 
-> **Entry**: topology.foundation.real-line-/
+> **Entry**: topology.foundation.real-line
+@isnad1 id=iff.0h1v.s6.cd999f870262 from=translated src=- shape=81077847 vocab=35fcf7c2
+-/
 theorem real_isOpen_iff_abs (s : Set ℝ) :
     _root_.IsOpen s ↔
       ∀ x ∈ s, ∃ ε : ℝ, 0 < ε ∧ ∀ y, |y - x| < ε → y ∈ s := by
@@ -42,7 +44,9 @@ theorem real_isOpen_iff_abs (s : Set ℝ) :
     obtain ⟨ε, hε, hball⟩ := h x hx
     exact ⟨ε, hε, fun y hy ↦ hball y (by simpa [Real.dist_eq] using hy)⟩
 
-/-- Mathlib 的道路参数类型 `unitInterval` 就是闭区间 `Set.Icc 0 1`。-/
+/-- Mathlib 的道路参数类型 `unitInterval` 就是闭区间 `Set.Icc 0 1`。
+@isnad1 id=eq.0h0v.s4.e56191b99497 from=translated src=- shape=280d56fc vocab=ac01743d
+-/
 theorem unitInterval_eq_Icc : unitInterval = Set.Icc (0 : ℝ) 1 :=
   rfl
 
@@ -83,8 +87,14 @@ def zero : UnitInterval := ⟨0, le_rfl, zero_le_one⟩
 /-- The right endpoint of the unit interval.-/
 def one : UnitInterval := ⟨1, zero_le_one, le_rfl⟩
 
+/--
+@isnad1 id=eq.0h0v.s5.89061ba16dde from=translated src=- shape=6e9fd8d9 vocab=379f0913
+-/
 @[simp] theorem zero_val : zero.1 = 0 := rfl
 
+/--
+@isnad1 id=eq.0h0v.s5.de9a2f7203b6 from=translated src=- shape=6e9fd8d9 vocab=5ff42f49
+-/
 @[simp] theorem one_val : one.1 = 1 := rfl
 
 end UnitInterval
@@ -94,7 +104,9 @@ def unitInterval : TextbookTopology UnitInterval :=
   subspace {t : ℝ | 0 ≤ t ∧ t ≤ 1} realLine
 
 /-- A subset of the unit interval is open exactly when each of its points contains a relative
-epsilon-neighborhood inside the subset.-/
+epsilon-neighborhood inside the subset.
+@isnad1 id=iff.0h1v.s6.2809ba8db81f from=translated src=- shape=7fcb1d31 vocab=f1facfc9
+-/
 theorem isOpen_unitInterval_iff (s : Set UnitInterval) :
     unitInterval.IsOpen s ↔
       ∀ t ∈ s, ∃ ε : ℝ, 0 < ε ∧ ∀ u : UnitInterval, |u.1 - t.1| < ε → u ∈ s := by
@@ -125,7 +137,9 @@ theorem isOpen_unitInterval_iff (s : Set UnitInterval) :
       exact ⟨t, ht, ε, hε, hinside, by simpa using hε⟩
 
 /-- Continuity from the unit interval can be checked by relative epsilon-neighborhoods of each
-point and each open set containing its image.-/
+point and each open set containing its image.
+@isnad1 id=iff.0h3v.s7.ca5e6b89a492 from=translated src=- shape=dfe4bf99 vocab=b627ee6f
+-/
 theorem continuous_from_unitInterval_iff {X : Type*} (τX : TextbookTopology X)
     (f : UnitInterval → X) :
     Continuous unitInterval τX f ↔
@@ -139,7 +153,9 @@ theorem continuous_from_unitInterval_iff {X : Type*} (τX : TextbookTopology X)
     intro t hft
     exact hf t v hv hft
 
-/-- The inclusion of the unit interval into the real line is continuous by construction.-/
+/-- The inclusion of the unit interval into the real line is continuous by construction.
+@isnad1 id=continuo.0h0v.s4.6708ecbc0b05 from=translated src=- shape=26835870 vocab=aa5d03ea
+-/
 theorem continuous_unitInterval_val :
     Continuous unitInterval realLine (Subtype.val : UnitInterval → ℝ) :=
   continuous_subtype_val _ realLine
@@ -147,7 +163,9 @@ theorem continuous_unitInterval_val :
 /-- Reflection about `1 / 2` on the real line.-/
 def realReflection (x : ℝ) : ℝ := 1 - x
 
-/-- Reflection about `1 / 2` is continuous for the textbook real-line topology.-/
+/-- Reflection about `1 / 2` is continuous for the textbook real-line topology.
+@isnad1 id=continuo.0h0v.s2.44c1bd616859 from=translated src=- shape=7fec7bd3 vocab=b685661c
+-/
 theorem continuous_realReflection : Continuous realLine realLine realReflection := by
   intro s hs x hx
   obtain ⟨ε, hε, hball⟩ := hs (realReflection x) hx
@@ -158,21 +176,35 @@ theorem continuous_realReflection : Continuous realLine realLine realReflection 
 def UnitInterval.reflect (t : UnitInterval) : UnitInterval :=
   ⟨1 - t.1, sub_nonneg.mpr t.2.2, sub_le_self 1 t.2.1⟩
 
+/--
+@isnad1 id=eq.0h1v.s6.355ceba45b0a from=translated src=- shape=54df726a vocab=80d12945
+-/
 @[simp] theorem UnitInterval.reflect_val (t : UnitInterval) : t.reflect.1 = 1 - t.1 := rfl
 
+/--
+@isnad1 id=eq.0h0v.s2.1ca8ad1a1341 from=translated src=- shape=4b736592 vocab=dab17a2b
+-/
 @[simp] theorem UnitInterval.reflect_zero : UnitInterval.zero.reflect = UnitInterval.one := by
   apply Subtype.ext
   simp [UnitInterval.reflect, UnitInterval.zero, UnitInterval.one]
 
+/--
+@isnad1 id=eq.0h0v.s2.87d69b1a1c14 from=translated src=- shape=4b736592 vocab=dab17a2b
+-/
 @[simp] theorem UnitInterval.reflect_one : UnitInterval.one.reflect = UnitInterval.zero := by
   apply Subtype.ext
   simp [UnitInterval.reflect, UnitInterval.zero, UnitInterval.one]
 
+/--
+@isnad1 id=eq.0h1v.s3.514cb549a3bc from=translated src=- shape=47dcad53 vocab=cf67977d
+-/
 @[simp] theorem UnitInterval.reflect_reflect (t : UnitInterval) : t.reflect.reflect = t := by
   apply Subtype.ext
   simp
 
-/-- Unit-interval reflection is continuous in the Sandrone subspace topology.-/
+/-- Unit-interval reflection is continuous in the Sandrone subspace topology.
+@isnad1 id=continuo.0h0v.s2.058bfbbfedab from=translated src=- shape=7fec7bd3 vocab=2ae38e72
+-/
 theorem continuous_unitInterval_reflect :
     Continuous unitInterval unitInterval UnitInterval.reflect := by
   intro u hu

@@ -60,7 +60,9 @@ namespace CommutativeAlgebra.Module
 `Submodule` 专用的 `IsCompl` 变体；本定理把它落到子模格的两个具体条件上。
 证明只是 `isCompl_iff`（`IsCompl a b ↔ Disjoint a b ∧ Codisjoint a b`）与
 `codisjoint_iff`（`Codisjoint a b ↔ a ⊔ b = ⊤`）两条展开的拼接。
-> **Entry**: commutative-algebra.module.direct-sum-/
+> **Entry**: commutative-algebra.module.direct-sum
+@isnad1 id=iff.0h4v.s8.37a46d54eb1f from=translated src=- shape=4669c036 vocab=1bf93089
+-/
 theorem isCompl_iff_disjoint_sup_eq_top {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     (p q : Submodule R M) :
     IsCompl p q ↔ Disjoint p q ∧ p ⊔ q = ⊤ := by
@@ -69,7 +71,9 @@ theorem isCompl_iff_disjoint_sup_eq_top {R M : Type*} [CommRing R] [AddCommGroup
 /-- **和模的成员刻画**（Atiyah–Macdonald 第 2 章）：`x ∈ p + q` 当且仅当 `x` 能写成 `y + z`，
 其中 `y ∈ p`、`z ∈ q`。这正是教材对子模之和的定义（「一切 `y + z` 的集合」），Lean 侧复用
 `Submodule.mem_sup`。注意这里写的是 `p ⊔ q`——子模格的上确界就是教材的和。
-> **Entry**: commutative-algebra.module.direct-sum-/
+> **Entry**: commutative-algebra.module.direct-sum
+@isnad1 id=iff.0h5v.s8.5fc6f1f55f7f from=translated src=- shape=f7348bf7 vocab=c2cfab68
+-/
 theorem mem_sup_iff_exists_add {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     {p q : Submodule R M} {x : M} :
     x ∈ p ⊔ q ↔ ∃ y ∈ p, ∃ z ∈ q, y + z = x :=
@@ -79,7 +83,9 @@ theorem mem_sup_iff_exists_add {R M : Type*} [CommRing R] [AddCommGroup M] [Modu
 证明走 `IsCompl.codisjoint`（即 `Codisjoint p q`）加 `codisjoint_iff` 得到 `p ⊔ q = ⊤`，
 于是 `x ∈ p ⊔ q` 显然，再用 `mem_sup_iff_exists_add` 取出 `y`、`z`。这条对应教材
 「`M = p + q` 蕴含每个元素可分解」。
-> **Entry**: commutative-algebra.module.direct-sum-/
+> **Entry**: commutative-algebra.module.direct-sum
+@isnad1 id=ex.1h5v.s7.739f8ee48800 from=translated src=- shape=d2335c15 vocab=d235bec1
+-/
 theorem exists_add_of_isCompl {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     {p q : Submodule R M} (h : IsCompl p q) (x : M) :
     ∃ y ∈ p, ∃ z ∈ q, y + z = x :=
@@ -91,7 +97,9 @@ theorem exists_add_of_isCompl {R M : Type*} [CommRing R] [AddCommGroup M] [Modul
 故这个元素属于 `p ⊓ q = ⊥`，即 `y - y' = 0`（用 `Submodule.disjoint_def`），于是 `y = y'`；
 再在等式中约去 `y'` 得 `z = z'`。反向是 `rfl`。这条是本文件分解判据的唯一性来源，
 也说明「互补」比「和是整个模」多出来的那一半（`p ⊓ q = ⊥`）到底用在哪里。
-> **Entry**: commutative-algebra.module.direct-sum-/
+> **Entry**: commutative-algebra.module.direct-sum
+@isnad1 id=iff.1h8v.s9.97b13006ad72 from=translated src=- shape=929a24d9 vocab=43cbaf76
+-/
 theorem add_eq_add_iff_of_disjoint {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     {p q : Submodule R M} (h : Disjoint p q) {y y' : p} {z z' : q} :
     (y : M) + (z : M) = (y' : M) + (z' : M) ↔ y = y' ∧ z = z' := by
@@ -115,7 +123,9 @@ theorem add_eq_add_iff_of_disjoint {R M : Type*} [CommRing R] [AddCommGroup M] [
 /-- **分解的唯一性半（配对形式）**：`Disjoint p q` 时，同一个 `x` 的任意两个分解
 `yz yz' : p × q`（即 `yz.1 + yz.2 = x` 且 `yz'.1 + yz'.2 = x`）相等。
 这是上一条分量形式的直接改写，形态上可以直接喂给 `∃!`（`ExistsUnique.unique`）。
-> **Entry**: commutative-algebra.module.direct-sum-/
+> **Entry**: commutative-algebra.module.direct-sum
+@isnad1 id=eq.3h7v.s9.895b5f0868d7 from=translated src=- shape=875606b0 vocab=f820db4f
+-/
 theorem decomposition_unique_of_disjoint {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     {p q : Submodule R M} (h : Disjoint p q) {x : M}
     {yz yz' : p × q} (h₁ : (yz.1 : M) + (yz.2 : M) = x)
@@ -136,7 +146,9 @@ theorem decomposition_unique_of_disjoint {R M : Type*} [CommRing R] [AddCommGrou
 
 两个方向都在本文件内自证，没有引用 Mathlib 的现成判据（`Submodule.isCompl_iff_disjoint` 只对
 有限维除环上的子空间成立，不在教材设定 `[CommRing R]` 内）。
-> **Entry**: commutative-algebra.module.direct-sum-/
+> **Entry**: commutative-algebra.module.direct-sum
+@isnad1 id=iff.0h4v.s9.5120e5d17993 from=translated src=- shape=e13918aa vocab=7fabe01f
+-/
 theorem isCompl_iff_existsUnique_decomposition {R M : Type*} [CommRing R] [AddCommGroup M]
     [Module R M] (p q : Submodule R M) :
     IsCompl p q ↔ ∀ x : M, ∃! yz : p × q, (yz.1 : M) + (yz.2 : M) = x := by
@@ -164,7 +176,9 @@ theorem isCompl_iff_existsUnique_decomposition {R M : Type*} [CommRing R] [AddCo
 `(y, z) ↦ y + z`。这是内直和「作为乘积」的载体层桥：分解判据说 `∃!` 的配对唯一，本定理说这个
 配对与 `M` 之间的线性等价正是 `y + z`。Lean 侧复用 `Submodule.coe_prodEquivOfIsCompl'`
 （Mathlib 已把它证成 `rfl`）；注意 `p q` 与 `h` 都是该定义的显式参数，`h` 在最后。
-> **Entry**: commutative-algebra.module.direct-sum-/
+> **Entry**: commutative-algebra.module.direct-sum
+@isnad1 id=eq.1h5v.s10.76b082f035b2 from=translated src=- shape=3ac2739e vocab=a092dc17
+-/
 theorem prodEquivOfIsCompl_apply {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
     (p q : Submodule R M) (h : IsCompl p q) (yz : p × q) :
     Submodule.prodEquivOfIsCompl p q h yz = (yz.1 : M) + (yz.2 : M) :=
@@ -177,7 +191,9 @@ theorem prodEquivOfIsCompl_apply {R M : Type*} [CommRing R] [AddCommGroup M] [Mo
 「第 `i` 个坐标」就是族在 `i` 处的取值；Lean 的 `DirectSum` 底层就是 `DFinsupp`，
 本定理是 `DirectSum.of_eq_same`。这里 `M : ι → Type*` 是一族 `R`-模——外直和的对象层级
 本来就是族，不是单个模。
-> **Entry**: commutative-algebra.module.direct-sum-/
+> **Entry**: commutative-algebra.module.direct-sum
+@isnad1 id=eq.0h5v.s8.d6ebfbc4eb61 from=translated src=- shape=3e68d22a vocab=c9c660ca
+-/
 theorem directSum_of_apply_same {R : Type*} [CommRing R] {ι : Type*} [DecidableEq ι]
     {M : ι → Type*} [∀ i, AddCommGroup (M i)] [∀ i, Module R (M i)] (i : ι) (x : M i) :
     (DirectSum.of M i x) i = x :=
@@ -186,7 +202,9 @@ theorem directSum_of_apply_same {R : Type*} [CommRing R] {ι : Type*} [Decidable
 /-- **外直和的坐标（异位）**：`j ≠ i` 时 `DirectSum.of M i x` 的第 `j` 个坐标是 `0`。
 与上一条合起来就是教材的「`of i` 把 `M i` 嵌进第 `i` 个坐标，其余坐标全为零」。
 注意假设写成 `j ≠ i`（与 Mathlib 的 `DirectSum.of_eq_of_ne` 同序），不是 `i ≠ j`。
-> **Entry**: commutative-algebra.module.direct-sum-/
+> **Entry**: commutative-algebra.module.direct-sum
+@isnad1 id=eq.1h6v.s8.1d5dab037bab from=translated src=- shape=89938bba vocab=c9c660ca
+-/
 theorem directSum_of_apply_of_ne {R : Type*} [CommRing R] {ι : Type*} [DecidableEq ι]
     {M : ι → Type*} [∀ i, AddCommGroup (M i)] [∀ i, Module R (M i)]
     (i j : ι) (x : M i) (h : j ≠ i) : (DirectSum.of M i x) j = 0 :=
@@ -197,7 +215,9 @@ theorem directSum_of_apply_of_ne {R : Type*} [CommRing R] {ι : Type*} [Decidabl
 `DirectSum.lof R ι M i`（`lof` 就是线性映射版本的标准嵌入，与加法版本的 `of` 是同一个映射）
 上与 `φ i` 一致。本条只陈述这些等式（存在性）；唯一性见 `directSum_toModule_unique`。
 Lean 侧复用 `DirectSum.toModule_lof`。
-> **Entry**: commutative-algebra.module.direct-sum-/
+> **Entry**: commutative-algebra.module.direct-sum
+@isnad1 id=eq.0h7v.s9.0b337edfb30d from=translated src=- shape=57f6eccf vocab=ea82d815
+-/
 theorem directSum_toModule_lof {R : Type*} [CommRing R] {ι : Type*} [DecidableEq ι]
     {M : ι → Type*} [∀ i, AddCommGroup (M i)] [∀ i, Module R (M i)]
     {N : Type*} [AddCommGroup N] [Module R N] (φ : ∀ i, M i →ₗ[R] N) (i : ι) (x : M i) :
@@ -211,7 +231,9 @@ Mathlib 里没有**整体形式**的这条定理（`DirectSum.toModule_unique` �
 `DirectSum.toModule.unique` 与 `@[ext]` 形式 `DirectSum.linearMap_ext`），所以这里按教材
 重新证明：外直和的每个元素由 `0`、单项 `of i x` 与加法生成（`DirectSum.induction_on`），
 三支分别用 `simp`、`DirectSum.lof_eq_of` + `toModule_lof`、`map_add` + 归纳假设。
-> **Entry**: commutative-algebra.module.direct-sum-/
+> **Entry**: commutative-algebra.module.direct-sum
+@isnad1 id=eq.1h6v.s9.d21669e08ac6 from=translated src=- shape=c51b785f vocab=ea82d815
+-/
 theorem directSum_toModule_unique {R : Type*} [CommRing R] {ι : Type*} [DecidableEq ι]
     {M : ι → Type*} [∀ i, AddCommGroup (M i)] [∀ i, Module R (M i)]
     {N : Type*} [AddCommGroup N] [Module R N] (φ : ∀ i, M i →ₗ[R] N)
@@ -229,7 +251,9 @@ theorem directSum_toModule_unique {R : Type*} [CommRing R] {ι : Type*} [Decidab
 /-- **泛性质的 iff 打包**：线性映射 `g : (⨁ i, M i) →ₗ[R] N` 等于 `DirectSum.toModule R ι N φ`
 **当且仅当**它在每个标准嵌入 `lof i` 上与 `φ i` 一致。正向是把 `toModule_lof` 代进等式，
 反向是上一条唯一性。这条 iff 是教材「外直和由各分量上的取值唯一决定」的精确表述。
-> **Entry**: commutative-algebra.module.direct-sum-/
+> **Entry**: commutative-algebra.module.direct-sum
+@isnad1 id=iff.0h6v.s9.e8adddb9241a from=translated src=- shape=bcdf4a4e vocab=ea82d815
+-/
 theorem directSum_lof_ext_iff {R : Type*} [CommRing R] {ι : Type*} [DecidableEq ι]
     {M : ι → Type*} [∀ i, AddCommGroup (M i)] [∀ i, Module R (M i)]
     {N : Type*} [AddCommGroup N] [Module R N] (φ : ∀ i, M i →ₗ[R] N) (g : (⨁ i, M i) →ₗ[R] N) :
@@ -240,7 +264,9 @@ theorem directSum_lof_ext_iff {R : Type*} [CommRing R] {ι : Type*} [DecidableEq
 `∀ i x, g (lof i x) = φ i x` 的线性映射 `g : (⨁ i, M i) →ₗ[R] N` **存在且唯一**。
 这是把存在半（`directSum_toModule_lof`）与唯一性半（`directSum_toModule_unique`）合成一条
 教材陈述的结果，也是外直和「是所有 `M i` 的余积」这句话在模层面的全部内容。
-> **Entry**: commutative-algebra.module.direct-sum-/
+> **Entry**: commutative-algebra.module.direct-sum
+@isnad1 id=existsun.0h5v.s9.c3ca3f2fdcc9 from=translated src=- shape=85e220e1 vocab=3bbe6fe5
+-/
 theorem directSum_existsUnique_toModule {R : Type*} [CommRing R] {ι : Type*} [DecidableEq ι]
     {M : ι → Type*} [∀ i, AddCommGroup (M i)] [∀ i, Module R (M i)]
     {N : Type*} [AddCommGroup N] [Module R N] (φ : ∀ i, M i →ₗ[R] N) :
@@ -254,7 +280,9 @@ Mathlib 里 `DirectSum.component` 是第 `i` 个坐标投影（`DFinsupp.lapply`
 「外直和的元素 = 有限支撑族」的 Lean 表述，也是后面把分解写成坐标的语言。
 注意本条**不需要** `[DecidableEq ι]`：坐标投影与求值都是无判等的（编译器实测），
 所以不写多余的假设。
-> **Entry**: commutative-algebra.module.direct-sum-/
+> **Entry**: commutative-algebra.module.direct-sum
+@isnad1 id=eq.0h5v.s8.758a3c4a79b0 from=translated src=- shape=b04cdb49 vocab=a01409bf
+-/
 theorem directSum_component_apply {R : Type*} [CommRing R] {ι : Type*}
     {M : ι → Type*} [∀ i, AddCommGroup (M i)] [∀ i, Module R (M i)]
     (i : ι) (v : ⨁ i, M i) : DirectSum.component R ι M i v = v i :=
@@ -277,7 +305,9 @@ noncomputable def internalDirectSum_decomposeLinearEquiv {R : Type*} [CommRing R
 /-- **分量刻画（本位）**：若 `x ∈ ℳ i`，则 `x` 在分解同构下的第 `i` 个分量就是 `x` 本身
 （子类型意义下）。这条与下一条一起说明「分解」是可计算的：落在某个分量里的元素，其坐标是
 已知的。Lean 侧复用 `DirectSum.decompose_of_mem_same`。
-> **Entry**: commutative-algebra.module.direct-sum-/
+> **Entry**: commutative-algebra.module.direct-sum
+@isnad1 id=eq.1h6v.s10.39f27822008f from=translated src=- shape=71d77f1f vocab=9ef1be3b
+-/
 theorem internalDirectSum_decompose_of_mem_same {R : Type*} [CommRing R] {ι : Type*}
     [DecidableEq ι] {M : Type*} [AddCommGroup M] [Module R M] (ℳ : ι → Submodule R M)
     [DirectSum.Decomposition ℳ] {x : M} {i : ι} (hx : x ∈ ℳ i) :
@@ -287,7 +317,9 @@ theorem internalDirectSum_decompose_of_mem_same {R : Type*} [CommRing R] {ι : T
 /-- **分量刻画（异位）**：若 `x ∈ ℳ i` 且 `j ≠ i`，则 `x` 的第 `j` 个分量是 `0`。
 与上一条合起来就是教材的「分解到各分量上，只有所属的那一个分量非零」。
 Lean 侧复用 `DirectSum.decompose_of_mem_ne`。
-> **Entry**: commutative-algebra.module.direct-sum-/
+> **Entry**: commutative-algebra.module.direct-sum
+@isnad1 id=eq.2h7v.s10.00bc14f268f3 from=translated src=- shape=77dd4010 vocab=9ef1be3b
+-/
 theorem internalDirectSum_decompose_of_mem_ne {R : Type*} [CommRing R] {ι : Type*}
     [DecidableEq ι] {M : Type*} [AddCommGroup M] [Module R M] (ℳ : ι → Submodule R M)
     [DirectSum.Decomposition ℳ] {x : M} {i j : ι} (hx : x ∈ ℳ i) (hij : i ≠ j) :
@@ -298,7 +330,9 @@ theorem internalDirectSum_decompose_of_mem_ne {R : Type*} [CommRing R] {ι : Typ
 逆送回来，得到 `x`。这是 (C) 里与 (A) 的 `prodEquivOfIsCompl_apply` 对应的那一半：
 (A) 说配对重组是 `(y, z) ↦ y + z`，(C) 说族版本的重组是逐分量的标准嵌入。
 Lean 侧复用 `DirectSum.decomposeLinearEquiv_symm_lof`。
-> **Entry**: commutative-algebra.module.direct-sum-/
+> **Entry**: commutative-algebra.module.direct-sum
+@isnad1 id=eq.0h6v.s11.f68a4c0cb974 from=translated src=- shape=160f4107 vocab=3e8172a3
+-/
 theorem internalDirectSum_decomposeLinearEquiv_symm_lof {R : Type*} [CommRing R] {ι : Type*}
     [DecidableEq ι] {M : Type*} [AddCommGroup M] [Module R M] (ℳ : ι → Submodule R M)
     [DirectSum.Decomposition ℳ] (i : ι) (x : ℳ i) :
@@ -310,7 +344,9 @@ theorem internalDirectSum_decomposeLinearEquiv_symm_lof {R : Type*} [CommRing R]
 这是本条目最重要的一条**桥**：它说明 (A) 的两项 `IsCompl` 与 (C) 的族版本内直和不是两套
 数学，而是同一个概念的两种拼写。Lean 侧复用
 `DirectSum.isInternal_submodule_iff_isCompl`（它要求指标集恰为 `{i, j}`，这里 `i, j = 0, 1`）。
-> **Entry**: commutative-algebra.module.direct-sum-/
+> **Entry**: commutative-algebra.module.direct-sum
+@isnad1 id=iff.0h4v.s7.99cc1254e9d3 from=translated src=- shape=db6d40bd vocab=50bbccb8
+-/
 theorem isCompl_iff_isInternal_fin_two {R : Type*} [CommRing R] {M : Type*} [AddCommGroup M]
     [Module R M] (p q : Submodule R M) :
     IsCompl p q ↔ DirectSum.IsInternal ![p, q] := by
@@ -355,7 +391,9 @@ noncomputable def internalDirectSum_decomposeLinearEquiv_fin_two {R : Type*} [Co
 由于 Mathlib 已证 `DirectSum.Decomposition` 有 `Subsingleton` 实例，`Nonempty` 是「分解结构
 存在」这个命题的诚实写法——不会把带数据的类硬塞进 `↔` 的一侧。
 至此 (A) 的两项 `IsCompl` 与 (C) 的族版本分解在本文件里是**双向等价**的两种拼写。
-> **Entry**: commutative-algebra.module.direct-sum-/
+> **Entry**: commutative-algebra.module.direct-sum
+@isnad1 id=iff.0h4v.s7.a0922e4fc84f from=translated src=- shape=25f8026a vocab=cfd3595d
+-/
 theorem isCompl_iff_nonempty_decomposition_fin_two {R : Type*} [CommRing R] {M : Type*}
     [AddCommGroup M] [Module R M] (p q : Submodule R M) :
     IsCompl p q ↔ Nonempty (DirectSum.Decomposition ![p, q]) :=

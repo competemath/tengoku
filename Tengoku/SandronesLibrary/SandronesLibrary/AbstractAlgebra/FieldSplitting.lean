@@ -446,7 +446,9 @@ private theorem splittingFields_isomorphic_bridge {K L M : Type*}
 /-- 展开根集定义的成员判据：`a` 属于根集，当且仅当 `p` 非零且
 `evaluateOver e p a = 0`。该定理固定零多项式边界。
 
-> **Entry**: abstract-algebra.field.splitting-/
+> **Entry**: abstract-algebra.field.splitting
+@isnad1 id=iff.0h5v.s6.dedc75b26dc4 from=translated src=- shape=34c857ee vocab=cced55f6
+-/
 theorem mem_polynomialRootSetIn_iff {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (p : Polynomial K) (a : L) :
     a ∈ PolynomialRootSetIn e p ↔ p ≠ 0 ∧ evaluateOver e p a = 0 := by
@@ -455,7 +457,9 @@ theorem mem_polynomialRootSetIn_iff {K L : Type*} [Field K] [Field L]
 /-- 零多项式的教材根集为空。虽然零多项式在 Mathlib 边界下满足分裂谓词，
 根集定义中的非零条件排除了所有元素。
 
-> **Entry**: abstract-algebra.field.splitting-/
+> **Entry**: abstract-algebra.field.splitting
+@isnad1 id=eq.0h3v.s5.a87895dbf517 from=translated src=- shape=d93a08a3 vocab=6cc11be4
+-/
 theorem polynomialRootSetIn_zero {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) :
     PolynomialRootSetIn e (0 : Polynomial K) = ∅ := by
@@ -465,7 +469,9 @@ theorem polynomialRootSetIn_zero {K L : Type*} [Field K] [Field L]
 /-- 分裂的有限线性因子多重集刻画：映射后的多项式等于首项系数对应常数
 多项式，乘以由根的多重集给出的全部 `X - C a` 因子之积。
 
-> **Entry**: abstract-algebra.field.splitting-/
+> **Entry**: abstract-algebra.field.splitting
+@isnad1 id=iff.0h4v.s8.336875b06685 from=translated src=- shape=679d7f07 vocab=d2a93d58
+-/
 theorem polynomialSplitsIn_iff_exists_multiset {K L : Type*}
     [Field K] [Field L] (e : FieldEmbedding K L) (p : Polynomial K) :
     PolynomialSplitsIn e p ↔
@@ -477,7 +483,9 @@ theorem polynomialSplitsIn_iff_exists_multiset {K L : Type*}
 /-- 零多项式在 Mathlib 的 `Splits` 边界约定下分裂。该结果只描述
 `PolynomialSplitsIn`，并不使零多项式满足 `SplittingFieldFor`。
 
-> **Entry**: abstract-algebra.field.splitting-/
+> **Entry**: abstract-algebra.field.splitting
+@isnad1 id=polynomi.0h3v.s5.f774685bd8eb from=translated src=- shape=1be7fc79 vocab=357e1963
+-/
 theorem polynomialSplitsIn_zero {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) : PolynomialSplitsIn e (0 : Polynomial K) := by
   exact (elementary_splits_bridge e).1
@@ -485,7 +493,9 @@ theorem polynomialSplitsIn_zero {K L : Type*} [Field K] [Field L]
 /-- 任意常数多项式在任意显式扩域中分裂，包括零常数。其一次因子多重集
 为空，剩余因子就是映射后的常数多项式。
 
-> **Entry**: abstract-algebra.field.splitting-/
+> **Entry**: abstract-algebra.field.splitting
+@isnad1 id=polynomi.0h4v.s6.b1e053028ef1 from=translated src=- shape=ac8212fa vocab=28f0c951
+-/
 theorem polynomialSplitsIn_C {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (c : K) : PolynomialSplitsIn e (Polynomial.C c) := by
   exact (elementary_splits_bridge e).2.1 c
@@ -493,7 +503,9 @@ theorem polynomialSplitsIn_C {K L : Type*} [Field K] [Field L]
 /-- 次数恰为一的多项式在任意域扩张中分裂。域嵌入的单射性保证系数映射
 保持次数，再应用一次多项式的正式分裂定理。
 
-> **Entry**: abstract-algebra.field.splitting-/
+> **Entry**: abstract-algebra.field.splitting
+@isnad1 id=polynomi.1h4v.s5.e84b3d3da3ee from=translated src=- shape=48ad10e9 vocab=a4576cae
+-/
 theorem polynomialSplitsIn_of_degree_eq_one {K L : Type*}
     [Field K] [Field L] (e : FieldEmbedding K L) (p : Polynomial K)
     (hp : p.degree = 1) : PolynomialSplitsIn e p := by
@@ -502,7 +514,9 @@ theorem polynomialSplitsIn_of_degree_eq_one {K L : Type*}
 /-- 两个非零多项式之积分裂，当且仅当两个因子分别分裂。非零假设排除
 乘积退化为零时 Mathlib `Splits` 边界约定造成的逆向例外。
 
-> **Entry**: abstract-algebra.field.splitting-/
+> **Entry**: abstract-algebra.field.splitting
+@isnad1 id=iff.2h5v.s7.6f7a1d7a7503 from=translated src=- shape=c0bbfec3 vocab=e5db932c
+-/
 theorem polynomialSplitsIn_mul_iff {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (p q : Polynomial K) (hp : p ≠ 0) (hq : q ≠ 0) :
     PolynomialSplitsIn e (p * q) ↔
@@ -514,7 +528,9 @@ theorem polynomialSplitsIn_mul_iff {K L : Type*} [Field K] [Field L]
 /-- 从 `SplittingFieldFor` 投影原多项式非零条件。该投影明确区分分裂谓词
 允许的零多项式边界与教材分裂域的定义域。
 
-> **Entry**: abstract-algebra.field.splitting-/
+> **Entry**: abstract-algebra.field.splitting
+@isnad1 id=ne.1h4v.s6.f94944085786 from=translated src=- shape=e8d225ea vocab=549bdfcc
+-/
 theorem SplittingFieldFor.nonzero {K L : Type*} [Field K] [Field L]
     {e : FieldEmbedding K L} {p : Polynomial K} (h : SplittingFieldFor e p) : p ≠ 0 :=
   h.1
@@ -522,7 +538,9 @@ theorem SplittingFieldFor.nonzero {K L : Type*} [Field K] [Field L]
 /-- 从 `SplittingFieldFor` 投影多项式在目标域中分裂的条件，即映射后的
 正式多项式满足 `Polynomial.Splits`。
 
-> **Entry**: abstract-algebra.field.splitting-/
+> **Entry**: abstract-algebra.field.splitting
+@isnad1 id=polynomi.1h4v.s5.c683bbbd6c3f from=translated src=- shape=45839301 vocab=8b598e49
+-/
 theorem SplittingFieldFor.splits {K L : Type*} [Field K] [Field L]
     {e : FieldEmbedding K L} {p : Polynomial K} (h : SplittingFieldFor e p) :
     PolynomialSplitsIn e p :=
@@ -531,7 +549,9 @@ theorem SplittingFieldFor.splits {K L : Type*} [Field K] [Field L]
 /-- 从 `SplittingFieldFor` 投影根生成条件：原多项式在目标域中的全部教材
 根所生成的中间域集合恰为目标域全集。
 
-> **Entry**: abstract-algebra.field.splitting-/
+> **Entry**: abstract-algebra.field.splitting
+@isnad1 id=eq.1h4v.s5.2642ff5822ed from=translated src=- shape=db55e1b5 vocab=85d03e16
+-/
 theorem SplittingFieldFor.generated {K L : Type*} [Field K] [Field L]
     {e : FieldEmbedding K L} {p : Polynomial K} (h : SplittingFieldFor e p) :
     generatedIntermediateFieldSet e (PolynomialRootSetIn e p) = Set.univ :=
@@ -540,7 +560,9 @@ theorem SplittingFieldFor.generated {K L : Type*} [Field K] [Field L]
 /-- 非零多项式的分裂域是 A3.6 意义下的有限域扩张。证明后端使用 Mathlib
 分裂域有限维性，再构造显式有限域基见证。
 
-> **Entry**: abstract-algebra.field.splitting-/
+> **Entry**: abstract-algebra.field.splitting
+@isnad1 id=finitefi.1h4v.s5.6e9c8f754d3f from=translated src=- shape=8a1cdd60 vocab=8b40c003
+-/
 theorem splittingFieldFor_finite {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (p : Polynomial K) (h : SplittingFieldFor e p) :
     FiniteFieldExtension e := by
@@ -549,7 +571,9 @@ theorem splittingFieldFor_finite {K L : Type*} [Field K] [Field L]
 /-- 分裂域是 A3.6 意义下的代数扩张。该结论先取得有限扩张见证，再直接
 复用“有限域扩张必为代数扩张”的公开定理。
 
-> **Entry**: abstract-algebra.field.splitting-/
+> **Entry**: abstract-algebra.field.splitting
+@isnad1 id=algebrai.1h4v.s5.d535d9fdc814 from=translated src=- shape=8a1cdd60 vocab=4ce62aeb
+-/
 theorem splittingFieldFor_algebraic {K L : Type*} [Field K] [Field L]
     (e : FieldEmbedding K L) (p : Polynomial K) (h : SplittingFieldFor e p) :
     AlgebraicExtension e := by
@@ -558,7 +582,9 @@ theorem splittingFieldFor_algebraic {K L : Type*} [Field K] [Field L]
 /-- 一个分裂域可在基域上嵌入任意使原多项式分裂的扩域。所得显式域嵌入
 满足 `ExtendsFieldEmbedding`，所以固定给定的基域嵌入。
 
-> **Entry**: abstract-algebra.field.splitting-/
+> **Entry**: abstract-algebra.field.splitting
+@isnad1 id=ex.2h6v.s6.5f4ebe4be8c2 from=translated src=- shape=cd68a409 vocab=ca46b1fb
+-/
 theorem splittingField_embeds_into_splitting_extension {K L M : Type*}
     [Field K] [Field L] [Field M]
     (eL : FieldEmbedding K L) (eM : FieldEmbedding K M) (p : Polynomial K)
@@ -569,7 +595,9 @@ theorem splittingField_embeds_into_splitting_extension {K L M : Type*}
 /-- 每个非零多项式都存在一个打包后的分裂域见证。证明后端采用 Mathlib
 标准分裂域类型，并把其基域映射与本库显式嵌入精确对齐。
 
-> **Entry**: abstract-algebra.field.splitting-/
+> **Entry**: abstract-algebra.field.splitting
+@isnad1 id=nonempty.1h2v.s5.8920cb14d608 from=translated src=- shape=c9afbf1f vocab=35002fe1
+-/
 theorem nonempty_splittingFieldWitness (K : Type u) [Field K]
     (p : Polynomial K) (hp : p ≠ 0) : Nonempty (SplittingFieldWitness K p) := by
   exact ⟨mathlib_splittingFieldWitness K p hp⟩
@@ -577,7 +605,9 @@ theorem nonempty_splittingFieldWitness (K : Type u) [Field K]
 /-- 同一非零多项式的任意两个分裂域在所选基域嵌入上同构。证明把两者
 分别同构到标准分裂域，再复合得到显式 `FieldIsomorphismOver`。
 
-> **Entry**: abstract-algebra.field.splitting-/
+> **Entry**: abstract-algebra.field.splitting
+@isnad1 id=nonempty.2h6v.s5.4b0cde46d833 from=translated src=- shape=b312f8af vocab=9c459c75
+-/
 theorem splittingFields_isomorphic_over {K L M : Type*}
     [Field K] [Field L] [Field M]
     (eL : FieldEmbedding K L) (eM : FieldEmbedding K M) (p : Polynomial K)

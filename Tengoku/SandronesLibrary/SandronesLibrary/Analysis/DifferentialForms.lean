@@ -51,7 +51,9 @@ abbrev IsPositiveLinearReparametrization
     (o : FormOrientation E n) (f : E ≃ₗ[ℝ] E) : Prop :=
   SandronesLibrary.Topology.Orientation.IsOrientationPreserving o f
 
-/-- 正向线性重参数化的实用判据是雅可比行列式为正。-/
+/-- 正向线性重参数化的实用判据是雅可比行列式为正。
+@isnad1 id=iff.1h4v.s9.ca42eb536a8d from=translated src=- shape=551a323c vocab=135d1463
+-/
 theorem isPositiveLinearReparametrization_iff_det_pos
     {E : Type u} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E] {n : ℕ} (o : FormOrientation E n)
@@ -85,23 +87,35 @@ def formPullback {E : Type u} {F : Type v}
 def exteriorDerivative {E : Type u} [NormedAddCommGroup E] [NormedSpace ℝ E] {k : ℕ}
     (ω : DifferentialForm E k) : DifferentialForm E (k + 1) := extDeriv ω
 
+/--
+@isnad1 id=eq.2h5v.s9.83ab7693cdb6 from=translated src=- shape=3e2054c1 vocab=d978e89f
+-/
 theorem exteriorDerivative_add {E : Type u} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {k : ℕ} {ω η : DifferentialForm E k} {x : E}
     (hω : DifferentiableAt ℝ ω x) (hη : DifferentiableAt ℝ η x) :
     exteriorDerivative (ω + η) x = exteriorDerivative ω x + exteriorDerivative η x := by
   exact extDeriv_add hω hη
 
+/--
+@isnad1 id=eq.0h5v.s8.d76533d830c8 from=translated src=- shape=58298665 vocab=5657746b
+-/
 theorem exteriorDerivative_smul {E : Type u} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {k : ℕ} (c : ℝ) (ω : DifferentialForm E k) (x : E) :
     exteriorDerivative (c • ω) x = c • exteriorDerivative ω x := by
   exact extDeriv_smul c ω
 
+/--
+@isnad1 id=eq.0h3v.s9.dcbf7bacbc28 from=translated src=- shape=6679e492 vocab=b5d32cd9
+-/
 theorem exteriorDerivative_zeroForm {E : Type u} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (f : E → ℝ) (x : E) :
     exteriorDerivative (functionAsZeroForm f) x =
       .ofSubsingleton ℝ E ℝ (0 : Fin 1) (fderiv ℝ f x) := by
   exact extDeriv_constOfIsEmpty f x
 
+/--
+@isnad1 id=eq.2h4v.s8.80be80b2a87a from=translated src=- shape=6d2a1fff vocab=c7cef0d1
+-/
 theorem exteriorDerivative_squared_zero {E : Type u}
     [NormedAddCommGroup E] [NormedSpace ℝ E] {k : ℕ} {r : WithTop ℕ∞}
     (ω : DifferentialForm E k) (hω : ContDiff ℝ r ω)
@@ -109,6 +123,9 @@ theorem exteriorDerivative_squared_zero {E : Type u}
     exteriorDerivative (exteriorDerivative ω) = 0 := by
   exact extDeriv_extDeriv hω hr
 
+/--
+@isnad1 id=eq.3h7v.s8.6a8b31e3cd5a from=translated src=- shape=d86b5a81 vocab=c6bfeb6e
+-/
 theorem exteriorDerivative_pullback {E : Type u} {F : Type v}
     [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup F] [NormedSpace ℝ F]
@@ -131,13 +148,17 @@ def IsExactForm {E : Type u} [NormedAddCommGroup E] [NormedSpace ℝ E] {k : ℕ
     (ω : DifferentialForm E (k + 1)) : Prop :=
   ∃ η : DifferentialForm E k, ContDiff ℝ ⊤ η ∧ exteriorDerivative η = ω
 
-/-- 每个恰当形式都是闭形式，这是恒等式 `d²=0` 的直接推论。-/
+/-- 每个恰当形式都是闭形式，这是恒等式 `d²=0` 的直接推论。
+@isnad1 id=isclosed.1h3v.s5.141b67aefb4d from=translated src=- shape=0bc849e2 vocab=d33600ec
+-/
 theorem exactForm_isClosed {E : Type u} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {k : ℕ} {ω : DifferentialForm E (k + 1)} (hω : IsExactForm ω) : IsClosedForm ω := by
   obtain ⟨η, hηsmooth, rfl⟩ := hω
   exact exteriorDerivative_squared_zero η hηsmooth (by simp)
 
-/-- 闭形式沿充分光滑映射拉回后仍然是闭形式。-/
+/-- 闭形式沿充分光滑映射拉回后仍然是闭形式。
+@isnad1 id=isclosed.4h6v.s7.927d2150d7ab from=translated src=- shape=70669e00 vocab=c793c631
+-/
 theorem closedForm_pullback {E : Type u} {F : Type v}
     [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup F] [NormedSpace ℝ F]
@@ -159,7 +180,9 @@ theorem closedForm_pullback {E : Type u} {F : Type v}
   simp
 
 /-- 外微分的教材交替和公式：依次删去第 `i` 个方向，把其余方向代入原形式，
-再沿被删去的方向求导，并按 `(-1)^i` 求和。-/
+再沿被删去的方向求导，并按 `(-1)^i` 求和。
+@isnad1 id=eq.1h5v.s9.8ec4ee8a5acb from=translated src=- shape=dca1182a vocab=dbf52101
+-/
 theorem exteriorDerivative_apply {E : Type u} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {k : ℕ} {ω : DifferentialForm E k} {x : E} (hω : DifferentiableAt ℝ ω x)
     (v : Fin (k + 1) → E) :
@@ -203,7 +226,9 @@ def algebraicFormWedge {E : Type u} [AddCommGroup E] [Module ℝ E] {k l : ℕ}
     AlgebraicDifferentialForm E (k + l) :=
   fun x ↦ alternatingWedge (ω x) (η x)
 
-/-- 楔积对左变量可加。证明使用 `domCoprod'` 的张量积线性化接口。-/
+/-- 楔积对左变量可加。证明使用 `domCoprod'` 的张量积线性化接口。
+@isnad1 id=eq.0h6v.s8.e10bbab8a9d7 from=translated src=- shape=877e9008 vocab=829f61fa
+-/
 theorem alternatingWedge_add_left {E : Type u} [AddCommGroup E] [Module ℝ E] {k l : ℕ}
     (a₁ a₂ : E [⋀^Fin k]→ₗ[ℝ] ℝ) (b : E [⋀^Fin l]→ₗ[ℝ] ℝ) :
     alternatingWedge (a₁ + a₂) b = alternatingWedge a₁ b + alternatingWedge a₂ b := by
@@ -212,7 +237,9 @@ theorem alternatingWedge_add_left {E : Type u} [AddCommGroup E] [Module ℝ E] {
     rfl
   simp [alternatingWedge, h]
 
-/-- 楔积对右变量可加。-/
+/-- 楔积对右变量可加。
+@isnad1 id=eq.0h6v.s8.2033aab57433 from=translated src=- shape=61137c48 vocab=829f61fa
+-/
 theorem alternatingWedge_add_right {E : Type u} [AddCommGroup E] [Module ℝ E] {k l : ℕ}
     (a : E [⋀^Fin k]→ₗ[ℝ] ℝ) (b₁ b₂ : E [⋀^Fin l]→ₗ[ℝ] ℝ) :
     alternatingWedge a (b₁ + b₂) = alternatingWedge a b₁ + alternatingWedge a b₂ := by
@@ -221,21 +248,27 @@ theorem alternatingWedge_add_right {E : Type u} [AddCommGroup E] [Module ℝ E] 
     rfl
   simp [alternatingWedge, h]
 
-/-- 零交替映射从左侧作楔积仍为零。-/
+/-- 零交替映射从左侧作楔积仍为零。
+@isnad1 id=eq.0h4v.s7.3fbe7e9cb5c8 from=translated src=- shape=f96f67e2 vocab=829f61fa
+-/
 theorem alternatingWedge_zero_left {E : Type u} [AddCommGroup E] [Module ℝ E] {k l : ℕ}
     (b : E [⋀^Fin l]→ₗ[ℝ] ℝ) : alternatingWedge (0 : E [⋀^Fin k]→ₗ[ℝ] ℝ) b = 0 := by
   have h : (0 : E [⋀^Fin k]→ₗ[ℝ] ℝ).domCoprod b = 0 := by
     rw [← AlternatingMap.domCoprod'_apply, TensorProduct.zero_tmul, _root_.map_zero]
   simp [alternatingWedge, h]
 
-/-- 零交替映射从右侧作楔积仍为零。-/
+/-- 零交替映射从右侧作楔积仍为零。
+@isnad1 id=eq.0h4v.s7.ce21ae1521fe from=translated src=- shape=224fcc8e vocab=829f61fa
+-/
 theorem alternatingWedge_zero_right {E : Type u} [AddCommGroup E] [Module ℝ E] {k l : ℕ}
     (a : E [⋀^Fin k]→ₗ[ℝ] ℝ) : alternatingWedge a (0 : E [⋀^Fin l]→ₗ[ℝ] ℝ) = 0 := by
   have h : a.domCoprod (0 : E [⋀^Fin l]→ₗ[ℝ] ℝ) = 0 := by
     rw [← AlternatingMap.domCoprod'_apply, TensorProduct.tmul_zero, _root_.map_zero]
   simp [alternatingWedge, h]
 
-/-- 代数微分形式的楔积对左变量可加。-/
+/-- 代数微分形式的楔积对左变量可加。
+@isnad1 id=eq.0h6v.s7.44317161f15f from=translated src=- shape=513c057f vocab=8506cc17
+-/
 theorem algebraicFormWedge_add_left {E : Type u} [AddCommGroup E] [Module ℝ E] {k l : ℕ}
     (ω₁ ω₂ : AlgebraicDifferentialForm E k) (η : AlgebraicDifferentialForm E l) :
     algebraicFormWedge (ω₁ + ω₂) η =
@@ -243,7 +276,9 @@ theorem algebraicFormWedge_add_left {E : Type u} [AddCommGroup E] [Module ℝ E]
   funext x
   exact alternatingWedge_add_left (ω₁ x) (ω₂ x) (η x)
 
-/-- 代数微分形式的楔积对右变量可加。-/
+/-- 代数微分形式的楔积对右变量可加。
+@isnad1 id=eq.0h6v.s7.057db7b6e0fd from=translated src=- shape=b96efcdf vocab=8506cc17
+-/
 theorem algebraicFormWedge_add_right {E : Type u} [AddCommGroup E] [Module ℝ E] {k l : ℕ}
     (ω : AlgebraicDifferentialForm E k) (η₁ η₂ : AlgebraicDifferentialForm E l) :
     algebraicFormWedge ω (η₁ + η₂) =
@@ -251,14 +286,18 @@ theorem algebraicFormWedge_add_right {E : Type u} [AddCommGroup E] [Module ℝ E
   funext x
   exact alternatingWedge_add_right (ω x) (η₁ x) (η₂ x)
 
-/-- 零代数微分形式从左侧作楔积仍为零。-/
+/-- 零代数微分形式从左侧作楔积仍为零。
+@isnad1 id=eq.0h4v.s7.27d21f96840a from=translated src=- shape=d025ed2b vocab=8506cc17
+-/
 theorem algebraicFormWedge_zero_left {E : Type u} [AddCommGroup E] [Module ℝ E] {k l : ℕ}
     (η : AlgebraicDifferentialForm E l) :
     algebraicFormWedge (0 : AlgebraicDifferentialForm E k) η = 0 := by
   funext x
   exact alternatingWedge_zero_left (η x)
 
-/-- 零代数微分形式从右侧作楔积仍为零。-/
+/-- 零代数微分形式从右侧作楔积仍为零。
+@isnad1 id=eq.0h4v.s7.cb725ad900bd from=translated src=- shape=2f38b5ec vocab=8506cc17
+-/
 theorem algebraicFormWedge_zero_right {E : Type u} [AddCommGroup E] [Module ℝ E] {k l : ℕ}
     (ω : AlgebraicDifferentialForm E k) :
     algebraicFormWedge ω (0 : AlgebraicDifferentialForm E l) = 0 := by
@@ -275,7 +314,9 @@ def shuffleCount (k l : ℕ) : ℝ :=
   Fintype.card (Equiv.Perm.ModSumCongr (Fin k) (Fin l))
 
 /-- 每个带符号 shuffle 项都满足由两个因子算子范数给出的乘积界。置换符号只可能
-为 `1` 或 `-1`，所以不改变范数；置换也不改变全部输入范数的乘积。-/
+为 `1` 或 `-1`，所以不改变范数；置换也不改变全部输入范数的乘积。
+@isnad1 id=le.0h7v.s10.eb89d2fd9056 from=translated src=- shape=a51c04b4 vocab=9fcd52a7
+-/
 theorem alternatingWedge_summand_bound {E : Type u}
     [NormedAddCommGroup E] [NormedSpace ℝ E] {k l : ℕ}
     (a : E [⋀^Fin k]→L[ℝ] ℝ) (b : E [⋀^Fin l]→L[ℝ] ℝ)
@@ -318,7 +359,9 @@ theorem alternatingWedge_summand_bound {E : Type u}
         change ‖(TensorProduct.lid ℝ ℝ) ((-1 : ℤ) • (_ ⊗ₜ[ℝ] _))‖ ≤ _
         simpa only [neg_one_zsmul, map_neg, TensorProduct.lid_tmul, norm_neg] using hmain
 
-/-- 整个 shuffle 和的范数界。常数取 shuffle 的数目乘两个因子的算子范数。-/
+/-- 整个 shuffle 和的范数界。常数取 shuffle 的数目乘两个因子的算子范数。
+@isnad1 id=le.0h6v.s9.69616b675bf7 from=translated src=- shape=98b9acf4 vocab=128db8c5
+-/
 theorem alternatingWedge_bound {E : Type u} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {k l : ℕ} (a : E [⋀^Fin k]→L[ℝ] ℝ) (b : E [⋀^Fin l]→L[ℝ] ℝ)
     (v : Fin (k + l) → E) :
@@ -359,7 +402,9 @@ def formWedge {E : Type u} [NormedAddCommGroup E] [NormedSpace ℝ E] {k l : ℕ
     (ω : DifferentialForm E k) (η : DifferentialForm E l) : DifferentialForm E (k + l) :=
   fun x ↦ continuousAlternatingWedge (ω x) (η x)
 
-/-- 连续楔积的取值就是底层代数楔积的取值。-/
+/-- 连续楔积的取值就是底层代数楔积的取值。
+@isnad1 id=eq.0h6v.s8.5cf571a1c1aa from=translated src=- shape=542c5559 vocab=8c55a20d
+-/
 theorem continuousAlternatingWedge_apply {E : Type u}
     [NormedAddCommGroup E] [NormedSpace ℝ E] {k l : ℕ}
     (a : E [⋀^Fin k]→L[ℝ] ℝ) (b : E [⋀^Fin l]→L[ℝ] ℝ) (v : Fin (k + l) → E) :
@@ -367,7 +412,9 @@ theorem continuousAlternatingWedge_apply {E : Type u}
       alternatingWedge a.toAlternatingMap b.toAlternatingMap v := by
   rfl
 
-/-- 微分形式楔积的点态计算公式。-/
+/-- 微分形式楔积的点态计算公式。
+@isnad1 id=eq.0h7v.s8.e14628f7d703 from=translated src=- shape=4dcb504b vocab=b723850d
+-/
 theorem formWedge_apply {E : Type u} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {k l : ℕ} (ω : DifferentialForm E k) (η : DifferentialForm E l)
     (x : E) (v : Fin (k + l) → E) :
@@ -377,7 +424,9 @@ theorem formWedge_apply {E : Type u} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 /-! ## 楔积的双线性 -/
 
-/-- 连续楔积对左变量可加。-/
+/-- 连续楔积对左变量可加。
+@isnad1 id=eq.0h6v.s9.70150b4d1e3c from=translated src=- shape=877e9008 vocab=0776fdc3
+-/
 theorem continuousAlternatingWedge_add_left {E : Type u}
     [NormedAddCommGroup E] [NormedSpace ℝ E] {k l : ℕ}
     (a₁ a₂ : E [⋀^Fin k]→L[ℝ] ℝ) (b : E [⋀^Fin l]→L[ℝ] ℝ) :
@@ -387,7 +436,9 @@ theorem continuousAlternatingWedge_add_left {E : Type u}
   exact DFunLike.congr_fun (alternatingWedge_add_left
     a₁.toAlternatingMap a₂.toAlternatingMap b.toAlternatingMap) v
 
-/-- 连续楔积对右变量可加。-/
+/-- 连续楔积对右变量可加。
+@isnad1 id=eq.0h6v.s9.4e3c951e7127 from=translated src=- shape=61137c48 vocab=0776fdc3
+-/
 theorem continuousAlternatingWedge_add_right {E : Type u}
     [NormedAddCommGroup E] [NormedSpace ℝ E] {k l : ℕ}
     (a : E [⋀^Fin k]→L[ℝ] ℝ) (b₁ b₂ : E [⋀^Fin l]→L[ℝ] ℝ) :
@@ -397,7 +448,9 @@ theorem continuousAlternatingWedge_add_right {E : Type u}
   exact DFunLike.congr_fun (alternatingWedge_add_right
     a.toAlternatingMap b₁.toAlternatingMap b₂.toAlternatingMap) v
 
-/-- 零连续交替映射从左侧作楔积仍为零。-/
+/-- 零连续交替映射从左侧作楔积仍为零。
+@isnad1 id=eq.0h4v.s8.9b0c08e18806 from=translated src=- shape=f96f67e2 vocab=0776fdc3
+-/
 theorem continuousAlternatingWedge_zero_left {E : Type u}
     [NormedAddCommGroup E] [NormedSpace ℝ E] {k l : ℕ}
     (b : E [⋀^Fin l]→L[ℝ] ℝ) :
@@ -405,7 +458,9 @@ theorem continuousAlternatingWedge_zero_left {E : Type u}
   ext v
   exact DFunLike.congr_fun (alternatingWedge_zero_left b.toAlternatingMap) v
 
-/-- 零连续交替映射从右侧作楔积仍为零。-/
+/-- 零连续交替映射从右侧作楔积仍为零。
+@isnad1 id=eq.0h4v.s8.171255701949 from=translated src=- shape=224fcc8e vocab=0776fdc3
+-/
 theorem continuousAlternatingWedge_zero_right {E : Type u}
     [NormedAddCommGroup E] [NormedSpace ℝ E] {k l : ℕ}
     (a : E [⋀^Fin k]→L[ℝ] ℝ) :
@@ -413,28 +468,36 @@ theorem continuousAlternatingWedge_zero_right {E : Type u}
   ext v
   exact DFunLike.congr_fun (alternatingWedge_zero_right a.toAlternatingMap) v
 
-/-- 微分形式楔积对左变量可加。-/
+/-- 微分形式楔积对左变量可加。
+@isnad1 id=eq.0h6v.s8.06f929e2a2ff from=translated src=- shape=513c057f vocab=dad64099
+-/
 theorem formWedge_add_left {E : Type u} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {k l : ℕ} (ω₁ ω₂ : DifferentialForm E k) (η : DifferentialForm E l) :
     formWedge (ω₁ + ω₂) η = formWedge ω₁ η + formWedge ω₂ η := by
   funext x
   exact continuousAlternatingWedge_add_left (ω₁ x) (ω₂ x) (η x)
 
-/-- 微分形式楔积对右变量可加。-/
+/-- 微分形式楔积对右变量可加。
+@isnad1 id=eq.0h6v.s8.8097c730feba from=translated src=- shape=b96efcdf vocab=dad64099
+-/
 theorem formWedge_add_right {E : Type u} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {k l : ℕ} (ω : DifferentialForm E k) (η₁ η₂ : DifferentialForm E l) :
     formWedge ω (η₁ + η₂) = formWedge ω η₁ + formWedge ω η₂ := by
   funext x
   exact continuousAlternatingWedge_add_right (ω x) (η₁ x) (η₂ x)
 
-/-- 零微分形式从左侧作楔积仍为零。-/
+/-- 零微分形式从左侧作楔积仍为零。
+@isnad1 id=eq.0h4v.s8.24117c3c0be8 from=translated src=- shape=d025ed2b vocab=dad64099
+-/
 theorem formWedge_zero_left {E : Type u} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {k l : ℕ} (η : DifferentialForm E l) :
     formWedge (0 : DifferentialForm E k) η = 0 := by
   funext x
   exact continuousAlternatingWedge_zero_left (η x)
 
-/-- 零微分形式从右侧作楔积仍为零。-/
+/-- 零微分形式从右侧作楔积仍为零。
+@isnad1 id=eq.0h4v.s8.d02ccf8ddcfd from=translated src=- shape=2f38b5ec vocab=dad64099
+-/
 theorem formWedge_zero_right {E : Type u} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {k l : ℕ} (ω : DifferentialForm E k) :
     formWedge ω (0 : DifferentialForm E l) = 0 := by
@@ -443,7 +506,9 @@ theorem formWedge_zero_right {E : Type u} [NormedAddCommGroup E] [NormedSpace �
 
 /-! ## 交替映射与形式的次数重编号 -/
 
-/-- 沿有限指标等价重编号后，连续交替映射仍满足原算子范数给出的乘积界。-/
+/-- 沿有限指标等价重编号后，连续交替映射仍满足原算子范数给出的乘积界。
+@isnad1 id=le.0h6v.s8.7e22d009e445 from=translated src=- shape=247685a7 vocab=82912aca
+-/
 theorem alternatingReindex_bound {E : Type u} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {ι : Type v} {ι' : Type w} [Fintype ι] [Fintype ι']
     (σ : ι ≃ ι') (a : E [⋀^ι]→L[ℝ] ℝ) (x : ι' → E) :
@@ -464,7 +529,9 @@ def continuousAlternatingReindex {E : Type u}
     (σ : ι ≃ ι') (a : E [⋀^ι]→L[ℝ] ℝ) : E [⋀^ι']→L[ℝ] ℝ :=
   (a.toAlternatingMap.domDomCongr σ).mkContinuous ‖a‖ (alternatingReindex_bound σ a)
 
-/-- 重编号后的连续交替映射按指标等价预合成输入。-/
+/-- 重编号后的连续交替映射按指标等价预合成输入。
+@isnad1 id=eq.0h6v.s8.8a7cc7cf4a93 from=translated src=- shape=09c9d31f vocab=209eca50
+-/
 theorem continuousAlternatingReindex_apply {E : Type u}
     [NormedAddCommGroup E] [NormedSpace ℝ E]
     {ι : Type v} {ι' : Type w} [Fintype ι] [Fintype ι']
@@ -477,7 +544,9 @@ def reindexForm {E : Type u} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {m n : ℕ} (h : m = n) (ω : DifferentialForm E m) : DifferentialForm E n :=
   fun x ↦ continuousAlternatingReindex (finCongr h) (ω x)
 
-/-- 次数重编号形式的点态计算公式。-/
+/-- 次数重编号形式的点态计算公式。
+@isnad1 id=eq.1h6v.s8.d4cc24323fd7 from=translated src=- shape=400c5bc2 vocab=440d2820
+-/
 theorem reindexForm_apply {E : Type u} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {m n : ℕ} (h : m = n) (ω : DifferentialForm E m) (x : E) (v : Fin n → E) :
     reindexForm h ω x v = ω x (v ∘ finCongr h) := by
@@ -485,7 +554,9 @@ theorem reindexForm_apply {E : Type u} [NormedAddCommGroup E] [NormedSpace ℝ E
 
 /-! ## 楔积的连续双线性算子 -/
 
-/-- 代数楔积与左侧实数数乘交换。-/
+/-- 代数楔积与左侧实数数乘交换。
+@isnad1 id=eq.0h6v.s8.25a856aee597 from=translated src=- shape=502ef9c8 vocab=42b178ff
+-/
 theorem alternatingWedge_smul_left {E : Type u} [AddCommGroup E] [Module ℝ E]
     {k l : ℕ} (c : ℝ) (a : E [⋀^Fin k]→ₗ[ℝ] ℝ) (b : E [⋀^Fin l]→ₗ[ℝ] ℝ) :
     alternatingWedge (c • a) b = c • alternatingWedge a b := by
@@ -494,7 +565,9 @@ theorem alternatingWedge_smul_left {E : Type u} [AddCommGroup E] [Module ℝ E]
     rfl
   simp [alternatingWedge, h]
 
-/-- 代数楔积与右侧实数数乘交换。-/
+/-- 代数楔积与右侧实数数乘交换。
+@isnad1 id=eq.0h6v.s8.3222956769dc from=translated src=- shape=7341815a vocab=42b178ff
+-/
 theorem alternatingWedge_smul_right {E : Type u} [AddCommGroup E] [Module ℝ E]
     {k l : ℕ} (c : ℝ) (a : E [⋀^Fin k]→ₗ[ℝ] ℝ) (b : E [⋀^Fin l]→ₗ[ℝ] ℝ) :
     alternatingWedge a (c • b) = c • alternatingWedge a b := by
@@ -503,7 +576,9 @@ theorem alternatingWedge_smul_right {E : Type u} [AddCommGroup E] [Module ℝ E]
     rfl
   simp [alternatingWedge, h]
 
-/-- 连续楔积与左侧实数数乘交换。-/
+/-- 连续楔积与左侧实数数乘交换。
+@isnad1 id=eq.0h6v.s9.5c62ebaf870a from=translated src=- shape=502ef9c8 vocab=3b2f9b5c
+-/
 theorem continuousAlternatingWedge_smul_left {E : Type u}
     [NormedAddCommGroup E] [NormedSpace ℝ E] {k l : ℕ}
     (c : ℝ) (a : E [⋀^Fin k]→L[ℝ] ℝ) (b : E [⋀^Fin l]→L[ℝ] ℝ) :
@@ -512,7 +587,9 @@ theorem continuousAlternatingWedge_smul_left {E : Type u}
   exact DFunLike.congr_fun
     (alternatingWedge_smul_left c a.toAlternatingMap b.toAlternatingMap) v
 
-/-- 连续楔积与右侧实数数乘交换。-/
+/-- 连续楔积与右侧实数数乘交换。
+@isnad1 id=eq.0h6v.s9.031bb7d6a27b from=translated src=- shape=7341815a vocab=3b2f9b5c
+-/
 theorem continuousAlternatingWedge_smul_right {E : Type u}
     [NormedAddCommGroup E] [NormedSpace ℝ E] {k l : ℕ}
     (c : ℝ) (a : E [⋀^Fin k]→L[ℝ] ℝ) (b : E [⋀^Fin l]→L[ℝ] ℝ) :
@@ -529,7 +606,9 @@ def wedgeLinearMap {E : Type u} [NormedAddCommGroup E] [NormedSpace ℝ E] (k l 
     continuousAlternatingWedge_add_left continuousAlternatingWedge_smul_left
     continuousAlternatingWedge_add_right continuousAlternatingWedge_smul_right
 
-/-- 连续楔积的算子范数由 shuffle 数目乘两个因子范数控制。-/
+/-- 连续楔积的算子范数由 shuffle 数目乘两个因子范数控制。
+@isnad1 id=le.0h5v.s8.2ad2c2089a3c from=translated src=- shape=e03ea15c vocab=08ee21a3
+-/
 theorem continuousAlternatingWedge_norm_le {E : Type u}
     [NormedAddCommGroup E] [NormedSpace ℝ E] {k l : ℕ}
     (a : E [⋀^Fin k]→L[ℝ] ℝ) (b : E [⋀^Fin l]→L[ℝ] ℝ) :
@@ -550,7 +629,9 @@ def wedgeContinuousBilinear {E : Type u}
     change ‖continuousAlternatingWedge a b‖ ≤ shuffleCount k l * ‖a‖ * ‖b‖
     exact continuousAlternatingWedge_norm_le a b
 
-/-- 连续双线性算子的求值就是此前定义的连续楔积。-/
+/-- 连续双线性算子的求值就是此前定义的连续楔积。
+@isnad1 id=eq.0h5v.s12.4ead099bcffb from=translated src=- shape=7c2db1f4 vocab=c7838b3d
+-/
 theorem wedgeContinuousBilinear_apply {E : Type u}
     [NormedAddCommGroup E] [NormedSpace ℝ E] {k l : ℕ}
     (a : E [⋀^Fin k]→L[ℝ] ℝ) (b : E [⋀^Fin l]→L[ℝ] ℝ) :
@@ -563,7 +644,9 @@ theorem wedgeContinuousBilinear_apply {E : Type u}
 实例选择冲突，求导过程先进入 `NormalizedAlternatingSpace`，完成连续双线性
 乘积的求导后再回到原形式空间。底层函数始终是同一个楔积。 -/
 
-/-- 形式场进入规范交替映射空间后保持点可微性。-/
+/-- 形式场进入规范交替映射空间后保持点可微性。
+@isnad1 id=differen.1h4v.s9.4f8f99378304 from=translated src=- shape=d5182169 vocab=98d56d40
+-/
 theorem normalizedAlternatingSpace_differentiableAt {E : Type u}
     [NormedAddCommGroup E] [NormedSpace ℝ E] {k : ℕ}
     {ω : DifferentialForm E k} {x : E} (hω : DifferentiableAt ℝ ω x) :
@@ -590,7 +673,9 @@ def normalizedWedgeContinuousBilinear {E : Type u}
     exact continuousAlternatingWedge_norm_le a b
 
 /-- 两个点可微形式的楔积仍然点可微。证明在规范范数模型中应用连续双线性
-映射的 Fréchet 乘积法则，再通过恒等连续线性桥返回原形式空间。-/
+映射的 Fréchet 乘积法则，再通过恒等连续线性桥返回原形式空间。
+@isnad1 id=differen.2h6v.s9.74ff96029c29 from=translated src=- shape=17737c91 vocab=c0d4ac60
+-/
 theorem differentiableAt_formWedge {E : Type u}
     [NormedAddCommGroup E] [NormedSpace ℝ E] {k l : ℕ}
     {ω : DifferentialForm E k} {η : DifferentialForm E l} {x : E}
