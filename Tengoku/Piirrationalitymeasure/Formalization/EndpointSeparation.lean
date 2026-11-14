@@ -79,6 +79,9 @@ private theorem rational_gap_of_denominator {x : ℚ} {D : ℕ} (hD : 0 < D)
   have hm := mul_le_mul_of_nonneg_left hDle' (abs_nonneg x)
   linarith
 
+/--
+@isnad1 id=le.1h5v.s6.b8c72844731d from=translated src=- shape=c5f8a240 vocab=d446a5ff
+-/
 theorem candidateEndpoint_integer_offset_gap (T S : SavingEndpointType) (j k m : ℤ)
     (hne : candidateEndpointBaseRat T j - candidateEndpointBaseRat S k ≠ (m : ℚ)) :
     (1 : ℚ) / 13797510 ≤
@@ -91,6 +94,9 @@ theorem candidateEndpoint_integer_offset_gap (T S : SavingEndpointType) (j k m :
 
 def endpointCircularGap (x y : ℚ) : ℚ := min |x - y| (1 - |x - y|)
 
+/--
+@isnad1 id=le.3h2v.s5.f6e8731a0ed1 from=translated src=- shape=298dad32 vocab=7b315f86
+-/
 theorem candidateEndpoint_circular_gap_lower {x y : ℚ}
     (hx : x ∈ candidateDistinctEndpointBases) (hy : y ∈ candidateDistinctEndpointBases)
     (hne : x ≠ y) : (1 : ℚ) / 13797510 ≤ endpointCircularGap x y := by
@@ -117,6 +123,9 @@ theorem candidateEndpoint_circular_gap_lower {x y : ℚ}
         candidateEndpointBaseRat S k - (-1))] at h
       linarith
 
+/--
+@isnad1 id=and.0h0v.s6.a02799bbfb6a from=translated src=- shape=e954162c vocab=0c6acc4e
+-/
 theorem candidateEndpoint_circular_gap_attained :
     candidateEndpointBaseRat .B 1856 ∈ candidateDistinctEndpointBases ∧
     candidateEndpointBaseRat .Q 1857 ∈ candidateDistinctEndpointBases ∧
@@ -129,11 +138,17 @@ theorem candidateEndpoint_circular_gap_attained :
       candidateEndpointBaseRat, candidateEndpointShiftRat, candidateEndpointSlopeRat,
       endpointCircularGap]
 
+/--
+@isnad1 id=and.0h0v.s7.6a6f422655f9 from=translated src=- shape=1026a8e4 vocab=40c9b925
+-/
 theorem candidateEndpoint_separation_constants :
     max (1 / 1857 : ℚ) (max (1 / 3714) (2 / 3715)) = 1 / 1857 ∧
       2 * (1 / 1857 : ℚ) * (1 / 60000) < (1 / 13797510) / 4 := by
   norm_num
 
+/--
+@isnad1 id=le.0h3v.s6.0f43ae22003a from=translated src=- shape=0c41c222 vocab=6f34c821
+-/
 theorem candidateEndpoint_displacement_bound (T : SavingEndpointType) (j : ℤ)
     (z : ℝ × ℝ) :
     |savingEndpoint 1857 3714 5570 z T j - savingEndpoint 1857 3714 5570 0 T j| ≤
@@ -164,6 +179,9 @@ theorem candidateEndpoint_displacement_bound (T : SavingEndpointType) (j : ℤ)
     dsimp [parameterNormOne]
     linarith
 
+/--
+@isnad1 id=lt.2h6v.s8.832253aa4c33 from=translated src=- shape=63b5f2c6 vocab=e9c8d007
+-/
 theorem candidateEndpoint_explicit_separation (T S : SavingEndpointType) (j k m : ℤ)
     {z : ℝ × ℝ} (hz : parameterNormOne z < 1 / 60000)
     (hne : savingEndpoint 1857 3714 5570 0 T j -

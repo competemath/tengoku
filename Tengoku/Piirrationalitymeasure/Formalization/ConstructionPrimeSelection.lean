@@ -29,6 +29,9 @@ noncomputable def constructionRemovablePrimes (a b c n : ℕ) : Finset ℕ := by
 noncomputable def constructionPhi (a b c n : ℕ) : ℕ :=
   (constructionRemovablePrimes a b c n).prod id
 
+/--
+@isnad1 id=iff.0h4v.s5.dd700719d1cd from=translated src=- shape=27e325d3 vocab=0534a723
+-/
 theorem constructionSavingCondition_iff_chi (a b c : ℕ) (u : ℝ) :
     constructionSavingCondition a b c u ↔
       savingChi ((a : ℝ) * u) ((b : ℝ) * u) ((c : ℝ) * u) = 1 := by
@@ -43,6 +46,9 @@ private theorem fract_integer_scale (k : ℕ) (u t : ℝ) :
     ring
   rw [heq, Int.fract_sub_intCast]
 
+/--
+@isnad1 id=iff.0h4v.s4.a76583cfea6b from=translated src=- shape=70a75896 vocab=93924afe
+-/
 theorem constructionSavingCondition_fract (a b c : ℕ) (u : ℝ) :
     constructionSavingCondition a b c (Int.fract u) ↔ constructionSavingCondition a b c u := by
   have hb := fract_integer_scale b u 0
@@ -50,11 +56,17 @@ theorem constructionSavingCondition_fract (a b c : ℕ) (u : ℝ) :
   simp only [add_zero] at hb hc
   simp only [constructionSavingCondition, fract_integer_scale, hb, hc]
 
+/--
+@isnad1 id=iff.0h4v.s4.27b5cbe04227 from=translated src=- shape=8fa5e8d9 vocab=e2f435c3
+-/
 theorem fract_mem_constructionSavingSet (a b c : ℕ) (u : ℝ) :
     Int.fract u ∈ constructionSavingSet a b c ↔ constructionSavingCondition a b c u := by
   simp only [constructionSavingSet, Set.mem_ofPred_eq, Int.fract_nonneg, Int.fract_lt_one,
     true_and, constructionSavingCondition_fract]
 
+/--
+@isnad1 id=iff.0h5v.s6.0c5b13480df7 from=translated src=- shape=62a6d65e vocab=47cf5bd9
+-/
 theorem constructionRemovablePrime_iff_periodic (a b c n p : ℕ) :
     constructionRemovablePrime a b c n p ↔
       Nat.Prime p ∧ 5 < p ∧ Nat.sqrt (constructionDegree a b c * n) < p ∧
@@ -73,6 +85,9 @@ theorem constructionRemovablePrime_iff_periodic (a b c n p : ℕ) :
       Rat.cast_natCast, Rat.cast_one, Nat.cast_mul, mul_div_assoc]
   rw [hcast]
 
+/--
+@isnad1 id=ex.2h3v.s6.0ca11a20662d from=translated src=- shape=ce0a14eb vocab=e6552a70
+-/
 theorem constructionSaving_initial_gap {a b c : ℕ} (hc : 0 < c)
     (hp : Admissible (constructionParameter a b c)) :
     ∃ ε : ℝ, 0 < ε ∧ ∀ u : ℝ, 0 < u →
@@ -115,6 +130,9 @@ theorem constructionSaving_initial_gap {a b c : ℕ} (hc : 0 < c)
   have := (constructionSavingCondition_iff_chi a b c u).mp hsel
   linarith
 
+/--
+@isnad1 id=ex.2h3v.s6.d1ca77c8406d from=translated src=- shape=864541e5 vocab=500c7da3
+-/
 theorem constructionSavingSet_initial_gap {a b c : ℕ} (hc : 0 < c)
     (hp : Admissible (constructionParameter a b c)) :
     ∃ ε : ℝ, 0 < ε ∧ constructionSavingSet a b c ∩
@@ -124,6 +142,9 @@ theorem constructionSavingSet_initial_gap {a b c : ℕ} (hc : 0 < c)
   intro u hu
   exact hgap u hu.2.1 hu.2.2 hu.1.2.2
 
+/--
+@isnad1 id=eq.1h3v.s5.92bd4e5f4319 from=translated src=- shape=bf7cc634 vocab=8bbf1bbc
+-/
 theorem constructionSavingOmega_eq_phi (a b c : ℕ) (hc : 0 < c) :
     savingOmega a b c = (c : ℝ) * savingPhi (constructionParameter a b c) := by
   have hc' : (c : ℝ) ≠ 0 := by exact_mod_cast hc.ne'
@@ -131,6 +152,9 @@ theorem constructionSavingOmega_eq_phi (a b c : ℕ) (hc : 0 < c) :
     (show (0 : ℝ) < c by exact_mod_cast hc)
   simpa only [mul_div_cancel₀ _ hc', constructionParameter] using h
 
+/--
+@isnad1 id=or.1h5v.s8.0f884f95e6a5 from=translated src=- shape=636b3a5c vocab=8bd93391
+-/
 theorem constructionRemovablePrime_residue_cases {a b c n p : ℕ}
     (hp : constructionRemovablePrime a b c n p) :
     (2 * ((a * n) % p) < p ∧
@@ -147,6 +171,9 @@ theorem constructionRemovablePrime_residue_cases {a b c n p : ℕ}
     · exact hodd
   exact deletion_residue_cases p _ _ _ hp.1.pos hodd (Nat.mod_lt _ hp.1.pos) hcond
 
+/--
+@isnad1 id=evenobst.1h5v.s6.d94573dfb85b from=translated src=- shape=919dd818 vocab=7bfc71fd
+-/
 theorem constructionRemovablePrime_obstructionFree {a b c n p : ℕ} [Fact p.Prime]
     (hp : constructionRemovablePrime a b c n p) :
     evenObstructionFree p
@@ -158,6 +185,9 @@ theorem constructionRemovablePrime_obstructionFree {a b c n p : ℕ} [Fact p.Pri
   · exact finiteFieldH_evenObstructionFree_low_bound p _ _ _ hp.2.1 hCp hC
   · exact finiteFieldH_evenObstructionFree_high_bound p _ _ _ hp.2.1 hCp hA hC
 
+/--
+@isnad1 id=ex.1h5v.s11.11ca8ccc91f7 from=translated src=- shape=aa7ea7d5 vocab=66d0bb81
+-/
 theorem constructionRemovablePrime_polynomial_primitive {a b c n p : ℕ} [Fact p.Prime]
     (hp : constructionRemovablePrime a b c n p) :
     ∃ V : Polynomial (ZMod p), Polynomial.derivative V =

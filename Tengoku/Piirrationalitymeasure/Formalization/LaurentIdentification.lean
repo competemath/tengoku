@@ -12,6 +12,9 @@ namespace PiIrrationality
 
 open Polynomial
 
+/--
+@isnad1 id=eq.0h2v.s6.041119ad3672 from=translated src=- shape=69140469 vocab=c2da9f95
+-/
 theorem normalizedDeriv_shift_power (k m : ℕ) :
     normalizedDeriv k (fun t : ℝ => (t + 5) ^ m) (-5) = if m = k then 1 else 0 := by
   unfold normalizedDeriv
@@ -27,6 +30,9 @@ theorem normalizedDeriv_shift_power (k m : ℕ) :
     simp [h, hk, zero_pow hmk]
   · simp [h, hk]
 
+/--
+@isnad1 id=eq.2h3v.s6.e972e7a4e177 from=translated src=- shape=f11de4f1 vocab=151403e9
+-/
 theorem normalizedDeriv_shift_power_mul_zero
     (k m : ℕ) (hkm : k < m) (f : ℝ → ℝ) (hf : ContDiffAt ℝ k f (-5)) :
     normalizedDeriv k (fun t : ℝ => (t + 5) ^ m * f t) (-5) = 0 := by
@@ -36,6 +42,9 @@ theorem normalizedDeriv_shift_power_mul_zero
   have hi' : i ≤ k := Nat.lt_succ_iff.mp (Finset.mem_range.mp hi)
   rw [normalizedDeriv_shift_power, ite_eq_right (by omega), zero_mul]
 
+/--
+@isnad1 id=eq.0h3v.s6.bd6dfc8badc2 from=translated src=- shape=84250b47 vocab=be97f51c
+-/
 theorem normalizedDeriv_shift_polynomial (m : ℕ) (a : Fin m → ℚ) (k : Fin m) :
     normalizedDeriv k.val (fun t : ℝ => ∑ i : Fin m, (a i : ℝ) * (t + 5) ^ i.val) (-5) =
       (a k : ℝ) := by
@@ -51,6 +60,9 @@ theorem normalizedDeriv_shift_polynomial (m : ℕ) (a : Fin m → ℚ) (k : Fin 
     simp [hval]
   · simp
 
+/--
+@isnad1 id=eq.2h4v.s9.ac9452927dc2 from=translated src=- shape=d7c0b21b vocab=798195bf
+-/
 theorem regularized_eq_of_twoPoleDecomposition
     (n : ℕ) (a b : Fin (5570 * n + 1) → ℚ) (hF : TwoPoleDecomposition n a b)
     (t : ℝ) (ht : t ≠ 5) :
@@ -78,6 +90,9 @@ theorem regularized_eq_of_twoPoleDecomposition
   field_simp at *
   linear_combination h
 
+/--
+@isnad1 id=eq.1h4v.s7.c1d92c07d5d0 from=translated src=- shape=5293aa1f vocab=a97dc484
+-/
 theorem normalizedDeriv_regularized_of_twoPoleDecomposition
     (n : ℕ) (a b : Fin (5570 * n + 1) → ℚ) (hF : TwoPoleDecomposition n a b)
     (k : Fin (5570 * n + 1)) :
@@ -117,6 +132,9 @@ theorem normalizedDeriv_regularized_of_twoPoleDecomposition
   rw [hsplit, normalizedDeriv_shift_polynomial,
     normalizedDeriv_shift_power_mul_zero k.val _ k.isLt f hf, add_zero]
 
+/--
+@isnad1 id=eq.1h4v.s7.e923c9adfc71 from=translated src=- shape=bafd8bd6 vocab=630b907c
+-/
 theorem leftPartialCoeff_eq_laurentCoeffRat
     (n : ℕ) (a b : Fin (5570 * n + 1) → ℚ) (hF : TwoPoleDecomposition n a b)
     (k : Fin (5570 * n + 1)) :
@@ -126,6 +144,9 @@ theorem leftPartialCoeff_eq_laurentCoeffRat
   rw [show (5570 * (n : ℤ) - (5570 * (n : ℤ) - k.val)).toNat = k.val by omega]
   exact (normalizedDeriv_regularized_of_twoPoleDecomposition n a b hF k).symm
 
+/--
+@isnad1 id=eq.1h4v.s7.22efe9c1d6ac from=translated src=- shape=dc779430 vocab=84bbedf8
+-/
 theorem rightPartialCoeff_eq_laurentCoeffRat
     (n : ℕ) (a b : Fin (5570 * n + 1) → ℚ) (hF : TwoPoleDecomposition n a b)
     (k : Fin (5570 * n + 1)) :
@@ -136,6 +157,9 @@ theorem rightPartialCoeff_eq_laurentCoeffRat
   rw [← h, ← mul_assoc, ← mul_pow]
   norm_num
 
+/--
+@isnad1 id=twopoled.0h1v.s7.b32a12843706 from=translated src=- shape=cab9c6f7 vocab=84bbedf8
+-/
 theorem actual_twoPoleDecomposition (n : ℕ) :
     TwoPoleDecomposition n
       (fun i => laurentCoeffRat n (5570 * (n : ℤ) - i.val))

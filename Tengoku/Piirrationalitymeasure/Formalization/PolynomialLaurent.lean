@@ -17,6 +17,9 @@ noncomputable def poleShiftPolynomial (n : ℕ) : Polynomial ℤ :=
 
 noncomputable def poleShiftCoeff (n k : ℕ) : ℤ := (poleShiftPolynomial n).coeff k
 
+/--
+@isnad1 id=eq.1h3v.s7.3a3dcbd22eae from=translated src=- shape=d03a7ff2 vocab=7cc2cf07
+-/
 theorem normalizedDeriv_shift_power_mul (m q : ℕ) (f : ℝ → ℝ)
     (hf : ContDiffAt ℝ (m + q) f (-5)) :
     normalizedDeriv (m + q) (fun t : ℝ => (t + 5) ^ m * f t) (-5) =
@@ -30,6 +33,9 @@ theorem normalizedDeriv_shift_power_mul (m q : ℕ) (f : ℝ → ℝ)
   · intro hm
     exact (hm (Finset.mem_range.mpr (by omega))).elim
 
+/--
+@isnad1 id=eq.0h2v.s7.068b7dd27eef from=translated src=- shape=66635e5a vocab=92119cee
+-/
 theorem normalizedDeriv_inv_linear_choose (j k : ℕ) :
     normalizedDeriv k (fun t : ℝ => 1 / (5 - t) ^ (j + 1)) (-5) =
       ((j + k).choose k : ℝ) / 10 ^ (j + k + 1) := by
@@ -50,6 +56,9 @@ theorem normalizedDeriv_inv_linear_choose (j k : ℕ) :
     rw [← mul_assoc, ← mul_assoc, ← mul_pow]; norm_num]
   field_simp
 
+/--
+@isnad1 id=eq.1h2v.s9.1bc4e76bdf17 from=translated src=- shape=326ee4eb vocab=7472024e
+-/
 theorem otherPole_lowIndex_eq_sum (n : ℕ) (t : ℝ) (ht : t ≠ 5) :
     (∑ i : Fin (5570 * n + 1),
       (((-1 : ℚ) ^ (i.val + (5570 * n + 1)) *
@@ -93,6 +102,9 @@ theorem otherPole_lowIndex_eq_sum (n : ℕ) (t : ℝ) (ht : t ≠ 5) :
   rw [hindex, hpower]
   ring
 
+/--
+@isnad1 id=eq.1h2v.s9.a3bf77f96858 from=translated src=- shape=727d2b80 vocab=7605939a
+-/
 theorem regularized_polynomial_remainder_identity (n : ℕ) (t : ℝ) (ht : t ≠ 5) :
     regularized n t =
       (∑ i : Fin (5570 * n + 1),
@@ -104,6 +116,9 @@ theorem regularized_polynomial_remainder_identity (n : ℕ) (t : ℝ) (ht : t �
   rw [regularized_eq_of_twoPoleDecomposition n _ _ (actual_twoPoleDecomposition n) t ht,
     otherPole_lowIndex_eq_sum n t ht]
 
+/--
+@isnad1 id=eq.0h2v.s6.a05fbf5b10dd from=translated src=- shape=e0251df1 vocab=0e18b818
+-/
 theorem poleShiftCoeff_eq_normalizedDeriv (n q : ℕ) :
     normalizedDeriv q (fun t : ℝ => aeval t (polynomialPart n)) (-5) =
       (poleShiftCoeff n q : ℝ) := by
@@ -111,6 +126,9 @@ theorem poleShiftCoeff_eq_normalizedDeriv (n q : ℕ) :
   simpa only [Int.cast_neg, Int.cast_ofNat] using
     normalizedDeriv_int_polynomial q (polynomialPart n) (-5)
 
+/--
+@isnad1 id=eq.0h2v.s8.fd2f917b8469 from=translated src=- shape=2a2d97fa vocab=a802e656
+-/
 theorem poleShiftCoeff_laurent_formula (n q : ℕ) :
     (poleShiftCoeff n q : ℚ) = laurentCoeffRat n (-((q + 1 : ℕ) : ℤ)) -
       ∑ j : Fin (5570 * n + 1), ((j.val + q).choose q : ℚ) *
@@ -192,14 +210,23 @@ theorem poleShiftCoeff_laurent_formula (n q : ℕ) :
   dsimp only [m] at hd
   linear_combination -hd
 
+/--
+@isnad1 id=eq.0h1v.s5.7211fd6bfb1a from=translated src=- shape=3487779f vocab=e4d7d93b
+-/
 theorem poleShiftPolynomial_natDegree (n : ℕ) :
     (poleShiftPolynomial n).natDegree = 7430 * n - 2 := by
   rw [poleShiftPolynomial, natDegree_taylor, polynomialPart_natDegree]
 
+/--
+@isnad1 id=eq.0h2v.s7.4dad4c718eab from=translated src=- shape=c509404d vocab=fe26aec1
+-/
 theorem poleShiftPolynomial_aeval (n : ℕ) (t : ℂ) :
     aeval (t + 5) (poleShiftPolynomial n) = aeval t (polynomialPart n) := by
   simp [poleShiftPolynomial, taylor_apply, aeval_comp, map_ofNat]
 
+/--
+@isnad1 id=eq.1h2v.s7.6bcec027141e from=translated src=- shape=594f5fe4 vocab=a069c580
+-/
 theorem polynomialPart_pole_expansion (n : ℕ) (hn : 1 ≤ n) (t : ℂ) :
     aeval t (polynomialPart n) = ∑ q ∈ Finset.range (7430 * n - 1),
       (poleShiftCoeff n q : ℂ) * (t + 5) ^ q := by
@@ -208,6 +235,9 @@ theorem polynomialPart_pole_expansion (n : ℕ) (hn : 1 ≤ n) (t : ℂ) :
   rw [show 7430 * n - 2 + 1 = 7430 * n - 1 by omega]
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s8.e13424023257 from=translated src=- shape=23ace5e6 vocab=eb928496
+-/
 theorem polynomialPart_pole_laurent_expansion (n : ℕ) (hn : 1 ≤ n) (t : ℂ) :
     aeval t (polynomialPart n) = ∑ q ∈ Finset.range (7430 * n - 1),
       ((laurentCoeffRat n (-((q + 1 : ℕ) : ℤ)) -

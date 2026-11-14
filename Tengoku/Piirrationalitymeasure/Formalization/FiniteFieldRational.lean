@@ -17,6 +17,9 @@ noncomputable def deletionNumerator (p a b : ℕ) : Polynomial (ZMod p) :=
 noncomputable def deletionDenominator (p c : ℕ) : Polynomial (ZMod p) :=
   (Polynomial.C 25 - Polynomial.X ^ 2) ^ (c + 1)
 
+/--
+@isnad1 id=ne.0h2v.s5.2824dd1bdeb2 from=translated src=- shape=82b1b057 vocab=fcf892f8
+-/
 theorem deletionDenominator_ne_zero (p c : ℕ) [Fact p.Prime] :
     deletionDenominator p c ≠ 0 := by
   apply pow_ne_zero
@@ -24,6 +27,9 @@ theorem deletionDenominator_ne_zero (p c : ℕ) [Fact p.Prime] :
   have hc := congrArg (fun f : Polynomial (ZMod p) => f.coeff 2) h
   norm_num at hc
 
+/--
+@isnad1 id=eq.0h3v.s10.2ff63285e045 from=translated src=- shape=e127b0dc vocab=755112de
+-/
 theorem deletionNumerator_frobenius (p a b : ℕ) [Fact p.Prime] :
     deletionNumerator p a b =
       (deletionNumerator p (a / p) (b / p)) ^ p * Polynomial.X ^ (2 * (a % p)) *
@@ -40,6 +46,9 @@ theorem deletionNumerator_frobenius (p a b : ℕ) [Fact p.Prime] :
   conv_lhs => rw [ha, hb, pow_add, pow_add]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s9.a70ba7461141 from=translated src=- shape=9b8e96f7 vocab=41206b9d
+-/
 theorem deletionDenominator_frobenius (p c : ℕ) [Fact p.Prime] :
     deletionDenominator p c *
         (Polynomial.C 25 - Polynomial.X ^ 2 : Polynomial (ZMod p)) ^ (p - 1 - c % p) =
@@ -51,6 +60,9 @@ theorem deletionDenominator_frobenius (p c : ℕ) [Fact p.Prime] :
   unfold deletionDenominator
   rw [← pow_add, ← pow_mul, he]
 
+/--
+@isnad1 id=eq.0h4v.s8.5d5d24111891 from=translated src=- shape=ef8097da vocab=9c79aae1
+-/
 theorem deletion_frobenius_cross_multiply (p a b c : ℕ) [Fact p.Prime] :
     deletionNumerator p a b * (deletionDenominator p (c / p)) ^ p =
       (deletionNumerator p (a / p) (b / p)) ^ p *
@@ -66,6 +78,9 @@ noncomputable def finiteFieldRational (n p : ℕ) [Fact p.Prime] : RatFunc (ZMod
     algebraMap (Polynomial (ZMod p)) (RatFunc (ZMod p))
       (deletionDenominator p (5570 * n))
 
+/--
+@isnad1 id=ex.1h2v.s10.a3da4c7cb1c3 from=translated src=- shape=e85cb319 vocab=3c3dc189
+-/
 theorem removablePrime_derivative_quotient {n p : ℕ} [Fact p.Prime]
     (hp : removablePrime n p) :
     ∃ N D : Polynomial (ZMod p), D ≠ 0 ∧ Polynomial.derivative D = 0 ∧

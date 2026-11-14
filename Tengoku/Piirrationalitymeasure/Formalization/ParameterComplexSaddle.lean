@@ -19,25 +19,40 @@ noncomputable def parameterSaddleV (p : ℝ × ℝ) : ℝ := Real.sqrt (paramete
 noncomputable def parameterComplexSaddle (p : ℝ × ℝ) : ℂ :=
   (parameterSaddleU p : ℂ) + (parameterSaddleV p : ℂ) * Complex.I
 
+/--
+@isnad1 id=eq.0h2v.s4.04ed9c6049c0 from=translated src=- shape=87559d9e vocab=9b20bdcb
+-/
 theorem parameterStationaryComplex_ofReal (p : ℝ × ℝ) (y : ℝ) :
     parameterStationaryComplex p y = (parameterStationary p y : ℂ) := by
   unfold parameterStationaryComplex parameterStationary
   push_cast
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s2.5a6c4c3c4abc from=translated src=- shape=4b736592 vocab=9a816faf
+-/
 theorem parameterSaddleV_candidate : parameterSaddleV candidate = saddleV := by
   rw [parameterSaddleV, parameterSaddleVSq_candidate]
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s2.b04181e8e490 from=translated src=- shape=4b736592 vocab=ed7ae6e5
+-/
 theorem parameterComplexSaddle_candidate : parameterComplexSaddle candidate = saddleUpper := by
   rw [parameterComplexSaddle, parameterSaddleU_candidate, parameterSaddleV_candidate]
   rfl
 
+/--
+@isnad1 id=contdiff.0h0v.s6.c06395bfc567 from=translated src=- shape=fc7017af vocab=975f8ba7
+-/
 theorem contDiffAt_parameterSaddleV : ContDiffAt ℝ ω parameterSaddleV candidate := by
   apply contDiffAt_parameterSaddleVSq.sqrt
   rw [parameterSaddleVSq_candidate]
   exact saddleVSq_pos.ne'
 
+/--
+@isnad1 id=analytic.0h0v.s5.cfd584a4484a from=translated src=- shape=c1acf293 vocab=2dc6cc41
+-/
 theorem analyticAt_parameterComplexSaddle : AnalyticAt ℝ parameterComplexSaddle candidate := by
   have hU : ContDiffAt ℝ ω (fun p => (parameterSaddleU p : ℂ)) candidate :=
     Complex.ofRealCLM.contDiff.contDiffAt.comp candidate contDiffAt_parameterSaddleU
@@ -46,6 +61,9 @@ theorem analyticAt_parameterComplexSaddle : AnalyticAt ℝ parameterComplexSaddl
   have hI : ContDiffAt ℝ ω (fun _ : ℝ × ℝ => Complex.I) candidate := contDiffAt_const
   exact (hU.add (hV.mul hI)).analyticAt
 
+/--
+@isnad1 id=eq.3h2v.s7.5c83f1a77d82 from=translated src=- shape=a1fddd4e vocab=d9826c2e
+-/
 theorem parameterStationaryComplex_factorization {p : ℝ × ℝ}
     (hA : p.1 + 2 * p.2 - 1 ≠ 0) (hr : parameterRealSaddle p ≠ 0)
     (hroot : parameterStationary p (parameterRealSaddle p) = 0) (z : ℂ) :
@@ -61,6 +79,9 @@ theorem parameterStationaryComplex_factorization {p : ℝ × ℝ}
   push_cast
   linear_combination z ^ 2 * hsumC - z * hpairC + hprodC
 
+/--
+@isnad1 id=eq.1h1v.s6.1e84fcdc2d90 from=translated src=- shape=f18aecbf vocab=136cafbf
+-/
 theorem parameterComplexSaddle_quadratic {p : ℝ × ℝ} (hp : 0 ≤ parameterSaddleVSq p) :
     parameterComplexSaddle p ^ 2 - 2 * (parameterSaddleU p : ℂ) * parameterComplexSaddle p +
       (parameterSaddleNormSq p : ℂ) = 0 := by
@@ -71,6 +92,9 @@ theorem parameterComplexSaddle_quadratic {p : ℝ × ℝ} (hp : 0 ≤ parameterS
     nlinarith only [hv]
   · ring
 
+/--
+@isnad1 id=eventual.0h0v.s5.9c66169962b9 from=translated src=- shape=e942f69b vocab=1a4527dd
+-/
 theorem parameterComplexSaddle_near_candidate : ∀ᶠ p in 𝓝 candidate,
     parameterStationaryComplex p (parameterComplexSaddle p) = 0 ∧
       0 < (parameterComplexSaddle p).im := by

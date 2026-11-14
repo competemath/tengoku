@@ -10,6 +10,9 @@ Lemma 2.5. The scaled antiderivative coefficient is an ordinary integer.
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=eq.1h2v.s6.4c23d7556962 from=translated src=- shape=4bb39eb4 vocab=07a0524e
+-/
 theorem choose_div_succ_eq_choose_div (j q : ℕ) (hj : 0 < j) :
     ((j + q).choose q : ℚ) / (q + 1) = ((j + q).choose (q + 1) : ℚ) / j := by
   have h : ((j + q).choose (q + 1) : ℚ) * (q + 1 : ℚ) =
@@ -20,6 +23,9 @@ theorem choose_div_succ_eq_choose_div (j q : ℕ) (hj : 0 < j) :
   field_simp
   simpa only [mul_comm] using h.symm
 
+/--
+@isnad1 id=ex.2h2v.s7.ce150a12ae50 from=translated src=- shape=bc7940b2 vocab=117348ea
+-/
 theorem polynomial_negative_laurent_scaled_is_integer
     (n : ℕ) (hn : 1 ≤ n) (q : ℕ) (hq : q < 7430 * n - 1) :
     ∃ z : ℤ, (10 : ℚ) ^ (q + 1) * reducedLcm n *
@@ -33,6 +39,9 @@ theorem polynomial_negative_laurent_scaled_is_integer
   push_cast
   ring
 
+/--
+@isnad1 id=ex.2h2v.s6.a815c3eb0702 from=translated src=- shape=7604d1ae vocab=71eed312
+-/
 theorem polynomial_zero_laurent_div_is_integer
     (n : ℕ) (hn : 1 ≤ n) (q : ℕ) (hq : q < 7430 * n - 1) :
     ∃ z : ℤ, reducedLcm n * laurentCoeffRat n 0 / (q + 1) = (z : ℚ) := by
@@ -48,6 +57,9 @@ theorem polynomial_zero_laurent_div_is_integer
     _ = (l : ℚ) * (laurentCoeffRat n 0 / (Phi n : ℚ)) := by field_simp
     _ = _ := by rw [hz]; push_cast; rfl
 
+/--
+@isnad1 id=ex.3h3v.s7.c753ffb15aec from=translated src=- shape=f7a3efe4 vocab=ec0640b5
+-/
 theorem polynomial_laurent_correction_scaled_is_integer
     (n : ℕ) (hn : 1 ≤ n) (q : ℕ) (hq : q < 7430 * n - 1)
     (j : ℕ) (hj : j ≤ 5570 * n) :
@@ -82,6 +94,9 @@ theorem polynomial_laurent_correction_scaled_is_integer
 noncomputable def poleAntiderivativeScaledCoeff (n q : ℕ) : ℚ :=
   (10 : ℚ) ^ (q + 1) * reducedLcm n * (poleShiftCoeff n q : ℚ) / (q + 1)
 
+/--
+@isnad1 id=ex.2h2v.s5.66c5b8d10fd4 from=translated src=- shape=89be9138 vocab=0804c443
+-/
 theorem poleAntiderivativeScaledCoeff_is_integer
     (n : ℕ) (hn : 1 ≤ n) (q : ℕ) (hq : q < 7430 * n - 1) :
     ∃ z : ℤ, poleAntiderivativeScaledCoeff n q = (z : ℚ) := by

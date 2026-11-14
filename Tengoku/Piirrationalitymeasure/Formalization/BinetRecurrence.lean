@@ -16,6 +16,9 @@ private theorem exp_neg_mul_succ (y u : ℝ) :
   congr 1
   ring
 
+/--
+@isnad1 id=and.1h2v.s7.f19c3d8cab6e from=translated src=- shape=e2fe4481 vocab=26b8511d
+-/
 theorem exp_sub_div_bounds (y : ℝ) {u : ℝ} (hu : 0 < u) :
     0 ≤ (Real.exp (-(y * u)) - Real.exp (-((y + 1) * u))) / u ∧
       (Real.exp (-(y * u)) - Real.exp (-((y + 1) * u))) / u ≤ Real.exp (-(y * u)) := by
@@ -30,6 +33,9 @@ theorem exp_sub_div_bounds (y : ℝ) {u : ℝ} (hu : 0 < u) :
   · rw [div_le_iff₀ hu]
     nlinarith [mul_le_mul_of_nonneg_left h1 (Real.exp_pos (-(y * u))).le]
 
+/--
+@isnad1 id=integrab.1h1v.s6.64fca3a1a2ee from=translated src=- shape=54020c0a vocab=3a66a3e8
+-/
 theorem integrableOn_exp_sub_div {y : ℝ} (hy : 0 < y) :
     IntegrableOn (fun u => (Real.exp (-(y * u)) - Real.exp (-((y + 1) * u))) / u) (Ioi 0) := by
   have hi : IntegrableOn (fun u => Real.exp (-(y * u))) (Ioi 0) := by
@@ -42,6 +48,9 @@ theorem integrableOn_exp_sub_div {y : ℝ} (hy : 0 < y) :
     rw [Real.norm_of_nonneg (exp_sub_div_bounds y hu).1]
     exact (exp_sub_div_bounds y hu).2
 
+/--
+@isnad1 id=eq.1h1v.s7.1d45e3834708 from=translated src=- shape=d92a30da vocab=3263343c
+-/
 theorem integral_exp_sub_div {y : ℝ} (hy : 0 < y) :
     (∫ u : ℝ in Ioi 0, (Real.exp (-(y * u)) - Real.exp (-((y + 1) * u))) / u) =
       Real.log ((y + 1) / y) := by
@@ -66,6 +75,9 @@ private theorem binetKernel_difference (y : ℝ) {u : ℝ} (hu : 0 < u) :
   field_simp [he, he0, hu.ne']
   ring
 
+/--
+@isnad1 id=eq.1h1v.s7.95b8e5b8e25b from=translated src=- shape=6e94da9f vocab=dd032460
+-/
 theorem binetLaplace_sub_succ {y : ℝ} (hy : 0 < y) :
     binetLaplace y - binetLaplace (y + 1) =
       (1 / y + 1 / (y + 1)) / 2 - Real.log ((y + 1) / y) := by
@@ -94,6 +106,9 @@ theorem binetLaplace_sub_succ {y : ℝ} (hy : 0 < y) :
 
 noncomputable def binetDigamma (y : ℝ) : ℝ := Real.log y - 1 / (2 * y) - binetLaplace y
 
+/--
+@isnad1 id=eq.1h1v.s5.e7d1bf97e8a7 from=translated src=- shape=ebe07242 vocab=6bcf42f5
+-/
 theorem binetDigamma_add_one {y : ℝ} (hy : 0 < y) :
     binetDigamma (y + 1) = binetDigamma y + 1 / y := by
   have h := binetLaplace_sub_succ hy
@@ -102,6 +117,9 @@ theorem binetDigamma_add_one {y : ℝ} (hy : 0 < y) :
   field_simp at h ⊢
   linarith
 
+/--
+@isnad1 id=eq.1h2v.s6.bb36251efe32 from=translated src=- shape=9926f5c3 vocab=5ead3fa7
+-/
 theorem binetDigamma_add_nat {y : ℝ} (hy : 0 < y) (N : ℕ) :
     binetDigamma (y + N) = binetDigamma y + ∑ q ∈ Finset.range N, 1 / (y + (q : ℝ)) := by
   induction N with

@@ -6,6 +6,9 @@ import Tengoku.Piirrationalitymeasure.Formalization.EndpointCountRealization
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=iff.0h2v.s5.648879589225 from=translated src=- shape=6e6138e7 vocab=1a1cddc7
+-/
 theorem mem_candidateEndpointIndices (T : SavingEndpointType) (j : ℤ) :
     j ∈ candidateEndpointIndices T ↔
       candidateEndpointStart T ≤ j ∧
@@ -19,15 +22,24 @@ theorem mem_candidateEndpointIndices (T : SavingEndpointType) (j : ℤ) :
   · rintro ⟨hlo, hhi⟩
     refine ⟨(j - candidateEndpointStart T).toNat, ?_, ?_⟩ <;> omega
 
+/--
+@isnad1 id=eq.0h1v.s3.78c0e8a953b2 from=translated src=- shape=981f0160 vocab=f7cdc4cb
+-/
 theorem candidateEndpointIndices_card (T : SavingEndpointType) :
     (candidateEndpointIndices T).card = candidateEndpointSize T := by
   simp only [candidateEndpointIndices, Finset.card_map, Finset.card_range]
 
+/--
+@isnad1 id=eq.0h0v.s5.c5b5b10b3eea from=translated src=- shape=b784143e vocab=ed5d4131
+-/
 theorem candidateEndpointIndices_total :
     (candidateEndpointIndices .A).card + (candidateEndpointIndices .B).card +
       (candidateEndpointIndices .C).card + (candidateEndpointIndices .Q).card = 14856 := by
   simp only [candidateEndpointIndices_card, candidateEndpointSize]
 
+/--
+@isnad1 id=iff.0h2v.s5.61e721b51677 from=translated src=- shape=774fec79 vocab=e7f33aff
+-/
 theorem candidateEndpointBase_mem_Ico (T : SavingEndpointType) (j : ℤ) :
     candidateEndpointBaseRat T j ∈ Set.Ico (0 : ℚ) 1 ↔ j ∈ candidateEndpointIndices T := by
   have hm : 0 < candidateEndpointSlopeRat T := by
@@ -45,6 +57,9 @@ theorem candidateEndpointBase_mem_Ico (T : SavingEndpointType) (j : ℤ) :
   rw [h0, div_lt_iff₀ hm, one_mul, sub_lt_iff_lt_add, ← Int.ceil_le, ← Int.lt_ceil,
     hc0, hc1]
 
+/--
+@isnad1 id=iff.0h2v.s6.ec34b9331cb7 from=translated src=- shape=1bd8d8a7 vocab=d8a94a45
+-/
 theorem savingEndpoint_candidate_mem_Ico (T : SavingEndpointType) (j : ℤ) :
     savingEndpoint 1857 3714 5570 0 T j ∈ Set.Ico (0 : ℝ) 1 ↔
       j ∈ candidateEndpointIndices T := by
@@ -52,6 +67,9 @@ theorem savingEndpoint_candidate_mem_Ico (T : SavingEndpointType) (j : ℤ) :
   simp only [Set.mem_Ico]
   norm_cast
 
+/--
+@isnad1 id=injectiv.0h1v.s2.cfc8fb0ddabf from=translated src=- shape=7000f90d vocab=08645b28
+-/
 theorem candidateEndpointBase_injective (T : SavingEndpointType) :
     Function.Injective (candidateEndpointBaseRat T) := by
   have hm : candidateEndpointSlopeRat T ≠ 0 := by

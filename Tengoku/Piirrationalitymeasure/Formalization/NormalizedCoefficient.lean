@@ -16,6 +16,9 @@ noncomputable def normalizationMultiplier (n : ℕ) : ℚ :=
 noncomputable def normalizedPiCoeff (n : ℕ) : ℚ :=
   -normalizationMultiplier n * laurentCoeffRat n 0 / 2
 
+/--
+@isnad1 id=ex.1h1v.s6.29c43a7510e1 from=translated src=- shape=08f7f5a5 vocab=705c45ba
+-/
 theorem reduced_constantCoeff_two_factor (n : ℕ) (hn : 1 ≤ n) :
     ∃ z : ℤ, laurentCoeffRat n 0 / (Phi n : ℚ) =
       (2 : ℚ) ^ (4645 * n - 1) * (z : ℚ) := by
@@ -45,6 +48,9 @@ theorem reduced_constantCoeff_two_factor (n : ℕ) (hn : 1 ≤ n) :
   change laurentCoeffRat n 0 / (Phi n : ℚ) / 2 ^ k = (z : ℚ) at hz
   exact (div_eq_iff ht).mp hz |>.trans (mul_comm _ _)
 
+/--
+@isnad1 id=eq.0h1v.s6.003fb7e69190 from=translated src=- shape=59cbf152 vocab=8d7957cb
+-/
 theorem normalizedPiCoeff_formula (n : ℕ) :
     normalizedPiCoeff n =
       -(2 : ℚ) ^ (3 - 4645 * (n : ℤ)) * reducedLcm n * laurentCoeffRat n 0 := by
@@ -53,6 +59,9 @@ theorem normalizedPiCoeff_formula (n : ℕ) :
     zpow_add₀ (by norm_num : (2 : ℚ) ≠ 0), zpow_one]
   ring
 
+/--
+@isnad1 id=ex.1h1v.s4.b9e29fc181eb from=translated src=- shape=f3832220 vocab=f59ab559
+-/
 theorem normalizedPiCoeff_is_integer (n : ℕ) (hn : 1 ≤ n) :
     ∃ V : ℤ, normalizedPiCoeff n = (V : ℚ) := by
   obtain ⟨z, hz⟩ := reduced_constantCoeff_two_factor n hn

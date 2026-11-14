@@ -18,6 +18,9 @@ noncomputable def saddleLambda : ℝ := 1 / saddleX
 
 noncomputable def saddleEta : ℝ := -saddleY / (saddleX - 1)
 
+/--
+@isnad1 id=lt.0h0v.s4.efe4a8b4b193 from=translated src=- shape=0efb1284 vocab=5831f76f
+-/
 theorem saddleV_lt : saddleV < (11 : ℝ) / 10 := by
   have hv2 := saddleV_sq
   unfold saddleVSq at hv2
@@ -26,6 +29,9 @@ theorem saddleV_lt : saddleV < (11 : ℝ) / 10 := by
   have hv0 := saddleV_pos
   nlinarith [hv2]
 
+/--
+@isnad1 id=lt.0h0v.s3.227ebcf3e5d3 from=translated src=- shape=ff3a10fc vocab=f1f1b7af
+-/
 theorem saddleX_gt_one : 1 < saddleX := by
   unfold saddleX
   apply (lt_div_iff₀ saddleNormSq_pos).2
@@ -34,8 +40,14 @@ theorem saddleX_gt_one : 1 < saddleX := by
   have hv := saddleV_pos
   nlinarith
 
+/--
+@isnad1 id=lt.0h0v.s3.a85c76f754d5 from=translated src=- shape=ff3a10fc vocab=f1f1b7af
+-/
 theorem saddleX_pos : 0 < saddleX := by linarith [saddleX_gt_one]
 
+/--
+@isnad1 id=mem.0h0v.s4.086dcaf584af from=translated src=- shape=48e903f7 vocab=0cffe37a
+-/
 theorem saddleLambda_mem : saddleLambda ∈ Set.Ioo (0 : ℝ) 1 := by
   unfold saddleLambda
   constructor
@@ -48,6 +60,9 @@ noncomputable def saddleLambdaLower : ℝ :=
 noncomputable def saddleLambdaUpper : ℝ :=
   (48021524689625610103 : ℝ) / 10 ^ 20
 
+/--
+@isnad1 id=and.0h0v.s3.7192ad375958 from=translated src=- shape=9cf45692 vocab=d612cba1
+-/
 theorem saddleLambda_paper_bounds :
     saddleLambdaLower < saddleLambda ∧ saddleLambda < saddleLambdaUpper := by
   have hm := saddleNormSq_paper_bounds
@@ -89,6 +104,9 @@ theorem saddleLambda_paper_bounds :
   · rw [hdiv]
     exact (div_lt_iff₀ hNpos).2 hupp
 
+/--
+@isnad1 id=lt.0h0v.s3.550b1b633a14 from=translated src=- shape=ffdda526 vocab=7c7869b0
+-/
 theorem saddleY_neg : saddleY < 0 := by
   unfold saddleY
   have hu := saddleU_tight_bounds
@@ -97,10 +115,16 @@ theorem saddleY_neg : saddleY < 0 := by
   · nlinarith
   · exact saddleNormSq_pos
 
+/--
+@isnad1 id=lt.0h0v.s3.5da556b3f882 from=translated src=- shape=ff3a10fc vocab=278acded
+-/
 theorem saddleEta_pos : 0 < saddleEta := by
   unfold saddleEta
   exact div_pos (neg_pos.mpr saddleY_neg) (by linarith [saddleX_gt_one])
 
+/--
+@isnad1 id=lt.0h0v.s3.f2519625f1c6 from=translated src=- shape=ffdda526 vocab=278acded
+-/
 theorem saddleEta_lt_one : saddleEta < 1 := by
   unfold saddleEta
   have hx : 0 < saddleX - 1 := by linarith [saddleX_gt_one]
@@ -113,11 +137,17 @@ theorem saddleEta_lt_one : saddleEta < 1 := by
   field_simp [ne_of_gt hm]
   nlinarith
 
+/--
+@isnad1 id=mem.0h0v.s4.65a938a88b71 from=translated src=- shape=48e903f7 vocab=4d0e0a33
+-/
 theorem saddleEta_mem : saddleEta ∈ Set.Ioo (0 : ℝ) 1 :=
   ⟨saddleEta_pos, saddleEta_lt_one⟩
 
 noncomputable def saddleQ : ℂ := (-3 : ℂ) + 4 * Complex.I
 
+/--
+@isnad1 id=eq.0h0v.s4.5938a9aabe57 from=translated src=- shape=cd8fc378 vocab=6d0bd394
+-/
 theorem saddle_ratio_mul :
     ((saddleX : ℂ) + (saddleY : ℂ) * Complex.I) * saddleUpper = saddleQ := by
   apply Complex.ext
@@ -132,6 +162,9 @@ theorem saddle_ratio_mul :
     field_simp [ne_of_gt saddleNormSq_pos]
     nlinarith [hv]
 
+/--
+@isnad1 id=ne.0h0v.s4.62b0423a0f09 from=translated src=- shape=8eb6ceac vocab=3f5f2945
+-/
 theorem saddle_ratio_ne_zero :
     (saddleX : ℂ) + (saddleY : ℂ) * Complex.I ≠ 0 := by
   intro h
@@ -140,6 +173,9 @@ theorem saddle_ratio_ne_zero :
   have hr' := congrArg Complex.re hr
   norm_num [saddleQ] at hr'
 
+/--
+@isnad1 id=eq.0h0v.s2.7c10e4057708 from=translated src=- shape=583fb3b9 vocab=b16770f7
+-/
 theorem saddle_arc_identity :
     gammaPath saddleEta saddleLambda = saddleUpper := by
   have hx : saddleX ≠ 0 := ne_of_gt saddleX_pos

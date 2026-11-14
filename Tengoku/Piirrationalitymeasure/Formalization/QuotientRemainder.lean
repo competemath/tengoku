@@ -6,6 +6,9 @@ import Tengoku.Piirrationalitymeasure.Formalization.LocalOptimization
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=eq.2h4v.s7.26ea168864d3 from=translated src=- shape=97d1bbc9 vocab=d8abdb84
+-/
 theorem quotient_sub_linear_remainder {N D u v : ℝ} (hD : D ≠ 0)
     (hDv : D + v ≠ 0) :
     (N + u) / (D + v) - N / D - (D * u - N * v) / D ^ 2 =
@@ -13,6 +16,9 @@ theorem quotient_sub_linear_remainder {N D u v : ℝ} (hD : D ≠ 0)
   field_simp
   <;> ring
 
+/--
+@isnad1 id=le.7h7v.s8.543f2a45cee8 from=translated src=- shape=b2c391a9 vocab=36ea17d5
+-/
 theorem quotient_quadratic_remainder_bound {N D u v U V t : ℝ}
     (hD : 0 < D) (hDv : D / 2 ≤ D + v) (hU : 0 ≤ U) (hV : 0 ≤ V)
     (ht : 0 ≤ t) (hu : |u| ≤ U * t) (hv : |v| ≤ V * t) :
@@ -39,6 +45,9 @@ theorem quotient_quadratic_remainder_bound {N D u v U V t : ℝ}
       field_simp
     _ ≤ _ := mul_le_mul_of_nonneg_left hden (by positivity)
 
+/--
+@isnad1 id=le.10h10v.s9.d66f8fa46eb2 from=translated src=- shape=456d25a6 vocab=36ea17d5
+-/
 theorem quotient_saving_remainder_bound {N D a b w A B W e L : ℝ}
     (hD : 0 < D) (hden : D / 2 ≤ D + b + w)
     (hA : 0 ≤ A) (hB : 0 ≤ B) (hW : 0 ≤ W) (he : 0 ≤ e) (hL : 1 ≤ L)

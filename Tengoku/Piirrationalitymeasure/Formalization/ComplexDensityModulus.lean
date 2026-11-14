@@ -7,6 +7,9 @@ import Tengoku.Piirrationalitymeasure.Formalization.ArcPhase
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=eq.4h3v.s8.7421f566d422 from=translated src=- shape=89932be0 vocab=7f368409
+-/
 theorem complexDensity_modulus (n : ℕ) {z y : ℂ} (hy : z ^ 2 = y)
     (hy0 : y ≠ 0) (hq : y ^ 2 + 6 * y + 25 ≠ 0) (hp : 25 - y ≠ 0) :
     ‖complexDensity n z‖ = 5 / ‖25 - y‖ * Real.exp
@@ -32,30 +35,48 @@ theorem complexDensity_modulus (n : ℕ) {z y : ℂ} (hy : z ^ 2 = y)
   rw [pow_succ]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s6.bebcf8db2a7f from=translated src=- shape=bc84b48a vocab=ed614493
+-/
 theorem complexDensity_conj (n : ℕ) (z : ℂ) :
     complexDensity n (star z) = star (complexDensity n z) := by
   simp [complexDensity]
 
+/--
+@isnad1 id=eq.2h2v.s7.1807e8e345b1 from=translated src=- shape=c8b760c6 vocab=c93ab3a5
+-/
 theorem smoothTauPlus_deriv_conj {e : ℝ} (he0 : 0 ≤ e) (he1 : e ≤ 1) (u : ℝ) :
     deriv (smoothTauMinus e) u = star (deriv (smoothTauPlus e) u) := by
   have h := Complex.conjCLE.hasFDerivAt.comp_hasDerivAt u
     (((smoothTauPlus_contDiff he0 he1).differentiable (by norm_num) u).hasDerivAt)
   exact h.deriv
 
+/--
+@isnad1 id=eq.2h3v.s7.7d72f01c3712 from=translated src=- shape=a61aca9f vocab=d9780851
+-/
 theorem smoothTauMinus_density_conj (n : ℕ) {e : ℝ} (he0 : 0 ≤ e) (he1 : e ≤ 1) (u : ℝ) :
     complexDensity n (smoothTauMinus e u) * deriv (smoothTauMinus e) u =
       star (complexDensity n (smoothTauPlus e u) * deriv (smoothTauPlus e) u) := by
   rw [smoothTauPlus_deriv_conj he0 he1, smoothTauMinus, complexDensity_conj, star_mul]
   ring
 
+/--
+@isnad1 id=eq.2h3v.s7.06fa4d28bac7 from=translated src=- shape=2ab8b3e3 vocab=f52c8d94
+-/
 theorem smoothTauMinus_density_norm (n : ℕ) {e : ℝ} (he0 : 0 ≤ e) (he1 : e ≤ 1) (u : ℝ) :
     ‖complexDensity n (smoothTauMinus e u) * deriv (smoothTauMinus e) u‖ =
       ‖complexDensity n (smoothTauPlus e u) * deriv (smoothTauPlus e) u‖ := by
   rw [smoothTauMinus_density_conj n he0 he1, norm_star]
 
+/--
+@isnad1 id=eq.1h1v.s4.f0fad4bccbb0 from=translated src=- shape=41c8c002 vocab=a8db0d66
+-/
 theorem complexDensity_zero (n : ℕ) (hn : 0 < n) : complexDensity n 0 = 0 := by
   simp [complexDensity, show 2 * 1857 * n ≠ 0 by omega]
 
+/--
+@isnad1 id=eq.1h2v.s5.9a4e3b41cdc9 from=translated src=- shape=052d5565 vocab=ea45db08
+-/
 theorem complexDensity_smoothTauPlus_one (n : ℕ) (hn : 0 < n) (e : ℝ) :
     complexDensity n (smoothTauPlus e 1) = 0 := by
   rw [smoothTauPlus_at_one]
@@ -63,12 +84,18 @@ theorem complexDensity_smoothTauPlus_one (n : ℕ) (hn : 0 < n) (e : ℝ) :
     norm_num [Complex.ext_iff, pow_succ]
   simp only [complexDensity, hz, zero_pow (show 3714 * n ≠ 0 by omega), mul_zero, zero_div]
 
+/--
+@isnad1 id=le.2h2v.s5.155a9dc89dbb from=translated src=- shape=25468ea9 vocab=f368ee3c
+-/
 theorem gammaPath_pole_norm_ge_twenty {e t : ℝ} (ht0 : 0 ≤ t) (ht1 : t ≤ 1) :
     20 ≤ ‖25 - gammaPath e t‖ := by
   have h := norm_le_norm_sub_add (25 : ℂ) (gammaPath e t)
   norm_num only [Complex.norm_ofNat] at h
   linarith [gammaPath_norm_le_five (eta := e) ht0 ht1]
 
+/--
+@isnad1 id=ne.3h2v.s6.7bdae18c3305 from=translated src=- shape=c41b0044 vocab=1990a2cf
+-/
 theorem gammaPath_quadratic_ne_zero {e t : ℝ} (he : (9 : ℝ) / 10 < e)
     (ht0 : 0 < t) (ht1 : t < 1) : (gammaPath e t) ^ 2 + 6 * gammaPath e t + 25 ≠ 0 := by
   have h := arc_quadratic_normSq e t

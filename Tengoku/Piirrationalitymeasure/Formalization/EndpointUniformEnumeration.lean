@@ -8,6 +8,9 @@ set_option maxRecDepth 100000
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=ex.1h2v.s5.f0535ea0da64 from=translated src=- shape=64347f26 vocab=f524ac67
+-/
 theorem candidateOpenSector_small_point (i : Fin 12) {rho : ℝ} (hrho : 0 < rho) :
     ∃ z : ℝ × ℝ, CandidateOpenSector i z ∧ parameterNormOne z < rho := by
   let d := candidateSectorRayReal i + candidateSectorRayReal (candidateSectorNext i)
@@ -22,6 +25,9 @@ theorem candidateOpenSector_small_point (i : Fin 12) {rho : ℝ} (hrho : 0 < rho
   rw [parameterNormOne_smul, abs_of_pos ht]
   nlinarith only [htprod, ht, hrho]
 
+/--
+@isnad1 id=ex.0h0v.s6.92383e7b617c from=translated src=- shape=e1a54db7 vocab=113b7882
+-/
 theorem candidateEndpoint_uniform_enumeration :
     ∃ rho : ℝ, 0 < rho ∧ rho ≤ 1 / 100 ∧ ∀ i : Fin 12,
       ∃ (e : CandidateEndpointEnumeration) (w : ℝ × ℝ),

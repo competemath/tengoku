@@ -8,6 +8,9 @@ namespace PiIrrationality
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=eq.2h4v.s7.fa07769b9793 from=translated src=- shape=a169e278 vocab=f0c4b34f
+-/
 theorem finite_step_integral (e eps : ℕ → ℝ) (f : ℝ → ℝ) (n : ℕ)
     (he : ∀ k < n, e k ≤ e (k + 1))
     (hf : ∀ k < n, ∀ x ∈ Ioo (e k) (e (k + 1)), f x = eps k) :
@@ -27,6 +30,9 @@ theorem finite_step_integral (e eps : ℕ → ℝ) (f : ℝ → ℝ) (n : ℕ)
       intervalIntegral.integral_congr_Ioo_of_le (he k hk) (hf k hk)
     _ = _ := by rw [intervalIntegral.integral_const, smul_eq_mul, mul_comm]
 
+/--
+@isnad1 id=eq.4h7v.s8.fa415a9bb9ff from=translated src=- shape=67e84eca vocab=f0c4b34f
+-/
 theorem finite_step_integral_affine (e lam eps : ℕ → ℝ) (f0 fs : ℝ → ℝ) (n : ℕ) (s : ℝ)
     (he0 : ∀ k < n, e k ≤ e (k + 1))
     (hes : ∀ k < n, e k + s * lam k ≤ e (k + 1) + s * lam (k + 1))
@@ -42,6 +48,9 @@ theorem finite_step_integral_affine (e lam eps : ℕ → ℝ) (f0 fs : ℝ → �
   intro k _
   ring
 
+/--
+@isnad1 id=eq.0h3v.s7.a1b6546438cf from=translated src=- shape=a4db83c0 vocab=21b048d6
+-/
 theorem finite_step_jump_sum (eps lam : ℕ → ℝ) (n : ℕ) :
     (∑ k ∈ Finset.range (n + 1), eps k * (lam (k + 1) - lam k)) =
       eps n * lam (n + 1) - eps 0 * lam 0 +
@@ -55,6 +64,9 @@ theorem finite_step_jump_sum (eps lam : ℕ → ℝ) (n : ℕ) :
         rw [Finset.sum_range_succ]
       _ = _ := by rw [ih, Finset.sum_range_succ]; ring
 
+/--
+@isnad1 id=eq.2h3v.s7.dc2dae65c915 from=translated src=- shape=621d047d vocab=21b048d6
+-/
 theorem finite_step_jump_sum_fixed_boundary (eps lam : ℕ → ℝ) (n : ℕ)
     (h0 : lam 0 = 0) (hn : lam (n + 1) = 0) :
     (∑ k ∈ Finset.range (n + 1), eps k * (lam (k + 1) - lam k)) =

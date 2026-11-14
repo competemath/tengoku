@@ -9,6 +9,9 @@ namespace PiIrrationality
 open Filter Set
 open scoped Topology
 
+/--
+@isnad1 id=eventual.0h2v.s6.329135745aab from=translated src=- shape=fcd264c5 vocab=2c388cfc
+-/
 theorem candidateActualJumpCount_eventually_germ (v : ℝ × ℝ) (T : SavingEndpointType) :
     ∀ᶠ s : ℝ in 𝓝[>] 0, candidateActualJumpCount v T s =
       ∑ j ∈ candidateEndpointIndices T,
@@ -33,6 +36,9 @@ theorem candidateActualJumpCount_eventually_germ (v : ℝ × ℝ) (T : SavingEnd
   intro j hj
   rw [(hs j hj).1, (hs j hj).2]
 
+/--
+@isnad1 id=eventual.1h3v.s5.40a93aa49ba4 from=translated src=- shape=39de791f vocab=de83ad24
+-/
 theorem candidateOpenSector_actualJumpCount {i : Fin 12} {v : ℝ × ℝ}
     (hv : CandidateOpenSector i v) (T : SavingEndpointType) :
     ∀ᶠ s : ℝ in 𝓝[>] 0, candidateActualJumpCount v T s =

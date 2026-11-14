@@ -9,16 +9,25 @@ namespace PiIrrationality.EvenPole
 
 open Polynomial
 
+/--
+@isnad1 id=eq.0h2v.s6.170d595847b4 from=translated src=- shape=f329e707 vocab=e442ec83
+-/
 theorem numerator_signed (F : Polynomial ℤ) (m : ℕ) :
     numerator (signedNumeratorY F m) = C ((-1 : ℚ) ^ m) * numerator F := by
   simp [numerator, signedNumeratorY, mul_comp]
 
+/--
+@isnad1 id=eq.0h3v.s7.ddd11f3cdf25 from=translated src=- shape=207f24d3 vocab=9f5c366c
+-/
 theorem numerator_aeval {K : Type*} [CommRing K] [Algebra ℚ K]
     (F : Polynomial ℤ) (t : K) : aeval t (numerator F) = aeval (t ^ 2) F := by
   rw [numerator, show Int.castRingHom ℚ = algebraMap ℤ ℚ from Subsingleton.elim _ _,
     aeval_map_algebraMap ℚ, aeval_comp]
   simp
 
+/--
+@isnad1 id=eq.1h6v.s9.13f600a7d550 from=translated src=- shape=fdce9730 vocab=82e4790d
+-/
 theorem Decomposition.eval {K : Type*} [Field K] [Algebra ℚ K]
     {F : Polynomial ℤ} {m : ℕ} {a b : Fin m → ℚ} (hF : Decomposition F m a b) (t : K) :
     (-1 : K) ^ m * aeval t (numerator F) =
@@ -34,6 +43,9 @@ theorem Decomposition.eval {K : Type*} [Field K] [Algebra ℚ K]
   have hmap (q : ℚ) : (algebraMap ℚ K) q = (q : K) := map_ratCast _ q
   simpa only [hmap, Rat.cast_pow, Rat.cast_neg, Rat.cast_one] using h
 
+/--
+@isnad1 id=eq.2h5v.s8.04959ad6ee79 from=translated src=- shape=425b75c1 vocab=ad81e9d8
+-/
 theorem regularized_eq_of_decomposition {F : Polynomial ℤ} {m : ℕ}
     {a b : Fin m → ℚ} (hF : Decomposition F m a b) (t : ℝ) (ht : t ≠ 5) :
     regularized F m t = (∑ i : Fin m, (a i : ℝ) * (t + 5) ^ i.val) +
@@ -46,6 +58,9 @@ theorem regularized_eq_of_decomposition {F : Polynomial ℤ} {m : ℕ}
   field_simp at *
   linear_combination h
 
+/--
+@isnad1 id=eq.1h5v.s5.bd8733719f15 from=translated src=- shape=ac54efcf vocab=9adef8db
+-/
 theorem normalizedDeriv_regularized_of_decomposition {F : Polynomial ℤ} {m : ℕ}
     {a b : Fin m → ℚ} (hF : Decomposition F m a b) (k : Fin m) :
     normalizedDeriv k.val (regularized F m) (-5) = (a k : ℝ) := by
@@ -78,12 +93,18 @@ theorem normalizedDeriv_regularized_of_decomposition {F : Polynomial ℤ} {m : �
   rw [hsplit, normalizedDeriv_shift_polynomial,
     normalizedDeriv_shift_power_mul_zero k.val m k.isLt f hf, add_zero]
 
+/--
+@isnad1 id=eq.1h5v.s5.c16598cc31af from=translated src=- shape=01c954fd vocab=b2df4cfd
+-/
 theorem Decomposition.left_eq {F : Polynomial ℤ} {m : ℕ} {a b : Fin m → ℚ}
     (hF : Decomposition F m a b) (k : Fin m) : a k = localCoeff F m k.val := by
   apply Rat.cast_injective (α := ℝ)
   rw [localCoeff_cast]
   exact (normalizedDeriv_regularized_of_decomposition hF k).symm
 
+/--
+@isnad1 id=eq.1h5v.s6.3dfd8fb871ee from=translated src=- shape=42a821a5 vocab=8432e1fb
+-/
 theorem Decomposition.right_eq {F : Polynomial ℤ} {m : ℕ} {a b : Fin m → ℚ}
     (hF : Decomposition F m a b) (k : Fin m) :
     b k = (-1 : ℚ) ^ (k.val + m) * localCoeff F m k.val := by
@@ -92,6 +113,9 @@ theorem Decomposition.right_eq {F : Polynomial ℤ} {m : ℕ} {a b : Fin m → �
   rw [← h, ← mul_assoc, ← mul_pow]
   norm_num
 
+/--
+@isnad1 id=decompos.1h2v.s6.aef0e9fda675 from=translated src=- shape=662f4b47 vocab=f986d268
+-/
 theorem actual_decomposition (F : Polynomial ℤ) {m : ℕ} (hm : 0 < m) :
     Decomposition F m (fun i => localCoeff F m i.val)
       (fun i => (-1 : ℚ) ^ (i.val + m) * localCoeff F m i.val) := by

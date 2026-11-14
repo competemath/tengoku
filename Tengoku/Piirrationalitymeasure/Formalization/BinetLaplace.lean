@@ -12,12 +12,18 @@ open MeasureTheory Set
 noncomputable def binetLaplace (y : ℝ) : ℝ :=
   ∫ u : ℝ in Ioi 0, Real.exp (-(y * u)) * binetKernel u
 
+/--
+@isnad1 id=integrab.1h2v.s6.ee9ba4ccef71 from=translated src=- shape=713014f1 vocab=14bb0c8b
+-/
 theorem integrableOn_pow_mul_exp_neg_mul {y : ℝ} (hy : 0 < y) (m : ℕ) :
     IntegrableOn (fun u : ℝ => u ^ m * Real.exp (-(y * u))) (Ioi 0) := by
   have h := integrableOn_rpow_mul_exp_neg_mul_rpow (s := (m : ℝ)) (p := 1)
     (by have := Nat.cast_nonneg (α := ℝ) m; linarith) (by norm_num) hy
   simpa only [Real.rpow_natCast, Real.rpow_one, neg_mul] using h
 
+/--
+@isnad1 id=eq.1h2v.s6.e838bd72254e from=translated src=- shape=72a4bb0f vocab=6f4e8373
+-/
 theorem integral_pow_mul_exp_neg_mul {y : ℝ} (hy : 0 < y) (m : ℕ) :
     (∫ u : ℝ in Ioi 0, u ^ m * Real.exp (-(y * u))) = (m.factorial : ℝ) / y ^ (m + 1) := by
   have h := Real.integral_rpow_mul_exp_neg_mul_Ioi (a := (m : ℝ) + 1) (by positivity) hy
@@ -26,10 +32,16 @@ theorem integral_pow_mul_exp_neg_mul {y : ℝ} (hy : 0 < y) (m : ℕ) :
   rw [he, Real.rpow_natCast] at h
   simpa only [div_pow, one_pow, one_div, div_eq_mul_inv, mul_one, inv_pow, mul_comm] using h
 
+/--
+@isnad1 id=measurab.0h0v.s2.98bf8f9e1cce from=translated src=- shape=e3d48bcb vocab=68930404
+-/
 theorem measurable_binetKernel : Measurable binetKernel := by
   unfold binetKernel
   fun_prop
 
+/--
+@isnad1 id=integrab.1h1v.s6.16e34b8558bc from=translated src=- shape=d6839c3f vocab=cb5198dd
+-/
 theorem integrableOn_binetLaplace {y : ℝ} (hy : 0 < y) :
     IntegrableOn (fun u => Real.exp (-(y * u)) * binetKernel u) (Ioi 0) := by
   have hi := (integrableOn_pow_mul_exp_neg_mul hy 1).div_const 12
@@ -53,10 +65,16 @@ private theorem integral_Ioi_pos {f : ℝ → ℝ} (hf : IntegrableOn f (Ioi 0))
     exact (hp u hu).le
   · exact hf
 
+/--
+@isnad1 id=lt.1h1v.s4.3df7dbd89178 from=translated src=- shape=35bd48ee vocab=4a88fa5f
+-/
 theorem binetLaplace_pos {y : ℝ} (hy : 0 < y) : 0 < binetLaplace y := by
   exact integral_Ioi_pos (integrableOn_binetLaplace hy)
     (fun u hu => mul_pos (Real.exp_pos _) (binetKernel_pos hu))
 
+/--
+@isnad1 id=integrab.1h2v.s6.051749e43ce5 from=translated src=- shape=389a81ba vocab=6ea06f97
+-/
 theorem integrableOn_binetKernelApprox {y : ℝ} (hy : 0 < y) (N : ℕ) :
     IntegrableOn (fun u => Real.exp (-(y * u)) * binetKernelApprox u N) (Ioi 0) := by
   simp only [binetKernelApprox, Finset.mul_sum]
@@ -71,6 +89,9 @@ noncomputable def binetLaplaceApprox (y : ℝ) (N : ℕ) : ℝ :=
   ∑ m ∈ Finset.range N,
     (bernoulli (2 * (m + 1)) : ℝ) / ((2 * (m + 1) : ℕ) * y ^ (2 * (m + 1)))
 
+/--
+@isnad1 id=eq.1h2v.s6.593bdd5f2dfe from=translated src=- shape=9a884f96 vocab=91e7971b
+-/
 theorem integral_binetKernelApprox {y : ℝ} (hy : 0 < y) (N : ℕ) :
     (∫ u : ℝ in Ioi 0, Real.exp (-(y * u)) * binetKernelApprox u N) =
       binetLaplaceApprox y N := by
@@ -93,6 +114,9 @@ theorem integral_binetKernelApprox {y : ℝ} (hy : 0 < y) (N : ℕ) :
     funext u
     ring
 
+/--
+@isnad1 id=and.1h2v.s7.087c1eaf67b3 from=translated src=- shape=17e064de vocab=0c670902
+-/
 theorem binetLaplace_remainder_bounds {y : ℝ} (hy : 0 < y) (N : ℕ) :
     0 < (-1 : ℝ) ^ N * (binetLaplace y - binetLaplaceApprox y N) ∧
       (-1 : ℝ) ^ N * (binetLaplace y - binetLaplaceApprox y N) <
@@ -144,6 +168,9 @@ theorem binetLaplace_remainder_bounds {y : ℝ} (hy : 0 < y) (N : ℕ) :
   rw [heR] at hp
   exact ⟨hp, by linarith⟩
 
+/--
+@isnad1 id=lt.1h2v.s7.2f240388b5e0 from=translated src=- shape=0bee7de8 vocab=ce183de4
+-/
 theorem binetLaplace_remainder_abs_lt {y : ℝ} (hy : 0 < y) (N : ℕ) :
     |binetLaplace y - binetLaplaceApprox y N| <
       |(bernoulli (2 * (N + 1)) : ℝ)| /
@@ -157,6 +184,9 @@ theorem binetLaplace_remainder_abs_lt {y : ℝ} (hy : 0 < y) (N : ℕ) :
   rw [he]
   exact h.2
 
+/--
+@isnad1 id=lt.1h1v.s6.899520c9406a from=translated src=- shape=dea55de8 vocab=5269eaf1
+-/
 theorem binetLaplace_lt_inv_sq {y : ℝ} (hy : 0 < y) :
     binetLaplace y < 1 / (12 * y ^ 2) := by
   have h := (binetLaplace_remainder_bounds hy 0).2

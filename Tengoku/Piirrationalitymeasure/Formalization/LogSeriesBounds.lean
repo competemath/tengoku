@@ -16,6 +16,9 @@ noncomputable def oddLogPartialSum (z : ℝ) (N : ℕ) : ℝ :=
 noncomputable def oddLogTailBound (z : ℝ) (N : ℕ) : ℝ :=
   2 * z ^ (2 * N + 1) / ((2 * (N : ℝ) + 1) * (1 - z ^ 2))
 
+/--
+@isnad1 id=eq.0h2v.s6.21f2691b9de7 from=translated src=- shape=a45657ec vocab=7186401b
+-/
 theorem oddLogPartialSum_eq (z : ℝ) (N : ℕ) :
     oddLogPartialSum z N = 2 * ∑ q ∈ Finset.range N, z ^ (2 * q + 1) / (2 * (q : ℝ) + 1) := by
   rw [Finset.mul_sum]
@@ -24,6 +27,9 @@ theorem oddLogPartialSum_eq (z : ℝ) (N : ℕ) :
   dsimp [oddLogTerm]
   ring
 
+/--
+@isnad1 id=lt.3h3v.s5.8e1413422158 from=translated src=- shape=68728ed0 vocab=9b7fcc30
+-/
 theorem oddLogTailBound_lt {z w : ℝ} (hz : 0 < z) (hzw : z < w) (hw : w < 1) (N : ℕ) :
     oddLogTailBound z N < oddLogTailBound w N := by
   have hw0 := hz.trans hzw
@@ -40,15 +46,24 @@ theorem oddLogTailBound_lt {z w : ℝ} (hz : 0 < z) (hzw : z < w) (hw : w < 1) (
       apply div_lt_div_of_pos_left (by positivity) (by positivity)
       exact mul_lt_mul_of_pos_left (sub_lt_sub_left hzsq 1) (by positivity)
 
+/--
+@isnad1 id=hassum.2h1v.s6.9d3a07a79da1 from=translated src=- shape=3a2ca42a vocab=befe5b54
+-/
 theorem oddLogTerm_hasSum {z : ℝ} (hz0 : 0 ≤ z) (hz1 : z < 1) :
     HasSum (oddLogTerm z) (Real.log ((1 + z) / (1 - z))) := by
   rw [Real.log_div (by linarith) (by linarith)]
   exact Real.hasSum_log_sub_log_of_abs_lt_one (by rwa [abs_of_nonneg hz0])
 
+/--
+@isnad1 id=lt.1h2v.s4.780afc030cbd from=translated src=- shape=9141f3a7 vocab=fc062c25
+-/
 theorem oddLogTerm_pos {z : ℝ} (hz : 0 < z) (q : ℕ) : 0 < oddLogTerm z q := by
   unfold oddLogTerm
   positivity
 
+/--
+@isnad1 id=le.1h3v.s7.317801687d3b from=translated src=- shape=59e6207f vocab=f611f2f6
+-/
 theorem oddLogTerm_shift_le_geometric {z : ℝ} (hz : 0 < z) (N q : ℕ) :
     oddLogTerm z (q + N) ≤
       (2 * z ^ (2 * N + 1) / (2 * (N : ℝ) + 1)) * (z ^ 2) ^ q := by
@@ -63,6 +78,9 @@ theorem oddLogTerm_shift_le_geometric {z : ℝ} (hz : 0 < z) (N q : ℕ) :
   have := Nat.cast_nonneg (α := ℝ) q
   linarith
 
+/--
+@isnad1 id=lt.1h2v.s7.b4a79c535eca from=translated src=- shape=09ec96b7 vocab=127b8d28
+-/
 theorem oddLogTerm_shift_lt_geometric {z : ℝ} (hz : 0 < z) (N : ℕ) :
     oddLogTerm z (1 + N) <
       (2 * z ^ (2 * N + 1) / (2 * (N : ℝ) + 1)) * (z ^ 2) ^ 1 := by
@@ -76,6 +94,9 @@ theorem oddLogTerm_shift_lt_geometric {z : ℝ} (hz : 0 < z) (N : ℕ) :
   apply div_lt_div_of_pos_left (by positivity) (by positivity)
   linarith
 
+/--
+@isnad1 id=and.2h2v.s7.2c98650627b7 from=translated src=- shape=c0bcb975 vocab=57527447
+-/
 theorem oddLogSeries_tail_bounds {z : ℝ} (hz0 : 0 < z) (hz1 : z < 1) (N : ℕ) :
     0 < Real.log ((1 + z) / (1 - z)) - oddLogPartialSum z N ∧
       Real.log ((1 + z) / (1 - z)) - oddLogPartialSum z N < oddLogTailBound z N := by

@@ -6,6 +6,9 @@ import Tengoku.Piirrationalitymeasure.Formalization.ContourDeformation
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=ex.1h1v.s7.aac2fa31a957 from=translated src=- shape=bc25a3b0 vocab=dc9d7f2c
+-/
 theorem disk_density_primitive {f : ℂ → ℂ}
     (hf : ∀ z : ℂ, ‖z‖ < 5 → DifferentiableAt ℂ f z) :
     ∃ F : ℂ → ℂ, ∀ z : ℂ, ‖z‖ < 5 → HasDerivAt F (f z) z := by
@@ -14,6 +17,9 @@ theorem disk_density_primitive {f : ℂ → ℂ}
     exact (hf z (by simpa using hz)).differentiableWithinAt
   simpa only [Complex.IsExactOn, Metric.mem_ball, dist_zero_right] using hd.isExactOn_ball
 
+/--
+@isnad1 id=interval.3h4v.s8.07bce1e7ff2c from=translated src=- shape=c6feba8b vocab=2095d0bf
+-/
 theorem disk_density_path_integrable {f : ℂ → ℂ}
     (hf : ∀ z : ℂ, ‖z‖ < 5 → DifferentiableAt ℂ f z)
     {g : ℝ → ℂ} {a b : ℝ} (hg : ContDiff ℝ 1 g)
@@ -24,6 +30,9 @@ theorem disk_density_path_integrable {f : ℂ → ℂ}
   exact (((hf _ (hB u hu)).continuousAt.comp hg.continuous.continuousAt).mul
     hg.continuous_deriv_one.continuousAt).continuousWithinAt
 
+/--
+@isnad1 id=eq.4h5v.s8.95e8d0bc822d from=translated src=- shape=897fd2e3 vocab=1be0ee22
+-/
 theorem disk_density_path_primitive {f F : ℂ → ℂ}
     (hf : ∀ z : ℂ, ‖z‖ < 5 → DifferentiableAt ℂ f z)
     (hF : ∀ z : ℂ, ‖z‖ < 5 → HasDerivAt F (f z) z)
@@ -34,6 +43,9 @@ theorem disk_density_path_primitive {f F : ℂ → ℂ}
     (fun u _ => (hg.differentiable (by norm_num) u).hasDerivAt)
     (disk_density_path_integrable hf hg hB)
 
+/--
+@isnad1 id=eq.2h2v.s8.23d9e0ff3a80 from=translated src=- shape=6c258199 vocab=4d436879
+-/
 theorem disk_density_vertical_primitive {f F : ℂ → ℂ}
     (hf : ∀ z : ℂ, ‖z‖ < 5 → DifferentiableAt ℂ f z)
     (hF : ∀ z : ℂ, ‖z‖ < 5 → HasDerivAt F (f z) z) :
@@ -61,6 +73,9 @@ theorem disk_density_vertical_primitive {f F : ℂ → ℂ}
       rw [Complex.I_mul_I, neg_one_mul]
     _ = _ := by ring
 
+/--
+@isnad1 id=eq.3h2v.s8.f9f4b09845fc from=translated src=- shape=244e5936 vocab=17b8e8e5
+-/
 theorem disk_density_deformation {f : ℂ → ℂ}
     (hf : ∀ z : ℂ, ‖z‖ < 5 → DifferentiableAt ℂ f z)
     {e : ℝ} (he0 : 0 ≤ e) (he1 : e ≤ 1) :

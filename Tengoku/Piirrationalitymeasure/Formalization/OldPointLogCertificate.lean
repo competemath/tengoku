@@ -36,6 +36,9 @@ def oldLogRounded (i : Fin 8) : ℤ :=
   | _ => 1098612288668109691395245236922525704647490557822749451734643
 
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=and.0h1v.s6.19c8544dd8d6 from=translated src=- shape=88957e64 vocab=0efcffd9
+-/
 theorem oldLogInput_range (i : Fin 8) :
     2 ^ oldLogScale i ≤ oldLogInput i ∧
       oldLogInput i ≤ 2 * 2 ^ oldLogScale i ∧ |oldLogScale i| ≤ 12 := by
@@ -44,11 +47,17 @@ theorem oldLogInput_range (i : Fin 8) :
 
 set_option maxRecDepth 100000 in
 set_option maxHeartbeats 4000000 in
+/--
+@isnad1 id=eq.0h1v.s5.6ad67ef50e6c from=translated src=- shape=731b817d vocab=3d0c3ec0
+-/
 theorem oldLogRounded_value (i : Fin 8) :
     roundedScaledLog (oldLogInput i) (oldLogScale i) 120 (10 ^ 60) = oldLogRounded i := by
   revert i
   decide +kernel
 
+/--
+@isnad1 id=lt.0h1v.s6.4b03fa05d028 from=translated src=- shape=12d06da1 vocab=2f864641
+-/
 theorem oldLog_enclosure (i : Fin 8) :
     |Real.log (oldLogInput i : ℝ) - (oldLogRounded i : ℝ) / 10 ^ 60| <
       (2000 : ℝ) / 10 ^ 60 := by

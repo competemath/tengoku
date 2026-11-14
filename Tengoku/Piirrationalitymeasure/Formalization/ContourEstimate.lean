@@ -10,6 +10,9 @@ pointwise majorant; the estimate is the exact interval-integral statement.
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=le.2h2v.s7.6e6319a2f559 from=translated src=- shape=14c4d755 vocab=ba12f4e2
+-/
 theorem intervalIntegral_norm_bound
     {f : ℝ → ℂ} {g : ℝ → ℝ}
     (hg : IntervalIntegrable g MeasureTheory.volume (0 : ℝ) 1)
@@ -20,6 +23,9 @@ theorem intervalIntegral_norm_bound
   · exact Filter.Eventually.of_forall (fun x hx => hbound x hx)
   · exact hg
 
+/--
+@isnad1 id=le.4h3v.s7.63fbe58ebedf from=translated src=- shape=0d728e40 vocab=b6d46d9e
+-/
 theorem intervalIntegral_norm_bound_with_factor
     {f : ℝ → ℂ} {A : ℝ → ℝ} {C : ℝ}
     (hA : IntervalIntegrable A MeasureTheory.volume (0 : ℝ) 1)

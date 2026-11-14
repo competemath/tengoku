@@ -7,6 +7,9 @@ import Tengoku.Piirrationalitymeasure.Formalization.CoefficientGrowthNumerics
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=eq.1h3v.s7.0e88e3e3146d from=translated src=- shape=b2685bf4 vocab=8c7e4b2e
+-/
 theorem complexPhase_ofReal_of_gt_twenty_five (alpha beta : ℝ) {y : ℝ} (hy : 25 < y) :
     complexPhase alpha beta (y : ℂ) =
       alpha * Real.log y + beta * Real.log (y ^ 2 + 6 * y + 25) - Real.log (y - 25) := by
@@ -18,6 +21,9 @@ theorem complexPhase_ofReal_of_gt_twenty_five (alpha beta : ℝ) {y : ℝ} (hy :
   rw [abs_of_pos (by linarith : 0 < y), abs_of_pos (by nlinarith : 0 < y ^ 2 + 6 * y + 25),
     abs_of_neg (by linarith : 25 - y < 0), neg_sub]
 
+/--
+@isnad1 id=eq.2h3v.s8.6902ef972888 from=translated src=- shape=93c73bba vocab=835dace1
+-/
 theorem real_phase_mobius (alpha beta : ℝ) {z : ℝ} (hz0 : 0 < z) (hz1 : z < 1) :
     complexPhase alpha beta ((25 * (1 + z) ^ 2 / (1 - z) ^ 2 : ℝ) : ℂ) =
       (alpha + beta - 1) * Real.log 25 + (4 * beta - 2) * Real.log 2 +
@@ -60,6 +66,9 @@ theorem real_phase_mobius (alpha beta : ℝ) {z : ℝ} (hz0 : 0 < z) (hz1 : z < 
     Real.log_mul (by norm_num) hz0.ne', Real.log_pow, hlog400, hlog100]
   ring
 
+/--
+@isnad1 id=eq.0h0v.s5.80a205cce391 from=translated src=- shape=0f7e0066 vocab=7fc36b30
+-/
 theorem realSaddle_phase_eq_coefficientGrowthRate :
     complexPhase (1857 / 5570) (3714 / 5570) (stationaryRoot : ℂ) = coefficientGrowthRate := by
   rw [coefficientSaddle_real_root,

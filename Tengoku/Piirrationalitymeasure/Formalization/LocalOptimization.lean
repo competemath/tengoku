@@ -13,6 +13,9 @@ namespace PiIrrationality
 noncomputable def auxiliaryH (r s g : ℝ) : ℝ → ℝ :=
   (fun _ => 1) + (fun x => r + g - x) / (fun x => -s - g + x)
 
+/--
+@isnad1 id=hasderiv.1h4v.s7.f973ad5c20d2 from=translated src=- shape=7784e829 vocab=a089ce4c
+-/
 theorem auxiliaryH_hasDerivAt {r s g w : ℝ}
     (hden : -s - g + w ≠ 0) :
     HasDerivAt (auxiliaryH r s g)
@@ -35,16 +38,25 @@ theorem auxiliaryH_hasDerivAt {r s g w : ℝ}
   convert hconst'' using 1
   ring
 
+/--
+@isnad1 id=eq.1h4v.s7.3924378d08e8 from=translated src=- shape=524c822c vocab=8c2bf03d
+-/
 theorem auxiliaryH_deriv_formula {r s g w : ℝ}
     (hden : -s - g + w ≠ 0) :
     deriv (auxiliaryH r s g) w =
       -(r - s) / (-s - g + w) ^ 2 :=
   (auxiliaryH_hasDerivAt hden).deriv
 
+/--
+@isnad1 id=lt.1h4v.s6.0cb0a770b188 from=translated src=- shape=295c8b2b vocab=2e77cf20
+-/
 theorem auxiliaryH_denominator_sq_pos {r s g w : ℝ}
     (hden : 0 < -s - g + w) : 0 < (-s - g + w) ^ 2 := by
   positivity
 
+/--
+@isnad1 id=eq.2h5v.s7.34f6eaa7d905 from=translated src=- shape=74400405 vocab=35370068
+-/
 theorem auxiliaryH_sub_formula {r s g x y : ℝ}
     (hx : -s - g + x ≠ 0) (hy : -s - g + y ≠ 0) :
     auxiliaryH r s g y - auxiliaryH r s g x =
@@ -54,6 +66,9 @@ theorem auxiliaryH_sub_formula {r s g x y : ℝ}
   field_simp [hx, hy]
   ring
 
+/--
+@isnad1 id=lt.5h7v.s6.e365f5fbcbc5 from=translated src=- shape=60230214 vocab=5d64efbe
+-/
 theorem auxiliaryH_strictAntiOn {r s g l u : ℝ}
     (hrs : s < r)
     (hden : ∀ w ∈ Set.Ioo l u, 0 < -s - g + w) :
@@ -72,6 +87,9 @@ theorem auxiliaryH_strictAntiOn {r s g l u : ℝ}
   rw [hsub]
   convert neg_lt_zero.mpr hquot using 1 <;> ring
 
+/--
+@isnad1 id=eq.0h5v.s6.db981753e1d6 from=translated src=- shape=62ababed vocab=23b39d30
+-/
 theorem auxiliaryBound_eq_auxiliaryH
     (r s G phi : ℝ × ℝ → ℝ) (p : ℝ × ℝ) :
     AuxiliaryBound r s (fun x => G x - phi x) p =
@@ -80,6 +98,9 @@ theorem auxiliaryBound_eq_auxiliaryH
   simp
   ring
 
+/--
+@isnad1 id=strictlo.4h6v.s7.e5793803e801 from=translated src=- shape=2f93296c vocab=00b7898c
+-/
 theorem strictLocalMinimizer_of_quadratic_lower_bound
     (f : ℝ × ℝ → ℝ) (domain : ℝ × ℝ → Prop) (p0 : ℝ × ℝ)
     {kappa C rho : ℝ} (hkappa : 0 < kappa) (hC : 0 ≤ C) (hrho : 0 < rho)

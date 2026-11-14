@@ -12,17 +12,26 @@ namespace PiIrrationality
 
 open Polynomial
 
+/--
+@isnad1 id=eq.2h6v.s7.ea4bf44f97b7 from=translated src=- shape=f1b6b40e vocab=f21659c2
+-/
 theorem pole_power_cancel {K : Type*} [Field K]
     (m i : ℕ) (hi : i ≤ m) (x y c : K) (hx : x ≠ 0) :
     c / x ^ (m - i) * (x ^ m * y ^ m) = c * x ^ i * y ^ m := by
   rw [show x ^ m = x ^ (m - i) * x ^ i by rw [← pow_add, Nat.sub_add_cancel hi]]
   field_simp
 
+/--
+@isnad1 id=eq.0h4v.s7.8b0a0c270196 from=translated src=- shape=aa1c72c3 vocab=75be06ca
+-/
 theorem div_neg_power {K : Type*} [Field K] (c x : K) (m : ℕ) :
     c / (-x) ^ m = (-1) ^ m * c / x ^ m := by
   rw [div_eq_mul_inv, ← inv_pow, inv_neg, neg_pow x⁻¹ m, inv_pow]
   ring
 
+/--
+@isnad1 id=eq.2h3v.s10.5902b6ae9809 from=translated src=- shape=0c6601c0 vocab=b076b5fb
+-/
 theorem rationalFunction_partialFractions_lowIndex {K : Type*} [Field K] [Algebra ℚ K]
     (n : ℕ) (t : K) (htplus : t + 5 ≠ 0) (htminus : t - 5 ≠ 0) :
     5 * t ^ (2 * 1857 * n) * (t ^ 4 + 6 * t ^ 2 + 25) ^ (3714 * n) /
@@ -71,6 +80,9 @@ theorem rationalFunction_partialFractions_lowIndex {K : Type*} [Field K] [Algebr
   simp_rw [hleft, hright]
   exact h
 
+/--
+@isnad1 id=eq.2h3v.s10.ff295e87fdf3 from=translated src=- shape=c781470e vocab=b076b5fb
+-/
 theorem rationalFunction_partialFractions {K : Type*} [Field K] [Algebra ℚ K]
     (n : ℕ) (t : K) (htplus : t + 5 ≠ 0) (htminus : t - 5 ≠ 0) :
     5 * t ^ (2 * 1857 * n) * (t ^ 4 + 6 * t ^ 2 + 25) ^ (3714 * n) /

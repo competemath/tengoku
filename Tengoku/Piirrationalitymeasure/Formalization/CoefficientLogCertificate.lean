@@ -49,6 +49,9 @@ def coefficientLogRounded (i : Fin 10) : ℤ :=
   | _ => -1430524755815414876252477425368007643175816560622893592250506
 
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=and.0h1v.s6.be4ffdb8334e from=translated src=- shape=88957e64 vocab=95209215
+-/
 theorem coefficientLogInput_range (i : Fin 10) :
     2 ^ coefficientLogScale i ≤ coefficientLogInput i ∧
       coefficientLogInput i ≤ 2 * 2 ^ coefficientLogScale i ∧
@@ -59,12 +62,18 @@ theorem coefficientLogInput_range (i : Fin 10) :
 -- Kernel reduction checks the integer floors of the 120-term rational sums.
 set_option maxRecDepth 100000 in
 set_option maxHeartbeats 2000000 in
+/--
+@isnad1 id=eq.0h1v.s5.23dfca95203b from=translated src=- shape=731b817d vocab=807ac40f
+-/
 theorem coefficientLogRounded_value (i : Fin 10) :
     roundedScaledLog (coefficientLogInput i) (coefficientLogScale i) 120 (10 ^ 60) =
       coefficientLogRounded i := by
   revert i
   decide +kernel
 
+/--
+@isnad1 id=lt.0h1v.s6.fb79f2dfc14e from=translated src=- shape=12d06da1 vocab=36d01583
+-/
 theorem coefficientLog_enclosure (i : Fin 10) :
     |Real.log (coefficientLogInput i : ℝ) - (coefficientLogRounded i : ℝ) / 10 ^ 60| <
       (1000 : ℝ) / 10 ^ 60 := by

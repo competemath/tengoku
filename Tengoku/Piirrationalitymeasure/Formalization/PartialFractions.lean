@@ -12,6 +12,9 @@ namespace PiIrrationality
 
 open Polynomial
 
+/--
+@isnad1 id=ex.0h2v.s9.d7c725e94c94 from=translated src=- shape=4b76e8e8 vocab=ecbfe322
+-/
 theorem two_pole_polynomial_decomposition (F : Polynomial ℚ) (m : ℕ) :
     ∃ (Q : Polynomial ℚ) (a b : Fin m → ℚ),
       F = Q * ((X + C 5) ^ m * (X - C 5) ^ m) +
@@ -56,6 +59,9 @@ theorem two_pole_polynomial_decomposition (F : Polynomial ℚ) (m : ℕ) :
   simp [g, poles] at hf
   convert hf using 1 <;> ring
 
+/--
+@isnad1 id=le.0h3v.s9.d32f7609c12d from=translated src=- shape=053778e9 vocab=ae440f9e
+-/
 theorem two_pole_remainder_natDegree_le
     (m : ℕ) (a b : Fin m → ℚ) :
     ((∑ i : Fin m, C (a i) * (X + C 5) ^ i.val * (X - C 5) ^ m) +
@@ -77,6 +83,9 @@ theorem two_pole_remainder_natDegree_le
       mul_one, zero_add]
     omega
 
+/--
+@isnad1 id=eq.2h5v.s10.996bf913cdd1 from=translated src=- shape=028ada11 vocab=14222809
+-/
 theorem two_pole_quotient_eq_divByMonic
     (F Q : Polynomial ℚ) (m : ℕ) (hm : 0 < m) (a b : Fin m → ℚ)
     (hF : F = Q * ((X + C 5) ^ m * (X - C 5) ^ m) +
@@ -114,6 +123,9 @@ def TwoPoleDecomposition (n : ℕ) (a b : Fin (5570 * n + 1) → ℚ) : Prop :=
         (∑ i : Fin (5570 * n + 1),
           C (b i) * (X - C 5) ^ i.val * (X + C 5) ^ (5570 * n + 1))
 
+/--
+@isnad1 id=ex.0h1v.s6.e92157793512 from=translated src=- shape=57a34a7e vocab=8297da38
+-/
 theorem polynomialPart_two_pole_decomposition (n : ℕ) :
     ∃ a b : Fin (5570 * n + 1) → ℚ, TwoPoleDecomposition n a b := by
   obtain ⟨Q, a, b, h⟩ := two_pole_polynomial_decomposition
@@ -124,12 +136,18 @@ theorem polynomialPart_two_pole_decomposition (n : ℕ) :
   unfold TwoPoleDecomposition
   exact hQ ▸ h
 
+/--
+@isnad1 id=eq.0h1v.s6.1fe10432e250 from=translated src=- shape=a6edcb6d vocab=1361adce
+-/
 theorem int_square_comp_reflect (P : Polynomial ℤ) :
     ((P.comp (X ^ 2)).map (Int.castRingHom ℚ)).comp (-X) =
       (P.comp (X ^ 2)).map (Int.castRingHom ℚ) := by
   simp only [Polynomial.map_comp, Polynomial.map_pow, Polynomial.map_X,
     comp_assoc, pow_comp, X_comp, neg_sq]
 
+/--
+@isnad1 id=twopoled.1h3v.s8.8f91f7d53219 from=translated src=- shape=f3540708 vocab=5f561dbc
+-/
 theorem TwoPoleDecomposition.reflect
     (n : ℕ) (a b : Fin (5570 * n + 1) → ℚ) (hF : TwoPoleDecomposition n a b) :
     TwoPoleDecomposition n
@@ -157,6 +175,9 @@ theorem TwoPoleDecomposition.reflect
   simp_rw [hterm] at h
   linear_combination h
 
+/--
+@isnad1 id=eq.1h5v.s10.a101968bed4a from=translated src=- shape=0ebccd33 vocab=423829e5
+-/
 theorem TwoPoleDecomposition.eval {K : Type*} [Field K] [Algebra ℚ K]
     (n : ℕ) (a b : Fin (5570 * n + 1) → ℚ) (hF : TwoPoleDecomposition n a b) (t : K) :
     -(5 * t ^ (2 * 1857 * n) * (t ^ 4 + 6 * t ^ 2 + 25) ^ (3714 * n)) =

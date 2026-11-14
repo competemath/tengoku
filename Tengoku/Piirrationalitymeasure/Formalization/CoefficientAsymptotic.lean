@@ -10,6 +10,9 @@ namespace PiIrrationality
 open Filter Asymptotics PowerSeries
 open scoped Topology
 
+/--
+@isnad1 id=isequiva.2h2v.s6.8fe47c0e22a1 from=translated src=- shape=2c6ab2ca vocab=7a841a00
+-/
 theorem sqrt_scaled_asymptotic {p : ℕ → ℝ} {C : ℝ} (hC : 0 < C)
     (h : Tendsto (fun n : ℕ => Real.sqrt (n : ℝ) * p n) atTop
       (𝓝 (1 / Real.sqrt C))) :

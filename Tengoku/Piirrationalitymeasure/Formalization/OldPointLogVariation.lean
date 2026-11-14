@@ -34,6 +34,9 @@ noncomputable def oldPointSavingModel :
     rw [hpair, oldPoint_measure hh.1 he, oldPoint_measure_zero]
     ring
 
+/--
+@isnad1 id=ex.0h0v.s7.caf34693f57d from=translated src=- shape=8bc4dbe1 vocab=ed36d536
+-/
 theorem savingPhi_oldPoint_log_variation :
     ∃ r C : ℝ, 0 < r ∧ 0 ≤ C ∧ ∀ e : ℝ, 0 < e → e ≤ r →
       |savingPhi (oldPoint + e • ((1 : ℝ) / 2, 1)) - savingPhi oldPoint -

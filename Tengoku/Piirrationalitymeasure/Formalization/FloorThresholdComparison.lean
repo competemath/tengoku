@@ -21,6 +21,9 @@ private theorem floor_le_of_threshold_imp (a b : ℤ) (x y : ℝ)
   have hjy' := Int.le_floor.mpr hjy
   omega
 
+/--
+@isnad1 id=eq.5h4v.s6.7e212cff648f from=translated src=- shape=588ab8cb vocab=0bc3cb90
+-/
 theorem floor_eq_of_threshold_comparisons (a b : ℤ) (x y : ℝ)
     (hxlo : (a : ℝ) - 1 ≤ x) (hxhi : x < (b : ℝ))
     (hylo : (a : ℝ) - 1 ≤ y) (hyhi : y < (b : ℝ))

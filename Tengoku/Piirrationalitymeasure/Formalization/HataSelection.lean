@@ -13,6 +13,9 @@ namespace PiIrrationality
 open Filter
 open scoped Topology
 
+/--
+@isnad1 id=ex.2h2v.s6.008c745e1ffa from=translated src=- shape=87dc7137 vocab=25cb188c
+-/
 theorem exists_first_nonzero_after
     {A : ℕ → ℤ} {N : ℕ}
     (hinf : ∀ n : ℕ, ∃ m : ℕ, n < m ∧ A m ≠ 0)
@@ -36,6 +39,9 @@ theorem exists_first_nonzero_after
       simpa [heq] using hN
   exact ⟨M, hMgt, hMne, hpredzero⟩
 
+/--
+@isnad1 id=not.5h7v.s7.36eb3db61031 from=translated src=- shape=5b2d19a7 vocab=52b9f8d2
+-/
 theorem hata_integer_not_eventually_zero
     {theta : ℝ} {U V : ℕ → ℤ} {p : ℤ} {q : ℕ}
     {sigma tau : ℝ}
@@ -124,6 +130,9 @@ theorem hata_integer_not_eventually_zero
   obtain ⟨n, hn⟩ := hfalse.exists
   exact hn
 
+/--
+@isnad1 id=ex.6h8v.s7.ddbef0b90ec6 from=translated src=- shape=68c7dae8 vocab=bc833a6c
+-/
 theorem hata_exists_first_nonzero_after
     {theta : ℝ} {U V : ℕ → ℤ} {p : ℤ} {q : ℕ}
     {sigma tau : ℝ}
@@ -148,6 +157,9 @@ theorem hata_exists_first_nonzero_after
     exact ⟨m, by omega, hm⟩
   exact exists_first_nonzero_after hinf hN
 
+/--
+@isnad1 id=le.3h8v.s7.215db621cd4b from=translated src=- shape=26560a48 vocab=d3669688
+-/
 theorem hata_zero_index_upper_bound
     {theta : ℝ} {U V : ℤ} {p : ℤ} {q : ℕ} {n : ℕ}
     {sigma tau : ℝ}
@@ -198,6 +210,9 @@ theorem hata_zero_index_upper_bound
           congr 1
           ring
 
+/--
+@isnad1 id=le.4h4v.s7.b7826557a27b from=translated src=- shape=3f9c788a vocab=ae15446b
+-/
 theorem hata_zero_predecessor_exp_bound
     {D q gamma : ℝ} {m : ℕ} (hq : 0 < q) (hD : 0 < D)
     (hgamma : 0 < gamma)

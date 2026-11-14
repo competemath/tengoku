@@ -9,6 +9,9 @@ namespace PiIrrationality
 open MeasureTheory Set Filter
 open scoped Topology
 
+/--
+@isnad1 id=eventual.1h2v.s5.d573a1600002 from=translated src=- shape=7342294a vocab=db42c819
+-/
 theorem ae_affine_ne_intCast {a : ℝ} (ha : a ≠ 0) (b : ℝ) :
     ∀ᵐ t : ℝ, ∀ m : ℤ, a * t + b ≠ (m : ℝ) := by
   have h := (countable_range (fun m : ℤ => ((m : ℝ) - b) / a)).ae_notMem volume
@@ -16,6 +19,9 @@ theorem ae_affine_ne_intCast {a : ℝ} (ha : a ≠ 0) (b : ℝ) :
   apply ht
   exact ⟨m, (div_eq_iff ha).mpr (by linarith)⟩
 
+/--
+@isnad1 id=continuo.3h2v.s8.6776e4298d22 from=translated src=- shape=e4571a84 vocab=07177812
+-/
 theorem continuousAt_savingChi_parameters {p : ℝ × ℝ} {t : ℝ}
     (hA : p.1 * t + 1 / 2 ≠ (⌊p.1 * t + 1 / 2⌋ : ℝ))
     (hB : p.2 * t ≠ (⌊p.2 * t⌋ : ℝ))
@@ -34,6 +40,9 @@ theorem continuousAt_savingChi_parameters {p : ℝ × ℝ} {t : ℝ}
     filter_upwards [continuousAt_const.eventually_lt hcont hgt] with x hx
     exact ite_eq_right hx.not_gt
 
+/--
+@isnad1 id=eventual.3h1v.s7.4de358eaaf94 from=translated src=- shape=7ad7403e vocab=1c6de40e
+-/
 theorem ae_continuousAt_savingDensity {p : ℝ × ℝ}
     (hA : p.1 ≠ 0) (hB : p.2 ≠ 0) (hq : p.1 + 2 * p.2 - 1 ≠ 0) :
     ∀ᵐ t : ℝ, ContinuousAt (fun x : ℝ × ℝ => savingDensity x.1 x.2 1 t) p := by
@@ -48,6 +57,9 @@ theorem ae_continuousAt_savingDensity {p : ℝ × ℝ}
   have hc := continuousAt_savingChi_parameters (htA _) (by simpa using htB ⌊p.2 * t⌋) hneq
   simpa only [savingDensity, one_mul] using hc.div_const (t ^ 2)
 
+/--
+@isnad1 id=continuo.3h1v.s6.cf49cedeed74 from=translated src=- shape=0b33acb7 vocab=ec1b1ad9
+-/
 theorem continuousAt_savingPhi {p : ℝ × ℝ}
     (hA : 0 < p.1) (hB : 0 < p.2) (hq : 0 < p.1 + 2 * p.2 - 1) :
     ContinuousAt savingPhi p := by
@@ -93,6 +105,9 @@ theorem continuousAt_savingPhi {p : ℝ × ℝ}
       with t ht
     exact ht
 
+/--
+@isnad1 id=continuo.0h0v.s5.5c4859f6b497 from=translated src=- shape=57ebd691 vocab=f2847d1a
+-/
 theorem savingPhi_continuousOn : ContinuousOn savingPhi {p | Admissible p} := by
   intro p hp
   obtain ⟨h1, h2, h3, h4⟩ := hp

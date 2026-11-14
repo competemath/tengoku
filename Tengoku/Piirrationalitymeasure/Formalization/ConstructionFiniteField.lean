@@ -12,6 +12,9 @@ noncomputable def constructionFiniteFieldRational (a b c n p : ℕ) [Fact p.Prim
   algebraMap (Polynomial (ZMod p)) (RatFunc (ZMod p)) (deletionNumerator p (a * n) (b * n)) /
     algebraMap (Polynomial (ZMod p)) (RatFunc (ZMod p)) (deletionDenominator p (c * n))
 
+/--
+@isnad1 id=ex.1h5v.s10.eb22f0d9c4ba from=translated src=- shape=55dd452d vocab=a7c973c6
+-/
 theorem constructionRemovablePrime_derivative_quotient {a b c n p : ℕ} [Fact p.Prime]
     (hp : constructionRemovablePrime a b c n p) :
     ∃ N D : Polynomial (ZMod p), D ≠ 0 ∧ Polynomial.derivative D = 0 ∧
@@ -37,6 +40,9 @@ theorem constructionRemovablePrime_derivative_quotient {a b c n p : ℕ} [Fact p
   simpa only [map_mul] using congrArg
     (algebraMap (Polynomial (ZMod p)) (RatFunc (ZMod p))) hcross
 
+/--
+@isnad1 id=ex.1h6v.s9.222f1b6efed4 from=translated src=- shape=e4424a3d vocab=a8fb7781
+-/
 theorem constructionRemovablePrime_local_primitive {a b c n p : ℕ} [Fact p.Prime]
     (hp : constructionRemovablePrime a b c n p) (t : ZMod p) :
     ∃ W : LaurentSeries (ZMod p),
@@ -46,6 +52,9 @@ theorem constructionRemovablePrime_local_primitive {a b c n p : ℕ} [Fact p.Pri
   refine ⟨localPolynomial t N / localPolynomial t D, ?_⟩
   rw [hR, localLaurent_derivative_quotient t N D hd]
 
+/--
+@isnad1 id=eq.2h6v.s8.26cebfa2e31b from=translated src=- shape=a290bc9c vocab=9c900f05
+-/
 theorem constructionRemovablePrime_local_coeff_zero {a b c n p : ℕ} [Fact p.Prime]
     (hp : constructionRemovablePrime a b c n p) (j : ℤ) (hj : (p : ℤ) ∣ j) :
     (localLaurent (-5 : ZMod p) (constructionFiniteFieldRational a b c n p)).coeff

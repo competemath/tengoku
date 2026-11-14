@@ -9,6 +9,9 @@ namespace PiIrrationality
 
 def oldStationaryCubic (y : ℝ) : ℝ := 2 * y ^ 3 - 125 * y ^ 2 - 500 * y - 625
 
+/--
+@isnad1 id=eq.0h1v.s4.e43d34439d8e from=translated src=- shape=53b14b72 vocab=d0a1253d
+-/
 theorem oldPoint_stationary (y : ℝ) :
     3 * parameterStationary oldPoint y = oldStationaryCubic y := by
   dsimp [parameterStationary, oldPoint, oldStationaryCubic]
@@ -18,10 +21,16 @@ noncomputable def oldRootLower : ℝ := 6633950152462140818 / 10 ^ 17
 
 noncomputable def oldRootUpper : ℝ := 6633950152462140819 / 10 ^ 17
 
+/--
+@isnad1 id=and.0h0v.s4.c66d2295f05b from=translated src=- shape=31a23145 vocab=3a4a45a8
+-/
 theorem oldRoot_endpoint_signs :
     oldStationaryCubic oldRootLower < 0 ∧ 0 < oldStationaryCubic oldRootUpper := by
   constructor <;> norm_num [oldStationaryCubic, oldRootLower, oldRootUpper]
 
+/--
+@isnad1 id=strictmo.0h0v.s5.dddc1c5f3cbe from=translated src=- shape=987ab001 vocab=a81353f4
+-/
 theorem oldStationaryCubic_strictMonoOn :
     StrictMonoOn oldStationaryCubic (Set.Ici (125 / 2 : ℝ)) := by
   apply strictMonoOn_of_deriv_pos (convex_Ici _) (by unfold oldStationaryCubic; fun_prop)
@@ -36,6 +45,9 @@ theorem oldStationaryCubic_strictMonoOn :
   rw [hd.deriv]
   nlinarith [sq_nonneg (x - 125 / 2)]
 
+/--
+@isnad1 id=lt.2h1v.s5.5a4efd578c39 from=translated src=- shape=66e1f691 vocab=2539f5af
+-/
 theorem oldStationaryCubic_root_gt {y : ℝ} (hy : 0 < y) (hroot : oldStationaryCubic y = 0) :
     125 / 2 < y := by
   by_contra h
@@ -44,6 +56,9 @@ theorem oldStationaryCubic_root_gt {y : ℝ} (hy : 0 < y) (hroot : oldStationary
   unfold oldStationaryCubic at hroot
   nlinarith
 
+/--
+@isnad1 id=existsun.0h0v.s4.1185bc00f2db from=translated src=- shape=bdb07295 vocab=dadf65e0
+-/
 theorem oldStationaryCubic_unique_positive_root :
     ∃! y : ℝ, 0 < y ∧ oldStationaryCubic y = 0 := by
   have hcont : ContinuousOn oldStationaryCubic (Set.Icc oldRootLower oldRootUpper) := by
@@ -62,9 +77,15 @@ theorem oldStationaryCubic_unique_positive_root :
 noncomputable def oldStationaryRoot : ℝ :=
   Classical.choose oldStationaryCubic_unique_positive_root
 
+/--
+@isnad1 id=and.0h0v.s4.2ad67c64ad3b from=translated src=- shape=3728abe1 vocab=a536dfde
+-/
 theorem oldStationaryRoot_spec : 0 < oldStationaryRoot ∧ oldStationaryCubic oldStationaryRoot = 0 :=
   (Classical.choose_spec oldStationaryCubic_unique_positive_root).1
 
+/--
+@isnad1 id=and.0h0v.s3.52fc4875d956 from=translated src=- shape=9cf45692 vocab=36a3aa2f
+-/
 theorem oldStationaryRoot_isolation : oldRootLower < oldStationaryRoot ∧
     oldStationaryRoot < oldRootUpper := by
   have hroot := oldStationaryRoot_spec
@@ -82,11 +103,17 @@ theorem oldStationaryRoot_isolation : oldRootLower < oldStationaryRoot ∧
     have hm := oldStationaryCubic_strictMonoOn.monotoneOn hU hy (le_of_not_gt h)
     linarith [oldRoot_endpoint_signs.2]
 
+/--
+@isnad1 id=lt.0h0v.s6.89631c9ee91a from=translated src=- shape=5f4ce588 vocab=d16179b5
+-/
 theorem oldStationaryRoot_simple :
     0 < 6 * oldStationaryRoot ^ 2 - 250 * oldStationaryRoot - 500 := by
   have hy := oldStationaryCubic_root_gt oldStationaryRoot_spec.1 oldStationaryRoot_spec.2
   nlinarith [sq_nonneg (oldStationaryRoot - 125 / 2)]
 
+/--
+@isnad1 id=eq.0h0v.s8.5158554e3bde from=translated src=- shape=722e33d9 vocab=d13119ac
+-/
 theorem oldStationaryCubic_discriminant :
     (-125 : ℤ) ^ 2 * (-500) ^ 2 - 4 * 2 * (-500) ^ 3 -
       4 * (-125) ^ 3 * (-625) - 27 * 2 ^ 2 * (-625) ^ 2 +

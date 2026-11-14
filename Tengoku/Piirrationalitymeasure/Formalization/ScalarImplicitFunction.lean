@@ -9,6 +9,9 @@ namespace PiIrrationality
 open Filter
 open scoped Topology ContDiff
 
+/--
+@isnad1 id=isinvert.1h1v.s7.336ffa69be60 from=translated src=- shape=b0109325 vocab=82dc5c22
+-/
 theorem real_linear_isInvertible_of_apply_one_ne_zero (L : ℝ →L[ℝ] ℝ) (hL : L 1 ≠ 0) :
     L.IsInvertible := by
   have he (x : ℝ) : L x = x * L 1 := by
@@ -29,6 +32,9 @@ theorem real_linear_isInvertible_of_apply_one_ne_zero (L : ℝ →L[ℝ] ℝ) (h
     rw [he x]
     field_simp
 
+/--
+@isnad1 id=ex.3h4v.s8.672f47b67cc8 from=translated src=- shape=68d4b9b1 vocab=a6c488b8
+-/
 theorem exists_analytic_scalar_implicit {f : (ℝ × ℝ) × ℝ → ℝ} {p : ℝ × ℝ} {y d : ℝ}
     (hf : AnalyticAt ℝ f (p, y)) (hd : HasDerivAt (fun t => f (p, t)) d y)
     (hd0 : d ≠ 0) :

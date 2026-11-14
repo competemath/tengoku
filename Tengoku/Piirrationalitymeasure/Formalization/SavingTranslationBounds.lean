@@ -11,14 +11,23 @@ open MeasureTheory Set Filter
 
 noncomputable def parameterNormOne (z : ℝ × ℝ) : ℝ := |z.1| + |z.2|
 
+/--
+@isnad1 id=le.0h1v.s3.4519e0eba62c from=translated src=- shape=70dff6bb vocab=f6333cac
+-/
 theorem parameterNormOne_nonneg (z : ℝ × ℝ) : 0 ≤ parameterNormOne z :=
   add_nonneg (abs_nonneg _) (abs_nonneg _)
 
+/--
+@isnad1 id=le.0h2v.s5.ac251cdf3e37 from=translated src=- shape=f24af865 vocab=e03d9ad7
+-/
 theorem parameterNormOne_sub_le (z w : ℝ × ℝ) :
     parameterNormOne (z - w) ≤ parameterNormOne z + parameterNormOne w := by
   dsimp [parameterNormOne]
   linarith [abs_sub z.1 w.1, abs_sub z.2 w.2]
 
+/--
+@isnad1 id=eq.0h2v.s5.c58fd9fd8e44 from=translated src=- shape=9b3301b0 vocab=518ecfa4
+-/
 theorem parameterNormOne_smul (s : ℝ) (z : ℝ × ℝ) :
     parameterNormOne (s • z) = |s| * parameterNormOne z := by
   dsimp [parameterNormOne]
@@ -28,11 +37,17 @@ theorem parameterNormOne_smul (s : ℝ) (z : ℝ × ℝ) :
 noncomputable def savingTranslationConstant (a b c : ℝ) : ℝ :=
   floorChangeConstant a + floorChangeConstant b + 2 * floorChangeConstant (a + 2 * b - c)
 
+/--
+@isnad1 id=le.0h3v.s4.a624e4af5496 from=translated src=- shape=ac9c39a3 vocab=1056ba42
+-/
 theorem savingTranslationConstant_nonneg (a b c : ℝ) : 0 ≤ savingTranslationConstant a b c := by
   unfold savingTranslationConstant
   linarith [floorChangeConstant_nonneg a, floorChangeConstant_nonneg b,
     floorChangeConstant_nonneg (a + 2 * b - c)]
 
+/--
+@isnad1 id=le.0h6v.s8.b2a4a8ccde39 from=translated src=- shape=cbb5f8ca vocab=360a8902
+-/
 theorem translatedSavingChi_abs_sub_le_floors (a b c : ℝ) (z w : ℝ × ℝ) (u : ℝ) :
     |translatedSavingChi a b c (z + w) u - translatedSavingChi a b c z u| ≤
       floorDisagreement (a * u + (z.1 + 1 / 2)) (a * u + (z.1 + 1 / 2) + w.1) +
@@ -47,6 +62,9 @@ theorem translatedSavingChi_abs_sub_le_floors (a b c : ℝ) (z w : ℝ × ℝ) (
   dsimp only [translatedSavingChi, Prod.fst_add, Prod.snd_add]
   convert h using 1 <;> congr 1 <;> ring
 
+/--
+@isnad1 id=integrab.1h5v.s6.57357d6ad4ae from=translated src=- shape=ce735ed0 vocab=96da7e4a
+-/
 theorem translatedSavingChi_perturbation_integrable (a b c : ℝ) (z : ℝ × ℝ)
     {w : ℝ → ℝ × ℝ} (hw : Measurable w) :
     IntegrableOn (fun u => |translatedSavingChi a b c (z + w u) u -
@@ -62,6 +80,9 @@ theorem translatedSavingChi_perturbation_integrable (a b c : ℝ) (z : ℝ × �
     rw [Real.norm_eq_abs, abs_abs]
     exact savingChi_abs_sub_le_one _ _ _ _ _ _
 
+/--
+@isnad1 id=le.8h6v.s7.199ac36486e0 from=translated src=- shape=0adc5088 vocab=07f0433b
+-/
 theorem translatedSavingChi_integral_perturbation {a b c r : ℝ} (z : ℝ × ℝ)
     (ha : a ≠ 0) (hb : b ≠ 0) (hq : a + 2 * b - c ≠ 0)
     (hz : parameterNormOne z ≤ 1) (hr0 : 0 ≤ r) (hr2 : r ≤ 2)
@@ -122,6 +143,9 @@ theorem translatedSavingChi_integral_perturbation {a b c r : ℝ} (z : ℝ × �
   unfold savingTranslationConstant
   nlinarith [hmono]
 
+/--
+@isnad1 id=le.5h5v.s7.3d2280bfd2c5 from=translated src=- shape=c6e3fcd0 vocab=b6c0c7b0
+-/
 theorem translatedSavingChi_integral_translation {a b c : ℝ} (z z' : ℝ × ℝ)
     (ha : a ≠ 0) (hb : b ≠ 0) (hq : a + 2 * b - c ≠ 0)
     (hz : parameterNormOne z ≤ 1) (hz' : parameterNormOne z' ≤ 1) :
@@ -135,6 +159,9 @@ theorem translatedSavingChi_integral_translation {a b c : ℝ} (z z' : ℝ × �
   have he : z + (z' - z) = z' := by abel
   simpa only [he] using h
 
+/--
+@isnad1 id=le.5h5v.s7.a62e1274d861 from=translated src=- shape=b6d6c69a vocab=32298163
+-/
 theorem translatedSavingChi_integral_affine_translation {a b c : ℝ} (z w : ℝ × ℝ)
     (ha : a ≠ 0) (hb : b ≠ 0) (hq : a + 2 * b - c ≠ 0)
     (hz : parameterNormOne z ≤ 1) (hw : parameterNormOne w ≤ 1) :
@@ -146,6 +173,9 @@ theorem translatedSavingChi_integral_affine_translation {a b c : ℝ} (z w : ℝ
   rw [parameterNormOne_smul, abs_of_nonneg hu.1]
   exact mul_le_of_le_one_left (parameterNormOne_nonneg w) hu.2
 
+/--
+@isnad1 id=interval.0h4v.s5.ab42940f771c from=translated src=- shape=16a1dc2e vocab=f22b64a4
+-/
 theorem translatedSavingChi_intervalIntegrable (a b c : ℝ) (z : ℝ × ℝ) :
     IntervalIntegrable (translatedSavingChi a b c z) volume 0 1 := by
   apply (intervalIntegrable_iff_integrableOn_Ioc_of_le (by norm_num : (0 : ℝ) ≤ 1)).mpr
@@ -156,6 +186,9 @@ theorem translatedSavingChi_intervalIntegrable (a b c : ℝ) (z : ℝ × ℝ) :
     rw [translatedSavingChi, Real.norm_eq_abs, abs_of_nonneg (savingChi_nonneg _ _ _)]
     exact savingChi_le_one _ _ _
 
+/--
+@isnad1 id=le.5h5v.s7.c67c02a2a7f9 from=translated src=- shape=98afcfa3 vocab=bb083306
+-/
 theorem translatedSavingMeasure_abs_sub_le {a b c : ℝ} (z z' : ℝ × ℝ)
     (ha : a ≠ 0) (hb : b ≠ 0) (hq : a + 2 * b - c ≠ 0)
     (hz : parameterNormOne z ≤ 1) (hz' : parameterNormOne z' ≤ 1) :

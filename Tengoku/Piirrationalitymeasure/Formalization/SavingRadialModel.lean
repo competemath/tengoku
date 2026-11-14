@@ -22,6 +22,9 @@ structure SavingRadialModel (a b c : ℝ) where
 
 namespace SavingRadialModel
 
+/--
+@isnad1 id=ex.3h4v.s7.f4433489bab6 from=translated src=- shape=1359ac8d vocab=dbb88b4f
+-/
 theorem period_main_error {a b c : ℝ} (M : SavingRadialModel a b c)
     (ha : 0 < a) (hb : 0 < b) (hq : a + 2 * b - c ≠ 0) :
     ∃ r : ℝ, 0 < r ∧ r ≤ savingPerturbationRadius a b ∧
@@ -44,6 +47,9 @@ theorem period_main_error {a b c : ℝ} (M : SavingRadialModel a b c)
   have hcancel : k * M.variation h / k ^ 2 = M.variation h / k := by field_simp
   simpa only [hcancel] using he
 
+/--
+@isnad1 id=ex.3h4v.s7.900d7486122d from=translated src=- shape=91f0e086 vocab=fc076910
+-/
 theorem truncated_log {a b c : ℝ} (M : SavingRadialModel a b c)
     (ha : 0 < a) (hb : 0 < b) (hq : a + 2 * b - c ≠ 0) :
     ∃ r C : ℝ, 0 < r ∧ r ≤ savingPerturbationRadius a b ∧ 0 ≤ C ∧
@@ -85,6 +91,9 @@ theorem truncated_log {a b c : ℝ} (M : SavingRadialModel a b c)
   dsimp only [K] at ht
   nlinarith only [ht]
 
+/--
+@isnad1 id=ex.4h4v.s8.21c4b2ba9a93 from=translated src=- shape=d08e8c61 vocab=5b67ed88
+-/
 theorem omega_log_variation {a b c : ℤ} (M : SavingRadialModel a b c)
     (ha : 0 < (a : ℝ)) (hb : 0 < (b : ℝ)) (hc : 0 ≤ (c : ℝ))
     (hq : (a : ℝ) + 2 * b - c ≠ 0) :

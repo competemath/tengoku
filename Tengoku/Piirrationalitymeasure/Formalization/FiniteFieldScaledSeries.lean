@@ -16,6 +16,9 @@ noncomputable def scaledCoreInt (n k : ℕ) : ℤ :=
     (Polynomial.hasseDeriv i (scaledNumerator n)).eval 0 *
       ((5570 * n + (k - i)).choose (k - i) : ℤ)
 
+/--
+@isnad1 id=eq.0h2v.s7.54985bb5aed8 from=translated src=- shape=021c07ed vocab=3502ec3d
+-/
 theorem scaledCoreInt_cast (n k : ℕ) :
     (scaledCoreInt n k : ℝ) =
       normalizedDeriv k
@@ -40,6 +43,9 @@ noncomputable def finiteScaledSeries (n p : ℕ) [Fact p.Prime] :
   PowerSeries.map (Int.castRingHom (ZMod p)) (Polynomial.toPowerSeries (scaledNumerator n)) *
     (PowerSeries.invOneSubPow (ZMod p) (5570 * n + 1)).val
 
+/--
+@isnad1 id=eq.0h3v.s8.bb87d431610d from=translated src=- shape=d65bff8d vocab=5ad9e3b5
+-/
 theorem finiteScaledSeries_coeff (n p k : ℕ) [Fact p.Prime] :
     (finiteScaledSeries n p).coeff k = (scaledCoreInt n k : ZMod p) := by
   unfold finiteScaledSeries scaledCoreInt
@@ -70,6 +76,9 @@ theorem finiteScaledSeries_coeff (n p k : ℕ) [Fact p.Prime] :
 noncomputable def scaledCoeffInt (n k : ℕ) : ℤ :=
   (2 : ℤ) ^ (3716 * n - 1) * 5 ^ (2 * n) * scaledCoreInt n k
 
+/--
+@isnad1 id=eq.2h2v.s6.234ac69b82bc from=translated src=- shape=d5dca837 vocab=6c7a4948
+-/
 theorem scaledCoeffInt_eq_actual (n : ℕ) (hn : 1 ≤ n) (j : ℤ)
     (hj : j ≤ 5570 * (n : ℤ)) :
     (scaledCoeffInt n (5570 * (n : ℤ) - j).toNat : ℚ) =
@@ -102,12 +111,18 @@ theorem scaledCoeffInt_eq_actual (n : ℕ) (hn : 1 ≤ n) (j : ℤ)
   push_cast
   field_simp
 
+/--
+@isnad1 id=eq.2h2v.s6.19b9012ab04c from=translated src=- shape=0f2e50e0 vocab=24dd7080
+-/
 theorem scaledCoeffInt_eq_num (n : ℕ) (hn : 1 ≤ n) (j : ℤ)
     (hj : j ≤ 5570 * (n : ℤ)) :
     scaledCoeffInt n (5570 * (n : ℤ) - j).toNat =
       ((10 : ℚ) ^ (-j) * laurentCoeffRat n j).num := by
   rw [← scaledCoeffInt_eq_actual n hn j hj, Rat.num_intCast]
 
+/--
+@isnad1 id=eq.1h1v.s8.0681c4760ebd from=translated src=- shape=56b6a6e9 vocab=35ae5b9f
+-/
 theorem scaledLaurent_constant_int (n : ℕ) (hn : 1 ≤ n) :
     (5 : ℤ) * 5 ^ (2 * 1857 * n) * 20 ^ (2 * (3714 * n)) =
       10 ^ (2 * (5570 * n) + 1) * (2 ^ (3716 * n - 1) * 5 ^ (2 * n)) := by
@@ -119,6 +134,9 @@ theorem scaledLaurent_constant_int (n : ℕ) (hn : 1 ≤ n) :
     ring
   exact_mod_cast h'
 
+/--
+@isnad1 id=eq.0h3v.s12.168c32e49491 from=translated src=- shape=9379fce9 vocab=7ec70061
+-/
 theorem finiteScaledSeries_rescale_laurent (n p : ℕ) [Fact p.Prime] (a : ZMod p) :
     HahnSeries.ofPowerSeries ℤ (ZMod p)
         (PowerSeries.rescale a (finiteScaledSeries n p)) =
@@ -151,6 +169,9 @@ theorem finiteScaledSeries_rescale_laurent (n p : ℕ) [Fact p.Prime] (a : ZMod 
     Polynomial.coeToPowerSeries.ringHom_apply,
     PowerSeries.map_X, hX]
 
+/--
+@isnad1 id=eq.1h3v.s10.d8f63f712ef1 from=translated src=- shape=2e7a4234 vocab=dde3f2c6
+-/
 theorem scaled_numerator_identity {K : Type*} [CommRing K]
     (n : ℕ) (hn : 1 ≤ n) (x : K) :
     5 * (5 * (2 * x - 1)) ^ (2 * 1857 * n) *
@@ -173,6 +194,9 @@ theorem scaled_numerator_identity {K : Type*} [CommRing K]
       ring
     _ = _ := by rw [hc]
 
+/--
+@isnad1 id=ne.1h1v.s6.4b6503f27da6 from=translated src=- shape=2207af8f vocab=029ffb2b
+-/
 theorem zmod_ten_ne_zero {p : ℕ} [Fact p.Prime] (hp : 5 < p) :
     (10 : ZMod p) ≠ 0 := by
   intro h
@@ -183,6 +207,9 @@ theorem zmod_ten_ne_zero {p : ℕ} [Fact p.Prime] (hp : 5 < p) :
   · have := Nat.le_of_dvd (by norm_num) h5
     omega
 
+/--
+@isnad1 id=eq.2h2v.s10.761a3439eea7 from=translated src=- shape=34f789ae vocab=0f81e811
+-/
 theorem finiteField_local_scaled_series (n p : ℕ) [Fact p.Prime]
     (hn : 1 ≤ n) (hp : 5 < p) :
     localLaurent (-5 : ZMod p) (finiteFieldRational n p) =
@@ -243,6 +270,9 @@ theorem finiteField_local_scaled_series (n p : ℕ) [Fact p.Prime]
           ((1 - x) ^ (5570 * n + 1))⁻¹)) := by ring
     _ = _ := by rw [hcancel, one_mul]
 
+/--
+@isnad1 id=eq.3h3v.s9.2ae22b737949 from=translated src=- shape=580e3bfa vocab=0e2f40f6
+-/
 theorem finiteField_local_coeff_eq_scaled_num (n p : ℕ) [Fact p.Prime]
     (hn : 1 ≤ n) (hp : 5 < p) (j : ℤ) (hj : j ≤ 5570 * (n : ℤ)) :
     (localLaurent (-5 : ZMod p) (finiteFieldRational n p)).coeff (-j - 1) =

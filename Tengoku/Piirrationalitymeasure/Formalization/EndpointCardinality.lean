@@ -9,12 +9,18 @@ namespace PiIrrationality
 def candidateEndpointBases (T : SavingEndpointType) : Finset ℚ :=
   (candidateEndpointIndices T).image (candidateEndpointBaseRat T)
 
+/--
+@isnad1 id=eq.0h1v.s3.bd6150f3d661 from=translated src=- shape=981f0160 vocab=81f33320
+-/
 theorem candidateEndpointBases_card (T : SavingEndpointType) :
     (candidateEndpointBases T).card = candidateEndpointSize T := by
   rw [candidateEndpointBases,
     Finset.card_image_of_injective _ (candidateEndpointBase_injective T),
     candidateEndpointIndices_card]
 
+/--
+@isnad1 id=le.0h0v.s3.54110c5159f1 from=translated src=- shape=6f820d36 vocab=acf7059f
+-/
 theorem candidateEndpointBases_A_subset_B :
     candidateEndpointBases .A ⊆ candidateEndpointBases .B := by
   intro x hx
@@ -25,6 +31,9 @@ theorem candidateEndpointBases_A_subset_B :
     omega
   · exact ((candidateEndpoint_coincidence_AB j (2 * j - 1)).mpr rfl).symm
 
+/--
+@isnad1 id=eq.0h0v.s5.1afca38be17d from=translated src=- shape=3b768869 vocab=baae71cb
+-/
 theorem candidateEndpointBases_B_inter_C :
     candidateEndpointBases .B ∩ candidateEndpointBases .C = {0, 1 / 2} := by
   ext x
@@ -53,6 +62,9 @@ theorem candidateEndpointBases_B_inter_C :
         candidateEndpointStart, candidateEndpointSize, candidateEndpointBaseRat,
         candidateEndpointShiftRat, candidateEndpointSlopeRat]
 
+/--
+@isnad1 id=eq.0h0v.s5.c1af47915ff2 from=translated src=- shape=2e7eba92 vocab=7c53c761
+-/
 theorem candidateEndpointBases_B_inter_Q :
     candidateEndpointBases .B ∩ candidateEndpointBases .Q = {1 / 2} := by
   ext x
@@ -71,6 +83,9 @@ theorem candidateEndpointBases_B_inter_Q :
       norm_num [mem_candidateEndpointIndices, candidateEndpointStart, candidateEndpointSize,
         candidateEndpointBaseRat, candidateEndpointShiftRat, candidateEndpointSlopeRat]
 
+/--
+@isnad1 id=eq.0h0v.s7.f7e9c0760b16 from=translated src=- shape=f8f79e1a vocab=e281b496
+-/
 theorem candidateEndpointBases_C_inter_Q :
     candidateEndpointBases .C ∩ candidateEndpointBases .Q =
       {1 / 10, 3 / 10, 1 / 2, 7 / 10, 9 / 10} := by
@@ -113,6 +128,9 @@ def candidateDistinctEndpointBases : Finset ℚ :=
   candidateEndpointBases .A ∪ candidateEndpointBases .B ∪
     candidateEndpointBases .C ∪ candidateEndpointBases .Q
 
+/--
+@isnad1 id=eq.0h0v.s3.c45647d410c8 from=translated src=- shape=b3c4969c vocab=8db86831
+-/
 theorem candidateDistinctEndpointBases_card : candidateDistinctEndpointBases.card = 12992 := by
   unfold candidateDistinctEndpointBases
   rw [Finset.union_eq_right.mpr candidateEndpointBases_A_subset_B, Finset.card_union,
@@ -120,6 +138,9 @@ theorem candidateDistinctEndpointBases_card : candidateDistinctEndpointBases.car
     candidateEndpointBases_C_inter_Q, Finset.card_union, candidateEndpointBases_B_inter_C]
   norm_num [candidateEndpointBases_card, candidateEndpointSize]
 
+/--
+@isnad1 id=iff.0h1v.s5.3f88956e18db from=translated src=- shape=b4cb65d1 vocab=d640a13b
+-/
 theorem mem_candidateDistinctEndpointBases (x : ℚ) :
     x ∈ candidateDistinctEndpointBases ↔
       ∃ T : SavingEndpointType, ∃ j ∈ candidateEndpointIndices T,

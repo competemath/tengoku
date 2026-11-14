@@ -26,6 +26,9 @@ private theorem cone_of_nonneg_determinants (a b v : ℝ × ℝ)
     apply (eq_div_iff (ne_of_gt hd)).mpr
     ring
 
+/--
+@isnad1 id=candidat.2h2v.s6.72c3d59691f6 from=translated src=- shape=3e3ea747 vocab=b253acf2
+-/
 theorem candidateClosedSector_of_det (i : Fin 12) (v : ℝ × ℝ)
     (hL : 0 ≤ (candidateSectorRayReal i).1 * v.2 - (candidateSectorRayReal i).2 * v.1)
     (hR : 0 ≤ v.1 * (candidateSectorRayReal (candidateSectorNext i)).2 -
@@ -42,12 +45,18 @@ private theorem candidateSectorRay_opposite_rat : ∀ i : Fin 12,
     candidateSectorRay (i + 6) = -candidateSectorRay i := by
   decide +kernel
 
+/--
+@isnad1 id=eq.0h1v.s6.5631b878ba42 from=translated src=- shape=eae0735e vocab=24bcd7f6
+-/
 theorem candidateSectorRayReal_opposite (i : Fin 12) :
     candidateSectorRayReal (i + 6) = -candidateSectorRayReal i := by
   have h := congrArg (fun w : ℚ × ℚ => ((w.1 : ℝ), (w.2 : ℝ)))
     (candidateSectorRay_opposite_rat i)
   simpa [candidateSectorRayReal] using h
 
+/--
+@isnad1 id=candidat.1h2v.s6.9d1128514e79 from=translated src=- shape=90a31b6b vocab=db48d977
+-/
 theorem CandidateClosedSector.neg {i : Fin 12} {v : ℝ × ℝ}
     (hv : CandidateClosedSector i v) : CandidateClosedSector (i + 6) (-v) := by
   rcases hv with ⟨u, t, hu, ht, rfl⟩
@@ -84,6 +93,9 @@ private theorem candidateClosedSector_cover_upper (v : ℝ × ℝ) (hy : 0 ≤ v
           dsimp [candidateSectorRayReal, candidateSectorRay, candidateSectorNext] <;>
           norm_num <;> linarith
 
+/--
+@isnad1 id=ex.0h1v.s4.240181dec354 from=translated src=- shape=58764068 vocab=a7b48499
+-/
 theorem candidateClosedSector_cover (v : ℝ × ℝ) :
     ∃ i : Fin 12, CandidateClosedSector i v := by
   by_cases hy : 0 ≤ v.2

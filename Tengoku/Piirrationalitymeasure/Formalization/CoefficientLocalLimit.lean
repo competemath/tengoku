@@ -12,6 +12,9 @@ namespace PiIrrationality
 open MeasureTheory Filter
 open scoped Topology
 
+/--
+@isnad1 id=eq.3h3v.s6.b651e846f6b7 from=translated src=- shape=f6b5953f vocab=f3004a11
+-/
 theorem coefficientCentered_integral {x : ℝ} (hx0 : 0 ≤ x) (hx1 : x < 1)
     (q : ℕ) (hm : coefficientMean x = (q : ℝ)) (n : ℕ) :
     (∫ t in -Real.pi..Real.pi, coefficientCenteredChar x t ^ n) =
@@ -27,6 +30,9 @@ theorem coefficientCentered_integral {x : ℝ} (hx0 : 0 ≤ x) (hx1 : x < 1)
     ring
   simpa only [← he] using h
 
+/--
+@isnad1 id=eq.0h1v.s6.7f2390375d8b from=translated src=- shape=19fab63b vocab=91314e7e
+-/
 theorem gaussian_normalization (v : ℝ) :
     Real.sqrt (2 * Real.pi / v) / (2 * Real.pi) = 1 / Real.sqrt (2 * Real.pi * v) := by
   have hπ : 0 ≤ 2 * Real.pi := by positivity

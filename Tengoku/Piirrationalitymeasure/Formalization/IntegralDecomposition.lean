@@ -26,6 +26,9 @@ noncomputable def nonlogPoleIntegral (n : ℕ) : ℂ :=
   -(∫ s : ℝ in (-2)..2,
     ∑ j ∈ Finset.Icc 1 (5570 * n), (laurentCoeffRat n (j : ℤ) : ℂ) * polePair j s)
 
+/--
+@isnad1 id=eq.0h2v.s7.073860e410dc from=translated src=- shape=6d5f8406 vocab=03e950b8
+-/
 theorem polePair_eq_nat (j : ℕ) (s : ℝ) :
     polePair j s =
       1 / (5 + verticalSegment s) ^ (j + 1) +
@@ -39,6 +42,9 @@ theorem polePair_eq_nat (j : ℕ) (s : ℝ) :
     ring
   simp only [polePair, he, zpow_neg, zpow_natCast, hl, hr, one_div]
 
+/--
+@isnad1 id=eq.0h2v.s7.d66402e3d6fa from=translated src=- shape=0478bde4 vocab=812fb9f2
+-/
 theorem verticalDensity_partialFractions (n : ℕ) (s : ℝ) :
     verticalDensity n s = aeval (verticalSegment s) (polynomialPart n) +
       (laurentCoeffRat n 0 : ℂ) * polePair 0 s +
@@ -63,11 +69,17 @@ theorem verticalDensity_partialFractions (n : ℕ) (s : ℝ) :
   simp only [Nat.cast_zero]
   ring
 
+/--
+@isnad1 id=continuo.0h1v.s6.aad9dc194516 from=translated src=- shape=90eae584 vocab=79a6fcfe
+-/
 theorem nonlogPoleIntegrand_continuous (n : ℕ) :
     Continuous (fun s : ℝ =>
       ∑ j ∈ Finset.Icc 1 (5570 * n), (laurentCoeffRat n (j : ℤ) : ℂ) * polePair j s) := by
   exact continuous_finsetSum _ fun j _ => continuous_const.mul (polePair_continuous j)
 
+/--
+@isnad1 id=continuo.0h1v.s4.cee3cfa8b08f from=translated src=- shape=7000f90d vocab=0c1648ab
+-/
 theorem verticalDensity_continuous (n : ℕ) : Continuous (verticalDensity n) := by
   have hfun : verticalDensity n = fun s =>
       aeval (verticalSegment s) (polynomialPart n) +
@@ -78,6 +90,9 @@ theorem verticalDensity_continuous (n : ℕ) : Continuous (verticalDensity n) :=
   exact (((polynomialPart n).continuous_aeval.comp verticalSegment_continuous).add
     (continuous_const.mul (polePair_continuous 0))).add (nonlogPoleIntegrand_continuous n)
 
+/--
+@isnad1 id=eq.0h1v.s5.8d8b1aa7e7c9 from=translated src=- shape=7538dbd5 vocab=a5b50e15
+-/
 theorem paperIntegral_decomposition (n : ℕ) :
     paperIntegral n = (verticalPolynomialIntegralRat (polynomialPart n) : ℂ) +
       nonlogPoleIntegral n + (-laurentCoeffRat n 0 / 2 : ℚ) * (Real.pi : ℂ) := by
@@ -99,6 +114,9 @@ theorem paperIntegral_decomposition (n : ℕ) :
   unfold nonlogPoleIntegral
   linear_combination hP + hL
 
+/--
+@isnad1 id=ex.1h1v.s4.f89a90d30520 from=translated src=- shape=f3832220 vocab=2ee9ca59
+-/
 theorem nonlogPoleIntegral_is_rational (n : ℕ) (hn : 1 ≤ n) :
     ∃ q : ℚ, nonlogPoleIntegral n = (q : ℂ) := by
   obtain ⟨z, hz⟩ := normalizedNonlogPoleIntegral_is_integer n hn
@@ -118,6 +136,9 @@ theorem nonlogPoleIntegral_is_rational (n : ℕ) (hn : 1 ≤ n) :
   push_cast
   field_simp
 
+/--
+@isnad1 id=ex.1h1v.s6.a0293e46c327 from=translated src=- shape=4bb2fa8a vocab=57111ba8
+-/
 theorem paperIntegral_rational_linearForm (n : ℕ) (hn : 1 ≤ n) :
     ∃ u : ℚ, paperIntegral n = (u : ℂ) +
       (-laurentCoeffRat n 0 / 2 : ℚ) * (Real.pi : ℂ) := by

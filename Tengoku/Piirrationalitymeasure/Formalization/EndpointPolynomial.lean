@@ -13,6 +13,9 @@ open Polynomial
 
 def lowerEndpointGI : GI := ⟨-1, -2⟩
 
+/--
+@isnad1 id=eq.0h0v.s6.7ef7534493b6 from=translated src=- shape=6542c990 vocab=e7d27691
+-/
 theorem lowerEndpointGI_cast : (lowerEndpointGI : ℂ) = -1 - 2 * Complex.I := by
   simp [lowerEndpointGI, GaussianInt.toComplex_def']
   ring
@@ -22,12 +25,18 @@ noncomputable def endpointPolynomial (n : ℕ) : Polynomial GI :=
 
 noncomputable def endpointCoeff (n k : ℕ) : GI := (endpointPolynomial n).coeff k
 
+/--
+@isnad1 id=eq.0h1v.s5.1e40dec2830a from=translated src=- shape=3487779f vocab=6822263f
+-/
 theorem endpointPolynomial_natDegree (n : ℕ) :
     (endpointPolynomial n).natDegree = 7430 * n - 2 := by
   rw [endpointPolynomial, natDegree_taylor,
     natDegree_map_eq_of_injective (f := Int.castRingHom GI) Int.cast_injective,
     polynomialPart_natDegree]
 
+/--
+@isnad1 id=eq.0h2v.s7.e5929f7bb848 from=translated src=- shape=1bc24161 vocab=bdcd5b63
+-/
 theorem endpointPolynomial_eval (n : ℕ) (t : ℂ) :
     (endpointPolynomial n).eval₂ GaussianInt.toComplex (t - (lowerEndpointGI : ℂ)) =
       aeval t (polynomialPart n) := by
@@ -40,6 +49,9 @@ theorem endpointPolynomial_eval (n : ℕ) (t : ℂ) :
   rw [hmap]
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s7.acde793bb831 from=translated src=- shape=6c43c5a6 vocab=69ed3052
+-/
 theorem polynomialPart_endpoint_expansion (n : ℕ) (hn : 1 ≤ n) (t : ℂ) :
     aeval t (polynomialPart n) =
       ∑ k ∈ Finset.range (7430 * n - 1),
@@ -49,6 +61,9 @@ theorem polynomialPart_endpoint_expansion (n : ℕ) (hn : 1 ≤ n) (t : ℂ) :
   rw [hdegree, lowerEndpointGI_cast]
   rfl
 
+/--
+@isnad1 id=hasderiv.0h2v.s7.9a05e3b68b71 from=translated src=- shape=4805c201 vocab=8c329036
+-/
 theorem endpointMonomial_has_primitive (k : ℕ) (s : ℝ) :
     HasDerivAt (fun s : ℝ => -Complex.I / (k + 1 : ℂ) *
       (verticalSegment s - (-1 - 2 * Complex.I)) ^ (k + 1))
@@ -64,6 +79,9 @@ theorem endpointMonomial_has_primitive (k : ℕ) (s : ℝ) :
     ring_nf
     simp [Complex.I_sq, verticalSegment, mul_comm, add_comm, add_left_comm]
 
+/--
+@isnad1 id=eq.0h1v.s7.38f77b3ac1d2 from=translated src=- shape=f7ae7c69 vocab=942088b7
+-/
 theorem endpointMonomial_integral (k : ℕ) :
     -(∫ s : ℝ in (-2)..2, (verticalSegment s - (-1 - 2 * Complex.I)) ^ k) =
       Complex.I * (4 * Complex.I) ^ (k + 1) / (k + 1 : ℂ) := by
@@ -78,6 +96,9 @@ theorem endpointMonomial_integral (k : ℕ) :
   rw [hupper, hlower, zero_pow (Nat.succ_ne_zero k), mul_zero, sub_zero]
   ring
 
+/--
+@isnad1 id=eq.1h1v.s8.58e00592e79b from=translated src=- shape=cd030d63 vocab=571f145b
+-/
 theorem polynomialPart_endpoint_integral (n : ℕ) (hn : 1 ≤ n) :
     -(∫ s : ℝ in (-2)..2, aeval (verticalSegment s) (polynomialPart n)) =
       Complex.I * ∑ k ∈ Finset.range (7430 * n - 1),

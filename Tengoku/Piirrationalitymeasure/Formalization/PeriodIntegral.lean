@@ -8,6 +8,9 @@ namespace PiIrrationality
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=pairwise.0h0v.s6.3035302266e4 from=translated src=- shape=84183a74 vocab=f3888948
+-/
 theorem nat_unit_intervals_disjoint :
     Pairwise (fun k l : ℕ => Disjoint (Ico (k : ℝ) ((k : ℝ) + 1))
       (Ico (l : ℝ) ((l : ℝ) + 1))) := by
@@ -19,6 +22,9 @@ theorem nat_unit_intervals_disjoint :
   have hcast : (k : ℝ) + 1 ≤ l := by exact_mod_cast h
   linarith [hk.2, hl.1]
 
+/--
+@isnad1 id=eq.0h0v.s5.9d6f508e8c85 from=translated src=- shape=20d060b2 vocab=48d2ab8f
+-/
 theorem nat_unit_intervals_union :
     (⋃ k : ℕ, Ico (k : ℝ) ((k : ℝ) + 1)) = Ici (0 : ℝ) := by
   ext t
@@ -29,6 +35,9 @@ theorem nat_unit_intervals_union :
   · intro ht
     exact ⟨⌊t⌋₊, Nat.floor_le ht, Nat.lt_floor_add_one t⟩
 
+/--
+@isnad1 id=hassum.1h1v.s7.510c9f41d6e8 from=translated src=- shape=c3b4c09c vocab=2cb67a69
+-/
 theorem hasSum_integral_nat_periods {f : ℝ → ℝ} (hf : IntegrableOn f (Ioi (0 : ℝ))) :
     HasSum (fun k : ℕ => ∫ t in (k : ℝ)..((k : ℝ) + 1), f t)
       (∫ t in Ioi (0 : ℝ), f t) := by
@@ -46,6 +55,9 @@ theorem hasSum_integral_nat_periods {f : ℝ → ℝ} (hf : IntegrableOn f (Ioi 
   rw [he]
   exact h
 
+/--
+@isnad1 id=hassum.1h1v.s7.ee88c8d18bb7 from=translated src=- shape=005e097c vocab=2cb67a69
+-/
 theorem hasSum_integral_shifted_periods {f : ℝ → ℝ} (hf : IntegrableOn f (Ioi (0 : ℝ))) :
     HasSum (fun k : ℕ => ∫ u in (0 : ℝ)..1, f ((k : ℝ) + u))
       (∫ t in Ioi (0 : ℝ), f t) := by

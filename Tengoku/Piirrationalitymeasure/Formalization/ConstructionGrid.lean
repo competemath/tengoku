@@ -10,6 +10,9 @@ open Set
 
 def constructionGridDenominator (a b c : ℕ) : ℕ := 2 * a * b * c
 
+/--
+@isnad1 id=and.3h3v.s6.1fa3e734e0c6 from=translated src=- shape=24fe72a8 vocab=a1ad7c72
+-/
 theorem constructionGridDenominator_properties {a b c : ℕ}
     (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) :
     0 < constructionGridDenominator a b c ∧
@@ -22,6 +25,9 @@ theorem constructionGridDenominator_properties {a b c : ℕ}
   · exact ⟨2 * a * c, by simp [Nat.mul_assoc, Nat.mul_left_comm, Nat.mul_comm]⟩
   · exact ⟨2 * a * b, by simp [Nat.mul_assoc, Nat.mul_left_comm, Nat.mul_comm]⟩
 
+/--
+@isnad1 id=disjoint.4h3v.s7.8fce3b62bf3d from=translated src=- shape=0fc14be7 vocab=9ca265c1
+-/
 theorem constructionGridCell_pairwiseDisjoint {K i j : ℕ}
     (hK : 0 < K) (hi : i < K) (hj : j < K) (hne : i ≠ j) :
     Disjoint (Ioo ((i : ℝ) / K) (((i + 1 : ℕ) : ℝ) / K))
@@ -45,6 +51,9 @@ theorem constructionGridCell_pairwiseDisjoint {K i j : ℕ}
     have hstep' : (j + 1 : ℕ) ≤ (i : ℝ) := by exact_mod_cast hstep
     linarith
 
+/--
+@isnad1 id=disjoint.4h3v.s7.4091b30b7d8e from=translated src=- shape=0fc14be7 vocab=f15f93bc
+-/
 theorem constructionGridCell_Ico_pairwiseDisjoint {K i j : ℕ}
     (hK : 0 < K) (hi : i < K) (hj : j < K) (hne : i ≠ j) :
     Disjoint (Ico ((i : ℝ) / K) (((i + 1 : ℕ) : ℝ) / K))
@@ -68,6 +77,9 @@ theorem constructionGridCell_Ico_pairwiseDisjoint {K i j : ℕ}
     have hstep' : (j + 1 : ℕ) ≤ (i : ℝ) := by exact_mod_cast hstep
     linarith
 
+/--
+@isnad1 id=iff.3h7v.s7.4ead739954f5 from=translated src=- shape=df84aa7e vocab=59422848
+-/
 theorem constructionSavingCondition_of_floor_data
     {a b c : ℕ} {u : ℝ} {A B C : ℤ}
     (hA : ⌊(a : ℝ) * u + 1 / 2⌋ = A)
@@ -78,6 +90,9 @@ theorem constructionSavingCondition_of_floor_data
         (A : ℝ) + 2 * (B : ℝ) - (C : ℝ) := by
   rw [constructionSavingCondition_floor]
   simp only [hA, hB, hC]
+/--
+@isnad1 id=eq.4h4v.s7.2014be88648e from=translated src=- shape=e54ea396 vocab=3a429b95
+-/
 theorem floor_nat_mul_on_grid {k K j : ℕ}
     (hk : 0 < k) (hK : 0 < K) (hdiv : k ∣ K) {u : ℝ}
     (hu : u ∈ Ioo ((j : ℝ) / K) (((j + 1 : ℕ) : ℝ) / K)) :
@@ -124,6 +139,9 @@ theorem floor_nat_mul_on_grid {k K j : ℕ}
   apply Int.floor_eq_iff.mpr
   simpa only [Int.cast_natCast, hkd] using hfloor
 
+/--
+@isnad1 id=eq.4h4v.s7.da32da14a7cb from=translated src=- shape=e54ea396 vocab=b162e838
+-/
 theorem floor_nat_mul_on_grid_Ico {k K j : ℕ}
     (hk : 0 < k) (hK : 0 < K) (hdiv : k ∣ K) {u : ℝ}
     (hu : u ∈ Ico ((j : ℝ) / K) (((j + 1 : ℕ) : ℝ) / K)) :
@@ -162,6 +180,9 @@ theorem floor_nat_mul_on_grid_Ico {k K j : ℕ}
   apply (div_le_iff₀ (by exact_mod_cast hdpos)).mpr
   exact_mod_cast (Nat.succ_le_of_lt hqhi)
 
+/--
+@isnad1 id=eq.4h4v.s7.916deceee59b from=translated src=- shape=5f1feaa0 vocab=b162e838
+-/
 theorem floor_half_nat_mul_on_grid_Ico {m K j : ℕ}
     (hm : 0 < m) (hK : 0 < K) (hdiv : 2 * m ∣ K) {u : ℝ}
     (hu : u ∈ Ico ((j : ℝ) / K) (((j + 1 : ℕ) : ℝ) / K)) :
@@ -194,6 +215,9 @@ theorem floor_half_nat_mul_on_grid_Ico {m K j : ℕ}
     rw [hrcast]
     constructor <;> linarith [hbounds'.1, hbounds'.2, hqcast]
 
+/--
+@isnad1 id=iff.8h6v.s8.816b6eb9f07e from=translated src=- shape=86ef36d7 vocab=419d4795
+-/
 theorem constructionSavingCondition_on_grid_Ico {a b c K j : ℕ}
     (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) (hK : 0 < K)
     (hdivA : 2 * a ∣ K) (hdivB : b ∣ K) (hdivC : c ∣ K) {u : ℝ}
@@ -208,6 +232,9 @@ theorem constructionSavingCondition_on_grid_Ico {a b c K j : ℕ}
     floor_nat_mul_on_grid_Ico hc hK hdivC hu]
   simp only [Int.cast_natCast]
 
+/--
+@isnad1 id=iff.9h6v.s8.283ce0c6573a from=translated src=- shape=eaef5233 vocab=419d4795
+-/
 theorem constructionSavingCondition_threshold_on_grid_Ico {a b c K j : ℕ}
     (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) (hK : 0 < K)
     (hdivA : 2 * a ∣ K) (hdivB : b ∣ K) (hdivC : c ∣ K)
@@ -225,6 +252,9 @@ theorem constructionSavingCondition_threshold_on_grid_Ico {a b c K j : ℕ}
   · have h' := (lt_div_iff₀ hq).mp h
     nlinarith [h']
 
+/--
+@isnad1 id=eq.4h4v.s7.0d4f513b0b23 from=translated src=- shape=5f1feaa0 vocab=3a429b95
+-/
 theorem floor_half_nat_mul_on_grid {m K j : ℕ}
     (hm : 0 < m) (hK : 0 < K) (hdiv : 2 * m ∣ K) {u : ℝ}
     (hu : u ∈ Ioo ((j : ℝ) / K) (((j + 1 : ℕ) : ℝ) / K)) :
@@ -257,6 +287,9 @@ theorem floor_half_nat_mul_on_grid {m K j : ℕ}
     rw [hrcast]
     constructor <;> linarith [hbounds'.1, hbounds'.2, hqcast]
 
+/--
+@isnad1 id=iff.8h6v.s8.fb161ca30ce9 from=translated src=- shape=86ef36d7 vocab=5cfcadf3
+-/
 theorem constructionSavingCondition_on_grid {a b c K j : ℕ}
     (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) (hK : 0 < K)
     (hdivA : 2 * a ∣ K) (hdivB : b ∣ K) (hdivC : c ∣ K) {u : ℝ}
@@ -270,6 +303,9 @@ theorem constructionSavingCondition_on_grid {a b c K j : ℕ}
   · exact floor_nat_mul_on_grid hb hK hdivB hu
   · exact floor_nat_mul_on_grid hc hK hdivC hu
 
+/--
+@isnad1 id=iff.9h6v.s8.29879f10a1c0 from=translated src=- shape=eaef5233 vocab=5cfcadf3
+-/
 theorem constructionSavingCondition_threshold_on_grid {a b c K j : ℕ}
     (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) (hK : 0 < K)
     (hdivA : 2 * a ∣ K) (hdivB : b ∣ K) (hdivC : c ∣ K)
@@ -287,6 +323,9 @@ theorem constructionSavingCondition_threshold_on_grid {a b c K j : ℕ}
   · have h' := (lt_div_iff₀ hq).mp h
     nlinarith [h']
 
+/--
+@isnad1 id=iff.9h6v.s8.407050b07120 from=translated src=- shape=7594713b vocab=58bb7f55
+-/
 theorem constructionSavingSet_inter_grid_open {a b c K j : ℕ}
     (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) (hK : 0 < K)
     (hj : j < K) (hdivA : 2 * a ∣ K) (hdivB : b ∣ K) (hdivC : c ∣ K)
@@ -317,6 +356,9 @@ theorem constructionSavingSet_inter_grid_open {a b c K j : ℕ}
     exact ⟨⟨hu0, hu1, (constructionSavingCondition_threshold_on_grid ha hb hc hK
       hdivA hdivB hdivC hq hu).mpr hthr⟩, hu⟩
 
+/--
+@isnad1 id=ne.4h5v.s7.bedf78cb48a2 from=translated src=- shape=810f8f7b vocab=14f684aa
+-/
 theorem no_half_endpoint_inside_grid {m K j : ℕ}
     (hm : 0 < m) (hK : 0 < K) (hdiv : 2 * m ∣ K) {u : ℝ}
     (hu : u ∈ Ioo ((j : ℝ) / K) (((j + 1 : ℕ) : ℝ) / K)) :
@@ -345,6 +387,9 @@ theorem no_half_endpoint_inside_grid {m K j : ℕ}
     exact_mod_cast hku ▸ hright
   omega
 
+/--
+@isnad1 id=ne.4h5v.s6.05fc8e4a3035 from=translated src=- shape=f85d858f vocab=14f684aa
+-/
 theorem no_integer_endpoint_inside_grid {m K j : ℕ}
     (hm : 0 < m) (hK : 0 < K) (hdiv : m ∣ K) {u : ℝ}
     (hu : u ∈ Ioo ((j : ℝ) / K) (((j + 1 : ℕ) : ℝ) / K)) :

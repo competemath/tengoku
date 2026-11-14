@@ -8,6 +8,9 @@ namespace PiIrrationality
 
 open Set
 
+/--
+@isnad1 id=finite.1h7v.s5.e6d6bf66fa54 from=translated src=- shape=6e6ba589 vocab=faa411fc
+-/
 theorem savingEndpoint_finite_on_interval_nonzero {a b c : ℝ} (z : ℝ × ℝ)
     (T : SavingEndpointType) (hT : savingEndpointSlope a b c T ≠ 0) (l r : ℝ) :
     (Set.range (savingEndpoint a b c z T) ∩ Icc l r).Finite := by
@@ -30,6 +33,9 @@ theorem savingEndpoint_finite_on_interval_nonzero {a b c : ℝ} (z : ℝ × ℝ)
       linarith
   · exact savingEndpoint_finite_on_interval z T hpos l r
 
+/--
+@isnad1 id=finite.4h6v.s6.b4e58901a6aa from=translated src=- shape=77be52ca vocab=319abe64
+-/
 theorem savingEndpoints_finite_on_interval_nonzero {a b c : ℝ} (z : ℝ × ℝ)
     (ha : a ≠ 0) (hb : b ≠ 0) (hc : c ≠ 0) (hq : a + 2 * b - c ≠ 0) (l r : ℝ) :
     (⋃ T, Set.range (savingEndpoint a b c z T) ∩ Icc l r).Finite := by

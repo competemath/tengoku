@@ -9,6 +9,9 @@ namespace PiIrrationality
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=le.1h5v.s6.054aaeb93fb9 from=translated src=- shape=fe218592 vocab=e76e17dc
+-/
 theorem savingPeriodDifference_abs_le (a b c : ℝ) (h : ℝ × ℝ) {k : ℝ} (hk : 0 < k) :
     |savingPeriodDifference a b c h k| ≤ 1 / k ^ 2 := by
   let f : ℝ → ℝ := fun u => translatedSavingChi a b c ((k + u) • h) u -
@@ -31,6 +34,9 @@ theorem savingPeriodDifference_abs_le (a b c : ℝ) (h : ℝ × ℝ) {k : ℝ} (
   simpa only [div_eq_mul_inv, one_mul] using
     hw.trans (mul_le_of_le_one_left (by positivity) hf)
 
+/--
+@isnad1 id=le.1h2v.s7.10239207794d from=translated src=- shape=d85a12fa vocab=fa74d3e3
+-/
 theorem savingOmega_candidate_period_remainder {h : ℝ × ℝ} (hh : parameterNormOne h ≤ 1)
     (K : ℕ) :
     |savingOmega (1857 + h.1) (3714 + h.2) 5570 - savingOmega 1857 3714 5570 -

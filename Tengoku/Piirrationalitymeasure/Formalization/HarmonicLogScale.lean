@@ -7,6 +7,9 @@ import Tengoku
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=le.3h2v.s6.642abe5d15f8 from=translated src=- shape=80017679 vocab=d96ae02c
+-/
 theorem harmonic_floor_log_scale {r d : ℝ} (hr : 0 < r) (hd : 0 < d)
     (hdr : d ≤ r) :
     |(harmonic ⌊r / d⌋₊ : ℝ) - Real.log (1 / d)| ≤ 1 + |Real.log r| := by
@@ -20,6 +23,9 @@ theorem harmonic_floor_log_scale {r d : ℝ} (hr : 0 < r) (hd : 0 < d)
   apply abs_le.mpr
   constructor <;> linarith [neg_abs_le (Real.log r), le_abs_self (Real.log r)]
 
+/--
+@isnad1 id=le.4h3v.s7.7aa34f4e401e from=translated src=- shape=0e2b9943 vocab=edfcad56
+-/
 theorem harmonic_floor_weighted_log_scale {r d L : ℝ} (hr : 0 < r) (hd : 0 < d)
     (hdr : d ≤ r) (hL : |L| ≤ d) :
     |L * (harmonic ⌊r / d⌋₊ : ℝ) - L * Real.log (1 / d)| ≤

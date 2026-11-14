@@ -10,6 +10,9 @@ Both integer sequences are constructed and related to the original integral.
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=eq.0h1v.s6.7ff69676ae60 from=translated src=- shape=1ff63f6d vocab=94026fa3
+-/
 theorem normalizationMultiplier_eq_eight_common (n : ℕ) :
     normalizationMultiplier n = 8 * ((2 : ℚ) ^ (1 - 4645 * (n : ℤ)) * reducedLcm n) := by
   unfold normalizationMultiplier
@@ -18,6 +21,9 @@ theorem normalizationMultiplier_eq_eight_common (n : ℕ) :
   norm_num
   ring
 
+/--
+@isnad1 id=ex.1h1v.s5.c85abc62d949 from=translated src=- shape=a503dbb7 vocab=fad682d8
+-/
 theorem normalizedPaperIntegral_integer_rationalCoefficient (n : ℕ) (hn : 1 ≤ n) :
     ∃ U : ℤ, (normalizationMultiplier n : ℂ) * paperIntegral n =
       (U : ℂ) + (normalizedPiCoeff n : ℂ) * (Real.pi : ℂ) := by
@@ -54,6 +60,9 @@ theorem normalizedPaperIntegral_integer_rationalCoefficient (n : ℕ) (hn : 1 �
       push_cast
       ring
 
+/--
+@isnad1 id=ex.1h1v.s7.cad5b40db876 from=translated src=- shape=2727c39c vocab=7d5c83ba
+-/
 theorem normalizedPaperIntegral_integerLinearForm (n : ℕ) (hn : 1 ≤ n) :
     ∃ U V : ℤ, (normalizationMultiplier n : ℂ) * paperIntegral n =
       (U : ℂ) + (V : ℂ) * (Real.pi : ℂ) ∧
@@ -72,11 +81,17 @@ noncomputable def integerCoeffU (n : ℕ) : ℤ :=
 noncomputable def integerCoeffV (n : ℕ) : ℤ :=
   if hn : 1 ≤ n then (normalizedPiCoeff_is_integer n hn).choose else 0
 
+/--
+@isnad1 id=eq.1h1v.s4.c5eef0d9b8f1 from=translated src=- shape=2801aa92 vocab=43ef1155
+-/
 theorem integerCoeffV_cast (n : ℕ) (hn : 1 ≤ n) :
     (integerCoeffV n : ℚ) = normalizedPiCoeff n := by
   rw [integerCoeffV, dite_eq_left hn]
   exact (normalizedPiCoeff_is_integer n hn).choose_spec.symm
 
+/--
+@isnad1 id=eq.1h1v.s5.31cd0dd72348 from=translated src=- shape=5ea61068 vocab=cc1f7daa
+-/
 theorem paper_integerLinearForm (n : ℕ) (hn : 1 ≤ n) :
     (normalizationMultiplier n : ℂ) * paperIntegral n =
       (integerCoeffU n : ℂ) + (integerCoeffV n : ℂ) * (Real.pi : ℂ) := by
@@ -87,6 +102,9 @@ theorem paper_integerLinearForm (n : ℕ) (hn : 1 ≤ n) :
   congr 1
   exact_mod_cast (integerCoeffV_cast n hn).symm
 
+/--
+@isnad1 id=eq.1h1v.s5.966c2729072d from=translated src=- shape=bc98ecdd vocab=731fd620
+-/
 theorem paper_real_integerLinearForm (n : ℕ) (hn : 1 ≤ n) :
     (normalizationMultiplier n : ℝ) * (paperIntegral n).re =
       (integerCoeffU n : ℝ) + (integerCoeffV n : ℝ) * Real.pi := by

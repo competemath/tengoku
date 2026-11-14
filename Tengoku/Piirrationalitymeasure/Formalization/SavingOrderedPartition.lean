@@ -33,6 +33,9 @@ noncomputable def candidatePartitionIndicator (e : CandidateEndpointEnumeration)
   translatedSavingChi 1857 3714 5570 z
     ((candidateEndpointPartition e z k + candidateEndpointPartition e z (k + 1)) / 2)
 
+/--
+@isnad1 id=ex.1h2v.s5.8d0e8ff26491 from=translated src=- shape=d4dee35f vocab=35f32eeb
+-/
 theorem candidateEndpointLabel_exists (T : SavingEndpointType) (j : ℤ)
     (hj : j ∈ candidateEndpointIndices T) :
     ∃ p : CandidateEndpointLabel, p.1 = T ∧ candidateEndpointLabelIndex p = j := by
@@ -41,25 +44,40 @@ theorem candidateEndpointLabel_exists (T : SavingEndpointType) (j : ℤ)
   dsimp [candidateEndpointLabelIndex]
   omega
 
+/--
+@isnad1 id=eq.0h2v.s4.359acf39e01b from=translated src=- shape=37c2d80e vocab=d1f32187
+-/
 theorem candidateEndpointPartition_zero (e : CandidateEndpointEnumeration) (z : ℝ × ℝ) :
     candidateEndpointPartition e z 0 = (candidateEndpointCut : ℝ) :=
   finiteEndpointPartition_zero _ _ _
 
+/--
+@isnad1 id=eq.0h2v.s5.075ff280d2ba from=translated src=- shape=bb4ca15e vocab=35fae93d
+-/
 theorem candidateEndpointPartition_last (e : CandidateEndpointEnumeration) (z : ℝ × ℝ) :
     candidateEndpointPartition e z (Fintype.card CandidateEndpointLabel + 1) =
       (candidateEndpointCut : ℝ) + 1 :=
   finiteEndpointPartition_last _ _ _
 
+/--
+@isnad1 id=monotone.1h2v.s4.af8df23d6bfe from=translated src=- shape=84c6d184 vocab=d6b1bcc0
+-/
 theorem candidateEndpointPartition_monotone {e : CandidateEndpointEnumeration} {z : ℝ × ℝ}
     (hz : CandidateOrderedEndpoints e z) : Monotone (candidateEndpointPartition e z) :=
   finiteEndpointPartition_monotone (by linarith) hz.1.monotone
     (fun k => ⟨(hz.2 k).1.le, (hz.2 k).2.le⟩)
 
+/--
+@isnad1 id=lt.2h3v.s6.1d839b06a8c4 from=translated src=- shape=4f3a0496 vocab=fe0fbcfa
+-/
 theorem candidateEndpointPartition_adjacent_lt {e : CandidateEndpointEnumeration} {z : ℝ × ℝ}
     (hz : CandidateOrderedEndpoints e z) {k : ℕ} (hk : k < Fintype.card CandidateEndpointLabel + 1) :
     candidateEndpointPartition e z k < candidateEndpointPartition e z (k + 1) :=
   finiteEndpointPartition_adjacent_lt (by linarith) hz.1 hz.2 k hk
 
+/--
+@isnad1 id=le.2h3v.s6.b3ee5f772ef5 from=translated src=- shape=37122e94 vocab=bfeaa58a
+-/
 theorem candidateEndpointCell_subset {e : CandidateEndpointEnumeration} {z : ℝ × ℝ}
     (hz : CandidateOrderedEndpoints e z) {k : ℕ} (hk : k < Fintype.card CandidateEndpointLabel + 1) :
     candidateEndpointCell e z k ⊆
@@ -67,6 +85,9 @@ theorem candidateEndpointCell_subset {e : CandidateEndpointEnumeration} {z : ℝ
   finiteEndpointPartition_cell_subset (by linarith) hz.1.monotone
     (fun k => ⟨(hz.2 k).1.le, (hz.2 k).2.le⟩) hk
 
+/--
+@isnad1 id=mem.2h3v.s6.6461f5e3ef2d from=translated src=- shape=8d084287 vocab=91542b00
+-/
 theorem candidateEndpointCell_midpoint {e : CandidateEndpointEnumeration} {z : ℝ × ℝ}
     (hz : CandidateOrderedEndpoints e z) {k : ℕ} (hk : k < Fintype.card CandidateEndpointLabel + 1) :
     (candidateEndpointPartition e z k + candidateEndpointPartition e z (k + 1)) / 2 ∈
@@ -74,6 +95,9 @@ theorem candidateEndpointCell_midpoint {e : CandidateEndpointEnumeration} {z : �
   have h := candidateEndpointPartition_adjacent_lt hz hk
   constructor <;> linarith
 
+/--
+@isnad1 id=iff.5h8v.s7.e789617c72cc from=translated src=- shape=be898753 vocab=db1224a3
+-/
 theorem candidateEndpointCell_comparisons {e : CandidateEndpointEnumeration} {z w : ℝ × ℝ}
     (hz : CandidateOrderedEndpoints e z) (hw : CandidateOrderedEndpoints e w)
     {k : ℕ} {u v : ℝ} (hu : u ∈ candidateEndpointCell e z k)
@@ -88,6 +112,9 @@ theorem candidateEndpointCell_comparisons {e : CandidateEndpointEnumeration} {z 
     (fun k => ⟨(hw.2 k).1.le, (hw.2 k).2.le⟩) hv (e.symm p)
   simpa only [Equiv.apply_symm_apply, candidateEndpointPosition, hT, hjp] using hzu.trans hwv.symm
 
+/--
+@isnad1 id=eq.6h5v.s7.1e4c7d34bbcd from=translated src=- shape=bb571bc8 vocab=2ea0a06c
+-/
 theorem translatedSavingChi_eq_partitionIndicator
     {e : CandidateEndpointEnumeration} {z w : ℝ × ℝ}
     (hz : CandidateOrderedEndpoints e z) (hw : CandidateOrderedEndpoints e w)
@@ -100,6 +127,9 @@ theorem translatedSavingChi_eq_partitionIndicator
     (candidateEndpointCell_subset hz hk hu) (candidateEndpointCell_subset hw hk hmid)
     (candidateEndpointCell_comparisons hz hw hu hmid)
 
+/--
+@isnad1 id=eq.4h3v.s7.f40ae905213d from=translated src=- shape=de727bd7 vocab=f7de607d
+-/
 theorem translatedSavingMeasure_eq_partition_sum
     {e : CandidateEndpointEnumeration} {z w : ℝ × ℝ}
     (hz : CandidateOrderedEndpoints e z) (hw : CandidateOrderedEndpoints e w)

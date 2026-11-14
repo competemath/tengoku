@@ -9,6 +9,9 @@ namespace PiIrrationality
 open Filter Set
 open scoped Topology
 
+/--
+@isnad1 id=eventual.1h2v.s6.386b449ffae2 from=translated src=- shape=393c59a6 vocab=c979af75
+-/
 theorem affine_gt_sq_eventually_of_pos {a b : ℝ}
     (hpos : ∀ᶠ s : ℝ in 𝓝[>] 0, 0 < a + s * b) :
     ∀ᶠ s : ℝ in 𝓝[>] 0, s ^ 2 < a + s * b := by

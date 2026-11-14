@@ -11,6 +11,9 @@ open MeasureTheory Set Filter
 noncomputable def floorBand (m d h : ℝ) (j : ℤ) : Set ℝ :=
   Icc (((j : ℝ) - d) / m - h / |m|) (((j : ℝ) - d) / m + h / |m|)
 
+/--
+@isnad1 id=mem.2h5v.s6.c1fb12f9c4cd from=translated src=- shape=6d3ddf61 vocab=a4e1c239
+-/
 theorem mem_floorBand_of_abs_le {m d h u : ℝ} {j : ℤ} (hm : m ≠ 0)
     (hu : |m * u + d - j| ≤ h) : u ∈ floorBand m d h j := by
   have he : m * u + d - j = m * (u - ((j : ℝ) - d) / m) := by field_simp; ring
@@ -19,12 +22,18 @@ theorem mem_floorBand_of_abs_le {m d h u : ℝ} {j : ℤ} (hm : m ≠ 0)
   rw [abs_le] at hbound
   constructor <;> linarith [hbound.1, hbound.2]
 
+/--
+@isnad1 id=measurab.2h2v.s5.4679fbd7c45f from=translated src=- shape=27df870c vocab=f9bd552f
+-/
 theorem measurable_floorDisagreement {f g : ℝ → ℝ} (hf : Measurable f) (hg : Measurable g) :
     Measurable (fun t => floorDisagreement (f t) (g t)) := by
   have hf' : Measurable (fun t => ⌊f t⌋) := by fun_prop
   have hg' : Measurable (fun t => ⌊g t⌋) := by fun_prop
   exact Measurable.ite (measurableSet_eq_fun hf' hg') measurable_const measurable_const
 
+/--
+@isnad1 id=integrab.2h2v.s6.ebbf341c3b32 from=translated src=- shape=f23d821f vocab=27bdeaf7
+-/
 theorem integrableOn_floorDisagreement {f g : ℝ → ℝ} (hf : Measurable f) (hg : Measurable g) :
     IntegrableOn (fun t => floorDisagreement (f t) (g t)) (Ioc (0 : ℝ) 1) := by
   have hi : IntegrableOn (fun _ : ℝ => (1 : ℝ)) (Ioc (0 : ℝ) 1) volume :=
@@ -34,10 +43,16 @@ theorem integrableOn_floorDisagreement {f g : ℝ → ℝ} (hf : Measurable f) (
     rw [Real.norm_eq_abs, abs_of_nonneg (floorDisagreement_nonneg _ _)]
     exact floorDisagreement_le_one _ _
 
+/--
+@isnad1 id=integrab.0h4v.s5.2edf935182d5 from=translated src=- shape=cdfd432c vocab=b33271db
+-/
 theorem integrable_floorBand_indicator (m d h : ℝ) (j : ℤ) :
     Integrable ((floorBand m d h j).indicator (fun _ => (1 : ℝ))) :=
   (integrable_indicator_iff measurableSet_Icc).mpr continuousOn_const.integrableOn_Icc
 
+/--
+@isnad1 id=eq.1h4v.s6.956dd65e5c16 from=translated src=- shape=1efb487c vocab=9af0233d
+-/
 theorem integral_floorBand_indicator (m d h : ℝ) (j : ℤ) (hh : 0 ≤ h) :
     (∫ t : ℝ, (floorBand m d h j).indicator (fun _ => (1 : ℝ)) t) = 2 * h / |m| := by
   unfold floorBand
@@ -46,6 +61,9 @@ theorem integral_floorBand_indicator (m d h : ℝ) (j : ℤ) (hh : 0 ≤ h) :
   rw [max_eq_left (by have := div_nonneg hh (abs_nonneg m); linarith)]
   ring
 
+/--
+@isnad1 id=le.3h6v.s7.d85cdd7a1f8b from=translated src=- shape=a6db758b vocab=a5d84ad3
+-/
 theorem floorDisagreement_le_sum_bands {m d h u : ℝ} {N : ℕ} {e : ℝ}
     (hm : m ≠ 0) (he : |e| ≤ h) (hN : |m * u + d| + h ≤ (N : ℝ)) :
     floorDisagreement (m * u + d) (m * u + d + e) ≤
@@ -75,6 +93,9 @@ theorem floorDisagreement_le_sum_bands {m d h u : ℝ} {N : ℕ} {e : ℝ}
       _ ≤ _ := Finset.single_le_sum
         (fun i _ => indicator_nonneg (fun _ _ => by norm_num) u) hjmem
 
+/--
+@isnad1 id=le.5h5v.s8.a538fc0c9b7f from=translated src=- shape=892ae52d vocab=684c0908
+-/
 theorem integral_floorDisagreement_le {m d h : ℝ} {N : ℕ} {e : ℝ → ℝ}
     (hm : m ≠ 0) (hh : 0 ≤ h) (hmeas : Measurable e)
     (he : ∀ u ∈ Icc (0 : ℝ) 1, |e u| ≤ h)
@@ -110,10 +131,16 @@ noncomputable def floorBandCount (m : ℝ) : ℕ := ⌈|m| + 8⌉₊
 noncomputable def floorChangeConstant (m : ℝ) : ℝ :=
   ((Finset.Icc (-(floorBandCount m : ℤ)) (floorBandCount m : ℤ)).card : ℝ) * 2 / |m|
 
+/--
+@isnad1 id=le.0h1v.s3.cf857a054a21 from=translated src=- shape=8a62b088 vocab=cd33bdb7
+-/
 theorem floorChangeConstant_nonneg (m : ℝ) : 0 ≤ floorChangeConstant m := by
   unfold floorChangeConstant
   positivity
 
+/--
+@isnad1 id=le.6h4v.s7.a8f1b3bff26e from=translated src=- shape=84d7c8ae vocab=58b4e96e
+-/
 theorem integral_floorDisagreement_uniform {m d h : ℝ} {e : ℝ → ℝ}
     (hm : m ≠ 0) (hd : |d| ≤ 4) (hh0 : 0 ≤ h) (hh4 : h ≤ 4)
     (hmeas : Measurable e) (he : ∀ u ∈ Icc (0 : ℝ) 1, |e u| ≤ h) :

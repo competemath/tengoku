@@ -8,6 +8,9 @@ import Tengoku.Piirrationalitymeasure.Formalization.SavingGermOrder
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=lt.0h1v.s5.3cdaf2e02496 from=translated src=- shape=52edffbb vocab=e1c57b4f
+-/
 theorem candidateEndpointSlope_pos (T : SavingEndpointType) :
     0 < savingEndpointSlope 1857 3714 5570 T := by
   cases T <;> norm_num [savingEndpointSlope]
@@ -39,6 +42,9 @@ private theorem candidateSector_velocity_lt {i : Fin 12} {v : ℝ × ℝ}
   · exact add_lt_add_of_le_of_lt (mul_le_mul_of_nonneg_left hL hu.le)
       (mul_lt_mul_of_pos_left h ht)
 
+/--
+@isnad1 id=savingve.1h2v.s5.2dbad0039a26 from=translated src=- shape=dbe3beb9 vocab=558de24b
+-/
 theorem candidateOpenSector_velocity_order {i : Fin 12} {v : ℝ × ℝ}
     (hv : CandidateOpenSector i v) :
     SavingVelocityOrderEq 1857 3714 5570 v
@@ -58,6 +64,9 @@ theorem candidateOpenSector_velocity_order {i : Fin 12} {v : ℝ × ℝ}
     · exact (lt_asymm h (candidateSector_velocity_lt hv S T hgt)).elim
   · exact candidateSector_velocity_lt hv T S
 
+/--
+@isnad1 id=eq.1h5v.s6.a998703208b6 from=translated src=- shape=4214634c vocab=3ab18706
+-/
 theorem candidateOpenSector_chiGerm {i : Fin 12} {v : ℝ × ℝ}
     (hv : CandidateOpenSector i v) (T : SavingEndpointType) (j : ℤ) (side : ℚ) :
     savingEndpointChiGerm 1857 3714 5570 v T j side =

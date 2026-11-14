@@ -8,6 +8,9 @@ namespace PiIrrationality
 
 noncomputable def binetPole (n : ℕ) : ℝ := 2 * Real.pi * ((n : ℝ) + 1)
 
+/--
+@isnad1 id=lt.0h1v.s3.ccd2a3df362a from=translated src=- shape=b9369acb vocab=6500cde7
+-/
 theorem binetPole_pos (n : ℕ) : 0 < binetPole n := by
   unfold binetPole
   positivity
@@ -15,6 +18,9 @@ theorem binetPole_pos (n : ℕ) : 0 < binetPole n := by
 noncomputable def positiveBernoulliCoeff (m : ℕ) : ℝ :=
   (-1) ^ (m + 1) * (bernoulli (2 * m) : ℝ) / ((2 * m).factorial : ℝ)
 
+/--
+@isnad1 id=hassum.1h1v.s6.7ea5c56fd507 from=translated src=- shape=21acd69f vocab=d0d8783e
+-/
 theorem hasSum_binetMoment {m : ℕ} (hm : 0 < m) :
     HasSum (fun n : ℕ => 2 / binetPole n ^ (2 * m)) (positiveBernoulliCoeff m) := by
   have hz := hasSum_zeta_nat hm.ne'
@@ -44,6 +50,9 @@ theorem hasSum_binetMoment {m : ℕ} (hm : 0 < m) :
     rw [← hpow]
     ring
 
+/--
+@isnad1 id=lt.1h1v.s4.1b223c927dc5 from=translated src=- shape=7f2e781e vocab=79a43e10
+-/
 theorem positiveBernoulliCoeff_pos {m : ℕ} (hm : 0 < m) :
     0 < positiveBernoulliCoeff m := by
   have hs := hasSum_binetMoment hm
@@ -51,6 +60,9 @@ theorem positiveBernoulliCoeff_pos {m : ℕ} (hm : 0 < m) :
   exact hs.summable.tsum_pos (fun n => by positivity [binetPole_pos n]) 0
     (by positivity [binetPole_pos 0])
 
+/--
+@isnad1 id=eq.1h1v.s5.811a8fae49e3 from=translated src=- shape=c342a6db vocab=06f25279
+-/
 theorem positiveBernoulliCoeff_eq_abs {m : ℕ} (hm : 0 < m) :
     positiveBernoulliCoeff m = |(bernoulli (2 * m) : ℝ)| / ((2 * m).factorial : ℝ) := by
   calc
@@ -58,6 +70,9 @@ theorem positiveBernoulliCoeff_eq_abs {m : ℕ} (hm : 0 < m) :
       (abs_of_pos (positiveBernoulliCoeff_pos hm)).symm
     _ = _ := by simp [positiveBernoulliCoeff, abs_div, abs_mul]
 
+/--
+@isnad1 id=eq.0h1v.s6.8c127d828232 from=translated src=- shape=2c11ede2 vocab=c4fd1d21
+-/
 theorem signed_positiveBernoulliCoeff (m : ℕ) :
     (-1 : ℝ) ^ m * positiveBernoulliCoeff (m + 1) =
       (bernoulli (2 * (m + 1)) : ℝ) / ((2 * (m + 1)).factorial : ℝ) := by

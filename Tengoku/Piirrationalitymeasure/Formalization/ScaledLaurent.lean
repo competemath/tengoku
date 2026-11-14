@@ -12,6 +12,9 @@ and those of the remaining inverse power have integer values at zero.
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=eq.0h3v.s6.bae6686c494a from=translated src=- shape=df1e6ad5 vocab=1fa6845b
+-/
 theorem iteratedDeriv_comp_mul_unrestricted (k : ℕ) (f : ℝ → ℝ) (a : ℝ) :
     iteratedDeriv k (fun x => f (a * x)) =
       fun x => a ^ k * iteratedDeriv k f (a * x) := by
@@ -24,6 +27,9 @@ theorem iteratedDeriv_comp_mul_unrestricted (k : ℕ) (f : ℝ → ℝ) (a : ℝ
       simp only [smul_eq_mul, pow_succ]
       ring
 
+/--
+@isnad1 id=eq.0h4v.s6.5826eca3a6f8 from=translated src=- shape=d27d5632 vocab=39f21ac4
+-/
 theorem normalizedDeriv_affine (k : ℕ) (f : ℝ → ℝ) (a b : ℝ) :
     normalizedDeriv k (fun x => f (b + a * x)) 0 =
       a ^ k * normalizedDeriv k f b := by
@@ -33,6 +39,9 @@ theorem normalizedDeriv_affine (k : ℕ) (f : ℝ → ℝ) (a b : ℝ) :
   simp only [mul_zero, add_zero]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s7.d590f7eb1e80 from=translated src=- shape=3446428d vocab=da4f674b
+-/
 theorem normalizedDeriv_int_polynomial (k : ℕ) (P : Polynomial ℤ) (x : ℤ) :
     normalizedDeriv k (fun t : ℝ => Polynomial.aeval t P) (x : ℝ) =
       (((Polynomial.hasseDeriv k P).eval x : ℤ) : ℝ) := by
@@ -57,6 +66,9 @@ theorem normalizedDeriv_int_polynomial (k : ℕ) (P : Polynomial ℤ) (x : ℤ) 
   rw [heval]
   simp [nsmul_eq_mul, Nat.factorial_ne_zero]
 
+/--
+@isnad1 id=eq.0h2v.s6.29a98f899077 from=translated src=- shape=5b998145 vocab=bc95f878
+-/
 theorem normalizedDeriv_one_sub_inv (M k : ℕ) :
     normalizedDeriv k (fun x : ℝ => (1 - x) ^ (-(M + 1 : ℕ) : ℤ)) 0 =
       ((M + k).choose k : ℝ) := by
@@ -87,6 +99,9 @@ noncomputable def scaledNumerator (n : ℕ) : Polynomial ℤ :=
     (5 * Polynomial.X ^ 2 - 4 * Polynomial.X + 1) ^ (3714 * n) *
     (5 * Polynomial.X ^ 2 - 6 * Polynomial.X + 2) ^ (3714 * n)
 
+/--
+@isnad1 id=eq.0h2v.s8.24440f2cfae3 from=translated src=- shape=d2bbe539 vocab=2c571520
+-/
 theorem scaledNumerator_aeval (n : ℕ) (x : ℝ) :
     Polynomial.aeval x (scaledNumerator n) =
       (2 * x - 1) ^ (2 * 1857 * n) *
@@ -94,6 +109,9 @@ theorem scaledNumerator_aeval (n : ℕ) (x : ℝ) :
         (5 * x ^ 2 - 6 * x + 2) ^ (3714 * n) := by
   simp [scaledNumerator, map_ofNat]
 
+/--
+@isnad1 id=eq.1h1v.s8.4babbea700db from=translated src=- shape=ee5f9e4f vocab=5df71cf7
+-/
 theorem scaledLaurent_constant (n : ℕ) (hn : 1 ≤ n) :
     (5 : ℝ) * 5 ^ (2 * 1857 * n) * 20 ^ (2 * (3714 * n)) /
         10 ^ (5570 * n + 1) =
@@ -114,6 +132,9 @@ theorem scaledLaurent_constant (n : ℕ) (hn : 1 ≤ n) :
       simp only [pow_add, show (10 : ℝ) = 2 * 5 by norm_num, mul_pow]
       ring
 
+/--
+@isnad1 id=eq.1h2v.s8.c1bc30b16a16 from=translated src=- shape=5ca2f094 vocab=5725cc35
+-/
 theorem regularized_scaled_variable (n : ℕ) (hn : 1 ≤ n) (x : ℝ) :
     regularized n (-5 + 10 * x) =
       (10 : ℝ) ^ (5570 * n) * (2 ^ (3716 * n - 1) * 5 ^ (2 * n)) *
@@ -139,6 +160,9 @@ theorem regularized_scaled_variable (n : ℕ) (hn : 1 ≤ n) (x : ℝ) :
         ((1 - x) ^ (5570 * n + 1))⁻¹ := by ring
     _ = _ := by rw [hc]
 
+/--
+@isnad1 id=ex.0h2v.s7.2de08136ffba from=translated src=- shape=864eda44 vocab=fce946be
+-/
 theorem normalizedDeriv_scaled_core_is_integer (n k : ℕ) :
     ∃ z : ℤ, normalizedDeriv k
       (fun x : ℝ => Polynomial.aeval x (scaledNumerator n) *
@@ -163,12 +187,18 @@ theorem normalizedDeriv_scaled_core_is_integer (n k : ℕ) :
   norm_num only [Int.cast_zero] at h
   rw [h]
 
+/--
+@isnad1 id=eq.0h4v.s5.0bc733f84ef4 from=translated src=- shape=348de7cd vocab=d378e583
+-/
 theorem normalizedDeriv_const_mul (k : ℕ) (a : ℝ) (f : ℝ → ℝ) (x : ℝ) :
     normalizedDeriv k (fun y => a * f y) x = a * normalizedDeriv k f x := by
   unfold normalizedDeriv
   rw [iteratedDeriv_const_mul_field]
   ring
 
+/--
+@isnad1 id=ex.1h2v.s7.789c3c5ae531 from=translated src=- shape=0a8d82e1 vocab=5239e570
+-/
 theorem scaled_laurentCoeff_eq_integer_mul (n : ℕ) (hn : 1 ≤ n) (j : ℤ) :
     ∃ z : ℤ, (10 : ℝ) ^ (-j) * laurentCoeff n j =
       (2 : ℝ) ^ (3716 * n - 1) * 5 ^ (2 * n) * (z : ℝ) := by
@@ -198,6 +228,9 @@ theorem scaled_laurentCoeff_eq_integer_mul (n : ℕ) (hn : 1 ≤ n) (j : ℤ) :
     field_simp
   · exact ⟨0, by simp [laurentCoeff, hj]⟩
 
+/--
+@isnad1 id=ex.1h2v.s7.0b63deecb723 from=translated src=- shape=0a8d82e1 vocab=b7970b42
+-/
 theorem scaled_laurentCoeffRat_eq_integer_mul (n : ℕ) (hn : 1 ≤ n) (j : ℤ) :
     ∃ z : ℤ, (10 : ℚ) ^ (-j) * laurentCoeffRat n j =
       (2 : ℚ) ^ (3716 * n - 1) * 5 ^ (2 * n) * (z : ℚ) := by
@@ -208,6 +241,9 @@ theorem scaled_laurentCoeffRat_eq_integer_mul (n : ℕ) (hn : 1 ≤ n) (j : ℤ)
   rw [laurentCoeffRat_cast]
   exact hz
 
+/--
+@isnad1 id=ex.1h2v.s5.194f1a68b9d9 from=translated src=- shape=d3e4284c vocab=73fec59d
+-/
 theorem scaled_laurentCoeffRat_is_integer (n : ℕ) (hn : 1 ≤ n) (j : ℤ) :
     ∃ z : ℤ, (10 : ℚ) ^ (-j) * laurentCoeffRat n j = (z : ℚ) := by
   obtain ⟨z, hz⟩ := scaled_laurentCoeffRat_eq_integer_mul n hn j
@@ -215,6 +251,9 @@ theorem scaled_laurentCoeffRat_is_integer (n : ℕ) (hn : 1 ≤ n) (j : ℤ) :
   push_cast
   exact hz
 
+/--
+@isnad1 id=le.1h3v.s6.20d7ce97b93b from=translated src=- shape=8e6ad4f6 vocab=b5177bcf
+-/
 theorem padicValRatTop_ge_of_integer_power_factor
     (p k : ℕ) [hp : Fact p.Prime] (q : ℚ)
     (h : ∃ z : ℤ, q = (p : ℚ) ^ k * (z : ℚ)) :
@@ -230,6 +269,9 @@ theorem padicValRatTop_ge_of_integer_power_factor
     padicValRat.self hp.out.one_lt, mul_one, padicValRat.of_int]
   exact le_add_of_nonneg_right (by exact_mod_cast (Nat.zero_le (padicValInt p z)))
 
+/--
+@isnad1 id=and.1h2v.s7.5fadf8b03d99 from=translated src=- shape=3275f858 vocab=1bb38a4f
+-/
 theorem scaled_laurentCoeffRat_valuations (n : ℕ) (hn : 1 ≤ n) (j : ℤ) :
     ((3716 * (n : ℤ) - 1 : ℤ) : WithTop ℤ) ≤
         padicValRatTop 2 ((10 : ℚ) ^ (-j) * laurentCoeffRat n j) ∧
@@ -247,6 +289,9 @@ theorem scaled_laurentCoeffRat_valuations (n : ℕ) (hn : 1 ≤ n) (j : ℤ) :
   rw [he] at h2
   exact ⟨h2, by simpa only [Nat.cast_mul, Nat.cast_ofNat] using h5⟩
 
+/--
+@isnad1 id=and.2h1v.s8.6b363f62b95f from=translated src=- shape=dbced562 vocab=e1bc3226
+-/
 theorem reducedLcm_actual_laurent_integrality_of_local_divisibility
     (n : ℕ) (hn : 0 < n)
     (hlocal : ∀ j : ℤ, -(7430 * (n : ℤ)) + 1 ≤ j → j ≤ 5570 * (n : ℤ) →

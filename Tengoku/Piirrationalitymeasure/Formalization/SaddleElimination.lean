@@ -31,6 +31,9 @@ noncomputable def saddleEliminationNumerator (z : ℂ) : ℂ :=
   3715 * saddleQ ^ 3 - 232119 * saddleQ ^ 2 * z -
     928475 * saddleQ * z ^ 2 - 1160625 * z ^ 3
 
+/--
+@isnad1 id=eq.0h2v.s6.adfa10a832c8 from=translated src=- shape=0ecec6c5 vocab=40a9ef55
+-/
 theorem saddleElimination_real_imag (x e : ℝ) :
     saddleEliminationNumerator ((x : ℂ) + (e : ℂ) * (1 - x) * Complex.I) =
       ((saddleEliminationA x e : ℝ) : ℂ) +
@@ -39,6 +42,9 @@ theorem saddleElimination_real_imag (x e : ℝ) :
     simp [saddleEliminationNumerator, saddleQ, saddleEliminationA, saddleEliminationB,
       pow_succ, Complex.mul_re, Complex.mul_im] <;> ring
 
+/--
+@isnad1 id=and.0h0v.s4.94c0f39adf73 from=translated src=- shape=83905ffe vocab=f6960963
+-/
 theorem saddleElimination_common_root :
     saddleEliminationA saddleX saddleEta = 0 ∧ saddleEliminationB saddleX saddleEta = 0 := by
   have hxy : saddleEta * (1 - saddleX) = saddleY := by
@@ -60,6 +66,9 @@ theorem saddleElimination_common_root :
   rw [← hz, saddleElimination_real_imag] at hzero
   exact ⟨by simpa using congrArg Complex.re hzero, by simpa using congrArg Complex.im hzero⟩
 
+/--
+@isnad1 id=lt.2h1v.s5.894c07503eda from=translated src=- shape=ca36100f vocab=48e0abdd
+-/
 theorem saddleEliminationG_pos {e : ℝ} (he : (9 : ℝ) / 10 ≤ e) (he1 : e ≤ 1) :
     0 < saddleEliminationG e := by
   have hsq : (9 / 10 : ℝ) ^ 2 ≤ e ^ 2 := by nlinarith
@@ -68,6 +77,9 @@ theorem saddleEliminationG_pos {e : ℝ} (he : (9 : ℝ) / 10 ≤ e) (he1 : e �
   unfold saddleEliminationG
   nlinarith
 
+/--
+@isnad1 id=and.0h0v.s7.62e372704668 from=translated src=- shape=6f31f623 vocab=24383473
+-/
 theorem saddleEliminationM_endpoint_signs :
     -(278 : ℝ) / 10 ^ 6 < saddleEliminationM saddleEtaLower ∧
     saddleEliminationM saddleEtaLower < -(277 : ℝ) / 10 ^ 6 ∧
@@ -106,6 +118,9 @@ noncomputable def saddleEliminationBPoly (e : ℝ) : ℝ[X] :=
 
 set_option maxRecDepth 4000 in
 set_option maxHeartbeats 1600000 in
+/--
+@isnad1 id=eq.0h1v.s5.697497ad55c8 from=translated src=- shape=a58c482a vocab=4244913a
+-/
 theorem saddleElimination_resultant (e : ℝ) :
     (saddleEliminationAPoly e).resultant (saddleEliminationBPoly e) 3 3 =
       27587592000000000000 * saddleEliminationG e * saddleEliminationM e := by
@@ -115,16 +130,25 @@ theorem saddleElimination_resultant (e : ℝ) :
   unfold saddleEliminationG saddleEliminationM
   ring
 
+/--
+@isnad1 id=eq.0h2v.s4.77ba4a8d5313 from=translated src=- shape=9e0fa439 vocab=ce1bf5f0
+-/
 theorem saddleEliminationAPoly_eval (x e : ℝ) :
     (saddleEliminationAPoly e).eval x = saddleEliminationA x e := by
   simp [saddleEliminationAPoly, saddleEliminationA]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s4.cfa71866d480 from=translated src=- shape=9e0fa439 vocab=c774cae0
+-/
 theorem saddleEliminationBPoly_eval (x e : ℝ) :
     (saddleEliminationBPoly e).eval x = saddleEliminationB x e := by
   simp [saddleEliminationBPoly, saddleEliminationB]
   ring
 
+/--
+@isnad1 id=eq.0h0v.s3.b8ae21c2c8b4 from=translated src=- shape=3701a056 vocab=3bfb7f0b
+-/
 theorem saddleEliminationM_saddleEta : saddleEliminationM saddleEta = 0 := by
   have hA : (saddleEliminationAPoly saddleEta).natDegree ≤ 3 := by
     unfold saddleEliminationAPoly
@@ -142,6 +166,9 @@ theorem saddleEliminationM_saddleEta : saddleEliminationM saddleEta = 0 := by
   have hG := saddleEliminationG_pos saddleEta_gt_nine_tenths.le saddleEta_lt_one.le
   exact (mul_eq_zero.mp hzero.symm).resolve_left (mul_ne_zero (by norm_num) hG.ne')
 
+/--
+@isnad1 id=strictmo.0h0v.s5.ca49a0f5c2a0 from=translated src=- shape=49b7a648 vocab=7acddbdb
+-/
 theorem saddleEliminationM_strictMonoOn :
     StrictMonoOn (saddleEliminationM : ℝ → ℝ) (Set.Icc (9 / 10 : ℝ) 1) := by
   intro x hx y hy hxy
@@ -161,6 +188,9 @@ theorem saddleEliminationM_strictMonoOn :
   unfold saddleEliminationM
   nlinarith
 
+/--
+@isnad1 id=existsun.0h0v.s5.d1bac66f84d4 from=translated src=- shape=21d151ff vocab=943b1383
+-/
 theorem saddleEliminationM_unique_root :
     ∃! e : ℝ, e ∈ Set.Icc (9 / 10 : ℝ) 1 ∧ saddleEliminationM e = 0 := by
   refine ⟨saddleEta, ⟨⟨saddleEta_gt_nine_tenths.le, saddleEta_lt_one.le⟩,
@@ -170,6 +200,9 @@ theorem saddleEliminationM_unique_root :
     ⟨saddleEta_gt_nine_tenths.le, saddleEta_lt_one.le⟩
     (he.2.trans saddleEliminationM_saddleEta.symm)
 
+/--
+@isnad1 id=and.0h0v.s3.95cfc065c07b from=translated src=- shape=9cf45692 vocab=0e0ead0b
+-/
 theorem saddleEliminationM_isolation :
     saddleEtaLower < saddleEta ∧ saddleEta < saddleEtaUpper := by
   have hL : saddleEtaLower ∈ Set.Icc (9 / 10 : ℝ) 1 := by

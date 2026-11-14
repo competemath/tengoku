@@ -11,6 +11,9 @@ def coefficientSaddleNumerator (z : ℝ) : ℝ :=
   -11140 + 11152 * z + 102158 * z ^ 2 + 167160 * z ^ 3 +
     102158 * z ^ 4 + 11152 * z ^ 5 - 11140 * z ^ 6
 
+/--
+@isnad1 id=eq.2h1v.s6.84dae98bc2b2 from=translated src=- shape=f135f798 vocab=0169673e
+-/
 theorem coefficientMean_numerator {z : ℝ} (hz0 : 0 ≤ z) (hz1 : z < 1) :
     (1 - z ^ 2) * PReal z * (coefficientMean z - 5570) =
       coefficientSaddleNumerator z := by
@@ -22,6 +25,9 @@ theorem coefficientMean_numerator {z : ℝ} (hz0 : 0 ≤ z) (hz1 : z < 1) :
   dsimp [PReal, PRealPrime, coefficientSaddleNumerator]
   ring
 
+/--
+@isnad1 id=eq.1h1v.s7.f39bb7ace560 from=translated src=- shape=90addafa vocab=48569ba1
+-/
 theorem coefficientSaddle_cubic_identity {w : ℝ} (hw : w + 1 ≠ 0) :
     (w + 1) ^ 6 * coefficientSaddleNumerator ((w - 1) / (w + 1)) =
       4 / 625 * stationaryCubic (25 * w ^ 2) := by
@@ -29,11 +35,17 @@ theorem coefficientSaddle_cubic_identity {w : ℝ} (hw : w + 1 ≠ 0) :
   field_simp
   ring
 
+/--
+@isnad1 id=eq.0h0v.s3.0985744c4e72 from=translated src=- shape=b0ae1d2b vocab=fda97ddf
+-/
 theorem coefficientSaddleNumerator_eq_zero :
     coefficientSaddleNumerator coefficientSaddle = 0 := by
   rw [← coefficientMean_numerator coefficientSaddle_mem.1.le coefficientSaddle_mem.2,
     coefficientSaddle_mean, sub_self, mul_zero]
 
+/--
+@isnad1 id=lt.3h1v.s5.58c9c088e3fd from=translated src=- shape=fe195d11 vocab=c22aee4a
+-/
 theorem coefficientSaddle_gt_of_numerator_neg {z : ℝ} (hz0 : 0 ≤ z) (hz1 : z < 1)
     (hN : coefficientSaddleNumerator z < 0) : z < coefficientSaddle := by
   have hd : 0 < (1 - z ^ 2) * PReal z :=
@@ -47,6 +59,9 @@ theorem coefficientSaddle_gt_of_numerator_neg {z : ℝ} (hz0 : 0 ≤ z) (hz1 : z
   rw [coefficientSaddle_mean] at hle
   linarith
 
+/--
+@isnad1 id=lt.3h1v.s5.55562801b3aa from=translated src=- shape=db1b7b5c vocab=c22aee4a
+-/
 theorem coefficientSaddle_lt_of_numerator_pos {z : ℝ} (hz0 : 0 ≤ z) (hz1 : z < 1)
     (hN : 0 < coefficientSaddleNumerator z) : coefficientSaddle < z := by
   have hd : 0 < (1 - z ^ 2) * PReal z :=
@@ -66,6 +81,9 @@ noncomputable def coefficientSaddleLower : ℝ :=
 noncomputable def coefficientSaddleUpper : ℝ :=
   23918337643845311771849563937315852029007245250807 / 10 ^ 50
 
+/--
+@isnad1 id=and.0h0v.s3.83a670550473 from=translated src=- shape=9cf45692 vocab=14cede6f
+-/
 theorem coefficientSaddle_fine_bounds :
     coefficientSaddleLower < coefficientSaddle ∧ coefficientSaddle < coefficientSaddleUpper := by
   constructor
@@ -76,12 +94,18 @@ theorem coefficientSaddle_fine_bounds :
       (by norm_num [coefficientSaddleUpper]) (by norm_num [coefficientSaddleUpper])
     norm_num [coefficientSaddleNumerator, coefficientSaddleUpper]
 
+/--
+@isnad1 id=and.0h0v.s5.a579a2bdac93 from=translated src=- shape=22d6e382 vocab=80b284db
+-/
 theorem coefficientSaddle_coarse_bounds :
     (239 : ℝ) / 1000 < coefficientSaddle ∧ coefficientSaddle < 6 / 25 := by
   have h := coefficientSaddle_fine_bounds
   norm_num [coefficientSaddleLower, coefficientSaddleUpper] at h
   constructor <;> linarith
 
+/--
+@isnad1 id=eq.0h0v.s6.5cd57106c2a3 from=translated src=- shape=5f84967b vocab=424b9c49
+-/
 theorem coefficientSaddle_real_root :
     stationaryRoot = 25 * (1 + coefficientSaddle) ^ 2 / (1 - coefficientSaddle) ^ 2 := by
   let z := coefficientSaddle
@@ -122,6 +146,9 @@ noncomputable def stationaryRootFineLower : ℝ :=
 noncomputable def stationaryRootFineUpper : ℝ :=
   6632101738059856717221773124052531930114787749744964 / 10 ^ 50
 
+/--
+@isnad1 id=and.0h0v.s3.38f6e9ee4106 from=translated src=- shape=9cf45692 vocab=a02614a0
+-/
 theorem stationaryRoot_fine_bounds :
     stationaryRootFineLower < stationaryRoot ∧ stationaryRoot < stationaryRootFineUpper := by
   have hL : stationaryRootFineLower ∈ Set.Icc (66 : ℝ) 67 := by

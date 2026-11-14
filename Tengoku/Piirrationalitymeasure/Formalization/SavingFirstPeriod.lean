@@ -8,6 +8,9 @@ namespace PiIrrationality
 
 open MeasureTheory Set Filter
 
+/--
+@isnad1 id=and.1h1v.s7.e65840a933f6 from=translated src=- shape=84740d87 vocab=4bb6ee96
+-/
 theorem savingCandidatePerturbation_bounds {h : ℝ × ℝ} (hh : parameterNormOne h ≤ 1) :
     0 ≤ 1857 + h.1 ∧ 0 ≤ 3714 + h.2 ∧
       0 ≤ (1857 + h.1) + 2 * (3714 + h.2) - 5570 ∧
@@ -22,6 +25,9 @@ theorem savingCandidatePerturbation_bounds {h : ℝ × ℝ} (hh : parameterNormO
   obtain ⟨hy0, hy1⟩ := abs_le.mp hy
   exact ⟨by linarith, by linarith, by linarith, by linarith, by linarith⟩
 
+/--
+@isnad1 id=integrab.1h1v.s7.ef2684695a8f from=translated src=- shape=6c810371 vocab=da77f64f
+-/
 theorem savingCandidateDensityDifference_integrable {h : ℝ × ℝ}
     (hh : parameterNormOne h ≤ 1) :
     IntegrableOn (fun t => savingDensity (1857 + h.1) (3714 + h.2) 5570 t -
@@ -30,6 +36,9 @@ theorem savingCandidateDensityDifference_integrable {h : ℝ × ℝ}
   exact (savingDensity_integrableOn ha hb (by norm_num) hq).sub
     (savingDensity_integrableOn (by norm_num) (by norm_num) (by norm_num) (by norm_num))
 
+/--
+@isnad1 id=eq.2h2v.s7.4ffd0d522303 from=translated src=- shape=a7465e97 vocab=66527784
+-/
 theorem savingCandidateDensityDifference_initial_zero {h : ℝ × ℝ}
     (hh : parameterNormOne h ≤ 1) {t : ℝ} (ht : t ∈ Icc (0 : ℝ) (1 / 22288)) :
     savingDensity (1857 + h.1) (3714 + h.2) 5570 t - savingDensity 1857 3714 5570 t = 0 := by
@@ -44,6 +53,9 @@ theorem savingCandidateDensityDifference_initial_zero {h : ℝ × ℝ}
       (by norm_num) ht0 he]
   norm_num
 
+/--
+@isnad1 id=le.1h1v.s6.773b3f55c5c1 from=translated src=- shape=f00bd08e vocab=0646c1c4
+-/
 theorem savingPeriodDifference_zero_bound {h : ℝ × ℝ} (hh : parameterNormOne h ≤ 1) :
     |savingPeriodDifference 1857 3714 5570 h 0| ≤
       (22288 : ℝ) ^ 2 * savingTranslationConstant 1857 3714 5570 * parameterNormOne h := by

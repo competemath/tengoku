@@ -6,6 +6,9 @@ import Tengoku.Piirrationalitymeasure.Formalization.SavingTranslationBounds
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=admissib.1h1v.s5.8112fce7a8e9 from=translated src=- shape=0996d82a vocab=eafc6d5a
+-/
 theorem admissible_candidate_add_of_parameterNormOne_lt {h : ℝ × ℝ}
     (hh : parameterNormOne h < 1 / 5570) : Admissible (candidate + h) := by
   have hx : -parameterNormOne h ≤ h.1 ∧ h.1 ≤ parameterNormOne h := by

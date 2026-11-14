@@ -17,6 +17,9 @@ noncomputable def complexRationalFunction (n : ℕ) (t : ℂ) : ℂ :=
   5 * t ^ (2 * 1857 * n) * (t ^ 4 + 6 * t ^ 2 + 25) ^ (3714 * n) /
     (25 - t ^ 2) ^ (5570 * n + 1)
 
+/--
+@isnad1 id=eq.2h2v.s7.2c415c7e09c6 from=translated src=- shape=d39d620b vocab=eb23ea25
+-/
 theorem endpointCoeff_eq_normalizedComplexDeriv
     (n : ℕ) (hn : 1 ≤ n) (k : ℕ) (hk : k < 7430 * n - 1) :
     normalizedComplexDeriv k (fun t : ℂ => aeval t (polynomialPart n))
@@ -35,6 +38,9 @@ noncomputable def endpointRegularFactor (n : ℕ) (t : ℂ) : ℂ :=
   5 * t ^ (2 * 1857 * n) * (t - (-1 + 2 * Complex.I)) ^ (3714 * n) *
     ((t - 1) ^ 2 + 4) ^ (3714 * n) / (25 - t ^ 2) ^ (5570 * n + 1)
 
+/--
+@isnad1 id=eq.0h2v.s6.ed0287447aad from=translated src=- shape=1c7e5c99 vocab=dbd33598
+-/
 theorem complexRationalFunction_endpoint_factor (n : ℕ) (t : ℂ) :
     complexRationalFunction n t =
       (t - (-1 - 2 * Complex.I)) ^ (3714 * n) * endpointRegularFactor n t := by
@@ -50,11 +56,17 @@ theorem complexRationalFunction_endpoint_factor (n : ℕ) (t : ℂ) :
   rw [hquartic, mul_pow, mul_pow]
   ring
 
+/--
+@isnad1 id=ne.0h0v.s6.41757c3828b9 from=translated src=- shape=8bd0c1c0 vocab=0fec222f
+-/
 theorem endpoint_denominator_ne_zero : (25 : ℂ) - (-1 - 2 * Complex.I) ^ 2 ≠ 0 := by
   intro h
   have := congrArg Complex.re h
   norm_num [pow_two, Complex.mul_re, Complex.mul_im] at this
 
+/--
+@isnad1 id=eq.1h2v.s6.0b174b926428 from=translated src=- shape=02e69ff9 vocab=663ba8b6
+-/
 theorem normalizedComplexDeriv_rationalFunction_endpoint_zero
     (n k : ℕ) (hk : k < 3714 * n) :
     normalizedComplexDeriv k (complexRationalFunction n) (-1 - 2 * Complex.I) = 0 := by
@@ -65,16 +77,25 @@ theorem normalizedComplexDeriv_rationalFunction_endpoint_zero
   unfold normalizedComplexDeriv
   rw [hfun, iteratedDeriv_shift_power_mul_zero k _ hk _ _ hf, zero_div]
 
+/--
+@isnad1 id=ne.0h0v.s5.ec460219229a from=translated src=- shape=589bfb3b vocab=2ae7b950
+-/
 theorem endpoint_left_pole_ne_zero : (5 : ℂ) + (-1 - 2 * Complex.I) ≠ 0 := by
   intro h
   have := congrArg Complex.re h
   norm_num at this
 
+/--
+@isnad1 id=ne.0h0v.s5.2392001b5839 from=translated src=- shape=f6d23e0a vocab=73188b13
+-/
 theorem endpoint_right_pole_ne_zero : (5 : ℂ) - (-1 - 2 * Complex.I) ≠ 0 := by
   intro h
   have := congrArg Complex.re h
   norm_num at this
 
+/--
+@isnad1 id=eq.2h2v.s9.badd6d60f34f from=translated src=- shape=eaf4a0c8 vocab=7ff0ab25
+-/
 theorem endpointCoeff_formula (n : ℕ) (hn : 1 ≤ n) (k : ℕ) (hk : k < 3714 * n) :
     (endpointCoeff n k : ℂ) =
       -∑ j : Fin (5570 * n + 1), ((j.val + k).choose k : ℂ) *

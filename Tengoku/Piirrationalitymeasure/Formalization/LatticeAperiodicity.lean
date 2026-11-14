@@ -8,6 +8,9 @@ namespace PiIrrationality
 
 open MeasureTheory ProbabilityTheory Filter
 
+/--
+@isnad1 id=eq.3h3v.s6.5940415df05a from=translated src=- shape=50fe8609 vocab=e78a3217
+-/
 theorem pmf_unit_integral_eq_of_norm_one (p : PMF ℕ) (f : ℕ → ℂ)
     (hf : ∀ k, ‖f k‖ = 1) (hm : ‖∫ k, f k ∂p.toMeasure‖ = 1) :
     ∀ k ∈ p.support, f k = ∫ j, f j ∂p.toMeasure := by
@@ -57,6 +60,9 @@ theorem pmf_unit_integral_eq_of_norm_one (p : PMF ℕ) (f : ℕ → ℂ)
 def HasLatticeSpanOne (s : Set ℕ) : Prop :=
   AddSubgroup.closure {d : ℤ | ∃ j ∈ s, ∃ k ∈ s, d = (j : ℤ) - k} = ⊤
 
+/--
+@isnad1 id=haslatti.2h1v.s4.e7b2987b9372 from=translated src=- shape=58014ea6 vocab=a08e938b
+-/
 theorem hasLatticeSpanOne_of_mem_zero_one {s : Set ℕ}
     (h0 : 0 ∈ s) (h1 : 1 ∈ s) : HasLatticeSpanOne s := by
   apply top_unique
@@ -78,6 +84,9 @@ def latticeExponentialKernel (t : ℝ) : AddSubgroup ℤ where
     change Complex.exp (((-a : ℤ) : ℂ) * (t : ℂ) * Complex.I) = 1
     rw [Int.cast_neg, neg_mul, neg_mul, Complex.exp_neg, ha, inv_one]
 
+/--
+@isnad1 id=lt.3h2v.s6.d419cad2a97f from=translated src=- shape=35a10ea1 vocab=8c86699e
+-/
 theorem pmf_charFun_norm_strict_of_span_one (p : PMF ℕ)
     (hspan : HasLatticeSpanOne p.support) {t : ℝ}
     (ht0 : 0 < |t|) (htpi : |t| ≤ Real.pi) :

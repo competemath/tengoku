@@ -13,6 +13,9 @@ open scoped Topology
 variable (u v : ℕ) {d : ℕ} (hd : 0 < d)
 
 include hd in
+/--
+@isnad1 id=eq.4h6v.s7.bf659cf158d3 from=translated src=- shape=f176c4ce vocab=8d0d7233
+-/
 theorem series_diagonal_log_formula {x : ℝ} (hx0 : 0 < x) (hx1 : x < 1)
     (q : ℕ) {n : ℕ} (hn : 0 < n) :
     Real.log (↑(coeff (q * n) (series u v d ^ n)) : ℝ) / (n : ℝ) =

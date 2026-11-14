@@ -6,6 +6,9 @@ import Tengoku.Piirrationalitymeasure.Formalization.EndpointArithmetic
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=ex.2h6v.s8.f9cbbfdf4f41 from=translated src=- shape=c95791af vocab=1eea874f
+-/
 theorem endpoint_scaled_coefficient_of_factor (H F j k : ℕ) (hH : 0 < H)
     (z : ℚ) (w : ℤ)
     (hz : z = (2 : ℚ) ^ (H - 1 + (3 * j + 1) / 2) * 5 ^ (F + j) * (w : ℚ)) :
@@ -39,6 +42,9 @@ theorem endpoint_scaled_coefficient_of_factor (H F j k : ℕ) (hH : 0 < H)
       rw [h2, h5, show (10 : ℂ) = 2 * 5 by norm_num, mul_pow]
       field_simp
 
+/--
+@isnad1 id=ex.2h6v.s9.a887db1fccc9 from=translated src=- shape=23184d7a vocab=3d60400b
+-/
 theorem endpoint_bracket_integral_of_factor (H F j k : ℕ) (hH : 0 < H)
     (z : ℚ) (w : ℤ)
     (hz : z = (2 : ℚ) ^ (H - 1 + (3 * j + 1) / 2) * 5 ^ (F + j) * (w : ℚ)) :

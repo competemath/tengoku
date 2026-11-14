@@ -31,6 +31,9 @@ def saddleLogRounded (i : Fin 6) : ℤ :=
   | _ => 6587132662367959890666838394526550709458848587254716797408453
 
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=and.0h1v.s6.0ce113ebfadc from=translated src=- shape=88957e64 vocab=763d77dc
+-/
 theorem saddleLogInput_range (i : Fin 6) :
     2 ^ saddleLogScale i ≤ saddleLogInput i ∧
       saddleLogInput i ≤ 2 * 2 ^ saddleLogScale i ∧ |saddleLogScale i| ≤ 9 := by
@@ -40,12 +43,18 @@ theorem saddleLogInput_range (i : Fin 6) :
 -- All floors in the 120-term sums are checked by kernel reduction.
 set_option maxRecDepth 100000 in
 set_option maxHeartbeats 2000000 in
+/--
+@isnad1 id=eq.0h1v.s5.80a8ad6b5645 from=translated src=- shape=731b817d vocab=84250426
+-/
 theorem saddleLogRounded_value (i : Fin 6) :
     roundedScaledLog (saddleLogInput i) (saddleLogScale i) 120 (10 ^ 60) =
       saddleLogRounded i := by
   revert i
   decide +kernel
 
+/--
+@isnad1 id=lt.0h1v.s6.ea0501f2f47c from=translated src=- shape=12d06da1 vocab=595bc228
+-/
 theorem saddleLog_enclosure (i : Fin 6) :
     |Real.log (saddleLogInput i : ℝ) - (saddleLogRounded i : ℝ) / 10 ^ 60| <
       (2000 : ℝ) / 10 ^ 60 := by

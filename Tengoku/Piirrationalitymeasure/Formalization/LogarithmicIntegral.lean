@@ -13,6 +13,9 @@ noncomputable def logarithmicPrimitive (s : ℝ) : ℂ :=
   ((Real.arctan (s / 4) + Real.arctan (s / 6) : ℝ) : ℂ) +
     Complex.I / 2 * ((Real.log (s ^ 2 + 36) - Real.log (s ^ 2 + 16) : ℝ) : ℂ)
 
+/--
+@isnad1 id=hasderiv.0h1v.s5.7dbe2befaf12 from=translated src=- shape=af74416d vocab=8944b304
+-/
 theorem logarithmicPrimitive_hasDerivAt (s : ℝ) :
     HasDerivAt logarithmicPrimitive (polePair 0 s) s := by
   have h16 : s ^ 2 + 16 ≠ 0 := by positivity
@@ -39,11 +42,17 @@ theorem logarithmicPrimitive_hasDerivAt (s : ℝ) :
   all_goals field_simp [h16', h36', h16, h36, h4den, h6den]
   all_goals ring
 
+/--
+@isnad1 id=eq.0h0v.s6.fba1d0836639 from=translated src=- shape=16121ea0 vocab=f2a551c9
+-/
 theorem arctan_half_add_third :
     Real.arctan (1 / 2) + Real.arctan (1 / 3) = Real.pi / 4 := by
   rw [Real.arctan_add (by norm_num : (1 / 2 : ℝ) * (1 / 3) < 1)]
   norm_num [Real.arctan_one]
 
+/--
+@isnad1 id=eq.0h0v.s5.566fe7c3e6ba from=translated src=- shape=57c90d54 vocab=7ae3c0f4
+-/
 theorem logarithmicPrimitive_endpoint_difference :
     logarithmicPrimitive 2 - logarithmicPrimitive (-2) = (Real.pi : ℂ) / 2 := by
   unfold logarithmicPrimitive
@@ -53,17 +62,26 @@ theorem logarithmicPrimitive_endpoint_difference :
     exact_mod_cast arctan_half_add_third
   linear_combination 2 * ha
 
+/--
+@isnad1 id=eq.0h0v.s5.3184dda4a1da from=translated src=- shape=6198d60f vocab=ef5a47fc
+-/
 theorem logarithmicPole_integral :
     (∫ s : ℝ in (-2)..2, polePair 0 s) = (Real.pi : ℂ) / 2 := by
   rw [intervalIntegral.integral_eq_sub_of_hasDerivAt
     (fun s _ => logarithmicPrimitive_hasDerivAt s) ((polePair_continuous 0).intervalIntegrable _ _)]
   exact logarithmicPrimitive_endpoint_difference
 
+/--
+@isnad1 id=eq.0h0v.s6.4d825dea3042 from=translated src=- shape=3b1817c4 vocab=91bac534
+-/
 theorem logarithmicPole_contour_integral :
     Complex.I * (∫ s : ℝ in (-2)..2, polePair 0 s) = (Real.pi : ℂ) * Complex.I / 2 := by
   rw [logarithmicPole_integral]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s6.58c25c70867c from=translated src=- shape=4cca3b59 vocab=d356f159
+-/
 theorem logarithmicCoeff_integral (n : ℕ) :
     -(∫ s : ℝ in (-2)..2, (laurentCoeffRat n 0 : ℂ) * polePair 0 s) =
       (-laurentCoeffRat n 0 / 2 : ℚ) * (Real.pi : ℂ) := by
@@ -71,6 +89,9 @@ theorem logarithmicCoeff_integral (n : ℕ) :
   push_cast
   ring
 
+/--
+@isnad1 id=ex.1h1v.s6.b473e2b5a1d3 from=translated src=- shape=b9b0353e vocab=97ae8e64
+-/
 theorem normalizedLogarithmicIntegral_integerPi (n : ℕ) (hn : 1 ≤ n) :
     ∃ V : ℤ, (normalizationMultiplier n : ℂ) *
       (-(∫ s : ℝ in (-2)..2, (laurentCoeffRat n 0 : ℂ) * polePair 0 s)) =

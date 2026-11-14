@@ -15,6 +15,9 @@ noncomputable def savingPeriodDifference (a b c : ℝ) (h : ℝ × ℝ) (k : ℝ
     (translatedSavingChi a b c ((k + u) • h) u - translatedSavingChi a b c 0 u) /
       (k + u) ^ 2
 
+/--
+@isnad1 id=interval.0h5v.s6.6238eba799dd from=translated src=- shape=3417e051 vocab=287a2ca5
+-/
 theorem translatedSavingChi_affine_intervalIntegrable (a b c : ℝ) (z w : ℝ × ℝ) :
     IntervalIntegrable (fun u => translatedSavingChi a b c (z + u • w) u) volume 0 1 := by
   apply (intervalIntegrable_iff_integrableOn_Ioc_of_le (by norm_num : (0 : ℝ) ≤ 1)).mpr
@@ -29,6 +32,9 @@ theorem translatedSavingChi_affine_intervalIntegrable (a b c : ℝ) (z w : ℝ �
     rw [translatedSavingChi, Real.norm_eq_abs, abs_of_nonneg (savingChi_nonneg _ _ _)]
     exact savingChi_le_one _ _ _
 
+/--
+@isnad1 id=eq.0h6v.s7.12b7072dd335 from=translated src=- shape=ee6fe476 vocab=52a5fe11
+-/
 theorem savingDensity_shifted_difference (a b c : ℤ) (h : ℝ × ℝ) (k : ℕ) (u : ℝ) :
     savingDensity ((a : ℝ) + h.1) ((b : ℝ) + h.2) c ((k : ℝ) + u) -
         savingDensity a b c ((k : ℝ) + u) =
@@ -51,6 +57,9 @@ theorem savingDensity_shifted_difference (a b c : ℤ) (h : ℝ × ℝ) (k : ℕ
   simp only [translatedSavingChi, Prod.fst_zero, Prod.snd_zero, add_zero]
   exact (sub_div _ _ _).symm
 
+/--
+@isnad1 id=hassum.7h4v.s8.5f92aab5de13 from=translated src=- shape=fd8cdbf3 vocab=a0ecf3b1
+-/
 theorem savingOmega_difference_hasSum (a b c : ℤ) (h : ℝ × ℝ)
     (ha : 0 ≤ (a : ℝ)) (hb : 0 ≤ (b : ℝ)) (hc : 0 ≤ (c : ℝ))
     (hq : 0 ≤ (a : ℝ) + 2 * b - c)
@@ -71,6 +80,9 @@ theorem savingOmega_difference_hasSum (a b c : ℤ) (h : ℝ × ℝ)
     exact (savingDensity_shifted_difference a b c h k u).symm
   · rfl
 
+/--
+@isnad1 id=le.6h5v.s8.51807e23ea30 from=translated src=- shape=b8cc76e5 vocab=a9d19b2f
+-/
 theorem savingPeriodDifference_error {a b c k : ℝ} (h : ℝ × ℝ)
     (ha : a ≠ 0) (hb : b ≠ 0) (hq : a + 2 * b - c ≠ 0)
     (hk : 0 < k) (hh : parameterNormOne h ≤ 1)

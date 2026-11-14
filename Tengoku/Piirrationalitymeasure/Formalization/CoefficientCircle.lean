@@ -12,15 +12,24 @@ noncomputable def PComplex (z : ℂ) : ℂ :=
 noncomputable def SComplex (z : ℂ) : ℂ :=
   (1 + z) ^ 3714 * PComplex z ^ 3714 / (1 - z) ^ 7430
 
+/--
+@isnad1 id=hassum.1h1v.s7.d8edbdd88818 from=translated src=- shape=94868c31 vocab=993d6ee7
+-/
 theorem SComplex_hasSum {z : ℂ} (hz : ‖z‖ < 1) :
     HasSum (fun k => (↑(PowerSeries.coeff k Sseries) : ℂ) * z ^ k) (SComplex z) :=
   Sseries_hasSum hz
 
+/--
+@isnad1 id=eq.0h1v.s3.acc0211077d7 from=translated src=- shape=c14c2a45 vocab=9e894c53
+-/
 theorem SComplex_ofReal (x : ℝ) : SComplex (x : ℂ) = (SReal x : ℂ) := by
   unfold SComplex PComplex SReal PReal
   push_cast
   rfl
 
+/--
+@isnad1 id=le.0h1v.s3.149c242d260a from=translated src=- shape=a5850310 vocab=a83ae0c3
+-/
 theorem PComplex_norm_le (z : ℂ) : ‖PComplex z‖ ≤ PReal ‖z‖ := by
   unfold PComplex PReal
   calc
@@ -33,6 +42,9 @@ theorem PComplex_norm_le (z : ℂ) : ‖PComplex z‖ ≤ PReal ‖z‖ := by
       linarith
     _ = _ := by simp only [norm_mul, norm_pow]; norm_num
 
+/--
+@isnad1 id=lt.1h1v.s4.006d99fdabde from=translated src=- shape=82a34fa9 vocab=914d4d2d
+-/
 theorem complex_re_lt_norm {z : ℂ} (hz : z ≠ (‖z‖ : ℂ)) : z.re < ‖z‖ := by
   apply lt_of_le_of_ne (Complex.re_le_norm z)
   intro heq
@@ -43,6 +55,9 @@ theorem complex_re_lt_norm {z : ℂ} (hz : z ≠ (‖z‖ : ℂ)) : z.re < ‖z�
     nlinarith [sq_nonneg z.im]
   exact Complex.ext (by simpa using heq) (by simpa using him)
 
+/--
+@isnad1 id=lt.2h1v.s5.9a0ea52d4c59 from=translated src=- shape=0cee96ac vocab=b730d4da
+-/
 theorem one_sub_complex_norm_strict {z : ℂ} (hz1 : ‖z‖ < 1)
     (hz : z ≠ (‖z‖ : ℂ)) : 1 - ‖z‖ < ‖1 - z‖ := by
   have hr := complex_re_lt_norm hz
@@ -52,11 +67,17 @@ theorem one_sub_complex_norm_strict {z : ℂ} (hz1 : ‖z‖ < 1)
     Complex.sub_im, Complex.one_im] at hs hzsq
   nlinarith [norm_nonneg (1 - z), norm_nonneg z]
 
+/--
+@isnad1 id=ne.1h1v.s5.66695d3f34f3 from=translated src=- shape=e0aee735 vocab=0fcc4b44
+-/
 theorem one_sub_complex_ne_zero {z : ℂ} (hz : ‖z‖ < 1) : 1 - z ≠ 0 := by
   intro h
   have h1 : z = 1 := by linear_combination -h
   simp [h1] at hz
 
+/--
+@isnad1 id=lt.2h1v.s5.7511484001c4 from=translated src=- shape=d29126cc vocab=992744b4
+-/
 theorem SComplex_norm_strict {z : ℂ} (hz1 : ‖z‖ < 1)
     (hz : z ≠ (‖z‖ : ℂ)) : ‖SComplex z‖ < SReal ‖z‖ := by
   have hplus : ‖1 + z‖ ≤ 1 + ‖z‖ := by simpa using norm_add_le (1 : ℂ) z
@@ -78,10 +99,16 @@ theorem SComplex_norm_strict {z : ℂ} (hz1 : ‖z‖ < 1)
         (pow_nonneg (norm_nonneg _) _) (by positivity)
     _ < _ := div_lt_div_of_pos_left hnum (pow_pos hdenpos _) hpow
 
+/--
+@isnad1 id=continuo.1h1v.s5.c569ae44dd71 from=translated src=- shape=1929e545 vocab=8db3c37a
+-/
 theorem SComplex_continuousAt {z : ℂ} (hz : ‖z‖ < 1) : ContinuousAt SComplex z := by
   unfold SComplex PComplex
   fun_prop (disch := exact pow_ne_zero _ (one_sub_complex_ne_zero hz))
 
+/--
+@isnad1 id=ex.5h2v.s7.a39ddc972da5 from=translated src=- shape=d8a89a9b vocab=fe498973
+-/
 theorem SComplex_compact_circle_bound {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1)
     {K : Set ℂ} (hK : IsCompact K) (hr : ∀ z ∈ K, ‖z‖ = r)
     (ha : ∀ z ∈ K, z ≠ (r : ℂ)) :

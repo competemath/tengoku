@@ -10,6 +10,9 @@ derivative definition, so arithmetic statements can use the same coefficients.
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=eq.0h2v.s8.cd05afeade9a from=translated src=- shape=dcfc4ccc vocab=332a2929
+-/
 theorem iteratedDeriv_rat_aeval (k : ℕ) (P : Polynomial ℚ) :
     iteratedDeriv k (fun t : ℝ => Polynomial.aeval t P) =
       fun t : ℝ => Polynomial.aeval t ((Polynomial.derivative^[k]) P) := by
@@ -20,6 +23,9 @@ theorem iteratedDeriv_rat_aeval (k : ℕ) (P : Polynomial ℚ) :
       funext t
       simp only [Polynomial.deriv_aeval, Function.iterate_succ_apply']
 
+/--
+@isnad1 id=eq.0h3v.s7.aaffdb5031b6 from=translated src=- shape=949fa583 vocab=67b17894
+-/
 theorem normalizedDeriv_rat_aeval (k : ℕ) (P : Polynomial ℚ) (x : ℚ) :
     normalizedDeriv k (fun t : ℝ => Polynomial.aeval t P) (x : ℝ) =
       (((Polynomial.derivative^[k]) P).eval x / (k.factorial : ℚ) : ℚ) := by
@@ -34,6 +40,9 @@ theorem normalizedDeriv_rat_aeval (k : ℕ) (P : Polynomial ℚ) (x : ℚ) :
   push_cast
   rfl
 
+/--
+@isnad1 id=ex.0h2v.s6.f5c1c5b3b480 from=translated src=- shape=b42baa10 vocab=ffd216a0
+-/
 theorem normalizedDeriv_inv_linear_is_rational (M k : ℕ) :
     ∃ q : ℚ, normalizedDeriv k (fun t : ℝ => (5 - t) ^ (-(M : ℤ))) (-5) =
       (q : ℝ) := by
@@ -43,6 +52,9 @@ theorem normalizedDeriv_inv_linear_is_rational (M k : ℕ) :
   push_cast
   norm_num
 
+/--
+@isnad1 id=ex.0h2v.s4.effe0f037bf8 from=translated src=- shape=8864ae95 vocab=47e67900
+-/
 theorem laurentCoeff_is_rational (n : ℕ) (j : ℤ) :
     ∃ q : ℚ, laurentCoeff n j = (q : ℝ) := by
   by_cases hj : j ≤ 5570 * (n : ℤ)
@@ -97,6 +109,9 @@ theorem laurentCoeff_is_rational (n : ℕ) (j : ℤ) :
 noncomputable def laurentCoeffRat (n : ℕ) (j : ℤ) : ℚ :=
   Classical.choose (laurentCoeff_is_rational n j)
 
+/--
+@isnad1 id=eq.0h2v.s3.6e07ea1a510b from=translated src=- shape=aafa76bf vocab=ec033e18
+-/
 theorem laurentCoeffRat_cast (n : ℕ) (j : ℤ) :
     (laurentCoeffRat n j : ℝ) = laurentCoeff n j :=
   (Classical.choose_spec (laurentCoeff_is_rational n j)).symm

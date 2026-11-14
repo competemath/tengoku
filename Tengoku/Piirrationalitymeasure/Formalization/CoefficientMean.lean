@@ -17,6 +17,9 @@ noncomputable def coefficientMean (x : ℝ) : ℝ :=
 noncomputable def coefficientMeanPrime (x : ℝ) : ℝ :=
   3714 / (1 + x) ^ 2 + 3714 * PMeanNumerator x / PReal x ^ 2 + 7430 / (1 - x) ^ 2
 
+/--
+@isnad1 id=hasderiv.0h1v.s5.9c0c2eeba99c from=translated src=- shape=475e04ea vocab=01ff45ab
+-/
 theorem PReal_hasDerivAt (x : ℝ) : HasDerivAt PReal (PRealPrime x) x := by
   convert! ((((hasDerivAt_const x (2 : ℝ)).add ((hasDerivAt_id x).const_mul 6)).add
     (((hasDerivAt_id x).pow 2).const_mul 9)).add
@@ -25,6 +28,9 @@ theorem PReal_hasDerivAt (x : ℝ) : HasDerivAt PReal (PRealPrime x) x := by
   dsimp [PReal, PRealPrime]
   ring
 
+/--
+@isnad1 id=hasderiv.0h1v.s6.1fef3d74111c from=translated src=- shape=35f70084 vocab=538a8814
+-/
 theorem PRealPrime_hasDerivAt (x : ℝ) :
     HasDerivAt PRealPrime (18 + 36 * x + 24 * x ^ 2) x := by
   convert! (((hasDerivAt_const x (6 : ℝ)).add ((hasDerivAt_id x).const_mul 18)).add
@@ -33,10 +39,16 @@ theorem PRealPrime_hasDerivAt (x : ℝ) :
   dsimp [PRealPrime]
   ring
 
+/--
+@isnad1 id=lt.1h1v.s4.70f5c831b753 from=translated src=- shape=a8dc2df9 vocab=d2553e52
+-/
 theorem PMeanNumerator_pos {x : ℝ} (hx : 0 ≤ x) : 0 < PMeanNumerator x := by
   dsimp [PMeanNumerator]
   positivity
 
+/--
+@isnad1 id=hasderiv.2h1v.s5.d10dd03315d1 from=translated src=- shape=9ed2ce85 vocab=afe87840
+-/
 theorem coefficientMean_hasDerivAt {x : ℝ} (hx0 : 0 ≤ x) (hx1 : x < 1) :
     HasDerivAt coefficientMean (coefficientMeanPrime x) x := by
   have hp : 1 + x ≠ 0 := by linarith
@@ -53,6 +65,9 @@ theorem coefficientMean_hasDerivAt {x : ℝ} (hx0 : 0 ≤ x) (hx1 : x < 1) :
   field_simp
   ring
 
+/--
+@isnad1 id=lt.2h1v.s5.d0c0b6629250 from=translated src=- shape=536e06c9 vocab=951ba243
+-/
 theorem coefficientMeanPrime_pos {x : ℝ} (hx0 : 0 ≤ x) (hx1 : x < 1) :
     0 < coefficientMeanPrime x := by
   have hp : 0 < 1 + x := by linarith
@@ -62,6 +77,9 @@ theorem coefficientMeanPrime_pos {x : ℝ} (hx0 : 0 ≤ x) (hx1 : x < 1) :
   unfold coefficientMeanPrime
   positivity
 
+/--
+@isnad1 id=strictmo.0h0v.s4.fb57b18cb6e0 from=translated src=- shape=6c3888e7 vocab=0d02ba5d
+-/
 theorem coefficientMean_strictMono : StrictMonoOn coefficientMean (Set.Ico 0 1) := by
   apply strictMonoOn_of_deriv_pos (convex_Ico 0 1)
   · intro x hx
@@ -71,6 +89,9 @@ theorem coefficientMean_strictMono : StrictMonoOn coefficientMean (Set.Ico 0 1) 
     rw [(coefficientMean_hasDerivAt hx'.1 hx'.2).deriv]
     exact coefficientMeanPrime_pos hx'.1 hx'.2
 
+/--
+@isnad1 id=existsun.0h0v.s5.07c095a3e2b8 from=translated src=- shape=57cd9b24 vocab=303bb81e
+-/
 theorem coefficientMean_unique_saddle :
     ∃! x : ℝ, x ∈ Set.Ioo 0 1 ∧ coefficientMean x = 5570 := by
   have hcont : ContinuousOn coefficientMean (Set.Icc 0 (1 / 2 : ℝ)) := by
@@ -92,12 +113,21 @@ theorem coefficientMean_unique_saddle :
 
 noncomputable def coefficientSaddle : ℝ := coefficientMean_unique_saddle.exists.choose
 
+/--
+@isnad1 id=mem.0h0v.s4.4197737ffcca from=translated src=- shape=48e903f7 vocab=ca2602ec
+-/
 theorem coefficientSaddle_mem : coefficientSaddle ∈ Set.Ioo 0 1 :=
   coefficientMean_unique_saddle.exists.choose_spec.1
 
+/--
+@isnad1 id=eq.0h0v.s3.b08a6ca9f4a6 from=translated src=- shape=b0ae1d2b vocab=33192cf5
+-/
 theorem coefficientSaddle_mean : coefficientMean coefficientSaddle = 5570 :=
   coefficientMean_unique_saddle.exists.choose_spec.2
 
+/--
+@isnad1 id=lt.0h0v.s5.b5014792d154 from=translated src=- shape=5fe7e670 vocab=1861e54d
+-/
 theorem coefficientSaddle_variance_pos :
     0 < coefficientSaddle * deriv coefficientMean coefficientSaddle := by
   rw [(coefficientMean_hasDerivAt coefficientSaddle_mem.1.le coefficientSaddle_mem.2).deriv]

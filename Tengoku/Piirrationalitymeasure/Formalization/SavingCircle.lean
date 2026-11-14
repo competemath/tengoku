@@ -9,6 +9,9 @@ namespace PiIrrationality
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=periodic.0h4v.s5.1f06cc4f9da4 from=translated src=- shape=e67aff66 vocab=364d99b1
+-/
 theorem translatedSavingChi_periodic (a b c : ℤ) (z : ℝ × ℝ) :
     Function.Periodic (translatedSavingChi a b c z) 1 := by
   intro u
@@ -16,6 +19,9 @@ theorem translatedSavingChi_periodic (a b c : ℤ) (z : ℝ × ℝ) :
   convert savingChi_add_int ((a : ℝ) * u + z.1) ((b : ℝ) * u + z.2)
     ((c : ℝ) * u) a b c using 1 <;> congr 1 <;> ring
 
+/--
+@isnad1 id=eq.0h5v.s6.82c70fdce809 from=translated src=- shape=63d613cc vocab=8479e72a
+-/
 theorem translatedSavingMeasure_eq_period (a b c : ℤ) (z : ℝ × ℝ) (cut : ℝ) :
     translatedSavingMeasure a b c z =
       ∫ u in cut..cut + 1, translatedSavingChi a b c z u := by
@@ -24,6 +30,9 @@ theorem translatedSavingMeasure_eq_period (a b c : ℤ) (z : ℝ × ℝ) (cut : 
 
 def candidateEndpointCut : ℚ := -1 / 11140
 
+/--
+@isnad1 id=and.1h2v.s6.fecfb2b3c9ca from=translated src=- shape=7e738239 vocab=4b479f8e
+-/
 theorem savingEndpoint_candidate_cut_bounds (T : SavingEndpointType) {z : ℝ × ℝ}
     (hz : parameterNormOne z ≤ 1 / 100) :
     (candidateEndpointStart T : ℝ) - 1 <
@@ -42,6 +51,9 @@ theorem savingEndpoint_candidate_cut_bounds (T : SavingEndpointType) {z : ℝ ×
     savingEndpointSlope, savingEndpointShift, candidateEndpointCut] <;>
     norm_num <;> constructor <;> linarith
 
+/--
+@isnad1 id=iff.1h3v.s6.ea4aaebfa64e from=translated src=- shape=6d58ae6b vocab=089c7d71
+-/
 theorem savingEndpoint_candidate_period_enumeration (T : SavingEndpointType) (j : ℤ)
     {z : ℝ × ℝ} (hz : parameterNormOne z ≤ 1 / 100) :
     savingEndpoint 1857 3714 5570 z T j ∈

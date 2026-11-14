@@ -8,11 +8,17 @@ namespace PiIrrationality
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=le.2h2v.s6.4fb817c4535c from=translated src=- shape=612e7514 vocab=8b19d7e0
+-/
 theorem inverse_square_shift_le {k u : ℝ} (hk : 0 < k) (hu : 0 ≤ u) :
     1 / (k + u) ^ 2 ≤ 1 / k ^ 2 := by
   apply one_div_le_one_div_of_le (sq_pos_of_pos hk)
   nlinarith
 
+/--
+@isnad1 id=le.2h2v.s7.208d482dc2b7 from=translated src=- shape=a032bf2f vocab=c6557503
+-/
 theorem inverse_square_shift_abs_sub_le {k u : ℝ} (hk : 0 < k)
     (hu : u ∈ Icc (0 : ℝ) 1) :
     |1 / (k + u) ^ 2 - 1 / k ^ 2| ≤ 2 / k ^ 3 := by
@@ -24,6 +30,9 @@ theorem inverse_square_shift_abs_sub_le {k u : ℝ} (hk : 0 < k)
   nlinarith [mul_nonneg (sq_nonneg k) (sub_nonneg.mpr hu.2),
     mul_nonneg (mul_nonneg hk.le hu.1) (show 0 ≤ 4 - u by linarith [hu.2])]
 
+/--
+@isnad1 id=continuo.1h1v.s6.67431354d457 from=translated src=- shape=7c05aa17 vocab=da6bd369
+-/
 theorem continuousOn_inverse_square_shift {k : ℝ} (hk : 0 < k) :
     ContinuousOn (fun u : ℝ => 1 / (k + u) ^ 2) (uIcc (0 : ℝ) 1) := by
   apply continuousOn_const.div (by fun_prop)
@@ -31,6 +40,9 @@ theorem continuousOn_inverse_square_shift {k : ℝ} (hk : 0 < k) :
   have hu0 : 0 ≤ u := by simpa using (show u ∈ Icc (0 : ℝ) 1 by simpa using hu).1
   exact pow_ne_zero _ (by linarith)
 
+/--
+@isnad1 id=le.3h3v.s7.9a83a55020e1 from=translated src=- shape=674398a1 vocab=b967a46e
+-/
 theorem intervalIntegral_abs_mul_le {f w : ℝ → ℝ} {C : ℝ}
     (hf : IntervalIntegrable f volume 0 1) (hw : ContinuousOn w (uIcc (0 : ℝ) 1))
     (hC : ∀ u ∈ Icc (0 : ℝ) 1, |w u| ≤ C) :
@@ -46,6 +58,9 @@ theorem intervalIntegral_abs_mul_le {f w : ℝ → ℝ} {C : ℝ}
       exact mul_le_mul_of_nonneg_left (hC u hu) (abs_nonneg _)
     _ = _ := intervalIntegral.integral_mul_const C _
 
+/--
+@isnad1 id=le.3h3v.s8.630033004ff5 from=translated src=- shape=305f859a vocab=01c0f191
+-/
 theorem inverse_square_period_error {f g : ℝ → ℝ} {k : ℝ}
     (hk : 0 < k) (hf : IntervalIntegrable f volume 0 1)
     (hg : IntervalIntegrable g volume 0 1) :

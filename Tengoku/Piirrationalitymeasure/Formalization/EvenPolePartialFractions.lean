@@ -12,6 +12,9 @@ noncomputable def density {K : Type*} [Field K] [Algebra ℚ K]
     (F : Polynomial ℤ) (m : ℕ) (t : K) : K :=
   aeval t (numerator F) / (25 - t ^ 2) ^ m
 
+/--
+@isnad1 id=eq.3h4v.s9.48f2afccc52b from=translated src=- shape=479f72c3 vocab=5df2b848
+-/
 theorem partialFractions_lowIndex {K : Type*} [Field K] [Algebra ℚ K]
     (F : Polynomial ℤ) {m : ℕ} (hm : 0 < m) (t : K)
     (htplus : t + 5 ≠ 0) (htminus : t - 5 ≠ 0) :
@@ -44,6 +47,9 @@ theorem partialFractions_lowIndex {K : Type*} [Field K] [Algebra ℚ K]
   simp_rw [hleft, hright]
   exact h
 
+/--
+@isnad1 id=eq.3h4v.s9.d705e2a4e5f6 from=translated src=- shape=18fd51af vocab=1b3cbd0d
+-/
 theorem partialFractions {K : Type*} [Field K] [Algebra ℚ K]
     (F : Polynomial ℤ) {m : ℕ} (hm : 0 < m) (t : K)
     (htplus : t + 5 ≠ 0) (htminus : t - 5 ≠ 0) :

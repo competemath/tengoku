@@ -15,6 +15,9 @@ open Polynomial
 def poleIntegralEndpointFactor (q : ℕ) : GI :=
   giI * ((upperEndpointGI + 5) ^ (q + 1) - (lowerEndpointGI + 5) ^ (q + 1))
 
+/--
+@isnad1 id=eq.0h1v.s7.89eb83fabe98 from=translated src=- shape=7b873da7 vocab=e73aff8b
+-/
 theorem poleMonomial_integral (q : ℕ) :
     -(∫ s : ℝ in (-2)..2, (verticalSegment s + 5) ^ q) =
       (poleIntegralEndpointFactor q : ℂ) / (q + 1 : ℂ) := by
@@ -43,6 +46,9 @@ theorem poleMonomial_integral (q : ℕ) :
   simp only [poleIntegralEndpointFactor, map_mul, map_sub, map_pow, giI_toComplex]
   ring
 
+/--
+@isnad1 id=ex.2h2v.s7.198639a5810b from=translated src=- shape=39bf768f vocab=e062ec43
+-/
 theorem reduced_polynomial_monomial_scaled_is_gaussian_integer
     (n : ℕ) (hn : 1 ≤ n) (q : ℕ) (hq : q < 7430 * n - 1) :
     ∃ G : GI, (10 : ℂ) ^ (7430 * n - 1) * (reducedLcm n : ℂ) *
@@ -64,6 +70,9 @@ theorem reduced_polynomial_monomial_scaled_is_gaussian_integer
           (poleIntegralEndpointFactor q : ℂ) := by ring
     _ = _ := by rw [hzC]; simp only [map_mul, map_pow, map_ofNat, map_intCast]
 
+/--
+@isnad1 id=ex.1h1v.s7.c259331f47de from=translated src=- shape=74bc9864 vocab=9d03e1ee
+-/
 theorem ten_power_reducedPolynomialIntegral_is_gaussian_integer (n : ℕ) (hn : 1 ≤ n) :
     ∃ G : GI, (10 : ℂ) ^ (7430 * n - 1) * (reducedLcm n : ℂ) *
       (-(∫ s : ℝ in (-2)..2, aeval (verticalSegment s) (polynomialPart n))) = (G : ℂ) := by
@@ -87,6 +96,9 @@ theorem ten_power_reducedPolynomialIntegral_is_gaussian_integer (n : ℕ) (hn : 
     exact (continuous_const.mul
       ((verticalSegment_continuous.add continuous_const).pow q)).intervalIntegrable _ _
 
+/--
+@isnad1 id=ex.1h1v.s6.61214ff24929 from=translated src=- shape=b8cbb017 vocab=b3369a02
+-/
 theorem rational_gaussian_integer_is_integer (x : ℚ)
     (h : ∃ G : GI, (x : ℂ) = (G : ℂ)) : ∃ z : ℤ, x = (z : ℚ) := by
   obtain ⟨G, hG⟩ := h
@@ -103,6 +115,9 @@ theorem rational_gaussian_integer_is_integer (x : ℚ)
   push_cast
   ring
 
+/--
+@isnad1 id=ex.1h1v.s6.db28dc56e877 from=translated src=- shape=a6fbabd2 vocab=d2d13ed0
+-/
 theorem ten_power_reducedPolynomialIntegralRat_is_integer (n : ℕ) (hn : 1 ≤ n) :
     ∃ z : ℤ, (10 : ℚ) ^ (7430 * n - 1) * reducedLcm n *
       verticalPolynomialIntegralRat (polynomialPart n) = (z : ℚ) := by
@@ -113,6 +128,9 @@ theorem ten_power_reducedPolynomialIntegralRat_is_integer (n : ℕ) (hn : 1 ≤ 
   push_cast
   exact hG
 
+/--
+@isnad1 id=ex.1h1v.s4.e00d27eb7fb6 from=translated src=- shape=f3832220 vocab=20d654ad
+-/
 theorem normalizedPolynomialIntegral_is_integer (n : ℕ) (hn : 1 ≤ n) :
     ∃ z : ℤ, normalizedPolynomialIntegral n = (z : ℂ) := by
   let x : ℚ := (2 : ℚ) ^ (1 - 4645 * (n : ℤ)) * reducedLcm n *

@@ -12,10 +12,16 @@ for the actual scaled coefficients, and hence Lemma 2.3.
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=dvd.1h2v.s5.eab0e47917e7 from=translated src=- shape=b762c709 vocab=2bb0ecc3
+-/
 theorem int_dvd_of_zmod_cast_eq_zero {p : ℕ} {q : ℤ}
     (hq : (q : ZMod p) = 0) : (p : ℤ) ∣ q := by
   exact (CharP.intCast_eq_zero_iff (ZMod p) p q).mp hq
 
+/--
+@isnad1 id=dvd.2h3v.s7.125434413702 from=translated src=- shape=d1dfaec7 vocab=69c97fc2
+-/
 theorem int_dvd_of_zmod_mul_zpow_eq_zero
     {p : ℕ} [Fact p.Prime] (q : ℤ) (j : ℤ)
     (hpgt : 5 < p)
@@ -38,6 +44,9 @@ theorem int_dvd_of_zmod_mul_zpow_eq_zero
     exact hpow
   exact int_dvd_of_zmod_cast_eq_zero hq0
 
+/--
+@isnad1 id=dvd.3h4v.s8.a6daf194ceb1 from=translated src=- shape=1b2ce466 vocab=3feab061
+-/
 theorem removablePrime_local_divisibility_transfer
     {n p : ℕ} [Fact p.Prime] (hp : removablePrime n p)
     (j : ℤ) (q : ℤ)
@@ -51,6 +60,9 @@ theorem removablePrime_local_divisibility_transfer
   have hmul : (q : ZMod p) * (10 : ZMod p) ^ j = 0 := hcompat.symm
   exact int_dvd_of_zmod_mul_zpow_eq_zero q j hp.2.1 hmul
 
+/--
+@isnad1 id=dvd.3h3v.s9.19cd494f1c43 from=translated src=- shape=a245f022 vocab=7b00b56b
+-/
 theorem local_divisibility_of_coefficient_compatibility
     (n : ℕ) (j : ℤ)
     (hcompat : ∀ p : ℕ, ∀ [Fact p.Prime], removablePrime n p → (p : ℤ) ∣ j →
@@ -65,6 +77,9 @@ theorem local_divisibility_of_coefficient_compatibility
     ((10 : ℚ) ^ (-j) * laurentCoeffRat n j).num hpj
   exact hcompat p hp hpj
 
+/--
+@isnad1 id=and.2h1v.s9.83911fc86849 from=translated src=- shape=08a03946 vocab=29f76b69
+-/
 theorem reducedLcm_actual_laurent_integrality_of_coefficient_compatibility
     (n : ℕ) (hn : 0 < n)
     (hcompat : ∀ j : ℤ, -(7430 * (n : ℤ)) + 1 ≤ j → j ≤ 5570 * (n : ℤ) →
@@ -84,6 +99,9 @@ theorem reducedLcm_actual_laurent_integrality_of_coefficient_compatibility
       letI : Fact p.Prime := hpinst
       exact @hcompat j hjlo hjhi p hpinst hprem hpj) p hp hpj
 
+/--
+@isnad1 id=dvd.4h3v.s6.729ab7605db8 from=translated src=- shape=5e1588f2 vocab=78a1d04f
+-/
 theorem removablePrime_dvd_scaled_laurentCoeff_num
     (n : ℕ) (hn : 1 ≤ n) (j : ℤ) (hj : j ≤ 5570 * (n : ℤ))
     (p : ℕ) (hp : removablePrime n p) (hpj : (p : ℤ) ∣ j) :
@@ -92,6 +110,9 @@ theorem removablePrime_dvd_scaled_laurentCoeff_num
   exact removablePrime_local_divisibility_transfer hp j _ hpj
     (finiteField_local_coeff_eq_scaled_num n p hn hp.2.1 j hj)
 
+/--
+@isnad1 id=ex.4h3v.s6.8bfb57c18f55 from=translated src=- shape=0adf6921 vocab=71156af1
+-/
 theorem removablePrime_scaled_laurentCoeff_integer_multiple
     (n : ℕ) (hn : 1 ≤ n) (j : ℤ) (hj : j ≤ 5570 * (n : ℤ))
     (p : ℕ) (hp : removablePrime n p) (hpj : (p : ℤ) ∣ j) :
@@ -104,6 +125,9 @@ theorem removablePrime_scaled_laurentCoeff_integer_multiple
   push_cast
   rfl
 
+/--
+@isnad1 id=and.1h1v.s7.ec4133fda99a from=translated src=- shape=7101b522 vocab=85447537
+-/
 theorem reducedLcm_actual_laurent_integrality (n : ℕ) (hn : 0 < n) :
     (∃ L : ℤ, reducedLcm n = (L : ℚ)) ∧
       (∀ j : ℤ, -(7430 * (n : ℤ)) + 1 ≤ j → j ≤ 5570 * (n : ℤ) → j ≠ 0 →

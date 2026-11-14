@@ -13,6 +13,9 @@ noncomputable def oldPoint : ℝ × ℝ := (1 / 3, 2 / 3)
 noncomputable def oldPointDifference (e u : ℝ) : ℝ :=
   Int.fract (u + e / 2 + 1 / 2) + 2 * Int.fract (2 * u + e) - Int.fract (3 * u)
 
+/--
+@isnad1 id=eq.3h2v.s9.0282cef1ab45 from=translated src=- shape=8d8e3289 vocab=cc74b5e3
+-/
 theorem oldPointDifference_formula {e u : ℝ} (he : 0 ≤ e) (he1 : e < 1 / 15)
     (hu : u ∈ Ico (0 : ℝ) 1) :
     oldPointDifference e u =
@@ -33,6 +36,9 @@ theorem oldPointDifference_formula {e u : ℝ} (he : 0 ≤ e) (he1 : e < 1 / 15)
   simp only [Int.fract, hA, hB, hC]
   split_ifs <;> push_cast <;> linarith [hu.1, hu.2]
 
+/--
+@isnad1 id=iff.3h2v.s7.8cbab0d04b2c from=translated src=- shape=c03d5151 vocab=ea11dc3f
+-/
 theorem oldPointDifference_neg_iff {e u : ℝ} (he : 0 ≤ e) (he1 : e < 1 / 15)
     (hu : u ∈ Ico (0 : ℝ) 1) :
     oldPointDifference e u < 0 ↔
@@ -46,6 +52,9 @@ theorem oldPointDifference_neg_iff {e u : ℝ} (he : 0 ≤ e) (he1 : e < 1 / 15)
     | linarith [hu.1, hu.2]
     | rcases h with ⟨h1, h2⟩ | ⟨h1, h2⟩ <;> linarith [hu.1, hu.2]
 
+/--
+@isnad1 id=eq.2h1v.s7.d0eee5df00a7 from=translated src=- shape=03c16932 vocab=5c84d9e9
+-/
 theorem oldPoint_accepted_set {e : ℝ} (he : 0 ≤ e) (he1 : e < 1 / 15) :
     {u : ℝ | u ∈ Ico (0 : ℝ) 1 ∧ translatedSavingChi 1 2 3 (e / 2, e) u = 1} =
       Ico (1 / 2 - e / 2) (2 / 3) ∪ Ico (1 - e / 2) 1 := by
@@ -63,6 +72,9 @@ theorem oldPoint_accepted_set {e : ℝ} (he : 0 ≤ e) (he1 : e < 1 / 15) :
       rcases hu with ⟨h1, h2⟩ | ⟨h1, h2⟩ <;> constructor <;> linarith
     exact ⟨h01, (oldPointDifference_neg_iff he he1 h01).mpr hu⟩
 
+/--
+@isnad1 id=eq.2h1v.s6.3ca13b25742c from=translated src=- shape=2970085c vocab=718e77a8
+-/
 theorem oldPoint_measure {e : ℝ} (he : 0 ≤ e) (he1 : e < 1 / 15) :
     translatedSavingMeasure 1 2 3 (e / 2, e) = 1 / 6 + e := by
   let S : Set ℝ := Ico (1 / 2 - e / 2) (2 / 3) ∪ Ico (1 - e / 2) 1
@@ -101,10 +113,16 @@ theorem oldPoint_measure {e : ℝ} (he : 0 ≤ e) (he1 : e < 1 / 15) :
         max_eq_left (show (0 : ℝ) ≤ 1 - (1 - e / 2) by linarith)]
       ring
 
+/--
+@isnad1 id=eq.0h0v.s5.6e83b1767e1c from=translated src=- shape=b1dd3a6b vocab=f499effc
+-/
 theorem oldPoint_measure_zero : translatedSavingMeasure 1 2 3 0 = (1 : ℝ) / 6 := by
   change translatedSavingMeasure 1 2 3 (0, 0) = _
   simpa using oldPoint_measure (e := 0) (by norm_num) (by norm_num)
 
+/--
+@isnad1 id=eq.2h1v.s7.fa9377926224 from=translated src=- shape=5d2ca483 vocab=0e7b696c
+-/
 theorem oldPoint_measure_direction {e : ℝ} (he : 0 ≤ e) (he1 : e < 1 / 15) :
     translatedSavingMeasure 1 2 3 (e • ((1 : ℝ) / 2, 1)) -
       translatedSavingMeasure 1 2 3 0 = e := by

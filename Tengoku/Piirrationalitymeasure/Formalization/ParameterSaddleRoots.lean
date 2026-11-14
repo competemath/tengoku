@@ -9,12 +9,21 @@ namespace PiIrrationality
 open Filter
 open scoped Topology
 
+/--
+@isnad1 id=eq.0h1v.s3.19427b870a85 from=translated src=- shape=3b80d92f vocab=751ad27b
+-/
 theorem parameterComplexSaddle_re (p : ℝ × ℝ) :
     (parameterComplexSaddle p).re = parameterSaddleU p := by simp [parameterComplexSaddle]
 
+/--
+@isnad1 id=eq.0h1v.s3.39f92b430e8e from=translated src=- shape=3b80d92f vocab=4cc03e0a
+-/
 theorem parameterComplexSaddle_im (p : ℝ × ℝ) :
     (parameterComplexSaddle p).im = parameterSaddleV p := by simp [parameterComplexSaddle]
 
+/--
+@isnad1 id=eq.1h2v.s7.3e2b74a57c19 from=translated src=- shape=b5ce4cb3 vocab=468471bb
+-/
 theorem parameterSaddle_quadratic_factorization {p : ℝ × ℝ}
     (hV : 0 ≤ parameterSaddleVSq p) (z : ℂ) :
     z ^ 2 - 2 * (parameterSaddleU p : ℂ) * z + (parameterSaddleNormSq p : ℂ) =
@@ -25,6 +34,9 @@ theorem parameterSaddle_quadratic_factorization {p : ℝ × ℝ}
   · nlinarith only [hv]
   · ring
 
+/--
+@isnad1 id=eventual.0h0v.s6.e3d92a5b2cd1 from=translated src=- shape=a9ca6857 vocab=9089f80c
+-/
 theorem parameterSaddle_roots_near_candidate : ∀ᶠ p in 𝓝 candidate,
     25 < parameterRealSaddle p ∧ 0 < (parameterComplexSaddle p).im ∧
       ∀ z : ℂ, parameterStationaryComplex p z = 0 ↔
@@ -45,6 +57,9 @@ theorem parameterSaddle_roots_near_candidate : ∀ᶠ p in 𝓝 candidate,
   have hAc : ((p.1 + 2 * p.2 - 1 : ℝ) : ℂ) ≠ 0 := by exact_mod_cast hAp.ne'
   simp only [mul_eq_zero, hAc, false_or, sub_eq_zero]
 
+/--
+@isnad1 id=eventual.0h0v.s6.2ef29fafbb61 from=translated src=- shape=7f5c5ed1 vocab=37a33bcd
+-/
 theorem parameterSaddle_unique_near_candidate : ∀ᶠ p in 𝓝 candidate,
     (∀ y : ℝ, parameterStationary p y = 0 ↔ y = parameterRealSaddle p) ∧
     (∀ z : ℂ, parameterStationaryComplex p z = 0 → 0 < z.im → z = parameterComplexSaddle p) := by

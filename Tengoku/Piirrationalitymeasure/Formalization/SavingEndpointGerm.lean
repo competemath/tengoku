@@ -35,6 +35,9 @@ noncomputable def savingEndpointChiGerm (a b c : ℝ) (v : ℝ × ℝ)
       2 * savingEndpointFloorGerm a b c v T j side .B -
         savingEndpointFloorGerm a b c v T j side .C then 1 else 0
 
+/--
+@isnad1 id=eq.0h5v.s7.d6c8511a18ef from=translated src=- shape=b6107655 vocab=b69c0ca4
+-/
 theorem translatedSavingChi_floor_arguments (a b c : ℝ) (z : ℝ × ℝ) (u : ℝ) :
     translatedSavingChi a b c z u =
       if ⌊savingEndpointArgument a b c z .Q u⌋ <
@@ -48,10 +51,16 @@ theorem translatedSavingChi_floor_arguments (a b c : ℝ) (z : ℝ × ℝ) (u : 
       (a + 2 * b - c) * u + (1 / 2 + z.1 + 2 * z.2) := by ring
   simp only [savingEndpointArgument, savingEndpointSlope, savingEndpointShift, hA, hQ, add_zero]
 
+/--
+@isnad1 id=eq.0h3v.s6.998b81df373a from=translated src=- shape=cd951bea vocab=395f7039
+-/
 theorem savingEndpointShift_smul (v : ℝ × ℝ) (s : ℝ) (T : SavingEndpointType) :
     savingEndpointShift (s • v) T = savingEndpointShift 0 T + s * savingEndpointGradient v T := by
   cases T <;> dsimp [savingEndpointShift, savingEndpointGradient] <;> ring
 
+/--
+@isnad1 id=eq.0h7v.s6.7c244b843176 from=translated src=- shape=c81f1b01 vocab=233911e6
+-/
 theorem savingEndpoint_eq_base_add_velocity (a b c : ℝ) (v : ℝ × ℝ)
     (T : SavingEndpointType) (j : ℤ) (s : ℝ) :
     savingEndpoint a b c (s • v) T j =
@@ -62,6 +71,9 @@ theorem savingEndpoint_eq_base_add_velocity (a b c : ℝ) (v : ℝ × ℝ)
   unfold savingEndpointVelocity savingEndpointGradient
   ring
 
+/--
+@isnad1 id=eq.0h9v.s7.4f145dd98e8e from=translated src=- shape=486b47bf vocab=03ae6a7a
+-/
 theorem savingEndpointArgument_perturbation (a b c : ℝ) (v : ℝ × ℝ)
     (T S : SavingEndpointType) (j : ℤ) (side s : ℝ) :
     savingEndpointArgument a b c (s • v) S
@@ -74,6 +86,9 @@ theorem savingEndpointArgument_perturbation (a b c : ℝ) (v : ℝ × ℝ)
   rw [savingEndpointShift_smul]
   ring
 
+/--
+@isnad1 id=eventual.0h8v.s7.e08626d2f965 from=translated src=- shape=19a5f83c vocab=fa3d80a3
+-/
 theorem savingEndpoint_floor_eventually (a b c : ℝ) (v : ℝ × ℝ)
     (T S : SavingEndpointType) (j : ℤ) (side : ℝ) :
     ∀ᶠ s : ℝ in 𝓝[>] 0,
@@ -83,6 +98,9 @@ theorem savingEndpoint_floor_eventually (a b c : ℝ) (v : ℝ × ℝ)
   simp_rw [savingEndpointArgument_perturbation]
   exact floor_quadratic_eventually _ _ _
 
+/--
+@isnad1 id=eventual.0h7v.s7.ece840851ef7 from=translated src=- shape=975ec6ac vocab=c0c656dc
+-/
 theorem savingEndpoint_chi_eventually (a b c : ℝ) (v : ℝ × ℝ)
     (T : SavingEndpointType) (j : ℤ) (side : ℝ) :
     ∀ᶠ s : ℝ in 𝓝[>] 0,

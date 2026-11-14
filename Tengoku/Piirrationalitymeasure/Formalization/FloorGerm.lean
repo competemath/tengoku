@@ -15,6 +15,9 @@ noncomputable def quadraticFloorGerm (x l q : ℝ) : ℤ := by
   classical
   exact if x = (⌊x⌋ : ℝ) ∧ quadraticPerturbationNegative l q then ⌊x⌋ - 1 else ⌊x⌋
 
+/--
+@isnad1 id=eventual.1h2v.s6.2e7a02b93b3c from=translated src=- shape=81b4d459 vocab=8957bb57
+-/
 theorem quadratic_perturbation_eventually_neg {l q : ℝ}
     (hneg : quadraticPerturbationNegative l q) :
     ∀ᶠ s : ℝ in 𝓝[>] 0, s * l + s ^ 2 * q < 0 := by
@@ -27,6 +30,9 @@ theorem quadratic_perturbation_eventually_neg {l q : ℝ}
   · filter_upwards [self_mem_nhdsWithin] with s hs0
     simpa only [mul_zero, zero_add] using mul_neg_of_pos_of_neg (sq_pos_of_pos hs0) hq
 
+/--
+@isnad1 id=eventual.1h2v.s6.ab603e7809a3 from=translated src=- shape=720aa643 vocab=33d4f029
+-/
 theorem quadratic_perturbation_eventually_nonneg {l q : ℝ}
     (hneg : ¬quadraticPerturbationNegative l q) :
     ∀ᶠ s : ℝ in 𝓝[>] 0, 0 ≤ s * l + s ^ 2 * q := by
@@ -41,6 +47,9 @@ theorem quadratic_perturbation_eventually_nonneg {l q : ℝ}
     have h := mul_pos hs0 hs
     nlinarith only [h]
 
+/--
+@isnad1 id=eventual.0h3v.s6.7adbde737142 from=translated src=- shape=455109db vocab=a09ee82e
+-/
 theorem floor_quadratic_eventually (x l q : ℝ) :
     ∀ᶠ s : ℝ in 𝓝[>] 0, ⌊x + s * l + s ^ 2 * q⌋ = quadraticFloorGerm x l q := by
   have hc : ContinuousAt (fun s : ℝ => x + s * l + s ^ 2 * q) 0 := by fun_prop

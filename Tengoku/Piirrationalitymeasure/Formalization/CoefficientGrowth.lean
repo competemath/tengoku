@@ -9,6 +9,9 @@ namespace PiIrrationality
 open Filter PowerSeries
 open scoped Topology
 
+/--
+@isnad1 id=tendsto.3h2v.s6.f36da1320808 from=translated src=- shape=ae01d7aa vocab=13df50c3
+-/
 theorem sqrt_scaled_log_limit {p : ℕ → ℝ} {L : ℝ} (hL : 0 < L)
     (hp : ∀ᶠ n in atTop, 0 < p n)
     (h : Tendsto (fun n : ℕ => Real.sqrt (n : ℝ) * p n) atTop (𝓝 L)) :
@@ -31,6 +34,9 @@ theorem sqrt_scaled_log_limit {p : ℕ → ℝ} {L : ℝ} (hL : 0 < L)
   rw [Real.log_mul (Real.sqrt_pos.mpr (by exact_mod_cast hn)).ne' hpn.ne']
   ring
 
+/--
+@isnad1 id=eq.3h3v.s7.8bfe84594473 from=translated src=- shape=1f1d0dc5 vocab=3565c3fb
+-/
 theorem Sseries_diagonal_log_formula {x : ℝ} (hx0 : 0 < x) (hx1 : x < 1)
     (q : ℕ) {n : ℕ} (hn : 0 < n) :
     Real.log (↑(coeff (q * n) (Sseries ^ n)) : ℝ) / (n : ℝ) =
@@ -48,6 +54,9 @@ noncomputable def coefficientGrowthRate : ℝ :=
   (Real.log 25 + 3716 * Real.log 2 + Real.log (SReal coefficientSaddle) -
     5570 * Real.log coefficientSaddle) / 5570
 
+/--
+@isnad1 id=eq.0h1v.s7.8f615c6086d3 from=translated src=- shape=7fb94383 vocab=cef38f83
+-/
 theorem paper_pi_coeff_log_formula (n : ℕ) :
     Real.log |(↑(-laurentCoeffRat n 0 / 2) : ℝ)| =
       (n : ℝ) * (Real.log 25 + 3716 * Real.log 2) - Real.log 4 +

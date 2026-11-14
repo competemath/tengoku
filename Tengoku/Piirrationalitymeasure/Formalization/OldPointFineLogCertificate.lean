@@ -11,6 +11,9 @@ def oldFineRootLower : ℚ := 663395015246214081837884661997839984532988 / 10 ^ 
 
 def oldFineRootUpper : ℚ := 663395015246214081837884661997839984532989 / 10 ^ 40
 
+/--
+@isnad1 id=and.0h0v.s4.44d04490f23a from=translated src=- shape=e057f9cf vocab=12fea7ec
+-/
 theorem oldStationaryRoot_fine_isolation :
     (oldFineRootLower : ℝ) < oldStationaryRoot ∧ oldStationaryRoot < (oldFineRootUpper : ℝ) := by
   have hy : oldStationaryRoot ∈ Set.Ici (125 / 2 : ℝ) :=
@@ -56,6 +59,9 @@ def oldFineLogRounded (i : Fin 6) : ℤ :=
   | _ => 3721818496237562456575825213155616284345993346181864027894887
 
 set_option maxRecDepth 100000 in
+/--
+@isnad1 id=and.0h1v.s6.a591fd07928e from=translated src=- shape=88957e64 vocab=d4eb1349
+-/
 theorem oldFineLogInput_range (i : Fin 6) :
     2 ^ oldFineLogScale i ≤ oldFineLogInput i ∧
       oldFineLogInput i ≤ 2 * 2 ^ oldFineLogScale i ∧ |oldFineLogScale i| ≤ 12 := by
@@ -64,12 +70,18 @@ theorem oldFineLogInput_range (i : Fin 6) :
 
 set_option maxRecDepth 100000 in
 set_option maxHeartbeats 4000000 in
+/--
+@isnad1 id=eq.0h1v.s5.34ab06af4326 from=translated src=- shape=731b817d vocab=46370c25
+-/
 theorem oldFineLogRounded_value (i : Fin 6) :
     roundedScaledLog (oldFineLogInput i) (oldFineLogScale i) 120 (10 ^ 60) =
       oldFineLogRounded i := by
   revert i
   decide +kernel
 
+/--
+@isnad1 id=lt.0h1v.s6.d495e4462ab5 from=translated src=- shape=12d06da1 vocab=8300d37a
+-/
 theorem oldFineLog_enclosure (i : Fin 6) :
     |Real.log (oldFineLogInput i : ℝ) - (oldFineLogRounded i : ℝ) / 10 ^ 60| <
       (2000 : ℝ) / 10 ^ 60 := by

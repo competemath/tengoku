@@ -12,6 +12,9 @@ namespace PiIrrationality
 
 open HahnSeries
 
+/--
+@isnad1 id=eq.0h3v.s8.a745e5a20d87 from=translated src=- shape=a713723b vocab=ccd67ae4
+-/
 theorem laurent_derivative_coeff {R : Type*} [CommRing R]
     (f : LaurentSeries R) (n : ℤ) :
     (LaurentSeries.derivative R f).coeff n = (n + 1 : ℤ) * f.coeff (n + 1) := by
@@ -29,6 +32,9 @@ private theorem euler_support_subset {R : Type*} [CommRing R]
   simp only [mem_support, euler_coeff, ne_eq] at hn ⊢
   exact fun h => hn (by rw [h, mul_zero])
 
+/--
+@isnad1 id=eq.0h3v.s10.a9cae0b9dca0 from=translated src=- shape=0eb746e6 vocab=c9fb9739
+-/
 theorem laurent_derivative_mul {R : Type*} [CommRing R]
     (f g : LaurentSeries R) :
     LaurentSeries.derivative R (f * g) =
@@ -69,11 +75,17 @@ noncomputable def laurentDerivation (R : Type*) [CommRing R] :
     rw [laurent_derivative_mul]
     ring
 
+/--
+@isnad1 id=eq.0h3v.s8.b30c78494a6b from=translated src=- shape=2d532560 vocab=d3521582
+-/
 theorem laurent_derivative_neg_coeff {R : Type*} [CommRing R]
     (f : LaurentSeries R) (j : ℤ) :
     (LaurentSeries.derivative R f).coeff (-j - 1) = -(j : R) * f.coeff (-j) := by
   simp
 
+/--
+@isnad1 id=eq.1h3v.s9.669f585ee400 from=translated src=- shape=2f29554f vocab=4176529a
+-/
 theorem laurent_derivative_coeff_zero {p : ℕ} (f : LaurentSeries (ZMod p))
     (j : ℤ) (hj : (p : ℤ) ∣ j) :
     (LaurentSeries.derivative (ZMod p) f).coeff (-j - 1) = 0 := by

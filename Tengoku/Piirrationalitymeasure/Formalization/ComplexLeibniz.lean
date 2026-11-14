@@ -6,6 +6,9 @@ import Tengoku.Piirrationalitymeasure.Formalization.ComplexDerivative
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=eq.2h4v.s7.0442f59469cc from=translated src=- shape=bbc3be1b vocab=66df4987
+-/
 theorem normalizedComplexDeriv_mul {n : ℕ} {f g : ℂ → ℂ} {x : ℂ}
     (hf : ContDiffAt ℂ n f x) (hg : ContDiffAt ℂ n g x) :
     normalizedComplexDeriv n (fun y => f y * g y) x =
@@ -26,6 +29,9 @@ theorem normalizedComplexDeriv_mul {n : ℕ} {f g : ℂ → ℂ} {x : ℂ}
   field_simp [hi0, hni0]
   linear_combination iteratedDeriv i f x * iteratedDeriv (n - i) g x * hchoose
 
+/--
+@isnad1 id=eq.0h4v.s7.1451f0e08e19 from=translated src=- shape=078aed54 vocab=f9000e13
+-/
 theorem sum_antidiagonalTuple_succ {A : Type*} [AddCommMonoid A]
     (r n : ℕ) (F : (Fin (r + 1) → ℕ) → A) :
     ∑ m ∈ Finset.Nat.antidiagonalTuple (r + 1) n, F m =
@@ -60,6 +66,9 @@ theorem sum_antidiagonalTuple_succ {A : Type*} [AddCommMonoid A]
   · intro p hp
     rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.92d61d9a4550 from=translated src=- shape=c46d52a7 vocab=0b4b3f56
+-/
 theorem normalizedComplexDeriv_fin_prod (r n : ℕ) (f : Fin r → ℂ → ℂ) (x : ℂ)
     (hf : ∀ i, ContDiffAt ℂ n (f i) x) :
     normalizedComplexDeriv n (fun y => ∏ i, f i y) x =
@@ -83,6 +92,9 @@ theorem normalizedComplexDeriv_fin_prod (r n : ℕ) (f : Fin r → ℂ → ℂ) 
       intro m hm
       simp
 
+/--
+@isnad1 id=eq.0h4v.s6.3fa4f6d10776 from=translated src=- shape=c2982195 vocab=6001ae5d
+-/
 theorem normalizedComplexDeriv_add_power (k m : ℕ) (a x : ℂ) :
     normalizedComplexDeriv k (fun t : ℂ => (t + a) ^ m) x =
       (m.choose k : ℂ) * (x + a) ^ (m - k) := by

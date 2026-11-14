@@ -9,6 +9,9 @@ namespace PiIrrationality
 open Filter
 open scoped Topology
 
+/--
+@isnad1 id=ex.3h2v.s6.d3b5640c33d4 from=translated src=- shape=ca4d1ac9 vocab=87accc9f
+-/
 theorem compact_positive_norm_bound {K : Set ℝ} {f : ℝ → ℂ}
     (hK : IsCompact K) (hf : ContinuousOn f K) (h : ∀ t ∈ K, ‖f t‖ < 1) :
     ∃ q : ℝ, 0 < q ∧ q < 1 ∧ ∀ t ∈ K, ‖f t‖ ≤ q := by
@@ -22,6 +25,9 @@ theorem compact_positive_norm_bound {K : Set ℝ} {f : ℝ → ℂ}
   change ‖f s‖ ≤ ‖f t‖ at hm
   linarith [h t ht]
 
+/--
+@isnad1 id=ex.5h3v.s7.d93f44a82d1e from=translated src=- shape=615c86ad vocab=90657044
+-/
 theorem local_gaussian_global_bound {f : ℝ → ℂ} {T k : ℝ} (hT : 0 < T) (hk : 0 < k)
     (hf : ContinuousOn f (Set.Icc (-T) T))
     (hstrict : ∀ t ∈ Set.Icc (-T) T, t ≠ 0 → ‖f t‖ < 1)

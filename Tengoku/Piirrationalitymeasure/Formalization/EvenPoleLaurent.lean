@@ -12,11 +12,17 @@ open Polynomial
 noncomputable def regularized (F : Polynomial ℤ) (m : ℕ) (t : ℝ) : ℝ :=
   aeval t (numerator F) / (5 - t) ^ m
 
+/--
+@isnad1 id=contdiff.0h3v.s5.613c95ad7823 from=translated src=- shape=5e5554e6 vocab=a75c9e6e
+-/
 theorem regularized_contDiffAt (F : Polynomial ℤ) (m k : ℕ) :
     ContDiffAt ℝ k (regularized F m) (-5) := by
   unfold regularized
   exact ((numerator F).contDiff_aeval k).contDiffAt.div (by fun_prop) (by norm_num)
 
+/--
+@isnad1 id=ex.0h3v.s5.5c6fdb93dcf3 from=translated src=- shape=69dcb64f vocab=fcd7c4b8
+-/
 theorem localCoeff_is_rational (F : Polynomial ℤ) (m k : ℕ) :
     ∃ q : ℚ, normalizedDeriv k (regularized F m) (-5) = (q : ℝ) := by
   let K : Subfield ℝ := (algebraMap ℚ ℝ).fieldRange
@@ -45,6 +51,9 @@ theorem localCoeff_is_rational (F : Polynomial ℤ) (m k : ℕ) :
 noncomputable def localCoeff (F : Polynomial ℤ) (m k : ℕ) : ℚ :=
   Classical.choose (localCoeff_is_rational F m k)
 
+/--
+@isnad1 id=eq.0h3v.s5.60fd894f0b3f from=translated src=- shape=4d72964f vocab=1a2e055e
+-/
 theorem localCoeff_cast (F : Polynomial ℤ) (m k : ℕ) :
     (localCoeff F m k : ℝ) = normalizedDeriv k (regularized F m) (-5) :=
   (Classical.choose_spec (localCoeff_is_rational F m k)).symm
@@ -52,6 +61,9 @@ theorem localCoeff_cast (F : Polynomial ℤ) (m k : ℕ) :
 noncomputable def laurentCoeff (F : Polynomial ℤ) (m : ℕ) (j : ℤ) : ℚ :=
   if j < (m : ℤ) then localCoeff F m ((m : ℤ) - 1 - j).toNat else 0
 
+/--
+@isnad1 id=eq.2h3v.s6.b6f74ade75b2 from=translated src=- shape=6c350d21 vocab=5094311d
+-/
 theorem laurentCoeff_cast (F : Polynomial ℤ) {m : ℕ} (_hm : 0 < m) {j : ℤ}
     (hj : j < (m : ℤ)) :
     (laurentCoeff F m j : ℝ) =

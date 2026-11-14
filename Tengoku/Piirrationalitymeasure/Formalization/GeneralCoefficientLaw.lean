@@ -9,6 +9,9 @@ namespace PiIrrationality
 open PowerSeries MeasureTheory ProbabilityTheory Filter
 open scoped Topology
 
+/--
+@isnad1 id=hassum.2h6v.s10.3cda48669699 from=translated src=- shape=a2e80617 vocab=14c9658c
+-/
 theorem scalarSeries_hasSum_mul {K : Type*} [RCLike K] {f g : PowerSeries K} {z u v : K}
     (hf : HasSum (fun k => coeff k f * z ^ k) u)
     (hg : HasSum (fun k => coeff k g * z ^ k) v) :
@@ -25,6 +28,9 @@ theorem scalarSeries_hasSum_mul {K : Type*} [RCLike K] {f g : PowerSeries K} {z 
   intro p hp
   rw [mul_mul_mul_comm, ← pow_add, Finset.HasAntidiagonal.mem_antidiagonal.mp hp]
 
+/--
+@isnad1 id=hassum.1h5v.s9.940d7a6e353e from=translated src=- shape=69265e02 vocab=14c9658c
+-/
 theorem scalarSeries_hasSum_pow {K : Type*} [RCLike K] {f : PowerSeries K} {z u : K}
     (hf : HasSum (fun k => coeff k f * z ^ k) u) (n : ℕ) :
     HasSum (fun k => coeff k (f ^ n) * z ^ k) (u ^ n) := by
@@ -39,6 +45,9 @@ namespace GeneralCoefficient
 
 variable (F : PowerSeries ℝ)
 
+/--
+@isnad1 id=le.1h3v.s7.29d89f1f9d82 from=translated src=- shape=5666634a vocab=914cdee7
+-/
 theorem pow_coeff_nonneg (hF : ∀ k, 0 ≤ coeff k F) (n k : ℕ) : 0 ≤ coeff k (F ^ n) := by
   induction n generalizing k with
   | zero => simp only [pow_zero, coeff_one]; split_ifs <;> positivity
@@ -49,11 +58,17 @@ theorem pow_coeff_nonneg (hF : ∀ k, 0 ≤ coeff k F) (n k : ℕ) : 0 ≤ coeff
 noncomputable def probability (x value : ℝ) (n k : ℕ) : ℝ :=
   coeff k (F ^ n) * x ^ k / value ^ n
 
+/--
+@isnad1 id=le.3h5v.s7.116dcd61165c from=translated src=- shape=59ad02f3 vocab=4f4111c4
+-/
 theorem probability_nonneg (hF : ∀ k, 0 ≤ coeff k F) {x value : ℝ}
     (hx : 0 ≤ x) (hvalue : 0 < value) (n k : ℕ) : 0 ≤ probability F x value n k :=
   div_nonneg (mul_nonneg (pow_coeff_nonneg F hF n k) (pow_nonneg hx _))
     (pow_nonneg hvalue.le _)
 
+/--
+@isnad1 id=hassum.2h4v.s7.9c1299703e32 from=translated src=- shape=894f2ec6 vocab=a58234bd
+-/
 theorem probability_hasSum {x value : ℝ} (hvalue : 0 < value)
     (hseries : HasSum (fun k => coeff k F * x ^ k) value) (n : ℕ) :
     HasSum (probability F x value n) 1 := by
@@ -70,12 +85,18 @@ noncomputable def law (hF : ∀ k, 0 ≤ coeff k F) (x value : ℝ)
     rw [h.tsum_eq, ENNReal.ofReal_one] at ht
     exact ht ▸ ENNReal.summable.hasSum⟩
 
+/--
+@isnad1 id=eq.4h5v.s8.1aebd8a3a702 from=translated src=- shape=4daa8240 vocab=1cce2d76
+-/
 theorem law_toReal (hF : ∀ k, 0 ≤ coeff k F) {x value : ℝ}
     (hx : 0 ≤ x) (hvalue : 0 < value)
     (hseries : HasSum (fun k => coeff k F * x ^ k) value) (n k : ℕ) :
     (law F hF x value hx hvalue hseries n k).toReal = probability F x value n k :=
   ENNReal.toReal_ofReal (probability_nonneg F hF hx hvalue n k)
 
+/--
+@isnad1 id=eq.4h3v.s8.b7a74cb14b61 from=translated src=- shape=d07226a1 vocab=7ffa2e10
+-/
 theorem law_support (hF : ∀ k, 0 ≤ coeff k F) {x value : ℝ}
     (hx : 0 < x) (hvalue : 0 < value)
     (hseries : HasSum (fun k => coeff k F * x ^ k) value) :
@@ -89,11 +110,17 @@ theorem law_support (hF : ∀ k, 0 ≤ coeff k F) {x value : ℝ}
     mul_pos_iff_of_pos_right (pow_pos hx _)]
   exact lt_iff_le_and_ne.trans (by simp [hF k, eq_comm])
 
+/--
+@isnad1 id=eq.2h5v.s7.3228f1bbfa67 from=translated src=- shape=85a271b8 vocab=a59b72b7
+-/
 theorem probability_extraction {x value : ℝ} (hx : 0 < x) (hvalue : 0 < value) (n k : ℕ) :
     coeff k (F ^ n) = value ^ n / x ^ k * probability F x value n k := by
   rw [probability]
   field_simp [hx.ne', hvalue.ne']
 
+/--
+@isnad1 id=summable.3h4v.s8.3570abb00da0 from=translated src=- shape=6c84889c vocab=7bda8e26
+-/
 theorem complex_series_summable (hF : ∀ k, 0 ≤ coeff k F) {x value : ℝ}
     (hx : 0 ≤ x) (hseries : HasSum (fun k => coeff k F * x ^ k) value) (t : ℝ) :
     Summable (fun k => ((coeff k F : ℝ) : ℂ) *
@@ -102,6 +129,9 @@ theorem complex_series_summable (hF : ∀ k, 0 ≤ coeff k F) {x value : ℝ}
   simpa only [norm_mul, norm_pow, coefficient_circle_norm hx, Complex.norm_real,
     Real.norm_eq_abs, abs_of_nonneg (hF _)] using hseries.summable
 
+/--
+@isnad1 id=eq.4h5v.s8.e5cf2dd9e835 from=translated src=- shape=cdcc7595 vocab=98ca002b
+-/
 theorem law_charFun_pow (hF : ∀ k, 0 ≤ coeff k F) {x value : ℝ}
     (hx : 0 ≤ x) (hvalue : 0 < value)
     (hseries : HasSum (fun k => coeff k F * x ^ k) value) (n : ℕ) (t : ℝ) :
@@ -139,6 +169,9 @@ theorem law_charFun_pow (hF : ∀ k, 0 ≤ coeff k F) {x value : ℝ}
     ring
   rw [hchar n, hchar 1, pow_one]
 
+/--
+@isnad1 id=integrab.6h5v.s8.94b58f81f240 from=translated src=- shape=0d49d623 vocab=664a1da7
+-/
 theorem law_integrable_exp (hF : ∀ k, 0 ≤ coeff k F) {x value r : ℝ}
     (hx : 0 ≤ x) (hvalue : 0 < value)
     (hseries : HasSum (fun k => coeff k F * x ^ k) value)
@@ -159,6 +192,9 @@ theorem law_integrable_exp (hF : ∀ k, 0 ≤ coeff k F) {x value r : ℝ}
   rw [show t * (k : ℝ) = (k : ℝ) * t by ring]
   ring
 
+/--
+@isnad1 id=memlp.6h4v.s8.6dc329b68f9c from=translated src=- shape=838a494f vocab=8d630af4
+-/
 theorem law_memLp_two (hF : ∀ k, 0 ≤ coeff k F) {x value r : ℝ}
     (hx : 0 ≤ x) (hvalue : 0 < value)
     (hseries : HasSum (fun k => coeff k F * x ^ k) value)

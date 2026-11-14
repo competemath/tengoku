@@ -21,6 +21,9 @@ noncomputable def finiteFieldH (p A B C : ℕ) : Polynomial (ZMod p) :=
   Polynomial.X ^ A * (finiteFieldQuadratic p) ^ B *
     (finiteFieldLinear p) ^ (p - 1 - C)
 
+/--
+@isnad1 id=le.0h1v.s4.b6d9084f9bba from=translated src=- shape=066de982 vocab=b44b5c14
+-/
 theorem finiteFieldQuadratic_natDegree_le (p : ℕ) [Fact p.Prime] :
     (finiteFieldQuadratic p).natDegree ≤ 2 := by
   unfold finiteFieldQuadratic
@@ -32,12 +35,18 @@ theorem finiteFieldQuadratic_natDegree_le (p : ℕ) [Fact p.Prime] :
     exact (Polynomial.natDegree_add_le _ _).trans (max_le htwo hlin)
   exact (Polynomial.natDegree_add_le _ _).trans (max_le hsum (by simp))
 
+/--
+@isnad1 id=le.0h1v.s4.dfbba8692cfd from=translated src=- shape=066de982 vocab=a696a9a1
+-/
 theorem finiteFieldLinear_natDegree_le (p : ℕ) [Fact p.Prime] :
     (finiteFieldLinear p).natDegree ≤ 1 := by
   unfold finiteFieldLinear
   rw [sub_eq_add_neg]
   exact (Polynomial.natDegree_add_le _ _).trans (by simp)
 
+/--
+@isnad1 id=le.0h4v.s6.834df2c0bcce from=translated src=- shape=f69341ff vocab=f0abf3e5
+-/
 theorem finiteFieldH_natDegree_le (p A B C : ℕ) [Fact p.Prime] :
     (finiteFieldH p A B C).natDegree ≤ A + 2 * B + (p - 1 - C) := by
   unfold finiteFieldH
@@ -72,6 +81,9 @@ theorem finiteFieldH_natDegree_le (p A B C : ℕ) [Fact p.Prime] :
             simpa using Nat.mul_le_mul_left (p - 1 - C) hr
       omega
 
+/--
+@isnad1 id=eq.1h5v.s6.efdecb7cf025 from=translated src=- shape=76f750c9 vocab=1e832140
+-/
 theorem finiteFieldH_coeff_zero_of_lt (p A B C r : ℕ) [Fact p.Prime]
     (hr : r < A) : (finiteFieldH p A B C).coeff r = 0 := by
   have hdvd : (Polynomial.X ^ A : Polynomial (ZMod p)) ∣ finiteFieldH p A B C := by
@@ -79,12 +91,18 @@ theorem finiteFieldH_coeff_zero_of_lt (p A B C r : ℕ) [Fact p.Prime]
     simp [finiteFieldH, mul_assoc]
   exact (Polynomial.X_pow_dvd_iff.mp hdvd) r hr
 
+/--
+@isnad1 id=eq.1h5v.s6.fd525acc460c from=translated src=- shape=98e4496c vocab=f0c79605
+-/
 theorem finiteFieldH_coeff_zero_of_gt (p A B C r : ℕ) [Fact p.Prime]
     (hr : A + 2 * B + (p - 1 - C) < r) :
     (finiteFieldH p A B C).coeff r = 0 := by
   exact Polynomial.coeff_eq_zero_of_natDegree_lt
     (lt_of_le_of_lt (finiteFieldH_natDegree_le p A B C) hr)
 
+/--
+@isnad1 id=obstruct.1h4v.s6.2aca4c663fdb from=translated src=- shape=9ab16047 vocab=21cfe97a
+-/
 theorem finiteFieldH_obstructionFree_of_interval (p A B C : ℕ) [Fact p.Prime]
     (hobs : ∀ r, A ≤ r → r ≤ A + 2 * B + (p - 1 - C) → ¬ p ∣ r + 1) :
     obstructionFree p (finiteFieldH p A B C) := by
@@ -102,6 +120,9 @@ noncomputable def evenLift (p : ℕ) (f : Polynomial (ZMod p)) : Polynomial (ZMo
 def evenObstructionFree (p : ℕ) (f : Polynomial (ZMod p)) : Prop :=
   ∀ r, p ∣ 2 * r + 1 → f.coeff r = 0
 
+/--
+@isnad1 id=evenobst.1h4v.s6.085478ebd4dd from=translated src=- shape=dc1aae39 vocab=4f8d0f77
+-/
 theorem finiteFieldH_evenObstructionFree_of_interval (p A B C : ℕ)
     [Fact p.Prime]
     (hobs : ∀ r, A ≤ r → r ≤ A + 2 * B + (p - 1 - C) →
@@ -121,6 +142,9 @@ noncomputable def evenPolynomialPrimitive (p : ℕ) [Fact p.Prime]
       (if ((2 * r + 1 : ℕ) : ZMod p) = 0 then 0
        else f.coeff r / ((2 * r + 1 : ℕ) : ZMod p))
 
+/--
+@isnad1 id=eq.1h2v.s9.cb93ba6dd06b from=translated src=- shape=ae052a2f vocab=dc0d3de3
+-/
 theorem evenPolynomialPrimitive_derivative (p : ℕ) [Fact p.Prime]
     (f : Polynomial (ZMod p)) (hf : evenObstructionFree p f) :
     Polynomial.derivative (evenPolynomialPrimitive p f) = evenLift p f := by
@@ -142,6 +166,9 @@ theorem evenPolynomialPrimitive_derivative (p : ℕ) [Fact p.Prime]
     simpa [mul_comm] using hcast'
   simp [hcast'']
 
+/--
+@isnad1 id=not.4h4v.s6.737f32e58c42 from=translated src=- shape=0049321b vocab=9f99f645
+-/
 theorem even_obstruction_avoids_low (p A E : ℕ) [Fact p.Prime]
     (hp5 : 5 < p) (hE : 2 * E + 3 ≤ p) :
     ∀ r, A ≤ r → r ≤ E → ¬ p ∣ 2 * r + 1 := by
@@ -160,6 +187,9 @@ theorem even_obstruction_avoids_low (p A E : ℕ) [Fact p.Prime]
     rw [← hk] at hple
     omega
 
+/--
+@isnad1 id=not.5h4v.s7.43df290940cc from=translated src=- shape=5d6f3039 vocab=9f99f645
+-/
 theorem even_obstruction_avoids_high (p A E : ℕ) [Fact p.Prime]
     (hp5 : 5 < p) (hA : p + 1 ≤ 2 * A)
     (hE : 2 * E + 3 ≤ 3 * p) :
@@ -192,6 +222,9 @@ theorem even_obstruction_avoids_high (p A E : ℕ) [Fact p.Prime]
   subst k
   omega
 
+/--
+@isnad1 id=le.3h4v.s7.504c0b12d26d from=translated src=- shape=05245e0c vocab=980e76b7
+-/
 theorem finiteField_support_end_low_bound (p A B C : ℕ) [Fact p.Prime]
     (hp5 : 5 < p) (hCp : C ≤ p - 1)
     (hC : A + 2 * B + (p + 1) / 2 ≤ C) :
@@ -203,6 +236,9 @@ theorem finiteField_support_end_low_bound (p A B C : ℕ) [Fact p.Prime]
     · exact hodd
   omega
 
+/--
+@isnad1 id=le.4h4v.s7.526cc2efe722 from=translated src=- shape=13ef0e0e vocab=980e76b7
+-/
 theorem finiteField_support_end_high_bound (p A B C : ℕ) [Fact p.Prime]
     (hp5 : 5 < p) (hCp : C ≤ p - 1)
     (hA : p + 1 ≤ 2 * A)
@@ -215,6 +251,9 @@ theorem finiteField_support_end_high_bound (p A B C : ℕ) [Fact p.Prime]
     · exact hodd
   omega
 
+/--
+@isnad1 id=evenobst.3h4v.s6.03463b49c589 from=translated src=- shape=9fe3110a vocab=8e1b7439
+-/
 theorem finiteFieldH_evenObstructionFree_low_bound (p A B C : ℕ)
     [Fact p.Prime] (hp5 : 5 < p) (hCp : C ≤ p - 1)
     (hC : A + 2 * B + (p + 1) / 2 ≤ C) :
@@ -224,6 +263,9 @@ theorem finiteFieldH_evenObstructionFree_low_bound (p A B C : ℕ)
     (A + 2 * B + (p - 1 - C)) hp5
     (finiteField_support_end_low_bound p A B C hp5 hCp hC)
 
+/--
+@isnad1 id=evenobst.4h4v.s7.5a97b0692760 from=translated src=- shape=2530053c vocab=8e1b7439
+-/
 theorem finiteFieldH_evenObstructionFree_high_bound (p A B C : ℕ)
     [Fact p.Prime] (hp5 : 5 < p) (hCp : C ≤ p - 1)
     (hA : p + 1 ≤ 2 * A)

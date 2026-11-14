@@ -9,6 +9,9 @@ namespace PiIrrationality
 open MeasureTheory ProbabilityTheory Filter Asymptotics
 open scoped Topology
 
+/--
+@isnad1 id=islittle.2h3v.s8.6e8d6ce043ec from=translated src=- shape=9e852a53 vocab=8bff90ab
+-/
 theorem centered_charFun_taylor {Ω : Type*} [MeasurableSpace Ω]
     {P : Measure Ω} [IsProbabilityMeasure P] {X : Ω → ℝ}
     (hX : MemLp X 2 P) (h0 : ∫ ω, X ω ∂P = 0) :
@@ -25,6 +28,9 @@ theorem centered_charFun_taylor {Ω : Type*} [MeasurableSpace Ω]
   simp_rw [← hp]
   simpa only [sub_zero] using taylor_isLittleO_univ (x₀ := 0) (contDiff_charFun hm)
 
+/--
+@isnad1 id=eventual.2h2v.s7.ea46cc60a786 from=translated src=- shape=93e03081 vocab=e009213c
+-/
 theorem quadratic_expansion_gaussian_bound {f : ℝ → ℂ} {v : ℝ} (hv : 0 < v)
     (h : (fun t : ℝ => f t - (1 - (v : ℂ) * (t : ℂ) ^ 2 / 2))
       =o[𝓝 0] (fun t : ℝ => t ^ 2)) :
@@ -49,7 +55,9 @@ theorem quadratic_expansion_gaussian_bound {f : ℝ → ℂ} {v : ℝ} (hv : 0 <
     _ ≤ Real.exp (-(v / 4) * t ^ 2) := by
       simpa only [add_comm] using Real.add_one_le_exp (-(v / 4) * t ^ 2)
 
-/-- The variance-parameter version of mathlib's characteristic-function power limit.-/
+/-- The variance-parameter version of mathlib's characteristic-function power limit.
+@isnad1 id=tendsto.1h3v.s7.dbc615d32ed6 from=translated src=- shape=f6982a35 vocab=77a60ff1
+-/
 theorem quadratic_expansion_power_limit {f : ℝ → ℂ} {v : ℝ}
     (h : (fun t : ℝ => f t - (1 - (v : ℂ) * (t : ℂ) ^ 2 / 2))
       =o[𝓝 0] (fun t : ℝ => t ^ 2)) (u : ℝ) :

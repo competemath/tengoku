@@ -10,6 +10,9 @@ that divide the index are required to divide the coefficient.
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=dvd.3h3v.s6.957e8aca70d2 from=translated src=- shape=c1d82fcc vocab=7f016b03
+-/
 theorem reducedLcmNat_clears_of_local_divisibility
     (n j q : ℕ) (hj0 : j ≠ 0) (hjbound : j ≤ 7430 * n)
     (hq : ∀ p : ℕ, removablePrime n p → p ∣ j → p ∣ q) :
@@ -46,6 +49,9 @@ theorem reducedLcmNat_clears_of_local_divisibility
       exact hpkj.trans hjL
     exact dvd_mul_of_dvd_left (hcop.dvd_of_dvd_mul_right hpkL) q
 
+/--
+@isnad1 id=dvd.3h3v.s6.d446b73d13e5 from=translated src=- shape=ce630fa0 vocab=a2f56021
+-/
 theorem reducedLcmNat_clears_int_of_local_divisibility
     (n : ℕ) (j q : ℤ) (hj0 : j ≠ 0) (hjbound : j.natAbs ≤ 7430 * n)
     (hq : ∀ p : ℕ, removablePrime n p → (p : ℤ) ∣ j → (p : ℤ) ∣ q) :
@@ -59,6 +65,9 @@ theorem reducedLcmNat_clears_int_of_local_divisibility
   rw [Int.natAbs_mul, Int.natAbs_natCast]
   exact hnat
 
+/--
+@isnad1 id=eq.0h1v.s3.694014ca99d5 from=translated src=- shape=6b4ab8ce vocab=7a420395
+-/
 theorem reducedLcm_eq_natCast (n : ℕ) :
     reducedLcm n = (reducedLcmNat n : ℚ) := by
   have hPhi : (Phi n : ℚ) ≠ 0 := by exact_mod_cast (Phi_pos n).ne'
@@ -67,6 +76,9 @@ theorem reducedLcm_eq_natCast (n : ℕ) :
   apply (eq_div_iff hPhi).2
   exact_mod_cast reducedLcmNat_mul_Phi n
 
+/--
+@isnad1 id=ex.3h3v.s6.778ab5f75ff8 from=translated src=- shape=79cafd42 vocab=4f975aba
+-/
 theorem reducedLcm_mul_div_is_integer
     (n : ℕ) (j q : ℤ) (hj0 : j ≠ 0) (hjbound : j.natAbs ≤ 7430 * n)
     (hq : ∀ p : ℕ, removablePrime n p → (p : ℤ) ∣ j → (p : ℤ) ∣ q) :
@@ -79,6 +91,9 @@ theorem reducedLcm_mul_div_is_integer
   apply (div_eq_iff hjQ).2
   exact_mod_cast (hz.trans (mul_comm j z))
 
+/--
+@isnad1 id=dvd.1h2v.s4.99f9dec1e384 from=translated src=- shape=537bf8a9 vocab=7dc4f922
+-/
 theorem Phi_dvd_int_of_local_divisibility
     (n : ℕ) (q : ℤ)
     (hq : ∀ p : ℕ, removablePrime n p → (p : ℤ) ∣ q) :
@@ -95,6 +110,9 @@ theorem Phi_dvd_int_of_local_divisibility
       (fun p hp => hq p (Finset.mem_filter.mp hp).2)
   simpa [Phi] using hprod
 
+/--
+@isnad1 id=ex.1h2v.s5.45ec7c1a0f4c from=translated src=- shape=f4008bb0 vocab=706ecd40
+-/
 theorem div_Phi_is_integer
     (n : ℕ) (q : ℤ)
     (hq : ∀ p : ℕ, removablePrime n p → (p : ℤ) ∣ q) :
@@ -104,6 +122,9 @@ theorem div_Phi_is_integer
   apply (div_eq_iff (by exact_mod_cast (Phi_pos n).ne' : (Phi n : ℚ) ≠ 0)).2
   exact_mod_cast (hz.trans (mul_comm (Phi n : ℤ) z))
 
+/--
+@isnad1 id=ex.4h3v.s7.3acf87f972c3 from=translated src=- shape=c6d74037 vocab=dc09b54e
+-/
 theorem reducedLcm_clears_laurent_range
     (n : ℕ) (j q : ℤ)
     (hjlo : -(7430 * (n : ℤ)) + 1 ≤ j) (hjhi : j ≤ 5570 * (n : ℤ))
@@ -115,6 +136,9 @@ theorem reducedLcm_clears_laurent_range
   rw [Int.abs_eq_natAbs] at habs
   exact_mod_cast habs
 
+/--
+@isnad1 id=and.3h2v.s8.7747f634c6d3 from=translated src=- shape=c74c7993 vocab=60f7e18f
+-/
 theorem reducedLcm_laurent_integrality_of_coefficients
     (n : ℕ) (hn : 0 < n) (c : ℤ → ℚ)
     (hintegral : ∀ j : ℤ, -(7430 * (n : ℤ)) + 1 ≤ j → j ≤ 5570 * (n : ℤ) →
@@ -143,6 +167,9 @@ theorem reducedLcm_laurent_integrality_of_coefficients
     intro p hp
     simpa [hc0] using hlocal 0 hlo hhi p hp (dvd_zero _)
 
+/--
+@isnad1 id=coprime.0h1v.s3.ef4b23655c1d from=translated src=- shape=082ff3f3 vocab=26e1aeb2
+-/
 theorem Phi_coprime_ten (n : ℕ) : Nat.Coprime (Phi n) 10 := by
   classical
   unfold Phi
@@ -155,6 +182,9 @@ theorem Phi_coprime_ten (n : ℕ) : Nat.Coprime (Phi n) 10 := by
     (Nat.coprime_primes hrem.1 (by norm_num)).2 (by have := hrem.2.1; omega)
   simpa using hc2.mul_right hc5
 
+/--
+@isnad1 id=ex.3h3v.s6.a4c2fbc8a3f7 from=translated src=- shape=e2566854 vocab=fd2e55d2
+-/
 theorem rational_integer_of_coprime_multipliers
     (x : ℚ) (a b : ℕ) (hab : Nat.Coprime a b)
     (ha : ∃ u : ℤ, (a : ℚ) * x = (u : ℚ))
@@ -171,6 +201,9 @@ theorem rational_integer_of_coprime_multipliers
     _ = (s : ℚ) * ((a : ℚ) * x) + (t : ℚ) * ((b : ℚ) * x) := by ring
     _ = ((s * u + t * v : ℤ) : ℚ) := by rw [hu, hv]; push_cast; ring
 
+/--
+@isnad1 id=ex.2h2v.s6.df93c1e8f208 from=translated src=- shape=f1889c4a vocab=0313f3e3
+-/
 theorem integer_of_Phi_and_ten_power
     (n : ℕ) (x : ℚ)
     (hPhi : ∃ u : ℤ, (Phi n : ℚ) * x = (u : ℚ))

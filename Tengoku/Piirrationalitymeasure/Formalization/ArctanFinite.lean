@@ -14,6 +14,9 @@ noncomputable def arctanTerm (x : ℝ) (n : ℕ) : ℝ := x ^ (2 * n + 1) / (2 *
 noncomputable def arctanPartial (x : ℝ) (N : ℕ) : ℝ :=
   ∑ j ∈ Finset.range N, (-1) ^ j * arctanTerm x j
 
+/--
+@isnad1 id=strictan.2h1v.s4.30e57ca590ee from=translated src=- shape=b18abd61 vocab=79403e4f
+-/
 theorem arctanTerm_strictAnti {x : ℝ} (hx : 0 < x) (hx1 : x < 1) :
     StrictAnti (arctanTerm x) := by
   apply strictAnti_nat_of_succ_lt
@@ -27,6 +30,9 @@ theorem arctanTerm_strictAnti {x : ℝ} (hx : 0 < x) (hx1 : x < 1) :
       exact pow_le_pow_of_le_one hx.le hx1.le (by omega)
     _ < _ := div_lt_div_of_pos_left (pow_pos hx _) hn (by push_cast; linarith)
 
+/--
+@isnad1 id=tendsto.2h1v.s5.0a609db168f4 from=translated src=- shape=cdb15d12 vocab=19a792e0
+-/
 theorem arctanPartial_tendsto {x : ℝ} (hx : 0 < x) (hx1 : x < 1) :
     Tendsto (arctanPartial x) atTop (𝓝 (Real.arctan x)) := by
   have h := Real.hasSum_arctan (x := x) (by rwa [Real.norm_eq_abs, abs_of_pos hx])
@@ -36,10 +42,16 @@ theorem arctanPartial_tendsto {x : ℝ} (hx : 0 < x) (hx1 : x < 1) :
   intro j hj
   simp only [arctanTerm, Nat.cast_add, Nat.cast_mul, Nat.cast_ofNat, Nat.cast_one, mul_div_assoc]
 
+/--
+@isnad1 id=eq.0h2v.s5.ea1271cf2a3a from=translated src=- shape=c9be813b vocab=eb383180
+-/
 theorem arctanPartial_succ (x : ℝ) (N : ℕ) :
     arctanPartial x (N + 1) = arctanPartial x N + (-1) ^ N * arctanTerm x N := by
   exact Finset.sum_range_succ _ _
 
+/--
+@isnad1 id=and.2h2v.s6.905164045a2c from=translated src=- shape=b8cc38e3 vocab=8cc5d05f
+-/
 theorem arctanPartial_even_odd {x : ℝ} (hx : 0 < x) (hx1 : x < 1) (k : ℕ) :
     arctanPartial x (2 * k) < Real.arctan x ∧
       Real.arctan x < arctanPartial x (2 * k + 1) := by
@@ -69,6 +81,9 @@ theorem arctanPartial_even_odd {x : ℝ} (hx : 0 < x) (hx1 : x < 1) (k : ℕ) :
   · linarith [hanti (show 2 * k < 2 * k + 1 by omega)]
   · linarith [hanti (show 2 * k + 1 < 2 * k + 2 by omega)]
 
+/--
+@isnad1 id=and.2h2v.s7.1d5f3be9a433 from=translated src=- shape=44456849 vocab=fb741162
+-/
 theorem arctanPartial_signed_remainder {x : ℝ} (hx : 0 < x) (hx1 : x < 1) (N : ℕ) :
     0 < (-1) ^ N * (Real.arctan x - arctanPartial x N) ∧
       (-1) ^ N * (Real.arctan x - arctanPartial x N) <
@@ -88,6 +103,9 @@ theorem arctanPartial_signed_remainder {x : ℝ} (hx : 0 < x) (hx1 : x < 1) (N :
     simp only [pow_add, pow_mul, neg_one_sq, one_pow, one_mul, pow_one, neg_one_mul] at hL ⊢
     constructor <;> linarith
 
+/--
+@isnad1 id=eq.0h0v.s6.37dd865506a9 from=translated src=- shape=f81d8b8d vocab=d8d504f6
+-/
 theorem machin_identity :
     Real.pi = 16 * Real.arctan (1 / 5) - 4 * Real.arctan (1 / 239) := by
   have h := Real.four_mul_arctan_inv_5_sub_arctan_inv_239
@@ -97,6 +115,9 @@ theorem machin_identity :
 def arctanPartialRat (x : ℚ) (N : ℕ) : ℚ :=
   ∑ j ∈ Finset.range N, (-1) ^ j * x ^ (2 * j + 1) / (2 * (j : ℚ) + 1)
 
+/--
+@isnad1 id=eq.0h2v.s4.49dd1b645070 from=translated src=- shape=e45b0399 vocab=c694e4c4
+-/
 theorem arctanPartialRat_cast (x : ℚ) (N : ℕ) :
     (arctanPartialRat x N : ℝ) = arctanPartial x N := by
   unfold arctanPartialRat arctanPartial arctanTerm
@@ -107,6 +128,9 @@ theorem arctanPartialRat_cast (x : ℚ) (N : ℕ) :
 
 set_option maxRecDepth 100000 in
 set_option maxHeartbeats 2000000 in
+/--
+@isnad1 id=and.0h0v.s8.988f86188bdc from=translated src=- shape=d7884d0b vocab=7aa96461
+-/
 theorem machin40_rational_bounds :
     (314159265358979323846 : ℚ) / 10 ^ 20 <
       16 * arctanPartialRat (1 / 5) 40 - 4 * arctanPartialRat (1 / 239) 40 -
@@ -115,6 +139,9 @@ theorem machin40_rational_bounds :
       16 * (1 / 5) ^ 81 / 81 < (314159265358979323847 : ℚ) / 10 ^ 20 := by
   decide +kernel
 
+/--
+@isnad1 id=and.0h0v.s6.9e8860581408 from=translated src=- shape=6fa76439 vocab=5d10ec1f
+-/
 theorem machin40_pi_bounds :
     (314159265358979323846 : ℝ) / 10 ^ 20 < Real.pi ∧
       Real.pi < (314159265358979323847 : ℝ) / 10 ^ 20 := by
@@ -137,6 +164,9 @@ theorem machin40_pi_bounds :
   rw [machin_identity]
   constructor <;> linarith [hnum.1, hnum.2]
 
+/--
+@isnad1 id=and.0h0v.s6.078c305d7e61 from=translated src=- shape=6f52b611 vocab=ea706c7e
+-/
 theorem sqrt_three_paper_bounds :
     (17320508075688772935 : ℝ) / 10 ^ 19 < Real.sqrt 3 ∧
       Real.sqrt 3 < (17320508075688772936 : ℝ) / 10 ^ 19 := by

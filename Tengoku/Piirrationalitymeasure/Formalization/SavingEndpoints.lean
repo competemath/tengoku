@@ -38,6 +38,9 @@ noncomputable def translatedSavingChi (a b c : ℝ) (z : ℝ × ℝ) (u : ℝ) :
 noncomputable def translatedSavingMeasure (a b c : ℝ) (z : ℝ × ℝ) : ℝ :=
   ∫ u in (0 : ℝ)..1, translatedSavingChi a b c z u
 
+/--
+@isnad1 id=iff.1h7v.s6.6c911561bb7e from=translated src=- shape=af18f250 vocab=5ffc71eb
+-/
 theorem savingEndpoint_eq_iff {a b c : ℝ} {z : ℝ × ℝ} {T : SavingEndpointType}
     {j : ℤ} {u : ℝ} (hT : savingEndpointSlope a b c T ≠ 0) :
     u = savingEndpoint a b c z T j ↔
@@ -45,6 +48,9 @@ theorem savingEndpoint_eq_iff {a b c : ℝ} {z : ℝ × ℝ} {T : SavingEndpoint
   rw [savingEndpoint, eq_div_iff hT]
   constructor <;> intro h <;> linarith
 
+/--
+@isnad1 id=and.0h2v.s8.fea0d2877e48 from=translated src=- shape=f35e6b4d vocab=fb08ecff
+-/
 theorem savingEndpoint_candidate_formulas (z : ℝ × ℝ) (j : ℤ) :
     savingEndpoint 1857 3714 5570 z .A j = ((j : ℝ) - 1 / 2 - z.1) / 1857 ∧
     savingEndpoint 1857 3714 5570 z .B j = ((j : ℝ) - z.2) / 3714 ∧
@@ -54,6 +60,9 @@ theorem savingEndpoint_candidate_formulas (z : ℝ × ℝ) (j : ℤ) :
   dsimp only [savingEndpoint, savingEndpointSlope, savingEndpointShift]
   exact ⟨by ring, rfl, by ring, by ring⟩
 
+/--
+@isnad1 id=eventual.7h5v.s8.2dcd4d7853d7 from=translated src=- shape=276e3f05 vocab=99b5a286
+-/
 theorem savingChi_eventuallyEq_of_continuousAt {ι : Type*} [TopologicalSpace ι]
     {X Y Z : ι → ℝ} {u : ι} (hX : ContinuousAt X u) (hY : ContinuousAt Y u)
     (hZ : ContinuousAt Z u)
@@ -72,6 +81,9 @@ theorem savingChi_eventuallyEq_of_continuousAt {ι : Type*} [TopologicalSpace ι
   · filter_upwards [hCcont.eventually_lt hcont hgt] with v hv
     exact (ite_eq_right hv.not_gt).trans (ite_eq_right hgt.not_gt).symm
 
+/--
+@isnad1 id=eventual.5h5v.s6.a867c263a0b9 from=translated src=- shape=b3acbd7d vocab=34b6ce07
+-/
 theorem translatedSavingChi_locally_constant {a b c : ℝ} {z : ℝ × ℝ} {u : ℝ}
     (ha : a ≠ 0) (hb : b ≠ 0) (hc : c ≠ 0) (hq : a + 2 * b - c ≠ 0)
     (hu : ∀ T j, u ≠ savingEndpoint a b c z T j) :
@@ -97,12 +109,18 @@ theorem translatedSavingChi_locally_constant {a b c : ℝ} {z : ℝ × ℝ} {u :
   exact savingChi_eventuallyEq_of_continuousAt (by fun_prop) (by fun_prop)
     (by fun_prop) hA hB hC hneq
 
+/--
+@isnad1 id=eq.0h8v.s7.1d153945673e from=translated src=- shape=7130dc25 vocab=8ff51ffa
+-/
 theorem savingEndpoint_affine (a b c : ℝ) (T : SavingEndpointType) (j : ℤ)
     (z v : ℝ × ℝ) (s : ℝ) :
     savingEndpoint a b c (z + s • v) T j = savingEndpoint a b c z T j -
       s * (savingEndpointShift v T - savingEndpointShift 0 T) / savingEndpointSlope a b c T := by
   cases T <;> dsimp [savingEndpoint, savingEndpointShift, savingEndpointSlope] <;> ring
 
+/--
+@isnad1 id=eq.7h8v.s7.dc23510c09ba from=translated src=- shape=e6188053 vocab=b1f1d9df
+-/
 theorem translatedSavingChi_constantOn_interval {a b c l r : ℝ} {z : ℝ × ℝ}
     (ha : a ≠ 0) (hb : b ≠ 0) (hc : c ≠ 0) (hq : a + 2 * b - c ≠ 0)
     (hend : ∀ u ∈ Ioo l r, ∀ T j, u ≠ savingEndpoint a b c z T j)
@@ -118,6 +136,9 @@ theorem translatedSavingChi_constantOn_interval {a b c l r : ℝ} {z : ℝ × �
   unfold translatedSavingChi savingChi
   split_ifs <;> simp
 
+/--
+@isnad1 id=finite.1h7v.s5.4c26bb632445 from=translated src=- shape=0d6a885a vocab=76f6a927
+-/
 theorem savingEndpoint_finite_on_interval {a b c : ℝ} (z : ℝ × ℝ)
     (T : SavingEndpointType) (hT : 0 < savingEndpointSlope a b c T) (l r : ℝ) :
     (Set.range (savingEndpoint a b c z T) ∩ Icc l r).Finite := by
@@ -140,6 +161,9 @@ theorem savingEndpoint_finite_on_interval {a b c : ℝ} (z : ℝ × ℝ)
     dsimp [m, d]
     linarith
 
+/--
+@isnad1 id=finite.4h6v.s6.fb1e29207d6b from=translated src=- shape=9e374976 vocab=57111bc5
+-/
 theorem savingEndpoints_finite_on_interval {a b c : ℝ} (z : ℝ × ℝ)
     (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) (hq : 0 < a + 2 * b - c) (l r : ℝ) :
     (⋃ T, Set.range (savingEndpoint a b c z T) ∩ Icc l r).Finite := by
@@ -148,6 +172,9 @@ theorem savingEndpoints_finite_on_interval {a b c : ℝ} (z : ℝ × ℝ)
   apply savingEndpoint_finite_on_interval
   cases T <;> assumption
 
+/--
+@isnad1 id=eq.0h0v.s6.1e9db1bb79d9 from=translated src=- shape=b1dd3a6b vocab=f499effc
+-/
 theorem translatedSavingMeasure_candidate_zero :
     translatedSavingMeasure 1857 3714 5570 0 = (1724689 : ℝ) / 13797510 := by
   have hm : MeasurableSet primeSavingSet := by

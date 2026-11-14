@@ -13,6 +13,9 @@ noncomputable def scaledPower (f : ℝ → ℂ) (T : ℝ) (n : ℕ) (u : ℝ) : 
   (Set.Icc (-T * Real.sqrt (n : ℝ)) (T * Real.sqrt (n : ℝ))).indicator
     (fun u => f ((Real.sqrt (n : ℝ))⁻¹ * u) ^ n) u
 
+/--
+@isnad1 id=le.2h5v.s6.c44089b6be37 from=translated src=- shape=fc898c90 vocab=e82030fa
+-/
 theorem scaledPower_norm_bound {f : ℝ → ℂ} {T c : ℝ}
     (hb : ∀ t ∈ Set.Icc (-T) T, ‖f t‖ ≤ Real.exp (-c * t ^ 2))
     {n : ℕ} (hn : 0 < n) (u : ℝ) : ‖scaledPower f T n u‖ ≤ Real.exp (-c * u ^ 2) := by
@@ -34,6 +37,9 @@ theorem scaledPower_norm_bound {f : ℝ → ℂ} {T c : ℝ}
   · rw [scaledPower, Set.indicator_of_notMem hu, norm_zero]
     exact (Real.exp_pos _).le
 
+/--
+@isnad1 id=eq.2h3v.s6.1c1d847dadd2 from=translated src=- shape=461950d9 vocab=84a1cb90
+-/
 theorem scaledPower_integral {f : ℝ → ℂ} {T : ℝ} (hT : 0 < T) {n : ℕ} (hn : 0 < n) :
     (∫ u : ℝ, scaledPower f T n u) =
       (Real.sqrt (n : ℝ) : ℂ) * ∫ t in -T..T, f t ^ n := by
@@ -49,6 +55,9 @@ theorem scaledPower_integral {f : ℝ → ℂ} {T : ℝ} (hT : 0 < T) {n : ℕ} 
   have hb : (Real.sqrt (n : ℝ))⁻¹ * (T * Real.sqrt (n : ℝ)) = T := by field_simp
   rw [ha, hb, inv_inv, Complex.real_smul]
 
+/--
+@isnad1 id=eq.0h1v.s6.e52dbc9d7314 from=translated src=- shape=595e29dd vocab=314d91e7
+-/
 theorem integral_complex_gaussian (v : ℝ) :
     (∫ u : ℝ, Complex.exp (-(v : ℂ) * (u : ℂ) ^ 2 / 2)) =
       (Real.sqrt (2 * Real.pi / v) : ℂ) := by
@@ -63,6 +72,9 @@ theorem integral_complex_gaussian (v : ℝ) :
   congr 2
   ring
 
+/--
+@isnad1 id=tendsto.5h4v.s8.d9baeb493f54 from=translated src=- shape=3d5158ef vocab=8c796bd0
+-/
 theorem gaussian_integral_power_limit {f : ℝ → ℂ} {T c v : ℝ}
     (hT : 0 < T) (hc : 0 < c) (hf : Continuous f)
     (hb : ∀ t ∈ Set.Icc (-T) T, ‖f t‖ ≤ Real.exp (-c * t ^ 2))

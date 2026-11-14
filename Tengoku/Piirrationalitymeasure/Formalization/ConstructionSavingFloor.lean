@@ -6,6 +6,9 @@ import Tengoku.Piirrationalitymeasure.Formalization.ConstructionPrimeSelection
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=iff.0h4v.s7.1cb785430bd3 from=translated src=- shape=e3b945c9 vocab=047f7239
+-/
 theorem constructionSavingCondition_floor (a b c : ℕ) (u : ℝ) :
     constructionSavingCondition a b c u ↔
       ((a : ℝ) + 2 * b - c) * u + 1 / 2 <
@@ -20,6 +23,9 @@ theorem constructionSavingCondition_floor (a b c : ℕ) (u : ℝ) :
   rw [hq]
   constructor <;> intro h <;> linarith
 
+/--
+@isnad1 id=iff.0h4v.s7.9620f3fb1aef from=translated src=- shape=9f150116 vocab=59422848
+-/
 theorem constructionSavingCondition_floor_eq (a b c : ℕ) (u : ℝ) :
     constructionSavingCondition a b c u ↔
       ((a : ℝ) + 2 * b - c) * u + 1 / 2 <

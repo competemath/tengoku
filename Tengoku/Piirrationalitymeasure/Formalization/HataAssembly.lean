@@ -10,6 +10,9 @@ namespace PiIrrationality
 open Filter
 open scoped Topology
 
+/--
+@isnad1 id=ne.2h3v.s4.473f06694e25 from=translated src=- shape=badd0dda vocab=fab9f5b5
+-/
 theorem hataDelta_ne_zero {theta : ℝ} (hθ : Irrational theta) (p : ℤ) (q : ℕ)
     (hq : 0 < q) : hataDelta theta p q ≠ 0 := by
   rw [hata_delta_factorization theta p q hq]
@@ -17,6 +20,9 @@ theorem hataDelta_ne_zero {theta : ℝ} (hθ : Irrational theta) (p : ℤ) (q : 
   apply sub_ne_zero.mpr
   simpa only [Int.cast_natCast] using hθ.ne_rational p (q : ℤ)
 
+/--
+@isnad1 id=ex.8h6v.s8.5dfcef059785 from=translated src=- shape=d40adc40 vocab=17c7c884
+-/
 theorem hata_uniform_bound_of_exp_bounds {theta a b d : ℝ} {U V : ℕ → ℤ}
     (hθ : Irrational theta) (ha : 0 < a) (hb : 0 < b) (hbd : b ≤ d)
     (hgap : d < b + a)

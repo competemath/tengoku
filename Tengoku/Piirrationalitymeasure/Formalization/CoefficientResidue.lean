@@ -18,12 +18,18 @@ noncomputable def laurentResidue : LaurentSeries ℚ →ₗ[ℚ] ℚ where
   map_add' _ _ := coeff_add
   map_smul' _ _ := coeff_smul
 
+/--
+@isnad1 id=eq.0h1v.s8.8fe6ddd181ea from=translated src=- shape=383acd39 vocab=881d14d9
+-/
 theorem laurentResidue_derivation (f : LaurentSeries ℚ) :
     laurentResidue (laurentDerivation ℚ f) = 0 := by
   change (LaurentSeries.derivative ℚ f).coeff (-1) = 0
   rw [laurent_derivative_coeff]
   norm_num
 
+/--
+@isnad1 id=eq.0h2v.s8.e08ba0986ea6 from=translated src=- shape=4df9be10 vocab=c1dd1fd8
+-/
 theorem laurentResidue_const_mul (c : ℚ) (f : LaurentSeries ℚ) :
     laurentResidue ((c : LaurentSeries ℚ) * f) = c * laurentResidue f := by
   change ((c : LaurentSeries ℚ) * f).coeff (-1) = c * f.coeff (-1)
@@ -31,6 +37,9 @@ theorem laurentResidue_const_mul (c : ℚ) (f : LaurentSeries ℚ) :
     coeff_single_mul]
   simp
 
+/--
+@isnad1 id=eq.0h1v.s8.83463c33e0ee from=translated src=- shape=7071e9b5 vocab=cf8874e9
+-/
 theorem laurentDerivation_intCast (c : ℤ) :
     laurentDerivation ℚ (c : LaurentSeries ℚ) = 0 := by
   cases c with
@@ -38,6 +47,9 @@ theorem laurentDerivation_intCast (c : ℤ) :
   | negSucc n =>
     simp only [Int.cast_negSucc, map_neg, Derivation.map_natCast, neg_zero]
 
+/--
+@isnad1 id=eq.0h2v.s9.2f65dc2b6c21 from=translated src=- shape=721c398c vocab=45721442
+-/
 theorem laurentResidue_polynomial_mul_derivation (t : LaurentSeries ℚ) (P : Polynomial ℤ) :
     laurentResidue (aeval t P * laurentDerivation ℚ t) = 0 := by
   have hex : ∃ f : LaurentSeries ℚ, laurentDerivation ℚ f = aeval t P * laurentDerivation ℚ t := by
@@ -62,6 +74,9 @@ theorem laurentResidue_polynomial_mul_derivation (t : LaurentSeries ℚ) (P : Po
   rw [← hf]
   exact laurentResidue_derivation f
 
+/--
+@isnad1 id=eq.3h2v.s10.bb7325ae30a1 from=translated src=- shape=cfdfd38b vocab=06eb19d6
+-/
 theorem laurentResidue_polePair_mul_derivation (t : LaurentSeries ℚ) (j : ℕ)
     (hj : 0 < j) (hp : 5 + t ≠ 0) (hm : 5 - t ≠ 0) :
     laurentResidue ((1 / (5 + t) ^ (j + 1) + 1 / (5 - t) ^ (j + 1)) *
@@ -89,33 +104,54 @@ theorem laurentResidue_polePair_mul_derivation (t : LaurentSeries ℚ) (j : ℕ)
 noncomputable def mobiusLaurent : LaurentSeries ℚ :=
   -5 * (1 + single 1 1) / (1 - single 1 1)
 
+/--
+@isnad1 id=ne.0h0v.s7.6099636bf772 from=translated src=- shape=8b0efe77 vocab=19212807
+-/
 theorem laurentX_ne_zero : (single 1 1 : LaurentSeries ℚ) ≠ 0 := by simp
 
+/--
+@isnad1 id=ne.0h0v.s8.9a5790765f59 from=translated src=- shape=c6a920e4 vocab=2440ae72
+-/
 theorem one_sub_laurentX_ne_zero : (1 - single 1 1 : LaurentSeries ℚ) ≠ 0 := by
   intro h
   have hc := congrArg (fun f : LaurentSeries ℚ => f.coeff 0) h
   norm_num at hc
 
+/--
+@isnad1 id=eq.0h0v.s9.f980d81ac941 from=translated src=- shape=a9a7bcdc vocab=5f5ac8b7
+-/
 theorem mobiusLaurent_add_five :
     mobiusLaurent + 5 = -10 * single 1 1 / (1 - single 1 1) := by
   unfold mobiusLaurent
   field_simp [one_sub_laurentX_ne_zero]
   ring
 
+/--
+@isnad1 id=eq.0h0v.s8.3dc5160d9b76 from=translated src=- shape=a502512e vocab=9f646ac7
+-/
 theorem five_sub_mobiusLaurent :
     5 - mobiusLaurent = 10 / (1 - single 1 1) := by
   unfold mobiusLaurent
   field_simp [one_sub_laurentX_ne_zero]
   ring
 
+/--
+@isnad1 id=ne.0h0v.s6.305ad5b3d478 from=translated src=- shape=b4ca3b3c vocab=3ac53995
+-/
 theorem mobiusLaurent_add_five_ne_zero : mobiusLaurent + 5 ≠ 0 := by
   rw [mobiusLaurent_add_five]
   exact div_ne_zero (mul_ne_zero (by norm_num) laurentX_ne_zero) one_sub_laurentX_ne_zero
 
+/--
+@isnad1 id=ne.0h0v.s6.328f42a7dbc0 from=translated src=- shape=375bc617 vocab=e0f5eb98
+-/
 theorem five_sub_mobiusLaurent_ne_zero : 5 - mobiusLaurent ≠ 0 := by
   rw [five_sub_mobiusLaurent]
   exact div_ne_zero (by norm_num) one_sub_laurentX_ne_zero
 
+/--
+@isnad1 id=eq.0h0v.s9.9d4d2ab8867d from=translated src=- shape=bcb40f47 vocab=57ae43e4
+-/
 theorem mobiusLaurent_derivation :
     laurentDerivation ℚ mobiusLaurent = -10 / (1 - single 1 1) ^ 2 := by
   have hx : laurentDerivation ℚ (single 1 1) = 1 := by
@@ -130,6 +166,9 @@ theorem mobiusLaurent_derivation :
   field_simp [one_sub_laurentX_ne_zero]
   ring
 
+/--
+@isnad1 id=eq.0h0v.s9.5e87500ad1cf from=translated src=- shape=9e237902 vocab=4cb2fed7
+-/
 theorem mobiusLaurent_logarithmic_pair :
     (1 / (5 + mobiusLaurent) + 1 / (5 - mobiusLaurent)) *
       laurentDerivation ℚ mobiusLaurent = single (-1) 1 := by
@@ -146,6 +185,9 @@ noncomputable def mobiusDensity (n : ℕ) : LaurentSeries ℚ :=
     (mobiusLaurent ^ 4 + 6 * mobiusLaurent ^ 2 + 25) ^ (3714 * n) /
       (25 - mobiusLaurent ^ 2) ^ (5570 * n + 1)) * laurentDerivation ℚ mobiusLaurent
 
+/--
+@isnad1 id=eq.0h1v.s6.4ba60d9cbd0b from=translated src=- shape=3d27beb4 vocab=f18223cb
+-/
 theorem mobiusDensity_residue (n : ℕ) :
     laurentResidue (mobiusDensity n) = laurentCoeffRat n 0 := by
   have hp : 5 + mobiusLaurent ≠ 0 := by

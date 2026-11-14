@@ -10,6 +10,9 @@ scale to a power of `q`.
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=lt.3h6v.s6.1de03f4022cd from=translated src=- shape=b9b1a24e vocab=1c309de2
+-/
 theorem hata_scale_linear_form_small
     (theta : ℝ) (U V : ℤ) (q n : ℕ) (a : ℝ) (ha : 0 < a)
     (hNn : hataScale q a ha ≤ n)
@@ -25,6 +28,9 @@ theorem hata_scale_linear_form_small
       mul_le_mul_of_nonneg_left hLupper hq
     _ < (1 : ℝ) / 2 := htail
 
+/--
+@isnad1 id=lt.5h7v.s7.4f4d7d6faba1 from=translated src=- shape=b3d5b3ce vocab=4a9d426c
+-/
 theorem hata_nonzero_index_bound
     (theta : ℝ) (U V : ℤ) (p : ℤ) (q : ℕ) (beta n : ℝ)
     (hV : V ≠ 0) (hq : 0 < q)
@@ -51,6 +57,9 @@ theorem hata_nonzero_index_bound
   rw [← hrewrite]
   exact lt_of_le_of_lt hrecip hbase
 
+/--
+@isnad1 id=lt.7h7v.s7.a70f0d5aad6f from=translated src=- shape=8617992b vocab=f3c64a61
+-/
 theorem hata_nonzero_q_power_bound
     (theta : ℝ) (U V : ℤ) (p : ℤ) (q : ℕ) (a beta : ℝ)
     (ha : 0 < a) (hbeta : 0 ≤ beta) (hV : V ≠ 0) (hq : 0 < q)
@@ -97,6 +106,9 @@ theorem hata_nonzero_q_power_bound
       _ = (1 : ℝ) / 2 * Real.exp (-beta * (hataScale q a ha : ℝ)) := by ring
   exact lt_of_le_of_lt hbase hindex
 
+/--
+@isnad1 id=lt.7h7v.s8.69ee06d6e1c7 from=translated src=- shape=3b936ddd vocab=1443d1b2
+-/
 theorem hata_nonzero_rational_approx_bound
     (theta : ℝ) (U V : ℤ) (p : ℤ) (q : ℕ) (a beta : ℝ)
     (ha : 0 < a) (hbeta : 0 ≤ beta) (hV : V ≠ 0) (hq : 0 < q)
@@ -119,6 +131,9 @@ theorem hata_nonzero_rational_approx_bound
       rw [hfac]
       field_simp [hqreal.ne']
 
+/--
+@isnad1 id=lt.5h5v.s7.e1ea1e98e885 from=translated src=- shape=d63678d4 vocab=d7706f1e
+-/
 theorem hata_second_branch_intermediate
     {D q alpha gamma M : ℝ} (hD : 0 < D) (hq : 0 < q)
     (halpha : 0 ≤ alpha) (hupper : Real.exp M ≤
@@ -155,6 +170,9 @@ theorem hata_second_branch_intermediate
     _ ≤ (1 / 2 : ℝ) * Real.exp (-alpha * M) := hmul
     _ < D := hlower
 
+/--
+@isnad1 id=lt.5h4v.s7.0b8463486c86 from=translated src=- shape=f7ec60c0 vocab=7ea5cb2d
+-/
 theorem rpow_fixed_point_lower
     {D K q r : ℝ} (hD : 0 < D) (hK : 0 < K) (hq : 0 < q)
     (hr1 : r < 1)
@@ -187,6 +205,9 @@ theorem rpow_fixed_point_lower
       _ < Real.log D := hquot
   exact (Real.log_lt_log_iff hTpos hD).mp hlogcomp
 
+/--
+@isnad1 id=lt.5h4v.s7.038e4862a990 from=translated src=- shape=058b9a69 vocab=048ae7ea
+-/
 theorem hata_second_branch_power_bound
     {D q alpha gamma : ℝ} (hD : 0 < D) (hq : 0 < q)
     (halpha : 0 ≤ alpha) (hgap : alpha < gamma)
@@ -222,6 +243,9 @@ theorem hata_second_branch_power_bound
   rw [hfixed_eq] at hfixed
   exact hfixed
 
+/--
+@isnad1 id=lt.5h6v.s6.1f1b32a52b3a from=translated src=- shape=69c924ec vocab=c4e250b3
+-/
 theorem hata_uniform_min_power_bound
     {D q c1 c2 k1 kappa : ℝ} (hq : 1 ≤ q)
     (hc1 : 0 ≤ c1) (hk : k1 ≤ kappa)
@@ -244,6 +268,9 @@ theorem hata_uniform_min_power_bound
 /- The final assembly of Hata's two alternatives: once every denominator
   admits either branch, the weaker of the two constants gives one uniform
   power-law lower bound. -/
+/--
+@isnad1 id=lt.6h8v.s7.ff24e9f94324 from=translated src=- shape=f2b4e196 vocab=0a7b0eb5
+-/
 theorem hata_two_branch_uniform_power_bound
     {theta kappa c1 c2 k1 : ℝ} {q0 : ℕ}
     (hq0 : 1 ≤ q0) (hc1 : 0 ≤ c1) (hk : k1 ≤ kappa)

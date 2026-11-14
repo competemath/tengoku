@@ -6,11 +6,17 @@ import Tengoku.Piirrationalitymeasure.Formalization.PrimeSavingMeasure
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=le.1h1v.s4.7bccefd3fcc5 from=translated src=- shape=15ed958c vocab=489513b2
+-/
 theorem savingInterval_subset_set {j : ℕ} (hj : j ∈ activeSavingCells) :
     savingInterval j ⊆ primeSavingSet := by
   rw [primeSavingSet_eq_intervals]
   exact Set.subset_iUnion_of_subset j (Set.subset_iUnion_of_subset hj Set.Subset.rfl)
 
+/--
+@isnad1 id=not.1h1v.s4.d4accc036b8f from=translated src=- shape=3fa3456c vocab=8edb0b86
+-/
 theorem savingRight_not_mem {j : ℕ} (hj : j ∈ activeSavingCells) :
     savingRight j ∉ primeSavingSet := by
   have he := savingInterval_endpoints hj
@@ -20,6 +26,9 @@ theorem savingRight_not_mem {j : ℕ} (hj : j ∈ activeSavingCells) :
   intro h
   exact (lt_irrefl _) ((savingCell_condition_classification hj' hcell).mp h.2.2).2
 
+/--
+@isnad1 id=lt.2h2v.s4.dc7e4d186230 from=translated src=- shape=1ea5161e vocab=a638d978
+-/
 theorem savingIntervals_strict_gap {i j : ℕ}
     (hi : i ∈ activeSavingCells) (hij : i < j) : savingRight i < savingLeft j := by
   have he := (savingInterval_endpoints hi).2.2.1
@@ -27,6 +36,9 @@ theorem savingIntervals_strict_gap {i j : ℕ}
   dsimp [savingLeft]
   linarith
 
+/--
+@isnad1 id=eq.2h2v.s5.a4c6772e68ec from=translated src=- shape=dca1c839 vocab=6f156273
+-/
 theorem savingInterval_connectedComponent {j : ℕ} (hj : j ∈ activeSavingCells)
     {u : ℝ} (hu : u ∈ savingInterval j) :
     connectedComponentIn primeSavingSet u = savingInterval j := by
@@ -54,6 +66,9 @@ theorem savingInterval_connectedComponent {j : ℕ} (hj : j ∈ activeSavingCell
       exact savingRight_not_mem hj (connectedComponentIn_subset primeSavingSet u hr)
   · exact isPreconnected_Ico.subset_connectedComponentIn hu (savingInterval_subset_set hj)
 
+/--
+@isnad1 id=injon.0h0v.s3.b82ae0a0c778 from=translated src=- shape=42cfda31 vocab=5b898589
+-/
 theorem savingInterval_injOn :
     Set.InjOn savingInterval (↑activeSavingCells : Set ℕ) := by
   intro i hi j hj heq
@@ -63,6 +78,9 @@ theorem savingInterval_injOn :
     ⟨le_rfl, (savingInterval_endpoints hi).2.1⟩
   exact Set.disjoint_left.mp hdis hmem (heq ▸ hmem)
 
+/--
+@isnad1 id=eq.0h0v.s5.e3335f6ef3e5 from=translated src=- shape=333f312c vocab=dd5ba517
+-/
 theorem primeSavingSet_components :
     {s : Set ℝ | ∃ u ∈ primeSavingSet, connectedComponentIn primeSavingSet u = s} =
       savingInterval '' (↑activeSavingCells : Set ℕ) := by
@@ -79,6 +97,9 @@ theorem primeSavingSet_components :
     exact ⟨savingLeft j, savingInterval_subset_set hj hu,
       savingInterval_connectedComponent hj hu⟩
 
+/--
+@isnad1 id=eq.0h0v.s5.2bd7860dd5f7 from=translated src=- shape=547413d6 vocab=b045381f
+-/
 theorem primeSavingSet_component_count :
     {s : Set ℝ | ∃ u ∈ primeSavingSet, connectedComponentIn primeSavingSet u = s}.ncard =
       2784 := by

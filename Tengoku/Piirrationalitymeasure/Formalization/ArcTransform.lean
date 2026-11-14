@@ -26,6 +26,9 @@ noncomputable def parameterPhasePolynomial (p : ℝ × ℝ) (e : ℝ) : Polynomi
     X * transformedArcD e * transformedArcH e * (C (200 * e + 1400) + C 1600 * X) +
     C (1 - p.1 - 2 * p.2) * X * transformedArcH e * transformedArcJ e * (C 2 + C 2 * X)
 
+/--
+@isnad1 id=le.0h2v.s4.5f7344d355b5 from=translated src=- shape=428a74b8 vocab=c1bed73a
+-/
 theorem parameterPhasePolynomial_degree_le (p : ℝ × ℝ) (e : ℝ) :
     (parameterPhasePolynomial p e).natDegree ≤ 6 := by
   unfold parameterPhasePolynomial transformedArcD transformedArcH transformedArcJ
@@ -33,6 +36,9 @@ theorem parameterPhasePolynomial_degree_le (p : ℝ × ℝ) (e : ℝ) :
 
 set_option maxHeartbeats 0 in
 -- Normalize the multivariate rational identity after clearing all denominators.
+/--
+@isnad1 id=eq.1h3v.s7.79a1dcadacf7 from=translated src=- shape=854d793c vocab=ceb4c2b9
+-/
 theorem parameterPhasePolynomial_transformed (p : ℝ × ℝ) (e u : ℝ) (hu : 1 + u ≠ 0) :
     (1 + u) ^ 6 * arcClearedDerivative p.1 p.2 e (u / (1 + u)) =
       (1 + e ^ 2) * (parameterPhasePolynomial p e).eval u := by
@@ -45,6 +51,9 @@ theorem parameterPhasePolynomial_transformed (p : ℝ × ℝ) (e u : ℝ) (hu : 
 
 set_option maxHeartbeats 0 in
 -- Compare the two explicit degree-six formulas by polynomial normalization.
+/--
+@isnad1 id=eq.0h1v.s6.8bff5ea01650 from=translated src=- shape=bc311bdc vocab=a51ed65a
+-/
 theorem parameterPhasePolynomial_candidate (e : ℝ) :
     parameterPhasePolynomial candidate e = C ((125 : ℝ) / 557) * phaseTransformedPolynomial e := by
   apply Polynomial.funext
@@ -56,6 +65,9 @@ theorem parameterPhasePolynomial_candidate (e : ℝ) :
   dsimp only [Prod.fst, Prod.snd]
   ring
 
+/--
+@isnad1 id=iff.2h3v.s6.953ac6347e6c from=translated src=- shape=edc272b8 vocab=f7feffd8
+-/
 theorem parameterPhasePolynomial_zero_iff {p : ℝ × ℝ} {e t : ℝ}
     (ht0 : 0 < t) (ht1 : t < 1) :
     arcClearedDerivative p.1 p.2 e t = 0 ↔
@@ -80,6 +92,9 @@ theorem parameterPhasePolynomial_zero_iff {p : ℝ × ℝ} {e t : ℝ}
 
 set_option maxHeartbeats 0 in
 -- Coefficient convolution produces several nested finite sums.
+/--
+@isnad1 id=contdiff.0h1v.s7.69b3841fecbb from=translated src=- shape=e6ad8255 vocab=9edc61cf
+-/
 theorem contDiff_parameterPhasePolynomial_coeff (k : ℕ) :
     ContDiff ℝ ω (fun q : (ℝ × ℝ) × ℝ => (parameterPhasePolynomial q.1 q.2).coeff k) := by
   classical

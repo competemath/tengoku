@@ -9,10 +9,16 @@ Existence and uniqueness of the phase critical point on the controlled arc.
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=continuo.0h1v.s4.5e895b6443fa from=translated src=- shape=f736e2c1 vocab=0448e22c
+-/
 theorem arcPhaseNumerator_continuous (e : ℝ) : Continuous (arcPhaseNumerator e) := by
   unfold arcPhaseNumerator
   fun_prop
 
+/--
+@isnad1 id=eq.6h3v.s6.63ce544c58fd from=translated src=- shape=5b8ec1ab vocab=6b6b5661
+-/
 theorem arcPhaseNumerator_root_unique {e x y : ℝ}
     (he : (9 : ℝ) / 10 < e) (he1 : e < 1)
     (hx : x ∈ Set.Ioo 0 1) (hy : y ∈ Set.Ioo 0 1)
@@ -26,6 +32,9 @@ theorem arcPhaseNumerator_root_unique {e x y : ℝ}
   have hcross := (div_eq_div_iff hdenx.ne' hdeny.ne').mp hdiv
   nlinarith
 
+/--
+@isnad1 id=existsun.2h1v.s6.c0ceb60d8ed0 from=translated src=- shape=3e2fd4a7 vocab=1fe60cc7
+-/
 theorem arcPhaseNumerator_unique_root {e : ℝ}
     (he : (9 : ℝ) / 10 < e) (he1 : e < 1) :
     ∃! lambda : ℝ, lambda ∈ Set.Ioo 0 1 ∧ arcPhaseNumerator e lambda = 0 := by
@@ -51,6 +60,9 @@ theorem arcPhaseNumerator_unique_root {e : ℝ}
   intro y hy
   exact arcPhaseNumerator_root_unique he he1 hy.1 ⟨hl0, hl1⟩ hy.2 hroot
 
+/--
+@isnad1 id=existsun.2h1v.s7.277e9f85303e from=translated src=- shape=51911295 vocab=c805a670
+-/
 theorem complexPhase_on_arc_unique_critical {e : ℝ}
     (he : (9 : ℝ) / 10 < e) (he1 : e < 1) :
     ∃! lambda : ℝ, lambda ∈ Set.Ioo 0 1 ∧
@@ -60,6 +72,9 @@ theorem complexPhase_on_arc_unique_critical {e : ℝ}
   intro y hy
   exact huniq y ⟨hy.1, (complexPhase_on_arc_deriv_zero_iff he hy.1.1 hy.1.2).mp hy.2⟩
 
+/--
+@isnad1 id=lt.6h3v.s6.b9963c9cd987 from=translated src=- shape=6ad94086 vocab=6b6b5661
+-/
 theorem arcPhaseNumerator_pos_left {e lambda x : ℝ}
     (he : (9 : ℝ) / 10 < e) (he1 : e < 1)
     (hl : lambda ∈ Set.Ioo 0 1) (hroot : arcPhaseNumerator e lambda = 0)
@@ -80,6 +95,9 @@ theorem arcPhaseNumerator_pos_left {e lambda x : ℝ}
     arcPhaseNumerator_root_unique he he1 ⟨hz0, by linarith [hz.2, hl.2]⟩ hl hzero hroot
   linarith [hz.2]
 
+/--
+@isnad1 id=lt.6h3v.s6.2d04754eb3e6 from=translated src=- shape=9de7f594 vocab=6b6b5661
+-/
 theorem arcPhaseNumerator_neg_right {e lambda x : ℝ}
     (he : (9 : ℝ) / 10 < e) (he1 : e < 1)
     (hl : lambda ∈ Set.Ioo 0 1) (hroot : arcPhaseNumerator e lambda = 0)
@@ -100,6 +118,9 @@ theorem arcPhaseNumerator_neg_right {e lambda x : ℝ}
     arcPhaseNumerator_root_unique he he1 ⟨by linarith [hz.1, hl.1], hz1⟩ hl hzero hroot
   linarith [hz.1]
 
+/--
+@isnad1 id=lt.3h2v.s7.e4a273ecae1e from=translated src=- shape=fa377ed2 vocab=e47993c5
+-/
 theorem complexPhase_on_arc_deriv_pos {e x : ℝ}
     (he : (9 : ℝ) / 10 < e) (hx : x ∈ Set.Ioo 0 1)
     (hQ : 0 < arcPhaseNumerator e x) :
@@ -115,6 +136,9 @@ theorem complexPhase_on_arc_deriv_pos {e x : ℝ}
   rw [(hasDerivAt_complexPhase_on_arc _ _ he hx.1 hx.2).deriv]
   exact div_pos hd (by norm_num)
 
+/--
+@isnad1 id=lt.3h2v.s7.a37125fdd94f from=translated src=- shape=66c9079d vocab=e47993c5
+-/
 theorem complexPhase_on_arc_deriv_neg {e x : ℝ}
     (he : (9 : ℝ) / 10 < e) (hx : x ∈ Set.Ioo 0 1)
     (hQ : arcPhaseNumerator e x < 0) :
@@ -130,6 +154,9 @@ theorem complexPhase_on_arc_deriv_neg {e x : ℝ}
   rw [(hasDerivAt_complexPhase_on_arc _ _ he hx.1 hx.2).deriv]
   exact div_neg_of_neg_of_pos hd (by norm_num)
 
+/--
+@isnad1 id=lt.6h3v.s7.83c8b37b30e0 from=translated src=- shape=40df1f08 vocab=4cd4494b
+-/
 theorem complexPhase_on_arc_strict_max_of_root {e lambda : ℝ}
     (he : (9 : ℝ) / 10 < e) (he1 : e < 1)
     (hl : lambda ∈ Set.Ioo 0 1) (hroot : arcPhaseNumerator e lambda = 0) :
@@ -163,6 +190,9 @@ theorem complexPhase_on_arc_strict_max_of_root {e lambda : ℝ}
           (arcPhaseNumerator_neg_right he he1 hl hroot ht.1 (ht.2.trans hx.2))
     exact hanti ⟨le_rfl, hlx.le⟩ ⟨hlx.le, le_rfl⟩ hlx
 
+/--
+@isnad1 id=existsun.2h1v.s8.ab78e8bbb945 from=translated src=- shape=91f1f588 vocab=c805a670
+-/
 theorem complexPhase_on_arc_unique_maximum {e : ℝ}
     (he : (9 : ℝ) / 10 < e) (he1 : e < 1) :
     ∃! lambda : ℝ, lambda ∈ Set.Ioo 0 1 ∧

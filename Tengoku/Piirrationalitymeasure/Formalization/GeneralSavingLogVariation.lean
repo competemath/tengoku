@@ -6,6 +6,9 @@ import Tengoku.Piirrationalitymeasure.Formalization.SavingRadialModel
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=eq.1h4v.s6.c33041f9a502 from=translated src=- shape=2af5ee52 vocab=d5d8567f
+-/
 theorem savingOmega_scaled_translation (a b : ℝ) {c : ℝ} (hc : 0 < c) (h : ℝ × ℝ) :
     savingOmega (a + c * h.1) (b + c * h.2) c =
       c * savingPhi ((a / c, b / c) + h) := by
@@ -22,6 +25,9 @@ theorem savingOmega_scaled_translation (a b : ℝ) {c : ℝ} (hc : 0 < c) (h : �
 
 namespace SavingRadialModel
 
+/--
+@isnad1 id=ex.4h4v.s8.991fd3e887ce from=translated src=- shape=f5c40acb vocab=a9588b80
+-/
 theorem phi_log_variation {a b c : ℤ} (M : SavingRadialModel a b c)
     (ha : 0 < (a : ℝ)) (hb : 0 < (b : ℝ)) (hc : 0 < (c : ℝ))
     (hq : (a : ℝ) + 2 * b - c ≠ 0) :
@@ -75,6 +81,9 @@ theorem phi_log_variation {a b c : ℤ} (M : SavingRadialModel a b c)
       ht.trans (add_le_add he' hcorr)
     _ = _ := by ring
 
+/--
+@isnad1 id=ex.4h4v.s8.94ec8a3a9aa2 from=translated src=- shape=0b4c0095 vocab=16d35d7b
+-/
 theorem phi_directional_log_variation {a b c : ℤ} (M : SavingRadialModel a b c)
     (ha : 0 < (a : ℝ)) (hb : 0 < (b : ℝ)) (hc : 0 < (c : ℝ))
     (hq : (a : ℝ) + 2 * b - c ≠ 0) :

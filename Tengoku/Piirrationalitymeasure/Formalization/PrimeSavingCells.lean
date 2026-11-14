@@ -16,11 +16,17 @@ def primeSavingSet : Set ℝ := {u | 0 ≤ u ∧ u < 1 ∧ primeSavingCondition 
 def SavingCell (j : ℕ) (u : ℝ) : Prop :=
   (j : ℝ) ≤ 3714 * u ∧ 3714 * u < (j : ℝ) + 1
 
+/--
+@isnad1 id=eq.1h2v.s5.955f96603cd0 from=translated src=- shape=7ee911e0 vocab=b8bb6cb4
+-/
 theorem savingCell_floor_b {j : ℕ} {u : ℝ} (hu : SavingCell j u) :
     ⌊3714 * u⌋ = (j : ℤ) := by
   apply Int.floor_eq_iff.mpr
   simpa only [Int.cast_natCast, SavingCell] using hu
 
+/--
+@isnad1 id=eq.1h2v.s6.93a5d2b0c414 from=translated src=- shape=34b213fd vocab=d0308dd7
+-/
 theorem savingCell_floor_a {j : ℕ} {u : ℝ} (hu : SavingCell j u) :
     ⌊1857 * u + 1 / 2⌋ = (((j + 1) / 2 : ℕ) : ℤ) := by
   have h₁ : 2 * ((j + 1) / 2) ≤ j + 1 := by omega
@@ -31,6 +37,9 @@ theorem savingCell_floor_a {j : ℕ} {u : ℝ} (hu : SavingCell j u) :
   simp only [Int.cast_natCast]
   constructor <;> dsimp [SavingCell] at hu <;> linarith [hu.1, hu.2]
 
+/--
+@isnad1 id=iff.1h2v.s7.0764e3b891a1 from=translated src=- shape=464bdc5e vocab=4abd6c85
+-/
 theorem savingCell_condition_floor {j : ℕ} {u : ℝ} (hu : SavingCell j u) :
     primeSavingCondition u ↔
       3715 * u + 1 / 2 < (((j + 1) / 2 : ℕ) : ℝ) +
@@ -40,7 +49,9 @@ theorem savingCell_condition_floor {j : ℕ} {u : ℝ} (hu : SavingCell j u) :
   simp only [Int.cast_natCast]
   constructor <;> intro h <;> linarith
 
-/-- A first jump of the c-grid already exhausts the initial gap.-/
+/-- A first jump of the c-grid already exhausts the initial gap.
+@isnad1 id=iff.2h3v.s7.3f1804c52d0f from=translated src=- shape=ce985e69 vocab=d43fa51c
+-/
 theorem savingCell_condition_iff {j : ℕ} {u : ℝ} {q : ℤ}
     (hu : SavingCell j u) (hq : ⌊5570 * (j : ℝ) / 3714⌋ = q) :
     primeSavingCondition u ↔
@@ -68,6 +79,9 @@ theorem savingCell_condition_iff {j : ℕ} {u : ℝ} {q : ℤ}
     have heq : ⌊5570 * u⌋ = q := Int.floor_eq_iff.mpr ⟨hqcu, hc⟩
     simpa only [heq] using hd
 
+/--
+@isnad1 id=iff.4h2v.s7.5b605c1bf393 from=translated src=- shape=98030e0c vocab=184e95f7
+-/
 theorem savingCell_condition_even {j : ℕ} {u : ℝ}
     (hj : 1 ≤ j) (hj' : j ≤ 3713) (he : j % 2 = 0) (hu : SavingCell j u) :
     primeSavingCondition u ↔
@@ -85,6 +99,9 @@ theorem savingCell_condition_even {j : ℕ} {u : ℝ}
   simp only [Int.cast_sub, Int.cast_mul, Int.cast_ofNat, Int.cast_natCast]
   constructor <;> rintro ⟨h₁, h₂⟩ <;> constructor <;> linarith
 
+/--
+@isnad1 id=iff.3h2v.s7.4736e0cbdd4f from=translated src=- shape=15a14dbd vocab=184e95f7
+-/
 theorem savingCell_condition_lower_odd {j : ℕ} {u : ℝ}
     (hj : j ≤ 1857) (he : j % 2 = 1) (hu : SavingCell j u) :
     primeSavingCondition u ↔
@@ -103,6 +120,9 @@ theorem savingCell_condition_lower_odd {j : ℕ} {u : ℝ}
     Nat.cast_add, Nat.cast_one]
   constructor <;> rintro ⟨h₁, h₂⟩ <;> constructor <;> linarith
 
+/--
+@isnad1 id=iff.4h2v.s6.b9f5b899b04b from=translated src=- shape=e314daee vocab=d107a210
+-/
 theorem savingCell_condition_upper_odd {j : ℕ} {u : ℝ}
     (hj : 1859 ≤ j) (hj' : j ≤ 3713) (he : j % 2 = 1) (hu : SavingCell j u) :
     primeSavingCondition u ↔ u < (3 * (j : ℝ) - 1) / 11140 := by
@@ -123,6 +143,9 @@ theorem savingCell_condition_upper_odd {j : ℕ} {u : ℝ}
   · intro h
     constructor <;> linarith
 
+/--
+@isnad1 id=not.1h1v.s3.dccac89bd9d4 from=translated src=- shape=88b619c6 vocab=38a91bbe
+-/
 theorem savingCell_zero {u : ℝ} (hu : SavingCell 0 u) : ¬primeSavingCondition u := by
   dsimp [SavingCell] at hu
   norm_num at hu

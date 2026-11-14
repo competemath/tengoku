@@ -50,9 +50,15 @@ noncomputable def theorem11 : Prop :=
 noncomputable def theorem12 (r s cost : ℝ × ℝ → ℝ) : Prop :=
   StrictLocalMinimizer (AuxiliaryBound r s cost) Admissible candidate
 
+/--
+@isnad1 id=admissib.0h0v.s1.3cc4e7e87e95 from=translated src=- shape=49959d42 vocab=593dff82
+-/
 theorem candidate_admissible : Admissible candidate := by
   norm_num [Admissible, candidate]
 
+/--
+@isnad1 id=irration.2h3v.s4.4d630092745c from=translated src=- shape=847200ad vocab=c9bd228c
+-/
 theorem IrrationalityMeasureAtMost.mono {theta mu mu' : ℝ}
     (hmu : IrrationalityMeasureAtMost theta mu) (h : mu ≤ mu') :
     IrrationalityMeasureAtMost theta mu' := by
@@ -67,9 +73,15 @@ theorem IrrationalityMeasureAtMost.mono {theta mu mu' : ℝ}
     Real.rpow_le_rpow_of_exponent_le hqone hexp
   exact lt_of_le_of_lt hpow (hq0 p q hq0' hqpos)
 
+/--
+@isnad1 id=eq.0h0v.s5.f859def853a3 from=translated src=- shape=6d0f34e9 vocab=9e37e9cd
+-/
 theorem candidate_coordinates :
     candidate = ((1857 : ℝ) / 5570, (1857 : ℝ) / 2785) := rfl
 
+/--
+@isnad1 id=le.2h2v.s4.643414659ddd from=translated src=- shape=93c604c6 vocab=3192e72c
+-/
 theorem irrationalityMeasure_le_of_atMost (theta mu : ℝ)
     (hBdd : BddBelow {x : ℝ | IrrationalityMeasureAtMost theta x})
     (hmu : IrrationalityMeasureAtMost theta mu) :
@@ -77,6 +89,9 @@ theorem irrationalityMeasure_le_of_atMost (theta mu : ℝ)
   unfold IrrationalityMeasure
   exact csInf_le hBdd hmu
 
+/--
+@isnad1 id=theorem1.2h0v.s5.a5119fd20e33 from=translated src=- shape=b7f58aa7 vocab=8e65c657
+-/
 theorem theorem11_of_atMost_bound
     (hBdd : BddBelow {x : ℝ | IrrationalityMeasureAtMost Real.pi x})
     (hbound : IrrationalityMeasureAtMost Real.pi
@@ -85,6 +100,9 @@ theorem theorem11_of_atMost_bound
   exact lt_of_le_of_lt
     (irrationalityMeasure_le_of_atMost Real.pi _ hBdd hbound) (by norm_num)
 
+/--
+@isnad1 id=irration.2h3v.s7.688c422f3984 from=translated src=- shape=9ed6f0a1 vocab=8a337ea3
+-/
 theorem irrationalityMeasureAtMost_of_uniform_power_bound
     {theta kappa c : ℝ}
     (hpower : ∃ q1 : ℕ, ∀ p : ℤ, ∀ q : ℕ,
@@ -116,6 +134,9 @@ theorem irrationalityMeasureAtMost_of_uniform_power_bound
       congr 1
       ring
 
+/--
+@isnad1 id=ex.2h2v.s5.f0835d41d15c from=translated src=- shape=6249677c vocab=6a8d15ab
+-/
 theorem rpow_neg_eventually_lt
     {c eps : ℝ} (hc : 0 < c) (heps : 0 < eps) :
     ∃ q0 : ℕ, ∀ q : ℕ, q0 ≤ q → (q : ℝ) ^ (-eps) < c := by
@@ -128,6 +149,9 @@ theorem rpow_neg_eventually_lt
   intro q hq
   exact hq0 q hq
 
+/--
+@isnad1 id=irration.2h3v.s6.a45a16e587f9 from=translated src=- shape=bc44eb4b vocab=8a337ea3
+-/
 theorem irrationalityMeasureAtMost_of_uniform_power_bound_of_pos_constant
     {theta kappa c : ℝ} (hc : 0 < c)
     (hpower : ∃ q1 : ℕ, ∀ p : ℤ, ∀ q : ℕ,
@@ -138,6 +162,9 @@ theorem irrationalityMeasureAtMost_of_uniform_power_bound_of_pos_constant
   intro eps heps
   exact rpow_neg_eventually_lt hc heps
 
+/--
+@isnad1 id=theorem1.4h2v.s7.2adba5bb1c96 from=translated src=- shape=8ba39556 vocab=a71a9d73
+-/
 theorem theorem11_of_uniform_power_bound
     (hBdd : BddBelow {x : ℝ | IrrationalityMeasureAtMost Real.pi x})
     {kappa c : ℝ}
@@ -151,6 +178,9 @@ theorem theorem11_of_uniform_power_bound
   have hmu' := IrrationalityMeasureAtMost.mono hmu hkappa
   exact theorem11_of_atMost_bound hBdd hmu'
 
+/--
+@isnad1 id=theorem1.4h2v.s7.ea1723ac3b63 from=translated src=- shape=a61a0edc vocab=a71a9d73
+-/
 theorem theorem11_of_uniform_power_bound_of_pos_constant
     (hBdd : BddBelow {x : ℝ | IrrationalityMeasureAtMost Real.pi x})
     {kappa c : ℝ} (hc : 0 < c)

@@ -6,6 +6,9 @@ import Tengoku.Piirrationalitymeasure.Formalization.EndpointIndexGeometry
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=iff.0h2v.s5.0e89e2bd4785 from=translated src=- shape=b9e8e1f0 vocab=e26302e7
+-/
 theorem candidateEndpoint_coincidence_AB (j k : ℤ) :
     candidateEndpointBaseRat .A j = candidateEndpointBaseRat .B k ↔ k = 2 * j - 1 := by
   unfold candidateEndpointBaseRat candidateEndpointShiftRat candidateEndpointSlopeRat
@@ -18,6 +21,9 @@ theorem candidateEndpoint_coincidence_AB (j k : ℤ) :
     push_cast
     ring
 
+/--
+@isnad1 id=iff.2h2v.s5.35b64c0c25ec from=translated src=- shape=89677a1f vocab=409dd49e
+-/
 theorem candidateEndpoint_coincidence_AC {j k : ℤ}
     (hj : j ∈ candidateEndpointIndices .A) (hk : k ∈ candidateEndpointIndices .C) :
     candidateEndpointBaseRat .A j = candidateEndpointBaseRat .C k ↔
@@ -33,6 +39,9 @@ theorem candidateEndpoint_coincidence_AC {j k : ℤ}
   · rintro ⟨rfl, rfl⟩
     norm_num [candidateEndpointBaseRat, candidateEndpointShiftRat, candidateEndpointSlopeRat]
 
+/--
+@isnad1 id=iff.2h2v.s5.5ec65bb24eef from=translated src=- shape=89677a1f vocab=521fb74f
+-/
 theorem candidateEndpoint_coincidence_AQ {j k : ℤ}
     (hj : j ∈ candidateEndpointIndices .A) (hk : k ∈ candidateEndpointIndices .Q) :
     candidateEndpointBaseRat .A j = candidateEndpointBaseRat .Q k ↔
@@ -48,6 +57,9 @@ theorem candidateEndpoint_coincidence_AQ {j k : ℤ}
   · rintro ⟨rfl, rfl⟩
     norm_num [candidateEndpointBaseRat, candidateEndpointShiftRat, candidateEndpointSlopeRat]
 
+/--
+@isnad1 id=iff.2h2v.s6.643deddc15b4 from=translated src=- shape=e0d469ea vocab=323f74c1
+-/
 theorem candidateEndpoint_coincidence_BC {j k : ℤ}
     (hj : j ∈ candidateEndpointIndices .B) (hk : k ∈ candidateEndpointIndices .C) :
     candidateEndpointBaseRat .B j = candidateEndpointBaseRat .C k ↔
@@ -63,6 +75,9 @@ theorem candidateEndpoint_coincidence_BC {j k : ℤ}
   · rintro (⟨rfl, rfl⟩ | ⟨rfl, rfl⟩) <;>
       norm_num [candidateEndpointBaseRat, candidateEndpointShiftRat, candidateEndpointSlopeRat]
 
+/--
+@isnad1 id=iff.2h2v.s5.31d1850324c0 from=translated src=- shape=89677a1f vocab=3c25b8f1
+-/
 theorem candidateEndpoint_coincidence_BQ {j k : ℤ}
     (hj : j ∈ candidateEndpointIndices .B) (hk : k ∈ candidateEndpointIndices .Q) :
     candidateEndpointBaseRat .B j = candidateEndpointBaseRat .Q k ↔
@@ -78,6 +93,9 @@ theorem candidateEndpoint_coincidence_BQ {j k : ℤ}
   · rintro ⟨rfl, rfl⟩
     norm_num [candidateEndpointBaseRat, candidateEndpointShiftRat, candidateEndpointSlopeRat]
 
+/--
+@isnad1 id=iff.2h2v.s7.3f302a1cb004 from=translated src=- shape=1afb4d91 vocab=c9971a8c
+-/
 theorem candidateEndpoint_coincidence_CQ {j k : ℤ}
     (hj : j ∈ candidateEndpointIndices .C) (hk : k ∈ candidateEndpointIndices .Q) :
     candidateEndpointBaseRat .C j = candidateEndpointBaseRat .Q k ↔

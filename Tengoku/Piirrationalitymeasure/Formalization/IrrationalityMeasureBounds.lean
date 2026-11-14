@@ -6,6 +6,9 @@ import Tengoku.Piirrationalitymeasure.Formalization.Statements
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=le.1h2v.s4.b289b3ee724a from=translated src=- shape=f99f57a5 vocab=c9bd228c
+-/
 theorem IrrationalityMeasureAtMost.nonneg {theta mu : ℝ}
     (h : IrrationalityMeasureAtMost theta mu) : 0 ≤ mu := by
   by_contra hm
@@ -30,6 +33,9 @@ theorem IrrationalityMeasureAtMost.nonneg {theta mu : ℝ}
     linarith
   linarith
 
+/--
+@isnad1 id=bddbelow.0h1v.s3.5511e7ddefee from=translated src=- shape=9b9e1b9d vocab=969859af
+-/
 theorem irrationalityMeasure_exponents_bddBelow (theta : ℝ) :
     BddBelow {mu : ℝ | IrrationalityMeasureAtMost theta mu} :=
   ⟨0, fun _ hm => hm.nonneg⟩

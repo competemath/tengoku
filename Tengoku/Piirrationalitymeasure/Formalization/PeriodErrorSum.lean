@@ -6,6 +6,9 @@ import Tengoku.Piirrationalitymeasure.Formalization.HarmonicLogScale
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=le.1h1v.s6.ec932e29155f from=translated src=- shape=f3a9c139 vocab=075a0716
+-/
 theorem inverse_square_le_telescope {k : ℝ} (hk : 1 ≤ k) :
     1 / k ^ 2 ≤ 2 / k - 2 / (k + 1) := by
   have hk0 : 0 < k := by linarith
@@ -15,6 +18,9 @@ theorem inverse_square_le_telescope {k : ℝ} (hk : 1 ≤ k) :
   field_simp
   nlinarith
 
+/--
+@isnad1 id=le.0h1v.s6.535620e69abb from=translated src=- shape=38c984e5 vocab=2c02d67e
+-/
 theorem sum_Icc_inverse_square_le (N : ℕ) :
     (∑ k ∈ Finset.Icc 1 N, 1 / (k : ℝ) ^ 2) ≤ 2 - 2 / ((N : ℝ) + 1) := by
   induction N with
@@ -26,12 +32,18 @@ theorem sum_Icc_inverse_square_le (N : ℕ) :
     push_cast
     linarith
 
+/--
+@isnad1 id=le.0h1v.s6.ea5d32f0580a from=translated src=- shape=151cdf33 vocab=7f95fb3f
+-/
 theorem sum_Icc_inverse_square_le_two (N : ℕ) :
     (∑ k ∈ Finset.Icc 1 N, 1 / (k : ℝ) ^ 2) ≤ 2 := by
   exact (sum_Icc_inverse_square_le N).trans (by
     have h : 0 ≤ 2 / ((N : ℝ) + 1) := by positivity
     linarith)
 
+/--
+@isnad1 id=le.2h4v.s7.22fd4be6aaf8 from=translated src=- shape=fdf655af vocab=c590483c
+-/
 theorem sum_Icc_inverse_square_error {f : ℕ → ℝ} {D C : ℝ} (N : ℕ)
     (hC : 0 ≤ C)
     (herr : ∀ k ∈ Finset.Icc 1 N, |f k - D / (k : ℝ)| ≤ C / (k : ℝ) ^ 2) :

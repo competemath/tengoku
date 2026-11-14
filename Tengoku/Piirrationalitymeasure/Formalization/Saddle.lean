@@ -12,18 +12,33 @@ namespace PiIrrationality
 noncomputable def stationaryRoot : ℝ :=
   Classical.choose stationaryCubic_unique_root
 
+/--
+@isnad1 id=mem.0h0v.s4.604b7f3e81ef from=translated src=- shape=48e903f7 vocab=a0295baa
+-/
 theorem stationaryRoot_mem : stationaryRoot ∈ Set.Icc (66 : ℝ) 67 := by
   simpa [stationaryRoot] using (Classical.choose_spec stationaryCubic_unique_root).1.1
 
+/--
+@isnad1 id=eq.0h0v.s3.2d5e5a09bac7 from=translated src=- shape=b0ae1d2b vocab=31e3ac0b
+-/
 theorem stationaryRoot_eq_zero : stationaryCubic stationaryRoot = 0 := by
   simpa [stationaryRoot] using (Classical.choose_spec stationaryCubic_unique_root).1.2
 
+/--
+@isnad1 id=lt.0h0v.s5.0096340e3a2a from=translated src=- shape=7ed1bc26 vocab=d06d0c02
+-/
 theorem stationaryCubic_at_663_10 : stationaryCubic ((663 : ℝ) / 10) < 0 := by
   norm_num [stationaryCubic]
 
+/--
+@isnad1 id=lt.0h0v.s5.2fcc8402f0df from=translated src=- shape=b6029c4c vocab=d06d0c02
+-/
 theorem stationaryCubic_at_664_10 : 0 < stationaryCubic ((664 : ℝ) / 10) := by
   norm_num [stationaryCubic]
 
+/--
+@isnad1 id=lt.0h0v.s4.eb211feb83cc from=translated src=- shape=5ccaf027 vocab=7e461dc9
+-/
 theorem stationaryRoot_gt_663_10 : (663 : ℝ) / 10 < stationaryRoot := by
   by_contra h
   have hle : stationaryRoot ≤ (663 : ℝ) / 10 := le_of_not_gt h
@@ -37,6 +52,9 @@ theorem stationaryRoot_gt_663_10 : (663 : ℝ) / 10 < stationaryRoot := by
     ⟨by norm_num, by norm_num⟩ hlt
   linarith [stationaryRoot_eq_zero, stationaryCubic_at_663_10]
 
+/--
+@isnad1 id=lt.0h0v.s4.a515f9be707f from=translated src=- shape=0efb1284 vocab=7e461dc9
+-/
 theorem stationaryRoot_lt_664_10 : stationaryRoot < (664 : ℝ) / 10 := by
   by_contra h
   have hle : (664 : ℝ) / 10 ≤ stationaryRoot := le_of_not_gt h
@@ -49,12 +67,21 @@ theorem stationaryRoot_lt_664_10 : stationaryRoot < (664 : ℝ) / 10 := by
     ⟨by norm_num, by norm_num⟩ stationaryRoot_mem hlt
   linarith [stationaryRoot_eq_zero, stationaryCubic_at_664_10]
 
+/--
+@isnad1 id=lt.0h0v.s5.fcb3ca2771fc from=translated src=- shape=7ed1bc26 vocab=d06d0c02
+-/
 theorem stationaryCubic_at_6632_100 : stationaryCubic ((6632 : ℝ) / 100) < 0 := by
   norm_num [stationaryCubic]
 
+/--
+@isnad1 id=lt.0h0v.s5.4a0ca2fa9eb8 from=translated src=- shape=b6029c4c vocab=d06d0c02
+-/
 theorem stationaryCubic_at_6633_100 : 0 < stationaryCubic ((6633 : ℝ) / 100) := by
   norm_num [stationaryCubic]
 
+/--
+@isnad1 id=lt.0h0v.s4.8cfb9782f346 from=translated src=- shape=5ccaf027 vocab=7e461dc9
+-/
 theorem stationaryRoot_gt_6632_100 : (6632 : ℝ) / 100 < stationaryRoot := by
   by_contra h
   have hle : stationaryRoot ≤ (6632 : ℝ) / 100 := le_of_not_gt h
@@ -67,6 +94,9 @@ theorem stationaryRoot_gt_6632_100 : (6632 : ℝ) / 100 < stationaryRoot := by
     stationaryRoot_mem ⟨by norm_num, by norm_num⟩ hlt
   linarith [stationaryRoot_eq_zero, stationaryCubic_at_6632_100]
 
+/--
+@isnad1 id=lt.0h0v.s4.7d34f9ad98a2 from=translated src=- shape=0efb1284 vocab=7e461dc9
+-/
 theorem stationaryRoot_lt_6633_100 : stationaryRoot < (6633 : ℝ) / 100 := by
   by_contra h
   have hle : (6633 : ℝ) / 100 ≤ stationaryRoot := le_of_not_gt h
@@ -83,18 +113,33 @@ noncomputable def rhoLower : ℝ := (66321017380598567172217731240 : ℝ) / 10 ^
 
 noncomputable def rhoUpper : ℝ := (66321017380598567172217731241 : ℝ) / 10 ^ 27
 
+/--
+@isnad1 id=lt.0h0v.s3.b41ca2623b69 from=translated src=- shape=b0ae1d2b vocab=d1a270b1
+-/
 theorem stationaryCubic_at_rhoLower : stationaryCubic rhoLower < 0 := by
   norm_num [stationaryCubic, rhoLower]
 
+/--
+@isnad1 id=lt.0h0v.s3.ccc324bf6468 from=translated src=- shape=a1bca669 vocab=e6922b36
+-/
 theorem stationaryCubic_at_rhoUpper : 0 < stationaryCubic rhoUpper := by
   norm_num [stationaryCubic, rhoUpper]
 
+/--
+@isnad1 id=mem.0h0v.s4.5fe1a19b32ae from=translated src=- shape=48e903f7 vocab=b184bf6a
+-/
 theorem rhoLower_mem : rhoLower ∈ Set.Icc (66 : ℝ) 67 := by
   constructor <;> norm_num [rhoLower]
 
+/--
+@isnad1 id=mem.0h0v.s4.b47690879ca1 from=translated src=- shape=48e903f7 vocab=9bf11bfe
+-/
 theorem rhoUpper_mem : rhoUpper ∈ Set.Icc (66 : ℝ) 67 := by
   constructor <;> norm_num [rhoUpper]
 
+/--
+@isnad1 id=lt.0h0v.s2.4836e9c95d4e from=translated src=- shape=54c8eceb vocab=546f7f13
+-/
 theorem stationaryRoot_gt_rhoLower : rhoLower < stationaryRoot := by
   by_contra h
   have hle : stationaryRoot ≤ rhoLower := le_of_not_gt h
@@ -107,6 +152,9 @@ theorem stationaryRoot_gt_rhoLower : rhoLower < stationaryRoot := by
     stationaryRoot_mem rhoLower_mem hlt
   linarith [stationaryRoot_eq_zero, stationaryCubic_at_rhoLower]
 
+/--
+@isnad1 id=lt.0h0v.s2.823fe173836f from=translated src=- shape=54c8eceb vocab=68e3ee44
+-/
 theorem stationaryRoot_lt_rhoUpper : stationaryRoot < rhoUpper := by
   by_contra h
   have hle : rhoUpper ≤ stationaryRoot := le_of_not_gt h
@@ -125,12 +173,18 @@ noncomputable def saddleULower : ℝ :=
 noncomputable def saddleUUpper : ℝ :=
   -(1919728071187574299433226 : ℝ) / 10 ^ 24
 
+/--
+@isnad1 id=lt.0h0v.s3.e6c85da447c3 from=translated src=- shape=ff3a10fc vocab=7c7a1dc4
+-/
 theorem stationaryRoot_pos : 0 < stationaryRoot := by
   linarith [stationaryRoot_mem.1]
 
 noncomputable def saddleU : ℝ :=
   ((232119 : ℝ) / 3715 - stationaryRoot) / 2
 
+/--
+@isnad1 id=and.0h0v.s3.ead0ea9c07b7 from=translated src=- shape=9cf45692 vocab=c27e3b6b
+-/
 theorem saddleU_paper_bounds : saddleULower < saddleU ∧ saddleU < saddleUUpper := by
   unfold saddleULower saddleUUpper saddleU
   have hL := stationaryRoot_gt_rhoLower
@@ -143,32 +197,50 @@ noncomputable def saddleNormSq : ℝ := (232125 : ℝ) / (743 * stationaryRoot)
 
 noncomputable def saddleVSq : ℝ := saddleNormSq - saddleU ^ 2
 
+/--
+@isnad1 id=lt.0h0v.s3.179aec773527 from=translated src=- shape=ff3a10fc vocab=b4e9504f
+-/
 theorem saddleNormSq_pos : 0 < saddleNormSq := by
   unfold saddleNormSq
   exact div_pos (by norm_num) (mul_pos (by norm_num) stationaryRoot_pos)
 
+/--
+@isnad1 id=and.0h0v.s4.ae4546254761 from=translated src=- shape=443ea2fd vocab=315558cc
+-/
 theorem saddleU_bounds : -(2 : ℝ) < saddleU ∧ saddleU < 0 := by
   unfold saddleU
   constructor <;> nlinarith [stationaryRoot_gt_663_10,
     stationaryRoot_lt_664_10]
 
+/--
+@isnad1 id=and.0h0v.s6.3114a4e5be20 from=translated src=- shape=b5fd8a3e vocab=1b7c7178
+-/
 theorem saddleU_tight_bounds : -(193 : ℝ) / 100 < saddleU ∧ saddleU < -(19 : ℝ) / 10 := by
   unfold saddleU
   constructor <;> nlinarith [stationaryRoot_gt_6632_100,
     stationaryRoot_lt_6633_100]
 
+/--
+@isnad1 id=lt.0h0v.s4.884044d701c0 from=translated src=- shape=5ccaf027 vocab=b005fd22
+-/
 theorem saddleNormSq_gt : (47 : ℝ) / 10 < saddleNormSq := by
   unfold saddleNormSq
   have hr : 0 < 743 * stationaryRoot := mul_pos (by norm_num) stationaryRoot_pos
   apply (lt_div_iff₀ hr).2
   nlinarith [stationaryRoot_lt_664_10]
 
+/--
+@isnad1 id=lt.0h0v.s4.cb8942437aa6 from=translated src=- shape=0efb1284 vocab=b005fd22
+-/
 theorem saddleNormSq_lt : saddleNormSq < (24 : ℝ) / 5 := by
   unfold saddleNormSq
   have hr : 0 < 743 * stationaryRoot := mul_pos (by norm_num) stationaryRoot_pos
   apply (div_lt_iff₀ hr).2
   nlinarith [stationaryRoot_gt_6632_100]
 
+/--
+@isnad1 id=lt.0h0v.s3.2e057e11f85b from=translated src=- shape=ff3a10fc vocab=5edd85f4
+-/
 theorem saddleVSq_pos : 0 < saddleVSq := by
   unfold saddleVSq
   have hu : saddleU ^ 2 < (4 : ℝ) := by
@@ -178,13 +250,22 @@ theorem saddleVSq_pos : 0 < saddleVSq := by
 
 noncomputable def saddleV : ℝ := Real.sqrt saddleVSq
 
+/--
+@isnad1 id=lt.0h0v.s3.e94f07ad37b5 from=translated src=- shape=ff3a10fc vocab=31e2a620
+-/
 theorem saddleV_pos : 0 < saddleV := by
   unfold saddleV
   exact Real.sqrt_pos.2 saddleVSq_pos
 
+/--
+@isnad1 id=eq.0h0v.s4.ca3346b0d0b7 from=translated src=- shape=f23f23a3 vocab=e203094e
+-/
 theorem saddleV_sq : saddleV ^ 2 = saddleVSq := by
   exact Real.sq_sqrt saddleVSq_pos.le
 
+/--
+@isnad1 id=lt.0h0v.s4.539d96527878 from=translated src=- shape=5ccaf027 vocab=5831f76f
+-/
 theorem saddleV_gt : (49 : ℝ) / 50 < saddleV := by
   have hv := saddleV_sq
   unfold saddleVSq at hv
@@ -199,6 +280,9 @@ noncomputable def saddleNormSqLower : ℝ :=
 noncomputable def saddleNormSqUpper : ℝ :=
   (4710661776618520503155596337 : ℝ) / 10 ^ 27
 
+/--
+@isnad1 id=and.0h0v.s3.8dcaf3ebcf33 from=translated src=- shape=9cf45692 vocab=1ac7c21b
+-/
 theorem saddleNormSq_paper_bounds :
     saddleNormSqLower < saddleNormSq ∧ saddleNormSq < saddleNormSqUpper := by
   unfold saddleNormSqLower saddleNormSqUpper saddleNormSq
@@ -226,6 +310,9 @@ noncomputable def saddleUTightLower : ℝ :=
 noncomputable def saddleUTightUpper : ℝ :=
   -(19197280711875742994332263 : ℝ) / 10 ^ 25
 
+/--
+@isnad1 id=and.0h0v.s3.8e90bfb10823 from=translated src=- shape=9cf45692 vocab=c39c63b4
+-/
 theorem saddleU_tight_paper_bounds :
     saddleUTightLower < saddleU ∧ saddleU < saddleUTightUpper := by
   unfold saddleUTightLower saddleUTightUpper saddleU
@@ -238,6 +325,9 @@ theorem saddleU_tight_paper_bounds :
     nlinarith [hL, hU]
   constructor <;> nlinarith [hL, hU, hsum]
 
+/--
+@isnad1 id=and.0h0v.s3.c669f31df985 from=translated src=- shape=9cf45692 vocab=194dfb43
+-/
 theorem saddleV_paper_bounds :
     saddleVLower < saddleV ∧ saddleV < saddleVUpper := by
   have hv := saddleV_sq
@@ -302,6 +392,9 @@ theorem saddleV_paper_bounds :
 
 noncomputable def saddleUpper : ℂ := (saddleU : ℂ) + (saddleV : ℂ) * Complex.I
 
+/--
+@isnad1 id=eq.0h1v.s7.19617fd51425 from=translated src=- shape=02efcb62 vocab=e084a7e0
+-/
 theorem stationaryCubic_complex_factorization (z : ℂ) :
     (3715 : ℂ) * z ^ 3 - 232119 * z ^ 2 - 928475 * z - 1160625 =
       (3715 : ℂ) * (z - (stationaryRoot : ℂ)) *
@@ -337,6 +430,9 @@ theorem stationaryCubic_complex_factorization (z : ℂ) :
     _ = (3715 : ℂ) * (z - (stationaryRoot : ℂ)) *
         (z ^ 2 - 2 * (saddleU : ℂ) * z + (saddleNormSq : ℂ)) := by ring
 
+/--
+@isnad1 id=eq.0h0v.s6.a174ae6188d9 from=translated src=- shape=189bc458 vocab=3835c4df
+-/
 theorem saddleUpper_quadratic_eq_zero :
     saddleUpper ^ 2 - 2 * (saddleU : ℂ) * saddleUpper +
         (saddleNormSq : ℂ) = 0 := by
@@ -347,6 +443,9 @@ theorem saddleUpper_quadratic_eq_zero :
     nlinarith [hv]
   · ring
 
+/--
+@isnad1 id=eq.0h0v.s6.4d55088df4c4 from=translated src=- shape=40f7b94e vocab=9a814436
+-/
 theorem stationaryCubic_saddleUpper :
     (3715 : ℂ) * saddleUpper ^ 3 - 232119 * saddleUpper ^ 2 -
         928475 * saddleUpper - 1160625 = 0 := by

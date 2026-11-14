@@ -9,6 +9,9 @@ namespace PiIrrationality.GeneralCoefficient
 open PowerSeries MeasureTheory ProbabilityTheory Filter
 open scoped Topology
 
+/--
+@isnad1 id=tendsto.9h5v.s9.e71791bd819c from=translated src=- shape=0e698864 vocab=9d5d2f1a
+-/
 theorem coefficient_local_limit (F : PowerSeries ℝ) (hF : ∀ k, 0 ≤ coeff k F)
     {x value r : ℝ} (hx : 0 < x) (hvalue : 0 < value)
     (hseries : HasSum (fun k => coeff k F * x ^ k) value)
@@ -28,6 +31,9 @@ theorem coefficient_local_limit (F : PowerSeries ℝ) (hF : ∀ k, 0 ≤ coeff k
     hspan' (law_memLp_two F hF hx.le hvalue hseries hxr hr) hmean hvar
     (law_charFun_pow F hF hx.le hvalue hseries)
 
+/--
+@isnad1 id=tendsto.9h5v.s9.2dacd2052529 from=translated src=- shape=f087c93d vocab=5248aa63
+-/
 theorem coefficient_asymptotic (F : PowerSeries ℝ) (hF : ∀ k, 0 ≤ coeff k F)
     {x value r : ℝ} (hx : 0 < x) (hvalue : 0 < value)
     (hseries : HasSum (fun k => coeff k F * x ^ k) value)
@@ -62,6 +68,9 @@ theorem coefficient_asymptotic (F : PowerSeries ℝ) (hF : ∀ k, 0 ≤ coeff k 
   rw [probability_extraction F hx hvalue n (q * n), hsqrt]
   field_simp [hx.ne', hvalue.ne', hnormal.ne', (Real.sqrt_pos.mpr hnreal).ne']
 
+/--
+@isnad1 id=ex.9h5v.s9.477a1d6c82b3 from=translated src=- shape=e3b43d63 vocab=fdff0575
+-/
 theorem lemma_4_1 (F : PowerSeries ℝ) (hF : ∀ k, 0 ≤ coeff k F)
     {R x value : ℝ} (hx : 0 < x) (hxR : x < R) (hvalue : 0 < value)
     (hseries : HasSum (fun k => coeff k F * x ^ k) value)

@@ -7,11 +7,17 @@ import Tengoku.Piirrationalitymeasure.Formalization.PhaseSignPattern
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=continuo.0h2v.s4.1bc7a40cf321 from=translated src=- shape=7c0c7130 vocab=e0e464ad
+-/
 theorem arcClearedDerivative_continuous (p : ℝ × ℝ) (e : ℝ) :
     Continuous (arcClearedDerivative p.1 p.2 e) := by
   unfold arcClearedDerivative arcD arcH arcJ arcDderiv arcHderiv arcJderiv
   fun_prop
 
+/--
+@isnad1 id=lt.2h2v.s6.ae41b93b52d5 from=translated src=- shape=b55c7dc9 vocab=e52eec04
+-/
 theorem arcClearedDerivative_pos_zero {p : ℝ × ℝ} {e : ℝ}
     (ha : 0 < p.1) (he : (9 : ℝ) / 10 < e) :
     0 < arcClearedDerivative p.1 p.2 e 0 := by
@@ -21,6 +27,9 @@ theorem arcClearedDerivative_pos_zero {p : ℝ × ℝ} {e : ℝ}
   simpa only [arcClearedDerivative, sub_zero, mul_one, mul_zero, zero_mul, sub_zero,
     add_zero] using h
 
+/--
+@isnad1 id=lt.2h2v.s6.e7326a8b23c3 from=translated src=- shape=b2254fa1 vocab=e52eec04
+-/
 theorem arcClearedDerivative_neg_one {p : ℝ × ℝ} {e : ℝ}
     (hb : 0 < p.2) (he : (9 : ℝ) / 10 < e) :
     arcClearedDerivative p.1 p.2 e 1 < 0 := by
@@ -30,6 +39,9 @@ theorem arcClearedDerivative_neg_one {p : ℝ × ℝ} {e : ℝ}
   simpa only [arcClearedDerivative, sub_self, mul_one, mul_zero, zero_mul,
     zero_sub, add_zero, sub_zero] using neg_lt_zero.mpr h
 
+/--
+@isnad1 id=eq.5h4v.s6.90462b930093 from=translated src=- shape=6df6eb51 vocab=ed6e07ab
+-/
 theorem arcClearedDerivative_root_unique {p : ℝ × ℝ} {e x y : ℝ}
     (hs : PhaseCoefficientSigns (parameterPhasePolynomial p e))
     (hx : x ∈ Set.Ioo 0 1) (hy : y ∈ Set.Ioo 0 1)
@@ -44,6 +56,9 @@ theorem arcClearedDerivative_root_unique {p : ℝ × ℝ} {e x y : ℝ}
   have hcross := (div_eq_div_iff hdx.ne' hdy.ne').mp hdiv
   nlinarith
 
+/--
+@isnad1 id=lt.7h4v.s7.52f9f98a5c30 from=translated src=- shape=a71be0f7 vocab=c570338f
+-/
 theorem arcClearedDerivative_pos_left {p : ℝ × ℝ} {e lambda x : ℝ}
     (hs : PhaseCoefficientSigns (parameterPhasePolynomial p e))
     (ha : 0 < p.1) (he : (9 : ℝ) / 10 < e)
@@ -63,6 +78,9 @@ theorem arcClearedDerivative_pos_left {p : ℝ × ℝ} {e lambda x : ℝ}
     ⟨hz0, by linarith [hz.2, hl.2]⟩ hl hzero hroot
   linarith [hz.2]
 
+/--
+@isnad1 id=lt.7h4v.s7.235946c193c0 from=translated src=- shape=b1ace182 vocab=c570338f
+-/
 theorem arcClearedDerivative_neg_right {p : ℝ × ℝ} {e lambda x : ℝ}
     (hs : PhaseCoefficientSigns (parameterPhasePolynomial p e))
     (hb : 0 < p.2) (he : (9 : ℝ) / 10 < e)
@@ -82,6 +100,9 @@ theorem arcClearedDerivative_neg_right {p : ℝ × ℝ} {e lambda x : ℝ}
     ⟨by linarith [hz.1, hl.1], hz1⟩ hl hzero hroot
   linarith [hz.1]
 
+/--
+@isnad1 id=iff.2h3v.s7.42def5c1f3ec from=translated src=- shape=55d578f7 vocab=a41e33d0
+-/
 theorem general_complexPhase_arc_deriv_zero_iff {p : ℝ × ℝ} {e x : ℝ}
     (he : (9 : ℝ) / 10 < e) (hx : x ∈ Set.Ioo 0 1) :
     deriv (fun t => complexPhase p.1 p.2 (gammaPath e t)) x = 0 ↔
@@ -93,6 +114,9 @@ theorem general_complexPhase_arc_deriv_zero_iff {p : ℝ × ℝ} {e x : ℝ}
   simpa only [div_eq_zero_iff, OfNat.ofNat_ne_zero, or_false, mul_eq_zero,
     hd, false_or] using hz.to_iff
 
+/--
+@isnad1 id=lt.3h3v.s7.cc68f3082cd8 from=translated src=- shape=01e9f3e5 vocab=a41e33d0
+-/
 theorem general_complexPhase_arc_deriv_pos {p : ℝ × ℝ} {e x : ℝ}
     (he : (9 : ℝ) / 10 < e) (hx : x ∈ Set.Ioo 0 1)
     (hQ : 0 < arcClearedDerivative p.1 p.2 e x) :
@@ -104,6 +128,9 @@ theorem general_complexPhase_arc_deriv_pos {p : ℝ × ℝ} {e x : ℝ}
   rw [(hasDerivAt_complexPhase_on_arc p.1 p.2 he hx.1 hx.2).deriv]
   exact div_pos hd (by norm_num)
 
+/--
+@isnad1 id=lt.3h3v.s7.c4952169e24d from=translated src=- shape=80da3055 vocab=a41e33d0
+-/
 theorem general_complexPhase_arc_deriv_neg {p : ℝ × ℝ} {e x : ℝ}
     (he : (9 : ℝ) / 10 < e) (hx : x ∈ Set.Ioo 0 1)
     (hQ : arcClearedDerivative p.1 p.2 e x < 0) :
@@ -115,6 +142,9 @@ theorem general_complexPhase_arc_deriv_neg {p : ℝ × ℝ} {e x : ℝ}
   rw [(hasDerivAt_complexPhase_on_arc p.1 p.2 he hx.1 hx.2).deriv]
   exact div_neg_of_neg_of_pos hd (by norm_num)
 
+/--
+@isnad1 id=lt.8h4v.s7.88cef58ddba7 from=translated src=- shape=1250ad55 vocab=10f173b3
+-/
 theorem general_complexPhase_arc_strict_max {p : ℝ × ℝ} {e lambda : ℝ}
     (hs : PhaseCoefficientSigns (parameterPhasePolynomial p e))
     (ha : 0 < p.1) (hb : 0 < p.2) (he : (9 : ℝ) / 10 < e)

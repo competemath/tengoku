@@ -11,6 +11,9 @@ namespace PiIrrationality
 open Filter Set
 open scoped Topology
 
+/--
+@isnad1 id=candidat.2h3v.s5.a3e944f7e50b from=translated src=- shape=d864e747 vocab=7f19a8d8
+-/
 theorem CandidateOpenSector.smul {i : Fin 12} {v : ℝ × ℝ}
     (hv : CandidateOpenSector i v) {s : ℝ} (hs : 0 < s) :
     CandidateOpenSector i (s • v) := by
@@ -18,6 +21,9 @@ theorem CandidateOpenSector.smul {i : Fin 12} {v : ℝ × ℝ}
   exact ⟨s * u, s * t, mul_pos hs hu, mul_pos hs ht,
     by rw [smul_add, smul_smul, smul_smul]⟩
 
+/--
+@isnad1 id=eq.2h4v.s7.6cd761db3d15 from=translated src=- shape=f119a6a5 vocab=950f2679
+-/
 theorem translatedSavingMeasure_partition_constant (i : Fin 12)
     (e : CandidateEndpointEnumeration) (eps : ℕ → ℝ) {rho : ℝ} (hrho : 0 < rho)
     (hmodel : ∀ z : ℝ × ℝ, CandidateOpenSector i z → parameterNormOne z < rho →
@@ -47,6 +53,9 @@ theorem translatedSavingMeasure_partition_constant (i : Fin 12)
     simpa only [zero_mul, add_zero] using hh.tendsto.mono_left nhdsWithin_le_nhds
   exact (tendsto_nhds_unique hlim ((tendsto_congr' heq).mpr hconst)).symm
 
+/--
+@isnad1 id=ex.0h0v.s7.f40c7d3fe424 from=translated src=- shape=10d3368e vocab=39d61b24
+-/
 theorem translatedSavingMeasure_uniform_open_affine :
     ∃ rho : ℝ, 0 < rho ∧ rho ≤ 1 / 100 ∧ ∀ i : Fin 12,
       ∃ (e : CandidateEndpointEnumeration) (w : ℝ × ℝ),

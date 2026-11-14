@@ -12,6 +12,9 @@ namespace PiIrrationality
 open Filter Set
 open scoped Topology
 
+/--
+@isnad1 id=eq.0h3v.s7.c96554fc831c from=translated src=- shape=ded89e2e vocab=8e5847d9
+-/
 theorem candidateEndpointPartition_rank (e : CandidateEndpointEnumeration) (z : ℝ × ℝ)
     (p : CandidateEndpointLabel) :
     candidateEndpointPartition e z ((e.symm p).val + 1) = candidateEndpointPosition z p := by
@@ -19,6 +22,9 @@ theorem candidateEndpointPartition_rank (e : CandidateEndpointEnumeration) (z : 
     finiteEndpointPartition_internal (candidateEndpointCut : ℝ) ((candidateEndpointCut : ℝ) + 1)
       (fun j => candidateEndpointPosition z (e j)) (e.symm p)
 
+/--
+@isnad1 id=eventual.2h3v.s7.6bf5891c8ad8 from=translated src=- shape=7d8d629d vocab=a87d5915
+-/
 theorem candidatePartition_gap_eventually (e : CandidateEndpointEnumeration) (v : ℝ × ℝ)
     (horder : ∀ᶠ s : ℝ in 𝓝[>] 0, CandidateOrderedEndpoints e (s • v))
     {k : ℕ} (hk : k < Fintype.card CandidateEndpointLabel + 1) :
@@ -38,6 +44,9 @@ theorem candidatePartition_gap_eventually (e : CandidateEndpointEnumeration) (v 
     exact sub_pos.mpr (candidateEndpointPartition_adjacent_lt hs hk)
   simpa only [heq] using affine_gt_sq_eventually_of_pos hp
 
+/--
+@isnad1 id=eventual.3h3v.s8.344e862c485d from=translated src=- shape=ea0cbd0f vocab=4ce9290d
+-/
 theorem candidatePartitionJump_actual_eventually (e : CandidateEndpointEnumeration)
     (w v : ℝ × ℝ) (hw : CandidateOrderedEndpoints e w) (hwn : parameterNormOne w ≤ 1 / 100)
     (hscaled : ∀ᶠ s : ℝ in 𝓝[>] 0,
@@ -67,6 +76,9 @@ theorem candidatePartitionJump_actual_eventually (e : CandidateEndpointEnumerati
   rw [hchiL, hchiR]
   rfl
 
+/--
+@isnad1 id=eventual.3h3v.s8.cc18ca9105c2 from=translated src=- shape=13e71f6d vocab=d5b03be2
+-/
 theorem candidatePartitionLinear_eq_actual_weighted_eventually (e : CandidateEndpointEnumeration)
     (w v : ℝ × ℝ) (hw : CandidateOrderedEndpoints e w) (hwn : parameterNormOne w ≤ 1 / 100)
     (hscaled : ∀ᶠ s : ℝ in 𝓝[>] 0,

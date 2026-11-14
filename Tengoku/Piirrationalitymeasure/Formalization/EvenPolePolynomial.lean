@@ -28,13 +28,22 @@ noncomputable def part (F : Polynomial ℤ) (m : ℕ) : Polynomial ℤ :=
 noncomputable def remainder (F : Polynomial ℤ) (m : ℕ) : Polynomial ℤ :=
   (remainderY F m).comp (X ^ 2)
 
+/--
+@isnad1 id=monic.0h1v.s2.432cb206dd02 from=translated src=- shape=1a6c1393 vocab=820dce21
+-/
 theorem denominatorY_monic (m : ℕ) : (denominatorY m).Monic :=
   (monic_X_sub_C 25).pow _
 
+/--
+@isnad1 id=eq.0h4v.s7.d2696fd008a9 from=translated src=- shape=2f44178d vocab=78f8c479
+-/
 theorem part_aeval_even {K : Type*} [CommRing K] [Algebra ℤ K]
     (F : Polynomial ℤ) (m : ℕ) (t : K) : aeval (-t) (part F m) = aeval t (part F m) := by
   simp [part, aeval_comp]
 
+/--
+@isnad1 id=le.1h2v.s5.199911070d7a from=translated src=- shape=2349491c vocab=eb03b91a
+-/
 theorem remainder_natDegree_le (F : Polynomial ℤ) {m : ℕ} (hm : 0 < m) :
     (remainder F m).natDegree ≤ 2 * m - 2 := by
   have h := degree_modByMonic_lt (signedNumeratorY F m) (denominatorY_monic m)
@@ -49,6 +58,9 @@ theorem remainder_natDegree_le (F : Polynomial ℤ) {m : ℕ} (hm : 0 < m) :
   rw [remainder, natDegree_comp, natDegree_X_pow]
   omega
 
+/--
+@isnad1 id=eq.0h2v.s7.6439d3c40a27 from=translated src=- shape=726dc5c3 vocab=9be8c2c6
+-/
 theorem division (F : Polynomial ℤ) (m : ℕ) :
     (signedNumeratorY F m).comp (X ^ 2) =
       (X ^ 2 - C 25) ^ m * part F m + remainder F m := by
@@ -56,6 +68,9 @@ theorem division (F : Polynomial ℤ) (m : ℕ) :
     (modByMonic_add_div (signedNumeratorY F m) (denominatorY m))
   simpa [part, remainder, partY, remainderY, denominatorY, add_comm] using h.symm
 
+/--
+@isnad1 id=eq.1h2v.s7.0f38d7125317 from=translated src=- shape=1b5d884e vocab=a1ae5b33
+-/
 theorem part_eq_divByMonic (F : Polynomial ℤ) {m : ℕ} (hm : 0 < m) :
     (signedNumeratorY F m).comp (X ^ 2) /ₘ (X ^ 2 - C 25) ^ m = part F m := by
   have hmonic : ((X ^ 2 - C 25 : Polynomial ℤ) ^ m).Monic :=
@@ -70,6 +85,9 @@ theorem part_eq_divByMonic (F : Polynomial ℤ) {m : ℕ} (hm : 0 < m) :
         Nat.cast_lt]
       omega
 
+/--
+@isnad1 id=eq.1h2v.s8.8876d7f7b9c1 from=translated src=- shape=13bed082 vocab=f2eea834
+-/
 theorem part_map_eq_divByMonic (F : Polynomial ℤ) {m : ℕ} (hm : 0 < m) :
     numerator (signedNumeratorY F m) /ₘ (X ^ 2 - C 25) ^ m =
       (part F m).map (Int.castRingHom ℚ) := by
@@ -84,6 +102,9 @@ def Decomposition (F : Polynomial ℤ) (m : ℕ) (a b : Fin m → ℚ) : Prop :=
       (∑ i : Fin m, C (a i) * (X + C 5) ^ i.val * (X - C 5) ^ m) +
       (∑ i : Fin m, C (b i) * (X - C 5) ^ i.val * (X + C 5) ^ m)
 
+/--
+@isnad1 id=ex.1h2v.s5.4d3e0ec6ca48 from=translated src=- shape=b2c39f00 vocab=ede6698b
+-/
 theorem exists_decomposition (F : Polynomial ℤ) {m : ℕ} (hm : 0 < m) :
     ∃ a b : Fin m → ℚ, Decomposition F m a b := by
   obtain ⟨Q, a, b, h⟩ := two_pole_polynomial_decomposition
@@ -94,6 +115,9 @@ theorem exists_decomposition (F : Polynomial ℤ) {m : ℕ} (hm : 0 < m) :
   unfold Decomposition
   exact hQ ▸ h
 
+/--
+@isnad1 id=decompos.1h4v.s6.b7c27f46cc2d from=translated src=- shape=f000a2cc vocab=269c0c51
+-/
 theorem Decomposition.reflect {F : Polynomial ℤ} {m : ℕ} {a b : Fin m → ℚ}
     (hF : Decomposition F m a b) :
     Decomposition F m (fun i => (-1 : ℚ) ^ (i.val + m) * b i)

@@ -9,6 +9,9 @@ namespace PiIrrationality
 
 open HahnSeries PowerSeries
 
+/--
+@isnad1 id=eq.5h8v.s9.56c503b4604e from=translated src=- shape=561c6bfb vocab=1e38cfdd
+-/
 theorem construction_mobius_base_collect {K : Type*} [Field K] [CharZero K]
     (a b c : ℕ) (hc : Even c) (hab : c ≤ a + b) (hbc : 2 * c ≤ 4 * b)
     (U V x t : K) (hx : x ≠ 0) (ht : t ≠ 0) :
@@ -39,6 +42,9 @@ theorem construction_mobius_base_collect {K : Type*} [Field K] [CharZero K]
 
 local instance : CharZero (LaurentSeries ℚ) := algebraRat.charZero _
 
+/--
+@isnad1 id=eq.0h3v.s11.0b2cca3ad8cc from=translated src=- shape=b644b50d vocab=42931201
+-/
 theorem constructionSeries_coe_formula (a b c : ℕ) :
     (constructionSeries a b c : LaurentSeries ℚ) =
       (1 + single 1 1) ^ (2 * a) *
@@ -51,6 +57,9 @@ theorem constructionSeries_coe_formula (a b c : ℕ) :
     HahnSeries.ofPowerSeries_X] at h
   exact (eq_div_iff (pow_ne_zero _ one_sub_laurentX_ne_zero)).mpr h
 
+/--
+@isnad1 id=eq.3h3v.s10.4df85ef10042 from=translated src=- shape=d34c9bfb vocab=1925b73f
+-/
 theorem constructionMobius_base_formula (a b c : ℕ) (hc : Even c)
     (hab : c ≤ a + b) (hbc : 2 * c ≤ 4 * b) :
     mobiusLaurent ^ (2 * a) * (mobiusLaurent ^ 4 + 6 * mobiusLaurent ^ 2 + 25) ^ b /

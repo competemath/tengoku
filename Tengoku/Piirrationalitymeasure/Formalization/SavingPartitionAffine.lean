@@ -23,6 +23,9 @@ noncomputable def candidatePartitionLinear (e : CandidateEndpointEnumeration)
   ∑ k ∈ Finset.range (Fintype.card CandidateEndpointLabel + 1),
     eps k * (candidatePartitionVelocity e z (k + 1) - candidatePartitionVelocity e z k)
 
+/--
+@isnad1 id=eq.0h3v.s5.655055cdbc6f from=translated src=- shape=dfd38d37 vocab=b67bc738
+-/
 theorem candidateEndpointPartition_affine (e : CandidateEndpointEnumeration) (z : ℝ × ℝ) (k : ℕ) :
     candidateEndpointPartition e z k =
       candidateEndpointPartition e 0 k + candidatePartitionVelocity e z k := by
@@ -34,6 +37,9 @@ theorem candidateEndpointPartition_affine (e : CandidateEndpointEnumeration) (z 
     · exact candidateEndpointPosition_eq_base_add z (e ⟨k - 1, hn⟩)
     · simp only [add_zero]
 
+/--
+@isnad1 id=eq.0h6v.s6.88f2f79b9f46 from=translated src=- shape=df9a2ada vocab=444b99c4
+-/
 theorem candidatePartitionVelocity_add_smul (e : CandidateEndpointEnumeration)
     (v w : ℝ × ℝ) (s t : ℝ) (k : ℕ) :
     candidatePartitionVelocity e (s • v + t • w) k =
@@ -46,6 +52,9 @@ theorem candidatePartitionVelocity_add_smul (e : CandidateEndpointEnumeration)
     · exact savingEndpointVelocity_add_smul 1857 3714 5570 v w s t (e ⟨k - 1, hn⟩).1
     · simp only [mul_zero, add_zero]
 
+/--
+@isnad1 id=eq.0h6v.s6.ea708e4aade8 from=translated src=- shape=dbccf980 vocab=1a2ac8f6
+-/
 theorem candidatePartitionLinear_add_smul (e : CandidateEndpointEnumeration) (eps : ℕ → ℝ)
     (v w : ℝ × ℝ) (s t : ℝ) :
     candidatePartitionLinear e eps (s • v + t • w) =
@@ -57,12 +66,18 @@ theorem candidatePartitionLinear_add_smul (e : CandidateEndpointEnumeration) (ep
   rw [candidatePartitionVelocity_add_smul, candidatePartitionVelocity_add_smul]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s5.bf8d0e4e94d5 from=translated src=- shape=058d3f73 vocab=6a0bd2af
+-/
 theorem candidatePartitionLinear_smul (e : CandidateEndpointEnumeration) (eps : ℕ → ℝ)
     (v : ℝ × ℝ) (s : ℝ) :
     candidatePartitionLinear e eps (s • v) = s * candidatePartitionLinear e eps v := by
   simpa only [zero_smul, add_zero, zero_mul] using
     candidatePartitionLinear_add_smul e eps v 0 s 0
 
+/--
+@isnad1 id=eq.4h3v.s6.dc9d219a3456 from=translated src=- shape=1c59c797 vocab=ffa7afd3
+-/
 theorem translatedSavingMeasure_eq_partition_affine
     {e : CandidateEndpointEnumeration} {z w : ℝ × ℝ}
     (hz : CandidateOrderedEndpoints e z) (hw : CandidateOrderedEndpoints e w)

@@ -19,6 +19,9 @@ noncomputable def originalNormalizedEndpointTerm (n k : ℕ) : ℂ :=
   (2 : ℂ) ^ (1 - 4645 * (n : ℤ)) * (lcmRange (7430 * n) : ℂ) *
     Complex.I * (endpointCoeff n k : ℂ) * (4 * Complex.I) ^ (k + 1) / (k + 1 : ℂ)
 
+/--
+@isnad1 id=eq.0h2v.s7.4f13643de66f from=translated src=- shape=3795a4fd vocab=d6feee77
+-/
 theorem polynomial_integral_two_power_balance (n k : ℕ) :
     (2 : ℂ) ^ (1 - 4645 * (n : ℤ)) * 4 ^ (k + 1) =
       2 ^ (2 * k - (3 * k + 1) / 2) * 2 ^ endpointTwoExponent n k := by
@@ -31,6 +34,9 @@ theorem polynomial_integral_two_power_balance (n k : ℕ) :
   unfold endpointTwoExponent
   omega
 
+/--
+@isnad1 id=ex.2h2v.s6.683c9fa5bbb5 from=translated src=- shape=b4c03ace vocab=f0d5685f
+-/
 theorem originalNormalizedEndpointTerm_is_gaussian_integer
     (n : ℕ) (hn : 1 ≤ n) (k : ℕ) (hk : k < 7430 * n - 1) :
     ∃ z : GI, originalNormalizedEndpointTerm n k = (z : ℂ) := by
@@ -57,6 +63,9 @@ theorem originalNormalizedEndpointTerm_is_gaussian_integer
       rw [hG]
       simp only [map_mul, map_pow, map_ofNat, map_natCast, giI_toComplex]
 
+/--
+@isnad1 id=eq.1h1v.s5.0d149db3dd28 from=translated src=- shape=48819820 vocab=0cb63710
+-/
 theorem originalNormalizedPolynomialIntegral_eq_sum (n : ℕ) (hn : 1 ≤ n) :
     originalNormalizedPolynomialIntegral n =
       ∑ k ∈ Finset.range (7430 * n - 1), originalNormalizedEndpointTerm n k := by
@@ -67,6 +76,9 @@ theorem originalNormalizedPolynomialIntegral_eq_sum (n : ℕ) (hn : 1 ≤ n) :
   unfold originalNormalizedEndpointTerm
   ring
 
+/--
+@isnad1 id=ex.1h1v.s5.eb153a431032 from=translated src=- shape=5e7a8477 vocab=445c2df7
+-/
 theorem originalNormalizedPolynomialIntegral_is_gaussian_integer (n : ℕ) (hn : 1 ≤ n) :
     ∃ z : GI, originalNormalizedPolynomialIntegral n = (z : ℂ) := by
   classical
@@ -81,6 +93,9 @@ theorem originalNormalizedPolynomialIntegral_is_gaussian_integer (n : ℕ) (hn :
   rw [dite_eq_left hk']
   exact (originalNormalizedEndpointTerm_is_gaussian_integer n hn k hk').choose_spec
 
+/--
+@isnad1 id=ex.1h1v.s4.39a634a5b0fc from=translated src=- shape=f3832220 vocab=e7184459
+-/
 theorem originalNormalizedPolynomialIntegral_is_integer (n : ℕ) (hn : 1 ≤ n) :
     ∃ z : ℤ, originalNormalizedPolynomialIntegral n = (z : ℂ) := by
   obtain ⟨G, hG⟩ := originalNormalizedPolynomialIntegral_is_gaussian_integer n hn
@@ -105,6 +120,9 @@ noncomputable def normalizedPolynomialIntegral (n : ℕ) : ℂ :=
   (2 : ℂ) ^ (1 - 4645 * (n : ℤ)) * (reducedLcm n : ℂ) *
     (-(∫ s : ℝ in (-2)..2, aeval (verticalSegment s) (polynomialPart n)))
 
+/--
+@isnad1 id=eq.0h1v.s4.9e7f492a2927 from=translated src=- shape=35eab25c vocab=bafce07c
+-/
 theorem normalizedPolynomialIntegral_mul_Phi (n : ℕ) :
     (Phi n : ℂ) * normalizedPolynomialIntegral n = originalNormalizedPolynomialIntegral n := by
   have h := congrArg (fun x : ℚ => (x : ℂ)) (reducedLcm_mul_Phi n)
@@ -115,6 +133,9 @@ theorem normalizedPolynomialIntegral_mul_Phi (n : ℕ) :
       (-(∫ s : ℝ in (-2)..2, aeval (verticalSegment s) (polynomialPart n))) := by ring
     _ = _ := by rw [h]
 
+/--
+@isnad1 id=ex.1h1v.s5.239169221607 from=translated src=- shape=20552c1b vocab=7625f2f2
+-/
 theorem normalizedPolynomialIntegral_Phi_multiple_is_integer (n : ℕ) (hn : 1 ≤ n) :
     ∃ z : ℤ, (Phi n : ℂ) * normalizedPolynomialIntegral n = (z : ℂ) := by
   rw [normalizedPolynomialIntegral_mul_Phi]

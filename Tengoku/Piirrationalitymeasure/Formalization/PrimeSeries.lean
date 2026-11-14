@@ -13,6 +13,9 @@ namespace PiIrrationality
 noncomputable def periodicSummandReal (ell r : ℝ) (q : ℕ) : ℝ :=
   (r - ell) / (((q : ℝ) + ell) * ((q : ℝ) + r))
 
+/--
+@isnad1 id=le.2h3v.s5.f49c4dac1135 from=translated src=- shape=f3cce775 vocab=4d96dd25
+-/
 theorem periodicSummandReal_nonneg {ell r : ℝ}
     (hℓ : 0 < ell) (hord : ell < r) (q : ℕ) :
     0 ≤ periodicSummandReal ell r q := by
@@ -21,6 +24,9 @@ theorem periodicSummandReal_nonneg {ell r : ℝ}
   apply div_nonneg (le_of_lt (sub_pos.mpr hord))
   exact le_of_lt (mul_pos (by linarith) (by linarith))
 
+/--
+@isnad1 id=le.3h3v.s6.4d8dce48ef01 from=translated src=- shape=4ceedc60 vocab=ee7bbf44
+-/
 theorem periodicSummandReal_shift_le_inv_sq {ell r : ℝ}
     (hℓ : 0 < ell) (hord : ell < r) (hr : r ≤ 1) (q : ℕ) :
     periodicSummandReal ell r (q + 1) ≤
@@ -45,6 +51,9 @@ theorem periodicSummandReal_shift_le_inv_sq {ell r : ℝ}
         (((q + 1 : ℕ) : ℝ) + r)) := by
       exact mul_le_mul_of_nonneg_left hprod (by norm_num)
 
+/--
+@isnad1 id=antitone.2h2v.s5.691e8e6dc596 from=translated src=- shape=4c2fd621 vocab=ee553fd6
+-/
 theorem periodicSummandReal_antitone {ell r : ℝ}
     (hℓ : 0 < ell) (hord : ell < r) :
     Antitone (fun q : ℕ => periodicSummandReal ell r q) := by
@@ -65,6 +74,9 @@ theorem periodicSummandReal_antitone {ell r : ℝ}
         exact mul_le_mul_of_nonneg_left (by linarith) (by linarith)
   exact div_le_div_of_nonneg_left hnum hdenm hdenord
 
+/--
+@isnad1 id=summable.3h2v.s5.4a50aaeec082 from=translated src=- shape=d4fa653d vocab=c7587145
+-/
 theorem periodicSummandReal_summable {ell r : ℝ}
     (hℓ : 0 < ell) (hord : ell < r) (hr : r ≤ 1) :
     Summable (fun q => periodicSummandReal ell r q) := by

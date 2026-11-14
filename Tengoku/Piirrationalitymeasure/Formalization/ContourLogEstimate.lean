@@ -10,10 +10,16 @@ namespace PiIrrationality
 open Filter
 open scoped Topology
 
+/--
+@isnad1 id=iff.0h1v.s4.53d971517d53 from=translated src=- shape=26779bf1 vocab=e91b7841
+-/
 theorem log_norm_eq_bot_iff (z : ℂ) :
     ENNReal.log (ENNReal.ofReal ‖z‖) = ⊥ ↔ z = 0 := by
   simp
 
+/--
+@isnad1 id=le.3h4v.s7.edb6e60b176d from=translated src=- shape=2ee4b710 vocab=36a841bf
+-/
 theorem log_norm_limsup_of_exp_bound {J : ℕ → ℂ} {N C s : ℝ}
     (hN : 0 < N) (hC : 0 ≤ C)
     (hbound : ∀ᶠ n : ℕ in atTop, ‖J n‖ ≤ C * Real.exp (N * n * s)) :
@@ -49,6 +55,9 @@ theorem log_norm_limsup_of_exp_bound {J : ℕ → ℂ} {N C s : ℝ}
         ⟨⊤, Eventually.of_forall (fun _ => le_top)⟩
     _ = _ := (EReal.tendsto_coe.mpr hlim).limsup_eq
 
+/--
+@isnad1 id=le.6h7v.s9.42fb5ed61a7b from=translated src=- shape=55b42eb7 vocab=9ddfbce7
+-/
 theorem lemma_4_4_exp_bound {tau : ℝ → ℂ} {f : ℕ → ℂ → ℂ}
     {A : ℝ → ℝ} {phi : ℂ → ℝ} {N s : ℝ} (hN : 0 ≤ N)
     (hA : IntervalIntegrable (fun t => A t * ‖deriv tau t‖) MeasureTheory.volume 0 1)
@@ -77,6 +86,9 @@ theorem lemma_4_4_exp_bound {tau : ℝ → ℂ} {f : ℕ → ℂ → ℂ}
   rw [intervalIntegral.integral_mul_const, mul_comm] at h
   exact h
 
+/--
+@isnad1 id=le.5h6v.s8.5986d58544d6 from=translated src=- shape=4dea5162 vocab=37cb6918
+-/
 theorem lemma_4_4_log_limsup {tau : ℝ → ℂ} {f : ℕ → ℂ → ℂ}
     {A : ℝ → ℝ} {phi : ℂ → ℝ} {N s : ℝ} (hN : 0 < N)
     (hA : IntervalIntegrable (fun t => A t * ‖deriv tau t‖) MeasureTheory.volume 0 1)

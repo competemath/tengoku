@@ -10,6 +10,9 @@ namespace PiIrrationality
 def roundedOddLogSum (u : ℚ) (N scale : ℕ) : ℤ :=
   ∑ j ∈ Finset.range N, ⌊(scale : ℚ) * (2 * u ^ (2 * j + 1) / (2 * (j : ℚ) + 1))⌋
 
+/--
+@isnad1 id=le.1h3v.s6.e948a80fdca4 from=translated src=- shape=013bbc0e vocab=18a8722b
+-/
 theorem roundedOddLogSum_error (u : ℚ) (N : ℕ) {scale : ℕ} (hs : 0 < scale) :
     |oddLogSumRat u N - (roundedOddLogSum u N scale : ℚ) / scale| ≤ (N : ℚ) / scale := by
   have hs' : (0 : ℚ) < scale := by exact_mod_cast hs
@@ -42,6 +45,9 @@ def roundedScaledLog (x : ℚ) (k : ℤ) (N scale : ℕ) : ℤ :=
   k * roundedOddLogSum (1 / 3) N scale +
     roundedOddLogSum ((x - 2 ^ k) / (x + 2 ^ k)) N scale
 
+/--
+@isnad1 id=le.1h4v.s6.beda2d91e16b from=translated src=- shape=38833639 vocab=9dfd8cd4
+-/
 theorem roundedScaledLog_error (x : ℚ) (k : ℤ) (N : ℕ)
     {scale : ℕ} (hs : 0 < scale) :
     |scaledLogApproxRat x k N - (roundedScaledLog x k N scale : ℚ) / scale| ≤
@@ -65,6 +71,9 @@ theorem roundedScaledLog_error (x : ℚ) (k : ℤ) (N : ℕ)
       exact add_le_add (mul_le_mul_of_nonneg_left h0 (abs_nonneg _)) hu
     _ = _ := by ring
 
+/--
+@isnad1 id=lt.2h2v.s8.ab29bd1c2a08 from=translated src=- shape=717f2feb vocab=b692c891
+-/
 theorem roundedScaledLog_real_error {x : ℚ} (k : ℤ)
     (hxL : 2 ^ k ≤ x) (hxU : x ≤ 2 * 2 ^ k) :
     |Real.log (x : ℝ) - (roundedScaledLog x k 120 (10 ^ 60) : ℝ) / 10 ^ 60| <

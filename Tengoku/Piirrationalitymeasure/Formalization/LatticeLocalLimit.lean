@@ -13,6 +13,9 @@ open scoped Topology
 noncomputable def latticeCenteredCharacteristic (p : PMF ℕ) (q : ℕ) : ℝ → ℂ :=
   charFun (p.toMeasure.map (fun k : ℕ => (k : ℝ) - q))
 
+/--
+@isnad1 id=eq.0h3v.s6.b8465a8f30c5 from=translated src=- shape=a82b5b9e vocab=a8762b71
+-/
 theorem latticeCenteredCharacteristic_eq (p : PMF ℕ) (q : ℕ) (t : ℝ) :
     latticeCenteredCharacteristic p q t =
       charFun (p.toMeasure.map (fun k : ℕ => (k : ℝ))) t *
@@ -28,6 +31,9 @@ theorem latticeCenteredCharacteristic_eq (p : PMF ℕ) (q : ℕ) (t : ℝ) :
   congr 2
   ring
 
+/--
+@isnad1 id=eq.0h3v.s5.672b947d4d88 from=translated src=- shape=08f3bbd4 vocab=7ff7481b
+-/
 theorem latticeCenteredCharacteristic_norm (p : PMF ℕ) (q : ℕ) (t : ℝ) :
     ‖latticeCenteredCharacteristic p q t‖ =
       ‖charFun (p.toMeasure.map (fun k : ℕ => (k : ℝ))) t‖ := by
@@ -36,6 +42,9 @@ theorem latticeCenteredCharacteristic_norm (p : PMF ℕ) (q : ℕ) (t : ℝ) :
     simp [Complex.norm_exp]
   rw [he, mul_one]
 
+/--
+@isnad1 id=islittle.2h2v.s8.99a0a87533f5 from=translated src=- shape=e3695fca vocab=900e7640
+-/
 theorem latticeCenteredCharacteristic_taylor (p : PMF ℕ) (q : ℕ)
     (hX : MemLp (fun k : ℕ => (k : ℝ)) 2 p.toMeasure)
     (hmean : ∫ k : ℕ, (k : ℝ) ∂p.toMeasure = q) :
@@ -48,6 +57,9 @@ theorem latticeCenteredCharacteristic_taylor (p : PMF ℕ) (q : ℕ)
     simp
   exact centered_charFun_taylor hc hm
 
+/--
+@isnad1 id=tendsto.4h2v.s8.0995e7c87a15 from=translated src=- shape=44ca02f9 vocab=36304aa5
+-/
 theorem latticeCenteredCharacteristic_integral_limit (p : PMF ℕ) (q : ℕ)
     (hspan : HasLatticeSpanOne p.support)
     (hX : MemLp (fun k : ℕ => (k : ℝ)) 2 p.toMeasure)
@@ -68,6 +80,9 @@ theorem latticeCenteredCharacteristic_integral_limit (p : PMF ℕ) (q : ℕ)
   exact gaussian_integral_power_limit Real.pi_pos hcpos hc hbound
     (quadratic_expansion_power_limit htaylor)
 
+/--
+@isnad1 id=tendsto.5h3v.s8.cf180766d3c1 from=translated src=- shape=4285802e vocab=bb2dbbc3
+-/
 theorem lattice_probability_local_limit (p : PMF ℕ) (pn : ℕ → PMF ℕ) (q : ℕ)
     (hspan : HasLatticeSpanOne p.support)
     (hX : MemLp (fun k : ℕ => (k : ℝ)) 2 p.toMeasure)

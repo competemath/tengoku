@@ -60,6 +60,9 @@ private theorem cot_main_neg_mul_I_im {t : ℝ} (ht : 0 < t) :
   field_simp [ht.ne', Real.pi_ne_zero, he]
   ring
 
+/--
+@isnad1 id=hassum.1h1v.s7.50e6603512e5 from=translated src=- shape=d3a3ec64 vocab=f4a7a4fb
+-/
 theorem hasSum_binetKernel_scaled {t : ℝ} (ht : 0 < t) :
     HasSum (fun n : ℕ => t / (Real.pi * (t ^ 2 + ((n : ℝ) + 1) ^ 2)))
       (binetKernel (2 * Real.pi * t)) := by
@@ -76,6 +79,9 @@ theorem hasSum_binetKernel_scaled {t : ℝ} (ht : 0 < t) :
     field_simp
   · field_simp
 
+/--
+@isnad1 id=hassum.1h1v.s7.2aff5389cdf6 from=translated src=- shape=ccebde43 vocab=f4a7a4fb
+-/
 theorem hasSum_binetKernel {u : ℝ} (hu : 0 < u) :
     HasSum (fun n : ℕ => 2 * u / (u ^ 2 + (2 * Real.pi * ((n : ℝ) + 1)) ^ 2))
       (binetKernel u) := by
@@ -85,6 +91,9 @@ theorem hasSum_binetKernel {u : ℝ} (hu : 0 < u) :
   funext n
   field_simp
 
+/--
+@isnad1 id=lt.1h1v.s4.77e1a9f71e6b from=translated src=- shape=35bd48ee vocab=92c183f4
+-/
 theorem binetKernel_pos {u : ℝ} (hu : 0 < u) : 0 < binetKernel u := by
   have hs := hasSum_binetKernel hu
   rw [← hs.tsum_eq]

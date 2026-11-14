@@ -13,6 +13,9 @@ namespace PiIrrationality
 noncomputable def normalizedEndpointCoeff (n k : ℕ) : ℂ :=
   (2 : ℂ) ^ endpointTwoExponent n k * (endpointCoeff n k : ℂ)
 
+/--
+@isnad1 id=ex.2h2v.s6.770605b794c8 from=translated src=- shape=1d02c193 vocab=8729ba3b
+-/
 theorem normalizedEndpointCoeff_five_power_is_gaussian_integer
     (n : ℕ) (hn : 1 ≤ n) (k : ℕ) (hk : k < 3714 * n) :
     ∃ z : GI, (5 : ℂ) ^ (k + 1) * normalizedEndpointCoeff n k = (z : ℂ) := by
@@ -36,6 +39,9 @@ theorem normalizedEndpointCoeff_five_power_is_gaussian_integer
       simp_rw [hz]
       simp only [map_neg, map_sum, map_mul, map_natCast]
 
+/--
+@isnad1 id=ex.0h2v.s6.91a71b92d1e4 from=translated src=- shape=90d2b117 vocab=5c20886e
+-/
 theorem normalizedEndpointCoeff_two_power_is_gaussian_integer (n k : ℕ) :
     ∃ z : GI, (2 : ℂ) ^ (4645 * n) * normalizedEndpointCoeff n k = (z : ℂ) := by
   refine ⟨(2 : GI) ^ ((3 * k + 1) / 2 + 3) * endpointCoeff n k, ?_⟩
@@ -49,6 +55,9 @@ theorem normalizedEndpointCoeff_two_power_is_gaussian_integer (n k : ℕ) :
   rw [he, zpow_natCast]
   simp only [map_mul, map_pow, map_ofNat]
 
+/--
+@isnad1 id=ex.1h2v.s6.9c432aff2dc2 from=translated src=- shape=ea7b992d vocab=8288a52a
+-/
 theorem normalizedEndpointCoeff_is_gaussian_integer (n : ℕ) (hn : 1 ≤ n) (k : ℕ) :
     ∃ z : GI, normalizedEndpointCoeff n k = (z : ℂ) := by
   by_cases hk : k < 3714 * n

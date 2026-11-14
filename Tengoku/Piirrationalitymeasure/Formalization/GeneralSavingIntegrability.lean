@@ -8,6 +8,9 @@ namespace PiIrrationality
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=eq.9h5v.s7.67e59a0d6150 from=translated src=- shape=3b563bdf vocab=8cc66105
+-/
 theorem savingDensity_initial_zero_nonneg {A B C K t : ℝ}
     (hA : 0 ≤ A) (hB : 0 ≤ B) (hC : 0 ≤ C) (hK : 0 ≤ K)
     (hAK : A ≤ K) (hBK : B ≤ K) (hCK : C ≤ K)
@@ -25,6 +28,9 @@ theorem savingDensity_initial_zero_nonneg {A B C K t : ℝ}
     Int.fract_eq_self.mpr ⟨hBp, by linarith⟩,
     Int.fract_eq_self.mpr ⟨hCp, by linarith⟩, ite_eq_right (by linarith), zero_div]
 
+/--
+@isnad1 id=integrab.3h3v.s6.78e66e1a3e8a from=translated src=- shape=035f2ac6 vocab=6be38f4b
+-/
 theorem savingDensity_integrableOn_nonneg {A B C : ℝ}
     (hA : 0 ≤ A) (hB : 0 ≤ B) (hC : 0 ≤ C) :
     IntegrableOn (savingDensity A B C) (Ioi (0 : ℝ)) := by
@@ -64,6 +70,9 @@ theorem savingDensity_integrableOn_nonneg {A B C : ℝ}
   rw [← hu]
   exact hfirst.union htail
 
+/--
+@isnad1 id=hassum.5h4v.s7.351bab3dfce6 from=translated src=- shape=beeab298 vocab=b3194659
+-/
 theorem savingOmega_difference_hasSum_nonneg (a b c : ℤ) (h : ℝ × ℝ)
     (ha : 0 ≤ (a : ℝ)) (hb : 0 ≤ (b : ℝ)) (hc : 0 ≤ (c : ℝ))
     (hah : 0 ≤ (a : ℝ) + h.1) (hbh : 0 ≤ (b : ℝ) + h.2) :

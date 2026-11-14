@@ -15,17 +15,26 @@ def endpointTwoExponent (n k : ℕ) : ℤ :=
 def endpointResidualTwoExponent (j k : ℕ) : ℕ :=
   (3 * j + 1) / 2 + (3 * k + 1) / 2 + 1 - j - k
 
+/--
+@isnad1 id=le.0h2v.s5.51b25d9202e2 from=translated src=- shape=15040a65 vocab=c39088b5
+-/
 theorem endpointResidualTwoExponent_bound (j k : ℕ) :
     j + k + 1 ≤ 2 * endpointResidualTwoExponent j k := by
   unfold endpointResidualTwoExponent
   omega
 
+/--
+@isnad1 id=eq.1h3v.s7.93f4ad9e90a2 from=translated src=- shape=558fcd51 vocab=9d53594a
+-/
 theorem endpoint_two_exponent_balance (n : ℕ) (hn : 1 ≤ n) (j k : ℕ) :
     endpointTwoExponent n k + ((4645 * n - 1 + (3 * j + 1) / 2 : ℕ) : ℤ) =
       ((j + k + 1 + endpointResidualTwoExponent j k : ℕ) : ℤ) := by
   unfold endpointTwoExponent endpointResidualTwoExponent
   omega
 
+/--
+@isnad1 id=ex.2h3v.s7.603aecb5ecc0 from=translated src=- shape=28baa050 vocab=ddb6dabc
+-/
 theorem endpoint_scaled_coefficient
     (n : ℕ) (hn : 1 ≤ n) (j : ℕ) (hj : j ≤ 5570 * n) (k : ℕ) :
     ∃ w : ℤ, (5 : ℂ) ^ (k + 1) * 2 ^ endpointTwoExponent n k *
@@ -54,6 +63,9 @@ theorem endpoint_scaled_coefficient
       rw [h2, h5, show (10 : ℂ) = 2 * 5 by norm_num, mul_pow]
       field_simp
 
+/--
+@isnad1 id=and.0h1v.s8.b9fb9984956c from=translated src=- shape=b5e34618 vocab=ec06b0ab
+-/
 theorem endpoint_inverse_powers (l : ℕ) :
     (1 / (4 - 2 * Complex.I) ^ l =
       (10 : ℂ) ^ (-((l : ℕ) : ℤ)) * (2 + Complex.I) ^ l) ∧
@@ -66,6 +78,9 @@ theorem endpoint_inverse_powers (l : ℕ) :
   · rw [← h3, div_pow, zpow_neg, zpow_natCast]
     field_simp
 
+/--
+@isnad1 id=ex.2h3v.s8.f1007f740257 from=translated src=- shape=43ba472a vocab=5c155d46
+-/
 theorem endpoint_scaled_bracket_is_gaussian_integer
     (n : ℕ) (hn : 1 ≤ n) (j : ℕ) (hj : j ≤ 5570 * n) (k : ℕ) :
     ∃ z : GI, (5 : ℂ) ^ (k + 1) * 2 ^ endpointTwoExponent n k *
@@ -109,6 +124,9 @@ theorem endpoint_scaled_bracket_is_gaussian_integer
   rw [map_add, hA, hB]
   exact hexpr
 
+/--
+@isnad1 id=ex.3h3v.s7.12c997257d4f from=translated src=- shape=d82e6be6 vocab=23f3720e
+-/
 theorem gaussian_integer_of_coprime_multipliers
     (x : ℂ) (a b : ℕ) (hab : Nat.Coprime a b)
     (ha : ∃ u : GI, (a : ℂ) * x = (u : ℂ))

@@ -16,6 +16,9 @@ private theorem norm_le_parameterNormOne (z : ℝ × ℝ) : ‖z‖ ≤ paramete
   exact max_le (le_add_of_nonneg_right (abs_nonneg _))
     (le_add_of_nonneg_left (abs_nonneg _))
 
+/--
+@isnad1 id=ex.0h4v.s7.2d101e9d93dc from=translated src=- shape=f01097fb vocab=0e22e649
+-/
 theorem LocalPolyhedral.savingModel_exists {a b c : ℝ}
     (M : LocalPolyhedral (translatedSavingMeasure a b c)) :
     ∃ N : SavingRadialModel a b c,
@@ -46,6 +49,9 @@ noncomputable def generalSavingModel {a b c : ℝ}
     SavingRadialModel a b c :=
   (savingMeasurePolyhedral ha hb hc hq).savingModel_exists.choose
 
+/--
+@isnad1 id=and.4h3v.s7.bde80b505069 from=translated src=- shape=fa0bceef vocab=87438345
+-/
 theorem generalSavingModel_spec {a b c : ℝ}
     (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) (hq : a + 2 * b - c ≠ 0) :
     (generalSavingModel ha hb hc hq).domain = Set.univ ∧
@@ -53,19 +59,27 @@ theorem generalSavingModel_spec {a b c : ℝ}
     (generalSavingModel ha hb hc hq).radius ≤ 1 :=
   (savingMeasurePolyhedral ha hb hc hq).savingModel_exists.choose_spec
 
+/--
+@isnad1 id=continuo.4h3v.s6.d24a3e1a4ed8 from=translated src=- shape=750a075d vocab=a3d703fc
+-/
 theorem generalSavingModel_continuous {a b c : ℝ}
     (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) (hq : a + 2 * b - c ≠ 0) :
     Continuous (generalSavingModel ha hb hc hq).variation := by
   rw [(generalSavingModel_spec ha hb hc hq).2.1]
   exact (savingMeasurePolyhedral ha hb hc hq).continuous_tangent
 
+/--
+@isnad1 id=finiteco.4h3v.s7.752581674b8d from=translated src=- shape=48b5d7d3 vocab=3038c06b
+-/
 theorem generalSavingModel_conewise_linear {a b c : ℝ}
     (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) (hq : a + 2 * b - c ≠ 0) :
     FiniteConewiseLinear (generalSavingModel ha hb hc hq).variation := by
   rw [(generalSavingModel_spec ha hb hc hq).2.1]
   exact (savingMeasurePolyhedral ha hb hc hq).conewise_linear
 
-/-- Lemma 6.1, with one radius for every direction and both translation estimates.-/
+/-- Lemma 6.1, with one radius for every direction and both translation estimates.
+@isnad1 id=ex.4h3v.s9.be8b2bd56b31 from=translated src=- shape=7e005177 vocab=f9a9167a
+-/
 theorem lemma61_general {a b c : ℝ}
     (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) (hq : a + 2 * b - c ≠ 0) :
     ∃ (D : ℝ × ℝ → ℝ) (rho L : ℝ),
@@ -98,7 +112,9 @@ theorem lemma61_general {a b c : ℝ}
   · exact fun z w hz hw => translatedSavingChi_integral_affine_translation z w ha.ne' hb.ne' hq
       (hz.trans hr1) (hw.trans hr1)
 
-/-- Lemma 6.2 for an arbitrary positive integer triple with nonzero q.-/
+/-- Lemma 6.2 for an arbitrary positive integer triple with nonzero q.
+@isnad1 id=ex.4h3v.s9.013c8cc6cad5 from=translated src=- shape=8dd7f21d vocab=e1487879
+-/
 theorem lemma62_general {a b c : ℤ}
     (ha : 0 < (a : ℝ)) (hb : 0 < (b : ℝ)) (hc : 0 < (c : ℝ))
     (hq : (a : ℝ) + 2 * b - c ≠ 0) :

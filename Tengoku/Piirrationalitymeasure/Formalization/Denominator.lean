@@ -12,6 +12,9 @@ namespace PiIrrationality
 def lcmRange (n : ℕ) : ℕ :=
   (Finset.Icc 1 n).lcm id
 
+/--
+@isnad1 id=dvd.2h2v.s4.749a050b9711 from=translated src=- shape=0ee06065 vocab=c18cea34
+-/
 theorem dvd_lcmRange (n k : ℕ) (hk : 1 ≤ k) (hkn : k ≤ n) :
     k ∣ lcmRange n := by
   unfold lcmRange
@@ -24,11 +27,17 @@ def removablePrime (n p : ℕ) : Prop :=
       2 * Int.fract (((3714 * n : ℕ) : ℚ) / p)) <
       Int.fract (((5570 * n : ℕ) : ℚ) / p)
 
+/--
+@isnad1 id=lt.1h2v.s5.be710e9e18ae from=translated src=- shape=4c5cafb2 vocab=26900bf7
+-/
 theorem removablePrime_square_gt (n p : ℕ)
     (hp : removablePrime n p) : 7430 * n < p ^ 2 := by
   rcases hp with ⟨hprime, h5, hsqrt, hupper, hcond⟩
   exact (Nat.sqrt_lt').mp hsqrt
 
+/--
+@isnad1 id=iff.0h4v.s8.6457e203628c from=translated src=- shape=b4e67928 vocab=d548d1a1
+-/
 theorem fract_condition_iff_floor_condition (a b c u : ℚ) :
     Int.fract (a * u + 1 / 2) + 2 * Int.fract (b * u) < Int.fract (c * u) ↔
       (a + 2 * b - c) * u + 1 / 2 <
@@ -38,6 +47,9 @@ theorem fract_condition_iff_floor_condition (a b c u : ℚ) :
   have hc := Int.fract_add_floor (c * u)
   constructor <;> intro h <;> linarith
 
+/--
+@isnad1 id=iff.0h2v.s8.30aa3accafff from=translated src=- shape=30191911 vocab=88c83f47
+-/
 theorem removablePrime_condition_iff_floor (n p : ℕ) :
     (Int.fract (((1857 * n : ℕ) : ℚ) / p + 1 / 2) +
       2 * Int.fract (((3714 * n : ℕ) : ℚ) / p)) <
@@ -63,11 +75,17 @@ noncomputable def reducedLcm (n : ℕ) : ℚ :=
 noncomputable def reducedLcmNat (n : ℕ) : ℕ :=
   lcmRange (7430 * n) / Phi n
 
+/--
+@isnad1 id=mem.1h2v.s5.057d01dfbdf0 from=translated src=- shape=57507fef vocab=f685e8c7
+-/
 theorem removablePrime_mem_range (n p : ℕ) (hp : removablePrime n p) :
     p ∈ Finset.Icc 1 (7430 * n) := by
   rcases hp with ⟨hprime, h5, hsqrt, hupper, hcond⟩
   exact Finset.mem_Icc.mpr ⟨by omega, hupper⟩
 
+/--
+@isnad1 id=dvd.0h1v.s4.7ef0a621b3ae from=translated src=- shape=5f699161 vocab=eb17b367
+-/
 theorem Phi_dvd_lcmRange (n : ℕ) :
     Phi n ∣ lcmRange (7430 * n) := by
   classical
@@ -107,11 +125,17 @@ theorem Phi_dvd_lcmRange (n : ℕ) :
     have hpb := (Finset.mem_filter.mp hb).2
     exact (Nat.coprime_primes hpa.1 hpb.1).mpr hab
 
+/--
+@isnad1 id=lt.0h1v.s3.dc92b3ecb931 from=translated src=- shape=8a62b088 vocab=e7717e59
+-/
 theorem Phi_pos (n : ℕ) : 0 < Phi n := by
   classical
   unfold Phi
   exact Finset.prod_pos (fun p hp => (Finset.mem_filter.mp hp).2.1.pos)
 
+/--
+@isnad1 id=odd.0h1v.s2.97ab62c4aa2c from=translated src=- shape=6da4ece3 vocab=a57f15bc
+-/
 theorem Phi_odd (n : ℕ) : Odd (Phi n) := by
   classical
   have hprod : ∀ s : Finset ℕ, (∀ a ∈ s, Odd a) → Odd (s.prod id) := by
@@ -131,6 +155,9 @@ theorem Phi_odd (n : ℕ) : Odd (Phi n) := by
   have h5 := hrem.2.1
   exact hprime.odd_of_ne_two (by omega)
 
+/--
+@isnad1 id=eq.0h1v.s5.c6d964be20d0 from=translated src=- shape=e2e345a7 vocab=28b49df3
+-/
 theorem reducedLcm_mul_Phi (n : ℕ) :
     reducedLcm n * (Phi n : ℚ) = (lcmRange (7430 * n) : ℚ) := by
   unfold reducedLcm
@@ -138,16 +165,25 @@ theorem reducedLcm_mul_Phi (n : ℕ) :
     exact_mod_cast (Nat.ne_of_gt (Phi_pos n))
   field_simp [hPhi]
 
+/--
+@isnad1 id=eq.0h1v.s4.a59ad7f3b398 from=translated src=- shape=27c7c617 vocab=00650e1e
+-/
 theorem reducedLcmNat_mul_Phi (n : ℕ) :
     reducedLcmNat n * Phi n = lcmRange (7430 * n) := by
   unfold reducedLcmNat
   exact Nat.div_mul_cancel (Phi_dvd_lcmRange n)
 
+/--
+@isnad1 id=dvd.0h1v.s4.fe52c2a42cf9 from=translated src=- shape=5f699161 vocab=33db1e9b
+-/
 theorem reducedLcmNat_dvd_lcmRange (n : ℕ) :
     reducedLcmNat n ∣ lcmRange (7430 * n) := by
   refine ⟨Phi n, ?_⟩
   simpa [Nat.mul_comm] using (reducedLcmNat_mul_Phi n).symm
 
+/--
+@isnad1 id=lt.1h1v.s4.027fedbae88b from=translated src=- shape=35bd48ee vocab=bc3cb656
+-/
 theorem reducedLcmNat_pos (n : ℕ) (hn : 0 < n) :
     0 < reducedLcmNat n := by
   have hl0 : lcmRange (7430 * n) ≠ 0 := by
@@ -159,6 +195,9 @@ theorem reducedLcmNat_pos (n : ℕ) (hn : 0 < n) :
   have hp : 0 < Phi n := Phi_pos n
   exact Nat.div_pos (Nat.le_of_dvd hl (Phi_dvd_lcmRange n)) hp
 
+/--
+@isnad1 id=dvd.3h4v.s5.3213bed49c0b from=translated src=- shape=7e339b2d vocab=a2e7c113
+-/
 theorem reducedLcm_nat_mul_dvd {L Phi j q : ℕ}
     (hPhi : Phi ∣ L) (hj : j ∣ L) (hq : Phi ∣ q) :
     j ∣ (L / Phi) * q := by
@@ -166,12 +205,18 @@ theorem reducedLcm_nat_mul_dvd {L Phi j q : ℕ}
   rw [← Nat.mul_assoc, Nat.div_mul_cancel hPhi]
   exact dvd_mul_of_dvd_left hj r
 
+/--
+@isnad1 id=dvd.2h3v.s5.a2f53896fe3c from=translated src=- shape=feb34111 vocab=62e3c2e4
+-/
 theorem reducedLcmNat_clears_divisor
     (n j q : ℕ) (hj : j ∣ lcmRange (7430 * n))
     (hq : Phi n ∣ q) :
     j ∣ reducedLcmNat n * q := by
   exact reducedLcm_nat_mul_dvd (Phi_dvd_lcmRange n) hj hq
 
+/--
+@isnad1 id=dvd.3h3v.s5.31c8d4a026a5 from=translated src=- shape=06388242 vocab=c6fe5b8e
+-/
 theorem reducedLcmNat_clears_signed_divisor
     (n : ℕ) (j : ℤ) (q : ℕ)
     (hj0 : j ≠ 0) (hjbound : j.natAbs ≤ 7430 * n)
@@ -183,17 +228,26 @@ theorem reducedLcmNat_clears_signed_divisor
     dvd_lcmRange (7430 * n) j.natAbs hjpos hjbound
   exact reducedLcmNat_clears_divisor n j.natAbs q hjL hq
 
+/--
+@isnad1 id=le.1h4v.s7.87bcf379b4e9 from=translated src=- shape=3b9892a8 vocab=80f27b39
+-/
 theorem finiteFieldSupport_low_half (k A B C : ℤ)
     (hC : A + 2 * B + (k + 1) ≤ C) :
     A + 2 * B + (2 * k + 1) - 1 - C ≤ k - 1 := by
   linarith
 
+/--
+@isnad1 id=and.2h4v.s7.f3281d249818 from=translated src=- shape=3e3f4cf0 vocab=3b732f86
+-/
 theorem finiteFieldSupport_high_half (k A B C : ℤ)
     (hA : 2 * k + 2 ≤ 2 * A)
     (hC : A + 2 * B - k ≤ C) :
     k < A ∧ A + 2 * B + (2 * k + 1) - 1 - C ≤ 3 * k := by
   constructor <;> linarith
 
+/--
+@isnad1 id=eq.0h2v.s9.c3f8c82b2ab7 from=translated src=- shape=fc6a075d vocab=b10dfafb
+-/
 theorem derivative_pth_power_zmod (p : ℕ) [Fact p.Prime]
     (f : Polynomial (ZMod p)) :
     Polynomial.derivative (f ^ p) = 0 := by
@@ -201,6 +255,9 @@ theorem derivative_pth_power_zmod (p : ℕ) [Fact p.Prime]
   have hp : (p : ZMod p) = 0 := CharP.cast_eq_zero (ZMod p) p
   simp [hp]
 
+/--
+@isnad1 id=eq.1h2v.s9.43a108c3df64 from=translated src=- shape=56639bc1 vocab=f2cedf19
+-/
 theorem derivative_X_pow_succ_zero_of_dvd (p r : ℕ) [Fact p.Prime]
     (h : p ∣ r + 1) :
     Polynomial.derivative (Polynomial.X ^ (r + 1) : Polynomial (ZMod p)) = 0 := by
@@ -211,6 +268,9 @@ theorem derivative_X_pow_succ_zero_of_dvd (p r : ℕ) [Fact p.Prime]
     rw [hk, Nat.cast_mul, hp, zero_mul]
   simp [hz]
 
+/--
+@isnad1 id=eq.0h3v.s10.703894582320 from=translated src=- shape=11374c98 vocab=60101c7a
+-/
 theorem pth_power_mul_derivative_eq_derivative_mul (p : ℕ) [Fact p.Prime]
     (U V : Polynomial (ZMod p)) :
     U ^ p * Polynomial.derivative V =
@@ -228,6 +288,9 @@ noncomputable def polynomialPrimitive (p : ℕ) [Fact p.Prime]
       (if ((r + 1 : ℕ) : ZMod p) = 0 then 0
        else f.coeff r / ((r + 1 : ℕ) : ZMod p))
 
+/--
+@isnad1 id=eq.1h2v.s9.c9d99132a24a from=translated src=- shape=feb7ae6e vocab=364f3914
+-/
 theorem polynomialPrimitive_derivative (p : ℕ) [Fact p.Prime]
     (f : Polynomial (ZMod p)) (hf : obstructionFree p f) :
     Polynomial.derivative (polynomialPrimitive p f) = f := by

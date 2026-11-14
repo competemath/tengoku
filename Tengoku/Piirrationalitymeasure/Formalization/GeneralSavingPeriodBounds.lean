@@ -12,14 +12,23 @@ open MeasureTheory Set
 noncomputable def savingPerturbationRadius (a b : ℝ) : ℝ :=
   min 1 (min (a / 2) (b / 2))
 
+/--
+@isnad1 id=lt.2h2v.s5.3aacf2a6bf9d from=translated src=- shape=6c67d60b vocab=7d62e24e
+-/
 theorem savingPerturbationRadius_pos {a b : ℝ} (ha : 0 < a) (hb : 0 < b) :
     0 < savingPerturbationRadius a b := by
   unfold savingPerturbationRadius
   positivity
 
+/--
+@isnad1 id=le.0h2v.s4.1b88bb7c785e from=translated src=- shape=aa052b1b vocab=aff2ce1f
+-/
 theorem savingPerturbationRadius_le_one (a b : ℝ) : savingPerturbationRadius a b ≤ 1 :=
   min_le_left _ _
 
+/--
+@isnad1 id=and.4h4v.s7.9164a06dcb72 from=translated src=- shape=dd457aa3 vocab=5c5232b6
+-/
 theorem savingPerturbation_bounds {a b c : ℝ} (ha : 0 < a) (hb : 0 < b) (hc : 0 ≤ c)
     {h : ℝ × ℝ} (hh : parameterNormOne h ≤ savingPerturbationRadius a b) :
     0 ≤ a + h.1 ∧ 0 ≤ b + h.2 ∧
@@ -41,6 +50,9 @@ theorem savingPerturbation_bounds {a b c : ℝ} (ha : 0 < a) (hb : 0 < b) (hc : 
   have hy1 := le_abs_self h.2
   exact ⟨by linarith, by linarith, by linarith, by linarith⟩
 
+/--
+@isnad1 id=le.5h4v.s7.2f41351fcb5b from=translated src=- shape=59ecdb48 vocab=41e458ee
+-/
 theorem savingPeriodDifference_zero_bound_general {a b c : ℝ}
     (ha : 0 < a) (hb : 0 < b) (hc : 0 ≤ c) (hq : a + 2 * b - c ≠ 0)
     {h : ℝ × ℝ} (hh : parameterNormOne h ≤ savingPerturbationRadius a b) :
@@ -110,6 +122,9 @@ theorem savingPeriodDifference_zero_bound_general {a b c : ℝ}
     _ ≤ B ^ 2 * (savingTranslationConstant a b c * parameterNormOne h) := by gcongr
     _ = _ := by dsimp [B]; ring
 
+/--
+@isnad1 id=le.4h5v.s7.3a5e6149dec8 from=translated src=- shape=d53da082 vocab=3290ba94
+-/
 theorem savingOmega_period_remainder_general (a b c : ℤ)
     (ha : 0 < (a : ℝ)) (hb : 0 < (b : ℝ)) (hc : 0 ≤ (c : ℝ))
     {h : ℝ × ℝ} (hh : parameterNormOne h ≤ savingPerturbationRadius a b) (K : ℕ) :

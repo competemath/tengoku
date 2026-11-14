@@ -9,6 +9,9 @@ namespace PiIrrationality
 
 open MeasureTheory Set
 
+/--
+@isnad1 id=interval.3h3v.s6.4dd7033da450 from=translated src=- shape=666a8a2b vocab=40ca5022
+-/
 theorem inverse_square_interval_integrable {k ell r : ℝ} (hk : 0 ≤ k)
     (hell : 0 < ell) (hr : ell ≤ r) :
     IntervalIntegrable (fun u : ℝ => 1 / (k + u) ^ 2) volume ell r := by
@@ -18,6 +21,9 @@ theorem inverse_square_interval_integrable {k ell r : ℝ} (hk : 0 ≤ k)
   have hden2 : (k + u) ^ 2 ≠ 0 := pow_ne_zero 2 hden
   fun_prop
 
+/--
+@isnad1 id=eq.3h3v.s7.f3a016e135d4 from=translated src=- shape=6fe64f97 vocab=2d7629f5
+-/
 theorem inverse_square_interval_integral {k ell r : ℝ} (hk : 0 ≤ k)
     (hell : 0 < ell) (hr : ell ≤ r) :
     (∫ u in ell..r, 1 / (k + u) ^ 2) = 1 / (k + ell) - 1 / (k + r) := by
@@ -31,6 +37,9 @@ theorem inverse_square_interval_integral {k ell r : ℝ} (hk : 0 ≤ k)
     (inverse_square_interval_integrable hk hell hr)
   simpa only [one_div, neg_sub_neg] using h
 
+/--
+@isnad1 id=eq.3h5v.s8.4c6c80f80581 from=translated src=- shape=1f851985 vocab=0eaf4a45
+-/
 theorem periodic_weighted_cell_integral (chi : ℝ → ℝ) (k : ℕ) (J : Finset ℕ)
     (ell r : ℕ → ℝ)
     (hend : ∀ j ∈ J, 0 < ell j ∧ ell j < r j ∧ r j ≤ 1)
@@ -78,6 +87,9 @@ theorem periodic_weighted_cell_integral (chi : ℝ → ℝ) (k : ℕ) (J : Finse
       rw [integral_Ico_eq_integral_Ioc, ← intervalIntegral.integral_of_le he.2.1.le]
       exact inverse_square_interval_integral (Nat.cast_nonneg k) he.1 he.2.1.le
 
+/--
+@isnad1 id=eq.5h4v.s8.0ee7173fb579 from=translated src=- shape=d6b33b54 vocab=0fe740bb
+-/
 theorem periodic_saving_integral_eq_series (chi : ℝ → ℝ) (J : Finset ℕ) (ell r : ℕ → ℝ)
     (hper : ∀ (k : ℕ) (u : ℝ), chi ((k : ℝ) + u) = chi u)
     (hi : IntegrableOn (fun t : ℝ => chi t / t ^ 2) (Ioi (0 : ℝ)))

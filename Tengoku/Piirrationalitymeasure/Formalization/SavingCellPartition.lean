@@ -13,6 +13,9 @@ noncomputable def savingFloorWindow (a : ℝ) : Finset ℤ := Finset.Icc (-2) (�
 noncomputable def savingCellIndices (a b c : ℝ) : Finset (ℤ × ℤ × ℤ) :=
   (savingFloorWindow a).product ((savingFloorWindow b).product (savingFloorWindow c))
 
+/--
+@isnad1 id=mem.4h3v.s6.85de1263fd03 from=translated src=- shape=5491060c vocab=90e383d7
+-/
 theorem floor_mem_savingFloorWindow {a u d : ℝ} (ha : 0 ≤ a)
     (hu : u ∈ Ico (0 : ℝ) 1) (hd0 : -1 ≤ d) (hd1 : d ≤ 2) :
     ⌊a * u + d⌋ ∈ savingFloorWindow a := by
@@ -28,6 +31,9 @@ theorem floor_mem_savingFloorWindow {a u d : ℝ} (ha : 0 ≤ a)
         linarith [Int.le_ceil a])
       _ = _ := Int.floor_intCast _
 
+/--
+@isnad1 id=mem.5h5v.s7.f1c2a0da2449 from=translated src=- shape=768c805d vocab=a2e86de4
+-/
 theorem savingCell_actual_index_mem {a b c : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) (hc : 0 ≤ c)
     {z : ℝ × ℝ} (hz : parameterNormOne z ≤ 1) {u : ℝ} (hu : u ∈ Ico (0 : ℝ) 1) :
     (⌊a * u + z.1 + 1 / 2⌋, ⌊b * u + z.2⌋, ⌊c * u⌋) ∈ savingCellIndices a b c := by
@@ -47,6 +53,9 @@ theorem savingCell_actual_index_mem {a b c : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) 
   · simpa only [add_zero] using
       floor_mem_savingFloorWindow hc hu (d := 0) (by norm_num) (by norm_num)
 
+/--
+@isnad1 id=eq.5h5v.s7.21f5558ace76 from=translated src=- shape=dd2a146d vocab=f7c84257
+-/
 theorem translatedSavingChi_eq_cell_sum {a b c : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) (hc : 0 ≤ c)
     {z : ℝ × ℝ} (hz : parameterNormOne z ≤ 1) {u : ℝ} (hu : u ∈ Ico (0 : ℝ) 1) :
     translatedSavingChi a b c z u =
@@ -73,6 +82,9 @@ theorem translatedSavingChi_eq_cell_sum {a b c : ℝ} (ha : 0 ≤ a) (hb : 0 ≤
   · intro hnot
     exact (hnot hp).elim
 
+/--
+@isnad1 id=eq.5h4v.s7.f7888c71f949 from=translated src=- shape=91a1bb4b vocab=3092caa9
+-/
 theorem translatedSavingMeasure_eq_cell_sum {a b c : ℝ}
     (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) (hq : a + 2 * b - c ≠ 0)
     {z : ℝ × ℝ} (hz : parameterNormOne z ≤ 1) :

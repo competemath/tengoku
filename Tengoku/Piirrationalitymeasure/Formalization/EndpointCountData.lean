@@ -10,6 +10,9 @@ namespace PiIrrationality
 def quadraticFloorGermRat (x l q : ℚ) : ℤ :=
   if x = (⌊x⌋ : ℚ) ∧ (l < 0 ∨ (l = 0 ∧ q < 0)) then ⌊x⌋ - 1 else ⌊x⌋
 
+/--
+@isnad1 id=eq.0h3v.s4.9364e682d79b from=translated src=- shape=0e035d14 vocab=5dc1aefa
+-/
 theorem quadraticFloorGerm_ratCast (x l q : ℚ) :
     quadraticFloorGerm (x : ℝ) (l : ℝ) (q : ℝ) = quadraticFloorGermRat x l q := by
   have hx : (x : ℝ) = (⌊x⌋ : ℝ) ↔ x = (⌊x⌋ : ℚ) := by norm_cast

@@ -20,6 +20,9 @@ noncomputable def centeredCharacteristic (u v d : ℕ) (x t : ℝ) : ℂ :=
 variable (u v : ℕ) {d : ℕ} (hd : 0 < d)
 
 include hd in
+/--
+@isnad1 id=hassum.3h6v.s6.93a25093870e from=translated src=- shape=9678eacc vocab=3bd9a162
+-/
 theorem probability_fourier_sum {x : ℝ} (hx0 : 0 ≤ x) (hx1 : x < 1)
     (n : ℕ) (t : ℝ) :
     HasSum (fun k => (probability u v d x n k : ℂ) *
@@ -39,6 +42,9 @@ theorem probability_fourier_sum {x : ℝ} (hx0 : 0 ≤ x) (hx1 : x < 1)
     ring
   · simp only [characteristic, complexValue, PComplex, div_pow, Complex.ofReal_pow]
 
+/--
+@isnad1 id=eq.3h6v.s6.f06e04b82f1d from=translated src=- shape=be9c9fac vocab=358870f9
+-/
 theorem law_charFun {x : ℝ} (hx0 : 0 ≤ x) (hx1 : x < 1) (n : ℕ) (t : ℝ) :
     charFun ((law u v hd x hx0 hx1 n).toMeasure.map (fun k : ℕ => (k : ℝ))) t =
       characteristic u v d x t ^ n := by
@@ -51,6 +57,9 @@ theorem law_charFun {x : ℝ} (hx0 : 0 ≤ x) (hx1 : x < 1) (n : ℕ) (t : ℝ) 
   simp only [law_toReal, RCLike.real_smul_eq_coe_mul, mul_comm (t : ℂ)]
   rfl
 
+/--
+@isnad1 id=eq.3h5v.s6.3eb28239cbec from=translated src=- shape=7f19d008 vocab=12e89991
+-/
 theorem law_centered_charFun {x : ℝ} (hx0 : 0 ≤ x) (hx1 : x < 1) (t : ℝ) :
     charFun ((law u v hd x hx0 hx1 1).toMeasure.map
       (fun k : ℕ => (k : ℝ) - mean u v d x)) t = centeredCharacteristic u v d x t := by
@@ -63,11 +72,17 @@ theorem law_centered_charFun {x : ℝ} (hx0 : 0 ≤ x) (hx1 : x < 1) (t : ℝ) :
   simp only [centeredCharacteristic, RCLike.inner_apply, conj_trivial,
     mul_comm t (-mean u v d x)]
 
+/--
+@isnad1 id=eq.0h5v.s4.82bfe25de9d5 from=translated src=- shape=e427bb6e vocab=a6a52200
+-/
 theorem centeredCharacteristic_norm (x t : ℝ) :
     ‖centeredCharacteristic u v d x t‖ = ‖characteristic u v d x t‖ := by
   simp only [centeredCharacteristic, norm_mul, Complex.norm_exp_ofReal_mul_I, mul_one]
 
 include hd in
+/--
+@isnad1 id=lt.5h5v.s6.ff24003c74c2 from=translated src=- shape=9f52d341 vocab=5d0f151b
+-/
 theorem characteristic_norm_strict {x : ℝ} (hx0 : 0 < x) (hx1 : x < 1)
     {t : ℝ} (ht0 : 0 < |t|) (htπ : |t| ≤ Real.pi) :
     ‖characteristic u v d x t‖ < 1 := by
@@ -85,6 +100,9 @@ theorem characteristic_norm_strict {x : ℝ} (hx0 : 0 < x) (hx1 : x < 1)
     abs_of_pos (realValue_pos u v d hx0.le hx1),
     div_lt_one (realValue_pos u v d hx0.le hx1)] using hs
 
+/--
+@isnad1 id=continuo.2h4v.s5.6b7e8bd76d59 from=translated src=- shape=19ade655 vocab=4471ece1
+-/
 theorem characteristic_continuous {x : ℝ} (hx0 : 0 ≤ x) (hx1 : x < 1) :
     Continuous (characteristic u v d x) := by
   apply continuous_iff_continuousAt.mpr
@@ -97,12 +115,18 @@ theorem characteristic_continuous {x : ℝ} (hx0 : 0 ≤ x) (hx1 : x < 1) :
     (f := fun s : ℝ => (x : ℂ) * Complex.exp ((s : ℂ) * Complex.I)) hc).div_const
     (realValue u v d x : ℂ) using 1
 
+/--
+@isnad1 id=continuo.2h4v.s5.3950769e937d from=translated src=- shape=19ade655 vocab=3a5b9ced
+-/
 theorem centeredCharacteristic_continuous {x : ℝ} (hx0 : 0 ≤ x) (hx1 : x < 1) :
     Continuous (centeredCharacteristic u v d x) := by
   unfold centeredCharacteristic
   exact (characteristic_continuous u v hx0 hx1).mul (by fun_prop)
 
 include hd in
+/--
+@isnad1 id=lt.5h5v.s6.63da2a0d9c70 from=translated src=- shape=9f52d341 vocab=5be8d558
+-/
 theorem centeredCharacteristic_norm_strict {x : ℝ} (hx0 : 0 < x) (hx1 : x < 1)
     {t : ℝ} (ht0 : 0 < |t|) (htπ : |t| ≤ Real.pi) :
     ‖centeredCharacteristic u v d x t‖ < 1 := by

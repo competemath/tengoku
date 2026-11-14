@@ -12,6 +12,9 @@ namespace PiIrrationality
 noncomputable def poleClearedCoeff (n j : ℕ) : ℚ :=
   reducedLcm n * ((10 : ℚ) ^ (-(j : ℤ)) * laurentCoeffRat n (j : ℤ)) / j
 
+/--
+@isnad1 id=ex.3h2v.s7.ab95d3ea9902 from=translated src=- shape=c042cd01 vocab=c5c34c57
+-/
 theorem poleClearedCoeff_two_factor
     (n : ℕ) (hn : 1 ≤ n) (j : ℕ) (hj0 : 0 < j) (hj : j ≤ 5570 * n) :
     ∃ z : ℤ, poleClearedCoeff n j =
@@ -46,6 +49,9 @@ theorem poleClearedCoeff_two_factor
   refine ⟨z, ?_⟩
   exact (div_eq_iff ht).mp hz |>.trans (mul_comm _ _)
 
+/--
+@isnad1 id=ex.3h2v.s7.1daf4d93dd99 from=translated src=- shape=f6b3f9e0 vocab=93408f44
+-/
 theorem normalized_poleClearedCoeff_two_factor
     (n : ℕ) (hn : 1 ≤ n) (j : ℕ) (hj0 : 0 < j) (hj : j ≤ 5570 * n) :
     ∃ z : ℤ, (2 : ℚ) ^ (1 - 4645 * (n : ℤ)) * poleClearedCoeff n j =
@@ -59,9 +65,15 @@ theorem normalized_poleClearedCoeff_two_factor
 
 def giI : GaussianInt := ⟨0, 1⟩
 
+/--
+@isnad1 id=eq.0h0v.s5.b94e6f26c60c from=translated src=- shape=501f93a1 vocab=7e1b68b9
+-/
 theorem giI_toComplex : (giI : ℂ) = Complex.I := by
   simp [giI, GaussianInt.toComplex_def']
 
+/--
+@isnad1 id=eq.1h2v.s7.9c0debf0acdb from=translated src=- shape=f19f0ae3 vocab=750ed724
+-/
 theorem two_pow_div_one_add_I_pow (j m : ℕ) (hm : j ≤ 2 * m) :
     (2 : ℂ) ^ m / (1 + Complex.I) ^ j =
       (-Complex.I) ^ m * (1 + Complex.I) ^ (2 * m - j) := by
@@ -76,6 +88,9 @@ theorem two_pow_div_one_add_I_pow (j m : ℕ) (hm : j ≤ 2 * m) :
   rw [div_eq_iff (pow_ne_zero j hne), htwo, mul_pow, ← pow_mul]
   rw [mul_assoc, ← pow_add, Nat.sub_add_cancel hm]
 
+/--
+@isnad1 id=ex.0h1v.s8.ce8fecda3f8c from=translated src=- shape=a43def3e vocab=2301961c
+-/
 theorem pole_endpoint_bracket_is_integer (j : ℕ) :
     ∃ z : ℤ, Complex.I * (2 : ℂ) ^ ((j + 1) / 2) *
       ((2 + Complex.I) ^ j - (2 - Complex.I) ^ j -
@@ -115,6 +130,9 @@ noncomputable def normalizedPoleEndpointTerm (n j : ℕ) : ℂ :=
       ((2 + Complex.I) / (1 + Complex.I)) ^ j +
       ((2 - Complex.I) / (1 - Complex.I)) ^ j)
 
+/--
+@isnad1 id=ex.3h2v.s5.e1b250701ea0 from=translated src=- shape=640afb8a vocab=014fb202
+-/
 theorem normalizedPoleEndpointTerm_is_integer
     (n : ℕ) (hn : 1 ≤ n) (j : ℕ) (hj0 : 0 < j) (hj : j ≤ 5570 * n) :
     ∃ z : ℤ, normalizedPoleEndpointTerm n j = (z : ℂ) := by

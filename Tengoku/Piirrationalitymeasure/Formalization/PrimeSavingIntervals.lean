@@ -19,37 +19,58 @@ noncomputable def savingRight (j : ℕ) : ℝ :=
 
 def savingInterval (j : ℕ) : Set ℝ := Set.Ico (savingLeft j) (savingRight j)
 
+/--
+@isnad1 id=iff.0h1v.s6.87c021f6b1ec from=translated src=- shape=504a63ad vocab=c74cb855
+-/
 theorem mem_activeSavingCells {j : ℕ} :
     j ∈ activeSavingCells ↔ (1 ≤ j ∧ j ≤ 1856) ∨ (1859 ≤ j ∧ j ≤ 3713 ∧ j % 2 = 1) := by
   simp only [activeSavingCells, familyI, familyII, familyIII, familyIV, familyV,
     Finset.mem_union, Finset.mem_filter, Finset.mem_Icc]
   omega
 
+/--
+@isnad1 id=eq.1h1v.s6.b1d71171821d from=translated src=- shape=d2acc5c7 vocab=04cd99b8
+-/
 theorem savingRight_familyI {j : ℕ} (hj : j ∈ familyI) :
     savingRight j = (3 * (j : ℝ) + 1) / 11140 := by
   simp only [familyI, Finset.mem_filter, Finset.mem_Icc] at hj
   simp [savingRight, hj.2, hj.1.2]
 
+/--
+@isnad1 id=eq.1h1v.s5.c260817484e6 from=translated src=- shape=58b15b8d vocab=83743f78
+-/
 theorem savingRight_familyII {j : ℕ} (hj : j ∈ familyII) :
     savingRight j = 3 * (j : ℝ) / 11140 := by
   simp only [familyII, Finset.mem_filter, Finset.mem_Icc] at hj
   simp [savingRight, hj.2, hj.1.2]
 
+/--
+@isnad1 id=eq.1h1v.s6.bcc0578464e9 from=translated src=- shape=d2acc5c7 vocab=2a2cf875
+-/
 theorem savingRight_familyIII {j : ℕ} (hj : j ∈ familyIII) :
     savingRight j = (2 * (j : ℝ) + 1) / 7430 := by
   simp only [familyIII, Finset.mem_filter, Finset.mem_Icc] at hj
   simp [savingRight, hj.2, show ¬j ≤ 371 by omega, show j ≤ 1857 by omega]
 
+/--
+@isnad1 id=eq.1h1v.s6.0db822e5d309 from=translated src=- shape=d2acc5c7 vocab=7fc498bc
+-/
 theorem savingRight_familyIV {j : ℕ} (hj : j ∈ familyIV) :
     savingRight j = (2 * (j : ℝ) + 1) / 7430 := by
   simp only [familyIV, Finset.mem_filter, Finset.mem_Icc] at hj
   simp [savingRight, hj.2, show ¬j ≤ 1114 by omega]
 
+/--
+@isnad1 id=eq.1h1v.s6.f28e5695df5a from=translated src=- shape=d2acc5c7 vocab=af27822d
+-/
 theorem savingRight_familyV {j : ℕ} (hj : j ∈ familyV) :
     savingRight j = (3 * (j : ℝ) - 1) / 11140 := by
   simp only [familyV, Finset.mem_filter, Finset.mem_Icc] at hj
   simp [savingRight, hj.2, show ¬j ≤ 371 by omega, show ¬j ≤ 1857 by omega]
 
+/--
+@isnad1 id=iff.2h2v.s5.6be55e1c53b1 from=translated src=- shape=a4e9387f vocab=a8279936
+-/
 theorem savingCell_condition_classification {j : ℕ} {u : ℝ}
     (hj : j ≤ 3713) (hu : SavingCell j u) :
     primeSavingCondition u ↔ j ∈ activeSavingCells ∧ u < savingRight j := by
@@ -113,6 +134,9 @@ theorem savingCell_condition_classification {j : ℕ} {u : ℝ}
       have hm : j ∈ activeSavingCells := mem_activeSavingCells.mpr (Or.inr ⟨hl', hj, ho⟩)
       simp [hm, savingRight, he, hl, show ¬j ≤ 371 by omega]
 
+/--
+@isnad1 id=and.1h1v.s6.0ec250153268 from=translated src=- shape=b7ae6360 vocab=f27498ec
+-/
 theorem savingInterval_endpoints {j : ℕ} (hj : j ∈ activeSavingCells) :
     0 < savingLeft j ∧ savingLeft j < savingRight j ∧
       savingRight j < ((j : ℝ) + 1) / 3714 ∧ savingRight j < 1 := by
@@ -145,12 +169,18 @@ theorem savingInterval_endpoints {j : ℕ} (hj : j ∈ activeSavingCells) :
       constructor; linarith
       constructor <;> linarith
 
+/--
+@isnad1 id=savingce.2h2v.s4.dd786531f125 from=translated src=- shape=ff17faa5 vocab=dd3d426f
+-/
 theorem savingInterval_subset_cell {j : ℕ} (hj : j ∈ activeSavingCells)
     {u : ℝ} (hu : u ∈ savingInterval j) : SavingCell j u := by
   have he := savingInterval_endpoints hj
   change (j : ℝ) / 3714 ≤ u ∧ u < savingRight j at hu
   constructor <;> linarith [hu.1, hu.2, he.2.2.1]
 
+/--
+@isnad1 id=eq.0h0v.s5.d9826c6303ed from=translated src=- shape=8a42282a vocab=0e78a104
+-/
 theorem primeSavingSet_eq_intervals :
     primeSavingSet = ⋃ j ∈ activeSavingCells, savingInterval j := by
   ext u
@@ -173,6 +203,9 @@ theorem primeSavingSet_eq_intervals :
     exact ⟨le_trans he.1.le hu.1, lt_trans hu.2 he.2.2.2,
       (savingCell_condition_classification hj' hcell).mpr ⟨hj, hu.2⟩⟩
 
+/--
+@isnad1 id=pairwise.0h0v.s5.f8451a0129f9 from=translated src=- shape=e41f8840 vocab=b8141332
+-/
 theorem savingIntervals_pairwiseDisjoint :
     Set.PairwiseDisjoint (↑activeSavingCells : Set ℕ) savingInterval := by
   intro i hi j hj hne
@@ -184,6 +217,9 @@ theorem savingIntervals_pairwiseDisjoint :
   have hfj := savingCell_floor_b hcj
   exact hne (by exact_mod_cast hfi.symm.trans hfj)
 
+/--
+@isnad1 id=eq.0h0v.s9.971c17295db4 from=translated src=- shape=6efc6df6 vocab=6274ac45
+-/
 theorem primeSavingSet_five_families :
     primeSavingSet =
       (⋃ j ∈ familyI, Set.Ico ((j : ℝ) / 3714) ((3 * (j : ℝ) + 1) / 11140)) ∪

@@ -24,9 +24,15 @@ namespace LocalPolyhedral
 
 variable {f g : E → ℝ}
 
+/--
+@isnad1 id=eq.0h3v.s5.4be14effc2b7 from=translated src=- shape=1f9b4c6c vocab=399132e0
+-/
 theorem tangent_zero (M : LocalPolyhedral f) : M.tangent 0 = 0 := by
   simpa using M.homogeneous 0 0 (le_refl _)
 
+/--
+@isnad1 id=continuo.0h3v.s5.66df37674b2d from=translated src=- shape=e5fcab71 vocab=c6428871
+-/
 theorem continuousAt (M : LocalPolyhedral f) : ContinuousAt f 0 :=
   (continuous_const.add M.continuous_tangent).continuousAt.congr_of_eventuallyEq
     M.eventually_exact
@@ -155,6 +161,9 @@ noncomputable def sum {ι : Type*} (S : Finset ι) (f : ι → E → ℝ)
           (Eventually.of_forall (by intro x; simp [hi]))⟩
   exact Classical.choice (hex S M)
 
+/--
+@isnad1 id=ex.0h3v.s6.ac18bdffc37a from=translated src=- shape=82bb95b2 vocab=e52801d5
+-/
 theorem tangent_bound (M : LocalPolyhedral f) :
     ∃ B : ℝ, 0 ≤ B ∧ ∀ x : E, |M.tangent x| ≤ B * ‖x‖ := by
   obtain ⟨S, hS⟩ := M.finite_linear_selection

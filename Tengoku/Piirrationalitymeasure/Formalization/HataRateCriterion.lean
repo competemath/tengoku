@@ -9,6 +9,9 @@ namespace PiIrrationality
 open Filter
 open scoped Topology
 
+/--
+@isnad1 id=ex.3h3v.s7.062c0a8eb6fc from=translated src=- shape=2bde67d9 vocab=c6aab52d
+-/
 theorem hata_delta_choice {sigma tau epsilon : ℝ}
     (hs : 0 < sigma) (ht : 0 < tau) (he : 0 < epsilon) :
     ∃ delta : ℝ, 0 < delta ∧ delta < sigma / 2 ∧ delta < tau / 6 ∧
@@ -26,6 +29,9 @@ theorem hata_delta_choice {sigma tau epsilon : ℝ}
   have hpos : ∀ᶠ delta : ℝ in 𝓝[>] 0, 0 < delta := self_mem_nhdsWithin
   exact (hpos.and (hnear.filter_mono nhdsWithin_le_nhds)).exists
 
+/--
+@isnad1 id=and.6h7v.s8.b5f21231b866 from=translated src=- shape=74276797 vocab=2accb231
+-/
 theorem hata_exp_bounds_of_rates {theta sigma tau scale delta : ℝ} {U V : ℕ → ℤ}
     (hθ : Irrational theta) (hscale : 0 < scale) (hd : 0 < delta) (hds : delta < sigma)
     (hV : Tendsto (fun n : ℕ => Real.log |(V n : ℝ)| / (scale * (n : ℝ)))
@@ -67,6 +73,9 @@ theorem hata_exp_bounds_of_rates {theta sigma tau scale delta : ℝ} {U V : ℕ 
   exact ⟨hall.mono (fun _ h => h.1), hall.mono (fun _ h => h.2.1),
     hall.mono (fun _ h => h.2.2)⟩
 
+/--
+@isnad1 id=irration.6h6v.s7.23ae3e86dbf2 from=translated src=- shape=c2749d16 vocab=0bbfaf69
+-/
 theorem hata_irrationality_bound {theta sigma tau scale : ℝ} {U V : ℕ → ℤ}
     (hθ : Irrational theta) (hs : 0 < sigma) (ht : 0 < tau) (hscale : 0 < scale)
     (hV : Tendsto (fun n : ℕ => Real.log |(V n : ℝ)| / (scale * (n : ℝ)))

@@ -10,6 +10,9 @@ Power identities for the Mobius substitution used in the coefficient extraction.
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=eq.0h2v.s7.4a57e18f1fca from=translated src=- shape=86dccf0e vocab=4b42fb74
+-/
 theorem mobius_even_power (n : ℕ) (z : ℚ) :
     mobius z ^ (2 * 1857 * n) =
       (5 : ℚ) ^ (2 * 1857 * n) * (1 + z) ^ (2 * 1857 * n) /
@@ -21,6 +24,9 @@ theorem mobius_even_power (n : ℕ) (z : ℚ) :
     simp [pow_mul]
   rw [hsign]
 
+/--
+@isnad1 id=eq.2h2v.s7.3cb9959428af from=translated src=- shape=674a1278 vocab=7207a120
+-/
 theorem mobius_denominator_power (n : ℕ) (z : ℚ)
     (hz : z ≠ 0) (hz1 : z ≠ 1) :
     (25 - mobius z ^ 2) ^ (5570 * n + 1) =
@@ -35,6 +41,9 @@ theorem mobius_denominator_power (n : ℕ) (z : ℚ)
   rw [mul_pow, ← pow_mul]
   field_simp [hz, hz1]
 
+/--
+@isnad1 id=eq.1h2v.s7.5a90885baa0a from=translated src=- shape=57b213cb vocab=094d52d8
+-/
 theorem mobius_quartic_power (n : ℕ) (z : ℚ) (hz1 : z ≠ 1) :
     (mobius z ^ 4 + 6 * mobius z ^ 2 + 25) ^ (3714 * n) =
       ((400 : ℚ) ^ (3714 * n) * P z ^ (3714 * n)) /
@@ -52,6 +61,9 @@ noncomputable def transformedDensityFactorized (n : ℕ) (z : ℚ) : ℚ :=
     (- ((100 : ℚ) ^ (5570 * n + 1) * z ^ (5570 * n + 1)) /
       (1 - z) ^ (2 * (5570 * n + 1)))
 
+/--
+@isnad1 id=eq.2h2v.s6.815284831d88 from=translated src=- shape=03f9a135 vocab=7e7e8e97
+-/
 theorem transformedDensityFactorized_eq (n : ℕ) (z : ℚ)
     (hz : z ≠ 0) (hz1 : z ≠ 1) :
     rationalFunction n (mobius z) * (-10 / (1 - z)^2) =

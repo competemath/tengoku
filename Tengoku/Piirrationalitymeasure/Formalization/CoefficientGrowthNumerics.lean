@@ -8,20 +8,32 @@ import Tengoku.Piirrationalitymeasure.Formalization.CoefficientLogCertificate
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=eq.0h0v.s2.fda5515ec434 from=translated src=- shape=28fc0566 vocab=9cd59568
+-/
 @[simp] theorem coefficientZLowerRat_cast :
     (coefficientZLowerRat : ℝ) = coefficientSaddleLower := by
   norm_num [coefficientZLowerRat, coefficientSaddleLower]
 
+/--
+@isnad1 id=eq.0h0v.s2.d951d62a69d4 from=translated src=- shape=28fc0566 vocab=a385cfdb
+-/
 @[simp] theorem coefficientZUpperRat_cast :
     (coefficientZUpperRat : ℝ) = coefficientSaddleUpper := by
   norm_num [coefficientZUpperRat, coefficientSaddleUpper]
 
+/--
+@isnad1 id=eq.0h1v.s3.2fda3abe503d from=translated src=- shape=3de321ca vocab=bb7f370d
+-/
 @[simp] theorem coefficientPRat_cast (z : ℚ) :
     (coefficientPRat z : ℝ) = PReal (z : ℝ) := by
   unfold coefficientPRat PReal
   push_cast
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s7.5fdb3d30be21 from=translated src=- shape=a8879601 vocab=5d1433cc
+-/
 theorem coefficientGrowthRate_eq_log_terms :
     coefficientGrowthRate = (Real.log 25 + 3716 * Real.log 2 +
       3714 * Real.log (1 + coefficientSaddle) + 3714 * Real.log (PReal coefficientSaddle) -
@@ -38,6 +50,9 @@ theorem coefficientGrowthRate_eq_log_terms :
   norm_num
   ring
 
+/--
+@isnad1 id=and.0h0v.s6.8993a503c68f from=translated src=- shape=6fa76439 vocab=00fee69f
+-/
 theorem coefficientGrowthRate_enclosure :
     (333194398617829933828283250382326 : ℝ) / 10 ^ 32 < coefficientGrowthRate ∧
       coefficientGrowthRate < (333194398617829933828283250382327 : ℝ) / 10 ^ 32 := by

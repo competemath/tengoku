@@ -9,6 +9,9 @@ namespace PiIrrationality
 open MeasureTheory
 open scoped Topology
 
+/--
+@isnad1 id=eq.0h1v.s6.bebc00b37e80 from=translated src=- shape=3b8cf03c vocab=10d0bfd5
+-/
 theorem lattice_frequency_integral (d : ℤ) :
     (∫ t in -Real.pi..Real.pi,
       Complex.exp ((d : ℂ) * (t : ℂ) * Complex.I)) =
@@ -35,6 +38,9 @@ theorem lattice_frequency_integral (d : ℤ) :
     simp
   rw [hp, sub_self, zero_div]
 
+/--
+@isnad1 id=eq.0h2v.s7.7e0c114e141a from=translated src=- shape=b52360f3 vocab=20f6c941
+-/
 theorem lattice_fourier_inversion (p : PMF ℕ) (j : ℕ) :
     (∫ t in -Real.pi..Real.pi,
       charFun (p.toMeasure.map (fun k : ℕ => (k : ℝ))) t *

@@ -12,6 +12,9 @@ namespace PiIrrationality
 open Filter
 open scoped Topology
 
+/--
+@isnad1 id=ex.1h2v.s5.27b8d5d88013 from=translated src=- shape=892233a8 vocab=58c09719
+-/
 theorem exists_hata_scale (q : ℕ) {a : ℝ} (ha : 0 < a) :
     ∃ n : ℕ, (2 * q : ℝ) < Real.exp (a * (n : ℝ)) := by
   have hlin : Tendsto (fun n : ℕ => a * (n : ℝ)) atTop atTop :=
@@ -23,10 +26,16 @@ theorem exists_hata_scale (q : ℕ) {a : ℝ} (ha : 0 < a) :
 noncomputable def hataScale (q : ℕ) (a : ℝ) (ha : 0 < a) : ℕ :=
   Nat.find (exists_hata_scale q ha)
 
+/--
+@isnad1 id=lt.1h2v.s5.85c6fec9ea57 from=translated src=- shape=5a397f76 vocab=6b2f5578
+-/
 theorem hataScale_spec (q : ℕ) {a : ℝ} (ha : 0 < a) :
     (2 * q : ℝ) < Real.exp (a * (hataScale q a ha : ℝ)) :=
   Nat.find_spec (exists_hata_scale q ha)
 
+/--
+@isnad1 id=lt.2h2v.s5.3d70fcecb72a from=translated src=- shape=802ec817 vocab=55f6ecb6
+-/
 theorem hataScale_pos (q : ℕ) {a : ℝ} (hq : 0 < q) (ha : 0 < a) :
     0 < hataScale q a ha := by
   apply Nat.pos_of_ne_zero
@@ -37,6 +46,9 @@ theorem hataScale_pos (q : ℕ) {a : ℝ} (hq : 0 < q) (ha : 0 < a) :
     exact_mod_cast (show 1 ≤ q by omega)
   linarith
 
+/--
+@isnad1 id=and.2h2v.s6.3c0b7626e0bb from=translated src=- shape=186a3496 vocab=4b5faa96
+-/
 theorem hataScale_prev_spec (q : ℕ) {a : ℝ} (hq : 0 < q) (ha : 0 < a) :
     Real.exp (a * ((hataScale q a ha - 1 : ℕ) : ℝ)) ≤ (2 * q : ℝ) ∧
       (2 * q : ℝ) < Real.exp (a * (hataScale q a ha : ℝ)) := by
@@ -58,6 +70,9 @@ theorem hataScale_prev_spec (q : ℕ) {a : ℝ} (hq : 0 < q) (ha : 0 < a) :
   · exact le_of_not_gt hmin
   · exact hupper
 
+/--
+@isnad1 id=le.2h3v.s6.9b70722bdd56 from=translated src=- shape=4ad40581 vocab=4b5faa96
+-/
 theorem hataScale_ge_of_threshold (q n0 : ℕ) {a : ℝ} (ha : 0 < a)
     (hthreshold : Real.exp (a * ((n0 - 1 : ℕ) : ℝ)) ≤ (2 * q : ℝ)) :
     n0 ≤ hataScale q a ha := by
@@ -75,6 +90,9 @@ theorem hataScale_ge_of_threshold (q n0 : ℕ) {a : ℝ} (ha : 0 < a)
   have hupper := hataScale_spec q ha
   linarith
 
+/--
+@isnad1 id=lt.2h3v.s6.d7540a2b4e95 from=translated src=- shape=5fd5880b vocab=f620e61c
+-/
 theorem hataScale_tail_small (q n : ℕ) {a : ℝ} (ha : 0 < a)
     (hNn : hataScale q a ha ≤ n) :
     (q : ℝ) * Real.exp (-a * (n : ℝ)) < (1 : ℝ) / 2 := by
@@ -97,6 +115,9 @@ theorem hataScale_tail_small (q n : ℕ) {a : ℝ} (ha : 0 < a)
       rw [hexpneg, div_eq_mul_inv]
     _ < (1 : ℝ) / 2 := hdiv
 
+/--
+@isnad1 id=le.2h2v.s6.8b810fc4121c from=translated src=- shape=18002ad2 vocab=f9956d66
+-/
 theorem hataScale_exp_upper (q : ℕ) {a : ℝ} (hq : 0 < q) (ha : 0 < a) :
     Real.exp (hataScale q a ha : ℝ) ≤
       Real.exp 1 * (2 * q : ℝ) ^ (1 / a) := by

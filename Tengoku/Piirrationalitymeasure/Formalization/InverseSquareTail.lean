@@ -9,6 +9,9 @@ namespace PiIrrationality
 open Filter
 open scoped Topology
 
+/--
+@isnad1 id=le.3h3v.s7.5179c064b8b8 from=translated src=- shape=2508e7a1 vocab=cabdab92
+-/
 theorem hasSum_inverse_square_tail {f : ℕ → ℝ} {S : ℝ} (hs : HasSum f S)
     (hf : ∀ k : ℕ, 0 < k → |f k| ≤ 1 / (k : ℝ) ^ 2)
     {N : ℕ} (hN : 0 < N) :

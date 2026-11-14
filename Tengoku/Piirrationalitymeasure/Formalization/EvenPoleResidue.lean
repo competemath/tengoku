@@ -13,6 +13,9 @@ local instance : CharZero (LaurentSeries ℚ) := algebraRat.charZero _
 noncomputable local instance : Algebra ℚ (LaurentSeries ℚ) := HahnSeries.powerSeriesAlgebra ℤ ℚ
 noncomputable local instance : Algebra ℤ (LaurentSeries ℚ) := Ring.toIntAlgebra _
 
+/--
+@isnad1 id=eq.1h2v.s9.ab5b35164a15 from=translated src=- shape=ab7a4d3a vocab=9da0d71c
+-/
 theorem mobius_residue (F : Polynomial ℤ) {m : ℕ} (hm : 0 < m) :
     laurentResidue (density F m mobiusLaurent * laurentDerivation ℚ mobiusLaurent) =
       laurentCoeff F m 0 := by

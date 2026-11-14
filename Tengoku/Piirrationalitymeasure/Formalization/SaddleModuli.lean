@@ -11,12 +11,18 @@ noncomputable def saddleQuadraticNormSq : ℝ :=
 
 noncomputable def saddlePoleNormSq : ℝ := Complex.normSq (25 - saddleUpper)
 
+/--
+@isnad1 id=eq.0h0v.s4.cb62c57dc888 from=translated src=- shape=501f93a1 vocab=635aa6d6
+-/
 theorem saddleUpper_normSq : Complex.normSq saddleUpper = saddleNormSq := by
   have hv := saddleV_sq
   unfold saddleVSq at hv
   simp [saddleUpper, Complex.normSq_apply]
   nlinarith
 
+/--
+@isnad1 id=eq.0h0v.s7.5f32dda2aa1f from=translated src=- shape=a48ea730 vocab=093a31b4
+-/
 theorem saddleQuadraticNormSq_eq :
     saddleQuadraticNormSq = saddleNormSq ^ 2 + 12 * saddleU * saddleNormSq +
       100 * saddleU ^ 2 + 300 * saddleU - 14 * saddleNormSq + 625 := by
@@ -31,6 +37,9 @@ theorem saddleQuadraticNormSq_eq :
     linarith
   rwa [huv] at h
 
+/--
+@isnad1 id=eq.0h0v.s5.bbd79c7061d7 from=translated src=- shape=b59935a2 vocab=eee08908
+-/
 theorem saddlePoleNormSq_eq :
     saddlePoleNormSq = 625 - 50 * saddleU + saddleNormSq := by
   have h : saddlePoleNormSq = 625 - 50 * saddleU + saddleU ^ 2 + saddleV ^ 2 := by
@@ -40,12 +49,18 @@ theorem saddlePoleNormSq_eq :
   unfold saddleVSq at hv
   linarith
 
+/--
+@isnad1 id=eq.0h1v.s7.58d0247db71d from=translated src=- shape=d42d4864 vocab=5bef505a
+-/
 theorem stationaryCubic_quadratic_division (y : ℝ) :
     stationaryCubic y = (3715 * y - 254409) * (y ^ 2 + 6 * y + 25) +
       505104 * y + 5199600 := by
   unfold stationaryCubic
   ring
 
+/--
+@isnad1 id=eq.0h0v.s6.0576704c794c from=translated src=- shape=994ab632 vocab=fd3f62f3
+-/
 theorem saddleQuadraticNormSq_product :
     saddleQuadraticNormSq * (stationaryRoot ^ 2 + 6 * stationaryRoot + 25) =
       (706242355200 : ℝ) / 552049 := by
@@ -62,6 +77,9 @@ theorem saddleQuadraticNormSq_product :
     (pow_ne_zero 2 stationaryRoot_pos.ne'))
   linarith
 
+/--
+@isnad1 id=eq.0h0v.s6.a7e073031af1 from=translated src=- shape=1a8e3a08 vocab=fd3f62f3
+-/
 theorem saddleQuadraticNormSq_formula :
     saddleQuadraticNormSq = 706242355200 /
       (552049 * (stationaryRoot ^ 2 + 6 * stationaryRoot + 25)) := by
@@ -71,6 +89,9 @@ theorem saddleQuadraticNormSq_formula :
   apply (eq_div_iff hd.ne').mpr
   nlinarith [saddleQuadraticNormSq_product]
 
+/--
+@isnad1 id=eq.0h0v.s5.3534440e7a62 from=translated src=- shape=b077a574 vocab=de36e0aa
+-/
 theorem saddlePoleNormSq_formula :
     saddlePoleNormSq = 22280000 / (743 * (stationaryRoot - 25)) := by
   have hd : 0 < 743 * (stationaryRoot - 25) := by
@@ -85,6 +106,9 @@ theorem saddlePoleNormSq_formula :
   rw [stationaryRoot_eq_zero, mul_zero] at h
   exact sub_eq_zero.mp ((mul_eq_zero.mp h).resolve_left stationaryRoot_pos.ne')
 
+/--
+@isnad1 id=and.0h0v.s8.f23952d41b51 from=translated src=- shape=26ca6ca0 vocab=96f81d58
+-/
 theorem saddleModuli_paper_bounds :
     ((4710661776618520503155596 : ℝ) / 10 ^ 24 < saddleNormSq ∧
       saddleNormSq < (4710661776618520503155597 : ℝ) / 10 ^ 24) ∧

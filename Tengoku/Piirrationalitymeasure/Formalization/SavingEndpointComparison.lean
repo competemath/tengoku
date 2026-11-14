@@ -9,6 +9,9 @@ namespace PiIrrationality
 
 open Set
 
+/--
+@isnad1 id=iff.1h7v.s5.0d59f3ff0103 from=translated src=- shape=8e6baf92 vocab=454d0b9a
+-/
 theorem savingEndpoint_le_iff_argument {a b c : ℝ} (z : ℝ × ℝ)
     (T : SavingEndpointType) (j : ℤ) (u : ℝ)
     (hm : 0 < savingEndpointSlope a b c T) :
@@ -17,6 +20,9 @@ theorem savingEndpoint_le_iff_argument {a b c : ℝ} (z : ℝ × ℝ)
   unfold savingEndpointArgument
   constructor <;> intro h <;> nlinarith only [h]
 
+/--
+@isnad1 id=and.2h3v.s7.3da14936b996 from=translated src=- shape=3d95ed09 vocab=d48dd169
+-/
 theorem savingEndpoint_candidate_argument_bounds (T : SavingEndpointType) {z : ℝ × ℝ}
     (hz : parameterNormOne z ≤ 1 / 100) {u : ℝ}
     (hu : u ∈ Ioo (candidateEndpointCut : ℝ) ((candidateEndpointCut : ℝ) + 1)) :
@@ -35,6 +41,9 @@ theorem savingEndpoint_candidate_argument_bounds (T : SavingEndpointType) {z : �
   rw [← hsize]
   constructor <;> nlinarith only [hlo, hhi, hL, hR]
 
+/--
+@isnad1 id=eq.5h5v.s8.e8ce407659f7 from=translated src=- shape=19335468 vocab=8d715142
+-/
 theorem savingEndpoint_floor_eq_of_comparisons (T : SavingEndpointType)
     {z w : ℝ × ℝ} (hz : parameterNormOne z ≤ 1 / 100) (hw : parameterNormOne w ≤ 1 / 100)
     {u v : ℝ}
@@ -53,6 +62,9 @@ theorem savingEndpoint_floor_eq_of_comparisons (T : SavingEndpointType)
     cases T <;> norm_num [savingEndpointSlope]
   simpa only [savingEndpoint_le_iff_argument _ _ _ _ hm] using hcmp j hj
 
+/--
+@isnad1 id=eq.5h4v.s8.8899fa34e94c from=translated src=- shape=ca29f6bd vocab=663c21db
+-/
 theorem translatedSavingChi_eq_of_endpoint_comparisons
     {z w : ℝ × ℝ} (hz : parameterNormOne z ≤ 1 / 100) (hw : parameterNormOne w ≤ 1 / 100)
     {u v : ℝ}

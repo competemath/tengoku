@@ -7,6 +7,9 @@ import Tengoku.Seed.Data.Rat.Cast.Order
 
 namespace PiIrrationality
 
+/--
+@isnad1 id=eq.0h2v.s4.b6d652dd58eb from=translated src=- shape=0c86bc61 vocab=24c095f5
+-/
 theorem oddLogPartialSum_neg (u : ℝ) (N : ℕ) :
     oddLogPartialSum (-u) N = -oddLogPartialSum u N := by
   unfold oddLogPartialSum
@@ -16,6 +19,9 @@ theorem oddLogPartialSum_neg (u : ℝ) (N : ℕ) :
   simp only [oddLogTerm, pow_add, pow_mul, neg_sq, pow_one]
   ring
 
+/--
+@isnad1 id=le.1h2v.s6.bb59e5901936 from=translated src=- shape=acb2bb94 vocab=d53fb0cd
+-/
 theorem oddLogSeries_abs_remainder {u : ℝ} (hu : |u| < 1) (N : ℕ) :
     |Real.log ((1 + u) / (1 - u)) - oddLogPartialSum u N| ≤
       oddLogTailBound |u| N := by
@@ -40,11 +46,17 @@ theorem oddLogSeries_abs_remainder {u : ℝ} (hu : |u| < 1) (N : ℕ) :
     rw [abs_of_neg he]
     linarith
 
+/--
+@isnad1 id=le.2h2v.s5.90350e8797ff from=translated src=- shape=b67b8262 vocab=462ecbea
+-/
 theorem oddLogTailBound_nonneg {u : ℝ} (hu0 : 0 ≤ u) (hu1 : u < 1) (N : ℕ) :
     0 ≤ oddLogTailBound u N := by
   unfold oddLogTailBound
   exact div_nonneg (by positivity) (mul_nonneg (by positivity) (by nlinarith))
 
+/--
+@isnad1 id=le.2h2v.s6.a9a276c4720a from=translated src=- shape=75bf01fb vocab=4c1d4e7d
+-/
 theorem oddLogTailBound_le_third {u : ℝ} (hu0 : 0 ≤ u) (hu1 : u ≤ 1 / 3) (N : ℕ) :
     oddLogTailBound u N ≤ oddLogTailBound (1 / 3) N := by
   rcases hu0.eq_or_lt with he | hp
@@ -55,6 +67,9 @@ theorem oddLogTailBound_le_third {u : ℝ} (hu0 : 0 ≤ u) (hu1 : u ≤ 1 / 3) (
     · exact (oddLogTailBound_lt hp hl (by norm_num) N).le
     · rw [he]
 
+/--
+@isnad1 id=le.2h2v.s6.7bd93557aac3 from=translated src=- shape=7a460d98 vocab=1196a545
+-/
 theorem oddLogSeries_abs_remainder_le_third {u : ℝ}
     (hu0 : 0 ≤ u) (hu1 : u ≤ 1 / 3) (N : ℕ) :
     |Real.log ((1 + u) / (1 - u)) - oddLogPartialSum u N| ≤
@@ -67,6 +82,9 @@ theorem oddLogSeries_abs_remainder_le_third {u : ℝ}
 def oddLogSumRat (u : ℚ) (N : ℕ) : ℚ :=
   2 * ∑ j ∈ Finset.range N, u ^ (2 * j + 1) / (2 * (j : ℚ) + 1)
 
+/--
+@isnad1 id=eq.0h2v.s4.8e9cfe04e650 from=translated src=- shape=e45b0399 vocab=176da757
+-/
 theorem oddLogSumRat_cast (u : ℚ) (N : ℕ) :
     (oddLogSumRat u N : ℝ) = oddLogPartialSum (u : ℝ) N := by
   rw [oddLogPartialSum_eq]
@@ -77,6 +95,9 @@ theorem oddLogSumRat_cast (u : ℚ) (N : ℕ) :
 def scaledLogApproxRat (x : ℚ) (k : ℤ) (N : ℕ) : ℚ :=
   k * oddLogSumRat (1 / 3) N + oddLogSumRat ((x - 2 ^ k) / (x + 2 ^ k)) N
 
+/--
+@isnad1 id=le.2h3v.s7.aec5395574a1 from=translated src=- shape=111f8f4f vocab=49c91756
+-/
 theorem scaledLogApproxRat_error {x : ℚ} (k : ℤ) (N : ℕ)
     (hxL : 2 ^ k ≤ x) (hxU : x ≤ 2 * 2 ^ k) :
     |Real.log (x : ℝ) - (scaledLogApproxRat x k N : ℝ)| ≤
@@ -127,10 +148,16 @@ theorem scaledLogApproxRat_error {x : ℚ} (k : ℤ) (N : ℕ)
       exact add_le_add (mul_le_mul_of_nonneg_left htwo (abs_nonneg _)) hu
     _ = _ := by ring
 
+/--
+@isnad1 id=lt.0h0v.s6.148854639213 from=translated src=- shape=7d7a685d vocab=907524ec
+-/
 theorem oddLogTailBound_120 :
     oddLogTailBound (1 / 3) 120 < (964 : ℝ) / 10 ^ 120 := by
   norm_num [oddLogTailBound]
 
+/--
+@isnad1 id=lt.2h2v.s7.e91488ca18cc from=translated src=- shape=3c4c43af vocab=c75e0afd
+-/
 theorem scaledLogApproxRat_error_120 {x : ℚ} (k : ℤ)
     (hxL : 2 ^ k ≤ x) (hxU : x ≤ 2 * 2 ^ k) :
     |Real.log (x : ℝ) - (scaledLogApproxRat x k 120 : ℝ)| <

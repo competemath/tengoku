@@ -30,13 +30,22 @@ noncomputable def polynomialPart (n : ℕ) : Polynomial ℤ :=
 noncomputable def polynomialRemainder (n : ℕ) : Polynomial ℤ :=
   (polynomialRemainderY n).comp (X ^ 2)
 
+/--
+@isnad1 id=monic.0h1v.s2.486af1211f10 from=translated src=- shape=1a6c1393 vocab=17252b1a
+-/
 theorem infinityDenominatorY_monic (n : ℕ) : (infinityDenominatorY n).Monic :=
   (monic_X_sub_C 25).pow _
 
+/--
+@isnad1 id=eq.0h1v.s5.0566a14655a4 from=translated src=- shape=3487779f vocab=1c0983da
+-/
 theorem infinityDenominatorY_natDegree (n : ℕ) :
     (infinityDenominatorY n).natDegree = 5570 * n + 1 := by
   rw [infinityDenominatorY, natDegree_pow, natDegree_X_sub_C, mul_one]
 
+/--
+@isnad1 id=eq.0h1v.s4.35e082be846e from=translated src=- shape=e96f2693 vocab=946eb1ef
+-/
 theorem infinityNumeratorY_natDegree (n : ℕ) :
     (infinityNumeratorY n).natDegree = 9285 * n := by
   have hquad : (X ^ 2 + C (6 : ℤ) * X + C 25).natDegree = 2 := by
@@ -50,25 +59,40 @@ theorem infinityNumeratorY_natDegree (n : ℕ) :
     natDegree_X_pow, natDegree_pow, hquad]
   omega
 
+/--
+@isnad1 id=eq.0h1v.s5.236530e73dfc from=translated src=- shape=3487779f vocab=140455ce
+-/
 theorem polynomialPartY_natDegree (n : ℕ) :
     (polynomialPartY n).natDegree = 3715 * n - 1 := by
   rw [polynomialPartY, natDegree_divByMonic _ (infinityDenominatorY_monic n),
     infinityNumeratorY_natDegree, infinityDenominatorY_natDegree]
   omega
 
+/--
+@isnad1 id=eq.0h1v.s5.53842489c723 from=translated src=- shape=3487779f vocab=f79fd5c9
+-/
 theorem polynomialPart_natDegree (n : ℕ) :
     (polynomialPart n).natDegree = 7430 * n - 2 := by
   rw [polynomialPart, natDegree_comp, polynomialPartY_natDegree, natDegree_X_pow]
   omega
 
+/--
+@isnad1 id=eq.0h3v.s7.323c7391334f from=translated src=- shape=76d2d0c8 vocab=8246dd3f
+-/
 theorem polynomialPart_aeval_even {K : Type*} [CommRing K] [Algebra ℤ K]
     (n : ℕ) (t : K) : aeval (-t) (polynomialPart n) = aeval t (polynomialPart n) := by
   simp [polynomialPart, aeval_comp]
 
+/--
+@isnad1 id=lt.0h1v.s4.9555d20ac83c from=translated src=- shape=2d31147b vocab=31b5073b
+-/
 theorem polynomialRemainderY_degree_lt (n : ℕ) :
     (polynomialRemainderY n).degree < (infinityDenominatorY n).degree :=
   degree_modByMonic_lt _ (infinityDenominatorY_monic n)
 
+/--
+@isnad1 id=le.0h1v.s4.e291c270d934 from=translated src=- shape=e96f2693 vocab=7a222d29
+-/
 theorem polynomialRemainder_natDegree_le (n : ℕ) :
     (polynomialRemainder n).natDegree ≤ 11140 * n := by
   have h := polynomialRemainderY_degree_lt n
@@ -82,6 +106,9 @@ theorem polynomialRemainder_natDegree_le (n : ℕ) :
   rw [polynomialRemainder, natDegree_comp, natDegree_X_pow]
   omega
 
+/--
+@isnad1 id=eq.0h1v.s7.58d69f322add from=translated src=- shape=11c3ebcf vocab=58707d19
+-/
 theorem polynomialPart_division (n : ℕ) :
     (infinityNumeratorY n).comp (X ^ 2) =
       (X ^ 2 - C 25) ^ (5570 * n + 1) * polynomialPart n + polynomialRemainder n := by
@@ -90,10 +117,16 @@ theorem polynomialPart_division (n : ℕ) :
   simpa [polynomialPart, polynomialRemainder, polynomialPartY,
     polynomialRemainderY, infinityDenominatorY, add_comm] using h.symm
 
+/--
+@isnad1 id=monic.0h1v.s7.9bc2af57d4ee from=translated src=- shape=6048f06b vocab=358dbc2c
+-/
 theorem infinityDenominator_monic (n : ℕ) :
     ((X ^ 2 - C 25 : Polynomial ℤ) ^ (5570 * n + 1)).Monic :=
   (monic_X_pow_sub_C 25 (by decide)).pow _
 
+/--
+@isnad1 id=eq.0h1v.s8.48da4ad44e2c from=translated src=- shape=78e382b2 vocab=48386ec2
+-/
 theorem polynomialPart_eq_divByMonic (n : ℕ) :
     ((infinityNumeratorY n).comp (X ^ 2)) /ₘ
       (X ^ 2 - C 25) ^ (5570 * n + 1) = polynomialPart n := by
@@ -108,6 +141,9 @@ theorem polynomialPart_eq_divByMonic (n : ℕ) :
         natDegree_pow, natDegree_X_pow_sub_C, Nat.cast_lt]
       omega
 
+/--
+@isnad1 id=eq.0h1v.s8.3d39dbf82366 from=translated src=- shape=acc94666 vocab=8d4e53aa
+-/
 theorem polynomialPart_map_eq_divByMonic (n : ℕ) :
     ((infinityNumeratorY n).comp (X ^ 2)).map (Int.castRingHom ℚ) /ₘ
       (X ^ 2 - C 25) ^ (5570 * n + 1) =
@@ -117,6 +153,9 @@ theorem polynomialPart_map_eq_divByMonic (n : ℕ) :
   simpa only [Polynomial.map_pow, Polynomial.map_sub, Polynomial.map_X, Polynomial.map_C,
     show (Int.castRingHom ℚ) (25 : ℤ) = 25 by norm_num] using h
 
+/--
+@isnad1 id=eq.1h2v.s8.f4981ebd9a2b from=translated src=- shape=f49c71f0 vocab=a88f0b8d
+-/
 theorem rationalFunction_eq_polynomialPart_add_remainder
     (n : ℕ) (t : ℚ) (ht : t ^ 2 ≠ 25) :
     rationalFunction n t = aeval t (polynomialPart n) +

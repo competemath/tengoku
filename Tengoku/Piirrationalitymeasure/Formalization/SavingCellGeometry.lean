@@ -28,12 +28,18 @@ noncomputable def savingCellUpper (a b c : ℝ) (z : ℝ × ℝ) (i j k : ℤ) :
     (min (((j : ℝ) + 1 - z.2) / b) (min (((k : ℝ) + 1) / c)
       (if 0 < a + 2 * b - c then savingCellThreshold a b c z i j k else 1))))
 
+/--
+@isnad1 id=measurab.0h7v.s4.c39c5e92a16b from=translated src=- shape=fbc5cb66 vocab=ca79eb34
+-/
 theorem savingCell_measurable (a b c : ℝ) (z : ℝ × ℝ) (i j k : ℤ) :
     MeasurableSet (savingCell a b c z i j k) := by
   unfold savingCell
   simp only [ofPred_and]
   measurability
 
+/--
+@isnad1 id=iff.0h8v.s7.10f1ecbca8f6 from=translated src=- shape=77f63ef1 vocab=0ce716e4
+-/
 theorem savingCell_mem_iff (a b c : ℝ) (z : ℝ × ℝ) (i j k : ℤ) (u : ℝ) :
     u ∈ savingCell a b c z i j k ↔ u ∈ Ico (0 : ℝ) 1 ∧
       ⌊a * u + z.1 + 1 / 2⌋ = i ∧ ⌊b * u + z.2⌋ = j ∧ ⌊c * u⌋ = k ∧
@@ -57,6 +63,9 @@ theorem savingCell_mem_iff (a b c : ℝ) (z : ℝ × ℝ) (i j k : ℤ) (u : ℝ
     obtain ⟨hC0, hC1⟩ := Int.floor_eq_iff.mp hC
     exact ⟨hu0, hu1, hA0, hA1, hB0, hB1, hC0, hC1, (hchi hA hB hC).mp h⟩
 
+/--
+@isnad1 id=le.4h7v.s6.90f8107b2b4b from=translated src=- shape=1ae566b1 vocab=9be160e2
+-/
 theorem savingCell_contains_open {a b c : ℝ} (ha : 0 < a) (hb : 0 < b) (hc : 0 < c)
     (hq : a + 2 * b - c ≠ 0) (z : ℝ × ℝ) (i j k : ℤ) :
     Ioo (savingCellLower a b c z i j k) (savingCellUpper a b c z i j k) ⊆
@@ -80,6 +89,9 @@ theorem savingCell_contains_open {a b c : ℝ} (ha : 0 < a) (hb : 0 < b) (hc : 0
     have hbound := (lt_div_iff₀ hpos).mp hT
     nlinarith
 
+/--
+@isnad1 id=le.3h7v.s6.1c15eb5f46be from=translated src=- shape=4185c5d0 vocab=9ad31b98
+-/
 theorem savingCell_subset_closed {a b c : ℝ} (ha : 0 < a) (hb : 0 < b) (hc : 0 < c)
     (z : ℝ × ℝ) (i j k : ℤ) :
     savingCell a b c z i j k ⊆
@@ -99,6 +111,9 @@ theorem savingCell_subset_closed {a b c : ℝ} (ha : 0 < a) (hb : 0 < b) (hc : 0
     · exact (le_div_iff₀ hpos).mpr (by nlinarith)
     · exact hu1.le
 
+/--
+@isnad1 id=eq.4h7v.s7.ecb9eaccd6b0 from=translated src=- shape=0d871c3d vocab=2b790195
+-/
 theorem savingCell_volume {a b c : ℝ} (ha : 0 < a) (hb : 0 < b) (hc : 0 < c)
     (hq : a + 2 * b - c ≠ 0) (z : ℝ × ℝ) (i j k : ℤ) :
     volume (savingCell a b c z i j k) =
@@ -115,6 +130,9 @@ theorem savingCell_volume {a b c : ℝ} (ha : 0 < a) (hb : 0 < b) (hc : 0 < c)
       _ ≤ volume (savingCell a b c z i j k) :=
         measure_mono (savingCell_contains_open ha hb hc hq z i j k)
 
+/--
+@isnad1 id=eq.4h7v.s7.a2781b8e519e from=translated src=- shape=d27db558 vocab=e726c346
+-/
 theorem savingCell_volume_real {a b c : ℝ} (ha : 0 < a) (hb : 0 < b) (hc : 0 < c)
     (hq : a + 2 * b - c ≠ 0) (z : ℝ × ℝ) (i j k : ℤ) :
     volume.real (savingCell a b c z i j k) =

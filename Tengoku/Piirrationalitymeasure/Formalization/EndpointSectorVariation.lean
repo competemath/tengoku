@@ -10,6 +10,9 @@ namespace PiIrrationality
 
 open Set
 
+/--
+@isnad1 id=iff.0h2v.s6.369a7d442898 from=translated src=- shape=0717e00a vocab=b253acf2
+-/
 theorem candidateClosedSector_iff_det (i : Fin 12) (v : ℝ × ℝ) :
     CandidateClosedSector i v ↔
       0 ≤ (candidateSectorRayReal i).1 * v.2 - (candidateSectorRayReal i).2 * v.1 ∧
@@ -29,6 +32,9 @@ theorem candidateClosedSector_iff_det (i : Fin 12) (v : ℝ × ℝ) :
   · rintro ⟨hL, hR⟩
     exact candidateClosedSector_of_det i v hL hR
 
+/--
+@isnad1 id=isclosed.0h1v.s5.dd81356c4422 from=translated src=- shape=c925d561 vocab=a5c55f45
+-/
 theorem isClosed_candidateClosedSector (i : Fin 12) :
     IsClosed {v : ℝ × ℝ | CandidateClosedSector i v} := by
   have heq : {v : ℝ × ℝ | CandidateClosedSector i v} =
@@ -43,6 +49,9 @@ theorem isClosed_candidateClosedSector (i : Fin 12) :
     (isClosed_le continuous_const (by fun_prop))
 
 set_option maxHeartbeats 0 in
+/--
+@isnad1 id=eq.2h3v.s5.9f2d0c3eac50 from=translated src=- shape=47a165e8 vocab=9f43526f
+-/
 theorem candidateSectorLinearForm_eq_on_overlap (i j : Fin 12) (v : ℝ × ℝ)
     (hi : CandidateClosedSector i v) (hj : CandidateClosedSector j v) :
     candidateSectorLinearForm i v = candidateSectorLinearForm j v := by
@@ -56,12 +65,18 @@ theorem candidateSectorLinearForm_eq_on_overlap (i j : Fin 12) (v : ℝ × ℝ)
 noncomputable def candidateSectorVariation (v : ℝ × ℝ) : ℝ :=
   candidateSectorLinearForm (Classical.choose (candidateClosedSector_cover v)) v
 
+/--
+@isnad1 id=eq.1h2v.s4.63b2c723cf35 from=translated src=- shape=a02e4309 vocab=7c38a052
+-/
 theorem candidateSectorVariation_eq_form {i : Fin 12} {v : ℝ × ℝ}
     (hv : CandidateClosedSector i v) :
     candidateSectorVariation v = candidateSectorLinearForm i v :=
   candidateSectorLinearForm_eq_on_overlap _ i v
     (Classical.choose_spec (candidateClosedSector_cover v)) hv
 
+/--
+@isnad1 id=continuo.0h0v.s4.55bbf936c388 from=translated src=- shape=8e22ceaf vocab=fb11a04a
+-/
 theorem continuous_candidateSectorVariation : Continuous candidateSectorVariation := by
   apply (locallyFinite_of_finite (fun i : Fin 12 =>
     {v : ℝ × ℝ | CandidateClosedSector i v})).continuous
@@ -75,6 +90,9 @@ theorem continuous_candidateSectorVariation : Continuous candidateSectorVariatio
       fun_prop
     exact hc.continuousOn.congr (fun _ hv => candidateSectorVariation_eq_form hv)
 
+/--
+@isnad1 id=candidat.2h3v.s5.3a60c494e56e from=translated src=- shape=d864e747 vocab=217d89c7
+-/
 theorem CandidateClosedSector.smul {i : Fin 12} {v : ℝ × ℝ}
     (hv : CandidateClosedSector i v) {s : ℝ} (hs : 0 ≤ s) :
     CandidateClosedSector i (s • v) := by
@@ -82,6 +100,9 @@ theorem CandidateClosedSector.smul {i : Fin 12} {v : ℝ × ℝ}
   exact ⟨s * u, s * t, mul_nonneg hs hu, mul_nonneg hs ht,
     by rw [smul_add, smul_smul, smul_smul]⟩
 
+/--
+@isnad1 id=eq.1h2v.s5.064c47fd23f7 from=translated src=- shape=f4c7e766 vocab=cb796787
+-/
 theorem candidateSectorVariation_smul (v : ℝ × ℝ) {s : ℝ} (hs : 0 ≤ s) :
     candidateSectorVariation (s • v) = s * candidateSectorVariation v := by
   obtain ⟨i, hi⟩ := candidateClosedSector_cover v
@@ -89,12 +110,18 @@ theorem candidateSectorVariation_smul (v : ℝ × ℝ) {s : ℝ} (hs : 0 ≤ s) 
   dsimp [candidateSectorLinearForm]
   ring
 
+/--
+@isnad1 id=le.0h1v.s5.1e6739c81357 from=translated src=- shape=39af9f31 vocab=8c46aaaf
+-/
 theorem candidateSectorVariation_bound (v : ℝ × ℝ) :
     candidateSectorVariation v ≤ -(557 : ℝ) / 4139253 * parameterNormOne v := by
   obtain ⟨i, hi⟩ := candidateClosedSector_cover v
   rw [candidateSectorVariation_eq_form hi]
   exact candidateSectorLinearForm_bound hi
 
+/--
+@isnad1 id=lt.1h1v.s5.d67bc988e28a from=translated src=- shape=4d8808da vocab=1b03b57f
+-/
 theorem candidateSectorVariation_neg {v : ℝ × ℝ} (hv : v ≠ 0) :
     candidateSectorVariation v < 0 := by
   have hn : 0 < parameterNormOne v :=
