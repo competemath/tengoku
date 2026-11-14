@@ -86,17 +86,40 @@ OPENER = re.compile(r"^\s*(?:namespace\s+(?:«[^»]*»|[^\s«»])+|(?:@\[expose\
 CLOSER = re.compile(r"^\s*end\b")
 
 
-def scope_info(code: list[str]) -> tuple[list[tuple[int, ...]], dict[int, int]]:
-    """for every line the openers (`namespace`, `section`, `mutual`) that enclose it, and for every opener the line of its `end`"""
-    stack: list[int] = []
-    open_at, end_of = [], {}
+SCOPE_NAME = re.compile(r"^\s*(?:@\[expose\]\s+)?(?:(?:public|noncomputable)\s+)*(?:namespace|section)\s+((?:«[^»]*»|[^\s«»])+)\s*$")
+END_SCOPES = re.compile(r"^\s*end\s+((?:«[^»]*»|[^\s«»])+)\s*$")
+COMPONENT = re.compile(r"«[^»]*»|[^.«»\s]+")  # one component of a dotted name: a dot inside «quotes» is part of it
+
+
+def scope_closers(code: list[str]) -> tuple[list[tuple[int, ...]], dict[int, tuple[int, int]]]:
+    """For every line the openers (`namespace`, `section`, `mutual`) that enclose it, and for every opener (line of the `end` that closes its OUTERMOST scope, index of the component of
+    that `end`'s name which closes it). Lean opens one scope per component of the name (`namespace A.B` opens two) and `end X.Y` closes as many scopes as its name has components, the
+    last component first; a bare `end` closes one. So `namespace A` … `namespace B` … `end A.B` closes both, and the scope of `A` is closed by component 0 of that line."""
+    stack: list[tuple[int, bool]] = []  # (opener line, whether this scope is the outermost one that line opened)
+    open_at: list[tuple[int, ...]] = []
+    closer: dict[int, tuple[int, int]] = {}
     for i, ln in enumerate(code):
-        open_at.append(tuple(stack))
+        open_at.append(tuple(o for o, _ in stack))
         if OPENER.match(ln):
-            stack.append(i)
+            named = SCOPE_NAME.match(ln)
+            n = len(COMPONENT.findall(named.group(1))) if named else 1
+            stack.extend((i, k == 0) for k in range(max(n, 1)))
         elif CLOSER.match(ln) and stack:
-            end_of[stack.pop()] = i
-    return open_at, end_of
+            named = END_SCOPES.match(ln)
+            n = len(COMPONENT.findall(named.group(1))) if named else 1
+            for k in range(max(n, 1) - 1, -1, -1):
+                if not stack:
+                    break
+                opener, outermost = stack.pop()
+                if outermost:
+                    closer[opener] = (i, k)
+    return open_at, closer
+
+
+def scope_info(code: list[str]) -> tuple[list[tuple[int, ...]], dict[int, int]]:
+    """for every line the openers (`namespace`, `section`, `mutual`) that enclose it, and for every opener the line of the `end` that closes it (see scope_closers)"""
+    open_at, closer = scope_closers(code)
+    return open_at, {opener: line for opener, (line, _) in closer.items()}
 
 
 HEADER_LINE = re.compile(r"^\s*(?:(?:public|private|meta)\s+)*(?:import\s|module\s*$|prelude\s*$)")
@@ -259,7 +282,7 @@ def qualify_roots_in_file(f: Lines, roots: set[str], ns: str, mark_open: bool = 
         "opened": False,
         "heads": set(),
     }
-    open_at, end_of = scope_info(f.code)
+    open_at, closer = scope_closers(f.code)
     for i, code in enumerate(f.code):
         spelled = ROOT_DECL.match(code)
         if spelled and spelled.group("name").startswith("_root_.") and head_of_token(spelled.group("name")[len("_root_.") :]) in roots:
@@ -274,9 +297,14 @@ def qualify_roots_in_file(f: Lines, roots: set[str], ns: str, mark_open: bool = 
                 f.insert(i, m.start("name"), ns + ".")
                 done["heads"].add(head)
                 done["namespaces"] += 1
-                end = end_of.get(i)
-                if end is not None and (e := END_NAME.match(f.code[end])) and e.group("name") == m.group("name"):
-                    f.insert(end, e.start("name"), ns + ".")
+                # The `end` that closes the block names the scopes it closes, innermost last: `ns.` goes in front of the component that closes this namespace. That is the whole
+                # name of `end R`, and the first component of `end R.Inner`, which closes a `namespace Inner` opened inside together with it (merge queue, wave 4:
+                # Physlib/Units/Exponent.lean, `namespace Dimension` … `namespace Exponent` … `end Dimension.Exponent`: unrenamed it left `Tengoku.Physlib` open).
+                at = closer.get(i)
+                if at is not None and (e := END_NAME.match(f.code[at[0]])):
+                    parts = list(COMPONENT.finditer(e.group("name")))
+                    if at[1] < len(parts) and parts[at[1]].group(0) == head:
+                        f.insert(at[0], e.start("name") + parts[at[1]].start(), ns + ".")
             continue
         m = ROOT_DECL.match(code)
         if not m:
