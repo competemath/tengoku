@@ -9,7 +9,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.BrownianMotion end Tengoku.BrownianMotion open Tengoku.BrownianMotion 
 open MeasureTheory WithLp
 
 open scoped ENNReal NNReal ProbabilityTheory RealInnerProductSpace
@@ -22,7 +22,7 @@ variable {Ω E : Type*} {m mΩ : MeasurableSpace Ω} {P : Measure Ω} {f g : Ω 
 /--
 @isnad1 id=integrab.2h6v.s7.881e3a2ac44d from=translated src=- shape=546dc510 vocab=ba555af7
 -/
-lemma integrable_inner (hf : MemLp f 2 P) (hg : MemLp g 2 P) :
+lemma _root_.Tengoku.BrownianMotion.integrable_inner (hf : MemLp f 2 P) (hg : MemLp g 2 P) :
     Integrable (fun ω ↦ ⟪f ω, g ω⟫) P := by
   rw [← memLp_one_iff_integrable]
   exact (innerSL ℝ).memLp_of_bilin 1 hf hg
@@ -32,7 +32,7 @@ variable [CompleteSpace E]
 /--
 @isnad1 id=eventual.3h7v.s7.0fadc9452e52 from=translated src=- shape=f0c18b23 vocab=ee514173
 -/
-lemma condExp_inner_of_aestronglyMeasurable_left (hf : AEStronglyMeasurable[m] f P)
+lemma _root_.Tengoku.BrownianMotion.condExp_inner_of_aestronglyMeasurable_left (hf : AEStronglyMeasurable[m] f P)
     (hfg : Integrable (fun ω ↦ ⟪f ω, g ω⟫) P) (hg : Integrable g P) :
     P[fun ω ↦ ⟪f ω, g ω⟫ | m] =ᵐ[P] (fun ω ↦ ⟪f ω, P[g | m] ω⟫) :=
   condExp_bilin_of_aestronglyMeasurable_left (innerSL ℝ) hf hfg hg
@@ -40,7 +40,7 @@ lemma condExp_inner_of_aestronglyMeasurable_left (hf : AEStronglyMeasurable[m] f
 /--
 @isnad1 id=eventual.3h7v.s7.c9d3eafe95c5 from=translated src=- shape=9ab1083e vocab=ee514173
 -/
-lemma condExp_inner_of_aestronglyMeasurable_right (hg : AEStronglyMeasurable[m] g P)
+lemma _root_.Tengoku.BrownianMotion.condExp_inner_of_aestronglyMeasurable_right (hg : AEStronglyMeasurable[m] g P)
     (hfg : Integrable (fun ω ↦ ⟪f ω, g ω⟫) P) (hf : Integrable f P) :
     P[fun ω ↦ ⟪f ω, g ω⟫ | m] =ᵐ[P] (fun ω ↦ ⟪P[f | m] ω, g ω⟫) :=
   condExp_bilin_of_aestronglyMeasurable_right (innerSL ℝ) hg hfg hf
@@ -113,21 +113,21 @@ lemma MeasurableEquiv.coe_toLp_symm_eq {ι : Type*} :
 @isnad1 id=mem.0h3v.s5.f2455cb5d604 from=translated src=- shape=585236de vocab=d58536ae
 -/
 @[simp]
-lemma zero_mem_parallelepiped {ι E : Type*} [Fintype ι] [AddCommGroup E] [Module ℝ E] {v : ι → E} :
+lemma _root_.Tengoku.BrownianMotion.zero_mem_parallelepiped {ι E : Type*} [Fintype ι] [AddCommGroup E] [Module ℝ E] {v : ι → E} :
     0 ∈ parallelepiped v := ⟨0, by simp, by simp⟩
 
 /--
 @isnad1 id=nonempty.0h3v.s4.117c754c833d from=translated src=- shape=f59b7155 vocab=5d77e2ea
 -/
 @[simp]
-lemma nonempty_parallelepiped {ι E : Type*} [Fintype ι] [AddCommGroup E] [Module ℝ E] {v : ι → E} :
+lemma _root_.Tengoku.BrownianMotion.nonempty_parallelepiped {ι E : Type*} [Fintype ι] [AddCommGroup E] [Module ℝ E] {v : ι → E} :
     (parallelepiped v).Nonempty := ⟨0, zero_mem_parallelepiped⟩
 
 /--
 @isnad1 id=eq.1h2v.s6.ea31afe31ec0 from=translated src=- shape=0caad2e5 vocab=d5f5a445
 -/
 @[simp, nontriviality]
-lemma volume_of_nonempty_of_subsingleton {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+lemma _root_.Tengoku.BrownianMotion.volume_of_nonempty_of_subsingleton {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [FiniteDimensional ℝ E] [MeasurableSpace E] [Subsingleton E] {s : Set E} (hs : s.Nonempty) :
     volume s = 1 := by
   rw [Subsingleton.eq_univ_of_nonempty hs,
@@ -384,7 +384,8 @@ lemma Indep.singleton_indepSets {Ω : Type*} {m1 m2 mΩ : MeasurableSpace Ω}
 /--
 @isnad1 id=iff.0h3v.s4.5521168a4056 from=translated src=- shape=04673093 vocab=cc24b656
 -/
-lemma measurableSpace_le_iff {Ω : Type*} {m1 m2 : MeasurableSpace Ω} :
+lemma _root_.Tengoku.BrownianMotion.measurableSpace_le_iff {Ω : Type*} {m1 m2 : MeasurableSpace Ω} :
     m1 ≤ m2 ↔ ∀ s, MeasurableSet[m1] s → MeasurableSet[m2] s := by aesop
 
 end covariance
+-- Tengoku: root names of this library moved to Tengoku.BrownianMotion so they do not collide with other libraries (generated)

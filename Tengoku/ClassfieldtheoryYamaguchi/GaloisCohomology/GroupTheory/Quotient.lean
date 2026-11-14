@@ -8,7 +8,7 @@ import Tengoku.Seed.GroupTheory.Abelianization.Defs
 import Tengoku.Seed.GroupTheory.QuotientGroup.Basic
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.ClassfieldtheoryYamaguchi end Tengoku.ClassfieldtheoryYamaguchi open Tengoku.ClassfieldtheoryYamaguchi
 set_option autoImplicit false
 
 /-!
@@ -26,7 +26,7 @@ variable {G : Type*} [CommGroup G]
 
 /-- If `S` and `P` generate `G`, inclusion of `S` identifies
 `S / (S ∩ P)` with `G / P`.-/
-noncomputable def subgroupQuotientEquivQuotientOfSupEqTop
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.subgroupQuotientEquivQuotientOfSupEqTop
     (S P : Subgroup G)
     (hSP : S ⊔ P = ⊤) :
     S ⧸ P.subgroupOf S ≃* G ⧸ P := by
@@ -51,7 +51,7 @@ noncomputable def subgroupQuotientEquivQuotientOfSupEqTop
 @isnad1 id=eq.1h4v.s12.812cf4d2491d from=translated src=- shape=433a2e03 vocab=bce8fc0b
 -/
 @[simp]
-theorem subgroupQuotientEquivQuotientOfSupEqTop_mk
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.subgroupQuotientEquivQuotientOfSupEqTop_mk
     (S P : Subgroup G)
     (hSP : S ⊔ P = ⊤)
     (s : S) :
@@ -135,3 +135,4 @@ theorem quotientSupCommutatorEquivMapAbelianization_mk
   rfl
 
 end Subgroup
+-- Tengoku: root names of this library moved to Tengoku.ClassfieldtheoryYamaguchi so they do not collide with other libraries (generated)

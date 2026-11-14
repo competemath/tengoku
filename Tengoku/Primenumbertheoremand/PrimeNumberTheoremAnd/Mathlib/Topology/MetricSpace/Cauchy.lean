@@ -9,14 +9,14 @@ A tail estimate controlled by a scalar sequence tending to zero gives a Cauchy s
 -/
 
 @[expose] public section
-
+namespace Tengoku.Primenumbertheoremand end Tengoku.Primenumbertheoremand open Tengoku.Primenumbertheoremand 
 open Filter
 open scoped Topology
 
 variable {α : Type*} [PseudoMetricSpace α]
 
 /-- If `dist (s n) (s m) ≤ b m` for all `1 ≤ m ≤ n` and `b` tends to zero, then `s` is Cauchy. -/
-theorem cauchySeq_of_dist_le_of_one_le {s : ℕ → α} {b : ℕ → ℝ} (hb : ∀ n, 0 ≤ b n)
+theorem _root_.Tengoku.Primenumbertheoremand.cauchySeq_of_dist_le_of_one_le {s : ℕ → α} {b : ℕ → ℝ} (hb : ∀ n, 0 ≤ b n)
     (hb₀ : Tendsto b atTop (𝓝 0))
     (h : ∀ m n, 1 ≤ m → m ≤ n → dist (s n) (s m) ≤ b m) : CauchySeq s := by
   refine (Metric.cauchySeq_iff).2 fun ε ε0 => ?_
@@ -40,3 +40,4 @@ theorem cauchySeq_of_dist_le_of_one_le {s : ℕ → α} {b : ℕ → ℝ} (hb : 
   have h2 : dist (s a) (s k) ≤ b a := by
     simpa [dist_comm] using h a k ha1 hk_a
   exact lt_of_le_of_lt (le_trans htri (add_le_add h1 h2)) (by linarith [hb_a])
+-- Tengoku: root names of this library moved to Tengoku.Primenumbertheoremand so they do not collide with other libraries (generated)

@@ -16,7 +16,7 @@ a common prime strictly decreases the complexity.
 -/
 
 noncomputable section
-
+namespace Tengoku.AndersonConjecture end Tengoku.AndersonConjecture open Tengoku.AndersonConjecture 
 open Cardinal Ideal
 
 variable {T : Type*} [CommRing T] [IsLocalRing T] [IsNoetherianRing T] [IsDomain T]
@@ -24,7 +24,7 @@ variable {T : Type*} [CommRing T] [IsLocalRing T] [IsNoetherianRing T] [IsDomain
 /--
 @isnad1 id=eq.2h4v.s7.75c0c392d623 from=translated src=- shape=df774b2c vocab=ce4015be
 -/
-lemma span_eq_mul_span_image_div {R₀ : Type*} [CommRing R₀]
+lemma _root_.Tengoku.AndersonConjecture.span_eq_mul_span_image_div {R₀ : Type*} [CommRing R₀]
     [DecidableEq R₀]
     (p : R₀) (s : Finset R₀)
     (_hp_dvd : ∀ x ∈ s, p ∣ x)
@@ -69,7 +69,7 @@ lemma span_eq_mul_span_image_div {R₀ : Type*} [CommRing R₀]
 /--
 @isnad1 id=le.1h5v.s7.f8a500094679 from=translated src=- shape=367bf080 vocab=004b7e4d
 -/
-lemma prime_mul_span_insert_le {R₀ : Type*} [CommRing R₀]
+lemma _root_.Tengoku.AndersonConjecture.prime_mul_span_insert_le {R₀ : Type*} [CommRing R₀]
     [DecidableEq R₀]
     (q' a : R₀) (rest : Finset R₀)
     (div_f : R₀ → R₀)
@@ -111,3 +111,4 @@ lemma prime_mul_span_insert_le {R₀ : Type*} [CommRing R₀]
 -- Regularity: q prime, q ∤ a implies a is regular on T/qT, so a*t ∈ span{q} forces t ∈ span{q}.
 
 end
+-- Tengoku: root names of this library moved to Tengoku.AndersonConjecture so they do not collide with other libraries (generated)

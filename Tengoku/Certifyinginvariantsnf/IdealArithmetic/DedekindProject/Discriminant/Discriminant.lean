@@ -23,13 +23,13 @@ resultants and discriminant of polynomials that are now in `Mathlib` and authore
 Kenny Lau, Anne Baanen and Andrew Yang.
 
 -/
-
+namespace Tengoku.Certifyinginvariantsnf end Tengoku.Certifyinginvariantsnf open Tengoku.Certifyinginvariantsnf
 open Polynomial
 
 /--
 @isnad1 id=eq.1h6v.s8.1364766e025e from=translated src=- shape=5bb305f3 vocab=e05fb48f
 -/
-lemma prod_X_sub_C_resultant {K ι : Type*} [Field K] {n : ℕ} [DecidableEq ι] (g : K[X])
+lemma _root_.Tengoku.Certifyinginvariantsnf.prod_X_sub_C_resultant {K ι : Type*} [Field K] {n : ℕ} [DecidableEq ι] (g : K[X])
   (hn : g.natDegree ≤ n)  (s : Finset ι) (t : ι → K) :
     resultant (∏ i ∈ s, (X - C (t i))) g ((∏ i ∈ s, (X - C (t i)))).natDegree n = ∏ i ∈ s, eval (t i) g := by
   rw [Polynomial.resultant_prod_left _ _ _ _ _ hn]
@@ -46,7 +46,7 @@ lemma prod_X_sub_C_resultant {K ι : Type*} [Field K] {n : ℕ} [DecidableEq ι]
 /--
 @isnad1 id=eq.0h4v.s9.2a33266c4502 from=translated src=- shape=bd542418 vocab=9b4d8ebd
 -/
-theorem derivative_prod' {R ι : Type*} [CommRing R] [DecidableEq ι] {s : Finset ι} {f : ι → R[X]} :
+theorem _root_.Tengoku.Certifyinginvariantsnf.derivative_prod' {R ι : Type*} [CommRing R] [DecidableEq ι] {s : Finset ι} {f : ι → R[X]} :
     derivative (∏ i ∈ s, f i) =
       ∑ i ∈ s, (∏ i ∈ s.erase i, f i) * derivative (f i) :=
   derivative_prod
@@ -54,7 +54,7 @@ theorem derivative_prod' {R ι : Type*} [CommRing R] [DecidableEq ι] {s : Finse
 /--
 @isnad1 id=eq.0h4v.s9.1d36095033d9 from=translated src=- shape=19ef8a4d vocab=d2987ac5
 -/
-lemma derivative_prod_X_sub_C {R ι: Type*} [CommRing R] [DecidableEq ι] (s : Finset ι) (t : ι → R) :
+lemma _root_.Tengoku.Certifyinginvariantsnf.derivative_prod_X_sub_C {R ι: Type*} [CommRing R] [DecidableEq ι] (s : Finset ι) (t : ι → R) :
     derivative (∏ i ∈ s, (X - C (t i))) = ∑ i ∈ s, ∏ j ∈ s.erase i, (X - C (t j)) := by
   rw [derivative_prod']
   exact Finset.sum_congr rfl (by simp)
@@ -62,7 +62,7 @@ lemma derivative_prod_X_sub_C {R ι: Type*} [CommRing R] [DecidableEq ι] (s : F
 /--
 @isnad1 id=eq.1h5v.s7.0ecdd402c122 from=translated src=- shape=454b2295 vocab=d2ec3b21
 -/
-theorem resultant_map_injective {S R : Type*} [CommRing R] [CommRing S] {φ : R →+* S}
+theorem _root_.Tengoku.Certifyinginvariantsnf.resultant_map_injective {S R : Type*} [CommRing R] [CommRing S] {φ : R →+* S}
     (hφ : Function.Injective φ) (f g : R[X]) :
     resultant (f.map φ) (g.map φ) = φ (resultant f g) := by
   convert Polynomial.resultant_map_map f g f.natDegree g.natDegree φ
@@ -100,7 +100,7 @@ lemma Polynomial.discr_def' {R : Type*} [CommRing R]
 @isnad1 id=eq.3h4v.s9.0995dbdc5942 from=translated src=- shape=6206c6e2 vocab=0e290113
 -/
 @[simp]
-theorem discriminant_map'' {R : Type*} [CommRing R] {S : Type*} [CommRing S]
+theorem _root_.Tengoku.Certifyinginvariantsnf.discriminant_map'' {R : Type*} [CommRing R] {S : Type*} [CommRing S]
     [IsDomain S]  (φ : R →+* S)
     (f : R[X]) (hdeg : (derivative f).degree = ↑(f.natDegree - 1))
     (h1 : φ f.leadingCoeff ≠ 0)
@@ -198,3 +198,4 @@ lemma Fin.sum_card_sub_one_sub_self {n : ℕ} :
   · simp
   · simp only [← Finset.sum_range, add_tsub_cancel_right, Finset.sum_flip (f := fun x => x),
       Finset.sum_range_id]
+-- Tengoku: root names of this library moved to Tengoku.Certifyinginvariantsnf so they do not collide with other libraries (generated)

@@ -48,7 +48,7 @@ orthogonality of the characters of the `k`-th roots of unity gives `f = ∑ uʲ 
 - `Kummer.isBoundedUnder_of_pow_add_sum_eq_zero`: a function satisfying a monic equation with
   bounded coefficients is bounded; in particular integral functions are bounded near `Z`.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Set Filter Topology Metric Complex
 
 namespace Kummer
@@ -505,3 +505,4 @@ theorem isBoundedUnder_of_pow_add_sum_eq_zero {α : Type*} {l : Filter α} {f : 
 end
 
 end Kummer
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

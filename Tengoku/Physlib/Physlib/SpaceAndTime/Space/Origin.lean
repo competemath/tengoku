@@ -21,8 +21,8 @@ without those depending on each other.
 -/
 
 @[expose] public section
-
-namespace Space
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
+namespace Tengoku.Physlib.Space
 
 instance {d} : Zero (Space d) where
   zero := ⟨fun _ => 0⟩
@@ -59,4 +59,5 @@ noncomputable def chartEuclidean (d : ℕ) :
 @[simp] lemma chartEuclidean_apply (d : ℕ) (p : Space d) :
     chartEuclidean d p = p -ᵥ (0 : Space d) := rfl
 
-end Space
+end Tengoku.Physlib.Space
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

@@ -50,7 +50,7 @@ equals `2πi · Σ winding(γ, s) · residue(f, s)` over the singular set `S ⊆
   + crossings); lives in
   `LeanModularForms.ForMathlib.HungerbuhlerWasem.Crossing`.
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Set Filter Topology Complex MeasureTheory
 open scoped Interval
 
@@ -250,3 +250,4 @@ theorem cpvIntegrandOn_tendsto_contourIntegrand_ae
 end HungerbuhlerWasem
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

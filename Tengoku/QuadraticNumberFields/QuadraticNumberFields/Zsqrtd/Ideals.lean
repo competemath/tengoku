@@ -47,7 +47,7 @@ This module provides the general ideal-span results for the project-owned
 The general ideal-span helper used in this file is imported from
 `QNFMathlib.RingTheory.Ideal.Span`.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 local notation "ℚ√" d => Qsqrtd d
 
 open Ideal
@@ -505,3 +505,4 @@ end Ideal
 end Zsqrtd
 
 end QuadraticNumberFields
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

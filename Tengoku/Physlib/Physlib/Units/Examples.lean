@@ -18,9 +18,9 @@ should not be used in the proofs of any other results other then those in this f
 -/
 
 @[expose] public section
-
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
 namespace UnitExamples
-open Dimension CarriesDimension LTMCTUnitChoices UnitDependent HasDim
+open Tengoku.Physlib.Dimension Tengoku.Physlib.CarriesDimension Tengoku.Physlib.LTMCTUnitChoices Tengoku.Physlib.UnitDependent Tengoku.Physlib.HasDim
 /-!
 
 ## Defining a length dependent on units
@@ -51,7 +51,7 @@ example : meters400 {SI with length := LengthUnit.miles} = ⟨1/4 - 73/50292⟩ 
 
 -/
 
-open WithDim
+open Tengoku.Physlib.WithDim
 
 /-- An example of dimensions corresponding to `E = m c^2` using `WithDim`. -/
 def EnergyMassWithDim' (m : WithDim M𝓭 ℝ) (E : WithDim (M𝓭 * L𝓭 * L𝓭 * T𝓭⁻¹ * T𝓭⁻¹) ℝ)
@@ -125,7 +125,7 @@ lemma energyMassWithDimNot_not_isDimensionallyCorrect :
 ## Cases with Dimensionful
 
 -/
-open DimSpeed
+open Tengoku.Physlib.DimSpeed
 
 /-- The equation `E = m c^2`, in this equation we `E` and `m` are implicitly in the
   units `u`, while the speed of light is explicitly written in those units. -/
@@ -212,3 +212,4 @@ example {M1 M2 : Type} [NormedAddCommGroup M1] [NormedSpace ℝ M1]
       fderiv ℝ f x dm = v.1) :=
   fderiv_dimension_const_direction dm f hf f_diff
 end UnitExamples
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

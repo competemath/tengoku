@@ -7,7 +7,7 @@ Authors: Naganori Yamaguchi (assisted by OpenAI Codex)
 import Tengoku.ClassfieldtheoryYamaguchi.ClassFieldTheory.AlgebraicNumberTheory.Adele.Coordinates
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.ClassfieldtheoryYamaguchi end Tengoku.ClassfieldtheoryYamaguchi open Tengoku.ClassfieldtheoryYamaguchi
 set_option autoImplicit false
 
 /-!
@@ -39,7 +39,7 @@ coordinates at a finite place.
 @isnad1 id=eq.0h5v.s13.939899b0ee5c from=translated src=- shape=d8552688 vocab=d502deb2
 -/
 @[simp]
-theorem relativeAdeleFiniteComponent_basis_repr
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeAdeleFiniteComponent_basis_repr
     (z : RelativeAdeleRing K L)
     (w : HeightOneSpectrum (𝓞 K))
     (i : RelativeAdeleBasisIndex (K := K) (L := L)) :
@@ -61,7 +61,7 @@ coordinates at an infinite place.
 @isnad1 id=eq.0h5v.s12.100377e38677 from=translated src=- shape=fa5a4ce2 vocab=2976dae5
 -/
 @[simp]
-theorem relativeAdeleInfiniteComponent_basis_repr
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeAdeleInfiniteComponent_basis_repr
     (z : RelativeAdeleRing K L)
     (w : InfinitePlace K)
     (i : RelativeAdeleBasisIndex (K := K) (L := L)) :
@@ -89,7 +89,7 @@ omit [NumberField L] in
 equality of relative adeles.
 @isnad1 id=eq.2h4v.s12.09b789b63063 from=translated src=- shape=a31ffc79 vocab=1cb9e748
 -/
-theorem relativeAdele_ext_of_components
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeAdele_ext_of_components
     {x y : RelativeAdeleRing K L}
     (hinfinite :
       ∀ w : InfinitePlace K,
@@ -137,14 +137,14 @@ theorem relativeAdele_ext_of_components
 
 /-- The unrestricted family of every archimedean and finite local
 tensor unit group.-/
-abbrev RelativeLocalTensorFamily :=
+abbrev _root_.Tengoku.ClassfieldtheoryYamaguchi.RelativeLocalTensorFamily :=
   (∀ w : InfinitePlace K,
       (w.Completion ⊗[K] L)ˣ) ×
     (∀ w : HeightOneSpectrum (𝓞 K),
       (w.adicCompletion K ⊗[K] L)ˣ)
 
 /-- All local tensor components of a relative idele.-/
-def relativeIdeleLocalComponents :
+def _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeIdeleLocalComponents :
     RelativeIdeleGroup K L →*
       RelativeLocalTensorFamily (K := K) (L := L) where
   toFun z :=
@@ -180,7 +180,7 @@ omit [NumberField L] [FiniteDimensional K L] in
 @isnad1 id=eq.0h4v.s13.afd591b932cd from=translated src=- shape=065d711f vocab=74fcd895
 -/
 @[simp]
-theorem relativeIdeleLocalComponents_infinite
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeIdeleLocalComponents_infinite
     (z : RelativeIdeleGroup K L)
     (w : InfinitePlace K) :
     (relativeIdeleLocalComponents
@@ -194,7 +194,7 @@ omit [NumberField L] [FiniteDimensional K L] in
 @isnad1 id=eq.0h4v.s13.d1a0b42b7152 from=translated src=- shape=fabfd258 vocab=9b08e4f1
 -/
 @[simp]
-theorem relativeIdeleLocalComponents_finite
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeIdeleLocalComponents_finite
     (z : RelativeIdeleGroup K L)
     (w : HeightOneSpectrum (𝓞 K)) :
     (relativeIdeleLocalComponents
@@ -207,7 +207,7 @@ omit [NumberField L] in
 /-- The complete local-component map is injective.
 @isnad1 id=injectiv.0h2v.s12.06e43cdfd921 from=translated src=- shape=7030abac vocab=d8f8d2a9
 -/
-theorem relativeIdeleLocalComponents_injective :
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeIdeleLocalComponents_injective :
     Function.Injective
       (relativeIdeleLocalComponents
         (K := K) (L := L)) := by
@@ -220,3 +220,4 @@ theorem relativeIdeleLocalComponents_injective :
   · intro w
     have h := congrArg (fun z => z.2 w) hxy
     exact congrArg Units.val h
+-- Tengoku: root names of this library moved to Tengoku.ClassfieldtheoryYamaguchi so they do not collide with other libraries (generated)

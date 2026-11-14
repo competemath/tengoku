@@ -15,7 +15,7 @@ Material destined for Mathlib.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Flt end Tengoku.Flt open Tengoku.Flt 
 open Algebra Polynomial in
 /-- The surjective algebra morphism `R[X]/(minpoly R x) → R[x]`.
 If `R` is an integrally closed domain and `x` is integral, this is an isomorphism,
@@ -51,12 +51,12 @@ def AlgEquiv.adjoinSingletonEquivAdjoinRootMinpoly' (F : Type*) {R : Type*} [Fie
 
 /-- `IsQuaternionAlgebra F D` says that `D` is a quaternion algebra over the field `F`,
 i.e. a four-dimensional central simple `F`-algebra. -/
-class IsQuaternionAlgebra (F : Type*) [Field F] (D : Type*) [Ring D] [Algebra F D] : Prop where
+class _root_.Tengoku.Flt.IsQuaternionAlgebra (F : Type*) [Field F] (D : Type*) [Ring D] [Algebra F D] : Prop where
   isSimpleRing : IsSimpleRing D
   isCentral : Algebra.IsCentral F D
   dim_four : Module.rank F D = 4
 
-namespace IsQuaternionAlgebra
+namespace Tengoku.Flt.IsQuaternionAlgebra
 
 attribute [instance low] isSimpleRing isCentral
 
@@ -160,4 +160,5 @@ class IsTotallyDefinite : Prop where
     letI : Algebra F ℝ := (embedding_of_isReal hv).toAlgebra
     Nonempty (ℝ ⊗[F] D ≃ₐ[ℝ] ℍ)
 
-end IsQuaternionAlgebra
+end Tengoku.Flt.IsQuaternionAlgebra
+-- Tengoku: root names of this library moved to Tengoku.Flt so they do not collide with other libraries (generated)

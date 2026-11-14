@@ -40,7 +40,7 @@ for rings of invariants", pp. 215–218. The étale-torsor sufficient condition
 (A7.1.1/A7.1.2, via SGA III Exp. V) is deliberately not stated here — it belongs to
 the free-action vocabulary (ticket T-Q2).
 -/
-
+namespace Tengoku.Aintlib end Tengoku.Aintlib open Tengoku.Aintlib
 universe u v
 
 open TensorProduct
@@ -95,7 +95,7 @@ end MulSemiringAction
 /-- **The base-change comparison map for rings of invariants** (KM A7.1: the natural
 homomorphism `A^G ⊗_R R' → (A ⊗_R R')^G` whose bijectivity is the statement
 `∗(A, G, R, R')`).-/
-noncomputable def fixedPointsBaseChange : (FixedPoints.subalgebra R A G) ⊗[R] R' →ₐ[R]
+noncomputable def _root_.Tengoku.Aintlib.fixedPointsBaseChange : (FixedPoints.subalgebra R A G) ⊗[R] R' →ₐ[R]
     FixedPoints.subalgebra R (A ⊗[R] R') G :=
   AlgHom.codRestrict
     (Algebra.TensorProduct.map (FixedPoints.subalgebra R A G).val (AlgHom.id R R'))
@@ -114,7 +114,7 @@ noncomputable def fixedPointsBaseChange : (FixedPoints.subalgebra R A G) ⊗[R] 
 @isnad1 id=eq.0h6v.s12.d2de2537e525 from=translated src=- shape=836793d3 vocab=3ba30d59
 -/
 @[simp]
-theorem fixedPointsBaseChange_tmul (a : FixedPoints.subalgebra R A G) (r : R') :
+theorem _root_.Tengoku.Aintlib.fixedPointsBaseChange_tmul (a : FixedPoints.subalgebra R A G) (r : R') :
     (fixedPointsBaseChange (G := G) (R := R) (A := A) (R' := R') (a ⊗ₜ[R] r) : A ⊗[R] R') =
       (a : A) ⊗ₜ[R] r := by
   simp only [fixedPointsBaseChange, AlgHom.coe_codRestrict, Algebra.TensorProduct.map_tmul,
@@ -196,7 +196,7 @@ private theorem rTensor_invariantsDelta_eq_zero_of_fixed [Fintype G] [DecidableE
 /-- The fixed-point base-change comparison is bijective for flat base change.
 @isnad1 id=bijectiv.0h4v.s12.46b5b7ddff8b from=translated src=- shape=87f22e3d vocab=56a06763
 -/
-theorem fixedPointsBaseChange_bijective_of_flat [Finite G] [Module.Flat R R'] : Function.Bijective
+theorem _root_.Tengoku.Aintlib.fixedPointsBaseChange_bijective_of_flat [Finite G] [Module.Flat R R'] : Function.Bijective
     (fixedPointsBaseChange (G := G) (R := R) (A := A) (R' := R')) := by
   classical
   cases nonempty_fintype G
@@ -286,7 +286,7 @@ private theorem fixedPointsBaseChange_bijective_of_dividedTrace [Fintype G] (c :
 /-- The fixed-point base-change comparison is bijective when the order of `G` is a unit in `R`.
 @isnad1 id=bijectiv.1h4v.s12.ab38f9b445f1 from=translated src=- shape=b4ff3793 vocab=0852fb8d
 -/
-theorem fixedPointsBaseChange_bijective_of_isUnit [Finite G] (h : IsUnit ((Nat.card G : ℕ) : R)) :
+theorem _root_.Tengoku.Aintlib.fixedPointsBaseChange_bijective_of_isUnit [Finite G] (h : IsUnit ((Nat.card G : ℕ) : R)) :
     Function.Bijective (fixedPointsBaseChange (G := G) (R := R) (A := A) (R' := R')) := by
   classical
   cases nonempty_fintype G
@@ -295,3 +295,4 @@ theorem fixedPointsBaseChange_bijective_of_isUnit [Finite G] (h : IsUnit ((Nat.c
   rw [show ((Fintype.card G : ℕ) : R) = (u : R) by
     rw [hu, Nat.card_eq_fintype_card]]
   exact u.inv_mul
+-- Tengoku: root names of this library moved to Tengoku.Aintlib so they do not collide with other libraries (generated)

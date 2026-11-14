@@ -43,7 +43,7 @@ Fix `a ∈ U`. There is a direction `v` such that `t ↦ g (a + t • v)` is not
 `(2πi)⁻¹ ∮_{‖t‖ = r} t⁻¹ • f (z + t • v)` is holomorphic in `z`, and by the one-variable
 removable singularity theorem and Cauchy's formula it equals `f z` whenever `g z ≠ 0`.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Set Filter Metric Complex
 open scoped Topology
 
@@ -54,7 +54,7 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] [FiniteDimension
 /-- **Holomorphy of parametric circle integrals.** If `G : E → ℂ → ℂ` is jointly continuous on
 `U × sphere 0 r` and holomorphic on `U` in the first variable, then `x ↦ ∮ ζ in C(0, r), G x ζ`
 is holomorphic on `U`. -/
-theorem differentiableOn_circleIntegral {U : Set E} (hU : IsOpen U) {r : ℝ} (hr : 0 < r)
+theorem _root_.Tengoku.LanaOka.differentiableOn_circleIntegral {U : Set E} (hU : IsOpen U) {r : ℝ} (hr : 0 < r)
     {G : E → ℂ → ℂ} (hdiff : ∀ ζ ∈ sphere (0 : ℂ) r, DifferentiableOn ℂ (G · ζ) U)
     (hcont : ContinuousOn (Function.uncurry G) (U ×ˢ sphere (0 : ℂ) r)) :
     DifferentiableOn ℂ (fun x ↦ ∮ ζ in C(0, r), G x ζ) U := by
@@ -76,7 +76,7 @@ section OneVariable
 /-- **Riemann extension theorem in one variable**: a holomorphic function off a set `S` of
 isolated points in an open set `D ⊆ ℂ`, bounded near every point of `D`, extends to a holomorphic
 function on `D`. -/
-theorem exists_differentiableOn_eqOn_of_isolated {D S : Set ℂ} (hD : IsOpen D)
+theorem _root_.Tengoku.LanaOka.exists_differentiableOn_eqOn_of_isolated {D S : Set ℂ} (hD : IsOpen D)
     (hS : ∀ p ∈ D, ∀ᶠ t in 𝓝[≠] p, t ∉ S) {h : ℂ → ℂ} (hh : DifferentiableOn ℂ h (D \ S))
     (hb : ∀ p ∈ D, IsBoundedUnder (· ≤ ·) (𝓝[≠] p) (fun t ↦ ‖h t‖)) :
     ∃ H : ℂ → ℂ, DifferentiableOn ℂ H D ∧ EqOn H h (D \ S) := by
@@ -131,7 +131,7 @@ variable {X : Type*} [TopologicalSpace X] {U : Set X} {g : X → ℂ}
 
 /-- If the zero set of `g` in the open set `U` has empty interior, its complement is dense in
 `U`. -/
-theorem subset_closure_diff_zero (hU : IsOpen U) (hZ : interior (U ∩ g ⁻¹' {0}) = ∅) :
+theorem _root_.Tengoku.LanaOka.subset_closure_diff_zero (hU : IsOpen U) (hZ : interior (U ∩ g ⁻¹' {0}) = ∅) :
     U ⊆ closure (U \ g ⁻¹' {0}) := by
   intro z hz
   rw [mem_closure_iff_nhds]
@@ -152,7 +152,7 @@ theorem Set.EqOn.of_eqOn_diff_zero {Y : Type*} [TopologicalSpace Y] [T2Space Y] 
 
 /-- If the zero sets of `g₁` and `g₂` in `U` have empty interior and `g₁` is
 continuous on `U`, then the zero set of `g₁ * g₂` in `U` has empty interior. -/
-theorem interior_inter_preimage_zero_mul_eq_empty {g₁ g₂ : X → ℂ}
+theorem _root_.Tengoku.LanaOka.interior_inter_preimage_zero_mul_eq_empty {g₁ g₂ : X → ℂ}
     (hg₁ : ContinuousOn g₁ U) (h₁ : interior (U ∩ g₁ ⁻¹' {0}) = ∅)
     (h₂ : interior (U ∩ g₂ ⁻¹' {0}) = ∅) : interior (U ∩ (g₁ * g₂) ⁻¹' {0}) = ∅ := by
   set N := interior (U ∩ (g₁ * g₂) ⁻¹' {0})
@@ -171,7 +171,7 @@ theorem interior_inter_preimage_zero_mul_eq_empty {g₁ g₂ : X → ℂ}
 
 /-- If the zero sets of finitely many functions `g i`, continuous on `U`, have empty
 interior in `U`, then so has the zero set of their product. -/
-theorem interior_inter_preimage_zero_prod_eq_empty {ι : Type*} (s : Finset ι) {g : ι → X → ℂ}
+theorem _root_.Tengoku.LanaOka.interior_inter_preimage_zero_prod_eq_empty {ι : Type*} (s : Finset ι) {g : ι → X → ℂ}
     (hg : ∀ i ∈ s, ContinuousOn (g i) U)
     (hZ : ∀ i ∈ s, interior (U ∩ g i ⁻¹' {0}) = ∅) :
     interior (U ∩ (fun z ↦ ∏ i ∈ s, g i z) ⁻¹' {0}) = ∅ := by
@@ -338,7 +338,7 @@ private lemma exists_local_extension (hU : IsOpen U) (hg : DifferentiableOn ℂ 
 /-- **Riemann extension theorem.** Let `U` be an open subset of a finite-dimensional complex space
 and `g` holomorphic on `U` whose zero set in `U` has empty interior. A function holomorphic on
 `U \ g ⁻¹' {0}` and bounded near every point of `U` extends to a holomorphic function on `U`. -/
-theorem exists_differentiableOn_eqOn_of_isBoundedUnder (hU : IsOpen U)
+theorem _root_.Tengoku.LanaOka.exists_differentiableOn_eqOn_of_isBoundedUnder (hU : IsOpen U)
     (hg : DifferentiableOn ℂ g U) (hZ : interior (U ∩ g ⁻¹' {0}) = ∅) {f : E → ℂ}
     (hf : DifferentiableOn ℂ f (U \ g ⁻¹' {0}))
     (hbdd : ∀ z ∈ U, IsBoundedUnder (· ≤ ·) (𝓝[U \ g ⁻¹' {0}] z) (fun w ↦ ‖f w‖)) :
@@ -472,3 +472,4 @@ theorem IsPreconnected.diff_biUnion_zero {ι : Type*} (s : Finset ι) {g : ι �
     (interior_inter_preimage_zero_prod_eq_empty s (fun i hi ↦ (hg i hi).continuousOn) hZ)
 
 end SeveralVariables
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

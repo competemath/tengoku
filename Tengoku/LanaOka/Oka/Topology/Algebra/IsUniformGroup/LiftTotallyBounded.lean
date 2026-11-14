@@ -29,7 +29,7 @@ We also record the elementary facts about series with terms in such a "halving" 
 neighbourhoods (`Finset.sum_mem_of_add_subset`, `summable_of_add_subset`,
 `HasSum.mem_closure_of_add_subset`), which are used for the open mapping theorem as well.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Filter Topology Set Pointwise
 
 section Halving
@@ -68,7 +68,7 @@ variable {G : Type*} [AddCommGroup G] [UniformSpace G] [IsUniformAddGroup G] [Co
 
 /-- In a complete group, a series with `e n ∈ N (n + 1)` converges, where `N` is a halving
 sequence of sets which is cofinal in the neighbourhoods of `0`. -/
-theorem summable_of_add_subset {N : ℕ → Set G} (h0 : ∀ n, (0 : G) ∈ N n)
+theorem _root_.Tengoku.LanaOka.summable_of_add_subset {N : ℕ → Set G} (h0 : ∀ n, (0 : G) ∈ N n)
     (hN : ∀ n, N (n + 1) + N (n + 1) ⊆ N n) (hbasis : ∀ V ∈ 𝓝 (0 : G), ∃ n, N n ⊆ V)
     {e : ℕ → G} (he : ∀ n, e n ∈ N (n + 1)) : Summable e := by
   rw [summable_iff_vanishing]
@@ -87,7 +87,7 @@ variable {E F : Type*} [AddCommGroup E] [UniformSpace E] [IsUniformAddGroup E]
   [AddCommGroup F] [UniformSpace F] [IsUniformAddGroup F] [T2Space F]
 
 /-- A halving sequence of neighbourhoods of `0`, cofinal in `𝓝 0`, starting inside `W`. -/
-theorem exists_add_subset_basis_nhds_zero {W : Set E} (hW : W ∈ 𝓝 (0 : E)) :
+theorem _root_.Tengoku.LanaOka.exists_add_subset_basis_nhds_zero {W : Set E} (hW : W ∈ 𝓝 (0 : E)) :
     ∃ N : ℕ → Set E, (∀ n, N n ∈ 𝓝 (0 : E)) ∧ (∀ n, N (n + 1) + N (n + 1) ⊆ N n) ∧
       N 0 ⊆ W ∧ (∀ V ∈ 𝓝 (0 : E), ∃ n, N n ⊆ V) ∧ Antitone N := by
   obtain ⟨N₀, hN₀basis, hN₀⟩ := IsTopologicalAddGroup.exists_antitone_basis_nhds_zero E
@@ -103,7 +103,7 @@ between commutative topological groups which maps neighbourhoods of `0` to neigh
 with `E` complete and first countable and `F` Hausdorff. Then every totally bounded `K ⊆ F`
 admits a lift `ℓ` with `ℓ '' K` totally bounded, and, for any neighbourhood `W` of `0` in `E`,
 with values in `Φ + W` for some finite `Φ`. -/
-theorem exists_lift_of_totallyBounded {M : Type*} [FunLike M E F] [AddMonoidHomClass M E F]
+theorem _root_.Tengoku.LanaOka.exists_lift_of_totallyBounded {M : Type*} [FunLike M E F] [AddMonoidHomClass M E F]
     [CompleteSpace E] (u : M) (hu : Continuous u) (hsurj : Function.Surjective u)
     (hopen : ∀ W ∈ 𝓝 (0 : E), u '' W ∈ 𝓝 (0 : F)) {K : Set F} (hK : TotallyBounded K)
     {W : Set E} (hW : W ∈ 𝓝 (0 : E)) :
@@ -216,3 +216,4 @@ theorem exists_lift_of_totallyBounded {M : Type*} [FunLike M E F] [AddMonoidHomC
     simpa using htail k hk 0
 
 end Lift
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

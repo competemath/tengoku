@@ -8,20 +8,20 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
 noncomputable section
 
 /-- The integrand of the complex Laplace transform of a possibly infinite-valued energy function. -/
-def ComplexLaplaceIntegrand {α : Type*} (E : α → WithTop ℝ) (z : ℂ) (x : α) : ℂ :=
+def _root_.Tengoku.Physlib.ComplexLaplaceIntegrand {α : Type*} (E : α → WithTop ℝ) (z : ℂ) (x : α) : ℂ :=
   if h : E x = ⊤ then 0 else Complex.exp (-z * (E x).untop h : ℂ)
 
 /-- The complex Laplace transform of a possibly infinite-valued energy function. -/
-def ComplexLaplaceTransform {α : Type*} [MeasureTheory.MeasureSpace α]
+def _root_.Tengoku.Physlib.ComplexLaplaceTransform {α : Type*} [MeasureTheory.MeasureSpace α]
     (E : α → WithTop ℝ) (z : ℂ) : ℂ :=
   ∫ x, ComplexLaplaceIntegrand E z x
 
 /-- The complex convergence domain of a Laplace transform. -/
-def ComplexLaplaceConvergenceDomain {α : Type*} [MeasureTheory.MeasureSpace α]
+def _root_.Tengoku.Physlib.ComplexLaplaceConvergenceDomain {α : Type*} [MeasureTheory.MeasureSpace α]
     (E : α → WithTop ℝ) : Set ℂ :=
   {z | MeasureTheory.Integrable (μ := MeasureTheory.volume) (ComplexLaplaceIntegrand E z)}
 
@@ -36,3 +36,4 @@ private def ComplexLaplaceEndpointEnvelope {α : Type*} (E : α → WithTop ℝ)
   ‖ComplexLaplaceIntegrand E z x‖ + ‖ComplexLaplaceIntegrand E w x‖
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

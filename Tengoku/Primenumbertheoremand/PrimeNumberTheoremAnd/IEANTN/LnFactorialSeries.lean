@@ -1,5 +1,5 @@
 import Tengoku
-
+namespace Tengoku.Primenumbertheoremand end Tengoku.Primenumbertheoremand open Tengoku.Primenumbertheoremand
 /-!
 Upper and lower bounds on the series S = Σₙ (log 2)^(n+1) / ((n+1) · (n+1)!)
 
@@ -43,7 +43,7 @@ private lemma summable_series :
   · exact div_le_div_of_nonneg_left (by positivity) (by positivity)
       (mod_cast Nat.le_mul_of_pos_left _ (Nat.succ_pos _))
 
-lemma hs_lo : (0.834438 : ℝ) ≤
+lemma _root_.Tengoku.Primenumbertheoremand.hs_lo : (0.834438 : ℝ) ≤
     ∑' n : ℕ, (Real.log 2) ^ (n + 1) / ((↑(n + 1) : ℝ) * ↑(n + 1).factorial) := by
   have h_sum_le_tsum : (∑ n ∈ Finset.range 8, (Real.log 2) ^ (n + 1) / ((↑(n + 1) : ℝ) * ↑(n + 1).factorial)) ≤
       ∑' n : ℕ, (Real.log 2) ^ (n + 1) / ((↑(n + 1) : ℝ) * ↑(n + 1).factorial) :=
@@ -102,8 +102,9 @@ private lemma hs_hi_close
     pow_pos (Real.log_pos one_lt_two) 10, pow_pos (Real.log_pos one_lt_two) 11,
     Real.exp_log zero_lt_two]
 
-lemma hs_hi :
+lemma _root_.Tengoku.Primenumbertheoremand.hs_hi :
     ∑' n : ℕ, (Real.log 2) ^ (n + 1) / ((↑(n + 1) : ℝ) * ↑(n + 1).factorial) ≤
     0.834462 := by
   by_contra h_contra
   exact hs_hi_close h_contra (by rw [← Summable.sum_add_tsum_nat_add (k := 10) summable_series])
+-- Tengoku: root names of this library moved to Tengoku.Primenumbertheoremand so they do not collide with other libraries (generated)

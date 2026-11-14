@@ -30,17 +30,17 @@ existence of the mass unit of kilograms, and construct all other mass units from
 -/
 
 @[expose] public section
-
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
 open NNReal
 
 /-- The choices of translationally-invariant metrics on the mass-manifold.
   Such a choice corresponds to a choice of units for mass. -/
-structure MassUnit where
+structure _root_.Tengoku.Physlib.MassUnit where
   /-- The underlying scale of the unit. -/
   val : ℝ
   property : 0 < val
 
-namespace MassUnit
+namespace Tengoku.Physlib.MassUnit
 
 @[simp]
 lemma val_ne_zero (x : MassUnit) : x.val ≠ 0 := by
@@ -206,4 +206,5 @@ lemma shortTons_div_kilograms : shortTons / kilograms = (907.18474 : ℝ≥0) :=
 lemma longTons_div_kilograms : longTons / kilograms = (1016.0469088 : ℝ≥0) := NNReal.eq <| by
   simp [longTons, pounds]; rw [toReal]; norm_num
 
-end MassUnit
+end Tengoku.Physlib.MassUnit
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

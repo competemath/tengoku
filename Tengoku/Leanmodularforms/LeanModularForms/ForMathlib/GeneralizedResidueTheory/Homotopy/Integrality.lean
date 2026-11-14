@@ -19,7 +19,7 @@ None of that material is reachable from the protected theorems
 `LeanModularForms.hw_3_3_clean_full_mero` or `valence_formula_textbook`, so it has
 been removed.
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Filter Topology
 
 noncomputable section
@@ -27,8 +27,9 @@ noncomputable section
 /-- If `f` is eventually equal to a constant `c`, then `limUnder l f = c`.
 @isnad1 id=eq.1h4v.s5.7364b092a9a8 from=translated src=- shape=376d1940 vocab=db5b29d1
 -/
-theorem limUnder_eventually_eq_const {α : Type*} [TopologicalSpace α] {f : α → ℂ}
+theorem _root_.Tengoku.Leanmodularforms.limUnder_eventually_eq_const {α : Type*} [TopologicalSpace α] {f : α → ℂ}
     {l : Filter α} {c : ℂ} [l.NeBot] (hf : ∀ᶠ x in l, f x = c) : limUnder l f = c :=
   (tendsto_const_nhds.congr' (hf.mono fun _ h => h.symm)).limUnder_eq
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

@@ -15,7 +15,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.BrownianMotion end Tengoku.BrownianMotion open Tengoku.BrownianMotion 
 open MeasureTheory InnerProductSpace NormedSpace WithLp
 open scoped ENNReal NNReal Matrix
 
@@ -130,3 +130,4 @@ lemma posSemidef_covMatrix : (covMatrix μ).PosSemidef := by
   exact isPosSemidef_covarianceBilin
 
 end ProbabilityTheory
+-- Tengoku: root names of this library moved to Tengoku.BrownianMotion so they do not collide with other libraries (generated)

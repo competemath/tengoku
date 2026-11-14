@@ -30,7 +30,7 @@ Properties of the residue `residue f z₀`, defined as the circle-integral limit
 
 * K. Hungerbühler, J. Wasem, *A generalized notion of winding numbers*
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex Set Filter Topology MeasureTheory Metric
 open scoped Interval Real
 
@@ -52,7 +52,7 @@ private lemma circleIntegral_eq_zero_of_analyticOnNhd_ball {f : ℂ → ℂ} {z�
 /-- A function that is analytic at `z₀` has residue zero.
 @isnad1 id=eq.1h2v.s5.f275db79459b from=translated src=- shape=64e000da vocab=9641dc87
 -/
-theorem residue_eq_zero_of_analyticAt {f : ℂ → ℂ} {z₀ : ℂ}
+theorem _root_.Tengoku.Leanmodularforms.residue_eq_zero_of_analyticAt {f : ℂ → ℂ} {z₀ : ℂ}
     (hf : AnalyticAt ℂ f z₀) : residue f z₀ = 0 := by
   obtain ⟨R, hR_pos, hR_an⟩ := hf.exists_ball_analyticOnNhd
   refine (tendsto_nhds_of_eventually_eq ?_).limUnder_eq
@@ -65,7 +65,7 @@ residue. The proof shows that the circle integrals agree for all sufficiently sm
 radii, so the `limUnder`s coincide.
 @isnad1 id=eq.1h3v.s5.4a9a06bd1dd7 from=translated src=- shape=8faa453f vocab=191f0b20
 -/
-theorem residue_congr {f g : ℂ → ℂ} {z₀ : ℂ}
+theorem _root_.Tengoku.Leanmodularforms.residue_congr {f g : ℂ → ℂ} {z₀ : ℂ}
     (h : ∀ᶠ z in 𝓝[≠] z₀, f z = g z) : residue f z₀ = residue g z₀ := by
   apply limUnder_eq_of_eventuallyEq
   rw [Filter.Eventually, Metric.mem_nhdsWithin_iff] at h
@@ -80,3 +80,4 @@ theorem residue_congr {f g : ℂ → ℂ} {z₀ : ℂ}
   exact hε ⟨mem_ball.mpr (mem_sphere.mp hz ▸ hr_lt), mem_compl_singleton_iff.mpr h_ne⟩
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

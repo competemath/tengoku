@@ -26,7 +26,7 @@ rings of integers when `d ≡ 1 (mod 4)`.
 * `trace_halfInt`: Trace of `halfInt d a' b'` is `a'`.
 * `norm_halfInt`: Norm of `halfInt d a' b'` is `(a'² - d·b'²) / 4`.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 local notation "ℚ√" d => Qsqrtd d
 
 namespace QuadraticNumberFields
@@ -83,3 +83,4 @@ theorem norm_halfInt (d a' b' : ℤ) :
 
 end RingOfIntegers
 end QuadraticNumberFields
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

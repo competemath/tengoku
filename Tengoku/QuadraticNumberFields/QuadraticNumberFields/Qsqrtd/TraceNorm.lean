@@ -23,7 +23,7 @@ It does not introduce new trace or norm definitions: trace is always
 * `TraceNorm.exists_int_norm`: an integral element has integral norm.
 * `TraceNorm.exists_int_double_im`: an integral element has doubled imaginary part in `ℤ`.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 local notation "ℚ√" d => Qsqrtd d
 
 namespace QuadraticNumberFields
@@ -241,3 +241,4 @@ lemma dvd_four_sub_sq_of_norm_eq_int
 end TraceNorm
 end RingOfIntegers
 end QuadraticNumberFields
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

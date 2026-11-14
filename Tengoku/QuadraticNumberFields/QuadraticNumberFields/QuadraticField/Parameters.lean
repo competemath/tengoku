@@ -42,7 +42,7 @@ because they are destined for mathlib.
 -/
 
 /-! ## Rescaling Isomorphisms -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 /-- `ℚ(√d) ≃ₐ[ℚ] ℚ(√(a²d))` via `⟨r, s⟩ ↦ ⟨r, s·a⁻¹⟩`, for a
 rational scaling factor `a ≠ 0`.
 
@@ -50,7 +50,7 @@ This shows that scaling the parameter by a rational square yields an
 isomorphic quadratic field.-/
 local notation "ℚ√" d => Qsqrtd d
 
-def Qsqrtd.rescaleOfNeZero (d : ℚ) (a : ℚ) (ha : a ≠ 0) :
+def Tengoku.QuadraticNumberFields.Qsqrtd.rescaleOfNeZero (d : ℚ) (a : ℚ) (ha : a ≠ 0) :
     Qsqrtd d ≃ₐ[ℚ] Qsqrtd (a ^ 2 * d) := by
   -- This is the change of generator
   -- `√d ↦ a⁻¹ * √(a² d)`, with the real part unchanged.
@@ -70,7 +70,7 @@ def Qsqrtd.rescaleOfNeZero (d : ℚ) (a : ℚ) (ha : a ≠ 0) :
 
 This is the preferred public rescaling API: using units packages the nonzero
 side condition into the scaling parameter.-/
-def Qsqrtd.rescale (d : ℚ) (a : ℚˣ) :
+def Tengoku.QuadraticNumberFields.Qsqrtd.rescale (d : ℚ) (a : ℚˣ) :
     Qsqrtd d ≃ₐ[ℚ] Qsqrtd ((a : ℚ) ^ 2 * d) :=
   Qsqrtd.rescaleOfNeZero d a a.ne_zero
 
@@ -78,7 +78,7 @@ def Qsqrtd.rescale (d : ℚ) (a : ℚˣ) :
 `∃ z ∈ ℤ, Q(√d) ≃ₐ[ℚ] Q(√z)`.
 @isnad1 id=ex.0h1v.s6.4cd09b71cfbd from=translated src=- shape=f18ab0e3 vocab=244374f0
 -/
-theorem Qsqrtd_iso_int_param (d : ℚ) :
+theorem _root_.Tengoku.QuadraticNumberFields.Qsqrtd_iso_int_param (d : ℚ) :
     ∃ z : ℤ, Nonempty (Qsqrtd d ≃ₐ[ℚ] Qsqrtd (z : ℚ)) := by
   obtain ⟨m, n, hn0, hd⟩ : ∃ m n : ℤ, n ≠ 0 ∧ d = m / n := by
     have hd := ne_of_gt (Rat.den_pos d)
@@ -98,7 +98,7 @@ theorem Qsqrtd_iso_int_param (d : ℚ) :
 parameter: `∃ z ∈ ℤ, Squarefree z ∧ Q(√d) ≃ₐ[ℚ] Q(√z)`.
 @isnad1 id=ex.1h1v.s6.243e6e659a7e from=translated src=- shape=f53872d3 vocab=e0d493c0
 -/
-theorem Qsqrtd_iso_squarefree_int_param {d : ℤ} (hd : d ≠ 0) :
+theorem _root_.Tengoku.QuadraticNumberFields.Qsqrtd_iso_squarefree_int_param {d : ℤ} (hd : d ≠ 0) :
     ∃ z : ℤ, Squarefree z ∧ Nonempty (Qsqrtd (d : ℚ) ≃ₐ[ℚ] Qsqrtd (z : ℚ)) := by
   obtain ⟨b, a, heq, ha⟩ := exists_sq_mul_squarefree d.natAbs
   have hb : b ≠ 0 := by
@@ -142,7 +142,7 @@ via `int_dvd_of_ratio_square`, yielding `d₁ ∣ d₂` and `d₂ ∣ d₁`.
 The sign ambiguity is resolved by the fact that `-1` is not a rational square.
 @isnad1 id=eq.3h3v.s5.dfc18b867378 from=translated src=- shape=24c53b74 vocab=3d8ff3bd
 -/
-lemma squarefree_eq_of_rat_sq_mul {d₁ d₂ : ℤ}
+lemma _root_.Tengoku.QuadraticNumberFields.squarefree_eq_of_rat_sq_mul {d₁ d₂ : ℤ}
     (hd₁ : Squarefree d₁) (hd₂ : Squarefree d₂)
     {r : ℚ} (hr : (d₁ : ℚ) = d₂ * r ^ 2) : d₁ = d₂ := by
   have hd₁0 : d₁ ≠ 0 := Squarefree.ne_zero hd₁
@@ -190,7 +190,7 @@ lemma squarefree_eq_of_rat_sq_mul {d₁ d₂ : ℤ}
 `ℚ(√d₁) ≃ₐ[ℚ] ℚ(√d₂)` with both squarefree and `≠ 1` implies `d₁ = d₂`.
 @isnad1 id=eq.3h3v.s6.6bbcd7dde04c from=translated src=- shape=d638387b vocab=0ffae895
 -/
-theorem Qsqrtd.param_unique (φ : Qsqrtd (d₁ : ℚ) ≃ₐ[ℚ] Qsqrtd (d₂ : ℚ))
+theorem Tengoku.QuadraticNumberFields.Qsqrtd.param_unique (φ : Qsqrtd (d₁ : ℚ) ≃ₐ[ℚ] Qsqrtd (d₂ : ℚ))
     (hsf₁ : Squarefree d₁) (h1₁ : d₁ ≠ 1) (hsf₂ : Squarefree d₂) : d₁ = d₂ :=
   -- `φ ⟨0, 1⟩ = ⟨0, b⟩` with `(d₁ : ℚ) = d₂ * b²`, so squarefreeness
   -- pins `d₁ = d₂`.
@@ -198,3 +198,4 @@ theorem Qsqrtd.param_unique (φ : Qsqrtd (d₁ : ℚ) ≃ₐ[ℚ] Qsqrtd (d₂ :
     (Qsqrtd.algEquiv_param_rel (not_isSquare_ratCast_of_squarefree_ne_one hsf₁ h1₁) φ).2.2
 
 end ParameterUniqueness
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

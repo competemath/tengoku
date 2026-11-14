@@ -26,7 +26,7 @@ import Tengoku.Seed.RingTheory.RootsOfUnity.Complex
   omit the value `β` near `z` and converge locally uniformly to `f` with `f z = β`, then `f = β`
   near `z`.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Filter Metric Set Topology
 
 namespace Uniformization
@@ -229,3 +229,4 @@ theorem exists_localSection {f : ℂ → ℂ} {f' a : ℂ} (hf : HasStrictDerivA
   exact e.left_inv hsrc
 
 end Uniformization
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

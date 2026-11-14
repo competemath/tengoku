@@ -52,7 +52,7 @@ Hadamard (Theorem 22).
 -/
 
 @[expose] public section
-
+namespace Tengoku.Primenumbertheoremand end Tengoku.Primenumbertheoremand open Tengoku.Primenumbertheoremand 
 noncomputable section
 
 open Set Filter Asymptotics
@@ -344,3 +344,4 @@ theorem hadamardQuotient_norm_le_exp_on_cartan_circle
   exact this.trans hslack
 
 end Complex.Hadamard
+-- Tengoku: root names of this library moved to Tengoku.Primenumbertheoremand so they do not collide with other libraries (generated)

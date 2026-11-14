@@ -29,7 +29,7 @@ through every point make `ψ` a covering map (`Uniformization.isCoveringMapOn_of
 - `Uniformization.PlaneData.exists_covering`: a holomorphic covering map `ψ : 𝔻 → Ω`, onto, with
   nonvanishing derivative.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Complex Metric Set Filter Topology
 
 namespace Uniformization
@@ -282,3 +282,4 @@ theorem PlaneData.exists_section (h : PlaneData Ω U₀ p₀) {φ : ℕ → ℕ}
   exact hσsec u hu
 
 end Uniformization
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

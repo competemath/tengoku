@@ -26,7 +26,7 @@ This file defines the localized ball for linear regression and proves its proper
 * `diam_linearLocalizedBallImage_le`: Diameter bound of 2δ
 
 -/
-
+namespace Tengoku.Leanslt end Tengoku.Leanslt open Tengoku.Leanslt
 open MeasureTheory Finset BigOperators Real ProbabilityTheory Metric Set
 open scoped NNReal ENNReal
 
@@ -227,3 +227,4 @@ theorem diam_linearLocalizedBallImage_le (hn : 0 < n)
       _ = 2 * δ := by ring
 
 end LeastSquares
+-- Tengoku: root names of this library moved to Tengoku.Leanslt so they do not collide with other libraries (generated)

@@ -4,7 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Moritz Firsching, Ralf Stephan
 -/
 import Tengoku
-
+namespace Tengoku.Formalbook end Tengoku.Formalbook open Tengoku.Formalbook
 open Finset Nat
 open BigOperators
 /-!
@@ -24,7 +24,7 @@ open BigOperators
 /--
 @isnad1 id=ex.1h1v.s5.772705a56ff3 from=translated src=- shape=864b1068 vocab=be303f15
 -/
-theorem infinity_of_primes₁ (S : Finset ℕ) (h : ∀ q ∈ S, Nat.Prime q):
+theorem _root_.Tengoku.Formalbook.infinity_of_primes₁ (S : Finset ℕ) (h : ∀ q ∈ S, Nat.Prime q):
   ∃ (p : ℕ), Nat.Prime p ∧ p ∉ S := by
   let n := 1 + ∏ q ∈ S, q
   /- "This `n` has a prime divisor":
@@ -53,7 +53,7 @@ local notation "F" => fermatNumber
 /--
 @isnad1 id=eq.0h1v.s4.d432d5f49ae9 from=translated src=- shape=990a3166 vocab=98fe650f
 -/
-lemma fermatProduct (n : ℕ) : ∏ k ∈ range n, F k = F n - 2 := by
+lemma _root_.Tengoku.Formalbook.fermatProduct (n : ℕ) : ∏ k ∈ range n, F k = F n - 2 := by
   induction n with
   | zero => trivial
   | succ n hn =>
@@ -67,7 +67,7 @@ lemma fermatProduct (n : ℕ) : ∏ k ∈ range n, F k = F n - 2 := by
 /--
 @isnad1 id=coprime.1h2v.s3.c5b79e108cf7 from=translated src=- shape=e389098a vocab=2875b9d9
 -/
-theorem infinity_of_primes₂  (k n : ℕ) (h : k < n) : Coprime (F n) (F k) := by
+theorem _root_.Tengoku.Formalbook.infinity_of_primes₂  (k n : ℕ) (h : k < n) : Coprime (F n) (F k) := by
   let m := (F n).gcd (F k)
   have h_n : m ∣ F n := (F n).gcd_dvd_left (F k)
   have h_k : m ∣ F k := (F n).gcd_dvd_right (F k)
@@ -109,13 +109,13 @@ lemma ZMod.two_ne_one (q : ℕ)  [Fact (1 < q)] : (2 : ZMod q) ≠ 1 := by
 /--
 @isnad1 id=le.1h2v.s5.143d5db072bd from=translated src=- shape=aa0a716a vocab=cf369417
 -/
-lemma sub_one_le_sub_one {n m : ℕ} : n ≤ m → n - 1 ≤ m - 1 :=
+lemma _root_.Tengoku.Formalbook.sub_one_le_sub_one {n m : ℕ} : n ≤ m → n - 1 ≤ m - 1 :=
   fun h ↦ pred_le_pred h
 
 /--
 @isnad1 id=not.0h0v.s4.4859e0b44141 from=translated src=- shape=9e08551e vocab=30ca7223
 -/
-theorem infinity_of_primes₃:
+theorem _root_.Tengoku.Formalbook.infinity_of_primes₃:
   ¬ (∃ (p : ℕ), Nat.Prime p ∧ (∀ (q : ℕ), (Nat.Prime q) → q ≤ p)) := by
   simp only [not_exists, not_and, not_forall, not_le, exists_prop]
   intros p hp
@@ -186,14 +186,14 @@ open Nat.Prime
 open Classical
 
 /-- The prime counting function `π(x)` for real `x`. -/
-noncomputable def primeCountingReal (x : ℝ) : ℕ :=
+noncomputable def _root_.Tengoku.Formalbook.primeCountingReal (x : ℝ) : ℕ :=
   if (x ≤ 0) then 0 else primeCounting ⌊x⌋₊
 
 /-- The set of natural numbers whose prime factors are all less than or equal to `x`. -/
-def S₁ (x : ℝ) : Set ℕ :=
+def _root_.Tengoku.Formalbook.S₁ (x : ℝ) : Set ℕ :=
  { n | ∀ p, Nat.Prime p → p ∣ n → p ≤ x }
 /-- The inferse function is a homomorphism. -/
-noncomputable def invRealHom : ℕ →*₀ ℝ :=
+noncomputable def _root_.Tengoku.Formalbook.invRealHom : ℕ →*₀ ℝ :=
   { toFun := fun n => (n : ℝ)⁻¹
     map_one' := by
       -- The inverse of 1 is 1.
@@ -207,7 +207,7 @@ noncomputable def invRealHom : ℕ →*₀ ℝ :=
 /--
 @isnad1 id=eq.0h1v.s4.6beaa3b884f3 from=translated src=- shape=6f3f8ff8 vocab=e06c4876
 -/
-lemma S1_eq_smoothNumbers (x : ℝ) : S₁ x = Nat.smoothNumbers (⌊x⌋₊ + 1) := by
+lemma _root_.Tengoku.Formalbook.S1_eq_smoothNumbers (x : ℝ) : S₁ x = Nat.smoothNumbers (⌊x⌋₊ + 1) := by
   ext n
   simp only [S₁, Nat.smoothNumbers, Set.mem_ofPred_eq]
   constructor
@@ -241,13 +241,13 @@ lemma S1_eq_smoothNumbers (x : ℝ) : S₁ x = Nat.smoothNumbers (⌊x⌋₊ + 1
 /--
 @isnad1 id=lt.1h1v.s5.f15a161ab69e from=translated src=- shape=3071a3d3 vocab=c6fa9c89
 -/
-lemma norm_invRealHom_prime_lt_one (p : ℕ) (hp : Nat.Prime p) : ‖invRealHom p‖ < 1 := by
+lemma _root_.Tengoku.Formalbook.norm_invRealHom_prime_lt_one (p : ℕ) (hp : Nat.Prime p) : ‖invRealHom p‖ < 1 := by
   erw [Real.norm_of_nonneg]
   · exact inv_lt_one_of_one_lt₀ <| mod_cast hp.one_lt
   · exact inv_nonneg.2 <| Nat.cast_nonneg _
 
 /-- The inverse function is a monoid homomorphism. -/
-noncomputable def invRealMonoidHom : ℕ →* ℝ :=
+noncomputable def _root_.Tengoku.Formalbook.invRealMonoidHom : ℕ →* ℝ :=
   { toFun := fun n => (n : ℝ)⁻¹
     map_one' := by simp
     map_mul' := by
@@ -257,7 +257,7 @@ noncomputable def invRealMonoidHom : ℕ →* ℝ :=
 /--
 @isnad1 id=summable.0h1v.s5.cedbca5c5b72 from=translated src=- shape=dee38f49 vocab=bc7ba3d8
 -/
-lemma summable_invRealHom_smoothNumbers (N : ℕ) : Summable (fun (m : Nat.smoothNumbers N) ↦ ‖invRealHom m‖) := by
+lemma _root_.Tengoku.Formalbook.summable_invRealHom_smoothNumbers (N : ℕ) : Summable (fun (m : Nat.smoothNumbers N) ↦ ‖invRealHom m‖) := by
   have h : ∀ {p : ℕ}, Nat.Prime p → ‖invRealMonoidHom p‖ < 1 := by
     intro p hp
     have : invRealMonoidHom p = (p : ℝ)⁻¹ := rfl
@@ -269,7 +269,7 @@ lemma summable_invRealHom_smoothNumbers (N : ℕ) : Summable (fun (m : Nat.smoot
 /--
 @isnad1 id=summable.3h3v.s6.c3de52c2e848 from=translated src=- shape=94b74c7b vocab=52bce249
 -/
-theorem f_abs_summable (x : ℝ) (n : ℕ) (hxge : x ≥ ↑n) (hxlt : x < ↑n + 1)
+theorem _root_.Tengoku.Formalbook.f_abs_summable (x : ℝ) (n : ℕ) (hxge : x ≥ ↑n) (hxlt : x < ↑n + 1)
   (f : ArithmeticFunction ℝ) (hf : f.toFun = (S₁ x).indicator fun y ↦ (↑y)⁻¹) :
   Summable fun x ↦ ‖f x‖ := by
   have h_floor : ⌊x⌋₊ = n := by
@@ -296,7 +296,7 @@ theorem f_abs_summable (x : ℝ) (n : ℕ) (hxge : x ≥ ↑n) (hxlt : x < ↑n 
 /--
 @isnad1 id=ex.0h1v.s4.b78b8d7fe77a from=translated src=- shape=dbb59951 vocab=d2cf7363
 -/
-lemma exists_image_primes_eq_primesBelow (n : ℕ) :
+lemma _root_.Tengoku.Formalbook.exists_image_primes_eq_primesBelow (n : ℕ) :
   ∃ (s : Finset Nat.Primes), s.image (fun p : Nat.Primes ↦ p.1) = n.primesBelow := by
   unfold Nat.Primes
   refine ⟨Finset.subtype Nat.Prime n.primesBelow, ?_⟩
@@ -311,7 +311,7 @@ lemma exists_image_primes_eq_primesBelow (n : ℕ) :
 /--
 @isnad1 id=ex.1h2v.s5.4055221442fb from=translated src=- shape=e90caeed vocab=11fba6ed
 -/
-lemma arithmetic_f (x: ℝ) (n: ℕ) (hxlt : x < n + 1) : ∃ f: ArithmeticFunction ℝ, f.toFun = (S₁ x).indicator (fun y ↦ (↑y)⁻¹) := by {
+lemma _root_.Tengoku.Formalbook.arithmetic_f (x: ℝ) (n: ℕ) (hxlt : x < n + 1) : ∃ f: ArithmeticFunction ℝ, f.toFun = (S₁ x).indicator (fun y ↦ (↑y)⁻¹) := by {
     exists ZeroHom.mk ((S₁ x).indicator (fun y: ℕ ↦ (y: ℝ)⁻¹)) (by
   {
     have: ¬ (0 ∈ S₁ x) := by {
@@ -340,7 +340,7 @@ lemma arithmetic_f (x: ℝ) (n: ℕ) (hxlt : x < n + 1) : ∃ f: ArithmeticFunct
 /--
 @isnad1 id=eq.2h2v.s7.74b94f132f74 from=translated src=- shape=5c92f39e vocab=47daf2fa
 -/
-theorem euler_product_rearrangement (x: ℝ) (n: ℕ) (hxge : x ≥ n) (hxlt : x < n + 1): ∑' m : (S₁ x), (m : ℝ)⁻¹ = (∏ p ∈ primesBelow (⌊x⌋.natAbs+1), (∑' k : ℕ, (p ^ k : ℝ)⁻¹)) := by {
+theorem _root_.Tengoku.Formalbook.euler_product_rearrangement (x: ℝ) (n: ℕ) (hxge : x ≥ n) (hxlt : x < n + 1): ∑' m : (S₁ x), (m : ℝ)⁻¹ = (∏ p ∈ primesBelow (⌊x⌋.natAbs+1), (∑' k : ℕ, (p ^ k : ℝ)⁻¹)) := by {
   have:= _root_.tsum_subtype (S₁ x) (fun y => (y:ℝ)⁻¹)
   rewrite [this]
   clear this
@@ -453,7 +453,7 @@ theorem euler_product_rearrangement (x: ℝ) (n: ℕ) (hxge : x ≥ n) (hxlt : x
 /--
 @isnad1 id=le.2h2v.s5.e4d5d659baad from=translated src=- shape=63a48969 vocab=ca4171e7
 -/
-theorem log_riemann_bound (x: ℝ) (n: ℕ) (hxge : x ≥ n) (hxlt : x < n + 1): Real.log x ≤ ∑ k ∈ Icc 1 n, (k : ℝ)⁻¹ := by {
+theorem _root_.Tengoku.Formalbook.log_riemann_bound (x: ℝ) (n: ℕ) (hxge : x ≥ n) (hxlt : x < n + 1): Real.log x ≤ ∑ k ∈ Icc 1 n, (k : ℝ)⁻¹ := by {
   -- We'll use the fact that $\log x \leq \sum_{i=1}^n \frac{1}{i}$ for $x \leq n+1$.
   have h_log_le_sum : Real.log x ≤ Real.log (n + 1) := by
     by_cases hn : n = 0 <;> simp_all +decide;
@@ -478,7 +478,7 @@ theorem log_riemann_bound (x: ℝ) (n: ℕ) (hxge : x ≥ n) (hxlt : x < n + 1):
 /--
 @isnad1 id=le.2h2v.s6.b5c68d240d14 from=translated src=- shape=14740b8c vocab=1732a33d
 -/
-lemma H_P4_1 {k p: ℝ} (hk: k > 0) (hp: p ≥ k + 1): p / (p - 1) ≤ (k + 1) / k := by
+lemma _root_.Tengoku.Formalbook.H_P4_1 {k p: ℝ} (hk: k > 0) (hp: p ≥ k + 1): p / (p - 1) ≤ (k + 1) / k := by
   have h_k_nonzero: k ≠ 0 := ne_iff_lt_or_gt.mpr (Or.inr hk)
   have h_p_pred_pos: p - 1 > 0 := by linarith
   have h_p_pred_nonzero: p - 1 ≠ 0 := ne_iff_lt_or_gt.mpr (Or.inr h_p_pred_pos)
@@ -491,7 +491,7 @@ lemma H_P4_1 {k p: ℝ} (hk: k > 0) (hp: p ≥ k + 1): p / (p - 1) ≤ (k + 1) /
 /--
 @isnad1 id=eq.1h1v.s6.796b8e74823d from=translated src=- shape=957e2682 vocab=6c00f26e
 -/
-lemma prod_Icc_succ_div (n : ℕ) (hn : 2 ≤ n) : (∏ x ∈ Icc 1 n, ((x + 1) : ℝ) / x) = n + 1 := by
+lemma _root_.Tengoku.Formalbook.prod_Icc_succ_div (n : ℕ) (hn : 2 ≤ n) : (∏ x ∈ Icc 1 n, ((x + 1) : ℝ) / x) = n + 1 := by
   rw [← Finset.Ico_succ_right_eq_Icc]
   induction n with
   | zero => simp
@@ -509,7 +509,7 @@ lemma prod_Icc_succ_div (n : ℕ) (hn : 2 ≤ n) : (∏ x ∈ Icc 1 n, ((x + 1) 
 /--
 @isnad1 id=le.0h1v.s6.0477eb3e2216 from=translated src=- shape=137c776f vocab=6c00f26e
 -/
-lemma prod_Icc_le (n: ℕ) : (∏ x ∈ Icc 1 n, ((x + 1) : ℝ) / x) ≤ n + 1 := by {
+lemma _root_.Tengoku.Formalbook.prod_Icc_le (n: ℕ) : (∏ x ∈ Icc 1 n, ((x + 1) : ℝ) / x) ≤ n + 1 := by {
   have: n < 2 ∨ 2 ≤ n := by omega
   rcases this with (case | case)
   . have: n = 0 ∨ n = 1 := by omega
@@ -522,7 +522,7 @@ lemma prod_Icc_le (n: ℕ) : (∏ x ∈ Icc 1 n, ((x + 1) : ℝ) / x) ≤ n + 1 
 /--
 @isnad1 id=le.0h1v.s6.37d05c75f47f from=translated src=- shape=fc8f151a vocab=61863bb6
 -/
-lemma prime_counting_lemma (x : ℝ) :
+lemma _root_.Tengoku.Formalbook.prime_counting_lemma (x : ℝ) :
   ∏ k ∈ Icc 1 (primeCountingReal x), ((nth Nat.Prime k):ℝ) / (↑(nth Nat.Prime k) - 1) ≤
     ∏ k ∈ Icc 1 (primeCountingReal x), (k + (1:ℝ)) / ↑k := by
       -- Since each term in the left product is less than the corresponding term in the right product, the entire product is less than or equal.
@@ -541,15 +541,15 @@ using topology
 -/
 
 /-- The set of integers of the form `a + n * b` for `n ∈ ℤ`. -/
-def N : ℤ → ℤ → Set ℤ := fun a b ↦ {a + n * b | n : ℤ}
+def _root_.Tengoku.Formalbook.N : ℤ → ℤ → Set ℤ := fun a b ↦ {a + n * b | n : ℤ}
 
 /-- A set `O` is open if it is empty or if for any `a ∈ O`, it contains an arithmetic progression centered at `a`. -/
-def isOpen : Set ℤ → Prop := fun O ↦ O = ∅ ∨ ∀ a ∈ O, ∃ b > 0, N a b ⊆ O
+def _root_.Tengoku.Formalbook.isOpen : Set ℤ → Prop := fun O ↦ O = ∅ ∨ ∀ a ∈ O, ∃ b > 0, N a b ⊆ O
 
 /--
 @isnad1 id=infinite.0h0v.s3.be446de1cb9c from=translated src=- shape=66b19da4 vocab=040ecd32
 -/
-theorem infinity_of_primes₅ : { p : ℕ | p.Prime }.Infinite := by
+theorem _root_.Tengoku.Formalbook.infinity_of_primes₅ : { p : ℕ | p.Prime }.Infinite := by
   let TopoSpace : TopologicalSpace ℤ := {
     IsOpen := isOpen
     isOpen_univ := Or.inr fun a _ ↦ ⟨1, Int.zero_lt_one, Set.subset_univ _⟩
@@ -646,7 +646,7 @@ using the sum of inverses of primes
 -/
 
 /-- A sequence `S` is almost injective if the preimages of singletons are uniformly bounded. -/
-def AlmostInjective (S : ℕ → ℤ) : Prop :=
+def _root_.Tengoku.Formalbook.AlmostInjective (S : ℕ → ℤ) : Prop :=
   ∃ c : ℕ, ∀ k : ℕ, ∃ h : Set.Finite {n : ℕ | S n = k }, (Set.Finite.toFinset h).card ≤ c
 
 variable (fn : NNReal)
@@ -658,3 +658,4 @@ namespace Asymptotics
 /-- A sequence `S` has subexponential growth if `|S n|` is bounded by a double exponential whose exponent grows slower than `log n`. -/
 def ofSubexponentialGrowth (S : ℕ → ℤ) : Prop := ∃ f : ℕ → ℝ≥0, ∀ n,
   |S n| ≤ (2 : ℝ) ^ ((2 : ℝ) ^ (f n : ℝ)) ∧ Tendsto (fun n ↦ (f n) / (log 2 n)) atTop (𝓝 0)
+-- Tengoku: root names of this library moved to Tengoku.Formalbook so they do not collide with other libraries (generated)

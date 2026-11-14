@@ -1,0 +1,111 @@
+leakscan: 8 global instances (1 can fire outside the library), 0 scoped; 34 global simp lemmas (12 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 96 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: simp Module.finrank_zero_of_subsingleton registered in Tengoku.BrownianMotion.BrownianMotion.Auxiliary.Algebra (declared in Tengoku.Seed.LinearAlgebra.Dimension.Finite: an `attribute` command of the library turns it on)
+leak: simp Module.finrank_ne_zero registered in Tengoku.BrownianMotion.BrownianMotion.Auxiliary.Algebra (declared at line 35)
+leak: simp convex_empty registered in Tengoku.BrownianMotion.BrownianMotion.Auxiliary.Analysis (declared in Tengoku.Seed.Analysis.Convex.Basic: an `attribute` command of the library turns it on)
+leak: simp convex_univ registered in Tengoku.BrownianMotion.BrownianMotion.Auxiliary.Analysis (declared in Tengoku.Seed.Analysis.Convex.Basic: an `attribute` command of the library turns it on)
+leak: simp inner_toDual_symm_eq_self registered in Tengoku.BrownianMotion.BrownianMotion.Auxiliary.LinearAlgebra (declared at line 97)
+leak: simp LinearIsometryEquiv.coe_coe_eq_coe registered in Tengoku.BrownianMotion.BrownianMotion.Auxiliary.LinearAlgebra (declared at line 105)
+leak: simp Metric.nonempty_closedEBall registered in Tengoku.BrownianMotion.BrownianMotion.Auxiliary.Metric (declared at line 39)
+leak: simp zero_mem_parallelepiped registered in Tengoku.BrownianMotion.BrownianMotion.Auxiliary.MeasureTheory (declared at line 112)
+leak: simp nonempty_parallelepiped registered in Tengoku.BrownianMotion.BrownianMotion.Auxiliary.MeasureTheory (declared at line 119)
+leak: simp volume_of_nonempty_of_subsingleton registered in Tengoku.BrownianMotion.BrownianMotion.Auxiliary.MeasureTheory (declared at line 126)
+leak: simp MeasureTheory.hittingBtwn_self registered in Tengoku.BrownianMotion.BrownianMotion.Auxiliary.Upcrossing (declared at line 17)
+leak: simp EuclideanSpace.proj_apply registered in Tengoku.BrownianMotion.BrownianMotion.Auxiliary.WithLp (declared at line 16)
+leak: instance Convexity.StdSimplex.instFunLike registered in Tengoku.BrownianMotion.BrownianMotion.StochasticIntegral.ConvexWeights (declared at line 15)
+root: isCompactSystem_singleton_empty
+root: neBot_comap_nhds
+root: inner_toDual_symm_eq_self
+root: leftLimWithin_eq_of_not_tendsto
+root: edist_nearestPt_succ_le_two_mul
+root: leftLimWithin_eq_of_isBot
+root: leftLimWithin_leftLimWithin
+root: mapClusterPt_rightLimWithin
+root: indistinguishable_of_modification
+root: rightLimWithin_eq_of_eq_bot
+root: continuousWithinAt_leftLimWithin_Iic
+root: tendsto_rightLimWithin_of_tendsto
+root: edist_nearestPt_nearestPt_le_add
+root: tendsto_rightLimWithin_atTop_of_tendsto
+root: tendsto_leftLimWithin_atTop_of_tendsto
+root: iInter₂_sigma_eq_empty_iff
+root: countable_setOf_isolated_subtype
+root: edist_nearestPt_le
+root: chainingSequenceReverse_zero
+root: chainingSequenceReverse_mem
+root: nhdsWithin_Iio_inter_neBot_of_nhdsLT_neBot
+root: leftLimWithin_eq_of_tendsto
+root: rightLimWithin_rightLimWithin
+root: edist_chainingSequence_add_one_self
+root: tendsto_rightLimWithin_atBot_of_tendsto
+root: isCompactSystem_insert_empty_Icc
+root: mem_supClosure_set_iff
+root: mem_infClosure_set_iff
+root: edist_limUnder_prod_eq_zero
+root: nearestPt_mem
+root: measurable_limUnder_of_exists_tendsto
+root: countable_denseCountable
+root: chainingSequence_of_lt
+root: continuousWithinAt_rightLimWithin_Ici
+root: nhdsWithin_Ioi_inter_neBot_of_nhdsGT_neBot
+root: div_left_injective₀
+root: chainingSequenceReverse
+root: modification_of_indistinguishable
+root: lpNorm_rpow_nnreal_eq_integral
+root: mem_infClosure_insert_univ_iff
+root: nearestPt
+root: rightLimWithin_eq_of_tendsto
+root: leftLimWithin_rightLimWithin
+root: chainingSequence
+root: isCompactSystem_Icc
+root: convexOn_subsingleton
+root: sum_single_apply
+root: iInter_sigma_eq_empty_iff
+root: edist_chainingSequence_add_one
+root: measurableSpace_le_iff
+root: dense_denseCountable
+root: zero_mem_parallelepiped
+root: scale_change
+root: isTopologicalBasis_isOpen_ordConnected
+root: nhds_basis_isOpen_ordConnected
+root: mem_supClosure_set_iff'
+root: measurable_limUnder
+root: chainingSequenceReverse_add_one
+root: rightLimWithin_eq_of_isTop
+root: lpNorm_congr
+root: continuousWithinAt_leftLimWithin_Iic_of_dense
+root: subset_closure_dense_inter
+root: exists_isOpen_ordConnected_mem_subset
+root: nhdsGT_subtype_eq_bot_iff
+root: tendsto_leftLimWithin_of_tendsto
+root: volume_of_nonempty_of_subsingleton
+root: leftLimWithin_eq_of_eq_bot
+root: condExp_inner_of_aestronglyMeasurable_left
+root: indistinguishable_of_modification_on
+root: chainingSequence_of_eq
+root: convexOn_rpow_norm
+root: denseCountable
+root: edist_nearestPt_le_add_dist
+root: pow_two_mul_abs
+root: ContinuousBilinForm
+root: chainingSequenceReverse_of_pos
+root: chainingSequence_chainingSequence
+root: rightLimWithin_leftLimWithin
+root: nhdsWithin_Ioi_inter_neBot
+root: chainingSequence_mem
+root: edist_nearestPt_of_isCover
+root: scale_change_rpow
+root: mapClusterPt_leftLimWithin
+root: edist_limUnder_const
+root: nonempty_parallelepiped
+root: rpow_lintegral_le
+root: condExp_inner_of_aestronglyMeasurable_right
+root: integrable_inner
+root: mem_supClosure_insert_empty_iff
+root: rightLimWithin_eq_of_not_tendsto
+root: nhdsWithin_inf_principal
+root: continuousWithinAt_rightLimWithin_Ici_of_dense
+root: nhdsWithin_Iio_inter_neBot
+root: eventually_nhdsGT
+root: limUnder_prod
+root: tendsto_leftLimWithin_atBot_of_tendsto

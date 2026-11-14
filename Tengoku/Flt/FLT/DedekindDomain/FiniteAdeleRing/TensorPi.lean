@@ -24,7 +24,7 @@ Switch the names around because the primed version is more general hence better.
 
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.Flt end Tengoku.Flt open Tengoku.Flt
 open DirectSum Function
 
 section
@@ -72,14 +72,14 @@ open TensorProduct
 /-- The isomorphism `M ⊗ ∏ᵢ Nᵢ ≅ (B →₀ R) ⊗ ∏ᵢ Nᵢ`, where `M` is assumed free and
 `B` is the basis of `M` given by Lean's global axiom-of-choice operator. This is an
 auxiliary definition. -/
-noncomputable def freeModuleTensorPiEquiv :
+noncomputable def _root_.Tengoku.Flt.freeModuleTensorPiEquiv :
     M ⊗[R] (∀ i, N i) ≃ₗ[R] (Module.Free.ChooseBasisIndex R M →₀ R) ⊗[R] (∀ i, N i) :=
   TensorProduct.congr (Module.Free.chooseBasis R M).repr (LinearEquiv.refl R ((i : ι) → N i))
 
 /-- The isomorphism `Πᵢ ((B →₀ R) ⊗ Nᵢ) ≅ Πᵢ (M ⊗ Nᵢ)` where `M` is assumed free and
 `B` is the basis of `M` given by Lean's global axiom-of-choice operator. This is an
 auxiliary definition. -/
-noncomputable def tensorPiEquivFinitefreeModule :
+noncomputable def _root_.Tengoku.Flt.tensorPiEquivFinitefreeModule :
     (Π i, (Module.Free.ChooseBasisIndex R M →₀ R) ⊗[R] N i) ≃ₗ[R] Π i, (M ⊗[R] N i) :=
   LinearEquiv.piCongrRight
     (fun i ↦ (LinearEquiv.rTensor (N i) (Module.Free.chooseBasis R M).repr.symm))
@@ -95,3 +95,4 @@ variable (R M : Type*) [CommRing R] [AddCommGroup M] [Module R M]
   [∀ i, Module R (N i)]
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Flt so they do not collide with other libraries (generated)

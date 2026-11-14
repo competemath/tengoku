@@ -8,7 +8,7 @@ import Tengoku.ClassfieldtheoryYamaguchi.ClassFieldTheory.AlgebraicNumberTheory.
 import Tengoku.Seed.Algebra.Group.TransferInstance
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.ClassfieldtheoryYamaguchi end Tengoku.ClassfieldtheoryYamaguchi open Tengoku.ClassfieldtheoryYamaguchi
 set_option autoImplicit false
 
 /-!
@@ -39,7 +39,7 @@ variable
 
 /-- A family of local tensor elements whose chosen-basis coefficients
 are integral at almost every finite place.-/
-structure RelativeLocalAdeleData where
+structure _root_.Tengoku.ClassfieldtheoryYamaguchi.RelativeLocalAdeleData where
   /-- The family of archimedean local tensor components.-/
   infinite :
     ∀ w : InfinitePlace K,
@@ -65,7 +65,7 @@ omit [NumberField L] in
 @isnad1 id=eq.2h4v.s9.bc097def6ce1 from=translated src=- shape=39c07cb9 vocab=3554860e
 -/
 @[ext]
-theorem RelativeLocalAdeleData.ext
+theorem Tengoku.ClassfieldtheoryYamaguchi.RelativeLocalAdeleData.ext
     {a b : RelativeLocalAdeleData (K := K) (L := L)}
     (hinfinite : a.infinite = b.infinite)
     (hfinite : a.finite = b.finite) :
@@ -76,7 +76,7 @@ theorem RelativeLocalAdeleData.ext
 
 /-- The `i`-th base-adele coefficient assembled from local tensor
 coordinates.-/
-noncomputable def relativeLocalAdeleCoefficient
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeLocalAdeleCoefficient
     (a : RelativeLocalAdeleData (K := K) (L := L))
     (i : RelativeAdeleBasisIndex (K := K) (L := L)) :
     NumberField.AdeleRing (𝓞 K) K :=
@@ -99,7 +99,7 @@ omit [NumberField L] in
 @isnad1 id=eq.0h5v.s12.c686c2a2050c from=translated src=- shape=b87f0aec vocab=6944ceba
 -/
 @[simp]
-theorem relativeLocalAdeleCoefficient_infinite
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeLocalAdeleCoefficient_infinite
     (a : RelativeLocalAdeleData (K := K) (L := L))
     (i : RelativeAdeleBasisIndex (K := K) (L := L))
     (w : InfinitePlace K) :
@@ -117,7 +117,7 @@ omit [NumberField L] in
 @isnad1 id=eq.0h5v.s12.f3275589aff5 from=translated src=- shape=b32e3379 vocab=bb4abb84
 -/
 @[simp]
-theorem relativeLocalAdeleCoefficient_finite
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeLocalAdeleCoefficient_finite
     (a : RelativeLocalAdeleData (K := K) (L := L))
     (i : RelativeAdeleBasisIndex (K := K) (L := L))
     (w : HeightOneSpectrum (𝓞 K)) :
@@ -132,7 +132,7 @@ theorem relativeLocalAdeleCoefficient_finite
 
 /-- Assemble a restricted family of local tensor elements into a
 relative adele.-/
-noncomputable def relativeAdeleOfLocalData
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeAdeleOfLocalData
     (a : RelativeLocalAdeleData (K := K) (L := L)) :
     RelativeAdeleRing K L :=
   relativeAdeleOfCoefficients
@@ -145,7 +145,7 @@ omit [NumberField L] in
 @isnad1 id=eq.0h4v.s10.e26a72d81959 from=translated src=- shape=36f8cb6c vocab=19168cc1
 -/
 @[simp]
-theorem relativeAdeleOfLocalData_infiniteComponent
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeAdeleOfLocalData_infiniteComponent
     (a : RelativeLocalAdeleData (K := K) (L := L))
     (w : InfinitePlace K) :
     relativeAdeleInfiniteComponent
@@ -175,7 +175,7 @@ omit [NumberField L] in
 @isnad1 id=eq.0h4v.s10.a8984534bf74 from=translated src=- shape=23d160e3 vocab=6bb0b425
 -/
 @[simp]
-theorem relativeAdeleOfLocalData_finiteComponent
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeAdeleOfLocalData_finiteComponent
     (a : RelativeLocalAdeleData (K := K) (L := L))
     (w : HeightOneSpectrum (𝓞 K)) :
     relativeAdeleFiniteComponent
@@ -202,7 +202,7 @@ theorem relativeAdeleOfLocalData_finiteComponent
 
 /-- Extract every local tensor component of a relative adele, together
 with the restrictedness supplied by its base-adele coefficients.-/
-noncomputable def relativeAdeleToLocalData
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeAdeleToLocalData
     (z : RelativeAdeleRing K L) :
     RelativeLocalAdeleData (K := K) (L := L) where
   infinite w :=
@@ -227,7 +227,7 @@ omit [NumberField L] in
 @isnad1 id=eq.0h3v.s6.6d5202f5b431 from=translated src=- shape=19b71f92 vocab=8ee2f7c6
 -/
 @[simp]
-theorem relativeAdeleOfLocalData_toLocalData
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeAdeleOfLocalData_toLocalData
     (z : RelativeAdeleRing K L) :
     relativeAdeleOfLocalData
         (K := K) (L := L)
@@ -249,7 +249,7 @@ omit [NumberField L] in
 @isnad1 id=eq.0h3v.s6.1e7150036871 from=translated src=- shape=19b71f92 vocab=5aed4e3e
 -/
 @[simp]
-theorem relativeAdeleToLocalData_ofLocalData
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeAdeleToLocalData_ofLocalData
     (a : RelativeLocalAdeleData (K := K) (L := L)) :
     relativeAdeleToLocalData
         (K := K) (L := L)
@@ -278,7 +278,7 @@ theorem relativeAdeleToLocalData_ofLocalData
 
 /-- Coordinatewise restricted local tensor families are exactly
 relative adeles.-/
-noncomputable def relativeAdeleEquivLocalData :
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeAdeleEquivLocalData :
     RelativeAdeleRing K L ≃
       RelativeLocalAdeleData (K := K) (L := L) where
   toFun :=
@@ -294,7 +294,7 @@ noncomputable def relativeAdeleEquivLocalData :
 
 /-- A restricted family of local tensor units.  Restrictedness is
 required both for the family and for its pointwise inverse.-/
-structure RelativeLocalIdeleData where
+structure _root_.Tengoku.ClassfieldtheoryYamaguchi.RelativeLocalIdeleData where
   /-- The family of archimedean local tensor units.-/
   infinite :
     ∀ w : InfinitePlace K,
@@ -332,7 +332,7 @@ omit [NumberField L] in
 @isnad1 id=eq.2h4v.s10.4de674e74b8a from=translated src=- shape=38cd18f2 vocab=b133e14e
 -/
 @[ext]
-theorem RelativeLocalIdeleData.ext
+theorem Tengoku.ClassfieldtheoryYamaguchi.RelativeLocalIdeleData.ext
     {a b : RelativeLocalIdeleData (K := K) (L := L)}
     (hinfinite : a.infinite = b.infinite)
     (hfinite : a.finite = b.finite) :
@@ -342,7 +342,7 @@ theorem RelativeLocalIdeleData.ext
   simp_all
 
 /-- Forget local invertibility while retaining the value family.-/
-noncomputable def RelativeLocalIdeleData.value
+noncomputable def Tengoku.ClassfieldtheoryYamaguchi.RelativeLocalIdeleData.value
     (a : RelativeLocalIdeleData (K := K) (L := L)) :
     RelativeLocalAdeleData (K := K) (L := L) where
   infinite w := a.infinite w
@@ -350,7 +350,7 @@ noncomputable def RelativeLocalIdeleData.value
   eventually_integral := a.eventually_integral
 
 /-- The pointwise inverse family as restricted local adele data.-/
-noncomputable def RelativeLocalIdeleData.inverse
+noncomputable def Tengoku.ClassfieldtheoryYamaguchi.RelativeLocalIdeleData.inverse
     (a : RelativeLocalIdeleData (K := K) (L := L)) :
     RelativeLocalAdeleData (K := K) (L := L) where
   infinite w :=
@@ -363,7 +363,7 @@ noncomputable def RelativeLocalIdeleData.inverse
 
 /-- Extract the complete restricted local-unit family of a relative
 idele.-/
-noncomputable def relativeIdeleToLocalData
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeIdeleToLocalData
     (z : RelativeIdeleGroup K L) :
     RelativeLocalIdeleData (K := K) (L := L) where
   infinite w :=
@@ -405,7 +405,7 @@ noncomputable def relativeIdeleToLocalData
     exact hw
 
 /-- Assemble a restricted local-unit family into a relative idele.-/
-noncomputable def relativeIdeleOfLocalData
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeIdeleOfLocalData
     (a : RelativeLocalIdeleData (K := K) (L := L)) :
     RelativeIdeleGroup K L := by
   let x :=
@@ -443,7 +443,7 @@ omit [NumberField L] in
 @isnad1 id=eq.0h4v.s12.95d4fa9aa9ea from=translated src=- shape=94e69d69 vocab=244cff80
 -/
 @[simp]
-theorem relativeIdeleOfLocalData_infiniteComponent
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeIdeleOfLocalData_infiniteComponent
     (a : RelativeLocalIdeleData (K := K) (L := L))
     (w : InfinitePlace K) :
     RelativeIdeleGroup.infiniteComponent
@@ -472,7 +472,7 @@ omit [NumberField L] in
 @isnad1 id=eq.0h4v.s12.95805718362a from=translated src=- shape=953d6ac8 vocab=c57aad37
 -/
 @[simp]
-theorem relativeIdeleOfLocalData_finiteComponent
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeIdeleOfLocalData_finiteComponent
     (a : RelativeLocalIdeleData (K := K) (L := L))
     (w : HeightOneSpectrum (𝓞 K)) :
     RelativeIdeleGroup.finiteComponent
@@ -501,7 +501,7 @@ omit [NumberField L] in
 @isnad1 id=eq.0h3v.s6.af0ff49ad173 from=translated src=- shape=19b71f92 vocab=bd5859c4
 -/
 @[simp]
-theorem relativeIdeleOfLocalData_toLocalData
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeIdeleOfLocalData_toLocalData
     (z : RelativeIdeleGroup K L) :
     relativeIdeleOfLocalData
         (K := K) (L := L)
@@ -542,7 +542,7 @@ omit [NumberField L] in
 @isnad1 id=eq.0h3v.s6.8b220d8f9102 from=translated src=- shape=19b71f92 vocab=0525ba9f
 -/
 @[simp]
-theorem relativeIdeleToLocalData_ofLocalData
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeIdeleToLocalData_ofLocalData
     (a : RelativeLocalIdeleData (K := K) (L := L)) :
     relativeIdeleToLocalData
         (K := K) (L := L)
@@ -571,7 +571,7 @@ theorem relativeIdeleToLocalData_ofLocalData
 
 /-- The relative idele group is exactly the coordinate-restricted
 product of all local tensor unit groups.-/
-noncomputable def relativeIdeleEquivLocalData :
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeIdeleEquivLocalData :
     RelativeIdeleGroup K L ≃
       RelativeLocalIdeleData (K := K) (L := L) where
   toFun :=
@@ -587,7 +587,7 @@ noncomputable def relativeIdeleEquivLocalData :
 
 /-- The group structure on the restricted local product, transported
 through its proved equivalence with the relative idele group.-/
-noncomputable instance relativeLocalIdeleDataGroup :
+noncomputable instance _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeLocalIdeleDataGroup :
     Group
       (RelativeLocalIdeleData
         (K := K) (L := L)) :=
@@ -596,7 +596,7 @@ noncomputable instance relativeLocalIdeleDataGroup :
 
 /-- The restricted local-product equivalence as a multiplicative
 equivalence.-/
-noncomputable def relativeIdeleMulEquivLocalData :
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeIdeleMulEquivLocalData :
     RelativeIdeleGroup K L ≃*
       RelativeLocalIdeleData (K := K) (L := L) :=
   ((relativeIdeleEquivLocalData
@@ -607,7 +607,7 @@ omit [NumberField L] in
 @isnad1 id=eq.0h3v.s9.bedf37a8162d from=translated src=- shape=46b05ec4 vocab=50b99b96
 -/
 @[simp]
-theorem relativeIdeleMulEquivLocalData_apply
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeIdeleMulEquivLocalData_apply
     (z : RelativeIdeleGroup K L) :
     relativeIdeleMulEquivLocalData
         (K := K) (L := L) z =
@@ -620,7 +620,7 @@ omit [NumberField L] in
 @isnad1 id=eq.0h5v.s11.77dae71c4a0d from=translated src=- shape=cb4ed69e vocab=9a609526
 -/
 @[simp]
-theorem RelativeLocalIdeleData.infinite_mul
+theorem Tengoku.ClassfieldtheoryYamaguchi.RelativeLocalIdeleData.infinite_mul
     (a b : RelativeLocalIdeleData (K := K) (L := L))
     (w : InfinitePlace K) :
     (a * b).infinite w =
@@ -650,7 +650,7 @@ omit [NumberField L] in
 @isnad1 id=eq.0h5v.s11.c8b9e03ca3a8 from=translated src=- shape=153adb34 vocab=854d74c9
 -/
 @[simp]
-theorem RelativeLocalIdeleData.finite_mul
+theorem Tengoku.ClassfieldtheoryYamaguchi.RelativeLocalIdeleData.finite_mul
     (a b : RelativeLocalIdeleData (K := K) (L := L))
     (w : HeightOneSpectrum (𝓞 K)) :
     (a * b).finite w =
@@ -674,3 +674,4 @@ theorem RelativeLocalIdeleData.finite_mul
   rw [map_mul,
     relativeIdeleOfLocalData_finiteComponent,
     relativeIdeleOfLocalData_finiteComponent]
+-- Tengoku: root names of this library moved to Tengoku.ClassfieldtheoryYamaguchi so they do not collide with other libraries (generated)

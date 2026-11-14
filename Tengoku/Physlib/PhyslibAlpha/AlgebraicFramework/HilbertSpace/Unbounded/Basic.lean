@@ -45,7 +45,7 @@ spectral variable, e.g. through the Cayley transform.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
 noncomputable section
 
 open scoped Topology InnerProductSpace Function
@@ -196,7 +196,7 @@ end QuantumMechanics
 ## C. Coming from a norm-continuous `SpectralMeasure`
 -/
 
-namespace SpectralMeasure
+namespace Tengoku.Physlib.SpectralMeasure
 
 open QuantumMechanics
 
@@ -245,6 +245,7 @@ lemma toWOT_apply (μS : SpectralMeasure α H) (A : Set α) : μS.toWOT A =
   rw [MeasureTheory.VectorMeasure.mapRange_apply]
   rfl
 
-end SpectralMeasure
+end Tengoku.Physlib.SpectralMeasure
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

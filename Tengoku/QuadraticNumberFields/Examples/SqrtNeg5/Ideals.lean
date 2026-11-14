@@ -27,7 +27,7 @@ quadratic number fields on a concrete example.
 * `isPrime_span_three_one_plus_sqrtd`: `(3, 1+√-5)` is prime
 * `isPrime_span_three_one_minus_sqrtd`: `(3, 1-√-5)` is prime
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 local notation "ℚ√" d => Qsqrtd d
 
 open Ideal
@@ -165,3 +165,4 @@ theorem isPrime_span_three_one_minus_sqrtd :
   Zsqrtd.Ideal.isPrime_span_p_one_minus_sqrtd 3 neg5_dvd_three
 
 end QuadraticNumberFields.Examples.SqrtNeg5
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

@@ -24,7 +24,7 @@ public import Tengoku.FormalConjectures.FormalConjecturesForMathlib.Data.Set.Tri
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/google-deepmind/formal-conjectures@71a0744be944, `FormalConjecturesForMathlib/Geometry/2d.lean`: removed 3 `#adaptation_note` / `set_option linter` line(s) (notes and linter settings: no declaration depends on them). What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
 @[expose] public section
-
+namespace Tengoku.FormalConjectures end Tengoku.FormalConjectures open Tengoku.FormalConjectures 
 scoped[EuclideanGeometry] notation "ℝ²" => EuclideanSpace ℝ (Fin 2)
 
 open scoped EuclideanGeometry Finset
@@ -39,7 +39,7 @@ noncomputable instance Module.orientedEuclideanSpaceFinTwo : Module.Oriented ℝ
 /-- Two dimensional euclidean space is two-dimensional.
 @isnad1 id=fact.0h0v.s7.c37f42c39efd from=translated src=- shape=2a1846ce vocab=78c039ea
 -/
-instance fact_finrank_euclideanSpace_fin_two : Fact (Module.finrank ℝ ℝ² = 2) :=
+instance _root_.Tengoku.FormalConjectures.fact_finrank_euclideanSpace_fin_two : Fact (Module.finrank ℝ ℝ² = 2) :=
   ⟨finrank_euclideanSpace_fin⟩
 
 open scoped EuclideanGeometry
@@ -273,7 +273,7 @@ def IsIsoscelesTrapezoid (a b c d : ℝ²) : Prop :=
 
 end EuclideanGeometry
 
-def IsIsosceles {α : Type*} [Dist α] (p q r : α) : Prop :=
+def _root_.Tengoku.FormalConjectures.IsIsosceles {α : Type*} [Dist α] (p q r : α) : Prop :=
   dist p q = dist q r ∨ dist q r = dist r p ∨ dist r p = dist p q
 
 nonrec def Set.IsIsosceles {α : Type} [Dist α] (A : Set α) :=
@@ -281,7 +281,7 @@ nonrec def Set.IsIsosceles {α : Type} [Dist α] (A : Set α) :=
 
 /-- A set is isosceles-free if no three distinct points in it form an isosceles triangle.-/
 def Set.IsIsoscelesFree {α : Type*} [Dist α] (A : Set α) : Prop :=
-  A.Triplewise fun x y z ↦ ¬ _root_.IsIsosceles x y z
+  A.Triplewise fun x y z ↦ ¬ _root_.Tengoku.FormalConjectures.IsIsosceles x y z
 
 /--
 @isnad1 id=isisosce.2h3v.s4.782a0f82c721 from=translated src=- shape=8871f81f vocab=6e7c19ca
@@ -289,3 +289,4 @@ def Set.IsIsoscelesFree {α : Type*} [Dist α] (A : Set α) : Prop :=
 theorem Set.IsIsoscelesFree.mono {α : Type*} [Dist α] {s t : Set α} (h : t ⊆ s)
     (hs : s.IsIsoscelesFree) : t.IsIsoscelesFree :=
   Set.Triplewise.mono h hs
+-- Tengoku: root names of this library moved to Tengoku.FormalConjectures so they do not collide with other libraries (generated)

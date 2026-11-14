@@ -1,7 +1,7 @@
 import Tengoku
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 set_option autoImplicit false
 
 open scoped TensorProduct
@@ -9,7 +9,7 @@ open Coalgebra Bialgebra WithConv
 
 universe u v w
 
-namespace PDivisibleGroup.Hopf
+namespace Tengoku.FltAnthropic.PDivisibleGroup.Hopf
 
 section NSMul
 
@@ -32,9 +32,9 @@ noncomputable def torsionIdeal (n : ℕ) : Ideal A := (augIdeal R A).map (nsmulA
 
 end Ideals
 
-end PDivisibleGroup.Hopf
+end Tengoku.FltAnthropic.PDivisibleGroup.Hopf
 
-structure PDivisibleGroup (R : Type) [CommRing R] (p h : ℕ) : Type 1 where
+structure _root_.Tengoku.FltAnthropic.PDivisibleGroup (R : Type) [CommRing R] (p h : ℕ) : Type 1 where
 
   level : ℕ → Type
   [instCommRing : ∀ v, CommRing (level v)]
@@ -54,8 +54,9 @@ structure PDivisibleGroup (R : Type) [CommRing R] (p h : ℕ) : Type 1 where
 attribute [instance] PDivisibleGroup.instCommRing PDivisibleGroup.instHopfAlgebra
   PDivisibleGroup.instIsCocomm PDivisibleGroup.instModuleFinite PDivisibleGroup.instModuleFree
 
-namespace PDivisibleGroup
+namespace Tengoku.FltAnthropic.PDivisibleGroup
 
 variable {R : Type} [CommRing R] {p h : ℕ} (G : PDivisibleGroup R p h)
 
-end PDivisibleGroup
+end Tengoku.FltAnthropic.PDivisibleGroup
+-- Tengoku: root names of this library moved to Tengoku.FltAnthropic so they do not collide with other libraries (generated)

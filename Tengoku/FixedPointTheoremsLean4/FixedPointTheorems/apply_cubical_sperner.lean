@@ -3,7 +3,7 @@ import Tengoku.Seed.Topology.Defs.Basic
 import Tengoku.FixedPointTheoremsLean4.FixedPointTheorems.cubical_sperner
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.FixedPointTheoremsLean4 end Tengoku.FixedPointTheoremsLean4 open Tengoku.FixedPointTheoremsLean4
 open Classical
 
 /-
@@ -13,14 +13,14 @@ by applying the cubical sperner's lemma
 
 variable {n : ℕ}
 
-def unit_cube := { v : Fin n → ℝ | 0 ≤ v ∧ v ≤ 1 }
+def _root_.Tengoku.FixedPointTheoremsLean4.unit_cube := { v : Fin n → ℝ | 0 ≤ v ∧ v ≤ 1 }
 
-noncomputable def rl_point {f : @unit_cube n → @unit_cube n} (x : @unit_cube n) : ℕ :=
+noncomputable def _root_.Tengoku.FixedPointTheoremsLean4.rl_point {f : @unit_cube n → @unit_cube n} (x : @unit_cube n) : ℕ :=
   match (Finset.min { i | (f x).1 i < x.1 i ∨ x.1 i = 1}) with
     | some k => k.1
     | none => n
 
-lemma reduced_label_props_1 (f : @unit_cube n → @unit_cube n) (x : @unit_cube n)
+lemma _root_.Tengoku.FixedPointTheoremsLean4.reduced_label_props_1 (f : @unit_cube n → @unit_cube n) (x : @unit_cube n)
     : @rl_point n f x ≤ n ∧ ∀ k,
     (@rl_point n f x = k.1 → (f x).1 k < x.1 k ∨ x.1 k = 1)
     ∧ ((f x).1 k < x.1 k ∨ x.1 k = 1 → @rl_point n f x ≤ k.1) := by {
@@ -85,7 +85,7 @@ lemma reduced_label_props_1 (f : @unit_cube n → @unit_cube n) (x : @unit_cube 
   }
 }
 
-lemma reduced_label_props_2 (f : @unit_cube n → @unit_cube n) (x : @unit_cube n)
+lemma _root_.Tengoku.FixedPointTheoremsLean4.reduced_label_props_2 (f : @unit_cube n → @unit_cube n) (x : @unit_cube n)
     : @rl_point n f x ≤ n ∧
     ∀ k, (x.1 k = 0 → @rl_point n f x ≠ k.1) ∧ (x.1 k = 1 → @rl_point n f x ≤ k.1):= by {
   have h1 := reduced_label_props_1 f x
@@ -107,7 +107,7 @@ lemma reduced_label_props_2 (f : @unit_cube n → @unit_cube n) (x : @unit_cube 
   }
 }
 
-lemma reduced_label_props_3 (f : @unit_cube n → @unit_cube n) (x : @unit_cube n) (k : Fin n)
+lemma _root_.Tengoku.FixedPointTheoremsLean4.reduced_label_props_3 (f : @unit_cube n → @unit_cube n) (x : @unit_cube n) (k : Fin n)
     : (@rl_point n f x = k → (f x).1 k ≤ x.1 k) ∧ (@rl_point n f x > k → (f x).1 k ≥ x.1 k) := by {
   have h1 := (reduced_label_props_1 f x).2 k
   apply And.intro
@@ -127,7 +127,7 @@ lemma reduced_label_props_3 (f : @unit_cube n → @unit_cube n) (x : @unit_cube 
   }
 }
 
-noncomputable def discrete_map (p : ℕ ) (v : Fin n → Fin (p+1)) : @unit_cube n :=
+noncomputable def _root_.Tengoku.FixedPointTheoremsLean4.discrete_map (p : ℕ ) (v : Fin n → Fin (p+1)) : @unit_cube n :=
   ⟨ fun i ↦ ((v i).1 : ℝ ) / p , by {
     unfold unit_cube
     simp only [Set.mem_ofPred_eq]
@@ -141,7 +141,7 @@ noncomputable def discrete_map (p : ℕ ) (v : Fin n → Fin (p+1)) : @unit_cube
     exact Fin.is_le (v i)
   }⟩
 
-noncomputable def sperner_cube_of_function (f : @unit_cube n → @unit_cube n)
+noncomputable def _root_.Tengoku.FixedPointTheoremsLean4.sperner_cube_of_function (f : @unit_cube n → @unit_cube n)
   (p : ℕ ) {ppos : 0 < p} : SpernerCube where
   n := n
   p := p
@@ -171,7 +171,7 @@ noncomputable def sperner_cube_of_function (f : @unit_cube n → @unit_cube n)
     }
   }
 
-lemma dist_discrete_map p (ppos: 0 < p) (v1 v2 : Fin n → Fin (p+1))
+lemma _root_.Tengoku.FixedPointTheoremsLean4.dist_discrete_map p (ppos: 0 < p) (v1 v2 : Fin n → Fin (p+1))
     (h1 : ∀ k, (v1 k).1 ≤ (v2 k).1 + 1 ∧ (v2 k).1 ≤ (v1 k).1 + 1) :
     dist (discrete_map p v1) (discrete_map p v2) ≤ 1 / p := by {
   let x1 := (discrete_map p v1).1
@@ -193,3 +193,4 @@ lemma dist_discrete_map p (ppos: 0 < p) (v1 v2 : Fin n → Fin (p+1))
     rwa [div_le_div_iff_of_pos_right ppos2, ←Nat.cast_add_one, Nat.cast_le]
   }
 }
+-- Tengoku: root names of this library moved to Tengoku.FixedPointTheoremsLean4 so they do not collide with other libraries (generated)

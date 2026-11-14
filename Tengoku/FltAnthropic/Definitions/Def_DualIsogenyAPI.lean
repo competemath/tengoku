@@ -1,7 +1,7 @@
 import Tengoku
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 set_option autoImplicit false
 
 namespace AddMonoidHom
@@ -277,17 +277,17 @@ section NamedResiduals
 
 variable {A : Type*} [AddCommGroup A]
 
-def DualIsogenyExistence (S : Subring (AddMonoid.End A)) : Prop :=
+def _root_.Tengoku.FltAnthropic.DualIsogenyExistence (S : Subring (AddMonoid.End A)) : Prop :=
   ∀ φ ∈ S, ∃ D : AddMonoid.End.DualEndData φ, D.dual ∈ S ∧ 0 ≤ D.norm
 
-def DualAdditivityResidual (S : Subring (AddMonoid.End A)) : Prop :=
+def _root_.Tengoku.FltAnthropic.DualAdditivityResidual (S : Subring (AddMonoid.End A)) : Prop :=
   ∀ φ ∈ S, ∀ ψ ∈ S, ∀ Dφ : AddMonoid.End.DualEndData φ, ∀ Dψ : AddMonoid.End.DualEndData ψ,
     ∃ D : AddMonoid.End.DualEndData (φ + ψ), D.dual = Dφ.dual + Dψ.dual
 
 /--
 @isnad1 id=dualisog.0h1v.s6.2d80c2b5b219 from=translated src=- shape=7d1e16a9 vocab=a5c5878a
 -/
-theorem dualIsogenyExistence_bot :
+theorem _root_.Tengoku.FltAnthropic.dualIsogenyExistence_bot :
     DualIsogenyExistence (⊥ : Subring (AddMonoid.End A)) := by
   intro φ hφ
   obtain ⟨m, rfl⟩ := Subring.mem_bot.mp hφ
@@ -305,7 +305,7 @@ private theorem one_charPoly_int :
 /--
 @isnad1 id=eq.0h0v.s8.5107edc8dca2 from=translated src=- shape=4bdf6bc3 vocab=85179f5e
 -/
-theorem gate_intLinComb_norm_at_one :
+theorem _root_.Tengoku.FltAnthropic.gate_intLinComb_norm_at_one :
 
     ((AddMonoid.End.DualEndData.ofCharPoly (A := ℤ) 1 2 1
       one_charPoly_int).intLinComb 1 2).norm = 9 := by
@@ -316,14 +316,14 @@ theorem gate_intLinComb_norm_at_one :
 /--
 @isnad1 id=and.0h0v.s6.2efca66280a2 from=translated src=- shape=6d4c5092 vocab=9ffa4015
 -/
-theorem gate_dualEndData_intCast_three :
+theorem _root_.Tengoku.FltAnthropic.gate_dualEndData_intCast_three :
     (AddMonoid.End.dualEndData_intCast (A := ℤ) 3).norm = 9
     ∧ (AddMonoid.End.dualEndData_intCast (A := ℤ) 3).trace = 6 := ⟨rfl, rfl⟩
 
 /--
 @isnad1 id=eq.0h0v.s9.acc6fd9fed69 from=translated src=- shape=dbd45a1c vocab=34e9cf00
 -/
-theorem gate_intLinComb_disc_scaling :
+theorem _root_.Tengoku.FltAnthropic.gate_intLinComb_disc_scaling :
     ((AddMonoid.End.DualEndData.ofCharPoly (A := ℤ) 1 2 1
       one_charPoly_int).intLinComb 0 2).trace ^ 2
         - 4 * ((AddMonoid.End.DualEndData.ofCharPoly (A := ℤ) 1 2 1
@@ -332,3 +332,4 @@ theorem gate_intLinComb_disc_scaling :
     AddMonoid.End.DualEndData.ofCharPoly_norm]
 
 end SatGates
+-- Tengoku: root names of this library moved to Tengoku.FltAnthropic so they do not collide with other libraries (generated)

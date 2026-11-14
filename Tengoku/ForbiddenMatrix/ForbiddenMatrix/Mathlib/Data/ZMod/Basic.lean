@@ -3,7 +3,7 @@ module
 public import Tengoku
 
 public section
-
+namespace Tengoku.ForbiddenMatrix end Tengoku.ForbiddenMatrix open Tengoku.ForbiddenMatrix 
 /--
 @isnad1 id=eq.0h2v.s7.0436391c4c39 from=translated src=- shape=085ea553 vocab=2f80e219
 -/
@@ -15,3 +15,4 @@ public section
     congr
     simp
     lia
+-- Tengoku: root names of this library moved to Tengoku.ForbiddenMatrix so they do not collide with other libraries (generated)

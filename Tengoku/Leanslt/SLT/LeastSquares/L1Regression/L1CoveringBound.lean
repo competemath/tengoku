@@ -41,7 +41,7 @@ where `l1BallImage x R = {Xθ/√n : ‖θ‖₁ ≤ R}`.
 * [Vershynin, High-Dimensional Probability] Chapter 4
 
 -/
-
+namespace Tengoku.Leanslt end Tengoku.Leanslt open Tengoku.Leanslt
 open MeasureTheory Finset BigOperators Real ProbabilityTheory Metric Set
 open scoped NNReal ENNReal
 
@@ -1048,3 +1048,4 @@ lemma l1LocalizedImage_subset_l1BallImage (x : Fin n → EuclideanSpace ℝ (Fin
   exact ⟨θ, hθ_norm, hv⟩
 
 end LeastSquares
+-- Tengoku: root names of this library moved to Tengoku.Leanslt so they do not collide with other libraries (generated)

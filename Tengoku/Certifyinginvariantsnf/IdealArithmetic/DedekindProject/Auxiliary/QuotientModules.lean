@@ -23,7 +23,7 @@ some of its properties.
 - For some of the results, we closely followed an approach
   adapted from the proofs involving quotients by ideals such as
   `Ideal.quotientEquivPiZMod`.  -/
-
+namespace Tengoku.Certifyinginvariantsnf end Tengoku.Certifyinginvariantsnf open Tengoku.Certifyinginvariantsnf
 open scoped BigOperators
 
 open scoped Classical
@@ -91,7 +91,7 @@ variable [IsDomain R] [IsPrincipalIdealRing R]
 
 /- Version of `Submodule.smithNormalFormTopBasis` which takes two bases as input instead of a
   proof of equalities of ranks. -/
-noncomputable def smithBasisModule (N : Submodule R M) (b : Basis ι R M) (b2 : Basis ι R N) :
+noncomputable def _root_.Tengoku.Certifyinginvariantsnf.smithBasisModule (N : Submodule R M) (b : Basis ι R M) (b2 : Basis ι R N) :
     Basis ι R M := by
     refine Submodule.smithNormalFormTopBasis b (N := N) ?_
     rw [Module.finrank_eq_card_basis b, Module.finrank_eq_card_basis b2]
@@ -100,12 +100,12 @@ noncomputable def smithBasisModule (N : Submodule R M) (b : Basis ι R M) (b2 : 
 
 /-- Version of `Submodule.smithNormalFormCoeffs` which takes two bases as input instead of a
   proof of equalities of ranks.  -/
-noncomputable def moduleSmithCoeffs (N : Submodule R M) (b : Basis ι R M) (b2 : Basis ι R N) :
+noncomputable def _root_.Tengoku.Certifyinginvariantsnf.moduleSmithCoeffs (N : Submodule R M) (b : Basis ι R M) (b2 : Basis ι R N) :
     ι → R := by
   refine Submodule.smithNormalFormCoeffs b (N := N) ?_
   rw [Module.finrank_eq_card_basis b, Module.finrank_eq_card_basis b2]
 
-noncomputable def moduleSmithSubmodule (N : Submodule R M) (b : Basis ι R M) (b2 : Basis ι R N) :
+noncomputable def _root_.Tengoku.Certifyinginvariantsnf.moduleSmithSubmodule (N : Submodule R M) (b : Basis ι R M) (b2 : Basis ι R N) :
     Basis ι R N := by
   refine Submodule.smithNormalFormBotBasis b (N := N) ?_
   rw [Module.finrank_eq_card_basis b, Module.finrank_eq_card_basis b2]
@@ -114,20 +114,20 @@ noncomputable def moduleSmithSubmodule (N : Submodule R M) (b : Basis ι R M) (b
 @isnad1 id=eq.0h7v.s9.322a577f01ee from=translated src=- shape=77cf97ee vocab=967201ef
 -/
 @[simp]
-theorem smith_coeffs_property (N : Submodule R M) (b : Basis ι R M) (b2 : Basis ι R N) :
+theorem _root_.Tengoku.Certifyinginvariantsnf.smith_coeffs_property (N : Submodule R M) (b : Basis ι R M) (b2 : Basis ι R N) :
     ∀ i,  (moduleSmithSubmodule N b b2 i : M) =
     moduleSmithCoeffs N b b2 i • smithBasisModule N b b2 i := Submodule.smithNormalFormBotBasis_def b _
 
 /--
 @isnad1 id=ne.0h7v.s7.80bdce70b5ed from=translated src=- shape=3e576bd1 vocab=cd4d40e4
 -/
-theorem moduleSmithCoeffs_ne_zero (N : Submodule R M) (b : Basis ι R M) (b2 : Basis ι R N) :
+theorem _root_.Tengoku.Certifyinginvariantsnf.moduleSmithCoeffs_ne_zero (N : Submodule R M) (b : Basis ι R M) (b2 : Basis ι R N) :
     ∀ i, moduleSmithCoeffs N b b2 i ≠ 0 := Submodule.smithNormalFormCoeffs_ne_zero b _
 
 /-- If `N` is a proper submodule of `M`, then at least one of the smith coefficients is not a unit.
 @isnad1 id=ex.1h6v.s7.f0a78652667a from=translated src=- shape=dae134cd vocab=4d19fb2e
 -/
-lemma moduleSmithCoeff_ne_unit (N : Submodule R M) (b : Basis ι R M) (b2 : Basis ι R N)
+lemma _root_.Tengoku.Certifyinginvariantsnf.moduleSmithCoeff_ne_unit (N : Submodule R M) (b : Basis ι R M) (b2 : Basis ι R N)
     (hneq : N ≠ ⊤) : ∃ i, ¬ (IsUnit (moduleSmithCoeffs N b b2 i)) := by
   by_contra h
   push Not at h
@@ -148,3 +148,4 @@ lemma moduleSmithCoeff_ne_unit (N : Submodule R M) (b : Basis ι R M) (b2 : Basi
     rw [← this]
     exact y.2
   exact hneq (top_le_iff.1 this)
+-- Tengoku: root names of this library moved to Tengoku.Certifyinginvariantsnf so they do not collide with other libraries (generated)

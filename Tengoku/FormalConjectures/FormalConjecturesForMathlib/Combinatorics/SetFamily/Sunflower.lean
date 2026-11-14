@@ -18,7 +18,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.FormalConjectures end Tengoku.FormalConjectures open Tengoku.FormalConjectures 
 /-!
 # Sunflowers
 
@@ -30,35 +30,36 @@ variable {α : Type*}
 /--
 A sunflower `F` with kernel `S` is a collection of sets in which all possible distinct pairs of sets
 share the same intersection `S`.-/
-def IsSunflowerWithKernel (F : Set (Set α)) (S : Set α) : Prop :=
+def _root_.Tengoku.FormalConjectures.IsSunflowerWithKernel (F : Set (Set α)) (S : Set α) : Prop :=
   F.Pairwise (fun A B => A ∩ B = S)
 
 /--
 @isnad1 id=issunflo.0h2v.s3.43c7f7ad9b8c from=translated src=- shape=3ccc6e1c vocab=5be6ba7c
 -/
-theorem isSunflowerWithKernel_empty (S : Set α) : IsSunflowerWithKernel {} S := by
+theorem _root_.Tengoku.FormalConjectures.isSunflowerWithKernel_empty (S : Set α) : IsSunflowerWithKernel {} S := by
   simp [IsSunflowerWithKernel]
 
 /--
 @isnad1 id=issunflo.0h3v.s4.00cdecae6338 from=translated src=- shape=fa8cb659 vocab=69cb5f1a
 -/
-theorem isSunflowerWithKernel_singleton (S : Set α) (A : Set α) :
+theorem _root_.Tengoku.FormalConjectures.isSunflowerWithKernel_singleton (S : Set α) (A : Set α) :
     IsSunflowerWithKernel {A} S := by
   simp [IsSunflowerWithKernel]
 
 /--
 A sunflower `F` is a collection of sets in which all possible distinct pairs of sets share the
 same intersection.-/
-def IsSunflower (F : Set (Set α)) : Prop := ∃ S, IsSunflowerWithKernel F S
+def _root_.Tengoku.FormalConjectures.IsSunflower (F : Set (Set α)) : Prop := ∃ S, IsSunflowerWithKernel F S
 
 /--
 @isnad1 id=issunflo.0h1v.s3.5fdca5869dbe from=translated src=- shape=d684173f vocab=182ed4e6
 -/
-theorem isSunflower_empty : IsSunflower (∅ : Set (Set α)) := by
+theorem _root_.Tengoku.FormalConjectures.isSunflower_empty : IsSunflower (∅ : Set (Set α)) := by
   simp [IsSunflower, isSunflowerWithKernel_empty]
 
 /--
 @isnad1 id=issunflo.0h2v.s4.d17d1f638b29 from=translated src=- shape=cb0303a9 vocab=2a094e06
 -/
-theorem isSunflower_singleton (A : Set α) : IsSunflower {A} := by
+theorem _root_.Tengoku.FormalConjectures.isSunflower_singleton (A : Set α) : IsSunflower {A} := by
   simp [IsSunflower, isSunflowerWithKernel_singleton]
+-- Tengoku: root names of this library moved to Tengoku.FormalConjectures so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ This files includes some results on semilinear maps and bases mapped through the
   remain linearly independent if they are disjoint with the kernel of such map.
 - `Basis.comp_semilinear` : the reduction of a bases is a bases for the quotient.
 - `basisSubmoduleModOfBasisMod` : For `pO ≤ I ≤ O`, A basis for `I/pI` constructed from `I/pO`.  -/
-
+namespace Tengoku.Certifyinginvariantsnf end Tengoku.Certifyinginvariantsnf open Tengoku.Certifyinginvariantsnf
 open Module
 
 /--
@@ -201,7 +201,7 @@ lemma Basis.comp_semilinear_repr
 /-- Let `S = R/pR`· Given an `S`-basis for `W = I/pO`,
 which extends to an `S`-basis for `N = O/pO`, this constructs a basis for
 `J = I/pI` using lifts of the other two bases· -/
-noncomputable def basisSubmoduleModOfBasisMod  { R S M N J: Type _} {n m : ℕ} {p : R} [CommRing R]
+noncomputable def _root_.Tengoku.Certifyinginvariantsnf.basisSubmoduleModOfBasisMod  { R S M N J: Type _} {n m : ℕ} {p : R} [CommRing R]
     [IsCancelMulZero R] [Field S] [AddCommGroup M] [AddCommGroup N] [AddCommGroup J] [Nonempty (Fin m ⊕ Fin n)]
     [Module R M] [Module S N] [hN : IsTorsionFree R M] {g : R →+* S}
     (kergp : RingHom.ker g = Ideal.span {p} ) (hpnez : p ≠ 0) (g' : ZeroHom S R)
@@ -302,3 +302,4 @@ noncomputable def basisSubmoduleModOfBasisMod  { R S M N J: Type _} {n m : ℕ} 
   refine basisOfLinearIndependentOfCardEqFinrank hi ?_
   rw [Module.finrank_eq_card_basis (Basis.comp_semilinear g g' hg h h' hh b4 hker2)]
   simp only [Fintype.card_sum, Fintype.card_fin, add_comm]
+-- Tengoku: root names of this library moved to Tengoku.Certifyinginvariantsnf so they do not collide with other libraries (generated)

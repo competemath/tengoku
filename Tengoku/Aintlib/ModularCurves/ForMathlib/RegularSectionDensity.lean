@@ -28,7 +28,7 @@ Consumers: STREAM-NISOG M3 wave (L9, L16, L19, L22, L24, L26) against
 
 Decomposition artifact: `.mathlib-quality/decomposition-fmt-flat.md` ([STREAM-FP], fable-FP).
 -/
-
+namespace Tengoku.Aintlib end Tengoku.Aintlib open Tengoku.Aintlib
 universe u
 
 open CategoryTheory
@@ -48,7 +48,7 @@ theorem Localization.Away.ker_algebraMap_eq_bot
 a nonzerodivisor — the ONLY point where KM's "flat over ℤ" hypothesis is consumed.
 @isnad1 id=mem.1h2v.s6.15b05b790576 from=translated src=- shape=b0d29427 vocab=70ae7dad
 -/
-theorem isSMulRegular_natCast_of_flat
+theorem _root_.Tengoku.Aintlib.isSMulRegular_natCast_of_flat
     (R : Type*) [CommRing R] [Module.Flat ℤ R] {N : ℤ} (hN : N ≠ 0) :
     (N : R) ∈ nonZeroDivisors R := by
   have key : ∀ x : R, (N : R) * x = 0 → x = 0 := by
@@ -65,3 +65,4 @@ namespace AlgebraicGeometry.Scheme
 variable (S : Scheme.{u}) (s : Γ(S, ⊤))
 
 end AlgebraicGeometry.Scheme
+-- Tengoku: root names of this library moved to Tengoku.Aintlib so they do not collide with other libraries (generated)

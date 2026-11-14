@@ -16,7 +16,7 @@ import Tengoku.Seed.Tactic.LinearCombination
 import Tengoku.Seed.Tactic.Ring
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 set_option autoImplicit false
 
 /-! ## Block A — Mathlib v4.30.0 Mathlib/RepresentationTheory/Basic.lean:391-419 (section MulAction), names suffixed `Finsupp` -/
@@ -247,32 +247,32 @@ variable {R : Type u} [CommRing R]
 
 variable (W : ℤ → R)
 
-def IsEllSequence' : Prop :=
+def _root_.Tengoku.FltAnthropic.IsEllSequence' : Prop :=
   ∀ m n r : ℤ, W (m + n) * W (m - n) * W r ^ 2 =
     W (m + r) * W (m - r) * W n ^ 2 - W (n + r) * W (n - r) * W m ^ 2
 
-def IsDivSequence' : Prop :=
+def _root_.Tengoku.FltAnthropic.IsDivSequence' : Prop :=
   ∀ m n : ℕ, m ∣ n → W m ∣ W n
 
-def IsEllDivSequence' : Prop :=
+def _root_.Tengoku.FltAnthropic.IsEllDivSequence' : Prop :=
   IsEllSequence' W ∧ IsDivSequence' W
 
 /--
 @isnad1 id=isellseq.0h0v.s2.543dcb6ffcad from=translated src=- shape=3905abf2 vocab=39a6faa9
 -/
-lemma isEllSequence'_id : IsEllSequence' id :=
+lemma _root_.Tengoku.FltAnthropic.isEllSequence'_id : IsEllSequence' id :=
   fun _ _ _ => by simp_rw [id_eq]; ring1
 
 /--
 @isnad1 id=isdivseq.0h0v.s2.9544bb3fb3fc from=translated src=- shape=3905abf2 vocab=74669c0a
 -/
-lemma isDivSequence'_id : IsDivSequence' id :=
+lemma _root_.Tengoku.FltAnthropic.isDivSequence'_id : IsDivSequence' id :=
   fun _ _ => Int.ofNat_dvd.mpr
 
 /--
 @isnad1 id=iselldiv.0h0v.s2.ced726673e97 from=translated src=- shape=3905abf2 vocab=bce800a7
 -/
-theorem isEllDivSequence'_id : IsEllDivSequence' id :=
+theorem _root_.Tengoku.FltAnthropic.isEllDivSequence'_id : IsEllDivSequence' id :=
   ⟨isEllSequence'_id, isDivSequence'_id⟩
 
 variable {W}
@@ -280,20 +280,20 @@ variable {W}
 /--
 @isnad1 id=isellseq.1h3v.s5.48ba9f2768f6 from=translated src=- shape=ce84ebb2 vocab=717f58bc
 -/
-lemma IsEllSequence'.smul (h : IsEllSequence' W) (x : R) : IsEllSequence' (x • W) :=
+lemma Tengoku.FltAnthropic.IsEllSequence'.smul (h : IsEllSequence' W) (x : R) : IsEllSequence' (x • W) :=
   fun m n r => by
     linear_combination (norm := (simp_rw [Pi.smul_apply, smul_eq_mul]; ring1)) x ^ 4 * h m n r
 
 /--
 @isnad1 id=isdivseq.1h3v.s5.1175a7da96db from=translated src=- shape=ce84ebb2 vocab=734aba62
 -/
-lemma IsDivSequence'.smul (h : IsDivSequence' W) (x : R) : IsDivSequence' (x • W) :=
+lemma Tengoku.FltAnthropic.IsDivSequence'.smul (h : IsDivSequence' W) (x : R) : IsDivSequence' (x • W) :=
   fun m n r => mul_dvd_mul_left x <| h m n r
 
 /--
 @isnad1 id=iselldiv.1h3v.s5.03483f803fbf from=translated src=- shape=ce84ebb2 vocab=0299144d
 -/
-lemma IsEllDivSequence'.smul (h : IsEllDivSequence' W) (x : R) : IsEllDivSequence' (x • W) :=
+lemma Tengoku.FltAnthropic.IsEllDivSequence'.smul (h : IsEllDivSequence' W) (x : R) : IsEllDivSequence' (x • W) :=
   ⟨h.left.smul x, h.right.smul x⟩
 
 end IsEllDivSequence430
@@ -321,3 +321,4 @@ end inertia430
 
 end Ideal
 -- Tengoku: 1 notation(s) of this module made local so they do not change other libraries (generated)
+-- Tengoku: root names of this library moved to Tengoku.FltAnthropic so they do not collide with other libraries (generated)

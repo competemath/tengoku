@@ -24,7 +24,7 @@ import Tengoku.LanaOka.Oka.RingTheory.FiniteNormalization
 - `ComplexAnalytic.exists_finite_injective_of_ringKrullDim_eq_one`: a domain of finite type and
   of dimension one over a field `k` is finite over `k[x]`.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Polynomial
 
 namespace ComplexAnalytic
@@ -227,3 +227,4 @@ end Dimension
 end
 
 end ComplexAnalytic
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

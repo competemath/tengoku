@@ -25,10 +25,10 @@ This file gives the basic API for right ideals.
 -/
 
 @[expose] public section
-
+namespace Tengoku.FormalConjectures end Tengoku.FormalConjectures open Tengoku.FormalConjectures 
 universe u
 
-namespace RightIdeal
+namespace Tengoku.FormalConjectures.RightIdeal
 
 section Semiring
 
@@ -112,4 +112,5 @@ def orderIsoIdeal (R : Type u) [CommSemiring R] : RightIdeal R ≃o Ideal R wher
 
 end CommSemiring
 
-end RightIdeal
+end Tengoku.FormalConjectures.RightIdeal
+-- Tengoku: root names of this library moved to Tengoku.FormalConjectures so they do not collide with other libraries (generated)

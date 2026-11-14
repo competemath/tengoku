@@ -44,7 +44,7 @@ bounded, hence bounded, lift `ℓ` along `u` with `ℓ(k) ∈ Φ + ½ U` for a f
 the series `∑ 2⁻ⁿ ℓₙ` with `ℓₙ` in the bounded set `ℓ(K)` converge by local convexity
 (`Bornology.IsVonNBounded.summable_real_smul`).
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Filter Topology Set Pointwise Bornology
 
 section Convex
@@ -183,3 +183,4 @@ theorem isClosed_range_add_of_locallyConvex {u v : E →L[𝕜] F}
   exact ⟨(x, ⟨g, hg⟩), rfl⟩
 
 end IsCompactOperator
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

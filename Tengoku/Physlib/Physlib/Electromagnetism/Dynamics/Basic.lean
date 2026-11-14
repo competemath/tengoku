@@ -38,7 +38,7 @@ in free space in terms of these constants.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
 namespace Electromagnetism
 
 /-!
@@ -109,3 +109,4 @@ lemma c_abs : abs (𝓕.c : ℝ) = 𝓕.c := by
 end FreeSpace
 
 end Electromagnetism
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

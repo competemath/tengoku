@@ -10,7 +10,7 @@ import Tengoku.Seed.Algebra.Group.Action.Basic
 import Tengoku.Seed.GroupTheory.GroupAction.Quotient
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.ClassfieldtheoryYamaguchi end Tengoku.ClassfieldtheoryYamaguchi open Tengoku.ClassfieldtheoryYamaguchi
 set_option autoImplicit false
 
 /-!
@@ -33,7 +33,7 @@ variable
     [Field L] [NumberField L] [Algebra K L]
     [FiniteDimensional K L]
 
-namespace RelativeIdeleGroup
+namespace Tengoku.ClassfieldtheoryYamaguchi.RelativeIdeleGroup
 
 omit [NumberField L] [FiniteDimensional K L] in
 /-- The diagonal copy of `Lˣ` in the relative ideles is injective.
@@ -223,4 +223,5 @@ theorem exists_fixed_representative_of_fixed_class
     (div_mul_cancel_right a
       (principalIdele K L β)).symm
 
-end RelativeIdeleGroup
+end Tengoku.ClassfieldtheoryYamaguchi.RelativeIdeleGroup
+-- Tengoku: root names of this library moved to Tengoku.ClassfieldtheoryYamaguchi so they do not collide with other libraries (generated)

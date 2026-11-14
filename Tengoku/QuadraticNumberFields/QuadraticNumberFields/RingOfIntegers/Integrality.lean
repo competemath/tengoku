@@ -39,7 +39,7 @@ membership in various carrier sets, used by `Classification.lean`.
 It also provides the general `ringOfIntegers_equiv_of_embedding` criterion used to
 turn these image classifications into ring equivalences with the full ring of integers.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 local notation "ℚ√" d => Qsqrtd d
 
 namespace QuadraticNumberFields
@@ -218,9 +218,9 @@ integral over `ℤ`.
 @isnad1 id=isintegr.0h2v.s6.456b6f33e6a8 from=translated src=- shape=309dfe41 vocab=51c7c447
 -/
 lemma isIntegral_toQsqrtd_of_zOnePlusSqrtOverTwo (k : ℤ) (z : ZOnePlusSqrtdOverTwo k) :
-    IsIntegral ℤ (_root_.ZOnePlusSqrtdOverTwo.toQsqrtdHom k z) :=
+    IsIntegral ℤ (_root_.Tengoku.QuadraticNumberFields.ZOnePlusSqrtdOverTwo.toQsqrtdHom k z) :=
   isIntegral_of_intModel_image (ZOnePlusSqrtdOverTwo k) (Qsqrtd ((1 + 4 * k : ℤ) : ℚ))
-    (_root_.ZOnePlusSqrtdOverTwo.toQsqrtdHom k) z
+    (_root_.Tengoku.QuadraticNumberFields.ZOnePlusSqrtdOverTwo.toQsqrtdHom k) z
 
 /-! ## Half-Integer Normal Form -/
 
@@ -308,12 +308,13 @@ integral elements of `Q(√(1 + 4k))` lie in the image of `ZOnePlusSqrtdOverTwo 
 lemma exists_zOnePlusSqrtOverTwo_of_isIntegral_of_one_mod_four
     (k : ℤ) (hd_sf : Squarefree (1 + 4 * k)) (hd_ne : (1 + 4 * k) ≠ 1)
     {x : Qsqrtd (((1 + 4 * k : ℤ) : ℚ))} (hx : IsIntegral ℤ x) :
-    ∃ z : ZOnePlusSqrtdOverTwo k, _root_.ZOnePlusSqrtdOverTwo.toQsqrtdHom k z = x :=
+    ∃ z : ZOnePlusSqrtdOverTwo k, _root_.Tengoku.QuadraticNumberFields.ZOnePlusSqrtdOverTwo.toQsqrtdHom k z = x :=
   exists_intModel_of_isIntegral (1 + 4 * k) hd_sf hd_ne (ZOnePlusSqrtdOverTwo k)
-    (_root_.ZOnePlusSqrtdOverTwo.toQsqrtdHom k)
+    (_root_.Tengoku.QuadraticNumberFields.ZOnePlusSqrtdOverTwo.toQsqrtdHom k)
     (fun a' b' hdiv =>
       exists_zOnePlusSqrtOverTwo_image_of_dvd_four_sub_sq_of_one_mod_four k a' b' hd_sf hdiv)
     hx
 
 end RingOfIntegers
 end QuadraticNumberFields
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

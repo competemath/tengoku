@@ -14,11 +14,11 @@ Material destined for Mathlib.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Flt end Tengoku.Flt open Tengoku.Flt 
 /--
 @isnad1 id=ex.1h5v.s6.934c4b210f4a from=translated src=- shape=df85a6d5 vocab=5dd2aa2a
 -/
-theorem DiscretePi {X Y : Type*} [TopologicalSpace Y] (f : X → Y) (n : ℕ)
+theorem _root_.Tengoku.Flt.DiscretePi {X Y : Type*} [TopologicalSpace Y] (f : X → Y) (n : ℕ)
     (h : ∀ (x : X), ∃ U, IsOpen U ∧ f ⁻¹' U = {x}) (x' : Fin n → X) :
     (∃ U' : Set (Fin n → Y), IsOpen U' ∧
     (fun (t : Fin n → X) (i : Fin n) ↦ f (t i))⁻¹' U' = {x'}) := by
@@ -41,7 +41,7 @@ theorem DiscretePi {X Y : Type*} [TopologicalSpace Y] (f : X → Y) (n : ℕ)
 /--
 @isnad1 id=ex.1h6v.s6.638a2d03e2f0 from=translated src=- shape=c8d56ece vocab=ae20acec
 -/
-theorem HomeoDiscrete_of_Discrete {X Y Y' : Type*} [TopologicalSpace Y] [TopologicalSpace Y']
+theorem _root_.Tengoku.Flt.HomeoDiscrete_of_Discrete {X Y Y' : Type*} [TopologicalSpace Y] [TopologicalSpace Y']
     (f : X → Y) (h : Y ≃ₜ Y') (H : ∀ (x : X), ∃ U, IsOpen U ∧ f ⁻¹' U = {x}) (x : X) :
     (∃ U' : Set Y', IsOpen U' ∧ (h ∘ f)⁻¹' U' = {x}) := by
   obtain ⟨U, Uopen, Ueq⟩ := H x
@@ -59,7 +59,7 @@ theorem HomeoDiscrete_of_Discrete {X Y Y' : Type*} [TopologicalSpace Y] [Topolog
 /--
 @isnad1 id=ex.1h6v.s6.addaed3f7c2b from=translated src=- shape=9ab6e268 vocab=ae20acec
 -/
-theorem Discrete_of_HomeoDiscrete {X Y Y' : Type*} [TopologicalSpace Y] [TopologicalSpace Y']
+theorem _root_.Tengoku.Flt.Discrete_of_HomeoDiscrete {X Y Y' : Type*} [TopologicalSpace Y] [TopologicalSpace Y']
     (f : X → Y) (h : Y ≃ₜ Y') (H : ∀ (x : X), ∃ U', IsOpen U' ∧ ⇑h ∘ f ⁻¹' U' = {x}) (x : X) :
     (∃ U : Set Y, IsOpen U ∧  f⁻¹' U = {x}) := by
   obtain ⟨U, Uopen, Ueq⟩ := H x
@@ -79,7 +79,7 @@ theorem Discrete_of_HomeoDiscrete {X Y Y' : Type*} [TopologicalSpace Y] [Topolog
 /--
 @isnad1 id=iff.0h5v.s6.b4a806076ae1 from=translated src=- shape=4981d1a5 vocab=ae20acec
 -/
-theorem HomeoDiscrete_iff_Discrete {X Y Y' : Type*} [TopologicalSpace Y]
+theorem _root_.Tengoku.Flt.HomeoDiscrete_iff_Discrete {X Y Y' : Type*} [TopologicalSpace Y]
     [TopologicalSpace Y'] (f : X → Y) (h : Y ≃ₜ Y') :
     (∀ x : X, ∃ U : Set Y, IsOpen U ∧  f⁻¹' U = {x}) ↔
     (∀ x : X, ∃ U' : Set Y', IsOpen U' ∧ (h ∘ f)⁻¹' U' = {x}) :=
@@ -88,7 +88,7 @@ theorem HomeoDiscrete_iff_Discrete {X Y Y' : Type*} [TopologicalSpace Y]
 /--
 @isnad1 id=ex.1h6v.s6.6513f0bf1b66 from=translated src=- shape=21e7cdd1 vocab=78ffcd0b
 -/
-theorem HomDiscrete_of_Discrete {X X' Y : Type*} [TopologicalSpace Y] (f : X → Y)
+theorem _root_.Tengoku.Flt.HomDiscrete_of_Discrete {X X' Y : Type*} [TopologicalSpace Y] (f : X → Y)
     (h : X ≃ X') (H : ∀ (x : X), ∃ U, IsOpen U ∧ f ⁻¹' U = {x}) (x : X') :
     (∃ U' : Set Y, IsOpen U' ∧ h '' (f ⁻¹' U') = {x}):= by
   obtain ⟨U, Uopen, Ueq⟩ := H (h.symm x)
@@ -97,7 +97,7 @@ theorem HomDiscrete_of_Discrete {X X' Y : Type*} [TopologicalSpace Y] (f : X →
 /--
 @isnad1 id=ex.1h6v.s6.1ef0223a5b12 from=translated src=- shape=ab3b24e2 vocab=78ffcd0b
 -/
-theorem Discrete_of_HomDiscrete {X X' Y : Type*} [TopologicalSpace Y] (f : X → Y)
+theorem _root_.Tengoku.Flt.Discrete_of_HomDiscrete {X X' Y : Type*} [TopologicalSpace Y] (f : X → Y)
     (h : X ≃ X') (H : ∀ (x' : X'), ∃ U', IsOpen U' ∧ ⇑h '' (f ⁻¹' U') = {x'}) (x : X) :
     (∃ U : Set Y, IsOpen U ∧  f⁻¹' U = {x}) := by
   obtain ⟨U, Uopen, Ueq⟩ := H (h x)
@@ -108,7 +108,7 @@ theorem Discrete_of_HomDiscrete {X X' Y : Type*} [TopologicalSpace Y] (f : X →
 /--
 @isnad1 id=iff.0h5v.s6.3df8f97f4ec8 from=translated src=- shape=96aff1d9 vocab=78ffcd0b
 -/
-theorem HomDiscrete_iff_Discrete {X X' Y : Type*} [TopologicalSpace Y] (f : X → Y)
+theorem _root_.Tengoku.Flt.HomDiscrete_iff_Discrete {X X' Y : Type*} [TopologicalSpace Y] (f : X → Y)
     (h : X ≃ X') : (∀ x' : X', ∃ U' : Set Y, IsOpen U' ∧ h '' (f ⁻¹' U') = {x'}) ↔
     (∀ x : X, ∃ U : Set Y, IsOpen U ∧  f⁻¹' U = {x}) :=
   ⟨Discrete_of_HomDiscrete f h, HomDiscrete_of_Discrete f h⟩
@@ -119,7 +119,7 @@ set_option backward.isDefEq.respectTransparency.types false in
 /--
 @isnad1 id=discrete.0h3v.s5.4612790fde52 from=translated src=- shape=3fe23ece vocab=ea26d468
 -/
-lemma inter_Discrete {A : Type*} [TopologicalSpace A] (X Y : Set A)
+lemma _root_.Tengoku.Flt.inter_Discrete {A : Type*} [TopologicalSpace A] (X Y : Set A)
     [DiscreteTopology X] : DiscreteTopology ↑(Y ∩ X) := by
   refine discreteTopology_iff_isOpen_singleton.mpr ?_
   intro ⟨a, InY, InX⟩
@@ -134,7 +134,8 @@ lemma inter_Discrete {A : Type*} [TopologicalSpace A] (X Y : Set A)
 /--
 @isnad1 id=discrete.0h3v.s5.5cacfdf5ecfc from=translated src=- shape=b5d750c3 vocab=ea26d468
 -/
-lemma Discrete_inter {A : Type*} [TopologicalSpace A] (X Y : Set A)
+lemma _root_.Tengoku.Flt.Discrete_inter {A : Type*} [TopologicalSpace A] (X Y : Set A)
     [DiscreteTopology X] : DiscreteTopology ↑(X ∩ Y) := by
   rw [Set.inter_comm]
   exact inter_Discrete X Y
+-- Tengoku: root names of this library moved to Tengoku.Flt so they do not collide with other libraries (generated)

@@ -41,7 +41,7 @@ The `dslope f w (γ t)` has center `w` (second argument) and evaluation point `�
 * J. D. Dixon, *A brief proof of Cauchy's integral theorem*, 1971
 * K. Hungerbuhler, J. Wasem, *A generalized notion of winding numbers*
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex Set Filter Topology MeasureTheory
 open scoped Classical Real Interval
 
@@ -53,13 +53,13 @@ variable {x : ℂ}
 
 This is well-defined for all `w` including points on the curve, because
 `dslope f w z` is continuous in `z` even at `z = w` (where it equals `deriv f w`). -/
-def dixonH1 (f : ℂ → ℂ) (γ : PiecewiseC1Path x x) (w : ℂ) : ℂ :=
+def _root_.Tengoku.Leanmodularforms.dixonH1 (f : ℂ → ℂ) (γ : PiecewiseC1Path x x) (w : ℂ) : ℂ :=
   ∫ t in (0 : ℝ)..1, dslope f w (γ t) * deriv γ.toPath.extend t
 
 /-- The Dixon h2 function: `∮_γ f(γ(t))/(γ(t) - w) · γ'(t) dt`.
 
 This is the standard Cauchy-type integral, well-defined for `w` off the curve. -/
-def dixonH2 (f : ℂ → ℂ) (γ : PiecewiseC1Path x x) (w : ℂ) : ℂ :=
+def _root_.Tengoku.Leanmodularforms.dixonH2 (f : ℂ → ℂ) (γ : PiecewiseC1Path x x) (w : ℂ) : ℂ :=
   ∫ t in (0 : ℝ)..1, f (γ t) / (γ t - w) * deriv γ.toPath.extend t
 
 /-- The Dixon function: `h1` on `U`, `h2` off `U`.
@@ -67,7 +67,7 @@ def dixonH2 (f : ℂ → ℂ) (γ : PiecewiseC1Path x x) (w : ℂ) : ℂ :=
 This piecewise construction is the key to Dixon's proof: both pieces are analytic
 (h1 on U, h2 on the complement of the curve image), and they agree on the overlap
 by the h1/h2 identity, yielding an entire function. -/
-def dixonFunction (f : ℂ → ℂ) (U : Set ℂ)
+def _root_.Tengoku.Leanmodularforms.dixonFunction (f : ℂ → ℂ) (U : Set ℂ)
     (γ : PiecewiseC1Path x x) (w : ℂ) : ℂ :=
   if w ∈ U then dixonH1 f γ w else dixonH2 f γ w
 
@@ -104,7 +104,7 @@ private lemma winding_integrand_intervalIntegrable (f : ℂ → ℂ)
       (fun t => f w / (γ t - w) * deriv γ.toPath.extend t) volume 0 1 :=
   winding_integrand_eq_const_mul f γ w ▸ h_base.const_mul _
 
-private theorem avoids_delta_bound (γ : PiecewiseC1Path x x) (w : ℂ)
+private theorem _root_.Tengoku.Leanmodularforms.avoids_delta_bound (γ : PiecewiseC1Path x x) (w : ℂ)
     (hoff : ∀ t ∈ Icc (0 : ℝ) 1, γ t ≠ w) :
     ∃ δ > 0, ∀ t ∈ Icc (0 : ℝ) 1, δ ≤ ‖γ t - w‖ := by
   have h_compact : IsCompact (γ.toPath.extend '' Icc (0 : ℝ) 1) :=
@@ -131,7 +131,7 @@ splits into `f(γ t)/(γ t - w) - f(w)/(γ t - w)`, and identifies the second te
 `f(w) · ∮ (z - w)⁻¹ dz = 2πi · n(γ, w) · f(w)`.
 @isnad1 id=eq.3h4v.s9.1ace2f95c4a2 from=translated src=- shape=e788f2e1 vocab=a99943d5
 -/
-theorem dixonH1_eq_dixonH2_sub_winding_f {f : ℂ → ℂ} {γ : PiecewiseC1Path x x} (w : ℂ)
+theorem _root_.Tengoku.Leanmodularforms.dixonH1_eq_dixonH2_sub_winding_f {f : ℂ → ℂ} {γ : PiecewiseC1Path x x} (w : ℂ)
     (hoff : ∀ t ∈ Icc (0 : ℝ) 1, γ t ≠ w)
     (h_cauchy_int : IntervalIntegrable
       (fun t => f (γ t) / (γ t - w) * deriv γ.toPath.extend t) volume 0 1)
@@ -151,9 +151,10 @@ theorem dixonH1_eq_dixonH2_sub_winding_f {f : ℂ → ℂ} {γ : PiecewiseC1Path
 /-- On `U`, the Dixon function equals `h1`.
 @isnad1 id=eq.1h5v.s5.739859c0a36f from=translated src=- shape=d58fd084 vocab=e6c8b65d
 -/
-theorem dixonFunction_eq_dixonH1 {f : ℂ → ℂ} {U : Set ℂ}
+theorem _root_.Tengoku.Leanmodularforms.dixonFunction_eq_dixonH1 {f : ℂ → ℂ} {U : Set ℂ}
     {γ : PiecewiseC1Path x x} {w : ℂ} (hw : w ∈ U) :
     dixonFunction f U γ w = dixonH1 f γ w :=
   ite_eq_left hw
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

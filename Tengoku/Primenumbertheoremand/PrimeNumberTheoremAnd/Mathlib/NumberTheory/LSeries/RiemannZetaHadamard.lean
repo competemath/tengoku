@@ -73,7 +73,7 @@ Riemann zeta function, Hadamard factorization, canonical product, entire functio
 -/
 
 @[expose] public section
-
+namespace Tengoku.Primenumbertheoremand end Tengoku.Primenumbertheoremand open Tengoku.Primenumbertheoremand 
 noncomputable section
 
 open Complex Set
@@ -81,7 +81,7 @@ open Complex Set
 open scoped BigOperators
 
 /-- The completed zeta function `Λ₀` has order at most one. -/
-theorem completedRiemannZeta₀_entireOfOrderAtMost_one :
+theorem _root_.Tengoku.Primenumbertheoremand.completedRiemannZeta₀_entireOfOrderAtMost_one :
     Complex.Hadamard.EntireOfOrderAtMost (1 : ℝ) completedRiemannZeta₀ := by
   refine ⟨differentiable_completedZeta₀, ?_⟩
   intro ε hε
@@ -89,7 +89,7 @@ theorem completedRiemannZeta₀_entireOfOrderAtMost_one :
     (Complex.completedRiemannZeta₀_order_one ε hε)
 
 /-- The Riemann xi function `ξ` has order at most one. -/
-theorem riemannXi_entireOfOrderAtMost_one :
+theorem _root_.Tengoku.Primenumbertheoremand.riemannXi_entireOfOrderAtMost_one :
     Complex.Hadamard.EntireOfOrderAtMost (1 : ℝ) riemannXi := by
   refine ⟨differentiable_riemannXi, ?_⟩
   intro ε hε
@@ -179,7 +179,7 @@ theorem riemannXi_entireOfOrderAtMost_one :
 /-! ### Logarithmic-derivative identities -/
 
 /-- Since `ξ(0) = 1 / 2`, the monomial exponent in the origin-centered Hadamard product is zero. -/
-theorem analyticOrderNatAt_riemannXi_zero : analyticOrderNatAt riemannXi 0 = 0 := by
+theorem _root_.Tengoku.Primenumbertheoremand.analyticOrderNatAt_riemannXi_zero : analyticOrderNatAt riemannXi 0 = 0 := by
   by_contra h
   have hzero : riemannXi 0 = 0 :=
     apply_eq_zero_of_analyticOrderNatAt_ne_zero (f := riemannXi) (z₀ := 0) h
@@ -188,9 +188,10 @@ theorem analyticOrderNatAt_riemannXi_zero : analyticOrderNatAt riemannXi 0 = 0 :
 
 /-- Since `Λ₀(0) ≠ 0`, the monomial exponent in the origin-centered Hadamard product for Λ₀ is
 zero. -/
-theorem analyticOrderNatAt_completedRiemannZeta₀_zero :
+theorem _root_.Tengoku.Primenumbertheoremand.analyticOrderNatAt_completedRiemannZeta₀_zero :
     analyticOrderNatAt completedRiemannZeta₀ 0 = 0 := by
   by_contra h
   have hzero : completedRiemannZeta₀ 0 = 0 :=
     apply_eq_zero_of_analyticOrderNatAt_ne_zero (f := completedRiemannZeta₀) (z₀ := 0) h
   exact completedRiemannZeta₀_zero_ne_zero hzero
+-- Tengoku: root names of this library moved to Tengoku.Primenumbertheoremand so they do not collide with other libraries (generated)

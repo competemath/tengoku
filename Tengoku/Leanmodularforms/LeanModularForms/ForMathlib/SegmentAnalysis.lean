@@ -49,7 +49,7 @@ ae-equality.
 * `transfer_integral` — integral equality transfer
 * `arcFTCHyp_atI` — complete `ArcFTCHyp` at `i`
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex MeasureTheory Set Filter Topology
 open scoped Real Interval
 
@@ -74,7 +74,7 @@ private lemma transfer_integrand_ae {H : ℝ} (z : ℂ) {a b : ℝ} (hab : a ≤
 /-- Transfer integrability from `fdBoundaryFun`-based to `γ`-based integrand.
 @isnad1 id=interval.5h5v.s8.6a2354b34ec8 from=translated src=- shape=e15c763c vocab=8395841e
 -/
-theorem transfer_integrability {H : ℝ} (z : ℂ) {a b : ℝ}
+theorem _root_.Tengoku.Leanmodularforms.transfer_integrability {H : ℝ} (z : ℂ) {a b : ℝ}
     (hab : a ≤ b) (ha : 0 ≤ a) (hb : b ≤ 1)
     {γ : PiecewiseC1Path (fdStart H) (fdStart H)}
     (hγ : ∀ t ∈ Icc (0 : ℝ) 1, γ.toPath.extend t = fdBoundaryFun H t)
@@ -89,7 +89,7 @@ theorem transfer_integrability {H : ℝ} (z : ℂ) {a b : ℝ}
 /-- Transfer integral equality from `fdBoundaryFun`-based to `γ`-based integrand.
 @isnad1 id=eq.4h5v.s8.1e93f386f970 from=translated src=- shape=b85d4501 vocab=b4d04178
 -/
-theorem transfer_integral {H : ℝ} (z : ℂ) {a b : ℝ}
+theorem _root_.Tengoku.Leanmodularforms.transfer_integral {H : ℝ} (z : ℂ) {a b : ℝ}
     (hab : a ≤ b) (ha : 0 ≤ a) (hb : b ≤ 1)
     {γ : PiecewiseC1Path (fdStart H) (fdStart H)}
     (hγ : ∀ t ∈ Icc (0 : ℝ) 1, γ.toPath.extend t = fdBoundaryFun H t) :
@@ -229,7 +229,7 @@ private lemma integrand_form_eq (f : ℝ → ℂ) (z : ℂ) (t : ℝ) :
 /-- Integrability + FTC on seg1 `[0, a]` for `a ≤ 1/5`, shifted by `I`.
 @isnad1 id=and.2h2v.s8.071ddf95070a from=translated src=- shape=966557c2 vocab=dba7b5c1
 -/
-theorem seg1_ftc_I (H : ℝ) {a : ℝ} (ha : 0 ≤ a) (ha' : a ≤ 1/5) :
+theorem _root_.Tengoku.Leanmodularforms.seg1_ftc_I (H : ℝ) {a : ℝ} (ha : 0 ≤ a) (ha' : a ≤ 1/5) :
     IntervalIntegrable (fun t => deriv (fun s => fdBoundaryFun H s - I) t /
       (fdBoundaryFun H t - I)) volume 0 a ∧
     ∫ t in (0 : ℝ)..a, deriv (fun s => fdBoundaryFun H s - I) t /
@@ -248,7 +248,7 @@ theorem seg1_ftc_I (H : ℝ) {a : ℝ} (ha : 0 ≤ a) (ha' : a ≤ 1/5) :
 /-- Integrability in the standard form on seg1.
 @isnad1 id=interval.2h2v.s7.5d9b9f7b627b from=translated src=- shape=db39c143 vocab=a0cc0642
 -/
-theorem fdBoundary_seg1_intervalIntegrable_I (H : ℝ) {a : ℝ}
+theorem _root_.Tengoku.Leanmodularforms.fdBoundary_seg1_intervalIntegrable_I (H : ℝ) {a : ℝ}
     (ha : 0 ≤ a) (ha' : a ≤ 1/5) :
     IntervalIntegrable
       (fun t => (fdBoundaryFun H t - I)⁻¹ * deriv (fdBoundaryFun H) t) volume 0 a :=
@@ -274,7 +274,7 @@ private lemma arcSeg_intervalIntegrable_aux (H : ℝ) {α β : ℝ} (hαβ : α 
 /-- Integrability on seg2 `[1/5, a]` for `a < 2/5`, shifted by `I`.
 @isnad1 id=interval.2h2v.s7.e59be1dd9089 from=translated src=- shape=ff4dc555 vocab=a710f1c4
 -/
-theorem seg2_intervalIntegrable_I (H : ℝ) {a : ℝ} (ha : 1/5 ≤ a) (ha' : a < 2/5) :
+theorem _root_.Tengoku.Leanmodularforms.seg2_intervalIntegrable_I (H : ℝ) {a : ℝ} (ha : 1/5 ≤ a) (ha' : a < 2/5) :
     IntervalIntegrable
       (fun t => (fdBoundaryFun H t - I)⁻¹ * deriv (fdBoundaryFun H) t) volume (1/5) a :=
   arcSeg_intervalIntegrable_aux H ha le_rfl (by linarith) <| by
@@ -288,7 +288,7 @@ theorem seg2_intervalIntegrable_I (H : ℝ) {a : ℝ} (ha : 1/5 ≤ a) (ha' : a 
 /-- Integrability on seg3 `[a, 3/5]` for `2/5 < a`, shifted by `I`.
 @isnad1 id=interval.2h2v.s7.116270eebf19 from=translated src=- shape=381985e3 vocab=a710f1c4
 -/
-theorem seg3_intervalIntegrable_I (H : ℝ) {a : ℝ} (ha : 2/5 < a) (ha' : a ≤ 3/5) :
+theorem _root_.Tengoku.Leanmodularforms.seg3_intervalIntegrable_I (H : ℝ) {a : ℝ} (ha : 2/5 < a) (ha' : a ≤ 3/5) :
     IntervalIntegrable
       (fun t => (fdBoundaryFun H t - I)⁻¹ * deriv (fdBoundaryFun H) t) volume a (3/5) :=
   arcSeg_intervalIntegrable_aux H ha' (by linarith) le_rfl <| by
@@ -322,7 +322,7 @@ private lemma refSeg_intervalIntegrable_aux (H : ℝ) (g : ℝ → ℂ) {α β :
 Uses the globally nonvanishing reference `ref_seg4_I` (Re = -1/2 ≠ 0).
 @isnad1 id=interval.0h1v.s7.058a5528901d from=translated src=- shape=50aa83b0 vocab=4917272c
 -/
-theorem seg4_full_intervalIntegrable_I (H : ℝ) :
+theorem _root_.Tengoku.Leanmodularforms.seg4_full_intervalIntegrable_I (H : ℝ) :
     IntervalIntegrable
       (fun t => (fdBoundaryFun H t - I)⁻¹ * deriv (fdBoundaryFun H) t) volume (3/5) (4/5) :=
   refSeg_intervalIntegrable_aux H (ref_seg4_I H) (by norm_num) (ref_seg4_I_contDiff H)
@@ -332,7 +332,7 @@ theorem seg4_full_intervalIntegrable_I (H : ℝ) :
 Uses the globally nonvanishing reference `ref_seg5_I` (Im = H-1 > 0).
 @isnad1 id=interval.1h1v.s7.fb0fe36a62c9 from=translated src=- shape=f0eab4ac vocab=80d9b679
 -/
-theorem seg5_full_intervalIntegrable_I (H : ℝ) (hH : 1 < H) :
+theorem _root_.Tengoku.Leanmodularforms.seg5_full_intervalIntegrable_I (H : ℝ) (hH : 1 < H) :
     IntervalIntegrable
       (fun t => (fdBoundaryFun H t - I)⁻¹ * deriv (fdBoundaryFun H) t) volume (4/5) 1 :=
   refSeg_intervalIntegrable_aux H (ref_seg5_I H) (by norm_num) (ref_seg5_I_contDiff H)
@@ -342,7 +342,7 @@ theorem seg5_full_intervalIntegrable_I (H : ℝ) (hH : 1 < H) :
 Combines seg1 `[0, 1/5]` and seg2 `[1/5, 2/5 - δ]`.
 @isnad1 id=interval.2h2v.s7.7d9706902504 from=translated src=- shape=cc8a7b8b vocab=80d9b679
 -/
-theorem fdBoundary_integrable_left_of_I (H : ℝ) {δ : ℝ} (hδ : 0 < δ) (hδ' : δ < 1/5) :
+theorem _root_.Tengoku.Leanmodularforms.fdBoundary_integrable_left_of_I (H : ℝ) {δ : ℝ} (hδ : 0 < δ) (hδ' : δ < 1/5) :
     IntervalIntegrable
       (fun t => (fdBoundaryFun H t - I)⁻¹ * deriv (fdBoundaryFun H) t)
       volume 0 (2/5 - δ) :=
@@ -353,7 +353,7 @@ theorem fdBoundary_integrable_left_of_I (H : ℝ) {δ : ℝ} (hδ : 0 < δ) (hδ
 Combines seg3 `[2/5 + δ, 3/5]`, seg4 `[3/5, 4/5]`, and seg5 `[4/5, 1]`.
 @isnad1 id=interval.3h2v.s7.81666dc79775 from=translated src=- shape=e645ee45 vocab=324a844f
 -/
-theorem fdBoundary_integrable_right_of_I (H : ℝ) (hH : 1 < H)
+theorem _root_.Tengoku.Leanmodularforms.fdBoundary_integrable_right_of_I (H : ℝ) (hH : 1 < H)
     {δ : ℝ} (hδ : 0 < δ) (hδ' : δ < 1/5) :
     IntervalIntegrable
       (fun t => (fdBoundaryFun H t - I)⁻¹ * deriv (fdBoundaryFun H) t)
@@ -365,7 +365,7 @@ theorem fdBoundary_integrable_right_of_I (H : ℝ) (hH : 1 < H)
 /-- Integrability of the `γ`-based integrand on `[0, 2/5 - δ]`.
 @isnad1 id=interval.4h3v.s8.4edba5b19b69 from=translated src=- shape=6b21c7c8 vocab=57412194
 -/
-theorem gamma_integrable_left_of_I {H : ℝ} (_hH : 1 < H)
+theorem _root_.Tengoku.Leanmodularforms.gamma_integrable_left_of_I {H : ℝ} (_hH : 1 < H)
     {γ : PiecewiseC1Path (fdStart H) (fdStart H)}
     (hγ : ∀ t ∈ Icc (0 : ℝ) 1, γ.toPath.extend t = fdBoundaryFun H t)
     {δ : ℝ} (hδ : 0 < δ) (hδ' : δ < 1/5) :
@@ -378,7 +378,7 @@ theorem gamma_integrable_left_of_I {H : ℝ} (_hH : 1 < H)
 /-- Integrability of the `γ`-based integrand on `[2/5 + δ, 1]`.
 @isnad1 id=interval.4h3v.s8.3828c6dfb72d from=translated src=- shape=7a24ef31 vocab=067d0848
 -/
-theorem gamma_integrable_right_of_I {H : ℝ} (hH : 1 < H)
+theorem _root_.Tengoku.Leanmodularforms.gamma_integrable_right_of_I {H : ℝ} (hH : 1 < H)
     {γ : PiecewiseC1Path (fdStart H) (fdStart H)}
     (hγ : ∀ t ∈ Icc (0 : ℝ) 1, γ.toPath.extend t = fdBoundaryFun H t)
     {δ : ℝ} (hδ : 0 < δ) (hδ' : δ < 1/5) :
@@ -389,3 +389,4 @@ theorem gamma_integrable_right_of_I {H : ℝ} (hH : 1 < H)
     (fdBoundary_integrable_right_of_I H hH hδ hδ')
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

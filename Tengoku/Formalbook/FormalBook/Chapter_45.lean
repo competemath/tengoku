@@ -6,7 +6,7 @@ Authors: Moritz Firsching
 import Tengoku
 --import Mathlib.Analysis.SpecialFunctions.Exp
 --import Mathlib.Analysis.SpecialFunctions.Log.Base
-
+namespace Tengoku.Formalbook end Tengoku.Formalbook open Tengoku.Formalbook
 open SimpleGraph Finset
 /-!
 # Probability makes counting (sometimes) easy
@@ -352,3 +352,4 @@ theorem theorem_4 {V : Type _} [Fintype V] (G : SimpleGraph V) [Fintype G.edgeSe
   sorry
 
  -/
+-- Tengoku: root names of this library moved to Tengoku.Formalbook so they do not collide with other libraries (generated)

@@ -19,12 +19,12 @@ self-adjoint and take real expectation values.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
 /-- `IsMaximalSelfAdjoint R α` witnesses that `R` is the maximal `TrivialStar` subring of the
 star ring `α`, via an additive map `selfadjMap : α →+ R` collecting the self-adjoint part of
 each element. This lets `HermitianMat.trace` return `𝕜` when `𝕜` already has a trivial star,
 and the "clean" underlying type otherwise, e.g. `ℝ` when the input field is `ℂ`. -/
-class IsMaximalSelfAdjoint (R : outParam Type*) (α : Type*) [Star α] [Star R] [CommSemiring R]
+class _root_.Tengoku.Physlib.IsMaximalSelfAdjoint (R : outParam Type*) (α : Type*) [Star α] [Star R] [CommSemiring R]
     [Semiring α] [TrivialStar R] [Algebra R α] where
   /-- The additive map sending an element of `α` to its self-adjoint part in `R`. -/
   selfadjMap : α →+ R
@@ -34,13 +34,13 @@ class IsMaximalSelfAdjoint (R : outParam Type*) (α : Type*) [Star α] [Star R] 
   selfadj_algebra : ∀ {a : α}, IsSelfAdjoint a → algebraMap _ _ (selfadjMap a) = a
 
 /-- Every `TrivialStar` `CommSemiring` is its own maximal self adjoints. -/
-instance instTrivialStarIsMaximalSelfAdjoint {R} [Star R] [TrivialStar R] [CommSemiring R] :
+instance _root_.Tengoku.Physlib.instTrivialStarIsMaximalSelfAdjoint {R} [Star R] [TrivialStar R] [CommSemiring R] :
     IsMaximalSelfAdjoint R R where
   selfadjMap := AddMonoidHom.id R
   selfadj_smul _ __ := rfl
   selfadj_algebra {_} _ := rfl
 
-namespace IsMaximalSelfAdjoint
+namespace Tengoku.Physlib.IsMaximalSelfAdjoint
 
 -- In particular instances we care about, simplify selfadjMap should it appear.
 -- It _seems_ like `selfadjMap 1 = 1`, always, but I can't find a proof. But these lemmas
@@ -51,4 +51,5 @@ theorem trivial_selfadjMap {R} [Star R] [TrivialStar R] [CommSemiring R] :
     (selfadjMap : R →+ R) = .id R := by
   rfl
 
-end IsMaximalSelfAdjoint
+end Tengoku.Physlib.IsMaximalSelfAdjoint
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

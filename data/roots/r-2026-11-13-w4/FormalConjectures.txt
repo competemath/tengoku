@@ -1,0 +1,139 @@
+leakscan: 35 global instances (11 can fire outside the library), 0 scoped; 107 global simp lemmas (23 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 6 scoped
+roots: 103 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: simp Set.mul_mem_smul_set registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.Algebra.Group.Action.Pointwise.Set.Basic (declared at line 27)
+leak: simp Set.add_mem_vadd_set registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.Algebra.Group.Action.Pointwise.Set.Basic (declared at line 30)
+leak: instance Polynomial.instAlgebraPi registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.Algebra.Polynomial.Algebra (declared at line 31)
+leak: instance QuadraticAlgebra.instAlgebraCoeRingHomAlgebraMap registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.Algebra.QuadraticAlgebra.Instances (declared at line 26)
+leak: instance QuadraticAlgebra.instAlgebraIntCast registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.Algebra.QuadraticAlgebra.Instances (declared at line 40)
+leak: instance QuadraticAlgebra.instAlgebraIntOfNatCast registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.Algebra.QuadraticAlgebra.Instances (declared at line 51)
+leak: simp SimpleGraph.indepNum_of_isEmpty registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.Combinatorics.SimpleGraph.Clique (declared at line 29)
+leak: simp SimpleGraph.indepNum_pos registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.Combinatorics.SimpleGraph.Clique (declared at line 35)
+leak: instance SimpleGraph.decidableReachable registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.Combinatorics.SimpleGraph.Connectivity (declared at line 173)
+leak: instance SimpleGraph.decidablePreconnected registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.Combinatorics.SimpleGraph.Connectivity (declared at line 185)
+leak: instance SimpleGraph.decidableConnected registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.Combinatorics.SimpleGraph.Connectivity (declared at line 202)
+leak: simp Nat.dvd_add_mul_self registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.Data.Nat.Init (declared at line 25)
+leak: simp Nat.dvd_add_self_mul registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.Data.Nat.Init (declared at line 31)
+leak: simp Nat.dvd_mul_self_add registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.Data.Nat.Init (declared at line 37)
+leak: simp Nat.dvd_self_mul_add registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.Data.Nat.Init (declared at line 43)
+leak: simp Nat.dvd_sub_iff_right' registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.Data.Nat.Init (declared at line 49)
+leak: simp Nat.dvd_sub_iff_left' registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.Data.Nat.Init (declared at line 57)
+leak: simp Nat.dvd_sub_mul_self registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.Data.Nat.Init (declared at line 65)
+leak: simp Nat.dvd_sub_self_mul registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.Data.Nat.Init (declared at line 71)
+leak: simp Nat.dvd_mul_self_sub registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.Data.Nat.Init (declared at line 77)
+leak: simp Nat.dvd_self_mul_sub registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.Data.Nat.Init (declared at line 83)
+leak: instance _private.Tengoku.FormalConjectures.FormalConjecturesForMathlib.Data.Set.Interval.0.Set.instFintypeElemInterIioOfLocallyFiniteOrderBot registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.Data.Set.Interval (declared at line 25)
+leak: instance _private.Tengoku.FormalConjectures.FormalConjecturesForMathlib.Data.Set.Interval.0.Set.instFintypeElemInterIccOfLocallyFiniteOrderOfOrderBot registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.Data.Set.Interval (declared at line 28)
+leak: simp Sym2.fst_out_mk_self registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.Data.Sym.Sym2 (declared at line 25)
+leak: simp Sym2.snd_out_mk_self registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.Data.Sym.Sym2 (declared at line 29)
+leak: simp Affine.Simplex.closedInterior_nonempty registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.LinearAlgebra.AffineSpace.Simplex.Basic (declared at line 26)
+leak: simp Nat.ncard_Iio registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.Order.Interval.Finset.Nat (declared at line 22)
+leak: simp Cardinal.aleph0_le_mk_set registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.SetTheory.Cardinal.Arithmetic (declared at line 25)
+leak: simp Cardinal.mk_sdiff_eq_left' registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.SetTheory.Cardinal.Arithmetic (declared at line 31)
+leak: simp Cardinal.mk_sdiff_eq_left registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.SetTheory.Cardinal.Arithmetic (declared at line 40)
+leak: simp Cardinal.mk_sdiff_eq_left_of_finite' registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.SetTheory.Cardinal.Arithmetic (declared at line 47)
+leak: simp Cardinal.mk_sdiff_eq_left_of_finite registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.SetTheory.Cardinal.Arithmetic (declared at line 54)
+leak: instance Module.orientedEuclideanSpaceFinTwo registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.Geometry.«2d» (declared at line 32)
+leak: instance fact_finrank_euclideanSpace_fin_two registered in Tengoku.FormalConjectures.FormalConjecturesForMathlib.Geometry.«2d» (declared at line 39)
+root: iteratedLog_four
+root: ThreeUniformHypergraph
+root: beurlingInteger_def
+root: maxCosetDim_empty
+root: isWieferichPrimeBase_iff
+root: BitstringEncoding
+root: IsAdditiveComplement
+root: generator_mem_beurling
+root: IsSyndetic
+root: instDecidableIsAdditionChain
+root: lt_finRotate_of_ne_last
+root: AdmitsLieGroupStructure
+root: maxCosetDim_vadd
+root: distanceMultiplicity
+root: distinctDistances
+root: harmonicBlock_succ_top
+root: fact_finrank_euclideanSpace_fin_two
+root: additionChainSteps_nonempty
+root: HasFabryGaps
+root: distToNearestInt
+root: spectralPair
+root: IsSublacunary
+root: IsWieferichPrime
+root: RightIdeal
+root: powerfree_one
+root: isWieferichPrimeBase_one_iff
+root: additionChainSteps
+root: continuous_exponentialCharacter
+root: HasFejerGaps
+root: maxCosetDim_singleton
+root: isSunflower_empty
+root: Powerfree
+root: translateSet
+root: isSumFree_iff
+root: not_powerfree_zero
+root: IsAdditionChain
+root: ContainsMonoAPofLength
+root: le_two_pow_additionChainLength
+root: isWieferichPrimeBase_iff_pow_modEq
+root: isSpectral
+root: distToNearestInt_nonneg
+root: exponentialCharacter_memLp
+root: additionChainLength
+root: isProductFree_iff
+root: additionChainLength_le
+root: StrictCoveringSystem
+root: unitDistNum
+root: IsWieferichPrimeBase
+root: harmonicBlock_one
+root: not_summable_subtype_iff_tendsto_sum_indicator
+root: maxCosetDim_univ
+root: IsPisot
+root: distinctDistancesFrom
+root: maxCosetDim
+root: allUniqueSums
+root: IsSumFree
+root: distanceSet
+root: harmonicBlock_eq_sum_one_div
+root: norm_exponentialCharacter
+root: harmonicBlock_eq_zero_of_lt
+root: lt_additionChainLength_of_two_pow_lt
+root: IsMirimanoffPrime
+root: mul_mem_beurling
+root: unitDistNum_le_choose_two
+root: powerfree_congr
+root: IsObligatory
+root: admitsLieGroupStructure_of_lieGroup
+root: powerfree_neg
+root: exponentialCharacter
+root: IsProductFree
+root: maxCosetDim_mono
+root: isSunflowerWithKernel_singleton
+root: beurlingInteger
+root: IsSidon
+root: harmonicBlock
+root: tilesByTranslation
+root: isLacunary_iff_isLacunaryReal
+root: isSunflowerWithKernel_empty
+root: HasMonotoneAP
+root: Triplewise
+root: isSunflower_singleton
+root: BeurlingIntegers
+root: iteratedLog_two
+root: additionChainLength_eq_sInf
+root: isPisot_goldenRatio
+root: IsSunflowerWithKernel
+root: IsLacunaryReal
+root: powerfree_two
+root: IsLacunary
+root: maxCosetDim_vadd_le
+root: LieGroupPresentation
+root: HasNoUniqueRepresentation
+root: IsSunflower
+root: isWieferichPrimeBase_zero_iff
+root: beurlingInteger_mem
+root: pow_mem_beurling
+root: CoveringSystem
+root: IsBeurlingPrimes
+root: minimalDistinctDistances
+root: instDecidableIsWieferichPrimeBase
+root: maxCosetDim_affineSubspace
+root: admitsLieGroupStructure_of_discreteTopology
+root: IsIsosceles

@@ -9,7 +9,7 @@ import Tengoku.Seed.NumberTheory.NumberField.Completion.FinitePlace
 import Tengoku.Seed.Topology.Algebra.Group.Units
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.ClassfieldtheoryYamaguchi end Tengoku.ClassfieldtheoryYamaguchi open Tengoku.ClassfieldtheoryYamaguchi
 set_option autoImplicit false
 
 /-!
@@ -34,25 +34,25 @@ variable (K : Type*) [Field K] [NumberField K]
 /-- The finite idele group attached to a Dedekind domain and its fraction
 field.  The number-field definition below specializes this to the ring of
 integers.-/
-abbrev FiniteIdeleGroupOf
+abbrev _root_.Tengoku.ClassfieldtheoryYamaguchi.FiniteIdeleGroupOf
     (R : Type*) [CommRing R] [IsDedekindDomain R]
     (F : Type*) [Field F] [Algebra R F] [IsFractionRing R F] :=
   Πʳ v : HeightOneSpectrum R,
     [(v.adicCompletion F)ˣ, (v.adicCompletionIntegers F).units]
 
 /-- The group of finite ideles of a number field.-/
-abbrev FiniteIdeleGroup :=
+abbrev _root_.Tengoku.ClassfieldtheoryYamaguchi.FiniteIdeleGroup :=
   FiniteIdeleGroupOf (𝓞 K) K
 
 /-- The product of the multiplicative groups of the archimedean completions.-/
-abbrev InfiniteIdeleGroup :=
+abbrev _root_.Tengoku.ClassfieldtheoryYamaguchi.InfiniteIdeleGroup :=
   (NumberField.InfiniteAdeleRing K)ˣ
 
 /-- The idele group `I_K`.-/
-abbrev IdeleGroup :=
+abbrev _root_.Tengoku.ClassfieldtheoryYamaguchi.IdeleGroup :=
   InfiniteIdeleGroup K × FiniteIdeleGroup K
 
-namespace FiniteIdeleGroup
+namespace Tengoku.ClassfieldtheoryYamaguchi.FiniteIdeleGroup
 
 variable {K}
 
@@ -81,9 +81,9 @@ theorem eventually_mem_localUnits (a : FiniteIdeleGroup K) :
       a v ∈ (v.adicCompletionIntegers K).units :=
   a.2
 
-end FiniteIdeleGroup
+end Tengoku.ClassfieldtheoryYamaguchi.FiniteIdeleGroup
 
-namespace InfiniteIdeleGroup
+namespace Tengoku.ClassfieldtheoryYamaguchi.InfiniteIdeleGroup
 
 variable {K}
 
@@ -102,9 +102,9 @@ theorem component_apply (a : InfiniteIdeleGroup K) (v : InfinitePlace K) :
     component v a = ContinuousMulEquiv.piUnits a v :=
   rfl
 
-end InfiniteIdeleGroup
+end Tengoku.ClassfieldtheoryYamaguchi.InfiniteIdeleGroup
 
-namespace IdeleGroup
+namespace Tengoku.ClassfieldtheoryYamaguchi.IdeleGroup
 
 variable {K}
 
@@ -185,4 +185,5 @@ theorem equivAdeleRingUnits_snd (a : IdeleGroup K) :
       finiteEquivFiniteAdeleUnits (K := K) a.2 := by
   rfl
 
-end IdeleGroup
+end Tengoku.ClassfieldtheoryYamaguchi.IdeleGroup
+-- Tengoku: root names of this library moved to Tengoku.ClassfieldtheoryYamaguchi so they do not collide with other libraries (generated)

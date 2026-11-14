@@ -24,7 +24,7 @@ maximal ideals containing the extension of the maximal ideal of `R`, and `M` a f
 `S`-module. This file proves that an `R`-submodule spanning `M` over `S` contains an `S`-basis,
 following [Stacks 03C1](https://stacks.math.columbia.edu/tag/03C1).
 -/
-
+namespace Tengoku.Aintlib end Tengoku.Aintlib open Tengoku.Aintlib
 open Submodule
 
 section BasisOfSpan
@@ -32,7 +32,7 @@ section BasisOfSpan
 variable {S M : Type*} [CommRing S] [AddCommGroup M] [Module S M]
 
 /-- A spanning family of cardinality `r` in a finite free module of rank `r` determines a basis.-/
-noncomputable def basisOfSpanRangeEqTop [Nontrivial S] [Module.Free S M] [Module.Finite S M]
+noncomputable def _root_.Tengoku.Aintlib.basisOfSpanRangeEqTop [Nontrivial S] [Module.Free S M] [Module.Finite S M]
     {r : ℕ} (hr : Module.finrank S M = r) {y : Fin r → M}
     (hspan : Submodule.span S (Set.range y) = ⊤) : Module.Basis (Fin r) S M := by
   classical
@@ -53,7 +53,7 @@ noncomputable def basisOfSpanRangeEqTop [Nontrivial S] [Module.Free S M] [Module
 @isnad1 id=eq.2h5v.s7.c6c2fd6db923 from=translated src=- shape=fa72b7e4 vocab=8be11586
 -/
 @[simp]
-theorem basisOfSpanRangeEqTop_apply [Nontrivial S] [Module.Free S M] [Module.Finite S M]
+theorem _root_.Tengoku.Aintlib.basisOfSpanRangeEqTop_apply [Nontrivial S] [Module.Free S M] [Module.Finite S M]
     {r : ℕ} (hr : Module.finrank S M = r) {y : Fin r → M}
     (hspan : Submodule.span S (Set.range y) = ⊤) (i : Fin r) :
     basisOfSpanRangeEqTop hr hspan i = y i := by
@@ -96,7 +96,7 @@ variable {R : Type*} [CommRing R] [IsLocalRing R]
 /-- Every element after base change to the residue field is a pure tensor with first factor one.
 @isnad1 id=ex.0h3v.s7.4c53b2e95f6d from=translated src=- shape=c89bec52 vocab=0371937d
 -/
-theorem exists_one_tmul_eq_residueField {N' : Type*} [AddCommGroup N'] [Module R N']
+theorem _root_.Tengoku.Aintlib.exists_one_tmul_eq_residueField {N' : Type*} [AddCommGroup N'] [Module R N']
     (x : ResidueField R ⊗[R] N') : ∃ z : N', (1 : ResidueField R) ⊗ₜ[R] z = x := by
   change ∃ z : N', (1 : R ⧸ maximalIdeal R) ⊗ₜ[R] z = x
   obtain ⟨z, hz⟩ := Submodule.Quotient.mk_surjective
@@ -109,7 +109,7 @@ theorem exists_one_tmul_eq_residueField {N' : Type*} [AddCommGroup N'] [Module R
 /-- A nonzero element remains nonzero as a pure tensor when the maximal ideal kills its module.
 @isnad1 id=ne.2h3v.s8.ca8e5aae8f5a from=translated src=- shape=e81a1a8d vocab=132a0de8
 -/
-theorem one_tmul_ne_zero_of_smul_top_eq_bot {T : Type*} [AddCommGroup T] [Module R T]
+theorem _root_.Tengoku.Aintlib.one_tmul_ne_zero_of_smul_top_eq_bot {T : Type*} [AddCommGroup T] [Module R T]
     (hmT : maximalIdeal R • (⊤ : Submodule R T) = ⊥) {t : T} (ht : t ≠ 0) :
     (1 : ResidueField R) ⊗ₜ[R] t ≠ (0 : ResidueField R ⊗[R] T) := by
   intro h0
@@ -124,7 +124,7 @@ theorem one_tmul_ne_zero_of_smul_top_eq_bot {T : Type*} [AddCommGroup T] [Module
 change.
 @isnad1 id=ne.2h5v.s11.d88d53b5e39b from=translated src=- shape=3e1a0adb vocab=888a27c9
 -/
-theorem baseChange_ne_zero_of_ne_zero_of_smul_top_eq_bot {N' T : Type*}
+theorem _root_.Tengoku.Aintlib.baseChange_ne_zero_of_ne_zero_of_smul_top_eq_bot {N' T : Type*}
     [AddCommGroup N'] [Module R N'] [AddCommGroup T] [Module R T]
     (hmT : maximalIdeal R • (⊤ : Submodule R T) = ⊥) (f : N' →ₗ[R] T) {x : N'}
     (hx : f x ≠ 0) : LinearMap.baseChange (ResidueField R) f ≠ 0 := by
@@ -137,7 +137,7 @@ theorem baseChange_ne_zero_of_ne_zero_of_smul_top_eq_bot {N' T : Type*}
 /-- Over an infinite residue field, one pure tensor simultaneously avoids finitely many kernels.
 @isnad1 id=ex.1h5v.s12.132363bc0d33 from=translated src=- shape=540b6bd3 vocab=f2387493
 -/
-theorem exists_one_tmul_baseChange_ne_zero [Infinite (ResidueField R)]
+theorem _root_.Tengoku.Aintlib.exists_one_tmul_baseChange_ne_zero [Infinite (ResidueField R)]
     {N' : Type*} [AddCommGroup N'] [Module R N'] {s : ℕ}
     {T : Fin s → Type*} [∀ j, AddCommGroup (T j)] [∀ j, Module R (T j)]
     (h : ∀ j, N' →ₗ[R] T j)
@@ -173,3 +173,4 @@ private noncomputable def fibreEval (n : Ideal S) : M →ₗ[S] (S ⧸ n) ⊗[S]
   TensorProduct.mk S (S ⧸ n) M 1
 
 end Semilocal
+-- Tengoku: root names of this library moved to Tengoku.Aintlib so they do not collide with other libraries (generated)

@@ -16,15 +16,15 @@ transvection matrices `E_{ij}(c) = I + c·e_{ij}`.
 * `SLnZ_transvec_gen` — every `σ ∈ SL_n(ℤ)` equals `L.prod` for a list `L`
   of transvections.
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 /-- An elementary transvection in `SL_m(ℤ)`: the matrix `I + c·e_{ij}`. -/
-def slTransvecG {m : ℕ} (i j : Fin m) (hij : i ≠ j) (c : ℤ) :
+def _root_.Tengoku.Leanmodularforms.slTransvecG {m : ℕ} (i j : Fin m) (hij : i ≠ j) (c : ℤ) :
     Matrix.SpecialLinearGroup (Fin m) ℤ :=
   ⟨Matrix.transvection i j c, Matrix.det_transvection_of_ne i j hij c⟩
 
 /-- A matrix in `SL_m(ℤ)` is a transvection if it equals `slTransvecG i j hij c`
 for some `i ≠ j` and scalar `c`. -/
-def IsTransvec {m : ℕ} (E : Matrix.SpecialLinearGroup (Fin m) ℤ) : Prop :=
+def _root_.Tengoku.Leanmodularforms.IsTransvec {m : ℕ} (E : Matrix.SpecialLinearGroup (Fin m) ℤ) : Prop :=
   ∃ (i j : Fin m) (hij : i ≠ j) (c : ℤ), E = slTransvecG i j hij c
 
 private def col0Sum {m : ℕ} (σ : Matrix.SpecialLinearGroup (Fin (m+1)) ℤ) : ℕ :=
@@ -55,3 +55,4 @@ private def extractBlock {m : ℕ} (τ : Matrix.SpecialLinearGroup (Fin (m + 1))
 
 private def row0Sum {m : ℕ} (σ : Matrix.SpecialLinearGroup (Fin (m+1)) ℤ) : ℕ :=
   ∑ j : Fin (m+1), if (j : ℕ) = 0 then 0 else (σ.1 0 j).natAbs
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

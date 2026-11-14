@@ -42,7 +42,7 @@ The sum of the two outer pieces equals `E(ε)`, which tends to `L`.
 
 * K. Hungerbuhler, J. Wasem, *A generalized notion of winding numbers*
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex MeasureTheory Set Filter Topology
 open scoped Interval
 
@@ -52,7 +52,7 @@ variable {x y : ℂ}
 
 /-- Data for computing the generalized winding number at a single crossing point.
 The curve `γ` crosses `z₀` at exactly one parameter value `t₀ ∈ (0, 1)`. -/
-structure SingleCrossingData (γ : PiecewiseC1Path x y) (z₀ : ℂ) where
+structure _root_.Tengoku.Leanmodularforms.SingleCrossingData (γ : PiecewiseC1Path x y) (z₀ : ℂ) where
   /-- Target PV limit value. -/
   L : ℂ
   /-- Unique crossing parameter in `(0, 1)`. -/
@@ -94,7 +94,7 @@ structure SingleCrossingData (γ : PiecewiseC1Path x y) (z₀ : ℂ) where
   /-- `E(ε) → L` as `ε → 0⁺`. -/
   h_limit : Tendsto E (𝓝[>] 0) (𝓝 L)
 
-namespace SingleCrossingData
+namespace Tengoku.Leanmodularforms.SingleCrossingData
 
 variable {γ : PiecewiseC1Path x y} {z₀ : ℂ}
 
@@ -207,6 +207,7 @@ theorem hasWindingNumber (D : SingleCrossingData γ z₀) :
   rw [div_eq_inv_mul]
   exact hasGeneralizedWindingNumber_of_hasCauchyPV D.hasCauchyPV
 
-end SingleCrossingData
+end Tengoku.Leanmodularforms.SingleCrossingData
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

@@ -27,17 +27,17 @@ existence of the temperature unit of kelvin, and construct all other temperature
 -/
 
 @[expose] public section
-
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
 open NNReal
 
 /-- The choices of translationally-invariant metrics on the temperature-manifold.
   Such a choice corresponds to a choice of units for temperature. -/
-structure TemperatureUnit where
+structure _root_.Tengoku.Physlib.TemperatureUnit where
   /-- The underlying scale of the unit. -/
   val : ℝ
   property : 0 < val
 
-namespace TemperatureUnit
+namespace Tengoku.Physlib.TemperatureUnit
 
 @[simp]
 lemma val_ne_zero (x : TemperatureUnit) : x.val ≠ 0 := by
@@ -163,4 +163,5 @@ noncomputable def millikelvin : TemperatureUnit := scale (1e-3) kelvin
   Note, this is fahrenheit starting at `0` absolute temperature. -/
 noncomputable def absoluteFahrenheit : TemperatureUnit := scale (5 / 9) kelvin
 
-end TemperatureUnit
+end Tengoku.Physlib.TemperatureUnit
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

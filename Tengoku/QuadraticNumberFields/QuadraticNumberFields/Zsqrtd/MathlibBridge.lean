@@ -26,7 +26,7 @@ required (see the `Zsqrtd` policy in `AGENTS.md`).
   models.
 * `Zsqrtd.equivMathlib`: ring isomorphism with mathlib's `ℤ√d`.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 local notation "ℚ√" d => Qsqrtd d
 
 namespace QuadraticNumberFields
@@ -87,3 +87,4 @@ def equivMathlib (d : ℤ) : Zsqrtd d ≃+* ℤ√d where
 end Zsqrtd
 
 end QuadraticNumberFields
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

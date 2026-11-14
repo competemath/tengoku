@@ -1,0 +1,167 @@
+leakscan: 191 global instances (15 can fire outside the library), 13 scoped; 350 global simp lemmas (3 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 147 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: instance FixedPoints.instAddCommMonoidElemFixedPoints registered in Tengoku.FltAnthropic.Definitions.Def_AbstractHeckeOperator (declared at line 20)
+leak: instance FixedPoints.instSMulElemFixedPointsOfSMulCommClass registered in Tengoku.FltAnthropic.Definitions.Def_AbstractHeckeOperator (declared at line 38)
+leak: instance FixedPoints.instMulActionElemFixedPointsOfSMulCommClass registered in Tengoku.FltAnthropic.Definitions.Def_AbstractHeckeOperator (declared at line 49)
+leak: instance AdicCompletion.instIsLocalRingMaximalIdeal registered in Tengoku.FltAnthropic.Definitions.Def_AdicCompletionLocalRing (declared at line 72)
+leak: instance IsDedekindDomain.HeightOneSpectrum.instIsRankOneDiscreteWithZeroMultiplicativeIntAdicCompletionV registered in Tengoku.FltAnthropic.Definitions.Def_DedekindDomain_AdicValuation_InlineSpecific (declared at line 53)
+leak: instance instAlgebraSubtypeMemValuationSubring registered in Tengoku.FltAnthropic.Definitions.Def_AlgebraicCurve_PlaceCompletion (declared at line 11)
+leak: instance AddAut.instGroup registered in Tengoku.FltAnthropic.Definitions.Def_Compat_Mathlib430 (declared at line 139)
+leak: simp IsLocalization.moduleLid_symm_apply registered in Tengoku.FltAnthropic.Definitions.Def_Mathlib_RingTheory_Localization_BaseChange (declared at line 15)
+leak: simp IsLocalization.map_moduleTensorEquiv_tmul registered in Tengoku.FltAnthropic.Definitions.Def_Mathlib_RingTheory_Localization_BaseChange (declared at line 23)
+leak: simp IsLocalization.map_moduleTensorEquiv_symm_tmul registered in Tengoku.FltAnthropic.Definitions.Def_Mathlib_RingTheory_Localization_BaseChange (declared at line 30)
+leak: instance WeierstrassCurve.Affine.Point.instSMulAlgEquiv registered in Tengoku.FltAnthropic.Definitions.Def_FLTPrelim_GaloisRep (declared at line 27)
+leak: instance WeierstrassCurve.Affine.Point.instDistribMulActionAlgEquiv registered in Tengoku.FltAnthropic.Definitions.Def_FLTPrelim_GaloisRep (declared at line 30)
+leak: instance WeierstrassCurve.Affine.Point.instSMulTorsionBy registered in Tengoku.FltAnthropic.Definitions.Def_FLTPrelim_GaloisRep (declared at line 53)
+leak: instance WeierstrassCurve.Affine.Point.instDistribMulActionTorsionBy registered in Tengoku.FltAnthropic.Definitions.Def_FLTPrelim_GaloisRep (declared at line 57)
+leak: instance WeierstrassCurve.Affine.Point.instModuleZModTorsionBy registered in Tengoku.FltAnthropic.Definitions.Def_FLTPrelim_GaloisRep (declared at line 64)
+leak: instance instDecEqAlgebraicClosureRat registered in Tengoku.FltAnthropic.Definitions.Def_FLTPrelim_GaloisRep (declared at line 85)
+leak: instance instIsScalarTowerTensorProduct registered in Tengoku.FltAnthropic.Definitions.Def_FiniteFlat_SchematicClosure (declared at line 15)
+leak: instance MvFormalGroup.WittLaw.instTendstoCofiniteProdMk registered in Tengoku.FltAnthropic.Definitions.Def_MvFormalGroup_CartierModule (declared at line 156)
+root: tensorInclusion_comm_apply
+root: instTowerQbarComplex
+root: tensorInclusion3_tmul
+root: dedekindSaw_intCast_add
+root: dedekindSaw
+root: mem_closureTensorSpan_of_smul_mem
+root: galRestrictionDatum_apply
+root: dedekindSaw_intCast
+root: mem_flatClosure_iff
+root: instAlgebraQbarComplex
+root: isAlgClosureQbar_cc
+root: instCoeTCSemialgHom
+root: dedekindSum_one_right
+root: dedekindSaw_add_intCast
+root: gate_dualIsogenyExistence_of_charPoly_bot
+root: flatClosure_flat
+root: tensorInclusion3'
+root: dualIsogenyExistence_of_charPoly
+root: gate_exists_of_factor_intCast
+root: isEllSequence'_id
+root: complexConjugation_inv
+root: closureCounit
+root: genericFibreAlgHom_injective
+root: span_image_flatClosure
+root: closureIsCocomm
+root: IsComulStable
+root: flatClosure_finite
+root: quotient_flatClosure_isTorsionFree
+root: abs_dedekindSaw_lt_half
+root: instFunLike
+root: dedekindSum_neg
+root: SemialgHom
+root: coe_closureAntipode_apply
+root: val_mul'_tensorInclusion
+root: closureHopfAlgebra
+root: one_tmul_smul
+root: flatClosure_mono
+root: tensorToGenericFibre_injective
+root: gate_dualEndData_intCast_three
+root: instIsScalarTowerTensorProduct
+root: flatClosure_isTorsionFree
+root: normalQbar_cc
+root: tensorInclusion_rTensor_closureAntipode
+root: closureComul
+root: isEllDivSequence'_id
+root: complexConjugation
+root: dedekindSaw_natCast
+root: comul_mem_closureTensorSpan
+root: dedekindSaw_add_natCast
+root: IsEllDivSequence'
+root: dualIsogenyExistence_bot
+root: dedekindSum_eq_sum_Ico
+root: KatzModularForm
+root: dedekindSum_add_mul
+root: IsDivSequence'
+root: isAlgebraicQbar_cc
+root: complexEmbedding
+root: closureBialgebra
+root: coe_mk
+root: exists_nonzero_smul_eq_one_tmul
+root: galRestrictionDatum
+root: PDivisibleGroup
+root: closureCounit_lTensor_comp_closureComul
+root: flatClosure_free
+root: complexEmbedding_complexConjugation
+root: tensorInclusion3_injective
+root: tensorInclusion3'_rTensor_closureComul
+root: tensorToGenericFibre_tmul
+root: gate_dualOfSurjective_id
+root: rTensor_val_lTensor_closureCounit
+root: genericFibreAlgHom
+root: tensorInclusion3_lTensor_closureComul
+root: closureCounit_rTensor_comp_closureComul
+root: algAutToRingAut
+root: flatClosure
+root: tensorInclusion
+root: closureCounit_apply
+root: closureCounit_mul
+root: MvFormalGroup
+root: closureComul_mul
+root: algAutToRingAut_apply
+root: complexConjAlgEquiv
+root: IsEllSequence'
+root: complexConjAlgEquiv_mul_self
+root: dedekindSum
+root: dedekindSaw_of_fract_ne_zero
+root: gate_charPoly_of_dualIsogenyExistence_bot
+root: quotient_flatClosure_free
+root: tensorInclusion_mul
+root: lTensor_val_rTensor_closureCounit
+root: IsAntipodeStable
+root: closureCounit_one
+root: dedekindSaw_zero
+root: closure_mul_antipode_rTensor_comul
+root: dedekindSaw_neg
+root: convMul_comp_closureVal
+root: closureValBialgHom_toAlgHom
+root: tensorToGenericFibre_smul
+root: tensorInclusion3'_tmul
+root: gate_intLinComb_norm_at_one
+root: charPoly_of_dualIsogenyExistence
+root: dedekindSum_zero_left
+root: closureTensorSpan
+root: dedekindSaw_natCast_div
+root: tensorInclusion_injective
+root: genericFibreAlgEquiv
+root: complexConjugation_sq
+root: DualAdditivityResidual
+root: tensorToGenericFibre
+root: tensorInclusion_tmul
+root: genericFibreAlgHom_tmul
+root: closureValBialgHom
+root: range_genericFibreAlgHom
+root: closureAntipode
+root: closureComul_coassoc
+root: closureCoalgebra
+root: closureValBialgHom_apply
+root: le_flatClosure_iff
+root: range_tensorInclusion
+root: instDecEqAlgebraicClosureRat
+root: tensorInclusion_lTensor_closureAntipode
+root: mem_closureTensorSpan_of_tensorToGenericFibre_mem_span
+root: closure_mul_antipode_lTensor_comul
+root: isDivSequence'_id
+root: dedekindSaw_one
+root: exists_isCompl_flatClosure
+root: exists_smul_eq_tensorToGenericFibre_of_mem_span
+root: gate_intLinComb_disc_scaling
+root: quotient_flatClosure_finite
+root: tensorToGenericFibre_zero
+root: instDecEqQbar_cc
+root: tensorInclusion_one
+root: SemialgHomClass
+root: complexConjugation_mul_self
+root: dedekindSaw_of_fract_eq_zero
+root: tensorToGenericFibre_add
+root: comul_mem_range_tensorInclusion
+root: complexConjAlgEquiv_apply
+root: DualIsogenyExistence
+root: dedekindSum_zero_right
+root: dedekindSaw_half
+root: tensorInclusion3_assoc_apply
+root: tensorInclusion3
+root: tensorInclusion_closureComul
+root: exists_nonzero_smul_mem_flatClosure
+root: closureComul_one
+root: instAlgebraSubtypeMemValuationSubring

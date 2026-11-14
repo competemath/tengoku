@@ -15,7 +15,7 @@ import Tengoku.QuadraticNumberFields.QNFMathlib.Algebra.Squarefree.Basic
 
 Material destined for mathlib.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 /-- The square of an even integer is `0 mod 4`.
 @isnad1 id=eq.1h1v.s5.0c2fe27b8389 from=translated src=- shape=f24a1903 vocab=be6f823a
 -/
@@ -91,7 +91,7 @@ private lemma mod_four_eq_one_of_odd_odd_of_mod_eq_zero
 -/
 -- Repository use: internal support for the two branch-specific criteria used
 -- by `RingOfIntegers/Integrality.lean`.
-theorem dvd_four_sub_sq_iff_even_even_or_odd_odd_mod_four_one
+theorem _root_.Tengoku.QuadraticNumberFields.dvd_four_sub_sq_iff_even_even_or_odd_odd_mod_four_one
     (d a' b' : ℤ) (hd : Squarefree d) :
     4 ∣ (a' ^ 2 - d * b' ^ 2) ↔
       (2 ∣ a' ∧ 2 ∣ b') ∨ (¬ 2 ∣ a' ∧ ¬ 2 ∣ b' ∧ d % 4 = 1) := by
@@ -122,7 +122,7 @@ theorem dvd_four_sub_sq_iff_even_even_or_odd_odd_mod_four_one
 -/
 -- Repository use: internal support for
 -- `dvd_four_sub_sq_iff_even_even_of_ne_one_mod_four`.
-theorem even_even_of_dvd_four_sub_sq_of_ne_one_mod_four
+theorem _root_.Tengoku.QuadraticNumberFields.even_even_of_dvd_four_sub_sq_of_ne_one_mod_four
     (d a' b' : ℤ) (hd : Squarefree d) (hd4 : d % 4 ≠ 1)
     (h : 4 ∣ (a' ^ 2 - d * b' ^ 2)) :
     2 ∣ a' ∧ 2 ∣ b' := by
@@ -136,7 +136,7 @@ theorem even_even_of_dvd_four_sub_sq_of_ne_one_mod_four
 -/
 -- Repository use: `RingOfIntegers/Integrality.lean` uses this in the
 -- `ℤ[√d]` branch of the integral-closure classification.
-theorem dvd_four_sub_sq_iff_even_even_of_ne_one_mod_four
+theorem _root_.Tengoku.QuadraticNumberFields.dvd_four_sub_sq_iff_even_even_of_ne_one_mod_four
     (d a' b' : ℤ) (hd : Squarefree d) (hd4 : d % 4 ≠ 1) :
     4 ∣ (a' ^ 2 - d * b' ^ 2) ↔ (2 ∣ a' ∧ 2 ∣ b') := by
   constructor
@@ -148,7 +148,7 @@ theorem dvd_four_sub_sq_iff_even_even_of_ne_one_mod_four
 -/
 -- Repository use: `RingOfIntegers/Integrality.lean` uses this in the
 -- `ℤ[(1+√d)/2]` branch of the integral-closure classification.
-theorem dvd_four_sub_sq_iff_same_parity_of_one_mod_four
+theorem _root_.Tengoku.QuadraticNumberFields.dvd_four_sub_sq_iff_same_parity_of_one_mod_four
     (d a' b' : ℤ) (hd : Squarefree d) (hd4 : d % 4 = 1) :
     4 ∣ (a' ^ 2 - d * b' ^ 2) ↔ a' % 2 = b' % 2 := by
   rw [dvd_four_sub_sq_iff_even_even_or_odd_odd_mod_four_one d a' b' hd]
@@ -160,3 +160,4 @@ theorem dvd_four_sub_sq_iff_same_parity_of_one_mod_four
       exact ⟨ha, by omega⟩
     · right
       exact ⟨ha, by omega, hd4⟩
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

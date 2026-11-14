@@ -47,7 +47,7 @@ in `CPVExistenceMulti.lean` (applied with the common radius `r` from
 * K. Hungerbühler, J. Wasem, *A generalized notion of winding numbers*,
   arXiv:1808.00997v2 §3.
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex MeasureTheory Set Filter Topology Asymptotics
 open scoped Real Interval
 
@@ -591,3 +591,4 @@ theorem multi_pole_smooth_complement_far_bound
 end HungerbuhlerWasem
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

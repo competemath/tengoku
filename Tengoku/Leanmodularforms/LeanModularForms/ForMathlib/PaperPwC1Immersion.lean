@@ -47,7 +47,7 @@ automatically interval-integrable on each piece, and so on `[0, 1]` by gluing.
 * K. Hungerbühler, M. Wasem, *Non-integer valued winding numbers and a generalized
   Residue Theorem*, arXiv:1808.00997v2, page 3.
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Set Filter Topology MeasureTheory
 
 noncomputable section
@@ -69,7 +69,7 @@ This extends `PiecewiseC1Path x x`. The inherited `partition` field is the
 partition with endpoints included. The two are related by
 `closedPartition_eq : closedPartition = insert 0 (insert 1 partition)`. -/
 @[ext]
-structure ClosedPwC1Curve (x : E) extends PiecewiseC1Path x x where
+structure _root_.Tengoku.Leanmodularforms.ClosedPwC1Curve (x : E) extends PiecewiseC1Path x x where
   /-- Closed partition WITH endpoints. Required because the inherited `partition`
   is Ioo-style (interior only). -/
   closedPartition : Finset ℝ
@@ -91,7 +91,7 @@ structure ClosedPwC1Curve (x : E) extends PiecewiseC1Path x x where
 is non-vanishing on every closed sub-interval between consecutive partition
 points. -/
 @[ext]
-structure ClosedPwC1Immersion (x : E) extends ClosedPwC1Curve x where
+structure _root_.Tengoku.Leanmodularforms.ClosedPwC1Immersion (x : E) extends ClosedPwC1Curve x where
   /-- On every closed sub-interval between consecutive closed-partition members, the
   *within*-derivative of the extended path is non-zero — i.e. `Λ̇|_{[aₖ,aₖ₊₁]} ≠ 0`
   in the paper. We use `derivWithin _ (Icc a b)` rather than the global `deriv`
@@ -101,7 +101,7 @@ structure ClosedPwC1Immersion (x : E) extends ClosedPwC1Curve x where
   derivWithin_ne_zero_pieces : ∀ a b, closedPartition.IsConsecutive a b →
     ∀ t ∈ Icc a b, derivWithin toPath.extend (Icc a b) t ≠ 0
 
-namespace ClosedPwC1Curve
+namespace Tengoku.Leanmodularforms.ClosedPwC1Curve
 
 variable {x : E}
 
@@ -161,7 +161,7 @@ theorem deriv_intervalIntegrable_piece (γ : ClosedPwC1Curve x) {a b : ℝ}
   by_contra hne
   exact ht_compl ⟨ht_in.1, lt_of_le_of_ne ht_in.2 hne⟩
 
-end ClosedPwC1Curve
+end Tengoku.Leanmodularforms.ClosedPwC1Curve
 
 /-! ## Helper: gluing piece-wise predicates over a finite partition -/
 
@@ -221,7 +221,7 @@ private theorem intervalIntegrable_of_consecutive_pieces
 
 /-! ## Global interval-integrability of the derivative -/
 
-namespace ClosedPwC1Curve
+namespace Tengoku.Leanmodularforms.ClosedPwC1Curve
 
 variable {x : E}
 
@@ -273,9 +273,9 @@ private lemma exists_consecutive_pair_containing (γ : ClosedPwC1Curve x)
     ∃ a b, γ.closedPartition.IsConsecutive a b ∧ t ∈ Ioo a b :=
   exists_consecutive_pair_aux γ.zero_mem_closedPartition γ.one_mem_closedPartition ht htn
 
-end ClosedPwC1Curve
+end Tengoku.Leanmodularforms.ClosedPwC1Curve
 
-namespace ClosedPwC1Immersion
+namespace Tengoku.Leanmodularforms.ClosedPwC1Immersion
 
 variable {x : E}
 
@@ -354,7 +354,7 @@ def toPwC1Immersion (γ : ClosedPwC1Immersion x) : PwC1Immersion x x where
     rw [← Set.Ioi_inter_Iio (a := p) (b := b),
       nhdsWithin_inter_of_mem' (mem_nhdsWithin_of_mem_nhds (Iio_mem_nhds hcons.2.2.1))]
 
-end ClosedPwC1Immersion
+end Tengoku.Leanmodularforms.ClosedPwC1Immersion
 
 /-! ## Phase 1 — Lipschitz constant from `ClosedPwC1Curve`
 
@@ -415,7 +415,7 @@ private lemma lipschitzOnWith_of_consecutive_pieces {E : Type*}
   intro y hy z hz
   simp [le_antisymm hy.2 hy.1, le_antisymm hz.2 hz.1]
 
-namespace ClosedPwC1Curve
+namespace Tengoku.Leanmodularforms.ClosedPwC1Curve
 
 variable {x : E}
 
@@ -497,9 +497,9 @@ theorem lipschitzWith_extend (γ : ClosedPwC1Curve x) :
   exact (hK (clamp_mem s) (clamp_mem t)).trans
     (mul_le_mul_of_nonneg_left h_proj_lip (NNReal.coe_nonneg _))
 
-end ClosedPwC1Curve
+end Tengoku.Leanmodularforms.ClosedPwC1Curve
 
-namespace ClosedPwC1Immersion
+namespace Tengoku.Leanmodularforms.ClosedPwC1Immersion
 
 variable {x : E}
 
@@ -510,6 +510,7 @@ theorem lipschitzWith_extend (γ : ClosedPwC1Immersion x) :
     ∃ K : NNReal, LipschitzWith K γ.toPath.extend :=
   γ.toClosedPwC1Curve.lipschitzWith_extend
 
-end ClosedPwC1Immersion
+end Tengoku.Leanmodularforms.ClosedPwC1Immersion
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

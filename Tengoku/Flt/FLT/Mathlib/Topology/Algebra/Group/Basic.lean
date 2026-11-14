@@ -10,12 +10,12 @@ public import Tengoku
 /-! # Lemmas about topological groups -/
 
 public section
-
+namespace Tengoku.Flt end Tengoku.Flt open Tengoku.Flt 
 /--
 @isnad1 id=iff.0h4v.s6.5bf6a17d2c01 from=translated src=- shape=269e508b vocab=3c75f0d3
 -/
 @[to_additive]
-lemma continuous_iff_continuousAt_one
+lemma _root_.Tengoku.Flt.continuous_iff_continuousAt_one
     {G : Type*} [TopologicalSpace G] [Group G] [IsTopologicalGroup G]
     {M : Type*} {hom : Type*} [MulOneClass M]
     [TopologicalSpace M] [ContinuousMul M] [FunLike hom G M]
@@ -43,3 +43,4 @@ lemma MonoidHom.continuous_iff_isOpen_ker {G H : Type*} [Group G] [MulOneClass H
     [TopologicalSpace G] [IsTopologicalGroup G] [TopologicalSpace H] [DiscreteTopology H] :
     Continuous φ ↔ IsOpen (φ.ker : Set G) :=
   ⟨fun h ↦ (isOpen_discrete {1}).preimage h, MonoidHom.continuous_of_isOpen_ker⟩
+-- Tengoku: root names of this library moved to Tengoku.Flt so they do not collide with other libraries (generated)

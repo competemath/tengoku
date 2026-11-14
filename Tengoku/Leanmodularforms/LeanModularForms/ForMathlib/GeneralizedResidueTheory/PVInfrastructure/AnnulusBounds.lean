@@ -23,7 +23,7 @@ the dyadic PV convergence proof.
 * `annulus_symmDiff_measure_bound`: symmetric difference between the gamma-annulus and the
   linear-model annulus has measure `O(ε₁²)`.
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex MeasureTheory Set Filter Topology
 open scoped Real Interval
 
@@ -32,7 +32,7 @@ noncomputable section
 /--
 @isnad1 id=le.8h9v.s8.40260c5479cc from=translated src=- shape=ce064f5b vocab=283f6466
 -/
-lemma annulus_t_measure_bound {γ : ℝ → ℂ} {a b t₀ : ℝ} {L : ℂ} {ε₁ ε₂ δ₁ : ℝ} (hL : L ≠ 0)
+lemma _root_.Tengoku.Leanmodularforms.annulus_t_measure_bound {γ : ℝ → ℂ} {a b t₀ : ℝ} {L : ℂ} {ε₁ ε₂ δ₁ : ℝ} (hL : L ≠ 0)
     (hε₁_pos : 0 < ε₁)
     (h_lower : ∀ t, 0 < |t - t₀| → |t - t₀| < δ₁ → ‖γ t - γ t₀‖ ≥ (‖L‖ / 2) * |t - t₀|)
     (h_localize : ∀ t ∈ Set.Icc a b, ‖γ t - γ t₀‖ ≤ ε₁ → |t - t₀| < min δ₁ δ₁)
@@ -92,7 +92,7 @@ private lemma remainder_annulus_pw_bound {γ : ℝ → ℂ} {a b t₀ : ℝ} {C 
 /--
 @isnad1 id=other.7h10v.s9.953f7cd275c5 from=translated src=- shape=7007387e vocab=a278bbed
 -/
-lemma remainder_integral_bound_on_annulus {γ : ℝ → ℂ} {a b t₀ : ℝ} {C δ₀ δ₁ ε₁ ε₂ : ℝ} {L : ℂ}
+lemma _root_.Tengoku.Leanmodularforms.remainder_integral_bound_on_annulus {γ : ℝ → ℂ} {a b t₀ : ℝ} {C δ₀ δ₁ ε₁ ε₂ : ℝ} {L : ℂ}
     (hL : L ≠ 0) (hε₁_pos : 0 < ε₁) (hε₂_pos : 0 < ε₂)
     (hr_bounded : ∀ t, 0 < |t - t₀| → |t - t₀| < δ₀ →
       ‖(γ t - γ t₀)⁻¹ * deriv γ t - (↑(t - t₀))⁻¹‖ ≤ C)
@@ -271,7 +271,7 @@ private lemma shell_vol_le_of_large_eps {t₀ ε Δ L_norm : ℝ}
 /--
 @isnad1 id=le.3h4v.s7.a0d23a599c16 from=translated src=- shape=93f29b29 vocab=e64ab00b
 -/
-lemma shell_vol_le {t₀ ε Δ L_norm : ℝ} (hL_pos : 0 < L_norm) (hΔ_nonneg : 0 ≤ Δ)
+lemma _root_.Tengoku.Leanmodularforms.shell_vol_le {t₀ ε Δ L_norm : ℝ} (hL_pos : 0 < L_norm) (hΔ_nonneg : 0 ≤ Δ)
     (_hε_pos : 0 < ε) :
     volume {t : ℝ | |L_norm * |t - t₀| - ε| ≤ Δ} ≤ ENNReal.ofReal (4 * Δ / L_norm) := by
   by_cases h : ε ≤ Δ
@@ -281,7 +281,7 @@ lemma shell_vol_le {t₀ ε Δ L_norm : ℝ} (hL_pos : 0 < L_norm) (hΔ_nonneg :
 /--
 @isnad1 id=ex.5h5v.s8.688997af3d6b from=translated src=- shape=f9c6e0b7 vocab=56d4285f
 -/
-lemma annulus_symmDiff_measure_bound {γ : ℝ → ℂ} {a b t₀ : ℝ} {L : ℂ} (_hab : a < b)
+lemma _root_.Tengoku.Leanmodularforms.annulus_symmDiff_measure_bound {γ : ℝ → ℂ} {a b t₀ : ℝ} {L : ℂ} (_hab : a < b)
     (_ht₀ : t₀ ∈ Set.Ioo a b) (hγ_C2 : ContDiffAt ℝ 2 γ t₀) (hγ_deriv : deriv γ t₀ = L)
     (hL : L ≠ 0) :
     ∃ K > 0, ∃ δ₀' > 0, ∃ δ > 0, ∀ ε₁ ε₂ : ℝ, 0 < ε₂ → ε₂ ≤ ε₁ → ε₁ < δ →
@@ -380,3 +380,4 @@ lemma annulus_symmDiff_measure_bound {γ : ℝ → ℂ} {a b t₀ : ℝ} {L : �
         simp only [Δ, R_max]; field_simp; ring
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

@@ -43,7 +43,7 @@ denominator vanishes on an open set, which is impossible.
   dense.
 - `exists_direction_forall_analyticAt`: the combination.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Set Filter Metric
 open scoped Topology Pointwise
 
@@ -53,7 +53,7 @@ variable {X : Type*} [TopologicalSpace X] [BaireSpace X]
 
 /-- **Baire's theorem** relative to an open set: if a nonempty open set is covered by countably
 many closed sets, one of them contains a nonempty open subset of it. -/
-theorem exists_isOpen_subset_inter_of_subset_iUnion {ι : Type*} [Countable ι] {Y : ι → Set X}
+theorem _root_.Tengoku.LanaOka.exists_isOpen_subset_inter_of_subset_iUnion {ι : Type*} [Countable ι] {Y : ι → Set X}
     (hY : ∀ i, IsClosed (Y i)) {V : Set X} (hV : IsOpen V) (hVne : V.Nonempty)
     (hcov : V ⊆ ⋃ i, Y i) : ∃ i, ∃ W, IsOpen W ∧ W.Nonempty ∧ W ⊆ V ∩ Y i := by
   obtain ⟨x₀, hx₀⟩ := hVne
@@ -74,7 +74,7 @@ theorem exists_isOpen_subset_inter_of_subset_iUnion {ι : Type*} [Countable ι] 
 
 /-- **Baire's theorem** relative to an open set: countably many open sets which are dense in a
 nonempty open set `V` have a common point in `V`. -/
-theorem nonempty_inter_iInter_of_isOpen {ι : Type*} [Countable ι] {O : ι → Set X}
+theorem _root_.Tengoku.LanaOka.nonempty_inter_iInter_of_isOpen {ι : Type*} [Countable ι] {O : ι → Set X}
     (hO : ∀ i, IsOpen (O i)) {V : Set X} (hV : IsOpen V) (hVne : V.Nonempty)
     (hdense : ∀ i, ∀ W, IsOpen W → W.Nonempty → W ⊆ V → (W ∩ O i).Nonempty) :
     (V ∩ ⋂ i, O i).Nonempty := by
@@ -101,7 +101,7 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
 
 /-- The union of the dilates `s • W` of an open set by the elements of a set of nonzero scalars is
 open. -/
-theorem isOpen_biUnion_smul {Δ : Set ℂ} (h0 : (0 : ℂ) ∉ Δ) {W : Set E} (hW : IsOpen W) :
+theorem _root_.Tengoku.LanaOka.isOpen_biUnion_smul {Δ : Set ℂ} (h0 : (0 : ℂ) ∉ Δ) {W : Set E} (hW : IsOpen W) :
     IsOpen (⋃ s ∈ Δ, s • W) :=
   isOpen_biUnion fun _ hs ↦ hW.smul₀ fun h ↦ h0 (h ▸ hs)
 
@@ -109,7 +109,7 @@ variable [FiniteDimensional ℂ E]
 
 /-- If `f = u / w` on a ball with `u` and `w` holomorphic, then `f` is analytic at every point of
 the ball at which `w` does not vanish. -/
-theorem analyticAt_of_eq_div {f u w : E → ℂ} {z : E} {η : ℝ}
+theorem _root_.Tengoku.LanaOka.analyticAt_of_eq_div {f u w : E → ℂ} {z : E} {η : ℝ}
     (hu : DifferentiableOn ℂ u (ball z η)) (hw : DifferentiableOn ℂ w (ball z η))
     (hf : ∀ y ∈ ball z η, w y ≠ 0 → f y = u y / w y) {y : E} (hy : y ∈ ball z η)
     (hwy : w y ≠ 0) : AnalyticAt ℂ f y := by
@@ -124,7 +124,7 @@ theorem analyticAt_of_eq_div {f u w : E → ℂ} {z : E} {η : ℝ}
 /-- In every nonempty open set of directions there is a direction `v` such that `g` does not
 vanish identically near the origin on the line through `v`, provided `g` is analytic on a ball
 about the origin and does not vanish identically near the origin. -/
-theorem exists_mem_frequently_smul_ne_zero {g : E → ℂ} {ρ : ℝ} (hρ : 0 < ρ)
+theorem _root_.Tengoku.LanaOka.exists_mem_frequently_smul_ne_zero {g : E → ℂ} {ρ : ℝ} (hρ : 0 < ρ)
     (hg : AnalyticOnNhd ℂ g (ball 0 ρ)) (hg0 : ∃ᶠ z in 𝓝 0, g z ≠ 0) {V : Set E}
     (hV : IsOpen V) (hVne : V.Nonempty) : ∃ v ∈ V, ∃ᶠ t in 𝓝 (0 : ℂ), g (t • v) ≠ 0 := by
   haveI := FiniteDimensional.complete ℂ E
@@ -197,7 +197,7 @@ theorem exists_mem_frequently_smul_ne_zero {g : E → ℂ} {ρ : ℝ} (hρ : 0 <
 let `f` be locally a quotient near every point of the ball at which `g` does not vanish. Then in
 every nonempty open set `V` of nonzero directions there is a direction `v` and a radius
 `0 < r < ε` such that `f` is analytic at every point of the circle `{t • v | ‖t‖ = r}`. -/
-theorem exists_mem_forall_analyticAt_smul {g f : E → ℂ} {ρ : ℝ} (hρ : 0 < ρ)
+theorem _root_.Tengoku.LanaOka.exists_mem_forall_analyticAt_smul {g f : E → ℂ} {ρ : ℝ} (hρ : 0 < ρ)
     (hg : AnalyticOnNhd ℂ g (ball 0 ρ)) (hg0 : ∃ᶠ z in 𝓝 0, g z ≠ 0)
     (hq : ∀ z ∈ ball (0 : E) ρ, g z ≠ 0 → IsLocallyQuotientAt f z) {V : Set E}
     (hV : IsOpen V) (hVne : V.Nonempty) (hV0 : (0 : E) ∉ V) {ε : ℝ} (hε : 0 < ε) :
@@ -350,7 +350,7 @@ does not vanish. Then every nonempty open set `V` of nonzero directions contains
 such that `g` does not vanish identically near the origin on the line through `v`, and such that
 for every `ε > 0` there is a radius `0 < r < ε` for which `f` is analytic at every point of the
 circle `{t • v | ‖t‖ = r}`. -/
-theorem exists_direction_forall_analyticAt {g f : E → ℂ} {ρ : ℝ} (hρ : 0 < ρ)
+theorem _root_.Tengoku.LanaOka.exists_direction_forall_analyticAt {g f : E → ℂ} {ρ : ℝ} (hρ : 0 < ρ)
     (hg : AnalyticOnNhd ℂ g (ball 0 ρ)) (hg0 : ∃ᶠ z in 𝓝 0, g z ≠ 0)
     (hq : ∀ z ∈ ball (0 : E) ρ, g z ≠ 0 → IsLocallyQuotientAt f z) {V : Set E}
     (hV : IsOpen V) (hVne : V.Nonempty) (hV0 : (0 : E) ∉ V) :
@@ -402,3 +402,4 @@ theorem exists_direction_forall_analyticAt {g f : E → ℂ} {ρ : ℝ} (hρ : 0
   · obtain ⟨m, hm⟩ := exists_nat_one_div_lt hε
     obtain ⟨r, hr, hrv⟩ := hvO (Sum.inr m)
     exact ⟨r, ⟨hr.1, hr.2.trans hm⟩, hrv⟩
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

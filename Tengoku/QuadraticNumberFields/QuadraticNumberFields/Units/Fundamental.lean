@@ -42,7 +42,7 @@ unit.
 * Get one unit from mathlib's `NumberField.Units.dirichletUnitTheorem.fundSystem`.
 * Prove `IsFundamentalUnit ε` and record the sign behavior of `ε`.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 local notation "ℚ√" d => Qsqrtd d
 
 namespace QuadraticNumberFields
@@ -223,3 +223,4 @@ theorem isFundamentalUnit_eisensteinUnit : IsFundamentalUnit eisensteinUnit := b
 
 end Units
 end QuadraticNumberFields
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

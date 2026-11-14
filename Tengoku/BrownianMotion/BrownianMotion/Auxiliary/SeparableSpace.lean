@@ -22,7 +22,7 @@ public import Tengoku
 -/
 
 public section
-
+namespace Tengoku.BrownianMotion end Tengoku.BrownianMotion open Tengoku.BrownianMotion 
 open Filter Set TopologicalSpace
 open scoped Topology
 
@@ -41,7 +41,7 @@ section OrdConnected
 /-- Every point `x` of an open set `U` has an open order connected neighbourhood contained in `U`.
 @isnad1 id=ex.2h3v.s6.3ac05b1709d9 from=translated src=- shape=50571e74 vocab=702247fb
 -/
-lemma exists_isOpen_ordConnected_mem_subset {U : Set α} (hU : IsOpen U) {x : α} (hx : x ∈ U) :
+lemma _root_.Tengoku.BrownianMotion.exists_isOpen_ordConnected_mem_subset {U : Set α} (hU : IsOpen U) {x : α} (hx : x ∈ U) :
     ∃ V, IsOpen V ∧ V.OrdConnected ∧ x ∈ V ∧ V ⊆ U := by
   refine ⟨interior (ordConnectedComponent U x), isOpen_interior, ⟨fun y hy z hz w hw ↦ ?_⟩,
     mem_interior_iff_mem_nhds.2 (ordConnectedComponent_mem_nhds.2 (hU.mem_nhds hx)),
@@ -57,7 +57,7 @@ lemma exists_isOpen_ordConnected_mem_subset {U : Set α} (hU : IsOpen U) {x : α
 space.
 @isnad1 id=istopolo.0h1v.s5.b497f8449265 from=translated src=- shape=c668cabd vocab=478fef55
 -/
-lemma isTopologicalBasis_isOpen_ordConnected :
+lemma _root_.Tengoku.BrownianMotion.isTopologicalBasis_isOpen_ordConnected :
     IsTopologicalBasis {V : Set α | IsOpen V ∧ V.OrdConnected} :=
   isTopologicalBasis_of_isOpen_of_nhds (fun _ hu ↦ hu.1) fun _ _ ha hu ↦
     let ⟨V, hVo, hVc, haV, hVu⟩ := exists_isOpen_ordConnected_mem_subset hu ha
@@ -66,7 +66,7 @@ lemma isTopologicalBasis_isOpen_ordConnected :
 /-- The open order connected sets containing a point form a basis of its neighbourhood filter.
 @isnad1 id=hasbasis.0h2v.s6.ed484cfbe32d from=translated src=- shape=deaf0228 vocab=91944c6f
 -/
-lemma nhds_basis_isOpen_ordConnected (x : α) :
+lemma _root_.Tengoku.BrownianMotion.nhds_basis_isOpen_ordConnected (x : α) :
     (𝓝 x).HasBasis (fun V : Set α ↦ (IsOpen V ∧ V.OrdConnected) ∧ x ∈ V) id :=
   isTopologicalBasis_isOpen_ordConnected.nhds_hasBasis
 
@@ -90,7 +90,7 @@ private lemma countable_isolated_inter_Ioi_aux [SeparableSpace α] {s : Set α} 
 isolated in the subspace `s` form a countable set.
 @isnad1 id=countabl.0h2v.s6.97c418258ba9 from=translated src=- shape=e5502308 vocab=385278af
 -/
-lemma countable_setOf_isolated_subtype [SeparableSpace α] (s : Set α) :
+lemma _root_.Tengoku.BrownianMotion.countable_setOf_isolated_subtype [SeparableSpace α] (s : Set α) :
     {x : s | IsOpen {x}}.Countable := by
   obtain ⟨D, hDc, hDd⟩ := exists_countable_dense α
   -- Each such point `x` has an open order connected neighbourhood `W x` meeting `s` only in `x`.
@@ -117,3 +117,4 @@ lemma countable_setOf_isolated_subtype [SeparableSpace α] (s : Set α) :
   · exact .inl (.inl ⟨hx, h₁⟩)
 
 end Separable
+-- Tengoku: root names of this library moved to Tengoku.BrownianMotion so they do not collide with other libraries (generated)

@@ -1,7 +1,7 @@
 import Tengoku
 
 /-!  # Linear Algebra auxiliary lemmas   -/
-
+namespace Tengoku.Certifyinginvariantsnf end Tengoku.Certifyinginvariantsnf open Tengoku.Certifyinginvariantsnf
 open Module
 
 /--
@@ -24,7 +24,7 @@ lemma Basis.equivFun_symm_eq_repr_symm' {M ι R : Type*} [Fintype ι] [AddCommMo
   rw [this]
   exact Basis.equivFun_symm_eq_repr_symm b _
 
-noncomputable def basisSpanOfBasis.basis_in_span {K L ι R: Type*} [CommRing R] [CommRing L]
+noncomputable def Tengoku.Certifyinginvariantsnf.basisSpanOfBasis.basis_in_span {K L ι R: Type*} [CommRing R] [CommRing L]
     [Field K] [Algebra R K] [IsFractionRing R K] [Module K L][Algebra R L][IsScalarTower R K L]
     (b : Basis ι K L) (O : Subalgebra R L)
     (h : (O : Set L) = Submodule.span R (Set.range b)) (i : ι) :
@@ -32,7 +32,7 @@ noncomputable def basisSpanOfBasis.basis_in_span {K L ι R: Type*} [CommRing R] 
   rw [← SetLike.mem_coe]
   exact h ▸ Submodule.subset_span (Set.mem_range_self _)
 
-noncomputable def basisSpanOfBasis.linearIndependent {K L ι R: Type*} [CommRing R] [CommRing L]
+noncomputable def Tengoku.Certifyinginvariantsnf.basisSpanOfBasis.linearIndependent {K L ι R: Type*} [CommRing R] [CommRing L]
     [Field K] [Algebra R K] [IsFractionRing R K] [Module K L] [Algebra R L] [IsScalarTower R K L]
     (b : Basis ι K L) (O : Subalgebra R L) (h : (O : Set L) = Submodule.span R (Set.range b)) :
     LinearIndependent R (fun i => (⟨b i, basis_in_span b O h i⟩ : O)) := by
@@ -41,7 +41,7 @@ noncomputable def basisSpanOfBasis.linearIndependent {K L ι R: Type*} [CommRing
   rw [SMulMemClass.coe_subtype, this, LinearIndependent.iff_fractionRing R K]
   · exact b.linearIndependent
 
-noncomputable def basisSpanOfBasis.spans {K L ι R: Type*} [CommRing R] [CommRing L]
+noncomputable def Tengoku.Certifyinginvariantsnf.basisSpanOfBasis.spans {K L ι R: Type*} [CommRing R] [CommRing L]
     [Field K] [Algebra R K] [IsFractionRing R K] [Module K L][Algebra R L][IsScalarTower R K L]
     (b : Basis ι K L) (O : Subalgebra R L) (h : (O : Set L) = Submodule.span R (Set.range b))  :
     ⊤ ≤ Submodule.span R (Set.range (fun i => (⟨b i, basis_in_span b O h i⟩ : O))) := by
@@ -61,8 +61,9 @@ noncomputable def basisSpanOfBasis.spans {K L ι R: Type*} [CommRing R] [CommRin
   exact h ▸ hx
 
 /-- If `B` is a `K`-basis for `L` and `O` is the `R`-span of `B`, then `B` is an `R`-basis for `O`.  -/
-noncomputable def basisSpanOfBasis {K L ι R: Type*} [CommRing R] [CommRing L] [Field K] [Algebra R K]
+noncomputable def _root_.Tengoku.Certifyinginvariantsnf.basisSpanOfBasis {K L ι R: Type*} [CommRing R] [CommRing L] [Field K] [Algebra R K]
     [IsFractionRing R K] [Module K L] [Algebra R L] [IsScalarTower R K L]
     (b : Basis ι K L) (O : Subalgebra R L) (h : O.carrier = Submodule.span R (Set.range b)) :
     Basis ι R O :=
   Basis.mk (basisSpanOfBasis.linearIndependent b O h) (basisSpanOfBasis.spans b O h)
+-- Tengoku: root names of this library moved to Tengoku.Certifyinginvariantsnf so they do not collide with other libraries (generated)

@@ -18,7 +18,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.FormalConjectures end Tengoku.FormalConjectures open Tengoku.FormalConjectures 
 /-!
 # Divergence of a nonnegative sum over a subset
 
@@ -33,7 +33,7 @@ open Filter
 partial sums of `f` restricted to `A` diverge.
 @isnad1 id=iff.1h2v.s6.2a63a107c2f0 from=translated src=- shape=61bda978 vocab=c3343208
 -/
-theorem not_summable_subtype_iff_tendsto_sum_indicator {A : Set ℕ} {f : ℕ → ℝ}
+theorem _root_.Tengoku.FormalConjectures.not_summable_subtype_iff_tendsto_sum_indicator {A : Set ℕ} {f : ℕ → ℝ}
     (hf : ∀ n, 0 ≤ f n) :
     ¬ Summable (fun n : A ↦ f n) ↔
       Tendsto (fun N : ℕ => ∑ n ∈ Finset.range N, A.indicator f n) atTop atTop := by
@@ -41,3 +41,4 @@ theorem not_summable_subtype_iff_tendsto_sum_indicator {A : Set ℕ} {f : ℕ �
   rw [hcomp, summable_subtype_iff_indicator,
     not_summable_iff_tendsto_nat_atTop_of_nonneg
       (fun n => Set.indicator_nonneg (fun a _ => hf a) n)]
+-- Tengoku: root names of this library moved to Tengoku.FormalConjectures so they do not collide with other libraries (generated)

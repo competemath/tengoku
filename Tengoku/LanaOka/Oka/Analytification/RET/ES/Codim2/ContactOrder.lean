@@ -33,7 +33,7 @@ the two branches have contact order `k` along `t = 0`.
   a holomorphic function.
 - `Codim2.exists_eq_pow_mul`: `δ = tᵏ u` with `u` holomorphic and nowhere zero.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Set Filter Metric Topology
 
 namespace Codim2
@@ -253,3 +253,4 @@ theorem exists_eq_pow_mul {G : Set E} (hGo : IsOpen G) (hG : IsPreconnected G) {
     ring
 
 end Codim2
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

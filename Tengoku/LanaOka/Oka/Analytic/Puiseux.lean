@@ -38,7 +38,7 @@ extension theorem since the roots of a monic polynomial are bounded by its coeff
 
 - H. Grauert, R. Remmert, *Komplexe Räume*, Math. Ann. 136 (1958), §11, Hilfssatz 6.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Polynomial Set Metric Filter Topology Kummer
 
 namespace Puiseux
@@ -375,3 +375,4 @@ theorem exists_prod_eq_of_radius (hG : Convex ℝ G) (hGo : IsOpen G) {r : ℝ} 
 end
 
 end Puiseux
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

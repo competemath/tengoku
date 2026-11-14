@@ -15,7 +15,7 @@ products of submodules, etc.) used throughout the patching argument.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Flt end Tengoku.Flt open Tengoku.Flt 
 /--
 @isnad1 id=iff.0h3v.s5.0c4fafbf5dbe from=translated src=- shape=bbebe99d vocab=e19307f3
 -/
@@ -27,7 +27,7 @@ lemma IsUnit.pi_iff {ι} {M : ι → Type*} [∀ i, Monoid (M i)] {x : Π i, M i
 /--
 @isnad1 id=iff.0h3v.s5.8a8d2e704734 from=translated src=- shape=501bb601 vocab=b65656d3
 -/
-lemma forall_prod_iff {ι} {β : ι → Type*} (P : ∀ i, β i → Prop) [∀ i, Nonempty (β i)] :
+lemma _root_.Tengoku.Flt.forall_prod_iff {ι} {β : ι → Type*} (P : ∀ i, β i → Prop) [∀ i, Nonempty (β i)] :
     (∀ i : ι, ∀ (y : Π i, β i), P i (y i)) ↔ (∀ i y, P i y) :=
   letI := Classical.decEq
   ⟨fun H i y ↦ by simpa using H i (fun j ↦ if h : i = j then h ▸ y else
@@ -85,7 +85,7 @@ local instance {ι : Type*} {R A : ι → Type*} [∀ i, CommSemiring (R i)]
 /--
 @isnad1 id=eq.0h2v.s8.bd6835165a2d from=translated src=- shape=b292a224 vocab=12791ea0
 -/
-lemma pi'_jacobson :
+lemma _root_.Tengoku.Flt.pi'_jacobson :
     Submodule.pi' (fun i ↦ Ideal.jacobson (R := R i) ⊥) = Ideal.jacobson ⊥ := by
   ext v
   simp only [Submodule.mem_pi', Ideal.mem_jacobson_bot, IsUnit.pi_iff]
@@ -97,7 +97,7 @@ open Topology in
 @isnad1 id=ex.1h2v.s6.b1320cf99422 from=translated src=- shape=27c0bbb1 vocab=2292fa46
 -/
 @[to_additive]
-theorem exists_subgroup_isOpen_and_subset {α : Type*} [TopologicalSpace α]
+theorem _root_.Tengoku.Flt.exists_subgroup_isOpen_and_subset {α : Type*} [TopologicalSpace α]
     [CompactSpace α] [T2Space α] [TotallyDisconnectedSpace α]
     [CommGroup α] [IsTopologicalGroup α] {U : Set α} (hU : U ∈ 𝓝 1) :
     ∃ G : Subgroup α, IsOpen (X := α) G ∧ (G : Set α) ⊆ U := by
@@ -197,7 +197,7 @@ open Topology Pointwise in
 /--
 @isnad1 id=ex.1h2v.s6.33f769ff636b from=translated src=- shape=27c0bbb1 vocab=44404288
 -/
-theorem exists_twoSidedIdeal_isOpen_and_subset {α} [TopologicalSpace α]
+theorem _root_.Tengoku.Flt.exists_twoSidedIdeal_isOpen_and_subset {α} [TopologicalSpace α]
     [CompactSpace α] [T2Space α] [TotallyDisconnectedSpace α]
     [Ring α] [IsTopologicalRing α] {U : Set α} (hU : U ∈ 𝓝 0) :
     ∃ I : TwoSidedIdeal α, IsOpen (X := α) I ∧ (I : Set α) ⊆ U := by
@@ -244,7 +244,7 @@ open Topology in
 /--
 @isnad1 id=ex.1h2v.s6.6e1cf3eddecc from=translated src=- shape=27c0bbb1 vocab=c9f37f79
 -/
-theorem exists_ideal_isOpen_and_subset {α} [TopologicalSpace α]
+theorem _root_.Tengoku.Flt.exists_ideal_isOpen_and_subset {α} [TopologicalSpace α]
     [CompactSpace α] [T2Space α] [TotallyDisconnectedSpace α]
     [Ring α] [IsTopologicalRing α] {U : Set α} (hU : U ∈ 𝓝 0) :
     ∃ I : Ideal α, IsOpen (X := α) I ∧ (I : Set α) ⊆ U := by
@@ -393,7 +393,7 @@ lemma IsModuleTopology.compactSpace
 /--
 @isnad1 id=disjoint.1h2v.s7.25f251d6c897 from=translated src=- shape=31be8eb5 vocab=23c3fa8b
 -/
-lemma disjoint_nonZeroDivisors_of_mem_minimalPrimes
+lemma _root_.Tengoku.Flt.disjoint_nonZeroDivisors_of_mem_minimalPrimes
     {R : Type*} [CommRing R] (p : Ideal R) (hp : p ∈ minimalPrimes R) :
     Disjoint (p : Set R) (nonZeroDivisors R) := by
   classical
@@ -422,3 +422,4 @@ lemma disjoint_nonZeroDivisors_of_mem_minimalPrimes
     rwa [Nat.one_le_iff_ne_zero]
   · exact Nat.find_min H (Nat.sub_one_lt this)
 -- Tengoku: 4 registration(s) of this module made local so they do not change other libraries (generated)
+-- Tengoku: root names of this library moved to Tengoku.Flt so they do not collide with other libraries (generated)

@@ -6,28 +6,28 @@ public import Tengoku
 import Tengoku.ForbiddenMatrix.ForbiddenMatrix.MatrixOperations
 
 @[expose] public section
-
+namespace Tengoku.ForbiddenMatrix end Tengoku.ForbiddenMatrix open Tengoku.ForbiddenMatrix 
 open Finset Set
 
 variable {α β : Type*} [LinearOrder α] [LinearOrder β]
 
 /-! ### Definitions -/
 
-def IdentityPattern (n : ℕ) (i j : Fin n) : Prop := i = j
+def _root_.Tengoku.ForbiddenMatrix.IdentityPattern (n : ℕ) (i j : Fin n) : Prop := i = j
 
 @[nolint unusedArguments]
-def AllPattern (m n : ℕ) : Fin m → Fin n → Prop := fun _ _ ↦ True
-abbrev VerticalPattern (m : ℕ) : Fin m → Fin 1 → Prop := AllPattern m 1
-abbrev HorizontalPattern (n : ℕ) : Fin 1 → Fin n → Prop := AllPattern 1 n
-abbrev TrivialPattern : Fin 1 → Fin 1 → Prop := AllPattern 1 1
+def _root_.Tengoku.ForbiddenMatrix.AllPattern (m n : ℕ) : Fin m → Fin n → Prop := fun _ _ ↦ True
+abbrev _root_.Tengoku.ForbiddenMatrix.VerticalPattern (m : ℕ) : Fin m → Fin 1 → Prop := AllPattern m 1
+abbrev _root_.Tengoku.ForbiddenMatrix.HorizontalPattern (n : ℕ) : Fin 1 → Fin n → Prop := AllPattern 1 n
+abbrev _root_.Tengoku.ForbiddenMatrix.TrivialPattern : Fin 1 → Fin 1 → Prop := AllPattern 1 1
 
 /--
 @isnad1 id=eq.0h0v.s4.4b5e229d7622 from=translated src=- shape=167d8263 vocab=7c4653ff
 -/
-@[simp] lemma identityPattern_one : IdentityPattern 1 = TrivialPattern := by
+@[simp] lemma _root_.Tengoku.ForbiddenMatrix.identityPattern_one : IdentityPattern 1 = TrivialPattern := by
   ext i j; simp [IdentityPattern, AllPattern, Subsingleton.elim i j]
 
-def HatPattern : Fin 2 → Fin 3 → Prop :=
+def _root_.Tengoku.ForbiddenMatrix.HatPattern : Fin 2 → Fin 3 → Prop :=
   ![
     ![False, True, False],
     ![True, False, True]
@@ -38,13 +38,13 @@ def HatPattern : Fin 2 → Fin 3 → Prop :=
 /--
 @isnad1 id=eq.0h4v.s5.9e4eae892b0a from=translated src=- shape=dcc755f6 vocab=fd4f7b37
 -/
-@[simp] lemma ex_of_isEmpty [IsEmpty α] [IsEmpty β] (P : α → β → Prop) (n : ℕ) : ex P n = 0 := by
+@[simp] lemma _root_.Tengoku.ForbiddenMatrix.ex_of_isEmpty [IsEmpty α] [IsEmpty β] (P : α → β → Prop) (n : ℕ) : ex P n = 0 := by
   simp [ex]
 
 /--
 @isnad1 id=eq.0h1v.s5.32e0ee40f266 from=translated src=- shape=abcd7f9b vocab=905963fb
 -/
-@[simp] lemma ex_trivialPattern (n : ℕ) : ex TrivialPattern n = 0 := by
+@[simp] lemma _root_.Tengoku.ForbiddenMatrix.ex_trivialPattern (n : ℕ) : ex TrivialPattern n = 0 := by
   simp only [ex, sup_eq_zero, mem_filter, Finset.mem_univ, true_and, density, card_eq_zero,
     not_imp_comm (a := Contains _ _), ← Finset.nonempty_iff_ne_empty, Finset.Nonempty, Prod.exists,
     forall_exists_index]
@@ -53,7 +53,7 @@ def HatPattern : Fin 2 → Fin 3 → Prop :=
 /--
 @isnad1 id=eq.0h1v.s5.9b1a6c863507 from=translated src=- shape=c0bb8e41 vocab=dffd1398
 -/
-@[simp] theorem ex_identityPattern_two (n : ℕ) : ex (IdentityPattern 2) n = 2 * n - 1 := by
+@[simp] theorem _root_.Tengoku.ForbiddenMatrix.ex_identityPattern_two (n : ℕ) : ex (IdentityPattern 2) n = 2 * n - 1 := by
   obtain rfl | hn := eq_zero_or_neZero n
   · simp
   apply ge_antisymm
@@ -125,7 +125,7 @@ def HatPattern : Fin 2 → Fin 3 → Prop :=
 /--
 @isnad1 id=eq.0h1v.s5.9115b1afeadf from=translated src=- shape=0083f852 vocab=24d3e107
 -/
-lemma ex_verticalPattern_two (n : ℕ) : ex (VerticalPattern 2) n = n := by
+lemma _root_.Tengoku.ForbiddenMatrix.ex_verticalPattern_two (n : ℕ) : ex (VerticalPattern 2) n = n := by
   classical
   refine le_antisymm ?_ ?_
   · simp only [ex, Finset.sup_le_iff, mem_filter, Finset.mem_univ, true_and]
@@ -227,7 +227,7 @@ example (n : ℕ) : ex (HorizontalPattern 2) n ≤ n := by
 /--
 @isnad1 id=le.0h2v.s5.e5d5f2cf1050 from=translated src=- shape=eb3eb020 vocab=6ca0676b
 -/
-theorem ex_horizontal (k n : ℕ) : ex (HorizontalPattern k) n ≤ n*(k-1) := by
+theorem _root_.Tengoku.ForbiddenMatrix.ex_horizontal (k n : ℕ) : ex (HorizontalPattern k) n ≤ n*(k-1) := by
   classical
   simp only [ex, Finset.sup_le_iff, mem_filter, Finset.mem_univ, true_and]
   intro M NoHPk
@@ -246,7 +246,7 @@ theorem ex_horizontal (k n : ℕ) : ex (HorizontalPattern k) n ≤ n*(k-1) := by
 /--
 @isnad1 id=le.0h2v.s5.bfd9d29af462 from=translated src=- shape=4a5c13e4 vocab=672ead6b
 -/
-theorem ex_vertical (k n : ℕ) : ex (VerticalPattern k) n ≤ n*(k-1) := by
+theorem _root_.Tengoku.ForbiddenMatrix.ex_vertical (k n : ℕ) : ex (VerticalPattern k) n ≤ n*(k-1) := by
   classical
   calc
     ex (VerticalPattern k) n
@@ -276,7 +276,7 @@ theorem ex_vertical (k n : ℕ) : ex (VerticalPattern k) n ≤ n*(k-1) := by
 /--
 @isnad1 id=le.0h1v.s5.ce4784155caf from=translated src=- shape=78a84e1f vocab=9430c2c0
 -/
-theorem ex_hat (n : ℕ) : ex HatPattern n ≤ 3 * n := by
+theorem _root_.Tengoku.ForbiddenMatrix.ex_hat (n : ℕ) : ex HatPattern n ≤ 3 * n := by
   classical
   simp only [ex, Finset.sup_le_iff, mem_filter, Finset.mem_univ, true_and]
   intro M noHat
@@ -326,3 +326,4 @@ theorem ex_hat (n : ℕ) : ex HatPattern n ≤ 3 * n := by
     _ ≤ n * 2 + density M2 := by simp [dm1]
     _ ≤ n * 2 + n := by simp [dm2]
     _ ≤ 3 * n := by omega
+-- Tengoku: root names of this library moved to Tengoku.ForbiddenMatrix so they do not collide with other libraries (generated)

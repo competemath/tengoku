@@ -25,7 +25,7 @@ The scheme-level assembly of the `T-SMOOTH-REG` stream:
 This discharges the leaf `L1` of the geometric-irreducibility decomposition
 (`ModularCurve/IrreducibilityScoping.lean`).
 -/
-
+namespace Tengoku.Aintlib end Tengoku.Aintlib open Tengoku.Aintlib
 universe u
 
 open CategoryTheory AlgebraicGeometry TopologicalSpace
@@ -87,3 +87,4 @@ theorem irreducibleSpace_of_connectedSpace_of_smooth_curve
     exact ⟨W, hWo, hxW, hWirr⟩
 
 end ModularCurves
+-- Tengoku: root names of this library moved to Tengoku.Aintlib so they do not collide with other libraries (generated)

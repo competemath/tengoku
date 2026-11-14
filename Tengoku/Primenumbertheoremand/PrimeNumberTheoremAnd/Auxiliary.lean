@@ -8,7 +8,7 @@ import Tengoku
 /-!
 ### Auxiliary lemmas
 -/
-
+namespace Tengoku.Primenumbertheoremand end Tengoku.Primenumbertheoremand open Tengoku.Primenumbertheoremand
 namespace Complex
 -- see https://leanprover.zulipchat.com/#narrow/stream/217875-Is-there-code-for-X.3F/topic/Differentiability.20of.20the.20natural.20map.20.E2.84.9D.20.E2.86.92.20.E2.84.82/near/418095234
 
@@ -72,3 +72,4 @@ lemma deriv.ofReal_comp {z : ℝ} {f : ℝ → ℝ} :
   · have hf' := mt DifferentiableAt.ofReal_comp_iff.mp hf
     rw [deriv_zero_of_not_differentiableAt hf, deriv_zero_of_not_differentiableAt hf',
       Complex.ofReal_zero]
+-- Tengoku: root names of this library moved to Tengoku.Primenumbertheoremand so they do not collide with other libraries (generated)

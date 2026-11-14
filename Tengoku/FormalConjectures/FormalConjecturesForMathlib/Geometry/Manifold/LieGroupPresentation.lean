@@ -40,7 +40,7 @@ countable: every discrete group is a `0`-dimensional Lie group.
 -/
 
 @[expose] public section
-
+namespace Tengoku.FormalConjectures end Tengoku.FormalConjectures open Tengoku.FormalConjectures 
 open scoped Manifold ContDiff
 
 universe u
@@ -49,7 +49,7 @@ variable {G : Type*} [Group G] [TopologicalSpace G]
 
 /-- A continuous group isomorphism from `G` to an `n`-dimensional real-analytic Lie group.
 The Lie group is not assumed to be second countable.-/
-structure LieGroupPresentation (G : Type u) [TopologicalSpace G] [Group G] (n : ℕ) where
+structure _root_.Tengoku.FormalConjectures.LieGroupPresentation (G : Type u) [TopologicalSpace G] [Group G] (n : ℕ) where
   carrier : Type u
   [topologicalSpace : TopologicalSpace carrier]
   [group : Group carrier]
@@ -61,13 +61,13 @@ structure LieGroupPresentation (G : Type u) [TopologicalSpace G] [Group G] (n : 
 
 /-- A topological group admits a Lie group structure if it has a `LieGroupPresentation` in some
 finite dimension.-/
-def AdmitsLieGroupStructure (G : Type u) [Group G] [TopologicalSpace G] : Prop :=
+def _root_.Tengoku.FormalConjectures.AdmitsLieGroupStructure (G : Type u) [Group G] [TopologicalSpace G] : Prop :=
   ∃ n, Nonempty (LieGroupPresentation G n)
 
 /-- Every Hausdorff finite-dimensional real-analytic Lie group admits a Lie group structure.
 @isnad1 id=admitsli.0h2v.s8.f4a4ac32af23 from=translated src=- shape=15bc4f06 vocab=129ca35f
 -/
-theorem admitsLieGroupStructure_of_lieGroup {n : ℕ} [T2Space G]
+theorem _root_.Tengoku.FormalConjectures.admitsLieGroupStructure_of_lieGroup {n : ℕ} [T2Space G]
     [ChartedSpace (EuclideanSpace ℝ (Fin n)) G] [LieGroup (𝓡 n) ω G] :
     AdmitsLieGroupStructure G :=
   ⟨n, ⟨{ carrier := G, equiv := ContinuousMulEquiv.refl G }⟩⟩
@@ -75,7 +75,7 @@ theorem admitsLieGroupStructure_of_lieGroup {n : ℕ} [T2Space G]
 /-- Every discrete group is a `0`-dimensional Lie group.
 @isnad1 id=admitsli.0h1v.s4.5eb3280e595b from=translated src=- shape=affebb5f vocab=3800b135
 -/
-theorem admitsLieGroupStructure_of_discreteTopology [DiscreteTopology G] :
+theorem _root_.Tengoku.FormalConjectures.admitsLieGroupStructure_of_discreteTopology [DiscreteTopology G] :
     AdmitsLieGroupStructure G := by
   let := ChartedSpace.ofDiscreteTopology (M := G) (H := EuclideanSpace ℝ (Fin 0))
   have := IsManifold.of_discreteTopology (𝕜 := ℝ) (M := G) (E := EuclideanSpace ℝ (Fin 0)) ω
@@ -87,7 +87,7 @@ theorem admitsLieGroupStructure_of_discreteTopology [DiscreteTopology G] :
 /-- A group admitting a Lie group structure is locally compact.
 @isnad1 id=locallyc.1h1v.s4.808067b8c899 from=translated src=- shape=affebb5f vocab=e0074ec4
 -/
-theorem AdmitsLieGroupStructure.locallyCompactSpace (h : AdmitsLieGroupStructure G) :
+theorem Tengoku.FormalConjectures.AdmitsLieGroupStructure.locallyCompactSpace (h : AdmitsLieGroupStructure G) :
     LocallyCompactSpace G := by
   obtain ⟨k, ⟨p⟩⟩ := h
   let := p.topologicalSpace
@@ -97,3 +97,4 @@ theorem AdmitsLieGroupStructure.locallyCompactSpace (h : AdmitsLieGroupStructure
   have : LocallyCompactSpace p.carrier :=
     ChartedSpace.locallyCompactSpace (EuclideanSpace ℝ (Fin k)) p.carrier
   exact p.equiv.toHomeomorph.locallyCompactSpace_iff.mpr inferInstance
+-- Tengoku: root names of this library moved to Tengoku.FormalConjectures so they do not collide with other libraries (generated)

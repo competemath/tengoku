@@ -35,7 +35,7 @@ Consumer: `[a3-ii]` of `[T-E5c-ROUTE-A]` — for a `G`-stable affine open `W` of
 curve, `Γ(W) ≅ Γ(W)ᴳ ⊗_{Aᴳ} A`, i.e. `W ≅ (W/G) ×_{X/G} X`. That is the cartesianness of the
 KM descent square, obtained without SGA I Exp. VIII 7.8.
 -/
-
+namespace Tengoku.Aintlib end Tengoku.Aintlib open Tengoku.Aintlib
 universe u v
 
 open TensorProduct
@@ -309,3 +309,4 @@ theorem isPullback_Spec_fixedPoints
 end AlgebraCase
 
 end MulSemiringAction
+-- Tengoku: root names of this library moved to Tengoku.Aintlib so they do not collide with other libraries (generated)

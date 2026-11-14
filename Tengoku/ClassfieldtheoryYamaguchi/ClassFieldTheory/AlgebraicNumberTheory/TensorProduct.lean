@@ -9,7 +9,7 @@ import Tengoku.Seed.LinearAlgebra.Dimension.Constructions
 import Tengoku.Seed.LinearAlgebra.TensorProduct.Basis
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.ClassfieldtheoryYamaguchi end Tengoku.ClassfieldtheoryYamaguchi open Tengoku.ClassfieldtheoryYamaguchi
 set_option autoImplicit false
 
 /-!
@@ -43,7 +43,7 @@ variable
 tensor product is a field.
 @isnad1 id=isfield.1h3v.s8.7712f2a7ad8d from=translated src=- shape=88e5e355 vocab=74db6d4e
 -/
-theorem tensorProduct_isField_of_finrank_coprime
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.tensorProduct_isField_of_finrank_coprime
     (hcoprime :
       (Module.finrank K M).Coprime
         (Module.finrank K L)) :
@@ -76,7 +76,7 @@ variable [hGalois : IsGalois K L]
 
 /-- Extend a `K`-automorphism of `L` to the coprime tensor base
 change, fixing the left factor `M`.-/
-def tensorBaseChangeAut
+def _root_.Tengoku.ClassfieldtheoryYamaguchi.tensorBaseChangeAut
     (σ : L ≃ₐ[K] L) :
     (M ⊗[K] L) ≃ₐ[M] (M ⊗[K] L) :=
   { (Algebra.TensorProduct.congr
@@ -90,7 +90,7 @@ omit hKM hKL hGalois in
 @isnad1 id=eq.0h6v.s9.7e8d3e7a53bd from=translated src=- shape=e0b50f8d vocab=9e4454a9
 -/
 @[simp]
-theorem tensorBaseChangeAut_tmul
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.tensorBaseChangeAut_tmul
     (σ : L ≃ₐ[K] L)
     (m : M) (x : L) :
     tensorBaseChangeAut K M L σ (m ⊗ₜ[K] x) =
@@ -101,7 +101,7 @@ omit hKM hKL hGalois in
 /-- Distinct automorphisms remain distinct after tensor base change.
 @isnad1 id=injectiv.0h3v.s8.92432b8509da from=translated src=- shape=022d3e0e vocab=1f209dcb
 -/
-theorem tensorBaseChangeAut_injective :
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.tensorBaseChangeAut_injective :
     Function.Injective (tensorBaseChangeAut K M L) := by
   intro σ τ hστ
   apply AlgEquiv.ext
@@ -121,7 +121,7 @@ theorem tensorBaseChangeAut_injective :
 /-- Galoisness survives the coprime tensor-product base change.
 @isnad1 id=isgalois.1h3v.s8.5c2c69a8b189 from=translated src=- shape=273440ab vocab=fe46671b
 -/
-theorem tensorProduct_isGalois_of_finrank_coprime
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.tensorProduct_isGalois_of_finrank_coprime
     (hcoprime :
       (Module.finrank K M).Coprime
         (Module.finrank K L)) :
@@ -160,3 +160,4 @@ theorem tensorProduct_isGalois_of_finrank_coprime
       (Nat.le_antisymm hupp hlow')
 
 end TensorAutomorphisms
+-- Tengoku: root names of this library moved to Tengoku.ClassfieldtheoryYamaguchi so they do not collide with other libraries (generated)

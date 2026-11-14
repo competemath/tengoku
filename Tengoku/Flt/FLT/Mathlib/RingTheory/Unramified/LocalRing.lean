@@ -36,7 +36,7 @@ The quadratic case of the lifting theorem is the local-field input to
 -/
 
 @[expose] public section
-
+namespace Tengoku.Flt end Tengoku.Flt open Tengoku.Flt 
 universe u
 
 open IsLocalRing Polynomial
@@ -52,7 +52,7 @@ valuation ring `S` with fraction field `L`, containing `R` via a local homomorph
 field is `k'`. (The residue degree being `[L : K]` forces ramification index `1`.)
 @isnad1 id=ex.0h3v.s9.89aa1e9c6002 from=translated src=- shape=bd9e8c1f vocab=f1ed6ecc
 -/
-theorem exists_unramified_extension_of_residueField
+theorem _root_.Tengoku.Flt.exists_unramified_extension_of_residueField
     (k' : Type u) [Field k'] [Algebra (ResidueField R) k']
     [FiniteDimensional (ResidueField R) k'] [Algebra.IsSeparable (ResidueField R) k'] :
     ∃ (L : Type u) (_ : Field L) (_ : Algebra K L) (_ : FiniteDimensional K L)
@@ -117,3 +117,4 @@ theorem exists_unramified_extension_of_residueField
     hSlocalhom, hLrank, ⟨e.extendScalarsOfSurjective residue_surjective⟩⟩
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Flt so they do not collide with other libraries (generated)

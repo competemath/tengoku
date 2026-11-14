@@ -3,46 +3,46 @@ module
 public import Tengoku
 
 public section
-
+namespace Tengoku.ForbiddenMatrix end Tengoku.ForbiddenMatrix open Tengoku.ForbiddenMatrix 
 open OrderDual
 
 variable {α β γ δ : Type*}
 
-def L'' : Fin 2 → Fin 2 → Prop :=
+def _root_.Tengoku.ForbiddenMatrix.L'' : Fin 2 → Fin 2 → Prop :=
   ![
     ![false, true],
     ![true, true]
   ]
 
-def A' : Fin 2 → Fin 1 → Prop :=
+def _root_.Tengoku.ForbiddenMatrix.A' : Fin 2 → Fin 1 → Prop :=
   ![![true], ![false]]
 
-def B' : Fin 2 → (Fin 1) → Prop :=
+def _root_.Tengoku.ForbiddenMatrix.B' : Fin 2 → (Fin 1) → Prop :=
   ![![false], ![true]]
 
-abbrev tranpose (M : α → β → Prop) : β → α → Prop := fun x y ↦ M y x
-def rev_all_rows (M : α → β → Prop) : α → βᵒᵈ → Prop := fun i ↦ M i ∘ ofDual
-def rot_cw (M : α → β → Prop) : β → αᵒᵈ → Prop := (rev_all_rows ∘ tranpose) M
+abbrev _root_.Tengoku.ForbiddenMatrix.tranpose (M : α → β → Prop) : β → α → Prop := fun x y ↦ M y x
+def _root_.Tengoku.ForbiddenMatrix.rev_all_rows (M : α → β → Prop) : α → βᵒᵈ → Prop := fun i ↦ M i ∘ ofDual
+def _root_.Tengoku.ForbiddenMatrix.rot_cw (M : α → β → Prop) : β → αᵒᵈ → Prop := (rev_all_rows ∘ tranpose) M
 
-def rev_all_rows_via_list {n : ℕ} (M : α → Fin n → Prop) : α → Fin n → Prop := fun a i ↦ M a i.rev
+def _root_.Tengoku.ForbiddenMatrix.rev_all_rows_via_list {n : ℕ} (M : α → Fin n → Prop) : α → Fin n → Prop := fun a i ↦ M a i.rev
 
-def L : Fin 2 → Fin 2 → Prop :=
+def _root_.Tengoku.ForbiddenMatrix.L : Fin 2 → Fin 2 → Prop :=
   ![
     ![true, false],
     ![true, true]
    ]
-def L' : Fin 2 → Fin 2 → Prop :=
+def _root_.Tengoku.ForbiddenMatrix.L' : Fin 2 → Fin 2 → Prop :=
   ![
     ![true, true],
     ![true, false]
   ]
 
-def X : (Fin 3)ᵒᵈ → Bool := ![true, false, false] ∘ ofDual
-def Y : Fin 3 → Bool := ![false, false, true]
+def _root_.Tengoku.ForbiddenMatrix.X : (Fin 3)ᵒᵈ → Bool := ![true, false, false] ∘ ofDual
+def _root_.Tengoku.ForbiddenMatrix.Y : Fin 3 → Bool := ![false, false, true]
 
-def A : Fin 1 → Fin 2 → Prop := ![![true, false]]
-def B : Fin 1 → (Fin 2)ᵒᵈ → Prop := ![![true, false]∘ ofDual]
-def C : Fin 1 → Fin 2 → Prop := ![![false, true]]
+def _root_.Tengoku.ForbiddenMatrix.A : Fin 1 → Fin 2 → Prop := ![![true, false]]
+def _root_.Tengoku.ForbiddenMatrix.B : Fin 1 → (Fin 2)ᵒᵈ → Prop := ![![true, false]∘ ofDual]
+def _root_.Tengoku.ForbiddenMatrix.C : Fin 1 → Fin 2 → Prop := ![![false, true]]
 
 example : (fun i ↦ C i ∘ Fin.revOrderIso ∘ toDual) = fun i ↦ rev_all_rows A i ∘ toDual := by
   ext i j; fin_cases i; fin_cases j <;> simp [rev_all_rows, A, C, Fin.rev]
@@ -55,10 +55,10 @@ example : (fun i ↦ C i ∘ Fin.revOrderIso ∘ toDual) = fun i ↦ rev_all_row
 --#eval b (toDual 0)
 
 -- the elements of (Fin 2)ᵒᵈ are, in order, toDual 1 and toDual 0
-def a : Fin 2 → Bool := ![true, false]
+def _root_.Tengoku.ForbiddenMatrix.a : Fin 2 → Bool := ![true, false]
 -- b = rev_all_rows c
-def c : Fin 2 → Bool := ![false, true]
-def b : (Fin 2)ᵒᵈ → Bool := ![false, true] ∘ ofDual
+def _root_.Tengoku.ForbiddenMatrix.c : Fin 2 → Bool := ![false, true]
+def _root_.Tengoku.ForbiddenMatrix.b : (Fin 2)ᵒᵈ → Bool := ![false, true] ∘ ofDual
 
 example : a ∘ Fin.revOrderIso = b := by
   ext x
@@ -90,3 +90,4 @@ example : A = rev_all_rows_via_list C := by
 --  ext _ j
 --  fin_cases j
 --  rfl
+-- Tengoku: root names of this library moved to Tengoku.ForbiddenMatrix so they do not collide with other libraries (generated)

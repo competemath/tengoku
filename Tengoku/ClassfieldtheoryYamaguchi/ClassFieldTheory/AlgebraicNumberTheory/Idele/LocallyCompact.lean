@@ -9,7 +9,7 @@ import Tengoku.Seed.LinearAlgebra.FreeModule.IdealQuotient
 import Tengoku.Seed.Topology.Algebra.Valued.LocallyCompact
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.ClassfieldtheoryYamaguchi end Tengoku.ClassfieldtheoryYamaguchi open Tengoku.ClassfieldtheoryYamaguchi
 set_option autoImplicit false
 
 /-!
@@ -32,7 +32,7 @@ variable (K : Type*) [Field K] [NumberField K]
 algebraic integer to positive valuation.
 @isnad1 id=ex.1h3v.s8.442fafce27c4 from=translated src=- shape=664673bd vocab=b3c2b4c0
 -/
-theorem exists_ringOfIntegers_approximation
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.exists_ringOfIntegers_approximation
     (v : HeightOneSpectrum (𝓞 K)) (y : K)
     (hy : v.valuation K y ≤ 1) :
     ∃ r : 𝓞 K, v.valuation K (y - algebraMap (𝓞 K) K r) < 1 := by
@@ -178,7 +178,7 @@ noncomputable def ringOfIntegersQuotientEquivAdicResidueField
         ring]
       exact Valued.v.map_sub_le x.2 hxy.le
     obtain ⟨r, hyr⟩ :=
-      _root_.exists_ringOfIntegers_approximation
+      _root_.Tengoku.ClassfieldtheoryYamaguchi.exists_ringOfIntegers_approximation
         K v y hy_integral
     have hyr' :
         Valued.v
@@ -248,7 +248,7 @@ end GlobalClassFieldTheory.ClassFieldAxiom
 finite.
 @isnad1 id=finite.0h2v.s6.a5d752fd98ce from=translated src=- shape=e9b77ac2 vocab=c841191c
 -/
-theorem finite_adicCompletion_residueField
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.finite_adicCompletion_residueField
     (v : HeightOneSpectrum (𝓞 K)) :
     Finite (Valued.ResidueField (v.adicCompletion K)) := by
   let : Finite (𝓞 K ⧸ v.asIdeal) :=
@@ -261,7 +261,7 @@ theorem finite_adicCompletion_residueField
 space.
 @isnad1 id=propersp.0h2v.s6.bf1e9035c0d7 from=translated src=- shape=082f7236 vocab=3ecb08b1
 -/
-instance adicCompletionProperSpace
+instance _root_.Tengoku.ClassfieldtheoryYamaguchi.adicCompletionProperSpace
     (v : HeightOneSpectrum (𝓞 K)) :
     ProperSpace (v.adicCompletion K) := by
   apply
@@ -273,7 +273,7 @@ instance adicCompletionProperSpace
 /-- The integral unit group in a finite completion is compact.
 @isnad1 id=iscompac.0h2v.s10.da1e8818485c from=translated src=- shape=755de787 vocab=10def5d5
 -/
-theorem isCompact_finiteLocalUnits
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.isCompact_finiteLocalUnits
     (v : HeightOneSpectrum (𝓞 K)) :
     IsCompact
       ((v.adicCompletionIntegers K).units :
@@ -284,3 +284,4 @@ theorem isCompact_finiteLocalUnits
       Set (v.adicCompletion K))
   exact isCompact_iff_compactSpace.mpr
     (Valued.integer.properSpace_iff_compactSpace_integer.mp inferInstance)
+-- Tengoku: root names of this library moved to Tengoku.ClassfieldtheoryYamaguchi so they do not collide with other libraries (generated)

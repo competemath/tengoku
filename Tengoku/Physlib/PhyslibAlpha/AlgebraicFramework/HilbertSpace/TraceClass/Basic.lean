@@ -71,7 +71,7 @@ a Banach space `TraceClass H` is separate, genuinely harder work; neither is att
 -/
 
 @[expose] public section
-
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
 noncomputable section
 
 open scoped ComplexOrder InnerProductSpace
@@ -83,7 +83,7 @@ variable {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteS
 /-- **`T` is trace class**: `∑ᵢ ⟪eᵢ, |T| eᵢ⟫` converges for some Hilbert basis `{eᵢ}` of `H`
 (`|T| := CFC.abs T`, Mathlib's continuous functional calculus absolute value `√(T⋆T)`). By the
 basis-independence theorem below, "some" is equivalent to "every". -/
-def IsTraceClass (T : H →L[ℂ] H) : Prop :=
+def _root_.Tengoku.Physlib.IsTraceClass (T : H →L[ℂ] H) : Prop :=
   ∃ (w : Set H) (b : HilbertBasis w ℂ H), Summable (fun i => (⟪b i, CFC.abs T (b i)⟫_ℂ).re)
 
 /-! ### Basis-independence machinery
@@ -173,7 +173,7 @@ private lemma hasSum_norm_sq_apply_of_selfAdjoint {S : H →L[ℂ] H} (hS : IsSe
 self-adjoint (`abs_nonneg` + `IsSelfAdjoint.of_nonneg`), so writing
 `⟪eᵢ, |T| eᵢ⟫ = ‖√|T| eᵢ‖²` (`CFC.sqrt`, self-adjoint) reduces this directly to
 `hasSum_norm_sq_apply_of_selfAdjoint`. -/
-theorem summable_inner_abs_of_hilbertBasis {T : H →L[ℂ] H} (h : IsTraceClass T) {w : Set H}
+theorem _root_.Tengoku.Physlib.summable_inner_abs_of_hilbertBasis {T : H →L[ℂ] H} (h : IsTraceClass T) {w : Set H}
     (b : HilbertBasis w ℂ H) :
     Summable (fun i => (⟪b i, CFC.abs T (b i)⟫_ℂ).re) := by
   obtain ⟨w₀, b₀, hb₀⟩ := h
@@ -206,7 +206,7 @@ basis.  The forward implication is the basis-independence theorem above; the rev
 only needs one basis, whose existence is available for every complete Hilbert space.  This is the
 form that downstream constructions should normally consume, since it avoids carrying the
 particular witness selected by `IsTraceClass`. -/
-theorem isTraceClass_iff {T : H →L[ℂ] H} :
+theorem _root_.Tengoku.Physlib.isTraceClass_iff {T : H →L[ℂ] H} :
     IsTraceClass T ↔
       ∀ (w : Set H) (b : HilbertBasis w ℂ H),
         Summable (fun i => (⟪b i, CFC.abs T (b i)⟫_ℂ).re) := by
@@ -221,7 +221,7 @@ theorem isTraceClass_iff {T : H →L[ℂ] H} :
 deliberately basis-level: a Hilbert basis exists, its carrier is finite by finite-dimensionality,
 and the defining nonnegative series therefore has finite support.  This is the concrete
  finite-dimensional realization used by the corresponding `WStarAlgebra` instance. -/
-theorem isTraceClass_of_finiteDimensional [FiniteDimensional ℂ H] (T : H →L[ℂ] H) :
+theorem _root_.Tengoku.Physlib.isTraceClass_of_finiteDimensional [FiniteDimensional ℂ H] (T : H →L[ℂ] H) :
     IsTraceClass T := by
   obtain ⟨w, b, _⟩ := exists_hilbertBasis ℂ H
   let : Finite w := b.orthonormal.linearIndependent.finite
@@ -233,7 +233,7 @@ theorem isTraceClass_of_finiteDimensional [FiniteDimensional ℂ H] (T : H →L[
 omit [CompleteSpace H] in
 /-- The ordinary finite-dimensional trace is the diagonal sum in any Hilbert basis. -/
 @[nolint unusedArguments]
-theorem trace_eq_sum_inner_hilbertBasis_of_finiteDimensional
+theorem _root_.Tengoku.Physlib.trace_eq_sum_inner_hilbertBasis_of_finiteDimensional
     [FiniteDimensional ℂ H] (T : H →L[ℂ] H) {w : Set H} (b : HilbertBasis w ℂ H) :
     LinearMap.trace ℂ H T.toLinearMap = ∑' i : w, ⟪b i, T (b i)⟫_ℂ := by
   let : Finite w := b.orthonormal.linearIndependent.finite
@@ -245,13 +245,13 @@ theorem trace_eq_sum_inner_hilbertBasis_of_finiteDimensional
 /-- The trace norm `‖T‖₁ := ∑ᵢ ⟪eᵢ, |T| eᵢ⟫`, computed via a chosen witness Hilbert basis (any
 basis gives the same value, by `summable_inner_abs_of_hilbertBasis` — this definition just needs
 *a* witness to compute with). -/
-def traceNorm (T : H →L[ℂ] H) (h : IsTraceClass T) : ℝ :=
+def _root_.Tengoku.Physlib.traceNorm (T : H →L[ℂ] H) (h : IsTraceClass T) : ℝ :=
   ∑' i : h.choose, (⟪h.choose_spec.choose i, CFC.abs T (h.choose_spec.choose i)⟫_ℂ).re
 
 /-- The witness proof argument of `traceNorm` is immaterial.  This small lemma is useful when
 transporting a trace-class operator through a construction that produces a new proof of the same
 proposition. -/
-theorem traceNorm_congr {T : H →L[ℂ] H} {h₁ h₂ : IsTraceClass T} :
+theorem _root_.Tengoku.Physlib.traceNorm_congr {T : H →L[ℂ] H} {h₁ h₂ : IsTraceClass T} :
     traceNorm T h₁ = traceNorm T h₂ := by
   have hh : h₁ = h₂ := Subsingleton.elim _ _
   rw [hh]
@@ -263,13 +263,13 @@ definition needs no convergence proof up front; the honest mathematical content 
 of `IsTraceClass`, via the sharp bound `∑ᵢ |⟪eᵢ, T eᵢ⟫| ≤ ∑ᵢ ⟪eᵢ, |T| eᵢ⟫` from the polar
 decomposition `T = U|T|`), together with basis-independence, is left to the later trace-class
 Banach space phase; the self-adjoint case is handled directly below without polar decomposition. -/
-def trace (T : H →L[ℂ] H) (h : IsTraceClass T) : ℂ :=
+def _root_.Tengoku.Physlib.trace (T : H →L[ℂ] H) (h : IsTraceClass T) : ℂ :=
   ∑' i : h.choose, ⟪h.choose_spec.choose i, T (h.choose_spec.choose i)⟫_ℂ
 
 /-- The trace norm is independent of the witness basis used in `IsTraceClass`.  This is the
 strong form of `summable_inner_abs_of_hilbertBasis`: the square-root/Parseval argument identifies
 the actual sums, not merely their convergence. -/
-theorem traceNorm_eq_of_hilbertBasis {T : H →L[ℂ] H} (h : IsTraceClass T) {w : Set H}
+theorem _root_.Tengoku.Physlib.traceNorm_eq_of_hilbertBasis {T : H →L[ℂ] H} (h : IsTraceClass T) {w : Set H}
     (b : HilbertBasis w ℂ H) :
     traceNorm T h = ∑' i, (⟪b i, CFC.abs T (b i)⟫_ℂ).re := by
   let w₀ : Set H := h.choose
@@ -327,7 +327,7 @@ private lemma real_inner_nonneg_of_nonneg {T : H →L[ℂ] H} (hT : 0 ≤ T) (x 
 
 /-- The trace norm is nonnegative.  This is exposed separately from its basis-independence result
 so norm estimates can use it without unpacking the chosen Hilbert-basis witness. -/
-theorem traceNorm_nonneg (T : H →L[ℂ] H) (h : IsTraceClass T) : 0 ≤ traceNorm T h := by
+theorem _root_.Tengoku.Physlib.traceNorm_nonneg (T : H →L[ℂ] H) (h : IsTraceClass T) : 0 ≤ traceNorm T h := by
   unfold traceNorm
   exact tsum_nonneg fun i => real_inner_nonneg_of_nonneg (CFC.abs_nonneg T)
     (h.choose_spec.choose i)
@@ -412,7 +412,7 @@ functional-calculus square root turns every diagonal coefficient into a squared 
 Parseval double-sum theorem already proved above gives the same sum in every Hilbert basis.  This
 is the positive case needed by density operators and does not use polar decomposition.
 -/
-theorem trace_eq_of_hilbertBasis_of_nonneg {T : H →L[ℂ] H} (hT : 0 ≤ T)
+theorem _root_.Tengoku.Physlib.trace_eq_of_hilbertBasis_of_nonneg {T : H →L[ℂ] H} (hT : 0 ≤ T)
     (h : IsTraceClass T) {w : Set H} (b : HilbertBasis w ℂ H) :
     trace T h = ∑' i, ⟪b i, T (b i)⟫_ℂ := by
   let S : H →L[ℂ] H := CFC.sqrt T
@@ -461,7 +461,7 @@ theorem trace_eq_of_hilbertBasis_of_nonneg {T : H →L[ℂ] H} (hT : 0 ≤ T)
 /-- Basis-independent trace for self-adjoint trace-class operators.  The proof reduces to the
 positive theorem through the continuous-functional-calculus decomposition `T = T⁺ - T⁻`; no
 polar decomposition is needed for this self-adjoint case. -/
-theorem trace_eq_of_hilbertBasis_of_isSelfAdjoint {T : H →L[ℂ] H} (hT : IsSelfAdjoint T)
+theorem _root_.Tengoku.Physlib.trace_eq_of_hilbertBasis_of_isSelfAdjoint {T : H →L[ℂ] H} (hT : IsSelfAdjoint T)
     (h : IsTraceClass T) {w : Set H} (b : HilbertBasis w ℂ H) :
     trace T h = ∑' i, ⟪b i, T (b i)⟫_ℂ := by
   let P : H →L[ℂ] H := T⁺
@@ -513,13 +513,13 @@ theorem trace_eq_of_hilbertBasis_of_isSelfAdjoint {T : H →L[ℂ] H} (hT : IsSe
 /-- **The honest Murray–von Neumann finiteness condition**: a self-adjoint projection
 `p : H →L[ℂ] H` has finite multiplicity iff it is trace class (equivalently, since a projection's
 eigenvalues are `0`/`1`, iff its range is finite-dimensional). -/
-def HasFiniteMultiplicity (p : H →L[ℂ] H) : Prop := IsStarProjection p ∧ IsTraceClass p
+def _root_.Tengoku.Physlib.HasFiniteMultiplicity (p : H →L[ℂ] H) : Prop := IsStarProjection p ∧ IsTraceClass p
 
 /-- A trace-class star projection has finite-dimensional range.  The proof uses the Hilbert basis
 of the range and extends it to a Hilbert basis of `H`: on every range basis vector the projection
 has diagonal coefficient `1`, so summability of the trace-class diagonal forces the range basis to
 have a finite index type. -/
-theorem HasFiniteMultiplicity.finiteDimensional_range {p : H →L[ℂ] H}
+theorem Tengoku.Physlib.HasFiniteMultiplicity.finiteDimensional_range {p : H →L[ℂ] H}
     (hp : HasFiniteMultiplicity p) :
     FiniteDimensional ℂ (LinearMap.range p.toLinearMap) := by
   let W : Submodule ℂ H := LinearMap.range p.toLinearMap
@@ -574,7 +574,7 @@ theorem HasFiniteMultiplicity.finiteDimensional_range {p : H →L[ℂ] H}
 /-- A finite-multiplicity projection has the expected trace.  The basis calculation is finite-rank:
 extend an orthonormal basis of the range to one of `H`; the projection vanishes on the complementary
 basis vectors and is the identity on the range basis. -/
-theorem HasFiniteMultiplicity.trace_eq_finrank_range
+theorem Tengoku.Physlib.HasFiniteMultiplicity.trace_eq_finrank_range
     {p : H →L[ℂ] H} (hp : HasFiniteMultiplicity p) :
     trace p hp.2 = (Module.finrank ℂ (LinearMap.range p.toLinearMap) : ℂ) := by
   have hp' : IsStarProjection p ∧ IsTraceClass p := hp
@@ -738,7 +738,7 @@ theorem HasFiniteMultiplicity.trace_eq_finrank_range
 range.  The proof deliberately goes through the ordinary linear-map trace theorem; this gives a
 fully proved finite-dimensional instance without hiding the genuinely harder infinite-dimensional
 trace-class argument behind an axiom. -/
-theorem HasFiniteMultiplicity.trace_eq_finrank_range_of_finiteDimensional
+theorem Tengoku.Physlib.HasFiniteMultiplicity.trace_eq_finrank_range_of_finiteDimensional
     [FiniteDimensional ℂ H] {p : H →L[ℂ] H} (hp : HasFiniteMultiplicity p) :
     trace p hp.2 = (Module.finrank ℂ (LinearMap.range p.toLinearMap) : ℂ) := by
   obtain ⟨w, b, _⟩ := exists_hilbertBasis ℂ H
@@ -755,3 +755,4 @@ theorem HasFiniteMultiplicity.trace_eq_finrank_range_of_finiteDimensional
       (LinearMap.IsIdempotentElem.isProj_range p.toLinearMap hpIdem).trace
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

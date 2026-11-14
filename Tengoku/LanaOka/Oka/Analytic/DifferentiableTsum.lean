@@ -25,12 +25,12 @@ formula is analytic (`analyticAt_of_cauchyRepr`).
   dominated by a summable sequence.
 - `differentiableOn_tsum_of_locally_summable`: the Weierstrass theorem for series.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Complex Metric Set MeasureTheory
 open scoped Topology
 
 /-- Term-by-term integration over a torus of a series dominated by a summable sequence. -/
-theorem hasSum_torusIntegral_of_dominated {ι : Type*} [Countable ι] {m : ℕ}
+theorem _root_.Tengoku.LanaOka.hasSum_torusIntegral_of_dominated {ι : Type*} [Countable ι] {m : ℕ}
     {F : ι → (Fin m → ℂ) → ℂ} {G : (Fin m → ℂ) → ℂ} {c : Fin m → ℂ} {R : Fin m → ℝ}
     (hF : ∀ i, Continuous fun θ ↦ F i (torusMap c R θ)) {u : ι → ℝ} (hu : Summable u)
     (hle : ∀ i θ, ‖F i (torusMap c R θ)‖ ≤ u i)
@@ -56,7 +56,7 @@ theorem hasSum_torusIntegral_of_dominated {ι : Type*} [Countable ι] {m : ℕ}
 /-- **Weierstrass theorem** for series of holomorphic functions of several variables: if each
 term is holomorphic on the open set `U` and near every point of `U` the terms are dominated by a
 summable sequence, then the sum is holomorphic on `U`. -/
-theorem differentiableOn_tsum_of_locally_summable {ι : Type*} [Countable ι] {m : ℕ}
+theorem _root_.Tengoku.LanaOka.differentiableOn_tsum_of_locally_summable {ι : Type*} [Countable ι] {m : ℕ}
     {F : ι → (Fin m → ℂ) → ℂ} {U : Set (Fin m → ℂ)} (hU : IsOpen U)
     (hF : ∀ i, DifferentiableOn ℂ (F i) U)
     (hb : ∀ x ∈ U, ∃ u : ι → ℝ, Summable u ∧ ∃ V ∈ 𝓝 x, ∀ i, ∀ y ∈ V, ‖F i y‖ ≤ u i) :
@@ -134,3 +134,4 @@ theorem differentiableOn_tsum_of_locally_summable {ι : Type*} [Countable ι] {m
       exact mul_le_mul (hC' θ) (hle i _ (hPsub _ (htm θ)).2) (norm_nonneg _) hC0
   have := analyticAt_of_shift (f := fun y ↦ ∑' i, F i y) (x₀ := x₀) hanalytic
   exact this.differentiableAt.differentiableWithinAt
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

@@ -22,7 +22,7 @@ telescoping bounds.
 * `exists_dyadic_bracket` — `ε` lies between two consecutive dyadic levels
 * `telescoping_sum_bound` — accumulated bound from geometric step bounds
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex MeasureTheory Set Filter Topology
 open scoped Real Interval
 
@@ -31,7 +31,7 @@ noncomputable section
 /-- Symmetric cancellation of 1/(t-t₀).
 @isnad1 id=eq.3h3v.s7.27d3127a921a from=translated src=- shape=5b2de407 vocab=0f2c3e4e
 -/
-lemma integral_inv_symm (t₀ ε₁ ε₂ : ℝ) (_hε₁ : 0 < ε₁) (_hε₂ : 0 < ε₂) (_hε₁₂ : ε₁ ≤ ε₂) :
+lemma _root_.Tengoku.Leanmodularforms.integral_inv_symm (t₀ ε₁ ε₂ : ℝ) (_hε₁ : 0 < ε₁) (_hε₂ : 0 < ε₂) (_hε₁₂ : ε₁ ≤ ε₂) :
     (∫ t in (t₀ - ε₂)..(t₀ - ε₁), (↑(t - t₀) : ℂ)⁻¹) +
       (∫ t in (t₀ + ε₁)..(t₀ + ε₂), (↑(t - t₀) : ℂ)⁻¹) = 0 := by
   have h_odd : ∀ u : ℝ, (↑(-u) : ℂ)⁻¹ = -((↑u : ℂ)⁻¹) := by
@@ -51,7 +51,7 @@ lemma integral_inv_symm (t₀ ε₁ ε₂ : ℝ) (_hε₁ : 0 < ε₁) (_hε₂ 
 /-- Cutoff integrand is interval integrable.
 @isnad1 id=interval.5h6v.s8.563bd0bcfd5e from=translated src=- shape=4e3d7a71 vocab=bc5e9034
 -/
-lemma cutoff_integrand_intervalIntegrable {γ : ℝ → ℂ} {a b t₀ : ℝ} {L : ℂ}
+lemma _root_.Tengoku.Leanmodularforms.cutoff_integrand_intervalIntegrable {γ : ℝ → ℂ} {a b t₀ : ℝ} {L : ℂ}
     (hat₀ : t₀ ∈ Set.Ioo a b) (_hL : L ≠ 0) (hγ_meas : Measurable γ)
     (hγ_cont_deriv : ContinuousOn (deriv γ) (Set.Icc a b)) (ε : ℝ) (hε_pos : 0 < ε) :
     IntervalIntegrable
@@ -96,7 +96,7 @@ lemma cutoff_integrand_intervalIntegrable {γ : ℝ → ℂ} {a b t₀ : ℝ} {L
 /-- Cutoff difference equals annulus integral.
 @isnad1 id=eq.3h7v.s8.7940b4cbd523 from=translated src=- shape=a8e9d29f vocab=aaa8d284
 -/
-lemma cutoff_diff_eq_annulus_integral {f : ℝ → ℂ} {γ : ℝ → ℂ} {a b t₀ : ℝ} {ε₁ ε₂ : ℝ}
+lemma _root_.Tengoku.Leanmodularforms.cutoff_diff_eq_annulus_integral {f : ℝ → ℂ} {γ : ℝ → ℂ} {a b t₀ : ℝ} {ε₁ ε₂ : ℝ}
     (h_le : ε₁ ≤ ε₂)
     (h_int₁ : IntervalIntegrable (fun t => if ε₁ < ‖γ t - γ t₀‖ then f t else 0)
       MeasureTheory.volume a b)
@@ -113,7 +113,7 @@ lemma cutoff_diff_eq_annulus_integral {f : ℝ → ℂ} {γ : ℝ → ℂ} {a b 
 /-- Dyadic sequence is Cauchy with bounded remainder.
 @isnad1 id=cauchyse.3h3v.s7.769395a48c6f from=translated src=- shape=ffa9eed3 vocab=9d062c15
 -/
-lemma cauchySeq_pv_dyadic {I : ℝ → ℂ} {δ₀ C : ℝ} (_hδ₀_pos : 0 < δ₀) (_hC_pos : 0 < C)
+lemma _root_.Tengoku.Leanmodularforms.cauchySeq_pv_dyadic {I : ℝ → ℂ} {δ₀ C : ℝ} (_hδ₀_pos : 0 < δ₀) (_hC_pos : 0 < C)
     (h_step : ∀ n, ‖I (δ₀ / 2 ^ (n + 1)) - I (δ₀ / 2 ^ n)‖ ≤ C * δ₀ / 2 ^ n) :
     CauchySeq (fun n => I (δ₀ / 2 ^ n)) := by
   refine cauchySeq_of_le_geometric (1 / 2) (C * δ₀) (by norm_num) (fun n => ?_)
@@ -125,7 +125,7 @@ lemma cauchySeq_pv_dyadic {I : ℝ → ℂ} {δ₀ C : ℝ} (_hδ₀_pos : 0 < �
 /-- t-space bound from γ-annulus.
 @isnad1 id=le.6h6v.s7.b7736d39c582 from=translated src=- shape=dd5453a1 vocab=e020930e
 -/
-lemma t_bound_from_gamma_annulus {γ : ℝ → ℂ} {t₀ : ℝ} {L : ℂ} {δ₁ ε : ℝ} (hL : L ≠ 0)
+lemma _root_.Tengoku.Leanmodularforms.t_bound_from_gamma_annulus {γ : ℝ → ℂ} {t₀ : ℝ} {L : ℂ} {δ₁ ε : ℝ} (hL : L ≠ 0)
     (_hε_pos : 0 < ε)
     (h_lower : ∀ t, 0 < |t - t₀| → |t - t₀| < δ₁ → ‖γ t - γ t₀‖ ≥ (‖L‖ / 2) * |t - t₀|)
     (t : ℝ) (ht_pos : 0 < |t - t₀|) (ht_lt : |t - t₀| < δ₁)
@@ -142,7 +142,7 @@ lemma t_bound_from_gamma_annulus {γ : ℝ → ℂ} {t₀ : ℝ} {L : ℂ} {δ�
 /-- Bracket ε between dyadic points: for ε ∈ (0, δ], find n with δ/2^(n+1) < ε ≤ δ/2^n.
 @isnad1 id=ex.3h2v.s6.6943033e72a2 from=translated src=- shape=46c2b3a2 vocab=8b19d7e0
 -/
-lemma exists_dyadic_bracket {δ ε : ℝ} (hδ_pos : 0 < δ) (hε_pos : 0 < ε) (hε_le : ε ≤ δ) :
+lemma _root_.Tengoku.Leanmodularforms.exists_dyadic_bracket {δ ε : ℝ} (hδ_pos : 0 < δ) (hε_pos : 0 < ε) (hε_le : ε ≤ δ) :
     ∃ n : ℕ, δ / 2 ^ (n + 1) < ε ∧ ε ≤ δ / 2 ^ n := by
   have h_tendsto : Tendsto (fun n : ℕ => δ / 2 ^ n) atTop (𝓝 0) := by
     have hp : Tendsto (fun n : ℕ => (2 : ℝ) ^ n) atTop atTop :=
@@ -178,7 +178,7 @@ lemma exists_dyadic_bracket {δ ε : ℝ} (hδ_pos : 0 < δ) (hε_pos : 0 < ε) 
 /-- Telescoping sum bound for geometric step bounds.
 @isnad1 id=le.4h6v.s8.799ad2b177b3 from=translated src=- shape=68437a5e vocab=f4529825
 -/
-lemma telescoping_sum_bound {X : Type*} [SeminormedAddCommGroup X] {I : ℕ → X} {K δ : ℝ}
+lemma _root_.Tengoku.Leanmodularforms.telescoping_sum_bound {X : Type*} [SeminormedAddCommGroup X] {I : ℕ → X} {K δ : ℝ}
     (_hK_pos : 0 < K) (_hδ_pos : 0 < δ)
     (h_step : ∀ n, ‖I (n + 1) - I n‖ ≤ K * δ / 2 ^ n) (N : ℕ) :
     ∀ M, M > N → ‖I M - I N‖ ≤ 2 * K * δ / 2 ^ N - 2 * K * δ / 2 ^ M := by
@@ -221,3 +221,4 @@ lemma telescoping_sum_bound {X : Type*} [SeminormedAddCommGroup X] {I : ℕ → 
           ring
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

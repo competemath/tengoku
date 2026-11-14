@@ -7,7 +7,7 @@ import Tengoku.Primenumbertheoremand.PrimeNumberTheoremAnd.Mathlib.Topology.Metr
 This file collects bilateral Laplace transform infrastructure used by the
 explicit-formula contour arguments.
 -/
-
+namespace Tengoku.Primenumbertheoremand end Tengoku.Primenumbertheoremand open Tengoku.Primenumbertheoremand
 open Real Complex Set MeasureTheory Filter FourierTransform
 open scoped FourierTransform Topology
 
@@ -16,16 +16,16 @@ noncomputable section
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
 
 /-- The bilateral Laplace transform on a vertical complex line. -/
-def laplaceTransformBilateral (f : ℝ → E) (s : ℂ) : E :=
+def _root_.Tengoku.Primenumbertheoremand.laplaceTransformBilateral (f : ℝ → E) (s : ℂ) : E :=
   ∫ x : ℝ, Complex.exp (-s * (x : ℂ)) • f x
 
 /-- Complex-valued bilateral Laplace integral, written in multiplication form. -/
-def laplaceIntegral (f : ℝ → ℂ) (s : ℂ) : ℂ :=
+def _root_.Tengoku.Primenumbertheoremand.laplaceIntegral (f : ℝ → ℂ) (s : ℂ) : ℂ :=
   ∫ y : ℝ, f y * Complex.exp (-s * (y : ℂ))
 
 /-- Continuity of the bilateral Laplace integral along a vertical line, under
 integrability of the exponentially weighted source on that line. -/
-theorem continuous_laplaceIntegral_verticalLine_of_integrable
+theorem _root_.Tengoku.Primenumbertheoremand.continuous_laplaceIntegral_verticalLine_of_integrable
     {f : ℝ → ℂ} {sigma : ℝ} (hf_cont : Continuous f)
     (hf_int : Integrable (fun y : ℝ => exp (-((sigma : ℂ) * (y : ℂ))) * f y)) :
     Continuous (fun t : ℝ => laplaceIntegral f ((sigma : ℂ) - (t : ℂ) * I)) := by
@@ -68,31 +68,31 @@ theorem continuous_laplaceIntegral_verticalLine_of_integrable
 
 /-- The truncated inverse bilateral Laplace integral in the multiplication
 `x^s` form used by Perron and explicit-formula arguments. -/
-def laplaceIntegralCpowTrunc (f : ℝ → ℂ) (sigma x T : ℝ) : ℂ :=
+def _root_.Tengoku.Primenumbertheoremand.laplaceIntegralCpowTrunc (f : ℝ → ℂ) (sigma x T : ℝ) : ℂ :=
   (1 / (2 * (π : ℂ))) *
     ∫ t in (-T)..T, laplaceIntegral f ((sigma : ℂ) + (t : ℂ) * I) *
       (x : ℂ) ^ ((sigma : ℂ) + (t : ℂ) * I)
 
 /-- The multiplication-form complex Laplace integral agrees with the vector-valued definition. -/
-theorem laplaceIntegral_eq_laplaceTransformBilateral (f : ℝ → ℂ) (s : ℂ) :
+theorem _root_.Tengoku.Primenumbertheoremand.laplaceIntegral_eq_laplaceTransformBilateral (f : ℝ → ℂ) (s : ℂ) :
     laplaceIntegral f s = laplaceTransformBilateral f s := by
   unfold laplaceIntegral laplaceTransformBilateral
   congr with y
   rw [smul_eq_mul]
   ring
 
-def fourierInvTrunc (F : ℝ → E) (x T : ℝ) : E :=
+def _root_.Tengoku.Primenumbertheoremand.fourierInvTrunc (F : ℝ → E) (x T : ℝ) : E :=
   (1 / (2 * π) : ℝ) •
     ∫ t in (-T)..T, Complex.exp (((t * x : ℝ) : ℂ) * I) • F (t / (2 * π))
 
-def laplaceInvLineTrunc (sigma : ℝ) (F : ℂ → E) (x T : ℝ) : E :=
+def _root_.Tengoku.Primenumbertheoremand.laplaceInvLineTrunc (sigma : ℝ) (F : ℂ → E) (x T : ℝ) : E :=
   (1 / (2 * π) : ℝ) •
     ∫ t in (-T)..T, Complex.exp (((sigma : ℂ) + (t : ℂ) * I) * (x : ℂ)) •
       F ((sigma : ℂ) + (t : ℂ) * I)
 
 /-- On a vertical line, the bilateral Laplace transform is the Fourier transform
 of the exponentially weighted function. -/
-theorem laplaceTransformBilateral_eq_fourier (f : ℝ → E) (s : ℂ) :
+theorem _root_.Tengoku.Primenumbertheoremand.laplaceTransformBilateral_eq_fourier (f : ℝ → E) (s : ℂ) :
     laplaceTransformBilateral f s =
       𝓕 (fun x : ℝ => Complex.exp (-(s.re : ℂ) * (x : ℂ)) • f x) (s.im / (2 * π)) := by
   calc
@@ -117,7 +117,7 @@ theorem laplaceTransformBilateral_eq_fourier (f : ℝ → E) (s : ℂ) :
       push_cast
       field_simp [h2pi]
 
-theorem fourierInvTrunc_fourier_eq_integral_integral
+theorem _root_.Tengoku.Primenumbertheoremand.fourierInvTrunc_fourier_eq_integral_integral
     (f : ℝ → E) (x T : ℝ) :
     fourierInvTrunc (𝓕 f) x T =
       (1 / (2 * π) : ℝ) •
@@ -144,7 +144,7 @@ theorem fourierInvTrunc_fourier_eq_integral_integral
 /-- The truncated oscillatory Fourier kernel is product-integrable when the
 source is integrable. This is the finite-height Fubini input for principal-value
 inversion. -/
-theorem integrable_truncated_fourier_kernel_prod
+theorem _root_.Tengoku.Primenumbertheoremand.integrable_truncated_fourier_kernel_prod
     {f : ℝ → E} (hf : Integrable f) (x T : ℝ) :
     Integrable
       (fun z : ℝ × ℝ => Complex.exp (((z.1 * (x - z.2) : ℝ) : ℂ) * I) • f z.2)
@@ -164,7 +164,7 @@ theorem integrable_truncated_fourier_kernel_prod
 /-- Fubini swaps the finite-height inverse Fourier integral into the standard
 Dirichlet-kernel form. The hypothesis `0 ≤ T` is the only orientation condition
 needed for the interval integral. -/
-theorem fourierInvTrunc_fourier_eq_integral_kernel
+theorem _root_.Tengoku.Primenumbertheoremand.fourierInvTrunc_fourier_eq_integral_kernel
     {f : ℝ → E} (hf : Integrable f) (x T : ℝ) (hT : 0 ≤ T) :
     fourierInvTrunc (𝓕 f) x T =
       (1 / (2 * π) : ℝ) •
@@ -180,7 +180,7 @@ theorem fourierInvTrunc_fourier_eq_integral_kernel
   rw [← intervalIntegral.integral_of_le hle]
 
 /-- Scaled finite-height exponential integral, away from zero frequency. -/
-theorem integral_exp_mul_I_scaled_of_ne {a T : ℝ} (ha : a ≠ 0) :
+theorem _root_.Tengoku.Primenumbertheoremand.integral_exp_mul_I_scaled_of_ne {a T : ℝ} (ha : a ≠ 0) :
     ∫ t in (-T)..T, Complex.exp (((t * a : ℝ) : ℂ) * I) =
       (2 * Real.sin (T * a) : ℂ) / (a : ℂ) := by
   have hc : ((a : ℂ) * I) ≠ 0 := by
@@ -208,7 +208,7 @@ theorem integral_exp_mul_I_scaled_of_ne {a T : ℝ} (ha : a ≠ 0) :
           ring_nf
 
 /-- Scaled finite-height exponential integral, including the zero-frequency case. -/
-theorem integral_exp_mul_I_scaled (a T : ℝ) :
+theorem _root_.Tengoku.Primenumbertheoremand.integral_exp_mul_I_scaled (a T : ℝ) :
     ∫ t in (-T)..T, Complex.exp (((t * a : ℝ) : ℂ) * I) =
       if a = 0 then (2 * T : ℂ) else (2 * Real.sin (T * a) : ℂ) / (a : ℂ) := by
   by_cases ha : a = 0
@@ -221,7 +221,7 @@ theorem integral_exp_mul_I_scaled (a T : ℝ) :
 
 /-- Scaled finite-height exponential integral, written with the normalized
 `sinc` kernel and no removable-singularity case split. -/
-theorem integral_exp_mul_I_scaled_sinc (a T : ℝ) :
+theorem _root_.Tengoku.Primenumbertheoremand.integral_exp_mul_I_scaled_sinc (a T : ℝ) :
     ∫ t in (-T)..T, Complex.exp (((t * a : ℝ) : ℂ) * I) =
       (2 * T * Real.sinc (T * a) : ℂ) := by
   rw [integral_exp_mul_I_scaled]
@@ -238,7 +238,7 @@ theorem integral_exp_mul_I_scaled_sinc (a T : ℝ) :
     push_cast
     field_simp [ha, hT]
 
-theorem fourierInvTrunc_fourier_eq_sinc_kernel
+theorem _root_.Tengoku.Primenumbertheoremand.fourierInvTrunc_fourier_eq_sinc_kernel
     [CompleteSpace E] {f : ℝ → E} (hf : Integrable f) (x T : ℝ) (hT : 0 ≤ T) :
     fourierInvTrunc (𝓕 f) x T =
       (1 / (2 * π) : ℝ) •
@@ -249,7 +249,7 @@ theorem fourierInvTrunc_fourier_eq_sinc_kernel
   rw [intervalIntegral.integral_smul_const]
   rw [integral_exp_mul_I_scaled_sinc]
 
-theorem fourierInvTrunc_tendsto_of_sinc_kernel
+theorem _root_.Tengoku.Primenumbertheoremand.fourierInvTrunc_tendsto_of_sinc_kernel
     [CompleteSpace E] {f : ℝ → E} (hf : Integrable f) {x : ℝ}
     (hdir : Filter.Tendsto
       (fun T : ℝ =>
@@ -263,7 +263,7 @@ theorem fourierInvTrunc_tendsto_of_sinc_kernel
   exact (fourierInvTrunc_fourier_eq_sinc_kernel hf x T hT).symm
 
 /-- Whole-line change of variables for the reflection-translation `y ↦ x - y`. -/
-theorem integral_comp_sub_left_eq_self (g : ℝ → E) (x : ℝ) :
+theorem _root_.Tengoku.Primenumbertheoremand.integral_comp_sub_left_eq_self (g : ℝ → E) (x : ℝ) :
     (∫ y : ℝ, g (x - y)) = ∫ u : ℝ, g u := by
   calc
     (∫ y : ℝ, g (x - y)) = ∫ y : ℝ, g (x + y) := by
@@ -273,7 +273,7 @@ theorem integral_comp_sub_left_eq_self (g : ℝ → E) (x : ℝ) :
       simpa using integral_add_left_eq_self (μ := volume) g x
 
 /-- The sinc kernel can be written in translated coordinates `u = x - y`. -/
-theorem sinc_kernel_integral_comp_sub_left
+theorem _root_.Tengoku.Primenumbertheoremand.sinc_kernel_integral_comp_sub_left
     (f : ℝ → E) (x T : ℝ) :
     (∫ y : ℝ, (2 * T * Real.sinc (T * (x - y)) : ℂ) • f y) =
       ∫ u : ℝ, (2 * T * Real.sinc (T * u) : ℂ) • f (x - u) := by
@@ -283,7 +283,7 @@ theorem sinc_kernel_integral_comp_sub_left
 
 /-- The normalized sinc kernel is the usual `sin (T * u) / (π * u)` kernel,
 with the removable value at `u = 0` made explicit. -/
-theorem normalized_sinc_smul_eq_sin_div (T u : ℝ) (z : E) :
+theorem _root_.Tengoku.Primenumbertheoremand.normalized_sinc_smul_eq_sin_div (T u : ℝ) (z : E) :
     (1 / (2 * π) : ℝ) • ((2 * T * Real.sinc (T * u) : ℂ) • z) =
       (if u = 0 then (T / π : ℂ) else (Real.sin (T * u) / (π * u) : ℂ)) • z := by
   by_cases hu : u = 0
@@ -312,7 +312,7 @@ theorem normalized_sinc_smul_eq_sin_div (T u : ℝ) (z : E) :
 
 /-- The normalized sinc kernel integral in translated coordinates, with the
 removable singularity of `sin (T * u) / (π * u)` exposed. -/
-theorem normalized_sinc_kernel_integral_comp_sub_left_sin_div
+theorem _root_.Tengoku.Primenumbertheoremand.normalized_sinc_kernel_integral_comp_sub_left_sin_div
     (f : ℝ → E) (x T : ℝ) :
     (1 / (2 * π) : ℝ) •
         ∫ y : ℝ, (2 * T * Real.sinc (T * (x - y)) : ℂ) • f y =
@@ -326,7 +326,7 @@ theorem normalized_sinc_kernel_integral_comp_sub_left_sin_div
 
 /-- The value assigned at the removable singularity of `sin (T * u) / (π * u)`
 does not affect the whole-line kernel integral. -/
-theorem normalized_sinc_kernel_integral_comp_sub_left_sin_div_ae
+theorem _root_.Tengoku.Primenumbertheoremand.normalized_sinc_kernel_integral_comp_sub_left_sin_div_ae
     (f : ℝ → E) (x T : ℝ) :
     (1 / (2 * π) : ℝ) •
         ∫ y : ℝ, (2 * T * Real.sinc (T * (x - y)) : ℂ) • f y =
@@ -339,7 +339,7 @@ theorem normalized_sinc_kernel_integral_comp_sub_left_sin_div_ae
   rw [ite_eq_right hu, ite_eq_right hu]
 
 /-- The scaled positive-frequency ray `T / (2π)` tends to the cocompact filter. -/
-lemma tendsto_div_two_pi_atTop_cocompact :
+lemma _root_.Tengoku.Primenumbertheoremand.tendsto_div_two_pi_atTop_cocompact :
     Filter.Tendsto (fun T : ℝ => T / (2 * π)) Filter.atTop (Filter.cocompact ℝ) := by
   refine tendsto_cocompact_of_tendsto_dist_comp_atTop (0 : ℝ) ?_
   have h : Filter.Tendsto (fun T : ℝ => (1 / (2 * π)) * T) Filter.atTop
@@ -353,7 +353,7 @@ lemma tendsto_div_two_pi_atTop_cocompact :
     using tendsto_norm_atTop_atTop.comp h'
 
 /-- The scaled negative-frequency ray `-T / (2π)` tends to the cocompact filter. -/
-lemma tendsto_neg_div_two_pi_atTop_cocompact :
+lemma _root_.Tengoku.Primenumbertheoremand.tendsto_neg_div_two_pi_atTop_cocompact :
     Filter.Tendsto (fun T : ℝ => -T / (2 * π)) Filter.atTop (Filter.cocompact ℝ) := by
   refine tendsto_cocompact_of_tendsto_dist_comp_atTop (0 : ℝ) ?_
   have h : Filter.Tendsto (fun T : ℝ => T / (2 * π)) Filter.atTop Filter.atTop := by
@@ -368,17 +368,17 @@ lemma tendsto_neg_div_two_pi_atTop_cocompact :
     abs_of_pos (by positivity : 0 < (2 * π : ℝ))] using hn
 
 /-- Riemann-Lebesgue on the scaled positive-frequency ray. -/
-theorem fourier_tendsto_atTop_scaled (f : ℝ → E) :
+theorem _root_.Tengoku.Primenumbertheoremand.fourier_tendsto_atTop_scaled (f : ℝ → E) :
     Filter.Tendsto (fun T : ℝ => 𝓕 f (T / (2 * π))) Filter.atTop (nhds 0) := by
   exact (Real.zero_at_infty_fourier f).comp tendsto_div_two_pi_atTop_cocompact
 
 /-- Riemann-Lebesgue on the scaled negative-frequency ray. -/
-theorem fourier_tendsto_atTop_neg_scaled (f : ℝ → E) :
+theorem _root_.Tengoku.Primenumbertheoremand.fourier_tendsto_atTop_neg_scaled (f : ℝ → E) :
     Filter.Tendsto (fun T : ℝ => 𝓕 f (-T / (2 * π))) Filter.atTop (nhds 0) := by
   exact (Real.zero_at_infty_fourier f).comp tendsto_neg_div_two_pi_atTop_cocompact
 
 /-- The negative complex exponential integral tends to zero on the positive height ray. -/
-theorem tendsto_integral_exp_neg_mul_I_smul_atTop (f : ℝ → E) :
+theorem _root_.Tengoku.Primenumbertheoremand.tendsto_integral_exp_neg_mul_I_smul_atTop (f : ℝ → E) :
     Filter.Tendsto (fun T : ℝ => ∫ v : ℝ,
       Complex.exp (-(((T * v : ℝ) : ℂ) * I)) • f v) Filter.atTop (nhds 0) := by
   have h := fourier_tendsto_atTop_scaled (E := E) f
@@ -391,7 +391,7 @@ theorem tendsto_integral_exp_neg_mul_I_smul_atTop (f : ℝ → E) :
   field_simp [Real.pi_ne_zero]
 
 /-- The positive complex exponential integral tends to zero on the positive height ray. -/
-theorem tendsto_integral_exp_pos_mul_I_smul_atTop (f : ℝ → E) :
+theorem _root_.Tengoku.Primenumbertheoremand.tendsto_integral_exp_pos_mul_I_smul_atTop (f : ℝ → E) :
     Filter.Tendsto (fun T : ℝ => ∫ v : ℝ,
       Complex.exp (((T * v : ℝ) : ℂ) * I) • f v) Filter.atTop (nhds 0) := by
   have h := fourier_tendsto_atTop_neg_scaled (E := E) f
@@ -405,7 +405,7 @@ theorem tendsto_integral_exp_pos_mul_I_smul_atTop (f : ℝ → E) :
 
 /-- Multiplying an integrable function by a negative unit-modulus exponential preserves
 integrability. -/
-lemma integrable_exp_neg_mul_I_smul {f : ℝ → E} (hf : Integrable f) (T : ℝ) :
+lemma _root_.Tengoku.Primenumbertheoremand.integrable_exp_neg_mul_I_smul {f : ℝ → E} (hf : Integrable f) (T : ℝ) :
     Integrable (fun v : ℝ => Complex.exp (-(((T * v : ℝ) : ℂ) * I)) • f v) := by
   refine hf.mono ?_ ?_
   · exact (by fun_prop : Continuous (fun v : ℝ =>
@@ -420,7 +420,7 @@ lemma integrable_exp_neg_mul_I_smul {f : ℝ → E} (hf : Integrable f) (T : ℝ
 
 /-- Multiplying an integrable function by a positive unit-modulus exponential preserves
 integrability. -/
-lemma integrable_exp_pos_mul_I_smul {f : ℝ → E} (hf : Integrable f) (T : ℝ) :
+lemma _root_.Tengoku.Primenumbertheoremand.integrable_exp_pos_mul_I_smul {f : ℝ → E} (hf : Integrable f) (T : ℝ) :
     Integrable (fun v : ℝ => Complex.exp (((T * v : ℝ) : ℂ) * I) • f v) := by
   refine hf.mono ?_ ?_
   · exact (by fun_prop : Continuous (fun v : ℝ =>
@@ -431,7 +431,7 @@ lemma integrable_exp_pos_mul_I_smul {f : ℝ → E} (hf : Integrable f) (T : ℝ
 
 /-- Riemann-Lebesgue in sine-integral form. This is the oscillatory cancellation
 brick used by the non-L1 principal-value Laplace inversion route. -/
-theorem tendsto_integral_sin_mul_smul_atTop {f : ℝ → E} (hf : Integrable f) :
+theorem _root_.Tengoku.Primenumbertheoremand.tendsto_integral_sin_mul_smul_atTop {f : ℝ → E} (hf : Integrable f) :
     Filter.Tendsto (fun T : ℝ => ∫ v : ℝ, (Real.sin (T * v) : ℂ) • f v)
       Filter.atTop (nhds 0) := by
   let c : ℂ := (2 : ℂ)⁻¹ * I
@@ -466,7 +466,7 @@ theorem tendsto_integral_sin_mul_smul_atTop {f : ℝ → E} (hf : Integrable f) 
   field_simp
   simpa [mul_comm, mul_left_comm, mul_assoc] using (Complex.two_sin ((T * v : ℝ) : ℂ))
 
-theorem sin_div_kernel_sub_eq_sin_smul_quotient
+theorem _root_.Tengoku.Primenumbertheoremand.sin_div_kernel_sub_eq_sin_smul_quotient
     (f : ℝ → E) (x T u : ℝ) :
     (if u = 0 then (0 : ℂ) else (Real.sin (T * u) / (π * u) : ℂ)) •
         (f (x - u) - f x) =
@@ -479,7 +479,7 @@ theorem sin_div_kernel_sub_eq_sin_smul_quotient
     simp only [div_eq_mul_inv]
     ring
 
-theorem local_quotient_eq_dslope
+theorem _root_.Tengoku.Primenumbertheoremand.local_quotient_eq_dslope
     (f : ℝ → E) (x : ℝ) {u : ℝ} (hu : u ≠ 0) :
     ((-1 / π : ℂ) • dslope f x (x - u)) =
       (if u = 0 then 0 else (1 / (π * u) : ℂ) • (f (x - u) - f x)) := by
@@ -504,7 +504,7 @@ theorem local_quotient_eq_dslope
 
 /-- Differentiability at the target point makes the local sine-error quotient
 interval-integrable on every positive window. -/
-theorem intervalIntegrable_local_quotient_of_differentiableAt
+theorem _root_.Tengoku.Primenumbertheoremand.intervalIntegrable_local_quotient_of_differentiableAt
     {f : ℝ → E} {x R : ℝ} (hR : 0 < R)
     (hf_cont : ContinuousOn f (Set.Icc (x - R) (x + R)))
     (hf_diff : DifferentiableAt ℝ f x) :
@@ -538,7 +538,7 @@ theorem intervalIntegrable_local_quotient_of_differentiableAt
 
 /-- Local quotient integrability gives interval-integrability of the finite
 sine-kernel error term. -/
-theorem intervalIntegrable_sin_div_kernel_error_of_intervalIntegrable_quotient
+theorem _root_.Tengoku.Primenumbertheoremand.intervalIntegrable_sin_div_kernel_error_of_intervalIntegrable_quotient
     {f : ℝ → E} {x R : ℝ}
     (hq : IntervalIntegrable
       (fun u : ℝ =>
@@ -563,7 +563,7 @@ theorem intervalIntegrable_sin_div_kernel_error_of_intervalIntegrable_quotient
 
 /-- Local quotient integrability gives the finite-window Riemann-Lebesgue
 cancellation for the sine-kernel error term. -/
-theorem tendsto_intervalIntegral_sin_div_kernel_error_of_intervalIntegrable_quotient
+theorem _root_.Tengoku.Primenumbertheoremand.tendsto_intervalIntegral_sin_div_kernel_error_of_intervalIntegrable_quotient
     {f : ℝ → E} {x R : ℝ} (hR : 0 < R)
     (hq : IntervalIntegrable
       (fun u : ℝ =>
@@ -604,7 +604,7 @@ theorem tendsto_intervalIntegral_sin_div_kernel_error_of_intervalIntegrable_quot
   · simp [Set.indicator_of_notMem hu]
 
 /-- The removable sine kernel is bounded by its height. -/
-theorem norm_sin_div_kernel_le_abs_height (T u : ℝ) :
+theorem _root_.Tengoku.Primenumbertheoremand.norm_sin_div_kernel_le_abs_height (T u : ℝ) :
     ‖(if u = 0 then (0 : ℂ) else (Real.sin (T * u) / (π * u) : ℂ))‖ ≤
       |T| / π := by
   by_cases hu : u = 0
@@ -625,7 +625,7 @@ theorem norm_sin_div_kernel_le_abs_height (T u : ℝ) :
         field_simp [abs_pos.mpr hu, Real.pi_ne_zero]
 
 /-- The sine kernel times an integrable source remains integrable. -/
-theorem integrable_sin_div_kernel_smul_of_integrable
+theorem _root_.Tengoku.Primenumbertheoremand.integrable_sin_div_kernel_smul_of_integrable
     {f : ℝ → E} (hf : Integrable f) (x T : ℝ) :
     Integrable
       (fun u : ℝ =>
@@ -652,7 +652,7 @@ theorem integrable_sin_div_kernel_smul_of_integrable
       (norm_nonneg _) hC_nonneg
 
 /-- Outside `(-R, R]`, a positive radius is a lower bound for `|u|`. -/
-lemma le_abs_of_notMem_Ioc_neg_pos {R u : ℝ} (hR : 0 < R)
+lemma _root_.Tengoku.Primenumbertheoremand.le_abs_of_notMem_Ioc_neg_pos {R u : ℝ} (hR : 0 < R)
     (hu : u ∉ Set.Ioc (-R) R) :
     R ≤ |u| := by
   rw [Set.mem_Ioc] at hu
@@ -665,7 +665,7 @@ lemma le_abs_of_notMem_Ioc_neg_pos {R u : ℝ} (hR : 0 < R)
     exact hneg.trans_eq (abs_of_nonpos hu_nonpos).symm
 
 /-- The fixed-window tail quotient is bounded by an integrable translate. -/
-lemma norm_tail_quotient_le
+lemma _root_.Tengoku.Primenumbertheoremand.norm_tail_quotient_le
     {f : ℝ → E} (x : ℝ) {R : ℝ} (hR : 0 < R) (u : ℝ) :
     ‖(Set.Ioc (-R) R)ᶜ.indicator
         (fun u : ℝ => (if u = 0 then (0 : ℂ) else (1 / (π * u) : ℂ)) •
@@ -697,7 +697,7 @@ lemma norm_tail_quotient_le
       (norm_nonneg (f (x - u)))
 
 /-- The fixed-window tail quotient is integrable for every integrable source. -/
-theorem integrable_tail_quotient_of_integrable
+theorem _root_.Tengoku.Primenumbertheoremand.integrable_tail_quotient_of_integrable
     {f : ℝ → E} (hf : Integrable f) (x : ℝ) {R : ℝ} (hR : 0 < R) :
     Integrable ((Set.Ioc (-R) R)ᶜ.indicator
       (fun u : ℝ => (if u = 0 then (0 : ℂ) else (1 / (π * u) : ℂ)) •
@@ -723,7 +723,7 @@ theorem integrable_tail_quotient_of_integrable
     exact norm_tail_quotient_le (E := E) x hR u
 
 /-- Pointwise tail algebra for the sine kernel. -/
-lemma tail_indicator_sin_div_eq_sin_smul_quotient
+lemma _root_.Tengoku.Primenumbertheoremand.tail_indicator_sin_div_eq_sin_smul_quotient
     (f : ℝ → E) (x T : ℝ) {R : ℝ} (hR : 0 < R) (u : ℝ) :
     (Set.Ioc (-R) R)ᶜ.indicator
         (fun u : ℝ =>
@@ -750,7 +750,7 @@ lemma tail_indicator_sin_div_eq_sin_smul_quotient
 
 /-- The fixed-window tail of the sine kernel tends to zero for integrable
 sources. -/
-theorem tendsto_sin_div_kernel_tail_of_integrable
+theorem _root_.Tengoku.Primenumbertheoremand.tendsto_sin_div_kernel_tail_of_integrable
     {f : ℝ → E} (hf : Integrable f) {x R : ℝ} (hR : 0 < R) :
     Filter.Tendsto
       (fun T : ℝ =>
@@ -799,7 +799,7 @@ theorem tendsto_sin_div_kernel_tail_of_integrable
 /-- Uniform fixed-window tail bound for the sine kernel. Outside `(-R, R]`,
 the denominator gives a `1 / (π R)` bound, independent of the height and
 translation. -/
-theorem norm_sin_div_kernel_tail_le_integral_norm
+theorem _root_.Tengoku.Primenumbertheoremand.norm_sin_div_kernel_tail_le_integral_norm
     {f : ℝ → E} (hf : Integrable f) (x T : ℝ) {R : ℝ} (hR : 0 < R) :
     ‖(∫ u : ℝ,
         (if u = 0 then (0 : ℂ) else (Real.sin (T * u) / (π * u) : ℂ)) •
@@ -888,7 +888,7 @@ theorem norm_sin_div_kernel_tail_le_integral_norm
 /-- Finite symmetric-window split for the `sin (T * u) / (π * u)` kernel.
 This is the valid algebraic surface for the principal-value mass term before
 taking an improper limit. -/
-theorem intervalIntegral_sin_div_kernel_split
+theorem _root_.Tengoku.Primenumbertheoremand.intervalIntegral_sin_div_kernel_split
     [CompleteSpace E]
     (f : ℝ → E) (x T R : ℝ)
     (hconst : IntervalIntegrable
@@ -943,7 +943,7 @@ theorem intervalIntegral_sin_div_kernel_split
 
 /-- A scalar finite-window Dirichlet mass limit immediately gives the
 corresponding vector-valued mass limit. -/
-theorem tendsto_intervalIntegral_sin_div_kernel_smul_of_scalar_mass
+theorem _root_.Tengoku.Primenumbertheoremand.tendsto_intervalIntegral_sin_div_kernel_smul_of_scalar_mass
     (z : E) {R : ℝ}
     (hmass : Filter.Tendsto
       (fun T : ℝ =>
@@ -959,7 +959,7 @@ theorem tendsto_intervalIntegral_sin_div_kernel_smul_of_scalar_mass
 
 /-- Scaling reduces the finite-window mass of `sin (T * u) / (π * u)` to the
 normalized symmetric sine integral at height `T * R`. -/
-theorem intervalIntegral_sin_div_kernel_scalar_mass_eq_scaled (T R : ℝ) :
+theorem _root_.Tengoku.Primenumbertheoremand.intervalIntegral_sin_div_kernel_scalar_mass_eq_scaled (T R : ℝ) :
     (∫ u in (-R)..R,
       if u = 0 then (0 : ℂ) else (Real.sin (T * u) / (π * u) : ℂ)) =
       (1 / (π : ℂ)) *
@@ -995,7 +995,7 @@ theorem intervalIntegral_sin_div_kernel_scalar_mass_eq_scaled (T R : ℝ) :
 
 /-- The sine-over-argument kernel is interval-integrable on finite intervals;
 the value at zero is irrelevant by the removable singularity of `Real.sinc`. -/
-theorem intervalIntegrable_sin_div_kernel (a b : ℝ) :
+theorem _root_.Tengoku.Primenumbertheoremand.intervalIntegrable_sin_div_kernel (a b : ℝ) :
     IntervalIntegrable
       (fun v : ℝ => if v = 0 then (0 : ℂ) else (Real.sin v / v : ℂ))
       volume a b := by
@@ -1010,7 +1010,7 @@ theorem intervalIntegrable_sin_div_kernel (a b : ℝ) :
 
 /-- The scaled sine kernel is interval-integrable on finite intervals; its value
 at zero is again irrelevant. -/
-theorem intervalIntegrable_scaled_sin_div_kernel (T a b : ℝ) :
+theorem _root_.Tengoku.Primenumbertheoremand.intervalIntegrable_scaled_sin_div_kernel (T a b : ℝ) :
     IntervalIntegrable
       (fun u : ℝ => if u = 0 then (0 : ℂ) else (Real.sin (T * u) / (π * u) : ℂ))
       volume a b := by
@@ -1031,7 +1031,7 @@ theorem intervalIntegrable_scaled_sin_div_kernel (T a b : ℝ) :
 
 /-- Multiplying the finite sine kernel by a constant vector preserves
 interval-integrability. -/
-theorem intervalIntegrable_sin_div_kernel_smul_const
+theorem _root_.Tengoku.Primenumbertheoremand.intervalIntegrable_sin_div_kernel_smul_const
     (z : E) (T a b : ℝ) :
     IntervalIntegrable
       (fun u : ℝ =>
@@ -1045,7 +1045,7 @@ theorem intervalIntegrable_sin_div_kernel_smul_const
 /-- Windowed bound for finite-height Fourier inversion. The mass term, local
 principal-value window, and far-field tail are separated so applications can
 supply uniform bounds for the first two and use the built-in tail estimate. -/
-theorem norm_fourierInvTrunc_le_of_windowed_sin_div_bounds
+theorem _root_.Tengoku.Primenumbertheoremand.norm_fourierInvTrunc_le_of_windowed_sin_div_bounds
     [CompleteSpace E]
     {f : ℝ → E} (hf : Integrable f) {x T R B L M : ℝ}
     (hT : 0 ≤ T) (hR : 0 < R)
@@ -1107,7 +1107,7 @@ theorem norm_fourierInvTrunc_le_of_windowed_sin_div_bounds
     _ = M * B + L + (1 / (π * R)) * ∫ u : ℝ, ‖f u‖ := by ring
 
 /-- The negative half of the finite sine integral equals the positive half. -/
-theorem intervalIntegral_sin_div_kernel_neg_zero_eq_zero_to (A : ℝ) :
+theorem _root_.Tengoku.Primenumbertheoremand.intervalIntegral_sin_div_kernel_neg_zero_eq_zero_to (A : ℝ) :
     (∫ v in (-A)..0,
       if v = 0 then (0 : ℂ) else (Real.sin v / v : ℂ)) =
       ∫ v in 0..A,
@@ -1124,7 +1124,7 @@ theorem intervalIntegral_sin_div_kernel_neg_zero_eq_zero_to (A : ℝ) :
     simp [k, hv, hneg]
 
 /-- The symmetric finite sine integral is twice its positive half. -/
-theorem intervalIntegral_sin_div_kernel_symmetric_eq_two_mul_zero_to (A : ℝ) :
+theorem _root_.Tengoku.Primenumbertheoremand.intervalIntegral_sin_div_kernel_symmetric_eq_two_mul_zero_to (A : ℝ) :
     (∫ v in (-A)..A,
       if v = 0 then (0 : ℂ) else (Real.sin v / v : ℂ)) =
       2 * ∫ v in 0..A,
@@ -1146,7 +1146,7 @@ theorem intervalIntegral_sin_div_kernel_symmetric_eq_two_mul_zero_to (A : ℝ) :
 
 /-- A one-sided Dirichlet integral limit gives the symmetric sine integral
 limit. -/
-theorem tendsto_intervalIntegral_sin_div_kernel_symmetric_of_one_sided
+theorem _root_.Tengoku.Primenumbertheoremand.tendsto_intervalIntegral_sin_div_kernel_symmetric_of_one_sided
     (hdir : Filter.Tendsto
       (fun A : ℝ =>
         ∫ v in 0..A,
@@ -1166,7 +1166,7 @@ theorem tendsto_intervalIntegral_sin_div_kernel_symmetric_of_one_sided
 
 /-- A normalized symmetric Dirichlet integral limit gives the scalar
 finite-window mass at every positive radius. -/
-theorem tendsto_intervalIntegral_sin_div_kernel_scalar_mass_of_dirichlet
+theorem _root_.Tengoku.Primenumbertheoremand.tendsto_intervalIntegral_sin_div_kernel_scalar_mass_of_dirichlet
     {R : ℝ} (hR : 0 < R)
     (hdir : Filter.Tendsto
       (fun A : ℝ =>
@@ -1191,7 +1191,7 @@ theorem tendsto_intervalIntegral_sin_div_kernel_scalar_mass_of_dirichlet
 
 /-- The classical symmetric sine integral limit, with value `π`, gives the
 scalar finite-window mass at every positive radius. -/
-theorem tendsto_intervalIntegral_sin_div_kernel_scalar_mass_of_symmetric_sine_integral
+theorem _root_.Tengoku.Primenumbertheoremand.tendsto_intervalIntegral_sin_div_kernel_scalar_mass_of_symmetric_sine_integral
     {R : ℝ} (hR : 0 < R)
     (hdir : Filter.Tendsto
       (fun A : ℝ =>
@@ -1210,7 +1210,7 @@ theorem tendsto_intervalIntegral_sin_div_kernel_scalar_mass_of_symmetric_sine_in
 
 /-- The one-sided Dirichlet integral limit gives the scalar finite-window mass
 at every positive radius. -/
-theorem tendsto_intervalIntegral_sin_div_kernel_scalar_mass_of_one_sided_sine_integral
+theorem _root_.Tengoku.Primenumbertheoremand.tendsto_intervalIntegral_sin_div_kernel_scalar_mass_of_one_sided_sine_integral
     {R : ℝ} (hR : 0 < R)
     (hdir : Filter.Tendsto
       (fun A : ℝ =>
@@ -1227,7 +1227,7 @@ theorem tendsto_intervalIntegral_sin_div_kernel_scalar_mass_of_one_sided_sine_in
 
 /-- The one-sided sine-over-argument integral agrees with the integral of
 `Real.sinc`; the only difference is the chosen singleton value at zero. -/
-theorem intervalIntegral_sin_div_kernel_zero_to_eq_sinc (A : ℝ) :
+theorem _root_.Tengoku.Primenumbertheoremand.intervalIntegral_sin_div_kernel_zero_to_eq_sinc (A : ℝ) :
     (∫ v in 0..A,
       if v = 0 then (0 : ℂ) else (Real.sin v / v : ℂ)) =
       ∫ v in 0..A, (Real.sinc v : ℂ) := by
@@ -1238,7 +1238,7 @@ theorem intervalIntegral_sin_div_kernel_zero_to_eq_sinc (A : ℝ) :
 
 /-- A complex-valued one-sided sinc integral limit gives the scalar
 finite-window mass at every positive radius. -/
-theorem tendsto_intervalIntegral_sin_div_kernel_scalar_mass_of_sinc_integral
+theorem _root_.Tengoku.Primenumbertheoremand.tendsto_intervalIntegral_sin_div_kernel_scalar_mass_of_sinc_integral
     {R : ℝ} (hR : 0 < R)
     (hsinc : Filter.Tendsto
       (fun A : ℝ => ∫ v in 0..A, (Real.sinc v : ℂ))
@@ -1255,7 +1255,7 @@ theorem tendsto_intervalIntegral_sin_div_kernel_scalar_mass_of_sinc_integral
 
 /-- A real-valued one-sided sinc integral limit gives the scalar finite-window
 mass at every positive radius. -/
-theorem tendsto_intervalIntegral_sin_div_kernel_scalar_mass_of_real_sinc_integral
+theorem _root_.Tengoku.Primenumbertheoremand.tendsto_intervalIntegral_sin_div_kernel_scalar_mass_of_real_sinc_integral
     {R : ℝ} (hR : 0 < R)
     (hsinc : Filter.Tendsto
       (fun A : ℝ => ∫ v in 0..A, Real.sinc v)
@@ -1270,7 +1270,7 @@ theorem tendsto_intervalIntegral_sin_div_kernel_scalar_mass_of_real_sinc_integra
     (Complex.continuous_ofReal.tendsto (π / 2 : ℝ)).comp hsinc
 
 /-- Integration by parts for the positive sinc tail on a finite interval. -/
-theorem intervalIntegral_sinc_tail_eq_ibp {a b : ℝ} (ha : 0 < a) (hab : a ≤ b) :
+theorem _root_.Tengoku.Primenumbertheoremand.intervalIntegral_sinc_tail_eq_ibp {a b : ℝ} (ha : 0 < a) (hab : a ≤ b) :
     ∫ x in a..b, Real.sinc x =
       (-Real.cos b / b + Real.cos a / a) -
         ∫ x in a..b, Real.cos x / x ^ 2 := by
@@ -1315,7 +1315,7 @@ theorem intervalIntegral_sinc_tail_eq_ibp {a b : ℝ} (ha : 0 < a) (hab : a ≤ 
   ring_nf
 
 /-- The finite inverse-square integral on a positive interval. -/
-theorem intervalIntegral_inv_sq_of_pos {a b : ℝ} (ha : 0 < a) (hab : a ≤ b) :
+theorem _root_.Tengoku.Primenumbertheoremand.intervalIntegral_inv_sq_of_pos {a b : ℝ} (ha : 0 < a) (hab : a ≤ b) :
     ∫ x in a..b, (x ^ 2)⁻¹ = a⁻¹ - b⁻¹ := by
   have hpos_uIcc : ∀ x ∈ Set.uIcc a b, 0 < x := by
     intro x hx
@@ -1335,7 +1335,7 @@ theorem intervalIntegral_inv_sq_of_pos {a b : ℝ} (ha : 0 < a) (hab : a ≤ b) 
   ring
 
 /-- Uniform finite-tail control for the one-sided sinc integral. -/
-theorem norm_intervalIntegral_sinc_tail_le {a b : ℝ} (ha : 1 ≤ a) (hab : a ≤ b) :
+theorem _root_.Tengoku.Primenumbertheoremand.norm_intervalIntegral_sinc_tail_le {a b : ℝ} (ha : 1 ≤ a) (hab : a ≤ b) :
     ‖∫ x in a..b, Real.sinc x‖ ≤ 3 * a⁻¹ := by
   have ha_pos : 0 < a := zero_lt_one.trans_le ha
   have hb_pos : 0 < b := ha_pos.trans_le hab
@@ -1396,7 +1396,7 @@ theorem norm_intervalIntegral_sinc_tail_le {a b : ℝ} (ha : 1 ≤ a) (hab : a �
     _ ≤ 2 * a⁻¹ + a⁻¹ := add_le_add hboundary hJ
     _ = 3 * a⁻¹ := by ring
 
-theorem cauchySeq_intervalIntegral_real_sinc_atTop :
+theorem _root_.Tengoku.Primenumbertheoremand.cauchySeq_intervalIntegral_real_sinc_atTop :
     CauchySeq (fun A : ℝ => ∫ x in (0 : ℝ)..A, Real.sinc x) := by
   refine Metric.cauchySeq_iff.2 ?_
   intro ε hε
@@ -1456,14 +1456,14 @@ theorem cauchySeq_intervalIntegral_real_sinc_atTop :
       _ < ε := hMsmall
 
 /-- Existence of the improper one-sided sinc integral as a finite-window limit. -/
-theorem exists_tendsto_intervalIntegral_real_sinc_atTop :
+theorem _root_.Tengoku.Primenumbertheoremand.exists_tendsto_intervalIntegral_real_sinc_atTop :
     ∃ L : ℝ,
       Filter.Tendsto (fun A : ℝ => ∫ x in (0 : ℝ)..A, Real.sinc x)
         Filter.atTop (nhds L) :=
   cauchySeq_tendsto_of_complete cauchySeq_intervalIntegral_real_sinc_atTop
 
 /-- Exact integral of the derivative of `-exp (-a * x)` on a finite interval. -/
-theorem intervalIntegral_exp_neg_mul_const_mul_self (a R B : ℝ) :
+theorem _root_.Tengoku.Primenumbertheoremand.intervalIntegral_exp_neg_mul_const_mul_self (a R B : ℝ) :
     ∫ x in R..B, a * Real.exp (-a * x) =
       Real.exp (-a * R) - Real.exp (-a * B) := by
   have hderiv : ∀ x ∈ Set.uIcc R B,
@@ -1481,7 +1481,7 @@ theorem intervalIntegral_exp_neg_mul_const_mul_self (a R B : ℝ) :
   ring
 
 /-- Uniform finite-tail control for the damped one-sided sinc integral. -/
-theorem norm_intervalIntegral_exp_neg_mul_sinc_tail_le
+theorem _root_.Tengoku.Primenumbertheoremand.norm_intervalIntegral_exp_neg_mul_sinc_tail_le
     {a R B : ℝ} (ha : 0 < a) (hR : 1 ≤ R) (hRB : R ≤ B) :
     ‖∫ x in R..B, Real.exp (-a * x) * Real.sinc x‖ ≤ 4 * R⁻¹ := by
   have hR_pos : 0 < R := zero_lt_one.trans_le hR
@@ -1698,7 +1698,7 @@ theorem norm_intervalIntegral_exp_neg_mul_sinc_tail_le
     _ ≤ 2 * R⁻¹ + 2 * R⁻¹ := add_le_add hboundary hJ
     _ = 4 * R⁻¹ := by ring
 
-theorem integral_Ioi_exp_neg_mul_sin (a : ℝ) (ha : 0 < a) :
+theorem _root_.Tengoku.Primenumbertheoremand.integral_Ioi_exp_neg_mul_sin (a : ℝ) (ha : 0 < a) :
     ∫ x : ℝ in Set.Ioi 0, Real.exp (-a * x) * Real.sin x = 1 / (a ^ 2 + 1) := by
   let z : ℂ := (-(a : ℂ)) + Complex.I
   have hzre : z.re < 0 := by simp [z, ha]
@@ -1723,20 +1723,20 @@ theorem integral_Ioi_exp_neg_mul_sin (a : ℝ) (ha : 0 < a) :
 
 /-- The arctangent tail integral in the denominator shape used by the damped
 sine computation. -/
-theorem integral_Ioi_one_div_one_add_sq_eq_pi_div_two_sub_arctan (a : ℝ) :
+theorem _root_.Tengoku.Primenumbertheoremand.integral_Ioi_one_div_one_add_sq_eq_pi_div_two_sub_arctan (a : ℝ) :
     ∫ u : ℝ in Set.Ioi a, (1 / (u ^ 2 + 1) : ℝ) = π / 2 - Real.arctan a := by
   simpa [one_div, add_comm] using integral_Ioi_inv_one_add_sq (i := a)
 
 /-- For a positive lower endpoint, the arctangent tail integral is
 `arctan (1/a)`. -/
-theorem integral_Ioi_one_div_one_add_sq_eq_arctan_inv (a : ℝ) (ha : 0 < a) :
+theorem _root_.Tengoku.Primenumbertheoremand.integral_Ioi_one_div_one_add_sq_eq_arctan_inv (a : ℝ) (ha : 0 < a) :
     ∫ u : ℝ in Set.Ioi a, (1 / (u ^ 2 + 1) : ℝ) = Real.arctan a⁻¹ := by
   rw [integral_Ioi_one_div_one_add_sq_eq_pi_div_two_sub_arctan]
   exact (Real.arctan_inv_of_pos ha).symm
 
 /-- The exponentially damped sinc function is integrable on the positive
 half-line. -/
-theorem integrableOn_exp_neg_mul_sinc (a : ℝ) (ha : 0 < a) :
+theorem _root_.Tengoku.Primenumbertheoremand.integrableOn_exp_neg_mul_sinc (a : ℝ) (ha : 0 < a) :
     IntegrableOn (fun x : ℝ => Real.exp (-a * x) * Real.sinc x) (Set.Ioi 0) := by
   change Integrable (fun x : ℝ => Real.exp (-a * x) * Real.sinc x)
     (volume.restrict (Set.Ioi 0))
@@ -1752,7 +1752,7 @@ theorem integrableOn_exp_neg_mul_sinc (a : ℝ) (ha : 0 < a) :
     exact mul_le_of_le_one_right (abs_nonneg _) (Real.abs_sinc_le_one x)
 
 /-- Uniform half-line tail control for the damped one-sided sinc integral. -/
-theorem norm_integral_Ioi_exp_neg_mul_sinc_tail_le
+theorem _root_.Tengoku.Primenumbertheoremand.norm_integral_Ioi_exp_neg_mul_sinc_tail_le
     {a R : ℝ} (ha : 0 < a) (hR : 1 ≤ R) :
     ‖∫ x : ℝ in Set.Ioi R, Real.exp (-a * x) * Real.sinc x‖ ≤ 4 * R⁻¹ := by
   have hR_pos : 0 < R := zero_lt_one.trans_le hR
@@ -1776,7 +1776,7 @@ theorem norm_integral_Ioi_exp_neg_mul_sinc_tail_le
   exact le_of_tendsto hnorm hbound
 
 /-- On a fixed finite window, damping tends back to the undamped sinc integral. -/
-theorem tendsto_intervalIntegral_exp_neg_mul_sinc_nhdsGT_zero (R : ℝ) :
+theorem _root_.Tengoku.Primenumbertheoremand.tendsto_intervalIntegral_exp_neg_mul_sinc_nhdsGT_zero (R : ℝ) :
     Filter.Tendsto
       (fun a : ℝ => ∫ x in (0 : ℝ)..R, Real.exp (-a * x) * Real.sinc x)
       (𝓝[>] (0 : ℝ))
@@ -1798,7 +1798,7 @@ theorem tendsto_intervalIntegral_exp_neg_mul_sinc_nhdsGT_zero (R : ℝ) :
 
 /-- Abel comparison: any finite-window sinc limit agrees with the damped
 half-line limit. -/
-theorem tendsto_integral_Ioi_exp_neg_mul_sinc_of_tendsto_interval
+theorem _root_.Tengoku.Primenumbertheoremand.tendsto_integral_Ioi_exp_neg_mul_sinc_of_tendsto_interval
     {L : ℝ}
     (hL : Filter.Tendsto
       (fun R : ℝ => ∫ x in (0 : ℝ)..R, Real.sinc x)
@@ -1877,7 +1877,7 @@ theorem tendsto_integral_Ioi_exp_neg_mul_sinc_of_tendsto_interval
   simpa [G, g] using hG
 
 /-- Positive half-line exponential tail with a variable decay constant. -/
-theorem integral_Ioi_exp_neg_mul_const (a x : ℝ) (hx : 0 < x) :
+theorem _root_.Tengoku.Primenumbertheoremand.integral_Ioi_exp_neg_mul_const (a x : ℝ) (hx : 0 < x) :
     ∫ u : ℝ in Set.Ioi a, Real.exp (-u * x) = Real.exp (-a * x) / x := by
   have h := integral_exp_mul_Ioi (a := -x) (by linarith : -x < 0) a
   calc
@@ -1891,7 +1891,7 @@ theorem integral_Ioi_exp_neg_mul_const (a x : ℝ) (hx : 0 < x) :
 
 /-- The pointwise representation of the damped sinc kernel by an exponential
 tail integral. -/
-theorem integral_Ioi_exp_neg_mul_const_mul_sin (a x : ℝ) (hx : 0 < x) :
+theorem _root_.Tengoku.Primenumbertheoremand.integral_Ioi_exp_neg_mul_const_mul_sin (a x : ℝ) (hx : 0 < x) :
     ∫ u : ℝ in Set.Ioi a, Real.exp (-u * x) * Real.sin x =
       Real.exp (-a * x) * Real.sinc x := by
   rw [integral_mul_const]
@@ -1901,7 +1901,7 @@ theorem integral_Ioi_exp_neg_mul_const_mul_sin (a x : ℝ) (hx : 0 < x) :
 
 /-- Evaluation of the damped sinc integral from the one remaining Fubini swap.
 The hypothesis is the exact product-integrability/swap term left to prove. -/
-theorem integral_Ioi_exp_neg_mul_sinc_eq_arctan_inv_of_integral_swap
+theorem _root_.Tengoku.Primenumbertheoremand.integral_Ioi_exp_neg_mul_sinc_eq_arctan_inv_of_integral_swap
     (a : ℝ) (ha : 0 < a)
     (hswap :
       (∫ x : ℝ in Set.Ioi 0,
@@ -1927,7 +1927,7 @@ theorem integral_Ioi_exp_neg_mul_sinc_eq_arctan_inv_of_integral_swap
 
 /-- The standard Fubini theorem gives the damped-sinc swap once the product
 kernel is integrable. -/
-theorem integral_Ioi_exp_neg_mul_sinc_integral_swap_of_integrable
+theorem _root_.Tengoku.Primenumbertheoremand.integral_Ioi_exp_neg_mul_sinc_integral_swap_of_integrable
     (a : ℝ)
     (hprod : Integrable
       (Function.uncurry
@@ -1942,7 +1942,7 @@ theorem integral_Ioi_exp_neg_mul_sinc_integral_swap_of_integrable
 /-- Evaluation of the damped sinc integral from product-integrability of the
 Fubini kernel. This is the canonical remaining input for the regularized sinc
 route. -/
-theorem integral_Ioi_exp_neg_mul_sinc_eq_arctan_inv_of_product_integrable
+theorem _root_.Tengoku.Primenumbertheoremand.integral_Ioi_exp_neg_mul_sinc_eq_arctan_inv_of_product_integrable
     (a : ℝ) (ha : 0 < a)
     (hprod : Integrable
       (Function.uncurry
@@ -1956,7 +1956,7 @@ theorem integral_Ioi_exp_neg_mul_sinc_eq_arctan_inv_of_product_integrable
 /-- Product-integrability of the damped sine kernel on `(0,∞) × (a,∞)`.
 The proof integrates the `u`-tail first and bounds the inner norm by
 `exp (-a*x)` using `|sin x| ≤ x` for `x > 0`. -/
-theorem integrable_exp_neg_mul_sin_prod_Ioi (a : ℝ) (ha : 0 < a) :
+theorem _root_.Tengoku.Primenumbertheoremand.integrable_exp_neg_mul_sin_prod_Ioi (a : ℝ) (ha : 0 < a) :
     Integrable
       (Function.uncurry
         (fun x u : ℝ => Real.exp (-u * x) * Real.sin x))
@@ -2025,7 +2025,7 @@ theorem integrable_exp_neg_mul_sin_prod_Ioi (a : ℝ) (ha : 0 < a) :
 
 /-- The Laplace-regularized one-sided sinc integral. This is the Abelian input
 for the classical `∫₀ᴬ sinc -> π/2` route. -/
-theorem integral_Ioi_exp_neg_mul_sinc_eq_arctan_inv (a : ℝ) (ha : 0 < a) :
+theorem _root_.Tengoku.Primenumbertheoremand.integral_Ioi_exp_neg_mul_sinc_eq_arctan_inv (a : ℝ) (ha : 0 < a) :
     ∫ x : ℝ in Set.Ioi 0, Real.exp (-a * x) * Real.sinc x =
       Real.arctan a⁻¹ :=
   integral_Ioi_exp_neg_mul_sinc_eq_arctan_inv_of_product_integrable a ha
@@ -2033,7 +2033,7 @@ theorem integral_Ioi_exp_neg_mul_sinc_eq_arctan_inv (a : ℝ) (ha : 0 < a) :
 
 /-- Abel limit of the Laplace-regularized sinc integral as the damping tends
 to zero from the right. -/
-theorem tendsto_integral_Ioi_exp_neg_mul_sinc_nhdsGT_zero :
+theorem _root_.Tengoku.Primenumbertheoremand.tendsto_integral_Ioi_exp_neg_mul_sinc_nhdsGT_zero :
     Filter.Tendsto
       (fun a : ℝ => ∫ x : ℝ in Set.Ioi 0, Real.exp (-a * x) * Real.sinc x)
       (𝓝[>] (0 : ℝ)) (𝓝 (π / 2 : ℝ)) := by
@@ -2047,7 +2047,7 @@ theorem tendsto_integral_Ioi_exp_neg_mul_sinc_nhdsGT_zero :
   exact (integral_Ioi_exp_neg_mul_sinc_eq_arctan_inv a ha).symm
 
 /-- The classical one-sided sinc integral tends to `π / 2`. -/
-theorem tendsto_intervalIntegral_real_sinc_atTop :
+theorem _root_.Tengoku.Primenumbertheoremand.tendsto_intervalIntegral_real_sinc_atTop :
     Filter.Tendsto
       (fun A : ℝ => ∫ x in (0 : ℝ)..A, Real.sinc x)
       Filter.atTop (nhds (π / 2 : ℝ)) := by
@@ -2058,7 +2058,7 @@ theorem tendsto_intervalIntegral_real_sinc_atTop :
   simpa [hlim] using hL
 
 /-- Scalar finite-window mass of the principal-value sine kernel. -/
-theorem tendsto_intervalIntegral_sin_div_kernel_scalar_mass {R : ℝ} (hR : 0 < R) :
+theorem _root_.Tengoku.Primenumbertheoremand.tendsto_intervalIntegral_sin_div_kernel_scalar_mass {R : ℝ} (hR : 0 < R) :
     Filter.Tendsto
       (fun T : ℝ =>
         ∫ u in (-R)..R,
@@ -2068,7 +2068,7 @@ theorem tendsto_intervalIntegral_sin_div_kernel_scalar_mass {R : ℝ} (hR : 0 < 
     tendsto_intervalIntegral_real_sinc_atTop
 
 /-- The scalar finite-window sine-kernel mass is eventually bounded by `2`. -/
-theorem eventually_norm_intervalIntegral_sin_div_kernel_scalar_mass_le_two
+theorem _root_.Tengoku.Primenumbertheoremand.eventually_norm_intervalIntegral_sin_div_kernel_scalar_mass_le_two
     {R : ℝ} (hR : 0 < R) :
     ∀ᶠ T in Filter.atTop,
       ‖∫ u in (-R)..R,
@@ -2102,7 +2102,7 @@ theorem eventually_norm_intervalIntegral_sin_div_kernel_scalar_mass_le_two
 treating the non-integrable constant kernel mass as a whole-line Bochner
 integral: the remaining analytic work is split into a finite-window mass limit,
 a finite-window local error limit, and a tail-control limit. -/
-theorem sinc_kernel_tendsto_of_windowed_pv
+theorem _root_.Tengoku.Primenumbertheoremand.sinc_kernel_tendsto_of_windowed_pv
     [CompleteSpace E] {f : ℝ → E} {x R : ℝ}
     (hconst : ∀ᶠ T in Filter.atTop,
       IntervalIntegrable
@@ -2196,7 +2196,7 @@ theorem sinc_kernel_tendsto_of_windowed_pv
 
 /-- Windowed principal-value convergence with the finite-window mass discharged
 by the scalar sinc limit. -/
-theorem sinc_kernel_tendsto_of_windowed_pv_of_pos_radius
+theorem _root_.Tengoku.Primenumbertheoremand.sinc_kernel_tendsto_of_windowed_pv_of_pos_radius
     [CompleteSpace E] {f : ℝ → E} {x R : ℝ} (hR : 0 < R)
     (herrInt : ∀ᶠ T in Filter.atTop,
       IntervalIntegrable
@@ -2242,7 +2242,7 @@ theorem sinc_kernel_tendsto_of_windowed_pv_of_pos_radius
 
 /-- Windowed principal-value convergence from local quotient integrability and
 tail control. -/
-theorem sinc_kernel_tendsto_of_windowed_pv_of_local_quotient
+theorem _root_.Tengoku.Primenumbertheoremand.sinc_kernel_tendsto_of_windowed_pv_of_local_quotient
     [CompleteSpace E] {f : ℝ → E} {x R : ℝ} (hR : 0 < R)
     (hq : IntervalIntegrable
       (fun u : ℝ =>
@@ -2285,7 +2285,7 @@ theorem sinc_kernel_tendsto_of_windowed_pv_of_local_quotient
 
 /-- Principal-value convergence for the sinc kernel from source integrability
 and local quotient integrability at the target point. -/
-theorem sinc_kernel_tendsto_of_integrable_local_quotient
+theorem _root_.Tengoku.Primenumbertheoremand.sinc_kernel_tendsto_of_integrable_local_quotient
     [CompleteSpace E] {f : ℝ → E} (hf : Integrable f) {x R : ℝ} (hR : 0 < R)
     (hq : IntervalIntegrable
       (fun u : ℝ =>
@@ -2299,7 +2299,7 @@ theorem sinc_kernel_tendsto_of_integrable_local_quotient
   exact sinc_kernel_tendsto_of_windowed_pv_of_local_quotient (E := E) hR hq
     (tendsto_sin_div_kernel_tail_of_integrable (E := E) hf hR)
 
-theorem laplaceInvLineTrunc_laplaceTransformBilateral_eq_fourierInvTrunc
+theorem _root_.Tengoku.Primenumbertheoremand.laplaceInvLineTrunc_laplaceTransformBilateral_eq_fourierInvTrunc
     (sigma : ℝ) (f : ℝ → E) (x T : ℝ) :
     laplaceInvLineTrunc sigma (laplaceTransformBilateral f) x T =
       Complex.exp ((sigma : ℂ) * (x : ℂ)) •
@@ -2338,7 +2338,7 @@ theorem laplaceInvLineTrunc_laplaceTransformBilateral_eq_fourierInvTrunc
 
 /-- Principal-value Laplace inversion reduced to the corresponding truncated
 Fourier convergence theorem for the exponentially weighted source. -/
-theorem laplaceInvLineTrunc_tendsto_laplaceTransformBilateral_eq
+theorem _root_.Tengoku.Primenumbertheoremand.laplaceInvLineTrunc_tendsto_laplaceTransformBilateral_eq
     (sigma : ℝ) (f : ℝ → E) {x : ℝ}
     (hlim : Filter.Tendsto
       (fun T : ℝ =>
@@ -2374,7 +2374,7 @@ theorem Complex.exp_mul_log_of_pos_eq_cpow {x : ℝ} (hx : 0 < x) (s : ℂ) :
 
 /-- The truncated multiplication-form inverse Laplace integral is the truncated
 vector-valued inverse Laplace line integral at `log x`. -/
-theorem laplaceIntegralCpowTrunc_eq_laplaceInvLineTrunc
+theorem _root_.Tengoku.Primenumbertheoremand.laplaceIntegralCpowTrunc_eq_laplaceInvLineTrunc
     (sigma : ℝ) (f : ℝ → ℂ) {x : ℝ} (hx : 0 < x) (T : ℝ) :
     laplaceIntegralCpowTrunc f sigma x T =
       laplaceInvLineTrunc sigma (laplaceTransformBilateral f) (Real.log x) T := by
@@ -2396,7 +2396,7 @@ theorem laplaceIntegralCpowTrunc_eq_laplaceInvLineTrunc
 
 /-- Principal-value Laplace inversion in the multiplication `x^s` form, reduced
 to truncated Fourier convergence for the exponentially weighted source. -/
-theorem laplaceIntegralCpowTrunc_tendsto_of_fourierInvTrunc
+theorem _root_.Tengoku.Primenumbertheoremand.laplaceIntegralCpowTrunc_tendsto_of_fourierInvTrunc
     (sigma : ℝ) (f : ℝ → ℂ) {x : ℝ} (hx : 0 < x)
     (hlim : Filter.Tendsto
       (fun T : ℝ =>
@@ -2421,7 +2421,7 @@ theorem laplaceIntegralCpowTrunc_tendsto_of_fourierInvTrunc
   filter_upwards with T
   exact (laplaceIntegralCpowTrunc_eq_laplaceInvLineTrunc sigma f hx T).symm
 
-theorem laplaceIntegralCpowTrunc_tendsto_of_sinc_kernel
+theorem _root_.Tengoku.Primenumbertheoremand.laplaceIntegralCpowTrunc_tendsto_of_sinc_kernel
     (sigma : ℝ) (f : ℝ → ℂ) {x : ℝ} (hx : 0 < x)
     (hg : Integrable (fun y : ℝ => Complex.exp (-((sigma : ℂ) * (y : ℂ))) * f y))
     (hdir : Filter.Tendsto
@@ -2438,7 +2438,7 @@ theorem laplaceIntegralCpowTrunc_tendsto_of_sinc_kernel
     (fourierInvTrunc_tendsto_of_sinc_kernel (E := ℂ)
       (f := fun y : ℝ => Complex.exp (-((sigma : ℂ) * (y : ℂ))) * f y) hg hdir)
 
-theorem laplaceIntegralCpowTrunc_tendsto_of_integrable_local_quotient
+theorem _root_.Tengoku.Primenumbertheoremand.laplaceIntegralCpowTrunc_tendsto_of_integrable_local_quotient
     (sigma : ℝ) (f : ℝ → ℂ) {x R : ℝ} (hx : 0 < x) (hR : 0 < R)
     (hg : Integrable (fun y : ℝ => Complex.exp (-((sigma : ℂ) * (y : ℂ))) * f y))
     (hq : IntervalIntegrable
@@ -2458,7 +2458,7 @@ theorem laplaceIntegralCpowTrunc_tendsto_of_integrable_local_quotient
 
 /-- A continuous function that decays like a negative exponential at `+∞` and is
 controlled by a positive exponential at `-∞` is globally bounded. -/
-lemma bounded_of_continuous_of_isBigO_exp_atBot_atTop
+lemma _root_.Tengoku.Primenumbertheoremand.bounded_of_continuous_of_isBigO_exp_atBot_atTop
     {f : ℝ → ℂ} (hf_cont : Continuous f) {cTop cBot : ℝ}
     (hcTop : cTop < 0) (hcBot : 0 < cBot)
     (htop : f =O[Filter.atTop] fun y : ℝ => Real.exp (cTop * y))
@@ -2527,7 +2527,7 @@ lemma bounded_of_continuous_of_isBigO_exp_atBot_atTop
 /-- Continuity of the bilateral Laplace integral along the `σ + tI` vertical line,
 under integrability of the exponentially weighted source. Companion to
 `continuous_laplaceIntegral_verticalLine_of_integrable` (the `σ - tI` form). -/
-theorem continuous_laplaceIntegral_verticalLine_add_of_integrable
+theorem _root_.Tengoku.Primenumbertheoremand.continuous_laplaceIntegral_verticalLine_add_of_integrable
     {φ : ℝ → ℂ} {σ : ℝ} (hφ_cont : Continuous φ)
     (hφ_int : Integrable (fun y : ℝ => exp (-((σ : ℂ) * (y : ℂ))) * φ y)) :
     Continuous
@@ -2568,3 +2568,4 @@ theorem continuous_laplaceIntegral_verticalLine_add_of_integrable
       (μ := volume) bound hF_meas h_bound hbound_int h_lim
   unfold ContinuousAt
   simpa [F] using h_tendsto
+-- Tengoku: root names of this library moved to Tengoku.Primenumbertheoremand so they do not collide with other libraries (generated)

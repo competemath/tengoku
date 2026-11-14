@@ -137,15 +137,15 @@ open embedding to a smaller open is again one.
   in `Oka/Topology/Maps/Proper/Basic.lean`. **This file imports neither of those two modules and
   neither imports it**, each mirroring the Mathlib module its own statement belongs in.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open TopologicalSpace Topology
 
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y] (f : X → Y)
 
 /-- **The sheets of `f`**: the opens of the source on which `f` restricts to an open embedding. -/
-def sheetOpens : Set (Opens X) := {V | IsOpenEmbedding ((V : Set X).domRestrict f)}
+def _root_.Tengoku.LanaOka.sheetOpens : Set (Opens X) := {V | IsOpenEmbedding ((V : Set X).domRestrict f)}
 
-theorem mem_sheetOpens {V : Opens X} :
+theorem _root_.Tengoku.LanaOka.mem_sheetOpens {V : Opens X} :
     V ∈ sheetOpens f ↔ IsOpenEmbedding ((V : Set X).domRestrict f) := Iff.rfl
 
 /-- **Every point of the source lies in a sheet.**
@@ -295,3 +295,4 @@ theorem TopologicalSpace.IsOpenCover.isLocalHomeomorph_iff_restrictPreimage (hU 
     hU.isLocalHomeomorph_of_restrictPreimage hg⟩
 
 end LocalAtTarget
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

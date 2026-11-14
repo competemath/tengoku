@@ -25,10 +25,10 @@ when their parameters differ by a rational square factor.
 * `Qsqrtd.algEquiv_iff_isSquareRatio`: classification of equivalences between
   non-square standard models by rational square ratios.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 local notation "ℚ√" d => Qsqrtd d
 
-namespace Qsqrtd
+namespace Tengoku.QuadraticNumberFields.Qsqrtd
 
 -- Resolve the diamond between `DivisionRing.toRatAlgebra` and `QuadraticAlgebra.instAlgebra`.
 -- NOTE: This is a file-local workaround for standard model algebra equivalences.
@@ -98,4 +98,5 @@ theorem algEquiv_iff_isSquareRatioByDivision
     exact (Fact.out : ¬ IsSquare d) (by rw [hd]; exact ⟨0, by ring⟩)
   exact (algEquiv_iff_isSquareRatio d d').trans (isSquareRatio_iff_isSquareRatioByDivision hd)
 
-end Qsqrtd
+end Tengoku.QuadraticNumberFields.Qsqrtd
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

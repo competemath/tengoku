@@ -24,7 +24,7 @@ winding number.
 
 * K. Hungerbühler, J. Wasem, *A generalized notion of winding numbers*
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex Set
 open scoped Real
 
@@ -39,7 +39,7 @@ crossing, and the angle between outgoing and negated incoming directions is `π`
 
 At a corner point (in the partition), the angle is `arg(L_right) - arg(-L_left)` where
 `L_left` and `L_right` are the one-sided derivative limits. -/
-def angleAtCrossing (γ : PwC1Immersion x y) (t₀ : ℝ) (_ht₀ : t₀ ∈ Ioo (0 : ℝ) 1) : ℝ :=
+def _root_.Tengoku.Leanmodularforms.angleAtCrossing (γ : PwC1Immersion x y) (t₀ : ℝ) (_ht₀ : t₀ ∈ Ioo (0 : ℝ) 1) : ℝ :=
   if h : t₀ ∈ γ.toPiecewiseC1Path.partition then
     let L_left := Classical.choose (γ.left_deriv_limit t₀ h)
     let L_right := Classical.choose (γ.right_deriv_limit t₀ h)
@@ -49,9 +49,10 @@ def angleAtCrossing (γ : PwC1Immersion x y) (t₀ : ℝ) (_ht₀ : t₀ ∈ Ioo
 /-- At a smooth point (not in the partition), the crossing angle is `π`.
 @isnad1 id=eq.2h4v.s6.11c0ac76e6c1 from=translated src=- shape=5df087ea vocab=763dfe18
 -/
-theorem angleAtCrossing_smooth (γ : PwC1Immersion x y) (t₀ : ℝ) (ht₀ : t₀ ∈ Ioo (0 : ℝ) 1)
+theorem _root_.Tengoku.Leanmodularforms.angleAtCrossing_smooth (γ : PwC1Immersion x y) (t₀ : ℝ) (ht₀ : t₀ ∈ Ioo (0 : ℝ) 1)
     (hsmooth : t₀ ∉ γ.toPiecewiseC1Path.partition) :
     angleAtCrossing γ t₀ ht₀ = Real.pi := by
   simp [angleAtCrossing, hsmooth]
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

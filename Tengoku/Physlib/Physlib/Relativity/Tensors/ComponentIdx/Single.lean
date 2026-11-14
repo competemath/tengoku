@@ -33,8 +33,8 @@ color and the basis indices of that color.
 -/
 
 @[expose] public section
-
-namespace TensorSpecies
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
+namespace Tengoku.Physlib.TensorSpecies
 
 variable {k : Type} [CommRing k] {C G : Type} [Group G]
   {V : C → Type} [∀ c, AddCommGroup (V c)] [∀ c, Module k (V c)]
@@ -76,4 +76,5 @@ lemma ComponentIdx.single_symm_apply {c : C} (b : basisIdx c) (i : Fin 1) :
 
 end Tensor
 
-end TensorSpecies
+end Tengoku.Physlib.TensorSpecies
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

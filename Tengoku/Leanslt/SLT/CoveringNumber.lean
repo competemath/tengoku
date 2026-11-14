@@ -11,7 +11,7 @@ import Tengoku
 Basic definitions of epsilon-nets, covering numbers, and packing numbers for pseudo-metric spaces.
 
 -/
-
+namespace Tengoku.Leanslt end Tengoku.Leanslt open Tengoku.Leanslt
 noncomputable section
 
 open Set Metric
@@ -20,22 +20,22 @@ open Classical
 
 /-- `t` is an `eps`-net for `s` if every point of `s` lies in a closed ball of radius `eps`
 centered at some element of `t`. We use closed balls to avoid side conditions when `eps = 0`. -/
-def IsENet {A : Type*} [PseudoMetricSpace A] (t : Finset A) (eps : ℝ) (s : Set A) : Prop :=
+def _root_.Tengoku.Leanslt.IsENet {A : Type*} [PseudoMetricSpace A] (t : Finset A) (eps : ℝ) (s : Set A) : Prop :=
   s ⊆ ⋃ x ∈ t, closedBall x eps
 
 /-- Covering number: the minimal cardinality of a finite `eps`-net, as `WithTop Nat` (`⊤` if no
 finite net exists). -/
-def coveringNumber {A : Type*} [PseudoMetricSpace A] (eps : ℝ) (s : Set A) : WithTop Nat :=
+def _root_.Tengoku.Leanslt.coveringNumber {A : Type*} [PseudoMetricSpace A] (eps : ℝ) (s : Set A) : WithTop Nat :=
   sInf {n : WithTop Nat | ∃ t : Finset A, IsENet t eps s ∧ (t.card : WithTop Nat) = n}
 
 /-- `t` is an `eps`-packing for `s` if it is contained in `s` and any two distinct points are
 `eps`-separated. -/
-def IsPacking {A : Type*} [PseudoMetricSpace A] (t : Finset A) (eps : ℝ) (s : Set A) : Prop :=
+def _root_.Tengoku.Leanslt.IsPacking {A : Type*} [PseudoMetricSpace A] (t : Finset A) (eps : ℝ) (s : Set A) : Prop :=
   (↑t ⊆ s) ∧ (t : Set A).Pairwise (fun x y => eps < dist x y)
 
 /-- Packing number: the maximal cardinality of a finite `eps`-packing, as `WithTop Nat` (`⊤` if
 unbounded). -/
-def packingNumber {A : Type*} [PseudoMetricSpace A] (eps : ℝ) (s : Set A) : WithTop Nat :=
+def _root_.Tengoku.Leanslt.packingNumber {A : Type*} [PseudoMetricSpace A] (eps : ℝ) (s : Set A) : WithTop Nat :=
   sSup {n : WithTop Nat | ∃ t : Finset A, IsPacking t eps s ∧ (t.card : WithTop Nat) = n}
 
 /-!
@@ -47,7 +47,7 @@ variable {A : Type*} [PseudoMetricSpace A]
 /-- If `t` is an `eps1`-net and `eps1 ≤ eps2`, then `t` is also an `eps2`-net.
 @isnad1 id=isenet.2h5v.s5.e5638b5ef707 from=translated src=- shape=9a1b8ac1 vocab=ab076102
 -/
-lemma IsENet.mono_eps {t : Finset A} {eps1 eps2 : ℝ} {s : Set A}
+lemma Tengoku.Leanslt.IsENet.mono_eps {t : Finset A} {eps1 eps2 : ℝ} {s : Set A}
     (h : IsENet t eps1 s) (heps : eps1 ≤ eps2) : IsENet t eps2 s := by
   intro x hx
   obtain ⟨y, hy_mem, hy_dist⟩ := mem_iUnion₂.mp (h hx)
@@ -61,7 +61,7 @@ lemma IsENet.mono_eps {t : Finset A} {eps1 eps2 : ℝ} {s : Set A}
     then `t` is an `eps`-net for `s`. Requires `eps ≥ 0` for the closed ball condition.
 @isnad1 id=isenet.2h4v.s6.f0be75a6b2af from=translated src=- shape=ce606950 vocab=de00fdb9
 -/
-lemma isENet_of_maximal {t : Finset A} {eps : ℝ} {s : Set A}
+lemma _root_.Tengoku.Leanslt.isENet_of_maximal {t : Finset A} {eps : ℝ} {s : Set A}
     (heps : 0 ≤ eps)
     (hmax : ∀ a ∈ s, a ∉ t → ∃ x ∈ t, dist a x ≤ eps) :
     IsENet t eps s := by
@@ -86,7 +86,7 @@ lemma WithTop.untop_of_lt_top {n : WithTop ℕ} (h : n < ⊤) : ∃ m : ℕ, n =
 /-- For a totally bounded set, there exists a finite epsilon-net with points in s.
 @isnad1 id=ex.2h3v.s5.8e3fd65f5c6b from=translated src=- shape=4a1f676d vocab=a5b97b4e
 -/
-lemma exists_finset_isENet_subset_of_totallyBounded {eps : ℝ} {s : Set A}
+lemma _root_.Tengoku.Leanslt.exists_finset_isENet_subset_of_totallyBounded {eps : ℝ} {s : Set A}
     (heps : 0 < eps) (hs : TotallyBounded s) :
     ∃ t : Finset A, IsENet t eps s ∧ (t : Set A) ⊆ s := by
   obtain ⟨t, ht_sub, ht_finite, ht_cover⟩ := finite_approx_of_totallyBounded hs eps heps
@@ -107,7 +107,7 @@ lemma exists_finset_isENet_subset_of_totallyBounded {eps : ℝ} {s : Set A}
 /-- For a totally bounded set, there exists a finite epsilon-net.
 @isnad1 id=ex.2h3v.s5.93bb3a087785 from=translated src=- shape=7b6f7996 vocab=48a172cd
 -/
-lemma exists_finset_isENet_of_totallyBounded {eps : ℝ} {s : Set A}
+lemma _root_.Tengoku.Leanslt.exists_finset_isENet_of_totallyBounded {eps : ℝ} {s : Set A}
     (heps : 0 < eps) (hs : TotallyBounded s) :
     ∃ t : Finset A, IsENet t eps s :=
   (exists_finset_isENet_subset_of_totallyBounded heps hs).imp fun _ h => h.1
@@ -116,7 +116,7 @@ lemma exists_finset_isENet_of_totallyBounded {eps : ℝ} {s : Set A}
     equals the covering number.
 @isnad1 id=ex.2h3v.s5.18ae3c526689 from=translated src=- shape=93ef8e57 vocab=5432b31f
 -/
-lemma exists_optimal_enet {eps : ℝ} {s : Set A}
+lemma _root_.Tengoku.Leanslt.exists_optimal_enet {eps : ℝ} {s : Set A}
     (heps : 0 < eps) (hs : TotallyBounded s) :
     ∃ t : Finset A, IsENet t eps s ∧ (t.card : WithTop ℕ) = coveringNumber eps s := by
   -- The set of cardinalities of eps-nets is nonempty
@@ -131,7 +131,7 @@ lemma exists_optimal_enet {eps : ℝ} {s : Set A}
     contained in s (by triangle inequality: eps/2 + eps/2 = eps), with |f(t)| ≤ |t|.
 @isnad1 id=ex.3h3v.s6.bbd0b7530732 from=translated src=- shape=565ad6f7 vocab=5939dd51
 -/
-lemma exists_enet_subset_from_half {eps : ℝ} {s : Set A}
+lemma _root_.Tengoku.Leanslt.exists_enet_subset_from_half {eps : ℝ} {s : Set A}
     (heps : 0 < eps) (hs : TotallyBounded s) (hsne : s.Nonempty) :
     ∃ t : Finset A, IsENet t eps s ∧ (t : Set A) ⊆ s ∧
       (t.card : WithTop ℕ) ≤ coveringNumber (eps / 2) s := by
@@ -198,27 +198,27 @@ open MeasureTheory Finset
 variable {ι : Type*} [Fintype ι] [Nonempty ι]
 
 /-- The closed Euclidean ball of radius R centered at 0 in EuclideanSpace ℝ ι. -/
-abbrev euclideanBall (R : ℝ) : Set (EuclideanSpace ℝ ι) := Metric.closedBall 0 R
+abbrev _root_.Tengoku.Leanslt.euclideanBall (R : ℝ) : Set (EuclideanSpace ℝ ι) := Metric.closedBall 0 R
 
 omit [Nonempty ι] in
 /-- The Euclidean ball is totally bounded (since it's compact in finite dimensions).
 @isnad1 id=totallyb.0h2v.s5.3a02feae6ae9 from=translated src=- shape=e260248c vocab=8ab25dc0
 -/
-lemma euclideanBall_totallyBounded (R : ℝ) : TotallyBounded (euclideanBall R : Set (EuclideanSpace ℝ ι)) :=
+lemma _root_.Tengoku.Leanslt.euclideanBall_totallyBounded (R : ℝ) : TotallyBounded (euclideanBall R : Set (EuclideanSpace ℝ ι)) :=
   (ProperSpace.isCompact_closedBall 0 R).totallyBounded
 
 omit [Nonempty ι] in
 /-- The Euclidean ball is nonempty for non-negative radius.
 @isnad1 id=nonempty.1h2v.s4.0d69972ab1f1 from=translated src=- shape=689a782e vocab=a5e7f8b1
 -/
-lemma euclideanBall_nonempty {R : ℝ} (hR : 0 ≤ R) : (euclideanBall R : Set (EuclideanSpace ℝ ι)).Nonempty :=
+lemma _root_.Tengoku.Leanslt.euclideanBall_nonempty {R : ℝ} (hR : 0 ≤ R) : (euclideanBall R : Set (EuclideanSpace ℝ ι)).Nonempty :=
   ⟨0, Metric.mem_closedBall_self hR⟩
 
 /-- If points x and y are ε-separated (dist x y > ε), then the closed balls of radius ε/2
     around them are disjoint.
 @isnad1 id=disjoint.2h4v.s6.9a4f5b74a69d from=translated src=- shape=06fb5bab vocab=6106c0c8
 -/
-lemma closedBall_half_disjoint {E : Type*} [PseudoMetricSpace E] {x y : E} {eps : ℝ}
+lemma _root_.Tengoku.Leanslt.closedBall_half_disjoint {E : Type*} [PseudoMetricSpace E] {x y : E} {eps : ℝ}
     (_heps : 0 ≤ eps) (hsep : eps < dist x y) :
     Disjoint (Metric.closedBall x (eps / 2)) (Metric.closedBall y (eps / 2)) := by
   apply Metric.closedBall_disjoint_closedBall
@@ -228,7 +228,7 @@ lemma closedBall_half_disjoint {E : Type*} [PseudoMetricSpace E] {x y : E} {eps 
 /-- For a packing, the half-radius balls around distinct points are pairwise disjoint.
 @isnad1 id=pairwise.2h4v.s6.c07f621e468b from=translated src=- shape=d25bc7cb vocab=b81a1d05
 -/
-lemma packing_halfBalls_pairwiseDisjoint {E : Type*} [PseudoMetricSpace E]
+lemma _root_.Tengoku.Leanslt.packing_halfBalls_pairwiseDisjoint {E : Type*} [PseudoMetricSpace E]
     {t : Finset E} {eps : ℝ} {s : Set E}
     (heps : 0 ≤ eps) (hpacking : IsPacking t eps s) :
     (t : Set E).PairwiseDisjoint (fun x => Metric.closedBall x (eps / 2)) := by
@@ -239,7 +239,7 @@ lemma packing_halfBalls_pairwiseDisjoint {E : Type*} [PseudoMetricSpace E]
 /-- A half-radius ball around a point in closedBall(0, R) is contained in closedBall(0, R + eps/2).
 @isnad1 id=le.1h4v.s6.9522c9ec4385 from=translated src=- shape=f2d3c0da vocab=a5e4dbd9
 -/
-lemma halfBall_subset_enlargedBall {E : Type*} [SeminormedAddCommGroup E]
+lemma _root_.Tengoku.Leanslt.halfBall_subset_enlargedBall {E : Type*} [SeminormedAddCommGroup E]
     {x : E} {R eps : ℝ} (hx : x ∈ Metric.closedBall (0 : E) R) :
     Metric.closedBall x (eps / 2) ⊆ Metric.closedBall (0 : E) (R + eps / 2) := by
   intro z hz
@@ -255,7 +255,7 @@ lemma halfBall_subset_enlargedBall {E : Type*} [SeminormedAddCommGroup E]
 /-- Union of half-balls around a packing in B(0, R) is contained in B(0, R + eps/2).
 @isnad1 id=le.2h5v.s7.274b2140c103 from=translated src=- shape=b0f87b03 vocab=e56350d3
 -/
-lemma packing_halfBalls_subset {E : Type*} [SeminormedAddCommGroup E]
+lemma _root_.Tengoku.Leanslt.packing_halfBalls_subset {E : Type*} [SeminormedAddCommGroup E]
     {t : Finset E} {R eps : ℝ} {s : Set E}
     (hpacking : IsPacking t eps s) (hs : s ⊆ Metric.closedBall (0 : E) R) :
     (⋃ x ∈ t, Metric.closedBall x (eps / 2)) ⊆ Metric.closedBall (0 : E) (R + eps / 2) := by
@@ -270,7 +270,7 @@ omit [Nonempty ι] in
 /-- Key volume lemma: The volume of disjoint half-balls equals the sum of individual volumes.
 @isnad1 id=eq.2h3v.s9.97413bd542b6 from=translated src=- shape=92e231e1 vocab=984d7355
 -/
-lemma volume_disjoint_union_closedBalls
+lemma _root_.Tengoku.Leanslt.volume_disjoint_union_closedBalls
     {t : Finset (EuclideanSpace ℝ ι)} {eps : ℝ} (_heps : 0 ≤ eps)
     (hpwd : (t : Set (EuclideanSpace ℝ ι)).PairwiseDisjoint
         (fun x => Metric.closedBall x (eps / 2))) :
@@ -283,7 +283,7 @@ lemma volume_disjoint_union_closedBalls
 /-- The volume of a closed ball in EuclideanSpace is proportional to r^d.
 @isnad1 id=eq.0h3v.s8.6beb29281008 from=translated src=- shape=89fca670 vocab=c06e2b6f
 -/
-lemma volume_closedBall_euclidean (x : EuclideanSpace ℝ ι) (r : ℝ) :
+lemma _root_.Tengoku.Leanslt.volume_closedBall_euclidean (x : EuclideanSpace ℝ ι) (r : ℝ) :
     MeasureTheory.volume (Metric.closedBall x r) =
     ENNReal.ofReal r ^ (Fintype.card ι) *
       ENNReal.ofReal (Real.pi.sqrt ^ Fintype.card ι /
@@ -291,13 +291,13 @@ lemma volume_closedBall_euclidean (x : EuclideanSpace ℝ ι) (r : ℝ) :
   EuclideanSpace.volume_closedBall ι x r
 
 /-- The constant factor in the volume of a unit ball. -/
-noncomputable def euclideanBallVolumeConst (d : ℕ) : ℝ :=
+noncomputable def _root_.Tengoku.Leanslt.euclideanBallVolumeConst (d : ℕ) : ℝ :=
   Real.pi.sqrt ^ d / Real.Gamma (d / 2 + 1)
 
 /--
 @isnad1 id=lt.0h1v.s3.d5ae2e4ce83f from=translated src=- shape=b9369acb vocab=08a68d49
 -/
-lemma euclideanBallVolumeConst_pos (d : ℕ) : 0 < euclideanBallVolumeConst d := by
+lemma _root_.Tengoku.Leanslt.euclideanBallVolumeConst_pos (d : ℕ) : 0 < euclideanBallVolumeConst d := by
   unfold euclideanBallVolumeConst
   apply div_pos
   · exact pow_pos (Real.sqrt_pos.mpr Real.pi_pos) d
@@ -307,7 +307,7 @@ lemma euclideanBallVolumeConst_pos (d : ℕ) : 0 < euclideanBallVolumeConst d :=
 /-- The volume of a closed ball with radius r equals r^d times the unit ball volume.
 @isnad1 id=eq.1h3v.s8.9f534d68516a from=translated src=- shape=455e455f vocab=cc21d594
 -/
-lemma volume_closedBall_eq_rpow (x : EuclideanSpace ℝ ι) (r : ℝ) (hr : 0 ≤ r) :
+lemma _root_.Tengoku.Leanslt.volume_closedBall_eq_rpow (x : EuclideanSpace ℝ ι) (r : ℝ) (hr : 0 ≤ r) :
     MeasureTheory.volume (Metric.closedBall x r) =
     ENNReal.ofReal (r ^ Fintype.card ι * euclideanBallVolumeConst (Fintype.card ι)) := by
   rw [volume_closedBall_euclidean]
@@ -327,7 +327,7 @@ lemma volume_closedBall_eq_rpow (x : EuclideanSpace ℝ ι) (r : ℝ) (hr : 0 �
     |t| ≤ ((R + ε/2) / (ε/2))^d = (1 + 2R/ε)^d
 @isnad1 id=le.3h4v.s7.5fc9cb9c14c9 from=translated src=- shape=cc0ff93d vocab=95874f2a
 -/
-lemma packing_card_bound_aux
+lemma _root_.Tengoku.Leanslt.packing_card_bound_aux
     {t : Finset (EuclideanSpace ℝ ι)} {R eps : ℝ}
     (hR : 0 ≤ R) (heps : 0 < eps)
     (hpacking : IsPacking t eps (euclideanBall R)) :
@@ -403,7 +403,7 @@ lemma packing_card_bound_aux
 /-- Main bound: For a packing, |t| ≤ (1 + 2R/ε)^d.
 @isnad1 id=le.3h4v.s7.74a154743d38 from=translated src=- shape=fa853097 vocab=cf22f57a
 -/
-lemma packing_card_bound
+lemma _root_.Tengoku.Leanslt.packing_card_bound
     {t : Finset (EuclideanSpace ℝ ι)} {R eps : ℝ}
     (hR : 0 ≤ R) (heps : 0 < eps)
     (hpacking : IsPacking t eps (euclideanBall R)) :
@@ -419,7 +419,7 @@ lemma packing_card_bound
     ε-separation, then the packing is an ε-net.
 @isnad1 id=isenet.3h4v.s6.8db99f75b150 from=translated src=- shape=a1dac5ca vocab=eadac262
 -/
-lemma maximal_packing_isENet {E : Type*} [PseudoMetricSpace E]
+lemma _root_.Tengoku.Leanslt.maximal_packing_isENet {E : Type*} [PseudoMetricSpace E]
     {t : Finset E} {eps : ℝ} {s : Set E}
     (heps : 0 ≤ eps)
     (_hpacking : IsPacking t eps s)
@@ -430,7 +430,7 @@ lemma maximal_packing_isENet {E : Type*} [PseudoMetricSpace E]
 /-- Any ε-separated subset of a totally bounded set is finite.
 @isnad1 id=finite.4h4v.s5.b04f5d594877 from=translated src=- shape=18077262 vocab=4579ca7a
 -/
-lemma separated_finite_of_totallyBounded {E : Type*} [PseudoMetricSpace E]
+lemma _root_.Tengoku.Leanslt.separated_finite_of_totallyBounded {E : Type*} [PseudoMetricSpace E]
     {s : Set E} {eps : ℝ} (heps : 0 < eps) (hs : TotallyBounded s)
     {t : Set E} (ht_sub : t ⊆ s) (ht_sep : t.Pairwise (fun x y => eps < dist x y)) :
     t.Finite := by
@@ -475,7 +475,7 @@ lemma separated_finite_of_totallyBounded {E : Type*} [PseudoMetricSpace E]
 /-- The existence of a maximal packing in a totally bounded set.
 @isnad1 id=ex.2h3v.s6.44979e241630 from=translated src=- shape=0a97c0d2 vocab=9d0dac20
 -/
-lemma exists_maximal_packing {E : Type*} [PseudoMetricSpace E]
+lemma _root_.Tengoku.Leanslt.exists_maximal_packing {E : Type*} [PseudoMetricSpace E]
     {s : Set E} (eps : ℝ) (heps : 0 < eps) (hs : TotallyBounded s) :
     ∃ t : Finset E, IsPacking t eps s ∧
       (∀ x ∈ s, x ∉ t → ∃ y ∈ t, dist x y ≤ eps) := by
@@ -604,25 +604,25 @@ open Finset BigOperators Real MeasureTheory ProbabilityTheory
 variable {d : ℕ}
 
 -- MeasurableSpace for Option (Fin d) using discrete sigma-algebra
-instance instMeasurableSpaceOptionFin (d : ℕ) : MeasurableSpace (Option (Fin d)) := ⊤
+instance _root_.Tengoku.Leanslt.instMeasurableSpaceOptionFin (d : ℕ) : MeasurableSpace (Option (Fin d)) := ⊤
 /--
 @isnad1 id=measurab.0h1v.s3.a48447a89376 from=translated src=- shape=36b3d148 vocab=1b0a1c9f
 -/
-instance instMeasurableSingletonClassOptionFin (d : ℕ) : MeasurableSingletonClass (Option (Fin d)) :=
+instance _root_.Tengoku.Leanslt.instMeasurableSingletonClassOptionFin (d : ℕ) : MeasurableSingletonClass (Option (Fin d)) :=
   ⟨fun _ => trivial⟩
 
 -- L1 norm on EuclideanSpace ℝ (Fin d)
-def l1norm (x : EuclideanSpace ℝ (Fin d)) : ℝ := ∑ i, ‖x i‖
+def _root_.Tengoku.Leanslt.l1norm (x : EuclideanSpace ℝ (Fin d)) : ℝ := ∑ i, ‖x i‖
 
-def l1Ball (R : ℝ) : Set (EuclideanSpace ℝ (Fin d)) := {x | l1norm x ≤ R}
+def _root_.Tengoku.Leanslt.l1Ball (R : ℝ) : Set (EuclideanSpace ℝ (Fin d)) := {x | l1norm x ≤ R}
 
 -- deterministic sign (+1 for nonnegative, -1 for negative)
-noncomputable def sgn (x : ℝ) : ℝ := if 0 ≤ x then 1 else -1
+noncomputable def _root_.Tengoku.Leanslt.sgn (x : ℝ) : ℝ := if 0 ≤ x then 1 else -1
 
 /--
 @isnad1 id=eq.0h1v.s4.8405aa1703b1 from=translated src=- shape=bc3eac35 vocab=b4a93424
 -/
-lemma abs_mul_sgn (x : ℝ) : |x| * sgn x = x := by
+lemma _root_.Tengoku.Leanslt.abs_mul_sgn (x : ℝ) : |x| * sgn x = x := by
   by_cases hx : 0 ≤ x
   · simp [sgn, hx, abs_of_nonneg hx]
   · have hx' : x < 0 := lt_of_not_ge hx
@@ -631,62 +631,62 @@ lemma abs_mul_sgn (x : ℝ) : |x| * sgn x = x := by
 /--
 @isnad1 id=eq.0h1v.s4.3fa0d4d62118 from=translated src=- shape=98bba06a vocab=fb8710a7
 -/
-lemma sgn_sq (x : ℝ) : sgn x ^ 2 = 1 := by
+lemma _root_.Tengoku.Leanslt.sgn_sq (x : ℝ) : sgn x ^ 2 = 1 := by
   by_cases hx : 0 ≤ x <;> simp [sgn, hx]
 
 -- vector-valued random variable depending on θ
-noncomputable def vecθ (θ : EuclideanSpace ℝ (Fin d)) (R : ℝ) : Option (Fin d) → EuclideanSpace ℝ (Fin d)
+noncomputable def _root_.Tengoku.Leanslt.vecθ (θ : EuclideanSpace ℝ (Fin d)) (R : ℝ) : Option (Fin d) → EuclideanSpace ℝ (Fin d)
   | none => 0
   | some j => EuclideanSpace.single j (R * sgn (θ j))
 
 -- base sign for the net
-def sgnBool (b : Bool) : ℝ := if b then 1 else -1
+def _root_.Tengoku.Leanslt.sgnBool (b : Bool) : ℝ := if b then 1 else -1
 
-noncomputable def vec (R : ℝ) : Option (Fin d × Bool) → EuclideanSpace ℝ (Fin d)
+noncomputable def _root_.Tengoku.Leanslt.vec (R : ℝ) : Option (Fin d × Bool) → EuclideanSpace ℝ (Fin d)
   | none => 0
   | some (j, b) => EuclideanSpace.single j (R * sgnBool b)
 
-noncomputable def embed (θ : EuclideanSpace ℝ (Fin d)) : Option (Fin d) → Option (Fin d × Bool)
+noncomputable def _root_.Tengoku.Leanslt.embed (θ : EuclideanSpace ℝ (Fin d)) : Option (Fin d) → Option (Fin d × Bool)
   | none => none
   | some j => some (j, decide (0 ≤ θ j))
 
 /--
 @isnad1 id=eq.0h1v.s4.9175caf5d48c from=translated src=- shape=f60b2653 vocab=aebd7df1
 -/
-lemma sgnBool_decide (x : ℝ) : sgnBool (decide (0 ≤ x)) = sgn x := by
+lemma _root_.Tengoku.Leanslt.sgnBool_decide (x : ℝ) : sgnBool (decide (0 ≤ x)) = sgn x := by
   by_cases hx : 0 ≤ x <;> simp [sgnBool, sgn, hx]
 
 /--
 @isnad1 id=eq.0h4v.s4.e3569b7f617e from=translated src=- shape=d810078f vocab=9bb967ab
 -/
-lemma vec_embed (θ : EuclideanSpace ℝ (Fin d)) (R : ℝ) (o : Option (Fin d)) :
+lemma _root_.Tengoku.Leanslt.vec_embed (θ : EuclideanSpace ℝ (Fin d)) (R : ℝ) (o : Option (Fin d)) :
     vec R (embed θ o) = vecθ θ R o := by
   cases o <;> simp [embed, vec, vecθ, sgnBool_decide]
 
-noncomputable def avg (R : ℝ) (k : ℕ) (f : Fin k → Option (Fin d × Bool)) :
+noncomputable def _root_.Tengoku.Leanslt.avg (R : ℝ) (k : ℕ) (f : Fin k → Option (Fin d × Bool)) :
     EuclideanSpace ℝ (Fin d) :=
   (1 / (k : ℝ)) • ∑ i, vec R (f i)
 
-noncomputable def avgθ (θ : EuclideanSpace ℝ (Fin d)) (R : ℝ) (k : ℕ) (f : Fin k → Option (Fin d)) :
+noncomputable def _root_.Tengoku.Leanslt.avgθ (θ : EuclideanSpace ℝ (Fin d)) (R : ℝ) (k : ℕ) (f : Fin k → Option (Fin d)) :
     EuclideanSpace ℝ (Fin d) :=
   (1 / (k : ℝ)) • ∑ i, vecθ θ R (f i)
 
 /--
 @isnad1 id=eq.0h5v.s5.3952d66b0a5a from=translated src=- shape=06e57b0f vocab=3b29d65c
 -/
-lemma avg_embed (θ : EuclideanSpace ℝ (Fin d)) (R : ℝ) (k : ℕ) (f : Fin k → Option (Fin d)) :
+lemma _root_.Tengoku.Leanslt.avg_embed (θ : EuclideanSpace ℝ (Fin d)) (R : ℝ) (k : ℕ) (f : Fin k → Option (Fin d)) :
     avg R k (fun i => embed θ (f i)) = avgθ θ R k f := by
   simp [avg, avgθ, vec_embed]
 
 -- Finite net built from all averages of k points in {0, ±R e_j}
-noncomputable def l1Net (R : ℝ) (k : ℕ) : Finset (EuclideanSpace ℝ (Fin d)) := by
+noncomputable def _root_.Tengoku.Leanslt.l1Net (R : ℝ) (k : ℕ) : Finset (EuclideanSpace ℝ (Fin d)) := by
   classical
   exact (Finset.univ.image (avg R k))
 
 /--
 @isnad1 id=le.0h3v.s5.f669712dae1f from=translated src=- shape=eea95aa0 vocab=9fc72846
 -/
-lemma l1Net_card_le (R : ℝ) (k : ℕ) :
+lemma _root_.Tengoku.Leanslt.l1Net_card_le (R : ℝ) (k : ℕ) :
     (l1Net (d := d) R k).card ≤ (2 * d + 1) ^ k := by
   classical
   have hle : (l1Net (d := d) R k).card ≤
@@ -703,7 +703,7 @@ lemma l1Net_card_le (R : ℝ) (k : ℕ) :
   simpa [hcard_univ] using hle
 
 -- Probability distribution on Option (Fin d) based on θ
-noncomputable def l1pmf (θ : EuclideanSpace ℝ (Fin d)) (R : ℝ) (hθ : l1norm θ ≤ R) :
+noncomputable def _root_.Tengoku.Leanslt.l1pmf (θ : EuclideanSpace ℝ (Fin d)) (R : ℝ) (hθ : l1norm θ ≤ R) :
     PMF (Option (Fin d)) := by
   classical
   refine PMF.ofFintype (fun o : Option (Fin d) => ?_) ?_
@@ -761,7 +761,7 @@ noncomputable def l1pmf (θ : EuclideanSpace ℝ (Fin d)) (R : ℝ) (hθ : l1nor
 /--
 @isnad1 id=eq.2h4v.s7.b66de2e1d2d1 from=translated src=- shape=3d516d4a vocab=4ae66c0a
 -/
-lemma l1pmf_mean_coord (θ : EuclideanSpace ℝ (Fin d)) {R : ℝ} (hR : 0 < R)
+lemma _root_.Tengoku.Leanslt.l1pmf_mean_coord (θ : EuclideanSpace ℝ (Fin d)) {R : ℝ} (hR : 0 < R)
     (hθ : l1norm θ ≤ R) (j : Fin d) :
     ∫ o, (vecθ θ R o) j ∂(l1pmf θ R hθ).toMeasure = θ j := by
   classical
@@ -789,7 +789,7 @@ lemma l1pmf_mean_coord (θ : EuclideanSpace ℝ (Fin d)) {R : ℝ} (hR : 0 < R)
 /--
 @isnad1 id=eq.2h4v.s7.80c14b8d7c14 from=translated src=- shape=16faa315 vocab=047107d3
 -/
-lemma l1pmf_second_moment_coord (θ : EuclideanSpace ℝ (Fin d)) {R : ℝ} (hR : 0 < R)
+lemma _root_.Tengoku.Leanslt.l1pmf_second_moment_coord (θ : EuclideanSpace ℝ (Fin d)) {R : ℝ} (hR : 0 < R)
     (hθ : l1norm θ ≤ R) (j : Fin d) :
     ∫ o, ((vecθ θ R o) j) ^ 2 ∂(l1pmf θ R hθ).toMeasure = R * ‖θ j‖ := by
   classical
@@ -825,7 +825,7 @@ lemma l1pmf_second_moment_coord (θ : EuclideanSpace ℝ (Fin d)) {R : ℝ} (hR 
 /--
 @isnad1 id=ex.4h5v.s7.10286fd73115 from=translated src=- shape=7a8254bc vocab=313bbfbb
 -/
-lemma exists_avgθ_close (θ : EuclideanSpace ℝ (Fin d)) {R eps : ℝ} (hR : 0 < R)
+lemma _root_.Tengoku.Leanslt.exists_avgθ_close (θ : EuclideanSpace ℝ (Fin d)) {R eps : ℝ} (hR : 0 < R)
     (hε : 0 < eps) (hθ : l1norm θ ≤ R) (k : ℕ) (hk : R ^ 2 ≤ (k : ℝ) * eps ^ 2) :
     ∃ f : Fin k → Option (Fin d), dist (avgθ θ R k f) θ ≤ eps := by
   classical
@@ -1057,13 +1057,13 @@ separates coordinates into those with large magnitude (> τ) and small magnitude
 -/
 
 /-- The set of coordinates j where |θ j| > τ -/
-noncomputable def largeCoords (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) : Finset (Fin d) :=
+noncomputable def _root_.Tengoku.Leanslt.largeCoords (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) : Finset (Fin d) :=
   Finset.filter (fun j => τ < ‖θ j‖) Finset.univ
 
 /-- The ℓ₁ norm decomposes as sum over large coordinates plus sum over small coordinates
 @isnad1 id=eq.0h3v.s6.65bc5327e2d9 from=translated src=- shape=c6da5390 vocab=68c94bea
 -/
-lemma l1norm_eq_sum_large_add_small (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) :
+lemma _root_.Tengoku.Leanslt.l1norm_eq_sum_large_add_small (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) :
     l1norm θ = ∑ j ∈ largeCoords θ τ, ‖θ j‖ + ∑ j ∈ (largeCoords θ τ)ᶜ, ‖θ j‖ := by
   unfold l1norm largeCoords
   rw [← Finset.sum_filter_add_sum_filter_not Finset.univ (fun j => τ < ‖θ j‖) (fun j => ‖θ j‖)]
@@ -1072,7 +1072,7 @@ lemma l1norm_eq_sum_large_add_small (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ)
 /-- Sum over small coordinates is at most the full ℓ₁ norm
 @isnad1 id=le.0h3v.s6.2da2f9844157 from=translated src=- shape=f071302e vocab=22fb7b19
 -/
-lemma sum_small_coords_le_l1norm (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) :
+lemma _root_.Tengoku.Leanslt.sum_small_coords_le_l1norm (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) :
     ∑ j ∈ (largeCoords θ τ)ᶜ, ‖θ j‖ ≤ l1norm θ := by
   unfold l1norm
   apply Finset.sum_le_univ_sum_of_nonneg
@@ -1082,7 +1082,7 @@ lemma sum_small_coords_le_l1norm (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) :
 /-- Sum over small coordinates is bounded by 2R when θ is in the ℓ₁-ball of radius 2R
 @isnad1 id=le.1h4v.s6.828ff8377658 from=translated src=- shape=ebae937d vocab=6617f07a
 -/
-lemma sum_small_coords_le (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) (R : ℝ)
+lemma _root_.Tengoku.Leanslt.sum_small_coords_le (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) (R : ℝ)
     (hθ : l1norm θ ≤ 2 * R) :
     ∑ j ∈ (largeCoords θ τ)ᶜ, ‖θ j‖ ≤ 2 * R :=
   le_trans (sum_small_coords_le_l1norm θ τ) hθ
@@ -1090,7 +1090,7 @@ lemma sum_small_coords_le (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) (R : ℝ)
 /-- Cauchy-Schwarz: sum of |θ j| over large coordinates is at most √|S| · ‖θ‖₂
 @isnad1 id=le.0h3v.s6.04ccc580b5ba from=translated src=- shape=009d3304 vocab=2eede0b9
 -/
-lemma sum_large_coords_le_sqrt_card_mul_norm (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) :
+lemma _root_.Tengoku.Leanslt.sum_large_coords_le_sqrt_card_mul_norm (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) :
     ∑ j ∈ largeCoords θ τ, ‖θ j‖ ≤ Real.sqrt (largeCoords θ τ).card * ‖θ‖ := by
   -- Apply Cauchy-Schwarz: ∑ 1·|θⱼ| ≤ √(∑ 1²) · √(∑ |θⱼ|²)
   have hCS := Real.sum_mul_le_sqrt_mul_sqrt (largeCoords θ τ) (fun _ => (1 : ℝ)) (fun j => ‖θ j‖)
@@ -1116,7 +1116,7 @@ lemma sum_large_coords_le_sqrt_card_mul_norm (θ : EuclideanSpace ℝ (Fin d)) (
 /-- Cardinality of large coordinates satisfies |S| · τ < 2R + τ
 @isnad1 id=lt.2h4v.s6.fc344b9bb9ac from=translated src=- shape=419947db vocab=074cf79e
 -/
-lemma largeCoords_card_mul_lt (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) (R : ℝ)
+lemma _root_.Tengoku.Leanslt.largeCoords_card_mul_lt (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) (R : ℝ)
     (hτ : 0 < τ) (hθ : l1norm θ ≤ 2 * R) :
     (largeCoords θ τ).card * τ < 2 * R + τ := by
   have hsum_large : ∑ j ∈ largeCoords θ τ, τ ≤ ∑ j ∈ largeCoords θ τ, ‖θ j‖ := by
@@ -1141,7 +1141,7 @@ lemma largeCoords_card_mul_lt (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) (R : 
 /-- If |S| · τ < 2R + τ and τ > 0, then |S| < 2R/τ + 1
 @isnad1 id=lt.2h4v.s6.5173cbcbb8a5 from=translated src=- shape=8c395e5f vocab=38098a1b
 -/
-lemma largeCoords_card_lt_div_add_one (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) (R : ℝ)
+lemma _root_.Tengoku.Leanslt.largeCoords_card_lt_div_add_one (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) (R : ℝ)
     (hτ : 0 < τ) (hθ : l1norm θ ≤ 2 * R) :
     ((largeCoords θ τ).card : ℝ) < 2 * R / τ + 1 := by
   have h := largeCoords_card_mul_lt θ τ R hτ hθ
@@ -1155,7 +1155,7 @@ lemma largeCoords_card_lt_div_add_one (θ : EuclideanSpace ℝ (Fin d)) (τ : �
 /-- Square root of cardinality bound: √|S| ≤ √(2R/τ + 1)
 @isnad1 id=le.2h4v.s6.8dc38ed07f5e from=translated src=- shape=8e1c9ca4 vocab=0fe25e29
 -/
-lemma sqrt_largeCoords_card_le (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) (R : ℝ)
+lemma _root_.Tengoku.Leanslt.sqrt_largeCoords_card_le (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) (R : ℝ)
     (hτ : 0 < τ) (hθ : l1norm θ ≤ 2 * R) :
     Real.sqrt (largeCoords θ τ).card ≤ Real.sqrt (2 * R / τ + 1) := by
   apply Real.sqrt_le_sqrt
@@ -1166,7 +1166,7 @@ lemma sqrt_largeCoords_card_le (θ : EuclideanSpace ℝ (Fin d)) (τ : ℝ) (R :
     ‖θ‖₁ ≤ √(2R/τ + 1) · ‖θ‖₂ + 2R
 @isnad1 id=le.2h4v.s7.51a0bb4ea5d9 from=translated src=- shape=f4770f62 vocab=4143f010
 -/
-theorem l1_peeling_inequality (θ : EuclideanSpace ℝ (Fin d)) (τ R : ℝ)
+theorem _root_.Tengoku.Leanslt.l1_peeling_inequality (θ : EuclideanSpace ℝ (Fin d)) (τ R : ℝ)
     (hτ : 0 < τ) (hθ : l1norm θ ≤ 2 * R) :
     l1norm θ ≤ Real.sqrt (2 * R / τ + 1) * ‖θ‖ + 2 * R := by
   rw [l1norm_eq_sum_large_add_small θ τ]
@@ -1183,7 +1183,7 @@ theorem l1_peeling_inequality (θ : EuclideanSpace ℝ (Fin d)) (τ R : ℝ)
 /-- √(a + b) ≤ √a + √b for non-negative a, b
 @isnad1 id=le.2h2v.s5.89638037d61c from=translated src=- shape=e44816be vocab=c24bb1bf
 -/
-lemma sqrt_add_le_peeling {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) :
+lemma _root_.Tengoku.Leanslt.sqrt_add_le_peeling {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) :
     Real.sqrt (a + b) ≤ Real.sqrt a + Real.sqrt b := by
   have hsum_nonneg : 0 ≤ Real.sqrt a + Real.sqrt b := by
     apply add_nonneg (Real.sqrt_nonneg a) (Real.sqrt_nonneg b)
@@ -1201,7 +1201,7 @@ lemma sqrt_add_le_peeling {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) :
 /-- Alternative form of peeling inequality using τ^(-1/2) notation
 @isnad1 id=le.3h4v.s7.18fdea650b50 from=translated src=- shape=216ec189 vocab=482afa03
 -/
-theorem l1_peeling_inequality' (θ : EuclideanSpace ℝ (Fin d)) (τ R : ℝ)
+theorem _root_.Tengoku.Leanslt.l1_peeling_inequality' (θ : EuclideanSpace ℝ (Fin d)) (τ R : ℝ)
     (hτ : 0 < τ) (hR : 0 ≤ R) (hθ : l1norm θ ≤ 2 * R) :
     l1norm θ ≤ Real.sqrt (2 * R) * τ ^ (-(1:ℝ)/2) * ‖θ‖ + ‖θ‖ + 2 * R := by
   have h := l1_peeling_inequality θ τ R hτ hθ
@@ -1241,7 +1241,7 @@ variable {A B : Type*} [PseudoMetricSpace A] [PseudoMetricSpace B]
 /-- An ε-net for a set S induces an ε·L-net for the image f(S) under an L-Lipschitz map.
 @isnad1 id=isenet.3h7v.s6.3f8dfd3da22a from=translated src=- shape=922b1868 vocab=79ce889d
 -/
-lemma IsENet.image_of_lipschitz [DecidableEq B] {L : ℝ} (hL : 0 ≤ L) {f : A → B}
+lemma Tengoku.Leanslt.IsENet.image_of_lipschitz [DecidableEq B] {L : ℝ} (hL : 0 ≤ L) {f : A → B}
     (hf : ∀ x y : A, dist (f x) (f y) ≤ L * dist x y)
     {t : Finset A} {eps : ℝ} {s : Set A}
     (hnet : IsENet t eps s) :
@@ -1259,3 +1259,4 @@ lemma IsENet.image_of_lipschitz [DecidableEq B] {L : ℝ} (hL : 0 ≤ L) {f : A 
     _ ≤ L * eps := mul_le_mul_of_nonneg_left hx_ball hL
 
 end LipschitzImage
+-- Tengoku: root names of this library moved to Tengoku.Leanslt so they do not collide with other libraries (generated)

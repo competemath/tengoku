@@ -32,7 +32,7 @@ this file provides two independent sets of assumptions:
 -/
 
 @[expose] public section
-
+namespace Tengoku.BrownianMotion end Tengoku.BrownianMotion open Tengoku.BrownianMotion 
 open Filter Set TopologicalSpace
 open scoped ENNReal Topology
 
@@ -52,10 +52,11 @@ section SecondCountableTopology
 isolated on the right within `s`.
 @isnad1 id=iff.1h3v.s7.1598e63908f2 from=translated src=- shape=f796e27f vocab=220e631a
 -/
-lemma nhdsGT_subtype_eq_bot_iff {s : Set ι} {x : ι} (hx : x ∈ s) :
+lemma _root_.Tengoku.BrownianMotion.nhdsGT_subtype_eq_bot_iff {s : Set ι} {x : ι} (hx : x ∈ s) :
     𝓝[>] (⟨x, hx⟩ : s) = ⊥ ↔ 𝓝[s ∩ Ioi x] x = ⊥ := by
   have : ((↑) : s → ι) ⁻¹' Ioi x = Ioi ⟨x, hx⟩ := rfl
   rw [← this, nhdsWithin_subtype_eq_bot_iff, nhdsWithin, inf_assoc, inf_principal, inter_comm,
     ← nhdsWithin]
 
 end SecondCountableTopology
+-- Tengoku: root names of this library moved to Tengoku.BrownianMotion so they do not collide with other libraries (generated)

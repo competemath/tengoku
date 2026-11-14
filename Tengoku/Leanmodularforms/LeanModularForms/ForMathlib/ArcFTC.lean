@@ -20,7 +20,7 @@ on-curve points `i`, `ρ`, `ρ+1`, used in the `ArcFTCHyp` construction.
 
 * K. Hungerbühler, J. Wasem, *A generalized notion of winding numbers*
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex Set
 
 noncomputable section
@@ -28,7 +28,7 @@ noncomputable section
 /-- The argument of `r * I` is `π/2` for `r > 0`.
 @isnad1 id=eq.1h1v.s5.ce2f59807643 from=translated src=- shape=25b4244b vocab=79f40c23
 -/
-theorem arg_ofReal_mul_I (r : ℝ) (hr : 0 < r) :
+theorem _root_.Tengoku.Leanmodularforms.arg_ofReal_mul_I (r : ℝ) (hr : 0 < r) :
     arg (↑r * I) = Real.pi / 2 := by
   rw [Complex.arg_real_mul _ hr, Complex.arg_I]
 
@@ -36,7 +36,7 @@ theorem arg_ofReal_mul_I (r : ℝ) (hr : 0 < r) :
 `d/dt exp(i·θ(t)) = (5π/6) · i · exp(i·θ(t))`.
 @isnad1 id=eq.0h1v.s7.58295008b678 from=translated src=- shape=44d7d9f7 vocab=1996c2bd
 -/
-theorem fdBoundary_arc_deriv_eq (t : ℝ) :
+theorem _root_.Tengoku.Leanmodularforms.fdBoundary_arc_deriv_eq (t : ℝ) :
     deriv (fun s => exp (↑(fdArcAngle s) * I)) t =
       ↑(5 * Real.pi / 6) * I * exp (↑(fdArcAngle t) * I) := by
   simp only [fdArcAngle]
@@ -48,3 +48,4 @@ theorem fdBoundary_arc_deriv_eq (t : ℝ) :
   rw [(hd.ofReal_comp.mul_const I).cexp.deriv]; push_cast; ring
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

@@ -30,7 +30,7 @@ We use `Classical.choose` on `hCondB.laurent_compatible` to extract the data
 `order = 0` (empty polar part) and the analytic remainder is `f` locally.
 This adds no axioms beyond the existing `Classical.choice`.
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Filter Topology Set Complex MeasureTheory Metric
 
 noncomputable section
@@ -585,3 +585,4 @@ noncomputable def PolarPartDecomposition.ofMeromorphicWithCondB
 end HungerbuhlerWasem
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

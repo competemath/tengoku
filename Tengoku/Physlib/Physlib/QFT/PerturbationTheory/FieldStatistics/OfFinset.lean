@@ -14,8 +14,8 @@ public import Tengoku
 -/
 
 @[expose] public section
-
-namespace FieldStatistic
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
+namespace Tengoku.Physlib.FieldStatistic
 
 variable {𝓕 : Type}
 
@@ -131,4 +131,5 @@ lemma ofFinset_filter (q : 𝓕 → FieldStatistic) (φs : List 𝓕) (a : Finse
   rw [← mul_assoc]
   simp
 
-end FieldStatistic
+end Tengoku.Physlib.FieldStatistic
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

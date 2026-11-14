@@ -20,7 +20,7 @@ along a basic-open cover needs.
 
 Upstream candidate.
 -/
-
+namespace Tengoku.Aintlib end Tengoku.Aintlib open Tengoku.Aintlib
 open AlgebraicGeometry CategoryTheory
 
 /-- A basic open of `Spec A`, *as a `Scheme.Opens`*.
@@ -28,12 +28,12 @@ open AlgebraicGeometry CategoryTheory
 The type ascription `(PrimeSpectrum.basicOpen f : (Spec A).Opens)` does not elaborate — the
 projection `.ι` is attempted at the pre-coercion type `TopologicalSpace.Opens (PrimeSpectrum A)`.
 Naming the open once, with its `Scheme.Opens` type declared, is the fix.-/
-abbrev specBasicOpen (A : CommRingCat) (f : A) : (Spec A).Opens := PrimeSpectrum.basicOpen f
+abbrev _root_.Tengoku.Aintlib.specBasicOpen (A : CommRingCat) (f : A) : (Spec A).Opens := PrimeSpectrum.basicOpen f
 
 /-- `D(f · g) = D(f) ⊓ D(g)`, at `Scheme.Opens` type.
 @isnad1 id=eq.0h3v.s6.cbd0a4d04292 from=translated src=- shape=43a73510 vocab=018aa6c8
 -/
-lemma specBasicOpen_mul (A : CommRingCat) (f g : A) :
+lemma _root_.Tengoku.Aintlib.specBasicOpen_mul (A : CommRingCat) (f g : A) :
     specBasicOpen A (f * g) = specBasicOpen A f ⊓ specBasicOpen A g :=
   PrimeSpectrum.basicOpen_mul f g
 
@@ -42,19 +42,19 @@ lemma specBasicOpen_mul (A : CommRingCat) (f g : A) :
 `(Spec A).Opens ≡ Opens (PrimeSpectrum A)`, which unfolds `A` and can blow up `whnf`.
 @isnad1 id=le.0h3v.s6.f31ed39e91f4 from=translated src=- shape=ce47bbee vocab=7df5ae49
 -/
-lemma specBasicOpen_mul_le_left (A : CommRingCat) (f g : A) :
+lemma _root_.Tengoku.Aintlib.specBasicOpen_mul_le_left (A : CommRingCat) (f g : A) :
     specBasicOpen A (f * g) ≤ specBasicOpen A f :=
   PrimeSpectrum.basicOpen_mul_le_left f g
 
 /-- `D(f · g) ≤ D(g)`, at `Scheme.Opens` type.
 @isnad1 id=le.0h3v.s6.3889e7aefeef from=translated src=- shape=ecdd6d89 vocab=7df5ae49
 -/
-lemma specBasicOpen_mul_le_right (A : CommRingCat) (f g : A) :
+lemma _root_.Tengoku.Aintlib.specBasicOpen_mul_le_right (A : CommRingCat) (f g : A) :
     specBasicOpen A (f * g) ≤ specBasicOpen A g :=
   PrimeSpectrum.basicOpen_mul_le_right f g
 
 /-- `Spec` of an away-localization is (isomorphic to) the corresponding basic open.-/
-noncomputable def specBasicOpenIsoAway (A : CommRingCat) (f : A) :
+noncomputable def _root_.Tengoku.Aintlib.specBasicOpenIsoAway (A : CommRingCat) (f : A) :
     Spec (CommRingCat.of (Localization.Away f)) ≅ (specBasicOpen A f).toScheme :=
   IsOpenImmersion.isoOfRangeEq
     (Spec.map (CommRingCat.ofHom (algebraMap A (Localization.Away f))))
@@ -66,7 +66,7 @@ noncomputable def specBasicOpenIsoAway (A : CommRingCat) (f : A) :
 @isnad1 id=eq.0h2v.s8.78043dcf6a04 from=translated src=- shape=13b661f1 vocab=e00c9119
 -/
 @[reassoc (attr := simp)]
-lemma specBasicOpenIsoAway_hom_ι (A : CommRingCat) (f : A) :
+lemma _root_.Tengoku.Aintlib.specBasicOpenIsoAway_hom_ι (A : CommRingCat) (f : A) :
     (specBasicOpenIsoAway A f).hom ≫ (specBasicOpen A f).ι =
       Spec.map (CommRingCat.ofHom (algebraMap A (Localization.Away f))) :=
   IsOpenImmersion.isoOfRangeEq_hom_fac _ _ _
@@ -79,7 +79,7 @@ Proved by cancelling the monomorphism `D(f).ι`: both sides then compute the str
 `IsLocalization.Away.awayToAwayRight_eq`.
 @isnad1 id=eq.0h3v.s10.ee9cccf7d8d8 from=translated src=- shape=f6dd8385 vocab=38ce24a7
 -/
-lemma specBasicOpenIsoAway_hom_homOfLE (A : CommRingCat) (f g : A) :
+lemma _root_.Tengoku.Aintlib.specBasicOpenIsoAway_hom_homOfLE (A : CommRingCat) (f g : A) :
     (specBasicOpenIsoAway A (f * g)).hom ≫
         (Spec A).homOfLE (specBasicOpen_mul_le_left A f g) =
       Spec.map (CommRingCat.ofHom
@@ -95,7 +95,7 @@ lemma specBasicOpenIsoAway_hom_homOfLE (A : CommRingCat) (f g : A) :
 /-- The mirror of `specBasicOpenIsoAway_hom_homOfLE` for the inclusion `D(f * g) ⊆ D(g)`.
 @isnad1 id=eq.0h3v.s10.f65c4047d48a from=translated src=- shape=d021459b vocab=defdacd7
 -/
-lemma specBasicOpenIsoAway_hom_homOfLE' (A : CommRingCat) (f g : A) :
+lemma _root_.Tengoku.Aintlib.specBasicOpenIsoAway_hom_homOfLE' (A : CommRingCat) (f g : A) :
     (specBasicOpenIsoAway A (f * g)).hom ≫
         (Spec A).homOfLE (specBasicOpen_mul_le_right A f g) =
       Spec.map (CommRingCat.ofHom
@@ -113,7 +113,7 @@ lemma specBasicOpenIsoAway_hom_homOfLE' (A : CommRingCat) (f g : A) :
 @isnad1 id=eq.0h3v.s10.5ff4eb439c66 from=translated src=- shape=798094b7 vocab=c84da72e
 -/
 @[reassoc]
-lemma homOfLE_specBasicOpenIsoAway_inv (A : CommRingCat) (f g : A) :
+lemma _root_.Tengoku.Aintlib.homOfLE_specBasicOpenIsoAway_inv (A : CommRingCat) (f g : A) :
     (Spec A).homOfLE (specBasicOpen_mul_le_left A f g) ≫ (specBasicOpenIsoAway A f).inv =
       (specBasicOpenIsoAway A (f * g)).inv ≫ Spec.map (CommRingCat.ofHom
         (IsLocalization.Away.awayToAwayRight (S := Localization.Away f) f g)) := by
@@ -125,7 +125,7 @@ lemma homOfLE_specBasicOpenIsoAway_inv (A : CommRingCat) (f g : A) :
 @isnad1 id=eq.0h3v.s10.66cdcff95de3 from=translated src=- shape=1a4f69f7 vocab=548e688c
 -/
 @[reassoc]
-lemma homOfLE_specBasicOpenIsoAway_inv' (A : CommRingCat) (f g : A) :
+lemma _root_.Tengoku.Aintlib.homOfLE_specBasicOpenIsoAway_inv' (A : CommRingCat) (f g : A) :
     (Spec A).homOfLE (specBasicOpen_mul_le_right A f g) ≫ (specBasicOpenIsoAway A g).inv =
       (specBasicOpenIsoAway A (f * g)).inv ≫ Spec.map (CommRingCat.ofHom
         (IsLocalization.Away.awayToAwayLeft (S := Localization.Away g) g f)) := by
@@ -143,7 +143,7 @@ concrete scheme (a pullback of `Proj` charts, say) the `rw`s below would force `
 general lemma it is instantiated by application, and no unfolding ever happens.
 @isnad1 id=eq.1h8v.s12.695e2211bc71 from=translated src=- shape=29d9cdf4 vocab=00c406fe
 -/
-lemma homOfLE_morphismRestrict_agree {X Y : Scheme} (A : CommRingCat) (f : X ⟶ Spec A) (b c : A)
+lemma _root_.Tengoku.Aintlib.homOfLE_morphismRestrict_agree {X Y : Scheme} (A : CommRingCat) (f : X ⟶ Spec A) (b c : A)
     (Fb : Spec (CommRingCat.of (Localization.Away b)) ⟶ Y)
     (Fc : Spec (CommRingCat.of (Localization.Away c)) ⟶ Y)
     (h : Spec.map (CommRingCat.ofHom (IsLocalization.Away.awayToAwayRight
@@ -173,7 +173,7 @@ As with `homOfLE_morphismRestrict_agree`, this is stated over variable `X`, `Y`,
 concrete scheme is ever unfolded.
 @isnad1 id=eq.1h7v.s11.cc521522eec8 from=translated src=- shape=0a2936ec vocab=d1dff0fd
 -/
-lemma glueMorphisms_hf_of_agree {X : Scheme} {J : Type*} (U : J → X.Opens) {Y : Scheme}
+lemma _root_.Tengoku.Aintlib.glueMorphisms_hf_of_agree {X : Scheme} {J : Type*} (U : J → X.Opens) {Y : Scheme}
     (F : ∀ k, (U k).toScheme ⟶ Y)
     (h : ∀ k l, X.homOfLE (inf_le_left : U k ⊓ U l ≤ U k) ≫ F k =
       X.homOfLE (inf_le_right : U k ⊓ U l ≤ U l) ≫ F l) (x y : J) :
@@ -194,7 +194,7 @@ Stated over variable schemes on purpose: instantiated at a concrete `Proj` chart
 blow the heartbeat budget. As a general lemma it is applied, never unfolded.
 @isnad1 id=eq.0h8v.s10.1e7a4d17492e from=translated src=- shape=0b3631f5 vocab=0691c724
 -/
-lemma homOfLE_isoImage_inv_iSup {X Y : Scheme} (f : X ⟶ Y) [IsOpenImmersion f] {J : Type*}
+lemma _root_.Tengoku.Aintlib.homOfLE_isoImage_inv_iSup {X Y : Scheme} (f : X ⟶ Y) [IsOpenImmersion f] {J : Type*}
     (U : J → X.Opens) (k : J) {Z : Scheme} (g : (⨆ i, U i).toScheme ⟶ Z) :
     Y.homOfLE (f.image_mono (le_iSup U k)) ≫ (f.isoImage (⨆ i, U i)).inv ≫ g =
       (f.isoImage (U k)).inv ≫ (Scheme.Opens.iSupOpenCover U).f k ≫ g := by
@@ -209,7 +209,7 @@ the image inclusion `(p ''ᵁ (e.hom ⁻¹ᵁ U)).ι`. Stated over variable sche
 concrete `Proj` chart-product never drives `whnf` into the pullback carrier.
 @isnad1 id=eq.0h6v.s10.1cee096520ec from=translated src=- shape=60b70b06 vocab=157677fb
 -/
-lemma isoImage_inv_morphismRestrict_ι {X Y Z : Scheme} (p : X ⟶ Z) [IsOpenImmersion p]
+lemma _root_.Tengoku.Aintlib.isoImage_inv_morphismRestrict_ι {X Y Z : Scheme} (p : X ⟶ Z) [IsOpenImmersion p]
     (e : X ≅ Y) (U : Y.Opens) :
     (p.isoImage (e.hom ⁻¹ᵁ U)).inv ≫ (e.hom ∣_ U) ≫ U.ι ≫ e.inv ≫ p =
       (p ''ᵁ (e.hom ⁻¹ᵁ U)).ι := by
@@ -226,7 +226,7 @@ structure — `Spec.map ?b ≫ Spec.map ?a ≫ ?rest` — so `isDefEq` never unf
 defeq through `E` and blows the heartbeat budget; routing through this lemma keeps it under 5k.
 @isnad1 id=eq.1h10v.s7.db916c82d3a5 from=translated src=- shape=272c2369 vocab=3de41be7
 -/
-lemma spec_map_comp_congr {A B D E : CommRingCat} {X : Scheme}
+lemma _root_.Tengoku.Aintlib.spec_map_comp_congr {A B D E : CommRingCat} {X : Scheme}
     (a : A ⟶ B) (b : B ⟶ E) (a' : A ⟶ D) (b' : D ⟶ E)
     (rest : Spec A ⟶ X) (h : a ≫ b = a' ≫ b') :
     Spec.map b ≫ Spec.map a ≫ rest = Spec.map b' ≫ Spec.map a' ≫ rest := by
@@ -245,3 +245,4 @@ lemma Scheme.Hom.image_inf {X Y : Scheme} (f : X ⟶ Y) [IsOpenImmersion f] (U V
     _ = f.opensRange ⊓ (f ''ᵁ U ⊓ f ''ᵁ V) := Scheme.Hom.image_preimage_eq_opensRange_inf _ _
     _ = f ''ᵁ U ⊓ f ''ᵁ V :=
         inf_eq_right.mpr (le_trans inf_le_left (Scheme.Hom.image_le_opensRange f U))
+-- Tengoku: root names of this library moved to Tengoku.Aintlib so they do not collide with other libraries (generated)

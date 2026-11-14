@@ -54,7 +54,7 @@ typed-unit safety.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
 open NNReal
 open scoped BigOperators
 
@@ -63,7 +63,7 @@ open scoped BigOperators
   *function* `mag` giving each its single positive-real magnitude. It lists the options and
   picks none — a `UnitSystem` makes the pick. One catalog underlies many unit systems (SI,
   CGS, …); the magnitude is the data `toScale` reads to drive rescaling. -/
-class UnitMagnitudeCatalog (B : Type) where
+class _root_.Tengoku.Physlib.UnitMagnitudeCatalog (B : Type) where
   /-- The typed unit type at each base dimension. -/
   Unit : B → Type
   /-- The positive-real magnitude of a typed unit. -/
@@ -75,9 +75,9 @@ class UnitMagnitudeCatalog (B : Type) where
   per base dimension — the pick off the catalog's menu, and the formal counterpart of SI,
   CGS, …. Over the default basis, `u .length : LengthUnit`, and a `MassUnit` cannot be
   placed in the length slot. -/
-def UnitSystem (B : Type) [UnitMagnitudeCatalog B] := (b : B) → UnitMagnitudeCatalog.Unit b
+def _root_.Tengoku.Physlib.UnitSystem (B : Type) [UnitMagnitudeCatalog B] := (b : B) → UnitMagnitudeCatalog.Unit b
 
-namespace UnitSystem
+namespace Tengoku.Physlib.UnitSystem
 
 variable {B : Type} [UnitMagnitudeCatalog B]
 
@@ -96,7 +96,7 @@ noncomputable def toScale (u : UnitSystem B) : UnitScale B where
 lemma toScale_scale (u : UnitSystem B) (b : B) :
     (toScale u).scale b = UnitMagnitudeCatalog.mag (u b) := rfl
 
-end UnitSystem
+end Tengoku.Physlib.UnitSystem
 
 /-!
 
@@ -143,7 +143,7 @@ the same data.
 
 -/
 
-namespace LTMCTUnitChoices
+namespace Tengoku.Physlib.LTMCTUnitChoices
 
 /-- The bespoke five-field `LTMCTUnitChoices` and the generic `UnitSystem LTMCTDimensionBase`
   are the same data. -/
@@ -172,7 +172,7 @@ lemma toScale_equivUnitSystem (u : LTMCTUnitChoices) :
   funext b
   cases b <;> rfl
 
-end LTMCTUnitChoices
+end Tengoku.Physlib.LTMCTUnitChoices
 
 /-!
 
@@ -190,7 +190,7 @@ open Finset in
 /-- The product over the five default base quantities, in canonical enumeration order — a
   reusable fact about the `Fintype` enumeration of `LTMCTDimensionBase`, for folding
   `Finset.prod` over the default basis (e.g. in a hand-rolled scaling law). -/
-lemma prod_univ_LTMCTDimensionBase {M : Type} [CommMonoid M]
+lemma _root_.Tengoku.Physlib.prod_univ_LTMCTDimensionBase {M : Type} [CommMonoid M]
     (f : LTMCTDimensionBase → M) :
     ∏ b, f b = f .length * f .time * f .mass * f .charge * f .temperature := by
   rw [show (univ : Finset LTMCTDimensionBase)
@@ -198,7 +198,7 @@ lemma prod_univ_LTMCTDimensionBase {M : Type} [CommMonoid M]
   rw [prod_insert (by decide), prod_insert (by decide), prod_insert (by decide),
     prod_insert (by decide), prod_singleton, ← mul_assoc, ← mul_assoc, ← mul_assoc]
 
-namespace LTMCTUnitChoices
+namespace Tengoku.Physlib.LTMCTUnitChoices
 
 private lemma length_ratio (u1 u2 : LTMCTUnitChoices) :
     u1.length / u2.length = u1.toScale.scale .length / u2.toScale.scale .length := by
@@ -232,4 +232,5 @@ lemma dimScale_eq_toScale_dimScale (u1 u2 : LTMCTUnitChoices) (d : Dimension LTM
     Dimension.temperature, Dimension.exponent_length, Dimension.exponent_time,
     Dimension.exponent_mass, Dimension.exponent_charge, Dimension.exponent_temperature]
 
-end LTMCTUnitChoices
+end Tengoku.Physlib.LTMCTUnitChoices
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

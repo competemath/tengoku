@@ -5,26 +5,26 @@ public import Tengoku
 /-! We prove the 1st order Euler-Maclaurin formula by specialising Abel summation and manipulating integrals. -/
 
 @[expose] public section
-
+namespace Tengoku.Primenumbertheoremand end Tengoku.Primenumbertheoremand open Tengoku.Primenumbertheoremand 
 open Finset Interval MeasureTheory
 
 variable {𝕜 : Type*} [RCLike 𝕜] {f : ℝ → 𝕜} {a b : ℝ}
 
 /-- The 1st Bernoulli function. -/
-noncomputable def B1 (x : ℝ) : ℝ := x - ⌊x⌋₊ - 1 / 2
+noncomputable def _root_.Tengoku.Primenumbertheoremand.B1 (x : ℝ) : ℝ := x - ⌊x⌋₊ - 1 / 2
 
 @[fun_prop]
-lemma aestronglyMeasurable_B1 : AEStronglyMeasurable B1 := by
+lemma _root_.Tengoku.Primenumbertheoremand.aestronglyMeasurable_B1 : AEStronglyMeasurable B1 := by
   unfold B1
   fun_prop
 
-lemma abs_B1_le_half {x : ℝ} (hx : 0 ≤ x) : |B1 x| ≤ 1 / 2 := by
+lemma _root_.Tengoku.Primenumbertheoremand.abs_B1_le_half {x : ℝ} (hx : 0 ≤ x) : |B1 x| ≤ 1 / 2 := by
   unfold B1
   refine abs_le.mpr ⟨?_, ?_⟩
   · grind [Nat.floor_le hx]
   · grind [Nat.lt_succ_floor x]
 
-lemma integral_deriv_mul_add_const (c : 𝕜) (hab : a ≤ b) (h_int : IntervalIntegrable (deriv f) volume a b)
+lemma _root_.Tengoku.Primenumbertheoremand.integral_deriv_mul_add_const (c : 𝕜) (hab : a ≤ b) (h_int : IntervalIntegrable (deriv f) volume a b)
     (hf_diff : ∀ t ∈ Set.Icc a b, DifferentiableAt ℝ f t) :
     ∫ t in a..b, (t + c) * deriv f t = (b + c) * f b - (a + c) * f a - ∫ t in a..b, f t := by
   rw [← Set.uIcc_of_le hab] at hf_diff
@@ -37,7 +37,7 @@ lemma integral_deriv_mul_add_const (c : 𝕜) (hab : a ≤ b) (h_int : IntervalI
   rw [intervalIntegral.integral_mul_deriv_eq_deriv_mul this hf_diff (by simp) h_int]
   simp
 
-lemma intervalIntegrable_deriv_mul_B1 (ha : 0 ≤ a) (hab : a ≤ b) (h_cont : ContinuousOn (deriv f) [[a, b]]) :
+lemma _root_.Tengoku.Primenumbertheoremand.intervalIntegrable_deriv_mul_B1 (ha : 0 ≤ a) (hab : a ≤ b) (h_cont : ContinuousOn (deriv f) [[a, b]]) :
     IntervalIntegrable (fun t ↦ deriv f t * B1 t) volume a b := by
   refine IntervalIntegrable.continuousOn_mul ?_ h_cont
   rw [intervalIntegrable_iff']
@@ -47,7 +47,7 @@ lemma intervalIntegrable_deriv_mul_B1 (ha : 0 ≤ a) (hab : a ≤ b) (h_cont : C
   norm_cast
   exact abs_B1_le_half (by linarith)
 
-lemma integral_deriv_mul_floor_add_one (ha : 0 ≤ a) (hab : a ≤ b)
+lemma _root_.Tengoku.Primenumbertheoremand.integral_deriv_mul_floor_add_one (ha : 0 ≤ a) (hab : a ≤ b)
     (hf_diff : ∀ t ∈ Set.Icc a b, DifferentiableAt ℝ f t) (h_cont : ContinuousOn (deriv f) [[a, b]]) :
     ∫ t in a..b, deriv f t * (⌊t⌋₊ + 1) = (b + 1 / 2) * f b - (a + 1 / 2) * f a - (∫ t in a..b, f t) - ∫ t in a..b, deriv f t * B1 t := by
   calc
@@ -63,7 +63,7 @@ lemma integral_deriv_mul_floor_add_one (ha : 0 ≤ a) (hab : a ≤ b)
     conv => lhs; arg 1; arg 1; ext; rw [mul_comm]
     rw [integral_deriv_mul_add_const _ hab h_cont.intervalIntegrable hf_diff]
 
-theorem sum_eq_integral_add_integral_deriv (ha : 0 ≤ a) (hab : a ≤ b)
+theorem _root_.Tengoku.Primenumbertheoremand.sum_eq_integral_add_integral_deriv (ha : 0 ≤ a) (hab : a ≤ b)
     (hf_diff : ∀ t ∈ Set.Icc a b, DifferentiableAt ℝ f t)
     (h_cont : ContinuousOn (deriv f) [[a, b]]) :
     ∑ k ∈ Ioc ⌊a⌋₊ ⌊b⌋₊, f k =
@@ -76,3 +76,4 @@ theorem sum_eq_integral_add_integral_deriv (ha : 0 ≤ a) (hab : a ≤ b)
   unfold B1
   push_cast
   ring
+-- Tengoku: root names of this library moved to Tengoku.Primenumbertheoremand so they do not collide with other libraries (generated)

@@ -53,7 +53,7 @@ only used when extracting a concrete value is needed.
 
 * K. Hungerbühler, J. Wasem, *A generalized notion of winding numbers*
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Set Filter Topology MeasureTheory Complex
 open scoped Interval
 
@@ -63,14 +63,14 @@ variable {x y : ℂ}
 
 /-- The ε-cutoff integrand for the Cauchy principal value at a single point `z₀`.
 Returns `f(γ(t)) · γ'(t)` when `‖γ(t) - z₀‖ > ε`, and `0` otherwise. -/
-def cpvIntegrand (f : ℂ → ℂ) (γ : ℝ → ℂ) (z₀ : ℂ) (ε : ℝ) (t : ℝ) : ℂ :=
+def _root_.Tengoku.Leanmodularforms.cpvIntegrand (f : ℂ → ℂ) (γ : ℝ → ℂ) (z₀ : ℂ) (ε : ℝ) (t : ℝ) : ℂ :=
   if ‖γ t - z₀‖ > ε then f (γ t) * deriv γ t else 0
 
 /--
 @isnad1 id=eq.1h5v.s6.a2a2da78e14f from=translated src=- shape=c0cd3bac vocab=6f868bf5
 -/
 @[simp]
-theorem cpvIntegrand_of_gt {f : ℂ → ℂ} {γ : ℝ → ℂ} {z₀ : ℂ} {ε : ℝ} {t : ℝ}
+theorem _root_.Tengoku.Leanmodularforms.cpvIntegrand_of_gt {f : ℂ → ℂ} {γ : ℝ → ℂ} {z₀ : ℂ} {ε : ℝ} {t : ℝ}
     (h : ε < ‖γ t - z₀‖) :
     cpvIntegrand f γ z₀ ε t = f (γ t) * deriv γ t :=
   ite_eq_left h
@@ -79,27 +79,27 @@ theorem cpvIntegrand_of_gt {f : ℂ → ℂ} {γ : ℝ → ℂ} {z₀ : ℂ} {ε
 is computed by excluding ε-neighborhoods of `z₀` and taking the limit as `ε → 0⁺`.
 
 This is the **primary API predicate** for CPV integrals. -/
-def HasCauchyPV (f : ℂ → ℂ) (γ : PiecewiseC1Path x y) (z₀ : ℂ) (L : ℂ) : Prop :=
+def _root_.Tengoku.Leanmodularforms.HasCauchyPV (f : ℂ → ℂ) (γ : PiecewiseC1Path x y) (z₀ : ℂ) (L : ℂ) : Prop :=
   Tendsto (fun ε => ∫ t in (0 : ℝ)..1, cpvIntegrand f γ.toPath.extend z₀ ε t)
     (𝓝[>] 0) (𝓝 L)
 
 /-- The Cauchy principal value of `∮_γ f(z) dz`, excluding ε-neighborhoods of `z₀`.
 Returns junk when the limit does not exist. -/
-def cauchyPV (f : ℂ → ℂ) (γ : PiecewiseC1Path x y) (z₀ : ℂ) : ℂ :=
+def _root_.Tengoku.Leanmodularforms.cauchyPV (f : ℂ → ℂ) (γ : PiecewiseC1Path x y) (z₀ : ℂ) : ℂ :=
   limUnder (𝓝[>] (0 : ℝ)) fun ε =>
     ∫ t in (0 : ℝ)..1, cpvIntegrand f γ.toPath.extend z₀ ε t
 
 /-- Bridge theorem: if `HasCauchyPV f γ z₀ L`, then `cauchyPV f γ z₀ = L`.
 @isnad1 id=eq.1h6v.s5.ac673838c9a2 from=translated src=- shape=4b1f0969 vocab=1600cef1
 -/
-theorem HasCauchyPV.cauchyPV_eq {f : ℂ → ℂ} {γ : PiecewiseC1Path x y} {z₀ : ℂ} {L : ℂ}
+theorem Tengoku.Leanmodularforms.HasCauchyPV.cauchyPV_eq {f : ℂ → ℂ} {γ : PiecewiseC1Path x y} {z₀ : ℂ} {L : ℂ}
     (h : HasCauchyPV f γ z₀ L) : cauchyPV f γ z₀ = L :=
   h.limUnder_eq
 
 /-- Scalar multiplication: `HasCauchyPV f γ z₀ L → HasCauchyPV (c • f) γ z₀ (c * L)`.
 @isnad1 id=hascauch.1h7v.s5.a7e3717f260b from=translated src=- shape=f428820a vocab=836d924f
 -/
-theorem HasCauchyPV.smul {f : ℂ → ℂ} {γ : PiecewiseC1Path x y} {z₀ : ℂ} {L : ℂ}
+theorem Tengoku.Leanmodularforms.HasCauchyPV.smul {f : ℂ → ℂ} {γ : PiecewiseC1Path x y} {z₀ : ℂ} {L : ℂ}
     (c : ℂ) (h : HasCauchyPV f γ z₀ L) :
     HasCauchyPV (fun z => c * f z) γ z₀ (c * L) := by
   simp only [HasCauchyPV] at h ⊢
@@ -113,7 +113,7 @@ theorem HasCauchyPV.smul {f : ℂ → ℂ} {γ : PiecewiseC1Path x y} {z₀ : �
 contour integral, since the cutoff integrand equals the full integrand for small `ε`.
 @isnad1 id=hascauch.1h5v.s6.b206eb0ce46d from=translated src=- shape=0378c657 vocab=aa88358c
 -/
-theorem hasCauchyPV_of_avoids {f : ℂ → ℂ} {γ : PiecewiseC1Path x y} {z₀ : ℂ}
+theorem _root_.Tengoku.Leanmodularforms.hasCauchyPV_of_avoids {f : ℂ → ℂ} {γ : PiecewiseC1Path x y} {z₀ : ℂ}
     (hδ : ∃ δ > 0, ∀ t ∈ Icc (0 : ℝ) 1, δ ≤ ‖γ t - z₀‖) :
     HasCauchyPV f γ z₀ (γ.contourIntegral f) := by
   obtain ⟨δ, hδ_pos, hδ_bound⟩ := hδ
@@ -125,7 +125,7 @@ theorem hasCauchyPV_of_avoids {f : ℂ → ℂ} {γ : PiecewiseC1Path x y} {z₀
   exact (cpvIntegrand_of_gt (hε.2.trans_le (hδ_bound t ht))).symm
 
 /-- Multi-point CPV integrand: zero near any `s ∈ S`, else `f(γ(t)) · γ'(t)`. -/
-def cpvIntegrandOn (S : Finset ℂ) (f : ℂ → ℂ) (γ : ℝ → ℂ) (ε : ℝ) (t : ℝ) : ℂ :=
+def _root_.Tengoku.Leanmodularforms.cpvIntegrandOn (S : Finset ℂ) (f : ℂ → ℂ) (γ : ℝ → ℂ) (ε : ℝ) (t : ℝ) : ℂ :=
   if ∃ s ∈ S, ‖γ t - s‖ ≤ ε then 0
   else f (γ t) * deriv γ t
 
@@ -133,7 +133,7 @@ def cpvIntegrandOn (S : Finset ℂ) (f : ℂ → ℂ) (γ : ℝ → ℂ) (ε : �
 @isnad1 id=eq.1h5v.s6.9e5d73247775 from=translated src=- shape=8e33d239 vocab=57a1a414
 -/
 @[simp]
-theorem cpvIntegrandOn_of_forall_gt {S : Finset ℂ} {f : ℂ → ℂ} {γ : ℝ → ℂ} {ε : ℝ} {t : ℝ}
+theorem _root_.Tengoku.Leanmodularforms.cpvIntegrandOn_of_forall_gt {S : Finset ℂ} {f : ℂ → ℂ} {γ : ℝ → ℂ} {ε : ℝ} {t : ℝ}
     (h : ∀ s ∈ S, ε < ‖γ t - s‖) :
     cpvIntegrandOn S f γ ε t = f (γ t) * deriv γ t :=
   ite_eq_right fun ⟨s, hs, hle⟩ => (h s hs).not_ge hle
@@ -142,7 +142,7 @@ theorem cpvIntegrandOn_of_forall_gt {S : Finset ℂ} {f : ℂ → ℂ} {γ : ℝ
 @isnad1 id=eq.1h5v.s6.a593aadd5d30 from=translated src=- shape=f873189e vocab=6e46bd81
 -/
 @[simp]
-theorem cpvIntegrandOn_of_exists_le {S : Finset ℂ} {f : ℂ → ℂ} {γ : ℝ → ℂ} {ε : ℝ} {t : ℝ}
+theorem _root_.Tengoku.Leanmodularforms.cpvIntegrandOn_of_exists_le {S : Finset ℂ} {f : ℂ → ℂ} {γ : ℝ → ℂ} {ε : ℝ} {t : ℝ}
     (h : ∃ s ∈ S, ‖γ t - s‖ ≤ ε) :
     cpvIntegrandOn S f γ ε t = 0 :=
   ite_eq_left h
@@ -150,7 +150,7 @@ theorem cpvIntegrandOn_of_exists_le {S : Finset ℂ} {f : ℂ → ℂ} {γ : ℝ
 /-- Single-point CPV integrand agrees with multi-point CPV integrand for a singleton.
 @isnad1 id=eq.0h5v.s5.5514930144f1 from=translated src=- shape=729dff23 vocab=d4a27c3f
 -/
-theorem cpvIntegrand_eq_cpvIntegrandOn_singleton {f : ℂ → ℂ} {γ : ℝ → ℂ} {z₀ : ℂ}
+theorem _root_.Tengoku.Leanmodularforms.cpvIntegrand_eq_cpvIntegrandOn_singleton {f : ℂ → ℂ} {γ : ℝ → ℂ} {z₀ : ℂ}
     {ε : ℝ} {t : ℝ} :
     cpvIntegrand f γ z₀ ε t = cpvIntegrandOn {z₀} f γ ε t := by
   simp only [cpvIntegrand, cpvIntegrandOn, Finset.mem_singleton, exists_eq_left]
@@ -159,7 +159,7 @@ theorem cpvIntegrand_eq_cpvIntegrandOn_singleton {f : ℂ → ℂ} {γ : ℝ →
 /-- The multi-point Cauchy principal value of `∮_γ f(z) dz` exists and equals `L`,
 where the integral is computed by excluding ε-neighborhoods of all points in `S`
 and taking the limit as `ε → 0⁺`. -/
-def HasCauchyPVOn (S : Finset ℂ) (f : ℂ → ℂ) (γ : PiecewiseC1Path x y) (L : ℂ) : Prop :=
+def _root_.Tengoku.Leanmodularforms.HasCauchyPVOn (S : Finset ℂ) (f : ℂ → ℂ) (γ : PiecewiseC1Path x y) (L : ℂ) : Prop :=
   Tendsto (fun ε => ∫ t in (0 : ℝ)..1, cpvIntegrandOn S f γ.toPath.extend ε t)
     (𝓝[>] 0) (𝓝 L)
 
@@ -167,7 +167,7 @@ def HasCauchyPVOn (S : Finset ℂ) (f : ℂ → ℂ) (γ : PiecewiseC1Path x y) 
 contour integral.
 @isnad1 id=hascauch.1h5v.s6.e7a1875e7a9f from=translated src=- shape=681354bc vocab=40d2d924
 -/
-theorem hasCauchyPVOn_of_avoids {S : Finset ℂ} {f : ℂ → ℂ} {γ : PiecewiseC1Path x y}
+theorem _root_.Tengoku.Leanmodularforms.hasCauchyPVOn_of_avoids {S : Finset ℂ} {f : ℂ → ℂ} {γ : PiecewiseC1Path x y}
     (hδ : ∃ δ > 0, ∀ s ∈ S, ∀ t ∈ Icc (0 : ℝ) 1, δ ≤ ‖γ t - s‖) :
     HasCauchyPVOn S f γ (γ.contourIntegral f) := by
   obtain ⟨δ, hδ_pos, hδ_bound⟩ := hδ
@@ -181,9 +181,10 @@ theorem hasCauchyPVOn_of_avoids {S : Finset ℂ} {f : ℂ → ℂ} {γ : Piecewi
 /-- The limit in `HasCauchyPV` is unique.
 @isnad1 id=eq.2h7v.s5.7092bb5d5f65 from=translated src=- shape=54a3549a vocab=6c47fac3
 -/
-theorem HasCauchyPV.unique {f : ℂ → ℂ} {γ : PiecewiseC1Path x y} {z₀ : ℂ}
+theorem Tengoku.Leanmodularforms.HasCauchyPV.unique {f : ℂ → ℂ} {γ : PiecewiseC1Path x y} {z₀ : ℂ}
     {L₁ L₂ : ℂ} (h₁ : HasCauchyPV f γ z₀ L₁) (h₂ : HasCauchyPV f γ z₀ L₂) :
     L₁ = L₂ :=
   tendsto_nhds_unique h₁ h₂
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

@@ -1,14 +1,14 @@
 import Tengoku.FltAnthropic.Definitions.Def_MvFormalGroup_BasicV2
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 set_option autoImplicit false
 
 noncomputable section
 
 open MvPowerSeries
 
-namespace MvFormalGroup
+namespace Tengoku.FltAnthropic.MvFormalGroup
 
 variable {g h k : ℕ} {R : Type*} [CommRing R]
 
@@ -1107,4 +1107,5 @@ theorem linearPartHom_natCast (F : MvFormalGroup g R) [IsComm F] (n : ℕ) :
     linearPartHom F ((n : End F)) = n • (1 : Matrix (Fin g) (Fin g) R) := by
   rw [linearPartHom_apply, End.toPowerSeries_natCast, linearPart_nthSeries]
 
-end MvFormalGroup
+end Tengoku.FltAnthropic.MvFormalGroup
+-- Tengoku: root names of this library moved to Tengoku.FltAnthropic so they do not collide with other libraries (generated)

@@ -8,7 +8,7 @@ import Tengoku.ClassfieldtheoryYamaguchi.GaloisCohomology.Kummer.Abstract.Kummer
 import Tengoku.ClassfieldtheoryYamaguchi.GaloisCohomology.Kummer.Abstract.KummerFixedField
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.ClassfieldtheoryYamaguchi end Tengoku.ClassfieldtheoryYamaguchi open Tengoku.ClassfieldtheoryYamaguchi
 set_option autoImplicit false
 
 namespace KummerTheory
@@ -266,3 +266,4 @@ theorem finiteAbelian_globalOperator_generators
 
 end
 end KummerTheory
+-- Tengoku: root names of this library moved to Tengoku.ClassfieldtheoryYamaguchi so they do not collide with other libraries (generated)

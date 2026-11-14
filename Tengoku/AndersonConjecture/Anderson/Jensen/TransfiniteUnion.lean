@@ -17,7 +17,7 @@ Loepp, "Constructing local generic formal fibers", 1997, Lemmas 14--15.
 -/
 
 noncomputable section
-
+namespace Tengoku.AndersonConjecture end Tengoku.AndersonConjecture open Tengoku.AndersonConjecture 
 open Cardinal Ideal
 
 variable {T : Type*} [CommRing T] [IsLocalRing T] [IsNoetherianRing T] [IsDomain T]
@@ -31,7 +31,7 @@ is an A-extension and limit steps are unions.
 
 /-- A well-ordered ascending chain of N-subrings indexed by a linearly ordered type.
 Prime elements are preserved along the chain (A-extension property). -/
-structure NSubringChain (T : Type*) [CommRing T] [IsLocalRing T] [IsNoetherianRing T]
+structure _root_.Tengoku.AndersonConjecture.NSubringChain (T : Type*) [CommRing T] [IsLocalRing T] [IsNoetherianRing T]
     [IsDomain T] (ι : Type*) [Preorder ι] where
   /-- The N-subring at each index -/
   ring : ι → NSubring T
@@ -43,7 +43,7 @@ structure NSubringChain (T : Type*) [CommRing T] [IsLocalRing T] [IsNoetherianRi
 
 variable {ι : Type*} [LinearOrder ι]
 
-namespace NSubringChain
+namespace Tengoku.AndersonConjecture.NSubringChain
 
 /-- The family of carriers is directed (since ι is linearly ordered).
 @isnad1 id=directed.0h3v.s7.edfdc2b282fa from=translated src=- shape=2ef8fead vocab=d1e8a890
@@ -70,12 +70,12 @@ lemma mem_union_iff [Nonempty ι] (chain : NSubringChain T ι) {x : T} :
     x ∈ chain.unionSubring ↔ ∃ α, x ∈ (chain.ring α).carrier := by
   exact Subring.mem_iSup_of_directed chain.directed_carriers
 
-end NSubringChain
+end Tengoku.AndersonConjecture.NSubringChain
 
 /-- Prime elements of any R_α remain prime in the union.
 @isnad1 id=prime.3h6v.s9.7c87f45f782d from=translated src=- shape=63219077 vocab=c62d26f4
 -/
-theorem transfinite_union_primes_preserved
+theorem _root_.Tengoku.AndersonConjecture.transfinite_union_primes_preserved
     [Nonempty ι]
     (chain : NSubringChain T ι)
     (S : Subring T)
@@ -147,7 +147,7 @@ If x is irreducible in ⋃ R_α, then x ∈ R_β for some β, and x is prime
 in R_β (since R_β is a UFD), hence x | a or x | b in R_β ⊆ ⋃ R_α.
 @isnad1 id=uniquefa.2h4v.s8.2df63da7a8fe from=translated src=- shape=362f7f0c vocab=adb6d892
 -/
-theorem transfinite_union_isUFD
+theorem _root_.Tengoku.AndersonConjecture.transfinite_union_isUFD
     [Nonempty ι]
     (chain : NSubringChain T ι)
     (S : Subring T)
@@ -189,7 +189,7 @@ irreducibles are prime.
 - Cardinality: |⋃ R_α| ≤ sup(ℵ₀, |R₀|, |α|).
 @isnad1 id=ex.2h3v.s7.a68b83aa5572 from=translated src=- shape=02ff15da vocab=a4cc8512
 -/
-theorem transfinite_union_isNSubring
+theorem _root_.Tengoku.AndersonConjecture.transfinite_union_isNSubring
     {ι' : Type u_1} [LinearOrder ι'] [Nonempty ι']
     (chain : NSubringChain T ι')
     (h_card : ∀ (α : ι'),
@@ -353,3 +353,4 @@ theorem transfinite_union_isNSubring
       not_lt_bot
 
 end
+-- Tengoku: root names of this library moved to Tengoku.AndersonConjecture so they do not collide with other libraries (generated)

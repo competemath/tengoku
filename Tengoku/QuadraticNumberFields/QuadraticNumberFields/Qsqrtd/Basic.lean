@@ -35,14 +35,14 @@ The predicate "K is a quadratic extension of ℚ" is provided by mathlib as
 * `not_isSquare_ratCast_of_squarefree_ne_one`: squarefree integer parameters
   with `d ≠ 1` give genuine quadratic fields.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 /-- The quadratic field `ℚ(√d)` as a type alias for `QuadraticAlgebra ℚ d 0`.-/
-abbrev Qsqrtd (d : ℚ) : Type := QuadraticAlgebra ℚ d 0
+abbrev _root_.Tengoku.QuadraticNumberFields.Qsqrtd (d : ℚ) : Type := QuadraticAlgebra ℚ d 0
 
 /-- Notation for the quadratic field `Qsqrtd d = ℚ(√d)`.-/
 local notation "ℚ√" d => Qsqrtd d
 
-namespace Qsqrtd
+namespace Tengoku.QuadraticNumberFields.Qsqrtd
 
 open QuadraticAlgebra
 
@@ -247,14 +247,14 @@ theorem algEquiv_param_rel {d d' : ℚ} (hd : ¬ IsSquare d)
       (QuadraticAlgebra.algebraMap_eq (R := ℚ) (a := d') (b := 0) d).symm
     simp [hleft, hright]
 
-end Qsqrtd
+end Tengoku.QuadraticNumberFields.Qsqrtd
 
 /-! ## Integer Parameter Lemmas -/
 
 /-- For a squarefree integer `d ≠ 1`, `d` is not a perfect square in `ℤ`.
 @isnad1 id=not.2h1v.s4.7c013f299898 from=translated src=- shape=04eb94a6 vocab=a97af9b3
 -/
-lemma not_isSquare_int_of_squarefree_ne_one {d : ℤ}
+lemma _root_.Tengoku.QuadraticNumberFields.not_isSquare_int_of_squarefree_ne_one {d : ℤ}
     (hd : Squarefree d) (h1 : d ≠ 1) : ¬ IsSquare d := by
   intro hsq
   rcases eq_one_of_squarefree_isSquare hd hsq with rfl | rfl <;> simp_all
@@ -262,7 +262,7 @@ lemma not_isSquare_int_of_squarefree_ne_one {d : ℤ}
 /-- For a squarefree integer `d ≠ 1`, `(d : ℚ)` is not a perfect square in `ℚ`.
 @isnad1 id=not.2h1v.s4.8233c3183f19 from=translated src=- shape=9196607b vocab=4482373f
 -/
-lemma not_isSquare_ratCast_of_squarefree_ne_one {d : ℤ}
+lemma _root_.Tengoku.QuadraticNumberFields.not_isSquare_ratCast_of_squarefree_ne_one {d : ℤ}
     (hd : Squarefree d) (h1 : d ≠ 1) : ¬ IsSquare ((d : ℤ) : ℚ) := by
   intro hsqQ
   exact not_isSquare_int_of_squarefree_ne_one hd h1 (Rat.isSquare_intCast_iff.mp hsqQ)
@@ -270,7 +270,7 @@ lemma not_isSquare_ratCast_of_squarefree_ne_one {d : ℤ}
 /-- Bridge squarefree integer parameters to the field-level non-square condition.
 @isnad1 id=fact.0h1v.s4.6f04dedfd846 from=translated src=- shape=17fda95b vocab=f5d14b00
 -/
-instance instFact_not_isSquare_ratCast_of_squarefree_ne_one
+instance _root_.Tengoku.QuadraticNumberFields.instFact_not_isSquare_ratCast_of_squarefree_ne_one
     (d : ℤ) [Fact (Squarefree d)] [Fact (d ≠ 1)] :
     Fact (¬ IsSquare ((d : ℤ) : ℚ)) :=
   ⟨not_isSquare_ratCast_of_squarefree_ne_one
@@ -284,18 +284,18 @@ companion lemmas for conjugation-fixed / conjugation-negated elements. -/
 variable {d : ℤ}
 
 /-- The coefficient of `√d` in `x : Qsqrtd (d : ℚ)`, extracted via the standard basis.-/
-noncomputable def imPartRatio (x : Qsqrtd (d : ℚ)) : ℚ :=
+noncomputable def _root_.Tengoku.QuadraticNumberFields.imPartRatio (x : Qsqrtd (d : ℚ)) : ℚ :=
   (QuadraticAlgebra.basis (d : ℚ) 0).repr x (1 : Fin 2)
 
 /-- `imPartRatio` is exactly the `im` coordinate.
 @isnad1 id=eq.0h2v.s4.1e567a4f82b1 from=translated src=- shape=e8a0f1b4 vocab=c9d60a1b
 -/
-theorem imPartRatio_eq_im (x : Qsqrtd (d : ℚ)) : imPartRatio x = x.im := by
+theorem _root_.Tengoku.QuadraticNumberFields.imPartRatio_eq_im (x : Qsqrtd (d : ℚ)) : imPartRatio x = x.im := by
   simp [imPartRatio, QuadraticAlgebra.basis]
 
 /-- If `x` is negated by conjugation, then it is a rational multiple of `√d`,
 and that multiple is exactly `imPartRatio x`.-/
-theorem eq_imPartRatio_smul_sqrt_of_star_neg {x : Qsqrtd (d : ℚ)} (hx : star x = -x) :
+theorem _root_.Tengoku.QuadraticNumberFields.eq_imPartRatio_smul_sqrt_of_star_neg {x : Qsqrtd (d : ℚ)} (hx : star x = -x) :
     x = (imPartRatio x : ℚ) • (⟨0, 1⟩ : Qsqrtd (d : ℚ)) := by
   have hre : x.re = 0 := by
     have hre_star : (star x).re = x.re := by simp [QuadraticAlgebra.re_star]
@@ -308,7 +308,7 @@ theorem eq_imPartRatio_smul_sqrt_of_star_neg {x : Qsqrtd (d : ℚ)} (hx : star x
 
 /-- If `x` is fixed by conjugation, then it is the rational scalar `x.re`,
 viewed in `K` via `x.re • (1 : Qsqrtd (d : ℚ))`.-/
-theorem eq_re_smul_one_of_star_self {x : Qsqrtd (d : ℚ)} (hx : star x = x) :
+theorem _root_.Tengoku.QuadraticNumberFields.eq_re_smul_one_of_star_self {x : Qsqrtd (d : ℚ)} (hx : star x = x) :
     x = (x.re : ℚ) • (1 : Qsqrtd (d : ℚ)) := by
   have him : x.im = 0 := by
     have him_star : (star x).im = -x.im := by simp [QuadraticAlgebra.im_star]
@@ -320,7 +320,7 @@ theorem eq_re_smul_one_of_star_self {x : Qsqrtd (d : ℚ)} (hx : star x = x) :
 
 /-- A conjugation-fixed element of `ℚ(√d)` is the scalar `x.re`, embedded by
 `algebraMap`.-/
-theorem eq_algebraMap_re_of_star_self {x : Qsqrtd (d : ℚ)} (hx : star x = x) :
+theorem _root_.Tengoku.QuadraticNumberFields.eq_algebraMap_re_of_star_self {x : Qsqrtd (d : ℚ)} (hx : star x = x) :
     x = algebraMap ℚ (Qsqrtd (d : ℚ)) x.re :=
   (eq_re_smul_one_of_star_self hx).trans (Algebra.algebraMap_eq_smul_one x.re).symm
 
@@ -333,14 +333,14 @@ coordinate facts about `Qsqrtd (d : ℚ)`. -/
 /-- The `re` coordinate of an integer scalar multiple.
 @isnad1 id=eq.0h3v.s6.13c0ce9033f9 from=translated src=- shape=cb9c2c0d vocab=f66db35d
 -/
-theorem re_zsmul (n : ℤ) (z : Qsqrtd (d : ℚ)) : (n • z).re = (n : ℚ) * z.re := by
+theorem _root_.Tengoku.QuadraticNumberFields.re_zsmul (n : ℤ) (z : Qsqrtd (d : ℚ)) : (n • z).re = (n : ℚ) * z.re := by
   rw [zsmul_eq_mul]
   simp [QuadraticAlgebra.re_mul, QuadraticAlgebra.re_intCast, QuadraticAlgebra.im_intCast]
 
 /-- The `im` coordinate of an integer scalar multiple.
 @isnad1 id=eq.0h3v.s6.aae35ba59f70 from=translated src=- shape=cb9c2c0d vocab=ed89f4b8
 -/
-theorem im_zsmul (n : ℤ) (z : Qsqrtd (d : ℚ)) : (n • z).im = (n : ℚ) * z.im := by
+theorem _root_.Tengoku.QuadraticNumberFields.im_zsmul (n : ℤ) (z : Qsqrtd (d : ℚ)) : (n • z).im = (n : ℚ) * z.im := by
   rw [zsmul_eq_mul]
   simp [QuadraticAlgebra.im_mul, QuadraticAlgebra.re_intCast, QuadraticAlgebra.im_intCast]
 
@@ -348,7 +348,7 @@ theorem im_zsmul (n : ℤ) (z : Qsqrtd (d : ℚ)) : (n • z).im = (n : ℚ) * z
 a bilinear alternating form of the `re`/`im` coordinates.
 @isnad1 id=eq.0h3v.s7.0dc930632658 from=translated src=- shape=43bd27c1 vocab=f1741205
 -/
-theorem imPartRatio_wedge (u v : Qsqrtd (d : ℚ)) :
+theorem _root_.Tengoku.QuadraticNumberFields.imPartRatio_wedge (u v : Qsqrtd (d : ℚ)) :
     imPartRatio (u * star v - v * star u) =
       2 * ((u.im : ℚ) * v.re - u.re * v.im) := by
   rw [imPartRatio_eq_im]
@@ -360,10 +360,11 @@ theorem imPartRatio_wedge (u v : Qsqrtd (d : ℚ)) :
 `x.re² − d·x.im²` of `x`.
 @isnad1 id=eq.0h4v.s9.cbee41c339ef from=translated src=- shape=cec29b38 vocab=10954ab5
 -/
-theorem imPartRatio_wedge_mul_left (x u v : Qsqrtd (d : ℚ)) :
+theorem _root_.Tengoku.QuadraticNumberFields.imPartRatio_wedge_mul_left (x u v : Qsqrtd (d : ℚ)) :
     imPartRatio (x * u * star (x * v) - x * v * star (x * u)) =
       ((x.re : ℚ) ^ 2 - (d : ℚ) * x.im ^ 2) * imPartRatio (u * star v - v * star u) := by
   rw [imPartRatio_wedge, imPartRatio_wedge]
   simp only [QuadraticAlgebra.re_mul, QuadraticAlgebra.im_mul]
   ring
 -- Tengoku: 1 notation(s) of this module made local so they do not change other libraries (generated)
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

@@ -32,20 +32,20 @@ parameterized on `[0, 1]` with breakpoints at `1/5, 2/5, 3/5, 4/5`.
 * `fdBoundaryFun_closed` — the contour is closed
 * `fdBoundaryFun_at_*` — values at the five junction points
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex MeasureTheory Set Filter Topology
 open scoped Real Interval
 
 noncomputable section
 
 /-- The starting (and ending) point of the FD boundary contour. -/
-def fdStart (H : ℝ) : ℂ := 1 / 2 + ↑H * I
+def _root_.Tengoku.Leanmodularforms.fdStart (H : ℝ) : ℂ := 1 / 2 + ↑H * I
 
 /-- Boundary of the standard fundamental domain for SL₂(ℤ) at height `H`,
 parameterized on `[0, 1]` with breakpoints at `1/5, 2/5, 3/5, 4/5`.
 
 The contour is clockwise: right-vertical, arc, arc, left-vertical, horizontal. -/
-def fdBoundaryFun (H : ℝ) : ℝ → ℂ := fun t =>
+def _root_.Tengoku.Leanmodularforms.fdBoundaryFun (H : ℝ) : ℝ → ℂ := fun t =>
   if t ≤ 1/5 then
     1/2 + (↑H - 5 * ↑t * (↑H - ↑(Real.sqrt 3) / 2)) * I
   else if t ≤ 2/5 then
@@ -60,21 +60,21 @@ def fdBoundaryFun (H : ℝ) : ℝ → ℂ := fun t =>
 /-- At `t = 0` the boundary function equals the starting point `fdStart H`.
 @isnad1 id=eq.0h1v.s3.9cf794eac677 from=translated src=- shape=959a34e3 vocab=041e00d9
 -/
-theorem fdBoundaryFun_at_zero (H : ℝ) :
+theorem _root_.Tengoku.Leanmodularforms.fdBoundaryFun_at_zero (H : ℝ) :
     fdBoundaryFun H 0 = fdStart H := by
   simp [fdBoundaryFun, fdStart]
 
 /-- At `t = 1/5` the boundary function equals the elliptic point `ρ + 1`.
 @isnad1 id=eq.0h1v.s4.9ccec7bc42dc from=translated src=- shape=8145149a vocab=25ab1fc7
 -/
-theorem fdBoundaryFun_at_one_fifth (H : ℝ) :
+theorem _root_.Tengoku.Leanmodularforms.fdBoundaryFun_at_one_fifth (H : ℝ) :
     fdBoundaryFun H (1/5) = ellipticPointRhoPlusOne := by
   simp [fdBoundaryFun, ellipticPointRhoPlusOne, ellipticPointRhoPlusOne']
 
 /-- At `t = 3/5` the boundary function equals the elliptic point `ρ`.
 @isnad1 id=eq.0h1v.s5.e0c1882a63a7 from=translated src=- shape=8145149a vocab=d53ed217
 -/
-theorem fdBoundaryFun_at_three_fifths (H : ℝ) :
+theorem _root_.Tengoku.Leanmodularforms.fdBoundaryFun_at_three_fifths (H : ℝ) :
     fdBoundaryFun H (3/5) = ellipticPointRho := by
   simp only [fdBoundaryFun, show ¬(3/5 : ℝ) ≤ 1/5 by norm_num,
     show ¬(3/5 : ℝ) ≤ 2/5 by norm_num, le_refl, ite_true, ite_false]
@@ -88,7 +88,7 @@ theorem fdBoundaryFun_at_three_fifths (H : ℝ) :
 /-- At `t = 4/5` the boundary function equals the upper-left corner `-1/2 + Hi`.
 @isnad1 id=eq.0h1v.s6.19aa789014a3 from=translated src=- shape=624f1f6b vocab=76b6c896
 -/
-theorem fdBoundaryFun_at_four_fifths (H : ℝ) :
+theorem _root_.Tengoku.Leanmodularforms.fdBoundaryFun_at_four_fifths (H : ℝ) :
     fdBoundaryFun H (4/5) = -1/2 + ↑H * I := by
   simp only [fdBoundaryFun, show ¬(4/5 : ℝ) ≤ 1/5 by norm_num,
     show ¬(4/5 : ℝ) ≤ 2/5 by norm_num,
@@ -98,7 +98,7 @@ theorem fdBoundaryFun_at_four_fifths (H : ℝ) :
 /-- At `t = 1` the boundary function returns to the starting point `fdStart H`.
 @isnad1 id=eq.0h1v.s3.d385a9c959d8 from=translated src=- shape=959a34e3 vocab=041e00d9
 -/
-theorem fdBoundaryFun_at_one (H : ℝ) :
+theorem _root_.Tengoku.Leanmodularforms.fdBoundaryFun_at_one (H : ℝ) :
     fdBoundaryFun H 1 = fdStart H := by
   simp only [fdBoundaryFun, show ¬(1 : ℝ) ≤ 1/5 by norm_num,
     show ¬(1 : ℝ) ≤ 2/5 by norm_num,
@@ -109,7 +109,7 @@ theorem fdBoundaryFun_at_one (H : ℝ) :
 /-- The FD boundary contour is closed.
 @isnad1 id=eq.0h1v.s4.9b4980207dcc from=translated src=- shape=b4d3c9b0 vocab=089c8d5b
 -/
-theorem fdBoundaryFun_closed (H : ℝ) :
+theorem _root_.Tengoku.Leanmodularforms.fdBoundaryFun_closed (H : ℝ) :
     fdBoundaryFun H 0 = fdBoundaryFun H 1 := by
   rw [fdBoundaryFun_at_zero, fdBoundaryFun_at_one]
 
@@ -200,7 +200,7 @@ private lemma fdBoundaryFun_eq_layered (H : ℝ) (t : ℝ) :
 @isnad1 id=continuo.0h1v.s4.560a8aba59c5 from=translated src=- shape=9bb0b988 vocab=b0f4830a
 -/
 @[fun_prop]
-theorem fdBoundaryFun_continuous (H : ℝ) :
+theorem _root_.Tengoku.Leanmodularforms.fdBoundaryFun_continuous (H : ℝ) :
     Continuous (fdBoundaryFun H) := by
   rw [show (fdBoundaryFun H) = (fun t => if t ≤ 1/5 then
       1/2 + (↑H - 5 * ↑t * (↑H - ↑(Real.sqrt 3) / 2)) * I
@@ -218,19 +218,19 @@ theorem fdBoundaryFun_continuous (H : ℝ) :
   push_cast; ring
 
 /-- The FD boundary as a `Path` from `fdStart H` to `fdStart H`. -/
-def fdBoundaryPath (H : ℝ) : Path (fdStart H) (fdStart H) where
+def _root_.Tengoku.Leanmodularforms.fdBoundaryPath (H : ℝ) : Path (fdStart H) (fdStart H) where
   toFun t := fdBoundaryFun H t
   continuous_toFun := (fdBoundaryFun_continuous H).continuousOn.domRestrict
   source' := fdBoundaryFun_at_zero H
   target' := fdBoundaryFun_at_one H
 
 /-- The partition points (segment junctions) for the FD boundary on `[0, 1]`. -/
-def fdBoundaryPartition : Finset ℝ := {1/5, 2/5, 3/5, 4/5}
+def _root_.Tengoku.Leanmodularforms.fdBoundaryPartition : Finset ℝ := {1/5, 2/5, 3/5, 4/5}
 
 /-- The FD boundary partition points lie strictly inside the open interval `(0, 1)`.
 @isnad1 id=le.0h0v.s4.87898ca15960 from=translated src=- shape=c58e3577 vocab=99cedaae
 -/
-theorem fdBoundaryPartition_subset_Ioo :
+theorem _root_.Tengoku.Leanmodularforms.fdBoundaryPartition_subset_Ioo :
     (fdBoundaryPartition : Set ℝ) ⊆ Ioo 0 1 := by
   intro x hx
   simp only [fdBoundaryPartition, Finset.coe_insert, Finset.coe_singleton,
@@ -245,7 +245,7 @@ the coefficients that appear in the valence formula:
 - `-1` at strict interior points (full winding)
 - `-1/2` at the edge point `i` (half winding, on-curve)
 - `-1/6` at the elliptic points `ρ` and `ρ+1` (sixth winding, corner) -/
-structure FDWindingData (H : ℝ) where
+structure _root_.Tengoku.Leanmodularforms.FDWindingData (H : ℝ) where
   /-- The FD boundary as a piecewise C1 closed path. -/
   boundary : PiecewiseC1Path (fdStart H) (fdStart H)
   /-- The boundary function agrees with `fdBoundaryFun` on `[0, 1]`. -/
@@ -264,14 +264,14 @@ structure FDWindingData (H : ℝ) where
 /-- The right vertical segment stays at `re = 1/2`.
 @isnad1 id=eq.1h2v.s5.d344f3907d23 from=translated src=- shape=97b05563 vocab=3f813383
 -/
-theorem fdBoundaryFun_seg1_re (H : ℝ) (t : ℝ) (ht : t ≤ 1/5) :
+theorem _root_.Tengoku.Leanmodularforms.fdBoundaryFun_seg1_re (H : ℝ) (t : ℝ) (ht : t ≤ 1/5) :
     (fdBoundaryFun H t).re = 1/2 := by
   simp only [fdBoundaryFun, ht, ite_true]; simp
 
 /-- The left vertical segment stays at `re = -1/2`.
 @isnad1 id=eq.2h2v.s6.2bfd1fbbd941 from=translated src=- shape=f0fe8729 vocab=b54e44f2
 -/
-theorem fdBoundaryFun_seg4_re (H : ℝ) (t : ℝ) (ht3 : 3/5 < t) (ht4 : t ≤ 4/5) :
+theorem _root_.Tengoku.Leanmodularforms.fdBoundaryFun_seg4_re (H : ℝ) (t : ℝ) (ht3 : 3/5 < t) (ht4 : t ≤ 4/5) :
     (fdBoundaryFun H t).re = -1/2 := by
   simp only [fdBoundaryFun, show ¬t ≤ 1/5 by linarith,
     show ¬t ≤ 2/5 by linarith, show ¬t ≤ 3/5 by linarith,
@@ -281,7 +281,7 @@ theorem fdBoundaryFun_seg4_re (H : ℝ) (t : ℝ) (ht3 : 3/5 < t) (ht4 : t ≤ 4
 /-- The horizontal segment stays at `im = H`.
 @isnad1 id=eq.1h2v.s5.c1675f9be4c7 from=translated src=- shape=b1f34788 vocab=60fb96c8
 -/
-theorem fdBoundaryFun_seg5_im (H : ℝ) (t : ℝ) (ht : 4/5 < t) :
+theorem _root_.Tengoku.Leanmodularforms.fdBoundaryFun_seg5_im (H : ℝ) (t : ℝ) (ht : 4/5 < t) :
     (fdBoundaryFun H t).im = H := by
   simp only [fdBoundaryFun, show ¬t ≤ 1/5 by linarith,
     show ¬t ≤ 2/5 by linarith, show ¬t ≤ 3/5 by linarith,
@@ -291,7 +291,7 @@ theorem fdBoundaryFun_seg5_im (H : ℝ) (t : ℝ) (ht : 4/5 < t) :
 /-- Arc segments (2 and 3) lie on the unit circle.
 @isnad1 id=eq.2h2v.s6.3ea79bffbb02 from=translated src=- shape=1f1421cc vocab=009256ea
 -/
-theorem fdBoundaryFun_arc_norm (H : ℝ) (t : ℝ) (ht1 : 1/5 < t) (ht2 : t ≤ 3/5) :
+theorem _root_.Tengoku.Leanmodularforms.fdBoundaryFun_arc_norm (H : ℝ) (t : ℝ) (ht1 : 1/5 < t) (ht2 : t ≤ 3/5) :
     ‖fdBoundaryFun H t‖ = 1 := by
   by_cases ht : t ≤ 2/5
   · simp only [fdBoundaryFun, show ¬t ≤ 1/5 by linarith, ht, ite_true, ite_false]
@@ -308,18 +308,19 @@ theorem fdBoundaryFun_arc_norm (H : ℝ) (t : ℝ) (ht1 : 1/5 < t) (ht2 : t ≤ 
 /-- The right vertical imaginary part interpolates linearly.
 @isnad1 id=eq.1h2v.s6.9ef4b09bee08 from=translated src=- shape=0cc4adc7 vocab=6233fcac
 -/
-theorem fdBoundaryFun_seg1_im (H : ℝ) (t : ℝ) (ht : t ≤ 1/5) :
+theorem _root_.Tengoku.Leanmodularforms.fdBoundaryFun_seg1_im (H : ℝ) (t : ℝ) (ht : t ≤ 1/5) :
     (fdBoundaryFun H t).im = H - 5 * t * (H - Real.sqrt 3 / 2) := by
   simp only [fdBoundaryFun, ht, ite_true]; simp
 
 /-- Height hypothesis: we need `H > √3/2` for the boundary to be well-formed. -/
-def fdHeightValid (H : ℝ) : Prop := Real.sqrt 3 / 2 < H
+def _root_.Tengoku.Leanmodularforms.fdHeightValid (H : ℝ) : Prop := Real.sqrt 3 / 2 < H
 
 /-- Any height greater than `1` is a valid FD boundary height.
 @isnad1 id=fdheight.1h1v.s3.df53747f2638 from=translated src=- shape=2d2cffd0 vocab=b9d86b14
 -/
-theorem fdHeightValid_of_one_lt (H : ℝ) (hH : 1 < H) : fdHeightValid H := by
+theorem _root_.Tengoku.Leanmodularforms.fdHeightValid_of_one_lt (H : ℝ) (hH : 1 < H) : fdHeightValid H := by
   unfold fdHeightValid
   linarith [(Real.sqrt_lt' (by norm_num : (0:ℝ) < 2)).mpr (by norm_num : (3:ℝ) < 2^2)]
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

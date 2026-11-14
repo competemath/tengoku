@@ -61,7 +61,7 @@ total degree, giving `MvPowerSeries.LocallyConvergent.analyticAt`; in the other,
 standard basis of `ι → ℂ`, giving `MvPowerSeries.exists_represents`. Restricting to complex
 lines and using the one variable identity theorem yields `MvPowerSeries.Represents.unique`.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Filter Topology TopologicalSpace
 
 universe u
@@ -869,7 +869,7 @@ open MvPowerSeries
 
 variable (ι) in
 /-- The subalgebra of locally convergent power series. -/
-def localOkaSubring : Subalgebra ℂ (MvPowerSeries ι ℂ) where
+def _root_.Tengoku.LanaOka.localOkaSubring : Subalgebra ℂ (MvPowerSeries ι ℂ) where
   carrier := { P | P.LocallyConvergent }
   mul_mem' := LocallyConvergent.mul
   add_mem' := LocallyConvergent.add
@@ -878,10 +878,10 @@ def localOkaSubring : Subalgebra ℂ (MvPowerSeries ι ℂ) where
 variable (ι) in
 /-- The ring of locally convergent power series, i.e. the ring of germs at the origin of
 holomorphic functions on `ℂ^ι`. -/
-abbrev LocalOkaRing : Type u :=
+abbrev _root_.Tengoku.LanaOka.LocalOkaRing : Type u :=
   localOkaSubring ι
 
-namespace LocalOkaRing
+namespace Tengoku.LanaOka.LocalOkaRing
 
 noncomputable instance : CommRing (LocalOkaRing ι) :=
   inferInstanceAs <| CommRing (localOkaSubring ι)
@@ -946,39 +946,39 @@ theorem isUnit_iff_ne_zero [IsEmpty ι] {P : LocalOkaRing ι} : IsUnit P ↔ P �
   subst hd
   simp [MvPowerSeries.coeff_zero_eq_constantCoeff_apply, h]
 
-end LocalOkaRing
+end Tengoku.LanaOka.LocalOkaRing
 
 section Germ
 
 variable [Fintype ι] {U : Opens (ι → ℂ)}
 
 /-- A holomorphic function on `U` is holomorphic at every point of `U`. -/
-lemma OkaRing.analyticAt_toGlobalFun (f : OkaRing U) {x : ι → ℂ} (hx : x ∈ U) :
+lemma Tengoku.LanaOka.OkaRing.analyticAt_toGlobalFun (f : OkaRing U) {x : ι → ℂ} (hx : x ∈ U) :
     AnalyticAt ℂ (f.toGlobalFun _) x :=
   (okaAnalytic_iff _).mp f.2 x hx
 
 open Classical in
 /-- The Taylor series at the origin of a holomorphic function defined on an open neighbourhood
 `U` of the origin. -/
-noncomputable def OkaRing.toLocalOkaRing (h0 : (0 : ι → ℂ) ∈ U) (f : OkaRing U) :
+noncomputable def Tengoku.LanaOka.OkaRing.toLocalOkaRing (h0 : (0 : ι → ℂ) ∈ U) (f : OkaRing U) :
     LocalOkaRing ι :=
   ⟨(exists_represents (f.analyticAt_toGlobalFun h0)).choose,
     (exists_represents (f.analyticAt_toGlobalFun h0)).choose_spec.1⟩
 
-lemma OkaRing.toLocalOkaRing_represents (h0 : (0 : ι → ℂ) ∈ U) (f : OkaRing U) :
+lemma Tengoku.LanaOka.OkaRing.toLocalOkaRing_represents (h0 : (0 : ι → ℂ) ∈ U) (f : OkaRing U) :
     ((f.toLocalOkaRing h0 : LocalOkaRing ι) : MvPowerSeries ι ℂ).Represents (f.toGlobalFun _) :=
   (exists_represents (f.analyticAt_toGlobalFun h0)).choose_spec.2
 
 /-- The Taylor series is the unique locally convergent power series representing the given
 function. -/
-lemma OkaRing.toLocalOkaRing_eq_of_represents {h0 : (0 : ι → ℂ) ∈ U} {f : OkaRing U}
+lemma Tengoku.LanaOka.OkaRing.toLocalOkaRing_eq_of_represents {h0 : (0 : ι → ℂ) ∈ U} {f : OkaRing U}
     {P : LocalOkaRing ι} (h : (P : MvPowerSeries ι ℂ).Represents (f.toGlobalFun _)) :
     f.toLocalOkaRing h0 = P :=
   LocalOkaRing.ext ((f.toLocalOkaRing_represents h0).unique h)
 
 /-- Away from `U`, the values of `f : OkaRing U` do not matter: near the origin, the extension
 by zero of `f` is any function agreeing with `f` on `U`. -/
-lemma OkaRing.toGlobalFun_eventuallyEq (h0 : (0 : ι → ℂ) ∈ U) {f : OkaRing U}
+lemma Tengoku.LanaOka.OkaRing.toGlobalFun_eventuallyEq (h0 : (0 : ι → ℂ) ∈ U) {f : OkaRing U}
     {g : (ι → ℂ) → ℂ} (h : ∀ x : U, f.toFun _ x = g x) :
     f.toGlobalFun _ =ᶠ[𝓝 (0 : ι → ℂ)] g := by
   filter_upwards [U.isOpen.mem_nhds h0] with x hx
@@ -988,7 +988,7 @@ lemma OkaRing.toGlobalFun_eventuallyEq (h0 : (0 : ι → ℂ) ∈ U) {f : OkaRin
 variable (U) in
 /-- The `ℂ`-algebra map sending a holomorphic function on an open neighbourhood `U` of the
 origin to its Taylor series at the origin. -/
-noncomputable def OkaRing.toLocalOkaRingHom (h0 : (0 : ι → ℂ) ∈ U) :
+noncomputable def Tengoku.LanaOka.OkaRing.toLocalOkaRingHom (h0 : (0 : ι → ℂ) ∈ U) :
     OkaRing U →ₐ[ℂ] LocalOkaRing ι where
   toFun f := f.toLocalOkaRing h0
   map_one' := by
@@ -1026,13 +1026,13 @@ noncomputable def OkaRing.toLocalOkaRingHom (h0 : (0 : ι → ℂ) ∈ U) :
       (toGlobalFun_eventuallyEq h0 (g := Function.const _ c) fun _ ↦ rfl).symm
 
 @[simp]
-lemma OkaRing.toLocalOkaRingHom_apply (h0 : (0 : ι → ℂ) ∈ U) (f : OkaRing U) :
+lemma Tengoku.LanaOka.OkaRing.toLocalOkaRingHom_apply (h0 : (0 : ι → ℂ) ∈ U) (f : OkaRing U) :
     OkaRing.toLocalOkaRingHom U h0 f = f.toLocalOkaRing h0 :=
   rfl
 
 /-- Every locally convergent power series is the Taylor series at the origin of a holomorphic
 function on some open neighbourhood of the origin. -/
-theorem LocalOkaRing.exists_okaRing (P : LocalOkaRing ι) :
+theorem Tengoku.LanaOka.LocalOkaRing.exists_okaRing (P : LocalOkaRing ι) :
     ∃ (U : Opens (ι → ℂ)) (h0 : (0 : ι → ℂ) ∈ U) (f : OkaRing U),
       OkaRing.toLocalOkaRingHom U h0 f = P := by
   obtain ⟨s, hs, hsopen, h0⟩ := mem_nhds_iff.mp P.2.analyticAt.eventually_analyticAt
@@ -1298,3 +1298,4 @@ lemma isGeneralIn_iff_orderIn_ne_top
 end MvPowerSeries
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

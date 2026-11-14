@@ -17,7 +17,7 @@ primitive positive definite binary quadratic forms of a fixed discriminant,
 their proper equivalence classes, and the squarefree field-discriminant
 arithmetic used by the bridge and computable layers.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 namespace QuadraticNumberFields
 namespace BinaryQuadraticForm
 
@@ -330,3 +330,4 @@ theorem isPrimitive_of_hasDiscriminant_fieldDiscriminant
 
 end BinaryQuadraticForm
 end QuadraticNumberFields
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

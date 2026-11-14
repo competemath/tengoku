@@ -20,12 +20,12 @@ abstract quadratic field.
 * `QuadraticField.ringOfIntegers_isQuadraticExtension`: `𝓞 K` is a quadratic
   extension of `ℤ` when `K` is a quadratic field over `ℚ`.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 local notation "ℚ√" d => Qsqrtd d
 
 open scoped NumberField
 
-namespace QuadraticField
+namespace Tengoku.QuadraticNumberFields.QuadraticField
 
 /-- The ring of integers of an abstract quadratic field is a quadratic extension
 of `ℤ`.
@@ -41,4 +41,5 @@ instance ringOfIntegers_isQuadraticExtension
       congr 1
       exact Subsingleton.elim _ _))
 
-end QuadraticField
+end Tengoku.QuadraticNumberFields.QuadraticField
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

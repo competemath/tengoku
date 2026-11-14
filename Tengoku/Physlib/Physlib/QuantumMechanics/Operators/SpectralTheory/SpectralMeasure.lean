@@ -37,7 +37,7 @@ For each `x : H` there is an associated measure `μₓ` given by `μₓ A = ‖�
 -/
 
 @[expose] public section
-
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
 noncomputable section
 
 open ContinuousLinearMap
@@ -51,14 +51,14 @@ open Set
 /-- A _spectral measure_ on a measurable space `α` is a σ-additive function `Set α → H →L[ℂ] H`
   such that each set is mapped to a star projection on `H`, the empty set and non-measurable sets
   are mapped to zero, and `univ` is mapped to the identity. -/
-structure SpectralMeasure
+structure _root_.Tengoku.Physlib.SpectralMeasure
     (α : Type*) [MeasurableSpace α]
     (H : Type*) [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
     extends VectorMeasure α (H →L[ℂ] H) where
   isStarProjection' : ∀ A, IsStarProjection (measureOf' A)
   univ' : measureOf' univ = 1
 
-namespace SpectralMeasure
+namespace Tengoku.Physlib.SpectralMeasure
 
 variable {α : Type*} [MeasurableSpace α]
 variable {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
@@ -84,6 +84,7 @@ lemma univ : μS univ = 1 := μS.univ'
 @[simp]
 lemma comp_self (A : Set α) : μS A ∘L μS A = μS A := (μS.isStarProjection A).isIdempotentElem
 
-end SpectralMeasure
+end Tengoku.Physlib.SpectralMeasure
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

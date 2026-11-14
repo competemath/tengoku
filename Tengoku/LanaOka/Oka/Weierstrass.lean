@@ -49,9 +49,9 @@ the dictionary between functions and germs used to reduce Oka's coherence lemma 
   `lineEquiv`: choice of a linear change of coordinates making finitely many nonzero germs
   general in the last variable.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Polynomial in
-theorem exists_diffQuotient
+theorem _root_.Tengoku.LanaOka.exists_diffQuotient
     {R : Type*} [CommRing R] [Nontrivial R]
     (q : R[X]) (hq : q ≠ 0) (c : R) :
     ∃ Q : R[X], Q.degree < q.degree ∧ q - C (q.eval c) = (X - C c) * Q := by
@@ -65,7 +65,7 @@ theorem exists_diffQuotient
 
 open Polynomial in
 /-- Divided difference: `p(c) - p(t) = (c - t) * (p /ₘ (X - C c))(t)`. -/
-theorem eval_sub_eval_eq_mul_divByMonic {R : Type*} [CommRing R] (p : R[X]) (c t : R) :
+theorem _root_.Tengoku.LanaOka.eval_sub_eval_eq_mul_divByMonic {R : Type*} [CommRing R] (p : R[X]) (c t : R) :
     p.eval c - p.eval t = (c - t) * (p /ₘ (X - C c)).eval t := by
   have h := modByMonic_add_div p (X - C c)
   rw [modByMonic_X_sub_C_eq_C_eval] at h
@@ -75,7 +75,7 @@ theorem eval_sub_eval_eq_mul_divByMonic {R : Type*} [CommRing R] (p : R[X]) (c t
 
 open Finset Polynomial in
 /-- Divided-difference identity for a finite power sum with leading coefficient one. -/
-theorem sum_pow_sub_sum_pow_eq (d : ℕ) (c : ℕ → ℂ) (hcd : c d = 1) (ζ t : ℂ) :
+theorem _root_.Tengoku.LanaOka.sum_pow_sub_sum_pow_eq (d : ℕ) (c : ℕ → ℂ) (hcd : c d = 1) (ζ t : ℂ) :
     (∑ j ∈ range (d + 1), c j * ζ ^ j) - (∑ j ∈ range (d + 1), c j * t ^ j)
       = (ζ - t) * ∑ i ∈ range d, t ^ i *
           ∑ j ∈ Icc (i + 1) d, ζ ^ (j - 1 - i) * c j := by
@@ -385,7 +385,7 @@ variable {n : ℕ}
 /-- The last coordinate `x_{n+1}` as a germ at the origin in `n + 1` variables: the
 distinguished variable of the Weierstrass theorems, and the one variable not in the image of
 `LocalOkaRing.incl`. Local convergence is `MvPowerSeries.locallyConvergent_X`. -/
-noncomputable def LocalOkaRing.lastVar : LocalOkaRing (Fin (n + 1)) :=
+noncomputable def Tengoku.LanaOka.LocalOkaRing.lastVar : LocalOkaRing (Fin (n + 1)) :=
   ⟨MvPowerSeries.X (Fin.last n), MvPowerSeries.locallyConvergent_X _⟩
 
 namespace MvPowerSeries
@@ -446,7 +446,7 @@ Together with `LocalOkaRing.lastVar` this presents `LocalOkaRing (Fin (n + 1))` 
 `LocalOkaRing (Fin n)`, which is what the induction on the number of variables needs. Local
 convergence is preserved because renaming along an embedding only reindexes the variables
 (`MvPowerSeries.LocallyConvergent.rename`). -/
-noncomputable def LocalOkaRing.incl :
+noncomputable def Tengoku.LanaOka.LocalOkaRing.incl :
     LocalOkaRing (Fin n) →ₐ[ℂ] LocalOkaRing (Fin (n + 1)) :=
   ((MvPowerSeries.rename (Fin.castSuccEmb : Fin n → Fin (n + 1))).comp
       (localOkaSubring (Fin n)).val).codRestrict _
@@ -458,7 +458,7 @@ variable {n : ℕ}
 
 /-- A local Weierstrass polynomial is a monic polynomial whose coefficients below the leading
 one vanish at the origin. -/
-structure IsLocalWeierstrassPolynomial
+structure _root_.Tengoku.LanaOka.IsLocalWeierstrassPolynomial
   (P : (MvPowerSeries (Fin n) ℂ)[X]) : Prop where
   monic : P.Monic
   apply_zero (i : ℕ) (hi : i < P.degree) :
@@ -507,7 +507,7 @@ lemma represents_X (i : ι) : (X i : MvPowerSeries ι ℂ).Represents (fun x ↦
 
 end MvPowerSeries
 
-namespace LocalOkaRing
+namespace Tengoku.LanaOka.LocalOkaRing
 
 open MvPowerSeries
 
@@ -524,16 +524,16 @@ lemma coe_lastVar :
       MvPowerSeries.X (Fin.last n) :=
   rfl
 
-end LocalOkaRing
+end Tengoku.LanaOka.LocalOkaRing
 
 end FromPolynomial
 
 /-- A polynomial over the germs in `n` variables, viewed as a germ in `n + 1` variables. -/
-noncomputable def LocalOkaRing.fromPolynomial :
+noncomputable def Tengoku.LanaOka.LocalOkaRing.fromPolynomial :
     (LocalOkaRing (Fin n))[X] →ₐ[ℂ] LocalOkaRing (Fin (n + 1)) :=
   Polynomial.aevalTower LocalOkaRing.incl LocalOkaRing.lastVar
 
-namespace LocalOkaRing
+namespace Tengoku.LanaOka.LocalOkaRing
 
 @[simp]
 lemma fromPolynomial_C (P : LocalOkaRing (Fin n)) :
@@ -571,9 +571,9 @@ lemma fromPolynomial_injective :
   exact Polynomial.map_injective _ (fun a b hab ↦ Subtype.ext hab)
     (MvPowerSeries.fromPolynomial'_injective h2)
 
-end LocalOkaRing
+end Tengoku.LanaOka.LocalOkaRing
 
-lemma LocalOkaRing.eval_incl (a : LocalOkaRing (Fin n)) (z : Fin (n + 1) → ℂ) :
+lemma Tengoku.LanaOka.LocalOkaRing.eval_incl (a : LocalOkaRing (Fin n)) (z : Fin (n + 1) → ℂ) :
     ((incl a : LocalOkaRing (Fin (n + 1))) : MvPowerSeries (Fin (n + 1)) ℂ).eval z
       = (a : MvPowerSeries (Fin n) ℂ).eval (fun j ↦ z j.castSucc) := by
   change (MvPowerSeries.rename (Fin.castSuccEmb : Fin n → Fin (n + 1))
@@ -581,25 +581,25 @@ lemma LocalOkaRing.eval_incl (a : LocalOkaRing (Fin n)) (z : Fin (n + 1) → ℂ
   rw [MvPowerSeries.eval_rename]
   rfl
 
-lemma LocalOkaRing.eval_lastVar (z : Fin (n + 1) → ℂ) :
+lemma Tengoku.LanaOka.LocalOkaRing.eval_lastVar (z : Fin (n + 1) → ℂ) :
     ((lastVar : LocalOkaRing (Fin (n + 1))) : MvPowerSeries (Fin (n + 1)) ℂ).eval z
       = z (Fin.last n) :=
   MvPowerSeries.eval_X _ _
 
-lemma LocalOkaRing.fromPolynomial_eq_sum (q : (LocalOkaRing (Fin n))[X]) :
+lemma Tengoku.LanaOka.LocalOkaRing.fromPolynomial_eq_sum (q : (LocalOkaRing (Fin n))[X]) :
     fromPolynomial q
       = ∑ i ∈ Finset.range (q.natDegree + 1), incl (q.coeff i) * lastVar ^ i := by
   rw [fromPolynomial]
   exact Polynomial.eval₂_eq_sum_range _ _
 
-lemma LocalOkaRing.summableAt_incl (a : LocalOkaRing (Fin n)) (z : Fin (n + 1) → ℂ)
+lemma Tengoku.LanaOka.LocalOkaRing.summableAt_incl (a : LocalOkaRing (Fin n)) (z : Fin (n + 1) → ℂ)
     (ha : (a : MvPowerSeries (Fin n) ℂ).SummableAt (fun j ↦ z j.castSucc)) :
     ((incl a : LocalOkaRing (Fin (n + 1))) : MvPowerSeries (Fin (n + 1)) ℂ).SummableAt z := by
   change (MvPowerSeries.rename (Fin.castSuccEmb : Fin n → Fin (n + 1))
       (a : MvPowerSeries (Fin n) ℂ)).SummableAt z
   exact MvPowerSeries.SummableAt.rename _ ha
 
-lemma LocalOkaRing.eval_fromPolynomial (q : (LocalOkaRing (Fin n))[X]) (z : Fin (n + 1) → ℂ)
+lemma Tengoku.LanaOka.LocalOkaRing.eval_fromPolynomial (q : (LocalOkaRing (Fin n))[X]) (z : Fin (n + 1) → ℂ)
     (hz : ∀ i, ((q.coeff i : LocalOkaRing (Fin n)) : MvPowerSeries (Fin n) ℂ).SummableAt
       (fun j ↦ z j.castSucc)) :
     ((fromPolynomial q : LocalOkaRing (Fin (n + 1))) : MvPowerSeries (Fin (n + 1)) ℂ).eval z
@@ -626,7 +626,7 @@ lemma LocalOkaRing.eval_fromPolynomial (q : (LocalOkaRing (Fin n))[X]) (z : Fin 
   rw [MvPowerSeries.eval_mul_of_summableAt (summableAt_incl _ z (hz i)) (hX.pow i),
     MvPowerSeries.eval_pow_of_summableAt hX, eval_incl, MvPowerSeries.eval_X]
 
-lemma LocalOkaRing.eval_fromPolynomial_axis (q : (LocalOkaRing (Fin n))[X]) (w : ℂ) :
+lemma Tengoku.LanaOka.LocalOkaRing.eval_fromPolynomial_axis (q : (LocalOkaRing (Fin n))[X]) (w : ℂ) :
     ((fromPolynomial q : LocalOkaRing (Fin (n + 1))) : MvPowerSeries (Fin (n + 1)) ℂ).eval
         (Fin.snoc (0 : Fin n → ℂ) w : Fin (n + 1) → ℂ)
       = ∑ i ∈ Finset.range (q.natDegree + 1),
@@ -639,7 +639,7 @@ lemma LocalOkaRing.eval_fromPolynomial_axis (q : (LocalOkaRing (Fin n))[X]) (w :
   refine Finset.sum_congr rfl fun i _ ↦ ?_
   rw [hpt, MvPowerSeries.eval_zero]
 
-lemma LocalOkaRing.eval_fromPolynomial_axis_weierstrass
+lemma Tengoku.LanaOka.LocalOkaRing.eval_fromPolynomial_axis_weierstrass
     (q : (LocalOkaRing (Fin n))[X])
     (hq : IsLocalWeierstrassPolynomial
       (Polynomial.map (localOkaSubring (Fin n)).val.toRingHom q)) (w : ℂ) :
@@ -668,7 +668,7 @@ lemma LocalOkaRing.eval_fromPolynomial_axis_weierstrass
       exact_mod_cast hilt
     rw [hcoeff, hq.apply_zero i hidQ, zero_mul]
 
-lemma LocalOkaRing.eventually_summableAt_coeffs (q : (LocalOkaRing (Fin n))[X]) :
+lemma Tengoku.LanaOka.LocalOkaRing.eventually_summableAt_coeffs (q : (LocalOkaRing (Fin n))[X]) :
     ∀ᶠ z' : Fin n → ℂ in nhds 0,
       ∀ i ∈ Finset.range (q.natDegree + 1),
         ((q.coeff i : LocalOkaRing (Fin n)) : MvPowerSeries (Fin n) ℂ).SummableAt z' := by
@@ -676,7 +676,7 @@ lemma LocalOkaRing.eventually_summableAt_coeffs (q : (LocalOkaRing (Fin n))[X]) 
   intro i _
   exact (q.coeff i).locallyConvergent
 
-lemma LocalOkaRing.eval_coeff_natDegree
+lemma Tengoku.LanaOka.LocalOkaRing.eval_coeff_natDegree
     (q : (LocalOkaRing (Fin n))[X])
     (hq : IsLocalWeierstrassPolynomial
       (Polynomial.map (localOkaSubring (Fin n)).val.toRingHom q)) (z' : Fin n → ℂ) :
@@ -693,7 +693,7 @@ lemma LocalOkaRing.eval_coeff_natDegree
   rw [hcoeff1, show ((1 : LocalOkaRing (Fin n)) : MvPowerSeries (Fin n) ℂ) = 1 by simp]
   exact MvPowerSeries.eval_one z'
 
-lemma LocalOkaRing.eventually_error_lt
+lemma Tengoku.LanaOka.LocalOkaRing.eventually_error_lt
     (q : (LocalOkaRing (Fin n))[X])
     (hq : IsLocalWeierstrassPolynomial
       (Polynomial.map (localOkaSubring (Fin n)).val.toRingHom q))
@@ -731,7 +731,7 @@ lemma LocalOkaRing.eventually_error_lt
       ((q.coeff i).locallyConvergent.analyticAt.continuousAt.norm)
   exact htend.eventually (gt_mem_nhds (pow_pos hε _))
 
-lemma LocalOkaRing.eventually_fromPolynomial_ne_zero
+lemma Tengoku.LanaOka.LocalOkaRing.eventually_fromPolynomial_ne_zero
     (q : (LocalOkaRing (Fin n))[X])
     (hq : IsLocalWeierstrassPolynomial
       (Polynomial.map (localOkaSubring (Fin n)).val.toRingHom q))
@@ -783,7 +783,7 @@ lemma LocalOkaRing.eventually_fromPolynomial_ne_zero
   exact lt_irrefl 0 hlow
 
 /-- The value of `fromPolynomial q` along a `Fin.snoc` slice. -/
-lemma LocalOkaRing.eval_fromPolynomial_snoc (q : (LocalOkaRing (Fin n))[X]) (w : Fin n → ℂ)
+lemma Tengoku.LanaOka.LocalOkaRing.eval_fromPolynomial_snoc (q : (LocalOkaRing (Fin n))[X]) (w : Fin n → ℂ)
     (hwc : ∀ j, ((q.coeff j : LocalOkaRing (Fin n)) : MvPowerSeries (Fin n) ℂ).SummableAt w)
     (s : ℂ) :
     ((fromPolynomial q : LocalOkaRing (Fin (n + 1))) : MvPowerSeries (Fin (n + 1)) ℂ).eval
@@ -797,7 +797,7 @@ lemma LocalOkaRing.eval_fromPolynomial_snoc (q : (LocalOkaRing (Fin n))[X]) (w :
 
 /-- Evaluation of `fromPolynomial b` along a slice, with the sum taken over any range
 containing the degree of `b`. -/
-lemma LocalOkaRing.eval_fromPolynomial_snoc_range (b : (LocalOkaRing (Fin n))[X]) (m : ℕ)
+lemma Tengoku.LanaOka.LocalOkaRing.eval_fromPolynomial_snoc_range (b : (LocalOkaRing (Fin n))[X]) (m : ℕ)
     (hbm : b.degree < (m : WithBot ℕ)) (w : Fin n → ℂ)
     (hwc : ∀ j, ((b.coeff j : LocalOkaRing (Fin n)) : MvPowerSeries (Fin n) ℂ).SummableAt w)
     (s : ℂ) :
@@ -818,7 +818,7 @@ lemma LocalOkaRing.eval_fromPolynomial_snoc_range (b : (LocalOkaRing (Fin n))[X]
         MvPowerSeries.eval_of_zero, zero_mul]
 
 /-- The pointwise algebraic identity behind Weierstrass division. -/
-lemma div_sub_div_add_sum_eq {d : ℕ} (F Qz Qt ζ t : ℂ) (E : ℕ → ℂ)
+lemma _root_.Tengoku.LanaOka.div_sub_div_add_sum_eq {d : ℕ} (F Qz Qt ζ t : ℂ) (E : ℕ → ℂ)
     (hQz : Qz ≠ 0) (hne : ζ - t ≠ 0)
     (hE : Qz - Qt = (ζ - t) * ∑ i ∈ Finset.range d, t ^ i * E i) :
     F / (ζ - t)
@@ -832,7 +832,7 @@ lemma div_sub_div_add_sum_eq {d : ℕ} (F Qz Qt ζ t : ℂ) (E : ℕ → ℂ)
   linear_combination F * hE
 
 /-- The Weierstrass division integrand identity, pointwise on the circle. -/
-lemma localweierstrass_integrand_eqOn
+lemma _root_.Tengoku.LanaOka.localweierstrass_integrand_eqOn
     (q : (LocalOkaRing (Fin n))[X])
     (hq : IsLocalWeierstrassPolynomial
       (Polynomial.map (localOkaSubring (Fin n)).val.toRingHom q))
@@ -883,7 +883,7 @@ lemma localweierstrass_integrand_eqOn
   exact div_sub_div_add_sum_eq _ _ _ ζ t _ hQz hne hE
 
 /-- The Weierstrass division integral identity. -/
-lemma localweierstrass_division_lemma_four
+lemma _root_.Tengoku.LanaOka.localweierstrass_division_lemma_four
     (q : (LocalOkaRing (Fin n))[X])
     (hq : IsLocalWeierstrassPolynomial
       (Polynomial.map (localOkaSubring (Fin n)).val.toRingHom q))
@@ -1014,7 +1014,7 @@ lemma localweierstrass_division_lemma_four
     rw [circleIntegral.integral_const_mul]
     ring
 
-lemma localweierstrass_division_lemma_one
+lemma _root_.Tengoku.LanaOka.localweierstrass_division_lemma_one
       (q : (LocalOkaRing (Fin n))[X])
       (hq : IsLocalWeierstrassPolynomial (Polynomial.map (localOkaSubring _).val.toRingHom q))
       (f : LocalOkaRing (Fin (n + 1))) :
@@ -1061,7 +1061,7 @@ lemma localweierstrass_division_lemma_one
   have hprop2 := hprop hz'dist (z (Fin.last n)) hz₂
   rwa [hzeq] at hprop2
 
-lemma localweierstrass_division_lemma_two
+lemma _root_.Tengoku.LanaOka.localweierstrass_division_lemma_two
     (q : (LocalOkaRing (Fin n))[X])
     (_hq : IsLocalWeierstrassPolynomial (Polynomial.map (localOkaSubring _).val.toRingHom q))
     (f : LocalOkaRing (Fin (n + 1)))
@@ -1229,7 +1229,7 @@ lemma localweierstrass_division_lemma_two
   obtain ⟨P, hconv, hrep⟩ := MvPowerSeries.exists_represents hF
   exact ⟨⟨P, hconv⟩, hrep⟩
 
-lemma localweierstrass_division_lemma_three
+lemma _root_.Tengoku.LanaOka.localweierstrass_division_lemma_three
     (q : (LocalOkaRing (Fin n))[X])
     (f : LocalOkaRing (Fin (n + 1)))
     (δ : ℝ) (hd : δ > 0) (ε : ℝ) (he : ε > 0) (r : ℝ) (hεr : ε < r)
@@ -1391,17 +1391,17 @@ section WeierstrassOfCoeffs
 variable {R S : Type*} [CommRing R] [CommRing S]
 
 /-- The monic polynomial `X ^ d + ∑ j < d, c j * X ^ j` with prescribed lower coefficients. -/
-noncomputable def weierstrassOfCoeffs {d : ℕ} (c : Fin d → R) : R[X] :=
+noncomputable def _root_.Tengoku.LanaOka.weierstrassOfCoeffs {d : ℕ} (c : Fin d → R) : R[X] :=
   Polynomial.X ^ d + ∑ j : Fin d, Polynomial.C (c j) * Polynomial.X ^ (j : ℕ)
 
-lemma degree_sum_C_mul_X_pow_lt {d : ℕ} (c : Fin d → R) :
+lemma _root_.Tengoku.LanaOka.degree_sum_C_mul_X_pow_lt {d : ℕ} (c : Fin d → R) :
     (∑ j : Fin d, Polynomial.C (c j) * Polynomial.X ^ (j : ℕ)).degree < (d : WithBot ℕ) := by
   refine lt_of_le_of_lt (Polynomial.degree_sum_le _ _) ?_
   rw [Finset.sup_lt_iff (by exact_mod_cast WithBot.bot_lt_coe d)]
   intro j _
   exact lt_of_le_of_lt (Polynomial.degree_C_mul_X_pow_le _ _) (by exact_mod_cast j.isLt)
 
-lemma coeff_sum_C_mul_X_pow_of_lt {d : ℕ} (c : Fin d → R) {k : ℕ} (hk : k < d) :
+lemma _root_.Tengoku.LanaOka.coeff_sum_C_mul_X_pow_of_lt {d : ℕ} (c : Fin d → R) {k : ℕ} (hk : k < d) :
     (∑ j : Fin d, Polynomial.C (c j) * Polynomial.X ^ (j : ℕ)).coeff k = c ⟨k, hk⟩ := by
   rw [Polynomial.finsetSum_coeff, Finset.sum_eq_single (⟨k, hk⟩ : Fin d)]
   · rw [Polynomial.coeff_C_mul, Polynomial.coeff_X_pow, ite_eq_left rfl, mul_one]
@@ -1411,11 +1411,11 @@ lemma coeff_sum_C_mul_X_pow_of_lt {d : ℕ} (c : Fin d → R) {k : ℕ} (hk : k 
   · intro h
     exact absurd (Finset.mem_univ _) h
 
-lemma weierstrassOfCoeffs_monic {d : ℕ} (c : Fin d → R) :
+lemma _root_.Tengoku.LanaOka.weierstrassOfCoeffs_monic {d : ℕ} (c : Fin d → R) :
     (weierstrassOfCoeffs c).Monic :=
   Polynomial.monic_X_pow_add (degree_sum_C_mul_X_pow_lt c)
 
-lemma weierstrassOfCoeffs_coeff_of_lt {d : ℕ} (c : Fin d → R) {k : ℕ} (hk : k < d) :
+lemma _root_.Tengoku.LanaOka.weierstrassOfCoeffs_coeff_of_lt {d : ℕ} (c : Fin d → R) {k : ℕ} (hk : k < d) :
     (weierstrassOfCoeffs c).coeff k = c ⟨k, hk⟩ := by
   rw [weierstrassOfCoeffs, Polynomial.coeff_add, Polynomial.coeff_X_pow,
     ite_eq_right (Nat.ne_of_lt hk), zero_add, Polynomial.finsetSum_coeff]
@@ -1427,7 +1427,7 @@ lemma weierstrassOfCoeffs_coeff_of_lt {d : ℕ} (c : Fin d → R) {k : ℕ} (hk 
   · intro h
     exact absurd (Finset.mem_univ _) h
 
-lemma weierstrassOfCoeffs_coeff_self {d : ℕ} (c : Fin d → R) :
+lemma _root_.Tengoku.LanaOka.weierstrassOfCoeffs_coeff_self {d : ℕ} (c : Fin d → R) :
     (weierstrassOfCoeffs c).coeff d = 1 := by
   rw [weierstrassOfCoeffs, Polynomial.coeff_add, Polynomial.coeff_X_pow, ite_eq_left rfl,
     Polynomial.finsetSum_coeff, Finset.sum_eq_zero, add_zero]
@@ -1435,7 +1435,7 @@ lemma weierstrassOfCoeffs_coeff_self {d : ℕ} (c : Fin d → R) :
   rw [Polynomial.coeff_C_mul, Polynomial.coeff_X_pow,
     ite_eq_right (fun h ↦ absurd h.symm (Nat.ne_of_lt j.isLt)), mul_zero]
 
-lemma weierstrassOfCoeffs_coeff_of_gt {d : ℕ} (c : Fin d → R) {k : ℕ} (hk : d < k) :
+lemma _root_.Tengoku.LanaOka.weierstrassOfCoeffs_coeff_of_gt {d : ℕ} (c : Fin d → R) {k : ℕ} (hk : d < k) :
     (weierstrassOfCoeffs c).coeff k = 0 := by
   rw [weierstrassOfCoeffs, Polynomial.coeff_add, Polynomial.coeff_X_pow,
     ite_eq_right (by omega), zero_add, Polynomial.finsetSum_coeff, Finset.sum_eq_zero]
@@ -1443,17 +1443,17 @@ lemma weierstrassOfCoeffs_coeff_of_gt {d : ℕ} (c : Fin d → R) {k : ℕ} (hk 
   rw [Polynomial.coeff_C_mul, Polynomial.coeff_X_pow,
     ite_eq_right (by have := j.isLt; omega), mul_zero]
 
-lemma weierstrassOfCoeffs_degree [Nontrivial R] {d : ℕ} (c : Fin d → R) :
+lemma _root_.Tengoku.LanaOka.weierstrassOfCoeffs_degree [Nontrivial R] {d : ℕ} (c : Fin d → R) :
     (weierstrassOfCoeffs c).degree = d := by
   rw [weierstrassOfCoeffs, Polynomial.degree_add_eq_left_of_degree_lt
     (by rw [Polynomial.degree_X_pow]; exact degree_sum_C_mul_X_pow_lt c),
     Polynomial.degree_X_pow]
 
-lemma weierstrassOfCoeffs_natDegree [Nontrivial R] {d : ℕ} (c : Fin d → R) :
+lemma _root_.Tengoku.LanaOka.weierstrassOfCoeffs_natDegree [Nontrivial R] {d : ℕ} (c : Fin d → R) :
     (weierstrassOfCoeffs c).natDegree = d :=
   Polynomial.natDegree_eq_of_degree_eq_some (weierstrassOfCoeffs_degree c)
 
-lemma weierstrassOfCoeffs_map {d : ℕ} (c : Fin d → R) (φ : R →+* S) :
+lemma _root_.Tengoku.LanaOka.weierstrassOfCoeffs_map {d : ℕ} (c : Fin d → R) (φ : R →+* S) :
     (weierstrassOfCoeffs c).map φ = weierstrassOfCoeffs (fun j ↦ φ (c j)) := by
   rw [weierstrassOfCoeffs, weierstrassOfCoeffs, Polynomial.map_add, Polynomial.map_pow,
     Polynomial.map_X, Polynomial.map_sum]
@@ -1463,7 +1463,7 @@ lemma weierstrassOfCoeffs_map {d : ℕ} (c : Fin d → R) (φ : R →+* S) :
 end WeierstrassOfCoeffs
 
 /-- The Weierstrass division theorem for germs; uniqueness is omitted. -/
-theorem localweierstrass_division
+theorem _root_.Tengoku.LanaOka.localweierstrass_division
       (q : (LocalOkaRing (Fin n))[X])
       (hq : IsLocalWeierstrassPolynomial
            (Polynomial.map (Subring.subtype (localOkaSubring _).toSubring) q))
@@ -1595,7 +1595,7 @@ section ImplicitFunction
 open ContinuousLinearMap
 
 /-- The equivalence between `Fin d` and the last `d` coordinates of `Fin (n + d)`. -/
-def finNatAddEquiv (n d : ℕ) : Fin d ≃ {i : Fin (n + d) // ¬ ((i : ℕ) < n)} where
+def _root_.Tengoku.LanaOka.finNatAddEquiv (n d : ℕ) : Fin d ≃ {i : Fin (n + d) // ¬ ((i : ℕ) < n)} where
   toFun j := ⟨Fin.natAdd n j, by simp⟩
   invFun i := ⟨((i : Fin (n + d)) : ℕ) - n, by
     have h1 := (i : Fin (n + d)).isLt
@@ -1615,7 +1615,7 @@ preparation theorem: if `Φ : ℂ^{n+d} → ℂ^d` is analytic at the origin, va
 its Jacobian with respect to the last `d` coordinates is invertible, then near the origin
 the zero locus of `Φ` contains the graph of an analytic function `s` of the first `n`
 coordinates vanishing at the origin. -/
-theorem exists_analyticAt_implicit {n d : ℕ} (Φ : (Fin (n + d) → ℂ) → (Fin d → ℂ))
+theorem _root_.Tengoku.LanaOka.exists_analyticAt_implicit {n d : ℕ} (Φ : (Fin (n + d) → ℂ) → (Fin d → ℂ))
     (hΦ : AnalyticAt ℂ Φ 0) (hΦ0 : Φ 0 = 0)
     (hdet : (Matrix.of fun k j : Fin d ↦
       fderiv ℂ (fun w ↦ Φ w k) 0 (Pi.single (Fin.natAdd n j) 1)).det ≠ 0) :
@@ -1806,7 +1806,7 @@ variable {n : ℕ}
 
 /-- The embedding of `ℂ^{n+1}` into `ℂ^{(n+d)+1}` sending the first `n` coordinates to the
 first `n` coordinates and the last coordinate to the last coordinate. -/
-def prepEmb (n d : ℕ) : Fin (n + 1) ↪ Fin (n + d + 1) :=
+def _root_.Tengoku.LanaOka.prepEmb (n d : ℕ) : Fin (n + 1) ↪ Fin (n + d + 1) :=
   ⟨Fin.lastCases (Fin.last (n + d)) (fun j ↦ (j.castAdd d).castSucc), by
     intro a b hab
     induction a using Fin.lastCases with
@@ -1832,23 +1832,23 @@ def prepEmb (n d : ℕ) : Fin (n + 1) ↪ Fin (n + d + 1) :=
         exact congrArg Fin.castSucc (Fin.ext hval)⟩
 
 /-- The germ of the coordinate function `λ_j` on `ℂ^{n+d}`. -/
-noncomputable def lambdaVar (n : ℕ) {d : ℕ} (j : Fin d) : LocalOkaRing (Fin (n + d)) :=
+noncomputable def _root_.Tengoku.LanaOka.lambdaVar (n : ℕ) {d : ℕ} (j : Fin d) : LocalOkaRing (Fin (n + d)) :=
   ⟨MvPowerSeries.X (Fin.natAdd n j), MvPowerSeries.locallyConvergent_X _⟩
 
 @[simp]
-lemma coe_lambdaVar (n : ℕ) {d : ℕ} (j : Fin d) :
+lemma _root_.Tengoku.LanaOka.coe_lambdaVar (n : ℕ) {d : ℕ} (j : Fin d) :
     ((lambdaVar n j : LocalOkaRing (Fin (n + d))) : MvPowerSeries (Fin (n + d)) ℂ) =
       MvPowerSeries.X (Fin.natAdd n j) :=
   rfl
 
-lemma constantCoeff_lambdaVar (n : ℕ) {d : ℕ} (j : Fin d) :
+lemma _root_.Tengoku.LanaOka.constantCoeff_lambdaVar (n : ℕ) {d : ℕ} (j : Fin d) :
     LocalOkaRing.constantCoeff (lambdaVar n j) = 0 := by
   rw [LocalOkaRing.constantCoeff_apply, coe_lambdaVar]
   exact MvPowerSeries.constantCoeff_X _
 
 /-- A monic polynomial whose lower coefficients are germs vanishing at the origin is a local
 Weierstrass polynomial. -/
-lemma isLocalWeierstrassPolynomial_weierstrassOfCoeffs {m d : ℕ}
+lemma _root_.Tengoku.LanaOka.isLocalWeierstrassPolynomial_weierstrassOfCoeffs {m d : ℕ}
     (c : Fin d → LocalOkaRing (Fin m)) (hc : ∀ j, LocalOkaRing.constantCoeff (c j) = 0) :
     IsLocalWeierstrassPolynomial ((weierstrassOfCoeffs c).map
       (Subring.subtype (localOkaSubring (Fin m)).toSubring)) := by
@@ -1869,7 +1869,7 @@ variable {n d : ℕ}
 
 /-- Restricting the function attached to a polynomial over the germ ring to the last axis
 evaluates the coefficients at the origin. -/
-lemma partialEval_coe_fromPolynomial {m : ℕ} (Q : (LocalOkaRing (Fin m))[X]) :
+lemma _root_.Tengoku.LanaOka.partialEval_coe_fromPolynomial {m : ℕ} (Q : (LocalOkaRing (Fin m))[X]) :
     MvPowerSeries.partialEval (Fin.last m)
       ((LocalOkaRing.fromPolynomial Q : LocalOkaRing (Fin (m + 1))) :
         MvPowerSeries (Fin (m + 1)) ℂ) =
@@ -1886,7 +1886,7 @@ lemma partialEval_coe_fromPolynomial {m : ℕ} (Q : (LocalOkaRing (Fin m))[X]) :
   rw [MvPowerSeries.coeff_zero_eq_constantCoeff_apply, LocalOkaRing.constantCoeff_apply]
   rfl
 
-lemma castSucc_natAdd_ne_last (j : Fin d) : (Fin.natAdd n j).castSucc ≠ Fin.last (n + d) := by
+lemma _root_.Tengoku.LanaOka.castSucc_natAdd_ne_last (j : Fin d) : (Fin.natAdd n j).castSucc ≠ Fin.last (n + d) := by
   intro h
   have hval := congrArg Fin.val h
   simp only [Fin.val_castSucc, Fin.val_natAdd, Fin.val_last] at hval
@@ -1894,7 +1894,7 @@ lemma castSucc_natAdd_ne_last (j : Fin d) : (Fin.natAdd n j).castSucc ≠ Fin.la
 
 /-- The `λ`-linear coefficients of the function attached to a polynomial over the germs in
 `(y, λ)` are the `λ`-linear coefficients of its coefficients. -/
-lemma coeff_lambda_coe_fromPolynomial (Q : (LocalOkaRing (Fin (n + d)))[X]) (j : Fin d)
+lemma _root_.Tengoku.LanaOka.coeff_lambda_coe_fromPolynomial (Q : (LocalOkaRing (Fin (n + d)))[X]) (j : Fin d)
     (k : ℕ) :
     MvPowerSeries.coeff (Finsupp.single ((Fin.natAdd n j).castSucc) 1 +
         Finsupp.single (Fin.last (n + d)) k)
@@ -1912,7 +1912,7 @@ lemma coeff_lambda_coe_fromPolynomial (Q : (LocalOkaRing (Fin (n + d)))[X]) (j :
   rfl
 
 /-- The function attached to the generic Weierstrass polynomial, explicitly. -/
-lemma coe_fromPolynomial_weierstrassOfCoeffs {m e : ℕ} (c : Fin e → LocalOkaRing (Fin m)) :
+lemma _root_.Tengoku.LanaOka.coe_fromPolynomial_weierstrassOfCoeffs {m e : ℕ} (c : Fin e → LocalOkaRing (Fin m)) :
     ((LocalOkaRing.fromPolynomial (weierstrassOfCoeffs c) : LocalOkaRing (Fin (m + 1))) :
         MvPowerSeries (Fin (m + 1)) ℂ) =
       MvPowerSeries.X (Fin.last m) ^ e +
@@ -1929,7 +1929,7 @@ lemma coe_fromPolynomial_weierstrassOfCoeffs {m e : ℕ} (c : Fin e → LocalOka
     LocalOkaRing.coe_lastVar]
 
 /-- The `λ`-linear coefficients of `A` times the generic Weierstrass polynomial. -/
-lemma coeff_lambda_mul_genericWeierstrass (A : MvPowerSeries (Fin (n + d + 1)) ℂ)
+lemma _root_.Tengoku.LanaOka.coeff_lambda_mul_genericWeierstrass (A : MvPowerSeries (Fin (n + d + 1)) ℂ)
     (j : Fin d) (k : ℕ) (hk : k < d) :
     MvPowerSeries.coeff (Finsupp.single ((Fin.natAdd n j).castSucc) 1 +
         Finsupp.single (Fin.last (n + d)) k)
@@ -2044,15 +2044,15 @@ back along the projection to the first `n` coordinates.
 -/
 
 /-- The projection of `ℂ^{n + 1}` to the first `n` coordinates, as a continuous linear map. -/
-noncomputable def finInitCLM : (Fin (n + 1) → ℂ) →L[ℂ] (Fin n → ℂ) :=
+noncomputable def _root_.Tengoku.LanaOka.finInitCLM : (Fin (n + 1) → ℂ) →L[ℂ] (Fin n → ℂ) :=
   ContinuousLinearMap.pi fun i ↦ ContinuousLinearMap.proj i.castSucc
 
 @[simp]
-lemma finInitCLM_apply (x : Fin (n + 1) → ℂ) : finInitCLM x = Fin.init x :=
+lemma _root_.Tengoku.LanaOka.finInitCLM_apply (x : Fin (n + 1) → ℂ) : finInitCLM x = Fin.init x :=
   rfl
 
 /-- Pullback of holomorphic functions along the projection of the cylinder over `U` to `U`. -/
-noncomputable def OkaRing.pullbackInit (U : Opens (Fin n → ℂ)) :
+noncomputable def Tengoku.LanaOka.OkaRing.pullbackInit (U : Opens (Fin n → ℂ)) :
     OkaRing U →ₐ[ℂ] OkaRing U.extend' where
   toFun f := OkaRing.mk (fun y ↦ f.toFun _ ⟨Fin.init y.1, Opens.mem_extend'.mp y.2⟩)
     (OkaAnalytic.comp_continuousLinearMap finInitCLM
@@ -2064,20 +2064,20 @@ noncomputable def OkaRing.pullbackInit (U : Opens (Fin n → ℂ)) :
   commutes' _ := rfl
 
 @[simp]
-lemma OkaRing.pullbackInit_toFun {U : Opens (Fin n → ℂ)} (f : OkaRing U)
+lemma Tengoku.LanaOka.OkaRing.pullbackInit_toFun {U : Opens (Fin n → ℂ)} (f : OkaRing U)
     (y : U.extend') :
     (OkaRing.pullbackInit U f).toFun _ y = f.toFun _ ⟨Fin.init y.1, Opens.mem_extend'.mp y.2⟩ :=
   rfl
 
 /-- The last coordinate, as a holomorphic function on the cylinder over `U`. -/
-noncomputable def OkaRing.lastVar (U : Opens (Fin n → ℂ)) : OkaRing U.extend' :=
+noncomputable def Tengoku.LanaOka.OkaRing.lastVar (U : Opens (Fin n → ℂ)) : OkaRing U.extend' :=
   OkaRing.mk (fun y ↦ y.1 (Fin.last n))
     (okaAnalytic_restrict fun x _ ↦
       (ContinuousLinearMap.proj (R := ℂ) (φ := fun _ : Fin (n + 1) ↦ ℂ)
         (Fin.last n)).analyticAt x)
 
 @[simp]
-lemma OkaRing.lastVar_toFun (U : Opens (Fin n → ℂ)) (y : U.extend') :
+lemma Tengoku.LanaOka.OkaRing.lastVar_toFun (U : Opens (Fin n → ℂ)) (y : U.extend') :
     (OkaRing.lastVar U).toFun _ y = y.1 (Fin.last n) :=
   rfl
 
@@ -2099,7 +2099,7 @@ lemma Polynomial.toOkaRing_X (U : Opens (Fin n → ℂ)) :
   Polynomial.eval₂_X _ _
 
 /-- Transporting the evaluation of a holomorphic function along an equality of points. -/
-lemma OkaRing.evalHom_congr {U : Opens (Fin n → ℂ)} {x y : Fin n → ℂ} (hx : x ∈ U)
+lemma Tengoku.LanaOka.OkaRing.evalHom_congr {U : Opens (Fin n → ℂ)} {x y : Fin n → ℂ} (hx : x ∈ U)
     (hy : y ∈ U) (h : x = y) (f : OkaRing U) :
     OkaRing.evalHom hx f = OkaRing.evalHom hy f := by
   subst h
@@ -2108,7 +2108,7 @@ lemma OkaRing.evalHom_congr {U : Opens (Fin n → ℂ)} {x y : Fin n → ℂ} (h
 /-- The value of `Polynomial.toOkaRing U P` at a point of the cylinder is obtained by
 evaluating the coefficients at the base point and the resulting polynomial at the last
 coordinate. -/
-lemma OkaRing.evalHom_toOkaRing {U : Opens (Fin n → ℂ)} {y : Fin (n + 1) → ℂ}
+lemma Tengoku.LanaOka.OkaRing.evalHom_toOkaRing {U : Opens (Fin n → ℂ)} {y : Fin (n + 1) → ℂ}
     (hy : y ∈ U.extend') (P : (OkaRing U)[X]) :
     OkaRing.evalHom hy (Polynomial.toOkaRing U P) =
       Polynomial.eval₂ (OkaRing.evalHom (Opens.mem_extend'.mp hy)) (y (Fin.last n)) P := by
@@ -2153,7 +2153,7 @@ variable {n : ℕ} (U : Opens (Fin n → ℂ))
 
 /-- A Weierstrass polynomial is a monic polynomial whose coefficients below the leading one
 vanish at the origin. -/
-structure IsWeierstrassPolynomial (P : (OkaRing U)[X]) : Prop where
+structure _root_.Tengoku.LanaOka.IsWeierstrassPolynomial (P : (OkaRing U)[X]) : Prop where
   monic : P.Monic
   apply_zero (i : ℕ) (hi : i < P.degree) : (P.coeff i).toGlobalFun _ 0 = 0
 
@@ -2171,7 +2171,7 @@ near the point.
 
 open MvPowerSeries
 
-namespace OkaRing
+namespace Tengoku.LanaOka.OkaRing
 
 variable {ι : Type*} [Fintype ι] {U : Opens (ι → ℂ)} {y : ι → ℂ}
 
@@ -2328,7 +2328,7 @@ lemma exists_isUnit_restrict (hy : y ∈ U) {f : OkaRing U} (h : IsUnit (germ hy
   rw [f.toGlobalFun_apply z.2.1] at h7
   exact h7
 
-end OkaRing
+end Tengoku.LanaOka.OkaRing
 
 end Germ
 
@@ -2363,7 +2363,7 @@ lemma TopologicalSpace.Opens.mem_finset_inf {X α : Type*} [TopologicalSpace X] 
       exact ⟨h a (Finset.mem_insert_self a s), ih.mpr fun i hi ↦
         h i (Finset.mem_insert_of_mem hi)⟩
 
-namespace OkaRing
+namespace Tengoku.LanaOka.OkaRing
 
 variable {n : ℕ} {V : Opens (Fin n → ℂ)} {y' : Fin n → ℂ}
 
@@ -2484,11 +2484,11 @@ theorem germ_toOkaRing {y : Fin (n + 1) → ℂ} (hy : y ∈ V.extend') (Q : (Ok
   have h9 := congrArg (fun Φ : (OkaRing V)[X] →+* LocalOkaRing (Fin (n + 1)) ↦ Φ Q) key
   simpa using h9
 
-end OkaRing
+end Tengoku.LanaOka.OkaRing
 
-namespace LocalOkaRing
+namespace Tengoku.LanaOka.LocalOkaRing
 
-open OkaRing TopologicalSpace
+open Tengoku.LanaOka.OkaRing TopologicalSpace
 
 variable {ι : Type*} [Fintype ι] {n : ℕ}
 
@@ -2611,7 +2611,7 @@ lemma exists_isWeierstrassPolynomial_realize {g : (LocalOkaRing (Fin n))[X]}
   rw [show (Q.coeff i).toFun _ ⟨0, h0⟩ = OkaRing.evalHom h0 (Q.coeff i) from rfl, ← h5]
   exact hzero
 
-end LocalOkaRing
+end Tengoku.LanaOka.LocalOkaRing
 
 end GermPoly
 
@@ -2874,7 +2874,7 @@ theorem MvPowerSeries.Represents.eventually_axis_eq_zero {ι : Type*} [Finite ι
 
 /-- A linear automorphism of `ℂ^{n+1}` whose inverse maps the last coordinate axis onto the
 line spanned by a vector `v` with `v_last ≠ 0`. -/
-noncomputable def lineEquiv (v : Fin (n + 1) → ℂ) (hv : v (Fin.last n) ≠ 0) :
+noncomputable def _root_.Tengoku.LanaOka.lineEquiv (v : Fin (n + 1) → ℂ) (hv : v (Fin.last n) ≠ 0) :
     (Fin (n + 1) → ℂ) ≃L[ℂ] (Fin (n + 1) → ℂ) := by
   refine (LinearEquiv.ofLinearMap
     (LinearMap.id - (LinearMap.proj (Fin.last n)).smulRight
@@ -2909,7 +2909,7 @@ noncomputable def lineEquiv (v : Fin (n + 1) → ℂ) (hv : v (Fin.last n) ≠ 0
     rw [hlast, smul_smul, sub_add_cancel]
 
 /-- The inverse of `lineEquiv` sends the last coordinate axis to the line spanned by `v`. -/
-lemma lineEquiv_symm_smul_single (v : Fin (n + 1) → ℂ) (hv : v (Fin.last n) ≠ 0) (t : ℂ) :
+lemma _root_.Tengoku.LanaOka.lineEquiv_symm_smul_single (v : Fin (n + 1) → ℂ) (hv : v (Fin.last n) ≠ 0) (t : ℂ) :
     (lineEquiv v hv).symm (t • Pi.single (Fin.last n) 1) = t • v := by
   rw [ContinuousLinearEquiv.symm_apply_eq]
   change t • Pi.single (Fin.last n) (1 : ℂ) =
@@ -2932,7 +2932,7 @@ lemma Polynomial.natDegree_lt_of_mem_degreeLT {R : Type*} [CommRing R] {d : ℕ}
   · simpa using hd
   · exact (Polynomial.natDegree_lt_iff_degree_lt hg0).mpr (Polynomial.mem_degreeLT.mp hg)
 
-namespace OkaRing
+namespace Tengoku.LanaOka.OkaRing
 
 variable {V : Opens (Fin n → ℂ)} {y' : Fin n → ℂ}
 
@@ -2945,11 +2945,11 @@ lemma germPoly_map_restrict {V' : Opens (Fin n → ℂ)} (h : V' ≤ V) (hy' : y
     RingHom.ext fun a ↦ germ_restrict h hy' a
   rw [hcomp]
 
-end OkaRing
+end Tengoku.LanaOka.OkaRing
 
-namespace LocalOkaRing
+namespace Tengoku.LanaOka.LocalOkaRing
 
-open OkaRing
+open Tengoku.LanaOka.OkaRing
 
 /-- Every polynomial over the germ ring arises as the polynomial germ, at any prescribed point
 of the cylinder, of a polynomial over the holomorphic functions near the base point. -/
@@ -2963,10 +2963,10 @@ lemma exists_poly_germPoly (g : (LocalOkaRing (Fin n))[X]) (y' : Fin n → ℂ) 
   rw [OkaRing.germPoly_eq_taylor, hmap, Polynomial.taylor_taylor, add_neg_cancel,
     Polynomial.taylor_zero]
 
-end LocalOkaRing
+end Tengoku.LanaOka.LocalOkaRing
 
 /-- Weierstrass polynomials restrict to Weierstrass polynomials. -/
-lemma IsWeierstrassPolynomial.map_restrict {V V' : Opens (Fin n → ℂ)} (h : V' ≤ V)
+lemma Tengoku.LanaOka.IsWeierstrassPolynomial.map_restrict {V V' : Opens (Fin n → ℂ)} (h : V' ≤ V)
     (h0 : (0 : Fin n → ℂ) ∈ V') {Q : (OkaRing V)[X]} (hQ : IsWeierstrassPolynomial V Q) :
     IsWeierstrassPolynomial V' (Q.map (OkaRing.restrict h).toRingHom) := by
   haveI : Nontrivial (OkaRing V') := OkaRing.nontrivial h0
@@ -2984,3 +2984,4 @@ lemma IsWeierstrassPolynomial.map_restrict {V V' : Opens (Fin n → ℂ)} (h : V
   exact hzero
 
 end GermPolyMore
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

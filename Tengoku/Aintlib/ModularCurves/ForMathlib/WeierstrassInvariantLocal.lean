@@ -25,7 +25,7 @@ Strategy:
 3. Spread: all the finitely many numerators/denominators involved live over a single basic
    localization `Away a`, `a ∉ p`, and the equations descend by `IsLocalization` uniqueness.
 -/
-
+namespace Tengoku.Aintlib end Tengoku.Aintlib open Tengoku.Aintlib
 /-!
 # Localized descent and spread of the invariant Weierstrass model ([a5-P-loc])
 
@@ -909,3 +909,4 @@ theorem exists_away_invariant_descent [Fintype G] [DecidableEq G]
 end Main
 
 end ModularCurves
+-- Tengoku: root names of this library moved to Tengoku.Aintlib so they do not collide with other libraries (generated)

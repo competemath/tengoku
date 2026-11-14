@@ -33,7 +33,7 @@ here is the plain one: a polynomial function is holomorphic.
 - `OkaRing.restrict_ofMvPolynomial`: `ofMvPolynomial` is compatible with restriction, i.e. it is
   a map of presheaves of `ℂ`-algebras from the constant presheaf `MvPolynomial ι ℂ`.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open TopologicalSpace
 
 variable {ι : Type*} [Fintype ι]
@@ -63,7 +63,7 @@ theorem analyticOn_eval (p : MvPolynomial ι ℂ) (s : Set (ι → ℂ)) :
 
 end MvPolynomial
 
-namespace OkaRing
+namespace Tengoku.LanaOka.OkaRing
 
 variable (U : Opens (ι → ℂ))
 
@@ -111,4 +111,5 @@ lemma restrict_ofMvPolynomial {U V : Opens (ι → ℂ)} (h : U ≤ V) (p : MvPo
     OkaRing.restrict h (ofMvPolynomial V p) = ofMvPolynomial U p :=
   rfl
 
-end OkaRing
+end Tengoku.LanaOka.OkaRing
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

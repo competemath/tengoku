@@ -22,26 +22,26 @@ for SL₂(ℤ), both at fixed height `heightCutoff` and at variable height `H`.
 * `fdBoundary_H_partition` — partition for H-parameterized boundary
 * `seg5_q_radius_H` — q-expansion radius e^(-2πH)
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex MeasureTheory Set Filter Topology
 open scoped Real Interval
 
 noncomputable section
 
 /-- Height cutoff for the finite-height fundamental domain boundary. -/
-def heightCutoff : ℝ := Real.sqrt 3 / 2 + 1
+def _root_.Tengoku.Leanmodularforms.heightCutoff : ℝ := Real.sqrt 3 / 2 + 1
 
 /-- Segment 2: arc from ρ+1 to i (angle π/3 → π/2). -/
-def fdBoundary_seg2 : ℝ → ℂ := fun t =>
+def _root_.Tengoku.Leanmodularforms.fdBoundary_seg2 : ℝ → ℂ := fun t =>
   Complex.exp ((Real.pi / 3 + (t - 1) * (Real.pi / 2 - Real.pi / 3)) * I)
 
 /-- Segment 3: arc from i to ρ (angle π/2 → 2π/3). -/
-def fdBoundary_seg3 : ℝ → ℂ := fun t =>
+def _root_.Tengoku.Leanmodularforms.fdBoundary_seg3 : ℝ → ℂ := fun t =>
   Complex.exp ((Real.pi / 2 + (t - 2) * (2 * Real.pi / 3 - Real.pi / 2)) * I)
 
 /-- Boundary of the standard fundamental domain at fixed
 height `heightCutoff`, parameterized over [0, 5]. -/
-def fdBoundary : ℝ → ℂ := fun t =>
+def _root_.Tengoku.Leanmodularforms.fdBoundary : ℝ → ℂ := fun t =>
   if t ≤ 1 then
     1 / 2 +
       (heightCutoff - t * (heightCutoff - Real.sqrt 3 / 2)) * I
@@ -61,12 +61,12 @@ def fdBoundary : ℝ → ℂ := fun t =>
     (t - 9 / 2) + heightCutoff * I
 
 /-- Full partition including endpoints. -/
-def fdBoundaryFullPartition : Finset ℝ := {0, 1, 2, 3, 4, 5}
+def _root_.Tengoku.Leanmodularforms.fdBoundaryFullPartition : Finset ℝ := {0, 1, 2, 3, 4, 5}
 
 /--
 @isnad1 id=eq.0h0v.s3.b5efca2a00ca from=translated src=- shape=d3a93718 vocab=e608431e
 -/
-lemma fdBoundary_at_three :
+lemma _root_.Tengoku.Leanmodularforms.fdBoundary_at_three :
     fdBoundary 3 = ellipticPointRho := by
   simp only [fdBoundary, show ¬(3 : ℝ) ≤ 1 by norm_num,
     show ¬(3 : ℝ) ≤ 2 by norm_num, le_refl (3 : ℝ),
@@ -80,25 +80,25 @@ lemma fdBoundary_at_three :
 
 /-- Segment 1 at height H: right vertical from (1/2 + H·i) down
 to ρ+1. -/
-def fdBoundary_seg1_H (H : ℝ) : ℝ → ℂ := fun t =>
+def _root_.Tengoku.Leanmodularforms.fdBoundary_seg1_H (H : ℝ) : ℝ → ℂ := fun t =>
   1 / 2 + (H - t * (H - Real.sqrt 3 / 2)) * I
 
 /-- Segment 2 at height H (H-independent): arc from ρ+1 to i. -/
-def fdBoundary_seg2_H : ℝ → ℂ := fdBoundary_seg2
+def _root_.Tengoku.Leanmodularforms.fdBoundary_seg2_H : ℝ → ℂ := fdBoundary_seg2
 
 /-- Segment 3 at height H (H-independent): arc from i to ρ. -/
-def fdBoundary_seg3_H : ℝ → ℂ := fdBoundary_seg3
+def _root_.Tengoku.Leanmodularforms.fdBoundary_seg3_H : ℝ → ℂ := fdBoundary_seg3
 
 /-- Segment 4 at height H: left vertical from ρ up to (-1/2 + H·i). -/
-def fdBoundary_seg4_H (H : ℝ) : ℝ → ℂ := fun t =>
+def _root_.Tengoku.Leanmodularforms.fdBoundary_seg4_H (H : ℝ) : ℝ → ℂ := fun t =>
   -1 / 2 + (Real.sqrt 3 / 2 + (t - 3) * (H - Real.sqrt 3 / 2)) * I
 
 /-- Segment 5 at height H: horizontal from (-1/2 + H·i) to (1/2 + H·i). -/
-def fdBoundary_seg5_H (H : ℝ) : ℝ → ℂ := fun t => (t - 9 / 2) + H * I
+def _root_.Tengoku.Leanmodularforms.fdBoundary_seg5_H (H : ℝ) : ℝ → ℂ := fun t => (t - 9 / 2) + H * I
 
 /-- Boundary of the standard fundamental domain at variable height H,
 parameterized over [0, 5]. -/
-def fdBoundary_H (H : ℝ) : ℝ → ℂ := fun t =>
+def _root_.Tengoku.Leanmodularforms.fdBoundary_H (H : ℝ) : ℝ → ℂ := fun t =>
   if t ≤ 1 then
     1 / 2 + (H - t * (H - Real.sqrt 3 / 2)) * I
   else if t ≤ 2 then
@@ -118,29 +118,29 @@ def fdBoundary_H (H : ℝ) : ℝ → ℂ := fun t =>
 
 /-- Non-differentiable corner points of fdBoundary_H (excluding smooth
 transitions at t = 2). -/
-def fdBoundary_H_partition : Finset ℝ := {1, 3, 4}
+def _root_.Tengoku.Leanmodularforms.fdBoundary_H_partition : Finset ℝ := {1, 3, 4}
 
 /-- The q-expansion radius at height H: e^(-2πH). -/
-def seg5_q_radius_H (H : ℝ) : ℝ := Real.exp (-2 * Real.pi * H)
+def _root_.Tengoku.Leanmodularforms.seg5_q_radius_H (H : ℝ) : ℝ := Real.exp (-2 * Real.pi * H)
 
 /--
 @isnad1 id=eq.0h1v.s5.b9c539fde513 from=translated src=- shape=ec367fbd vocab=f1d6a463
 -/
-lemma fdBoundary_H_at_zero (H : ℝ) :
+lemma _root_.Tengoku.Leanmodularforms.fdBoundary_H_at_zero (H : ℝ) :
     fdBoundary_H H 0 = 1 / 2 + H * I := by
   simp [fdBoundary_H]
 
 /--
 @isnad1 id=eq.0h1v.s3.6d36ee547da9 from=translated src=- shape=a62063d2 vocab=2b055d7f
 -/
-lemma fdBoundary_H_at_one (H : ℝ) :
+lemma _root_.Tengoku.Leanmodularforms.fdBoundary_H_at_one (H : ℝ) :
     fdBoundary_H H 1 = ellipticPointRhoPlusOne := by
   simp [fdBoundary_H, ellipticPointRhoPlusOne, ellipticPointRhoPlusOne']
 
 /--
 @isnad1 id=eq.0h1v.s3.b821226779cf from=translated src=- shape=a62063d2 vocab=d0075599
 -/
-lemma fdBoundary_H_at_three (H : ℝ) :
+lemma _root_.Tengoku.Leanmodularforms.fdBoundary_H_at_three (H : ℝ) :
     fdBoundary_H H 3 = ellipticPointRho := by
   simp only [fdBoundary_H, show ¬(3 : ℝ) ≤ 1 by norm_num,
     show ¬(3 : ℝ) ≤ 2 by norm_num, le_refl (3 : ℝ),
@@ -155,7 +155,7 @@ lemma fdBoundary_H_at_three (H : ℝ) :
 /--
 @isnad1 id=eq.0h1v.s5.787f557493f6 from=translated src=- shape=a0bf8e68 vocab=eee1d659
 -/
-lemma fdBoundary_H_at_four (H : ℝ) :
+lemma _root_.Tengoku.Leanmodularforms.fdBoundary_H_at_four (H : ℝ) :
     fdBoundary_H H 4 = -1 / 2 + H * I := by
   simp only [fdBoundary_H, show ¬(4 : ℝ) ≤ 1 by norm_num,
     show ¬(4 : ℝ) ≤ 2 by norm_num, show ¬(4 : ℝ) ≤ 3 by norm_num,
@@ -166,7 +166,7 @@ lemma fdBoundary_H_at_four (H : ℝ) :
 /--
 @isnad1 id=eq.0h1v.s5.3fd4077ab67a from=translated src=- shape=ec367fbd vocab=f1d6a463
 -/
-lemma fdBoundary_H_at_five (H : ℝ) :
+lemma _root_.Tengoku.Leanmodularforms.fdBoundary_H_at_five (H : ℝ) :
     fdBoundary_H H 5 = 1 / 2 + H * I := by
   simp only [fdBoundary_H, show ¬(5 : ℝ) ≤ 1 by norm_num,
     show ¬(5 : ℝ) ≤ 2 by norm_num, show ¬(5 : ℝ) ≤ 3 by norm_num,
@@ -177,7 +177,7 @@ lemma fdBoundary_H_at_five (H : ℝ) :
 /--
 @isnad1 id=eq.0h1v.s4.9cc2c905b902 from=translated src=- shape=b4d3c9b0 vocab=8623160f
 -/
-lemma fdBoundary_H_closed (H : ℝ) :
+lemma _root_.Tengoku.Leanmodularforms.fdBoundary_H_closed (H : ℝ) :
     fdBoundary_H H 0 = fdBoundary_H H 5 := by
   rw [fdBoundary_H_at_zero, fdBoundary_H_at_five]
 
@@ -265,7 +265,7 @@ private lemma fdBoundary_H_eq_layered (H : ℝ) (t : ℝ) :
 @isnad1 id=continuo.0h1v.s4.7d418fe73b86 from=translated src=- shape=9bb0b988 vocab=508d2231
 -/
 @[fun_prop]
-theorem fdBoundary_H_continuous (H : ℝ) :
+theorem _root_.Tengoku.Leanmodularforms.fdBoundary_H_continuous (H : ℝ) :
     Continuous (fdBoundary_H H) := by
   rw [show fdBoundary_H H = (fun t => if t ≤ 1 then
       1 / 2 + (↑H - ↑t * (↑H - ↑(Real.sqrt 3) / 2)) * I
@@ -284,3 +284,4 @@ theorem fdBoundary_H_continuous (H : ℝ) :
   ring
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

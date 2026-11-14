@@ -10,13 +10,13 @@ import Tengoku
 -/
 
 noncomputable section
-
+namespace Tengoku.Formalbook end Tengoku.Formalbook open Tengoku.Formalbook 
 /-- Auxiliary lemma containing the bulk of the proof of the following: every nonzero polynomial
   `p(x) \in F[x_1, \dots, x_n]` of degree `d` has at most `dq^{n-1}` roots in `F^n`, where `q` is
   the cardinality of the field.
 @isnad1 id=le.2h3v.s10.393704a01aa5 from=translated src=- shape=178f2c7e vocab=00118d10
 -/
-lemma lemma_35_1_aux {F : Type*} [Field F] [Fintype F] [DecidableEq F] (n : ℕ)
+lemma _root_.Tengoku.Formalbook.lemma_35_1_aux {F : Type*} [Field F] [Fintype F] [DecidableEq F] (n : ℕ)
   (IH : ∀ (p : MvPolynomial (Fin n) F) (_ : p ≠ 0),
     Fintype.card {x : Fin n → F // MvPolynomial.eval x p = 0} ≤
     p.totalDegree * (Fintype.card F) ^ (n - 1))
@@ -145,7 +145,7 @@ lemma lemma_35_1_aux {F : Type*} [Field F] [Fintype F] [DecidableEq F] (n : ℕ)
   A version of this is already in Mathlib as `Mathlib.Algebra.MyPolynomial.SchwartzZippel`.
 @isnad1 id=le.1h3v.s9.228d7cadf14e from=translated src=- shape=b6223aed vocab=8f5233f9
 -/
-theorem lemma_35_1 {F : Type*} [Field F] [Fintype F] [DecidableEq F] {n : ℕ}
+theorem _root_.Tengoku.Formalbook.lemma_35_1 {F : Type*} [Field F] [Fintype F] [DecidableEq F] {n : ℕ}
   {p : MvPolynomial (Fin n) F} (hp : p ≠ 0) :
     Fintype.card {x : Fin n → F // MvPolynomial.eval x p = 0} ≤
     p.totalDegree * (Fintype.card F) ^ (n - 1) := by
@@ -171,12 +171,12 @@ theorem lemma_35_1 {F : Type*} [Field F] [Fintype F] [DecidableEq F] {n : ℕ}
 
 /-- The set of exponents `s \in \mathbb{N}^n` such that `\sum s_i \le d`. -/
 @[nolint defsWithUnderscore]
-def exponents_le {n : ℕ} (d : ℕ) : Set (Fin n →₀ ℕ) := {s | s.sum (fun _ k => k) ≤ d}
+def _root_.Tengoku.Formalbook.exponents_le {n : ℕ} (d : ℕ) : Set (Fin n →₀ ℕ) := {s | s.sum (fun _ k => k) ≤ d}
 
 /-- The set of exponents with sum at most `d` is finite.
 @isnad1 id=finite.0h2v.s3.1a7069f9eebc from=translated src=- shape=098bc5c8 vocab=8354886b
 -/
-lemma exponents_le_finite (n d : ℕ) : (exponents_le (n := n) d).Finite := by
+lemma _root_.Tengoku.Formalbook.exponents_le_finite (n d : ℕ) : (exponents_le (n := n) d).Finite := by
   have h_finite : Set.Finite {s : Fin n → ℕ | ∀ i, s i ≤ d} := by
     exact Set.finite_iff_bddAbove.mpr ⟨ fun _ => d, fun s hs => hs ⟩;
   refine' Set.Finite.subset ( h_finite.preimage _ ) _;
@@ -187,14 +187,14 @@ lemma exponents_le_finite (n d : ℕ) : (exponents_le (n := n) d).Finite := by
       ( Finset.mem_univ i ) ) this
 
 /-- The set of exponents with sum at most `d` is finite. -/
-noncomputable instance instFintypeExponentsLe (n d : ℕ) : Fintype (exponents_le (n := n) d) :=
+noncomputable instance _root_.Tengoku.Formalbook.instFintypeExponentsLe (n d : ℕ) : Fintype (exponents_le (n := n) d) :=
   (exponents_le_finite n d).fintype
 
 /-- The number of `n`-tuples of non-negative integers with sum at most `d` is `\binom{n+d}{n}`.
   TODO: this is not strictly the argument in the book.
 @isnad1 id=eq.0h2v.s5.c2032efa58b1 from=translated src=- shape=7e78f486 vocab=b29fe07d
 -/
-lemma card_exponents_le (n d : ℕ) :
+lemma _root_.Tengoku.Formalbook.card_exponents_le (n d : ℕ) :
   Fintype.card (exponents_le (n := n) d) = (n + d).choose n := by
   rw [ Fintype.card_of_subtype ];
   have h_card : Finset.card (Finset.filter (fun y : Fin n → ℕ => ∑ i, y i ≤ d)
@@ -257,7 +257,7 @@ lemma card_exponents_le (n d : ℕ) :
   most `d`.
 @isnad1 id=eq.0h3v.s8.1ebaa7368b91 from=translated src=- shape=67488a84 vocab=c62bdb83
 -/
-lemma restrictTotalDegree_eq_span {F : Type*} [Field F] (n d : ℕ) :
+lemma _root_.Tengoku.Formalbook.restrictTotalDegree_eq_span {F : Type*} [Field F] (n d : ℕ) :
     MvPolynomial.restrictTotalDegree (Fin n) F d =
     Submodule.span F ((MvPolynomial.basisMonomials (Fin n) F) '' (exponents_le d)) := by
   refine' le_antisymm _ _;
@@ -274,7 +274,7 @@ lemma restrictTotalDegree_eq_span {F : Type*} [Field F] (n d : ℕ) :
 /-- The dimension of the space of polynomials of degree at most `d` is `\binom{n+d}{n}`.
 @isnad1 id=eq.0h3v.s8.5819b62cf5a6 from=translated src=- shape=14c4ac65 vocab=9dda20ba
 -/
-lemma dim_restrictTotalDegree (F : Type*) [Field F] (n d : ℕ) :
+lemma _root_.Tengoku.Formalbook.dim_restrictTotalDegree (F : Type*) [Field F] (n d : ℕ) :
     Module.finrank F (MvPolynomial.restrictTotalDegree (Fin n) F d) = (n + d).choose n := by
   have : Fintype ↑(⇑(MvPolynomial.basisMonomials (Fin n) F) '' exponents_le d) := by
     apply Fintype.ofFinite ↑(⇑(MvPolynomial.basisMonomials (Fin n) F) '' exponents_le d)
@@ -289,7 +289,7 @@ lemma dim_restrictTotalDegree (F : Type*) [Field F] (n d : ℕ) :
   `p(x) \in F[x_1, \dots, x_n]` of degree at most `d` that vanishes on `E`.
 @isnad1 id=ex.1h4v.s9.a2bfd0e17c06 from=translated src=- shape=d5ac5491 vocab=b9932a16
 -/
-theorem lemma_35_2 {F : Type*} [Field F] [Fintype F] {n d : ℕ} {E : Set (Fin n → F)}
+theorem _root_.Tengoku.Formalbook.lemma_35_2 {F : Type*} [Field F] [Fintype F] {n d : ℕ} {E : Set (Fin n → F)}
     (hE : (@Set.toFinset _ E (Fintype.ofFinite ↑E)).card < (n + d).choose n) :
     ∃ p : MvPolynomial (Fin n) F, p ∈ MvPolynomial.restrictTotalDegree (Fin n) F d ∧ p ≠ 0 ∧
     ∀ x ∈ E, MvPolynomial.eval x p = 0 := by
@@ -316,12 +316,12 @@ theorem lemma_35_2 {F : Type*} [Field F] [Fintype F] {n d : ℕ} {E : Set (Fin n
   exact ⟨ p.1, p.2, fun h => hp.1 (Subtype.ext h), h_eval ⟩
 
 /-- A set `K \subseteq F^n` is a Kakeya set if it contains a line in every direction. -/
-def IsKakeyaSet (F : Type*) [Field F] {n : ℕ} (K : Set (Fin n → F)) : Prop :=
+def _root_.Tengoku.Formalbook.IsKakeyaSet (F : Type*) [Field F] {n : ℕ} (K : Set (Fin n → F)) : Prop :=
   ∀ v : Fin n → F, v ≠ 0 → ∃ w : Fin n → F, ∀ t : F, w + t • v ∈ K
 
 /-- Given a direction `v` and a starting vector `w` in `F^n`, the polynomial `p` in `F[t]` defined
   by `p(t) = p(w + tv)`. -/
-def linePoly {F : Type*} [CommSemiring F] {n : ℕ} (w v : Fin n → F) (p : MvPolynomial (Fin n) F) :
+def _root_.Tengoku.Formalbook.linePoly {F : Type*} [CommSemiring F] {n : ℕ} (w v : Fin n → F) (p : MvPolynomial (Fin n) F) :
   Polynomial F :=
   MvPolynomial.eval₂ Polynomial.C
     (fun i => Polynomial.C (w i) + Polynomial.C (v i) * Polynomial.X) p
@@ -330,7 +330,7 @@ def linePoly {F : Type*} [CommSemiring F] {n : ℕ} (w v : Fin n → F) (p : MvP
   evaluating the polynomial at the point on the line corresponding to `t`.
 @isnad1 id=eq.0h6v.s7.8d8e32f4e73d from=translated src=- shape=dca6155b vocab=9f20a374
 -/
-lemma eval_linePoly {F : Type*} [CommSemiring F] {n : ℕ} (w v : Fin n → F)
+lemma _root_.Tengoku.Formalbook.eval_linePoly {F : Type*} [CommSemiring F] {n : ℕ} (w v : Fin n → F)
   (p : MvPolynomial (Fin n) F) (t : F) :
     (linePoly w v p).eval t = MvPolynomial.eval (w + t • v) p := by
   rw [ linePoly ];
@@ -342,7 +342,7 @@ lemma eval_linePoly {F : Type*} [CommSemiring F] {n : ℕ} (w v : Fin n → F)
   of degree `d` of `p` at `v`, provided `p` has total degree at most `d`.
 @isnad1 id=eq.1h6v.s8.04799dc97612 from=translated src=- shape=5336c4aa vocab=9df74ff2
 -/
-lemma coeff_linePoly_eq_homogeneousComponent_eval {F : Type*} [CommSemiring F] {n : ℕ}
+lemma _root_.Tengoku.Formalbook.coeff_linePoly_eq_homogeneousComponent_eval {F : Type*} [CommSemiring F] {n : ℕ}
     (w v : Fin n → F) (p : MvPolynomial (Fin n) F) (d : ℕ) (hd : p.totalDegree ≤ d) :
     (linePoly w v p).coeff d = MvPolynomial.eval v (MvPolynomial.homogeneousComponent d p) := by
   unfold linePoly MvPolynomial.homogeneousComponent;
@@ -404,7 +404,7 @@ lemma coeff_linePoly_eq_homogeneousComponent_eval {F : Type*} [CommSemiring F] {
   polynomial.
 @isnad1 id=le.0h5v.s5.769c9926322e from=translated src=- shape=4f80c8ad vocab=bd24d81f
 -/
-lemma natDegree_linePoly_le {F : Type*} [CommSemiring F] {n : ℕ} (w v : Fin n → F)
+lemma _root_.Tengoku.Formalbook.natDegree_linePoly_le {F : Type*} [CommSemiring F] {n : ℕ} (w v : Fin n → F)
     (p : MvPolynomial (Fin n) F) :
     (linePoly w v p).natDegree ≤ p.totalDegree := by
   refine' le_trans ( Polynomial.natDegree_sum_le _ _ |> le_trans <| Finset.sup_le _ ) _;
@@ -423,7 +423,7 @@ lemma natDegree_linePoly_le {F : Type*} [CommSemiring F] {n : ℕ} (w v : Fin n 
   homogeneous component of `p` of degree `\deg p` vanishes at the direction vector `v`.
 @isnad1 id=eq.2h5v.s9.e6f2014d9c32 from=translated src=- shape=5888d514 vocab=8068c513
 -/
-lemma eval_homogeneousComponent_eq_zero_of_forall_eval_line_eq_zero
+lemma _root_.Tengoku.Formalbook.eval_homogeneousComponent_eq_zero_of_forall_eval_line_eq_zero
     {F : Type*} [Field F] [Fintype F] {n : ℕ} (p : MvPolynomial (Fin n) F)
     (h_deg : p.totalDegree < Fintype.card F)
     (w v : Fin n → F)
@@ -443,7 +443,7 @@ lemma eval_homogeneousComponent_eq_zero_of_forall_eval_line_eq_zero
   then the top homogeneous component of `p` vanishes everywhere.
 @isnad1 id=eq.4h5v.s9.c7625e579f84 from=translated src=- shape=24d73708 vocab=a38a9f75
 -/
-lemma eval_homogeneousComponent_eq_zero_of_vanishes_on_Kakeya
+lemma _root_.Tengoku.Formalbook.eval_homogeneousComponent_eq_zero_of_vanishes_on_Kakeya
     {F : Type*} [Field F] [Fintype F] [DecidableEq F] {n : ℕ} (hn : n > 0)
     {K : Set (Fin n → F)} (hK : IsKakeyaSet F K)
     (p : MvPolynomial (Fin n) F) (hp_deg : p.totalDegree < Fintype.card F)
@@ -469,7 +469,7 @@ lemma eval_homogeneousComponent_eq_zero_of_vanishes_on_Kakeya
   statement `|K| \ge \frac{|F|^n}{n!}`, see `theorem_35_3'`.
 @isnad1 id=le.1h3v.s6.776701183470 from=translated src=- shape=5a7506df vocab=836e7a62
 -/
-theorem theorem_35_3 {F : Type*} [Field F] [Fintype F] [DecidableEq F] {n : ℕ} [NeZero n]
+theorem _root_.Tengoku.Formalbook.theorem_35_3 {F : Type*} [Field F] [Fintype F] [DecidableEq F] {n : ℕ} [NeZero n]
     {K : Set (Fin n → F)} (hK : IsKakeyaSet F K) :
     (Fintype.card F + n - 1).choose n ≤ (@Set.toFinset _ K (Fintype.ofFinite ↑K)).card := by
       revert hK;
@@ -535,7 +535,7 @@ theorem theorem_35_3 {F : Type*} [Field F] [Fintype F] [DecidableEq F] {n : ℕ}
   natural numbers `n ≠ 0` and `k`.
 @isnad1 id=le.0h2v.s5.0158e585fe95 from=translated src=- shape=659709cd vocab=378523a7
 -/
-lemma le_binom_sum (k n : ℕ) [NeZero n] : k^n ≤ (k + n - 1).choose n * Nat.factorial n := by
+lemma _root_.Tengoku.Formalbook.le_binom_sum (k n : ℕ) [NeZero n] : k^n ≤ (k + n - 1).choose n * Nat.factorial n := by
   have h_binom : Nat.choose (k + n - 1) n * Nat.factorial n =
     ∏ i ∈ Finset.range n, (k + n - 1 - i) := by
     rw [ mul_comm, ← Nat.descFactorial_eq_factorial_mul_choose ];
@@ -549,7 +549,8 @@ lemma le_binom_sum (k n : ℕ) [NeZero n] : k^n ≤ (k + n - 1).choose n * Nat.f
 /-- If `K` is a Kakeya set in `F^n`, then  `|K| \ge \frac{|F|^n}{n!}`.
 @isnad1 id=le.1h3v.s6.a031c6b91705 from=translated src=- shape=55cda5ae vocab=d5288f5d
 -/
-theorem theorem_35_3' {F : Type*} [Field F] [Fintype F] [DecidableEq F] {n : ℕ} [NeZero n]
+theorem _root_.Tengoku.Formalbook.theorem_35_3' {F : Type*} [Field F] [Fintype F] [DecidableEq F] {n : ℕ} [NeZero n]
     {K : Set (Fin n → F)} (hK : IsKakeyaSet F K) :
     (Fintype.card F)^n ≤ (@Set.toFinset _ K (Fintype.ofFinite ↑K)).card * Nat.factorial n :=
       (le_binom_sum (Fintype.card F) n).trans ( Nat.mul_le_mul_right _ ( theorem_35_3 hK ) )
+-- Tengoku: root names of this library moved to Tengoku.Formalbook so they do not collide with other libraries (generated)

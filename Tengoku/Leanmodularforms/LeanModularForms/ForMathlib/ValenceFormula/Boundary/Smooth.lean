@@ -18,7 +18,7 @@ for the fundamental domain boundary.
 * `fdBoundaryCurve` — fixed-height boundary as `PiecewiseC1Curve`
 * `fdBoundaryImmersion` — fixed-height boundary as `PiecewiseC1Immersion`
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex MeasureTheory Set Filter Topology
 open scoped Real Interval
 
@@ -59,7 +59,7 @@ private lemma arc_limit_ne_zero (c : ℝ) :
 /--
 @isnad1 id=hasderiv.1h2v.s6.00c61b01b4c8 from=translated src=- shape=007e1e2b vocab=af226574
 -/
-lemma fdBoundary_H_hasDerivAt_seg1 (H : ℝ) {t : ℝ} (ht : t < 1) :
+lemma _root_.Tengoku.Leanmodularforms.fdBoundary_H_hasDerivAt_seg1 (H : ℝ) {t : ℝ} (ht : t < 1) :
     HasDerivAt (fdBoundary_H H) (-(H - Real.sqrt 3 / 2) * I) t := by
   have heq : fdBoundary_H H =ᶠ[𝓝 t]
       fun s => (1 : ℂ) / 2 + (↑H - ↑s * (↑H - ↑(Real.sqrt 3) / 2)) * I := by
@@ -74,7 +74,7 @@ lemma fdBoundary_H_hasDerivAt_seg1 (H : ℝ) {t : ℝ} (ht : t < 1) :
 /--
 @isnad1 id=hasderiv.1h2v.s7.651ea1bfd67a from=translated src=- shape=1ff5b7a4 vocab=c94fc84d
 -/
-lemma fdBoundary_H_hasDerivAt_seg4' (H : ℝ) (t : ℝ) (ht : t ∈ Ioo (3 : ℝ) 4) :
+lemma _root_.Tengoku.Leanmodularforms.fdBoundary_H_hasDerivAt_seg4' (H : ℝ) (t : ℝ) (ht : t ∈ Ioo (3 : ℝ) 4) :
     HasDerivAt (fdBoundary_H H) ((H - Real.sqrt 3 / 2) * I) t := by
   have heq : fdBoundary_H H =ᶠ[𝓝 t] fun s : ℝ => (-1 : ℂ) / 2 +
       (↑(Real.sqrt 3) / 2 + (↑s - 3) * (↑H - ↑(Real.sqrt 3) / 2)) * I := by
@@ -93,7 +93,7 @@ lemma fdBoundary_H_hasDerivAt_seg4' (H : ℝ) (t : ℝ) (ht : t ∈ Ioo (3 : ℝ
 /--
 @isnad1 id=hasderiv.1h2v.s6.3d82ba8f516b from=translated src=- shape=94c4bba0 vocab=f3fd63a2
 -/
-lemma fdBoundary_H_hasDerivAt_seg5 (H : ℝ) {t : ℝ} (h4 : 4 < t) :
+lemma _root_.Tengoku.Leanmodularforms.fdBoundary_H_hasDerivAt_seg5 (H : ℝ) {t : ℝ} (h4 : 4 < t) :
     HasDerivAt (fdBoundary_H H) 1 t := by
   have heq : fdBoundary_H H =ᶠ[𝓝 t] fun s : ℝ => (↑s - 9/2 : ℂ) + ↑H * I := by
     filter_upwards [Ioi_mem_nhds h4] with s (hs : (4:ℝ) < s)
@@ -124,7 +124,7 @@ private lemma seg_vertical_deriv_ne_zero {H : ℝ} (hH : Real.sqrt 3 / 2 < H) :
 /--
 @isnad1 id=differen.1h2v.s6.1b391b69d428 from=translated src=- shape=4482b8e7 vocab=3bc8c3f9
 -/
-lemma fdBoundary_H_differentiableAt_off_partition (H : ℝ) (t : ℝ)
+lemma _root_.Tengoku.Leanmodularforms.fdBoundary_H_differentiableAt_off_partition (H : ℝ) (t : ℝ)
     (htp : t ∉ fdBoundary_H_partition) : DifferentiableAt ℝ (fdBoundary_H H) t := by
   simp only [fdBoundary_H_partition, Finset.mem_insert, Finset.mem_singleton] at htp
   push Not at htp
@@ -144,7 +144,7 @@ lemma fdBoundary_H_differentiableAt_off_partition (H : ℝ) (t : ℝ)
 /--
 @isnad1 id=ne.3h2v.s7.9a6e28e28e8b from=translated src=- shape=8e7f9766 vocab=a03a142a
 -/
-lemma fdBoundary_H_deriv_ne_zero_off_fullPartition (H : ℝ) (hH : Real.sqrt 3 / 2 < H)
+lemma _root_.Tengoku.Leanmodularforms.fdBoundary_H_deriv_ne_zero_off_fullPartition (H : ℝ) (hH : Real.sqrt 3 / 2 < H)
     (t : ℝ) (ht : t ∈ Icc (0 : ℝ) 5) (htp : t ∉ fdBoundaryFullPartition) :
     deriv (fdBoundary_H H) t ≠ 0 := by
   simp only [fdBoundaryFullPartition, Finset.mem_insert, Finset.mem_singleton] at htp
@@ -174,7 +174,7 @@ lemma fdBoundary_H_deriv_ne_zero_off_fullPartition (H : ℝ) (hH : Real.sqrt 3 /
 /--
 @isnad1 id=continuo.2h2v.s6.7fdd42ac767e from=translated src=- shape=30228d3f vocab=5c62f462
 -/
-lemma fdBoundary_H_deriv_continuousAt_off_fullPartition (H : ℝ) (t : ℝ)
+lemma _root_.Tengoku.Leanmodularforms.fdBoundary_H_deriv_continuousAt_off_fullPartition (H : ℝ) (t : ℝ)
     (ht : t ∈ Ioo (0 : ℝ) 5) (htp : t ∉ fdBoundaryFullPartition) :
     ContinuousAt (deriv (fdBoundary_H H)) t := by
   simp only [fdBoundaryFullPartition, Finset.mem_insert, Finset.mem_singleton] at htp
@@ -234,7 +234,7 @@ private lemma arc_tendsto_right {H : ℝ} (p : ℝ) (hp1 : 1 ≤ p) (hp3 : p < 3
 /--
 @isnad1 id=ex.3h2v.s7.cba696ee5d4b from=translated src=- shape=b769f1ce vocab=ef1f2111
 -/
-lemma fdBoundary_H_left_deriv_limit (H : ℝ) (hH : Real.sqrt 3 / 2 < H) (p : ℝ)
+lemma _root_.Tengoku.Leanmodularforms.fdBoundary_H_left_deriv_limit (H : ℝ) (hH : Real.sqrt 3 / 2 < H) (p : ℝ)
     (hp : p ∈ fdBoundaryFullPartition) (hp' : (0 : ℝ) < p) :
     ∃ L : ℂ, L ≠ 0 ∧ Tendsto (deriv (fdBoundary_H H)) (𝓝[<] p) (𝓝 L) := by
   simp only [fdBoundaryFullPartition, Finset.mem_insert, Finset.mem_singleton] at hp
@@ -257,14 +257,14 @@ lemma fdBoundary_H_left_deriv_limit (H : ℝ) (hH : Real.sqrt 3 / 2 < H) (p : �
 /--
 @isnad1 id=hasderiv.2h2v.s7.55aafaf7eb05 from=translated src=- shape=7682cf52 vocab=bae63bf2
 -/
-lemma fdBoundary_H_hasDerivAt_seg4 (H : ℝ) {t : ℝ} (h3 : 3 < t) (h4 : t < 4) :
+lemma _root_.Tengoku.Leanmodularforms.fdBoundary_H_hasDerivAt_seg4 (H : ℝ) {t : ℝ} (h3 : 3 < t) (h4 : t < 4) :
     HasDerivAt (fdBoundary_H H) ((H - Real.sqrt 3 / 2) * I) t :=
   fdBoundary_H_hasDerivAt_seg4' H t ⟨h3, h4⟩
 
 /--
 @isnad1 id=hasderiv.0h2v.s6.bd7d8beaf97d from=translated src=- shape=ac0b2add vocab=3e639db0
 -/
-lemma hasDerivAt_fdBoundary_seg1_H (H t : ℝ) :
+lemma _root_.Tengoku.Leanmodularforms.hasDerivAt_fdBoundary_seg1_H (H t : ℝ) :
     HasDerivAt (fdBoundary_seg1_H H) (-(↑(H - Real.sqrt 3 / 2) : ℂ) * I) t := by
   have hfun : fdBoundary_seg1_H H = fun s : ℝ =>
       ((1 : ℂ) / 2 + ↑H * I) + ↑s * (-(↑(H - Real.sqrt 3 / 2) : ℂ) * I) := by
@@ -276,7 +276,7 @@ lemma hasDerivAt_fdBoundary_seg1_H (H t : ℝ) :
 /--
 @isnad1 id=hasderiv.0h2v.s6.6dfdb80f8b71 from=translated src=- shape=61a0ef49 vocab=f51be3e4
 -/
-lemma hasDerivAt_fdBoundary_seg4_H (H t : ℝ) :
+lemma _root_.Tengoku.Leanmodularforms.hasDerivAt_fdBoundary_seg4_H (H t : ℝ) :
     HasDerivAt (fdBoundary_seg4_H H) ((↑(H - Real.sqrt 3 / 2) : ℂ) * I) t := by
   have hfun : fdBoundary_seg4_H H = fun s : ℝ =>
       ((-1 : ℂ) / 2 + ↑(Real.sqrt 3) / 2 * I) +
@@ -291,7 +291,7 @@ lemma hasDerivAt_fdBoundary_seg4_H (H t : ℝ) :
 /--
 @isnad1 id=hasderiv.0h2v.s6.d515995153f6 from=translated src=- shape=aa219799 vocab=6eea53ce
 -/
-lemma hasDerivAt_fdBoundary_seg5_H (H t : ℝ) :
+lemma _root_.Tengoku.Leanmodularforms.hasDerivAt_fdBoundary_seg5_H (H t : ℝ) :
     HasDerivAt (fdBoundary_seg5_H H) 1 t := by
   have hfun : fdBoundary_seg5_H H = fun s : ℝ =>
       ((-9 / 2 : ℂ) + ↑H * I) + ↑s * (1 : ℂ) := by
@@ -329,7 +329,7 @@ private lemma re_arc_deriv_eq (θ : ℝ) :
 /--
 @isnad1 id=not.1h1v.s6.dbffe469d7e1 from=translated src=- shape=c91cef15 vocab=dd0960bd
 -/
-lemma fdBoundary_H_not_differentiableAt_4 {H : ℝ} (hH : Real.sqrt 3 / 2 < H) :
+lemma _root_.Tengoku.Leanmodularforms.fdBoundary_H_not_differentiableAt_4 {H : ℝ} (hH : Real.sqrt 3 / 2 < H) :
     ¬DifferentiableAt ℝ (fdBoundary_H H) 4 := by
   intro hdiff
   have hleft : HasDerivWithinAt (fdBoundary_H H)
@@ -387,7 +387,7 @@ private lemma seg4_eventuallyEq_right_3 (H : ℝ) :
 /--
 @isnad1 id=not.1h1v.s6.3aa3102e5e1e from=translated src=- shape=c91cef15 vocab=dd0960bd
 -/
-lemma fdBoundary_H_not_differentiableAt_3 {H : ℝ} (_hH : Real.sqrt 3 / 2 < H) :
+lemma _root_.Tengoku.Leanmodularforms.fdBoundary_H_not_differentiableAt_3 {H : ℝ} (_hH : Real.sqrt 3 / 2 < H) :
     ¬DifferentiableAt ℝ (fdBoundary_H H) 3 := by
   intro hdiff
   have hval_arc := arc_val_at_3 H
@@ -444,7 +444,7 @@ private lemma arc_eventuallyEq_right_1 (H : ℝ) :
 /--
 @isnad1 id=not.1h1v.s6.0f161267f5da from=translated src=- shape=c91cef15 vocab=dd0960bd
 -/
-lemma fdBoundary_H_not_differentiableAt_1 {H : ℝ} (_hH : Real.sqrt 3 / 2 < H) :
+lemma _root_.Tengoku.Leanmodularforms.fdBoundary_H_not_differentiableAt_1 {H : ℝ} (_hH : Real.sqrt 3 / 2 < H) :
     ¬DifferentiableAt ℝ (fdBoundary_H H) 1 := by
   intro hdiff
   have hval_seg1 : fdBoundary_seg1_H H 1 = fdBoundary_H H 1 :=
@@ -472,7 +472,7 @@ lemma fdBoundary_H_not_differentiableAt_1 {H : ℝ} (_hH : Real.sqrt 3 / 2 < H) 
 /--
 @isnad1 id=ex.3h2v.s7.6f1ce026af87 from=translated src=- shape=5953d8c7 vocab=c41975e8
 -/
-lemma fdBoundary_H_right_deriv_limit (H : ℝ) (hH : Real.sqrt 3 / 2 < H) (p : ℝ)
+lemma _root_.Tengoku.Leanmodularforms.fdBoundary_H_right_deriv_limit (H : ℝ) (hH : Real.sqrt 3 / 2 < H) (p : ℝ)
     (hp : p ∈ fdBoundaryFullPartition) (hp' : p < (5 : ℝ)) :
     ∃ L : ℂ, L ≠ 0 ∧ Tendsto (deriv (fdBoundary_H H)) (𝓝[>] p) (𝓝 L) := by
   simp only [fdBoundaryFullPartition, Finset.mem_insert, Finset.mem_singleton] at hp
@@ -505,7 +505,7 @@ private lemma fdBoundaryFullPartition_endpoints :
   ⟨by simp [fdBoundaryFullPartition], by simp [fdBoundaryFullPartition]⟩
 
 /-- The H-parameterized boundary as a `PiecewiseC1Curve`. -/
-noncomputable def fdBoundary_HCurve (H : ℝ) : PiecewiseC1Curve :=
+noncomputable def _root_.Tengoku.Leanmodularforms.fdBoundary_HCurve (H : ℝ) : PiecewiseC1Curve :=
   PiecewiseC1Curve.ofIccPartition (fdBoundary_H H) 0 5 (by norm_num)
     fdBoundaryFullPartition
     fdBoundaryFullPartition_subset
@@ -523,7 +523,7 @@ noncomputable def fdBoundary_HCurve (H : ℝ) : PiecewiseC1Curve :=
 
 /-- The H-parameterized boundary as a `PiecewiseC1Immersion`.
 Requires H > √3/2 for nonzero derivative. -/
-noncomputable def fdBoundary_HImmersion (H : ℝ) (hH : Real.sqrt 3 / 2 < H) :
+noncomputable def _root_.Tengoku.Leanmodularforms.fdBoundary_HImmersion (H : ℝ) (hH : Real.sqrt 3 / 2 < H) :
     PiecewiseC1Immersion where
   toPiecewiseC1Curve := fdBoundary_HCurve H
   deriv_ne_zero := fdBoundary_H_deriv_ne_zero_off_fullPartition H hH
@@ -533,14 +533,14 @@ noncomputable def fdBoundary_HImmersion (H : ℝ) (hH : Real.sqrt 3 / 2 < H) :
 /--
 @isnad1 id=isclosed.0h1v.s2.d0f6159ee007 from=translated src=- shape=76a08d12 vocab=cea9d030
 -/
-lemma fdBoundary_HCurve_closed (H : ℝ) :
+lemma _root_.Tengoku.Leanmodularforms.fdBoundary_HCurve_closed (H : ℝ) :
     (fdBoundary_HCurve H).IsClosed :=
   fdBoundary_H_closed H
 
 /--
 @isnad1 id=hasderiv.2h2v.s7.e73859e3abf9 from=translated src=- shape=8a5cb70f vocab=9200f3b2
 -/
-lemma fdBoundary_H_hasDerivAt_arc (H : ℝ) {t : ℝ} (h1 : 1 < t) (h3 : t < 3) :
+lemma _root_.Tengoku.Leanmodularforms.fdBoundary_H_hasDerivAt_arc (H : ℝ) {t : ℝ} (h1 : 1 < t) (h3 : t < 3) :
     HasDerivAt (fdBoundary_H H)
       (exp ((↑Real.pi * (↑t + 1) / 6) * I) * (↑Real.pi / 6 * I)) t :=
   (arc_hasDerivAt t).congr_of_eventuallyEq
@@ -559,14 +559,14 @@ private lemma deriv_continuousOn_Ioo_const (H : ℝ) {a b : ℝ} (c : ℂ)
 /--
 @isnad1 id=continuo.0h1v.s6.97265a9a0ae7 from=translated src=- shape=efb39a69 vocab=b3c1aab1
 -/
-lemma fdBoundary_H_deriv_continuousOn_Ioo_01 (H : ℝ) :
+lemma _root_.Tengoku.Leanmodularforms.fdBoundary_H_deriv_continuousOn_Ioo_01 (H : ℝ) :
     ContinuousOn (deriv (fdBoundary_H H)) (Ioo 0 1) :=
   deriv_continuousOn_Ioo_const H _ fun s hs => fdBoundary_H_hasDerivAt_seg1' H s hs
 
 /--
 @isnad1 id=continuo.0h1v.s6.46cfb53f128e from=translated src=- shape=efb39a69 vocab=7fd99341
 -/
-lemma fdBoundary_H_deriv_continuousOn_Ioo_13 (H : ℝ) :
+lemma _root_.Tengoku.Leanmodularforms.fdBoundary_H_deriv_continuousOn_Ioo_13 (H : ℝ) :
     ContinuousOn (deriv (fdBoundary_H H)) (Ioo 1 3) := by
   intro t ht
   have hderiv_eq : deriv (fdBoundary_H H) =ᶠ[𝓝 t]
@@ -580,14 +580,14 @@ lemma fdBoundary_H_deriv_continuousOn_Ioo_13 (H : ℝ) :
 /--
 @isnad1 id=continuo.0h1v.s6.f3256793407c from=translated src=- shape=efb39a69 vocab=7fd99341
 -/
-lemma fdBoundary_H_deriv_continuousOn_Ioo_34 (H : ℝ) :
+lemma _root_.Tengoku.Leanmodularforms.fdBoundary_H_deriv_continuousOn_Ioo_34 (H : ℝ) :
     ContinuousOn (deriv (fdBoundary_H H)) (Ioo 3 4) :=
   deriv_continuousOn_Ioo_const H _ fun s hs => fdBoundary_H_hasDerivAt_seg4' H s hs
 
 /--
 @isnad1 id=continuo.0h1v.s6.5fdda4f9664e from=translated src=- shape=efb39a69 vocab=7fd99341
 -/
-lemma fdBoundary_H_deriv_continuousOn_Ioo_45 (H : ℝ) :
+lemma _root_.Tengoku.Leanmodularforms.fdBoundary_H_deriv_continuousOn_Ioo_45 (H : ℝ) :
     ContinuousOn (deriv (fdBoundary_H H)) (Ioo 4 5) :=
   deriv_continuousOn_Ioo_const H _ fun s hs => fdBoundary_H_hasDerivAt_seg5' H s hs
 
@@ -599,7 +599,7 @@ private lemma norm_cast_sub_eq {H : ℝ} (hH : Real.sqrt 3 / 2 < H) :
 /--
 @isnad1 id=ex.1h1v.s6.202e94495526 from=translated src=- shape=0604d71e vocab=0716d362
 -/
-lemma fdBoundary_H_deriv_bound_ex {H : ℝ} (hH : Real.sqrt 3 / 2 < H) :
+lemma _root_.Tengoku.Leanmodularforms.fdBoundary_H_deriv_bound_ex {H : ℝ} (hH : Real.sqrt 3 / 2 < H) :
     ∃ M : ℝ, 0 < M ∧ ∀ t : ℝ,
       t ∉ fdBoundary_H_partition → ‖deriv (fdBoundary_H H) t‖ ≤ M := by
   refine ⟨max (H - Real.sqrt 3 / 2) 1,
@@ -644,7 +644,7 @@ lemma fdBoundary_H_deriv_bound_ex {H : ℝ} (hH : Real.sqrt 3 / 2 < H) :
 /--
 @isnad1 id=continuo.0h1v.s6.8c05ec043415 from=translated src=- shape=be11919c vocab=7202b2a1
 -/
-lemma fdBoundary_H_deriv_continuousOn_off_partition (H : ℝ) :
+lemma _root_.Tengoku.Leanmodularforms.fdBoundary_H_deriv_continuousOn_off_partition (H : ℝ) :
     ContinuousOn (deriv (fdBoundary_H H)) (Icc 0 5 \ ↑fdBoundary_H_partition) := by
   intro t ht
   have ht_icc := ht.1
@@ -687,3 +687,4 @@ lemma fdBoundary_H_deriv_continuousOn_off_partition (H : ℝ) :
             ht_ioo.2)).continuousWithinAt
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

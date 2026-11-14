@@ -27,8 +27,8 @@ We define three versions
 -/
 
 @[expose] public section
-
-open CarriesDimension
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
+open Tengoku.Physlib.CarriesDimension
 open NNReal
 
 /-- A type carries the instance `UnitDependent M` if it depends on a choice of units.
@@ -37,7 +37,7 @@ open NNReal
 
   This type is used for functions, and propositions etc.
 -/
-class UnitDependent (M : Type) where
+class _root_.Tengoku.Physlib.UnitDependent (M : Type) where
   /-- `scaleUnit u1 u2` is the map transforming elements of `M` under a
     scaling of units which would take the unit `u1` to the unit `u2`. This is not
     to say that in `scaleUnit u1 u2 m` that `m` should be interpreted as being in the units `u1`,
@@ -52,7 +52,7 @@ class UnitDependent (M : Type) where
   A type `M` with an instance of `UnitDependent M` such that `scaleUnit u1 u2` is compatible
   with the `MulAction ℝ≥0 M` instance on `M`.
 -/
-class MulUnitDependent (M : Type) [MulAction ℝ≥0 M] extends
+class _root_.Tengoku.Physlib.MulUnitDependent (M : Type) [MulAction ℝ≥0 M] extends
     UnitDependent M where
   scaleUnit_mul : ∀ u1 u2 (r : ℝ≥0) m,
     scaleUnit u1 u2 (r • m) = r • scaleUnit u1 u2 m
@@ -61,7 +61,7 @@ class MulUnitDependent (M : Type) [MulAction ℝ≥0 M] extends
   A type `M` with an instance of `UnitDependent M` such that `scaleUnit u1 u2` is compatible
   with the `Module ℝ M` instance on `M`.
 -/
-class LinearUnitDependent (M : Type) [AddCommMonoid M] [Module ℝ M] extends UnitDependent M where
+class _root_.Tengoku.Physlib.LinearUnitDependent (M : Type) [AddCommMonoid M] [Module ℝ M] extends UnitDependent M where
   scaleUnit_add : ∀ u1 u2 m1 m2,
     scaleUnit u1 u2 (m1 + m2) = scaleUnit u1 u2 m1 + scaleUnit u1 u2 m2
   scaleUnit_smul : ∀ u1 u2 (r : ℝ) m,
@@ -71,7 +71,7 @@ class LinearUnitDependent (M : Type) [AddCommMonoid M] [Module ℝ M] extends Un
   A type `M` with an instance of `UnitDependent M` such that `scaleUnit u1 u2` is compatible
   with the `Module ℝ M` instance on `M`, and is continuous.
 -/
-class ContinuousLinearUnitDependent (M : Type) [AddCommMonoid M] [Module ℝ M]
+class _root_.Tengoku.Physlib.ContinuousLinearUnitDependent (M : Type) [AddCommMonoid M] [Module ℝ M]
     [TopologicalSpace M] extends LinearUnitDependent M where
   scaleUnit_cont : ∀ u1 u2, Continuous (scaleUnit u1 u2)
 
@@ -82,13 +82,13 @@ class ContinuousLinearUnitDependent (M : Type) [AddCommMonoid M] [Module ℝ M]
 -/
 
 @[simp]
-lemma UnitDependent.scaleUnit_symm_apply {M : Type} [UnitDependent M]
+lemma Tengoku.Physlib.UnitDependent.scaleUnit_symm_apply {M : Type} [UnitDependent M]
     (u1 u2 : LTMCTUnitChoices) (m : M) :
     scaleUnit u2 u1 (scaleUnit u1 u2 m) = m := by
   rw [scaleUnit_trans, scaleUnit_id]
 
 @[simp]
-lemma UnitDependent.scaleUnit_injective {M : Type} [UnitDependent M]
+lemma Tengoku.Physlib.UnitDependent.scaleUnit_injective {M : Type} [UnitDependent M]
     (u1 u2 : LTMCTUnitChoices) (m1 m2 : M) :
     scaleUnit u1 u2 m1 = scaleUnit u1 u2 m2 ↔ m1 = m2 :=
   ⟨fun h => by simpa using congrArg (scaleUnit u2 u1) h, congrArg (scaleUnit u1 u2)⟩
@@ -99,9 +99,9 @@ lemma UnitDependent.scaleUnit_injective {M : Type} [UnitDependent M]
 
 -/
 
-open UnitDependent
+open Tengoku.Physlib.UnitDependent
 /-- For an `M` with an instance of `UnitDependent M`, `scaleUnit u1 u2` as an equivalence. -/
-def UnitDependent.scaleUnitEquiv {M : Type} [UnitDependent M]
+def Tengoku.Physlib.UnitDependent.scaleUnitEquiv {M : Type} [UnitDependent M]
     (u1 u2 : LTMCTUnitChoices) : M ≃ M where
   toFun m := scaleUnit u1 u2 m
   invFun m := scaleUnit u2 u1 m
@@ -110,7 +110,7 @@ def UnitDependent.scaleUnitEquiv {M : Type} [UnitDependent M]
 
 /-- For an `M` with an instance of `LinearUnitDependent M`, `scaleUnit u1 u2` as a
   linear map. -/
-def LinearUnitDependent.scaleUnitLinear
+def Tengoku.Physlib.LinearUnitDependent.scaleUnitLinear
     {M : Type} [AddCommMonoid M] [Module ℝ M] [LinearUnitDependent M]
     (u1 u2 : LTMCTUnitChoices) :
     M →ₗ[ℝ] M where
@@ -120,7 +120,7 @@ def LinearUnitDependent.scaleUnitLinear
 
 /-- For an `M` with an instance of `LinearUnitDependent M`, `scaleUnit u1 u2` as a
   linear equivalence. -/
-def LinearUnitDependent.scaleUnitLinearEquiv {M : Type} [AddCommMonoid M]
+def Tengoku.Physlib.LinearUnitDependent.scaleUnitLinearEquiv {M : Type} [AddCommMonoid M]
     [Module ℝ M] [LinearUnitDependent M] (u1 u2 : LTMCTUnitChoices) :
     M ≃ₗ[ℝ] M :=
     LinearEquiv.ofLinearMap (scaleUnitLinear u1 u2) (scaleUnitLinear u2 u1)
@@ -129,7 +129,7 @@ def LinearUnitDependent.scaleUnitLinearEquiv {M : Type} [AddCommMonoid M]
 
 /-- For an `M` with an instance of `ContinuousLinearUnitDependent M`, `scaleUnit u1 u2` as a
   continuous linear map. -/
-def ContinuousLinearUnitDependent.scaleUnitContLinear {M : Type} [AddCommMonoid M] [Module ℝ M]
+def Tengoku.Physlib.ContinuousLinearUnitDependent.scaleUnitContLinear {M : Type} [AddCommMonoid M] [Module ℝ M]
     [TopologicalSpace M] [ContinuousLinearUnitDependent M]
     (u1 u2 : LTMCTUnitChoices) : M →L[ℝ] M where
   toLinearMap := LinearUnitDependent.scaleUnitLinear u1 u2
@@ -137,7 +137,7 @@ def ContinuousLinearUnitDependent.scaleUnitContLinear {M : Type} [AddCommMonoid 
 
 /-- For an `M` with an instance of `ContinuousLinearUnitDependent M`, `scaleUnit u1 u2` as a
   continuous linear equivalence. -/
-def ContinuousLinearUnitDependent.scaleUnitContLinearEquiv {M : Type} [AddCommMonoid M] [Module ℝ M]
+def Tengoku.Physlib.ContinuousLinearUnitDependent.scaleUnitContLinearEquiv {M : Type} [AddCommMonoid M] [Module ℝ M]
     [TopologicalSpace M] [ContinuousLinearUnitDependent M]
     (u1 u2 : LTMCTUnitChoices) : M ≃L[ℝ] M :=
     ContinuousLinearEquiv.mk (LinearUnitDependent.scaleUnitLinearEquiv u1 u2)
@@ -145,7 +145,7 @@ def ContinuousLinearUnitDependent.scaleUnitContLinearEquiv {M : Type} [AddCommMo
     (ContinuousLinearUnitDependent.scaleUnit_cont u2 u1)
 
 @[simp]
-lemma ContinuousLinearUnitDependent.scaleUnitContLinearEquiv_apply
+lemma Tengoku.Physlib.ContinuousLinearUnitDependent.scaleUnitContLinearEquiv_apply
     {M : Type} [AddCommGroup M] [Module ℝ M] [TopologicalSpace M]
     [ContinuousLinearUnitDependent M]
     (u1 u2 : LTMCTUnitChoices) (m : M) :
@@ -153,7 +153,7 @@ lemma ContinuousLinearUnitDependent.scaleUnitContLinearEquiv_apply
       scaleUnit u1 u2 m := rfl
 
 @[simp]
-lemma ContinuousLinearUnitDependent.scaleUnitContLinearEquiv_symm_apply
+lemma Tengoku.Physlib.ContinuousLinearUnitDependent.scaleUnitContLinearEquiv_symm_apply
     {M : Type} [AddCommGroup M] [Module ℝ M] [TopologicalSpace M]
     [ContinuousLinearUnitDependent M]
     (u1 u2 : LTMCTUnitChoices) (m : M) :
@@ -169,7 +169,7 @@ We construct instance of the `UnitDependent`, `LinearUnitDependent` and
 
 -/
 
-open UnitDependent
+open Tengoku.Physlib.UnitDependent
 
 noncomputable instance : UnitDependent LTMCTUnitChoices where
   scaleUnit u1 u2 u := ⟨
@@ -190,21 +190,21 @@ noncomputable instance : UnitDependent LTMCTUnitChoices where
   scaleUnit_id u1 u := by simp
 
 @[simp]
-lemma LTMCTUnitChoices.scaleUnit_apply_fst (u1 u2 : LTMCTUnitChoices) :
+lemma Tengoku.Physlib.LTMCTUnitChoices.scaleUnit_apply_fst (u1 u2 : LTMCTUnitChoices) :
     (scaleUnit u1 u2 u1) = u2 := by
   ext <;> simp [scaleUnit, LengthUnit.scale, TimeUnit.scale, MassUnit.scale, ChargeUnit.scale,
     TemperatureUnit.scale, LengthUnit.div_eq_val, TimeUnit.div_eq_val, MassUnit.div_eq_val,
     ChargeUnit.div_eq_val, TemperatureUnit.div_eq_val, toReal]
 
 @[simp]
-lemma LTMCTUnitChoices.dimScale_scaleUnit {u1 u2 u : LTMCTUnitChoices}
+lemma Tengoku.Physlib.LTMCTUnitChoices.dimScale_scaleUnit {u1 u2 u : LTMCTUnitChoices}
     (d : Dimension LTMCTDimensionBase) :
     u.dimScale (scaleUnit u1 u2 u) d = u1.dimScale u2 d := by
   simp [dimScale, scaleUnit]
   simp [LengthUnit.div_eq_val, TimeUnit.div_eq_val, MassUnit.div_eq_val, ChargeUnit.div_eq_val,
     TemperatureUnit.div_eq_val, toReal]
 
-lemma Dimensionful.of_scaleUnit {M : Type} [CarriesDimension M] {u1 u2 u : LTMCTUnitChoices}
+lemma Tengoku.Physlib.Dimensionful.of_scaleUnit {M : Type} [CarriesDimension M] {u1 u2 u : LTMCTUnitChoices}
     (c : Dimensionful M) :
     c.1 (scaleUnit u1 u2 u) =
     u1.dimScale u2 (dim M) • c.1 (u) := by
@@ -225,7 +225,7 @@ noncomputable instance {M1 : Type} [CarriesDimension M1] : MulUnitDependent M1 w
     simp only [toDimensionful_apply_apply]
     exact smul_comm (u1.dimScale u2 (dim M1)) r m
 
-lemma HasDim.scaleUnit_apply {M : Type} [CarriesDimension M]
+lemma Tengoku.Physlib.HasDim.scaleUnit_apply {M : Type} [CarriesDimension M]
     (u1 u2 : LTMCTUnitChoices) (m : M) :
     scaleUnit u1 u2 m = (u1.dimScale u2 (dim M)) • m :=
   toDimensionful_apply_apply u1 u2 m
@@ -260,11 +260,11 @@ noncomputable instance {M1 M2 : Type} [UnitDependent M2] :
     exact scaleUnit_id u (f m1)
 
 @[simp]
-lemma UnitDependent.scaleUnit_apply_fun_right {M1 M2 : Type} [UnitDependent M2]
+lemma Tengoku.Physlib.UnitDependent.scaleUnit_apply_fun_right {M1 M2 : Type} [UnitDependent M2]
     (u1 u2 : LTMCTUnitChoices) (f : M1 → M2) (m1 : M1) :
     scaleUnit u1 u2 f m1 = scaleUnit u1 u2 (f m1) := rfl
 
-open LinearUnitDependent in
+open Tengoku.Physlib.LinearUnitDependent in
 noncomputable instance {M1 M2 : Type} [AddCommMonoid M1] [Module ℝ M1]
     [AddCommMonoid M2] [Module ℝ M2] [LinearUnitDependent M2] :
     LinearUnitDependent (M1 →ₗ[ℝ] M2) where
@@ -288,7 +288,7 @@ noncomputable instance {M1 M2 : Type} [AddCommMonoid M1] [Module ℝ M1]
     ext m
     simp [scaleUnit_smul]
 
-open LinearUnitDependent ContinuousLinearUnitDependent in
+open Tengoku.Physlib.LinearUnitDependent Tengoku.Physlib.ContinuousLinearUnitDependent in
 noncomputable instance {M1 M2 : Type} [AddCommGroup M1] [Module ℝ M1]
     [TopologicalSpace M1]
     [AddCommGroup M2] [Module ℝ M2] [TopologicalSpace M2] [ContinuousConstSMul ℝ M2]
@@ -326,11 +326,11 @@ noncomputable instance {M1 M2 : Type} [UnitDependent M1] :
     simp [scaleUnit_id]
 
 @[simp]
-lemma UnitDependent.scaleUnit_apply_fun_left {M1 M2 : Type} [UnitDependent M1]
+lemma Tengoku.Physlib.UnitDependent.scaleUnit_apply_fun_left {M1 M2 : Type} [UnitDependent M1]
     (u1 u2 : LTMCTUnitChoices) (f : M1 → M2) (m1 : M1) :
     scaleUnit u1 u2 f m1 = f (scaleUnit u2 u1 m1) := rfl
 
-noncomputable instance instUnitDependentTwoSided
+noncomputable instance _root_.Tengoku.Physlib.instUnitDependentTwoSided
     {M1 M2 : Type} [UnitDependent M1] [UnitDependent M2] :
     UnitDependent (M1 → M2) where
   scaleUnit u1 u2 f := fun m1 => scaleUnit u1 u2 (f (scaleUnit u2 u1 m1))
@@ -345,11 +345,11 @@ noncomputable instance instUnitDependentTwoSided
     simp [scaleUnit_id]
 
 @[simp]
-lemma UnitDependent.scaleUnit_apply_fun {M1 M2 : Type} [UnitDependent M1]
+lemma Tengoku.Physlib.UnitDependent.scaleUnit_apply_fun {M1 M2 : Type} [UnitDependent M1]
     [UnitDependent M2] (u1 u2 : LTMCTUnitChoices) (f : M1 → M2) (m1 : M1) :
     scaleUnit u1 u2 f m1 = scaleUnit u1 u2 (f (scaleUnit u2 u1 m1)) := rfl
 
-noncomputable instance instUnitDependentTwoSidedMul
+noncomputable instance _root_.Tengoku.Physlib.instUnitDependentTwoSidedMul
     {M1 M2 : Type} [UnitDependent M1] [MulAction ℝ≥0 M2] [MulUnitDependent M2] :
     MulUnitDependent (M1 → M2) where
   scaleUnit u1 u2 f := fun m1 => scaleUnit u1 u2 (f (scaleUnit u2 u1 m1))
@@ -366,8 +366,8 @@ noncomputable instance instUnitDependentTwoSidedMul
     funext m1
     simp [MulUnitDependent.scaleUnit_mul]
 
-open LinearUnitDependent ContinuousLinearUnitDependent in
-noncomputable instance instContinuousLinearUnitDependentMap
+open Tengoku.Physlib.LinearUnitDependent Tengoku.Physlib.ContinuousLinearUnitDependent in
+noncomputable instance _root_.Tengoku.Physlib.instContinuousLinearUnitDependentMap
     {M1 M2 : Type} [AddCommGroup M1] [Module ℝ M1]
     [TopologicalSpace M1] [ContinuousLinearUnitDependent M1]
     [AddCommGroup M2] [Module ℝ M2] [TopologicalSpace M2] [ContinuousConstSMul ℝ M2]
@@ -392,7 +392,7 @@ noncomputable instance instContinuousLinearUnitDependentMap
       ((scaleUnitContLinearEquiv u1 u2).arrowCongr (scaleUnitContLinearEquiv u1 u2))
 
 @[simp]
-lemma ContinuousLinearUnitDependent.scaleUnit_apply_fun {M1 M2 : Type}
+lemma Tengoku.Physlib.ContinuousLinearUnitDependent.scaleUnit_apply_fun {M1 M2 : Type}
     [AddCommGroup M1] [Module ℝ M1]
     [TopologicalSpace M1] [ContinuousLinearUnitDependent M1]
     [AddCommGroup M2] [Module ℝ M2] [TopologicalSpace M2] [ContinuousConstSMul ℝ M2]
@@ -418,29 +418,29 @@ lemma ContinuousLinearUnitDependent.scaleUnit_apply_fun {M1 M2 : Type}
   corresponds to the statement that `m` does not depend on units, e.g. is zero
   or the dimension of `M` is zero.
 -/
-def IsDimensionallyCorrect {M : Type} [UnitDependent M] (m : M) : Prop :=
+def _root_.Tengoku.Physlib.IsDimensionallyCorrect {M : Type} [UnitDependent M] (m : M) : Prop :=
   ∀ u1 u2 : LTMCTUnitChoices, scaleUnit u1 u2 m = m
 
-lemma isDimensionallyCorrect_iff {M : Type} [UnitDependent M] (m : M) :
+lemma _root_.Tengoku.Physlib.isDimensionallyCorrect_iff {M : Type} [UnitDependent M] (m : M) :
     IsDimensionallyCorrect m ↔ ∀ u1 u2 : LTMCTUnitChoices,
       scaleUnit u1 u2 m = m := by rfl
 
 @[simp]
-lemma isDimensionallyCorrect_fun_iff {M1 M2 : Type} [UnitDependent M1] [UnitDependent M2]
+lemma _root_.Tengoku.Physlib.isDimensionallyCorrect_fun_iff {M1 M2 : Type} [UnitDependent M1] [UnitDependent M2]
     {f : M1 → M2} :
     IsDimensionallyCorrect f ↔
     ∀ u1 u2 : LTMCTUnitChoices, ∀ m, scaleUnit u1 u2 (f (scaleUnit u2 u1 m)) = f m := by
   simp [IsDimensionallyCorrect, funext_iff]
 
 @[simp]
-lemma isDimensionallyCorrect_fun_left {M1 M2 : Type} [UnitDependent M1]
+lemma _root_.Tengoku.Physlib.isDimensionallyCorrect_fun_left {M1 M2 : Type} [UnitDependent M1]
     {f : M1 → M2} :
     IsDimensionallyCorrect f ↔
     ∀ u1 u2 : LTMCTUnitChoices, ∀ m, (f (scaleUnit u2 u1 m)) = f m := by
   simp [IsDimensionallyCorrect, funext_iff]
 
 @[simp]
-lemma isDimensionallyCorrect_fun_right {M1 M2 : Type} [UnitDependent M2]
+lemma _root_.Tengoku.Physlib.isDimensionallyCorrect_fun_right {M1 M2 : Type} [UnitDependent M2]
     {f : M1 → M2} :
     IsDimensionallyCorrect f ↔
     ∀ u1 u2 : LTMCTUnitChoices, ∀ m, scaleUnit u1 u2 (f m) = f m := by
@@ -453,13 +453,13 @@ lemma isDimensionallyCorrect_fun_right {M1 M2 : Type} [UnitDependent M2]
 
 /-- The multiplication of an element of `M1` with an element of `M2` to get an element
   of `M3` in such a way that dimensions are preserved. -/
-class DMul (M1 M2 M3 : Type) [CarriesDimension M1] [CarriesDimension M2] [CarriesDimension M3]
+class _root_.Tengoku.Physlib.DMul (M1 M2 M3 : Type) [CarriesDimension M1] [CarriesDimension M2] [CarriesDimension M3]
     extends HMul M1 M2 M3 where
   mul_dim : ∀ (m1 : Dimensionful M1) (m2 : Dimensionful M2),
     HasDimension (fun u => hMul (m1.1 u) (m2.1 u))
 
 @[simp]
-lemma DMul.hMul_scaleUnit {M1 M2 M3 : Type} [CarriesDimension M1] [CarriesDimension M2]
+lemma Tengoku.Physlib.DMul.hMul_scaleUnit {M1 M2 M3 : Type} [CarriesDimension M1] [CarriesDimension M2]
     [CarriesDimension M3]
     [DMul M1 M2 M3] (m1 : M1) (m2 : M2) (u1 u2 : LTMCTUnitChoices) :
     (scaleUnit u1 u2 m1) * (scaleUnit u1 u2 m2) =
@@ -476,7 +476,7 @@ lemma DMul.hMul_scaleUnit {M1 M2 M3 : Type} [CarriesDimension M1] [CarriesDimens
 
 /-- Given a type `M` that depends on units, e.g. the function type `M1 → M2` between two types
   carrying a dimension, the subtype of `M` which scales according to the dimension `d`. -/
-def DimSet (M : Type) [MulAction ℝ≥0 M] [MulUnitDependent M] (d : Dimension LTMCTDimensionBase) :
+def _root_.Tengoku.Physlib.DimSet (M : Type) [MulAction ℝ≥0 M] [MulUnitDependent M] (d : Dimension LTMCTDimensionBase) :
     Set M :=
   {m : M | ∀ u1 u2, scaleUnit u1 u2 m = (LTMCTUnitChoices.dimScale u1 u2 d) • m}
 
@@ -499,10 +499,11 @@ instance (M : Type) [MulAction ℝ≥0 M] [MulUnitDependent M] (d : Dimension LT
   d := d
 
 @[simp]
-lemma scaleUnit_dimSet_val {M : Type} [MulAction ℝ≥0 M] [MulUnitDependent M]
+lemma _root_.Tengoku.Physlib.scaleUnit_dimSet_val {M : Type} [MulAction ℝ≥0 M] [MulUnitDependent M]
     (d : Dimension LTMCTDimensionBase) (m : DimSet M d) (u1 u2 : LTMCTUnitChoices) :
     (scaleUnit u1 u2 m).1 = scaleUnit u1 u2 m.1 := (m.2 u1 u2).symm
 
-lemma DimSet.mem_iff {M : Type} [MulAction ℝ≥0 M] [MulUnitDependent M]
+lemma Tengoku.Physlib.DimSet.mem_iff {M : Type} [MulAction ℝ≥0 M] [MulUnitDependent M]
     (d : Dimension LTMCTDimensionBase) (m : M) :
     m ∈ DimSet M d ↔ ∀ u1 u2, scaleUnit u1 u2 m = (LTMCTUnitChoices.dimScale u1 u2 d) • m := by rfl
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

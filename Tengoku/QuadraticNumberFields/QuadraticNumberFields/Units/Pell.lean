@@ -33,7 +33,7 @@ of `ℤ[√d]` from norm-`±1` solutions.
 * `isUnit_mk_iff_isPellSolution`: `x + y√d` is a unit of `ℤ[√d]` iff `(x, y)`
   solves `x² - d·y² = 1` or `x² - d·y² = -1`.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 local notation "ℚ√" d => Qsqrtd d
 
 namespace QuadraticNumberFields
@@ -172,3 +172,4 @@ theorem IsPellSolution.negOneUnit_ne_neg_one {d x y : ℤ} (h : IsPellSolution d
 
 end Units
 end QuadraticNumberFields
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

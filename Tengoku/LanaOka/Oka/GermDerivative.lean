@@ -56,12 +56,12 @@ Three steps and no analysis of its own:
   quantifies over the holomorphic function `f`; whether every element of `LocalOkaRing ι` is such
   a germ is a surjectivity statement this file neither uses nor proves.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open TopologicalSpace MvPowerSeries
 
 noncomputable section
 
-namespace OkaRing
+namespace Tengoku.LanaOka.OkaRing
 
 variable {ι : Type*} [Fintype ι] [DecidableEq ι] {U : Opens (ι → ℂ)} {y : ι → ℂ}
 
@@ -88,4 +88,5 @@ theorem coeff_single_one_germ (hy : y ∈ U) (f : OkaRing U) (j : ι) :
   rw [← hconv.fderiv_eval_zero j, hEq.fderiv_eq, fderiv_comp_add_right]
   simp
 
-end OkaRing
+end Tengoku.LanaOka.OkaRing
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

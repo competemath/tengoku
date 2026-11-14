@@ -31,7 +31,7 @@ The convex-domain theorems `generalizedResidueTheorem`,
 `generalizedResidueTheorem_higher_order_simple` are in `GeneralizedTheorem.lean`,
 where they are proved as corollaries of the null-homologous versions.
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex MeasureTheory Set Filter Topology Metric
 open scoped Real Interval
 
@@ -113,7 +113,7 @@ private lemma cpv_cauchy_of_sum_and_regular (S0 : Finset ℂ) (f : ℂ → ℂ)
 /-- Multi-point PV exists when each singular term has PV.
 @isnad1 id=cauchypr.3h3v.s7.02107f78949d from=translated src=- shape=d1af3678 vocab=14ec6c5a
 -/
-lemma cauchyPrincipalValueOn_singular_sum (S0 : Finset ℂ) (f : ℂ → ℂ)
+lemma _root_.Tengoku.Leanmodularforms.cauchyPrincipalValueOn_singular_sum (S0 : Finset ℂ) (f : ℂ → ℂ)
     (γ : PiecewiseC1Immersion) (_hSimplePoles : ∀ s ∈ S0, HasSimplePoleAt f s)
     (hPV_each : ∀ s ∈ S0, CauchyPrincipalValueExists'
       (fun z => residueSimplePole f s / (z - s)) γ.toFun γ.a γ.b s)
@@ -130,10 +130,11 @@ lemma cauchyPrincipalValueOn_singular_sum (S0 : Finset ℂ) (f : ℂ → ℂ)
 /-- If PV of f exists, then PV of c * f exists (scaling by constant).
 @isnad1 id=cauchypr.1h6v.s5.2356d3080f09 from=translated src=- shape=54e7a53f vocab=cd4b87d9
 -/
-lemma CauchyPrincipalValueExists'.const_mul
+lemma Tengoku.Leanmodularforms.CauchyPrincipalValueExists'.const_mul
     {f : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ} (c : ℂ)
     (h : CauchyPrincipalValueExists' f γ a b z₀) :
     CauchyPrincipalValueExists' (fun z => c * f z) γ a b z₀ :=
   let ⟨_, hL⟩ := h; ⟨_, hL.const_mul c⟩
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

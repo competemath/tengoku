@@ -1,0 +1,149 @@
+leakscan: 22 global instances (10 can fire outside the library), 0 scoped; 21 global simp lemmas (2 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 135 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: simp discriminant_map'' registered in Tengoku.Certifyinginvariantsnf.IdealArithmetic.DedekindProject.Discriminant.Discriminant (declared at line 99)
+leak: simp Multiset.nodup_toList registered in Tengoku.Certifyinginvariantsnf.IdealArithmetic.DedekindProject.Discriminant.Discriminant (declared at line 177)
+leak: instance instAddListOfAddMonoid registered in Tengoku.Certifyinginvariantsnf.IdealArithmetic.DedekindProject.Polynomial.PolynomialsAsLists (declared at line 170)
+leak: instance instNegListOfAddGroup registered in Tengoku.Certifyinginvariantsnf.IdealArithmetic.DedekindProject.Polynomial.PolynomialsAsLists (declared at line 173)
+leak: instance instSubListOfAddGroup registered in Tengoku.Certifyinginvariantsnf.IdealArithmetic.DedekindProject.Polynomial.PolynomialsAsLists (declared at line 176)
+leak: instance instMulListOfSemiring registered in Tengoku.Certifyinginvariantsnf.IdealArithmetic.DedekindProject.Polynomial.PolynomialsAsLists (declared at line 179)
+leak: instance instOneList_tengoku registered in Tengoku.Certifyinginvariantsnf.IdealArithmetic.DedekindProject.Polynomial.PolynomialsAsLists (declared at line 182)
+leak: instance instZeroList_tengoku registered in Tengoku.Certifyinginvariantsnf.IdealArithmetic.DedekindProject.Polynomial.PolynomialsAsLists (declared at line 185)
+leak: instance instNatPowListOfSemiring registered in Tengoku.Certifyinginvariantsnf.IdealArithmetic.DedekindProject.Polynomial.PolynomialsAsLists (declared at line 193)
+leak: instance instNatCastListOfSemiring registered in Tengoku.Certifyinginvariantsnf.IdealArithmetic.DedekindProject.Polynomial.PolynomialsAsLists (declared at line 196)
+leak: instance instAddZeroClassListOfSemiring registered in Tengoku.Certifyinginvariantsnf.IdealArithmetic.DedekindProject.Polynomial.PolynomialsAsLists (declared at line 199)
+leak: instance instMulZeroClassListOfSemiring registered in Tengoku.Certifyinginvariantsnf.IdealArithmetic.DedekindProject.Polynomial.PolynomialsAsLists (declared at line 203)
+root: self_isRadicalPart_of_coprime
+root: addPointwise_nil_left
+root: SturmBuilderOfList_not_mem_nil
+root: moduleSmithCoeff_ne_unit
+root: instAddZeroClassListOfSemiring
+root: listOfFn_of_FnOfList
+root: self_isRadicalPart_of_coprime_ideal
+root: signChanges_single'
+root: instMulZeroClassListOfSemiring
+root: signChanges_of_mul_neg
+root: u_le_v_of_sort
+root: table_add_list_eq_add
+root: signChangesInftyOfList
+root: nPow_sq_table
+root: signChanges
+root: not_mem_finset_card_eq_one_of_sorted_not_mem
+root: derivative_prod'
+root: table_mul_eq_table_mul'
+root: basisSpanOfBasis
+root: instMulComputablePolynomial
+root: radical_pth_power
+root: FnOfList_add_ofFn
+root: instSubListOfAddGroup
+root: instMulListOfSemiring
+root: instOneList_tengoku
+root: instSubComputablePolynomial
+root: instPowComputablePolynomialNat
+root: resultant_map_injective
+root: signChangesInfty_def
+root: table_mulPointwise_eq_smul
+root: derivative_prod_X_sub_C
+root: isRadicalPart_pow_of_isRadicalPart
+root: table_mul_list_length
+root: not_mem_finset_card_eq_one_of_sorted_mem_interval
+root: signChanges_length_two
+root: signChanges_nil
+root: zero_def
+root: q_ne_zero
+root: signChangesNInftyOfList
+root: instZeroComputablePolynomial
+root: SturmBuilderExample1
+root: IsSturmSequence_map
+root: instNatCastComputablePolynomial
+root: instNatCastListOfSemiring
+root: moduleSmithSubmodule
+root: table_sum_mul
+root: signChanges_modify_zero
+root: FnOfList_table_mul_list_eq_sum_sum
+root: signChangesInfty
+root: FnOfList_of_OfFn
+root: SturmBuilderExample2
+root: pos_at_infinity_of_leading_coeff_pos
+root: P1
+root: sturm_sequence_cons
+root: sign_at_infinity_eq_sign_leading_coeff
+root: signChanges_zero_head
+root: instAddListOfAddMonoid
+root: addPointwise_cons
+root: isRadicalPart_of_dvd_pow
+root: pi_dvd_iff_mod_zero
+root: instSMulNatComputablePolynomial
+root: associated_isRadicalPart_of_isRadicalPart
+root: addPointwise_nil_right
+root: finset_card_add_interval
+root: instZeroList_tengoku
+root: prod_X_sub_C_resultant
+root: ne_dvd_of_isCoprime
+root: instNegListOfAddGroup
+root: table_sum_smul'
+root: mul_isRadicalPart_mul
+root: IsRadicalPart
+root: signChanges_zero_head'
+root: table_mul_list'
+root: indexPair_left_aux
+root: smith_coeffs_property
+root: signChanges_def
+root: moduleSmithCoeffs_ne_zero
+root: ComputablePolynomial
+root: finset_sorted_list_cons_cons
+root: instNegComputablePolynomial
+root: signChanges_single
+root: IsRealClosedField
+root: list_sum_length
+root: instOneComputablePolynomial
+root: addCasesIter_apply
+root: signChanges_eq_signChanges'
+root: isRadicalPart_def
+root: basisSubmoduleModOfBasisMod
+root: zero_not_member_of_mono
+root: instSMulIntComputablePolynomial
+root: self_isRadicalPart_of_gcd_unit
+root: signChangesPolySeq
+root: not_mem_finset_card_eq_one_of_sorted
+root: isRadicalPart_of_coprime_derivative_of_dvd_of_dvd_pow
+root: signChangesSeqOfList
+root: polynomial_change_sign_aux
+root: instIntCastComputablePolynomial
+root: instNatPowListOfSemiring
+root: table_sum_smul
+root: smithBasisModule
+root: signChangesNInfty
+root: sturm_sequence_ne_nil
+root: SturmBuilderOfList_ne_nil
+root: FnOfList_mulPointwise_ofFin
+root: not_mem_finset_card_eq_one_of_sorted_single
+root: signChangesPolySeq_def
+root: discriminant_map''
+root: signChanges'
+root: self_isRadicalPart_of_coprime'
+root: signChanges_cons
+root: table_sum_sum
+root: getLastD_eq_getLast_of_ne_nil
+root: FnOfList
+root: moduleSmithCoeffs
+root: dropTrailingZeros_length
+root: table_mul_list
+root: exists_of_dvd_mod_pi
+root: IsSturmSequence
+root: dropTrailingZeros_iter
+root: p_ne_zero
+root: zero_not_member'
+root: instAddComputablePolynomialOfAddMonoid
+root: neg_at_infinity_of_leading_coeff_neg
+root: no_consecutive_zero1
+root: toComputablePolynomial
+root: forall_addCasesIter_prop
+root: roots_of_prod_mem_iff
+root: SturmBuilderOfList
+root: zero_not_member
+root: nPow_sq_table_length
+root: indexPair_right_aux
+root: table_mul_list_eq_mul
+root: P2
+root: indexPair
+root: FnOfList_sum_ofFn

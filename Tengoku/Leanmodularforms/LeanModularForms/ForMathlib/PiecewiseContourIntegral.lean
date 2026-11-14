@@ -37,7 +37,7 @@ endpoints. On each smooth segment, standard FTC applies; adjacent segments teles
 
 * K. Hungerbuhler, J. Wasem, *A generalized notion of winding numbers*
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Set MeasureTheory Filter Topology
 open scoped Interval
 
@@ -45,7 +45,7 @@ noncomputable section
 
 variable {x y : ℂ}
 
-namespace PiecewiseC1Path
+namespace Tengoku.Leanmodularforms.PiecewiseC1Path
 
 /-- The contour integral of `f` along a piecewise C¹ path `γ`:
 `∮_γ f(z) dz = ∫ t in 0..1, f(γ(t)) · γ'(t) dt`. -/
@@ -236,6 +236,7 @@ theorem contourIntegral_eq_zero_of_hasDerivAt_of_closed {F f : ℂ → ℂ}
     contourIntegral f γ = 0 := by
   rw [contourIntegral_eq_sub_of_hasDerivAt γ hU hF h_int, hclosed, sub_self]
 
-end PiecewiseC1Path
+end Tengoku.Leanmodularforms.PiecewiseC1Path
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

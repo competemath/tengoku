@@ -1,0 +1,159 @@
+leakscan: 168 global instances (57 can fire outside the library), 0 scoped; 437 global simp lemmas (5 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 95 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: instance BernoulliRegular.stickelberger_neZero registered in Tengoku.Aintlib.BernoulliRegular.CyclotomicEmbedding (declared at line 109)
+leak: simp BernoulliRegular.dirichletCharacter_apply_zero registered in Tengoku.Aintlib.BernoulliRegular.GaussSum.SignInvariant.BlockDecomposition (declared at line 97)
+leak: instance BernoulliRegular.Furtwaengler.instFintype_OK_quotient registered in Tengoku.Aintlib.BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.PthSymbolNoncanonical (declared at line 29)
+leak: simp BernoulliRegular.Reflection.SingularKummer.SingularPair.classGroup_mk_toPrincipalIdeal registered in Tengoku.Aintlib.BernoulliRegular.Reflection.SingularKummer.SingularPair (declared at line 116)
+leak: instance instFintypeSym registered in Tengoku.Aintlib.CebotarevDensity.NumberFieldEulerProduct (declared at line 37)
+leak: instance DedekindResidue.instCountableIdealSet registered in Tengoku.Aintlib.DedekindResidue.CompletedZeta.MellinAgreement (declared at line 343)
+leak: instance DedekindResidue.instIsAddHaarMeasureProdRealLogSpaceVolume registered in Tengoku.Aintlib.DedekindResidue.CompletedZeta.MellinAgreement (declared at line 1120)
+leak: instance DedekindResidue.countable_ideal_ringOfIntegers registered in Tengoku.Aintlib.DedekindResidue.ExplicitFormula.PrimeSide (declared at line 588)
+leak: instance _private.Tengoku.Aintlib.ModularCurves.ForMathlib.SchemeModuleQuasicoherent.0.AlgebraicGeometry.Scheme.evaluation_additive registered in Tengoku.Aintlib.ModularCurves.ForMathlib.SchemeModuleQuasicoherent (declared at line 38)
+leak: instance AlgebraicGeometry.Scheme.Modules.instIsEquivalenceRestrictFunctorHom registered in Tengoku.Aintlib.ModularCurves.ForMathlib.SchemeModuleQuasicoherent (declared at line 374)
+leak: instance AlgebraicGeometry.Scheme.Modules.isQuasicoherent_pushforward_of_iso registered in Tengoku.Aintlib.ModularCurves.ForMathlib.SchemeModuleQuasicoherent (declared at line 398)
+leak: instance AlgebraicGeometry.Scheme.Modules.instIsQuasicoherentOpensCarrierCarrierCommRingCatSpecObjPushforwardMap registered in Tengoku.Aintlib.ModularCurves.ForMathlib.SchemeModuleQuasicoherent (declared at line 410)
+leak: instance AlgebraicGeometry.Scheme.Modules.isQuasicoherent_of_pushforward registered in Tengoku.Aintlib.ModularCurves.ForMathlib.SchemeModuleQuasicoherent (declared at line 416)
+leak: instance ModularCurves.BumpCompat.stableAlong_surjective registered in Tengoku.Aintlib.ModularCurves.ForMathlib.BaseChangeAlongCompat (declared at line 46)
+leak: instance ModularCurves.BumpCompat.stableAlong_flat registered in Tengoku.Aintlib.ModularCurves.ForMathlib.BaseChangeAlongCompat (declared at line 53)
+leak: instance ModularCurves.BumpCompat.stableAlong_isFinite registered in Tengoku.Aintlib.ModularCurves.ForMathlib.BaseChangeAlongCompat (declared at line 60)
+leak: instance ModularCurves.BumpCompat.stableAlong_isProper registered in Tengoku.Aintlib.ModularCurves.ForMathlib.BaseChangeAlongCompat (declared at line 67)
+leak: instance ModularCurves.BumpCompat.stableAlong_isClosedImmersion registered in Tengoku.Aintlib.ModularCurves.ForMathlib.BaseChangeAlongCompat (declared at line 74)
+leak: instance ModularCurves.BumpCompat.stableAlong_smoothOfRelativeDimension registered in Tengoku.Aintlib.ModularCurves.ForMathlib.BaseChangeAlongCompat (declared at line 81)
+leak: instance ModularCurves.BumpCompat.respectsIso_isFinite registered in Tengoku.Aintlib.ModularCurves.ForMathlib.BaseChangeAlongCompat (declared at line 89)
+leak: instance ModularCurves.BumpCompat.respectsIso_flat registered in Tengoku.Aintlib.ModularCurves.ForMathlib.BaseChangeAlongCompat (declared at line 95)
+leak: instance ModularCurves.BumpCompat.zariskiLocalAtTarget_isFinite registered in Tengoku.Aintlib.ModularCurves.ForMathlib.BaseChangeAlongCompat (declared at line 102)
+leak: instance ModularCurves.BumpCompat.hasAffineProperty_isFinite registered in Tengoku.Aintlib.ModularCurves.ForMathlib.BaseChangeAlongCompat (declared at line 109)
+leak: instance ModularCurves.BumpCompat.zariskiLocalAtTarget_etale registered in Tengoku.Aintlib.ModularCurves.ForMathlib.BaseChangeAlongCompat (declared at line 117)
+leak: instance ModularCurves.BumpCompat.respectsIso_etale registered in Tengoku.Aintlib.ModularCurves.ForMathlib.BaseChangeAlongCompat (declared at line 124)
+leak: instance ModularCurves.BumpCompat.zariskiLocalAtTarget_flat registered in Tengoku.Aintlib.ModularCurves.ForMathlib.BaseChangeAlongCompat (declared at line 131)
+leak: instance ModularCurves.BumpCompat.respectsIso_formallyUnramified registered in Tengoku.Aintlib.ModularCurves.ForMathlib.BaseChangeAlongCompat (declared at line 138)
+leak: instance ModularCurves.BumpCompat.stableAlong_quasiCompact registered in Tengoku.Aintlib.ModularCurves.ForMathlib.BaseChangeAlongCompat (declared at line 145)
+leak: instance ModularCurves.BumpCompat.stableAlong_etale registered in Tengoku.Aintlib.ModularCurves.ForMathlib.BaseChangeAlongCompat (declared at line 152)
+leak: instance ModularCurves.BumpCompat.zariskiLocalAtSource_locallyOfFinitePresentation registered in Tengoku.Aintlib.ModularCurves.ForMathlib.BaseChangeAlongCompat (declared at line 160)
+leak: instance ModularCurves.CartierDual.instIsScalarTowerWithConv registered in Tengoku.Aintlib.ModularCurves.ForMathlib.CartierDual (declared at line 253)
+leak: instance MulSemiringAction.instTensorProduct registered in Tengoku.Aintlib.ModularCurves.ForMathlib.InvariantBaseChange (declared at line 56)
+leak: instance MulSemiringAction.instSMulCommClassTensorProduct registered in Tengoku.Aintlib.ModularCurves.ForMathlib.InvariantBaseChange (declared at line 81)
+leak: instance instSMulCommClassSubtypeMemSubalgebraSubalgebra_1 registered in Tengoku.Aintlib.ModularCurves.ForMathlib.InvariantTorsor (declared at line 80)
+leak: instance ModularCurves.FiniteEtaleGalois.subsingletonHomFromSelf registered in Tengoku.Aintlib.ModularCurves.ForMathlib.FiniteEtaleGalois (declared at line 60)
+leak: instance ModularCurves.FiniteEtaleGalois.nonemptyHomFromSelf registered in Tengoku.Aintlib.ModularCurves.ForMathlib.FiniteEtaleGalois (declared at line 67)
+leak: instance ModularCurves.FiniteEtaleGalois.hasInitial registered in Tengoku.Aintlib.ModularCurves.ForMathlib.FiniteEtaleGalois (declared at line 75)
+leak: instance ModularCurves.FiniteEtaleGalois.hasFiniteProducts registered in Tengoku.Aintlib.ModularCurves.ForMathlib.FiniteEtaleGalois (declared at line 110)
+leak: instance ModularCurves.FiniteEtaleGalois.hasPushouts registered in Tengoku.Aintlib.ModularCurves.ForMathlib.FiniteEtaleGalois (declared at line 230)
+leak: instance ModularCurves.FiniteEtaleGalois.hasLimitsOfShapeSingleObj registered in Tengoku.Aintlib.ModularCurves.ForMathlib.FiniteEtaleGalois (declared at line 457)
+leak: instance ModularCurves.FiniteEtaleGalois.hasQuotientsByFiniteGroupsOp registered in Tengoku.Aintlib.ModularCurves.ForMathlib.FiniteEtaleGalois (declared at line 702)
+leak: instance ModularCurves.FiniteEtaleGalois.instPreGaloisCategoryOppositeFiniteEtale registered in Tengoku.Aintlib.ModularCurves.ForMathlib.FiniteEtaleGalois (declared at line 711)
+leak: instance ModularCurves.FiniteEtaleGalois.instEtaleTensorProductCarrierObjCommAlgCatFiniteEtale registered in Tengoku.Aintlib.ModularCurves.ForMathlib.FiniteEtaleGalois (declared at line 730)
+leak: instance ModularCurves.FiniteEtaleGalois.instFiniteTensorProductCarrierObjCommAlgCatFiniteEtale registered in Tengoku.Aintlib.ModularCurves.ForMathlib.FiniteEtaleGalois (declared at line 735)
+leak: instance ModularCurves.FiniteEtaleGalois.isGalois_sepClosure registered in Tengoku.Aintlib.ModularCurves.ForMathlib.FiniteEtaleFundamentalGroup (priority 10000) (declared at line 49)
+leak: instance ModularCurves.FiniteEtaleGalois.normal_sepClosure registered in Tengoku.Aintlib.ModularCurves.ForMathlib.FiniteEtaleFundamentalGroup (priority 10000) (declared at line 55)
+leak: instance ModularCurves.FiniteEtaleGalois.isSeparable_sepClosure registered in Tengoku.Aintlib.ModularCurves.ForMathlib.FiniteEtaleFundamentalGroup (priority 10000) (declared at line 61)
+leak: instance ModularCurves.FiniteEtaleGalois.compactSpace_galSepClosure registered in Tengoku.Aintlib.ModularCurves.ForMathlib.FiniteEtaleFundamentalGroup (priority 10000) (declared at line 67)
+leak: instance ModularCurves.FiniteEtaleGalois.fiberMulAction registered in Tengoku.Aintlib.ModularCurves.ForMathlib.FiniteEtaleFundamentalGroup (declared at line 81)
+leak: instance ModularCurves.FiniteEtaleGalois.instGaloisCategoryOppositeFiniteEtale registered in Tengoku.Aintlib.ModularCurves.ForMathlib.FiniteEtaleFundamentalGroup (declared at line 273)
+leak: simp AlgebraicGeometry.Scheme.IdealSheafData.ker_positivePower_subschemeι_app registered in Tengoku.Aintlib.ModularCurves.ForMathlib.IdealSheafPowerSubscheme (declared at line 31)
+leak: simp AlgebraicGeometry.Scheme.IdealSheafData.range_positivePower_subschemeι registered in Tengoku.Aintlib.ModularCurves.ForMathlib.IdealSheafPowerSubscheme (declared at line 40)
+leak: instance Int.instIsJacobsonRing registered in Tengoku.Aintlib.ModularCurves.ForMathlib.IntJacobson (declared at line 29)
+leak: instance TopologicalSpace.Opens.map_final registered in Tengoku.Aintlib.ModularCurves.ForMathlib.OpensMapFinal (declared at line 31)
+leak: instance AlgebraicGeometry.Proj.isReduced_away registered in Tengoku.Aintlib.ModularCurves.ForMathlib.ProjIntegral (declared at line 53)
+leak: simp ModularCurves.pow_toNat_emod_zero registered in Tengoku.Aintlib.ModularCurves.ForMathlib.RootOfUnityIntPow (declared at line 88)
+leak: instance AlgebraicGeometry.Scheme.Modules.instMonoidalCategoryStructPresheafOfModules registered in Tengoku.Aintlib.ModularCurves.Picard.InvertibleSheaf (declared at line 54)
+leak: instance AlgebraicGeometry.Scheme.Modules.instMonoidalCategoryPresheafOfModules registered in Tengoku.Aintlib.ModularCurves.Picard.InvertibleSheaf (declared at line 60)
+leak: instance AlgebraicGeometry.instIsInvariantSubtypeMemSubalgebraSubalgebra registered in Tengoku.Aintlib.ModularCurves.ForMathlib.SpecGroupAction (declared at line 106)
+leak: instance ComplexShape.upNat_tensorSigns registered in Tengoku.Aintlib.ModularCurves.ForMathlib.TotalComplexUpNat (declared at line 14)
+leak: instance WeierstrassCurve.instMulDistribMulActionVariableChange registered in Tengoku.Aintlib.ModularCurves.ForMathlib.WeierstrassInvariant (declared at line 135)
+leak: instance _private.Tengoku.Aintlib.ModularCurves.Picard.Dual.0.ModularCurves.SheafOfModules.overIsMulCommutative registered in Tengoku.Aintlib.ModularCurves.Picard.Dual (declared at line 473)
+root: norm_sum_range_shift_smul_le_of_antitone_of_nonneg_of_bounded
+root: exists_traceInvariants_eq_one
+root: homOfLE_morphismRestrict_agree
+root: homOfLE_specBasicOpenIsoAway_inv_assoc
+root: galoisCoords_dual
+root: exists_one_tmul_baseChange_ne_zero
+root: exists_sub_smul_eq_of_isCocycle
+root: specBasicOpenIsoAway
+root: twistedMul
+root: twistedInvariants
+root: localizedModuleComapEquiv
+root: torsorMul_surjective
+root: torsorMul_bijective_of_isFreeAlgebraAction
+root: torsorMul_injective
+root: isConnected_preimage_val
+root: cocycle_one
+root: flat_of_isLocalizedModule_flat
+root: exists_torsorMul_eq_zero_one
+root: twistedMul_bijective
+root: quotTensorEquivQuotMapSMul_mk_tmul
+root: restrictScalars_map_smul_top
+root: connectedComponent_eq_preimage_connectedComponent
+root: fixedPoints_awayMap_injective
+root: flatLocus_stableUnderGeneralization
+root: specBasicOpenIsoAway_hom_homOfLE'
+root: smul_cocycle_inv
+root: instSMulCommClassSubtypeMemSubalgebraSubalgebraTensorProduct
+root: mem_flatLocus
+root: homOfLE_isoImage_inv_iSup
+root: bijective_includeRightFixedPoints
+root: galoisInv_torsorMul_tmul
+root: twistedAvg_mem
+root: basisOfSpanRangeEqTop_apply
+root: basicOpen_subset_flatLocus_of_free
+root: fixedPointsBaseChange_bijective_of_isUnit
+root: fixedPointsBaseChange_bijective_of_isFreeAlgebraAction
+root: isOpen_of_mem_irreducibleComponents_of_disjoint
+root: norm_sum_range_shift_le_of_bounded
+root: specBasicOpenIsoAway_hom_ι
+root: irreducibleSpace_of_connected_of_disjoint_irreducibleComponents
+root: exists_one_tmul_eq_residueField
+root: norm_sum_range_smul_le_of_antitone_of_nonneg_of_bounded
+root: quotTensorEquivQuotMapSMul
+root: algebraMapSubmonoid_primeCompl_comap
+root: baseChange_ne_zero_of_ne_zero_of_smul_top_eq_bot
+root: twistedAvg
+root: flat_localizedModule_of_flat
+root: twistedMul_tmul
+root: twistedInvariants_finite
+root: homOfLE_specBasicOpenIsoAway_inv
+root: irreducibleSpace_of_connected_of_locallyIrreducible
+root: homOfLE_specBasicOpenIsoAway_inv'_assoc
+root: traceLinear
+root: instFintypeSym
+root: flatLocus
+root: exists_primeQuotient_injection
+root: spec_map_comp_congr
+root: galoisInv
+root: basisOfSpanRangeEqTop
+root: exists_unit_smul_eq_of_isLocalRing
+root: isoImage_inv_morphismRestrict_ι
+root: exists_galoisCoords
+root: fixedPointsBaseChange_bijective_of_flat
+root: specBasicOpen
+root: combos3_ne_zero
+root: isSMulRegular_natCast_of_flat
+root: specBasicOpen_mul
+root: specBasicOpenIsoAway_hom_homOfLE
+root: traceInvariants
+root: specBasicOpenIsoAway_hom_ι_assoc
+root: chr_of_isFreeAlgebraAction
+root: free_of_exact_of_free
+root: connectedSpace_of_isOpenMap_of_isClosedMap_of_isConnected_preimage
+root: includeRightFixedPoints_coe
+root: specBasicOpen_mul_le_left
+root: twistedAvg_smul_eq
+root: exists_noetherNormalization_baseChange
+root: flat_localizedModule_comap_iff
+root: one_tmul_ne_zero_of_smul_top_eq_bot
+root: includeRightFixedPoints
+root: gaussSum_ringHomComp
+root: exists_separabilityIdempotent
+root: specBasicOpen_mul_le_right
+root: fixedPointsBaseChange
+root: exists_smul_eq_zero_of_notMem_support
+root: glueMorphisms_hf_of_agree
+root: combos2_ne_zero
+root: fixedPointsBaseChange_tmul
+root: twistedInvariants_projective
+root: exists_retract_invariants
+root: span_displacement_eq_top
+root: IsFreeAlgebraAction
+root: instSMulCommClassSubtypeMemSubalgebraSubalgebra_1
+root: homOfLE_specBasicOpenIsoAway_inv'
+root: mem_range_fixedPoints_awayMap_iff

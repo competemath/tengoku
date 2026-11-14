@@ -16,7 +16,7 @@ bound used in the dyadic PV convergence proof.
 
 * `singular_annulus_bound_explicit` — epsilon-independent bound on singular integral
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex MeasureTheory Set Filter Topology
 open scoped Real Interval
 
@@ -278,7 +278,7 @@ nonzero derivative: the integral `∫ a..b (1[ε₂ < ‖γ t − γ t₀‖ ≤
 `Csing · ε₁` for all sufficiently small `ε₁` with `ε₂ ≤ ε₁ ≤ 2 ε₂`.
 @isnad1 id=ex.7h5v.s8.c3a722d18a7c from=translated src=- shape=f4c23d80 vocab=30f2e2fa
 -/
-lemma singular_annulus_bound_explicit {γ : ℝ → ℂ} {a b t₀ : ℝ} {L : ℂ} (hab : a < b)
+lemma _root_.Tengoku.Leanmodularforms.singular_annulus_bound_explicit {γ : ℝ → ℂ} {a b t₀ : ℝ} {L : ℂ} (hab : a < b)
     (hat₀ : t₀ ∈ Set.Ioo a b) (hγ_C2 : ContDiffAt ℝ 2 γ t₀) (hγ_deriv : deriv γ t₀ = L)
     (hL : L ≠ 0) (hγ_cont : ContinuousOn γ (Set.Icc a b))
     (h_inj : ∀ t ∈ Set.Icc a b, γ t = γ t₀ → t = t₀) :
@@ -481,3 +481,4 @@ lemma singular_annulus_bound_explicit {γ : ℝ → ℂ} {a b t₀ : ℝ} {L : �
           show ‖L‖ ^ 3 = ‖L‖ * ‖L‖ ^ 2 from by ring]
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

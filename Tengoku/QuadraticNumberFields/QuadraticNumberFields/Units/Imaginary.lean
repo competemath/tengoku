@@ -24,7 +24,7 @@ the candidate rings of integers are finite. This file classifies them:
 * `isUnit_zOnePlusSqrtOverTwo_neg_one_iff`: the Eisenstein integers
   `ℤ[(1+√-3)/2]` have exactly six units.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 local notation "ℚ√" d => Qsqrtd d
 
 namespace QuadraticNumberFields
@@ -241,3 +241,4 @@ end ZOnePlusSqrtdOverTwo
 
 end Units
 end QuadraticNumberFields
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

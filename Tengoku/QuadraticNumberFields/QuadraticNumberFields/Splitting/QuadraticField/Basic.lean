@@ -21,7 +21,7 @@ with mathlib's ramification API.
 This module is part of the work-in-progress `Sketch` surface while the full
 Legendre-symbol classification is still incomplete.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 local notation "ℚ√" d => Qsqrtd d
 
 open scoped NumberField
@@ -54,3 +54,4 @@ end AbstractField
 
 end Splitting
 end QuadraticNumberFields
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

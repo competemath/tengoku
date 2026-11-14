@@ -2,7 +2,7 @@ import Tengoku
 import Tengoku.FltAnthropic.Definitions.Def_ModularForm_KatzLevelOne
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 set_option autoImplicit false
 
 universe u v w
@@ -500,7 +500,7 @@ end KatzGamma0Form
 
 end ModularCurve
 
-namespace KatzModularForm
+namespace Tengoku.FltAnthropic.KatzModularForm
 
 variable {R : Type u} [CommRing R] {k : ℤ}
 
@@ -561,7 +561,7 @@ def pullbackGamma0 (g : KatzModularForm R k) (p : ℕ) : ModularCurve.KatzGamma0
 @[simp] theorem pullbackLevelP_smul (c : R) (g : KatzModularForm R k) (p : ℕ) :
     (c • g).pullbackLevelP p = c • g.pullbackLevelP p := rfl
 
-end KatzModularForm
+end Tengoku.FltAnthropic.KatzModularForm
 
 namespace ModularCurve.LevelP
 
@@ -620,3 +620,4 @@ def swapW : GL (Fin 2) (ZMod p) :=
 end ModularCurve.LevelP
 
 end
+-- Tengoku: root names of this library moved to Tengoku.FltAnthropic so they do not collide with other libraries (generated)

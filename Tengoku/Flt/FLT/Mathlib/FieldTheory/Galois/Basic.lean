@@ -17,7 +17,7 @@ character of `Aut(M/K)` attached to a normal subextension `K ⊆ L ⊆ M`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Flt end Tengoku.Flt open Tengoku.Flt 
 open Algebra.IsQuadraticExtension
 
 section
@@ -32,7 +32,7 @@ variable (M : Type*) [Field M] [Algebra K M] [Algebra L M] [IsScalarTower K L M]
 if and only if its restriction to `L` (`AlgEquiv.restrictNormal`) is the identity.
 @isnad1 id=iff.0h4v.s9.531901cbcba2 from=translated src=- shape=f236f13b vocab=a9ff17ee
 -/
-theorem forall_apply_algebraMap_iff_restrictNormal_eq_one (σ : M ≃ₐ[K] M) :
+theorem _root_.Tengoku.Flt.forall_apply_algebraMap_iff_restrictNormal_eq_one (σ : M ≃ₐ[K] M) :
     (∀ x : L, σ (algebraMap L M x) = algebraMap L M x) ↔ σ.restrictNormal L = 1 := by
   simp only [AlgEquiv.ext_iff, AlgEquiv.one_apply, ← AlgEquiv.restrictNormal_commutes]
   exact forall_congr' fun x ↦ (FaithfulSMul.algebraMap_injective L M).eq_iff
@@ -129,7 +129,7 @@ Since `L/K` is normal, every `K`-automorphism of `M` maps `L` to `L`, and multip
 normal then this character is the composite of the restriction `Aut(M/K) → Gal(L/K)` with the
 unique isomorphism `Gal(L/K) ≃ {±1}`, and in particular is surjective
 (`quadraticCharacter_surjective`). -/
-noncomputable def quadraticCharacter : (M ≃ₐ[K] M) →* ℤˣ where
+noncomputable def _root_.Tengoku.Flt.quadraticCharacter : (M ≃ₐ[K] M) →* ℤˣ where
   toFun σ := if ∀ x : L, σ (algebraMap L M x) = algebraMap L M x then 1 else -1
   map_one' := by simp
   map_mul' φ φ' := by
@@ -149,7 +149,7 @@ noncomputable def quadraticCharacter : (M ≃ₐ[K] M) →* ℤˣ where
 /--
 @isnad1 id=iff.0h4v.s9.c43d3afea16c from=translated src=- shape=b3fa4003 vocab=a3e7f20f
 -/
-theorem quadraticCharacter_eq_one_iff (σ : M ≃ₐ[K] M) :
+theorem _root_.Tengoku.Flt.quadraticCharacter_eq_one_iff (σ : M ≃ₐ[K] M) :
     quadraticCharacter K L M σ = 1 ↔ ∀ x : L, σ (algebraMap L M x) = algebraMap L M x := by
   classical
   unfold quadraticCharacter
@@ -163,7 +163,7 @@ nontrivial element of `Gal(L/K)` extends to an automorphism of `M`, so the quadr
 of `Aut(M/K)` attached to `L/K` is surjective.
 @isnad1 id=surjecti.0h3v.s9.cd7e3b285488 from=translated src=- shape=8a54422c vocab=f1f8fe42
 -/
-theorem quadraticCharacter_surjective [Normal K M] :
+theorem _root_.Tengoku.Flt.quadraticCharacter_surjective [Normal K M] :
     Function.Surjective (quadraticCharacter K L M) := by
   intro u
   rcases Int.units_eq_one_or u with rfl | rfl
@@ -180,3 +180,4 @@ theorem quadraticCharacter_surjective [Normal K M] :
 end
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Flt so they do not collide with other libraries (generated)

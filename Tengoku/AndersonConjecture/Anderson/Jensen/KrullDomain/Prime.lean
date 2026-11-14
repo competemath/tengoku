@@ -16,7 +16,7 @@ both y_1 and y_2.
 -/
 
 noncomputable section
-
+namespace Tengoku.AndersonConjecture end Tengoku.AndersonConjecture open Tengoku.AndersonConjecture 
 open Cardinal Ideal Polynomial Set Pointwise
 
 variable {T : Type*} [CommRing T] [IsLocalRing T] [IsNoetherianRing T] [IsDomain T]
@@ -38,7 +38,7 @@ section CoprimeHeight
 /-- In a UFD, every nonzero prime ideal contains a prime element.
 @isnad1 id=ex.1h2v.s7.a3314866b134 from=translated src=- shape=d129b1c9 vocab=fdccec3c
 -/
-lemma exists_prime_mem_of_ne_bot {S : Type*} [CommRing S] [IsDomain S]
+lemma _root_.Tengoku.AndersonConjecture.exists_prime_mem_of_ne_bot {S : Type*} [CommRing S] [IsDomain S]
     [UniqueFactorizationMonoid S]
     (Q : Ideal S) [hQ : Q.IsPrime] (hQ_ne_bot : Q ≠ ⊥) :
     ∃ q : S, Prime q ∧ q ∈ Q := by
@@ -63,3 +63,4 @@ lemma exists_prime_mem_of_ne_bot {S : Type*} [CommRing S] [IsDomain S]
 end CoprimeHeight
 
 end
+-- Tengoku: root names of this library moved to Tengoku.AndersonConjecture so they do not collide with other libraries (generated)

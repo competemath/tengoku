@@ -34,7 +34,7 @@ negative real part and crosses through the slit.
 
 * K. Hungerbühler, J. Wasem, *A generalized notion of winding numbers*
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex MeasureTheory Set Filter Topology
 open scoped Real Interval
 
@@ -290,7 +290,7 @@ private lemma right_integral_34_branch_corrected (H : ℝ) (hH : 1 < H) {δ : �
 /-- Full FTC telescope for the crossing at `i`.
 @isnad1 id=eq.3h2v.s8.a0e94d33a345 from=translated src=- shape=9c5d2277 vocab=4d95f59d
 -/
-theorem fdBoundary_ftc_telescope_I (H : ℝ) (hH : 1 < H) {δ : ℝ}
+theorem _root_.Tengoku.Leanmodularforms.fdBoundary_ftc_telescope_I (H : ℝ) (hH : 1 < H) {δ : ℝ}
     (hδ : 0 < δ) (hδ' : δ < 1/5) :
     (∫ t in (0 : ℝ)..(2/5 - δ),
         (fdBoundaryFun H t - I)⁻¹ * deriv (fdBoundaryFun H) t) +
@@ -343,7 +343,7 @@ private theorem E_atI_tendsto (H : ℝ) :
   all_goals ring_nf
 
 /-- The complete `ArcFTCHyp` at `i` for the FD boundary. -/
-def arcFTCHyp_atI {H : ℝ} (hH : 1 < H) {γ : PiecewiseC1Path (fdStart H) (fdStart H)}
+def _root_.Tengoku.Leanmodularforms.arcFTCHyp_atI {H : ℝ} (hH : 1 < H) {γ : PiecewiseC1Path (fdStart H) (fdStart H)}
     (hγ : ∀ t ∈ Icc (0 : ℝ) 1, γ.toPath.extend t = fdBoundaryFun H t) :
     ArcFTCHyp γ I (2/5) arcsinDelta (min (1/3) (H - 1)) (-(↑Real.pi * I)) where
   E := E_atI H
@@ -360,3 +360,4 @@ def arcFTCHyp_atI {H : ℝ} (hH : 1 < H) {γ : PiecewiseC1Path (fdStart H) (fdSt
   h_limit := E_atI_tendsto H
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

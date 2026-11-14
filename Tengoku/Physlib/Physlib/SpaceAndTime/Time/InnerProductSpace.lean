@@ -64,8 +64,8 @@ or origin.
 -/
 
 @[expose] public section
-
-namespace Time
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
+namespace Tengoku.Physlib.Time
 
 /-!
 
@@ -442,4 +442,5 @@ lemma fderiv_val (t : Time) : fderiv ℝ Time.val t 1 = 1 := by
   rw [show Time.val = ⇑toRealCLM from rfl, ContinuousLinearMap.fderiv]
   simp [toRealCLM]
 
-end Time
+end Tengoku.Physlib.Time
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

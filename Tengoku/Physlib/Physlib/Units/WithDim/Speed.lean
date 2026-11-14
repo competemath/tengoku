@@ -16,24 +16,24 @@ We define specific instances of speed, such as miles per hour, kilometers per ho
 -/
 
 @[expose] public section
-
-open Dimension
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
+open Tengoku.Physlib.Dimension
 open NNReal
 
 /-- The type of speeds in the absence of a choice of unit. -/
-abbrev DimSpeed : Type := Dimensionful (WithDim (L𝓭 * T𝓭⁻¹) ℝ≥0)
+abbrev _root_.Tengoku.Physlib.DimSpeed : Type := Dimensionful (WithDim (L𝓭 * T𝓭⁻¹) ℝ≥0)
 
-namespace DimSpeed
+namespace Tengoku.Physlib.DimSpeed
 
-open LTMCTUnitChoices
+open Tengoku.Physlib.LTMCTUnitChoices
 
 /-!
 
 ## Basic speeds
 
 -/
-open Dimensionful
-open LTMCTUnitChoices CarriesDimension
+open Tengoku.Physlib.Dimensionful
+open Tengoku.Physlib.LTMCTUnitChoices Tengoku.Physlib.CarriesDimension
 /-- The dimensional speed corresponding to 1 meter per second. -/
 noncomputable def oneMeterPerSecond : DimSpeed := toDimensionful SI ⟨1⟩
 
@@ -122,4 +122,5 @@ lemma oneMeterPerSecond_eq_mul_oneMilePerHour :
   ext
   norm_num [toDimensionful]
 
-end DimSpeed
+end Tengoku.Physlib.DimSpeed
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

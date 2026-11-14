@@ -10,7 +10,7 @@ public import Tengoku.Leanmodularforms.LeanModularForms.Modularforms.AtImInfty
 public import Tengoku.Leanmodularforms.LeanModularForms.Modularforms.ForMathlib_Cusps
 
 @[expose] public section
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms 
 /-!
 # Cusp forms as a submodule of modular forms (project bridge)
 
@@ -29,11 +29,11 @@ variable {Γ : Subgroup SL(2, ℤ)} {k : ℤ}
 
 /-- The project's `IsCuspForm` predicate, expressed via mathlib's
 `ModularForm.IsCuspForm` on the coerced GL-side subgroup. -/
-def IsCuspForm (Γ : Subgroup SL(2, ℤ)) (k : ℤ) (f : ModularForm Γ k) : Prop :=
+def _root_.Tengoku.Leanmodularforms.IsCuspForm (Γ : Subgroup SL(2, ℤ)) (k : ℤ) (f : ModularForm Γ k) : Prop :=
   ModularForm.IsCuspForm f
 
 /-- Reconstruct a `CuspForm` from a modular form known to be a cusp form. -/
-def IsCuspForm_to_CuspForm (Γ : Subgroup SL(2, ℤ)) (k : ℤ) (f : ModularForm Γ k)
+def _root_.Tengoku.Leanmodularforms.IsCuspForm_to_CuspForm (Γ : Subgroup SL(2, ℤ)) (k : ℤ) (f : ModularForm Γ k)
     (hf : IsCuspForm Γ k f) : CuspForm Γ k :=
   hf.choose
 
@@ -41,8 +41,9 @@ def IsCuspForm_to_CuspForm (Γ : Subgroup SL(2, ℤ)) (k : ℤ) (f : ModularForm
 underlying modular form.
 @isnad1 id=eq.1h3v.s9.b008d411234a from=translated src=- shape=21df7f8a vocab=c33f4e3d
 -/
-lemma CuspForm_to_ModularForm_coe (Γ : Subgroup SL(2, ℤ)) (k : ℤ) (f : ModularForm Γ k)
+lemma _root_.Tengoku.Leanmodularforms.CuspForm_to_ModularForm_coe (Γ : Subgroup SL(2, ℤ)) (k : ℤ) (f : ModularForm Γ k)
     (hf : IsCuspForm Γ k f) :
     (IsCuspForm_to_CuspForm Γ k f hf).toSlashInvariantForm = f.toSlashInvariantForm := by
   have hg : (IsCuspForm_to_CuspForm Γ k f hf).toModularFormₗ = f := hf.choose_spec
   exact congr_arg ModularForm.toSlashInvariantForm hg
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

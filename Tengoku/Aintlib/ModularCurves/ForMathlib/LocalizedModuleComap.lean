@@ -23,7 +23,7 @@ import Tengoku
 import Tengoku.Aintlib.ModularCurves.ForMathlib.FlatLocus
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.Aintlib end Tengoku.Aintlib open Tengoku.Aintlib
 open scoped TensorProduct
 
 universe u
@@ -40,7 +40,7 @@ variable {R P S M : Type u} [CommRing R] [CommRing P] [CommRing S]
 `q.primeCompl`, provided `P → S` is surjective.
 @isnad1 id=eq.1h3v.s7.6e61fc5033fd from=translated src=- shape=1c4b5f21 vocab=cbb940f7
 -/
-theorem algebraMapSubmonoid_primeCompl_comap (hf : Function.Surjective (algebraMap P S))
+theorem _root_.Tengoku.Aintlib.algebraMapSubmonoid_primeCompl_comap (hf : Function.Surjective (algebraMap P S))
     (q : Ideal S) [q.IsPrime] :
     Algebra.algebraMapSubmonoid S (q.comap (algebraMap P S)).primeCompl = q.primeCompl := by
   ext s
@@ -56,7 +56,7 @@ theorem algebraMapSubmonoid_primeCompl_comap (hf : Function.Surjective (algebraM
 /-- **Localisation commutes with the surjection `P ↠ S`.** For `M` an `S`-module and `q` a prime of
 `S`, the localisation of `M` at the contracted prime `q.comap (P → S)` (as a `P`-module) is
 `R`-linearly isomorphic to the localisation of `M` at `q` (as an `S`-module).-/
-noncomputable def localizedModuleComapEquiv (hf : Function.Surjective (algebraMap P S))
+noncomputable def _root_.Tengoku.Aintlib.localizedModuleComapEquiv (hf : Function.Surjective (algebraMap P S))
     (q : Ideal S) [q.IsPrime] :
     LocalizedModule (q.comap (algebraMap P S)).primeCompl M ≃ₗ[R]
       LocalizedModule q.primeCompl M := by
@@ -80,7 +80,7 @@ reduction (`flatLocus R S M` pulls back to `flatLocus R P M` along `Spec S ↪ S
 `mem_flatLocus` and `PrimeSpectrum.comap_asIdeal` at the call site to phrase it on `flatLocus`.
 @isnad1 id=iff.1h5v.s10.f4f453712844 from=translated src=- shape=e0bd72f7 vocab=f46780a5
 -/
-theorem flat_localizedModule_comap_iff (hf : Function.Surjective (algebraMap P S))
+theorem _root_.Tengoku.Aintlib.flat_localizedModule_comap_iff (hf : Function.Surjective (algebraMap P S))
     (q : Ideal S) [q.IsPrime] :
     Module.Flat R (LocalizedModule q.primeCompl M) ↔
       Module.Flat R (LocalizedModule (q.comap (algebraMap P S)).primeCompl M) := by
@@ -91,3 +91,4 @@ theorem flat_localizedModule_comap_iff (hf : Function.Surjective (algebraMap P S
   · intro h
     haveI := h
     exact Module.Flat.of_linearEquiv (localizedModuleComapEquiv hf q).symm
+-- Tengoku: root names of this library moved to Tengoku.Aintlib so they do not collide with other libraries (generated)

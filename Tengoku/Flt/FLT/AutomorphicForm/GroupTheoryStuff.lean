@@ -10,14 +10,14 @@ public import Tengoku
 /-! # Random assortments of results on group theory. -/
 
 @[expose] public section
-
+namespace Tengoku.Flt end Tengoku.Flt open Tengoku.Flt 
 attribute [local simp] Subgroup.mem_subgroupOf
 
 /-- The maximal `p`-quotient of a group.
 
 Note that the torsion free parts of `G` will not get quotiented out.
 So `G / MaximalPQuotient` is a `p`-group only when `G` is torsion free. -/
-abbrev MaximalPQuotient (G : Type*) [Group G] (p : ℕ) :=
+abbrev _root_.Tengoku.Flt.MaximalPQuotient (G : Type*) [Group G] (p : ℕ) :=
     G ⧸ ⨅ (N : Subgroup G) (_ : N.Normal) (_ : IsPGroup p (G ⧸ N)), N
 
 local instance (G : Type*) [Group G] (p : ℕ) :
@@ -26,19 +26,19 @@ local instance (G : Type*) [Group G] (p : ℕ) :
     Subgroup.normal_iInf_normal fun _ ↦ ‹_›
 
 /-- Quotient map into the maximal `p`-quotient of a group. -/
-abbrev MaximalPQuotient.mk (G : Type*) [Group G] (p : ℕ) : G →* MaximalPQuotient G p :=
+abbrev Tengoku.Flt.MaximalPQuotient.mk (G : Type*) [Group G] (p : ℕ) : G →* MaximalPQuotient G p :=
   QuotientGroup.mk' _
 
 /--
 @isnad1 id=surjecti.0h2v.s7.e3874b234a30 from=translated src=- shape=ec3d2faf vocab=5afba2ef
 -/
-lemma MaximalPQuotient.mk_surjective {G : Type*} [Group G] {p : ℕ} :
+lemma Tengoku.Flt.MaximalPQuotient.mk_surjective {G : Type*} [Group G] {p : ℕ} :
     Function.Surjective (mk G p) := QuotientGroup.mk'_surjective _
 
 /--
 @isnad1 id=eq.2h4v.s8.beecd61af948 from=translated src=- shape=d958e210 vocab=bf5a4be5
 -/
-lemma MaximalPQuotient.mk_eq_zero_of_pow_eq_zero {G : Type*} [Group G]
+lemma Tengoku.Flt.MaximalPQuotient.mk_eq_zero_of_pow_eq_zero {G : Type*} [Group G]
     {p q : ℕ} {g : G} (H : g ^ q = 1) (hpq : p.Coprime q) : mk G p g = 1 := by
   simp only [QuotientGroup.mk'_apply, QuotientGroup.eq_one_iff, Subgroup.mem_iInf]
   intro K _ hK
@@ -64,7 +64,7 @@ lemma Nat.exists_coprime_and_dvd_pow (a b : ℕ) (ha : a ≠ 0) :
 /-- The "maximal `p`-quotient" of `(ℤ, +)` is `ℤ/⋂ₙ pⁿℤ = ℤ`, not a `p`-group.
 @isnad1 id=ispgroup.1h2v.s6.1fad38697ca5 from=translated src=- shape=ee70b531 vocab=ab7b70e7
 -/
-lemma MaximalPQuotient.isPGroup_of_isMulTorsion
+lemma Tengoku.Flt.MaximalPQuotient.isPGroup_of_isMulTorsion
     (G : Type*) [Group G] (p : ℕ) (hG : IsMulTorsion G) :
     IsPGroup p (MaximalPQuotient G p) := by
   intro x
@@ -139,7 +139,7 @@ lemma Subgroup.card_map_eq_relIndex_ker {G G' : Type*} [Group G] [Group G']
 /--
 @isnad1 id=dvd.2h3v.s5.5ac9c40e2548 from=translated src=- shape=933d4015 vocab=8d59fd86
 -/
-lemma orderOf_dvd_ncard {G : Type*} [Group G]
+lemma _root_.Tengoku.Flt.orderOf_dvd_ncard {G : Type*} [Group G]
     {H : Subgroup G} (hH : Set.Finite (H : Set G)) {x : G} (hx : x ∈ H) :
     orderOf x ∣ Set.ncard (H : Set G) := by
   cases hH.nonempty_fintype
@@ -361,7 +361,7 @@ theorem ConjAct.toConjAct_inv_smul' {G : Type*} [Group G] (g h : G) :
 /--
 @isnad1 id=iff.0h6v.s6.22201ca8311b from=translated src=- shape=5c8adfa6 vocab=54171307
 -/
-lemma map_inv_eq_iff {G H F : Type*} [FunLike F G H] [Group G] [Monoid H] [MonoidHomClass F G H]
+lemma _root_.Tengoku.Flt.map_inv_eq_iff {G H F : Type*} [FunLike F G H] [Group G] [Monoid H] [MonoidHomClass F G H]
     {f : F} {x y : G} : f x⁻¹ = f y⁻¹ ↔ f x = f y := by
   rw [← ((Group.isUnit x).map f).mul_left_inj, ← ((Group.isUnit y).map f).mul_right_inj]
   simp [← map_mul, eq_comm]
@@ -369,7 +369,7 @@ lemma map_inv_eq_iff {G H F : Type*} [FunLike F G H] [Group G] [Monoid H] [Monoi
 /--
 @isnad1 id=iff.0h6v.s6.47cab700742b from=translated src=- shape=d248a5f0 vocab=54171307
 -/
-lemma map_inv_eq_map_comm
+lemma _root_.Tengoku.Flt.map_inv_eq_map_comm
     {G H F : Type*} [FunLike F G H] [Group G] [Monoid H] [MonoidHomClass F G H]
     {f : F} {x y : G} : f x⁻¹ = f y ↔ f y⁻¹ = f x := by
   rw [← ((Group.isUnit x).map f).mul_left_inj, iff_comm, ← ((Group.isUnit y).map f).mul_right_inj]
@@ -434,13 +434,13 @@ local instance Subgroup.mulActionMulOppositeNormalizerQuotient {G : Type*} [Grou
 /--
 @isnad1 id=eq.0h4v.s9.c4d03c58d23d from=translated src=- shape=828ad521 vocab=58fd10a6
 -/
-lemma normalizer_smul_mk {G : Type*} [Group G] (H : Subgroup G)
+lemma _root_.Tengoku.Flt.normalizer_smul_mk {G : Type*} [Group G] (H : Subgroup G)
     (x : (Subgroup.normalizer (H : Set G))ᵐᵒᵖ) (y : G) : x • (y : G ⧸ H) = ↑(y * x.unop) := rfl
 
 /--
 @isnad1 id=mem.3h5v.s6.cdaef727b24b from=translated src=- shape=189f5ce4 vocab=a6529bff
 -/
-lemma mem_of_pow_mem_of_pow_mem_of_coprime {G : Type*} [Group G] {H : Subgroup G}
+lemma _root_.Tengoku.Flt.mem_of_pow_mem_of_pow_mem_of_coprime {G : Type*} [Group G] {H : Subgroup G}
     {x : G} {m n : ℕ} (h : m.Coprime n) (hm : x ^ m ∈ H) (hn : x ^ n ∈ H) : x ∈ H := by
   rw [← zpow_one x, ← Nat.cast_one, ← h, ← Int.gcd_natCast_natCast, Int.gcd_eq_gcd_ab,
     zpow_add, zpow_mul, zpow_mul, zpow_natCast, zpow_natCast]
@@ -483,3 +483,4 @@ lemma Units.range_val {M : Type*} [Monoid M] :
     Set.range Units.val = {x : M | IsUnit x} :=
   Set.ext fun _ ↦ ⟨fun ⟨u, hu⟩ ↦ hu ▸ u.isUnit, fun h ↦ ⟨h.unit, rfl⟩⟩
 -- Tengoku: 11 registration(s) of this module made local so they do not change other libraries (generated)
+-- Tengoku: root names of this library moved to Tengoku.Flt so they do not collide with other libraries (generated)

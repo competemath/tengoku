@@ -1,6 +1,6 @@
 import Tengoku.Formalbook.FormalBook.Mathlib.EdgeFinset
 import Tengoku
-
+namespace Tengoku.Formalbook end Tengoku.Formalbook open Tengoku.Formalbook
 attribute [local instance] Sym2.instCoeFinset Sym2.instCoeMultiset
 attribute [local simp] Sym2.coe_toFinset Sym2.setOf_mem_eq Sym2.toFinset_mk Sym2.toFinset_toMultiset Sym2.toMultiset_mk
 
@@ -19,7 +19,7 @@ open Finset
     Equivalently, 4a²b² ≤ ab(a+b)², which simplifies to 0 ≤ ab(a-b)².
 @isnad1 id=le.2h2v.s6.510e0f129730 from=translated src=- shape=9aa46aae vocab=71e7111e
 -/
-theorem hm_le_gm (a b : ℝ) (ha : 0 < a) (hb : 0 < b) :
+theorem _root_.Tengoku.Formalbook.hm_le_gm (a b : ℝ) (ha : 0 < a) (hb : 0 < b) :
     2 * a * b / (a + b) ≤ Real.sqrt (a * b) := by
   have hab : 0 < a + b := by linarith
   rw [div_le_iff₀ hab]
@@ -35,7 +35,7 @@ theorem hm_le_gm (a b : ℝ) (ha : 0 < a) (hb : 0 < b) :
     ∏ᵢ (αᵢ - 1) · ∏ᵢ (αᵢ + 1) = ∏ᵢ (αᵢ² - 1).
 @isnad1 id=eq.0h2v.s6.b5e0615ab24b from=translated src=- shape=2f791b7e vocab=934afc08
 -/
-theorem prod_sub_one_mul_prod_add_one {n : ℕ} (α : Fin n → ℝ) :
+theorem _root_.Tengoku.Formalbook.prod_sub_one_mul_prod_add_one {n : ℕ} (α : Fin n → ℝ) :
     (∏ i, (α i - 1)) * (∏ i, (α i + 1)) = ∏ i, (α i ^ 2 - 1) := by
   rw [← Finset.prod_mul_distrib]
   congr 1
@@ -47,25 +47,25 @@ theorem prod_sub_one_mul_prod_add_one {n : ℕ} (α : Fin n → ℝ) :
 /-- f'(1) for our polynomial, up to sign:
     f'(1) = -2 · ∏ᵢ(αᵢ - 1) · ∏ⱼ(βⱼ + 1). -/
 @[nolint defsWithUnderscore]
-noncomputable def erdos_gallai_deriv_at_one {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → ℝ) : ℝ :=
+noncomputable def _root_.Tengoku.Formalbook.erdos_gallai_deriv_at_one {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → ℝ) : ℝ :=
   -2 * (∏ i, (α i - 1)) * (∏ j, (β j + 1))
 
 /-- f'(-1) for our polynomial:
     f'(-1) = 2 · ∏ᵢ(αᵢ + 1) · ∏ⱼ(βⱼ - 1). -/
 @[nolint defsWithUnderscore]
-noncomputable def erdos_gallai_deriv_at_neg_one {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → ℝ) : ℝ :=
+noncomputable def _root_.Tengoku.Formalbook.erdos_gallai_deriv_at_neg_one {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → ℝ) : ℝ :=
   2 * (∏ i, (α i + 1)) * (∏ j, (β j - 1))
 
 /-- C² = ∏ᵢ(αᵢ² - 1) · ∏ⱼ(βⱼ² - 1). -/
 @[nolint defsWithUnderscore]
-noncomputable def erdos_gallai_C_sq {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → ℝ) : ℝ :=
+noncomputable def _root_.Tengoku.Formalbook.erdos_gallai_C_sq {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → ℝ) : ℝ :=
   (∏ i, (α i ^ 2 - 1)) * (∏ j, (β j ^ 2 - 1))
 
 /-- Key identity: -f'(1)·f'(-1) = 4·C².
     That is, -(-2∏(αᵢ-1)∏(βⱼ+1))·(2∏(αᵢ+1)∏(βⱼ-1)) = 4·∏(αᵢ²-1)·∏(βⱼ²-1).
 @isnad1 id=eq.0h4v.s5.7bd4ee653944 from=translated src=- shape=425ac996 vocab=5235eb1b
 -/
-theorem erdos_gallai_deriv_product {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → ℝ) :
+theorem _root_.Tengoku.Formalbook.erdos_gallai_deriv_product {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → ℝ) :
     -(erdos_gallai_deriv_at_one α β) * (erdos_gallai_deriv_at_neg_one α β) =
     4 * erdos_gallai_C_sq α β := by
   simp only [erdos_gallai_deriv_at_one, erdos_gallai_deriv_at_neg_one, erdos_gallai_C_sq]
@@ -78,7 +78,7 @@ theorem erdos_gallai_deriv_product {m n : ℕ} (α : Fin m → ℝ) (β : Fin n 
     When f'(1) < 0 and f'(-1) > 0 (normal case), this equals
     2·|f'(1)|·|f'(-1)| / (|f'(1)| + |f'(-1)|), the harmonic mean. -/
 @[nolint defsWithUnderscore]
-noncomputable def erdos_gallai_T {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → ℝ) : ℝ :=
+noncomputable def _root_.Tengoku.Formalbook.erdos_gallai_T {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → ℝ) : ℝ :=
   -2 * (erdos_gallai_deriv_at_one α β) * (erdos_gallai_deriv_at_neg_one α β) /
     (erdos_gallai_deriv_at_one α β - erdos_gallai_deriv_at_neg_one α β)
 
@@ -88,18 +88,18 @@ open MeasureTheory intervalIntegral
 
 /-- f(x) = (1 - x²) · ∏ᵢ (αᵢ - x) · ∏ⱼ (βⱼ + x). -/
 @[nolint defsWithUnderscore]
-noncomputable def erdos_gallai_f {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → ℝ) (x : ℝ) : ℝ :=
+noncomputable def _root_.Tengoku.Formalbook.erdos_gallai_f {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → ℝ) (x : ℝ) : ℝ :=
   (1 - x ^ 2) * (∏ i, (α i - x)) * (∏ j, (β j + x))
 
 /-- The area A = ∫₋₁¹ f(x) dx. -/
 @[nolint defsWithUnderscore]
-noncomputable def erdos_gallai_area {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → ℝ) : ℝ :=
+noncomputable def _root_.Tengoku.Formalbook.erdos_gallai_area {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → ℝ) : ℝ :=
   ∫ x in (-1 : ℝ)..1, erdos_gallai_f α β x
 
 /-- f is continuous (finite product of continuous functions).
 @isnad1 id=continuo.0h4v.s5.4192b3c833df from=translated src=- shape=8ef4b717 vocab=a6077316
 -/
-theorem erdos_gallai_f_continuous {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → ℝ) :
+theorem _root_.Tengoku.Formalbook.erdos_gallai_f_continuous {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → ℝ) :
     Continuous (erdos_gallai_f α β) := by
   unfold erdos_gallai_f
   apply Continuous.mul
@@ -113,14 +113,14 @@ theorem erdos_gallai_f_continuous {m n : ℕ} (α : Fin m → ℝ) (β : Fin n �
 /-- f is interval-integrable on [-1, 1].
 @isnad1 id=interval.0h4v.s5.4fa769196833 from=translated src=- shape=d479d814 vocab=69ccc2b6
 -/
-theorem erdos_gallai_f_integrable {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → ℝ) :
+theorem _root_.Tengoku.Formalbook.erdos_gallai_f_integrable {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → ℝ) :
     IntervalIntegrable (erdos_gallai_f α β) MeasureTheory.volume (-1) 1 :=
   (erdos_gallai_f_continuous α β).intervalIntegrable (-1) 1
 
 /-- f(x) · f(-x) = (1 - x²)² · ∏ᵢ (αᵢ² - x²) · ∏ⱼ (βⱼ² - x²).
 @isnad1 id=eq.0h5v.s7.41393ec69d75 from=translated src=- shape=8a983c9a vocab=8d101e0b
 -/
-theorem erdos_gallai_f_mul_neg {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → ℝ) (x : ℝ) :
+theorem _root_.Tengoku.Formalbook.erdos_gallai_f_mul_neg {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → ℝ) (x : ℝ) :
     erdos_gallai_f α β x * erdos_gallai_f α β (-x) =
     (1 - x ^ 2) ^ 2 * (∏ i, (α i ^ 2 - x ^ 2)) * (∏ j, (β j ^ 2 - x ^ 2)) := by
   unfold erdos_gallai_f
@@ -145,7 +145,7 @@ theorem erdos_gallai_f_mul_neg {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → 
 /-- C² ≥ 0 when all αᵢ, βⱼ ≥ 1.
 @isnad1 id=le.2h4v.s5.5e5b5ad6eb94 from=translated src=- shape=57814e29 vocab=75b1f51d
 -/
-theorem erdos_gallai_C_sq_nonneg {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → ℝ)
+theorem _root_.Tengoku.Formalbook.erdos_gallai_C_sq_nonneg {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → ℝ)
     (hα : ∀ i, 1 ≤ α i) (hβ : ∀ j, 1 ≤ β j) :
     0 ≤ erdos_gallai_C_sq α β := by
   unfold erdos_gallai_C_sq
@@ -157,7 +157,7 @@ theorem erdos_gallai_C_sq_nonneg {m n : ℕ} (α : Fin m → ℝ) (β : Fin n �
     By the substitution x ↦ -x, and using neg_neg on the bounds.
 @isnad1 id=eq.0h4v.s6.322821ffce76 from=translated src=- shape=bad23a0b vocab=7561532e
 -/
-theorem erdos_gallai_integral_neg_eq {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → ℝ) :
+theorem _root_.Tengoku.Formalbook.erdos_gallai_integral_neg_eq {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → ℝ) :
     ∫ x in (-1 : ℝ)..1, erdos_gallai_f α β (-x) =
     ∫ x in (-1 : ℝ)..1, erdos_gallai_f α β x := by
   rw [intervalIntegral.integral_comp_neg]
@@ -166,7 +166,7 @@ theorem erdos_gallai_integral_neg_eq {m n : ℕ} (α : Fin m → ℝ) (β : Fin 
 /-- f(x) ≥ 0 for x ∈ [-1, 1] when αᵢ, βⱼ ≥ 1.
 @isnad1 id=le.3h5v.s6.ba574f66a5b3 from=translated src=- shape=d99d829e vocab=b3dadad0
 -/
-theorem erdos_gallai_f_nonneg {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → ℝ)
+theorem _root_.Tengoku.Formalbook.erdos_gallai_f_nonneg {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → ℝ)
     (hα : ∀ i, 1 ≤ α i) (hβ : ∀ j, 1 ≤ β j)
     (x : ℝ) (hx : x ∈ Set.Icc (-1 : ℝ) 1) :
     0 ≤ erdos_gallai_f α β x := by
@@ -180,14 +180,14 @@ theorem erdos_gallai_f_nonneg {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → �
 /-- For x ∈ [-1, 1]: a² - x² ≥ a² - 1. The hypothesis a ≥ 1 from the tex is not needed.
 @isnad1 id=le.1h2v.s6.1f2f4d02137a from=translated src=- shape=81b7bd51 vocab=7e1c78de
 -/
-theorem sq_sub_sq_ge {a x : ℝ} (hx : x ∈ Set.Icc (-1 : ℝ) 1) :
+theorem _root_.Tengoku.Formalbook.sq_sub_sq_ge {a x : ℝ} (hx : x ∈ Set.Icc (-1 : ℝ) 1) :
     a ^ 2 - 1 ≤ a ^ 2 - x ^ 2 := by
   nlinarith [hx.1, hx.2]
 
 /-- f(x)·f(-x) ≥ (1 - x²)² · C² for x ∈ [-1,1], αᵢ,βⱼ ≥ 1.
 @isnad1 id=le.3h5v.s7.58018d96182f from=translated src=- shape=87529a0a vocab=e99474b8
 -/
-theorem erdos_gallai_f_mul_neg_ge {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → ℝ)
+theorem _root_.Tengoku.Formalbook.erdos_gallai_f_mul_neg_ge {m n : ℕ} (α : Fin m → ℝ) (β : Fin n → ℝ)
     (hα : ∀ i, 1 ≤ α i) (hβ : ∀ j, 1 ≤ β j)
     (x : ℝ) (hx : x ∈ Set.Icc (-1 : ℝ) 1) :
     (1 - x ^ 2) ^ 2 * erdos_gallai_C_sq α β ≤
@@ -213,7 +213,7 @@ theorem erdos_gallai_f_mul_neg_ge {m n : ℕ} (α : Fin m → ℝ) (β : Fin n �
 /-- AM-GM for square roots: 2√(ab) ≤ a + b for a, b ≥ 0.
 @isnad1 id=le.2h2v.s5.ccc3c14cd806 from=translated src=- shape=4b1a4a3d vocab=101a96c3
 -/
-theorem am_gm_sqrt (a b : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b) :
+theorem _root_.Tengoku.Formalbook.am_gm_sqrt (a b : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b) :
     2 * Real.sqrt (a * b) ≤ a + b := by
   have hsa := Real.sq_sqrt ha
   have hsb := Real.sq_sqrt hb
@@ -224,7 +224,7 @@ theorem am_gm_sqrt (a b : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b) :
 /-- ∫₋₁¹ (1-x²) dx = 4/3.
 @isnad1 id=eq.0h0v.s6.ab6cf8b7461b from=translated src=- shape=c6c78e2a vocab=00fb578c
 -/
-theorem integral_one_sub_sq : ∫ x in (-1:ℝ)..1, (1 - x ^ 2) = 4 / 3 := by
+theorem _root_.Tengoku.Formalbook.integral_one_sub_sq : ∫ x in (-1:ℝ)..1, (1 - x ^ 2) = 4 / 3 := by
   have hderiv : ∀ x ∈ Set.uIcc (-1:ℝ) 1,
       HasDerivAt (fun x => x - x ^ 3 / 3) (1 - x ^ 2) x := by
     intro x _
@@ -245,7 +245,7 @@ theorem integral_one_sub_sq : ∫ x in (-1:ℝ)..1, (1 - x ^ 2) = 4 / 3 := by
     Integrating gives A ≥ (4/3)·C.
 @isnad1 id=le.2h4v.s6.5472eae5e30f from=translated src=- shape=36739877 vocab=e6745cc8
 -/
-theorem erdos_gallai_integral_bound {m n : ℕ}
+theorem _root_.Tengoku.Formalbook.erdos_gallai_integral_bound {m n : ℕ}
     (α : Fin m → ℝ) (β : Fin n → ℝ)
     (hα : ∀ i, 1 ≤ α i) (hβ : ∀ j, 1 ≤ β j) :
     erdos_gallai_area α β ≥ 4 / 3 * Real.sqrt (erdos_gallai_C_sq α β) := by
@@ -299,3 +299,4 @@ theorem erdos_gallai_integral_bound {m n : ℕ}
   linarith
 
 end ErdosGallai
+-- Tengoku: root names of this library moved to Tengoku.Formalbook so they do not collide with other libraries (generated)

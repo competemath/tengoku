@@ -18,7 +18,7 @@ This file collects small reusable algebra and infinite-product lemmas:
 -/
 
 @[expose] public section
-
+namespace Tengoku.Primenumbertheoremand end Tengoku.Primenumbertheoremand open Tengoku.Primenumbertheoremand 
 noncomputable section
 
 open scoped BigOperators
@@ -40,13 +40,13 @@ lemma Finset.prod_le_exp_sum {α : Type} (s : Finset α) (a : α → ℝ) (b : �
 ### Infinite products: pass a bound on all partial products to the limit
 -/
 
-lemma hasProd_le_of_prod_le_exp {α : Type} {f : α → ℝ} {a : ℝ}
+lemma _root_.Tengoku.Primenumbertheoremand.hasProd_le_of_prod_le_exp {α : Type} {f : α → ℝ} {a : ℝ}
     (hf : HasProd f a (SummationFilter.unconditional α))
     {B : ℝ} (hB : ∀ s : Finset α, (∏ x ∈ s, f x) ≤ Real.exp B) :
     a ≤ Real.exp B :=
   hasProd_le_of_prod_le (L := (SummationFilter.unconditional α)) hf hB
 
-lemma hasProd_inv_unconditional {α : Type} {fac : α → ℂ} {F : ℂ}
+lemma _root_.Tengoku.Primenumbertheoremand.hasProd_inv_unconditional {α : Type} {fac : α → ℂ} {F : ℂ}
     (hfac : HasProd fac F (SummationFilter.unconditional α)) (hF : F ≠ 0) :
     HasProd (fun x => (fac x)⁻¹) (F⁻¹) (SummationFilter.unconditional α) := by
   change
@@ -64,7 +64,7 @@ lemma hasProd_inv_unconditional {α : Type} {fac : α → ℂ} {F : ℂ}
   intro s
   simp [Finset.prod_inv_distrib]
 
-lemma hasProd_norm_inv_unconditional {α : Type} {fac : α → ℂ} {F : ℂ}
+lemma _root_.Tengoku.Primenumbertheoremand.hasProd_norm_inv_unconditional {α : Type} {fac : α → ℂ} {F : ℂ}
     (hfac : HasProd fac F (SummationFilter.unconditional α)) (hF : F ≠ 0) :
     HasProd (fun x => ‖(fac x)⁻¹‖) ‖F⁻¹‖ (SummationFilter.unconditional α) := by
   change
@@ -75,7 +75,7 @@ lemma hasProd_norm_inv_unconditional {α : Type} {fac : α → ℂ} {F : ℂ}
   intro s
   simp [norm_inv, Finset.prod_inv_distrib]
 
-lemma hasProd_norm_inv_le_exp_of_pointwise_le_exp {α : Type} {fac : α → ℂ} {F : ℂ}
+lemma _root_.Tengoku.Primenumbertheoremand.hasProd_norm_inv_le_exp_of_pointwise_le_exp {α : Type} {fac : α → ℂ} {F : ℂ}
     (hfac : HasProd fac F (SummationFilter.unconditional α))
     (b : α → ℝ) (B : ℝ)
     (hterm : ∀ x, ‖(fac x)⁻¹‖ ≤ Real.exp (b x))
@@ -98,3 +98,4 @@ lemma hasProd_norm_inv_le_exp_of_pointwise_le_exp {α : Type} {fac : α → ℂ}
       Real.exp_le_exp.2 (hsum s)
     exact h1.trans h2
   exact hasProd_le_of_prod_le_exp hnorm hprod
+-- Tengoku: root names of this library moved to Tengoku.Primenumbertheoremand so they do not collide with other libraries (generated)

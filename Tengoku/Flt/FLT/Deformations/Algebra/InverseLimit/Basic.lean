@@ -15,7 +15,7 @@ of modules and rings, showing that they are indeed limits in the respective cate
 -/
 
 @[expose] public section
-
+namespace Tengoku.Flt end Tengoku.Flt open Tengoku.Flt 
 variable {R ι : Type*} [Preorder ι] {G : ι → Type*}
 variable {T : ∀ ⦃i j : ι⦄, i ≤ j → Type*} {f : ∀ _ _ h, T h}
 variable [∀ i j (h : i ≤ j), FunLike (T h) (G j) (G i)]
@@ -24,9 +24,9 @@ variable (G f) in
 /--
 `InverseLimit G f` is the Inverse Limit of the objects `G i` glued by functions `f`.
 -/
-def InverseLimit : Type _ := {x : (i : ι) → G i // ∀ i j h, f i j h (x j) = (x i)}
+def _root_.Tengoku.Flt.InverseLimit : Type _ := {x : (i : ι) → G i // ∀ i j h, f i j h (x j) = (x i)}
 
-namespace InverseLimit
+namespace Tengoku.Flt.InverseLimit
 
 /--
 @isnad1 id=eq.0h4v.s7.06187dda10b9 from=translated src=- shape=01217a39 vocab=4b0f3651
@@ -527,5 +527,6 @@ def liftLinearMap {R : Type*} [Ring R]
 
 end Maps
 
-end InverseLimit
+end Tengoku.Flt.InverseLimit
 -- Tengoku: 1 registration(s) of this module made local so they do not change other libraries (generated)
+-- Tengoku: root names of this library moved to Tengoku.Flt so they do not collide with other libraries (generated)

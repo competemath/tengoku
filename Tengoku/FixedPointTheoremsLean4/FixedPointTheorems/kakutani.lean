@@ -19,20 +19,20 @@ Proof relies on the Brouwer fixed-point theorem.
 
 https://en.wikipedia.org/wiki/Kakutani_fixed-point_theorem
 -/
-
+namespace Tengoku.FixedPointTheoremsLean4 end Tengoku.FixedPointTheoremsLean4 open Tengoku.FixedPointTheoremsLean4
 open Classical
 open Filter
 
 /- defining the closed graph property of a set-valued map -/
-def closedGraph {X Y} [TopologicalSpace X] [TopologicalSpace Y] (f : X → Set Y) : Prop :=
+def _root_.Tengoku.FixedPointTheoremsLean4.closedGraph {X Y} [TopologicalSpace X] [TopologicalSpace Y] (f : X → Set Y) : Prop :=
     IsClosed { z : X × Y | z.2 ∈ f z.1}
 
 /- defining that x is a convex combinations of points y_i with weights a_i -/
-def convex_comb {V : Type*} {k: ℕ} [AddCommGroup V] [Module ℝ V]
+def _root_.Tengoku.FixedPointTheoremsLean4.convex_comb {V : Type*} {k: ℕ} [AddCommGroup V] [Module ℝ V]
   (x : V) (a : Fin k → ℝ) (y: Fin k → V) : Prop :=
   (∀ i, 0 ≤ a i) ∧ ∑ i, a i = 1 ∧ x = ∑ i, a i • y i
 
-lemma mem_of_convex_comb {V : Type*} {k: ℕ} [AddCommGroup V] [Module ℝ V]
+lemma _root_.Tengoku.FixedPointTheoremsLean4.mem_of_convex_comb {V : Type*} {k: ℕ} [AddCommGroup V] [Module ℝ V]
   (x : V) {a : Fin k → ℝ} {y: Fin k → V} (h0 : convex_comb x a y)
   s (h1 : Convex ℝ s) (h2 : ∀ i, y i ∈ s): x ∈ s := by {
   unfold convex_comb at h0
@@ -40,7 +40,7 @@ lemma mem_of_convex_comb {V : Type*} {k: ℕ} [AddCommGroup V] [Module ℝ V]
   apply Convex.sum_mem h1 (fun i _ ↦ h0.1 i) h0.2.1 fun i a ↦ h2 i
 }
 
-lemma sub_ICC_of_convex_comb {V : Type*} {k: ℕ} [AddCommGroup V] [Module ℝ V]
+lemma _root_.Tengoku.FixedPointTheoremsLean4.sub_ICC_of_convex_comb {V : Type*} {k: ℕ} [AddCommGroup V] [Module ℝ V]
     (x : V) {a : Fin k → ℝ} {y: Fin k → V} (h0 : convex_comb x a y)
     : a ∈ Set.Icc 0 1 := by {
   simp only [Set.mem_Icc]
@@ -55,7 +55,7 @@ lemma sub_ICC_of_convex_comb {V : Type*} {k: ℕ} [AddCommGroup V] [Module ℝ V
 }
 
 /- useful to get a fixed size of vectors -/
-lemma caratheodory_1 {V : Type*}
+lemma _root_.Tengoku.FixedPointTheoremsLean4.caratheodory_1 {V : Type*}
     [NormedAddCommGroup V] [NormedSpace ℝ V] [FiniteDimensional ℝ V]
     (s : Set V) k (h1 : k = Module.finrank ℝ V) {x} (h2 : x ∈ convexHull ℝ s)
     : ∃ (z : Fin (k+1)→ V), ∃ a, Set.range z ⊆ s ∧ convex_comb x a z := by {
@@ -122,3 +122,4 @@ lemma caratheodory_1 {V : Type*}
   apply And.intro h5
   apply And.intro h9 (And.intro h6 h7)
 }
+-- Tengoku: root names of this library moved to Tengoku.FixedPointTheoremsLean4 so they do not collide with other libraries (generated)

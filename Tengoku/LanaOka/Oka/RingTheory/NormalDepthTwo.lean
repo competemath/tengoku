@@ -30,7 +30,7 @@ contains `g ≠ 0` and `h` such that no prime of height at most one contains bot
 For an integral extension `R ⊆ S`, heights of primes of `S` are at most the heights of their
 contractions (`Ideal.height_le_height_comap_of_isIntegral`); with going down they are equal.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open RingTheory.Sequence Pointwise
 
 section Height
@@ -124,7 +124,7 @@ theorem Ideal.height_le_one_of_forall_mem_iff_exists_mul_eq {P : Ideal A} [P.IsP
 
 /-- **Weak regularity of a pair in a normal domain.** If `g ≠ 0` and no prime of height at most
 one contains both `g` and `h`, then `[g, h]` is weakly regular on `A`. -/
-theorem isWeaklyRegular_pair_of_forall_height_le_one {g h : A} (hg : g ≠ 0)
+theorem _root_.Tengoku.LanaOka.isWeaklyRegular_pair_of_forall_height_le_one {g h : A} (hg : g ≠ 0)
     (H : ∀ P : Ideal A, P.IsPrime → P.height ≤ 1 → g ∈ P → h ∉ P) :
     IsWeaklyRegular A [g, h] := by
   rw [isWeaklyRegular_cons_iff, isWeaklyRegular_cons_iff]
@@ -166,7 +166,7 @@ variable {R : Type*} [CommRing R] [IsDomain R] [IsNoetherianRing R]
 /-- **A pair without common primes of height one.** If every prime containing `J` has height at
 least two, then `J` contains `g ≠ 0` and `h` such that no prime of height at most one contains
 both. -/
-theorem exists_pair_of_forall_two_le_height (J : Ideal R)
+theorem _root_.Tengoku.LanaOka.exists_pair_of_forall_two_le_height (J : Ideal R)
     (hJ : ∀ P : Ideal R, P.IsPrime → J ≤ P → 2 ≤ P.height) :
     ∃ g ∈ J, ∃ h ∈ J, g ≠ 0 ∧ ∀ P : Ideal R, P.IsPrime → P.height ≤ 1 → g ∈ P → h ∉ P := by
   classical
@@ -229,7 +229,7 @@ variable {R A : Type*} [CommRing R] [IsDomain R] [IsNoetherianRing R] [IsIntegra
 noetherian normal domains and `I ⊆ A` an ideal all of whose primes have height at least two.
 Then the contraction of `I` contains `p₁, p₂` forming weakly regular sequences on `R` and on
 `A`. -/
-theorem exists_isWeaklyRegular_pair_of_isIntegral
+theorem _root_.Tengoku.LanaOka.exists_isWeaklyRegular_pair_of_isIntegral
     (hinj : Function.Injective (algebraMap R A)) (I : Ideal A)
     (hI : ∀ P : Ideal A, P.IsPrime → I ≤ P → 2 ≤ P.height) :
     ∃ p₁ ∈ I.comap (algebraMap R A), ∃ p₂ ∈ I.comap (algebraMap R A),
@@ -247,3 +247,4 @@ theorem exists_isWeaklyRegular_pair_of_isIntegral
     ((Ideal.height_comap_le_height P).trans hPh) h₁ h₂
 
 end Finite
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

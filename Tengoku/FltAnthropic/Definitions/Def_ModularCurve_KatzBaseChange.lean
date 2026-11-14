@@ -3,7 +3,7 @@ import Tengoku.FltAnthropic.Definitions.Def_ModularForm_KatzLevelOne
 import Tengoku.FltAnthropic.Definitions.Def_ModularCurve_KatzLevelP
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 set_option autoImplicit false
 
 universe u
@@ -12,19 +12,19 @@ noncomputable section
 
 open WeierstrassCurve
 
-@[reducible] def KatzModularForm.algebraThrough (R₀ : Type u) [CommRing R₀] (R₁ : Type u)
+@[reducible] def Tengoku.FltAnthropic.KatzModularForm.algebraThrough (R₀ : Type u) [CommRing R₀] (R₁ : Type u)
     [CommRing R₁] [Algebra R₀ R₁] (A : Type u) [CommRing A] [Algebra R₁ A] : Algebra R₀ A :=
   ((algebraMap R₁ A).comp (algebraMap R₀ R₁)).toAlgebra
 
 /--
 @isnad1 id=eq.0h3v.s6.56380f017353 from=translated src=- shape=89171ff2 vocab=fabf9d2e
 -/
-theorem KatzModularForm.algebraThrough_eq (R₀ : Type u) [CommRing R₀] (R₁ : Type u) [CommRing R₁]
+theorem Tengoku.FltAnthropic.KatzModularForm.algebraThrough_eq (R₀ : Type u) [CommRing R₀] (R₁ : Type u) [CommRing R₁]
     [Algebra R₀ R₁] (A : Type u) [CommRing A] [Algebra R₁ A] [h : Algebra R₀ A]
     [IsScalarTower R₀ R₁ A] : KatzModularForm.algebraThrough R₀ R₁ A = h :=
   Algebra.algebra_ext _ _ fun r => (IsScalarTower.algebraMap_apply R₀ R₁ A r).symm
 
-def KatzModularForm.algHomThrough (R₀ : Type u) [CommRing R₀] (R₁ : Type u) [CommRing R₁]
+def Tengoku.FltAnthropic.KatzModularForm.algHomThrough (R₀ : Type u) [CommRing R₀] (R₁ : Type u) [CommRing R₁]
     [Algebra R₀ R₁] {A B : Type u} [CommRing A] [Algebra R₁ A] [CommRing B] [Algebra R₁ B]
     (f : A →ₐ[R₁] B) :
     letI := KatzModularForm.algebraThrough R₀ R₁ A
@@ -37,7 +37,7 @@ def KatzModularForm.algHomThrough (R₀ : Type u) [CommRing R₀] (R₁ : Type u
       show f ((algebraMap R₁ A) (algebraMap R₀ R₁ r)) = (algebraMap R₁ B) (algebraMap R₀ R₁ r)
       exact f.commutes _ }
 
-namespace KatzModularForm
+namespace Tengoku.FltAnthropic.KatzModularForm
 
 variable {R₀ : Type u} [CommRing R₀] {k : ℤ}
 
@@ -88,13 +88,13 @@ variable (R₁ : Type u) [CommRing R₁] [Algebra R₀ R₁]
   rw [smul_toFun, Algebra.smul_def, Algebra.smul_def]
   rfl
 
-end KatzModularForm
+end Tengoku.FltAnthropic.KatzModularForm
 
 namespace ModularCurve
 
 namespace KatzLevelPForm
 
-open KatzModularForm (algebraThrough algebraThrough_eq algHomThrough)
+open Tengoku.FltAnthropic.KatzModularForm (algebraThrough algebraThrough_eq algHomThrough)
 
 variable {R₀ : Type u} [CommRing R₀] {p : ℕ} {k : ℤ}
 
@@ -212,10 +212,11 @@ end KatzGamma0Form
 
 end ModularCurve
 
-namespace KatzModularForm
+namespace Tengoku.FltAnthropic.KatzModularForm
 
 variable {R₀ : Type u} [CommRing R₀] {k : ℤ} (R₁ : Type u) [CommRing R₁] [Algebra R₀ R₁]
 
-end KatzModularForm
+end Tengoku.FltAnthropic.KatzModularForm
 
 end
+-- Tengoku: root names of this library moved to Tengoku.FltAnthropic so they do not collide with other libraries (generated)

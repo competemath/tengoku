@@ -13,7 +13,7 @@ import Tengoku.Seed.RingTheory.Norm.Basic
 import Tengoku.Seed.RingTheory.TensorProduct.Maps
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.ClassfieldtheoryYamaguchi end Tengoku.ClassfieldtheoryYamaguchi open Tengoku.ClassfieldtheoryYamaguchi
 set_option autoImplicit false
 
 /-!
@@ -36,14 +36,14 @@ variable
 
 /-- The adele algebra of `L`, written in base-change form
 `𝔸_K ⊗_K L`.-/
-abbrev RelativeAdeleRing :=
+abbrev _root_.Tengoku.ClassfieldtheoryYamaguchi.RelativeAdeleRing :=
   NumberField.AdeleRing (𝓞 K) K ⊗[K] L
 
 /-- The idele group of the base-changed adele algebra.-/
-abbrev RelativeIdeleGroup :=
+abbrev _root_.Tengoku.ClassfieldtheoryYamaguchi.RelativeIdeleGroup :=
   (RelativeAdeleRing K L)ˣ
 
-namespace RelativeIdeleGroup
+namespace Tengoku.ClassfieldtheoryYamaguchi.RelativeIdeleGroup
 
 /--
 @isnad1 id=nontrivi.0h1v.s4.3a66de080b6c from=translated src=- shape=5a2b787c vocab=eedd0616
@@ -420,4 +420,5 @@ def galoisFixedSubgroup :
   letI := relativeIdeleMulDistribMulAction K L
   exact FixedPoints.subgroup (L ≃ₐ[K] L) (RelativeIdeleGroup K L)
 
-end RelativeIdeleGroup
+end Tengoku.ClassfieldtheoryYamaguchi.RelativeIdeleGroup
+-- Tengoku: root names of this library moved to Tengoku.ClassfieldtheoryYamaguchi so they do not collide with other libraries (generated)

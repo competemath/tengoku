@@ -40,7 +40,7 @@ For `f = decomp.polarPart s`:
   singleton-to-multipole CPV lift (the headline T-BR-Y5 result).
 
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Set Filter Topology Complex MeasureTheory Metric
 open scoped Real Interval
 
@@ -213,3 +213,4 @@ end MultiPoleDCT
 end HungerbuhlerWasem
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

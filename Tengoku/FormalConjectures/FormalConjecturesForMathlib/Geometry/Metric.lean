@@ -19,38 +19,38 @@ public import Tengoku.FormalConjectures.FormalConjecturesForMathlib.Data.Sym.Sym
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.FormalConjectures end Tengoku.FormalConjectures open Tengoku.FormalConjectures 
 open scoped Finset
 
 variable {X : Type*} [MetricSpace X]
 
 /-- The number of pairs of points of a finite set `s` in a metric space that are distance 1 apart.-/
-noncomputable def unitDistNum (s : Finset X) : ℕ := #{p ∈ s.sym2 | dist p.out.1 p.out.2 = 1}
+noncomputable def _root_.Tengoku.FormalConjectures.unitDistNum (s : Finset X) : ℕ := #{p ∈ s.sym2 | dist p.out.1 p.out.2 = 1}
 
 /-- The set of distances determined by a finite set of points in a metric space.-/
-noncomputable def distanceSet (points : Finset X) : Finset ℝ :=
+noncomputable def _root_.Tengoku.FormalConjectures.distanceSet (points : Finset X) : Finset ℝ :=
   points.offDiag.image fun (pair : X × X) => dist pair.1 pair.2
 
 /--
 Given a finite set of points in a metric space, we define the number of distinct distances
 between pairs of points.-/
-noncomputable def distinctDistances (points : Finset X) : ℕ :=
+noncomputable def _root_.Tengoku.FormalConjectures.distinctDistances (points : Finset X) : ℕ :=
   #(distanceSet points)
 
 variable (X) in
 /-- The minimum number of distinct distances determined by a set of `n` points in `X`.-/
-noncomputable def minimalDistinctDistances (n : ℕ) : ℕ :=
+noncomputable def _root_.Tengoku.FormalConjectures.minimalDistinctDistances (n : ℕ) : ℕ :=
   sInf {m : ℕ | ∃ points : Finset X, #points = n ∧ distinctDistances points = m}
 
 /-- The multiplicity of the distance `d` determined by `points`, that is, the number of unordered
 pairs of distinct points at distance `d` apart.-/
-noncomputable def distanceMultiplicity (points : Finset X) (d : ℝ) : ℕ :=
+noncomputable def _root_.Tengoku.FormalConjectures.distanceMultiplicity (points : Finset X) (d : ℝ) : ℕ :=
   #(points.offDiag.filter fun (pair : X × X) => dist pair.1 pair.2 = d) / 2
 
 open Classical in
 /-- Given a finite set of points in a metric space, we define the number of distinct distances
 between a given point and all other points.-/
-noncomputable def distinctDistancesFrom (points : Finset X) (pt : X) : ℕ :=
+noncomputable def _root_.Tengoku.FormalConjectures.distinctDistancesFrom (points : Finset X) (pt : X) : ℕ :=
   #((points.erase pt).image fun x => dist x pt)
 
 open Classical in
@@ -58,7 +58,7 @@ open Classical in
 the total number of unordered pairs of distinct points.
 @isnad1 id=le.0h2v.s4.60ecb8eff71f from=translated src=- shape=cdf69985 vocab=62db1e0b
 -/
-theorem unitDistNum_le_choose_two (s : Finset X) : unitDistNum s ≤ (#s).choose 2 := by
+theorem _root_.Tengoku.FormalConjectures.unitDistNum_le_choose_two (s : Finset X) : unitDistNum s ≤ (#s).choose 2 := by
   rw [unitDistNum, ← Sym2.card_image_offDiag]
   refine Finset.card_le_card fun p hp => ?_
   obtain ⟨hps, hpd⟩ := Finset.mem_filter.mp hp
@@ -68,3 +68,4 @@ theorem unitDistNum_le_choose_two (s : Finset X) : unitDistNum s ≤ (#s).choose
     obtain ⟨-, rfl⟩ : _ ∧ x = y := Finset.mem_diag.mp hxy
     simp at hpd
   · exact h
+-- Tengoku: root names of this library moved to Tengoku.FormalConjectures so they do not collide with other libraries (generated)

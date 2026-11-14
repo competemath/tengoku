@@ -26,13 +26,13 @@ is holomorphic on `U`. The proof is the one of `analyticAt_circleIntegral`: on a
 - `differentiableOn_intervalIntegral`: holomorphy of parametric interval integrals with
   parameters in a finite-dimensional complex normed space.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Complex MeasureTheory
 open scoped Topology Interval
 
 /-- Fubini: a torus integral and an interval integral of a jointly continuous function
 commute. -/
-theorem torusIntegral_intervalIntegral_swap {m : ℕ} (c : Fin m → ℂ) (R : Fin m → ℝ)
+theorem _root_.Tengoku.LanaOka.torusIntegral_intervalIntegral_swap {m : ℕ} (c : Fin m → ℂ) (R : Fin m → ℝ)
     {a b : ℝ} (hab : a ≤ b) (H : (Fin m → ℂ) → ℝ → ℂ)
     (hH : Continuous fun p : (Fin m → ℝ) × ℝ ↦ H (torusMap c R p.1) p.2) :
     (∯ ξ in T(c, R), ∫ t in a..b, H ξ t) = ∫ t in a..b, ∯ ξ in T(c, R), H ξ t := by
@@ -65,7 +65,7 @@ theorem torusIntegral_intervalIntegral_swap {m : ℕ} (c : Fin m → ℂ) (R : F
 
 /-- An interval integral of a family that is holomorphic in the parameter on a closed polydisc,
 and jointly continuous, is analytic at the centre of the polydisc. -/
-theorem analyticAt_intervalIntegral {m : ℕ} {ρ : ℝ} (hρ : 0 < ρ) {a b : ℝ} (hab : a ≤ b)
+theorem _root_.Tengoku.LanaOka.analyticAt_intervalIntegral {m : ℕ} {ρ : ℝ} (hρ : 0 < ρ) {a b : ℝ} (hab : a ≤ b)
     {G : (Fin m → ℂ) → ℝ → ℂ}
     (hdiff : ∀ t : ℝ, DifferentiableOn ℂ (fun x ↦ G x t)
       (Set.univ.pi fun _ : Fin m ↦ Metric.closedBall (0 : ℂ) ρ))
@@ -133,13 +133,13 @@ section FiniteDimensional
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] [FiniteDimensional ℂ E]
 
 /-- A chart `ℂ^k ≃ E` of a finite-dimensional complex normed space. -/
-noncomputable def complexChart (E : Type*) [NormedAddCommGroup E] [NormedSpace ℂ E]
+noncomputable def _root_.Tengoku.LanaOka.complexChart (E : Type*) [NormedAddCommGroup E] [NormedSpace ℂ E]
     [FiniteDimensional ℂ E] : (Fin (Module.finrank ℂ E) → ℂ) ≃L[ℂ] E :=
   ContinuousLinearEquiv.ofFinrankEq (by simp)
 
 /-- Around a point `x₀` of an open set `U ⊆ E`, the image of a small closed polydisc under the
 affine chart `y ↦ x₀ + complexChart E y` lies in `U`. -/
-lemma exists_complexChart_polydisc_subset {U : Set E} (hU : IsOpen U) {x₀ : E} (hx₀ : x₀ ∈ U) :
+lemma _root_.Tengoku.LanaOka.exists_complexChart_polydisc_subset {U : Set E} (hU : IsOpen U) {x₀ : E} (hx₀ : x₀ ∈ U) :
     ∃ ρ > 0, ∀ y ∈ Set.univ.pi fun _ : Fin (Module.finrank ℂ E) ↦ Metric.closedBall (0 : ℂ) ρ,
       x₀ + complexChart E y ∈ U := by
   have hφ : Continuous fun y : Fin (Module.finrank ℂ E) → ℂ ↦ x₀ + complexChart E y := by
@@ -153,7 +153,7 @@ lemma exists_complexChart_polydisc_subset {U : Set E} (hU : IsOpen U) {x₀ : E}
 
 /-- Analyticity at `x₀` follows from analyticity at `0` in the affine chart
 `y ↦ x₀ + complexChart E y`. -/
-lemma analyticAt_of_complexChart {f : E → ℂ} {x₀ : E}
+lemma _root_.Tengoku.LanaOka.analyticAt_of_complexChart {f : E → ℂ} {x₀ : E}
     (h : AnalyticAt ℂ (fun y ↦ f (x₀ + complexChart E y)) 0) : AnalyticAt ℂ f x₀ := by
   have hlin : AnalyticAt ℂ (fun x : E ↦ (complexChart E).symm (x - x₀)) x₀ :=
     ((complexChart E).symm.toContinuousLinearMap.analyticAt _).comp
@@ -165,7 +165,7 @@ lemma analyticAt_of_complexChart {f : E → ℂ} {x₀ : E}
 
 /-- A holomorphic function on an open subset of a finite-dimensional complex normed space is
 analytic. -/
-theorem analyticAt_of_differentiableOn_of_finiteDimensional {U : Set E} (hU : IsOpen U)
+theorem _root_.Tengoku.LanaOka.analyticAt_of_differentiableOn_of_finiteDimensional {U : Set E} (hU : IsOpen U)
     {f : E → ℂ} (hf : DifferentiableOn ℂ f U) {x₀ : E} (hx₀ : x₀ ∈ U) : AnalyticAt ℂ f x₀ := by
   refine analyticAt_of_complexChart ?_
   have hφ : Continuous fun y : Fin (Module.finrank ℂ E) → ℂ ↦ x₀ + complexChart E y := by
@@ -176,7 +176,7 @@ theorem analyticAt_of_differentiableOn_of_finiteDimensional {U : Set E} (hU : Is
 /-- **Holomorphy of parametric interval integrals.** If `G : E → ℝ → ℂ` is jointly continuous
 on `U × [a, b]` and holomorphic on `U` in the first variable, then `x ↦ ∫ t in a..b, G x t` is
 holomorphic on `U`. -/
-theorem differentiableOn_intervalIntegral {U : Set E} (hU : IsOpen U) {a b : ℝ}
+theorem _root_.Tengoku.LanaOka.differentiableOn_intervalIntegral {U : Set E} (hU : IsOpen U) {a b : ℝ}
     {G : E → ℝ → ℂ} (hdiff : ∀ t ∈ [[a, b]], DifferentiableOn ℂ (fun x ↦ G x t) U)
     (hcont : ContinuousOn (fun p : E × ℝ ↦ G p.1 p.2) (U ×ˢ [[a, b]])) :
     DifferentiableOn ℂ (fun x ↦ ∫ t in a..b, G x t) U := by
@@ -210,3 +210,4 @@ theorem differentiableOn_intervalIntegral {U : Set E} (hU : IsOpen U) {a b : ℝ
   simp [hG', Set.projIcc_of_mem hab ht]
 
 end FiniteDimensional
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

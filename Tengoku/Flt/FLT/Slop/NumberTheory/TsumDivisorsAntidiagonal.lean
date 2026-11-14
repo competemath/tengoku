@@ -71,7 +71,7 @@ settings:
 -/
 
 @[expose] public section
-
+namespace Tengoku.Flt end Tengoku.Flt open Tengoku.Flt 
 open scoped ArithmeticFunction.sigma
 
 variable {𝕜 : Type*} [Field 𝕜] [TopologicalSpace 𝕜] [IsTopologicalRing 𝕜] [T2Space 𝕜]
@@ -84,7 +84,7 @@ summable. Given these, the double series is regrouped along the fibres of `(m, j
 which are exactly the divisor pairs of `N`.
 @isnad1 id=eq.2h3v.s8.a704f4c98faa from=translated src=- shape=df09d77e vocab=2e31b461
 -/
-theorem tsum_lambert_of_summable (r : 𝕜) (c : ℕ → 𝕜)
+theorem _root_.Tengoku.Flt.tsum_lambert_of_summable (r : 𝕜) (c : ℕ → 𝕜)
     (hgeo : ∀ m : ℕ+, HasSum (fun j : ℕ ↦ r ^ ((m : ℕ) * (j + 1)))
       (r ^ (m : ℕ) / (1 - r ^ (m : ℕ))))
     (hsum : Summable fun p : ℕ+ × ℕ+ ↦ c p.1 * r ^ ((p.1 : ℕ) * (p.2 : ℕ))) :
@@ -127,7 +127,7 @@ combined with row summability from `hsum` (through `Summable.hasSum_iff_tendsto_
 the row `HasSum` that `tsum_lambert_of_summable` takes as `hgeo`.
 @isnad1 id=iff.0h2v.s7.6d4393810b5f from=translated src=- shape=946bf5a4 vocab=72bf7715
 -/
-theorem isTopologicallyNilpotent_iff_tendsto_geomSum (r : 𝕜) :
+theorem _root_.Tengoku.Flt.isTopologicallyNilpotent_iff_tendsto_geomSum (r : 𝕜) :
     IsTopologicallyNilpotent r ↔
       Filter.Tendsto (fun N ↦ ∑ n ∈ Finset.range N, r ^ n) Filter.atTop (nhds (1 - r)⁻¹) := by
   constructor
@@ -168,7 +168,7 @@ companion to `tsum_lambert_of_summable` that trades the per-row hypothesis `hgeo
 assumption `IsTopologicallyNilpotent r`, at the cost of assuming `𝕜` complete.
 @isnad1 id=eq.2h3v.s8.e34a0dc99765 from=translated src=- shape=51fbaeaf vocab=3825089f
 -/
-theorem tsum_lambert_of_summable_of_isTopologicallyNilpotent (r : 𝕜) (c : ℕ → 𝕜)
+theorem _root_.Tengoku.Flt.tsum_lambert_of_summable_of_isTopologicallyNilpotent (r : 𝕜) (c : ℕ → 𝕜)
     (htn : IsTopologicallyNilpotent r)
     (hsum : Summable fun p : ℕ+ × ℕ+ ↦ c p.1 * r ^ ((p.1 : ℕ) * (p.2 : ℕ))) :
     ∑' m : ℕ+, c m * r ^ (m : ℕ) / (1 - r ^ (m : ℕ)) =
@@ -224,7 +224,7 @@ omit [CompleteSpace 𝕜] in
 explicit).
 @isnad1 id=hassum.2h3v.s7.6d0a59b5cd59 from=translated src=- shape=4fdbf9c7 vocab=10996713
 -/
-theorem hasSum_geometric_pow_mul_succ (hr : ‖r‖ < 1) {m : ℕ} (hm : m ≠ 0) :
+theorem _root_.Tengoku.Flt.hasSum_geometric_pow_mul_succ (hr : ‖r‖ < 1) {m : ℕ} (hm : m ≠ 0) :
     HasSum (fun j : ℕ ↦ r ^ (m * (j + 1))) (r ^ m / (1 - r ^ m)) := by
   have hrm : ‖r ^ m‖ < 1 := by
     simpa [norm_pow] using pow_lt_one₀ (norm_nonneg r) hr hm
@@ -238,7 +238,7 @@ This discharges the `hsum` hypothesis of `tsum_lambert_of_summable` for the weig
 over a complete normed field.
 @isnad1 id=summable.1h3v.s7.39b00825b6ce from=translated src=- shape=972535af vocab=a131cf92
 -/
-theorem summable_prod_mul_pow' [NormSMulClass ℤ 𝕜] (k : ℕ) (hr : ‖r‖ < 1) :
+theorem _root_.Tengoku.Flt.summable_prod_mul_pow' [NormSMulClass ℤ 𝕜] (k : ℕ) (hr : ‖r‖ < 1) :
     Summable fun p : ℕ+ × ℕ+ ↦ ((p.1 : ℕ) : 𝕜) ^ k * r ^ ((p.1 : ℕ) * (p.2 : ℕ)) := by
   refine (summable_prod_mul_pow k hr).prod_symm.congr fun p ↦ ?_
   simp only [Prod.fst_swap, Prod.snd_swap, mul_comm (p.2 : ℕ) (p.1 : ℕ)]
@@ -265,3 +265,4 @@ example (r : 𝕜) (c : ℕ → 𝕜) (hr : ‖r‖ < 1)
     (tendsto_pow_atTop_nhds_zero_of_norm_lt_one hr) hsum
 
 end Normed
+-- Tengoku: root names of this library moved to Tengoku.Flt so they do not collide with other libraries (generated)

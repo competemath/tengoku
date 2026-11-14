@@ -42,7 +42,7 @@ applying this local theorem to `R_𝔭 → S_𝔮`; that reduction is pure local
 import Tengoku.Seed.RingTheory.LocalRing.Module
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.Aintlib end Tengoku.Aintlib open Tengoku.Aintlib
 open TensorProduct IsLocalRing Function Module LinearMap
 
 noncomputable section
@@ -63,7 +63,7 @@ omit [IsLocalRing R] [IsLocalRing S] [IsLocalHom (algebraMap R S)] [IsNoetherian
 with `Submodule.restrictScalars_top`.
 @isnad1 id=eq.0h4v.s8.2b0e30614e28 from=translated src=- shape=8a07d948 vocab=50f489bf
 -/
-theorem restrictScalars_map_smul_top (𝔞 : Ideal R) :
+theorem _root_.Tengoku.Aintlib.restrictScalars_map_smul_top (𝔞 : Ideal R) :
     (𝔞.map (algebraMap R S) • (⊤ : Submodule S N)).restrictScalars R
       = 𝔞 • (⊤ : Submodule R N) := by
   rw [Ideal.smul_restrictScalars, Submodule.restrictScalars_top]
@@ -72,7 +72,7 @@ theorem restrictScalars_map_smul_top (𝔞 : Ideal R) :
 `(R ⧸ 𝔞) ⊗[R] N` is `R`-linearly identified with the fibre quotient `N ⧸ 𝔞S·N`.  It is
 `TensorProduct.quotTensorEquivQuotSMul` (which lands in the `R`-submodule quotient `N ⧸ 𝔞·N`)
 composed with the identification `𝔞·N = (𝔞S·N)↾R` of `restrictScalars_map_smul_top`.-/
-noncomputable def quotTensorEquivQuotMapSMul (𝔞 : Ideal R) :
+noncomputable def _root_.Tengoku.Aintlib.quotTensorEquivQuotMapSMul (𝔞 : Ideal R) :
     (R ⧸ 𝔞) ⊗[R] N ≃ₗ[R] N ⧸ (𝔞.map (algebraMap R S) • (⊤ : Submodule S N)) :=
   TensorProduct.quotTensorEquivQuotSMul N 𝔞 ≪≫ₗ
     Submodule.quotEquivOfEq _ _ (restrictScalars_map_smul_top N 𝔞).symm ≪≫ₗ
@@ -81,7 +81,7 @@ noncomputable def quotTensorEquivQuotMapSMul (𝔞 : Ideal R) :
 /--
 @isnad1 id=eq.0h6v.s11.6e70eb13ce94 from=translated src=- shape=001b38d1 vocab=e6a2c9c9
 -/
-theorem quotTensorEquivQuotMapSMul_mk_tmul (𝔞 : Ideal R) (a : R) (v : N) :
+theorem _root_.Tengoku.Aintlib.quotTensorEquivQuotMapSMul_mk_tmul (𝔞 : Ideal R) (a : R) (v : N) :
     quotTensorEquivQuotMapSMul N 𝔞 (Ideal.Quotient.mk 𝔞 a ⊗ₜ[R] v)
       = (Submodule.Quotient.mk (a • v) :
           N ⧸ (𝔞.map (algebraMap R S) • (⊤ : Submodule S N))) := by
@@ -279,3 +279,4 @@ theorem Module.free_of_flat_of_fibre_free [Module.Flat R M]
   exact Module.Free.of_equiv (LinearEquiv.ofBijective φ ⟨hφinj, hsurj⟩)
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Aintlib so they do not collide with other libraries (generated)

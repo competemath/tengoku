@@ -30,18 +30,18 @@ existence of the charge unit of the coulomb, and construct all other charge unit
 -/
 
 @[expose] public section
-
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
 open NNReal
 
 /-- The choices of translationally-invariant metrics on the charge-manifold.
   Such a choice corresponds to a choice of units for charge.
   This assumes that an orientation has already being picked on the charge manifold. -/
-structure ChargeUnit where
+structure _root_.Tengoku.Physlib.ChargeUnit where
   /-- The underlying scale of the unit. -/
   val : ℝ
   property : 0 < val
 
-namespace ChargeUnit
+namespace Tengoku.Physlib.ChargeUnit
 
 @[simp]
 lemma val_ne_zero (x : ChargeUnit) : x.val ≠ 0 := by
@@ -154,4 +154,5 @@ def coulombs : ChargeUnit := ⟨1, by norm_num⟩
 /-- The charge unit of a elementryCharge (1.602176634×10−19 coulomb). -/
 noncomputable def elementaryCharge : ChargeUnit := scale (1.602176634e-19) coulombs
 
-end ChargeUnit
+end Tengoku.Physlib.ChargeUnit
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

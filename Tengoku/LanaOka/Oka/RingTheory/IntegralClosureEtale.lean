@@ -37,13 +37,13 @@ over `R` lies in `S` (`exists_algebraMap_eq_of_isIntegral_of_etale`).
   supported on one factor are zero or normal domains.
 - `exists_mem_nonZeroDivisors_of_forall_not_le`: prime avoidance for nonzerodivisors.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open scoped nonZeroDivisors TensorProduct
 
 universe u
 
 /-- An algebra over a subsingleton ring is a subsingleton. -/
-lemma subsingleton_of_algebra_of_subsingleton (R S : Type*) [CommRing R] [Semiring S]
+lemma _root_.Tengoku.LanaOka.subsingleton_of_algebra_of_subsingleton (R S : Type*) [CommRing R] [Semiring S]
     [Algebra R S] [Subsingleton R] : Subsingleton S :=
   subsingleton_of_zero_eq_one (by
     rw [← map_zero (algebraMap R S), ← map_one (algebraMap R S), Subsingleton.elim (0 : R) 1])
@@ -55,7 +55,7 @@ variable {R S Sᵣ : Type*} [CommRing R] [CommRing S] [CommRing Sᵣ] [Algebra R
 
 /-- Localizing an étale algebra over a normal domain at a nonzero element of the base is
 injective. -/
-theorem injective_algebraMap_away_of_etale [Algebra.Etale R S] {r : R}
+theorem _root_.Tengoku.LanaOka.injective_algebraMap_away_of_etale [Algebra.Etale R S] {r : R}
     (hR : Subsingleton R ∨ (IsDomain R ∧ IsIntegrallyClosed R ∧ r ≠ 0))
     [IsLocalization.Away (algebraMap R S r) Sᵣ] : Function.Injective (algebraMap S Sᵣ) := by
   rcases hR with hR | ⟨_, _, hr⟩
@@ -80,7 +80,7 @@ variable {R S B : Type*} [CommRing R] [CommRing S] [CommRing B] [Algebra R S] [A
 
 /-- If every element of `B` integral over `R` comes from `R`, then after a smooth base change
 `R → S` every element of `S ⊗[R] B` integral over `S` comes from `S`. -/
-theorem exists_algebraMap_eq_of_isIntegral_tensor [Algebra.Smooth R S]
+theorem _root_.Tengoku.LanaOka.exists_algebraMap_eq_of_isIntegral_tensor [Algebra.Smooth R S]
     (hB : ∀ b : B, IsIntegral R b → ∃ r : R, algebraMap R B r = b) (y : S ⊗[R] B)
     (hy : IsIntegral S y) : ∃ s : S, algebraMap S (S ⊗[R] B) s = y := by
   obtain ⟨t, ht⟩ := (TensorProduct.toIntegralClosure_bijective_of_smooth (R := R) (S := S)
@@ -111,7 +111,7 @@ variable {R S Sᵣ : Type*} [CommRing R] [CommRing S] [CommRing Sᵣ] [Algebra R
 
 /-- In a localization `Rᵣ` of a normal domain at a nonzero element, the elements integral over
 `R` come from `R`. -/
-theorem exists_algebraMap_eq_of_isIntegral_away [IsDomain R] [IsIntegrallyClosed R] {r : R}
+theorem _root_.Tengoku.LanaOka.exists_algebraMap_eq_of_isIntegral_away [IsDomain R] [IsIntegrallyClosed R] {r : R}
     (hr : r ≠ 0) {Rᵣ : Type*} [CommRing Rᵣ] [Algebra R Rᵣ] [IsLocalization.Away r Rᵣ] (b : Rᵣ)
     (hb : IsIntegral R b) : ∃ z : R, algebraMap R Rᵣ z = b := by
   let K := FractionRing R
@@ -135,7 +135,7 @@ theorem exists_algebraMap_eq_of_isIntegral_away [IsDomain R] [IsIntegrallyClosed
 
 /-- Every element of a localization of an étale algebra over a normal domain at a nonzero
 element of the base which is integral over the base comes from the étale algebra. -/
-theorem exists_algebraMap_eq_of_isIntegral_of_etale [Algebra.Etale R S] [Algebra R Sᵣ]
+theorem _root_.Tengoku.LanaOka.exists_algebraMap_eq_of_isIntegral_of_etale [Algebra.Etale R S] [Algebra R Sᵣ]
     [IsScalarTower R S Sᵣ] {r : R}
     (hR : Subsingleton R ∨ (IsDomain R ∧ IsIntegrallyClosed R ∧ r ≠ 0))
     [IsLocalization.Away (algebraMap R S r) Sᵣ] (x : Sᵣ) (hx : IsIntegral R x) :
@@ -165,18 +165,18 @@ variable {A : Type u} [CommRing A] {ι : Type u} {D : ι → Type u}
   [∀ i, CommRing (D i)]
 
 /-- The projection `A → D i` of a ring `A ≃ ∏ D`. -/
-def piProj (e : A ≃+* ∀ i, D i) (i : ι) : A →+* D i :=
+def _root_.Tengoku.LanaOka.piProj (e : A ≃+* ∀ i, D i) (i : ι) : A →+* D i :=
   (Pi.evalRingHom D i).comp e.toRingHom
 
 /-- The `i`-th component of `e x`. -/
-lemma piProj_apply (e : A ≃+* ∀ i, D i) (i : ι) (x : A) : piProj e i x = e x i := rfl
+lemma _root_.Tengoku.LanaOka.piProj_apply (e : A ≃+* ∀ i, D i) (i : ι) (x : A) : piProj e i x = e x i := rfl
 
 /-- The projection `A → D i` is surjective. -/
-lemma surjective_piProj (e : A ≃+* ∀ i, D i) (i : ι) : Function.Surjective (piProj e i) :=
+lemma _root_.Tengoku.LanaOka.surjective_piProj (e : A ≃+* ∀ i, D i) (i : ι) : Function.Surjective (piProj e i) :=
   fun d ↦ by classical exact ⟨e.symm (Pi.single i d), by simp [piProj_apply]⟩
 
 /-- Multiplying by `e⁻¹ (Pi.single i d)` only retains the `i`-th component. -/
-lemma symm_single_mul_eq [DecidableEq ι] (e : A ≃+* ∀ i, D i) (i : ι) (d : D i) (x : A) :
+lemma _root_.Tengoku.LanaOka.symm_single_mul_eq [DecidableEq ι] (e : A ≃+* ∀ i, D i) (i : ι) (d : D i) (x : A) :
     e.symm (Pi.single i d) * x = e.symm (Pi.single i (d * e x i)) := by
   apply e.injective
   rw [map_mul, RingEquiv.apply_symm_apply, RingEquiv.apply_symm_apply]
@@ -186,7 +186,7 @@ lemma symm_single_mul_eq [DecidableEq ι] (e : A ≃+* ∀ i, D i) (i : ι) (d :
   · simp [hj]
 
 /-- A factor `D i` of `A ≃ ∏ D` is the localization of `A` at the corresponding idempotent. -/
-lemma isLocalization_away_piProj [DecidableEq ι] (e : A ≃+* ∀ i, D i) (i : ι) :
+lemma _root_.Tengoku.LanaOka.isLocalization_away_piProj [DecidableEq ι] (e : A ≃+* ∀ i, D i) (i : ι) :
     letI := (piProj e i).toAlgebra
     IsLocalization.Away (e.symm (Pi.single i 1)) (D i) := by
   letI := (piProj e i).toAlgebra
@@ -201,7 +201,7 @@ lemma isLocalization_away_piProj [DecidableEq ι] (e : A ≃+* ∀ i, D i) (i : 
 
 /-- The localization of `A ≃ ∏ D` at `e⁻¹ (Pi.single i d)` is the localization of `D i` at
 `d`. -/
-lemma isLocalization_away_single [DecidableEq ι] (e : A ≃+* ∀ i, D i) (i : ι) (d : D i) :
+lemma _root_.Tengoku.LanaOka.isLocalization_away_single [DecidableEq ι] (e : A ≃+* ∀ i, D i) (i : ι) (d : D i) :
     letI := (piProj e i).toAlgebra
     IsLocalization.Away (e.symm (Pi.single i d)) (Localization.Away d) := by
   letI := (piProj e i).toAlgebra
@@ -217,7 +217,7 @@ lemma isLocalization_away_single [DecidableEq ι] (e : A ≃+* ∀ i, D i) (i : 
   exact IsLocalization.Away.mul' (D i) (Localization.Away d) _ _
 
 /-- The components of a nonzerodivisor of a product of domains are nonzero. -/
-lemma apply_ne_zero_of_mem_nonZeroDivisors [∀ i, Nontrivial (D i)] (e : A ≃+* ∀ i, D i)
+lemma _root_.Tengoku.LanaOka.apply_ne_zero_of_mem_nonZeroDivisors [∀ i, Nontrivial (D i)] (e : A ≃+* ∀ i, D i)
     {a : A} (ha : a ∈ nonZeroDivisors A) (i : ι) : e a i ≠ 0 := by
   classical
   intro h2
@@ -228,7 +228,7 @@ lemma apply_ne_zero_of_mem_nonZeroDivisors [∀ i, Nontrivial (D i)] (e : A ≃+
 
 /-- The localization of a finite product `A ≃ ∏ D` of normal domains at `e⁻¹ (Pi.single i d)` is
 zero or a normal domain in which every nonzerodivisor of `A` stays nonzero. -/
-theorem subsingleton_or_isDomain_of_isLocalization_single [DecidableEq ι] [∀ i, IsDomain (D i)]
+theorem _root_.Tengoku.LanaOka.subsingleton_or_isDomain_of_isLocalization_single [DecidableEq ι] [∀ i, IsDomain (D i)]
     [∀ i, IsIntegrallyClosed (D i)] (e : A ≃+* ∀ i, D i) (i : ι) (d : D i)
     (R : Type*) [CommRing R] [Algebra A R] [IsLocalization.Away (e.symm (Pi.single i d)) R]
     {a : A} (ha : a ∈ nonZeroDivisors A) :
@@ -261,14 +261,14 @@ end Product
 section NonZeroDivisor
 
 /-- A finite product of domains is reduced. -/
-lemma IsFiniteProductOfNormalDomains.isReduced {A : Type u} [CommRing A]
+lemma Tengoku.LanaOka.IsFiniteProductOfNormalDomains.isReduced {A : Type u} [CommRing A]
     (hA : IsFiniteProductOfNormalDomains A) : IsReduced A := by
   obtain ⟨ι, _, D, _, _, _, ⟨e⟩⟩ := hA
   exact isReduced_of_injective e.toRingHom e.injective
 
 /-- In a noetherian finite product of domains, an ideal contained in no minimal prime contains a
 nonzerodivisor. -/
-theorem exists_mem_nonZeroDivisors_of_forall_not_le {A : Type u} [CommRing A]
+theorem _root_.Tengoku.LanaOka.exists_mem_nonZeroDivisors_of_forall_not_le {A : Type u} [CommRing A]
     [IsNoetherianRing A] (hA : IsFiniteProductOfNormalDomains A) (I : Ideal A)
     (hI : ∀ P ∈ minimalPrimes A, ¬ I ≤ P) : ∃ a ∈ I, a ∈ nonZeroDivisors A := by
   haveI := hA.isReduced
@@ -297,7 +297,7 @@ variable {R : Type*} [CommRing R] {ι : Type*} {S : ι → Type*} [∀ i, CommRi
 
 open Polynomial in
 /-- An element of a finite product is integral if and only if its components are. -/
-theorem isIntegral_pi_iff [Finite ι] (x : ∀ i, S i) :
+theorem _root_.Tengoku.LanaOka.isIntegral_pi_iff [Finite ι] (x : ∀ i, S i) :
     IsIntegral R x ↔ ∀ i, IsIntegral R (x i) := by
   refine ⟨fun hx i ↦ hx.map (Pi.evalAlgHom R S i), fun hx ↦ ?_⟩
   haveI := Fintype.ofFinite ι
@@ -312,7 +312,7 @@ theorem isIntegral_pi_iff [Finite ι] (x : ∀ i, S i) :
   exact Finset.prod_eq_zero (Finset.mem_univ j) (by rw [aeval_def]; exact hp j)
 
 /-- The integral closure in a finite product is the product of the integral closures. -/
-noncomputable def integralClosurePiEquiv [Finite ι] :
+noncomputable def _root_.Tengoku.LanaOka.integralClosurePiEquiv [Finite ι] :
     integralClosure R (∀ i, S i) ≃ₐ[R] ∀ i, integralClosure R (S i) :=
   AlgEquiv.ofBijective
     (AlgHom.pi fun i ↦ ((Pi.evalAlgHom R S i).comp (integralClosure R _).val).codRestrict
@@ -357,7 +357,7 @@ end Pi
 
 /-- A finite product of finite products of normal domains is a finite product of normal
 domains. -/
-theorem IsFiniteProductOfNormalDomains.pi {ι : Type u} [Finite ι] {S : ι → Type u}
+theorem Tengoku.LanaOka.IsFiniteProductOfNormalDomains.pi {ι : Type u} [Finite ι] {S : ι → Type u}
     [∀ i, CommRing (S i)] (h : ∀ i, IsFiniteProductOfNormalDomains (S i)) :
     IsFiniteProductOfNormalDomains (∀ i, S i) := by
   choose J hJ D _ _ _ e using h
@@ -369,7 +369,7 @@ theorem IsFiniteProductOfNormalDomains.pi {ι : Type u} [Finite ι] {S : ι → 
     map_add' := fun _ _ ↦ rfl }
 
 /-- A normal domain is a finite product of normal domains. -/
-lemma IsFiniteProductOfNormalDomains.of_isDomain (T : Type u) [CommRing T] [IsDomain T]
+lemma Tengoku.LanaOka.IsFiniteProductOfNormalDomains.of_isDomain (T : Type u) [CommRing T] [IsDomain T]
     [IsIntegrallyClosed T] : IsFiniteProductOfNormalDomains T :=
   ⟨PUnit, inferInstance, fun _ ↦ T, fun _ ↦ inferInstance, fun _ ↦ inferInstance,
     fun _ ↦ inferInstance, ⟨(RingEquiv.piUnique fun _ : PUnit ↦ T).symm⟩⟩
@@ -384,7 +384,7 @@ variable {D : Type u} [CommRing D] [IsDomain D] [IsIntegrallyClosed D] [IsNoethe
 /-- The integral closure of a noetherian normal domain `D` in a finite étale algebra over its
 fraction field is finite over `D`, a finite product of normal domains, and satisfies going down
 over `D`. -/
-theorem finite_isFiniteProductOfNormalDomains_hasGoingDown_of_fractionRing :
+theorem _root_.Tengoku.LanaOka.finite_isFiniteProductOfNormalDomains_hasGoingDown_of_fractionRing :
     Module.Finite D (integralClosure D L) ∧
       IsFiniteProductOfNormalDomains (integralClosure D L) ∧
       Algebra.HasGoingDown D (integralClosure D L) := by
@@ -439,7 +439,7 @@ lemma RingHom.IsIntegralElem.of_surjective {A D S L : Type*} [CommRing A] [CommR
   rw [eval₂_map, ← hcomm, ← eval₂_map, hq, hp]
 
 /-- For `C` flat over `R` and `R → ∏ K i` injective, `c ↦ (1 ⊗ c)ᵢ` is injective. -/
-lemma eq_zero_of_forall_one_tmul_eq_zero {R C : Type*} [CommRing R] [CommRing C] [Algebra R C]
+lemma _root_.Tengoku.LanaOka.eq_zero_of_forall_one_tmul_eq_zero {R C : Type*} [CommRing R] [CommRing C] [Algebra R C]
     [Module.Flat R C] {ι : Type*} [Finite ι] {K : ι → Type*} [∀ i, CommRing (K i)]
     [∀ i, Algebra R (K i)] (hinj : Function.Injective (algebraMap R (∀ i, K i))) (c : C)
     (h : ∀ i, (1 : K i) ⊗ₜ[R] c = 0) : c = 0 := by
@@ -459,7 +459,7 @@ lemma eq_zero_of_forall_one_tmul_eq_zero {R C : Type*} [CommRing R] [CommRing C]
 
 /-- After a smooth base change `R → C`, an element of `K ⊗[R] C` integral over `C` comes from `C`
 if every element of `K` integral over `R` comes from `R`. -/
-lemma exists_one_tmul_eq_of_isIntegralElem {R C K : Type*} [CommRing R] [CommRing C]
+lemma _root_.Tengoku.LanaOka.exists_one_tmul_eq_of_isIntegralElem {R C K : Type*} [CommRing R] [CommRing C]
     [CommRing K] [Algebra R C] [Algebra R K] [Algebra.Smooth R C]
     (hB : ∀ b : K, IsIntegral R b → ∃ r : R, algebraMap R K r = b) (ℓ : K ⊗[R] C)
     (hℓ : (Algebra.TensorProduct.includeRight : C →ₐ[R] K ⊗[R] C).toRingHom.IsIntegralElem ℓ) :
@@ -483,7 +483,7 @@ open Polynomial in
 /-- Let `C` be an `A`-algebra with maps `C → L i` that are jointly injective, and quotients
 `A → D i` compatible with ring maps `D i → L i`. If the image of `c` in each `L i` is integral over
 `D i`, then `c` is integral over `A`. -/
-lemma isIntegral_of_forall_isIntegralElem {A C : Type*} [CommRing A] [CommRing C] [Algebra A C]
+lemma _root_.Tengoku.LanaOka.isIntegral_of_forall_isIntegralElem {A C : Type*} [CommRing A] [CommRing C] [Algebra A C]
     {ι : Type*} [Finite ι] {D L : ι → Type*} [∀ i, CommRing (D i)] [∀ i, CommRing (L i)]
     (π : ∀ i, A →+* D i) (hπ : ∀ i, Function.Surjective (π i)) (ιC : ∀ i, C →+* L i)
     (u : ∀ i, D i →+* L i) (hcomm : ∀ i, (ιC i).comp (algebraMap A C) = (u i).comp (π i))
@@ -500,7 +500,7 @@ lemma isIntegral_of_forall_isIntegralElem {A C : Type*} [CommRing A] [CommRing C
 /-- Let `A` be a noetherian finite product of normal domains, `a ∈ A` a nonzerodivisor and `C` a
 finite étale algebra over the localization `Aₐ`. Then the integral closure of `A` in `C` is finite
 over `A`, a finite product of normal domains, and satisfies going down over `A`. -/
-theorem finite_isFiniteProductOfNormalDomains_hasGoingDown_integralClosure
+theorem _root_.Tengoku.LanaOka.finite_isFiniteProductOfNormalDomains_hasGoingDown_integralClosure
     {A : Type u} [CommRing A] [IsNoetherianRing A] (hA : IsFiniteProductOfNormalDomains A)
     {a : A} (ha : a ∈ nonZeroDivisors A) (Aₐ : Type u) [CommRing Aₐ] [Algebra A Aₐ]
     [IsLocalization.Away a Aₐ] (C : Type u) [CommRing C] [Algebra A C] [Algebra Aₐ C]
@@ -630,3 +630,4 @@ theorem finite_isFiniteProductOfNormalDomains_hasGoingDown_integralClosure
       exact Algebra.HasGoingDown.trans A (D i) (T i)
     haveI : Algebra.HasGoingDown A (∀ i, T i) := Algebra.HasGoingDown.pi
     exact Algebra.HasGoingDown.of_algEquiv Θ.symm
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

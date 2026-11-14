@@ -9,7 +9,7 @@ import Tengoku.Seed.FieldTheory.Normal.Closure
 import Tengoku.Seed.NumberTheory.NumberField.Basic
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.ClassfieldtheoryYamaguchi end Tengoku.ClassfieldtheoryYamaguchi open Tengoku.ClassfieldtheoryYamaguchi
 set_option autoImplicit false
 
 /-!
@@ -32,20 +32,20 @@ variable
 
 /-- The normal closure of `L / K`, constructed inside a fixed
 algebraic closure of `K`.-/
-abbrev finiteNormalClosure :=
+abbrev _root_.Tengoku.ClassfieldtheoryYamaguchi.finiteNormalClosure :=
   IntermediateField.normalClosure K L (AlgebraicClosure K)
 
 /--
 @isnad1 id=numberfi.0h2v.s7.cbe8620a8f4b from=translated src=- shape=30bdd4e5 vocab=96b33b28
 -/
-noncomputable instance finiteNormalClosure_numberField :
+noncomputable instance _root_.Tengoku.ClassfieldtheoryYamaguchi.finiteNormalClosure_numberField :
     NumberField (finiteNormalClosure K L) :=
   NumberField.of_module_finite K (finiteNormalClosure K L)
 
 /--
 @isnad1 id=isgalois.0h2v.s7.a13373d312e5 from=translated src=- shape=1c7b8051 vocab=d5d48be3
 -/
-noncomputable instance finiteNormalClosure_isGalois :
+noncomputable instance _root_.Tengoku.ClassfieldtheoryYamaguchi.finiteNormalClosure_isGalois :
     IsGalois K (finiteNormalClosure K L) := by
   let f : L →ₐ[K] AlgebraicClosure K :=
     IsAlgClosed.lift
@@ -57,7 +57,7 @@ noncomputable instance finiteNormalClosure_isGalois :
   infer_instance
 
 /-- A fixed embedding of `L` into its normal closure.-/
-noncomputable def finiteNormalClosureEmbedding :
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.finiteNormalClosureEmbedding :
     L →ₐ[K] finiteNormalClosure K L :=
   let f : L →ₐ[K] AlgebraicClosure K := IsAlgClosed.lift
   f.codRestrict
@@ -68,13 +68,13 @@ noncomputable def finiteNormalClosureEmbedding :
         (show f x ∈ f.fieldRange from ⟨x, rfl⟩))
 
 /-- The distinguished copy of `L` in its finite normal closure.-/
-noncomputable def finiteNormalClosureOriginalField :
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.finiteNormalClosureOriginalField :
     IntermediateField K (finiteNormalClosure K L) :=
   (finiteNormalClosureEmbedding K L).fieldRange
 
 /-- The original extension is canonically equivalent to its
 distinguished copy in the finite normal closure.-/
-noncomputable def finiteNormalClosureOriginalFieldEquiv :
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.finiteNormalClosureOriginalFieldEquiv :
     L ≃ₐ[K] finiteNormalClosureOriginalField K L :=
   (finiteNormalClosureEmbedding K L).equivFieldRange
 
@@ -83,7 +83,7 @@ omit [NumberField K] [NumberField L] in
 isomorphic field.
 @isnad1 id=eq.1h5v.s8.4519b2a67957 from=translated src=- shape=df6bd335 vocab=a9e3310b
 -/
-theorem normalClosure_eq_top_of_source_algEquiv
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.normalClosure_eq_top_of_source_algEquiv
     {M E : Type*}
     [Field M] [Algebra K M]
     [Field E] [Algebra K E]
@@ -114,7 +114,7 @@ theorem normalClosure_eq_top_of_source_algEquiv
 under its `K`-conjugates.
 @isnad1 id=eq.0h2v.s12.33d81ba34aa2 from=translated src=- shape=9845bba4 vocab=7f449fef
 -/
-theorem finiteNormalClosureOriginalField_normalClosure_eq_top :
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.finiteNormalClosureOriginalField_normalClosure_eq_top :
     IntermediateField.normalClosure K
         (finiteNormalClosureOriginalField K L)
         (finiteNormalClosure K L) =
@@ -138,7 +138,7 @@ theorem finiteNormalClosureOriginalField_normalClosure_eq_top :
 its finite normal closure.
 @isnad1 id=le.0h2v.s9.c8201dbcf7bc from=translated src=- shape=4c7b863f vocab=6c1f92fe
 -/
-theorem finrank_le_finiteNormalClosure :
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.finrank_le_finiteNormalClosure :
     Module.finrank K L ≤
       Module.finrank K (finiteNormalClosure K L) := by
   exact
@@ -148,10 +148,11 @@ theorem finrank_le_finiteNormalClosure :
 
 /-- A degree-one finite field extension is the base field as an
 algebra.-/
-noncomputable def algEquivBaseOfFinrankEqOne
+noncomputable def _root_.Tengoku.ClassfieldtheoryYamaguchi.algEquivBaseOfFinrankEqOne
     (hdegree : Module.finrank K L = 1) :
     L ≃ₐ[K] K :=
   (AlgEquiv.ofBijective
     (Algebra.ofId K L)
     ((Algebra.finrank_eq_one_iff_bijective_algebraMap).mp
       hdegree)).symm
+-- Tengoku: root names of this library moved to Tengoku.ClassfieldtheoryYamaguchi so they do not collide with other libraries (generated)

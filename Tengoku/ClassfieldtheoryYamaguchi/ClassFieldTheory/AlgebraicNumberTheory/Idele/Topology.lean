@@ -7,7 +7,7 @@ Authors: Naganori Yamaguchi (assisted by OpenAI Codex)
 import Tengoku.ClassfieldtheoryYamaguchi.ClassFieldTheory.AlgebraicNumberTheory.Idele.Basic
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.ClassfieldtheoryYamaguchi end Tengoku.ClassfieldtheoryYamaguchi open Tengoku.ClassfieldtheoryYamaguchi
 set_option autoImplicit false
 
 /-!
@@ -29,7 +29,7 @@ variable (K : Type*) [Field K] [NumberField K]
 finite completion.
 @isnad1 id=isopen.0h2v.s10.1b509b5d9337 from=translated src=- shape=755de787 vocab=0a03a71a
 -/
-theorem isOpen_finiteLocalUnits (v : HeightOneSpectrum (𝓞 K)) :
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.isOpen_finiteLocalUnits (v : HeightOneSpectrum (𝓞 K)) :
     IsOpen
       ((v.adicCompletionIntegers K).units :
         Set (v.adicCompletion K)ˣ) :=
@@ -38,7 +38,7 @@ theorem isOpen_finiteLocalUnits (v : HeightOneSpectrum (𝓞 K)) :
 /--
 @isnad1 id=fact.0h1v.s10.54938189a126 from=translated src=- shape=af7addbb vocab=83e296d3
 -/
-instance finiteLocalUnitsOpen :
+instance _root_.Tengoku.ClassfieldtheoryYamaguchi.finiteLocalUnitsOpen :
     Fact (∀ v : HeightOneSpectrum (𝓞 K),
       IsOpen
         ((v.adicCompletionIntegers K).units :
@@ -48,18 +48,18 @@ instance finiteLocalUnitsOpen :
 /--
 @isnad1 id=istopolo.0h1v.s10.c11febcf4244 from=translated src=- shape=9499e9bc vocab=c159b0bc
 -/
-instance finiteIdeleGroupIsTopologicalGroup :
+instance _root_.Tengoku.ClassfieldtheoryYamaguchi.finiteIdeleGroupIsTopologicalGroup :
     IsTopologicalGroup (FiniteIdeleGroup K) :=
   inferInstance
 
 /--
 @isnad1 id=istopolo.0h1v.s11.25e0c0de3564 from=translated src=- shape=9499e9bc vocab=3bf6e429
 -/
-instance ideleGroupIsTopologicalGroup :
+instance _root_.Tengoku.ClassfieldtheoryYamaguchi.ideleGroupIsTopologicalGroup :
     IsTopologicalGroup (IdeleGroup K) :=
   inferInstance
 
-namespace IdeleGroup
+namespace Tengoku.ClassfieldtheoryYamaguchi.IdeleGroup
 
 variable {K}
 
@@ -97,4 +97,5 @@ theorem finiteComponentContinuous_apply
     finiteComponentContinuous v a = a.2 v :=
   rfl
 
-end IdeleGroup
+end Tengoku.ClassfieldtheoryYamaguchi.IdeleGroup
+-- Tengoku: root names of this library moved to Tengoku.ClassfieldtheoryYamaguchi so they do not collide with other libraries (generated)

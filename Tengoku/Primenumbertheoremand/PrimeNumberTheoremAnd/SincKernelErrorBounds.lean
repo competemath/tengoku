@@ -12,13 +12,13 @@ is controlled pointwise by `D / π`, uniformly in the height `T`, and consequent
 integral over `[-1, 1]` is bounded by `(D / π) · vol (Ioc (-1) 1)`.  These supply the
 local-window hypothesis of `norm_fourierInvTrunc_le_of_windowed_sin_div_bounds`.
 -/
-
+namespace Tengoku.Primenumbertheoremand end Tengoku.Primenumbertheoremand open Tengoku.Primenumbertheoremand
 open MeasureTheory Set
 
 /-- Pointwise bound on the sin-div windowed error term: scaling by the normalized sinc
 kernel and a mean-value estimate on `g (x - u) - g x` gives a bound `D / π` that is
 independent of the height `T`. -/
-theorem sin_div_error_pointwise_bound
+theorem _root_.Tengoku.Primenumbertheoremand.sin_div_error_pointwise_bound
     {g : ℝ → ℂ} {D x T u : ℝ}
     (hD : 0 ≤ D) (hgdiff : Differentiable ℝ g)
     (hderiv : ∀ y : ℝ, ‖deriv g y‖ ≤ D) :
@@ -57,7 +57,7 @@ theorem sin_div_error_pointwise_bound
 
 /-- Interval form of `sin_div_error_pointwise_bound`: integrating the pointwise bound over
 `[-1, 1]` controls the windowed error integral by `(D / π) · vol (Ioc (-1) 1)`. -/
-theorem sin_div_error_interval_bound
+theorem _root_.Tengoku.Primenumbertheoremand.sin_div_error_interval_bound
     {g : ℝ → ℂ} {D x T : ℝ}
     (hD : 0 ≤ D) (hgdiff : Differentiable ℝ g)
     (hderiv : ∀ y : ℝ, ‖deriv g y‖ ≤ D) :
@@ -72,3 +72,4 @@ theorem sin_div_error_interval_bound
   · intro u _hu
     exact sin_div_error_pointwise_bound (g := g) (D := D) (x := x) (T := T) (u := u)
       hD hgdiff hderiv
+-- Tengoku: root names of this library moved to Tengoku.Primenumbertheoremand so they do not collide with other libraries (generated)

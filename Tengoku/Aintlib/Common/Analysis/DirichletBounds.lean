@@ -18,7 +18,7 @@ sums.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Aintlib end Tengoku.Aintlib open Tengoku.Aintlib 
 open scoped BigOperators
 
 /-- Boundary term for the summation-by-parts bound.-/
@@ -86,7 +86,7 @@ private lemma norm_sum_range_smul_diff_le_of_antitone_of_bounded
 /-- Summation-by-parts bound for a weighted series with bounded partial sums.
 @isnad1 id=le.3h5v.s7.951190ea4319 from=translated src=- shape=ec13d017 vocab=3f700d6b
 -/
-lemma norm_sum_range_smul_le_of_antitone_of_nonneg_of_bounded
+lemma _root_.Tengoku.Aintlib.norm_sum_range_smul_le_of_antitone_of_nonneg_of_bounded
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {a : ℕ → ℝ} {z : ℕ → E} {B : ℝ}
     (ha : Antitone a) (ha_nonneg : ∀ n, 0 ≤ a n)
@@ -117,7 +117,7 @@ lemma norm_sum_range_smul_le_of_antitone_of_nonneg_of_bounded
 /-- Partial sums over a shifted sequence are controlled by the same bound up to a factor `2`.
 @isnad1 id=le.1h5v.s6.ef0631a77da2 from=translated src=- shape=e443c8f8 vocab=7364fc4c
 -/
-lemma norm_sum_range_shift_le_of_bounded
+lemma _root_.Tengoku.Aintlib.norm_sum_range_shift_le_of_bounded
     {E : Type*} [NormedAddCommGroup E]
     {z : ℕ → E} {B : ℝ}
     (hbound : ∀ n, ‖∑ i ∈ Finset.range n, z i‖ ≤ B) (m n : ℕ) :
@@ -139,7 +139,7 @@ lemma norm_sum_range_shift_le_of_bounded
 /-- Tail sums of a weighted series inherit the same summation-by-parts bound.
 @isnad1 id=le.3h6v.s7.0ae8d4dd2dd2 from=translated src=- shape=d5d2c295 vocab=01c41ed1
 -/
-lemma norm_sum_range_shift_smul_le_of_antitone_of_nonneg_of_bounded
+lemma _root_.Tengoku.Aintlib.norm_sum_range_shift_smul_le_of_antitone_of_nonneg_of_bounded
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {a : ℕ → ℝ} {z : ℕ → E} {B : ℝ}
     (ha : Antitone a) (ha_nonneg : ∀ n, 0 ≤ a n)
@@ -154,3 +154,4 @@ lemma norm_sum_range_shift_smul_le_of_antitone_of_nonneg_of_bounded
       (hbound := fun k ↦ norm_sum_range_shift_le_of_bounded (z := z) (B := B) hbound m k) n)
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Aintlib so they do not collide with other libraries (generated)

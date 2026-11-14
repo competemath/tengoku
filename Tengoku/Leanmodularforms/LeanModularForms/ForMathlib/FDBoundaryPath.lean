@@ -20,7 +20,7 @@ segment away from partition points.
 
 * `fdBoundaryPC1Path_eq` — the path agrees with `fdBoundaryFun` on `[0, 1]`
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex MeasureTheory Set Filter Topology
 open scoped Real Interval
 
@@ -182,7 +182,7 @@ private lemma fdBoundaryPath_deriv_continuousAt_off (H : ℝ) (t : ℝ)
     (fdBoundaryFun_deriv_continuousAt_off H t ht htp)
 
 /-- The fundamental domain boundary as a `PiecewiseC1Path`. -/
-def fdBoundaryPC1Path (H : ℝ) (_hH : H > Real.sqrt 3 / 2) :
+def _root_.Tengoku.Leanmodularforms.fdBoundaryPC1Path (H : ℝ) (_hH : H > Real.sqrt 3 / 2) :
     PiecewiseC1Path (fdStart H) (fdStart H) where
   toFun := (fdBoundaryPath H).extend
   source := (fdBoundaryPath H).extend_zero
@@ -196,3 +196,4 @@ def fdBoundaryPC1Path (H : ℝ) (_hH : H > Real.sqrt 3 / 2) :
   deriv_continuous_off := fdBoundaryPath_deriv_continuousAt_off H
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

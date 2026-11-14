@@ -15,14 +15,14 @@ Material for a new `Mathlib.RingTheory.Norm.Quotient` (the norm analogue of
 -/
 
 @[expose] public section
-
+namespace Tengoku.Flt end Tengoku.Flt open Tengoku.Flt 
 /-- **Rank-2 Cayley–Hamilton.** Every element `θ` of a free rank-2 `A`-algebra `B` satisfies its
 characteristic polynomial `X² - (trace θ) X + (norm θ)`: this is Cayley–Hamilton
 (`Algebra.aeval_self_charpoly_lmul`) applied to left multiplication by `θ`, whose characteristic
 polynomial is `X² - trace X + norm` in rank two (`Matrix.charpoly_fin_two`).
 @isnad1 id=eq.1h3v.s8.02c93997a90f from=translated src=- shape=94dacb7a vocab=8f8a45c6
 -/
-theorem sq_sub_trace_mul_self_add_norm {A B : Type*} [CommRing A] [Nontrivial A] [CommRing B]
+theorem _root_.Tengoku.Flt.sq_sub_trace_mul_self_add_norm {A B : Type*} [CommRing A] [Nontrivial A] [CommRing B]
     [Algebra A B] [Module.Free A B] [Module.Finite A B] (h2 : Module.finrank A B = 2) (θ : B) :
     θ ^ 2 - algebraMap A B (Algebra.trace A B θ) * θ + algebraMap A B (Algebra.norm A θ) = 0 := by
   classical
@@ -44,7 +44,7 @@ the reduction of `x` is the reduction of the norm. This is the norm analogue of
 trace map.
 @isnad1 id=eq.0h3v.s11.cae3967d7b9d from=translated src=- shape=f321307b vocab=718fdc22
 -/
-theorem norm_quotient_mk {A B : Type*} [CommRing A] [CommRing B] [Algebra A B] [IsLocalRing A]
+theorem _root_.Tengoku.Flt.norm_quotient_mk {A B : Type*} [CommRing A] [CommRing B] [Algebra A B] [IsLocalRing A]
     [Module.Free A B] [Module.Finite A B] (x : B) :
     Algebra.norm (A ⧸ maximalIdeal A)
         (Ideal.Quotient.mk (Ideal.map (algebraMap A B) (maximalIdeal A)) x)
@@ -69,7 +69,7 @@ norm of `θ`, `sq_sub_trace_mul_self_add_norm`) through an isomorphism of residu
 of the residue of `θ` satisfies the corresponding relation in the residues of `t` and `n`.
 @isnad1 id=eq.1h5v.s10.e17c2e4d6893 from=translated src=- shape=c1803ee5 vocab=8253072d
 -/
-theorem sq_sub_trace_mul_self_add_norm_residue {S : Type u} [CommRing S] [IsLocalRing S]
+theorem _root_.Tengoku.Flt.sq_sub_trace_mul_self_add_norm_residue {S : Type u} [CommRing S] [IsLocalRing S]
     [Algebra R S] [IsLocalHom (algebraMap R S)] [Module.Free R S] [Module.Finite R S]
     (hSrank : Module.finrank R S = 2) {k' : Type u} [CommRing k']
     [Algebra (ResidueField R) k'] (resIso : ResidueField S ≃ₐ[ResidueField R] k') (θ : S) :
@@ -83,3 +83,4 @@ theorem sq_sub_trace_mul_self_add_norm_residue {S : Type u} [CommRing S] [IsLoca
     using congrArg (fun x ↦ resIso (residue S x)) (sq_sub_trace_mul_self_add_norm hSrank θ)
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Flt so they do not collide with other libraries (generated)

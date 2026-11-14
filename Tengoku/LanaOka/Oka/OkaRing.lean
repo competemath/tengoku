@@ -23,10 +23,10 @@ import Tengoku.LanaOka.Oka.Data.Fin.Tuple.Basic
 The interpretation `Polynomial.toOkaRing` of a polynomial over `OkaRing U` as a holomorphic
 function on the cylinder over `U` is defined in `Oka.Weierstrass`.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 /-- The `R`-linear form `x ↦ ∑ i, x i • f i` attached to a family `f` of elements of `R`. -/
 noncomputable
-abbrev linOfFun {R : Type*} [CommRing R]
+abbrev _root_.Tengoku.LanaOka.linOfFun {R : Type*} [CommRing R]
     {ι : Type*} [Finite ι] (f : ι → R) :
     (ι → R) →ₗ[R] R :=
   Module.Basis.constr (S := R)
@@ -37,7 +37,7 @@ abbrev linOfFun {R : Type*} [CommRing R]
 Stated over an arbitrary commutative ring and with no consumer in this repository: it came here
 with `linOfFun`, whose uses are in the statement of Oka's **bounded degree** lemma
 (`Oka/OkaLemma.lean`), plus one inside a proof in `Oka/Statement.lean`. -/
-lemma linOfFun_apply {A : Type*} [CommRing A] {n : ℕ} (f : Fin n → A) (a : Fin n → A) :
+lemma _root_.Tengoku.LanaOka.linOfFun_apply {A : Type*} [CommRing A] {n : ℕ} (f : Fin n → A) (a : Fin n → A) :
     linOfFun f a = ∑ i, a i * f i := by
   simp [linOfFun, Module.Basis.constr_apply_fintype, mul_comm]
 
@@ -47,7 +47,7 @@ variable {n : ℕ} {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 /-- A function on an open set `U` of `ℂ^ι` is holomorphic if its extension by zero is
 analytic on `U`. -/
-def OkaAnalytic {U : Opens (ι → ℂ)} (f : U → ℂ) :
+def _root_.Tengoku.LanaOka.OkaAnalytic {U : Opens (ι → ℂ)} (f : U → ℂ) :
     Prop :=
   AnalyticOn ℂ (Function.extend Subtype.val f 0) U
 
@@ -78,7 +78,7 @@ private lemma extend_const_eqOn {U : Opens (ι → ℂ)} (c : ℂ) :
   Subtype.val_injective.extend_apply (f := (Subtype.val : U → ι → ℂ)) _ _ ⟨x, hx⟩
 
 /-- The `ℂ`-subalgebra of holomorphic functions inside all functions on `U`. -/
-def okaSubring (U : Opens (ι → ℂ)) :
+def _root_.Tengoku.LanaOka.okaSubring (U : Opens (ι → ℂ)) :
     Subalgebra ℂ (U → ℂ) where
   carrier := { f | OkaAnalytic f }
   mul_mem' {f g} hf hg := by
@@ -95,26 +95,26 @@ def okaSubring (U : Opens (ι → ℂ)) :
     AnalyticOn.congr analyticOn_const (extend_const_eqOn c)
 
 /-- The `ℂ`-algebra of holomorphic functions on an open set `U` of `ℂ^ι`. -/
-def OkaRing (U : Opens (ι → ℂ)) : Type _ :=
+def _root_.Tengoku.LanaOka.OkaRing (U : Opens (ι → ℂ)) : Type _ :=
   okaSubring U
 
 variable (U : Opens (ι → ℂ))
 
 variable {U} in
 /-- Bundle a holomorphic function on `U` as an element of `OkaRing U`. -/
-def OkaRing.mk (f : U → ℂ) (hf : OkaAnalytic f) :
+def Tengoku.LanaOka.OkaRing.mk (f : U → ℂ) (hf : OkaAnalytic f) :
     OkaRing U :=
   ⟨_, hf⟩
 
 -- instance : CoeFun (OkaRing U) U ℂ where
 
 /-- The function underlying an element of `OkaRing U`. -/
-def OkaRing.toFun (f : OkaRing U) :
+def Tengoku.LanaOka.OkaRing.toFun (f : OkaRing U) :
     U → ℂ := f.val
 
 /-- The extension by zero of `f : OkaRing U` to a function on all of `ℂ^ι`. -/
 noncomputable
-def OkaRing.toGlobalFun (f : OkaRing U) :
+def Tengoku.LanaOka.OkaRing.toGlobalFun (f : OkaRing U) :
     (ι → ℂ) → ℂ :=
   Function.extend Subtype.val f.toFun 0
 
@@ -126,7 +126,7 @@ instance : Algebra ℂ (OkaRing U) :=
 
 omit [DecidableEq ι] in
 /-- The restriction of a holomorphic function along an inclusion of opens is holomorphic. -/
-lemma OkaAnalytic.comp_inclusion {U V : Opens (ι → ℂ)} (h : U ≤ V) {f : V → ℂ}
+lemma Tengoku.LanaOka.OkaAnalytic.comp_inclusion {U V : Opens (ι → ℂ)} (h : U ≤ V) {f : V → ℂ}
     (hf : OkaAnalytic f) :
     OkaAnalytic (f ∘ U.inclusion h) := by
   refine (hf.mono h).congr fun x hx ↦ ?_
@@ -138,7 +138,7 @@ lemma OkaAnalytic.comp_inclusion {U V : Opens (ι → ℂ)} (h : U ≤ V) {f : V
 
 /-- Restriction of holomorphic functions along an inclusion `U ≤ V` of open sets. -/
 noncomputable
-def OkaRing.restrict {U V : Opens (ι → ℂ)}
+def Tengoku.LanaOka.OkaRing.restrict {U V : Opens (ι → ℂ)}
     (h : U ≤ V) :
     OkaRing V →ₐ[ℂ] OkaRing U where
   toFun f := .mk (f.toFun ∘ U.inclusion h) (OkaAnalytic.comp_inclusion h f.2)
@@ -185,3 +185,4 @@ lemma TopologicalSpace.Opens.zero_mem_extend' {U : Opens (Fin n → ℂ)} :
     (0 : Fin (n + 1) → ℂ) ∈ U.extend' ↔ (0 : Fin n → ℂ) ∈ U := by
   rw [mem_extend']
   exact Iff.of_eq (congrArg (· ∈ U) (funext fun i ↦ rfl))
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

@@ -54,7 +54,7 @@ Riemann zeta function, completed zeta function, finite order, Hadamard factoriza
 -/
 
 @[expose] public section
-
+namespace Tengoku.Primenumbertheoremand end Tengoku.Primenumbertheoremand open Tengoku.Primenumbertheoremand 
 open Complex Set Filter Topology Metric
 open scoped Real
 
@@ -758,3 +758,4 @@ theorem zeta_minus_pole_entire_growth :
               nlinarith [this]
 
 end Complex
+-- Tengoku: root names of this library moved to Tengoku.Primenumbertheoremand so they do not collide with other libraries (generated)

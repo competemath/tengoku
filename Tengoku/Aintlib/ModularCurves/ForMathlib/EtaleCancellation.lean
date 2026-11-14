@@ -40,7 +40,7 @@ The invariants instantiation (`RingHom.invariantsCorestrict_finite` /
 `ForMathlib/SchemeActionFree.lean`: the descended structure map of a free quotient is
 finite étale over each affine chart of the base.
 -/
-
+namespace Tengoku.Aintlib end Tengoku.Aintlib open Tengoku.Aintlib
 universe u v
 
 open TensorProduct
@@ -131,7 +131,7 @@ variable (G : Type*) [Group G] [_root_.Finite G] (R₀ : Type v) (A : Type u) [C
 action, where `tr(c) = 1` (`exists_traceInvariants_eq_one`).
 @isnad1 id=ex.1h3v.s12.f180f9e31623 from=translated src=- shape=279fa7e5 vocab=4c29d94a
 -/
-theorem exists_retract_invariants (hfree : IsFreeAlgebraAction G R₀ A) :
+theorem _root_.Tengoku.Aintlib.exists_retract_invariants (hfree : IsFreeAlgebraAction G R₀ A) :
     ∃ ρ : A →ₗ[FixedPoints.subalgebra R₀ A G] FixedPoints.subalgebra R₀ A G,
       ρ.comp (Algebra.linearMap (FixedPoints.subalgebra R₀ A G) A) = LinearMap.id := by
   haveI : Fintype G := Fintype.ofFinite G
@@ -189,3 +189,4 @@ theorem RingHom.invariantsCorestrict_etale
   exact Algebra.Etale.of_comp_of_retract ρ hρ
 
 end Invariants
+-- Tengoku: root names of this library moved to Tengoku.Aintlib so they do not collide with other libraries (generated)

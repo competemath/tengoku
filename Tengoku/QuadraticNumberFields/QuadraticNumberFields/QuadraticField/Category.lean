@@ -28,7 +28,7 @@ They instead provide a family of standard objects through `QuadraticFieldCat.ofQ
 * `QuadraticFieldCat.algEquivOfIso`: extract a `ℚ`-algebra equivalence from a
   categorical isomorphism.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 local notation "ℚ√" d => Qsqrtd d
 
 open CategoryTheory
@@ -43,7 +43,7 @@ universe u
 
 An object is a field equipped with a `ℚ`-algebra structure and a proof that it is
 a quadratic extension of `ℚ`. Morphisms are `ℚ`-algebra homomorphisms.-/
-structure QuadraticFieldCat where
+structure _root_.Tengoku.QuadraticNumberFields.QuadraticFieldCat where
   /-- The underlying type of a bundled quadratic field.-/
   carrier : Type u
   [field : Field carrier]
@@ -54,7 +54,7 @@ attribute [instance] QuadraticFieldCat.field
 attribute [instance] QuadraticFieldCat.algebra
 attribute [instance] QuadraticFieldCat.quadraticField
 
-namespace QuadraticFieldCat
+namespace Tengoku.QuadraticNumberFields.QuadraticFieldCat
 
 /-- A bundled quadratic field coerces to its underlying carrier type.-/
 instance : CoeSort QuadraticFieldCat (Type u) :=
@@ -133,4 +133,5 @@ theorem algEquivOfIso_symm_apply {K L : QuadraticFieldCat.{u}} (i : K ≅ L) (x 
     (algEquivOfIso i).symm x = (show L →ₐ[ℚ] K from i.inv) x :=
   rfl
 
-end QuadraticFieldCat
+end Tengoku.QuadraticNumberFields.QuadraticFieldCat
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

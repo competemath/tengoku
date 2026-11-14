@@ -36,7 +36,7 @@ mole, candela). Contrast `SIUnitChoices` (current-based, seven typed slots) with
 -/
 
 @[expose] public section
-
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
 open NNReal
 open scoped BigOperators
 
@@ -48,12 +48,12 @@ open scoped BigOperators
 
 /-- A unit of electric current — a choice of positive-real magnitude. The SI coherent
   choice is the ampere. -/
-structure CurrentUnit where
+structure _root_.Tengoku.Physlib.CurrentUnit where
   /-- The underlying scale of the unit. -/
   val : ℝ
   property : 0 < val
 
-namespace CurrentUnit
+namespace Tengoku.Physlib.CurrentUnit
 
 @[simp]
 lemma val_ne_zero (x : CurrentUnit) : x.val ≠ 0 := Ne.symm (ne_of_lt x.property)
@@ -113,16 +113,16 @@ def amperes : CurrentUnit := ⟨1, by norm_num⟩
 noncomputable def milliamperes : CurrentUnit :=
   scale ((1 / 10) ^ 3) amperes
 
-end CurrentUnit
+end Tengoku.Physlib.CurrentUnit
 
 /-- A unit of amount of substance — a choice of positive-real magnitude. The SI coherent
   choice is the mole. -/
-structure AmountUnit where
+structure _root_.Tengoku.Physlib.AmountUnit where
   /-- The underlying scale of the unit. -/
   val : ℝ
   property : 0 < val
 
-namespace AmountUnit
+namespace Tengoku.Physlib.AmountUnit
 
 @[simp]
 lemma val_ne_zero (x : AmountUnit) : x.val ≠ 0 := Ne.symm (ne_of_lt x.property)
@@ -178,16 +178,16 @@ lemma scale_scale (x : AmountUnit) (r1 r2 : ℝ) (hr1 : 0 < r1) (hr2 : 0 < r2) :
 /-- The SI coherent unit of amount of substance, the mole. -/
 def moles : AmountUnit := ⟨1, by norm_num⟩
 
-end AmountUnit
+end Tengoku.Physlib.AmountUnit
 
 /-- A unit of luminous intensity — a choice of positive-real magnitude. The SI coherent
   choice is the candela. -/
-structure LuminousIntensityUnit where
+structure _root_.Tengoku.Physlib.LuminousIntensityUnit where
   /-- The underlying scale of the unit. -/
   val : ℝ
   property : 0 < val
 
-namespace LuminousIntensityUnit
+namespace Tengoku.Physlib.LuminousIntensityUnit
 
 @[simp]
 lemma val_ne_zero (x : LuminousIntensityUnit) : x.val ≠ 0 := Ne.symm (ne_of_lt x.property)
@@ -250,7 +250,7 @@ lemma scale_scale
 /-- The SI coherent unit of luminous intensity, the candela. -/
 def candelas : LuminousIntensityUnit := ⟨1, by norm_num⟩
 
-end LuminousIntensityUnit
+end Tengoku.Physlib.LuminousIntensityUnit
 
 /-!
 
@@ -289,7 +289,7 @@ open Finset in
 /-- The product over the seven ISQ base quantities, in canonical enumeration order — the
   `ISQDimensionBase` companion to `prod_univ_LTMCTDimensionBase`, a reusable fact about the
   `Fintype` enumeration for folding `Finset.prod` over the ISQ basis. -/
-lemma prod_univ_ISQDimensionBase {M : Type} [CommMonoid M] (f : ISQDimensionBase → M) :
+lemma _root_.Tengoku.Physlib.prod_univ_ISQDimensionBase {M : Type} [CommMonoid M] (f : ISQDimensionBase → M) :
     ∏ b, f b = f .length * f .mass * f .time * f .current * f .temperature
       * f .amount * f .luminousIntensity := by
   rw [show (univ : Finset ISQDimensionBase) =
@@ -308,9 +308,9 @@ lemma prod_univ_ISQDimensionBase {M : Type} [CommMonoid M] (f : ISQDimensionBase
 /-- A **typed SI unit choice**: a typed unit at every ISQ base quantity. This is the
   seven-slot, current-based sibling of the five-slot, charge-based `LTMCTUnitChoices`,
   produced by the same basis-generic `UnitSystem` / `UnitMagnitudeCatalog` machinery. -/
-abbrev SIUnitChoices := UnitSystem ISQDimensionBase
+abbrev _root_.Tengoku.Physlib.SIUnitChoices := UnitSystem ISQDimensionBase
 
-namespace SIUnitChoices
+namespace Tengoku.Physlib.SIUnitChoices
 
 /-- The coherent SI unit choice: metre, kilogram, second, ampere, kelvin, mole, candela. -/
 noncomputable def SI : SIUnitChoices := fun
@@ -335,4 +335,5 @@ example (u : SIUnitChoices) : CurrentUnit := u .current
 lemma dimScale_self (u : SIUnitChoices) (d : Dimension ISQDimensionBase) :
     dimScale u u d = 1 := UnitScale.dimScale_self _ d
 
-end SIUnitChoices
+end Tengoku.Physlib.SIUnitChoices
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

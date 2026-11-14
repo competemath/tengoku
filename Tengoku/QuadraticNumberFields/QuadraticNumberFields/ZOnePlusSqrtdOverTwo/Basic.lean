@@ -29,10 +29,10 @@ When `d = 1 + 4k`, we have `𝓞(Q(√d)) ≅ ℤ[(1+√d)/2]`.
 * `ZOnePlusSqrtdOverTwo.halfInt_mem_carrierSet_iff_same_parity`:
   A half-integer is in the carrier iff its coordinates have the same parity.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 local notation "ℚ√" d => Qsqrtd d
 
-namespace Qsqrtd
+namespace Tengoku.QuadraticNumberFields.Qsqrtd
 
 /-- The discriminant-like parameter `1 + 4k` viewed in `ℚ`.-/
 @[nolint defsWithUnderscore]
@@ -51,16 +51,16 @@ abbrev Zomega (k : ℤ) : Subalgebra ℤ (Qsqrtd (d_of_k k)) :=
 lemma omega_mem_Zomega (k : ℤ) : omega k ∈ Zomega k :=
   Algebra.subset_adjoin (by simp)
 
-end Qsqrtd
+end Tengoku.QuadraticNumberFields.Qsqrtd
 
 open QuadraticNumberFields
 
 /-- Algebraic model of `ℤ[(1 + √(1 + 4d))/2]` via `ω^2 = ω + d`.
 In `QuadraticAlgebra R a b`, one has `ω^2 = a + b * ω`, so this is
 `QuadraticAlgebra ℤ d 1` (not `QuadraticAlgebra ℤ 1 d`).-/
-abbrev ZOnePlusSqrtdOverTwo (d : ℤ) : Type := QuadraticAlgebra ℤ d 1
+abbrev _root_.Tengoku.QuadraticNumberFields.ZOnePlusSqrtdOverTwo (d : ℤ) : Type := QuadraticAlgebra ℤ d 1
 
-namespace ZOnePlusSqrtdOverTwo
+namespace Tengoku.QuadraticNumberFields.ZOnePlusSqrtdOverTwo
 
 /-- Ambient parameter in `ℚ`: `1 + 4d`.-/
 abbrev qParam (d : ℤ) : ℚ := Qsqrtd.d_of_k d
@@ -255,4 +255,5 @@ theorem halfInt_mem_carrierSet_iff_same_parity_set (k a' b' : ℤ) :
       a' % 2 = b' % 2 :=
   by simpa [carrierSet] using (halfInt_mem_carrierSet_iff_same_parity k a' b')
 
-end ZOnePlusSqrtdOverTwo
+end Tengoku.QuadraticNumberFields.ZOnePlusSqrtdOverTwo
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

@@ -8,7 +8,7 @@ import Tengoku.ClassfieldtheoryYamaguchi.ClassFieldTheory.AlgebraicNumberTheory.
 import Tengoku.Seed.RingTheory.Norm.Transitivity
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.ClassfieldtheoryYamaguchi end Tengoku.ClassfieldtheoryYamaguchi open Tengoku.ClassfieldtheoryYamaguchi
 set_option autoImplicit false
 
 /-!
@@ -26,7 +26,7 @@ open NumberField
 
 noncomputable section
 
-namespace RelativeIdeleGroup
+namespace Tengoku.ClassfieldtheoryYamaguchi.RelativeIdeleGroup
 
 variable
     (K L : Type*) [Field K] [NumberField K]
@@ -68,4 +68,5 @@ theorem inclusion_norm_principalIdele_eq_prod_conjugates
   exact congrArg (principalIdele K L)
     (fieldNormUnits_eq_prod_conjugates K L x)
 
-end RelativeIdeleGroup
+end Tengoku.ClassfieldtheoryYamaguchi.RelativeIdeleGroup
+-- Tengoku: root names of this library moved to Tengoku.ClassfieldtheoryYamaguchi so they do not collide with other libraries (generated)

@@ -8,11 +8,11 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.BrownianMotion end Tengoku.BrownianMotion open Tengoku.BrownianMotion 
 open Module
 open scoped Matrix
 
-namespace ContinuousBilinForm
+namespace Tengoku.BrownianMotion.ContinuousBilinForm
 
 variable {𝕜 E n : Type*} [NormedAddCommGroup E]
 
@@ -22,7 +22,7 @@ variable [RCLike 𝕜] [NormedSpace 𝕜 E]
 
 variable (𝕜 E) in
 /- The type of continuous bilinear forms. -/
-abbrev _root_.ContinuousBilinForm := E →L[𝕜] E →L[𝕜] 𝕜
+abbrev _root_.Tengoku.BrownianMotion.ContinuousBilinForm := E →L[𝕜] E →L[𝕜] 𝕜
 
 variable (f : ContinuousBilinForm 𝕜 E) (b : Basis n 𝕜 E)
 
@@ -445,4 +445,5 @@ end Real
 
 end Diagonal
 
-end ContinuousBilinForm
+end Tengoku.BrownianMotion.ContinuousBilinForm
+-- Tengoku: root names of this library moved to Tengoku.BrownianMotion so they do not collide with other libraries (generated)

@@ -14,7 +14,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.BrownianMotion end Tengoku.BrownianMotion open Tengoku.BrownianMotion 
 open MeasureTheory ProbabilityTheory Filter Matrix NormedSpace WithLp
 open scoped ENNReal NNReal Topology RealInnerProductSpace MatrixOrder
 
@@ -68,3 +68,4 @@ lemma hasLaw_eval_multivariateGaussian (hS : S.PosSemidef) {i : ι} :
     exact IsGaussian.integrable_id
 
 end ProbabilityTheory
+-- Tengoku: root names of this library moved to Tengoku.BrownianMotion so they do not collide with other libraries (generated)

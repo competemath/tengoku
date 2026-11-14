@@ -26,7 +26,7 @@ the model of the quotient curve `E/G` over `X/G = Spec Aᴳ`.
 `FixedPoints.subring A G` is defeq to `FixedPoints.subalgebra ℤ A G` (the ring the project's
 `localQuotient`/`invariantsπ` are `Spec` of), so this interoperates with the descent geometry.
 -/
-
+namespace Tengoku.Aintlib end Tengoku.Aintlib open Tengoku.Aintlib
 open scoped Pointwise
 
 universe u
@@ -519,3 +519,4 @@ theorem isElliptic_of_map_isElliptic {W₁ : WeierstrassCurve (FixedPoints.subri
   exact hW
 
 end WeierstrassCurve
+-- Tengoku: root names of this library moved to Tengoku.Aintlib so they do not collide with other libraries (generated)

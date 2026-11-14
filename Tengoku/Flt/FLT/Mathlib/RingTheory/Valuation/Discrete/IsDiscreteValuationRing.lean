@@ -15,7 +15,7 @@ fraction field of a discrete valuation ring with valuation `1` is the image of a
 -/
 
 @[expose] public section
-
+namespace Tengoku.Flt end Tengoku.Flt open Tengoku.Flt 
 universe u
 
 section
@@ -28,7 +28,7 @@ open IsDedekindDomain.HeightOneSpectrum IsDiscreteValuationRing IsLocalRing in
 of a unit.
 @isnad1 id=ex.1h3v.s7.314d8b197b3d from=translated src=- shape=35848380 vocab=42a72d4a
 -/
-theorem exists_algebraMap_unit_eq_of_valuation_eq_one {x : K}
+theorem _root_.Tengoku.Flt.exists_algebraMap_unit_eq_of_valuation_eq_one {x : K}
     (hx : valuation K (maximalIdeal R) x = 1) : ∃ u : Rˣ, algebraMap R K ↑u = x := by
   obtain ⟨u₀, hu₀⟩ := associated_of_valuation_eq (A := R) (K := K) x 1 (by rw [map_one]; exact hx)
   have h1 : algebraMap R K ↑u₀ * x = 1 := by rw [← Algebra.smul_def]; exact hu₀
@@ -37,3 +37,4 @@ theorem exists_algebraMap_unit_eq_of_valuation_eq_one {x : K}
   exact ⟨u₀⁻¹, mul_left_cancel₀ (left_ne_zero_of_mul_eq_one h1) (h2.trans h1.symm)⟩
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Flt so they do not collide with other libraries (generated)

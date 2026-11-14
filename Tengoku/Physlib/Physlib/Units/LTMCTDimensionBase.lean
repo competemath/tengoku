@@ -27,11 +27,11 @@ substance and luminous intensity); see `ISQDimensionBase`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Physlib end Tengoku.Physlib open Tengoku.Physlib 
 /-- PhysLib's default basis of base dimensions — `length`, `time`, `mass`,
   `charge`, `temperature`. Note this is *charge*-based, so it is not the SI/ISQ
   base-quantity set; see `Dimension`. -/
-inductive LTMCTDimensionBase where
+inductive _root_.Tengoku.Physlib.LTMCTDimensionBase where
   /-- The length base dimension. -/
   | length
   /-- The time base dimension. -/
@@ -44,13 +44,13 @@ inductive LTMCTDimensionBase where
   | temperature
 deriving DecidableEq
 
-namespace LTMCTDimensionBase
+namespace Tengoku.Physlib.LTMCTDimensionBase
 
 instance : Fintype LTMCTDimensionBase where
   elems := {.length, .time, .mass, .charge, .temperature}
   complete := fun x => by cases x <;> decide
 
-open Dimension in
+open Tengoku.Physlib.Dimension in
 /-- The fixed five-component exponent tuple for PhysLib's default dimension basis. -/
 abbrev Exponents := Exponent × Exponent × Exponent × Exponent × Exponent
 
@@ -65,9 +65,9 @@ instance : DimensionBasis LTMCTDimensionBase where
       right_inv f := by funext b; cases b <;> rfl
       map_add' _ _ := by funext b; cases b <;> rfl }
 
-end LTMCTDimensionBase
+end Tengoku.Physlib.LTMCTDimensionBase
 
-namespace Dimension
+namespace Tengoku.Physlib.Dimension
 
 /-!
 
@@ -331,4 +331,5 @@ lemma M𝓭_eq_single : M𝓭 = single .mass := rfl
 
 lemma C𝓭_eq_single : C𝓭 = single .charge := rfl
 
-end Dimension
+end Tengoku.Physlib.Dimension
+-- Tengoku: root names of this library moved to Tengoku.Physlib so they do not collide with other libraries (generated)

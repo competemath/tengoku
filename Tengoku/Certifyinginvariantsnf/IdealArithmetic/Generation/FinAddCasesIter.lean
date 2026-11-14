@@ -14,7 +14,7 @@ tuple `Fin (∑ i, e i) → α`
 ## Main results
 - `addCasesIter_apply` : describes the evaluation of `Fin.addCasesIter` in terms of the pair of
   local indices.  -/
-
+namespace Tengoku.Certifyinginvariantsnf end Tengoku.Certifyinginvariantsnf open Tengoku.Certifyinginvariantsnf
 /-- Form a tuple by concatenating a family of tuples `g` with arities given by `e`. -/
 def Fin.addCasesIter {α : Type*} {r : ℕ} (e : Fin r → ℕ) (g : ∀ i, Fin (e i) → α) :
     Fin (∑ i, e i) → α := by
@@ -63,7 +63,7 @@ lemma List.ofFn_addCasesIter {α : Type*} {r : ℕ} (e : Fin (r + 1) → ℕ) (g
 
 /-- Send `j : Fin (∑ i, e i)` to `⟨k, t⟩`, where `k` and `t : Fin (e k)` are
 such that `j = t + ∑ i<k, e i` . -/
-def indexPair {r : ℕ} (e : Fin r → ℕ) (j : Fin (∑ i, e i)) : Σ (i : Fin r), Fin (e i) := by
+def _root_.Tengoku.Certifyinginvariantsnf.indexPair {r : ℕ} (e : Fin r → ℕ) (j : Fin (∑ i, e i)) : Σ (i : Fin r), Fin (e i) := by
   revert e
   induction r with
   | zero =>
@@ -85,7 +85,7 @@ def indexPair {r : ℕ} (e : Fin r → ℕ) (j : Fin (∑ i, e i)) : Σ (i : Fin
 /--
 @isnad1 id=eq.1h3v.s8.a2f5ba4d2800 from=translated src=- shape=8f46737f vocab=ede89236
 -/
-lemma indexPair_left_aux {r : ℕ} {e : Fin (r + 1) → ℕ} {j : Fin (∑ i, e i)}
+lemma _root_.Tengoku.Certifyinginvariantsnf.indexPair_left_aux {r : ℕ} {e : Fin (r + 1) → ℕ} {j : Fin (∑ i, e i)}
     (h : j < ∑ (i : Fin r), e i.castSucc) :
     indexPair e j = ⟨Fin.castSucc (indexPair (fun (i : Fin r) => e i.castSucc) ⟨↑j, h⟩).1,
       (indexPair (fun (i : Fin r) => e i.castSucc) ⟨↑j, h⟩).2 ⟩ := by
@@ -96,7 +96,7 @@ lemma indexPair_left_aux {r : ℕ} {e : Fin (r + 1) → ℕ} {j : Fin (∑ i, e 
 /--
 @isnad1 id=eq.1h3v.s9.883c5f7d6298 from=translated src=- shape=7cf4aa94 vocab=6e2a9e1a
 -/
-lemma indexPair_right_aux {r : ℕ} {e : Fin (r + 1) → ℕ} {j : Fin (∑ i, e i)}
+lemma _root_.Tengoku.Certifyinginvariantsnf.indexPair_right_aux {r : ℕ} {e : Fin (r + 1) → ℕ} {j : Fin (∑ i, e i)}
     (h : ¬ j < ∑ (i : Fin r), e i.castSucc) :
     indexPair e j = ⟨Fin.last r, Fin.subNat (∑ (i : Fin r), e i.castSucc)
       (Fin.cast (show ( ∑ i, e i = e (Fin.last r) + ∑ (i : Fin r), e i.castSucc )
@@ -108,7 +108,7 @@ lemma indexPair_right_aux {r : ℕ} {e : Fin (r + 1) → ℕ} {j : Fin (∑ i, e
 /-- The evaluation of `Fin.addCasesIter` in terms of the pair of local indices.
 @isnad1 id=eq.0h5v.s6.f8a05d7af7f3 from=translated src=- shape=a0f9c1bf vocab=d1d1fbc9
 -/
-lemma addCasesIter_apply {α : Type*} {r : ℕ} (e : Fin r → ℕ) (g : ∀ i, Fin (e i) → α)
+lemma _root_.Tengoku.Certifyinginvariantsnf.addCasesIter_apply {α : Type*} {r : ℕ} (e : Fin r → ℕ) (g : ∀ i, Fin (e i) → α)
     (j : Fin (∑ i, e i)) :
     Fin.addCasesIter e g j = g (indexPair e j).1 (indexPair e j).2 := by
   revert e
@@ -143,7 +143,7 @@ section
 /--
 @isnad1 id=var.0h9v.s6.728f7e643af8 from=translated src=- shape=f1c08f67 vocab=60bf8959
 -/
-lemma forall_addCasesIter_prop {A B : Type*} {r : ℕ} {e : Fin r → ℕ}
+lemma _root_.Tengoku.Certifyinginvariantsnf.forall_addCasesIter_prop {A B : Type*} {r : ℕ} {e : Fin r → ℕ}
     (g : ∀ (i : Fin r), Fin (e i) → A) (M : ∀ (i : Fin r), Fin (e i) → B)
     (P : A → B → Prop) (h : ∀ i, ∀ j , P (g i j) (M i j)) :
     ∀ k : Fin (∑ (i : Fin r), e i) , P ((Fin.addCasesIter e g) k) ((Fin.addCasesIter e M) k) := by
@@ -152,3 +152,4 @@ lemma forall_addCasesIter_prop {A B : Type*} {r : ℕ} {e : Fin r → ℕ}
   refine h (indexPair e k).1 (indexPair e k).2
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Certifyinginvariantsnf so they do not collide with other libraries (generated)

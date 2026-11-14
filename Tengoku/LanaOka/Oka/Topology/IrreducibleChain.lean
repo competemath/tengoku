@@ -28,14 +28,14 @@ finite unions of closed sets, hence closed, so `S` is clopen and contains `x`, t
   Noetherian space, the irreducible components form a locally finite family.
 - `JacobsonSpace.reflTransGen_irreducibleComponents`: the chain lemma.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Topology TopologicalSpace
 
 variable {X : Type*} [TopologicalSpace X]
 
 /-- If every point of `X` has an open neighbourhood which is a Noetherian topological space, then
 the irreducible components of `X` form a locally finite family. -/
-theorem locallyFinite_irreducibleComponents
+theorem _root_.Tengoku.LanaOka.locallyFinite_irreducibleComponents
     (h : ∀ x : X, ∃ U : Set X, IsOpen U ∧ x ∈ U ∧ NoetherianSpace U) :
     LocallyFinite (fun Z : irreducibleComponents X ↦ (Z : Set X)) := by
   intro x
@@ -124,3 +124,4 @@ theorem JacobsonSpace.reflTransGen_irreducibleComponents [JacobsonSpace X] [Conn
     (Set.nonempty_iff_ne_empty.mp ⟨x, hxS⟩)
   obtain ⟨Z, ⟨c, hcZ, hc, hxc⟩, hyZ⟩ := (hmemS y).1 (by rw [hSuniv]; trivial)
   exact hxc.tail ⟨hc, hy, Z, Z.2, hcZ, hyZ⟩
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

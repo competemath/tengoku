@@ -6,7 +6,7 @@ import Tengoku.AndersonConjecture.Anderson.AdicLocal
 import Tengoku.AndersonConjecture.Anderson.AdicNoetherian
 import Tengoku.AndersonConjecture.Anderson.QuasiCompleteRing.Complete
 import Tengoku
-
+namespace Tengoku.AndersonConjecture end Tengoku.AndersonConjecture open Tengoku.AndersonConjecture
 open scoped Pointwise
 
 /-!
@@ -51,7 +51,7 @@ We state this as two implications + the general QC → WQC.
 /--
 @isnad1 id=iff.1h1v.s5.92a37487b9f2 from=translated src=- shape=23fab471 vocab=687b0b0f
 -/
-theorem dim1_qc_iff_wqc
+theorem _root_.Tengoku.AndersonConjecture.dim1_qc_iff_wqc
     (R : Type*) [CommRing R] [IsLocalRing R] [IsNoetherianRing R] [IsDomain R]
     (hdim : ringKrullDim R = 1) :
     IsQuasiComplete R ↔ IsWeaklyQuasiComplete R := by
@@ -141,3 +141,4 @@ A Noetherian local ring R is QC ↔ every homomorphic image R/I is WQC.
 The forward direction is in Basic.lean (IsQuasiComplete.quotient_isWeaklyQuasiComplete).
 Here we state the full iff.
 -/
+-- Tengoku: root names of this library moved to Tengoku.AndersonConjecture so they do not collide with other libraries (generated)

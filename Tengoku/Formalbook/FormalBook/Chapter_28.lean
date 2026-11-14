@@ -45,7 +45,7 @@ the product {1,…,m} × {1,…,n}. The two strategies are mathematically equiva
 the dual-label approach is a natural generalization that avoids the separate
 "same-label implies decreasing" argument.
 -/
-
+namespace Tengoku.Formalbook end Tengoku.Formalbook open Tengoku.Formalbook
 attribute [local instance] Sym2.instCoeFinset Sym2.instCoeMultiset
 attribute [local simp] Sym2.coe_toFinset Sym2.setOf_mem_eq Sym2.toFinset_mk Sym2.toFinset_toMultiset Sym2.toMultiset_mk
 
@@ -730,3 +730,4 @@ since |E| ≈ p·|V|/2 ≈ n^{3/2}/2.
 end ReimanGraph
 
 end chapter28
+-- Tengoku: root names of this library moved to Tengoku.Formalbook so they do not collide with other libraries (generated)

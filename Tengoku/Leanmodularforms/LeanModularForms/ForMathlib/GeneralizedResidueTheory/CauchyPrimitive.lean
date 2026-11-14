@@ -15,7 +15,7 @@ open set S via the segment integral F(z) = ∫₀¹ f(c + t(z-c))·(z-c) dt.
 
 * `holomorphic_convex_primitive` — holomorphic on convex open ⇒ has primitive
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex MeasureTheory Set Filter Topology
 open scoped Real Interval
 
@@ -319,7 +319,7 @@ private lemma hasDerivAt_segmentIntegral {f : ℂ → ℂ}
 F(z) = ∫₀¹ f(c + t(z-c))·(z-c) dt is a primitive with F'(z) = f(z).
 @isnad1 id=ex.4h2v.s7.4e983515ca1e from=translated src=- shape=f68bc477 vocab=98c3d0a2
 -/
-theorem holomorphic_convex_primitive
+theorem _root_.Tengoku.Leanmodularforms.holomorphic_convex_primitive
     {f : ℂ → ℂ} {S : Set ℂ} (hS_convex : Convex ℝ S)
     (hS_open : IsOpen S) (hS_ne : S.Nonempty)
     (hf : DifferentiableOn ℂ f S) :
@@ -331,3 +331,4 @@ theorem holomorphic_convex_primitive
       hS_open hc hz hf⟩
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

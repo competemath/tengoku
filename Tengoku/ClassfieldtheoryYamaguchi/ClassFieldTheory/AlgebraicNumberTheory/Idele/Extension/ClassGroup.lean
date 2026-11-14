@@ -8,7 +8,7 @@ import Tengoku.ClassfieldtheoryYamaguchi.ClassFieldTheory.AlgebraicNumberTheory.
 import Tengoku.Seed.LinearAlgebra.Basis.VectorSpace
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.ClassfieldtheoryYamaguchi end Tengoku.ClassfieldtheoryYamaguchi open Tengoku.ClassfieldtheoryYamaguchi
 set_option autoImplicit false
 
 /-!
@@ -34,7 +34,7 @@ variable
     [Field L] [NumberField L] [Algebra K L]
     [FiniteDimensional K L]
 
-namespace RelativeIdeleGroup
+namespace Tengoku.ClassfieldtheoryYamaguchi.RelativeIdeleGroup
 
 omit [NumberField L] [FiniteDimensional K L] in
 /-- If a base adele and an extension-field element define the same
@@ -213,4 +213,5 @@ theorem classInclusion_injective :
       QuotientGroup.mk_surjective z
     exact ⟨a, (QuotientGroup.eq_one_iff a).1 hz1, rfl⟩
 
-end RelativeIdeleGroup
+end Tengoku.ClassfieldtheoryYamaguchi.RelativeIdeleGroup
+-- Tengoku: root names of this library moved to Tengoku.ClassfieldtheoryYamaguchi so they do not collide with other libraries (generated)

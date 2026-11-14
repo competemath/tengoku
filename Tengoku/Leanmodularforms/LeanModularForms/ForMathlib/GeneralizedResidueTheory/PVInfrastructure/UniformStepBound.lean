@@ -18,7 +18,7 @@ annulus bound into a single epsilon-independent estimate.
 * `pv_step_bound_ratio_two_uniform` — uniform step bound
     with epsilon-independent constant
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Complex MeasureTheory Set Filter Topology
 open scoped Real Interval
 
@@ -27,7 +27,7 @@ noncomputable section
 /-- Uniform step bound with epsilon-independent constant.
 @isnad1 id=ex.9h5v.s9.cf09e6c23324 from=translated src=- shape=9a3231e5 vocab=0a2d6f62
 -/
-lemma pv_step_bound_ratio_two_uniform {γ : ℝ → ℂ} {a b t₀ : ℝ} {L : ℂ} (hab : a < b)
+lemma _root_.Tengoku.Leanmodularforms.pv_step_bound_ratio_two_uniform {γ : ℝ → ℂ} {a b t₀ : ℝ} {L : ℂ} (hab : a < b)
     (hat₀ : t₀ ∈ Set.Ioo a b) (hγ_C2 : ContDiffAt ℝ 2 γ t₀) (hγ_deriv : deriv γ t₀ = L)
     (hL : L ≠ 0) (hγ_meas : Measurable γ)
     (hγ_cont_deriv : ContinuousOn (deriv γ) (Set.Icc a b))
@@ -186,3 +186,4 @@ lemma pv_step_bound_ratio_two_uniform {γ : ℝ → ℂ} {a b t₀ : ℝ} {L : �
     _ = Kstep * ε₁ := by simp only [Kstep]; ring
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

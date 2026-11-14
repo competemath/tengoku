@@ -16,10 +16,10 @@ import Tengoku.QuadraticNumberFields.QNFMathlib.RingTheory.ClassGroup.Narrow
 This file connects the generic narrow class group API with rings of integers of
 number fields.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 open scoped NumberField nonZeroDivisors
 
-namespace NarrowClassGroup
+namespace Tengoku.QuadraticNumberFields.NarrowClassGroup
 
 namespace RingOfIntegers
 
@@ -44,7 +44,7 @@ noncomputable instance instFintypeRingOfIntegersNarrowClassGroup :
 
 end RingOfIntegers
 
-end NarrowClassGroup
+end Tengoku.QuadraticNumberFields.NarrowClassGroup
 
 namespace NumberField
 
@@ -110,3 +110,4 @@ theorem narrowClassNumber_ne_zero : narrowClassNumber K ≠ 0 := Fintype.card_ne
 theorem narrowClassNumber_pos : 0 < narrowClassNumber K := Fintype.card_pos
 
 end NumberField
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

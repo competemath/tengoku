@@ -18,7 +18,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.FormalConjectures end Tengoku.FormalConjectures open Tengoku.FormalConjectures 
 /-!
 # Wieferich primes
 
@@ -44,14 +44,14 @@ The subtraction is truncated, so, as with `Nat.ProbablePrime`, every prime is a 
 base $0$. For `a ≠ 0` the definition agrees with the congruence, see
 `isWieferichPrimeBase_iff_pow_modEq`.-/
 @[mk_iff]
-structure IsWieferichPrimeBase (a p : ℕ) : Prop where
+structure _root_.Tengoku.FormalConjectures.IsWieferichPrimeBase (a p : ℕ) : Prop where
   prime : p.Prime
   sq_dvd_pow_sub_one : p ^ 2 ∣ a ^ (p - 1) - 1
 
 instance (a p : ℕ) : Decidable (IsWieferichPrimeBase a p) :=
   decidable_of_iff _ (isWieferichPrimeBase_iff a p).symm
 
-namespace IsWieferichPrimeBase
+namespace Tengoku.FormalConjectures.IsWieferichPrimeBase
 
 variable {a p : ℕ}
 
@@ -74,13 +74,13 @@ theorem pow_modEq (h : IsWieferichPrimeBase a p) (ha : a ≠ 0) : a ^ (p - 1) �
 theorem of_modEq_one (hp : p.Prime) (h : a ≡ 1 [MOD p ^ 2]) : IsWieferichPrimeBase a p :=
   .of_pow_modEq hp (by simpa using h.pow (p - 1))
 
-end IsWieferichPrimeBase
+end Tengoku.FormalConjectures.IsWieferichPrimeBase
 
 /-- For a nonzero base `a`, being a Wieferich prime to base `a` is the congruence
 `a ^ (p - 1) ≡ 1 [MOD p ^ 2]`. This fails for `a = 0`: see `isWieferichPrimeBase_zero_iff`.
 @isnad1 id=iff.1h2v.s6.e5743de9e89d from=translated src=- shape=9a85701b vocab=f0f55a8c
 -/
-theorem isWieferichPrimeBase_iff_pow_modEq {a p : ℕ} (ha : a ≠ 0) :
+theorem _root_.Tengoku.FormalConjectures.isWieferichPrimeBase_iff_pow_modEq {a p : ℕ} (ha : a ≠ 0) :
     IsWieferichPrimeBase a p ↔ p.Prime ∧ a ^ (p - 1) ≡ 1 [MOD p ^ 2] :=
   ⟨fun h => ⟨h.prime, h.pow_modEq ha⟩, fun h => .of_pow_modEq h.1 h.2⟩
 
@@ -88,25 +88,26 @@ theorem isWieferichPrimeBase_iff_pow_modEq {a p : ℕ} (ha : a ≠ 0) :
 @isnad1 id=iff.0h1v.s3.c07b51e1807e from=translated src=- shape=dde04217 vocab=a7dced36
 -/
 @[simp]
-theorem isWieferichPrimeBase_zero_iff {p : ℕ} : IsWieferichPrimeBase 0 p ↔ p.Prime :=
+theorem _root_.Tengoku.FormalConjectures.isWieferichPrimeBase_zero_iff {p : ℕ} : IsWieferichPrimeBase 0 p ↔ p.Prime :=
   ⟨fun h => h.prime, fun hp => ⟨hp, by simp [zero_pow (Nat.sub_ne_zero_of_lt hp.one_lt)]⟩⟩
 
 /-- Every prime is a Wieferich prime to base `1`.
 @isnad1 id=iff.0h1v.s3.949fdf48dd5f from=translated src=- shape=dde04217 vocab=a7dced36
 -/
 @[simp]
-theorem isWieferichPrimeBase_one_iff {p : ℕ} : IsWieferichPrimeBase 1 p ↔ p.Prime := by
+theorem _root_.Tengoku.FormalConjectures.isWieferichPrimeBase_one_iff {p : ℕ} : IsWieferichPrimeBase 1 p ↔ p.Prime := by
   simp [isWieferichPrimeBase_iff]
 
 /--
 **Wieferich prime**
 A Wieferich prime is a prime $p$ with $2^{p-1} \equiv 1 \pmod{p^2}$, i.e. a Wieferich prime to
 base $2$.-/
-abbrev IsWieferichPrime (p : ℕ) : Prop := IsWieferichPrimeBase 2 p
+abbrev _root_.Tengoku.FormalConjectures.IsWieferichPrime (p : ℕ) : Prop := IsWieferichPrimeBase 2 p
 
 /--
 **Mirimanoff prime**
 A Mirimanoff prime is a prime $p$ with $3^{p-1} \equiv 1 \pmod{p^2}$, i.e. a Wieferich prime to
 base $3$. The name comes from Mirimanoff's 1910 result that a failure of the first case of
 Fermat's Last Theorem for the exponent $p$ forces this congruence.-/
-abbrev IsMirimanoffPrime (p : ℕ) : Prop := IsWieferichPrimeBase 3 p
+abbrev _root_.Tengoku.FormalConjectures.IsMirimanoffPrime (p : ℕ) : Prop := IsWieferichPrimeBase 3 p
+-- Tengoku: root names of this library moved to Tengoku.FormalConjectures so they do not collide with other libraries (generated)

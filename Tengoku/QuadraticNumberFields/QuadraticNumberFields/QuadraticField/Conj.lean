@@ -47,7 +47,7 @@ assume the automorphism is genuinely non-trivial.
 * `QuadraticField.mul_conj_eq_norm_image`: `x * conjAut K x` is the image
   of `Algebra.norm ℚ x`.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 -- Use the canonical `QuadraticAlgebra` algebra structure on standard `Qsqrtd`
 -- models. Otherwise `DivisionRing.toRatAlgebra` competes with it after the
 -- field instance is available.
@@ -55,7 +55,7 @@ local notation "ℚ√" d => Qsqrtd d
 
 attribute [-instance] DivisionRing.toRatAlgebra
 
-namespace QuadraticField
+namespace Tengoku.QuadraticNumberFields.QuadraticField
 
 /-- A `Conj` structure on a quadratic field `K` is a distinguished
 non-trivial `ℚ`-algebra involution on `K`.
@@ -79,9 +79,9 @@ abbrev conjAut (K : Type*) [Field K] [Algebra ℚ K]
     [QuadraticField K] [Conj K] : K ≃ₐ[ℚ] K :=
   Conj.conj
 
-end QuadraticField
+end Tengoku.QuadraticNumberFields.QuadraticField
 
-namespace Qsqrtd
+namespace Tengoku.QuadraticNumberFields.Qsqrtd
 
 /-! ## The Standard-Model Conjugation
 
@@ -126,9 +126,9 @@ theorem starAlgEquiv_symm_apply {d : ℚ} [Fact (¬ IsSquare d)] (x : Qsqrtd d) 
     (starAlgEquiv d).symm x = star x := by
   rfl
 
-end Qsqrtd
+end Tengoku.QuadraticNumberFields.Qsqrtd
 
-namespace QuadraticField
+namespace Tengoku.QuadraticNumberFields.QuadraticField
 
 /-! ## Trace and Norm via the Distinguished Conjugation
 
@@ -143,4 +143,5 @@ variable {K : Type*} [Field K] [Algebra ℚ K] [QuadraticField K] [Conj K]
 
 end TraceNorm
 
-end QuadraticField
+end Tengoku.QuadraticNumberFields.QuadraticField
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

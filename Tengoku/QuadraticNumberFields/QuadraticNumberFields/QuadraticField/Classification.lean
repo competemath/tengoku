@@ -37,7 +37,7 @@ The standard model declarations use the canonical `QuadraticAlgebra` algebra
 structure on `Qsqrtd`, avoiding the `ℚ`-algebra diamond with
 `DivisionRing.toRatAlgebra`.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 local notation "ℚ√" d => Qsqrtd d
 
 attribute [-instance] DivisionRing.toRatAlgebra
@@ -47,5 +47,6 @@ open Polynomial IntermediateField
 
 /-- `d` is a normalized standard parameter for the abstract quadratic field `K`
 if it is squarefree, not equal to `1`, and `K` is isomorphic to `Qsqrtd d`.-/
-def IsStandardParameter (K : Type*) [Field K] [Algebra ℚ K] (d : ℤ) : Prop :=
+def _root_.Tengoku.QuadraticNumberFields.IsStandardParameter (K : Type*) [Field K] [Algebra ℚ K] (d : ℤ) : Prop :=
   Squarefree d ∧ d ≠ 1 ∧ Nonempty (K ≃ₐ[ℚ] Qsqrtd (d : ℚ))
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

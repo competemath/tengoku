@@ -96,7 +96,7 @@ with their siblings, and are consumed by `Oka/Weierstrass.lean`.
 - [Robert C. Gunning and Hugo Rossi, *Analytic functions of several complex
   variables*][gunning-rossi1965], §I.A
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Complex
 open scoped Topology
 
@@ -148,13 +148,13 @@ theorem analyticAt_eval_of_summableAt_const {ρ : ℝ} (hρ : 0 < ρ)
 end MvPowerSeries
 
 open MvPowerSeries in
-lemma analyticAt_of_represents {m : ℕ} {P : MvPowerSeries (Fin m) ℂ} {g : (Fin m → ℂ) → ℂ}
+lemma _root_.Tengoku.LanaOka.analyticAt_of_represents {m : ℕ} {P : MvPowerSeries (Fin m) ℂ} {g : (Fin m → ℂ) → ℂ}
     (hP : LocallyConvergent P) (hrep : Represents P g) : AnalyticAt ℂ g 0 := by
   refine hP.analyticAt.congr ?_
   filter_upwards [hrep] with x hx
   exact hx.tsum_eq
 
-lemma analyticAt_of_shift {m : ℕ} {f : (Fin m → ℂ) → ℂ} {x₀ : Fin m → ℂ}
+lemma _root_.Tengoku.LanaOka.analyticAt_of_shift {m : ℕ} {f : (Fin m → ℂ) → ℂ} {x₀ : Fin m → ℂ}
     (h : AnalyticAt ℂ (fun y ↦ f (x₀ + y)) 0) : AnalyticAt ℂ f x₀ := by
   have hcomp : AnalyticAt ℂ ((fun y ↦ f (x₀ + y)) ∘ (fun x ↦ x - x₀)) x₀ :=
     AnalyticAt.comp (by simpa using h) (analyticAt_id.sub analyticAt_const)
@@ -166,21 +166,21 @@ lemma analyticAt_of_shift {m : ℕ} {f : (Fin m → ℂ) → ℂ} {x₀ : Fin m 
   rwa [hfe] at hcomp
 
 /-- Peel off the `0`-th coordinate of a `Fin (m+1)`-indexed `Finsupp`. -/
-noncomputable def finsuppConsEquiv (m : ℕ) : (Fin (m + 1) →₀ ℕ) ≃ ℕ × (Fin m →₀ ℕ) where
+noncomputable def _root_.Tengoku.LanaOka.finsuppConsEquiv (m : ℕ) : (Fin (m + 1) →₀ ℕ) ≃ ℕ × (Fin m →₀ ℕ) where
   toFun t := (t 0, Finsupp.tail t)
   invFun p := Finsupp.cons p.1 p.2
   left_inv t := Finsupp.cons_tail t
   right_inv p := by obtain ⟨y, s⟩ := p; simp
 
-@[simp] lemma finsuppConsEquiv_apply (m : ℕ) (t : Fin (m + 1) →₀ ℕ) :
+@[simp] lemma _root_.Tengoku.LanaOka.finsuppConsEquiv_apply (m : ℕ) (t : Fin (m + 1) →₀ ℕ) :
     finsuppConsEquiv m t = (t 0, Finsupp.tail t) := rfl
 
-@[simp] lemma finsuppConsEquiv_symm_apply (m : ℕ) (p : ℕ × (Fin m →₀ ℕ)) :
+@[simp] lemma _root_.Tengoku.LanaOka.finsuppConsEquiv_symm_apply (m : ℕ) (p : ℕ × (Fin m →₀ ℕ)) :
     (finsuppConsEquiv m).symm p = Finsupp.cons p.1 p.2 := rfl
 
 /-- The multivariate geometric series converges absolutely: if `‖a i‖ < 1` for every `i`, then
 the family `d ↦ ∏ i, a i ^ d i` indexed by multi-indices `d : Fin m →₀ ℕ` is norm-summable. -/
-theorem summable_norm_multiGeometric :
+theorem _root_.Tengoku.LanaOka.summable_norm_multiGeometric :
     ∀ (m : ℕ) (a : Fin m → ℂ), (∀ i, ‖a i‖ < 1) →
       Summable (fun d : Fin m →₀ ℕ ↦ ‖∏ i, (a i) ^ (d i)‖) := by
   intro m
@@ -211,7 +211,7 @@ theorem summable_norm_multiGeometric :
 
 /-- The multivariate geometric series: if `‖a i‖ < 1` for every `i`, then the family
 `d ↦ ∏ i, a i ^ d i` indexed by multi-indices `d : Fin m →₀ ℕ` sums to `∏ i, (1 - a i)⁻¹`. -/
-theorem hasSum_multiGeometric :
+theorem _root_.Tengoku.LanaOka.hasSum_multiGeometric :
     ∀ (m : ℕ) (a : Fin m → ℂ), (∀ i, ‖a i‖ < 1) →
       HasSum (fun d : Fin m →₀ ℕ ↦ ∏ i, (a i) ^ (d i)) (∏ i, (1 - a i)⁻¹) := by
   intro m
@@ -257,7 +257,7 @@ theorem hasSum_multiGeometric :
       exact hmul
 
 /-- Geometric expansion of the Cauchy kernel in the multi-index `d`. -/
-theorem hasSum_cauchyKernel {m : ℕ} (ζ w : Fin m → ℂ)
+theorem _root_.Tengoku.LanaOka.hasSum_cauchyKernel {m : ℕ} (ζ w : Fin m → ℂ)
     (hζ : ∀ i, ζ i ≠ 0) (hlt : ∀ i, ‖w i‖ < ‖ζ i‖) :
     HasSum (fun d : Fin m →₀ ℕ ↦ (∏ i, (ζ i ^ (d i + 1))⁻¹) * ∏ i, (w i) ^ (d i))
       (∏ i, (ζ i - w i)⁻¹) := by
@@ -285,7 +285,7 @@ theorem hasSum_cauchyKernel {m : ℕ} (ζ w : Fin m → ℂ)
 
 open MeasureTheory in
 /-- Term-by-term integration over a torus. -/
-theorem hasSum_torusIntegral {m : ℕ} {c : Fin m → ℂ} {R : Fin m → ℝ}
+theorem _root_.Tengoku.LanaOka.hasSum_torusIntegral {m : ℕ} {c : Fin m → ℂ} {R : Fin m → ℝ}
     {F : (Fin m →₀ ℕ) → (Fin m → ℂ) → ℂ} {S : (Fin m → ℂ) → ℂ}
     (hint : ∀ d, TorusIntegrable (F d) c R)
     (hsum : Summable (fun d ↦ ∫ θ in Set.Icc (0 : Fin m → ℝ) (fun _ ↦ 2 * Real.pi),
@@ -312,7 +312,7 @@ theorem hasSum_torusIntegral {m : ℕ} {c : Fin m → ℂ} {R : Fin m → ℝ}
 
 open MeasureTheory in
 /-- Each Cauchy term is torus-integrable on the polydisc of radius `ρ`. -/
-theorem torusIntegrable_cauchyTerm {m : ℕ} {ρ : ℝ} (hρ : 0 < ρ)
+theorem _root_.Tengoku.LanaOka.torusIntegrable_cauchyTerm {m : ℕ} {ρ : ℝ} (hρ : 0 < ρ)
     {g : (Fin m → ℂ) → ℂ}
     (hg : ContinuousOn g (Set.univ.pi fun _ : Fin m ↦ Metric.closedBall (0 : ℂ) ρ))
     (x : Fin m → ℂ) (d : Fin m →₀ ℕ) :
@@ -349,7 +349,7 @@ theorem torusIntegrable_cauchyTerm {m : ℕ} {ρ : ℝ} (hρ : 0 < ρ)
 
 open MeasureTheory in
 /-- Geometric summability of the integral-norms of the Cauchy terms. -/
-theorem summable_integral_norm_cauchyTerm {m : ℕ} {ρ : ℝ} (hρ : 0 < ρ)
+theorem _root_.Tengoku.LanaOka.summable_integral_norm_cauchyTerm {m : ℕ} {ρ : ℝ} (hρ : 0 < ρ)
     {g : (Fin m → ℂ) → ℂ}
     {x : Fin m → ℂ} (hx : ∀ i, ‖x i‖ < ρ) :
     Summable (fun d : Fin m →₀ ℕ ↦
@@ -416,7 +416,7 @@ theorem summable_integral_norm_cauchyTerm {m : ℕ} {ρ : ℝ} (hρ : 0 < ρ)
     (∫ θ in Set.Icc (0 : Fin m → ℝ) (fun _ ↦ 2 * Real.pi), ‖g (tm θ)‖)).congr (fun d => ?_)
   exact (hEq d).symm
 
-lemma differentiableOn_cons_slice {m : ℕ} {f : (Fin (m + 1) → ℂ) → ℂ}
+lemma _root_.Tengoku.LanaOka.differentiableOn_cons_slice {m : ℕ} {f : (Fin (m + 1) → ℂ) → ℂ}
     {c : Fin (m + 1) → ℂ} {R : Fin (m + 1) → ℝ}
     (hf : DifferentiableOn ℂ f (Set.univ.pi fun i ↦ Metric.closedBall (c i) (R i)))
     {x : ℂ} (hx : x ∈ Metric.closedBall (c 0) (R 0)) :
@@ -435,7 +435,7 @@ lemma differentiableOn_cons_slice {m : ℕ} {f : (Fin (m + 1) → ℂ) → ℂ}
   · simpa using hx
   · simpa using hy j
 
-theorem cauchy_torus_formula {m : ℕ} (f : (Fin m → ℂ) → ℂ) (c : Fin m → ℂ) (R : Fin m → ℝ)
+theorem _root_.Tengoku.LanaOka.cauchy_torus_formula {m : ℕ} (f : (Fin m → ℂ) → ℂ) (c : Fin m → ℂ) (R : Fin m → ℝ)
     (hR : ∀ i, 0 < R i)
     (hf : DifferentiableOn ℂ f (Set.univ.pi fun i ↦ Metric.closedBall (c i) (R i)))
     (w : Fin m → ℂ) (hw : ∀ i, w i ∈ Metric.ball (c i) (R i)) :
@@ -557,7 +557,7 @@ theorem cauchy_torus_formula {m : ℕ} (f : (Fin m → ℂ) → ℂ) (c : Fin m 
     rw [hval, smul_smul, ← mul_pow, inv_mul_cancel₀ h2pi, one_pow, one_smul]
 
 /-- A continuous function satisfying the Cauchy representation on a polydisc is analytic. -/
-theorem analyticAt_of_cauchyRepr {m : ℕ} {g : (Fin m → ℂ) → ℂ} {ρ : ℝ} (hρ : 0 < ρ)
+theorem _root_.Tengoku.LanaOka.analyticAt_of_cauchyRepr {m : ℕ} {g : (Fin m → ℂ) → ℂ} {ρ : ℝ} (hρ : 0 < ρ)
     (hcont : ContinuousOn g (Set.univ.pi fun _ : Fin m ↦ Metric.closedBall (0 : ℂ) ρ))
     (hrepr : ∀ y : Fin m → ℂ, (∀ i, ‖y i‖ < ρ) →
       (2 * ↑Real.pi * Complex.I)⁻¹ ^ m •
@@ -619,7 +619,7 @@ theorem analyticAt_of_cauchyRepr {m : ℕ} {g : (Fin m → ℂ) → ℂ} {ρ : �
 
 open MeasureTheory in
 /-- Fubini: a torus integral and a circle integral of a jointly continuous function commute. -/
-theorem torusIntegral_circleIntegral_swap {m : ℕ} (c : Fin m → ℂ) (R : Fin m → ℝ)
+theorem _root_.Tengoku.LanaOka.torusIntegral_circleIntegral_swap {m : ℕ} (c : Fin m → ℂ) (R : Fin m → ℝ)
     (ε : ℝ) (H : (Fin m → ℂ) → ℂ → ℂ)
     (hH : Continuous fun p : (Fin m → ℝ) × ℝ ↦
       H (torusMap c R p.1) (circleMap 0 ε p.2)) :
@@ -675,7 +675,7 @@ theorem torusIntegral_circleIntegral_swap {m : ℕ} (c : Fin m → ℂ) (R : Fin
 
 open MeasureTheory in
 /-- A circle integral depending continuously on a parameter is continuous in the parameter. -/
-theorem continuousOn_circleIntegral {m : ℕ} {ε : ℝ} {s : Set (Fin m → ℂ)}
+theorem _root_.Tengoku.LanaOka.continuousOn_circleIntegral {m : ℕ} {ε : ℝ} {s : Set (Fin m → ℂ)}
     {G : (Fin m → ℂ) → ℂ → ℂ}
     (hG : Continuous fun p : s × ℝ ↦ G (p.1 : Fin m → ℂ) (circleMap 0 ε p.2)) :
     ContinuousOn (fun x ↦ ∮ ζ in C(0, ε), G x ζ) s := by
@@ -692,7 +692,7 @@ theorem continuousOn_circleIntegral {m : ℕ} {ε : ℝ} {s : Set (Fin m → ℂ
 
 open MeasureTheory in
 /-- A circle integral of a family that is holomorphic in the parameter is analytic. -/
-theorem analyticAt_circleIntegral {m : ℕ} {ε ρ : ℝ} (hε : 0 < ε) (hρ : 0 < ρ)
+theorem _root_.Tengoku.LanaOka.analyticAt_circleIntegral {m : ℕ} {ε ρ : ℝ} (hε : 0 < ε) (hρ : 0 < ρ)
     {G : (Fin m → ℂ) → ℂ → ℂ}
     (hdiff : ∀ ζ : ℂ, ‖ζ‖ = ε → DifferentiableOn ℂ (fun x ↦ G x ζ)
       (Set.univ.pi fun _ : Fin m ↦ Metric.closedBall (0 : ℂ) ρ))
@@ -752,7 +752,7 @@ theorem analyticAt_circleIntegral {m : ℕ} {ε ρ : ℝ} (hε : 0 < ε) (hρ : 
   simp_rw [circleIntegral.integral_const_mul]
 
 /-- The affine map `x ↦ Fin.snoc (Fin.init x) ζ` is differentiable. -/
-lemma differentiable_snocInit {m : ℕ} (ζ : ℂ) :
+lemma _root_.Tengoku.LanaOka.differentiable_snocInit {m : ℕ} (ζ : ℂ) :
     Differentiable ℂ (fun x : Fin (m + 1) → ℂ ↦ (Fin.snoc (Fin.init x) ζ : Fin (m + 1) → ℂ)) := by
   refine differentiable_pi.mpr fun j ↦ ?_
   refine Fin.lastCases ?_ (fun i ↦ ?_) j
@@ -762,7 +762,7 @@ lemma differentiable_snocInit {m : ℕ} (ζ : ℂ) :
     exact differentiable_apply (𝕜 := ℂ) i.castSucc
 
 /-- A norm bound for `Fin.snoc (Fin.init x) ζ`. -/
-lemma norm_snocInit_le {m : ℕ} {x : Fin (m + 1) → ℂ} {ζ : ℂ} {a : ℝ}
+lemma _root_.Tengoku.LanaOka.norm_snocInit_le {m : ℕ} {x : Fin (m + 1) → ℂ} {ζ : ℂ} {a : ℝ}
     (hx : ∀ i : Fin m, ‖x i.castSucc‖ ≤ a) (hζ : ‖ζ‖ ≤ a) :
     ‖(Fin.snoc (Fin.init x) ζ : Fin (m + 1) → ℂ)‖ ≤ a := by
   refine (pi_norm_le_iff_of_nonneg ((norm_nonneg ζ).trans hζ)).mpr fun j ↦ ?_
@@ -771,7 +771,7 @@ lemma norm_snocInit_le {m : ℕ} {x : Fin (m + 1) → ℂ} {ζ : ℂ} {a : ℝ}
   · simpa only [Fin.snoc_castSucc, Fin.init_def] using hx i
 
 /-- Joint continuity of `(x, θ) ↦ Fin.snoc (Fin.init x) (circleMap 0 ε θ)`. -/
-lemma continuous_snocInit_circleMap {m : ℕ} (ε : ℝ) (s : Set (Fin (m + 1) → ℂ)) :
+lemma _root_.Tengoku.LanaOka.continuous_snocInit_circleMap {m : ℕ} (ε : ℝ) (s : Set (Fin (m + 1) → ℂ)) :
     Continuous fun p : s × ℝ ↦
       (Fin.snoc (Fin.init (p.1 : Fin (m + 1) → ℂ)) (circleMap 0 ε p.2) :
         Fin (m + 1) → ℂ) := by
@@ -784,7 +784,7 @@ lemma continuous_snocInit_circleMap {m : ℕ} (ε : ℝ) (s : Set (Fin (m + 1) �
     exact (continuous_apply i.castSucc).comp (continuous_subtype_val.comp continuous_fst)
 
 /-- The affine map `w ↦ Fin.snoc w ζ` is differentiable. -/
-lemma differentiable_snoc {m : ℕ} (ζ : ℂ) :
+lemma _root_.Tengoku.LanaOka.differentiable_snoc {m : ℕ} (ζ : ℂ) :
     Differentiable ℂ (fun w : Fin m → ℂ ↦ (Fin.snoc w ζ : Fin (m + 1) → ℂ)) := by
   refine differentiable_pi.mpr fun j ↦ ?_
   refine Fin.lastCases ?_ (fun i ↦ ?_) j
@@ -794,7 +794,7 @@ lemma differentiable_snoc {m : ℕ} (ζ : ℂ) :
     exact differentiable_apply (𝕜 := ℂ) i
 
 /-- A norm bound for `Fin.snoc w ζ`. -/
-lemma norm_snoc_le {m : ℕ} {w : Fin m → ℂ} {ζ : ℂ} {a : ℝ}
+lemma _root_.Tengoku.LanaOka.norm_snoc_le {m : ℕ} {w : Fin m → ℂ} {ζ : ℂ} {a : ℝ}
     (hw : ∀ i, ‖w i‖ ≤ a) (hζ : ‖ζ‖ ≤ a) :
     ‖(Fin.snoc w ζ : Fin (m + 1) → ℂ)‖ ≤ a := by
   refine (pi_norm_le_iff_of_nonneg ((norm_nonneg ζ).trans hζ)).mpr fun j ↦ ?_
@@ -803,7 +803,7 @@ lemma norm_snoc_le {m : ℕ} {w : Fin m → ℂ} {ζ : ℂ} {a : ℝ}
   · simpa only [Fin.snoc_castSucc] using hw i
 
 /-- Joint continuity of `(w, θ) ↦ Fin.snoc w (circleMap 0 ε θ)`. -/
-lemma continuous_snoc_circleMap {m : ℕ} (ε : ℝ) (s : Set (Fin m → ℂ)) :
+lemma _root_.Tengoku.LanaOka.continuous_snoc_circleMap {m : ℕ} (ε : ℝ) (s : Set (Fin m → ℂ)) :
     Continuous fun p : s × ℝ ↦
       (Fin.snoc (p.1 : Fin m → ℂ) (circleMap 0 ε p.2) : Fin (m + 1) → ℂ) := by
   refine continuous_pi fun j ↦ ?_
@@ -815,7 +815,7 @@ lemma continuous_snoc_circleMap {m : ℕ} (ε : ℝ) (s : Set (Fin m → ℂ)) :
     exact (continuous_apply i).comp (continuous_subtype_val.comp continuous_fst)
 
 /-- The affine map `s ↦ Fin.snoc w s` (varying the last coordinate) is differentiable. -/
-lemma differentiable_snoc_last {m : ℕ} (w : Fin m → ℂ) :
+lemma _root_.Tengoku.LanaOka.differentiable_snoc_last {m : ℕ} (w : Fin m → ℂ) :
     Differentiable ℂ (fun s : ℂ ↦ (Fin.snoc w s : Fin (m + 1) → ℂ)) := by
   refine differentiable_pi.mpr fun j ↦ ?_
   refine Fin.lastCases ?_ (fun i ↦ ?_) j
@@ -826,7 +826,7 @@ lemma differentiable_snoc_last {m : ℕ} (w : Fin m → ℂ) :
 
 open MeasureTheory in
 /-- Analyticity of a circle integral of `F/G · E` along the last coordinate. -/
-theorem analyticAt_circleIntegral_snoc {m : ℕ} {ε ρ r : ℝ}
+theorem _root_.Tengoku.LanaOka.analyticAt_circleIntegral_snoc {m : ℕ} {ε ρ r : ℝ}
     (hε : 0 < ε) (hρ : 0 < ρ) (hρε : ρ < ε) (hεr : ε < r)
     {F G : (Fin (m + 1) → ℂ) → ℂ}
     (hF : ∀ z : Fin (m + 1) → ℂ, ‖z‖ < r → AnalyticAt ℂ F z)
@@ -899,7 +899,7 @@ theorem analyticAt_circleIntegral_snoc {m : ℕ} {ε ρ r : ℝ}
     have h := p.1.2 i (Set.mem_univ _)
     rwa [Metric.mem_closedBall, dist_zero_right] at h
 
-theorem analyticAt_of_differentiableOn {m : ℕ} {f : (Fin m → ℂ) → ℂ}
+theorem _root_.Tengoku.LanaOka.analyticAt_of_differentiableOn {m : ℕ} {f : (Fin m → ℂ) → ℂ}
     {s : Set (Fin m → ℂ)} (hs : IsOpen s) (hf : DifferentiableOn ℂ f s)
     {x₀ : Fin m → ℂ} (hx₀ : x₀ ∈ s) : AnalyticAt ℂ f x₀ := by
   obtain ⟨ε, hε, hball⟩ := Metric.isOpen_iff.mp hs x₀ hx₀
@@ -983,3 +983,4 @@ theorem analyticAt_of_differentiableOn {m : ℕ} {f : (Fin m → ℂ) → ℂ}
     exact hB1.const_smul ((2 * ↑Real.pi * Complex.I)⁻¹ ^ m)
   exact analyticAt_of_represents hRep.locallyConvergent hRep
   -- (core 2) geometric expansion + term-by-term integration ⇒ P represents g
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

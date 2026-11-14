@@ -8,7 +8,7 @@ import Tengoku
 /-!
 # Measure-Theoretic Infrastructure for Dudley's Bound
 -/
-
+namespace Tengoku.Leanslt end Tengoku.Leanslt open Tengoku.Leanslt
 open MeasureTheory Set Real Filter Topology
 open scoped ENNReal NNReal BigOperators
 
@@ -26,7 +26,7 @@ tail probabilities via the Chernoff method.
 /-- Chernoff bound via cgf: For any t ≥ 0, P(X ≥ ε) ≤ exp(cgf(t) - t·ε).
 @isnad1 id=le.2h5v.s6.ad6915ba18c4 from=translated src=- shape=9a536019 vocab=e0a1f290
 -/
-theorem chernoff_bound_cgf {μ : Measure Ω} [IsFiniteMeasure μ]
+theorem _root_.Tengoku.Leanslt.chernoff_bound_cgf {μ : Measure Ω} [IsFiniteMeasure μ]
     {X : Ω → ℝ} {ε t : ℝ} (ht : 0 ≤ t)
     (h_int : Integrable (fun ω => exp (t * X ω)) μ) :
     (μ {ω | ε ≤ X ω}).toReal ≤ exp (-t * ε + ProbabilityTheory.cgf X μ t) :=
@@ -36,7 +36,7 @@ theorem chernoff_bound_cgf {μ : Measure Ω} [IsFiniteMeasure μ]
     If cgf(X, t) ≤ t²σ²/2, then P(X ≥ u) ≤ exp(-u²/(2σ²)).
 @isnad1 id=le.4h5v.s7.809d341a3562 from=translated src=- shape=f1cb0d83 vocab=0883ef54
 -/
-theorem chernoff_bound_subGaussian {μ : Measure Ω} [IsProbabilityMeasure μ]
+theorem _root_.Tengoku.Leanslt.chernoff_bound_subGaussian {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} {σ u : ℝ} (hσ : 0 < σ) (hu : 0 < u)
     (h_sgb : ∀ t : ℝ, ProbabilityTheory.cgf X μ t ≤ t^2 * σ^2 / 2)
     (h_int : ∀ t : ℝ, Integrable (fun ω => exp (t * X ω)) μ) :
@@ -68,7 +68,7 @@ For computing expected values via tail integration.
     of its tail probabilities. This is the layer-cake formula.
 @isnad1 id=eq.2h3v.s6.8deb9a0c0174 from=translated src=- shape=7d9a7fd3 vocab=0d1ecadc
 -/
-theorem lintegral_eq_lintegral_tail {μ : Measure Ω} {X : Ω → ℝ}
+theorem _root_.Tengoku.Leanslt.lintegral_eq_lintegral_tail {μ : Measure Ω} {X : Ω → ℝ}
     (hX_meas : AEMeasurable X μ) (hX_nonneg : 0 ≤ᵐ[μ] X) :
     ∫⁻ ω, ENNReal.ofReal (X ω) ∂μ = ∫⁻ t in Ioi 0, μ {ω | t ≤ X ω} :=
   lintegral_eq_lintegral_meas_le μ hX_nonneg hX_meas
@@ -82,7 +82,7 @@ For the finite union bound in Dudley's proof.
 /-- Union bound for maximum over finset: P(max_i X_i ≥ u) ≤ Σ_i P(X_i ≥ u).
 @isnad1 id=le.1h6v.s6.27dc3e5bf123 from=translated src=- shape=32415dd9 vocab=a5a1741d
 -/
-theorem measure_finset_sup_ge_le_sum {ι : Type*} {μ : Measure Ω}
+theorem _root_.Tengoku.Leanslt.measure_finset_sup_ge_le_sum {ι : Type*} {μ : Measure Ω}
     {X : ι → Ω → ℝ} {u : ℝ} {s : Finset ι} (hs : s.Nonempty) :
     μ {ω | u ≤ s.sup' hs (fun i => X i ω)} ≤ ∑ i ∈ s, μ {ω | u ≤ X i ω} := by
   -- {ω | u ≤ sup_i X_i ω} ⊆ ⋃_i {ω | u ≤ X_i ω}
@@ -107,7 +107,7 @@ theorem measure_finset_sup_ge_le_sum {ι : Type*} {μ : Measure Ω}
 /-- Upper bound `sup' f ≤ ∑ |fᵢ|` for finite sets.
 @isnad1 id=le.1h3v.s5.b24793c80732 from=translated src=- shape=817a0a57 vocab=131fe738
 -/
-lemma sup'_le_sum_abs {ι : Type*} {s : Finset ι} (hs : s.Nonempty)
+lemma _root_.Tengoku.Leanslt.sup'_le_sum_abs {ι : Type*} {s : Finset ι} (hs : s.Nonempty)
     {f : ι → ℝ} :
     s.sup' hs f ≤ ∑ i ∈ s, |f i| := by
   apply Finset.sup'_le
@@ -121,7 +121,7 @@ lemma sup'_le_sum_abs {ι : Type*} {s : Finset ι} (hs : s.Nonempty)
 /-- Soft-max bound: `exp(sup' f) ≤ ∑ exp(fᵢ)`.
 @isnad1 id=le.1h3v.s5.2619e0477666 from=translated src=- shape=6206d5ae vocab=361a31fe
 -/
-theorem exp_sup'_le_sum {ι : Type*} {s : Finset ι} (hs : s.Nonempty) (f : ι → ℝ) :
+theorem _root_.Tengoku.Leanslt.exp_sup'_le_sum {ι : Type*} {s : Finset ι} (hs : s.Nonempty) (f : ι → ℝ) :
     exp (s.sup' hs f) ≤ ∑ i ∈ s, exp (f i) := by
   obtain ⟨j, hj, hmax⟩ := Finset.exists_mem_eq_sup' hs f
   rw [hmax]
@@ -130,7 +130,7 @@ theorem exp_sup'_le_sum {ι : Type*} {s : Finset ι} (hs : s.Nonempty) (f : ι �
 /-- Scaled soft-max: `exp(t · sup' f) ≤ ∑ exp(t · fᵢ)`.
 @isnad1 id=le.1h4v.s5.e9f00382eb26 from=translated src=- shape=458e085b vocab=2dc833f9
 -/
-theorem exp_mul_sup'_le_sum {ι : Type*} {s : Finset ι} (hs : s.Nonempty)
+theorem _root_.Tengoku.Leanslt.exp_mul_sup'_le_sum {ι : Type*} {s : Finset ι} (hs : s.Nonempty)
     (f : ι → ℝ) (t : ℝ) :
     exp (t * s.sup' hs f) ≤ ∑ i ∈ s, exp (t * f i) := by
   obtain ⟨j, hj, hmax⟩ := Finset.exists_mem_eq_sup' hs f
@@ -142,7 +142,7 @@ theorem exp_mul_sup'_le_sum {ι : Type*} {s : Finset ι} (hs : s.Nonempty)
 /-- Bound `|sup' f| ≤ ∑ |fᵢ|` for finite sets.
 @isnad1 id=le.1h3v.s5.3a182cbea908 from=translated src=- shape=1576377e vocab=131fe738
 -/
-theorem abs_sup'_le_sum {ι : Type*} {s : Finset ι} (hs : s.Nonempty) (f : ι → ℝ) :
+theorem _root_.Tengoku.Leanslt.abs_sup'_le_sum {ι : Type*} {s : Finset ι} (hs : s.Nonempty) (f : ι → ℝ) :
     |s.sup' hs f| ≤ ∑ i ∈ s, |f i| := by
   obtain ⟨j, hj, hmax⟩ := Finset.exists_mem_eq_sup' hs f
   rw [hmax]
@@ -154,7 +154,7 @@ theorem abs_sup'_le_sum {ι : Type*} {s : Finset ι} (hs : s.Nonempty) (f : ι �
     This uses ConvexOn.map_integral_le from Mathlib.Analysis.Convex.Integral.
 @isnad1 id=le.2h3v.s6.0f6db5051e35 from=translated src=- shape=77c78bf5 vocab=abe76493
 -/
-theorem jensen_exp {μ : Measure Ω} [IsProbabilityMeasure μ]
+theorem _root_.Tengoku.Leanslt.jensen_exp {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} (hX_int : Integrable X μ) (hexpX_int : Integrable (fun ω => exp (X ω)) μ) :
     exp (∫ ω, X ω ∂μ) ≤ ∫ ω, exp (X ω) ∂μ := by
   have hconv : ConvexOn ℝ Set.univ exp := convexOn_exp
@@ -166,7 +166,7 @@ theorem jensen_exp {μ : Measure Ω} [IsProbabilityMeasure μ]
     This follows from Jensen's inequality for the convex function exp.
 @isnad1 id=le.3h4v.s7.721e95e82276 from=translated src=- shape=85e02e53 vocab=d9640538
 -/
-theorem mean_le_log_mgf {μ : Measure Ω} [IsProbabilityMeasure μ]
+theorem _root_.Tengoku.Leanslt.mean_le_log_mgf {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} (hX_int : Integrable X μ)
     {t : ℝ} (ht : 0 < t) (hexpX_int : Integrable (fun ω => exp (t * X ω)) μ) :
     ∫ ω, X ω ∂μ ≤ (1/t) * log (∫ ω, exp (t * X ω) ∂μ) := by
@@ -192,7 +192,7 @@ theorem mean_le_log_mgf {μ : Measure Ω} [IsProbabilityMeasure μ]
     E[max_i X_i] ≤ σ · √(2 log n) where n = |s|.
 @isnad1 id=le.7h6v.s8.64ecd7b3c702 from=translated src=- shape=4af1f185 vocab=0c5b5920
 -/
-theorem expected_max_subGaussian {ι : Type*}
+theorem _root_.Tengoku.Leanslt.expected_max_subGaussian {ι : Type*}
     {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : ι → Ω → ℝ} {σ : ℝ} (hσ : 0 < σ)
     {s : Finset ι} (hs : s.Nonempty) (hs_card : 2 ≤ s.card)
@@ -303,3 +303,4 @@ theorem expected_max_subGaussian {ι : Type*}
     _ = σ * sqrt (2 * log n) := h_algebra
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanslt so they do not collide with other libraries (generated)

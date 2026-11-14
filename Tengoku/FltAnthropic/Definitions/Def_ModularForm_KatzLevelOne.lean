@@ -2,14 +2,14 @@ import Tengoku
 import Tengoku.FltAnthropic.Definitions.Def_ModularCurve_TateFormal
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 universe u
 
 noncomputable section
 
 open WeierstrassCurve
 
-structure KatzModularForm (R : Type u) [CommRing R] (k : ℤ) : Type (u + 1) where
+structure _root_.Tengoku.FltAnthropic.KatzModularForm (R : Type u) [CommRing R] (k : ℤ) : Type (u + 1) where
 
   toFun : ∀ ⦃A : Type u⦄ [CommRing A] [Algebra R A] (W : WeierstrassCurve A), IsUnit W.Δ → A
 
@@ -21,7 +21,7 @@ structure KatzModularForm (R : Type u) [CommRing R] (k : ℤ) : Type (u + 1) whe
     (W : WeierstrassCurve A) (hW : IsUnit W.Δ) (hW' : IsUnit (C • W).Δ),
     toFun (C • W) hW' = ((C.u⁻¹ ^ k : Aˣ) : A) * toFun W hW
 
-namespace KatzModularForm
+namespace Tengoku.FltAnthropic.KatzModularForm
 
 variable {R : Type u} [CommRing R] {k l : ℤ}
 
@@ -248,6 +248,7 @@ variable {R}
 @[simp] theorem discr_toFun {A : Type u} [CommRing A] [Algebra R A] (W : WeierstrassCurve A)
     (hW : IsUnit W.Δ) : (discr R).toFun W hW = W.Δ := rfl
 
-end KatzModularForm
+end Tengoku.FltAnthropic.KatzModularForm
 
 end
+-- Tengoku: root names of this library moved to Tengoku.FltAnthropic so they do not collide with other libraries (generated)

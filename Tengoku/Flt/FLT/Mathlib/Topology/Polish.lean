@@ -14,7 +14,7 @@ Material destined for Mathlib.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Flt end Tengoku.Flt open Tengoku.Flt 
 -- https://leanprover.zulipchat.com/#narrow/channel/416277-FLT/topic/Are.20the.20adeles.20Polish.3F/near/563290956
 
 open TopologicalSpace UniformSpace Set Topology
@@ -22,7 +22,7 @@ open TopologicalSpace UniformSpace Set Topology
 /--
 @isnad1 id=isopen.3h3v.s5.9a80b1978c60 from=translated src=- shape=bb15b07b vocab=69d86553
 -/
-lemma open_of_locally_compact_dense_metrizable {X Y : Type*} [TopologicalSpace X]
+lemma _root_.Tengoku.Flt.open_of_locally_compact_dense_metrizable {X Y : Type*} [TopologicalSpace X]
     [T2Space X] [TopologicalSpace Y] [T2Space Y] [LocallyCompactSpace Y]
     (f : Y → X) (hf : Continuous f) (indf : IsInducing f) (dn : DenseRange f) :
     IsOpen (Set.range f) := by
@@ -65,7 +65,7 @@ lemma open_of_locally_compact_dense_metrizable {X Y : Type*} [TopologicalSpace X
 /--
 @isnad1 id=polishsp.0h1v.s4.f84bd38a21d3 from=translated src=- shape=7ddc04c7 vocab=a89fca25
 -/
-theorem polish_of_locally_compact_second_countable
+theorem _root_.Tengoku.Flt.polish_of_locally_compact_second_countable
     (X : Type*) [TopologicalSpace X] [SecondCountableTopology X] [T2Space X]
     [LocallyCompactSpace X] : PolishSpace X := by
   let _ : MetrizableSpace X := metrizableSpace_of_t3_secondCountable X
@@ -80,3 +80,4 @@ theorem polish_of_locally_compact_second_countable
   have hHomeo : X ≃ₜ range (Completion.coe' : X → Completion X) :=
     (Completion.coe_isometry.isEmbedding).toHomeomorph
   exact hHomeo.isClosedEmbedding.polishSpace
+-- Tengoku: root names of this library moved to Tengoku.Flt so they do not collide with other libraries (generated)

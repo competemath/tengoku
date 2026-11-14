@@ -39,7 +39,7 @@ for n=4 and Euler's result that it's true for n=3.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Flt end Tengoku.Flt open Tengoku.Flt 
 /-!
 
 We start by reducing the version of Fermat's Last Theorem for positive naturals to
@@ -63,7 +63,7 @@ assuming modularity of the Frey curve. In 1993 Wiles
 showed that the Frey curve was modular, completing the
 proof.
 -/
-structure FreyPackage where
+structure _root_.Tengoku.Flt.FreyPackage where
   /-- The integer `a` in the Frey package. -/
   a : ℤ
   /-- The integer `b` in the Frey package. -/
@@ -92,7 +92,7 @@ structure FreyPackage where
   /-- The integer `b` is even, i.e. congruent to `0` modulo `2`. -/
   hb2 : (b : ZMod 2) = 0
 
-namespace FreyPackage
+namespace Tengoku.Flt.FreyPackage
 
 /--
 @isnad1 id=lt.0h1v.s3.e2637505f9b6 from=translated src=- shape=b9369acb vocab=8a1366db
@@ -237,4 +237,5 @@ lemma fermatLastTheoremFor_p_ge_5 (h : IsEmpty FreyPackage) :
   -- This contradicts our assumption.
   exact IsEmpty.false f
 
-end FreyPackage
+end Tengoku.Flt.FreyPackage
+-- Tengoku: root names of this library moved to Tengoku.Flt so they do not collide with other libraries (generated)

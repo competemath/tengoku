@@ -26,7 +26,7 @@ neighbourhood of `0` is a neighbourhood of `0`
 removes the closure (`ContinuousLinearMap.image_mem_nhds_zero_of_surjective`) by a successive
 approximation along a halving sequence of neighbourhoods.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Filter Topology Set Pointwise
 
 namespace ContinuousLinearMap
@@ -151,3 +151,4 @@ theorem isOpenMap_of_surjective (u : E →L[𝕜] F) (hu : Function.Surjective u
   simpa using hw
 
 end ContinuousLinearMap
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

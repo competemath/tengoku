@@ -37,7 +37,7 @@ covers `ℂ` as the main application.
 
 * K. Hungerbühler, J. Wasem, *A generalized notion of winding numbers*
 -/
-
+namespace Tengoku.Leanmodularforms end Tengoku.Leanmodularforms open Tengoku.Leanmodularforms
 open Set Filter Topology
 
 noncomputable section
@@ -50,14 +50,14 @@ This bundles a free-interval `PiecewiseC1PathOn 0 1 zero_lt_one x y` together wi
 mathlib `Path x y` whose `extend` agrees with the underlying function on `[0, 1]`.
 Differentiability and continuous-derivative conditions are inherited from the parent. -/
 @[ext]
-structure PiecewiseC1Path (x y : E) extends PiecewiseC1PathOn 0 1 zero_lt_one x y where
+structure _root_.Tengoku.Leanmodularforms.PiecewiseC1Path (x y : E) extends PiecewiseC1PathOn 0 1 zero_lt_one x y where
   /-- The bundled mathlib `Path x y`. Kept as a field so that `Path.extend`-based
   call sites can continue to use the `Path` API. -/
   toPath : Path x y
   /-- The extended path agrees with the underlying function on the closed unit interval. -/
   toPath_extend_eq_toFun : ∀ t ∈ Icc (0:ℝ) 1, toPath.extend t = toFun t
 
-namespace PiecewiseC1Path
+namespace Tengoku.Leanmodularforms.PiecewiseC1Path
 
 /-- The underlying function `ℝ → E` obtained by extending the path. -/
 def extendedPath (γ : PiecewiseC1Path x y) : ℝ → E := γ.toPath.extend
@@ -107,7 +107,7 @@ theorem apply_one (γ : PiecewiseC1Path x y) : γ 1 = y :=
 theorem continuous (γ : PiecewiseC1Path x y) : Continuous (γ : ℝ → E) :=
   γ.toPath.continuous_extend
 
-end PiecewiseC1Path
+end Tengoku.Leanmodularforms.PiecewiseC1Path
 
 /-- A piecewise C¹ immersion from `x` to `y` in a normed space.
 
@@ -115,7 +115,7 @@ This extends `PiecewiseC1Path x y` with the condition that the derivative is non
 partition points, and has nonzero one-sided limits at partition points. This ensures the path
 has a well-defined tangent direction everywhere. -/
 @[ext]
-structure PwC1Immersion (x y : E) extends PiecewiseC1Path x y where
+structure _root_.Tengoku.Leanmodularforms.PwC1Immersion (x y : E) extends PiecewiseC1Path x y where
   /-- The derivative is nonzero at every point of `(0, 1)` outside the partition. -/
   deriv_ne_zero : ∀ t ∈ Ioo 0 1, t ∉ partition →
     deriv toPiecewiseC1Path.toPath.extend t ≠ 0
@@ -126,7 +126,7 @@ structure PwC1Immersion (x y : E) extends PiecewiseC1Path x y where
   right_deriv_limit : ∀ p ∈ partition, ∃ L : E, L ≠ 0 ∧
     Tendsto (deriv toPiecewiseC1Path.toPath.extend) (𝓝[>] p) (𝓝 L)
 
-namespace PwC1Immersion
+namespace Tengoku.Leanmodularforms.PwC1Immersion
 
 instance : CoeFun (PwC1Immersion x y) fun _ => ℝ → E where
   coe γ := γ.toPiecewiseC1Path.extendedPath
@@ -138,6 +138,7 @@ instance : CoeFun (PwC1Immersion x y) fun _ => ℝ → E where
 theorem continuous (γ : PwC1Immersion x y) : Continuous (γ : ℝ → E) :=
   γ.toPiecewiseC1Path.continuous
 
-end PwC1Immersion
+end Tengoku.Leanmodularforms.PwC1Immersion
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanmodularforms so they do not collide with other libraries (generated)

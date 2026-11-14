@@ -36,7 +36,7 @@ group ([Loeffler, *Modular curves*, Prop 3.6.1] "one can show that these patch
 nicely"; SGA I V.1.1; Stacks 07S5): the scheme-level universal property is
 `ModularCurves/ForMathlib/AffineQuotient.lean` (ticket T-Q3).
 -/
-
+namespace Tengoku.Aintlib end Tengoku.Aintlib open Tengoku.Aintlib
 universe u v
 
 variable {G : Type*} [Group G] {B : Type u} [CommRing B] [MulSemiringAction G B]
@@ -190,7 +190,7 @@ theorem Submonoid.powers_le_comap_algebraMap (h : FixedPoints.subalgebra R B G) 
 (T-Q3c(i)).
 @isnad1 id=injectiv.0h4v.s12.2141af983ca9 from=translated src=- shape=2fc4401a vocab=aafc45a1
 -/
-theorem fixedPoints_awayMap_injective (h : FixedPoints.subalgebra R B G) :
+theorem _root_.Tengoku.Aintlib.fixedPoints_awayMap_injective (h : FixedPoints.subalgebra R B G) :
     Function.Injective (IsLocalization.map (Localization.Away (h : B))
       (algebraMap (FixedPoints.subalgebra R B G) B)
       (Submonoid.powers_le_comap_algebraMap R h) :
@@ -209,7 +209,7 @@ theorem fixedPoints_awayMap_injective (h : FixedPoints.subalgebra R B G) :
 points of the localized action (T-Q3c(ii)).
 @isnad1 id=iff.0h5v.s13.8f649c6e7c4c from=translated src=- shape=b2aea09c vocab=5c155ba4
 -/
-theorem mem_range_fixedPoints_awayMap_iff [Finite G]
+theorem _root_.Tengoku.Aintlib.mem_range_fixedPoints_awayMap_iff [Finite G]
     (h : FixedPoints.subalgebra R B G) (x : Localization.Away (h : B)) :
     x ∈ Set.range (IsLocalization.map (Localization.Away (h : B))
         (algebraMap (FixedPoints.subalgebra R B G) B)
@@ -239,3 +239,4 @@ theorem mem_range_fixedPoints_awayMap_iff [Finite G]
     rfl
 
 end FixedSubalgebra
+-- Tengoku: root names of this library moved to Tengoku.Aintlib so they do not collide with other libraries (generated)

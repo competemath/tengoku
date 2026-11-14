@@ -24,7 +24,7 @@ This file proves the entropy integral bound for linear regression.
 * `linearEntropyIntegralENNReal_ne_top`: The ENNReal entropy integral is finite
 
 -/
-
+namespace Tengoku.Leanslt end Tengoku.Leanslt open Tengoku.Leanslt
 open MeasureTheory Finset BigOperators Real ProbabilityTheory Metric Set
 open scoped NNReal ENNReal
 
@@ -258,3 +258,4 @@ These lemmas generalize the entropy bounds from requiring full rank (hinj) to on
 that the design matrix has positive rank. The bounds use `designMatrixRank x` instead of `d`. -/
 
 end LeastSquares
+-- Tengoku: root names of this library moved to Tengoku.Leanslt so they do not collide with other libraries (generated)

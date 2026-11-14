@@ -17,7 +17,7 @@ This file records Galois-action facts for the fraction-field extension attached
 to the ring of integers of a quadratic number field, especially the orbit and
 stabilizer behavior of primes above split rational primes.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 local notation "ℚ√" d => Qsqrtd d
 
 namespace QuadraticNumberFields
@@ -48,3 +48,4 @@ noncomputable local instance instMulSemiringActionFractionRingGalRingOfIntegersS
 end FractionRingGalois
 
 end QuadraticNumberFields
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

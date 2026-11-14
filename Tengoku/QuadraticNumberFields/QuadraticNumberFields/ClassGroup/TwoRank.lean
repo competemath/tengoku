@@ -19,7 +19,7 @@ The square quotient has a canonical `ZMod 2`-module structure, and group
 homomorphisms act linearly on it. The definition below relates this dimension
 to the cardinality of `G / G²` and is then specialized to class groups.
 -/
-
+namespace Tengoku.QuadraticNumberFields end Tengoku.QuadraticNumberFields open Tengoku.QuadraticNumberFields
 namespace CommGroup
 
 variable (G : Type*) [CommGroup G]
@@ -108,7 +108,7 @@ noncomputable abbrev twoRank : ℕ :=
 
 end ClassGroup
 
-namespace NarrowClassGroup
+namespace Tengoku.QuadraticNumberFields.NarrowClassGroup
 
 variable (R) [CommRing R] [IsDomain R]
 variable [Finite (CommGroup.squareQuotient (NarrowClassGroup R))]
@@ -117,4 +117,5 @@ variable [Finite (CommGroup.squareQuotient (NarrowClassGroup R))]
 noncomputable abbrev twoRank : ℕ :=
   CommGroup.twoRank (NarrowClassGroup R)
 
-end NarrowClassGroup
+end Tengoku.QuadraticNumberFields.NarrowClassGroup
+-- Tengoku: root names of this library moved to Tengoku.QuadraticNumberFields so they do not collide with other libraries (generated)

@@ -57,7 +57,7 @@ Hankel minor, so `c` does not vanish identically.
   `IsLocallyQuotientAt.comp_continuousLinearEquiv`: basic properties.
 - `exists_common_denominator`: a common denominator for finitely many functions.
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Set Filter Metric Complex Polynomial
 open scoped Real Topology
 
@@ -65,11 +65,11 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
 
 /-- Near `z`, `f` is the quotient `u / w` of two holomorphic functions, where the zero set of `w`
 has empty interior. No condition is imposed on the values of `f` at the zeros of `w`. -/
-def IsLocallyQuotientAt (f : E → ℂ) (z : E) : Prop :=
+def _root_.Tengoku.LanaOka.IsLocallyQuotientAt (f : E → ℂ) (z : E) : Prop :=
   ∃ N ∈ 𝓝 z, ∃ u w : E → ℂ, DifferentiableOn ℂ u N ∧ DifferentiableOn ℂ w N ∧
     interior (N ∩ w ⁻¹' {0}) = ∅ ∧ ∀ y ∈ N, w y ≠ 0 → f y = u y / w y
 
-namespace IsLocallyQuotientAt
+namespace Tengoku.LanaOka.IsLocallyQuotientAt
 
 variable {f : E → ℂ} {z : E}
 
@@ -84,7 +84,7 @@ lemma exists_ball (h : IsLocallyQuotientAt f z) :
     subset_empty_iff.mp (hw0 ▸ interior_mono (inter_subset_inter_left _ hsub)),
     fun y hy ↦ hf y (hsub hy)⟩
 
-end IsLocallyQuotientAt
+end Tengoku.LanaOka.IsLocallyQuotientAt
 
 /-- Finitely many positive numbers have a common positive lower bound. -/
 lemma Finset.exists_pos_forall_le {ι : Type*} (T : Finset ι) {η : ι → ℝ}
@@ -101,7 +101,7 @@ lemma Finset.exists_pos_forall_le {ι : Type*} (T : Finset ι) {η : ι → ℝ}
 
 /-- The moments of `(∑ i, a i * s ^ e i) * g s` are the corresponding combinations of the moments
 of `g`. -/
-lemma circleIntegral_pow_mul_sum_mul {g : ℂ → ℂ} {r : ℝ} (hr : 0 ≤ r)
+lemma _root_.Tengoku.LanaOka.circleIntegral_pow_mul_sum_mul {g : ℂ → ℂ} {r : ℝ} (hr : 0 ≤ r)
     (hg : ContinuousOn g (sphere 0 r)) {ι : Type*} (T : Finset ι) (a : ι → ℂ) (e : ι → ℕ)
     (k : ℕ) :
     ∮ s in C(0, r), s ^ k * ((∑ i ∈ T, a i * s ^ e i) * g s) =
@@ -123,7 +123,7 @@ variable {B : Type*} [NormedAddCommGroup B] [NormedSpace ℂ B]
 /-- If `f` is locally a quotient near every point of the closed disc `{b₁} × {‖t‖ ≤ r}`, then
 every open neighbourhood of `b₁` contains a nonempty open set of points `b` such that `f (b, ·)`
 is meromorphic on the closed disc of radius `r`. -/
-theorem exists_isOpen_forall_meromorphicAt_slice_of_forall {f : B × ℂ → ℂ} {r : ℝ} {b₁ : B}
+theorem _root_.Tengoku.LanaOka.exists_isOpen_forall_meromorphicAt_slice_of_forall {f : B × ℂ → ℂ} {r : ℝ} {b₁ : B}
     (hq : ∀ t ∈ closedBall (0 : ℂ) r, IsLocallyQuotientAt f (b₁, t)) {V : Set B}
     (hV : IsOpen V) (hb₁ : b₁ ∈ V) :
     ∃ O, IsOpen O ∧ O.Nonempty ∧ O ⊆ V ∧
@@ -207,7 +207,7 @@ theorem exists_isOpen_forall_meromorphicAt_slice_of_forall {f : B × ℂ → ℂ
 /-- If the points `b ∈ D` whose closed disc `{b} × {‖t‖ ≤ r}` meets `S` form a set with empty
 interior and `f` is locally a quotient outside `S`, then every open set meeting `D` contains a
 nonempty open subset of `D` over which the slices of `f` are meromorphic on the closed disc. -/
-theorem exists_isOpen_forall_meromorphicAt_slice {D : Set B} (hD : IsOpen D) {S : Set (B × ℂ)}
+theorem _root_.Tengoku.LanaOka.exists_isOpen_forall_meromorphicAt_slice {D : Set B} (hD : IsOpen D) {S : Set (B × ℂ)}
     {f : B × ℂ → ℂ} {r : ℝ} (hbad : interior {b ∈ D | ∃ t : ℂ, ‖t‖ ≤ r ∧ (b, t) ∈ S} = ∅)
     (hmer : ∀ b ∈ D, ∀ t : ℂ, ‖t‖ ≤ r → (b, t) ∉ S → IsLocallyQuotientAt f (b, t))
     {V : Set B} (hV : IsOpen V) (hVD : (V ∩ D).Nonempty) :
@@ -233,7 +233,7 @@ holomorphic functions at every point of `D × {‖t‖ ≤ r}` outside `S`, and 
 `D × {r₁ < ‖t‖ < R}`. Then there are holomorphic functions `c` and `F` on `D × {‖t‖ < r}` such
 that the zero set of `c` has empty interior and `F = c * f` at every point outside `S` at which
 `f` is continuous. -/
-theorem exists_mul_eq_of_prod {D : Set B} (hD : IsOpen D) (hDc : IsPreconnected D)
+theorem _root_.Tengoku.LanaOka.exists_mul_eq_of_prod {D : Set B} (hD : IsOpen D) (hDc : IsPreconnected D)
     (hDne : D.Nonempty) {S : Set (B × ℂ)} {f : B × ℂ → ℂ} {r₁ r R : ℝ} (hr : 0 < r)
     (hr₁ : r₁ < r) (hrR : r < R)
     (hbad : interior {b ∈ D | ∃ t : ℂ, ‖t‖ ≤ r ∧ (b, t) ∈ S} = ∅)
@@ -460,7 +460,7 @@ section Denominator
 /-- `f` has a holomorphic denominator near `a` across `S`: on an open neighbourhood `W` of `a`
 there are holomorphic functions `c` and `F` such that the zero set of `c` has empty interior and
 `F = c * f` at every point outside `S` at which `f` is continuous. -/
-def HasDenominatorAt (S : Set E) (f : E → ℂ) (a : E) : Prop :=
+def _root_.Tengoku.LanaOka.HasDenominatorAt (S : Set E) (f : E → ℂ) (a : E) : Prop :=
   ∃ W : Set E, IsOpen W ∧ a ∈ W ∧ ∃ c F : E → ℂ, DifferentiableOn ℂ c W ∧
     DifferentiableOn ℂ F W ∧ interior (W ∩ c ⁻¹' {0}) = ∅ ∧
     ∀ z ∈ W, z ∉ S → ContinuousAt f z → F z = c z * f z
@@ -468,7 +468,7 @@ def HasDenominatorAt (S : Set E) (f : E → ℂ) (a : E) : Prop :=
 variable {S : Set E} {f : E → ℂ} {a : E}
 
 /-- A local quotient representation is a holomorphic denominator. -/
-theorem IsLocallyQuotientAt.hasDenominatorAt (h : IsLocallyQuotientAt f a) :
+theorem Tengoku.LanaOka.IsLocallyQuotientAt.hasDenominatorAt (h : IsLocallyQuotientAt f a) :
     HasDenominatorAt S f a := by
   obtain ⟨N, hN, u, w, hu, hw, hw0, hf⟩ := h
   have hW : interior N ⊆ N := interior_subset
@@ -487,7 +487,7 @@ theorem IsLocallyQuotientAt.hasDenominatorAt (h : IsLocallyQuotientAt f a) :
   rw [hf y (hW hyN) hyw, mul_div_cancel₀ _ hyw, sub_self]
 
 /-- Holomorphic denominators can be transported along affine isomorphisms. -/
-theorem HasDenominatorAt.of_continuousLinearEquiv {E' : Type*} [NormedAddCommGroup E']
+theorem Tengoku.LanaOka.HasDenominatorAt.of_continuousLinearEquiv {E' : Type*} [NormedAddCommGroup E']
     [NormedSpace ℂ E'] (e : E' ≃L[ℂ] E) (b : E) {a' : E'}
     (h : HasDenominatorAt ((fun x ↦ e x + b) ⁻¹' S) (fun x ↦ f (e x + b)) a') :
     HasDenominatorAt S f (e a' + b) := by
@@ -514,7 +514,7 @@ theorem HasDenominatorAt.of_continuousLinearEquiv {E' : Type*} [NormedAddCommGro
     simpa [heψ] using this
 
 /-- Local quotient representations can be transported along affine isomorphisms. -/
-theorem IsLocallyQuotientAt.comp_continuousLinearEquiv {E' : Type*} [NormedAddCommGroup E']
+theorem Tengoku.LanaOka.IsLocallyQuotientAt.comp_continuousLinearEquiv {E' : Type*} [NormedAddCommGroup E']
     [NormedSpace ℂ E'] (e : E' ≃L[ℂ] E) (b : E) {x : E'}
     (h : IsLocallyQuotientAt f (e x + b)) : IsLocallyQuotientAt (fun x ↦ f (e x + b)) x := by
   obtain ⟨N, hN, u, w, hu, hw, hw0, hf⟩ := h
@@ -534,7 +534,7 @@ theorem IsLocallyQuotientAt.comp_continuousLinearEquiv {E' : Type*} [NormedAddCo
 
 /-- Finitely many functions with holomorphic denominators near `a` have a common holomorphic
 denominator near `a`. -/
-theorem exists_common_denominator {ι : Type*} (T : Finset ι) {f : ι → E → ℂ}
+theorem _root_.Tengoku.LanaOka.exists_common_denominator {ι : Type*} (T : Finset ι) {f : ι → E → ℂ}
     (h : ∀ i ∈ T, HasDenominatorAt S (f i) a) :
     ∃ W : Set E, IsOpen W ∧ a ∈ W ∧ ∃ c : E → ℂ, DifferentiableOn ℂ c W ∧
       interior (W ∩ c ⁻¹' {0}) = ∅ ∧ ∀ i ∈ T, ∃ F : E → ℂ, DifferentiableOn ℂ F W ∧
@@ -565,3 +565,4 @@ theorem exists_common_denominator {ι : Type*} (T : Finset ι) {f : ι → E →
       Finset.prod_erase_mul T (fun j ↦ c j z) hi]
 
 end Denominator
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)

@@ -7,7 +7,7 @@ Authors: Naganori Yamaguchi (assisted by OpenAI Codex)
 import Tengoku.ClassfieldtheoryYamaguchi.ClassFieldTheory.AlgebraicNumberTheory.Idele.Extension.GaloisNorm
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.ClassfieldtheoryYamaguchi end Tengoku.ClassfieldtheoryYamaguchi open Tengoku.ClassfieldtheoryYamaguchi
 set_option autoImplicit false
 
 /-!
@@ -38,7 +38,7 @@ variable
 
 /-- Evaluation of an adele at an infinite place, as a `K`-algebra
 homomorphism.-/
-def infiniteAdeleComponentAlgHom
+def _root_.Tengoku.ClassfieldtheoryYamaguchi.infiniteAdeleComponentAlgHom
     (v : InfinitePlace K) :
     NumberField.AdeleRing (𝓞 K) K →ₐ[K]
       v.Completion :=
@@ -52,7 +52,7 @@ def infiniteAdeleComponentAlgHom
 @isnad1 id=eq.0h3v.s9.45607574d15c from=translated src=- shape=07cf9b88 vocab=bbbba3d6
 -/
 @[simp]
-theorem infiniteAdeleComponentAlgHom_apply
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.infiniteAdeleComponentAlgHom_apply
     (v : InfinitePlace K)
     (a : NumberField.AdeleRing (𝓞 K) K) :
     infiniteAdeleComponentAlgHom v a = a.1 v :=
@@ -62,7 +62,7 @@ theorem infiniteAdeleComponentAlgHom_apply
 @isnad1 id=eq.0h3v.s9.df136c57a761 from=translated src=- shape=a72abcd8 vocab=37a0e62b
 -/
 @[simp]
-theorem infiniteAdeleComponentAlgHom_algebraMap
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.infiniteAdeleComponentAlgHom_algebraMap
     (v : InfinitePlace K) (x : K) :
     infiniteAdeleComponentAlgHom v
         (algebraMap K
@@ -72,7 +72,7 @@ theorem infiniteAdeleComponentAlgHom_algebraMap
 
 /-- The relative-adele component at an infinite place:
 `𝔸_K ⊗[K] L → K_v ⊗[K] L`.-/
-def relativeAdeleInfiniteComponent
+def _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeAdeleInfiniteComponent
     (v : InfinitePlace K) :
     RelativeAdeleRing K L →ₐ[K]
       v.Completion ⊗[K] L :=
@@ -85,7 +85,7 @@ omit [NumberField L] [FiniteDimensional K L] in
 @isnad1 id=eq.0h5v.s11.5064eeb91ae9 from=translated src=- shape=f20a83ff vocab=7239895f
 -/
 @[simp]
-theorem relativeAdeleInfiniteComponent_tmul
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeAdeleInfiniteComponent_tmul
     (v : InfinitePlace K)
     (a : NumberField.AdeleRing (𝓞 K) K) (x : L) :
     relativeAdeleInfiniteComponent
@@ -95,7 +95,7 @@ theorem relativeAdeleInfiniteComponent_tmul
 
 /-- Evaluation of an adele at a finite place, as a `K`-algebra
 homomorphism.-/
-def finiteAdeleComponentAlgHom
+def _root_.Tengoku.ClassfieldtheoryYamaguchi.finiteAdeleComponentAlgHom
     (v : HeightOneSpectrum (𝓞 K)) :
     NumberField.AdeleRing (𝓞 K) K →ₐ[K]
       v.adicCompletion K :=
@@ -114,7 +114,7 @@ def finiteAdeleComponentAlgHom
 @isnad1 id=eq.0h3v.s9.534f35348812 from=translated src=- shape=2c9cace6 vocab=5de559a0
 -/
 @[simp]
-theorem finiteAdeleComponentAlgHom_apply
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.finiteAdeleComponentAlgHom_apply
     (v : HeightOneSpectrum (𝓞 K))
     (a : NumberField.AdeleRing (𝓞 K) K) :
     finiteAdeleComponentAlgHom v a = a.2 v :=
@@ -124,7 +124,7 @@ theorem finiteAdeleComponentAlgHom_apply
 @isnad1 id=eq.0h3v.s10.606bf1ec9cdb from=translated src=- shape=baa3a180 vocab=ac10e221
 -/
 @[simp]
-theorem finiteAdeleComponentAlgHom_algebraMap
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.finiteAdeleComponentAlgHom_algebraMap
     (v : HeightOneSpectrum (𝓞 K)) (x : K) :
     finiteAdeleComponentAlgHom v
         (algebraMap K
@@ -135,7 +135,7 @@ theorem finiteAdeleComponentAlgHom_algebraMap
 omit [NumberField L] [FiniteDimensional K L] in
 /-- The relative-adele component at a finite place:
 `𝔸_K ⊗[K] L → K_v ⊗[K] L`.-/
-def relativeAdeleFiniteComponent
+def _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeAdeleFiniteComponent
     (v : HeightOneSpectrum (𝓞 K)) :
     RelativeAdeleRing K L →ₐ[K]
       v.adicCompletion K ⊗[K] L :=
@@ -148,7 +148,7 @@ omit [NumberField L] [FiniteDimensional K L] in
 @isnad1 id=eq.0h5v.s11.907b86b10875 from=translated src=- shape=98aac0ef vocab=5be24ef8
 -/
 @[simp]
-theorem relativeAdeleFiniteComponent_tmul
+theorem _root_.Tengoku.ClassfieldtheoryYamaguchi.relativeAdeleFiniteComponent_tmul
     (v : HeightOneSpectrum (𝓞 K))
     (a : NumberField.AdeleRing (𝓞 K) K) (x : L) :
     relativeAdeleFiniteComponent (K := K) (L := L) v
@@ -157,7 +157,7 @@ theorem relativeAdeleFiniteComponent_tmul
   simp [relativeAdeleFiniteComponent]
 
 /-- The unit-valued infinite component of a relative idele.-/
-def RelativeIdeleGroup.infiniteComponent
+def Tengoku.ClassfieldtheoryYamaguchi.RelativeIdeleGroup.infiniteComponent
     (v : InfinitePlace K) :
     RelativeIdeleGroup K L →*
       (v.Completion ⊗[K] L)ˣ :=
@@ -170,7 +170,7 @@ omit [NumberField L] [FiniteDimensional K L] in
 @isnad1 id=eq.0h4v.s12.0e2cc9621359 from=translated src=- shape=89a2dbfa vocab=d5b31639
 -/
 @[simp]
-theorem RelativeIdeleGroup.infiniteComponent_coe
+theorem Tengoku.ClassfieldtheoryYamaguchi.RelativeIdeleGroup.infiniteComponent_coe
     (v : InfinitePlace K)
     (a : RelativeIdeleGroup K L) :
     ((RelativeIdeleGroup.infiniteComponent
@@ -183,7 +183,7 @@ theorem RelativeIdeleGroup.infiniteComponent_coe
   rfl
 
 /-- The unit-valued local component of a relative idele.-/
-def RelativeIdeleGroup.finiteComponent
+def Tengoku.ClassfieldtheoryYamaguchi.RelativeIdeleGroup.finiteComponent
     (v : HeightOneSpectrum (𝓞 K)) :
     RelativeIdeleGroup K L →*
       (v.adicCompletion K ⊗[K] L)ˣ :=
@@ -196,7 +196,7 @@ omit [NumberField L] [FiniteDimensional K L] in
 @isnad1 id=eq.0h4v.s12.43f9b981a08b from=translated src=- shape=e08da81b vocab=f61ae44b
 -/
 @[simp]
-theorem RelativeIdeleGroup.finiteComponent_coe
+theorem Tengoku.ClassfieldtheoryYamaguchi.RelativeIdeleGroup.finiteComponent_coe
     (v : HeightOneSpectrum (𝓞 K))
     (a : RelativeIdeleGroup K L) :
     ((RelativeIdeleGroup.finiteComponent
@@ -209,7 +209,7 @@ theorem RelativeIdeleGroup.finiteComponent_coe
   rfl
 
 /-- The determinant norm on the local tensor algebra.-/
-def localTensorNorm
+def _root_.Tengoku.ClassfieldtheoryYamaguchi.localTensorNorm
     (v : HeightOneSpectrum (𝓞 K)) :
     (v.adicCompletion K ⊗[K] L)ˣ →*
       (v.adicCompletion K)ˣ :=
@@ -217,7 +217,7 @@ def localTensorNorm
 
 /-- Scalar extension of an archimedean base-field unit into its local
 tensor algebra.-/
-def infiniteLocalIdeleInclusion
+def _root_.Tengoku.ClassfieldtheoryYamaguchi.infiniteLocalIdeleInclusion
     (v : InfinitePlace K) :
     v.Completionˣ →*
       (v.Completion ⊗[K] L)ˣ :=
@@ -228,7 +228,7 @@ def infiniteLocalIdeleInclusion
 
 /-- Scalar extension of an extension-field unit into an archimedean
 local tensor algebra.-/
-def infiniteLocalFieldIdeleInclusion
+def _root_.Tengoku.ClassfieldtheoryYamaguchi.infiniteLocalFieldIdeleInclusion
     (v : InfinitePlace K) :
     Lˣ →* (v.Completion ⊗[K] L)ˣ :=
   Units.map
@@ -242,7 +242,7 @@ extension of its ordinary infinite component.
 @isnad1 id=eq.0h4v.s13.66409f59f33a from=translated src=- shape=bd06ef47 vocab=69f2b40e
 -/
 @[simp]
-theorem RelativeIdeleGroup.infiniteComponent_inclusion
+theorem Tengoku.ClassfieldtheoryYamaguchi.RelativeIdeleGroup.infiniteComponent_inclusion
     (v : InfinitePlace K)
     (a : IdeleGroup K) :
     RelativeIdeleGroup.infiniteComponent
@@ -260,7 +260,7 @@ diagonal extension-field unit in the local tensor algebra.
 @isnad1 id=eq.0h4v.s13.43192c8fc003 from=translated src=- shape=f423c350 vocab=757d3fdc
 -/
 @[simp]
-theorem RelativeIdeleGroup.infiniteComponent_principalIdele
+theorem Tengoku.ClassfieldtheoryYamaguchi.RelativeIdeleGroup.infiniteComponent_principalIdele
     (v : InfinitePlace K) (x : Lˣ) :
     RelativeIdeleGroup.infiniteComponent
         (K := K) (L := L) v
@@ -272,7 +272,7 @@ theorem RelativeIdeleGroup.infiniteComponent_principalIdele
 
 /-- Scalar extension of a local base-field unit into the local tensor
 algebra.-/
-def localIdeleInclusion
+def _root_.Tengoku.ClassfieldtheoryYamaguchi.localIdeleInclusion
     (v : HeightOneSpectrum (𝓞 K)) :
     (v.adicCompletion K)ˣ →*
       (v.adicCompletion K ⊗[K] L)ˣ :=
@@ -287,7 +287,7 @@ extension of its ordinary local component.
 @isnad1 id=eq.0h4v.s13.afb70897792b from=translated src=- shape=a1a43062 vocab=dc16d6ef
 -/
 @[simp]
-theorem RelativeIdeleGroup.finiteComponent_inclusion
+theorem Tengoku.ClassfieldtheoryYamaguchi.RelativeIdeleGroup.finiteComponent_inclusion
     (v : HeightOneSpectrum (𝓞 K))
     (a : IdeleGroup K) :
     RelativeIdeleGroup.finiteComponent
@@ -300,7 +300,7 @@ theorem RelativeIdeleGroup.finiteComponent_inclusion
 
 /-- Scalar extension of an extension-field unit into the local tensor
 algebra.-/
-def localFieldIdeleInclusion
+def _root_.Tengoku.ClassfieldtheoryYamaguchi.localFieldIdeleInclusion
     (v : HeightOneSpectrum (𝓞 K)) :
     Lˣ →* (v.adicCompletion K ⊗[K] L)ˣ :=
   Units.map
@@ -314,7 +314,7 @@ extension-field unit in the local tensor algebra.
 @isnad1 id=eq.0h4v.s13.e30667c3402e from=translated src=- shape=f64b1e9d vocab=410a04e7
 -/
 @[simp]
-theorem RelativeIdeleGroup.finiteComponent_principalIdele
+theorem Tengoku.ClassfieldtheoryYamaguchi.RelativeIdeleGroup.finiteComponent_principalIdele
     (v : HeightOneSpectrum (𝓞 K)) (x : Lˣ) :
     RelativeIdeleGroup.finiteComponent
         (K := K) (L := L) v
@@ -322,3 +322,4 @@ theorem RelativeIdeleGroup.finiteComponent_principalIdele
       localFieldIdeleInclusion (K := K) (L := L) v x := by
   apply Units.ext
   rfl
+-- Tengoku: root names of this library moved to Tengoku.ClassfieldtheoryYamaguchi so they do not collide with other libraries (generated)

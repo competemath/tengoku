@@ -137,7 +137,7 @@ Cauchy formula as much as about `dslope`.
 - [Lars Hörmander, *An introduction to complex analysis in several variables*][hormander1990],
   §2.2
 -/
-
+namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Complex Metric
 open scoped Topology Real
 
@@ -151,24 +151,24 @@ Cauchy kernel with poles at the two arguments.
 `dividedDifference_eq_dslope` identifies this with Mathlib's `dslope`; the reason for
 introducing it at all is that this formula is visibly analytic in the pair `x`, which `dslope`
 is not. -/
-def dividedDifference (R : ℝ) (h : ℂ → ℂ) (x : Fin 2 → ℂ) : ℂ :=
+def _root_.Tengoku.LanaOka.dividedDifference (R : ℝ) (h : ℂ → ℂ) (x : Fin 2 → ℂ) : ℂ :=
   (2 * π * I : ℂ)⁻¹ * ∮ ζ in C(0, R), ((ζ - x 0) * (ζ - x 1))⁻¹ * h ζ
 
 /-- A point strictly inside the circle is not on it, in the form the Cauchy kernel needs. -/
-lemma sub_ne_zero_of_mem_sphere_of_norm_lt {w ζ : ℂ} (hw : ‖w‖ < R)
+lemma _root_.Tengoku.LanaOka.sub_ne_zero_of_mem_sphere_of_norm_lt {w ζ : ℂ} (hw : ‖w‖ < R)
     (hζ : ζ ∈ sphere (0 : ℂ) R) : ζ - w ≠ 0 := by
   rw [mem_sphere_iff_norm, sub_zero] at hζ
   rw [sub_ne_zero]
   exact fun hcon ↦ absurd (hcon ▸ hζ) hw.ne
 
 /-- The Cauchy integral formula, in the multiplicative form used below. -/
-lemma circleIntegral_sub_inv_mul (hd : DifferentiableOn ℂ h (closedBall 0 R)) {w : ℂ}
+lemma _root_.Tengoku.LanaOka.circleIntegral_sub_inv_mul (hd : DifferentiableOn ℂ h (closedBall 0 R)) {w : ℂ}
     (hw : ‖w‖ < R) : (∮ ζ in C(0, R), (ζ - w)⁻¹ * h ζ) = (2 * π * I : ℂ) * h w := by
   have := hd.circleIntegral_sub_inv_smul (w := w) (by simpa [Complex.dist_eq] using hw)
   simpa only [smul_eq_mul] using this
 
 /-- The integrand of the Cauchy integral formula is circle-integrable. -/
-lemma circleIntegrable_sub_inv_mul (hR : 0 < R) (hd : DifferentiableOn ℂ h (closedBall 0 R))
+lemma _root_.Tengoku.LanaOka.circleIntegrable_sub_inv_mul (hR : 0 < R) (hd : DifferentiableOn ℂ h (closedBall 0 R))
     {w : ℂ} (hw : ‖w‖ < R) : CircleIntegrable (fun ζ ↦ (ζ - w)⁻¹ * h ζ) 0 R := by
   refine ContinuousOn.circleIntegrable hR.le ?_
   refine ContinuousOn.mul ?_ (hd.continuousOn.mono sphere_subset_closedBall)
@@ -179,7 +179,7 @@ lemma circleIntegrable_sub_inv_mul (hR : 0 < R) (hd : DifferentiableOn ℂ h (cl
 
 Partial fractions turn the kernel with two poles into the difference of two Cauchy kernels, and
 the Cauchy integral formula evaluates each. The diagonal case is free: both sides vanish. -/
-theorem sub_eq_mul_dividedDifference (hR : 0 < R) (hd : DifferentiableOn ℂ h (closedBall 0 R))
+theorem _root_.Tengoku.LanaOka.sub_eq_mul_dividedDifference (hR : 0 < R) (hd : DifferentiableOn ℂ h (closedBall 0 R))
     {a b : ℂ} (ha : ‖a‖ < R) (hb : ‖b‖ < R) :
     h a - h b = (a - b) * dividedDifference R h ![a, b] := by
   rcases eq_or_ne a b with rfl | hab
@@ -203,7 +203,7 @@ theorem sub_eq_mul_dividedDifference (hR : 0 < R) (hd : DifferentiableOn ℂ h (
 This is `analyticAt_circleIntegral` applied to the two-pole Cauchy kernel, recentred at the
 point by `analyticAt_of_shift`; the two hypotheses reduce to the poles not meeting the contour,
 which is `‖x₀ i‖ + ρ < R` for a small enough polyradius `ρ`. -/
-theorem analyticAt_dividedDifference (hR : 0 < R) (hd : DifferentiableOn ℂ h (closedBall 0 R))
+theorem _root_.Tengoku.LanaOka.analyticAt_dividedDifference (hR : 0 < R) (hd : DifferentiableOn ℂ h (closedBall 0 R))
     {x₀ : Fin 2 → ℂ} (hx₀ : ∀ i, ‖x₀ i‖ < R) :
     AnalyticAt ℂ (dividedDifference R h) x₀ := by
   set M : ℝ := max ‖x₀ 0‖ ‖x₀ 1‖ with hM
@@ -260,7 +260,7 @@ theorem analyticAt_dividedDifference (hR : 0 < R) (hd : DifferentiableOn ℂ h (
   exact analyticAt_of_shift key2
 
 /-- Off the diagonal, `dividedDifference` is the difference quotient, i.e. `dslope`. -/
-lemma dividedDifference_eq_dslope_of_ne (hR : 0 < R)
+lemma _root_.Tengoku.LanaOka.dividedDifference_eq_dslope_of_ne (hR : 0 < R)
     (hd : DifferentiableOn ℂ h (closedBall 0 R)) {a b : ℂ} (ha : ‖a‖ < R) (hb : ‖b‖ < R)
     (hab : b ≠ a) : dividedDifference R h ![a, b] = dslope h a b := by
   rw [dslope_of_ne _ hab, slope_def_field, eq_div_iff (sub_ne_zero.2 hab)]
@@ -273,7 +273,7 @@ Off the diagonal this is `dividedDifference_eq_dslope_of_ne`. On it, both sides 
 at the point — the left by `analyticAt_dividedDifference`, the right by
 `continuousAt_dslope_same`, which is where the differentiability of `h` is used — and they agree
 on a punctured neighbourhood, so they agree. -/
-theorem dividedDifference_eq_dslope (hR : 0 < R) (hd : DifferentiableOn ℂ h (closedBall 0 R))
+theorem _root_.Tengoku.LanaOka.dividedDifference_eq_dslope (hR : 0 < R) (hd : DifferentiableOn ℂ h (closedBall 0 R))
     {a b : ℂ} (ha : ‖a‖ < R) (hb : ‖b‖ < R) :
     dividedDifference R h ![a, b] = dslope h a b := by
   rcases eq_or_ne b a with rfl | hab
@@ -307,7 +307,7 @@ For `h` differentiable on `closedBall 0 R`, the function `x ↦ dslope h (x 0) (
 complex variables is analytic at every point of the open polydisc of radius `R`. Every lemma
 about `dslope` in Mathlib fixes the first argument; this is the statement about both at once,
 and it is what makes `dslope` usable as a function of two holomorphic functions. -/
-theorem analyticAt_dslope_pair (hR : 0 < R) (hd : DifferentiableOn ℂ h (closedBall 0 R))
+theorem _root_.Tengoku.LanaOka.analyticAt_dslope_pair (hR : 0 < R) (hd : DifferentiableOn ℂ h (closedBall 0 R))
     {x₀ : Fin 2 → ℂ} (hx₀ : ∀ i, ‖x₀ i‖ < R) :
     AnalyticAt ℂ (fun x : Fin 2 → ℂ ↦ dslope h (x 0) (x 1)) x₀ := by
   have hopen : IsOpen (Set.univ.pi fun _ : Fin 2 ↦ ball (0 : ℂ) R) :=
@@ -343,3 +343,4 @@ theorem AnalyticAt.dslope_comp {E : Type*} [NormedAddCommGroup E] [NormedSpace �
     (f := fun z : E ↦ (![G z, G' z] : Fin 2 → ℂ)) (x := z₀) houter hpair
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LanaOka so they do not collide with other libraries (generated)
