@@ -109,7 +109,6 @@ def corrections(text: str, by: str, at: str, reason: str, trusted: frozenset[str
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent  # not an argument: the files read and written are the ones of this repository
-LIBRARY_KEY = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]*")
 
 
 def main(argv: list[str], root: Path = REPO_ROOT) -> int:
@@ -124,22 +123,28 @@ def main(argv: list[str], root: Path = REPO_ROOT) -> int:
         print("--at is a date (YYYY-MM-DD) and --reason one line of at most 300 characters, as the gate wants them", file=sys.stderr)
         return 2
     trusted = trusted_names(root)
-    total = 0
+    # The files are looked up among the ones data/tentative holds: a key that is not the name of one is refused, and no path is ever built from an argument.
+    known = {q.stem: q for q in (root / "data" / "tentative").glob("*.jsonl")}
+    chosen = []
     for lib in a.libraries:
-        if not LIBRARY_KEY.fullmatch(lib):  # a key, never a path: nothing outside data/tentative can be read or appended to
-            print(f"{lib!r} is not a library key (letters, digits, dots, hyphens and underscores)", file=sys.stderr)
+        if lib not in known:
+            print(f"{lib!r} is not a library of data/tentative", file=sys.stderr)
             return 2
-        f = f"data/tentative/{lib}.jsonl"
-        p = root / "data" / "tentative" / f"{lib}.jsonl"
+        chosen.append((lib, known[lib]))
+    # Every file is read and every line made BEFORE the first is written: a refused argument or a file that cannot be read writes nothing anywhere (the files only grow).
+    plan = []
+    for lib, p in chosen:
         text = p.read_text(encoding="utf-8")
         lines = [json.dumps(c, ensure_ascii=False) + "\n" for c in corrections(text, a.by, a.at, a.reason, trusted)]
-        print(f"{f}: {len(lines)} statement corrections")
-        total += len(lines)
-        if a.write and lines:
-            with p.open("a", encoding="utf-8") as fh:
-                if text and not text.endswith("\n"):
-                    fh.write("\n")
-                fh.writelines(lines)
+        print(f"data/tentative/{lib}.jsonl: {len(lines)} statement corrections")
+        plan.append((p, text, lines))
+    if a.write:
+        for p, text, lines in plan:
+            if lines:
+                with p.open("a", encoding="utf-8") as fh:
+                    if text and not text.endswith("\n"):
+                        fh.write("\n")
+                    fh.writelines(lines)
     return 0
 
 
