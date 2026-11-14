@@ -89,7 +89,7 @@ For a promotion, append-only and credits run with `--promotion`. The bot may shr
 when it moves records to trusted, and a moved record keeps its credit only when its name and `source_url`
 are unchanged.
 
-Data files only grow otherwise: records are retracted with a tombstone line. The one exception is a whole
+Data files only grow otherwise: records are retracted with a tombstone line, and the text of a tentative record is corrected with a `statement_correction` line (a content PR). A correction names a record of its own file and moves the seam between its statement and its proof later, or cuts the end of the proof off (a statement is never shortened): the characters stay exactly as they are, whitespace differing only at the seam, and it never adds any (`scripts/ci/validate_records.py`). The one exception is a whole
 tentative or staging file whose records all come from a source no longer on the allowlist in
 `schemas/sources.json`; deleting such a file is a content PR.
 

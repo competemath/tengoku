@@ -41,9 +41,8 @@ def statement_key(record: dict) -> str | None:
     return " ".join(ATTRIBUTES_RE.sub("", st).split())
 
 
-def iter_records(path: Path):
-    """The records of a JSONL file, one per newline-terminated line: the boundary count_lines uses, so that a count and a subtraction
-    from it always agree (a last line with no newline is not yet a record for either)."""
+def _lines(path: Path):
+    """The decoded objects of the newline-terminated lines of a JSONL file (the boundary count_lines uses)."""
     with path.open("rb") as f:
         for line in f:
             if not line.endswith(b"\n"):
@@ -54,6 +53,36 @@ def iter_records(path: Path):
                 continue
             if isinstance(r, dict):
                 yield r
+
+
+def correction_lines(path: Path):
+    """The statement corrections of a tentative file (schemas/record.schema.json): appended lines, not records."""
+    with path.open("rb") as f:
+        for line in f:
+            if b"statement_correction" in line and line.endswith(b"\n"):
+                try:
+                    r = json.loads(line)
+                except ValueError:
+                    continue
+                if isinstance(r, dict) and isinstance(r.get("statement_correction"), str):
+                    yield r
+
+
+def count_records(path: Path) -> int:
+    """Lines of a data file that are records: a correction line replaces the text of a record, it is not a second one."""
+    return count_lines(path) - sum(1 for _ in correction_lines(path))
+
+
+def iter_records(path: Path):
+    """The records of a JSONL file as they stand, one per newline-terminated line: the boundary count_lines uses, so that a count and a
+    subtraction from it always agree (a last line with no newline is not yet a record for either). The newest correction of a record's
+    statement and proof is applied, and correction lines are not records."""
+    current = {r["statement_correction"]: r for r in correction_lines(path)}
+    for r in _lines(path):
+        if isinstance(r.get("statement_correction"), str):
+            continue
+        c = current.get(r.get("name"))
+        yield {**r, "statement": c.get("statement"), "proof": c.get("proof")} if c else r
 
 
 class TrustedTokens:
@@ -143,7 +172,7 @@ def collect(root: Path) -> dict:
     for tier in TIERS:
         for p in sorted((root / "data" / tier).glob("*.jsonl")):
             lib = libraries.setdefault(p.stem, {t: 0 for t in TIERS})
-            lib[tier] = count_lines(p)
+            lib[tier] = count_records(p)
             if tier == "trusted":
                 lp = last_promoted(p)
                 if lp:
