@@ -1,0 +1,103 @@
+import Tengoku.TdaLib.TDA.Persistence.FiniteDecomposition
+import Tengoku.TdaLib.TDA.Persistence.FiniteTranslation
+import Tengoku.Seed.Algebra.Category.ModuleCat.Abelian
+import Tengoku.Seed.CategoryTheory.Limits.FunctorCategory.EpiMono
+import Tengoku.Seed.CategoryTheory.Limits.Preserves.Shapes.Kernels
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Finite-chain cokernels and translation-triviality
+
+The cokernel is mathlib's cokernel in the functor category. Evaluation and the
+concrete module cokernel identify its fibers with the range quotients.
+Vanishing of its structure maps is equivalent to a target-image inclusion.
+-/
+
+set_option autoImplicit false
+
+universe u
+
+namespace TDA.Persistence
+
+open CategoryTheory CategoryTheory.Limits
+
+variable {s : ℕ} {k : Type u} [Field k]
+variable {M N : PModule.{u,0,u} k (Fin s)}
+
+/-- The cokernel in the category of finite-chain persistence modules.-/
+noncomputable abbrev finiteCokernel (f : M ⟶ N) : PModule.{u,0,u} k (Fin s) :=
+  cokernel f
+
+/-- Evaluation of the cokernel identifies its fiber with the range quotient.-/
+noncomputable def finiteCokernelFiberIso (f : M ⟶ N) (i : Fin s) :
+    (finiteCokernel f).obj i ≅ ModuleCat.of k (N.obj i ⧸ LinearMap.range (f.app i).hom) :=
+  PreservesCokernel.iso ((evaluation (Fin s) (ModuleCat k)).obj i) f ≪≫
+    ModuleCat.cokernelIsoRangeQuotient (f.app i)
+
+/-- This fiber identification takes the cokernel projection to the quotient map.
+@isnad1 id=eq.0h6v.s12.90b8b4504e87 from=translated src=- shape=1ea2afd6 vocab=1bfac6e5
+-/
+theorem finiteCokernel_π_fiberIso (f : M ⟶ N) (i : Fin s) :
+    (cokernel.π f).app i ≫ (finiteCokernelFiberIso f i).hom =
+      ModuleCat.ofHom (LinearMap.range (f.app i).hom).mkQ := by
+  simp only [finiteCokernelFiberIso, Iso.trans_hom]
+  have hp := PreservesCokernel.π_iso_hom ((evaluation (Fin s) (ModuleCat k)).obj i) f
+  change (cokernel.π f).app i ≫
+    (PreservesCokernel.iso ((evaluation (Fin s) (ModuleCat k)).obj i) f).hom =
+      cokernel.π (f.app i) at hp
+  rw [← Category.assoc, hp, ModuleCat.cokernel_π_cokernelIsoRangeQuotient_hom]
+
+/-- A vector is killed by the cokernel projection exactly when it is in the image.
+@isnad1 id=iff.0h7v.s11.72124d5a8b36 from=translated src=- shape=891c6541 vocab=fd29b44e
+-/
+theorem finiteCokernel_π_eq_zero_iff (f : M ⟶ N) (i : Fin s) (y : N.obj i) :
+    ((cokernel.π f).app i).hom y = 0 ↔ y ∈ LinearMap.range (f.app i).hom := by
+  have he := congrArg (fun g : N.obj i ⟶
+    ModuleCat.of k (N.obj i ⧸ LinearMap.range (f.app i).hom) => g.hom y)
+      (finiteCokernel_π_fiberIso f i)
+  change (finiteCokernelFiberIso f i).hom.hom (((cokernel.π f).app i).hom y) =
+    (LinearMap.range (f.app i).hom).mkQ y at he
+  rw [← Submodule.Quotient.mk_eq_zero]
+  change _ ↔ (LinearMap.range (f.app i).hom).mkQ y = 0
+  rw [← he]
+  exact ((finiteCokernelFiberIso f i).toLinearEquiv.map_eq_zero_iff).symm
+
+/-- Cokernel structure maps vanish precisely when the target image lies in the
+component image at the later stage. No matching or dimension comparison is assumed.
+@isnad1 id=iff.1h7v.s10.9c97ddf14df8 from=translated src=- shape=61deacbd vocab=8e0447d4
+-/
+theorem finiteCokernel_map_eq_zero_iff (f : M ⟶ N) {a b : Fin s} (h : a ≤ b) :
+    structureMap (finiteCokernel f) h = 0 ↔
+      LinearMap.range (structureMapLinear N h) ≤ LinearMap.range (f.app b).hom := by
+  have hn := (cokernel.π f).naturality (homOfLE h)
+  change structureMap N h ≫ (cokernel.π f).app b =
+    (cokernel.π f).app a ≫ structureMap (finiteCokernel f) h at hn
+  constructor
+  · intro hz y hy
+    obtain ⟨x, rfl⟩ := hy
+    apply (finiteCokernel_π_eq_zero_iff f b _).mp
+    have he := congrArg (fun g : N.obj a ⟶ (finiteCokernel f).obj b => g.hom x) hn
+    change ((cokernel.π f).app b).hom (structureMapLinear N h x) =
+      (structureMap (finiteCokernel f) h).hom (((cokernel.π f).app a).hom x) at he
+    rw [hz] at he
+    exact he
+  · intro hi
+    apply (cancel_epi ((cokernel.π f).app a)).mp
+    rw [comp_zero, ← hn]
+    apply ModuleCat.hom_ext
+    apply LinearMap.ext
+    intro x
+    exact (finiteCokernel_π_eq_zero_iff f b _).mpr (hi ⟨x, rfl⟩)
+
+/-- Shortness of the cokernel is equivalent to the target-image condition.
+@isnad1 id=iff.1h6v.s11.163183a8c871 from=translated src=- shape=f5057b11 vocab=8b1e92fe
+-/
+theorem cokernel_translationTrivial_iff (theta : Fin s →o Fin s)
+    (hTheta : ∀ i, i ≤ theta i) (f : M ⟶ N) :
+    TranslationTrivial theta hTheta (finiteCokernel f) ↔
+      ∀ i, LinearMap.range (structureMapLinear N (hTheta i)) ≤
+        LinearMap.range (f.app (theta i)).hom := by
+  exact forall_congr' (fun i => finiteCokernel_map_eq_zero_iff f (hTheta i))
+
+end TDA.Persistence

@@ -1,0 +1,79 @@
+import Tengoku.TdaLib.TDA.Simplicial.VertexMap
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Contiguity of simplicial vertex maps
+
+Two vertex maps are contiguous when the union of their images of every source
+face is a target face.  Contiguity is reflexive and symmetric, and it is
+preserved by pre- and postcomposition.  It is not asserted to be transitive.
+-/
+
+namespace TDA.Simplicial
+
+open Finset
+
+noncomputable section
+
+universe u v w z
+
+variable {I : Type u} {J : Type v} {P : Type w} {Q : Type z}
+
+local instance (α : Type*) : DecidableEq α := Classical.decEq α
+
+/-- Two simplicial vertex maps are contiguous when the union of their images
+of every source face is a target face.-/
+def Contiguous {K : PreAbstractSimplicialComplex I}
+    {L : PreAbstractSimplicialComplex J} (a b : VertexMap K L) : Prop :=
+  ∀ s, s ∈ K → s.image a ∪ s.image b ∈ L
+
+/-- Every simplicial vertex map is contiguous to itself.
+@isnad1 id=contiguo.0h5v.s4.af55ec3a8e24 from=translated src=- shape=ae37842b vocab=903c9e63
+-/
+theorem contiguous_refl {K : PreAbstractSimplicialComplex I}
+    {L : PreAbstractSimplicialComplex J} (a : VertexMap K L) :
+    Contiguous a a := by
+  intro s hs
+  simpa using a.map_face s hs
+
+/-- Contiguity is symmetric.
+@isnad1 id=contiguo.1h6v.s5.d527b2c5dc86 from=translated src=- shape=7d81b514 vocab=903c9e63
+-/
+theorem Contiguous.symm {K : PreAbstractSimplicialComplex I}
+    {L : PreAbstractSimplicialComplex J} {a b : VertexMap K L}
+    (h : Contiguous a b) : Contiguous b a := by
+  intro s hs
+  simpa [Finset.union_comm] using h s hs
+
+/-- Precomposing two contiguous maps by the same simplicial map preserves
+contiguity.
+@isnad1 id=contiguo.1h9v.s6.8845f4a75823 from=translated src=- shape=56630384 vocab=55809e8d
+-/
+theorem Contiguous.precomp {H : PreAbstractSimplicialComplex P}
+    {K : PreAbstractSimplicialComplex I}
+    {L : PreAbstractSimplicialComplex J} {a b : VertexMap K L}
+    (h : Contiguous a b) (e : VertexMap H K) :
+    Contiguous (VertexMap.comp e a) (VertexMap.comp e b) := by
+  intro s hs
+  change s.image (a.toFun ∘ e.toFun) ∪ s.image (b.toFun ∘ e.toFun) ∈ L
+  simpa only [Finset.image_image, Function.comp_apply] using
+    h (s.image e) (e.map_face s hs)
+
+/-- Postcomposing two contiguous maps by the same simplicial map preserves
+contiguity.
+@isnad1 id=contiguo.1h9v.s6.1097c6152337 from=translated src=- shape=8416abfd vocab=55809e8d
+-/
+theorem Contiguous.postcomp {K : PreAbstractSimplicialComplex I}
+    {L : PreAbstractSimplicialComplex J}
+    {M : PreAbstractSimplicialComplex Q} {a b : VertexMap K L}
+    (h : Contiguous a b) (e : VertexMap L M) :
+    Contiguous (VertexMap.comp a e) (VertexMap.comp b e) := by
+  intro s hs
+  change s.image (e.toFun ∘ a.toFun) ∪ s.image (e.toFun ∘ b.toFun) ∈ M
+  have himage := e.map_face (s.image a ∪ s.image b) (h s hs)
+  simpa only [Finset.image_union, Finset.image_image, Function.comp_apply] using himage
+
+end
+
+end TDA.Simplicial

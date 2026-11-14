@@ -1,0 +1,240 @@
+import Tengoku.TdaLib.TDA.Persistence.DiagramSecondOrderCalculus
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Regularity through ordered diagram presentations
+
+All `ContDiff` assertions concern Euclidean coordinate maps or scalar pullbacks.
+The diagram type has no topology or derivative here. In particular, order zero
+means continuity. The index is governed solely by mathlib's `ContDiff` predicate.
+
+`LocalCrDiagramLift` and `CrThroughAllRepresentatives` are the general regularity
+API. The C¹/C² structures in the preceding calculus modules remain convenient
+fixed-order inputs for derivatives and Hessians. The conversions below preserve
+their carrier, coordinates and factorization; the all-representative predicates
+at orders one and two are definitionally equivalent.
+-/
+
+namespace TDA.Persistence
+open scoped ContDiff
+
+/-- A `Cʳ` factorization on the stated open carrier.-/
+structure LocalCrDiagramLift {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+    (r : ℕ∞ω) (B : E → Diagram ℝ) (m n : ℕ) where
+  carrier : Set E
+  isOpen_carrier : IsOpen carrier
+  coordinates : E → DiagramCoordinates m n
+  factorization : ∀ x ∈ carrier, B x = orderedQ m n (coordinates x)
+  regular : ContDiffOn ℝ r coordinates carrier
+
+/-- Existence of a `Cʳ` local lift at a point, including membership in its carrier.-/
+def DiagramContDiffAt {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+    (r : ℕ∞ω) (B : E → Diagram ℝ) (x₀ : E) : Prop :=
+  ∃ m n, ∃ L : LocalCrDiagramLift r B m n, x₀ ∈ L.carrier
+
+/-- Scalar `Cʳ` regularity on an open neighborhood of every ordered representative.-/
+def CrThroughAllRepresentatives (r : ℕ∞ω) (V : Diagram ℝ → ℝ)
+    (D : Diagram ℝ) : Prop :=
+  ∀ (m n : ℕ) (z : DiagramCoordinates m n), orderedQ m n z = D →
+    ∃ W : Set (DiagramCoordinates m n), IsOpen W ∧ z ∈ W ∧
+      ContDiffOn ℝ r (V ∘ orderedQ m n) W
+
+/--
+@isnad1 id=crthroug.2h4v.s5.321ad946149b from=translated src=- shape=07191e76 vocab=49e78d95
+-/
+theorem CrThroughAllRepresentatives.of_le {r r' : ℕ∞ω} (h : r' ≤ r)
+    {V : Diagram ℝ → ℝ} {D : Diagram ℝ}
+    (hV : CrThroughAllRepresentatives r V D) :
+    CrThroughAllRepresentatives r' V D := by
+  intro m n z hz
+  obtain ⟨W, hW, hzW, hs⟩ := hV m n z hz
+  exact ⟨W, hW, hzW, hs.of_le h⟩
+
+def LocalCrDiagramLift.of_le {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+    {r r' : ℕ∞ω} (h : r' ≤ r) {B : E → Diagram ℝ} {m n : ℕ}
+    (L : LocalCrDiagramLift r B m n) : LocalCrDiagramLift r' B m n where
+  carrier := L.carrier
+  isOpen_carrier := L.isOpen_carrier
+  coordinates := L.coordinates
+  factorization := L.factorization
+  regular := L.regular.of_le h
+
+/--
+@isnad1 id=diagramc.2h5v.s5.0e51dc1a3a0e from=translated src=- shape=38bfc26b vocab=e18b4d63
+-/
+theorem DiagramContDiffAt.of_le {E : Type*}
+    [NormedAddCommGroup E] [NormedSpace ℝ E]
+    {r r' : ℕ∞ω} (h : r' ≤ r) {B : E → Diagram ℝ} {x : E}
+    (hB : DiagramContDiffAt r B x) : DiagramContDiffAt r' B x := by
+  obtain ⟨m, n, L, hx⟩ := hB
+  exact ⟨m, n, L.of_le h, hx⟩
+
+/-- The loss is `Cʳ` near the point, using the representative selected by the lift.
+@isnad1 id=ex.2h8v.s7.5621c17bfa7a from=translated src=- shape=1897757b vocab=b74fce18
+-/
+theorem localLift_scalar_cr {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+    (r : ℕ∞ω) (B : E → Diagram ℝ) (V : Diagram ℝ → ℝ) (m n : ℕ)
+    (L : LocalCrDiagramLift r B m n) (x : E) (hx : x ∈ L.carrier)
+    (hV : CrThroughAllRepresentatives r V (B x)) :
+    ∃ U : Set E, IsOpen U ∧ x ∈ U ∧ U ⊆ L.carrier ∧
+      ContDiffOn ℝ r (V ∘ B) U := by
+  obtain ⟨W, hWopen, hzW, hW⟩ := hV m n (L.coordinates x)
+    (L.factorization x hx).symm
+  let U := L.carrier ∩ L.coordinates ⁻¹' W
+  have hUopen : IsOpen U :=
+    L.regular.continuousOn.isOpen_inter_preimage L.isOpen_carrier hWopen
+  have hcomp : ContDiffOn ℝ r ((V ∘ orderedQ m n) ∘ L.coordinates) U :=
+    hW.comp (L.regular.mono Set.inter_subset_left) Set.inter_subset_right
+  refine ⟨U, hUopen, ⟨hx, hzW⟩, Set.inter_subset_left, ?_⟩
+  apply hcomp.congr
+  intro y hy
+  simp only [Function.comp_apply]
+  rw [L.factorization y hy.1]
+
+/--
+@isnad1 id=iff.0h2v.s4.640f11962a19 from=translated src=- shape=8d59771a vocab=ddf4eb7d
+-/
+theorem CrThroughAllRepresentatives.one_iff {V : Diagram ℝ → ℝ} {D : Diagram ℝ} :
+    CrThroughAllRepresentatives 1 V D ↔ C1ThroughAllRepresentatives V D := Iff.rfl
+
+/--
+@isnad1 id=iff.0h2v.s4.fa7139dbe6ac from=translated src=- shape=8d59771a vocab=40ddae6b
+-/
+theorem CrThroughAllRepresentatives.two_iff {V : Diagram ℝ → ℝ} {D : Diagram ℝ} :
+    CrThroughAllRepresentatives 2 V D ↔ C2ThroughAllRepresentatives V D := Iff.rfl
+
+/-- The `C¹` convenience lift embeds without changing its carrier or coordinates.-/
+def LocalDiagramLift.toCr {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+    {B : E → Diagram ℝ} {m n : ℕ} (L : LocalDiagramLift B m n) :
+    LocalCrDiagramLift 1 B m n where
+  carrier := L.carrier
+  isOpen_carrier := L.isOpen_carrier
+  coordinates := L.coordinates
+  factorization := L.factorization
+  regular := L.smooth
+
+/-- The `C²` convenience lift embeds without changing its carrier or coordinates.-/
+def LocalC2DiagramLift.toCr {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+    {B : E → Diagram ℝ} {m n : ℕ} (L : LocalC2DiagramLift B m n) :
+    LocalCrDiagramLift 2 B m n where
+  carrier := L.carrier
+  isOpen_carrier := L.isOpen_carrier
+  coordinates := L.coordinates
+  factorization := L.factorization
+  regular := L.smooth_two
+
+/-- Recover the `C¹` convenience lift at index one.-/
+def LocalCrDiagramLift.toC1 {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+    {B : E → Diagram ℝ} {m n : ℕ} (L : LocalCrDiagramLift 1 B m n) :
+    LocalDiagramLift B m n where
+  carrier := L.carrier
+  isOpen_carrier := L.isOpen_carrier
+  coordinates := L.coordinates
+  factorization := L.factorization
+  smooth := L.regular
+
+/-- Recover both regularity fields of the `C²` convenience lift at index two.-/
+def LocalCrDiagramLift.toC2 {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+    {B : E → Diagram ℝ} {m n : ℕ} (L : LocalCrDiagramLift 2 B m n) :
+    LocalC2DiagramLift B m n where
+  carrier := L.carrier
+  isOpen_carrier := L.isOpen_carrier
+  coordinates := L.coordinates
+  factorization := L.factorization
+  smooth := L.regular.of_le (by norm_num)
+  smooth_two := L.regular
+
+/-- At order one the general scalar conclusion is supplied by the unchanged
+first-order lift theorem.
+@isnad1 id=ex.2h7v.s7.6e9b297c79f6 from=translated src=- shape=780ca904 vocab=b74fce18
+-/
+theorem localLift_scalar_cr_one {E : Type*}
+    [NormedAddCommGroup E] [NormedSpace ℝ E]
+    (B : E → Diagram ℝ) (V : Diagram ℝ → ℝ) (m n : ℕ)
+    (L : LocalCrDiagramLift 1 B m n) (x : E) (hx : x ∈ L.carrier)
+    (hV : CrThroughAllRepresentatives 1 V (B x)) :
+    ∃ U : Set E, IsOpen U ∧ x ∈ U ∧ U ⊆ L.carrier ∧
+      ContDiffOn ℝ 1 (V ∘ B) U :=
+  localLift_scalar_c1 B V m n L.toC1 x hx hV
+
+/-- At order two the general scalar conclusion is supplied by the unchanged
+second-order lift theorem.
+@isnad1 id=ex.2h7v.s7.fb44b036f1e6 from=translated src=- shape=780ca904 vocab=b74fce18
+-/
+theorem localLift_scalar_cr_two {E : Type*}
+    [NormedAddCommGroup E] [NormedSpace ℝ E]
+    (B : E → Diagram ℝ) (V : Diagram ℝ → ℝ) (m n : ℕ)
+    (L : LocalCrDiagramLift 2 B m n) (x : E) (hx : x ∈ L.carrier)
+    (hV : CrThroughAllRepresentatives 2 V (B x)) :
+    ∃ U : Set E, IsOpen U ∧ x ∈ U ∧ U ⊆ L.carrier ∧
+      ContDiffOn ℝ 2 (V ∘ B) U :=
+  localLift_scalar_c2 B V m n L.toC2 x hx hV
+
+/-- Index zero yields ordinary continuity of the scalar pullback.
+@isnad1 id=ex.2h7v.s7.dd24e8711ef3 from=translated src=- shape=71d51856 vocab=f7c91b8c
+-/
+theorem localLift_scalar_continuousOn {E : Type*}
+    [NormedAddCommGroup E] [NormedSpace ℝ E]
+    (B : E → Diagram ℝ) (V : Diagram ℝ → ℝ) (m n : ℕ)
+    (L : LocalCrDiagramLift 0 B m n) (x : E) (hx : x ∈ L.carrier)
+    (hV : CrThroughAllRepresentatives 0 V (B x)) :
+    ∃ U : Set E, IsOpen U ∧ x ∈ U ∧ U ⊆ L.carrier ∧
+      ContinuousOn (V ∘ B) U := by
+  obtain ⟨U, hU, hxU, hsub, hs⟩ := localLift_scalar_cr 0 B V m n L x hx hV
+  exact ⟨U, hU, hxU, hsub, hs.continuousOn⟩
+
+/-- Insert auxiliary diagonal values after the retained finite slots. This is
+a continuous linear map of finite-dimensional coordinate spaces.-/
+noncomputable def diagonalInsertionLinear (m t n : ℕ) :
+    (DiagramCoordinates m n × (Fin t → ℝ)) →ₗ[ℝ] DiagramCoordinates (m + t) n where
+    toFun := fun z =>
+      (Fin.append z.1.1 (fun i => (z.2 i, z.2 i)), z.1.2)
+    map_add' := by
+      intro x y
+      ext i <;> simp [Fin.append]
+      all_goals cases i using Fin.addCases <;> simp
+    map_smul' := by
+      intro a x
+      ext i <;> simp [Fin.append]
+      all_goals cases i using Fin.addCases <;> simp
+
+noncomputable def diagonalInsertion (m t n : ℕ) :
+    (DiagramCoordinates m n × (Fin t → ℝ)) →L[ℝ] DiagramCoordinates (m + t) n :=
+  ⟨diagonalInsertionLinear m t n,
+    (diagonalInsertionLinear m t n).continuous_of_finiteDimensional⟩
+
+/-- Pulling an ordered diagram back along diagonal insertion deletes exactly
+the inserted slots, regardless of their auxiliary real values.
+@isnad1 id=eq.0h4v.s10.be85d313ccae from=translated src=- shape=ed93bb3f vocab=b9c6b2f7
+-/
+theorem orderedQ_diagonalInsertion (m t n : ℕ)
+    (z : DiagramCoordinates m n × (Fin t → ℝ)) :
+    orderedQ (m + t) n (diagonalInsertion m t n z) = orderedQ m n z.1 := by
+  change orderedQ (m + t) n
+    (Fin.append z.1.1 (fun i => (z.2 i, z.2 i)), z.1.2) = orderedQ m n z.1
+  apply (orderedQ_eq_iff _ _ _ _ _ _).mpr
+  constructor
+  · simp only [List.ofFn_fin_append]
+    simp [List.ofFn_eq_map, List.filter_map, Function.comp_def]
+  · rfl
+
+/-- Regularity on the diagonal subspace follows from regularity of the
+reduced pullback. This makes no assertion on an ambient open neighborhood of
+the full representative.
+@isnad1 id=contdiff.1h6v.s10.ab778733f2d6 from=translated src=- shape=04999a22 vocab=8d07678f
+-/
+theorem contDiffOn_diagonalInsertion (r : ℕ∞ω) (m t n : ℕ)
+    (V : Diagram ℝ → ℝ) (W : Set (DiagramCoordinates m n))
+    (hV : ContDiffOn ℝ r (V ∘ orderedQ m n) W) :
+    ContDiffOn ℝ r (V ∘ orderedQ (m + t) n ∘ diagonalInsertion m t n)
+      ((fun z : DiagramCoordinates m n × (Fin t → ℝ) => z.1) ⁻¹' W) := by
+  have hp : ContDiffOn ℝ r (fun z : DiagramCoordinates m n × (Fin t → ℝ) => z.1)
+      ((fun z : DiagramCoordinates m n × (Fin t → ℝ) => z.1) ⁻¹' W) :=
+    contDiff_fst.contDiffOn
+  have hc := hV.comp hp (fun _ hz => hz)
+  convert hc using 1
+  ext z
+  simp [Function.comp_def, orderedQ_diagonalInsertion]
+
+end TDA.Persistence
