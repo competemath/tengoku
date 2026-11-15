@@ -57,8 +57,12 @@ structure Counts where
   notatScoped : Nat := 0
   /-- declarations of the library whose name has one component: nothing in the name says which library they belong to -/
   roots : Array Name := #[]
-  /-- those of `roots` that are global instances: a name Lean generates for an anonymous `instance` is one, and no text declares it (reported as `root-instance:` lines) -/
+  /-- those of `roots` that are instances: a name Lean generates for an anonymous `instance` is one, and no text declares it (reported as `root-instance:` lines). Global instances, and
+  declarations whose type is a class: a `local instance` is one too, and leaves no entry in the instance table of the modules that import it -/
   rootInstances : Array Name := #[]
+  /-- those of `roots` that are syntax node kinds with the name Lean generates for a `notation`, `infix`, `syntax` or `macro` without one: the name of the syntax category, then the atoms
+  (`«termℝ²»`). No text declares it and no term refers to it (reported as `root-syntax:` lines) -/
+  rootSyntax : Array Name := #[]
 
 def stripForall : Expr → Expr
   | .forallE _ _ b _ => stripForall b
@@ -297,11 +301,20 @@ def scan (pfxs : List Name) : CoreM (Array Leak × Counts) := do
     for e in instanceExtension.ext.getModuleEntries env i do
       if let .global ie := e then
         if let some gn := ie.globalName? then instNames := instNames.insert gn
-  for (n, _) in env.constants.map₁.toList do
+  -- the names of the syntax categories (`term`, `tactic`, …, and the library's own): a generated node kind starts with one
+  let cats : List String := (Parser.parserExtension.getState env).categories.foldl (fun acc c _ => c.toString :: acc) []
+  for (n, ci) in env.constants.map₁.toList do
     if let some m := env.getModuleIdxFor? n then
       if idxs.contains m && n.isAtomic && !n.isInternal && !n.hasMacroScopes then
         counts := { counts with roots := counts.roots.push n }
-        if instNames.contains n then counts := { counts with rootInstances := counts.rootInstances.push n }
+        -- an instance the table does not show (`local instance`, final inventory 2026-11-14: Flt `instT2Space`, 23 in four libraries): what it declares is of a class
+        let ofClass := match (conclusion ci.type).getAppFn.constName? with
+          | some c => isClass env c
+          | none => false
+        let kind := ci.type.isConstOf ``Lean.ParserDescr || ci.type.isConstOf ``Lean.TrailingParserDescr
+        if instNames.contains n || ofClass then counts := { counts with rootInstances := counts.rootInstances.push n }
+        else if kind && cats.any (fun c => (n.toString (escape := false)).startsWith c) then
+          counts := { counts with rootSyntax := counts.rootSyntax.push n }
   return (leaks, counts)
 
 def report (treePrefix : Name) (leaks : Array Leak) (c : Counts) : List String :=
@@ -317,7 +330,8 @@ def report (treePrefix : Name) (leaks : Array Leak) (c : Counts) : List String :
     s!"{c.simp} global simp lemmas ({(leaks.filter (·.kind == "simp")).size} trigger on nothing of the library), {c.simpScoped} scoped; " ++
     s!"{c.notat} global parsers ({(leaks.filter (·.kind == "notation")).size} reuse a token of another module or reserve a word as one), {c.notatScoped} scoped",
    s!"roots: {c.roots.size} declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)"]
-    ++ rows ++ c.roots.toList.map (fun n => s!"root: {n}") ++ c.rootInstances.toList.map fun n => s!"root-instance: {n}"
+    ++ rows ++ c.roots.toList.map (fun n => s!"root: {n}") ++ c.rootInstances.toList.map (fun n => s!"root-instance: {n}")
+    ++ c.rootSyntax.toList.map fun n => s!"root-syntax: {n}"
 
 unsafe def main (argv : List String) : IO UInt32 := do
   enableInitializersExecution

@@ -10,7 +10,10 @@ merge queue to it for every later group, whatever produced it.
 TENGOKU_ROOTS_REQUIRED is the repository variable: `1` fails a group that has a `root:` line, anything else only reports them (the libraries merged before the factory qualified roots keep
 theirs until the tree's own fix of them has merged: the variable is turned on after that).
 
-An auto-generated instance name (a global instance of the shape `instFooBar`, which the scanner reports as `root-instance:`) is listed, not refused (auto_named): nobody writes it and no text declares it. Exit status: 0 nothing to report or not required; 1 required and at least one root name that is not one. The report goes to stdout (and the step summary).
+A name Lean generates is listed, not refused: nobody writes it, no text declares it and no term refers to it, so nothing reads it two ways, and a second library that generates the same one
+fails the queue's build of the whole tree. There are two kinds. An instance name (of the shape `instFooBar`, on what the scanner reports as `root-instance:`: a global instance, or a
+declaration of a class, which is what a `local instance` leaves) (auto_named). A syntax node kind (`«termℝ²»`, what a `notation`, `infix`, `syntax` or `macro` without a name makes: the
+name of the syntax category, then the atoms; the scanner reports a kind of that shape as `root-syntax:`). The final inventory of 2026-11-14 had 47 of them in six libraries and no other root. Exit status: 0 nothing to report or not required; 1 required and at least one root name that is not one. The report goes to stdout (and the step summary).
 """
 
 from __future__ import annotations
@@ -19,7 +22,8 @@ import os
 import re
 import sys
 
-INSTANCE_PREFIX = "root-instance: "  # the scanner says which root names are global instances (TengokuLeak.lean)
+INSTANCE_PREFIX = "root-instance: "  # the scanner says which root names are instances (TengokuLeak.lean)
+SYNTAX_PREFIX = "root-syntax: "  # and which are syntax node kinds
 ROOT_PREFIX = "root: "  # a name Lean prints with guillemets (`«foo bar»`) has a space in it: everything after the prefix is the name
 SUMMARY = re.compile(r"^roots: (\d+) declarations")  # the scanner's own count, printed first: a report without it is not a report
 
@@ -31,8 +35,13 @@ def root_lines(report: str) -> list[str]:
 
 
 def instance_lines(report: str) -> set[str]:
-    """the names the scanner reports as global instances among the roots (`root-instance: NAME`)"""
+    """the names the scanner reports as instances among the roots (`root-instance: NAME`)"""
     return {ln[len(INSTANCE_PREFIX) :].strip() for ln in report.splitlines() if ln.startswith(INSTANCE_PREFIX)}
+
+
+def syntax_lines(report: str) -> set[str]:
+    """the names the scanner reports as syntax node kinds among the roots (`root-syntax: NAME`)"""
+    return {ln[len(SYNTAX_PREFIX) :].strip() for ln in report.splitlines() if ln.startswith(SYNTAX_PREFIX)}
 
 
 def roots_of(report: str) -> list[str]:
@@ -41,7 +50,7 @@ def roots_of(report: str) -> list[str]:
 
 
 def auto_named(name: str, instances: set[str]) -> bool:
-    """A name Lean generated for an anonymous instance: it is a global instance (the scanner says so) and has the shape Lean gives (`inst` and a capital: `instFooBar`). Nobody writes such a
+    """A name Lean generated for an anonymous instance: it is an instance (the scanner says so) and has the shape Lean gives (`inst` and a capital: `instFooBar`). Nobody writes such a
     name and the roots class cannot rename it (no text declares it), so it is listed and not refused; a name of that shape on something that is no instance, or a name that is not of that
     shape on an instance (`inst_x`, `instance`, `instantiate`), is an ordinary root."""
     return name in instances and len(name) > 4 and name.startswith("inst") and name[4].isupper()
@@ -62,11 +71,14 @@ def judge(report: str, required: bool, shown: int = 20) -> tuple[int, str]:
             "\nerror: roots are required and the group cannot be shown to have none" if required else " (TENGOKU_ROOTS_REQUIRED is not 1)"
         )
     names = roots_of(report)
-    instances = instance_lines(report)
+    instances, kinds = instance_lines(report), syntax_lines(report)
     auto = [n for n in names if auto_named(n, instances)]
-    roots = [n for n in names if not auto_named(n, instances)]
-    exempt = (
-        f" ({len(auto)} auto-generated instance name(s) are exempt: {', '.join(auto[:5])}{' …' if len(auto) > 5 else ''})" if auto else ""
+    made = [n for n in names if n in kinds and n not in auto]
+    roots = [n for n in names if n not in auto and n not in made]
+    exempt = "".join(
+        f" ({len(group)} {what} are exempt: {', '.join(group[:5])}{' …' if len(group) > 5 else ''})"
+        for group, what in ((auto, "auto-generated instance name(s)"), (made, "generated syntax node kind(s)"))
+        if group
     )
     if not roots:
         return 0, "roots: none of the group's declarations is in the root namespace" + exempt
