@@ -14,7 +14,7 @@ A name Lean generates is listed, not refused: nobody writes it, no text declares
 fails the queue's build of the whole tree. The scanner says which roots those are, from the source: a name is generated when the text does not spell it where it declares it. There are two
 kinds. An instance name (`root-instance:`: an anonymous `instance`, global or `local`, or a derived one), which must also have the shape Lean gives, `instFooBar` (auto_named). A syntax
 node kind (`root-syntax:`: `«termℝ²»`, what a `notation`, `infix`, `syntax` or `macro` without a name makes). A name someone wrote in that shape (`def instFoo : Monoid X`,
-`instance instFoo : …`, `syntax (name := termFoo) …`) is not reported as either and is an ordinary root. The final inventory of 2026-11-14 had 47 of them in six libraries and no other root. Exit status: 0 nothing to report or not required; 1 required and at least one root name that is not one. The report goes to stdout (and the step summary).
+`instance instFoo : …`, `syntax (name := termFoo) …`) is not reported as either and is an ordinary root. The final inventory of 2026-11-14 had 47 generated names in six libraries. Exit status: 0 nothing to report or not required; 1 required and at least one root name that is not one. The report goes to stdout (and the step summary).
 """
 
 from __future__ import annotations
