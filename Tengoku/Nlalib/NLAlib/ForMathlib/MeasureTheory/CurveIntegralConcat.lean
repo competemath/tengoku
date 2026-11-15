@@ -12,7 +12,7 @@ smoothness of the concatenation at its joins is required. The empty chain
 is the constant path and has integral zero.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 set_option backward.isDefEq.respectTransparency false
 set_option backward.isDefEq.respectTransparency.types false
 open Set MeasureTheory Finset
@@ -41,7 +41,7 @@ piece integrals, including the empty chain. This extends integration to
 piecewise C¹ paths without declaring their concatenation globally C¹.
 @isnad1 id=eq.1h7v.s8.46f9f35564f0 from=translated src=- shape=77f679fb vocab=60876d86
 -/
-theorem curveIntegral_concat (p : Fin (n + 1) → E)
+theorem _root_.Tengoku.Nlalib.curveIntegral_concat (p : Fin (n + 1) → E)
     (γ : (i : Fin n) → Path (p i.castSucc) (p i.succ))
     (hγ : ∀ i, CurveIntegrable ω (γ i)) :
     curveIntegral ω (Path.concat p γ) = ∑ i : Fin n, curveIntegral ω (γ i) := by
@@ -78,3 +78,4 @@ theorem forall_mem_concat (p : Fin (n + 1) → E)
       exact hγ (Fin.last n) t
 
 end Path
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

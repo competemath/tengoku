@@ -38,7 +38,7 @@ theorem _root_.Matrix.IsHermitian.iteratedFDeriv_resolvent_apply
     iteratedFDeriv ℂ k (fun B : M => resolvent B ζ) A H =
       ∑ σ : Equiv.Perm (Fin k),
         (List.ofFn (fun i => resolvent A ζ * H (σ i))).prod * resolvent A ζ := by
-  apply _root_.iteratedFDeriv_resolvent_apply
+  apply _root_.Tengoku.Nlalib.iteratedFDeriv_resolvent_apply
   change IsUnit (algebraMap ℂ M ζ - A)
   simpa only [Algebra.algebraMap_eq_smul_one] using
     hA.isUnit_smul_one_sub_of_im_ne_zero hζ
@@ -127,3 +127,4 @@ theorem hasFDerivAt_normalizedTrace_resolvent_real (ζ : ℂ) (A : M)
   (hasFDerivAt_normalizedTrace_resolvent ζ A hA hζ).restrictScalars ℝ
 
 end NLAlib
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

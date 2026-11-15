@@ -20,7 +20,7 @@ Ported from the local deferred Jordan-contour development of 2026-10-14;
 the imports are restricted to the generic calculus used by these proofs.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 set_option backward.isDefEq.respectTransparency false
 set_option backward.isDefEq.respectTransparency.types false
 open Set Finset MeasureTheory Metric
@@ -232,3 +232,4 @@ theorem exists_primitive_subdivision_of_differentiableOn
   simpa only [Function.comp_apply, hKi] using hJ i hi
 
 end Complex
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

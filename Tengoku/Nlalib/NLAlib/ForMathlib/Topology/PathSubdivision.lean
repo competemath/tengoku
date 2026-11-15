@@ -18,7 +18,7 @@ compact Lebesgue-number theorem; no differentiability or smoothing is used.
 Ported from the local deferred Jordan-contour development of 2026-10-14.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 open Set Metric
 
 private theorem uniformSubdivision_node_mem_Icc {n i : ℕ} (hn : 0 < n) (hi : i ≤ n) :
@@ -40,7 +40,7 @@ private theorem uniformSubdivision_cell_subset_ball {n i : ℕ} {δ : ℝ}
 subdivision whose actual closed parameter cells map into individual charts.
 @isnad1 id=ex.3h4v.s7.a322e18b02cc from=translated src=- shape=61b886ed vocab=d040aa0a
 -/
-theorem exists_uniform_subdivision_subordinate_open_cover
+theorem _root_.Tengoku.Nlalib.exists_uniform_subdivision_subordinate_open_cover
     {X : Type*} [TopologicalSpace X] {ι : Sort*} (γ : ℝ → X) (hγ : Continuous γ)
     (U : ι → Set X) (hU : ∀ j, IsOpen (U j))
     (hcover : γ '' Icc (0 : ℝ) 1 ⊆ ⋃ j, U j) :
@@ -64,7 +64,7 @@ closed cells each lie in one open chart of the image cover. This is the mesh
 input for a local primitive telescoping argument, with no C² hypothesis.
 @isnad1 id=ex.3h4v.s8.4bd544d4b26a from=translated src=- shape=71ea150b vocab=412bce21
 -/
-theorem exists_uniform_grid_subordinate_open_cover
+theorem _root_.Tengoku.Nlalib.exists_uniform_grid_subordinate_open_cover
     {X : Type*} [TopologicalSpace X] {ι : Sort*} (ψ : ℝ × ℝ → X) (hψ : Continuous ψ)
     (U : ι → Set X) (hU : ∀ j, IsOpen (U j))
     (hcover : ψ '' Icc (0 : ℝ × ℝ) 1 ⊆ ⋃ j, U j) :
@@ -88,3 +88,4 @@ theorem exists_uniform_grid_subordinate_open_cover
   rw [mem_ball, Prod.dist_eq, max_lt_iff]
   exact ⟨mem_ball.mp (uniformSubdivision_cell_subset_ball hm' ⟨ht.1.1, ht.2.1⟩),
     mem_ball.mp (uniformSubdivision_cell_subset_ball hm' ⟨ht.1.2, ht.2.2⟩)⟩
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

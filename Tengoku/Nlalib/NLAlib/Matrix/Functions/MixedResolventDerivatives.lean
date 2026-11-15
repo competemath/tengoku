@@ -14,7 +14,7 @@ crossing argument, without classifying twice-inserted list positions.
 Source: arXiv:2108.06312v2, Lemmas 6.2--6.3.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 open scoped Matrix
@@ -150,3 +150,4 @@ theorem hasDerivAt_mixed_powers_of_sandwich
     noncomm_ring
 
 end NLAlib
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

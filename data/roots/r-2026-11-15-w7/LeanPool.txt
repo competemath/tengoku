@@ -1,0 +1,424 @@
+leakscan: 2338 global instances (159 can fire outside the library), 10 scoped; 6344 global simp lemmas (106 trigger on nothing of the library), 0 scoped; 149 global parsers (1 reuse a token of another module or reserve a word as one), 114 scoped
+roots: 90 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: simp TopologicalSpace.Opens.coe_himp' registered in Tengoku.LeanPool.LeanPool.AFormalizationOfBorelDeterminacyInLean.Applications.RegularOpen (declared at line 25)
+leak: simp TopologicalSpace.Opens.coe_compl' registered in Tengoku.LeanPool.LeanPool.AFormalizationOfBorelDeterminacyInLean.Applications.RegularOpen (declared at line 35)
+leak: instance LeanPool.ArtinWedderburn.IdealProd.instMulIdealLeanPool registered in Tengoku.LeanPool.LeanPool.ArtinWedderburn.IdealProd (declared at line 44)
+leak: instance LeanPool.ArtinWedderburn.TwoSidedIdealProd.instMulTwoSidedIdealLeanPool registered in Tengoku.LeanPool.LeanPool.ArtinWedderburn.IdealProd (declared at line 53)
+leak: instance LeanPool.ArtinWedderburn.TwoSidedIdealProd.instSemigroupTwoSidedIdealLeanPool registered in Tengoku.LeanPool.LeanPool.ArtinWedderburn.IdealProd (declared at line 319)
+leak: instance LeanPool.ArtinWedderburn.TwoSidedIdealProd.MulTwoSidedisMonoid registered in Tengoku.LeanPool.LeanPool.ArtinWedderburn.IdealProd (declared at line 322)
+leak: instance BannaiBannaiStanton.fintypeMonomialsBoundedDegree registered in Tengoku.LeanPool.LeanPool.BannaiBannaiStanton.BoundOnDistanceSet (declared at line 373)
+leak: instance BSLambda.factPrime14011 registered in Tengoku.LeanPool.LeanPool.BlockSpectralSensitivity.Paley.Tournament (declared at line 219)
+leak: instance BollobasNikiforov.instSequentialSpaceMatrixReal registered in Tengoku.LeanPool.LeanPool.BollobasNikiforov.CP.Closed (declared at line 29)
+leak: instance BollobasNikiforov.decidablePredStrictMonoFin3 registered in Tengoku.LeanPool.LeanPool.BollobasNikiforov.TN.Basic (declared at line 93)
+leak: instance BollobasNikiforov.decidablePredStrictMonoFin registered in Tengoku.LeanPool.LeanPool.BollobasNikiforov.TN.Truncated (declared at line 876)
+leak: simp ShortComplex.moduleCatToCycles_coe registered in Tengoku.LeanPool.LeanPool.BrauerGroupNew.Examples.ShortComplex.LeftHomologyMapData (declared at line 33)
+leak: simp Subalgebra.inclusion_comp_inclusion registered in Tengoku.LeanPool.LeanPool.BrauerGroupNew.Mathlib.Algebra.Algebra.Subalgebra.Basic (declared at line 27)
+leak: instance RingCon.instModuleQuotientOfIsScalarTowerLeanPool registered in Tengoku.LeanPool.LeanPool.BrauerGroupNew.Mathlib.RingTheory.Congruence.Basic (declared at line 30)
+leak: simp NonUnitalSubring.carrier_eq_coe registered in Tengoku.LeanPool.LeanPool.BrauerGroupNew.Mathlib.RingTheory.NonUnitalSubring.Defs (declared at line 20)
+leak: simp NonUnitalSubsemiring.carrier_eq_coe registered in Tengoku.LeanPool.LeanPool.BrauerGroupNew.Mathlib.RingTheory.NonUnitalSubsemiring.Defs (declared at line 21)
+leak: instance TwoSidedIdeal.instModuleMulOppositeSubtypeMemLeanPool registered in Tengoku.LeanPool.LeanPool.BrauerGroupNew.Mathlib.RingTheory.TwoSidedIdeal.Basic (declared at line 38)
+leak: simp TwoSidedIdeal.ringCon_inj registered in Tengoku.LeanPool.LeanPool.BrauerGroupNew.Mathlib.RingTheory.TwoSidedIdeal.Lattice (declared at line 21)
+leak: simp TwoSidedIdeal.ringCon_eq_top registered in Tengoku.LeanPool.LeanPool.BrauerGroupNew.Mathlib.RingTheory.TwoSidedIdeal.Lattice (declared at line 26)
+leak: simp TwoSidedIdeal.mem_comap registered in Tengoku.LeanPool.LeanPool.BrauerGroupNew.Mathlib.RingTheory.TwoSidedIdeal.Operations (declared in Tengoku.Seed.RingTheory.TwoSidedIdeal.Operations: an `attribute` command of the library turns it on)
+leak: instance Tengoku.LeanPool.instModuleMatrixForallLeanPool registered in Tengoku.LeanPool.LeanPool.BrauerGroupNew.MoritaEquivalence (declared at line 29)
+leak: instance CategoryTheory.Equivalence.nontrivial registered in Tengoku.LeanPool.LeanPool.BrauerGroupNew.MoritaEquivalence (declared at line 350)
+leak: instance ModuleCat.instLinearOfAlgebraLeanPool registered in Tengoku.LeanPool.LeanPool.BrauerGroupNew.Morita.ChangeOfRings (declared at line 25)
+leak: instance ModuleCat.MoritaEquivalence.instAlgebraEndOfLeanPool registered in Tengoku.LeanPool.LeanPool.BrauerGroupNew.Morita.ChangeOfRings (declared at line 44)
+leak: instance TwoSidedIdeal.instNontrivial_1 registered in Tengoku.LeanPool.LeanPool.BrauerGroupNew.TwoSidedIdeal (declared at line 121)
+leak: instance Tengoku.LeanPool.instAlgebraMulOppositeEndSubtypeMemIdealLeanPool registered in Tengoku.LeanPool.LeanPool.BrauerGroupNew.Wedderburn (declared at line 487)
+leak: instance Tengoku.LeanPool.instAlgebraEndOfIsScalarTowerLeanPool registered in Tengoku.LeanPool.LeanPool.BrauerGroupNew.ZeroSevenFourE (declared at line 161)
+leak: instance instNontrivialEndOfIsSimpleModule registered in Tengoku.LeanPool.LeanPool.BrauerGroupNew.ZeroSevenFourE (declared at line 293)
+leak: simp Subtype.val_comp_single registered in Tengoku.LeanPool.LeanPool.BruhatTits.Utils.Subring (declared at line 21)
+leak: simp Subtype.val_comp_add registered in Tengoku.LeanPool.LeanPool.BruhatTits.Utils.Subring (declared at line 31)
+leak: simp Subtype.val_comp_smul registered in Tengoku.LeanPool.LeanPool.BruhatTits.Utils.Subring (declared at line 40)
+leak: instance Matrix.GeneralLinearGroup.instSMulSubmoduleSubtypeMemSubringForallLeanPool registered in Tengoku.LeanPool.LeanPool.BruhatTits.Utils.Matrix (declared at line 605)
+leak: instance Matrix.GeneralLinearGroup.instMulActionSubmoduleSubtypeMemSubringForallLeanPool registered in Tengoku.LeanPool.LeanPool.BruhatTits.Utils.Matrix (declared at line 638)
+leak: instance Matrix.GeneralLinearGroup.instSMulMulOppositeSubtypeMemSubringBasisForallSubmoduleLeanPool registered in Tengoku.LeanPool.LeanPool.BruhatTits.Utils.Matrix (declared at line 673)
+leak: simp Matrix.map_ite registered in Tengoku.LeanPool.LeanPool.BruhatTits.Utils.Matrix (declared at line 140)
+leak: simp Matrix.map_transvection registered in Tengoku.LeanPool.LeanPool.BruhatTits.Utils.Matrix (declared at line 149)
+leak: simp Matrix.GeneralLinearGroup.ofLinearEquiv_toLinearEquiv registered in Tengoku.LeanPool.LeanPool.BruhatTits.Utils.Matrix (declared at line 684)
+leak: simp Matrix.BlockTriangular.fin_two_iff registered in Tengoku.LeanPool.LeanPool.BruhatTits.Utils.Matrix (declared at line 754)
+leak: instance Tengoku.LeanPool.GraphAction.instSMulSym2 registered in Tengoku.LeanPool.LeanPool.BruhatTits.Utils.GraphAction (declared at line 48)
+leak: instance Tengoku.LeanPool.GraphAction.instMulActionSym2 registered in Tengoku.LeanPool.LeanPool.BruhatTits.Utils.GraphAction (declared at line 58)
+leak: simp Tengoku.LeanPool.GraphAction.adj_iff registered in Tengoku.LeanPool.LeanPool.BruhatTits.Utils.GraphAction (declared at line 38)
+leak: instance Tengoku.LeanPool.instOrderTopSubtypeSubmoduleLeLeanPool registered in Tengoku.LeanPool.LeanPool.BruhatTits.Utils.LinearAlgebra (declared at line 183)
+leak: instance Tengoku.LeanPool.instOrderBotSubtypeSubmoduleLeLeanPool registered in Tengoku.LeanPool.LeanPool.BruhatTits.Utils.LinearAlgebra (declared at line 188)
+leak: simp Submodule.comap_subtype_smul registered in Tengoku.LeanPool.LeanPool.BruhatTits.Utils.LinearAlgebra (declared at line 225)
+leak: simp Matrix.GeneralLinearGroup.toLin_symm_apply registered in Tengoku.LeanPool.LeanPool.BruhatTits.Utils.LinearAlgebra (declared at line 271)
+leak: simp Matrix.GeneralLinearGroup.toLinear_symm_ofLinearEquiv_apply registered in Tengoku.LeanPool.LeanPool.BruhatTits.Utils.Misc (declared at line 77)
+leak: instance Tengoku.LeanPool.instCoeHeadMatrixSubtypeMemSubringLeanPool registered in Tengoku.LeanPool.LeanPool.BruhatTits.Utils.RingHom (declared at line 116)
+leak: instance Tengoku.LeanPool.instCoeHeadGeneralLinearGroupSubtypeMemSubringLeanPool registered in Tengoku.LeanPool.LeanPool.BruhatTits.Utils.RingHom (declared at line 121)
+leak: simp Subring.coe_map_mul_map_inv registered in Tengoku.LeanPool.LeanPool.BruhatTits.Utils.RingHom (declared at line 127)
+leak: simp Subring.coe_map_inv_mul_map registered in Tengoku.LeanPool.LeanPool.BruhatTits.Utils.RingHom (declared at line 135)
+leak: simp Subring.coe_det registered in Tengoku.LeanPool.LeanPool.BruhatTits.Utils.RingHom (declared at line 143)
+leak: simp Subring.coe_zpow registered in Tengoku.LeanPool.LeanPool.BruhatTits.Utils.ValuationRings (declared at line 34)
+leak: instance PeriodPair.instSMulUnitsPeriodPair registered in Tengoku.LeanPool.LeanPool.Chudnovsky.Lattices (declared at line 46)
+leak: instance _private.Tengoku.LeanPool.LeanPool.Chudnovsky.Ramanujan.0.Chudnovsky.instFactIsCuspInftyRealRangeSpecialLinearGroupFinOfNatNatIntGeneralLinearGroupMapGL registered in Tengoku.LeanPool.LeanPool.Chudnovsky.Ramanujan (declared at line 251)
+leak: instance CircuitComplexity.instNeZeroAddLeft registered in Tengoku.LeanPool.LeanPool.CircuitComplexity.Nondeterminism (declared at line 60)
+leak: simp Circuit.Wires.get_ofFn registered in Tengoku.LeanPool.LeanPool.Circuitlib.Circuit.Wires (declared at line 37)
+leak: simp Circuit.Wires.get_cast registered in Tengoku.LeanPool.LeanPool.Circuitlib.Circuit.Wires (declared at line 46)
+leak: simp Circuit.SequentialCircuitCategory.Stream'.map_apply registered in Tengoku.LeanPool.LeanPool.Circuitlib.Circuit.Category.Sequential (declared at line 48)
+leak: instance LeanEval.Topology.ClassificationOfSurfaces.Moise.finsetMemDecidablePred registered in Tengoku.LeanPool.LeanPool.ClassificationOfSurfaces.Moise.PlaneComplex (declared at line 36)
+leak: simp LeanEval.Topology.ClassificationOfSurfaces.Moise.IntrinsicTwoComplex.zmod3_three_add registered in Tengoku.LeanPool.LeanPool.ClassificationOfSurfaces.Moise.IntrinsicMidpointSubdivision (declared at line 31)
+leak: simp LeanEval.Topology.ClassificationOfSurfaces.Moise.IntrinsicTwoComplex.zmod3_add_three registered in Tengoku.LeanPool.LeanPool.ClassificationOfSurfaces.Moise.IntrinsicMidpointSubdivision (declared at line 37)
+leak: simp LeanEval.Topology.ClassificationOfSurfaces.Moise.IntrinsicTwoComplex.zmod3_one_add registered in Tengoku.LeanPool.LeanPool.ClassificationOfSurfaces.Moise.IntrinsicMidpointSubdivision (declared at line 43)
+leak: simp LeanEval.Topology.ClassificationOfSurfaces.Moise.IntrinsicTwoComplex.zmod3_two_add registered in Tengoku.LeanPool.LeanPool.ClassificationOfSurfaces.Moise.IntrinsicMidpointSubdivision (declared at line 48)
+leak: simp LeanEval.Topology.ClassificationOfSurfaces.Moise.IntrinsicTwoComplex.zmod3_add_two_add_one registered in Tengoku.LeanPool.LeanPool.ClassificationOfSurfaces.Moise.IntrinsicMidpointSubdivision (declared at line 53)
+leak: simp LeanEval.Topology.ClassificationOfSurfaces.Moise.IntrinsicTwoComplex.zmod3_add_one_add_one registered in Tengoku.LeanPool.LeanPool.ClassificationOfSurfaces.Moise.IntrinsicMidpointSubdivision (declared at line 59)
+leak: simp LeanEval.Topology.ClassificationOfSurfaces.Moise.IntrinsicTwoComplex.zmod3_add_one_add_two registered in Tengoku.LeanPool.LeanPool.ClassificationOfSurfaces.Moise.IntrinsicMidpointSubdivision (declared at line 64)
+leak: simp LeanEval.Topology.ClassificationOfSurfaces.Moise.IntrinsicTwoComplex.zmod3_add_two_add_two registered in Tengoku.LeanPool.LeanPool.ClassificationOfSurfaces.Moise.IntrinsicMidpointSubdivision (declared at line 70)
+leak: simp LeanEval.Topology.ClassificationOfSurfaces.Moise.IntrinsicTwoComplex.finEquiv_symm_three registered in Tengoku.LeanPool.LeanPool.ClassificationOfSurfaces.Moise.IntrinsicFaceModel (declared at line 101)
+leak: simp _private.Tengoku.LeanPool.LeanPool.ClassificationOfSurfaces.CanonicalWords.0.LeanEval.Topology.ClassificationOfSurfaces.NormalForm.Fin.divNat_linear registered in Tengoku.LeanPool.LeanPool.ClassificationOfSurfaces.CanonicalWords (declared at line 125)
+leak: simp _private.Tengoku.LeanPool.LeanPool.ClassificationOfSurfaces.FiniteCyclicP1Realization.0.LeanEval.Topology.ClassificationOfSurfaces.FiniteCyclicPresentation.P1.finCast_self registered in Tengoku.LeanPool.LeanPool.ClassificationOfSurfaces.FiniteCyclicP1Realization (declared at line 32)
+leak: simp _private.Tengoku.LeanPool.LeanPool.ClassificationOfSurfaces.FiniteCyclicP1Realization.0.LeanEval.Topology.ClassificationOfSurfaces.FiniteCyclicPresentation.P1.finCast_eq_mk registered in Tengoku.LeanPool.LeanPool.ClassificationOfSurfaces.FiniteCyclicP1Realization (declared at line 37)
+leak: simp _private.Tengoku.LeanPool.LeanPool.ClassificationOfSurfaces.FiniteCyclicP1Realization.0.LeanEval.Topology.ClassificationOfSurfaces.FiniteCyclicPresentation.P1.listGet_finCast registered in Tengoku.LeanPool.LeanPool.ClassificationOfSurfaces.FiniteCyclicP1Realization (declared at line 41)
+leak: simp _private.Tengoku.LeanPool.LeanPool.ClassificationOfSurfaces.FiniteCyclicP1Realization.0.LeanEval.Topology.ClassificationOfSurfaces.FiniteCyclicPresentation.P1.listGetElem_finCast registered in Tengoku.LeanPool.LeanPool.ClassificationOfSurfaces.FiniteCyclicP1Realization (declared at line 46)
+leak: simp _private.Tengoku.LeanPool.LeanPool.ClassificationOfSurfaces.FiniteCyclicUnorientedRealization.0.LeanEval.Topology.ClassificationOfSurfaces.FiniteCyclicPresentation.finCast_self registered in Tengoku.LeanPool.LeanPool.ClassificationOfSurfaces.FiniteCyclicUnorientedRealization (declared at line 86)
+leak: instance Quaternion.instIsScalarTowerSelf registered in Tengoku.LeanPool.LeanPool.CompositionAlgebras.Composition.Instances (declared at line 114)
+leak: instance Quaternion.instSMulCommClassSelf registered in Tengoku.LeanPool.LeanPool.CompositionAlgebras.Composition.Instances (declared at line 124)
+leak: instance _private.Tengoku.LeanPool.LeanPool.ComputableReal.ComputableRSeq.0.Tengoku.LeanPool.ComputableℝSeq.sign_aux_sound registered in Tengoku.LeanPool.LeanPool.ComputableReal.ComputableRSeq (declared at line 618)
+leak: simp Connes.StarAlgEquiv.map_le_map_iff_of_isStarProjection registered in Tengoku.LeanPool.LeanPool.ConnesRigidity.Foundation.OperatorAlgebra.Projection.Supremum (declared at line 54)
+leak: instance LeanPool.DeadEnds.decidablePredViolation registered in Tengoku.LeanPool.LeanPool.DeadEnds.Basic (declared at line 16)
+leak: simp Demazure.omg registered in Tengoku.LeanPool.LeanPool.DemazureOperatorsLean.DemazureAuxRelations (declared at line 239)
+leak: instance CoxeterSystem.instDecidableEqLeanPool registered in Tengoku.LeanPool.LeanPool.DemazureOperatorsLean.StrongExchange (declared at line 27)
+leak: instance CoxeterSystem.instDecidableEqMatsumotoLeanPool registered in Tengoku.LeanPool.LeanPool.DemazureOperatorsLean.Matsumoto (declared at line 24)
+leak: instance DirectedUnitInterval.instDirectedSpaceElemRealUnitInterval registered in Tengoku.LeanPool.LeanPool.DirectedTopologyLean4.DirectedUnitInterval (declared at line 28)
+leak: instance Domain.Constructive.instLeftCommutativeFinsetInsert registered in Tengoku.LeanPool.LeanPool.DomainTheory.Constructive (declared at line 69)
+leak: simp Int.ofNat_zero_eq_zero registered in Tengoku.LeanPool.LeanPool.EcTateLean.Init.Data.Int.Lemmas (declared at line 29)
+leak: simp List.getLast?_cons_append_cons registered in Tengoku.LeanPool.LeanPool.ErdosTuzaValtr.Lib.List.Lemmas (declared at line 223)
+leak: instance CategoryTheory.MorphismProperty.Inter registered in Tengoku.LeanPool.LeanPool.FactorizationSystems.Basic (declared at line 330)
+leak: instance Feige.highSetMeasurableSpace registered in Tengoku.LeanPool.LeanPool.Feige.HighSetLaw (declared at line 28)
+leak: instance FiniteGraphFreeGroup.wideSubquiverHomFintype registered in Tengoku.LeanPool.LeanPool.FiniteGraphFundamentalGroup.Proof (declared at line 51)
+leak: instance FiniteGraphFreeGroup.wideSubquiverVertexFintype registered in Tengoku.LeanPool.LeanPool.FiniteGraphFundamentalGroup.Proof (declared at line 57)
+leak: instance FiniteGraphFreeGroup.baseTotalFintypeInst registered in Tengoku.LeanPool.LeanPool.FiniteGraphFundamentalGroup.Proof (declared at line 76)
+leak: instance FiniteGraphFreeGroup.symmetrifyFintype registered in Tengoku.LeanPool.LeanPool.FiniteGraphFundamentalGroup.Proof (declared at line 79)
+leak: instance FiniteGraphFreeGroup.symmetrifyHomFintype registered in Tengoku.LeanPool.LeanPool.FiniteGraphFundamentalGroup.Proof (declared at line 82)
+leak: instance FiniteGraphFreeGroup.wideSubquiverSetTotalFintype registered in Tengoku.LeanPool.LeanPool.FiniteGraphFundamentalGroup.Proof (declared at line 96)
+leak: instance FiniteGraphFreeGroup.freeGroupoidIsFree registered in Tengoku.LeanPool.LeanPool.FiniteGraphFundamentalGroup.Proof (declared at line 396)
+leak: instance FiniteGraphFreeGroup.freeGroupoidObjFintype registered in Tengoku.LeanPool.LeanPool.FiniteGraphFundamentalGroup.Proof (declared at line 470)
+leak: simp FirstOrder.ZFC.FixedSnoc.snoc_conv registered in Tengoku.LeanPool.LeanPool.FoZfc.FixedSnoc (declared at line 41)
+leak: simp FirstOrder.ZFC.FixedSnoc.castAdd_to_castSucc registered in Tengoku.LeanPool.LeanPool.FoZfc.FixedSnoc (declared at line 65)
+leak: simp FirstOrder.ZFC.FixedSnoc.Fintuple_3_1' registered in Tengoku.LeanPool.LeanPool.FoZfc.FixedSnoc (declared at line 136)
+leak: simp FirstOrder.ZFC.FixedSnoc.Fintuple_4_1' registered in Tengoku.LeanPool.LeanPool.FoZfc.FixedSnoc (declared at line 155)
+leak: instance GaussianMomentsCounterexamples.standardGaussian_isOpenPosMeasure registered in Tengoku.LeanPool.LeanPool.GaussianMomentsCounterexamples.RealCoefficients (declared at line 18)
+leak: instance Tengoku.LeanPool.sheafAbelianAddCommGrp registered in Tengoku.LeanPool.LeanPool.GrothendieckVanishing.ClosedImmersion (declared at line 46)
+leak: instance TopCat.opensMap_isLocallyFull registered in Tengoku.LeanPool.LeanPool.GrothendieckVanishing.ClosedImmersion (declared at line 126)
+leak: instance instHasSeparatorAddCommGrpCat_1 registered in Tengoku.LeanPool.LeanPool.GrothendieckVanishing.CohomologyAPI (declared at line 66)
+leak: instance instIsGrothendieckAbelianAddCommGrpCat_1 registered in Tengoku.LeanPool.LeanPool.GrothendieckVanishing.CohomologyAPI (declared at line 78)
+leak: instance Tengoku.LeanPool.instPreadditivePresheafLeanPool registered in Tengoku.LeanPool.LeanPool.GrothendieckVanishing.CohomologyAPI (declared at line 83)
+leak: instance Tengoku.LeanPool.sheafPreadditive registered in Tengoku.LeanPool.LeanPool.GrothendieckVanishing.CohomologyAPI (declared at line 104)
+leak: instance Set.collection registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Collection (declared at line 37)
+leak: instance List.collection registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Collection (declared at line 43)
+leak: instance Multiset.collection registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Collection (declared at line 48)
+leak: instance Finset.collection registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Collection (declared at line 53)
+leak: simp Nat.ne_step_max registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Vorspiel (declared at line 37)
+leak: simp Matrix.vecCons_zero registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Vorspiel (declared at line 83)
+leak: simp Matrix.vecCons_succ registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Vorspiel (declared at line 89)
+leak: simp Matrix.vecCons_last registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Vorspiel (declared at line 95)
+leak: simp Matrix.cons_app_one registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Vorspiel (declared at line 105)
+leak: simp Matrix.cons_app_two registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Vorspiel (declared at line 110)
+leak: simp Matrix.cons_app_three registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Vorspiel (declared at line 115)
+leak: simp Matrix.zero_succ_eq_id registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Vorspiel (declared at line 157)
+leak: simp Matrix.zero_cons_succ_eq_self registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Vorspiel (declared at line 163)
+leak: simp Matrix.vecCons_ext registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Vorspiel (declared at line 173)
+leak: simp Matrix.comp₀ registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Vorspiel (declared at line 227)
+leak: simp Matrix.comp₁ registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Vorspiel (declared at line 232)
+leak: simp Matrix.comp₂ registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Vorspiel (declared at line 237)
+leak: simp Matrix.comp₃ registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Vorspiel (declared at line 242)
+leak: simp Matrix.vecHead_comp registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Vorspiel (declared at line 256)
+leak: simp Option.toList_eq_iff registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Vorspiel (declared at line 474)
+leak: simp Fin.one_pos'' registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Vorspiel (declared at line 547)
+leak: simp Fin.two_pos registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Vorspiel (declared at line 552)
+leak: simp Fin.three_pos registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Vorspiel (declared at line 557)
+leak: simp Fin.four_pos registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Vorspiel (declared at line 562)
+leak: simp Fin.five_pos registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Vorspiel (declared at line 567)
+leak: simp Finset.equiv_univ registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Vorspiel (declared at line 1012)
+leak: simp Finset.sup_univ_equiv registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Vorspiel (declared at line 1018)
+leak: simp Part.mem_vector_mOfFn registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Vorspiel (declared at line 1059)
+leak: instance LO.LogicalConnective.HomClass.instCoeFunForall registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Logic.LogicSymbol (declared at line 150)
+leak: simp WellFounded.trivial_wellfounded registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.BinaryRelations (declared at line 200)
+leak: instance List.finiteNodupList registered in Tengoku.LeanPool.LeanPool.Incompleteness.Foundation.Vorspiel.Chain (declared at line 29)
+leak: instance instSubsingletonOrderEmbeddingFinOfNatNat registered in Tengoku.LeanPool.LeanPool.InfinitaryLogic.Combinatorics.FiniteArityErdosRadoInduction (declared at line 156)
+leak: instance FirstOrder.Language.instCountableFinOrderEmbNat registered in Tengoku.LeanPool.LeanPool.InfinitaryLogic.Methods.SchemaCompletion (declared at line 51)
+leak: instance FirstOrder.Language.qfuncSuccIsEmpty registered in Tengoku.LeanPool.LeanPool.InfinitaryLogic.Methods.Henkin.CountableCompletion.QuotientTermModel (declared at line 148)
+leak: instance FirstOrder.Language.instCountableFunctionsOfRelational registered in Tengoku.LeanPool.LeanPool.InfinitaryLogic.Methods.LopezEscobar.CodeClass (declared at line 33)
+leak: instance RS.isManifoldRealOfComplex registered in Tengoku.LeanPool.LeanPool.JacobianDiffgeo.Surface.RealSmooth (priority 100) (declared at line 43)
+leak: instance RS.instAddCommGroupQuotient registered in Tengoku.LeanPool.LeanPool.JacobianDiffgeo.JacobianConstruction.Torus (declared at line 55)
+leak: instance RS.instTopologicalSpaceQuotient registered in Tengoku.LeanPool.LeanPool.JacobianDiffgeo.JacobianConstruction.Torus (declared at line 57)
+leak: instance instLocallyPathConnectedSpace_1 registered in Tengoku.LeanPool.LeanPool.JacobianDiffgeo.JacobianConstruction.OfCurve (declared at line 44)
+leak: instance instPathConnectedSpace registered in Tengoku.LeanPool.LeanPool.JacobianDiffgeo.JacobianConstruction.OfCurve (declared at line 49)
+leak: instance RS.P1.instChartedSpace registered in Tengoku.LeanPool.LeanPool.JacobianDiffgeo.ProjectiveLine.Charts (declared at line 203)
+leak: instance KasamiCyclicAdditive.Phase.instFintypeMulCharComplex registered in Tengoku.LeanPool.LeanPool.KasamiCyclicAdditive.Phase.CharacterSums (declared at line 32)
+leak: instance GraphCoveringTheory.actionCategoryFintype registered in Tengoku.LeanPool.LeanPool.Kurosh.IndexFormula (declared at line 30)
+leak: instance Lean.Order.CompleteLattice.instMinCompleteLattice registered in Tengoku.LeanPool.LeanPool.Lean4Itree.Paco.PacoDefs (declared at line 21)
+leak: simp Finset.filter_univ_not_mem registered in Tengoku.LeanPool.LeanPool.LeanBooleanfun.ToMathlib.Finset (declared at line 26)
+leak: instance _private.Tengoku.LeanPool.LeanPool.LeanModularForms.GeneralizedResidueTheory.CauchyPrimitive.0.instNormSMulClassRealComplex registered in Tengoku.LeanPool.LeanPool.LeanModularForms.GeneralizedResidueTheory.CauchyPrimitive (declared at line 31)
+leak: instance _private.Tengoku.LeanPool.LeanPool.LeanModularForms.GeneralizedResidueTheory.CauchyPrimitive.0.instIsBoundedSMulRealComplex registered in Tengoku.LeanPool.LeanPool.LeanModularForms.GeneralizedResidueTheory.CauchyPrimitive (declared at line 34)
+leak: instance _private.Tengoku.LeanPool.LeanPool.LeanModularForms.GeneralizedResidueTheory.CauchyPrimitive.0.instContinuousSMulRealComplex registered in Tengoku.LeanPool.LeanPool.LeanModularForms.GeneralizedResidueTheory.CauchyPrimitive (declared at line 37)
+leak: instance _private.Tengoku.LeanPool.LeanPool.LeanModularForms.GeneralizedResidueTheory.Homotopy.ParametricDiff.0.instContinuousSMulRealComplex registered in Tengoku.LeanPool.LeanPool.LeanModularForms.GeneralizedResidueTheory.Homotopy.ParametricDiff (declared at line 36)
+leak: instance LehmerE10.instFactPrimeOfNatNat registered in Tengoku.LeanPool.LeanPool.LehmerE10.CyclotomicKill (declared at line 35)
+leak: simp LieIdeal.rank_top registered in Tengoku.LeanPool.LeanPool.LowDimSolvClassification.GeneralResults (declared at line 767)
+leak: simp LieIdeal.finrank_top registered in Tengoku.LeanPool.LeanPool.LowDimSolvClassification.GeneralResults (declared at line 774)
+leak: instance Tengoku.LeanPool.instPreorderUInt64LeanPool registered in Tengoku.LeanPool.LeanPool.MRiscX.Util.BasicTheorems (declared at line 186)
+leak: instance MassFormula.instIsScalarTowerIntermediateField registered in Tengoku.LeanPool.LeanPool.MassFormula.EisensteinMonogenic (declared at line 51)
+leak: instance MassFormula.instFaithfulSMulSubtypeMemSubringIntegerValueGroupWithZeroValuationSeparableClosure registered in Tengoku.LeanPool.LeanPool.MassFormula.EisensteinMonogenic (declared at line 58)
+leak: simp AlgEquiv.op_toLinearMap registered in Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.LinearMapOp (declared at line 54)
+leak: instance LinearMap.IsSymmetric.hasLe registered in Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.Ips.MinimalProj (declared at line 283)
+leak: instance Tengoku.LeanPool.instPartialOrderLinearMapIdLeanPool registered in Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.Ips.MinimalProj (declared at line 304)
+leak: instance Tengoku.LeanPool.IsSymmetric.hasZero registered in Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.Ips.MinimalProj (declared at line 335)
+leak: instance MulOpposite.starModule registered in Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.Ips.MulOp (declared at line 106)
+leak: instance TensorProduct.assocHasCoe registered in Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.Ips.Strict (declared at line 21)
+leak: instance TensorProduct.assocSymmHasCoe registered in Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.Ips.Strict (declared at line 26)
+leak: instance TensorProduct.lidHasCoe registered in Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.Ips.Strict (declared at line 57)
+leak: instance TensorProduct.ridHasCoe registered in Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.Ips.Strict (declared at line 62)
+leak: instance TensorProduct.lidSymmHasCoe registered in Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.Ips.Strict (declared at line 67)
+leak: instance TensorProduct.ridSymmHasCoe registered in Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.Ips.Strict (declared at line 72)
+leak: instance Tengoku.LeanPool.funTensorProductAssocHasCoe registered in Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.Ips.Strict (declared at line 121)
+leak: instance LinearMap.tensorProductAssocHasCoe registered in Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.Ips.Strict (declared at line 126)
+leak: instance Tengoku.LeanPool.funTensorProductAssocHasCoe' registered in Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.Ips.Strict (declared at line 135)
+leak: instance LinearMap.tensorProductAssocHasCoe' registered in Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.Ips.Strict (declared at line 140)
+leak: instance Tengoku.LeanPool.funLidHasCoe registered in Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.Ips.Strict (declared at line 149)
+leak: instance LinearMap.tensorProductLidHasCoe registered in Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.Ips.Strict (declared at line 154)
+leak: instance Tengoku.LeanPool.funLidHasCoe' registered in Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.Ips.Strict (declared at line 159)
+leak: instance LinearMap.tensorProductLidHasCoe' registered in Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.Ips.Strict (declared at line 164)
+leak: instance Tengoku.LeanPool.funRidHasCoe registered in Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.Ips.Strict (declared at line 169)
+leak: instance LinearMap.tensorProductRidHasCoe registered in Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.Ips.Strict (declared at line 174)
+leak: instance Tengoku.LeanPool.funRidHasCoe' registered in Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.Ips.Strict (declared at line 179)
+leak: instance LinearMap.tensorProductRidHasCoe' registered in Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.Ips.Strict (declared at line 184)
+leak: simp Tengoku.LeanPool.star_ite registered in Tengoku.LeanPool.LeanPool.Monlib4.Preq.Ites (declared at line 18)
+leak: instance EuclideanSpace.instInnerPi registered in Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.Matrix.Basic (declared at line 228)
+leak: simp TensorProduct.map_apply registered in Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.TensorProduct.BasicLemmas (declared at line 42)
+leak: simp TensorProduct.comm_commutes registered in Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.TensorProduct.BasicLemmas (declared at line 50)
+leak: instance instCovariantClassForallSwapHAddLeOfStarOrderedRing registered in Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.PiStarOrderedRing (declared at line 108)
+leak: simp AlgEquiv.op_one registered in Tengoku.LeanPool.LeanPool.Monlib4.LinearAlgebra.TensorProduct.Lemmas (declared at line 46)
+leak: instance instMulEquivClassOfNonUnitalAlgHomClass registered in Tengoku.LeanPool.LeanPool.Monlib4.Preq.StarAlgEquiv (declared at line 223)
+leak: simp StarAlgEquiv.ofAlgEquiv_coe registered in Tengoku.LeanPool.LeanPool.Monlib4.Preq.StarAlgEquiv (declared at line 91)
+leak: simp MooreBound.DegreeDiameter.submodule_map_symm_map registered in Tengoku.LeanPool.LeanPool.MooreBound.DegreeDiameter.Symmetry (declared at line 35)
+leak: simp MooreBound.F_neg registered in Tengoku.LeanPool.LeanPool.MooreBound.PrimeNumberTheoremAnd.Fourier (declared at line 71)
+leak: simp MooreBound.F_add registered in Tengoku.LeanPool.LeanPool.MooreBound.PrimeNumberTheoremAnd.Fourier (declared at line 77)
+leak: simp MooreBound.F_sub registered in Tengoku.LeanPool.LeanPool.MooreBound.PrimeNumberTheoremAnd.Fourier (declared at line 86)
+leak: simp MooreBound.F_mul registered in Tengoku.LeanPool.LeanPool.MooreBound.PrimeNumberTheoremAnd.Fourier (declared at line 93)
+leak: simp MooreBound.deriv_ofReal registered in Tengoku.LeanPool.LeanPool.MooreBound.PrimeNumberTheoremAnd.Fourier (declared at line 115)
+leak: instance List.SublistForall₂.instIsPreorder registered in Tengoku.LeanPool.LeanPool.NashWilliams.Order.WellQuasiOrder.Regular (declared at line 170)
+leak: instance Tengoku.LeanPool.volumeIsNegInvariant registered in Tengoku.LeanPool.LeanPool.OSforGFF.Bochner.FejerPD (declared at line 90)
+leak: instance Tengoku.LeanPool.instMeasurableSpaceWeakDualRealLeanPool registered in Tengoku.LeanPool.LeanPool.OSforGFF.Minlos.NuclearSpace (declared at line 93)
+leak: instance Tengoku.LeanPool.instMeasurableSpaceLpRealTwoLeanPool registered in Tengoku.LeanPool.LeanPool.OSforGFF.General.FunctionalAnalysis (declared at line 108)
+leak: instance Tengoku.LeanPool.instMeasurableSpaceLpComplexTwoLeanPool registered in Tengoku.LeanPool.LeanPool.OSforGFF.General.FunctionalAnalysis (declared at line 114)
+leak: simp OSforGFF.schur_product_posDef registered in Tengoku.LeanPool.LeanPool.OSforGFF.General.SchurProduct (declared at line 69)
+leak: instance NumberField.Odlyzko.countableIdealRingOfIntegers registered in Tengoku.LeanPool.LeanPool.Odlyzko.DedekindZeta.PrimeIdealEulerProduct (declared at line 196)
+leak: instance NumberField.Odlyzko.countableHeightOneSpectrum registered in Tengoku.LeanPool.LeanPool.Odlyzko.DedekindZeta.PrimeIdealEulerProduct (declared at line 207)
+leak: instance NumberField.Odlyzko.encodableHeightOneSpectrum registered in Tengoku.LeanPool.LeanPool.Odlyzko.DedekindZeta.PrimeIdealEulerProduct (declared at line 214)
+leak: instance Ordinal.instNonemptyElemIioOmega0 registered in Tengoku.LeanPool.LeanPool.PCFTheory.Background.Ordinal (declared at line 27)
+leak: instance Ordinal.instSmallElemIio registered in Tengoku.LeanPool.LeanPool.PCFTheory.Background.Topology (declared at line 105)
+leak: instance DimdPolyLEAN.instFactLtRealOfNatHMulPi registered in Tengoku.LeanPool.LeanPool.PhaseRetrieval.DimdPoly.Internal.Definitions (declared at line 56)
+leak: instance LeanPool.PolyaEnumerationTheorem.DistinctColorings.MulActionColorings registered in Tengoku.LeanPool.LeanPool.PolyaEnumerationTheorem.Basic (declared at line 52)
+leak: instance LeanPool.PolyaEnumerationTheorem.CyclesOfGroupElements.instDecidableRelEquivOfFintypeOfDecidableEqLeanPool registered in Tengoku.LeanPool.LeanPool.PolyaEnumerationTheorem.Basic (declared at line 98)
+leak: instance LeanPool.PolyaEnumerationTheorem.Bracelets.MulActionBracelet registered in Tengoku.LeanPool.LeanPool.PolyaEnumerationTheorem.Concrete (declared at line 91)
+leak: instance LeanPool.PolyaEnumerationTheorem.ReductionToFin.MulActionFin registered in Tengoku.LeanPool.LeanPool.PolyaEnumerationTheorem.ReductionToFin (declared at line 32)
+leak: instance LeanPool.Polylean.EnumDecide.decideUnit registered in Tengoku.LeanPool.LeanPool.Polylean.UnitConjecture.EnumDecide (declared at line 120)
+leak: instance Tengoku.LeanPool.NegUnitSphereDual registered in Tengoku.LeanPool.LeanPool.Polytopes.Halfspace (declared at line 28)
+leak: simp Polynomial.expand_two_comp_neg_X registered in Tengoku.LeanPool.LeanPool.QuadraticIterates.Mathlib.Algebra.Polynomial.EvenComp (declared at line 73)
+leak: instance MeasureTheory.instMeasurableSpacePEmptyLeanPool registered in Tengoku.LeanPool.LeanPool.QuasiBorelSpaces.MeasureTheory.Instances (declared at line 19)
+leak: instance MeasureTheory.Sigma.instDiscreteMeasurableSpaceSigma registered in Tengoku.LeanPool.LeanPool.QuasiBorelSpaces.MeasureTheory.Sigma (declared at line 178)
+leak: simp MeasureTheory.Sigma.measurable_fst registered in Tengoku.LeanPool.LeanPool.QuasiBorelSpaces.MeasureTheory.Sigma (declared at line 75)
+leak: instance OmegaCompletePartialOrder.Sigma.instSigmaLeanPool registered in Tengoku.LeanPool.LeanPool.QuasiBorelSpaces.OmegaCompletePartialOrder.Sigma (declared at line 22)
+leak: instance OmegaCompletePartialOrder.Sum.instSumLeanPool registered in Tengoku.LeanPool.LeanPool.QuasiBorelSpaces.OmegaCompletePartialOrder.Sum (declared at line 23)
+leak: instance MeasureTheory.List.instMeasurableSpaceListLeanPool registered in Tengoku.LeanPool.LeanPool.QuasiBorelSpaces.MeasureTheory.List (declared at line 64)
+leak: instance MeasureTheory.Option.instMeasurableSpaceOptionLeanPool registered in Tengoku.LeanPool.LeanPool.QuasiBorelSpaces.MeasureTheory.Option (declared at line 24)
+leak: instance MeasureTheory.Measure.instMeasureSpaceElemRealIcoOfNatLeanPool registered in Tengoku.LeanPool.LeanPool.QuasiBorelSpaces.MeasureTheory.Randomization (declared at line 50)
+leak: simp MeasureTheory.Measure.volume_restrict_normalize registered in Tengoku.LeanPool.LeanPool.QuasiBorelSpaces.MeasureTheory.Randomization (declared at line 112)
+leak: instance Option.instPreorderLeanPool registered in Tengoku.LeanPool.LeanPool.QuasiBorelSpaces.Option.Instances (declared at line 22)
+leak: instance Option.instPartialOrderLeanPool registered in Tengoku.LeanPool.LeanPool.QuasiBorelSpaces.Option.Instances (declared at line 37)
+leak: instance Option.instOrderBotLeanPool registered in Tengoku.LeanPool.LeanPool.QuasiBorelSpaces.Option.Instances (declared at line 41)
+leak: instance OmegaCompletePartialOrder.Option.instOptionLeanPool registered in Tengoku.LeanPool.LeanPool.QuasiBorelSpaces.OmegaCompletePartialOrder.Option (declared at line 30)
+leak: simp _private.Tengoku.LeanPool.LeanPool.QuasiBorelSpaces.RoseTree.Basic.0.Tengoku.LeanPool.Rose.traverse_map registered in Tengoku.LeanPool.LeanPool.QuasiBorelSpaces.RoseTree.Basic (declared at line 268)
+leak: simp _private.Tengoku.LeanPool.LeanPool.QuasiBorelSpaces.RoseTree.Basic.0.Tengoku.LeanPool.Rose.traverse_pure registered in Tengoku.LeanPool.LeanPool.QuasiBorelSpaces.RoseTree.Basic (declared at line 278)
+leak: simp List.Pairwise.toFinset_sort registered in Tengoku.LeanPool.LeanPool.RiemannMappingTheorem.ToMathlib (declared at line 264)
+leak: instance FunctionField.Chart.ringOfIntegers.isTorsionFreeOverPolynomial registered in Tengoku.LeanPool.LeanPool.RiemannRochFunctionFields.Place (declared at line 418)
+leak: instance FunctionField.Chart.ringOfIntegers.algebraOverConstants registered in Tengoku.LeanPool.LeanPool.RiemannRochFunctionFields.Place (declared at line 428)
+leak: instance FunctionField.Chart.ringOfIntegers.moduleFiniteOverPolynomial registered in Tengoku.LeanPool.LeanPool.RiemannRochFunctionFields.Place (declared at line 443)
+leak: simp OrderedFinpartition.sum_partSize registered in Tengoku.LeanPool.LeanPool.SardMoreira.ContDiff (declared at line 51)
+leak: simp OrderedFinpartition.length_eq_zero registered in Tengoku.LeanPool.LeanPool.SardMoreira.ContDiff (declared at line 59)
+leak: simp OrderedFinpartition.length_pos_iff registered in Tengoku.LeanPool.LeanPool.SardMoreira.ContDiff (declared at line 68)
+leak: simp Tengoku.LeanPool.ftaylorSeries_id registered in Tengoku.LeanPool.LeanPool.SardMoreira.ContDiff (declared at line 139)
+leak: simp ContinuousMultilinearMap.compContinuousLinearMap_neg_left registered in Tengoku.LeanPool.LeanPool.SardMoreira.ContinuousMultilinearMap (declared at line 67)
+leak: simp ContinuousMultilinearMap.compContinuousLinearMapContinuousMultilinear_apply registered in Tengoku.LeanPool.LeanPool.SardMoreira.ContinuousMultilinearMap (declared at line 117)
+leak: instance MeasureTheory.Measure.instIsFiniteMeasureComap registered in Tengoku.LeanPool.LeanPool.SardMoreira.MeasureComap (declared at line 31)
+leak: instance MeasureTheory.Measure.instSigmaFiniteSubtypeComap registered in Tengoku.LeanPool.LeanPool.SardMoreira.MeasureComap (declared at line 72)
+leak: instance MeasureTheory.Measure.instSFiniteComap registered in Tengoku.LeanPool.LeanPool.SardMoreira.MeasureComap (declared at line 76)
+leak: instance Tengoku.LeanPool.instMeasureSpaceNNRealLeanPool registered in Tengoku.LeanPool.LeanPool.SardMoreira.MeasureNNReal (declared at line 20)
+leak: simp Submodule.rank_prod_eq_lift registered in Tengoku.LeanPool.LeanPool.SardMoreira.Unused (declared at line 87)
+leak: simp Submodule.finrank_prod registered in Tengoku.LeanPool.LeanPool.SardMoreira.Unused (declared at line 96)
+leak: simp Tengoku.LeanPool.finRotate_pow_apply' registered in Tengoku.LeanPool.LeanPool.SemicircleCheck.FinRotateLemmas (declared at line 18)
+leak: instance CommRing.isLieAbelian registered in Tengoku.LeanPool.LeanPool.VirasoroProject.ToMathlib.Algebra.Lie.Abelian (declared at line 16)
+leak: instance TopCat.isIso_of_isEmpty registered in Tengoku.LeanPool.LeanPool.WhiteheadTheorem.Auxiliary (declared at line 33)
+leak: instance unitInterval.continuousMul registered in Tengoku.LeanPool.LeanPool.WhiteheadTheorem.Shapes.UnitInterval (declared at line 20)
+leak: instance Cube.isEmpty_boundary_zero registered in Tengoku.LeanPool.LeanPool.WhiteheadTheorem.Shapes.Cube (declared at line 46)
+leak: instance MatrixRing.isCentral registered in Tengoku.LeanPool.LeanPool.BrauerGroupNew.CentralSimple (declared at line 43)
+leak: instance IsCentralSimple.instAlgebraSubtypeMemSubringCenterLeanPool registered in Tengoku.LeanPool.LeanPool.BrauerGroupNew.CentralSimple (declared at line 61)
+leak: instance ClassicalComplexWPT.prodHasAntidiagonal registered in Tengoku.LeanPool.LeanPool.LocalComplexGeometry.ClassicalComplexWPT.L1Division (declared at line 41)
+leak: instance instIsZeroOrProbabilityMeasureProdProd registered in Tengoku.LeanPool.LeanPool.ZhangYeungInequality.PFR.Mathlib.MeasureTheory.Measure.Prod (declared at line 64)
+leak: instance _private.Tengoku.LeanPool.LeanPool.LeanModularForms.GeneralizedResidueTheory.Homotopy.CircleParam.0.LeanPoolFork.instContinuousSMulRealComplex registered in Tengoku.LeanPool.LeanPool.LeanModularForms.GeneralizedResidueTheory.Homotopy.CircleParam (declared at line 39)
+leak: instance _private.Tengoku.LeanPool.LeanPool.LeanModularForms.GeneralizedResidueTheory.LogDerivFTC.0.LeanPoolFork.LogDerivFTC.instContinuousSMulRealComplex registered in Tengoku.LeanPool.LeanPool.LeanModularForms.GeneralizedResidueTheory.LogDerivFTC (declared at line 43)
+leak: instance _private.Tengoku.LeanPool.LeanPool.LeanModularForms.GeneralizedResidueTheory.PVInfrastructure.AnnulusBounds.0.LeanPoolFork.instNormSMulClassRealComplex registered in Tengoku.LeanPool.LeanPool.LeanModularForms.GeneralizedResidueTheory.PVInfrastructure.AnnulusBounds (declared at line 41)
+leak: instance LeanPoolFork.instFunLikeUpperHalfPlaneFun registered in Tengoku.LeanPool.LeanPool.LeanModularForms.Modularforms.QExpansionLems (declared at line 136)
+leak: instance _private.Tengoku.LeanPool.LeanPool.LeanModularForms.ValenceFormula.Boundary.Smooth.0.LeanPoolFork.instNormSMulClassRealComplex registered in Tengoku.LeanPool.LeanPool.LeanModularForms.ValenceFormula.Boundary.Smooth (declared at line 39)
+leak: instance _private.Tengoku.LeanPool.LeanPool.LeanModularForms.ValenceFormula.Boundary.Smooth.0.LeanPoolFork.instIsBoundedSMulRealComplex registered in Tengoku.LeanPool.LeanPool.LeanModularForms.ValenceFormula.Boundary.Smooth (declared at line 40)
+leak: instance _private.Tengoku.LeanPool.LeanPool.LeanModularForms.ValenceFormula.Boundary.Smooth.0.LeanPoolFork.instContinuousSMulRealComplex registered in Tengoku.LeanPool.LeanPool.LeanModularForms.ValenceFormula.Boundary.Smooth (declared at line 41)
+leak: notation CategoryTheory.«term_□_» registered in Tengoku.LeanPool.LeanPool.FactorizationSystems.Orthogonality (declared at line 59)
+root: «termℝ²»
+root: «termℝ³»
+root: «termP(_↦_;_)»
+root: instConsSet
+root: instIsCyclicMulZMod
+root: instInhabitedReductionType
+root: «term◇''⁻¹_»
+root: instFunLikeIndexedLOrderLinearOrder
+root: «term□'⁻¹_»
+root: «term□'_»
+root: instIsGrothendieckAbelianSheafAddCommGrpCat
+root: instIsZeroOrProbabilityMeasureProdProd
+root: «term◇''⁻¹^[_]_»
+root: instCoeFunEmbeddingForallComplex
+root: instInhabitedTMap
+root: instBEqInstr_1
+root: instInhabitedModel
+root: instToStringInstr
+root: «term_^+^_»
+root: instConsFinsetOfDecidableEq
+root: instDecidableEqChomskyNormalFormRule
+root: «term□''^[_]_»
+root: instReprInstructionMap
+root: «term□''⁻¹_»
+root: instModuleZModOfNatNatSquareClasses
+root: instConsMultiset
+root: instCovariantClassForallSwapHAddLeOfStarOrderedRing
+root: «term◇'_»
+root: «term◇''_»
+root: instNontrivialEndOfIsSimpleModule
+root: instReprLabelMap
+root: instDecidablePredPermFinHMulNatOfNatIsPairing
+root: term₃F₂
+root: instReprTMap
+root: instInhabitedKodaira
+root: «termD(_,_)»
+root: instDecidableEqMulZMod
+root: instReprFloatRep
+root: instSubsingletonOrderEmbeddingFinOfNatNat
+root: «term_→ω𝒒_»
+root: instAddCommMonoidPositiveTimeTestFunction
+root: instDecidableEqReductionType
+root: WCWF
+root: instReprTMapOfToString
+root: instReprKodaira
+root: instCoeTCDirectedMap
+root: instInhabitedInstr
+root: instInhabitedPMap
+root: instMulOneClassMulZMod
+root: instHasSeparatorAddCommGrpCat_1
+root: instMulMulZMod
+root: instConsList
+root: «term◇'^[_]_»
+root: instInhabitedInstructionMap
+root: instToStringInstructionMap
+root: instStarTestFunctionℂ
+root: instIsGrothendieckAbelianAddCommGrpCat_1
+root: instBEqInstr
+root: instGroupMulZMod
+root: instReprInstr
+root: instCoeDipathPath
+root: instDecidableEqKodaira
+root: instCoeRegisterUInt64
+root: instDecidableEqModel
+root: instPathConnectedSpace
+root: «term□''⁻¹^[_]_»
+root: instToStringLabelMap
+root: «term◇''^[_]_»
+root: «term□''_»
+root: instReprReductionType
+root: instCoeOutPairingPermFinHMulNatOfNat
+root: instDiscreteQuasiBorelSpaceOfDiscreteMeasurableSpaceOfMeasurableQuasiBorelSpace
+root: instReprPMapOfToString
+root: instMulEquivClassOfNonUnitalAlgHomClass
+root: instInhabitedLabelMap
+root: «term□'⁻¹^[_]_»
+root: instReprRegisters
+root: instReprPMap
+root: instFintypeMulZModOfNeZeroNat
+root: instFintypePairing
+root: «term◇'⁻¹^[_]_»
+root: «term□'^[_]_»
+root: instLocallyPathConnectedSpace_1
+root: instFintypeMulAutMulZMod
+root: instAddCommGroupPositiveTimeTestFunction
+root: instInnerProductSpaceRealSpaceTime
+root: instReprMemory
+root: instAddCommMonoidPositiveTimeTestFunctionℂ
+root: instAddCommGroupPositiveTimeTestFunctionℂ
+root: «term◇'⁻¹_»
+root-instance: instConsSet
+root-instance: instIsCyclicMulZMod
+root-instance: instInhabitedReductionType
+root-instance: instFunLikeIndexedLOrderLinearOrder
+root-instance: instIsGrothendieckAbelianSheafAddCommGrpCat
+root-instance: instIsZeroOrProbabilityMeasureProdProd
+root-instance: instCoeFunEmbeddingForallComplex
+root-instance: instInhabitedTMap
+root-instance: instBEqInstr_1
+root-instance: instInhabitedModel
+root-instance: instToStringInstr
+root-instance: instConsFinsetOfDecidableEq
+root-instance: instDecidableEqChomskyNormalFormRule
+root-instance: instReprInstructionMap
+root-instance: instModuleZModOfNatNatSquareClasses
+root-instance: instConsMultiset
+root-instance: instCovariantClassForallSwapHAddLeOfStarOrderedRing
+root-instance: instNontrivialEndOfIsSimpleModule
+root-instance: instReprLabelMap
+root-instance: instDecidablePredPermFinHMulNatOfNatIsPairing
+root-instance: instReprTMap
+root-instance: instInhabitedKodaira
+root-instance: instDecidableEqMulZMod
+root-instance: instReprFloatRep
+root-instance: instSubsingletonOrderEmbeddingFinOfNatNat
+root-instance: instAddCommMonoidPositiveTimeTestFunction
+root-instance: instDecidableEqReductionType
+root-instance: instReprTMapOfToString
+root-instance: instReprKodaira
+root-instance: instCoeTCDirectedMap
+root-instance: instInhabitedInstr
+root-instance: instInhabitedPMap
+root-instance: instMulOneClassMulZMod
+root-instance: instHasSeparatorAddCommGrpCat_1
+root-instance: instMulMulZMod
+root-instance: instConsList
+root-instance: instInhabitedInstructionMap
+root-instance: instToStringInstructionMap
+root-instance: instStarTestFunctionℂ
+root-instance: instIsGrothendieckAbelianAddCommGrpCat_1
+root-instance: instBEqInstr
+root-instance: instGroupMulZMod
+root-instance: instReprInstr
+root-instance: instCoeDipathPath
+root-instance: instDecidableEqKodaira
+root-instance: instCoeRegisterUInt64
+root-instance: instDecidableEqModel
+root-instance: instPathConnectedSpace
+root-instance: instToStringLabelMap
+root-instance: instReprReductionType
+root-instance: instCoeOutPairingPermFinHMulNatOfNat
+root-instance: instDiscreteQuasiBorelSpaceOfDiscreteMeasurableSpaceOfMeasurableQuasiBorelSpace
+root-instance: instReprPMapOfToString
+root-instance: instMulEquivClassOfNonUnitalAlgHomClass
+root-instance: instInhabitedLabelMap
+root-instance: instReprRegisters
+root-instance: instReprPMap
+root-instance: instFintypeMulZModOfNeZeroNat
+root-instance: instFintypePairing
+root-instance: instLocallyPathConnectedSpace_1
+root-instance: instFintypeMulAutMulZMod
+root-instance: instAddCommGroupPositiveTimeTestFunction
+root-instance: instInnerProductSpaceRealSpaceTime
+root-instance: instReprMemory
+root-instance: instAddCommMonoidPositiveTimeTestFunctionℂ
+root-instance: instAddCommGroupPositiveTimeTestFunctionℂ

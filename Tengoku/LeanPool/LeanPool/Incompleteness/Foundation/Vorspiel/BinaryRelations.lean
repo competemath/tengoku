@@ -209,7 +209,7 @@ def Relation.IrreflGen (R : α → α → Prop) := fun x y => x ≠ y ∧ R x y
 
 /-- Imported declaration from the Incompleteness formalization. -/
 abbrev _root_.Tengoku.LeanPool.WeaklyConverseWellFounded (R : α → α → Prop) := ConverseWellFounded (Relation.IrreflGen R)
-alias WCWF := WeaklyConverseWellFounded
+alias Tengoku.LeanPool.WCWF := WeaklyConverseWellFounded
 
 section «lp_section_4»
 

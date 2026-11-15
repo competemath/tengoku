@@ -12,7 +12,7 @@ the exponent `θ² ∑ cᵢ²/8`, including heterogeneous measurable coordinates
 Source: McDiarmid 1989; Boucheron–Lugosi–Massart 2013, Theorem 6.2.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 set_option backward.isDefEq.respectTransparency false
 
 open MeasureTheory ProbabilityTheory
@@ -322,3 +322,4 @@ theorem mcdiarmid_lower_tail
   simpa only [Pi.neg_apply, neg_sub] using h
 
 end NLAlib
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

@@ -12,7 +12,7 @@ to the resolvent modulus this supplies the moment bridge in Theorem 4.2 of
 arXiv:2406.11453v2, without an assumed abstract moment model.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 set_option autoImplicit false
 
 open MeasureTheory
@@ -30,7 +30,7 @@ attribute [local instance] realMomentCFC
 the rooted native Gram moment of its genuine continuous functional calculus.
 @isnad1 id=eq.3h5v.s9.7e50f041fa92 from=translated src=- shape=1ccd471d vocab=91c26ccb
 -/
-theorem lpNorm_positiveSpectrumMeasure_eq_gramMoment (φ : A →ₚ[ℂ] ℂ)
+theorem _root_.Tengoku.Nlalib.lpNorm_positiveSpectrumMeasure_eq_gramMoment (φ : A →ₚ[ℂ] ℂ)
     {a : A} (ha : IsSelfAdjoint a) (f : ℝ → ℝ)
     (hf : ContinuousOn f (spectrum ℝ a)) (q : ℕ) (hq : 0 < q) :
     lpNorm (fun x : spectrum ℝ a => f x) (4 * q : ENNReal)
@@ -57,7 +57,7 @@ theorem lpNorm_positiveSpectrumMeasure_eq_gramMoment (φ : A →ₚ[ℂ] ℂ)
 the rooted native Gram moment of the original nonreal resolvent.
 @isnad1 id=eq.3h5v.s9.d3b0cc8c079c from=translated src=- shape=9488cd26 vocab=872a2829
 -/
-theorem lpNorm_positiveSpectrumMeasure_resolvent_modulus (φ : A →ₚ[ℂ] ℂ)
+theorem _root_.Tengoku.Nlalib.lpNorm_positiveSpectrumMeasure_resolvent_modulus (φ : A →ₚ[ℂ] ℂ)
     {a : A} (ha : IsSelfAdjoint a) {z : ℂ} (hz : z.im ≠ 0)
     (q : ℕ) (hq : 0 < q) :
     lpNorm (fun x : spectrum ℝ a => ‖(z - (x : ℂ))⁻¹‖) (4 * q : ENNReal)
@@ -79,3 +79,4 @@ theorem lpNorm_positiveSpectrumMeasure_resolvent_modulus (φ : A →ₚ[ℂ] ℂ
   rw [hself.star_eq, ← pow_two, CFC.abs_sq]
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

@@ -14,7 +14,7 @@ The finite-grid construction is ported from the local deferred Jordan-contour
 development of 2026-10-14, independently of its fixed-endpoint path theory.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 open Set Finset Metric
 open scoped unitInterval
 namespace Complex
@@ -151,3 +151,4 @@ theorem nonempty_primitiveHomotopyGrid_of_differentiableOn
   simpa only [K, dite_eq_left hi, dite_eq_left hj] using hJ i hi j hj
 
 end Complex
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

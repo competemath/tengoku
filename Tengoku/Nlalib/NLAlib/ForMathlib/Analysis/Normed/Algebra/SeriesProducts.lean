@@ -13,7 +13,7 @@ space `Fin N → ℕ`. Absolute summability and the actual `HasSum` are both pro
 the empty product is included without a nonempty or norm-one assumption.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 set_option autoImplicit false
 
 set_option backward.isDefEq.respectTransparency false in
@@ -61,7 +61,7 @@ is absolutely summable over its full profile space. Complete normed rings are
 sufficient; multiplicative commutativity and norm one are not required.
 @isnad1 id=summable.1h3v.s6.e51b6fc5f4db from=translated src=- shape=575a5fd7 vocab=9174a6a2
 -/
-theorem summable_norm_list_prod_of_summable_norm
+theorem _root_.Tengoku.Nlalib.summable_norm_list_prod_of_summable_norm
     {R : Type*} [NormedRing R] [CompleteSpace R] {N : ℕ}
     (f : Fin N → ℕ → R) (hn : ∀ j, Summable (fun m => ‖f j m‖)) :
     Summable (fun m : Fin N → ℕ => ‖(List.ofFn (fun j => f j (m j))).prod‖) :=
@@ -73,10 +73,11 @@ individual series sums, in their original `Fin` order. This is a genuine
 `HasSum`, with joint absolute summability supplied by the preceding theorem.
 @isnad1 id=hassum.2h4v.s7.7d10e9796f41 from=translated src=- shape=1e0b1cb2 vocab=e7e9f71a
 -/
-theorem hasSum_list_prod_of_summable_norm
+theorem _root_.Tengoku.Nlalib.hasSum_list_prod_of_summable_norm
     {R : Type*} [NormedRing R] [CompleteSpace R] {N : ℕ}
     (f : Fin N → ℕ → R) (x : Fin N → R)
     (hs : ∀ j, HasSum (f j) (x j)) (hn : ∀ j, Summable (fun m => ‖f j m‖)) :
     HasSum (fun m : Fin N → ℕ => (List.ofFn (fun j => f j (m j))).prod)
       (List.ofFn x).prod :=
   (summable_norm_and_hasSum_list_prod f x hn hs).2
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

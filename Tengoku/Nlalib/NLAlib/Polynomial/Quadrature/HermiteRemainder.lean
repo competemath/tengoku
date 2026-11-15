@@ -11,7 +11,7 @@ evaluation point, has the derivative remainder (AQ4). No measurable selection of
 intermediate derivative point is needed.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 open Polynomial Finset Set
 
 namespace NLAlib
@@ -235,3 +235,4 @@ theorem exists_sub_eval_hermiteInterpolate_eq {n : ℕ} (hn : 0 < n)
   field_simp
 
 end NLAlib
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

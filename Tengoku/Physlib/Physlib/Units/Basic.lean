@@ -273,11 +273,11 @@ class _root_.Tengoku.Physlib.HasDim (M : Type) where
   /-- The dimension associated with a type `M`. -/
   d : Dimension LTMCTDimensionBase
 
-alias dim := HasDim.d
+alias Tengoku.Physlib.dim := HasDim.d
 
 /-- A type `M` carries a dimension `d` if every element of `M` is supposed to have
   this dimension. For example, the type `Time` will carry a dimension `T𝓭`. -/
-class abbrev CarriesDimension (M : Type) := HasDim M, MulAction ℝ≥0 M
+class abbrev _root_.Tengoku.Physlib.CarriesDimension (M : Type) := HasDim M, MulAction ℝ≥0 M
 
 /-!
 

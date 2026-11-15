@@ -10,14 +10,14 @@ The elementary bound is proved by differentiating in the second parameter.
 It is useful in exact Chernoff estimates for normalized Gaussian coordinates.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 open Real Set
 
 /-- Binary relative entropy dominates twice the squared parameter difference
 on the upper tail. Both parameters lie strictly between zero and one.
 @isnad1 id=le.4h2v.s7.296a971bd72d from=translated src=- shape=3fdf17e7 vocab=16aef032
 -/
-theorem two_mul_sub_sq_le_binary_log {p q : ℝ} (hp : 0 < p) (hp1 : p < 1)
+theorem _root_.Tengoku.Nlalib.two_mul_sub_sq_le_binary_log {p q : ℝ} (hp : 0 < p) (hp1 : p < 1)
     (hpq : p ≤ q) (hq1 : q < 1) :
     2 * (q - p) ^ 2 ≤ p * log (p / q) + (1 - p) * log ((1 - p) / (1 - q)) := by
   let F : ℝ → ℝ := fun x => p * (log p - log x) +
@@ -55,3 +55,4 @@ theorem two_mul_sub_sq_le_binary_log {p q : ℝ} (hp : 0 < p) (hp1 : p < 1)
   rw [log_div hp0 hq0, log_div (by linarith : 1-p ≠ 0) (by linarith : 1-q ≠ 0)]
   dsimp [F] at h
   nlinarith
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

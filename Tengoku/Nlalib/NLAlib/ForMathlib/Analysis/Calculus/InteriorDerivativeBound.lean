@@ -9,7 +9,7 @@ Continuity supplies the two endpoint values; differentiability is needed only
 on the open interval. This is useful for square-root interpolation paths.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 set_option autoImplicit false
 open Set
 open scoped NNReal
@@ -18,7 +18,7 @@ open scoped NNReal
 derivative moves its endpoints by at most that bound.
 @isnad1 id=le.4h4v.s7.2272c144de20 from=translated src=- shape=41fe0e86 vocab=951a6fdc
 -/
-theorem norm_sub_endpoints_le_of_hasDerivAt_Ioo
+theorem _root_.Tengoku.Nlalib.norm_sub_endpoints_le_of_hasDerivAt_Ioo
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {f f' : ℝ → E} {C : ℝ} (hC : 0 ≤ C)
     (hc : ContinuousOn f (Icc 0 1))
@@ -38,3 +38,4 @@ theorem norm_sub_endpoints_le_of_hasDerivAt_Ioo
     0 (show (0 : ℝ) ∈ Icc 0 1 from ⟨le_rfl, zero_le_one⟩)
   convert h using 1 <;> norm_num [dist_eq_norm]
   rfl
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

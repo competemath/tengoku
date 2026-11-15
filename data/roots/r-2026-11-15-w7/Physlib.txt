@@ -1,0 +1,53 @@
+leakscan: 197 global instances (3 can fire outside the library), 0 scoped; 418 global simp lemmas (2 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 24 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: instance Physlib.Fin.instFintypeSubtypeForallFinAndInvolutiveForallNe registered in Tengoku.Physlib.Physlib.Mathematics.Fin.Involutions (declared at line 382)
+leak: simp Physlib.List.insertIdx_length_fin registered in Tengoku.Physlib.Physlib.Mathematics.List.InsertIdx (declared at line 86)
+leak: instance Physlib.PiTensorProduct.instAddCommMonoidElim registered in Tengoku.Physlib.Physlib.Mathematics.PiTensorProduct (declared at line 83)
+leak: simp Tengoku.Physlib.Time.default_eq_zero registered in Tengoku.Physlib.Physlib.SpaceAndTime.Time.InnerProductSpace (declared at line 143)
+leak: instance QuantumMechanics.instIsAddTorsionFreeContinuousLinearMapWOTComplexIdOfCompleteSpace registered in Tengoku.Physlib.PhyslibAlpha.AlgebraicFramework.HilbertSpace.Unbounded.Basic (declared at line 56)
+root: instCarriesDimensionElemDimSet
+root: instUnitDependentLTMCTUnitChoices
+root: instDecidableEqLTMCTDimensionBase
+root: instDimensionBasisISQDimensionBase
+root: instUnitMagnitudeCatalogISQDimensionBase
+root: instDecidableEqISQDimensionBase
+root: instMulActionNNRealElemDimSet
+root: instMulActionNNRealDimensionful
+root: instContinuousLinearUnitDependentContinuousLinearMapRealId
+root: instBEqCreateAnnihilate
+root: instContinuousLinearUnitDependentOfHasDimOfContinuousConstSMulReal
+root: instCoeFunDimensionfulForallLTMCTUnitChoices
+root: instDecidableEqFieldStatistic
+root: instMulUnitDependent
+root: dim
+root: CarriesDimension
+root: instUnitMagnitudeCatalogLTMCTDimensionBase
+root: instFintypeISQDimensionBase
+root: instUnitDependentForall_1
+root: instInhabitedCreateAnnihilate
+root: instLinearUnitDependentLinearMapRealId
+root: instUnitDependentForall
+root: instLinearUnitDependentOfHasDim
+root: instDecidableEqCreateAnnihilate
+root-instance: instCarriesDimensionElemDimSet
+root-instance: instUnitDependentLTMCTUnitChoices
+root-instance: instDecidableEqLTMCTDimensionBase
+root-instance: instDimensionBasisISQDimensionBase
+root-instance: instUnitMagnitudeCatalogISQDimensionBase
+root-instance: instDecidableEqISQDimensionBase
+root-instance: instMulActionNNRealElemDimSet
+root-instance: instMulActionNNRealDimensionful
+root-instance: instContinuousLinearUnitDependentContinuousLinearMapRealId
+root-instance: instBEqCreateAnnihilate
+root-instance: instContinuousLinearUnitDependentOfHasDimOfContinuousConstSMulReal
+root-instance: instCoeFunDimensionfulForallLTMCTUnitChoices
+root-instance: instDecidableEqFieldStatistic
+root-instance: instMulUnitDependent
+root-instance: instUnitMagnitudeCatalogLTMCTDimensionBase
+root-instance: instFintypeISQDimensionBase
+root-instance: instUnitDependentForall_1
+root-instance: instInhabitedCreateAnnihilate
+root-instance: instLinearUnitDependentLinearMapRealId
+root-instance: instUnitDependentForall
+root-instance: instLinearUnitDependentOfHasDim
+root-instance: instDecidableEqCreateAnnihilate
