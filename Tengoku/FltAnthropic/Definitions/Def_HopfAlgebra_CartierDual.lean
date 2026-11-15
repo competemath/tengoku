@@ -1,7 +1,7 @@
 import Tengoku
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 set_option autoImplicit false
 set_option maxHeartbeats 1600000
 set_option synthInstance.maxHeartbeats 400000
@@ -11,10 +11,10 @@ open scoped TensorProduct
 
 universe u v
 
-def CartierDual (R : Type u) (A : Type v) [CommRing R] [CommRing A] [Bialgebra R A] : Type (max u v) :=
+def _root_.Tengoku.FltAnthropic.CartierDual (R : Type u) (A : Type v) [CommRing R] [CommRing A] [Bialgebra R A] : Type (max u v) :=
   Module.Dual R A
 
-namespace CartierDual
+namespace Tengoku.FltAnthropic.CartierDual
 
 noncomputable section
 
@@ -1381,7 +1381,7 @@ end BidualSanityHopf
 
 end
 
-end CartierDual
+end Tengoku.FltAnthropic.CartierDual
 
 namespace MonoidAlgebra
 
@@ -1404,3 +1404,4 @@ end MonoidAlgebra
 section
 variable (R : Type*) [CommRing R] (Γ : Type*) [CommGroup Γ] [Fintype Γ]
 end
+-- Tengoku: root names of this library moved to Tengoku.FltAnthropic so they do not collide with other libraries (generated)

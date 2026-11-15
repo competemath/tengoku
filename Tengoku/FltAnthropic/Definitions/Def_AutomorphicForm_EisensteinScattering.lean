@@ -1,7 +1,7 @@
 import Tengoku
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 open Filter Topology Complex
 open scoped Real ComplexConjugate
 
@@ -10,7 +10,7 @@ noncomputable section
 /--
 @isnad1 id=eq.2h1v.s5.eb9a44723d70 from=translated src=- shape=03693c10 vocab=d81b2980
 -/
-theorem completedRiemannZeta_eq_mul_Gammaℝ {s : ℂ} (hs0 : s ≠ 0)
+theorem _root_.Tengoku.FltAnthropic.completedRiemannZeta_eq_mul_Gammaℝ {s : ℂ} (hs0 : s ≠ 0)
     (hΓ : Complex.Gammaℝ s ≠ 0) :
     completedRiemannZeta s = riemannZeta s * Complex.Gammaℝ s := by
   rw [riemannZeta_def_of_ne_zero hs0, div_mul_cancel₀ _ hΓ]
@@ -18,7 +18,7 @@ theorem completedRiemannZeta_eq_mul_Gammaℝ {s : ℂ} (hs0 : s ≠ 0)
 /--
 @isnad1 id=ne.1h1v.s4.44398e394d95 from=translated src=- shape=555d9df8 vocab=54aa39c7
 -/
-theorem completedRiemannZeta_ne_zero_of_one_le_re {s : ℂ} (hs : 1 ≤ s.re) :
+theorem _root_.Tengoku.FltAnthropic.completedRiemannZeta_ne_zero_of_one_le_re {s : ℂ} (hs : 1 ≤ s.re) :
     completedRiemannZeta s ≠ 0 := by
   have hs0 : s ≠ 0 := by
     rintro rfl
@@ -31,7 +31,7 @@ theorem completedRiemannZeta_ne_zero_of_one_le_re {s : ℂ} (hs : 1 ≤ s.re) :
 /--
 @isnad1 id=ne.1h1v.s4.3c0e7c203767 from=translated src=- shape=7cc8a206 vocab=54aa39c7
 -/
-theorem completedRiemannZeta_ne_zero_of_re_nonpos {s : ℂ} (hs : s.re ≤ 0) :
+theorem _root_.Tengoku.FltAnthropic.completedRiemannZeta_ne_zero_of_re_nonpos {s : ℂ} (hs : s.re ≤ 0) :
     completedRiemannZeta s ≠ 0 := by
   rw [← completedRiemannZeta_one_sub s]
   refine completedRiemannZeta_ne_zero_of_one_le_re ?_
@@ -41,7 +41,7 @@ theorem completedRiemannZeta_ne_zero_of_re_nonpos {s : ℂ} (hs : s.re ≤ 0) :
 /--
 @isnad1 id=eq.0h0v.s4.431db292b650 from=translated src=- shape=27dc4851 vocab=d6f7a2b1
 -/
-theorem completedRiemannZeta_two : completedRiemannZeta 2 = (Real.pi : ℂ) / 6 := by
+theorem _root_.Tengoku.FltAnthropic.completedRiemannZeta_two : completedRiemannZeta 2 = (Real.pi : ℂ) / 6 := by
   have hΓne : Complex.Gammaℝ 2 ≠ 0 := Complex.Gammaℝ_ne_zero_of_re_pos (by norm_num)
   have hΓ : Complex.Gammaℝ 2 = ((Real.pi : ℂ))⁻¹ := by
     rw [Complex.Gammaℝ_def, show (-(2 : ℂ) / 2) = -1 by norm_num,
@@ -50,20 +50,20 @@ theorem completedRiemannZeta_two : completedRiemannZeta 2 = (Real.pi : ℂ) / 6 
   rw [completedRiemannZeta_eq_mul_Gammaℝ two_ne_zero hΓne, riemannZeta_two, hΓ]
   field_simp
 
-def eisensteinScattering (s : ℂ) : ℂ :=
+def _root_.Tengoku.FltAnthropic.eisensteinScattering (s : ℂ) : ℂ :=
   completedRiemannZeta (2 * s - 1) / completedRiemannZeta (2 * s)
 
 /--
 @isnad1 id=eq.0h1v.s5.1f62dcc2cebc from=translated src=- shape=f0cd4f74 vocab=335b26ac
 -/
-theorem eisensteinScattering_def (s : ℂ) :
+theorem _root_.Tengoku.FltAnthropic.eisensteinScattering_def (s : ℂ) :
     eisensteinScattering s =
       completedRiemannZeta (2 * s - 1) / completedRiemannZeta (2 * s) := rfl
 
 /--
 @isnad1 id=differen.5h1v.s7.02e9d328f260 from=translated src=- shape=7d8d6194 vocab=cf175023
 -/
-theorem differentiableAt_eisensteinScattering {s : ℂ}
+theorem _root_.Tengoku.FltAnthropic.differentiableAt_eisensteinScattering {s : ℂ}
     (h1 : 2 * s - 1 ≠ 0) (h2 : 2 * s - 1 ≠ 1) (h3 : 2 * s ≠ 0) (h4 : 2 * s ≠ 1)
     (h5 : completedRiemannZeta (2 * s) ≠ 0) :
     DifferentiableAt ℂ eisensteinScattering s := by
@@ -81,7 +81,7 @@ theorem differentiableAt_eisensteinScattering {s : ℂ}
 /--
 @isnad1 id=differen.2h1v.s6.6e78b8c54fa4 from=translated src=- shape=eb927e34 vocab=4a12a40c
 -/
-theorem differentiableAt_eisensteinScattering_of_half_lt_re {s : ℂ}
+theorem _root_.Tengoku.FltAnthropic.differentiableAt_eisensteinScattering_of_half_lt_re {s : ℂ}
     (hs : 1 / 2 < s.re) (hs1 : s ≠ 1) :
     DifferentiableAt ℂ eisensteinScattering s := by
   have hre2 : (2 * s).re = 2 * s.re := by
@@ -110,7 +110,7 @@ theorem differentiableAt_eisensteinScattering_of_half_lt_re {s : ℂ}
 /--
 @isnad1 id=ne.1h1v.s4.497d6d49712c from=translated src=- shape=555d9df8 vocab=f0238943
 -/
-theorem eisensteinScattering_ne_zero_of_one_le_re {s : ℂ} (hs : 1 ≤ s.re) :
+theorem _root_.Tengoku.FltAnthropic.eisensteinScattering_ne_zero_of_one_le_re {s : ℂ} (hs : 1 ≤ s.re) :
     eisensteinScattering s ≠ 0 := by
   have hre2 : (2 * s).re = 2 * s.re := by simp [Complex.mul_re]
   have hre21 : (2 * s - 1).re = 2 * s.re - 1 := by simp [Complex.sub_re, Complex.mul_re]
@@ -121,7 +121,7 @@ theorem eisensteinScattering_ne_zero_of_one_le_re {s : ℂ} (hs : 1 ≤ s.re) :
 /--
 @isnad1 id=eq.2h1v.s6.323780b05f25 from=translated src=- shape=435f9718 vocab=27e86fa1
 -/
-theorem eisensteinScattering_mul_one_sub (s : ℂ)
+theorem _root_.Tengoku.FltAnthropic.eisensteinScattering_mul_one_sub (s : ℂ)
     (h1 : completedRiemannZeta (2 * s - 1) ≠ 0)
     (h2 : completedRiemannZeta (2 * s) ≠ 0) :
     eisensteinScattering s * eisensteinScattering (1 - s) = 1 := by
@@ -135,7 +135,7 @@ theorem eisensteinScattering_mul_one_sub (s : ℂ)
 /--
 @isnad1 id=eq.1h1v.s5.a842016e40f6 from=translated src=- shape=b2623e89 vocab=9555bb5a
 -/
-theorem eisensteinScattering_mul_one_sub_of_re_eq_half {s : ℂ} (hs : s.re = 1 / 2) :
+theorem _root_.Tengoku.FltAnthropic.eisensteinScattering_mul_one_sub_of_re_eq_half {s : ℂ} (hs : s.re = 1 / 2) :
     eisensteinScattering s * eisensteinScattering (1 - s) = 1 := by
   have hre2 : (2 * s).re = 2 * s.re := by simp [Complex.mul_re]
   have hre21 : (2 * s - 1).re = 2 * s.re - 1 := by simp [Complex.sub_re, Complex.mul_re]
@@ -146,7 +146,7 @@ theorem eisensteinScattering_mul_one_sub_of_re_eq_half {s : ℂ} (hs : s.re = 1 
 /--
 @isnad1 id=tendsto.0h0v.s6.486a925bccaf from=translated src=- shape=e6c650a5 vocab=e51d6192
 -/
-theorem eisensteinScattering_residue_one :
+theorem _root_.Tengoku.FltAnthropic.eisensteinScattering_residue_one :
     Tendsto (fun s : ℂ => (s - 1) * eisensteinScattering s) (𝓝[≠] 1)
       (𝓝 (3 / (Real.pi : ℂ))) := by
   have hπ : (Real.pi : ℂ) ≠ 0 := Complex.ofReal_ne_zero.mpr Real.pi_ne_zero
@@ -204,7 +204,7 @@ theorem eisensteinScattering_residue_one :
 /--
 @isnad1 id=eq.1h1v.s6.96dbc69f9438 from=translated src=- shape=f8ce9af1 vocab=7c300c24
 -/
-theorem completedRiemannZeta_conj_of_one_lt_re {s : ℂ} (hs : 1 < s.re) :
+theorem _root_.Tengoku.FltAnthropic.completedRiemannZeta_conj_of_one_lt_re {s : ℂ} (hs : 1 < s.re) :
     completedRiemannZeta (conj s) = conj (completedRiemannZeta s) := by
   have hπarg : Complex.arg (Real.pi : ℂ) ≠ Real.pi := by
     rw [Complex.arg_ofReal_of_nonneg Real.pi_pos.le]
@@ -238,13 +238,13 @@ theorem completedRiemannZeta_conj_of_one_lt_re {s : ℂ} (hs : 1 < s.re) :
           simp only [starRingEnd_apply]
           exact tsum_star.symm
 
-def CompletedZetaConjSymm : Prop :=
+def _root_.Tengoku.FltAnthropic.CompletedZetaConjSymm : Prop :=
   ∀ s : ℂ, completedRiemannZeta (conj s) = conj (completedRiemannZeta s)
 
 /--
 @isnad1 id=eq.1h1v.s6.1848e12e36ee from=translated src=- shape=dddf01e7 vocab=f09dc214
 -/
-theorem eisensteinScattering_conj (h : CompletedZetaConjSymm) (s : ℂ) :
+theorem _root_.Tengoku.FltAnthropic.eisensteinScattering_conj (h : CompletedZetaConjSymm) (s : ℂ) :
     eisensteinScattering (conj s) = conj (eisensteinScattering s) := by
   rw [eisensteinScattering_def, eisensteinScattering_def, map_div₀]
   congr 1
@@ -258,7 +258,7 @@ theorem eisensteinScattering_conj (h : CompletedZetaConjSymm) (s : ℂ) :
 /--
 @isnad1 id=eq.2h1v.s5.80ce0130ffac from=translated src=- shape=1e503eaf vocab=e9296b67
 -/
-theorem norm_eisensteinScattering_critical_line (h : CompletedZetaConjSymm)
+theorem _root_.Tengoku.FltAnthropic.norm_eisensteinScattering_critical_line (h : CompletedZetaConjSymm)
     {s : ℂ} (hs : s.re = 1 / 2) :
     ‖eisensteinScattering s‖ = 1 := by
 
@@ -285,7 +285,7 @@ theorem norm_eisensteinScattering_critical_line (h : CompletedZetaConjSymm)
 /--
 @isnad1 id=not.2h2v.s7.fca5d748d6f3 from=translated src=- shape=6e30429b vocab=7e17e5ed
 -/
-theorem not_integrableOn_norm_cpow_sq_div_sq {s : ℂ} (hs : s.re = 1 / 2) {T : ℝ}
+theorem _root_.Tengoku.FltAnthropic.not_integrableOn_norm_cpow_sq_div_sq {s : ℂ} (hs : s.re = 1 / 2) {T : ℝ}
     (hT : 0 < T) :
     ¬ MeasureTheory.IntegrableOn (fun y : ℝ => ‖(y : ℂ) ^ s‖ ^ 2 / y ^ 2) (Set.Ioi T) := by
   intro hint
@@ -305,7 +305,7 @@ theorem not_integrableOn_norm_cpow_sq_div_sq {s : ℂ} (hs : s.re = 1 / 2) {T : 
 /--
 @isnad1 id=eq.0h0v.s5.86a008005bd8 from=translated src=- shape=7ed1bc26 vocab=b20874c3
 -/
-theorem eisensteinScattering_one_half : eisensteinScattering (1 / 2) = 1 := by
+theorem _root_.Tengoku.FltAnthropic.eisensteinScattering_one_half : eisensteinScattering (1 / 2) = 1 := by
   have h0 : (2 : ℂ) * (1 / 2) - 1 = 1 - 1 := by ring
   have h1 : (2 : ℂ) * (1 / 2) = 1 := by ring
   have hΛ1 : completedRiemannZeta 1 ≠ 0 :=
@@ -315,14 +315,14 @@ theorem eisensteinScattering_one_half : eisensteinScattering (1 / 2) = 1 := by
 /--
 @isnad1 id=ne.0h0v.s4.bb077ea5978c from=translated src=- shape=3a8c3826 vocab=1669148a
 -/
-theorem eisensteinScattering_residue_ne_zero : (3 : ℂ) / (Real.pi : ℂ) ≠ 0 := by
+theorem _root_.Tengoku.FltAnthropic.eisensteinScattering_residue_ne_zero : (3 : ℂ) / (Real.pi : ℂ) ≠ 0 := by
   have hπ : (Real.pi : ℂ) ≠ 0 := Complex.ofReal_ne_zero.mpr Real.pi_ne_zero
   simp [div_eq_zero_iff, hπ]
 
 /--
 @isnad1 id=eq.0h0v.s5.be21c4ff0665 from=translated src=- shape=4ce6cf17 vocab=8ea2e141
 -/
-theorem eisensteinScattering_residue_mul_volume :
+theorem _root_.Tengoku.FltAnthropic.eisensteinScattering_residue_mul_volume :
     (3 / (Real.pi : ℂ)) * ((Real.pi : ℂ) / 3) = 1 := by
   have hπ : (Real.pi : ℂ) ≠ 0 := Complex.ofReal_ne_zero.mpr Real.pi_ne_zero
   field_simp
@@ -330,8 +330,9 @@ theorem eisensteinScattering_residue_mul_volume :
 /--
 @isnad1 id=eq.0h0v.s6.4528a3daefa8 from=translated src=- shape=3cd2eac4 vocab=51bf70b2
 -/
-theorem eisensteinScattering_mul_one_sub_one_half :
+theorem _root_.Tengoku.FltAnthropic.eisensteinScattering_mul_one_sub_one_half :
     eisensteinScattering (1 / 2) * eisensteinScattering (1 - 1 / 2) = 1 := by
   norm_num [eisensteinScattering_one_half]
 
 end
+-- Tengoku: root names of this library moved to Tengoku.FltAnthropic so they do not collide with other libraries (generated)
