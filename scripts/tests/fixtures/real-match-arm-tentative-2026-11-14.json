@@ -1,0 +1,65 @@
+{
+ "source": "real tentative records of finite-simple-groups-lean, sandrones-library and tda-lib on tengoku main 14 Nov 2026 whose proof starts with a match arm `| ...` (the 135 lines gitar found wrong in tengoku#832): statement and proof exactly as stored",
+ "records": [
+  {
+   "lib": "finite-simple-groups-lean",
+   "name": "Sporadic.He.sApp0_inv",
+   "statement": "theorem sApp0_inv : ∀ (i : Nat) (y : Fin 2058),\n    sInvApp0 i (sApp0 i y) = y",
+   "proof": "| 0, y => hea_leftInv y\n  | 1, y => heb_leftInv y\n  | _ + 2, _ => rfl"
+  },
+  {
+   "lib": "finite-simple-groups-lean",
+   "name": "Sporadic.He.sApp0_inv'",
+   "statement": "theorem sApp0_inv' : ∀ (i : Nat) (y : Fin 2058),\n    sApp0 i (sInvApp0 i y) = y",
+   "proof": "| 0, y => hea_rightInv y\n  | 1, y => heb_rightInv y\n  | _ + 2, _ => rfl"
+  },
+  {
+   "lib": "finite-simple-groups-lean",
+   "name": "Sporadic.He.sApp0_eq",
+   "statement": "theorem sApp0_eq : ∀ (i : Nat) (y : Fin 2058),\n    (sList0.getD i 1) y = sApp0 i y",
+   "proof": "| 0, y => hea_apply y\n  | 1, y => heb_apply y\n  | _ + 2, _ => rfl"
+  },
+  {
+   "lib": "finite-simple-groups-lean",
+   "name": "Sporadic.He.sApp1_inv",
+   "statement": "theorem sApp1_inv : ∀ (i : Nat) (y : Fin 2058),\n    sInvApp1 i (sApp1 i y) = y",
+   "proof": "| 0, y => sg1_0_leftInv y\n  | 1, y => sg1_1_leftInv y\n  | 2, y => sg1_2_leftInv y\n  | _ + 3, _ => rfl"
+  },
+  {
+   "lib": "sandrones-library",
+   "name": "SandronesLibrary.Topology.BinaryOpenCoverSquareSubdivision.gaugeGridRowFramesAt_compatible",
+   "statement": "private theorem BinaryOpenCoverSquareSubdivision.gaugeGridRowFramesAt_compatible\n    {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}\n    (D : BinaryOpenCoverSquareSubdivision H U V)\n    (hxU : x₀ ∈ U) (hxV : x₀ ∈ V) (hUV : IsPathConnected (U ∩ V))\n    (hU : IsPathConnected U) (hV : IsPathConnected V) :\n    ∀ (p : ℕ) (hp : p < D.steps)\n      (i k : Fin D.steps) (hHorizontal : i.succ = k.castSucc),\n      HorizontalCellFramesCompatible\n        (D.horizontalInternalEdgeTransitions hxU hxV hUV hU hV\n          i k ⟨p, hp⟩ hHorizontal)\n        (D.gaugeGridRowFramesAt hxU hxV hUV hU hV p hp i)\n        (D.gaugeGridRowFramesAt hxU hxV hUV hU hV p hp k)",
+   "proof": "| 0, hp, i, k, hHorizontal =>\n      D.gaugeNormalizedRowFrames_compatible hxU hxV hUV hU hV\n        ⟨0, hp⟩ i k hHorizontal\n  | p + 1, hp, i, k, hHorizontal => by\n      have hp' : p < D.steps := Nat.lt_trans (Nat.lt_succ_self p) hp\n      let j : Fin D.steps := ⟨p, hp'⟩\n      let l : Fin D.steps := ⟨p + 1, hp⟩\n      have hVertical : j.succ = l.castSucc := by apply Fin.ext; rfl\n      apply D.liftHorizontalRowFramesWithTop_compatible hxU hxV hUV hU hV\n        j l hVertical\n        (D.gaugeGridRowFramesAt hxU hxV hUV hU hV p hp')\n        (D.gaugeNormalizedRowFrames hxU hxV hUV hU hV l)\n      · intro i' k' hHorizontal'\n        exact D.gaugeGridRowFramesAt_compatible hxU hxV hUV hU hV\n          p hp' i' k' hHorizontal'\n      · exact D.gaugeNormalizedRowFrames_compatible hxU hxV hUV hU hV l"
+  },
+  {
+   "lib": "sandrones-library",
+   "name": "SandronesLibrary.Topology.BinaryOpenCoverSquareSubdivision.gaugeGridRowFramesAt_top_eq",
+   "statement": "private theorem BinaryOpenCoverSquareSubdivision.gaugeGridRowFramesAt_top_eq\n    {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}\n    (D : BinaryOpenCoverSquareSubdivision H U V)\n    (hxU : x₀ ∈ U) (hxV : x₀ ∈ V) (hUV : IsPathConnected (U ∩ V))\n    (hU : IsPathConnected U) (hV : IsPathConnected V) :\n    ∀ (p : ℕ) (hp : p < D.steps) (i : Fin D.steps),\n      let actual := D.gaugeGridRowFramesAt hxU hxV hUV hU hV p hp i\n      let normalized := D.gaugeNormalizedRowFrames hxU hxV hUV hU hV ⟨p, hp⟩ i\n      actual.topLeft = normalized.topLeft ∧ actual.topRight = normalized.topRight",
+   "proof": "| 0, hp, i => by\n      exact ⟨rfl, rfl⟩\n  | p + 1, hp, i => by\n      exact ⟨rfl, rfl⟩"
+  },
+  {
+   "lib": "sandrones-library",
+   "name": "SandronesLibrary.Topology.BinaryOpenCoverSquareSubdivision.gaugeGridRowFramesAt_bottom_edge_eq_one",
+   "statement": "private theorem BinaryOpenCoverSquareSubdivision.gaugeGridRowFramesAt_bottom_edge_eq_one\n    {x₀ : X} {H : C(unitInterval × unitInterval, X)} {U V : Set X}\n    (D : BinaryOpenCoverSquareSubdivision H U V)\n    (hxU : x₀ ∈ U) (hxV : x₀ ∈ V) (hUV : IsPathConnected (U ∩ V))\n    (hU : IsPathConnected U) (hV : IsPathConnected V) :\n    ∀ (p : ℕ) (hp : p < D.steps) (i : Fin D.steps),\n    let F := D.gaugeGridRowFramesAt hxU hxV hUV hU hV p hp i\n    rebaseEdge F.bottomLeft F.bottomRight\n      (Monoid.PushoutI.of (D.label i ⟨p, hp⟩)\n        (D.gridCellBasedHorizontalEdgeInPiece hxU hxV hU hV i ⟨p, hp⟩ 0)) = 1",
+   "proof": "| 0, hp, i => by\n      exact (D.gaugeNormalizedRowFrames_horizontal_edges\n        hxU hxV hUV hU hV ⟨0, hp⟩ i).1\n  | p + 1, hp, i => by\n      have hp' : p < D.steps := Nat.lt_trans (Nat.lt_succ_self p) hp\n      have hshared := D.gaugeGridRowFramesAt_vertical_edge\n        hxU hxV hUV hU hV p hp i\n      have htop := D.gaugeGridRowFramesAt_top_edge_eq_one\n        hxU hxV hUV hU hV p hp' i\n      dsimp only at hshared htop ⊢\n      rw [← hshared]\n      exact htop"
+  },
+  {
+   "lib": "tda-lib",
+   "name": "TDA.Topology.Examples.twoOpens_isOpen",
+   "statement": "theorem twoOpens_isOpen : ∀ b, IsOpen (twoOpens b)",
+   "proof": "| false => isOpen_Iio\n  | true => isOpen_Ioi"
+  },
+  {
+   "lib": "tda-lib",
+   "name": "TDA.Reeb.RGraph.nonempty_mono",
+   "statement": "theorem nonempty_mono (h : ε ≤ δ) :\n    Nonempty (GeometricInterleaving ε A B) → Nonempty (GeometricInterleaving δ A B)",
+   "proof": "| ⟨i⟩ => ⟨GeometricInterleaving.mono i h⟩"
+  },
+  {
+   "lib": "tda-lib",
+   "name": "TDA.Reeb.RGraph.nonempty_smooth",
+   "statement": "theorem nonempty_smooth (η : ℝ≥0) :\n    Nonempty (GeometricInterleaving ε A B) →\n      Nonempty (GeometricInterleaving ε ((geometricSmoothing η).obj A)\n        ((geometricSmoothing η).obj B))",
+   "proof": "| ⟨i⟩ => ⟨i.smooth η⟩"
+  }
+ ]
+}
