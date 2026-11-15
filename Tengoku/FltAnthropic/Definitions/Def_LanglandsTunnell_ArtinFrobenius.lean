@@ -1,0 +1,117 @@
+import Tengoku.Seed.NumberTheory.NumberField.Basic
+import Tengoku.Seed.RingTheory.Frobenius
+import Tengoku.Seed.RingTheory.DedekindDomain.Ideal.Lemmas
+import Tengoku.Seed.LinearAlgebra.FreeModule.IdealQuotient
+import Tengoku.Seed.FieldTheory.Galois.IsGaloisGroup
+import Tengoku.FltAnthropic.Definitions.Def_NarrowRayClassGroup
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku repair: removed `#print axioms LanglandsTunnell.P2.Artin.isGaloisGroup_ringOfIntegers` (it only prints; the queue checks the axioms of every declaration). -/
+/-! Tengoku repair: removed `#print axioms LanglandsTunnell.P2.Artin.algebraMap_ringOfIntegers_injective` (it only prints; the queue checks the axioms of every declaration). -/
+/-! Tengoku repair: removed `#print axioms LanglandsTunnell.P2.Artin.exists_prime_over` (it only prints; the queue checks the axioms of every declaration). -/
+/-! Tengoku repair: removed `#print axioms LanglandsTunnell.P2.Artin.primeAbove` (it only prints; the queue checks the axioms of every declaration). -/
+/-! Tengoku repair: removed `#print axioms LanglandsTunnell.P2.Artin.primeAbove_isMaximal` (it only prints; the queue checks the axioms of every declaration). -/
+/-! Tengoku repair: removed `#print axioms LanglandsTunnell.P2.Artin.under_primeAbove` (it only prints; the queue checks the axioms of every declaration). -/
+/-! Tengoku repair: removed `#print axioms LanglandsTunnell.P2.Artin.primeAbove_liesOver` (it only prints; the queue checks the axioms of every declaration). -/
+/-! Tengoku repair: removed `#print axioms LanglandsTunnell.P2.Artin.ne_bot_of_under_eq` (it only prints; the queue checks the axioms of every declaration). -/
+/-! Tengoku repair: removed `#print axioms LanglandsTunnell.P2.Artin.primeAbove_ne_bot` (it only prints; the queue checks the axioms of every declaration). -/
+/-! Tengoku repair: removed `#print axioms LanglandsTunnell.P2.Artin.primeAbove_finite` (it only prints; the queue checks the axioms of every declaration). -/
+/-! Tengoku repair: removed `#print axioms LanglandsTunnell.P2.Artin.finite_quotient_of_under_eq` (it only prints; the queue checks the axioms of every declaration). -/
+/-! Tengoku repair: removed `#print axioms LanglandsTunnell.P2.Artin.artinFrob` (it only prints; the queue checks the axioms of every declaration). -/
+/-! Tengoku repair: removed `#print axioms LanglandsTunnell.P2.Artin.isArithFrobAt_artinFrob` (it only prints; the queue checks the axioms of every declaration). -/
+/-! Tengoku repair: removed `#print axioms LanglandsTunnell.P2.Artin.artinSymbol` (it only prints; the queue checks the axioms of every declaration). -/
+/-! Tengoku repair: removed `#print axioms LanglandsTunnell.P2.Artin.artinSymbol_prime` (it only prints; the queue checks the axioms of every declaration). -/
+
+set_option autoImplicit false
+
+noncomputable section
+
+namespace LanglandsTunnell.P2.Artin
+
+open NumberField IsDedekindDomain
+open Deep.NTSupply
+open scoped nonZeroDivisors
+
+section Frob
+
+variable (K M : Type*) [Field K] [NumberField K] [Field M] [NumberField M] [Algebra K M]
+
+instance isGaloisGroup_ringOfIntegers [IsGalois K M] : IsGaloisGroup (M ≃ₐ[K] M) (𝓞 K) (𝓞 M) :=
+  IsGaloisGroup.of_isFractionRing (M ≃ₐ[K] M) (𝓞 K) (𝓞 M) K M
+
+omit [NumberField K] [NumberField M] in
+theorem algebraMap_ringOfIntegers_injective : Function.Injective (algebraMap (𝓞 K) (𝓞 M)) := by
+  intro x y h
+  have h' : algebraMap (𝓞 K) M x = algebraMap (𝓞 K) M y := by
+    rw [IsScalarTower.algebraMap_apply (𝓞 K) (𝓞 M) M, IsScalarTower.algebraMap_apply (𝓞 K) (𝓞 M) M, h]
+  rw [IsScalarTower.algebraMap_apply (𝓞 K) K M, IsScalarTower.algebraMap_apply (𝓞 K) K M] at h'
+  exact RingOfIntegers.coe_injective ((algebraMap K M).injective h')
+
+omit [NumberField M] in
+theorem exists_prime_over (v : HeightOneSpectrum (𝓞 K)) : ∃ Q : Ideal (𝓞 M), Q.IsMaximal ∧ Q.under (𝓞 K) = v.asIdeal := by
+  haveI := v.isMaximal
+  obtain ⟨Q, hQ, hQv⟩ := Ideal.exists_ideal_over_maximal_of_isIntegral v.asIdeal
+    (by rw [(RingHom.injective_iff_ker_eq_bot _).mp (algebraMap_ringOfIntegers_injective K M)]; exact bot_le)
+  exact ⟨Q, hQ, hQv⟩
+
+def primeAbove (v : HeightOneSpectrum (𝓞 K)) : Ideal (𝓞 M) := (exists_prime_over K M v).choose
+
+variable (v : HeightOneSpectrum (𝓞 K))
+
+instance primeAbove_isMaximal : (primeAbove K M v).IsMaximal := (exists_prime_over K M v).choose_spec.1
+
+omit [NumberField M] in
+theorem under_primeAbove : (primeAbove K M v).under (𝓞 K) = v.asIdeal := (exists_prime_over K M v).choose_spec.2
+
+instance primeAbove_liesOver : (primeAbove K M v).LiesOver v.asIdeal := ⟨(under_primeAbove K M v).symm⟩
+
+omit [NumberField K] [NumberField M] in
+theorem ne_bot_of_under_eq {Q : Ideal (𝓞 M)} (hQ : Q.under (𝓞 K) = v.asIdeal) : Q ≠ ⊥ := fun h => by
+  rw [h, Ideal.under_def, Ideal.comap_bot_of_injective _ (algebraMap_ringOfIntegers_injective K M)] at hQ
+  exact v.ne_bot hQ.symm
+
+omit [NumberField M] in
+theorem primeAbove_ne_bot : primeAbove K M v ≠ ⊥ := ne_bot_of_under_eq K M v (under_primeAbove K M v)
+
+instance primeAbove_finite : Finite (𝓞 M ⧸ primeAbove K M v) := Ideal.finiteQuotientOfFreeOfNeBot _ (primeAbove_ne_bot K M v)
+
+omit [NumberField K] in
+theorem finite_quotient_of_under_eq {Q : Ideal (𝓞 M)} (hQ : Q.under (𝓞 K) = v.asIdeal) : Finite (𝓞 M ⧸ Q) :=
+  Ideal.finiteQuotientOfFreeOfNeBot _ (ne_bot_of_under_eq K M v hQ)
+
+end Frob
+
+section Artin
+
+variable (K M : Type*) [Field K] [NumberField K] [Field M] [NumberField M] [Algebra K M] [IsGalois K M]
+  (v : HeightOneSpectrum (𝓞 K))
+
+def artinFrob : M ≃ₐ[K] M := arithFrobAt (𝓞 K) (M ≃ₐ[K] M) (primeAbove K M v)
+
+theorem isArithFrobAt_artinFrob : IsArithFrobAt (𝓞 K) (artinFrob K M v) (primeAbove K M v) :=
+  IsArithFrobAt.arithFrobAt (𝓞 K) (M ≃ₐ[K] M) (primeAbove K M v)
+
+end Artin
+
+section Symbol
+
+open Deep.NTSupply
+open scoped nonZeroDivisors
+
+variable (K M : Type*) [Field K] [NumberField K] [Field M] [NumberField M] [Algebra K M] [IsGalois K M]
+  [IsMulCommutative (M ≃ₐ[K] M)]
+
+open scoped IsMulCommutative
+
+def artinSymbol (𝔣 : Ideal (𝓞 K)) : ↥(coprimeToModulus K 𝔣) →* (M ≃ₐ[K] M) := raySymbolHom K 𝔣 (artinFrob K M)
+
+theorem artinSymbol_prime {𝔣 : Ideal (𝓞 K)} {v : HeightOneSpectrum (𝓞 K)} (hv : ¬ v.asIdeal ∣ 𝔣) :
+    artinSymbol K M 𝔣 ⟨primeUnit K v, primeUnit_mem_coprimeToModulus K hv⟩ = artinFrob K M v :=
+  raySymbolHom_prime K 𝔣 (artinFrob K M) hv
+
+end Symbol
+
+end LanglandsTunnell.P2.Artin
+
+end
