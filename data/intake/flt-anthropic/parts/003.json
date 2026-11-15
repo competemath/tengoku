@@ -1,0 +1,14 @@
+{
+ "bundle_sha256": "23e84938975475a99415fac83e8a6023d785c53771dc21e4493b29732b8d2af4",
+ "factory_changes": {
+  "inert lines removed": 5,
+  "modules changed": 10,
+  "print lines removed": 37
+ },
+ "gate2_unjudged": [],
+ "library": "flt-anthropic",
+ "lint_mode": "proposed",
+ "modules": 234,
+ "part": 3,
+ "theorems": 2572
+}
