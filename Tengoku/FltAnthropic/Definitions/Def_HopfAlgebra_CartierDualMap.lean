@@ -2,12 +2,12 @@ import Tengoku
 import Tengoku.FltAnthropic.Definitions.Def_HopfAlgebra_CartierDual
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 set_option autoImplicit false
 
 open scoped TensorProduct
 
-namespace CartierDual
+namespace Tengoku.FltAnthropic.CartierDual
 
 noncomputable section
 
@@ -178,4 +178,5 @@ end Map
 
 end
 
-end CartierDual
+end Tengoku.FltAnthropic.CartierDual
+-- Tengoku: root names of this library moved to Tengoku.FltAnthropic so they do not collide with other libraries (generated)

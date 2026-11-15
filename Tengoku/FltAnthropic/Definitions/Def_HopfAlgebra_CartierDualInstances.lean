@@ -2,10 +2,10 @@ import Tengoku
 import Tengoku.FltAnthropic.Definitions.Def_HopfAlgebra_CartierDual
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 set_option autoImplicit false
 
-namespace CartierDual
+namespace Tengoku.FltAnthropic.CartierDual
 
 universe u v
 
@@ -54,4 +54,5 @@ theorem test_commring_hopf_mixins {C : Type w} [CommRing C] [HopfAlgebra R C] [C
 
 end Test
 
-end CartierDual
+end Tengoku.FltAnthropic.CartierDual
+-- Tengoku: root names of this library moved to Tengoku.FltAnthropic so they do not collide with other libraries (generated)

@@ -3,7 +3,7 @@ import Tengoku.FltAnthropic.Definitions.Def_FLTPrelim_Modularity
 import Tengoku.FltAnthropic.Definitions.Def_ModularForm_EisensteinChiNegThree
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.FltAnthropic end Tengoku.FltAnthropic open Tengoku.FltAnthropic
 set_option autoImplicit false
 
 open ModularFormClass CongruenceSubgroup EisensteinWeightOne
@@ -21,7 +21,7 @@ def HasIntegralBasis (N : ℕ) : Prop :=
 
 end CuspForm
 
-noncomputable def bridgeProduct {R : Type*} [CommRing R] (a : ℕ → R) : PowerSeries R :=
+noncomputable def _root_.Tengoku.FltAnthropic.bridgeProduct {R : Type*} [CommRing R] (a : ℕ → R) : PowerSeries R :=
   PowerSeries.mk a * e1Chi3In R
 
 namespace CuspForm
@@ -32,3 +32,4 @@ def IsLatticeRealized (N : ℕ) (a : ℕ → ℤ) : Prop :=
       ∀ n, (3 : ℤ) ∣ af n - (bridgeProduct a).coeff n
 
 end CuspForm
+-- Tengoku: root names of this library moved to Tengoku.FltAnthropic so they do not collide with other libraries (generated)

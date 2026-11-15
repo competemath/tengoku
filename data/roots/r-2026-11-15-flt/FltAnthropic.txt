@@ -1,0 +1,127 @@
+leakscan: 407 global instances (46 can fire outside the library), 22 scoped; 898 global simp lemmas (5 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 28 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: instance FixedPoints.instAddCommMonoidElemFixedPoints registered in Tengoku.FltAnthropic.Definitions.Def_AbstractHeckeOperator (declared at line 20)
+leak: instance FixedPoints.instSMulElemFixedPointsOfSMulCommClass registered in Tengoku.FltAnthropic.Definitions.Def_AbstractHeckeOperator (declared at line 38)
+leak: instance FixedPoints.instMulActionElemFixedPointsOfSMulCommClass registered in Tengoku.FltAnthropic.Definitions.Def_AbstractHeckeOperator (declared at line 49)
+leak: instance AdicCompletion.instIsLocalRingMaximalIdeal registered in Tengoku.FltAnthropic.Definitions.Def_AdicCompletionLocalRing (declared at line 72)
+leak: instance IsDedekindDomain.HeightOneSpectrum.instIsRankOneDiscreteWithZeroMultiplicativeIntAdicCompletionV registered in Tengoku.FltAnthropic.Definitions.Def_DedekindDomain_AdicValuation_InlineSpecific (declared at line 53)
+leak: instance instAlgebraSubtypeMemValuationSubring registered in Tengoku.FltAnthropic.Definitions.Def_AlgebraicCurve_PlaceCompletion (declared at line 11)
+leak: instance AddAut.instGroup registered in Tengoku.FltAnthropic.Definitions.Def_Compat_Mathlib430 (declared at line 139)
+leak: simp IsLocalization.moduleLid_symm_apply registered in Tengoku.FltAnthropic.Definitions.Def_Mathlib_RingTheory_Localization_BaseChange (declared at line 15)
+leak: simp IsLocalization.map_moduleTensorEquiv_tmul registered in Tengoku.FltAnthropic.Definitions.Def_Mathlib_RingTheory_Localization_BaseChange (declared at line 23)
+leak: simp IsLocalization.map_moduleTensorEquiv_symm_tmul registered in Tengoku.FltAnthropic.Definitions.Def_Mathlib_RingTheory_Localization_BaseChange (declared at line 30)
+leak: instance WeierstrassCurve.Affine.Point.instSMulAlgEquiv registered in Tengoku.FltAnthropic.Definitions.Def_FLTPrelim_GaloisRep (declared at line 27)
+leak: instance WeierstrassCurve.Affine.Point.instDistribMulActionAlgEquiv registered in Tengoku.FltAnthropic.Definitions.Def_FLTPrelim_GaloisRep (declared at line 30)
+leak: instance WeierstrassCurve.Affine.Point.instSMulTorsionBy registered in Tengoku.FltAnthropic.Definitions.Def_FLTPrelim_GaloisRep (declared at line 53)
+leak: instance WeierstrassCurve.Affine.Point.instDistribMulActionTorsionBy registered in Tengoku.FltAnthropic.Definitions.Def_FLTPrelim_GaloisRep (declared at line 57)
+leak: instance WeierstrassCurve.Affine.Point.instModuleZModTorsionBy registered in Tengoku.FltAnthropic.Definitions.Def_FLTPrelim_GaloisRep (declared at line 64)
+leak: instance Tengoku.FltAnthropic.instDecEqAlgebraicClosureRat registered in Tengoku.FltAnthropic.Definitions.Def_FLTPrelim_GaloisRep (declared at line 85)
+leak: instance instIsScalarTowerTensorProduct registered in Tengoku.FltAnthropic.Definitions.Def_FiniteFlat_SchematicClosure (declared at line 15)
+leak: instance Tengoku.FltAnthropic.MvFormalGroup.WittLaw.instTendstoCofiniteProdMk registered in Tengoku.FltAnthropic.Definitions.Def_MvFormalGroup_CartierModule (declared at line 156)
+leak: instance NumberField.AdelicHaar.fact_isOpen_adicCompletionIntegers registered in Tengoku.FltAnthropic.Definitions.Def_NumberField_AdelicHaar (declared at line 19)
+leak: instance NumberField.AdelicHaar.finite_residueField_adicCompletionIntegers registered in Tengoku.FltAnthropic.Definitions.Def_NumberField_AdelicHaar (declared at line 104)
+leak: instance NumberField.AdelicHaar.properSpace_adicCompletion registered in Tengoku.FltAnthropic.Definitions.Def_NumberField_AdelicHaar (declared at line 121)
+leak: instance NumberField.AdelicHaar.compactSpace_adicCompletionIntegers registered in Tengoku.FltAnthropic.Definitions.Def_NumberField_AdelicHaar (declared at line 134)
+leak: instance NumberField.AdelicHaar.t2Space_finiteAdeleRing registered in Tengoku.FltAnthropic.Definitions.Def_NumberField_AdelicHaar (declared at line 149)
+leak: instance NumberField.AdelicHaar.t2Space_infiniteAdeleRing registered in Tengoku.FltAnthropic.Definitions.Def_NumberField_AdelicHaar (declared at line 155)
+leak: instance NumberField.AdelicHaar.t2Space_adeleRing registered in Tengoku.FltAnthropic.Definitions.Def_NumberField_AdelicHaar (declared at line 161)
+leak: instance NumberField.AdelicHaar.locallyCompactSpace_finiteAdeleRing registered in Tengoku.FltAnthropic.Definitions.Def_NumberField_AdelicHaar (declared at line 177)
+leak: instance NumberField.AdelicHaar.locallyCompactSpace_adeleRing registered in Tengoku.FltAnthropic.Definitions.Def_NumberField_AdelicHaar (declared at line 184)
+leak: instance NumberField.AdelicHaar.t2Space_matrix_adeleRing registered in Tengoku.FltAnthropic.Definitions.Def_NumberField_AdelicHaar (declared at line 211)
+leak: instance NumberField.AdelicHaar.locallyCompactSpace_matrix_adeleRing registered in Tengoku.FltAnthropic.Definitions.Def_NumberField_AdelicHaar (declared at line 217)
+leak: instance NumberField.AdelicHaar.t2Space_gl_adeleRing registered in Tengoku.FltAnthropic.Definitions.Def_NumberField_AdelicHaar (declared at line 226)
+leak: instance NumberField.AdelicHaar.locallyCompactSpace_gl_adeleRing registered in Tengoku.FltAnthropic.Definitions.Def_NumberField_AdelicHaar (declared at line 244)
+leak: instance AlgebraicCurve.RationalFunctionField.instNontrivialSubtypeUnitsWithZeroMultiplicativeIntMemSubgroupValueGroupRatFuncValuationInftyValuation_tengoku registered in Tengoku.FltAnthropic.Definitions.Def_AlgebraicCurve_RatFuncPlaceClassification (declared at line 24)
+leak: instance FppfCohomologyLES.fppfSheavesIsGrothendieckAbelian registered in Tengoku.FltAnthropic.Definitions.Def_AlgebraicGeometry_FppfCohomologyLES (declared at line 202)
+leak: instance FppfRepresentableGroupSchemeSheaf.instIsCommMonObjSchemeTensorUnit registered in Tengoku.FltAnthropic.Definitions.Def_AlgebraicGeometry_FppfGmRepresentable (declared at line 418)
+leak: instance LanglandsTunnell.P2.Artin.isGaloisGroup_ringOfIntegers registered in Tengoku.FltAnthropic.Definitions.Def_LanglandsTunnell_ArtinFrobenius (declared at line 40)
+leak: instance FLT.HyperbolicMeasure.instSMulInvariantMeasureSpecialLinearGroupFinOfNatNatIntUpperHalfPlaneVolume registered in Tengoku.FltAnthropic.Definitions.Def_AutomorphicForm_HyperbolicMeasure (declared at line 20)
+leak: instance FLT.HyperbolicMeasure.instIsOpenPosMeasureUpperHalfPlaneVolume registered in Tengoku.FltAnthropic.Definitions.Def_AutomorphicForm_HyperbolicMeasure (declared at line 44)
+leak: instance FLT.Gamma0FundamentalSet.instContinuousConstSMulSpecialLinearGroupFinOfNatNatIntUpperHalfPlane registered in Tengoku.FltAnthropic.Definitions.Def_AutomorphicForm_Gamma0FundamentalSet (declared at line 90)
+leak: instance FLT.L2ProductionInstance.countable_SL2Z registered in Tengoku.FltAnthropic.Definitions.Def_AutomorphicForm_L2ProductionInstance (declared at line 32)
+leak: instance FLT.L2ProductionInstance.countable_quotient registered in Tengoku.FltAnthropic.Definitions.Def_AutomorphicForm_L2ProductionInstance (declared at line 40)
+leak: instance IsDedekindDomain.HeightOneSpectrum.instAlgebraRatAdicCompletion registered in Tengoku.FltAnthropic.Definitions.Def_Submodule_LocalBox (declared at line 16)
+leak: instance IsDedekindDomain.HeightOneSpectrum.instModuleRatAdicCompletion registered in Tengoku.FltAnthropic.Definitions.Def_Submodule_LocalBox (declared at line 19)
+leak: simp CuspForm.PeterssonCoset.mapGL_apply registered in Tengoku.FltAnthropic.Definitions.Def_CuspForm_PeterssonCoset (declared at line 16)
+leak: instance Deformation.TruncWitt.instSubsingleton registered in Tengoku.FltAnthropic.Definitions.Def_Dieudonne_WittVectorHom (declared at line 173)
+leak: instance HopfAlgebra.finiteType_quotient registered in Tengoku.FltAnthropic.Definitions.Def_HopfAlgebra_HopfIdealQuotient (declared at line 529)
+leak: instance HopfAlgebra.flat_quotient_bot registered in Tengoku.FltAnthropic.Definitions.Def_HopfAlgebra_HopfIdealQuotient (declared at line 542)
+leak: instance AlgebraicClosure.Rat.isGalois registered in Tengoku.FltAnthropic.Definitions.Def_FieldTheory_RatAlgClosureGalois (declared at line 7)
+leak: instance groupCohomology.Kummer.instMulDistribMulActionRootsOfUnity registered in Tengoku.FltAnthropic.Definitions.Def_GroupCohomology_Kummer (declared at line 105)
+leak: simp groupCohomology.Kummer.val_smul_units registered in Tengoku.FltAnthropic.Definitions.Def_GroupCohomology_Kummer (declared at line 17)
+leak: instance groupCohomology.normal_comap_fixingSubgroup registered in Tengoku.FltAnthropic.Definitions.Def_GroupCohomology_LevelSubgroup (declared at line 21)
+leak: instance groupCohomology.finiteIndex_comap_fixingSubgroup registered in Tengoku.FltAnthropic.Definitions.Def_GroupCohomology_LevelSubgroup (declared at line 28)
+root: completedRiemannZeta_two
+root: eisensteinScattering_mul_one_sub
+root: eisensteinScattering_residue_mul_volume
+root: eisensteinScattering_def
+root: eisensteinScattering_residue_one
+root: ModpDieudonneRealization
+root: eisensteinScattering
+root: completedRiemannZeta_eq_mul_Gammaℝ
+root: eisensteinScattering_one_half
+root: completedRiemannZeta_ne_zero_of_one_le_re
+root: primitives
+root: completedRiemannZeta_conj_of_one_lt_re
+root: eisensteinScattering_mul_one_sub_of_re_eq_half
+root: instCoeTCSemialgHom
+root: eisensteinScattering_conj
+root: eisensteinScattering_ne_zero_of_one_le_re
+root: instIsScalarTowerTensorProduct
+root: eisensteinScattering_mul_one_sub_one_half
+root: bridgeProduct
+root: differentiableAt_eisensteinScattering_of_half_lt_re
+root: eisensteinScattering_residue_ne_zero
+root: differentiableAt_eisensteinScattering
+root: cotangentSpace
+root: not_integrableOn_norm_cpow_sq_div_sq
+root: completedRiemannZeta_ne_zero_of_re_nonpos
+root: norm_eisensteinScattering_critical_line
+root: CompletedZetaConjSymm
+root: instAlgebraSubtypeMemValuationSubring
+root-instance: instCoeTCSemialgHom
+root-instance: instIsScalarTowerTensorProduct
+root-instance: instAlgebraSubtypeMemValuationSubring
+leakscan: 169 global instances (36 can fire outside the library), 15 scoped; 469 global simp lemmas (4 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 1 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: instance MonoidAlgebra.instModuleFreeOfCartier registered in Tengoku.FltAnthropic.Definitions.Def_HopfAlgebra_CartierDual (declared at line 1388)
+leak: instance MonoidAlgebra.instModuleFiniteOfCartier registered in Tengoku.FltAnthropic.Definitions.Def_HopfAlgebra_CartierDual (declared at line 1395)
+leak: instance CartierDual.instIsCocommViaBialgebra registered in Tengoku.FltAnthropic.Definitions.Def_HopfAlgebra_CartierDualInstances (declared at line 15)
+leak: instance CartierDual.instModuleFiniteViaBialgebra registered in Tengoku.FltAnthropic.Definitions.Def_HopfAlgebra_CartierDualInstances (declared at line 22)
+leak: instance CartierDual.instModuleFreeViaBialgebra registered in Tengoku.FltAnthropic.Definitions.Def_HopfAlgebra_CartierDualInstances (declared at line 29)
+leak: instance HopfAlgebra.HopfKerHopf.instCoalgebra registered in Tengoku.FltAnthropic.Definitions.Def_HopfAlgebra_HopfKerHopf (declared at line 586)
+leak: instance HopfAlgebra.HopfKerHopf.instBialgebra registered in Tengoku.FltAnthropic.Definitions.Def_HopfAlgebra_HopfKerHopf (declared at line 634)
+leak: instance HopfAlgebra.HopfKerHopf.instHopfAlgebra registered in Tengoku.FltAnthropic.Definitions.Def_HopfAlgebra_HopfKerHopf (declared at line 680)
+leak: instance LanglandsTunnell.algebra_fixFldSylowH_fixFldC8H registered in Tengoku.FltAnthropic.Definitions.Def_LanglandsTunnell_C8Tower (declared at line 39)
+leak: instance LanglandsTunnell.CubicInduction.countable_GL2 registered in Tengoku.FltAnthropic.Definitions.Def_LanglandsTunnell_CubicInduction_IotaTorus (declared at line 94)
+leak: instance LanglandsTunnell.CubicInduction.countable_mirabolicIndex registered in Tengoku.FltAnthropic.Definitions.Def_LanglandsTunnell_CubicInduction_IotaTorus (declared at line 101)
+leak: instance FLT.SpectralSide.instCompactSpaceMatrix registered in Tengoku.FltAnthropic.Definitions.Def_LocalLanglands_IntegralSubgroupCompact (declared at line 10)
+leak: instance HeckeIntegralSeam.finite_padicInt_quotient_span_p registered in Tengoku.FltAnthropic.Definitions.Def_LocalLanglands_PadicHeckeCosetSystem (declared at line 60)
+leak: instance M4aHerbrand.Bridge.instT2SpaceAdeleRing registered in Tengoku.FltAnthropic.Definitions.Def_M4aHerbrand_OpenMappingBridge (declared at line 55)
+leak: instance M4aHerbrand.Bridge.sigmaCompactSpace_completion registered in Tengoku.FltAnthropic.Definitions.Def_M4aHerbrand_AdeleTopologyFacts (declared at line 15)
+leak: instance M4aHerbrand.Bridge.sigmaCompactSpace_infiniteAdeleRing registered in Tengoku.FltAnthropic.Definitions.Def_M4aHerbrand_AdeleTopologyFacts (declared at line 21)
+leak: instance M4aHerbrand.Bridge.sigmaCompactSpace_finiteAdeleRing registered in Tengoku.FltAnthropic.Definitions.Def_M4aHerbrand_AdeleTopologyFacts (declared at line 73)
+leak: instance M4aHerbrand.Bridge.sigmaCompactSpace_adeleRing registered in Tengoku.FltAnthropic.Definitions.Def_M4aHerbrand_AdeleTopologyFacts (declared at line 83)
+leak: instance IsLocalRing.quot registered in Tengoku.FltAnthropic.Definitions.Def_Mathlib_RingTheory_LocalRing_Defs (declared at line 9)
+leak: instance IsLocalHom.quotient_mk registered in Tengoku.FltAnthropic.Definitions.Def_Mathlib_RingTheory_LocalRing_Defs (declared at line 14)
+leak: simp ModularCurve.mapGL_apply_coe registered in Tengoku.FltAnthropic.Definitions.Def_ModularCurve_CuspSpace (declared at line 76)
+leak: instance ModularCurve.instIsDomainTensorProduct registered in Tengoku.FltAnthropic.Definitions.Def_ModularCurve_GeometricBaseChange (declared at line 149)
+leak: instance ModularCurve.Period.instGroupFG_SL2Z registered in Tengoku.FltAnthropic.Definitions.Def_ModularCurve_HeckeAlgebraHom (declared at line 19)
+leak: instance ModularCurve.Period.instGroupFG_Gamma0 registered in Tengoku.FltAnthropic.Definitions.Def_ModularCurve_HeckeAlgebraHom (declared at line 27)
+leak: instance ModularCurve.Period.instIsNoetherian_addHom_int registered in Tengoku.FltAnthropic.Definitions.Def_ModularCurve_HeckeAlgebraHom (declared at line 69)
+leak: instance ModularCurve.Period.parabolicHoms_int_moduleFinite registered in Tengoku.FltAnthropic.Definitions.Def_ModularCurve_HeckeAlgebraHom (declared at line 127)
+leak: simp WeierstrassCurve.ratPointMap_zero registered in Tengoku.FltAnthropic.Definitions.Def_WeierstrassCurve_RatPointHom (declared at line 21)
+leak: instance ModularCurve.NodeLocalized.isLocalRing_modularLocalizedAtPoint registered in Tengoku.FltAnthropic.Definitions.Def_ModularCurve_NodeLocalizedPresentation (declared at line 114)
+leak: simp ModularCurve.aeval_toRingHom_X registered in Tengoku.FltAnthropic.Definitions.Def_ModularCurve_PhiGen (declared at line 185)
+leak: simp MvPolynomial.norm_circleMap_zero_one registered in Tengoku.FltAnthropic.Definitions.Def_MvPolynomial_LogMahlerMeasure (declared at line 167)
+leak: instance NumberField.AdelicCentre.isClosed_center registered in Tengoku.FltAnthropic.Definitions.Def_NumberField_AdelicCentre (declared at line 79)
+leak: instance PresheafOfModules.instMonoidalClosed registered in Tengoku.FltAnthropic.Definitions.Def_PresheafOfModules_InternalHom (declared at line 393)
+leak: instance PresheafOfModules.free_monoidal registered in Tengoku.FltAnthropic.Definitions.Def_PresheafOfModules_PullbackMonoidal (declared at line 187)
+leak: instance ValuationSubring.charZero_completion registered in Tengoku.FltAnthropic.Definitions.Def_ValuationSubring_CompletionDecompositionAction (declared at line 21)
+leak: instance ValuationSubring.mulSemiringActionWithVal registered in Tengoku.FltAnthropic.Definitions.Def_ValuationSubring_CompletionDecompositionAction (declared at line 34)
+leak: instance Valuation.continuousConstSMul_withVal registered in Tengoku.FltAnthropic.Definitions.Def_Valuation_CompletionAlgebra (declared at line 15)
+leak: instance Valuation.uniformContinuousConstSMul_withVal registered in Tengoku.FltAnthropic.Definitions.Def_Valuation_CompletionAlgebra (declared at line 21)
+leak: instance Valuation.algebraCompletion registered in Tengoku.FltAnthropic.Definitions.Def_Valuation_CompletionAlgebra (declared at line 27)
+leak: instance WeierstrassCurve.instIsShortNFMk registered in Tengoku.FltAnthropic.Definitions.Def_WeierstrassCurve_VeluOrderTwoShortNF (declared at line 45)
+leak: instance WeierstrassCurve.veluQuotient2_isShortNF registered in Tengoku.FltAnthropic.Definitions.Def_WeierstrassCurve_VeluOrderTwoShortNF (declared at line 57)
+root: CartierDual
