@@ -1,0 +1,15 @@
+{
+ "bundle_sha256": "35328c3406d6b3ed63db6b5e0a402d7881acdf562894136ff15fbc6562740dad",
+ "factory_changes": {
+  "P2M.Util shortcuts written out": 53,
+  "inert lines removed": 10,
+  "modules changed": 286,
+  "print lines removed": 15
+ },
+ "gate2_unjudged": [],
+ "library": "flt-anthropic",
+ "lint_mode": "proposed",
+ "modules": 286,
+ "part": 4,
+ "theorems": 33
+}
