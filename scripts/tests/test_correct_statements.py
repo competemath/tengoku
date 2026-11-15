@@ -139,10 +139,16 @@ class TrustedAndArguments(unittest.TestCase):
         self.assertNotIn(name, after)
         self.assertEqual(len(after), len(lines) - 1)
 
+    @unittest.skipUnless(
+        (ROOT / "data" / "trusted").is_dir(), "this checkout has no data/ (the sonar workflow's sparse checkout leaves it out)"
+    )
     def test_trusted_names_are_read_from_the_real_data_trusted(self):
         names = cs.trusted_names(ROOT)
         self.assertGreater(len(names), 100_000)
-        self.assertEqual(cs.trusted_names(Path(tempfile.mkdtemp())), set())
+
+    def test_a_root_without_data_trusted_has_no_trusted_names(self):
+        with tempfile.TemporaryDirectory() as d:
+            self.assertEqual(cs.trusted_names(Path(d)), set())
 
     def test_arguments_the_gate_would_reject_write_nothing(self):
         recs = by_lib(TRUNCATED)["rankamplificationtotient"]
