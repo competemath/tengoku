@@ -116,5 +116,65 @@ class RootsGate(unittest.TestCase):
         self.assertFalse(rg.auto_named("instFooBar", set()))  # not reported as an instance
 
 
+class GeneratedNames(unittest.TestCase):
+    """What the final inventory of 2026-11-14 left besides names someone wrote: syntax node kinds (LeanPool `«termℝ²»`, Leanforcontrol `«termD⁺»`: 24) and the generated names of instances
+    that are local to their module (Flt `instT2Space`: 23), which the scanner now reports as `root-syntax:` and `root-instance:`."""
+
+    def test_a_syntax_node_kind_is_exempt_even_when_required(self):
+        report = "roots: 2 declarations of the library x\nroot: «termℝ²»\nroot: term₃F₂\nroot-syntax: «termℝ²»\nroot-syntax: term₃F₂\n"
+        code, msg = rg.judge(report, True)
+        self.assertEqual(code, 0)
+        self.assertIn("none of the group's declarations", msg)
+        self.assertIn("2 generated syntax node kind(s) are exempt: «termℝ²», term₃F₂", msg)
+
+    def test_a_kind_with_a_space_in_its_name_is_read_whole(self):
+        report = "roots: 1 declarations of the library x\nroot: «termP(_ ↦ _)»\nroot-syntax: «termP(_ ↦ _)»\n"
+        self.assertEqual(rg.syntax_lines(report), {"«termP(_ ↦ _)»"})
+        self.assertEqual(rg.judge(report, True)[0], 0)
+
+    def test_a_written_name_beside_generated_ones_still_fails_and_is_the_one_listed(self):
+        report = (
+            "roots: 4 declarations of the library x\nroot: «termD⁺»\nroot: dim\nroot: instT2Space\nroot: instAddFoo\n"
+            "root-instance: instT2Space\nroot-instance: instAddFoo\nroot-syntax: «termD⁺»\n"
+        )
+        code, msg = rg.judge(report, True)
+        self.assertEqual(code, 1)
+        self.assertIn("1 declaration(s) of the group are in the root namespace: dim (2 auto-generated instance name(s) are exempt", msg)
+        self.assertIn("(1 generated syntax node kind(s) are exempt: «termD⁺»)", msg)
+
+    def test_a_name_that_only_looks_like_a_kind_is_a_root(self):
+        # `termFoo` that the scanner does not report as a syntax node kind is a declaration someone wrote
+        report = "roots: 2 declarations of the library x\nroot: termFoo\nroot: «termℝ²»\nroot-syntax: «termℝ²»\n"
+        code, msg = rg.judge(report, True)
+        self.assertEqual(code, 1)
+        self.assertIn("1 declaration(s)", msg)
+        self.assertIn(": termFoo (1 generated", msg)
+
+    def test_a_syntax_line_for_a_name_that_is_no_root_exempts_nothing(self):
+        report = "roots: 1 declarations of the library x\nroot: X\nroot-syntax: Y\n"
+        code, msg = rg.judge(report, True)
+        self.assertEqual(code, 1)
+        self.assertNotIn("exempt", msg)
+
+    def test_a_class_valued_declaration_without_the_generated_shape_is_a_root(self):
+        # the scanner reports every declaration of a class as an instance; only the shape Lean generates is exempt
+        report = "roots: 2 declarations of the library x\nroot: myMonoid\nroot: instMonoidFoo\nroot-instance: myMonoid\nroot-instance: instMonoidFoo\n"
+        code, msg = rg.judge(report, True)
+        self.assertEqual(code, 1)
+        self.assertIn(": myMonoid (1 auto-generated", msg)
+
+    def test_the_summary_still_counts_every_root_line(self):
+        # the extra lines are not `root:` lines: a report cut after them is still caught by the count
+        cut = "roots: 3 declarations of the library x\nroot: «termℝ²»\nroot-syntax: «termℝ²»\n"
+        self.assertEqual(rg.judge(cut, True)[0], 1)
+        self.assertIn("counts 3", rg.judge(cut, True)[1])
+
+    def test_reported_only_until_required(self):
+        report = "roots: 2 declarations of the library x\nroot: X\nroot: «termℝ²»\nroot-syntax: «termℝ²»\n"
+        code, msg = rg.judge(report, False)
+        self.assertEqual(code, 0)
+        self.assertIn("reported only", msg)
+
+
 if __name__ == "__main__":
     unittest.main()
