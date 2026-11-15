@@ -192,7 +192,9 @@ def head_of(name: str) -> str:
 
 ROOT_DECL = re.compile(
     r"^(?P<pre>[ \t]*(?:@\[[^\]]*\][ \t]*)*(?:(?:private|protected|public|noncomputable|nonrec|partial|unsafe)[ \t]+)*)"
-    r"(?:(?:local|scoped)[ \t]+)?(?:theorem|lemma|def|abbrev|structure|inductive|class|opaque|axiom|instance)\s+"
+    # `class abbrev X` and `class inductive X` declare X (as two words they read as a class named `abbrev`: merge of wave 4, Physlib/Units/Basic.lean:280, `class abbrev
+    # CarriesDimension` kept its root name); `alias x := y` declares x (same file, line 276, `alias dim := HasDim.d`). `alias ⟨a, b⟩ := h` names no root: what follows `alias` there is no root's name.
+    r"(?:(?:local|scoped)[ \t]+)?(?P<kind>theorem|lemma|def|abbrev|structure|inductive|class[ \t]+abbrev|class[ \t]+inductive|class|opaque|axiom|instance|alias)\s+"
     rf"(?:\(priority\s*:=[^)]*\)\s*)?(?P<name>{NAME_TOKEN})"
 )
 NAMESPACE_NAME = re.compile(rf"^(?P<pre>\s*(?:(?:public|noncomputable)\s+)*namespace\s+)(?P<name>(?:{QUOTED}|[^\s«»])+)\s*$")
@@ -315,7 +317,8 @@ def qualify_roots_in_file(f: Lines, roots: set[str], ns: str, mark_open: bool = 
             # `def NS.x` makes NS the namespace of the body, and a bare name there resolves to `NS.name` ONLY: it stops competing with an opened `Other.name` (overload), which the
             # root declaration did (merge queue, LeanPool OS3MixedRepInfra: `integral_const_mul` against MeasureTheory's). `def _root_.NS.x` keeps the body where it was. A dotted
             # `R.x` keeps the plain form: its body was in namespace R and its siblings are named from there.
-            keep = keep_body_namespace and not dotted
+            # An `alias` has no body (its target is resolved where the command stands), so it takes the plain form too.
+            keep = keep_body_namespace and not dotted and m.group("kind") != "alias"
             f.insert(i, m.start("name"), ("_root_." if keep else "") + ns + ".")
             done["heads"].add(head_of(name))
             if dotted:
@@ -495,7 +498,9 @@ def qualify_files(files: dict[str, str], reports: dict[str, str]) -> tuple[dict[
             new = "\n".join(f.text)
             if not new.endswith("\n"):
                 new += "\n"
-            changed[path] = new + NOTE.format(ns=ns)
+            # one footer per module: a module the script already edited (its footer is there) and edits again, because it learned a declaration form since, gets no second one
+            note = NOTE.format(ns=ns)
+            changed[path] = new if note in new else new + note
             rep["qualified"] += len(d["declared"])
             rep["namespaces"] += d["namespaces"]
             rep["dotted"] += d["dotted"]

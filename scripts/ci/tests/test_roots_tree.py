@@ -683,5 +683,59 @@ class CompoundEnd(unittest.TestCase):
             self.assertEqual(out, self.run_text(out))
 
 
+class TwoWordDeclarationsAndAliases(unittest.TestCase):
+    """`class abbrev X` and `class inductive X` declare X, and `alias x := y` declares x: the final inventory after wave 4 still had Physlib's `CarriesDimension` (`class abbrev`,
+    Physlib/Units/Basic.lean:280) and `dim` (`alias dim := HasDim.d`, line 276) in the root namespace, and LeanPool's `WCWF` (`alias WCWF := WeaklyConverseWellFounded`)."""
+
+    HEAD = "module\n\nimport Tengoku\n\n"
+    FOOTER = "-- Tengoku: root names of this library moved to Tengoku.Foo so they do not collide with other libraries (generated)\n"
+
+    def run_text(self, text, roots):
+        report = "roots: n declarations\n" + "".join(f"root: {r}\n" for r in roots)
+        changed, done = rt.qualify_files({"Tengoku/Foo/A.lean": text}, {"Foo": report})
+        return changed.get("Tengoku/Foo/A.lean", text), done.get("Foo", {})
+
+    def test_class_abbrev_is_the_declaration_of_its_name(self):
+        out, done = self.run_text(
+            self.HEAD + "class abbrev CarriesDimension (M : Type) := HasDim M, MulAction Nat M\n", ["CarriesDimension"]
+        )
+        self.assertIn("\nclass abbrev _root_.Tengoku.Foo.CarriesDimension (M : Type) := HasDim M, MulAction Nat M\n", out)
+        self.assertEqual(done["unresolved"], [])
+
+    def test_class_inductive_too(self):
+        out, _ = self.run_text(self.HEAD + "class inductive Shape : Type where\n  | point\n", ["Shape"])
+        self.assertIn("\nclass inductive _root_.Tengoku.Foo.Shape : Type where\n", out)
+
+    def test_a_class_is_still_a_class(self):
+        out, _ = self.run_text(self.HEAD + "class Shape (a : Type) where\n  x : a\n", ["Shape"])
+        self.assertIn("\nclass _root_.Tengoku.Foo.Shape (a : Type) where\n", out)
+
+    def test_a_class_whose_name_starts_like_the_second_word_is_one_name(self):
+        out, _ = self.run_text(self.HEAD + "class abbrevLike (a : Type) where\n  x : a\n", ["abbrevLike"])
+        self.assertIn("\nclass _root_.Tengoku.Foo.abbrevLike (a : Type) where\n", out)
+
+    def test_an_alias_declares_its_name_in_the_plain_form(self):
+        out, done = self.run_text(self.HEAD + "def HasDim.d : Nat := 0\n\nalias dim := HasDim.d\n", ["dim"])
+        self.assertIn("\nalias Tengoku.Foo.dim := HasDim.d\n", out)  # no `_root_.`: an alias has no body to keep in the root namespace
+        self.assertEqual(done["unresolved"], [])
+
+    def test_a_dotted_alias_follows_the_namespace_of_its_root(self):
+        out, _ = self.run_text(self.HEAD + "structure Packing where\n  n : Nat\n\nalias Packing.count := Packing.n\n", ["Packing"])
+        self.assertIn("\nalias Tengoku.Foo.Packing.count := Packing.n\n", out)
+
+    def test_an_alias_of_an_iff_names_no_root(self):
+        out, _ = self.run_text(self.HEAD + "def dim : Nat := 0\n\nalias ⟨dim_mp, dim_mpr⟩ := some_iff\n", ["dim"])
+        self.assertIn("\nalias ⟨dim_mp, dim_mpr⟩ := some_iff\n", out)
+
+    def test_a_module_edited_before_gets_no_second_footer(self):
+        # the module as the script without this change left it: its other root renamed, the commands and the footer in place, the alias still in the root namespace
+        once, _ = self.run_text(self.HEAD + "def zeta : Nat := 1\n\nalias dim := zeta\n", ["zeta"])
+        self.assertEqual(once.count(self.FOOTER), 1)
+        again, _ = self.run_text(once.replace("alias Tengoku.Foo.dim", "alias dim"), ["zeta", "dim"])
+        self.assertIn("\nalias Tengoku.Foo.dim := zeta\n", again)
+        self.assertEqual(again.count(self.FOOTER), 1)
+        self.assertEqual(again, self.run_text(again, ["zeta", "dim"])[0])  # and it is idempotent
+
+
 if __name__ == "__main__":
     unittest.main()
