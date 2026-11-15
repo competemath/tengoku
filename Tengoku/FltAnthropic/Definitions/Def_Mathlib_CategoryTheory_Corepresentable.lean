@@ -25,10 +25,16 @@ def corepresentableByOfIsInitial (e : F.Elements) (he : IsInitial e) :
       right_inv y := (he.to (F.elementsMk Y y)).property }
   homEquiv_comp {Y Y'} g f := by simp [Functor.map_comp_apply]
 
+/--
+@isnad1 id=iscorepr.0h2v.s4.778c3424acfc from=translated src=- shape=01f3cc3b vocab=bdda5d6f
+-/
 lemma isCorepresentable_of_hasInitial_elements [HasInitial F.Elements] :
     F.IsCorepresentable :=
   (corepresentableByOfIsInitial (⊥_ F.Elements) initialIsInitial).isCorepresentable
 
+/--
+@isnad1 id=iff.0h2v.s4.d0079c909e0b from=translated src=- shape=1a1e9948 vocab=bdda5d6f
+-/
 lemma isCorepresentable_iff_hasInitial_elements :
     F.IsCorepresentable ↔ HasInitial F.Elements :=
   ⟨fun _ ↦ inferInstance, fun _ ↦ isCorepresentable_of_hasInitial_elements⟩
@@ -50,10 +56,16 @@ def representableByOfIsInitial (e : F.Elements) (he : IsInitial e) :
       right_inv y := (he.to (F.elementsMk (Opposite.op Y) y)).property }
   homEquiv_comp {Y Y'} g f := by simp [Functor.map_comp_apply]
 
+/--
+@isnad1 id=isrepres.0h2v.s5.43f8e8380d26 from=translated src=- shape=5ca50901 vocab=07b29b2e
+-/
 lemma isRepresentable_of_hasInitial_elements [HasInitial F.Elements] :
     F.IsRepresentable :=
   (representableByOfIsInitial (⊥_ F.Elements) initialIsInitial).isRepresentable
 
+/--
+@isnad1 id=iff.0h2v.s5.6e10e9737739 from=translated src=- shape=c847f7ec vocab=07b29b2e
+-/
 lemma isRepresentable_iff_hasInitial_elements :
     F.IsRepresentable ↔ HasInitial F.Elements :=
   ⟨fun _ ↦ inferInstance, fun _ ↦ isRepresentable_of_hasInitial_elements⟩

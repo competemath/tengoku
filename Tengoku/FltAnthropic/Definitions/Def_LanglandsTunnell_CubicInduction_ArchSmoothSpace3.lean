@@ -126,6 +126,9 @@ private theorem mul_mem_invertibleEntries {e e' : Fin 3 → Fin 3 → ℝ} (he :
   rw [Matrix.det_mul]
   exact mul_ne_zero he he'
 
+/--
+@isnad1 id=eq.2h2v.s10.b9a314737fd1 from=translated src=- shape=beefac27 vocab=ffbd8a28
+-/
 theorem archRealLift3_mul {e e' : Fin 3 → Fin 3 → ℝ} (he : (Matrix.of e).det ≠ 0) (he' : (Matrix.of e').det ≠ 0) :
     WhittakerBlock.archRealLift3 e * WhittakerBlock.archRealLift3 e' =
       WhittakerBlock.archRealLift3 (fun a b => (Matrix.of e * Matrix.of e') a b) := by
@@ -135,6 +138,9 @@ theorem archRealLift3_mul {e e' : Fin 3 → Fin 3 → ℝ} (he : (Matrix.of e).d
   rw [Units.val_mul, coe_archRealLift3 hm, coe_archRealLift3 hm', coe_archRealLift3 (mul_mem_invertibleEntries hm hm')]
   exact (archRealMat3_mul e e').symm
 
+/--
+@isnad1 id=eq.2h5v.s10.dbb146506967 from=translated src=- shape=2a1d7f9b vocab=ecba3eaf
+-/
 theorem archDeriv_eq_fderiv {φ : AdelicGL 3 (𝓞 ℚ) ℚ → ℂ} (hφ : WhittakerBlock.IsArchSmooth3 φ) (i j : Fin 3)
     (g : AdelicGL 3 (𝓞 ℚ) ℚ) {e : Fin 3 → Fin 3 → ℝ} (he : (Matrix.of e).det ≠ 0) :
     archDeriv i j φ (g * WhittakerBlock.archRealLift3 e) =
@@ -148,6 +154,9 @@ theorem archDeriv_eq_fderiv {φ : AdelicGL 3 (𝓞 ℚ) ℚ → ℂ} (hφ : Whit
   rw [archDeriv_eq_deriv, hev.deriv_eq]
   exact (hasDerivAt_line (hφ g) he' _).deriv
 
+/--
+@isnad1 id=isarchsm.1h3v.s5.63f5c51f20a4 from=translated src=- shape=85f3f869 vocab=112d0781
+-/
 theorem isArchSmooth3_archDeriv {φ : AdelicGL 3 (𝓞 ℚ) ℚ → ℂ} (hφ : WhittakerBlock.IsArchSmooth3 φ) (i j : Fin 3) :
     WhittakerBlock.IsArchSmooth3 (archDeriv i j φ) := by
   intro g
@@ -167,6 +176,9 @@ def smoothFunctions3 : Submodule ℂ (AdelicGL 3 (𝓞 ℚ) ℚ → ℂ) where
     intro c φ hφ g
     exact (hφ g).const_smul c
 
+/--
+@isnad1 id=iff.0h1v.s8.765791cb0f9c from=translated src=- shape=d0ac5f47 vocab=e2f6d929
+-/
 theorem mem_smoothFunctions3 {φ : AdelicGL 3 (𝓞 ℚ) ℚ → ℂ} :
     φ ∈ smoothFunctions3 ↔ WhittakerBlock.IsArchSmooth3 φ :=
   Iff.rfl
@@ -178,6 +190,9 @@ def archDerivₗ (i j : Fin 3) : smoothFunctions3 →ₗ[ℂ] smoothFunctions3 w
   map_smul' c φ := Subtype.ext <| funext fun g =>
     ((differentiableAt_unipotent φ.2 i j g).hasDerivAt.const_smul c).deriv
 
+/--
+@isnad1 id=eq.0h3v.s12.fae31fa94270 from=translated src=- shape=1bdfb796 vocab=cd4dd111
+-/
 @[simp]
 theorem coe_archDerivₗ_apply (i j : Fin 3) (φ : smoothFunctions3) :
     ((archDerivₗ i j φ : smoothFunctions3) : AdelicGL 3 (𝓞 ℚ) ℚ → ℂ) = archDeriv i j φ :=

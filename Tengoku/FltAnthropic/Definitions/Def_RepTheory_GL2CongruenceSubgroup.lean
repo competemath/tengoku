@@ -12,6 +12,9 @@ section EntryBounds
 
 variable (p : ℕ) [Fact p.Prime]
 
+/--
+@isnad1 id=eq.1h2v.s6.deda5425cb16 from=translated src=- shape=83a6901a vocab=7588b9ab
+-/
 theorem norm_eq_one_of_norm_sub_one_lt_one {x : ℚ_[p]} (h : ‖x - 1‖ < 1) : ‖x‖ = 1 := by
   have hne : ‖x - 1‖ ≠ ‖(1 : ℚ_[p])‖ := by
     rw [norm_one]
@@ -20,10 +23,16 @@ theorem norm_eq_one_of_norm_sub_one_lt_one {x : ℚ_[p]} (h : ‖x - 1‖ < 1) :
   rw [sub_add_cancel] at hmax
   rw [hmax, norm_one, max_eq_right (le_of_lt h)]
 
+/--
+@isnad1 id=le.2h4v.s6.acfaab385bf3 from=translated src=- shape=beb5d425 vocab=9368f083
+-/
 theorem padic_norm_add_le_of_le {x y : ℚ_[p]} {ε : ℝ} (hx : ‖x‖ ≤ ε) (hy : ‖y‖ ≤ ε) :
     ‖x + y‖ ≤ ε :=
   le_trans (Padic.nonarchimedean _ _) (max_le hx hy)
 
+/--
+@isnad1 id=le.2h4v.s6.32f7ba6081e0 from=translated src=- shape=1891c4b6 vocab=25ce77e1
+-/
 theorem padic_norm_mul_le_of_le_of_le_one {x y : ℚ_[p]} {ε : ℝ} (hx : ‖x‖ ≤ ε) (hy : ‖y‖ ≤ 1) :
     ‖x * y‖ ≤ ε := by
   rw [norm_mul]
@@ -31,11 +40,17 @@ theorem padic_norm_mul_le_of_le_of_le_one {x y : ℚ_[p]} {ε : ℝ} (hx : ‖x�
         mul_le_mul hx hy (norm_nonneg _) (le_trans (norm_nonneg _) hx)
     _ = ε := mul_one ε
 
+/--
+@isnad1 id=le.2h4v.s6.be570df32e5b from=translated src=- shape=29e15dc3 vocab=25ce77e1
+-/
 theorem padic_norm_mul_le_of_le_one_of_le {x y : ℚ_[p]} {ε : ℝ} (hx : ‖x‖ ≤ 1) (hy : ‖y‖ ≤ ε) :
     ‖x * y‖ ≤ ε := by
   rw [mul_comm]
   exact padic_norm_mul_le_of_le_of_le_one p hy hx
 
+/--
+@isnad1 id=le.0h3v.s6.4ad1fb110fc8 from=translated src=- shape=c759d2ea vocab=0c61d43c
+-/
 theorem norm_matrix_one_entry_le_one (i j : Fin 2) :
     ‖(1 : Matrix (Fin 2) (Fin 2) ℚ_[p]) i j‖ ≤ 1 := by
   rw [Matrix.one_apply]
@@ -43,6 +58,9 @@ theorem norm_matrix_one_entry_le_one (i j : Fin 2) :
   · simp [h]
   · simp [h]
 
+/--
+@isnad1 id=le.2h5v.s7.7e4be8a678c6 from=translated src=- shape=e15adc2a vocab=ac949abf
+-/
 theorem norm_entry_le_one_of_sub_entry_le {A : Matrix (Fin 2) (Fin 2) ℚ_[p]} {ε : ℝ}
     (hε : ε ≤ 1) (hA : ∀ i j, ‖(A - 1) i j‖ ≤ ε) (i j : Fin 2) : ‖A i j‖ ≤ 1 := by
   have h : A i j = (A - 1) i j + (1 : Matrix (Fin 2) (Fin 2) ℚ_[p]) i j := by
@@ -51,6 +69,9 @@ theorem norm_entry_le_one_of_sub_entry_le {A : Matrix (Fin 2) (Fin 2) ℚ_[p]} {
   rw [h]
   exact padic_norm_add_le_of_le p (le_trans (hA i j) hε) (norm_matrix_one_entry_le_one p i j)
 
+/--
+@isnad1 id=le.2h7v.s7.48fb51179a7e from=translated src=- shape=800dc464 vocab=aaf8a921
+-/
 theorem norm_matrix_mul_entry_le {A B : Matrix (Fin 2) (Fin 2) ℚ_[p]} {a b : ℝ}
     (hA : ∀ i j, ‖A i j‖ ≤ a) (hB : ∀ i j, ‖B i j‖ ≤ b) (i j : Fin 2) :
     ‖(A * B) i j‖ ≤ a * b := by
@@ -61,6 +82,9 @@ theorem norm_matrix_mul_entry_le {A B : Matrix (Fin 2) (Fin 2) ℚ_[p]} {a b : �
   · rw [norm_mul]
     exact mul_le_mul (hA _ _) (hB _ _) (norm_nonneg _) ha0
 
+/--
+@isnad1 id=eq.2h3v.s8.ba6eea5c996e from=translated src=- shape=8ebc5a14 vocab=0e8e08da
+-/
 theorem norm_det_eq_one_of_sub_entry_le {ε : ℝ} (hε : ε < 1) (g : GL (Fin 2) ℚ_[p])
     (hg : ∀ i j, ‖((g : Matrix (Fin 2) (Fin 2) ℚ_[p]) - 1) i j‖ ≤ ε) :
     ‖(g : Matrix (Fin 2) (Fin 2) ℚ_[p]).det‖ = 1 := by
@@ -93,6 +117,9 @@ theorem norm_det_eq_one_of_sub_entry_le {ε : ℝ} (hε : ε < 1) (g : GL (Fin 2
       exact padic_norm_mul_le_of_le_of_le_one p (hg 0 1) (le_trans (hg 1 0) (le_of_lt hε))
   exact lt_of_le_of_lt hbound hε
 
+/--
+@isnad1 id=le.2h5v.s9.5956147c7758 from=translated src=- shape=5443460d vocab=1dea2863
+-/
 theorem norm_inv_entry_le_one_of_sub_entry_le {ε : ℝ} (hε : ε < 1) (g : GL (Fin 2) ℚ_[p])
     (hg : ∀ i j, ‖((g : Matrix (Fin 2) (Fin 2) ℚ_[p]) - 1) i j‖ ≤ ε) (i j : Fin 2) :
     ‖((g⁻¹ : GL (Fin 2) ℚ_[p]) : Matrix (Fin 2) (Fin 2) ℚ_[p]) i j‖ ≤ 1 := by
@@ -110,6 +137,9 @@ theorem norm_inv_entry_le_one_of_sub_entry_le {ε : ℝ} (hε : ε < 1) (g : GL 
   · simpa using hentry 1 0
   · simpa using hentry 0 0
 
+/--
+@isnad1 id=le.2h5v.s9.b2052f966e91 from=translated src=- shape=07570340 vocab=1dea2863
+-/
 theorem inv_sub_one_entry_le {ε : ℝ} (hε : ε < 1) (g : GL (Fin 2) ℚ_[p])
     (hg : ∀ i j, ‖((g : Matrix (Fin 2) (Fin 2) ℚ_[p]) - 1) i j‖ ≤ ε) (i j : Fin 2) :
     ‖(((g⁻¹ : GL (Fin 2) ℚ_[p]) : Matrix (Fin 2) (Fin 2) ℚ_[p]) - 1) i j‖ ≤ ε := by
@@ -229,6 +259,9 @@ def gl2CongruenceSubgroup (n : ℕ) : Subgroup (GL (Fin 2) ℚ_[p]) where
       have := norm_matrix_mul_entry_le p hhinventry hg2 i j
       rwa [one_mul] at this
 
+/--
+@isnad1 id=iff.0h3v.s10.60f44fe14113 from=translated src=- shape=fe166604 vocab=75279647
+-/
 theorem mem_gl2CongruenceSubgroup_iff {n : ℕ} {g : GL (Fin 2) ℚ_[p]} :
     g ∈ gl2CongruenceSubgroup p n ↔
       (∀ i j, ‖((g : Matrix (Fin 2) (Fin 2) ℚ_[p]) - 1) i j‖ ≤ (p : ℝ) ^ (-(n : ℤ))) ∧
@@ -236,6 +269,9 @@ theorem mem_gl2CongruenceSubgroup_iff {n : ℕ} {g : GL (Fin 2) ℚ_[p]} :
         ≤ (p : ℝ) ^ (-(n : ℤ))) :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.1h3v.s9.9a7ec376fbb9 from=translated src=- shape=fe9e315e vocab=15c11a18
+-/
 theorem mem_gl2CongruenceSubgroup_iff_of_one_le {n : ℕ} (hn : 1 ≤ n) {g : GL (Fin 2) ℚ_[p]} :
     g ∈ gl2CongruenceSubgroup p n ↔
       ∀ i j, ‖((g : Matrix (Fin 2) (Fin 2) ℚ_[p]) - 1) i j‖ ≤ (p : ℝ) ^ (-(n : ℤ)) := by
@@ -245,6 +281,9 @@ theorem mem_gl2CongruenceSubgroup_iff_of_one_le {n : ℕ} (hn : 1 ≤ n) {g : GL
   · intro hg
     exact ⟨hg, inv_sub_one_entry_le p (radius_lt_one p hn) g hg⟩
 
+/--
+@isnad1 id=le.1h3v.s8.9614a42ad7e3 from=translated src=- shape=5173e671 vocab=8e582e01
+-/
 theorem gl2CongruenceSubgroup_antitone {m n : ℕ} (h : m ≤ n) :
     gl2CongruenceSubgroup p n ≤ gl2CongruenceSubgroup p m := by
   intro g hg
@@ -252,6 +291,9 @@ theorem gl2CongruenceSubgroup_antitone {m n : ℕ} (h : m ≤ n) :
   exact ⟨fun i j => le_trans (hg.1 i j) (radius_antitone p h),
     fun i j => le_trans (hg.2 i j) (radius_antitone p h)⟩
 
+/--
+@isnad1 id=iff.0h4v.s7.593f7c5312bc from=translated src=- shape=ff2d9106 vocab=ac949abf
+-/
 theorem norm_sub_one_entry_le_one_iff {M : Matrix (Fin 2) (Fin 2) ℚ_[p]} {i j : Fin 2} :
     ‖(M - 1) i j‖ ≤ 1 ↔ ‖M i j‖ ≤ 1 := by
   constructor
@@ -267,6 +309,9 @@ theorem norm_sub_one_entry_le_one_iff {M : Matrix (Fin 2) (Fin 2) ℚ_[p]} {i j 
     rw [norm_neg]
     exact norm_matrix_one_entry_le_one p i j
 
+/--
+@isnad1 id=isopen.0h2v.s8.dde9aeeed7fa from=translated src=- shape=04e55d0c vocab=d12afde4
+-/
 theorem isOpen_coe_gl2CongruenceSubgroup (n : ℕ) :
     IsOpen ((gl2CongruenceSubgroup p n : Subgroup (GL (Fin 2) ℚ_[p])) :
       Set (GL (Fin 2) ℚ_[p])) := by
@@ -293,6 +338,9 @@ theorem isOpen_coe_gl2CongruenceSubgroup (n : ℕ) :
     exact (IsUltrametricDist.isOpen_closedBall _ hradius).preimage
       (Units.continuous_coe_inv.matrix_elem i j)
 
+/--
+@isnad1 id=isclopen.0h2v.s8.7466605b6652 from=translated src=- shape=04e55d0c vocab=40162e3e
+-/
 theorem isClopen_coe_gl2CongruenceSubgroup (n : ℕ) :
     IsClopen ((gl2CongruenceSubgroup p n : Subgroup (GL (Fin 2) ℚ_[p])) :
       Set (GL (Fin 2) ℚ_[p])) :=
@@ -320,6 +368,9 @@ private theorem conj_entry_bound {ε : ℝ} {k a : GL (Fin 2) ℚ_[p]}
   have h2 := norm_matrix_mul_entry_le p h1 hk' i j
   rwa [mul_one] at h2
 
+/--
+@isnad1 id=mem.2h4v.s10.d4af486bbe68 from=translated src=- shape=cd32a81c vocab=08f2e8e1
+-/
 theorem conj_mem_gl2CongruenceSubgroup {n : ℕ} {k g : GL (Fin 2) ℚ_[p]}
     (hk : k ∈ gl2CongruenceSubgroup p 0) (hg : g ∈ gl2CongruenceSubgroup p n) :
     k * g * k⁻¹ ∈ gl2CongruenceSubgroup p n := by
@@ -341,6 +392,9 @@ theorem conj_mem_gl2CongruenceSubgroup {n : ℕ} {k g : GL (Fin 2) ℚ_[p]}
     rw [hrw]
     exact conj_entry_bound p hkentry hkinventry hg2 i j
 
+/--
+@isnad1 id=normal.0h2v.s9.7b8ae204c249 from=translated src=- shape=1752361e vocab=ef95b079
+-/
 theorem normal_subgroupOf_gl2CongruenceSubgroup (n : ℕ) :
     ((gl2CongruenceSubgroup p n).subgroupOf (gl2CongruenceSubgroup p 0)).Normal := by
   constructor
@@ -361,18 +415,27 @@ noncomputable def gl2UnipotentPadic (x : ℚ_[p]) : GL (Fin 2) ℚ_[p] :=
     fin_cases i <;> fin_cases j <;>
       simp [Matrix.mul_apply, Fin.sum_univ_two]⟩
 
+/--
+@isnad1 id=eq.0h2v.s8.de1288c3082c from=translated src=- shape=997d3d2b vocab=ef9baa32
+-/
 @[simp]
 theorem coe_gl2UnipotentPadic (x : ℚ_[p]) :
     ((gl2UnipotentPadic p x : GL (Fin 2) ℚ_[p]) : Matrix (Fin 2) (Fin 2) ℚ_[p])
       = !![1, x; 0, 1] :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.84dfef61ed89 from=translated src=- shape=6aede848 vocab=ec2f7aa5
+-/
 @[simp]
 theorem coe_gl2UnipotentPadic_inv (x : ℚ_[p]) :
     (((gl2UnipotentPadic p x)⁻¹ : GL (Fin 2) ℚ_[p]) : Matrix (Fin 2) (Fin 2) ℚ_[p])
       = !![1, -x; 0, 1] :=
   rfl
 
+/--
+@isnad1 id=mem.1h3v.s8.1444b1c0875b from=translated src=- shape=59a25b77 vocab=4730a56c
+-/
 theorem gl2UnipotentPadic_mem_gl2CongruenceSubgroup {x : ℚ_[p]} {n : ℕ}
     (hx : ‖x‖ ≤ (p : ℝ) ^ (-(n : ℤ))) :
     gl2UnipotentPadic p x ∈ gl2CongruenceSubgroup p n := by
@@ -404,6 +467,9 @@ theorem gl2UnipotentPadic_mem_gl2CongruenceSubgroup {x : ℚ_[p]} {n : ℕ}
     · simp
     · simp
 
+/--
+@isnad1 id=ne.1h2v.s7.e05563f051ee from=translated src=- shape=62ac4edc vocab=1bf131e5
+-/
 theorem gl2UnipotentPadic_ne_one {x : ℚ_[p]} (hx : x ≠ 0) : gl2UnipotentPadic p x ≠ 1 := by
   intro h
   have hcoe : ((gl2UnipotentPadic p x : GL (Fin 2) ℚ_[p]) : Matrix (Fin 2) (Fin 2) ℚ_[p]) 0 1
@@ -414,6 +480,9 @@ theorem gl2UnipotentPadic_ne_one {x : ℚ_[p]} (hx : x ≠ 0) : gl2UnipotentPadi
     _ = (1 : Matrix (Fin 2) (Fin 2) ℚ_[p]) 0 1 := hcoe
     _ = 0 := by rw [Matrix.one_apply_ne (by decide)]
 
+/--
+@isnad1 id=ne.0h2v.s8.1fe9ca841689 from=translated src=- shape=a65dc5ff vocab=cca8c259
+-/
 theorem gl2CongruenceSubgroup_ne_bot (n : ℕ) : gl2CongruenceSubgroup p n ≠ ⊥ := by
   intro hbot
   have hp0 : (p : ℚ_[p]) ≠ 0 :=
@@ -425,6 +494,9 @@ theorem gl2CongruenceSubgroup_ne_bot (n : ℕ) : gl2CongruenceSubgroup p n ≠ �
   rw [hbot, Subgroup.mem_bot] at hmem
   exact gl2UnipotentPadic_ne_one p hxne hmem
 
+/--
+@isnad1 id=lt.0h1v.s8.932c75dfcbc9 from=translated src=- shape=fde6ddce vocab=e5b86455
+-/
 theorem gl2CongruenceSubgroup_one_lt_zero :
     gl2CongruenceSubgroup p 1 < gl2CongruenceSubgroup p 0 := by
   rw [SetLike.lt_iff_le_and_exists]
@@ -448,6 +520,9 @@ section NeighbourhoodBasis
 
 variable (p : ℕ) [Fact p.Prime]
 
+/--
+@isnad1 id=ex.1h2v.s8.0ff421dc5d4a from=translated src=- shape=238df515 vocab=7776a1be
+-/
 theorem exists_entrywise_radius_subset_of_mem_nhds_one
     {W : Set (Matrix (Fin 2) (Fin 2) ℚ_[p])}
     (hW : W ∈ 𝓝 (1 : Matrix (Fin 2) (Fin 2) ℚ_[p])) :
@@ -478,6 +553,9 @@ theorem exists_entrywise_radius_subset_of_mem_nhds_one
       _ < ε := hn
   exact hball hmem
 
+/--
+@isnad1 id=ex.1h2v.s9.8b39563273ab from=translated src=- shape=d126558c vocab=95972299
+-/
 theorem exists_gl2CongruenceSubgroup_subset_of_mem_nhds_one
     {U : Set (GL (Fin 2) ℚ_[p])} (hU : U ∈ 𝓝 (1 : GL (Fin 2) ℚ_[p])) :
     ∃ n : ℕ, (gl2CongruenceSubgroup p n : Set (GL (Fin 2) ℚ_[p])) ⊆ U := by
@@ -509,6 +587,9 @@ theorem exists_gl2CongruenceSubgroup_subset_of_mem_nhds_one
   rw [Units.embedProduct_apply]
   exact Set.mk_mem_prod (hn _ hg.1).1 (hn _ hg.2).2
 
+/--
+@isnad1 id=hasbasis.0h1v.s9.1831988e39cd from=translated src=- shape=666d2f78 vocab=52139549
+-/
 theorem hasBasis_nhds_one_gl2CongruenceSubgroup :
     (𝓝 (1 : GL (Fin 2) ℚ_[p])).HasBasis (fun _ : ℕ => True)
       (fun n => (gl2CongruenceSubgroup p n : Set (GL (Fin 2) ℚ_[p]))) := by

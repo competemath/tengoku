@@ -32,6 +32,9 @@ def integralCoeffs : Subring (LaurentSeries L) where
     rw [HahnSeries.coeff_mul]
     exact A.sum_mem fun ij _ => A.mul_mem (hx ij.1) (hy ij.2)
 
+/--
+@isnad1 id=iff.0h3v.s7.b2f5b97b02c4 from=translated src=- shape=7b02680a vocab=d658bf13
+-/
 theorem mem_integralCoeffs {x : LaurentSeries L} :
     x ∈ integralCoeffs A ↔ ∀ n : ℤ, x.coeff n ∈ A :=
   Iff.rfl
@@ -70,6 +73,9 @@ variable {k : Type*} [CommRing k] (red : A →+* k)
 def coeffRed : integralCoeffs A →+* LaurentSeries k :=
   (coeffMap red).comp (packCoeffsHom A)
 
+/--
+@isnad1 id=eq.0h6v.s11.8a46be51edc0 from=translated src=- shape=b2b52228 vocab=3e03078b
+-/
 @[simp]
 theorem coeffRed_coeff (x : integralCoeffs A) (n : ℤ) :
     (coeffRed A red x).coeff n = red ⟨(x : LaurentSeries L).coeff n, x.2 n⟩ :=
@@ -86,6 +92,9 @@ variable (R : Subring (LaurentSeries L)) (hR : R ≤ integralCoeffs A)
 def redRes : R →+* LaurentSeries k :=
   (coeffRed A red).comp (Subring.inclusion hR)
 
+/--
+@isnad1 id=eq.1h6v.s11.8df7c8362f56 from=translated src=- shape=c4fe36b9 vocab=21523973
+-/
 theorem redRes_apply (r : R) :
     redRes A red R hR r = coeffRed A red ⟨(r : LaurentSeries L), hR r.2⟩ :=
   rfl
@@ -93,13 +102,22 @@ theorem redRes_apply (r : R) :
 def redKer : Ideal R :=
   RingHom.ker (redRes A red R hR)
 
+/--
+@isnad1 id=isprime.1h5v.s9.bbe33e7c234d from=translated src=- shape=a9a21718 vocab=2e312e47
+-/
 theorem redKer_isPrime : (redKer A red R hR).IsPrime :=
   RingHom.ker_isPrime _
 
+/--
+@isnad1 id=iff.1h6v.s11.a7da55e74d84 from=translated src=- shape=48cbdeba vocab=d77fab97
+-/
 theorem notMem_redKer_iff {s : R} :
     s ∉ redKer A red R hR ↔ redRes A red R hR s ≠ 0 := by
   rw [redKer, not_iff_not, RingHom.mem_ker]
 
+/--
+@isnad1 id=not.1h5v.s11.6b27d8604522 from=translated src=- shape=6b1d8675 vocab=a8a92129
+-/
 theorem one_notMem_redKer : (1 : R) ∉ redKer A red R hR := by
   rw [notMem_redKer_iff, map_one]
   exact one_ne_zero
@@ -128,11 +146,17 @@ def localizedAtKer : Subring (LaurentSeries L) where
         = (f * s) * (g * t) := by ring
       _ = (r : LaurentSeries L) * u := by rw [hf, hg]
 
+/--
+@isnad1 id=iff.1h6v.s11.fea87b9d7dea from=translated src=- shape=a16eec86 vocab=78a46ca8
+-/
 theorem mem_localizedAtKer {f : LaurentSeries L} :
     f ∈ localizedAtKer A red R hR ↔
       ∃ r s : R, s ∉ redKer A red R hR ∧ f * s = r :=
   Iff.rfl
 
+/--
+@isnad1 id=le.1h5v.s8.a92bd08d531c from=translated src=- shape=e70333d6 vocab=775e800e
+-/
 theorem subring_le_localizedAtKer : R ≤ localizedAtKer A red R hR := fun r hr =>
   ⟨⟨r, hr⟩, 1, one_notMem_redKer A red R hR, by simp⟩
 
@@ -150,10 +174,16 @@ def redLoc (f : localizedAtKer A red R hR) : LaurentSeries k :=
   redRes A red R hR (Classical.choose f.2) *
     (redRes A red R hR (Classical.choose (Classical.choose_spec f.2)))⁻¹
 
+/--
+@isnad1 id=ne.2h6v.s11.b593eb9967b0 from=translated src=- shape=198bdf5e vocab=d77fab97
+-/
 theorem redRes_ne_zero_of_notMem {s : R} (hs : s ∉ redKer A red R hR) :
     redRes A red R hR s ≠ 0 :=
   (notMem_redKer_iff A red R hR).mp hs
 
+/--
+@isnad1 id=eq.2h8v.s11.40bd90153e27 from=translated src=- shape=319ccc2f vocab=443cfb5c
+-/
 theorem redLoc_spec (f : localizedAtKer A red R hR) {r s : R}
     (hfs : (f : LaurentSeries L) * s = r) :
     redLoc f * redRes A red R hR s = redRes A red R hR r := by
@@ -183,6 +213,9 @@ theorem redLoc_spec (f : localizedAtKer A red R hR) {r s : R}
     _ = redRes A red R hR r
         * redRes A red R hR (Classical.choose (Classical.choose_spec f.2)) := hred
 
+/--
+@isnad1 id=eq.1h6v.s10.5e78121ba865 from=translated src=- shape=1377406b vocab=f62fcfa8
+-/
 theorem redLoc_coe (r : R) :
     redLoc ⟨(r : LaurentSeries L), subring_le_localizedAtKer A red R hR r.2⟩
       = redRes A red R hR r := by
@@ -245,6 +278,9 @@ def redLocHom : localizedAtKer A red R hR →+* LaurentSeries k where
           rw [map_add, map_mul, map_mul, hfspec, hgspec]
       _ = (redLoc f + redLoc g) * (redRes A red R hR s * redRes A red R hR t) := by ring
 
+/--
+@isnad1 id=eq.1h6v.s10.aa1166621f90 from=translated src=- shape=23776efc vocab=95d23566
+-/
 @[simp]
 theorem redLocHom_apply (f : localizedAtKer A red R hR) : redLocHom f = redLoc f :=
   rfl
@@ -262,20 +298,35 @@ def constSeries : A →+* LaurentSeries L :=
 def modularRing : Subring (LaurentSeries L) :=
   Subring.closure (Set.range (constSeries A) ∪ {jqModC L, jqNModC L N})
 
+/--
+@isnad1 id=mem.0h3v.s7.6f0fa71b9ce4 from=translated src=- shape=4d8aff67 vocab=96e976b6
+-/
 theorem jqModC_mem_modularRing : jqModC L ∈ modularRing N A :=
   Subring.subset_closure (Or.inr (Set.mem_insert _ _))
 
+/--
+@isnad1 id=mem.0h3v.s7.ab44499e32f6 from=translated src=- shape=da880137 vocab=50c2072f
+-/
 theorem jqNModC_mem_modularRing : jqNModC L N ∈ modularRing N A :=
   Subring.subset_closure (Or.inr (Set.mem_insert_of_mem _ rfl))
 
+/--
+@isnad1 id=mem.0h4v.s9.e4fd2924f7a8 from=translated src=- shape=5126a11b vocab=83c8b10c
+-/
 theorem constSeries_mem_modularRing (a : A) : constSeries A a ∈ modularRing N A :=
   Subring.subset_closure (Or.inl ⟨a, rfl⟩)
 
+/--
+@isnad1 id=mem.0h2v.s6.74b498bb7692 from=translated src=- shape=802c5bc7 vocab=29f6dabc
+-/
 theorem jqModC_mem_integralCoeffs : jqModC L ∈ integralCoeffs A := by
   intro n
   rw [jqModC_eq_map_intCast, HahnSeries.map_coeff]
   exact intCast_mem A _
 
+/--
+@isnad1 id=mem.0h3v.s7.03558b059d27 from=translated src=- shape=d1f6583f vocab=bfdc117d
+-/
 theorem jqNModC_mem_integralCoeffs : jqNModC L N ∈ integralCoeffs A := by
   intro n
   by_cases h : ((N : ℕ) : ℤ) ∣ n
@@ -285,6 +336,9 @@ theorem jqNModC_mem_integralCoeffs : jqNModC L N ∈ integralCoeffs A := by
   · rw [jqNModC, qExpand_coeff_of_not_dvd _ _ h]
     exact A.zero_mem
 
+/--
+@isnad1 id=mem.0h3v.s9.fb8f917e3dc6 from=translated src=- shape=c21502d8 vocab=7d5577c0
+-/
 theorem constSeries_mem_integralCoeffs (a : A) :
     constSeries A a ∈ integralCoeffs A := by
   intro n
@@ -299,6 +353,9 @@ theorem constSeries_mem_integralCoeffs (a : A) :
   · exact a.2
   · exact A.zero_mem
 
+/--
+@isnad1 id=le.0h3v.s7.21a2cb9aa254 from=translated src=- shape=07186728 vocab=55cd7182
+-/
 theorem modularRing_le_integralCoeffs : modularRing N A ≤ integralCoeffs A := by
   rw [modularRing, Subring.closure_le]
   rintro x (⟨a, rfl⟩ | rfl | rfl)

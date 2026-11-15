@@ -36,18 +36,30 @@ def sigmaPartialNorm (σ : G →* G) (x : G) : ℕ → G
   | 0 => 1
   | r + 1 => x * σ (sigmaPartialNorm σ x r)
 
+/--
+@isnad1 id=eq.0h3v.s5.a1bb8a4f269b from=translated src=- shape=e0c09d6a vocab=33d60634
+-/
 @[simp] theorem sigmaPartialNorm_zero (σ : G →* G) (x : G) :
     sigmaPartialNorm σ x 0 = 1 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.ca19b12eac0e from=translated src=- shape=f2a0d7cc vocab=75d12816
+-/
 theorem sigmaPartialNorm_succ' (σ : G →* G) (x : G) (r : ℕ) :
     sigmaPartialNorm σ x (r + 1) = x * σ (sigmaPartialNorm σ x r) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.2a22de9e4b7d from=translated src=- shape=432d19a9 vocab=33d60634
+-/
 theorem sigmaPartialNorm_one (σ : G →* G) (x : G) :
     sigmaPartialNorm σ x 1 = x := by
   rw [sigmaPartialNorm_succ', sigmaPartialNorm_zero, map_one, mul_one]
 
 attribute [local simp] sigmaPartialNorm_one
 
+/--
+@isnad1 id=eq.0h4v.s6.d5e7ec15e57e from=translated src=- shape=f1e3ddbd vocab=2217abc1
+-/
 theorem sigmaPartialNorm_succ (σ : G →* G) (x : G) (r : ℕ) :
     sigmaPartialNorm σ x (r + 1) = sigmaPartialNorm σ x r * (⇑σ)^[r] x := by
   induction r with
@@ -63,9 +75,15 @@ theorem sigmaPartialNorm_succ (σ : G →* G) (x : G) (r : ℕ) :
 def sigmaNormPow (σ : G →* G) (ℓ : ℕ) (x : G) : G :=
   sigmaPartialNorm σ x ℓ
 
+/--
+@isnad1 id=eq.0h4v.s5.7aaced657a1f from=translated src=- shape=0b46df9b vocab=cf628416
+-/
 theorem sigmaNormPow_def (σ : G →* G) (ℓ : ℕ) (x : G) :
     sigmaNormPow σ ℓ x = sigmaPartialNorm σ x ℓ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.cf9bb0109af6 from=translated src=- shape=81c981fc vocab=86a5b8e1
+-/
 theorem sigmaPartialNorm_sigmaConjElt (σ : G →* G) (h x : G) (r : ℕ) :
     sigmaPartialNorm σ (h⁻¹ * x * σ h) r
       = h⁻¹ * sigmaPartialNorm σ x r * (⇑σ)^[r] h := by
@@ -81,11 +99,17 @@ theorem sigmaPartialNorm_sigmaConjElt (σ : G →* G) (h x : G) (r : ℕ) :
         _ = h⁻¹ * sigmaPartialNorm σ x (r + 1) * (⇑σ)^[r + 1] h := by
               rw [← sigmaPartialNorm_succ']
 
+/--
+@isnad1 id=eq.1h5v.s7.bcd9a72f9da9 from=translated src=- shape=313f5903 vocab=b8a9a781
+-/
 theorem sigmaNormPow_sigmaConjElt (σ : G →* G) (ℓ : ℕ) {h : G}
     (hσh : (⇑σ)^[ℓ] h = h) (x : G) :
     sigmaNormPow σ ℓ (h⁻¹ * x * σ h) = h⁻¹ * sigmaNormPow σ ℓ x * h := by
   rw [sigmaNormPow_def, sigmaNormPow_def, sigmaPartialNorm_sigmaConjElt, hσh]
 
+/--
+@isnad1 id=eq.1h4v.s7.0046936b14e0 from=translated src=- shape=c48d37ef vocab=b8a9a781
+-/
 theorem map_sigmaNormPow (σ : G →* G) (ℓ : ℕ) {x : G} (hσx : (⇑σ)^[ℓ] x = x) :
     σ (sigmaNormPow σ ℓ x) = x⁻¹ * sigmaNormPow σ ℓ x * x := by
   have hkey : x * σ (sigmaPartialNorm σ x ℓ) = sigmaPartialNorm σ x ℓ * x := by
@@ -98,6 +122,9 @@ theorem map_sigmaNormPow (σ : G →* G) (ℓ : ℕ) {x : G} (hσx : (⇑σ)^[�
     _ = x⁻¹ * (sigmaPartialNorm σ x ℓ * x) := by rw [hkey]
     _ = x⁻¹ * sigmaPartialNorm σ x ℓ * x := by group
 
+/--
+@isnad1 id=eq.1h5v.s7.305e9affc53f from=translated src=- shape=a0d1efca vocab=c0411189
+-/
 theorem iterate_map_sigmaNormPow (σ : G →* G) (ℓ : ℕ) {x : G}
     (hσx : (⇑σ)^[ℓ] x = x) (r : ℕ) :
     (⇑σ)^[r] (sigmaNormPow σ ℓ x)
@@ -125,6 +152,9 @@ section Transport
 
 variable {G H : Type*} [Group G] [Group H]
 
+/--
+@isnad1 id=eq.1h7v.s8.c72f1c776cad from=translated src=- shape=0fd5743b vocab=ca4ca5e9
+-/
 theorem hom_sigmaPartialNorm (σ : G →* G) (τ : H →* H) (f : G →* H)
     (hf : ∀ x, f (σ x) = τ (f x)) (x : G) (r : ℕ) :
     f (sigmaPartialNorm σ x r) = sigmaPartialNorm τ (f x) r := by
@@ -132,17 +162,26 @@ theorem hom_sigmaPartialNorm (σ : G →* G) (τ : H →* H) (f : G →* H)
   | zero => simp
   | succ r ih => rw [sigmaPartialNorm_succ', sigmaPartialNorm_succ', map_mul, hf, ih]
 
+/--
+@isnad1 id=eq.1h7v.s8.275024cac555 from=translated src=- shape=3c6336b4 vocab=294aa3be
+-/
 theorem hom_sigmaNormPow (σ : G →* G) (τ : H →* H) (f : G →* H)
     (hf : ∀ x, f (σ x) = τ (f x)) (ℓ : ℕ) (x : G) :
     f (sigmaNormPow σ ℓ x) = sigmaNormPow τ ℓ (f x) :=
   hom_sigmaPartialNorm σ τ f hf x ℓ
 
+/--
+@isnad1 id=eq.0h3v.s5.e92353981c19 from=translated src=- shape=29eb8bb8 vocab=d08efc82
+-/
 theorem sigmaPartialNorm_id (x : G) (r : ℕ) :
     sigmaPartialNorm (MonoidHom.id G) x r = x ^ r := by
   induction r with
   | zero => simp
   | succ r ih => rw [sigmaPartialNorm_succ', MonoidHom.id_apply, ih, pow_succ']
 
+/--
+@isnad1 id=eq.0h4v.s6.2a64edf0129b from=translated src=- shape=40eea929 vocab=d5c3c9aa
+-/
 theorem sigmaPartialNorm_eq_prod_map_range (σ : G →* G) (x : G) (r : ℕ) :
     sigmaPartialNorm σ x r = ((List.range r).map fun i => (⇑σ)^[i] x).prod := by
   induction r with
@@ -151,6 +190,9 @@ theorem sigmaPartialNorm_eq_prod_map_range (σ : G →* G) (x : G) (r : ℕ) :
       rw [sigmaPartialNorm_succ, ih, List.range_succ, List.map_append, List.prod_append,
         List.map_singleton, List.prod_singleton]
 
+/--
+@isnad1 id=eq.1h4v.s6.2e66cdafb49a from=translated src=- shape=14d413b8 vocab=4e4984e1
+-/
 theorem sigmaPartialNorm_of_map_eq (σ : G →* G) {x : G} (hx : σ x = x) (r : ℕ) :
     sigmaPartialNorm σ x r = x ^ r := by
   induction r with
@@ -165,6 +207,9 @@ section CommTransport
 
 variable {G : Type*} [CommGroup G]
 
+/--
+@isnad1 id=eq.0h4v.s6.6e1019493c1c from=translated src=- shape=e353daf9 vocab=3310cf8c
+-/
 theorem sigmaPartialNorm_eq_prod_range (σ : G →* G) (x : G) (r : ℕ) :
     sigmaPartialNorm σ x r = ∏ i ∈ Finset.range r, (⇑σ)^[i] x := by
   induction r with
@@ -180,6 +225,9 @@ variable {L : Type*} [CommRing L]
 
 open Matrix
 
+/--
+@isnad1 id=eq.0h7v.s8.409373cd5e9d from=translated src=- shape=08b490e4 vocab=37d98185
+-/
 theorem iterate_generalLinearGroup_map_apply (σ : L →+* L) (r : ℕ) (δ : GL n L) (i j : n) :
     ((Matrix.GeneralLinearGroup.map (n := n) σ)^[r] δ) i j = (⇑σ)^[r] (δ i j) := by
   induction r generalizing δ with
@@ -188,18 +236,27 @@ theorem iterate_generalLinearGroup_map_apply (σ : L →+* L) (r : ℕ) (δ : GL
       rw [Function.iterate_succ_apply, Function.iterate_succ_apply, ih,
         Matrix.GeneralLinearGroup.map_apply]
 
+/--
+@isnad1 id=eq.1h5v.s8.07768ab450a3 from=translated src=- shape=56abb3f8 vocab=99d7bb65
+-/
 theorem iterate_generalLinearGroup_map_eq_self {σ : L →+* L} {ℓ : ℕ}
     (hσ : ∀ a : L, (⇑σ)^[ℓ] a = a) (δ : GL n L) :
     (Matrix.GeneralLinearGroup.map (n := n) σ)^[ℓ] δ = δ := by
   ext i j
   rw [iterate_generalLinearGroup_map_apply, hσ]
 
+/--
+@isnad1 id=eq.0h5v.s9.0c303d315717 from=translated src=- shape=acaf61cd vocab=ea6aa237
+-/
 theorem det_sigmaNormPow (σ : L →+* L) (ℓ : ℕ) (δ : GL n L) :
     Matrix.GeneralLinearGroup.det (sigmaNormPow (Matrix.GeneralLinearGroup.map σ) ℓ δ)
       = sigmaNormPow (Units.map (σ : L →* L)) ℓ (Matrix.GeneralLinearGroup.det δ) :=
   hom_sigmaNormPow _ _ Matrix.GeneralLinearGroup.det
     (fun x => Matrix.GeneralLinearGroup.map_det σ x) ℓ δ
 
+/--
+@isnad1 id=eq.1h6v.s9.5b486476cd02 from=translated src=- shape=91bc86a4 vocab=bd2d925d
+-/
 theorem sigmaNormPow_sigmaConj_generalLinearGroup {σ : L →+* L} {ℓ : ℕ}
     (hσ : ∀ a : L, (⇑σ)^[ℓ] a = a) (h δ : GL n L) :
     sigmaNormPow (Matrix.GeneralLinearGroup.map σ) ℓ
@@ -207,18 +264,27 @@ theorem sigmaNormPow_sigmaConj_generalLinearGroup {σ : L →+* L} {ℓ : ℕ}
       = h⁻¹ * sigmaNormPow (Matrix.GeneralLinearGroup.map σ) ℓ δ * h :=
   sigmaNormPow_sigmaConjElt _ ℓ (iterate_generalLinearGroup_map_eq_self hσ h) δ
 
+/--
+@isnad1 id=eq.1h5v.s9.5b3e1a2e7a46 from=translated src=- shape=b2d3dd74 vocab=bd2d925d
+-/
 theorem map_sigmaNormPow_generalLinearGroup {σ : L →+* L} {ℓ : ℕ}
     (hσ : ∀ a : L, (⇑σ)^[ℓ] a = a) (δ : GL n L) :
     Matrix.GeneralLinearGroup.map σ (sigmaNormPow (Matrix.GeneralLinearGroup.map σ) ℓ δ)
       = δ⁻¹ * sigmaNormPow (Matrix.GeneralLinearGroup.map σ) ℓ δ * δ :=
   map_sigmaNormPow _ ℓ (iterate_generalLinearGroup_map_eq_self hσ δ)
 
+/--
+@isnad1 id=eq.0h4v.s8.fd9fd34460c2 from=translated src=- shape=87fbbb17 vocab=39b2c4b2
+-/
 theorem coe_generalLinearGroup_map (σ : L →+* L) (δ : GL n L) :
     ((Matrix.GeneralLinearGroup.map σ δ : GL n L) : Matrix n n L)
       = (δ : Matrix n n L).map σ := by
   ext i j
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s7.6469e9ce8547 from=translated src=- shape=68c87710 vocab=a4039b09
+-/
 theorem charpoly_sigmaNormPow_map {σ : L →+* L} {ℓ : ℕ}
     (hσ : ∀ a : L, (⇑σ)^[ℓ] a = a) (δ : GL n L) :
     (Matrix.charpoly
@@ -238,6 +304,9 @@ variable {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L]
 
 omit [FiniteDimensional F L] [IsGalois F L] in
 
+/--
+@isnad1 id=eq.2h5v.s8.07fe21ac19f4 from=translated src=- shape=3c25e3b6 vocab=0deec06c
+-/
 theorem forall_algEquiv_apply_eq_of_generator {σ : L ≃ₐ[F] L}
     (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) {a : L} (ha : σ a = a)
     (τ : L ≃ₐ[F] L) : τ a = a := by
@@ -245,12 +314,18 @@ theorem forall_algEquiv_apply_eq_of_generator {σ : L ≃ₐ[F] L}
     (Subgroup.zpowers_le).mpr (MulAction.mem_stabilizer_iff.mpr ha)
   exact MulAction.mem_stabilizer_iff.mp (hle (hgen τ))
 
+/--
+@isnad1 id=mem.2h4v.s8.c50ad6e1fb01 from=translated src=- shape=22127a71 vocab=450c0ac7
+-/
 theorem mem_range_algebraMap_of_generator_apply_eq {σ : L ≃ₐ[F] L}
     (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) {a : L} (ha : σ a = a) :
     a ∈ Set.range (algebraMap F L) :=
   (IsGalois.mem_range_algebraMap_iff_fixed a).mpr
     (forall_algEquiv_apply_eq_of_generator hgen ha)
 
+/--
+@isnad1 id=eq.1h4v.s8.1cdb74364dd6 from=translated src=- shape=f50a9652 vocab=a32865a9
+-/
 theorem iterate_finrank_apply_of_generator {σ : L ≃ₐ[F] L}
     (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) (a : L) :
     (⇑σ)^[Module.finrank F L] a = a := by
@@ -260,6 +335,9 @@ theorem iterate_finrank_apply_of_generator {σ : L ≃ₐ[F] L}
 
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
+/--
+@isnad1 id=mem.1h5v.s9.6a87cadbc72c from=translated src=- shape=0237b373 vocab=e33a378b
+-/
 theorem charpoly_sigmaNormPow_mem_lifts {σ : L ≃ₐ[F] L}
     (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) (δ : GL n L) :
     Matrix.charpoly
@@ -275,6 +353,9 @@ theorem charpoly_sigmaNormPow_mem_lifts {σ : L ≃ₐ[F] L}
   simp only [Polynomial.coeff_map] at hk
   exact hk
 
+/--
+@isnad1 id=eq.1h5v.s9.b052a1c58da7 from=translated src=- shape=12cd0cae vocab=48e5114d
+-/
 theorem prod_algEquiv_eq_prod_range_of_generator {M : Type*} [CommMonoid M] {σ : L ≃ₐ[F] L}
     (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) (f : (L ≃ₐ[F] L) → M) :
     ∏ τ : L ≃ₐ[F] L, f τ = ∏ i ∈ Finset.range (Module.finrank F L), f (σ ^ i) := by
@@ -290,6 +371,9 @@ theorem prod_algEquiv_eq_prod_range_of_generator {M : Type*} [CommMonoid M] {σ 
   rw [← Fintype.prod_bijective _ hbij (fun i => f (σ ^ (i : ℕ))) f (fun _ => rfl),
     ← horder, ← Fin.prod_univ_eq_prod_range]
 
+/--
+@isnad1 id=eq.1h4v.s9.411b8e3c00e0 from=translated src=- shape=9be23c4a vocab=ab8159eb
+-/
 theorem coe_sigmaNormPow_units_eq_algebraMap_norm {σ : L ≃ₐ[F] L}
     (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) (z : Lˣ) :
     ((sigmaNormPow (Units.map ((σ : L →+* L) : L →* L)) (Module.finrank F L) z : Lˣ) : L)
@@ -323,17 +407,38 @@ variable {K : Type*} [Field K]
 
 def traceDetCompanion (t d : K) : Matrix (Fin 2) (Fin 2) K := !![0, -d; 1, t]
 
+/--
+@isnad1 id=eq.0h3v.s6.ed2e5df80ecd from=translated src=- shape=76b11507 vocab=3074404b
+-/
 @[simp] theorem traceDetCompanion_apply_00 (t d : K) : traceDetCompanion t d 0 0 = 0 := rfl
+/--
+@isnad1 id=eq.0h3v.s6.29d92ae4df61 from=translated src=- shape=cd4dbdd0 vocab=7ed0d68b
+-/
 @[simp] theorem traceDetCompanion_apply_01 (t d : K) : traceDetCompanion t d 0 1 = -d := rfl
+/--
+@isnad1 id=eq.0h3v.s6.022685903bda from=translated src=- shape=76b11507 vocab=3074404b
+-/
 @[simp] theorem traceDetCompanion_apply_10 (t d : K) : traceDetCompanion t d 1 0 = 1 := rfl
+/--
+@isnad1 id=eq.0h3v.s5.488d2925be0a from=translated src=- shape=308d63ac vocab=3074404b
+-/
 @[simp] theorem traceDetCompanion_apply_11 (t d : K) : traceDetCompanion t d 1 1 = t := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.a6d707c2b385 from=translated src=- shape=f74dbf38 vocab=f62d3a6f
+-/
 theorem det_traceDetCompanion (t d : K) : (traceDetCompanion t d).det = d := by
   simp [Matrix.det_fin_two]
 
+/--
+@isnad1 id=eq.0h3v.s5.52b282be9107 from=translated src=- shape=880fc9a7 vocab=4e0876ff
+-/
 theorem trace_traceDetCompanion (t d : K) : (traceDetCompanion t d).trace = t := by
   simp [Matrix.trace_fin_two]
 
+/--
+@isnad1 id=eq.0h5v.s7.9df72e8f9a18 from=translated src=- shape=c488c505 vocab=65135730
+-/
 theorem traceDetCompanion_map {K' : Type*} [Field K'] (f : K →+* K') (t d : K) :
     (traceDetCompanion t d).map f = traceDetCompanion (f t) (f d) := by
   ext i j
@@ -345,6 +450,9 @@ theorem eq_smul_one_of_entries (A : Matrix (Fin 2) (Fin 2) K)
   ext i j
   fin_cases i <;> fin_cases j <;> simp [h10, h01, hdiag]
 
+/--
+@isnad1 id=or.1h2v.s8.4bc42fc1c67d from=translated src=- shape=1ec2f14c vocab=be2c0b4b
+-/
 theorem entries_of_ne_smul_one (A : Matrix (Fin 2) (Fin 2) K)
     (hA : ∀ c : K, A ≠ c • (1 : Matrix (Fin 2) (Fin 2) K)) :
     A 1 0 ≠ 0 ∨ A 0 1 ≠ 0 ∨ A 0 0 ≠ A 1 1 := by
@@ -352,6 +460,9 @@ theorem entries_of_ne_smul_one (A : Matrix (Fin 2) (Fin 2) K)
   push Not at h
   exact hA (A 0 0) (eq_smul_one_of_entries A h.1 h.2.1 h.2.2)
 
+/--
+@isnad1 id=eq.0h2v.s9.16021ab82001 from=translated src=- shape=22c223b3 vocab=eeb7ed64
+-/
 theorem mul_basis10_eq (A : Matrix (Fin 2) (Fin 2) K) :
     A * !![1, A 0 0; 0, A 1 0] = !![1, A 0 0; 0, A 1 0] * traceDetCompanion A.trace A.det := by
   ext i j
@@ -359,6 +470,9 @@ theorem mul_basis10_eq (A : Matrix (Fin 2) (Fin 2) K) :
     simp [Matrix.mul_apply, Fin.sum_univ_two, traceDetCompanion, Matrix.det_fin_two,
       Matrix.trace_fin_two] <;> ring
 
+/--
+@isnad1 id=eq.0h2v.s9.b7d0a3af451d from=translated src=- shape=22c223b3 vocab=eeb7ed64
+-/
 theorem mul_basis01_eq (A : Matrix (Fin 2) (Fin 2) K) :
     A * !![0, A 0 1; 1, A 1 1] = !![0, A 0 1; 1, A 1 1] * traceDetCompanion A.trace A.det := by
   ext i j
@@ -366,6 +480,9 @@ theorem mul_basis01_eq (A : Matrix (Fin 2) (Fin 2) K) :
     simp [Matrix.mul_apply, Fin.sum_univ_two, traceDetCompanion, Matrix.det_fin_two,
       Matrix.trace_fin_two] <;> ring
 
+/--
+@isnad1 id=eq.2h2v.s10.f1f1eeb73905 from=translated src=- shape=52d86a88 vocab=eeb7ed64
+-/
 theorem mul_basis11_eq (A : Matrix (Fin 2) (Fin 2) K) (h10 : A 1 0 = 0) (h01 : A 0 1 = 0) :
     A * !![1, A 0 0; 1, A 1 1] = !![1, A 0 0; 1, A 1 1] * traceDetCompanion A.trace A.det := by
   ext i j
@@ -373,11 +490,17 @@ theorem mul_basis11_eq (A : Matrix (Fin 2) (Fin 2) K) (h10 : A 1 0 = 0) (h01 : A
     simp [Matrix.mul_apply, Fin.sum_univ_two, traceDetCompanion, Matrix.det_fin_two,
       Matrix.trace_fin_two, h10, h01] <;> ring
 
+/--
+@isnad1 id=eq.2h4v.s9.0649f3b7490d from=translated src=- shape=803549c4 vocab=4f5b323d
+-/
 theorem inv_mul_mul_eq_of_mul_eq {A P C : Matrix (Fin 2) (Fin 2) K} (hP : P.det ≠ 0)
     (h : A * P = P * C) : P⁻¹ * A * P = C := by
   have hPu : IsUnit P.det := isUnit_iff_ne_zero.mpr hP
   rw [Matrix.mul_assoc, h, ← Matrix.mul_assoc, Matrix.nonsing_inv_mul _ hPu, Matrix.one_mul]
 
+/--
+@isnad1 id=ex.1h2v.s9.fb867a8e8698 from=translated src=- shape=141507cf vocab=bb336601
+-/
 theorem exists_conj_eq_traceDetCompanion (A : Matrix (Fin 2) (Fin 2) K)
     (hA : ∀ c : K, A ≠ c • (1 : Matrix (Fin 2) (Fin 2) K)) :
     ∃ P : GL (Fin 2) K,
@@ -406,6 +529,9 @@ theorem exists_conj_eq_traceDetCompanion (A : Matrix (Fin 2) (Fin 2) K)
       exact ⟨Matrix.GeneralLinearGroup.mkOfDetNeZero _ hdet,
         inv_mul_mul_eq_of_mul_eq hdet (mul_basis10_eq A)⟩
 
+/--
+@isnad1 id=ex.1h2v.s9.1112ce00383a from=translated src=- shape=af6c6ec6 vocab=bb336601
+-/
 theorem exists_conj_eq_traceDetCompanion_units (A : GL (Fin 2) K)
     (hA : ∀ c : K, (A : Matrix (Fin 2) (Fin 2) K) ≠ c • (1 : Matrix (Fin 2) (Fin 2) K)) :
     ∃ P : GL (Fin 2) K, ((P⁻¹ * A * P : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K)
@@ -416,6 +542,9 @@ theorem exists_conj_eq_traceDetCompanion_units (A : GL (Fin 2) K)
   rw [Units.val_mul, Units.val_mul, Matrix.coe_units_inv]
   exact hP
 
+/--
+@isnad1 id=ex.4h3v.s10.05e502a97bab from=translated src=- shape=37f4f245 vocab=b94e39ee
+-/
 theorem exists_conj_of_trace_eq_det_eq (A A' : GL (Fin 2) K)
     (hA : ∀ c : K, (A : Matrix (Fin 2) (Fin 2) K) ≠ c • (1 : Matrix (Fin 2) (Fin 2) K))
     (hA' : ∀ c : K, (A' : Matrix (Fin 2) (Fin 2) K) ≠ c • (1 : Matrix (Fin 2) (Fin 2) K))
@@ -438,6 +567,9 @@ section Descent
 
 variable {F L : Type*} [Field F] [Field L] [Algebra F L]
 
+/--
+@isnad1 id=eq.1h4v.s10.f300e92afd59 from=translated src=- shape=2599ea81 vocab=89f1e32e
+-/
 theorem generalLinearGroup_map_smul_one_coe (c : F) (γ : GL (Fin 2) F)
     (hγ : (γ : Matrix (Fin 2) (Fin 2) F) = c • (1 : Matrix (Fin 2) (Fin 2) F)) :
     ((Matrix.GeneralLinearGroup.map (algebraMap F L) γ : GL (Fin 2) L) :
@@ -447,6 +579,9 @@ theorem generalLinearGroup_map_smul_one_coe (c : F) (γ : GL (Fin 2) F)
   rw [Matrix.GeneralLinearGroup.map_apply, hγ]
   fin_cases i <;> fin_cases j <;> simp
 
+/--
+@isnad1 id=eq.1h4v.s9.85f571cd9036 from=translated src=- shape=52ab818a vocab=2119e660
+-/
 theorem conj_eq_self_of_coe_eq_smul_one {K : Type*} [Field K] (A P : GL (Fin 2) K) (c : K)
     (hA : (A : Matrix (Fin 2) (Fin 2) K) = c • (1 : Matrix (Fin 2) (Fin 2) K)) :
     P⁻¹ * A * P = A := by
@@ -454,6 +589,9 @@ theorem conj_eq_self_of_coe_eq_smul_one {K : Type*} [Field K] (A P : GL (Fin 2) 
   rw [Units.val_mul, Units.val_mul, hA, Matrix.mul_smul, Matrix.mul_one, Matrix.smul_mul,
     Matrix.coe_units_inv, Matrix.nonsing_inv_mul _ (Matrix.isUnits_det_units P)]
 
+/--
+@isnad1 id=ex.3h3v.s10.46733e6d2674 from=translated src=- shape=c04f33e6 vocab=28d84d24
+-/
 theorem exists_map_eq_conj_of_trace_det_mem (A : GL (Fin 2) L)
     (htr : (A : Matrix (Fin 2) (Fin 2) L).trace ∈ Set.range (algebraMap F L))
     (hdet : (A : Matrix (Fin 2) (Fin 2) L).det ∈ Set.range (algebraMap F L))
@@ -490,6 +628,9 @@ theorem exists_map_eq_conj_of_trace_det_mem (A : GL (Fin 2) L)
     rw [hP, ← htt, ← hdd, ← traceDetCompanion_map]
     rfl
 
+/--
+@isnad1 id=ex.1h5v.s11.eaa4b339e19b from=translated src=- shape=7d2567fc vocab=b52b4122
+-/
 theorem exists_conj_of_map_conj_map (γ γ' : GL (Fin 2) F) (P : GL (Fin 2) L)
     (h : Matrix.GeneralLinearGroup.map (algebraMap F L) γ'
       = P⁻¹ * Matrix.GeneralLinearGroup.map (algebraMap F L) γ * P) :
@@ -550,6 +691,9 @@ theorem exists_conj_of_map_conj_map (γ γ' : GL (Fin 2) F) (P : GL (Fin 2) L)
 
 variable [FiniteDimensional F L] [IsGalois F L]
 
+/--
+@isnad1 id=ex.2h5v.s11.19ff1d60353c from=translated src=- shape=ace590cb vocab=1cbf939b
+-/
 theorem exists_map_eq_conj_of_map_eq_conj {σ : L ≃ₐ[F] L}
     (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) (A B : GL (Fin 2) L)
     (hA : Matrix.GeneralLinearGroup.map (σ : L →+* L) A = B⁻¹ * A * B) :
@@ -603,6 +747,9 @@ section NormCorrespondence
 
 variable {F L : Type*} [Field F] [Field L] [Algebra F L] [FiniteDimensional F L] [IsGalois F L]
 
+/--
+@isnad1 id=ex.1h4v.s10.4da710150e8f from=translated src=- shape=775a20d8 vocab=9179946a
+-/
 theorem exists_map_eq_conj_sigmaNormPow {σ : L ≃ₐ[F] L}
     (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) (δ : GL (Fin 2) L) :
     ∃ γ : GL (Fin 2) F, ∃ P : GL (Fin 2) L,
@@ -614,6 +761,9 @@ theorem exists_map_eq_conj_sigmaNormPow {σ : L ≃ₐ[F] L}
 
 omit [FiniteDimensional F L] [IsGalois F L] in
 
+/--
+@isnad1 id=ex.2h7v.s11.777403c2814f from=translated src=- shape=41650d29 vocab=b52b4122
+-/
 theorem exists_conj_of_conj_eq_map_of_conj_eq_map {N : GL (Fin 2) L} {γ γ' : GL (Fin 2) F}
     {P P' : GL (Fin 2) L}
     (hγ : P⁻¹ * N * P = Matrix.GeneralLinearGroup.map (algebraMap F L) γ)
@@ -625,6 +775,9 @@ theorem exists_conj_of_conj_eq_map_of_conj_eq_map {N : GL (Fin 2) L} {γ γ' : G
 
 omit [FiniteDimensional F L] [IsGalois F L] in
 
+/--
+@isnad1 id=ex.2h9v.s11.e274276a2ca7 from=translated src=- shape=93c99429 vocab=fa103500
+-/
 theorem exists_conj_of_conj_sigmaNormPow_of_conj_sigmaNormPow {σ : L ≃ₐ[F] L} {ℓ : ℕ}
     {δ : GL (Fin 2) L} {γ γ' : GL (Fin 2) F} {P P' : GL (Fin 2) L}
     (hγ : P⁻¹ * sigmaNormPow (Matrix.GeneralLinearGroup.map (σ : L →+* L)) ℓ δ * P
@@ -634,6 +787,9 @@ theorem exists_conj_of_conj_sigmaNormPow_of_conj_sigmaNormPow {σ : L ≃ₐ[F] 
     ∃ Q : GL (Fin 2) F, γ' = Q⁻¹ * γ * Q :=
   exists_conj_of_conj_eq_map_of_conj_eq_map hγ hγ'
 
+/--
+@isnad1 id=eq.2h7v.s12.b8d68d7f00b7 from=translated src=- shape=39f1c48e vocab=9179946a
+-/
 theorem conj_sigmaNormPow_sigmaConj {σ : L ≃ₐ[F] L}
     (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) {δ : GL (Fin 2) L} {γ : GL (Fin 2) F}
     {P : GL (Fin 2) L}
@@ -649,6 +805,9 @@ theorem conj_sigmaNormPow_sigmaConj {σ : L ≃ₐ[F] L}
 
 omit [FiniteDimensional F L] [IsGalois F L] in
 
+/--
+@isnad1 id=eq.1h5v.s10.c1b2a2f8b1b8 from=translated src=- shape=5b35dd7b vocab=d86882ac
+-/
 theorem algebraMap_det_eq_det_of_conj_eq_map {N : GL (Fin 2) L} {γ : GL (Fin 2) F}
     {P : GL (Fin 2) L} (hγ : P⁻¹ * N * P = Matrix.GeneralLinearGroup.map (algebraMap F L) γ) :
     algebraMap F L (γ : Matrix (Fin 2) (Fin 2) F).det = (N : Matrix (Fin 2) (Fin 2) L).det := by
@@ -657,6 +816,9 @@ theorem algebraMap_det_eq_det_of_conj_eq_map {N : GL (Fin 2) L} {γ : GL (Fin 2)
   rw [h, RingHom.map_det, RingHom.mapMatrix_apply]
   rfl
 
+/--
+@isnad1 id=eq.2h6v.s10.89505d87144f from=translated src=- shape=20346edd vocab=254ed992
+-/
 theorem det_eq_norm_det_of_conj_sigmaNormPow {σ : L ≃ₐ[F] L}
     (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) {δ : GL (Fin 2) L} {γ : GL (Fin 2) F}
     {P : GL (Fin 2) L}
@@ -673,6 +835,9 @@ theorem det_eq_norm_det_of_conj_sigmaNormPow {σ : L ≃ₐ[F] L}
 
 omit [FiniteDimensional F L] [IsGalois F L] in
 
+/--
+@isnad1 id=eq.1h5v.s10.d1fbb53aec92 from=translated src=- shape=7d33b8e0 vocab=e3ba165b
+-/
 theorem charpoly_map_eq_charpoly_of_conj_eq_map {N : GL (Fin 2) L} {γ : GL (Fin 2) F}
     {P : GL (Fin 2) L} (hγ : P⁻¹ * N * P = Matrix.GeneralLinearGroup.map (algebraMap F L) γ) :
     (γ : Matrix (Fin 2) (Fin 2) F).charpoly.map (algebraMap F L)
@@ -692,6 +857,9 @@ section NormEquivVocab
 
 variable {F L : Type*} [Field F] [Field L] [Algebra F L]
 
+/--
+@isnad1 id=iff.0h4v.s10.7db56ce40d8f from=translated src=- shape=3b571180 vocab=4cf4ddb2
+-/
 theorem isSigmaConj_iff_exists_eq_inv_mul_mul_map (σ : L →+* L) (δ₁ δ₂ : GL (Fin 2) L) :
     AutomorphicForm.IsSigmaConj σ δ₁ δ₂
       ↔ ∃ h : GL (Fin 2) L, δ₂ = h⁻¹ * δ₁ * Matrix.GeneralLinearGroup.map σ h := by
@@ -720,15 +888,24 @@ def SigmaConjClasses (σ : L ≃ₐ[F] L) : Type _ := Quotient (sigmaConjSetoid 
 def SigmaConjClasses.mk (σ : L ≃ₐ[F] L) (δ : GL (Fin 2) L) : SigmaConjClasses σ :=
   Quotient.mk (sigmaConjSetoid σ) δ
 
+/--
+@isnad1 id=surjecti.0h3v.s6.0c2ddbbc98be from=translated src=- shape=ff77f320 vocab=52657fae
+-/
 theorem SigmaConjClasses.mk_surjective (σ : L ≃ₐ[F] L) :
     Function.Surjective (SigmaConjClasses.mk σ) :=
   Quotient.mk_surjective
 
+/--
+@isnad1 id=iff.0h5v.s7.4238248edfcf from=translated src=- shape=8901df2a vocab=447a8740
+-/
 theorem SigmaConjClasses.mk_eq_mk_iff {σ : L ≃ₐ[F] L} {δ₁ δ₂ : GL (Fin 2) L} :
     SigmaConjClasses.mk σ δ₁ = SigmaConjClasses.mk σ δ₂
       ↔ AutomorphicForm.IsSigmaConj (σ : L →+* L) δ₁ δ₂ :=
   Quotient.eq (r := sigmaConjSetoid σ)
 
+/--
+@isnad1 id=iff.0h5v.s10.44f4563ee870 from=translated src=- shape=5f4aa53f vocab=152c1859
+-/
 theorem SigmaConjClasses.mk_eq_mk_iff_exists_eq_inv_mul_mul_map {σ : L ≃ₐ[F] L} {δ₁ δ₂ : GL (Fin 2) L} :
     SigmaConjClasses.mk σ δ₁ = SigmaConjClasses.mk σ δ₂
       ↔ ∃ h : GL (Fin 2) L, δ₂ = h⁻¹ * δ₁ * Matrix.GeneralLinearGroup.map (σ : L →+* L) h :=
@@ -749,10 +926,16 @@ noncomputable def normRep {σ : L ≃ₐ[F] L} (hgen : ∀ τ : L ≃ₐ[F] L, �
     (δ : GL (Fin 2) L) : GL (Fin 2) F :=
   Classical.choose (exists_map_eq_conj_sigmaNormPow hgen δ)
 
+/--
+@isnad1 id=isnormre.1h4v.s8.7b39a6712a0c from=translated src=- shape=3758ffdd vocab=ed5dde0f
+-/
 theorem isNormRep_normRep {σ : L ≃ₐ[F] L} (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)
     (δ : GL (Fin 2) L) : IsNormRep σ (normRep hgen δ) δ :=
   Classical.choose_spec (exists_map_eq_conj_sigmaNormPow hgen δ)
 
+/--
+@isnad1 id=isconj.4h7v.s10.41261f289c5e from=translated src=- shape=32c549b8 vocab=3c2516e5
+-/
 theorem isConj_of_isNormRep_of_sigmaConj {σ : L ≃ₐ[F] L}
     (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) {δ₁ δ₂ : GL (Fin 2) L}
     {γ₁ γ₂ : GL (Fin 2) F} (h₁ : IsNormRep σ γ₁ δ₁) (h₂ : IsNormRep σ γ₂ δ₂)
@@ -773,10 +956,16 @@ noncomputable def normClassMap {σ : L ≃ₐ[F] L}
       (isConj_of_isNormRep_of_sigmaConj hgen (isNormRep_normRep hgen δ₁)
         (isNormRep_normRep hgen δ₂) ((isSigmaConj_iff_exists_eq_inv_mul_mul_map _ _ _).mp h))
 
+/--
+@isnad1 id=eq.1h4v.s9.23f1cd2cb0b1 from=translated src=- shape=d4a61820 vocab=dda23668
+-/
 theorem normClassMap_mk {σ : L ≃ₐ[F] L} (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)
     (δ : GL (Fin 2) L) :
     normClassMap hgen (SigmaConjClasses.mk σ δ) = ConjClasses.mk (normRep hgen δ) := rfl
 
+/--
+@isnad1 id=eq.2h5v.s9.48244de153fc from=translated src=- shape=d9558fb6 vocab=791186c3
+-/
 theorem normClassMap_mk_eq_of_isNormRep {σ : L ≃ₐ[F] L}
     (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) {δ : GL (Fin 2) L} {γ : GL (Fin 2) F}
     (h : IsNormRep σ γ δ) :
@@ -788,6 +977,9 @@ def IsNormClass {σ : L ≃ₐ[F] L} (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subg
     (c : ConjClasses (GL (Fin 2) F)) : Prop :=
   c ∈ Set.range (normClassMap hgen)
 
+/--
+@isnad1 id=iff.1h4v.s9.6aab10cb9c39 from=translated src=- shape=05006fc1 vocab=b2837978
+-/
 theorem isNormClass_mk_iff {σ : L ≃ₐ[F] L} (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ)
     (γ : GL (Fin 2) F) :
     IsNormClass hgen (ConjClasses.mk γ) ↔ ∃ δ : GL (Fin 2) L, IsNormRep σ γ δ := by
@@ -811,30 +1003,48 @@ namespace LT.TwistedNorm
 
 section Inhabitants
 
+/--
+@isnad1 id=eq.0h3v.s6.fa782192d23c from=translated src=- shape=50f100cc vocab=33d60634
+-/
 theorem sigmaPartialNorm_one_left {G : Type*} [Group G] (σ : G →* G) (r : ℕ) :
     sigmaPartialNorm σ 1 r = 1 := by
   induction r with
   | zero => rfl
   | succ r ih => rw [sigmaPartialNorm_succ', ih, map_one, mul_one]
 
+/--
+@isnad1 id=eq.0h3v.s6.3db5961e3d4b from=translated src=- shape=89e3db6f vocab=98a298cc
+-/
 theorem sigmaNormPow_one_left {G : Type*} [Group G] (σ : G →* G) (ℓ : ℕ) :
     sigmaNormPow σ ℓ 1 = 1 :=
   sigmaPartialNorm_one_left σ ℓ
 
 variable {F L : Type*} [Field F] [Field L] [Algebra F L]
 
+/--
+@isnad1 id=isnormre.0h3v.s8.500d687f835d from=translated src=- shape=e72975ff vocab=ea088297
+-/
 theorem isNormRep_one (σ : L ≃ₐ[F] L) : IsNormRep σ (1 : GL (Fin 2) F) (1 : GL (Fin 2) L) :=
   ⟨1, by rw [sigmaNormPow_one_left, map_one]; group⟩
 
+/--
+@isnad1 id=nonempty.0h3v.s5.29f8ba31fef3 from=translated src=- shape=22508706 vocab=457da69b
+-/
 theorem nonempty_sigmaConjClasses (σ : L ≃ₐ[F] L) : Nonempty (SigmaConjClasses σ) :=
   ⟨SigmaConjClasses.mk σ 1⟩
 
 variable [FiniteDimensional F L] [IsGalois F L]
 
+/--
+@isnad1 id=isnormcl.1h3v.s9.8bd4748e1aea from=translated src=- shape=7a1df848 vocab=9bd33e63
+-/
 theorem isNormClass_mk_one {σ : L ≃ₐ[F] L} (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) :
     IsNormClass hgen (ConjClasses.mk (1 : GL (Fin 2) F)) :=
   (isNormClass_mk_iff hgen 1).mpr ⟨1, isNormRep_one σ⟩
 
+/--
+@isnad1 id=nonempty.1h3v.s9.338de6e3d5ee from=translated src=- shape=99c8ff81 vocab=ca0c20e0
+-/
 theorem nonempty_isNormClass {σ : L ≃ₐ[F] L} (hgen : ∀ τ : L ≃ₐ[F] L, τ ∈ Subgroup.zpowers σ) :
     Nonempty {c : ConjClasses (GL (Fin 2) F) // IsNormClass hgen c} :=
   ⟨⟨_, isNormClass_mk_one hgen⟩⟩

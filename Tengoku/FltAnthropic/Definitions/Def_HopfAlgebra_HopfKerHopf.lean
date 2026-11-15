@@ -25,6 +25,9 @@ noncomputable section
 variable {R : Type u} [CommSemiring R]
 variable {A : Type v} [Semiring A] [HopfAlgebra R A]
 
+/--
+@isnad1 id=eq.0h2v.s12.eff0884bfb82 from=translated src=- shape=34fe2964 vocab=41fed245
+-/
 theorem toConv_includeLeft_comp_antipode_mul_toConv_includeLeft :
     toConv ((Algebra.TensorProduct.includeLeft : A →ₐ[R] A ⊗[R] A).toLinearMap ∘ₗ antipode R)
         * toConv (Algebra.TensorProduct.includeLeft : A →ₐ[R] A ⊗[R] A).toLinearMap
@@ -39,6 +42,9 @@ theorem toConv_includeLeft_comp_antipode_mul_toConv_includeLeft :
   rw [Algebra.TensorProduct.algebraMap_apply, ← sum_antipode_mul_eq_algebraMap_counit (ℛ R a)]
   exact (TensorProduct.sum_tmul _ _ _).symm
 
+/--
+@isnad1 id=eq.0h2v.s11.1f4c8646dcc7 from=translated src=- shape=796bd86a vocab=24e74465
+-/
 theorem toConv_includeRight_comp_antipode_mul_toConv_includeRight :
     toConv ((Algebra.TensorProduct.includeRight : A →ₐ[R] A ⊗[R] A).toLinearMap ∘ₗ antipode R)
         * toConv (Algebra.TensorProduct.includeRight : A →ₐ[R] A ⊗[R] A).toLinearMap
@@ -53,6 +59,9 @@ theorem toConv_includeRight_comp_antipode_mul_toConv_includeRight :
   rw [Algebra.TensorProduct.algebraMap_apply', ← sum_antipode_mul_eq_algebraMap_counit (ℛ R a)]
   exact (TensorProduct.tmul_sum _ _ _).symm
 
+/--
+@isnad1 id=eq.0h2v.s11.7c2436f3cb97 from=translated src=- shape=a6bcdf5c vocab=eab89f8d
+-/
 theorem toConv_includeLeft_mul_toConv_includeRight :
     toConv (Algebra.TensorProduct.includeLeft : A →ₐ[R] A ⊗[R] A).toLinearMap
         * toConv (Algebra.TensorProduct.includeRight : A →ₐ[R] A ⊗[R] A).toLinearMap
@@ -64,6 +73,9 @@ theorem toConv_includeLeft_mul_toConv_includeRight :
     Algebra.TensorProduct.includeLeft_apply, Algebra.TensorProduct.includeRight_apply,
     Algebra.TensorProduct.tmul_mul_tmul, mul_one, one_mul]
 
+/--
+@isnad1 id=eq.0h2v.s12.f5662f6d3f62 from=translated src=- shape=1ef0cbf1 vocab=fa8aaad8
+-/
 theorem toConv_includeRight_comp_antipode_mul_toConv_includeLeft_comp_antipode :
     toConv ((Algebra.TensorProduct.includeRight : A →ₐ[R] A ⊗[R] A).toLinearMap ∘ₗ antipode R)
         * toConv
@@ -78,6 +90,9 @@ theorem toConv_includeRight_comp_antipode_mul_toConv_includeLeft_comp_antipode :
     Algebra.TensorProduct.includeRight_apply, Algebra.TensorProduct.tmul_mul_tmul, mul_one,
     one_mul, LinearEquiv.coe_toLinearMap, TensorProduct.comm_tmul]
 
+/--
+@isnad1 id=eq.0h2v.s11.23903af97c20 from=translated src=- shape=114ab5a6 vocab=c892a2d6
+-/
 theorem toConv_comm_map_antipode_comul_mul_toConv_comul :
     toConv ((TensorProduct.comm R A A).toLinearMap
           ∘ₗ TensorProduct.map (antipode R) (antipode R) ∘ₗ comul)
@@ -90,6 +105,9 @@ theorem toConv_comm_map_antipode_comul_mul_toConv_comul :
     toConv_includeLeft_comp_antipode_mul_toConv_includeLeft, one_mul]
   exact toConv_includeRight_comp_antipode_mul_toConv_includeRight
 
+/--
+@isnad1 id=eq.0h2v.s11.ea35c4371ead from=translated src=- shape=57c6e21b vocab=d45795e6
+-/
 theorem toConv_comul_mul_toConv_comul_comp_antipode :
     toConv (comul : A →ₗ[R] A ⊗[R] A)
         * toConv (comul ∘ₗ antipode R : A →ₗ[R] A ⊗[R] A)
@@ -106,6 +124,9 @@ theorem toConv_comul_mul_toConv_comul_comp_antipode :
       (map_sum _ _ _).symm,
     sum_mul_antipode_eq_algebraMap_counit (ℛ R a), Bialgebra.comul_algebraMap]
 
+/--
+@isnad1 id=eq.0h2v.s10.84568e4cf0cb from=translated src=- shape=2df3efae vocab=e9623365
+-/
 theorem comul_comp_antipode :
     comul ∘ₗ antipode R
       = (TensorProduct.comm R A A).toLinearMap
@@ -115,6 +136,9 @@ theorem comul_comp_antipode :
       (toConv_comm_map_antipode_comul_mul_toConv_comul (R := R) (A := A))
       (toConv_comul_mul_toConv_comul_comp_antipode (R := R) (A := A)))).symm
 
+/--
+@isnad1 id=eq.0h3v.s11.9d3c4b3b934b from=translated src=- shape=5c3ad501 vocab=66ad8fec
+-/
 theorem comul_antipode (a : A) :
     comul (antipode R a)
       = TensorProduct.comm R A A
@@ -122,6 +146,9 @@ theorem comul_antipode (a : A) :
   have h := LinearMap.congr_fun (comul_comp_antipode (R := R) (A := A)) a
   simpa only [LinearMap.comp_apply, LinearEquiv.coe_toLinearMap] using h
 
+/--
+@isnad1 id=eq.0h5v.s10.3e5f400dd068 from=translated src=- shape=c4f6d8ca vocab=12f6589c
+-/
 theorem comul_antipode_eq_sum {a : A} {ι : Type*} (𝓡 : Coalgebra.Repr R a ι) :
     comul (antipode R a)
       = ∑ i ∈ 𝓡.index, antipode R (𝓡.right i) ⊗ₜ[R] antipode R (𝓡.left i) := by
@@ -149,6 +176,9 @@ noncomputable def reprMap (π : A →ₐc[R] B) {a : A} {ι : Type*} (𝓡 : Coa
     simp only [TensorProduct.map_tmul]
     rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.94ca500e13e5 from=translated src=- shape=d2f11a98 vocab=c9cbbe96
+-/
 theorem map_antipode (π : A →ₐc[R] B) (a : A) : π (antipode R a) = antipode R (π a) := by
 
   let f : WithConv (A →ₗ[R] B) := toConv ((π : A →ₐc[R] B).toLinearMap ∘ₗ antipode R)
@@ -186,6 +216,9 @@ section Stability
 variable {R : Type u} [CommRing R] {A : Type v} [CommRing A] [HopfAlgebra R A]
 variable {B : Type w} [CommRing B] [HopfAlgebra R B] (π : A →ₐc[R] B)
 
+/--
+@isnad1 id=eq.0h5v.s12.6dec8fdac71d from=translated src=- shape=32635c8d vocab=1a037577
+-/
 theorem coaction_eq_map (a : A) :
     coaction π a
       = TensorProduct.map LinearMap.id (π : A →ₐc[R] B).toLinearMap (Coalgebra.comul (R := R) a) := by
@@ -195,14 +228,23 @@ theorem coaction_eq_map (a : A) :
   | add x y hx hy => simp only [map_add, hx, hy]
   | tmul x y => simp [Algebra.TensorProduct.map_tmul]; rfl
 
+/--
+@isnad1 id=eq.0h7v.s11.0525a300a02b from=translated src=- shape=22f39fc4 vocab=11c4d8ef
+-/
 theorem coaction_repr {a : A} {ι : Type*} (𝓡 : Coalgebra.Repr R a ι) :
     coaction π a = ∑ i ∈ 𝓡.index, 𝓡.left i ⊗ₜ[R] π (𝓡.right i) := by
   rw [coaction_eq_map, ← 𝓡.eq, map_sum]
   simp only [TensorProduct.map_tmul, LinearMap.id_apply]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.52fdeb6fc112 from=translated src=- shape=a48d4109 vocab=dc6f4748
+-/
 theorem toLinearMap_apply' (x : A) : (π : A →ₐc[R] B).toLinearMap x = π x := rfl
 
+/--
+@isnad1 id=eq.0h8v.s10.7a0419a1c49d from=translated src=- shape=4062ea15 vocab=5f741b1c
+-/
 theorem map_comm {M N P Q : Type*} [AddCommGroup M] [AddCommGroup N] [AddCommGroup P] [AddCommGroup Q]
     [Module R M] [Module R N] [Module R P] [Module R Q] (f : M →ₗ[R] P) (g : N →ₗ[R] Q) (z : N ⊗[R] M) :
     TensorProduct.map f g (TensorProduct.comm R N M z) = TensorProduct.comm R Q P (TensorProduct.map g f z) := by
@@ -211,16 +253,25 @@ theorem map_comm {M N P Q : Type*} [AddCommGroup M] [AddCommGroup N] [AddCommGro
   | add x y hx hy => simp only [map_add, hx, hy]
   | tmul x y => simp
 
+/--
+@isnad1 id=eq.0h5v.s12.48c546022e36 from=translated src=- shape=16677ab1 vocab=3991fc92
+-/
 theorem map_toLinearMap_id_comul [Coalgebra.IsCocomm R A] (x : A) :
     TensorProduct.map (π : A →ₐc[R] B).toLinearMap LinearMap.id (Coalgebra.comul (R := R) x)
       = TensorProduct.comm R A B (coaction π x) := by
   rw [coaction_eq_map, ← map_comm, Coalgebra.comm_comul]
 
+/--
+@isnad1 id=eq.0h5v.s12.113e7a5b81c3 from=translated src=- shape=c8115a0d vocab=cedcd32b
+-/
 theorem map_toLinearMap_id_comul' [Coalgebra.IsCocomm R A] (x : A) :
     TensorProduct.map (π : A →ₐc[R] B).toLinearMap LinearMap.id (Coalgebra.comul (R := R) x)
       = (TensorProduct.comm R A B).toLinearMap (coaction π x) :=
   map_toLinearMap_id_comul π x
 
+/--
+@isnad1 id=mem.1h5v.s10.a243867839be from=translated src=- shape=74c78b78 vocab=eaf473db
+-/
 theorem antipode_mem [Coalgebra.IsCocomm R A] {a : A} (ha : a ∈ hopfKer π) :
     antipode R a ∈ hopfKer π := by
   rw [mem_hopfKer_iff, coaction_eq_map, comul_antipode, map_comm]
@@ -240,11 +291,20 @@ theorem antipode_mem [Coalgebra.IsCocomm R A] {a : A} (ha : a ∈ hopfKer π) :
 noncomputable def rhoSub : A →ₗ[R] A ⊗[R] B :=
   (coaction π).toLinearMap - (Algebra.TensorProduct.includeLeft : A →ₐ[R] A ⊗[R] B).toLinearMap
 
+/--
+@isnad1 id=eq.0h5v.s11.3c2272813557 from=translated src=- shape=f2d648e6 vocab=6f415480
+-/
 theorem rhoSub_apply (a : A) : rhoSub π a = coaction π a - a ⊗ₜ[R] 1 := rfl
 
+/--
+@isnad1 id=iff.0h5v.s10.f41d5cbc0954 from=translated src=- shape=81a5341f vocab=a6b80fb7
+-/
 theorem mem_hopfKer_iff_rhoSub (a : A) : a ∈ hopfKer π ↔ rhoSub π a = 0 := by
   rw [mem_hopfKer_iff, rhoSub_apply, sub_eq_zero]
 
+/--
+@isnad1 id=eq.1h5v.s14.6d3fc8b36d50 from=translated src=- shape=211d2ca8 vocab=a9505345
+-/
 theorem lTensor_coaction_comul {a : A} (ha : a ∈ hopfKer π) :
     (coaction π).toLinearMap.lTensor A (Coalgebra.comul (R := R) a)
       = (TensorProduct.assoc R A A B) (Coalgebra.comul (R := R) a ⊗ₜ[R] (1 : B)) := by
@@ -275,6 +335,9 @@ theorem lTensor_coaction_comul {a : A} (ha : a ∈ hopfKer π) :
     rw [TensorProduct.assoc_tmul]; rfl
   rw [lhs, ← key, rhs, coaction_eq_of_mem π ha, LinearMap.rTensor_tmul]
 
+/--
+@isnad1 id=eq.1h5v.s12.b67e2772d334 from=translated src=- shape=aa931b1e vocab=0a68b486
+-/
 theorem lTensor_rhoSub_comul {a : A} (ha : a ∈ hopfKer π) :
     (rhoSub π).lTensor A (Coalgebra.comul (R := R) a) = 0 := by
   rw [rhoSub, LinearMap.lTensor_sub, LinearMap.sub_apply, lTensor_coaction_comul π ha, sub_eq_zero]
@@ -283,6 +346,9 @@ theorem lTensor_rhoSub_comul {a : A} (ha : a ∈ hopfKer π) :
   | add x y hx hy => simp only [TensorProduct.add_tmul, map_add, hx, hy]
   | tmul x y => simp
 
+/--
+@isnad1 id=eq.0h5v.s15.8a323c41aee5 from=translated src=- shape=39b04b67 vocab=7f5233b4
+-/
 theorem rTensor_coaction_comul [Coalgebra.IsCocomm R A] (a : A) :
     (coaction π).toLinearMap.rTensor A (Coalgebra.comul (R := R) a)
       = (TensorProduct.assoc R A B A).symm.toLinearMap
@@ -321,6 +387,9 @@ theorem rTensor_coaction_comul [Coalgebra.IsCocomm R A] (a : A) :
     rw [LinearEquiv.coe_coe, TensorProduct.assoc_symm_tmul]
   rw [lhs, key, rhs]
 
+/--
+@isnad1 id=eq.1h5v.s12.669c2b8b0a34 from=translated src=- shape=df084ae7 vocab=901e65c6
+-/
 theorem rTensor_rhoSub_comul [Coalgebra.IsCocomm R A] {a : A} (ha : a ∈ hopfKer π) :
     (rhoSub π).rTensor A (Coalgebra.comul (R := R) a) = 0 := by
   rw [rhoSub, LinearMap.rTensor_sub, LinearMap.sub_apply, rTensor_coaction_comul π a,
@@ -339,8 +408,14 @@ variable {B : Type w} [CommRing B] [HopfAlgebra R B] (π : A →ₐc[R] B)
 
 noncomputable abbrev valL : ↥(hopfKer π) →ₗ[R] A := (hopfKer π).val.toLinearMap
 
+/--
+@isnad1 id=eq.0h5v.s11.baafdbd9eaa3 from=translated src=- shape=06ad1614 vocab=88b358a8
+-/
 @[simp] theorem valL_apply (s : ↥(hopfKer π)) : valL π s = (s : A) := rfl
 
+/--
+@isnad1 id=exact.0h4v.s11.3ee615e93eaa from=translated src=- shape=185df3f8 vocab=61136416
+-/
 theorem exact_valL_rhoSub : Function.Exact (valL π) (rhoSub π) := by
   intro a
   rw [← mem_hopfKer_iff_rhoSub]
@@ -353,18 +428,33 @@ noncomputable def ι₂A : ↥(hopfKer π) ⊗[R] ↥(hopfKer π) →ₐ[R] A �
 
 noncomputable def ι₂ : ↥(hopfKer π) ⊗[R] ↥(hopfKer π) →ₗ[R] A ⊗[R] A := (ι₂A π).toLinearMap
 
+/--
+@isnad1 id=eq.0h4v.s12.53902068caf7 from=translated src=- shape=bc4e4cd0 vocab=3224cda0
+-/
 theorem ι₂_eq_map : ι₂ π = TensorProduct.map (valL π) (valL π) :=
   TensorProduct.ext' fun _ _ => rfl
 
+/--
+@isnad1 id=eq.0h6v.s13.f19a6b07a96c from=translated src=- shape=5b459978 vocab=d6227536
+-/
 @[simp] theorem ι₂_tmul (s t : ↥(hopfKer π)) : ι₂ π (s ⊗ₜ[R] t) = (s : A) ⊗ₜ[R] (t : A) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s15.4a896b2aa78c from=translated src=- shape=31ed2089 vocab=300db29e
+-/
 theorem ι₂_mul (x y : ↥(hopfKer π) ⊗[R] ↥(hopfKer π)) : ι₂ π (x * y) = ι₂ π x * ι₂ π y :=
   map_mul (ι₂A π) x y
 
+/--
+@isnad1 id=eq.0h4v.s13.88226eee0a75 from=translated src=- shape=05d65dc7 vocab=794ea86f
+-/
 theorem ι₂_one : ι₂ π 1 = 1 := map_one (ι₂A π)
 
 variable [Module.Flat R A] [Module.Flat R B] [Module.Flat R ↥(hopfKer π)]
 
+/--
+@isnad1 id=injectiv.0h4v.s13.ff11d34edb61 from=translated src=- shape=bff2e327 vocab=acc3ed27
+-/
 theorem ι₂_injective : Function.Injective (ι₂ π) := by
   have h1 : Function.Injective ((valL π).lTensor ↥(hopfKer π)) :=
     Module.Flat.lTensor_preserves_injective_linearMap _ Subtype.val_injective
@@ -376,9 +466,15 @@ theorem ι₂_injective : Function.Injective (ι₂ π) := by
 noncomputable def ι₃ : ↥(hopfKer π) ⊗[R] (↥(hopfKer π) ⊗[R] ↥(hopfKer π)) →ₗ[R] A ⊗[R] (A ⊗[R] A) :=
   TensorProduct.map (valL π) (ι₂ π)
 
+/--
+@isnad1 id=eq.0h6v.s15.b666b3485f04 from=translated src=- shape=6fbef4ef vocab=d9a19f39
+-/
 @[simp] theorem ι₃_tmul (s : ↥(hopfKer π)) (z : ↥(hopfKer π) ⊗[R] ↥(hopfKer π)) :
     ι₃ π (s ⊗ₜ[R] z) = (s : A) ⊗ₜ[R] ι₂ π z := rfl
 
+/--
+@isnad1 id=injectiv.0h4v.s15.de03568e21e6 from=translated src=- shape=c6b3e021 vocab=ff5a8143
+-/
 theorem ι₃_injective : Function.Injective (ι₃ π) := by
   have h1 : Function.Injective ((ι₂ π).lTensor ↥(hopfKer π)) :=
     Module.Flat.lTensor_preserves_injective_linearMap _ (ι₂_injective π)
@@ -389,6 +485,9 @@ theorem ι₃_injective : Function.Injective (ι₃ π) := by
 
 variable [Coalgebra.IsCocomm R A]
 
+/--
+@isnad1 id=mem.0h5v.s12.ba163010d705 from=translated src=- shape=e3fc646b vocab=8b74542e
+-/
 theorem comul_coe_mem_range (s : ↥(hopfKer π)) :
     Coalgebra.comul (R := R) (s : A) ∈ LinearMap.range (ι₂ π) := by
   have ex1 : Function.Exact ((valL π).rTensor A) ((rhoSub π).rTensor A) :=
@@ -411,6 +510,9 @@ noncomputable def comulK : ↥(hopfKer π) →ₗ[R] ↥(hopfKer π) ⊗[R] ↥(
     ∘ₗ ((Coalgebra.comul (R := R) (A := A)) ∘ₗ valL π).codRestrict (LinearMap.range (ι₂ π))
         (comul_coe_mem_range π)
 
+/--
+@isnad1 id=eq.0h5v.s14.2a1021945d4b from=translated src=- shape=369c9867 vocab=0abc6b84
+-/
 @[simp] theorem ι₂_comulK (s : ↥(hopfKer π)) : ι₂ π (comulK π s) = Coalgebra.comul (R := R) (s : A) := by
   simp only [comulK, LinearMap.comp_apply, LinearEquiv.coe_coe, LinearEquiv.ofInjective_symm_apply,
     LinearMap.codRestrict_apply, valL_apply]
@@ -427,8 +529,14 @@ noncomputable def comulK : ↥(hopfKer π) →ₗ[R] ↥(hopfKer π) ⊗[R] ↥(
 
 noncomputable def counitK : ↥(hopfKer π) →ₗ[R] R := Coalgebra.counit ∘ₗ valL π
 
+/--
+@isnad1 id=eq.0h5v.s11.8cd165eb5886 from=translated src=- shape=e34b30c2 vocab=de40fde3
+-/
 @[simp] theorem counitK_apply (s : ↥(hopfKer π)) : counitK π s = Coalgebra.counit (R := R) (s : A) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s15.0193204c6486 from=translated src=- shape=898ac4c3 vocab=88be50ac
+-/
 theorem rTensor_counitK (z : ↥(hopfKer π) ⊗[R] ↥(hopfKer π)) :
     (valL π).lTensor R ((counitK π).rTensor ↥(hopfKer π) z)
       = (Coalgebra.counit (R := R) (A := A)).rTensor A (ι₂ π z) := by
@@ -437,6 +545,9 @@ theorem rTensor_counitK (z : ↥(hopfKer π) ⊗[R] ↥(hopfKer π)) :
   | add x y hx hy => simp only [map_add, hx, hy]
   | tmul x y => simp
 
+/--
+@isnad1 id=eq.0h5v.s15.20dcab00af4b from=translated src=- shape=883607a1 vocab=88be50ac
+-/
 theorem lTensor_counitK (z : ↥(hopfKer π) ⊗[R] ↥(hopfKer π)) :
     (valL π).rTensor R ((counitK π).lTensor ↥(hopfKer π) z)
       = (Coalgebra.counit (R := R) (A := A)).lTensor A (ι₂ π z) := by
@@ -445,6 +556,9 @@ theorem lTensor_counitK (z : ↥(hopfKer π) ⊗[R] ↥(hopfKer π)) :
   | add x y hx hy => simp only [map_add, hx, hy]
   | tmul x y => simp
 
+/--
+@isnad1 id=eq.0h5v.s16.f24b40f4d989 from=translated src=- shape=32d97ebb vocab=254476cf
+-/
 theorem ι₃_lTensor_comulK (z : ↥(hopfKer π) ⊗[R] ↥(hopfKer π)) :
     ι₃ π ((comulK π).lTensor ↥(hopfKer π) z) = (Coalgebra.comul (R := R) (A := A)).lTensor A (ι₂ π z) := by
   induction z with
@@ -452,6 +566,9 @@ theorem ι₃_lTensor_comulK (z : ↥(hopfKer π) ⊗[R] ↥(hopfKer π)) :
   | add x y hx hy => simp only [map_add, hx, hy]
   | tmul x y => simp
 
+/--
+@isnad1 id=eq.0h5v.s17.7899cc38b977 from=translated src=- shape=cb214f00 vocab=0f74cd42
+-/
 theorem ι₃_assoc_rTensor_comulK (z : ↥(hopfKer π) ⊗[R] ↥(hopfKer π)) :
     ι₃ π ((TensorProduct.assoc R _ _ _).toLinearMap ((comulK π).rTensor ↥(hopfKer π) z))
       = (TensorProduct.assoc R A A A).toLinearMap ((Coalgebra.comul (R := R) (A := A)).rTensor A (ι₂ π z)) := by
@@ -491,13 +608,25 @@ noncomputable instance instCoalgebra : Coalgebra R ↥(hopfKer π) where
       valL_apply]
     rw [lTensor_counitK, ι₂_comulK, Coalgebra.lTensor_counit_comul]
 
+/--
+@isnad1 id=eq.0h5v.s14.1ceae7a101f5 from=translated src=- shape=9cf02b8f vocab=165f0d81
+-/
 theorem comul_def (s : ↥(hopfKer π)) : Coalgebra.comul (R := R) s = comulK π s := rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.7bb9254f8635 from=translated src=- shape=bf0ad076 vocab=6f461b70
+-/
 theorem counit_coe (s : ↥(hopfKer π)) : Coalgebra.counit (R := R) s = Coalgebra.counit (R := R) (s : A) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s14.d88c384a8a12 from=translated src=- shape=bebc14a0 vocab=3b9f1836
+-/
 @[simp] theorem ι₂_comul (s : ↥(hopfKer π)) : ι₂ π (Coalgebra.comul (R := R) s) = Coalgebra.comul (R := R) (s : A) :=
   ι₂_comulK π s
 
+/--
+@isnad1 id=eq.0h5v.s14.9776a97971b0 from=translated src=- shape=78109973 vocab=78dd3506
+-/
 theorem map_val_val_comul (s : ↥(hopfKer π)) :
     TensorProduct.map (valL π) (valL π) (Coalgebra.comul (R := R) s) = Coalgebra.comul (R := R) (s : A) := by
   rw [← ι₂_eq_map, ι₂_comul]
@@ -521,8 +650,14 @@ noncomputable def antipodeK : ↥(hopfKer π) →ₗ[R] ↥(hopfKer π) where
   map_add' s t := by ext; simp
   map_smul' r s := by ext; simp
 
+/--
+@isnad1 id=eq.0h5v.s12.ad87e7446187 from=translated src=- shape=377675b9 vocab=1b9baeed
+-/
 @[simp] theorem coe_antipodeK (s : ↥(hopfKer π)) : ((antipodeK π s : ↥(hopfKer π)) : A) = antipode R (s : A) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s16.7123f5fdcd47 from=translated src=- shape=08ddb851 vocab=0b9ebb52
+-/
 theorem val_mul'_rTensor_antipodeK (z : ↥(hopfKer π) ⊗[R] ↥(hopfKer π)) :
     ((LinearMap.mul' R ↥(hopfKer π) ((antipodeK π).rTensor _ z) : ↥(hopfKer π)) : A)
       = LinearMap.mul' R A ((antipode R (A := A)).rTensor A (ι₂ π z)) := by
@@ -531,6 +666,9 @@ theorem val_mul'_rTensor_antipodeK (z : ↥(hopfKer π) ⊗[R] ↥(hopfKer π)) 
   | add x y hx hy => simp only [map_add, Subalgebra.coe_add, hx, hy]
   | tmul x y => simp
 
+/--
+@isnad1 id=eq.0h5v.s16.3425cc76ead8 from=translated src=- shape=08ddb851 vocab=556092a0
+-/
 theorem val_mul'_lTensor_antipodeK (z : ↥(hopfKer π) ⊗[R] ↥(hopfKer π)) :
     ((LinearMap.mul' R ↥(hopfKer π) ((antipodeK π).lTensor _ z) : ↥(hopfKer π)) : A)
       = LinearMap.mul' R A ((antipode R (A := A)).lTensor A (ι₂ π z)) := by
@@ -550,12 +688,21 @@ noncomputable instance instHopfAlgebra : HopfAlgebra R ↥(hopfKer π) where
     simp only [LinearMap.comp_apply, Algebra.linearMap_apply, Subalgebra.coe_algebraMap]
     rw [val_mul'_lTensor_antipodeK, ι₂_comul, mul_antipode_lTensor_comul_apply, counit_coe]
 
+/--
+@isnad1 id=eq.0h5v.s13.83b0d0cc930f from=translated src=- shape=f396fe61 vocab=2cc09932
+-/
 @[simp] theorem coe_antipode (s : ↥(hopfKer π)) : ((antipode R s : ↥(hopfKer π)) : A) = antipode R (s : A) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s15.912e80bb3774 from=translated src=- shape=e970e68f vocab=39bd0cc2
+-/
 theorem ι₂_comm (z : ↥(hopfKer π) ⊗[R] ↥(hopfKer π)) :
     ι₂ π (TensorProduct.comm R _ _ z) = TensorProduct.comm R A A (ι₂ π z) := by
   rw [ι₂_eq_map, map_comm]
 
+/--
+@isnad1 id=iscocomm.0h4v.s10.f9a5e30667fc from=translated src=- shape=1dee91d4 vocab=b262ac4f
+-/
 instance instIsCocomm : Coalgebra.IsCocomm R ↥(hopfKer π) where
   comm_comp_comul := by
     ext s
@@ -571,8 +718,14 @@ noncomputable def hopfKerVal : ↥(hopfKer π) →ₐc[R] A :=
       change TensorProduct.map (valL π) (valL π) (Coalgebra.comul (R := R) s) = Coalgebra.comul (R := R) (s : A)
       exact map_val_val_comul π s }
 
+/--
+@isnad1 id=eq.0h5v.s12.261b8815772f from=translated src=- shape=0d1477fa vocab=f2063466
+-/
 @[simp] theorem hopfKerVal_apply (s : ↥(hopfKer π)) : hopfKerVal π s = (s : A) := rfl
 
+/--
+@isnad1 id=injectiv.0h4v.s12.7cbef92a7085 from=translated src=- shape=bee1e75b vocab=988bcd9e
+-/
 theorem hopfKerVal_injective : Function.Injective (hopfKerVal π) := Subtype.val_injective
 
 end Structure

@@ -14,6 +14,9 @@ variable {K : Type*} [NontriviallyNormedField K] [IsUltrametricDist K]
 
 section Ultrametric
 
+/--
+@isnad1 id=eq.1h2v.s7.d59c20bd0ce4 from=translated src=- shape=3866cc04 vocab=4f4bd60c
+-/
 theorem nnnorm_one_sub_of_one_lt {x : K} (hx : 1 < ‖x‖₊) : ‖1 - x‖₊ = ‖x‖₊ := by
   have h : ‖(1 : K)‖₊ ≠ ‖-x‖₊ := by
     rw [nnnorm_neg, nnnorm_one]
@@ -21,6 +24,9 @@ theorem nnnorm_one_sub_of_one_lt {x : K} (hx : 1 < ‖x‖₊) : ‖1 - x‖₊ 
   rw [sub_eq_add_neg, nnnorm_add_eq_max_of_nnnorm_ne_nnnorm h, nnnorm_neg, nnnorm_one]
   exact max_eq_right hx.le
 
+/--
+@isnad1 id=ne.1h2v.s6.cbc86987fc53 from=translated src=- shape=587216ea vocab=4f4bd60c
+-/
 theorem one_sub_ne_zero_of_one_lt {x : K} (hx : 1 < ‖x‖₊) : (1 : K) - x ≠ 0 := by
   intro h
   rw [sub_eq_zero] at h
@@ -35,10 +41,19 @@ def xfun (w : K) : K := w / (1 - w) ^ 2
 
 def yfun (w : K) : K := w ^ 2 / (1 - w) ^ 3
 
+/--
+@isnad1 id=eq.0h1v.s6.707794953f07 from=translated src=- shape=527b592f vocab=b4b31db4
+-/
 @[simp] theorem xfun_zero : xfun (0 : K) = 0 := by simp [xfun]
 
+/--
+@isnad1 id=eq.0h1v.s6.cfdba74f86c8 from=translated src=- shape=527b592f vocab=1bdfc2be
+-/
 @[simp] theorem yfun_zero : yfun (0 : K) = 0 := by simp [yfun]
 
+/--
+@isnad1 id=eq.2h2v.s6.b6e9b3c93c21 from=translated src=- shape=d19b2a21 vocab=ad3ff3e1
+-/
 theorem xfun_inv {w : K} (hw0 : w ≠ 0) (hw1 : w ≠ 1) : xfun w⁻¹ = xfun w := by
   have h1 : (1 : K) - w ≠ 0 := sub_ne_zero.mpr (Ne.symm hw1)
   have hvw : w⁻¹ * w = 1 := inv_mul_cancel₀ hw0
@@ -51,6 +66,9 @@ theorem xfun_inv {w : K} (hw0 : w ≠ 0) (hw1 : w ≠ 1) : xfun w⁻¹ = xfun w 
 
   linear_combination (w - w⁻¹) * hvw
 
+/--
+@isnad1 id=eq.2h2v.s7.f8fba11e9471 from=translated src=- shape=6d1f9b57 vocab=5ce459b3
+-/
 theorem yfun_inv {w : K} (hw0 : w ≠ 0) (hw1 : w ≠ 1) : yfun w⁻¹ = -yfun w - xfun w := by
   have h1 : (1 : K) - w ≠ 0 := sub_ne_zero.mpr (Ne.symm hw1)
   have hvw : w⁻¹ * w = 1 := inv_mul_cancel₀ hw0
@@ -70,18 +88,30 @@ theorem yfun_inv {w : K} (hw0 : w ≠ 0) (hw1 : w ≠ 1) : yfun w⁻¹ = -yfun w
 
   linear_combination (-(w⁻¹ ^ 2) - w⁻¹ * w ^ 2 + 3 * (w⁻¹ * w) - w) * hvw
 
+/--
+@isnad1 id=eq.1h2v.s6.c6d719a8f58b from=translated src=- shape=19d452fc vocab=3db21475
+-/
 theorem nnnorm_xfun_of_lt_one {w : K} (hw : ‖w‖₊ < 1) : ‖xfun w‖₊ = ‖w‖₊ := by
   rw [xfun, nnnorm_div, nnnorm_pow, nnnorm_one_sub_of_lt_one hw, one_pow, div_one]
 
+/--
+@isnad1 id=eq.1h2v.s6.909579febf1a from=translated src=- shape=8387ab09 vocab=7122943d
+-/
 theorem nnnorm_xfun_of_one_lt {w : K} (hw : 1 < ‖w‖₊) : ‖xfun w‖₊ = ‖w‖₊⁻¹ := by
   have hw0 : ‖w‖₊ ≠ 0 := (zero_lt_one.trans hw).ne'
   rw [xfun, nnnorm_div, nnnorm_pow, nnnorm_one_sub_of_one_lt hw]
   have h2 : ‖w‖₊ ^ 2 = ‖w‖₊ * ‖w‖₊ := by ring
   rw [h2, div_mul_eq_div_div, div_self hw0, one_div]
 
+/--
+@isnad1 id=eq.1h2v.s6.51e5cb64e674 from=translated src=- shape=141f3a4e vocab=5cadf83e
+-/
 theorem nnnorm_yfun_of_lt_one {w : K} (hw : ‖w‖₊ < 1) : ‖yfun w‖₊ = ‖w‖₊ ^ 2 := by
   rw [yfun, nnnorm_div, nnnorm_pow, nnnorm_pow, nnnorm_one_sub_of_lt_one hw, one_pow, div_one]
 
+/--
+@isnad1 id=eq.1h2v.s6.121f395f14be from=translated src=- shape=8387ab09 vocab=12f02640
+-/
 theorem nnnorm_yfun_of_one_lt {w : K} (hw : 1 < ‖w‖₊) : ‖yfun w‖₊ = ‖w‖₊⁻¹ := by
   have hw0 : ‖w‖₊ ≠ 0 := (zero_lt_one.trans hw).ne'
   rw [yfun, nnnorm_div, nnnorm_pow, nnnorm_pow, nnnorm_one_sub_of_one_lt hw]
@@ -98,12 +128,21 @@ def xTerm (n : ℤ) : K := xfun (q ^ n * u)
 
 def yTerm (n : ℤ) : K := yfun (q ^ n * u)
 
+/--
+@isnad1 id=eq.0h3v.s5.e0b4122fd366 from=translated src=- shape=b643d504 vocab=83c58567
+-/
 @[simp] theorem xTerm_zero : xTerm q u 0 = xfun u := by rw [xTerm, zpow_zero, one_mul]
 
+/--
+@isnad1 id=eq.0h3v.s5.62de49c58a1c from=translated src=- shape=b643d504 vocab=c12a0e71
+-/
 @[simp] theorem yTerm_zero : yTerm q u 0 = yfun u := by rw [yTerm, zpow_zero, one_mul]
 
 variable {q u}
 
+/--
+@isnad1 id=summable.5h4v.s8.8adb9dfbd4a8 from=translated src=- shape=768586cc vocab=74666fa2
+-/
 theorem summable_comp_zpow_mul [CompleteSpace K] {F : K → K} (hq0 : q ≠ 0) (hq : ‖q‖₊ < 1)
     (hu0 : u ≠ 0) (hF₁ : ∀ w : K, ‖w‖₊ < 1 → ‖F w‖₊ ≤ ‖w‖₊)
     (hF₂ : ∀ w : K, 1 < ‖w‖₊ → ‖F w‖₊ ≤ ‖w‖₊⁻¹) :
@@ -156,11 +195,17 @@ theorem summable_comp_zpow_mul [CompleteSpace K] {F : K → K} (hq0 : q ≠ 0) (
           exact_mod_cast hbound
       _ = ‖q‖ ^ n * ‖u‖⁻¹ := by push_cast; ring
 
+/--
+@isnad1 id=summable.3h3v.s7.61beb98f8a49 from=translated src=- shape=54f3525b vocab=7db0c75c
+-/
 theorem summable_xTerm [CompleteSpace K] (hq0 : q ≠ 0) (hq : ‖q‖₊ < 1) (hu0 : u ≠ 0) :
     Summable (xTerm q u) :=
   summable_comp_zpow_mul hq0 hq hu0 (fun _ hw => (nnnorm_xfun_of_lt_one hw).le)
     (fun _ hw => (nnnorm_xfun_of_one_lt hw).le)
 
+/--
+@isnad1 id=summable.3h3v.s7.e0471e42571d from=translated src=- shape=54f3525b vocab=826cf4e3
+-/
 theorem summable_yTerm [CompleteSpace K] (hq0 : q ≠ 0) (hq : ‖q‖₊ < 1) (hu0 : u ≠ 0) :
     Summable (yTerm q u) :=
   summable_comp_zpow_mul hq0 hq hu0

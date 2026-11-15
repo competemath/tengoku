@@ -26,6 +26,9 @@ namespace IsHopfTower
 variable (k : Type u) (A : Type v) (C : Type w) [CommRing k] [CommRing A] [CommRing C]
     [HopfAlgebra k A] [HopfAlgebra k C] [Algebra A C] [IsScalarTower k A C]
 
+/--
+@isnad1 id=ishopfto.0h2v.s5.66fce3d8f953 from=translated src=- shape=a766854f vocab=cdf4fb3d
+-/
 instance refl : IsHopfTower k C C where
   comul_algebraMap c := by
     rw [Algebra.algebraMap_self, RingHom.id_apply]
@@ -41,11 +44,20 @@ noncomputable def toBialgHom : A →ₐc[k] C :=
     (by ext a; simpa using IsHopfTower.counit_algebraMap (k := k) (A := A) (C := C) a)
     (by ext a; simpa using (IsHopfTower.comul_algebraMap (k := k) (A := A) (C := C) a).symm)
 
+/--
+@isnad1 id=eq.0h4v.s9.565731ffc7c4 from=translated src=- shape=760fe689 vocab=6ec3f6bc
+-/
 @[simp] theorem toBialgHom_apply (a : A) : toBialgHom k A C a = algebraMap A C a := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.d2d49228354d from=translated src=- shape=12fbeb84 vocab=3fdfa372
+-/
 theorem coe_toBialgHom : ((toBialgHom k A C : A →ₐc[k] C) : A →ₐ[k] C) =
     IsScalarTower.toAlgHom k A C := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.008b91e678cb from=translated src=- shape=66c94613 vocab=c51db123
+-/
 theorem algebraMap_antipode (a : A) :
     algebraMap A C (antipode k a) = antipode k (algebraMap A C a) :=
   HopfKerHopf.map_antipode (toBialgHom k A C) a
@@ -59,12 +71,24 @@ noncomputable def reprMap {a : A} {ι : Type*} (𝓡 : Coalgebra.Repr k a ι) :
     rw [IsHopfTower.comul_algebraMap (k := k), ← 𝓡.eq, map_sum]
     simp
 
+/--
+@isnad1 id=eq.0h6v.s9.8974eceec554 from=translated src=- shape=16f60bf1 vocab=9e2cf170
+-/
 @[simp] theorem reprMap_index {a : A} {ι : Type*} (𝓡 : Coalgebra.Repr k a ι) : (reprMap k A C 𝓡).index = 𝓡.index := rfl
+/--
+@isnad1 id=eq.0h7v.s9.eefc5f94204b from=translated src=- shape=c53adb37 vocab=3ebfcf76
+-/
 @[simp] theorem reprMap_left {a : A} {ι : Type*} (𝓡 : Coalgebra.Repr k a ι) (i : ι) :
     (reprMap k A C 𝓡).left i = algebraMap A C (𝓡.left i) := rfl
+/--
+@isnad1 id=eq.0h7v.s9.adfa73599e22 from=translated src=- shape=c53adb37 vocab=c2ea564a
+-/
 @[simp] theorem reprMap_right {a : A} {ι : Type*} (𝓡 : Coalgebra.Repr k a ι) (i : ι) :
     (reprMap k A C 𝓡).right i = algebraMap A C (𝓡.right i) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.66cb6ef8e21a from=translated src=- shape=3e491eb0 vocab=44af1778
+-/
 theorem sum_tmul_algebraMap_eq {a : A} {ι : Type*} (𝓡 : Coalgebra.Repr k a ι) :
     ∑ i ∈ 𝓡.index, algebraMap A C (𝓡.left i) ⊗ₜ[k] algebraMap A C (𝓡.right i) =
       comul (R := k) (algebraMap A C a) :=
@@ -73,6 +97,9 @@ theorem sum_tmul_algebraMap_eq {a : A} {ι : Type*} (𝓡 : Coalgebra.Repr k a �
 variable {k A C} in
 omit [IsHopfTower k A C] in
 
+/--
+@isnad1 id=ishopfto.0h4v.s8.10c7195f769b from=translated src=- shape=8f5c0ecb vocab=9c25bd9f
+-/
 theorem trans (B : Type*) [CommRing B] [HopfAlgebra k B] [Algebra A B] [Algebra B C]
     [IsScalarTower k A B] [IsScalarTower k B C] [IsScalarTower A B C]
     [IsHopfTower k A B] [IsHopfTower k B C] : IsHopfTower k A C where
@@ -93,17 +120,29 @@ variable (k : Type u) (A : Type v) [CommRing k] [CommRing A] [HopfAlgebra k A]
 def augIdeal : Ideal A := RingHom.ker (Bialgebra.counitAlgHom k A)
 
 variable {A} in
+/--
+@isnad1 id=iff.0h3v.s8.3763482718d6 from=translated src=- shape=2609b3dd vocab=223cc7ca
+-/
 @[simp] theorem mem_augIdeal {a : A} : a ∈ augIdeal k A ↔ counit (R := k) a = 0 := Iff.rfl
 
 variable {A} in
+/--
+@isnad1 id=mem.0h3v.s8.30bc1ee27e26 from=translated src=- shape=a973bed4 vocab=c96c9067
+-/
 theorem sub_algebraMap_counit_mem_augIdeal (a : A) :
     a - algebraMap k A (counit (R := k) a) ∈ augIdeal k A := by
   simp [mem_augIdeal, Bialgebra.counit_algebraMap]
 
+/--
+@isnad1 id=ne.0h2v.s6.82f5e10da5b2 from=translated src=- shape=1f6ce859 vocab=b3854072
+-/
 theorem augIdeal_ne_top [Nontrivial k] : augIdeal k A ≠ ⊤ := by
   rw [Ne, Ideal.eq_top_iff_one, mem_augIdeal, Bialgebra.counit_one]
   exact one_ne_zero
 
+/--
+@isnad1 id=eq.0h5v.s10.b36fce86ff99 from=translated src=- shape=047037e7 vocab=8ee44245
+-/
 theorem sum_counit_right_smul {a : A} {ι : Type*} (𝓡 : Coalgebra.Repr k a ι) :
     ∑ i ∈ 𝓡.index, counit (R := k) (𝓡.right i) • 𝓡.left i = a := by
   simpa only [map_sum, TensorProduct.lift.tmul, LinearMap.flip_apply, LinearMap.lsmul_apply, one_smul]
@@ -127,15 +166,30 @@ noncomputable def ι₂A (K : Subalgebra k H) : ↥K ⊗[k] ↥K →ₐ[k] H ⊗
 
 noncomputable def ι₂ (K : Subalgebra k H) : ↥K ⊗[k] ↥K →ₗ[k] H ⊗[k] H := (ι₂A K).toLinearMap
 
+/--
+@isnad1 id=eq.0h3v.s12.64a0c72d050c from=translated src=- shape=f848d1b7 vocab=1e7d2f6d
+-/
 theorem ι₂_eq_map : ι₂ K = TensorProduct.map K.val.toLinearMap K.val.toLinearMap :=
   TensorProduct.ext' fun _ _ => rfl
 
+/--
+@isnad1 id=eq.0h5v.s13.05e0e86345b4 from=translated src=- shape=766b0009 vocab=ff4eb3ee
+-/
 @[simp] theorem ι₂_tmul (s t : ↥K) : ι₂ K (s ⊗ₜ[k] t) = (s : H) ⊗ₜ[k] (t : H) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s14.61f70a46558d from=translated src=- shape=2a91c8f4 vocab=087c5bb7
+-/
 theorem ι₂_mul (x y : ↥K ⊗[k] ↥K) : ι₂ K (x * y) = ι₂ K x * ι₂ K y := map_mul (ι₂A K) x y
 
+/--
+@isnad1 id=eq.0h3v.s13.728446abc850 from=translated src=- shape=f432c62a vocab=ac71c4e6
+-/
 theorem ι₂_one : ι₂ K 1 = 1 := map_one (ι₂A K)
 
+/--
+@isnad1 id=eq.0h3v.s12.cac7db97a140 from=translated src=- shape=54508f1b vocab=44fa4fdd
+-/
 theorem range_ι₂ : LinearMap.range (ι₂ K) =
     Submodule.span k {t : H ⊗[k] H | ∃ a ∈ K, ∃ b ∈ K, t = a ⊗ₜ[k] b} := by
   rw [ι₂_eq_map, TensorProduct.range_map, Submodule.map₂_eq_span_image2]
@@ -151,6 +205,9 @@ theorem range_ι₂ : LinearMap.range (ι₂ K) =
 
 variable [Module.Flat k H] [Module.Flat k ↥K]
 
+/--
+@isnad1 id=injectiv.0h3v.s13.d2fb14806f9a from=translated src=- shape=97f2684f vocab=3bab9400
+-/
 theorem ι₂_injective : Function.Injective (ι₂ K) := by
   have h1 : Function.Injective (K.val.toLinearMap.lTensor ↥K) :=
     Module.Flat.lTensor_preserves_injective_linearMap _ Subtype.val_injective
@@ -162,8 +219,14 @@ theorem ι₂_injective : Function.Injective (ι₂ K) := by
 noncomputable def ι₃ (K : Subalgebra k H) : ↥K ⊗[k] (↥K ⊗[k] ↥K) →ₗ[k] H ⊗[k] (H ⊗[k] H) :=
   TensorProduct.map K.val.toLinearMap (ι₂ K)
 
+/--
+@isnad1 id=eq.0h5v.s15.92a16e3dbcc7 from=translated src=- shape=be7a3b01 vocab=c98a857a
+-/
 @[simp] theorem ι₃_tmul (s : ↥K) (z : ↥K ⊗[k] ↥K) : ι₃ K (s ⊗ₜ[k] z) = (s : H) ⊗ₜ[k] ι₂ K z := rfl
 
+/--
+@isnad1 id=injectiv.0h3v.s14.3a9b80aaf73c from=translated src=- shape=d22d3a7e vocab=a06ac41a
+-/
 theorem ι₃_injective : Function.Injective (ι₃ K) := by
   have h1 : Function.Injective ((ι₂ K).lTensor ↥K) :=
     Module.Flat.lTensor_preserves_injective_linearMap _ ι₂_injective
@@ -175,6 +238,9 @@ theorem ι₃_injective : Function.Injective (ι₃ K) := by
 variable (hK : IsHopfSubalgebra k K)
 include hK
 
+/--
+@isnad1 id=mem.1h4v.s12.38644a7be3e7 from=translated src=- shape=f9ff3580 vocab=df31aedb
+-/
 theorem comul_coe_mem_range (s : ↥K) : comul (R := k) (s : H) ∈ LinearMap.range (ι₂ K) := by
   rw [range_ι₂]; exact hK.comul_mem s s.2
 
@@ -183,6 +249,9 @@ noncomputable def comulK : ↥K →ₗ[k] ↥K ⊗[k] ↥K :=
     ∘ₗ ((comul (R := k) (A := H)) ∘ₗ K.val.toLinearMap).codRestrict (LinearMap.range (ι₂ K))
         hK.comul_coe_mem_range
 
+/--
+@isnad1 id=eq.1h4v.s13.23484a71a435 from=translated src=- shape=4679da83 vocab=f64cc66b
+-/
 @[simp] theorem ι₂_comulK (s : ↥K) : ι₂ K (hK.comulK s) = comul (R := k) (s : H) := by
   simp only [comulK, LinearMap.comp_apply, LinearEquiv.coe_coe, LinearEquiv.ofInjective_symm_apply,
     LinearMap.codRestrict_apply, AlgHom.toLinearMap_apply, Subalgebra.coe_val]
@@ -202,9 +271,15 @@ omit hK in
 noncomputable def counitK (K : Subalgebra k H) : ↥K →ₗ[k] k := counit ∘ₗ K.val.toLinearMap
 
 omit [Module.Flat k H] [Module.Flat k ↥K] hK in
+/--
+@isnad1 id=eq.0h4v.s10.baff6709b50b from=translated src=- shape=ff3288bc vocab=46aa0f2f
+-/
 @[simp] theorem counitK_apply (s : ↥K) : counitK K s = counit (R := k) (s : H) := rfl
 
 omit [Module.Flat k H] [Module.Flat k ↥K] hK in
+/--
+@isnad1 id=eq.0h4v.s14.2ed805adfafb from=translated src=- shape=d584ca79 vocab=4e913809
+-/
 theorem rTensor_counitK (z : ↥K ⊗[k] ↥K) :
     K.val.toLinearMap.lTensor k ((counitK K).rTensor ↥K z)
       = (counit (R := k) (A := H)).rTensor H (ι₂ K z) := by
@@ -214,6 +289,9 @@ theorem rTensor_counitK (z : ↥K ⊗[k] ↥K) :
   | tmul x y => simp
 
 omit [Module.Flat k H] [Module.Flat k ↥K] hK in
+/--
+@isnad1 id=eq.0h4v.s14.4cc330b7ec7b from=translated src=- shape=d5d5eaf1 vocab=4e913809
+-/
 theorem lTensor_counitK (z : ↥K ⊗[k] ↥K) :
     K.val.toLinearMap.rTensor k ((counitK K).lTensor ↥K z)
       = (counit (R := k) (A := H)).lTensor H (ι₂ K z) := by
@@ -222,6 +300,9 @@ theorem lTensor_counitK (z : ↥K ⊗[k] ↥K) :
   | add x y hx hy => simp only [map_add, hx, hy]
   | tmul x y => simp
 
+/--
+@isnad1 id=eq.1h4v.s16.65cf0a6ed3c4 from=translated src=- shape=5836bb3f vocab=e112d496
+-/
 theorem ι₃_lTensor_comulK (z : ↥K ⊗[k] ↥K) :
     ι₃ K (hK.comulK.lTensor ↥K z) = (comul (R := k) (A := H)).lTensor H (ι₂ K z) := by
   induction z with
@@ -229,6 +310,9 @@ theorem ι₃_lTensor_comulK (z : ↥K ⊗[k] ↥K) :
   | add x y hx hy => simp only [map_add, hx, hy]
   | tmul x y => simp
 
+/--
+@isnad1 id=eq.1h4v.s17.ab0996491e08 from=translated src=- shape=3ea9377c vocab=24760d8c
+-/
 theorem ι₃_assoc_rTensor_comulK (z : ↥K ⊗[k] ↥K) :
     ι₃ K ((TensorProduct.assoc k _ _ _).toLinearMap (hK.comulK.rTensor ↥K z))
       = (TensorProduct.assoc k H H H).toLinearMap ((comul (R := k) (A := H)).rTensor H (ι₂ K z)) := by
@@ -267,13 +351,25 @@ theorem ι₃_assoc_rTensor_comulK (z : ↥K ⊗[k] ↥K) :
     simp only [LinearMap.comp_apply, LinearMap.flip_apply, TensorProduct.mk_apply, LinearMap.rTensor_tmul]
     rw [lTensor_counitK, ι₂_comulK, Coalgebra.lTensor_counit_comul]; rfl
 
+/--
+@isnad1 id=eq.1h4v.s13.05198560d15b from=translated src=- shape=11590e76 vocab=cf863e99
+-/
 theorem comul_def (s : ↥K) : (letI := hK.coalgebra; comul (R := k) s) = hK.comulK s := rfl
 
+/--
+@isnad1 id=eq.1h4v.s11.f6c4e97bf7cc from=translated src=- shape=7a714334 vocab=df070e8e
+-/
 theorem counit_coe (s : ↥K) : (letI := hK.coalgebra; counit (R := k) s) = counit (R := k) (s : H) := rfl
 
+/--
+@isnad1 id=eq.1h4v.s13.37f7261ea896 from=translated src=- shape=f82d12ff vocab=60ea3c71
+-/
 theorem ι₂_comul (s : ↥K) : ι₂ K (letI := hK.coalgebra; comul (R := k) s) = comul (R := k) (s : H) :=
   hK.ι₂_comulK s
 
+/--
+@isnad1 id=eq.1h4v.s14.584b74fe2e47 from=translated src=- shape=c818878f vocab=8c02e1a2
+-/
 theorem map_val_val_comul (s : ↥K) :
     TensorProduct.map K.val.toLinearMap K.val.toLinearMap (letI := hK.coalgebra; comul (R := k) s) =
       comul (R := k) (s : H) := by
@@ -299,8 +395,14 @@ noncomputable def antipodeK : ↥K →ₗ[k] ↥K where
   map_add' s t := by ext; simp
   map_smul' r s := by ext; simp
 
+/--
+@isnad1 id=eq.1h4v.s11.5796b59e3069 from=translated src=- shape=589a9c32 vocab=1c1462db
+-/
 @[simp] theorem coe_antipodeK (s : ↥K) : ((hK.antipodeK s : ↥K) : H) = antipode k (s : H) := rfl
 
+/--
+@isnad1 id=eq.1h4v.s15.bb0e3b6b3e52 from=translated src=- shape=47b9ba38 vocab=77f5a914
+-/
 theorem val_mul'_rTensor_antipodeK (z : ↥K ⊗[k] ↥K) :
     ((LinearMap.mul' k ↥K (hK.antipodeK.rTensor _ z) : ↥K) : H)
       = LinearMap.mul' k H ((antipode k (A := H)).rTensor H (ι₂ K z)) := by
@@ -309,6 +411,9 @@ theorem val_mul'_rTensor_antipodeK (z : ↥K ⊗[k] ↥K) :
   | add x y hx hy => simp only [map_add, Subalgebra.coe_add, hx, hy]
   | tmul x y => simp
 
+/--
+@isnad1 id=eq.1h4v.s15.cb8d579991c2 from=translated src=- shape=47b9ba38 vocab=4457f6ea
+-/
 theorem val_mul'_lTensor_antipodeK (z : ↥K ⊗[k] ↥K) :
     ((LinearMap.mul' k ↥K (hK.antipodeK.lTensor _ z) : ↥K) : H)
       = LinearMap.mul' k H ((antipode k (A := H)).lTensor H (ι₂ K z)) := by
@@ -329,9 +434,15 @@ theorem val_mul'_lTensor_antipodeK (z : ↥K ⊗[k] ↥K) :
       simp only [LinearMap.comp_apply, Algebra.linearMap_apply, Subalgebra.coe_algebraMap]
       rw [val_mul'_lTensor_antipodeK, ι₂_comul, mul_antipode_lTensor_comul_apply, counit_coe] }
 
+/--
+@isnad1 id=eq.1h4v.s12.3c7a34b4b8d8 from=translated src=- shape=2cc011e6 vocab=164f9284
+-/
 theorem coe_antipode (s : ↥K) :
     ((letI := hK.hopfAlgebra; antipode k s : ↥K) : H) = antipode k (s : H) := rfl
 
+/--
+@isnad1 id=ishopfto.1h3v.s9.aee569d108e2 from=translated src=- shape=99fb80d1 vocab=568fa905
+-/
 theorem isHopfTower : letI := hK.hopfAlgebra; IsHopfTower k ↥K H := by
   letI := hK.hopfAlgebra
   refine ⟨fun s => ?_, fun s => rfl⟩
@@ -348,11 +459,17 @@ variable (k : Type u) (C : Type v) [CommRing k] [CommRing C] [HopfAlgebra k C]
 
 noncomputable def antipodeAlgHom : C →ₐ[k] C :=
   AlgHom.ofLinearMap (antipode k) antipode_one fun a b => by rw [antipode_mul_antidistrib, mul_comm]
+/--
+@isnad1 id=eq.0h3v.s8.504f70cbbc7a from=translated src=- shape=61605c9e vocab=a938d7fb
+-/
 @[simp] theorem antipodeAlgHom_apply (x : C) : antipodeAlgHom k C x = antipode k x := rfl
 
 variable {k C}
 variable {L : Type w} [CommRing L] [Algebra k L]
 
+/--
+@isnad1 id=eq.0h4v.s9.8afa792ab0f7 from=translated src=- shape=0681ae0e vocab=86617a34
+-/
 theorem convMul_comp_antipodeAlgHom (φ : C →ₐ[k] L) :
     toConv φ * toConv (φ.comp (antipodeAlgHom k C)) = 1 := by
   refine WithConv.ext (AlgHom.ext fun x => ?_)
@@ -367,6 +484,9 @@ theorem convMul_comp_antipodeAlgHom (φ : C →ₐ[k] L) :
     | add x y hx hy => simp [map_add, hx, hy]
   rw [h, mul_antipode_lTensor_comul_apply, AlgHom.commutes]
 
+/--
+@isnad1 id=eq.0h4v.s9.76cbcf48cbe6 from=translated src=- shape=7d18e3cd vocab=86617a34
+-/
 theorem comp_antipodeAlgHom_convMul (φ : C →ₐ[k] L) :
     toConv (φ.comp (antipodeAlgHom k C)) * toConv φ = 1 := by
   refine WithConv.ext (AlgHom.ext fun x => ?_)
@@ -394,10 +514,16 @@ variable (k : Type u) (A : Type v) (B : Type w) (C : Type x)
 
 def augIdealMap : Ideal B := (augIdeal k A).map (algebraMap A B)
 
+/--
+@isnad1 id=mem.1h4v.s9.8fdae18e85d6 from=translated src=- shape=79071845 vocab=32c7b912
+-/
 theorem algebraMap_mem_augIdealMap {a : A} (ha : counit (R := k) a = 0) :
     algebraMap A B a ∈ augIdealMap k A B :=
   Ideal.mem_map_of_mem _ ((mem_augIdeal k).2 ha)
 
+/--
+@isnad1 id=eq.0h4v.s10.12134067b49f from=translated src=- shape=c095d194 vocab=c05b5081
+-/
 theorem mkₐ_algebraMap (a : A) :
     Ideal.Quotient.mkₐ k (augIdealMap k A B) (algebraMap A B a) =
       counit (R := k) a • (1 : B ⧸ augIdealMap k A B) := by
@@ -409,6 +535,9 @@ noncomputable def fwdAux : B →ₐ[k] C ⊗[k] (B ⧸ augIdealMap k A B) :=
   (Algebra.TensorProduct.map (IsScalarTower.toAlgHom k B C)
       (Ideal.Quotient.mkₐ k (augIdealMap k A B))).comp (Bialgebra.comulAlgHom k B)
 
+/--
+@isnad1 id=eq.0h7v.s11.c23bec24c222 from=translated src=- shape=4f31115f vocab=073bb96b
+-/
 theorem fwdAux_apply {b : B} {ι : Type*} (𝓡 : Coalgebra.Repr k b ι) :
     fwdAux k A B C b = ∑ i ∈ 𝓡.index,
       algebraMap B C (𝓡.left i) ⊗ₜ[k] Ideal.Quotient.mk (augIdealMap k A B) (𝓡.right i) := by
@@ -416,6 +545,9 @@ theorem fwdAux_apply {b : B} {ι : Type*} (𝓡 : Coalgebra.Repr k b ι) :
     Algebra.TensorProduct.map_tmul]
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s11.54a33710d6a8 from=translated src=- shape=a326ff7b vocab=5db4a439
+-/
 theorem fwdAux_algebraMap_eq_sum {a : A} {ι : Type*} (𝓡 : Coalgebra.Repr k a ι) :
     fwdAux k A B C (algebraMap A B a) = ∑ i ∈ 𝓡.index,
       algebraMap A C (𝓡.left i) ⊗ₜ[k]
@@ -425,6 +557,9 @@ theorem fwdAux_algebraMap_eq_sum {a : A} {ι : Type*} (𝓡 : Coalgebra.Repr k a
     ← IsScalarTower.algebraMap_apply]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.305098f3e758 from=translated src=- shape=0e2fb784 vocab=32137a4e
+-/
 theorem fwdAux_algebraMap (a : A) :
     fwdAux k A B C (algebraMap A B a) = algebraMap A C a ⊗ₜ[k] 1 := by
   rw [fwdAux_algebraMap_eq_sum k A B C (ℛ k a)]
@@ -444,11 +579,17 @@ noncomputable def fwdB : B →ₐ[A] C ⊗[k] (B ⧸ augIdealMap k A B) :=
       rw [fwdAux_algebraMap, IsScalarTower.algebraMap_apply A C (C ⊗[k] (B ⧸ augIdealMap k A B)),
         Algebra.TensorProduct.algebraMap_apply, Algebra.algebraMap_self, RingHom.id_apply] }
 
+/--
+@isnad1 id=eq.0h5v.s11.bccc917bb479 from=translated src=- shape=88579ee8 vocab=f74f350b
+-/
 @[simp] theorem fwdB_apply (b : B) : fwdB k A B C b = fwdAux k A B C b := rfl
 
 noncomputable def galoisFwd : C ⊗[A] B →ₐ[C] C ⊗[k] (B ⧸ augIdealMap k A B) :=
   Algebra.TensorProduct.lift (Algebra.ofId C _) (fwdB k A B C) fun _ _ => .all _ _
 
+/--
+@isnad1 id=eq.0h6v.s12.16283700e67a from=translated src=- shape=912cd4ba vocab=85bbd0cc
+-/
 @[simp] theorem galoisFwd_tmul (c : C) (b : B) :
     galoisFwd k A B C (c ⊗ₜ[A] b) = (c ⊗ₜ[k] (1 : B ⧸ augIdealMap k A B)) * fwdAux k A B C b := by
   simp [galoisFwd, Algebra.ofId_apply, Algebra.TensorProduct.algebraMap_apply]
@@ -461,6 +602,9 @@ noncomputable def invAux : B →ₐ[k] C ⊗[A] B :=
     ((Algebra.TensorProduct.map ((antipodeAlgHom k C).comp (IsScalarTower.toAlgHom k B C))
         (AlgHom.id k B)).comp (Bialgebra.comulAlgHom k B))
 
+/--
+@isnad1 id=eq.0h7v.s10.2e44021ee3fd from=translated src=- shape=ff6a1b21 vocab=4e7ecfc9
+-/
 theorem invAux_apply {b : B} {ι : Type*} (𝓡 : Coalgebra.Repr k b ι) :
     invAux k A B C b = ∑ i ∈ 𝓡.index, antipode k (algebraMap B C (𝓡.left i)) ⊗ₜ[A] 𝓡.right i := by
   simp only [invAux, AlgHom.comp_apply, Bialgebra.comulAlgHom_apply, ← 𝓡.eq, map_sum,
@@ -471,10 +615,16 @@ theorem invAux_apply {b : B} {ι : Type*} (𝓡 : Coalgebra.Repr k b ι) :
 omit [HopfAlgebra k B] [IsScalarTower k A B] [IsScalarTower k B C] [IsHopfTower k A B]
   [IsHopfTower k B C] [IsHopfTower k A C] in
 
+/--
+@isnad1 id=eq.0h5v.s8.fbbb959ef7a8 from=translated src=- shape=75da38ec vocab=588fe69a
+-/
 theorem tmul_algebraMap (c : C) (a : A) :
     c ⊗ₜ[A] algebraMap A B a = (algebraMap A C a * c) ⊗ₜ[A] (1 : B) := by
   rw [Algebra.algebraMap_eq_smul_one, ← TensorProduct.smul_tmul, Algebra.smul_def]
 
+/--
+@isnad1 id=eq.0h7v.s11.f40c0baa92df from=translated src=- shape=5605b216 vocab=4e7ecfc9
+-/
 theorem invAux_algebraMap_eq_sum {a : A} {ι : Type*} (𝓡 : Coalgebra.Repr k a ι) :
     invAux k A B C (algebraMap A B a) =
       ∑ i ∈ 𝓡.index, antipode k (algebraMap A C (𝓡.left i)) ⊗ₜ[A] algebraMap A B (𝓡.right i) := by
@@ -482,6 +632,9 @@ theorem invAux_algebraMap_eq_sum {a : A} {ι : Type*} (𝓡 : Coalgebra.Repr k a
   simp only [IsHopfTower.reprMap_index, IsHopfTower.reprMap_left, IsHopfTower.reprMap_right,
     ← IsScalarTower.algebraMap_apply]
 
+/--
+@isnad1 id=eq.1h5v.s10.549930fb6474 from=translated src=- shape=d412aa52 vocab=27bf0c67
+-/
 theorem invAux_algebraMap_of_counit_eq_zero {a : A} (ha : counit (R := k) a = 0) :
     invAux k A B C (algebraMap A B a) = 0 := by
   rw [invAux_algebraMap_eq_sum k A B C (ℛ k a)]
@@ -498,6 +651,9 @@ theorem invAux_algebraMap_of_counit_eq_zero {a : A} (ha : counit (R := k) a = 0)
     sum_antipode_mul_eq_algebraMap_counit (IsHopfTower.reprMap k A C (ℛ k a))
   rw [h2, IsHopfTower.counit_algebraMap, ha, map_zero, TensorProduct.zero_tmul]
 
+/--
+@isnad1 id=le.0h4v.s9.ad88a17ff6ef from=translated src=- shape=96ff98ae vocab=e3c1ffd2
+-/
 theorem augIdealMap_le_ker_invAux :
     augIdealMap k A B ≤ RingHom.ker (invAux k A B C) := by
   rw [augIdealMap, Ideal.map_le_iff_le_comap]
@@ -508,12 +664,18 @@ noncomputable def invQuot : (B ⧸ augIdealMap k A B) →ₐ[k] C ⊗[A] B :=
   Ideal.Quotient.liftₐ (augIdealMap k A B) (invAux k A B C)
     fun _ hb => augIdealMap_le_ker_invAux k A B C hb
 
+/--
+@isnad1 id=eq.0h5v.s10.102795edb54c from=translated src=- shape=6518f9e7 vocab=e7332704
+-/
 @[simp] theorem invQuot_mk (b : B) :
     invQuot k A B C (Ideal.Quotient.mk (augIdealMap k A B) b) = invAux k A B C b := rfl
 
 noncomputable def galoisInv : C ⊗[k] (B ⧸ augIdealMap k A B) →ₐ[C] C ⊗[A] B :=
   Algebra.TensorProduct.lift (Algebra.ofId C _) (invQuot k A B C) fun _ _ => .all _ _
 
+/--
+@isnad1 id=eq.0h6v.s11.7d2c75a72344 from=translated src=- shape=9b06d6d1 vocab=cc06c997
+-/
 @[simp] theorem galoisInv_tmul (c : C) (q : B ⧸ augIdealMap k A B) :
     galoisInv k A B C (c ⊗ₜ[k] q) = (c ⊗ₜ[A] (1 : B)) * invQuot k A B C q := by
   simp [galoisInv, Algebra.ofId_apply, Algebra.TensorProduct.algebraMap_apply]
@@ -530,6 +692,9 @@ noncomputable def θ₁ : B ⊗[k] (B ⊗[k] B) →ₗ[k] C ⊗[A] B :=
       (TensorProduct.map ((antipodeAlgHom k C).comp (IsScalarTower.toAlgHom k B C)).toLinearMap
         LinearMap.id)
 
+/--
+@isnad1 id=eq.0h7v.s12.35dd3f562ce5 from=translated src=- shape=71d4ecdf vocab=68eb82e2
+-/
 @[simp] theorem θ₁_tmul (u v w : B) :
     θ₁ k A B C (u ⊗ₜ[k] (v ⊗ₜ[k] w)) =
       (algebraMap B C u * antipode k (algebraMap B C v)) ⊗ₜ[A] w := by
@@ -547,12 +712,18 @@ noncomputable def θ₂ : B ⊗[k] (B ⊗[k] B) →ₗ[k] C ⊗[k] (B ⧸ augIde
       (TensorProduct.map (IsScalarTower.toAlgHom k B C).toLinearMap
         (Ideal.Quotient.mkₐ k (augIdealMap k A B)).toLinearMap)
 
+/--
+@isnad1 id=eq.0h7v.s12.73664360b112 from=translated src=- shape=1b94ac01 vocab=bd9c3311
+-/
 @[simp] theorem θ₂_tmul (u v w : B) :
     θ₂ k A B C (u ⊗ₜ[k] (v ⊗ₜ[k] w)) =
       (antipode k (algebraMap B C u) * algebraMap B C v) ⊗ₜ[k]
         Ideal.Quotient.mk (augIdealMap k A B) w := by
   simp [θ₂, Algebra.TensorProduct.tmul_mul_tmul]
 
+/--
+@isnad1 id=eq.0h5v.s11.4447e5f75734 from=translated src=- shape=1c1d04a9 vocab=6f05ca34
+-/
 theorem galoisInv_fwdAux (b : B) : galoisInv k A B C (fwdAux k A B C b) = 1 ⊗ₜ[A] b := by
   let 𝓡 := ℛ k b
   let a₁ : (i : _) → Coalgebra.Repr k (𝓡.left i) (_ × _) := fun i => ℛ k (𝓡.left i)
@@ -583,6 +754,9 @@ theorem galoisInv_fwdAux (b : B) : galoisInv k A B C (fwdAux k A B C b) = 1 ⊗�
     rw [Finset.sum_congr rfl h, ← TensorProduct.tmul_sum, sum_counit_smul]
   rw [lhs, ← key, rhs]
 
+/--
+@isnad1 id=eq.0h5v.s11.4b2dfb6047fc from=translated src=- shape=ef468eae vocab=127d6130
+-/
 theorem galoisFwd_invAux (b : B) :
     galoisFwd k A B C (invAux k A B C b) = 1 ⊗ₜ[k] Ideal.Quotient.mk (augIdealMap k A B) b := by
   let 𝓡 := ℛ k b
@@ -617,6 +791,9 @@ theorem galoisFwd_invAux (b : B) :
     rw [Finset.sum_congr rfl h, ← TensorProduct.tmul_sum, ← map_sum, sum_counit_smul]
   rw [lhs, ← key, rhs]
 
+/--
+@isnad1 id=eq.0h4v.s10.03c6a851c6eb from=translated src=- shape=88d06b96 vocab=ba884252
+-/
 theorem galoisInv_comp_galoisFwd :
     (galoisInv k A B C).comp (galoisFwd k A B C) = AlgHom.id C (C ⊗[A] B) := by
   refine Algebra.TensorProduct.ext (Subsingleton.elim _ _) ?_
@@ -625,6 +802,9 @@ theorem galoisInv_comp_galoisFwd :
     Algebra.TensorProduct.includeRight_apply, AlgHom.coe_id, id_eq, galoisFwd_tmul]
   rw [← Algebra.TensorProduct.one_def, one_mul, galoisInv_fwdAux]
 
+/--
+@isnad1 id=eq.0h4v.s11.b11b85fe0894 from=translated src=- shape=d61218a1 vocab=ba884252
+-/
 theorem galoisFwd_comp_galoisInv :
     (galoisFwd k A B C).comp (galoisInv k A B C) = AlgHom.id C _ := by
   refine Algebra.TensorProduct.ext (Subsingleton.elim _ _) ?_
@@ -639,15 +819,27 @@ noncomputable def galoisEquiv : C ⊗[A] B ≃ₐ[C] C ⊗[k] (B ⧸ augIdealMap
   AlgEquiv.ofAlgHom (galoisFwd k A B C) (galoisInv k A B C) (galoisFwd_comp_galoisInv k A B C)
     (galoisInv_comp_galoisFwd k A B C)
 
+/--
+@isnad1 id=eq.0h5v.s11.f830e6241191 from=translated src=- shape=041ff493 vocab=9c914c50
+-/
 theorem galoisEquiv_apply (z : C ⊗[A] B) : galoisEquiv k A B C z = galoisFwd k A B C z := rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.c7892590c41d from=translated src=- shape=e0481a9c vocab=0b089a18
+-/
 theorem galoisEquiv_symm_apply (z : C ⊗[k] (B ⧸ augIdealMap k A B)) :
     (galoisEquiv k A B C).symm z = galoisInv k A B C z := rfl
 
+/--
+@isnad1 id=eq.0h6v.s12.3a0d6a17912a from=translated src=- shape=e41ec590 vocab=279fa924
+-/
 theorem galoisEquiv_tmul (c : C) (b : B) :
     galoisEquiv k A B C (c ⊗ₜ[A] b) = (c ⊗ₜ[k] (1 : B ⧸ augIdealMap k A B)) * fwdAux k A B C b :=
   galoisFwd_tmul k A B C c b
 
+/--
+@isnad1 id=eq.0h5v.s11.4ebdf14791bc from=translated src=- shape=4893be11 vocab=b1694217
+-/
 theorem galoisEquiv_one_tmul (b : B) : galoisEquiv k A B C (1 ⊗ₜ[A] b) = fwdAux k A B C b := by
   rw [galoisEquiv_tmul, ← Algebra.TensorProduct.one_def, one_mul]
 
@@ -673,6 +865,9 @@ omit [HopfAlgebra k B] [HopfAlgebra k B'] [Algebra B C] [IsScalarTower A B C] [A
   [IsScalarTower k A B'] [IsScalarTower k B' C] [IsScalarTower k B B'] [IsHopfTower k A B]
   [IsHopfTower k B C] [IsHopfTower k A B'] [IsHopfTower k B' C] [IsHopfTower k B B']
   [HopfAlgebra k C] [Algebra A C] [IsScalarTower k A C] [IsHopfTower k A C] in
+/--
+@isnad1 id=le.0h4v.s7.43af7cd5ccdd from=translated src=- shape=f3420904 vocab=8901ff7f
+-/
 theorem augIdealMap_le_comap :
     augIdealMap k A B ≤ (augIdealMap k A B').comap (algebraMap B B') := by
   rw [augIdealMap, augIdealMap, Ideal.map_le_iff_le_comap, Ideal.comap_comap,
@@ -683,10 +878,16 @@ noncomputable def quotientMap : (B ⧸ augIdealMap k A B) →ₐ[k] (B' ⧸ augI
   Ideal.quotientMapₐ (augIdealMap k A B') (IsScalarTower.toAlgHom k B B')
     (augIdealMap_le_comap k A B B')
 
+/--
+@isnad1 id=eq.0h5v.s10.e703f47036da from=translated src=- shape=63d59196 vocab=76ed6778
+-/
 @[simp] theorem quotientMap_mk (b : B) :
     quotientMap k A B B' (Ideal.Quotient.mk (augIdealMap k A B) b) =
       Ideal.Quotient.mk (augIdealMap k A B') (algebraMap B B' b) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s12.18b12ef92181 from=translated src=- shape=31bee653 vocab=7f197bb6
+-/
 theorem fwdAux_algebraMap' (b : B) :
     fwdAux k A B' C (algebraMap B B' b) =
       Algebra.TensorProduct.map (AlgHom.id C C) (quotientMap k A B B') (fwdAux k A B C b) := by
@@ -696,6 +897,9 @@ theorem fwdAux_algebraMap' (b : B) :
     ← IsScalarTower.algebraMap_apply, Algebra.TensorProduct.map_tmul, AlgHom.coe_id, id_eq,
     quotientMap_mk]
 
+/--
+@isnad1 id=eq.0h6v.s12.80ecf43e0eb1 from=translated src=- shape=7b63d960 vocab=abb2e258
+-/
 theorem galoisEquiv_naturality (z : C ⊗[A] B) :
     galoisEquiv k A B' C
         (Algebra.TensorProduct.map (AlgHom.id C C) (IsScalarTower.toAlgHom A B B') z) =
@@ -725,6 +929,9 @@ noncomputable def translate (φ : C →ₐ[k] k) : C →ₐ[k] C :=
 
 variable {k C}
 
+/--
+@isnad1 id=eq.0h6v.s10.a3d0cd702dd2 from=translated src=- shape=98e64fee vocab=ad7dad64
+-/
 theorem translate_apply {x : C} (φ : C →ₐ[k] k) {ι : Type*} (𝓡 : Coalgebra.Repr k x ι) :
     translate k C φ x = ∑ i ∈ 𝓡.index, φ (𝓡.right i) • 𝓡.left i := by
   simp only [translate, AlgHom.comp_apply, Bialgebra.comulAlgHom_apply, ← 𝓡.eq, map_sum,
@@ -733,6 +940,9 @@ theorem translate_apply {x : C} (φ : C →ₐ[k] k) {ι : Type*} (𝓡 : Coalge
   change Algebra.TensorProduct.rid k k C (𝓡.left i ⊗ₜ[k] φ (𝓡.right i)) = _
   rw [Algebra.TensorProduct.rid_tmul]
 
+/--
+@isnad1 id=eq.0h4v.s9.f24dc88be2e2 from=translated src=- shape=0a87f09e vocab=2be1faf7
+-/
 theorem counit_translate (φ : C →ₐ[k] k) (x : C) :
     counit (R := k) (translate k C φ x) = φ x := by
   rw [translate_apply φ (ℛ k x), map_sum]
@@ -743,17 +953,26 @@ theorem counit_translate (φ : C →ₐ[k] k) (x : C) :
     TensorProduct.lid_tmul, smul_eq_mul, one_mul] at h
   exact h
 
+/--
+@isnad1 id=eq.0h2v.s7.c1bdcbb42f09 from=translated src=- shape=1f48c99c vocab=69a8a580
+-/
 theorem translate_one : translate k C (Bialgebra.counitAlgHom k C) = AlgHom.id k C := by
   ext x
   rw [translate_apply _ (ℛ k x)]
   simpa using sum_counit_right_smul k C (ℛ k x)
 
+/--
+@isnad1 id=eq.0h7v.s10.0cf5c64678b7 from=translated src=- shape=b8737663 vocab=9b78a18d
+-/
 theorem convMul_apply' (φ ψ : C →ₐ[k] k) {x : C} {ι : Type*} (𝓡 : Coalgebra.Repr k x ι) :
     ofConv (toConv φ * toConv ψ) x = ∑ i ∈ 𝓡.index, φ (𝓡.left i) * ψ (𝓡.right i) := by
   rw [show ofConv (toConv φ * toConv ψ) x = (toConv φ * toConv ψ) x from rfl,
     AlgHom.convMul_apply, ofConv_toConv, ofConv_toConv, ← 𝓡.eq, map_sum]
   simp [Algebra.TensorProduct.lift_tmul]
 
+/--
+@isnad1 id=eq.0h5v.s10.387ce8241aed from=translated src=- shape=8a58d202 vocab=9b8c6127
+-/
 theorem translate_translate (φ ψ : C →ₐ[k] k) (x : C) :
     translate k C φ (translate k C ψ x) = translate k C (ofConv (toConv φ * toConv ψ)) x := by
   let 𝓡 := ℛ k x
@@ -781,12 +1000,18 @@ theorem translate_translate (φ ψ : C →ₐ[k] k) (x : C) :
     rw [convMul_apply' φ ψ (a₂ i), Finset.sum_smul]
   rw [lhs, key, ← rhs]
 
+/--
+@isnad1 id=eq.0h3v.s8.a2ff5e1a7486 from=translated src=- shape=a7def455 vocab=efbf6793
+-/
 theorem translate_comp_translate_antipode (φ : C →ₐ[k] k) :
     (translate k C φ).comp (translate k C (φ.comp (antipodeAlgHom k C))) = AlgHom.id k C := by
   ext x
   rw [AlgHom.comp_apply, translate_translate, convMul_comp_antipodeAlgHom]
   exact congr($(translate_one (k := k) (C := C)) x)
 
+/--
+@isnad1 id=eq.0h3v.s8.f677fd1af096 from=translated src=- shape=60d3af92 vocab=efbf6793
+-/
 theorem translate_antipode_comp_translate (φ : C →ₐ[k] k) :
     (translate k C (φ.comp (antipodeAlgHom k C))).comp (translate k C φ) = AlgHom.id k C := by
   ext x
@@ -799,14 +1024,23 @@ noncomputable def translateEquiv (φ : C →ₐ[k] k) : C ≃ₐ[k] C :=
   AlgEquiv.ofAlgHom (translate k C φ) (translate k C (φ.comp (antipodeAlgHom k C)))
     (translate_comp_translate_antipode φ) (translate_antipode_comp_translate φ)
 
+/--
+@isnad1 id=eq.0h4v.s8.059dee6e69f8 from=translated src=- shape=da5134ed vocab=467e4d70
+-/
 @[simp] theorem translateEquiv_apply (φ : C →ₐ[k] k) (x : C) :
     translateEquiv k C φ x = translate k C φ x := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.bca00f3cb114 from=translated src=- shape=87ddb97c vocab=27aae3ab
+-/
 theorem comap_translate_augIdeal (φ : C →ₐ[k] k) :
     (RingHom.ker (Bialgebra.counitAlgHom k C)).comap (translate k C φ) = RingHom.ker φ := by
   ext x
   simp only [Ideal.mem_comap, RingHom.mem_ker, Bialgebra.counitAlgHom_apply, counit_translate]
 
+/--
+@isnad1 id=eq.0h4v.s9.ef81e6847ba4 from=translated src=- shape=ea44e539 vocab=0b918b21
+-/
 theorem comp_translate (u φ : C →ₐ[k] k) :
     u.comp (translate k C φ) = ofConv (toConv u * toConv φ) := by
   ext x
@@ -820,6 +1054,9 @@ section TranslateTower
 variable (k : Type u) (A : Type v) (C : Type w) [CommRing k] [CommRing A] [CommRing C]
     [HopfAlgebra k A] [HopfAlgebra k C] [Algebra A C] [IsScalarTower k A C]
 
+/--
+@isnad1 id=eq.1h5v.s12.946937e97f86 from=translated src=- shape=839eeb30 vocab=f896af52
+-/
 theorem translate_algebraMap
     (hcomul : ∀ a : A, comul (R := k) (algebraMap A C a) =
       Algebra.TensorProduct.map (IsScalarTower.toAlgHom k A C) (IsScalarTower.toAlgHom k A C)

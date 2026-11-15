@@ -7,6 +7,9 @@ set_option autoImplicit false
 
 namespace LaurentSeries
 
+/--
+@isnad1 id=bddbelow.1h3v.s5.73c98ea61d0f from=translated src=- shape=70889d82 vocab=b058e6ab
+-/
 theorem bddBelow_support_coeff_mul {R : Type*} [Zero R] (f : LaurentSeries R) (ℓ : ℕ) (hℓ : 0 < ℓ) :
     BddBelow (Function.support fun n : ℤ => f.coeff (ℓ * n)) := by
   by_cases hS : (Function.support f.coeff).Nonempty
@@ -31,11 +34,17 @@ noncomputable def heckeU (R : Type*) [CommRing R] (ℓ : ℕ) (hℓ : 0 < ℓ) :
     ext n
     simp [HahnSeries.ofSuppBddBelow_coeff]
 
+/--
+@isnad1 id=eq.1h4v.s8.6d3deeb51134 from=translated src=- shape=6f7811c3 vocab=c166188d
+-/
 @[simp]
 theorem coeff_heckeU (R : Type*) [CommRing R] (ℓ : ℕ) (hℓ : 0 < ℓ) (f : LaurentSeries R) (n : ℤ) :
     (heckeU R ℓ hℓ f).coeff n = f.coeff (ℓ * n) :=
   HahnSeries.ofSuppBddBelow_coeff _ (bddBelow_support_coeff_mul f ℓ hℓ) n
 
+/--
+@isnad1 id=eq.1h3v.s9.f1ff345055b3 from=translated src=- shape=fe37f98a vocab=40b72272
+-/
 theorem heckeU_ofPowerSeries (R : Type*) [CommRing R] (ℓ : ℕ) (hℓ : 0 < ℓ) (φ : PowerSeries R) :
     heckeU R ℓ hℓ (φ : LaurentSeries R) = ((PowerSeries.heckeU ℓ φ : PowerSeries R) : LaurentSeries R) := by
   ext n

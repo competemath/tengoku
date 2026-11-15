@@ -15,12 +15,18 @@ noncomputable def unitsComponent (v : HeightOneSpectrum R) :
     (fun v : HeightOneSpectrum R => v.adicCompletion K) v).toMonoidHom
 
 variable {R K} in
+/--
+@isnad1 id=eq.0h4v.s9.5f6786230fad from=translated src=- shape=6a009171 vocab=8b10536b
+-/
 @[simp]
 theorem val_unitsComponent (v : HeightOneSpectrum R) (x : (FiniteAdeleRing R K)ˣ) :
     ((unitsComponent R K v x : (v.adicCompletion K)ˣ) : v.adicCompletion K) = (x : FiniteAdeleRing R K) v :=
   rfl
 
 variable {R K} in
+/--
+@isnad1 id=eq.0h4v.s10.63527f39ccea from=translated src=- shape=be61b722 vocab=4d18feeb
+-/
 theorem val_inv_unitsComponent (v : HeightOneSpectrum R) (x : (FiniteAdeleRing R K)ˣ) :
     (((unitsComponent R K v x)⁻¹ : (v.adicCompletion K)ˣ) : v.adicCompletion K)
       = ((x⁻¹ : (FiniteAdeleRing R K)ˣ) : FiniteAdeleRing R K) v :=
@@ -28,6 +34,9 @@ theorem val_inv_unitsComponent (v : HeightOneSpectrum R) (x : (FiniteAdeleRing R
 
 variable {R K} in
 
+/--
+@isnad1 id=iff.0h4v.s9.5766e7669f3d from=translated src=- shape=9653889d vocab=36aae303
+-/
 theorem integer_and_inv_integer_iff_valuation_eq_one (v : HeightOneSpectrum R) (x : (FiniteAdeleRing R K)ˣ) :
     ((x : FiniteAdeleRing R K) v ∈ v.adicCompletionIntegers K ∧
         ((x⁻¹ : (FiniteAdeleRing R K)ˣ) : FiniteAdeleRing R K) v ∈ v.adicCompletionIntegers K)
@@ -66,6 +75,9 @@ def ideleBox (S : Set (HeightOneSpectrum R)) (H : (v : HeightOneSpectrum R) → 
     exact ⟨fun v hv => by rw [map_inv]; exact inv_mem (hx1 v hv),
       fun v hv => ⟨(hx2 v hv).2, by rw [inv_inv]; exact (hx2 v hv).1⟩⟩
 
+/--
+@isnad1 id=eq.0h3v.s9.e7058b341305 from=translated src=- shape=3da6660f vocab=10cb06f9
+-/
 theorem ideleBox_top (S : Set (HeightOneSpectrum R)) : ideleBox R K S ⊤ = unitIdelesOutside R K S :=
   Subgroup.ext fun _ => ⟨fun h => h.2, fun h => ⟨fun _ _ => Subgroup.mem_top _, h⟩⟩
 
@@ -79,6 +91,9 @@ noncomputable def finitePartUnits : (AdeleRing R K)ˣ →* (IsDedekindDomain.Fin
   Units.map (RingHom.snd (InfiniteAdeleRing K) (IsDedekindDomain.FiniteAdeleRing R K)).toMonoidHom
 
 variable {R K} in
+/--
+@isnad1 id=eq.0h3v.s9.d6413a132a49 from=translated src=- shape=93b964a5 vocab=39c7cfd2
+-/
 @[simp]
 theorem val_finitePartUnits (x : (AdeleRing R K)ˣ) :
     ((finitePartUnits R K x : (IsDedekindDomain.FiniteAdeleRing R K)ˣ) : IsDedekindDomain.FiniteAdeleRing R K)
@@ -94,12 +109,18 @@ noncomputable def infiniteUnitsComponent (w : InfinitePlace K) : (AdeleRing R K)
     (RingHom.fst (InfiniteAdeleRing K) (IsDedekindDomain.FiniteAdeleRing R K))).toMonoidHom
 
 variable {R K} in
+/--
+@isnad1 id=eq.0h4v.s10.8c43114e1c14 from=translated src=- shape=9142dda0 vocab=b2f897fb
+-/
 @[simp]
 theorem val_finiteUnitsComponent (v : IsDedekindDomain.HeightOneSpectrum R) (x : (AdeleRing R K)ˣ) :
     ((finiteUnitsComponent R K v x : (v.adicCompletion K)ˣ) : v.adicCompletion K) = (x : AdeleRing R K).2 v :=
   rfl
 
 variable {R K} in
+/--
+@isnad1 id=eq.0h4v.s9.8f58c7e9fd02 from=translated src=- shape=15d5ed8a vocab=7d8ec930
+-/
 @[simp]
 theorem val_infiniteUnitsComponent (w : InfinitePlace K) (x : (AdeleRing R K)ˣ) :
     ((infiniteUnitsComponent R K w x : (w.Completion)ˣ) : w.Completion) = (x : AdeleRing R K).1 w :=
@@ -120,6 +141,9 @@ def ideleBox (S : Set (IsDedekindDomain.HeightOneSpectrum R))
 
 variable {R K} in
 
+/--
+@isnad1 id=iff.0h6v.s11.0e8a8ea47bb1 from=translated src=- shape=7f87ece8 vocab=0241c539
+-/
 theorem mem_ideleBox_iff (S : Set (IsDedekindDomain.HeightOneSpectrum R))
     (H : (v : IsDedekindDomain.HeightOneSpectrum R) → Subgroup (v.adicCompletion K)ˣ)
     (Hinf : (w : InfinitePlace K) → Subgroup (w.Completion)ˣ) (x : (AdeleRing R K)ˣ) :
@@ -131,6 +155,9 @@ theorem mem_ideleBox_iff (S : Set (IsDedekindDomain.HeightOneSpectrum R))
       ∀ w : InfinitePlace K, infiniteUnitsComponent R K w x ∈ Hinf w :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.de3388a2ff1b from=translated src=- shape=c95020b3 vocab=78cdba3d
+-/
 theorem ideleBox_top_top (S : Set (IsDedekindDomain.HeightOneSpectrum R)) :
     ideleBox R K S ⊤ ⊤ = unitIdelesOutside R K S :=
   Subgroup.ext fun _ =>

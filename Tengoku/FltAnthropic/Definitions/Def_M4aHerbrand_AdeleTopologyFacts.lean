@@ -12,9 +12,15 @@ section Infinite
 
 variable (K : Type*) [Field K]
 
+/--
+@isnad1 id=sigmacom.0h2v.s5.b844ab543d32 from=translated src=- shape=1fcfa16f vocab=0503d28d
+-/
 instance sigmaCompactSpace_completion (v : InfinitePlace K) : SigmaCompactSpace v.Completion :=
   (InfinitePlace.Completion.isometry_extensionEmbedding v).isClosedEmbedding.sigmaCompactSpace
 
+/--
+@isnad1 id=sigmacom.0h1v.s4.8a8bdd038edb from=translated src=- shape=9499e9bc vocab=4f4a04b4
+-/
 instance sigmaCompactSpace_infiniteAdeleRing [NumberField K] : SigmaCompactSpace (InfiniteAdeleRing K) :=
   inferInstanceAs (SigmaCompactSpace ((v : InfinitePlace K) → v.Completion))
 
@@ -26,9 +32,15 @@ variable (R K : Type*) [CommRing R] [IsDedekindDomain R] [Field K] [Algebra R K]
 
 omit [IsDedekindDomain R] [Algebra R K] [IsFractionRing R K] in
 
+/--
+@isnad1 id=countabl.0h1v.s5.1e357d607603 from=translated src=- shape=e367154d vocab=4ae94464
+-/
 theorem countable_of_free_finite_int [Module.Free ℤ R] [Module.Finite ℤ R] : Countable R :=
   Countable.of_equiv _ (Module.Free.chooseBasis ℤ R).equivFun.toEquiv.symm
 
+/--
+@isnad1 id=eq.0h2v.s8.deea1a1775b6 from=translated src=- shape=caa6c72a vocab=285ac619
+-/
 theorem iUnion_smul_integralFiniteAdeles :
     ⋃ s : R, (fun z => algebraMap K (FiniteAdeleRing R K) (algebraMap R K s)⁻¹ * z) ''
       NumberField.AdelicBox.integralFiniteAdeles R K = Set.univ := by
@@ -43,6 +55,9 @@ theorem iUnion_smul_integralFiniteAdeles :
 
 variable [Module.Free ℤ R] [Module.Finite ℤ R]
 
+/--
+@isnad1 id=iscompac.0h2v.s6.c0c268b9e361 from=translated src=- shape=1b1eebbb vocab=551ee73c
+-/
 theorem isCompact_integralFiniteAdeles :
     IsCompact (NumberField.AdelicBox.integralFiniteAdeles R K) := by
   haveI : ∀ v : HeightOneSpectrum R,
@@ -55,6 +70,9 @@ theorem isCompact_integralFiniteAdeles :
   rw [RestrictedProduct.range_structureMap] at h
   exact h
 
+/--
+@isnad1 id=sigmacom.0h2v.s6.a3c128c673d9 from=translated src=- shape=bb5be406 vocab=fc948ad5
+-/
 instance sigmaCompactSpace_finiteAdeleRing : SigmaCompactSpace (FiniteAdeleRing R K) := by
   haveI : Countable R := countable_of_free_finite_int R
   refine ⟨?_⟩
@@ -62,9 +80,15 @@ instance sigmaCompactSpace_finiteAdeleRing : SigmaCompactSpace (FiniteAdeleRing 
   exact isSigmaCompact_iUnion_of_isCompact _ fun s =>
     (isCompact_integralFiniteAdeles R K).image (continuous_const.mul continuous_id)
 
+/--
+@isnad1 id=sigmacom.0h2v.s6.c3e593f19c29 from=translated src=- shape=4e6c09ca vocab=eb754143
+-/
 instance sigmaCompactSpace_adeleRing [NumberField K] : SigmaCompactSpace (AdeleRing R K) :=
   inferInstanceAs (SigmaCompactSpace (InfiniteAdeleRing K × FiniteAdeleRing R K))
 
+/--
+@isnad1 id=locallyc.0h2v.s6.8981554a364d from=translated src=- shape=4e6c09ca vocab=163d9a97
+-/
 theorem locallyCompactSpace_adeleRing [NumberField K] : LocallyCompactSpace (AdeleRing R K) :=
   inferInstance
 
@@ -77,6 +101,9 @@ variable (A K B L : Type*) [CommRing A] [IsDedekindDomain A] [Field K] [NumberFi
   [CommRing B] [IsDedekindDomain B] [Field L] [NumberField L] [Algebra B L] [IsFractionRing B L]
   [Module.Free ℤ B] [Module.Finite ℤ B] [Algebra K L]
 
+/--
+@isnad1 id=continuo.1h6v.s10.858ef87781a3 from=translated src=- shape=1ac4c14e vocab=160d1b9f
+-/
 theorem continuous_conjAct_of_continuous_of_free
     [Algebra (AdeleRing A K) (AdeleRing B L)]
     (hβ : Continuous (algebraMap (AdeleRing A K) (AdeleRing B L)))
@@ -85,6 +112,9 @@ theorem continuous_conjAct_of_continuous_of_free
   haveI : Module.Finite K L := Module.Finite.of_restrictScalars_finite ℚ K L
   continuous_conjAct_of_continuous A K B L hβ te σ
 
+/--
+@isnad1 id=ismodule.1h5v.s10.1a992543e13e from=translated src=- shape=818b55b9 vocab=c9042b45
+-/
 theorem isModuleTopology_adeleRing_of_free
     [Algebra (AdeleRing A K) (AdeleRing B L)]
     (hβ : Continuous (algebraMap (AdeleRing A K) (AdeleRing B L)))
@@ -99,6 +129,9 @@ section ConjugationRingOfIntegers
 
 variable (E F : Type*) [Field E] [NumberField E] [Field F] [NumberField F] [Algebra E F]
 
+/--
+@isnad1 id=continuo.1h4v.s11.b2b5b683e7d3 from=translated src=- shape=09cd11b4 vocab=9e8e8373
+-/
 theorem continuous_conjAct_of_continuous_numberField
     [Algebra (AdeleRing (𝓞 E) E) (AdeleRing (𝓞 F) F)]
     (hβ : Continuous (algebraMap (AdeleRing (𝓞 E) E) (AdeleRing (𝓞 F) F)))

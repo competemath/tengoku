@@ -18,6 +18,9 @@ section slope
 
 variable [DecidableEq F]
 
+/--
+@isnad1 id=eq.1h6v.s8.4bc3a74b5e52 from=translated src=- shape=d0b02608 vocab=1498ea62
+-/
 lemma addX_mul_sq_of_X_ne {x₁ x₂ : F} (y₁ y₂ : F) (hx : x₁ ≠ x₂) :
     W.addX x₁ x₂ (W.slope x₁ x₂ y₁ y₂) * (x₁ - x₂) ^ 2 =
       (y₁ - y₂) ^ 2 + W.a₁ * (y₁ - y₂) * (x₁ - x₂) - (W.a₂ + x₁ + x₂) * (x₁ - x₂) ^ 2 := by
@@ -26,6 +29,9 @@ lemma addX_mul_sq_of_X_ne {x₁ x₂ : F} (y₁ y₂ : F) (hx : x₁ ≠ x₂) :
   field_simp
   ring
 
+/--
+@isnad1 id=eq.3h6v.s8.f1cac52cd622 from=translated src=- shape=0ba6aefc vocab=1938a94d
+-/
 theorem addX_add_addX_negY_mul_sq {x₁ x₂ y₁ y₂ : F} (h₁ : W.Equation x₁ y₁)
     (h₂ : W.Equation x₂ y₂) (hx : x₁ ≠ x₂) :
     (W.addX x₁ x₂ (W.slope x₁ x₂ y₁ y₂) +
@@ -37,6 +43,9 @@ theorem addX_add_addX_negY_mul_sq {x₁ x₂ y₁ y₂ : F} (h₁ : W.Equation x
     rw [add_mul, e₁, e₂, negY, b₂, b₄, b₆]
     linear_combination 2 * h₁ + 2 * h₂
 
+/--
+@isnad1 id=eq.3h6v.s8.e5316b43f14a from=translated src=- shape=3023f03f vocab=cf21a163
+-/
 theorem addX_mul_addX_negY_mul_sq {x₁ x₂ y₁ y₂ : F} (h₁ : W.Equation x₁ y₁)
     (h₂ : W.Equation x₂ y₂) (hx : x₁ ≠ x₂) :
     W.addX x₁ x₂ (W.slope x₁ x₂ y₁ y₂) *
@@ -76,6 +85,9 @@ theorem addX_mul_addX_negY_mul_sq {x₁ x₂ y₁ y₂ : F} (h₁ : W.Equation x
       _ = (x₁ - x₂) ^ 2 *
             ((x₁ * x₂) ^ 2 - W.b₄ * (x₁ * x₂) - W.b₆ * (x₁ + x₂) - W.b₈) := by ring
 
+/--
+@isnad1 id=eq.1h4v.s9.3b4d35030c13 from=translated src=- shape=08e3f0ea vocab=5469fb45
+-/
 lemma addX_self_mul_sq_of_Y_ne {x₁ y₁ : F} (hy : y₁ ≠ W.negY x₁ y₁) :
     W.addX x₁ x₁ (W.slope x₁ x₁ y₁ y₁) * (y₁ - W.negY x₁ y₁) ^ 2 =
       (3 * x₁ ^ 2 + 2 * W.a₂ * x₁ + W.a₄ - W.a₁ * y₁) ^ 2 +

@@ -72,6 +72,9 @@ def IsGaugeMajorised3 (W : AdelicGL 3 (𝓞 F) F → ℂ) : Prop :=
       (¬ InRootLevel F T B g → W g = 0) ∧
         (InRootLevel F T B g → ‖W g‖ ≤ C / (rootSizeProd F g ^ t * (1 + archRootSum F g) ^ N))
 
+/--
+@isnad1 id=isgaugem.0h1v.s5.4e73bc188d5b from=translated src=- shape=84f91dc9 vocab=be7533d8
+-/
 theorem isGaugeMajorised3_zero : IsGaugeMajorised3 F (fun _ => (0 : ℂ)) :=
   ⟨0, ∅, 1, fun N => ⟨0, fun g => ⟨fun _ => rfl, fun _ => by simp⟩⟩⟩
 

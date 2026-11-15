@@ -15,6 +15,9 @@ noncomputable def nuThree (N : ℕ) : ℕ := Nat.card {x : ZMod N // x ^ 2 + x +
 def cuspCount (N : ℕ) : ℕ :=
   ∑ d ∈ N.divisors, Nat.totient (Nat.gcd d (N / d))
 
+/--
+@isnad1 id=eq.0h0v.s3.ae8f6ede9b87 from=translated src=- shape=3c26ae4f vocab=70004159
+-/
 @[simp]
 lemma cuspCount_one : cuspCount 1 = 1 := by
   simp [cuspCount]

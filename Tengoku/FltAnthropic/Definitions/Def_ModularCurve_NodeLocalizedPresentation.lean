@@ -19,11 +19,17 @@ variable (N : ℕ) [NeZero N] {L : Type*} [Field L] (A : Subring L) {k : Type*} 
 def modularEvalAt : MvPolynomial (Fin 2) A →+* modularLocalizedAtPoint N A red a b :=
   (modularEval N A).codRestrict _ (modularEval_mem_modularLocalizedAtPoint N A red a b)
 
+/--
+@isnad1 id=eq.0h8v.s11.3517e2a9e26c from=translated src=- shape=02b2e69f vocab=47563053
+-/
 @[simp] theorem coe_modularEvalAt (p : MvPolynomial (Fin 2) A) :
     (modularEvalAt N A red a b p : LaurentSeries L) = modularEval N A p := rfl
 
 abbrev evalRange : Subring (LaurentSeries L) := (modularEval N A).range
 
+/--
+@isnad1 id=le.0h7v.s8.6e0842344a86 from=translated src=- shape=6e864319 vocab=f52cf05a
+-/
 theorem evalRange_le : evalRange N A ≤ modularLocalizedAtPoint N A red a b := by
   rintro _ ⟨p, rfl⟩
   exact modularEval_mem_modularLocalizedAtPoint N A red a b p
@@ -31,10 +37,16 @@ theorem evalRange_le : evalRange N A ≤ modularLocalizedAtPoint N A red a b := 
 instance algebraEvalRange : Algebra (evalRange N A) (modularLocalizedAtPoint N A red a b) :=
   (Subring.inclusion (evalRange_le N A red a b)).toAlgebra
 
+/--
+@isnad1 id=eq.0h8v.s12.fb51a26dd3c4 from=translated src=- shape=f8b45ee7 vocab=5c6de1ce
+-/
 theorem algebraMap_evalRange_coe (y : evalRange N A) :
     ((algebraMap (evalRange N A) (modularLocalizedAtPoint N A red a b) y : modularLocalizedAtPoint N A red a b) :
       LaurentSeries L) = y := rfl
 
+/--
+@isnad1 id=eq.0h8v.s13.05054d0ca627 from=translated src=- shape=6f4cb373 vocab=53335732
+-/
 theorem algebraMap_evalRange_rangeRestrict (p : MvPolynomial (Fin 2) A) :
     algebraMap (evalRange N A) (modularLocalizedAtPoint N A red a b) ((modularEval N A).rangeRestrict p)
       = modularEvalAt N A red a b p := rfl
@@ -46,10 +58,16 @@ def nodeDenominators : Submonoid (evalRange N A) where
     rintro _ _ ⟨s, hs, rfl⟩ ⟨t, ht, rfl⟩
     exact ⟨s * t, by rw [map_mul]; exact mul_ne_zero hs ht, by rw [map_mul]⟩
 
+/--
+@isnad1 id=mem.1h8v.s12.0cae780534d6 from=translated src=- shape=a62fc20f vocab=c08045bf
+-/
 theorem rangeRestrict_mem_nodeDenominators {s : MvPolynomial (Fin 2) A} (hs : pointEval A red a b s ≠ 0) :
     (modularEval N A).rangeRestrict s ∈ nodeDenominators N A red a b :=
   ⟨s, hs, rfl⟩
 
+/--
+@isnad1 id=iff.0h8v.s12.1b78fcbf68bb from=translated src=- shape=f1d37844 vocab=f4167c42
+-/
 theorem mem_nodeDenominators_iff (y : evalRange N A) :
     y ∈ nodeDenominators N A red a b ↔ ∃ s : MvPolynomial (Fin 2) A, pointEval A red a b s ≠ 0 ∧ modularEval N A s = y := by
   constructor
@@ -60,9 +78,15 @@ section KerLE
 
 variable [hker : Fact (RingHom.ker (modularEval N A) ≤ RingHom.ker (pointEval A red a b))]
 
+/--
+@isnad1 id=ne.1h8v.s12.c15f30003efa from=translated src=- shape=836032eb vocab=c25da2c2
+-/
 theorem modularEval_ne_zero_of_pointEval_ne_zero {s : MvPolynomial (Fin 2) A} (hs : pointEval A red a b s ≠ 0) :
     modularEval N A s ≠ 0 := fun h => hs (hker.out ((RingHom.mem_ker).mpr h))
 
+/--
+@isnad1 id=isunit.1h8v.s12.ec4f039f1b37 from=translated src=- shape=1f6907e9 vocab=621df47e
+-/
 theorem isUnit_modularEvalAt {s : MvPolynomial (Fin 2) A} (hs : pointEval A red a b s ≠ 0) :
     IsUnit (modularEvalAt N A red a b s) := by
   have hs0 := modularEval_ne_zero_of_pointEval_ne_zero N A red a b hs
@@ -70,6 +94,9 @@ theorem isUnit_modularEvalAt {s : MvPolynomial (Fin 2) A} (hs : pointEval A red 
   · rw [map_one, inv_mul_cancel₀ hs0]
   · exact mul_inv_cancel₀ hs0
 
+/--
+@isnad1 id=islocali.0h7v.s11.0333bc91bf93 from=translated src=- shape=9b26b3b1 vocab=9d3aa6e2
+-/
 instance isLocalization_nodeDenominators :
     IsLocalization (nodeDenominators N A red a b) (modularLocalizedAtPoint N A red a b) where
   map_units := by
@@ -84,6 +111,9 @@ instance isLocalization_nodeDenominators :
     simp only [OneMemClass.coe_one, one_mul]
     exact Subtype.ext (congrArg (fun w : modularLocalizedAtPoint N A red a b => (w : LaurentSeries L)) h)⟩
 
+/--
+@isnad1 id=islocalr.0h7v.s11.f972d27d7b93 from=translated src=- shape=1edecdfa vocab=25e1cdfd
+-/
 instance isLocalRing_modularLocalizedAtPoint : IsLocalRing (modularLocalizedAtPoint N A red a b) := by
   refine IsLocalRing.of_isUnit_or_isUnit_one_sub_self fun z => ?_
   obtain ⟨r, s, hs, h⟩ := z.2
@@ -110,6 +140,9 @@ instance isLocalRing_modularLocalizedAtPoint : IsLocalRing (modularLocalizedAtPo
 
 end KerLE
 
+/--
+@isnad1 id=mem.0h3v.s10.1ac339af9d3b from=translated src=- shape=6d6b7a9e vocab=de484d1c
+-/
 theorem sub_C_eval_mem_span {R : Type*} [CommRing R] (v : Fin 2 → R) (p : MvPolynomial (Fin 2) R) :
     p - C (eval v p) ∈ Ideal.span {(X 0 - C (v 0) : MvPolynomial (Fin 2) R), X 1 - C (v 1)} := by
   induction p using MvPolynomial.induction_on with
@@ -126,6 +159,9 @@ theorem sub_C_eval_mem_span {R : Type*} [CommRing R] (v : Fin 2 → R) (p : MvPo
     · exact Set.mem_insert _ _
     · exact Set.mem_insert_of_mem _ (Set.mem_singleton _)
 
+/--
+@isnad1 id=eq.3h9v.s12.55aa49a83fab from=translated src=- shape=7dd23235 vocab=560fb976
+-/
 theorem ker_pointEval_eq_span (x y : A) (hx : red x = a) (hy : red y = b) (ϖ : A)
     (hϖ : ∀ c : A, red c = 0 ↔ ∃ d, c = ϖ * d) :
     RingHom.ker (pointEval A red a b) = Ideal.span {C ϖ, X 0 - C x, X 1 - C y} := by

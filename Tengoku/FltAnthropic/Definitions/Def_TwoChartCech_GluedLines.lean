@@ -54,8 +54,14 @@ def invPolyPart : Subalgebra R R[T;T⁻¹] where
     rw [AddMonoidAlgebra.coe_algebraMap, Function.comp_apply, AddMonoidAlgebra.coeff_single] at hn
     rw [Finset.mem_singleton.mp (Finsupp.support_single_subset hn)]
 
+/--
+@isnad1 id=iff.0h2v.s7.437521c01d7c from=translated src=- shape=049ed3b5 vocab=372d993d
+-/
 theorem mem_polyPart_iff {f : R[T;T⁻¹]} : f ∈ polyPart R ↔ ∀ n ∈ f.coeff.support, 0 ≤ n := Iff.rfl
 
+/--
+@isnad1 id=iff.0h2v.s7.16ea45acf4e1 from=translated src=- shape=abc1e499 vocab=e54796b7
+-/
 theorem mem_invPolyPart_iff {f : R[T;T⁻¹]} :
     f ∈ invPolyPart R ↔ ∀ n ∈ f.coeff.support, n ≤ 0 := Iff.rfl
 
@@ -83,12 +89,21 @@ variable {R}
 def GluedCond (a b lam : Fin s → Rˣ) (f : R[T;T⁻¹] × R[T;T⁻¹]) : Prop :=
   ∀ i, levalUnit R (a i) f.1 = lam i * levalUnit R (b i) f.2
 
+/--
+@isnad1 id=gluedcon.2h7v.s7.df38a4da2937 from=translated src=- shape=4e544183 vocab=402748d3
+-/
 theorem GluedCond.add {a b lam : Fin s → Rˣ} {f g : R[T;T⁻¹] × R[T;T⁻¹]} (hf : GluedCond a b lam f)
     (hg : GluedCond a b lam g) : GluedCond a b lam (f + g) := fun i => by
   simp only [Prod.fst_add, Prod.snd_add, map_add, hf i, hg i, mul_add]
 
+/--
+@isnad1 id=gluedcon.0h5v.s7.fa5979a614e5 from=translated src=- shape=e852484c vocab=c302ca2f
+-/
 theorem GluedCond.zero (a b lam : Fin s → Rˣ) : GluedCond a b lam 0 := fun i => by simp
 
+/--
+@isnad1 id=gluedcon.2h7v.s9.a20ccc5e2be4 from=translated src=- shape=2e776601 vocab=dd410e9d
+-/
 theorem GluedCond.mul {a b lam : Fin s → Rˣ} {g f : R[T;T⁻¹] × R[T;T⁻¹]}
     (hg : g ∈ gluedLinesOverlap R a b) (hf : GluedCond a b lam f) : GluedCond a b lam (g * f) := fun i => by
   simp only [Prod.fst_mul, Prod.snd_mul, map_mul, hg i, hf i]

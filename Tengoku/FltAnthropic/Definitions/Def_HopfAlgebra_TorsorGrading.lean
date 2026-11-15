@@ -40,17 +40,29 @@ def gradedPiece (j : Λ) : Submodule R H where
     rw [map_smul, ha, Finsupp.smul_single]
 
 omit [DecidableEq Λ] in
+/--
+@isnad1 id=eq.0h5v.s11.9cd7a130cdb3 from=translated src=- shape=4f663c70 vocab=0a413c46
+-/
 theorem gradingCoaction_apply (t : H) :
     gradingCoaction Λ π t = (LinearMap.rTensor H π.toLinearMap) ((Coalgebra.comul (R := R)) t) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.1dbb43535705 from=translated src=- shape=117c1f5c vocab=c8601b91
+-/
 theorem gradingComponents_apply (t : H) :
     gradingComponents Λ π t =
       (TensorProduct.finsuppScalarLeft R H (Multiplicative Λ))
         (((MonoidAlgebra.coeffLinearEquiv R).rTensor H) (gradingCoaction Λ π t)) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.8d0de54a871a from=translated src=- shape=574f00ee vocab=506670fa
+-/
 theorem componentProj_apply (j : Λ) (t : H) :
     componentProj Λ π j t = gradingComponents Λ π t (Multiplicative.ofAdd j) := rfl
 
+/--
+@isnad1 id=iff.0h6v.s9.728c15c159cd from=translated src=- shape=5b932126 vocab=c11f180e
+-/
 theorem mem_gradedPiece_iff (j : Λ) (t : H) :
     t ∈ gradedPiece Λ π j ↔ gradingComponents Λ π t = Finsupp.single (Multiplicative.ofAdd j) t := Iff.rfl
 
@@ -73,8 +85,14 @@ def blockPiece (ε : H) (j : Λ) : Submodule R H where
     refine ⟨?_, by rw [smul_mul_assoc, hx2]⟩
     rw [map_smul, hx1, Finsupp.smul_single]
 
+/--
+@isnad1 id=eq.0h4v.s8.c656463a27b8 from=translated src=- shape=47c830e2 vocab=83bbda41
+-/
 theorem blockComponents_eq : blockComponents Λ π = gradingComponents Λ π := rfl
 
+/--
+@isnad1 id=iff.0h7v.s9.bd23513b71a3 from=translated src=- shape=95b8a496 vocab=4eb02403
+-/
 theorem mem_blockPiece_iff (ε : H) (j : Λ) (t : H) :
     t ∈ blockPiece Λ π ε j ↔ t ∈ gradedPiece Λ π j ∧ t * ε = t := Iff.rfl
 

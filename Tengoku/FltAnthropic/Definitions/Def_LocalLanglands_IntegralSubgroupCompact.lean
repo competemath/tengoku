@@ -7,14 +7,23 @@ set_option autoImplicit false
 
 namespace FLT.SpectralSide
 
+/--
+@isnad1 id=compacts.0h3v.s4.00f8198121d8 from=translated src=- shape=b0cf41a4 vocab=2eb9a92b
+-/
 instance instCompactSpaceMatrix {m n R : Type*} [TopologicalSpace R] [CompactSpace R] :
     CompactSpace (Matrix m n R) :=
   inferInstanceAs <| CompactSpace (m → n → R)
 
+/--
+@isnad1 id=compacts.0h1v.s6.155ba2a32904 from=translated src=- shape=43a8678d vocab=80b36bab
+-/
 theorem gl2_compactSpace (R : Type*) [CommRing R] [TopologicalSpace R]
     [IsTopologicalRing R] [T2Space R] [CompactSpace R] :
     CompactSpace (GL (Fin 2) R) := inferInstance
 
+/--
+@isnad1 id=iscompac.1h2v.s8.545146d4bed5 from=translated src=- shape=b497a764 vocab=c2c4afdc
+-/
 theorem isCompact_coe_integralSubgroup (R : Type*) [CommRing R] [TopologicalSpace R]
     [IsTopologicalRing R] [T2Space R] [CompactSpace R]
     (K : Type*) [Field K] [Algebra R K] [TopologicalSpace K]
@@ -31,10 +40,16 @@ theorem isCompact_coe_integralSubgroup (R : Type*) [CommRing R] [TopologicalSpac
     isCompact_range hmapcont
   simpa [LocalGL2.integralSubgroup, MonoidHom.coe_range] using hr
 
+/--
+@isnad1 id=iscompac.0h1v.s8.cd5553d079e5 from=translated src=- shape=6331d28a vocab=e4d4ce94
+-/
 theorem isCompact_coe_integralSubgroup_padic (p : ℕ) [Fact p.Prime] :
     IsCompact ((LocalGL2.integralSubgroup ℤ_[p] ℚ_[p] : Set (GL (Fin 2) ℚ_[p]))) :=
   isCompact_coe_integralSubgroup ℤ_[p] ℚ_[p] continuous_subtype_val
 
+/--
+@isnad1 id=compacts.0h1v.s10.7e2fdf803745 from=translated src=- shape=a9c5b27d vocab=0a2771d3
+-/
 theorem compactSpace_integralSubgroup_padic (p : ℕ) [Fact p.Prime] :
     CompactSpace (LocalGL2.integralSubgroup ℤ_[p] ℚ_[p]) :=
   isCompact_iff_compactSpace.mp (isCompact_coe_integralSubgroup_padic p)

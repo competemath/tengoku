@@ -24,6 +24,9 @@ def matrixSize {L : Type*} [NormedField L] (k : GL (Fin 3) L) : ℝ :=
   ∑ i : Fin 3, ∑ j : Fin 3,
     (‖(k : Matrix (Fin 3) (Fin 3) L) i j‖ + ‖((k⁻¹ : GL (Fin 3) L) : Matrix (Fin 3) (Fin 3) L) i j‖)
 
+/--
+@isnad1 id=le.0h2v.s5.94ed1f871594 from=translated src=- shape=0ac22ba1 vocab=c5e6323d
+-/
 theorem matrixSize_nonneg {L : Type*} [NormedField L] (k : GL (Fin 3) L) : 0 ≤ matrixSize k :=
   Finset.sum_nonneg fun _ _ => Finset.sum_nonneg fun _ _ => add_nonneg (norm_nonneg _) (norm_nonneg _)
 
@@ -43,12 +46,21 @@ def finGauge3 (g : AdelicGL 3 (𝓞 F) F) : ℝ :=
 def gauge3 (g : AdelicGL 3 (𝓞 F) F) : ℝ :=
   max 1 (archGauge3 F g * finGauge3 F g)
 
+/--
+@isnad1 id=le.0h2v.s5.7073537a37ee from=translated src=- shape=409726db vocab=5b63f978
+-/
 theorem one_le_gauge3 (g : AdelicGL 3 (𝓞 F) F) : 1 ≤ gauge3 F g :=
   le_max_left _ _
 
+/--
+@isnad1 id=lt.0h2v.s5.e32ddee61843 from=translated src=- shape=409726db vocab=80d92100
+-/
 theorem gauge3_pos (g : AdelicGL 3 (𝓞 F) F) : 0 < gauge3 F g :=
   lt_of_lt_of_le zero_lt_one (one_le_gauge3 F g)
 
+/--
+@isnad1 id=le.0h2v.s5.e900dfcb9939 from=translated src=- shape=409726db vocab=a1916796
+-/
 theorem one_le_archGauge3 (g : AdelicGL 3 (𝓞 F) F) : 1 ≤ archGauge3 F g := by
   unfold archGauge3
   have h : 0 ≤ ∑ w : InfinitePlace F, matrixSize (archPlaceComponent3 F w g) :=
@@ -64,9 +76,15 @@ variable (F : Type) [Field F] [NumberField F]
 def IsModerateGrowth3 (Φ : AdelicGL 3 (𝓞 F) F → ℂ) : Prop :=
   AutomorphicForm.IsSlowlyIncreasingOn Set.univ (gauge3 F) Φ
 
+/--
+@isnad1 id=ismodera.0h1v.s5.fd5017e95503 from=translated src=- shape=84f91dc9 vocab=0ddaac72
+-/
 theorem isModerateGrowth3_zero : IsModerateGrowth3 F (fun _ => (0 : ℂ)) :=
   AutomorphicForm.isSlowlyIncreasingOn_of_bounded (C := 0) fun _ _ => by simp
 
+/--
+@isnad1 id=ismodera.1h3v.s6.b0e175e4327b from=translated src=- shape=fd028e0e vocab=f070ed93
+-/
 theorem isModerateGrowth3_of_bounded {Φ : AdelicGL 3 (𝓞 F) F → ℂ} {C : ℝ} (hC : ∀ g, ‖Φ g‖ ≤ C) :
     IsModerateGrowth3 F Φ :=
   AutomorphicForm.isSlowlyIncreasingOn_of_bounded fun g _ => hC g

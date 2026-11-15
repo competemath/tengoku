@@ -13,6 +13,9 @@ namespace QuaternionAlgebra
 
 variable {a b : ℚ}
 
+/--
+@isnad1 id=ex.1h4v.s9.6edf69ef3aa5 from=translated src=- shape=3765efcd vocab=2ce3fe07
+-/
 theorem exists_natCast_smul_mem_of_mem_span {Λ : Submodule ℤ ℍ[ℚ, a, b]} {y : ℍ[ℚ, a, b]}
     (hy : y ∈ Submodule.span ℚ (Λ : Set ℍ[ℚ, a, b])) :
     ∃ n : ℕ, n ≠ 0 ∧ ((n : ℕ) : ℤ) • y ∈ Λ := by
@@ -40,6 +43,9 @@ theorem exists_natCast_smul_mem_of_mem_span {Λ : Submodule ℤ ℍ[ℚ, a, b]} 
     rw [this]
     exact Submodule.smul_mem _ _ hnu
 
+/--
+@isnad1 id=isorder.2h4v.s8.26749611120d from=translated src=- shape=02cc1dd6 vocab=1d34c8ca
+-/
 theorem IsOrder.inf {Λ₁ Λ₂ : Submodule ℤ ℍ[ℚ, a, b]} (h₁ : IsOrder Λ₁) (h₂ : IsOrder Λ₂) :
     IsOrder (Λ₁ ⊓ Λ₂) where
   one_mem := ⟨h₁.one_mem, h₂.one_mem⟩
@@ -65,6 +71,9 @@ theorem IsOrder.inf {Λ₁ Λ₂ : Submodule ℤ ℍ[ℚ, a, b]} (h₁ : IsOrder
 def IsMaximalOrder (Λ : Submodule ℤ ℍ[ℚ, a, b]) : Prop :=
   IsOrder Λ ∧ ∀ Λ' : Submodule ℤ ℍ[ℚ, a, b], IsOrder Λ' → Λ ≤ Λ' → Λ' = Λ
 
+/--
+@isnad1 id=isorder.1h3v.s6.ffa7b72b7ecc from=translated src=- shape=84255c9a vocab=8e672d1b
+-/
 theorem IsMaximalOrder.isOrder {Λ : Submodule ℤ ℍ[ℚ, a, b]} (h : IsMaximalOrder Λ) : IsOrder Λ :=
   h.1
 
@@ -72,11 +81,17 @@ def IsEichlerOrder (Λ : Submodule ℤ ℍ[ℚ, a, b]) (N : ℕ) : Prop :=
   ∃ Λ₁ Λ₂ : Submodule ℤ ℍ[ℚ, a, b], IsMaximalOrder Λ₁ ∧ IsMaximalOrder Λ₂ ∧ Λ = Λ₁ ⊓ Λ₂ ∧
     Λ.toAddSubgroup.relIndex Λ₁.toAddSubgroup = N
 
+/--
+@isnad1 id=isorder.1h4v.s6.d12d1c8755da from=translated src=- shape=5152deea vocab=a82f470a
+-/
 theorem IsEichlerOrder.isOrder {Λ : Submodule ℤ ℍ[ℚ, a, b]} {N : ℕ} (h : IsEichlerOrder Λ N) :
     IsOrder Λ := by
   obtain ⟨Λ₁, Λ₂, h₁, h₂, rfl, -⟩ := h
   exact h₁.isOrder.inf h₂.isOrder
 
+/--
+@isnad1 id=ex.1h4v.s9.90f079eaafc8 from=translated src=- shape=e0ed58f2 vocab=7fcad4ec
+-/
 theorem IsEichlerOrder.exists_le_isMaximalOrder {Λ : Submodule ℤ ℍ[ℚ, a, b]} {N : ℕ}
     (h : IsEichlerOrder Λ N) :
     ∃ Λ₁ : Submodule ℤ ℍ[ℚ, a, b], IsMaximalOrder Λ₁ ∧ Λ ≤ Λ₁ ∧
@@ -91,9 +106,15 @@ def IsDefiniteRamifiedExactlyAt (q : ℕ) : Prop :=
     ∀ v : HeightOneSpectrum (𝓞 ℚ),
       (∀ x : ℍ[ℚ, a, b] ⊗[ℚ] v.adicCompletion ℚ, x ≠ 0 → IsUnit x) ↔ ((q : 𝓞 ℚ) ∈ v.asIdeal)
 
+/--
+@isnad1 id=lt.1h3v.s4.e6a61585d1ca from=translated src=- shape=31d1db19 vocab=baf398a4
+-/
 theorem IsDefiniteRamifiedExactlyAt.neg_left {q : ℕ} (h : IsDefiniteRamifiedExactlyAt a b q) : a < 0 :=
   h.1
 
+/--
+@isnad1 id=lt.1h3v.s4.2585cecbfca2 from=translated src=- shape=1063e799 vocab=baf398a4
+-/
 theorem IsDefiniteRamifiedExactlyAt.neg_right {q : ℕ} (h : IsDefiniteRamifiedExactlyAt a b q) : b < 0 :=
   h.2.1
 

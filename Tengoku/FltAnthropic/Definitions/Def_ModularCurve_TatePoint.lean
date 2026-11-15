@@ -23,6 +23,9 @@ open scoped Classical in
 def nearCurve (j₀ : Qbar) : WeierstrassCurve H := WeierstrassCurve.ofJ (jNear j₀)
 
 open scoped Classical in
+/--
+@isnad1 id=isellipt.0h1v.s3.dffc6c58c411 from=translated src=- shape=1a6c1393 vocab=dc44e75d
+-/
 instance instIsElliptic_nearCurve (j₀ : Qbar) : (nearCurve j₀).IsElliptic := by
   unfold nearCurve; infer_instance
 
@@ -37,9 +40,15 @@ def RootsAt {p : ℕ} [NeZero p] (data : ModularPolynomialData p) (jv : H) : Typ
 
 open scoped Classical in
 
+/--
+@isnad1 id=eq.0h1v.s4.fb98acf7c2e9 from=translated src=- shape=0a9af14d vocab=fef8b807
+-/
 theorem nearCurve_j (j₀ : Qbar) : (nearCurve j₀).j = jNear j₀ :=
   WeierstrassCurve.ofJ_j (jNear j₀)
 
+/--
+@isnad1 id=transcen.0h1v.s6.38176942d283 from=translated src=- shape=c4ff18d9 vocab=f0a25c34
+-/
 theorem nearCurve_j_transcendental (j₀ : Qbar) : Transcendental Qbar (nearCurve j₀).j := by
   rw [nearCurve_j]
   intro halg

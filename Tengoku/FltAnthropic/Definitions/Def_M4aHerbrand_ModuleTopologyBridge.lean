@@ -11,6 +11,9 @@ section Transfer
 
 variable {R S A : Type*} [TopologicalSpace R] [TopologicalSpace S] [TopologicalSpace A] [Add A]
 
+/--
+@isnad1 id=ismodule.1h3v.s5.56850d3bea63 from=translated src=- shape=72965aec vocab=d9833e60
+-/
 theorem IsModuleTopology.of_continuousSMul_iff [SMul R A] [SMul S A]
     (h : ∀ t : TopologicalSpace A, @ContinuousSMul R A _ _ t ↔ @ContinuousSMul S A _ _ t)
     [hR : IsModuleTopology R A] : IsModuleTopology S A := by
@@ -22,6 +25,9 @@ theorem IsModuleTopology.of_continuousSMul_iff [SMul R A] [SMul S A]
   simp only [Set.mem_ofPred_eq]
   exact and_congr_left' (h t)
 
+/--
+@isnad1 id=ismodule.2h4v.s5.70aa0823885b from=translated src=- shape=6598482e vocab=09aad992
+-/
 theorem IsModuleTopology.of_smul_eq (i₁ i₂ : SMul R A)
     (h : ∀ (r : R) (a : A), i₁.smul r a = i₂.smul r a)
     (h₁ : @IsModuleTopology R _ A _ i₁ _) : @IsModuleTopology R _ A _ i₂ _ := by
@@ -40,6 +46,9 @@ variable {R₁ R₂ A : Type*} [TopologicalSpace R₁] [TopologicalSpace R₂]
 
 @[reducible] def smulSnd [SMul R₂ A] : SMul (R₁ × R₂) A := ⟨fun p a => p.2 • a⟩
 
+/--
+@isnad1 id=iff.0h4v.s5.6fa82b8e4497 from=translated src=- shape=5d6d08f8 vocab=6aca6668
+-/
 theorem continuousSMul_smulFst_iff [SMul R₁ A] [Zero R₂] (t : TopologicalSpace A) :
     @ContinuousSMul (R₁ × R₂) A smulFst _ t ↔ @ContinuousSMul R₁ A _ _ t := by
   letI : TopologicalSpace A := t
@@ -58,6 +67,9 @@ theorem continuousSMul_smulFst_iff [SMul R₁ A] [Zero R₂] (t : TopologicalSpa
       funext p; rfl
     exact ⟨by rw [he]; exact hc.comp (by fun_prop)⟩
 
+/--
+@isnad1 id=iff.0h4v.s5.745c32c7d9e1 from=translated src=- shape=2d769d72 vocab=e3abb649
+-/
 theorem continuousSMul_smulSnd_iff [SMul R₂ A] [Zero R₁] (t : TopologicalSpace A) :
     @ContinuousSMul (R₁ × R₂) A smulSnd _ t ↔ @ContinuousSMul R₂ A _ _ t := by
   letI : TopologicalSpace A := t
@@ -76,12 +88,18 @@ theorem continuousSMul_smulSnd_iff [SMul R₂ A] [Zero R₁] (t : TopologicalSpa
       funext p; rfl
     exact ⟨by rw [he]; exact hc.comp (by fun_prop)⟩
 
+/--
+@isnad1 id=ismodule.0h3v.s5.ca7dd492f542 from=translated src=- shape=7b1f6cfc vocab=32492899
+-/
 theorem isModuleTopology_smulFst [Add A] [SMul R₁ A] [Zero R₂] [TopologicalSpace A]
     [IsModuleTopology R₁ A] :
     @IsModuleTopology (R₁ × R₂) _ A _ smulFst _ :=
   @IsModuleTopology.of_continuousSMul_iff R₁ (R₁ × R₂) A _ _ _ _ _ smulFst
     (fun t => (continuousSMul_smulFst_iff t).symm) _
 
+/--
+@isnad1 id=ismodule.0h3v.s5.11bf352a74bd from=translated src=- shape=7a35495d vocab=b54cb46b
+-/
 theorem isModuleTopology_smulSnd [Add A] [SMul R₂ A] [Zero R₁] [TopologicalSpace A]
     [IsModuleTopology R₂ A] :
     @IsModuleTopology (R₁ × R₂) _ A _ smulSnd _ :=
@@ -95,6 +113,9 @@ section AlgEquiv
 variable {R A : Type*} [CommSemiring R] [TopologicalSpace R] [Semiring A] [Algebra R A]
   [TopologicalSpace A] [IsModuleTopology R A] [ContinuousAdd A]
 
+/--
+@isnad1 id=continuo.0h3v.s6.8c020d9a6efc from=translated src=- shape=ad774ff5 vocab=28f59bf4
+-/
 theorem continuous_algEquiv (e : A ≃ₐ[R] A) : Continuous e :=
   (IsModuleTopology.continuous_of_linearMap e.toLinearMap).congr fun _ => rfl
 
@@ -113,6 +134,9 @@ noncomputable def conjAct [Algebra (AdeleRing R E) (AdeleRing S F)]
     (σ : F ≃ₐ[E] F) : AdeleRing S F ≃+* AdeleRing S F :=
   (te.symm.trans ((Algebra.TensorProduct.congr AlgEquiv.refl σ).trans te)).toRingEquiv
 
+/--
+@isnad1 id=continuo.0h6v.s10.0c71bb67fd38 from=translated src=- shape=12ee03c1 vocab=0af8070d
+-/
 theorem continuous_conjAct [Algebra (AdeleRing R E) (AdeleRing S F)]
     [IsModuleTopology (AdeleRing R E) (AdeleRing S F)]
     (te : ((AdeleRing R E) ⊗[E] F) ≃ₐ[AdeleRing R E] AdeleRing S F) (σ : F ≃ₐ[E] F) :
@@ -122,6 +146,9 @@ theorem continuous_conjAct [Algebra (AdeleRing R E) (AdeleRing S F)]
 
 omit [Algebra E F] in
 
+/--
+@isnad1 id=ismodule.2h6v.s9.b4d04920bcec from=translated src=- shape=4b21caf4 vocab=752114e0
+-/
 theorem isModuleTopology_adeleRing_prodMap
     (βi : InfiniteAdeleRing E →+* InfiniteAdeleRing F)
     (βf : FiniteAdeleRing R E →+* FiniteAdeleRing S F)

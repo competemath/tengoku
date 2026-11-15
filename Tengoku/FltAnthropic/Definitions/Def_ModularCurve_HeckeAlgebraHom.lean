@@ -16,11 +16,17 @@ namespace ModularCurve.Period
 
 section FGInfrastructure
 
+/--
+@isnad1 id=fg.0h0v.s5.38bf5e828b70 from=translated src=- shape=b781e9e2 vocab=fee03d4c
+-/
 instance instGroupFG_SL2Z : Group.FG SL(2, ℤ) :=
   ⟨⟨{ModularGroup.S, ModularGroup.T}, by
     simp only [Finset.coe_insert, Finset.coe_singleton]
     exact SpecialLinearGroup.SL2Z_generators⟩⟩
 
+/--
+@isnad1 id=fg.0h1v.s8.bd16c0e622bc from=translated src=- shape=f3606c04 vocab=3ffbef6d
+-/
 instance instGroupFG_Gamma0 (N : ℕ) [NeZero N] : Group.FG (Gamma0 N) := inferInstance
 
 variable {G : Type*} [Group G]
@@ -30,6 +36,9 @@ noncomputable def evalGen (S : Set G) : (Additive G →+ ℤ) →ₗ[ℤ] (S →
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+/--
+@isnad1 id=injectiv.1h2v.s8.8578a2f246fb from=translated src=- shape=f75dc9f4 vocab=714444f3
+-/
 theorem evalGen_injective {S : Set G} (hS : Subgroup.closure S = ⊤) :
     Function.Injective (evalGen S) := by
   intro φ ψ h
@@ -49,16 +58,25 @@ theorem evalGen_injective {S : Set G} (hS : Subgroup.closure S = ⊤) :
       have hinv : (Additive.ofMul a⁻¹ : Additive G) = -Additive.ofMul a := rfl
       rw [hinv, map_neg, map_neg, iha]
 
+/--
+@isnad1 id=finite.0h1v.s6.48b8ddcf5202 from=translated src=- shape=269b255f vocab=5731b72f
+-/
 theorem addHom_int_moduleFinite [Group.FG G] : Module.Finite ℤ (Additive G →+ ℤ) := by
   obtain ⟨S, hS, hSfin⟩ := Group.fg_iff.mp ‹Group.FG G›
   haveI : Finite S := hSfin
   exact Module.Finite.of_injective (evalGen S) (evalGen_injective hS)
 
+/--
+@isnad1 id=isnoethe.0h1v.s12.1e09007c3096 from=translated src=- shape=1d5124b6 vocab=ff7f40ba
+-/
 instance instIsNoetherian_addHom_int (N : ℕ) [NeZero N] :
     IsNoetherian ℤ (Additive (Gamma0 N) →+ ℤ) :=
   have := addHom_int_moduleFinite (G := (Gamma0 N))
   inferInstance
 
+/--
+@isnad1 id=finite.0h1v.s8.75f21cf12d21 from=translated src=- shape=6928cb75 vocab=ff330eb3
+-/
 theorem moduleEnd_addHom_int_moduleFinite [Group.FG G] :
     Module.Finite ℤ (Module.End ℤ (Additive G →+ ℤ)) := by
   haveI := addHom_int_moduleFinite (G := G)
@@ -106,6 +124,9 @@ section ParabolicFiniteness
 
 variable (N : ℕ) [NeZero N]
 
+/--
+@isnad1 id=finite.0h1v.s15.b11234b547e8 from=translated src=- shape=38027692 vocab=647d022b
+-/
 instance parabolicHoms_int_moduleFinite :
     Module.Finite ℤ (parabolicHoms ℤ (Gamma0 N) ℤ) :=
   Module.Finite.of_injective (parabolicHoms ℤ (Gamma0 N) ℤ).subtype

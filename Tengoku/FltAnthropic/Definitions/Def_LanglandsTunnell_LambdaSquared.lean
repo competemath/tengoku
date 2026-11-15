@@ -22,6 +22,9 @@ variable (K : Type) [Field K] [NumberField K]
 
 noncomputable def discQ : ℚ := Algebra.discr ℚ (Module.finBasis ℚ K)
 
+/--
+@isnad1 id=ne.0h1v.s4.bb82848cc713 from=translated src=- shape=3316a072 vocab=805f12c1
+-/
 theorem discQ_ne_zero : discQ K ≠ 0 := Algebra.discr_not_zero_of_basis ℚ (Module.finBasis ℚ K)
 
 open scoped Classical in
@@ -31,17 +34,26 @@ noncomputable def lamSq (p : HeightOneSpectrum (𝓞 ℚ)) : ℂ :=
 
 noncomputable def lamSqArch : ℂ := if discQ K < 0 then -1 else 1
 
+/--
+@isnad1 id=or.0h2v.s5.7fe0fad4b35a from=translated src=- shape=825e20ac vocab=6c82603c
+-/
 theorem lamSq_eq_one_or_eq_neg_one (p : HeightOneSpectrum (𝓞 ℚ)) :
     lamSq K p = 1 ∨ lamSq K p = -1 := by
   unfold lamSq
   split_ifs <;> simp
 
+/--
+@isnad1 id=or.0h1v.s5.e352177ddf3a from=translated src=- shape=1cc069b5 vocab=4ce7852b
+-/
 theorem lamSqArch_eq_one_or_eq_neg_one : lamSqArch K = 1 ∨ lamSqArch K = -1 := by
   unfold lamSqArch
   split_ifs <;> simp
 
 section Rescaling
 
+/--
+@isnad1 id=iff.1h4v.s5.87a03a9e7653 from=translated src=- shape=3ddf1fe0 vocab=cadb4452
+-/
 theorem isAnisotropicAt_mul_sq_left_iff {a b c : ℚ} (hc : c ≠ 0) (p : HeightOneSpectrum (𝓞 ℚ)) :
     IsAnisotropicAt (c ^ 2 * a) b p ↔ IsAnisotropicAt a b p := by
   unfold IsAnisotropicAt
@@ -68,6 +80,9 @@ section BasisIndependence
 
 variable {ι : Type} [Fintype ι] [DecidableEq ι]
 
+/--
+@isnad1 id=ex.0h3v.s7.1ba4d7febafe from=translated src=- shape=5182987a vocab=2532601d
+-/
 theorem exists_discr_eq_sq_mul_discQ (b : Module.Basis ι ℚ K) :
     ∃ c : ℚ, c ≠ 0 ∧ Algebra.discr ℚ ⇑b = c ^ 2 * discQ K := by
   have hcard : Fintype.card (Fin (Module.finrank ℚ K)) = Fintype.card ι := by
@@ -86,12 +101,18 @@ theorem exists_discr_eq_sq_mul_discQ (b : Module.Basis ι ℚ K) :
     rw [Algebra.discr_of_matrix_vecMul, he]
   exact ⟨(e.toMatrix ⇑b).det, (e.isUnit_det b).ne_zero, hd⟩
 
+/--
+@isnad1 id=iff.0h4v.s7.72dd007d796a from=translated src=- shape=8845496d vocab=beaa4776
+-/
 theorem isAnisotropicAt_discr_iff (b : Module.Basis ι ℚ K) (p : HeightOneSpectrum (𝓞 ℚ)) :
     IsAnisotropicAt (Algebra.discr ℚ ⇑b) (-1) p ↔ IsAnisotropicAt (discQ K) (-1) p := by
   obtain ⟨c, hc, hcb⟩ := exists_discr_eq_sq_mul_discQ K b
   rw [hcb]
   exact isAnisotropicAt_mul_sq_left_iff hc p
 
+/--
+@isnad1 id=iff.0h3v.s7.94172c0ddd19 from=translated src=- shape=05d3ae91 vocab=560c24c1
+-/
 theorem discr_neg_iff (b : Module.Basis ι ℚ K) : Algebra.discr ℚ ⇑b < 0 ↔ discQ K < 0 := by
   obtain ⟨c, hc, hcb⟩ := exists_discr_eq_sq_mul_discQ K b
   have hc2 : 0 < c ^ 2 := by positivity

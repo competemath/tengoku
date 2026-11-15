@@ -19,16 +19,28 @@ def actionEndo (a : A) : M →ₗ[k] M where
   map_add' := smul_add a
   map_smul' c x := smul_comm a c x
 
+/--
+@isnad1 id=eq.0h5v.s7.6fe711629ec2 from=translated src=- shape=537592c2 vocab=89082402
+-/
 @[simp] theorem actionEndo_apply (a : A) (x : M) : actionEndo k A M a x = a • x := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.1c391af0c943 from=translated src=- shape=195b647f vocab=b3dadd53
+-/
 theorem actionEndo_add (a b : A) :
     actionEndo k A M (a + b) = actionEndo k A M a + actionEndo k A M b := by
   ext x; simp [add_smul]
 
+/--
+@isnad1 id=eq.0h5v.s8.8e23131f51db from=translated src=- shape=4966469e vocab=c0101e1c
+-/
 theorem actionEndo_smul (c : k) (a : A) :
     actionEndo k A M (c • a) = c • actionEndo k A M a := by
   ext x; simp [smul_assoc]
 
+/--
+@isnad1 id=eq.0h3v.s7.6cc96f7d9e6c from=translated src=- shape=b4094237 vocab=7f27a150
+-/
 theorem actionEndo_one : actionEndo k A M (1 : A) = LinearMap.id := by
   ext x; simp
 
@@ -37,11 +49,17 @@ def actionEndoHom : A →ₗ[k] (M →ₗ[k] M) where
   map_add' := actionEndo_add k A M
   map_smul' c a := actionEndo_smul k A M c a
 
+/--
+@isnad1 id=eq.0h4v.s8.8321b18307c5 from=translated src=- shape=f5c6ab3f vocab=8b46b5d8
+-/
 @[simp] theorem actionEndoHom_apply (a : A) : actionEndoHom k A M a = actionEndo k A M a := rfl
 
 def actionTrace : A →ₗ[k] k :=
   (LinearMap.trace k M) ∘ₗ actionEndoHom k A M
 
+/--
+@isnad1 id=eq.0h4v.s8.e312d612825d from=translated src=- shape=2be4906b vocab=fb4a5c11
+-/
 @[simp] theorem actionTrace_apply (a : A) :
     actionTrace k A M a = LinearMap.trace k M (actionEndo k A M a) := rfl
 
@@ -52,6 +70,9 @@ section Transport
 variable {k : Type*} [Field k]
 variable {A : Type*} [Ring A] [Algebra k A]
 
+/--
+@isnad1 id=eq.0h6v.s10.46244129bc88 from=translated src=- shape=751cda53 vocab=c56cc581
+-/
 theorem trace_actionEndo_eq_of_linearEquiv
     {M₁ : Type*} [AddCommGroup M₁] [Module k M₁] [Module A M₁] [IsScalarTower k A M₁]
     {M₂ : Type*} [AddCommGroup M₂] [Module k M₂] [Module A M₂] [IsScalarTower k A M₂]
@@ -62,12 +83,18 @@ theorem trace_actionEndo_eq_of_linearEquiv
     simp [LinearEquiv.conj_apply, map_smul]
   rw [← h, LinearMap.trace_conj']
 
+/--
+@isnad1 id=eq.0h5v.s9.a7d9d44a55ec from=translated src=- shape=95af8b74 vocab=dd387969
+-/
 theorem actionEndo_prod
     {M : Type*} [AddCommGroup M] [Module k M] [Module A M] [IsScalarTower k A M]
     {N : Type*} [AddCommGroup N] [Module k N] [Module A N] [IsScalarTower k A N] (a : A) :
     actionEndo k A (M × N) a = (actionEndo k A M a).prodMap (actionEndo k A N a) := by
   ext x <;> simp
 
+/--
+@isnad1 id=eq.1h6v.s12.459632fe8361 from=translated src=- shape=2c34344a vocab=d44328c5
+-/
 theorem trace_actionEndo_eq_add_of_isCompl
     {M : Type*} [AddCommGroup M] [Module k M] [Module A M] [IsScalarTower k A M]
     {p q : Submodule A M} [Module.Finite k ↥p] [Module.Finite k ↥q]
@@ -86,6 +113,9 @@ variable {k : Type*} [Field k]
 variable {A : Type*} [Ring A] [Algebra k A]
 variable {P : Type*} [AddCommGroup P] [Module k P] [Module A P] [IsScalarTower k A P]
 
+/--
+@isnad1 id=ex.3h5v.s8.bc6e3d59a60a from=translated src=- shape=b34e49bc vocab=b5e3f6a5
+-/
 theorem exists_smul_eq_projection [IsSemisimpleModule A P] [Module.Finite k P]
     {C C' : Submodule A P} (hC : C.IsFullyInvariant) (hC' : C'.IsFullyInvariant)
     (hcompl : IsCompl C C') :
@@ -134,10 +164,16 @@ variable {k : Type*} [Field k]
 variable {A : Type*} [Ring A] [Algebra k A]
 variable {P : Type*} [AddCommGroup P] [Module k P] [Module A P] [IsScalarTower k A P]
 
+/--
+@isnad1 id=finitedi.0h4v.s8.3ab87ef906f7 from=translated src=- shape=baa78741 vocab=0f53a8be
+-/
 theorem finiteDimensional_coe_submodule [FiniteDimensional k P] (W : Submodule A P) :
     FiniteDimensional k ↥W :=
   FiniteDimensional.of_injective ((W.subtype).restrictScalars k) (Submodule.injective_subtype W)
 
+/--
+@isnad1 id=eq.2h7v.s11.9b9b8646d3db from=translated src=- shape=7023180b vocab=d1bb1c92
+-/
 theorem trace_actionEndo_eq_finrank_comap [FiniteDimensional k P]
     {C C' : Submodule A P} (hcompl : IsCompl C C') {a : A}
     (ha : ∀ x : P, a • x = C.projection C' hcompl x) (W : Submodule A P) :
@@ -187,6 +223,9 @@ variable {A : Type*} [Ring A] [Algebra k A]
 variable {M : Type*} [AddCommGroup M] [Module k M] [Module A M] [IsScalarTower k A M]
 variable {N : Type*} [AddCommGroup N] [Module k N] [Module A N] [IsScalarTower k A N]
 
+/--
+@isnad1 id=issemisi.0h3v.s6.e51f494b81cc from=translated src=- shape=6c207d3f vocab=9ea43e4e
+-/
 theorem isSemisimpleModule_prod [IsSemisimpleModule A M] [IsSemisimpleModule A N] :
     IsSemisimpleModule A (M × N) := by
   refine isSemisimpleModule_of_isSemisimpleModule_submodule'
@@ -202,6 +241,9 @@ theorem isSemisimpleModule_prod [IsSemisimpleModule A M] [IsSemisimpleModule A N
   · rw [iSup_bool_eq]
     exact LinearMap.sup_range_inl_inr
 
+/--
+@isnad1 id=ex.1h5v.s9.9047f35c848f from=translated src=- shape=126a7e18 vocab=56bc473f
+-/
 theorem exists_linearEquiv_simple_of_actionTrace_eq [CharZero k]
     [IsSemisimpleModule A M] [IsSemisimpleModule A N]
     [FiniteDimensional k M] [FiniteDimensional k N]
@@ -409,6 +451,9 @@ private theorem nonempty_linearEquiv_of_actionTrace_eq_aux : ∀ (d : ℕ)
       exact ⟨((Submodule.prodEquivOfIsCompl S Sc hScompl).symm.trans
         (eST.prodCongr e')).trans (Submodule.prodEquivOfIsCompl T Tc hTcompl)⟩
 
+/--
+@isnad1 id=nonempty.1h4v.s9.37c7e7ebeb80 from=translated src=- shape=496c5aa1 vocab=a0787a17
+-/
 theorem nonempty_linearEquiv_of_actionTrace_eq
     {M : Type vM} [AddCommGroup M] [Module k M] [Module A M] [IsScalarTower k A M]
     {N : Type vN} [AddCommGroup N] [Module k N] [Module A N] [IsScalarTower k A N]
@@ -429,6 +474,9 @@ variable {M : Type*} [AddCommGroup M] [Module k M] [Module (MonoidAlgebra k G) M
 variable {N : Type*} [AddCommGroup N] [Module k N] [Module (MonoidAlgebra k G) N]
   [IsScalarTower k (MonoidAlgebra k G) N]
 
+/--
+@isnad1 id=eq.1h5v.s11.00b54b845885 from=translated src=- shape=d173deae vocab=c6af63cc
+-/
 theorem actionTrace_eq_of_forall_of
     (htr : ∀ g : G, actionTrace k (MonoidAlgebra k G) M (MonoidAlgebra.of k G g)
       = actionTrace k (MonoidAlgebra k G) N (MonoidAlgebra.of k G g)) :
@@ -440,6 +488,9 @@ theorem actionTrace_eq_of_forall_of
   | add x y hx hy => rw [map_add, map_add, hx, hy]
   | smul c x hx => rw [map_smul, map_smul, hx]
 
+/--
+@isnad1 id=nonempty.1h4v.s11.98d2915e6ea5 from=translated src=- shape=68f46cf9 vocab=ad753030
+-/
 theorem nonempty_linearEquiv_of_forall_trace_of_eq [CharZero k]
     [IsSemisimpleModule (MonoidAlgebra k G) M] [IsSemisimpleModule (MonoidAlgebra k G) N]
     [FiniteDimensional k M] [FiniteDimensional k N]

@@ -15,6 +15,9 @@ section RelDeg
 
 variable {G : Type*} [Group G] [Finite G] (H : Subgroup G) (σ : G)
 
+/--
+@isnad1 id=ex.0h3v.s5.3973719b699d from=translated src=- shape=43ca219c vocab=bcf45377
+-/
 theorem exists_pos_pow_mem : ∃ n : ℕ, 0 < n ∧ σ ^ n ∈ H :=
   ⟨orderOf σ, orderOf_pos σ, by rw [pow_orderOf_eq_one]; exact H.one_mem⟩
 
@@ -28,6 +31,9 @@ section PrimeOver
 
 variable {L : Type*} [Field L] [NumberField L] (H : Subgroup (L ≃ₐ[ℚ] L))
 
+/--
+@isnad1 id=injectiv.0h2v.s15.46440926b102 from=translated src=- shape=e8d46138 vocab=c46987f0
+-/
 theorem algebraMap_ringOfIntegers_injective :
     Function.Injective (algebraMap (𝓞 (FixedPoints.intermediateField H : IntermediateField ℚ L)) (𝓞 L)) := by
   intro x y h
@@ -42,6 +48,9 @@ theorem algebraMap_ringOfIntegers_injective :
   exact IsFractionRing.injective (𝓞 (FixedPoints.intermediateField H : IntermediateField ℚ L))
     (FixedPoints.intermediateField H : IntermediateField ℚ L) ((algebraMap _ L).injective h')
 
+/--
+@isnad1 id=ex.0h3v.s14.8f0819d62bb1 from=translated src=- shape=29f9c8d8 vocab=0c1a1a32
+-/
 theorem exists_prime_over (w : HeightOneSpectrum (𝓞 (FixedPoints.intermediateField H : IntermediateField ℚ L))) :
     ∃ Q : Ideal (𝓞 L), Q.IsMaximal ∧ Q.under (𝓞 (FixedPoints.intermediateField H : IntermediateField ℚ L)) = w.asIdeal := by
   haveI := w.isMaximal
@@ -54,17 +63,29 @@ def primeOver (w : HeightOneSpectrum (𝓞 (FixedPoints.intermediateField H : In
 
 variable (w : HeightOneSpectrum (𝓞 (FixedPoints.intermediateField H : IntermediateField ℚ L)))
 
+/--
+@isnad1 id=ismaxima.0h3v.s11.e8a18acf75a1 from=translated src=- shape=b48fc9e1 vocab=58ec907d
+-/
 instance primeOver_isMaximal : (primeOver H w).IsMaximal := (exists_prime_over H w).choose_spec.1
 
+/--
+@isnad1 id=eq.0h3v.s14.9689ec0fcce6 from=translated src=- shape=e6910d40 vocab=24394d37
+-/
 theorem under_primeOver :
     (primeOver H w).under (𝓞 (FixedPoints.intermediateField H : IntermediateField ℚ L)) = w.asIdeal :=
   (exists_prime_over H w).choose_spec.2
 
+/--
+@isnad1 id=ne.0h3v.s12.3c9a310307a6 from=translated src=- shape=b551c382 vocab=f401aa60
+-/
 theorem primeOver_ne_bot : primeOver H w ≠ ⊥ := fun h => by
   have := under_primeOver H w
   rw [h, Ideal.under_def, Ideal.comap_bot_of_injective _ (algebraMap_ringOfIntegers_injective H)] at this
   exact w.ne_bot this.symm
 
+/--
+@isnad1 id=finite.0h3v.s11.fd09a34d94a2 from=translated src=- shape=c33a684c vocab=b7209401
+-/
 instance primeOver_finite : Finite (𝓞 L ⧸ primeOver H w) :=
   Ideal.finiteQuotientOfFreeOfNeBot _ (primeOver_ne_bot H w)
 

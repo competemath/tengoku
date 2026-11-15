@@ -10,20 +10,32 @@ open WeierstrassCurve.Affine
 
 variable {F k : Type} [Field F] [Field k] (f : F →+* k) {W₀ : WeierstrassCurve F}
 
+/--
+@isnad1 id=eq.4h6v.s6.3e968a7907c5 from=translated src=- shape=b1844bd6 vocab=a6578b85
+-/
 theorem Affine.Point.some_congr {V : Affine k} {x₁ y₁ x₂ y₂ : k} (hx : x₁ = x₂)
     (hy : y₁ = y₂) (h₁ : V.Nonsingular x₁ y₁) (h₂ : V.Nonsingular x₂ y₂) :
     Point.some x₁ y₁ h₁ = Point.some x₂ y₂ h₂ := by
   subst hx; subst hy; rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.ef018bd90c4d from=translated src=- shape=d106f5f0 vocab=0be927bc
+-/
 @[simp]
 lemma ratPointMap_zero : ratPointMap f (0 : W₀.toAffine.Point) = 0 :=
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s7.4903cef7d7f3 from=translated src=- shape=0ab39b03 vocab=c9462a1a
+-/
 lemma ratPointMap_some {x y : F} (h : W₀.toAffine.Nonsingular x y) :
     ratPointMap f (.some x y h)
       = .some (f x) (f y) ((W₀.toAffine.map_nonsingular f.injective x y).mpr h) :=
   rfl
 
+/--
+@isnad1 id=injectiv.0h4v.s6.500f6d9c2198 from=translated src=- shape=7c1dc8e6 vocab=07bc4c8c
+-/
 lemma ratPointMap_injective : Function.Injective (ratPointMap f (W₀ := W₀)) := by
   rintro (_ | ⟨x₁, y₁, h₁⟩) (_ | ⟨x₂, y₂, h₂⟩) h
   · rfl
@@ -32,6 +44,9 @@ lemma ratPointMap_injective : Function.Injective (ratPointMap f (W₀ := W₀)) 
   · rw [ratPointMap_some, ratPointMap_some, Affine.Point.some.injEq] at h
     exact Affine.Point.some_congr (f.injective h.1) (f.injective h.2) _ _
 
+/--
+@isnad1 id=eq.0h6v.s7.c3b18b11ed58 from=translated src=- shape=4f10716e vocab=e97c62f0
+-/
 theorem ratPointMap_add [DecidableEq F] [DecidableEq k] (P Q : W₀.toAffine.Point) :
     ratPointMap f (P + Q) = ratPointMap f P + ratPointMap f Q := by
   rcases P with _ | ⟨x₁, y₁, h₁⟩ <;> rcases Q with _ | ⟨x₂, y₂, h₂⟩

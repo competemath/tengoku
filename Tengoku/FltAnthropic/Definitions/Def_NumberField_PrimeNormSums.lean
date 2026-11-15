@@ -22,6 +22,9 @@ def pw (s : ℝ) (v : HeightOneSpectrum (𝓞 F)) : ℝ := (Ideal.absNorm v.asId
 
 variable {F}
 
+/--
+@isnad1 id=le.0h2v.s7.ddcd1cce1c51 from=translated src=- shape=0e39d531 vocab=c6fb666b
+-/
 theorem two_le_absNorm (v : HeightOneSpectrum (𝓞 F)) : 2 ≤ Ideal.absNorm v.asIdeal := by
   have h0 : Ideal.absNorm v.asIdeal ≠ 0 := by
     rw [Ne, Ideal.absNorm_eq_zero_iff]; exact v.ne_bot
@@ -29,23 +32,41 @@ theorem two_le_absNorm (v : HeightOneSpectrum (𝓞 F)) : 2 ≤ Ideal.absNorm v.
     rw [Ne, Ideal.absNorm_eq_one_iff]; exact v.isPrime.ne_top
   omega
 
+/--
+@isnad1 id=lt.0h2v.s7.75351e1a4fc6 from=translated src=- shape=b26b1aa4 vocab=70992259
+-/
 theorem one_lt_absNorm_real (v : HeightOneSpectrum (𝓞 F)) : (1 : ℝ) < (Ideal.absNorm v.asIdeal : ℝ) := by
   have := two_le_absNorm v
   exact_mod_cast (by omega : 1 < Ideal.absNorm v.asIdeal)
 
+/--
+@isnad1 id=lt.0h3v.s5.9f0f0b710c45 from=translated src=- shape=cfb66bc1 vocab=505b587a
+-/
 theorem pw_pos (s : ℝ) (v : HeightOneSpectrum (𝓞 F)) : 0 < pw F s v :=
   Real.rpow_pos_of_pos (by linarith [one_lt_absNorm_real v]) _
 
+/--
+@isnad1 id=le.0h3v.s5.ee1e4a0c7e90 from=translated src=- shape=cfb66bc1 vocab=397b9a01
+-/
 theorem pw_nonneg (s : ℝ) (v : HeightOneSpectrum (𝓞 F)) : 0 ≤ pw F s v := (pw_pos s v).le
 
+/--
+@isnad1 id=le.1h3v.s5.b0b48706e888 from=translated src=- shape=e8051d6a vocab=397b9a01
+-/
 theorem pw_le_one {s : ℝ} (hs : 0 ≤ s) (v : HeightOneSpectrum (𝓞 F)) : pw F s v ≤ 1 := by
   unfold pw
   exact Real.rpow_le_one_of_one_le_of_nonpos (one_lt_absNorm_real v).le (by linarith)
 
+/--
+@isnad1 id=le.1h4v.s5.e5e4b6d3672a from=translated src=- shape=6698abed vocab=397b9a01
+-/
 theorem pw_antitone {s s' : ℝ} (h : s ≤ s') (v : HeightOneSpectrum (𝓞 F)) : pw F s' v ≤ pw F s v := by
   unfold pw
   exact Real.rpow_le_rpow_of_exponent_le (one_lt_absNorm_real v).le (by linarith)
 
+/--
+@isnad1 id=tendsto.0h1v.s8.c5feeeaf8757 from=translated src=- shape=85f5cdca vocab=cc07ac29
+-/
 theorem tendsto_sum_card_div :
     Tendsto (fun n : ℕ ↦ (∑ k ∈ Finset.Icc 1 n,
       (Nat.card {I : Ideal (𝓞 F) // Ideal.absNorm I = k} : ℝ)) / n) atTop
@@ -61,6 +82,9 @@ theorem tendsto_sum_card_div :
     ← Finset.card_preimage_eq_sum_card_image_eq (fun k _ ↦ Ideal.finite_setOfPred_absNorm_eq k)]
   simp [Set.coe_eq_subtype]
 
+/--
+@isnad1 id=lseriess.1h2v.s8.d06f64f31f69 from=translated src=- shape=7da7e8d4 vocab=cc6b80af
+-/
 theorem summable_card_absNorm {s : ℂ} (hs : 1 < s.re) :
     LSeriesSummable (fun n ↦ (Nat.card {I : Ideal (𝓞 F) // Ideal.absNorm I = n} : ℂ)) s := by
   set d : ℕ → ℝ := fun n ↦ (Nat.card {I : Ideal (𝓞 F) // Ideal.absNorm I = n} : ℝ) with hd
@@ -80,6 +104,9 @@ theorem summable_card_absNorm {s : ℂ} (hs : 1 < s.re) :
   refine (LSeriesSummable_congr s fun {n} _ ↦ ?_).1 h4
   simp [hd]
 
+/--
+@isnad1 id=summable.1h2v.s8.5c812df1e446 from=translated src=- shape=5d2e3367 vocab=bda70e57
+-/
 theorem summable_dedekind_terms {s : ℝ} (hs : 1 < s) :
     Summable fun n : ℕ => (Nat.card {I : Ideal (𝓞 F) // Ideal.absNorm I = n} : ℝ) * (n : ℝ) ^ (-s) := by
   have h4 := summable_card_absNorm (F := F) (s := (s : ℂ)) (by simpa using hs)
@@ -91,6 +118,9 @@ theorem summable_dedekind_terms {s : ℝ} (hs : 1 < s) :
   · rw [ite_eq_right hn, Complex.norm_natCast, Complex.ofReal_re, Real.rpow_neg (Nat.cast_nonneg _),
       div_eq_mul_inv]
 
+/--
+@isnad1 id=summable.1h2v.s5.c8a95124ef2a from=translated src=- shape=8532fbea vocab=99998e29
+-/
 theorem summable_pw {s : ℝ} (hs : 1 < s) : Summable (pw F s) := by
   set e : ℕ → ℝ := fun n => (Nat.card {I : Ideal (𝓞 F) // Ideal.absNorm I = n} : ℝ) * (n : ℝ) ^ (-s)
     with he
@@ -125,6 +155,9 @@ theorem summable_pw {s : ℝ} (hs : 1 < s) : Summable (pw F s) := by
         rw [he]
         exact mul_nonneg (Nat.cast_nonneg _) (Real.rpow_nonneg (Nat.cast_nonneg _) _))
 
+/--
+@isnad1 id=eq.0h2v.s5.c32e5db6e170 from=translated src=- shape=33f6cb6e vocab=aee8abb9
+-/
 theorem primeSum_toReal (s : ℝ) : (FrobeniusDensity.primeSum F s).toReal = ∑' v, pw F s v := by
   rw [FrobeniusDensity.primeSum, ENNReal.tsum_toReal_eq]
   · refine tsum_congr fun v => ?_
@@ -141,6 +174,9 @@ theorem primeSum_toReal (s : ℝ) : (FrobeniusDensity.primeSum F s).toReal = ∑
     · intro h
       exact absurd h (ENNReal.natCast_ne_top _)
 
+/--
+@isnad1 id=eq.0h2v.s8.7c8ae444cdd4 from=translated src=- shape=cc128233 vocab=a32068c4
+-/
 theorem tailSum_toReal (s : ℝ) : (FrobeniusDensity.tailSum F s).toReal =
     ∑' v, if (Ideal.absNorm v.asIdeal).Prime then 0 else pw F s v := by
   rw [FrobeniusDensity.tailSum, ENNReal.tsum_toReal_eq]
@@ -164,6 +200,9 @@ theorem tailSum_toReal (s : ℝ) : (FrobeniusDensity.tailSum F s).toReal =
 
 def invSq (n : ℕ) : NNReal := ((n : NNReal) ^ 2)⁻¹
 
+/--
+@isnad1 id=summable.0h0v.s3.db81fe9f72a2 from=translated src=- shape=ef4b497d vocab=f890b408
+-/
 theorem summable_invSq : Summable invSq := by
   rw [← NNReal.summable_coe]
   have : (fun n : ℕ => ((invSq n : NNReal) : ℝ)) = fun n : ℕ => ((n : ℝ) ^ 2)⁻¹ := by
@@ -171,6 +210,9 @@ theorem summable_invSq : Summable invSq := by
   rw [this]
   exact Real.summable_nat_pow_inv.mpr one_lt_two
 
+/--
+@isnad1 id=lt.0h0v.s3.be92bdc59fc2 from=translated src=- shape=f463f024 vocab=0324c96d
+-/
 theorem tailConst_lt_top : FrobeniusDensity.tailConst < ⊤ := by
   rw [FrobeniusDensity.tailConst]
   have hle : (∑' ℓ : ℕ, (if ℓ.Prime then ((ℓ : ENNReal) ^ 2)⁻¹ else 0)) ≤
@@ -188,6 +230,9 @@ variable (F) in
 
 def Ctail : ℝ := ((Module.finrank ℚ F : ENNReal) * FrobeniusDensity.tailConst).toReal
 
+/--
+@isnad1 id=summable.1h2v.s9.f812190e35ad from=translated src=- shape=9fbc324d vocab=a74d3fc0
+-/
 theorem summable_tail {s : ℝ} (hs : 1 < s) :
     Summable fun v : HeightOneSpectrum (𝓞 F) => if (Ideal.absNorm v.asIdeal).Prime then 0 else pw F s v := by
   refine (summable_pw hs).of_nonneg_of_le (fun v => ?_) (fun v => ?_)
@@ -198,6 +243,9 @@ theorem summable_tail {s : ℝ} (hs : 1 < s) :
     · exact pw_nonneg s v
     · exact le_rfl
 
+/--
+@isnad1 id=finite.0h2v.s7.26e25a75af0a from=translated src=- shape=6c9008d5 vocab=01199b59
+-/
 theorem finite_bad : {v : HeightOneSpectrum (𝓞 F) | (m : 𝓞 F) ∈ v.asIdeal}.Finite := by
   have h : (Ideal.span {(m : 𝓞 F)} : Ideal (𝓞 F)) ≠ 0 := by
     rw [Ne, Ideal.zero_eq_bot, Ideal.span_singleton_eq_bot]; exact_mod_cast NeZero.ne m
@@ -210,6 +258,9 @@ variable (F m) in
 
 def nbad : ℕ := (finite_bad (F := F) (m := m)).toFinset.card
 
+/--
+@isnad1 id=le.2h3v.s7.0f863108c5b8 from=translated src=- shape=68401925 vocab=3ff2a4a1
+-/
 theorem tsum_bad_le (f : HeightOneSpectrum (𝓞 F) → ℝ) (hf : ∀ v, f v ≤ 1)
     (hsupp : ∀ v, (m : 𝓞 F) ∉ v.asIdeal → f v = 0) : ∑' v, f v ≤ nbad F m := by
   rw [tsum_eq_sum (s := (finite_bad (F := F) (m := m)).toFinset) (fun v hv => hsupp v (by
@@ -232,43 +283,70 @@ def P0 (s : ℝ) : ℝ :=
 
 variable {F m}
 
+/--
+@isnad1 id=le.0h5v.s9.259c82afd325 from=translated src=- shape=9986ea24 vocab=0055f245
+-/
 theorem T_term_nonneg (a : ZMod m) (s : ℝ) (v : HeightOneSpectrum (𝓞 F)) :
     0 ≤ (if (Ideal.absNorm v.asIdeal : ZMod m) = a then pw F s v else 0) := by
   split_ifs
   · exact pw_nonneg s v
   · exact le_rfl
 
+/--
+@isnad1 id=le.0h5v.s9.fe9819c11fc6 from=translated src=- shape=97aa5559 vocab=0055f245
+-/
 theorem T_term_le (a : ZMod m) (s : ℝ) (v : HeightOneSpectrum (𝓞 F)) :
     (if (Ideal.absNorm v.asIdeal : ZMod m) = a then pw F s v else 0) ≤ pw F s v := by
   split_ifs
   · exact le_rfl
   · exact pw_nonneg s v
 
+/--
+@isnad1 id=summable.1h4v.s9.112283a879a9 from=translated src=- shape=fcb04b40 vocab=7fe9b302
+-/
 theorem summable_T (a : ZMod m) {s : ℝ} (hs : 1 < s) :
     Summable fun v : HeightOneSpectrum (𝓞 F) => if (Ideal.absNorm v.asIdeal : ZMod m) = a then pw F s v else 0 :=
   (summable_pw hs).of_nonneg_of_le (T_term_nonneg a s) (T_term_le a s)
 
+/--
+@isnad1 id=le.0h4v.s5.1b6ea1f5af1e from=translated src=- shape=d64fb5be vocab=13309537
+-/
 theorem T_nonneg (a : ZMod m) (s : ℝ) : 0 ≤ T F m a s := tsum_nonneg (T_term_nonneg a s)
 
+/--
+@isnad1 id=le.0h4v.s8.6a986d3ab434 from=translated src=- shape=03655a5e vocab=5e987367
+-/
 theorem P0_term_nonneg (s : ℝ) (v : HeightOneSpectrum (𝓞 F)) :
     0 ≤ (if (m : 𝓞 F) ∈ v.asIdeal then 0 else pw F s v) := by
   split_ifs
   · exact le_rfl
   · exact pw_nonneg s v
 
+/--
+@isnad1 id=le.0h4v.s8.ba041ea1924e from=translated src=- shape=b3398878 vocab=5e987367
+-/
 theorem P0_term_le (s : ℝ) (v : HeightOneSpectrum (𝓞 F)) :
     (if (m : 𝓞 F) ∈ v.asIdeal then 0 else pw F s v) ≤ pw F s v := by
   split_ifs
   · exact pw_nonneg s v
   · exact le_rfl
 
+/--
+@isnad1 id=summable.1h3v.s8.2d4ba3e5c988 from=translated src=- shape=22b450d3 vocab=fe5f6894
+-/
 theorem summable_P0 {s : ℝ} (hs : 1 < s) :
     Summable fun v : HeightOneSpectrum (𝓞 F) => if (m : 𝓞 F) ∈ v.asIdeal then 0 else pw F s v :=
   (summable_pw hs).of_nonneg_of_le (P0_term_nonneg s) (P0_term_le s)
 
+/--
+@isnad1 id=le.1h3v.s6.f06914178a1a from=translated src=- shape=7dba2184 vocab=b9fa4024
+-/
 theorem P0_le_tsum_pw {s : ℝ} (hs : 1 < s) : P0 F m s ≤ ∑' v, pw F s v :=
   (summable_P0 hs).tsum_le_tsum (P0_term_le s) (summable_pw hs)
 
+/--
+@isnad1 id=le.1h3v.s6.b7fd7faaf3ec from=translated src=- shape=265b0449 vocab=1a119c58
+-/
 theorem tsum_pw_le_P0_add {s : ℝ} (hs : 1 < s) : (∑' v, pw F s v) ≤ P0 F m s + nbad F m := by
   have hsplit : ∀ v : HeightOneSpectrum (𝓞 F), pw F s v =
       (if (m : 𝓞 F) ∈ v.asIdeal then 0 else pw F s v) + (if (m : 𝓞 F) ∈ v.asIdeal then pw F s v else 0) := by

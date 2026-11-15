@@ -25,12 +25,18 @@ noncomputable def cycloChar : (L ≃ₐ[ℚ] L) →* (ZMod m)ˣ :=
 
 omit [IsGalois ℚ L] in
 
+/--
+@isnad1 id=eq.1h4v.s10.43c3183c2ecd from=translated src=- shape=457fac63 vocab=146864f2
+-/
 lemma cycloChar_spec (σ : L ≃ₐ[ℚ] L) :
     ζ ^ ((cycloChar hζ σ : ZMod m)).val = σ • ζ := by
   simp [cycloChar]
 
 omit [IsGalois ℚ L] in
 
+/--
+@isnad1 id=eq.3h4v.s9.a25bc4357e6d from=translated src=- shape=d8ef4fab vocab=dd164f01
+-/
 lemma smul_eq_self_of_mem_ker_cycloChar (hm : m ≠ 1) {σ : L ≃ₐ[ℚ] L}
     (hσ : σ ∈ (cycloChar hζ).ker) : σ • ζ = ζ := by
   have h1 : cycloChar hζ σ = 1 := MonoidHom.mem_ker.mp hσ
@@ -40,6 +46,9 @@ lemma smul_eq_self_of_mem_ker_cycloChar (hm : m ≠ 1) {σ : L ≃ₐ[ℚ] L}
 
 omit [IsGalois ℚ L] in
 
+/--
+@isnad1 id=mem.1h5v.s8.55f606422283 from=translated src=- shape=87b87b2c vocab=1e53cd0f
+-/
 lemma commutatorElement_mem_ker_cycloChar (g h : L ≃ₐ[ℚ] L) :
     ⁅g, h⁆ ∈ (cycloChar hζ).ker := by
   rw [MonoidHom.mem_ker, map_commutatorElement]
@@ -53,6 +62,9 @@ variable {m : ℕ} [NeZero m]
 
 omit [NumberField L] [IsGalois ℚ L] in
 
+/--
+@isnad1 id=eq.0h3v.s6.1dc3379ab253 from=translated src=- shape=151dca46 vocab=e4619eee
+-/
 lemma natCard_quotient_under_eq {ℓ : ℕ} (Q : Ideal (𝓞 L)) [Q.IsPrime]
     [Q.LiesOver (ratPrimeIdeal ℓ)] : Nat.card (ℤ ⧸ Q.under ℤ) = ℓ := by
   rw [← Q.over_def (ratPrimeIdeal ℓ)]
@@ -60,6 +72,9 @@ lemma natCard_quotient_under_eq {ℓ : ℕ} (Q : Ideal (𝓞 L)) [Q.IsPrime]
 
 omit [NumberField L] [IsGalois ℚ L] [NeZero m] in
 
+/--
+@isnad1 id=not.1h4v.s7.413c457cb8d8 from=translated src=- shape=303a393f vocab=94a44ad8
+-/
 lemma natCast_notMem_of_not_dvd {ℓ : ℕ} (Q : Ideal (𝓞 L)) [Q.IsPrime]
     [Q.LiesOver (ratPrimeIdeal ℓ)] (h : ¬ ℓ ∣ m) : ((m : ℕ) : 𝓞 L) ∉ Q := by
   intro hmem
@@ -68,6 +83,9 @@ lemma natCast_notMem_of_not_dvd {ℓ : ℕ} (Q : Ideal (𝓞 L)) [Q.IsPrime]
   rw [← Q.over_def (ratPrimeIdeal ℓ), Ideal.mem_span_singleton] at h1
   exact_mod_cast h1
 
+/--
+@isnad1 id=modeq.5h5v.s8.02ab787a4eb5 from=translated src=- shape=dfc81a8c vocab=c2856c48
+-/
 theorem modEq_one_of_realizesCyclicAt {ζ : 𝓞 L} (hζ : IsPrimitiveRoot ζ m) (hm : m ≠ 1)
     {σ : L ≃ₐ[ℚ] L} (hσ : σ ∈ (cycloChar hζ).ker) {ℓ : ℕ} (hℓm : ¬ ℓ ∣ m)
     (hreal : RealizesCyclicAt L σ ℓ) : ℓ ≡ 1 [MOD m] := by

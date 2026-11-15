@@ -11,6 +11,9 @@ namespace FLT.ExplicitLift
 
 open Matrix Zsqrtd
 
+/--
+@isnad1 id=eq.0h0v.s8.774be0b920dc from=translated src=- shape=0e6411df vocab=336e32d7
+-/
 theorem neg_one_sq_eq_neg_two : (-1 : ZMod 3) * (-1) = ((-2 : ℤ) : ZMod 3) := by decide
 
 noncomputable def red : ℤ√(-2) →+* ZMod 3 :=

@@ -27,11 +27,17 @@ structure IsHeckeFun (f : G → R₀) : Prop where
 
 variable {U R₀} in
 
+/--
+@isnad1 id=isheckef.0h3v.s5.f8b44009d724 from=translated src=- shape=2c92d243 vocab=32a9d53b
+-/
 theorem IsHeckeFun.zero : IsHeckeFun (U := U) (0 : G → R₀) :=
   ⟨fun _ _ _ => rfl, fun _ _ _ => rfl, by simp⟩
 
 variable {U R₀} in
 
+/--
+@isnad1 id=isheckef.2h5v.s6.627a4b4c90c6 from=translated src=- shape=aa70da0c vocab=af091d4a
+-/
 theorem IsHeckeFun.add {f g : G → R₀} (hf : IsHeckeFun (U := U) f) (hg : IsHeckeFun (U := U) g) :
     IsHeckeFun (U := U) (f + g) := by
   refine ⟨fun u hu x => ?_, fun u hu x => ?_, ?_⟩
@@ -46,6 +52,9 @@ theorem IsHeckeFun.add {f g : G → R₀} (hf : IsHeckeFun (U := U) f) (hg : IsH
 
 variable {U R₀} in
 
+/--
+@isnad1 id=isheckef.1h5v.s6.45f2822ca56c from=translated src=- shape=0d64ee9b vocab=e7cc2b4f
+-/
 theorem IsHeckeFun.smul {f : G → R₀} (r : R₀) (hf : IsHeckeFun (U := U) f) :
     IsHeckeFun (U := U) (r • f) := by
   refine ⟨fun u hu x => ?_, fun u hu x => ?_, ?_⟩
@@ -66,27 +75,51 @@ abbrev HeckeAlgebra := heckeSubmodule U R₀
 
 variable {U R₀}
 
+/--
+@isnad1 id=iff.0h4v.s7.70169121a64f from=translated src=- shape=269d096b vocab=72bd1a3f
+-/
 theorem mem_heckeSubmodule_iff {f : G → R₀} :
     f ∈ heckeSubmodule U R₀ ↔ IsHeckeFun (U := U) f := Iff.rfl
 
+/--
+@isnad1 id=isheckef.0h4v.s8.59bd2784ff5d from=translated src=- shape=a5784405 vocab=245a910a
+-/
 theorem isHeckeFun (f : HeckeAlgebra U R₀) : IsHeckeFun (U := U) (f : G → R₀) := f.2
 
+/--
+@isnad1 id=eq.1h6v.s9.8b35ef5c7711 from=translated src=- shape=44d776fd vocab=151b995b
+-/
 theorem apply_left_mul (f : HeckeAlgebra U R₀) {u : G} (hu : u ∈ U) (x : G) :
     (f : G → R₀) (u * x) = (f : G → R₀) x := f.2.left_inv u hu x
 
+/--
+@isnad1 id=eq.1h6v.s9.993c062d1a72 from=translated src=- shape=1e307613 vocab=151b995b
+-/
 theorem apply_mul_right (f : HeckeAlgebra U R₀) {u : G} (hu : u ∈ U) (x : G) :
     (f : G → R₀) (x * u) = (f : G → R₀) x := f.2.right_inv u hu x
 
+/--
+@isnad1 id=finite.0h4v.s8.75b920ce13a7 from=translated src=- shape=1ae660de vocab=5ffda0f8
+-/
 theorem finite_cosets (f : HeckeAlgebra U R₀) :
     ((QuotientGroup.mk '' (Function.support (f : G → R₀))) : Set (G ⧸ U)).Finite :=
   f.2.finite_cosets
 
+/--
+@isnad1 id=eq.1h5v.s9.dd7a0e814e24 from=translated src=- shape=79875584 vocab=8604b2de
+-/
 @[ext] theorem ext {f g : HeckeAlgebra U R₀} (h : ∀ x, (f : G → R₀) x = (g : G → R₀) x) :
     f = g := Subtype.ext (funext h)
 
+/--
+@isnad1 id=eq.0h6v.s10.a30b4d116ad1 from=translated src=- shape=5a836896 vocab=1358685a
+-/
 @[simp] theorem coe_apply_add (f g : HeckeAlgebra U R₀) (x : G) :
     ((f + g : HeckeAlgebra U R₀) : G → R₀) x = (f : G → R₀) x + (g : G → R₀) x := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.ec764e625cd9 from=translated src=- shape=050dd0d5 vocab=7c44c909
+-/
 @[simp] theorem coe_apply_smul (r : R₀) (f : HeckeAlgebra U R₀) (x : G) :
     ((r • f : HeckeAlgebra U R₀) : G → R₀) x = r * (f : G → R₀) x := rfl
 
@@ -97,9 +130,15 @@ def convTerm (f₁ f₂ : HeckeAlgebra U R₀) (x : G) : G ⧸ U → R₀ :=
       ⟨a⁻¹ * b, QuotientGroup.leftRel_apply.mp hab, by group⟩
     rw [apply_mul_right f₁ hu, mul_inv_rev, mul_assoc, apply_left_mul f₂ (inv_mem hu)]
 
+/--
+@isnad1 id=eq.0h7v.s9.71511b66b662 from=translated src=- shape=832c64f7 vocab=b932075c
+-/
 @[simp] theorem convTerm_mk (f₁ f₂ : HeckeAlgebra U R₀) (x y : G) :
     convTerm f₁ f₂ x (QuotientGroup.mk y) = (f₁ : G → R₀) y * (f₂ : G → R₀) (y⁻¹ * x) := rfl
 
+/--
+@isnad1 id=le.0h6v.s9.0947f8582aab from=translated src=- shape=bf0d657a vocab=0817a7e8
+-/
 theorem support_convTerm_subset (f₁ f₂ : HeckeAlgebra U R₀) (x : G) :
     Function.support (convTerm f₁ f₂ x)
       ⊆ QuotientGroup.mk '' (Function.support (f₁ : G → R₀)) := by
@@ -108,6 +147,9 @@ theorem support_convTerm_subset (f₁ f₂ : HeckeAlgebra U R₀) (x : G) :
   rw [Function.mem_support, convTerm_mk] at hc
   exact ⟨y, left_ne_zero_of_mul hc, rfl⟩
 
+/--
+@isnad1 id=finite.0h6v.s8.027847b2264a from=translated src=- shape=29fbf28d vocab=c74d633f
+-/
 theorem finite_support_convTerm (f₁ f₂ : HeckeAlgebra U R₀) (x : G) :
     (Function.support (convTerm f₁ f₂ x)).Finite :=
   (finite_cosets f₁).subset (support_convTerm_subset f₁ f₂ x)
@@ -115,11 +157,17 @@ theorem finite_support_convTerm (f₁ f₂ : HeckeAlgebra U R₀) (x : G) :
 def conv (f₁ f₂ : HeckeAlgebra U R₀) (x : G) : R₀ :=
   ∑ᶠ c : G ⧸ U, convTerm f₁ f₂ x c
 
+/--
+@isnad1 id=eq.1h7v.s9.3c9e5f68d8e1 from=translated src=- shape=2148ee72 vocab=f05d2d05
+-/
 theorem conv_eq_sum (f₁ f₂ : HeckeAlgebra U R₀) (x : G) {T : Finset (G ⧸ U)}
     (hT : QuotientGroup.mk '' (Function.support (f₁ : G → R₀)) ⊆ (T : Set (G ⧸ U))) :
     conv f₁ f₂ x = ∑ c ∈ T, convTerm f₁ f₂ x c :=
   finsum_eq_sum_of_support_subset _ <| (support_convTerm_subset f₁ f₂ x).trans hT
 
+/--
+@isnad1 id=le.0h5v.s9.95b737864312 from=translated src=- shape=6f981af8 vocab=31b7181a
+-/
 theorem support_conv_subset (f₁ f₂ : HeckeAlgebra U R₀) :
     Function.support (conv f₁ f₂)
       ⊆ Function.support (f₁ : G → R₀) * Function.support (f₂ : G → R₀) := by
@@ -133,6 +181,9 @@ theorem support_conv_subset (f₁ f₂ : HeckeAlgebra U R₀) :
   rw [convTerm_mk] at hc
   exact ⟨y, left_ne_zero_of_mul hc, y⁻¹ * x, right_ne_zero_of_mul hc, by group⟩
 
+/--
+@isnad1 id=finite.0h5v.s9.cdab25fb0412 from=translated src=- shape=b110ae62 vocab=eb732798
+-/
 theorem finite_image_mk_mul_support (f₁ f₂ : HeckeAlgebra U R₀) :
     ((QuotientGroup.mk ''
       (Function.support (f₁ : G → R₀) * Function.support (f₂ : G → R₀))) :
@@ -150,10 +201,16 @@ theorem finite_image_mk_mul_support (f₁ f₂ : HeckeAlgebra U R₀) :
     congr 1
     group
 
+/--
+@isnad1 id=finite.0h5v.s8.06e353c93adb from=translated src=- shape=7b0d5585 vocab=120c7d8f
+-/
 theorem finite_image_mk_support_conv (f₁ f₂ : HeckeAlgebra U R₀) :
     ((QuotientGroup.mk '' (Function.support (conv f₁ f₂))) : Set (G ⧸ U)).Finite :=
   (finite_image_mk_mul_support f₁ f₂).subset <| Set.image_mono <| support_conv_subset f₁ f₂
 
+/--
+@isnad1 id=eq.1h8v.s8.dfa1c0426b42 from=translated src=- shape=c3e97af2 vocab=dae4ba88
+-/
 theorem convTerm_smul_left (f₁ f₂ : HeckeAlgebra U R₀) {u : G} (hu : u ∈ U) (x : G) (y : G) :
     convTerm f₁ f₂ (u * x) (QuotientGroup.mk (u * y))
       = convTerm f₁ f₂ x (QuotientGroup.mk y) := by
@@ -161,6 +218,9 @@ theorem convTerm_smul_left (f₁ f₂ : HeckeAlgebra U R₀) {u : G} (hu : u ∈
   congr 2
   group
 
+/--
+@isnad1 id=isheckef.0h5v.s8.7d5d5263b80b from=translated src=- shape=d5a1a7b0 vocab=c9c239e2
+-/
 theorem isHeckeFun_conv (f₁ f₂ : HeckeAlgebra U R₀) : IsHeckeFun (U := U) (conv f₁ f₂) := by
   refine ⟨fun u hu x => ?_, fun u hu x => ?_, finite_image_mk_support_conv f₁ f₂⟩
   ·
@@ -181,9 +241,15 @@ theorem isHeckeFun_conv (f₁ f₂ : HeckeAlgebra U R₀) : IsHeckeFun (U := U) 
 instance : Mul (HeckeAlgebra U R₀) :=
   ⟨fun f₁ f₂ => ⟨conv f₁ f₂, isHeckeFun_conv f₁ f₂⟩⟩
 
+/--
+@isnad1 id=eq.0h5v.s10.177f44dec269 from=translated src=- shape=20da92d8 vocab=51444d9a
+-/
 theorem coe_mul (f₁ f₂ : HeckeAlgebra U R₀) :
     ((f₁ * f₂ : HeckeAlgebra U R₀) : G → R₀) = conv f₁ f₂ := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.7a90d934ed4b from=translated src=- shape=b92b7df4 vocab=586e5916
+-/
 theorem mul_apply (f₁ f₂ : HeckeAlgebra U R₀) (x : G) :
     ((f₁ * f₂ : HeckeAlgebra U R₀) : G → R₀) x = ∑ᶠ c : G ⧸ U, convTerm f₁ f₂ x c := rfl
 
@@ -211,15 +277,27 @@ def heckeOne : HeckeAlgebra U R₀ :=
 
 instance : One (HeckeAlgebra U R₀) := ⟨heckeOne U R₀⟩
 
+/--
+@isnad1 id=eq.0h3v.s9.0e043c80196c from=translated src=- shape=fbb50e4b vocab=7a53535b
+-/
 theorem coe_one : ((1 : HeckeAlgebra U R₀) : G → R₀) = Set.indicator (U : Set G) 1 := rfl
 
+/--
+@isnad1 id=eq.1h4v.s9.1478efca8bf1 from=translated src=- shape=b3dabbce vocab=8604b2de
+-/
 theorem one_apply_of_mem {x : G} (hx : x ∈ U) : ((1 : HeckeAlgebra U R₀) : G → R₀) x = 1 :=
   Set.indicator_of_mem hx 1
 
+/--
+@isnad1 id=eq.1h4v.s9.4fa6272c7f14 from=translated src=- shape=89838c9c vocab=8604b2de
+-/
 theorem one_apply_of_notMem {x : G} (hx : x ∉ U) :
     ((1 : HeckeAlgebra U R₀) : G → R₀) x = 0 :=
   Set.indicator_of_notMem hx 1
 
+/--
+@isnad1 id=eq.0h4v.s10.cea26b643804 from=translated src=- shape=3b5439d3 vocab=86bb20a2
+-/
 protected theorem one_mul (f : HeckeAlgebra U R₀) : 1 * f = f := by
   ext x
   rw [mul_apply]
@@ -231,6 +309,9 @@ protected theorem one_mul (f : HeckeAlgebra U R₀) : 1 * f = f := by
     exact hc (QuotientGroup.eq.mpr (by simpa using inv_mem hyU))
   · rw [convTerm_mk, one_apply_of_mem (one_mem U), one_mul, inv_one, one_mul]
 
+/--
+@isnad1 id=eq.0h4v.s10.cbe9a93298b2 from=translated src=- shape=fc5c4aae vocab=86bb20a2
+-/
 protected theorem mul_one (f : HeckeAlgebra U R₀) : f * 1 = f := by
   ext x
   rw [mul_apply]
@@ -242,6 +323,9 @@ protected theorem mul_one (f : HeckeAlgebra U R₀) : f * 1 = f := by
     exact hc (QuotientGroup.eq.mpr hyx)
   · rw [convTerm_mk, inv_mul_cancel, one_apply_of_mem (one_mem U), mul_one]
 
+/--
+@isnad1 id=eq.0h4v.s10.c9a86bba1b36 from=translated src=- shape=5771960e vocab=86bb20a2
+-/
 protected theorem zero_mul (f : HeckeAlgebra U R₀) : 0 * f = 0 := by
   ext x
   rw [mul_apply]
@@ -250,6 +334,9 @@ protected theorem zero_mul (f : HeckeAlgebra U R₀) : 0 * f = 0 := by
   rw [convTerm_mk]
   exact zero_mul _
 
+/--
+@isnad1 id=eq.0h4v.s10.8cd50f00c4c4 from=translated src=- shape=2227ab24 vocab=86bb20a2
+-/
 protected theorem mul_zero (f : HeckeAlgebra U R₀) : f * 0 = 0 := by
   ext x
   rw [mul_apply]
@@ -258,6 +345,9 @@ protected theorem mul_zero (f : HeckeAlgebra U R₀) : f * 0 = 0 := by
   rw [convTerm_mk]
   exact mul_zero _
 
+/--
+@isnad1 id=eq.0h6v.s11.0d4ef5d0365c from=translated src=- shape=bb2ef897 vocab=ecf12232
+-/
 protected theorem add_mul (f₁ f₂ g : HeckeAlgebra U R₀) :
     (f₁ + f₂) * g = f₁ * g + f₂ * g := by
   ext x
@@ -271,6 +361,9 @@ protected theorem add_mul (f₁ f₂ g : HeckeAlgebra U R₀) :
     finsum_add_distrib (finite_support_convTerm f₁ g x) (finite_support_convTerm f₂ g x)]
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.a5a1409f4392 from=translated src=- shape=b2d63465 vocab=ecf12232
+-/
 protected theorem mul_add (f g₁ g₂ : HeckeAlgebra U R₀) :
     f * (g₁ + g₂) = f * g₁ + f * g₂ := by
   ext x
@@ -284,6 +377,9 @@ protected theorem mul_add (f g₁ g₂ : HeckeAlgebra U R₀) :
     finsum_add_distrib (finite_support_convTerm f g₁ x) (finite_support_convTerm f g₂ x)]
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.ffd4676ab299 from=translated src=- shape=29ea1120 vocab=dbfa2b35
+-/
 protected theorem smul_mul (r : R₀) (f g : HeckeAlgebra U R₀) :
     (r • f) * g = r • (f * g) := by
   ext x
@@ -295,6 +391,9 @@ protected theorem smul_mul (r : R₀) (f g : HeckeAlgebra U R₀) :
   rw [finsum_congr h, ← mul_finsum' _ _ (finite_support_convTerm f g x)]
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.f08c94f390fc from=translated src=- shape=bba57e85 vocab=dbfa2b35
+-/
 protected theorem mul_smul_comm (r : R₀) (f g : HeckeAlgebra U R₀) :
     f * (r • g) = r • (f * g) := by
   ext x
@@ -307,6 +406,9 @@ protected theorem mul_smul_comm (r : R₀) (f g : HeckeAlgebra U R₀) :
   rw [finsum_congr h, ← mul_finsum' _ _ (finite_support_convTerm f g x)]
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.6381533ff2b3 from=translated src=- shape=fe4d7217 vocab=86bb20a2
+-/
 protected theorem mul_assoc (f₁ f₂ f₃ : HeckeAlgebra U R₀) :
     f₁ * f₂ * f₃ = f₁ * (f₂ * f₃) := by
   ext x
@@ -406,6 +508,9 @@ variable (U) in
 
 def doubleCoset (g : G) : Set G := (U : Set G) * {g} * (U : Set G)
 
+/--
+@isnad1 id=iff.0h4v.s6.7babbe532c27 from=translated src=- shape=91b5deaa vocab=180c1a6b
+-/
 theorem mem_doubleCoset_iff {g x : G} :
     x ∈ doubleCoset U g ↔ ∃ u ∈ U, ∃ v ∈ U, u * g * v = x := by
   constructor
@@ -414,19 +519,31 @@ theorem mem_doubleCoset_iff {g x : G} :
   · rintro ⟨u, hu, v, hv, rfl⟩
     exact ⟨u * g, ⟨u, hu, g, rfl, rfl⟩, v, hv, rfl⟩
 
+/--
+@isnad1 id=mem.0h3v.s4.0d495ee3a731 from=translated src=- shape=3dce06bf vocab=64519650
+-/
 theorem self_mem_doubleCoset (g : G) : g ∈ doubleCoset U g :=
   mem_doubleCoset_iff.mpr ⟨1, one_mem U, 1, one_mem U, by group⟩
 
+/--
+@isnad1 id=mem.2h5v.s6.7b9546b24eb9 from=translated src=- shape=b81dabfd vocab=180c1a6b
+-/
 theorem mul_mem_doubleCoset {g x : G} (hx : x ∈ doubleCoset U g) {u : G} (hu : u ∈ U) :
     u * x ∈ doubleCoset U g := by
   obtain ⟨a, ha, b, hb, rfl⟩ := mem_doubleCoset_iff.mp hx
   exact mem_doubleCoset_iff.mpr ⟨u * a, mul_mem hu ha, b, hb, by group⟩
 
+/--
+@isnad1 id=mem.2h5v.s6.4df2580da018 from=translated src=- shape=79ccec56 vocab=180c1a6b
+-/
 theorem doubleCoset_mul_mem {g x : G} (hx : x ∈ doubleCoset U g) {u : G} (hu : u ∈ U) :
     x * u ∈ doubleCoset U g := by
   obtain ⟨a, ha, b, hb, rfl⟩ := mem_doubleCoset_iff.mp hx
   exact mem_doubleCoset_iff.mpr ⟨a, ha, b * u, mul_mem hb hu, by group⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.20d9584067ee from=translated src=- shape=b80c8f30 vocab=b582142a
+-/
 theorem image_mk_doubleCoset (g : G) :
     (QuotientGroup.mk '' (doubleCoset U g) : Set (G ⧸ U))
       = QuotientGroup.mk '' ((U : Set G) * {g}) := by
@@ -462,14 +579,23 @@ def heckeIndicator (g : G) (hfin : (QuotientGroup.mk '' ((U : Set G) * {g})
       by_contra hyD
       exact hy (Set.indicator_of_notMem hyD 1)⟩
 
+/--
+@isnad1 id=eq.2h5v.s8.ba18ec9addc1 from=translated src=- shape=0812da32 vocab=18e388c8
+-/
 theorem heckeIndicator_apply_of_mem {g x : G} (hfin) (hx : x ∈ doubleCoset U g) :
     ((heckeIndicator R₀ g hfin : HeckeAlgebra U R₀) : G → R₀) x = 1 :=
   Set.indicator_of_mem hx 1
 
+/--
+@isnad1 id=eq.2h5v.s8.a1801a2f4a4a from=translated src=- shape=71b814a3 vocab=18e388c8
+-/
 theorem heckeIndicator_apply_of_notMem {g x : G} (hfin) (hx : x ∉ doubleCoset U g) :
     ((heckeIndicator R₀ g hfin : HeckeAlgebra U R₀) : G → R₀) x = 0 :=
   Set.indicator_of_notMem hx 1
 
+/--
+@isnad1 id=eq.2h4v.s9.611da6eac2be from=translated src=- shape=660189bd vocab=a4e491e4
+-/
 theorem heckeIndicator_of_mem {u : G} (hu : u ∈ U) (hfin) :
     heckeIndicator R₀ u hfin = (1 : HeckeAlgebra U R₀) := by
   ext x

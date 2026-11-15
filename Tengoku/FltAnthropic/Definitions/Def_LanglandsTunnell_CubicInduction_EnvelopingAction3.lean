@@ -17,6 +17,9 @@ abbrev envelopingAlgebra3 : Type := UniversalEnvelopingAlgebra ℂ (Matrix (Fin 
 def derivAction3 : Matrix (Fin 3) (Fin 3) ℂ →ₗ[ℂ] Module.End ℂ smoothFunctions3 :=
   (Matrix.stdBasis ℂ (Fin 3) (Fin 3)).constr ℂ fun p => archDerivₗ p.1 p.2
 
+/--
+@isnad1 id=eq.0h2v.s13.759dc60e62b7 from=translated src=- shape=bc562de8 vocab=f9d3a9a3
+-/
 theorem derivAction3_single (i j : Fin 3) : derivAction3 (Matrix.single i j (1 : ℂ)) = archDerivₗ i j := by
   rw [← Matrix.stdBasis_eq_single]
   exact (Matrix.stdBasis ℂ (Fin 3) (Fin 3)).constr_basis ℂ (fun p => archDerivₗ p.1 p.2) (i, j)
@@ -190,6 +193,9 @@ private theorem derivAction3_comm (X Y : Matrix (Fin 3) (Fin 3) ℂ) :
   have h := LinearMap.congr_fun₂ hbil X Y
   simpa only [B₁, B₂, LinearMap.mk₂_apply] using h
 
+/--
+@isnad1 id=eq.0h2v.s15.a8d5979e2425 from=translated src=- shape=ae5848c2 vocab=828807ef
+-/
 theorem derivAction3_lie (X Y : Matrix (Fin 3) (Fin 3) ℂ) :
     derivAction3 ⁅X, Y⁆ = ⁅derivAction3 X, derivAction3 Y⁆ := by
   rw [Ring.lie_def, Module.End.instLieRingModule_eq, LieRing.of_associative_ring_bracket]
@@ -206,6 +212,9 @@ abbrev envelopingModule3 : Module envelopingAlgebra3 smoothFunctions3 :=
 
 scoped instance instEnvelopingModule3 : Module envelopingAlgebra3 smoothFunctions3 := envelopingModule3
 
+/--
+@isnad1 id=isscalar.0h0v.s13.1e5ff36649fb from=translated src=- shape=80779a43 vocab=3ebae998
+-/
 scoped instance instEnvelopingScalarTower3 : IsScalarTower ℂ envelopingAlgebra3 smoothFunctions3 :=
   ⟨fun c u φ => by
     show envelopingHom3 (c • u) φ = c • envelopingHom3 u φ

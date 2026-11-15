@@ -14,11 +14,17 @@ noncomputable section
 variable {G : Type*} [Group G] {U : Subgroup G}
 variable {R₀ : Type*} [CommRing R₀]
 
+/--
+@isnad1 id=eq.1h6v.s9.b02906722c90 from=translated src=- shape=2ea567b7 vocab=a22200b5
+-/
 theorem apply_eq_of_mem_doubleCoset (f : HeckeAlgebra U R₀) {g x : G}
     (hx : x ∈ doubleCoset U g) : (f : G → R₀) x = (f : G → R₀) g := by
   obtain ⟨u, hu, v, hv, rfl⟩ := mem_doubleCoset_iff.mp hx
   rw [apply_mul_right f hv, apply_left_mul f hu]
 
+/--
+@isnad1 id=eq.1h4v.s5.fb70232fd00b from=translated src=- shape=dc945d58 vocab=64519650
+-/
 theorem doubleCoset_eq_of_mem {g x : G} (hx : x ∈ doubleCoset U g) :
     doubleCoset U x = doubleCoset U g := by
   obtain ⟨u, hu, v, hv, rfl⟩ := mem_doubleCoset_iff.mp hx
@@ -50,19 +56,31 @@ variable {τ : G → G} (hτ : IsGelfandInvolution U τ)
 
 include hτ
 
+/--
+@isnad1 id=eq.1h3v.s5.141fe133db2e from=translated src=- shape=d143a9ba vocab=0cb914b8
+-/
 theorem map_one : τ 1 = 1 := by
   have h := hτ.map_mul 1 1
   rw [one_mul] at h
 
   exact (mul_right_cancel (a := (1 : G)) (b := τ 1) (by rw [one_mul, ← h])).symm
 
+/--
+@isnad1 id=eq.1h4v.s5.b258796d4803 from=translated src=- shape=64a19021 vocab=d34a802c
+-/
 theorem map_inv (x : G) : τ x⁻¹ = (τ x)⁻¹ := by
   have h : τ x⁻¹ * τ x = 1 := by rw [← hτ.map_mul, mul_inv_cancel, hτ.map_one]
   exact eq_inv_of_mul_eq_one_left h
 
+/--
+@isnad1 id=bijectiv.1h3v.s4.f9f254375879 from=translated src=- shape=1435cdc9 vocab=2fe15359
+-/
 theorem bijective : Function.Bijective τ :=
   Function.Involutive.bijective hτ.involutive
 
+/--
+@isnad1 id=eq.1h6v.s9.ea8876ae1a16 from=translated src=- shape=5e15fd13 vocab=3b913069
+-/
 theorem apply_tau (f : HeckeAlgebra U R₀) (x : G) : (f : G → R₀) (τ x) = (f : G → R₀) x :=
   apply_eq_of_mem_doubleCoset f (hτ.mem_doubleCoset x)
 
@@ -78,6 +96,9 @@ protected def reindex (x : G) : G ⧸ U → G ⧸ U :=
     rw [hgrp]
     exact hτ.map_mem u hu
 
+/--
+@isnad1 id=eq.1h5v.s6.24c3f9cee9d2 from=translated src=- shape=f5efcca7 vocab=4247d56f
+-/
 @[simp] theorem reindex_mk (x y : G) :
     hτ.reindex x (QuotientGroup.mk y) = QuotientGroup.mk (x * (τ y)⁻¹) := rfl
 
@@ -94,9 +115,15 @@ protected def reindexInv (x : G) : G ⧸ U → G ⧸ U :=
     rw [hgrp]
     exact hτ.map_mem u hu
 
+/--
+@isnad1 id=eq.1h5v.s6.7d7dbd7facda from=translated src=- shape=e0004c54 vocab=216167cd
+-/
 @[simp] theorem reindexInv_mk (x z : G) :
     hτ.reindexInv x (QuotientGroup.mk z) = QuotientGroup.mk (τ (z⁻¹ * x)) := rfl
 
+/--
+@isnad1 id=bijectiv.1h4v.s5.a968fe52a9f0 from=translated src=- shape=c9931e58 vocab=0d149313
+-/
 theorem bijective_reindex (x : G) : Function.Bijective (hτ.reindex x) := by
   have hleft : ∀ c, hτ.reindexInv x (hτ.reindex x c) = c := by
     refine fun c => Quotient.inductionOn c fun y => ?_
@@ -112,6 +139,9 @@ theorem bijective_reindex (x : G) : Function.Bijective (hτ.reindex x) := by
     group
   exact Function.bijective_iff_has_inverse.mpr ⟨hτ.reindexInv x, hleft, hright⟩
 
+/--
+@isnad1 id=eq.1h8v.s8.8ec3b7d44534 from=translated src=- shape=19de24ab vocab=8b8591ca
+-/
 theorem convTerm_tau (f₁ f₂ : HeckeAlgebra U R₀) (x : G) (c : G ⧸ U) :
     convTerm f₁ f₂ (τ x) c = convTerm f₂ f₁ x (hτ.reindex x c) := by
   refine Quotient.inductionOn c fun y => ?_
@@ -125,6 +155,9 @@ theorem convTerm_tau (f₁ f₂ : HeckeAlgebra U R₀) (x : G) (c : G ⧸ U) :
     rw [hτ.map_mul, hτ.involutive, hτ.map_inv]
   rw [h1, mul_comm]
 
+/--
+@isnad1 id=eq.1h7v.s10.535e35d02bf3 from=translated src=- shape=43bbb6e5 vocab=8a08f185
+-/
 theorem mul_apply_tau (f₁ f₂ : HeckeAlgebra U R₀) (x : G) :
     ((f₁ * f₂ : HeckeAlgebra U R₀) : G → R₀) (τ x)
       = ((f₂ * f₁ : HeckeAlgebra U R₀) : G → R₀) x := by
@@ -132,6 +165,9 @@ theorem mul_apply_tau (f₁ f₂ : HeckeAlgebra U R₀) (x : G) :
   exact finsum_eq_of_bijective (hτ.reindex x) (hτ.bijective_reindex x)
     (hτ.convTerm_tau f₁ f₂ x)
 
+/--
+@isnad1 id=eq.1h6v.s10.bb768b29a98f from=translated src=- shape=b854fb50 vocab=52785206
+-/
 theorem heckeMul_comm (f₁ f₂ : HeckeAlgebra U R₀) : f₁ * f₂ = f₂ * f₁ := by
   ext x
 
@@ -143,6 +179,9 @@ theorem heckeMul_comm (f₁ f₂ : HeckeAlgebra U R₀) : f₁ * f₂ = f₂ * f
 
 end IsGelfandInvolution
 
+/--
+@isnad1 id=isgelfan.4h3v.s7.a760625353c3 from=translated src=- shape=7bf1f2a8 vocab=15610f73
+-/
 theorem IsGelfandInvolution.of_forall_exists_fixedRep {τ : G → G}
     (hmul : ∀ x y, τ (x * y) = τ y * τ x) (hinv : ∀ x, τ (τ x) = x)
     (hU : ∀ u ∈ U, τ u ∈ U)

@@ -56,6 +56,9 @@ instance Twist.instCommRing (σA : A ≃+* A) (T : Type u) [CommRing T] : CommRi
 instance Twist.instAlgebra (σA : A ≃+* A) (T : Type u) [CommRing T] [Algebra A T] : Algebra A (Twist σA T) :=
   ((algebraMap A T).comp σA.toRingHom).toAlgebra
 
+/--
+@isnad1 id=eq.0h4v.s8.13beb078f5da from=translated src=- shape=fe1d45b0 vocab=66fb8907
+-/
 theorem Twist.algebraMap_apply (σA : A ≃+* A) (T : Type u) [CommRing T] [Algebra A T] (a : A) :
     (algebraMap A (Twist σA T) a : T) = algebraMap A T (σA a) := rfl
 
@@ -97,18 +100,30 @@ variable {A : Type u} [CommRing A] {K : Type u} [Field K] [Algebra A K] {j : K} 
 noncomputable def classify {T : Type u} [CommRing T] [Algebra A T] (x : D.Pt T) : ↥P.B →ₐ[A] T :=
   (P.represents T x).choose
 
+/--
+@isnad1 id=eq.0h7v.s7.da61e17667e5 from=translated src=- shape=762d6951 vocab=1350b491
+-/
 theorem map_classify {T : Type u} [CommRing T] [Algebra A T] (x : D.Pt T) : D.map (P.classify x) P.univ = x :=
   (P.represents T x).choose_spec.1
 
+/--
+@isnad1 id=eq.1h8v.s8.b4bdcadb4b33 from=translated src=- shape=399d07b7 vocab=b1d07016
+-/
 theorem classify_unique {T : Type u} [CommRing T] [Algebra A T] (x : D.Pt T) (φ : ↥P.B →ₐ[A] T)
     (h : D.map φ P.univ = x) : φ = P.classify x :=
   (P.represents T x).unique h (P.map_classify x) ▸ rfl
 
 noncomputable def inducedEnd (σ : LevelModuliDatum.ProblemAut D) : ↥P.B →ₐ[A] ↥P.B := P.classify (σ.act P.univ)
 
+/--
+@isnad1 id=eq.0h6v.s8.b202fd25ae9b from=translated src=- shape=022a96ab vocab=0b338e1e
+-/
 theorem map_inducedEnd_univ (σ : LevelModuliDatum.ProblemAut D) : D.map (P.inducedEnd σ) P.univ = σ.act P.univ :=
   P.map_classify _
 
+/--
+@isnad1 id=eq.1h7v.s10.8aa8f30a82ee from=translated src=- shape=befce4d0 vocab=9d081a3a
+-/
 theorem algHom_eq_of_map_univ_eq (φ ψ : ↥P.B →ₐ[A] ↥P.B) (h : D.map φ P.univ = D.map ψ P.univ) : φ = ψ :=
   (P.classify_unique (D.map ψ P.univ) φ h).trans (P.classify_unique (D.map ψ P.univ) ψ rfl).symm
 
@@ -116,10 +131,16 @@ noncomputable def inducedSemiEnd {σA : A ≃+* A} (σ : LevelModuliDatum.Semili
   ((P.classify (T := LevelModuliDatum.Twist σA ↥P.B) (σ.act P.univ)).toRingHom :
     ↥P.B →+* LevelModuliDatum.Twist σA ↥P.B)
 
+/--
+@isnad1 id=eq.0h8v.s10.aa93664549b9 from=translated src=- shape=ad6f1e5b vocab=de4689a9
+-/
 theorem inducedSemiEnd_algebraMap {σA : A ≃+* A} (σ : LevelModuliDatum.SemilinearProblemAut D σA) (a : A) :
     P.inducedSemiEnd σ (algebraMap A ↥P.B a) = algebraMap A ↥P.B (σA a) :=
   (P.classify (T := LevelModuliDatum.Twist σA ↥P.B) (σ.act P.univ)).commutes a
 
+/--
+@isnad1 id=eq.0h7v.s10.91c4d71f852c from=translated src=- shape=1e2e1afd vocab=1452be87
+-/
 theorem map_inducedSemiEnd_univ {σA : A ≃+* A} (σ : LevelModuliDatum.SemilinearProblemAut D σA) :
     D.map (P.classify (T := LevelModuliDatum.Twist σA ↥P.B) (σ.act P.univ)) P.univ = σ.act P.univ :=
   P.map_classify _

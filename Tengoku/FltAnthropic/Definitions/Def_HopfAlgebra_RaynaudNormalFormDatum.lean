@@ -93,6 +93,9 @@ def gTensor (Dd : DescentDatum R' F B fv R Γ) (σ : Γ) : B ⊗[R'] B →+ B �
       show Dd.g σ (c • b₁) ⊗ₜ[R'] Dd.g σ b₂ = Dd.g σ b₁ ⊗ₜ[R'] Dd.g σ (c • b₂)
       rw [Dd.semilinear, Dd.semilinear, TensorProduct.smul_tmul])
 
+/--
+@isnad1 id=eq.0h10v.s11.9f76c464d9be from=translated src=- shape=5dcc35dc vocab=0d00c9c2
+-/
 theorem gTensor_tmul (Dd : DescentDatum R' F B fv R Γ) (σ : Γ) (b₁ b₂ : B) :
     Dd.gTensor σ (b₁ ⊗ₜ[R'] b₂) = Dd.g σ b₁ ⊗ₜ[R'] Dd.g σ b₂ := rfl
 

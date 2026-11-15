@@ -16,10 +16,16 @@ section MennickeGenerator
 def mennickeA : SL(2, ℤ) :=
   ⟨!![1, 0; 1, 1], by rw [Matrix.det_fin_two_of]; ring⟩
 
+/--
+@isnad1 id=eq.0h0v.s8.8dde849aefda from=translated src=- shape=7c30e8c4 vocab=64d5cefb
+-/
 @[simp]
 theorem mennickeA_coe :
     ((mennickeA : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) = !![1, 0; 1, 1] := rfl
 
+/--
+@isnad1 id=eq.0h1v.s8.9cd5a95ed1b1 from=translated src=- shape=5a0bfff3 vocab=c182c6d4
+-/
 theorem mennickeA_pow_coe (k : ℕ) :
     ((mennickeA ^ k : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) = !![1, 0; (k : ℤ), 1] := by
   induction k with
@@ -37,6 +43,9 @@ variable (N q : ℕ)
 noncomputable def slAwayReduction (hNq : Nat.Coprime N q) : SL(2, ZAway q) →* SL(2, ZMod N) :=
   Matrix.SpecialLinearGroup.map (zAwayToZMod N q hNq)
 
+/--
+@isnad1 id=eq.1h3v.s10.a9f8001c4db6 from=translated src=- shape=6ac232fc vocab=c3cf4911
+-/
 theorem slAwayReduction_coe (hNq : Nat.Coprime N q) (g : SL(2, ZAway q)) :
     ((slAwayReduction N q hNq g : SL(2, ZMod N)) : Matrix (Fin 2) (Fin 2) (ZMod N)) =
       (g : Matrix (Fin 2) (Fin 2) (ZAway q)).map (zAwayToZMod N q hNq) := rfl
@@ -48,6 +57,9 @@ noncomputable def principalCongruenceAway (hNq : Nat.Coprime N q) :
 instance (hNq : Nat.Coprime N q) : (principalCongruenceAway N q hNq).Normal :=
   MonoidHom.normal_ker (slAwayReduction N q hNq)
 
+/--
+@isnad1 id=iff.1h3v.s10.71def488ef08 from=translated src=- shape=69f51dc3 vocab=3484f74b
+-/
 theorem mem_principalCongruenceAway_iff (hNq : Nat.Coprime N q) {g : SL(2, ZAway q)} :
     g ∈ principalCongruenceAway N q hNq ↔ slAwayReduction N q hNq g = 1 := Iff.rfl
 
@@ -55,6 +67,9 @@ def MennickeCSP (hNq : Nat.Coprime N q) : Prop :=
   principalCongruenceAway N q hNq =
     Subgroup.normalClosure ({(slToAway q mennickeA) ^ N} : Set SL(2, ZAway q))
 
+/--
+@isnad1 id=mem.1h2v.s10.cbc1d77965ac from=translated src=- shape=75e03aeb vocab=648fc838
+-/
 theorem slToAway_mennickeA_pow_mem (hNq : Nat.Coprime N q) :
     (slToAway q mennickeA) ^ N ∈ principalCongruenceAway N q hNq := by
   rw [mem_principalCongruenceAway_iff, ← map_pow]
@@ -65,12 +80,18 @@ theorem slToAway_mennickeA_pow_mem (hNq : Nat.Coprime N q) :
   fin_cases i <;> fin_cases j <;>
     simp [Matrix.map_apply, Function.comp_apply]
 
+/--
+@isnad1 id=le.1h2v.s10.3316416e7973 from=translated src=- shape=6276a148 vocab=dae41a58
+-/
 theorem normalClosure_le_principalCongruenceAway (hNq : Nat.Coprime N q) :
     Subgroup.normalClosure ({(slToAway q mennickeA) ^ N} : Set SL(2, ZAway q)) ≤
       principalCongruenceAway N q hNq :=
   Subgroup.normalClosure_le_normal
     (Set.singleton_subset_iff.mpr (slToAway_mennickeA_pow_mem N q hNq))
 
+/--
+@isnad1 id=iff.1h2v.s10.a843457c8dc8 from=translated src=- shape=26710223 vocab=23cc6072
+-/
 theorem mennickeCSP_iff_ker_le (hNq : Nat.Coprime N q) :
     MennickeCSP N q hNq ↔
       principalCongruenceAway N q hNq ≤
@@ -89,9 +110,15 @@ variable (q : ℕ)
 
 def qInv : ZAway q := IsLocalization.Away.invSelf (S := ZAway q) ((q : ℕ) : ℤ)
 
+/--
+@isnad1 id=eq.0h1v.s6.d6e15935c16a from=translated src=- shape=ec5cfe3e vocab=5367acbb
+-/
 theorem natCast_q_mul_qInv : ((q : ℕ) : ZAway q) * qInv q = 1 :=
   q_mul_invSelf q
 
+/--
+@isnad1 id=eq.0h1v.s6.b47ccca92ea7 from=translated src=- shape=64b35763 vocab=5367acbb
+-/
 theorem qInv_mul_natCast_q : qInv q * ((q : ℕ) : ZAway q) = 1 :=
   invSelf_mul_q q
 
@@ -99,6 +126,9 @@ def mennickeU : SL(2, ZAway q) :=
   ⟨!![((q : ℕ) : ZAway q), 0; 0, qInv q], by
     rw [Matrix.det_fin_two_of, natCast_q_mul_qInv q]; ring⟩
 
+/--
+@isnad1 id=eq.0h1v.s9.58ddfa1b45ff from=translated src=- shape=86bc70c4 vocab=68487180
+-/
 @[simp]
 theorem mennickeU_coe :
     ((mennickeU q : SL(2, ZAway q)) : Matrix (Fin 2) (Fin 2) (ZAway q)) =
@@ -124,6 +154,9 @@ noncomputable def mennickeZ (hmq : Nat.Coprime m q) : Subgroup SL(2, ZAway q) :=
       (Subgroup.map (QuotientGroup.mk' (mennickeQ q m))
         (principalCongruenceAway m q hmq)))
 
+/--
+@isnad1 id=iff.1h3v.s10.dc7b7502e5e6 from=translated src=- shape=f2948632 vocab=03c35982
+-/
 theorem mem_mennickeZ_iff (hmq : Nat.Coprime m q) (g : SL(2, ZAway q)) :
     g ∈ mennickeZ q m hmq ↔
       ∀ X ∈ principalCongruenceAway m q hmq, ⁅g, X⁆ ∈ mennickeQ q m := by
@@ -144,6 +177,9 @@ theorem mem_mennickeZ_iff (hmq : Nat.Coprime m q) (g : SL(2, ZAway q)) :
       map_commutatorElement, commutatorElement_eq_one_iff_mul_comm] at hc
     exact hc.symm
 
+/--
+@isnad1 id=le.1h2v.s8.515c87414fb2 from=translated src=- shape=bedfa802 vocab=ba260d27
+-/
 theorem mennickeQ_le_mennickeZ (hmq : Nat.Coprime m q) :
     mennickeQ q m ≤ mennickeZ q m hmq := by
   intro x hx
@@ -180,6 +216,9 @@ def MennickeLemma21 (hmq : Nat.Coprime m q) : Prop :=
 
 omit [NeZero q] in
 
+/--
+@isnad1 id=iff.1h2v.s8.49645507cfde from=translated src=- shape=fd808c58 vocab=9019ddfd
+-/
 theorem mennickeLemma21_iff (hmq : Nat.Coprime m q) :
     MennickeLemma21 q m hmq ↔ mennickeU q ∈ mennickeZ q m hmq :=
   Iff.rfl

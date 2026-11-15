@@ -28,6 +28,9 @@ open scoped Classical in
 def weightDivisor (m : ℕ) : Divisor K ↥(modularFunctionFieldC K N) :=
   if h : ∃ D : Divisor K ↥(modularFunctionFieldC K N), ∀ w, D w = weightFloor K N m w then h.choose else 0
 
+/--
+@isnad1 id=eq.1h4v.s12.49082a903b76 from=translated src=- shape=154672a8 vocab=99b0d6d8
+-/
 theorem weightDivisor_apply (m : ℕ)
     (h : ∃ D : Divisor K ↥(modularFunctionFieldC K N), ∀ w, D w = weightFloor K N m w)
     (w : Place K ↥(modularFunctionFieldC K N)) :

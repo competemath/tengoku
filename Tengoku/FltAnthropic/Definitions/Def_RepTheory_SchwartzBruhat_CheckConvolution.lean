@@ -27,6 +27,9 @@ variable {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
 def checkHomeomorph (σ : G ≃ₜ* G) : G ≃ₜ G :=
   (Homeomorph.inv G).trans σ.symm.toHomeomorph
 
+/--
+@isnad1 id=eq.0h3v.s7.d0445b502bb8 from=translated src=- shape=da32aa7c vocab=7e69d101
+-/
 theorem checkHomeomorph_apply (σ : G ≃ₜ* G) (h : G) : checkHomeomorph σ h = σ.symm h⁻¹ := rfl
 
 noncomputable def check (σ : G ≃ₜ* G) :
@@ -36,6 +39,9 @@ noncomputable def check (σ : G ≃ₜ* G) :
   map_add' φ ψ := by ext h; rfl
   map_smul' c φ := by ext h; rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.e10b89874a5f from=translated src=- shape=7e75f1c9 vocab=bc9c3093
+-/
 @[simp]
 theorem check_apply (σ : G ≃ₜ* G) (φ : SchwartzBruhatSpace.testSpace G) (h : G) :
     (check σ φ : G → ℂ) h = (φ : G → ℂ) (σ.symm h⁻¹) := rfl
@@ -77,6 +83,9 @@ private theorem exists_mem_nhds_one_right_invariant {φ : G → ℂ} (hlc : IsLo
 
 variable [T2Space G] [MeasurableSpace G]
 
+/--
+@isnad1 id=mem.2h4v.s8.b7cc2a77ca6e from=translated src=- shape=f87bf5f6 vocab=84e8bb50
+-/
 theorem mulConv_mem_testSpace (μ : Measure G) {φ ψ : G → ℂ}
     (hφ : φ ∈ SchwartzBruhatSpace.testSpace G) (hψ : ψ ∈ SchwartzBruhatSpace.testSpace G) :
     MulConvolution.mulConv μ φ ψ ∈ SchwartzBruhatSpace.testSpace G := by
@@ -89,6 +98,9 @@ noncomputable def convolution (μ : Measure G) (φ ψ : SchwartzBruhatSpace.test
     SchwartzBruhatSpace.testSpace G :=
   ⟨MulConvolution.mulConv μ φ ψ, mulConv_mem_testSpace μ φ.2 ψ.2⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.275fbab6901d from=translated src=- shape=1a2de5db vocab=0aea8799
+-/
 @[simp]
 theorem coe_convolution (μ : Measure G) (φ ψ : SchwartzBruhatSpace.testSpace G) :
     (convolution μ φ ψ : G → ℂ) = MulConvolution.mulConv μ φ ψ := rfl

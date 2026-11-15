@@ -35,6 +35,9 @@ variable (h₁ : algebraMap R S c₁ = d₁) (h₂ : algebraMap R S c₂ = d₂)
 def mapOfAlgebraMapEq : ℍ[R,c₁,c₂,c₃] →ₐ[R] ℍ[S,d₁,d₂,d₃] :=
   (Basis.ofAlgebraMapEq h₁ h₂ h₃).liftHom
 
+/--
+@isnad1 id=eq.3h9v.s9.9b669cc4e62d from=translated src=- shape=18971d85 vocab=24b6e72e
+-/
 @[simp] theorem mapOfAlgebraMapEq_apply (x : ℍ[R,c₁,c₂,c₃]) :
     mapOfAlgebraMapEq h₁ h₂ h₃ x =
       ⟨algebraMap R S x.re, algebraMap R S x.imI, algebraMap R S x.imJ, algebraMap R S x.imK⟩ := by
@@ -52,6 +55,9 @@ def baseChangeInv (q : ℍ[S,d₁,d₂,d₃]) : S ⊗[R] ℍ[R,c₁,c₂,c₃] :
   q.re ⊗ₜ[R] (1 : ℍ[R,c₁,c₂,c₃]) + q.imI ⊗ₜ[R] (⟨0, 1, 0, 0⟩ : ℍ[R,c₁,c₂,c₃]) +
     q.imJ ⊗ₜ[R] (⟨0, 0, 1, 0⟩ : ℍ[R,c₁,c₂,c₃]) + q.imK ⊗ₜ[R] (⟨0, 0, 0, 1⟩ : ℍ[R,c₁,c₂,c₃])
 
+/--
+@isnad1 id=eq.0h10v.s9.5766ba50620f from=translated src=- shape=377db6fa vocab=62dde72d
+-/
 theorem baseChangeInv_add (q q' : ℍ[S,d₁,d₂,d₃]) :
     (baseChangeInv (q + q') : S ⊗[R] ℍ[R,c₁,c₂,c₃]) = baseChangeInv q + baseChangeInv q' := by
   simp only [baseChangeInv]

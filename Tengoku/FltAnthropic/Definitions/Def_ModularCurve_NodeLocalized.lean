@@ -44,11 +44,17 @@ def modularLocalizedAtPoint : Subring (LaurentSeries L) where
         = (f * modularEval N A s) * (g * modularEval N A t) := by ring
       _ = modularEval N A r * modularEval N A u := by rw [hf, hg]
 
+/--
+@isnad1 id=iff.0h8v.s11.1554ba197bb9 from=translated src=- shape=d2aa7d6b vocab=2dd6d1c7
+-/
 theorem mem_modularLocalizedAtPoint {f : LaurentSeries L} :
     f ∈ modularLocalizedAtPoint N A red a b ↔
       ∃ r s : MvPolynomial (Fin 2) A, pointEval A red a b s ≠ 0 ∧ f * modularEval N A s = modularEval N A r :=
   Iff.rfl
 
+/--
+@isnad1 id=mem.0h8v.s9.253ce6350af3 from=translated src=- shape=69ea52b6 vocab=ba94940e
+-/
 theorem modularEval_mem_modularLocalizedAtPoint (p : MvPolynomial (Fin 2) A) :
     modularEval N A p ∈ modularLocalizedAtPoint N A red a b :=
   ⟨p, 1, by rw [map_one]; exact one_ne_zero, by rw [map_one, mul_one]⟩

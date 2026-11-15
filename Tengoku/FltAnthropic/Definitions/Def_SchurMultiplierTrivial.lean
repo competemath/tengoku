@@ -15,6 +15,9 @@ def HasTrivialSchurMultiplier (G : Type u) [Group G] : Prop :=
     MonoidHom.ker π ≤ Subgroup.center E → MonoidHom.ker π ≤ commutator E →
       MonoidHom.ker π = ⊥
 
+/--
+@isnad1 id=hastrivi.1h3v.s5.141997749d73 from=translated src=- shape=a724b963 vocab=1ac19976
+-/
 theorem HasTrivialSchurMultiplier.of_mulEquiv {G H : Type u} [Group G] [Group H]
     (hH : HasTrivialSchurMultiplier H) (e : G ≃* H) : HasTrivialSchurMultiplier G := by
   intro E _ π hsurj hcent hcomm

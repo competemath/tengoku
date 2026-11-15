@@ -65,6 +65,9 @@ def IsGaussDatum (y : K) : Prop :=
     chiIdeal K 𝔣 χ (FractionalIdeal.spanSingleton (𝓞 K)⁰ y * (𝔣 : FractionalIdeal (𝓞 K)⁰ K)
         * ((differentIdeal ℤ (𝓞 K) : Ideal (𝓞 K)) : FractionalIdeal (𝓞 K)⁰ K)) ≠ 0
 
+/--
+@isnad1 id=isparity.0h2v.s12.c09018ee5eb9 from=translated src=- shape=639a25ff vocab=14557023
+-/
 theorem isParity_one_empty : IsParity K 𝔣 (1 : NarrowRayClassGroup K 𝔣 →* ℂ) ∅ := by
   intro α hα h1
   have hne : ((Ideal.span {α} : Ideal (𝓞 K)) : FractionalIdeal (𝓞 K)⁰ K) ≠ 0 := by
@@ -78,6 +81,9 @@ theorem isParity_one_empty : IsParity K 𝔣 (1 : NarrowRayClassGroup K 𝔣 →
     rwa [principalUnit_val] at this
   rw [chiIdeal, dite_eq_left hne, dite_eq_left hcop, MonoidHom.one_apply, signAt, Finset.prod_empty]
 
+/--
+@isnad1 id=isprimit.0h2v.s11.243911274bbf from=translated src=- shape=c11f98eb vocab=6fd6072f
+-/
 theorem isPrimitiveMod_top (χ' : NarrowRayClassGroup K ⊤ →* ℂ) : IsPrimitiveMod K ⊤ χ' := by
   intro 𝔣' hle hne
   exact absurd (top_le_iff.mp hle) hne

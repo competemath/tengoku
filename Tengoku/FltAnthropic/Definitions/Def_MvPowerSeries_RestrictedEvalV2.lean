@@ -19,6 +19,9 @@ namespace Tendsto0
 
 variable {p : ℕ} {S T : MvPowerSeries σ 𝓞}
 
+/--
+@isnad1 id=finite.1h5v.s8.21ec4f819177 from=translated src=- shape=34a5fe45 vocab=67469456
+-/
 theorem finite_setOf (hS : Tendsto0 p S) (N : ℕ) :
     {m : σ →₀ ℕ | coeff m S ∉ Ideal.span {(p : 𝓞) ^ N}}.Finite :=
   Filter.eventually_cofinite.1 (hS N)
@@ -26,24 +29,39 @@ theorem finite_setOf (hS : Tendsto0 p S) (N : ℕ) :
 noncomputable def bad (hS : Tendsto0 p S) (N : ℕ) : Finset (σ →₀ ℕ) :=
   (hS.finite_setOf N).toFinset
 
+/--
+@isnad1 id=iff.1h6v.s8.d5f34aab051a from=translated src=- shape=1c8221db vocab=f37c76e2
+-/
 theorem mem_bad_iff (hS : Tendsto0 p S) (N : ℕ) (m : σ →₀ ℕ) :
     m ∈ hS.bad N ↔ coeff m S ∉ Ideal.span {(p : 𝓞) ^ N} := by
   simp [bad]
 
+/--
+@isnad1 id=mem.2h6v.s8.9d790a72e386 from=translated src=- shape=00a97655 vocab=f37c76e2
+-/
 theorem coeff_mem_of_not_mem_bad (hS : Tendsto0 p S) {N : ℕ} {m : σ →₀ ℕ} (hm : m ∉ hS.bad N) :
     coeff m S ∈ Ideal.span {(p : 𝓞) ^ N} := by
   by_contra h
   exact hm ((hS.mem_bad_iff N m).2 h)
 
+/--
+@isnad1 id=le.1h4v.s7.d6310047051d from=translated src=- shape=d8e1193b vocab=a51d53b4
+-/
 theorem span_pow_le_span_pow {R : Type*} [CommRing R] (a : R) {M N : ℕ} (h : M ≤ N) :
     Ideal.span {a ^ N} ≤ Ideal.span {a ^ M} :=
   Ideal.span_singleton_le_span_singleton.2 (pow_dvd_pow a h)
 
+/--
+@isnad1 id=le.2h6v.s6.b9c547755e7d from=translated src=- shape=f9cbe1a9 vocab=1bcd0d03
+-/
 theorem bad_mono (hS : Tendsto0 p S) {M N : ℕ} (h : M ≤ N) : hS.bad M ⊆ hS.bad N := by
   intro m hm
   rw [mem_bad_iff] at hm ⊢
   exact fun h' => hm (span_pow_le_span_pow (p : 𝓞) h h')
 
+/--
+@isnad1 id=tendsto0.1h4v.s7.f4ae912f737c from=translated src=- shape=32077e26 vocab=a5d8eac4
+-/
 theorem of_forall_eventually_eq_zero {S : MvPowerSeries σ 𝓞}
     (h : ∀ᶠ m in Filter.cofinite, coeff m S = 0) : Tendsto0 p S := by
   intro N
@@ -51,9 +69,15 @@ theorem of_forall_eventually_eq_zero {S : MvPowerSeries σ 𝓞}
   rw [hm]
   exact Ideal.zero_mem _
 
+/--
+@isnad1 id=tendsto0.0h3v.s5.1318406c084c from=translated src=- shape=f19dc435 vocab=6711227a
+-/
 theorem zero : Tendsto0 p (0 : MvPowerSeries σ 𝓞) :=
   of_forall_eventually_eq_zero (Filter.Eventually.of_forall fun m => by simp)
 
+/--
+@isnad1 id=tendsto0.0h4v.s4.067117e4dd06 from=translated src=- shape=ab4c7cb8 vocab=c70dff74
+-/
 theorem coe (P : MvPolynomial σ 𝓞) : Tendsto0 p (P : MvPowerSeries σ 𝓞) := by
   apply of_forall_eventually_eq_zero
   rw [Filter.eventually_cofinite]
@@ -64,31 +88,49 @@ theorem coe (P : MvPolynomial σ 𝓞) : Tendsto0 p (P : MvPowerSeries σ 𝓞) 
   rw [MvPolynomial.coeff_coe]
   exact MvPolynomial.notMem_support_iff.1 h'
 
+/--
+@isnad1 id=tendsto0.0h3v.s4.2685f409984b from=translated src=- shape=f19dc435 vocab=6711227a
+-/
 theorem one : Tendsto0 p (1 : MvPowerSeries σ 𝓞) := by
   have h := coe (p := p) (σ := σ) (𝓞 := 𝓞) 1
   rwa [MvPolynomial.coe_one] at h
 
+/--
+@isnad1 id=tendsto0.2h5v.s6.3e1c67a7233e from=translated src=- shape=95baf1df vocab=0d6eefae
+-/
 theorem add (hS : Tendsto0 p S) (hT : Tendsto0 p T) : Tendsto0 p (S + T) := by
   intro N
   filter_upwards [hS N, hT N] with m hmS hmT
   rw [map_add]
   exact Ideal.add_mem _ hmS hmT
 
+/--
+@isnad1 id=tendsto0.1h4v.s5.aaae77b19307 from=translated src=- shape=de59fbdd vocab=f7d585a5
+-/
 theorem neg (hS : Tendsto0 p S) : Tendsto0 p (-S) := by
   intro N
   filter_upwards [hS N] with m hm
   rw [map_neg]
   exact (Ideal.neg_mem_iff _).2 hm
 
+/--
+@isnad1 id=tendsto0.2h5v.s6.fb7a1f8c2bdf from=translated src=- shape=95baf1df vocab=e745122b
+-/
 theorem sub (hS : Tendsto0 p S) (hT : Tendsto0 p T) : Tendsto0 p (S - T) := by
   rw [sub_eq_add_neg]; exact hS.add hT.neg
 
+/--
+@isnad1 id=tendsto0.1h5v.s6.805157c591ae from=translated src=- shape=774fa5e0 vocab=9f37cdbf
+-/
 theorem smul (hS : Tendsto0 p S) (c : 𝓞) : Tendsto0 p (c • S) := by
   intro N
   filter_upwards [hS N] with m hm
   rw [map_smul, smul_eq_mul]
   exact Ideal.mul_mem_left _ c hm
 
+/--
+@isnad1 id=ex.1h5v.s8.2617ed6a0092 from=translated src=- shape=18c8828d vocab=01ce7127
+-/
 theorem exists_degree [Finite σ] (hS : Tendsto0 p S) (N : ℕ) :
     ∃ K : ℕ, ∀ m : σ →₀ ℕ, K ≤ m.degree → coeff m S ∈ Ideal.span {(p : 𝓞) ^ N} := by
   classical
@@ -98,6 +140,9 @@ theorem exists_degree [Finite σ] (hS : Tendsto0 p S) (N : ℕ) :
   have := Finset.le_sup (f := fun m : σ →₀ ℕ => m.degree) hbad
   omega
 
+/--
+@isnad1 id=tendsto0.1h4v.s8.3ab48d7382f6 from=translated src=- shape=f3381970 vocab=01ce7127
+-/
 theorem of_degree [Finite σ] {S : MvPowerSeries σ 𝓞}
     (h : ∀ N : ℕ, ∃ K : ℕ, ∀ m : σ →₀ ℕ, K ≤ m.degree → coeff m S ∈ Ideal.span {(p : 𝓞) ^ N}) :
     Tendsto0 p S := by
@@ -111,6 +156,9 @@ theorem of_degree [Finite σ] {S : MvPowerSeries σ 𝓞}
   simp only [Set.mem_ofPred_eq, not_le] at h'
   exact hm (hK m h'.le)
 
+/--
+@isnad1 id=tendsto0.2h5v.s5.175be77e2e4d from=translated src=- shape=2bef3494 vocab=cd6b8ecc
+-/
 theorem mul [Finite σ] (hS : Tendsto0 p S) (hT : Tendsto0 p T) : Tendsto0 p (S * T) := by
   classical
   apply of_degree
@@ -127,10 +175,16 @@ theorem mul [Finite σ] (hS : Tendsto0 p S) (hT : Tendsto0 p T) : Tendsto0 p (S 
   · have h2 : K' ≤ x.2.degree := by omega
     exact Ideal.mul_mem_left _ _ (hK' _ h2)
 
+/--
+@isnad1 id=tendsto0.1h5v.s6.322ad21d708e from=translated src=- shape=d8b00d5c vocab=043aa2d0
+-/
 theorem pow [Finite σ] (hS : Tendsto0 p S) : ∀ n : ℕ, Tendsto0 p (S ^ n)
   | 0 => by rw [pow_zero]; exact one
   | n + 1 => by rw [pow_succ]; exact (pow hS n).mul hS
 
+/--
+@isnad1 id=tendsto0.1h6v.s6.a09ddfecd7c5 from=translated src=- shape=9a44604e vocab=92baadec
+-/
 theorem prod [Finite σ] {ι : Type*} (s : Finset ι) (f : ι → MvPowerSeries σ 𝓞)
     (hf : ∀ i ∈ s, Tendsto0 p (f i)) : Tendsto0 p (∏ i ∈ s, f i) := by
   classical
@@ -142,14 +196,23 @@ theorem prod [Finite σ] {ι : Type*} (s : Finset ι) (f : ι → MvPowerSeries 
 
 end Tendsto0
 
+/--
+@isnad1 id=tendsto0.0h4v.s4.5038dab60430 from=translated src=- shape=8cad908a vocab=8cee7e06
+-/
 theorem tendsto0_X (p : ℕ) (s : σ) : Tendsto0 p (X s : MvPowerSeries σ 𝓞) := by
   have h := Tendsto0.coe (p := p) (MvPolynomial.X s : MvPolynomial σ 𝓞)
   rwa [MvPolynomial.coe_X] at h
 
+/--
+@isnad1 id=tendsto0.0h4v.s6.92e69bf6b983 from=translated src=- shape=3099432b vocab=c0d36ae6
+-/
 theorem tendsto0_C (p : ℕ) (c : 𝓞) : Tendsto0 p (C c : MvPowerSeries σ 𝓞) := by
   have h := Tendsto0.coe (p := p) (MvPolynomial.C c : MvPolynomial σ 𝓞)
   rwa [MvPolynomial.coe_C] at h
 
+/--
+@isnad1 id=tendsto0.1h4v.s8.3f9ebc46f127 from=translated src=- shape=6bb76c9a vocab=d5f1f843
+-/
 theorem tendsto0_of_forall_coeff_mem_pow_degree [Finite σ] (p : ℕ) {S : MvPowerSeries σ 𝓞}
     (h : ∀ m, coeff m S ∈ Ideal.span {(p : 𝓞) ^ m.degree}) : Tendsto0 p S :=
   Tendsto0.of_degree fun N => ⟨N, fun m hm => Tendsto0.span_pow_le_span_pow (p : 𝓞) hm (h m)⟩
@@ -162,8 +225,14 @@ abbrev Cplt (Y : Type w) [CommRing Y] : Prop := IsAdicComplete (Ideal.span {(p :
 
 def monom (x : σ → Y) (m : σ →₀ ℕ) : Y := m.prod fun s e => x s ^ e
 
+/--
+@isnad1 id=eq.0h3v.s5.ace8e555097d from=translated src=- shape=45d9c927 vocab=128f39bc
+-/
 theorem monom_zero (x : σ → Y) : monom x 0 = 1 := by simp [monom]
 
+/--
+@isnad1 id=eq.0h5v.s6.db7f5e8bd6b7 from=translated src=- shape=e3195628 vocab=409c749e
+-/
 theorem monom_add (x : σ → Y) (m m' : σ →₀ ℕ) : monom x (m + m') = monom x m * monom x m' := by
   classical
   simp only [monom]
@@ -174,6 +243,9 @@ theorem monom_add (x : σ → Y) (m m' : σ →₀ ℕ) : monom x (m + m') = mon
 noncomputable def psum (x : σ → Y) (T : Finset (σ →₀ ℕ)) (S : MvPowerSeries σ 𝓞) : Y :=
   ∑ m ∈ T, algebraMap 𝓞 Y (coeff m S) * monom x m
 
+/--
+@isnad1 id=mem.1h5v.s7.aa36f73e5967 from=translated src=- shape=3bf3ec01 vocab=d695a049
+-/
 theorem algebraMap_mem_span_pow {N : ℕ} {c : 𝓞} (hc : c ∈ Ideal.span {(p : 𝓞) ^ N}) :
     algebraMap 𝓞 Y c ∈ Ideal.span {(p : Y) ^ N} := by
   rw [Ideal.mem_span_singleton] at hc ⊢
@@ -181,6 +253,9 @@ theorem algebraMap_mem_span_pow {N : ℕ} {c : 𝓞} (hc : c ∈ Ideal.span {(p 
   refine ⟨algebraMap 𝓞 Y d, ?_⟩
   rw [map_mul, map_pow, map_natCast]
 
+/--
+@isnad1 id=mem.3h9v.s8.13623b2a2280 from=translated src=- shape=e398cc6c vocab=a860d966
+-/
 theorem psum_sub_psum_mem {S : MvPowerSeries σ 𝓞} (hS : Tendsto0 p S) (x : σ → Y) {N : ℕ}
     {T T' : Finset (σ →₀ ℕ)} (hT : hS.bad N ⊆ T) (hT' : hS.bad N ⊆ T') :
     psum x T S - psum x T' S ∈ Ideal.span {(p : Y) ^ N} := by
@@ -199,6 +274,9 @@ theorem psum_sub_psum_mem {S : MvPowerSeries σ 𝓞} (hS : Tendsto0 p S) (x : �
   have := Ideal.sub_mem _ h1 h2
   rwa [sub_sub_sub_cancel_right] at this
 
+/--
+@isnad1 id=iff.0h5v.s8.6252f93e2e55 from=translated src=- shape=993465c1 vocab=833b395f
+-/
 theorem smodEq_iff_sub_mem (N : ℕ) (a b : Y) :
     a ≡ b [SMOD (Ideal.span {(p : Y)}) ^ N • (⊤ : Submodule Y Y)] ↔ a - b ∈ Ideal.span {(p : Y) ^ N} := by
   rw [SModEq.sub_mem, Ideal.span_singleton_pow, smul_eq_mul, Ideal.mul_top]
@@ -210,6 +288,9 @@ theorem eq_of_forall_sub_mem (hY : Cplt p Y) {a b : Y}
   rw [smodEq_iff_sub_mem, sub_zero]
   exact h N
 
+/--
+@isnad1 id=ex.2h6v.s7.5306b3becb22 from=translated src=- shape=1e7f09e1 vocab=66ebe248
+-/
 theorem exists_limit (hY : Cplt p Y) {S : MvPowerSeries σ 𝓞}
     (hS : Tendsto0 p S) (x : σ → Y) :
     ∃ L : Y, ∀ N : ℕ, L - psum x (hS.bad N) S ∈ Ideal.span {(p : Y) ^ N} := by
@@ -231,11 +312,17 @@ noncomputable def evalT (hY : Cplt p Y) (x : σ → Y) (S : MvPowerSeries σ �
 variable (hY : Cplt p Y)
 include hY
 
+/--
+@isnad1 id=mem.2h7v.s7.b44a44f301ef from=translated src=- shape=11c01380 vocab=92fbaff1
+-/
 theorem evalT_sub_psum_bad_mem {S : MvPowerSeries σ 𝓞} (hS : Tendsto0 p S) (x : σ → Y) (N : ℕ) :
     evalT p hY x S - psum x (hS.bad N) S ∈ Ideal.span {(p : Y) ^ N} := by
   rw [evalT, dite_eq_left hS]
   exact Classical.choose_spec (exists_limit p hY hS x) N
 
+/--
+@isnad1 id=mem.3h8v.s7.f1dc17cc733d from=translated src=- shape=9b64f99b vocab=030e1a36
+-/
 theorem evalT_sub_psum_mem {S : MvPowerSeries σ 𝓞} (hS : Tendsto0 p S) (x : σ → Y) {N : ℕ}
     {T : Finset (σ →₀ ℕ)} (hT : hS.bad N ⊆ T) :
     evalT p hY x S - psum x T S ∈ Ideal.span {(p : Y) ^ N} := by
@@ -244,6 +331,9 @@ theorem evalT_sub_psum_mem {S : MvPowerSeries σ 𝓞} (hS : Tendsto0 p S) (x : 
   have := Ideal.add_mem _ h1 h2
   rwa [sub_add_sub_cancel] at this
 
+/--
+@isnad1 id=mem.3h7v.s8.955195724463 from=translated src=- shape=ca35dee8 vocab=fc5961e3
+-/
 theorem evalT_mem_of_forall_coeff_mem {S : MvPowerSeries σ 𝓞} (hS : Tendsto0 p S) (x : σ → Y) {N : ℕ}
     (h : ∀ m, coeff m S ∈ Ideal.span {(p : 𝓞) ^ N}) : evalT p hY x S ∈ Ideal.span {(p : Y) ^ N} := by
   have hbad : hS.bad N = ∅ := by
@@ -254,6 +344,9 @@ theorem evalT_mem_of_forall_coeff_mem {S : MvPowerSeries σ 𝓞} (hS : Tendsto0
   have := evalT_sub_psum_bad_mem p hY hS x N
   rwa [hbad, psum, Finset.sum_empty, sub_zero] at this
 
+/--
+@isnad1 id=eq.3h7v.s7.2864768b5b03 from=translated src=- shape=69786a59 vocab=030e1a36
+-/
 theorem evalT_congr_of_forall_sub_mem {S : MvPowerSeries σ 𝓞} (hS : Tendsto0 p S) (x : σ → Y) {a : Y}
     (h : ∀ N : ℕ, ∃ T : Finset (σ →₀ ℕ), hS.bad N ⊆ T ∧ a - psum x T S ∈ Ideal.span {(p : Y) ^ N}) :
     evalT p hY x S = a := by
@@ -262,6 +355,9 @@ theorem evalT_congr_of_forall_sub_mem {S : MvPowerSeries σ 𝓞} (hS : Tendsto0
   have := Ideal.sub_mem _ (evalT_sub_psum_mem p hY hS x hT) ha
   rwa [sub_sub_sub_cancel_right] at this
 
+/--
+@isnad1 id=eq.1h6v.s7.6ab1f2eb86cf from=translated src=- shape=6a843fbc vocab=1168ab65
+-/
 theorem evalT_coe (x : σ → Y) (P : MvPolynomial σ 𝓞) :
     evalT p hY x (P : MvPowerSeries σ 𝓞) = MvPolynomial.aeval x P := by
   classical
@@ -278,6 +374,9 @@ theorem evalT_coe (x : σ → Y) (P : MvPolynomial σ 𝓞) :
   rw [this, sub_self]
   exact Ideal.zero_mem _
 
+/--
+@isnad1 id=eq.3h7v.s7.d0c88c0d430f from=translated src=- shape=37ea4754 vocab=90425689
+-/
 theorem evalT_add {S T : MvPowerSeries σ 𝓞} (hS : Tendsto0 p S) (hT : Tendsto0 p T) (x : σ → Y) :
     evalT p hY x (S + T) = evalT p hY x S + evalT p hY x T := by
   classical
@@ -292,6 +391,9 @@ theorem evalT_add {S T : MvPowerSeries σ 𝓞} (hS : Tendsto0 p S) (hT : Tendst
     (evalT_sub_psum_mem p hY hS x (Finset.subset_union_left.trans Finset.subset_union_right))
     (evalT_sub_psum_mem p hY hT x (Finset.subset_union_right.trans Finset.subset_union_right))
 
+/--
+@isnad1 id=eq.2h7v.s7.f0975703d3b9 from=translated src=- shape=f1c86555 vocab=c053ef48
+-/
 theorem evalT_smul {S : MvPowerSeries σ 𝓞} (hS : Tendsto0 p S) (c : 𝓞) (x : σ → Y) :
     evalT p hY x (c • S) = algebraMap 𝓞 Y c * evalT p hY x S := by
   classical
@@ -304,27 +406,45 @@ theorem evalT_smul {S : MvPowerSeries σ 𝓞} (hS : Tendsto0 p S) (c : 𝓞) (x
   rw [hU, ← mul_sub]
   exact Ideal.mul_mem_left _ _ (evalT_sub_psum_mem p hY hS x Finset.subset_union_right)
 
+/--
+@isnad1 id=eq.2h6v.s6.06b33f4fc2de from=translated src=- shape=c224d7f7 vocab=aab52393
+-/
 theorem evalT_neg {S : MvPowerSeries σ 𝓞} (hS : Tendsto0 p S) (x : σ → Y) :
     evalT p hY x (-S) = -evalT p hY x S := by
   have h := evalT_smul p hY hS (-1 : 𝓞) x
   rwa [neg_one_smul, map_neg, map_one, neg_one_mul] at h
 
+/--
+@isnad1 id=eq.3h7v.s7.48b8e9b2c271 from=translated src=- shape=37ea4754 vocab=7443d757
+-/
 theorem evalT_sub {S T : MvPowerSeries σ 𝓞} (hS : Tendsto0 p S) (hT : Tendsto0 p T) (x : σ → Y) :
     evalT p hY x (S - T) = evalT p hY x S - evalT p hY x T := by
   rw [sub_eq_add_neg, evalT_add p hY hS hT.neg, evalT_neg p hY hT, sub_eq_add_neg]
 
+/--
+@isnad1 id=eq.1h5v.s6.fdaf5975412e from=translated src=- shape=cc960374 vocab=699ac2c8
+-/
 theorem evalT_zero (x : σ → Y) : evalT p hY x (0 : MvPowerSeries σ 𝓞) = 0 := by
   have h := evalT_coe p hY x (0 : MvPolynomial σ 𝓞)
   rwa [MvPolynomial.coe_zero, map_zero] at h
 
+/--
+@isnad1 id=eq.1h5v.s6.ec6934d4f6f3 from=translated src=- shape=cc960374 vocab=699ac2c8
+-/
 theorem evalT_one (x : σ → Y) : evalT p hY x (1 : MvPowerSeries σ 𝓞) = 1 := by
   have h := evalT_coe p hY x (1 : MvPolynomial σ 𝓞)
   rwa [MvPolynomial.coe_one, map_one] at h
 
+/--
+@isnad1 id=eq.1h6v.s7.326bd8a6335d from=translated src=- shape=25a8224b vocab=e2f84d4b
+-/
 theorem evalT_C (x : σ → Y) (c : 𝓞) : evalT p hY x (C c : MvPowerSeries σ 𝓞) = algebraMap 𝓞 Y c := by
   have h := evalT_coe p hY x (MvPolynomial.C c : MvPolynomial σ 𝓞)
   rwa [MvPolynomial.coe_C, MvPolynomial.aeval_C] at h
 
+/--
+@isnad1 id=eq.1h6v.s5.9fb2b1b97e17 from=translated src=- shape=bafb65dd vocab=393f99ee
+-/
 theorem evalT_X (x : σ → Y) (s : σ) : evalT p hY x (X s : MvPowerSeries σ 𝓞) = x s := by
   have h := evalT_coe p hY x (MvPolynomial.X s : MvPolynomial σ 𝓞)
   rwa [MvPolynomial.coe_X, MvPolynomial.aeval_X] at h
@@ -333,6 +453,9 @@ noncomputable def badPart {S : MvPowerSeries σ 𝓞} (hS : Tendsto0 p S) (N : �
   ∑ m ∈ hS.bad N, MvPolynomial.monomial m (coeff m S)
 
 omit hY in
+/--
+@isnad1 id=eq.1h6v.s8.5c6fb1b70e9d from=translated src=- shape=9f1c15a1 vocab=f18edf66
+-/
 theorem coeff_badPart [DecidableEq σ] {S : MvPowerSeries σ 𝓞} (hS : Tendsto0 p S) (N : ℕ) (m : σ →₀ ℕ) :
     MvPolynomial.coeff m (badPart p hS N) = if m ∈ hS.bad N then coeff m S else 0 := by
   classical
@@ -342,6 +465,9 @@ theorem coeff_badPart [DecidableEq σ] {S : MvPowerSeries σ 𝓞} (hS : Tendsto
 
 omit hY in
 
+/--
+@isnad1 id=mem.1h6v.s8.25e47f89b560 from=translated src=- shape=608c352f vocab=97898c39
+-/
 theorem coeff_sub_badPart_mem {S : MvPowerSeries σ 𝓞} (hS : Tendsto0 p S) (N : ℕ) (m : σ →₀ ℕ) :
     coeff m (S - (badPart p hS N : MvPowerSeries σ 𝓞)) ∈ Ideal.span {(p : 𝓞) ^ N} := by
   classical
@@ -351,6 +477,9 @@ theorem coeff_sub_badPart_mem {S : MvPowerSeries σ 𝓞} (hS : Tendsto0 p S) (N
   · rw [sub_zero]; exact hS.coeff_mem_of_not_mem_bad h
 
 omit hY in
+/--
+@isnad1 id=mem.1h6v.s8.646f04fda01d from=translated src=- shape=6021728e vocab=32c243d8
+-/
 theorem coeff_mul_mem_of_forall_left {I : Ideal 𝓞} {S : MvPowerSeries σ 𝓞} (h : ∀ m, coeff m S ∈ I)
     (T : MvPowerSeries σ 𝓞) (e : σ →₀ ℕ) : coeff e (S * T) ∈ I := by
   classical
@@ -358,10 +487,16 @@ theorem coeff_mul_mem_of_forall_left {I : Ideal 𝓞} {S : MvPowerSeries σ 𝓞
   exact Ideal.sum_mem _ fun x _ => Ideal.mul_mem_right _ _ (h x.1)
 
 omit hY in
+/--
+@isnad1 id=mem.1h6v.s8.a4841b080998 from=translated src=- shape=ebc1fdd6 vocab=32c243d8
+-/
 theorem coeff_mul_mem_of_forall_right {I : Ideal 𝓞} (S : MvPowerSeries σ 𝓞) {T : MvPowerSeries σ 𝓞}
     (h : ∀ m, coeff m T ∈ I) (e : σ →₀ ℕ) : coeff e (S * T) ∈ I := by
   rw [mul_comm]; exact coeff_mul_mem_of_forall_left h S e
 
+/--
+@isnad1 id=mem.2h7v.s8.48669086cc5b from=translated src=- shape=5af45aea vocab=510b1527
+-/
 theorem evalT_sub_aeval_badPart_mem {S : MvPowerSeries σ 𝓞} (hS : Tendsto0 p S) (x : σ → Y) (N : ℕ) :
     evalT p hY x S - MvPolynomial.aeval x (badPart p hS N) ∈ Ideal.span {(p : Y) ^ N} := by
   classical
@@ -374,6 +509,9 @@ theorem evalT_sub_aeval_badPart_mem {S : MvPowerSeries σ 𝓞} (hS : Tendsto0 p
   rw [h1, evalT_coe, add_sub_cancel_left]
   exact evalT_mem_of_forall_coeff_mem p hY (hS.sub (Tendsto0.coe _)) x (coeff_sub_badPart_mem p hS N)
 
+/--
+@isnad1 id=eq.3h7v.s7.98711da1f43a from=translated src=- shape=3b1bdf60 vocab=2970ae75
+-/
 theorem evalT_mul [Finite σ] {S T : MvPowerSeries σ 𝓞} (hS : Tendsto0 p S) (hT : Tendsto0 p T)
     (x : σ → Y) : evalT p hY x (S * T) = evalT p hY x S * evalT p hY x T := by
   classical
@@ -417,12 +555,18 @@ theorem evalT_mul [Finite σ] {S T : MvPowerSeries σ 𝓞} (hS : Tendsto0 p S) 
   rw [this]
   exact Ideal.sub_mem _ h2 h5
 
+/--
+@isnad1 id=eq.2h7v.s7.44e798408238 from=translated src=- shape=d463e177 vocab=67dff768
+-/
 theorem evalT_pow [Finite σ] {S : MvPowerSeries σ 𝓞} (hS : Tendsto0 p S) (x : σ → Y) :
     ∀ n : ℕ, evalT p hY x (S ^ n) = evalT p hY x S ^ n
   | 0 => by rw [pow_zero, pow_zero, evalT_one]
   | n + 1 => by rw [pow_succ, pow_succ, evalT_mul p hY (hS.pow n) hS, evalT_pow hS x n]
 
 omit hY in
+/--
+@isnad1 id=tendsto0.1h6v.s8.40661488b733 from=translated src=- shape=30ccb2fd vocab=a39cca35
+-/
 theorem tendsto0_aeval [Finite σ] {τ : Type*} (a : τ → MvPowerSeries σ 𝓞) (ha : ∀ i, Tendsto0 p (a i))
     (P : MvPolynomial τ 𝓞) : Tendsto0 p (MvPolynomial.aeval a P) := by
   classical
@@ -433,6 +577,9 @@ theorem tendsto0_aeval [Finite σ] {τ : Type*} (a : τ → MvPowerSeries σ �
   | add P Q hP hQ => rw [map_add]; exact hP.add hQ
   | mul_X P i hP => rw [map_mul, MvPolynomial.aeval_X]; exact hP.mul (ha i)
 
+/--
+@isnad1 id=eq.2h8v.s8.8d59f8d29b8e from=translated src=- shape=180cffd5 vocab=8987734c
+-/
 theorem evalT_aeval [Finite σ] {τ : Type*} (a : τ → MvPowerSeries σ 𝓞) (ha : ∀ i, Tendsto0 p (a i))
     (x : σ → Y) (P : MvPolynomial τ 𝓞) :
     evalT p hY x (MvPolynomial.aeval a P) = MvPolynomial.aeval (fun i => evalT p hY x (a i)) P := by
@@ -449,6 +596,9 @@ theorem evalT_aeval [Finite σ] {τ : Type*} (a : τ → MvPowerSeries σ 𝓞) 
 
 omit hY in
 
+/--
+@isnad1 id=tendsto0.3h6v.s7.ff09481dcde3 from=translated src=- shape=0327ba81 vocab=7eb98710
+-/
 theorem tendsto0_subst [Finite σ] {τ : Type*} [Finite τ] {a : τ → MvPowerSeries σ 𝓞}
     (ha0 : ∀ i, constantCoeff (a i) = 0) (ha : ∀ i, Tendsto0 p (a i))
     {S : MvPowerSeries τ 𝓞} (hS : Tendsto0 p S) : Tendsto0 p (subst a S) := by
@@ -477,6 +627,9 @@ theorem tendsto0_subst [Finite σ] {τ : Type*} [Finite τ] {a : τ → MvPowerS
     exact Ideal.mul_mem_right _ _ (hS.coeff_mem_of_not_mem_bad hbad)
 
 omit hY in
+/--
+@isnad1 id=mem.2h7v.s8.5ad3a9272585 from=translated src=- shape=65a6f6d2 vocab=b4f0648c
+-/
 theorem coeff_subst_mem_of_forall {τ : Type*} {a : τ → MvPowerSeries σ 𝓞} (has : HasSubst a)
     {I : Ideal 𝓞} {S : MvPowerSeries τ 𝓞} (h : ∀ d, coeff d S ∈ I) (e : σ →₀ ℕ) :
     coeff e (subst a S) ∈ I := by
@@ -486,6 +639,9 @@ theorem coeff_subst_mem_of_forall {τ : Type*} {a : τ → MvPowerSeries σ 𝓞
   rw [smul_eq_mul]
   exact Ideal.mul_mem_right _ _ (h d)
 
+/--
+@isnad1 id=eq.4h8v.s7.f30d75d17096 from=translated src=- shape=4b8683f5 vocab=b6212645
+-/
 theorem evalT_subst [Finite σ] {τ : Type*} [Finite τ] {a : τ → MvPowerSeries σ 𝓞}
     (ha0 : ∀ i, constantCoeff (a i) = 0) (ha : ∀ i, Tendsto0 p (a i))
     {S : MvPowerSeries τ 𝓞} (hS : Tendsto0 p S) (x : σ → Y) :

@@ -20,6 +20,9 @@ variable {ι : Type*} [Fintype ι]
 def heckeDivisorAction (B : Matrix ι ι ℤ) : (ι → ℤ) →ₗ[ℤ] (ι → ℤ) :=
   LinearMap.pi fun j => ∑ i : ι, B i j • LinearMap.proj i
 
+/--
+@isnad1 id=eq.0h4v.s7.7c5587088202 from=translated src=- shape=7fe00bb6 vocab=52e69f16
+-/
 @[simp] theorem heckeDivisorAction_apply (B : Matrix ι ι ℤ) (D : ι → ℤ) (j : ι) :
     heckeDivisorAction B D j = ∑ i : ι, B i j * D i := by
   simp [heckeDivisorAction, LinearMap.pi_apply, LinearMap.sum_apply]
@@ -33,12 +36,18 @@ abbrev HeckeWeightSymm (e : ι → ℕ) (B : Matrix ι ι ℤ) : Prop :=
 abbrev HeckeOffDiagDivides (e : ι → ℕ) (B : Matrix ι ι ℤ) : Prop :=
   ∀ i j : ι, i ≠ j → (e i : ℤ) ∣ B i j
 
+/--
+@isnad1 id=eq.1h4v.s8.e198b8a2623c from=translated src=- shape=cb7b6f2a vocab=228aae7b
+-/
 theorem degreeOn_heckeDivisorAction {B : Matrix ι ι ℤ} {n : ℤ} (h : HeckeRowSums B n)
     (D : ι → ℤ) : degreeOn ι (heckeDivisorAction B D) = n * degreeOn ι D := by
   simp only [degreeOn_apply, heckeDivisorAction_apply]
   rw [Finset.sum_comm, Finset.mul_sum]
   exact Finset.sum_congr rfl fun i _ => by rw [← Finset.sum_mul, h i]
 
+/--
+@isnad1 id=mem.2h4v.s8.be80790b702a from=translated src=- shape=dc90fc94 vocab=c00e2c36
+-/
 theorem heckeDivisorAction_mem_characterLattice {B : Matrix ι ι ℤ} {n : ℤ}
     (h : HeckeRowSums B n) {D : ι → ℤ} (hD : D ∈ characterLattice ι) :
     heckeDivisorAction B D ∈ characterLattice ι := by
@@ -51,6 +60,9 @@ def heckeCharacterAction (B : Matrix ι ι ℤ) {n : ℤ} (h : HeckeRowSums B n)
     characterLattice ι →ₗ[ℤ] characterLattice ι :=
   (heckeDivisorAction B).restrict fun _ hD => heckeDivisorAction_mem_characterLattice h hD
 
+/--
+@isnad1 id=eq.1h4v.s10.61b6d4551558 from=translated src=- shape=8ac8cbb8 vocab=d7b080d8
+-/
 @[simp] theorem heckeCharacterAction_coe (B : Matrix ι ι ℤ) {n : ℤ} (h : HeckeRowSums B n)
     (D : characterLattice ι) :
     (heckeCharacterAction B h D : ι → ℤ) = heckeDivisorAction B D.1 :=
@@ -61,6 +73,9 @@ end DivisorAction
 section Equivariance
 variable {ι : Type*} [Fintype ι]
 
+/--
+@isnad1 id=eq.1h5v.s10.e7126b0e9871 from=translated src=- shape=a9a80da6 vocab=ca2e675e
+-/
 theorem widthPairing_heckeDivisorAction {e : ι → ℕ} {B : Matrix ι ι ℤ}
     (hsym : HeckeWeightSymm e B) (D D' : ι → ℤ) :
     widthPairing e (heckeDivisorAction B D) D' =
@@ -79,6 +94,9 @@ theorem widthPairing_heckeDivisorAction {e : ι → ℕ} {B : Matrix ι ι ℤ}
   exact Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => by
     linear_combination (D i * D' j) * hsym i j
 
+/--
+@isnad1 id=eq.2h5v.s13.e2d73d5ff3bf from=translated src=- shape=da1d6bfe vocab=5e1e2a53
+-/
 theorem gramMap_heckeCharacterAction {e : ι → ℕ} {B : Matrix ι ι ℤ} {n : ℤ}
     (h : HeckeRowSums B n) (hsym : HeckeWeightSymm e B) (D : characterLattice ι) :
     gramMap e (heckeCharacterAction B h D) =
@@ -91,6 +109,9 @@ theorem gramMap_heckeCharacterAction {e : ι → ℕ} {B : Matrix ι ι ℤ} {n 
   rw [heckeCharacterAction_coe, heckeCharacterAction_coe]
   exact widthPairing_heckeDivisorAction hsym D.1 D'.1
 
+/--
+@isnad1 id=le.2h4v.s13.7c6e8ed18eeb from=translated src=- shape=2721fb60 vocab=73c1688d
+-/
 theorem range_gramMap_le_comap_dualMap {e : ι → ℕ} {B : Matrix ι ι ℤ} {n : ℤ}
     (h : HeckeRowSums B n) (hsym : HeckeWeightSymm e B) :
     LinearMap.range (gramMap e) ≤
@@ -103,6 +124,9 @@ def heckeComponentAction (e : ι → ℕ) (B : Matrix ι ι ℤ) {n : ℤ} (h : 
   Submodule.mapQ _ _ (heckeCharacterAction B h).dualMap
     (range_gramMap_le_comap_dualMap h hsym)
 
+/--
+@isnad1 id=eq.2h5v.s15.7f0c23db0c0e from=translated src=- shape=20db416c vocab=e162ee8d
+-/
 @[simp] theorem componentGroupProj_heckeComponentAction {e : ι → ℕ} {B : Matrix ι ι ℤ} {n : ℤ}
     (h : HeckeRowSums B n) (hsym : HeckeWeightSymm e B)
     (φ : Module.Dual ℤ (characterLattice ι)) :

@@ -22,6 +22,9 @@ open Classical in
 noncomputable def periodMap (N : ℕ) (f : CuspForm (Gamma0 N) 2) : Additive (Gamma0 N) →+ ℂ :=
   if h : ∃ F : ℍ → ℂ, HasEquivariantPrimitive N f F then h.choose_spec.2.2.1.periodHom else 0
 
+/--
+@isnad1 id=ex.1h3v.s10.d97126fcaff0 from=translated src=- shape=d218a22c vocab=45d5e26c
+-/
 theorem periodMap_def (N : ℕ) (f : CuspForm (Gamma0 N) 2) {F : ℍ → ℂ}
     (hF : HasEquivariantPrimitive N f F) :
     ∃ (F₀ : ℍ → ℂ) (h₀ : HasEquivariantPrimitive N f F₀), periodMap N f = h₀.2.2.1.periodHom := by

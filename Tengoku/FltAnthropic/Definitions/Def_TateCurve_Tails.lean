@@ -31,26 +31,47 @@ noncomputable def yCoeff (u : K) (N : ℕ) : K := ∑ d ∈ N.divisors, yDivTerm
 
 noncomputable def growthBound (u : K) : ℝ := max (max ‖u‖ ‖u⁻¹‖) 1
 
+/--
+@isnad1 id=le.0h2v.s5.7bd0e3a3da32 from=translated src=- shape=c83d11cb vocab=a99e7ebc
+-/
 theorem one_le_growthBound (u : K) : 1 ≤ growthBound u := le_max_right _ _
 
+/--
+@isnad1 id=le.0h2v.s5.89b105a79cb4 from=translated src=- shape=c83d11cb vocab=a99e7ebc
+-/
 theorem growthBound_nonneg (u : K) : 0 ≤ growthBound u :=
   zero_le_one.trans (one_le_growthBound u)
 
+/--
+@isnad1 id=le.0h3v.s6.46af01827b35 from=translated src=- shape=c1207b09 vocab=4050b20a
+-/
 theorem norm_pow_le_growthBound (u : K) (d : ℕ) : ‖u ^ d‖ ≤ growthBound u ^ d := by
   rw [norm_pow]
   exact pow_le_pow_left₀ (norm_nonneg u) ((le_max_left _ _).trans (le_max_left _ _)) d
 
+/--
+@isnad1 id=le.0h3v.s6.158b432835bc from=translated src=- shape=5eb16a5d vocab=3ca25ebb
+-/
 theorem norm_inv_pow_le_growthBound (u : K) (d : ℕ) : ‖u⁻¹ ^ d‖ ≤ growthBound u ^ d := by
   rw [norm_pow]
   exact pow_le_pow_left₀ (norm_nonneg _) ((le_max_right _ _).trans (le_max_left _ _)) d
 
+/--
+@isnad1 id=le.0h3v.s5.ba4a1d9777dd from=translated src=- shape=15b0968e vocab=920dcc63
+-/
 theorem one_le_growthBound_pow (u : K) (d : ℕ) : (1 : ℝ) ≤ growthBound u ^ d :=
   one_le_pow₀ (one_le_growthBound u)
 
+/--
+@isnad1 id=le.0h4v.s6.883b4f3710b1 from=translated src=- shape=5417af2b vocab=049bc140
+-/
 theorem norm_natCast_le_growthBound_pow (u : K) (k d : ℕ) :
     ‖(k : K)‖ ≤ growthBound u ^ d :=
   (IsUltrametricDist.norm_natCast_le_one K k).trans (one_le_growthBound_pow u d)
 
+/--
+@isnad1 id=le.0h3v.s5.47b5f6c0f4dd from=translated src=- shape=487c9952 vocab=2bef738a
+-/
 theorem norm_xDivTerm_le (u : K) (d : ℕ) : ‖xDivTerm u d‖ ≤ growthBound u ^ d := by
   rw [xDivTerm]
   calc ‖(d : K) * (u ^ d + u⁻¹ ^ d - 2)‖
@@ -67,6 +88,9 @@ theorem norm_xDivTerm_le (u : K) (d : ℕ) : ‖xDivTerm u d‖ ≤ growthBound 
         calc ‖(2 : K)‖ = ‖((2 : ℕ) : K)‖ := by norm_num
           _ ≤ growthBound u ^ d := norm_natCast_le_growthBound_pow u 2 d
 
+/--
+@isnad1 id=le.0h3v.s5.690adfd27dba from=translated src=- shape=487c9952 vocab=af33128b
+-/
 theorem norm_yDivTerm_le (u : K) (d : ℕ) : ‖yDivTerm u d‖ ≤ growthBound u ^ d := by
   rw [yDivTerm]
   refine (norm_add_le_max' _ _).trans (max_le ?_ ?_)

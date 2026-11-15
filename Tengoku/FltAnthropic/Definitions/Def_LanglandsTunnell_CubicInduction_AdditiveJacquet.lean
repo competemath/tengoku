@@ -22,6 +22,9 @@ def translateFn (y : v.adicCompletion ℚ) : Module.End ℂ (v.adicCompletion �
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.3b9709102d94 from=translated src=- shape=9b509918 vocab=aeb1760a
+-/
 @[simp] theorem translateFn_apply (y : v.adicCompletion ℚ) (φ : v.adicCompletion ℚ → ℂ)
     (x : v.adicCompletion ℚ) : translateFn v y φ x = φ (x + y) := rfl
 
@@ -46,9 +49,15 @@ def stepFunctions : Submodule ℂ (v.adicCompletion ℚ → ℂ) where
     obtain ⟨hlc, hcs⟩ := hφ
     exact ⟨hlc.comp (c * ·), hcs.comp_left (g := (c * ·)) (mul_zero c)⟩
 
+/--
+@isnad1 id=iff.0h2v.s8.02ddfa53aa8f from=translated src=- shape=9fdfab0a vocab=c2fe0d20
+-/
 theorem mem_stepFunctions_iff (φ : v.adicCompletion ℚ → ℂ) :
     φ ∈ stepFunctions v ↔ IsLocallyConstant φ ∧ HasCompactSupport φ := Iff.rfl
 
+/--
+@isnad1 id=mem.1h3v.s9.843067f6e565 from=translated src=- shape=139bbd23 vocab=e07481d5
+-/
 theorem translateFn_mem_stepFunctions (y : v.adicCompletion ℚ) {φ : v.adicCompletion ℚ → ℂ}
     (hφ : φ ∈ stepFunctions v) : translateFn v y φ ∈ stepFunctions v :=
   ⟨hφ.1.comp_continuous (continuous_add_const y), hφ.2.comp_homeomorph (Homeomorph.addRight y)⟩
@@ -64,6 +73,9 @@ def translateRepStep :
     refine LinearMap.ext fun φ => Subtype.ext (funext fun x => ?_)
     simp [LinearMap.restrict_apply, add_assoc]
 
+/--
+@isnad1 id=eq.0h4v.s13.8cc513c6b76f from=translated src=- shape=0ca06346 vocab=9d39d767
+-/
 @[simp] theorem translateRepStep_apply_coe (y : Multiplicative (v.adicCompletion ℚ))
     (φ : ↥(stepFunctions v)) (x : v.adicCompletion ℚ) :
     (translateRepStep v y φ : v.adicCompletion ℚ → ℂ) x = (φ : v.adicCompletion ℚ → ℂ)
@@ -73,6 +85,9 @@ def translationKer : Submodule ℂ ↥(stepFunctions v) :=
   Submodule.span ℂ (Set.range fun p : Multiplicative (v.adicCompletion ℚ) × ↥(stepFunctions v) =>
     translateRepStep v p.1 p.2 - p.2)
 
+/--
+@isnad1 id=mem.0h3v.s13.51f70a8a48ab from=translated src=- shape=25064b67 vocab=7cd45762
+-/
 theorem sub_mem_translationKer (y : Multiplicative (v.adicCompletion ℚ)) (φ : ↥(stepFunctions v)) :
     translateRepStep v y φ - φ ∈ translationKer v :=
   Submodule.subset_span ⟨(y, φ), rfl⟩
@@ -80,6 +95,9 @@ theorem sub_mem_translationKer (y : Multiplicative (v.adicCompletion ℚ)) (φ :
 def ballIndicator (y : v.adicCompletion ℚ) (k : ℤ) : v.adicCompletion ℚ → ℂ :=
   fun x => if Valued.v (x - y) ≤ WithZero.exp (-k) then 1 else 0
 
+/--
+@isnad1 id=ex.0h2v.s8.29d0b1b42935 from=translated src=- shape=2969a891 vocab=bd4a84bd
+-/
 theorem exists_valued_eq_exp (n : ℤ) :
     ∃ t : v.adicCompletion ℚ, t ≠ 0 ∧ Valued.v t = WithZero.exp n := by
   obtain ⟨t, ht⟩ := HeightOneSpectrum.valuedAdicCompletion_surjective ℚ v (WithZero.exp n)
@@ -88,6 +106,9 @@ theorem exists_valued_eq_exp (n : ℤ) :
   rw [map_zero] at ht
   exact WithZero.exp_ne_zero ht.symm
 
+/--
+@isnad1 id=eq.2h4v.s10.776d35c66546 from=translated src=- shape=4950a8ee vocab=4f8c6a8d
+-/
 theorem setOf_valued_sub_le_eq_image (y : v.adicCompletion ℚ) {t : v.adicCompletion ℚ} (ht : t ≠ 0)
     {k : ℤ} (htk : Valued.v t = WithZero.exp (-k)) :
     {x : v.adicCompletion ℚ | Valued.v (x - y) ≤ WithZero.exp (-k)} =
@@ -106,6 +127,9 @@ theorem setOf_valued_sub_le_eq_image (y : v.adicCompletion ℚ) {t : v.adicCompl
     calc WithZero.exp (-k) * Valued.v z ≤ WithZero.exp (-k) * 1 := mul_le_mul_right hz _
       _ = WithZero.exp (-k) := mul_one _
 
+/--
+@isnad1 id=ex.0h2v.s10.5210096d9bfd from=translated src=- shape=32174070 vocab=09471d4e
+-/
 theorem exists_integer_valued_sub_lt_one (x : v.adicCompletionIntegers ℚ) :
     ∃ a : 𝓞 ℚ, Valued.v (algebraMap (𝓞 ℚ) (v.adicCompletion ℚ) a - (x : v.adicCompletion ℚ)) < 1 := by
   have hbridge : ∀ z : ℚ, Valued.v (algebraMap ℚ (v.adicCompletion ℚ) z) = v.valuation ℚ z := fun z =>
@@ -138,6 +162,9 @@ theorem exists_integer_valued_sub_lt_one (x : v.adicCompletionIntegers ℚ) :
   rw [sub_add_sub_cancel] at this
   exact lt_of_le_of_lt this (max_lt ha' hy1)
 
+/--
+@isnad1 id=iff.0h2v.s11.cb744989458c from=translated src=- shape=2a9f82a8 vocab=627a4150
+-/
 theorem mem_maximalIdeal_adicCompletionIntegers_iff (d : v.adicCompletionIntegers ℚ) :
     d ∈ IsLocalRing.maximalIdeal (v.adicCompletionIntegers ℚ) ↔ Valued.v (d : v.adicCompletion ℚ) < 1 := by
   rw [IsLocalRing.mem_maximalIdeal, mem_nonunits_iff,
@@ -145,6 +172,9 @@ theorem mem_maximalIdeal_adicCompletionIntegers_iff (d : v.adicCompletionInteger
   have hd : Valued.v (d : v.adicCompletion ℚ) ≤ 1 := d.2
   exact ⟨fun h => lt_of_le_of_ne hd h, fun h => ne_of_lt h⟩
 
+/--
+@isnad1 id=surjecti.0h1v.s12.60fbf5bce0cd from=translated src=- shape=e711aa1e vocab=71e7cb0b
+-/
 theorem residue_algebraMap_ringOfIntegers_surjective :
     Function.Surjective (fun a : 𝓞 ℚ => IsLocalRing.residue (v.adicCompletionIntegers ℚ)
       (algebraMap (𝓞 ℚ) (v.adicCompletionIntegers ℚ) a)) := by
@@ -156,6 +186,9 @@ theorem residue_algebraMap_ringOfIntegers_surjective :
   rw [Ideal.Quotient.eq, mem_maximalIdeal_adicCompletionIntegers_iff, AddSubgroupClass.coe_sub]
   exact ha
 
+/--
+@isnad1 id=iff.0h2v.s13.5df77ef418ed from=translated src=- shape=fb2527ab vocab=f28a0f96
+-/
 theorem residue_algebraMap_ringOfIntegers_eq_zero_iff (a : 𝓞 ℚ) :
     IsLocalRing.residue (v.adicCompletionIntegers ℚ) (algebraMap (𝓞 ℚ) (v.adicCompletionIntegers ℚ) a) = 0 ↔
       a ∈ v.asIdeal := by
@@ -164,6 +197,9 @@ theorem residue_algebraMap_ringOfIntegers_eq_zero_iff (a : 𝓞 ℚ) :
   rw [HeightOneSpectrum.valuedAdicCompletion_eq_valuation', HeightOneSpectrum.valuation_of_algebraMap]
   exact HeightOneSpectrum.intValuation_lt_one_iff_mem v a
 
+/--
+@isnad1 id=ex.0h1v.s9.4433c11fd107 from=translated src=- shape=92d4f187 vocab=57e20205
+-/
 theorem exists_bijective_quotient_residueField :
     ∃ f : 𝓞 ℚ ⧸ v.asIdeal → IsLocalRing.ResidueField (v.adicCompletionIntegers ℚ), Function.Bijective f := by
   refine ⟨Ideal.Quotient.lift v.asIdeal
@@ -177,30 +213,48 @@ theorem exists_bijective_quotient_residueField :
     obtain ⟨a, ha⟩ := residue_algebraMap_ringOfIntegers_surjective v z
     exact ⟨Ideal.Quotient.mk _ a, by rw [Ideal.Quotient.lift_mk]; exact ha⟩
 
+/--
+@isnad1 id=finite.0h1v.s7.fcc3073e7134 from=translated src=- shape=28e550f6 vocab=a371319f
+-/
 theorem finite_residueField_adicCompletionIntegers_rat :
     Finite (IsLocalRing.ResidueField (v.adicCompletionIntegers ℚ)) := by
   haveI : Finite (𝓞 ℚ ⧸ v.asIdeal) := Ideal.finiteQuotientOfFreeOfNeBot v.asIdeal v.ne_bot
   obtain ⟨f, hf⟩ := exists_bijective_quotient_residueField v
   exact Finite.of_surjective f hf.2
 
+/--
+@isnad1 id=eq.0h1v.s8.6912d486a851 from=translated src=- shape=176cc9ca vocab=8ef11997
+-/
 theorem natCard_residueField_adicCompletionIntegers :
     Nat.card (IsLocalRing.ResidueField (v.adicCompletionIntegers ℚ)) = Nat.card (𝓞 ℚ ⧸ v.asIdeal) := by
   obtain ⟨f, hf⟩ := exists_bijective_quotient_residueField v
   exact (Nat.card_eq_of_bijective f hf).symm
 
+/--
+@isnad1 id=lt.0h1v.s5.f0c6e9c8c5a2 from=translated src=- shape=0f15ddf0 vocab=930d80eb
+-/
 theorem one_lt_natCard_quot : 1 < Nat.card (𝓞 ℚ ⧸ v.asIdeal) := by
   rw [← natCard_residueField_adicCompletionIntegers v]
   haveI := finite_residueField_adicCompletionIntegers_rat v
   exact Finite.one_lt_card_iff_nontrivial.mpr inferInstance
 
+/--
+@isnad1 id=ne.0h1v.s5.9c9a71616f0c from=translated src=- shape=89981d3b vocab=24d259aa
+-/
 theorem natCast_natCard_quot_ne_zero : (Nat.card (𝓞 ℚ ⧸ v.asIdeal) : ℂ) ≠ 0 :=
   Nat.cast_ne_zero.mpr (by have := one_lt_natCard_quot v; omega)
 
+/--
+@isnad1 id=eq.0h1v.s8.503c4d701747 from=translated src=- shape=5f57d74b vocab=fbf3e184
+-/
 theorem natCard_quot_eq_absNorm : Nat.card (𝓞 ℚ ⧸ v.asIdeal) = Ideal.absNorm v.asIdeal := by
   rw [Ideal.absNorm_apply, Submodule.cardQuot_apply]
 
 open scoped Valued in
 
+/--
+@isnad1 id=propersp.0h1v.s6.e5891fdd68dc from=translated src=- shape=c74918d1 vocab=6a4ed59d
+-/
 theorem properSpace_adicCompletion_rat : ProperSpace (v.adicCompletion ℚ) := by
   haveI : IsDiscreteValuationRing 𝒪[v.adicCompletion ℚ] :=
     inferInstanceAs (IsDiscreteValuationRing (v.adicCompletionIntegers ℚ))
@@ -212,18 +266,27 @@ theorem properSpace_adicCompletion_rat : ProperSpace (v.adicCompletion ℚ) := b
 
 open scoped Valued in
 
+/--
+@isnad1 id=iscompac.0h1v.s8.745b7f825581 from=translated src=- shape=1d0f42d4 vocab=31a0554c
+-/
 theorem isCompact_setOf_valued_le_one :
     IsCompact {x : v.adicCompletion ℚ | Valued.v x ≤ 1} := by
   haveI := properSpace_adicCompletion_rat v
   have h : CompactSpace 𝒪[v.adicCompletion ℚ] := Valued.integer.properSpace_iff_compactSpace_integer.mp inferInstance
   exact isCompact_iff_compactSpace.mpr h
 
+/--
+@isnad1 id=iscompac.0h3v.s9.f64e38759ad8 from=translated src=- shape=2fe751e0 vocab=b5b5160f
+-/
 theorem isCompact_setOf_valued_sub_le (y : v.adicCompletion ℚ) (k : ℤ) :
     IsCompact {x : v.adicCompletion ℚ | Valued.v (x - y) ≤ WithZero.exp (-k)} := by
   obtain ⟨t, ht, htk⟩ := exists_valued_eq_exp v (-k)
   rw [setOf_valued_sub_le_eq_image v y ht htk]
   exact (isCompact_setOf_valued_le_one v).image (continuous_const.add (continuous_const.mul continuous_id))
 
+/--
+@isnad1 id=isclopen.0h3v.s9.21a05ca36b9e from=translated src=- shape=2fe751e0 vocab=1d9af6cd
+-/
 theorem isClopen_setOf_valued_sub_le (y : v.adicCompletion ℚ) (k : ℤ) :
     IsClopen {x : v.adicCompletion ℚ | Valued.v (x - y) ≤ WithZero.exp (-k)} := by
   obtain ⟨t, ht, htk⟩ := exists_valued_eq_exp v (-k)
@@ -243,6 +306,9 @@ theorem isClopen_setOf_valued_sub_le (y : v.adicCompletion ℚ) (k : ℤ) :
   exact (Valued.isClopen_integer (v.adicCompletion ℚ)).preimage
     (continuous_const.mul (continuous_id.sub continuous_const))
 
+/--
+@isnad1 id=mem.0h3v.s8.8f20513691fe from=translated src=- shape=419d1b5e vocab=e04e7d5a
+-/
 theorem ballIndicator_mem_stepFunctions (y : v.adicCompletion ℚ) (k : ℤ) :
     ballIndicator v y k ∈ stepFunctions v := by
   have hB := isClopen_setOf_valued_sub_le v y k
@@ -261,6 +327,9 @@ theorem ballIndicator_mem_stepFunctions (y : v.adicCompletion ℚ) (k : ℤ) :
   · exact HasCompactSupport.intro (isCompact_setOf_valued_sub_le v y k)
       fun x hx => ite_eq_right (hx : ¬ Valued.v (x - y) ≤ WithZero.exp (-k))
 
+/--
+@isnad1 id=ex.2h3v.s9.1ea8f0d64f8e from=translated src=- shape=69cfddcf vocab=6b455a55
+-/
 theorem exists_setOf_valued_sub_le_subset_of_isOpen {U : Set (v.adicCompletion ℚ)} (hU : IsOpen U)
     {x : v.adicCompletion ℚ} (hx : x ∈ U) :
     ∃ j : ℤ, {y : v.adicCompletion ℚ | Valued.v (y - x) ≤ WithZero.exp (-j)} ⊆ U := by
@@ -295,6 +364,9 @@ theorem exists_setOf_valued_sub_le_subset_of_isOpen {U : Set (v.adicCompletion �
     omega
   exact hyU (hyx ▸ hx)
 
+/--
+@isnad1 id=ex.1h3v.s9.f7ff25779efa from=translated src=- shape=f7511d7e vocab=1c86e4c8
+-/
 theorem exists_forall_eq_of_isLocallyConstant {φ : v.adicCompletion ℚ → ℂ} (hφ : IsLocallyConstant φ)
     (x : v.adicCompletion ℚ) :
     ∃ j : ℤ, ∀ y, Valued.v (y - x) ≤ WithZero.exp (-j) → φ y = φ x := by
@@ -302,6 +374,9 @@ theorem exists_forall_eq_of_isLocallyConstant {φ : v.adicCompletion ℚ → ℂ
   obtain ⟨j, hj⟩ := exists_setOf_valued_sub_le_subset_of_isOpen v hU hxU
   exact ⟨j, fun y hy => hconst y (hj hy)⟩
 
+/--
+@isnad1 id=ex.0h2v.s8.3e45d094a50e from=translated src=- shape=37a066fd vocab=66f098f3
+-/
 theorem exists_valued_le_exp (x : v.adicCompletion ℚ) : ∃ n : ℕ, Valued.v x ≤ WithZero.exp (n : ℤ) := by
   by_cases h0 : Valued.v x = 0
   · exact ⟨0, by rw [h0]; exact zero_le⟩
@@ -310,6 +385,9 @@ theorem exists_valued_le_exp (x : v.adicCompletion ℚ) : ∃ n : ℕ, Valued.v 
     rw [hL, WithZero.exp_le_exp]
     exact Int.self_le_toNat L
 
+/--
+@isnad1 id=ex.1h2v.s10.6dcf05db6607 from=translated src=- shape=9776a4cf vocab=b87e9e6a
+-/
 theorem exists_level_of_mem_stepFunctions {φ : v.adicCompletion ℚ → ℂ} (hφ : φ ∈ stepFunctions v) :
     ∃ k m : ℤ, (∀ x, φ x ≠ 0 → Valued.v x ≤ WithZero.exp m) ∧
       ∀ x y, Valued.v (x - y) ≤ WithZero.exp (-k) → φ x = φ y := by
@@ -355,6 +433,9 @@ theorem exists_level_of_mem_stepFunctions {φ : v.adicCompletion ℚ → ℂ} (h
         exact (key y x hy hxy).symm
       · rw [image_eq_zero_of_notMem_tsupport hx, image_eq_zero_of_notMem_tsupport hy]
 
+/--
+@isnad1 id=iff.0h1v.s6.68090fca92ce from=translated src=- shape=f06347ab vocab=6b2015c6
+-/
 theorem withZero_lt_one_iff_le_exp_neg_one (e : WithZero (Multiplicative ℤ)) : e < 1 ↔ e ≤ WithZero.exp (-1) := by
   rcases eq_or_ne e 0 with rfl | he
   · exact iff_of_true (zero_lt_iff.mpr one_ne_zero) zero_le
@@ -362,6 +443,9 @@ theorem withZero_lt_one_iff_le_exp_neg_one (e : WithZero (Multiplicative ℤ)) :
     rw [← WithZero.exp_zero, WithZero.exp_lt_exp, WithZero.exp_le_exp]
     omega
 
+/--
+@isnad1 id=ex.0h1v.s10.5fd43b44e8a0 from=translated src=- shape=349e77a3 vocab=ebe6840f
+-/
 theorem exists_ball_representatives_zero_one :
     ∃ X : Finset (v.adicCompletion ℚ), (∀ r ∈ X, Valued.v r ≤ WithZero.exp (-(0 : ℤ))) ∧
       (∀ x : v.adicCompletion ℚ, Valued.v x ≤ WithZero.exp (-(0 : ℤ)) →
@@ -403,6 +487,9 @@ theorem exists_ball_representatives_zero_one :
   · rw [Finset.card_image_of_injective _ hinj, Finset.card_univ, ← Nat.card_eq_fintype_card,
       natCard_residueField_adicCompletionIntegers]
 
+/--
+@isnad1 id=iff.1h5v.s10.ae37d7e9cd7b from=translated src=- shape=cf324a9c vocab=51916371
+-/
 theorem valued_mul_le_exp_iff {t : v.adicCompletion ℚ} {a : ℤ} (hta : Valued.v t = WithZero.exp (-a))
     (z : v.adicCompletion ℚ) (j : ℤ) :
     Valued.v (t * z) ≤ WithZero.exp (-(j + a)) ↔ Valued.v z ≤ WithZero.exp (-j) := by
@@ -414,6 +501,9 @@ theorem valued_mul_le_exp_iff {t : v.adicCompletion ℚ} {a : ℤ} (hta : Valued
   · intro h
     exact mul_le_mul_right h _
 
+/--
+@isnad1 id=ex.6h8v.s11.e8d54efdc252 from=translated src=- shape=0d809695 vocab=28330b01
+-/
 theorem exists_ball_representatives_of_valued_eq {k m : ℤ} {X : Finset (v.adicCompletion ℚ)}
     (hX : ∀ r ∈ X, Valued.v r ≤ WithZero.exp (-k))
     (hX' : ∀ x : v.adicCompletion ℚ, Valued.v x ≤ WithZero.exp (-k) →
@@ -445,6 +535,9 @@ theorem exists_ball_representatives_of_valued_eq {k m : ℤ} {X : Finset (v.adic
       rw [e, valued_mul_le_exp_iff v hta] at hclose
       rw [huniq r₁ ⟨hr₁, hclose⟩]
 
+/--
+@isnad1 id=ex.5h5v.s12.b209259b355e from=translated src=- shape=30000024 vocab=adb1b7d0
+-/
 theorem exists_ball_representatives_add {k n : ℤ} (hkn : k ≤ n) {X Y : Finset (v.adicCompletion ℚ)}
     (hX : ∀ r ∈ X, Valued.v r ≤ WithZero.exp (-k))
     (hX' : ∀ x : v.adicCompletion ℚ, Valued.v x ≤ WithZero.exp (-k) →
@@ -508,6 +601,9 @@ theorem exists_ball_representatives_add {k n : ℤ} (hkn : k ≤ n) {X Y : Finse
   · intro ψ
     rw [Finset.sum_image hinj, Finset.sum_product]
 
+/--
+@isnad1 id=ex.0h2v.s10.040c3b6c85b0 from=translated src=- shape=49219d67 vocab=066a7c60
+-/
 theorem exists_ball_representatives_zero (n : ℕ) :
     ∃ X : Finset (v.adicCompletion ℚ), (∀ r ∈ X, Valued.v r ≤ WithZero.exp (-(0 : ℤ))) ∧
       (∀ x : v.adicCompletion ℚ, Valued.v x ≤ WithZero.exp (-(0 : ℤ)) →
@@ -534,6 +630,9 @@ theorem exists_ball_representatives_zero (n : ℕ) :
       exact hZ'
     · rw [hZcard, hXcard, hYcard, hBcard, pow_succ]
 
+/--
+@isnad1 id=ex.1h3v.s10.dcd3cc92ba78 from=translated src=- shape=2028cf50 vocab=a2c7615b
+-/
 theorem exists_finset_ball_representatives (k m : ℤ) (hkm : k ≤ m) :
     ∃ X : Finset (v.adicCompletion ℚ), (∀ r ∈ X, Valued.v r ≤ WithZero.exp (-k)) ∧
       (∀ x, Valued.v x ≤ WithZero.exp (-k) → ∃! r, r ∈ X ∧ Valued.v (x - r) ≤ WithZero.exp (-m)) ∧
@@ -545,12 +644,18 @@ theorem exists_finset_ball_representatives (k m : ℤ) (hkm : k ≤ m) :
     (k' := k) (m' := m) (by simp) (by rw [hmk]; ring)
   exact ⟨X, hX, hX', by rw [hXcard, hX₀card]⟩
 
+/--
+@isnad1 id=eq.0h4v.s9.2801ecf4ade6 from=translated src=- shape=64515eda vocab=54210fec
+-/
 theorem translateFn_ballIndicator (c y : v.adicCompletion ℚ) (k : ℤ) :
     translateFn v c (ballIndicator v y k) = ballIndicator v (y - c) k := by
   funext x
   simp only [translateFn_apply, ballIndicator]
   rw [show x + c - y = x - (y - c) by ring]
 
+/--
+@isnad1 id=eq.3h5v.s10.ddd41a218c60 from=translated src=- shape=369b9637 vocab=3b5bede6
+-/
 theorem ballIndicator_eq_sum_ballIndicator (y : v.adicCompletion ℚ) {k m : ℤ} (hkm : k ≤ m)
     {X : Finset (v.adicCompletion ℚ)} (hX : ∀ r ∈ X, Valued.v r ≤ WithZero.exp (-k))
     (hX' : ∀ x : v.adicCompletion ℚ, Valued.v x ≤ WithZero.exp (-k) →
@@ -583,6 +688,9 @@ theorem ballIndicator_eq_sum_ballIndicator (y : v.adicCompletion ℚ) {k m : ℤ
     rw [show x - y = (x - (y + r)) + r by ring]
     exact (Valuation.map_add _ _ _).trans (max_le (h.trans hmk) (hX r hr))
 
+/--
+@isnad1 id=le.0h1v.s9.fac2d37c9c8a from=translated src=- shape=0f2b0d62 vocab=991157e1
+-/
 theorem stepFunctions_le_span_ballIndicator :
     stepFunctions v ≤ Submodule.span ℂ
       (Set.range fun p : v.adicCompletion ℚ × ℤ => ballIndicator v p.1 p.2) := by
@@ -620,6 +728,9 @@ theorem stepFunctions_le_span_ballIndicator :
   exact Submodule.sum_mem _ fun r _ =>
     Submodule.smul_mem _ _ (Submodule.subset_span ⟨(r, k₁), rfl⟩)
 
+/--
+@isnad1 id=eq.0h1v.s11.8d5ab4cb9437 from=translated src=- shape=e957496a vocab=69095283
+-/
 theorem span_ballIndicator_eq_top :
     Submodule.span ℂ (Set.range fun p : v.adicCompletion ℚ × ℤ =>
       (⟨ballIndicator v p.1 p.2, ballIndicator_mem_stepFunctions v p.1 p.2⟩ :
@@ -639,6 +750,9 @@ theorem span_ballIndicator_eq_top :
   rw [hεq]
   exact hψ
 
+/--
+@isnad1 id=eq.2h6v.s11.4849a2797bef from=translated src=- shape=e8821cc6 vocab=29fcee14
+-/
 theorem sum_ite_valued_sub_le {k m : ℤ} {X : Finset (v.adicCompletion ℚ)}
     (hX' : ∀ x : v.adicCompletion ℚ, Valued.v x ≤ WithZero.exp (-k) →
       ∃! r, r ∈ X ∧ Valued.v (x - r) ≤ WithZero.exp (-m))
@@ -649,6 +763,9 @@ theorem sum_ite_valued_sub_le {k m : ℤ} {X : Finset (v.adicCompletion ℚ)}
   intro r hr hne
   exact ite_eq_right fun h => hne (huniq r ⟨hr, h⟩)
 
+/--
+@isnad1 id=eq.5h6v.s11.a3a336df5be1 from=translated src=- shape=c37587b4 vocab=f5c8a7ca
+-/
 theorem sum_eq_sum_of_ball_representatives {φ : v.adicCompletion ℚ → ℂ} {k m : ℤ}
     (hconst : ∀ x y, Valued.v (x - y) ≤ WithZero.exp (-m) → φ x = φ y)
     {X : Finset (v.adicCompletion ℚ)} (hX : ∀ r ∈ X, Valued.v r ≤ WithZero.exp (-k))
@@ -673,6 +790,9 @@ theorem sum_eq_sum_of_ball_representatives {φ : v.adicCompletion ℚ → ℂ} {
         refine Eq.trans (Finset.sum_congr rfl fun r _ => ?_) (sum_ite_valued_sub_le v hX' (hY r' hr') (φ r'))
         rw [Valuation.map_sub_swap]
 
+/--
+@isnad1 id=eq.7h7v.s11.c78342faf5a5 from=translated src=- shape=f81f6911 vocab=adc514e0
+-/
 theorem inv_zpow_mul_sum_eq_of_eq_add_one {φ : v.adicCompletion ℚ → ℂ} {k m : ℤ} (hkm : k ≤ m)
     (hconst : ∀ x y, Valued.v (x - y) ≤ WithZero.exp (-m) → φ x = φ y)
     {X : Finset (v.adicCompletion ℚ)} (hX : ∀ r ∈ X, Valued.v r ≤ WithZero.exp (-k))
@@ -698,6 +818,9 @@ theorem inv_zpow_mul_sum_eq_of_eq_add_one {φ : v.adicCompletion ℚ → ℂ} {k
     Finset.sum_congr rfl fun r _ => hinner r, ← Finset.mul_sum, zpow_add_one₀ hq, mul_inv, mul_assoc,
     inv_mul_cancel_left₀ hq]
 
+/--
+@isnad1 id=eq.7h8v.s11.7d158df01255 from=translated src=- shape=c08ac2d3 vocab=a9afa0ee
+-/
 theorem inv_zpow_mul_sum_eq_of_le {φ : v.adicCompletion ℚ → ℂ} {k m : ℤ} (hkm : k ≤ m)
     (hconst : ∀ x y, Valued.v (x - y) ≤ WithZero.exp (-m) → φ x = φ y)
     {X : Finset (v.adicCompletion ℚ)} (hX : ∀ r ∈ X, Valued.v r ≤ WithZero.exp (-k))
@@ -719,6 +842,9 @@ theorem inv_zpow_mul_sum_eq_of_le {φ : v.adicCompletion ℚ → ℂ} {k m : ℤ
     rw [inv_zpow_mul_sum_eq_of_eq_add_one v (by omega : k ≤ m + j) hconst₁ hX₁ hX₁' (by omega) hY hY',
       ih (m' := m + (j : ℤ)) (X' := X₁) rfl hX₁ hX₁']
 
+/--
+@isnad1 id=eq.7h7v.s11.f68d5cacca55 from=translated src=- shape=b18c831a vocab=f5c8a7ca
+-/
 theorem sum_eq_sum_of_ball_representatives_of_le {φ : v.adicCompletion ℚ → ℂ} {k k' m : ℤ}
     (hk'k : k' ≤ k) (hkm : k ≤ m) (hsupp : ∀ x, φ x ≠ 0 → Valued.v x ≤ WithZero.exp (-k))
     (hconst : ∀ x y, Valued.v (x - y) ≤ WithZero.exp (-m) → φ x = φ y)
@@ -742,6 +868,9 @@ theorem sum_eq_sum_of_ball_representatives_of_le {φ : v.adicCompletion ℚ → 
   exact ⟨r, ⟨Finset.mem_filter.mpr ⟨hr, hrk⟩, hxr⟩,
     fun r' hr' => huniq r' ⟨(Finset.mem_filter.mp hr'.1).1, hr'.2⟩⟩
 
+/--
+@isnad1 id=eq.10h8v.s12.6ca526c3a39c from=translated src=- shape=ddeec202 vocab=e7d41fde
+-/
 theorem inv_zpow_mul_sum_eq {φ : v.adicCompletion ℚ → ℂ} {k m : ℤ} (hkm : k ≤ m)
     (hsupp : ∀ x, φ x ≠ 0 → Valued.v x ≤ WithZero.exp (-k))
     (hconst : ∀ x y, Valued.v (x - y) ≤ WithZero.exp (-m) → φ x = φ y)
@@ -770,6 +899,9 @@ theorem inv_zpow_mul_sum_eq {φ : v.adicCompletion ℚ → ℂ} {k m : ℤ} (hkm
       (by rw [Int.toNat_of_nonneg (by omega)]; ring) hX₂ hX₂').symm
   rw [h1, h2]
 
+/--
+@isnad1 id=ex.0h2v.s11.980039dcc103 from=translated src=- shape=11439d67 vocab=d88fb31a
+-/
 theorem exists_ball_data (φ : ↥(stepFunctions v)) :
     ∃ (k m : ℤ) (X : Finset (v.adicCompletion ℚ)), k ≤ m ∧
       (∀ x, (φ : v.adicCompletion ℚ → ℂ) x ≠ 0 → Valued.v x ≤ WithZero.exp (-k)) ∧
@@ -790,6 +922,9 @@ def IsCountingFunctional (Λ : ↥(stepFunctions v) →ₗ[ℂ] ℂ) : Prop :=
     Λ ⟨ballIndicator v y k, ballIndicator_mem_stepFunctions v y k⟩ =
       ((Nat.card (𝓞 ℚ ⧸ v.asIdeal) : ℂ) ^ k)⁻¹
 
+/--
+@isnad1 id=ex.0h1v.s10.987a19f5a76d from=translated src=- shape=9cc9a74a vocab=106f99ac
+-/
 theorem exists_isCountingFunctional : ∃ Λ, IsCountingFunctional v Λ := by
   choose k m X hkm hsupp hconst hX hX' using exists_ball_data v
 
@@ -901,6 +1036,9 @@ theorem exists_isCountingFunctional : ∃ Λ, IsCountingFunctional v Λ := by
     show ((Nat.card (𝓞 ℚ ⧸ v.asIdeal) : ℂ) ^ j)⁻¹ * ∑ r ∈ Z, ballIndicator v y j r = _
     rw [hcount, mul_one]
 
+/--
+@isnad1 id=eq.2h3v.s10.6656e03a2f45 from=translated src=- shape=d5dde6e7 vocab=106f99ac
+-/
 theorem IsCountingFunctional.unique {Λ Λ' : ↥(stepFunctions v) →ₗ[ℂ] ℂ}
     (hΛ : IsCountingFunctional v Λ) (hΛ' : IsCountingFunctional v Λ') : Λ = Λ' := by
   refine LinearMap.ext_on_range (span_ballIndicator_eq_top v) fun p => ?_
@@ -909,16 +1047,25 @@ theorem IsCountingFunctional.unique {Λ Λ' : ↥(stepFunctions v) →ₗ[ℂ] �
 def countingFunctional : ↥(stepFunctions v) →ₗ[ℂ] ℂ :=
   (exists_isCountingFunctional v).choose
 
+/--
+@isnad1 id=eq.0h3v.s11.d148e87c7cd0 from=translated src=- shape=b2d2f014 vocab=cef95201
+-/
 theorem countingFunctional_ballIndicator (y : v.adicCompletion ℚ) (k : ℤ) :
     countingFunctional v ⟨ballIndicator v y k, ballIndicator_mem_stepFunctions v y k⟩ =
       ((Nat.card (𝓞 ℚ ⧸ v.asIdeal) : ℂ) ^ k)⁻¹ :=
   (exists_isCountingFunctional v).choose_spec y k
 
+/--
+@isnad1 id=eq.0h1v.s11.9ed81a224a2d from=translated src=- shape=821ff3a8 vocab=da61b96f
+-/
 theorem countingFunctional_ballIndicator_zero_zero :
     countingFunctional v ⟨ballIndicator v 0 0, ballIndicator_mem_stepFunctions v 0 0⟩ = 1 := by
   have h := countingFunctional_ballIndicator v 0 0
   simpa using h
 
+/--
+@isnad1 id=eq.0h3v.s13.ee974d5081bf from=translated src=- shape=c7a52ad9 vocab=1a2b29f6
+-/
 theorem countingFunctional_translate (y : Multiplicative (v.adicCompletion ℚ))
     (φ : ↥(stepFunctions v)) :
     countingFunctional v (translateRepStep v y φ) = countingFunctional v φ := by
@@ -933,6 +1080,9 @@ theorem countingFunctional_translate (y : Multiplicative (v.adicCompletion ℚ))
     rw [hτ, countingFunctional_ballIndicator, countingFunctional_ballIndicator]
   exact LinearMap.congr_fun h φ
 
+/--
+@isnad1 id=mem.2h3v.s9.383abec6f09e from=translated src=- shape=8892cb7d vocab=83bd05fc
+-/
 theorem comp_mul_left_mem_stepFunctions {t : v.adicCompletion ℚ} (ht : t ≠ 0)
     {φ : v.adicCompletion ℚ → ℂ} (hφ : φ ∈ stepFunctions v) :
     (fun x => φ (t * x)) ∈ stepFunctions v := by
@@ -940,6 +1090,9 @@ theorem comp_mul_left_mem_stepFunctions {t : v.adicCompletion ℚ} (ht : t ≠ 0
   exact (mem_stepFunctions_iff v _).mpr
     ⟨hlc.comp_continuous (continuous_const_mul t), hcs.comp_homeomorph (Homeomorph.mulLeft₀ t ht)⟩
 
+/--
+@isnad1 id=eq.1h3v.s8.17adfc51cc05 from=translated src=- shape=c2bf83dc vocab=817fe923
+-/
 theorem ofReal_norm_eq_of_valued_eq {t : v.adicCompletion ℚ} {a : ℤ}
     (hta : Valued.v t = WithZero.exp (-a)) :
     ((‖t‖ : ℝ) : ℂ) = ((Nat.card (𝓞 ℚ ⧸ v.asIdeal) : ℂ) ^ a)⁻¹ := by
@@ -950,6 +1103,9 @@ theorem ofReal_norm_eq_of_valued_eq {t : v.adicCompletion ℚ} {a : ℤ}
     natCard_quot_eq_absNorm]
   simp
 
+/--
+@isnad1 id=eq.2h5v.s9.22aed9364a39 from=translated src=- shape=bf50202d vocab=7e5d1604
+-/
 theorem ballIndicator_comp_mul_left {t : v.adicCompletion ℚ} (ht : t ≠ 0) {a : ℤ}
     (hta : Valued.v t = WithZero.exp (-a)) (y : v.adicCompletion ℚ) (k : ℤ) :
     (fun x => ballIndicator v y k (t * x)) = ballIndicator v (t⁻¹ * y) (k - a) := by
@@ -963,6 +1119,9 @@ theorem ballIndicator_comp_mul_left {t : v.adicCompletion ℚ} (ht : t ≠ 0) {a
   · simp only [ballIndicator, ite_eq_left h, ite_eq_left (hiff.mp h)]
   · simp only [ballIndicator, ite_eq_right h, ite_eq_right (mt hiff.mpr h)]
 
+/--
+@isnad1 id=eq.2h3v.s12.b50f153abdba from=translated src=- shape=3065b633 vocab=6a69abb5
+-/
 theorem countingFunctional_comp_mul_left {t : v.adicCompletion ℚ} (ht : t ≠ 0)
     {φ : v.adicCompletion ℚ → ℂ} (hφ : φ ∈ stepFunctions v) :
     countingFunctional v ⟨fun x => φ (t * x), comp_mul_left_mem_stepFunctions v ht hφ⟩ =

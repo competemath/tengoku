@@ -25,6 +25,9 @@ structure IsCyclicKernel (N : ℕ) (h : T[X]) : Prop where
 
   dvd_smulNumerator : ∀ a : ℕ, 2 ≤ a → a ≤ (N - 1) / 2 → h ∣ W.smulNumerator a ((N - 1) / 2) h
 
+/--
+@isnad1 id=monic.1h4v.s5.9af6381b2ecb from=translated src=- shape=b43b8db0 vocab=f1b91aad
+-/
 theorem IsCyclicKernel.monic {N : ℕ} {h : T[X]} (hh : W.IsCyclicKernel N h) : h.Monic :=
   Polynomial.monic_of_natDegree_le_of_coeff_eq_one _ hh.natDegree_le hh.coeff_eq_one
 
@@ -32,11 +35,17 @@ section Map
 
 variable {T' : Type*} [CommRing T'] (f : T →+* T')
 
+/--
+@isnad1 id=eq.0h7v.s6.e30bba8e8132 from=translated src=- shape=e1c20195 vocab=03a4a8f3
+-/
 theorem smulNumerator_map (a d : ℕ) (h : T[X]) :
     (W.map f).smulNumerator a d (h.map f) = (W.smulNumerator a d h).map f := by
   simp only [smulNumerator, Polynomial.coeff_map, WeierstrassCurve.map_Φ,
     WeierstrassCurve.map_ΨSq, Polynomial.map_sum, Polynomial.map_mul, Polynomial.map_pow, Polynomial.map_C]
 
+/--
+@isnad1 id=iscyclic.1h6v.s6.fdfa8a5927c2 from=translated src=- shape=3711ca69 vocab=bcd8e49a
+-/
 theorem IsCyclicKernel.map {N : ℕ} {h : T[X]} (hh : W.IsCyclicKernel N h) :
     (W.map f).IsCyclicKernel N (h.map f) where
   natDegree_le := (Polynomial.natDegree_map_le).trans hh.natDegree_le
@@ -54,21 +63,36 @@ def jOfUnit (hΔ : IsUnit W.Δ) : T :=
   haveI : W.IsElliptic := ⟨hΔ⟩
   W.j
 
+/--
+@isnad1 id=eq.1h2v.s5.bab51f2d9f0c from=translated src=- shape=116aaf20 vocab=ebe894a9
+-/
 theorem jOfUnit_eq_j [W.IsElliptic] (hΔ : IsUnit W.Δ) : W.jOfUnit hΔ = W.j := rfl
 
+/--
+@isnad1 id=eq.2h4v.s6.b594ca639515 from=translated src=- shape=22d83603 vocab=e0ff5050
+-/
 theorem jOfUnit_map {T' : Type*} [CommRing T'] (f : T →+* T') (hΔ : IsUnit W.Δ) (hΔ' : IsUnit (W.map f).Δ) :
     (W.map f).jOfUnit hΔ' = f (W.jOfUnit hΔ) := by
   haveI : W.IsElliptic := ⟨hΔ⟩
   exact W.map_j f
 
+/--
+@isnad1 id=eq.2h3v.s6.8affbe0a9df0 from=translated src=- shape=47eed2f8 vocab=4fc3289a
+-/
 theorem jOfUnit_variableChange (C : VariableChange T) (hΔ : IsUnit W.Δ) (hΔ' : IsUnit (C • W).Δ) :
     (C • W).jOfUnit hΔ' = W.jOfUnit hΔ := by
   haveI : W.IsElliptic := ⟨hΔ⟩
   exact W.variableChange_j C
 
+/--
+@isnad1 id=isunit.1h4v.s6.827b9ad44db2 from=translated src=- shape=191df381 vocab=b0752910
+-/
 theorem isUnit_Δ_map {T' : Type*} [CommRing T'] (f : T →+* T') (hΔ : IsUnit W.Δ) : IsUnit (W.map f).Δ := by
   rw [W.map_Δ]; exact hΔ.map f
 
+/--
+@isnad1 id=isunit.1h3v.s5.6c1694dc03ac from=translated src=- shape=e0780a46 vocab=585e0739
+-/
 theorem isUnit_Δ_variableChange (C : VariableChange T) (hΔ : IsUnit W.Δ) : IsUnit (C • W).Δ := by
   haveI : W.IsElliptic := ⟨hΔ⟩
   exact (C • W).isUnit_Δ

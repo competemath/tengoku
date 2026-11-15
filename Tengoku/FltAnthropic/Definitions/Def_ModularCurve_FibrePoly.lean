@@ -18,6 +18,9 @@ def fibrePoly (Φ : Polynomial (Polynomial ℤ)) (a : k) : Polynomial k :=
 
 variable {ℓ : ℕ} [Fact ℓ.Prime] [CharP k ℓ]
 
+/--
+@isnad1 id=eq.0h3v.s7.aaeb929c139a from=translated src=- shape=fc5ddd96 vocab=bd48eaaf
+-/
 theorem eval₂RingHom_intCast_eq_comp (a : k) :
     Polynomial.eval₂RingHom (Int.castRingHom k) a =
       (Polynomial.eval₂RingHom (ZMod.castHom (dvd_refl ℓ) k) a).comp
@@ -27,6 +30,9 @@ theorem eval₂RingHom_intCast_eq_comp (a : k) :
     Polynomial.coe_mapRingHom, Polynomial.map_X, Polynomial.coe_eval₂RingHom,
     Polynomial.eval₂_X]
 
+/--
+@isnad1 id=eq.0h4v.s8.85a84e250ed4 from=translated src=- shape=a8755537 vocab=585d40de
+-/
 theorem fibrePoly_eq_map_reduceModBivar (Φ : Polynomial (Polynomial ℤ)) (a : k) :
     fibrePoly Φ a =
       (reduceModBivar ℓ Φ).map
@@ -42,6 +48,9 @@ section Factorization
 
 variable {k : Type*} [Field k] {ℓ : ℕ} [Fact ℓ.Prime] [CharP k ℓ] [PerfectRing k ℓ]
 
+/--
+@isnad1 id=eq.0h3v.s9.d8c5de26610e from=translated src=- shape=e07b8311 vocab=34f38831
+-/
 theorem C_sub_X_pow_eq_neg_pow (a : k) :
     Polynomial.C a - Polynomial.X ^ ℓ =
       -((Polynomial.X - Polynomial.C ((frobeniusEquiv k ℓ).symm a)) ^ ℓ) := by

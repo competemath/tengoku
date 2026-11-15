@@ -24,12 +24,21 @@ def principalUnits (R : Type*) [CommRing R] [IsLocalRing R] (k : ℕ) : Subgroup
 
 variable {R : Type*} [CommRing R] [IsLocalRing R]
 
+/--
+@isnad1 id=iff.0h3v.s7.789a53cd5a1f from=translated src=- shape=6b411c48 vocab=cefdde55
+-/
 theorem mem_principalUnits_iff {k : ℕ} {u : Rˣ} :
     u ∈ principalUnits R k ↔ (u : R) - 1 ∈ maximalIdeal R ^ k := Iff.rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.2096fd6d1b37 from=translated src=- shape=a9c50fcf vocab=17292477
+-/
 @[simp] theorem principalUnits_zero : principalUnits R 0 = ⊤ := by
   ext u; simp [mem_principalUnits_iff]
 
+/--
+@isnad1 id=antitone.0h1v.s6.e4985c8fef13 from=translated src=- shape=a3fec29c vocab=12961480
+-/
 theorem principalUnits_antitone : Antitone (principalUnits R) :=
   fun _ _ hkl _ hu => Ideal.pow_le_pow_right hkl hu
 

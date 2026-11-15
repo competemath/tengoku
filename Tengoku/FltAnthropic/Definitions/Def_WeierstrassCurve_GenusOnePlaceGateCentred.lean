@@ -27,11 +27,17 @@ namespace GenusOnePlaceGate.IsCentred
 
 variable {W : Affine F} [GenusOnePlaceGate W] [GenusOnePlaceGate.IsCentred W]
 
+/--
+@isnad1 id=mem.1h4v.s10.03dcef71ce40 from=translated src=- shape=dd0a875e vocab=a42aa0be
+-/
 theorem algebraMap_XClass_mem_nonunits {x y : F} (h : W.Nonsingular x y) :
     algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.XClass W x)
       ∈ (placeOfPoint (Point.some x y h)).toValuationSubring.nonunits :=
   XClass_mem_nonunits x y h
 
+/--
+@isnad1 id=mem.1h4v.s10.8b172a1b1e98 from=translated src=- shape=00186eb6 vocab=8a1b81bc
+-/
 theorem algebraMap_YClass_mem_nonunits {x y : F} (h : W.Nonsingular x y) :
     algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.YClass W (Polynomial.C y))
       ∈ (placeOfPoint (Point.some x y h)).toValuationSubring.nonunits :=

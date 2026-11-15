@@ -7,6 +7,9 @@ set_option autoImplicit false
 
 namespace LaurentSeries
 
+/--
+@isnad1 id=bddbelow.1h3v.s6.17a44d689495 from=translated src=- shape=86746104 vocab=0234d954
+-/
 theorem bddBelow_support_coeff_div {R : Type*} [Zero R] (f : LaurentSeries R) (ℓ : ℕ) (hℓ : 0 < ℓ) :
     BddBelow (Function.support fun n : ℤ => if (ℓ : ℤ) ∣ n then f.coeff (n / ℓ) else 0) := by
   by_cases hS : (Function.support f.coeff).Nonempty
@@ -33,6 +36,9 @@ noncomputable def heckeV (R : Type*) [CommRing R] (ℓ : ℕ) (hℓ : 0 < ℓ) :
     ext n
     by_cases h : (ℓ : ℤ) ∣ n <;> simp [HahnSeries.ofSuppBddBelow_coeff, h]
 
+/--
+@isnad1 id=eq.1h4v.s8.05fb601891bd from=translated src=- shape=1aa8b10b vocab=519406af
+-/
 @[simp]
 theorem coeff_heckeV (R : Type*) [CommRing R] (ℓ : ℕ) (hℓ : 0 < ℓ) (f : LaurentSeries R) (n : ℤ) :
     (heckeV R ℓ hℓ f).coeff n = if (ℓ : ℤ) ∣ n then f.coeff (n / ℓ) else 0 :=
@@ -42,6 +48,9 @@ noncomputable def heckeT (R : Type*) [CommRing R] (ℓ : ℕ) (hℓ : 0 < ℓ) (
     LaurentSeries R →ₗ[R] LaurentSeries R :=
   heckeU R ℓ hℓ + ((ℓ : R) ^ (k - 1)) • heckeV R ℓ hℓ
 
+/--
+@isnad1 id=eq.1h5v.s9.76d67f0f9868 from=translated src=- shape=9a45c3fb vocab=5067e2d1
+-/
 theorem coeff_heckeT (R : Type*) [CommRing R] (ℓ : ℕ) (hℓ : 0 < ℓ) (k : ℕ) (f : LaurentSeries R) (n : ℤ) :
     (heckeT R ℓ hℓ k f).coeff n =
       f.coeff (ℓ * n) + (ℓ : R) ^ (k - 1) * (if (ℓ : ℤ) ∣ n then f.coeff (n / ℓ) else 0) := by

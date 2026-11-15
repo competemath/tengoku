@@ -9,6 +9,9 @@ open Matrix
 
 namespace LocalGL2
 
+/--
+@isnad1 id=ex.1h5v.s8.0bb98bedef70 from=translated src=- shape=b2180dab vocab=ada0d934
+-/
 lemma exists_entry_eq_of_mem_integralSubgroup {R : Type*} [CommRing R]
     {K : Type*} [Field K] [Algebra R K] {x : GL (Fin 2) K}
     (hx : x ∈ integralSubgroup R K) (i j : Fin 2) :
@@ -20,6 +23,9 @@ end LocalGL2
 
 namespace FLT.SpectralSide
 
+/--
+@isnad1 id=iff.1h3v.s9.b72f457f5c12 from=translated src=- shape=994cb31f vocab=81f430de
+-/
 theorem mem_integralSubgroup_iff_entries_mem {R : Type*} [CommRing R]
     {K : Type*} [Field K] [Algebra R K] (hinj : Function.Injective (algebraMap R K))
     (g : GL (Fin 2) K) :
@@ -70,6 +76,9 @@ theorem mem_integralSubgroup_iff_entries_mem {R : Type*} [CommRing R]
     apply Units.ext
     exact hmapA
 
+/--
+@isnad1 id=eq.0h1v.s7.75a4539031d8 from=translated src=- shape=a6c2b744 vocab=404c834c
+-/
 theorem range_algebraMap_padicInt (p : ℕ) [Fact p.Prime] :
     Set.range (algebraMap ℤ_[p] ℚ_[p]) = Set.range ((↑) : ℤ_[p] → ℚ_[p]) := by
   ext x
@@ -79,6 +88,9 @@ theorem range_algebraMap_padicInt (p : ℕ) [Fact p.Prime] :
   · rintro ⟨r, rfl⟩
     exact ⟨r, PadicInt.algebraMap_apply r⟩
 
+/--
+@isnad1 id=isopen.0h1v.s8.335d8c28b652 from=translated src=- shape=6331d28a vocab=d1e912a8
+-/
 theorem isOpen_coe_integralSubgroup_padic (p : ℕ) [Fact p.Prime] :
     IsOpen ((LocalGL2.integralSubgroup ℤ_[p] ℚ_[p] : Set (GL (Fin 2) ℚ_[p]))) := by
   have hinj : Function.Injective (algebraMap ℤ_[p] ℚ_[p]) := fun a b hab => by

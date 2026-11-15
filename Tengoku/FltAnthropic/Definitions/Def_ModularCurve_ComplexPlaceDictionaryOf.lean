@@ -24,6 +24,9 @@ def realizeOf (Γ : Subgroup SL(2, ℤ)) (x : LaurentSeries ℂ) (τ : ℍ) : �
     then (H.choose.2.1 : ℍ → ℂ) τ / (H.choose.2.2 : ℍ → ℂ) τ
     else 0
 
+/--
+@isnad1 id=eq.0h3v.s16.b287b17ba4e3 from=translated src=- shape=e7d801b2 vocab=036a6ac4
+-/
 theorem realizeOf_def (Γ : Subgroup SL(2, ℤ)) (x : LaurentSeries ℂ) (τ : ℍ) :
     realizeOf Γ x τ = by
       classical
@@ -36,6 +39,9 @@ theorem realizeOf_def (Γ : Subgroup SL(2, ℤ)) (x : LaurentSeries ℂ) (τ : �
         else 0 :=
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s12.c6adc8ab8b3a from=translated src=- shape=b867f952 vocab=d881e2eb
+-/
 theorem realizeOf_of_not (Γ : Subgroup SL(2, ℤ)) (x : LaurentSeries ℂ) (τ : ℍ)
     (h : ¬ ∃ p : (k : ℤ) × (ModularForm Γ k × ModularForm Γ k),
         (p.2.2 : ℍ → ℂ) τ ≠ 0 ∧
@@ -70,15 +76,24 @@ namespace ComplexPlaceDictionaryOf
 
 variable {Γ : Subgroup SL(2, ℤ)} {F₀ : IntermediateField ℚ (LaurentSeries ℚ)}
 
+/--
+@isnad1 id=eq.1h5v.s10.bb786f3976d8 from=translated src=- shape=2821a32d vocab=7795d709
+-/
 theorem pt_smul_of_mem (D : ComplexPlaceDictionaryOf Γ F₀) {γ : SL(2, ℤ)} (hγ : γ ∈ Γ) (τ : ℍ) :
     D.pt (γ • τ) = D.pt τ :=
   D.pt_smul ⟨γ, hγ⟩ τ
 
+/--
+@isnad1 id=ne.0h4v.s6.427a59e06b69 from=translated src=- shape=88a45058 vocab=91910827
+-/
 theorem ramification_ne_zero (D : ComplexPlaceDictionaryOf Γ F₀) (τ : ℍ) : D.ramification τ ≠ 0 :=
   (D.ramification_pos τ).ne'
 
 end ComplexPlaceDictionaryOf
 
+/--
+@isnad1 id=eq.0h3v.s4.7fdc3a309ab9 from=translated src=- shape=b59ba40a vocab=e09dd8a1
+-/
 theorem realizeOf_gamma0 (N : ℕ) (x : LaurentSeries ℂ) (τ : ℍ) :
     realizeOf (CongruenceSubgroup.Gamma0 N) x τ = realize N x τ :=
   rfl
@@ -102,11 +117,17 @@ def ComplexPlaceDictionaryOf.toGamma0 {N : ℕ} [NeZero N]
   mem_pt_iff := D.mem_pt_iff
   meromorphicOrderAt_realize := D.meromorphicOrderAt_realizeOf
 
+/--
+@isnad1 id=eq.0h2v.s9.126de490c26f from=translated src=- shape=aba50bc3 vocab=aaa6103a
+-/
 @[simp]
 theorem ComplexPlaceDictionaryOf.pt_ofGamma0 {N : ℕ} [NeZero N] (D : ComplexPlaceDictionary N) :
     (ComplexPlaceDictionaryOf.ofGamma0 D).pt = D.pt :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.7324820cb206 from=translated src=- shape=30a3b819 vocab=d84114fd
+-/
 @[simp]
 theorem ComplexPlaceDictionaryOf.pt_toGamma0 {N : ℕ} [NeZero N]
     (D : ComplexPlaceDictionaryOf (CongruenceSubgroup.Gamma0 N) (modularFunctionFieldFull N)) :

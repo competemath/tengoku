@@ -80,10 +80,19 @@ namespace ClearedData
 
 variable {C : VariableChange ℚ} (D : ClearedData C)
 
+/--
+@isnad1 id=ne.0h2v.s4.6d97888a01be from=translated src=- shape=b75456d7 vocab=b1a198a9
+-/
 lemma hNQ : ((D.N : ℚ)) ≠ 0 := Nat.cast_ne_zero.mpr D.hN
 
+/--
+@isnad1 id=ne.0h1v.s4.bf1047d22d94 from=translated src=- shape=99656a98 vocab=108eb901
+-/
 lemma huQ : ((C.u : ℚ)) ≠ 0 := C.u.ne_zero
 
+/--
+@isnad1 id=eq.0h2v.s5.2ec83ccaf126 from=translated src=- shape=2ce91e14 vocab=ce4922fa
+-/
 lemma U_mul_U' : D.U * D.U' = (D.N : ℤ) ^ 2 := by
   have hu : ((C.u : ℚ)) ≠ 0 := C.u.ne_zero
   have key : ((D.U * D.U' : ℤ) : ℚ) = (((D.N : ℤ) ^ 2 : ℤ) : ℚ) := by
@@ -136,6 +145,9 @@ private lemma ratId₆ (hC : C • (V.map (Int.castRingHom ℚ)) = W.map (Int.ca
     Units.val_inv_eq_inv_val] at h
   exact h.symm
 
+/--
+@isnad1 id=eq.1h4v.s7.518eaa1aaa83 from=translated src=- shape=706b0bb3 vocab=1ee7fc9f
+-/
 lemma intId₁ (hC : C • (V.map (Int.castRingHom ℚ)) = W.map (Int.castRingHom ℚ))
     (D : ClearedData C) :
     (D.N : ℤ) ^ 2 * W.a₁ = D.U' * ((D.N : ℤ) * V.a₁ + 2 * D.S) := by
@@ -148,6 +160,9 @@ lemma intId₁ (hC : C • (V.map (Int.castRingHom ℚ)) = W.map (Int.castRingHo
     field_simp
   exact_mod_cast key
 
+/--
+@isnad1 id=eq.1h4v.s7.a732a284eb72 from=translated src=- shape=4467c6da vocab=fb27f3bd
+-/
 lemma intId₂ (hC : C • (V.map (Int.castRingHom ℚ)) = W.map (Int.castRingHom ℚ))
     (D : ClearedData C) :
     (D.N : ℤ) ^ 4 * W.a₂
@@ -163,6 +178,9 @@ lemma intId₂ (hC : C • (V.map (Int.castRingHom ℚ)) = W.map (Int.castRingHo
     field_simp
   exact_mod_cast key
 
+/--
+@isnad1 id=eq.1h4v.s7.23d3c0e9b56d from=translated src=- shape=f1dec488 vocab=5c963356
+-/
 lemma intId₃ (hC : C • (V.map (Int.castRingHom ℚ)) = W.map (Int.castRingHom ℚ))
     (D : ClearedData C) :
     (D.N : ℤ) ^ 4 * W.a₃
@@ -176,6 +194,9 @@ lemma intId₃ (hC : C • (V.map (Int.castRingHom ℚ)) = W.map (Int.castRingHo
     field_simp
   exact_mod_cast key
 
+/--
+@isnad1 id=eq.1h4v.s8.4e6766f10139 from=translated src=- shape=12cd3f40 vocab=f51e97aa
+-/
 lemma intId₄ (hC : C • (V.map (Int.castRingHom ℚ)) = W.map (Int.castRingHom ℚ))
     (D : ClearedData C) :
     (D.N : ℤ) ^ 6 * W.a₄
@@ -193,6 +214,9 @@ lemma intId₄ (hC : C • (V.map (Int.castRingHom ℚ)) = W.map (Int.castRingHo
     field_simp
   exact_mod_cast key
 
+/--
+@isnad1 id=eq.1h4v.s8.d637c29c8f02 from=translated src=- shape=58191da3 vocab=dad58bc7
+-/
 lemma intId₆ (hC : C • (V.map (Int.castRingHom ℚ)) = W.map (Int.castRingHom ℚ))
     (D : ClearedData C) :
     (D.N : ℤ) ^ 9 * W.a₆
@@ -217,10 +241,16 @@ section Reduction
 variable {C : VariableChange ℚ} (D : ClearedData C)
 variable {q : ℕ} [Fact q.Prime]
 
+/--
+@isnad1 id=ne.1h3v.s6.6820cd33f914 from=translated src=- shape=746126d9 vocab=03eafd4b
+-/
 lemma N_ne_zero_zmod (hq : ¬ q ∣ D.N) : ((D.N : ZMod q)) ≠ 0 := by
   rw [Ne, ZMod.natCast_eq_zero_iff]
   exact hq
 
+/--
+@isnad1 id=ne.1h3v.s6.14eea9451bca from=translated src=- shape=f851ba2b vocab=fd2494fa
+-/
 lemma U_ne_zero_zmod (hq : ¬ q ∣ D.N) : ((D.U : ZMod q)) ≠ 0 := by
   intro h
   have h2 : ((D.U * D.U' : ℤ) : ZMod q) = 0 := by push_cast; rw [h]; ring
@@ -229,6 +259,9 @@ lemma U_ne_zero_zmod (hq : ¬ q ∣ D.N) : ((D.U : ZMod q)) ≠ 0 := by
   rw [pow_two, mul_self_eq_zero] at h2
   exact N_ne_zero_zmod D hq h2
 
+/--
+@isnad1 id=ne.1h3v.s6.2e68b1806276 from=translated src=- shape=f851ba2b vocab=3768d7fd
+-/
 lemma U'_ne_zero_zmod (hq : ¬ q ∣ D.N) : ((D.U' : ZMod q)) ≠ 0 := by
   intro h
   have h2 : ((D.U * D.U' : ℤ) : ZMod q) = 0 := by push_cast; rw [h]; ring
@@ -237,6 +270,9 @@ lemma U'_ne_zero_zmod (hq : ¬ q ∣ D.N) : ((D.U' : ZMod q)) ≠ 0 := by
   rw [pow_two, mul_self_eq_zero] at h2
   exact N_ne_zero_zmod D hq h2
 
+/--
+@isnad1 id=eq.0h3v.s7.bf885346d24e from=translated src=- shape=7f147c37 vocab=122846e2
+-/
 lemma U_mul_U'_zmod : ((D.U : ZMod q)) * ((D.U' : ZMod q)) = ((D.N : ZMod q)) ^ 2 := by
   have h := congrArg (fun m : ℤ => ((m : ZMod q))) D.U_mul_U'
   push_cast at h
@@ -264,20 +300,35 @@ noncomputable def reducedChange (hq : ¬ q ∣ D.N) : VariableChange (ZMod q) wh
 
 variable (hq : ¬ q ∣ D.N)
 
+/--
+@isnad1 id=eq.1h3v.s7.21ec6a122b4e from=translated src=- shape=02f0b834 vocab=02c8ef78
+-/
 @[simp] lemma reducedChange_u_inv :
     ((((reducedChange D hq).u)⁻¹ : (ZMod q)ˣ) : ZMod q)
       = ((D.U' : ZMod q)) * ((D.N : ZMod q))⁻¹ := rfl
 
+/--
+@isnad1 id=eq.1h3v.s7.92140f2da2e8 from=translated src=- shape=9e799680 vocab=bdc2959d
+-/
 @[simp] lemma reducedChange_u :
     ((((reducedChange D hq).u) : (ZMod q)ˣ) : ZMod q)
       = ((D.U : ZMod q)) * ((D.N : ZMod q))⁻¹ := rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.2479ea6a4f07 from=translated src=- shape=bb415c85 vocab=421ea703
+-/
 @[simp] lemma reducedChange_r :
     (reducedChange D hq).r = ((D.R : ZMod q)) * ((D.N : ZMod q))⁻¹ := rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.a547ef396499 from=translated src=- shape=bb415c85 vocab=cb2f813c
+-/
 @[simp] lemma reducedChange_s :
     (reducedChange D hq).s = ((D.S : ZMod q)) * ((D.N : ZMod q))⁻¹ := rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.594991067d8b from=translated src=- shape=bb415c85 vocab=d2caa7cb
+-/
 @[simp] lemma reducedChange_t :
     (reducedChange D hq).t = ((D.T : ZMod q)) * ((D.N : ZMod q))⁻¹ := rfl
 

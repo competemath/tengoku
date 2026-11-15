@@ -24,6 +24,9 @@ def thetaL : LaurentSeries L →ₗ[L] LaurentSeries L where
 
 variable {L} in
 
+/--
+@isnad1 id=eq.0h2v.s10.e7c7e322a71d from=translated src=- shape=047a76ab vocab=220ef6b1
+-/
 theorem thetaL_apply (f : LaurentSeries L) :
     thetaL L f = single (1 : ℤ) (1 : L) * LaurentSeries.derivative L f :=
   rfl

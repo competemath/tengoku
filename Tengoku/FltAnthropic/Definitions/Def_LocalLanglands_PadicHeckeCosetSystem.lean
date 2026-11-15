@@ -17,6 +17,9 @@ open LocalGL2
 
 variable (p : ℕ) [hp : Fact p.Prime]
 
+/--
+@isnad1 id=ne.0h1v.s7.8440609a2bd0 from=translated src=- shape=8aa8eef5 vocab=ba284e31
+-/
 theorem algebraMap_natCast_p_ne_zero : algebraMap ℤ_[p] ℚ_[p] (p : ℤ_[p]) ≠ 0 := by
   intro h
   have hp0 : (p : ℤ_[p]) = 0 := IsFractionRing.injective ℤ_[p] ℚ_[p] (by rw [h, map_zero])
@@ -25,6 +28,9 @@ theorem algebraMap_natCast_p_ne_zero : algebraMap ℤ_[p] ℚ_[p] (p : ℤ_[p]) 
 noncomputable abbrev padicDiagP : GL (Fin 2) ℚ_[p] :=
   diagPi (p : ℤ_[p]) (algebraMap_natCast_p_ne_zero p)
 
+/--
+@isnad1 id=ex.0h2v.s7.383a48f53912 from=translated src=- shape=d6caee6c vocab=4a4f8e9c
+-/
 theorem exists_zmod_natCast_val_sub_dvd (b : ℤ_[p]) :
     ∃ c : ZMod p, (p : ℤ_[p]) ∣ (((ZMod.val c : ℕ) : ℤ_[p]) - b) := by
   haveI : NeZero p := ⟨hp.out.ne_zero⟩
@@ -35,6 +41,9 @@ theorem exists_zmod_natCast_val_sub_dvd (b : ℤ_[p]) :
   have hneg := dvd_neg.mpr hmem
   rwa [neg_sub] at hneg
 
+/--
+@isnad1 id=eq.1h3v.s7.c626a9e1ec56 from=translated src=- shape=9e28ea32 vocab=4a4f8e9c
+-/
 theorem zmod_eq_of_dvd_natCast_val_sub {c c' : ZMod p}
     (h : (p : ℤ_[p]) ∣ (((ZMod.val c' : ℕ) : ℤ_[p]) - ((ZMod.val c : ℕ) : ℤ_[p]))) : c = c' := by
   haveI : NeZero p := ⟨hp.out.ne_zero⟩
@@ -48,6 +57,9 @@ theorem zmod_eq_of_dvd_natCast_val_sub {c c' : ZMod p}
   rw [h1, h2] at hker
   exact hker.symm
 
+/--
+@isnad1 id=finite.0h1v.s6.f13b5ee27397 from=translated src=- shape=37482ed3 vocab=991f8d67
+-/
 instance finite_padicInt_quotient_span_p : Finite (ℤ_[p] ⧸ Ideal.span {(p : ℤ_[p])}) := by
   haveI : NeZero p := ⟨hp.out.ne_zero⟩
   refine Finite.of_surjective
@@ -56,6 +68,9 @@ instance finite_padicInt_quotient_span_p : Finite (ℤ_[p] ⧸ Ideal.span {(p : 
   obtain ⟨c, hc⟩ := exists_zmod_natCast_val_sub_dvd p b
   exact ⟨c, by rw [Ideal.Quotient.eq, Ideal.mem_span_singleton]; exact hc⟩
 
+/--
+@isnad1 id=finite.0h1v.s10.59636d881dd3 from=translated src=- shape=3e45a387 vocab=24238f7d
+-/
 theorem finite_image_mulSet_padic :
     (QuotientGroup.mk ''
         ((integralSubgroup ℤ_[p] ℚ_[p] : Set (GL (Fin 2) ℚ_[p])) * {padicDiagP p}) :
@@ -66,6 +81,9 @@ noncomputable def padicHeckeRep : Option (ZMod p) → GL (Fin 2) ℚ_[p]
   | some c => localRepSome (p : ℤ_[p]) (algebraMap_natCast_p_ne_zero p) ((ZMod.val c : ℕ) : ℤ_[p])
   | none => localRepInf (p : ℤ_[p]) (algebraMap_natCast_p_ne_zero p)
 
+/--
+@isnad1 id=isheckec.0h1v.s7.d9daf328f0f6 from=translated src=- shape=5393d3b7 vocab=786d5fa6
+-/
 theorem isHeckeCosetSystem_padicHeckeRep :
     IsHeckeCosetSystem (integralSubgroup ℤ_[p] ℚ_[p]) (padicDiagP p) (padicHeckeRep p) := by
   constructor

@@ -18,6 +18,9 @@ def siegelFun (N : ℕ) (r s : ℤ) (z : ℂ) : ℂ :=
       (1 - Complex.exp (2 * Real.pi * Complex.I * z) ^ (n + 1) *
         (Complex.exp (2 * Real.pi * Complex.I * ((r : ℂ) * z + (s : ℂ)) / (N : ℂ)))⁻¹))
 
+/--
+@isnad1 id=eq.0h4v.s9.e031f72f30fc from=translated src=- shape=787e5114 vocab=d8c54928
+-/
 theorem siegelFun_def (N : ℕ) (r s : ℤ) (z : ℂ) :
     siegelFun N r s z =
       -Complex.exp (Real.pi * Complex.I * (s : ℂ) * ((r : ℂ) - (N : ℂ)) / (N : ℂ) ^ 2) *

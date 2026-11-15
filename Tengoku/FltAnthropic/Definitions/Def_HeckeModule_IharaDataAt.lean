@@ -41,14 +41,26 @@ noncomputable def cornerRung :
       ↥(cornerSubmodule (M := V) (S.e i₀)) ↥(cornerSubmodule (M := V') (S'.e i₀')) P P' :=
   RungAssembly.rungDatumOfLegs L c res
 
+/--
+@isnad1 id=eq.0h15v.s10.92ad647b4fbb from=translated src=- shape=e2852e1b vocab=ab6cfac0
+-/
 theorem cornerRung_res : (cornerRung S S' i₀ i₀' P P' L c res).res = res := rfl
 
+/--
+@isnad1 id=eq.0h15v.s11.2ce5c1f3d01d from=translated src=- shape=c07f3e25 vocab=9f23961f
+-/
 theorem cornerRung_i :
     (cornerRung S S' i₀ i₀' P P' L c res).i = RungAssembly.iComb L c := rfl
 
+/--
+@isnad1 id=eq.0h15v.s11.5c65d32870d6 from=translated src=- shape=0cba2cfc vocab=4db6cc55
+-/
 theorem cornerRung_j :
     (cornerRung S S' i₀ i₀' P P' L c res).j = RungAssembly.jComb L c := rfl
 
+/--
+@isnad1 id=eq.0h15v.s10.7dd7714df6dd from=translated src=- shape=5259c2cc vocab=5568f184
+-/
 theorem cornerRung_delta :
     (cornerRung S S' i₀ i₀' P P' L c res).Δ = RungAssembly.deltaComb L c := rfl
 

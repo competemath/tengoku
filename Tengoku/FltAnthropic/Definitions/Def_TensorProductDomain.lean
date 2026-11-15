@@ -17,6 +17,9 @@ section FiniteType
 
 variable {K : Type u} [Field K]
 
+/--
+@isnad1 id=bijectiv.0h3v.s7.99e9b7680962 from=translated src=- shape=dd9a6330 vocab=13027893
+-/
 theorem algebraMap_quotient_bijective [IsAlgClosed K] {A : Type v} [CommRing A]
     [Algebra K A] [Algebra.FiniteType K A] (m : Ideal A) [m.IsMaximal] :
     Function.Bijective (algebraMap K (A ⧸ m)) := by
@@ -36,6 +39,9 @@ noncomputable def pointOfMaximal [IsAlgClosed K] {A : Type v} [CommRing A]
       rw [Ideal.Quotient.mk_algebraMap]
       exact e.symm_apply_apply k }
 
+/--
+@isnad1 id=iff.0h4v.s7.842e169bbe6d from=translated src=- shape=f8353326 vocab=8348546a
+-/
 theorem pointOfMaximal_eq_zero_iff [IsAlgClosed K] {A : Type v} [CommRing A] [Algebra K A]
     [Algebra.FiniteType K A] (m : Ideal A) [m.IsMaximal] (a : A) :
     pointOfMaximal K m a = 0 ↔ a ∈ m := by
@@ -43,6 +49,9 @@ theorem pointOfMaximal_eq_zero_iff [IsAlgClosed K] {A : Type v} [CommRing A] [Al
     (algebraMap_quotient_bijective m)).symm (Ideal.Quotient.mk m a) = 0 ↔ a ∈ m
   rw [map_eq_zero_iff _ (RingEquiv.injective _), Ideal.Quotient.eq_zero_iff_mem]
 
+/--
+@isnad1 id=isdomain.0h3v.s7.b9169ef34f14 from=translated src=- shape=9a7638d0 vocab=24c7c77d
+-/
 theorem isDomain_tensorProduct_of_finiteType [IsAlgClosed K] (A : Type v) (B : Type w)
     [CommRing A] [Algebra K A] [Algebra.FiniteType K A] [IsDomain A]
     [CommRing B] [Algebra K B] [IsDomain B] :
@@ -110,6 +119,9 @@ section Fields
 
 variable (k : Type u) [Field k] [IsAlgClosed k]
 
+/--
+@isnad1 id=isdomain.0h3v.s7.4bb1c26a9835 from=translated src=- shape=115bc901 vocab=000d0809
+-/
 theorem isDomain_tensorProduct_of_field (F : Type v) (B : Type w) [Field F] [Algebra k F]
     [CommRing B] [Algebra k B] [IsDomain B] : IsDomain (F ⊗[k] B) := by
   classical

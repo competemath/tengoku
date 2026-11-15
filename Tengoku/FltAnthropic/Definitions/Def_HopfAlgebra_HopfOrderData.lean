@@ -23,6 +23,9 @@ noncomputable def tensorSqHom : (↥S ⊗[R] ↥S) →ₐ[R] (A ⊗[K] A) :=
     (((Algebra.TensorProduct.includeLeft : A →ₐ[K] A ⊗[K] A).restrictScalars R).comp S.val)
     (((Algebra.TensorProduct.includeRight : A →ₐ[K] A ⊗[K] A).restrictScalars R).comp S.val)
 
+/--
+@isnad1 id=eq.0h6v.s11.03b57986bd97 from=translated src=- shape=3ae37434 vocab=f4143c7c
+-/
 @[simp]
 lemma tensorSqHom_tmul (t t' : ↥S) :
     tensorSqHom S (t ⊗ₜ[R] t') = (t : A) ⊗ₜ[K] (t' : A) := by
@@ -30,11 +33,17 @@ lemma tensorSqHom_tmul (t t' : ↥S) :
     Algebra.TensorProduct.tmul_mul_tmul]
 
 variable {S} in
+/--
+@isnad1 id=mem.2h6v.s10.8f873a6abede from=translated src=- shape=1929619c vocab=9bd4ca8b
+-/
 lemma tmul_mem_range_tensorSqHom {x y : A} (hx : x ∈ S) (hy : y ∈ S) :
     x ⊗ₜ[K] y ∈ (tensorSqHom (K := K) S).range :=
   ((tensorSqHom S).mem_range).mpr ⟨(⟨x, hx⟩ : ↥S) ⊗ₜ[R] (⟨y, hy⟩ : ↥S), by rw [tensorSqHom_tmul]⟩
 
 omit S in
+/--
+@isnad1 id=le.1h5v.s10.b189de3a5047 from=translated src=- shape=00c1590c vocab=d069057f
+-/
 lemma range_tensorSqHom_mono {S S' : Subalgebra R A} (h : S ≤ S') :
     (tensorSqHom (K := K) S).range ≤ (tensorSqHom (K := K) S').range := by
   rintro w hw
@@ -50,12 +59,21 @@ lemma range_tensorSqHom_mono {S S' : Subalgebra R A} (h : S ≤ S') :
 noncomputable def baseChangeHom : (K ⊗[R] ↥S) →ₐ[K] A :=
   AlgHom.liftEquiv R K (↥S) A S.val
 
+/--
+@isnad1 id=eq.0h6v.s10.fb2218ac58fc from=translated src=- shape=cc1ce6a8 vocab=22407419
+-/
 @[simp]
 lemma baseChangeHom_tmul (k : K) (t : ↥S) : baseChangeHom S (k ⊗ₜ[R] t) = k • (t : A) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.559f37a05e49 from=translated src=- shape=1ad54fa6 vocab=fe6b2c55
+-/
 lemma baseChangeHom_one_tmul (t : ↥S) : baseChangeHom S ((1 : K) ⊗ₜ[R] t) = (t : A) := by
   rw [baseChangeHom_tmul, one_smul]
 
+/--
+@isnad1 id=surjecti.1h4v.s10.ebc4cc4da6a2 from=translated src=- shape=d0348cba vocab=646f575d
+-/
 theorem baseChangeHom_surjective (hspan : Submodule.span K (S : Set A) = ⊤) :
     Function.Surjective (baseChangeHom (K := K) S) := by
   intro y
@@ -79,6 +97,9 @@ noncomputable def doubleEval : (K ⊗[R] (↥S ⊗[R] ↥S)) →ₗ[K] (A ⊗[K]
 noncomputable def doubleCmp (z : ↥S ⊗[R] ↥S) : A ⊗[K] A :=
   doubleEval S ((1 : K) ⊗ₜ[R] z)
 
+/--
+@isnad1 id=eq.0h6v.s9.ace5f4913ac4 from=translated src=- shape=4ed4ddf4 vocab=06ea90d6
+-/
 @[simp]
 lemma doubleCmp_tmul (t t' : ↥S) :
     doubleCmp S (t ⊗ₜ[R] t') = (t : A) ⊗ₜ[K] (t' : A) := by
@@ -87,16 +108,25 @@ lemma doubleCmp_tmul (t t' : ↥S) :
     AlgHom.toLinearMap_apply]
   rw [baseChangeHom_one_tmul, baseChangeHom_one_tmul]
 
+/--
+@isnad1 id=eq.0h4v.s10.8da447160fcc from=translated src=- shape=258552b7 vocab=5b121d10
+-/
 lemma doubleCmp_zero : doubleCmp (K := K) S 0 = 0 := by
   show doubleEval S ((1 : K) ⊗ₜ[R] (0 : ↥S ⊗[R] ↥S)) = 0
   rw [TensorProduct.tmul_zero, map_zero]
 
+/--
+@isnad1 id=eq.0h6v.s11.82a3fcdd3b1d from=translated src=- shape=70bef22d vocab=1f19efd3
+-/
 lemma doubleCmp_add (z w : ↥S ⊗[R] ↥S) :
     doubleCmp (K := K) S (z + w) = doubleCmp (K := K) S z + doubleCmp (K := K) S w := by
   show doubleEval S ((1 : K) ⊗ₜ[R] (z + w))
     = doubleEval S ((1 : K) ⊗ₜ[R] z) + doubleEval S ((1 : K) ⊗ₜ[R] w)
   rw [TensorProduct.tmul_add, map_add]
 
+/--
+@isnad1 id=eq.0h6v.s10.d11d971ac827 from=translated src=- shape=dd3389d6 vocab=e7f534c4
+-/
 lemma doubleCmp_smul (r : R) (z : ↥S ⊗[R] ↥S) :
     doubleCmp (K := K) S (r • z) = (algebraMap R K r) • doubleCmp (K := K) S z := by
   show doubleEval S ((1 : K) ⊗ₜ[R] (r • z))
@@ -104,6 +134,9 @@ lemma doubleCmp_smul (r : R) (z : ↥S ⊗[R] ↥S) :
   rw [TensorProduct.tmul_smul,
     ← algebraMap_smul K r ((1 : K) ⊗ₜ[R] z : K ⊗[R] (↥S ⊗[R] ↥S)), map_smul]
 
+/--
+@isnad1 id=eq.0h5v.s11.b4f433ecc5cb from=translated src=- shape=7fd9550f vocab=9f2381d0
+-/
 theorem doubleCmp_eq_tensorSqHom (z : ↥S ⊗[R] ↥S) :
     doubleCmp (K := K) S z = tensorSqHom (K := K) S z := by
   induction z with
@@ -119,16 +152,25 @@ noncomputable def tripleEval :
 noncomputable def tripleCmpR (w : ↥S ⊗[R] (↥S ⊗[R] ↥S)) : A ⊗[K] (A ⊗[K] A) :=
   tripleEval S ((1 : K) ⊗ₜ[R] w)
 
+/--
+@isnad1 id=eq.0h4v.s11.eb014f229ea5 from=translated src=- shape=406276b0 vocab=aef81997
+-/
 lemma tripleCmpR_zero : tripleCmpR (K := K) S 0 = 0 := by
   show tripleEval S ((1 : K) ⊗ₜ[R] (0 : ↥S ⊗[R] (↥S ⊗[R] ↥S))) = 0
   rw [TensorProduct.tmul_zero, map_zero]
 
+/--
+@isnad1 id=eq.0h6v.s12.4bde9561d544 from=translated src=- shape=f2291336 vocab=99a5c130
+-/
 lemma tripleCmpR_add (w w' : ↥S ⊗[R] (↥S ⊗[R] ↥S)) :
     tripleCmpR (K := K) S (w + w') = tripleCmpR (K := K) S w + tripleCmpR (K := K) S w' := by
   show tripleEval S ((1 : K) ⊗ₜ[R] (w + w'))
     = tripleEval S ((1 : K) ⊗ₜ[R] w) + tripleEval S ((1 : K) ⊗ₜ[R] w')
   rw [TensorProduct.tmul_add, map_add]
 
+/--
+@isnad1 id=eq.0h6v.s10.bcc861ee010d from=translated src=- shape=2b081aac vocab=d8c36721
+-/
 lemma tripleCmpR_tmul (t : ↥S) (z : ↥S ⊗[R] ↥S) :
     tripleCmpR S (t ⊗ₜ[R] z) = (t : A) ⊗ₜ[K] doubleCmp S z := by
   simp only [tripleCmpR, tripleEval, doubleCmp, LinearMap.comp_apply, LinearEquiv.coe_coe,
@@ -144,16 +186,25 @@ noncomputable def tripleEvalL :
 noncomputable def tripleCmpL (w : (↥S ⊗[R] ↥S) ⊗[R] ↥S) : (A ⊗[K] A) ⊗[K] A :=
   tripleEvalL S ((1 : K) ⊗ₜ[R] w)
 
+/--
+@isnad1 id=eq.0h4v.s11.6548c65f8e79 from=translated src=- shape=388a29af vocab=2fd8ea50
+-/
 lemma tripleCmpL_zero : tripleCmpL (K := K) S 0 = 0 := by
   show tripleEvalL S ((1 : K) ⊗ₜ[R] (0 : (↥S ⊗[R] ↥S) ⊗[R] ↥S)) = 0
   rw [TensorProduct.tmul_zero, map_zero]
 
+/--
+@isnad1 id=eq.0h6v.s12.d7867730ac0e from=translated src=- shape=37af795d vocab=8287103e
+-/
 lemma tripleCmpL_add (w w' : (↥S ⊗[R] ↥S) ⊗[R] ↥S) :
     tripleCmpL (K := K) S (w + w') = tripleCmpL (K := K) S w + tripleCmpL (K := K) S w' := by
   show tripleEvalL S ((1 : K) ⊗ₜ[R] (w + w'))
     = tripleEvalL S ((1 : K) ⊗ₜ[R] w) + tripleEvalL S ((1 : K) ⊗ₜ[R] w')
   rw [TensorProduct.tmul_add, map_add]
 
+/--
+@isnad1 id=eq.0h6v.s10.cf9625089eeb from=translated src=- shape=1d9c8f0c vocab=94f14617
+-/
 lemma tripleCmpL_tmul (z : ↥S ⊗[R] ↥S) (t : ↥S) :
     tripleCmpL S (z ⊗ₜ[R] t) = doubleCmp S z ⊗ₜ[K] (t : A) := by
   simp only [tripleCmpL, tripleEvalL, doubleCmp, LinearMap.comp_apply, LinearEquiv.coe_coe,
@@ -161,6 +212,9 @@ lemma tripleCmpL_tmul (z : ↥S ⊗[R] ↥S) (t : ↥S) :
     AlgHom.toLinearMap_apply]
   rw [baseChangeHom_one_tmul]
 
+/--
+@isnad1 id=eq.0h6v.s14.1d29e79287ca from=translated src=- shape=af525c40 vocab=61ee2b06
+-/
 lemma tripleCmpR_assoc_tmul (z : ↥S ⊗[R] ↥S) (c : ↥S) :
     tripleCmpR S (TensorProduct.assoc R ↥S ↥S ↥S (z ⊗ₜ[R] c))
       = TensorProduct.assoc K A A A (tripleCmpL S (z ⊗ₜ[R] c)) := by
@@ -173,6 +227,9 @@ lemma tripleCmpR_assoc_tmul (z : ↥S ⊗[R] ↥S) (c : ↥S) :
   | add z₁ z₂ h₁ h₂ =>
       rw [TensorProduct.add_tmul, map_add, tripleCmpR_add, h₁, h₂, tripleCmpL_add, map_add]
 
+/--
+@isnad1 id=eq.0h5v.s14.4d9f72cf753d from=translated src=- shape=f4167913 vocab=bbe94e50
+-/
 lemma tripleCmpR_assoc (w : (↥S ⊗[R] ↥S) ⊗[R] ↥S) :
     tripleCmpR S (TensorProduct.assoc R ↥S ↥S ↥S w)
       = TensorProduct.assoc K A A A (tripleCmpL S w) := by
@@ -186,10 +243,16 @@ noncomputable def baseChangeSq : ((K ⊗[K] K) ⊗[R] (↥S ⊗[R] ↥S)) →ₗ
   (TensorProduct.map (baseChangeHom S).toLinearMap (baseChangeHom S).toLinearMap).comp
     (TensorProduct.AlgebraTensorModule.tensorTensorTensorComm R K R K K K ↥S ↥S).toLinearMap
 
+/--
+@isnad1 id=eq.0h5v.s15.79295763dd9a from=translated src=- shape=ff823b62 vocab=3bcdfd22
+-/
 lemma baseChangeSq_apply (x : (K ⊗[K] K) ⊗[R] (↥S ⊗[R] ↥S)) :
     baseChangeSq S x = TensorProduct.map (baseChangeHom S).toLinearMap (baseChangeHom S).toLinearMap
       (TensorProduct.AlgebraTensorModule.tensorTensorTensorComm R K R K K K ↥S ↥S x) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s13.1b2a006bb584 from=translated src=- shape=47f73d2e vocab=ff2ea085
+-/
 lemma baseChangeSq_one_tmul (z : ↥S ⊗[R] ↥S) :
     baseChangeSq S (((1 : K) ⊗ₜ[K] (1 : K)) ⊗ₜ[R] z) = tensorSqHom S z := by
   induction z with
@@ -206,6 +269,9 @@ variable [IsDomain R] [IsFractionRing R K]
 
 omit S in
 
+/--
+@isnad1 id=ex.0h4v.s8.37854767bcdc from=translated src=- shape=4e286355 vocab=6f4f7c96
+-/
 theorem exists_nonzero_smul_eq_one_tmul {M : Type*} [AddCommGroup M] [Module R M]
     (x : K ⊗[R] M) :
     ∃ (r : R) (m : M), r ≠ 0 ∧ (algebraMap R K r) • x = (1 : K) ⊗ₜ[R] m := by
@@ -228,6 +294,9 @@ theorem exists_nonzero_smul_eq_one_tmul {M : Type*} [AddCommGroup M] [Module R M
 
 omit S [IsDomain R] in
 
+/--
+@isnad1 id=injectiv.0h3v.s7.f86a3eeb36e6 from=translated src=- shape=df41b252 vocab=2f2ac0e0
+-/
 theorem one_tmul_injective {M : Type*} [AddCommGroup M] [Module R M] [Module.Flat R M] :
     Function.Injective (fun m : M => (1 : K) ⊗ₜ[R] m) := by
   have hRK : Function.Injective (algebraMap R K) := IsFractionRing.injective R K
@@ -238,6 +307,9 @@ theorem one_tmul_injective {M : Type*} [AddCommGroup M] [Module R M] [Module.Fla
   exact (Module.Flat.rTensor_preserves_injective_linearMap _ hRK).comp
     (TensorProduct.lid R M).symm.injective
 
+/--
+@isnad1 id=injectiv.0h4v.s10.c2d808f92c2a from=translated src=- shape=eab63f89 vocab=2a76591d
+-/
 theorem baseChangeHom_injective : Function.Injective (baseChangeHom (K := K) S) := by
   have key : ∀ z : K ⊗[R] ↥S, baseChangeHom S z = 0 → z = 0 := by
     intro z hz
@@ -260,12 +332,21 @@ noncomputable def baseChangeEquiv (hspan : Submodule.span K (S : Set A) = ⊤) :
   AlgEquiv.ofBijective (baseChangeHom S)
     ⟨baseChangeHom_injective S, baseChangeHom_surjective S hspan⟩
 
+/--
+@isnad1 id=eq.1h5v.s11.e33131c73115 from=translated src=- shape=115d85a7 vocab=8150a68a
+-/
 lemma baseChangeEquiv_apply (hspan : Submodule.span K (S : Set A) = ⊤) (x : K ⊗[R] ↥S) :
     baseChangeEquiv S hspan x = baseChangeHom S x := rfl
 
+/--
+@isnad1 id=eq.1h6v.s10.c3e2f26cecb5 from=translated src=- shape=4dbd6b0c vocab=9717967a
+-/
 lemma baseChangeEquiv_tmul (hspan : Submodule.span K (S : Set A) = ⊤) (k : K) (t : ↥S) :
     baseChangeEquiv S hspan (k ⊗ₜ[R] t) = k • (t : A) := rfl
 
+/--
+@isnad1 id=injectiv.0h4v.s12.6e78ac1961f5 from=translated src=- shape=8b110525 vocab=264724fd
+-/
 theorem doubleEval_injective : Function.Injective (doubleEval (K := K) S) := by
   haveI : Module.Free K (K ⊗[R] ↥S) := Module.Free.of_divisionRing K _
   haveI : Module.Flat K (K ⊗[R] ↥S) := Module.Flat.of_free
@@ -285,6 +366,9 @@ theorem doubleEval_injective : Function.Injective (doubleEval (K := K) S) := by
   simpa only [doubleEval, LinearMap.comp_apply, LinearEquiv.coe_coe,
     LinearEquiv.coe_toLinearMap] using hxy
 
+/--
+@isnad1 id=injectiv.0h4v.s9.461f389489dd from=translated src=- shape=e7ae0a6b vocab=d51a5057
+-/
 theorem doubleCmp_injective [Module.Flat R ↥S] :
     Function.Injective (doubleCmp (K := K) S) := by
   intro x y hxy
@@ -292,12 +376,18 @@ theorem doubleCmp_injective [Module.Flat R ↥S] :
     one_tmul_injective
   exact h1 (doubleEval_injective S hxy)
 
+/--
+@isnad1 id=injectiv.0h4v.s11.1202e4e64962 from=translated src=- shape=f1aae3bc vocab=bf05f2a6
+-/
 theorem tensorSqHom_injective [Module.Flat R ↥S] :
     Function.Injective (tensorSqHom (K := K) S) := by
   intro x y h
   apply doubleCmp_injective (K := K) S
   rw [doubleCmp_eq_tensorSqHom, doubleCmp_eq_tensorSqHom, h]
 
+/--
+@isnad1 id=injectiv.0h4v.s14.a056ce0b0932 from=translated src=- shape=e8026aa0 vocab=ab170964
+-/
 theorem tripleEval_injective : Function.Injective (tripleEval (K := K) S) := by
   haveI : Module.Free K (K ⊗[R] ↥S) := Module.Free.of_divisionRing K _
   haveI : Module.Flat K (K ⊗[R] ↥S) := Module.Flat.of_free
@@ -317,6 +407,9 @@ theorem tripleEval_injective : Function.Injective (tripleEval (K := K) S) := by
   simpa only [tripleEval, LinearMap.comp_apply, LinearEquiv.coe_coe,
     LinearEquiv.coe_toLinearMap] using hxy
 
+/--
+@isnad1 id=injectiv.0h4v.s10.738e1d1d52a6 from=translated src=- shape=ae2fb4fe vocab=8f14c5bf
+-/
 theorem tripleCmpR_injective [Module.Flat R ↥S] :
     Function.Injective (tripleCmpR (K := K) S) := by
   intro x y hxy
@@ -349,9 +442,15 @@ noncomputable def antipodeS
     show HopfAlgebra.antipode K (r • (t : A)) = r • HopfAlgebra.antipode K (t : A)
     rw [← algebraMap_smul K r (t : A), map_smul, algebraMap_smul]
 
+/--
+@isnad1 id=eq.1h5v.s10.20936d4679ea from=translated src=- shape=4d49989b vocab=e079b314
+-/
 theorem coe_antipodeS (hantipode : ∀ x ∈ S, HopfAlgebra.antipode K x ∈ S) (t : ↥S) :
     ((antipodeS hantipode t : ↥S) : A) = HopfAlgebra.antipode K (t : A) := rfl
 
+/--
+@isnad1 id=ex.1h5v.s13.6b64e2f43248 from=translated src=- shape=41f358dc vocab=7a2a83f2
+-/
 lemma exists_doubleCmp_eq_comul
     (hcomul : ∀ x ∈ S, Coalgebra.comul (R := K) x ∈
       (Algebra.TensorProduct.productMap
@@ -364,6 +463,9 @@ lemma exists_doubleCmp_eq_comul
 
 omit [IsScalarTower R K A] in
 
+/--
+@isnad1 id=ex.1h5v.s10.05cecc6755f8 from=translated src=- shape=5487ff8b vocab=2dbc4552
+-/
 lemma exists_algebraMap_eq_counit
     (hcounit : ∀ x ∈ S, Coalgebra.counit (R := K) x ∈ (algebraMap R K).range) (t : ↥S) :
     ∃ r : R, algebraMap R K r = Coalgebra.counit (R := K) (t : A) :=
@@ -387,6 +489,9 @@ noncomputable def counitS
       smul_eq_mul, map_mul, (exists_algebraMap_eq_counit hcounit t).choose_spec,
       Subalgebra.coe_smul, ← algebraMap_smul K r (t : A), map_smul, smul_eq_mul]
 
+/--
+@isnad1 id=eq.1h5v.s10.3ae084526e72 from=translated src=- shape=9b035bf4 vocab=af6e8462
+-/
 theorem algebraMap_counitS
     (hcounit : ∀ x ∈ S, Coalgebra.counit (R := K) x ∈ (algebraMap R K).range) (t : ↥S) :
     algebraMap R K (counitS hcounit t) = Coalgebra.counit (R := K) (t : A) :=
@@ -414,6 +519,9 @@ noncomputable def comulS
       (exists_doubleCmp_eq_comul hcomul t).choose_spec]
     rw [Subalgebra.coe_smul, ← algebraMap_smul K r (t : A), map_smul]
 
+/--
+@isnad1 id=eq.1h5v.s13.55a5f709a788 from=translated src=- shape=fca2aca8 vocab=55a7a019
+-/
 lemma doubleCmp_comulS
     (hcomul : ∀ x ∈ S, Coalgebra.comul (R := K) x ∈
       (Algebra.TensorProduct.productMap
@@ -423,6 +531,9 @@ lemma doubleCmp_comulS
     doubleCmp S (comulS hcomul t) = Coalgebra.comul (R := K) (t : A) :=
   (exists_doubleCmp_eq_comul hcomul t).choose_spec
 
+/--
+@isnad1 id=eq.1h5v.s13.c1d46bbf3a21 from=translated src=- shape=ef6bdaf1 vocab=502a4997
+-/
 theorem tensorSqHom_comulS
     (hcomul : ∀ x ∈ S, Coalgebra.comul (R := K) x ∈
       (Algebra.TensorProduct.productMap
@@ -432,6 +543,9 @@ theorem tensorSqHom_comulS
     tensorSqHom S (comulS hcomul t) = Coalgebra.comul (R := K) (t : A) := by
   rw [← doubleCmp_eq_tensorSqHom, doubleCmp_comulS]
 
+/--
+@isnad1 id=iff.1h6v.s13.ba40da64a4e7 from=translated src=- shape=5be5f833 vocab=502a4997
+-/
 theorem comulS_eq_iff
     (hcomul : ∀ x ∈ S, Coalgebra.comul (R := K) x ∈
       (Algebra.TensorProduct.productMap
@@ -446,6 +560,9 @@ theorem comulS_eq_iff
     rw [tensorSqHom_comulS, h]
 
 omit [IsDomain R] [Module.Flat R ↥S] in
+/--
+@isnad1 id=eq.1h5v.s13.75141e6f6d59 from=translated src=- shape=5202cdd5 vocab=c5f2021c
+-/
 lemma val_lid_rTensor_counitS
     (hcounit : ∀ x ∈ S, Coalgebra.counit (R := K) x ∈ (algebraMap R K).range)
     (z : ↥S ⊗[R] ↥S) :
@@ -463,6 +580,9 @@ lemma val_lid_rTensor_counitS
       rw [map_add, map_add, Subalgebra.coe_add, h₁, h₂, doubleCmp_add, map_add, map_add]
 
 omit [IsDomain R] [Module.Flat R ↥S] in
+/--
+@isnad1 id=eq.1h5v.s13.ebcb5ea94c3a from=translated src=- shape=3eca57e1 vocab=14196db7
+-/
 lemma val_rid_lTensor_counitS
     (hcounit : ∀ x ∈ S, Coalgebra.counit (R := K) x ∈ (algebraMap R K).range)
     (z : ↥S ⊗[R] ↥S) :
@@ -480,12 +600,18 @@ lemma val_rid_lTensor_counitS
       rw [map_add, map_add, Subalgebra.coe_add, h₁, h₂, doubleCmp_add, map_add, map_add]
 
 omit [IsDomain R] [Module.Flat R ↥S] in
+/--
+@isnad1 id=eq.1h4v.s10.655f01306eb7 from=translated src=- shape=f5726126 vocab=f0180250
+-/
 theorem counitS_one (hcounit : ∀ x ∈ S, Coalgebra.counit (R := K) x ∈ (algebraMap R K).range) :
     counitS hcounit (1 : ↥S) = 1 := by
   apply IsFractionRing.injective R K
   rw [algebraMap_counitS, OneMemClass.coe_one, Bialgebra.counit_one, map_one]
 
 omit [IsDomain R] [Module.Flat R ↥S] in
+/--
+@isnad1 id=eq.1h6v.s11.97d53a5c4747 from=translated src=- shape=efcf45d5 vocab=d1a920c4
+-/
 theorem counitS_mul (hcounit : ∀ x ∈ S, Coalgebra.counit (R := K) x ∈ (algebraMap R K).range) (a b : ↥S) :
     counitS hcounit (a * b) = counitS hcounit a * counitS hcounit b := by
   apply IsFractionRing.injective R K
@@ -493,6 +619,9 @@ theorem counitS_mul (hcounit : ∀ x ∈ S, Coalgebra.counit (R := K) x ∈ (alg
     algebraMap_counitS hcounit b, MulMemClass.coe_mul, Bialgebra.counit_mul]
 
 omit [IsFractionRing R K] [IsDomain R] [Module.Flat R ↥S] in
+/--
+@isnad1 id=eq.1h5v.s13.81b8794b75ac from=translated src=- shape=16b592f2 vocab=83d3d43c
+-/
 lemma val_mul'_rTensor_antipodeS (hantipode : ∀ x ∈ S, HopfAlgebra.antipode K x ∈ S) (z : ↥S ⊗[R] ↥S) :
     ((LinearMap.mul' R ↥S ((antipodeS hantipode).rTensor ↥S z) : ↥S) : A)
       = LinearMap.mul' K A ((HopfAlgebra.antipode K (A := A)).rTensor A (doubleCmp S z)) := by
@@ -506,6 +635,9 @@ lemma val_mul'_rTensor_antipodeS (hantipode : ∀ x ∈ S, HopfAlgebra.antipode 
       rw [map_add, map_add, Subalgebra.coe_add, h₁, h₂, doubleCmp_add, map_add, map_add]
 
 omit [IsFractionRing R K] [IsDomain R] [Module.Flat R ↥S] in
+/--
+@isnad1 id=eq.1h5v.s13.6c4568a454c7 from=translated src=- shape=16b592f2 vocab=c66e6624
+-/
 lemma val_mul'_lTensor_antipodeS (hantipode : ∀ x ∈ S, HopfAlgebra.antipode K x ∈ S) (z : ↥S ⊗[R] ↥S) :
     ((LinearMap.mul' R ↥S ((antipodeS hantipode).lTensor ↥S z) : ↥S) : A)
       = LinearMap.mul' K A ((HopfAlgebra.antipode K (A := A)).lTensor A (doubleCmp S z)) := by
@@ -518,6 +650,9 @@ lemma val_mul'_lTensor_antipodeS (hantipode : ∀ x ∈ S, HopfAlgebra.antipode 
   | add z₁ z₂ h₁ h₂ =>
       rw [map_add, map_add, Subalgebra.coe_add, h₁, h₂, doubleCmp_add, map_add, map_add]
 
+/--
+@isnad1 id=eq.1h5v.s14.cbadd0bd267a from=translated src=- shape=7f8d5d26 vocab=2b878618
+-/
 lemma tripleCmpL_rTensor_comulS
     (hcomul : ∀ x ∈ S, Coalgebra.comul (R := K) x ∈
       (Algebra.TensorProduct.productMap
@@ -534,6 +669,9 @@ lemma tripleCmpL_rTensor_comulS
   | add z₁ z₂ h₁ h₂ =>
       rw [map_add, tripleCmpL_add, h₁, h₂, doubleCmp_add, map_add]
 
+/--
+@isnad1 id=eq.1h5v.s14.7e95851d48c8 from=translated src=- shape=5fdf6dc5 vocab=c04cd1ae
+-/
 lemma tripleCmpR_lTensor_comulS
     (hcomul : ∀ x ∈ S, Coalgebra.comul (R := K) x ∈
       (Algebra.TensorProduct.productMap
@@ -550,6 +688,9 @@ lemma tripleCmpR_lTensor_comulS
   | add z₁ z₂ h₁ h₂ =>
       rw [map_add, tripleCmpR_add, h₁, h₂, doubleCmp_add, map_add]
 
+/--
+@isnad1 id=eq.1h4v.s14.92c663841476 from=translated src=- shape=5529a429 vocab=73fb57d2
+-/
 theorem comulS_coassoc
     (hcomul : ∀ x ∈ S, Coalgebra.comul (R := K) x ∈
       (Algebra.TensorProduct.productMap
@@ -565,6 +706,9 @@ theorem comulS_coassoc
   rw [tripleCmpR_assoc, tripleCmpL_rTensor_comulS, doubleCmp_comulS,
     Coalgebra.coassoc_apply, ← doubleCmp_comulS hcomul t, ← tripleCmpR_lTensor_comulS]
 
+/--
+@isnad1 id=eq.2h4v.s13.8900c3da838a from=translated src=- shape=21853bab vocab=15af6031
+-/
 theorem counitS_rTensor_comp_comulS
     (hcomul : ∀ x ∈ S, Coalgebra.comul (R := K) x ∈
       (Algebra.TensorProduct.productMap
@@ -583,6 +727,9 @@ theorem counitS_rTensor_comp_comulS
     Coalgebra.rTensor_counit_comul, TensorProduct.mk_apply, TensorProduct.lid_tmul,
     TensorProduct.lid_tmul, one_smul, one_smul]
 
+/--
+@isnad1 id=eq.2h4v.s13.43af196a378b from=translated src=- shape=47232348 vocab=e94d97df
+-/
 theorem counitS_lTensor_comp_comulS
     (hcomul : ∀ x ∈ S, Coalgebra.comul (R := K) x ∈
       (Algebra.TensorProduct.productMap
@@ -617,6 +764,9 @@ noncomputable def coalgebra
   rTensor_counit_comp_comul := counitS_rTensor_comp_comulS hcomul hcounit
   lTensor_counit_comp_comul := counitS_lTensor_comp_comulS hcomul hcounit
 
+/--
+@isnad1 id=eq.1h4v.s13.a9a96688a098 from=translated src=- shape=794cd549 vocab=febb4c19
+-/
 theorem comulS_one
     (hcomul : ∀ x ∈ S, Coalgebra.comul (R := K) x ∈
       (Algebra.TensorProduct.productMap
@@ -626,6 +776,9 @@ theorem comulS_one
   apply tensorSqHom_injective (K := K) S
   rw [tensorSqHom_comulS, OneMemClass.coe_one, Bialgebra.comul_one, map_one]
 
+/--
+@isnad1 id=eq.1h6v.s13.c2cd0db9f5aa from=translated src=- shape=4cd18c5b vocab=c29de685
+-/
 theorem comulS_mul
     (hcomul : ∀ x ∈ S, Coalgebra.comul (R := K) x ∈
       (Algebra.TensorProduct.productMap
@@ -650,6 +803,9 @@ noncomputable def bialgebra
   Bialgebra.mk' R ↥S (counitS_one hcounit) (fun {a b} => counitS_mul hcounit a b)
     (comulS_one hcomul) (fun {a b} => comulS_mul hcomul a b)
 
+/--
+@isnad1 id=eq.3h4v.s13.98ca234f553f from=translated src=- shape=f63516c6 vocab=314a0424
+-/
 theorem mul_antipodeS_rTensor_comulS
     (hcomul : ∀ x ∈ S, Coalgebra.comul (R := K) x ∈
       (Algebra.TensorProduct.productMap
@@ -668,6 +824,9 @@ theorem mul_antipodeS_rTensor_comulS
     ← IsScalarTower.algebraMap_apply R K A]
   rfl
 
+/--
+@isnad1 id=eq.3h4v.s13.f7d370f304f5 from=translated src=- shape=f63516c6 vocab=c49ca90f
+-/
 theorem mul_antipodeS_lTensor_comulS
     (hcomul : ∀ x ∈ S, Coalgebra.comul (R := K) x ∈
       (Algebra.TensorProduct.productMap
@@ -702,6 +861,9 @@ noncomputable def hopfAlgebra
     mul_antipode_rTensor_comul := mul_antipodeS_rTensor_comulS hcomul hcounit hantipode
     mul_antipode_lTensor_comul := mul_antipodeS_lTensor_comulS hcomul hcounit hantipode }
 
+/--
+@isnad1 id=eq.2h5v.s13.f9db0716f5e4 from=translated src=- shape=4adfcdc9 vocab=ff4a1b5a
+-/
 theorem tensorSqHom_comul_eq
     (hcomul : ∀ x ∈ S, Coalgebra.comul (R := K) x ∈
       (Algebra.TensorProduct.productMap
@@ -712,6 +874,9 @@ theorem tensorSqHom_comul_eq
     tensorSqHom S (Coalgebra.comul (R := R) t) = Coalgebra.comul (R := K) (t : A) :=
   tensorSqHom_comulS hcomul t
 
+/--
+@isnad1 id=eq.2h5v.s13.4d800695e20c from=translated src=- shape=2a3a02a2 vocab=fae06d92
+-/
 theorem algebraMap_counit_eq
     (hcomul : ∀ x ∈ S, Coalgebra.comul (R := K) x ∈
       (Algebra.TensorProduct.productMap
@@ -722,6 +887,9 @@ theorem algebraMap_counit_eq
     algebraMap R K (Coalgebra.counit (R := R) t) = Coalgebra.counit (R := K) (t : A) :=
   algebraMap_counitS hcounit t
 
+/--
+@isnad1 id=eq.3h5v.s13.c401648dbdd6 from=translated src=- shape=431dc6c2 vocab=d9a24b1d
+-/
 theorem coe_antipode_eq
     (hcomul : ∀ x ∈ S, Coalgebra.comul (R := K) x ∈
       (Algebra.TensorProduct.productMap
@@ -733,6 +901,9 @@ theorem coe_antipode_eq
     ((HopfAlgebra.antipode R t : ↥S) : A) = HopfAlgebra.antipode K (t : A) :=
   rfl
 
+/--
+@isnad1 id=eq.3h5v.s14.7fabc64fc5c9 from=translated src=- shape=f1e264f5 vocab=e344dcbf
+-/
 theorem val_comul
     (hcomul : ∀ x ∈ S, Coalgebra.comul (R := K) x ∈
       (Algebra.TensorProduct.productMap
@@ -748,6 +919,9 @@ theorem val_comul
         (Coalgebra.comul (R := R) h) :=
   (tensorSqHom_comulS hcomul h).symm
 
+/--
+@isnad1 id=eq.3h5v.s13.6e4c244b4a3b from=translated src=- shape=7f4193bd vocab=2c2c4991
+-/
 theorem val_counit
     (hcomul : ∀ x ∈ S, Coalgebra.comul (R := K) x ∈
       (Algebra.TensorProduct.productMap
@@ -759,6 +933,9 @@ theorem val_counit
     algebraMap R K (Coalgebra.counit (R := R) h) = Coalgebra.counit (R := K) (S.val h) :=
   algebraMap_counitS hcounit h
 
+/--
+@isnad1 id=eq.3h5v.s13.fc6cc949add0 from=translated src=- shape=22cd0ee5 vocab=e344dcbf
+-/
 theorem val_antipode
     (hcomul : ∀ x ∈ S, Coalgebra.comul (R := K) x ∈
       (Algebra.TensorProduct.productMap
@@ -779,6 +956,9 @@ variable {A : Type w} [CommRing A] [HopfAlgebra K A] [Algebra R A] [IsScalarTowe
 variable [IsDomain R] [IsFractionRing R K]
 variable {S : Subalgebra R A} [Module.Flat R ↥S]
 
+/--
+@isnad1 id=eq.2h5v.s15.848450c55c0a from=translated src=- shape=69b9b302 vocab=3f22b766
+-/
 theorem comul_baseChangeHom
     (hcomul : ∀ x ∈ S, Coalgebra.comul (R := K) x ∈
       (Algebra.TensorProduct.productMap
@@ -802,6 +982,9 @@ theorem comul_baseChangeHom
       exact (baseChangeSq_one_tmul (K := K) S (comulS hcomul h)).symm
   | add x y hx hy => simp only [map_add, hx, hy]
 
+/--
+@isnad1 id=eq.2h5v.s13.7e6a070491f3 from=translated src=- shape=eb972b01 vocab=92001a8b
+-/
 theorem counit_baseChangeHom
     (hcomul : ∀ x ∈ S, Coalgebra.comul (R := K) x ∈
       (Algebra.TensorProduct.productMap
@@ -820,6 +1003,9 @@ theorem counit_baseChangeHom
       rw [Algebra.smul_def, Algebra.smul_def, Algebra.algebraMap_self, RingHom.id_apply, mul_comm]
   | add x y hx hy => simp only [map_add, hx, hy]
 
+/--
+@isnad1 id=eq.3h5v.s14.9b8529b55e1d from=translated src=- shape=a105855c vocab=fb9012bd
+-/
 theorem antipode_baseChangeHom
     (hcomul : ∀ x ∈ S, Coalgebra.comul (R := K) x ∈
       (Algebra.TensorProduct.productMap
@@ -865,6 +1051,9 @@ noncomputable def baseChangeBialgEquiv
       rw [comul_baseChangeHom hcomul hcounit x]
       rfl)
 
+/--
+@isnad1 id=eq.3h5v.s13.6ed225b902dc from=translated src=- shape=61911be4 vocab=0da527d1
+-/
 theorem baseChangeBialgEquiv_apply
     (hspan : Submodule.span K (S : Set A) = ⊤)
     (hcomul : ∀ x ∈ S, Coalgebra.comul (R := K) x ∈
@@ -885,6 +1074,9 @@ variable [IsDomain R] [IsFractionRing R K]
 
 omit [IsDomain R] [IsFractionRing R K] in
 
+/--
+@isnad1 id=eq.1h9v.s13.d66c4308d406 from=translated src=- shape=0472825c vocab=9daaeef3
+-/
 lemma map_tensorSqHom {S : Subalgebra R A} {T : Subalgebra R B}
     (π : A →ₗ[K] B) (f : ↥S →ₐ[R] ↥T) (hf : ∀ s : ↥S, ((f s : ↥T) : B) = π (s : A))
     (z : ↥S ⊗[R] ↥S) :
@@ -935,6 +1127,9 @@ noncomputable def mapBialgHom
       rw [← map_tensorSqHom (π : A →ₗ[K] B) f hf, tensorSqHom_comulS, tensorSqHom_comulS, hf]
       exact CoalgHomClass.map_comp_comul_apply π (s : A))
 
+/--
+@isnad1 id=eq.5h8v.s14.aac15f421721 from=translated src=- shape=de710054 vocab=ac20e7dd
+-/
 theorem coe_mapBialgHom
     {S : Subalgebra R A} [Module.Flat R ↥S] {T : Subalgebra R B} [Module.Flat R ↥T]
     (π : A →ₐc[K] B) (hπ : ∀ x ∈ S, π x ∈ T)
@@ -968,6 +1163,9 @@ noncomputable def toMap
     ↥S →ₐc[R] ↥(S.map ((π : A →ₐ[K] B).restrictScalars R)) :=
   mapBialgHom π (fun x hx => Subalgebra.mem_map.mpr ⟨x, hx, rfl⟩) hcomul hcounit hcomul' hcounit'
 
+/--
+@isnad1 id=eq.4h7v.s15.0b7ace0c4828 from=translated src=- shape=6c1fe84e vocab=9d2b9add
+-/
 theorem coe_toMap
     {S : Subalgebra R A} [Module.Flat R ↥S] (π : A →ₐc[K] B)
     [Module.Flat R ↥(S.map ((π : A →ₐ[K] B).restrictScalars R))]
@@ -1021,6 +1219,9 @@ noncomputable def inclusion
         tensorSqHom_comulS, tensorSqHom_comulS, TensorProduct.map_id, LinearMap.id_apply]
       rfl)
 
+/--
+@isnad1 id=eq.5h6v.s14.3fce726ad5f3 from=translated src=- shape=3cc19546 vocab=c7dcf40b
+-/
 theorem coe_inclusion
     {S S' : Subalgebra R A} [Module.Flat R ↥S] [Module.Flat R ↥S'] (h : S ≤ S')
     (hcomul : ∀ x ∈ S, Coalgebra.comul (R := K) x ∈
@@ -1043,6 +1244,9 @@ variable {R : Type u} [CommRing R] [IsDomain R] [IsPrincipalIdealRing R]
 variable {K : Type v} [Field K] [Algebra R K] [IsFractionRing R K]
 variable {A : Type w} [CommRing A]
 
+/--
+@isnad1 id=free.0h4v.s8.98a67d3472f4 from=translated src=- shape=2332ad6a vocab=b8081f06
+-/
 theorem moduleFree_of_finite [Algebra K A] [Algebra R A] [IsScalarTower R K A]
     (S : Subalgebra R A) [Module.Finite R ↥S] : Module.Free R ↥S := by
   haveI : Module.IsTorsionFree R A := by
@@ -1059,6 +1263,9 @@ theorem moduleFree_of_finite [Algebra K A] [Algebra R A] [IsScalarTower R K A]
       (fun _ _ => rfl)
   exact Module.free_of_finite_type_torsion_free'
 
+/--
+@isnad1 id=flat.0h4v.s8.c9c72d296881 from=translated src=- shape=2332ad6a vocab=fcfdc73c
+-/
 theorem moduleFlat_of_finite [Algebra K A] [Algebra R A] [IsScalarTower R K A]
     (S : Subalgebra R A) [Module.Finite R ↥S] : Module.Flat R ↥S := by
   haveI := moduleFree_of_finite (K := K) S

@@ -18,6 +18,9 @@ variable {C : Type u'} [Category.{v'} C] {R : Cᵒᵖ ⥤ CommRingCat.{u}}
 
 namespace InternalHom
 
+/--
+@isnad1 id=eq.0h5v.s15.fb027a2c1520 from=translated src=- shape=846c6374 vocab=10bffb10
+-/
 lemma map_id_apply (M : PresheafOfModules.{u} (R ⋙ forget₂ _ _)) (X : Cᵒᵖ) (x : M.obj X) :
     M.map (𝟙 X) x = x := by
   change (M.presheaf.map (𝟙 X)) x = x
@@ -46,13 +49,22 @@ def naturalFamilies (X : Cᵒᵖ) : AddSubgroup (PiFamily F N X) where
 
 variable {F N}
 
+/--
+@isnad1 id=eq.1h7v.s17.b0f276727d0d from=translated src=- shape=9a8a1d13 vocab=d70a17ea
+-/
 @[ext] lemma naturalFamilies_ext {X : Cᵒᵖ} {φ ψ : naturalFamilies F N X}
     (h : ∀ ⦃Y : Cᵒᵖ⦄ (f : X ⟶ Y) (x : F.obj Y), φ.1 f x = ψ.1 f x) : φ = ψ :=
   Subtype.ext (funext fun _ => funext fun f => LinearMap.ext (h f))
 
+/--
+@isnad1 id=eq.0h11v.s17.09d1eb2c2889 from=translated src=- shape=1493861c vocab=e4deb145
+-/
 lemma naturality {X : Cᵒᵖ} (φ : naturalFamilies F N X) ⦃Y Z : Cᵒᵖ⦄ (f : X ⟶ Y) (g : Y ⟶ Z)
     (x : F.obj Y) : N.map g (φ.1 f x) = φ.1 (f ≫ g) (F.map g x) := φ.2 f g x
 
+/--
+@isnad1 id=eq.1h10v.s17.796b036d1122 from=translated src=- shape=69eb1cde vocab=d70a17ea
+-/
 lemma congr_app {X : Cᵒᵖ} (φ : naturalFamilies F N X) {Y : Cᵒᵖ} {f g : X ⟶ Y} (h : f = g)
     (x : F.obj Y) : φ.1 f x = φ.1 g x := by subst h; rfl
 
@@ -66,14 +78,29 @@ instance (X : Cᵒᵖ) : SMul (R.obj X) (naturalFamilies F N X) where
     rw [Functor.map_comp]
     rfl⟩
 
+/--
+@isnad1 id=eq.0h10v.s18.7440255b3289 from=translated src=- shape=d7ad94b6 vocab=654ab711
+-/
 @[simp] lemma smul_app {X : Cᵒᵖ} (r : R.obj X) (φ : naturalFamilies F N X) {Y : Cᵒᵖ} (f : X ⟶ Y)
     (x : F.obj Y) : (r • φ).1 f x = R.map f r • φ.1 f x := rfl
+/--
+@isnad1 id=eq.0h10v.s18.0a482c04514c from=translated src=- shape=5ff4c98e vocab=ae6b0f35
+-/
 @[simp] lemma add_app {X : Cᵒᵖ} (φ ψ : naturalFamilies F N X) {Y : Cᵒᵖ} (f : X ⟶ Y)
     (x : F.obj Y) : (φ + ψ).1 f x = φ.1 f x + ψ.1 f x := rfl
+/--
+@isnad1 id=eq.0h8v.s17.e6ceefe47bd3 from=translated src=- shape=22f2de28 vocab=d70a17ea
+-/
 @[simp] lemma zero_app {X : Cᵒᵖ} {Y : Cᵒᵖ} (f : X ⟶ Y)
     (x : F.obj Y) : (0 : naturalFamilies F N X).1 f x = 0 := rfl
+/--
+@isnad1 id=eq.0h9v.s17.1a2d84aec351 from=translated src=- shape=fa6bdd07 vocab=fdeed902
+-/
 @[simp] lemma neg_app {X : Cᵒᵖ} (φ : naturalFamilies F N X) {Y : Cᵒᵖ} (f : X ⟶ Y)
     (x : F.obj Y) : (-φ).1 f x = - φ.1 f x := rfl
+/--
+@isnad1 id=eq.0h10v.s18.5c46a2e2ef62 from=translated src=- shape=5ff4c98e vocab=63e2f026
+-/
 @[simp] lemma sub_app {X : Cᵒᵖ} (φ ψ : naturalFamilies F N X) {Y : Cᵒᵖ} (f : X ⟶ Y)
     (x : F.obj Y) : (φ - ψ).1 f x = φ.1 f x - ψ.1 f x := rfl
 
@@ -93,6 +120,9 @@ def restrict {X X' : Cᵒᵖ} (h : X ⟶ X') : naturalFamilies F N X →+ natura
   map_zero' := rfl
   map_add' _ _ := rfl
 
+/--
+@isnad1 id=eq.0h11v.s20.1a8d51f9d4b1 from=translated src=- shape=e2841cc5 vocab=519911aa
+-/
 @[simp] lemma restrict_app {X X' : Cᵒᵖ} (h : X ⟶ X') (φ : naturalFamilies F N X) {Y : Cᵒᵖ}
     (f : X' ⟶ Y) (x : F.obj Y) : (restrict F N h φ).1 f x = φ.1 (h ≫ f) x := rfl
 
@@ -108,6 +138,9 @@ def restrict {X X' : Cᵒᵖ} (h : X ⟶ X') : naturalFamilies F N X →+ natura
     change φ.1 ((h ≫ h') ≫ f) x = φ.1 (h ≫ (h' ≫ f)) x
     rw [Category.assoc]
 
+/--
+@isnad1 id=eq.0h11v.s17.a36a3cb316f2 from=translated src=- shape=68fb42ff vocab=fb22f4c3
+-/
 @[simp] lemma presheaf_map_apply {X X' : Cᵒᵖ} (h : X ⟶ X') (φ : naturalFamilies F N X) {Y : Cᵒᵖ}
     (f : X' ⟶ Y) (x : F.obj Y) : ((presheaf F N).map h φ).1 f x = φ.1 (h ≫ f) x := rfl
 
@@ -130,6 +163,9 @@ def postcomp {N' : PresheafOfModules.{u} (R ⋙ forget₂ _ _)} (ψ : N ⟶ N') 
   map_zero' := by ext Y f x; exact (ψ.app Y).hom.map_zero
   map_add' φ φ' := by ext Y f x; exact (ψ.app Y).hom.map_add _ _
 
+/--
+@isnad1 id=eq.0h11v.s20.7176f3eafed7 from=translated src=- shape=ecea7a6d vocab=98da9159
+-/
 @[simp] lemma postcomp_app {N' : PresheafOfModules.{u} (R ⋙ forget₂ _ _)} (ψ : N ⟶ N') {X : Cᵒᵖ}
     (φ : naturalFamilies F N X) {Y : Cᵒᵖ} (f : X ⟶ Y) (x : F.obj Y) :
     (postcomp F ψ X φ).1 f x = ψ.app Y (φ.1 f x) := rfl
@@ -147,6 +183,9 @@ open InternalHom
     rw [Functor.map_comp]
     rfl)
 
+/--
+@isnad1 id=eq.0h11v.s16.286081f70619 from=translated src=- shape=7b064e7d vocab=0f477295
+-/
 @[simp] lemma ihomObj_map_val {X X' : Cᵒᵖ} (h : X ⟶ X') (φ : (ihomObj F N).obj X) {Y : Cᵒᵖ}
     (f : X' ⟶ Y) (x : F.obj Y) :
     ((ihomObj F N).map h φ).1 f x = φ.1 (h ≫ f) x := rfl
@@ -162,6 +201,9 @@ noncomputable def ihomMap {N' : PresheafOfModules.{u} (R ⋙ forget₂ _ _)} (ψ
     intro Y f x
     exact (ψ.app Y).hom.map_smul _ _)
 
+/--
+@isnad1 id=eq.0h11v.s17.bd74163e7500 from=translated src=- shape=5ef9966f vocab=ce9ecf76
+-/
 @[simp] lemma ihomMap_app_val {N' : PresheafOfModules.{u} (R ⋙ forget₂ _ _)} (ψ : N ⟶ N')
     {X : Cᵒᵖ} (φ : (ihomObj F N).obj X) {Y : Cᵒᵖ} (f : X ⟶ Y) (x : F.obj Y) :
     ((ihomMap F ψ).app X φ).1 f x = ψ.app Y (φ.1 f x) := rfl
@@ -179,8 +221,14 @@ noncomputable def ihomFunctor :
     apply naturalFamilies_ext
     intro Y f y; rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.568454197604 from=translated src=- shape=a776a826 vocab=19ae7467
+-/
 @[simp] lemma ihomFunctor_obj (N' : PresheafOfModules.{u} (R ⋙ forget₂ _ _)) :
     (ihomFunctor F).obj N' = ihomObj F N' := rfl
+/--
+@isnad1 id=eq.0h6v.s11.5d8ae78d9739 from=translated src=- shape=1751c548 vocab=67ba5fef
+-/
 @[simp] lemma ihomFunctor_map {N' N'' : PresheafOfModules.{u} (R ⋙ forget₂ _ _)} (ψ : N' ⟶ N'') :
     (ihomFunctor F).map ψ = ihomMap F ψ := rfl
 
@@ -206,6 +254,9 @@ noncomputable def curryFamily (θ : F ⊗ G ⟶ N) {X : Cᵒᵖ} (y : G.obj X) :
     erw [Monoidal.tensorObj_map_tmul]
     rw [← PresheafOfModules.map_comp_apply]⟩
 
+/--
+@isnad1 id=eq.0h11v.s16.71442bb999a6 from=translated src=- shape=b1c7c2f9 vocab=86513fa4
+-/
 @[simp] lemma curryFamily_app (θ : F ⊗ G ⟶ N) {X : Cᵒᵖ} (y : G.obj X) {Y : Cᵒᵖ} (f : X ⟶ Y)
     (x : F.obj Y) : (curryFamily F θ y).1 f x = θ.app Y (x ⊗ₜ[R.obj Y] G.map f y) := rfl
 
@@ -242,6 +293,9 @@ noncomputable def curry' (θ : F ⊗ G ⟶ N) : G ⟶ ihomObj F N :=
       rw [TensorProduct.tmul_smul]
       exact (θ.app Y).hom.map_smul _ _)
 
+/--
+@isnad1 id=eq.0h11v.s16.5f5750dbe324 from=translated src=- shape=3830c782 vocab=24e40d98
+-/
 @[simp] lemma curry'_app_val (θ : F ⊗ G ⟶ N) {X : Cᵒᵖ} (y : G.obj X) {Y : Cᵒᵖ} (f : X ⟶ Y)
     (x : F.obj Y) : ((curry' F θ).app X y).1 f x = θ.app Y (x ⊗ₜ[R.obj Y] G.map f y) := rfl
 
@@ -259,12 +313,18 @@ noncomputable def uncurryApp (κ : G ⟶ ihomObj F N) (X : Cᵒᵖ) : (F ⊗ G).
       rw [R.map_id]
       rfl)
 
+/--
+@isnad1 id=eq.0h9v.s16.107eb6e5b0f3 from=translated src=- shape=5186e73e vocab=21ca4b77
+-/
 lemma tensorObj_map_tmul' {X Y : Cᵒᵖ} (g : X ⟶ Y) (x : F.obj X) (y : G.obj X) :
     DFunLike.coe (α := (F.obj X ⊗ G.obj X :))
       (β := fun _ => (ModuleCat.restrictScalars (R.map g).hom).obj (F.obj Y ⊗ G.obj Y))
       (ModuleCat.Hom.hom (R := ↑(R.obj X)) ((F ⊗ G).map g)) (x ⊗ₜ[R.obj X] y) =
     F.map g x ⊗ₜ[R.obj Y] G.map g y := rfl
 
+/--
+@isnad1 id=eq.0h9v.s16.1e58495aacc0 from=translated src=- shape=bae9014a vocab=2316e590
+-/
 lemma uncurryApp_tmul (κ : G ⟶ ihomObj F N) (X : Cᵒᵖ) (x : F.obj X) (y : G.obj X) :
     DFunLike.coe (α := (F.obj X ⊗ G.obj X :)) (β := fun _ => N.obj X)
       (uncurryApp F κ X).hom (x ⊗ₜ[R.obj X] y) = (κ.app X y).1 (𝟙 X) x := by
@@ -281,11 +341,17 @@ noncomputable def uncurry' (κ : G ⟶ ihomObj F N) : F ⊗ G ⟶ N where
     erw [(κ.app X y).2 (𝟙 X) g x]
     exact congr_app _ (by simp) _)
 
+/--
+@isnad1 id=eq.0h9v.s16.aeb5e5a02da0 from=translated src=- shape=c0649b08 vocab=92cabad2
+-/
 lemma uncurry'_app_tmul (κ : G ⟶ ihomObj F N) {X : Cᵒᵖ} (x : F.obj X) (y : G.obj X) :
     DFunLike.coe (α := (F.obj X ⊗ G.obj X :)) (β := fun _ => N.obj X)
       ((uncurry' F κ).app X).hom (x ⊗ₜ[R.obj X] y) = (κ.app X y).1 (𝟙 X) x :=
   uncurryApp_tmul F κ X x y
 
+/--
+@isnad1 id=eq.0h6v.s11.219d8bb0d425 from=translated src=- shape=140b645b vocab=f8dadca5
+-/
 lemma uncurry'_curry' (θ : F ⊗ G ⟶ N) : uncurry' F (curry' F θ) = θ := by
   ext X : 1
   apply ModuleCat.MonoidalCategory.tensor_ext
@@ -294,6 +360,9 @@ lemma uncurry'_curry' (θ : F ⊗ G ⟶ N) : uncurry' F (curry' F θ) = θ := by
   change θ.app X (x ⊗ₜ[R.obj X] G.map (𝟙 X) y) = θ.app X (x ⊗ₜ[R.obj X] y)
   rw [InternalHom.map_id_apply]
 
+/--
+@isnad1 id=eq.0h6v.s10.4981d7411b2b from=translated src=- shape=92d5c433 vocab=6f32671e
+-/
 lemma curry'_uncurry' (κ : G ⟶ ihomObj F N) : curry' F (uncurry' F κ) = κ := by
   ext X y
   apply naturalFamilies_ext; intro Y f x

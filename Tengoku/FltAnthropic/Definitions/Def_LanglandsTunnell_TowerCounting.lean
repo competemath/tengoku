@@ -40,6 +40,9 @@ noncomputable def classIndicator (σ : L ≃ₐ[ℚ] L) (ℓ : ℕ) : ℕ :=
       IsConj σ (arithFrobAt ℤ (L ≃ₐ[ℚ] L) Q)
   then 1 else 0
 
+/--
+@isnad1 id=le.0h3v.s6.df42a9a0f783 from=translated src=- shape=22403d97 vocab=c31c09b0
+-/
 theorem classIndicator_le_one (σ : L ≃ₐ[ℚ] L) (ℓ : ℕ) : classIndicator σ ℓ ≤ 1 := by
   unfold classIndicator; split <;> simp
 

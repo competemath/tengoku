@@ -33,10 +33,16 @@ def Gamma0Fin : Subgroup SL(2, ZMod M) where
 
 variable {N M}
 
+/--
+@isnad1 id=iff.0h3v.s8.6cc03b2800b8 from=translated src=- shape=e0ca6b72 vocab=61fdf3c0
+-/
 theorem mem_Gamma0Fin {g : SL(2, ZMod M)} : g ∈ Gamma0Fin N M ↔ (N : ZMod M) ∣ g 1 0 := Iff.rfl
 
 variable (N M)
 
+/--
+@isnad1 id=eq.1h3v.s9.56ba734f95f9 from=translated src=- shape=429a60f9 vocab=883fca5e
+-/
 theorem castHom_apply_one_zero (hNM : N ∣ M) (g : Gamma0Fin N M) :
     ZMod.castHom hNM (ZMod N) ((g : SL(2, ZMod M)) 1 0) = 0 := by
   obtain ⟨r, hr⟩ := g.2
@@ -54,6 +60,9 @@ def gamma0FinMap (hNM : N ∣ M) : Gamma0Fin N M →* ZMod N where
       (Matrix.two_mul_expl (a : SL(2, ZMod M)).1 (b : SL(2, ZMod M)).1).2.2.2
     rw [h, map_add, map_mul, map_mul, castHom_apply_one_zero N M hNM a, zero_mul, zero_add]
 
+/--
+@isnad1 id=eq.1h3v.s11.ce378890034e from=translated src=- shape=ab435481 vocab=0357d59d
+-/
 @[simp]
 theorem gamma0FinMap_apply (hNM : N ∣ M) (g : Gamma0Fin N M) :
     gamma0FinMap N M hNM g = ZMod.castHom hNM (ZMod N) ((g : SL(2, ZMod M)) 1 1) := rfl
@@ -61,6 +70,9 @@ theorem gamma0FinMap_apply (hNM : N ∣ M) (g : Gamma0Fin N M) :
 def gamma0FinUnitsChar (hNM : N ∣ M) : Gamma0Fin N M →* (ZMod N)ˣ :=
   (gamma0FinMap N M hNM).toHomUnits
 
+/--
+@isnad1 id=eq.1h3v.s11.459b04b53b53 from=translated src=- shape=cc6876fb vocab=1f55980d
+-/
 @[simp]
 theorem gamma0FinUnitsChar_coe (hNM : N ∣ M) (g : Gamma0Fin N M) :
     (gamma0FinUnitsChar N M hNM g : ZMod N) = ZMod.castHom hNM (ZMod N) ((g : SL(2, ZMod M)) 1 1) :=

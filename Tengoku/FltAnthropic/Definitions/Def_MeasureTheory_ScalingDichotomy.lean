@@ -14,6 +14,9 @@ variable {G : Type*}
 def zpowSlice (D : Set G) (f : G → ℝ) (r : ℝ) (k : ℤ) : Set G :=
   D ∩ f ⁻¹' Ico (r ^ k) (r ^ (k + 1))
 
+/--
+@isnad1 id=eq.2h4v.s5.3d94b80e1ba2 from=translated src=- shape=4f67bd36 vocab=2155e13b
+-/
 theorem iUnion_zpowSlice {D : Set G} {f : G → ℝ} {r : ℝ} (hr : 1 < r) (hpos : ∀ g ∈ D, 0 < f g) :
     ⋃ k : ℤ, zpowSlice D f r k = D := by
   ext g
@@ -25,6 +28,9 @@ theorem iUnion_zpowSlice {D : Set G} {f : G → ℝ} {r : ℝ} (hr : 1 < r) (hpo
     obtain ⟨k, hk⟩ := exists_mem_Ico_zpow (hpos g hg) hr
     exact ⟨k, hg, hk⟩
 
+/--
+@isnad1 id=pairwise.1h4v.s6.9aaea54c71c3 from=translated src=- shape=64871424 vocab=03144b6a
+-/
 theorem pairwise_disjoint_zpowSlice (D : Set G) (f : G → ℝ) {r : ℝ} (hr : 1 < r) :
     Pairwise (Function.onFun Disjoint (zpowSlice D f r)) := by
   intro k l hkl
@@ -36,10 +42,16 @@ theorem pairwise_disjoint_zpowSlice (D : Set G) (f : G → ℝ) {r : ℝ} (hr : 
   · have : r ^ (l + 1) ≤ r ^ k := (zpow_right_strictMono₀ hr).monotone (by omega)
     exact absurd (hl2.trans_le (this.trans hk1)) (lt_irrefl _)
 
+/--
+@isnad1 id=measurab.2h5v.s5.e9b917c2847f from=translated src=- shape=1deaa212 vocab=9696654c
+-/
 theorem measurableSet_zpowSlice [MeasurableSpace G] {D : Set G} (hD : MeasurableSet D) {f : G → ℝ} (hf : Measurable f)
     (r : ℝ) (k : ℤ) : MeasurableSet (zpowSlice D f r k) :=
   hD.inter (hf measurableSet_Ico)
 
+/--
+@isnad1 id=eq.3h6v.s6.5a4b4ffae7ac from=translated src=- shape=d0e1e3bc vocab=b8b14059
+-/
 theorem preimage_mul_zpowSlice_succ [Mul G] {D : Set G} {f : G → ℝ} {r : ℝ} (hr : 1 < r) {z : G}
     (hfz : ∀ g, f (z * g) = r * f g) (hzD : (fun g => z * g) ⁻¹' D = D) (k : ℤ) :
     (fun g => z * g) ⁻¹' zpowSlice D f r (k + 1) = zpowSlice D f r k := by
@@ -69,6 +81,9 @@ section Dichotomy
 
 variable {G : Type*} [Group G] [MeasurableSpace G] [MeasurableMul G]
 
+/--
+@isnad1 id=or.6h6v.s7.09517ff8b8a3 from=translated src=- shape=d5c83989 vocab=52ee375d
+-/
 theorem measure_eq_zero_or_top_of_mul_preimage_eq (μ : Measure G) [μ.IsMulLeftInvariant]
     {z : G} {f : G → ℝ} (hf : Measurable f) {r : ℝ} (hr : 1 < r)
     (hfz : ∀ g, f (z * g) = r * f g) {D : Set G} (hpos : ∀ g ∈ D, 0 < f g)

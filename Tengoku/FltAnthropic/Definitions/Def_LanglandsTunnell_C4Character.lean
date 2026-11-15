@@ -15,36 +15,60 @@ section C4Sub
 
 variable {L : Type*} [Field L] [NumberField L] (e : (L ≃ₐ[ℚ] L) ≃* Matrix.GeneralLinearGroup (Fin 2) (ZMod 3))
 
+/--
+@isnad1 id=mem.0h2v.s9.5c472d9aae8f from=translated src=- shape=f7d4f87b vocab=6197766d
+-/
 theorem gammaT_sq_mem_c8H : gammaT e ^ 2 ∈ c8H e :=
   Subgroup.pow_mem _ (gammaT_mem e) 2
 
 def c4H : Subgroup (L ≃ₐ[ℚ] L) := Subgroup.zpowers (gammaT e ^ 2)
 
+/--
+@isnad1 id=iff.0h3v.s10.faa8e54d2e96 from=translated src=- shape=26c96b08 vocab=99b9caba
+-/
 theorem mem_c4H_iff (γ : L ≃ₐ[ℚ] L) : γ ∈ c4H e ↔ ∃ k : ℤ, (gammaT e ^ 2) ^ k = γ :=
   Subgroup.mem_zpowers_iff
 
+/--
+@isnad1 id=le.0h2v.s9.6b2d468f5db5 from=translated src=- shape=e5a48ef0 vocab=1cb8128d
+-/
 theorem c4H_le_c8H : c4H e ≤ c8H e :=
   (Subgroup.zpowers_le (G := L ≃ₐ[ℚ] L)).2 (gammaT_sq_mem_c8H e)
 
+/--
+@isnad1 id=eq.0h2v.s9.cb4bbdea5142 from=translated src=- shape=8a587092 vocab=5ae84620
+-/
 theorem orderOf_gammaT_sq : orderOf (gammaT e ^ 2) = 4 := by
   rw [orderOf_pow, orderOf_gammaT]
   decide
 
+/--
+@isnad1 id=eq.0h2v.s9.816d3ac0f88a from=translated src=- shape=68f38523 vocab=80411fb4
+-/
 theorem card_c4H : Nat.card ↥(c4H e) = 4 := by
   rw [c4H, Nat.card_zpowers, orderOf_gammaT_sq]
 
 def gammaTSqMem : ↥(c4H e) := ⟨gammaT e ^ 2, Subgroup.mem_zpowers _⟩
 
+/--
+@isnad1 id=eq.0h2v.s10.2f1384cc64f1 from=translated src=- shape=539406f1 vocab=60b3777e
+-/
 theorem orderOf_gammaTSqMem : orderOf (gammaTSqMem e) = 4 := by
   rw [← orderOf_injective (c4H e).subtype Subtype.coe_injective (gammaTSqMem e)]
   exact orderOf_gammaT_sq e
 
+/--
+@isnad1 id=mem.0h3v.s11.08065885e203 from=translated src=- shape=29454c7b vocab=a6a76e5f
+-/
 theorem mem_zpowers_gammaTSqMem (x : ↥(c4H e)) : x ∈ Subgroup.zpowers (gammaTSqMem e) := by
   obtain ⟨k, hk⟩ := Subgroup.mem_zpowers_iff.1 x.2
   exact Subgroup.mem_zpowers_iff.2 ⟨k, Subtype.ext (by rw [Subgroup.coe_zpow]; exact hk)⟩
 
 def c4H_inclusion : ↥(c4H e) →* ↥(c8H e) := Subgroup.inclusion (c4H_le_c8H e)
 
+/--
+@isnad1 id=eq.0h2v.s13.2f6e594be236 from=translated src=- shape=515444e0 vocab=d27b9556
+-/
 theorem c4H_inclusion_gammaTSqMem : c4H_inclusion e (gammaTSqMem e) = gammaTMem e ^ 2 :=
   Subtype.ext rfl
 
@@ -57,22 +81,37 @@ variable {L : Type*} [Field L] [NumberField L] (e : (L ≃ₐ[ℚ] L) ≃* Matri
 
 def chiGal4 : ↥(c4H e) →* ℂˣ := (chiGal e hζ).comp (c4H_inclusion e)
 
+/--
+@isnad1 id=eq.1h4v.s13.c510eb44f17b from=translated src=- shape=92f593f8 vocab=f1531b21
+-/
 theorem chiGal4_apply (x : ↥(c4H e)) : chiGal4 e hζ x = chiGal e hζ (c4H_inclusion e x) := rfl
 
+/--
+@isnad1 id=eq.1h3v.s11.b0145a71c4b4 from=translated src=- shape=f1a6f353 vocab=ec56558e
+-/
 theorem chiGal4_gammaTSqMem : chiGal4 e hζ (gammaTSqMem e) = zetaUnit hζ ^ 2 := by
   rw [chiGal4_apply, c4H_inclusion_gammaTSqMem, map_pow, chiGal_gammaTMem]
 
 include hζ in
+/--
+@isnad1 id=ne.1h1v.s7.19ff1abbcedb from=translated src=- shape=640cc9b2 vocab=514b6129
+-/
 theorem zetaUnit_sq_pow_two_ne_one : (zetaUnit hζ ^ 2) ^ 2 ≠ 1 := by
   rw [← pow_mul]
   exact zetaUnit_pow_four_ne_one hζ
 
+/--
+@isnad1 id=eq.1h1v.s6.0103ebbbf1f6 from=translated src=- shape=470c7828 vocab=12ffd690
+-/
 theorem orderOf_zetaUnit_sq : orderOf (zetaUnit hζ ^ 2) = 4 := by
   have h := orderOf_eq_prime_pow (p := 2) (n := 1) (x := zetaUnit hζ ^ 2) (zetaUnit_sq_pow_two_ne_one hζ)
     (by rw [← pow_mul]; exact zetaUnit_pow_eight hζ)
   norm_num at h
   exact h
 
+/--
+@isnad1 id=injectiv.1h3v.s12.fa4814a2ea4e from=translated src=- shape=e2008f60 vocab=3c483cb5
+-/
 theorem chiGal4_injective : Function.Injective (chiGal4 e hζ) := by
   refine (injective_iff_map_eq_one (chiGal4 e hζ)).2 fun x hx => ?_
   obtain ⟨k, rfl⟩ := Subgroup.mem_zpowers_iff.1 (mem_zpowers_gammaTSqMem e x)
@@ -93,6 +132,9 @@ variable {L : Type*} [Field L] [NumberField L] [IsGalois ℚ L]
 def artinValue4 (v : HeightOneSpectrum (𝓞 (FixedPoints.intermediateField (c4H e) : IntermediateField ℚ L))) : ℂˣ :=
   chiGal4 e hζ ⟨seedFrob (c4H e) v, seedFrob_mem (c4H e) v⟩
 
+/--
+@isnad1 id=eq.1h4v.s13.6737ead9f33a from=translated src=- shape=975d9cb1 vocab=2e652313
+-/
 theorem artinValue4_def (v : HeightOneSpectrum (𝓞 (FixedPoints.intermediateField (c4H e) : IntermediateField ℚ L))) :
     artinValue4 e hζ v = chiGal4 e hζ ⟨seedFrob (c4H e) v, seedFrob_mem (c4H e) v⟩ := rfl
 
@@ -104,18 +146,30 @@ open FLT.ExplicitLift LanglandsTunnell.Lift48 LanglandsTunnell
 
 variable {L : Type} [Field L] [NumberField L] (e : (L ≃ₐ[ℚ] L) ≃* Matrix.GeneralLinearGroup (Fin 2) (ZMod 3))
 
+/--
+@isnad1 id=mem.0h0v.s3.a262c9c953db from=translated src=- shape=6d350102 vocab=6c7f1f6d
+-/
 theorem pw_Tlift_two_mem_P16 : pw Tlift 2 ∈ P16 := by
   rw [pw_eq_pow, pow_two]
   exact P16_mul_closed Tlift one_mem_P16.2.1 Tlift one_mem_P16.2.1
 
+/--
+@isnad1 id=mem.0h2v.s9.7b2fecf39269 from=translated src=- shape=80ac3a37 vocab=b68f1b70
+-/
 theorem gammaT_sq_mem_sylowH : gammaT e ^ 2 ∈ sylowH e :=
   ⟨pw Tlift 2, pw_Tlift_two_mem_P16, by
     rw [map_pow, e_gammaT, val_tbarGL_pow, ← pw_eq_pow, RingHom.mapMatrix_apply]⟩
 
+/--
+@isnad1 id=mem.0h2v.s9.aa4ecd3ead31 from=translated src=- shape=80ac3a37 vocab=8e60c578
+-/
 theorem gammaT_sq_mem_detKer : gammaT e ^ 2 ∈ detKer e := by
   rw [mem_detKer_iff, map_pow, e_gammaT, val_tbarGL_pow, ← pw_eq_pow]
   decide
 
+/--
+@isnad1 id=le.0h2v.s9.d05732f67007 from=translated src=- shape=6a67c2b3 vocab=d6e7eacf
+-/
 theorem c4H_le_quatH : c4H e ≤ quatH e :=
   (Subgroup.zpowers_le (G := L ≃ₐ[ℚ] L)).2 ⟨gammaT_sq_mem_sylowH e, gammaT_sq_mem_detKer e⟩
 
@@ -127,6 +181,9 @@ open LanglandsTunnell
 
 variable {L : Type} [Field L] [NumberField L] (e : (L ≃ₐ[ℚ] L) ≃* Matrix.GeneralLinearGroup (Fin 2) (ZMod 3))
 
+/--
+@isnad1 id=le.0h2v.s8.88da2fa9d82c from=translated src=- shape=c54a6921 vocab=14360a3f
+-/
 theorem fixFld_c8H_le_fixFld_c4H : fixFld (c8H e) ≤ fixFld (c4H e) :=
   fixFld_le_fixFld_of_le (c4H_le_c8H e)
 
@@ -134,6 +191,9 @@ noncomputable instance algebra_fixFldC8H_fixFldC4H :
     Algebra ↥(fixFld (c8H e)) ↥(fixFld (c4H e)) :=
   (IntermediateField.inclusion (fixFld_c8H_le_fixFld_c4H e)).toRingHom.toAlgebra
 
+/--
+@isnad1 id=le.0h2v.s8.5b3bba79fb2e from=translated src=- shape=c54a6921 vocab=588271cf
+-/
 theorem fixFld_quatH_le_fixFld_c4H : fixFld (quatH e) ≤ fixFld (c4H e) :=
   fixFld_le_fixFld_of_le (c4H_le_quatH e)
 

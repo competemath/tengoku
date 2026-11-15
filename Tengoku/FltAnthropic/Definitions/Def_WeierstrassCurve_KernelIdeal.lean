@@ -15,11 +15,17 @@ def kernelIdealSet (W₀ W : WeierstrassCurve F)
   {a | ∃ ρ ∈ rationalHomSet k W W₀,
     (a : AddMonoid.End (W₀.baseChange k).toAffine.Point) = ρ.comp χ}
 
+/--
+@isnad1 id=mem.0h5v.s11.d177ce340fc6 from=translated src=- shape=e31ac747 vocab=9a3b709a
+-/
 theorem zero_mem_kernelIdealSet (W₀ W : WeierstrassCurve F)
     (χ : (W₀.baseChange k).toAffine.Point →+ (W.baseChange k).toAffine.Point) :
     (0 : rationalEndSubring k W₀) ∈ kernelIdealSet k W₀ W χ :=
   ⟨0, zero_mem_rationalHomSet k W W₀, by rw [AddMonoidHom.zero_comp]; rfl⟩
 
+/--
+@isnad1 id=mem.0h3v.s11.a5cdc818c2b1 from=translated src=- shape=c1390df5 vocab=953c93f3
+-/
 theorem one_mem_kernelIdealSet_id (W : WeierstrassCurve F) :
     (1 : rationalEndSubring k W) ∈ kernelIdealSet k W W (AddMonoidHom.id _) :=
   ⟨AddMonoidHom.id _, id_mem_rationalHomSet k W, rfl⟩

@@ -24,6 +24,9 @@ open scoped Real
 
 variable {p : ℕ} [Fact p.Prime]
 
+/--
+@isnad1 id=dvd.1h3v.s7.e4a846a382bb from=translated src=- shape=10953a1d vocab=200d4b93
+-/
 theorem pPow_dvd_of_norm_le_one (a : ℤ) (k : ℕ)
     (h : ‖((a : ℚ_[p]) / (p : ℚ_[p]) ^ k)‖ ≤ 1) : (p : ℤ) ^ k ∣ a := by
   have hppos : (0 : ℝ) < (p : ℝ) := by exact_mod_cast (Fact.out : p.Prime).pos
@@ -33,6 +36,9 @@ theorem pPow_dvd_of_norm_le_one (a : ℤ) (k : ℕ)
   have := (Padic.norm_int_le_pow_iff_dvd a k).mp h'
   exact_mod_cast this
 
+/--
+@isnad1 id=ex.0h2v.s7.ff53fa81aff1 from=translated src=- shape=9e86d020 vocab=d6473bda
+-/
 theorem exists_pPow_approx (x : ℚ_[p]) :
     ∃ (a : ℤ) (k : ℕ), ‖x - ((a : ℚ_[p]) / (p : ℚ_[p]) ^ k)‖ ≤ 1 := by
   have hp0 : ((p : ℝ)) ≠ 0 := by
@@ -89,6 +95,9 @@ theorem exists_pPow_approx (x : ℚ_[p]) :
           PadicInt.padic_norm_e_of_padicInt (y - ((PadicInt.appr y k : ℕ) : ℤ_[p]))
     _ ≤ ((p : ℝ))⁻¹ ^ k := hnormZ
 
+/--
+@isnad1 id=ex.2h6v.s8.5eda596164cc from=translated src=- shape=ef902050 vocab=977e47f6
+-/
 theorem pPow_approx_sub_int (a b : ℤ) (k j : ℕ) (x : ℚ_[p])
     (ha : ‖x - ((a : ℚ_[p]) / (p : ℚ_[p]) ^ k)‖ ≤ 1)
     (hb : ‖x - ((b : ℚ_[p]) / (p : ℚ_[p]) ^ j)‖ ≤ 1) :
@@ -117,6 +126,9 @@ def psiPadicFun (x : ℚ_[p]) : ℂ :=
     (((exists_pPow_approx x).choose : ℂ)
       / (p : ℂ) ^ ((exists_pPow_approx x).choose_spec.choose)))
 
+/--
+@isnad1 id=eq.1h4v.s7.ea0a6eb5028e from=translated src=- shape=5314f50b vocab=efaf91aa
+-/
 theorem psiPadicFun_eq {x : ℚ_[p]} {a : ℤ} {k : ℕ}
     (h : ‖x - ((a : ℚ_[p]) / (p : ℚ_[p]) ^ k)‖ ≤ 1) :
     psiPadicFun x = Complex.exp (-(2 * Real.pi * Complex.I) * ((a : ℂ) / (p : ℂ) ^ k)) := by
@@ -138,10 +150,16 @@ theorem psiPadicFun_eq {x : ℚ_[p]} {a : ℤ} {k : ℕ}
     exact Complex.exp_int_mul_two_pi_mul_I (-m)
   rw [hone, mul_one]
 
+/--
+@isnad1 id=eq.0h1v.s4.831f3e9caf60 from=translated src=- shape=b576ba08 vocab=96d26afa
+-/
 theorem psiPadicFun_zero : psiPadicFun (0 : ℚ_[p]) = 1 := by
   rw [psiPadicFun_eq (a := 0) (k := 0) (by simp)]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s5.2945a5f350fa from=translated src=- shape=398a3de9 vocab=173a189c
+-/
 theorem psiPadicFun_add (x y : ℚ_[p]) :
     psiPadicFun (x + y) = psiPadicFun x * psiPadicFun y := by
   have hpC : ((p : ℂ)) ≠ 0 := Nat.cast_ne_zero.mpr (Fact.out : p.Prime).ne_zero
@@ -168,13 +186,22 @@ def psiPadic : AddChar ℚ_[p] ℂ where
   map_zero_eq_one' := psiPadicFun_zero
   map_add_eq_mul' := psiPadicFun_add
 
+/--
+@isnad1 id=eq.0h2v.s6.5cefa6739407 from=translated src=- shape=56757dbd vocab=ddf42614
+-/
 theorem psiPadic_apply (x : ℚ_[p]) : psiPadic x = psiPadicFun x := rfl
 
+/--
+@isnad1 id=eq.1h2v.s6.6abfd3bb1ecc from=translated src=- shape=41b876fc vocab=911aaeea
+-/
 theorem psiPadic_eq_one_of_norm_le_one {x : ℚ_[p]} (hx : ‖x‖ ≤ 1) :
     psiPadic x = 1 := by
   rw [psiPadic_apply, psiPadicFun_eq (a := 0) (k := 0) (by simpa using hx)]
   simp
 
+/--
+@isnad1 id=eq.1h3v.s5.4f1c8c4bef01 from=translated src=- shape=e216c7dd vocab=5fc9fa3c
+-/
 theorem psiPadicFun_eq_of_norm_sub_le_one {x y : ℚ_[p]} (h : ‖y - x‖ ≤ 1) :
     psiPadicFun y = psiPadicFun x := by
   obtain ⟨a, k, ha⟩ := exists_pPow_approx x
@@ -184,6 +211,9 @@ theorem psiPadicFun_eq_of_norm_sub_le_one {x y : ℚ_[p]} (h : ‖y - x‖ ≤ 1
     exact le_trans (Padic.nonarchimedean _ _) (max_le h ha)
   rw [psiPadicFun_eq hy, psiPadicFun_eq ha]
 
+/--
+@isnad1 id=continuo.0h1v.s6.ab4c95c26a8e from=translated src=- shape=e5f49006 vocab=c546d89d
+-/
 theorem continuous_psiPadic : Continuous (psiPadic (p := p)) := by
   rw [continuous_iff_continuousAt]
   intro x
@@ -192,6 +222,9 @@ theorem continuous_psiPadic : Continuous (psiPadic (p := p)) := by
     exact psiPadicFun_eq_of_norm_sub_le_one (by simpa [dist_eq_norm] using hy)
   exact ContinuousAt.congr continuousAt_const hconst.symm
 
+/--
+@isnad1 id=eq.0h1v.s7.24be15c11597 from=translated src=- shape=aabbe63e vocab=0b08a735
+-/
 theorem psiPadic_inv_p :
     psiPadic ((p : ℚ_[p]))⁻¹ = Complex.exp (-(2 * Real.pi * Complex.I) / p) := by
   have hpQ : ((p : ℚ_[p])) ≠ 0 := Nat.cast_ne_zero.mpr (Fact.out : p.Prime).ne_zero
@@ -199,6 +232,9 @@ theorem psiPadic_inv_p :
   push_cast
   ring_nf
 
+/--
+@isnad1 id=ne.0h1v.s6.6139a9d7e96c from=translated src=- shape=4c1a3beb vocab=c74439a8
+-/
 theorem psiPadic_inv_p_ne_one : psiPadic ((p : ℚ_[p]))⁻¹ ≠ 1 := by
   rw [psiPadic_inv_p]
   intro h
@@ -232,12 +268,21 @@ def psiV : AddChar (v.adicCompletion ℚ) ℂ where
     rw [map_add]
     exact psiPadicFun_add _ _
 
+/--
+@isnad1 id=eq.0h2v.s12.ebf5e44042c2 from=translated src=- shape=c5424b8a vocab=9f5f0266
+-/
 theorem psiV_apply (x : v.adicCompletion ℚ) :
     psiV v x = psiPadic (adicCompletion.padicEquiv v x) := rfl
 
+/--
+@isnad1 id=continuo.0h1v.s8.d7910f53d5e2 from=translated src=- shape=5c86a25b vocab=a0066938
+-/
 theorem continuous_psiV : Continuous (psiV v) :=
   continuous_psiPadic.comp (adicCompletion.padicEquiv v).continuous
 
+/--
+@isnad1 id=eq.1h2v.s8.6508cb232c15 from=translated src=- shape=3185178e vocab=c51677c6
+-/
 theorem psiV_eq_one_of_mem_integers {x : v.adicCompletion ℚ}
     (hx : x ∈ v.adicCompletionIntegers ℚ) : psiV v x = 1 := by
   rw [psiV_apply]
@@ -249,6 +294,9 @@ theorem psiV_eq_one_of_mem_integers {x : v.adicCompletion ℚ}
   rw [PadicInt.padic_norm_e_of_padicInt]
   exact PadicInt.norm_le_one _
 
+/--
+@isnad1 id=ne.0h1v.s9.398d0ff1fce6 from=translated src=- shape=ee69276d vocab=11e629de
+-/
 theorem psiV_algebraMap_inv_ne_one :
     psiV v (algebraMap ℚ (v.adicCompletion ℚ) ((natGenerator v : ℚ))⁻¹) ≠ 1 := by
   rw [psiV_apply]
@@ -269,6 +317,9 @@ end PlaceChar
 
 section GlobalInt
 
+/--
+@isnad1 id=ex.1h1v.s5.5a528043aebd from=translated src=- shape=be1f4283 vocab=94451996
+-/
 theorem exists_int_of_forall_norm_le_one (D : ℚ)
     (h : ∀ (ℓ : ℕ) [Fact ℓ.Prime], ‖(D : ℚ_[ℓ])‖ ≤ 1) : ∃ m : ℤ, D = (m : ℚ) := by
   refine ⟨D.num, ?_⟩
@@ -313,6 +364,9 @@ section FiniteChar
 
 open IsDedekindDomain NumberField
 
+/--
+@isnad1 id=finite.0h1v.s8.31e6533faf11 from=translated src=- shape=59da250c vocab=d90e540b
+-/
 theorem mulSupport_psiV_finite (x : FiniteAdeleRing (𝓞 ℚ) ℚ) :
     (Function.mulSupport fun v => psiV v (x v)).Finite := by
   refine Set.Finite.subset (Filter.eventually_cofinite.mp x.eventually) ?_
@@ -339,14 +393,23 @@ def psiFin : AddChar (FiniteAdeleRing (𝓞 ℚ) ℚ) ℂ where
     rw [finprod_congr h]
     exact finprod_mul_distrib (mulSupport_psiV_finite a) (mulSupport_psiV_finite b)
 
+/--
+@isnad1 id=eq.0h1v.s9.c9b218cab5ac from=translated src=- shape=90a93d34 vocab=4b1202d7
+-/
 theorem psiFin_apply (x : FiniteAdeleRing (𝓞 ℚ) ℚ) :
     psiFin x = ∏ᶠ v, psiV v (x v) := rfl
 
+/--
+@isnad1 id=eq.1h1v.s8.ed3a581d7a12 from=translated src=- shape=f2e0f845 vocab=a1969cc5
+-/
 theorem psiFin_eq_one_of_forall_mem (x : FiniteAdeleRing (𝓞 ℚ) ℚ)
     (hx : ∀ v, x v ∈ v.adicCompletionIntegers ℚ) : psiFin x = 1 := by
   rw [psiFin_apply, finprod_congr (fun v => psiV_eq_one_of_mem_integers v (hx v))]
   exact finprod_one
 
+/--
+@isnad1 id=isopen.0h0v.s8.6450ff17676f from=translated src=- shape=9c93900c vocab=298702d2
+-/
 theorem isOpen_forall_mem_integers :
     IsOpen {y : FiniteAdeleRing (𝓞 ℚ) ℚ | ∀ v, y v ∈ v.adicCompletionIntegers ℚ} := by
   have h := RestrictedProduct.isOpen_forall_imp_mem
@@ -355,6 +418,9 @@ theorem isOpen_forall_mem_integers :
   simp at h
   exact h
 
+/--
+@isnad1 id=continuo.0h0v.s8.55ff59bef3e4 from=translated src=- shape=1df08b22 vocab=ebede1b5
+-/
 theorem continuous_psiFin : Continuous psiFin := by
   rw [continuous_iff_continuousAt]
   intro x
@@ -383,6 +449,9 @@ open IsDedekindDomain NumberField Rat.HeightOneSpectrum
 
 local instance (q : Nat.Primes) : Fact q.1.Prime := ⟨q.2⟩
 
+/--
+@isnad1 id=le.1h4v.s6.523eb12300dc from=translated src=- shape=2ddef200 vocab=7ff50b43
+-/
 theorem norm_pPow_ratCast_le_one {ℓ ℓ' : ℕ} [Fact ℓ.Prime] [Fact ℓ'.Prime] (hne : ℓ ≠ ℓ')
     (a : ℤ) (k : ℕ) : ‖((((a : ℚ) / (ℓ : ℚ) ^ k : ℚ)) : ℚ_[ℓ'])‖ ≤ 1 := by
   have hcast : ((((a : ℚ) / (ℓ : ℚ) ^ k : ℚ)) : ℚ_[ℓ'])
@@ -402,6 +471,9 @@ theorem norm_pPow_ratCast_le_one {ℓ ℓ' : ℕ} [Fact ℓ.Prime] [Fact ℓ'.Pr
 
 set_option maxHeartbeats 800000 in
 
+/--
+@isnad1 id=eq.0h1v.s9.6e9fe4f6589f from=translated src=- shape=f07b0eef vocab=7b250029
+-/
 theorem psiFin_algebraMap (q : ℚ) :
     psiFin (algebraMap ℚ (FiniteAdeleRing (𝓞 ℚ) ℚ) q)
       = Complex.exp (-(2 * Real.pi * Complex.I) * (q : ℂ)) := by
@@ -550,6 +622,9 @@ def psiArchPlace (v : InfinitePlace ℚ) : AddChar v.Completion ℂ where
     push_cast
     rw [mul_add, Complex.exp_add]
 
+/--
+@isnad1 id=eq.0h2v.s7.ac43b51a7ec8 from=translated src=- shape=5c858197 vocab=f5300e38
+-/
 theorem psiArchPlace_apply (v : InfinitePlace ℚ) (x : v.Completion) :
     psiArchPlace v x = Complex.exp ((2 * Real.pi * Complex.I) *
       ((InfinitePlace.Completion.extensionEmbeddingOfIsReal (IsTotallyReal.isReal v) x : ℝ) : ℂ)) :=
@@ -571,9 +646,15 @@ def psiArch : AddChar (InfiniteAdeleRing ℚ) ℂ where
     rw [finprod_congr h]
     exact finprod_mul_distrib (Set.toFinite _) (Set.toFinite _)
 
+/--
+@isnad1 id=eq.0h1v.s7.fc83b24f4fa2 from=translated src=- shape=b0fda915 vocab=7ab96635
+-/
 theorem psiArch_apply (x : InfiniteAdeleRing ℚ) :
     psiArch x = ∏ᶠ v, psiArchPlace v (x v) := rfl
 
+/--
+@isnad1 id=continuo.0h0v.s6.93bba01ab3fc from=translated src=- shape=185df354 vocab=2d385940
+-/
 theorem continuous_psiArch : Continuous psiArch := by
   show Continuous fun x : InfiniteAdeleRing ℚ => ∏ᶠ v, psiArchPlace v (x v)
   have heq : (fun x : InfiniteAdeleRing ℚ => ∏ᶠ v, psiArchPlace v (x v))
@@ -588,6 +669,9 @@ theorem continuous_psiArch : Continuous psiArch := by
   exact Complex.continuous_exp.comp (continuous_const.mul
     (Complex.continuous_ofReal.comp (hemb.comp (continuous_apply v))))
 
+/--
+@isnad1 id=eq.0h1v.s7.8fe72dd70ad7 from=translated src=- shape=71fcf7f8 vocab=727add07
+-/
 theorem psiArch_algebraMap (q : ℚ) :
     psiArch (algebraMap ℚ (InfiniteAdeleRing ℚ) q)
       = Complex.exp ((2 * Real.pi * Complex.I) * (q : ℂ)) := by
@@ -626,12 +710,21 @@ def psiQ : AddChar (AdeleRing (𝓞 ℚ) ℚ) ℂ where
       AddChar.map_add_eq_mul, AddChar.map_add_eq_mul]
     ring
 
+/--
+@isnad1 id=eq.0h1v.s9.9f7ac1c21103 from=translated src=- shape=22cbef52 vocab=cc9ac1df
+-/
 theorem psiQ_apply (x : AdeleRing (𝓞 ℚ) ℚ) : psiQ x = psiArch x.1 * psiFin x.2 := rfl
 
+/--
+@isnad1 id=continuo.0h0v.s8.1b1a22d6502e from=translated src=- shape=1df08b22 vocab=32114f33
+-/
 theorem continuous_psiQ : Continuous psiQ := by
   show Continuous fun x : AdeleRing (𝓞 ℚ) ℚ => psiArch x.1 * psiFin x.2
   exact (continuous_psiArch.comp continuous_fst).mul (continuous_psiFin.comp continuous_snd)
 
+/--
+@isnad1 id=eq.0h1v.s8.6d4754e457d4 from=translated src=- shape=6c5261a4 vocab=ff06611f
+-/
 theorem psiQ_algebraMap (q : ℚ) : psiQ (algebraMap ℚ (AdeleRing (𝓞 ℚ) ℚ) q) = 1 := by
   have h1 : ((algebraMap ℚ (AdeleRing (𝓞 ℚ) ℚ) q).1)
       = algebraMap ℚ (InfiniteAdeleRing ℚ) q := rfl
@@ -658,6 +751,9 @@ def singlePlaceAdele (v : IsDedekindDomain.HeightOneSpectrum (𝓞 ℚ)) (r : �
     exact zero_mem _⟩
 
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s9.71b6569a343f from=translated src=- shape=b8c0ec9e vocab=4bfda1ba
+-/
 theorem singlePlaceAdele_apply (v : IsDedekindDomain.HeightOneSpectrum (𝓞 ℚ)) (r : ℚ)
     (w : IsDedekindDomain.HeightOneSpectrum (𝓞 ℚ)) :
     (singlePlaceAdele v r) w = if w = v then algebraMap ℚ (w.adicCompletion ℚ) r else 0 :=
@@ -665,6 +761,9 @@ theorem singlePlaceAdele_apply (v : IsDedekindDomain.HeightOneSpectrum (𝓞 ℚ
 
 open Classical in
 
+/--
+@isnad1 id=eq.0h2v.s9.8d6b2352ed1e from=translated src=- shape=3cafdc46 vocab=7a81e618
+-/
 theorem psiFin_singlePlaceAdele (v : IsDedekindDomain.HeightOneSpectrum (𝓞 ℚ)) (r : ℚ) :
     psiFin (singlePlaceAdele v r) = psiV v (algebraMap ℚ (v.adicCompletion ℚ) r) := by
   rw [psiFin_apply]

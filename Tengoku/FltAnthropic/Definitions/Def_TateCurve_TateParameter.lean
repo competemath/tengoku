@@ -15,6 +15,9 @@ section QSeriesExtras
 variable {K : Type*} [NontriviallyNormedField K] [IsUltrametricDist K]
 variable {q : K} [CompleteSpace K]
 
+/--
+@isnad1 id=le.1h2v.s7.39a039bfd2bc from=translated src=- shape=40e2a488 vocab=7d65ce84
+-/
 theorem nnnorm_Δ_sub_le (hq : ‖q‖₊ < 1) : ‖(curve q).Δ - q‖₊ ≤ ‖q‖₊ ^ 2 := by
   have ha₄ := nnnorm_a₄_le hq
   have ha₆ := nnnorm_a₆_le hq
@@ -53,6 +56,9 @@ theorem nnnorm_Δ_sub_le (hq : ‖q‖₊ < 1) : ‖(curve q).Δ - q‖₊ ≤ �
           mul_le_mul' (mul_le_mul' h72 ha₄) ha₆
       _ = ‖q‖₊ ^ 2 := by ring
 
+/--
+@isnad1 id=eq.2h2v.s7.afc2a92bc01f from=translated src=- shape=805889bc vocab=db0be44e
+-/
 theorem nnnorm_Δ (hq0 : q ≠ 0) (hq : ‖q‖₊ < 1) : ‖(curve q).Δ‖₊ = ‖q‖₊ := by
   refine nnnorm_eq_of_nnnorm_sub_lt ((nnnorm_Δ_sub_le hq).trans_lt ?_)
   have hq0' : 0 < ‖q‖₊ := by simpa [pos_iff_ne_zero] using hq0
@@ -60,6 +66,9 @@ theorem nnnorm_Δ (hq0 : q ≠ 0) (hq : ‖q‖₊ < 1) : ‖(curve q).Δ‖₊ 
     _ < 1 * ‖q‖₊ := mul_lt_mul_of_pos_right hq hq0'
     _ = ‖q‖₊ := one_mul _
 
+/--
+@isnad1 id=ne.2h2v.s7.83820c2bb4f9 from=translated src=- shape=2f3f6861 vocab=db0be44e
+-/
 theorem Δ_ne_zero (hq0 : q ≠ 0) (hq : ‖q‖₊ < 1) : (curve q).Δ ≠ 0 := by
   intro h
   apply hq0
@@ -67,9 +76,15 @@ theorem Δ_ne_zero (hq0 : q ≠ 0) (hq : ‖q‖₊ < 1) : (curve q).Δ ≠ 0 :=
   rw [h, nnnorm_zero] at this
   rw [← nnnorm_eq_zero, ← this]
 
+/--
+@isnad1 id=isellipt.2h2v.s6.c85a0278c94c from=translated src=- shape=f78d0075 vocab=a2b8140a
+-/
 theorem isElliptic (hq0 : q ≠ 0) (hq : ‖q‖₊ < 1) : (curve q).IsElliptic :=
   ⟨isUnit_iff_ne_zero.mpr (Δ_ne_zero hq0 hq)⟩
 
+/--
+@isnad1 id=eq.1h2v.s6.cfce8d69200a from=translated src=- shape=3fcf6196 vocab=7afa315f
+-/
 theorem nnnorm_c₄ (hq : ‖q‖₊ < 1) : ‖(curve q).c₄‖₊ = 1 := by
   have h : ‖(curve q).c₄ - 1‖₊ < 1 := by
     rw [curve_c₄]
@@ -85,6 +100,9 @@ theorem nnnorm_c₄ (hq : ‖q‖₊ < 1) : ‖(curve q).c₄‖₊ = 1 := by
     (by rw [nnnorm_one]; exact h)
   rwa [nnnorm_one] at this
 
+/--
+@isnad1 id=eq.2h2v.s7.1f04881fd2d1 from=translated src=- shape=bae56e47 vocab=7ab42fdc
+-/
 theorem nnnorm_j (hq0 : q ≠ 0) (hq : ‖q‖₊ < 1) :
     haveI := isElliptic hq0 hq
     ‖(curve q).j‖₊ = ‖q‖₊⁻¹ := by
@@ -92,6 +110,9 @@ theorem nnnorm_j (hq0 : q ≠ 0) (hq : ‖q‖₊ < 1) :
   rw [WeierstrassCurve.j, nnnorm_mul, nnnorm_pow, nnnorm_c₄ hq, one_pow, mul_one]
   rw [Units.val_inv_eq_inv_val, nnnorm_inv, WeierstrassCurve.coe_Δ', nnnorm_Δ hq0 hq]
 
+/--
+@isnad1 id=lt.2h2v.s7.20441f5d3c81 from=translated src=- shape=82aef132 vocab=28438a93
+-/
 theorem one_lt_nnnorm_j (hq0 : q ≠ 0) (hq : ‖q‖₊ < 1) :
     haveI := isElliptic hq0 hq
     1 < ‖(curve q).j‖₊ := by
@@ -113,6 +134,9 @@ variable {K : Type*} [NontriviallyNormedField K] [IsUltrametricDist K]
 
 section PowSub
 
+/--
+@isnad1 id=le.0h4v.s8.24a36da72e09 from=translated src=- shape=3f404d5f vocab=f4658f10
+-/
 theorem nnnorm_pow_succ_sub_pow_succ_le (x y : K) (n : ℕ) :
     ‖x ^ (n + 1) - y ^ (n + 1)‖₊ ≤ (max ‖x‖₊ ‖y‖₊) ^ n * ‖x - y‖₊ := by
   induction n with
@@ -144,6 +168,9 @@ section CoeffSumDiff
 
 variable (c : ℕ → ℕ) {q₁ q₂ : K}
 
+/--
+@isnad1 id=eq.3h5v.s8.dbef9a9cfc6f from=translated src=- shape=464ed6d6 vocab=1bd94352
+-/
 theorem term_sub_term (hq₁ : ‖q₁‖₊ < 1) (hq₂ : ‖q₂‖₊ < 1) {n : ℕ} (hn : n ≠ 0) :
     term c q₁ n - term c q₂ n
       = (c n : K) * ((q₁ ^ n - q₂ ^ n) / ((1 - q₁ ^ n) * (1 - q₂ ^ n))) := by
@@ -157,6 +184,9 @@ theorem term_sub_term (hq₁ : ‖q₁‖₊ < 1) (hq₂ : ‖q₂‖₊ < 1) {n
   field_simp
   ring
 
+/--
+@isnad1 id=le.2h5v.s8.c131ed6e569d from=translated src=- shape=4ffc0a7f vocab=b81dcfa2
+-/
 theorem nnnorm_term_sub_term_succ_le (hq₁ : ‖q₁‖₊ < 1) (hq₂ : ‖q₂‖₊ < 1) (m : ℕ) :
     ‖term c q₁ (m + 1) - term c q₂ (m + 1)‖₊
       ≤ (max ‖q₁‖₊ ‖q₂‖₊) ^ m * ‖q₁ - q₂‖₊ := by
@@ -174,6 +204,9 @@ theorem nnnorm_term_sub_term_succ_le (hq₁ : ‖q₁‖₊ < 1) (hq₂ : ‖q�
           (nnnorm_pow_succ_sub_pow_succ_le q₁ q₂ m)
     _ = (max ‖q₁‖₊ ‖q₂‖₊) ^ m * ‖q₁ - q₂‖₊ := one_mul _
 
+/--
+@isnad1 id=le.2h5v.s7.95ce71da2e6d from=translated src=- shape=9012506e vocab=eb56a84d
+-/
 theorem nnnorm_term_sub_term_le (hq₁ : ‖q₁‖₊ < 1) (hq₂ : ‖q₂‖₊ < 1) (n : ℕ) :
     ‖term c q₁ n - term c q₂ n‖₊ ≤ ‖q₁ - q₂‖₊ := by
   rcases Nat.eq_zero_or_pos n with rfl | hn
@@ -186,6 +219,9 @@ theorem nnnorm_term_sub_term_le (hq₁ : ‖q₁‖₊ < 1) (hq₂ : ‖q₂‖�
     _ ≤ 1 * ‖q₁ - q₂‖₊ := mul_le_mul' hmax1 le_rfl
     _ = ‖q₁ - q₂‖₊ := one_mul _
 
+/--
+@isnad1 id=le.3h5v.s8.750ad1b6727f from=translated src=- shape=71cc9d8a vocab=74640478
+-/
 theorem nnnorm_term_sub_term_le_mul (hq₁ : ‖q₁‖₊ < 1) (hq₂ : ‖q₂‖₊ < 1) {n : ℕ} (hn : 2 ≤ n) :
     ‖term c q₁ n - term c q₂ n‖₊ ≤ max ‖q₁‖₊ ‖q₂‖₊ * ‖q₁ - q₂‖₊ := by
   obtain ⟨m, rfl⟩ : ∃ m, n = m + 1 := ⟨n - 1, by omega⟩
@@ -200,6 +236,9 @@ theorem nnnorm_term_sub_term_le_mul (hq₁ : ‖q₁‖₊ < 1) (hq₂ : ‖q₂
 
 variable [CompleteSpace K]
 
+/--
+@isnad1 id=summable.1h3v.s7.96fefc344552 from=translated src=- shape=15929b47 vocab=d2acbcf2
+-/
 theorem summable_term_ite (hq : ‖q₁‖₊ < 1) :
     Summable fun n => if n = 1 then (0 : K) else term c q₁ n := by
   refine NonarchimedeanAddGroup.summable_of_tendsto_cofinite_zero ?_
@@ -214,6 +253,9 @@ theorem summable_term_ite (hq : ‖q₁‖₊ < 1) :
       exact_mod_cast nnnorm_term_le c hq n
   · exact_mod_cast hq
 
+/--
+@isnad1 id=le.2h4v.s7.128cbcaf956f from=translated src=- shape=4506c79b vocab=36c644c2
+-/
 theorem nnnorm_coeffSum_sub_coeffSum_le (hq₁ : ‖q₁‖₊ < 1) (hq₂ : ‖q₂‖₊ < 1) :
     ‖coeffSum c q₁ - coeffSum c q₂‖₊ ≤ ‖q₁ - q₂‖₊ := by
   have hsum : coeffSum c q₁ - coeffSum c q₂ = ∑' n, (term c q₁ n - term c q₂ n) :=
@@ -221,6 +263,9 @@ theorem nnnorm_coeffSum_sub_coeffSum_le (hq₁ : ‖q₁‖₊ < 1) (hq₂ : ‖
   rw [hsum]
   exact nnnorm_tsum_le_of_forall_le fun n => nnnorm_term_sub_term_le c hq₁ hq₂ n
 
+/--
+@isnad1 id=le.2h4v.s8.a3d49de4a7f6 from=translated src=- shape=dd5dcfee vocab=a8139318
+-/
 theorem nnnorm_coeffSum_sub_coeffSum_sub_le (hq₁ : ‖q₁‖₊ < 1) (hq₂ : ‖q₂‖₊ < 1) :
     ‖coeffSum c q₁ - coeffSum c q₂ - (c 1 : K) * (q₁ - q₂)‖₊
       ≤ max ‖q₁‖₊ ‖q₂‖₊ * ‖q₁ - q₂‖₊ := by
@@ -294,6 +339,9 @@ section CoefficientsDiff
 
 variable [CompleteSpace K] {q₁ q₂ : K}
 
+/--
+@isnad1 id=le.2h3v.s7.b040bbb21bb6 from=translated src=- shape=5485004a vocab=d26d5e08
+-/
 theorem nnnorm_a₄_sub_a₄_le (hq₁ : ‖q₁‖₊ < 1) (hq₂ : ‖q₂‖₊ < 1) :
     ‖a₄ q₁ - a₄ q₂‖₊ ≤ ‖q₁ - q₂‖₊ := by
   have h : a₄ q₁ - a₄ q₂
@@ -302,6 +350,9 @@ theorem nnnorm_a₄_sub_a₄_le (hq₁ : ‖q₁‖₊ < 1) (hq₂ : ‖q₂‖�
   rw [h, nnnorm_neg]
   exact nnnorm_coeffSum_sub_coeffSum_le _ hq₁ hq₂
 
+/--
+@isnad1 id=le.2h3v.s7.a1222a2a93c3 from=translated src=- shape=5485004a vocab=71468639
+-/
 theorem nnnorm_a₆_sub_a₆_le (hq₁ : ‖q₁‖₊ < 1) (hq₂ : ‖q₂‖₊ < 1) :
     ‖a₆ q₁ - a₆ q₂‖₊ ≤ ‖q₁ - q₂‖₊ := by
   have h : a₆ q₁ - a₆ q₂ = -(coeffSum b q₁ - coeffSum b q₂) := by
@@ -309,6 +360,9 @@ theorem nnnorm_a₆_sub_a₆_le (hq₁ : ‖q₁‖₊ < 1) (hq₂ : ‖q₂‖�
   rw [h, nnnorm_neg]
   exact nnnorm_coeffSum_sub_coeffSum_le _ hq₁ hq₂
 
+/--
+@isnad1 id=le.2h3v.s8.60aabc15d5db from=translated src=- shape=7db13131 vocab=4ff71ba0
+-/
 theorem nnnorm_a₆_sub_a₆_add_le (hq₁ : ‖q₁‖₊ < 1) (hq₂ : ‖q₂‖₊ < 1) :
     ‖a₆ q₁ - a₆ q₂ + (q₁ - q₂)‖₊ ≤ max ‖q₁‖₊ ‖q₂‖₊ * ‖q₁ - q₂‖₊ := by
   have h := nnnorm_coeffSum_sub_coeffSum_sub_le (K := K) b hq₁ hq₂
@@ -319,6 +373,9 @@ theorem nnnorm_a₆_sub_a₆_add_le (hq₁ : ‖q₁‖₊ < 1) (hq₂ : ‖q₂
   rw [hkey, nnnorm_neg]
   exact h
 
+/--
+@isnad1 id=le.2h3v.s7.99d3f5ef01e4 from=translated src=- shape=9b1e7b11 vocab=68fa08d8
+-/
 theorem nnnorm_c₄_sub_c₄_le (hq₁ : ‖q₁‖₊ < 1) (hq₂ : ‖q₂‖₊ < 1) :
     ‖(curve q₁).c₄ - (curve q₂).c₄‖₊ ≤ ‖q₁ - q₂‖₊ := by
   have hkey : (curve q₁).c₄ - (curve q₂).c₄ = -(48 * (a₄ q₁ - a₄ q₂)) := by
@@ -330,6 +387,9 @@ theorem nnnorm_c₄_sub_c₄_le (hq₁ : ‖q₁‖₊ < 1) (hq₂ : ‖q₂‖�
         · exact nnnorm_a₄_sub_a₄_le hq₁ hq₂
     _ = ‖q₁ - q₂‖₊ := one_mul _
 
+/--
+@isnad1 id=le.2h3v.s8.be262dbe33cc from=translated src=- shape=1ea0f56a vocab=5b92760e
+-/
 theorem nnnorm_Δ_sub_Δ_sub_le (hq₁ : ‖q₁‖₊ < 1) (hq₂ : ‖q₂‖₊ < 1) :
     ‖(curve q₁).Δ - (curve q₂).Δ - (q₁ - q₂)‖₊ ≤ max ‖q₁‖₊ ‖q₂‖₊ * ‖q₁ - q₂‖₊ := by
   have hM1 : max ‖q₁‖₊ ‖q₂‖₊ < 1 := max_lt hq₁ hq₂
@@ -412,6 +472,9 @@ variable [CompleteSpace K]
 noncomputable def jInversionStep (j₀ q : K) : K :=
   (curve q).c₄ ^ 3 / j₀ - ((curve q).Δ - q)
 
+/--
+@isnad1 id=iff.1h3v.s7.f61667b34b86 from=translated src=- shape=79fb3ed7 vocab=d1c35647
+-/
 theorem jInversionStep_eq_self_iff {j₀ q : K} (hj₀ : j₀ ≠ 0) :
     jInversionStep j₀ q = q ↔ (curve q).c₄ ^ 3 = j₀ * (curve q).Δ := by
   rw [jInversionStep]
@@ -425,6 +488,9 @@ theorem jInversionStep_eq_self_iff {j₀ q : K} (hj₀ : j₀ ≠ 0) :
       rw [div_eq_iff hj₀]; linear_combination h
     linear_combination h2
 
+/--
+@isnad1 id=eq.2h3v.s7.0f186bbade2c from=translated src=- shape=dc05f82a vocab=a0529ea2
+-/
 theorem nnnorm_jInversionStep {j₀ q : K} (hj : 1 < ‖j₀‖₊) (hq : ‖q‖₊ ≤ ‖j₀‖₊⁻¹) :
     ‖jInversionStep j₀ q‖₊ = ‖j₀‖₊⁻¹ := by
   have hpos : (0 : ℝ≥0) < ‖j₀‖₊ := lt_trans zero_lt_one hj
@@ -453,6 +519,9 @@ theorem nnnorm_jInversionStep {j₀ q : K} (hj : 1 < ‖j₀‖₊) (hq : ‖q�
   rw [sub_sub_cancel_left, nnnorm_neg, hmain]
   exact hcorr
 
+/--
+@isnad1 id=le.3h4v.s8.2f220b2320db from=translated src=- shape=1db826db vocab=4e6eb16b
+-/
 theorem nnnorm_jInversionStep_sub_le {j₀ q₁ q₂ : K} (hj : 1 < ‖j₀‖₊)
     (hq₁ : ‖q₁‖₊ < 1) (hq₂ : ‖q₂‖₊ < 1) :
     ‖jInversionStep j₀ q₁ - jInversionStep j₀ q₂‖₊
@@ -501,6 +570,9 @@ theorem nnnorm_jInversionStep_sub_le {j₀ q₁ q₂ : K} (hj : 1 < ‖j₀‖�
       _ ≤ max (max ‖q₁‖₊ ‖q₂‖₊) ‖j₀‖₊⁻¹ * ‖q₁ - q₂‖₊ :=
           mul_le_mul' (le_max_left _ _) le_rfl
 
+/--
+@isnad1 id=ex.1h2v.s7.428c613265fc from=translated src=- shape=d32c9a0a vocab=a8afac70
+-/
 theorem exists_tateParameter_c₄ (j₀ : K) (hj : 1 < ‖j₀‖₊) :
     ∃ q : K, q ≠ 0 ∧ ‖q‖₊ = ‖j₀‖₊⁻¹ ∧ (curve q).c₄ ^ 3 = j₀ * (curve q).Δ := by
   have hpos : (0 : ℝ≥0) < ‖j₀‖₊ := lt_trans zero_lt_one hj
@@ -564,6 +636,9 @@ theorem exists_tateParameter_c₄ (j₀ : K) (hj : 1 < ‖j₀‖₊) :
     exact hρpos.ne' hxnorm.symm
   exact ⟨(x : K), hx0, hxnorm, (jInversionStep_eq_self_iff hj₀0).mp hfix⟩
 
+/--
+@isnad1 id=eq.5h4v.s8.447965041a8d from=translated src=- shape=4a3b3273 vocab=52f9231e
+-/
 theorem tateParameter_unique {j₀ q₁ q₂ : K} (hj : 1 < ‖j₀‖₊)
     (hq₁ : ‖q₁‖₊ < 1) (hq₂ : ‖q₂‖₊ < 1)
     (h₁ : (curve q₁).c₄ ^ 3 = j₀ * (curve q₁).Δ)
@@ -592,6 +667,9 @@ theorem tateParameter_unique {j₀ q₁ q₂ : K} (hj : 1 < ‖j₀‖₊)
       _ = ‖q₁ - q₂‖₊ := one_mul _
   exact lt_irrefl _ hlt
 
+/--
+@isnad1 id=eq.3h3v.s7.84b1274fbd01 from=translated src=- shape=04c6e43b vocab=6b50f72a
+-/
 theorem curve_j_eq {q j₀ : K} (hq0 : q ≠ 0) (hq : ‖q‖₊ < 1)
     (h : (curve q).c₄ ^ 3 = j₀ * (curve q).Δ) :
     haveI := isElliptic hq0 hq
@@ -601,6 +679,9 @@ theorem curve_j_eq {q j₀ : K} (hq0 : q ≠ 0) (hq : ‖q‖₊ < 1)
   rw [WeierstrassCurve.j, Units.val_inv_eq_inv_val, WeierstrassCurve.coe_Δ', h,
     mul_comm j₀ ((curve q).Δ), ← mul_assoc, inv_mul_cancel₀ hΔ0, one_mul]
 
+/--
+@isnad1 id=eq.3h3v.s7.e433318bf55a from=translated src=- shape=2c8e7c14 vocab=6b50f72a
+-/
 theorem c₄_pow_eq_of_curve_j_eq {q j₀ : K} (hq0 : q ≠ 0) (hq : ‖q‖₊ < 1)
     (h : (haveI := isElliptic hq0 hq; (curve q).j) = j₀) :
     (curve q).c₄ ^ 3 = j₀ * (curve q).Δ := by
@@ -613,6 +694,9 @@ theorem c₄_pow_eq_of_curve_j_eq {q j₀ : K} (hq0 : q ≠ 0) (hq : ‖q‖₊ 
     _ = (curve q).Δ * j₀ := by rw [h]
     _ = j₀ * (curve q).Δ := mul_comm _ _
 
+/--
+@isnad1 id=ex.1h2v.s8.d78d2018b3b0 from=translated src=- shape=e0ab049f vocab=7ab42fdc
+-/
 theorem exists_tateParameter (j₀ : K) (hj : 1 < ‖j₀‖₊) :
     ∃ q : K, ∃ (hq0 : q ≠ 0) (hq : ‖q‖₊ < 1),
       ‖q‖₊ = ‖j₀‖₊⁻¹ ∧ (haveI := isElliptic hq0 hq; (curve q).j) = j₀ := by
@@ -624,6 +708,9 @@ theorem exists_tateParameter (j₀ : K) (hj : 1 < ‖j₀‖₊) :
   have hq : ‖q‖₊ < 1 := by rw [hqnorm]; exact hρlt
   exact ⟨q, hq0, hq, hqnorm, curve_j_eq hq0 hq halg⟩
 
+/--
+@isnad1 id=ex.1h2v.s8.7e19d8d081b5 from=translated src=- shape=40fe7732 vocab=c0884c74
+-/
 theorem exists_tateParameter_of_isElliptic (E : WeierstrassCurve K) [E.IsElliptic]
     (hE : 1 < ‖E.j‖₊) :
     ∃ q : K, ∃ (hq0 : q ≠ 0) (hq : ‖q‖₊ < 1),

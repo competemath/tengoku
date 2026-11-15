@@ -22,6 +22,9 @@ def unitIdeles : Subgroup (FiniteAdeleRing R K)ˣ where
     exact ⟨hx2, fun v => by rw [inv_inv]; exact hx1 v⟩
 
 variable {R K} in
+/--
+@isnad1 id=iff.0h3v.s9.82d8d55ca795 from=translated src=- shape=d3f85bee vocab=7585f84c
+-/
 theorem mem_unitIdeles_iff (δ : (FiniteAdeleRing R K)ˣ) :
     δ ∈ unitIdeles R K ↔
       (∀ v : HeightOneSpectrum R, (δ : FiniteAdeleRing R K) v ∈ v.adicCompletionIntegers K) ∧

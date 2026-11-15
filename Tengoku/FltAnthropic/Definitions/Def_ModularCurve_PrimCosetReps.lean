@@ -12,6 +12,9 @@ def primCosetReps (N : ℕ) : Finset (ℕ × ℕ × ℕ) :=
     (fun t => t.1 * t.2.2 = N ∧ t.2.1 < t.2.2 ∧ Nat.gcd t.1 (Nat.gcd t.2.1 t.2.2) = 1)
     (Finset.range (N + 1) ×ˢ Finset.range (N + 1) ×ˢ Finset.range (N + 1))
 
+/--
+@isnad1 id=iff.1h4v.s6.67055aa901cd from=translated src=- shape=f4d8c395 vocab=b92d3095
+-/
 theorem mem_primCosetReps {N a b d : ℕ} (hN : N ≠ 0) :
     (a, b, d) ∈ primCosetReps N ↔ a * d = N ∧ b < d ∧ Nat.gcd a (Nat.gcd b d) = 1 := by
   simp only [primCosetReps, Finset.mem_filter, Finset.mem_product, Finset.mem_range]
@@ -38,6 +41,9 @@ noncomputable def cosetConj (ζ : Kˣ) (J : LaurentSeries K) (t : ℕ × ℕ × 
     haveI : NeZero t.1 := ⟨h⟩
     cosetSubst ζ t.1 t.2.1 J
 
+/--
+@isnad1 id=eq.0h6v.s7.72d398fe2e93 from=translated src=- shape=3389057a vocab=ff242c6d
+-/
 theorem cosetConj_eq (ζ : Kˣ) (J : LaurentSeries K) (a b d : ℕ) [NeZero a] :
     cosetConj ζ J (a, b, d) = cosetSubst ζ a b J := by
   unfold cosetConj

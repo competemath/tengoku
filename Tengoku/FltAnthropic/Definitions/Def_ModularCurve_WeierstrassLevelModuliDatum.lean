@@ -50,13 +50,22 @@ variable {A : Type u} [CommRing A] (R : RigidWeierstrassData.{u} A)
 def Rel {T : Type u} [CommRing T] [Algebra A T] (x y : R.Raw T) : Prop :=
   ∃ C : WeierstrassCurve.VariableChange T, y = R.act C x
 
+/--
+@isnad1 id=rel.0h4v.s5.74441f7a22dd from=translated src=- shape=ce4aa7a8 vocab=d79dfa8c
+-/
 theorem Rel.refl {T : Type u} [CommRing T] [Algebra A T] (x : R.Raw T) : R.Rel x x := ⟨1, (R.act_one x).symm⟩
 
+/--
+@isnad1 id=rel.2h6v.s6.7e31e4f273fc from=translated src=- shape=2a6a3cbd vocab=d79dfa8c
+-/
 theorem Rel.trans {T : Type u} [CommRing T] [Algebra A T] {x y z : R.Raw T} (h : R.Rel x y) (h' : R.Rel y z) :
     R.Rel x z := by
   obtain ⟨C, rfl⟩ := h; obtain ⟨C', rfl⟩ := h'
   exact ⟨C' * C, (R.act_mul C' C x).symm⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.20f46fa3bff2 from=translated src=- shape=acb03cce vocab=691749ed
+-/
 theorem smul_curve_eq (T : Type u) [CommRing T] (C C' : WeierstrassCurve.VariableChange T) (W : WeierstrassCurve T) :
     (C * C') • W = C • (C' • W) := mul_smul C C' W
 
@@ -68,6 +77,9 @@ def map {T T' : Type u} [CommRing T] [Algebra A T] [CommRing T'] [Algebra A T'] 
     rintro x y ⟨C, rfl⟩
     exact Quot.sound ⟨C.map f.toRingHom, R.mapRing_act f C x⟩)
 
+/--
+@isnad1 id=eq.0h6v.s7.9bae2c070a4b from=translated src=- shape=bc55743c vocab=1cf52924
+-/
 theorem map_mk {T T' : Type u} [CommRing T] [Algebra A T] [CommRing T'] [Algebra A T'] (f : T →ₐ[A] T')
     (x : R.Raw T) : R.map f (Quot.mk _ x) = Quot.mk _ (R.mapRing f x) := rfl
 
@@ -82,6 +94,9 @@ noncomputable def jOf {T : Type u} [CommRing T] [Algebra A T] : R.Pt T → T :=
       exact (R.curve x).jOfUnit_variableChange C (R.isUnit_Δ x) hW'
     exact (key _ _ (R.curve_act C x)).symm)
 
+/--
+@isnad1 id=eq.0h4v.s6.86b096f58b31 from=translated src=- shape=05ab71ba vocab=4a71b116
+-/
 theorem jOf_mk {T : Type u} [CommRing T] [Algebra A T] (x : R.Raw T) :
     R.jOf (Quot.mk _ x) = (R.curve x).jOfUnit (R.isUnit_Δ x) := rfl
 

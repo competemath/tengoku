@@ -93,6 +93,9 @@ end PresheafOfModules
 
 namespace CategoryTheory.Limits
 
+/--
+@isnad1 id=isiso.1h9v.s7.a27d7b403dd1 from=translated src=- shape=9333f3c1 vocab=12d3fd0b
+-/
 lemma isIso_app_of_isColimit {𝒜 : Type*} [Category 𝒜] {ℬ : Type*} [Category ℬ]
     {J : Type*} [Category J] {H₁ H₂ : 𝒜 ⥤ ℬ} (τ : H₁ ⟶ H₂) {K : J ⥤ 𝒜} {c : Cocone K}
     (hc : IsColimit c) [PreservesColimit K H₁] [PreservesColimit K H₂]
@@ -127,6 +130,9 @@ variable {C : Type u₁} [Category.{v₁} C] {R : Cᵒᵖ ⥤ CommRingCat.{u}}
 
 local notation "R'" => R ⋙ forget₂ CommRingCat RingCat
 
+/--
+@isnad1 id=eq.0h7v.s15.98a8ffc86501 from=translated src=- shape=412b7ca1 vocab=bfd690cd
+-/
 lemma freeObj_map_freeMk (T : Cᵒᵖ ⥤ Type u) {X Y : Cᵒᵖ} (f : X ⟶ Y) (x : T.obj X) :
     (freeObj (R := R') T).map f (ModuleCat.freeMk x) = ModuleCat.freeMk (T.map f x) := by
   simp [freeObj, ModuleCat.freeDesc_apply]
@@ -166,9 +172,15 @@ noncomputable def freeμIso (F G : Cᵒᵖ ⥤ Type u) :
     erw [ModuleCat.FreeMonoidal.μIso_hom_freeMk_tmul_freeMk]
     rfl)
 
+/--
+@isnad1 id=eq.0h5v.s12.0bc64051092b from=translated src=- shape=2d060117 vocab=999e219b
+-/
 @[simp] lemma freeμIso_hom_app (F G : Cᵒᵖ ⥤ Type u) (X : Cᵒᵖ) :
     (freeμIso (R := R) F G).hom.app X =
       (ModuleCat.FreeMonoidal.μIso (R.obj X) (F.obj X) (G.obj X)).hom := rfl
+/--
+@isnad1 id=eq.0h3v.s12.8fe1ae300041 from=translated src=- shape=a85c0d37 vocab=26599f33
+-/
 @[simp] lemma freeεIso_hom_app (X : Cᵒᵖ) :
     (freeεIso (R := R)).hom.app X = (ModuleCat.FreeMonoidal.εIso (R.obj X)).hom := rfl
 
@@ -237,21 +249,33 @@ noncomputable def u₂ (U : C) : gS U ⟶ (pf F φ).obj (gR (F.obj U)) :=
   (h₂ F φ U).homEquiv (𝟙 _)
 
 omit [HasFiniteProducts C] [HasFiniteProducts D] [PreservesFiniteProducts F] in
+/--
+@isnad1 id=eq.0h5v.s14.dd44db8516e8 from=translated src=- shape=72929bd6 vocab=890b0fe6
+-/
 lemma freeYonedaEquiv_apply' {M : PresheafOfModules.{u} S'} {X : C}
     (f : gS X ⟶ M) : freeYonedaEquiv f = f.app (op X) (ModuleCat.freeMk (𝟙 X)) := rfl
 
 omit [HasFiniteProducts C] [HasFiniteProducts D] [PreservesFiniteProducts F] in
+/--
+@isnad1 id=eq.0h7v.s15.65d2aa0afd07 from=translated src=- shape=b4198790 vocab=c811ad07
+-/
 lemma gS_map_freeMk {U W W' : C} (a : W ⟶ U) (b : W' ⟶ W) :
     (gS (S := S) U).map b.op (ModuleCat.freeMk a) = ModuleCat.freeMk (b ≫ a) := by
   erw [freeObj_map_freeMk]; simp
 
 omit [HasFiniteProducts C] [HasFiniteProducts D] [PreservesFiniteProducts F] in
+/--
+@isnad1 id=eq.0h7v.s15.ff82d322d0c8 from=translated src=- shape=b4198790 vocab=532bf383
+-/
 lemma gR_map_freeMk {U W W' : D} (a : W ⟶ U) (b : W' ⟶ W) :
     (gR (R := R) U).map b.op (ModuleCat.freeMk a) = ModuleCat.freeMk (b ≫ a) := by
   erw [freeObj_map_freeMk]; simp
 
 omit [HasFiniteProducts C] [HasFiniteProducts D] [PreservesFiniteProducts F] in
 
+/--
+@isnad1 id=eq.0h7v.s14.2f9ad890aa8f from=translated src=- shape=feb45d1b vocab=36446d71
+-/
 lemma free_map_app_freeMk {E : Type u} [SmallCategory E] {T : Eᵒᵖ ⥤ CommRingCat.{u}}
     {P Q : Eᵒᵖ ⥤ Type u} (ψ : P ⟶ Q) (X : Eᵒᵖ) (x : P.obj X) :
     ((free (T ⋙ forget₂ CommRingCat RingCat)).map ψ).app X (ModuleCat.freeMk x) =
@@ -261,6 +285,9 @@ lemma free_map_app_freeMk {E : Type u} [SmallCategory E] {T : Eᵒᵖ ⥤ CommRi
 
 omit [HasFiniteProducts C] [HasFiniteProducts D] [PreservesFiniteProducts F] in
 
+/--
+@isnad1 id=eq.0h6v.s15.f0c8e380e870 from=translated src=- shape=ff80ed66 vocab=0bbef0a5
+-/
 lemma freeμIso_inv_app_freeMk {E : Type u} [SmallCategory E] {T : Eᵒᵖ ⥤ CommRingCat.{u}}
     (P Q : Eᵒᵖ ⥤ Type u) (X : Eᵒᵖ) (z : (P ⊗ Q).obj X) :
     (freeμIso (R := T) P Q).inv.app X (ModuleCat.freeMk z) =
@@ -271,6 +298,9 @@ lemma freeμIso_inv_app_freeMk {E : Type u} [SmallCategory E] {T : Eᵒᵖ ⥤ C
 
 omit [HasFiniteProducts C] [HasFiniteProducts D] [PreservesFiniteProducts F] in
 
+/--
+@isnad1 id=eq.0h11v.s16.53308e36a688 from=translated src=- shape=fb718e55 vocab=e896752d
+-/
 lemma tensorHom_app_tmul {E : Type u} [SmallCategory E] {T : Eᵒᵖ ⥤ CommRingCat.{u}}
     {M₁ M₂ M₃ M₄ : PresheafOfModules.{u} (T ⋙ forget₂ CommRingCat RingCat)}
     (f : M₁ ⟶ M₂) (g : M₃ ⟶ M₄) (X : Eᵒᵖ) (m : M₁.obj X) (n : M₃.obj X) :
@@ -281,6 +311,9 @@ lemma tensorHom_app_tmul {E : Type u} [SmallCategory E] {T : Eᵒᵖ ⥤ CommRin
 
 omit [HasFiniteProducts C] [HasFiniteProducts D] [PreservesFiniteProducts F] in
 
+/--
+@isnad1 id=eq.0h9v.s14.0ec9fc745c77 from=translated src=- shape=3041043a vocab=e3c2d003
+-/
 lemma u₂_app_freeMk (U : C) {W : C} (a : W ⟶ U) :
     (u₂ F φ U).app (op W) (ModuleCat.freeMk a) =
       (ModuleCat.freeMk (F.map a) : (gR (R := R) (F.obj U)).obj (op (F.obj W))) := by
@@ -311,6 +344,9 @@ noncomputable def e (U : C) : (pb F φ).obj (gS U) ≅ gR (F.obj U) where
     erw [← (adj F φ).homEquiv_unit, Equiv.apply_symm_apply]
     rfl)
 
+/--
+@isnad1 id=eq.0h7v.s13.a18c471477f0 from=translated src=- shape=5f0ad20e vocab=d09a6fc8
+-/
 lemma unit_comp_map_e_hom (U : C) :
     (adj F φ).unit.app (gS U) ≫ (pf F φ).map (e F φ U).hom = u₂ F φ U := by
   change (adj F φ).unit.app (gS U) ≫ (pf F φ).map (((adj F φ).homEquiv _ _).symm (u₂ F φ U)) = _
@@ -330,6 +366,9 @@ noncomputable def yonedaTensorIso {E : Type u} [SmallCategory E] [HasFiniteProdu
     erw [Monoidal.tensorObj_map, tensor_apply]
     apply Limits.prod.hom_ext <;> simp)
 
+/--
+@isnad1 id=eq.0h5v.s9.4619aca86994 from=translated src=- shape=07efa7e5 vocab=e506588a
+-/
 lemma yonedaTensorIso_inv_app_apply {E : Type u} [SmallCategory E] [HasFiniteProducts E] (U V : E)
     {W : E} (c : W ⟶ U ⨯ V) :
     (yonedaTensorIso U V).inv.app (op W) c = (c ≫ prod.fst, c ≫ prod.snd) := rfl
@@ -360,6 +399,9 @@ noncomputable def r₀ : gR (R := R) (F.obj (⊤_ C)) ≅ 𝟙_ _ :=
 
 omit [HasFiniteProducts C] [HasFiniteProducts D] [PreservesFiniteProducts F] in
 
+/--
+@isnad1 id=eq.0h11v.s15.9b6afff000fd from=translated src=- shape=8968b525 vocab=893f66b2
+-/
 lemma pf_μ_app_tmul (M N : PresheafOfModules.{u} R') (W : C)
     (m : M.obj (op (F.obj W))) (n : N.obj (op (F.obj W))) :
     DFunLike.coe (α := (((pf F φ).obj M).obj (op W) ⊗ ((pf F φ).obj N).obj (op W) :))
@@ -375,6 +417,9 @@ lemma pf_μ_app_tmul (M N : PresheafOfModules.{u} R') (W : C)
     Category.comp_id]
   exact ModuleCat.restrictScalars_μ_tmul _ _ _ m n
 
+/--
+@isnad1 id=eq.0h8v.s15.835cf9ec016b from=translated src=- shape=5a2fd2f8 vocab=6b6c1147
+-/
 lemma keyL (U V : C) :
     ((j (S := S) U V).inv ≫ ((u₂ F φ U ⊗ₘ u₂ F φ V) ≫
       μ (pf F φ) (gR (F.obj U)) (gR (F.obj V)))).app (op (U ⨯ V)) (ModuleCat.freeMk (𝟙 (U ⨯ V))) =
@@ -393,6 +438,9 @@ lemma keyL (U V : C) :
   erw [pf_μ_app_tmul]
   simp only [Category.id_comp]
 
+/--
+@isnad1 id=eq.0h8v.s15.9221b8c7bbfb from=translated src=- shape=aef23bae vocab=a6c0c58e
+-/
 lemma keyR (U V : C) :
     (u₂ F φ (U ⨯ V) ≫ (pf F φ).map (r (R := R) F U V).hom).app (op (U ⨯ V))
       (ModuleCat.freeMk (𝟙 (U ⨯ V))) =
@@ -416,6 +464,9 @@ lemma keyR (U V : C) :
   simp only [CategoryTheory.Functor.map_id, Category.id_comp, Category.assoc,
     PreservesLimitPair.iso_hom, prodComparison_fst, prodComparison_snd]
 
+/--
+@isnad1 id=eq.0h8v.s13.797bfe91f5b9 from=translated src=- shape=1953f206 vocab=687f845b
+-/
 lemma key_δ (U V : C) :
     (j (S := S) U V).inv ≫ ((u₂ F φ U ⊗ₘ u₂ F φ V) ≫
       μ (pf F φ) (gR (F.obj U)) (gR (F.obj V))) =
@@ -423,6 +474,9 @@ lemma key_δ (U V : C) :
   apply freeYonedaEquiv.injective
   rw [freeYonedaEquiv_apply', freeYonedaEquiv_apply', keyL, keyR]
 
+/--
+@isnad1 id=eq.0h8v.s14.e9241b770198 from=translated src=- shape=eada58b2 vocab=0b846ef4
+-/
 lemma δ_gS_comp (U V : C) :
     δ (pb F φ) (gS U) (gS V) ≫ ((e F φ U).hom ⊗ₘ (e F φ V).hom) =
       (pb F φ).map (j (S := S) U V).hom ≫ (e F φ (U ⨯ V)).hom ≫ (r (R := R) F U V).hom := by
@@ -436,6 +490,9 @@ lemma δ_gS_comp (U V : C) :
     ← cancel_epi (j (S := S) U V).inv, Iso.inv_hom_id_assoc]
   exact key_δ F φ U V
 
+/--
+@isnad1 id=isiso.0h8v.s11.dab4b8937356 from=translated src=- shape=79a5f65a vocab=81aa394c
+-/
 instance isIso_δ_gS (U V : C) : IsIso (δ (pb F φ) (gS U) (gS V)) := by
   have h : δ (pb F φ) (gS U) (gS V) =
       ((pb F φ).map (j (S := S) U V).hom ≫ (e F φ (U ⨯ V)).hom ≫ (r (R := R) F U V).hom) ≫
@@ -446,6 +503,9 @@ instance isIso_δ_gS (U V : C) : IsIso (δ (pb F φ) (gS U) (gS V)) := by
 
 omit [HasFiniteProducts C] [HasFiniteProducts D] [PreservesFiniteProducts F] in
 
+/--
+@isnad1 id=isiso.1h7v.s12.18c4299dd7f3 from=translated src=- shape=ea629ee4 vocab=225a9966
+-/
 lemma isIso_app_of_freeYoneda {ℬ : Type*} [Category ℬ]
     {H₁ H₂ : PresheafOfModules.{u} S' ⥤ ℬ}
     [PreservesColimitsOfSize.{u, u} H₁] [PreservesColimitsOfSize.{u, u} H₂] (τ : H₁ ⟶ H₂)
@@ -460,6 +520,9 @@ lemma isIso_app_of_freeYoneda {ℬ : Type*} [Category ℬ]
 
 instance : PreservesColimitsOfSize.{u, u} (pb F φ) := (adj F φ).leftAdjoint_preservesColimits
 
+/--
+@isnad1 id=isiso.0h8v.s12.b20b1a10506e from=translated src=- shape=a6dbd2b1 vocab=7e0f5eed
+-/
 instance isIso_δ (A B : PresheafOfModules.{u} S') : IsIso (δ (pb F φ) A B) := by
 
   have h1 : ∀ (U : C) (B : PresheafOfModules.{u} S'), IsIso (δ (pb F φ) (gS U) B) := fun U => by
@@ -474,6 +537,9 @@ instance isIso_δ (A B : PresheafOfModules.{u} S') : IsIso (δ (pb F φ) A B) :=
   exact isIso_app_of_freeYoneda (S := S) τ (fun U => h1 U B) A
 
 omit [HasFiniteProducts D] [PreservesFiniteProducts F] in
+/--
+@isnad1 id=eq.0h6v.s15.1656e2b6d292 from=translated src=- shape=c6ca8584 vocab=41638b9a
+-/
 lemma keyL₀ : ((j₀ (S := S)).inv ≫ ε (pf F φ)).app (op (⊤_ C))
       (ModuleCat.freeMk (𝟙 (⊤_ C))) = (1 : R.obj (op (F.obj (⊤_ C)))) := by
   change (ε (pf F φ)).app (op (⊤_ C)) ((freeεIso (R := S)).inv.app (op (⊤_ C))
@@ -489,6 +555,9 @@ lemma keyL₀ : ((j₀ (S := S)).inv ≫ ε (pf F φ)).app (op (⊤_ C))
   erw [ModuleCat.restrictScalars_η]
   exact (φ.app (op (⊤_ C))).hom.map_one
 
+/--
+@isnad1 id=eq.0h6v.s14.c69eea741a06 from=translated src=- shape=8e2118e2 vocab=ca2e481f
+-/
 lemma keyR₀ : (u₂ F φ (⊤_ C) ≫ (pf F φ).map (r₀ (R := R) F).hom).app (op (⊤_ C))
       (ModuleCat.freeMk (𝟙 (⊤_ C))) = (1 : R.obj (op (F.obj (⊤_ C)))) := by
   change ((pf F φ).map (r₀ (R := R) F).hom).app (op (⊤_ C))
@@ -502,10 +571,16 @@ lemma keyR₀ : (u₂ F φ (⊤_ C) ≫ (pf F φ).map (r₀ (R := R) F).hom).app
   erw [free_map_app_freeMk, free_map_app_freeMk]
   exact ModuleCat.FreeMonoidal.εIso_inv_freeMk _ _
 
+/--
+@isnad1 id=eq.0h6v.s13.953e03179594 from=translated src=- shape=5265a88d vocab=fd4cc3d9
+-/
 lemma key_η : (j₀ (S := S)).inv ≫ ε (pf F φ) = u₂ F φ (⊤_ C) ≫ (pf F φ).map (r₀ (R := R) F).hom := by
   apply freeYonedaEquiv.injective
   rw [freeYonedaEquiv_apply', freeYonedaEquiv_apply', keyL₀, keyR₀]
 
+/--
+@isnad1 id=eq.0h6v.s13.a1346d8344f8 from=translated src=- shape=04d66e87 vocab=f7ecbf3d
+-/
 lemma η_eq : η (pb F φ) = (pb F φ).map (j₀ (S := S)).hom ≫ (e F φ (⊤_ C)).hom ≫ (r₀ (R := R) F).hom := by
   apply ((adj F φ).homEquiv _ _).injective
   erw [Adjunction.leftAdjointOplaxMonoidal_η, Equiv.apply_symm_apply]
@@ -514,6 +589,9 @@ lemma η_eq : η (pb F φ) = (pb F φ).map (j₀ (S := S)).hom ≫ (e F φ (⊤_
     ← cancel_epi (j₀ (S := S)).inv, Iso.inv_hom_id_assoc]
   exact key_η F φ
 
+/--
+@isnad1 id=isiso.0h6v.s11.c509b1ffbd3b from=translated src=- shape=b61edda5 vocab=3c41f3af
+-/
 instance isIso_η : IsIso (η (pb F φ)) := by rw [η_eq]; infer_instance
 
 noncomputable instance pullback_monoidal : (pb F φ).Monoidal := Functor.Monoidal.ofOplaxMonoidal _

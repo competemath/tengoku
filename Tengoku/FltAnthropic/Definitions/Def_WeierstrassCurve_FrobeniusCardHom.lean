@@ -8,6 +8,9 @@ open Polynomial
 
 namespace FiniteField
 
+/--
+@isnad1 id=iff.0h4v.s6.c91d7a09ef04 from=translated src=- shape=7d98cb71 vocab=43b8823c
+-/
 theorem mem_range_iff_pow_card_eq_self {F k : Type*} [Field F] [Fintype F] [Field k]
     (f : F →+* k) (x : k) : x ∈ Set.range f ↔ x ^ Fintype.card F = x := by
   classical
@@ -60,14 +63,23 @@ def frobPoint (q : ℕ)
 variable {q : ℕ}
   {hfrob : ∀ {x y : k}, V.toAffine.Nonsingular x y → V.toAffine.Nonsingular (x ^ q) (y ^ q)}
 
+/--
+@isnad1 id=eq.1h3v.s7.59c6846508d3 from=translated src=- shape=6f74e99b vocab=b658007a
+-/
 @[simp]
 lemma frobPoint_zero : frobPoint q hfrob (0 : V.toAffine.Point) = 0 :=
   rfl
 
+/--
+@isnad1 id=eq.2h5v.s7.142cc3f6e0e2 from=translated src=- shape=3c7cc027 vocab=d64ca11f
+-/
 lemma frobPoint_some {x y : k} (h : V.toAffine.Nonsingular x y) :
     frobPoint q hfrob (.some x y h) = .some (x ^ q) (y ^ q) (hfrob h) :=
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.dc3f83f2dee0 from=translated src=- shape=fa799a11 vocab=6c83dbf6
+-/
 lemma frobPoint_zero' :
     frobPoint q hfrob (Affine.Point.zero : V.toAffine.Point) = Affine.Point.zero :=
   rfl
@@ -83,10 +95,16 @@ private lemma some_congr {R : Type*} [CommRing R] {V' : Affine R} {x₁ x₂ y�
     Affine.Point.some x₁ y₁ h₁ = Affine.Point.some x₂ y₂ h₂ := by
   subst hx; subst hy; rfl
 
+/--
+@isnad1 id=eq.2h5v.s7.b24e85faa5af from=translated src=- shape=f648bd08 vocab=790c5123
+-/
 lemma pow_injective_of_ringHom (hφ : ∀ a : k, φ a = a ^ q) {a b : k} (hab : a ^ q = b ^ q) :
     a = b :=
   φ.injective (by rw [hφ, hφ]; exact hab)
 
+/--
+@isnad1 id=eq.2h6v.s7.69ea4b409b46 from=translated src=- shape=1c67e815 vocab=d19523bc
+-/
 lemma negY_pow (hφ : ∀ a : k, φ a = a ^ q) (hfix : V.map φ = V) (x y : k) :
     V.toAffine.negY (x ^ q) (y ^ q) = V.toAffine.negY x y ^ q := by
   have hfix' : V.toAffine.map φ = V.toAffine := hfix
@@ -94,6 +112,9 @@ lemma negY_pow (hφ : ∀ a : k, φ a = a ^ q) (hfix : V.map φ = V) (x y : k) :
   rw [hfix'] at h
   simpa only [hφ] using h
 
+/--
+@isnad1 id=eq.2h8v.s8.2c86d68d1c3c from=translated src=- shape=7d676bb8 vocab=1a841609
+-/
 lemma slope_pow [DecidableEq k] (hφ : ∀ a : k, φ a = a ^ q) (hfix : V.map φ = V)
     (x₁ x₂ y₁ y₂ : k) :
     V.toAffine.slope (x₁ ^ q) (x₂ ^ q) (y₁ ^ q) (y₂ ^ q)
@@ -103,6 +124,9 @@ lemma slope_pow [DecidableEq k] (hφ : ∀ a : k, φ a = a ^ q) (hfix : V.map φ
   rw [hfix'] at h
   simpa only [hφ] using h
 
+/--
+@isnad1 id=eq.2h8v.s8.5a6190cb2ad0 from=translated src=- shape=626cf65f vocab=59c423db
+-/
 lemma addX_slope_pow [DecidableEq k] (hφ : ∀ a : k, φ a = a ^ q) (hfix : V.map φ = V)
     (x₁ x₂ y₁ y₂ : k) :
     V.toAffine.addX (x₁ ^ q) (x₂ ^ q) (V.toAffine.slope (x₁ ^ q) (x₂ ^ q) (y₁ ^ q) (y₂ ^ q))
@@ -113,6 +137,9 @@ lemma addX_slope_pow [DecidableEq k] (hφ : ∀ a : k, φ a = a ^ q) (hfix : V.m
   rw [slope_pow hφ hfix x₁ x₂ y₁ y₂]
   simpa only [hφ] using h
 
+/--
+@isnad1 id=eq.2h8v.s8.1e415659bb15 from=translated src=- shape=b32e4557 vocab=29188421
+-/
 lemma addY_slope_pow [DecidableEq k] (hφ : ∀ a : k, φ a = a ^ q) (hfix : V.map φ = V)
     (x₁ x₂ y₁ y₂ : k) :
     V.toAffine.addY (x₁ ^ q) (x₂ ^ q) (y₁ ^ q)
@@ -127,6 +154,9 @@ lemma addY_slope_pow [DecidableEq k] (hφ : ∀ a : k, φ a = a ^ q) (hfix : V.m
 
 variable {hfrob : ∀ {x y : k}, V.toAffine.Nonsingular x y → V.toAffine.Nonsingular (x ^ q) (y ^ q)}
 
+/--
+@isnad1 id=eq.3h5v.s8.421ce097c2de from=translated src=- shape=6ebe2b7f vocab=67c2d783
+-/
 theorem frobPoint_neg (hφ : ∀ a : k, φ a = a ^ q) (hfix : V.map φ = V)
     (P : V.toAffine.Point) :
     frobPoint q hfrob (-P) = -frobPoint q hfrob P := by
@@ -135,6 +165,9 @@ theorem frobPoint_neg (hφ : ∀ a : k, φ a = a ^ q) (hfix : V.map φ = V)
   · simp only [Affine.Point.neg_some, frobPoint_some]
     exact some_congr rfl (negY_pow hφ hfix x y).symm _ _
 
+/--
+@isnad1 id=eq.3h6v.s8.d28fbce0f672 from=translated src=- shape=aa9f19a6 vocab=f5bb4c97
+-/
 theorem frobPoint_add [DecidableEq k] (hφ : ∀ a : k, φ a = a ^ q) (hfix : V.map φ = V)
     (P Q : V.toAffine.Point) :
     frobPoint q hfrob (P + Q) = frobPoint q hfrob P + frobPoint q hfrob Q := by
@@ -160,6 +193,9 @@ section FrobCardHom
 variable {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k] (f : F →+* k)
 variable {W₀ : WeierstrassCurve F}
 
+/--
+@isnad1 id=nonsingu.1h6v.s7.f68d3bac0e7f from=translated src=- shape=0fffc236 vocab=2badf2c9
+-/
 theorem nonsingular_pow_card_map {x y : k} (h : (W₀.map f).toAffine.Nonsingular x y) :
     (W₀.map f).toAffine.Nonsingular (x ^ Fintype.card F) (y ^ Fintype.card F) := by
   obtain ⟨p, hcharF, n, hp, hcard⟩ := FiniteField.card' (K := F)
@@ -179,6 +215,9 @@ theorem nonsingular_pow_card_map {x y : k} (h : (W₀.map f).toAffine.Nonsingula
   rw [hfix] at hmap
   simpa only [iterateFrobenius_def, hcard] using hmap
 
+/--
+@isnad1 id=ex.0h4v.s7.c38afd2c3e46 from=translated src=- shape=185b77c2 vocab=56605520
+-/
 theorem exists_ringHom_pow_card_fixing :
     ∃ φ : k →+* k, (∀ a : k, φ a = a ^ Fintype.card F) ∧ (W₀.map f).map φ = W₀.map f := by
   obtain ⟨p, hcharF, n, hp, hcard⟩ := FiniteField.card' (K := F)
@@ -195,6 +234,9 @@ theorem exists_ringHom_pow_card_fixing :
 
 variable [DecidableEq k]
 
+/--
+@isnad1 id=eq.0h6v.s8.14337006474a from=translated src=- shape=f7ae5242 vocab=3318fe12
+-/
 theorem frobPoint_card_add (P Q : (W₀.map f).toAffine.Point) :
     frobPoint (Fintype.card F) (fun {_ _} h => nonsingular_pow_card_map f h) (P + Q)
       = frobPoint (Fintype.card F) (fun {_ _} h => nonsingular_pow_card_map f h) P
@@ -208,12 +250,18 @@ noncomputable def frobCardHom :
   map_zero' := rfl
   map_add' := frobPoint_card_add f
 
+/--
+@isnad1 id=eq.0h5v.s8.d214f9bb95af from=translated src=- shape=5dddd3ed vocab=3b42a0fd
+-/
 @[simp]
 lemma frobCardHom_apply (P : (W₀.map f).toAffine.Point) :
     frobCardHom f P
       = frobPoint (Fintype.card F) (fun {_ _} h => nonsingular_pow_card_map f h) P :=
   rfl
 
+/--
+@isnad1 id=injectiv.0h4v.s8.f4a785a7187b from=translated src=- shape=7a51c5ea vocab=5155136b
+-/
 theorem frobCardHom_injective :
     Function.Injective (frobCardHom f (W₀ := W₀)) := by
   obtain ⟨φ, hφ, hfix⟩ := exists_ringHom_pow_card_fixing f (W₀ := W₀)
@@ -236,6 +284,9 @@ theorem frobCardHom_injective :
       exact some_congr (pow_injective_of_ringHom hφ hPQ.1) (pow_injective_of_ringHom hφ hPQ.2)
         h h'
 
+/--
+@isnad1 id=surjecti.0h4v.s8.eb07ed38e376 from=translated src=- shape=7f081127 vocab=674ab8c3
+-/
 theorem frobCardHom_surjective [IsAlgClosed k] :
     Function.Surjective (frobCardHom f (W₀ := W₀)) := by
   obtain ⟨φ, hφ, hfix⟩ := exists_ringHom_pow_card_fixing f (W₀ := W₀)
@@ -254,6 +305,9 @@ theorem frobCardHom_surjective [IsAlgClosed k] :
     rw [frobCardHom_apply, frobPoint_some]
     exact some_congr hx hy _ h'
 
+/--
+@isnad1 id=bijectiv.0h4v.s8.cb9ce0c5251c from=translated src=- shape=7f081127 vocab=60dacb64
+-/
 theorem frobCardHom_bijective [IsAlgClosed k] :
     Function.Bijective (frobCardHom f (W₀ := W₀)) :=
   ⟨frobCardHom_injective f, frobCardHom_surjective f⟩

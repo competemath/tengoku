@@ -31,9 +31,15 @@ def fixedVectors (K : Subgroup G) : Submodule k V where
     intro c v hv u hu
     rw [map_smul, hv u hu]
 
+/--
+@isnad1 id=iff.0h6v.s8.33d49b95b907 from=translated src=- shape=e322e0b8 vocab=ac195072
+-/
 @[simp] theorem mem_fixedVectors {K : Subgroup G} {v : V} :
     v ∈ fixedVectors π K ↔ ∀ u ∈ K, π u v = v := Iff.rfl
 
+/--
+@isnad1 id=mem.2h7v.s9.e36d3fa6cbdf from=translated src=- shape=7732fcbb vocab=524de12c
+-/
 theorem apply_mem_fixedVectors_of_commute {T : Module.End k V}
     (hT : ∀ g : G, π g * T = T * π g) {K : Subgroup G} {x : V}
     (hx : x ∈ fixedVectors π K) : T x ∈ fixedVectors π K := by
@@ -58,6 +64,9 @@ def repStabilizer (v : V) : Subgroup G where
     _ = π (a⁻¹ * a) v := by rw [map_mul, Module.End.mul_apply]
     _ = v := by rw [inv_mul_cancel, map_one, Module.End.one_apply]
 
+/--
+@isnad1 id=iff.0h6v.s8.f793e61f4b0c from=translated src=- shape=d8c4aa47 vocab=b6a24a57
+-/
 @[simp] theorem mem_repStabilizer {v : V} {g : G} :
     g ∈ repStabilizer π v ↔ π g v = v := Iff.rfl
 
@@ -97,6 +106,9 @@ variable {V : Type w} [AddCommGroup V] [Module k V]
 
 variable (π : G →* Module.End k V)
 
+/--
+@isnad1 id=ex.5h7v.s10.c62e8110a94c from=translated src=- shape=e0074d80 vocab=177df3b8
+-/
 theorem exists_forall_eq_smul_of_commute_of_fixed [IsAlgClosed k]
     (hirr : IsIrreducibleRep π) {T : Module.End k V}
     (hcomm : ∀ g : G, π g * T = T * π g)
@@ -150,6 +162,9 @@ theorem exists_forall_eq_smul_of_commute_of_fixed [IsAlgClosed k]
   intro x
   exact (hmemE x).mp (hEtop ▸ Submodule.mem_top)
 
+/--
+@isnad1 id=ex.5h7v.s10.47651ca53323 from=translated src=- shape=76dbf33c vocab=177df3b8
+-/
 theorem exists_eq_smul_one_of_commute_of_fixed [IsAlgClosed k]
     (hirr : IsIrreducibleRep π) {T : Module.End k V}
     (hcomm : ∀ g : G, π g * T = T * π g)
@@ -161,6 +176,9 @@ theorem exists_eq_smul_one_of_commute_of_fixed [IsAlgClosed k]
   ext x
   simpa [LinearMap.smul_apply, Module.End.one_apply] using hc x
 
+/--
+@isnad1 id=eq.2h4v.s8.b8c7dc4902ad from=translated src=- shape=170b03fe vocab=6fb066be
+-/
 theorem smul_one_injective_of_exists_ne_zero (hV : ∃ v : V, v ≠ 0) {a b : k}
     (h : a • (1 : Module.End k V) = b • (1 : Module.End k V)) : a = b := by
   obtain ⟨v, hv⟩ := hV
@@ -185,6 +203,9 @@ variable (π : G →* Module.End k V)
 
 variable [TopologicalSpace G]
 
+/--
+@isnad1 id=ex.4h5v.s10.fa9591da459c from=translated src=- shape=6a0e4f77 vocab=02613079
+-/
 theorem exists_eq_smul_one_of_forall_isCompactOpen_fixed [IsAlgClosed k]
     (hsm : ∀ v : V, v ≠ 0 → ∃ K : Subgroup G,
       IsCompact (K : Set G) ∧ IsOpen (K : Set G) ∧ ∀ u ∈ K, π u v = v)
@@ -195,6 +216,9 @@ theorem exists_eq_smul_one_of_forall_isCompactOpen_fixed [IsAlgClosed k]
   obtain ⟨K, hKc, hKo, hKfix⟩ := hsm v hv
   exact exists_eq_smul_one_of_commute_of_fixed π hirr hcomm hv hKfix (hadm K hKc hKo)
 
+/--
+@isnad1 id=ex.5h5v.s9.35b2ea27022f from=translated src=- shape=af140630 vocab=dce3fb35
+-/
 theorem exists_eq_smul_one_of_smooth_admissible [IsAlgClosed k] [SeparatelyContinuousMul G]
     (hK₀ : ∃ K₀ : Subgroup G, IsCompact (K₀ : Set G) ∧ IsOpen (K₀ : Set G))
     (hsm : IsSmoothRep π) (hadm : IsAdmissibleRep π) (hirr : IsIrreducibleRep π)
@@ -211,6 +235,9 @@ theorem exists_eq_smul_one_of_smooth_admissible [IsAlgClosed k] [SeparatelyConti
   · intro u hu
     exact (Subgroup.mem_inf.mp hu).2
 
+/--
+@isnad1 id=ex.5h5v.s9.0b9195507787 from=translated src=- shape=666207f4 vocab=dce3fb35
+-/
 theorem exists_forall_eq_smul_of_smooth_admissible [IsAlgClosed k] [SeparatelyContinuousMul G]
     (hK₀ : ∃ K₀ : Subgroup G, IsCompact (K₀ : Set G) ∧ IsOpen (K₀ : Set G))
     (hsm : IsSmoothRep π) (hadm : IsAdmissibleRep π) (hirr : IsIrreducibleRep π)
@@ -222,6 +249,9 @@ theorem exists_forall_eq_smul_of_smooth_admissible [IsAlgClosed k] [SeparatelyCo
     rw [hc]
     simp [LinearMap.smul_apply, Module.End.one_apply]⟩
 
+/--
+@isnad1 id=eq.4h4v.s9.bed9fa3c5a0d from=translated src=- shape=c24ad8e6 vocab=b75102d3
+-/
 theorem commutant_setOf_eq_range_smul_one [IsAlgClosed k] [SeparatelyContinuousMul G]
     (hK₀ : ∃ K₀ : Subgroup G, IsCompact (K₀ : Set G) ∧ IsOpen (K₀ : Set G))
     (hsm : IsSmoothRep π) (hadm : IsAdmissibleRep π) (hirr : IsIrreducibleRep π) :
@@ -235,6 +265,9 @@ theorem commutant_setOf_eq_range_smul_one [IsAlgClosed k] [SeparatelyContinuousM
   · rintro ⟨c, rfl⟩ g
     simp
 
+/--
+@isnad1 id=eq.4h4v.s10.55fe653c8e94 from=translated src=- shape=b5f0db54 vocab=2ca4cded
+-/
 theorem centralizer_range_eq_bot [IsAlgClosed k] [SeparatelyContinuousMul G]
     (hK₀ : ∃ K₀ : Subgroup G, IsCompact (K₀ : Set G) ∧ IsOpen (K₀ : Set G))
     (hsm : IsSmoothRep π) (hadm : IsAdmissibleRep π) (hirr : IsIrreducibleRep π) :

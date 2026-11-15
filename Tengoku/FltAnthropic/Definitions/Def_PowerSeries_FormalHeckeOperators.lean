@@ -15,6 +15,9 @@ def heckeU (ℓ : ℕ) : R⟦X⟧ →ₗ[R] R⟦X⟧ where
   map_add' f g := by ext n; simp
   map_smul' c f := by ext n; simp
 
+/--
+@isnad1 id=eq.0h4v.s9.0db1fdbd84f6 from=translated src=- shape=57e1bfa7 vocab=2f392ae6
+-/
 @[simp] lemma coeff_heckeU (ℓ n : ℕ) (f : R⟦X⟧) :
     coeff n (heckeU ℓ f) = coeff (ℓ * n) f := by
   simp [heckeU]
@@ -24,10 +27,16 @@ def heckeV (ℓ : ℕ) : R⟦X⟧ →ₗ[R] R⟦X⟧ where
   map_add' f g := by ext n; by_cases h : ℓ ∣ n <;> simp [h]
   map_smul' c f := by ext n; by_cases h : ℓ ∣ n <;> simp [h]
 
+/--
+@isnad1 id=eq.0h4v.s9.59d25e19a963 from=translated src=- shape=83ee5f4c vocab=4c662f38
+-/
 @[simp] lemma coeff_heckeV (ℓ n : ℕ) (f : R⟦X⟧) :
     coeff n (heckeV ℓ f) = if ℓ ∣ n then coeff (n / ℓ) f else 0 := by
   simp [heckeV]
 
+/--
+@isnad1 id=eq.1h3v.s8.c9541dfe67b8 from=translated src=- shape=6d700fc7 vocab=44ea75f3
+-/
 lemma heckeU_heckeV (ℓ : ℕ) (hℓ : ℓ ≠ 0) (f : R⟦X⟧) : heckeU ℓ (heckeV ℓ f) = f := by
   ext n
   simp [Nat.mul_div_cancel_left n (Nat.pos_of_ne_zero hℓ), Dvd.intro n rfl]
@@ -35,6 +44,9 @@ lemma heckeU_heckeV (ℓ : ℕ) (hℓ : ℓ ≠ 0) (f : R⟦X⟧) : heckeU ℓ (
 def heckeT (ℓ k : ℕ) : R⟦X⟧ →ₗ[R] R⟦X⟧ :=
   heckeU ℓ + (ℓ : R) ^ (k - 1) • heckeV ℓ
 
+/--
+@isnad1 id=eq.0h5v.s9.5643cca9a9d2 from=translated src=- shape=f4ebcbb1 vocab=9e36fa95
+-/
 lemma coeff_heckeT (ℓ k n : ℕ) (f : R⟦X⟧) :
     coeff n (heckeT ℓ k f) =
       coeff (ℓ * n) f + (ℓ : R) ^ (k - 1) * if ℓ ∣ n then coeff (n / ℓ) f else 0 := by

@@ -44,12 +44,18 @@ def lambdaLocalizedAtPoint : Subring (LaurentSeries L) where
         = (f * lambdaEval N A s) * (g * lambdaEval N A t) := by ring
       _ = lambdaEval N A r * lambdaEval N A u := by rw [hf, hg]
 
+/--
+@isnad1 id=iff.0h8v.s11.5df212f58a8c from=translated src=- shape=d2aa7d6b vocab=918add47
+-/
 theorem mem_lambdaLocalizedAtPoint {f : LaurentSeries L} :
     f ∈ lambdaLocalizedAtPoint N A red a b ↔
       ∃ r s : MvPolynomial (Fin 2) A,
         NodeLocalized.pointEval A red a b s ≠ 0 ∧ f * lambdaEval N A s = lambdaEval N A r :=
   Iff.rfl
 
+/--
+@isnad1 id=mem.0h8v.s9.249d4b38e78a from=translated src=- shape=69ea52b6 vocab=75df9269
+-/
 theorem lambdaEval_mem_lambdaLocalizedAtPoint (p : MvPolynomial (Fin 2) A) :
     lambdaEval N A p ∈ lambdaLocalizedAtPoint N A red a b :=
   ⟨p, 1, by rw [map_one]; exact one_ne_zero, by rw [map_one, mul_one]⟩

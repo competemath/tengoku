@@ -26,18 +26,30 @@ variable {C W}
 private lemma u_ne_zero : (C.u : K) ≠ 0 := C.u.ne_zero
 private lemma u_pow_ne_zero (n : ℕ) : ((C.u : K)) ^ n ≠ 0 := pow_ne_zero n C.u.ne_zero
 
+/--
+@isnad1 id=eq.0h3v.s4.6e3d26e57cdd from=translated src=- shape=d5522f91 vocab=e8938e99
+-/
 @[simp] lemma vcX_vcXInv (x : K) : vcX C (vcXInv C x) = x := by
   have hu : (C.u : K) ≠ 0 := u_ne_zero
   simp only [vcX, vcXInv, Units.val_inv_eq_inv_val]; field_simp; ring
 
+/--
+@isnad1 id=eq.0h4v.s5.297bffcac57e from=translated src=- shape=26427dbe vocab=36b468c6
+-/
 @[simp] lemma vcY_vcYInv (x y : K) : vcY C (vcXInv C x) (vcYInv C x y) = y := by
   have hu : (C.u : K) ≠ 0 := u_ne_zero
   simp only [vcY, vcXInv, vcYInv, Units.val_inv_eq_inv_val]; field_simp; ring
 
+/--
+@isnad1 id=eq.0h3v.s4.079062e6aaed from=translated src=- shape=d5522f91 vocab=e8938e99
+-/
 @[simp] lemma vcXInv_vcX (x' : K) : vcXInv C (vcX C x') = x' := by
   have hu : (C.u : K) ≠ 0 := u_ne_zero
   simp only [vcX, vcXInv, Units.val_inv_eq_inv_val]; field_simp; ring
 
+/--
+@isnad1 id=eq.0h4v.s5.70f2c637a46a from=translated src=- shape=26427dbe vocab=a38e95d4
+-/
 @[simp] lemma vcYInv_vcY (x' y' : K) : vcYInv C (vcX C x') (vcY C x' y') = y' := by
   have hu : (C.u : K) ≠ 0 := u_ne_zero
   simp only [vcX, vcY, vcYInv, Units.val_inv_eq_inv_val]; field_simp; ring
@@ -70,6 +82,9 @@ private lemma partialY_aux (x' y' : K) :
   simp only [vcX, vcY, variableChange_a₁, variableChange_a₃, Units.val_inv_eq_inv_val]
   field_simp; ring
 
+/--
+@isnad1 id=iff.0h5v.s6.c83307ffd0ff from=translated src=- shape=47bf5ee8 vocab=3214844a
+-/
 lemma equation_variableChange_iff (x' y' : K) :
     (C • W).toAffine.Equation x' y' ↔ W.Equation (vcX C x') (vcY C x' y') := by
   rw [equation_iff', equation_iff', equation_aux x' y', mul_eq_zero,
@@ -98,6 +113,9 @@ private lemma partials_zero_iff (x' y' : K) :
     rw [hX, hY, mul_zero, add_zero] at h
     exact (mul_eq_zero.mp h.symm).resolve_left (u_pow_ne_zero 4)
 
+/--
+@isnad1 id=iff.0h5v.s6.0c4620a993c2 from=translated src=- shape=47bf5ee8 vocab=4636975c
+-/
 lemma nonsingular_variableChange_iff (x' y' : K) :
     (C • W).toAffine.Nonsingular x' y' ↔ W.Nonsingular (vcX C x') (vcY C x' y') := by
   rw [nonsingular_iff', nonsingular_iff', equation_variableChange_iff x' y']
@@ -126,7 +144,13 @@ def vcInvFun : W.Point → (C • W).toAffine.Point
 
 variable {C W}
 
+/--
+@isnad1 id=eq.0h3v.s7.4ca29d566d7b from=translated src=- shape=8b672d32 vocab=1115d659
+-/
 @[simp] lemma vcFun_zero : vcFun C W 0 = 0 := rfl
+/--
+@isnad1 id=eq.0h3v.s7.ea5f0c4a1000 from=translated src=- shape=cc92d375 vocab=c0e8b796
+-/
 @[simp] lemma vcInvFun_zero : vcInvFun C W 0 = 0 := rfl
 
 private lemma some_eq_some {W' : WeierstrassCurve.Affine K} {x₁ y₁ x₂ y₂ : K}
@@ -134,12 +158,18 @@ private lemma some_eq_some {W' : WeierstrassCurve.Affine K} {x₁ y₁ x₂ y₂
     {h₁ : W'.Nonsingular x₁ y₁} {h₂ : W'.Nonsingular x₂ y₂} :
     Point.some x₁ y₁ h₁ = Point.some x₂ y₂ h₂ := by subst hx hy; rfl
 
+/--
+@isnad1 id=leftinve.0h3v.s6.34af1b057997 from=translated src=- shape=c6ed3df8 vocab=e5063eba
+-/
 lemma vcFun_leftInverse : Function.LeftInverse (vcInvFun C W) (vcFun C W) := by
   rintro (_ | ⟨x', y', h⟩)
   · rfl
   · simp only [vcFun, vcInvFun]
     exact some_eq_some (vcXInv_vcX x') (vcYInv_vcY x' y')
 
+/--
+@isnad1 id=rightinv.0h3v.s6.ce772f593569 from=translated src=- shape=c6ed3df8 vocab=f7a0c37b
+-/
 lemma vcFun_rightInverse : Function.RightInverse (vcInvFun C W) (vcFun C W) := by
   rintro (_ | ⟨x, y, h⟩)
   · rfl

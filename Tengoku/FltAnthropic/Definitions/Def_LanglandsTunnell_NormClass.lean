@@ -23,6 +23,9 @@ open NumberField nonZeroDivisors IsDedekindDomain Deep.NTSupply
 
 variable (K : Type*) [Field K] [NumberField K] (q : ℕ)
 
+/--
+@isnad1 id=eq.1h3v.s8.e429a029150a from=translated src=- shape=4a8b16a3 vocab=19123736
+-/
 theorem norm_int_cast_eq_one_of_sub_one_mem {α : 𝓞 K}
     (hα : α - 1 ∈ Ideal.span {(q : 𝓞 K)}) :
     ((Algebra.norm ℤ α : ℤ) : ZMod q) = 1 := by
@@ -42,6 +45,9 @@ theorem norm_int_cast_eq_one_of_sub_one_mem {α : 𝓞 K}
   rw [h1, hαeq, map_add, map_one, map_nsmul, map_add, map_one, map_nsmul, h0, add_zero,
     Matrix.det_one]
 
+/--
+@isnad1 id=lt.2h2v.s8.9ccae2790129 from=translated src=- shape=a08d4a71 vocab=728f2ea6
+-/
 theorem norm_int_pos_of_totPos {α : 𝓞 K} (h0 : α ≠ 0)
     (hpos : ∀ τ : K →+* ℝ, 0 < τ (algebraMap (𝓞 K) K α)) :
     0 < Algebra.norm ℤ α := by
@@ -109,6 +115,9 @@ theorem norm_int_pos_of_totPos {α : 𝓞 K} (h0 : α ≠ 0)
   have : (0 : ℚ) < ((Algebra.norm ℤ α : ℤ) : ℚ) := by rw [hcoe]; exact hQpos
   exact_mod_cast this
 
+/--
+@isnad1 id=coprime.1h3v.s8.ad6329dfc648 from=translated src=- shape=8908b060 vocab=7c42b95e
+-/
 theorem absNorm_coprime_of_not_dvd (v : HeightOneSpectrum (𝓞 K))
     (hv : ¬ v.asIdeal ∣ Ideal.span {(q : 𝓞 K)}) :
     Nat.Coprime (Ideal.absNorm v.asIdeal) q := by
@@ -142,11 +151,17 @@ theorem absNorm_coprime_of_not_dvd (v : HeightOneSpectrum (𝓞 K))
 def normClass (v : HeightOneSpectrum (𝓞 K)) : (ZMod q)ˣ :=
   if h : Nat.Coprime (Ideal.absNorm v.asIdeal) q then ZMod.unitOfCoprime _ h else 1
 
+/--
+@isnad1 id=eq.1h3v.s8.ab16cd41921f from=translated src=- shape=13cb795f vocab=035ad40c
+-/
 theorem normClass_coe (v : HeightOneSpectrum (𝓞 K))
     (h : Nat.Coprime (Ideal.absNorm v.asIdeal) q) :
     ((normClass K q v : (ZMod q)ˣ) : ZMod q) = (Ideal.absNorm v.asIdeal : ZMod q) := by
   rw [normClass, dite_eq_left h, ZMod.coe_unitOfCoprime]
 
+/--
+@isnad1 id=eq.2h3v.s9.73070b902462 from=translated src=- shape=15e6340e vocab=fe96295f
+-/
 theorem raySymbol_normClass_coe {I : Ideal (𝓞 K)} (hI : I ≠ ⊥)
     (hcop : I ⊔ Ideal.span {(q : 𝓞 K)} = ⊤) :
     ((raySymbol K (normClass K q) (I : FractionalIdeal ((𝓞 K)⁰) K) : (ZMod q)ˣ) : ZMod q)
@@ -255,6 +270,9 @@ theorem raySymbol_normClass_coe {I : Ideal (𝓞 K)} (hI : I ≠ ⊥)
     exact (map_pow Ideal.absNorm _ _).symm
   rw [hsym, hcoe, hval, ← hcast, hnat]
 
+/--
+@isnad1 id=eq.4h4v.s9.349b5eed7d10 from=translated src=- shape=046f4931 vocab=3f622210
+-/
 theorem normClassKillsRay {𝔣 : Ideal (𝓞 K)} (hq𝔣 : Ideal.span {(q : 𝓞 K)} ∣ 𝔣) :
     ∀ α : 𝓞 K, α ≠ 0 → α - 1 ∈ 𝔣 →
       (∀ τ : K →+* ℝ, 0 < τ (algebraMap (𝓞 K) K α)) →
@@ -283,6 +301,9 @@ def normClassChar {𝔣 : Ideal (𝓞 K)} (hq𝔣 : Ideal.span {(q : 𝓞 K)} �
     NarrowRayClassGroup K 𝔣 →* (ZMod q)ˣ :=
   raySymbolDescend K (normClass K q) (normClassKillsRay K q hq𝔣)
 
+/--
+@isnad1 id=eq.2h4v.s12.1410e8f954cf from=translated src=- shape=eca12dc9 vocab=110cc40e
+-/
 theorem normClassChar_primeClass {𝔣 : Ideal (𝓞 K)} (hq𝔣 : Ideal.span {(q : 𝓞 K)} ∣ 𝔣)
     (v : HeightOneSpectrum (𝓞 K)) (hv : ¬ v.asIdeal ∣ 𝔣) :
     normClassChar K q hq𝔣 (primeClass K 𝔣 v hv) = normClass K q v :=

@@ -19,9 +19,15 @@ variable {K : Type*} [NormedField K]
 
 def rowMaxNorm (M : Matrix (Fin 2) (Fin 2) K) : ℝ := max ‖M 1 0‖ ‖M 1 1‖
 
+/--
+@isnad1 id=le.0h2v.s5.e7648ba4502a from=translated src=- shape=f7312c26 vocab=c4c34938
+-/
 theorem rowMaxNorm_nonneg (M : Matrix (Fin 2) (Fin 2) K) : 0 ≤ rowMaxNorm M :=
   (norm_nonneg _).trans (le_max_left _ _)
 
+/--
+@isnad1 id=lt.0h2v.s6.04093892e37d from=translated src=- shape=69350396 vocab=3b3d8613
+-/
 theorem rowMaxNorm_pos (g : GL (Fin 2) K) : 0 < rowMaxNorm (g : Matrix (Fin 2) (Fin 2) K) := by
   by_contra h
   have h0 : rowMaxNorm (g : Matrix (Fin 2) (Fin 2) K) = 0 :=
@@ -37,6 +43,9 @@ theorem rowMaxNorm_pos (g : GL (Fin 2) K) : 0 < rowMaxNorm (g : Matrix (Fin 2) (
 def finLocalHeight (g : GL (Fin 2) K) : ℝ :=
   ‖(g : Matrix (Fin 2) (Fin 2) K).det‖ / rowMaxNorm (g : Matrix (Fin 2) (Fin 2) K) ^ 2
 
+/--
+@isnad1 id=lt.0h2v.s5.31627795b52e from=translated src=- shape=0ac22ba1 vocab=f1a9f286
+-/
 theorem finLocalHeight_pos (g : GL (Fin 2) K) : 0 < finLocalHeight g :=
   div_pos (norm_pos_iff.mpr (Matrix.isUnits_det_units g).ne_zero) (pow_pos (rowMaxNorm_pos g) 2)
 
@@ -47,6 +56,9 @@ private theorem coe_mul' (γ g : GL (Fin 2) K) :
     ((γ * g : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K)
       = (γ : Matrix (Fin 2) (Fin 2) K) * (g : Matrix (Fin 2) (Fin 2) K) := rfl
 
+/--
+@isnad1 id=le.0h3v.s9.87e219cb116a from=translated src=- shape=ae06de02 vocab=4de40a54
+-/
 theorem norm_mul_norm_det_le (γ g : GL (Fin 2) K) :
     ‖(γ : Matrix (Fin 2) (Fin 2) K) 1 0‖ * ‖(g : Matrix (Fin 2) (Fin 2) K).det‖
       ≤ rowMaxNorm ((γ * g : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K)
@@ -74,6 +86,9 @@ theorem norm_mul_norm_det_le (γ g : GL (Fin 2) K) :
   exact max_le (mul_le_mul h1 h3 (norm_nonneg _) (rowMaxNorm_nonneg _))
     (mul_le_mul h2 h4 (norm_nonneg _) (rowMaxNorm_nonneg _))
 
+/--
+@isnad1 id=le.1h3v.s9.53a3e64008d2 from=translated src=- shape=191cc8aa vocab=2d92778b
+-/
 theorem finLocalHeight_mul_mul_finLocalHeight_le (γ g : GL (Fin 2) K)
     (hγ : (γ : Matrix (Fin 2) (Fin 2) K) 1 0 ≠ 0) :
     finLocalHeight (γ * g) * finLocalHeight g
@@ -105,6 +120,9 @@ theorem finLocalHeight_mul_mul_finLocalHeight_le (γ g : GL (Fin 2) K)
             * rowMaxNorm (g : Matrix (Fin 2) (Fin 2) K) ^ 2) := by
         ring
 
+/--
+@isnad1 id=le.1h2v.s6.c19089cd52bf from=translated src=- shape=f0d973c9 vocab=b99f9204
+-/
 theorem norm_det_le_one {M : Matrix (Fin 2) (Fin 2) K} (h : ∀ i j, ‖M i j‖ ≤ 1) : ‖M.det‖ ≤ 1 := by
   rw [Matrix.det_fin_two, sub_eq_add_neg]
   refine (IsUltrametricDist.norm_add_le_max _ _).trans (max_le ?_ ?_)
@@ -113,6 +131,9 @@ theorem norm_det_le_one {M : Matrix (Fin 2) (Fin 2) K} (h : ∀ i j, ‖M i j‖
   · rw [norm_neg, norm_mul]
     exact mul_le_one₀ (h 0 1) (norm_nonneg _) (h 1 0)
 
+/--
+@isnad1 id=eq.2h2v.s8.578635a2a796 from=translated src=- shape=c2ae496f vocab=26717fe0
+-/
 theorem finLocalHeight_eq_one (g : GL (Fin 2) K)
     (h : ∀ i j, ‖(g : Matrix (Fin 2) (Fin 2) K) i j‖ ≤ 1)
     (h' : ∀ i j, ‖((g⁻¹ : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) i j‖ ≤ 1) :
@@ -162,11 +183,17 @@ def adelicHeight (g : AdelicGL2 (𝓞 F) F) : ℝ :=
 
 variable {F}
 
+/--
+@isnad1 id=le.1h3v.s7.cd448074f253 from=translated src=- shape=8d1d4a45 vocab=cbcca64e
+-/
 theorem norm_le_one_of_mem_adicCompletionIntegers {v : HeightOneSpectrum (𝓞 F)}
     {x : v.adicCompletion F} (hx : x ∈ v.adicCompletionIntegers F) : ‖x‖ ≤ 1 :=
   Valued.toNormedField.norm_le_one_iff.mpr
     ((HeightOneSpectrum.mem_adicCompletionIntegers _ _ _).mp hx)
 
+/--
+@isnad1 id=eventual.0h2v.s10.da5c6907520c from=translated src=- shape=99d3942c vocab=0fe38dc2
+-/
 theorem finLocalHeight_finComponent_eventually_eq_one (g : GL (Fin 2) (FiniteAdeleRing (𝓞 F) F)) :
     ∀ᶠ v : HeightOneSpectrum (𝓞 F) in Filter.cofinite,
       finLocalHeight (finComponent (𝓞 F) F v g) = 1 := by
@@ -192,17 +219,29 @@ theorem finLocalHeight_finComponent_eventually_eq_one (g : GL (Fin 2) (FiniteAde
   · rw [← map_inv, finComponent_apply]
     exact norm_le_one_of_mem_adicCompletionIntegers (hv.2 i j)
 
+/--
+@isnad1 id=hasfinit.0h2v.s10.a4863f4f7f8f from=translated src=- shape=f33393f6 vocab=134ec055
+-/
 theorem hasFiniteMulSupport_finLocalHeight (g : GL (Fin 2) (FiniteAdeleRing (𝓞 F) F)) :
     (fun v : HeightOneSpectrum (𝓞 F) =>
       finLocalHeight (finComponent (𝓞 F) F v g)).HasFiniteMulSupport :=
   Filter.eventually_cofinite.mp (finLocalHeight_finComponent_eventually_eq_one g)
 
+/--
+@isnad1 id=lt.0h2v.s6.1acfd605bd9e from=translated src=- shape=f537951c vocab=393e183e
+-/
 theorem finHeight_pos (g : GL (Fin 2) (FiniteAdeleRing (𝓞 F) F)) : 0 < finHeight F g :=
   finprod_induction (fun x : ℝ => 0 < x) one_pos (fun _ _ => mul_pos) fun _ => finLocalHeight_pos _
 
+/--
+@isnad1 id=lt.0h2v.s5.a0fa94e43496 from=translated src=- shape=ac1f0716 vocab=a9c999cd
+-/
 theorem adelicHeight_pos (g : AdelicGL2 (𝓞 F) F) : 0 < adelicHeight F g :=
   mul_pos (archHeight_pos F _) (finHeight_pos _)
 
+/--
+@isnad1 id=eq.1h2v.s9.31d454fb98dc from=translated src=- shape=ffd34504 vocab=98e0d5ca
+-/
 theorem finHeight_eq_one_of_mem {g : GL (Fin 2) (FiniteAdeleRing (𝓞 F) F)}
     (hg : g ∈ finiteIntegralGL2 (𝓞 F) F) : finHeight F g = 1 := by
   rw [mem_finiteIntegralGL2_iff] at hg
@@ -213,11 +252,17 @@ theorem finHeight_eq_one_of_mem {g : GL (Fin 2) (FiniteAdeleRing (𝓞 F) F)}
   · rw [← map_inv, finComponent_apply]
     exact norm_le_one_of_mem_adicCompletionIntegers (hg.2 i j v)
 
+/--
+@isnad1 id=eq.1h2v.s11.f4ae3c518b69 from=translated src=- shape=264b9404 vocab=48f73e58
+-/
 theorem adelicHeight_eq_archHeight_of_mem {g : AdelicGL2 (𝓞 F) F}
     (hg : glFin (𝓞 F) F g ∈ finiteIntegralGL2 (𝓞 F) F) :
     adelicHeight F g = archHeight F (glArch (𝓞 F) F g) := by
   rw [adelicHeight, finHeight_eq_one_of_mem hg, mul_one]
 
+/--
+@isnad1 id=eq.0h3v.s12.64faa9d5ff9f from=translated src=- shape=1bff76d7 vocab=32681a18
+-/
 theorem finComponent_globalPoints_eq (v : HeightOneSpectrum (𝓞 F)) (γ : GL (Fin 2) F) :
     ((finComponent (𝓞 F) F v (glFin (𝓞 F) F (globalPoints (𝓞 F) F γ)) :
         GL (Fin 2) (v.adicCompletion F)) : Matrix (Fin 2) (Fin 2) (v.adicCompletion F))
@@ -225,6 +270,9 @@ theorem finComponent_globalPoints_eq (v : HeightOneSpectrum (𝓞 F)) (γ : GL (
   ext i j
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.8e0c644a138a from=translated src=- shape=ccb8e31e vocab=cacdf137
+-/
 theorem finComponent_globalPoints_apply (v : HeightOneSpectrum (𝓞 F)) (γ : GL (Fin 2) F)
     (i j : Fin 2) :
     ((finComponent (𝓞 F) F v (glFin (𝓞 F) F (globalPoints (𝓞 F) F γ)) :
@@ -233,24 +281,39 @@ theorem finComponent_globalPoints_apply (v : HeightOneSpectrum (𝓞 F)) (γ : G
   rw [finComponent_globalPoints_eq]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s12.324f7294cace from=translated src=- shape=46a3f1f2 vocab=325e21b3
+-/
 theorem det_finComponent_globalPoints (v : HeightOneSpectrum (𝓞 F)) (γ : GL (Fin 2) F) :
     ((finComponent (𝓞 F) F v (glFin (𝓞 F) F (globalPoints (𝓞 F) F γ)) :
         GL (Fin 2) (v.adicCompletion F)) : Matrix (Fin 2) (Fin 2) (v.adicCompletion F)).det
       = FinitePlace.embedding v ((γ : Matrix (Fin 2) (Fin 2) F).det) := by
   rw [finComponent_globalPoints_eq, ← RingHom.map_det]
 
+/--
+@isnad1 id=eq.0h3v.s8.f7290df739c7 from=translated src=- shape=7a708978 vocab=10dcd2fa
+-/
 theorem norm_embedding_eq_equiv_symm (v : HeightOneSpectrum (𝓞 F)) (x : F) :
     ‖FinitePlace.embedding v x‖ = (FinitePlace.equivHeightOneSpectrum.symm v) x := rfl
 
+/--
+@isnad1 id=hasfinit.1h2v.s8.d66a0728dd2a from=translated src=- shape=e3bf6492 vocab=e400cb2e
+-/
 theorem hasFiniteMulSupport_norm_embedding {x : F} (hx : x ≠ 0) :
     (fun v : HeightOneSpectrum (𝓞 F) => ‖FinitePlace.embedding v x‖).HasFiniteMulSupport :=
   (FinitePlace.hasFiniteMulSupport hx).fun_comp_of_injective
     FinitePlace.equivHeightOneSpectrum.symm.injective
 
+/--
+@isnad1 id=eq.0h2v.s8.a6895e6ddfde from=translated src=- shape=4b076d81 vocab=18ebbcd4
+-/
 theorem finprod_norm_embedding (x : F) :
     ∏ᶠ v : HeightOneSpectrum (𝓞 F), ‖FinitePlace.embedding v x‖ = ∏ᶠ w : FinitePlace F, w x :=
   finprod_comp_equiv FinitePlace.equivHeightOneSpectrum.symm (f := fun w : FinitePlace F => w x)
 
+/--
+@isnad1 id=le.1h3v.s11.27493d4c6c3f from=translated src=- shape=618c90ec vocab=a373c3ad
+-/
 theorem finHeight_globalPoints_mul_mul_finHeight_le (γ : GL (Fin 2) F)
     (hγ : (γ : Matrix (Fin 2) (Fin 2) F) 1 0 ≠ 0) (h : GL (Fin 2) (FiniteAdeleRing (𝓞 F) F)) :
     finHeight F (glFin (𝓞 F) F (globalPoints (𝓞 F) F γ) * h) * finHeight F h
@@ -292,6 +355,9 @@ theorem finHeight_globalPoints_mul_mul_finHeight_le (γ : GL (Fin 2) F)
           / (∏ᶠ w : FinitePlace F, w ((γ : Matrix (Fin 2) (Fin 2) F) 1 0)) ^ 2 := by
         rw [hnDdef, hnEdef, finprod_norm_embedding, finprod_norm_embedding]
 
+/--
+@isnad1 id=le.1h3v.s9.d21b3ec6a379 from=translated src=- shape=e5b09f70 vocab=74702f8f
+-/
 theorem adelicHeight_globalPoints_mul_mul_adelicHeight_le_one (γ : GL (Fin 2) F)
     (hγ : (γ : Matrix (Fin 2) (Fin 2) F) 1 0 ≠ 0) (g : AdelicGL2 (𝓞 F) F) :
     adelicHeight F (globalPoints (𝓞 F) F γ * g) * adelicHeight F g ≤ 1 := by
@@ -309,6 +375,9 @@ theorem adelicHeight_globalPoints_mul_mul_adelicHeight_le_one (γ : GL (Fin 2) F
   refine (mul_le_mul hA hB hBnn hQnn).trans (le_of_eq ?_)
   rw [div_mul_div_comm, ← mul_pow, prod_abs_eq_one hdet0, prod_abs_eq_one hγ, one_pow, div_one]
 
+/--
+@isnad1 id=le.3h3v.s13.e35a4d2be739 from=translated src=- shape=15186794 vocab=6d217e11
+-/
 theorem archHeight_le_of_adelicHeight {γ : GL (Fin 2) F}
     (hγ : (γ : Matrix (Fin 2) (Fin 2) F) 1 0 ≠ 0)
     {g : AdelicGL2 (𝓞 F) F} (hg : glFin (𝓞 F) F g ∈ finiteIntegralGL2 (𝓞 F) F)

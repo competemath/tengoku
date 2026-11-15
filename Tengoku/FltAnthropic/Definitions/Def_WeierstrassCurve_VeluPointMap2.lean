@@ -19,10 +19,16 @@ def velu2XNum (x : R) : R :=
 def velu2YNum (x y : R) : R :=
   y * (x - x₀) ^ 3 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) * (x - x₀)
 
+/--
+@isnad1 id=eq.0h5v.s6.1cd3feecc7c9 from=translated src=- shape=0feaf489 vocab=9926b20e
+-/
 lemma velu2XNum_eq_mul (x : R) :
     W.velu2XNum x₀ y₀ x = (x - x₀) * (x * (x - x₀) + W.veluGx x₀ y₀) := by
   simp only [velu2XNum]; ring
 
+/--
+@isnad1 id=eq.3h6v.s9.652defeb2f20 from=translated src=- shape=99e02886 vocab=c7dac6a4
+-/
 theorem velu2_equation_cleared_four {x₀ y₀ x y : R}
     (hP : W.toAffine.Equation x y) (hQ : W.toAffine.Equation x₀ y₀)
     (hgy : W.veluGy x₀ y₀ = 0) :
@@ -52,18 +58,27 @@ noncomputable def velu2X (x₀ y₀ x : F) : F :=
 noncomputable def velu2Y (x₀ y₀ x y : F) : F :=
   y - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) / (x - x₀) ^ 2
 
+/--
+@isnad1 id=eq.1h5v.s6.cc464f4efbaf from=translated src=- shape=cf715590 vocab=b72823a4
+-/
 lemma velu2X_eq_div (x₀ y₀ : F) {x : F} (hx : x ≠ x₀) :
     W.velu2X x₀ y₀ x = W.velu2XNum x₀ y₀ x / (x - x₀) ^ 2 := by
   have hd : x - x₀ ≠ 0 := sub_ne_zero.mpr hx
   simp only [velu2X, velu2XNum]
   field_simp
 
+/--
+@isnad1 id=eq.1h6v.s6.b7debf970795 from=translated src=- shape=17429983 vocab=c7766610
+-/
 lemma velu2Y_eq_div (x₀ y₀ : F) {x : F} (y : F) (hx : x ≠ x₀) :
     W.velu2Y x₀ y₀ x y = W.velu2YNum x₀ y₀ x y / (x - x₀) ^ 3 := by
   have hd : x - x₀ ≠ 0 := sub_ne_zero.mpr hx
   simp only [velu2Y, velu2YNum]
   field_simp
 
+/--
+@isnad1 id=equation.5h6v.s7.2a6751ea674f from=translated src=- shape=6372ec47 vocab=e7e5d564
+-/
 theorem velu2_map_equation (hchar : (2 : F) ≠ 0) {x₀ y₀ x y : F}
     (hP : W.toAffine.Equation x y) (hQ : W.toAffine.Equation x₀ y₀)
     (hgy : W.veluGy x₀ y₀ = 0) (hx : x ≠ x₀) :
@@ -81,6 +96,9 @@ theorem velu2_map_equation (hchar : (2 : F) ≠ 0) {x₀ y₀ x y : F}
 
 variable {W} in
 
+/--
+@isnad1 id=nonsingu.6h6v.s7.7da9b95234a0 from=translated src=- shape=c151deea vocab=6d9b695d
+-/
 theorem velu2_map_nonsingular (hchar : (2 : F) ≠ 0) {x₀ y₀ x y : F}
     (hP : W.toAffine.Equation x y) (hQ : W.toAffine.Equation x₀ y₀)
     (hgy : W.veluGy x₀ y₀ = 0) (hx : x ≠ x₀) (hΔ : (W.veluQuotient2 x₀ y₀).Δ ≠ 0) :
@@ -102,13 +120,22 @@ noncomputable def veluPointMap2 :
     if hx : x = x₀ then .zero
     else .some _ _ (velu2_map_nonsingular hchar h.1 hQ hgy hx hΔ)
 
+/--
+@isnad1 id=eq.4h4v.s7.6a4217ee82ac from=translated src=- shape=1b3a1e63 vocab=6af546e9
+-/
 @[simp] lemma veluPointMap2_zero : veluPointMap2 hchar hQ hgy hΔ .zero = .zero := rfl
 
+/--
+@isnad1 id=eq.6h6v.s7.4e9569cd6a7f from=translated src=- shape=c7eb9c48 vocab=0bf1e0ba
+-/
 lemma veluPointMap2_some_of_eq {x y : F} (h : W.toAffine.Nonsingular x y) (hx : x = x₀) :
     veluPointMap2 hchar hQ hgy hΔ (.some x y h) = .zero := by
   simp only [veluPointMap2]
   exact dite_eq_left hx
 
+/--
+@isnad1 id=eq.6h6v.s7.560326b97380 from=translated src=- shape=e3a85bbb vocab=66c537c9
+-/
 lemma veluPointMap2_some_of_ne {x y : F} (h : W.toAffine.Nonsingular x y) (hx : x ≠ x₀) :
     veluPointMap2 hchar hQ hgy hΔ (.some x y h)
       = .some _ _ (velu2_map_nonsingular hchar h.1 hQ hgy hx hΔ) := by

@@ -11,6 +11,9 @@ namespace Stickelberger
 def exponentSet (p : ℕ) : Finset ℕ :=
   (Finset.range p).filter fun c => 0 < c ∧ 2 * c < p
 
+/--
+@isnad1 id=iff.0h2v.s5.a9a6ea02301f from=translated src=- shape=79837145 vocab=19a4b984
+-/
 @[simp] lemma mem_exponentSet {p c : ℕ} :
     c ∈ exponentSet p ↔ 0 < c ∧ 2 * c < p := by
   simp only [exponentSet, Finset.mem_filter, Finset.mem_range]

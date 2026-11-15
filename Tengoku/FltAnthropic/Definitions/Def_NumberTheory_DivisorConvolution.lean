@@ -11,14 +11,26 @@ namespace DivisorConvolution
 
 def sigma (k n : ℕ) : ℕ := ∑ d ∈ n.divisors, d ^ k
 
+/--
+@isnad1 id=eq.0h1v.s4.bdcfa098732f from=translated src=- shape=1d838610 vocab=01594a7e
+-/
 @[simp] theorem sigma_zero_right (k : ℕ) : sigma k 0 = 0 := by simp [sigma]
 
+/--
+@isnad1 id=eq.0h1v.s4.a95d188ee260 from=translated src=- shape=1d838610 vocab=01594a7e
+-/
 @[simp] theorem sigma_one_right (k : ℕ) : sigma k 1 = 1 := by simp [sigma]
 
 def sigmaConv (k l N : ℕ) : ℕ := ∑ i ∈ Finset.Ico 1 N, sigma k i * sigma l (N - i)
 
+/--
+@isnad1 id=eq.0h2v.s4.23f854e6b13b from=translated src=- shape=9bf57cd7 vocab=dec235d6
+-/
 @[simp] theorem sigmaConv_zero (k l : ℕ) : sigmaConv k l 0 = 0 := by simp [sigmaConv]
 
+/--
+@isnad1 id=eq.0h2v.s4.3fb92a79a6fe from=translated src=- shape=9bf57cd7 vocab=dec235d6
+-/
 @[simp] theorem sigmaConv_one (k l : ℕ) : sigmaConv k l 1 = 0 := by simp [sigmaConv]
 
 def BesgeIdentity (N : ℕ) : Prop :=
@@ -27,6 +39,9 @@ def BesgeIdentity (N : ℕ) : Prop :=
 def Weight6Identity (N : ℕ) : Prop :=
   240 * sigmaConv 1 3 N + 30 * N * sigma 3 N + sigma 1 N = 21 * sigma 5 N + 10 * sigma 3 N
 
+/--
+@isnad1 id=iff.0h1v.s6.64bd181c6f32 from=translated src=- shape=f9237176 vocab=15cec8ea
+-/
 theorem besgeIdentity_iff_int (N : ℕ) :
     BesgeIdentity N ↔
       (12 * sigmaConv 1 1 N : ℤ) = 5 * sigma 3 N + (1 - 6 * N) * sigma 1 N := by
@@ -44,6 +59,9 @@ theorem besgeIdentity_iff_int (N : ℕ) :
       linear_combination h
     exact_mod_cast h'
 
+/--
+@isnad1 id=iff.0h1v.s6.09e42f4d92db from=translated src=- shape=70a211dc vocab=21c70c74
+-/
 theorem weight6Identity_iff_int (N : ℕ) :
     Weight6Identity N ↔
       (240 * sigmaConv 1 3 N : ℤ) =
@@ -62,10 +80,16 @@ theorem weight6Identity_iff_int (N : ℕ) :
       linear_combination h
     exact_mod_cast h'
 
+/--
+@isnad1 id=besgeide.1h1v.s3.d1218e6a2a35 from=translated src=- shape=03cacb02 vocab=86a1230f
+-/
 theorem besgeIdentity_of_le_six {N : ℕ} (hN : N ≤ 6) : BesgeIdentity N := by
   unfold BesgeIdentity
   interval_cases N <;> decide
 
+/--
+@isnad1 id=weight6i.1h1v.s3.134f392ebcb6 from=translated src=- shape=03cacb02 vocab=6010af55
+-/
 theorem weight6Identity_of_le_six {N : ℕ} (hN : N ≤ 6) : Weight6Identity N := by
   unfold Weight6Identity
   interval_cases N <;> decide
@@ -74,6 +98,9 @@ def Sols (N : ℕ) : Finset (ℕ × ℕ × ℕ × ℕ) :=
   (Finset.Icc 1 N ×ˢ Finset.Icc 1 N ×ˢ Finset.Icc 1 N ×ˢ Finset.Icc 1 N).filter
     (fun x => x.1 * x.2.1 + x.2.2.1 * x.2.2.2 = N)
 
+/--
+@isnad1 id=iff.0h2v.s7.cbfe607eb1d7 from=translated src=- shape=15b21b30 vocab=3d6c0f17
+-/
 theorem mem_Sols {N : ℕ} {x : ℕ × ℕ × ℕ × ℕ} :
     x ∈ Sols N ↔
       0 < x.1 ∧ 0 < x.2.1 ∧ 0 < x.2.2.1 ∧ 0 < x.2.2.2 ∧
@@ -107,6 +134,9 @@ def euclidStep (x : ℕ × ℕ × ℕ × ℕ) : ℕ × ℕ × ℕ × ℕ :=
 def euclidStepInv (x : ℕ × ℕ × ℕ × ℕ) : ℕ × ℕ × ℕ × ℕ :=
   (x.1 + x.2.2.1, x.2.1, x.2.2.1, x.2.2.2 - x.2.1)
 
+/--
+@isnad1 id=mem.1h2v.s8.dcf7a65d516a from=translated src=- shape=cb9abe77 vocab=7baa1251
+-/
 theorem euclidStep_mem {N : ℕ} {x : ℕ × ℕ × ℕ × ℕ}
     (hx : x ∈ (Sols N).filter fun x => x.2.2.1 < x.1) :
     euclidStep x ∈ (Sols N).filter fun x => x.2.1 < x.2.2.2 := by
@@ -132,6 +162,9 @@ theorem euclidStep_mem {N : ℕ} {x : ℕ × ℕ × ℕ × ℕ}
   · show x.2.1 < x.2.1 + x.2.2.2
     omega
 
+/--
+@isnad1 id=and.1h2v.s8.4b9923b97e56 from=translated src=- shape=44b0c94e vocab=b4f52a13
+-/
 theorem euclidStepInv_mem {N : ℕ} {y : ℕ × ℕ × ℕ × ℕ}
     (hy : y ∈ (Sols N).filter fun x => x.2.1 < x.2.2.2) :
     euclidStepInv y ∈ ((Sols N).filter fun x => x.2.2.1 < x.1) ∧
@@ -163,6 +196,9 @@ theorem euclidStepInv_mem {N : ℕ} {y : ℕ × ℕ × ℕ × ℕ}
     have h6 : y.2.1 + (y.2.2.2 - y.2.1) = y.2.2.2 := by omega
     rw [h5, h6]
 
+/--
+@isnad1 id=eq.0h1v.s7.45b6e65e595e from=translated src=- shape=969f98c8 vocab=f62547fe
+-/
 theorem image_euclidStep (N : ℕ) :
     ((Sols N).filter fun x => x.2.2.1 < x.1).image euclidStep
       = (Sols N).filter fun x => x.2.1 < x.2.2.2 := by
@@ -174,6 +210,9 @@ theorem image_euclidStep (N : ℕ) :
   · intro hy
     exact Finset.mem_image.2 ⟨euclidStepInv y, (euclidStepInv_mem hy).1, (euclidStepInv_mem hy).2⟩
 
+/--
+@isnad1 id=eq.3h3v.s8.befef944fe9e from=translated src=- shape=1681aabc vocab=7baa1251
+-/
 theorem euclidStep_injOn (N : ℕ) :
     ∀ x ∈ (Sols N).filter (fun x => x.2.2.1 < x.1),
       ∀ y ∈ (Sols N).filter (fun x => x.2.2.1 < x.1), euclidStep x = euclidStep y → x = y := by
@@ -190,11 +229,17 @@ theorem euclidStep_injOn (N : ℕ) :
   have e1 : x.2 = y.2 := Prod.ext h2 e2
   exact Prod.ext hx1 e1
 
+/--
+@isnad1 id=eq.0h3v.s7.ad6786cafabe from=translated src=- shape=3de8fee1 vocab=e3a46755
+-/
 theorem sum_euclidStep {M : Type*} [AddCommMonoid M] (N : ℕ) (F : ℕ × ℕ × ℕ × ℕ → M) :
     ∑ x ∈ (Sols N).filter (fun x => x.2.2.1 < x.1), F (euclidStep x)
       = ∑ y ∈ (Sols N).filter (fun x => x.2.1 < x.2.2.2), F y := by
   rw [← image_euclidStep N, Finset.sum_image (euclidStep_injOn N)]
 
+/--
+@isnad1 id=eq.0h1v.s8.56cf5855b71c from=translated src=- shape=d50551e1 vocab=923b6945
+-/
 theorem sum_ac_filter_lt (N : ℕ) :
     ∑ x ∈ (Sols N).filter (fun x => x.2.2.1 < x.1), x.1 * x.2.2.1
       = (∑ x ∈ (Sols N).filter (fun x => x.2.1 < x.2.2.2), x.1 * x.2.2.1)
@@ -234,16 +279,28 @@ def swap₁ (x : ℕ × ℕ × ℕ × ℕ) : ℕ × ℕ × ℕ × ℕ := (x.2.2.
 
 def swap₂ (x : ℕ × ℕ × ℕ × ℕ) : ℕ × ℕ × ℕ × ℕ := (x.2.1, x.1, x.2.2.2, x.2.2.1)
 
+/--
+@isnad1 id=eq.0h1v.s4.06f3c151a206 from=translated src=- shape=6782e0f8 vocab=3d64fdc1
+-/
 theorem swap₁_swap₁ (x : ℕ × ℕ × ℕ × ℕ) : swap₁ (swap₁ x) = x := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.b2fb953d85ea from=translated src=- shape=6782e0f8 vocab=4bb68559
+-/
 theorem swap₂_swap₂ (x : ℕ × ℕ × ℕ × ℕ) : swap₂ (swap₂ x) = x := rfl
 
+/--
+@isnad1 id=mem.1h2v.s6.cd31401256d2 from=translated src=- shape=1a896dfc vocab=5aeabd55
+-/
 theorem swap₁_mem_Sols {N : ℕ} {x : ℕ × ℕ × ℕ × ℕ} (hx : x ∈ Sols N) : swap₁ x ∈ Sols N := by
   obtain ⟨ha, hb, hc, hd, heq⟩ := mem_Sols.1 hx
   refine mem_Sols.2 ⟨hc, hd, ha, hb, ?_⟩
   show x.2.2.1 * x.2.2.2 + x.1 * x.2.1 = N
   omega
 
+/--
+@isnad1 id=mem.1h2v.s6.ba879c975894 from=translated src=- shape=1a896dfc vocab=1b511464
+-/
 theorem swap₂_mem_Sols {N : ℕ} {x : ℕ × ℕ × ℕ × ℕ} (hx : x ∈ Sols N) : swap₂ x ∈ Sols N := by
   obtain ⟨ha, hb, hc, hd, heq⟩ := mem_Sols.1 hx
   refine mem_Sols.2 ⟨hb, ha, hd, hc, ?_⟩
@@ -252,6 +309,9 @@ theorem swap₂_mem_Sols {N : ℕ} {x : ℕ × ℕ × ℕ × ℕ} (hx : x ∈ So
       = x.1 * x.2.1 + x.2.2.1 * x.2.2.2 := by ring
     _ = N := heq
 
+/--
+@isnad1 id=eq.0h4v.s7.015e892aadba from=translated src=- shape=f68f78ad vocab=419ab8a2
+-/
 theorem sum_swap₁ {M : Type*} [AddCommMonoid M] (N : ℕ) (F : ℕ × ℕ × ℕ × ℕ → M)
     (p : ℕ × ℕ × ℕ × ℕ → Prop) [DecidablePred p] :
     ∑ x ∈ (Sols N).filter p, F x
@@ -268,6 +328,9 @@ theorem sum_swap₁ {M : Type*} [AddCommMonoid M] (N : ℕ) (F : ℕ × ℕ × �
   · intro x _; exact swap₁_swap₁ x
   · intro x _; rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.29395632486b from=translated src=- shape=f68f78ad vocab=d7ba7a9f
+-/
 theorem sum_swap₂ {M : Type*} [AddCommMonoid M] (N : ℕ) (F : ℕ × ℕ × ℕ × ℕ → M)
     (p : ℕ × ℕ × ℕ × ℕ → Prop) [DecidablePred p] :
     ∑ x ∈ (Sols N).filter p, F x
@@ -284,6 +347,9 @@ theorem sum_swap₂ {M : Type*} [AddCommMonoid M] (N : ℕ) (F : ℕ × ℕ × �
   · intro x _; exact swap₂_swap₂ x
   · intro x _; rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.2fd75af37563 from=translated src=- shape=b1f99a99 vocab=d79fd725
+-/
 theorem sum_split {M : Type*} [AddCommMonoid M] (N : ℕ) (F : ℕ × ℕ × ℕ × ℕ → M)
     (g h : ℕ × ℕ × ℕ × ℕ → ℕ) :
     ∑ x ∈ Sols N, F x
@@ -306,6 +372,9 @@ theorem sum_split {M : Type*} [AddCommMonoid M] (N : ℕ) (F : ℕ × ℕ × ℕ
   rw [← h1, ← h2]
   exact (add_assoc _ _ _).symm
 
+/--
+@isnad1 id=eq.0h1v.s8.fef523a1ae13 from=translated src=- shape=fc1c0b6c vocab=bfb9ae54
+-/
 theorem engine_ac (N : ℕ) :
     ∑ x ∈ (Sols N).filter (fun x => x.2.2.1 < x.1), (x.1 * x.2.2.1 : ℤ)
       = (∑ x ∈ (Sols N).filter (fun x => x.2.1 < x.2.2.2), (x.1 * x.2.2.1 : ℤ))
@@ -318,12 +387,18 @@ theorem engine_ac (N : ℕ) :
   push_cast at h'
   exact h'
 
+/--
+@isnad1 id=eq.0h1v.s8.54352ac85671 from=translated src=- shape=5805ba72 vocab=5aba4330
+-/
 theorem engine_c2 (N : ℕ) :
     ∑ x ∈ (Sols N).filter (fun x => x.2.2.1 < x.1), (x.2.2.1 * x.2.2.1 : ℤ)
       = ∑ x ∈ (Sols N).filter (fun x => x.2.1 < x.2.2.2), (x.2.2.1 * x.2.2.1 : ℤ) := by
   have h := sum_euclidStep (M := ℤ) N (fun y => (y.2.2.1 * y.2.2.1 : ℤ))
   simpa [euclidStep] using h
 
+/--
+@isnad1 id=eq.0h1v.s9.ebdc6a757784 from=translated src=- shape=e11c40fa vocab=bfb9ae54
+-/
 theorem engine_a2 (N : ℕ) :
     (∑ x ∈ (Sols N).filter (fun x => x.2.2.1 < x.1), (x.1 * x.1 : ℤ))
         + ∑ x ∈ (Sols N).filter (fun x => x.2.2.1 < x.1), (x.2.2.1 * x.2.2.1 : ℤ)
@@ -358,6 +433,9 @@ theorem engine_a2 (N : ℕ) :
           + 2 * ∑ x ∈ (Sols N).filter (fun x => x.2.2.1 < x.1), (x.1 * x.2.2.1 : ℤ) := by
         rw [hengine, ← Finset.mul_sum]
 
+/--
+@isnad1 id=eq.0h1v.s5.0696cd71c3fa from=translated src=- shape=7ad69403 vocab=77e5dedf
+-/
 theorem two_mul_sum_Ico_id (M : ℕ) :
     2 * ∑ b ∈ Finset.Ico 1 M, (b : ℤ) = M * M - M := by
   induction M with
@@ -370,6 +448,9 @@ theorem two_mul_sum_Ico_id (M : ℕ) :
       push_cast at ih
       linear_combination ih
 
+/--
+@isnad1 id=eq.0h1v.s7.a406f8ee877e from=translated src=- shape=49f88afe vocab=a267bcb2
+-/
 theorem six_mul_sum_Ico_sq (M : ℕ) :
     6 * ∑ b ∈ Finset.Ico 1 M, ((b : ℤ) * b) = 2 * M * M * M - 3 * M * M + M := by
   induction M with
@@ -382,6 +463,9 @@ theorem six_mul_sum_Ico_sq (M : ℕ) :
       push_cast at ih
       linear_combination ih
 
+/--
+@isnad1 id=eq.0h1v.s6.a7852c5a4eb5 from=translated src=- shape=74c5c736 vocab=77e5dedf
+-/
 theorem six_mul_sum_Ico_mul_rev (M : ℕ) :
     6 * ∑ b ∈ Finset.Ico 1 M, ((b : ℤ) * (M - b)) = M * M * M - M := by
   have h1 := two_mul_sum_Ico_id M
@@ -393,6 +477,9 @@ theorem six_mul_sum_Ico_mul_rev (M : ℕ) :
   rw [hsplit]
   linear_combination 3 * (M : ℤ) * h1 - h2
 
+/--
+@isnad1 id=eq.0h3v.s7.104190ffd37d from=translated src=- shape=0b451fee vocab=eed94fe3
+-/
 theorem sum_slice_diag {β : Type*} [AddCommMonoid β] (N : ℕ) (F : ℕ × ℕ × ℕ × ℕ → β) :
     ∑ x ∈ (Sols N).filter (fun x => x.1 = x.2.2.1), F x
       = ∑ p ∈ N.divisorsAntidiagonal, ∑ b ∈ Finset.Ico 1 p.2, F (p.1, b, p.1, p.2 - b) := by
@@ -452,6 +539,9 @@ theorem sum_slice_diag {β : Type*} [AddCommMonoid β] (N : ℕ) (F : ℕ × ℕ
         (by show x.2.1 + x.2.2.2 - x.2.1 = x.2.2.2; omega)))
     exact (congrArg F htup).symm
 
+/--
+@isnad1 id=eq.0h1v.s8.60d819c7588f from=translated src=- shape=564cb921 vocab=b9ef185b
+-/
 theorem slice_a2_eq_slice_ac (N : ℕ) :
     ∑ x ∈ (Sols N).filter (fun x => x.1 = x.2.2.1), (x.1 * x.1 : ℤ)
       = ∑ x ∈ (Sols N).filter (fun x => x.1 = x.2.2.1), (x.1 * x.2.2.1 : ℤ) := by
@@ -459,28 +549,43 @@ theorem slice_a2_eq_slice_ac (N : ℕ) :
   have hx13 : x.1 = x.2.2.1 := (Finset.mem_filter.1 hx).2
   rw [← hx13]
 
+/--
+@isnad1 id=eq.0h1v.s7.b6fb5edacf7a from=translated src=- shape=2ae1acda vocab=a442cd5d
+-/
 theorem filter_diag_comm (N : ℕ) :
     (Sols N).filter (fun x => x.2.2.1 = x.1) = (Sols N).filter (fun x => x.1 = x.2.2.1) :=
   Finset.filter_congr (fun x _ => by omega)
 
+/--
+@isnad1 id=eq.0h1v.s4.17f982089d51 from=translated src=- shape=8a16ec4b vocab=86c5e302
+-/
 theorem cast_sigma_one (N : ℕ) :
     ((sigma 1 N : ℕ) : ℤ) = ∑ d ∈ N.divisors, (d : ℤ) := by
   simp only [sigma, pow_one]
   push_cast
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.0376b76d55b9 from=translated src=- shape=102b63a8 vocab=de4fe46d
+-/
 theorem cast_sigma_two (N : ℕ) :
     ((sigma 2 N : ℕ) : ℤ) = ∑ d ∈ N.divisors, (d : ℤ) ^ 2 := by
   simp only [sigma]
   push_cast
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.c5df5fd17c7a from=translated src=- shape=102b63a8 vocab=de4fe46d
+-/
 theorem cast_sigma_three (N : ℕ) :
     ((sigma 3 N : ℕ) : ℤ) = ∑ d ∈ N.divisors, (d : ℤ) ^ 3 := by
   simp only [sigma]
   push_cast
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.e0bc5dccddb2 from=translated src=- shape=b80b7736 vocab=8950b9d1
+-/
 theorem slice_ac (N : ℕ) :
     ∑ x ∈ (Sols N).filter (fun x => x.1 = x.2.2.1), (x.1 * x.2.2.1 : ℤ)
       = N * sigma 1 N - sigma 2 N := by
@@ -508,6 +613,9 @@ theorem slice_ac (N : ℕ) :
   congr 1
   exact Finset.sum_congr rfl (fun d _ => by ring)
 
+/--
+@isnad1 id=eq.0h1v.s7.9dce2ac7ee5a from=translated src=- shape=dbec1a3d vocab=cf8084fa
+-/
 theorem slice_b2 (N : ℕ) :
     6 * ∑ x ∈ (Sols N).filter (fun x => x.1 = x.2.2.1), (x.2.1 * x.2.1 : ℤ)
       = 2 * sigma 3 N - 3 * sigma 2 N + sigma 1 N := by
@@ -528,6 +636,9 @@ theorem slice_b2 (N : ℕ) :
   rw [cast_sigma_one, cast_sigma_two, cast_sigma_three]
   rw [Finset.mul_sum, Finset.mul_sum, ← Finset.sum_sub_distrib, ← Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h1v.s7.df706d92da51 from=translated src=- shape=e21aef33 vocab=8950b9d1
+-/
 theorem slice_bd (N : ℕ) :
     6 * ∑ x ∈ (Sols N).filter (fun x => x.1 = x.2.2.1), (x.2.1 * x.2.2.2 : ℤ)
       = sigma 3 N - sigma 1 N := by
@@ -550,10 +661,16 @@ theorem slice_bd (N : ℕ) :
   rw [Nat.sum_divisorsAntidiagonal' (f := fun (_ : ℕ) b => ((b : ℤ) ^ 3 - b)) (n := N)]
   rw [cast_sigma_one, cast_sigma_three, Finset.sum_sub_distrib]
 
+/--
+@isnad1 id=eq.0h1v.s5.b077e1f0c204 from=translated src=- shape=80f16066 vocab=c56d1a6b
+-/
 theorem cast_sigma_one_antidiagonal (n : ℕ) :
     ∑ p ∈ n.divisorsAntidiagonal, (p.1 : ℤ) = (sigma 1 n : ℤ) := by
   rw [Nat.sum_divisorsAntidiagonal (f := fun a (_ : ℕ) => (a : ℤ)) (n := n), cast_sigma_one]
 
+/--
+@isnad1 id=eq.0h1v.s6.8d7f397a8cb1 from=translated src=- shape=95622675 vocab=4fc36c0a
+-/
 theorem sum_ac_eq_sigmaConv (N : ℕ) :
     ∑ x ∈ Sols N, (x.1 * x.2.2.1 : ℤ) = (sigmaConv 1 1 N : ℤ) := by
   have hmaps : ∀ x ∈ Sols N, x.1 * x.2.1 ∈ Finset.Ico 1 N := by
@@ -609,6 +726,9 @@ theorem sum_ac_eq_sigmaConv (N : ℕ) :
   refine Finset.sum_congr rfl (fun p _ => ?_)
   rw [Finset.mul_sum]
 
+/--
+@isnad1 id=eq.0h1v.s8.1a1fa026a419 from=translated src=- shape=fc51122f vocab=5aba4330
+-/
 theorem swap1_ac_a (N : ℕ) :
     ∑ x ∈ (Sols N).filter (fun x => x.2.2.1 < x.1), (x.1 * x.2.2.1 : ℤ)
       = ∑ x ∈ (Sols N).filter (fun x => x.1 < x.2.2.1), (x.1 * x.2.2.1 : ℤ) := by
@@ -617,6 +737,9 @@ theorem swap1_ac_a (N : ℕ) :
     show ((x.2.2.1 : ℤ) * x.1) = ((x.1 : ℤ) * x.2.2.1)
     ring)
 
+/--
+@isnad1 id=eq.0h1v.s8.8c535837ad50 from=translated src=- shape=1cb4c0ba vocab=5aba4330
+-/
 theorem swap1_ac_d (N : ℕ) :
     ∑ x ∈ (Sols N).filter (fun x => x.2.1 < x.2.2.2), (x.1 * x.2.2.1 : ℤ)
       = ∑ x ∈ (Sols N).filter (fun x => x.2.2.2 < x.2.1), (x.1 * x.2.2.1 : ℤ) := by
@@ -625,30 +748,45 @@ theorem swap1_ac_d (N : ℕ) :
     show ((x.2.2.1 : ℤ) * x.1) = ((x.1 : ℤ) * x.2.2.1)
     ring)
 
+/--
+@isnad1 id=eq.0h1v.s8.fcf4034c3dc2 from=translated src=- shape=9bf375ed vocab=5aba4330
+-/
 theorem swap1_c2_a (N : ℕ) :
     ∑ x ∈ (Sols N).filter (fun x => x.2.2.1 < x.1), (x.2.2.1 * x.2.2.1 : ℤ)
       = ∑ x ∈ (Sols N).filter (fun x => x.1 < x.2.2.1), (x.1 * x.1 : ℤ) := by
   rw [sum_swap₁ N (fun x => (x.2.2.1 * x.2.2.1 : ℤ)) (fun x => x.2.2.1 < x.1)]
   exact Finset.sum_congr rfl (fun x _ => rfl)
 
+/--
+@isnad1 id=eq.0h1v.s8.9bc7910b9b20 from=translated src=- shape=b1e8850f vocab=5aba4330
+-/
 theorem swap1_c2_d (N : ℕ) :
     ∑ x ∈ (Sols N).filter (fun x => x.2.1 < x.2.2.2), (x.2.2.1 * x.2.2.1 : ℤ)
       = ∑ x ∈ (Sols N).filter (fun x => x.2.2.2 < x.2.1), (x.1 * x.1 : ℤ) := by
   rw [sum_swap₁ N (fun x => (x.2.2.1 * x.2.2.1 : ℤ)) (fun x => x.2.1 < x.2.2.2)]
   exact Finset.sum_congr rfl (fun x _ => rfl)
 
+/--
+@isnad1 id=eq.0h1v.s8.98de1042a1a8 from=translated src=- shape=d0351593 vocab=b9ef185b
+-/
 theorem swap2_a2_diag (N : ℕ) :
     ∑ x ∈ (Sols N).filter (fun x => x.2.2.2 = x.2.1), (x.1 * x.1 : ℤ)
       = ∑ x ∈ (Sols N).filter (fun x => x.1 = x.2.2.1), (x.2.1 * x.2.1 : ℤ) := by
   rw [sum_swap₂ N (fun x => (x.1 * x.1 : ℤ)) (fun x => x.2.2.2 = x.2.1), ← filter_diag_comm N]
   exact Finset.sum_congr rfl (fun x _ => rfl)
 
+/--
+@isnad1 id=eq.0h1v.s8.80ee34f736fd from=translated src=- shape=3afa18b5 vocab=b9ef185b
+-/
 theorem swap2_ac_diag (N : ℕ) :
     ∑ x ∈ (Sols N).filter (fun x => x.2.2.2 = x.2.1), (x.1 * x.2.2.1 : ℤ)
       = ∑ x ∈ (Sols N).filter (fun x => x.1 = x.2.2.1), (x.2.1 * x.2.2.2 : ℤ) := by
   rw [sum_swap₂ N (fun x => (x.1 * x.2.2.1 : ℤ)) (fun x => x.2.2.2 = x.2.1), ← filter_diag_comm N]
   exact Finset.sum_congr rfl (fun x _ => rfl)
 
+/--
+@isnad1 id=eq.0h1v.s6.c84928b1c171 from=translated src=- shape=7adf7809 vocab=620f251c
+-/
 theorem besgeIdentity_int (N : ℕ) :
     (12 * sigmaConv 1 1 N : ℤ) = 5 * sigma 3 N + (1 - 6 * N) * sigma 1 N := by
 
@@ -697,6 +835,9 @@ theorem besgeIdentity_int (N : ℕ) :
     linarith [e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e15]
   linear_combination 6 * h2T - 12 * e18 + 2 * e16 + e17 - 6 * e14
 
+/--
+@isnad1 id=besgeide.0h1v.s2.cead9d1ba956 from=translated src=- shape=5c11bb93 vocab=dc30402b
+-/
 theorem besgeIdentity (N : ℕ) : BesgeIdentity N :=
   (besgeIdentity_iff_int N).mpr (besgeIdentity_int N)
 
@@ -712,6 +853,9 @@ namespace Weight6Certificate
 
 open BesgeCertificate
 
+/--
+@isnad1 id=eq.0h1v.s7.3b507715c816 from=translated src=- shape=7e451b23 vocab=ffc2166a
+-/
 theorem four_mul_sum_Ico_cube (M : ℕ) :
     4 * ∑ b ∈ Finset.Ico 1 M, (b : ℤ) ^ 3 = M ^ 4 - 2 * M ^ 3 + M ^ 2 := by
   induction M with
@@ -724,6 +868,9 @@ theorem four_mul_sum_Ico_cube (M : ℕ) :
       push_cast at ih
       linear_combination ih
 
+/--
+@isnad1 id=eq.0h1v.s7.40bb5d71e9eb from=translated src=- shape=36abfaa9 vocab=ffc2166a
+-/
 theorem thirty_mul_sum_Ico_pow_four (M : ℕ) :
     30 * ∑ b ∈ Finset.Ico 1 M, (b : ℤ) ^ 4
       = 6 * M ^ 5 - 15 * M ^ 4 + 10 * M ^ 3 - M := by
@@ -737,6 +884,9 @@ theorem thirty_mul_sum_Ico_pow_four (M : ℕ) :
       push_cast at ih
       linear_combination ih
 
+/--
+@isnad1 id=eq.0h1v.s7.516963b24fb7 from=translated src=- shape=630ac314 vocab=ffc2166a
+-/
 theorem sixty_mul_sum_Ico_mul_cube_rev (M : ℕ) :
     60 * ∑ b ∈ Finset.Ico 1 M, ((b : ℤ) * ((M : ℤ) - b) ^ 3)
       = 3 * M ^ 5 - 5 * M ^ 3 + 2 * M := by
@@ -755,6 +905,9 @@ theorem sixty_mul_sum_Ico_mul_cube_rev (M : ℕ) :
   rw [hsplit]
   linear_combination 30 * (M : ℤ) ^ 3 * h1 - 30 * (M : ℤ) ^ 2 * h2 + 45 * (M : ℤ) * h3 - 2 * h4
 
+/--
+@isnad1 id=eq.0h1v.s6.f864ae5a48bf from=translated src=- shape=78074285 vocab=dc28020e
+-/
 theorem thirty_mul_sum_Ico_sq_mul_sq_rev (M : ℕ) :
     30 * ∑ b ∈ Finset.Ico 1 M, ((b : ℤ) ^ 2 * ((M : ℤ) - b) ^ 2)
       = M ^ 5 - M := by
@@ -770,22 +923,34 @@ theorem thirty_mul_sum_Ico_sq_mul_sq_rev (M : ℕ) :
   rw [hsplit]
   linear_combination 5 * (M : ℤ) ^ 2 * h2 - 15 * (M : ℤ) * h3 + h4
 
+/--
+@isnad1 id=eq.0h1v.s5.3a38c6382be5 from=translated src=- shape=102b63a8 vocab=de4fe46d
+-/
 theorem cast_sigma_four (N : ℕ) :
     ((sigma 4 N : ℕ) : ℤ) = ∑ d ∈ N.divisors, (d : ℤ) ^ 4 := by
   simp only [sigma]
   push_cast
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.4e18acb50b7c from=translated src=- shape=102b63a8 vocab=de4fe46d
+-/
 theorem cast_sigma_five (N : ℕ) :
     ((sigma 5 N : ℕ) : ℤ) = ∑ d ∈ N.divisors, (d : ℤ) ^ 5 := by
   simp only [sigma]
   push_cast
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.e54b9bf58384 from=translated src=- shape=21da6fa9 vocab=a1edc5b0
+-/
 theorem cast_sigma_three_antidiagonal (n : ℕ) :
     ∑ p ∈ n.divisorsAntidiagonal, (p.1 : ℤ) ^ 3 = (sigma 3 n : ℤ) := by
   rw [Nat.sum_divisorsAntidiagonal (f := fun a (_ : ℕ) => (a : ℤ) ^ 3) (n := n), cast_sigma_three]
 
+/--
+@isnad1 id=eq.0h1v.s7.bbcdcd136fa8 from=translated src=- shape=b0b413b0 vocab=d531e277
+-/
 theorem slice_a4 (N : ℕ) :
     ∑ x ∈ (Sols N).filter (fun x => x.1 = x.2.2.1), ((x.1 : ℤ) ^ 4)
       = N * sigma 3 N - sigma 4 N := by
@@ -814,6 +979,9 @@ theorem slice_a4 (N : ℕ) :
   congr 1
   exact Finset.sum_congr rfl (fun d _ => by ring)
 
+/--
+@isnad1 id=eq.0h1v.s7.faa0347c2877 from=translated src=- shape=a134c1f5 vocab=808b77d7
+-/
 theorem slice_b4 (N : ℕ) :
     30 * ∑ x ∈ (Sols N).filter (fun x => x.1 = x.2.2.1), ((x.2.1 : ℤ) ^ 4)
       = 6 * sigma 5 N - 15 * sigma 4 N + 10 * sigma 3 N - sigma 1 N := by
@@ -835,6 +1003,9 @@ theorem slice_b4 (N : ℕ) :
   rw [Finset.mul_sum, Finset.mul_sum, Finset.mul_sum, ← Finset.sum_sub_distrib,
     ← Finset.sum_add_distrib, ← Finset.sum_sub_distrib]
 
+/--
+@isnad1 id=eq.0h1v.s7.8fd8f3c48960 from=translated src=- shape=c96e772b vocab=808b77d7
+-/
 theorem slice_bd3 (N : ℕ) :
     60 * ∑ x ∈ (Sols N).filter (fun x => x.1 = x.2.2.1), ((x.2.1 : ℤ) * (x.2.2.2 : ℤ) ^ 3)
       = 3 * sigma 5 N - 5 * sigma 3 N + 2 * sigma 1 N := by
@@ -860,6 +1031,9 @@ theorem slice_bd3 (N : ℕ) :
   rw [Finset.mul_sum, Finset.mul_sum, Finset.mul_sum, ← Finset.sum_sub_distrib,
     ← Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h1v.s7.f2ef8f8be6d9 from=translated src=- shape=147336f6 vocab=d531e277
+-/
 theorem slice_b2d2 (N : ℕ) :
     30 * ∑ x ∈ (Sols N).filter (fun x => x.1 = x.2.2.1), ((x.2.1 : ℤ) ^ 2 * (x.2.2.2 : ℤ) ^ 2)
       = sigma 5 N - sigma 1 N := by
@@ -882,6 +1056,9 @@ theorem slice_b2d2 (N : ℕ) :
   rw [Nat.sum_divisorsAntidiagonal' (f := fun (_ : ℕ) b => ((b : ℤ) ^ 5 - (b : ℤ))) (n := N)]
   rw [cast_sigma_one, cast_sigma_five, Finset.sum_sub_distrib]
 
+/--
+@isnad1 id=eq.0h1v.s6.d06f9911ef4b from=translated src=- shape=90bbdee1 vocab=b22c40d0
+-/
 theorem sum_ac3_eq_sigmaConv (N : ℕ) :
     ∑ x ∈ Sols N, ((x.1 : ℤ) * (x.2.2.1 : ℤ) ^ 3) = (sigmaConv 1 3 N : ℤ) := by
   have hmaps : ∀ x ∈ Sols N, x.1 * x.2.1 ∈ Finset.Ico 1 N := by
@@ -938,6 +1115,9 @@ theorem sum_ac3_eq_sigmaConv (N : ℕ) :
   refine Finset.sum_congr rfl (fun p _ => ?_)
   rw [Finset.mul_sum]
 
+/--
+@isnad1 id=eq.0h1v.s8.e2dbb3e7420e from=translated src=- shape=578eb948 vocab=d80c2097
+-/
 theorem engine_ac3 (N : ℕ) :
     ∑ x ∈ (Sols N).filter (fun x => x.2.2.1 < x.1), ((x.1 : ℤ) * (x.2.2.1 : ℤ) ^ 3)
       = (∑ x ∈ (Sols N).filter (fun x => x.2.1 < x.2.2.2), ((x.1 : ℤ) * (x.2.2.1 : ℤ) ^ 3))
@@ -964,12 +1144,18 @@ theorem engine_ac3 (N : ℕ) :
           + ∑ x ∈ (Sols N).filter (fun x => x.2.2.1 < x.1), ((x.2.2.1 : ℤ) ^ 4) := by
         rw [hengine]
 
+/--
+@isnad1 id=eq.0h1v.s8.acb0099f5ebe from=translated src=- shape=642b508e vocab=585b3ded
+-/
 theorem engine_c4 (N : ℕ) :
     ∑ x ∈ (Sols N).filter (fun x => x.2.2.1 < x.1), ((x.2.2.1 : ℤ) ^ 4)
       = ∑ x ∈ (Sols N).filter (fun x => x.2.1 < x.2.2.2), ((x.2.2.1 : ℤ) ^ 4) := by
   have h := sum_euclidStep (M := ℤ) N (fun y => ((y.2.2.1 : ℤ) ^ 4))
   simpa [euclidStep] using h
 
+/--
+@isnad1 id=eq.0h1v.s9.18779e9cb933 from=translated src=- shape=7ff78d08 vocab=d80c2097
+-/
 theorem engine_a2c2 (N : ℕ) :
     (∑ x ∈ (Sols N).filter (fun x => x.2.2.1 < x.1), ((x.1 : ℤ) ^ 2 * (x.2.2.1 : ℤ) ^ 2))
         + ∑ x ∈ (Sols N).filter (fun x => x.2.2.1 < x.1), ((x.2.2.1 : ℤ) ^ 4)
@@ -1005,6 +1191,9 @@ theorem engine_a2c2 (N : ℕ) :
               ((x.1 : ℤ) * (x.2.2.1 : ℤ) ^ 3) := by
         rw [hengine, ← Finset.mul_sum]
 
+/--
+@isnad1 id=eq.0h1v.s9.24e25052a394 from=translated src=- shape=d2238a36 vocab=d80c2097
+-/
 theorem engine_a3c (N : ℕ) :
     (∑ x ∈ (Sols N).filter (fun x => x.2.2.1 < x.1), ((x.1 : ℤ) ^ 3 * (x.2.2.1 : ℤ)))
         + 3 * ∑ x ∈ (Sols N).filter (fun x => x.2.2.1 < x.1), ((x.1 : ℤ) * (x.2.2.1 : ℤ) ^ 3)
@@ -1044,6 +1233,9 @@ theorem engine_a3c (N : ℕ) :
               + ∑ x ∈ (Sols N).filter (fun x => x.2.2.1 < x.1), ((x.2.2.1 : ℤ) ^ 4)) := by
         rw [hengine, Finset.sum_add_distrib, ← Finset.mul_sum]
 
+/--
+@isnad1 id=eq.0h1v.s9.214c75f77869 from=translated src=- shape=b36be77f vocab=d80c2097
+-/
 theorem engine_a4 (N : ℕ) :
     (∑ x ∈ (Sols N).filter (fun x => x.2.2.1 < x.1), ((x.1 : ℤ) ^ 4))
         + (6 * ∑ x ∈ (Sols N).filter (fun x => x.2.2.1 < x.1),
@@ -1086,6 +1278,9 @@ theorem engine_a4 (N : ℕ) :
                   ((x.1 : ℤ) * (x.2.2.1 : ℤ) ^ 3)) := by
         rw [hengine, Finset.sum_add_distrib, ← Finset.mul_sum, ← Finset.mul_sum]
 
+/--
+@isnad1 id=eq.0h1v.s8.83e33b42ebeb from=translated src=- shape=b34e1665 vocab=90c77951
+-/
 theorem swap1_ac3_lt_a (N : ℕ) :
     ∑ x ∈ (Sols N).filter (fun x => x.1 < x.2.2.1), ((x.1 : ℤ) * (x.2.2.1 : ℤ) ^ 3)
       = ∑ x ∈ (Sols N).filter (fun x => x.2.2.1 < x.1), ((x.1 : ℤ) ^ 3 * (x.2.2.1 : ℤ)) := by
@@ -1094,6 +1289,9 @@ theorem swap1_ac3_lt_a (N : ℕ) :
     show ((x.2.2.1 : ℤ) * (x.1 : ℤ) ^ 3) = ((x.1 : ℤ) ^ 3 * (x.2.2.1 : ℤ))
     ring)
 
+/--
+@isnad1 id=eq.0h1v.s8.f44ea758ce16 from=translated src=- shape=5f90d15e vocab=90c77951
+-/
 theorem swap1_ac3_lt_d (N : ℕ) :
     ∑ x ∈ (Sols N).filter (fun x => x.2.2.2 < x.2.1), ((x.1 : ℤ) * (x.2.2.1 : ℤ) ^ 3)
       = ∑ x ∈ (Sols N).filter (fun x => x.2.1 < x.2.2.2), ((x.1 : ℤ) ^ 3 * (x.2.2.1 : ℤ)) := by
@@ -1102,6 +1300,9 @@ theorem swap1_ac3_lt_d (N : ℕ) :
     show ((x.2.2.1 : ℤ) * (x.1 : ℤ) ^ 3) = ((x.1 : ℤ) ^ 3 * (x.2.2.1 : ℤ))
     ring)
 
+/--
+@isnad1 id=eq.0h1v.s8.441e63b6e44f from=translated src=- shape=97039a5f vocab=90c77951
+-/
 theorem swap1_a2c2_lt_a (N : ℕ) :
     ∑ x ∈ (Sols N).filter (fun x => x.1 < x.2.2.1), ((x.1 : ℤ) ^ 2 * (x.2.2.1 : ℤ) ^ 2)
       = ∑ x ∈ (Sols N).filter (fun x => x.2.2.1 < x.1), ((x.1 : ℤ) ^ 2 * (x.2.2.1 : ℤ) ^ 2) := by
@@ -1110,6 +1311,9 @@ theorem swap1_a2c2_lt_a (N : ℕ) :
     show ((x.2.2.1 : ℤ) ^ 2 * (x.1 : ℤ) ^ 2) = ((x.1 : ℤ) ^ 2 * (x.2.2.1 : ℤ) ^ 2)
     ring)
 
+/--
+@isnad1 id=eq.0h1v.s8.e6fd00917a05 from=translated src=- shape=699eb418 vocab=90c77951
+-/
 theorem swap1_a2c2_lt_d (N : ℕ) :
     ∑ x ∈ (Sols N).filter (fun x => x.2.2.2 < x.2.1), ((x.1 : ℤ) ^ 2 * (x.2.2.1 : ℤ) ^ 2)
       = ∑ x ∈ (Sols N).filter (fun x => x.2.1 < x.2.2.2), ((x.1 : ℤ) ^ 2 * (x.2.2.1 : ℤ) ^ 2) := by
@@ -1118,18 +1322,27 @@ theorem swap1_a2c2_lt_d (N : ℕ) :
     show ((x.2.2.1 : ℤ) ^ 2 * (x.1 : ℤ) ^ 2) = ((x.1 : ℤ) ^ 2 * (x.2.2.1 : ℤ) ^ 2)
     ring)
 
+/--
+@isnad1 id=eq.0h1v.s8.849a9c3fd1ea from=translated src=- shape=77298e43 vocab=585b3ded
+-/
 theorem swap1_a4_lt_a (N : ℕ) :
     ∑ x ∈ (Sols N).filter (fun x => x.1 < x.2.2.1), ((x.1 : ℤ) ^ 4)
       = ∑ x ∈ (Sols N).filter (fun x => x.2.2.1 < x.1), ((x.2.2.1 : ℤ) ^ 4) := by
   rw [sum_swap₁ N (fun x => ((x.1 : ℤ) ^ 4)) (fun x => x.1 < x.2.2.1)]
   exact Finset.sum_congr rfl (fun x _ => rfl)
 
+/--
+@isnad1 id=eq.0h1v.s8.c5bf45c88cc6 from=translated src=- shape=d62d61b8 vocab=585b3ded
+-/
 theorem swap1_a4_lt_d (N : ℕ) :
     ∑ x ∈ (Sols N).filter (fun x => x.2.2.2 < x.2.1), ((x.1 : ℤ) ^ 4)
       = ∑ x ∈ (Sols N).filter (fun x => x.2.1 < x.2.2.2), ((x.2.2.1 : ℤ) ^ 4) := by
   rw [sum_swap₁ N (fun x => ((x.1 : ℤ) ^ 4)) (fun x => x.2.2.2 < x.2.1)]
   exact Finset.sum_congr rfl (fun x _ => rfl)
 
+/--
+@isnad1 id=eq.0h1v.s8.d012c906061d from=translated src=- shape=a98fad7a vocab=805c0162
+-/
 theorem swap2_ac3_diag (N : ℕ) :
     ∑ x ∈ (Sols N).filter (fun x => x.2.2.2 = x.2.1), ((x.1 : ℤ) * (x.2.2.1 : ℤ) ^ 3)
       = ∑ x ∈ (Sols N).filter (fun x => x.1 = x.2.2.1), ((x.2.1 : ℤ) * (x.2.2.2 : ℤ) ^ 3) := by
@@ -1137,6 +1350,9 @@ theorem swap2_ac3_diag (N : ℕ) :
     ← filter_diag_comm N]
   exact Finset.sum_congr rfl (fun x _ => rfl)
 
+/--
+@isnad1 id=eq.0h1v.s8.2c56a62d29ad from=translated src=- shape=939fa185 vocab=805c0162
+-/
 theorem swap2_a2c2_diag (N : ℕ) :
     ∑ x ∈ (Sols N).filter (fun x => x.2.2.2 = x.2.1), ((x.1 : ℤ) ^ 2 * (x.2.2.1 : ℤ) ^ 2)
       = ∑ x ∈ (Sols N).filter (fun x => x.1 = x.2.2.1), ((x.2.1 : ℤ) ^ 2 * (x.2.2.2 : ℤ) ^ 2) := by
@@ -1144,12 +1360,18 @@ theorem swap2_a2c2_diag (N : ℕ) :
     ← filter_diag_comm N]
   exact Finset.sum_congr rfl (fun x _ => rfl)
 
+/--
+@isnad1 id=eq.0h1v.s8.94e02767763c from=translated src=- shape=0e443934 vocab=e9d94734
+-/
 theorem swap2_a4_diag (N : ℕ) :
     ∑ x ∈ (Sols N).filter (fun x => x.2.2.2 = x.2.1), ((x.1 : ℤ) ^ 4)
       = ∑ x ∈ (Sols N).filter (fun x => x.1 = x.2.2.1), ((x.2.1 : ℤ) ^ 4) := by
   rw [sum_swap₂ N (fun x => ((x.1 : ℤ) ^ 4)) (fun x => x.2.2.2 = x.2.1), ← filter_diag_comm N]
   exact Finset.sum_congr rfl (fun x _ => rfl)
 
+/--
+@isnad1 id=eq.0h1v.s8.0d63fc81997c from=translated src=- shape=07482346 vocab=805c0162
+-/
 theorem slice_ac3_eq_slice_a4 (N : ℕ) :
     ∑ x ∈ (Sols N).filter (fun x => x.1 = x.2.2.1), ((x.1 : ℤ) * (x.2.2.1 : ℤ) ^ 3)
       = ∑ x ∈ (Sols N).filter (fun x => x.1 = x.2.2.1), ((x.1 : ℤ) ^ 4) := by
@@ -1158,6 +1380,9 @@ theorem slice_ac3_eq_slice_a4 (N : ℕ) :
   rw [← hx13]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s8.0539a733ea5c from=translated src=- shape=c9ff3d96 vocab=805c0162
+-/
 theorem slice_a2c2_eq_slice_a4 (N : ℕ) :
     ∑ x ∈ (Sols N).filter (fun x => x.1 = x.2.2.1), ((x.1 : ℤ) ^ 2 * (x.2.2.1 : ℤ) ^ 2)
       = ∑ x ∈ (Sols N).filter (fun x => x.1 = x.2.2.1), ((x.1 : ℤ) ^ 4) := by
@@ -1166,6 +1391,9 @@ theorem slice_a2c2_eq_slice_a4 (N : ℕ) :
   rw [← hx13]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s6.b40fbb87af48 from=translated src=- shape=636ea940 vocab=620f251c
+-/
 theorem weight6Identity_int (N : ℕ) :
     (240 * sigmaConv 1 3 N : ℤ)
       = 21 * sigma 5 N + (10 - 30 * N) * sigma 3 N - sigma 1 N := by
@@ -1240,6 +1468,9 @@ theorem weight6Identity_int (N : ℕ) :
 
   linear_combination 30 * h8T - 240 * hbridge - 30 * ha4 + 2 * hb4 + 2 * hbd3 + 3 * hb2d2
 
+/--
+@isnad1 id=weight6i.0h1v.s2.89abefd5a71f from=translated src=- shape=5c11bb93 vocab=099feba1
+-/
 theorem weight6Identity (N : ℕ) : Weight6Identity N :=
   (weight6Identity_iff_int N).mpr (weight6Identity_int N)
 

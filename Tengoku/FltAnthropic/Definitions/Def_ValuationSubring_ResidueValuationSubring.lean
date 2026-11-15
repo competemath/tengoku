@@ -34,20 +34,32 @@ noncomputable def toResidueValuationSubring (A S : ValuationSubring L) (h : A �
 
 variable (A S : ValuationSubring L) (h : A ≤ S)
 
+/--
+@isnad1 id=iff.1h4v.s10.45acfec13f8e from=translated src=- shape=6f07637b vocab=7066ac03
+-/
 theorem mem_residueValuationSubring_iff {x : ResidueField S} :
     x ∈ A.residueValuationSubring S h ↔ ∃ a : A, residue S (A.inclusion S h a) = x :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.1h4v.s11.ba2fecfa4efe from=translated src=- shape=f4ab77b5 vocab=43a7d636
+-/
 @[simp]
 theorem coe_toResidueValuationSubring (a : A) :
     (A.toResidueValuationSubring S h a : ResidueField S) = residue S (A.inclusion S h a) :=
   rfl
 
+/--
+@isnad1 id=surjecti.1h3v.s11.c78bb8b799a7 from=translated src=- shape=e7ba63e8 vocab=63ef601f
+-/
 theorem toResidueValuationSubring_surjective :
     Function.Surjective (A.toResidueValuationSubring S h) := by
   rintro ⟨x, a, rfl⟩
   exact ⟨a, rfl⟩
 
+/--
+@isnad1 id=eq.1h3v.s11.e0c460691055 from=translated src=- shape=1b3ca5b7 vocab=44397885
+-/
 theorem ker_toResidueValuationSubring :
     RingHom.ker (A.toResidueValuationSubring S h) = A.idealOfLE S h := by
   ext a

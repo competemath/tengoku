@@ -11,6 +11,9 @@ variable (p : ℕ) [Fact p.Prime] (u : ℤ_[p]ˣ)
 
 noncomputable abbrev kpoly (j : ZMod p) : ℤ_[p][X] := X ^ p - C ((u : ℤ_[p]) ^ j.val)
 
+/--
+@isnad1 id=monic.0h3v.s5.ce944607d2b8 from=translated src=- shape=8c145da1 vocab=a065ef2a
+-/
 lemma kpoly_monic (j : ZMod p) : (kpoly p u j).Monic :=
   (monic_X_pow p).sub_of_left <| by
     apply lt_of_le_of_lt degree_C_le
@@ -25,6 +28,9 @@ noncomputable abbrev Carrier := Π j : ZMod p, A p u j
 
 noncomputable abbrev z (j : ZMod p) : A p u j := AdjoinRoot.root (kpoly p u j)
 
+/--
+@isnad1 id=eq.0h3v.s8.fef5f82e44f0 from=translated src=- shape=0df6629d vocab=aa5c35bf
+-/
 lemma z_pow_p (j : ZMod p) :
     z p u j ^ p = algebraMap ℤ_[p] (A p u j) ((u : ℤ_[p]) ^ j.val) := by
   have h : (Polynomial.aeval (z p u j)) (kpoly p u j) = 0 := by
@@ -46,12 +52,18 @@ noncomputable def piPiEquiv :
         (Algebra.TensorProduct.comm ℤ_[p] _ _).trans <|
           Algebra.TensorProduct.piRight ℤ_[p] ℤ_[p] (A p u a) (A p u)
 
+/--
+@isnad1 id=eq.0h6v.s12.29b258786a37 from=translated src=- shape=24e910e7 vocab=fe7eae04
+-/
 lemma piPiEquiv_tmul (f g : Carrier p u) (a b : ZMod p) :
     piPiEquiv p u (f ⊗ₜ g) a b = f a ⊗ₜ g b := by
   simp [piPiEquiv, Algebra.TensorProduct.piRight_tmul, Algebra.TensorProduct.comm_tmul]
 
 noncomputable def cfac (a b : ZMod p) : ℤ_[p] := ((u⁻¹ : ℤ_[p]ˣ) : ℤ_[p]) ^ ((a.val + b.val) / p)
 
+/--
+@isnad1 id=eq.0h4v.s8.b509a725db28 from=translated src=- shape=97d39d5d vocab=f36a3741
+-/
 lemma cfac_pow_p_mul (a b : ZMod p) :
     cfac p u a b ^ p * (u : ℤ_[p]) ^ (a.val + b.val) = (u : ℤ_[p]) ^ (a + b).val := by
   unfold cfac
@@ -91,6 +103,9 @@ noncomputable def evalAt (j : ZMod p) (w : L)
 noncomputable def polyLift (h : Carrier p u) (j : ZMod p) : Polynomial ℤ_[p] :=
   AdjoinRoot.modByMonicHom (kpoly_monic p u j) (h j)
 
+/--
+@isnad1 id=eq.1h6v.s9.d3250f2f78af from=translated src=- shape=0abe07e8 vocab=53d380cd
+-/
 lemma evalAt_eq_aeval_polyLift (j : ZMod p) (w : L)
     (hw : w ^ p = algebraMap ℤ_[p] L ((u : ℤ_[p]) ^ j.val)) (h : Carrier p u) :
     evalAt p u j w hw h = Polynomial.aeval w (polyLift p u h j) := by

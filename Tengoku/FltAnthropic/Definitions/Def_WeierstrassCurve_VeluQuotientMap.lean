@@ -17,20 +17,32 @@ structure IsOddVeluSet (S : Finset (R × R)) : Prop where
 
   x_injOn : ∀ P ∈ S, ∀ P' ∈ S, P.1 = P'.1 → P = P'
 
+/--
+@isnad1 id=isveluse.1h3v.s4.d2b45c937c09 from=translated src=- shape=38295c67 vocab=1d4eae50
+-/
 lemma IsOddVeluSet.isVeluSet {S : Finset (R × R)} (h : W.IsOddVeluSet S) : W.IsVeluSet S :=
   ⟨h.equation⟩
 
+/--
+@isnad1 id=isoddvel.0h2v.s4.32cc483d0278 from=translated src=- shape=1d715c28 vocab=1cb580dc
+-/
 lemma isOddVeluSet_empty : W.IsOddVeluSet ∅ where
   equation := by simp
   gy_ne_zero := by simp
   x_injOn := by simp
 
+/--
+@isnad1 id=isoddvel.2h4v.s6.56bd4281624d from=translated src=- shape=15e93084 vocab=972cbbeb
+-/
 lemma isOddVeluSet_singleton {x y : R} (h : W.toAffine.Equation x y)
     (h2 : W.veluGy x y ≠ 0) : W.IsOddVeluSet {(x, y)} where
   equation := by simpa using h
   gy_ne_zero := by simpa using h2
   x_injOn := by simp
 
+/--
+@isnad1 id=eq.0h4v.s6.296df8bd5573 from=translated src=- shape=bb33532e vocab=e9cfaae7
+-/
 lemma veluQuotient_singleton_negY (x y : R) :
     W.veluQuotient {(x, W.toAffine.negY x y)} = W.veluQuotient {(x, y)} := by
   have ht : W.veluTSum {(x, W.toAffine.negY x y)} = W.veluTSum {(x, y)} := by
@@ -49,8 +61,14 @@ variable {F : Type*} [Field F] (W : WeierstrassCurve F)
 noncomputable def veluX (S : Finset (F × F)) (x : F) : F :=
   x + ∑ Q ∈ S, (W.veluT Q.1 Q.2 / (x - Q.1) + W.veluU Q.1 Q.2 / (x - Q.1) ^ 2)
 
+/--
+@isnad1 id=eq.0h3v.s4.729593d1ceb6 from=translated src=- shape=76a8ffac vocab=61979d2a
+-/
 @[simp] lemma veluX_empty (x : F) : W.veluX ∅ x = x := by simp [veluX]
 
+/--
+@isnad1 id=eq.1h4v.s7.50a5a2bfeb56 from=translated src=- shape=a77c2231 vocab=538213f7
+-/
 lemma veluX_def_of_ne (S : Finset (F × F)) {x : F} (hx : ∀ Q ∈ S, x ≠ Q.1) :
     W.veluX S x = x + ∑ Q ∈ S, (W.veluT Q.1 Q.2 * (x - Q.1) + W.veluU Q.1 Q.2)
       / (x - Q.1) ^ 2 := by
@@ -62,6 +80,9 @@ lemma veluX_def_of_ne (S : Finset (F × F)) {x : F} (hx : ∀ Q ∈ S, x ≠ Q.1
 
 end QuotientMap
 
+/--
+@isnad1 id=eq.0h3v.s10.518f3dcb6063 from=translated src=- shape=14de8427 vocab=e564eed5
+-/
 lemma veluQuotient_Δ (S : Finset (R × R)) :
     (W.veluQuotient S).Δ = W.Δ +
       (W.b₂ ^ 4 * W.veluTSum S + 7 * W.b₂ ^ 3 * W.veluWSum S

@@ -14,6 +14,9 @@ variable {G : Type*}
 def shell (S : Set G) (φ : G → ℝ) (c r : ℝ) (k : ℕ) : Set G :=
   S ∩ φ ⁻¹' Ico (r ^ k * c) (r ^ (k + 1) * c)
 
+/--
+@isnad1 id=eq.1h5v.s6.223f08c9a762 from=translated src=- shape=ed9f0b5d vocab=0b55956e
+-/
 theorem shell_zero_eq (S : Set G) (φ : G → ℝ) {c : ℝ} (r : ℝ) (hSc : ∀ g ∈ S, c ≤ φ g) :
     shell S φ c r 0 = S ∩ φ ⁻¹' Iio (r * c) := by
   ext g
@@ -21,6 +24,9 @@ theorem shell_zero_eq (S : Set G) (φ : G → ℝ) {c : ℝ} (r : ℝ) (hSc : �
     mem_Iio]
   exact ⟨fun h => ⟨h.1, h.2.2⟩, fun h => ⟨h.1, hSc g h.1, h.2⟩⟩
 
+/--
+@isnad1 id=eq.3h5v.s6.effc0f9bc30b from=translated src=- shape=fa3b1511 vocab=6d3b94ff
+-/
 theorem iUnion_shell {S : Set G} {φ : G → ℝ} {c r : ℝ} (hc : 0 < c) (hr : 1 < r)
     (hSc : ∀ g ∈ S, c ≤ φ g) : ⋃ k, shell S φ c r k = S := by
   ext g
@@ -32,6 +38,9 @@ theorem iUnion_shell {S : Set G} {φ : G → ℝ} {c r : ℝ} (hc : 0 < c) (hr :
     obtain ⟨k, hk1, hk2⟩ := exists_nat_pow_near ((one_le_div hc).mpr (hSc g hg)) hr
     exact ⟨k, hg, (le_div_iff₀ hc).mp hk1, (div_lt_iff₀ hc).mp hk2⟩
 
+/--
+@isnad1 id=pairwise.2h5v.s6.7aea782bf9fa from=translated src=- shape=4adc15a8 vocab=2d43f025
+-/
 theorem pairwise_disjoint_shell (S : Set G) (φ : G → ℝ) {c r : ℝ} (hc : 0 < c) (hr : 1 < r) :
     Pairwise (Function.onFun Disjoint (shell S φ c r)) := by
   intro k l hkl
@@ -45,10 +54,16 @@ theorem pairwise_disjoint_shell (S : Set G) (φ : G → ℝ) {c r : ℝ} (hc : 0
       mul_le_mul_of_nonneg_right (pow_le_pow_right₀ hr.le h) hc.le
     exact lt_irrefl _ (hl2.trans_le (this.trans hk1))
 
+/--
+@isnad1 id=measurab.2h6v.s5.25c710df4dfe from=translated src=- shape=18f8b780 vocab=33798be7
+-/
 theorem measurableSet_shell [MeasurableSpace G] {S : Set G} (hS : MeasurableSet S) {φ : G → ℝ}
     (hφ : Measurable φ) (c r : ℝ) (k : ℕ) : MeasurableSet (shell S φ c r k) :=
   hS.inter (hφ measurableSet_Ico)
 
+/--
+@isnad1 id=le.3h7v.s6.f215769256ff from=translated src=- shape=eaa292e2 vocab=74422bce
+-/
 theorem mul_le_of_mem_shell_succ {S : Set G} {φ : G → ℝ} {c r : ℝ} (hc : 0 < c) (hr : 1 < r)
     {k : ℕ} {g : G} (hg : g ∈ shell S φ c r (k + 1)) : r * c ≤ φ g := by
   obtain ⟨-, hk1, -⟩ := hg
@@ -62,6 +77,9 @@ section Decay
 
 variable {G : Type*} [Group G]
 
+/--
+@isnad1 id=le.3h7v.s7.89a90e5c7928 from=translated src=- shape=38f20051 vocab=b77649bd
+-/
 theorem image_mul_shell_succ_subset {S : Set G} {φ : G → ℝ} {c r : ℝ} (hc : 0 < c) (hr : 1 < r)
     {p : G} (hp : ∀ g ∈ S, r * c ≤ φ g → p * g ∈ S ∧ φ (p * g) = φ g / r) (k : ℕ) :
     (fun g => p * g) '' shell S φ c r (k + 1) ⊆ shell S φ c r k := by
@@ -81,6 +99,9 @@ theorem image_mul_shell_succ_subset {S : Set G} {φ : G → ℝ} {c r : ℝ} (hc
 
 variable [MeasurableSpace G] [MeasurableMul G]
 
+/--
+@isnad1 id=le.7h9v.s8.695f1bfa4cc6 from=translated src=- shape=b4c14aef vocab=ab116596
+-/
 theorem two_mul_measure_shell_succ_le (μ : Measure G) [μ.IsMulLeftInvariant] {S : Set G}
     (hS : MeasurableSet S) {φ : G → ℝ} (hφ : Measurable φ) {c r : ℝ} (hc : 0 < c) (hr : 1 < r)
     {p q : G} (hp : ∀ g ∈ S, r * c ≤ φ g → p * g ∈ S ∧ φ (p * g) = φ g / r)
@@ -104,6 +125,9 @@ theorem two_mul_measure_shell_succ_le (μ : Measure G) [μ.IsMulLeftInvariant] {
     _ ≤ μ (shell S φ c r k) := measure_mono (union_subset
         (image_mul_shell_succ_subset hc hr hp k) (image_mul_shell_succ_subset hc hr hq k))
 
+/--
+@isnad1 id=le.7h9v.s8.0709634fec13 from=translated src=- shape=6b4ed0aa vocab=524c5445
+-/
 theorem measure_shell_le (μ : Measure G) [μ.IsMulLeftInvariant] {S : Set G}
     (hS : MeasurableSet S) {φ : G → ℝ} (hφ : Measurable φ) {c r : ℝ} (hc : 0 < c) (hr : 1 < r)
     {p q : G} (hp : ∀ g ∈ S, r * c ≤ φ g → p * g ∈ S ∧ φ (p * g) = φ g / r)
@@ -120,6 +144,9 @@ theorem measure_shell_le (μ : Measure G) [μ.IsMulLeftInvariant] {S : Set G}
       _ ≤ 2⁻¹ * (2⁻¹ ^ k * μ (shell S φ c r 0)) := mul_le_mul_right ih _
       _ = 2⁻¹ ^ (k + 1) * μ (shell S φ c r 0) := by rw [← mul_assoc, pow_succ']
 
+/--
+@isnad1 id=le.8h8v.s8.6997a5145021 from=translated src=- shape=22ee4638 vocab=a2f2faf0
+-/
 theorem measure_le_two_mul_measure_inter (μ : Measure G) [μ.IsMulLeftInvariant] {S : Set G}
     (hS : MeasurableSet S) {φ : G → ℝ} (hφ : Measurable φ) {c r : ℝ} (hc : 0 < c) (hr : 1 < r)
     (hSc : ∀ g ∈ S, c ≤ φ g)
@@ -136,6 +163,9 @@ theorem measure_le_two_mul_measure_inter (μ : Measure G) [μ.IsMulLeftInvariant
     _ = 2 * μ (S ∩ φ ⁻¹' Iio (r * c)) := by
         rw [ENNReal.tsum_geometric, ENNReal.one_sub_inv_two, inv_inv, shell_zero_eq S φ r hSc]
 
+/--
+@isnad1 id=lt.9h8v.s8.f190a4d1e6a4 from=translated src=- shape=4e3dc5bd vocab=21390185
+-/
 theorem measure_lt_top_of_measure_inter_lt_top (μ : Measure G) [μ.IsMulLeftInvariant]
     {S : Set G} (hS : MeasurableSet S) {φ : G → ℝ} (hφ : Measurable φ) {c r : ℝ} (hc : 0 < c)
     (hr : 1 < r) (hSc : ∀ g ∈ S, c ≤ φ g)

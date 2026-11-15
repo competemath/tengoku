@@ -18,9 +18,15 @@ variable {K : Type*} [NontriviallyNormedField K] {q : K}
 noncomputable def cauchyMul (c d : ℕ → K) (N : ℕ) : K :=
   ∑ kl ∈ Finset.HasAntidiagonal.antidiagonal N, c kl.1 * d kl.2
 
+/--
+@isnad1 id=eq.0h3v.s5.ff0de1605c78 from=translated src=- shape=bd38d157 vocab=e48cc946
+-/
 @[simp] theorem cauchyMul_zero (c d : ℕ → K) : cauchyMul c d 0 = c 0 * d 0 := by
   simp [cauchyMul]
 
+/--
+@isnad1 id=eq.0h3v.s6.021d39f030d3 from=translated src=- shape=1fe5ed95 vocab=e77e50f2
+-/
 theorem cauchyMul_one (c d : ℕ → K) : cauchyMul c d 1 = c 0 * d 1 + c 1 * d 0 := by
   rw [cauchyMul, Finset.Nat.antidiagonal_succ, Finset.sum_cons, Finset.Nat.antidiagonal_zero,
     Finset.sum_map, Finset.sum_singleton]
@@ -35,6 +41,9 @@ private theorem antidiagonal_sum_mul_pow (c d : ℕ → K) (N : ℕ) :
   rw [← hsum, pow_add]
   ring
 
+/--
+@isnad1 id=eq.2h4v.s8.6c865cbe42ed from=translated src=- shape=b4f1be8d vocab=e3cdf995
+-/
 theorem qSeries_mul {c d : ℕ → K} [CompleteSpace K]
     (hc : Summable fun N => ‖c N * q ^ N‖) (hd : Summable fun N => ‖d N * q ^ N‖) :
     (∑' N : ℕ, c N * q ^ N) * (∑' N : ℕ, d N * q ^ N)
@@ -42,6 +51,9 @@ theorem qSeries_mul {c d : ℕ → K} [CompleteSpace K]
   rw [tsum_mul_tsum_eq_tsum_sum_antidiagonal_of_summable_norm hc hd]
   exact tsum_congr fun N => antidiagonal_sum_mul_pow c d N
 
+/--
+@isnad1 id=summable.2h4v.s7.8fd26505ec79 from=translated src=- shape=15f9d014 vocab=64b91ebc
+-/
 theorem summable_norm_cauchyMul {c d : ℕ → K}
     (hc : Summable fun N => ‖c N * q ^ N‖) (hd : Summable fun N => ‖d N * q ^ N‖) :
     Summable fun N => ‖cauchyMul c d N * q ^ N‖ := by
@@ -49,6 +61,9 @@ theorem summable_norm_cauchyMul {c d : ℕ → K}
   refine h.congr fun N => ?_
   rw [antidiagonal_sum_mul_pow]
 
+/--
+@isnad1 id=summable.3h5v.s7.1806b0113ec7 from=translated src=- shape=99420303 vocab=41ce397a
+-/
 theorem summable_norm_qSeries {c : ℕ → K} {B C : ℝ} (hC0 : 0 ≤ C)
     (hb : ∀ N, ‖c N‖ ≤ B * C ^ N) (hqC : ‖q‖ * C < 1) :
     Summable fun N => ‖c N * q ^ N‖ := by
@@ -72,24 +87,42 @@ noncomputable def xCoeffFull (u : K) : ℕ → K
   | 0 => xfun u
   | (N + 1) => xCoeff u (N + 1)
 
+/--
+@isnad1 id=eq.0h2v.s5.a0e57b3cee61 from=translated src=- shape=1e747242 vocab=6b1c11ce
+-/
 @[simp] theorem xCoeffFull_zero (u : K) : xCoeffFull u 0 = xfun u := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.2ff8eff6cabb from=translated src=- shape=658f690c vocab=e26ad185
+-/
 @[simp] theorem xCoeffFull_succ (u : K) (N : ℕ) : xCoeffFull u (N + 1) = xCoeff u (N + 1) := rfl
 
 noncomputable def yCoeffFull (u : K) : ℕ → K
   | 0 => yfun u
   | (N + 1) => yCoeff u (N + 1)
 
+/--
+@isnad1 id=eq.0h2v.s5.af3d5b137af9 from=translated src=- shape=1e747242 vocab=14fec7c3
+-/
 @[simp] theorem yCoeffFull_zero (u : K) : yCoeffFull u 0 = yfun u := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.7bac6c4cdf4e from=translated src=- shape=658f690c vocab=82914c1f
+-/
 @[simp] theorem yCoeffFull_succ (u : K) (N : ℕ) : yCoeffFull u (N + 1) = yCoeff u (N + 1) := rfl
 
 noncomputable def a₄Coeff : ℕ → K
   | 0 => 0
   | (N + 1) => -(∑ d ∈ (N + 1).divisors, ((5 * d ^ 3 : ℕ) : K))
 
+/--
+@isnad1 id=eq.0h1v.s5.9c2b458a5878 from=translated src=- shape=91691898 vocab=3c6ef00b
+-/
 @[simp] theorem a₄Coeff_zero : a₄Coeff (K := K) 0 = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.7d7ba03559ed from=translated src=- shape=2a1e9906 vocab=5e92a2a3
+-/
 @[simp] theorem a₄Coeff_succ (N : ℕ) :
     a₄Coeff (K := K) (N + 1) = -(∑ d ∈ (N + 1).divisors, ((5 * d ^ 3 : ℕ) : K)) := rfl
 
@@ -97,11 +130,20 @@ noncomputable def a₆Coeff : ℕ → K
   | 0 => 0
   | (N + 1) => -(∑ d ∈ (N + 1).divisors, ((b d : ℕ) : K))
 
+/--
+@isnad1 id=eq.0h1v.s5.3c8a931fb4a8 from=translated src=- shape=91691898 vocab=8251423a
+-/
 @[simp] theorem a₆Coeff_zero : a₆Coeff (K := K) 0 = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.34abe53d01cd from=translated src=- shape=992f3b31 vocab=22c94b6a
+-/
 @[simp] theorem a₆Coeff_succ (N : ℕ) :
     a₆Coeff (K := K) (N + 1) = -(∑ d ∈ (N + 1).divisors, ((b d : ℕ) : K)) := rfl
 
+/--
+@isnad1 id=le.0h3v.s5.8e2ad4caff44 from=translated src=- shape=487c9952 vocab=ca53a9b0
+-/
 theorem norm_xCoeff_le (u : K) (N : ℕ) : ‖xCoeff u N‖ ≤ growthBound u ^ N := by
   rw [xCoeff]
   refine norm_sum_le_of_forall_le_of_nonneg (pow_nonneg (growthBound_nonneg u) N)
@@ -109,6 +151,9 @@ theorem norm_xCoeff_le (u : K) (N : ℕ) : ‖xCoeff u N‖ ≤ growthBound u ^ 
   exact (norm_xDivTerm_le u d).trans
     (pow_le_pow_right₀ (one_le_growthBound u) (Nat.divisor_le hd))
 
+/--
+@isnad1 id=le.0h3v.s5.536e27181b38 from=translated src=- shape=487c9952 vocab=b90e7e5a
+-/
 theorem norm_yCoeff_le (u : K) (N : ℕ) : ‖yCoeff u N‖ ≤ growthBound u ^ N := by
   rw [yCoeff]
   refine norm_sum_le_of_forall_le_of_nonneg (pow_nonneg (growthBound_nonneg u) N)
@@ -118,11 +163,20 @@ theorem norm_yCoeff_le (u : K) (N : ℕ) : ‖yCoeff u N‖ ≤ growthBound u ^ 
 
 noncomputable def seriesBound (u : K) : ℝ := max (max ‖xfun u‖ ‖yfun u‖) 1
 
+/--
+@isnad1 id=le.0h2v.s5.48a449eef7b2 from=translated src=- shape=c83d11cb vocab=5358307a
+-/
 theorem one_le_seriesBound (u : K) : 1 ≤ seriesBound u := le_max_right _ _
 
+/--
+@isnad1 id=le.0h2v.s5.774453637284 from=translated src=- shape=c83d11cb vocab=5358307a
+-/
 theorem seriesBound_nonneg (u : K) : 0 ≤ seriesBound u :=
   zero_le_one.trans (one_le_seriesBound u)
 
+/--
+@isnad1 id=le.0h3v.s6.8e15023e40ed from=translated src=- shape=9f39afcc vocab=7cb41dc5
+-/
 theorem norm_xCoeffFull_le (u : K) (N : ℕ) :
     ‖xCoeffFull u N‖ ≤ seriesBound u * growthBound u ^ N := by
   cases N with
@@ -137,6 +191,9 @@ theorem norm_xCoeffFull_le (u : K) (N : ℕ) :
             mul_le_mul_of_nonneg_right (one_le_seriesBound u)
               (pow_nonneg (growthBound_nonneg u) _)
 
+/--
+@isnad1 id=le.0h3v.s6.7cbc6ee1a321 from=translated src=- shape=9f39afcc vocab=14ea486b
+-/
 theorem norm_yCoeffFull_le (u : K) (N : ℕ) :
     ‖yCoeffFull u N‖ ≤ seriesBound u * growthBound u ^ N := by
   cases N with
@@ -151,6 +208,9 @@ theorem norm_yCoeffFull_le (u : K) (N : ℕ) :
             mul_le_mul_of_nonneg_right (one_le_seriesBound u)
               (pow_nonneg (growthBound_nonneg u) _)
 
+/--
+@isnad1 id=le.0h2v.s5.d7270ee79ab3 from=translated src=- shape=a83fadf8 vocab=b9af52de
+-/
 theorem norm_a₄Coeff_le (N : ℕ) : ‖a₄Coeff (K := K) N‖ ≤ 1 := by
   cases N with
   | zero => simp
@@ -159,6 +219,9 @@ theorem norm_a₄Coeff_le (N : ℕ) : ‖a₄Coeff (K := K) N‖ ≤ 1 := by
       exact norm_sum_le_of_forall_le_of_nonneg zero_le_one
         (fun d _ => IsUltrametricDist.norm_natCast_le_one K _)
 
+/--
+@isnad1 id=le.0h2v.s5.5c970d6bc878 from=translated src=- shape=a83fadf8 vocab=47f978a6
+-/
 theorem norm_a₆Coeff_le (N : ℕ) : ‖a₆Coeff (K := K) N‖ ≤ 1 := by
   cases N with
   | zero => simp

@@ -25,14 +25,23 @@ namespace conjRel
 
 variable {g : GL (Fin 2) ℝ}
 
+/--
+@isnad1 id=conjrel.0h1v.s7.9004534f1c34 from=translated src=- shape=eb21f339 vocab=f739c489
+-/
 theorem one : conjRel g 1 1 := by
   simp [conjRel]
 
+/--
+@isnad1 id=conjrel.2h5v.s8.e7ae84485317 from=translated src=- shape=67194de2 vocab=644db959
+-/
 theorem mul {γ₁' γ₂' γ₁ γ₂ : SL(2, ℤ)} (h₁ : conjRel g γ₁' γ₁) (h₂ : conjRel g γ₂' γ₂) :
     conjRel g (γ₁' * γ₂') (γ₁ * γ₂) := by
   unfold conjRel at *
   rw [map_mul, map_mul, ← mul_assoc, h₁, mul_assoc, h₂, mul_assoc]
 
+/--
+@isnad1 id=conjrel.1h3v.s7.94ebe8a0c6ba from=translated src=- shape=13c60f53 vocab=7ca18a64
+-/
 theorem inv {γ' γ : SL(2, ℤ)} (h : conjRel g γ' γ) : conjRel g γ'⁻¹ γ⁻¹ := by
   unfold conjRel at *
   rw [map_inv, map_inv]
@@ -45,6 +54,9 @@ theorem inv {γ' γ : SL(2, ℤ)} (h : conjRel g γ' γ) : conjRel g γ'⁻¹ γ
             * (Matrix.SpecialLinearGroup.mapGL ℝ γ')⁻¹) := by rw [h]
     _ = (Matrix.SpecialLinearGroup.mapGL ℝ γ)⁻¹ * g := by group
 
+/--
+@isnad1 id=eq.2h4v.s6.28f4b16fe855 from=translated src=- shape=f92be848 vocab=f739c489
+-/
 theorem unique {γ' γ₁ γ₂ : SL(2, ℤ)} (h₁ : conjRel g γ' γ₁) (h₂ : conjRel g γ' γ₂) :
     γ₁ = γ₂ := by
   have hGL : Matrix.SpecialLinearGroup.mapGL ℝ γ₁ = Matrix.SpecialLinearGroup.mapGL ℝ γ₂ :=
@@ -57,6 +69,9 @@ theorem unique {γ' γ₁ γ₂ : SL(2, ℤ)} (h₁ : conjRel g γ' γ₁) (h₂
   ext a b
   exact hmat a b
 
+/--
+@isnad1 id=eq.1h4v.s9.2e13b844ec72 from=translated src=- shape=817711c6 vocab=c7ffd3cd
+-/
 theorem smul_comm {γ' γ : SL(2, ℤ)} (h : conjRel g γ' γ) (z : ℍ) :
     g • (γ' • z) = γ • (g • z) := by
   rw [MulAction.compHom_smul_def, MulAction.compHom_smul_def, ← mul_smul, h, mul_smul]
@@ -76,6 +91,9 @@ def conjSubgroup (g : GL (Fin 2) ℝ) (Γ : Subgroup SL(2, ℤ)) : Subgroup SL(2
 def conjPrimitive (g : GL (Fin 2) ℝ) (F : ℍ → ℂ) : ℍ → ℂ :=
   fun z => F (g • z)
 
+/--
+@isnad1 id=isequiva.1h3v.s6.2d0d515a573f from=translated src=- shape=45428304 vocab=8e645c78
+-/
 theorem IsEquivariantPrimitive.conj (g : GL (Fin 2) ℝ)
     (hF : IsEquivariantPrimitive Γ F) :
     IsEquivariantPrimitive (conjSubgroup g Γ) (conjPrimitive g F) := by
@@ -92,6 +110,9 @@ def transferElt (γ : ↥Γ) (q : ↥Γ ⧸ Δ.subgroupOf Γ) : ↥Δ :=
   ⟨((HeckeEis.transferAux (Δ.subgroupOf Γ) γ (γ⁻¹ • q) : ↥Γ) : SL(2, ℤ)),
     Subgroup.mem_subgroupOf.mp (HeckeEis.transferAux (Δ.subgroupOf Γ) γ (γ⁻¹ • q)).2⟩
 
+/--
+@isnad1 id=eq.0h4v.s13.11c6aa9689d2 from=translated src=- shape=4b1098e8 vocab=bdf85bf1
+-/
 theorem transferElt_spec (γ : ↥Γ) (q : ↥Γ ⧸ Δ.subgroupOf Γ) :
     ((traceRep q : ↥Γ) : SL(2, ℤ)) * (γ : SL(2, ℤ))
       = (transferElt (Δ := Δ) γ q : SL(2, ℤ))
@@ -109,6 +130,9 @@ def traceSum (Γ Δ : Subgroup SL(2, ℤ)) [Fintype (↥Γ ⧸ Δ.subgroupOf Γ)
     ℍ → ℂ :=
   fun z => ∑ q : ↥Γ ⧸ Δ.subgroupOf Γ, F (((traceRep q : ↥Γ) : SL(2, ℤ)) • z)
 
+/--
+@isnad1 id=eq.1h5v.s11.295f0ad3b3fc from=translated src=- shape=bc894507 vocab=6cfe305a
+-/
 theorem sum_traceRep_smul_sub (hF : IsEquivariantPrimitive Δ F) (γ : ↥Γ) (z : ℍ) :
     traceSum Γ Δ F ((γ : SL(2, ℤ)) • z) - traceSum Γ Δ F z
       = ∑ q : ↥Γ ⧸ Δ.subgroupOf Γ, hF.period (transferElt γ q) := by
@@ -142,6 +166,9 @@ theorem sum_traceRep_smul_sub (hF : IsEquivariantPrimitive Δ F) (γ : ↥Γ) (z
           (fun q : ↥Γ ⧸ Δ.subgroupOf Γ => F (((traceRep q : ↥Γ) : SL(2, ℤ)) • z))]
         ring
 
+/--
+@isnad1 id=isequiva.1h3v.s9.ec6c51c1755c from=translated src=- shape=17f6d71e vocab=8b17745b
+-/
 theorem IsEquivariantPrimitive.traceSum (hF : IsEquivariantPrimitive Δ F) :
     IsEquivariantPrimitive Γ (ModularCurve.Period.traceSum Γ Δ F) := fun γ =>
   ⟨∑ q : ↥Γ ⧸ Δ.subgroupOf Γ, hF.period (transferElt γ q),

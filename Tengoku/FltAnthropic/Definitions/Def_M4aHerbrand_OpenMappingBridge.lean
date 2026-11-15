@@ -15,6 +15,9 @@ section OMT
 variable {A B : Type*} [CommRing A] [TopologicalSpace A] [IsTopologicalRing A]
   [CommRing B] [TopologicalSpace B] [IsTopologicalRing B] [Algebra A B]
 
+/--
+@isnad1 id=ismodule.1h2v.s7.4825d5ca2b0e from=translated src=- shape=48924f4e vocab=e8ce11ec
+-/
 theorem isModuleTopology_of_continuous_algebraMap_of_sigmaCompact
     [SigmaCompactSpace A] [T2Space B] [BaireSpace B] [Module.Free A B] [Module.Finite A B]
     (hβ : Continuous (algebraMap A B)) : IsModuleTopology A B := by
@@ -49,10 +52,16 @@ variable [Algebra E F]
 
 open scoped RestrictedProduct in
 
+/--
+@isnad1 id=t2space.0h2v.s5.afdfc7afcdaa from=translated src=- shape=98925e46 vocab=d1064f32
+-/
 instance instT2SpaceAdeleRing : T2Space (AdeleRing S F) :=
   inferInstanceAs (T2Space (((v : InfinitePlace F) → v.Completion) ×
     Πʳ v : HeightOneSpectrum S, [v.adicCompletion F, v.adicCompletionIntegers F]))
 
+/--
+@isnad1 id=ismodule.1h5v.s9.17a5b8c0ff8a from=translated src=- shape=b7f5dab1 vocab=822d8363
+-/
 theorem isModuleTopology_adeleRing_of_continuous [Module.Finite E F]
     [Algebra (AdeleRing R E) (AdeleRing S F)]
     [SigmaCompactSpace (AdeleRing R E)] [LocallyCompactSpace (AdeleRing S F)]
@@ -63,6 +72,9 @@ theorem isModuleTopology_adeleRing_of_continuous [Module.Finite E F]
   haveI : Module.Finite (AdeleRing R E) (AdeleRing S F) := Module.Finite.equiv te.toLinearEquiv
   exact isModuleTopology_of_continuous_algebraMap_of_sigmaCompact hβ
 
+/--
+@isnad1 id=continuo.1h6v.s10.3323ea27cfe0 from=translated src=- shape=84b12bf7 vocab=3452f759
+-/
 theorem continuous_conjAct_of_continuous [Module.Finite E F]
     [Algebra (AdeleRing R E) (AdeleRing S F)]
     [SigmaCompactSpace (AdeleRing R E)] [LocallyCompactSpace (AdeleRing S F)]

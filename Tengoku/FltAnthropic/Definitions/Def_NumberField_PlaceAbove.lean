@@ -10,6 +10,9 @@ namespace NumberField.PlaceAbove
 
 variable (E K : Type*) [Field E] [NumberField E] [Field K] [Algebra E K]
 
+/--
+@isnad1 id=ex.0h3v.s7.7fb05a022dca from=translated src=- shape=d4aa51dc vocab=f868a026
+-/
 theorem exists_above (v : HeightOneSpectrum (𝓞 E)) :
     ∃ w : HeightOneSpectrum (𝓞 K), w.asIdeal.comap (algebraMap (𝓞 E) (𝓞 K)) = v.asIdeal := by
   have hinj : Function.Injective (algebraMap (𝓞 E) (𝓞 K)) := fun x y hxy => by
@@ -28,6 +31,9 @@ theorem exists_above (v : HeightOneSpectrum (𝓞 E)) :
 
 noncomputable def above (v : HeightOneSpectrum (𝓞 E)) : HeightOneSpectrum (𝓞 K) := (exists_above E K v).choose
 
+/--
+@isnad1 id=eq.0h3v.s7.fdd88409f2f4 from=translated src=- shape=c7fdb906 vocab=57213300
+-/
 theorem comap_above (v : HeightOneSpectrum (𝓞 E)) :
     (above E K v).asIdeal.comap (algebraMap (𝓞 E) (𝓞 K)) = v.asIdeal := (exists_above E K v).choose_spec
 

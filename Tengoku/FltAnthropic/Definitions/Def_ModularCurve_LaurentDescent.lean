@@ -20,20 +20,32 @@ variable (ι : E →+* L) (F₀ : IntermediateField ℚ (LaurentSeries ℚ))
 
 omit [Field L] [Algebra ℚ L] in
 
+/--
+@isnad1 id=eq.0h3v.s6.d305a39b158d from=translated src=- shape=057ac754 vocab=366a86e0
+-/
 theorem comp_algebraMap_rat_eq {L : Type*} [CommRing L] [Algebra ℚ L] (ι : E →+* L) :
     ι.comp (algebraMap ℚ E) = algebraMap ℚ L :=
   RingHom.ext_rat _ _
 
 omit [Algebra ℚ E] [Algebra ℚ L] in
 
+/--
+@isnad1 id=eq.0h4v.s9.005c8de3eedd from=translated src=- shape=b1e2c990 vocab=c92d0a2d
+-/
 theorem coeffMap_algebraMap_apply (c : E) :
     coeffMap ι (algebraMap E (LaurentSeries E) c) = algebraMap L (LaurentSeries L) (ι c) := by
   rw [algebraMap_laurentSeries_eq_single, algebraMap_laurentSeries_eq_single, coeffMap_single]
 
+/--
+@isnad1 id=eq.0h4v.s9.3e6fa5a8b519 from=translated src=- shape=1f348941 vocab=3bf79b1a
+-/
 theorem coeffMap_coeffEmb_apply (x : LaurentSeries ℚ) : coeffMap ι (coeffEmb E x) = coeffEmb L x := by
   change coeffMap ι (coeffMap (algebraMap ℚ E) x) = coeffMap (algebraMap ℚ L) x
   rw [coeffMap_coeffMap, comp_algebraMap_rat_eq]
 
+/--
+@isnad1 id=mem.1h5v.s9.c9005b2948e8 from=translated src=- shape=5b483582 vocab=1ed9a5dc
+-/
 theorem coeffMap_mem_laurentBaseChange_of_mem {x : LaurentSeries E} (hx : x ∈ laurentBaseChange E F₀) :
     coeffMap ι x ∈ laurentBaseChange L F₀ := by
   rw [mem_laurentBaseChange_iff] at hx
@@ -54,32 +66,53 @@ def laurentDescent : laurentBaseChange E F₀ →+* laurentBaseChange L F₀ :=
   ((coeffMap ι).comp (SubringClass.subtype (laurentBaseChange E F₀))).codRestrict (laurentBaseChange L F₀)
     fun x => coeffMap_mem_laurentBaseChange_of_mem ι F₀ x.2
 
+/--
+@isnad1 id=eq.0h5v.s12.6f25353e8c0c from=translated src=- shape=aa3fad43 vocab=6462574c
+-/
 @[simp]
 theorem coe_laurentDescent_apply (x : laurentBaseChange E F₀) :
     (laurentDescent ι F₀ x : LaurentSeries L) = coeffMap ι x :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s12.650622d42337 from=translated src=- shape=0dd29ae3 vocab=df2f4e6f
+-/
 theorem coeff_laurentDescent_apply (x : laurentBaseChange E F₀) (k : ℤ) :
     (laurentDescent ι F₀ x : LaurentSeries L).coeff k = ι ((x : LaurentSeries E).coeff k) :=
   rfl
 
+/--
+@isnad1 id=injectiv.0h4v.s12.269949c4de6f from=translated src=- shape=f623f592 vocab=6fce6a0d
+-/
 theorem laurentDescent_injective : Function.Injective (laurentDescent ι F₀) :=
   (laurentDescent ι F₀).injective
 
+/--
+@isnad1 id=eq.0h5v.s13.25cf33cc2106 from=translated src=- shape=2406567f vocab=bcdb7023
+-/
 theorem laurentDescent_algebraMap (c : E) :
     laurentDescent ι F₀ (algebraMap E (laurentBaseChange E F₀) c) = algebraMap L (laurentBaseChange L F₀) (ι c) :=
   Subtype.ext (coeffMap_algebraMap_apply ι c)
 
+/--
+@isnad1 id=eq.1h5v.s12.04756f4113af from=translated src=- shape=fe64ff44 vocab=dd25443d
+-/
 theorem laurentDescent_coeffEmb {f : LaurentSeries ℚ} (hf : f ∈ F₀) :
     laurentDescent ι F₀ ⟨coeffEmb E f, coeffEmb_mem_laurentBaseChange E hf⟩ =
       ⟨coeffEmb L f, coeffEmb_mem_laurentBaseChange L hf⟩ :=
   Subtype.ext (coeffMap_coeffEmb_apply ι f)
 
+/--
+@isnad1 id=eq.0h7v.s14.97ad6b3fd980 from=translated src=- shape=433490ae vocab=dfd38b48
+-/
 theorem laurentDescent_laurentDescent {L' : Type*} [Field L'] [Algebra ℚ L'] (κ : L →+* L')
     (x : laurentBaseChange E F₀) :
     laurentDescent κ F₀ (laurentDescent ι F₀ x) = laurentDescent (κ.comp ι) F₀ x :=
   Subtype.ext (coeffMap_coeffMap κ ι x)
 
+/--
+@isnad1 id=eq.0h6v.s17.525d21522366 from=translated src=- shape=613c7da3 vocab=15115d6f
+-/
 theorem laurentDescent_geomAut [Algebra.IsAlgebraic ℚ E] [Algebra.IsAlgebraic ℚ L] (σ : F₀ ≃ₐ[ℚ] F₀)
     (x : laurentBaseChange E F₀) :
     laurentDescent ι F₀ (geomAut E F₀ σ x) = geomAut L F₀ σ (laurentDescent ι F₀ x) := by
@@ -115,6 +148,9 @@ theorem laurentDescent_geomAut [Algebra.IsAlgebraic ℚ E] [Algebra.IsAlgebraic 
       have e1 : (⟨u * v, mul_mem hu hv⟩ : laurentBaseChange E F₀) = ⟨u, hu⟩ * ⟨v, hv⟩ := rfl
       rw [e1, map_mul, map_mul, map_mul, map_mul, ihu, ihv]
 
+/--
+@isnad1 id=ex.0h3v.s12.1b7667a2f49d from=translated src=- shape=b91e6f24 vocab=4d81cb06
+-/
 theorem exists_finset_forall_exists_laurentDescent_eq (y : laurentBaseChange L F₀) :
     ∃ s : Finset L, ∀ (E : Type uE) [Field E] [Algebra ℚ E] (ι : E →+* L), (↑s ⊆ Set.range ι) →
       ∃ x : laurentBaseChange E F₀, laurentDescent ι F₀ x = y := by

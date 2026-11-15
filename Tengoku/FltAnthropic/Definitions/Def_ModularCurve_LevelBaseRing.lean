@@ -30,6 +30,9 @@ variable (𝒪 : Subring E) (F₀ : IntermediateField ℚ (LaurentSeries ℚ)) (
 def levelConst : 𝒪 →+* laurentBaseChange E F₀ :=
   (algebraMap E (laurentBaseChange E F₀)).comp 𝒪.subtype
 
+/--
+@isnad1 id=eq.0h4v.s12.0876e10142d0 from=translated src=- shape=0dc0948a vocab=0d01d07a
+-/
 @[simp]
 theorem levelConst_apply (a : 𝒪) : levelConst 𝒪 F₀ a = algebraMap E (laurentBaseChange E F₀) (a : E) :=
   rfl
@@ -37,27 +40,45 @@ theorem levelConst_apply (a : 𝒪) : levelConst 𝒪 F₀ a = algebraMap E (lau
 def levelGen (E : Type*) [Field E] [Algebra ℚ E] (g : G) : laurentBaseChange E F₀ :=
   ⟨coeffEmb E ((g : F₀) : LaurentSeries ℚ), coeffEmb_mem_laurentBaseChange E (g : F₀).2⟩
 
+/--
+@isnad1 id=eq.0h4v.s11.89a83adacc94 from=translated src=- shape=409974ae vocab=978d6dce
+-/
 theorem coe_levelGen (g : G) : (levelGen F₀ G E g : LaurentSeries E) = coeffEmb E ((g : F₀) : LaurentSeries ℚ) :=
   rfl
 
 def levelBaseRing : Subring (laurentBaseChange E F₀) :=
   Subring.closure (Set.range (levelConst 𝒪 F₀) ∪ Set.range (levelGen F₀ G E))
 
+/--
+@isnad1 id=mem.0h5v.s12.1a3f43156ad0 from=translated src=- shape=72d73fe9 vocab=05102411
+-/
 theorem levelConst_mem (a : 𝒪) : levelConst 𝒪 F₀ a ∈ levelBaseRing 𝒪 F₀ G :=
   Subring.subset_closure (Or.inl ⟨a, rfl⟩)
 
+/--
+@isnad1 id=mem.0h5v.s12.21dbec55f918 from=translated src=- shape=66c1e0ea vocab=4df2125c
+-/
 theorem levelGen_mem (g : G) : levelGen F₀ G E g ∈ levelBaseRing 𝒪 F₀ G :=
   Subring.subset_closure (Or.inr ⟨g, rfl⟩)
 
 variable (ι : E →+* L) (𝒪' : Subring L)
 
+/--
+@isnad1 id=eq.0h6v.s13.c11485ce0876 from=translated src=- shape=529c2981 vocab=365bdaf7
+-/
 theorem laurentDescent_levelConst (a : 𝒪'.comap ι) :
     laurentDescent ι F₀ (levelConst (𝒪'.comap ι) F₀ a) = levelConst 𝒪' F₀ ⟨ι a, a.2⟩ :=
   laurentDescent_algebraMap ι F₀ a
 
+/--
+@isnad1 id=eq.0h6v.s12.2395cfd3293a from=translated src=- shape=d46ee023 vocab=03b4d33c
+-/
 theorem laurentDescent_levelGen (g : G) : laurentDescent ι F₀ (levelGen F₀ G E g) = levelGen F₀ G L g :=
   laurentDescent_coeffEmb ι F₀ (g : F₀).2
 
+/--
+@isnad1 id=le.0h6v.s12.6ae36a282bf8 from=translated src=- shape=4957df6c vocab=83f798ed
+-/
 theorem map_laurentDescent_levelBaseRing_le :
     (levelBaseRing (𝒪'.comap ι) F₀ G).map (laurentDescent ι F₀) ≤ levelBaseRing 𝒪' F₀ G := by
   rw [levelBaseRing, RingHom.map_closure, Subring.closure_le]
@@ -71,11 +92,17 @@ def levelBaseRingDescent : levelBaseRing (𝒪'.comap ι) F₀ G →+* levelBase
   ((laurentDescent ι F₀).comp (levelBaseRing (𝒪'.comap ι) F₀ G).subtype).codRestrict (levelBaseRing 𝒪' F₀ G)
     fun x => map_laurentDescent_levelBaseRing_le F₀ G ι 𝒪' ⟨x, x.2, rfl⟩
 
+/--
+@isnad1 id=eq.0h7v.s16.f4a83185522f from=translated src=- shape=ef7eb586 vocab=f12e051d
+-/
 @[simp]
 theorem coe_levelBaseRingDescent_apply (x : levelBaseRing (𝒪'.comap ι) F₀ G) :
     (levelBaseRingDescent F₀ G ι 𝒪' x : laurentBaseChange L F₀) = laurentDescent ι F₀ x :=
   rfl
 
+/--
+@isnad1 id=ex.1h5v.s13.d178a7f39a33 from=translated src=- shape=a8a1052d vocab=3a42bb75
+-/
 theorem exists_finset_forall_exists_mem_levelBaseRing (y : laurentBaseChange L F₀) (hy : y ∈ levelBaseRing 𝒪' F₀ G) :
     ∃ s : Finset L, ∀ (E : Type uE') [Field E] [Algebra ℚ E] (ι : E →+* L), (↑s ⊆ Set.range ι) →
       ∃ x : laurentBaseChange E F₀, x ∈ levelBaseRing (𝒪'.comap ι) F₀ G ∧ laurentDescent ι F₀ x = y := by
@@ -116,6 +143,9 @@ theorem exists_finset_forall_exists_mem_levelBaseRing (y : laurentBaseChange L F
       obtain ⟨b, hb, hbv⟩ := ht E ι (Set.subset_union_right.trans hsub)
       exact ⟨a * b, mul_mem ha hb, by rw [map_mul, hau, hbv]⟩
 
+/--
+@isnad1 id=ex.1h5v.s16.bb2905e8cb44 from=translated src=- shape=f3a893bc vocab=dfac61dc
+-/
 theorem exists_finset_forall_integral_laurentDescent (y : laurentBaseChange L F₀)
     (hy : ∃ p : Polynomial (levelBaseRing 𝒪' F₀ G), p.Monic ∧
       Polynomial.eval₂ (levelBaseRing 𝒪' F₀ G).subtype y p = 0) :
@@ -149,6 +179,9 @@ theorem exists_finset_forall_integral_laurentDescent (y : laurentBaseChange L F�
   rw [map_zero, Polynomial.hom_eval₂, ← hpy, ← hqp, Polynomial.eval₂_map, hx]
   rfl
 
+/--
+@isnad1 id=ex.1h7v.s16.c41b1c996b52 from=translated src=- shape=2c8f1ef2 vocab=756b314d
+-/
 theorem integral_laurentDescent_of_integral (x : laurentBaseChange E F₀)
     (hx : ∃ q : Polynomial (levelBaseRing (𝒪'.comap ι) F₀ G), q.Monic ∧
       Polynomial.eval₂ (levelBaseRing (𝒪'.comap ι) F₀ G).subtype x q = 0) :
@@ -160,6 +193,9 @@ theorem integral_laurentDescent_of_integral (x : laurentBaseChange E F₀)
       (laurentDescent ι F₀).comp (levelBaseRing (𝒪'.comap ι) F₀ G).subtype := RingHom.ext fun _ => rfl
   rw [Polynomial.eval₂_map, h, ← Polynomial.hom_eval₂, hqx, map_zero]
 
+/--
+@isnad1 id=iff.0h6v.s12.43ab5a60df28 from=translated src=- shape=25d8faac vocab=856eb6a8
+-/
 theorem laurentDescent_mem_integralCoeffs_iff (x : laurentBaseChange E F₀) :
     (laurentDescent ι F₀ x : LaurentSeries L) ∈ CharPReduction.integralCoeffs 𝒪' ↔ (x : LaurentSeries E) ∈ CharPReduction.integralCoeffs (𝒪'.comap ι) :=
   Iff.rfl
@@ -174,6 +210,9 @@ variable (𝒪 : Subring E) (F₀ : IntermediateField ℚ (LaurentSeries ℚ)) (
 def levelGen₁ (E : Type*) [Field E] [Algebra ℚ E] : laurentBaseChange E F₀ :=
   levelGen F₀ ({g} : Set F₀) E ⟨g, rfl⟩
 
+/--
+@isnad1 id=eq.0h3v.s11.91f4ce9f5d94 from=translated src=- shape=16afeca0 vocab=6a111e42
+-/
 theorem range_levelGen_singleton : Set.range (levelGen F₀ ({g} : Set F₀) E) = {levelGen₁ F₀ g E} := by
   ext y
   simp only [Set.mem_range, Set.mem_singleton_iff, levelGen₁]
@@ -185,9 +224,15 @@ theorem range_levelGen_singleton : Set.range (levelGen F₀ ({g} : Set F₀) E) 
   · rintro rfl
     exact ⟨⟨g, rfl⟩, rfl⟩
 
+/--
+@isnad1 id=eq.0h5v.s12.bee501d549c2 from=translated src=- shape=63fb015a vocab=af93e99f
+-/
 theorem laurentDescent_levelGen₁ (ι : E →+* L) : laurentDescent ι F₀ (levelGen₁ F₀ g E) = levelGen₁ F₀ g L :=
   laurentDescent_levelGen F₀ {g} ι ⟨g, rfl⟩
 
+/--
+@isnad1 id=transcen.1h5v.s11.ee04fc246537 from=translated src=- shape=a4837d0e vocab=b05d26b3
+-/
 theorem transcendental_of_laurentDescent (ι : E →+* L) (h : Transcendental L (levelGen₁ F₀ g L)) :
     Transcendental E (levelGen₁ F₀ g E) := by
   refine Transcendental.of_ringHom_of_comp_eq (f := ι) (g := laurentDescent ι F₀) ?_ ι.injective ?_
@@ -197,12 +242,21 @@ theorem transcendental_of_laurentDescent (ι : E →+* L) (h : Transcendental L 
 def levelEval : Polynomial 𝒪 →+* laurentBaseChange E F₀ :=
   Polynomial.eval₂RingHom (levelConst 𝒪 F₀) (levelGen₁ F₀ g E)
 
+/--
+@isnad1 id=eq.0h5v.s13.3b4d590f27f2 from=translated src=- shape=3ecf6bf1 vocab=a106fd2c
+-/
 theorem levelEval_C (a : 𝒪) : levelEval 𝒪 F₀ g (Polynomial.C a) = levelConst 𝒪 F₀ a :=
   Polynomial.eval₂_C _ _
 
+/--
+@isnad1 id=eq.0h4v.s12.44f1a274ba66 from=translated src=- shape=a6f05a6e vocab=c3a0723b
+-/
 theorem levelEval_X : levelEval 𝒪 F₀ g Polynomial.X = levelGen₁ F₀ g E :=
   Polynomial.eval₂_X _ _
 
+/--
+@isnad1 id=eq.0h4v.s11.5563010db992 from=translated src=- shape=4622a718 vocab=a270dbfa
+-/
 theorem levelBaseRing_singleton_eq_range : levelBaseRing 𝒪 F₀ {g} = (levelEval 𝒪 F₀ g).range := by
   apply le_antisymm
   · rw [levelBaseRing, range_levelGen_singleton, Subring.closure_le]
@@ -220,6 +274,9 @@ theorem levelBaseRing_singleton_eq_range : levelBaseRing 𝒪 F₀ {g} = (levelE
           exact mul_mem (levelConst_mem _ _ _ _) (pow_mem (by exact levelGen_mem 𝒪 F₀ {g} ⟨g, rfl⟩) _)
         · exact levelGen_mem 𝒪 F₀ {g} ⟨g, rfl⟩
 
+/--
+@isnad1 id=injectiv.1h4v.s12.5d67413599e1 from=translated src=- shape=3fdb3f13 vocab=0bd0f26c
+-/
 theorem levelEval_injective (hx : Transcendental E (levelGen₁ F₀ g E)) : Function.Injective (levelEval 𝒪 F₀ g) := by
   rw [injective_iff_map_eq_zero]
   intro p hp
@@ -236,31 +293,52 @@ def levelPolynomialEquiv (hx : Transcendental E (levelGen₁ F₀ g E)) : Polyno
     ⟨fun _ _ h => levelEval_injective 𝒪 F₀ g hx (Subtype.ext_iff.mp h), (levelEval 𝒪 F₀ g).rangeRestrict_surjective⟩).trans
     (RingEquiv.subringCongr (levelBaseRing_singleton_eq_range 𝒪 F₀ g).symm)
 
+/--
+@isnad1 id=eq.1h5v.s17.8d3773762bc0 from=translated src=- shape=201b214a vocab=e4e14405
+-/
 @[simp]
 theorem coe_levelPolynomialEquiv_apply (hx : Transcendental E (levelGen₁ F₀ g E)) (p : Polynomial 𝒪) :
     (levelPolynomialEquiv 𝒪 F₀ g hx p : laurentBaseChange E F₀) = levelEval 𝒪 F₀ g p :=
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s17.49b95a13086b from=translated src=- shape=4a19f197 vocab=94cba8c7
+-/
 theorem levelPolynomialEquiv_C (hx : Transcendental E (levelGen₁ F₀ g E)) (a : 𝒪) :
     (levelPolynomialEquiv 𝒪 F₀ g hx (Polynomial.C a) : laurentBaseChange E F₀) = levelConst 𝒪 F₀ a :=
   levelEval_C 𝒪 F₀ g a
 
+/--
+@isnad1 id=eq.1h4v.s17.5892297d48f7 from=translated src=- shape=ae16914e vocab=fb49409d
+-/
 theorem levelPolynomialEquiv_X (hx : Transcendental E (levelGen₁ F₀ g E)) :
     (levelPolynomialEquiv 𝒪 F₀ g hx Polynomial.X : laurentBaseChange E F₀) = levelGen₁ F₀ g E :=
   levelEval_X 𝒪 F₀ g
 
+/--
+@isnad1 id=isintegr.1h4v.s12.0aceab398f0b from=translated src=- shape=7577431c vocab=b0bbac9e
+-/
 theorem isIntegrallyClosed_levelBaseRing [IsDomain 𝒪] [IsIntegrallyClosed 𝒪]
     (hx : Transcendental E (levelGen₁ F₀ g E)) : IsIntegrallyClosed (levelBaseRing 𝒪 F₀ {g}) :=
   IsIntegrallyClosed.of_equiv (levelPolynomialEquiv 𝒪 F₀ g hx)
 
+/--
+@isnad1 id=isnoethe.1h4v.s13.65eaf92423c5 from=translated src=- shape=1be3260a vocab=70cdcd15
+-/
 theorem isNoetherianRing_levelBaseRing [IsNoetherianRing 𝒪] (hx : Transcendental E (levelGen₁ F₀ g E)) :
     IsNoetherianRing (levelBaseRing 𝒪 F₀ {g}) :=
   isNoetherianRing_of_ringEquiv _ (levelPolynomialEquiv 𝒪 F₀ g hx)
 
+/--
+@isnad1 id=uniquefa.1h4v.s13.2b3e6a0b42f1 from=translated src=- shape=7577431c vocab=e43d258c
+-/
 theorem uniqueFactorizationMonoid_levelBaseRing [IsDomain 𝒪] [UniqueFactorizationMonoid 𝒪]
     (hx : Transcendental E (levelGen₁ F₀ g E)) : UniqueFactorizationMonoid (levelBaseRing 𝒪 F₀ {g}) :=
   (levelPolynomialEquiv 𝒪 F₀ g hx).toMulEquiv.uniqueFactorizationMonoid inferInstance
 
+/--
+@isnad1 id=prime.2h5v.s14.322acdebfc44 from=translated src=- shape=0b804a32 vocab=83cec9aa
+-/
 theorem prime_levelConst (hx : Transcendental E (levelGen₁ F₀ g E)) {ϖ : 𝒪} (hϖ : Prime ϖ) :
     Prime (⟨levelConst 𝒪 F₀ ϖ, levelConst_mem 𝒪 F₀ {g} ϖ⟩ : levelBaseRing 𝒪 F₀ {g}) := by
   have h : levelPolynomialEquiv 𝒪 F₀ g hx (Polynomial.C ϖ) = ⟨levelConst 𝒪 F₀ ϖ, levelConst_mem 𝒪 F₀ {g} ϖ⟩ :=

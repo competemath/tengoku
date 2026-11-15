@@ -18,8 +18,14 @@ def xOrZero : W.Point → R
   | .zero => 0
   | .some x _ _ => x
 
+/--
+@isnad1 id=eq.0h2v.s5.d2ce69becba8 from=translated src=- shape=350315ba vocab=c7408c49
+-/
 @[simp] lemma xOrZero_zero : (0 : W.Point).xOrZero = 0 := rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.5d88c4bf5c89 from=translated src=- shape=81bddcde vocab=f0690b17
+-/
 @[simp] lemma xOrZero_some {x y : R} (h : W.Nonsingular x y) :
     (Point.some x y h).xOrZero = x := rfl
 
@@ -31,8 +37,14 @@ def netW20 : W.Point → F
   | .zero => 0
   | .some x y _ => y - W.negY x y
 
+/--
+@isnad1 id=eq.0h2v.s5.9adb41f326e3 from=translated src=- shape=350315ba vocab=e8493184
+-/
 @[simp] lemma netW20_zero : (0 : W.Point).netW20 = 0 := rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.cf1b7a2d40da from=translated src=- shape=9e8187c2 vocab=674f946c
+-/
 @[simp] lemma netW20_some {x y : F} (h : W.Nonsingular x y) :
     (Point.some x y h).netW20 = y - W.negY x y := rfl
 
@@ -56,7 +68,13 @@ noncomputable def netCol (A B : W.Point) : ℕ → F
   | m + 2 =>
       netCol A B (m + 1) ^ 2 * (A.xOrZero - ((m + 1) • A + B).xOrZero) / netCol A B m
 
+/--
+@isnad1 id=eq.0h4v.s5.eaf66c8b9712 from=translated src=- shape=0c30c165 vocab=1e0ab4bb
+-/
 @[simp] lemma netCol_zero : netCol P Q 0 = 1 := rfl
+/--
+@isnad1 id=eq.0h4v.s5.1f288b5b2501 from=translated src=- shape=0c30c165 vocab=1e0ab4bb
+-/
 @[simp] lemma netCol_one : netCol P Q 1 = 1 := rfl
 
 noncomputable def netPsi (P : W.Point) (n : ℕ) : F :=
@@ -70,10 +88,16 @@ open scoped Classical in
 noncomputable def netPairing (p : ℕ) (P Q : W.Point) : F :=
   if P ≠ 0 ∧ ∀ k : ℤ, Q ≠ k • P then netTau p P Q / netTau p Q P else 1
 
+/--
+@isnad1 id=eq.0h4v.s6.e301d1402fee from=translated src=- shape=527b6127 vocab=8bd1542a
+-/
 @[simp] lemma netPairing_zero_left (p : ℕ) (Q : W.Point) :
     netPairing p (0 : W.Point) Q = 1 := by
   unfold netPairing; rw [ite_eq_right]; simp
 
+/--
+@isnad1 id=eq.0h4v.s6.3508fe7278e5 from=translated src=- shape=72bb5189 vocab=8bd1542a
+-/
 @[simp] lemma netPairing_zero_right (p : ℕ) (P : W.Point) :
     netPairing p P (0 : W.Point) = 1 := by
   unfold netPairing

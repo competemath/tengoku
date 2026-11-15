@@ -80,11 +80,20 @@ def IsNice : Prop :=
       Λd s * badFactor badDual s = D.archFactorDual s * D.LFunDual s) ∧
     (∀ s : ℂ, Λ s = ε * (N : ℂ) ^ ((D.center : ℂ) - s) * Λd (2 * (D.center : ℂ) - s))
 
+/--
+@isnad1 id=eq.0h1v.s5.99f279281a72 from=translated src=- shape=9131aaf8 vocab=19aaf81d
+-/
 @[simp] theorem badFactor_zero (s : ℂ) : badFactor 0 s = 1 := by
   simp [badFactor]
 
+/--
+@isnad1 id=isbaddat.0h0v.s4.d286c714e688 from=translated src=- shape=6b39199c vocab=28a99473
+-/
 theorem isBadData_zero : IsBadData 0 := fun _ h => (Multiset.notMem_zero _ h).elim
 
+/--
+@isnad1 id=eq.1h3v.s5.2d09b04f5454 from=translated src=- shape=59d4dad3 vocab=e696719f
+-/
 theorem archFactor_of_gammaC_eq_zero (hC : D.gammaC = 0) (s : ℂ) :
     D.archFactor s = (D.gammaR.map fun μ => Gammaℝ (s + μ)).prod := by
   simp [archFactor, hC]

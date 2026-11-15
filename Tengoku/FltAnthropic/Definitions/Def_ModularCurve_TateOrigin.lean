@@ -25,10 +25,16 @@ def tateOriginY (K : Type*) [CommRing K] : LaurentSeries (PowerSeries K) :=
             - ((e + 1).choose 2 : K) * ((-1) ^ k * ((e + k - 1).choose k : K))))
           + (if k = 0 then ∑ e ∈ M.divisors, (e : K) else 0))
 
+/--
+@isnad1 id=eq.0h1v.s5.08e20b6e35a9 from=translated src=- shape=3822aa3b vocab=cfe4664a
+-/
 theorem coeff_tateOriginX_neg_two (K : Type*) [CommRing K] : (tateOriginX K).coeff (-2) = 1 := by
   rw [tateOriginX, HahnSeries.coeff_add, HahnSeries.coeff_add, ofPowerSeries_coeff_of_neg _ (by norm_num),
     HahnSeries.coeff_single, HahnSeries.coeff_single, ite_eq_left rfl, ite_eq_right (by norm_num), add_zero, add_zero]
 
+/--
+@isnad1 id=eq.1h2v.s6.f26d8a9a6760 from=translated src=- shape=7066d354 vocab=e07bdf34
+-/
 theorem coeff_tateOriginX_of_lt (K : Type*) [CommRing K] {n : ℤ} (hn : n < -2) :
     (tateOriginX K).coeff n = 0 := by
   have h1 : n ≠ -2 := by omega
@@ -36,11 +42,17 @@ theorem coeff_tateOriginX_of_lt (K : Type*) [CommRing K] {n : ℤ} (hn : n < -2)
   rw [tateOriginX, HahnSeries.coeff_add, HahnSeries.coeff_add, ofPowerSeries_coeff_of_neg _ (by omega),
     HahnSeries.coeff_single, HahnSeries.coeff_single, ite_eq_right h1, ite_eq_right h2, add_zero, add_zero]
 
+/--
+@isnad1 id=eq.0h1v.s6.539e2f166c60 from=translated src=- shape=f6b2e81e vocab=fbeb8818
+-/
 theorem coeff_tateOriginY_neg_three (K : Type*) [CommRing K] : (tateOriginY K).coeff (-3) = -1 := by
   rw [tateOriginY, HahnSeries.coeff_add, HahnSeries.coeff_add, HahnSeries.coeff_add,
     ofPowerSeries_coeff_of_neg _ (by norm_num), HahnSeries.coeff_single, HahnSeries.coeff_single,
     HahnSeries.coeff_single, ite_eq_left rfl, ite_eq_right (by norm_num), ite_eq_right (by norm_num), add_zero, add_zero, add_zero]
 
+/--
+@isnad1 id=eq.1h2v.s6.824135044d71 from=translated src=- shape=7066d354 vocab=2cce2c9f
+-/
 theorem coeff_tateOriginY_of_lt (K : Type*) [CommRing K] {n : ℤ} (hn : n < -3) :
     (tateOriginY K).coeff n = 0 := by
   have h1 : n ≠ -3 := by omega

@@ -15,11 +15,17 @@ def fullKernelQuotient {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCur
     (∑ P ∈ W.oddOrderSummingSet Q (N - 1),
       (P.1 * W.veluGx P.1 P.2 - P.2 * W.veluGy P.1 P.2))
 
+/--
+@isnad1 id=eq.0h4v.s5.a301c00f23eb from=translated src=- shape=aa3f8426 vocab=e072f880
+-/
 theorem veluGx_add_veluGx_negY {R : Type*} [CommRing R] (W : WeierstrassCurve R) (x y : R) :
     W.veluGx x y + W.veluGx x (W.toAffine.negY x y) = W.veluT x y := by
   simp only [veluGx, veluGy, veluT, Affine.negY]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s7.a02e41233eac from=translated src=- shape=838b8a46 vocab=99fe1484
+-/
 theorem asymWeight_add_asymWeight_negY {R : Type*} [CommRing R] (W : WeierstrassCurve R) (x y : R) :
     (x * W.veluGx x y - y * W.veluGy x y) +
         (x * W.veluGx x (W.toAffine.negY x y) -
@@ -28,6 +34,9 @@ theorem asymWeight_add_asymWeight_negY {R : Type*} [CommRing R] (W : Weierstrass
   simp only [veluGx, veluGy, veluT, veluW, veluU, Affine.negY]
   ring
 
+/--
+@isnad1 id=eq.1h3v.s6.524d5ff690f4 from=translated src=- shape=500faf14 vocab=51d5df99
+-/
 theorem coordsOrZero_neg {R : Type*} [CommRing R] {W : WeierstrassCurve R} (P : W.toAffine.Point)
     (hP : P ≠ 0) :
     (-P).coordsOrZero = (P.coordsOrZero.1, W.toAffine.negY P.coordsOrZero.1 P.coordsOrZero.2) := by
@@ -45,6 +54,9 @@ theorem eq_of_coordsOrZero_eq {R : Type*} [CommRing R] {W : WeierstrassCurve R} 
   obtain ⟨rfl, rfl⟩ := h
   rfl
 
+/--
+@isnad1 id=injectiv.0h2v.s5.1461dfd992ac from=translated src=- shape=2213aacb vocab=d2880df6
+-/
 theorem negPair_injective {R : Type*} [CommRing R] (W : WeierstrassCurve R) :
     Function.Injective (fun P : R × R => (P.1, W.toAffine.negY P.1 P.2)) := by
   intro P P' h
@@ -54,6 +66,9 @@ theorem negPair_injective {R : Type*} [CommRing R] (W : WeierstrassCurve R) :
   rw [Affine.negY_negY, h1, Affine.negY_negY] at h3
   exact Prod.ext h1 h3
 
+/--
+@isnad1 id=eq.1h4v.s7.2b16f0bd4158 from=translated src=- shape=997e2ee2 vocab=28f5ca98
+-/
 theorem oddOrderSummingSet_two_mul {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F)
     (Q : W.toAffine.Point) (n : ℕ) (hQ : addOrderOf Q = 2 * n + 1) :
     W.oddOrderSummingSet Q (2 * n) =
@@ -77,6 +92,9 @@ theorem oddOrderSummingSet_two_mul {F : Type*} [Field F] [DecidableEq F] (W : We
     · refine ⟨2 * n + 1 - k, by omega, by omega, ?_⟩
       rw [hrefl k hk1 (by omega), coordsOrZero_neg _ (hne k hk1 (by omega))]
 
+/--
+@isnad1 id=disjoint.1h4v.s7.ec372c861707 from=translated src=- shape=c8d95764 vocab=43c9163f
+-/
 theorem disjoint_oddOrderSummingSet_image_neg {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F)
     (Q : W.toAffine.Point) (n : ℕ) (hQ : addOrderOf Q = 2 * n + 1) :
     Disjoint (W.oddOrderSummingSet Q n)
@@ -96,6 +114,9 @@ theorem disjoint_oddOrderSummingSet_image_neg {F : Type*} [Field F] [DecidableEq
   rw [hQ] at hdvd
   exact absurd (Nat.le_of_dvd (by omega) hdvd) (by omega)
 
+/--
+@isnad1 id=eq.1h5v.s7.4fc2d99908db from=translated src=- shape=3ce5e8e1 vocab=83319f53
+-/
 theorem sum_oddOrderSummingSet_two_mul {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F)
     (Q : W.toAffine.Point) (n : ℕ) (hQ : addOrderOf Q = 2 * n + 1) (f : F × F → F) :
     ∑ P ∈ W.oddOrderSummingSet Q (2 * n), f P =
@@ -103,12 +124,18 @@ theorem sum_oddOrderSummingSet_two_mul {F : Type*} [Field F] [DecidableEq F] (W 
   rw [oddOrderSummingSet_two_mul W Q n hQ, Finset.sum_union (disjoint_oddOrderSummingSet_image_neg W Q n hQ),
     Finset.sum_image (fun P _ P' _ h => negPair_injective W h), Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.1h4v.s7.8c24c793d14e from=translated src=- shape=eda57570 vocab=746fa48f
+-/
 theorem sum_veluGx_oddOrderSummingSet_two_mul {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F)
     (Q : W.toAffine.Point) (n : ℕ) (hQ : addOrderOf Q = 2 * n + 1) :
     ∑ P ∈ W.oddOrderSummingSet Q (2 * n), W.veluGx P.1 P.2 = W.veluTSum (W.oddOrderSummingSet Q n) := by
   rw [sum_oddOrderSummingSet_two_mul W Q n hQ (fun P => W.veluGx P.1 P.2), veluTSum]
   exact Finset.sum_congr rfl fun P _ => veluGx_add_veluGx_negY W P.1 P.2
 
+/--
+@isnad1 id=eq.1h4v.s7.4db350a53770 from=translated src=- shape=90fb5f50 vocab=2053f6f1
+-/
 theorem sum_asymWeight_oddOrderSummingSet_two_mul {F : Type*} [Field F] [DecidableEq F]
     (W : WeierstrassCurve F) (Q : W.toAffine.Point) (n : ℕ) (hQ : addOrderOf Q = 2 * n + 1) :
     ∑ P ∈ W.oddOrderSummingSet Q (2 * n), (P.1 * W.veluGx P.1 P.2 - P.2 * W.veluGy P.1 P.2) =
@@ -117,6 +144,9 @@ theorem sum_asymWeight_oddOrderSummingSet_two_mul {F : Type*} [Field F] [Decidab
     veluWSum]
   exact Finset.sum_congr rfl fun P _ => asymWeight_add_asymWeight_negY W P.1 P.2
 
+/--
+@isnad1 id=eq.1h4v.s7.e2a38624f8ed from=translated src=- shape=ae3e3c95 vocab=4d7c8653
+-/
 theorem fullKernelQuotient_eq_veluQuotient_oddOrderSummingSet {F : Type*} [Field F] [DecidableEq F]
     (W : WeierstrassCurve F) (Q : W.toAffine.Point) (n : ℕ) (hQ : addOrderOf Q = 2 * n + 1) :
     W.fullKernelQuotient Q (2 * n + 1) = W.veluQuotient (W.oddOrderSummingSet Q n) := by
@@ -124,6 +154,9 @@ theorem fullKernelQuotient_eq_veluQuotient_oddOrderSummingSet {F : Type*} [Field
     sum_asymWeight_oddOrderSummingSet_two_mul W Q n hQ]
   exact (W.veluQuotient_eq_veluQuotientOfSums _).symm
 
+/--
+@isnad1 id=eq.0h3v.s5.9eb93c7e16a0 from=translated src=- shape=654b9af3 vocab=174c4ae3
+-/
 theorem fullKernelQuotient_one {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F)
     (Q : W.toAffine.Point) : W.fullKernelQuotient Q 1 = W := by
   have h : W.oddOrderSummingSet Q (1 - 1) = ∅ := by
@@ -131,6 +164,9 @@ theorem fullKernelQuotient_one {F : Type*} [Field F] [DecidableEq F] (W : Weiers
   rw [fullKernelQuotient, h, Finset.sum_empty, Finset.sum_empty]
   ext <;> simp [veluQuotientOfSums]
 
+/--
+@isnad1 id=eq.2h4v.s6.f3c0bcacad7e from=translated src=- shape=57ac4971 vocab=6ecef65c
+-/
 theorem fullKernelQuotient_two {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F) {x y : F}
     (h : W.toAffine.Nonsingular x y) (hgy : W.veluGy x y = 0) :
     W.fullKernelQuotient (.some x y h) 2 = W.veluQuotient2 x y := by

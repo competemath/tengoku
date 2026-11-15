@@ -31,6 +31,9 @@ def sylowH (e : (L ≃ₐ[ℚ] L) ≃* Matrix.GeneralLinearGroup (Fin 2) (ZMod 3
     refine (Units.inv_eq_of_mul_eq_one_right ?_).symm
     rw [← hMa, ← Matrix.map_mul, (P16_mul_pw_seven M hM).1, Matrix.map_one _ (map_zero red) (map_one red)]
 
+/--
+@isnad1 id=iff.0h3v.s11.37bb664693ee from=translated src=- shape=c2f2fe27 vocab=682bce61
+-/
 theorem mem_sylowH_iff (e : (L ≃ₐ[ℚ] L) ≃* Matrix.GeneralLinearGroup (Fin 2) (ZMod 3))
     (γ : L ≃ₐ[ℚ] L) :
     γ ∈ sylowH e ↔ ∃ M ∈ P16,

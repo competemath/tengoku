@@ -20,6 +20,9 @@ variable {W : Type u} [CommRing W]
 def unitPart (ϖ c : W) : W :=
   (pow_multiplicity_dvd ϖ c).choose
 
+/--
+@isnad1 id=eq.0h3v.s5.6e82aa476f2c from=translated src=- shape=7c581378 vocab=2a45eef6
+-/
 theorem pow_multiplicity_mul_unitPart (ϖ c : W) : ϖ ^ multiplicity ϖ c * unitPart ϖ c = c :=
   (pow_multiplicity_dvd ϖ c).choose_spec.symm
 
@@ -40,6 +43,9 @@ def initialFormOfSet (ϖ : W) (S : Set ℤ) (ab : PowerSeries W × PowerSeries W
 
 open Classical in
 
+/--
+@isnad1 id=eq.1h5v.s7.9f9fb69de8f5 from=translated src=- shape=6192d87f vocab=19ee85b4
+-/
 theorem initialFormOfSet_apply (ϖ : W) {S : Set ℤ} (hS : S.Finite)
     (ab : PowerSeries W × PowerSeries W) (n : ℤ) :
     (initialFormOfSet ϖ S ab).coeff n = if n ∈ S then leadingResidue ϖ (nfCoeff ab n) else 0 := by
@@ -54,6 +60,9 @@ def initialForm (ϖ : W) (v : W → ℕ∞) (E t : ℕ) (ab : PowerSeries W × P
     LaurentPolynomial (ResidueField W) :=
   initialFormOfSet ϖ (dominantIndices v E t ab) ab
 
+/--
+@isnad1 id=eq.0h6v.s6.23447a8263d5 from=translated src=- shape=607b958b vocab=3afddf19
+-/
 theorem initialForm_def (ϖ : W) (v : W → ℕ∞) (E t : ℕ) (ab : PowerSeries W × PowerSeries W) :
     initialForm ϖ v E t ab = initialFormOfSet ϖ (dominantIndices v E t ab) ab := rfl
 
