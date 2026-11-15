@@ -18,7 +18,7 @@ These are deterministic prerequisites for the
 `independent-sum-spectrum-universality` card.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 open scoped Matrix.Norms.L2Operator
 namespace NLAlib
 
@@ -100,3 +100,4 @@ theorem _root_.Matrix.IsHermitian.summable_norm_and_hasSum_resolventWord_add
     hasSum_list_prod_of_summable_norm f x hs hn⟩
 
 end NLAlib
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

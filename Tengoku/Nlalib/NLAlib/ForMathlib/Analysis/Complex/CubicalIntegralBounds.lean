@@ -10,7 +10,7 @@ the integral of its actual speed. Triangle inequalities give the usual
 length times uniform-norm bound, with exact `1/(2 pi)` normalization.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 set_option backward.isDefEq.respectTransparency false
 set_option backward.isDefEq.respectTransparency.types false
 open Set Finset MeasureTheory
@@ -80,3 +80,4 @@ theorem norm_two_pi_i_inv_mul_cubicalCurveIntegral_le_length_mul {Ω : Set ℂ}
     _ = _ := by ring
 
 end Complex
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

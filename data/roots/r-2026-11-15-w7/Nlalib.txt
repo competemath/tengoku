@@ -1,0 +1,72 @@
+leakscan: 111 global instances (4 can fire outside the library), 1 scoped; 645 global simp lemmas (2 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 62 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: instance Polynomial.Chebyshev.isFiniteMeasure_measureT registered in Tengoku.Nlalib.NLAlib.ForMathlib.Analysis.ChebyshevMeasure (declared at line 20)
+leak: instance Circle.instMeasurableSpace registered in Tengoku.Nlalib.NLAlib.ForMathlib.MeasureTheory.CircleProbability (declared at line 21)
+leak: instance MeasureTheory.SignedMeasure.isFiniteMeasure_variation registered in Tengoku.Nlalib.NLAlib.ForMathlib.Analysis.Complex.Harmonic.SignedStieltjes (declared at line 20)
+leak: simp Polynomial.Chebyshev.degree_S_natCast registered in Tengoku.Nlalib.NLAlib.ForMathlib.RingTheory.Polynomial.ChebyshevSequence (declared at line 20)
+leak: simp NLAlib.coeff_sum_monomial_fin registered in Tengoku.Nlalib.NLAlib.Polynomial.OrthogonalPolynomials.FiniteMomentSystem (declared at line 26)
+leak: instance NLAlib.selfAdjointMatrixMeasurableSpace registered in Tengoku.Nlalib.NLAlib.Matrix.Functions.KTransformCalculus (declared at line 18)
+root: integral_pow_positiveRealSpectrumMeasure
+root: lpNorm_positiveSpectrumMeasure_eq_gramMoment
+root: isSelfAdjoint_cfcSymmetricClamp
+root: norm_resolvent_mul_le_reference
+root: norm_sub_le_two_mul_norm_mul_norm_dyson_residual
+root: commute_resolvent
+root: norm_curveIntegral_le_mul_integral_norm_derivWithin
+root: exists_iteratedDeriv_eq_zero_of_multiset_multiplicities
+root: two_mul_sub_sq_le_binary_log
+root: norm_resolvent_sub_resolvent_le_projected
+root: star_mul_self_le_norm_sq
+root: norm_eq_of_faithful_power_moments
+root: isProbabilityMeasure_positiveRealSpectrumMeasure
+root: norm_sub_endpoints_le_of_hasDerivAt_Ioo
+root: mul_resolvent_eq_mul_resolvent_mul_one_add
+root: norm_resolvent_sub_le_of_reference_difference
+root: norm_curveIntegral_le_mul_integral_norm_derivWithin_of_contDiffOn
+root: isFiniteMeasure_positiveSpectrumMeasure
+root: abs_sub_le_sum_of_coordinate_oscillation
+root: support_positiveSpectrumMeasure_eq_univ_of_faithful
+root: positiveRealSpectrumMeasure_eq_of_power_moments
+root: integral_comp_subtype_positiveSpectrumMeasure
+root: exists_uniform_grid_subordinate_open_cover
+root: positiveSpectralFunctional_apply
+root: integral_positiveSpectrumMeasure
+root: curveIntegral_concat
+root: exists_uniform_subdivision_subordinate_open_cover
+root: cfcSymmetricClamp
+root: integral_positiveRealSpectrumMeasure
+root: star_resolvent
+root: lpNorm_positiveSpectrumMeasure_resolvent_modulus
+root: eq_ite_even_catalan_of_recursion
+root: positiveSpectrumMeasure
+root: sphereChernoffParameter
+root: iteratedFDeriv_resolvent_apply
+root: resolvent_sub_eq_reference_sub_factorization
+root: norm_cfcSymmetricClamp_le
+root: measureReal_univ_positiveSpectrumMeasure
+root: positiveRealSpectrumMeasure
+root: lpNorm_positiveSpectrumMeasure_eq
+root: isProbabilityMeasure_positiveSpectrumMeasure
+root: star_mul_self_le_weighted_gram_add_norm
+root: le_add_of_forall_sq_le_weighted_sq
+root: resolvent_sub_smul_one_sub_eq
+root: positiveSpectralFunctional
+root: measureReal_univ_positiveRealSpectrumMeasure
+root: hasSum_list_prod_of_summable_norm
+root: mul_pow_sub_pow_mul_eq_sum
+root: isFiniteMeasure_positiveRealSpectrumMeasure
+root: norm_pow_sub_pow_le_mul_pow
+root: iteratedFDeriv_ringInverse_sub_apply
+root: card_mul_sub_sq_div_two_le_sum_log_affine
+root: star_mul_self_add_le_weighted
+root: exists_iteratedDeriv_eq_zero_of_monotone_with_multiplicities
+root: hasFDerivAt_of_continuous_secant
+root: resolvent_mul_eq_one_add_mul_resolvent_mul
+root: support_positiveRealSpectrumMeasure_eq_spectrum
+root: sphereChernoffParameter_mul_sub_lt_half
+root: norm_mul_resolvent_le_reference
+root: spectrum_real_eq_of_faithful_power_moments
+root: ae_mem_spectrum_positiveRealSpectrumMeasure
+root: summable_norm_list_prod_of_summable_norm
+root-instance: isFiniteMeasure_positiveSpectrumMeasure
+root-instance: isFiniteMeasure_positiveRealSpectrumMeasure

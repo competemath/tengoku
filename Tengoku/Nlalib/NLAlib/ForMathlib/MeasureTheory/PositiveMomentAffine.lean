@@ -13,7 +13,7 @@ No traciality or noncommutative Minkowski theorem is assumed in this scalar
 functional-calculus step.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
@@ -92,3 +92,4 @@ theorem PositiveLinearMap.re_pow_affine_rpow_le (φ : A →ₚ[ℂ] ℂ) (hφ : 
   rwa [haff,hscale] at hLp
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

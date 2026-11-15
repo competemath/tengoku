@@ -14,7 +14,7 @@ the successive vanishing derivative conditions. Simple endpoints and repeated in
 nodes suffice for the Gauss, Radau and Lobatto Hermite remainder arguments.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 open Set
 
 private theorem exists_monotone_deriv_zeros {q : ℕ} {f : ℝ → ℝ}
@@ -54,7 +54,7 @@ Source: repeated Rolle argument for Hermite interpolation, operator derivations 
 This is a general real-analysis helper for the Gauss/Radau/Lobatto remainders.
 @isnad1 id=ex.7h5v.s9.9f1fc965a717 from=translated src=- shape=a5edab0c vocab=7bc9b2a1
 -/
-theorem exists_iteratedDeriv_eq_zero_of_monotone_with_multiplicities
+theorem _root_.Tengoku.Nlalib.exists_iteratedDeriv_eq_zero_of_monotone_with_multiplicities
     {q : ℕ} {f : ℝ → ℝ} {a b : ℝ} {v : Fin (q + 2) → ℝ}
     (hv : Monotone v) (hspan : v 0 < v (Fin.last _))
     (hva : ∀ i, v i ∈ Icc a b)
@@ -178,7 +178,7 @@ plus a simple evaluation point, or simple prescribed Radau/Lobatto endpoints.
 Source: operator derivations, finite multiplicity Rolle argument following (AQ4).
 @isnad1 id=ex.7h5v.s8.00af031aa96d from=translated src=- shape=d9f547a4 vocab=ebf680ca
 -/
-theorem exists_iteratedDeriv_eq_zero_of_multiset_multiplicities
+theorem _root_.Tengoku.Nlalib.exists_iteratedDeriv_eq_zero_of_multiset_multiplicities
     {q : ℕ} {f : ℝ → ℝ} {a b : ℝ} (m : Multiset ℝ) (hm : m.card = q + 2)
     (hdistinct : ∃ x ∈ m, ∃ y ∈ m, x ≠ y)
     (hmem : ∀ x ∈ m, x ∈ Icc a b)
@@ -230,3 +230,4 @@ theorem exists_iteratedDeriv_eq_zero_of_multiset_multiplicities
   · exact hf'
   · intro i j hij heq
     exact hz _ (hwi i) _ (by have := hcount hij heq; omega)
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

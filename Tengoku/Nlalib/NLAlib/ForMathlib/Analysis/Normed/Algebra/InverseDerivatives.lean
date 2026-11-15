@@ -13,7 +13,7 @@ included. Only the base point needs to be invertible; no global analyticity
 or invertibility of perturbed arguments is assumed.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 set_option autoImplicit false
 open scoped Ring
 
@@ -60,7 +60,7 @@ Source: the Banach-algebra geometric series; used in Brailovskaya–van Handel,
 arXiv:2201.05142v3, Lemma 6.9.
 @isnad1 id=eq.1h5v.s9.8c29f00ae714 from=translated src=- shape=2878adfe vocab=adc0f09a
 -/
-theorem iteratedFDeriv_ringInverse_sub_apply [CompleteSpace A]
+theorem _root_.Tengoku.Nlalib.iteratedFDeriv_ringInverse_sub_apply [CompleteSpace A]
     {b : A} (hb : IsUnit b) {k : ℕ} (H : Fin k → A) :
     iteratedFDeriv 𝕜 k (fun x : A => (b - x)⁻¹ʳ) 0 H =
       ∑ σ : Equiv.Perm (Fin k),
@@ -75,7 +75,7 @@ Source: geometric-series differentiation, as in Brailovskaya–van Handel,
 arXiv:2201.05142v3, Lemma 6.9.
 @isnad1 id=eq.1h6v.s9.0fdb584d04ab from=translated src=- shape=17f15bcb vocab=5757e10e
 -/
-theorem iteratedFDeriv_resolvent_apply [CompleteSpace A]
+theorem _root_.Tengoku.Nlalib.iteratedFDeriv_resolvent_apply [CompleteSpace A]
     {a : A} {ζ : 𝕜} (hζ : ζ ∈ resolventSet 𝕜 a) {k : ℕ} (H : Fin k → A) :
     iteratedFDeriv 𝕜 k (fun x : A => resolvent x ζ) a H =
       ∑ σ : Equiv.Perm (Fin k),
@@ -91,3 +91,4 @@ theorem iteratedFDeriv_resolvent_apply [CompleteSpace A]
   simp only [zero_add, heq] at hp
   rw [hp.iteratedFDeriv_eq_sum_of_completeSpace]
   simp only [inverseSubSeries_apply, resolvent]
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

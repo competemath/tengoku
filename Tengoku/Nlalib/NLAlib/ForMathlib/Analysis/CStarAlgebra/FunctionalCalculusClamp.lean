@@ -12,7 +12,7 @@ reference resolvents differ by at most the reciprocal radius at imaginary
 height. No spectral projection of the perturbed free operator is needed.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 
@@ -27,20 +27,20 @@ attribute [local instance] realClampCFC
 
 /-- The native continuous interval projection of a self-adjoint element to
 the symmetric interval. The total calculus gives zero on other elements.-/
-def cfcSymmetricClamp (L : ℝ) (a : A) : A :=
+def _root_.Tengoku.Nlalib.cfcSymmetricClamp (L : ℝ) (a : A) : A :=
   cfc (fun x : ℝ => max (-L) (min L x)) a
 
 /-- The actual clipped element is self-adjoint.
 @isnad1 id=isselfad.0h3v.s5.4111633cc2af from=translated src=- shape=57a614d6 vocab=6319aeb6
 -/
-theorem isSelfAdjoint_cfcSymmetricClamp (L : ℝ) (a : A) :
+theorem _root_.Tengoku.Nlalib.isSelfAdjoint_cfcSymmetricClamp (L : ℝ) (a : A) :
     IsSelfAdjoint (cfcSymmetricClamp L a) := IsSelfAdjoint.cfc
 
 /-- The native actual clipped reference has norm at most the clip radius,
 including zero radius and the trivial algebra.
 @isnad1 id=le.1h3v.s5.a2f6c059987f from=translated src=- shape=13c0ee38 vocab=c8f454a9
 -/
-theorem norm_cfcSymmetricClamp_le (L : ℝ) (hL : 0≤L) (a : A) :
+theorem _root_.Tengoku.Nlalib.norm_cfcSymmetricClamp_le (L : ℝ) (hL : 0≤L) (a : A) :
     ‖cfcSymmetricClamp L a‖ ≤ L := by
   apply norm_cfc_le hL
   intro x hx
@@ -100,3 +100,4 @@ theorem IsSelfAdjoint.norm_resolvent_sub_cfcSymmetricClamp_le {a : A}
   exact Complex.norm_inv_sub_real_sub_inv_sub_clamp_le hre hz hL w.re
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

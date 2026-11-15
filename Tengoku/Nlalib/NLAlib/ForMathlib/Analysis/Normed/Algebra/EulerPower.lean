@@ -18,7 +18,7 @@ support the multivariate Golden--Thompson interpolation limit without a
 matrix-logarithm assumption.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 open Filter
 open scoped Topology
 
@@ -28,7 +28,7 @@ omit [NormedAlgebra ℝ A] in
 /-- A direct noncommutative power comparison on a common norm ball.
 @isnad1 id=le.3h5v.s7.be8a3489a8fe from=translated src=- shape=1d648e0b vocab=e3ba8bb9
 -/
-theorem norm_pow_sub_pow_le_mul_pow (a b : A) {R : ℝ} (hR : 1 ≤ R)
+theorem _root_.Tengoku.Nlalib.norm_pow_sub_pow_le_mul_pow (a b : A) {R : ℝ} (hR : 1 ≤ R)
     (ha : ‖a‖ ≤ R) (hb : ‖b‖ ≤ R) (n : ℕ) :
     ‖a ^ n - b ^ n‖ ≤ (n : ℝ) * R ^ n * ‖a - b‖ := by
   have hR0 : 0 ≤ R := zero_le_one.trans hR
@@ -140,3 +140,4 @@ theorem _root_.HasDerivAt.tendsto_pow_inv_nat {f : ℝ → A} {H : A}
     using hf.tendsto_slope_zero_right.comp hi
 
 end NormedSpace
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

@@ -11,14 +11,14 @@ commutators. This is the discrete product rule, proved by a native telescoping
 sum and valid in every unital ring.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 set_option autoImplicit false
 
 /-- The commutator with a power is the exact sum over its possible insertion
 positions. No commutation assumption on the ring elements is used.
 @isnad1 id=eq.0h4v.s7.5f55aa8829d3 from=translated src=- shape=fdbc4d52 vocab=9f2cbe03
 -/
-theorem mul_pow_sub_pow_mul_eq_sum {R : Type*} [Ring R] (a b : R) (n : ℕ) :
+theorem _root_.Tengoku.Nlalib.mul_pow_sub_pow_mul_eq_sum {R : Type*} [Ring R] (a b : R) (n : ℕ) :
     a * b ^ n - b ^ n * a =
       ∑ k ∈ Finset.range n, b ^ k * (a * b - b * a) * b ^ (n - 1 - k) := by
   let f : ℕ → R := fun k => b ^ k * a * b ^ (n - k)
@@ -34,3 +34,4 @@ theorem mul_pow_sub_pow_mul_eq_sum {R : Type*} [Ring R] (a b : R) (n : ℕ) :
       dsimp only [f]
       rw [hsub, hsub', pow_succ b k, pow_succ' b (n - 1 - k)]
       noncomm_ring
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

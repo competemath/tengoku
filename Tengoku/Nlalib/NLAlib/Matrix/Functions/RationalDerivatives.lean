@@ -13,7 +13,7 @@ The second derivative is the sum of both ordered insertion maps.
 Source: matrix-toolkit derivations, F18--F19.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 set_option backward.isDefEq.respectTransparency false
 open Polynomial Filter ContinuousLinearMap
 open scoped Matrix.Norms.L2Operator Topology
@@ -141,3 +141,4 @@ theorem fderiv_fderiv_rationalMatrixEval_apply (P Q : 𝕜[X]) (A G H : M)
     rationalMatrixHessian_apply]
 
 end NLAlib
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

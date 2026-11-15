@@ -12,7 +12,7 @@ integrability from a `C¹` parameterization. No Cauchy formula or winding-number
 claim is built into these estimates.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 open MeasureTheory Set
 open scoped unitInterval
 
@@ -26,7 +26,7 @@ within the parameter interval, so endpoint values agree with the curve-integral
 convention.
 @isnad1 id=le.2h8v.s9.1a6c08d7fbad from=translated src=- shape=99c47a12 vocab=d74f4632
 -/
-theorem norm_curveIntegral_le_mul_integral_norm_derivWithin
+theorem _root_.Tengoku.Nlalib.norm_curveIntegral_le_mul_integral_norm_derivWithin
     (ω : E → E →L[𝕜] F) (γ : Path a b) {C : ℝ}
     (hω : ∀ t ∈ Icc (0 : ℝ) 1, ‖ω (γ.extend t)‖ ≤ C)
     (hγ : IntervalIntegrable (fun t => ‖derivWithin γ.extend I t‖) volume 0 1) :
@@ -42,7 +42,7 @@ theorem norm_curveIntegral_le_mul_integral_norm_derivWithin
 a path with a `C¹` parameterization.
 @isnad1 id=le.2h8v.s9.dac14c452fe3 from=translated src=- shape=51a193c8 vocab=f7faa30a
 -/
-theorem norm_curveIntegral_le_mul_integral_norm_derivWithin_of_contDiffOn
+theorem _root_.Tengoku.Nlalib.norm_curveIntegral_le_mul_integral_norm_derivWithin_of_contDiffOn
     (ω : E → E →L[𝕜] F) (γ : Path a b) {C : ℝ}
     (hω : ∀ t ∈ Icc (0 : ℝ) 1, ‖ω (γ.extend t)‖ ≤ C)
     (hγ : ContDiffOn ℝ 1 γ.extend I) :
@@ -81,3 +81,4 @@ theorem norm_two_pi_i_inv_mul_curveIntegral_le_integral_speed_mul
     _ = ((∫ t in (0 : ℝ)..1, ‖derivWithin γ.extend I t‖) / (2 * Real.pi)) * C := by ring
 
 end Complex
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

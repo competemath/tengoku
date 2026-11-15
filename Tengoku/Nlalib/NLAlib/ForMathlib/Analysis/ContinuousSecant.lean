@@ -5,7 +5,7 @@ import Tengoku.Seed.Analysis.Normed.Operator.Basic
 
 /-! # Differentiation from a continuous family of exact secant maps -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 open Filter Asymptotics
 open scoped Topology
 
@@ -17,7 +17,7 @@ variable {𝕜 E F : Type*} [NontriviallyNormedField 𝕜]
 the input increment, its value on the diagonal is the full Fréchet derivative.
 @isnad1 id=hasfderi.2h6v.s9.7ee9fede5f35 from=translated src=- shape=e0cdf663 vocab=5d431f05
 -/
-theorem hasFDerivAt_of_continuous_secant {f : E → F} {L : E → E →L[𝕜] F} {x : E}
+theorem _root_.Tengoku.Nlalib.hasFDerivAt_of_continuous_secant {f : E → F} {L : E → E →L[𝕜] F} {x : E}
     (hL : ContinuousAt L x)
     (hsec : ∀ᶠ y in 𝓝 x, f y - f x = L y (y - x)) :
     HasFDerivAt f (L x) x := by
@@ -29,3 +29,4 @@ theorem hasFDerivAt_of_continuous_secant {f : E → F} {L : E → E →L[𝕜] F
   rw [hy, ← sub_apply]
   exact (ContinuousLinearMap.le_opNorm _ _).trans
     (mul_le_mul_of_nonneg_right hsmall.le (norm_nonneg _))
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

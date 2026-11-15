@@ -15,7 +15,7 @@ spectral coordinates give invertibility and the sharp `1/|Im ζ|` spectral-norm
 bound without any simple-spectrum or nonzero-eigenvalue assumptions.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 open scoped Matrix Matrix.Norms.L2Operator
 namespace NLAlib
 
@@ -104,3 +104,4 @@ theorem _root_.Matrix.IsHermitian.specNorm_resolvent_le {A : Matrix n n ℂ}
   simpa only [one_div] using one_div_le_one_div_of_le (abs_pos.mpr hζ) hi
 
 end NLAlib
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

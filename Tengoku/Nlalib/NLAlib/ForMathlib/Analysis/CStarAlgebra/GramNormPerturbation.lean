@@ -11,7 +11,7 @@ These are native operator-order estimates, without a moment or Minkowski
 assumption.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 set_option autoImplicit false
 open scoped ComplexOrder ContinuousFunctionalCalculus
 
@@ -27,7 +27,7 @@ attribute [local instance] realGramCFC
 estimate for every positive real weight, without commutativity.
 @isnad1 id=le.1h4v.s8.789819cf23f9 from=translated src=- shape=104614c8 vocab=9be5a4f2
 -/
-theorem star_mul_self_add_le_weighted (T E : A) {ε : ℝ} (hε : 0 < ε) :
+theorem _root_.Tengoku.Nlalib.star_mul_self_add_le_weighted (T E : A) {ε : ℝ} (hε : 0 < ε) :
     star (T + E) * (T + E) ≤
       (1 + ε) • (star T * T) + (1 + ε⁻¹) • (star E * E) := by
   have hp : 0 ≤ ε⁻¹ • (star (ε • T - E) * (ε • T - E)) :=
@@ -46,7 +46,7 @@ theorem star_mul_self_add_le_weighted (T E : A) {ε : ℝ} (hε : 0 < ε) :
 operator norm times the algebra identity, including the trivial algebra.
 @isnad1 id=le.0h2v.s7.57905d3194c3 from=translated src=- shape=d2a0f045 vocab=667767f9
 -/
-theorem star_mul_self_le_norm_sq (E : A) :
+theorem _root_.Tengoku.Nlalib.star_mul_self_le_norm_sq (E : A) :
     star E * E ≤ algebraMap ℝ A (‖E‖ ^ 2) := by
   have h := (IsSelfAdjoint.star_mul_self E).le_algebraMap_norm_self
   simpa only [CStarRing.norm_star_mul_self, pow_two] using h
@@ -55,7 +55,7 @@ theorem star_mul_self_le_norm_sq (E : A) :
 Gram and the actual squared norm of their difference.
 @isnad1 id=le.1h4v.s8.a716a7da6d8f from=translated src=- shape=335a0749 vocab=b10b0183
 -/
-theorem star_mul_self_le_weighted_gram_add_norm (S T : A) {ε : ℝ} (hε : 0 < ε) :
+theorem _root_.Tengoku.Nlalib.star_mul_self_le_weighted_gram_add_norm (S T : A) {ε : ℝ} (hε : 0 < ε) :
     star S * S ≤ (1 + ε) • (star T * T) +
       algebraMap ℝ A ((1 + ε⁻¹) * ‖S - T‖ ^ 2) := by
   have h₁ := star_mul_self_add_le_weighted T (S-T) hε
@@ -69,3 +69,4 @@ theorem star_mul_self_le_weighted_gram_add_norm (S T : A) {ε : ℝ} (hε : 0 < 
   simpa only [he] using h₁.trans h₂
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

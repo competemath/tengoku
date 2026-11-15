@@ -14,14 +14,14 @@ norms give a contraction factor at most one half. No approximation error
 bound or limiting solution is assumed.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 set_option autoImplicit false
 
 /-- The distance to an exact Dyson solution is at most twice its norm times
 the actual polynomial residual under the native contraction bound.
 @isnad1 id=le.2h7v.s9.caee23a1b26d from=translated src=- shape=3cbccf30 vocab=da721322
 -/
-theorem norm_sub_le_two_mul_norm_mul_norm_dyson_residual
+theorem _root_.Tengoku.Nlalib.norm_sub_le_two_mul_norm_mul_norm_dyson_residual
     {𝕜 A : Type*} [NontriviallyNormedField 𝕜] [NormedRing A] [NormedSpace 𝕜 A]
     (s : A →L[𝕜] A) (a z m y : A)
     (hm : m*(z-a-s m)=1)
@@ -48,3 +48,4 @@ theorem norm_sub_le_two_mul_norm_mul_norm_dyson_residual
         add_le_add hp (norm_mul_le _ _)
       _ ≤ _ := add_le_add (mul_le_mul_of_nonneg_right hc (norm_nonneg _)) le_rfl
   linarith
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

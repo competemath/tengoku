@@ -16,7 +16,7 @@ Source: Nica--Speicher, Lectures on the Combinatorics of Free Probability,
 the full-Fock realization of Proposition 7.16.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 set_option autoImplicit false
 open scoped Classical InnerProduct
 
@@ -157,3 +157,4 @@ theorem wordVacuumExpectation_wordField_pow_odd (i : ι) (k : ℕ) :
   rw [wordVacuumExpectation_wordField_pow_eq, ite_eq_right (Nat.not_even_two_mul_add_one k)]
 
 end NLAlib
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

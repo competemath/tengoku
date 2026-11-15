@@ -15,7 +15,7 @@ estimate follows from Bernoulli's inequality and does not require a strict
 smallness condition on the product of the exponent and ratio.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 set_option autoImplicit false
 namespace Real
 
@@ -58,3 +58,4 @@ theorem inv_one_sub_pow_le_three {x : ℝ} (hx : 0 ≤ x) (m : ℕ)
     (by norm_num)
 
 end Real
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

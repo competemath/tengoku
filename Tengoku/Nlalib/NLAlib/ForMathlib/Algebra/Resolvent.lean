@@ -13,13 +13,13 @@ spectral parameters where the total inverse is zero.
 -/
 
 noncomputable section
-
+namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib 
 /-- Native total resolvents of the same algebra element commute at every pair
 of scalar parameters. This follows from centrality of the scalar algebra map
 and commutation of total ring inverses.
 @isnad1 id=commute.0h5v.s5.debde67a1b80 from=translated src=- shape=fd9b4e99 vocab=9f612c2b
 -/
-theorem commute_resolvent {R A : Type*} [CommSemiring R] [Ring A] [Algebra R A]
+theorem _root_.Tengoku.Nlalib.commute_resolvent {R A : Type*} [CommSemiring R] [Ring A] [Algebra R A]
     (a : A) (r s : R) : Commute (resolvent a r) (resolvent a s) := by
   dsimp only [resolvent]
   apply Commute.ringInverse_ringInverse
@@ -30,7 +30,7 @@ theorem commute_resolvent {R A : Type*} [CommSemiring R] [Ring A] [Algebra R A]
 element at the starred scalar, without an invertibility assumption.
 @isnad1 id=eq.0h4v.s7.bb12074d2165 from=translated src=- shape=dd59b552 vocab=e212df04
 -/
-theorem star_resolvent {R A : Type*} [CommSemiring R] [Ring A] [Algebra R A]
+theorem _root_.Tengoku.Nlalib.star_resolvent {R A : Type*} [CommSemiring R] [Ring A] [Algebra R A]
     [InvolutiveStar R] [StarRing A] [StarModule R A] (a : A) (r : R) :
     star (resolvent a r) = resolvent (star a) (star r) := by
   simp only [resolvent, ← Ring.inverse_star, Algebra.algebraMap_eq_smul_one,
@@ -54,3 +54,4 @@ theorem spectrum.resolvent_sub_resolvent_eq_sub_smul_mul
         resolvent a w := by
       rw [mul_sub, sub_mul, mul_assoc, hj, hi, mul_one, one_mul]
     _ = _ := by rw [he, mul_smul_comm, mul_one, smul_mul_assoc]
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

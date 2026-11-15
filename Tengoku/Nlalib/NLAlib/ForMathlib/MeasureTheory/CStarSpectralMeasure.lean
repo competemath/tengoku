@@ -17,7 +17,7 @@ This generalizes the construction in
 word polynomials and their actual amplified vacuum functional.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 set_option autoImplicit false
 
 open MeasureTheory
@@ -39,7 +39,7 @@ private def compactlySupportedToContinuousLinearMap (X : Type*) [TopologicalSpac
 
 /-- The actual real positive spectral functional obtained by composing
 continuous functional calculus with a complex positive functional.-/
-def positiveSpectralFunctional (φ : A →ₚ[ℂ] ℂ) {a : A} (ha : IsSelfAdjoint a) :
+def _root_.Tengoku.Nlalib.positiveSpectralFunctional (φ : A →ₚ[ℂ] ℂ) {a : A} (ha : IsSelfAdjoint a) :
     C_c(spectrum ℝ a, ℝ) →ₚ[ℝ] ℝ :=
   PositiveLinearMap.mk₀
     ((Complex.reCLM.toLinearMap.comp (φ.toLinearMap.restrictScalars ℝ)).comp
@@ -54,19 +54,19 @@ value of the actual positive functional.
 @isnad1 id=eq.1h4v.s11.53daf02ecace from=translated src=- shape=577d76c9 vocab=e248e5df
 -/
 @[simp]
-theorem positiveSpectralFunctional_apply (φ : A →ₚ[ℂ] ℂ) {a : A}
+theorem _root_.Tengoku.Nlalib.positiveSpectralFunctional_apply (φ : A →ₚ[ℂ] ℂ) {a : A}
     (ha : IsSelfAdjoint a) (f : C_c(spectrum ℝ a, ℝ)) :
     positiveSpectralFunctional φ ha f = (φ (cfcHom (R := ℝ) ha f.toContinuousMap)).re := rfl
 
 /-- The actual Riesz--Markov measure on the native compact real spectrum.-/
-def positiveSpectrumMeasure (φ : A →ₚ[ℂ] ℂ) {a : A} (ha : IsSelfAdjoint a) :
+def _root_.Tengoku.Nlalib.positiveSpectrumMeasure (φ : A →ₚ[ℂ] ℂ) {a : A} (ha : IsSelfAdjoint a) :
     Measure (spectrum ℝ a) :=
   RealRMK.rieszMeasure (positiveSpectralFunctional φ ha)
 
 /--
 @isnad1 id=isfinite.1h3v.s7.dd3852f7caa6 from=translated src=- shape=b9bb8273 vocab=32834094
 -/
-instance isFiniteMeasure_positiveSpectrumMeasure (φ : A →ₚ[ℂ] ℂ) {a : A}
+instance _root_.Tengoku.Nlalib.isFiniteMeasure_positiveSpectrumMeasure (φ : A →ₚ[ℂ] ℂ) {a : A}
     (ha : IsSelfAdjoint a) : IsFiniteMeasure (positiveSpectrumMeasure φ ha) :=
   inferInstanceAs (IsFiniteMeasure (RealRMK.rieszMeasure (positiveSpectralFunctional φ ha)))
 
@@ -74,7 +74,7 @@ instance isFiniteMeasure_positiveSpectrumMeasure (φ : A →ₚ[ℂ] ℂ) {a : A
 positive functional applied to its native continuous functional calculus.
 @isnad1 id=eq.1h4v.s10.7ffdd2af011c from=translated src=- shape=d8c2417b vocab=e575de66
 -/
-theorem integral_positiveSpectrumMeasure (φ : A →ₚ[ℂ] ℂ) {a : A}
+theorem _root_.Tengoku.Nlalib.integral_positiveSpectrumMeasure (φ : A →ₚ[ℂ] ℂ) {a : A}
     (ha : IsSelfAdjoint a) (f : C(spectrum ℝ a, ℝ)) :
     ∫ x, f x ∂positiveSpectrumMeasure φ ha = (φ (cfcHom (R := ℝ) ha f)).re := by
   let fc : C_c(spectrum ℝ a, ℝ) := ⟨f, HasCompactSupport.of_compactSpace f⟩
@@ -84,7 +84,7 @@ theorem integral_positiveSpectrumMeasure (φ : A →ₚ[ℂ] ℂ) {a : A}
 original functional at the algebra identity.
 @isnad1 id=eq.1h3v.s8.c7f7dc9ebccf from=translated src=- shape=b9f4e7a0 vocab=662a903f
 -/
-theorem measureReal_univ_positiveSpectrumMeasure (φ : A →ₚ[ℂ] ℂ) {a : A}
+theorem _root_.Tengoku.Nlalib.measureReal_univ_positiveSpectrumMeasure (φ : A →ₚ[ℂ] ℂ) {a : A}
     (ha : IsSelfAdjoint a) : (positiveSpectrumMeasure φ ha).real Set.univ = (φ 1).re := by
   have h := integral_positiveSpectrumMeasure φ ha (1 : C(spectrum ℝ a, ℝ))
   simpa only [ContinuousMap.one_apply, integral_const, smul_eq_mul, mul_one, map_one] using h
@@ -93,7 +93,7 @@ theorem measureReal_univ_positiveSpectrumMeasure (φ : A →ₚ[ℂ] ℂ) {a : A
 measure on every self-adjoint element's native real spectrum.
 @isnad1 id=isprobab.2h3v.s8.4587b5fb8114 from=translated src=- shape=0a7b13dc vocab=da0867d9
 -/
-theorem isProbabilityMeasure_positiveSpectrumMeasure (φ : A →ₚ[ℂ] ℂ) (hφ : φ 1 = 1)
+theorem _root_.Tengoku.Nlalib.isProbabilityMeasure_positiveSpectrumMeasure (φ : A →ₚ[ℂ] ℂ) (hφ : φ 1 = 1)
     {a : A} (ha : IsSelfAdjoint a) : IsProbabilityMeasure (positiveSpectrumMeasure φ ha) := by
   rw [isProbabilityMeasure_iff_real, measureReal_univ_positiveSpectrumMeasure, hφ, Complex.one_re]
 
@@ -101,7 +101,7 @@ theorem isProbabilityMeasure_positiveSpectrumMeasure (φ : A →ₚ[ℂ] ℂ) (h
 on the actual spectrum, with no global continuity or integrability premise.
 @isnad1 id=eq.2h4v.s8.933589cd1c8e from=translated src=- shape=bf6bc156 vocab=a1eeadc6
 -/
-theorem integral_comp_subtype_positiveSpectrumMeasure (φ : A →ₚ[ℂ] ℂ)
+theorem _root_.Tengoku.Nlalib.integral_comp_subtype_positiveSpectrumMeasure (φ : A →ₚ[ℂ] ℂ)
     {a : A} (ha : IsSelfAdjoint a) (f : ℝ → ℝ)
     (hf : ContinuousOn f (spectrum ℝ a)) :
     ∫ x : spectrum ℝ a, f x ∂positiveSpectrumMeasure φ ha = (φ (cfc f a)).re := by
@@ -112,7 +112,7 @@ theorem integral_comp_subtype_positiveSpectrumMeasure (φ : A →ₚ[ℂ] ℂ)
 the rooted positive-functional moments of the same continuous function.
 @isnad1 id=eq.3h5v.s9.a930d19648c6 from=translated src=- shape=7337c4b1 vocab=67d4ee2a
 -/
-theorem lpNorm_positiveSpectrumMeasure_eq (φ : A →ₚ[ℂ] ℂ)
+theorem _root_.Tengoku.Nlalib.lpNorm_positiveSpectrumMeasure_eq (φ : A →ₚ[ℂ] ℂ)
     {a : A} (ha : IsSelfAdjoint a) (f : ℝ → ℝ)
     (hf : ContinuousOn f (spectrum ℝ a)) (p : ℕ) (hp : 0 < p) :
     lpNorm (fun x : spectrum ℝ a => f x) (p : ENNReal) (positiveSpectrumMeasure φ ha) =
@@ -126,3 +126,4 @@ theorem lpNorm_positiveSpectrumMeasure_eq (φ : A →ₚ[ℂ] ℂ)
   simp only [ENNReal.toReal_natCast, Real.norm_eq_abs, Real.rpow_natCast]
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

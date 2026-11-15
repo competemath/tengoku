@@ -14,7 +14,7 @@ null neighborhood would contradict faithfulness. No full-support or spectral
 measure identification premise is supplied. Trivial algebras are included.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 open MeasureTheory Filter Set
@@ -29,7 +29,7 @@ attribute [local instance] spectralSupportRealCFC
 /-- The actual spectrum measure has full support if its positive functional is faithful on a closed generated algebra containing the self-adjoint element.
 @isnad1 id=eq.4h4v.s9.87be72aa8ce5 from=translated src=- shape=20fc8a1d vocab=5b8ee9b3
 -/
-theorem support_positiveSpectrumMeasure_eq_univ_of_faithful
+theorem _root_.Tengoku.Nlalib.support_positiveSpectrumMeasure_eq_univ_of_faithful
     (φ : A →ₚ[ℂ] ℂ) (S : StarSubalgebra ℂ A) (hS : IsClosed (S : Set A))
     (hfaithful : ∀ b : A, b∈S → φ (star b*b)=0 → b=0)
     {a : A} (ha : IsSelfAdjoint a) (haS : a∈S) :
@@ -74,3 +74,4 @@ theorem support_positiveSpectrumMeasure_eq_univ_of_faithful
   have hε0 : ε=0 := by
     simpa only [f,ContinuousMap.coe_mk,ContinuousMap.zero_apply,dist_self,sub_zero,max_eq_right hε.le] using hx
   exact (ne_of_gt hε) hε0
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

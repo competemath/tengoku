@@ -15,7 +15,7 @@ reciprocal-height operator-norm bound are derived from that definition,
 including empty dimensions and arbitrary Hermitian mean.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 open scoped Classical
@@ -118,3 +118,4 @@ theorem wordNativeDysonResolvent_star
     wordVacuumExpectation_star,Matrix.conjTranspose_apply]
 
 end NLAlib
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

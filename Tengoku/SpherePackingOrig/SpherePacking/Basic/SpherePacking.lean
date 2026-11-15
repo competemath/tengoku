@@ -90,7 +90,7 @@ noncomputable instance Tengoku.SpherePackingOrig.PeriodicSpherePacking.addAction
     apply Subtype.ext
     exact add_assoc u v p
 
-alias PeriodicSpherePacking.instAddAction := PeriodicSpherePacking.addAction
+alias Tengoku.SpherePackingOrig.PeriodicSpherePacking.instAddAction := PeriodicSpherePacking.addAction
 
 theorem Tengoku.SpherePackingOrig.PeriodicSpherePacking.addAction_vadd (S : PeriodicSpherePacking d)
     {x : S.lattice} {y : S.centers} :

@@ -12,7 +12,7 @@ The normalized circular Gaussian law is used directly. An exact Gaussian
 Laplace transform and finite log concavity give a dimension-dependent tail.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 open MeasureTheory ProbabilityTheory Real Finset
 namespace NLAlib
 variable {n : Type*} [Fintype n]
@@ -208,3 +208,4 @@ theorem measureReal_abs_sphereDiagonalForm_sub_mean_gt_le [Nonempty n]
   exact (measureReal_mono hsub).trans ((measureReal_union_le _ _).trans (by linarith))
 
 end NLAlib
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

@@ -12,7 +12,7 @@ convolution recursion has odd terms zero and even terms the Catalan numbers.
 The result is purely algebraic and preserves the natural Catalan normalization.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 set_option autoImplicit false
 open scoped Classical
 
@@ -88,7 +88,7 @@ private theorem ite_even_catalan_succ_succ {R : Type*} [Semiring R] (n : ℕ) :
 /-- A sequence with initial values one and zero and the exact binary
 convolution recursion is zero at odd indices and Catalan at even indices.
 The coefficients may lie in any semiring.-/
-theorem eq_ite_even_catalan_of_recursion {R : Type*} [Semiring R]
+theorem _root_.Tengoku.Nlalib.eq_ite_even_catalan_of_recursion {R : Type*} [Semiring R]
     (f : ℕ → R) (hZero : f 0 = 1) (hOne : f 1 = 0)
     (hStep : ∀ n, f (n + 2) = ∑ k ∈ Finset.range (n + 1), f k * f (n - k)) (n : ℕ) :
     f n = if Even n then (catalan (n / 2) : R) else 0 := by
@@ -110,3 +110,4 @@ theorem eq_ite_even_catalan_of_recursion {R : Type*} [Semiring R]
             have hk' := Finset.mem_range.mp hk
             rw [ih k (by omega), ih (n - k) (by omega)]
           _ = _ := (ite_even_catalan_succ_succ n).symm
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

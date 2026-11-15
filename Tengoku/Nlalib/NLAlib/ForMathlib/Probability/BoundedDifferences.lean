@@ -26,7 +26,7 @@ Boucheron–Lugosi–Massart 2013, §6.1;
 supports atlas `mcdiarmid`.
 @isnad1 id=le.1h6v.s6.add805eb0cea from=translated src=- shape=0c7b7719 vocab=12295be4
 -/
-theorem _root_.abs_sub_le_sum_of_coordinate_oscillation
+theorem _root_.Tengoku.Nlalib.abs_sub_le_sum_of_coordinate_oscillation
     {ι : Type*} [Fintype ι] [DecidableEq ι] {S : ι → Type*}
     (f : (∀ i, S i) → ℝ) (c : ι → ℝ)
     (h : ∀ i (x : ∀ j, S j) (y : S i), |f (Function.update x i y) - f x| ≤ c i)
@@ -83,3 +83,4 @@ theorem hasSubgaussianMGF_of_range_oscillation
   exact hsg
 
 end ProbabilityTheory
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

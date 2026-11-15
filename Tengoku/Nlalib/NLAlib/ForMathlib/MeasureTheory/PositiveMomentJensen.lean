@@ -12,7 +12,7 @@ functional reduces the estimate to scalar monotonicity of Lp exponents.
 No trace assumption or operator convexity premise is needed.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency false
 open MeasureTheory
@@ -67,3 +67,4 @@ theorem PositiveLinearMap.re_le_re_pow_rpow (φ : A →ₚ[ℂ] ℂ) (hφ : φ 1
   rwa [hfirst,hlast] at hLp
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)

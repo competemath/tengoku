@@ -12,7 +12,7 @@ concatenation. Smoothness is imposed on each piece, allowing corners and
 stationary derivatives at every join.
 -/
 
-noncomputable section
+noncomputable section namespace Tengoku.Nlalib end Tengoku.Nlalib open Tengoku.Nlalib
 set_option backward.isDefEq.respectTransparency false
 set_option backward.isDefEq.respectTransparency.types false
 open Finset Set MeasureTheory
@@ -86,3 +86,4 @@ theorem cubicalCurveIntegral_pathChain_eq_of_contDiffOn {Ω : Set ℂ} {n : ℕ}
   exact ((γ i) t).property
 
 end Complex
+-- Tengoku: root names of this library moved to Tengoku.Nlalib so they do not collide with other libraries (generated)
