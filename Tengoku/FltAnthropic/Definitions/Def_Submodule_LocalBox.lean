@@ -50,13 +50,22 @@ def localBoxUnits (Λ : Submodule ℤ D) (v : HeightOneSpectrum (𝓞 ℚ)) :
     ((u⁻¹ : (D ⊗[ℚ] v.adicCompletion ℚ)ˣ) : D ⊗[ℚ] v.adicCompletion ℚ)
       ∈ (localBox Λ v : Set (D ⊗[ℚ] v.adicCompletion ℚ))}
 
+/--
+@isnad1 id=eq.0h4v.s11.32de14464e29 from=translated src=- shape=9b0c6f17 vocab=3530f7c3
+-/
 @[simp] theorem finiteAdeleEvalAt_tmul (v : HeightOneSpectrum (𝓞 ℚ)) (z : D)
     (a : FiniteAdeleRing (𝓞 ℚ) ℚ) :
     finiteAdeleEvalAt D v (z ⊗ₜ[ℚ] a) = z ⊗ₜ[ℚ] (a v) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.6f83213c0384 from=translated src=- shape=134375cd vocab=94aa2d62
+-/
 theorem finiteAdeleEvalAlgHom_apply (v : HeightOneSpectrum (𝓞 ℚ)) (a : FiniteAdeleRing (𝓞 ℚ) ℚ) :
     finiteAdeleEvalAlgHom v a = a v := rfl
 
+/--
+@isnad1 id=iff.0h4v.s12.c1294bffd3a8 from=translated src=- shape=5a67abcd vocab=dfcff47d
+-/
 theorem mem_localBoxUnits_iff (Λ : Submodule ℤ D) (v : HeightOneSpectrum (𝓞 ℚ))
     (u : (D ⊗[ℚ] v.adicCompletion ℚ)ˣ) :
     u ∈ localBoxUnits Λ v ↔
@@ -97,6 +106,9 @@ def localEmbeddingSet (Λ : Submodule ℤ ℍ[ℚ, a, b]) (α : ℍ[ℚ, a, b]) 
         ∈ (Submodule.localBox Λ v : Set (ℍ[ℚ, a, b] ⊗[ℚ] v.adicCompletion ℚ))
       ↔ y ∈ (Submodule.localBox Λ v : Set (ℍ[ℚ, a, b] ⊗[ℚ] v.adicCompletion ℚ))}
 
+/--
+@isnad1 id=iff.0h5v.s13.0072ccf9598e from=translated src=- shape=fafdb91d vocab=10310dad
+-/
 theorem mem_localQuadUnits_iff (α : ℍ[ℚ, a, b]) (v : HeightOneSpectrum (𝓞 ℚ))
     (u : (ℍ[ℚ, a, b] ⊗[ℚ] v.adicCompletion ℚ)ˣ) :
     u ∈ localQuadUnits α v ↔
@@ -105,6 +117,9 @@ theorem mem_localQuadUnits_iff (α : ℍ[ℚ, a, b]) (v : HeightOneSpectrum (�
           ∈ localQuadSubring α v :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h6v.s13.21dc19d0a500 from=translated src=- shape=4243a8c4 vocab=7d640fbb
+-/
 theorem mem_localEmbeddingSet_iff (Λ : Submodule ℤ ℍ[ℚ, a, b]) (α : ℍ[ℚ, a, b])
     (v : HeightOneSpectrum (𝓞 ℚ)) (β : (ℍ[ℚ, a, b] ⊗[ℚ] v.adicCompletion ℚ)ˣ) :
     β ∈ localEmbeddingSet Λ α v ↔

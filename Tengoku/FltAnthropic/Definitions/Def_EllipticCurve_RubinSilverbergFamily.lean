@@ -49,11 +49,17 @@ noncomputable def pt (W : WeierstrassCurve K) (x y : K) : W.toAffine.Point :=
   open scoped Classical in
   if h : W.toAffine.Nonsingular x y then WeierstrassCurve.Affine.Point.some x y h else 0
 
+/--
+@isnad1 id=eq.1h4v.s5.69767b5cc075 from=translated src=- shape=9112e629 vocab=fa8e4a38
+-/
 theorem pt_eq_some {W : WeierstrassCurve K} {x y : K} (h : W.toAffine.Nonsingular x y) :
     pt W x y = WeierstrassCurve.Affine.Point.some x y h := by
   unfold pt
   exact dite_eq_left h
 
+/--
+@isnad1 id=eq.1h4v.s6.60990bc9ae6b from=translated src=- shape=58558edc vocab=30f182ad
+-/
 theorem pt_eq_zero {W : WeierstrassCurve K} {x y : K} (h : ¬ W.toAffine.Nonsingular x y) :
     pt W x y = 0 := by
   unfold pt
@@ -100,6 +106,9 @@ def moebDen (g : Matrix (Fin 2) (Fin 2) K) (u : K) : K := g 1 0 * u + g 1 1
 
 def moebNum (g : Matrix (Fin 2) (Fin 2) K) (u : K) : K := g 0 0 * u + g 0 1
 
+/--
+@isnad1 id=eq.0h3v.s5.055b32fe7155 from=translated src=- shape=6da701b2 vocab=307f8f58
+-/
 theorem moeb_eq_div (g : Matrix (Fin 2) (Fin 2) K) (u : K) : moeb g u = moebNum g u / moebDen g u := rfl
 
 def sqrtFive (ζ : K) : K := ζ + ζ ^ 4 - ζ ^ 2 - ζ ^ 3

@@ -21,6 +21,9 @@ def canonicalDivisorOf [HasCanonicalDivisor (K := K) (F := F)]
     {ω : Ω[F⁄K]} (hω : ω ≠ 0) : Divisor K F :=
   (HasCanonicalDivisor.exists_divisor ω hω).choose
 
+/--
+@isnad1 id=eq.1h4v.s7.4488efcbdaa2 from=translated src=- shape=0098e424 vocab=2e40cc95
+-/
 theorem canonicalDivisorOf_apply [HasCanonicalDivisor (K := K) (F := F)]
     {ω : Ω[F⁄K]} (hω : ω ≠ 0) (v : Place K F) :
     canonicalDivisorOf hω v = v.ordDifferential ω :=

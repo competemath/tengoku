@@ -40,6 +40,9 @@ namespace Deep.NTSupply
 
 section Involutions
 
+/--
+@isnad1 id=finite.2h2v.s6.78f1532daa1f from=translated src=- shape=2e257570 vocab=df75c492
+-/
 theorem finite_closure_of_involutions {G : Type*} [CommGroup G] {S : Set G} (hS : S.Finite)
     (hsq : ∀ s ∈ S, s * s = 1) : ((Subgroup.closure S : Subgroup G) : Set G).Finite := by
   classical
@@ -87,6 +90,9 @@ theorem finite_closure_of_involutions {G : Type*} [CommGroup G] {S : Set G} (hS 
         rw [this, hone]
       exact ⟨e, (inv_eq_of_mul_eq_one_right hself).symm⟩
 
+/--
+@isnad1 id=finite.2h2v.s6.fff771c328ae from=translated src=- shape=d872ac77 vocab=127c71fa
+-/
 theorem finite_closure_of_involutions' {G : Type*} [CommGroup G] {S : Set G} (hS : S.Finite)
     (hsq : ∀ s ∈ S, s * s = 1) : Finite (Subgroup.closure S) :=
   (finite_closure_of_involutions hS hsq).to_subtype
@@ -112,6 +118,9 @@ def coprimeToModulus (𝔣 : Ideal (𝓞 K)) : Subgroup (FractionalIdeal ((𝓞 
     intro I hI v hv
     rw [Units.val_inv_eq_inv_val, FractionalIdeal.count_inv, hI v hv, neg_zero]
 
+/--
+@isnad1 id=iff.0h3v.s10.8c518d9f8404 from=translated src=- shape=e6e15209 vocab=ee768a9b
+-/
 theorem mem_coprimeToModulus_iff {𝔣 : Ideal (𝓞 K)} {I : (FractionalIdeal ((𝓞 K)⁰) K)ˣ} :
     I ∈ coprimeToModulus K 𝔣 ↔ ∀ v : HeightOneSpectrum (𝓞 K), v.asIdeal ∣ 𝔣 →
       FractionalIdeal.count K v (I : FractionalIdeal ((𝓞 K)⁰) K) = 0 :=
@@ -123,6 +132,9 @@ def narrowRaySet (𝔣 : Ideal (𝓞 K)) : Set (FractionalIdeal ((𝓞 K)⁰) K)
     (I : FractionalIdeal ((𝓞 K)⁰) K) =
       ((Ideal.span {α} : Ideal (𝓞 K)) : FractionalIdeal ((𝓞 K)⁰) K)}
 
+/--
+@isnad1 id=iff.0h3v.s10.cd8c376bc656 from=translated src=- shape=d4cf8f89 vocab=1d9c8e4e
+-/
 theorem mem_narrowRaySet_iff {𝔣 : Ideal (𝓞 K)} {I : (FractionalIdeal ((𝓞 K)⁰) K)ˣ} :
     I ∈ narrowRaySet K 𝔣 ↔ ∃ α : 𝓞 K, α ≠ 0 ∧ α - 1 ∈ 𝔣 ∧
       (∀ τ : K →+* ℝ, 0 < τ (algebraMap (𝓞 K) K α)) ∧
@@ -133,6 +145,9 @@ theorem mem_narrowRaySet_iff {𝔣 : Ideal (𝓞 K)} {I : (FractionalIdeal ((�
 def narrowRaySubgroup (𝔣 : Ideal (𝓞 K)) : Subgroup (FractionalIdeal ((𝓞 K)⁰) K)ˣ :=
   Subgroup.closure (narrowRaySet K 𝔣)
 
+/--
+@isnad1 id=eq.3h4v.s8.22beaaf11ef8 from=translated src=- shape=05509ea3 vocab=ddea5107
+-/
 theorem count_span_singleton_eq_zero_of_sub_one_mem {𝔣 : Ideal (𝓞 K)} {α : 𝓞 K} (hα0 : α ≠ 0)
     (hα1 : α - 1 ∈ 𝔣) {v : HeightOneSpectrum (𝓞 K)} (hv : v.asIdeal ∣ 𝔣) :
     FractionalIdeal.count K v
@@ -156,6 +171,9 @@ theorem count_span_singleton_eq_zero_of_sub_one_mem {𝔣 : Ideal (𝓞 K)} {α 
     exact hndvd ((Associates.count_ne_zero_iff_dvd hJ0 v.irreducible).mp h)
   rw [hc, Nat.cast_zero]
 
+/--
+@isnad1 id=le.0h2v.s10.abba6b66580c from=translated src=- shape=447566e1 vocab=0fa2e4ee
+-/
 theorem narrowRaySubgroup_le_coprimeToModulus (𝔣 : Ideal (𝓞 K)) :
     narrowRaySubgroup K 𝔣 ≤ coprimeToModulus K 𝔣 := by
   rw [narrowRaySubgroup, Subgroup.closure_le]
@@ -172,6 +190,9 @@ def NarrowRayClassGroup.mk (𝔣 : Ideal (𝓞 K)) :
     ↥(coprimeToModulus K 𝔣) →* NarrowRayClassGroup K 𝔣 :=
   QuotientGroup.mk' _
 
+/--
+@isnad1 id=mem.0h2v.s9.a4aa0f9ffe8e from=translated src=- shape=228df59d vocab=e6880397
+-/
 theorem one_mem_narrowRaySet (𝔣 : Ideal (𝓞 K)) :
     (1 : (FractionalIdeal ((𝓞 K)⁰) K)ˣ) ∈ narrowRaySet K 𝔣 := by
   refine ⟨1, one_ne_zero, by simp, ?_, ?_⟩
@@ -189,6 +210,9 @@ variable (K : Type*) [Field K] [NumberField K] {M : Type*} [CommGroup M]
 def raySymbol (f : HeightOneSpectrum (𝓞 K) → M) (I : FractionalIdeal ((𝓞 K)⁰) K) : M :=
   ∏ᶠ v : HeightOneSpectrum (𝓞 K), f v ^ FractionalIdeal.count K v I
 
+/--
+@isnad1 id=hasfinit.0h4v.s6.af1f26bfaf0f from=translated src=- shape=b554d086 vocab=7f617f5e
+-/
 theorem hasFiniteMulSupport_raySymbol_factors (f : HeightOneSpectrum (𝓞 K) → M)
     (I : FractionalIdeal ((𝓞 K)⁰) K) :
     Function.HasFiniteMulSupport
@@ -201,6 +225,9 @@ theorem hasFiniteMulSupport_raySymbol_factors (f : HeightOneSpectrum (𝓞 K) �
   intro h
   exact hv (by rw [h, zpow_zero])
 
+/--
+@isnad1 id=eq.2h5v.s9.edd0bcd9e41f from=translated src=- shape=9638aa29 vocab=c2d5c9ef
+-/
 theorem raySymbol_mul (f : HeightOneSpectrum (𝓞 K) → M) {I J : FractionalIdeal ((𝓞 K)⁰) K}
     (hI : I ≠ 0) (hJ : J ≠ 0) :
     raySymbol K f (I * J) = raySymbol K f I * raySymbol K f J := by
@@ -221,6 +248,9 @@ def raySymbolHom (𝔣 : Ideal (𝓞 K)) (f : HeightOneSpectrum (𝓞 K) → M) 
     ↥(coprimeToModulus K 𝔣) →* M :=
   (raySymbolUnitsHom K f).comp (coprimeToModulus K 𝔣).subtype
 
+/--
+@isnad1 id=eq.0h5v.s14.8142611280ae from=translated src=- shape=e04d1f8d vocab=88c94c96
+-/
 theorem raySymbolHom_apply (𝔣 : Ideal (𝓞 K)) (f : HeightOneSpectrum (𝓞 K) → M)
     (I : ↥(coprimeToModulus K 𝔣)) :
     raySymbolHom K 𝔣 f I =
@@ -238,10 +268,16 @@ def raySet (𝔣 : Ideal (𝓞 K)) : Set (FractionalIdeal ((𝓞 K)⁰) K)ˣ :=
     (I : FractionalIdeal ((𝓞 K)⁰) K) =
       ((Ideal.span {α} : Ideal (𝓞 K)) : FractionalIdeal ((𝓞 K)⁰) K)}
 
+/--
+@isnad1 id=le.0h2v.s8.c4d9d9ad0c1f from=translated src=- shape=447566e1 vocab=3bdf2550
+-/
 theorem narrowRaySet_subset_raySet (𝔣 : Ideal (𝓞 K)) : narrowRaySet K 𝔣 ⊆ raySet K 𝔣 := by
   rintro I ⟨α, hα0, hα1, -, hI⟩
   exact ⟨α, hα0, hα1, hI⟩
 
+/--
+@isnad1 id=le.0h2v.s10.c510c001bc8d from=translated src=- shape=dc780dc2 vocab=84813c6a
+-/
 theorem raySet_subset_coprimeToModulus (𝔣 : Ideal (𝓞 K)) :
     raySet K 𝔣 ⊆ (coprimeToModulus K 𝔣 : Set (FractionalIdeal ((𝓞 K)⁰) K)ˣ) := by
   rintro I ⟨α, hα0, hα1, hI⟩
@@ -257,9 +293,15 @@ def rayClasses (𝔣 : Ideal (𝓞 K)) : Set (NarrowRayClassGroup K 𝔣) :=
 def rayClassSubgroup (𝔣 : Ideal (𝓞 K)) : Subgroup (NarrowRayClassGroup K 𝔣) :=
   Subgroup.closure (rayClasses K 𝔣)
 
+/--
+@isnad1 id=normal.0h2v.s11.b8b7b4d60c6e from=translated src=- shape=4a052fd7 vocab=1b7a7618
+-/
 instance instNormalRayClassSubgroup (𝔣 : Ideal (𝓞 K)) : (rayClassSubgroup K 𝔣).Normal :=
   ⟨fun n hn g => by rwa [mul_comm g n, mul_inv_cancel_right]⟩
 
+/--
+@isnad1 id=eq.1h3v.s14.4c301c4456ec from=translated src=- shape=23f1da1a vocab=2c54a030
+-/
 theorem NarrowRayClassGroup.mk_eq_one_of_mem {𝔣 : Ideal (𝓞 K)}
     {y : ↥(coprimeToModulus K 𝔣)}
     (hy : (y : (FractionalIdeal ((𝓞 K)⁰) K)ˣ) ∈ narrowRaySubgroup K 𝔣) :
@@ -268,6 +310,9 @@ theorem NarrowRayClassGroup.mk_eq_one_of_mem {𝔣 : Ideal (𝓞 K)}
     Subgroup.mem_subgroupOf]
   exact hy
 
+/--
+@isnad1 id=iff.0h4v.s15.ea7c11cba045 from=translated src=- shape=961cd12a vocab=f867b4e6
+-/
 theorem NarrowRayClassGroup.mk_eq_mk_iff {𝔣 : Ideal (𝓞 K)} {y y' : ↥(coprimeToModulus K 𝔣)} :
     NarrowRayClassGroup.mk K 𝔣 y = NarrowRayClassGroup.mk K 𝔣 y' ↔
       ((y : (FractionalIdeal ((𝓞 K)⁰) K)ˣ))⁻¹ * (y' : (FractionalIdeal ((𝓞 K)⁰) K)ˣ) ∈
@@ -275,6 +320,9 @@ theorem NarrowRayClassGroup.mk_eq_mk_iff {𝔣 : Ideal (𝓞 K)} {y y' : ↥(cop
   rw [NarrowRayClassGroup.mk, QuotientGroup.mk'_apply, QuotientGroup.mk'_apply, QuotientGroup.eq,
     Subgroup.mem_subgroupOf, Subgroup.coe_mul, Subgroup.coe_inv]
 
+/--
+@isnad1 id=eq.1h3v.s12.167ddfcdeb75 from=translated src=- shape=07532119 vocab=34a4c400
+-/
 theorem rayClass_mul_self_eq_one {𝔣 : Ideal (𝓞 K)} {g : NarrowRayClassGroup K 𝔣}
     (hg : g ∈ rayClasses K 𝔣) : g * g = 1 := by
   obtain ⟨y, ⟨α, hα0, hα1, hy⟩, rfl⟩ := hg
@@ -294,6 +342,9 @@ theorem rayClass_mul_self_eq_one {𝔣 : Ideal (𝓞 K)} {g : NarrowRayClassGrou
   · rw [Subgroup.coe_mul, Units.val_mul, hy, ← FractionalIdeal.coeIdeal_mul,
       Ideal.span_singleton_mul_span_singleton]
 
+/--
+@isnad1 id=mem.7h6v.s13.ecf042585908 from=translated src=- shape=2c1653a4 vocab=48798574
+-/
 theorem mul_mem_narrowRaySet_of_sameSign {𝔣 : Ideal (𝓞 K)}
     {y y' : ↥(coprimeToModulus K 𝔣)} {α α' : 𝓞 K}
     (hα0 : α ≠ 0) (hα1 : α - 1 ∈ 𝔣)
@@ -326,6 +377,9 @@ theorem mul_mem_narrowRaySet_of_sameSign {𝔣 : Ideal (𝓞 K)}
   · rw [Subgroup.coe_mul, Units.val_mul, hy, hy', ← FractionalIdeal.coeIdeal_mul,
       Ideal.span_singleton_mul_span_singleton]
 
+/--
+@isnad1 id=eq.7h6v.s15.438fb8c9d8f6 from=translated src=- shape=95db17d4 vocab=ac3a7cfe
+-/
 theorem NarrowRayClassGroup.mk_eq_of_sameSign {𝔣 : Ideal (𝓞 K)}
     {y y' : ↥(coprimeToModulus K 𝔣)} {α α' : 𝓞 K}
     (hα0 : α ≠ 0) (hα1 : α - 1 ∈ 𝔣)
@@ -353,6 +407,9 @@ theorem NarrowRayClassGroup.mk_eq_of_sameSign {𝔣 : Ideal (𝓞 K)}
   rw [e]
   exact mul_mem (inv_mem h2) h1
 
+/--
+@isnad1 id=finite.0h2v.s5.c7353ec63de9 from=translated src=- shape=4a052fd7 vocab=8104c106
+-/
 theorem rayClasses_finite (𝔣 : Ideal (𝓞 K)) : (rayClasses K 𝔣).Finite := by
   classical
 
@@ -378,6 +435,9 @@ theorem rayClasses_finite (𝔣 : Ideal (𝓞 K)) : (rayClasses K 𝔣).Finite :
     congrFun hs₁ τ
   exact decide_eq_decide.mp h
 
+/--
+@isnad1 id=finite.0h2v.s12.9bb1a5375e5c from=translated src=- shape=22d4b0e4 vocab=b079e4f2
+-/
 theorem finite_rayClassSubgroup (𝔣 : Ideal (𝓞 K)) : Finite (rayClassSubgroup K 𝔣) :=
   finite_closure_of_involutions' (rayClasses_finite K 𝔣)
     (fun _ hg => rayClass_mul_self_eq_one K hg)
@@ -387,6 +447,9 @@ def principalUnit (a : 𝓞 K) (ha : a ≠ 0) : (FractionalIdeal ((𝓞 K)⁰) K
     rw [Ne, Submodule.zero_eq_bot, Ideal.span_singleton_eq_bot]
     exact ha)⟩
 
+/--
+@isnad1 id=eq.1h2v.s8.111711aa9af9 from=translated src=- shape=d7716bce vocab=69024fa6
+-/
 theorem principalUnit_val (a : 𝓞 K) (ha : a ≠ 0) :
     ((principalUnit K a ha : (FractionalIdeal ((𝓞 K)⁰) K)ˣ) : FractionalIdeal ((𝓞 K)⁰) K) =
       ((Ideal.span {a} : Ideal (𝓞 K)) : FractionalIdeal ((𝓞 K)⁰) K) :=
@@ -395,6 +458,9 @@ theorem principalUnit_val (a : 𝓞 K) (ha : a ≠ 0) :
 def toClassGroup (𝔣 : Ideal (𝓞 K)) : ↥(coprimeToModulus K 𝔣) →* ClassGroup (𝓞 K) :=
   (ClassGroup.mk (R := 𝓞 K) (K := K)).comp (coprimeToModulus K 𝔣).subtype
 
+/--
+@isnad1 id=eq.1h3v.s10.1082bf3c8a4e from=translated src=- shape=5d198e60 vocab=ed1f72df
+-/
 theorem classGroupMk_eq_one_of_principal {I : (FractionalIdeal ((𝓞 K)⁰) K)ˣ} {α : 𝓞 K}
     (hI : (I : FractionalIdeal ((𝓞 K)⁰) K) =
       ((Ideal.span {α} : Ideal (𝓞 K)) : FractionalIdeal ((𝓞 K)⁰) K)) :
@@ -402,6 +468,9 @@ theorem classGroupMk_eq_one_of_principal {I : (FractionalIdeal ((𝓞 K)⁰) K)�
   rw [ClassGroup.mk_eq_one_iff, hI, FractionalIdeal.coeIdeal_span_singleton]
   exact (FractionalIdeal.isPrincipal_iff _).mpr ⟨algebraMap (𝓞 K) K α, rfl⟩
 
+/--
+@isnad1 id=eq.1h4v.s14.cea2b4f50191 from=translated src=- shape=d51924e2 vocab=d035aec2
+-/
 theorem toClassGroup_eq_one_of_principal {𝔣 : Ideal (𝓞 K)} {y : ↥(coprimeToModulus K 𝔣)} {α : 𝓞 K}
     (hy : ((y : (FractionalIdeal ((𝓞 K)⁰) K)ˣ) : FractionalIdeal ((𝓞 K)⁰) K) =
       ((Ideal.span {α} : Ideal (𝓞 K)) : FractionalIdeal ((𝓞 K)⁰) K)) :
@@ -409,6 +478,9 @@ theorem toClassGroup_eq_one_of_principal {𝔣 : Ideal (𝓞 K)} {y : ↥(coprim
   rw [toClassGroup, MonoidHom.coe_comp, Function.comp_apply, Subgroup.coe_subtype]
   exact classGroupMk_eq_one_of_principal K hy
 
+/--
+@isnad1 id=le.0h2v.s13.5c6327be52de from=translated src=- shape=551f1880 vocab=680be66a
+-/
 theorem narrowRaySubgroupOf_le_ker (𝔣 : Ideal (𝓞 K)) :
     (narrowRaySubgroup K 𝔣).subgroupOf (coprimeToModulus K 𝔣) ≤ (toClassGroup K 𝔣).ker := by
   intro y hy
@@ -427,11 +499,17 @@ def narrowRayClassGroupToClassGroup (𝔣 : Ideal (𝓞 K)) :
   QuotientGroup.lift ((narrowRaySubgroup K 𝔣).subgroupOf (coprimeToModulus K 𝔣))
     (toClassGroup K 𝔣) (narrowRaySubgroupOf_le_ker K 𝔣)
 
+/--
+@isnad1 id=eq.0h3v.s15.194b7148ef71 from=translated src=- shape=08cf7892 vocab=5c475783
+-/
 theorem narrowRayClassGroupToClassGroup_mk (𝔣 : Ideal (𝓞 K)) (y : ↥(coprimeToModulus K 𝔣)) :
     narrowRayClassGroupToClassGroup K 𝔣 (NarrowRayClassGroup.mk K 𝔣 y) = toClassGroup K 𝔣 y := by
   rw [NarrowRayClassGroup.mk, QuotientGroup.mk'_apply]
   exact QuotientGroup.lift_mk' _ (narrowRaySubgroupOf_le_ker K 𝔣) y
 
+/--
+@isnad1 id=le.0h2v.s13.407e4420a008 from=translated src=- shape=e212c2c9 vocab=5f97e631
+-/
 theorem rayClassSubgroup_le_ker (𝔣 : Ideal (𝓞 K)) :
     rayClassSubgroup K 𝔣 ≤ (narrowRayClassGroupToClassGroup K 𝔣).ker := by
   rw [rayClassSubgroup, Subgroup.closure_le]
@@ -444,6 +522,9 @@ def rayClassGroupToClassGroup (𝔣 : Ideal (𝓞 K)) :
   QuotientGroup.lift (rayClassSubgroup K 𝔣) (narrowRayClassGroupToClassGroup K 𝔣)
     (rayClassSubgroup_le_ker K 𝔣)
 
+/--
+@isnad1 id=eq.0h3v.s16.40d55b578889 from=translated src=- shape=589c8802 vocab=0e04d17d
+-/
 theorem rayClassGroupToClassGroup_mk_mk (𝔣 : Ideal (𝓞 K)) (y : ↥(coprimeToModulus K 𝔣)) :
     rayClassGroupToClassGroup K 𝔣
       (QuotientGroup.mk (NarrowRayClassGroup.mk K 𝔣 y) :
@@ -460,6 +541,9 @@ def MovingLemma (𝔣 : Ideal (𝓞 K)) : Prop :=
     ∃ β : 𝓞 K, β ≠ 0 ∧ β - 1 ∈ 𝔣 ∧
       ∃ a : 𝓞 K, algebraMap (𝓞 K) K a = algebraMap (𝓞 K) K β * x₀
 
+/--
+@isnad1 id=le.2h2v.s8.9e78b08542ab from=translated src=- shape=81545cf7 vocab=ebd4086e
+-/
 theorem le_one_of_forall_count_nonneg {I : FractionalIdeal ((𝓞 K)⁰) K} (hI : I ≠ 0)
     (h : ∀ v : HeightOneSpectrum (𝓞 K), 0 ≤ FractionalIdeal.count K v I) : I ≤ 1 := by
   classical
@@ -485,6 +569,9 @@ theorem le_one_of_forall_count_nonneg {I : FractionalIdeal ((𝓞 K)⁰) K} (hI 
     rw [hn, zpow_natCast, ← FractionalIdeal.coeIdeal_pow]
     exact FractionalIdeal.coeIdeal_le_one
 
+/--
+@isnad1 id=movingle.1h2v.s6.46f5b99b503e from=translated src=- shape=7ddc84a8 vocab=4f3c2f34
+-/
 theorem movingLemma {𝔣 : Ideal (𝓞 K)} (h𝔣 : 𝔣 ≠ ⊥) : MovingLemma K 𝔣 := by
   classical
   intro x₀ hx₀ hcop
@@ -644,6 +731,9 @@ theorem movingLemma {𝔣 : Ideal (𝓞 K)} (h𝔣 : 𝔣 ≠ ⊥) : MovingLemma
     obtain ⟨a, ha⟩ := (FractionalIdeal.mem_one_iff _).mp hmem1
     exact ⟨β, hβ0, hβ1, a, ha⟩
 
+/--
+@isnad1 id=ex.3h3v.s9.1cce2e7c2c44 from=translated src=- shape=d31d3314 vocab=1efd5f92
+-/
 theorem exists_mul_sub_one_mem_of_counts_zero {𝔣 : Ideal (𝓞 K)} (h𝔣 : 𝔣 ≠ ⊥) {a : 𝓞 K}
     (ha : a ≠ 0)
     (hcop : ∀ v : HeightOneSpectrum (𝓞 K), v.asIdeal ∣ 𝔣 →
@@ -681,6 +771,9 @@ theorem exists_mul_sub_one_mem_of_counts_zero {𝔣 : Ideal (𝓞 K)} (h𝔣 : �
   rw [this]
   exact neg_mem_iff.mpr hf
 
+/--
+@isnad1 id=mem.2h3v.s10.698628ed113f from=translated src=- shape=074380ac vocab=4bead932
+-/
 theorem principalUnit_mem_coprimeToModulus {𝔣 : Ideal (𝓞 K)} {β : 𝓞 K} (hβ0 : β ≠ 0)
     (hβ1 : β - 1 ∈ 𝔣) : principalUnit K β hβ0 ∈ coprimeToModulus K 𝔣 := by
   rw [mem_coprimeToModulus_iff]
@@ -688,6 +781,9 @@ theorem principalUnit_mem_coprimeToModulus {𝔣 : Ideal (𝓞 K)} {β : 𝓞 K}
   rw [principalUnit_val]
   exact count_span_singleton_eq_zero_of_sub_one_mem K hβ0 hβ1 hv
 
+/--
+@isnad1 id=eq.1h3v.s15.66e2e1fbb2e7 from=translated src=- shape=196fcb64 vocab=95e7dca0
+-/
 theorem mk_mk_eq_one_of_raySet {𝔣 : Ideal (𝓞 K)} {z : ↥(coprimeToModulus K 𝔣)}
     (hz : (z : (FractionalIdeal ((𝓞 K)⁰) K)ˣ) ∈ raySet K 𝔣) :
     (QuotientGroup.mk (NarrowRayClassGroup.mk K 𝔣 z) :
@@ -739,6 +835,9 @@ private theorem exists_integral_ray_rep {𝔣 : Ideal (𝓞 K)} (hmove : MovingL
     rw [hsplit, map_mul, QuotientGroup.mk_mul,
       mk_mk_eq_one_of_raySet K ⟨β, hβ0, hβ1, principalUnit_val K β hβ0⟩, one_mul]
 
+/--
+@isnad1 id=eq.7h6v.s15.103a403eff75 from=translated src=- shape=73828371 vocab=50c6810d
+-/
 theorem mk_mk_eq_of_residue_eq {𝔣 : Ideal (𝓞 K)} (h𝔣 : 𝔣 ≠ ⊥) (htop : 𝔣 ≠ ⊤)
     {a a' : 𝓞 K} (ha : a ≠ 0) (ha' : a' ≠ 0) (ya ya' : ↥(coprimeToModulus K 𝔣))
     (hya : ((ya : (FractionalIdeal ((𝓞 K)⁰) K)ˣ) : FractionalIdeal ((𝓞 K)⁰) K) =
@@ -869,6 +968,9 @@ private theorem finite_of_movingLemma {𝔣 : Ideal (𝓞 K)} (h𝔣 : 𝔣 ≠ 
   (finite_iff_subgroup_quotient (rayClassSubgroup K 𝔣)).mpr
     ⟨finite_rayClassSubgroup K 𝔣, finite_rayClassQuotient_of_movingLemma K h𝔣 hmove⟩
 
+/--
+@isnad1 id=finite.1h2v.s6.10409446a31c from=translated src=- shape=8e54e7b8 vocab=78f22bc6
+-/
 theorem finite {𝔣 : Ideal (𝓞 K)} (h𝔣 : 𝔣 ≠ ⊥) : Finite (NarrowRayClassGroup K 𝔣) :=
   finite_of_movingLemma K h𝔣 (movingLemma K h𝔣)
 
@@ -883,11 +985,17 @@ def primeUnit (v : HeightOneSpectrum (𝓞 K)) : (FractionalIdeal ((𝓞 K)⁰) 
     rw [Ne, Submodule.zero_eq_bot]
     exact v.ne_bot)⟩
 
+/--
+@isnad1 id=eq.0h2v.s7.9d5d14680d7f from=translated src=- shape=966e9573 vocab=1bc71264
+-/
 theorem primeUnit_val (v : HeightOneSpectrum (𝓞 K)) :
     ((primeUnit K v : (FractionalIdeal ((𝓞 K)⁰) K)ˣ) : FractionalIdeal ((𝓞 K)⁰) K) =
       (v.asIdeal : FractionalIdeal ((𝓞 K)⁰) K) :=
   FractionalIdeal.coe_mk0 K _
 
+/--
+@isnad1 id=mem.1h3v.s10.7d833aa69563 from=translated src=- shape=8f934bc2 vocab=0500e473
+-/
 theorem primeUnit_mem_coprimeToModulus {𝔣 : Ideal (𝓞 K)} {v : HeightOneSpectrum (𝓞 K)}
     (hv : ¬ v.asIdeal ∣ 𝔣) : primeUnit K v ∈ coprimeToModulus K 𝔣 := by
   rw [mem_coprimeToModulus_iff]
@@ -899,6 +1007,9 @@ def primeClass (𝔣 : Ideal (𝓞 K)) (v : HeightOneSpectrum (𝓞 K)) (hv : ¬
     NarrowRayClassGroup K 𝔣 :=
   NarrowRayClassGroup.mk K 𝔣 ⟨primeUnit K v, primeUnit_mem_coprimeToModulus K hv⟩
 
+/--
+@isnad1 id=eq.0h4v.s7.580365c37638 from=translated src=- shape=7b1bca64 vocab=984fa9d8
+-/
 theorem raySymbol_primeUnit (f : HeightOneSpectrum (𝓞 K) → M) (v : HeightOneSpectrum (𝓞 K)) :
     raySymbol K f ((primeUnit K v : (FractionalIdeal ((𝓞 K)⁰) K)ˣ) :
       FractionalIdeal ((𝓞 K)⁰) K) = f v := by
@@ -907,12 +1018,18 @@ theorem raySymbol_primeUnit (f : HeightOneSpectrum (𝓞 K) → M) (v : HeightOn
   · intro w hw
     rw [FractionalIdeal.count_maximal_coprime K w (Ne.symm hw), zpow_zero]
 
+/--
+@isnad1 id=eq.1h5v.s14.0308f4549898 from=translated src=- shape=c0817f7b vocab=937862ef
+-/
 theorem raySymbolHom_prime (𝔣 : Ideal (𝓞 K)) (f : HeightOneSpectrum (𝓞 K) → M)
     {v : HeightOneSpectrum (𝓞 K)} (hv : ¬ v.asIdeal ∣ 𝔣) :
     raySymbolHom K 𝔣 f ⟨primeUnit K v, primeUnit_mem_coprimeToModulus K hv⟩ = f v := by
   rw [raySymbolHom_apply]
   exact raySymbol_primeUnit K f v
 
+/--
+@isnad1 id=le.1h4v.s13.9de1d7c23ba2 from=translated src=- shape=2277c3af vocab=4666045f
+-/
 theorem narrowRaySubgroupOf_le_ker_raySymbolHom {𝔣 : Ideal (𝓞 K)}
     (f : HeightOneSpectrum (𝓞 K) → M)
     (hkill : ∀ α : 𝓞 K, α ≠ 0 → α - 1 ∈ 𝔣 →
@@ -939,6 +1056,9 @@ def raySymbolDescend {𝔣 : Ideal (𝓞 K)} (f : HeightOneSpectrum (𝓞 K) →
   QuotientGroup.lift ((narrowRaySubgroup K 𝔣).subgroupOf (coprimeToModulus K 𝔣))
     (raySymbolHom K 𝔣 f) (narrowRaySubgroupOf_le_ker_raySymbolHom K f hkill)
 
+/--
+@isnad1 id=eq.1h5v.s15.9c155a8f17dc from=translated src=- shape=87ce88fb vocab=aec0ef02
+-/
 theorem raySymbolDescend_mk {𝔣 : Ideal (𝓞 K)} (f : HeightOneSpectrum (𝓞 K) → M)
     (hkill : ∀ α : 𝓞 K, α ≠ 0 → α - 1 ∈ 𝔣 →
       (∀ τ : K →+* ℝ, 0 < τ (algebraMap (𝓞 K) K α)) →
@@ -948,6 +1068,9 @@ theorem raySymbolDescend_mk {𝔣 : Ideal (𝓞 K)} (f : HeightOneSpectrum (𝓞
   rw [NarrowRayClassGroup.mk, QuotientGroup.mk'_apply]
   exact QuotientGroup.lift_mk' _ (narrowRaySubgroupOf_le_ker_raySymbolHom K f hkill) y
 
+/--
+@isnad1 id=eq.2h5v.s12.6ebe99f899b8 from=translated src=- shape=d450f902 vocab=95b60c9c
+-/
 theorem raySymbolDescend_primeClass {𝔣 : Ideal (𝓞 K)} (f : HeightOneSpectrum (𝓞 K) → M)
     (hkill : ∀ α : 𝓞 K, α ≠ 0 → α - 1 ∈ 𝔣 →
       (∀ τ : K →+* ℝ, 0 < τ (algebraMap (𝓞 K) K α)) →
@@ -960,6 +1083,9 @@ theorem raySymbolDescend_primeClass {𝔣 : Ideal (𝓞 K)} (f : HeightOneSpectr
 def raySymbolIdealHom (f : HeightOneSpectrum (𝓞 K) → M) : ↥(Ideal (𝓞 K))⁰ →* M :=
   (raySymbolUnitsHom K f).comp (FractionalIdeal.mk0 K)
 
+/--
+@isnad1 id=eq.0h4v.s12.cbddb8c394f2 from=translated src=- shape=0562bc3d vocab=8ed96a23
+-/
 theorem raySymbolIdealHom_apply (f : HeightOneSpectrum (𝓞 K) → M) (I : ↥(Ideal (𝓞 K))⁰) :
     raySymbolIdealHom K f I =
       raySymbol K f ((I : Ideal (𝓞 K)) : FractionalIdeal ((𝓞 K)⁰) K) := by
@@ -974,6 +1100,9 @@ section Degenerate
 
 variable (K : Type*) [Field K] [NumberField K]
 
+/--
+@isnad1 id=eq.0h1v.s9.013021eced52 from=translated src=- shape=db310d50 vocab=4566f5a8
+-/
 theorem coprimeToModulus_top : coprimeToModulus K (⊤ : Ideal (𝓞 K)) = ⊤ := by
   rw [eq_top_iff]
   intro I _

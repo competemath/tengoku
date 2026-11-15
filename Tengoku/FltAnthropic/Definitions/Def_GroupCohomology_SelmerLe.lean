@@ -24,6 +24,9 @@ def greenbergWilesLe (L : ∀ v, Submodule k (H1 (Rep.res (loc v) M))) : Prop :=
       + finrank k M.ρ.invariants
       + ∑ v, finrank k (L v)
 
+/--
+@isnad1 id=greenber.1h9v.s10.aa5ac6a8eac8 from=translated src=- shape=8d96026f vocab=4beb735a
+-/
 theorem greenbergWilesLe_of_greenbergWilesEq
     {L : ∀ v, Submodule k (H1 (Rep.res (loc v) M))}
     (h : greenbergWilesEq loc M M' pairing L) : greenbergWilesLe loc M M' pairing L :=
@@ -41,6 +44,9 @@ structure IsGreenbergWilesLeDatum (L : ∀ v, Submodule k (H1 (Rep.res (loc v) M
 
   le : greenbergWilesLe loc M M' pairing L
 
+/--
+@isnad1 id=isgreenb.1h9v.s10.641c39a8c537 from=translated src=- shape=8d96026f vocab=b7d0a45f
+-/
 theorem IsGreenbergWilesDatum.toLe {L : ∀ v, Submodule k (H1 (Rep.res (loc v) M))}
     (h : IsGreenbergWilesDatum loc M M' pairing L) :
     IsGreenbergWilesLeDatum loc M M' pairing L where
@@ -58,6 +64,9 @@ def selmerComparisonStep (L L' : ∀ v, Submodule k (H1 (Rep.res (loc v) M))) : 
           + finrank k (selmer loc M' (dualConditions loc M M' pairing L'))
           + ∑ v, finrank k (L' v)
 
+/--
+@isnad1 id=selmerco.0h9v.s10.fdf04678b5a4 from=translated src=- shape=4a6d172b vocab=c3e971ea
+-/
 theorem selmerComparisonStep_refl (L : ∀ v, Submodule k (H1 (Rep.res (loc v) M))) :
     selmerComparisonStep loc M M' pairing L L := fun _ => le_refl _
 

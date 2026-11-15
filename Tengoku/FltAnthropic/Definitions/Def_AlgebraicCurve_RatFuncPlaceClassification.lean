@@ -21,6 +21,9 @@ section PlaceInfty
 
 variable [DecidableEq (RatFunc K)]
 
+/--
+@isnad1 id=nontrivi.0h1v.s8.7fec6c9be6bf from=translated src=- shape=e81c0e76 vocab=38f05e2e
+-/
 instance instNontrivialSubtypeUnitsWithZeroMultiplicativeIntMemSubgroupValueGroupRatFuncValuationInftyValuation_tengoku :
     Nontrivial (MonoidWithZeroHom.valueGroup (MonoidWithZeroHom.ofClass (RatFunc.inftyValuation K))) := by
   rw [Subgroup.nontrivial_iff_exists_ne_one]
@@ -30,6 +33,9 @@ instance instNontrivialSubtypeUnitsWithZeroMultiplicativeIntMemSubgroupValueGrou
   · rw [ne_eq, Units.ext_iff, Units.val_mk0, Units.val_one, RatFunc.inftyValuation.X]
     simp
 
+/--
+@isnad1 id=ne.0h2v.s7.b2f6554d5cbb from=translated src=- shape=ff423e07 vocab=e359e913
+-/
 theorem placeInfty_ne_ofHeightOneSpectrum (w : HeightOneSpectrum K[X]) :
     placeInfty K ≠ Place.ofHeightOneSpectrum w := by
   intro h
@@ -55,11 +61,17 @@ theorem eq_ofHeightOneSpectrum_or_eq_placeInfty [DecidableEq (RatFunc K)]
 
 variable (K)
 
+/--
+@isnad1 id=ne.0h2v.s6.2ec6c06a1b3e from=translated src=- shape=96e29b75 vocab=20a26e72
+-/
 theorem placeOfPoint_ne_placeInfty [DecidableEq (RatFunc K)] (a : K) :
     placeOfPoint K a ≠ placeInfty K := by
   rw [placeOfPoint_eq_ofHeightOneSpectrum]
   exact fun h => placeInfty_ne_ofHeightOneSpectrum K _ h.symm
 
+/--
+@isnad1 id=ex.0h2v.s7.f15baa2feed9 from=translated src=- shape=805ae239 vocab=d9e579a5
+-/
 theorem exists_eq_placeOfPoint [IsAlgClosed K] (w : HeightOneSpectrum K[X]) :
     ∃ a : K, Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w = placeOfPoint K a := by
   obtain ⟨p, hp, hwp⟩ := exists_irreducible_span K w
@@ -103,19 +115,31 @@ def placeEquivOption [IsAlgClosed K] [DecidableEq (RatFunc K)] :
     Place K (RatFunc K) ≃ Option K :=
   (Equiv.ofBijective (ofOption K) (ofOption_bijective K)).symm
 
+/--
+@isnad1 id=eq.0h2v.s8.79efc59dd279 from=translated src=- shape=b8349be4 vocab=21992165
+-/
 @[simp]
 theorem placeEquivOption_symm_some [IsAlgClosed K] [DecidableEq (RatFunc K)] (a : K) :
     (placeEquivOption K).symm (some a) = placeOfPoint K a := rfl
 
+/--
+@isnad1 id=eq.0h1v.s8.8540ccdc3381 from=translated src=- shape=f5807c3a vocab=9f92e6ee
+-/
 @[simp]
 theorem placeEquivOption_symm_none [IsAlgClosed K] [DecidableEq (RatFunc K)] :
     (placeEquivOption K).symm none = placeInfty K := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.49b1c1614a5d from=translated src=- shape=d2ee5ab9 vocab=e6c99816
+-/
 @[simp]
 theorem placeEquivOption_placeOfPoint [IsAlgClosed K] [DecidableEq (RatFunc K)] (a : K) :
     placeEquivOption K (placeOfPoint K a) = some a :=
   (Equiv.ofBijective (ofOption K) (ofOption_bijective K)).symm_apply_apply (some a)
 
+/--
+@isnad1 id=eq.0h1v.s8.6b7d5017cbe3 from=translated src=- shape=2c8858f9 vocab=4253b476
+-/
 @[simp]
 theorem placeEquivOption_placeInfty [IsAlgClosed K] [DecidableEq (RatFunc K)] :
     placeEquivOption K (placeInfty K) = none :=

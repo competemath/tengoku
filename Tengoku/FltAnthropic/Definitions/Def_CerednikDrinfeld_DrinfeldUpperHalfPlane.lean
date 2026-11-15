@@ -16,9 +16,15 @@ variable (K₀ : Type*) [Field K₀] (K : Type*) [Field K] [Algebra K₀ K]
 noncomputable scoped instance (priority := low) glAction [DecidableEq K] : MulAction (GL (Fin 2) K₀) (OnePoint K) :=
   MulAction.compHom (OnePoint K) (Matrix.GeneralLinearGroup.map (algebraMap K₀ K))
 
+/--
+@isnad1 id=eq.0h4v.s10.667ef7dd28b9 from=translated src=- shape=90df2e08 vocab=9ff5498a
+-/
 theorem gl_smul_def [DecidableEq K] (g : GL (Fin 2) K₀) (x : OnePoint K) :
     g • x = (Matrix.GeneralLinearGroup.map (algebraMap K₀ K) g) • x := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.18bbb5d1ac15 from=translated src=- shape=dd71f84a vocab=4f5343ff
+-/
 theorem scalar_smul_eq [DecidableEq K] (u : K₀ˣ) (x : OnePoint K) :
     (Matrix.GeneralLinearGroup.scalar (Fin 2) u : GL (Fin 2) K₀) • x = x := by
   have h10 : (Matrix.GeneralLinearGroup.map (algebraMap K₀ K)
@@ -48,6 +54,9 @@ theorem scalar_smul_eq [DecidableEq K] (u : K₀ˣ) (x : OnePoint K) :
 noncomputable scoped instance (priority := low) pglAction [DecidableEq K] : MulAction PGL(2, K₀) (OnePoint K) :=
   Matrix.ProjGenLinGroup.mulActionOfGL (fun u x => scalar_smul_eq K₀ K u x)
 
+/--
+@isnad1 id=eq.0h4v.s10.19be5e07058d from=translated src=- shape=93edf7fa vocab=83954ca7
+-/
 theorem mk_smul_eq [DecidableEq K] (g : GL (Fin 2) K₀) (x : OnePoint K) :
     Matrix.ProjGenLinGroup.mk g • x = g • x :=
   Matrix.ProjGenLinGroup.mk_smul _ g x
@@ -59,7 +68,13 @@ variable {K} in
 
 def toAffine (x : OnePoint K) : K := OnePoint.elim x 0 id
 
+/--
+@isnad1 id=eq.0h2v.s4.561b939ba1aa from=translated src=- shape=1c9622f3 vocab=2131fa6a
+-/
 @[simp] theorem toAffine_coe (z : K) : toAffine (z : OnePoint K) = z := rfl
+/--
+@isnad1 id=eq.0h1v.s4.2338af13a28c from=translated src=- shape=5f1ef773 vocab=5491cc6f
+-/
 @[simp] theorem toAffine_infty : toAffine (OnePoint.infty : OnePoint K) = 0 := rfl
 
 variable {K} in
@@ -67,6 +82,9 @@ variable {K} in
 noncomputable def pmoebius [DecidableEq K] (g : PGL(2, K₀)) (z : K) : K := toAffine (g • (z : OnePoint K))
 
 variable {K} in
+/--
+@isnad1 id=eq.1h4v.s10.6d48741885af from=translated src=- shape=c61a7290 vocab=a1fd2247
+-/
 theorem pmoebius_mk [DecidableEq K] (g : GL (Fin 2) K₀) (z : K)
     (hz : algebraMap K₀ K (g 1 0) * z + algebraMap K₀ K (g 1 1) ≠ 0) :
     pmoebius K₀ (Matrix.ProjGenLinGroup.mk g) z = moebius K₀ K g z := by
@@ -80,6 +98,9 @@ end Moebius
 def upperHalfPlane (K₀ : Type*) [Field K₀] (K : Type*) [Field K] [Algebra K₀ K] : Set K :=
   (Set.range (algebraMap K₀ K))ᶜ
 
+/--
+@isnad1 id=iff.0h3v.s6.851861ee0dc0 from=translated src=- shape=c4629ea2 vocab=17598659
+-/
 theorem mem_upperHalfPlane_iff (K₀ : Type*) [Field K₀] {K : Type*} [Field K] [Algebra K₀ K] (z : K) :
     z ∈ upperHalfPlane K₀ K ↔ ∀ x : K₀, algebraMap K₀ K x ≠ z := by
   simp [upperHalfPlane]
@@ -88,6 +109,9 @@ section OmegaAction
 
 variable (K₀ : Type*) [Field K₀] {K : Type*} [Field K] [Algebra K₀ K]
 
+/--
+@isnad1 id=ne.1h4v.s8.c22e350bdda8 from=translated src=- shape=bacfad1b vocab=11329428
+-/
 theorem moebius_denom_ne_zero_of_mem {z : K} (hz : z ∈ upperHalfPlane K₀ K) (g : GL (Fin 2) K₀) :
     algebraMap K₀ K (g 1 0) * z + algebraMap K₀ K (g 1 1) ≠ 0 := by
   rw [mem_upperHalfPlane_iff] at hz
@@ -108,6 +132,9 @@ theorem moebius_denom_ne_zero_of_mem {z : K} (hz : z ∈ upperHalfPlane K₀ K) 
 
 variable [DecidableEq K]
 
+/--
+@isnad1 id=eq.1h4v.s8.73f16456fd60 from=translated src=- shape=bc2a2932 vocab=8e54bfdc
+-/
 theorem coe_pmoebius_of_mem {z : K} (hz : z ∈ upperHalfPlane K₀ K) (g : PGL(2, K₀)) :
     ((pmoebius K₀ g z : K) : OnePoint K) = g • (z : OnePoint K) := by
   induction g using Matrix.ProjGenLinGroup.induction_on with
@@ -117,6 +144,9 @@ theorem coe_pmoebius_of_mem {z : K} (hz : z ∈ upperHalfPlane K₀ K) (g : PGL(
     rw [ite_eq_right (moebius_denom_ne_zero_of_mem K₀ hz g)]
     rfl
 
+/--
+@isnad1 id=mem.1h4v.s6.16739760dc42 from=translated src=- shape=c21a8fab vocab=45a404de
+-/
 theorem pmoebius_mem_upperHalfPlane {z : K} (hz : z ∈ upperHalfPlane K₀ K) (g : PGL(2, K₀)) :
     pmoebius K₀ g z ∈ upperHalfPlane K₀ K := by
   induction g using Matrix.ProjGenLinGroup.induction_on with
@@ -146,9 +176,15 @@ theorem pmoebius_mem_upperHalfPlane {z : K} (hz : z ∈ upperHalfPlane K₀ K) (
         intro h'; exact h0 ((algebraMap K₀ K).injective (by rw [h', map_zero]))
       rw [map_div₀, div_eq_iff h0', ← key, mul_comm]
 
+/--
+@isnad1 id=eq.0h3v.s7.c968560d89c4 from=translated src=- shape=b513fe83 vocab=83480559
+-/
 @[simp] theorem pmoebius_one (z : K) : pmoebius K₀ (1 : PGL(2, K₀)) z = z := by
   rw [pmoebius, one_smul, toAffine_coe]
 
+/--
+@isnad1 id=eq.1h5v.s8.29523e9fe4c9 from=translated src=- shape=2033e085 vocab=3525a3f7
+-/
 theorem pmoebius_mul {z : K} (hz : z ∈ upperHalfPlane K₀ K) (g h : PGL(2, K₀)) :
     pmoebius K₀ (g * h) z = pmoebius K₀ g (pmoebius K₀ h z) := by
   rw [pmoebius, pmoebius, mul_smul, coe_pmoebius_of_mem K₀ hz h]

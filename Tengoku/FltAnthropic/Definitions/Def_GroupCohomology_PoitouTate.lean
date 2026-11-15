@@ -23,6 +23,9 @@ variable (M : Rep k Γ)
 noncomputable def locTotal : H1 M →ₗ[k] ∀ v, H1 (Rep.res (loc v) M) :=
   LinearMap.pi fun v => (locRes loc M v).hom
 
+/--
+@isnad1 id=eq.0h8v.s10.2fe268120e6b from=translated src=- shape=1981c8b9 vocab=6e7c79af
+-/
 @[simp]
 lemma locTotal_apply (x : H1 M) (v : ι) :
     locTotal loc M x v = (locRes loc M v).hom x := rfl
@@ -38,6 +41,9 @@ noncomputable def totalPairing :
     (∀ v, H1 (Rep.res (loc v) M)) →ₗ[k] (∀ v, H1 (Rep.res (loc v) M')) →ₗ[k] k :=
   ∑ v, (pairing v).compl₁₂ (LinearMap.proj v) (LinearMap.proj v)
 
+/--
+@isnad1 id=eq.0h10v.s13.f54ef4579905 from=translated src=- shape=d94a4a17 vocab=c49e40c9
+-/
 @[simp]
 lemma totalPairing_apply (x : ∀ v, H1 (Rep.res (loc v) M))
     (y : ∀ v, H1 (Rep.res (loc v) M')) :

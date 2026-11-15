@@ -22,6 +22,9 @@ def IsRowIsometry (k : GL (Fin 2) K) : Prop :=
             + y * (k : Matrix (Fin 2) (Fin 2) K) 1 1‖ ^ 2
       = ‖x‖ ^ 2 + ‖y‖ ^ 2
 
+/--
+@isnad1 id=isrowiso.0h1v.s7.50548a68cd98 from=translated src=- shape=1bd56f17 vocab=bfff51b8
+-/
 theorem isRowIsometry_one : IsRowIsometry (1 : GL (Fin 2) K) := by
   constructor
   · simp
@@ -35,6 +38,9 @@ theorem isRowIsometry_one : IsRowIsometry (1 : GL (Fin 2) K) := by
       = ‖x‖ ^ 2 + ‖y‖ ^ 2
     rw [h00, h11, h10, h01, mul_one, mul_one, mul_zero, mul_zero, add_zero, zero_add]
 
+/--
+@isnad1 id=isrowiso.2h3v.s8.15a193950c99 from=translated src=- shape=280809ee vocab=10ff9e02
+-/
 theorem IsRowIsometry.mul {k k' : GL (Fin 2) K} (hk : IsRowIsometry k)
     (hk' : IsRowIsometry k') : IsRowIsometry (k * k') := by
   obtain ⟨hdet, hrow⟩ := hk
@@ -64,6 +70,9 @@ theorem IsRowIsometry.mul {k k' : GL (Fin 2) K} (hk : IsRowIsometry k)
         (x * (k : Matrix (Fin 2) (Fin 2) K) 0 1 + y * (k : Matrix (Fin 2) (Fin 2) K) 1 1),
       hrow x y]
 
+/--
+@isnad1 id=isrowiso.1h2v.s7.e9327ee109a4 from=translated src=- shape=cf502f44 vocab=c3c62973
+-/
 theorem IsRowIsometry.inv {k : GL (Fin 2) K} (hk : IsRowIsometry k) :
     IsRowIsometry k⁻¹ := by
   obtain ⟨hdet, hrow⟩ := hk
@@ -117,9 +126,15 @@ def rowIsometrySubgroup : Subgroup (GL (Fin 2) K) where
 
 variable {K}
 
+/--
+@isnad1 id=iff.0h2v.s8.268480b3520c from=translated src=- shape=a20e128b vocab=53fb2309
+-/
 theorem mem_rowIsometrySubgroup_iff {k : GL (Fin 2) K} :
     k ∈ rowIsometrySubgroup K ↔ IsRowIsometry k := Iff.rfl
 
+/--
+@isnad1 id=eq.1h3v.s8.7f92516443e9 from=translated src=- shape=17d892c8 vocab=4dd42a06
+-/
 theorem topNormSq_mul_rowIsometry (g : GL (Fin 2) K) {k : GL (Fin 2) K}
     (hk : IsRowIsometry k) :
     topNormSq ((g * k : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K)
@@ -137,6 +152,9 @@ theorem topNormSq_mul_rowIsometry (g : GL (Fin 2) K) {k : GL (Fin 2) K}
   rw [hcoe, htop 0, htop 1,
     hrow ((g : Matrix (Fin 2) (Fin 2) K) 0 0) ((g : Matrix (Fin 2) (Fin 2) K) 0 1)]
 
+/--
+@isnad1 id=eq.1h3v.s8.82acec28fb98 from=translated src=- shape=17d892c8 vocab=08126628
+-/
 theorem rowNormSq_mul_rowIsometry (g : GL (Fin 2) K) {k : GL (Fin 2) K}
     (hk : IsRowIsometry k) :
     rowNormSq ((g * k : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K)
@@ -154,6 +172,9 @@ theorem rowNormSq_mul_rowIsometry (g : GL (Fin 2) K) {k : GL (Fin 2) K}
   rw [hcoe, hbot 0, hbot 1,
     hrow ((g : Matrix (Fin 2) (Fin 2) K) 1 0) ((g : Matrix (Fin 2) (Fin 2) K) 1 1)]
 
+/--
+@isnad1 id=eq.1h3v.s8.7d5920dc190c from=translated src=- shape=3d016381 vocab=59936fa0
+-/
 theorem localHeight_mul_rowIsometry (g : GL (Fin 2) K) {k : GL (Fin 2) K}
     (hk : IsRowIsometry k) : localHeight (g * k) = localHeight g := by
   have hdet := hk.1
@@ -162,12 +183,18 @@ theorem localHeight_mul_rowIsometry (g : GL (Fin 2) K) {k : GL (Fin 2) K}
   unfold localHeight
   rw [rowNormSq_mul_rowIsometry g hk, hcoe, Matrix.det_mul, norm_mul, hdet, mul_one]
 
+/--
+@isnad1 id=eq.1h3v.s8.43c4efd577d9 from=translated src=- shape=3d016381 vocab=9fae0cb7
+-/
 theorem xWindowSq_mul_rowIsometry (g : GL (Fin 2) K) {k : GL (Fin 2) K}
     (hk : IsRowIsometry k) : xWindowSq (g * k) = xWindowSq g := by
   unfold xWindowSq
   rw [topNormSq_mul_rowIsometry g hk, rowNormSq_mul_rowIsometry g hk,
     localHeight_mul_rowIsometry g hk]
 
+/--
+@isnad1 id=mem.0h1v.s9.c81c90711674 from=translated src=- shape=3735c667 vocab=783b1994
+-/
 theorem weyl_mem_rowIsometrySubgroup :
     (Matrix.GeneralLinearGroup.mk'' (!![0, 1; -1, 0] : Matrix (Fin 2) (Fin 2) K)
       (by
@@ -195,6 +222,9 @@ section Adelic
 
 variable (F : Type) [Field F] [NumberField F]
 
+/--
+@isnad1 id=eq.1h3v.s10.91e02b9a6cfb from=translated src=- shape=7433e3a1 vocab=48711d5f
+-/
 theorem archHeight_mul_rowIsometry (g : GL (Fin 2) (InfiniteAdeleRing F))
     {k : GL (Fin 2) (InfiniteAdeleRing F)}
     (hk : ∀ v : InfinitePlace F, IsRowIsometry (archComponent F v k)) :

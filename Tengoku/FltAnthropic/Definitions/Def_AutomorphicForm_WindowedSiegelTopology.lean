@@ -16,28 +16,46 @@ section Continuity
 
 variable {K : Type*} [NormedField K]
 
+/--
+@isnad1 id=continuo.0h3v.s7.37bdac238a9f from=translated src=- shape=a5c925a9 vocab=3c662e5a
+-/
 theorem continuous_entry (i j : Fin 2) :
     Continuous fun g : GL (Fin 2) K => (g : Matrix (Fin 2) (Fin 2) K) i j :=
   Units.continuous_val.matrix_elem i j
 
+/--
+@isnad1 id=continuo.0h1v.s7.3b6c182101d0 from=translated src=- shape=42019dce vocab=7ca59737
+-/
 theorem continuous_topNormSq_gl :
     Continuous fun g : GL (Fin 2) K => topNormSq (g : Matrix (Fin 2) (Fin 2) K) := by
   unfold topNormSq
   exact ((continuous_entry 0 0).norm.pow 2).add ((continuous_entry 0 1).norm.pow 2)
 
+/--
+@isnad1 id=continuo.0h1v.s7.55fe919ad878 from=translated src=- shape=42019dce vocab=9f3ceb19
+-/
 theorem continuous_rowNormSq_gl :
     Continuous fun g : GL (Fin 2) K => rowNormSq (g : Matrix (Fin 2) (Fin 2) K) := by
   unfold rowNormSq
   exact ((continuous_entry 1 0).norm.pow 2).add ((continuous_entry 1 1).norm.pow 2)
 
+/--
+@isnad1 id=continuo.0h1v.s7.579fee2b3b3d from=translated src=- shape=abed7861 vocab=15ce252e
+-/
 theorem continuous_det_gl :
     Continuous fun g : GL (Fin 2) K => ((g : Matrix (Fin 2) (Fin 2) K)).det :=
   Units.continuous_val.matrix_det
 
+/--
+@isnad1 id=continuo.0h1v.s7.5a058e4eb8da from=translated src=- shape=9263210e vocab=d5a384a6
+-/
 theorem continuous_localHeight : Continuous (localHeight (K := K)) := by
   unfold localHeight
   exact continuous_det_gl.norm.div continuous_rowNormSq_gl fun g => (rowNormSq_pos g).ne'
 
+/--
+@isnad1 id=continuo.0h1v.s7.44d6abb4a2e3 from=translated src=- shape=9263210e vocab=c9af3a82
+-/
 theorem continuous_xWindowSq : Continuous (xWindowSq (K := K)) := by
   unfold xWindowSq
   exact (continuous_topNormSq_gl.div continuous_rowNormSq_gl fun g => (rowNormSq_pos g).ne').sub
@@ -45,11 +63,17 @@ theorem continuous_xWindowSq : Continuous (xWindowSq (K := K)) := by
 
 end Continuity
 
+/--
+@isnad1 id=continuo.0h1v.s7.6ed6aabedfee from=translated src=- shape=0e61688e vocab=d93c8c41
+-/
 theorem continuous_archHeight : Continuous (archHeight F) := by
   unfold archHeight
   exact continuous_finsetProd _ fun v _ =>
     (continuous_localHeight.comp (AdelicLevel.continuous_archComponent F v)).pow _
 
+/--
+@isnad1 id=mem.2h3v.s8.30b154927c05 from=translated src=- shape=93c3049b vocab=8e4ae3b7
+-/
 theorem one_mem_interior_integralWindowedSiegelSet {c u : ℝ} (hc : c < 1) (hu : u ≠ 0) :
     (1 : AdelicGL2 (𝓞 F) F) ∈ interior (integralWindowedSiegelSet F c u) := by
   have htop : (⊤ : Ideal (𝓞 F)) ≠ ⊥ := by simp
@@ -92,6 +116,9 @@ theorem one_mem_interior_integralWindowedSiegelSet {c u : ℝ} (hc : c < 1) (hu 
     rw [map_one, map_one, xWindowSq_one]
     positivity
 
+/--
+@isnad1 id=measurab.0h4v.s7.5616404d6d5e from=translated src=- shape=e82836aa vocab=645041b1
+-/
 theorem measurableSet_integralWindowedSiegelSet {mS : MeasurableSpace (AdelicGL2 (𝓞 F) F)}
     [BorelSpace (AdelicGL2 (𝓞 F) F)] (c u : ℝ) :
     MeasurableSet (integralWindowedSiegelSet F c u) := by
@@ -120,6 +147,9 @@ theorem measurableSet_integralWindowedSiegelSet {mS : MeasurableSpace (AdelicGL2
       (isClosed_le (continuous_xWindowSq.comp ((AdelicLevel.continuous_archComponent F v).comp
         (AdelicLevel.continuous_glArch (𝓞 F) F))) continuous_const).measurableSet
 
+/--
+@isnad1 id=ex.2h3v.s8.2f12c84241df from=translated src=- shape=d464ec6a vocab=30d581d1
+-/
 theorem exists_isOpen_subset_integralWindowedSiegelSet {c u : ℝ} (hc : c < 1) (hu : u ≠ 0) :
     ∃ U : Set (AdelicGL2 (𝓞 F) F), IsOpen U ∧ U.Nonempty ∧
       U ⊆ integralWindowedSiegelSet F c u :=

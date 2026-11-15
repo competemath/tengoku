@@ -17,6 +17,9 @@ namespace Place
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
+/--
+@isnad1 id=eq.0h3v.s5.b8d219f5149e from=translated src=- shape=8d600efa vocab=d4d2dffd
+-/
 theorem adicValuation_valuationSubring :
     v.adicValuation.valuationSubring = v.toValuationSubring := by
   ext x
@@ -28,6 +31,9 @@ theorem adicValuation_valuationSubring :
   · intro hx
     exact v.heightOneSpectrum.valuation_le_one (⟨x, hx⟩ : v.toValuationSubring)
 
+/--
+@isnad1 id=iff.0h4v.s7.833806a2b7e6 from=translated src=- shape=c3d0343d vocab=48e929d1
+-/
 theorem mem_iff_adicValuation_le_one {f : F} :
     f ∈ v.toValuationSubring ↔ v.adicValuation f ≤ 1 := by
   rw [← v.adicValuation_valuationSubring]
@@ -40,12 +46,18 @@ instance : v.adicValuation.IsTrivialOn K :=
   Valuation.IsTrivialOn.of_le_one v.adicValuation fun a =>
     v.mem_iff_adicValuation_le_one.mp (v.algebraMap_mem' a)
 
+/--
+@isnad1 id=isequiv.1h5v.s6.4490bca6025c from=translated src=- shape=42bf9343 vocab=1535943b
+-/
 theorem isEquiv_adicValuation_of_valuationSubring_eq {Γ : Type*}
     [LinearOrderedCommGroupWithZero Γ] {w : Valuation F Γ}
     (h : w.valuationSubring = v.toValuationSubring) : w.IsEquiv v.adicValuation :=
   (Valuation.isEquiv_iff_valuationSubring _ _).mpr
     (h.trans v.adicValuation_valuationSubring.symm)
 
+/--
+@isnad1 id=iff.0h4v.s9.a3875507a860 from=translated src=- shape=d05d694b vocab=214d4958
+-/
 theorem mem_maximalIdeal_iff_adicValuation_lt_one (a : v.toValuationSubring) :
     a ∈ IsLocalRing.maximalIdeal v.toValuationSubring ↔ v.adicValuation (a : F) < 1 := by
   rw [IsLocalRing.mem_maximalIdeal, mem_nonunits_iff, ← v.adicValuation_coe_eq_one_iff,
@@ -53,6 +65,9 @@ theorem mem_maximalIdeal_iff_adicValuation_lt_one (a : v.toValuationSubring) :
   have hle : v.adicValuation (a : F) ≤ 1 := v.mem_iff_adicValuation_le_one.mp a.2
   tauto
 
+/--
+@isnad1 id=iff.1h4v.s7.1dd615751220 from=translated src=- shape=8604ba8d vocab=38f1c540
+-/
 theorem ord_eq_zero_iff_adicValuation_eq_one {f : F} (hf : f ≠ 0) :
     v.ord f = 0 ↔ v.adicValuation f = 1 := by
   simp only [ord, neg_eq_zero]
@@ -69,10 +84,16 @@ section OfHeightOneSpectrum
 variable {R : Type*} [CommRing R] [IsDedekindDomain R] [Algebra R F] [IsFractionRing R F]
   [Algebra K R] [IsScalarTower K R F]
 
+/--
+@isnad1 id=isequiv.0h4v.s7.2bf6d3c98a04 from=translated src=- shape=3991dd85 vocab=c22d9f09
+-/
 theorem isEquiv_adicValuation_ofHeightOneSpectrum (w : HeightOneSpectrum R) :
     (w.valuation F).IsEquiv (ofHeightOneSpectrum (K := K) w).adicValuation :=
   (ofHeightOneSpectrum (K := K) w).isEquiv_adicValuation_of_valuationSubring_eq rfl
 
+/--
+@isnad1 id=injectiv.0h3v.s7.cbf3dca48a04 from=translated src=- shape=3576dc5d vocab=3b04f975
+-/
 theorem ofHeightOneSpectrum_injective :
     Function.Injective (ofHeightOneSpectrum (K := K) (F := F) (R := R)) := by
   intro w w' h
@@ -81,6 +102,9 @@ theorem ofHeightOneSpectrum_injective :
   rw [h]
   exact (isEquiv_adicValuation_ofHeightOneSpectrum (K := K) (F := F) w').symm
 
+/--
+@isnad1 id=iff.1h5v.s8.a2d624a778dc from=translated src=- shape=3846d9fe vocab=69ec9d96
+-/
 theorem ord_ofHeightOneSpectrum_ne_zero_iff (w : HeightOneSpectrum R) {q : R} (hq : q ≠ 0) :
     (ofHeightOneSpectrum (K := K) (F := F) w).ord (algebraMap R F q) ≠ 0 ↔ q ∈ w.asIdeal := by
   have hq' : algebraMap R F q ≠ 0 :=
@@ -103,10 +127,16 @@ def heightOneSpectrumOfIrreducible {p : K[X]} (hp : Irreducible p) :
   isPrime := (PrincipalIdealRing.isMaximal_of_irreducible hp).isPrime
   ne_bot := by simpa [Ideal.span_singleton_eq_bot] using hp.ne_zero
 
+/--
+@isnad1 id=eq.1h2v.s7.ece5e4a313e6 from=translated src=- shape=5ee59839 vocab=72e922c2
+-/
 @[simp]
 theorem heightOneSpectrumOfIrreducible_asIdeal {p : K[X]} (hp : Irreducible p) :
     (heightOneSpectrumOfIrreducible K hp).asIdeal = Ideal.span {p} := rfl
 
+/--
+@isnad1 id=ex.0h2v.s7.f4e9ee8b563e from=translated src=- shape=82d7b674 vocab=96ee816d
+-/
 theorem exists_irreducible_span (w : HeightOneSpectrum K[X]) :
     ∃ p : K[X], Irreducible p ∧ w.asIdeal = Ideal.span {p} := by
   obtain ⟨p, hp⟩ := (IsPrincipalIdealRing.principal w.asIdeal).principal
@@ -122,11 +152,17 @@ theorem exists_irreducible_span (w : HeightOneSpectrum K[X]) :
 def finitePlace {p : K[X]} (hp : Irreducible p) : Place K (RatFunc K) :=
   Place.ofHeightOneSpectrum (heightOneSpectrumOfIrreducible K hp)
 
+/--
+@isnad1 id=eq.1h2v.s7.cb7fbde19a81 from=translated src=- shape=4a9f5e8c vocab=4da1b631
+-/
 theorem finitePlace_def {p : K[X]} (hp : Irreducible p) :
     finitePlace K hp = Place.ofHeightOneSpectrum (heightOneSpectrumOfIrreducible K hp) := rfl
 
 section ResidueDegree
 
+/--
+@isnad1 id=mem.0h3v.s9.830c23851c7d from=translated src=- shape=9467f24f vocab=b619ea0a
+-/
 theorem algebraMap_mem_ofHeightOneSpectrum (w : HeightOneSpectrum K[X]) (q : K[X]) :
     algebraMap K[X] (RatFunc K) q ∈
       (Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w).toValuationSubring :=
@@ -141,10 +177,16 @@ def residueOfHeightOneSpectrum (w : HeightOneSpectrum K[X]) :
       (Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w).toValuationSubring.toSubring
       (algebraMap_mem_ofHeightOneSpectrum K w))
 
+/--
+@isnad1 id=eq.0h3v.s13.75c85e315ff2 from=translated src=- shape=a609d966 vocab=ca9d8fa5
+-/
 theorem residueOfHeightOneSpectrum_apply (w : HeightOneSpectrum K[X]) (q : K[X]) :
     residueOfHeightOneSpectrum K w q = IsLocalRing.residue _
       ⟨algebraMap K[X] (RatFunc K) q, algebraMap_mem_ofHeightOneSpectrum K w q⟩ := rfl
 
+/--
+@isnad1 id=eq.0h2v.s12.7cd31d65214f from=translated src=- shape=0a342d9e vocab=fd4ccaf0
+-/
 theorem ker_residueOfHeightOneSpectrum (w : HeightOneSpectrum K[X]) :
     RingHom.ker (residueOfHeightOneSpectrum K w) = w.asIdeal := by
   ext q
@@ -154,6 +196,9 @@ theorem ker_residueOfHeightOneSpectrum (w : HeightOneSpectrum K[X]) :
       (F := RatFunc K) w).lt_one_iff_lt_one]
   exact HeightOneSpectrum.valuation_lt_one_iff_mem w q
 
+/--
+@isnad1 id=surjecti.0h2v.s11.fbb51be2b5bc from=translated src=- shape=a748d5d9 vocab=4802ef1f
+-/
 theorem surjective_residueOfHeightOneSpectrum (w : HeightOneSpectrum K[X]) :
     Function.Surjective (residueOfHeightOneSpectrum K w) := by
   intro y
@@ -223,12 +268,18 @@ def residueFieldEquivOfHeightOneSpectrum (w : HeightOneSpectrum K[X]) :
   exact congrArg (IsLocalRing.residue _)
     (Subtype.ext (IsScalarTower.algebraMap_apply K K[X] (RatFunc K) a).symm)
 
+/--
+@isnad1 id=eq.1h3v.s8.793a05fb2644 from=translated src=- shape=f42a3a7b vocab=251db7e2
+-/
 theorem deg_ofHeightOneSpectrum {w : HeightOneSpectrum K[X]} {p : K[X]}
     (hw : w.asIdeal = Ideal.span {p}) :
     (Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w).deg = p.natDegree := by
   rw [Place.deg, ← (residueFieldEquivOfHeightOneSpectrum K w).toLinearEquiv.finrank_eq, hw]
   exact finrank_quotient_span_eq_natDegree
 
+/--
+@isnad1 id=eq.1h2v.s6.6e1aa7775597 from=translated src=- shape=11cecb65 vocab=1341e078
+-/
 theorem deg_finitePlace {p : K[X]} (hp : Irreducible p) :
     (finitePlace K hp).deg = p.natDegree :=
   deg_ofHeightOneSpectrum K (heightOneSpectrumOfIrreducible_asIdeal K hp)
@@ -238,14 +289,23 @@ end ResidueDegree
 def placeOfPoint (a : K) : Place K (RatFunc K) :=
   finitePlace K (irreducible_X_sub_C a)
 
+/--
+@isnad1 id=eq.0h2v.s7.cdcde11e0bad from=translated src=- shape=45a30200 vocab=a580d0dc
+-/
 theorem placeOfPoint_def (a : K) :
     placeOfPoint K a = finitePlace K (irreducible_X_sub_C a) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.75dbebe21591 from=translated src=- shape=7c52ec0b vocab=569c33f5
+-/
 theorem placeOfPoint_eq_ofHeightOneSpectrum (a : K) :
     placeOfPoint K a
       = Place.ofHeightOneSpectrum (heightOneSpectrumOfIrreducible K (irreducible_X_sub_C a)) :=
   rfl
 
+/--
+@isnad1 id=injectiv.0h1v.s5.786ecfc897d1 from=translated src=- shape=e715c2b8 vocab=5a165a91
+-/
 theorem placeOfPoint_injective : Function.Injective (placeOfPoint K) := by
   intro a b h
   have h2 : heightOneSpectrumOfIrreducible K (irreducible_X_sub_C a)
@@ -260,6 +320,9 @@ theorem placeOfPoint_injective : Function.Injective (placeOfPoint K) := by
   have h6 : a - b = 0 := by simpa [IsRoot] using h5
   exact sub_eq_zero.mp h6
 
+/--
+@isnad1 id=eq.0h2v.s6.918926097415 from=translated src=- shape=f7ae4440 vocab=524d15e6
+-/
 @[simp]
 theorem deg_placeOfPoint (a : K) : (placeOfPoint K a).deg = 1 := by
   rw [placeOfPoint, deg_finitePlace, natDegree_X_sub_C]
@@ -294,6 +357,9 @@ def comapSymmRingEquiv (V : ValuationSubring F) :
     ext
     exact e.map_add x y
 
+/--
+@isnad1 id=eq.0h5v.s12.6e95143f2042 from=translated src=- shape=65743cd7 vocab=b5d458dd
+-/
 @[simp]
 theorem coe_comapSymmRingEquiv_apply (V : ValuationSubring F) (x : V) :
     ((comapSymmRingEquiv e V x : (V.comap (e.symm : F' →+* F))) : F') = e x := rfl
@@ -301,6 +367,9 @@ theorem coe_comapSymmRingEquiv_apply (V : ValuationSubring F) (x : V) :
 variable (he : ∀ a : K, e (algebraMap K F a) = algebraMap K F' a)
 include he
 
+/--
+@isnad1 id=eq.1h5v.s9.722b56fb03cb from=translated src=- shape=d1fa23a6 vocab=b0a8599d
+-/
 theorem symm_algebraMap_comm (a : K) : e.symm (algebraMap K F' a) = algebraMap K F a := by
   rw [← he a, e.symm_apply_apply]
 
@@ -325,11 +394,17 @@ def congrRingEquiv (v : Place K F) : Place K F' where
       (comapSymmRingEquiv e v.toValuationSubring : _ ≃+* _)
       (comapSymmRingEquiv e v.toValuationSubring).surjective
 
+/--
+@isnad1 id=eq.1h5v.s9.304cada87326 from=translated src=- shape=a3b94a7b vocab=46a9b4a1
+-/
 @[simp]
 theorem congrRingEquiv_toValuationSubring (v : Place K F) :
     (congrRingEquiv e he v).toValuationSubring
       = v.toValuationSubring.comap (e.symm : F' →+* F) := rfl
 
+/--
+@isnad1 id=eq.1h6v.s9.1495d52d8ed5 from=translated src=- shape=92d1b5d0 vocab=6c22d570
+-/
 theorem ord_congrRingEquiv (v : Place K F) (f : F) :
     (congrRingEquiv e he v).ord (e f) = v.ord f := by
   rcases eq_or_ne f 0 with rfl | hf
@@ -364,9 +439,15 @@ def congrEquiv : Place K F ≃ Place K F' where
     show e.symm.symm (e.symm x) ∈ v.toValuationSubring ↔ x ∈ v.toValuationSubring
     rw [RingEquiv.symm_symm, e.apply_symm_apply]
 
+/--
+@isnad1 id=eq.1h5v.s8.52c34b499eb6 from=translated src=- shape=ae65786d vocab=19a714fc
+-/
 @[simp]
 theorem congrEquiv_apply (v : Place K F) : congrEquiv e he v = congrRingEquiv e he v := rfl
 
+/--
+@isnad1 id=eq.1h5v.s9.723a3c3df714 from=translated src=- shape=c79b8f11 vocab=44b258b4
+-/
 @[simp]
 theorem congrEquiv_symm_apply (v : Place K F') :
     (congrEquiv e he).symm v = congrRingEquiv e.symm (symm_algebraMap_comm e he) v := rfl

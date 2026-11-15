@@ -34,10 +34,16 @@ def ribbonKernel [Fintype E] [DecidableEq V] (D : DegeneracyData E V) :
     Submodule ℤ (E → ℤ) :=
   ⨅ i, LinearMap.ker (jointDelta D i)
 
+/--
+@isnad1 id=iff.0h4v.s8.e79aea7a3e60 from=translated src=- shape=dd711f42 vocab=bf6935e4
+-/
 theorem mem_ribbonKernel [Fintype E] [DecidableEq V] {D : DegeneracyData E V}
     {x : E → ℤ} : x ∈ ribbonKernel D ↔ ∀ i, jointDelta D i x = 0 := by
   simp [ribbonKernel, Submodule.mem_iInf, LinearMap.mem_ker]
 
+/--
+@isnad1 id=eq.0h4v.s8.b40db7cd7f1d from=translated src=- shape=e7545f0c vocab=f36f747b
+-/
 theorem degreeOn_pushforward [Fintype E] [Fintype V] [DecidableEq V] (f : E → V)
     (x : E → ℤ) : degreeOn V (pushforward f x) = degreeOn E x := by
   classical
@@ -47,6 +53,9 @@ theorem degreeOn_pushforward [Fintype E] [Fintype V] [DecidableEq V] (f : E → 
   refine Finset.sum_congr rfl fun e _ => ?_
   simp
 
+/--
+@isnad1 id=le.0h3v.s7.1f47ebf22349 from=translated src=- shape=51d9d170 vocab=53957041
+-/
 theorem ribbonKernel_le_characterLattice [Fintype E] [Fintype V] [DecidableEq V]
     (D : DegeneracyData E V) : ribbonKernel D ≤ characterLattice E := by
   intro x hx
@@ -61,6 +70,9 @@ def ribbonGram [Fintype E] [DecidableEq V] (D : DegeneracyData E V) :
     ribbonKernel D →ₗ[ℤ] Module.Dual ℤ (ribbonKernel D) :=
   (widthPairing (fun e => (D.w e : ℕ))).domRestrict₁₂ (ribbonKernel D) (ribbonKernel D)
 
+/--
+@isnad1 id=eq.0h5v.s12.fe0aaab7c37a from=translated src=- shape=d1d1e4e3 vocab=f774b21f
+-/
 @[simp] theorem ribbonGram_apply [Fintype E] [DecidableEq V]
     (D : DegeneracyData E V) (x y : ribbonKernel D) :
     ribbonGram D x y = ∑ e : E, (D.w e : ℤ) * (x.1 e * y.1 e) :=
@@ -75,6 +87,9 @@ abbrev ribbonComponentGroupProj [Fintype E] [DecidableEq V]
     Module.Dual ℤ ↥(ribbonKernel D) →ₗ[ℤ] ribbonComponentGroup D :=
   (LinearMap.range (ribbonGram D)).mkQ
 
+/--
+@isnad1 id=le.1h5v.s14.1aeb5a2998a0 from=translated src=- shape=89b38c00 vocab=63774a46
+-/
 theorem ribbonGram_range_map_dualMap_le [Fintype E] [DecidableEq V]
     (D : DegeneracyData E V) (A B : ribbonKernel D →ₗ[ℤ] ribbonKernel D)
     (hadj : ∀ x y : ribbonKernel D, ribbonGram D (A x) y = ribbonGram D x (B y)) :
@@ -104,6 +119,9 @@ structure HeckeData [Fintype E] [Fintype V] [DecidableEq V] (D : DegeneracyData 
   kernel_stable : ∀ ℓ : Nat.Primes, ∀ x : E → ℤ, (∀ i, jointDelta D i x = 0) →
     ∀ i, jointDelta D i ((T ℓ).mulVecLin x) = 0
 
+/--
+@isnad1 id=mem.1h6v.s8.62040d28c7b8 from=translated src=- shape=df7aac54 vocab=e0266bf9
+-/
 theorem ribbonKernel_stable [Fintype E] [Fintype V] [DecidableEq V]
     {D : DegeneracyData E V} (H : HeckeData D) (ℓ : Nat.Primes) :
     ∀ x ∈ ribbonKernel D, (H.T ℓ).mulVecLin x ∈ ribbonKernel D := by

@@ -11,10 +11,16 @@ namespace FrobeniusDensity
 
 open NumberField Ideal IsDedekindDomain UniqueFactorizationMonoid
 
+/--
+@isnad1 id=eq.0h1v.s4.ebced7ac0c8f from=translated src=- shape=7ccdb69f vocab=137fb32d
+-/
 theorem card_quotient_ratPrimeIdeal (ℓ : ℕ) :
     Nat.card (ℤ ⧸ ratPrimeIdeal ℓ) = ℓ := by
   rw [ratPrimeIdeal, Nat.card_congr (Int.quotientSpanNatEquivZMod ℓ).toEquiv, Nat.card_zmod]
 
+/--
+@isnad1 id=eq.0h3v.s6.44a5cf5bdbda from=translated src=- shape=843a6140 vocab=aa233527
+-/
 theorem card_quotient_under_int {L : Type*} [Field L] [NumberField L] {ℓ : ℕ}
     (Q : Ideal (𝓞 L)) [Q.LiesOver (ratPrimeIdeal ℓ)] :
     Nat.card (ℤ ⧸ Q.under ℤ) = ℓ := by
@@ -24,6 +30,9 @@ section Ramified
 
 variable {K : Type*} [Field K] [NumberField K]
 
+/--
+@isnad1 id=finite.1h2v.s7.b9003442d858 from=translated src=- shape=4bfc1d5b vocab=f4a51262
+-/
 lemma finite_setOf_dvd {I : Ideal (𝓞 K)} (hI : I ≠ ⊥) :
     {v : HeightOneSpectrum (𝓞 K) | v.asIdeal ∣ I}.Finite := by
   have hinj : Set.InjOn (fun v : HeightOneSpectrum (𝓞 K) => v.asIdeal)
@@ -36,6 +45,9 @@ lemma finite_setOf_dvd {I : Ideal (𝓞 K)} (hI : I ≠ ⊥) :
 
 variable (L : Type*) [Field L] [NumberField L]
 
+/--
+@isnad1 id=ex.1h2v.s9.568d4c0dd8f6 from=translated src=- shape=f05e2cae vocab=2a0a6069
+-/
 theorem exists_smul_ne {g : L ≃ₐ[ℚ] L} (hg : g ≠ 1) :
     ∃ x : 𝓞 L, g • x ≠ x := by
   by_contra hcon'
@@ -48,6 +60,9 @@ theorem exists_smul_ne {g : L ≃ₐ[ℚ] L} (hg : g ≠ 1) :
     congrArg (algebraMap (𝓞 L) L) (hcon y)
   rw [← hxy, map_div₀, hx, hy', AlgEquiv.one_apply]
 
+/--
+@isnad1 id=finite.0h1v.s9.aef868212f54 from=translated src=- shape=bebdc2a3 vocab=8e2adbfe
+-/
 theorem finite_setOf_inertia_ne_bot_heightOneSpectrum :
     {v : HeightOneSpectrum (𝓞 L) | v.asIdeal.inertia (L ≃ₐ[ℚ] L) ≠ ⊥}.Finite := by
   classical
@@ -69,6 +84,9 @@ noncomputable def badPrimes : Finset ℕ :=
   insert 0 (insert 1 (((finite_setOf_inertia_ne_bot_heightOneSpectrum L).image
     (fun v => Nat.card (ℤ ⧸ v.asIdeal.under ℤ))).toFinset))
 
+/--
+@isnad1 id=eq.2h3v.s9.40d13ebfda82 from=translated src=- shape=dee37ebf vocab=d509a5ff
+-/
 theorem inertia_eq_bot_of_notMem_badPrimes {ℓ : ℕ} (hℓ : ℓ.Prime)
     (hℓbad : ℓ ∉ badPrimes L) (Q : Ideal (𝓞 L)) [Q.IsPrime] [Q.LiesOver (ratPrimeIdeal ℓ)] :
     Q.inertia (L ≃ₐ[ℚ] L) = ⊥ := by
@@ -86,10 +104,16 @@ section DegOneCount
 variable (K : Type*) [Field K] [NumberField K]
 
 omit [NumberField K] in
+/--
+@isnad1 id=eq.1h2v.s4.8f0e32ff1563 from=translated src=- shape=39644e7c vocab=9675fc5e
+-/
 theorem degOneCount_of_not_prime {ℓ : ℕ} (hℓ : ¬ ℓ.Prime) : degOneCount K ℓ = 0 := by
   rw [degOneCount, ite_eq_right hℓ]
 
 omit [NumberField K] in
+/--
+@isnad1 id=eq.1h2v.s7.24f9fe30dc25 from=translated src=- shape=5201a7d5 vocab=a4c8a6ff
+-/
 theorem degOneCount_of_prime {ℓ : ℕ} (hℓ : ℓ.Prime) :
     degOneCount K ℓ
       = {𝔮 ∈ (ratPrimeIdeal ℓ).primesOver (𝓞 K) | Nat.card ((𝓞 K) ⧸ 𝔮) = ℓ}.ncard := by
@@ -101,6 +125,9 @@ section Frob
 
 variable {L : Type*} [Field L] [NumberField L] [IsGalois ℚ L]
 
+/--
+@isnad1 id=isconj.1h4v.s9.2f7bb259cb72 from=translated src=- shape=78cc82c0 vocab=b7c6f653
+-/
 theorem isConj_arithFrobAt_of_liesOver {ℓ : ℕ} (hℓ : ℓ.Prime) (Q₁ Q₂ : Ideal (𝓞 L))
     [Q₁.IsPrime] [Q₂.IsPrime] [Q₁.LiesOver (ratPrimeIdeal ℓ)] [Q₂.LiesOver (ratPrimeIdeal ℓ)] :
     letI : Finite (𝓞 L ⧸ Q₁) := finite_quotient_of_ne_bot (ne_bot_of_liesOver_ratPrimeIdeal hℓ)
@@ -113,6 +140,9 @@ theorem isConj_arithFrobAt_of_liesOver {ℓ : ℕ} (hℓ : ℓ.Prime) (Q₁ Q₂
 
 variable (L)
 
+/--
+@isnad1 id=realizes.2h4v.s9.24737d607b2c from=translated src=- shape=bc8dbcbd vocab=bd7625d8
+-/
 theorem realizesCyclicAt_of_exists (σ : L ≃ₐ[ℚ] L) {ℓ : ℕ} (hℓ : ℓ.Prime)
     (Q₀ : Ideal (𝓞 L)) [Q₀.IsPrime] [Q₀.LiesOver (ratPrimeIdeal ℓ)]
     (h : ∀ _ : Finite (𝓞 L ⧸ Q₀),

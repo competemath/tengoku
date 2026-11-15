@@ -11,6 +11,9 @@ namespace FLT.HyperbolicMeasure
 
 open UpperHalfPlane
 
+/--
+@isnad1 id=eq.0h2v.s8.372e8669aaeb from=translated src=- shape=8de84aa8 vocab=33a20ab3
+-/
 theorem volume_smul_gl (g : GL (Fin 2) ℝ) (s : Set ℍ) : volume (g • s) = volume s :=
   MeasureTheory.measure_smul (volume : Measure ℍ) g s
 
@@ -20,6 +23,9 @@ instance : SMulInvariantMeasure SL(2, ℤ) ℍ (volume : Measure ℍ) where
     simp only [MulAction.compHom_smul_def]
     exact SMulInvariantMeasure.measure_preimage_smul (Matrix.SpecialLinearGroup.mapGL ℝ g) hs
 
+/--
+@isnad1 id=eq.0h2v.s8.9f9a0828d419 from=translated src=- shape=8de84aa8 vocab=efee76bc
+-/
 theorem volume_smul_sl2z (γ : SL(2, ℤ)) (s : Set ℍ) : volume (γ • s) = volume s :=
   MeasureTheory.measure_smul (volume : Measure ℍ) γ s
 
@@ -51,6 +57,9 @@ instance : Measure.IsOpenPosMeasure (volume : Measure ℍ) := by
   refine hpos.trans_le (measure_mono fun w hw => ?_)
   exact ⟨density_ne_zero (Set.image_subset_range _ _ hw), hw⟩
 
+/--
+@isnad1 id=lt.2h1v.s5.eab0daa5bbe7 from=translated src=- shape=b9acffff vocab=23664ed7
+-/
 theorem volume_pos_of_isOpen {U : Set ℍ} (hU : IsOpen U) (hne : U.Nonempty) :
     0 < volume U :=
   hU.measure_pos _ hne
@@ -96,6 +105,9 @@ private lemma box_eq_smul (n : ℤ) : box n = (ModularGroup.T ^ n) • box 0 := 
   · rintro ⟨⟨h1, h2⟩, h3⟩
     exact ⟨⟨by linarith, by linarith⟩, h3⟩
 
+/--
+@isnad1 id=eq.0h0v.s4.e74d7a5dc980 from=translated src=- shape=d93b3835 vocab=cfdd2852
+-/
 theorem volume_univ_eq_top : volume (Set.univ : Set ℍ) = ⊤ := by
 
   have hdisj := pairwise_disjoint_box
@@ -115,6 +127,9 @@ theorem volume_univ_eq_top : volume (Set.univ : Set ℍ) = ⊤ := by
       _ = ⊤ := ENNReal.tsum_const_eq_top_of_ne_zero hpos
   exact eq_top_mono (measure_mono (Set.subset_univ _)) htop
 
+/--
+@isnad1 id=not.0h0v.s3.9d868fcadf01 from=translated src=- shape=acac500d vocab=abcbd3d5
+-/
 theorem not_isFiniteMeasure_volume : ¬ IsFiniteMeasure (volume : Measure ℍ) := by
   intro h
   exact (measure_lt_top (volume : Measure ℍ) Set.univ).ne volume_univ_eq_top

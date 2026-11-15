@@ -32,6 +32,9 @@ variable (U) in
 abbrev mk (x : (ℍ[ℚ, a, b] ⊗[ℚ] FiniteAdeleRing (𝓞 ℚ) ℚ)ˣ) : ClassSet U :=
   DoubleCoset.mk (Submodule.finiteIdeleDiagonal ℍ[ℚ, a, b]).range U x
 
+/--
+@isnad1 id=surjecti.0h3v.s10.b32216d394eb from=translated src=- shape=f5d0ab12 vocab=c09e5d90
+-/
 theorem mk_surjective : Function.Surjective (mk U) := Quotient.mk''_surjective
 
 def map (h : U ≤ U') : ClassSet U → ClassSet U' :=
@@ -39,16 +42,28 @@ def map (h : U ≤ U') : ClassSet U → ClassSet U' :=
     obtain ⟨c, hc, d, hd, rfl⟩ := DoubleCoset.rel_iff.mp hxy
     exact DoubleCoset.rel_iff.mpr ⟨c, hc, d, h hd, rfl⟩
 
+/--
+@isnad1 id=eq.1h5v.s12.bf5688f75e5c from=translated src=- shape=ee2d3700 vocab=d4528a4f
+-/
 @[simp] theorem map_mk (h : U ≤ U') (x : (ℍ[ℚ, a, b] ⊗[ℚ] FiniteAdeleRing (𝓞 ℚ) ℚ)ˣ) :
     map h (mk U x) = mk U' x := rfl
 
+/--
+@isnad1 id=surjecti.1h4v.s12.b75b14074dfa from=translated src=- shape=1c018ca1 vocab=bbbd77a2
+-/
 theorem map_surjective (h : U ≤ U') : Function.Surjective (map h) := by
   rintro ⟨x⟩; exact ⟨mk U x, rfl⟩
 
+/--
+@isnad1 id=eq.1h5v.s13.beaef2c6f359 from=translated src=- shape=ec4218cb vocab=7bcc60db
+-/
 theorem mk_mul_of_mem (x u : (ℍ[ℚ, a, b] ⊗[ℚ] FiniteAdeleRing (𝓞 ℚ) ℚ)ˣ) (hu : u ∈ U) :
     mk U (x * u) = mk U x :=
   ((DoubleCoset.eq _ _ _ _).mpr ⟨1, one_mem _, u, hu, by rw [one_mul]⟩).symm
 
+/--
+@isnad1 id=eq.0h5v.s13.341a4d563aea from=translated src=- shape=2b4ded1f vocab=a1c72e7f
+-/
 theorem mk_diagonal_mul (δ : (ℍ[ℚ, a, b])ˣ) (x : (ℍ[ℚ, a, b] ⊗[ℚ] FiniteAdeleRing (𝓞 ℚ) ℚ)ˣ) :
     mk U (Submodule.finiteIdeleDiagonal ℍ[ℚ, a, b] δ * x) = mk U x :=
   ((DoubleCoset.eq _ _ _ _).mpr
@@ -87,6 +102,9 @@ def heckeIncidenceEquiv (U : Subgroup (ℍ[ℚ, a, b] ⊗[ℚ] FiniteAdeleRing (
   left_inv c := Subtype.ext (by simp)
   right_inv c := Subtype.ext (by simp)
 
+/--
+@isnad1 id=eq.1h6v.s13.b150b139a6ab from=translated src=- shape=05da2544 vocab=d8fcceb7
+-/
 theorem heckeKernel_mk (U : Subgroup (ℍ[ℚ, a, b] ⊗[ℚ] FiniteAdeleRing (𝓞 ℚ) ℚ)ˣ)
     (S : Set (ℍ[ℚ, a, b] ⊗[ℚ] FiniteAdeleRing (𝓞 ℚ) ℚ)ˣ)
     (hS : ∀ u ∈ U, ∀ s ∈ S, u * s ∈ S)
@@ -117,6 +135,9 @@ def primeHeckeSet (Λ : Submodule ℤ ℍ[ℚ, a, b]) (ℓ : ℕ) :
         ∉ Submodule.finiteAdeleBox Λ ∧
     (ℓ : ℚ)⁻¹ • (h : ℍ[ℚ, a, b] ⊗[ℚ] FiniteAdeleRing (𝓞 ℚ) ℚ) ∉ Submodule.finiteAdeleBox Λ}
 
+/--
+@isnad1 id=iff.0h5v.s14.dcf9d949d5c0 from=translated src=- shape=a112cff3 vocab=b0077024
+-/
 theorem mem_primeHeckeSet_iff (Λ : Submodule ℤ ℍ[ℚ, a, b]) (ℓ : ℕ)
     (h : (ℍ[ℚ, a, b] ⊗[ℚ] FiniteAdeleRing (𝓞 ℚ) ℚ)ˣ) :
     h ∈ primeHeckeSet Λ ℓ ↔
@@ -133,6 +154,9 @@ def levelHeckeSet (Λ P : Submodule ℤ ℍ[ℚ, a, b]) (ℓ : ℕ) :
   primeHeckeSet Λ ℓ ∩
     {h | (h : ℍ[ℚ, a, b] ⊗[ℚ] FiniteAdeleRing (𝓞 ℚ) ℚ) - 1 ∈ Submodule.finiteAdeleBox P}
 
+/--
+@isnad1 id=iff.0h6v.s13.8d3afe45931d from=translated src=- shape=818e0843 vocab=b7ed74ab
+-/
 theorem mem_levelHeckeSet_iff (Λ P : Submodule ℤ ℍ[ℚ, a, b]) (ℓ : ℕ)
     (h : (ℍ[ℚ, a, b] ⊗[ℚ] FiniteAdeleRing (𝓞 ℚ) ℚ)ˣ) :
     h ∈ levelHeckeSet Λ P ℓ ↔
@@ -178,6 +202,9 @@ def congruenceLevel (Λ P : Submodule ℤ ℍ[ℚ, a, b]) :
     rw [← neg_sub]
     exact neg_mem h
 
+/--
+@isnad1 id=iff.0h5v.s14.3bd4bba9f03a from=translated src=- shape=de0c2761 vocab=3bff8ce9
+-/
 theorem mem_congruenceLevel_iff (Λ P : Submodule ℤ ℍ[ℚ, a, b])
     (u : (ℍ[ℚ, a, b] ⊗[ℚ] FiniteAdeleRing (𝓞 ℚ) ℚ)ˣ) :
     u ∈ congruenceLevel Λ P ↔
@@ -186,23 +213,35 @@ theorem mem_congruenceLevel_iff (Λ P : Submodule ℤ ℍ[ℚ, a, b])
           (u : ℍ[ℚ, a, b] ⊗[ℚ] FiniteAdeleRing (𝓞 ℚ) ℚ) * x - x ∈ Submodule.finiteAdeleBox P :=
   Iff.rfl
 
+/--
+@isnad1 id=le.0h4v.s12.e0702179f4dd from=translated src=- shape=c93bf899 vocab=735f72db
+-/
 theorem congruenceLevel_le (Λ P : Submodule ℤ ℍ[ℚ, a, b]) :
     congruenceLevel Λ P ≤ Submodule.finiteIdeleStabilizer Λ := fun _ hu => hu.1
 
 def normIdeal (Λ : Submodule ℤ ℍ[ℚ, a, b]) (q : ℕ) : Submodule ℤ ℍ[ℚ, a, b] :=
   Submodule.span ℤ {w | ∃ x ∈ Λ, ∃ y ∈ Λ, ∃ z ∈ Λ, (∃ m : ℤ, nrd y = (q : ℚ) * m) ∧ w = x * y * z}
 
+/--
+@isnad1 id=mem.4h8v.s10.942dca2539a6 from=translated src=- shape=d93af088 vocab=0c751f78
+-/
 theorem mul_mul_mem_normIdeal {Λ : Submodule ℤ ℍ[ℚ, a, b]} {q : ℕ} {x y z : ℍ[ℚ, a, b]}
     (hx : x ∈ Λ) (hy : y ∈ Λ) (hz : z ∈ Λ) (m : ℤ) (hm : nrd y = (q : ℚ) * m) :
     x * y * z ∈ normIdeal Λ q :=
   Submodule.subset_span ⟨x, hx, y, hy, z, hz, ⟨m, hm⟩, rfl⟩
 
+/--
+@isnad1 id=le.1h4v.s8.78855b9f1b81 from=translated src=- shape=b67b8790 vocab=04735b1f
+-/
 theorem IsOrder.normIdeal_le {Λ : Submodule ℤ ℍ[ℚ, a, b]} (hΛ : IsOrder Λ) (q : ℕ) :
     normIdeal Λ q ≤ Λ := by
   refine Submodule.span_le.mpr ?_
   rintro _ ⟨x, hx, y, hy, z, hz, -, rfl⟩
   exact hΛ.mul_mem (hΛ.mul_mem hx hy) hz
 
+/--
+@isnad1 id=mem.3h6v.s9.cec2f23cec3f from=translated src=- shape=944af39b vocab=ffe316e7
+-/
 theorem IsOrder.mul_mem_normIdeal {Λ : Submodule ℤ ℍ[ℚ, a, b]} (hΛ : IsOrder Λ) {q : ℕ}
     {x w : ℍ[ℚ, a, b]} (hx : x ∈ Λ) (hw : w ∈ normIdeal Λ q) : x * w ∈ normIdeal Λ q := by
   induction hw using Submodule.span_induction with
@@ -213,6 +252,9 @@ theorem IsOrder.mul_mem_normIdeal {Λ : Submodule ℤ ℍ[ℚ, a, b]} (hΛ : IsO
   | add u v _ _ hu hv => rw [mul_add]; exact add_mem hu hv
   | smul n u _ hu => rw [mul_smul_comm]; exact Submodule.smul_mem _ n hu
 
+/--
+@isnad1 id=mem.3h6v.s9.01344f6b1721 from=translated src=- shape=719ccaba vocab=ffe316e7
+-/
 theorem IsOrder.mul_mem_normIdeal_right {Λ : Submodule ℤ ℍ[ℚ, a, b]} (hΛ : IsOrder Λ) {q : ℕ}
     {w z : ℍ[ℚ, a, b]} (hw : w ∈ normIdeal Λ q) (hz : z ∈ Λ) : w * z ∈ normIdeal Λ q := by
   induction hw using Submodule.span_induction with
@@ -223,16 +265,25 @@ theorem IsOrder.mul_mem_normIdeal_right {Λ : Submodule ℤ ℍ[ℚ, a, b]} (hΛ
   | add u v _ _ hu hv => rw [add_mul]; exact add_mem hu hv
   | smul n u _ hu => rw [smul_mul_assoc]; exact Submodule.smul_mem _ n hu
 
+/--
+@isnad1 id=mem.1h4v.s8.e7408419816b from=translated src=- shape=bf11557a vocab=c8b03fa0
+-/
 theorem IsOrder.natCast_mem {Λ : Submodule ℤ ℍ[ℚ, a, b]} (hΛ : IsOrder Λ) (n : ℕ) :
     (n : ℍ[ℚ, a, b]) ∈ Λ := by
   simpa using Submodule.smul_mem Λ (n : ℤ) hΛ.one_mem
 
+/--
+@isnad1 id=mem.2h5v.s9.804e538e071f from=translated src=- shape=f95a2494 vocab=0543b4cb
+-/
 theorem IsOrder.natCast_mul_mem_normIdeal {Λ : Submodule ℤ ℍ[ℚ, a, b]} (hΛ : IsOrder Λ) (q : ℕ)
     {x : ℍ[ℚ, a, b]} (hx : x ∈ Λ) : (q : ℍ[ℚ, a, b]) * x ∈ normIdeal Λ q := by
   have h := mul_mul_mem_normIdeal (q := q) hΛ.one_mem (hΛ.natCast_mem q) hx (q : ℤ) (by
     rw [show (q : ℍ[ℚ, a, b]) = ((q : ℚ) : ℍ[ℚ, a, b]) by norm_cast, nrd_coe]; push_cast; ring)
   simpa using h
 
+/--
+@isnad1 id=mem.2h5v.s9.82419c9b363c from=translated src=- shape=2e1cbe81 vocab=1a9d3957
+-/
 theorem IsOrder.natCast_smul_mem_normIdeal {Λ : Submodule ℤ ℍ[ℚ, a, b]} (hΛ : IsOrder Λ) (q : ℕ)
     {x : ℍ[ℚ, a, b]} (hx : x ∈ Λ) : ((q : ℕ) : ℤ) • x ∈ normIdeal Λ q := by
   have h := hΛ.natCast_mul_mem_normIdeal q hx

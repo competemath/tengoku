@@ -17,6 +17,9 @@ scoped instance algebraRatPoly : Algebra (Polynomial ℚ) K0 :=
   ((algebraMap (Polynomial (AlgebraicClosure ℚ)) K0).comp
     (Polynomial.mapRingHom (algebraMap ℚ (AlgebraicClosure ℚ)))).toAlgebra
 
+/--
+@isnad1 id=eq.0h1v.s11.555628c0b012 from=translated src=- shape=74c2882c vocab=18952cf8
+-/
 theorem algebraMap_ratPoly_apply (p : Polynomial ℚ) :
     algebraMap (Polynomial ℚ) K0 p =
       algebraMap (Polynomial (AlgebraicClosure ℚ)) K0
@@ -38,6 +41,9 @@ def galLift (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) : K0 �
       ext x
       simp)
 
+/--
+@isnad1 id=eq.0h2v.s11.80911fab4300 from=translated src=- shape=d8e8081f vocab=e57f6296
+-/
 theorem galLift_algebraMap (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ)
     (p : Polynomial (AlgebraicClosure ℚ)) :
     galLift σ (algebraMap (Polynomial (AlgebraicClosure ℚ)) K0 p) =

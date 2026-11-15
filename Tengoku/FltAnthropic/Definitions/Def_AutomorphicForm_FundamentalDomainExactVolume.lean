@@ -20,6 +20,9 @@ private lemma density_eq_ofReal_rpow {y : ℝ} (hy : 0 < y) :
     show (-2 : ℝ) = -((2 : ℕ) : ℝ) by norm_num, Real.rpow_neg hy.le, Real.rpow_natCast,
     one_div, inv_pow]
 
+/--
+@isnad1 id=eq.1h1v.s6.4d279207acad from=translated src=- shape=c59cf1d0 vocab=2aea9b9e
+-/
 theorem setLIntegral_Ici_density {c : ℝ} (hc : 0 < c) :
     ∫⁻ y in Set.Ici c, (((1 / ‖y‖₊) ^ 2 : ℝ≥0) : ℝ≥0∞) = ENNReal.ofReal c⁻¹ := by
 
@@ -54,6 +57,9 @@ private lemma continuousOn_inv_sqrt :
     have hpos : (0 : ℝ) < 1 - x ^ 2 := by nlinarith
     exact ne_of_gt (Real.sqrt_pos.mpr hpos)
 
+/--
+@isnad1 id=eq.0h0v.s6.8f826e797404 from=translated src=- shape=c4e8b4fa vocab=cf38d3f3
+-/
 theorem integral_inv_sqrt_one_sub_sq :
     ∫ x in (-(1 / 2) : ℝ)..(1 / 2), (Real.sqrt (1 - x ^ 2))⁻¹ = Real.pi / 3 := by
   have hderiv : ∀ x ∈ Set.uIcc (-(1 / 2) : ℝ) (1 / 2),
@@ -70,6 +76,9 @@ theorem integral_inv_sqrt_one_sub_sq :
 
 def lowerArc (x : ℝ) : ℝ := Real.sqrt (1 - x ^ 2)
 
+/--
+@isnad1 id=lt.1h1v.s6.6be07602470a from=translated src=- shape=1b0e00c4 vocab=0c60ca31
+-/
 lemma lowerArc_pos {x : ℝ} (hx : x ∈ Set.Icc (-(1 / 2) : ℝ) (1 / 2)) : 0 < lowerArc x := by
   have hx2 : x ^ 2 ≤ (1 / 2 : ℝ) ^ 2 := by
     apply sq_le_sq'
@@ -81,6 +90,9 @@ lemma lowerArc_pos {x : ℝ} (hx : x ∈ Set.Icc (-(1 / 2) : ℝ) (1 / 2)) : 0 <
 def regionD : Set (ℝ × ℝ) :=
   {p : ℝ × ℝ | p.1 ∈ Set.Icc (-(1 / 2) : ℝ) (1 / 2) ∧ lowerArc p.1 ≤ p.2}
 
+/--
+@isnad1 id=measurab.0h0v.s3.345eb7094e26 from=translated src=- shape=0b0a4f6e vocab=e42a2d87
+-/
 lemma measurableSet_regionD : MeasurableSet regionD := by
   apply MeasurableSet.inter
   · exact measurable_fst measurableSet_Icc
@@ -90,6 +102,9 @@ lemma measurableSet_regionD : MeasurableSet regionD := by
       fun_prop
     exact hcont.measurable
 
+/--
+@isnad1 id=eq.0h0v.s5.ce7bb010b133 from=translated src=- shape=dbb05052 vocab=12b97eb9
+-/
 lemma image_image_fd :
     Complex.measurableEquivRealProd '' (UpperHalfPlane.coe '' 𝒟) = regionD := by
   ext p
@@ -177,6 +192,9 @@ private lemma inner_slice (x : ℝ) :
       exact Set.indicator_of_notMem (fun (h : (x, y) ∈ regionD) => hx h.1) _
     rw [hzero, lintegral_zero]
 
+/--
+@isnad1 id=eq.0h0v.s5.731db66a1c97 from=translated src=- shape=277ebe40 vocab=c3dc092f
+-/
 theorem volume_fd_eq : volume 𝒟 = ENNReal.ofReal (Real.pi / 3) := by
 
   rw [UpperHalfPlane.volume_eq_lintegral]
@@ -212,17 +230,29 @@ theorem volume_fd_eq : volume 𝒟 = ENNReal.ofReal (Real.pi / 3) := by
     ← intervalIntegral.integral_of_le (by norm_num : (-(1 / 2) : ℝ) ≤ 1 / 2)]
   exact integral_inv_sqrt_one_sub_sq
 
+/--
+@isnad1 id=eq.0h0v.s5.2ef662b858af from=translated src=- shape=fee140a6 vocab=b707bf83
+-/
 theorem volume_fd_toReal : (volume 𝒟).toReal = Real.pi / 3 := by
   rw [volume_fd_eq, ENNReal.toReal_ofReal (by positivity)]
 
+/--
+@isnad1 id=lt.0h0v.s4.26ba7b38cda5 from=translated src=- shape=29c90ef8 vocab=ddcf0fc2
+-/
 theorem gate_volume_lt_top : volume 𝒟 < ⊤ := by
   rw [volume_fd_eq]; exact ENNReal.ofReal_lt_top
 
+/--
+@isnad1 id=ne.0h0v.s4.2d479b3f9b96 from=translated src=- shape=a3840590 vocab=c7cf6987
+-/
 theorem gate_volume_ne_zero : volume 𝒟 ≠ 0 := by
   rw [volume_fd_eq]
   simp only [ne_eq, ENNReal.ofReal_eq_zero, not_le]
   positivity
 
+/--
+@isnad1 id=eq.0h0v.s5.064503ba43e7 from=translated src=- shape=1f7b4015 vocab=f93ecf75
+-/
 theorem residue_mul_volume_fd :
     (3 / (Real.pi : ℂ)) * ((volume 𝒟).toReal : ℂ) = 1 := by
   rw [volume_fd_toReal]
@@ -230,6 +260,9 @@ theorem residue_mul_volume_fd :
   have hπ : (Real.pi : ℂ) ≠ 0 := Complex.ofReal_ne_zero.mpr Real.pi_ne_zero
   field_simp
 
+/--
+@isnad1 id=eq.0h0v.s5.ce3ec673aaf1 from=translated src=- shape=c3cceb7d vocab=08200748
+-/
 theorem volume_fd_toReal_eq_pin : ((volume 𝒟).toReal : ℂ) = (Real.pi : ℂ) / 3 := by
   rw [volume_fd_toReal]; push_cast; ring
 

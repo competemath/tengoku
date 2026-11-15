@@ -40,9 +40,15 @@ section Basic
 variable {k : Type*} [Field k] {M : Type*} [AddCommGroup M] [Module k M]
 variable (D : VerFrobPair k M)
 
+/--
+@isnad1 id=eq.0h4v.s7.1f92981aa16e from=translated src=- shape=bdf586ff vocab=6b041086
+-/
 theorem ver_frob_apply (x : M) : D.ver (D.frob x) = 0 := by
   simpa using LinearMap.congr_fun D.ver_comp_frob x
 
+/--
+@isnad1 id=eq.0h4v.s7.2392fcfe001c from=translated src=- shape=bdf586ff vocab=6b041086
+-/
 theorem frob_ver_apply (x : M) : D.frob (D.ver x) = 0 := by
   simpa using LinearMap.congr_fun D.frob_comp_ver x
 

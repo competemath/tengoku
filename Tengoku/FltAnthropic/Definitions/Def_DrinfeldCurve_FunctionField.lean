@@ -44,17 +44,26 @@ def hFunctionFieldAction : hSubgroup q →* (drinfeldFunctionField q k ≃ₐ[k]
       simp [IsFractionRing.algEquivOfAlgEquiv_algebraMap, map_mul]
     simpa using RingHom.congr_fun key x
 
+/--
+@isnad1 id=eq.0h4v.s15.07769cb648db from=translated src=- shape=736e6369 vocab=d3400316
+-/
 theorem hFunctionFieldAction_algebraMap (h : hSubgroup q) (a : CoordRing q k) :
     hFunctionFieldAction q k h (algebraMap (CoordRing q k) (drinfeldFunctionField q k) a) =
       algebraMap (CoordRing q k) (drinfeldFunctionField q k) (hAction q k h a) :=
   IsFractionRing.algEquivOfAlgEquiv_algebraMap (hAction q k h) a
 
+/--
+@isnad1 id=eq.0h3v.s14.6f567c8d3ef2 from=translated src=- shape=bae5d94d vocab=0dc2f688
+-/
 theorem hFunctionFieldAction_sl (g : Matrix.SpecialLinearGroup (Fin 2) (ZMod q)) :
     hFunctionFieldAction q k ⟨_, toGL_one_mem_hSubgroup q g⟩ =
       IsFractionRing.algEquivOfAlgEquiv (slAction q k g) := by
   rw [slAction_eq_hAction]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s14.cceb902443a9 from=translated src=- shape=ce570334 vocab=93969979
+-/
 theorem hFunctionFieldAction_mu (ζ : rootsOfUnity (q + 1) (GaloisField q 2)) :
     hFunctionFieldAction q k ⟨_, one_mem_hSubgroup_of_mem q ζ⟩ =
       IsFractionRing.algEquivOfAlgEquiv (muAction q k ζ) := by

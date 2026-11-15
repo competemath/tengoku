@@ -20,15 +20,24 @@ def powCharRingHom (R : Type*) [CommRing R] (p n : ℕ) (hp : p.Prime) (h : (p :
     obtain ⟨r, hr⟩ := (Commute.all x y).exists_add_pow_prime_pow_eq hp n
     rw [hr, h, zero_mul, zero_mul, zero_mul, add_zero]
 
+/--
+@isnad1 id=eq.2h4v.s6.cc0a4ce3ff10 from=translated src=- shape=d94bf18b vocab=3ed5075d
+-/
 @[simp]
 theorem powCharRingHom_apply {R : Type*} [CommRing R] (p n : ℕ) (hp : p.Prime) (h : (p : R) = 0)
     (x : R) : powCharRingHom R p n hp h x = x ^ p ^ n := rfl
 
+/--
+@isnad1 id=eq.3h6v.s8.75c0dcb1c76b from=translated src=- shape=568f5869 vocab=fbd4cae6
+-/
 theorem RingHom.map_powCharRingHom {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S)
     (p n : ℕ) (hp : p.Prime) (hR : (p : R) = 0) (hS : (p : S) = 0) (x : R) :
     f (powCharRingHom R p n hp hR x) = powCharRingHom S p n hp hS (f x) := by
   simp [map_pow]
 
+/--
+@isnad1 id=bijectiv.0h3v.s6.6ab7e0727afe from=translated src=- shape=c7444fd1 vocab=8ce2ed6d
+-/
 theorem bijective_powCharRingHom_of_perfectRing {R : Type*} [CommRing R] (p n : ℕ)
     [hp : Fact p.Prime] [CharP R p] [PerfectRing R p] :
     Function.Bijective (powCharRingHom R p n hp.out (CharP.cast_eq_zero R p)) := by
@@ -41,11 +50,17 @@ namespace Scheme
 
 variable (X : Scheme.{u}) (p n : ℕ) (hp : p.Prime) (hX : (p : Γ(X, ⊤)) = 0)
 
+/--
+@isnad1 id=eq.1h3v.s12.32801e8ad3ac from=translated src=- shape=4c4fd5fa vocab=e6e620aa
+-/
 theorem natCast_eq_zero_sections {X : Scheme.{u}} {p : ℕ} (hX : (p : Γ(X, ⊤)) = 0)
     (U : X.Opens) : (p : Γ(X, U)) = 0 := by
   have := congrArg (X.presheaf.map (homOfLE (le_top : U ≤ ⊤)).op) hX
   simpa using this
 
+/--
+@isnad1 id=eq.1h3v.s11.d32cbdf65f95 from=translated src=- shape=80c724d0 vocab=b85a7b69
+-/
 theorem natCast_eq_zero_stalk {X : Scheme.{u}} {p : ℕ} (hX : (p : Γ(X, ⊤)) = 0)
     (x : X) : (p : X.presheaf.stalk x) = 0 := by
   have := congrArg (X.presheaf.germ ⊤ x trivial) hX
@@ -77,20 +92,38 @@ def frobenius : X ⟶ X where
     erw [key] at hg
     exact (isUnit_pow_iff (pow_ne_zero n hp.ne_zero)).1 hg
 
+/--
+@isnad1 id=eq.2h3v.s11.c94f177edda1 from=translated src=- shape=dd497f3d vocab=88baa400
+-/
 @[simp]
 theorem frobenius_base : (X.frobenius p n hp hX).base = 𝟙 _ := rfl
 
+/--
+@isnad1 id=eq.2h4v.s11.bfb88ea33daf from=translated src=- shape=84c69b56 vocab=ef2fa888
+-/
 theorem frobenius_apply (x : X) : (X.frobenius p n hp hX) x = x := rfl
 
+/--
+@isnad1 id=eq.2h4v.s11.2c7acf308cde from=translated src=- shape=70a696a1 vocab=9b832370
+-/
 @[simp]
 theorem frobenius_preimage (U : X.Opens) : (X.frobenius p n hp hX) ⁻¹ᵁ U = U := rfl
 
+/--
+@isnad1 id=eq.2h5v.s12.89e38849ff77 from=translated src=- shape=160d1dab vocab=19a75919
+-/
 theorem frobenius_app_apply (U : X.Opens) (s : Γ(X, U)) :
     (X.frobenius p n hp hX).app U s = s ^ p ^ n := rfl
 
+/--
+@isnad1 id=eq.2h4v.s12.40afdcb3d03e from=translated src=- shape=94664587 vocab=1a430025
+-/
 theorem frobenius_appTop_apply (s : Γ(X, ⊤)) :
     (X.frobenius p n hp hX).appTop s = s ^ p ^ n := rfl
 
+/--
+@isnad1 id=eq.2h5v.s12.35a250dd1165 from=translated src=- shape=f0d24cd3 vocab=7ebcd390
+-/
 theorem frobenius_stalkMap_apply (x : X) (g : X.presheaf.stalk x) :
     (X.frobenius p n hp hX).stalkMap x g = g ^ p ^ n := by
   obtain ⟨U, hxU, s, rfl⟩ := X.presheaf.exists_germ_eq g
@@ -99,10 +132,16 @@ theorem frobenius_stalkMap_apply (x : X) (g : X.presheaf.stalk x) :
   change (X.presheaf.germ U x hxU) (s ^ p ^ n) = _
   rw [map_pow]
 
+/--
+@isnad1 id=eq.1h4v.s10.492183b39503 from=translated src=- shape=1b346733 vocab=bd1cc8bc
+-/
 theorem presheaf_map_eqToHom_op_apply {X : Scheme.{u}} {U V : X.Opens} (h : U = V)
     (t : Γ(X, V)) : X.presheaf.map (eqToHom h).op t = cast (by rw [h]) t := by
   subst h; simp
 
+/--
+@isnad1 id=eq.2h2v.s11.c8ffdad4c7f2 from=translated src=- shape=13061b2d vocab=c778a38f
+-/
 theorem frobenius_zero : X.frobenius p 0 hp hX = 𝟙 X := by
   refine Scheme.Hom.ext rfl (fun U => ?_)
   ext s
@@ -113,11 +152,17 @@ theorem frobenius_zero : X.frobenius p 0 hp hX = 𝟙 X := by
   rw [frobenius_app_apply, pow_zero, pow_one]
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s12.8f7d523704f6 from=translated src=- shape=b385e085 vocab=c7addaba
+-/
 theorem natCast_eq_zero_ΓSpec {R : Type u} [CommRing R] {p : ℕ} (hR : (p : R) = 0) :
     (p : Γ(Spec (.of R), ⊤)) = 0 := by
   have := congrArg (Scheme.ΓSpecIso (.of R)).inv hR
   simpa using this
 
+/--
+@isnad1 id=eq.2h3v.s6.7b0104ddcce9 from=translated src=- shape=40b7bc6c vocab=36fbfd18
+-/
 theorem frobenius_Spec {R : Type u} [CommRing R] (p n : ℕ) (hp : p.Prime) (hR : (p : R) = 0) :
     (Spec (.of R)).frobenius p n hp (natCast_eq_zero_ΓSpec hR) =
       Spec.map (CommRingCat.ofHom (powCharRingHom R p n hp hR)) := by
@@ -135,6 +180,9 @@ theorem frobenius_Spec {R : Type u} [CommRing R] (p n : ℕ) (hp : p.Prime) (hR 
       (((Spec (.of R)).frobenius p n hp (natCast_eq_zero_ΓSpec hR)).appTop s) = _
   rw [frobenius_appTop_apply, map_pow]
 
+/--
+@isnad1 id=isiso.3h3v.s6.0deab4fe84b8 from=translated src=- shape=ebfea254 vocab=4dcbe4a3
+-/
 theorem isIso_frobenius_Spec_of_bijective {R : Type u} [CommRing R] (p n : ℕ) (hp : p.Prime)
     (hR : (p : R) = 0) (hbij : Function.Bijective (powCharRingHom R p n hp hR)) :
     IsIso ((Spec (.of R)).frobenius p n hp (natCast_eq_zero_ΓSpec hR)) := by
@@ -143,6 +191,9 @@ theorem isIso_frobenius_Spec_of_bijective {R : Type u} [CommRing R] (p n : ℕ) 
     (ConcreteCategory.isIso_iff_bijective (CommRingCat.ofHom (powCharRingHom R p n hp hR))).2 hbij
   infer_instance
 
+/--
+@isnad1 id=isiso.1h3v.s12.bfc045b800af from=translated src=- shape=dc6eab89 vocab=3e94f156
+-/
 theorem isIso_frobenius_Spec_of_perfectRing {R : Type u} [CommRing R] (p n : ℕ)
     [hp : Fact p.Prime] [CharP R p] [PerfectRing R p] (h : (p : Γ(Spec (.of R), ⊤)) = 0) :
     IsIso ((Spec (.of R)).frobenius p n hp.out h) :=
@@ -156,6 +207,9 @@ variable {X} {S : Scheme.{u}} (f : X ⟶ S) (hS : (p : Γ(S, ⊤)) = 0)
 noncomputable abbrev frobeniusTwist : Scheme.{u} :=
   Limits.pullback f (S.frobenius p n hp hS)
 
+/--
+@isnad1 id=isiso.2h5v.s11.657189614d91 from=translated src=- shape=5df821a8 vocab=9650ad36
+-/
 theorem isIso_fst_frobeniusTwist [IsIso (S.frobenius p n hp hS)] :
     IsIso (Limits.pullback.fst f (S.frobenius p n hp hS)) := inferInstance
 

@@ -28,17 +28,26 @@ def xWindowSq (g : GL (Fin 2) K) : ℝ :=
   topNormSq (g : Matrix (Fin 2) (Fin 2) K) / rowNormSq (g : Matrix (Fin 2) (Fin 2) K)
     - localHeight g ^ 2
 
+/--
+@isnad1 id=eq.0h1v.s6.c97c1409e9dc from=translated src=- shape=25f4ccf3 vocab=31d031a6
+-/
 theorem rowNormSq_one : rowNormSq (1 : Matrix (Fin 2) (Fin 2) K) = 1 := by
   unfold rowNormSq
   rw [Matrix.one_apply_ne (by decide : (1 : Fin 2) ≠ 0), Matrix.one_apply_eq]
   simp
 
+/--
+@isnad1 id=eq.0h1v.s7.4b431536916a from=translated src=- shape=694be4a8 vocab=e84c67d3
+-/
 theorem localHeight_one : localHeight (1 : GL (Fin 2) K) = 1 := by
   unfold localHeight
   rw [show ((1 : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) = 1 from rfl, rowNormSq_one,
     Matrix.det_one]
   simp
 
+/--
+@isnad1 id=eq.0h1v.s7.54baf3bc653b from=translated src=- shape=694be4a8 vocab=8eb12a87
+-/
 theorem xWindowSq_one : xWindowSq (1 : GL (Fin 2) K) = 0 := by
   unfold xWindowSq topNormSq
   rw [show ((1 : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) = 1 from rfl, rowNormSq_one,
@@ -50,6 +59,9 @@ variable (F : Type) [Field F] [NumberField F]
 def archHeight (g : GL (Fin 2) (InfiniteAdeleRing F)) : ℝ :=
   ∏ v : InfinitePlace F, localHeight (AdelicLevel.archComponent F v g) ^ v.mult
 
+/--
+@isnad1 id=eq.0h1v.s7.6905e829abd2 from=translated src=- shape=14eac179 vocab=83c3f413
+-/
 theorem archHeight_one : archHeight F (1 : GL (Fin 2) (InfiniteAdeleRing F)) = 1 := by
   unfold archHeight
   simp [map_one, localHeight_one]
@@ -73,6 +85,9 @@ def WindowedAdelicReduction (c u : ℝ) : Prop :=
   ∀ g : AdelicGL2 (𝓞 F) F, ∃ γ : GL (Fin 2) F,
     globalTranslate F γ g ∈ integralWindowedSiegelSet F c u
 
+/--
+@isnad1 id=mem.1h3v.s7.939fb67f5b61 from=translated src=- shape=782f89a1 vocab=120a0bf2
+-/
 theorem one_mem_integralWindowedSiegelSet {c u : ℝ} (hc : c ≤ 1) :
     (1 : AdelicGL2 (𝓞 F) F) ∈ integralWindowedSiegelSet F c u := by
   refine ⟨?_, ?_, fun v => ?_⟩
@@ -87,6 +102,9 @@ section Invariance
 
 variable {K : Type*} [NormedField K]
 
+/--
+@isnad1 id=or.0h2v.s8.8d580a38cc08 from=translated src=- shape=9a33ff8a vocab=8300a5e6
+-/
 theorem bottom_row_ne_zero (g : GL (Fin 2) K) :
     (g : Matrix (Fin 2) (Fin 2) K) 1 0 ≠ 0 ∨ (g : Matrix (Fin 2) (Fin 2) K) 1 1 ≠ 0 := by
   rcases eq_or_ne ((g : Matrix (Fin 2) (Fin 2) K) 1 0) 0 with h0 | h0
@@ -96,6 +114,9 @@ theorem bottom_row_ne_zero (g : GL (Fin 2) K) :
     · exact Or.inr h1
   · exact Or.inl h0
 
+/--
+@isnad1 id=lt.0h2v.s6.8d93e226124f from=translated src=- shape=69350396 vocab=7c47596b
+-/
 theorem rowNormSq_pos (g : GL (Fin 2) K) :
     0 < rowNormSq (g : Matrix (Fin 2) (Fin 2) K) := by
   unfold rowNormSq
@@ -103,6 +124,9 @@ theorem rowNormSq_pos (g : GL (Fin 2) K) :
   · exact add_pos_of_pos_of_nonneg (pow_pos (norm_pos_iff.2 h) 2) (sq_nonneg _)
   · exact add_pos_of_nonneg_of_pos (sq_nonneg _) (pow_pos (norm_pos_iff.2 h) 2)
 
+/--
+@isnad1 id=eq.2h4v.s9.1f02a001ff5e from=translated src=- shape=bf244b1c vocab=ccd12931
+-/
 theorem rowNormSq_scalar_entries_mul {s : GL (Fin 2) K} {z : K}
     (h10 : (s : Matrix (Fin 2) (Fin 2) K) 1 0 = 0)
     (h11 : (s : Matrix (Fin 2) (Fin 2) K) 1 1 = z)
@@ -121,6 +145,9 @@ theorem rowNormSq_scalar_entries_mul {s : GL (Fin 2) K} {z : K}
   rw [hcoe, hbot 0, hbot 1, norm_mul, norm_mul, mul_pow, mul_pow]
   ring
 
+/--
+@isnad1 id=eq.2h4v.s9.00c53f31b319 from=translated src=- shape=4725d219 vocab=11ab9492
+-/
 theorem topNormSq_scalar_entries_mul {s : GL (Fin 2) K} {z : K}
     (h00 : (s : Matrix (Fin 2) (Fin 2) K) 0 0 = z)
     (h01 : (s : Matrix (Fin 2) (Fin 2) K) 0 1 = 0)
@@ -139,6 +166,9 @@ theorem topNormSq_scalar_entries_mul {s : GL (Fin 2) K} {z : K}
   rw [hcoe, htop 0, htop 1, norm_mul, norm_mul, mul_pow, mul_pow]
   ring
 
+/--
+@isnad1 id=eq.5h4v.s9.f468d08bee98 from=translated src=- shape=b567128d vocab=e11c63a9
+-/
 theorem localHeight_scalar_entries_mul {s : GL (Fin 2) K} {z : K} (hz : z ≠ 0)
     (h00 : (s : Matrix (Fin 2) (Fin 2) K) 0 0 = z)
     (h01 : (s : Matrix (Fin 2) (Fin 2) K) 0 1 = 0)
@@ -161,6 +191,9 @@ theorem localHeight_scalar_entries_mul {s : GL (Fin 2) K} {z : K} (hz : z ≠ 0)
     div_eq_div_iff (mul_pos hz2 (rowNormSq_pos g)).ne' (rowNormSq_pos g).ne']
   ring
 
+/--
+@isnad1 id=eq.5h4v.s9.81c97f795844 from=translated src=- shape=b567128d vocab=1ecd2680
+-/
 theorem xWindowSq_scalar_entries_mul {s : GL (Fin 2) K} {z : K} (hz : z ≠ 0)
     (h00 : (s : Matrix (Fin 2) (Fin 2) K) 0 0 = z)
     (h01 : (s : Matrix (Fin 2) (Fin 2) K) 0 1 = 0)
@@ -180,6 +213,9 @@ section AdelicInvariance
 
 variable (F : Type) [Field F] [NumberField F]
 
+/--
+@isnad1 id=eq.5h3v.s11.db2def7e4202 from=translated src=- shape=a282483e vocab=a7c152c3
+-/
 theorem glFin_scalar_eq_one {s : AdelicGL2 (𝓞 F) F} {w : AdeleRing (𝓞 F) F}
     (hwf : w.2 = 1)
     (h00 : (s : Matrix (Fin 2) (Fin 2) (AdeleRing (𝓞 F) F)) 0 0 = w)
@@ -201,6 +237,9 @@ theorem glFin_scalar_eq_one {s : AdelicGL2 (𝓞 F) F} {w : AdeleRing (𝓞 F) F
   fin_cases i <;> fin_cases j <;>
     simp [AdelicLevel.glFin_apply, h00', h01', h10', h11']
 
+/--
+@isnad1 id=eq.5h4v.s9.6caa89eace29 from=translated src=- shape=cb0720db vocab=7a273d4c
+-/
 theorem archHeight_scalar_entries_mul {s : GL (Fin 2) (InfiniteAdeleRing F)}
     {z : InfiniteAdeleRing F} (hz : ∀ v : InfinitePlace F, z v ≠ 0)
     (h00 : (s : Matrix (Fin 2) (Fin 2) (InfiniteAdeleRing F)) 0 0 = z)
@@ -221,6 +260,9 @@ theorem archHeight_scalar_entries_mul {s : GL (Fin 2) (InfiniteAdeleRing F)}
     rfl
   · rw [AdelicLevel.archComponent_apply, h11]
 
+/--
+@isnad1 id=mem.7h6v.s10.b47ed906aa1e from=translated src=- shape=3f2ae8e0 vocab=e46776aa
+-/
 theorem scalar_smul_mem_integralWindowedSiegelSet {c u : ℝ}
     {s : AdelicGL2 (𝓞 F) F} {w : AdeleRing (𝓞 F) F}
     (hwf : w.2 = 1) (hwa : ∀ v : InfinitePlace F, w.1 v ≠ 0)
@@ -275,6 +317,9 @@ section Positivity
 
 variable {K : Type*} [NormedField K]
 
+/--
+@isnad1 id=lt.0h2v.s5.c67848ed74bd from=translated src=- shape=0ac22ba1 vocab=8ba39c1e
+-/
 theorem localHeight_pos (g : GL (Fin 2) K) : 0 < localHeight g := by
   refine div_pos ?_ (rowNormSq_pos g)
   rw [norm_pos_iff]
@@ -284,6 +329,9 @@ end Positivity
 
 variable (F : Type) [Field F] [NumberField F]
 
+/--
+@isnad1 id=lt.0h2v.s5.e106108b2204 from=translated src=- shape=6f28b6d9 vocab=d0c76d83
+-/
 theorem archHeight_pos (g : GL (Fin 2) (InfiniteAdeleRing F)) : 0 < archHeight F g := by
   unfold archHeight
   exact Finset.prod_pos fun v _ => pow_pos (localHeight_pos _) _
@@ -292,10 +340,16 @@ def MeasureZeroOrInfiniteAt [MeasurableSpace (AdelicGL2 (𝓞 F) F)]
     (μ : Measure (AdelicGL2 (𝓞 F) F)) (c u : ℝ) : Prop :=
   μ (integralWindowedSiegelSet F c u) = 0 ∨ μ (integralWindowedSiegelSet F c u) = ⊤
 
+/--
+@isnad1 id=not.1h1v.s5.f1d470587394 from=translated src=- shape=bc6dfa0e vocab=c68c50ef
+-/
 theorem not_pos_and_lt_top_of_eq_zero_or_top {x : ℝ≥0∞} (h : x = 0 ∨ x = ⊤) :
     ¬(0 < x ∧ x < ⊤) := by
   rcases h with h | h <;> simp [h]
 
+/--
+@isnad1 id=not.1h4v.s7.abac45982eb6 from=translated src=- shape=968ddeae vocab=8432769e
+-/
 theorem not_pos_and_lt_top_of_measureZeroOrInfiniteAt [MeasurableSpace (AdelicGL2 (𝓞 F) F)]
     {μ : Measure (AdelicGL2 (𝓞 F) F)}
     {c u : ℝ} (h : MeasureZeroOrInfiniteAt F μ c u) :

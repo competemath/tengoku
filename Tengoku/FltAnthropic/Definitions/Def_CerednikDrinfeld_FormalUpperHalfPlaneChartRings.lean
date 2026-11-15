@@ -26,10 +26,16 @@ variable (q : ℕ)
 
 def ζ : chartVRing R q := algebraMap R[X] (chartVRing R q) X
 
+/--
+@isnad1 id=eq.0h2v.s9.b4fe21cbb71a from=translated src=- shape=fc67f15e vocab=91a4a600
+-/
 theorem algebraMap_vertexDiscr : algebraMap R[X] (chartVRing R q) (vertexDiscr R q) = ζ R q ^ q - ζ R q := by
   show algebraMap R[X] (chartVRing R q) (X ^ q - X) = _
   rw [map_sub, map_pow]; rfl
 
+/--
+@isnad1 id=isunit.0h2v.s8.4b970dcac8fb from=translated src=- shape=f15b33b8 vocab=e65cb8ce
+-/
 theorem isUnit_ζ_pow_sub : IsUnit (ζ R q ^ q - ζ R q) := by
   rw [← algebraMap_vertexDiscr]
   exact IsLocalization.Away.algebraMap_isUnit (vertexDiscr R q)
@@ -38,6 +44,9 @@ def point : (chartV R q).obj (chartVRing R q) := ⟨ζ R q, isUnit_ζ_pow_sub R 
 
 variable {R q}
 
+/--
+@isnad1 id=isunit.0h5v.s9.bd83f5979844 from=translated src=- shape=07d43a05 vocab=8675061b
+-/
 theorem isUnit_aeval_of_mem_powers {B : Type} [CommRing B] [Algebra R B] (x : (chartV R q).obj B)
     (y : Submonoid.powers (vertexDiscr R q)) : IsUnit (Polynomial.aeval (R := R) x.1 (y : R[X])) := by
   obtain ⟨_, n, rfl⟩ := y
@@ -52,6 +61,9 @@ def lift {B : Type} [CommRing B] [Algebra R B] (x : (chartV R q).obj B) : chartV
   IsLocalization.liftAlgHom (M := Submonoid.powers (vertexDiscr R q)) (f := Polynomial.aeval (R := R) x.1)
     (isUnit_aeval_of_mem_powers x)
 
+/--
+@isnad1 id=eq.0h4v.s9.899bf22d3f0f from=translated src=- shape=5aa325d6 vocab=0b924146
+-/
 @[simp] theorem lift_ζ {B : Type} [CommRing B] [Algebra R B] (x : (chartV R q).obj B) : lift x (ζ R q) = x.1 := by
   rw [lift, IsLocalization.liftAlgHom_apply, ζ, IsLocalization.lift_eq]
   exact Polynomial.aeval_X x.1
@@ -69,9 +81,15 @@ def corepEquiv (B : Type) [CommRing B] [Algebra R B] :
     exact lift_ζ _
   right_inv x := Subtype.ext (lift_ζ x)
 
+/--
+@isnad1 id=eq.0h4v.s11.1123f3fbbfac from=translated src=- shape=8486d1b5 vocab=579b4df2
+-/
 @[simp] theorem corepEquiv_apply_val (B : Type) [CommRing B] [Algebra R B] (φ : chartVRing R q →ₐ[R] B) :
     (corepEquiv R q B φ).1 = φ (ζ R q) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.f00fa0b1f58c from=translated src=- shape=a08f6900 vocab=fefee21a
+-/
 theorem corepEquiv_natural {B : Type} [CommRing B] [Algebra R B] {B' : Type} [CommRing B'] [Algebra R B']
     (f : B →ₐ[R] B') (φ : chartVRing R q →ₐ[R] B) :
     corepEquiv R q B' ((AlgFunctor.corep (𝒪 := R) (chartVRing R q)).map f φ) = (chartV R q).map f (corepEquiv R q B φ) :=
@@ -98,6 +116,9 @@ instance edgeQuot.instAlgebra (π : R) : Algebra R (edgeQuot R π) :=
 def edgeQuot.mk (π : R) : MvPolynomial (Fin 2) R →ₐ[R] edgeQuot R π :=
   Ideal.Quotient.mkₐ R (Ideal.span {edgeRel R π})
 
+/--
+@isnad1 id=eq.0h2v.s8.eafbd4f70561 from=translated src=- shape=760c0414 vocab=b44c084d
+-/
 theorem edgeQuot.mk_edgeRel (π : R) : edgeQuot.mk R π (edgeRel R π) = 0 :=
   Ideal.Quotient.eq_zero_iff_mem.mpr (Ideal.subset_span (Set.mem_singleton _))
 
@@ -119,9 +140,15 @@ def ξ : chartERing R π q := ofPoly R π q (MvPolynomial.X 0)
 
 def η : chartERing R π q := ofPoly R π q (MvPolynomial.X 1)
 
+/--
+@isnad1 id=eq.0h3v.s9.3d9b7ed7a130 from=translated src=- shape=a3111854 vocab=558d0b1a
+-/
 theorem ofPoly_edgeRel : ofPoly R π q (edgeRel R π) = 0 := by
   rw [ofPoly, AlgHom.comp_apply, edgeQuot.mk_edgeRel, map_zero]
 
+/--
+@isnad1 id=eq.0h3v.s9.44726b390968 from=translated src=- shape=cd9d0d69 vocab=8e8087c4
+-/
 theorem ξ_mul_η : ξ R π q * η R π q = algebraMap R (chartERing R π q) π := by
   have hC : ofPoly R π q (MvPolynomial.C π) = algebraMap R (chartERing R π q) π := (ofPoly R π q).commutes π
   have h2 : ofPoly R π q (edgeRel R π) = ξ R π q * η R π q - algebraMap R (chartERing R π q) π := by
@@ -129,12 +156,18 @@ theorem ξ_mul_η : ξ R π q * η R π q = algebraMap R (chartERing R π q) π 
     rw [map_sub (ofPoly R π q), map_mul (ofPoly R π q), hC]; rfl
   rw [← sub_eq_zero, ← h2, ofPoly_edgeRel]
 
+/--
+@isnad1 id=eq.0h3v.s10.1ec226c69541 from=translated src=- shape=a5ab63cc vocab=b5369cab
+-/
 theorem ofPoly_edgeDiscr :
     ofPoly R π q (edgeDiscr R q) = (ξ R π q ^ (q - 1) - 1) * (η R π q ^ (q - 1) - 1) := by
   show ofPoly R π q ((MvPolynomial.X 0 ^ (q - 1) - 1) * (MvPolynomial.X 1 ^ (q - 1) - 1)) = _
   rw [map_mul (ofPoly R π q), map_sub (ofPoly R π q), map_sub (ofPoly R π q), map_pow (ofPoly R π q),
     map_pow (ofPoly R π q), map_one]; rfl
 
+/--
+@isnad1 id=isunit.0h3v.s10.b4df4c19ad89 from=translated src=- shape=32008923 vocab=c4463ddc
+-/
 theorem isUnit_discr : IsUnit ((ξ R π q ^ (q - 1) - 1) * (η R π q ^ (q - 1) - 1)) := by
   rw [← ofPoly_edgeDiscr]
   exact IsLocalization.Away.algebraMap_isUnit (edgeQuot.discr R π q)
@@ -148,12 +181,21 @@ variable {R π q}
 abbrev evalPoly {B : Type} [CommRing B] [Algebra R B] (x : (chartE R π q).obj B) : MvPolynomial (Fin 2) R →ₐ[R] B :=
   MvPolynomial.aeval (fun i : Fin 2 => if i = 0 then x.1.1 else x.1.2)
 
+/--
+@isnad1 id=eq.0h5v.s9.ef8d9d152e76 from=translated src=- shape=89b92a17 vocab=7a018e65
+-/
 @[simp] theorem evalPoly_X_zero {B : Type} [CommRing B] [Algebra R B] (x : (chartE R π q).obj B) :
     evalPoly x (MvPolynomial.X 0) = x.1.1 := by simp [evalPoly, MvPolynomial.aeval_X]
 
+/--
+@isnad1 id=eq.0h5v.s9.2bea77699af8 from=translated src=- shape=653353a5 vocab=7a018e65
+-/
 @[simp] theorem evalPoly_X_one {B : Type} [CommRing B] [Algebra R B] (x : (chartE R π q).obj B) :
     evalPoly x (MvPolynomial.X 1) = x.1.2 := by simp [evalPoly, MvPolynomial.aeval_X]
 
+/--
+@isnad1 id=eq.0h5v.s8.391d2b330b6c from=translated src=- shape=d252ef97 vocab=cd7b69a2
+-/
 theorem evalPoly_edgeRel {B : Type} [CommRing B] [Algebra R B] (x : (chartE R π q).obj B) :
     evalPoly x (edgeRel R π) = 0 := by
   have hC : evalPoly x (MvPolynomial.C π) = algebraMap R B π := (evalPoly x).commutes π
@@ -165,9 +207,15 @@ def evalQuot {B : Type} [CommRing B] [Algebra R B] (x : (chartE R π q).obj B) :
     obtain ⟨c, rfl⟩ := Ideal.mem_span_singleton'.mp ha
     rw [map_mul (evalPoly x), evalPoly_edgeRel, mul_zero])
 
+/--
+@isnad1 id=eq.0h6v.s9.7971077c34cd from=translated src=- shape=d611079b vocab=5c3c705f
+-/
 theorem evalQuot_mk {B : Type} [CommRing B] [Algebra R B] (x : (chartE R π q).obj B) (p : MvPolynomial (Fin 2) R) :
     evalQuot x (edgeQuot.mk R π p) = evalPoly x p := rfl
 
+/--
+@isnad1 id=isunit.0h6v.s8.dd4a2e7492d0 from=translated src=- shape=74bc6ad2 vocab=b108386b
+-/
 theorem isUnit_evalQuot_of_mem_powers {B : Type} [CommRing B] [Algebra R B] (x : (chartE R π q).obj B)
     (y : Submonoid.powers (edgeQuot.discr R π q)) :
     IsUnit (evalQuot x (y : edgeQuot R π)) := by
@@ -184,14 +232,23 @@ def lift {B : Type} [CommRing B] [Algebra R B] (x : (chartE R π q).obj B) : cha
   IsLocalization.liftAlgHom (M := Submonoid.powers (edgeQuot.discr R π q))
     (f := evalQuot x) (isUnit_evalQuot_of_mem_powers x)
 
+/--
+@isnad1 id=eq.0h6v.s10.00e23dc25bc5 from=translated src=- shape=4eb1e1ef vocab=b0ace0cb
+-/
 theorem lift_ofPoly {B : Type} [CommRing B] [Algebra R B] (x : (chartE R π q).obj B) (p : MvPolynomial (Fin 2) R) :
     lift x (ofPoly R π q p) = evalPoly x p := by
   rw [lift, IsLocalization.liftAlgHom_apply, ofPoly, AlgHom.comp_apply]
   exact (IsLocalization.lift_eq _ _).trans (evalQuot_mk x p)
 
+/--
+@isnad1 id=eq.0h5v.s9.484a2c0808cd from=translated src=- shape=425633a4 vocab=c8c0360a
+-/
 @[simp] theorem lift_ξ {B : Type} [CommRing B] [Algebra R B] (x : (chartE R π q).obj B) : lift x (ξ R π q) = x.1.1 := by
   rw [ξ, lift_ofPoly, evalPoly_X_zero]
 
+/--
+@isnad1 id=eq.0h5v.s9.e3b2c57ce5fa from=translated src=- shape=5976fc6b vocab=0b52e3bb
+-/
 @[simp] theorem lift_η {B : Type} [CommRing B] [Algebra R B] (x : (chartE R π q).obj B) : lift x (η R π q) = x.1.2 := by
   rw [η, lift_ofPoly, evalPoly_X_one]
 
@@ -212,9 +269,15 @@ def corepEquiv (B : Type) [CommRing B] [Algebra R B] :
     · exact lift_η _
   right_inv x := Subtype.ext (Prod.ext (lift_ξ x) (lift_η x))
 
+/--
+@isnad1 id=eq.0h5v.s11.87e234c34584 from=translated src=- shape=6f052432 vocab=d6713617
+-/
 @[simp] theorem corepEquiv_apply_val (B : Type) [CommRing B] [Algebra R B] (φ : chartERing R π q →ₐ[R] B) :
     (corepEquiv R π q B φ).1 = (φ (ξ R π q), φ (η R π q)) := rfl
 
+/--
+@isnad1 id=eq.0h7v.s11.a578c40baad5 from=translated src=- shape=941f4456 vocab=3ed77c93
+-/
 theorem corepEquiv_natural {B : Type} [CommRing B] [Algebra R B] {B' : Type} [CommRing B'] [Algebra R B']
     (f : B →ₐ[R] B') (φ : chartERing R π q →ₐ[R] B) :
     corepEquiv R π q B' ((AlgFunctor.corep (𝒪 := R) (chartERing R π q)).map f φ) = (chartE R π q).map f (corepEquiv R π q B φ) :=
@@ -239,6 +302,9 @@ abbrev chartVRingMod : Type := chartVRing (truncRing 𝒪 π n) q
 abbrev chartERingMod : Type :=
   chartERing (truncRing 𝒪 π n) (Ideal.Quotient.mk (Ideal.span {π ^ (n + 1)}) π) q
 
+/--
+@isnad1 id=isnilpot.0h4v.s8.32a9dc23fc56 from=translated src=- shape=5520bff5 vocab=0111a68d
+-/
 theorem isNilpotent_algebraMap_of_isScalarTower (B : Type) [CommRing B] [Algebra 𝒪 B]
     [Algebra (truncRing 𝒪 π n) B] [IsScalarTower 𝒪 (truncRing 𝒪 π n) B] : IsNilpotent (algebraMap 𝒪 B π) := by
   refine ⟨n + 1, ?_⟩

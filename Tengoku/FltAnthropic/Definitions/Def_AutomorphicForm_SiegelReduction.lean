@@ -15,11 +15,17 @@ open AutomorphicForm.WindowedSiegel AutomorphicForm.SiegelCoordinates NumberFiel
 
 variable (F : Type) [Field F] [NumberField F]
 
+/--
+@isnad1 id=eq.0h5v.s11.b0fa042b9cb1 from=translated src=- shape=1e4af179 vocab=c96d3cc9
+-/
 theorem archComponent_globalPoints_apply (w : InfinitePlace F) (γ : GL (Fin 2) F) (i j : Fin 2) :
     ((archComponent F w (glArch (𝓞 F) F (globalPoints (𝓞 F) F γ)) : GL (Fin 2) w.Completion) :
         Matrix (Fin 2) (Fin 2) w.Completion) i j
       = ((γ : Matrix (Fin 2) (Fin 2) F) i j : w.Completion) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.32beee3df1fa from=translated src=- shape=b4ff59a4 vocab=88541b83
+-/
 theorem glFin_globalPoints_apply (γ : GL (Fin 2) F) (i j : Fin 2) :
     ((glFin (𝓞 F) F (globalPoints (𝓞 F) F γ) : GL (Fin 2) (FiniteAdeleRing (𝓞 F) F)) :
         Matrix (Fin 2) (Fin 2) (FiniteAdeleRing (𝓞 F) F)) i j
@@ -27,10 +33,16 @@ theorem glFin_globalPoints_apply (γ : GL (Fin 2) F) (i j : Fin 2) :
 
 omit [NumberField F] in
 
+/--
+@isnad1 id=eq.0h3v.s9.a8e4bcfabbf9 from=translated src=- shape=0166394d vocab=37522249
+-/
 theorem norm_coe_completion (w : InfinitePlace F) (x : F) : ‖(x : w.Completion)‖ = w x := by
   rw [InfinitePlace.Completion.norm_coe]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s11.9bda098c4615 from=translated src=- shape=b65a0ced vocab=589d8e91
+-/
 theorem det_archComponent_globalPoints (w : InfinitePlace F) (γ : GL (Fin 2) F) :
     ((archComponent F w (glArch (𝓞 F) F (globalPoints (𝓞 F) F γ)) : GL (Fin 2) w.Completion) :
         Matrix (Fin 2) (Fin 2) w.Completion).det
@@ -42,6 +54,9 @@ theorem det_archComponent_globalPoints (w : InfinitePlace F) (γ : GL (Fin 2) F)
   rw [← NumberField.InfinitePlace.Completion.equiv_apply, map_sub, map_mul, map_mul]
   simp only [NumberField.InfinitePlace.Completion.equiv_apply]
 
+/--
+@isnad1 id=le.1h3v.s11.dfd7e3812f54 from=translated src=- shape=e359c316 vocab=fe1babd7
+-/
 theorem archHeight_globalPoints_mul_mul_archHeight_le (γ : GL (Fin 2) F)
     (hγ : (γ : Matrix (Fin 2) (Fin 2) F) 1 0 ≠ 0) (h : GL (Fin 2) (InfiniteAdeleRing F)) :
     archHeight F (glArch (𝓞 F) F (globalPoints (𝓞 F) F γ) * h) * archHeight F h
@@ -89,6 +104,9 @@ theorem archHeight_globalPoints_mul_mul_archHeight_le (γ : GL (Fin 2) F)
           / |(Algebra.norm ℚ ((γ : Matrix (Fin 2) (Fin 2) F) 1 0) : ℝ)| ^ 2 := by
         rw [prod_eq_abs_norm, prod_eq_abs_norm, Rat.cast_abs, Rat.cast_abs]
 
+/--
+@isnad1 id=mem.1h2v.s8.cf883b6fca3f from=translated src=- shape=6e4766c5 vocab=455e8e07
+-/
 theorem mem_range_of_coe_mem_integralFiniteAdeles {x : F}
     (hx : algebraMap F (FiniteAdeleRing (𝓞 F) F) x ∈ integralFiniteAdeles (𝓞 F) F) :
     x ∈ (algebraMap (𝓞 F) F).range := by
@@ -96,6 +114,9 @@ theorem mem_range_of_coe_mem_integralFiniteAdeles {x : F}
   rw [← HeightOneSpectrum.valuedAdicCompletion_eq_valuation']
   exact valued_apply_le_one hx v
 
+/--
+@isnad1 id=and.1h4v.s11.b8063a674523 from=translated src=- shape=4e1ef516 vocab=3359d467
+-/
 theorem mem_range_of_glFin_globalPoints_mem {γ : GL (Fin 2) F}
     (hγ : glFin (𝓞 F) F (globalPoints (𝓞 F) F γ) ∈ finiteIntegralGL2 (𝓞 F) F) (i j : Fin 2) :
     (γ : Matrix (Fin 2) (Fin 2) F) i j ∈ (algebraMap (𝓞 F) F).range ∧
@@ -108,6 +129,9 @@ theorem mem_range_of_glFin_globalPoints_mem {γ : GL (Fin 2) F}
   · rw [← glFin_globalPoints_apply, map_inv, map_inv]
     exact hγ.2 i j
 
+/--
+@isnad1 id=eq.3h2v.s8.d4f65db43e82 from=translated src=- shape=1277097f vocab=63e327d9
+-/
 theorem abs_norm_eq_one_of_mem_range {x : F} (hx : x ∈ (algebraMap (𝓞 F) F).range)
     (hx' : x⁻¹ ∈ (algebraMap (𝓞 F) F).range) (hx0 : x ≠ 0) : |Algebra.norm ℚ x| = 1 := by
   obtain ⟨a, rfl⟩ := hx
@@ -120,6 +144,9 @@ theorem abs_norm_eq_one_of_mem_range {x : F} (hx : x ∈ (algebraMap (𝓞 F) F)
   rw [RingOfIntegers.coe_norm] at h1
   exact h1
 
+/--
+@isnad1 id=le.2h2v.s7.1f67c7dc1115 from=translated src=- shape=bfd0b91e vocab=ed9e24eb
+-/
 theorem one_le_abs_norm_of_mem_range {x : F} (hx : x ∈ (algebraMap (𝓞 F) F).range) (hx0 : x ≠ 0) :
     (1 : ℝ) ≤ |(Algebra.norm ℚ x : ℝ)| := by
   obtain ⟨a, rfl⟩ := hx
@@ -132,6 +159,9 @@ theorem one_le_abs_norm_of_mem_range {x : F} (hx : x ∈ (algebraMap (𝓞 F) F)
   rw [hq, ← Int.cast_abs]
   exact_mod_cast Int.one_le_abs hz
 
+/--
+@isnad1 id=le.3h3v.s13.e35a4d2be739 from=translated src=- shape=15186794 vocab=6d217e11
+-/
 theorem archHeight_mul_mul_archHeight_le_one (γ : GL (Fin 2) F)
     (hγ : (γ : Matrix (Fin 2) (Fin 2) F) 1 0 ≠ 0) (g : AdelicGL2 (𝓞 F) F)
     (hg : glFin (𝓞 F) F g ∈ finiteIntegralGL2 (𝓞 F) F)

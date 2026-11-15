@@ -23,6 +23,9 @@ noncomputable def ι : obj f ⟶ Y := Rep.ofHom ⟨Submodule.subtype _, fun _ =>
 noncomputable def toImage : X ⟶ obj f :=
   Rep.ofHom ⟨LinearMap.rangeRestrict f.hom.toLinearMap, fun g => LinearMap.ext fun x => Subtype.ext (Rep.hom_comm_apply f g x)⟩
 
+/--
+@isnad1 id=eq.0h6v.s10.97c01798addd from=translated src=- shape=e2264c34 vocab=657d49d0
+-/
 theorem toImage_hom_apply_coe (x : X) : ((toImage f).hom x : Y) = f.hom x := rfl
 
 noncomputable def map {X' Y' : Rep.{u} k G} (f' : X' ⟶ Y') (α : X ⟶ X') (β : Y ⟶ Y') (w : f ≫ β = α ≫ f') : obj f ⟶ obj f' :=
@@ -34,6 +37,9 @@ noncomputable def map {X' Y' : Rep.{u} k G} (f' : X' ⟶ Y') (α : X ⟶ X') (β
       exact this.symm),
     fun g => LinearMap.ext fun y => Subtype.ext (Rep.hom_comm_apply β g (y : Y))⟩
 
+/--
+@isnad1 id=eq.1h11v.s11.52625e0d2786 from=translated src=- shape=41966646 vocab=68524ec9
+-/
 theorem map_hom_apply_coe {X' Y' : Rep.{u} k G} (f' : X' ⟶ Y') (α : X ⟶ X') (β : Y ⟶ Y') (w : f ≫ β = α ≫ f') (y : obj f) :
     ((map f f' α β w).hom y : Y') = β.hom (y : Y) := rfl
 

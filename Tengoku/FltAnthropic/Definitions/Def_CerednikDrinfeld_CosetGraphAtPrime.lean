@@ -43,6 +43,9 @@ instance vertMulAction (R : Submodule ℤ ℍ[ℚ, a, b]) (v : HeightOneSpectrum
     MulAction (ℍ[ℚ, a, b])ˣ (Vert R v) :=
   MulAction.compHom (Vert R v) (toLoc (a := a) (b := b) v)
 
+/--
+@isnad1 id=eq.0h6v.s12.0e538b480a5b from=translated src=- shape=a811de00 vocab=b16be255
+-/
 theorem smul_vert_mk (R : Submodule ℤ ℍ[ℚ, a, b]) (v : HeightOneSpectrum (𝓞 ℚ)) (γ : (ℍ[ℚ, a, b])ˣ) (g : (Loc a b v)ˣ) :
     γ • ((g : (Loc a b v)ˣ) : Vert R v) = ((toLoc v γ * g : (Loc a b v)ˣ) : Vert R v) := rfl
 
@@ -52,6 +55,9 @@ instance awayVertMulAction (R : Submodule ℤ ℍ[ℚ, a, b]) (v : HeightOneSpec
 def actionKer (R : Submodule ℤ ℍ[ℚ, a, b]) (v : HeightOneSpectrum (𝓞 ℚ)) : Subgroup (awayUnits R v) :=
   (MulAction.toPermHom (awayUnits R v) (Vert R v)).ker
 
+/--
+@isnad1 id=normal.0h4v.s9.c45da628459c from=translated src=- shape=08f45f78 vocab=172a233c
+-/
 instance actionKer_normal (R : Submodule ℤ ℍ[ℚ, a, b]) (v : HeightOneSpectrum (𝓞 ℚ)) : (actionKer R v).Normal :=
   MonoidHom.normal_ker _
 
@@ -62,13 +68,22 @@ instance projVertMulAction (R : Submodule ℤ ℍ[ℚ, a, b]) (v : HeightOneSpec
     MulAction (ProjAwayUnits R v) (Vert R v) :=
   MulAction.compHom (Vert R v) (QuotientGroup.kerLift (MulAction.toPermHom (awayUnits R v) (Vert R v)))
 
+/--
+@isnad1 id=eq.0h6v.s14.985e8f6fe632 from=translated src=- shape=021fd02d vocab=4e639a64
+-/
 theorem mk_smul_vert (R : Submodule ℤ ℍ[ℚ, a, b]) (v : HeightOneSpectrum (𝓞 ℚ)) (γ : awayUnits R v) (x : Vert R v) :
     (QuotientGroup.mk γ : ProjAwayUnits R v) • x = γ • x := rfl
 
+/--
+@isnad1 id=eq.0h6v.s13.5f3d8e132555 from=translated src=- shape=d6d47c3c vocab=983ac4e8
+-/
 theorem coe_smul_vert_mk (R : Submodule ℤ ℍ[ℚ, a, b]) (v : HeightOneSpectrum (𝓞 ℚ)) (γ : awayUnits R v)
     (g : (Loc a b v)ˣ) :
     γ • ((g : (Loc a b v)ˣ) : Vert R v) = ((toLoc v (γ : (ℍ[ℚ, a, b])ˣ) * g : (Loc a b v)ˣ) : Vert R v) := rfl
 
+/--
+@isnad1 id=graphact.0h5v.s9.35f727847998 from=translated src=- shape=ee1d78cc vocab=07e85bcb
+-/
 instance projGraphAction (R : Submodule ℤ ℍ[ℚ, a, b]) (v : HeightOneSpectrum (𝓞 ℚ)) (nv : (Loc a b v)ˣ) :
     Mumford.GraphAction (ProjAwayUnits R v) (graph R v nv) where
   smul_adj := by

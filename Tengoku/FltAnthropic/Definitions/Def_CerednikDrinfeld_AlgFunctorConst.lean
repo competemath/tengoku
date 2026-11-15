@@ -14,6 +14,9 @@ def const (X : Type) : AlgFunctor 𝒪 where
   map_id _ := rfl
   map_comp _ _ _ := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.2db69573effe from=translated src=- shape=23e624a4 vocab=7eb5c842
+-/
 @[simp] theorem const_map (X : Type) {B : Type} [CommRing B] [Algebra 𝒪 B] {B' : Type} [CommRing B'] [Algebra 𝒪 B']
     (φ : B →ₐ[𝒪] B') (x : X) : (const (𝒪 := 𝒪) X).map φ x = x := rfl
 

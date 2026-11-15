@@ -8,6 +8,9 @@ namespace HeckeEis
 open MvPolynomial ModularCurve
 open scoped MatrixGroups
 
+/--
+@isnad1 id=eq.1h6v.s8.ead55e6a5829 from=translated src=- shape=183a0db1 vocab=38931f3a
+-/
 theorem eval_smul_of_isHomogeneous {σ : Type*} {R : Type*} [CommRing R] {φ : MvPolynomial σ R} {n : ℕ}
     (hφ : φ.IsHomogeneous n) (c : R) (x : σ → R) :
     MvPolynomial.eval (c • x) φ = c ^ n * MvPolynomial.eval x φ := by
@@ -31,18 +34,30 @@ noncomputable def binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) :
     MvPolynomial (Fin 2) K →ₐ[K] MvPolynomial (Fin 2) K :=
   MvPolynomial.aeval fun j => ∑ i : Fin 2, C ((M i j : ℤ) : K) * X i
 
+/--
+@isnad1 id=eq.0h3v.s9.97922d1808b3 from=translated src=- shape=d05155e4 vocab=8ef7c977
+-/
 theorem binarySubst_X (M : Matrix (Fin 2) (Fin 2) ℤ) (j : Fin 2) :
     binarySubst K M (X j) = ∑ i : Fin 2, C ((M i j : ℤ) : K) * X i :=
   MvPolynomial.aeval_X _ _
 
+/--
+@isnad1 id=eq.0h3v.s9.c6a3e40a55af from=translated src=- shape=8b4b1139 vocab=0beeb77c
+-/
 theorem binarySubst_C (M : Matrix (Fin 2) (Fin 2) ℤ) (r : K) : binarySubst K M (C r) = C r := by
   rw [binarySubst, MvPolynomial.aeval_C, MvPolynomial.algebraMap_eq]
 
+/--
+@isnad1 id=eq.0h1v.s8.1756868d26bd from=translated src=- shape=ff6f37b8 vocab=d162503d
+-/
 theorem binarySubst_one : binarySubst K (1 : Matrix (Fin 2) (Fin 2) ℤ) = AlgHom.id K _ := by
   refine MvPolynomial.algHom_ext fun j => ?_
   rw [binarySubst_X, AlgHom.id_apply, Fin.sum_univ_two]
   fin_cases j <;> simp [Matrix.one_apply]
 
+/--
+@isnad1 id=eq.0h3v.s8.0c316ab15ccd from=translated src=- shape=7cb18bd0 vocab=f2c960e2
+-/
 theorem binarySubst_mul (M M' : Matrix (Fin 2) (Fin 2) ℤ) :
     binarySubst K (M * M') = (binarySubst K M).comp (binarySubst K M') := by
   refine MvPolynomial.algHom_ext fun j => ?_
@@ -51,6 +66,9 @@ theorem binarySubst_mul (M M' : Matrix (Fin 2) (Fin 2) ℤ) :
     Int.cast_add, Int.cast_mul, C_mul]
   ring
 
+/--
+@isnad1 id=mem.1h4v.s9.ff82d19200c2 from=translated src=- shape=09d0f31e vocab=809041c5
+-/
 theorem binarySubst_mem {n : ℕ} (M : Matrix (Fin 2) (Fin 2) ℤ) {F : MvPolynomial (Fin 2) K}
     (hF : F ∈ BinaryForm K n) : binarySubst K M F ∈ BinaryForm K n := by
   rw [MvPolynomial.mem_homogeneousSubmodule] at hF ⊢
@@ -75,6 +93,9 @@ noncomputable def binaryFormRepSL : Representation K SL(2, ℤ) (BinaryForm K n)
     rw [Matrix.SpecialLinearGroup.coe_mul, binarySubst_mul]
     rfl
 
+/--
+@isnad1 id=eq.0h4v.s12.8955c73d0007 from=translated src=- shape=d6535985 vocab=ad756e75
+-/
 @[simp]
 theorem binaryFormRepSL_apply_coe (g : SL(2, ℤ)) (F : BinaryForm K n) :
     ((binaryFormRepSL K n g F : BinaryForm K n) : MvPolynomial (Fin 2) K)
@@ -84,6 +105,9 @@ theorem binaryFormRepSL_apply_coe (g : SL(2, ℤ)) (F : BinaryForm K n) :
 noncomputable def binaryFormAlphaAdj (ℓ : ℕ) : BinaryForm K n →ₗ[K] BinaryForm K n :=
   (binarySubst K !![(ℓ : ℤ), 0; 0, 1]).toLinearMap.restrict fun F hF => binarySubst_mem K _ hF
 
+/--
+@isnad1 id=eq.0h4v.s11.9cbdc6e31dc0 from=translated src=- shape=01da619c vocab=d1b872b7
+-/
 @[simp]
 theorem binaryFormAlphaAdj_apply_coe (ℓ : ℕ) (F : BinaryForm K n) :
     ((binaryFormAlphaAdj K n ℓ F : BinaryForm K n) : MvPolynomial (Fin 2) K)
@@ -99,6 +123,9 @@ variable (p : ℕ) [Fact p.Prime] (K : Type*) [CommRing K] [CharP K p]
 noncomputable def evalRow (F : MvPolynomial (Fin 2) K) (v : UnimodularRow (ZMod p)) : K :=
   MvPolynomial.eval ![ZMod.castHom (dvd_refl p) K v.1.1, ZMod.castHom (dvd_refl p) K v.1.2] F
 
+/--
+@isnad1 id=eq.3h6v.s8.1b311a4fba12 from=translated src=- shape=347ae6e9 vocab=2a35d3f4
+-/
 theorem evalRow_eq_of_unit_mul {F : MvPolynomial (Fin 2) K} (hF : F ∈ BinaryForm K (p - 1))
     (u : (ZMod p)ˣ) (v w : UnimodularRow (ZMod p))
     (h1 : (u : ZMod p) * v.1.1 = w.1.1) (h2 : (u : ZMod p) * v.1.2 = w.1.2) :
@@ -132,6 +159,9 @@ noncomputable def binaryFormEval : BinaryForm K (p - 1) →ₗ[K] (ProjectiveLin
         = c • evalRow p K (F : MvPolynomial (Fin 2) K) v
       simp [evalRow, MvPolynomial.smul_eval]
 
+/--
+@isnad1 id=eq.0h4v.s10.a44b725815c1 from=translated src=- shape=915becbb vocab=ce5e84aa
+-/
 @[simp]
 theorem binaryFormEval_mk (F : BinaryForm K (p - 1)) (v : UnimodularRow (ZMod p)) :
     binaryFormEval p K F (⟦v⟧ : ProjectiveLine (ZMod p)) = evalRow p K F v :=

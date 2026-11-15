@@ -36,6 +36,9 @@ def tensorToDualHom (k : Type u) [Field k] (M : Type u) [AddCommGroup M] [Module
       (fun m w₁ w₂ => by ext ξ; simp [add_smul])
       (fun c m w => by ext ξ; simp [smul_smul]))
 
+/--
+@isnad1 id=eq.0h6v.s10.a3ffd90e1b22 from=translated src=- shape=fedf990c vocab=5a00c672
+-/
 @[simp] theorem tensorToDualHom_tmul (k : Type u) [Field k] (M : Type u) [AddCommGroup M] [Module k M]
     (W : Type u) [AddCommGroup W] [Module k W] (m : M) (w : W) (ξ : Module.Dual k W) :
     tensorToDualHom k M W (m ⊗ₜ w) ξ = ξ w • m := by
@@ -47,9 +50,15 @@ def tangentCoords {A : Type u} [CommRing A] (φ : A →+* thickening T' V C) (a 
     Module.Dual (ResidueField T') V →ₗ[ResidueField T'] (ResidueField T' ⊗[T'] C) :=
   tensorToDualHom (ResidueField T') (ResidueField T' ⊗[T'] C) V (vPart T' V C (φ a))
 
+/--
+@isnad1 id=eq.0h7v.s14.ccd9eb77a69c from=translated src=- shape=55c7ba73 vocab=f5d6a21b
+-/
 theorem tangentCoords_apply {A : Type u} [CommRing A] (φ : A →+* thickening T' V C) (a : A) (ξ : Module.Dual (ResidueField T') V) :
     tangentCoords T' V C φ a ξ = tensorToDualHom (ResidueField T') (ResidueField T' ⊗[T'] C) V (vPart T' V C (φ a)) ξ := rfl
 
+/--
+@isnad1 id=eq.0h7v.s12.dc0274768a3a from=translated src=- shape=4e3cffa1 vocab=1b16307d
+-/
 theorem tangentCoords_add {A : Type u} [CommRing A] (φ : A →+* thickening T' V C) (a b : A) :
     tangentCoords T' V C φ (a + b) = tangentCoords T' V C φ a + tangentCoords T' V C φ b := by
   unfold tangentCoords

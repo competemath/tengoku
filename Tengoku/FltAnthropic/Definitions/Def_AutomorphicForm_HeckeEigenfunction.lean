@@ -26,6 +26,9 @@ def rightTranslationEmbed : AdelicGL2 (𝓞 F) F →* RightTranslationGroup F wh
   map_one' := rfl
   map_mul' _ _ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.df01b696ae14 from=translated src=- shape=38a2705d vocab=636710e1
+-/
 @[simp] theorem rightTranslationEmbed_smul_apply (g x : AdelicGL2 (𝓞 F) F)
     (φ : AdelicGL2 (𝓞 F) F → ℂ) :
     (rightTranslationEmbed F g • φ) x = φ (x * g) := rfl

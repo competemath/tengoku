@@ -15,16 +15,25 @@ def hahnTwistFun (χ : Multiplicative ℚ →* Rˣ) (x : HahnSeries ℚ R) : Hah
     simp only [Function.mem_support] at ha ⊢
     exact fun h => ha (by rw [h, mul_zero])
 
+/--
+@isnad1 id=eq.0h4v.s7.4b1cfb765d88 from=translated src=- shape=7111beed vocab=353886f0
+-/
 theorem coeff_hahnTwistFun (χ : Multiplicative ℚ →* Rˣ) (x : HahnSeries ℚ R) (a : ℚ) :
     (hahnTwistFun χ x).coeff a = χ (Multiplicative.ofAdd a) * x.coeff a :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.f420c359a617 from=translated src=- shape=d7d8499a vocab=070ee43c
+-/
 theorem support_hahnTwistFun (χ : Multiplicative ℚ →* Rˣ) (x : HahnSeries ℚ R) :
     (hahnTwistFun χ x).support = x.support := by
   ext a
   rw [mem_support, mem_support, coeff_hahnTwistFun]
   exact not_congr (Units.mul_right_eq_zero _)
 
+/--
+@isnad1 id=eq.0h4v.s8.57d5fc42459d from=translated src=- shape=c2a97135 vocab=60fae013
+-/
 theorem hahnTwistFun_single (χ : Multiplicative ℚ →* Rˣ) (a : ℚ) (r : R) :
     hahnTwistFun χ (single a r) = single a (χ (Multiplicative.ofAdd a) * r) := by
   ext b
@@ -68,19 +77,31 @@ def hahnTwist (χ : Multiplicative ℚ →* Rˣ) : HahnSeries ℚ R ≃ₐ[R] Ha
     show hahnTwistFun χ _ = _
     rw [hC, hCs, hahnTwistFun_single, ofAdd_zero, map_one, Units.val_one, one_mul]
 
+/--
+@isnad1 id=eq.0h4v.s8.9a77f7aed256 from=translated src=- shape=5d11ea7c vocab=f44e4508
+-/
 @[simp]
 theorem coeff_hahnTwist (χ : Multiplicative ℚ →* Rˣ) (x : HahnSeries ℚ R) (a : ℚ) :
     (hahnTwist χ x).coeff a = χ (Multiplicative.ofAdd a) * x.coeff a :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.63ba20c4462d from=translated src=- shape=cd01d02f vocab=6987f834
+-/
 theorem hahnTwist_single (χ : Multiplicative ℚ →* Rˣ) (a : ℚ) (r : R) :
     hahnTwist χ (single a r) = single a (χ (Multiplicative.ofAdd a) * r) :=
   hahnTwistFun_single χ a r
 
+/--
+@isnad1 id=eq.0h3v.s8.7af7361173a0 from=translated src=- shape=ff8a4075 vocab=f2244af8
+-/
 theorem support_hahnTwist (χ : Multiplicative ℚ →* Rˣ) (x : HahnSeries ℚ R) :
     (hahnTwist χ x).support = x.support :=
   support_hahnTwistFun χ x
 
+/--
+@isnad1 id=eq.0h3v.s8.566528436a40 from=translated src=- shape=813a2f7d vocab=2fe9457e
+-/
 theorem order_hahnTwist (χ : Multiplicative ℚ →* Rˣ) (x : HahnSeries ℚ R) :
     (hahnTwist χ x).order = x.order := by
   by_cases hx : x = 0
@@ -97,6 +118,9 @@ variable (R) in
 def MonoChar : Subgroup (Multiplicative ℚ →* Rˣ) :=
   (MonoidHom.eval (Multiplicative.ofAdd (1 : ℚ))).ker
 
+/--
+@isnad1 id=iff.0h2v.s9.2f59fe6bdf71 from=translated src=- shape=657c35de vocab=15d0e8d5
+-/
 theorem mem_monoChar_iff {χ : Multiplicative ℚ →* Rˣ} :
     χ ∈ MonoChar R ↔ χ (Multiplicative.ofAdd (1 : ℚ)) = 1 :=
   Iff.rfl
@@ -113,6 +137,9 @@ def hahnTwistHom : (Multiplicative ℚ →* Rˣ) →* (HahnSeries ℚ R ≃ₐ[R
     rw [coeff_hahnTwist, AlgEquiv.mul_apply, coeff_hahnTwist, coeff_hahnTwist,
       MonoidHom.mul_apply, Units.val_mul, mul_assoc]
 
+/--
+@isnad1 id=eq.0h2v.s11.847ae4fc7341 from=translated src=- shape=dde108fb vocab=ff6a89b8
+-/
 theorem hahnTwistHom_apply (χ : Multiplicative ℚ →* Rˣ) :
     (hahnTwistHom : (Multiplicative ℚ →* Rˣ) →* (HahnSeries ℚ R ≃ₐ[R] HahnSeries ℚ R)) χ =
       hahnTwist χ :=
@@ -123,6 +150,9 @@ variable (R) in
 def monodromy : Subgroup (HahnSeries ℚ R ≃ₐ[R] HahnSeries ℚ R) :=
   (MonoChar R).map hahnTwistHom
 
+/--
+@isnad1 id=eq.1h2v.s10.dccc89323744 from=translated src=- shape=bf78b7d3 vocab=69b9e7ff
+-/
 theorem fixes_single_one_of_mem_monodromy {m : HahnSeries ℚ R ≃ₐ[R] HahnSeries ℚ R}
     (hm : m ∈ monodromy R) :
     m (single (1 : ℚ) (1 : R)) = single (1 : ℚ) (1 : R) := by
@@ -137,6 +167,9 @@ open WeierstrassCurve
 
 variable {k K : Type*} [Field k] [Field K] [Algebra k K]
 
+/--
+@isnad1 id=nonsingu.2h6v.s8.2c2014858c93 from=translated src=- shape=37a7c0f2 vocab=d79706ea
+-/
 theorem nonsingular_of_fixed (σ : K ≃ₐ[k] K) (E : WeierstrassCurve K)
     (hE : E.map (σ : K →+* K) = E) {x y : K} (h : E.toAffine.Nonsingular x y) :
     E.toAffine.Nonsingular (σ x) (σ y) := by
@@ -218,10 +251,16 @@ def fixedTransport [DecidableEq K] (σ : K ≃ₐ[k] K) (E : WeierstrassCurve K)
       · exact σ.apply_symm_apply y
   map_add' := fixedFun_add σ E hE
 
+/--
+@isnad1 id=eq.1h4v.s8.f5a312e15607 from=translated src=- shape=e2b04cda vocab=a4b2ebaa
+-/
 theorem fixedTransport_zero [DecidableEq K] (σ : K ≃ₐ[k] K) (E : WeierstrassCurve K)
     (hE : E.map (σ : K →+* K) = E) : fixedTransport σ E hE 0 = 0 :=
   rfl
 
+/--
+@isnad1 id=eq.2h6v.s8.e8f21e5b91f2 from=translated src=- shape=897777d6 vocab=f18b0d22
+-/
 theorem fixedTransport_some [DecidableEq K] (σ : K ≃ₐ[k] K) (E : WeierstrassCurve K)
     (hE : E.map (σ : K →+* K) = E) (x y : K) (h : E.toAffine.Nonsingular x y) :
     fixedTransport σ E hE (some x y h) = some (σ x) (σ y) (nonsingular_of_fixed σ E hE h) :=

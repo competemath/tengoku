@@ -54,6 +54,9 @@ noncomputable def frobeniusOnCoinvariants [Finite G] (t φ : G)
     Module.End k (A ⧸ LinearMap.range (A.ρ t - 1)) :=
   Submodule.mapQ _ _ (A.ρ φ) (range_rho_sub_one_le_comap t φ h)
 
+/--
+@isnad1 id=eq.1h6v.s14.9b1fd98924ae from=translated src=- shape=cf55e94b vocab=c2b5cd05
+-/
 @[simp] lemma frobeniusOnCoinvariants_mk [Finite G] (t φ : G)
     (h : φ * t * φ⁻¹ ∈ Subgroup.zpowers t) (x : A) :
     frobeniusOnCoinvariants A t φ h (Submodule.Quotient.mk x) =
@@ -63,6 +66,9 @@ noncomputable def evalAtGen (t : G) :
     cocycles₁ A →ₗ[k] A ⧸ LinearMap.range (A.ρ t - 1) :=
   (LinearMap.range (A.ρ t - 1)).mkQ ∘ₗ (LinearMap.proj t) ∘ₗ (cocycles₁ A).subtype
 
+/--
+@isnad1 id=eq.0h5v.s14.908566244a2a from=translated src=- shape=c7f5ee2e vocab=d2440087
+-/
 @[simp] lemma evalAtGen_apply (t : G) (f : cocycles₁ A) :
     evalAtGen A t f = Submodule.Quotient.mk (f t) := rfl
 

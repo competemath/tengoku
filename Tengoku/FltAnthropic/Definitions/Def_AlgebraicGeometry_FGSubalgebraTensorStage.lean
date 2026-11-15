@@ -23,6 +23,9 @@ noncomputable abbrev tensorStageMap (D D' : FGSubalgebra k A) (h : D ≤ D') :
 noncomputable abbrev tensorStageToColimit (D : FGSubalgebra k A) : tensorStage k A Γ D →ₐ[Γ] Γ ⊗[k] A :=
   Algebra.TensorProduct.map (AlgHom.id Γ Γ) D.1.val
 
+/--
+@isnad1 id=eq.1h5v.s10.feeb467425cd from=translated src=- shape=98c16371 vocab=9c27625d
+-/
 theorem tensorStageToColimit_comp (i j : FGSubalgebra k A) (h : i ≤ j) :
     (tensorStageToColimit k A Γ j).comp (tensorStageMap k A Γ i j h) = tensorStageToColimit k A Γ i := by
   refine AlgHom.ext fun x => ?_
@@ -31,6 +34,9 @@ theorem tensorStageToColimit_comp (i j : FGSubalgebra k A) (h : i ≤ j) :
   | tmul γ d => rfl
   | add x y hx hy => simp only [map_add, hx, hy]
 
+/--
+@isnad1 id=eq.0h5v.s13.67a3a90b697c from=translated src=- shape=dafea6e4 vocab=efb5ad54
+-/
 theorem tensorStageToColimit_comm (D : FGSubalgebra k A) (u : ↥D.1 ⊗[k] Γ) :
     tensorStageToColimit k A Γ D (TensorProduct.comm k _ _ u) = TensorProduct.comm k _ _ (D.1.val.toLinearMap.rTensor Γ u) := by
   induction u using TensorProduct.induction_on with
@@ -38,6 +44,9 @@ theorem tensorStageToColimit_comm (D : FGSubalgebra k A) (u : ↥D.1 ⊗[k] Γ) 
   | tmul d γ => rfl
   | add x y hx hy => simp only [map_add, hx, hy]
 
+/--
+@isnad1 id=eq.1h6v.s14.7d092089de2c from=translated src=- shape=0b73337b vocab=e451df3c
+-/
 theorem tensorStageMap_comm (D D' : FGSubalgebra k A) (h : D ≤ D') (u : ↥D.1 ⊗[k] Γ) :
     tensorStageMap k A Γ D D' h (TensorProduct.comm k _ _ u) =
       TensorProduct.comm k _ _ ((Subalgebra.inclusion (show D.1 ≤ D'.1 from h)).toLinearMap.rTensor Γ u) := by
@@ -46,11 +55,17 @@ theorem tensorStageMap_comm (D D' : FGSubalgebra k A) (h : D ≤ D') (u : ↥D.1
   | tmul d γ => rfl
   | add x y hx hy => simp only [map_add, hx, hy]
 
+/--
+@isnad1 id=ex.0h4v.s10.d22384d5ee9c from=translated src=- shape=79e6ee44 vocab=3a3b040f
+-/
 theorem tensorStageToColimit_surj (b : Γ ⊗[k] A) : ∃ (D : FGSubalgebra k A) (x : tensorStage k A Γ D), tensorStageToColimit k A Γ D x = b := by
   obtain ⟨D, hD, u, hu⟩ := TensorProduct.Algebra.exists_of_fg (TensorProduct.comm k _ _ b)
   refine ⟨⟨D, hD⟩, TensorProduct.comm k _ _ u, ?_⟩
   rw [tensorStageToColimit_comm, hu, ← TensorProduct.comm_symm, LinearEquiv.symm_apply_apply]
 
+/--
+@isnad1 id=ex.1h5v.s11.900c6aa51c6a from=translated src=- shape=caa474ec vocab=39565a57
+-/
 theorem tensorStageToColimit_zero (D : FGSubalgebra k A) (x : tensorStage k A Γ D) (hx : tensorStageToColimit k A Γ D x = 0) :
     ∃ (D' : FGSubalgebra k A) (h : D ≤ D'), tensorStageMap k A Γ D D' h x = 0 := by
   have hx' : D.1.val.toLinearMap.rTensor Γ ((TensorProduct.comm k _ _).symm x) =

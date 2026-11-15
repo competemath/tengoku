@@ -72,10 +72,16 @@ def fibreCoeff (i : ℕ) (n : Fin d → ℤ) : ℂ :=
 def coeff (n : Fin d → ℤ) : ℂ :=
   ∑' i : ℕ, 𝒟.lam i * 𝒟.fibreCoeff i n
 
+/--
+@isnad1 id=eq.1h7v.s8.999c0a1a75ed from=translated src=- shape=e16e68d4 vocab=f4385d2e
+-/
 theorem fibreTerm_of_ne (i : ℕ) (n : Fin d → ℤ) (γ : 𝒟.sub i)
     (h : (γ : (Fin r → ℝ) × (Fin d → ℤ)).2 + 𝒟.n₀ i ≠ n) : 𝒟.fibreTerm i n γ = 0 :=
   ite_eq_right h
 
+/--
+@isnad1 id=eq.1h5v.s5.66d8645be7e3 from=translated src=- shape=4fe23e48 vocab=21f8398f
+-/
 theorem coeff_eq_zero_of_lam_eq_zero (h : ∀ i : ℕ, 𝒟.lam i = 0) (n : Fin d → ℤ) : 𝒟.coeff n = 0 := by
   simp [coeff, h]
 

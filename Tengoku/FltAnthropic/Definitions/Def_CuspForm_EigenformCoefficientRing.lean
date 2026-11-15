@@ -20,12 +20,18 @@ variable {g} (hint : PrimeCoeffsIntegral g)
 
 def eigenLift (ℓ : Nat.Primes) : integralClosure ℤ ℂ := (hint ℓ).choose
 
+/--
+@isnad1 id=eq.1h3v.s9.4fb27c8b286e from=translated src=- shape=905bb847 vocab=2e9f70ce
+-/
 theorem eigenLift_coe (ℓ : Nat.Primes) : ((eigenLift hint ℓ : integralClosure ℤ ℂ) : ℂ) = ModularFormClass.qCoeff g ℓ :=
   (hint ℓ).choose_spec
 
 def eigenCoeffRing : Subalgebra ℤ (integralClosure ℤ ℂ) :=
   Algebra.adjoin ℤ (Set.range (eigenLift hint))
 
+/--
+@isnad1 id=mem.1h3v.s9.867a17fed97a from=translated src=- shape=ef66dcd3 vocab=fbae5e37
+-/
 theorem eigenLift_mem_eigenCoeffRing (ℓ : Nat.Primes) : eigenLift hint ℓ ∈ eigenCoeffRing hint :=
   Algebra.subset_adjoin ⟨ℓ, rfl⟩
 

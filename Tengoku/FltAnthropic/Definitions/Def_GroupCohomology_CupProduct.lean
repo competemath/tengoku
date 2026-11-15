@@ -32,6 +32,9 @@ variable (φ : A →ₗ[k] B →ₗ[k] N)
 def cupCochain (f : G → A) (g : G → B) : G × G → N :=
   fun p => φ (f p.1) (B.ρ p.1 (g p.2))
 
+/--
+@isnad1 id=eq.0h10v.s11.78cc9377e3be from=translated src=- shape=ff2ecfc2 vocab=0b3d46d1
+-/
 @[simp]
 lemma cupCochain_apply (f : G → A) (g : G → B) (s t : G) :
     cupCochain φ f g (s, t) = φ (f s) (B.ρ s (g t)) := rfl
@@ -71,10 +74,16 @@ noncomputable def cup : cocycles₁ A →ₗ[k] cocycles₁ B →ₗ[k] cocycles
       show φ (f s) (B.ρ s (c • g t)) = c • φ (f s) (B.ρ s (g t))
       rw [map_smul, map_smul])
 
+/--
+@isnad1 id=eq.1h10v.s14.bb8e578b95ac from=translated src=- shape=c5211c6f vocab=c5b07c57
+-/
 @[simp]
 lemma cup_apply (f : cocycles₁ A) (g : cocycles₁ B) (s t : G) :
     (cup φ hφ f g) (s, t) = φ (f s) (B.ρ s (g t)) := rfl
 
+/--
+@isnad1 id=eq.1h8v.s14.7fb177da10d3 from=translated src=- shape=fe85ee55 vocab=242f5e3b
+-/
 lemma cup_coe (f : cocycles₁ A) (g : cocycles₁ B) :
     ⇑(cup φ hφ f g) = cupCochain φ (⇑f) (⇑g) := rfl
 
@@ -129,6 +138,9 @@ noncomputable def H1desc (F : cocycles₁ A →ₗ[k] W)
         (hF x ((H1π_eq_zero_iff x).1 (LinearMap.mem_ker.1 hx)))) ∘ₗ
     ((H1π A).hom.quotKerEquivOfSurjective (H1π_surjective A)).symm.toLinearMap
 
+/--
+@isnad1 id=eq.1h6v.s13.a744a9020f09 from=translated src=- shape=5f48c518 vocab=24b4da9d
+-/
 @[simp]
 lemma H1desc_H1π (F : cocycles₁ A →ₗ[k] W)
     (hF : ∀ x : cocycles₁ A, ⇑x ∈ coboundaries₁ A → F x = 0) (x : cocycles₁ A) :

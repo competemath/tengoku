@@ -41,6 +41,9 @@ def congruenceK0 (ϖ : R) (n : ℕ) : Subgroup (GL (Fin 2) K) where
     rw [hco, hadj]
     exact Ideal.mul_mem_left _ _ (Submodule.neg_mem _ h)
 
+/--
+@isnad1 id=iff.0h5v.s10.383d1864528a from=translated src=- shape=e4681051 vocab=f6abadae
+-/
 theorem mem_congruenceK0_iff {ϖ : R} {n : ℕ} {x : GL (Fin 2) K} :
     x ∈ congruenceK0 (K := K) ϖ n ↔
       ∃ y : GL (Fin 2) R,
@@ -48,6 +51,9 @@ theorem mem_congruenceK0_iff {ϖ : R} {n : ℕ} {x : GL (Fin 2) K} :
         (y : Matrix (Fin 2) (Fin 2) R) 1 0 ∈ Ideal.span {ϖ ^ n} :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.da26ebf1df2a from=translated src=- shape=db354873 vocab=8d29d3f0
+-/
 theorem congruenceK0_zero (ϖ : R) :
     congruenceK0 (K := K) ϖ 0
       = (Matrix.GeneralLinearGroup.map (n := Fin 2) (algebraMap R K)).range := by
@@ -123,6 +129,9 @@ def congruenceK1 (ϖ : R) (n : ℕ) : Subgroup (GL (Fin 2) K) where
         exact Ideal.mul_mem_left _ _ (Submodule.neg_mem _ hd)
       · exact Ideal.mul_mem_left _ _ hc
 
+/--
+@isnad1 id=iff.0h5v.s10.e2030d900731 from=translated src=- shape=ca66a1a3 vocab=4e26a6dc
+-/
 theorem mem_congruenceK1_iff {ϖ : R} {n : ℕ} {x : GL (Fin 2) K} :
     x ∈ congruenceK1 (K := K) ϖ n ↔
       ∃ y : GL (Fin 2) R,
@@ -131,22 +140,34 @@ theorem mem_congruenceK1_iff {ϖ : R} {n : ℕ} {x : GL (Fin 2) K} :
         (y : Matrix (Fin 2) (Fin 2) R) 1 1 - 1 ∈ Ideal.span {ϖ ^ n} :=
   Iff.rfl
 
+/--
+@isnad1 id=le.0h4v.s8.2bf84a6a5b04 from=translated src=- shape=12deaaa9 vocab=9e110b11
+-/
 theorem congruenceK1_le_congruenceK0 (ϖ : R) (n : ℕ) :
     congruenceK1 (K := K) ϖ n ≤ congruenceK0 (K := K) ϖ n := by
   rintro x ⟨y, rfl, hc, _⟩
   exact ⟨y, rfl, hc⟩
 
+/--
+@isnad1 id=eq.0h3v.s8.9cc2fecafeeb from=translated src=- shape=db354873 vocab=7e7a7194
+-/
 theorem congruenceK1_zero (ϖ : R) :
     congruenceK1 (K := K) ϖ 0
       = (Matrix.GeneralLinearGroup.map (n := Fin 2) (algebraMap R K)).range := by
   ext x
   simp [mem_congruenceK1_iff, MonoidHom.mem_range, pow_zero, Ideal.span_singleton_one]
 
+/--
+@isnad1 id=le.1h5v.s8.0a7bf9486ef3 from=translated src=- shape=e4da3086 vocab=b26193bd
+-/
 theorem congruenceK0_antitone {ϖ : R} {m n : ℕ} (hmn : m ≤ n) :
     congruenceK0 (K := K) ϖ n ≤ congruenceK0 (K := K) ϖ m := by
   rintro x ⟨y, rfl, hc⟩
   exact ⟨y, rfl, Ideal.span_singleton_le_span_singleton.mpr (pow_dvd_pow ϖ hmn) hc⟩
 
+/--
+@isnad1 id=le.1h5v.s8.34dd90661940 from=translated src=- shape=e4da3086 vocab=1152d599
+-/
 theorem congruenceK1_antitone {ϖ : R} {m n : ℕ} (hmn : m ≤ n) :
     congruenceK1 (K := K) ϖ n ≤ congruenceK1 (K := K) ϖ m := by
   rintro x ⟨y, rfl, hc, hd⟩

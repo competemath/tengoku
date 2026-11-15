@@ -69,17 +69,29 @@ noncomputable def transposeInvN (g : GL ι R) : GL ι R where
   val_inv := by rw [← Matrix.transpose_mul, Units.mul_inv, Matrix.transpose_one]
   inv_val := by rw [← Matrix.transpose_mul, Units.inv_mul, Matrix.transpose_one]
 
+/--
+@isnad1 id=eq.0h3v.s6.c2cba78c0c23 from=translated src=- shape=d9afc11d vocab=bebc370f
+-/
 theorem coe_transposeInvN (g : GL ι R) :
     ((transposeInvN ι g : GL ι R) : Matrix ι ι R) = ((g⁻¹ : GL ι R) : Matrix ι ι R)ᵀ :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.958c9405dedf from=translated src=- shape=9c57e732 vocab=bebc370f
+-/
 theorem coe_inv_transposeInvN (g : GL ι R) :
     (((transposeInvN ι g)⁻¹ : GL ι R) : Matrix ι ι R) = ((g : GL ι R) : Matrix ι ι R)ᵀ :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.1280d11a83f7 from=translated src=- shape=3d393164 vocab=701ea7f4
+-/
 theorem transposeInvN_transposeInvN (g : GL ι R) : transposeInvN ι (transposeInvN ι g) = g :=
   Units.ext (by rw [coe_transposeInvN, coe_inv_transposeInvN, Matrix.transpose_transpose])
 
+/--
+@isnad1 id=eq.0h4v.s7.72463fb73e6c from=translated src=- shape=fab1ed76 vocab=17c89345
+-/
 theorem transposeInvN_mul (g h : GL ι R) :
     transposeInvN ι (g * h) = transposeInvN ι g * transposeInvN ι h :=
   Units.ext (by simp only [Units.val_mul, coe_transposeInvN, mul_inv_rev, Matrix.transpose_mul])
@@ -93,6 +105,9 @@ variable (F : Type) [Field F]
 noncomputable def archEntriesN (g : GL ι (InfiniteAdeleRing F)) : ι → ι → mixedEmbedding.mixedSpace F :=
   fun i j => InfiniteAdeleRing.ringEquiv_mixedSpace F ((g : Matrix ι ι (InfiniteAdeleRing F)) i j)
 
+/--
+@isnad1 id=eq.0h5v.s9.9e4f796b4a16 from=translated src=- shape=78c8be22 vocab=0d6c900e
+-/
 theorem archEntriesN_apply (g : GL ι (InfiniteAdeleRing F)) (i j : ι) :
     archEntriesN ι F g i j =
       InfiniteAdeleRing.ringEquiv_mixedSpace F ((g : Matrix ι ι (InfiniteAdeleRing F)) i j) :=
@@ -105,6 +120,9 @@ noncomputable def IsLeftOrthFiniteN (α : GL ι (InfiniteAdeleRing F) → ℂ) :
   ∃ S : Finset (GL ι (InfiniteAdeleRing F) → ℂ),
     ∀ k ∈ orthN ι F, (fun x => α (k * x)) ∈ Submodule.span ℂ (S : Set (GL ι (InfiniteAdeleRing F) → ℂ))
 
+/--
+@isnad1 id=isleftor.0h2v.s5.5f9557f0032d from=translated src=- shape=55f21de3 vocab=8e7bc17e
+-/
 theorem isLeftOrthFiniteN_zero : IsLeftOrthFiniteN ι F (fun _ => 0) :=
   ⟨∅, fun _ _ => Submodule.zero_mem _⟩
 
@@ -115,12 +133,18 @@ noncomputable def IsArchTestFactorN (α : GL ι (InfiniteAdeleRing F) → ℂ) :
       ContDiff ℝ (⊤ : ℕ∞) Φ ∧ ∀ g, α g = Φ (archEntriesN ι F g)) ∧
     HasCompactSupport α
 
+/--
+@isnad1 id=isarchte.0h2v.s5.8ee1b6728f04 from=translated src=- shape=0857b65d vocab=46d53f5f
+-/
 theorem isArchTestFactorN_zero : IsArchTestFactorN ι F (fun _ => 0) :=
   ⟨⟨fun _ => 0, contDiff_const, fun _ => rfl⟩, HasCompactSupport.zero⟩
 
 noncomputable def IsSmoothingKernelN (α : GL ι (InfiniteAdeleRing F) → ℂ) : Prop :=
   IsArchTestFactorN ι F α ∧ IsLeftOrthFiniteN ι F α
 
+/--
+@isnad1 id=issmooth.0h2v.s5.b106d8efe2d1 from=translated src=- shape=0857b65d vocab=fca84b56
+-/
 theorem isSmoothingKernelN_zero : IsSmoothingKernelN ι F (fun _ => 0) :=
   ⟨isArchTestFactorN_zero ι F, isLeftOrthFiniteN_zero ι F⟩
 
@@ -135,16 +159,25 @@ noncomputable def archMatrixInclN (M : Matrix ι ι (InfiniteAdeleRing F)) : Mat
     ((M i j, (1 : Matrix ι ι (FiniteAdeleRing (𝓞 F) F)) i j) : InfiniteAdeleRing F × FiniteAdeleRing (𝓞 F) F)
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.0h5v.s8.2aab3ddf157b from=translated src=- shape=b5b0f0d9 vocab=9aa37652
+-/
 theorem adeleArch_archMatrixInclN (M : Matrix ι ι (InfiniteAdeleRing F)) (i j : ι) :
     AdelicLevel.adeleArch (𝓞 F) F (archMatrixInclN ι F M i j) = M i j :=
   rfl
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.0h5v.s9.441a1c0bf693 from=translated src=- shape=aa4ac3e4 vocab=90e49b92
+-/
 theorem adeleFin_archMatrixInclN (M : Matrix ι ι (InfiniteAdeleRing F)) (i j : ι) :
     AdelicLevel.adeleFin (𝓞 F) F (archMatrixInclN ι F M i j) = (1 : Matrix ι ι (FiniteAdeleRing (𝓞 F) F)) i j :=
   rfl
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.0h2v.s8.ffc955ca9ef1 from=translated src=- shape=53e6bd0c vocab=f655da3b
+-/
 theorem archMatrixInclN_one : archMatrixInclN ι F (1 : Matrix ι ι (InfiniteAdeleRing F)) = 1 := by
   ext i j
   refine Prod.ext ?_ ?_
@@ -161,6 +194,9 @@ theorem archMatrixInclN_one : archMatrixInclN ι F (1 : Matrix ι ι (InfiniteAd
       simp
     · simp [hij]
 
+/--
+@isnad1 id=eq.0h4v.s8.6bda133ac047 from=translated src=- shape=105f3965 vocab=c00eb60f
+-/
 theorem archMatrixInclN_mul (M N : Matrix ι ι (InfiniteAdeleRing F)) :
     archMatrixInclN ι F (M * N) = archMatrixInclN ι F M * archMatrixInclN ι F N := by
   ext i j
@@ -184,11 +220,17 @@ noncomputable def archMatrixInclHomN : Matrix ι ι (InfiniteAdeleRing F) →* M
 noncomputable def archInclN : GL ι (InfiniteAdeleRing F) →* GL ι (AdeleRing (𝓞 F) F) :=
   Units.map (archMatrixInclHomN ι F)
 
+/--
+@isnad1 id=eq.0h3v.s10.b93ffba2dcba from=translated src=- shape=6ca63a4a vocab=373aace9
+-/
 theorem archComponentN_archInclN (h : GL ι (InfiniteAdeleRing F)) :
     archComponentN ι (𝓞 F) F (archInclN ι F h) = h := by
   ext i j
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.2bff6cd6876f from=translated src=- shape=a62e1cd2 vocab=dfafe69c
+-/
 theorem componentAtN_archInclN (v : HeightOneSpectrum (𝓞 F)) (h : GL ι (InfiniteAdeleRing F)) :
     componentAtN ι (𝓞 F) F v (archInclN ι F h) = 1 := by
   refine Matrix.GeneralLinearGroup.ext fun i j => ?_
@@ -201,10 +243,16 @@ theorem componentAtN_archInclN (v : HeightOneSpectrum (𝓞 F)) (h : GL ι (Infi
     simp
   · simp [hij]
 
+/--
+@isnad1 id=eq.0h4v.s11.464a63d42cca from=translated src=- shape=5e01c5d8 vocab=060bd2a2
+-/
 theorem archComponentN_mul_archInclN (g : GL ι (AdeleRing (𝓞 F) F)) (h : GL ι (InfiniteAdeleRing F)) :
     archComponentN ι (𝓞 F) F (g * archInclN ι F h) = archComponentN ι (𝓞 F) F g * h := by
   rw [map_mul, archComponentN_archInclN]
 
+/--
+@isnad1 id=eq.0h5v.s11.382806ea5acf from=translated src=- shape=fd2a1172 vocab=587b3aed
+-/
 theorem componentAtN_mul_archInclN (v : HeightOneSpectrum (𝓞 F)) (g : GL ι (AdeleRing (𝓞 F) F))
     (h : GL ι (InfiniteAdeleRing F)) :
     componentAtN ι (𝓞 F) F v (g * archInclN ι F h) = componentAtN ι (𝓞 F) F v g := by
@@ -220,9 +268,15 @@ variable (F : Type) [Field F] [NumberField F]
   borel _
 
 omit [NumberField F] in
+/--
+@isnad1 id=borelspa.0h2v.s6.144af2086291 from=translated src=- shape=976f1925 vocab=8b5372ec
+-/
 theorem borelSpace_archGLBorelN : @BorelSpace (GL ι (InfiniteAdeleRing F)) _ (archGLBorelN ι F) :=
   @BorelSpace.mk _ _ (archGLBorelN ι F) rfl
 
+/--
+@isnad1 id=locallyc.0h2v.s6.be7487fd89ff from=translated src=- shape=505f9351 vocab=4e6238ca
+-/
 theorem locallyCompactSpace_archGLN : LocallyCompactSpace (GL ι (InfiniteAdeleRing F)) := by
   haveI : LocallyCompactSpace (Matrix ι ι (InfiniteAdeleRing F)) :=
     inferInstanceAs (LocallyCompactSpace (ι → ι → InfiniteAdeleRing F))
@@ -235,6 +289,9 @@ noncomputable def archGLHaarN : @Measure (GL ι (InfiniteAdeleRing F)) (archGLBo
   haveI := locallyCompactSpace_archGLN ι F
   exact Measure.haar
 
+/--
+@isnad1 id=ishaarme.0h2v.s6.876740a13698 from=translated src=- shape=c52bd073 vocab=ef3f1fd3
+-/
 theorem isHaarMeasure_archGLHaarN :
     @Measure.IsHaarMeasure (GL ι (InfiniteAdeleRing F)) _ _ (archGLBorelN ι F) (archGLHaarN ι F) := by
   letI := archGLBorelN ι F
@@ -261,38 +318,62 @@ noncomputable def archConvN (Φ : GL ι (AdeleRing (𝓞 F) F) → ℂ) (α : GL
     (letI := archGLBorelN ι F
      ∫ h, Φ (g * archInclN ι F h) * α h ∂(archGLHaarN ι F))
 
+/--
+@isnad1 id=eq.0h5v.s8.1b40745fa4fc from=translated src=- shape=e7b7b047 vocab=a57208da
+-/
 theorem convN_apply (Ψ α : GL ι (InfiniteAdeleRing F) → ℂ) (x : GL ι (InfiniteAdeleRing F)) :
     convN ι F Ψ α x = (letI := archGLBorelN ι F; ∫ h, Ψ (x * h) * α h ∂(archGLHaarN ι F)) :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.32c6c53be2da from=translated src=- shape=bb516b57 vocab=eb57b374
+-/
 theorem archConvN_apply (Φ : GL ι (AdeleRing (𝓞 F) F) → ℂ) (α : GL ι (InfiniteAdeleRing F) → ℂ)
     (g : GL ι (AdeleRing (𝓞 F) F)) :
     archConvN ι F Φ α g = (letI := archGLBorelN ι F; ∫ h, Φ (g * archInclN ι F h) * α h ∂(archGLHaarN ι F)) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.3244dfac8519 from=translated src=- shape=54eecbad vocab=7a7551d5
+-/
 theorem convN_zero_left (α : GL ι (InfiniteAdeleRing F) → ℂ) : convN ι F (fun _ => 0) α = fun _ => 0 := by
   funext x
   simp [convN]
 
+/--
+@isnad1 id=eq.0h3v.s6.229d52b917ad from=translated src=- shape=b174f244 vocab=7a7551d5
+-/
 theorem convN_zero_right (Ψ : GL ι (InfiniteAdeleRing F) → ℂ) : convN ι F Ψ (fun _ => 0) = fun _ => 0 := by
   funext x
   simp [convN]
 
+/--
+@isnad1 id=eq.0h3v.s7.df593bf665e4 from=translated src=- shape=635b4396 vocab=34fab7f7
+-/
 theorem archConvN_zero_left (α : GL ι (InfiniteAdeleRing F) → ℂ) :
     archConvN ι F (fun _ => 0) α = fun _ => 0 := by
   funext g
   simp [archConvN]
 
+/--
+@isnad1 id=eq.0h3v.s7.81ade18ba9dc from=translated src=- shape=5544a4e6 vocab=34fab7f7
+-/
 theorem archConvN_zero_right (Φ : GL ι (AdeleRing (𝓞 F) F) → ℂ) :
     archConvN ι F Φ (fun _ => 0) = fun _ => 0 := by
   funext g
   simp [archConvN]
 
+/--
+@isnad1 id=eq.0h6v.s9.d5b0b66991d6 from=translated src=- shape=9e4537eb vocab=5e816527
+-/
 theorem archConvN_comp_mul_left (Φ : GL ι (AdeleRing (𝓞 F) F) → ℂ) (α : GL ι (InfiniteAdeleRing F) → ℂ)
     (a g : GL ι (AdeleRing (𝓞 F) F)) :
     archConvN ι F (fun x => Φ (a * x)) α g = archConvN ι F Φ α (a * g) := by
   simp only [archConvN, mul_assoc]
 
+/--
+@isnad1 id=eq.0h6v.s8.ad1439ad7ce9 from=translated src=- shape=fa246cf4 vocab=4a480517
+-/
 theorem convN_mul_right (Ψ α : GL ι (InfiniteAdeleRing F) → ℂ) (x k : GL ι (InfiniteAdeleRing F)) :
     convN ι F Ψ α (x * k) = convN ι F Ψ (fun h => α (k⁻¹ * h)) x := by
   simp only [convN]
@@ -302,6 +383,9 @@ theorem convN_mul_right (Ψ α : GL ι (InfiniteAdeleRing F) → ℂ) (x k : GL 
   rw [← integral_mul_left_eq_self (fun h => Ψ (x * h) * α (k⁻¹ * h)) k]
   simp only [mul_assoc, inv_mul_cancel_left]
 
+/--
+@isnad1 id=eq.2h7v.s11.8c7621441c80 from=translated src=- shape=29bdd66b vocab=eb315d4a
+-/
 theorem archConvN_eq_convN_mul (Φ : GL ι (AdeleRing (𝓞 F) F) → ℂ) (α Ψ : GL ι (InfiniteAdeleRing F) → ℂ)
     (B : GL ι (AdeleRing (𝓞 F) F) → ℂ) (hΦ : ∀ g, Φ g = Ψ (archComponentN ι (𝓞 F) F g) * B g)
     (hB : ∀ g h, B (g * archInclN ι F h) = B g) (g : GL ι (AdeleRing (𝓞 F) F)) :
@@ -323,16 +407,25 @@ noncomputable def finMatrixInclN (M : Matrix ι ι (FiniteAdeleRing (𝓞 F) F))
     (((1 : Matrix ι ι (InfiniteAdeleRing F)) i j, M i j) : InfiniteAdeleRing F × FiniteAdeleRing (𝓞 F) F)
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.0h5v.s8.d0234d1b7295 from=translated src=- shape=da6d4131 vocab=d86e8488
+-/
 theorem adeleArch_finMatrixInclN (M : Matrix ι ι (FiniteAdeleRing (𝓞 F) F)) (i j : ι) :
     AdelicLevel.adeleArch (𝓞 F) F (finMatrixInclN ι F M i j) = (1 : Matrix ι ι (InfiniteAdeleRing F)) i j :=
   rfl
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.0h5v.s8.346549bb6708 from=translated src=- shape=dffdd420 vocab=4feebd4c
+-/
 theorem adeleFin_finMatrixInclN (M : Matrix ι ι (FiniteAdeleRing (𝓞 F) F)) (i j : ι) :
     AdelicLevel.adeleFin (𝓞 F) F (finMatrixInclN ι F M i j) = M i j :=
   rfl
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.0h2v.s8.4360062fd79f from=translated src=- shape=1927891e vocab=ea064d04
+-/
 theorem finMatrixInclN_one : finMatrixInclN ι F (1 : Matrix ι ι (FiniteAdeleRing (𝓞 F) F)) = 1 := by
   ext i j
   refine Prod.ext ?_ ?_
@@ -349,6 +442,9 @@ theorem finMatrixInclN_one : finMatrixInclN ι F (1 : Matrix ι ι (FiniteAdeleR
       simp
     · simp [hij]
 
+/--
+@isnad1 id=eq.0h4v.s8.627e1c769b3c from=translated src=- shape=b4658e54 vocab=666432b1
+-/
 theorem finMatrixInclN_mul (M N : Matrix ι ι (FiniteAdeleRing (𝓞 F) F)) :
     finMatrixInclN ι F (M * N) = finMatrixInclN ι F M * finMatrixInclN ι F N := by
   ext i j
@@ -372,17 +468,26 @@ noncomputable def finMatrixInclHomN : Matrix ι ι (FiniteAdeleRing (𝓞 F) F) 
 noncomputable def finInclN : GL ι (FiniteAdeleRing (𝓞 F) F) →* GL ι (AdeleRing (𝓞 F) F) :=
   Units.map (finMatrixInclHomN ι F)
 
+/--
+@isnad1 id=eq.0h3v.s10.1dfe5957e164 from=translated src=- shape=b84f16a3 vocab=106fa34b
+-/
 theorem archComponentN_finInclN (u : GL ι (FiniteAdeleRing (𝓞 F) F)) :
     archComponentN ι (𝓞 F) F (finInclN ι F u) = 1 := by
   ext i j
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.f6c9d728b2e2 from=translated src=- shape=92fabb1f vocab=aee6e216
+-/
 theorem componentAtN_finInclN (v : HeightOneSpectrum (𝓞 F)) (u : GL ι (FiniteAdeleRing (𝓞 F) F)) :
     componentAtN ι (𝓞 F) F v (finInclN ι F u) =
       Matrix.GeneralLinearGroup.map (AdelicLevel.finAdeleEval (𝓞 F) F v) u := by
   ext i j
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.6c4e63bdb328 from=translated src=- shape=275a7c66 vocab=6a7c56d9
+-/
 theorem archMatrixInclN_mul_finMatrixInclN (M : Matrix ι ι (InfiniteAdeleRing F))
     (N : Matrix ι ι (FiniteAdeleRing (𝓞 F) F)) :
     archMatrixInclN ι F M * finMatrixInclN ι F N = finMatrixInclN ι F N * archMatrixInclN ι F M := by
@@ -397,11 +502,17 @@ theorem archMatrixInclN_mul_finMatrixInclN (M : Matrix ι ι (InfiniteAdeleRing 
     simp only [Matrix.mul_apply, map_sum, map_mul, adeleFin_archMatrixInclN, adeleFin_finMatrixInclN]
     rw [← Matrix.mul_apply, ← Matrix.mul_apply, Matrix.one_mul, Matrix.mul_one]
 
+/--
+@isnad1 id=eq.0h4v.s12.b30d1d514655 from=translated src=- shape=047f6427 vocab=e2ea2162
+-/
 theorem finInclN_mul_archInclN (u : GL ι (FiniteAdeleRing (𝓞 F) F)) (h : GL ι (InfiniteAdeleRing F)) :
     finInclN ι F u * archInclN ι F h = archInclN ι F h * finInclN ι F u :=
   Units.ext (archMatrixInclN_mul_finMatrixInclN ι F (h : Matrix ι ι (InfiniteAdeleRing F))
     (u : Matrix ι ι (FiniteAdeleRing (𝓞 F) F))).symm
 
+/--
+@isnad1 id=eq.1h6v.s11.f1156584c446 from=translated src=- shape=d819054c vocab=9b79302b
+-/
 theorem archConvN_mul_finInclN (Φ : GL ι (AdeleRing (𝓞 F) F) → ℂ) (α : GL ι (InfiniteAdeleRing F) → ℂ)
     (u : GL ι (FiniteAdeleRing (𝓞 F) F)) (hΦ : ∀ g, Φ (g * finInclN ι F u) = Φ g) (g : GL ι (AdeleRing (𝓞 F) F)) :
     archConvN ι F Φ α (g * finInclN ι F u) = archConvN ι F Φ α g := by
@@ -421,6 +532,9 @@ variable (U : Subgroup (GL ι (FiniteAdeleRing (𝓞 F) F))) [CompactSpace U]
   borel U
 
 omit [CompactSpace U] in
+/--
+@isnad1 id=borelspa.0h3v.s10.ae1469b4c3cc from=translated src=- shape=0a869d04 vocab=2d5ca263
+-/
 theorem borelSpace_compactBorelN : @BorelSpace U _ (compactBorelN ι F U) :=
   @BorelSpace.mk _ _ (compactBorelN ι F U) rfl
 
@@ -429,11 +543,17 @@ noncomputable def compactHaarN : @Measure U (compactBorelN ι F U) := by
   haveI := borelSpace_compactBorelN ι F U
   exact Measure.haarMeasure ⊤
 
+/--
+@isnad1 id=isprobab.0h3v.s11.1c0094da6755 from=translated src=- shape=b404de52 vocab=74fa604d
+-/
 theorem isProbabilityMeasure_compactHaarN : @IsProbabilityMeasure U (compactBorelN ι F U) (compactHaarN ι F U) := by
   letI := compactBorelN ι F U
   haveI := borelSpace_compactBorelN ι F U
   exact ⟨by rw [compactHaarN, ← TopologicalSpace.PositiveCompacts.coe_top]; exact Measure.haarMeasure_self⟩
 
+/--
+@isnad1 id=ismullef.0h3v.s11.b87a5d2629b7 from=translated src=- shape=042f8404 vocab=1e81f393
+-/
 theorem isMulLeftInvariant_compactHaarN :
     @Measure.IsMulLeftInvariant U (compactBorelN ι F U) _ (compactHaarN ι F U) := by
   letI := compactBorelN ι F U
@@ -446,12 +566,18 @@ noncomputable def finAvgN (Φ : GL ι (AdeleRing (𝓞 F) F) → ℂ) : GL ι (A
     (letI := compactBorelN ι F U
      ∫ u : U, Φ (g * finInclN ι F (u : GL ι (FiniteAdeleRing (𝓞 F) F))) ∂(compactHaarN ι F U))
 
+/--
+@isnad1 id=eq.0h5v.s12.67e600416bb4 from=translated src=- shape=91d926d6 vocab=eeb8d7cc
+-/
 theorem finAvgN_apply (Φ : GL ι (AdeleRing (𝓞 F) F) → ℂ) (g : GL ι (AdeleRing (𝓞 F) F)) :
     finAvgN ι F U Φ g =
       (letI := compactBorelN ι F U
        ∫ u : U, Φ (g * finInclN ι F (u : GL ι (FiniteAdeleRing (𝓞 F) F))) ∂(compactHaarN ι F U)) :=
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s12.04a8c572aff7 from=translated src=- shape=d576f99d vocab=bdb93224
+-/
 theorem finAvgN_eq_self (Φ : GL ι (AdeleRing (𝓞 F) F) → ℂ)
     (hΦ : ∀ g, ∀ u ∈ U, Φ (g * finInclN ι F u) = Φ g) (g : GL ι (AdeleRing (𝓞 F) F)) : finAvgN ι F U Φ g = Φ g := by
   simp only [finAvgN]
@@ -460,10 +586,16 @@ theorem finAvgN_eq_self (Φ : GL ι (AdeleRing (𝓞 F) F) → ℂ)
   simp only [hΦ g _ (SetLike.coe_mem _)]
   simp
 
+/--
+@isnad1 id=eq.0h6v.s11.9cbf8ba1188b from=translated src=- shape=a104946b vocab=671c40ed
+-/
 theorem finAvgN_comp_mul_left (Φ : GL ι (AdeleRing (𝓞 F) F) → ℂ) (a g : GL ι (AdeleRing (𝓞 F) F)) :
     finAvgN ι F U (fun x => Φ (a * x)) g = finAvgN ι F U Φ (a * g) := by
   simp only [finAvgN, mul_assoc]
 
+/--
+@isnad1 id=eq.1h6v.s11.f16dec960634 from=translated src=- shape=54f5cac8 vocab=bdb93224
+-/
 theorem finAvgN_mul_finInclN (Φ : GL ι (AdeleRing (𝓞 F) F) → ℂ) (g : GL ι (AdeleRing (𝓞 F) F))
     (u : GL ι (FiniteAdeleRing (𝓞 F) F)) (hu : u ∈ U) : finAvgN ι F U Φ (g * finInclN ι F u) = finAvgN ι F U Φ g := by
   simp only [finAvgN]
@@ -492,52 +624,88 @@ namespace AutomorphicForm.StandardKernel
 noncomputable def entrySize (M : Matrix (Fin 3) (Fin 3) ℝ) : ℝ :=
   Matrix.trace (Mᵀ * M)
 
+/--
+@isnad1 id=eq.0h1v.s6.8ed4e7af95e3 from=translated src=- shape=c207e668 vocab=c94928f0
+-/
 theorem entrySize_eq_sum (M : Matrix (Fin 3) (Fin 3) ℝ) : entrySize M = ∑ i, ∑ j, M i j ^ 2 := by
   simp only [entrySize, Matrix.trace, Matrix.diag, Matrix.mul_apply, Matrix.transpose_apply, sq]
   exact Finset.sum_comm
 
+/--
+@isnad1 id=le.0h1v.s4.29f7abb264df from=translated src=- shape=0c5cd9ab vocab=f6cf08e2
+-/
 theorem entrySize_nonneg (M : Matrix (Fin 3) (Fin 3) ℝ) : 0 ≤ entrySize M := by
   rw [entrySize_eq_sum]
   positivity
 
+/--
+@isnad1 id=le.0h3v.s5.2adfeabdca66 from=translated src=- shape=92888c39 vocab=c27e187e
+-/
 theorem entry_sq_le_entrySize (M : Matrix (Fin 3) (Fin 3) ℝ) (i j : Fin 3) : M i j ^ 2 ≤ entrySize M := by
   rw [entrySize_eq_sum]
   calc M i j ^ 2 ≤ ∑ j', M i j' ^ 2 := Finset.single_le_sum (fun _ _ => sq_nonneg _) (Finset.mem_univ j)
     _ ≤ ∑ i', ∑ j', M i' j' ^ 2 :=
       Finset.single_le_sum (fun _ _ => Finset.sum_nonneg fun _ _ => sq_nonneg _) (Finset.mem_univ i)
 
+/--
+@isnad1 id=eq.0h1v.s5.7de498626bc2 from=translated src=- shape=247d6646 vocab=d0510ca9
+-/
 theorem entrySize_transpose (M : Matrix (Fin 3) (Fin 3) ℝ) : entrySize Mᵀ = entrySize M := by
   simp only [entrySize, Matrix.transpose_transpose]
   exact Matrix.trace_mul_comm M Mᵀ
 
+/--
+@isnad1 id=eq.0h2v.s6.c2f8976e68c2 from=translated src=- shape=7a68eadf vocab=420170c2
+-/
 theorem entrySize_smul (c : ℝ) (M : Matrix (Fin 3) (Fin 3) ℝ) : entrySize (c • M) = c ^ 2 * entrySize M := by
   simp only [entrySize, Matrix.transpose_smul, Matrix.smul_mul, Matrix.mul_smul, smul_smul, Matrix.trace_smul,
     smul_eq_mul, sq]
 
+/--
+@isnad1 id=eq.0h0v.s5.631b20f65ddc from=translated src=- shape=35b4219c vocab=1102a822
+-/
 theorem entrySize_one : entrySize 1 = 3 := by
   simp [entrySize]
 
+/--
+@isnad1 id=eq.1h2v.s8.0c557e910264 from=translated src=- shape=5699aa9d vocab=cd1650c3
+-/
 theorem entrySize_mul_of_orth {k : Matrix (Fin 3) (Fin 3) ℝ} (hk : kᵀ * k = 1) (M : Matrix (Fin 3) (Fin 3) ℝ) :
     entrySize (k * M) = entrySize M := by
   simp only [entrySize, Matrix.transpose_mul]
   rw [Matrix.mul_assoc, ← Matrix.mul_assoc kᵀ, hk, Matrix.one_mul]
 
+/--
+@isnad1 id=eq.1h1v.s7.b602dd352a24 from=translated src=- shape=1d0d7efc vocab=0fe85101
+-/
 theorem adjugate_eq_det_smul_inv (X : Matrix (Fin 3) (Fin 3) ℝ) (hX : X.det ≠ 0) : adjugate X = X.det • X⁻¹ := by
   rw [Matrix.inv_def, Ring.inverse_eq_inv, smul_smul, mul_inv_cancel₀ hX, one_smul]
 
 noncomputable def adjugateT (M : Matrix (Fin 3) (Fin 3) ℝ) : Matrix (Fin 3) (Fin 3) ℝ :=
   (adjugate M)ᵀ
 
+/--
+@isnad1 id=eq.0h0v.s6.3c299df10854 from=translated src=- shape=bf910573 vocab=c6041f4a
+-/
 theorem adjugateT_one : adjugateT 1 = 1 := by
   simp [adjugateT]
 
+/--
+@isnad1 id=eq.0h1v.s7.8f02291809b7 from=translated src=- shape=017fa7d5 vocab=678112ba
+-/
 theorem transpose_inv_eq (M : Matrix (Fin 3) (Fin 3) ℝ) : (M⁻¹)ᵀ = (M.det)⁻¹ • adjugateT M := by
   rw [Matrix.inv_def, Ring.inverse_eq_inv, Matrix.transpose_smul, adjugateT]
 
+/--
+@isnad1 id=eq.1h1v.s7.e80442cd0a56 from=translated src=- shape=3c83f7d9 vocab=ff4022f9
+-/
 theorem det_sq_of_orth {k : Matrix (Fin 3) (Fin 3) ℝ} (hk : kᵀ * k = 1) : k.det ^ 2 = 1 := by
   have h := congrArg Matrix.det hk
   rwa [Matrix.det_mul, Matrix.det_transpose, Matrix.det_one, ← sq] at h
 
+/--
+@isnad1 id=eq.1h2v.s8.f3a5d1c0179a from=translated src=- shape=e51f84bb vocab=619de9de
+-/
 theorem entrySize_adjugateT_mul_of_orth {k : Matrix (Fin 3) (Fin 3) ℝ} (hk : kᵀ * k = 1)
     (M : Matrix (Fin 3) (Fin 3) ℝ) : entrySize (adjugateT (k * M)) = entrySize (adjugateT M) := by
   have hdet : k.det ≠ 0 := fun h => by simpa [h] using det_sq_of_orth hk
@@ -546,6 +714,9 @@ theorem entrySize_adjugateT_mul_of_orth {k : Matrix (Fin 3) (Fin 3) ℝ} (hk : k
   rw [adjugateT, Matrix.adjugate_mul_distrib, hadj, Matrix.mul_smul, Matrix.transpose_smul, Matrix.transpose_mul,
     Matrix.transpose_transpose, entrySize_smul, det_sq_of_orth hk, one_mul, entrySize_mul_of_orth hk, adjugateT]
 
+/--
+@isnad1 id=eq.1h1v.s7.38931e4492f1 from=translated src=- shape=5ebd8f94 vocab=678112ba
+-/
 theorem adjugateT_transpose_inv (M : Matrix (Fin 3) (Fin 3) ℝ) (hM : M.det ≠ 0) :
     adjugateT ((M⁻¹)ᵀ) = (M.det)⁻¹ • M := by
   have hdet : ((M⁻¹)ᵀ).det = (M.det)⁻¹ := by
@@ -555,29 +726,50 @@ theorem adjugateT_transpose_inv (M : Matrix (Fin 3) (Fin 3) ℝ) (hM : M.det ≠
   rw [adjugateT, adjugate_eq_det_smul_inv _ (by rw [hdet]; exact inv_ne_zero hM), hdet, hinv, Matrix.transpose_smul,
     Matrix.transpose_transpose]
 
+/--
+@isnad1 id=eq.0h1v.s6.f1524ce48fb3 from=translated src=- shape=27bf7a97 vocab=c3407fc4
+-/
 theorem det_transpose_inv (M : Matrix (Fin 3) (Fin 3) ℝ) : ((M⁻¹)ᵀ).det = (M.det)⁻¹ := by
   rw [Matrix.det_transpose, Matrix.det_nonsing_inv, Ring.inverse_eq_inv]
 
 noncomputable def detSq (M : Matrix (Fin 3) (Fin 3) ℝ) : ℝ :=
   M.det ^ 2
 
+/--
+@isnad1 id=eq.0h0v.s5.06a7c14a93a1 from=translated src=- shape=35b4219c vocab=91ee5cb3
+-/
 theorem detSq_one : detSq 1 = 1 := by
   simp [detSq]
 
+/--
+@isnad1 id=eq.1h2v.s8.c343755ce032 from=translated src=- shape=5699aa9d vocab=c9cb647e
+-/
 theorem detSq_mul_of_orth {k : Matrix (Fin 3) (Fin 3) ℝ} (hk : kᵀ * k = 1) (M : Matrix (Fin 3) (Fin 3) ℝ) :
     detSq (k * M) = detSq M := by
   rw [detSq, detSq, Matrix.det_mul, mul_pow, det_sq_of_orth hk, one_mul]
 
+/--
+@isnad1 id=eq.0h1v.s6.38ca00ef5277 from=translated src=- shape=89d939b2 vocab=6981c0cf
+-/
 theorem detSq_transpose_inv (M : Matrix (Fin 3) (Fin 3) ℝ) : detSq ((M⁻¹)ᵀ) = (detSq M)⁻¹ := by
   rw [detSq, detSq, det_transpose_inv, inv_pow]
 
+/--
+@isnad1 id=le.0h1v.s4.45f675364270 from=translated src=- shape=0c5cd9ab vocab=153dd2b2
+-/
 theorem detSq_nonneg (M : Matrix (Fin 3) (Fin 3) ℝ) : 0 ≤ detSq M :=
   sq_nonneg _
 
+/--
+@isnad1 id=eq.0h1v.s6.b13273664a1e from=translated src=- shape=ed22fd7f vocab=0c6fca5f
+-/
 theorem entrySize_transpose_inv (M : Matrix (Fin 3) (Fin 3) ℝ) :
     entrySize ((M⁻¹)ᵀ) = (detSq M)⁻¹ * entrySize (adjugateT M) := by
   rw [transpose_inv_eq, entrySize_smul, detSq, inv_pow]
 
+/--
+@isnad1 id=eq.1h1v.s6.396a4c16ff0b from=translated src=- shape=2faebd74 vocab=834d66c2
+-/
 theorem entrySize_adjugateT_transpose_inv (M : Matrix (Fin 3) (Fin 3) ℝ) (hM : M.det ≠ 0) :
     entrySize (adjugateT ((M⁻¹)ᵀ)) = (detSq M)⁻¹ * entrySize M := by
   rw [adjugateT_transpose_inv M hM, entrySize_smul, detSq, inv_pow]
@@ -588,6 +780,9 @@ noncomputable def unitCutoff : ContDiffBump (9 / 4 : ℝ) :=
 noncomputable def reciprocalCutoff (t : ℝ) : ℝ :=
   unitCutoff t * t⁻¹
 
+/--
+@isnad1 id=eq.2h1v.s5.6375bc5486ef from=translated src=- shape=4edc8ea6 vocab=759ef956
+-/
 theorem reciprocalCutoff_eq_inv {t : ℝ} (h₁ : 1 / 2 ≤ t) (h₂ : t ≤ 4) : reciprocalCutoff t = t⁻¹ := by
   have hmem : t ∈ Metric.closedBall (9 / 4 : ℝ) unitCutoff.rIn := by
     rw [Metric.mem_closedBall, Real.dist_eq, abs_le]
@@ -595,6 +790,9 @@ theorem reciprocalCutoff_eq_inv {t : ℝ} (h₁ : 1 / 2 ≤ t) (h₂ : t ≤ 4) 
     constructor <;> linarith
   rw [reciprocalCutoff, unitCutoff.one_of_mem_closedBall hmem, one_mul]
 
+/--
+@isnad1 id=eq.1h1v.s5.e8e54fdbb7d8 from=translated src=- shape=7f1c967e vocab=57d1b1be
+-/
 theorem reciprocalCutoff_eq_zero {t : ℝ} (ht : |t| < 1 / 4) : reciprocalCutoff t = 0 := by
   have hdist : unitCutoff.rOut ≤ dist t (9 / 4 : ℝ) := by
     change (2 : ℝ) ≤ dist t (9 / 4)
@@ -604,6 +802,9 @@ theorem reciprocalCutoff_eq_zero {t : ℝ} (ht : |t| < 1 / 4) : reciprocalCutoff
     linarith
   rw [reciprocalCutoff, unitCutoff.zero_of_le_dist hdist, zero_mul]
 
+/--
+@isnad1 id=contdiff.0h0v.s5.fad8ad92be68 from=translated src=- shape=3cea26be vocab=98ac23b9
+-/
 theorem contDiff_reciprocalCutoff : ContDiff ℝ (⊤ : ℕ∞) reciprocalCutoff := by
   rw [contDiff_iff_contDiffAt]
   intro t
@@ -623,22 +824,37 @@ noncomputable def logBump : ContDiffBump (0 : ℝ) :=
 noncomputable def detCutoff (t : ℝ) : ℝ :=
   if t ≤ 0 then 0 else logBump (Real.log t) * logBump (-Real.log t)
 
+/--
+@isnad1 id=eq.1h1v.s6.0d771d2d0157 from=translated src=- shape=724b8b47 vocab=5f8043c2
+-/
 theorem detCutoff_of_pos {t : ℝ} (ht : 0 < t) : detCutoff t = logBump (Real.log t) * logBump (-Real.log t) := by
   rw [detCutoff, ite_eq_right (not_le.mpr ht)]
 
+/--
+@isnad1 id=eq.1h1v.s4.381b0ec0f8ee from=translated src=- shape=278e0375 vocab=173ce58c
+-/
 theorem detCutoff_of_nonpos {t : ℝ} (ht : t ≤ 0) : detCutoff t = 0 := by
   rw [detCutoff, ite_eq_left ht]
 
+/--
+@isnad1 id=eq.0h1v.s3.db0e1ec37bb3 from=translated src=- shape=cd419dad vocab=5d1ffc35
+-/
 theorem detCutoff_inv (t : ℝ) : detCutoff t⁻¹ = detCutoff t := by
   rcases le_or_gt t 0 with ht | ht
   · rw [detCutoff_of_nonpos ht, detCutoff_of_nonpos (inv_nonpos.mpr ht)]
   · rw [detCutoff_of_pos ht, detCutoff_of_pos (inv_pos.mpr ht), Real.log_inv, neg_neg, mul_comm]
 
+/--
+@isnad1 id=eq.0h0v.s3.1ecbdbd2d01a from=translated src=- shape=3c26ae4f vocab=85f0cd3a
+-/
 theorem detCutoff_one : detCutoff 1 = 1 := by
   have h0 : logBump (0 : ℝ) = 1 :=
     logBump.one_of_mem_closedBall (by rw [Metric.mem_closedBall, dist_self]; exact logBump.rIn_pos.le)
   rw [detCutoff_of_pos one_pos, Real.log_one, neg_zero, h0, one_mul]
 
+/--
+@isnad1 id=and.1h1v.s5.b8f7604d8538 from=translated src=- shape=d7c0f1f9 vocab=81d40040
+-/
 theorem mem_of_detCutoff_ne_zero {t : ℝ} (h : detCutoff t ≠ 0) : 1 / 2 < t ∧ t < 2 := by
   have ht : 0 < t := by
     by_contra hle
@@ -656,10 +872,16 @@ theorem mem_of_detCutoff_ne_zero {t : ℝ} (h : detCutoff t ≠ 0) : 1 / 2 < t �
     exact (Real.log_lt_log_iff (by norm_num) ht).mp this
   · exact (Real.log_lt_log_iff ht (by norm_num)).mp hhigh
 
+/--
+@isnad1 id=eq.1h1v.s5.8f1786c159eb from=translated src=- shape=44469b40 vocab=81d40040
+-/
 theorem detCutoff_eq_zero_of_lt_half {t : ℝ} (ht : t < 1 / 2) : detCutoff t = 0 := by
   by_contra h
   exact absurd (mem_of_detCutoff_ne_zero h).1 (not_lt.mpr ht.le)
 
+/--
+@isnad1 id=contdiff.0h0v.s5.8adb9b972121 from=translated src=- shape=3cea26be vocab=fe92d4f8
+-/
 theorem contDiff_detCutoff : ContDiff ℝ (⊤ : ℕ∞) detCutoff := by
   rw [contDiff_iff_contDiffAt]
   intro t
@@ -678,9 +900,15 @@ theorem contDiff_detCutoff : ContDiff ℝ (⊤ : ℕ∞) detCutoff := by
 noncomputable def sizeBump : ContDiffBump (6 : ℝ) :=
   ⟨1, 2, one_pos, by norm_num⟩
 
+/--
+@isnad1 id=eq.0h0v.s5.2bcdcce66db4 from=translated src=- shape=d18e52dd vocab=3d252237
+-/
 theorem sizeBump_six : sizeBump (6 : ℝ) = 1 :=
   sizeBump.one_of_mem_closedBall (by rw [Metric.mem_closedBall, dist_self]; exact sizeBump.rIn_pos.le)
 
+/--
+@isnad1 id=lt.1h1v.s5.88bf4488a95f from=translated src=- shape=0812d229 vocab=a0ad28cf
+-/
 theorem lt_eight_of_sizeBump_ne_zero {s : ℝ} (h : sizeBump s ≠ 0) : s < 8 := by
   have hs : s ∈ Metric.ball (6 : ℝ) sizeBump.rOut := by
     rw [← sizeBump.support_eq]
@@ -695,19 +923,31 @@ noncomputable def sizeInvariant (M : Matrix (Fin 3) (Fin 3) ℝ) : ℝ :=
 noncomputable def standardKernelCore (M : Matrix (Fin 3) (Fin 3) ℝ) : ℝ :=
   sizeBump (sizeInvariant M) * detCutoff (detSq M)
 
+/--
+@isnad1 id=eq.0h0v.s5.f0cf75c0ef63 from=translated src=- shape=35b4219c vocab=13e8c94d
+-/
 theorem sizeInvariant_one : sizeInvariant 1 = 6 := by
   rw [sizeInvariant, entrySize_one, adjugateT_one, entrySize_one, detSq_one,
     reciprocalCutoff_eq_inv (by norm_num) (by norm_num)]
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s5.82430c604013 from=translated src=- shape=35b4219c vocab=bfb67450
+-/
 theorem standardKernelCore_one : standardKernelCore 1 = 1 := by
   rw [standardKernelCore, sizeInvariant_one, detSq_one, sizeBump_six, detCutoff_one, one_mul]
 
+/--
+@isnad1 id=eq.1h2v.s8.c947a5f6828d from=translated src=- shape=5699aa9d vocab=958be759
+-/
 theorem standardKernelCore_mul_of_orth {k : Matrix (Fin 3) (Fin 3) ℝ} (hk : kᵀ * k = 1)
     (M : Matrix (Fin 3) (Fin 3) ℝ) : standardKernelCore (k * M) = standardKernelCore M := by
   simp only [standardKernelCore, sizeInvariant, entrySize_mul_of_orth hk, entrySize_adjugateT_mul_of_orth hk,
     detSq_mul_of_orth hk]
 
+/--
+@isnad1 id=eq.0h1v.s6.c52616bf6a9f from=translated src=- shape=c6872166 vocab=dd20d3bc
+-/
 theorem standardKernelCore_transpose_inv (M : Matrix (Fin 3) (Fin 3) ℝ) :
     standardKernelCore ((M⁻¹)ᵀ) = standardKernelCore M := by
   by_cases hM : M.det = 0
@@ -735,6 +975,9 @@ theorem standardKernelCore_transpose_inv (M : Matrix (Fin 3) (Fin 3) ℝ) :
       field_simp
       ring
 
+/--
+@isnad1 id=and.1h1v.s6.0d172b0a7b35 from=translated src=- shape=efbb391e vocab=e5457459
+-/
 theorem bound_of_standardKernelCore_ne_zero {M : Matrix (Fin 3) (Fin 3) ℝ} (h : standardKernelCore M ≠ 0) :
     M.det ≠ 0 ∧ entrySize M ≤ 8 ∧ entrySize M⁻¹ ≤ 8 := by
   have hbump : sizeBump (sizeInvariant M) ≠ 0 := left_ne_zero_of_mul h
@@ -755,17 +998,29 @@ theorem bound_of_standardKernelCore_ne_zero {M : Matrix (Fin 3) (Fin 3) ℝ} (h 
 noncomputable def coreOfEntries (m : Fin 3 → Fin 3 → ℝ) : ℝ :=
   standardKernelCore (Matrix.of m)
 
+/--
+@isnad1 id=eq.0h1v.s5.6c51ba404f4e from=translated src=- shape=94a7a2bd vocab=1c60eb2a
+-/
 theorem coreOfEntries_apply (M : Matrix (Fin 3) (Fin 3) ℝ) : coreOfEntries (fun i j => M i j) = standardKernelCore M :=
   rfl
 
+/--
+@isnad1 id=contdiff.0h0v.s8.cf994d9a3296 from=translated src=- shape=b1d51fd4 vocab=f3d8d225
+-/
 theorem contDiff_entrySize_of : ContDiff ℝ (⊤ : ℕ∞) fun m : Fin 3 → Fin 3 → ℝ => entrySize (Matrix.of m) := by
   simp only [entrySize_eq_sum, Matrix.of_apply]
   fun_prop
 
+/--
+@isnad1 id=contdiff.0h0v.s8.2745bd471318 from=translated src=- shape=b1d51fd4 vocab=9053c15a
+-/
 theorem contDiff_detSq_of : ContDiff ℝ (⊤ : ℕ∞) fun m : Fin 3 → Fin 3 → ℝ => detSq (Matrix.of m) := by
   simp only [detSq, Matrix.det_fin_three, Matrix.of_apply]
   fun_prop
 
+/--
+@isnad1 id=contdiff.0h0v.s8.a10848588b9f from=translated src=- shape=abaf340f vocab=b3c2aab5
+-/
 theorem contDiff_entrySize_adjugateT_of :
     ContDiff ℝ (⊤ : ℕ∞) fun m : Fin 3 → Fin 3 → ℝ => entrySize (adjugateT (Matrix.of m)) := by
   simp only [entrySize_eq_sum, adjugateT, Matrix.adjugate_fin_three, Matrix.transpose_apply, Matrix.of_apply,
@@ -773,6 +1028,9 @@ theorem contDiff_entrySize_adjugateT_of :
     Matrix.tail_cons]
   fun_prop
 
+/--
+@isnad1 id=contdiff.0h0v.s7.44524619537e from=translated src=- shape=111d08f6 vocab=b47265cc
+-/
 theorem contDiff_coreOfEntries : ContDiff ℝ (⊤ : ℕ∞) coreOfEntries := by
   have h₁ := contDiff_entrySize_of
   have h₂ := contDiff_detSq_of
@@ -805,6 +1063,9 @@ noncomputable def realCoord : InfiniteAdeleRing ℚ →+* ℝ :=
   (InfinitePlace.Completion.ringEquivRealOfIsReal Rat.isReal_infinitePlace).toRingHom.comp
     (Pi.evalRingHom (fun w : InfinitePlace ℚ => w.Completion) Rat.infinitePlace)
 
+/--
+@isnad1 id=eq.0h1v.s7.9a0b6bdb85f8 from=translated src=- shape=4379b80f vocab=ef72ded9
+-/
 theorem realCoord_apply (x : InfiniteAdeleRing ℚ) :
     realCoord x = InfinitePlace.Completion.extensionEmbeddingOfIsReal Rat.isReal_infinitePlace (x Rat.infinitePlace) :=
   rfl
@@ -812,10 +1073,16 @@ theorem realCoord_apply (x : InfiniteAdeleRing ℚ) :
 noncomputable def ofReal (r : ℝ) : InfiniteAdeleRing ℚ :=
   fun v => (InfinitePlace.Completion.ringEquivRealOfIsReal (IsTotallyReal.isReal v)).symm r
 
+/--
+@isnad1 id=continuo.0h0v.s3.ec14988e0569 from=translated src=- shape=4b736592 vocab=dd5a5b7b
+-/
 theorem continuous_ofReal : Continuous ofReal :=
   continuous_pi fun v =>
     (InfinitePlace.Completion.isometryEquivRealOfIsReal (IsTotallyReal.isReal v)).symm.continuous
 
+/--
+@isnad1 id=eq.0h1v.s6.2759ef81145a from=translated src=- shape=0b3cb1a5 vocab=f0fa70aa
+-/
 theorem ofReal_realCoord (x : InfiniteAdeleRing ℚ) : ofReal (realCoord x) = x := by
   funext v
   obtain rfl : v = Rat.infinitePlace := Subsingleton.elim _ _
@@ -827,23 +1094,41 @@ noncomputable def realGL : GL (Fin 3) (InfiniteAdeleRing ℚ) →* GL (Fin 3) �
 noncomputable def realMat (g : GL (Fin 3) (InfiniteAdeleRing ℚ)) : Matrix (Fin 3) (Fin 3) ℝ :=
   (realGL g : Matrix (Fin 3) (Fin 3) ℝ)
 
+/--
+@isnad1 id=eq.0h1v.s7.71e4b24eadcf from=translated src=- shape=f0e381bc vocab=50760a12
+-/
 theorem realMat_eq (g : GL (Fin 3) (InfiniteAdeleRing ℚ)) :
     realMat g = (g : Matrix (Fin 3) (Fin 3) (InfiniteAdeleRing ℚ)).map realCoord :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.31382a5984c3 from=translated src=- shape=f6250aaf vocab=a966d0fc
+-/
 theorem realMat_mul (g h : GL (Fin 3) (InfiniteAdeleRing ℚ)) : realMat (g * h) = realMat g * realMat h := by
   rw [realMat, realMat, realMat, map_mul, Units.val_mul]
 
+/--
+@isnad1 id=eq.0h1v.s7.468ef4c63e4d from=translated src=- shape=cdac48f7 vocab=d5ec9140
+-/
 theorem realMat_inv (g : GL (Fin 3) (InfiniteAdeleRing ℚ)) : realMat g⁻¹ = (realMat g)⁻¹ := by
   rw [realMat, realMat, map_inv, Matrix.coe_units_inv]
 
+/--
+@isnad1 id=eq.0h0v.s7.6b43ccb26ecb from=translated src=- shape=71585090 vocab=93a4f0bb
+-/
 theorem realMat_one : realMat 1 = 1 := by
   rw [realMat, map_one, Units.val_one]
 
+/--
+@isnad1 id=eq.0h1v.s7.ce003eff355d from=translated src=- shape=02fed581 vocab=77c28a7f
+-/
 theorem realMat_transposeInvN (g : GL (Fin 3) (InfiniteAdeleRing ℚ)) :
     realMat (transposeInvN (Fin 3) g) = ((realMat g)⁻¹)ᵀ := by
   rw [realMat_eq, coe_transposeInvN, Matrix.transpose_map, ← realMat_eq, realMat_inv]
 
+/--
+@isnad1 id=eq.1h1v.s8.0aca0761732c from=translated src=- shape=8ced961b vocab=36ca52d4
+-/
 theorem realMat_orth {k : GL (Fin 3) (InfiniteAdeleRing ℚ)} (hk : k ∈ orthN (Fin 3) ℚ) :
     (realMat k)ᵀ * realMat k = 1 := by
   have h : (k : Matrix (Fin 3) (Fin 3) (InfiniteAdeleRing ℚ))ᵀ * k = 1 := hk
@@ -855,25 +1140,43 @@ theorem realMat_orth {k : GL (Fin 3) (InfiniteAdeleRing ℚ)} (hk : k ∈ orthN 
 noncomputable def standardKernel (g : GL (Fin 3) (InfiniteAdeleRing ℚ)) : ℂ :=
   (standardKernelCore (realMat g) : ℂ)
 
+/--
+@isnad1 id=eq.0h0v.s7.13670a17cea9 from=translated src=- shape=cc7b988e vocab=46f30586
+-/
 theorem standardKernel_one : standardKernel 1 = 1 := by
   rw [standardKernel, realMat_one, standardKernelCore_one, Complex.ofReal_one]
 
+/--
+@isnad1 id=ne.0h0v.s7.e11194edde6f from=translated src=- shape=de4daad2 vocab=ac2da886
+-/
 theorem standardKernel_ne_zero : standardKernel ≠ 0 := fun h => by
   have := congrFun h 1
   rw [standardKernel_one, Pi.zero_apply] at this
   exact one_ne_zero this
 
+/--
+@isnad1 id=eq.0h1v.s6.cca55f6287eb from=translated src=- shape=300d58cf vocab=986b771a
+-/
 theorem standardKernel_transposeInvN (g : GL (Fin 3) (InfiniteAdeleRing ℚ)) :
     standardKernel (transposeInvN (Fin 3) g) = standardKernel g := by
   rw [standardKernel, standardKernel, realMat_transposeInvN, standardKernelCore_transpose_inv]
 
+/--
+@isnad1 id=eq.0h0v.s7.3f9dae7a5d22 from=translated src=- shape=52d87e1f vocab=b99f6146
+-/
 theorem standardKernel_comp_transposeInvN : standardKernel ∘ transposeInvN (Fin 3) = standardKernel :=
   funext standardKernel_transposeInvN
 
+/--
+@isnad1 id=eq.1h2v.s8.97a868a55507 from=translated src=- shape=01f01410 vocab=616420f3
+-/
 theorem standardKernel_mul_of_mem_orthN {k : GL (Fin 3) (InfiniteAdeleRing ℚ)} (hk : k ∈ orthN (Fin 3) ℚ)
     (g : GL (Fin 3) (InfiniteAdeleRing ℚ)) : standardKernel (k * g) = standardKernel g := by
   rw [standardKernel, standardKernel, realMat_mul, standardKernelCore_mul_of_orth (realMat_orth hk)]
 
+/--
+@isnad1 id=isleftor.0h0v.s4.a34d12a64bc0 from=translated src=- shape=bfe16b09 vocab=06552b23
+-/
 theorem isLeftOrthFiniteN_standardKernel : IsLeftOrthFiniteN (Fin 3) ℚ standardKernel := by
   refine ⟨{standardKernel}, fun k hk => ?_⟩
   have h : (fun x => standardKernel (k * x)) = standardKernel := funext fun x => standardKernel_mul_of_mem_orthN hk x
@@ -883,10 +1186,16 @@ theorem isLeftOrthFiniteN_standardKernel : IsLeftOrthFiniteN (Fin 3) ℚ standar
 noncomputable def mixedCoord (x : mixedEmbedding.mixedSpace ℚ) : ℝ :=
   x.1 ⟨Rat.infinitePlace, Rat.isReal_infinitePlace⟩
 
+/--
+@isnad1 id=eq.0h1v.s9.957354552308 from=translated src=- shape=1f16fd8a vocab=a4907b4a
+-/
 theorem mixedCoord_ringEquiv (x : InfiniteAdeleRing ℚ) :
     mixedCoord (InfiniteAdeleRing.ringEquiv_mixedSpace ℚ x) = realCoord x :=
   rfl
 
+/--
+@isnad1 id=contdiff.0h0v.s9.846ff43bc2f1 from=translated src=- shape=b972318a vocab=98c73a2d
+-/
 theorem contDiff_mixedCoord : ContDiff ℝ (⊤ : ℕ∞) mixedCoord := by
   unfold mixedCoord
   fun_prop
@@ -894,6 +1203,9 @@ theorem contDiff_mixedCoord : ContDiff ℝ (⊤ : ℕ∞) mixedCoord := by
 noncomputable def entryFunction (m : Fin 3 → Fin 3 → mixedEmbedding.mixedSpace ℚ) : ℂ :=
   (coreOfEntries (fun i j => mixedCoord (m i j)) : ℂ)
 
+/--
+@isnad1 id=contdiff.0h0v.s10.a9f7f5802f7d from=translated src=- shape=1f517388 vocab=1693ac13
+-/
 theorem contDiff_entryFunction : ContDiff ℝ (⊤ : ℕ∞) entryFunction := by
   have h₁ := contDiff_coreOfEntries
   have h₂ := contDiff_mixedCoord
@@ -902,6 +1214,9 @@ theorem contDiff_entryFunction : ContDiff ℝ (⊤ : ℕ∞) entryFunction := by
     fun_prop
   exact Complex.ofRealCLM.contDiff.comp (h₁.comp h₃)
 
+/--
+@isnad1 id=eq.0h1v.s5.23d44824774a from=translated src=- shape=5ae5f803 vocab=171b5e76
+-/
 theorem standardKernel_eq_entryFunction (g : GL (Fin 3) (InfiniteAdeleRing ℚ)) :
     standardKernel g = entryFunction (archEntriesN (Fin 3) ℚ g) :=
   rfl
@@ -909,9 +1224,15 @@ theorem standardKernel_eq_entryFunction (g : GL (Fin 3) (InfiniteAdeleRing ℚ))
 noncomputable def entryBox : Set (Matrix (Fin 3) (Fin 3) ℝ) :=
   Set.pi Set.univ fun _ => Set.pi Set.univ fun _ => Set.Icc (-3 : ℝ) 3
 
+/--
+@isnad1 id=iscompac.0h0v.s5.a137bdb529e4 from=translated src=- shape=8e009dd1 vocab=6e8be53f
+-/
 theorem isCompact_entryBox : IsCompact entryBox :=
   isCompact_univ_pi fun _ => isCompact_univ_pi fun _ => isCompact_Icc
 
+/--
+@isnad1 id=mem.1h1v.s6.6eb850519ce5 from=translated src=- shape=d4bdab55 vocab=33d88f63
+-/
 theorem mem_entryBox_of_entrySize_le {M : Matrix (Fin 3) (Fin 3) ℝ} (h : entrySize M ≤ 8) : M ∈ entryBox := by
   unfold entryBox
   intro i _ j _
@@ -921,9 +1242,15 @@ theorem mem_entryBox_of_entrySize_le {M : Matrix (Fin 3) (Fin 3) ℝ} (h : entry
 noncomputable def adelicEntryBox : Set (Matrix (Fin 3) (Fin 3) (InfiniteAdeleRing ℚ)) :=
   (fun Y : Matrix (Fin 3) (Fin 3) ℝ => Y.map ofReal) '' entryBox
 
+/--
+@isnad1 id=iscompac.0h0v.s5.148b6b932276 from=translated src=- shape=a075c9a5 vocab=98d4de1b
+-/
 theorem isCompact_adelicEntryBox : IsCompact adelicEntryBox :=
   isCompact_entryBox.image (continuous_id.matrix_map continuous_ofReal)
 
+/--
+@isnad1 id=mem.1h1v.s7.0da04836d1b5 from=translated src=- shape=4f76ac0c vocab=5c0c6442
+-/
 theorem mem_adelicEntryBox_of_entrySize_le {X : Matrix (Fin 3) (Fin 3) (InfiniteAdeleRing ℚ)}
     (h : entrySize (X.map realCoord) ≤ 8) : X ∈ adelicEntryBox := by
   refine ⟨X.map realCoord, mem_entryBox_of_entrySize_le h, ?_⟩
@@ -933,12 +1260,18 @@ theorem mem_adelicEntryBox_of_entrySize_le {X : Matrix (Fin 3) (Fin 3) (Infinite
 noncomputable def carrierSet : Set (GL (Fin 3) (InfiniteAdeleRing ℚ)) :=
   Units.embedProduct _ ⁻¹' (adelicEntryBox ×ˢ (MulOpposite.op '' adelicEntryBox))
 
+/--
+@isnad1 id=iscompac.0h0v.s6.a168fef28945 from=translated src=- shape=67063e31 vocab=bef4ede7
+-/
 theorem isCompact_carrierSet : IsCompact carrierSet := by
   haveI : T2Space (Matrix (Fin 3) (Fin 3) (InfiniteAdeleRing ℚ)) :=
     inferInstanceAs (T2Space (Fin 3 → Fin 3 → InfiniteAdeleRing ℚ))
   exact Units.isClosedEmbedding_embedProduct.isCompact_preimage
     (isCompact_adelicEntryBox.prod (isCompact_adelicEntryBox.image MulOpposite.continuous_op))
 
+/--
+@isnad1 id=isclosed.0h0v.s6.ae52a55f296d from=translated src=- shape=67063e31 vocab=36690b9b
+-/
 theorem isClosed_carrierSet : IsClosed carrierSet := by
   haveI : T2Space (Matrix (Fin 3) (Fin 3) (InfiniteAdeleRing ℚ)) :=
     inferInstanceAs (T2Space (Fin 3 → Fin 3 → InfiniteAdeleRing ℚ))
@@ -946,6 +1279,9 @@ theorem isClosed_carrierSet : IsClosed carrierSet := by
   have hC' := (isCompact_adelicEntryBox.image MulOpposite.continuous_op).isClosed
   exact (hC.prod hC').preimage Units.continuous_embedProduct
 
+/--
+@isnad1 id=mem.1h1v.s7.4cbecb29e752 from=translated src=- shape=ef6b5820 vocab=f5c04a0b
+-/
 theorem mem_carrierSet_of_standardKernel_ne_zero {g : GL (Fin 3) (InfiniteAdeleRing ℚ)} (h : standardKernel g ≠ 0) :
     g ∈ carrierSet := by
   have hcore : standardKernelCore (realMat g) ≠ 0 := fun h0 => h (by rw [standardKernel, h0, Complex.ofReal_zero])
@@ -958,17 +1294,29 @@ theorem mem_carrierSet_of_standardKernel_ne_zero {g : GL (Fin 3) (InfiniteAdeleR
     mem_adelicEntryBox_of_entrySize_le (by rw [← realMat_eq]; exact hginv)
   exact ⟨h₁, (g⁻¹ : GL (Fin 3) (InfiniteAdeleRing ℚ)), h₂, rfl⟩
 
+/--
+@isnad1 id=hascompa.0h0v.s6.5b6b3efb1007 from=translated src=- shape=d7419ab4 vocab=f8fa0f27
+-/
 theorem hasCompactSupport_standardKernel : HasCompactSupport standardKernel :=
   HasCompactSupport.intro' isCompact_carrierSet isClosed_carrierSet fun g hg => by
     by_contra h
     exact hg (mem_carrierSet_of_standardKernel_ne_zero h)
 
+/--
+@isnad1 id=isarchte.0h0v.s4.d23698475f22 from=translated src=- shape=bfe16b09 vocab=e065f5ee
+-/
 theorem isArchTestFactorN_standardKernel : IsArchTestFactorN (Fin 3) ℚ standardKernel :=
   ⟨⟨entryFunction, contDiff_entryFunction, standardKernel_eq_entryFunction⟩, hasCompactSupport_standardKernel⟩
 
+/--
+@isnad1 id=issmooth.0h0v.s4.c87b42709c8e from=translated src=- shape=bfe16b09 vocab=599ee4a6
+-/
 theorem isSmoothingKernelN_standardKernel : IsSmoothingKernelN (Fin 3) ℚ standardKernel :=
   ⟨isArchTestFactorN_standardKernel, isLeftOrthFiniteN_standardKernel⟩
 
+/--
+@isnad1 id=ex.0h0v.s8.67995d8287ad from=translated src=- shape=0cd71681 vocab=943b74dc
+-/
 theorem exists_isSmoothingKernelN_transposeInvN_one :
     ∃ α : GL (Fin 3) (InfiniteAdeleRing ℚ) → ℂ,
       IsSmoothingKernelN (Fin 3) ℚ α ∧ α ∘ transposeInvN (Fin 3) = α ∧ α 1 = 1 :=

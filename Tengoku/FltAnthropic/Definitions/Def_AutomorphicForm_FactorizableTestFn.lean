@@ -19,6 +19,9 @@ def archEntries (g : GL (Fin 2) (InfiniteAdeleRing F)) :
   fun i j => InfiniteAdeleRing.ringEquiv_mixedSpace F
     ((g : Matrix (Fin 2) (Fin 2) (InfiniteAdeleRing F)) i j)
 
+/--
+@isnad1 id=eq.0h4v.s9.b42caed5b6d3 from=translated src=- shape=196a806e vocab=9202082c
+-/
 theorem archEntries_apply (g : GL (Fin 2) (InfiniteAdeleRing F)) (i j : Fin 2) :
     archEntries F g i j = InfiniteAdeleRing.ringEquiv_mixedSpace F
       ((g : Matrix (Fin 2) (Fin 2) (InfiniteAdeleRing F)) i j) :=
@@ -31,6 +34,9 @@ def IsArchTestFactor (fa : GL (Fin 2) (InfiniteAdeleRing F) → ℂ) : Prop :=
       ContDiff ℝ (⊤ : ℕ∞) Φ ∧ ∀ g, fa g = Φ (archEntries F g)) ∧
     HasCompactSupport fa
 
+/--
+@isnad1 id=isarchte.0h1v.s5.3cc2bb5e8c67 from=translated src=- shape=8494276e vocab=99e2552d
+-/
 theorem isArchTestFactor_zero : IsArchTestFactor F (fun _ => 0) :=
   ⟨⟨fun _ => 0, contDiff_const, fun _ => rfl⟩, HasCompactSupport.zero⟩
 
@@ -42,9 +48,15 @@ def IsFactorizableTestFn (f : GL (Fin 2) (AdeleRing (𝓞 F) F) → ℂ) : Prop 
     IsArchTestFactor F fa ∧ IsFinTestFactor F ff ∧
       ∀ g, f g = fa (AdelicLevel.glArch (𝓞 F) F g) * ff (AdelicLevel.glFin (𝓞 F) F g)
 
+/--
+@isnad1 id=isfintes.0h1v.s6.f440669d2a41 from=translated src=- shape=1bfd0169 vocab=f0188e55
+-/
 theorem isFinTestFactor_zero : IsFinTestFactor F (fun _ => 0) :=
   ⟨IsLocallyConstant.const 0, HasCompactSupport.zero⟩
 
+/--
+@isnad1 id=isfactor.0h1v.s6.ca0d7dc774ec from=translated src=- shape=1bfd0169 vocab=2d6838f2
+-/
 theorem isFactorizableTestFn_zero : IsFactorizableTestFn F (fun _ => 0) :=
   ⟨fun _ => 0, fun _ => 0, isArchTestFactor_zero F, isFinTestFactor_zero F,
     fun _ => (mul_zero _).symm⟩

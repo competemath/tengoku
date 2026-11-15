@@ -16,10 +16,16 @@ variable {K L : Type*} [NormedField K] [NormedField L]
 noncomputable def glEquivOfRingEquiv (e : K ≃+* L) : GL (Fin 2) K ≃* GL (Fin 2) L :=
   Units.mapEquiv (RingEquiv.mapMatrix (m := Fin 2) e).toMulEquiv
 
+/--
+@isnad1 id=eq.0h6v.s10.157bac33cf3c from=translated src=- shape=0b0f4382 vocab=afb05134
+-/
 theorem glEquivOfRingEquiv_apply_entry (e : K ≃+* L) (k : GL (Fin 2) K) (i j : Fin 2) :
     ((glEquivOfRingEquiv e k : GL (Fin 2) L) : Matrix (Fin 2) (Fin 2) L) i j
       = e ((k : Matrix (Fin 2) (Fin 2) K) i j) := rfl
 
+/--
+@isnad1 id=mem.2h4v.s10.86c08bae741b from=translated src=- shape=e134365a vocab=89ecc1ca
+-/
 theorem map_mem_rowIsometrySubgroup₀_of_normPreserving (e : K ≃+* L)
     (he : ∀ x : K, ‖e x‖ = ‖x‖) (k : GL (Fin 2) K)
     (hk : k ∈ rowIsometrySubgroup₀ K) :
@@ -52,6 +58,9 @@ noncomputable def rowIsometrySubgroup₀Map (e : K ≃+* L)
   map_one' := by ext; simp [glEquivOfRingEquiv]
   map_mul' k k' := by ext; simp [glEquivOfRingEquiv]
 
+/--
+@isnad1 id=eq.1h3v.s13.a01d34aa487d from=translated src=- shape=d7910714 vocab=733a26cb
+-/
 theorem rowIsometrySubgroup₀Map_weyl (e : K ≃+* L) (he : ∀ x : K, ‖e x‖ = ‖x‖) :
     rowIsometrySubgroup₀Map e he ⟨_, weyl_mem_rowIsometrySubgroup₀ K⟩
       = ⟨_, weyl_mem_rowIsometrySubgroup₀ L⟩ := by
@@ -71,6 +80,9 @@ variable {F : Type} [Field F] [NumberField F]
 
 omit [NumberField F] in
 
+/--
+@isnad1 id=eq.1h3v.s8.079ca5c69ad0 from=translated src=- shape=460c909e vocab=2e25e5a9
+-/
 theorem norm_ringEquivRealOfIsReal {w : InfinitePlace F} (hw : w.IsReal) (x : w.Completion) :
     ‖ringEquivRealOfIsReal hw x‖ = ‖x‖ :=
   (isometry_extensionEmbeddingOfIsReal hw).norm_map_of_map_zero (map_zero _) x
@@ -86,6 +98,9 @@ noncomputable def archWeightCharAt {w : InfinitePlace F} (hw : w.IsReal) (n : �
 
 omit [NumberField F] in
 
+/--
+@isnad1 id=ne.1h2v.s13.0ce692345861 from=translated src=- shape=ef878e49 vocab=9c062d1e
+-/
 theorem archWeightOneAt_weyl_ne_one {w : InfinitePlace F} (hw : w.IsReal) :
     archWeightOneAt hw ⟨_, weyl_mem_rowIsometrySubgroup₀ w.Completion⟩ ≠ 1 := by
   unfold archWeightOneAt
@@ -94,6 +109,9 @@ theorem archWeightOneAt_weyl_ne_one {w : InfinitePlace F} (hw : w.IsReal) :
 
 omit [NumberField F] in
 
+/--
+@isnad1 id=ne.1h2v.s13.900a52d0f8ba from=translated src=- shape=30f201b3 vocab=31709ee7
+-/
 theorem archWeightOneAt_ne_one {w : InfinitePlace F} (hw : w.IsReal) :
     archWeightOneAt hw ≠ 1 := fun h =>
   archWeightOneAt_weyl_ne_one hw (h ▸ rfl)
@@ -111,14 +129,23 @@ noncomputable def archWeightCharFamily (n : ℤ) :
   fun w => if hw : w.IsReal then archWeightCharAt hw n else 1
 
 omit [NumberField F] in
+/--
+@isnad1 id=eq.1h3v.s11.e42155942bae from=translated src=- shape=25d1c6a2 vocab=8de3f0d5
+-/
 theorem archWeightCharFamily_apply_of_isReal (n : ℤ) {w : InfinitePlace F} (hw : w.IsReal) :
     archWeightCharFamily F n w = archWeightCharAt hw n := dite_eq_left hw
 
 omit [NumberField F] in
+/--
+@isnad1 id=eq.1h3v.s13.fe09daa8f7dc from=translated src=- shape=f3d7921c vocab=1f3f00dd
+-/
 theorem archWeightCharFamily_apply_of_isComplex (n : ℤ) {w : InfinitePlace F}
     (hw : w.IsComplex) : archWeightCharFamily F n w = 1 :=
   dite_eq_right (by rwa [← not_isReal_iff_isComplex] at hw)
 
+/--
+@isnad1 id=ne.0h0v.s13.c70f8d69d1f4 from=translated src=- shape=4b5c9c20 vocab=d5d45bfb
+-/
 theorem archWeightCharFamily_rat_one_ne_one :
     archWeightCharFamily ℚ 1 Rat.infinitePlace ≠ 1 := by
   rw [archWeightCharFamily_apply_of_isReal ℚ 1 Rat.isReal_infinitePlace]

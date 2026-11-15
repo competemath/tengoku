@@ -15,6 +15,9 @@ open scoped Classical in
 def induced (H : Subgroup G) (φ : G → K) : G → K :=
   fun g => (Nat.card H : K)⁻¹ * ∑ x : G, if x⁻¹ * g * x ∈ H then φ (x⁻¹ * g * x) else 0
 
+/--
+@isnad1 id=eq.0h5v.s8.1752d7360da3 from=translated src=- shape=082ab70c vocab=849052e3
+-/
 theorem induced_apply (H : Subgroup G) [DecidablePred (· ∈ H)] (φ : G → K) (g : G) :
     induced H φ g =
       (Nat.card H : K)⁻¹ * ∑ x : G, if x⁻¹ * g * x ∈ H then φ (x⁻¹ * g * x) else 0 := by
@@ -22,6 +25,9 @@ theorem induced_apply (H : Subgroup G) [DecidablePred (· ∈ H)] (φ : G → K)
   congr 1
   exact Finset.sum_congr rfl fun x _ => by congr
 
+/--
+@isnad1 id=eq.1h5v.s6.ca1494832e78 from=translated src=- shape=f201ec91 vocab=51f22a0f
+-/
 theorem induced_congr (H : Subgroup G) {φ ψ : G → K} (h : ∀ x ∈ H, φ x = ψ x) :
     induced H φ = induced H ψ := by
   classical
@@ -33,6 +39,9 @@ theorem induced_congr (H : Subgroup G) {φ ψ : G → K} (h : ∀ x ∈ H, φ x 
   · exact h _ hx
   · rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.87db18c0c2a2 from=translated src=- shape=c27d2afd vocab=2cc12667
+-/
 theorem induced_add (H : Subgroup G) (φ ψ : G → K) :
     induced H (φ + ψ) = induced H φ + induced H ψ := by
   classical
@@ -43,12 +52,18 @@ theorem induced_add (H : Subgroup G) (φ ψ : G → K) :
   refine Finset.sum_congr rfl fun x _ => ?_
   split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h3v.s6.a331f680c9aa from=translated src=- shape=44ff8bb8 vocab=521609f0
+-/
 theorem induced_zero (H : Subgroup G) : induced H (0 : G → K) = 0 := by
   classical
   funext g
   rw [induced_apply, Pi.zero_apply]
   simp only [Pi.zero_apply, ite_self, Finset.sum_const_zero, mul_zero]
 
+/--
+@isnad1 id=eq.0h5v.s6.a3ad712368c8 from=translated src=- shape=b5a55e88 vocab=427e561b
+-/
 theorem induced_const_mul (H : Subgroup G) (c : K) (φ : G → K) :
     induced H (fun x => c * φ x) = fun g => c * induced H φ g := by
   classical
@@ -60,6 +75,9 @@ theorem induced_const_mul (H : Subgroup G) (c : K) (φ : G → K) :
   refine Finset.sum_congr rfl fun x _ => ?_
   split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h6v.s6.bc2c7674d931 from=translated src=- shape=0f60ea6b vocab=b462c79c
+-/
 theorem induced_sum {ι : Type*} (H : Subgroup G) (s : Finset ι) (φ : ι → G → K) :
     induced H (fun x => ∑ i ∈ s, φ i x) = fun g => ∑ i ∈ s, induced H (φ i) g := by
   classical
@@ -74,6 +92,9 @@ theorem induced_sum {ι : Type*} (H : Subgroup G) (s : Finset ι) (φ : ι → G
       funext x; simp
     rw [this, induced_add, Pi.add_apply, ih]
 
+/--
+@isnad1 id=eq.1h6v.s7.639979ecff69 from=translated src=- shape=209d938b vocab=fd7f7f4e
+-/
 theorem induced_mul_of_conj_invariant (H : Subgroup G) (φ f : G → K)
     (hf : ∀ x g : G, f (x⁻¹ * g * x) = f g) (g : G) :
     induced H φ g * f g = induced H (fun y => φ y * f y) g := by
@@ -86,6 +107,9 @@ theorem induced_mul_of_conj_invariant (H : Subgroup G) (φ f : G → K)
   · rw [hf]
   · simp
 
+/--
+@isnad1 id=eq.1h3v.s6.aa2af7895be3 from=translated src=- shape=08e8a18a vocab=fc744ef3
+-/
 theorem induced_top_of_conj_invariant [CharZero K] (φ : G → K)
     (hφ : ∀ x g : G, φ (x⁻¹ * g * x) = φ g) : induced (⊤ : Subgroup G) φ = φ := by
   classical
@@ -97,6 +121,9 @@ theorem induced_top_of_conj_invariant [CharZero K] (φ : G → K)
   have hG : (Fintype.card G : K) ≠ 0 := by exact_mod_cast Fintype.card_ne_zero
   rw [inv_mul_cancel₀ hG, one_mul]
 
+/--
+@isnad1 id=eq.0h5v.s8.1f5d99be7e82 from=translated src=- shape=d9e8ec99 vocab=ff6cb812
+-/
 theorem induced_induced [CharZero K] (H : Subgroup G) [Fintype H] [DecidablePred (· ∈ H)]
     (L : Subgroup H) (ψ : H → K) :
     induced H (fun g => if hg : g ∈ H then induced L ψ ⟨g, hg⟩ else 0) =

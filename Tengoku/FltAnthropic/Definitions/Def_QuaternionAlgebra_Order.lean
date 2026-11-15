@@ -54,6 +54,9 @@ noncomputable def condEmbeddingCount (Λ : Submodule ℤ ℍ[ℚ, a, b]) (t n : 
   Nat.card {c : EmbeddingClassSet Λ t n //
     ∃ d : EmbeddingDatum Λ t n, Quot.mk _ d = c ∧ d.HasConductor f}
 
+/--
+@isnad1 id=iff.0h5v.s8.3747c275394a from=translated src=- shape=787dd1b6 vocab=43d11899
+-/
 theorem isQuadraticDatum_iff {t n : ℤ} {α : ℍ[ℚ, a, b]} :
     IsQuadraticDatum t n α ↔ α * α - (t : ℚ) • α + (n : ℚ) • (1 : ℍ[ℚ, a, b]) = 0 :=
   Iff.rfl

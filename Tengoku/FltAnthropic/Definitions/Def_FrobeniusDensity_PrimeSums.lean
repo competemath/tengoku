@@ -36,6 +36,9 @@ variable (K) in
 noncomputable def factoredSum (T : Finset (HeightOneSpectrum (𝓞 K))) (s : ℝ) : ℝ≥0∞ :=
   ∑' I : {I : Ideal (𝓞 K) // IsFactoredBy T I}, normRpow K s I.1
 
+/--
+@isnad1 id=le.1h2v.s8.bf77a0c50d3c from=translated src=- shape=8c6186e6 vocab=2c708ca5
+-/
 lemma one_le_absNorm {I : Ideal (𝓞 K)} (hI : I ≠ ⊥) : 1 ≤ Ideal.absNorm I :=
   Nat.one_le_iff_ne_zero.mpr (fun h => hI (Ideal.absNorm_eq_zero_iff.mp h))
 
@@ -46,6 +49,9 @@ noncomputable def primeFactors (I : Ideal (𝓞 K)) : Finset (HeightOneSpectrum 
 
 variable (K)
 
+/--
+@isnad1 id=ex.0h2v.s5.21c10533b5aa from=translated src=- shape=84524810 vocab=bdbfee4b
+-/
 theorem exists_prime_liesOver (v : HeightOneSpectrum (𝓞 K)) :
     ∃ ℓ : ℕ, ℓ.Prime ∧ v.asIdeal.LiesOver (ratPrimeIdeal ℓ) := by
   have hJp : (v.asIdeal.under ℤ).IsPrime := Ideal.IsPrime.under ℤ v.asIdeal
@@ -66,9 +72,15 @@ variable {K}
 noncomputable def ratBelow (v : HeightOneSpectrum (𝓞 K)) : ℕ :=
   (exists_prime_liesOver K v).choose
 
+/--
+@isnad1 id=prime.0h2v.s4.f2dccb367f4b from=translated src=- shape=5266c53d vocab=e1ef8d0c
+-/
 theorem ratBelow_prime (v : HeightOneSpectrum (𝓞 K)) : (ratBelow v).Prime :=
   (exists_prime_liesOver K v).choose_spec.1
 
+/--
+@isnad1 id=liesover.0h2v.s5.5006684da6e4 from=translated src=- shape=1ee7bfd0 vocab=0370bd2a
+-/
 instance liesOver_ratBelow (v : HeightOneSpectrum (𝓞 K)) :
     v.asIdeal.LiesOver (ratPrimeIdeal (ratBelow v)) :=
   (exists_prime_liesOver K v).choose_spec.2

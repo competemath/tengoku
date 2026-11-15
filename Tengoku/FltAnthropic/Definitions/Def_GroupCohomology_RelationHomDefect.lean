@@ -29,9 +29,15 @@ def preHom {A A' : Rep.{u} k G} (f : A ⟶ A') (E : Rep.{u} k G) : (ihom A').obj
     simp only [LinearMap.coe_comp, Function.comp_apply, Representation.IntertwiningMap.toLinearMap_apply]
     rw [Rep.hom_comm_apply]⟩
 
+/--
+@isnad1 id=eq.0h7v.s12.0223fc66b5d2 from=translated src=- shape=99aa0554 vocab=015e009f
+-/
 theorem preHom_hom_apply {A A' : Rep.{u} k G} (f : A ⟶ A') (E : Rep.{u} k G) (x : (ihom A').obj E) :
     (preHom f E).hom x = (show A' →ₗ[k] E from x) ∘ₗ f.hom.toLinearMap := rfl
 
+/--
+@isnad1 id=eq.0h8v.s9.5d59a66a8af1 from=translated src=- shape=3ddd3cc7 vocab=000d7177
+-/
 theorem preHom_comp {A A' A'' : Rep.{u} k G} (f : A ⟶ A') (f' : A' ⟶ A'') (E : Rep.{u} k G) :
     preHom f' E ≫ preHom f E = preHom (f ≫ f') E :=
   Rep.hom_ext (DFunLike.ext _ _ fun _ => rfl)

@@ -13,6 +13,9 @@ namespace FLT.FundamentalDomainVolume
 def band (A a : ℝ) (n : ℕ) : Set ℍ :=
   {z : ℍ | |z.re| ≤ A ∧ a * 2 ^ n ≤ z.im ∧ z.im ≤ a * 2 ^ (n + 1)}
 
+/--
+@isnad1 id=le.1h2v.s5.55031b6ac391 from=translated src=- shape=e34925ca vocab=512adbcb
+-/
 theorem verticalStrip_subset_iUnion_band (A : ℝ) {a : ℝ} (ha : 0 < a) :
     UpperHalfPlane.verticalStrip A a ⊆ ⋃ n : ℕ, band A a n := by
   rintro z ⟨hre, him⟩
@@ -51,6 +54,9 @@ private lemma volume_cbox (relo rehi imlo imhi : ℝ) :
   rw [show (volume : Measure (ℝ × ℝ)) = (volume : Measure ℝ).prod volume from rfl,
     Measure.prod_prod, Real.volume_Icc, Real.volume_Icc]
 
+/--
+@isnad1 id=le.2h3v.s6.6aa1e84d5ec1 from=translated src=- shape=45c53c70 vocab=d9ed114e
+-/
 theorem volume_band_le {A a : ℝ} (hA : 0 ≤ A) (ha : 0 < a) (n : ℕ) :
     volume (band A a n) ≤ ENNReal.ofReal (2 * A * (a⁻¹ * (1 / 2) ^ n)) := by
   have h2n : (0 : ℝ) < a * 2 ^ n := by positivity
@@ -90,6 +96,9 @@ theorem volume_band_le {A a : ℝ} (hA : 0 ≤ A) (ha : 0 < a) (n : ℕ) :
     ← inv_pow]
   norm_num
 
+/--
+@isnad1 id=lt.1h2v.s5.47cd44950250 from=translated src=- shape=036284e8 vocab=fccdf6d8
+-/
 theorem volume_verticalStrip_lt_top (A : ℝ) {a : ℝ} (ha : 0 < a) :
     volume (UpperHalfPlane.verticalStrip A a) < ⊤ := by
 
@@ -124,16 +133,25 @@ theorem volume_verticalStrip_lt_top (A : ℝ) {a : ℝ} (ha : 0 < a) :
         rw [ENNReal.inv_lt_top, tsub_pos_iff_lt]
         exact ENNReal.ofReal_lt_one.mpr (by norm_num)
 
+/--
+@isnad1 id=le.0h0v.s5.1667178ad059 from=translated src=- shape=e0862ee1 vocab=40f33b42
+-/
 theorem fd_subset_verticalStrip : 𝒟 ⊆ UpperHalfPlane.verticalStrip (1 / 2) (1 / 2) := by
   intro z hz
   refine ⟨hz.2, ?_⟩
   have h3 := ModularGroup.three_le_four_mul_im_sq_of_mem_fd hz
   nlinarith [z.im_pos]
 
+/--
+@isnad1 id=lt.0h0v.s4.26ba7b38cda5 from=translated src=- shape=29c90ef8 vocab=ddcf0fc2
+-/
 theorem volume_fd_lt_top : volume 𝒟 < ⊤ :=
   lt_of_le_of_lt (measure_mono fd_subset_verticalStrip)
     (volume_verticalStrip_lt_top (1 / 2) (by norm_num))
 
+/--
+@isnad1 id=lt.0h1v.s9.6bf81d18e9c7 from=translated src=- shape=37d13bba vocab=ad1a72b6
+-/
 theorem volume_biUnion_smul_fd_lt_top (S : Finset SL(2, ℤ)) :
     volume (⋃ γ ∈ S, γ • 𝒟) < ⊤ := by
   refine lt_of_le_of_lt (measure_biUnion_finset_le S _) ?_
@@ -151,16 +169,25 @@ private lemma fdoWitness_mem_fdo : fdoWitness ∈ 𝒟ᵒ := by
   · show |fdoWitness.re| < 1 / 2
     norm_num [fdoWitness, UpperHalfPlane.mk_re]
 
+/--
+@isnad1 id=lt.0h0v.s5.37db3ee24872 from=translated src=- shape=3042939c vocab=661252b7
+-/
 theorem volume_fd_pos : 0 < volume 𝒟 :=
   lt_of_lt_of_le
     (FLT.HyperbolicMeasure.volume_pos_of_isOpen ModularGroup.isOpen_fdo
       ⟨fdoWitness, fdoWitness_mem_fdo⟩)
     (measure_mono ModularGroup.fdo_subset_fd)
 
+/--
+@isnad1 id=lt.0h0v.s5.255eda80b596 from=translated src=- shape=7f1d3850 vocab=17266a10
+-/
 theorem volume_fd_lt_volume_univ : volume 𝒟 < volume (Set.univ : Set ℍ) := by
   rw [FLT.HyperbolicMeasure.volume_univ_eq_top]
   exact volume_fd_lt_top
 
+/--
+@isnad1 id=and.0h0v.s5.f27bbc2b825c from=translated src=- shape=60a84b9b vocab=ce44e3f8
+-/
 theorem volume_fd_ne_zero_ne_top : volume 𝒟 ≠ 0 ∧ volume 𝒟 ≠ ⊤ :=
   ⟨volume_fd_pos.ne', volume_fd_lt_top.ne⟩
 

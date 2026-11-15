@@ -17,6 +17,9 @@ namespace Place
 
 variable {K F}
 
+/--
+@isnad1 id=ex.0h3v.s8.ea0c1fef57d3 from=translated src=- shape=b43fe5ce vocab=0bbe6479
+-/
 theorem exists_ord_eq_one_and_dCoord_eq (v : Place K F) :
     ∃ π : F, v.ord π = 1 ∧ v.dCoord = D K F π := by
   refine ⟨((IsDiscreteValuationRing.exists_irreducible v.toValuationSubring).choose : F), ?_, rfl⟩
@@ -38,6 +41,9 @@ def regularDifferentials : Submodule K Ω[F⁄K] where
     rw [mul_smul, algebraMap_smul]
 
 variable {K F} in
+/--
+@isnad1 id=iff.0h3v.s8.4ba15ece1163 from=translated src=- shape=75b47f9c vocab=21ad89e9
+-/
 theorem mem_regularDifferentials_iff {ω : Ω[F⁄K]} :
     ω ∈ regularDifferentials K F ↔
       ∀ v : Place K F, ∃ f ∈ v.toValuationSubring, ω = f • v.dCoord :=

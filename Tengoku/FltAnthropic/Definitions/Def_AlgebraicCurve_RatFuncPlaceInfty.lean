@@ -15,6 +15,9 @@ namespace RationalFunctionField
 
 variable (K : Type*) [Field K] [DecidableEq (RatFunc K)]
 
+/--
+@isnad1 id=nontrivi.0h1v.s8.7fec6c9be6bf from=translated src=- shape=e81c0e76 vocab=38f05e2e
+-/
 theorem nontrivial_valueGroup_inftyValuation :
     Nontrivial (MonoidWithZeroHom.valueGroup (.ofClass (RatFunc.inftyValuation K))) := by
   rw [Subgroup.nontrivial_iff_exists_ne_one]
@@ -37,6 +40,9 @@ def placeInfty : Place K (RatFunc K) :=
       (Valuation.valuationSubring_isDiscreteValuationRing
         (RatFunc.inftyValuation K)).toIsPrincipalIdealRing }
 
+/--
+@isnad1 id=eq.0h1v.s6.514fbef10e2f from=translated src=- shape=51a88ce4 vocab=725672ee
+-/
 @[simp]
 theorem placeInfty_toValuationSubring :
     (placeInfty K).toValuationSubring = (RatFunc.inftyValuation K).valuationSubring := rfl

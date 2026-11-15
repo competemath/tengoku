@@ -27,9 +27,18 @@ instance dartAction : MulAction G 𝒯.Dart where
   one_smul d := SimpleGraph.Dart.ext _ _ (Prod.ext (one_smul G d.fst) (one_smul G d.snd))
   mul_smul g h d := SimpleGraph.Dart.ext _ _ (Prod.ext (mul_smul g h d.fst) (mul_smul g h d.snd))
 
+/--
+@isnad1 id=eq.0h5v.s6.3ead64d9aace from=translated src=- shape=8be2d1f1 vocab=5ba8c874
+-/
 @[simp] theorem smul_dart_fst (g : G) (d : 𝒯.Dart) : (g • d).fst = g • d.fst := rfl
+/--
+@isnad1 id=eq.0h5v.s6.b0d6e801861f from=translated src=- shape=8be2d1f1 vocab=149c98f0
+-/
 @[simp] theorem smul_dart_snd (g : G) (d : 𝒯.Dart) : (g • d).snd = g • d.snd := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.0a218c3cc020 from=translated src=- shape=97ce238e vocab=b54b979d
+-/
 theorem smul_dart_symm (g : G) (d : 𝒯.Dart) : (g • d).symm = g • d.symm := rfl
 
 abbrev QuotEdge (G : Type) [Group G] {W : Type} [MulAction G W] (𝒯 : SimpleGraph W) [GraphAction G 𝒯] :=
@@ -37,6 +46,9 @@ abbrev QuotEdge (G : Type) [Group G] {W : Type} [MulAction G W] (𝒯 : SimpleGr
 
 abbrev QuotVert (G : Type) [Group G] (W : Type) [MulAction G W] := orbitRel.Quotient G W
 
+/--
+@isnad1 id=eq.0h5v.s7.37f5039d19f6 from=translated src=- shape=0f165e10 vocab=b3e15938
+-/
 theorem card_stabilizer_smul (g : G) (d : 𝒯.Dart) :
     Nat.card (stabilizer G (g • d)) = Nat.card (stabilizer G d) := by
   rw [stabilizer_smul_eq_stabilizer_map_conj]
@@ -47,6 +59,9 @@ variable (G) in
 def stabWidth (e : QuotEdge G 𝒯) : ℕ+ :=
   Nat.toPNat' (Nat.card (stabilizer G e.out))
 
+/--
+@isnad1 id=eq.0h4v.s6.0fd5665f5798 from=translated src=- shape=c7ec6518 vocab=001b7125
+-/
 theorem stabWidth_mk (d : 𝒯.Dart) :
     stabWidth G 𝒯 (Quotient.mk'' d) = Nat.toPNat' (Nat.card (stabilizer G d)) :=
   congrArg Nat.toPNat' (Nat.card_congr
@@ -90,6 +105,9 @@ def PeriodDatum.HeckeAdjointable {E V : Type} [Fintype E] [Fintype V] [Decidable
 def unitsBaseChange (K L : Type) [Field K] [Field L] [Algebra K L] : Additive Kˣ →ₗ[ℤ] Additive Lˣ :=
   (MonoidHom.toAdditive (Units.map (algebraMap K L).toMonoidHom)).toIntLinearMap
 
+/--
+@isnad1 id=eq.0h3v.s9.daa134efc92d from=translated src=- shape=96aaedb6 vocab=219e302f
+-/
 @[simp] theorem unitsBaseChange_apply (K L : Type) [Field K] [Field L] [Algebra K L] (u : Kˣ) :
     unitsBaseChange K L (Additive.ofMul u) = Additive.ofMul (Units.map (algebraMap K L).toMonoidHom u) := rfl
 
@@ -102,6 +120,9 @@ abbrev TorusPoints (P : PeriodDatum D K L ord) : Type := ↥(ribbonKernel D) →
 
 def QL : ↥(ribbonKernel D) →ₗ[ℤ] P.TorusPoints := P.Q.compr₂ (unitsBaseChange K L)
 
+/--
+@isnad1 id=eq.0h9v.s13.845132361606 from=translated src=- shape=509a0882 vocab=fcc6e652
+-/
 @[simp] theorem QL_apply (x y : ↥(ribbonKernel D)) : P.QL x y = unitsBaseChange K L (P.Q x y) := rfl
 
 def periodLattice : Submodule ℤ P.TorusPoints := LinearMap.range P.QL

@@ -16,6 +16,9 @@ abbrev presheafULift : MorphismProperty (Cᵒᵖ ⥤ Type (max w v)) := P.relati
 
 variable {P}
 
+/--
+@isnad1 id=le.0h1v.s7.1c108e93e173 from=translated src=- shape=1b869b44 vocab=a679dbe6
+-/
 lemma presheafULift_monomorphisms_le_monomorphisms :
     presheafULift.{w} (monomorphisms C) ≤ monomorphisms _ := fun F G f hf ↦ by
   suffices ∀ {X : C} {a b : uliftYoneda.{w}.obj X ⟶ F}, a ≫ f = b ≫ f → a = b from
@@ -29,17 +32,26 @@ lemma presheafULift_monomorphisms_le_monomorphisms :
 
 variable {G : Cᵒᵖ ⥤ Type (max w v)}
 
+/--
+@isnad1 id=mono.1h6v.s7.d37d04a3bff6 from=translated src=- shape=411c5b00 vocab=2b567fd2
+-/
 lemma presheafULift_mono_of_le (hP : P ≤ MorphismProperty.monomorphisms C)
     {X : C} {f : uliftYoneda.{w}.obj X ⟶ G} (hf : P.presheafULift f) : Mono f :=
   MorphismProperty.presheafULift_monomorphisms_le_monomorphisms _
     (MorphismProperty.relative_monotone hP _ hf)
 
+/--
+@isnad1 id=eq.1h6v.s8.a34b72b5f5b5 from=translated src=- shape=be3f4fcd vocab=c240a323
+-/
 lemma fst'_self_eq_snd_ULift (hP : P ≤ MorphismProperty.monomorphisms C)
     {X : C} {f : uliftYoneda.{w}.obj X ⟶ G} (hf : P.presheafULift f) : hf.rep.fst' f = hf.rep.snd f := by
   have := presheafULift_mono_of_le hP hf
   apply uliftYoneda.{w}.map_injective
   rw [← cancel_mono f, (hf.rep.isPullback' f).w]
 
+/--
+@isnad1 id=isiso.1h6v.s7.d53033907d22 from=translated src=- shape=dd67afea vocab=d7ab5845
+-/
 lemma isIso_fst'_self_ULift (hP : P ≤ MorphismProperty.monomorphisms C)
     {X : C} {f : uliftYoneda.{w}.obj X ⟶ G} (hf : P.presheafULift f) : IsIso (hf.rep.fst' f) :=
   have := presheafULift_mono_of_le hP hf
@@ -98,6 +110,9 @@ noncomputable def uliftYonedaGluedToSheaf :
       rw [← op_comp, Quiver.Hom.unop_op, Quiver.Hom.unop_op]
       erw [Functor.relativelyRepresentable.symmetry_fst, ((hf i).rep.isPullback' (f j)).w]))
 
+/--
+@isnad1 id=eq.0h6v.s8.1125c85ab927 from=translated src=- shape=fde27331 vocab=9009a7da
+-/
 @[reassoc (attr := simp)]
 lemma uliftYoneda_toGlued_uliftYonedaGluedToSheaf (i : ι) :
     uliftYoneda.{w}.map (toGlued hf i) ≫ (uliftYonedaGluedToSheaf hf).hom = f i := by
@@ -108,12 +123,18 @@ lemma uliftYoneda_toGlued_uliftYonedaGluedToSheaf (i : ι) :
   simp only [uliftYonedaGluedToSheaf, toGlued, Equiv.apply_symm_apply]
   exact GlueData.sheafValGluedMk_val _ _ _ _
 
+/--
+@isnad1 id=eq.0h9v.s11.1025e61bc0b6 from=translated src=- shape=21ade4e2 vocab=49cbc7f1
+-/
 @[simp]
 lemma uliftYonedaGluedToSheaf_app_comp {V U : Scheme.{u}} (γ : V ⟶ U) (α : U ⟶ (glueData hf).glued) :
     dsimp% (uliftYonedaGluedToSheaf hf).hom.app (op V) ⟨γ ≫ α⟩ =
       F.obj.map γ.op ((uliftYonedaGluedToSheaf hf).hom.app (op U) ⟨α⟩) :=
   ConcreteCategory.congr_hom ((uliftYonedaGluedToSheaf hf).hom.naturality γ.op) ⟨α⟩
 
+/--
+@isnad1 id=eq.1h10v.s9.f4e8e1c34cd2 from=translated src=- shape=74504e23 vocab=b2834e63
+-/
 lemma comp_toGlued_eq {U : Scheme.{u}} {i j : ι} (a : U ⟶ X i) (b : U ⟶ X j)
     (h : uliftYoneda.{w}.map a ≫ f i = uliftYoneda.{w}.map b ≫ f j) :
     a ≫ toGlued hf i = b ≫ toGlued hf j := by
@@ -123,6 +144,9 @@ lemma comp_toGlued_eq {U : Scheme.{u}} {i j : ι} (a : U ⟶ X i) (b : U ⟶ X j
   exact ((glueData hf).glue_condition i j).symm.trans
     (by simp [toGlued]; erw [Functor.relativelyRepresentable.symmetry_fst_assoc])
 
+/--
+@isnad1 id=eq.0h6v.s7.c468b51a70f9 from=translated src=- shape=af277ed8 vocab=19e4ff31
+-/
 @[simp]
 lemma glueData_openCover_map : (glueData hf).openCover.f j = toGlued hf j := rfl
 

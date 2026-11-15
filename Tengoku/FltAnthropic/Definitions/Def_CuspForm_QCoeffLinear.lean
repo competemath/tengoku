@@ -9,6 +9,9 @@ open UpperHalfPlane
 
 namespace CuspForm
 
+/--
+@isnad1 id=analytic.0h3v.s8.703ec8f2ab6c from=translated src=- shape=514a44fb vocab=b42ace6a
+-/
 theorem analyticAt_cuspFunction_one_gamma0 {M : ℕ} {k : ℤ}
     (f : CuspForm (CongruenceSubgroup.Gamma0 M) k) : AnalyticAt ℂ (cuspFunction 1 ⇑f) 0 :=
   ModularFormClass.analyticAt_cuspFunction_zero f one_pos

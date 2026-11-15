@@ -30,6 +30,9 @@ structure Point (h : ℕ → ℕ) where
 
 variable {A}
 
+/--
+@isnad1 id=eq.1h5v.s6.0dd1911757c5 from=translated src=- shape=5d3b3464 vocab=a849579a
+-/
 @[ext] theorem Point.ext {h : ℕ → ℕ} {P Q : Point A n h} (e : P.I = Q.I) : P = Q := by
   cases P; cases Q; cases e; rfl
 

@@ -34,10 +34,16 @@ def Gamma0Away : Subgroup (SL(2, ZAway q)) where
     simp only [Matrix.cons_val', Matrix.cons_val_zero, Matrix.cons_val_one]
     exact dvd_neg.mpr ha
 
+/--
+@isnad1 id=iff.0h3v.s9.19b96fabbf9f from=translated src=- shape=e0ca6b72 vocab=7b809894
+-/
 theorem mem_Gamma0Away {N q : ℕ} {g : SL(2, ZAway q)} :
     g ∈ Gamma0Away N q ↔ (N : ZAway q) ∣ g 1 0 :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h3v.s9.caf268d23486 from=translated src=- shape=29ce2e0e vocab=9ecc7037
+-/
 theorem mem_Gamma0Away_iff_algebraMap {N q : ℕ} {g : SL(2, ZAway q)} :
     g ∈ Gamma0Away N q ↔ algebraMap ℤ (ZAway q) (N : ℤ) ∣ g 1 0 := by
   have h : algebraMap ℤ (ZAway q) (N : ℤ) = (N : ZAway q) := by simp
@@ -48,18 +54,30 @@ def wMat : Matrix (Fin 2) (Fin 2) (ZAway q) := !![1, 0; 0, (q : ZAway q)]
 noncomputable def wMatInv : Matrix (Fin 2) (Fin 2) (ZAway q) :=
   !![1, 0; 0, IsLocalization.Away.invSelf (S := ZAway q) (q : ℤ)]
 
+/--
+@isnad1 id=eq.0h1v.s7.1674980c401d from=translated src=- shape=a53372a8 vocab=ddb224a8
+-/
 theorem q_mul_invSelf :
     (q : ZAway q) * IsLocalization.Away.invSelf (S := ZAway q) (q : ℤ) = 1 := by
   simpa using IsLocalization.Away.mul_invSelf (S := ZAway q) ((q : ℕ) : ℤ)
 
+/--
+@isnad1 id=eq.0h1v.s7.0425c11c47a5 from=translated src=- shape=f347a041 vocab=ddb224a8
+-/
 theorem invSelf_mul_q :
     IsLocalization.Away.invSelf (S := ZAway q) (q : ℤ) * (q : ZAway q) = 1 := by
   rw [mul_comm]; exact q_mul_invSelf q
 
+/--
+@isnad1 id=eq.0h1v.s8.7a657ad45c86 from=translated src=- shape=8af0ebad vocab=cd714d16
+-/
 theorem wMat_mul_wMatInv : wMat q * wMatInv q = 1 := by
   rw [wMat, wMatInv, Matrix.mul_fin_two, Matrix.one_fin_two]
   simp [q_mul_invSelf q]
 
+/--
+@isnad1 id=eq.0h1v.s8.65496043085f from=translated src=- shape=8af0ebad vocab=cd714d16
+-/
 theorem wMatInv_mul_wMat : wMatInv q * wMat q = 1 := by
   rw [wMat, wMatInv, Matrix.mul_fin_two, Matrix.one_fin_two]
   simp [invSelf_mul_q q]
@@ -72,10 +90,16 @@ noncomputable def wConjInvFun (γ : SL(2, ZAway q)) : SL(2, ZAway q) :=
   ⟨wMat q * γ.1 * wMatInv q, by
     rw [det_mul, det_mul, γ.2, mul_one, ← det_mul, wMat_mul_wMatInv, det_one]⟩
 
+/--
+@isnad1 id=eq.0h2v.s9.57ab748309e6 from=translated src=- shape=4b0b46a6 vocab=79c70d61
+-/
 theorem wConjFun_coe (γ : SL(2, ZAway q)) :
     (wConjFun q γ).1 = wMatInv q * γ.1 * wMat q :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.6b4bc5f2477f from=translated src=- shape=4b0b46a6 vocab=7d869818
+-/
 theorem wConjInvFun_coe (γ : SL(2, ZAway q)) :
     (wConjInvFun q γ).1 = wMat q * γ.1 * wMatInv q :=
   rfl
@@ -104,11 +128,17 @@ noncomputable def wConj : SL(2, ZAway q) ≃* SL(2, ZAway q) where
       wMat_mul_wMatInv, mul_one]
     simp only [mul_assoc]
 
+/--
+@isnad1 id=eq.0h2v.s10.774784ba0f71 from=translated src=- shape=9774f7f0 vocab=ab706ba7
+-/
 @[simp]
 theorem wConj_coe (γ : SL(2, ZAway q)) :
     (wConj q γ).1 = wMatInv q * γ.1 * wMat q :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.0063be58364c from=translated src=- shape=5a179292 vocab=4226245e
+-/
 @[simp]
 theorem wConj_symm_coe (γ : SL(2, ZAway q)) :
     ((wConj q).symm γ).1 = wMat q * γ.1 * wMatInv q :=
@@ -119,14 +149,23 @@ def wMatSwap : Matrix (Fin 2) (Fin 2) (ZAway q) := !![(q : ZAway q), 0; 0, 1]
 noncomputable def wMatSwapInv : Matrix (Fin 2) (Fin 2) (ZAway q) :=
   !![IsLocalization.Away.invSelf (S := ZAway q) (q : ℤ), 0; 0, 1]
 
+/--
+@isnad1 id=eq.0h1v.s8.c7eb29850304 from=translated src=- shape=8af0ebad vocab=265627c1
+-/
 theorem wMatSwap_mul_wMatSwapInv : wMatSwap q * wMatSwapInv q = 1 := by
   rw [wMatSwap, wMatSwapInv, Matrix.mul_fin_two, Matrix.one_fin_two]
   simp [q_mul_invSelf q]
 
+/--
+@isnad1 id=eq.0h1v.s8.9c861a36753c from=translated src=- shape=8af0ebad vocab=265627c1
+-/
 theorem wMatSwapInv_mul_wMatSwap : wMatSwapInv q * wMatSwap q = 1 := by
   rw [wMatSwap, wMatSwapInv, Matrix.mul_fin_two, Matrix.one_fin_two]
   simp [invSelf_mul_q q]
 
+/--
+@isnad1 id=eq.0h2v.s10.8099063910e7 from=translated src=- shape=0e90de7f vocab=f29c2d60
+-/
 theorem wConj_swap (γ : SL(2, ZAway q)) :
     wMatSwapInv q * γ.1 * wMatSwap q = ((wConj q).symm γ).1 := by
   have hu := invSelf_mul_q q

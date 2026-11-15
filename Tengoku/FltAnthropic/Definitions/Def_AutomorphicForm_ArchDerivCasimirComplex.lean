@@ -22,11 +22,17 @@ def archComplexGLAt {w : InfinitePlace F} (hw : w.IsComplex) : GL (Fin 2) ℂ �
 def archComplexLiftAt {w : InfinitePlace F} (hw : w.IsComplex) (e : Fin 2 → Fin 2 → ℂ) : AdelicGL2 (𝓞 F) F :=
   if h : (Matrix.of e).det ≠ 0 then archComplexGLAt hw (GeneralLinearGroup.mkOfDetNeZero (Matrix.of e) h) else 1
 
+/--
+@isnad1 id=eq.2h3v.s10.c4bb684761ce from=translated src=- shape=77c7832a vocab=1218cc11
+-/
 theorem archComplexLiftAt_of_det_ne_zero {w : InfinitePlace F} (hw : w.IsComplex) {e : Fin 2 → Fin 2 → ℂ}
     (h : (Matrix.of e).det ≠ 0) :
     archComplexLiftAt hw e = archComplexGLAt hw (GeneralLinearGroup.mkOfDetNeZero (Matrix.of e) h) :=
   dite_eq_left h
 
+/--
+@isnad1 id=isopen.0h0v.s8.6ec8639592eb from=translated src=- shape=4a3c72f1 vocab=43324bf8
+-/
 theorem isOpen_setOf_det_ne_zero_complex :
     IsOpen {e : Fin 2 → Fin 2 → ℂ | (Matrix.of e).det ≠ 0} :=
   (isClosed_singleton.preimage (continuous_id.matrix_det)).isOpen_compl
@@ -36,6 +42,9 @@ def IsArchSmoothAtComplex {w : InfinitePlace F} (hw : w.IsComplex) (φ : AdelicG
     ContDiffOn ℝ (⊤ : ℕ∞) (fun e : Fin 2 → Fin 2 → ℂ => φ (g * archComplexLiftAt hw e))
       {e | (Matrix.of e).det ≠ 0}
 
+/--
+@isnad1 id=isarchsm.1h3v.s5.408dd99a5f56 from=translated src=- shape=e1e53099 vocab=1c3a9a0e
+-/
 theorem isArchSmoothAtComplex_const {w : InfinitePlace F} (hw : w.IsComplex) (c : ℂ) :
     IsArchSmoothAtComplex hw (fun _ => c) :=
   fun _ => contDiffOn_const
@@ -74,9 +83,15 @@ def splitTorusGL2Complex (z : ℂ) : GL (Fin 2) ℂ where
     ext i j; fin_cases i <;> fin_cases j <;>
       simp [Matrix.mul_apply, Fin.sum_univ_two, ← Complex.exp_add]
 
+/--
+@isnad1 id=eq.0h0v.s6.580d51270faa from=translated src=- shape=98680116 vocab=5bb73ab3
+-/
 theorem splitTorusGL2Complex_zero : splitTorusGL2Complex 0 = 1 := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [splitTorusGL2Complex]
 
+/--
+@isnad1 id=eq.0h2v.s7.1f5e4dd96143 from=translated src=- shape=ff03d487 vocab=a4569f7f
+-/
 theorem splitTorusGL2Complex_add (z z' : ℂ) : splitTorusGL2Complex (z + z') = splitTorusGL2Complex z * splitTorusGL2Complex z' := by
   ext i j; fin_cases i <;> fin_cases j <;>
     simp [splitTorusGL2Complex, Matrix.mul_apply, Fin.sum_univ_two, Complex.exp_add]; ring_nf
@@ -89,6 +104,9 @@ def archFlowMatrixComplex : ArchDirComplex → ℝ → GL (Fin 2) ℂ
   | .iE, t => unipotentGL2 ((t : ℂ) * I)
   | .iFm, t => lowerUnipotentGL2 ((t : ℂ) * I)
 
+/--
+@isnad1 id=eq.0h1v.s7.00fe7b43e731 from=translated src=- shape=ead5c942 vocab=c8737f0d
+-/
 theorem archFlowMatrixComplex_zero (d : ArchDirComplex) : archFlowMatrixComplex d 0 = 1 := by
   cases d
   · simpa [archFlowMatrixComplex] using splitTorusGL2Complex_zero
@@ -98,6 +116,9 @@ theorem archFlowMatrixComplex_zero (d : ArchDirComplex) : archFlowMatrixComplex 
   · simp [archFlowMatrixComplex, unipotentGL2_zero]
   · simp [archFlowMatrixComplex, lowerUnipotentGL2_zero]
 
+/--
+@isnad1 id=eq.0h3v.s7.6d08f618120e from=translated src=- shape=81d72d9e vocab=f09e2c4b
+-/
 theorem archFlowMatrixComplex_add (d : ArchDirComplex) (s t : ℝ) :
     archFlowMatrixComplex d (s + t) = archFlowMatrixComplex d s * archFlowMatrixComplex d t := by
   cases d
@@ -111,9 +132,15 @@ theorem archFlowMatrixComplex_add (d : ArchDirComplex) (s t : ℝ) :
 def archFlowAtComplex {w : InfinitePlace F} (hw : w.IsComplex) (d : ArchDirComplex) (t : ℝ) : AdelicGL2 (𝓞 F) F :=
   archComplexGLAt hw (archFlowMatrixComplex d t)
 
+/--
+@isnad1 id=eq.1h3v.s7.d9b38eb0eae9 from=translated src=- shape=62a282a3 vocab=18b26233
+-/
 theorem archFlowAtComplex_zero {w : InfinitePlace F} (hw : w.IsComplex) (d : ArchDirComplex) : archFlowAtComplex hw d 0 = 1 := by
   rw [archFlowAtComplex, archFlowMatrixComplex_zero, map_one]
 
+/--
+@isnad1 id=eq.1h5v.s8.347b275e6f2a from=translated src=- shape=03cb0c81 vocab=af09ab61
+-/
 theorem archFlowAtComplex_add {w : InfinitePlace F} (hw : w.IsComplex) (d : ArchDirComplex) (s t : ℝ) :
     archFlowAtComplex hw d (s + t) = archFlowAtComplex hw d s * archFlowAtComplex hw d t := by
   rw [archFlowAtComplex, archFlowMatrixComplex_add, map_mul]; rfl
@@ -146,23 +173,38 @@ def archKCasimirAtComplex {w : InfinitePlace F} (hw : w.IsComplex) (φ : AdelicG
     (archDerivAtComplex hw .iE (archDerivAtComplex hw .iE φ + archDerivAtComplex hw .iFm φ) +
       archDerivAtComplex hw .iFm (archDerivAtComplex hw .iE φ + archDerivAtComplex hw .iFm φ))
 
+/--
+@isnad1 id=eq.1h4v.s6.7ad46d783281 from=translated src=- shape=5f607d76 vocab=ff8fcdcb
+-/
 theorem archDerivAtComplex_const {w : InfinitePlace F} (hw : w.IsComplex) (d : ArchDirComplex) (c : ℂ) :
     archDerivAtComplex hw d (fun _ => c) = fun _ => 0 := by
   funext g; simp [archDerivAtComplex]
 
+/--
+@isnad1 id=eq.1h4v.s6.8de8d946c11a from=translated src=- shape=5f607d76 vocab=33dcbb7c
+-/
 theorem archDelAt_const {w : InfinitePlace F} (hw : w.IsComplex) (d : ArchDir) (c : ℂ) :
     archDelAt hw d (fun _ => c) = fun _ => 0 := by
   funext g; simp [archDelAt, archDerivAtComplex_const]
 
+/--
+@isnad1 id=eq.1h4v.s6.e68ccf7fa4aa from=translated src=- shape=5f607d76 vocab=2a7299ab
+-/
 theorem archDelBarAt_const {w : InfinitePlace F} (hw : w.IsComplex) (d : ArchDir) (c : ℂ) :
     archDelBarAt hw d (fun _ => c) = fun _ => 0 := by
   funext g; simp [archDelBarAt, archDerivAtComplex_const]
 
+/--
+@isnad1 id=eq.1h3v.s6.f5cae66b46eb from=translated src=- shape=8c55bf3f vocab=4f509cbf
+-/
 theorem archCasimirAtComplex_const {w : InfinitePlace F} (hw : w.IsComplex) (c : ℂ) :
     archCasimirAtComplex hw (fun _ => c) = fun _ => 0 := by
   funext g
   simp [archCasimirAtComplex, archDelAt_const]
 
+/--
+@isnad1 id=eq.1h3v.s6.7d7fadc64987 from=translated src=- shape=8c55bf3f vocab=c54dda93
+-/
 theorem archCasimirBarAtComplex_const {w : InfinitePlace F} (hw : w.IsComplex) (c : ℂ) :
     archCasimirBarAtComplex hw (fun _ => c) = fun _ => 0 := by
   funext g
@@ -188,6 +230,9 @@ def archCircleAt {w : InfinitePlace F} (hw : w.IsComplex) (ζ : ℂˣ) : AdelicG
 def HasCircleWeightAt {w : InfinitePlace F} (hw : w.IsComplex) (m : ℤ) (φ : AdelicGL2 (𝓞 F) F → ℂ) : Prop :=
   ∀ (ζ : ℂˣ), ‖(ζ : ℂ)‖ = 1 → ∀ g : AdelicGL2 (𝓞 F) F, φ (g * archCircleAt hw ζ) = (ζ : ℂ) ^ m * φ g
 
+/--
+@isnad1 id=hascircl.1h3v.s5.61a57b124e9a from=translated src=- shape=9122e28e vocab=03c9512f
+-/
 theorem hasCircleWeightAt_zero {w : InfinitePlace F} (hw : w.IsComplex) (m : ℤ) :
     HasCircleWeightAt hw m (fun _ => (0 : ℂ)) := fun _ _ _ => by simp
 

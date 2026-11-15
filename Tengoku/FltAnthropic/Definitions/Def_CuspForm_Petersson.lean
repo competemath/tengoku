@@ -22,6 +22,9 @@ def peterssonIntegrand (f g : CuspForm (CongruenceSubgroup.Gamma0 N) k) (τ : Up
 def petersson (f g : CuspForm (CongruenceSubgroup.Gamma0 N) k) : ℂ :=
   MeasureTheory.integral (MeasureTheory.volume.restrict ModularGroup.fd) (peterssonIntegrand f g)
 
+/--
+@isnad1 id=eq.0h4v.s8.7269ebac5eec from=translated src=- shape=f9cb7c36 vocab=3400239a
+-/
 theorem petersson_def (f g : CuspForm (CongruenceSubgroup.Gamma0 N) k) :
     petersson f g =
       MeasureTheory.integral (MeasureTheory.volume.restrict ModularGroup.fd)

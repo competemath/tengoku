@@ -25,6 +25,9 @@ noncomputable def cochainCup :
     (fun f g₁ g₂ => funext fun σ => by simp only [Pi.add_apply, map_add, TensorProduct.tmul_add])
     (fun c f g => funext fun σ => by simp only [Pi.smul_apply, map_smul, TensorProduct.tmul_smul])
 
+/--
+@isnad1 id=eq.0h9v.s13.1b85f5323542 from=translated src=- shape=85308b31 vocab=eef1bacb
+-/
 theorem cochainCup_apply (f : (Fin p → G) → A) (g : (Fin q → G) → B) (σ : Fin (p + q) → G) :
     cochainCup A B p q f g σ
       = f (cochainCupFst p q σ) ⊗ₜ[k] B.ρ (Fin.partialProd (cochainCupFst p q σ) (Fin.last p)) (g (cochainCupSnd p q σ)) := rfl

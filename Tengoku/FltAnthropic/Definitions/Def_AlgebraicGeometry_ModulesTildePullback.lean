@@ -55,9 +55,15 @@ def tilde.pullbackSpecIso (M : ModuleCat.{u} R) :
       tilde ((ModuleCat.extendScalars φ.hom).obj M) :=
   (tilde.functorCompPullbackSpecIso φ).app M
 
+/--
+@isnad1 id=eq.0h4v.s8.99cff3779942 from=translated src=- shape=8e4ab7b6 vocab=203b51ad
+-/
 @[simp] theorem tilde.functorCompPullbackSpecIso_app (M : ModuleCat.{u} R) :
     (tilde.functorCompPullbackSpecIso φ).app M = tilde.pullbackSpecIso φ M := rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.d457f8414b40 from=translated src=- shape=c217a615 vocab=55d296bd
+-/
 theorem tilde.pullbackSpecIso_hom_naturality {M M' : ModuleCat.{u} R} (f : M ⟶ M') :
     (Scheme.Modules.pullback (Spec.map φ)).map ((tilde.functor R).map f) ≫
         (tilde.pullbackSpecIso φ M').hom =

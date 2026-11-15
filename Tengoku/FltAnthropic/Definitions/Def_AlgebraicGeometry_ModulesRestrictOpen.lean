@@ -32,6 +32,9 @@ noncomputable def pushforwardNatTrans (α : F ⟶ G) :
     ext U x
     exact congr($(f.naturality (α.app U.unop).op) x).symm
 
+/--
+@isnad1 id=eq.0h11v.s12.7221954cf708 from=translated src=- shape=d745a229 vocab=cdfa71ee
+-/
 @[simp] lemma pushforwardNatTrans_app_app_apply (α : F ⟶ G) (M : PresheafOfModules.{v} S) (U x) :
     ((pushforwardNatTrans φ α).app M).app U x = M.map (α.app U.unop).op x := rfl
 
@@ -40,10 +43,16 @@ noncomputable def pushforwardCongr {φ ψ : T ⟶ G.op ⋙ S} (e : φ = ψ) :
   NatIso.ofComponents (fun M ↦ isoMk (fun U ↦ (ModuleCat.restrictScalarsCongr (by subst e; rfl)).app _)
       fun _ _ _ ↦ by subst e; rfl) fun _ ↦ by subst e; rfl
 
+/--
+@isnad1 id=eq.1h10v.s11.a5d40fb6f43e from=translated src=- shape=658b6b38 vocab=84f43e37
+-/
 @[simp] lemma pushforwardCongr_hom_app_app_apply {φ ψ : T ⟶ G.op ⋙ S} (e : φ = ψ)
     (M : PresheafOfModules.{v} S) (U x) :
     ((pushforwardCongr e).hom.app M).app U x = x := by subst e; rfl
 
+/--
+@isnad1 id=eq.1h10v.s11.2a1190c280e7 from=translated src=- shape=be3160f9 vocab=daf77f88
+-/
 @[simp] lemma pushforwardCongr_inv_app_app_apply {φ ψ : T ⟶ G.op ⋙ S} (e : φ = ψ)
     (M : PresheafOfModules.{v} S) (U x) :
     ((pushforwardCongr e).inv.app M).app U x = x := by subst e; rfl
@@ -81,10 +90,16 @@ noncomputable def pushforwardPushforwardAdj : pushforward.{v} φ ⊣ pushforward
     rw [← Functor.map_comp, ← op_comp, adj.right_triangle_components]
     simp
 
+/--
+@isnad1 id=eq.2h12v.s13.8af4e703ae91 from=translated src=- shape=1f84fe12 vocab=7da68a78
+-/
 lemma pushforwardPushforwardAdj_unit_app_app_apply (M U x) :
     ((pushforwardPushforwardAdj adj φ ψ H₁ H₂).unit.app M).app U x =
       M.map (adj.counit.app U.unop).op x := rfl
 
+/--
+@isnad1 id=eq.2h12v.s13.5b5be9b334eb from=translated src=- shape=fdefaefd vocab=7da68a78
+-/
 lemma pushforwardPushforwardAdj_counit_app_app_apply (M U x) :
     ((pushforwardPushforwardAdj adj φ ψ H₁ H₂).counit.app M).app U x =
       M.map (adj.unit.app U.unop).op x := rfl
@@ -110,12 +125,18 @@ noncomputable def restrictPresheaf₀ : X.PresheafOfModules ⥤ (U : Scheme.{u})
 
 noncomputable def restrictPresheafIsoRestrictPresheaf₀ : restrictPresheaf U ≅ restrictPresheaf₀ U := Iso.refl _
 
+/--
+@isnad1 id=eq.0h4v.s12.03d746b107e9 from=translated src=- shape=a0ecd63c vocab=2a241a51
+-/
 lemma restrictPresheaf_obj_obj (P : X.PresheafOfModules) (V : (U : Scheme.{u}).Opensᵒᵖ) :
     (((restrictPresheaf U).obj P).obj V : Type u) = P.obj (Opposite.op (U.ι ''ᵁ V.unop)) := rfl
 
 noncomputable def restrictOpen : X.Modules ⥤ (U : Scheme.{u}).Modules :=
   SheafOfModules.pushforward.{u} (F := U.ι.opensFunctor) ⟨restrictPresheafRingHom U⟩
 
+/--
+@isnad1 id=eq.0h3v.s10.2914d701a020 from=translated src=- shape=1bf72ddb vocab=7c18624c
+-/
 lemma restrictOpen_obj_val (M : X.Modules) :
     ((restrictOpen U).obj M).val = (restrictPresheaf U).obj M.val := rfl
 

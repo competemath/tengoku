@@ -16,12 +16,21 @@ variable {R S : Type*} [CommRing R] [CommRing S]
 def IsUnimodularRow (a c : R) : Prop :=
   ∃ x y : R, x * a + y * c = 1
 
+/--
+@isnad1 id=isunimod.0h2v.s4.d44ff059169f from=translated src=- shape=5bed46eb vocab=5e5ef766
+-/
 theorem isUnimodularRow_one_left (t : R) : IsUnimodularRow (1 : R) t :=
   ⟨1, 0, by simp⟩
 
+/--
+@isnad1 id=isunimod.0h2v.s4.37e8af70886d from=translated src=- shape=d24e39ba vocab=5e5ef766
+-/
 theorem isUnimodularRow_one_right (m : R) : IsUnimodularRow m (1 : R) :=
   ⟨0, 1, by simp⟩
 
+/--
+@isnad1 id=isunimod.1h5v.s6.998b6863742f from=translated src=- shape=cc02e27c vocab=79e50a23
+-/
 theorem IsUnimodularRow.map (f : R →+* S) {a c : R} (h : IsUnimodularRow a c) :
     IsUnimodularRow (f a) (f c) := by
   obtain ⟨x, y, hxy⟩ := h
@@ -43,6 +52,9 @@ instance unimodularRowSetoid (R : Type*) [CommRing R] : Setoid (UnimodularRow R)
 def ProjectiveLine (R : Type*) [CommRing R] : Type _ :=
   Quotient (unimodularRowSetoid R)
 
+/--
+@isnad1 id=finite.0h1v.s3.2f36712de845 from=translated src=- shape=d96e9922 vocab=57aeb4cb
+-/
 instance instFiniteProjectiveLine [Finite R] : Finite (ProjectiveLine R) :=
   Quotient.finite _
 
@@ -57,6 +69,9 @@ def ProjectiveLine.map (f : R →+* S) : ProjectiveLine R → ProjectiveLine S :
     · show f ↑u * f v.1.2 = f w.1.2
       rw [← map_mul, h2]
 
+/--
+@isnad1 id=eq.0h4v.s7.dfcf179af362 from=translated src=- shape=e955fadb vocab=f8c5a7f3
+-/
 @[simp]
 theorem ProjectiveLine.map_mk (f : R →+* S) (v : UnimodularRow R) :
     ProjectiveLine.map f ⟦v⟧ = ⟦⟨(f v.1.1, f v.1.2), v.2.map f⟩⟧ :=
@@ -87,6 +102,9 @@ def borel (R : Type*) [CommRing R] : Subgroup (SpecialLinearGroup (Fin 2) R) whe
     simp only [Matrix.cons_val_one, Matrix.cons_val_zero, neg_eq_zero]
     exact hA
 
+/--
+@isnad1 id=iff.0h2v.s8.c59c38e793c3 from=translated src=- shape=967bade4 vocab=0022088c
+-/
 theorem mem_borel_iff {A : SpecialLinearGroup (Fin 2) R} : A ∈ borel R ↔ A.1 1 0 = 0 :=
   Iff.rfl
 

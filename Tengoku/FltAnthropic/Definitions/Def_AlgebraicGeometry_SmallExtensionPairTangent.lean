@@ -24,6 +24,9 @@ def pairRing : Subring (C × C) :=
   RingHom.eqLocus ((Ideal.Quotient.mk (I.map (algebraMap T' C))).comp (RingHom.fst C C))
     ((Ideal.Quotient.mk (I.map (algebraMap T' C))).comp (RingHom.snd C C))
 
+/--
+@isnad1 id=iff.0h4v.s10.662c90975306 from=translated src=- shape=a70065d2 vocab=c503330c
+-/
 theorem mem_pairRing {x : C × C} :
     x ∈ pairRing I C ↔ Ideal.Quotient.mk (I.map (algebraMap T' C)) x.1 = Ideal.Quotient.mk (I.map (algebraMap T' C)) x.2 :=
   Iff.rfl
@@ -32,7 +35,13 @@ def pairFst : pairRing I C →+* C := (RingHom.fst C C).comp (pairRing I C).subt
 
 def pairSnd : pairRing I C →+* C := (RingHom.snd C C).comp (pairRing I C).subtype
 
+/--
+@isnad1 id=eq.0h4v.s9.c1439dbc4fd9 from=translated src=- shape=772ce16c vocab=a5d3f671
+-/
 @[simp] theorem pairFst_apply (x : pairRing I C) : pairFst I C x = (x : C × C).1 := rfl
+/--
+@isnad1 id=eq.0h4v.s9.a5ab9a239de9 from=translated src=- shape=772ce16c vocab=d3957e1b
+-/
 @[simp] theorem pairSnd_apply (x : pairRing I C) : pairSnd I C x = (x : C × C).2 := rfl
 
 variable (T') in

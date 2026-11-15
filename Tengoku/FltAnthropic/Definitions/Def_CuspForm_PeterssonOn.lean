@@ -23,6 +23,9 @@ def peterssonOn (Γ : Subgroup SL(2, ℤ)) (k : ℤ) (f g : UpperHalfPlane → �
   MeasureTheory.integral (MeasureTheory.volume.restrict ModularGroup.fd)
     (peterssonOnIntegrand Γ k f g)
 
+/--
+@isnad1 id=eq.0h4v.s6.948b454a27c8 from=translated src=- shape=19f943ec vocab=4fc0fa4c
+-/
 theorem peterssonOn_def (Γ : Subgroup SL(2, ℤ)) (k : ℤ) (f g : UpperHalfPlane → ℂ) :
     peterssonOn Γ k f g =
       MeasureTheory.integral (MeasureTheory.volume.restrict ModularGroup.fd)

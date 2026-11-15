@@ -34,6 +34,9 @@ def admissible : AddSubgroup (NodalData K Fbar) where
     · rw [Pi.neg_apply, Finsupp.neg_apply, (hEn e).1, neg_zero]
     · rw [Pi.neg_apply, Finsupp.neg_apply, (hEn e).2, neg_zero]
 
+/--
+@isnad1 id=iff.0h9v.s9.614d15a34e7d from=translated src=- shape=677a630d vocab=80a68255
+-/
 theorem mem_admissible {E : NodalData K Fbar} :
     E ∈ admissible src tgt xs xt ↔ (∀ i, E i ∈ Divisor.degZero (K := K) (F := Fbar i)) ∧
       ∀ e, E (src e) (xs e) = 0 ∧ E (tgt e) (xt e) = 0 :=
@@ -63,6 +66,9 @@ def nodalPrincipal : AddSubgroup (NodalData K Fbar) where
     · simpa only [Pi.inv_apply, Units.val_inv_eq_inv_val] using (hv e).1.inv (a e).ne_zero
     · simpa only [Pi.inv_apply, Units.val_inv_eq_inv_val] using (hv e).2.inv (a e).ne_zero
 
+/--
+@isnad1 id=iff.0h9v.s8.7eebbc7054a6 from=translated src=- shape=31314eff vocab=20b13b8c
+-/
 theorem mem_nodalPrincipal {E : NodalData K Fbar} :
     E ∈ nodalPrincipal src tgt xs xt ↔ IsNodalPrincipal src tgt xs xt E :=
   Iff.rfl
@@ -81,9 +87,15 @@ variable (src tgt : Fin m → Fin n) (xs : ∀ e, Place K (Fbar (src e))) (xt : 
 def mk : ↥(NodalData.admissible (K := K) (Fbar := Fbar) src tgt xs xt) →+ NodalPic0 K Fbar src tgt xs xt :=
   QuotientAddGroup.mk' _
 
+/--
+@isnad1 id=surjecti.0h8v.s11.b766fe5ecd2e from=translated src=- shape=fcd26de7 vocab=6998552b
+-/
 theorem mk_surjective : Function.Surjective (mk (K := K) (Fbar := Fbar) src tgt xs xt) :=
   QuotientAddGroup.mk'_surjective _
 
+/--
+@isnad1 id=iff.0h9v.s11.bfdb37b6917b from=translated src=- shape=fa8d7c6b vocab=c5975a53
+-/
 theorem mk_eq_zero_iff (E : ↥(NodalData.admissible (K := K) (Fbar := Fbar) src tgt xs xt)) :
     mk src tgt xs xt E = 0 ↔ NodalData.IsNodalPrincipal src tgt xs xt (E : NodalData K Fbar) := by
   rw [mk, QuotientAddGroup.mk'_apply, QuotientAddGroup.eq_zero_iff, AddSubgroup.mem_addSubgroupOf]

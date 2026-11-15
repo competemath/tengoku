@@ -15,6 +15,9 @@ variable {A B : Type*} [CommRing A] [CommRing B] [Algebra A B]
   {P : Ideal B} [P.IsMaximal] [(P.under A).IsMaximal]
   [Fintype (A ⧸ P.under A)] [Finite (B ⧸ P)]
 
+/--
+@isnad1 id=eq.1h5v.s11.556e1f4a497f from=translated src=- shape=6c42f2e9 vocab=81a8300b
+-/
 theorem stabilizerHom_eq_frobenius
     (σ : MulAction.stabilizer G P) (hσ : IsArithFrobAt A (σ : G) P) :
     Ideal.Quotient.stabilizerHom P (P.under A) G σ =
@@ -31,12 +34,18 @@ theorem stabilizerHom_eq_frobenius
     congrFun (FiniteField.coe_frobeniusAlgEquivOfAlgebraic _ _) _
   rw [hL, hR, Nat.card_eq_fintype_card]
 
+/--
+@isnad1 id=eq.1h6v.s11.dcb270f96458 from=translated src=- shape=556f66ab vocab=8dea4d63
+-/
 theorem stabilizerHom_apply_pow
     (σ : MulAction.stabilizer G P) (hσ : IsArithFrobAt A (σ : G) P) (y : B ⧸ P) :
     Ideal.Quotient.stabilizerHom P (P.under A) G σ y = y ^ Fintype.card (A ⧸ P.under A) := by
   rw [stabilizerHom_eq_frobenius σ hσ]
   exact congrFun (FiniteField.coe_frobeniusAlgEquivOfAlgebraic _ _) y
 
+/--
+@isnad1 id=ex.0h4v.s11.7d551801883a from=translated src=- shape=e07453c9 vocab=b8ac3caa
+-/
 theorem exists_stabilizerHom_eq_frobenius [Finite G] [Algebra.IsInvariant A B G] :
     ∃ σ : MulAction.stabilizer G P,
       Ideal.Quotient.stabilizerHom P (P.under A) G σ =
@@ -44,6 +53,9 @@ theorem exists_stabilizerHom_eq_frobenius [Finite G] [Algebra.IsInvariant A B G]
   obtain ⟨σ, hσ⟩ := IsArithFrobAt.exists_of_isInvariant A G P
   exact ⟨⟨σ, hσ.mem_stabilizer⟩, stabilizerHom_eq_frobenius _ hσ⟩
 
+/--
+@isnad1 id=eq.1h5v.s11.4b3935f91b8e from=translated src=- shape=062bf6ad vocab=1d3a1f33
+-/
 theorem orderOf_stabilizerHom_eq_finrank
     (σ : MulAction.stabilizer G P) (hσ : IsArithFrobAt A (σ : G) P) :
     orderOf (Ideal.Quotient.stabilizerHom P (P.under A) G σ) =
@@ -51,6 +63,9 @@ theorem orderOf_stabilizerHom_eq_finrank
   rw [stabilizerHom_eq_frobenius σ hσ]
   exact FiniteField.orderOf_frobeniusAlgEquivOfAlgebraic (A ⧸ P.under A) (B ⧸ P)
 
+/--
+@isnad1 id=ex.1h6v.s12.cc14ada89c6f from=translated src=- shape=98966731 vocab=c3dc6938
+-/
 theorem exists_pow_stabilizerHom_eq
     (σ : MulAction.stabilizer G P) (hσ : IsArithFrobAt A (σ : G) P)
     (τ : (B ⧸ P) ≃ₐ[A ⧸ P.under A] (B ⧸ P)) :
@@ -62,11 +77,17 @@ theorem exists_pow_stabilizerHom_eq
 
 omit [P.IsMaximal] [(P.under A).IsMaximal] [Fintype (A ⧸ P.under A)] [Finite (B ⧸ P)] in
 
+/--
+@isnad1 id=injectiv.1h4v.s11.9ffd463ef4df from=translated src=- shape=410b4baf vocab=6c51c865
+-/
 theorem stabilizerHom_injective_of_inertia_eq_bot (hP : P.inertia G = ⊥) :
     Function.Injective (Ideal.Quotient.stabilizerHom P (P.under A) G) := by
   rw [← MonoidHom.ker_eq_bot_iff, Ideal.Quotient.ker_stabilizerHom, Ideal.inertia,
     ← AddSubgroup.subgroupOf_inertia, ← Ideal.inertia, hP, Subgroup.bot_subgroupOf]
 
+/--
+@isnad1 id=eq.2h5v.s9.51883832b52a from=translated src=- shape=1ad258cf vocab=a2fa66ce
+-/
 theorem orderOf_arithFrob_eq_finrank_of_inertia_eq_bot
     (hP : P.inertia G = ⊥)
     (σ : MulAction.stabilizer G P) (hσ : IsArithFrobAt A (σ : G) P) :

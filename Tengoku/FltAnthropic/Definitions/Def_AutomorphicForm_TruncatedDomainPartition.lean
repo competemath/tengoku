@@ -12,9 +12,15 @@ namespace FLT.TruncatedDomainPartition
 
 def cuspNeighbourhood (T : ℝ) : Set ℍ := {z | z ∈ 𝒟 ∧ T < z.im}
 
+/--
+@isnad1 id=iff.0h2v.s4.81a34d211157 from=translated src=- shape=c59363c4 vocab=28599f90
+-/
 theorem mem_cuspNeighbourhood_iff {T : ℝ} {z : ℍ} :
     z ∈ cuspNeighbourhood T ↔ z ∈ 𝒟 ∧ T < z.im := Iff.rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.22aa572c216b from=translated src=- shape=e1e0e5d5 vocab=6b2f6c23
+-/
 theorem cuspNeighbourhood_eq_diff (T : ℝ) :
     cuspNeighbourhood T = 𝒟 \ truncatedFundamentalDomain T := by
   ext z
@@ -22,6 +28,9 @@ theorem cuspNeighbourhood_eq_diff (T : ℝ) :
     not_and, not_le]
   exact ⟨fun ⟨h, h'⟩ => ⟨h, fun _ => h'⟩, fun ⟨h, h'⟩ => ⟨h, h' h⟩⟩
 
+/--
+@isnad1 id=eq.0h1v.s3.59c951946a14 from=translated src=- shape=e05098c9 vocab=a704b155
+-/
 theorem truncated_union_cuspNeighbourhood (T : ℝ) :
     truncatedFundamentalDomain T ∪ cuspNeighbourhood T = 𝒟 := by
   ext z
@@ -33,35 +42,56 @@ theorem truncated_union_cuspNeighbourhood (T : ℝ) :
     · exact Or.inl ⟨h, h'⟩
     · exact Or.inr ⟨h, h'⟩
 
+/--
+@isnad1 id=disjoint.0h1v.s5.8202cf287558 from=translated src=- shape=ffc59986 vocab=3d858f88
+-/
 theorem disjoint_truncated_cuspNeighbourhood (T : ℝ) :
     Disjoint (truncatedFundamentalDomain T) (cuspNeighbourhood T) := by
   rw [Set.disjoint_left]
   rintro z ⟨-, hle⟩ ⟨-, hlt⟩
   exact absurd hle (not_le.mpr hlt)
 
+/--
+@isnad1 id=measurab.0h1v.s2.2aa7b6c12cb7 from=translated src=- shape=1a6c1393 vocab=0593dd40
+-/
 theorem measurableSet_truncatedFundamentalDomain (T : ℝ) :
     MeasurableSet (truncatedFundamentalDomain T) :=
   (isCompact_truncatedFundamentalDomain T).isClosed.measurableSet
 
+/--
+@isnad1 id=measurab.0h0v.s2.f622286fa522 from=translated src=- shape=25b03439 vocab=3b876b6e
+-/
 theorem measurableSet_fd : MeasurableSet 𝒟 :=
   ModularGroup.isClosed_fd.measurableSet
 
+/--
+@isnad1 id=measurab.0h1v.s2.3a12ae165c37 from=translated src=- shape=1a6c1393 vocab=ab7735a0
+-/
 theorem measurableSet_cuspNeighbourhood (T : ℝ) :
     MeasurableSet (cuspNeighbourhood T) := by
   rw [cuspNeighbourhood_eq_diff]
   exact measurableSet_fd.diff (measurableSet_truncatedFundamentalDomain T)
 
+/--
+@isnad1 id=eq.0h1v.s6.e5c84a96306b from=translated src=- shape=5cc1d926 vocab=5c288ecc
+-/
 theorem volume_fd_eq_add (T : ℝ) :
     volume 𝒟 =
       volume (truncatedFundamentalDomain T) + volume (cuspNeighbourhood T) := by
   rw [← truncated_union_cuspNeighbourhood T,
     measure_union (disjoint_truncated_cuspNeighbourhood T) (measurableSet_cuspNeighbourhood T)]
 
+/--
+@isnad1 id=le.0h1v.s5.0b95a8f06c7b from=translated src=- shape=09283f75 vocab=35e357d6
+-/
 theorem cuspNeighbourhood_subset_verticalStrip (T : ℝ) :
     cuspNeighbourhood T ⊆ UpperHalfPlane.verticalStrip (1 / 2) T := by
   rintro z ⟨hz, hT⟩
   exact ⟨hz.2, hT.le⟩
 
+/--
+@isnad1 id=le.2h2v.s6.378850d7d334 from=translated src=- shape=e90a7796 vocab=2cf2b4da
+-/
 theorem volume_verticalStrip_le {A a : ℝ} (hA : 0 ≤ A) (ha : 0 < a) :
     volume (UpperHalfPlane.verticalStrip A a) ≤ ENNReal.ofReal (4 * A / a) := by
   calc volume (UpperHalfPlane.verticalStrip A a)
@@ -94,6 +124,9 @@ theorem volume_verticalStrip_le {A a : ℝ} (hA : 0 ≤ A) (ha : 0 < a) :
         field_simp
         ring
 
+/--
+@isnad1 id=le.1h1v.s5.a8bf1a0f5aae from=translated src=- shape=583a2df7 vocab=c214b2a6
+-/
 theorem volume_cuspNeighbourhood_le {T : ℝ} (hT : 0 < T) :
     volume (cuspNeighbourhood T) ≤ ENNReal.ofReal (2 / T) := by
   refine le_trans (measure_mono (cuspNeighbourhood_subset_verticalStrip T)) ?_
@@ -101,10 +134,16 @@ theorem volume_cuspNeighbourhood_le {T : ℝ} (hT : 0 < T) :
   refine ENNReal.ofReal_le_ofReal (le_of_eq ?_)
   ring
 
+/--
+@isnad1 id=lt.1h1v.s5.9b448b608773 from=translated src=- shape=6da3bd9a vocab=f018a3cc
+-/
 theorem volume_cuspNeighbourhood_lt_top {T : ℝ} (hT : 0 < T) :
     volume (cuspNeighbourhood T) < ⊤ :=
   lt_of_le_of_lt (volume_cuspNeighbourhood_le hT) ENNReal.ofReal_lt_top
 
+/--
+@isnad1 id=tendsto.0h0v.s5.b554abb596ef from=translated src=- shape=8e48357f vocab=be95dd59
+-/
 theorem tendsto_volume_cuspNeighbourhood :
     Tendsto (fun T : ℝ => volume (cuspNeighbourhood T)) atTop (𝓝 0) := by
   have h2T : Tendsto (fun T : ℝ => ENNReal.ofReal (2 / T)) atTop (𝓝 0) := by
@@ -118,6 +157,9 @@ theorem tendsto_volume_cuspNeighbourhood :
   filter_upwards [Filter.eventually_gt_atTop (0 : ℝ)] with T hT
   exact volume_cuspNeighbourhood_le hT
 
+/--
+@isnad1 id=lt.0h1v.s5.6648f266d742 from=translated src=- shape=4d429e19 vocab=07e0e9a3
+-/
 theorem volume_cuspNeighbourhood_pos (T : ℝ) :
     0 < volume (cuspNeighbourhood T) := by
 
@@ -153,6 +195,9 @@ theorem volume_cuspNeighbourhood_pos (T : ℝ) :
 def unipotentDiagonalSum (k : ℍ → ℍ → ℝ≥0∞) (z : ℍ) : ℝ≥0∞ :=
   ∑' n : ℤ, if n = 0 then 0 else k z ((n : ℝ) +ᵥ z)
 
+/--
+@isnad1 id=eq.0h1v.s4.be3ba32ca5fa from=translated src=- shape=07028cc9 vocab=fdd56cba
+-/
 @[simp] theorem unipotentDiagonalSum_zero (z : ℍ) :
     unipotentDiagonalSum (fun _ _ => 0) z = 0 := by
   simp [unipotentDiagonalSum]
@@ -293,6 +338,9 @@ private lemma le_unipotentDiagonalSum_of_mem_divBand
         exact hk z n hn0 hnle
     _ ≤ unipotentDiagonalSum k z := ENNReal.sum_le_tsum S
 
+/--
+@isnad1 id=eq.3h3v.s6.9ef8bce8f6ea from=translated src=- shape=06471506 vocab=2c89830b
+-/
 theorem lintegral_fd_unipotentDiagonalSum_eq_top
     (k : ℍ → ℍ → ℝ≥0∞) {δ : ℝ≥0∞} (hδ : δ ≠ 0) {c : ℝ} (hc : 0 < c)
     (hk : ∀ (z : ℍ) (n : ℤ), n ≠ 0 → |(n : ℝ)| ≤ c * z.im → δ ≤ k z ((n : ℝ) +ᵥ z)) :
@@ -403,6 +451,9 @@ private lemma unipotentDiagonalSum_le_of_bounded
         push_cast
         ring
 
+/--
+@isnad1 id=lt.4h4v.s7.2e2fc7fdf5be from=translated src=- shape=1b163c82 vocab=70baf2b0
+-/
 theorem lintegral_truncated_unipotentDiagonalSum_lt_top
     (k : ℍ → ℍ → ℝ≥0∞) {M : ℝ≥0∞} (hM : M ≠ ⊤) {c : ℝ} (hc : 0 < c)
     (hbd : ∀ z w, k z w ≤ M)
@@ -435,12 +486,18 @@ theorem lintegral_truncated_unipotentDiagonalSum_lt_top
 
 def windowIndicator : ℍ → ℍ → ℝ≥0∞ := fun z w => if |w.re - z.re| ≤ z.im then 1 else 0
 
+/--
+@isnad1 id=le.2h2v.s6.223150ade25e from=translated src=- shape=4b817d8b vocab=b0df2291
+-/
 theorem windowIndicator_lower (z : ℍ) (n : ℤ) (_ : n ≠ 0) (hn : |(n : ℝ)| ≤ 1 * z.im) :
     (1 : ℝ≥0∞) ≤ windowIndicator z ((n : ℝ) +ᵥ z) := by
   rw [windowIndicator, ite_eq_left]
   rw [UpperHalfPlane.vadd_re]
   simpa using hn
 
+/--
+@isnad1 id=eq.1h2v.s6.8d96fa21da2f from=translated src=- shape=6209d4c8 vocab=b62f35f8
+-/
 theorem windowIndicator_support (z : ℍ) (n : ℤ) (hn : 1 * z.im < |(n : ℝ)|) :
     windowIndicator z ((n : ℝ) +ᵥ z) = 0 := by
   rw [windowIndicator, ite_eq_right]
@@ -448,6 +505,9 @@ theorem windowIndicator_support (z : ℍ) (n : ℤ) (hn : 1 * z.im < |(n : ℝ)|
   simp only [add_sub_cancel_right, not_le]
   simpa using hn
 
+/--
+@isnad1 id=and.0h0v.s5.fb52d7f1aa3d from=translated src=- shape=8425a88a vocab=033e7112
+-/
 theorem sat_windowIndicator :
     (∫⁻ z in 𝒟, unipotentDiagonalSum windowIndicator z ∂volume = ⊤) ∧
     ∀ T : ℝ, ∫⁻ z in truncatedFundamentalDomain T,
@@ -461,6 +521,9 @@ theorem sat_windowIndicator :
     rw [windowIndicator]
     split <;> simp
 
+/--
+@isnad1 id=ne.0h0v.s5.453d79666145 from=translated src=- shape=ba794a09 vocab=57c5147f
+-/
 theorem lintegral_fd_unipotentDiagonalSum_zero_ne_top :
     ∫⁻ z in 𝒟, unipotentDiagonalSum (fun _ _ => 0) z ∂volume ≠ ⊤ := by
   simp

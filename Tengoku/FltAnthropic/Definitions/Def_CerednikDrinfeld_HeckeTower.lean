@@ -60,11 +60,17 @@ instance instAlgebraObj : ∀ j : Obj q q', Algebra (AlgebraicClosure ℚ) (T.ob
 @[reducible] noncomputable def algF (α : Arr q q') : Algebra (T.objField (cod α)) (T.objField (dom α)) :=
   algebraAlong (T.φ α)
 
+/--
+@isnad1 id=isscalar.0h5v.s8.f7fa36b5c22b from=translated src=- shape=b348db20 vocab=42e32713
+-/
 theorem isScalarTower_algF (α : Arr q q') :
     letI := T.algF α
     IsScalarTower (AlgebraicClosure ℚ) (T.objField (cod α)) (T.objField (dom α)) :=
   isScalarTower_along (T.φ α)
 
+/--
+@isnad1 id=finitedi.0h5v.s7.838e32a32293 from=translated src=- shape=9f8b5816 vocab=bda60627
+-/
 theorem finiteDimensional_algF (α : Arr q q') :
     letI := T.algF α
     FiniteDimensional (T.objField (cod α)) (T.objField (dom α)) :=

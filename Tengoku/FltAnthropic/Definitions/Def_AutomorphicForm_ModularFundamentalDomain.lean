@@ -12,9 +12,15 @@ namespace FLT.ModularFundamentalDomain
 open FLT.HyperbolicMeasure FLT.Gamma0ExactVolume FLT.FundamentalDomainExactVolume
 open FLT.L2ProductionInstance
 
+/--
+@isnad1 id=eq.0h1v.s8.17b8bd92ad4b from=translated src=- shape=66bf8e70 vocab=f3322ab3
+-/
 theorem neg_one_smul_eq (z : ℍ) : (-1 : SL(2, ℤ)) • z = z := by
   rw [show (-1 : SL(2, ℤ)) = -(1 : SL(2, ℤ)) from rfl, SL_neg_smul, one_smul]
 
+/--
+@isnad1 id=eq.0h1v.s8.0e71a727558c from=translated src=- shape=96d01c99 vocab=4fec423d
+-/
 theorem neg_one_smul_set_eq (s : Set ℍ) : (-1 : SL(2, ℤ)) • s = s := by
   ext z
   simp only [Set.mem_smul_set]
@@ -22,17 +28,29 @@ theorem neg_one_smul_set_eq (s : Set ℍ) : (-1 : SL(2, ℤ)) • s = s := by
   · rintro ⟨w, hw, rfl⟩; rwa [neg_one_smul_eq]
   · exact fun hz => ⟨z, hz, neg_one_smul_eq z⟩
 
+/--
+@isnad1 id=ne.0h0v.s7.5dc0c79f24ee from=translated src=- shape=0143b633 vocab=ea81707d
+-/
 theorem one_ne_neg_one : (1 : SL(2, ℤ)) ≠ -1 := by
   intro h
   have h00 := congrArg (fun A : SL(2, ℤ) => (A : Matrix (Fin 2) (Fin 2) ℤ) 0 0) h
   simp at h00
 
+/--
+@isnad1 id=eq.0h1v.s7.e4ce057d116b from=translated src=- shape=1fa526b4 vocab=ad42892b
+-/
 theorem inv_neg_eq (γ : SL(2, ℤ)) : (-γ)⁻¹ = -γ⁻¹ :=
   (eq_inv_of_mul_eq_one_left (by rw [neg_mul_neg, inv_mul_cancel])).symm
 
+/--
+@isnad1 id=eq.0h0v.s8.23d9b2fb802d from=translated src=- shape=3eced9a4 vocab=ad42892b
+-/
 theorem inv_neg_one : (-1 : SL(2, ℤ))⁻¹ = -1 := by
   rw [inv_neg_eq, inv_one]
 
+/--
+@isnad1 id=ne.0h1v.s6.6ac724d2b3c4 from=translated src=- shape=9f975df0 vocab=ea81707d
+-/
 theorem ne_neg_self (γ : SL(2, ℤ)) : γ ≠ -γ := by
   intro h
   apply one_ne_neg_one
@@ -41,6 +59,9 @@ theorem ne_neg_self (γ : SL(2, ℤ)) : γ ≠ -γ := by
     _ = -(γ⁻¹ * γ) := by rw [mul_neg]
     _ = -1 := by rw [inv_mul_cancel]
 
+/--
+@isnad1 id=le.2h1v.s8.d005634d0a7c from=translated src=- shape=b4e24910 vocab=f433cae3
+-/
 theorem smul_fd_inter_fd_subset {γ : SL(2, ℤ)} (h1 : γ ≠ 1) (h2 : γ ≠ -1) :
     γ • (𝒟 : Set ℍ) ∩ 𝒟 ⊆ (𝒟 : Set ℍ) \ 𝒟ᵒ := by
   rintro z ⟨hzγ, hz⟩
@@ -50,10 +71,16 @@ theorem smul_fd_inter_fd_subset {γ : SL(2, ℤ)} (h1 : γ ≠ 1) (h2 : γ ≠ -
   · exact h1 (by rw [← inv_inv γ, h, inv_one])
   · exact h2 (by rw [← inv_inv γ, h, inv_neg_one])
 
+/--
+@isnad1 id=eq.2h1v.s8.12f1dbd7de3d from=translated src=- shape=d786da64 vocab=19a76687
+-/
 theorem volume_smul_fd_inter_fd {γ : SL(2, ℤ)} (h1 : γ ≠ 1) (h2 : γ ≠ -1) :
     volume (γ • (𝒟 : Set ℍ) ∩ 𝒟) = 0 :=
   measure_mono_null (smul_fd_inter_fd_subset h1 h2) volume_fd_diff_fdo
 
+/--
+@isnad1 id=not.0h0v.s7.1fb19a130c85 from=translated src=- shape=9ee8f48c vocab=36c7f7e6
+-/
 theorem gate_not_isFundamentalDomain_sl2z :
     ¬ MeasureTheory.IsFundamentalDomain SL(2, ℤ) (𝒟 : Set ℍ) volume := by
   intro h
@@ -65,6 +92,9 @@ theorem gate_not_isFundamentalDomain_sl2z :
 
 def goodSet : Set ℍ := {z | ∃ γ : SL(2, ℤ), γ • z ∈ (𝒟ᵒ : Set ℍ)}
 
+/--
+@isnad1 id=eq.0h0v.s5.a51d2db245c2 from=translated src=- shape=1f2d3474 vocab=3fd250f2
+-/
 theorem volume_compl_goodSet : volume (goodSetᶜ : Set ℍ) = 0 := by
   have hsub : (goodSetᶜ : Set ℍ) ⊆ ⋃ γ : SL(2, ℤ), γ • ((𝒟 : Set ℍ) \ 𝒟ᵒ) := by
     intro z hz
@@ -77,6 +107,9 @@ theorem volume_compl_goodSet : volume (goodSetᶜ : Set ℍ) = 0 := by
   rw [FLT.HyperbolicMeasure.volume_smul_sl2z]
   exact volume_fd_diff_fdo
 
+/--
+@isnad1 id=ex.1h1v.s8.d62a9af6b88a from=translated src=- shape=cebaf5a4 vocab=f6c04b16
+-/
 theorem setOf_smul_mem_fd_eq_pair {z : ℍ} (hz : z ∈ goodSet) :
     ∃ δ : SL(2, ℤ), {γ : SL(2, ℤ) | γ • z ∈ (𝒟 : Set ℍ)} = {δ, -δ} := by
   obtain ⟨δ, hδ⟩ := hz
@@ -100,6 +133,9 @@ theorem setOf_smul_mem_fd_eq_pair {z : ℍ} (hz : z ∈ goodSet) :
       rw [SL_neg_smul δ z]
       exact ModularGroup.fdo_subset_fd hδ
 
+/--
+@isnad1 id=ex.1h1v.s8.86e058b0cbf8 from=translated src=- shape=7131d72a vocab=26bb75a8
+-/
 theorem setOf_mem_smul_fd_eq_pair {z : ℍ} (hz : z ∈ goodSet) :
     ∃ δ : SL(2, ℤ), {γ : SL(2, ℤ) | z ∈ γ • (𝒟 : Set ℍ)} = {δ, -δ} := by
   obtain ⟨ε, hε⟩ := setOf_smul_mem_fd_eq_pair hz
@@ -119,6 +155,9 @@ theorem setOf_mem_smul_fd_eq_pair {z : ℍ} (hz : z ∈ goodSet) :
     · exact Or.inl (by rw [inv_inv])
     · exact Or.inr (by rw [inv_neg_eq, inv_inv])
 
+/--
+@isnad1 id=eq.1h1v.s8.f19a984b1650 from=translated src=- shape=7ea71a58 vocab=7692ec9f
+-/
 theorem tsum_indicator_smul_fd {z : ℍ} (hz : z ∈ goodSet) :
     ∑' γ : SL(2, ℤ), (γ • (𝒟 : Set ℍ)).indicator (fun _ => (1 : ℝ≥0∞)) z = 2 := by
   obtain ⟨δ, hδ⟩ := setOf_mem_smul_fd_eq_pair hz
@@ -145,6 +184,9 @@ theorem tsum_indicator_smul_fd {z : ℍ} (hz : z ∈ goodSet) :
     Set.indicator_of_mem ((hpair (-δ)).mpr (Or.inr rfl))]
   exact one_add_one_eq_two
 
+/--
+@isnad1 id=eq.0h2v.s8.84d5c64910b3 from=translated src=- shape=8c708091 vocab=01a27788
+-/
 theorem setLIntegral_smul_fd (γ : SL(2, ℤ)) (F : ℍ → ℝ≥0∞) :
     ∫⁻ w in (𝒟 : Set ℍ), F (γ • w) ∂volume = ∫⁻ u in γ • (𝒟 : Set ℍ), F u ∂volume := by
   have hemb : MeasurableEmbedding (fun w : ℍ => γ • w) :=
@@ -157,6 +199,9 @@ theorem setLIntegral_smul_fd (γ : SL(2, ℤ)) (F : ℍ → ℝ≥0∞) :
   rw [hmp.setLIntegral_comp_emb hemb F (𝒟 : Set ℍ)]
   rfl
 
+/--
+@isnad1 id=eq.1h1v.s8.2e6e17714e12 from=translated src=- shape=56f64c1a vocab=53bba778
+-/
 theorem tsum_setLIntegral_fd_smul (F : ℍ → ℝ≥0∞) (hF : Measurable F) :
     ∑' γ : SL(2, ℤ), ∫⁻ w in (𝒟 : Set ℍ), F (γ • w) ∂volume =
       2 * ∫⁻ z, F z ∂volume := by
@@ -182,6 +227,9 @@ theorem tsum_setLIntegral_fd_smul (F : ℍ → ℝ≥0∞) (hF : Measurable F) :
           _ = 2 * F z := by rw [tsum_indicator_smul_fd hz]
     _ = 2 * ∫⁻ z, F z ∂volume := lintegral_const_mul 2 hF
 
+/--
+@isnad1 id=eq.1h1v.s8.8ea55885189d from=translated src=- shape=644f0ed5 vocab=53bba778
+-/
 theorem setLIntegral_fd_tsum_smul (F : ℍ → ℝ≥0∞) (hF : Measurable F) :
     ∫⁻ w in (𝒟 : Set ℍ), (∑' γ : SL(2, ℤ), F (γ • w)) ∂volume =
       2 * ∫⁻ z, F z ∂volume := by
@@ -189,6 +237,9 @@ theorem setLIntegral_fd_tsum_smul (F : ℍ → ℝ≥0∞) (hF : Measurable F) :
   exact lintegral_tsum fun γ =>
     (hF.comp (Homeomorph.smul γ (α := ℍ)).measurable).aemeasurable.restrict
 
+/--
+@isnad1 id=eq.0h0v.s8.6bdc842940c3 from=translated src=- shape=070a84b4 vocab=239898ea
+-/
 theorem gate_two_routes :
     ∑' γ : SL(2, ℤ), ∫⁻ w in (𝒟 : Set ℍ),
         (𝒟ᵒ : Set ℍ).indicator (fun _ => (1 : ℝ≥0∞)) (γ • w) ∂volume =
@@ -197,6 +248,9 @@ theorem gate_two_routes :
     lintegral_indicator ModularGroup.isOpen_fdo.measurableSet, setLIntegral_one,
     volume_fdo_eq_volume_fd, volume_fd_eq]
 
+/--
+@isnad1 id=ne.0h0v.s6.5a08e92e2583 from=translated src=- shape=5ccfbbc6 vocab=d6c39554
+-/
 theorem gate_factor_two_load_bearing :
     (2 : ℝ≥0∞) * ENNReal.ofReal (Real.pi / 3) ≠ ENNReal.ofReal (Real.pi / 3) := by
   intro h
@@ -207,6 +261,9 @@ theorem gate_factor_two_load_bearing :
   have := (ENNReal.mul_eq_right hne hlt).mp h
   norm_num at this
 
+/--
+@isnad1 id=and.0h0v.s6.21dc88bf0639 from=translated src=- shape=8efd787b vocab=b62b0bac
+-/
 theorem gate_two_routes_ne_zero_ne_top :
     (2 : ℝ≥0∞) * ENNReal.ofReal (Real.pi / 3) ≠ 0 ∧
       (2 : ℝ≥0∞) * ENNReal.ofReal (Real.pi / 3) ≠ ⊤ := by

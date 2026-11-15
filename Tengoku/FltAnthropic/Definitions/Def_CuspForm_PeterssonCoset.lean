@@ -13,10 +13,16 @@ open scoped MatrixGroups ModularForm ComplexConjugate Modular ENNReal Pointwise
 
 namespace CuspForm.PeterssonCoset
 
+/--
+@isnad1 id=eq.0h3v.s9.5be642610faa from=translated src=- shape=531976e2 vocab=c63d16f2
+-/
 @[simp] theorem mapGL_apply (g : SL(2, ℤ)) (i j : Fin 2) :
     (Matrix.SpecialLinearGroup.mapGL ℝ g : GL (Fin 2) ℝ) i j = ((g i j : ℤ) : ℝ) := by
   simp
 
+/--
+@isnad1 id=eq.0h1v.s10.3cf3be0ecf03 from=translated src=- shape=5b42c4a6 vocab=4ae995c9
+-/
 theorem val_mapGL_eq (g : SL(2, ℤ)) :
     ((Matrix.SpecialLinearGroup.mapGL ℝ g : GL (Fin 2) ℝ) : Matrix (Fin 2) (Fin 2) ℝ)
       = !![((g 0 0 : ℤ) : ℝ), ((g 0 1 : ℤ) : ℝ); ((g 1 0 : ℤ) : ℝ), ((g 1 1 : ℤ) : ℝ)] := by
@@ -24,6 +30,9 @@ theorem val_mapGL_eq (g : SL(2, ℤ)) :
   rw [mapGL_apply]
   fin_cases i <;> fin_cases j <;> rfl
 
+/--
+@isnad1 id=injectiv.0h0v.s9.57fc9643e467 from=translated src=- shape=30932794 vocab=4eda6234
+-/
 theorem mapGL_injective : Function.Injective
     (fun s : SL(2, ℤ) => (Matrix.SpecialLinearGroup.mapGL ℝ s : GL (Fin 2) ℝ)) := by
   intro s t h
@@ -32,14 +41,23 @@ theorem mapGL_injective : Function.Injective
   have := congrArg (fun g : GL (Fin 2) ℝ => (g : Matrix (Fin 2) (Fin 2) ℝ) i j) h
   simpa using this
 
+/--
+@isnad1 id=eq.0h1v.s8.df8917939df4 from=translated src=- shape=3d4d5f77 vocab=ec2cc098
+-/
 theorem det_entries (γ : SL(2, ℤ)) : γ 0 0 * γ 1 1 - γ 0 1 * γ 1 0 = 1 := by
   have h := γ.det_coe
   rwa [Matrix.det_fin_two] at h
 
+/--
+@isnad1 id=eq.0h2v.s9.7c8e72780454 from=translated src=- shape=a3a3cb5f vocab=ec5673e2
+-/
 theorem hact (γ : SL(2, ℤ)) (x : ℍ) :
     γ • x = (Matrix.SpecialLinearGroup.mapGL ℝ γ : GL (Fin 2) ℝ) • x :=
   MulAction.compHom_smul_def _ γ x
 
+/--
+@isnad1 id=measurep.0h1v.s7.fba4bc526887 from=translated src=- shape=a8325292 vocab=459267c1
+-/
 theorem mp_smul_SL (γ : SL(2, ℤ)) : MeasurePreserving (fun x : ℍ => γ • x) volume volume := by
   have hemb : MeasurableEmbedding (fun w : ℍ => γ • w) :=
     (Homeomorph.smul γ (α := ℍ)).measurableEmbedding
@@ -48,6 +66,9 @@ theorem mp_smul_SL (γ : SL(2, ℤ)) : MeasurePreserving (fun x : ℍ => γ • 
     rw [Measure.map_apply hemb.measurable hs, Set.preimage_smul,
       FLT.HyperbolicMeasure.volume_smul_sl2z]⟩
 
+/--
+@isnad1 id=measurep.0h1v.s8.bcc40a6c4c0d from=translated src=- shape=a8325292 vocab=5c49909c
+-/
 theorem mp_smul_GL (g : GL (Fin 2) ℝ) : MeasurePreserving (fun x : ℍ => g • x) volume volume := by
   have hemb : MeasurableEmbedding (fun w : ℍ => g • w) :=
     (Homeomorph.smul g (α := ℍ)).measurableEmbedding
@@ -56,9 +77,15 @@ theorem mp_smul_GL (g : GL (Fin 2) ℝ) : MeasurePreserving (fun x : ℍ => g �
     rw [Measure.map_apply hemb.measurable hs, Set.preimage_smul,
       FLT.HyperbolicMeasure.volume_smul_gl]⟩
 
+/--
+@isnad1 id=measurab.0h1v.s7.9329006d1c44 from=translated src=- shape=1e2fed31 vocab=4e8b65f6
+-/
 theorem measurable_smul_SL (γ : SL(2, ℤ)) : Measurable (fun x : ℍ => γ • x) :=
   (continuous_const_smul γ).measurable
 
+/--
+@isnad1 id=measurab.0h1v.s7.9f5e93ca2ab5 from=translated src=- shape=1e2fed31 vocab=c128d992
+-/
 theorem measurable_smul_GL (g : GL (Fin 2) ℝ) : Measurable (fun x : ℍ => g • x) :=
   (continuous_const_smul g).measurable
 
@@ -79,14 +106,23 @@ def splitEquiv : SL(2, ℤ) ≃ (SL(2, ℤ) ⧸ Λ) × Λ where
     simp only [hq]
     rw [inv_mul_cancel_left]
 
+/--
+@isnad1 id=eq.0h2v.s10.97871e21669b from=translated src=- shape=b2f83b09 vocab=1aa681d0
+-/
 theorem tsum_SL_eq (F : SL(2, ℤ) → ℝ≥0∞) :
     ∑' σ : SL(2, ℤ), F σ = ∑' q : SL(2, ℤ) ⧸ Λ, ∑' h : Λ, F (q.out * (h : SL(2, ℤ))) := by
   rw [← (splitEquiv Λ).symm.tsum_eq, ENNReal.tsum_prod']
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.d30393845376 from=translated src=- shape=4af9d151 vocab=52a2363d
+-/
 theorem tsum_SL_inv (F : SL(2, ℤ) → ℝ≥0∞) : ∑' σ : SL(2, ℤ), F σ = ∑' σ : SL(2, ℤ), F σ⁻¹ :=
   ((Equiv.inv SL(2, ℤ)).tsum_eq F).symm
 
+/--
+@isnad1 id=eq.0h2v.s10.3d29ca0e6298 from=translated src=- shape=7de3aa14 vocab=c14b000c
+-/
 theorem tsum_Λ_inv (F : Λ → ℝ≥0∞) : ∑' h : Λ, F h = ∑' h : Λ, F h⁻¹ :=
   ((Equiv.inv Λ).tsum_eq F).symm
 
@@ -95,11 +131,17 @@ variable [Fintype (SL(2, ℤ) ⧸ Λ)]
 def wt (x : ℍ) : ℝ≥0∞ :=
   ∑ q : SL(2, ℤ) ⧸ Λ, (𝒟 : Set ℍ).indicator (fun _ => (1 : ℝ≥0∞)) ((q.out : SL(2, ℤ)) • x)
 
+/--
+@isnad1 id=measurab.0h1v.s7.bf9cbcbece68 from=translated src=- shape=80f2376d vocab=a6abe52b
+-/
 theorem measurable_wt : Measurable (wt Λ) := by
   refine Finset.measurable_sum _ fun q _ => ?_
   exact (measurable_const.indicator ModularGroup.isClosed_fd.measurableSet).comp
     (measurable_smul_SL _)
 
+/--
+@isnad1 id=eq.0h2v.s8.e9482ce2dd73 from=translated src=- shape=f009d132 vocab=3964029a
+-/
 theorem indicator_smul (σ : SL(2, ℤ)) (x : ℍ) :
     (𝒟 : Set ℍ).indicator (fun _ => (1 : ℝ≥0∞)) (σ • x)
       = (σ⁻¹ • (𝒟 : Set ℍ)).indicator (fun _ => (1 : ℝ≥0∞)) x := by
@@ -107,6 +149,9 @@ theorem indicator_smul (σ : SL(2, ℤ)) (x : ℍ) :
   · rw [Set.indicator_of_mem h, Set.indicator_of_mem (Set.mem_inv_smul_set_iff.mpr h)]
   · rw [Set.indicator_of_notMem h, Set.indicator_of_notMem (fun h' => h (Set.mem_inv_smul_set_iff.mp h'))]
 
+/--
+@isnad1 id=eq.1h2v.s10.48b7669b5cba from=translated src=- shape=5c141d73 vocab=7c94254c
+-/
 theorem tsum_wt_smul {x : ℍ} (hx : x ∈ FLT.ModularFundamentalDomain.goodSet) :
     ∑' h : Λ, wt Λ ((h : SL(2, ℤ)) • x) = 2 := by
   calc ∑' h : Λ, wt Λ ((h : SL(2, ℤ)) • x)
@@ -127,11 +172,17 @@ theorem tsum_wt_smul {x : ℍ} (hx : x ∈ FLT.ModularFundamentalDomain.goodSet)
         rw [tsum_SL_inv (fun σ => (σ • (𝒟 : Set ℍ)).indicator (fun _ => (1 : ℝ≥0∞)) x)]
     _ = 2 := FLT.ModularFundamentalDomain.tsum_indicator_smul_fd hx
 
+/--
+@isnad1 id=eventual.0h1v.s10.227a90041b64 from=translated src=- shape=2228db73 vocab=52758a64
+-/
 theorem ae_tsum_wt_smul : ∀ᵐ x : ℍ, ∑' h : Λ, wt Λ ((h : SL(2, ℤ)) • x) = 2 := by
   filter_upwards [measure_eq_zero_iff_ae_notMem.mp FLT.ModularFundamentalDomain.volume_compl_goodSet]
     with x hx
   exact tsum_wt_smul Λ (by simpa using hx)
 
+/--
+@isnad1 id=eq.2h4v.s11.a77b96301cb9 from=translated src=- shape=f0b521d7 vocab=72eaea38
+-/
 theorem tsum_G_eq (U w : ℍ → ℝ≥0∞) (hUinv : ∀ h ∈ Λ, ∀ x : ℍ, U (h • x) = U x) (x : ℍ)
     (hwt : ∀ q : SL(2, ℤ) ⧸ Λ, ∑' h : Λ, w ((h : SL(2, ℤ)) • (q.out⁻¹ : SL(2, ℤ)) • x) = 2) :
     ∑' σ : SL(2, ℤ), U (σ • x) * w (σ • x)
@@ -157,6 +208,9 @@ theorem tsum_G_eq (U w : ℍ → ℝ≥0∞) (hUinv : ∀ h ∈ Λ, ∀ x : ℍ,
     _ = 2 * ∑ q : SL(2, ℤ) ⧸ Λ, U ((q.out⁻¹ : SL(2, ℤ)) • x) := by
         rw [ENNReal.tsum_mul_right, tsum_fintype, mul_comm]
 
+/--
+@isnad1 id=eq.4h3v.s11.42eb06b7c268 from=translated src=- shape=33c5ea67 vocab=9d4bd119
+-/
 theorem weight_lintegral (U w : ℍ → ℝ≥0∞) (hU : Measurable U) (hw : Measurable w)
     (hUinv : ∀ h ∈ Λ, ∀ x : ℍ, U (h • x) = U x)
     (hwt : ∀ᵐ x : ℍ, ∑' h : Λ, w ((h : SL(2, ℤ)) • x) = 2) :
@@ -197,6 +251,9 @@ section cvn
 
 variable (Λ₁ Λ₂ : Subgroup SL(2, ℤ)) [Fintype (SL(2, ℤ) ⧸ Λ₁)] [Fintype (SL(2, ℤ) ⧸ Λ₂)]
 
+/--
+@isnad1 id=eq.3h5v.s12.03e89d8c37f4 from=translated src=- shape=7cada8af vocab=316b1612
+-/
 theorem cvn_lintegral (β : GL (Fin 2) ℝ) (c : Λ₁ ≃ Λ₂)
     (hc : ∀ h : Λ₁, β * (Matrix.SpecialLinearGroup.mapGL ℝ (h : SL(2, ℤ)) : GL (Fin 2) ℝ)
       = (Matrix.SpecialLinearGroup.mapGL ℝ ((c h : Λ₂) : SL(2, ℤ)) : GL (Fin 2) ℝ) * β)
@@ -235,9 +292,15 @@ section pairing
 
 def dens (k : ℤ) (H : ℍ → ℂ) (x : ℍ) : ℝ := ‖H x‖ ^ 2 * x.im ^ k
 
+/--
+@isnad1 id=le.0h3v.s4.3f3cf8dda2c0 from=translated src=- shape=82252143 vocab=7223cbc5
+-/
 theorem dens_nonneg (k : ℤ) (H : ℍ → ℂ) (x : ℍ) : 0 ≤ dens k H x :=
   mul_nonneg (sq_nonneg _) (zpow_nonneg x.im_pos.le _)
 
+/--
+@isnad1 id=eq.0h3v.s4.22cf893985fa from=translated src=- shape=28fde044 vocab=d1f0621f
+-/
 theorem petersson_self_eq_dens (k : ℤ) (H : ℍ → ℂ) (x : ℍ) :
     UpperHalfPlane.petersson k H H x = ((dens k H x : ℝ) : ℂ) := by
   unfold UpperHalfPlane.petersson dens
@@ -252,6 +315,9 @@ structure Nice (Λ : Subgroup SL(2, ℤ)) (k : ℤ) (H : ℍ → ℂ) : Prop whe
 
 variable {Λ : Subgroup SL(2, ℤ)} {k : ℤ}
 
+/--
+@isnad1 id=nice.2h4v.s6.a146001eb6b2 from=translated src=- shape=def6a396 vocab=a14c2ec1
+-/
 theorem Nice.add {F G : ℍ → ℂ} (hF : Nice Λ k F) (hG : Nice Λ k G) : Nice Λ k (F + G) := by
   obtain ⟨C₁, hC₁⟩ := hF.bdd
   obtain ⟨C₂, hC₂⟩ := hG.bdd
@@ -268,6 +334,9 @@ theorem Nice.add {F G : ℍ → ℂ} (hF : Nice Λ k F) (hG : Nice Λ k G) : Nic
     nlinarith [mul_le_mul_of_nonneg_right hn hy]
   · rw [SlashAction.add_slash, hF.inv h hh, hG.inv h hh]
 
+/--
+@isnad1 id=nice.1h4v.s6.038636b0be8e from=translated src=- shape=f27d5ba9 vocab=7ecd8dc4
+-/
 theorem Nice.smul {F : ℍ → ℂ} (hF : Nice Λ k F) (c : ℂ) : Nice Λ k (c • F) := by
   obtain ⟨C, hC⟩ := hF.bdd
   refine ⟨hF.cont.const_smul c, ⟨‖c‖ ^ 2 * C, fun x => ?_⟩, fun h hh => ?_⟩
@@ -280,15 +349,27 @@ theorem Nice.smul {F : ℍ → ℂ} (hF : Nice Λ k F) (c : ℂ) : Nice Λ k (c 
     rw [ModularForm.smul_slash, hF.inv h hh, hσ]
     rfl
 
+/--
+@isnad1 id=nice.1h3v.s6.4ef9f37ccb3e from=translated src=- shape=4d4f2338 vocab=d39d9a75
+-/
 theorem Nice.neg {F : ℍ → ℂ} (hF : Nice Λ k F) : Nice Λ k (-F) := by
   have := hF.smul (-1); rwa [neg_one_smul] at this
 
+/--
+@isnad1 id=nice.2h4v.s6.de363e3ac31b from=translated src=- shape=def6a396 vocab=6968c79c
+-/
 theorem Nice.sub {F G : ℍ → ℂ} (hF : Nice Λ k F) (hG : Nice Λ k G) : Nice Λ k (F - G) := by
   rw [sub_eq_add_neg]; exact hF.add hG.neg
 
+/--
+@isnad1 id=nice.0h2v.s6.edac67b6924b from=translated src=- shape=51b2d3a3 vocab=58ae516c
+-/
 theorem Nice.zero : Nice Λ k (0 : ℍ → ℂ) :=
   ⟨continuous_const, ⟨0, fun x => by simp [dens]⟩, fun _ _ => SlashAction.zero_slash k _⟩
 
+/--
+@isnad1 id=nice.1h5v.s6.c9290bf0dc9f from=translated src=- shape=37e21941 vocab=b3a9a037
+-/
 theorem Nice.sum {ι : Type*} (s : Finset ι) {F : ι → ℍ → ℂ} (hF : ∀ i, Nice Λ k (F i)) :
     Nice Λ k (∑ i ∈ s, F i) := by
   classical
@@ -296,9 +377,15 @@ theorem Nice.sum {ι : Type*} (s : Finset ι) {F : ι → ℍ → ℂ} (hF : ∀
   | empty => rw [Finset.sum_empty]; exact Nice.zero
   | insert a s ha ih => rw [Finset.sum_insert ha]; exact (hF a).add ih
 
+/--
+@isnad1 id=nice.2h4v.s8.8a9c291cd540 from=translated src=- shape=7e1b9d26 vocab=dc67a3f4
+-/
 theorem Nice.mono {Λ' : Subgroup SL(2, ℤ)} {F : ℍ → ℂ} (hF : Nice Λ k F) (h : Λ' ≤ Λ) : Nice Λ' k F :=
   ⟨hF.cont, hF.bdd, fun g hg => hF.inv g (h hg)⟩
 
+/--
+@isnad1 id=eq.2h5v.s8.804cf66542bb from=translated src=- shape=c43b3cbc vocab=54ee6b61
+-/
 theorem Nice.dens_smul {F : ℍ → ℂ} (hF : Nice Λ k F) {h : SL(2, ℤ)} (hh : h ∈ Λ) (x : ℍ) :
     dens k F (h • x) = dens k F x := by
   have := UpperHalfPlane.petersson_slash_SL k F F h x
@@ -306,11 +393,17 @@ theorem Nice.dens_smul {F : ℍ → ℂ} (hF : Nice Λ k F) {h : SL(2, ℤ)} (hh
     from rfl, hF.inv h hh, petersson_self_eq_dens, petersson_self_eq_dens] at this
   exact_mod_cast this.symm
 
+/--
+@isnad1 id=continuo.1h2v.s5.1da597f17fbb from=translated src=- shape=8b5c5f29 vocab=00f89518
+-/
 theorem continuous_dens {F : ℍ → ℂ} (hF : Continuous F) : Continuous (dens k F) := by
   unfold dens
   refine ((continuous_norm.comp hF).pow 2).mul ?_
   exact (UpperHalfPlane.continuous_im.zpow₀ k fun x => Or.inl (x.im_pos.ne'))
 
+/--
+@isnad1 id=le.0h4v.s5.a00100ce9934 from=translated src=- shape=90f92414 vocab=3057cf64
+-/
 theorem norm_petersson_le {F G : ℍ → ℂ} (x : ℍ) :
     ‖UpperHalfPlane.petersson k F G x‖ ≤ (dens k F x + dens k G x) / 2 := by
   unfold UpperHalfPlane.petersson dens
@@ -327,6 +420,9 @@ def cosum (g : GL (Fin 2) ℝ) (Φ : ℍ → ℂ) (x : ℍ) : ℂ :=
 def pair (k : ℤ) (F G : ℍ → ℂ) : ℂ :=
   ∫ x in (𝒟 : Set ℍ), cosum Λ 1 (UpperHalfPlane.petersson k F G) x
 
+/--
+@isnad1 id=integrab.4h5v.s8.c059661b590b from=translated src=- shape=ede375e1 vocab=2b6133b6
+-/
 theorem integrable_cosum {F G : ℍ → ℂ} (hFc : Continuous F) (hGc : Continuous G)
     (hFb : ∃ C, ∀ x, dens k F x ≤ C) (hGb : ∃ C, ∀ x, dens k G x ≤ C) (g : GL (Fin 2) ℝ) :
     Integrable (cosum Λ g (UpperHalfPlane.petersson k F G)) (volume.restrict (𝒟 : Set ℍ)) := by
@@ -345,6 +441,9 @@ theorem integrable_cosum {F G : ℍ → ℂ} (hFc : Continuous F) (hGc : Continu
   · exact hC₁ _
   · exact hC₂ _
 
+/--
+@isnad1 id=eq.2h6v.s12.0efb76d9e161 from=translated src=- shape=20cba8cc vocab=fe5ee457
+-/
 theorem integral_cosum_self {Λ₁ : Subgroup SL(2, ℤ)} [Fintype (SL(2, ℤ) ⧸ Λ₁)] (β : GL (Fin 2) ℝ)
     (c : Λ₁ ≃ Λ)
     (hc : ∀ h : Λ₁,
@@ -384,6 +483,9 @@ theorem integral_cosum_self {Λ₁ : Subgroup SL(2, ℤ)} [Fintype (SL(2, ℤ) �
     (fun x => ENNReal.ofReal (dens k H x)) hU (fun h hh x => by simp only [hH.dens_smul hh])
   simpa only [one_smul] using this
 
+/--
+@isnad1 id=eq.0h4v.s8.cbf8bd9052e4 from=translated src=- shape=15360f10 vocab=2bd3dabc
+-/
 theorem petersson_polarization (F G : ℍ → ℂ) (x : ℍ) :
     UpperHalfPlane.petersson k F G x
       = (4 : ℂ)⁻¹ * (UpperHalfPlane.petersson k (G + F) (G + F) x
@@ -397,6 +499,9 @@ theorem petersson_polarization (F G : ℍ → ℂ) (x : ℍ) :
 
 omit [Fintype (SL(2, ℤ) ⧸ Λ)] in
 
+/--
+@isnad1 id=eq.2h6v.s9.7067833586f8 from=translated src=- shape=d0cf6a19 vocab=ec64a580
+-/
 theorem integral_cosum_polar (Λ' : Subgroup SL(2, ℤ)) [Fintype (SL(2, ℤ) ⧸ Λ')]
     (g : GL (Fin 2) ℝ) {F G : ℍ → ℂ} (hF : Nice Λ k F) (hG : Nice Λ k G) :
     ∫ x in (𝒟 : Set ℍ), cosum Λ' g (UpperHalfPlane.petersson k F G) x
@@ -434,6 +539,9 @@ theorem integral_cosum_polar (Λ' : Subgroup SL(2, ℤ)) [Fintype (SL(2, ℤ) �
   rw [integral_sub iABC iD, integral_sub iAB iC, integral_add iA iB, integral_const_mul,
     integral_const_mul]
 
+/--
+@isnad1 id=eq.3h7v.s12.beded94c5171 from=translated src=- shape=94698fd6 vocab=fe5ee457
+-/
 theorem integral_cosum_pair {Λ₁ : Subgroup SL(2, ℤ)} [Fintype (SL(2, ℤ) ⧸ Λ₁)] (β : GL (Fin 2) ℝ)
     (c : Λ₁ ≃ Λ)
     (hc : ∀ h : Λ₁,
@@ -446,6 +554,9 @@ theorem integral_cosum_pair {Λ₁ : Subgroup SL(2, ℤ)} [Fintype (SL(2, ℤ) �
     integral_cosum_self Λ β c hc (hG.add hF), integral_cosum_self Λ β c hc (hG.add (hF.smul _)),
     integral_cosum_self Λ β c hc (hG.sub hF), integral_cosum_self Λ β c hc (hG.sub (hF.smul _))]
 
+/--
+@isnad1 id=eq.4h7v.s12.c159e1d09cea from=translated src=- shape=7b4bcdbc vocab=4e0092c3
+-/
 theorem pair_slash {Λ₁ : Subgroup SL(2, ℤ)} [Fintype (SL(2, ℤ) ⧸ Λ₁)] (β : GL (Fin 2) ℝ)
     (hβ : 0 < (β.det : ℝ)) (c : Λ₁ ≃ Λ)
     (hc : ∀ h : Λ₁,
@@ -464,6 +575,9 @@ theorem pair_slash {Λ₁ : Subgroup SL(2, ℤ)} [Fintype (SL(2, ℤ) ⧸ Λ₁)
     rfl
   rw [hpt, integral_const_mul, integral_cosum_pair Λ β c hc hF hG]
 
+/--
+@isnad1 id=eq.0h4v.s7.1206470a001a from=translated src=- shape=0448ef42 vocab=52736939
+-/
 theorem pair_conj_symm (F G : ℍ → ℂ) : pair Λ k G F = conj (pair Λ k F G) := by
   unfold pair
   rw [← integral_conj]
@@ -472,6 +586,9 @@ theorem pair_conj_symm (F G : ℍ → ℂ) : pair Λ k G F = conj (pair Λ k F G
   simp only [cosum, map_sum]
   exact Finset.sum_congr rfl fun q _ => UpperHalfPlane.petersson_symm k F G _
 
+/--
+@isnad1 id=eq.0h5v.s7.37c26a36ae3d from=translated src=- shape=567fbe29 vocab=5efa95db
+-/
 theorem pair_smul_left (c : ℂ) (F G : ℍ → ℂ) : pair Λ k (c • F) G = conj c * pair Λ k F G := by
   unfold pair
   rw [← integral_const_mul]
@@ -480,6 +597,9 @@ theorem pair_smul_left (c : ℂ) (F G : ℍ → ℂ) : pair Λ k (c • F) G = c
   refine Finset.sum_congr rfl fun q _ => ?_
   simp only [UpperHalfPlane.petersson, Pi.smul_apply, smul_eq_mul, map_mul]; ring
 
+/--
+@isnad1 id=eq.0h5v.s7.6d634f722d18 from=translated src=- shape=99765650 vocab=77e9ed60
+-/
 theorem pair_smul_right (c : ℂ) (F G : ℍ → ℂ) : pair Λ k F (c • G) = c * pair Λ k F G := by
   unfold pair
   rw [← integral_const_mul]
@@ -488,6 +608,9 @@ theorem pair_smul_right (c : ℂ) (F G : ℍ → ℂ) : pair Λ k F (c • G) = 
   refine Finset.sum_congr rfl fun q _ => ?_
   simp only [UpperHalfPlane.petersson, Pi.smul_apply, smul_eq_mul]; ring
 
+/--
+@isnad1 id=eq.2h6v.s7.d6c0b1eb8b04 from=translated src=- shape=3ec86d6f vocab=a4078eb8
+-/
 theorem pair_sum_left {ι : Type*} (s : Finset ι) (F : ι → ℍ → ℂ) (G : ℍ → ℂ)
     (hF : ∀ i, Nice Λ k (F i)) (hG : Nice Λ k G) :
     pair Λ k (∑ i ∈ s, F i) G = ∑ i ∈ s, pair Λ k (F i) G := by
@@ -507,6 +630,9 @@ theorem pair_sum_left {ι : Type*} (s : Finset ι) (F : ι → ℍ → ℂ) (G :
     · have hs : Nice Λ k (∑ i ∈ s, F i) := Nice.sum s hF
       exact integrable_cosum Λ hs.cont hG.cont hs.bdd hG.bdd 1
 
+/--
+@isnad1 id=eq.2h6v.s7.7a2e7ee7be92 from=translated src=- shape=485b137d vocab=a4078eb8
+-/
 theorem pair_sum_right {ι : Type*} (s : Finset ι) (F : ℍ → ℂ) (G : ι → ℍ → ℂ)
     (hF : Nice Λ k F) (hG : ∀ i, Nice Λ k (G i)) :
     pair Λ k F (∑ i ∈ s, G i) = ∑ i ∈ s, pair Λ k F (G i) := by
@@ -519,6 +645,9 @@ section definite
 
 variable (Λ : Subgroup SL(2, ℤ)) [Fintype (SL(2, ℤ) ⧸ Λ)] {k : ℤ}
 
+/--
+@isnad1 id=eq.1h3v.s9.cda7a315e4f1 from=translated src=- shape=b02245b9 vocab=0f19fd8d
+-/
 theorem pair_self_eq_lintegral {F : ℍ → ℂ} (hF : Continuous F) :
     pair Λ k F F = ((∫⁻ x in (𝒟 : Set ℍ), ∑ q : SL(2, ℤ) ⧸ Λ,
         ENNReal.ofReal (dens k F ((q.out⁻¹ : SL(2, ℤ)) • x))).toReal : ℂ) := by
@@ -620,6 +749,9 @@ def eMap (r : ι → SL(2, ℤ)) (x : (SL(2, ℤ) ⧸ Γ'') × ι) : SL(2, ℤ) 
   QuotientGroup.mk (x.1.out * (r x.2)⁻¹)
 
 include hΛΓ hr hex huniq in
+/--
+@isnad1 id=bijectiv.4h4v.s10.9d21e4d62384 from=translated src=- shape=3c7eab22 vocab=c7ae32a7
+-/
 theorem eMap_bijective : Function.Bijective (eMap (Γ'' := Γ'') (Λ := Λ) r) := by
   constructor
   · rintro ⟨q, i⟩ ⟨q', i'⟩ h
@@ -653,6 +785,9 @@ variable [Fintype (SL(2, ℤ) ⧸ Γ'')] [Fintype (SL(2, ℤ) ⧸ Λ)] [Fintype 
 
 include hΛΓ hr hex huniq in
 
+/--
+@isnad1 id=eq.5h7v.s11.af728bb97753 from=translated src=- shape=bf390e86 vocab=5ed26844
+-/
 theorem unfold_sum {X : Type*} [AddCommMonoid X] (Φ : ℍ → X)
     (hΦ : ∀ h ∈ Λ, ∀ x : ℍ, Φ (h • x) = Φ x) (τ : ℍ) :
     ∑ q' : SL(2, ℤ) ⧸ Λ, Φ ((q'.out⁻¹ : SL(2, ℤ)) • τ)
@@ -670,6 +805,9 @@ end unfold
 
 variable [Fintype (SL(2, ℤ) ⧸ Γ'')] [Fintype (SL(2, ℤ) ⧸ Λ)]
 
+/--
+@isnad1 id=eq.2h4v.s10.463a6a04fc2e from=translated src=- shape=f21bf780 vocab=e22cc2d2
+-/
 theorem cosum_eq_relIndex_mul (hle : Λ ≤ Γ'') (Φ : ℍ → ℂ)
     (hΦ : ∀ h ∈ Γ'', ∀ x : ℍ, Φ (h • x) = Φ x) (τ : ℍ) :
     cosum Λ 1 Φ τ = (Λ.relIndex Γ'' : ℂ) * cosum Γ'' 1 Φ τ := by
@@ -709,6 +847,9 @@ theorem cosum_eq_relIndex_mul (hle : Λ ≤ Γ'') (Φ : ℍ → ℂ)
   congr 1
   rw [Subgroup.relIndex, Subgroup.index_eq_card, Nat.card_eq_fintype_card]
 
+/--
+@isnad1 id=eq.3h5v.s9.477be42ea51e from=translated src=- shape=9ee871ae vocab=ed6ca594
+-/
 theorem pair_eq_relIndex_mul (hle : Λ ≤ Γ'') {k : ℤ} {F G : ℍ → ℂ} (hF : Nice Γ'' k F) (hG : Nice Γ'' k G) :
     pair Λ k F G = (Λ.relIndex Γ'' : ℂ) * pair Γ'' k F G := by
   unfold pair
@@ -728,6 +869,9 @@ section indexeq
 
 variable (Λ₁ Λ₂ : Subgroup SL(2, ℤ)) [Fintype (SL(2, ℤ) ⧸ Λ₁)] [Fintype (SL(2, ℤ) ⧸ Λ₂)]
 
+/--
+@isnad1 id=eq.1h4v.s12.6193f96d95ae from=translated src=- shape=7d7f76ab vocab=9afd5b52
+-/
 theorem card_quotient_eq_of_conj (β : GL (Fin 2) ℝ) (c : Λ₁ ≃ Λ₂)
     (hc : ∀ h : Λ₁, β * (Matrix.SpecialLinearGroup.mapGL ℝ (h : SL(2, ℤ)) : GL (Fin 2) ℝ)
       = (Matrix.SpecialLinearGroup.mapGL ℝ ((c h : Λ₂) : SL(2, ℤ)) : GL (Fin 2) ℝ) * β) :

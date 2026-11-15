@@ -19,11 +19,17 @@ section Helpers
 
 variable {α : Type*} [CommRing α]
 
+/--
+@isnad1 id=eq.0h3v.s7.d8ff66bfc2b6 from=translated src=- shape=827df3b1 vocab=220b56d7
+-/
 theorem mulVec_single_one (M : Matrix (Fin 2) (Fin 2) α) (j : Fin 2) :
     M *ᵥ (Pi.single j 1) = fun i => M i j := by
   funext i
   simp [Matrix.mulVec, dotProduct, Pi.single_apply, mul_ite, Finset.sum_ite_eq']
 
+/--
+@isnad1 id=eq.0h3v.s6.8b917baff465 from=translated src=- shape=f7a564c4 vocab=9c305d89
+-/
 theorem diagonal_mulVec (d v : Fin 2 → α) :
     Matrix.diagonal d *ᵥ v = fun i => d i * v i := by
   funext i
@@ -42,10 +48,16 @@ def stdLattice : Submodule R (Fin 2 → K) where
     rw [Pi.smul_apply]
     exact IsLocalization.isInteger_smul (hv i)
 
+/--
+@isnad1 id=iff.0h3v.s8.07ea52176b4a from=translated src=- shape=76a2d648 vocab=e5d87596
+-/
 theorem mem_stdLattice {v : Fin 2 → K} :
     v ∈ stdLattice R K ↔ ∀ i, IsLocalization.IsInteger R (v i) := Iff.rfl
 
 attribute [local simp] mem_stdLattice
+/--
+@isnad1 id=mem.0h3v.s8.cd7dc93d6d2e from=translated src=- shape=633d5a3b vocab=0b18eeb8
+-/
 theorem single_one_mem_stdLattice (j : Fin 2) :
     (Pi.single j 1 : Fin 2 → K) ∈ stdLattice R K := by
   intro i
@@ -55,6 +67,9 @@ theorem single_one_mem_stdLattice (j : Fin 2) :
   · rw [Pi.single_eq_of_ne h]
     exact IsLocalization.isInteger_zero
 
+/--
+@isnad1 id=eq.0h2v.s8.5e6838ed9140 from=translated src=- shape=fbaa1990 vocab=5ce46df6
+-/
 theorem stdLattice_eq_span :
     stdLattice R K = Submodule.span R (Set.range fun j => (Pi.single j 1 : Fin 2 → K)) := by
   apply le_antisymm
@@ -74,11 +89,17 @@ theorem stdLattice_eq_span :
     rintro _ ⟨j, rfl⟩
     exact single_one_mem_stdLattice R K j
 
+/--
+@isnad1 id=fg.0h2v.s6.bf5f24ecbe53 from=translated src=- shape=a9b668c9 vocab=e797170e
+-/
 theorem stdLattice_fg : (stdLattice R K).FG := by
   rw [Submodule.fg_def]
   exact ⟨Set.range fun j => (Pi.single j 1 : Fin 2 → K), Set.finite_range _,
     (stdLattice_eq_span R K).symm⟩
 
+/--
+@isnad1 id=eq.0h2v.s9.024361b450e2 from=translated src=- shape=9f5901fb vocab=8439307e
+-/
 theorem stdLattice_span_top :
     Submodule.span K ((stdLattice R K : Set (Fin 2 → K))) = ⊤ := by
   rw [eq_top_iff, ← (Pi.basisFun K (Fin 2)).span_eq, Submodule.span_le]
@@ -96,6 +117,9 @@ def mulVecLinR (g : Matrix.GeneralLinearGroup (Fin 2) K) :
     rw [RingHom.id_apply]
     exact Matrix.mulVec_smul _ r v
 
+/--
+@isnad1 id=eq.0h4v.s9.5524a1213039 from=translated src=- shape=6dd62328 vocab=adf887a6
+-/
 @[simp] theorem mulVecLinR_apply (g : Matrix.GeneralLinearGroup (Fin 2) K) (v : Fin 2 → K) :
     mulVecLinR (R := R) g v = (g : Matrix (Fin 2) (Fin 2) K) *ᵥ v := rfl
 
@@ -103,22 +127,34 @@ def latticeMap (g : Matrix.GeneralLinearGroup (Fin 2) K) (L : Submodule R (Fin 2
     Submodule R (Fin 2 → K) :=
   L.map (mulVecLinR g)
 
+/--
+@isnad1 id=iff.0h5v.s9.5af06af21648 from=translated src=- shape=e9b05dd8 vocab=5dc4e5cf
+-/
 theorem mem_latticeMap {g : Matrix.GeneralLinearGroup (Fin 2) K}
     {L : Submodule R (Fin 2 → K)} {v : Fin 2 → K} :
     v ∈ latticeMap g L ↔ ∃ w ∈ L, (g : Matrix (Fin 2) (Fin 2) K) *ᵥ w = v :=
   Submodule.mem_map
 
+/--
+@isnad1 id=mem.1h5v.s9.2aeb94d6442f from=translated src=- shape=cd932daa vocab=5dc4e5cf
+-/
 theorem mulVec_mem_latticeMap {g : Matrix.GeneralLinearGroup (Fin 2) K}
     {L : Submodule R (Fin 2 → K)} {w : Fin 2 → K} (hw : w ∈ L) :
     (g : Matrix (Fin 2) (Fin 2) K) *ᵥ w ∈ latticeMap g L :=
   ⟨w, hw, rfl⟩
 
+/--
+@isnad1 id=eq.0h4v.s9.904c446586c5 from=translated src=- shape=abfb2bdc vocab=7b62cd82
+-/
 theorem mulVecLinR_mul (g h : Matrix.GeneralLinearGroup (Fin 2) K) :
     mulVecLinR (R := R) (g * h) = (mulVecLinR g).comp (mulVecLinR h) :=
   LinearMap.ext fun v => by
     rw [LinearMap.comp_apply, mulVecLinR_apply, mulVecLinR_apply, mulVecLinR_apply,
       Matrix.mulVec_mulVec, Units.val_mul]
 
+/--
+@isnad1 id=eq.0h3v.s8.94e4f82919d2 from=translated src=- shape=6b6375b4 vocab=2e3c4557
+-/
 theorem latticeMap_one (L : Submodule R (Fin 2 → K)) : latticeMap 1 L = L := by
   have h : ∀ v : Fin 2 → K, mulVecLinR (R := R) 1 v = v := fun v => by
     rw [mulVecLinR_apply, Units.val_one, Matrix.one_mulVec]
@@ -131,35 +167,56 @@ theorem latticeMap_one (L : Submodule R (Fin 2 → K)) : latticeMap 1 L = L := b
     exact ⟨v, hv, h v⟩
 
 attribute [local simp] latticeMap_one
+/--
+@isnad1 id=eq.0h5v.s8.83c4f43b4925 from=translated src=- shape=4255e859 vocab=a24ab0a4
+-/
 theorem latticeMap_mul (g h : Matrix.GeneralLinearGroup (Fin 2) K)
     (L : Submodule R (Fin 2 → K)) :
     latticeMap (g * h) L = latticeMap g (latticeMap h L) := by
   unfold latticeMap
   rw [mulVecLinR_mul, Submodule.map_comp]
 
+/--
+@isnad1 id=eq.0h4v.s8.b2feede5ea70 from=translated src=- shape=dbaa172b vocab=9f1274d6
+-/
 theorem latticeMap_inv_latticeMap (g : Matrix.GeneralLinearGroup (Fin 2) K)
     (L : Submodule R (Fin 2 → K)) :
     latticeMap g⁻¹ (latticeMap g L) = L := by
   rw [← latticeMap_mul, inv_mul_cancel, latticeMap_one]
 
+/--
+@isnad1 id=eq.0h4v.s8.196ccfbf3ab4 from=translated src=- shape=19ead20e vocab=9f1274d6
+-/
 theorem latticeMap_latticeMap_inv (g : Matrix.GeneralLinearGroup (Fin 2) K)
     (L : Submodule R (Fin 2 → K)) :
     latticeMap g (latticeMap g⁻¹ L) = L := by
   rw [← latticeMap_mul, mul_inv_cancel, latticeMap_one]
 
+/--
+@isnad1 id=injectiv.0h3v.s7.1e045772b98a from=translated src=- shape=879ad0e8 vocab=a4758dd8
+-/
 theorem latticeMap_injective (g : Matrix.GeneralLinearGroup (Fin 2) K) :
     Function.Injective (latticeMap (R := R) g) :=
   Function.LeftInverse.injective (latticeMap_inv_latticeMap g)
 
+/--
+@isnad1 id=le.1h5v.s9.0c46145d785d from=translated src=- shape=4069802e vocab=582c6db8
+-/
 theorem latticeMap_mono (g : Matrix.GeneralLinearGroup (Fin 2) K)
     {L L' : Submodule R (Fin 2 → K)} (h : L ≤ L') : latticeMap g L ≤ latticeMap g L' :=
   Submodule.map_mono h
 
+/--
+@isnad1 id=le.1h5v.s9.57b6bf400bcb from=translated src=- shape=32f3ef4f vocab=582c6db8
+-/
 theorem le_of_latticeMap_le (g : Matrix.GeneralLinearGroup (Fin 2) K)
     {L L' : Submodule R (Fin 2 → K)} (h : latticeMap g L ≤ latticeMap g L') : L ≤ L' := by
   have := latticeMap_mono g⁻¹ h
   rwa [latticeMap_inv_latticeMap, latticeMap_inv_latticeMap] at this
 
+/--
+@isnad1 id=iff.0h5v.s9.3d7ff0c6a6ac from=translated src=- shape=91fd300c vocab=b405a27e
+-/
 theorem latticeMap_lt_latticeMap_iff (g : Matrix.GeneralLinearGroup (Fin 2) K)
     {L L' : Submodule R (Fin 2 → K)} : latticeMap g L < latticeMap g L' ↔ L < L' := by
   constructor
@@ -172,9 +229,15 @@ theorem latticeMap_lt_latticeMap_iff (g : Matrix.GeneralLinearGroup (Fin 2) K)
 def IsFullLattice (L : Submodule R (Fin 2 → K)) : Prop :=
   L.FG ∧ Submodule.span K (L : Set (Fin 2 → K)) = ⊤
 
+/--
+@isnad1 id=isfullla.0h2v.s5.9773e685189d from=translated src=- shape=15afcf28 vocab=78bc3f84
+-/
 theorem isFullLattice_stdLattice : IsFullLattice (stdLattice R K) :=
   ⟨stdLattice_fg R K, stdLattice_span_top R K⟩
 
+/--
+@isnad1 id=isfullla.1h4v.s7.c4622af1123f from=translated src=- shape=477e6279 vocab=9753f395
+-/
 theorem IsFullLattice.map {L : Submodule R (Fin 2 → K)} (hL : IsFullLattice L)
     (g : Matrix.GeneralLinearGroup (Fin 2) K) : IsFullLattice (latticeMap g L) := by
   refine ⟨hL.1.map _, ?_⟩
@@ -202,12 +265,18 @@ theorem IsFullLattice.map {L : Submodule R (Fin 2 → K)} (hL : IsFullLattice L)
     simp only [Matrix.mulVec_smul]
     exact Submodule.smul_mem _ c hx
 
+/--
+@isnad1 id=isintege.1h5v.s9.c5bdd84c9d56 from=translated src=- shape=d2482a8a vocab=e726a5fa
+-/
 theorem isInteger_apply_of_mem_range {g : Matrix.GeneralLinearGroup (Fin 2) K}
     (hg : g ∈ (Matrix.GeneralLinearGroup.map (n := Fin 2) (algebraMap R K)).range)
     (i j : Fin 2) : IsLocalization.IsInteger R ((g : Matrix (Fin 2) (Fin 2) K) i j) := by
   obtain ⟨h, rfl⟩ := hg
   exact ⟨h i j, (Matrix.GeneralLinearGroup.map_apply (algebraMap R K) i j h).symm⟩
 
+/--
+@isnad1 id=le.1h3v.s8.97c7360e9ce0 from=translated src=- shape=a97f9588 vocab=9efc0e2e
+-/
 theorem latticeMap_le_stdLattice_of_isInteger {g : Matrix.GeneralLinearGroup (Fin 2) K}
     (hg : ∀ i j, IsLocalization.IsInteger R ((g : Matrix (Fin 2) (Fin 2) K) i j)) :
     latticeMap g (stdLattice R K) ≤ stdLattice R K := by
@@ -230,31 +299,49 @@ def scalarGL (c : Kˣ) : Matrix.GeneralLinearGroup (Fin 2) K :=
       rw [Matrix.smul_mul, Matrix.mul_smul, smul_smul, Matrix.one_mul, Units.inv_mul,
         one_smul]⟩
 
+/--
+@isnad1 id=eq.0h2v.s7.5678e79cdaf3 from=translated src=- shape=c5190f9b vocab=9420d356
+-/
 @[simp] theorem scalarGL_coe (c : Kˣ) :
     ((scalarGL c : Matrix.GeneralLinearGroup (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) =
       (c : K) • 1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.ef93de66a88d from=translated src=- shape=73c23333 vocab=24ef880a
+-/
 theorem scalarGL_mulVec (c : Kˣ) (v : Fin 2 → K) :
     ((scalarGL c : Matrix.GeneralLinearGroup (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) *ᵥ v =
       (c : K) • v := by
   rw [scalarGL_coe, Matrix.smul_mulVec, Matrix.one_mulVec]
 
+/--
+@isnad1 id=eq.0h3v.s8.dbf2590bc836 from=translated src=- shape=9244596d vocab=eaca6648
+-/
 theorem scalarGL_mul (c c' : Kˣ) :
     (scalarGL (c * c') : Matrix.GeneralLinearGroup (Fin 2) K) = scalarGL c * scalarGL c' := by
   ext1
   rw [Units.val_mul, scalarGL_coe, scalarGL_coe, scalarGL_coe, Matrix.smul_mul,
     Matrix.mul_smul, Matrix.one_mul, smul_smul, Units.val_mul]
 
+/--
+@isnad1 id=eq.0h1v.s7.073431adeaa5 from=translated src=- shape=11d4ec53 vocab=d8d877e9
+-/
 theorem scalarGL_one : (scalarGL (1 : Kˣ) : Matrix.GeneralLinearGroup (Fin 2) K) = 1 := by
   ext1
   rw [scalarGL_coe, Units.val_one, one_smul, Units.val_one]
 
+/--
+@isnad1 id=eq.0h3v.s8.0d342a9ce621 from=translated src=- shape=df0058a6 vocab=eaca6648
+-/
 theorem scalarGL_mul_comm (c : Kˣ) (g : Matrix.GeneralLinearGroup (Fin 2) K) :
     scalarGL c * g = g * scalarGL c := by
   ext1
   rw [Units.val_mul, Units.val_mul, scalarGL_coe, Matrix.smul_mul, Matrix.mul_smul,
     Matrix.one_mul, Matrix.mul_one]
 
+/--
+@isnad1 id=iff.0h5v.s9.6b626a38757f from=translated src=- shape=cb41128a vocab=06ceb4be
+-/
 theorem mem_latticeMap_scalarGL {c : Kˣ} {L : Submodule R (Fin 2 → K)} {v : Fin 2 → K} :
     v ∈ latticeMap (scalarGL c) L ↔ ∃ w ∈ L, (c : K) • w = v := by
   rw [mem_latticeMap]
@@ -275,10 +362,16 @@ def diagSnd (x : Kˣ) : Matrix.GeneralLinearGroup (Fin 2) K :=
     funext i
     fin_cases i <;> simp⟩
 
+/--
+@isnad1 id=eq.0h2v.s7.e7697516a475 from=translated src=- shape=ae0f0200 vocab=85ce2d02
+-/
 @[simp] theorem diagSnd_coe (x : Kˣ) :
     ((diagSnd x : Matrix.GeneralLinearGroup (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) =
       Matrix.diagonal ![1, (x : K)] := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.fefdd7860d1b from=translated src=- shape=3cbfa5e2 vocab=620a78d2
+-/
 theorem diagSnd_mulVec (x : Kˣ) (v : Fin 2 → K) :
     ((diagSnd x : Matrix.GeneralLinearGroup (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) *ᵥ v =
       ![v 0, (x : K) * v 1] := by
@@ -286,6 +379,9 @@ theorem diagSnd_mulVec (x : Kˣ) (v : Fin 2 → K) :
   funext i
   fin_cases i <;> simp
 
+/--
+@isnad1 id=iff.0h4v.s8.1f6d41237b40 from=translated src=- shape=bfc9bcb5 vocab=65457c6e
+-/
 theorem mem_latticeMap_diagSnd_stdLattice {x : Kˣ} {v : Fin 2 → K} :
     v ∈ latticeMap (diagSnd x) (stdLattice R K) ↔
       IsLocalization.IsInteger R (v 0) ∧
@@ -305,6 +401,9 @@ theorem mem_latticeMap_diagSnd_stdLattice {x : Kˣ} {v : Fin 2 → K} :
       funext i
       fin_cases i <;> simp [hw1']
 
+/--
+@isnad1 id=mem.0h3v.s8.8ad20ce64341 from=translated src=- shape=a979e714 vocab=42a63d0f
+-/
 theorem single_zero_one_mem_latticeMap_diagSnd (x : Kˣ) :
     (Pi.single 0 1 : Fin 2 → K) ∈ latticeMap (diagSnd x) (stdLattice R K) := by
   rw [mem_latticeMap_diagSnd_stdLattice]
@@ -316,21 +415,33 @@ theorem single_zero_one_mem_latticeMap_diagSnd (x : Kˣ) :
 def Homothetic (L L' : Submodule R (Fin 2 → K)) : Prop :=
   ∃ c : Kˣ, latticeMap (scalarGL c) L = L'
 
+/--
+@isnad1 id=homothet.0h3v.s6.cf0362b87723 from=translated src=- shape=af134649 vocab=73f1d965
+-/
 theorem Homothetic.refl (L : Submodule R (Fin 2 → K)) : Homothetic L L :=
   ⟨1, by rw [scalarGL_one, latticeMap_one]⟩
 
+/--
+@isnad1 id=homothet.1h4v.s7.4979318204a7 from=translated src=- shape=e77cf1b9 vocab=73f1d965
+-/
 theorem Homothetic.symm {L L' : Submodule R (Fin 2 → K)} (h : Homothetic L L') :
     Homothetic L' L := by
   obtain ⟨c, rfl⟩ := h
   exact ⟨c⁻¹, by
     rw [← latticeMap_mul, ← scalarGL_mul, inv_mul_cancel, scalarGL_one, latticeMap_one]⟩
 
+/--
+@isnad1 id=homothet.2h5v.s8.8bae38d41df3 from=translated src=- shape=43b56523 vocab=73f1d965
+-/
 theorem Homothetic.trans {L L' L'' : Submodule R (Fin 2 → K)}
     (h : Homothetic L L') (h' : Homothetic L' L'') : Homothetic L L'' := by
   obtain ⟨c, rfl⟩ := h
   obtain ⟨c', rfl⟩ := h'
   exact ⟨c' * c, by rw [scalarGL_mul, latticeMap_mul]⟩
 
+/--
+@isnad1 id=isfullla.2h4v.s7.fb10f76ef56b from=translated src=- shape=fe0ad3f4 vocab=d28baaa8
+-/
 theorem IsFullLattice.of_homothetic {L L' : Submodule R (Fin 2 → K)}
     (hL : IsFullLattice L) (h : Homothetic L L') : IsFullLattice L' := by
   obtain ⟨c, rfl⟩ := h
@@ -359,6 +470,9 @@ variable (R K) in
 
 def stdVertex : Vertex R K := Vertex.mk R K (stdLattice R K) isFullLattice_stdLattice
 
+/--
+@isnad1 id=iff.2h4v.s7.f809881c8b30 from=translated src=- shape=e39ecd06 vocab=5054647d
+-/
 theorem Vertex.mk_eq_mk_iff {L L' : Submodule R (Fin 2 → K)} {hL : IsFullLattice L}
     {hL' : IsFullLattice L'} :
     Vertex.mk R K L hL = Vertex.mk R K L' hL' ↔ Homothetic L L' :=
@@ -372,15 +486,24 @@ def Vertex.act (g : Matrix.GeneralLinearGroup (Fin 2) K) : Vertex R K → Vertex
         show latticeMap (scalarGL c) (latticeMap g L) = latticeMap g L'
         rw [← latticeMap_mul, scalarGL_mul_comm, latticeMap_mul, hc]⟩)
 
+/--
+@isnad1 id=eq.1h4v.s7.b77914945771 from=translated src=- shape=38d01321 vocab=5886a9e7
+-/
 @[simp] theorem Vertex.act_mk (g : Matrix.GeneralLinearGroup (Fin 2) K)
     (L : Submodule R (Fin 2 → K)) (hL : IsFullLattice L) :
     Vertex.act g (Vertex.mk R K L hL) = Vertex.mk R K (latticeMap g L) (hL.map g) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.f7dce0d6dbdd from=translated src=- shape=0f265979 vocab=951b8dec
+-/
 theorem Vertex.act_one (v : Vertex R K) : Vertex.act 1 v = v := by
   induction v using Quotient.inductionOn with
   | h L => exact congrArg _ (Subtype.ext (latticeMap_one L.1))
 
+/--
+@isnad1 id=eq.0h5v.s8.0d29df9a9531 from=translated src=- shape=0fe7fe93 vocab=959f51cb
+-/
 theorem Vertex.act_mul (g h : Matrix.GeneralLinearGroup (Fin 2) K) (v : Vertex R K) :
     Vertex.act (g * h) v = Vertex.act g (Vertex.act h v) := by
   induction v using Quotient.inductionOn with
@@ -421,6 +544,9 @@ theorem eq_stdLattice_of_homothetic_of_le {L : Submodule R (Fin 2 → K)}
 
 variable [IsFractionRing R K]
 
+/--
+@isnad1 id=iff.0h3v.s9.10382b117caa from=translated src=- shape=0a4fdd94 vocab=e9c2425e
+-/
 theorem latticeMap_stdLattice_eq_iff_mem_range (g : Matrix.GeneralLinearGroup (Fin 2) K) :
     latticeMap g (stdLattice R K) = stdLattice R K ↔
       g ∈ (Matrix.GeneralLinearGroup.map (n := Fin 2) (algebraMap R K)).range := by
@@ -489,6 +615,9 @@ theorem latticeMap_stdLattice_eq_iff_mem_range (g : Matrix.GeneralLinearGroup (F
     obtain ⟨w, hw, rfl⟩ := mem_latticeMap.mp hv'
     exact mulVec_mem_latticeMap (h1 hw)
 
+/--
+@isnad1 id=iff.0h3v.s9.fa2e9dcd017b from=translated src=- shape=a082d45d vocab=c6c9d89b
+-/
 theorem Vertex.act_stdVertex_eq_iff (g : Matrix.GeneralLinearGroup (Fin 2) K) :
     Vertex.act g (stdVertex R K) = stdVertex R K ↔
       ∃ c : Kˣ, scalarGL c * g ∈
@@ -508,9 +637,15 @@ def unitOfNeZero {ϖ : R} (hϖ : ϖ ≠ 0) : Kˣ :=
   Units.mk0 (algebraMap R K ϖ)
     (fun h => hϖ (IsFractionRing.injective R K (by rw [h, map_zero])))
 
+/--
+@isnad1 id=eq.1h3v.s7.ca8068e24a8e from=translated src=- shape=32181db1 vocab=fbddd6c2
+-/
 @[simp] theorem unitOfNeZero_coe {ϖ : R} (hϖ : ϖ ≠ 0) :
     ((unitOfNeZero (K := K) hϖ : Kˣ) : K) = algebraMap R K ϖ := rfl
 
+/--
+@isnad1 id=isunit.2h4v.s7.4160e77e30d1 from=translated src=- shape=89e447b4 vocab=250bcc0e
+-/
 theorem isUnit_of_algebraMap_mul_eq_one {ϖ : R} {w : K}
     (hw : IsLocalization.IsInteger R w) (h : algebraMap R K ϖ * w = 1) : IsUnit ϖ := by
   obtain ⟨r, rfl⟩ := hw
@@ -518,6 +653,9 @@ theorem isUnit_of_algebraMap_mul_eq_one {ϖ : R} {w : K}
   have h1 : ϖ * r = 1 := IsFractionRing.injective R K (by rw [h, map_one])
   exact ⟨⟨ϖ, r, h1, (mul_comm r ϖ).trans h1⟩, rfl⟩
 
+/--
+@isnad1 id=not.1h3v.s8.83c371f5186d from=translated src=- shape=98088c0c vocab=51d57fc9
+-/
 theorem single_one_one_notMem_latticeMap_diagSnd {ϖ : R} (hϖ : Irreducible ϖ) :
     (Pi.single 1 1 : Fin 2 → K) ∉
       latticeMap (diagSnd (unitOfNeZero (K := K) hϖ.ne_zero)) (stdLattice R K) := by
@@ -526,11 +664,17 @@ theorem single_one_one_notMem_latticeMap_diagSnd {ϖ : R} (hϖ : Irreducible ϖ)
   rw [unitOfNeZero_coe, Pi.single_eq_same] at hweq
   exact hϖ.not_isUnit (isUnit_of_algebraMap_mul_eq_one hw hweq)
 
+/--
+@isnad1 id=ne.1h3v.s7.bdabf5f518f3 from=translated src=- shape=d5994243 vocab=a01a5e90
+-/
 theorem latticeMap_diagSnd_ne_stdLattice {ϖ : R} (hϖ : Irreducible ϖ) :
     latticeMap (diagSnd (unitOfNeZero (K := K) hϖ.ne_zero)) (stdLattice R K) ≠
       stdLattice R K := fun h =>
   single_one_one_notMem_latticeMap_diagSnd hϖ (h ▸ single_one_mem_stdLattice R K 1)
 
+/--
+@isnad1 id=le.1h3v.s8.63934cddbd48 from=translated src=- shape=ec979bae vocab=30f3bdb9
+-/
 theorem latticeMap_diagSnd_le_stdLattice {ϖ : R} (hϖ : ϖ ≠ 0) :
     latticeMap (diagSnd (unitOfNeZero (K := K) hϖ)) (stdLattice R K) ≤ stdLattice R K := by
   intro v hv
@@ -543,12 +687,18 @@ theorem latticeMap_diagSnd_le_stdLattice {ϖ : R} (hϖ : ϖ ≠ 0) :
     rw [← hw', unitOfNeZero_coe]
     exact IsLocalization.isInteger_mul ⟨ϖ, rfl⟩ hw
 
+/--
+@isnad1 id=lt.1h3v.s8.919d99333203 from=translated src=- shape=d5994243 vocab=02e374e5
+-/
 theorem latticeMap_diagSnd_lt_stdLattice {ϖ : R} (hϖ : Irreducible ϖ) :
     latticeMap (diagSnd (unitOfNeZero (K := K) hϖ.ne_zero)) (stdLattice R K) <
       stdLattice R K :=
   lt_of_le_of_ne (latticeMap_diagSnd_le_stdLattice hϖ.ne_zero)
     (latticeMap_diagSnd_ne_stdLattice hϖ)
 
+/--
+@isnad1 id=not.1h3v.s6.089c63cf0440 from=translated src=- shape=0823e4f1 vocab=003fcc11
+-/
 theorem not_homothetic_stdLattice_diagSnd {ϖ : R} (hϖ : Irreducible ϖ) :
     ¬ Homothetic (stdLattice R K)
       (latticeMap (diagSnd (unitOfNeZero (K := K) hϖ.ne_zero)) (stdLattice R K)) := by
@@ -557,6 +707,9 @@ theorem not_homothetic_stdLattice_diagSnd {ϖ : R} (hϖ : Irreducible ϖ) :
     (eq_stdLattice_of_homothetic_of_le hhom (latticeMap_diagSnd_le_stdLattice hϖ.ne_zero)
       (single_zero_one_mem_latticeMap_diagSnd _) (Pi.single_eq_same 0 1))
 
+/--
+@isnad1 id=ne.1h3v.s6.d95f513ad36b from=translated src=- shape=df53d1bd vocab=ae4debb7
+-/
 theorem stdVertex_ne_act_diagSnd {ϖ : R} (hϖ : Irreducible ϖ) :
     Vertex.act (diagSnd (unitOfNeZero (K := K) hϖ.ne_zero)) (stdVertex R K) ≠
       stdVertex R K := by
@@ -567,6 +720,9 @@ def AdjacentLattice (L L' : Submodule R (Fin 2 → K)) : Prop :=
   ∃ (ϖ : R) (hϖ : Irreducible ϖ),
     latticeMap (scalarGL (unitOfNeZero (K := K) hϖ.ne_zero)) L < L' ∧ L' < L
 
+/--
+@isnad1 id=iff.1h4v.s8.caa6ad1fffe0 from=translated src=- shape=370e0a71 vocab=ec555a27
+-/
 theorem mem_latticeMap_scalarGL_stdLattice {ϖ : R} (hϖ : ϖ ≠ 0) {v : Fin 2 → K} :
     v ∈ latticeMap (scalarGL (unitOfNeZero (K := K) hϖ)) (stdLattice R K) ↔
       ∀ i, ∃ w : K, IsLocalization.IsInteger R w ∧ algebraMap R K ϖ * w = v i := by
@@ -582,6 +738,9 @@ theorem mem_latticeMap_scalarGL_stdLattice {ϖ : R} (hϖ : ϖ ≠ 0) {v : Fin 2 
     rw [Pi.smul_apply, smul_eq_mul, unitOfNeZero_coe]
     exact hw' i
 
+/--
+@isnad1 id=le.1h3v.s8.2397763dd732 from=translated src=- shape=9b694701 vocab=9101cd19
+-/
 theorem latticeMap_scalarGL_le_latticeMap_diagSnd {ϖ : R} (hϖ : Irreducible ϖ) :
     latticeMap (scalarGL (unitOfNeZero (K := K) hϖ.ne_zero)) (stdLattice R K) ≤
       latticeMap (diagSnd (unitOfNeZero (K := K) hϖ.ne_zero)) (stdLattice R K) := by
@@ -594,6 +753,9 @@ theorem latticeMap_scalarGL_le_latticeMap_diagSnd {ϖ : R} (hϖ : Irreducible ϖ
   rw [← hw0']
   exact IsLocalization.isInteger_mul ⟨ϖ, rfl⟩ hw0
 
+/--
+@isnad1 id=ne.1h3v.s7.ee5653c5d469 from=translated src=- shape=9b694701 vocab=4964b83c
+-/
 theorem latticeMap_scalarGL_ne_latticeMap_diagSnd {ϖ : R} (hϖ : Irreducible ϖ) :
     latticeMap (scalarGL (unitOfNeZero (K := K) hϖ.ne_zero)) (stdLattice R K) ≠
       latticeMap (diagSnd (unitOfNeZero (K := K) hϖ.ne_zero)) (stdLattice R K) := by
@@ -605,6 +767,9 @@ theorem latticeMap_scalarGL_ne_latticeMap_diagSnd {ϖ : R} (hϖ : Irreducible ϖ
   rw [Pi.single_eq_same] at hweq
   exact hϖ.not_isUnit (isUnit_of_algebraMap_mul_eq_one hw hweq)
 
+/--
+@isnad1 id=adjacent.1h3v.s6.5470120733c3 from=translated src=- shape=734c6d05 vocab=a9f69989
+-/
 theorem adjacentLattice_stdLattice_diagSnd {ϖ : R} (hϖ : Irreducible ϖ) :
     AdjacentLattice (stdLattice R K)
       (latticeMap (diagSnd (unitOfNeZero (K := K) hϖ.ne_zero)) (stdLattice R K)) :=
@@ -613,6 +778,9 @@ theorem adjacentLattice_stdLattice_diagSnd {ϖ : R} (hϖ : Irreducible ϖ) :
       (latticeMap_scalarGL_ne_latticeMap_diagSnd hϖ),
     latticeMap_diagSnd_lt_stdLattice hϖ⟩
 
+/--
+@isnad1 id=adjacent.1h3v.s6.c44aa5f99a33 from=translated src=- shape=e3be064a vocab=a9f69989
+-/
 theorem adjacentLattice_diagSnd_diagSnd_sq {ϖ : R} (hϖ : Irreducible ϖ) :
     AdjacentLattice
       (latticeMap (diagSnd (unitOfNeZero (K := K) hϖ.ne_zero)) (stdLattice R K))
@@ -629,6 +797,9 @@ theorem adjacentLattice_diagSnd_diagSnd_sq {ϖ : R} (hϖ : Irreducible ϖ) :
     (diagSnd (unitOfNeZero (K := K) hϖ.ne_zero))).mpr h₁
   rwa [← latticeMap_mul, ← scalarGL_mul_comm, latticeMap_mul] at h₃
 
+/--
+@isnad1 id=le.1h3v.s8.f6bf4f08ebc8 from=translated src=- shape=2224b1aa vocab=757e7db5
+-/
 theorem latticeMap_diagSnd_sq_le_stdLattice {ϖ : R} (hϖ : Irreducible ϖ) :
     latticeMap (diagSnd (unitOfNeZero (K := K) hϖ.ne_zero))
         (latticeMap (diagSnd (unitOfNeZero (K := K) hϖ.ne_zero)) (stdLattice R K)) ≤
@@ -636,6 +807,9 @@ theorem latticeMap_diagSnd_sq_le_stdLattice {ϖ : R} (hϖ : Irreducible ϖ) :
   le_trans (latticeMap_mono _ (latticeMap_diagSnd_le_stdLattice hϖ.ne_zero))
     (latticeMap_diagSnd_le_stdLattice hϖ.ne_zero)
 
+/--
+@isnad1 id=not.1h3v.s6.01ba7cbb7ee9 from=translated src=- shape=b2373111 vocab=003fcc11
+-/
 theorem not_homothetic_stdLattice_diagSnd_sq {ϖ : R} (hϖ : Irreducible ϖ) :
     ¬ Homothetic (stdLattice R K)
       (latticeMap (diagSnd (unitOfNeZero (K := K) hϖ.ne_zero))
@@ -666,6 +840,9 @@ theorem not_homothetic_stdLattice_diagSnd_sq {ϖ : R} (hϖ : Irreducible ϖ) :
   exact single_one_one_notMem_latticeMap_diagSnd hϖ
     (latticeMap_mono _ (latticeMap_diagSnd_le_stdLattice hϖ.ne_zero) he1)
 
+/--
+@isnad1 id=ne.1h3v.s6.52ccb5d212d9 from=translated src=- shape=4d4c7887 vocab=ae4debb7
+-/
 theorem stdVertex_ne_act_diagSnd_sq {ϖ : R} (hϖ : Irreducible ϖ) :
     Vertex.act (diagSnd (unitOfNeZero (K := K) hϖ.ne_zero))
         (Vertex.act (diagSnd (unitOfNeZero (K := K) hϖ.ne_zero)) (stdVertex R K)) ≠
@@ -686,6 +863,9 @@ section ResiduePlane
 
 variable {k : Type*} [Field k] {V : Type*} [AddCommGroup V] [Module k V]
 
+/--
+@isnad1 id=iff.1h3v.s8.f7991677e80c from=translated src=- shape=b39a66ac vocab=e10479c8
+-/
 theorem ne_bot_and_ne_top_iff_finrank_eq_one [FiniteDimensional k V]
     (hV : finrank k V = 2) (W : Submodule k V) :
     (W ≠ ⊥ ∧ W ≠ ⊤) ↔ finrank k W = 1 := by
@@ -710,6 +890,9 @@ noncomputable def submoduleNeBotNeTopEquivProjectivization [FiniteDimensional k 
 
 set_option maxHeartbeats 800000 in
 
+/--
+@isnad1 id=eq.1h2v.s7.516790d01d0c from=translated src=- shape=fe8e0b6e vocab=3965ea4a
+-/
 theorem card_submodule_ne_bot_ne_top_of_finrank_two [Finite k] [FiniteDimensional k V]
     (hV : finrank k V = 2) :
     Nat.card {W : Submodule k V // W ≠ ⊥ ∧ W ≠ ⊤} = Nat.card k + 1 :=
@@ -722,11 +905,17 @@ section NeighbourFamily
 
 variable {R : Type*} [CommRing R] {K : Type*} [Field K] [Algebra R K]
 
+/--
+@isnad1 id=isintege.1h3v.s6.23b9a434d708 from=translated src=- shape=47904575 vocab=06bf90d3
+-/
 theorem isInteger_neg {a : K} (ha : IsLocalization.IsInteger R a) :
     IsLocalization.IsInteger R (-a) := by
   obtain ⟨a', rfl⟩ := ha
   exact ⟨-a', map_neg _ _⟩
 
+/--
+@isnad1 id=isintege.2h4v.s6.79bcf751cdf0 from=translated src=- shape=e62869c2 vocab=0ff820d8
+-/
 theorem isInteger_sub {a b : K} (ha : IsLocalization.IsInteger R a)
     (hb : IsLocalization.IsInteger R b) : IsLocalization.IsInteger R (a - b) := by
   rw [sub_eq_add_neg]
@@ -754,6 +943,9 @@ def interLattice (ϖ c d : R) : Submodule R (Fin 2 → K) where
     simp only [Pi.smul_apply, Algebra.smul_def]
     linear_combination algebraMap R K r * hv'
 
+/--
+@isnad1 id=iff.0h6v.s9.f2ca33cb3887 from=translated src=- shape=72cc88b5 vocab=10f652ea
+-/
 theorem mem_interLattice {ϖ c d : R} {v : Fin 2 → K} :
     v ∈ interLattice R K ϖ c d ↔
       (∀ i, IsLocalization.IsInteger R (v i)) ∧
@@ -761,6 +953,9 @@ theorem mem_interLattice {ϖ c d : R} {v : Fin 2 → K} :
           algebraMap R K d * v 0 - algebraMap R K c * v 1 = algebraMap R K ϖ * w :=
   Iff.rfl
 
+/--
+@isnad1 id=le.0h5v.s8.23881e5a0e63 from=translated src=- shape=d699f82e vocab=19090825
+-/
 theorem interLattice_le_stdLattice (ϖ c d : R) :
     interLattice R K ϖ c d ≤ stdLattice R K :=
   fun _ hv => hv.1
@@ -769,16 +964,28 @@ variable (R K) in
 
 def vecPair (c d : R) : Fin 2 → K := ![algebraMap R K c, algebraMap R K d]
 
+/--
+@isnad1 id=eq.0h4v.s6.140042e5a5f3 from=translated src=- shape=4056fdb8 vocab=045bbb6b
+-/
 @[simp] theorem vecPair_zero (c d : R) : vecPair R K c d 0 = algebraMap R K c := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.fac56995d643 from=translated src=- shape=756119ba vocab=045bbb6b
+-/
 @[simp] theorem vecPair_one (c d : R) : vecPair R K c d 1 = algebraMap R K d := rfl
 
+/--
+@isnad1 id=mem.0h4v.s8.1b4c2b979cb6 from=translated src=- shape=c761094e vocab=7d118f17
+-/
 theorem vecPair_mem_stdLattice (c d : R) : vecPair R K c d ∈ stdLattice R K := by
   intro i
   fin_cases i
   · exact ⟨c, rfl⟩
   · exact ⟨d, rfl⟩
 
+/--
+@isnad1 id=mem.0h5v.s8.1d7f757935a9 from=translated src=- shape=7517ac4a vocab=405f9159
+-/
 theorem vecPair_mem_interLattice (ϖ c d : R) :
     vecPair R K c d ∈ interLattice R K ϖ c d := by
   refine ⟨vecPair_mem_stdLattice c d, 0, IsLocalization.isInteger_zero, ?_⟩
@@ -786,6 +993,9 @@ theorem vecPair_mem_interLattice (ϖ c d : R) :
 
 variable [IsFractionRing R K]
 
+/--
+@isnad1 id=iff.0h4v.s7.a09f76b1e381 from=translated src=- shape=88a87192 vocab=f30f938c
+-/
 theorem exists_isInteger_eq_algebraMap_mul_iff_dvd {ϖ x : R} :
     (∃ w : K, IsLocalization.IsInteger R w ∧ algebraMap R K x = algebraMap R K ϖ * w) ↔
       ϖ ∣ x := by
@@ -796,6 +1006,9 @@ theorem exists_isInteger_eq_algebraMap_mul_iff_dvd {ϖ x : R} :
   · rintro ⟨y, rfl⟩
     exact ⟨algebraMap R K y, ⟨y, rfl⟩, by rw [map_mul]⟩
 
+/--
+@isnad1 id=iff.0h7v.s8.7182b2fd1f1e from=translated src=- shape=98025a1e vocab=23f18c24
+-/
 theorem vecPair_mem_interLattice_iff_dvd {ϖ c d x y : R} :
     vecPair R K x y ∈ interLattice R K ϖ c d ↔ ϖ ∣ d * x - c * y := by
   rw [mem_interLattice]
@@ -809,6 +1022,9 @@ theorem vecPair_mem_interLattice_iff_dvd {ϖ c d x y : R} :
     refine ⟨vecPair_mem_stdLattice x y, w, hw, ?_⟩
     rw [vecPair_zero, vecPair_one, ← hweq, map_sub, map_mul, map_mul]
 
+/--
+@isnad1 id=dvd.1h7v.s7.bc7fc92be7be from=translated src=- shape=33301650 vocab=b2c50b5a
+-/
 theorem dvd_of_interLattice_eq {ϖ c d c' d' : R}
     (h : interLattice R K ϖ c d = interLattice R K ϖ c' d') :
     ϖ ∣ d' * c - c' * d := by
@@ -818,6 +1034,9 @@ theorem dvd_of_interLattice_eq {ϖ c d c' d' : R}
 
 omit [IsFractionRing R K] in
 
+/--
+@isnad1 id=eq.1h5v.s7.d9fc4e0871fe from=translated src=- shape=73f19487 vocab=0a3b6db9
+-/
 theorem interLattice_one_eq_of_dvd_sub {ϖ a a' : R} (h : ϖ ∣ a - a') :
     interLattice R K ϖ 1 a = interLattice R K ϖ 1 a' := by
   have key : ∀ {b b' : R}, ϖ ∣ b - b' →
@@ -834,6 +1053,9 @@ theorem interLattice_one_eq_of_dvd_sub {ϖ a a' : R} (h : ϖ ∣ a - a') :
     linear_combination hweq + algebraMap R K ϖ * algebraMap R K y * hr
   exact le_antisymm (key h) (key (dvd_sub_comm.mp h))
 
+/--
+@isnad1 id=le.1h5v.s8.ab2b45e039d0 from=translated src=- shape=bf550443 vocab=12fbebd9
+-/
 theorem latticeMap_scalarGL_le_interLattice {ϖ : R} (hϖ : ϖ ≠ 0) (c d : R) :
     latticeMap (scalarGL (unitOfNeZero (K := K) hϖ)) (stdLattice R K) ≤
       interLattice R K ϖ c d := by
@@ -846,6 +1068,9 @@ theorem latticeMap_scalarGL_le_interLattice {ϖ : R} (hϖ : ϖ ≠ 0) (c d : R) 
       (IsLocalization.isInteger_mul ⟨c, rfl⟩ (hw 1)),
     by rw [← hw' 0, ← hw' 1]; ring⟩
 
+/--
+@isnad1 id=and.2h5v.s8.b86499ef7c35 from=translated src=- shape=22b152ff vocab=9166c2eb
+-/
 theorem dvd_of_vecPair_mem_latticeMap_scalarGL {ϖ : R} (hϖ : ϖ ≠ 0) {x y : R}
     (h : vecPair R K x y ∈
       latticeMap (scalarGL (unitOfNeZero (K := K) hϖ)) (stdLattice R K)) :
@@ -858,6 +1083,9 @@ theorem dvd_of_vecPair_mem_latticeMap_scalarGL {ϖ : R} (hϖ : ϖ ≠ 0) {x y : 
   exact ⟨exists_isInteger_eq_algebraMap_mul_iff_dvd.mp ⟨w0, hw0, hw0'.symm⟩,
     exists_isInteger_eq_algebraMap_mul_iff_dvd.mp ⟨w1, hw1, hw1'.symm⟩⟩
 
+/--
+@isnad1 id=lt.2h5v.s8.a45a11e07fea from=translated src=- shape=e401a31c vocab=89dc4897
+-/
 theorem latticeMap_scalarGL_lt_interLattice {ϖ : R} (hϖ : ϖ ≠ 0) {c d : R}
     (hcd : ¬(ϖ ∣ c ∧ ϖ ∣ d)) :
     latticeMap (scalarGL (unitOfNeZero (K := K) hϖ)) (stdLattice R K) <
@@ -866,6 +1094,9 @@ theorem latticeMap_scalarGL_lt_interLattice {ϖ : R} (hϖ : ϖ ≠ 0) {c d : R}
   exact dvd_of_vecPair_mem_latticeMap_scalarGL hϖ
     (h ▸ vecPair_mem_interLattice (R := R) (K := K) ϖ c d)
 
+/--
+@isnad1 id=lt.1h5v.s8.1dd950b080b9 from=translated src=- shape=3dea7809 vocab=925befca
+-/
 theorem interLattice_lt_stdLattice {ϖ : R} {c d : R} (hcd : ¬(ϖ ∣ c ∧ ϖ ∣ d)) :
     interLattice R K ϖ c d < stdLattice R K := by
   rw [lt_iff_le_and_ne]
@@ -888,6 +1119,9 @@ noncomputable def neighborOfOption (ϖ : R) (x : Option (R ⧸ Ideal.span {ϖ}))
     Submodule R (Fin 2 → K) :=
   x.elim (interLattice R K ϖ 0 1) (fun y => interLattice R K ϖ 1 y.out)
 
+/--
+@isnad1 id=and.1h4v.s9.9e15d484eb8f from=translated src=- shape=2c52e210 vocab=f0e12594
+-/
 theorem neighborOfOption_mem_interval {ϖ : R} (hϖ : Irreducible ϖ)
     (x : Option (R ⧸ Ideal.span {ϖ})) :
     latticeMap (scalarGL (unitOfNeZero (K := K) hϖ.ne_zero)) (stdLattice R K) <
@@ -903,6 +1137,9 @@ theorem neighborOfOption_mem_interval {ϖ : R} (hϖ : Irreducible ϖ)
   | some y => exact ⟨latticeMap_scalarGL_lt_interLattice hϖ.ne_zero (hcd _),
       interLattice_lt_stdLattice (hcd _)⟩
 
+/--
+@isnad1 id=injectiv.1h3v.s7.d4e7a343b38b from=translated src=- shape=ac648d11 vocab=23a61c07
+-/
 theorem neighborOfOption_injective {ϖ : R} (hϖ : Irreducible ϖ) :
     Function.Injective (neighborOfOption R K ϖ) := by
   have haff : ∀ (a : R), interLattice R K ϖ 0 1 ≠ interLattice R K ϖ 1 a := by
@@ -920,6 +1157,9 @@ theorem neighborOfOption_injective {ϖ : R} (hϖ : Irreducible ϖ) :
       Ideal.Quotient.eq]
     exact Ideal.mem_span_singleton.mpr (dvd_sub_comm.mp hd)
 
+/--
+@isnad1 id=injectiv.1h3v.s10.14526f0c9f8b from=translated src=- shape=bd26d649 vocab=1755df33
+-/
 theorem neighborOfOption_injective_into_interval {ϖ : R} (hϖ : Irreducible ϖ) :
     Function.Injective (fun x : Option (R ⧸ Ideal.span {ϖ}) =>
       (⟨neighborOfOption R K ϖ x, neighborOfOption_mem_interval hϖ x⟩ :
@@ -928,6 +1168,9 @@ theorem neighborOfOption_injective_into_interval {ϖ : R} (hϖ : Irreducible ϖ)
             L < stdLattice R K})) :=
   fun _ _ h => neighborOfOption_injective hϖ (congrArg Subtype.val h)
 
+/--
+@isnad1 id=eq.0h2v.s6.eba19f586f6a from=translated src=- shape=84dd44f7 vocab=04c0231f
+-/
 theorem card_option_quotient (ϖ : R) [Finite (R ⧸ Ideal.span {ϖ})] :
     Nat.card (Option (R ⧸ Ideal.span {ϖ})) = Nat.card (R ⧸ Ideal.span {ϖ}) + 1 :=
   Finite.card_option
@@ -938,12 +1181,18 @@ section Gates
 
 variable {R : Type*} [CommRing R] {K : Type*} [Field K] [Algebra R K]
 
+/--
+@isnad1 id=eq.0h3v.s7.34f6944479cc from=translated src=- shape=310424db vocab=38f191aa
+-/
 theorem interLattice_zero_zero (ϖ : R) : interLattice R K ϖ 0 0 = stdLattice R K := by
   refine le_antisymm (interLattice_le_stdLattice ϖ 0 0) (fun v hv => ?_)
   exact ⟨hv, 0, IsLocalization.isInteger_zero, by simp⟩
 
 variable [IsFractionRing R K]
 
+/--
+@isnad1 id=eq.1h3v.s7.b91b9cc12498 from=translated src=- shape=1ac3c73f vocab=f110c6f9
+-/
 theorem interLattice_one_zero {ϖ : R} (hϖ : ϖ ≠ 0) :
     interLattice R K ϖ 1 0 =
       latticeMap (diagSnd (unitOfNeZero (K := K) hϖ)) (stdLattice R K) := by
@@ -998,8 +1247,14 @@ def refl : IntegralAut R K where
   toBase := RingEquiv.refl R
   commutes _ := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.f824f956d159 from=translated src=- shape=ff63d218 vocab=9296c6b4
+-/
 @[simp] theorem refl_toField : (refl R K).toField = RingEquiv.refl K := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.aa5e26e99efc from=translated src=- shape=581a77ed vocab=36cceff4
+-/
 @[simp] theorem refl_toBase : (refl R K).toBase = RingEquiv.refl R := rfl
 
 def comp (σ τ : IntegralAut R K) : IntegralAut R K where
@@ -1009,12 +1264,21 @@ def comp (σ τ : IntegralAut R K) : IntegralAut R K where
     show σ.toField (τ.toField (algebraMap R K r)) = algebraMap R K (σ.toBase (τ.toBase r))
     rw [τ.commutes, σ.commutes]
 
+/--
+@isnad1 id=eq.0h5v.s9.afc10065ac40 from=translated src=- shape=9d913f28 vocab=d09b09fa
+-/
 @[simp] theorem comp_toField_apply (σ τ : IntegralAut R K) (x : K) :
     (σ.comp τ).toField x = σ.toField (τ.toField x) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.5fc71c2d8129 from=translated src=- shape=811227da vocab=ac251c07
+-/
 @[simp] theorem comp_toBase_apply (σ τ : IntegralAut R K) (r : R) :
     (σ.comp τ).toBase r = σ.toBase (τ.toBase r) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.454cf1fd7089 from=translated src=- shape=4d6d821a vocab=b512df9e
+-/
 theorem symm_commutes (σ : IntegralAut R K) (r : R) :
     σ.toField.symm (algebraMap R K r) = algebraMap R K (σ.toBase.symm r) := by
   apply σ.toField.injective
@@ -1025,12 +1289,21 @@ def symm (σ : IntegralAut R K) : IntegralAut R K where
   toBase := σ.toBase.symm
   commutes := σ.symm_commutes
 
+/--
+@isnad1 id=eq.0h3v.s7.69621ded8d77 from=translated src=- shape=9776a766 vocab=97048fb6
+-/
 theorem symm_toField (σ : IntegralAut R K) : σ.symm.toField = σ.toField.symm := rfl
 
 attribute [local simp] symm_toField
+/--
+@isnad1 id=eq.0h3v.s7.87f62ca6b02a from=translated src=- shape=18b0379e vocab=15245c74
+-/
 theorem symm_toBase (σ : IntegralAut R K) : σ.symm.toBase = σ.toBase.symm := rfl
 
 attribute [local simp] symm_toBase
+/--
+@isnad1 id=isintege.1h4v.s7.d6ec1ec950a7 from=translated src=- shape=9caad31d vocab=f200a006
+-/
 theorem isInteger_map (σ : IntegralAut R K) {x : K}
     (hx : IsLocalization.IsInteger R x) : IsLocalization.IsInteger R (σ.toField x) := by
   obtain ⟨r, rfl⟩ := hx
@@ -1040,12 +1313,18 @@ def mapGL (σ : IntegralAut R K) :
     Matrix.GeneralLinearGroup (Fin 2) K →* Matrix.GeneralLinearGroup (Fin 2) K :=
   Matrix.GeneralLinearGroup.map (σ.toField : K →+* K)
 
+/--
+@isnad1 id=eq.0h6v.s9.dfe005bc4a8d from=translated src=- shape=4a5a0139 vocab=c633e318
+-/
 theorem mapGL_apply (σ : IntegralAut R K) (g : Matrix.GeneralLinearGroup (Fin 2) K)
     (i j : Fin 2) :
     ((σ.mapGL g : Matrix.GeneralLinearGroup (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) i j =
       σ.toField ((g : Matrix (Fin 2) (Fin 2) K) i j) :=
   Matrix.GeneralLinearGroup.map_apply _ i j g
 
+/--
+@isnad1 id=eq.0h4v.s9.0a9933c767fc from=translated src=- shape=a174b1e7 vocab=3e6ec2c1
+-/
 theorem mapGL_coe (σ : IntegralAut R K) (g : Matrix.GeneralLinearGroup (Fin 2) K) :
     ((σ.mapGL g : Matrix.GeneralLinearGroup (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) =
       ((g : Matrix (Fin 2) (Fin 2) K)).map (σ.toField : K →+* K) := by
@@ -1053,11 +1332,17 @@ theorem mapGL_coe (σ : IntegralAut R K) (g : Matrix.GeneralLinearGroup (Fin 2) 
   rw [mapGL_apply, Matrix.map_apply]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.75302e7430d6 from=translated src=- shape=4eebbe81 vocab=4de99d83
+-/
 theorem mapGL_comp (σ τ : IntegralAut R K) (g : Matrix.GeneralLinearGroup (Fin 2) K) :
     (σ.comp τ).mapGL g = σ.mapGL (τ.mapGL g) := by
   ext i j
   rw [mapGL_apply, mapGL_apply, mapGL_apply, comp_toField_apply]
 
+/--
+@isnad1 id=eq.0h3v.s9.a0d648bac3a0 from=translated src=- shape=e1f451e4 vocab=1fa4348a
+-/
 theorem mapGL_refl (g : Matrix.GeneralLinearGroup (Fin 2) K) :
     (refl R K).mapGL g = g := by
   ext i j
@@ -1070,6 +1355,9 @@ def unitMap (σ : IntegralAut R K) (c : Kˣ) : Kˣ where
   val_inv := by rw [← map_mul, Units.mul_inv, map_one]
   inv_val := by rw [← map_mul, Units.inv_mul, map_one]
 
+/--
+@isnad1 id=eq.0h4v.s7.68f0bbd79fe3 from=translated src=- shape=996aae4a vocab=24c514f3
+-/
 @[simp] theorem unitMap_coe (σ : IntegralAut R K) (c : Kˣ) :
     ((σ.unitMap c : Kˣ) : K) = σ.toField c := rfl
 
@@ -1080,47 +1368,77 @@ attribute [local simp] IntegralAut.symm_toField IntegralAut.symm_toBase
 def galVec (σ : IntegralAut R K) (v : Fin 2 → K) : Fin 2 → K :=
   fun i => σ.toField (v i)
 
+/--
+@isnad1 id=eq.0h5v.s7.500f0cc40441 from=translated src=- shape=8aa24c19 vocab=d18ac109
+-/
 @[simp] theorem galVec_apply (σ : IntegralAut R K) (v : Fin 2 → K) (i : Fin 2) :
     galVec σ v i = σ.toField (v i) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.39c65bcd09e4 from=translated src=- shape=a2e1cc36 vocab=c0dc14e3
+-/
 theorem galVec_add (σ : IntegralAut R K) (v w : Fin 2 → K) :
     galVec σ (v + w) = galVec σ v + galVec σ w := by
   funext i
   simp [galVec, map_add]
 
+/--
+@isnad1 id=eq.0h3v.s7.f61199aa5dfb from=translated src=- shape=53bd8588 vocab=f01c8331
+-/
 theorem galVec_zero (σ : IntegralAut R K) : galVec σ (0 : Fin 2 → K) = 0 := by
   funext i
   simp [galVec]
 
+/--
+@isnad1 id=eq.0h5v.s8.1a6a8beb5a31 from=translated src=- shape=094a5e6c vocab=a53882b4
+-/
 theorem galVec_smul (σ : IntegralAut R K) (r : R) (v : Fin 2 → K) :
     galVec σ (r • v) = σ.toBase r • galVec σ v := by
   funext i
   rw [galVec_apply, Pi.smul_apply, Pi.smul_apply, galVec_apply, Algebra.smul_def,
     Algebra.smul_def, map_mul, σ.commutes]
 
+/--
+@isnad1 id=eq.0h5v.s8.7fb2e43d80bf from=translated src=- shape=9bdb81be vocab=135bd605
+-/
 theorem galVec_smul_field (σ : IntegralAut R K) (c : K) (v : Fin 2 → K) :
     galVec σ (c • v) = σ.toField c • galVec σ v := by
   funext i
   rw [galVec_apply, Pi.smul_apply, Pi.smul_apply, galVec_apply, smul_eq_mul, smul_eq_mul,
     map_mul]
 
+/--
+@isnad1 id=eq.0h5v.s6.18bfec21874b from=translated src=- shape=f75fd394 vocab=dc64e1d6
+-/
 theorem galVec_galVec (σ τ : IntegralAut R K) (v : Fin 2 → K) :
     galVec σ (galVec τ v) = galVec (σ.comp τ) v := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.4c76f0a1d6e1 from=translated src=- shape=c51fe512 vocab=535c4f1d
+-/
 @[simp] theorem galVec_refl (v : Fin 2 → K) : galVec (IntegralAut.refl R K) v = v := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.f75101e23bd2 from=translated src=- shape=85a65c45 vocab=41c41e8a
+-/
 theorem galVec_symm_galVec (σ : IntegralAut R K) (v : Fin 2 → K) :
     galVec σ.symm (galVec σ v) = v := by
   funext i
   simp [galVec]
 
 attribute [local simp] galVec_symm_galVec
+/--
+@isnad1 id=eq.0h4v.s6.f1be7529fcfe from=translated src=- shape=75186faf vocab=41c41e8a
+-/
 theorem galVec_galVec_symm (σ : IntegralAut R K) (v : Fin 2 → K) :
     galVec σ (galVec σ.symm v) = v := by
   funext i
   simp [galVec]
 
 attribute [local simp] galVec_galVec_symm
+/--
+@isnad1 id=eq.0h5v.s8.0fa50fd02839 from=translated src=- shape=03459843 vocab=9bffffd7
+-/
 theorem galVec_mulVec (σ : IntegralAut R K) (M : Matrix (Fin 2) (Fin 2) K)
     (v : Fin 2 → K) :
     galVec σ (M *ᵥ v) = (M.map (σ.toField : K →+* K)) *ᵥ galVec σ v := by
@@ -1140,18 +1458,30 @@ def latticeGal (σ : IntegralAut R K) (L : Submodule R (Fin 2 → K)) :
     refine ⟨σ.toBase.symm r • w, L.smul_mem _ hw, ?_⟩
     rw [galVec_smul, RingEquiv.apply_symm_apply]
 
+/--
+@isnad1 id=iff.0h5v.s9.2be9679b19e2 from=translated src=- shape=b50d1c3e vocab=07b8986d
+-/
 theorem mem_latticeGal {σ : IntegralAut R K} {L : Submodule R (Fin 2 → K)}
     {v : Fin 2 → K} : v ∈ latticeGal σ L ↔ ∃ w ∈ L, galVec σ w = v := Iff.rfl
 
+/--
+@isnad1 id=mem.1h5v.s9.a533f4aec537 from=translated src=- shape=dc932f5e vocab=07b8986d
+-/
 theorem galVec_mem_latticeGal {σ : IntegralAut R K} {L : Submodule R (Fin 2 → K)}
     {w : Fin 2 → K} (hw : w ∈ L) : galVec σ w ∈ latticeGal σ L :=
   ⟨w, hw, rfl⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.e4c37a447b94 from=translated src=- shape=547cd951 vocab=69846edf
+-/
 @[simp] theorem latticeGal_refl (L : Submodule R (Fin 2 → K)) :
     latticeGal (IntegralAut.refl R K) L = L := by
   ext v
   exact ⟨fun ⟨w, hw, h⟩ => h ▸ hw, fun hv => ⟨v, hv, rfl⟩⟩
 
+/--
+@isnad1 id=eq.0h5v.s7.19aa5ed9c650 from=translated src=- shape=06c177e2 vocab=2603b0f7
+-/
 theorem latticeGal_comp (σ τ : IntegralAut R K) (L : Submodule R (Fin 2 → K)) :
     latticeGal (σ.comp τ) L = latticeGal σ (latticeGal τ L) := by
   ext v
@@ -1161,6 +1491,9 @@ theorem latticeGal_comp (σ τ : IntegralAut R K) (L : Submodule R (Fin 2 → K)
   · rintro ⟨_, ⟨w, hw, rfl⟩, rfl⟩
     exact ⟨w, hw, rfl⟩
 
+/--
+@isnad1 id=eq.0h4v.s7.b23b7d8a86ed from=translated src=- shape=6d4e4d16 vocab=496b2476
+-/
 theorem latticeGal_symm_latticeGal (σ : IntegralAut R K)
     (L : Submodule R (Fin 2 → K)) : latticeGal σ.symm (latticeGal σ L) = L := by
   ext v
@@ -1171,6 +1504,9 @@ theorem latticeGal_symm_latticeGal (σ : IntegralAut R K)
     exact ⟨galVec σ v, galVec_mem_latticeGal hv, galVec_symm_galVec σ v⟩
 
 attribute [local simp] latticeGal_symm_latticeGal
+/--
+@isnad1 id=eq.0h4v.s7.23f690985c2f from=translated src=- shape=e42431f4 vocab=496b2476
+-/
 theorem latticeGal_latticeGal_symm (σ : IntegralAut R K)
     (L : Submodule R (Fin 2 → K)) : latticeGal σ (latticeGal σ.symm L) = L := by
   ext v
@@ -1181,10 +1517,16 @@ theorem latticeGal_latticeGal_symm (σ : IntegralAut R K)
     exact ⟨galVec σ.symm v, galVec_mem_latticeGal hv, galVec_galVec_symm σ v⟩
 
 attribute [local simp] latticeGal_latticeGal_symm
+/--
+@isnad1 id=injectiv.0h3v.s7.83c061b2b1f6 from=translated src=- shape=2a04cf2d vocab=6412aab2
+-/
 theorem latticeGal_injective (σ : IntegralAut R K) :
     Function.Injective (latticeGal (R := R) (K := K) σ) :=
   Function.LeftInverse.injective (latticeGal_symm_latticeGal σ)
 
+/--
+@isnad1 id=eq.0h4v.s8.79798a775ba0 from=translated src=- shape=9ca327d6 vocab=f31eb7b8
+-/
 theorem latticeGal_span (σ : IntegralAut R K) (s : Set (Fin 2 → K)) :
     latticeGal σ (Submodule.span R s) = Submodule.span R (galVec σ '' s) := by
   apply le_antisymm
@@ -1198,6 +1540,9 @@ theorem latticeGal_span (σ : IntegralAut R K) (s : Set (Fin 2 → K)) :
     rintro _ ⟨x, hx, rfl⟩
     exact galVec_mem_latticeGal (Submodule.subset_span hx)
 
+/--
+@isnad1 id=eq.0h3v.s7.8bc15fdeddda from=translated src=- shape=aa802097 vocab=700ea05e
+-/
 theorem latticeGal_stdLattice (σ : IntegralAut R K) :
     latticeGal σ (stdLattice R K) = stdLattice R K := by
   apply le_antisymm
@@ -1208,6 +1553,9 @@ theorem latticeGal_stdLattice (σ : IntegralAut R K) :
     refine ⟨galVec σ.symm v, fun i => ?_, galVec_galVec_symm σ v⟩
     exact σ.symm.isInteger_map (hv i)
 
+/--
+@isnad1 id=eq.0h5v.s9.dc2800bb0413 from=translated src=- shape=1a8ac4a8 vocab=444c2036
+-/
 theorem latticeGal_latticeMap (σ : IntegralAut R K)
     (g : Matrix.GeneralLinearGroup (Fin 2) K) (L : Submodule R (Fin 2 → K)) :
     latticeGal σ (latticeMap g L) = latticeMap (σ.mapGL g) (latticeGal σ L) := by
@@ -1222,12 +1570,18 @@ theorem latticeGal_latticeMap (σ : IntegralAut R K)
     simp only [mulVecLinR_apply]
     rw [galVec_mulVec, σ.mapGL_coe]
 
+/--
+@isnad1 id=eq.0h4v.s9.40db99661d62 from=translated src=- shape=b06570b0 vocab=f5eeff18
+-/
 theorem latticeGal_latticeMap_stdLattice (σ : IntegralAut R K)
     (g : Matrix.GeneralLinearGroup (Fin 2) K) :
     latticeGal σ (latticeMap g (stdLattice R K)) =
       latticeMap (σ.mapGL g) (stdLattice R K) := by
   rw [latticeGal_latticeMap, latticeGal_stdLattice]
 
+/--
+@isnad1 id=eq.0h4v.s9.62e0ee750583 from=translated src=- shape=ad54c86c vocab=0d7da7c2
+-/
 theorem mapGL_scalarGL (σ : IntegralAut R K) (c : Kˣ) :
     σ.mapGL (scalarGL c) = scalarGL (σ.unitMap c) := by
   ext i j
@@ -1237,11 +1591,17 @@ theorem mapGL_scalarGL (σ : IntegralAut R K) (c : Kˣ) :
   · rw [Matrix.one_apply_eq, map_one]
   · rw [Matrix.one_apply_ne hij, map_zero]
 
+/--
+@isnad1 id=eq.0h5v.s7.3c9695a22966 from=translated src=- shape=1b4c727b vocab=8650740c
+-/
 theorem latticeGal_scalarGL (σ : IntegralAut R K) (c : Kˣ) (L : Submodule R (Fin 2 → K)) :
     latticeGal σ (latticeMap (scalarGL c) L) =
       latticeMap (scalarGL (σ.unitMap c)) (latticeGal σ L) := by
   rw [latticeGal_latticeMap, mapGL_scalarGL]
 
+/--
+@isnad1 id=isfullla.1h4v.s7.1115af1734bd from=translated src=- shape=16d5454d vocab=cb7b7031
+-/
 theorem IsFullLattice.gal {L : Submodule R (Fin 2 → K)} (hL : IsFullLattice L)
     (σ : IntegralAut R K) : IsFullLattice (latticeGal σ L) := by
   obtain ⟨hfg, hspan⟩ := hL
@@ -1272,11 +1632,17 @@ def Vertex.galAct (σ : IntegralAut R K) : Vertex R K → Vertex R K :=
       show latticeMap _ (latticeGal σ L) = latticeGal σ L'
       rw [← latticeGal_scalarGL, hc])
 
+/--
+@isnad1 id=eq.1h4v.s7.e06d12f1286d from=translated src=- shape=6272d2dd vocab=7bef9889
+-/
 @[simp] theorem Vertex.galAct_mk (σ : IntegralAut R K) (L : Submodule R (Fin 2 → K))
     (hL : IsFullLattice L) :
     Vertex.galAct σ (Vertex.mk R K L hL) = Vertex.mk R K (latticeGal σ L) (hL.gal σ) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.816da4adcdc6 from=translated src=- shape=fee49212 vocab=29b0dffd
+-/
 theorem Vertex.galAct_stdVertex (σ : IntegralAut R K) :
     Vertex.galAct σ (stdVertex R K) = stdVertex R K := by
   rw [stdVertex, Vertex.galAct_mk, Vertex.mk_eq_mk_iff, latticeGal_stdLattice]
@@ -1286,6 +1652,9 @@ def twistedLatticeMap (δ : Matrix.GeneralLinearGroup (Fin 2) K) (σ : IntegralA
     (L : Submodule R (Fin 2 → K)) : Submodule R (Fin 2 → K) :=
   latticeMap δ (latticeGal σ L)
 
+/--
+@isnad1 id=eq.0h7v.s9.68e211be6ed1 from=translated src=- shape=71d10e55 vocab=4bdeb937
+-/
 theorem twistedLatticeMap_twistedLatticeMap (δ δ' : Matrix.GeneralLinearGroup (Fin 2) K)
     (σ τ : IntegralAut R K) (L : Submodule R (Fin 2 → K)) :
     twistedLatticeMap δ σ (twistedLatticeMap δ' τ L) =
@@ -1301,6 +1670,9 @@ def normThree (δ : Matrix.GeneralLinearGroup (Fin 2) K) (σ : IntegralAut R K) 
     Matrix.GeneralLinearGroup (Fin 2) K :=
   δ * σ.mapGL δ * (σ.comp σ).mapGL δ
 
+/--
+@isnad1 id=eq.1h5v.s8.7ed4d39fef0f from=translated src=- shape=8808d429 vocab=f6b25167
+-/
 theorem twistedLatticeMap_two_of_orderTwo (δ : Matrix.GeneralLinearGroup (Fin 2) K)
     {σ : IntegralAut R K} (hσ : σ.comp σ = IntegralAut.refl R K)
     (L : Submodule R (Fin 2 → K)) :
@@ -1309,6 +1681,9 @@ theorem twistedLatticeMap_two_of_orderTwo (δ : Matrix.GeneralLinearGroup (Fin 2
   unfold twistedLatticeMap normTwo
   rw [latticeGal_refl]
 
+/--
+@isnad1 id=eq.1h5v.s8.c2e05a222559 from=translated src=- shape=a0b84709 vocab=533c28fd
+-/
 theorem twistedLatticeMap_three_of_orderThree (δ : Matrix.GeneralLinearGroup (Fin 2) K)
     {σ : IntegralAut R K} (hσ : (σ.comp σ).comp σ = IntegralAut.refl R K)
     (L : Submodule R (Fin 2 → K)) :
@@ -1318,12 +1693,18 @@ theorem twistedLatticeMap_three_of_orderThree (δ : Matrix.GeneralLinearGroup (F
   unfold twistedLatticeMap normThree
   rw [latticeGal_refl]
 
+/--
+@isnad1 id=eq.2h5v.s8.d21c20600240 from=translated src=- shape=1ee8512d vocab=533c28fd
+-/
 theorem latticeMap_norm_eq_self_of_twisted_fixed (δ : Matrix.GeneralLinearGroup (Fin 2) K)
     {σ : IntegralAut R K} (hσ : (σ.comp σ).comp σ = IntegralAut.refl R K)
     {L : Submodule R (Fin 2 → K)} (hL : twistedLatticeMap δ σ L = L) :
     latticeMap (normThree δ σ) L = L := by
   rw [← twistedLatticeMap_three_of_orderThree δ hσ, hL, hL, hL]
 
+/--
+@isnad1 id=ne.0h0v.s2.61a4074e6d33 from=translated src=- shape=2a2f4805 vocab=ee284f82
+-/
 theorem complex_I_ne_neg_I : Complex.I ≠ -Complex.I := by
   intro h
   have h2 : Complex.I.im = (-Complex.I).im := congrArg Complex.im h
@@ -1336,6 +1717,9 @@ def conjAut : IntegralAut ℂ ℂ where
   commutes r := by
     simp [Algebra.algebraMap_self]
 
+/--
+@isnad1 id=ne.0h0v.s5.fe04dba300f1 from=translated src=- shape=9d9e24ef vocab=c91c04e7
+-/
 theorem conjAut_toField_ne_refl : conjAut.toField ≠ RingEquiv.refl ℂ := by
   intro h
   have hI : conjAut.toField Complex.I = Complex.I := by rw [h]; rfl
@@ -1343,6 +1727,9 @@ theorem conjAut_toField_ne_refl : conjAut.toField ≠ RingEquiv.refl ℂ := by
   rw [hI'] at hI
   exact complex_I_ne_neg_I hI.symm
 
+/--
+@isnad1 id=ne.0h0v.s6.4a7b6ace3115 from=translated src=- shape=8ca357ba vocab=5c4c11f7
+-/
 theorem galVec_conjAut_ne : galVec conjAut ![1, Complex.I] ≠ ![1, Complex.I] := by
   intro h
   have h1 : conjAut.toField (![1, Complex.I] 1) = ![1, Complex.I] 1 := congrFun h 1
@@ -1351,6 +1738,9 @@ theorem galVec_conjAut_ne : galVec conjAut ![1, Complex.I] ≠ ![1, Complex.I] :
   rw [show conjAut.toField Complex.I = -Complex.I from Complex.conj_I] at h1
   exact complex_I_ne_neg_I h1.symm
 
+/--
+@isnad1 id=ne.0h0v.s8.d84766c81ef0 from=translated src=- shape=7b15d31c vocab=2ce3b5dc
+-/
 theorem latticeGal_conj_line_ne :
     latticeGal conjAut (Submodule.span ℂ {![1, Complex.I]}) ≠
       Submodule.span ℂ {![1, Complex.I]} := by
@@ -1374,6 +1764,9 @@ theorem latticeGal_conj_line_ne :
   rw [h0, one_mul] at h1
   exact complex_I_ne_neg_I h1
 
+/--
+@isnad1 id=eq.0h0v.s5.fab030ee3afb from=translated src=- shape=5ed5d805 vocab=cdc67afe
+-/
 theorem conjAut_comp_conjAut : conjAut.comp conjAut = IntegralAut.refl ℂ ℂ := by
   unfold conjAut IntegralAut.comp IntegralAut.refl
   congr 1 <;>
@@ -1398,6 +1791,9 @@ def IsFixedVertex (g : Matrix.GeneralLinearGroup (Fin 2) K) (v : Vertex R K) : P
 def fixedVertexSet (g : Matrix.GeneralLinearGroup (Fin 2) K) : Set (Vertex R K) :=
   {v | IsFixedVertex g v}
 
+/--
+@isnad1 id=iff.0h4v.s6.4761ddbde0fb from=translated src=- shape=d3f3d15c vocab=6088723c
+-/
 theorem mem_fixedVertexSet {g : Matrix.GeneralLinearGroup (Fin 2) K}
     {v : Vertex R K} : v ∈ fixedVertexSet (R := R) g ↔ Vertex.act g v = v :=
   Iff.rfl
@@ -1408,16 +1804,25 @@ variable (R) in
 noncomputable def unitOrbitalCount (g : Matrix.GeneralLinearGroup (Fin 2) K) : ℕ :=
   Nat.card (fixedVertexSet (R := R) g)
 
+/--
+@isnad1 id=iff.1h4v.s7.3bf05fd4a97a from=translated src=- shape=10f712fd vocab=f16f60b3
+-/
 theorem isFixedVertex_mk_iff {g : Matrix.GeneralLinearGroup (Fin 2) K}
     {L : Submodule R (Fin 2 → K)} {hL : IsFullLattice L} :
     IsFixedVertex g (Vertex.mk R K L hL) ↔ Homothetic (latticeMap g L) L := by
   rw [IsFixedVertex, Vertex.act_mk, Vertex.mk_eq_mk_iff]
 
+/--
+@isnad1 id=isfixedv.2h4v.s7.8898fe5abf3f from=translated src=- shape=14a314e3 vocab=094347e7
+-/
 theorem isFixedVertex_mk_of_latticeMap_eq {g : Matrix.GeneralLinearGroup (Fin 2) K}
     {L : Submodule R (Fin 2 → K)} {hL : IsFullLattice L}
     (h : latticeMap g L = L) : IsFixedVertex g (Vertex.mk R K L hL) :=
   isFixedVertex_mk_iff.mpr (by rw [h]; exact Homothetic.refl L)
 
+/--
+@isnad1 id=iff.0h5v.s9.5de31d90bec8 from=translated src=- shape=94e6b666 vocab=04972118
+-/
 theorem isFixedVertex_conj_iff (g h : Matrix.GeneralLinearGroup (Fin 2) K)
     (v : Vertex R K) :
     IsFixedVertex (h * g * h⁻¹) v ↔ IsFixedVertex g (Vertex.act h⁻¹ v) := by
@@ -1430,6 +1835,9 @@ theorem isFixedVertex_conj_iff (g h : Matrix.GeneralLinearGroup (Fin 2) K)
   · intro hfix
     rw [hfix, ← Vertex.act_mul, mul_inv_cancel, Vertex.act_one]
 
+/--
+@isnad1 id=eq.0h4v.s9.a4616adf1f18 from=translated src=- shape=c9fa171c vocab=13393f58
+-/
 theorem fixedVertexSet_conj (g h : Matrix.GeneralLinearGroup (Fin 2) K) :
     fixedVertexSet (R := R) (h * g * h⁻¹) = Vertex.act h '' fixedVertexSet (R := R) g := by
   ext v
@@ -1442,6 +1850,9 @@ theorem fixedVertexSet_conj (g h : Matrix.GeneralLinearGroup (Fin 2) K) :
     show IsFixedVertex g (Vertex.act h⁻¹ (Vertex.act h w))
     rwa [← Vertex.act_mul, inv_mul_cancel, Vertex.act_one]
 
+/--
+@isnad1 id=eq.0h4v.s9.1879850b0fe0 from=translated src=- shape=6797908c vocab=1e36c019
+-/
 theorem unitOrbitalCount_conj (g h : Matrix.GeneralLinearGroup (Fin 2) K) :
     unitOrbitalCount R (h * g * h⁻¹) = unitOrbitalCount R g := by
   rw [unitOrbitalCount, unitOrbitalCount, fixedVertexSet_conj]
@@ -1451,6 +1862,9 @@ theorem unitOrbitalCount_conj (g h : Matrix.GeneralLinearGroup (Fin 2) K) :
       Vertex.act_one] at h2
   exact Nat.card_congr (Equiv.Set.image _ _ hinj).symm
 
+/--
+@isnad1 id=isfixedv.0h4v.s5.ca8ae650566e from=translated src=- shape=b59ebf2a vocab=fc22be99
+-/
 theorem isFixedVertex_scalarGL (c : Kˣ) (v : Vertex R K) :
     IsFixedVertex (scalarGL c) v := by
   induction v using Quotient.inductionOn with
@@ -1459,10 +1873,16 @@ theorem isFixedVertex_scalarGL (c : Kˣ) (v : Vertex R K) :
     rw [Vertex.act_mk, Vertex.mk_eq_mk_iff]
     exact Homothetic.symm ⟨c, rfl⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.f8a335200891 from=translated src=- shape=93476e27 vocab=81fbe89d
+-/
 theorem fixedVertexSet_scalarGL (c : Kˣ) :
     fixedVertexSet (R := R) (scalarGL c) = Set.univ :=
   Set.eq_univ_of_forall (isFixedVertex_scalarGL c)
 
+/--
+@isnad1 id=not.1h4v.s6.3ede2b65d22b from=translated src=- shape=f6ce32d0 vocab=d3d31c5d
+-/
 theorem not_subsingleton_fixedVertexSet_scalarGL [IsFractionRing R K] {ϖ : R}
     (hϖ : Irreducible ϖ) (c : Kˣ) :
     ¬ (fixedVertexSet (R := R) (scalarGL c)).Subsingleton := by
@@ -1470,12 +1890,18 @@ theorem not_subsingleton_fixedVertexSet_scalarGL [IsFractionRing R K] {ϖ : R}
   exact stdVertex_ne_act_diagSnd (K := K) hϖ
     (hsub (isFixedVertex_scalarGL c _) (isFixedVertex_scalarGL c _)).symm
 
+/--
+@isnad1 id=isfixedv.1h3v.s9.6cc43a71c6f7 from=translated src=- shape=a62846f0 vocab=09cd212a
+-/
 theorem isFixedVertex_stdVertex_of_mem_range [IsFractionRing R K]
     {g : Matrix.GeneralLinearGroup (Fin 2) K}
     (hg : g ∈ (Matrix.GeneralLinearGroup.map (n := Fin 2) (algebraMap R K)).range) :
     IsFixedVertex g (stdVertex R K) :=
   (Vertex.act_stdVertex_eq_iff g).mpr ⟨1, by rwa [scalarGL_one, one_mul]⟩
 
+/--
+@isnad1 id=nonempty.1h3v.s9.f31cf598a6bd from=translated src=- shape=e677a925 vocab=4adc6024
+-/
 theorem nonempty_fixedVertexSet_of_mem_range [IsFractionRing R K]
     {g : Matrix.GeneralLinearGroup (Fin 2) K}
     (hg : g ∈ (Matrix.GeneralLinearGroup.map (n := Fin 2) (algebraMap R K)).range) :
@@ -1489,14 +1915,23 @@ variable [IsFractionRing R K]
 def mulVecPair (M : Matrix (Fin 2) (Fin 2) R) (c d : R) : Fin 2 → R :=
   M *ᵥ ![c, d]
 
+/--
+@isnad1 id=eq.0h4v.s7.eae623833a09 from=translated src=- shape=1a61ffc7 vocab=d9543853
+-/
 @[simp] theorem mulVecPair_zero (M : Matrix (Fin 2) (Fin 2) R) (c d : R) :
     mulVecPair M c d 0 = M 0 0 * c + M 0 1 * d := by
   simp [mulVecPair, Matrix.mulVec, dotProduct, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h4v.s7.9ec1c16849de from=translated src=- shape=1a61ffc7 vocab=d9543853
+-/
 @[simp] theorem mulVecPair_one (M : Matrix (Fin 2) (Fin 2) R) (c d : R) :
     mulVecPair M c d 1 = M 1 0 * c + M 1 1 * d := by
   simp [mulVecPair, Matrix.mulVec, dotProduct, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h6v.s7.e273d7737f5a from=translated src=- shape=c8454076 vocab=5d006397
+-/
 theorem mulVecPair_mul (M N : Matrix (Fin 2) (Fin 2) R) (c d : R) (i : Fin 2) :
     mulVecPair (M * N) c d i =
       mulVecPair M (mulVecPair N c d 0) (mulVecPair N c d 1) i := by
@@ -1514,6 +1949,9 @@ theorem mulVecPair_mul (M N : Matrix (Fin 2) (Fin 2) R) (c d : R) (i : Fin 2) :
 
 omit [IsFractionRing R K] in
 
+/--
+@isnad1 id=eq.0h5v.s9.51dc476ea036 from=translated src=- shape=20083f49 vocab=888b5abd
+-/
 theorem map_coe_apply (M : Matrix.GeneralLinearGroup (Fin 2) R) (i j : Fin 2) :
     ((Matrix.GeneralLinearGroup.map (algebraMap R K) M :
         Matrix.GeneralLinearGroup (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) i j =
@@ -1522,6 +1960,9 @@ theorem map_coe_apply (M : Matrix.GeneralLinearGroup (Fin 2) R) (i j : Fin 2) :
 
 omit [IsFractionRing R K] in
 
+/--
+@isnad1 id=le.0h6v.s10.13522e8e5dbe from=translated src=- shape=5293d3d7 vocab=fd69bf24
+-/
 theorem latticeMap_map_interLattice_le (M : Matrix.GeneralLinearGroup (Fin 2) R)
     (ϖ c d : R) :
     latticeMap (Matrix.GeneralLinearGroup.map (algebraMap R K) M)
@@ -1557,6 +1998,9 @@ theorem latticeMap_map_interLattice_le (M : Matrix.GeneralLinearGroup (Fin 2) R)
 
 omit [IsFractionRing R K] in
 
+/--
+@isnad1 id=eq.0h6v.s9.8338a5669e2f from=translated src=- shape=5293d3d7 vocab=779b32a3
+-/
 theorem latticeMap_map_interLattice (M : Matrix.GeneralLinearGroup (Fin 2) R)
     (ϖ c d : R) :
     latticeMap (Matrix.GeneralLinearGroup.map (algebraMap R K) M)
@@ -1598,6 +2042,9 @@ variable [IsFractionRing R K]
 
 omit [IsFractionRing R K] in
 
+/--
+@isnad1 id=eq.2h7v.s7.ce15aa68256a from=translated src=- shape=84f108e8 vocab=0a3b6db9
+-/
 theorem interLattice_congr {ϖ c d c' d' : R} (hc : ϖ ∣ c - c') (hd : ϖ ∣ d - d') :
     interLattice R K ϖ c d = interLattice R K ϖ c' d' := by
   have key : ∀ {a b a' b' : R}, ϖ ∣ a - a' → ϖ ∣ b - b' →
@@ -1625,6 +2072,9 @@ theorem interLattice_congr {ϖ c d c' d' : R} (hc : ϖ ∣ c - c') (hd : ϖ ∣ 
 
 omit [IsFractionRing R K] in
 
+/--
+@isnad1 id=eq.0h6v.s7.51ae2745c3df from=translated src=- shape=ba58b77f vocab=08994e6a
+-/
 theorem interLattice_unit_mul (ϖ : R) (u : Rˣ) (c d : R) :
     interLattice R K ϖ ((u : R) * c) ((u : R) * d) = interLattice R K ϖ c d := by
   have hu : algebraMap R K ((u⁻¹ : Rˣ) : R) * algebraMap R K (u : R) = 1 := by
@@ -1656,6 +2106,9 @@ theorem interLattice_unit_mul (ϖ : R) (u : Rˣ) (c d : R) :
 
 omit [IsFractionRing R K] in
 
+/--
+@isnad1 id=eq.2h7v.s9.bb31c9041d55 from=translated src=- shape=f435ec01 vocab=d4f7c142
+-/
 theorem latticeMap_map_interLattice_eq_self (M : Matrix.GeneralLinearGroup (Fin 2) R)
     {ϖ c d : R} (lam : Rˣ)
     (h0 : ϖ ∣ mulVecPair (M : Matrix (Fin 2) (Fin 2) R) c d 0 - (lam : R) * c)
@@ -1665,6 +2118,9 @@ theorem latticeMap_map_interLattice_eq_self (M : Matrix.GeneralLinearGroup (Fin 
       interLattice R K ϖ c d := by
   rw [latticeMap_map_interLattice, interLattice_congr h0 h1, interLattice_unit_mul]
 
+/--
+@isnad1 id=dvd.1h6v.s9.1e7f4e00cfe9 from=translated src=- shape=b8f4b042 vocab=d87faf77
+-/
 theorem dvd_of_latticeMap_map_interLattice_eq_self
     (M : Matrix.GeneralLinearGroup (Fin 2) R) {ϖ c d : R}
     (h : latticeMap (Matrix.GeneralLinearGroup.map (algebraMap R K) M)
@@ -1682,6 +2138,9 @@ variable [IsFractionRing R K]
 
 omit [Algebra R K] [IsFractionRing R K] in
 
+/--
+@isnad1 id=or.2h4v.s6.f3c6d7e07427 from=translated src=- shape=3e640ba6 vocab=f4b6e72e
+-/
 theorem isUnit_or_isUnit_or_associated_of_mul_eq_sq [IsDomain R] {ϖ a b : R}
     (hϖ : Prime ϖ) (h : a * b = ϖ * ϖ) :
     IsUnit a ∨ IsUnit b ∨ ∃ u : R, IsUnit u ∧ a = ϖ * u := by
@@ -1726,6 +2185,9 @@ theorem isUnit_or_isUnit_or_associated_of_mul_eq_sq [IsDomain R] {ϖ a b : R}
 
 omit [IsFractionRing R K] in
 
+/--
+@isnad1 id=eq.2h5v.s8.0f651faf8170 from=translated src=- shape=bf71db1f vocab=b21e1f33
+-/
 theorem latticeMap_scalarGL_eq_self_of_isUnit {e : Kˣ} {u : R} (hu : IsUnit u)
     (heu : (e : K) = algebraMap R K u) (L : Submodule R (Fin 2 → K)) :
     latticeMap (scalarGL e) L = L := by
@@ -1741,6 +2203,9 @@ theorem latticeMap_scalarGL_eq_self_of_isUnit {e : Kˣ} {u : R} (hu : IsUnit u)
     rw [heu, algebraMap_smul, smul_smul, ← Units.val_mul, mul_inv_cancel, Units.val_one,
       one_smul]
 
+/--
+@isnad1 id=isintege.3h5v.s9.3f1c9241f6cf from=translated src=- shape=f59da802 vocab=3f41af41
+-/
 theorem isInteger_mul_algebraMap_of_latticeMap_le {e : Kˣ} {ϖ : R} (hϖ : ϖ ≠ 0)
     {N : Submodule R (Fin 2 → K)}
     (hlow : latticeMap (scalarGL (unitOfNeZero (K := K) hϖ)) (stdLattice R K) ≤ N)
@@ -1758,6 +2223,9 @@ theorem isInteger_mul_algebraMap_of_latticeMap_le {e : Kˣ} {ϖ : R} (hϖ : ϖ �
   simp only [Pi.smul_apply, Pi.single_eq_same, smul_eq_mul, mul_one] at h3
   exact h3
 
+/--
+@isnad1 id=le.4h6v.s10.05fef1278e90 from=translated src=- shape=930e6723 vocab=518a1719
+-/
 theorem latticeMap_scalarGL_inv_le_of_mul_eq_unit {e : Kˣ} {ϖ : R} (hϖ : ϖ ≠ 0) {u : R}
     (hu : IsUnit u) (heu : (e : K) * algebraMap R K ϖ = algebraMap R K u)
     {N : Submodule R (Fin 2 → K)} (hN : N ≤ stdLattice R K) :
@@ -1832,6 +2300,9 @@ theorem eq_of_homothetic_of_mem_interval [IsDomain R] {ϖ : R} (hϖ : Prime ϖ)
       exact mul_right_cancel₀ hϖK h2
     rw [← he, latticeMap_scalarGL_eq_self_of_isUnit hu heu]
 
+/--
+@isnad1 id=dvd.5h6v.s10.ec873bcab28c from=translated src=- shape=89c82fe8 vocab=c7a28c46
+-/
 theorem dvd_of_isFixedVertex_interLattice [IsDomain R]
     (M : Matrix.GeneralLinearGroup (Fin 2) R)
     {ϖ c d : R} (hϖ : Prime ϖ) (hcd : ¬(ϖ ∣ c ∧ ϖ ∣ d))
@@ -1850,6 +2321,9 @@ theorem dvd_of_isFixedVertex_interLattice [IsDomain R]
     (interLattice_le_stdLattice _ _ _) h
   exact dvd_of_interLattice_eq heq
 
+/--
+@isnad1 id=not.5h6v.s10.35283b9346c3 from=translated src=- shape=6f08f2be vocab=c7a28c46
+-/
 theorem not_isFixedVertex_interLattice_of_not_dvd [IsDomain R]
     (M : Matrix.GeneralLinearGroup (Fin 2) R)
     {ϖ c d : R} (hϖ : Prime ϖ) (hcd : ¬(ϖ ∣ c ∧ ϖ ∣ d))
@@ -1868,6 +2342,9 @@ section FullLattice
 
 variable [IsFractionRing R K]
 
+/--
+@isnad1 id=isfullla.3h4v.s9.3dce50e3d9b3 from=translated src=- shape=6d1d9ea5 vocab=dddbac56
+-/
 theorem isFullLattice_of_le_of_le [IsNoetherianRing R] {ϖ : R} (hϖ : ϖ ≠ 0)
     {N : Submodule R (Fin 2 → K)}
     (hlow : latticeMap (scalarGL (unitOfNeZero (K := K) hϖ)) (stdLattice R K) ≤ N)
@@ -1887,6 +2364,9 @@ theorem isFullLattice_of_le_of_le [IsNoetherianRing R] {ϖ : R} (hϖ : ϖ ≠ 0)
     rw [eq_top_iff, ← hfull.2]
     exact Submodule.span_mono hlow
 
+/--
+@isnad1 id=isfullla.1h5v.s6.08dc44d0a3ee from=translated src=- shape=507a0e14 vocab=46a157ce
+-/
 theorem isFullLattice_interLattice [IsNoetherianRing R] {ϖ : R} (hϖ : Irreducible ϖ)
     (c d : R) : IsFullLattice (interLattice R K ϖ c d) :=
   isFullLattice_of_le_of_le hϖ.ne_zero
@@ -1902,6 +2382,9 @@ noncomputable def gammaZero : Matrix.GeneralLinearGroup (Fin 2) ℤ_[2] :=
       (!![0, -1; 1, -1] : Matrix (Fin 2) (Fin 2) ℤ_[2])).mpr
     (by rw [Matrix.det_fin_two_of]; norm_num)).unit
 
+/--
+@isnad1 id=eq.0h0v.s9.95f698ad14e0 from=translated src=- shape=72f6de37 vocab=e9be0934
+-/
 @[simp] theorem gammaZero_coe :
     (gammaZero : Matrix (Fin 2) (Fin 2) ℤ_[2]) = !![0, -1; 1, -1] :=
   IsUnit.unit_spec _
@@ -1911,10 +2394,16 @@ noncomputable def transvectionGate : Matrix.GeneralLinearGroup (Fin 2) ℤ_[2] :
       (!![1, 1; 0, 1] : Matrix (Fin 2) (Fin 2) ℤ_[2])).mpr
     (by rw [Matrix.det_fin_two_of]; norm_num)).unit
 
+/--
+@isnad1 id=eq.0h0v.s9.eac74e26e28d from=translated src=- shape=13669dfb vocab=f0a4f89c
+-/
 @[simp] theorem transvectionGate_coe :
     (transvectionGate : Matrix (Fin 2) (Fin 2) ℤ_[2]) = !![1, 1; 0, 1] :=
   IsUnit.unit_spec _
 
+/--
+@isnad1 id=not.0h0v.s7.93fc554d133a from=translated src=- shape=6cf5eb34 vocab=8296ca59
+-/
 theorem not_two_dvd_one_padic : ¬ ((2 : ℤ_[2]) ∣ 1) := fun h =>
   (PadicInt.irreducible_p (p := 2)).not_isUnit (isUnit_of_dvd_one h)
 
@@ -1936,12 +2425,18 @@ def Vertex.twistedAct (δ : Matrix.GeneralLinearGroup (Fin 2) K) (σ : IntegralA
     (v : Vertex R K) : Vertex R K :=
   Vertex.act δ (Vertex.galAct σ v)
 
+/--
+@isnad1 id=eq.1h5v.s7.765e4c105993 from=translated src=- shape=8913bfe4 vocab=81581178
+-/
 theorem Vertex.twistedAct_mk (δ : Matrix.GeneralLinearGroup (Fin 2) K)
     (σ : IntegralAut R K) (L : Submodule R (Fin 2 → K)) (hL : IsFullLattice L) :
     Vertex.twistedAct δ σ (Vertex.mk R K L hL) =
       Vertex.mk R K (twistedLatticeMap δ σ L) ((hL.gal σ).map δ) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.88dbcb8f0e8c from=translated src=- shape=69670d68 vocab=22ed50cb
+-/
 theorem Vertex.galAct_refl (v : Vertex R K) :
     Vertex.galAct (IntegralAut.refl R K) v = v := by
   induction v using Quotient.inductionOn with
@@ -1951,6 +2446,9 @@ theorem Vertex.galAct_refl (v : Vertex R K) :
     rw [Vertex.galAct_mk, Vertex.mk_eq_mk_iff, latticeGal_refl]
     exact Homothetic.refl _
 
+/--
+@isnad1 id=eq.0h4v.s6.f05954bcc031 from=translated src=- shape=82818bad vocab=a5e2ab97
+-/
 theorem Vertex.twistedAct_refl (δ : Matrix.GeneralLinearGroup (Fin 2) K)
     (v : Vertex R K) :
     Vertex.twistedAct δ (IntegralAut.refl R K) v = Vertex.act δ v := by
@@ -1964,6 +2462,9 @@ def twistedFixedVertexSet (δ : Matrix.GeneralLinearGroup (Fin 2) K)
     (σ : IntegralAut R K) : Set (Vertex R K) :=
   {v | IsTwistedFixedVertex δ σ v}
 
+/--
+@isnad1 id=iff.0h5v.s6.dd6048b9291c from=translated src=- shape=71b25e39 vocab=05482908
+-/
 theorem mem_twistedFixedVertexSet {δ : Matrix.GeneralLinearGroup (Fin 2) K}
     {σ : IntegralAut R K} {v : Vertex R K} :
     v ∈ twistedFixedVertexSet δ σ ↔ Vertex.twistedAct δ σ v = v :=
@@ -1974,15 +2475,24 @@ noncomputable def twistedUnitOrbitalCount (δ : Matrix.GeneralLinearGroup (Fin 2
     (σ : IntegralAut R K) : ℕ :=
   Nat.card (twistedFixedVertexSet δ σ)
 
+/--
+@isnad1 id=eq.0h3v.s6.b2dad213ccdc from=translated src=- shape=c7bc86ac vocab=d05ceed1
+-/
 theorem twistedFixedVertexSet_refl (δ : Matrix.GeneralLinearGroup (Fin 2) K) :
     twistedFixedVertexSet δ (IntegralAut.refl R K) = fixedVertexSet (R := R) δ := by
   ext v
   rw [mem_twistedFixedVertexSet, mem_fixedVertexSet, Vertex.twistedAct_refl]
 
+/--
+@isnad1 id=eq.0h3v.s6.6da108796755 from=translated src=- shape=4c1a6426 vocab=101ddc64
+-/
 theorem twistedUnitOrbitalCount_refl (δ : Matrix.GeneralLinearGroup (Fin 2) K) :
     twistedUnitOrbitalCount δ (IntegralAut.refl R K) = unitOrbitalCount R δ := by
   rw [twistedUnitOrbitalCount, unitOrbitalCount, twistedFixedVertexSet_refl]
 
+/--
+@isnad1 id=istwiste.1h4v.s9.e921f020bc7e from=translated src=- shape=30626af2 vocab=11153517
+-/
 theorem isTwistedFixedVertex_stdVertex_of_mem_range [IsFractionRing R K]
     {δ : Matrix.GeneralLinearGroup (Fin 2) K}
     (hδ : δ ∈ (Matrix.GeneralLinearGroup.map (n := Fin 2) (algebraMap R K)).range)
@@ -1992,6 +2502,9 @@ theorem isTwistedFixedVertex_stdVertex_of_mem_range [IsFractionRing R K]
   rw [Vertex.twistedAct, Vertex.galAct_stdVertex]
   exact isFixedVertex_stdVertex_of_mem_range hδ
 
+/--
+@isnad1 id=nonempty.1h4v.s9.f39f9d86ec64 from=translated src=- shape=1ff9b66a vocab=8f4b52f0
+-/
 theorem nonempty_twistedFixedVertexSet_of_mem_range [IsFractionRing R K]
     {δ : Matrix.GeneralLinearGroup (Fin 2) K}
     (hδ : δ ∈ (Matrix.GeneralLinearGroup.map (n := Fin 2) (algebraMap R K)).range)
@@ -1999,6 +2512,9 @@ theorem nonempty_twistedFixedVertexSet_of_mem_range [IsFractionRing R K]
     (twistedFixedVertexSet δ σ).Nonempty :=
   ⟨stdVertex R K, isTwistedFixedVertex_stdVertex_of_mem_range hδ σ⟩
 
+/--
+@isnad1 id=eq.3h6v.s7.34476e20c38b from=translated src=- shape=40db504f vocab=4276314e
+-/
 theorem twistedFixedVertexSet_eq_singleton_of_subset_subsingleton
     {δ : Matrix.GeneralLinearGroup (Fin 2) K} {σ : IntegralAut R K}
     {s : Set (Vertex R K)} (hincl : twistedFixedVertexSet δ σ ⊆ s)
@@ -2007,6 +2523,9 @@ theorem twistedFixedVertexSet_eq_singleton_of_subset_subsingleton
   Set.eq_singleton_iff_unique_mem.mpr
     ⟨hv₀, fun _ hw => hsub (hincl hw) (hincl hv₀)⟩
 
+/--
+@isnad1 id=eq.3h6v.s7.cf792c11d652 from=translated src=- shape=3da4c4bb vocab=e6c987f3
+-/
 theorem twistedUnitOrbitalCount_eq_one_of_subset_subsingleton
     {δ : Matrix.GeneralLinearGroup (Fin 2) K} {σ : IntegralAut R K}
     {s : Set (Vertex R K)} (hincl : twistedFixedVertexSet δ σ ⊆ s)
@@ -2016,6 +2535,9 @@ theorem twistedUnitOrbitalCount_eq_one_of_subset_subsingleton
     twistedFixedVertexSet_eq_singleton_of_subset_subsingleton hincl hsub hv₀,
     Nat.card_coe_set_eq, Set.ncard_singleton]
 
+/--
+@isnad1 id=eq.2h4v.s6.d1960a32cd85 from=translated src=- shape=a8906d44 vocab=b834b7b4
+-/
 theorem unitOrbitalCount_eq_one_of_subsingleton
     {γ : Matrix.GeneralLinearGroup (Fin 2) K}
     (hsub : (fixedVertexSet (R := R) γ).Subsingleton) {w₀ : Vertex R K}
@@ -2030,6 +2552,9 @@ variable {R' : Type*} [CommRing R'] {K' : Type*} [Field K'] [Algebra R' K']
 
 end FundamentalLemma
 
+/--
+@isnad1 id=le.0h6v.s9.8a0823ed8c4b from=translated src=- shape=6bde2819 vocab=536ae463
+-/
 theorem latticeGal_interLattice_le (σ : IntegralAut R K) (ϖ c d : R) :
     latticeGal σ (interLattice R K ϖ c d) ≤
       interLattice R K (σ.toBase ϖ) (σ.toBase c) (σ.toBase d) := by
@@ -2049,6 +2574,9 @@ theorem latticeGal_interLattice_le (σ : IntegralAut R K) (ϖ c d : R) :
   rw [galVec_apply, galVec_apply]
   exact key
 
+/--
+@isnad1 id=eq.0h6v.s9.b61481b882f6 from=translated src=- shape=6bde2819 vocab=ba6e9bf0
+-/
 theorem latticeGal_interLattice (σ : IntegralAut R K) (ϖ c d : R) :
     latticeGal σ (interLattice R K ϖ c d) =
       interLattice R K (σ.toBase ϖ) (σ.toBase c) (σ.toBase d) := by
@@ -2059,6 +2587,9 @@ theorem latticeGal_interLattice (σ : IntegralAut R K) (ϖ c d : R) :
   intro v hv
   exact ⟨galVec σ.symm v, h (galVec_mem_latticeGal hv), galVec_galVec_symm σ v⟩
 
+/--
+@isnad1 id=eq.1h7v.s10.a4a622e83a76 from=translated src=- shape=44195f90 vocab=9f9efa8b
+-/
 theorem twistedLatticeMap_map_interLattice (δ : Matrix.GeneralLinearGroup (Fin 2) R)
     (σ : IntegralAut R K) {ϖ : R} (hϖ : σ.toBase ϖ = ϖ) (c d : R) :
     twistedLatticeMap (Matrix.GeneralLinearGroup.map (algebraMap R K) δ) σ
@@ -2068,6 +2599,9 @@ theorem twistedLatticeMap_map_interLattice (δ : Matrix.GeneralLinearGroup (Fin 
         (mulVecPair (δ : Matrix (Fin 2) (Fin 2) R) (σ.toBase c) (σ.toBase d) 1) := by
   rw [twistedLatticeMap, latticeGal_interLattice, hϖ, latticeMap_map_interLattice]
 
+/--
+@isnad1 id=dvd.2h7v.s10.a5de48203a4e from=translated src=- shape=fa0e9122 vocab=f7eb8d39
+-/
 theorem dvd_of_twistedLatticeMap_map_interLattice_eq_self [IsFractionRing R K]
     (δ : Matrix.GeneralLinearGroup (Fin 2) R) (σ : IntegralAut R K) {ϖ : R}
     (hϖ : σ.toBase ϖ = ϖ) {c d : R}

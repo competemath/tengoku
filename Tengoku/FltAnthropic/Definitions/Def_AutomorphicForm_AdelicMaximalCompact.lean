@@ -36,27 +36,45 @@ def adelicMaximalCompact : Subgroup (AdelicGL2 (𝓞 K) K) where
 
 variable {K}
 
+/--
+@isnad1 id=iff.0h2v.s12.a2fd6bcddfc9 from=translated src=- shape=fe3213a4 vocab=0118b5b0
+-/
 theorem mem_adelicMaximalCompact_iff {k : AdelicGL2 (𝓞 K) K} :
     k ∈ adelicMaximalCompact K ↔
       glFin (𝓞 K) K k ∈ finiteIntegralGL2 (𝓞 K) K ∧
         ∀ w : InfinitePlace K, IsRowIsometry (archComponent K w (glArch (𝓞 K) K k)) :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h2v.s12.0e6f8b83798a from=translated src=- shape=4a4ab4d8 vocab=1313c833
+-/
 theorem mem_adelicMaximalCompact_iff' {k : AdelicGL2 (𝓞 K) K} :
     k ∈ adelicMaximalCompact K ↔
       glFin (𝓞 K) K k ∈ finiteIntegralGL2 (𝓞 K) K ∧
         ∀ w : InfinitePlace K, archComponent K w (glArch (𝓞 K) K k) ∈ rowIsometrySubgroup w.Completion :=
   Iff.rfl
 
+/--
+@isnad1 id=mem.1h2v.s11.ec6d87a26a55 from=translated src=- shape=4509cc5d vocab=1b26d997
+-/
 theorem glFin_mem_finiteIntegralGL2 {k : AdelicGL2 (𝓞 K) K} (hk : k ∈ adelicMaximalCompact K) :
     glFin (𝓞 K) K k ∈ finiteIntegralGL2 (𝓞 K) K := hk.1
 
+/--
+@isnad1 id=isrowiso.1h3v.s11.0a03ed90ccef from=translated src=- shape=5f45b2ae vocab=6b9787a8
+-/
 theorem isRowIsometry_archComponent {k : AdelicGL2 (𝓞 K) K} (hk : k ∈ adelicMaximalCompact K)
     (w : InfinitePlace K) : IsRowIsometry (archComponent K w (glArch (𝓞 K) K k)) := hk.2 w
 
+/--
+@isnad1 id=mem.1h3v.s11.74de1da40ebf from=translated src=- shape=603bd8c9 vocab=009d178d
+-/
 theorem archComponent_mem_rowIsometrySubgroup {k : AdelicGL2 (𝓞 K) K} (hk : k ∈ adelicMaximalCompact K)
     (w : InfinitePlace K) : archComponent K w (glArch (𝓞 K) K k) ∈ rowIsometrySubgroup w.Completion := hk.2 w
 
+/--
+@isnad1 id=and.1h5v.s12.ac92b782b19b from=translated src=- shape=bd8df52b vocab=d9f2b19b
+-/
 theorem valued_finComponent_apply_le_one {k : AdelicGL2 (𝓞 K) K} (hk : k ∈ adelicMaximalCompact K)
     (v : HeightOneSpectrum (𝓞 K)) (i j : Fin 2) :
     Valued.v ((finComponent (𝓞 K) K v (glFin (𝓞 K) K k) : Matrix (Fin 2) (Fin 2) (v.adicCompletion K)) i j) ≤ 1 ∧
@@ -67,6 +85,9 @@ theorem valued_finComponent_apply_le_one {k : AdelicGL2 (𝓞 K) K} (hk : k ∈ 
   · rw [finComponent_apply]; exact valued_apply_le_one (h.1 i j) v
   · rw [← map_inv, finComponent_apply]; exact valued_apply_le_one (h.2 i j) v
 
+/--
+@isnad1 id=eq.1h3v.s11.ec962f0a4a78 from=translated src=- shape=d40ec4ac vocab=e492a2c7
+-/
 theorem valued_det_finComponent_eq_one {k : AdelicGL2 (𝓞 K) K} (hk : k ∈ adelicMaximalCompact K)
     (v : HeightOneSpectrum (𝓞 K)) :
     Valued.v (finComponent (𝓞 K) K v (glFin (𝓞 K) K k) : Matrix (Fin 2) (Fin 2) (v.adicCompletion K)).det = 1 := by
@@ -95,6 +116,9 @@ theorem valued_det_finComponent_eq_one {k : AdelicGL2 (𝓞 K) K} (hk : k ∈ ad
 
 variable (K)
 
+/--
+@isnad1 id=isclosed.0h1v.s7.8d5821626e30 from=translated src=- shape=a3b3e591 vocab=3e4103ef
+-/
 theorem isClosed_setOf_isRowIsometry (L : Type*) [NormedField L] :
     IsClosed {k : GL (Fin 2) L | IsRowIsometry k} := by
   have hval : Continuous fun k : GL (Fin 2) L => (k : Matrix (Fin 2) (Fin 2) L) :=
@@ -113,6 +137,9 @@ theorem isClosed_setOf_isRowIsometry (L : Type*) [NormedField L] :
     fun_prop
   simpa only [IsRowIsometry, Set.ofPred_and] using h1.inter h2
 
+/--
+@isnad1 id=isclosed.0h1v.s9.e2be2b901c3a from=translated src=- shape=0cc2a23f vocab=82c10d16
+-/
 theorem isClosed_adelicMaximalCompact :
     IsClosed (adelicMaximalCompact K : Set (AdelicGL2 (𝓞 K) K)) := by
   have h : (adelicMaximalCompact K : Set (AdelicGL2 (𝓞 K) K)) =
@@ -129,6 +156,9 @@ theorem isClosed_adelicMaximalCompact :
 
 variable {K} in
 
+/--
+@isnad1 id=le.1h4v.s7.50d38a9824e6 from=translated src=- shape=425d5400 vocab=69e5da6e
+-/
 theorem WindowedSiegel.IsRowIsometry.norm_apply_le_one {L : Type*} [NormedField L]
     {k : GL (Fin 2) L} (hk : IsRowIsometry k) (i j : Fin 2) :
     ‖(k : Matrix (Fin 2) (Fin 2) L) i j‖ ≤ 1 := by
@@ -144,6 +174,9 @@ theorem WindowedSiegel.IsRowIsometry.norm_apply_le_one {L : Type*} [NormedField 
 
 omit [NumberField K] in
 
+/--
+@isnad1 id=iscompac.0h2v.s6.e5ed86e1a502 from=translated src=- shape=11ad09ef vocab=f93949aa
+-/
 theorem isCompact_setOf_norm_le_one_completion (w : InfinitePlace K) :
     IsCompact {x : w.Completion | ‖x‖ ≤ 1} := by
   have hiso := NumberField.InfinitePlace.Completion.isometry_extensionEmbedding w
@@ -159,6 +192,9 @@ theorem isCompact_setOf_norm_le_one_completion (w : InfinitePlace K) :
   rw [heq]
   exact hce.isCompact_preimage (isCompact_closedBall 0 1)
 
+/--
+@isnad1 id=iscompac.0h1v.s7.28e994ddbe29 from=translated src=- shape=41a4629f vocab=36d35ceb
+-/
 theorem isCompact_setOf_integral_and_norm_le_one :
     IsCompact {a : AdeleRing (𝓞 K) K |
       a.2 ∈ integralFiniteAdeles (𝓞 K) K ∧ ∀ w : InfinitePlace K, ‖a.1 w‖ ≤ 1} := by
@@ -175,6 +211,9 @@ theorem isCompact_setOf_integral_and_norm_le_one :
   exact (isCompact_univ_pi fun w => isCompact_setOf_norm_le_one_completion K w).prod
     (isCompact_integralFiniteAdeles (𝓞 K) K)
 
+/--
+@isnad1 id=iscompac.0h1v.s9.8e2b5bcf6755 from=translated src=- shape=0cc2a23f vocab=d32ce5c9
+-/
 theorem isCompact_adelicMaximalCompact :
     IsCompact (adelicMaximalCompact K : Set (AdelicGL2 (𝓞 K) K)) := by
   set A : Set (AdeleRing (𝓞 K) K) :=
@@ -204,17 +243,29 @@ theorem isCompact_adelicMaximalCompact :
   simp only [Set.mem_preimage, Units.embedProduct_apply, Set.mem_prod, Set.mem_image]
   refine ⟨hmemA k hk, _, hmemA k⁻¹ ((adelicMaximalCompact K).inv_mem hk), rfl⟩
 
+/--
+@isnad1 id=compacts.0h1v.s10.b69afd125d3e from=translated src=- shape=e62cb228 vocab=c496d1f5
+-/
 instance compactSpace_adelicMaximalCompact : CompactSpace (adelicMaximalCompact K) :=
   isCompact_iff_compactSpace.mp (isCompact_adelicMaximalCompact K)
 
 def maximalCompactHaar : Measure (adelicMaximalCompact K) := Measure.haarMeasure ⊤
 
+/--
+@isnad1 id=ishaarme.0h1v.s10.bc9c7b3d099a from=translated src=- shape=c90b176c vocab=8ddeeb0e
+-/
 instance isHaarMeasure_maximalCompactHaar : (maximalCompactHaar K).IsHaarMeasure := by
   rw [maximalCompactHaar]; infer_instance
 
+/--
+@isnad1 id=isprobab.0h1v.s10.a68302abd64a from=translated src=- shape=57d71c29 vocab=5081e783
+-/
 instance isProbabilityMeasure_maximalCompactHaar : IsProbabilityMeasure (maximalCompactHaar K) :=
   ⟨by rw [maximalCompactHaar, ← TopologicalSpace.PositiveCompacts.coe_top]; exact Measure.haarMeasure_self⟩
 
+/--
+@isnad1 id=measurab.0h1v.s11.f7170685f15b from=translated src=- shape=70aa7325 vocab=047c1dd1
+-/
 theorem measurable_subtype_val_adelicMaximalCompact :
     @Measurable (adelicMaximalCompact K) (AdelicGL2 (𝓞 K) K) _ (NumberField.AdelicHaar.glBorel (Fin 2) (𝓞 K) K)
       (fun k => (k : AdelicGL2 (𝓞 K) K)) := by
@@ -235,6 +286,9 @@ def maximalCompactAway : Subgroup (AdelicGL2 (𝓞 K) K) :=
     ⨅ v ∈ (↑S : Set (HeightOneSpectrum (𝓞 K))), ((finComponent (𝓞 K) K v).comp (glFin (𝓞 K) K)).ker
 
 variable {K S} in
+/--
+@isnad1 id=iff.0h3v.s12.12765f0938ca from=translated src=- shape=f495289b vocab=4d7d640d
+-/
 theorem mem_maximalCompactAt_iff {k : AdelicGL2 (𝓞 K) K} :
     k ∈ maximalCompactAt K S ↔
       k ∈ adelicMaximalCompact K ∧
@@ -243,6 +297,9 @@ theorem mem_maximalCompactAt_iff {k : AdelicGL2 (𝓞 K) K} :
     MonoidHom.coe_comp, Function.comp_apply, Set.mem_compl_iff, Finset.mem_coe]
 
 variable {K S} in
+/--
+@isnad1 id=iff.0h3v.s12.320a54a762b4 from=translated src=- shape=8c7d95e3 vocab=12c7de38
+-/
 theorem mem_maximalCompactAway_iff {k : AdelicGL2 (𝓞 K) K} :
     k ∈ maximalCompactAway K S ↔
       k ∈ adelicMaximalCompact K ∧ glArch (𝓞 K) K k = 1 ∧
@@ -250,8 +307,14 @@ theorem mem_maximalCompactAway_iff {k : AdelicGL2 (𝓞 K) K} :
   simp only [maximalCompactAway, Subgroup.mem_inf, Subgroup.mem_iInf, MonoidHom.mem_ker,
     MonoidHom.coe_comp, Function.comp_apply, Finset.mem_coe, and_assoc]
 
+/--
+@isnad1 id=le.0h2v.s9.c34013a488d6 from=translated src=- shape=79c3f686 vocab=047de48f
+-/
 theorem maximalCompactAt_le : maximalCompactAt K S ≤ adelicMaximalCompact K := inf_le_left
 
+/--
+@isnad1 id=le.0h2v.s9.e1aa7352e0fe from=translated src=- shape=79c3f686 vocab=8f93e088
+-/
 theorem maximalCompactAway_le : maximalCompactAway K S ≤ adelicMaximalCompact K :=
   inf_le_left.trans inf_le_left
 
@@ -265,6 +328,9 @@ private theorem isClosed_ker_finComponent_comp_glFin (v : HeightOneSpectrum (�
   exact (isClosed_singleton).preimage
     ((continuous_finComponent (𝓞 K) K v).comp (continuous_glFin (𝓞 K) K))
 
+/--
+@isnad1 id=isclosed.0h2v.s9.207c3891783f from=translated src=- shape=5a79469f vocab=bd5d552e
+-/
 theorem isClosed_maximalCompactAt : IsClosed (maximalCompactAt K S : Set (AdelicGL2 (𝓞 K) K)) := by
   have h : (maximalCompactAt K S : Set (AdelicGL2 (𝓞 K) K)) =
       (adelicMaximalCompact K : Set (AdelicGL2 (𝓞 K) K)) ∩
@@ -276,6 +342,9 @@ theorem isClosed_maximalCompactAt : IsClosed (maximalCompactAt K S : Set (Adelic
   exact (isClosed_adelicMaximalCompact K).inter
     (isClosed_biInter fun v _ => isClosed_ker_finComponent_comp_glFin K v)
 
+/--
+@isnad1 id=isclosed.0h2v.s9.3dbc7819277f from=translated src=- shape=5a79469f vocab=38a1dd33
+-/
 theorem isClosed_maximalCompactAway :
     IsClosed (maximalCompactAway K S : Set (AdelicGL2 (𝓞 K) K)) := by
   have hker : IsClosed (((glArch (𝓞 K) K).ker : Subgroup (AdelicGL2 (𝓞 K) K)) : Set (AdelicGL2 (𝓞 K) K)) := by
@@ -295,17 +364,29 @@ theorem isClosed_maximalCompactAway :
   exact ((isClosed_adelicMaximalCompact K).inter hker).inter
     (isClosed_biInter fun v _ => isClosed_ker_finComponent_comp_glFin K v)
 
+/--
+@isnad1 id=iscompac.0h2v.s9.e350f1f0a529 from=translated src=- shape=5a79469f vocab=905418d9
+-/
 theorem isCompact_maximalCompactAt : IsCompact (maximalCompactAt K S : Set (AdelicGL2 (𝓞 K) K)) :=
   (isCompact_adelicMaximalCompact K).of_isClosed_subset (isClosed_maximalCompactAt K S)
     (maximalCompactAt_le K S)
 
+/--
+@isnad1 id=iscompac.0h2v.s9.90f99fb33208 from=translated src=- shape=5a79469f vocab=dc5eae9c
+-/
 theorem isCompact_maximalCompactAway : IsCompact (maximalCompactAway K S : Set (AdelicGL2 (𝓞 K) K)) :=
   (isCompact_adelicMaximalCompact K).of_isClosed_subset (isClosed_maximalCompactAway K S)
     (maximalCompactAway_le K S)
 
+/--
+@isnad1 id=compacts.0h2v.s10.59b2762f1611 from=translated src=- shape=9b552b5b vocab=7a7ce034
+-/
 instance compactSpace_maximalCompactAt : CompactSpace (maximalCompactAt K S) :=
   isCompact_iff_compactSpace.mp (isCompact_maximalCompactAt K S)
 
+/--
+@isnad1 id=compacts.0h2v.s10.49eabbbcd0ad from=translated src=- shape=9b552b5b vocab=08a85cff
+-/
 instance compactSpace_maximalCompactAway : CompactSpace (maximalCompactAway K S) :=
   isCompact_iff_compactSpace.mp (isCompact_maximalCompactAway K S)
 
@@ -313,15 +394,27 @@ def maximalCompactAtHaar : Measure (maximalCompactAt K S) := Measure.haarMeasure
 
 def maximalCompactAwayHaar : Measure (maximalCompactAway K S) := Measure.haarMeasure ⊤
 
+/--
+@isnad1 id=ishaarme.0h2v.s10.240fe2ff8dff from=translated src=- shape=33e5591a vocab=eccc5f0d
+-/
 instance isHaarMeasure_maximalCompactAtHaar : (maximalCompactAtHaar K S).IsHaarMeasure := by
   rw [maximalCompactAtHaar]; infer_instance
 
+/--
+@isnad1 id=isprobab.0h2v.s10.80f978f31e6c from=translated src=- shape=475c3680 vocab=a0bbe390
+-/
 instance isProbabilityMeasure_maximalCompactAtHaar : IsProbabilityMeasure (maximalCompactAtHaar K S) :=
   ⟨by rw [maximalCompactAtHaar, ← TopologicalSpace.PositiveCompacts.coe_top]; exact Measure.haarMeasure_self⟩
 
+/--
+@isnad1 id=ishaarme.0h2v.s10.4c514b14d041 from=translated src=- shape=33e5591a vocab=9c1b69c1
+-/
 instance isHaarMeasure_maximalCompactAwayHaar : (maximalCompactAwayHaar K S).IsHaarMeasure := by
   rw [maximalCompactAwayHaar]; infer_instance
 
+/--
+@isnad1 id=isprobab.0h2v.s10.b3533dd49845 from=translated src=- shape=475c3680 vocab=4b461cf8
+-/
 instance isProbabilityMeasure_maximalCompactAwayHaar :
     IsProbabilityMeasure (maximalCompactAwayHaar K S) :=
   ⟨by rw [maximalCompactAwayHaar, ← TopologicalSpace.PositiveCompacts.coe_top]; exact Measure.haarMeasure_self⟩

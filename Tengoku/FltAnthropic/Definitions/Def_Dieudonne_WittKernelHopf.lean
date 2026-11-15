@@ -22,6 +22,9 @@ variable {p : ℕ} [hp : Fact p.Prime] {n : ℕ}
 variable {R : Type u} {S : Type v} [CommRing R] [CommRing S]
 
 omit hp in
+/--
+@isnad1 id=eq.0h6v.s6.78bdb0e77d09 from=translated src=- shape=27ae4a15 vocab=a3a71867
+-/
 @[simp] theorem coeff_frobeniusFun_iterate (c : ℕ) (x : TruncatedWittVector p n R) (i : Fin n) :
     (frobeniusFun^[c] x).coeff i = x.coeff i ^ p ^ c := by
   induction c generalizing x with
@@ -30,16 +33,25 @@ omit hp in
     rw [Function.iterate_succ_apply', coeff_frobeniusFun, ih, ← pow_mul, ← pow_succ]
 
 omit hp in
+/--
+@isnad1 id=eq.0h5v.s6.66b8ab3969f5 from=translated src=- shape=9d52f663 vocab=587b533f
+-/
 theorem frobeniusFun_iterate_mk (c : ℕ) (g : Fin n → R) :
     frobeniusFun^[c] (TruncatedWittVector.mk p g) = TruncatedWittVector.mk p fun i => g i ^ p ^ c :=
   TruncatedWittVector.ext fun i => by
     rw [coeff_frobeniusFun_iterate, TruncatedWittVector.coeff_mk, TruncatedWittVector.coeff_mk]
 
+/--
+@isnad1 id=eq.0h7v.s8.9de421290a54 from=translated src=- shape=72ad9220 vocab=66ea54c0
+-/
 theorem map_frobeniusFun_iterate (f : R →+* S) (c : ℕ) (x : TruncatedWittVector p n R) :
     map f (frobeniusFun^[c] x) = frobeniusFun^[c] (map f x) :=
   TruncatedWittVector.ext fun i => by
     simp only [coeff_map, coeff_frobeniusFun_iterate, map_pow]
 
+/--
+@isnad1 id=eq.1h6v.s7.2b65a1f740fb from=translated src=- shape=5f416304 vocab=4c598506
+-/
 theorem frobeniusFun_iterate_add (hR : (p : R) = 0) (c : ℕ) (x y : TruncatedWittVector p n R) :
     frobeniusFun^[c] (x + y) = frobeniusFun^[c] x + frobeniusFun^[c] y := by
   induction c generalizing x y with
@@ -48,11 +60,17 @@ theorem frobeniusFun_iterate_add (hR : (p : R) = 0) (c : ℕ) (x y : TruncatedWi
     rw [Function.iterate_succ_apply', Function.iterate_succ_apply', Function.iterate_succ_apply',
       ih, frobeniusFun_add hR]
 
+/--
+@isnad1 id=eq.0h4v.s6.8fa20f240c30 from=translated src=- shape=94071c44 vocab=a16f5c8d
+-/
 theorem frobeniusFun_iterate_zero (c : ℕ) : frobeniusFun^[c] (0 : TruncatedWittVector p n R) = 0 := by
   induction c with
   | zero => rfl
   | succ c ih => rw [Function.iterate_succ_apply', ih, frobeniusFun_zero]
 
+/--
+@isnad1 id=eq.1h5v.s6.3d1d78ff33a3 from=translated src=- shape=7170e700 vocab=2c1d7f12
+-/
 theorem frobeniusFun_iterate_neg (hR : (p : R) = 0) (c : ℕ) (x : TruncatedWittVector p n R) :
     frobeniusFun^[c] (-x) = -frobeniusFun^[c] x := by
   have h := frobeniusFun_iterate_add hR c (-x) x
@@ -75,9 +93,15 @@ noncomputable def ideal : Ideal (WittGroup.Coord k p n J) :=
 
 variable {k p n a b J}
 
+/--
+@isnad1 id=mem.0h8v.s7.ed257ab5aa5a from=translated src=- shape=b17bab20 vocab=4c287458
+-/
 theorem relation_mem_ideal (j : J) (i : Fin n) : relation k p n a b J j i ∈ ideal k p n a b J :=
   Ideal.subset_span ⟨(j, i), rfl⟩
 
+/--
+@isnad1 id=iff.0h7v.s8.c8216fc36192 from=translated src=- shape=16d3aeb1 vocab=e547c207
+-/
 theorem ideal_le_iff {I : Ideal (WittGroup.Coord k p n J)} :
     ideal k p n a b J ≤ I ↔ ∀ j i, relation k p n a b J j i ∈ I := by
   constructor
@@ -89,11 +113,17 @@ theorem ideal_le_iff {I : Ideal (WittGroup.Coord k p n J)} :
 
 variable [hp : Fact p.Prime]
 
+/--
+@isnad1 id=eq.0h9v.s8.0f1f6c7549d6 from=translated src=- shape=8cd4a3d5 vocab=a0d1012c
+-/
 theorem ringHom_X_pow {B : Type w} [CommRing B] (g : WittGroup.Coord k p n J →+* B) (j : J)
     (i : Fin n) (c : ℕ) :
     g (X j i) ^ p ^ c = (frobeniusFun^[c] (TruncWitt.map (p := p) g (univ k p n j))).coeff i := by
   rw [coeff_frobeniusFun_iterate, coeff_map, coeff_univ]
 
+/--
+@isnad1 id=eq.0h10v.s9.08c035f3a277 from=translated src=- shape=be958032 vocab=f0ffa426
+-/
 theorem ringHom_relation {B : Type w} [CommRing B] (g : WittGroup.Coord k p n J →+* B) (j : J)
     (i : Fin n) :
     g (relation k p n a b J j i) =
@@ -101,6 +131,9 @@ theorem ringHom_relation {B : Type w} [CommRing B] (g : WittGroup.Coord k p n J 
         (frobeniusFun^[a] (TruncWitt.map (p := p) g (univ k p n j))).coeff i := by
   rw [relation, map_sub, map_pow, map_pow, ringHom_X_pow, ringHom_X_pow]
 
+/--
+@isnad1 id=iff.0h8v.s9.8437700edc66 from=translated src=- shape=09ff66c6 vocab=1ea91578
+-/
 theorem ideal_le_ker_iff {B : Type w} [CommRing B] (g : WittGroup.Coord k p n J →+* B) :
     ideal k p n a b J ≤ RingHom.ker g ↔
       ∀ j, frobeniusFun^[b] (TruncWitt.map (p := p) g (univ k p n j)) =
@@ -122,11 +155,17 @@ local notation "πI" => (Ideal.Quotient.mk (ideal k p n a b J))
 
 omit [CharP k p] in
 
+/--
+@isnad1 id=eq.0h7v.s11.1abde118d19a from=translated src=- shape=f6b7c452 vocab=e42ea4f4
+-/
 theorem frobeniusFun_iterate_map_mk_univ (j : J) :
     frobeniusFun^[b] (TruncWitt.map (p := p) πI (univ k p n j)) =
       frobeniusFun^[a] (TruncWitt.map (p := p) πI (univ k p n j)) :=
   (ideal_le_ker_iff (πI : 𝒪 →+* 𝒪 ⧸ I)).1 (by rw [Ideal.mk_ker]) j
 
+/--
+@isnad1 id=ishopfid.0h6v.s5.ea9e09460b82 from=translated src=- shape=81b45fae vocab=b1bb1833
+-/
 instance isHopfIdeal : (ideal k p n a b J).IsHopfIdeal' k where
   map_mkₐ_comul_eq_zero := by
 
@@ -212,6 +251,9 @@ noncomputable def π : WittGroup.Coord k p n J →ₐc[k] Coord k p n a b J :=
 
 variable {k p n a b J}
 
+/--
+@isnad1 id=eq.0h7v.s10.19993dc97107 from=translated src=- shape=8400565a vocab=9e813516
+-/
 @[simp] theorem π_apply (x : WittGroup.Coord k p n J) :
     π k p n a b J x = Ideal.Quotient.mk (ideal k p n a b J) x := rfl
 
@@ -222,15 +264,24 @@ noncomputable def tauto (j : J) : wittHom k p n (Coord k p n a b J) :=
 
 variable {k p n a b J}
 
+/--
+@isnad1 id=eq.0h7v.s10.560768272c9a from=translated src=- shape=ae50d2cd vocab=0d7e92d6
+-/
 @[simp] theorem coe_tauto (j : J) :
     (tauto k p n a b J j : TruncatedWittVector p n (Coord k p n a b J)) =
       TruncWitt.map (p := p) (Ideal.Quotient.mk (ideal k p n a b J)) (univ k p n j) := rfl
 
+/--
+@isnad1 id=eq.0h8v.s10.5b5ae7902af6 from=translated src=- shape=c444230e vocab=006b7e68
+-/
 @[simp] theorem coeff_tauto (j : J) (i : Fin n) :
     (tauto k p n a b J j : TruncatedWittVector p n (Coord k p n a b J)).coeff i =
       π k p n a b J (X j i) := by
   rw [coe_tauto, coeff_map, coeff_univ, π_apply]
 
+/--
+@isnad1 id=eq.0h7v.s14.4df6b3922aa1 from=translated src=- shape=3ee5b18d vocab=72bf9842
+-/
 theorem frobenius_iterate_tauto (j : J) :
     (wittHomFrobenius k p n (Coord k p n a b J))^[b] (tauto k p n a b J j) =
       (wittHomFrobenius k p n (Coord k p n a b J))^[a] (tauto k p n a b J j) := by
@@ -247,6 +298,9 @@ theorem frobenius_iterate_tauto (j : J) :
   rw [key, key, coe_tauto]
   exact frobeniusFun_iterate_map_mk_univ k p n a b J j
 
+/--
+@isnad1 id=eq.0h7v.s13.df9693a9cc4a from=translated src=- shape=a33b85d2 vocab=5466a563
+-/
 theorem verschiebung_iterate_tauto (j : J) :
     (wittHomVerschiebung k p n (Coord k p n a b J))^[n] (tauto k p n a b J j) = 0 :=
   wittHomVerschiebung_iterate_eq_zero _
@@ -256,10 +310,16 @@ variable (k p n a b J) in
 noncomputable def tautoClass (j : J) : DieudonneModule k p (Coord k p n a b J) :=
   DieudonneModule.of k p (Coord k p n a b J) n (tauto k p n a b J j)
 
+/--
+@isnad1 id=eq.0h7v.s12.adb61b817f9b from=translated src=- shape=e2f291b7 vocab=b2d28fd4
+-/
 theorem tautoClass_def (j : J) :
     tautoClass k p n a b J j = DieudonneModule.of k p (Coord k p n a b J) n (tauto k p n a b J j) :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s12.7d75073ded5c from=translated src=- shape=c1840cff vocab=e43c7b16
+-/
 theorem frobenius_iterate_tautoClass (j : J) :
     (DieudonneModule.frobenius k p (Coord k p n a b J))^[b] (tautoClass k p n a b J j) =
       (DieudonneModule.frobenius k p (Coord k p n a b J))^[a] (tautoClass k p n a b J j) := by
@@ -275,6 +335,9 @@ theorem frobenius_iterate_tautoClass (j : J) :
         DieudonneModule.frobenius_of]
   rw [tautoClass_def, key, key, frobenius_iterate_tauto]
 
+/--
+@isnad1 id=eq.0h7v.s11.e0b017dcd11e from=translated src=- shape=3687b890 vocab=09ae8e2b
+-/
 theorem verschiebung_iterate_tautoClass (j : J) :
     (DieudonneModule.verschiebung k p (Coord k p n a b J))^[n] (tautoClass k p n a b J j) = 0 := by
   have key : ∀ (c : ℕ) (x : wittHom k p n (Coord k p n a b J)),

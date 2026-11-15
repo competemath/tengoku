@@ -16,6 +16,9 @@ variable {𝒪 : Type} [CommRing 𝒪]
 abbrev Scheme.specOver (B : Type) [CommRing B] [Algebra 𝒪 B] : Spec (.of B) ⟶ Spec (.of 𝒪) :=
   Spec.map (CommRingCat.ofHom (algebraMap 𝒪 B))
 
+/--
+@isnad1 id=eq.0h4v.s7.d1c7875cf98d from=translated src=- shape=47221a7b vocab=9af54717
+-/
 theorem Scheme.specMap_algHom_comp_specOver {B : Type} [CommRing B] [Algebra 𝒪 B] {B' : Type} [CommRing B']
     [Algebra 𝒪 B'] (g : B →ₐ[𝒪] B') :
     Spec.map (CommRingCat.ofHom g.toRingHom) ≫ Scheme.specOver (𝒪 := 𝒪) B = Scheme.specOver B' := by
@@ -37,6 +40,9 @@ def Scheme.nilpPoints {X : Scheme.{0}} (f : X ⟶ Spec (.of 𝒪)) : AlgFunctor 
     simp only [AlgHom.toRingHom_eq_coe]
     rw [AlgHom.comp_toRingHom, CommRingCat.ofHom_comp, Spec.map_comp, Category.assoc]
 
+/--
+@isnad1 id=eq.0h7v.s8.e995cdd76876 from=translated src=- shape=7a3b1999 vocab=0892aba7
+-/
 @[simp] theorem Scheme.nilpPoints_map_val {X : Scheme.{0}} (f : X ⟶ Spec (.of 𝒪)) {B : Type} [CommRing B]
     [Algebra 𝒪 B] {B' : Type} [CommRing B'] [Algebra 𝒪 B'] (g : B →ₐ[𝒪] B') (φ : (Scheme.nilpPoints f).obj B) :
     ((Scheme.nilpPoints f).map g φ).1 = Spec.map (CommRingCat.ofHom g.toRingHom) ≫ φ.1 := rfl

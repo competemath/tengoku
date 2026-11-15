@@ -60,6 +60,9 @@ def smulLinear (t : T) : M →ₗ[𝒪] M where
     rw [← algebraMap_smul (A := T) (M := M) a m, ← algebraMap_smul (A := T) (M := M) a (t • m),
       smul_smul, smul_smul, mul_comm]
 
+/--
+@isnad1 id=eq.0h5v.s8.daf96ad7125e from=translated src=- shape=20808e94 vocab=a94aec89
+-/
 @[simp] lemma smulLinear_apply (t : T) (m : M) : smulLinear (𝒪 := 𝒪) t m = t • m := rfl
 
 variable (P P') in
@@ -103,15 +106,27 @@ def rungDatumOfLegs (L : LegDatum (𝒪 := 𝒪) P P' n) (c : Fin n → T)
     refine Finset.sum_congr rfl fun k' _ => ?_
     rw [L.htable, smul_smul, smul_smul]
 
+/--
+@isnad1 id=eq.0h11v.s8.bbd883b40767 from=translated src=- shape=8ff6c9f1 vocab=b9b62414
+-/
 @[simp] lemma rungDatumOfLegs_res (L : LegDatum (𝒪 := 𝒪) P P' n) (c : Fin n → T)
     (res : T' →ₐ[𝒪] T) : (rungDatumOfLegs L c res).res = res := rfl
 
+/--
+@isnad1 id=eq.0h11v.s9.c4473fcb1ce4 from=translated src=- shape=e8886c5b vocab=27f1d1ca
+-/
 @[simp] lemma rungDatumOfLegs_i (L : LegDatum (𝒪 := 𝒪) P P' n) (c : Fin n → T)
     (res : T' →ₐ[𝒪] T) : (rungDatumOfLegs L c res).i = iComb L c := rfl
 
+/--
+@isnad1 id=eq.0h11v.s9.adf162993e05 from=translated src=- shape=3dbf3783 vocab=169c5fdf
+-/
 @[simp] lemma rungDatumOfLegs_j (L : LegDatum (𝒪 := 𝒪) P P' n) (c : Fin n → T)
     (res : T' →ₐ[𝒪] T) : (rungDatumOfLegs L c res).j = jComb L c := rfl
 
+/--
+@isnad1 id=eq.0h11v.s8.4466d3678140 from=translated src=- shape=c9f61a0f vocab=a89274b0
+-/
 @[simp] lemma rungDatumOfLegs_Δ (L : LegDatum (𝒪 := 𝒪) P P' n) (c : Fin n → T)
     (res : T' →ₐ[𝒪] T) : (rungDatumOfLegs L c res).Δ = deltaComb L c := rfl
 

@@ -16,6 +16,9 @@ section General
 
 variable {K : Type*} [NormedField K]
 
+/--
+@isnad1 id=le.0h2v.s6.1b7d90917b14 from=translated src=- shape=f929f379 vocab=f91baca1
+-/
 theorem norm_det_sq_le (M : Matrix (Fin 2) (Fin 2) K) :
     ‖M.det‖ ^ 2 ≤ topNormSq M * rowNormSq M := by
   have h1 : ‖M.det‖ ≤ ‖M 0 0‖ * ‖M 1 1‖ + ‖M 0 1‖ * ‖M 1 0‖ := by
@@ -28,6 +31,9 @@ theorem norm_det_sq_le (M : Matrix (Fin 2) (Fin 2) K) :
   nlinarith [sq_nonneg (‖M 0 0‖ * ‖M 1 0‖ - ‖M 0 1‖ * ‖M 1 1‖), norm_nonneg (M 0 0),
     norm_nonneg (M 0 1), norm_nonneg (M 1 0), norm_nonneg (M 1 1)]
 
+/--
+@isnad1 id=le.0h2v.s5.7f00d1164eef from=translated src=- shape=0ac22ba1 vocab=7ec4725b
+-/
 theorem xWindowSq_nonneg (g : GL (Fin 2) K) : 0 ≤ xWindowSq g := by
   have hrow := rowNormSq_pos g
   have h := norm_det_sq_le (g : Matrix (Fin 2) (Fin 2) K)
@@ -35,6 +41,9 @@ theorem xWindowSq_nonneg (g : GL (Fin 2) K) : 0 ≤ xWindowSq g := by
   rw [div_pow, sub_nonneg, div_le_div_iff₀ (pow_pos hrow 2) hrow]
   nlinarith [h, hrow]
 
+/--
+@isnad1 id=le.0h3v.s9.3a9aa9aa963d from=translated src=- shape=e1104afc vocab=50c29e89
+-/
 theorem sq_mul_sq_le_rowNormSq_mul (γ g : GL (Fin 2) K) :
     ‖(γ : Matrix (Fin 2) (Fin 2) K) 1 0‖ ^ 2 * ‖(g : Matrix (Fin 2) (Fin 2) K).det‖ ^ 2
       ≤ rowNormSq ((γ * g : GL (Fin 2) K) : Matrix (Fin 2) (Fin 2) K) *
@@ -58,6 +67,9 @@ theorem sq_mul_sq_le_rowNormSq_mul (γ g : GL (Fin 2) K) :
   rw [hcoe]
   exact h
 
+/--
+@isnad1 id=le.1h3v.s9.b2566ab2766b from=translated src=- shape=0c953bcd vocab=6afafdb0
+-/
 theorem localHeight_mul_mul_localHeight_le (γ g : GL (Fin 2) K)
     (hγ : (γ : Matrix (Fin 2) (Fin 2) K) 1 0 ≠ 0) :
     localHeight (γ * g) * localHeight g
@@ -85,6 +97,9 @@ theorem localHeight_mul_mul_localHeight_le (γ g : GL (Fin 2) K)
             rowNormSq (g : Matrix (Fin 2) (Fin 2) K)) :=
         mul_le_mul_of_nonneg_left hkey (norm_nonneg _)
 
+/--
+@isnad1 id=eq.3h5v.s9.557caffeb59c from=translated src=- shape=83b5a196 vocab=5403415d
+-/
 theorem det_upper_entries_mul {s : GL (Fin 2) K} {a t : K}
     (h00 : (s : Matrix (Fin 2) (Fin 2) K) 0 0 = a)
     (h10 : (s : Matrix (Fin 2) (Fin 2) K) 1 0 = 0)
@@ -99,6 +114,9 @@ theorem det_upper_entries_mul {s : GL (Fin 2) K} {a t : K}
     ring
   rw [hcoe, Matrix.det_mul, hdets]
 
+/--
+@isnad1 id=eq.4h5v.s9.61caffd6dc91 from=translated src=- shape=81bcabb8 vocab=1b94941c
+-/
 theorem localHeight_upper_entries_mul {s : GL (Fin 2) K} {a t : K} (ht : t ≠ 0)
     (h00 : (s : Matrix (Fin 2) (Fin 2) K) 0 0 = a)
     (h10 : (s : Matrix (Fin 2) (Fin 2) K) 1 0 = 0)
@@ -111,6 +129,9 @@ theorem localHeight_upper_entries_mul {s : GL (Fin 2) K} {a t : K} (ht : t ≠ 0
   rw [det_upper_entries_mul h00 h10 h11 g, hrow, norm_mul, norm_mul]
   field_simp
 
+/--
+@isnad1 id=eq.5h5v.s9.4047e2b8d1dd from=translated src=- shape=9ad82258 vocab=06ef92b9
+-/
 theorem xWindowSq_diag_entries_mul {s : GL (Fin 2) K} {a t : K} (ht : t ≠ 0)
     (h00 : (s : Matrix (Fin 2) (Fin 2) K) 0 0 = a)
     (h01 : (s : Matrix (Fin 2) (Fin 2) K) 0 1 = 0)
@@ -129,42 +150,72 @@ def upperUnit (a b t : K) (ha : a ≠ 0) (ht : t ≠ 0) : GL (Fin 2) K :=
   Matrix.GeneralLinearGroup.mkOfDetNeZero !![a, b; 0, t]
     (by rw [Matrix.det_fin_two_of]; simp [ha, ht])
 
+/--
+@isnad1 id=eq.2h4v.s7.2e1e7305a370 from=translated src=- shape=907cef91 vocab=eeb27c76
+-/
 @[simp] theorem upperUnit_apply_zero_zero (a b t : K) (ha : a ≠ 0) (ht : t ≠ 0) :
     (upperUnit a b t ha ht : Matrix (Fin 2) (Fin 2) K) 0 0 = a := rfl
 
+/--
+@isnad1 id=eq.2h4v.s7.d3b1bf73f230 from=translated src=- shape=7a21ba3c vocab=eeb27c76
+-/
 @[simp] theorem upperUnit_apply_zero_one (a b t : K) (ha : a ≠ 0) (ht : t ≠ 0) :
     (upperUnit a b t ha ht : Matrix (Fin 2) (Fin 2) K) 0 1 = b := rfl
 
+/--
+@isnad1 id=eq.2h4v.s7.7d158c92e336 from=translated src=- shape=2411cb17 vocab=eeb27c76
+-/
 @[simp] theorem upperUnit_apply_one_zero (a b t : K) (ha : a ≠ 0) (ht : t ≠ 0) :
     (upperUnit a b t ha ht : Matrix (Fin 2) (Fin 2) K) 1 0 = 0 := rfl
 
+/--
+@isnad1 id=eq.2h4v.s7.59dd7c353f84 from=translated src=- shape=1a194587 vocab=eeb27c76
+-/
 @[simp] theorem upperUnit_apply_one_one (a b t : K) (ha : a ≠ 0) (ht : t ≠ 0) :
     (upperUnit a b t ha ht : Matrix (Fin 2) (Fin 2) K) 1 1 = t := rfl
 
 variable {L : Type*} [NormedField L]
 
+/--
+@isnad1 id=eq.1h4v.s7.42cd661d3483 from=translated src=- shape=57f3aa89 vocab=0ca1da05
+-/
 theorem topNormSq_map (φ : K →+* L) (hφ : ∀ x, ‖φ x‖ = ‖x‖) (M : Matrix (Fin 2) (Fin 2) K) :
     topNormSq (M.map φ) = topNormSq M := by
   simp [topNormSq, hφ]
 
+/--
+@isnad1 id=eq.1h4v.s7.51a08c126401 from=translated src=- shape=57f3aa89 vocab=5cb1b954
+-/
 theorem rowNormSq_map (φ : K →+* L) (hφ : ∀ x, ‖φ x‖ = ‖x‖) (M : Matrix (Fin 2) (Fin 2) K) :
     rowNormSq (M.map φ) = rowNormSq M := by
   simp [rowNormSq, hφ]
 
+/--
+@isnad1 id=eq.0h4v.s9.18958d07893f from=translated src=- shape=a0b8a145 vocab=82fe0fdc
+-/
 theorem coe_map (φ : K →+* L) (g : GL (Fin 2) K) :
     ((Matrix.GeneralLinearGroup.map φ g : GL (Fin 2) L) : Matrix (Fin 2) (Fin 2) L)
       = (g : Matrix (Fin 2) (Fin 2) K).map φ := rfl
 
+/--
+@isnad1 id=eq.1h4v.s9.7e6ef67050ee from=translated src=- shape=dce2c751 vocab=e6c10b57
+-/
 theorem localHeight_map (φ : K →+* L) (hφ : ∀ x, ‖φ x‖ = ‖x‖) (g : GL (Fin 2) K) :
     localHeight (Matrix.GeneralLinearGroup.map φ g) = localHeight g := by
   unfold localHeight
   rw [coe_map, rowNormSq_map φ hφ, ← RingHom.mapMatrix_apply, ← RingHom.map_det, hφ]
 
+/--
+@isnad1 id=eq.1h4v.s9.40da9081f954 from=translated src=- shape=dce2c751 vocab=7adda608
+-/
 theorem xWindowSq_map (φ : K →+* L) (hφ : ∀ x, ‖φ x‖ = ‖x‖) (g : GL (Fin 2) K) :
     xWindowSq (Matrix.GeneralLinearGroup.map φ g) = xWindowSq g := by
   unfold xWindowSq
   rw [localHeight_map φ hφ, coe_map, topNormSq_map φ hφ, rowNormSq_map φ hφ]
 
+/--
+@isnad1 id=eq.2h6v.s9.5f0d716d5d8c from=translated src=- shape=83020fb9 vocab=5af1e6b8
+-/
 theorem map_upperUnit (φ : K →+* L) (a b t : K) (ha : a ≠ 0) (ht : t ≠ 0) :
     Matrix.GeneralLinearGroup.map φ (upperUnit a b t ha ht)
       = upperUnit (φ a) (φ b) (φ t) ((map_ne_zero φ).2 ha) ((map_ne_zero φ).2 ht) := by
@@ -180,10 +231,16 @@ open ComplexConjugate
 def xCoord (g : Matrix (Fin 2) (Fin 2) ℂ) : ℂ :=
   (g 0 0 * conj (g 1 0) + g 0 1 * conj (g 1 1)) / (rowNormSq g : ℂ)
 
+/--
+@isnad1 id=eq.0h1v.s7.d5580893154a from=translated src=- shape=2bb604eb vocab=80156e4f
+-/
 theorem ofReal_rowNormSq (g : Matrix (Fin 2) (Fin 2) ℂ) :
     ((rowNormSq g : ℝ) : ℂ) = g 1 0 * conj (g 1 0) + g 1 1 * conj (g 1 1) := by
   simp [rowNormSq, Complex.mul_conj, Complex.normSq_eq_norm_sq]
 
+/--
+@isnad1 id=eq.0h1v.s8.8cc0d48db056 from=translated src=- shape=077ed48f vocab=047a4559
+-/
 theorem topNormSq_mul_rowNormSq (g : Matrix (Fin 2) (Fin 2) ℂ) :
     topNormSq g * rowNormSq g = ‖g 0 0 * conj (g 1 0) + g 0 1 * conj (g 1 1)‖ ^ 2 + ‖g.det‖ ^ 2 := by
   simp only [topNormSq, rowNormSq, Matrix.det_fin_two, Complex.sq_norm, Complex.normSq_apply,
@@ -191,6 +248,9 @@ theorem topNormSq_mul_rowNormSq (g : Matrix (Fin 2) (Fin 2) ℂ) :
     Complex.sub_im, Complex.conj_re, Complex.conj_im]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s6.8dde744c55b3 from=translated src=- shape=7cc918b4 vocab=a0d74bce
+-/
 theorem xWindowSq_eq_norm_xCoord_sq (g : GL (Fin 2) ℂ) :
     xWindowSq g = ‖xCoord (g : Matrix (Fin 2) (Fin 2) ℂ)‖ ^ 2 := by
   have hrow := rowNormSq_pos g
@@ -207,6 +267,9 @@ theorem xWindowSq_eq_norm_xCoord_sq (g : GL (Fin 2) ℂ) :
   rw [hnum]
   ring
 
+/--
+@isnad1 id=eq.5h5v.s9.d3e23a91da1c from=translated src=- shape=8d68f88d vocab=e42f18d6
+-/
 theorem xCoord_upper_entries_mul {s : GL (Fin 2) ℂ} {a b t : ℂ} (ht : t ≠ 0)
     (h00 : (s : Matrix (Fin 2) (Fin 2) ℂ) 0 0 = a)
     (h01 : (s : Matrix (Fin 2) (Fin 2) ℂ) 0 1 = b)
@@ -242,6 +305,9 @@ section Embedding
 
 variable {K : Type*} [NormedField K]
 
+/--
+@isnad1 id=eq.1h3v.s7.1ba98f4a23d6 from=translated src=- shape=e57627a7 vocab=1aee512a
+-/
 theorem xWindowSq_eq_norm_xCoord_map_sq (φ : K →+* ℂ) (hφ : ∀ x, ‖φ x‖ = ‖x‖) (g : GL (Fin 2) K) :
     xWindowSq g = ‖xCoord ((g : Matrix (Fin 2) (Fin 2) K).map φ)‖ ^ 2 := by
   rw [← xWindowSq_map φ hφ g, xWindowSq_eq_norm_xCoord_sq, coe_map]
@@ -252,6 +318,9 @@ section InfinitePlace
 
 variable {F : Type*} [Field F]
 
+/--
+@isnad1 id=eq.0h3v.s6.1ddaa3b83df0 from=translated src=- shape=0be25689 vocab=d70c65e2
+-/
 theorem norm_extensionEmbedding (w : InfinitePlace F) (x : w.Completion) :
     ‖InfinitePlace.Completion.extensionEmbedding w x‖ = ‖x‖ :=
   (InfinitePlace.Completion.isometry_extensionEmbedding w).norm_map_of_map_zero (map_zero _) x

@@ -13,18 +13,27 @@ namespace Representation
 variable {k G V : Type*} [CommRing k] [Group G] [Fintype G] [AddCommGroup V] [Module k V]
   (ρ : Representation k G V)
 
+/--
+@isnad1 id=eq.0h5v.s8.4987712f326d from=translated src=- shape=624bc121 vocab=b00468d6
+-/
 lemma self_comp_norm' (g : G) : ρ g ∘ₗ ρ.norm = ρ.norm := by
   ext v
   simp only [norm, LinearMap.coe_comp, Function.comp_apply, LinearMap.sum_apply, map_sum]
   exact Fintype.sum_equiv (Equiv.mulLeft g) _ _ fun h => by
     simp only [Equiv.coe_mulLeft, map_mul, Module.End.mul_apply]
 
+/--
+@isnad1 id=eq.0h5v.s8.f0b833f683aa from=translated src=- shape=0783bdce vocab=b00468d6
+-/
 lemma norm_comp_self' (g : G) : ρ.norm ∘ₗ ρ g = ρ.norm := by
   ext v
   simp only [norm, LinearMap.coe_comp, Function.comp_apply, LinearMap.sum_apply]
   exact Fintype.sum_equiv (Equiv.mulRight g) _ _ fun h => by
     simp only [Equiv.coe_mulRight, map_mul, Module.End.mul_apply]
 
+/--
+@isnad1 id=mem.0h5v.s7.8fb90ee5bcfd from=translated src=- shape=65a2d408 vocab=281698bd
+-/
 lemma norm_apply_mem_invariants (v : V) : ρ.norm v ∈ ρ.invariants :=
   (mem_invariants ρ _).2 fun g => by
     rw [← LinearMap.comp_apply, self_comp_norm']
@@ -32,8 +41,14 @@ lemma norm_apply_mem_invariants (v : V) : ρ.norm v ∈ ρ.invariants :=
 noncomputable def normToInvariants : V →ₗ[k] ρ.invariants :=
   LinearMap.codRestrict ρ.invariants ρ.norm (norm_apply_mem_invariants ρ)
 
+/--
+@isnad1 id=eq.0h5v.s8.75aae04b981a from=translated src=- shape=71389531 vocab=96f232d8
+-/
 @[simp] lemma coe_normToInvariants_apply (v : V) : (ρ.normToInvariants v : V) = ρ.norm v := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.2dac4bb99158 from=translated src=- shape=fbd57dc5 vocab=a72baf33
+-/
 lemma normToInvariants_comp_self (g : G) : ρ.normToInvariants ∘ₗ ρ g = ρ.normToInvariants := by
   refine LinearMap.ext fun v => Subtype.ext ?_
   change ρ.norm (ρ g v) = ρ.norm v
@@ -42,6 +57,9 @@ lemma normToInvariants_comp_self (g : G) : ρ.normToInvariants ∘ₗ ρ g = ρ.
 noncomputable def normBar : ρ.Coinvariants →ₗ[k] ρ.invariants :=
   Coinvariants.lift ρ ρ.normToInvariants (normToInvariants_comp_self ρ)
 
+/--
+@isnad1 id=eq.0h5v.s10.257e1e45a3ce from=translated src=- shape=d7e1465e vocab=71d0644d
+-/
 @[simp] lemma normBar_mk (v : V) : ρ.normBar (Coinvariants.mk ρ v) = ρ.normToInvariants v := rfl
 
 abbrev tateH0 : Type _ := ρ.invariants ⧸ LinearMap.range ρ.normBar
@@ -68,25 +86,40 @@ noncomputable abbrev invariantsMap : A.ρ.invariants →ₗ[k] B.ρ.invariants :
   ((Rep.invariantsFunctor k G).map φ).hom
 
 omit [Fintype G] in
+/--
+@isnad1 id=eq.0h6v.s12.9b0b52b11667 from=translated src=- shape=accd067e vocab=d1e8903b
+-/
 @[simp] lemma coe_invariantsMap_apply (a : A.ρ.invariants) : (invariantsMap φ a : B) = φ.hom a := rfl
 
 noncomputable abbrev coinvariantsMap : A.ρ.Coinvariants →ₗ[k] B.ρ.Coinvariants :=
   ((Rep.coinvariantsFunctor k G).map φ).hom
 
 omit [Fintype G] in
+/--
+@isnad1 id=eq.0h6v.s11.447a6d1cb58d from=translated src=- shape=90f5853c vocab=3ddea34d
+-/
 lemma coinvariantsMap_mk (a : A) :
     coinvariantsMap φ (Representation.Coinvariants.mk A.ρ a) = Representation.Coinvariants.mk B.ρ (φ.hom a) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.2c2ab0dc5b4c from=translated src=- shape=0bbeab49 vocab=23c6c3b7
+-/
 lemma hom_norm_apply (a : A) : φ.hom (A.ρ.norm a) = B.ρ.norm (φ.hom a) := by
   simp only [Representation.norm, LinearMap.coe_sum, Finset.sum_apply, map_sum]
   exact Finset.sum_congr rfl fun g _ => Rep.hom_comm_apply φ g a
 
+/--
+@isnad1 id=eq.0h5v.s11.1ec14eec4247 from=translated src=- shape=fef9fca5 vocab=3bd2d101
+-/
 lemma normBar_comp_coinvariantsMap :
     B.ρ.normBar ∘ₗ coinvariantsMap φ = invariantsMap φ ∘ₗ A.ρ.normBar := by
   refine Submodule.linearMap_qext _ (LinearMap.ext fun a => Subtype.ext ?_)
   change B.ρ.norm (φ.hom a) = φ.hom (A.ρ.norm a)
   exact (hom_norm_apply φ a).symm
 
+/--
+@isnad1 id=le.0h5v.s12.95a82326eedb from=translated src=- shape=c9df03e1 vocab=b17bea1f
+-/
 lemma range_normBar_le_comap_invariantsMap :
     LinearMap.range A.ρ.normBar ≤ (LinearMap.range B.ρ.normBar).comap (invariantsMap φ) := by
   rintro x ⟨y, rfl⟩
@@ -95,6 +128,9 @@ lemma range_normBar_le_comap_invariantsMap :
 noncomputable def tateH0Map : A.tateH0 →ₗ[k] B.tateH0 :=
   Submodule.mapQ _ _ (invariantsMap φ) (range_normBar_le_comap_invariantsMap φ)
 
+/--
+@isnad1 id=eq.0h6v.s14.5e360b97830e from=translated src=- shape=002fb3a2 vocab=e99c3842
+-/
 @[simp] lemma tateH0Map_mk (a : A.ρ.invariants) :
     tateH0Map φ (Submodule.Quotient.mk a) = Submodule.Quotient.mk (invariantsMap φ a) := rfl
 
@@ -103,20 +139,32 @@ noncomputable def tateHneg1Map : A.tateHneg1 →ₗ[k] B.tateHneg1 :=
     rw [LinearMap.mem_ker, LinearMap.comp_apply, ← LinearMap.comp_apply (f := B.ρ.normBar),
       normBar_comp_coinvariantsMap, LinearMap.comp_apply, Submodule.subtype_apply, x.2, map_zero])
 
+/--
+@isnad1 id=eq.0h6v.s13.fb304284a0e0 from=translated src=- shape=0186ae65 vocab=a45588f8
+-/
 @[simp] lemma coe_tateHneg1Map_apply (x : A.tateHneg1) :
     (tateHneg1Map φ x : B.ρ.Coinvariants) = coinvariantsMap φ x := rfl
 
+/--
+@isnad1 id=eq.0h3v.s13.e32197cf7e3a from=translated src=- shape=a5cefa40 vocab=69e91d4d
+-/
 lemma tateH0Map_id : tateH0Map (𝟙 A) = LinearMap.id := by
   refine Submodule.linearMap_qext _ (LinearMap.ext fun a => ?_)
   change Submodule.Quotient.mk (invariantsMap (𝟙 A) a) = Submodule.Quotient.mk a
   congr 1
 
+/--
+@isnad1 id=eq.0h7v.s13.eb7cd58463e9 from=translated src=- shape=50496513 vocab=a7add8fc
+-/
 lemma tateH0Map_comp : tateH0Map (φ ≫ ψ) = tateH0Map ψ ∘ₗ tateH0Map φ := by
   refine Submodule.linearMap_qext _ (LinearMap.ext fun a => ?_)
   change Submodule.Quotient.mk (invariantsMap (φ ≫ ψ) a) =
     Submodule.Quotient.mk (invariantsMap ψ (invariantsMap φ a))
   congr 1
 
+/--
+@isnad1 id=eq.0h3v.s12.8006dfb68416 from=translated src=- shape=a5cefa40 vocab=40fb350f
+-/
 lemma tateHneg1Map_id : tateHneg1Map (𝟙 A) = LinearMap.id := by
   refine LinearMap.ext fun x => Subtype.ext ?_
   obtain ⟨a, ha⟩ := Submodule.Quotient.mk_surjective _ (x : A.ρ.Coinvariants)
@@ -124,6 +172,9 @@ lemma tateHneg1Map_id : tateHneg1Map (𝟙 A) = LinearMap.id := by
   rw [← ha]
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s13.35c6313576e1 from=translated src=- shape=b3a9532c vocab=6c31d1b2
+-/
 lemma tateHneg1Map_comp : tateHneg1Map (φ ≫ ψ) = tateHneg1Map ψ ∘ₗ tateHneg1Map φ := by
   refine LinearMap.ext fun x => Subtype.ext ?_
   obtain ⟨a, ha⟩ := Submodule.Quotient.mk_surjective _ (x : A.ρ.Coinvariants)
@@ -145,9 +196,21 @@ noncomputable def tateCohomology (A : Rep.{u} k G) : ℤ → ModuleCat.{u} k
   | (Int.negSucc 0) => ModuleCat.of k A.tateHneg1
   | (Int.negSucc (n + 1)) => groupHomology A (n + 1)
 
+/--
+@isnad1 id=eq.0h4v.s6.508f96dab3fe from=translated src=- shape=b2f859f8 vocab=46210b06
+-/
 lemma tateCohomology_ofNat_succ (A : Rep.{u} k G) (n : ℕ) : A.tateCohomology (n + 1 : ℕ) = groupCohomology A (n + 1) := rfl
+/--
+@isnad1 id=eq.0h3v.s11.5266383dc0e5 from=translated src=- shape=e389cd5e vocab=e8c7bb30
+-/
 lemma tateCohomology_zero (A : Rep.{u} k G) : A.tateCohomology 0 = ModuleCat.of k A.tateH0 := rfl
+/--
+@isnad1 id=eq.0h3v.s11.eaf0c4f9b0ba from=translated src=- shape=d3bb129a vocab=8eda941a
+-/
 lemma tateCohomology_neg_one (A : Rep.{u} k G) : A.tateCohomology (-1) = ModuleCat.of k A.tateHneg1 := rfl
+/--
+@isnad1 id=eq.0h4v.s6.eecac03d6a8d from=translated src=- shape=eb6b71cc vocab=dfff5928
+-/
 lemma tateCohomology_negSucc_succ (A : Rep.{u} k G) (n : ℕ) :
     A.tateCohomology (Int.negSucc (n + 1)) = groupHomology A (n + 1) := rfl
 

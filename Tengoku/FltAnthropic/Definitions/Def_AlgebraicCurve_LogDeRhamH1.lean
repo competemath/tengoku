@@ -36,24 +36,39 @@ def HasLogResidue (ω : Ω[F⁄K]) (a : K) : Prop :=
 variable {v}
 
 variable (v) in
+/--
+@isnad1 id=haspoleo.0h4v.s7.1fa32ccbb695 from=translated src=- shape=2394e4f0 vocab=99f32304
+-/
 theorem hasPoleOrderLE_zero_right (n : ℕ) : v.HasPoleOrderLE n (0 : Ω[F⁄K]) :=
   ⟨0, by rw [mul_zero]; exact zero_mem _, by rw [zero_smul]⟩
 
+/--
+@isnad1 id=haspoleo.2h6v.s7.27d340fcbe07 from=translated src=- shape=acc49def vocab=832ec0a3
+-/
 theorem HasPoleOrderLE.add {n : ℕ} {ω η : Ω[F⁄K]} (hω : v.HasPoleOrderLE n ω)
     (hη : v.HasPoleOrderLE n η) : v.HasPoleOrderLE n (ω + η) := by
   obtain ⟨f, hf, rfl⟩ := hω
   obtain ⟨g, hg, rfl⟩ := hη
   exact ⟨f + g, by rw [mul_add]; exact add_mem hf hg, by rw [add_smul]⟩
 
+/--
+@isnad1 id=haspoleo.1h5v.s7.4e13f2768b95 from=translated src=- shape=3b4f35db vocab=cd2326b7
+-/
 theorem HasPoleOrderLE.neg {n : ℕ} {ω : Ω[F⁄K]} (hω : v.HasPoleOrderLE n ω) :
     v.HasPoleOrderLE n (-ω) := by
   obtain ⟨f, hf, rfl⟩ := hω
   exact ⟨-f, by rw [mul_neg]; exact neg_mem hf, by rw [neg_smul]⟩
 
+/--
+@isnad1 id=haspoleo.2h6v.s7.0a48e7d9a22b from=translated src=- shape=acc49def vocab=e52eaf01
+-/
 theorem HasPoleOrderLE.sub {n : ℕ} {ω η : Ω[F⁄K]} (hω : v.HasPoleOrderLE n ω)
     (hη : v.HasPoleOrderLE n η) : v.HasPoleOrderLE n (ω - η) := by
   rw [sub_eq_add_neg]; exact hω.add hη.neg
 
+/--
+@isnad1 id=haspoleo.1h6v.s6.efb9ec00b813 from=translated src=- shape=cb865eea vocab=485b1045
+-/
 theorem HasPoleOrderLE.smul {n : ℕ} (c : K) {ω : Ω[F⁄K]} (hω : v.HasPoleOrderLE n ω) :
     v.HasPoleOrderLE n (c • ω) := by
   obtain ⟨f, hf, rfl⟩ := hω
@@ -61,6 +76,9 @@ theorem HasPoleOrderLE.smul {n : ℕ} (c : K) {ω : Ω[F⁄K]} (hω : v.HasPoleO
   rw [mul_left_comm]
   exact mul_mem (v.algebraMap_mem' c) hf
 
+/--
+@isnad1 id=haspoleo.2h6v.s6.529515d423fe from=translated src=- shape=e5fa57e5 vocab=c047088e
+-/
 theorem HasPoleOrderLE.of_le {m n : ℕ} (h : m ≤ n) {ω : Ω[F⁄K]} (hω : v.HasPoleOrderLE m ω) :
     v.HasPoleOrderLE n ω := by
   obtain ⟨f, hf, rfl⟩ := hω
@@ -69,23 +87,38 @@ theorem HasPoleOrderLE.of_le {m n : ℕ} (h : m ≤ n) {ω : Ω[F⁄K]} (hω : v
   rw [add_comm, pow_add, mul_assoc]
   exact mul_mem (pow_mem v.unifLDR_mem k) hf
 
+/--
+@isnad1 id=haspoleo.1h4v.s7.988c2ef5757d from=translated src=- shape=cf0a2262 vocab=cc5b8967
+-/
 theorem hasPoleOrderLE_zero_of_mem {f : F} (hf : f ∈ v.toValuationSubring) :
     v.HasPoleOrderLE 0 (f • v.dCoord) :=
   ⟨f, by rw [pow_zero, one_mul]; exact hf, rfl⟩
 
+/--
+@isnad1 id=fnpoleor.2h6v.s6.c09cd5d29274 from=translated src=- shape=16f07227 vocab=746342c6
+-/
 theorem FnPoleOrderLE.add {n : ℕ} {g h : F} (hg : v.FnPoleOrderLE n g) (hh : v.FnPoleOrderLE n h) :
     v.FnPoleOrderLE n (g + h) := by
   unfold FnPoleOrderLE at *
   rw [mul_add]; exact add_mem hg hh
 
+/--
+@isnad1 id=fnpoleor.1h6v.s7.8cd712b6cd19 from=translated src=- shape=0f46a10a vocab=5ed3d243
+-/
 theorem FnPoleOrderLE.smul {n : ℕ} (c : K) {g : F} (hg : v.FnPoleOrderLE n g) :
     v.FnPoleOrderLE n (algebraMap K F c * g) := by
   unfold FnPoleOrderLE at *
   rw [mul_left_comm]; exact mul_mem (v.algebraMap_mem' c) hg
 
+/--
+@isnad1 id=iff.0h4v.s6.19724c0332eb from=translated src=- shape=b3a8996c vocab=4e135c74
+-/
 theorem fnPoleOrderLE_zero_iff (g : F) : v.FnPoleOrderLE 0 g ↔ g ∈ v.toValuationSubring := by
   unfold FnPoleOrderLE; rw [pow_zero, one_mul]
 
+/--
+@isnad1 id=haspoleo.1h5v.s6.b7174bdec961 from=translated src=- shape=ab6fe3c9 vocab=0050f23f
+-/
 theorem HasLogResidue.hasPoleOrderLE {ω : Ω[F⁄K]} {a : K} (h : v.HasLogResidue ω a) :
     v.HasPoleOrderLE 1 ω := by
   obtain ⟨f, rfl, hval⟩ := h
@@ -106,11 +139,17 @@ def logForms (S : Set (Place K F)) : Submodule K Ω[F⁄K] where
 
 variable {K F}
 
+/--
+@isnad1 id=iff.0h4v.s8.7fa9afcd4a6c from=translated src=- shape=0d3bea5d vocab=43c5f587
+-/
 theorem mem_logForms_iff {S : Set (Place K F)} {ω : Ω[F⁄K]} :
     ω ∈ logForms K F S ↔
       ∀ v : Place K F, (v ∉ S → v.HasPoleOrderLE 0 ω) ∧ (v ∈ S → v.HasPoleOrderLE 1 ω) :=
   Iff.rfl
 
+/--
+@isnad1 id=le.0h3v.s8.cef5e1806f6d from=translated src=- shape=8ed6f392 vocab=5644c8b3
+-/
 theorem regularDifferentials_le_logForms (S : Set (Place K F)) :
     regularDifferentials K F ≤ logForms K F S := by
   intro ω hω v
@@ -208,6 +247,9 @@ variable (S : Set (Place K F))
 
 def mk : ↥(cocycles K F S) →ₗ[K] H1 K F S := (coboundariesIn K F S).mkQ
 
+/--
+@isnad1 id=mem.1h4v.s9.4096f0475dd0 from=translated src=- shape=eb71e507 vocab=5a9b3aaf
+-/
 theorem inl_mem_cocycles {ω : Ω[F⁄K]} (hω : ω ∈ logForms K F S) : (ω, (0 : F)) ∈ cocycles K F S := by
   refine ⟨fun v hv => (hω v).1 hv, fun v hv => ?_⟩
   rw [map_zero, sub_zero]
@@ -221,6 +263,9 @@ def ofLog : ↥(logForms K F S) →ₗ[K] H1 K F S :=
 def ofRegular : ↥(regularDifferentials K F) →ₗ[K] H1 K F S :=
   (ofLog S).comp (Submodule.inclusion (regularDifferentials_le_logForms S))
 
+/--
+@isnad1 id=mem.1h4v.s9.87a8c52b289c from=translated src=- shape=97fec96c vocab=085468e4
+-/
 theorem snd_mem_of_mem_coboundaries {c : Ω[F⁄K] × F} (hc : c ∈ coboundaries K F S) :
     c.2 ∈ regularOff K F S ⊔ regularOn K F S := by
   have hc' : c ∈ exactPart K F S ⊔ localPart K F S := hc
@@ -261,6 +306,9 @@ def pullbackForm (φ : F →ₐ[K] F') : Ω[F⁄K] →ₗ[K] Ω[F'⁄K] :=
   haveI : IsScalarTower K F F' := IsScalarTower.of_algebraMap_eq fun k => (φ.commutes k).symm
   (KaehlerDifferential.map K K F F').restrictScalars K
 
+/--
+@isnad1 id=eq.0h5v.s9.ff1ce327e227 from=translated src=- shape=9278e69d vocab=c33ba9a3
+-/
 theorem pullbackForm_D (φ : F →ₐ[K] F') (x : F) :
     pullbackForm φ (D K F x) = D K F' (φ x) := by
   letI : Algebra F F' := φ.toRingHom.toAlgebra
@@ -270,9 +318,15 @@ theorem pullbackForm_D (φ : F →ₐ[K] F') (x : F) :
 def pullbackPair (φ : F →ₐ[K] F') : (Ω[F⁄K] × F) →ₗ[K] (Ω[F'⁄K] × F') :=
   (pullbackForm φ).prodMap φ.toLinearMap
 
+/--
+@isnad1 id=eq.0h5v.s10.dbdbe21abb6f from=translated src=- shape=d4d350d0 vocab=b0fc69e1
+-/
 @[simp] theorem pullbackPair_apply (φ : F →ₐ[K] F') (c : Ω[F⁄K] × F) :
     pullbackPair φ c = (pullbackForm φ c.1, φ c.2) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.6586a03e0a15 from=translated src=- shape=9928f847 vocab=a3f8aa8d
+-/
 theorem pullbackPair_D (φ : F →ₐ[K] F') (h : F) :
     pullbackPair φ (D K F h, h) = (D K F' (φ h), φ h) := by
   rw [pullbackPair_apply, pullbackForm_D]
@@ -286,6 +340,9 @@ def H1.map (S : Set (Place K F)) (T : Set (Place K F')) (φ : F →ₐ[K] F')
       (fun c => hZ c c.2))
     (fun c hc => hB c hc)
 
+/--
+@isnad1 id=eq.2h7v.s14.ba486ca6ac54 from=translated src=- shape=7562e6de vocab=dbfa06a5
+-/
 theorem H1.map_mk (S : Set (Place K F)) (T : Set (Place K F')) (φ : F →ₐ[K] F')
     (hZ : ∀ c ∈ cocycles K F S, pullbackPair φ c ∈ cocycles K F' T)
     (hB : ∀ c ∈ coboundaries K F S, pullbackPair φ c ∈ coboundaries K F' T)
@@ -301,6 +358,9 @@ variable (p : ℕ) [Fact p.Prime] [CharP K p]
 
 omit [Fact p.Prime] in
 
+/--
+@isnad1 id=eq.0h4v.s8.b27ad9e396d3 from=translated src=- shape=ce9c9281 vocab=417d1350
+-/
 theorem D_pow_char (g : F) : D K F (g ^ p) = 0 := by
   haveI : CharP F p := charP_of_injective_algebraMap (algebraMap K F).injective p
   rw [Derivation.leibniz_pow, ← Nat.cast_smul_eq_nsmul F, CharP.cast_eq_zero F p, zero_smul]
@@ -320,6 +380,9 @@ def frobPair : (Ω[F⁄K] × F) →ₛₗ[frobenius K p] (Ω[F⁄K] × F) where
 
 variable (S : Set (Place K F))
 
+/--
+@isnad1 id=mem.0h5v.s11.a62c5d2814bf from=translated src=- shape=37422f71 vocab=cb63c2d3
+-/
 theorem frobPair_mem_cocycles (c : ↥(cocycles K F S)) : frobPair p (c : Ω[F⁄K] × F) ∈ cocycles K F S := by
   refine ⟨fun v _ => v.hasPoleOrderLE_zero_right 0, fun v _ => ?_⟩
   show v.HasPoleOrderLE 1 ((0 : Ω[F⁄K]) - D K F ((c : Ω[F⁄K] × F).2 ^ p))
@@ -330,6 +393,9 @@ def frobCocycles : ↥(cocycles K F S) →ₛₗ[frobenius K p] ↥(cocycles K F
   LinearMap.codRestrict (cocycles K F S) ((frobPair p).domRestrict (cocycles K F S))
     (frobPair_mem_cocycles p S)
 
+/--
+@isnad1 id=le.0h4v.s12.cde8dfbdbf38 from=translated src=- shape=c5fea9ad vocab=1170b788
+-/
 theorem coboundariesIn_le_comap_frobCocycles :
     coboundariesIn K F S ≤ (coboundariesIn K F S).comap (frobCocycles p S) := by
   intro c hc
@@ -375,6 +441,9 @@ def cartierPair :
     · simp only [Prod.smul_fst, RingHom.coe_coe]; exact hC.semi a c.1
     · simp
 
+/--
+@isnad1 id=mem.1h6v.s11.ecb200ee6f3c from=translated src=- shape=c5344136 vocab=1334a785
+-/
 theorem cartierPair_mem_cocycles (c : ↥(cocycles K F S)) :
     cartierPair hC (c : Ω[F⁄K] × F) ∈ cocycles K F S := by
   obtain ⟨hoff, hon⟩ := c.2
@@ -391,6 +460,9 @@ def cartierCocycles :
   LinearMap.codRestrict (cocycles K F S) ((cartierPair hC).domRestrict (cocycles K F S))
     (cartierPair_mem_cocycles hC S)
 
+/--
+@isnad1 id=le.1h5v.s12.5d3ca470f9c1 from=translated src=- shape=1ac683cc vocab=030d2425
+-/
 theorem coboundariesIn_le_comap_cartierCocycles :
     coboundariesIn K F S ≤ (coboundariesIn K F S).comap (cartierCocycles hC S) := by
   intro c hc

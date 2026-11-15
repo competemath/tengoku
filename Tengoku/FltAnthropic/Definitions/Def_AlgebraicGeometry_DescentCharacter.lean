@@ -22,6 +22,9 @@ def transportNatIso {T : X ⟶ X} {q : X ⟶ Y} (h : T ≫ q = q) :
     Scheme.Modules.pullback q ⋙ Scheme.Modules.pullback T ≅ Scheme.Modules.pullback q :=
   Scheme.Modules.pullbackComp T q ≪≫ Scheme.Modules.pullbackCongr h
 
+/--
+@isnad1 id=eq.1h5v.s7.c4d993964896 from=translated src=- shape=ce256b3e vocab=cee3c2e4
+-/
 theorem transportNatIso_app {T : X ⟶ X} {q : X ⟶ Y} (h : T ≫ q = q) (M : Y.Modules) :
     (transportNatIso h).app M = transportIso h M := rfl
 
@@ -44,16 +47,28 @@ def baseSectionRingHom (f : X ⟶ Spec (CommRingCat.of R)) (U : X.Opens) : R →
   (X.presheaf.map (homOfLE (le_top (a := U))).op).hom.comp
     (f.appTop.hom.comp (Scheme.ΓSpecIso (CommRingCat.of R)).inv.hom)
 
+/--
+@isnad1 id=eq.0h5v.s10.1425b0505194 from=translated src=- shape=08ca08be vocab=ad333f2a
+-/
 @[simp] theorem baseSectionRingHom_apply (f : X ⟶ Spec (CommRingCat.of R)) (U : X.Opens) (c : R) :
     baseSectionRingHom f U c = baseSection f c U := rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.c7c5ba0b39e0 from=translated src=- shape=2325b010 vocab=3be4ad83
+-/
 @[simp] theorem baseSection_one (f : X ⟶ Spec (CommRingCat.of R)) (U : X.Opens) : baseSection f 1 U = 1 := by
   rw [← baseSectionRingHom_apply, map_one]
 
+/--
+@isnad1 id=eq.0h6v.s10.a8412b78f683 from=translated src=- shape=98749f83 vocab=bd5d0006
+-/
 @[simp] theorem baseSection_mul (f : X ⟶ Spec (CommRingCat.of R)) (c c' : R) (U : X.Opens) :
     baseSection f (c * c') U = baseSection f c U * baseSection f c' U := by
   simp only [← baseSectionRingHom_apply, map_mul]
 
+/--
+@isnad1 id=eq.0h7v.s10.faf7c10b1316 from=translated src=- shape=6376dd59 vocab=21f98d47
+-/
 theorem map_baseSection (f : X ⟶ Spec (CommRingCat.of R)) (c : R) {U V : X.Opens} (i : V ⟶ U) :
     X.presheaf.map i.op (baseSection f c U) = baseSection f c V := by
   unfold baseSection

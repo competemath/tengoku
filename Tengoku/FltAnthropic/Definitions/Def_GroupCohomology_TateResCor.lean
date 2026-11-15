@@ -26,12 +26,21 @@ noncomputable def cosetDecomp : (G ⧸ S) × S ≃ G where
     rw [h, inv_mul_cancel_left]
   right_inv g := mul_inv_cancel_left _ _
 
+/--
+@isnad1 id=eq.0h3v.s8.2f206c1f26d6 from=translated src=- shape=eb1a65dd vocab=1b24c027
+-/
 @[simp] lemma cosetDecomp_apply (p : (G ⧸ S) × S) : cosetDecomp S p = p.1.out * p.2 := rfl
 
+/--
+@isnad1 id=ex.0h4v.s7.f45fdf337cb3 from=translated src=- shape=bd53b396 vocab=130535d0
+-/
 lemma exists_out_smul_eq (g : G) (q : G ⧸ S) : ∃ s : S, (g • q).out = g * q.out * s := by
   rw [← MulAction.Quotient.coe_smul_out S g q, smul_eq_mul]
   exact QuotientGroup.mk_out_eq_mul S (g * q.out)
 
+/--
+@isnad1 id=eq.0h4v.s7.28e8b88cc52b from=translated src=- shape=4b36a75e vocab=6e05bbbb
+-/
 lemma sum_eq_sum_sum {M : Type*} [AddCommMonoid M] [Fintype G] [Fintype S] [Fintype (G ⧸ S)] (f : G → M) :
     ∑ g : G, f g = ∑ q : G ⧸ S, ∑ s : S, f (q.out * s) := by
   rw [← Fintype.sum_prod_type (fun p : (G ⧸ S) × S => f (p.1.out * p.2))]
@@ -41,9 +50,15 @@ section coinvariants
 
 variable {k : Type u} {V : Type w} [CommRing k] [AddCommGroup V] [Module k V] (ρ : Representation k G V)
 
+/--
+@isnad1 id=surjecti.0h4v.s7.9982306ceb81 from=translated src=- shape=94583051 vocab=6a1f2480
+-/
 lemma mk_surjective : Function.Surjective (Coinvariants.mk ρ) :=
   Submodule.Quotient.mk_surjective _
 
+/--
+@isnad1 id=eq.0h6v.s9.58b62b960046 from=translated src=- shape=3ea3a694 vocab=351a4305
+-/
 lemma mk_self_apply (g : G) (v : V) : Coinvariants.mk ρ (ρ g v) = Coinvariants.mk ρ v :=
   (Coinvariants.mk_eq_iff ρ).2 (Coinvariants.mem_ker_of_eq g v _ rfl)
 
@@ -58,19 +73,37 @@ noncomputable def cosetNorm : V →ₗ[k] V := ∑ᶠ q : G ⧸ S, ρ q.out
 
 noncomputable def cosetTransfer : V →ₗ[k] V := ∑ᶠ q : G ⧸ S, ρ q.out⁻¹
 
+/--
+@isnad1 id=eq.0h5v.s8.c7b35424974f from=translated src=- shape=8afbf588 vocab=78f96b18
+-/
 lemma cosetNorm_eq_sum [Fintype (G ⧸ S)] : cosetNorm ρ S = ∑ q : G ⧸ S, ρ q.out := finsum_eq_sum_of_fintype _
 
+/--
+@isnad1 id=eq.0h5v.s8.642c06672d81 from=translated src=- shape=69bbf4ad vocab=69713609
+-/
 lemma cosetTransfer_eq_sum [Fintype (G ⧸ S)] : cosetTransfer ρ S = ∑ q : G ⧸ S, ρ q.out⁻¹ := finsum_eq_sum_of_fintype _
 
+/--
+@isnad1 id=eq.0h6v.s8.2ffa53e567fd from=translated src=- shape=ec8d34ca vocab=78f96b18
+-/
 lemma cosetNorm_apply [Fintype (G ⧸ S)] (v : V) : cosetNorm ρ S v = ∑ q : G ⧸ S, ρ q.out v := by
   rw [cosetNorm_eq_sum, LinearMap.coe_sum, Finset.sum_apply]
 
+/--
+@isnad1 id=eq.0h6v.s8.8091aad59545 from=translated src=- shape=e8cd8175 vocab=69713609
+-/
 lemma cosetTransfer_apply [Fintype (G ⧸ S)] (v : V) : cosetTransfer ρ S v = ∑ q : G ⧸ S, ρ q.out⁻¹ v := by
   rw [cosetTransfer_eq_sum, LinearMap.coe_sum, Finset.sum_apply]
 
+/--
+@isnad1 id=eq.0h6v.s9.f70d309d369d from=translated src=- shape=d235082e vocab=21b5053f
+-/
 lemma norm_res_subtype_apply [Fintype S] (v : V) : Representation.norm (ρ.comp S.subtype) v = ∑ s : S, ρ s v := by
   simp only [Representation.norm, LinearMap.coe_sum, Finset.sum_apply, MonoidHom.comp_apply, Subgroup.coe_subtype]
 
+/--
+@isnad1 id=eq.0h6v.s9.5c397f0113dc from=translated src=- shape=c481a4b8 vocab=93557229
+-/
 lemma norm_eq_cosetNorm_norm_res [Fintype G] [Fintype S] (v : V) :
     ρ.norm v = cosetNorm ρ S (Representation.norm (ρ.comp S.subtype) v) := by
   letI := Fintype.ofFinite (G ⧸ S)
@@ -78,6 +111,9 @@ lemma norm_eq_cosetNorm_norm_res [Fintype G] [Fintype S] (v : V) :
   simp only [Representation.norm, LinearMap.coe_sum, Finset.sum_apply, map_sum, ← Module.End.mul_apply, ← map_mul]
   exact sum_eq_sum_sum S fun g => ρ g v
 
+/--
+@isnad1 id=eq.0h6v.s9.dd6af702ad51 from=translated src=- shape=d3621f91 vocab=c253575b
+-/
 lemma norm_eq_norm_res_cosetTransfer [Fintype G] [Fintype S] (v : V) :
     ρ.norm v = Representation.norm (ρ.comp S.subtype) (cosetTransfer ρ S v) := by
   letI := Fintype.ofFinite (G ⧸ S)
@@ -89,6 +125,9 @@ lemma norm_eq_norm_res_cosetTransfer [Fintype G] [Fintype S] (v : V) :
     _ = ∑ q : G ⧸ S, ∑ s : S, ρ (s * q.out⁻¹) v := Finset.sum_congr rfl fun q _ =>
         Fintype.sum_equiv (Equiv.inv S) _ _ fun s => by simp [mul_inv_rev]
 
+/--
+@isnad1 id=eq.1h7v.s9.b4f603dd8e2e from=translated src=- shape=cad02e76 vocab=a6d54415
+-/
 lemma self_cosetNorm_apply [Fintype G] (g : G) (v : V) (hv : ∀ s : S, ρ s v = v) :
     ρ g (cosetNorm ρ S v) = cosetNorm ρ S v := by
   letI := Fintype.ofFinite (G ⧸ S)
@@ -99,6 +138,9 @@ lemma self_cosetNorm_apply [Fintype G] (g : G) (v : V) (hv : ∀ s : S, ρ s v =
           rw [hs, map_mul ρ (g * q.out) (s : G), Module.End.mul_apply, hv]
     _ = ∑ q : G ⧸ S, ρ q.out v := Fintype.sum_equiv (MulAction.toPerm g) _ _ fun q => by rw [MulAction.toPerm_apply]
 
+/--
+@isnad1 id=eq.0h7v.s12.addd1d489322 from=translated src=- shape=094d5cd5 vocab=4a0128cf
+-/
 lemma mk_cosetTransfer_self_apply [Fintype G] (g : G) (v : V) :
     Coinvariants.mk (ρ.comp S.subtype) (cosetTransfer ρ S (ρ g v)) =
       Coinvariants.mk (ρ.comp S.subtype) (cosetTransfer ρ S v) := by
@@ -119,9 +161,15 @@ lemma mk_cosetTransfer_self_apply [Fintype G] (g : G) (v : V) :
 variable [Fintype G] [Fintype S]
 
 omit [Fintype G] [Fintype S] in
+/--
+@isnad1 id=le.0h5v.s8.1a0003f64a34 from=translated src=- shape=53f24556 vocab=d43a1ed7
+-/
 lemma invariants_le_invariants_res : ρ.invariants ≤ Representation.invariants (ρ.comp S.subtype) :=
   fun _ hv s => hv s
 
+/--
+@isnad1 id=le.0h5v.s12.fe2f2ff5887b from=translated src=- shape=99600e88 vocab=c20cedf9
+-/
 lemma range_normBar_le_comap_inclusion :
     LinearMap.range ρ.normBar ≤
       (LinearMap.range (Representation.normBar (ρ.comp S.subtype))).comap (Submodule.inclusion (invariants_le_invariants_res ρ S)) := by
@@ -134,6 +182,9 @@ lemma range_normBar_le_comap_inclusion :
 noncomputable def tateH0Res : ρ.tateH0 →ₗ[k] Representation.tateH0 (ρ.comp S.subtype) :=
   Submodule.mapQ _ _ (Submodule.inclusion (invariants_le_invariants_res ρ S)) (range_normBar_le_comap_inclusion ρ S)
 
+/--
+@isnad1 id=eq.0h6v.s14.5373f54175fc from=translated src=- shape=e99b7cd8 vocab=916005a9
+-/
 @[simp] lemma tateH0Res_mk (a : ρ.invariants) :
     tateH0Res ρ S (Submodule.Quotient.mk a) =
       Submodule.Quotient.mk (Submodule.inclusion (invariants_le_invariants_res ρ S) a) := rfl
@@ -143,9 +194,15 @@ noncomputable def cosetNormInvariants : Representation.invariants (ρ.comp S.sub
     (mem_invariants _ _).2 fun g => self_cosetNorm_apply ρ S g a fun s => (mem_invariants _ _).1 a.2 s
 
 omit [Fintype S] in
+/--
+@isnad1 id=eq.0h6v.s11.c44f30a77ff4 from=translated src=- shape=b2f46f75 vocab=1e362db9
+-/
 @[simp] lemma coe_cosetNormInvariants_apply (a : Representation.invariants (ρ.comp S.subtype)) :
     (cosetNormInvariants ρ S a : V) = cosetNorm ρ S a := rfl
 
+/--
+@isnad1 id=le.0h5v.s12.156a438cd195 from=translated src=- shape=ad377b29 vocab=98adbe80
+-/
 lemma range_normBar_res_le_comap_cosetNormInvariants :
     LinearMap.range (Representation.normBar (ρ.comp S.subtype)) ≤ (LinearMap.range ρ.normBar).comap (cosetNormInvariants ρ S) := by
   rintro x ⟨y, rfl⟩
@@ -157,6 +214,9 @@ lemma range_normBar_res_le_comap_cosetNormInvariants :
 noncomputable def tateH0Cores : Representation.tateH0 (ρ.comp S.subtype) →ₗ[k] ρ.tateH0 :=
   Submodule.mapQ _ _ (cosetNormInvariants ρ S) (range_normBar_res_le_comap_cosetNormInvariants ρ S)
 
+/--
+@isnad1 id=eq.0h6v.s14.4d4ac2adaa42 from=translated src=- shape=00a43000 vocab=eecd5cc9
+-/
 @[simp] lemma tateH0Cores_mk (a : Representation.invariants (ρ.comp S.subtype)) :
     tateH0Cores ρ S (Submodule.Quotient.mk a) = Submodule.Quotient.mk (cosetNormInvariants ρ S a) := rfl
 
@@ -165,6 +225,9 @@ noncomputable def coinvariantsTransfer : ρ.Coinvariants →ₗ[k] Representatio
     LinearMap.ext fun v => mk_cosetTransfer_self_apply ρ S g v
 
 omit [Fintype S] in
+/--
+@isnad1 id=eq.0h6v.s12.d6e99d59b7fa from=translated src=- shape=e446300a vocab=b34eedea
+-/
 @[simp] lemma coinvariantsTransfer_mk (v : V) :
     coinvariantsTransfer ρ S (Coinvariants.mk ρ v) = Coinvariants.mk (ρ.comp S.subtype) (cosetTransfer ρ S v) :=
   rfl
@@ -179,6 +242,9 @@ noncomputable def tateHneg1Res : ρ.tateHneg1 →ₗ[k] Representation.tateHneg1
     rw [LinearMap.mem_ker, LinearMap.comp_apply, Submodule.subtype_apply, ← hv, coinvariantsTransfer_mk, normBar_mk]
     exact Subtype.ext ((norm_eq_norm_res_cosetTransfer ρ S v).symm.trans hN)
 
+/--
+@isnad1 id=eq.0h6v.s14.178409a44c33 from=translated src=- shape=b5636ea6 vocab=c0811ed3
+-/
 @[simp] lemma coe_tateHneg1Res_apply (x : ρ.tateHneg1) :
     (tateHneg1Res ρ S x : Representation.Coinvariants (ρ.comp S.subtype)) = coinvariantsTransfer ρ S x := rfl
 
@@ -186,6 +252,9 @@ noncomputable def coinvariantsCores : Representation.Coinvariants (ρ.comp S.sub
   Coinvariants.lift _ (Coinvariants.mk ρ) fun s => LinearMap.ext fun v => TateResCor.mk_self_apply ρ (s : G) v
 
 omit [Fintype G] [Fintype S] in
+/--
+@isnad1 id=eq.0h6v.s12.b7f5361f4c4b from=translated src=- shape=500c4f27 vocab=4389e6a7
+-/
 @[simp] lemma coinvariantsCores_mk (v : V) :
     coinvariantsCores ρ S (Coinvariants.mk (ρ.comp S.subtype) v) = Coinvariants.mk ρ v :=
   rfl
@@ -202,6 +271,9 @@ noncomputable def tateHneg1Cores : Representation.tateHneg1 (ρ.comp S.subtype) 
     rw [hN, map_zero]
     rfl
 
+/--
+@isnad1 id=eq.0h6v.s14.7d4fc446a91c from=translated src=- shape=e8cd7219 vocab=f0be1e44
+-/
 @[simp] lemma coe_tateHneg1Cores_apply (x : Representation.tateHneg1 (ρ.comp S.subtype)) :
     (tateHneg1Cores ρ S x : ρ.Coinvariants) = coinvariantsCores ρ S x := rfl
 
@@ -229,16 +301,28 @@ noncomputable abbrev tateHneg1Res : A.tateHneg1 →ₗ[k] (Rep.res S.subtype A).
 noncomputable abbrev tateHneg1Cores : (Rep.res S.subtype A).tateHneg1 →ₗ[k] A.tateHneg1 :=
   Representation.TateResCor.tateHneg1Cores A.ρ S
 
+/--
+@isnad1 id=eq.0h5v.s16.a42a1fd6ac04 from=translated src=- shape=54c95f0a vocab=b8e457ce
+-/
 @[simp] lemma tateH0Res_mk (a : A.ρ.invariants) :
     Rep.tateH0Res S A (Submodule.Quotient.mk a) =
       Submodule.Quotient.mk (Submodule.inclusion (invariants_le_invariants_res A.ρ S) a) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s16.b6131ee8c673 from=translated src=- shape=040f517d vocab=bd3b5406
+-/
 @[simp] lemma tateH0Cores_mk (a : Representation.invariants (A.ρ.comp S.subtype)) :
     Rep.tateH0Cores S A (Submodule.Quotient.mk a) = Submodule.Quotient.mk (cosetNormInvariants A.ρ S a) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s16.6c8dbdefda7a from=translated src=- shape=85b85f1d vocab=fb28b9cc
+-/
 @[simp] lemma coe_tateHneg1Res_apply (x : A.tateHneg1) :
     (Rep.tateHneg1Res S A x : Representation.Coinvariants (A.ρ.comp S.subtype)) = coinvariantsTransfer A.ρ S x := rfl
 
+/--
+@isnad1 id=eq.0h5v.s16.dc79d507c362 from=translated src=- shape=133df5ce vocab=84ab7284
+-/
 @[simp] lemma coe_tateHneg1Cores_apply (x : (Rep.res S.subtype A).tateHneg1) :
     (Rep.tateHneg1Cores S A x : A.ρ.Coinvariants) = coinvariantsCores A.ρ S x := rfl
 

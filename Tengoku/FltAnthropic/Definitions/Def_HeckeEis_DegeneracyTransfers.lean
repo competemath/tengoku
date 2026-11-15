@@ -9,6 +9,9 @@ open scoped MatrixGroups
 
 namespace HeckeEis
 
+/--
+@isnad1 id=eq.1h2v.s9.3edb48d39d20 from=translated src=- shape=0eb65535 vocab=14cc617f
+-/
 theorem range_iota1 (N : ℕ) {q : ℕ} (hq : q ≠ 0) :
     (Ihara.ι₁ N q).range = heckeUpper N q :=
   Subgroup.ext fun δ => (Ihara.mem_range_iota1_iff N hq δ).trans (mem_heckeUpper N q).symm
@@ -19,6 +22,9 @@ def iotaUpperHom (N q : ℕ) [NeZero q] : Gamma0 (N * q) →* heckeUpper N q whe
   map_one' := Subtype.ext (map_one (Ihara.ι₁ N q))
   map_mul' γ δ := Subtype.ext (map_mul (Ihara.ι₁ N q) γ δ)
 
+/--
+@isnad1 id=eq.0h3v.s14.cc660ad7ffc9 from=translated src=- shape=dab5af2e vocab=a37111a1
+-/
 @[simp] theorem coe_iotaUpperHom (N q : ℕ) [NeZero q] (γ : Gamma0 (N * q)) :
     (iotaUpperHom N q γ : Gamma0 N) = Ihara.ι₁ N q γ := rfl
 
@@ -31,9 +37,15 @@ noncomputable def iotaUpperEquiv (N q : ℕ) [NeZero q] : Gamma0 (N * q) ≃* he
       obtain ⟨γ, hγ⟩ := hmem
       exact ⟨γ, Subtype.ext hγ⟩⟩
 
+/--
+@isnad1 id=eq.0h3v.s15.3736567f794d from=translated src=- shape=64eed196 vocab=a962be8d
+-/
 @[simp] theorem iotaUpperEquiv_apply (N q : ℕ) [NeZero q] (γ : Gamma0 (N * q)) :
     iotaUpperEquiv N q γ = iotaUpperHom N q γ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s14.130cfccd5a50 from=translated src=- shape=cef0a93d vocab=af4f63de
+-/
 theorem coe_iotaUpperEquiv_symm (N q : ℕ) [NeZero q] (δ : ↥(heckeUpper N q)) :
     (((((iotaUpperEquiv N q).symm δ) : Gamma0 (N * q)) : SL(2, ℤ)) :
         Matrix (Fin 2) (Fin 2) ℤ)
@@ -78,6 +90,9 @@ theorem coe_iotaUpperEquiv_symm (N q : ℕ) [NeZero q] (δ : ↥(heckeUpper N q)
     rw [← h10, Int.ediv_mul_cancel (Ihara.q_dvd_entry N q δ')]
   · exact h11.symm ▸ rfl
 
+/--
+@isnad1 id=eq.0h3v.s15.5166f9239993 from=translated src=- shape=75063760 vocab=6d29c9c1
+-/
 theorem heckeConj_iotaUpperHom (N q : ℕ) [NeZero q] (γ : Gamma0 (N * q)) :
     heckeConj N q (iotaUpperHom N q γ) = Ihara.ι₀ N q γ := by
   have hq : ((q : ℕ) : ℤ) ≠ 0 := Int.natCast_ne_zero.mpr (NeZero.ne q)
@@ -121,6 +136,9 @@ noncomputable def alConjHom (N q : ℕ) [NeZero q] (u : Gamma0 N)
     Gamma0 (N * q) →* Gamma0 (N * q) :=
   ((iotaUpperEquiv N q).symm.toMonoidHom).comp (conjUpperHom N q u hu)
 
+/--
+@isnad1 id=eq.1h4v.s14.78eb435409be from=translated src=- shape=fd87fff5 vocab=7fec67fd
+-/
 theorem iota1_alConjHom (N q : ℕ) [NeZero q] (u : Gamma0 N)
     (hu : ∀ γ : Gamma0 (N * q),
       (q : ℤ) ∣ ((u * Ihara.ι₀ N q γ * u⁻¹ : Gamma0 N) : SL(2, ℤ)) 0 1)
@@ -135,6 +153,9 @@ noncomputable def degeneracyTransfer₀Aux (N q : ℕ) [NeZero q] (A : Type*) [A
     (Additive (Gamma0 (N * q)) →+ A) →+ (Additive (Gamma0 N) →+ A) :=
   (degeneracyTransfer₁ N q A).comp (pullbackHom (alConjHom N q u hu))
 
+/--
+@isnad1 id=eq.1h5v.s17.c22078eedddb from=translated src=- shape=29c1115f vocab=b929cf4a
+-/
 @[simp] theorem degeneracyTransfer₀Aux_apply (N q : ℕ) [NeZero q] (A : Type*)
     [AddCommGroup A] (u : Gamma0 N)
     (hu : ∀ γ : Gamma0 (N * q),
@@ -143,6 +164,9 @@ noncomputable def degeneracyTransfer₀Aux (N q : ℕ) [NeZero q] (A : Type*) [A
     degeneracyTransfer₀Aux N q A u hu φ
       = degeneracyTransfer₁ N q A (pullbackHom (alConjHom N q u hu) φ) := rfl
 
+/--
+@isnad1 id=eq.2h2v.s6.2e32259d6dd1 from=translated src=- shape=70cee5d7 vocab=6a41bb38
+-/
 theorem bezout_of_prime_not_dvd (N q : ℕ) (hq : q.Prime) (hqN : ¬ q ∣ N) :
     (q : ℤ) * Int.gcdA (q : ℤ) (N : ℤ) - (N : ℤ) * (-Int.gcdB (q : ℤ) (N : ℤ)) = 1 := by
   have hcop : Nat.gcd q N = 1 := (Nat.Prime.coprime_iff_not_dvd hq).mpr hqN
@@ -155,6 +179,9 @@ def alConjSqMat (N q : ℕ) (a b : ℤ) : Matrix (Fin 2) (Fin 2) ℤ :=
   !![(q : ℤ) * a ^ 2 + (N : ℤ) * b, b * (a + 1);
      (N : ℤ) * (q : ℤ) * (a + 1), (N : ℤ) * b + (q : ℤ)]
 
+/--
+@isnad1 id=eq.1h4v.s6.43ca4bc8e5d8 from=translated src=- shape=c15894d6 vocab=d6a5d45d
+-/
 theorem alConjSqMat_det (N q : ℕ) (a b : ℤ) (hab : (q : ℤ) * a - (N : ℤ) * b = 1) :
     Matrix.det (alConjSqMat N q a b) = 1 := by
   rw [alConjSqMat, Matrix.det_fin_two_of]

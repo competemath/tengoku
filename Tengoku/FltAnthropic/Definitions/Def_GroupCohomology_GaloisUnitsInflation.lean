@@ -28,11 +28,17 @@ noncomputable def unitsInflate₂ :
     funext p
     simp only [RingHom.toMonoidHom_eq_coe, Pi.smul_apply, toMul_zsmul, map_zpow, ofMul_zpow, eq_intCast, Int.cast_eq]
 
+/--
+@isnad1 id=eq.0h5v.s14.f982dd155d84 from=translated src=- shape=46898ce7 vocab=32c9e1f3
+-/
 @[simp] lemma unitsInflate₁_apply (c : (L ≃ₐ[K] L) → Additive (L)ˣ) (σ : Ω ≃ₐ[K] Ω) :
     unitsInflate₁ L c σ = Additive.ofMul
       (Units.map (algebraMap L Ω).toMonoidHom (Additive.toMul (c (AlgEquiv.restrictNormalHom L σ)))) :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s14.256d21d213ab from=translated src=- shape=57d044ab vocab=af734ad4
+-/
 @[simp] lemma unitsInflate₂_apply (f : (L ≃ₐ[K] L) × (L ≃ₐ[K] L) → Additive (L)ˣ) (σ τ : Ω ≃ₐ[K] Ω) :
     unitsInflate₂ L f (σ, τ) = Additive.ofMul
       (Units.map (algebraMap L Ω).toMonoidHom

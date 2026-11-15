@@ -26,6 +26,9 @@ noncomputable def inclBaseChange (B : Type) [CommRing B] [Algebra 𝒪 B] {M' M 
     latticeBaseChange 𝒪 K B M' →ₗ[B] latticeBaseChange 𝒪 K B M :=
   (Submodule.inclusion h).baseChange B
 
+/--
+@isnad1 id=injectiv.0h3v.s8.279ae15ade34 from=translated src=- shape=77c09fe6 vocab=6f54aea4
+-/
 theorem mulVecLinR_injective (g : Matrix.GeneralLinearGroup (Fin 2) K) :
     Function.Injective (mulVecLinR (R := 𝒪) g) := by
   intro v w hvw
@@ -68,6 +71,9 @@ namespace DeligneDatum
 variable {π}
 variable {B : Type} [CommRing B] [Algebra 𝒪 B]
 
+/--
+@isnad1 id=eq.1h6v.s11.7268204455f0 from=translated src=- shape=9a59d06a vocab=0bb18326
+-/
 theorem ext' {d d' : DeligneDatum (K := K) π B} (h : d.line = d'.line) : d = d' := by
   cases d; cases d'; cases h; rfl
 

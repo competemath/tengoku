@@ -111,6 +111,9 @@ def chartVUnitIncl (q : ℕ) : AlgFunctor.NatTrans (chartVUnit 𝒪 q) (chartV �
 
 variable {𝒪}
 
+/--
+@isnad1 id=isunit.2h3v.s7.5da3726d9132 from=translated src=- shape=7c0484a2 vocab=dfe13cda
+-/
 theorem isUnit_pow_pred_sub_one_of_isUnit_pow_sub {B : Type} [CommRing B] {q : ℕ} (hq : 1 ≤ q) {ζ : B}
     (h : IsUnit (ζ ^ q - ζ)) : IsUnit (ζ ^ (q - 1) - 1) := by
   have hpow : ζ ^ q = ζ ^ (q - 1) * ζ := by
@@ -120,6 +123,9 @@ theorem isUnit_pow_pred_sub_one_of_isUnit_pow_sub {B : Type} [CommRing B] {q : �
   rw [hfac] at h
   exact isUnit_of_mul_isUnit_right h
 
+/--
+@isnad1 id=isunit.1h4v.s6.c3dad515ce49 from=translated src=- shape=f1c79996 vocab=f60dfb1f
+-/
 theorem isUnit_pow_succ_sub_one_of_isNilpotent {B : Type} [CommRing B] {a : B} (ha : IsNilpotent a) (b : B) (n : ℕ) :
     IsUnit ((a * b) ^ (n + 1) - 1) := by
   have hab : IsNilpotent (a * b) := Commute.isNilpotent_mul_right (Commute.all a b) ha
@@ -141,6 +147,9 @@ noncomputable def vertexToEdge (π : 𝒪) {q : ℕ} (hq : 2 ≤ q) (B : Type) [
       rw [hn]
       exact isUnit_pow_succ_sub_one_of_isNilpotent hB _ n⟩
 
+/--
+@isnad1 id=eq.3h7v.s8.a342db295e1d from=translated src=- shape=3c1eaed5 vocab=414c481d
+-/
 theorem vertexToEdge_natural (π : 𝒪) {q : ℕ} (hq : 2 ≤ q) {B : Type} [CommRing B] [Algebra 𝒪 B] {B' : Type} [CommRing B']
     [Algebra 𝒪 B'] (hB : IsNilpotent (algebraMap 𝒪 B π)) (hB' : IsNilpotent (algebraMap 𝒪 B' π)) (f : B →ₐ[𝒪] B')
     (x : (chartVUnit 𝒪 q).obj B) :

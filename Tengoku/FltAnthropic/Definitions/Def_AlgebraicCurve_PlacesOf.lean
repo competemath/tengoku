@@ -23,18 +23,27 @@ def placesOf (U : C.Opens) :
   {v | ∃ x : C, x ∈ U ∧ IsClosed ({x} : Set C) ∧
     (algebraMap (C.presheaf.stalk x) C.functionField).range = v.toValuationSubring.toSubring}
 
+/--
+@isnad1 id=iff.0h5v.s9.2d69539d8aab from=translated src=- shape=19adf236 vocab=f2e2b576
+-/
 theorem mem_placesOf_iff (U : C.Opens) :
     letI := (baseToFunctionField c).toAlgebra
     ∀ v : Place K C.functionField, v ∈ placesOf c U ↔ ∃ x : C, x ∈ U ∧ IsClosed ({x} : Set C) ∧
       (algebraMap (C.presheaf.stalk x) C.functionField).range = v.toValuationSubring.toSubring :=
   fun _ => Iff.rfl
 
+/--
+@isnad1 id=le.1h5v.s7.c947e0516ff7 from=translated src=- shape=4222f9f4 vocab=532b4e22
+-/
 theorem placesOf_mono {U V : C.Opens} (h : U ≤ V) :
     letI := (baseToFunctionField c).toAlgebra
     placesOf c U ⊆ placesOf c V := by
   rintro v ⟨x, hxU, hx, hv⟩
   exact ⟨x, h hxU, hx, hv⟩
 
+/--
+@isnad1 id=eq.0h5v.s7.a656e4dec7da from=translated src=- shape=d1ad6a80 vocab=0ee142d9
+-/
 theorem placesOf_sup (U V : C.Opens) :
     letI := (baseToFunctionField c).toAlgebra
     placesOf c (U ⊔ V) = placesOf c U ∪ placesOf c V := by
@@ -48,6 +57,9 @@ theorem placesOf_sup (U V : C.Opens) :
     · exact placesOf_mono c le_sup_left h
     · exact placesOf_mono c le_sup_right h
 
+/--
+@isnad1 id=eq.0h3v.s7.0b5d9833dc36 from=translated src=- shape=79dc8cd5 vocab=2c3d7fc9
+-/
 theorem placesOf_bot :
     letI := (baseToFunctionField c).toAlgebra
     placesOf c (⊥ : C.Opens) = ∅ := by

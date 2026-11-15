@@ -41,6 +41,9 @@ noncomputable def freeSubmersivePresentation (R : Type u) [CommRing R] (ι : Typ
     rw [PreSubmersivePresentation.jacobian, LinearMap.det_eq_one_of_subsingleton, map_one]
     exact isUnit_one
 
+/--
+@isnad1 id=isstanda.0h1v.s5.58ac0221024f from=translated src=- shape=f6fa27a9 vocab=daa01d43
+-/
 scoped instance isStandardSmoothOfRelativeDimension_polynomial (R : Type u) [CommRing R] :
     IsStandardSmoothOfRelativeDimension 1 R R[X] := by
   have h : IsStandardSmoothOfRelativeDimension 1 R (MvPolynomial PUnit R) :=
@@ -51,6 +54,9 @@ scoped instance isStandardSmoothOfRelativeDimension_polynomial (R : Type u) [Com
 
 variable (K : Type u) [Field K]
 
+/--
+@isnad1 id=smoothof.0h1v.s6.f216a3f48577 from=translated src=- shape=3322519c vocab=a2aca871
+-/
 theorem smoothOfRelativeDimension_one_Spec_polynomial :
     SmoothOfRelativeDimension 1
       (Spec.map (CommRingCat.ofHom (algebraMap K K[X]))) := by
@@ -66,6 +72,9 @@ section Coordinate
 
 variable {A : Type u} [CommRing A] [IsDedekindDomain A] [Algebra K A]
 
+/--
+@isnad1 id=ex.1h2v.s8.06e2c691cc03 from=translated src=- shape=22d63f38 vocab=c491e083
+-/
 theorem exists_mem_and_maximalIdeal_eq_span (𝔪 : Ideal A) [𝔪.IsPrime] (h𝔪 : 𝔪 ≠ ⊥) :
     ∃ u : A, u ∈ 𝔪 ∧ u ≠ 0 ∧
       maximalIdeal (Localization.AtPrime 𝔪) =
@@ -87,6 +96,9 @@ theorem exists_mem_and_maximalIdeal_eq_span (𝔪 : Ideal A) [𝔪.IsPrime] (h�
 variable [IsDomain A] in
 omit [IsDedekindDomain A] in
 
+/--
+@isnad1 id=transcen.3h4v.s7.3fe9f8e0f54f from=translated src=- shape=6d4b5dbe vocab=50607e0d
+-/
 theorem transcendental_of_mem {𝔪 : Ideal A} (hne : 𝔪 ≠ ⊤) {u : A} (hu : u ∈ 𝔪) (h0 : u ≠ 0) :
     Transcendental K u := by
   intro halg
@@ -102,12 +114,18 @@ theorem transcendental_of_mem {𝔪 : Ideal A} (hne : 𝔪 ≠ ⊤) {u : A} (hu 
 
 end Coordinate
 
+/--
+@isnad1 id=finitepr.0h3v.s8.833c9163570c from=translated src=- shape=8d03a60e vocab=f7af8834
+-/
 instance chartRing_finitePresentation [CharZero K] (s : L) [FiniteDimensional K⟮s⟯ L] :
     FinitePresentation K (chartRing K ({s} : Set L)) :=
   (Algebra.FinitePresentation.of_finiteType (R := K)).mp inferInstance
 
 attribute [local instance] Ideal.Quotient.field
 
+/--
+@isnad1 id=formally.2h4v.s11.0f3d5b30a912 from=translated src=- shape=8a42ef5e vocab=3da0cc8e
+-/
 theorem formallySmooth_chartRing_localization_closed [CharZero K]
     (s : L) [FiniteDimensional K⟮s⟯ L] (hs : Transcendental K s)
     (𝔪 : Ideal (chartRing K ({s} : Set L))) [𝔪.IsPrime] (h𝔪 : 𝔪 ≠ ⊥) :
@@ -173,6 +191,9 @@ theorem formallySmooth_chartRing_localization_closed [CharZero K]
   haveI : Algebra.FormallySmooth K[X] (Localization.AtPrime 𝔪) := inferInstance
   exact Algebra.FormallySmooth.comp K K[X] (Localization.AtPrime 𝔪)
 
+/--
+@isnad1 id=formally.0h3v.s11.a5fa5bb90032 from=translated src=- shape=4c74734e vocab=d133ff33
+-/
 theorem formallySmooth_chartRing_localization_bot [CharZero K]
     (s : L) [FiniteDimensional K⟮s⟯ L] :
     FormallySmooth K (Localization.AtPrime (⊥ : Ideal (chartRing K ({s} : Set L)))) := by
@@ -190,6 +211,9 @@ theorem formallySmooth_chartRing_localization_bot [CharZero K]
   haveI : EssFiniteType K L := EssFiniteType.comp K (↥A) L
   exact FormallySmooth.of_equiv e
 
+/--
+@isnad1 id=issmooth.1h4v.s9.5cb3a14308de from=translated src=- shape=b17581d2 vocab=737854c6
+-/
 theorem chartRing_isSmoothAt [CharZero K] (s : L) [FiniteDimensional K⟮s⟯ L]
     (hs : Transcendental K s) (𝔭 : Ideal (chartRing K ({s} : Set L))) [𝔭.IsPrime] :
     IsSmoothAt K 𝔭 := by
@@ -197,6 +221,9 @@ theorem chartRing_isSmoothAt [CharZero K] (s : L) [FiniteDimensional K⟮s⟯ L]
   · exact formallySmooth_chartRing_localization_bot K s
   · exact formallySmooth_chartRing_localization_closed K s hs 𝔭 h𝔭
 
+/--
+@isnad1 id=isstanda.1h3v.s7.c328742c7619 from=translated src=- shape=5f42a7bf vocab=abc7d37a
+-/
 theorem isStandardSmoothOfRelativeDimension_adjoin_single (s : L) (hs : Transcendental K s) :
     IsStandardSmoothOfRelativeDimension 1 K (Algebra.adjoin K {s}) := by
   have e : K[X] ≃ₐ[K] Algebra.adjoin K ({s} : Set L) :=
@@ -205,6 +232,9 @@ theorem isStandardSmoothOfRelativeDimension_adjoin_single (s : L) (hs : Transcen
       (Subalgebra.equivOfEq _ _ (Algebra.adjoin_singleton_eq_range_aeval K s).symm)
   exact IsStandardSmoothOfRelativeDimension.of_algEquiv 1 e
 
+/--
+@isnad1 id=eq.1h4v.s8.35533ee2e7ca from=translated src=- shape=f5389234 vocab=0ed45c0f
+-/
 theorem rank_kaehler_eq_of_formallyEtale (B C : Type u) [CommRing B] [CommRing C]
     [Algebra K B] [Algebra K C] [Algebra B C] [IsScalarTower K B C]
     (M : Submonoid B) (hM : M ≤ nonZeroDivisors B) [IsLocalization M C] :
@@ -216,6 +246,9 @@ theorem rank_kaehler_eq_of_formallyEtale (B C : Type u) [CommRing B] [CommRing C
   rw [← IsLocalizedModule.rank_eq M hM ((KaehlerDifferential.map K K B C).restrictScalars B)]
   exact (IsLocalization.rank_eq C M hM).symm
 
+/--
+@isnad1 id=eq.1h3v.s10.85d531893108 from=translated src=- shape=c6b7188c vocab=43cac1e7
+-/
 theorem rank_kaehler_intermediateField_adjoin_single (s : L) (hs : Transcendental K s) :
     Module.rank K⟮s⟯ Ω[K⟮s⟯⁄K] = 1 := by
   haveI := isStandardSmoothOfRelativeDimension_adjoin_single K s hs
@@ -225,6 +258,9 @@ theorem rank_kaehler_intermediateField_adjoin_single (s : L) (hs : Transcendenta
     (nonZeroDivisors _) le_rfl]
   exact_mod_cast h1
 
+/--
+@isnad1 id=eq.1h3v.s8.9658be601a03 from=translated src=- shape=7fe9f138 vocab=a1bc152e
+-/
 theorem rank_kaehler_eq_one_of_finite_adjoin [CharZero K]
     (s : L) (hs : Transcendental K s) [FiniteDimensional K⟮s⟯ L] :
     Module.rank L Ω[L⁄K] = 1 := by
@@ -235,6 +271,9 @@ theorem rank_kaehler_eq_one_of_finite_adjoin [CharZero K]
   rw [e.rank_eq, Module.rank_baseChange, rank_kaehler_intermediateField_adjoin_single K s hs]
   simp
 
+/--
+@isnad1 id=eq.2h4v.s13.f5459608fffb from=translated src=- shape=9015e756 vocab=2cec0cb8
+-/
 theorem rank_kaehler_chartRing_localization_away_eq_one [CharZero K]
     (s : L) [FiniteDimensional K⟮s⟯ L] (hs : Transcendental K s)
     (t : chartRing K ({s} : Set L)) (ht : t ≠ 0) :
@@ -259,12 +298,18 @@ theorem rank_kaehler_chartRing_localization_away_eq_one [CharZero K]
   rw [rank_kaehler_eq_of_formallyEtale K (Localization.Away t) L (nonZeroDivisors _) le_rfl]
   exact_mod_cast rank_kaehler_eq_one_of_finite_adjoin K s hs
 
+/--
+@isnad1 id=formally.1h3v.s8.bc485b945bb2 from=translated src=- shape=5c2114e0 vocab=49f0f3ee
+-/
 theorem formallySmooth_chartRing [CharZero K]
     (s : L) [FiniteDimensional K⟮s⟯ L] (hs : Transcendental K s) :
     FormallySmooth K (chartRing K ({s} : Set L)) := by
   rw [← smoothLocus_eq_univ_iff, Set.eq_univ_iff_forall]
   exact fun 𝔭 => chartRing_isSmoothAt K s hs 𝔭.asIdeal
 
+/--
+@isnad1 id=locally.1h3v.s8.f0e4e180bdcc from=translated src=- shape=6586f2c4 vocab=706b7f23
+-/
 theorem locally_isStandardSmoothOfRelativeDimension_one_chartRing [CharZero K]
     (s : L) [FiniteDimensional K⟮s⟯ L] (hs : Transcendental K s) :
     RingHom.Locally (RingHom.IsStandardSmoothOfRelativeDimension 1)
@@ -286,6 +331,9 @@ theorem locally_isStandardSmoothOfRelativeDimension_one_chartRing [CharZero K]
   exact (IsStandardSmoothOfRelativeDimension.iff_of_isStandardSmooth 1).mpr
     (rank_kaehler_chartRing_localization_away_eq_one K s hs t ht0)
 
+/--
+@isnad1 id=smoothof.1h3v.s9.d4cb4f291a8d from=translated src=- shape=31ae9dad vocab=6284926f
+-/
 theorem smoothOfRelativeDimension_one_Spec_chartRing [CharZero K]
     (s : L) [FiniteDimensional K⟮s⟯ L] (hs : Transcendental K s) :
     SmoothOfRelativeDimension 1

@@ -22,10 +22,22 @@ noncomputable def proj₁₃ :
   pullback.lift (pullback.fst _ _ ≫ pullback.fst _ _) (pullback.snd _ _)
     (by rw [Category.assoc, pullback.condition]; exact pullback.condition)
 
+/--
+@isnad1 id=eq.0h5v.s6.06afd47eba05 from=translated src=- shape=cd7f913d vocab=d5226fe7
+-/
 @[reassoc (attr := simp)] theorem unitMap_fst : unitMap s x' ≫ pullback.fst _ _ = 𝟙 X' := pullback.lift_fst _ _ _
+/--
+@isnad1 id=eq.0h5v.s6.f27f84019734 from=translated src=- shape=c3ea7241 vocab=2c5884c4
+-/
 @[reassoc (attr := simp)] theorem unitMap_snd : unitMap s x' ≫ pullback.snd _ _ = x' := pullback.lift_snd _ _ _
+/--
+@isnad1 id=eq.0h5v.s8.5e0494921968 from=translated src=- shape=981482de vocab=d09f6b1c
+-/
 @[reassoc (attr := simp)] theorem proj₁₃_fst :
     proj₁₃ s x' ≫ pullback.fst _ _ = pullback.fst _ _ ≫ pullback.fst _ _ := pullback.lift_fst _ _ _
+/--
+@isnad1 id=eq.0h5v.s8.5da93dd8ca87 from=translated src=- shape=2b0e4506 vocab=2ac7c1a7
+-/
 @[reassoc (attr := simp)] theorem proj₁₃_snd : proj₁₃ s x' ≫ pullback.snd _ _ = pullback.snd _ _ :=
   pullback.lift_snd _ _ _
 
@@ -33,10 +45,19 @@ noncomputable def toTriple : pullback (x' ≫ s) s ⟶ pullback (pullback.snd (x
   pullback.lift (𝟙 _) (pullback.fst _ _ ≫ x')
     (by rw [Category.id_comp, Category.assoc]; exact pullback.condition.symm)
 
+/--
+@isnad1 id=eq.0h5v.s8.f4b5895b1797 from=translated src=- shape=504ddba0 vocab=a09100fe
+-/
 @[reassoc (attr := simp)] theorem toTriple_fst : toTriple s x' ≫ pullback.fst _ _ = 𝟙 _ := pullback.lift_fst _ _ _
+/--
+@isnad1 id=eq.0h5v.s8.666bfd1c98be from=translated src=- shape=853cd19e vocab=26149efd
+-/
 @[reassoc (attr := simp)] theorem toTriple_snd : toTriple s x' ≫ pullback.snd _ _ = pullback.fst _ _ ≫ x' :=
   pullback.lift_snd _ _ _
 
+/--
+@isnad1 id=eq.0h5v.s8.f176e504cdc0 from=translated src=- shape=7d3948d9 vocab=3bb0cda0
+-/
 theorem toTriple_proj₁₃ : toTriple s x' ≫ proj₁₃ s x' = pullback.fst _ _ ≫ unitMap s x' := by
   apply pullback.hom_ext
   · rw [Category.assoc, proj₁₃_fst, toTriple_fst_assoc, Category.assoc, unitMap_fst, Category.comp_id]
@@ -50,9 +71,15 @@ noncomputable def actMap (act : pullback (x' ≫ s) s ⟶ X') (h : act ≫ x' = 
     (by rw [Category.assoc, reassoc_of% h]; exact pullback.condition)
 
 variable {s x'} in
+/--
+@isnad1 id=eq.1h6v.s8.2447f6eb106c from=translated src=- shape=ac429385 vocab=8bb5771b
+-/
 @[reassoc (attr := simp)] theorem actMap_fst (act : pullback (x' ≫ s) s ⟶ X') (h : act ≫ x' = pullback.snd _ _) :
     actMap act h ≫ pullback.fst _ _ = pullback.fst _ _ ≫ act := pullback.lift_fst _ _ _
 variable {s x'} in
+/--
+@isnad1 id=eq.1h6v.s8.b4cf825cb70e from=translated src=- shape=5636aa42 vocab=2280fd53
+-/
 @[reassoc (attr := simp)] theorem actMap_snd (act : pullback (x' ≫ s) s ⟶ X') (h : act ≫ x' = pullback.snd _ _) :
     actMap act h ≫ pullback.snd _ _ = pullback.snd _ _ := pullback.lift_snd _ _ _
 
@@ -61,8 +88,14 @@ noncomputable def flipMap {X : Scheme.{u}} (f : X ⟶ S) :
   pullback.lift (pullback.fst _ _ ≫ pullback.fst f s) (pullback.snd _ _)
     (by rw [Category.assoc, pullback.condition]; exact pullback.condition)
 
+/--
+@isnad1 id=eq.0h5v.s8.447c57d766c7 from=translated src=- shape=b53f78b8 vocab=be9749aa
+-/
 @[reassoc (attr := simp)] theorem flipMap_fst {X : Scheme.{u}} (f : X ⟶ S) :
     flipMap s f ≫ pullback.fst f s = pullback.fst _ _ ≫ pullback.fst f s := pullback.lift_fst _ _ _
+/--
+@isnad1 id=eq.0h5v.s7.a0abf39c30dc from=translated src=- shape=bdebf887 vocab=d69fac22
+-/
 @[reassoc (attr := simp)] theorem flipMap_snd {X : Scheme.{u}} (f : X ⟶ S) :
     flipMap s f ≫ pullback.snd f s = pullback.snd _ _ := pullback.lift_snd _ _ _
 
@@ -110,19 +143,34 @@ noncomputable def invol : pullback (x' ≫ s) s ⟶ pullback (x' ≫ s) s :=
   pullback.lift A.act (pullback.fst _ _ ≫ x')
     (by rw [reassoc_of% A.act_comp, Category.assoc]; exact pullback.condition.symm)
 
+/--
+@isnad1 id=eq.0h6v.s7.e2b8dbc430dd from=translated src=- shape=53f518fd vocab=384ad077
+-/
 @[reassoc (attr := simp)] theorem invol_fst : A.invol ≫ pullback.fst _ _ = A.act := pullback.lift_fst _ _ _
+/--
+@isnad1 id=eq.0h6v.s7.c64ad1e53777 from=translated src=- shape=3478d34d vocab=85bd2071
+-/
 @[reassoc (attr := simp)] theorem invol_snd : A.invol ≫ pullback.snd _ _ = pullback.fst _ _ ≫ x' :=
   pullback.lift_snd _ _ _
 
+/--
+@isnad1 id=eq.0h6v.s7.1ec076f4423b from=translated src=- shape=cc334b42 vocab=2fd08cf1
+-/
 theorem toTriple_actMap : toTriple s x' ≫ actMap A.act A.act_comp = A.invol := by
   apply pullback.hom_ext
   · rw [Category.assoc, actMap_fst, toTriple_fst_assoc, invol_fst]
   · rw [Category.assoc, actMap_snd, toTriple_snd, invol_snd]
 
+/--
+@isnad1 id=eq.0h6v.s7.6c29697d23e1 from=translated src=- shape=bfdc7888 vocab=384ad077
+-/
 @[reassoc (attr := simp)] theorem invol_act : A.invol ≫ A.act = pullback.fst _ _ := by
   rw [← toTriple_actMap, Category.assoc, A.trans, ← Category.assoc, toTriple_proj₁₃, Category.assoc, A.unit_act,
     Category.comp_id]
 
+/--
+@isnad1 id=eq.0h6v.s7.c1ccc8a994f7 from=translated src=- shape=a122fff6 vocab=1cdc40aa
+-/
 @[reassoc (attr := simp)] theorem invol_invol : A.invol ≫ A.invol = 𝟙 _ := by
   apply pullback.hom_ext
   · rw [Category.assoc, invol_fst, invol_act, Category.id_comp]
@@ -131,13 +179,22 @@ theorem toTriple_actMap : toTriple s x' ≫ actMap A.act A.act_comp = A.invol :=
 noncomputable def involIso : pullback (x' ≫ s) s ≅ pullback (x' ≫ s) s :=
   ⟨A.invol, A.invol, A.invol_invol, A.invol_invol⟩
 
+/--
+@isnad1 id=eq.0h6v.s7.55d78da47d2a from=translated src=- shape=f27903ad vocab=86ba7a10
+-/
 theorem act_eq_invol_fst : A.act = A.involIso.hom ≫ pullback.fst _ _ := (A.invol_fst).symm
 
+/--
+@isnad1 id=eq.2h9v.s8.1ddc1f2eed24 from=translated src=- shape=b8803df1 vocab=d79398b8
+-/
 theorem hom_ext {T : Scheme.{u}} {a b : T ⟶ pullback (x' ≫ s) s} (h₁ : a ≫ pullback.fst _ _ = b ≫ pullback.fst _ _)
     (h₂ : a ≫ A.act = b ≫ A.act) : a = b := by
   apply pullback.hom_ext h₁
   rw [← A.act_comp, reassoc_of% h₂]
 
+/--
+@isnad1 id=equivale.0h7v.s7.cc7ebc342902 from=translated src=- shape=eaff9cdc vocab=7637e96a
+-/
 theorem equivalence (T : Scheme.{u}) :
     _root_.Equivalence fun x y : T ⟶ X' => ∃ φ : T ⟶ pullback (x' ≫ s) s, φ ≫ pullback.fst _ _ = x ∧ φ ≫ A.act = y where
   refl x := ⟨x ≫ unitMap s x', by rw [Category.assoc, unitMap_fst, Category.comp_id],
@@ -177,8 +234,14 @@ noncomputable def repActOver : Over.mk (pullback.snd (x' ≫ s) s) ⟶ Over.mk x
 
 noncomputable def repAct : pullback (x' ≫ s) s ⟶ X' := (repActOver s G x' hX').left
 
+/--
+@isnad1 id=eq.0h7v.s7.70d252464456 from=translated src=- shape=bcee613a vocab=539bff2a
+-/
 theorem repAct_comp : repAct s G x' hX' ≫ x' = pullback.snd _ _ := Over.w _
 
+/--
+@isnad1 id=eq.0h7v.s10.c2b2ee24f240 from=translated src=- shape=3032d992 vocab=5196dbf9
+-/
 theorem map_repActOver_univ :
     G.map ((Over.map s).map (repActOver s G x' hX')).op (univ s G x' hX') =
       G.map (fstOver s x').op (univ s G x' hX') := by
@@ -188,12 +251,18 @@ theorem map_repActOver_univ :
     rw [repActOver, Equiv.apply_symm_apply]
   exact h.symm.trans h'
 
+/--
+@isnad1 id=eq.0h9v.s10.81988346885d from=translated src=- shape=edfb9d90 vocab=aaf80ec6
+-/
 theorem homEquiv_eq_map_univ {U : Over S'} (g : U ⟶ Over.mk x') :
     hX'.homEquiv g = G.map ((Over.map s).map g).op (univ s G x' hX') := by
   have h := hX'.homEquiv_comp g (𝟙 _)
   rw [Category.comp_id] at h
   exact h
 
+/--
+@isnad1 id=eq.0h7v.s7.baccb4222094 from=translated src=- shape=1804a0c4 vocab=28dd2991
+-/
 theorem unitMap_repAct : unitMap s x' ≫ repAct s G x' hX' = 𝟙 X' := by
   let υ : Over.mk x' ⟶ Over.mk (pullback.snd (x' ≫ s) s) := Over.homMk (unitMap s x') (unitMap_snd s x')
   have hυ : (Over.map s).map υ ≫ fstOver s x' = 𝟙 _ := by
@@ -207,6 +276,9 @@ theorem unitMap_repAct : unitMap s x' ≫ repAct s G x' hX' = 𝟙 X' := by
     rw [← types_comp_apply (G.map _) (G.map _), ← G.map_comp, ← op_comp, hυ, op_id, G.map_id, types_id_apply]
   exact congrArg (fun k => k.left) key
 
+/--
+@isnad1 id=eq.0h7v.s8.e6321f763a68 from=translated src=- shape=85ca067e vocab=cbf672df
+-/
 theorem actMap_repAct :
     actMap (repAct s G x' hX') (repAct_comp s G x' hX') ≫ repAct s G x' hX' =
       proj₁₃ s x' ≫ repAct s G x' hX' := by
@@ -260,6 +332,9 @@ variable {S S' : Scheme.{u}} (s : S' ⟶ S) (G : (Over S)ᵒᵖ ⥤ Type (u + 1)
 noncomputable def cover : (Over.map s).obj (Over.mk (pullback.snd f s)) ⟶ Over.mk f :=
   Over.homMk (pullback.fst f s) pullback.condition
 
+/--
+@isnad1 id=eq.0h5v.s8.cc11ef9ad88c from=translated src=- shape=81ebd10e vocab=5c2a8daf
+-/
 theorem counit_app_eq_cover : (Over.mapPullbackAdj s).counit.app (Over.mk f) = cover s f := by
   ext
   simp [cover]
@@ -273,11 +348,20 @@ noncomputable def eRel : pullback (pullback.snd f s ≫ s) s ⟶ pullback (x' �
   pullback.map _ _ _ _ e.hom (𝟙 _) (𝟙 _) (by rw [Category.comp_id, ← Category.assoc, he])
     (by rw [Category.comp_id, Category.id_comp])
 
+/--
+@isnad1 id=eq.1h8v.s8.cb27ef207379 from=translated src=- shape=af7a9b35 vocab=f1ee097f
+-/
 @[reassoc (attr := simp)] theorem eRel_fst : eRel s x' f e he ≫ pullback.fst _ _ = pullback.fst _ _ ≫ e.hom :=
   pullback.lift_fst _ _ _
+/--
+@isnad1 id=eq.1h8v.s8.1c5c48368b73 from=translated src=- shape=9329c866 vocab=8e274053
+-/
 @[reassoc (attr := simp)] theorem eRel_snd : eRel s x' f e he ≫ pullback.snd _ _ = pullback.snd _ _ :=
   (pullback.lift_snd _ _ _).trans (Category.comp_id _)
 
+/--
+@isnad1 id=eq.3h13v.s10.1e14395f88b1 from=translated src=- shape=86a3742b vocab=b53939f8
+-/
 theorem univBC_compatible
     (hcompat : eRel s x' f e he ≫ repAct s G x' hX' = (canonical s f).act ≫ e.hom)
     {Z : Over S} (p₁ p₂ : Z ⟶ (Over.map s).obj (Over.mk (pullback.snd f s)))
@@ -331,6 +415,9 @@ theorem univBC_compatible
     ← types_comp_apply (G.map eS.op) (G.map flipS.op), ← G.map_comp, ← op_comp, h₄,
     op_comp, op_comp, G.map_comp, G.map_comp, types_comp_apply, types_comp_apply, map_repActOver_univ]
 
+/--
+@isnad1 id=existsun.3h10v.s10.ba2d3222fef0 from=translated src=- shape=9c48743e vocab=ff66d9ce
+-/
 theorem existsUnique_univX (hG : Presieve.IsSheafFor G (Presieve.singleton (cover s f)))
     (hcompat : eRel s x' f e he ≫ repAct s G x' hX' = (canonical s f).act ≫ e.hom) :
     ∃! ζ : G.obj (op (Over.mk f)), G.map (cover s f).op ζ = univBC s G x' hX' f e he :=
@@ -339,19 +426,31 @@ theorem existsUnique_univX (hG : Presieve.IsSheafFor G (Presieve.singleton (cove
 noncomputable def coverT (T : Over S) : (Over.map s).obj ((Over.pullback s).obj T) ⟶ T :=
   Over.homMk (pullback.fst T.hom s) pullback.condition
 
+/--
+@isnad1 id=eq.0h4v.s8.62fa16d5d687 from=translated src=- shape=82bc01fb vocab=3f78cd43
+-/
 theorem counit_app_eq_coverT (T : Over S) : (Over.mapPullbackAdj s).counit.app T = coverT s T := by
   ext
   simp [coverT]
 
+/--
+@isnad1 id=eq.0h5v.s6.1732207ba938 from=translated src=- shape=0b7309f8 vocab=11905979
+-/
 theorem hom_mk_w {T : Over S} (m : T ⟶ Over.mk f) : m.left ≫ f = T.hom := Over.w m
 
 noncomputable def bc {T : Over S} (m : T ⟶ Over.mk f) : (Over.pullback s).obj T ⟶ Over.mk x' :=
   (Over.pullback s).map m ≫ (eOver s x' f e he).hom
 
+/--
+@isnad1 id=eq.1h10v.s8.29f8fd19edd3 from=translated src=- shape=9842c070 vocab=8d9e8f07
+-/
 theorem bc_left {T : Over S} (m : T ⟶ Over.mk f) :
     (bc s x' f e he m).left = pullback.lift (pullback.fst T.hom s ≫ m.left) (pullback.snd T.hom s)
       (by rw [Category.assoc, hom_mk_w]; exact pullback.condition) ≫ e.hom := rfl
 
+/--
+@isnad1 id=eq.0h7v.s9.2134c1aa98c7 from=translated src=- shape=5c679505 vocab=426d1f76
+-/
 theorem coverT_comp {T : Over S} (m : T ⟶ Over.mk f) :
     coverT s T ≫ m = (Over.map s).map ((Over.pullback s).map m) ≫ cover s f := by
   ext
@@ -361,6 +460,9 @@ theorem coverT_comp {T : Over S} (m : T ⟶ Over.mk f) :
 
 noncomputable abbrev leftHom {T : Over S} (n : (Over.pullback s).obj T ⟶ Over.mk x') : pullback T.hom s ⟶ X' := n.left
 
+/--
+@isnad1 id=eq.0h7v.s7.6ef6f41dd5fa from=translated src=- shape=39775949 vocab=cb16b3a7
+-/
 theorem leftHom_comp {T : Over S} (n : (Over.pullback s).obj T ⟶ Over.mk x') :
     leftHom s x' n ≫ x' = pullback.snd T.hom s := Over.w n
 
@@ -369,11 +471,20 @@ noncomputable def nRel {T : Over S} (n : (Over.pullback s).obj T ⟶ Over.mk x')
   pullback.map _ _ _ _ (leftHom s x' n) (𝟙 _) (𝟙 _)
     (by rw [Category.comp_id, ← Category.assoc, leftHom_comp s x' n]) (by rw [Category.comp_id, Category.id_comp])
 
+/--
+@isnad1 id=eq.0h7v.s8.7a4a2d6933a6 from=translated src=- shape=17f7b180 vocab=5bf2aaf8
+-/
 @[reassoc] theorem nRel_fst {T : Over S} (n : (Over.pullback s).obj T ⟶ Over.mk x') :
     nRel s x' n ≫ pullback.fst _ _ = pullback.fst _ _ ≫ leftHom s x' n := pullback.lift_fst _ _ _
+/--
+@isnad1 id=eq.0h7v.s8.f7a4038e472f from=translated src=- shape=06ee4943 vocab=1915fcec
+-/
 @[reassoc] theorem nRel_snd {T : Over S} (n : (Over.pullback s).obj T ⟶ Over.mk x') :
     nRel s x' n ≫ pullback.snd _ _ = pullback.snd _ _ := (pullback.lift_snd _ _ _).trans (Category.comp_id _)
 
+/--
+@isnad1 id=eq.0h9v.s12.ec9bd8c95217 from=translated src=- shape=f06c2ff2 vocab=f1bfdcb1
+-/
 @[reassoc] theorem flipMap_comp_leftHom {T : Over S} (z : G.obj (op T)) :
     flipMap s T.hom ≫ leftHom s x' (hX'.homEquiv.symm (G.map (coverT s T).op z)) =
       nRel s x' (hX'.homEquiv.symm (G.map (coverT s T).op z)) ≫ repAct s G x' hX' := by
@@ -402,6 +513,9 @@ noncomputable def nRel {T : Over S} (n : (Over.pullback s).obj T ⟶ Over.mk x')
       op_comp, op_comp, G.map_comp, G.map_comp, types_comp_apply, types_comp_apply, ← homEquiv_eq_map_univ, hz]
   exact congrArg (fun k => k.left) key
 
+/--
+@isnad1 id=eq.3h15v.s12.a586d54b56ed from=translated src=- shape=882545f0 vocab=0f6f5b3d
+-/
 theorem desc_condition
     (hcompat : eRel s x' f e he ≫ repAct s G x' hX' = (canonical s f).act ≫ e.hom)
     {T : Over S} (z : G.obj (op T)) {W : Scheme.{u}} (g₁ g₂ : W ⟶ pullback T.hom s)
@@ -450,6 +564,9 @@ variable (ζ : G.obj (op (Over.mk f))) (hζ : G.map (cover s f).op ζ = univBC s
 
 include hζ in
 
+/--
+@isnad1 id=eq.2h13v.s11.033a4b98f077 from=translated src=- shape=023f00c9 vocab=51a77e10
+-/
 theorem map_coverT_map_eq_homEquiv_bc {T : Over S} (m : T ⟶ Over.mk f) :
     G.map (coverT s T).op (G.map m.op ζ) = hX'.homEquiv (bc s x' f e he m) := by
   have h1 := coverT_comp s f m
@@ -464,6 +581,9 @@ theorem map_coverT_map_eq_homEquiv_bc {T : Over S} (m : T ⟶ Over.mk f) :
 
 include hζ in
 
+/--
+@isnad1 id=eq.3h14v.s10.e9056f7c2726 from=translated src=- shape=fcafab01 vocab=a352bf18
+-/
 theorem map_ζ_injective {T : Over S} [Epi (pullback.fst T.hom s)] {m₁ m₂ : T ⟶ Over.mk f}
     (h : G.map m₁.op ζ = G.map m₂.op ζ) : m₁ = m₂ := by
   have h' : bc s x' f e he m₁ = bc s x' f e he m₂ := by
@@ -482,6 +602,9 @@ theorem map_ζ_injective {T : Over S} [Epi (pullback.fst T.hom s)] {m₁ m₂ : 
 
 include hζ in
 
+/--
+@isnad1 id=ex.4h13v.s10.2cb181f91480 from=translated src=- shape=d516a3a0 vocab=3156f4fc
+-/
 theorem map_ζ_surjective (hcompat : eRel s x' f e he ≫ repAct s G x' hX' = (canonical s f).act ≫ e.hom)
     {T : Over S} (hsep : Presieve.IsSeparatedFor G (Presieve.singleton (coverT s T)))
     [EffectiveEpi (pullback.fst T.hom s)] (z : G.obj (op T)) :
@@ -524,6 +647,9 @@ theorem map_ζ_surjective (hcompat : eRel s x' f e he ≫ repAct s G x' hX' = (c
 
 end withζ
 
+/--
+@isnad1 id=nonempty.3h10v.s9.66c18f7cf9c4 from=translated src=- shape=e8a0ceef vocab=7e9dd66a
+-/
 theorem representableBy_of_compatible
     (hG : ∀ T : Over S, Presieve.IsSheafFor G (Presieve.singleton (coverT s T)))
     [∀ T : Over S, EffectiveEpi (pullback.fst T.hom s)]

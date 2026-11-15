@@ -23,10 +23,16 @@ noncomputable def extConditions (P : Set ι)
     Submodule k (H1 (Rep.res (loc v) M)) :=
   if v ∈ P then ⊥ else U v
 
+/--
+@isnad1 id=eq.1h9v.s9.11e2cad946b5 from=translated src=- shape=0c154f9f vocab=d0b6c69b
+-/
 lemma extConditions_of_mem {P : Set ι} {U : ∀ v, Submodule k (H1 (Rep.res (loc v) M))}
     {v : ι} (hv : v ∈ P) : extConditions loc M P U v = ⊥ := by
   simp [extConditions, hv]
 
+/--
+@isnad1 id=eq.1h9v.s9.7e3092e1417e from=translated src=- shape=281cd99e vocab=97dd0a86
+-/
 lemma extConditions_of_not_mem {P : Set ι} {U : ∀ v, Submodule k (H1 (Rep.res (loc v) M))}
     {v : ι} (hv : v ∉ P) : extConditions loc M P U v = U v := by
   simp [extConditions, hv]

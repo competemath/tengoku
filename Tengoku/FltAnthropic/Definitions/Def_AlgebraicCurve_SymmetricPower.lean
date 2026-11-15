@@ -24,6 +24,9 @@ noncomputable abbrev proj (l : Fin r) : finFibrePow c r ⟶ C :=
 noncomputable abbrev toBase : finFibrePow c r ⟶ Spec (CommRingCat.of k) :=
   WidePullback.base (fun _ : Fin r => c)
 
+/--
+@isnad1 id=eq.0h5v.s6.f6d5d6b1ab1a from=translated src=- shape=73c70ab5 vocab=6266dffe
+-/
 @[reassoc]
 theorem proj_comp (l : Fin r) : proj c r l ≫ c = toBase c r :=
   WidePullback.π_arrow _ _
@@ -31,21 +34,33 @@ theorem proj_comp (l : Fin r) : proj c r l ≫ c = toBase c r :=
 noncomputable def permHom (σ : Equiv.Perm (Fin r)) : finFibrePow c r ⟶ finFibrePow c r :=
   WidePullback.lift (toBase c r) (fun j => proj c r (σ⁻¹ j)) (fun _ => WidePullback.π_arrow _ _)
 
+/--
+@isnad1 id=eq.0h6v.s6.ede0751974e3 from=translated src=- shape=6f55b4e5 vocab=2afae03e
+-/
 @[reassoc]
 theorem permHom_proj (σ : Equiv.Perm (Fin r)) (j : Fin r) :
     permHom c r σ ≫ proj c r j = proj c r (σ⁻¹ j) :=
   WidePullback.lift_π _ _ _ _ _
 
+/--
+@isnad1 id=eq.0h5v.s6.07d52d4ff2ce from=translated src=- shape=b8def020 vocab=1387b6a0
+-/
 @[reassoc]
 theorem permHom_toBase (σ : Equiv.Perm (Fin r)) : permHom c r σ ≫ toBase c r = toBase c r :=
   WidePullback.lift_base _ _ _ _
 
+/--
+@isnad1 id=eq.0h4v.s6.1921552ea552 from=translated src=- shape=462dfe6d vocab=574506bb
+-/
 theorem permHom_one : permHom c r 1 = 𝟙 _ := by
   apply WidePullback.hom_ext
   · intro j
     rw [permHom_proj, Category.id_comp, inv_one, Equiv.Perm.one_apply]
   · rw [permHom_toBase, Category.id_comp]
 
+/--
+@isnad1 id=eq.0h6v.s6.9644b01d8d0d from=translated src=- shape=5706f49c vocab=4df96903
+-/
 theorem permHom_mul (σ τ : Equiv.Perm (Fin r)) :
     permHom c r (σ * τ) = permHom c r τ ≫ permHom c r σ := by
   apply WidePullback.hom_ext
@@ -66,15 +81,27 @@ noncomputable def permAct : Equiv.Perm (Fin r) →* Aut (finFibrePow c r) :=
     change permHom c r (σ * τ) = (permAut c r τ).hom ≫ (permAut c r σ).hom
     exact permHom_mul c r σ τ)
 
+/--
+@isnad1 id=eq.0h5v.s8.4ed5209772af from=translated src=- shape=bec7e284 vocab=8bf80883
+-/
 theorem permAct_hom (σ : Equiv.Perm (Fin r)) : (permAct c r σ).hom = permHom c r σ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.63d3646350d5 from=translated src=- shape=a0b9defd vocab=2fcc3acd
+-/
 theorem permAct_inv (σ : Equiv.Perm (Fin r)) : (permAct c r σ).inv = permHom c r σ⁻¹ := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.aa69d7cf1af4 from=translated src=- shape=3859b893 vocab=a70406b6
+-/
 @[reassoc]
 theorem permAct_hom_proj (σ : Equiv.Perm (Fin r)) (i : Fin r) :
     (permAct c r σ).hom ≫ proj c r (σ i) = proj c r i := by
   rw [permAct_hom, permHom_proj, Equiv.Perm.inv_def, Equiv.symm_apply_apply]
 
+/--
+@isnad1 id=eq.0h5v.s8.1287c80ae043 from=translated src=- shape=9399c1a2 vocab=4823d08c
+-/
 @[reassoc]
 theorem permAct_hom_toBase (σ : Equiv.Perm (Fin r)) :
     (permAct c r σ).hom ≫ toBase c r = toBase c r := by
@@ -82,6 +109,9 @@ theorem permAct_hom_toBase (σ : Equiv.Perm (Fin r)) :
 
 end finFibrePow
 
+/--
+@isnad1 id=le.1h5v.s9.36617ac82d11 from=translated src=- shape=790bb958 vocab=73119a4e
+-/
 theorem le_preimage_of_comp_eq {X Y : Scheme.{u}} (g : X ⟶ X) (q : X ⟶ Y) (h : g ≫ q = q)
     (V : Y.Opens) : q ⁻¹ᵁ V ≤ g ⁻¹ᵁ (q ⁻¹ᵁ V) := by
   rw [← Scheme.Hom.comp_preimage, h]

@@ -19,6 +19,9 @@ def integralFiniteAdeles : Set (FiniteAdeleRing R K) :=
 
 variable (v : HeightOneSpectrum R)
 
+/--
+@isnad1 id=mem.0h4v.s8.99fa839f06c6 from=translated src=- shape=a952829b vocab=dcbaddea
+-/
 theorem algebraMap_mem_adicCompletionIntegers (r : R) :
     algebraMap K (v.adicCompletion K) (algebraMap R K r) ∈ v.adicCompletionIntegers K := by
   rw [HeightOneSpectrum.mem_adicCompletionIntegers,
@@ -27,12 +30,18 @@ theorem algebraMap_mem_adicCompletionIntegers (r : R) :
     HeightOneSpectrum.valuedAdicCompletion_eq_valuation']
   exact v.valuation_le_one r
 
+/--
+@isnad1 id=eq.0h4v.s9.73716cf88c2b from=translated src=- shape=df1a2a68 vocab=62dad0cd
+-/
 theorem valued_algebraMap (r : R) :
     Valued.v (algebraMap K (v.adicCompletion K) (algebraMap R K r)) = v.intValuation r := by
   rw [show algebraMap K (v.adicCompletion K) (algebraMap R K r) =
       ((algebraMap R K r : K) : v.adicCompletion K) from rfl,
     HeightOneSpectrum.valuedAdicCompletion_eq_valuation', HeightOneSpectrum.valuation_of_algebraMap]
 
+/--
+@isnad1 id=mem.1h5v.s9.8074fc536d8e from=translated src=- shape=e3abaf51 vocab=03d9e9aa
+-/
 theorem ball_mem_nhds (x t : v.adicCompletion K) (ht : t ≠ 0) :
     {z : v.adicCompletion K | Valued.v (z - x) < Valued.v t} ∈ nhds x := by
   have ht' : Valued.v.restrict t ≠ 0 := by
@@ -41,12 +50,18 @@ theorem ball_mem_nhds (x t : v.adicCompletion K) (ht : t ≠ 0) :
   rw [Units.val_mk0] at hz
   exact Valued.v.restrict_lt_iff.mp hz
 
+/--
+@isnad1 id=ex.1h5v.s9.f0953a0c5970 from=translated src=- shape=c9435427 vocab=2a306368
+-/
 theorem exists_valued_sub_algebraMap_lt (x t : v.adicCompletion K) (ht : t ≠ 0) :
     ∃ c : K, Valued.v (x - algebraMap K (v.adicCompletion K) c) < Valued.v t := by
   obtain ⟨_, hz, c, rfl⟩ := mem_closure_iff_nhds.mp
     (HeightOneSpectrum.denseRange_algebraMap (K := K) (v := v) x) _ (ball_mem_nhds R K v x t ht)
   exact ⟨c, by rwa [Set.mem_ofPred_eq, Valuation.map_sub_swap] at hz⟩
 
+/--
+@isnad1 id=ex.1h5v.s10.9ee80f8ba0b3 from=translated src=- shape=7f37a48c vocab=55bd60ba
+-/
 theorem exists_valued_algebraMap_sub_lt (x : v.adicCompletionIntegers K)
     (t : v.adicCompletion K) (ht : t ≠ 0) :
     ∃ a : R, Valued.v (algebraMap K (v.adicCompletion K) (algebraMap R K a) -
@@ -90,6 +105,9 @@ theorem exists_valued_algebraMap_sub_lt (x : v.adicCompletionIntegers K)
   rw [hγ, Units.val_mk0] at ha' hyγ
   exact lt_of_le_of_lt this (max_lt ha' hyγ)
 
+/--
+@isnad1 id=ex.0h4v.s9.ea4320faabb0 from=translated src=- shape=4482c7e5 vocab=9822d380
+-/
 theorem exists_mul_mem_adicCompletionIntegers (x : v.adicCompletion K) :
     ∃ s : R, s ≠ 0 ∧
       algebraMap K (v.adicCompletion K) (algebraMap R K s) * x ∈ v.adicCompletionIntegers K := by
@@ -121,17 +139,26 @@ theorem exists_mul_mem_adicCompletionIntegers (x : v.adicCompletion K) :
 
 omit v in
 
+/--
+@isnad1 id=eq.0h5v.s9.e83ca09c0b39 from=translated src=- shape=0ce05aa2 vocab=6be4ef7d
+-/
 theorem algebraMap_mul_apply (r : R) (y : FiniteAdeleRing R K) (v : HeightOneSpectrum R) :
     (algebraMap R (FiniteAdeleRing R K) r * y) v =
       algebraMap K (v.adicCompletion K) (algebraMap R K r) * y v := rfl
 
 omit v in
 
+/--
+@isnad1 id=eq.0h5v.s9.7fcff3b6d4df from=translated src=- shape=374d62ef vocab=762c79a1
+-/
 theorem algebraMap_add_apply (k : K) (y : FiniteAdeleRing R K) (v : HeightOneSpectrum R) :
     (algebraMap K (FiniteAdeleRing R K) k + y) v = algebraMap K (v.adicCompletion K) k + y v := rfl
 
 omit v in
 
+/--
+@isnad1 id=ex.0h3v.s8.5724ad96abec from=translated src=- shape=b2359050 vocab=38351671
+-/
 theorem exists_mul_mem_integralFiniteAdeles (y : FiniteAdeleRing R K) :
     ∃ s : R, s ≠ 0 ∧ algebraMap R (FiniteAdeleRing R K) s * y ∈ integralFiniteAdeles R K := by
   classical
@@ -151,6 +178,9 @@ theorem exists_mul_mem_integralFiniteAdeles (y : FiniteAdeleRing R K) :
 
 omit v in
 
+/--
+@isnad1 id=ex.2h4v.s10.47f81c409709 from=translated src=- shape=c8ab0319 vocab=4a2fabb8
+-/
 theorem exists_forall_valued_sub_le {z : FiniteAdeleRing R K} (hz : z ∈ integralFiniteAdeles R K)
     {s : R} (hs : s ≠ 0) :
     ∃ a : R, ∀ v : HeightOneSpectrum R,
@@ -202,6 +232,9 @@ theorem exists_forall_valued_sub_le {z : FiniteAdeleRing R K} (hz : z ∈ integr
 
 omit v in
 
+/--
+@isnad1 id=ex.0h3v.s8.3daee5a554be from=translated src=- shape=9fe15e61 vocab=c7be7077
+-/
 theorem exists_algebraMap_add_mem_integralFiniteAdeles (y : FiniteAdeleRing R K) :
     ∃ k : K, algebraMap K (FiniteAdeleRing R K) k + y ∈ integralFiniteAdeles R K := by
   obtain ⟨s, hs, hsy⟩ := exists_mul_mem_integralFiniteAdeles R K y
@@ -240,6 +273,9 @@ def infiniteBox : Set (InfiniteAdeleRing K) :=
 
 omit [NumberField K] in
 
+/--
+@isnad1 id=continuo.0h1v.s9.ae8666ff4ccc from=translated src=- shape=c5bed54c vocab=7bdfd003
+-/
 theorem continuous_ringEquiv_mixedSpace :
     Continuous (InfiniteAdeleRing.ringEquiv_mixedSpace K) := by
   have h : (InfiniteAdeleRing.ringEquiv_mixedSpace K : InfiniteAdeleRing K → mixedEmbedding.mixedSpace K)
@@ -257,6 +293,9 @@ theorem continuous_ringEquiv_mixedSpace :
 
 open scoped Classical in
 
+/--
+@isnad1 id=existsun.0h2v.s7.d263d30a17b4 from=translated src=- shape=775cbed5 vocab=ac5cd523
+-/
 theorem existsUnique_int_add_mem_infiniteBox (x : InfiniteAdeleRing K) :
     ∃! o : 𝓞 K, algebraMap K (InfiniteAdeleRing K) (o : K) + x ∈ infiniteBox K := by
   set e := InfiniteAdeleRing.ringEquiv_mixedSpace K with he
@@ -297,6 +336,9 @@ variable (K : Type*) [Field K] [NumberField K]
 def adelicBox : Set (AdeleRing (𝓞 K) K) :=
   {x | x.1 ∈ infiniteBox K ∧ x.2 ∈ integralFiniteAdeles (𝓞 K) K}
 
+/--
+@isnad1 id=existsun.0h2v.s8.5c5cc2595a8c from=translated src=- shape=76726bae vocab=0340652a
+-/
 theorem existsUnique_algebraMap_add_mem_adelicBox (x : AdeleRing (𝓞 K) K) :
     ∃! k : K, algebraMap K (AdeleRing (𝓞 K) K) k + x ∈ adelicBox K := by
 
@@ -338,6 +380,9 @@ theorem existsUnique_algebraMap_add_mem_adelicBox (x : AdeleRing (𝓞 K) K) :
 
 attribute [local instance] NumberField.AdelicHaar.adeleBorel NumberField.AdelicHaar.borelSpace_adeleBorel
 
+/--
+@isnad1 id=isclosed.0h1v.s5.b5121188fd9d from=translated src=- shape=ce94623f vocab=131e2f89
+-/
 theorem isClosed_integralFiniteAdeles :
     IsClosed (integralFiniteAdeles (𝓞 K) K) := by
   have : integralFiniteAdeles (𝓞 K) K = ⋂ v : HeightOneSpectrum (𝓞 K),
@@ -350,6 +395,9 @@ theorem isClosed_integralFiniteAdeles :
 
 open scoped Classical in
 
+/--
+@isnad1 id=measurab.0h1v.s4.308868587919 from=translated src=- shape=da9a72aa vocab=b144935d
+-/
 theorem measurableSet_infiniteBox :
     MeasurableSet[borel (InfiniteAdeleRing K)] (infiniteBox K) := by
   letI : MeasurableSpace (InfiniteAdeleRing K) := borel _
@@ -357,6 +405,9 @@ theorem measurableSet_infiniteBox :
   exact (ZSpan.fundamentalDomain_measurableSet _).preimage
     (continuous_ringEquiv_mixedSpace K).measurable
 
+/--
+@isnad1 id=measurab.0h1v.s5.e20820a3b3ad from=translated src=- shape=b81f25dc vocab=7e1833b5
+-/
 theorem measurableSet_adelicBox : MeasurableSet (adelicBox K) := by
   letI : MeasurableSpace (InfiniteAdeleRing K) := borel _
   haveI : BorelSpace (InfiniteAdeleRing K) := ⟨rfl⟩
@@ -369,6 +420,9 @@ theorem measurableSet_adelicBox : MeasurableSet (adelicBox K) := by
   exact ((measurableSet_infiniteBox K).preimage h1).inter
     ((isClosed_integralFiniteAdeles K).measurableSet.preimage h2)
 
+/--
+@isnad1 id=isaddfun.0h2v.s11.329aabe065a5 from=translated src=- shape=64944c4e vocab=cd631aeb
+-/
 theorem isAddFundamentalDomain_adelicBox (μ : Measure (AdeleRing (𝓞 K) K)) :
     IsAddFundamentalDomain (AdeleRing.principalSubgroup (𝓞 K) K) (adelicBox K) μ := by
   refine IsAddFundamentalDomain.mk' (measurableSet_adelicBox K).nullMeasurableSet fun x => ?_
@@ -381,6 +435,9 @@ theorem isAddFundamentalDomain_adelicBox (μ : Measure (AdeleRing (𝓞 K) K)) :
     subst this
     rfl
 
+/--
+@isnad1 id=isaddfun.0h1v.s11.c4acb7aef55e from=translated src=- shape=9ff568e9 vocab=801d2c81
+-/
 theorem isAddFundamentalDomain_adelicBox_adelicAddHaar :
     IsAddFundamentalDomain (AdeleRing.principalSubgroup (𝓞 K) K) (adelicBox K)
       (NumberField.AdelicHaar.adelicAddHaar (𝓞 K) K) :=
@@ -388,6 +445,9 @@ theorem isAddFundamentalDomain_adelicBox_adelicAddHaar :
 
 omit [NumberField K] in
 
+/--
+@isnad1 id=propersp.0h2v.s5.8fcd154245b4 from=translated src=- shape=1fcfa16f vocab=fc12aa08
+-/
 theorem properSpace_completion (v : InfinitePlace K) : ProperSpace v.Completion := by
   by_cases hv : v.IsReal
   · exact (InfinitePlace.Completion.isometryEquivRealOfIsReal hv).symm.isometry.antilipschitzWith.properSpace
@@ -400,6 +460,9 @@ theorem properSpace_completion (v : InfinitePlace K) : ProperSpace v.Completion 
 
 open scoped Classical in
 
+/--
+@isnad1 id=le.1h3v.s10.2d370190edf1 from=translated src=- shape=999eea44 vocab=50832aef
+-/
 theorem norm_apply_le_of_isReal (x : InfiniteAdeleRing K) {v : InfinitePlace K} (hv : v.IsReal) :
     ‖x v‖ ≤ ‖InfiniteAdeleRing.ringEquiv_mixedSpace K x‖ := by
   have h1 : ‖InfinitePlace.Completion.extensionEmbeddingOfIsReal hv (x v)‖ = ‖x v‖ :=
@@ -413,6 +476,9 @@ theorem norm_apply_le_of_isReal (x : InfiniteAdeleRing K) {v : InfinitePlace K} 
 
 open scoped Classical in
 
+/--
+@isnad1 id=le.1h3v.s10.b1c99efa6e61 from=translated src=- shape=999eea44 vocab=50832aef
+-/
 theorem norm_apply_le_of_isComplex (x : InfiniteAdeleRing K) {v : InfinitePlace K}
     (hv : v.IsComplex) : ‖x v‖ ≤ ‖InfiniteAdeleRing.ringEquiv_mixedSpace K x‖ := by
   have h1 : ‖InfinitePlace.Completion.extensionEmbedding v (x v)‖ = ‖x v‖ :=
@@ -426,6 +492,9 @@ theorem norm_apply_le_of_isComplex (x : InfiniteAdeleRing K) {v : InfinitePlace 
 
 open scoped Classical in
 
+/--
+@isnad1 id=ex.0h1v.s5.520049b6bac7 from=translated src=- shape=4c584dcd vocab=8bdb14d7
+-/
 theorem exists_forall_norm_apply_le_of_mem_infiniteBox :
     ∃ r : ℝ, ∀ x ∈ infiniteBox K, ∀ v : InfinitePlace K, ‖x v‖ ≤ r := by
   obtain ⟨r, hr⟩ := isBounded_iff_forall_norm_le.mp
@@ -436,6 +505,9 @@ theorem exists_forall_norm_apply_le_of_mem_infiniteBox :
   · exact (norm_apply_le_of_isReal K x hv).trans hx'
   · exact (norm_apply_le_of_isComplex K x (InfinitePlace.not_isReal_iff_isComplex.mp hv)).trans hx'
 
+/--
+@isnad1 id=ex.0h1v.s5.629ba3c68a75 from=translated src=- shape=15753bb4 vocab=3426484f
+-/
 theorem exists_isCompact_infiniteBox_subset :
     ∃ S : Set (InfiniteAdeleRing K), IsCompact S ∧ infiniteBox K ⊆ S := by
   obtain ⟨r, hr⟩ := exists_forall_norm_apply_le_of_mem_infiniteBox K
@@ -449,6 +521,9 @@ theorem exists_isCompact_infiniteBox_subset :
   rw [this]
   exact isCompact_univ_pi fun v => isCompact_closedBall (0 : v.Completion) r
 
+/--
+@isnad1 id=iscompac.0h1v.s5.d55476f20a1b from=translated src=- shape=ce94623f vocab=9a2f1070
+-/
 theorem isCompact_integralFiniteAdeles : IsCompact (integralFiniteAdeles (𝓞 K) K) := by
   haveI : ∀ v : HeightOneSpectrum (𝓞 K),
       CompactSpace ((v.adicCompletionIntegers K : Set (v.adicCompletion K))) := fun v =>
@@ -460,12 +535,18 @@ theorem isCompact_integralFiniteAdeles : IsCompact (integralFiniteAdeles (𝓞 K
   rw [RestrictedProduct.range_structureMap] at h
   exact h
 
+/--
+@isnad1 id=isopen.0h1v.s5.27092b752eb3 from=translated src=- shape=ce94623f vocab=f8970ec6
+-/
 theorem isOpen_integralFiniteAdeles : IsOpen (integralFiniteAdeles (𝓞 K) K) :=
   RestrictedProduct.isOpen_forall_mem
     (R := fun v : HeightOneSpectrum (𝓞 K) => v.adicCompletion K)
     (A := fun v : HeightOneSpectrum (𝓞 K) => (v.adicCompletionIntegers K : Set (v.adicCompletion K)))
     Fact.out
 
+/--
+@isnad1 id=ex.0h1v.s6.545fb34659d2 from=translated src=- shape=d7f2e082 vocab=d20f28c4
+-/
 theorem exists_isCompact_adelicBox_subset :
     ∃ C : Set (AdeleRing (𝓞 K) K), IsCompact C ∧ adelicBox K ⊆ C := by
   obtain ⟨S, hS, hsub⟩ := exists_isCompact_infiniteBox_subset K
@@ -473,6 +554,9 @@ theorem exists_isCompact_adelicBox_subset :
   have : IsCompact (S ×ˢ integralFiniteAdeles (𝓞 K) K) := hS.prod (isCompact_integralFiniteAdeles K)
   exact this
 
+/--
+@isnad1 id=lt.0h2v.s7.22703002b5a1 from=translated src=- shape=f20a1205 vocab=2ad6ab98
+-/
 theorem measure_adelicBox_lt_top (μ : Measure (AdeleRing (𝓞 K) K)) [IsFiniteMeasureOnCompacts μ] :
     μ (adelicBox K) < ⊤ := by
   obtain ⟨C, hC, hsub⟩ := exists_isCompact_adelicBox_subset K
@@ -480,6 +564,9 @@ theorem measure_adelicBox_lt_top (μ : Measure (AdeleRing (𝓞 K) K)) [IsFinite
 
 open scoped Classical in
 
+/--
+@isnad1 id=ex.0h1v.s6.0f8eb5849da0 from=translated src=- shape=93a3ee44 vocab=1894a5c4
+-/
 theorem exists_isOpen_subset_adelicBox :
     ∃ U : Set (AdeleRing (𝓞 K) K), IsOpen U ∧ U.Nonempty ∧ U ⊆ adelicBox K := by
   set b := mixedEmbedding.latticeBasis K with hb
@@ -510,6 +597,9 @@ theorem exists_isOpen_subset_adelicBox :
   · rintro x ⟨hx1, hx2⟩
     exact ⟨hVsub hx1, hx2⟩
 
+/--
+@isnad1 id=lt.0h2v.s7.d00cce76194e from=translated src=- shape=f25b283b vocab=ca790720
+-/
 theorem measure_adelicBox_pos (μ : Measure (AdeleRing (𝓞 K) K)) [μ.IsOpenPosMeasure] :
     0 < μ (adelicBox K) := by
   obtain ⟨U, hU, hne, hsub⟩ := exists_isOpen_subset_adelicBox K
@@ -517,16 +607,25 @@ theorem measure_adelicBox_pos (μ : Measure (AdeleRing (𝓞 K) K)) [μ.IsOpenPo
 
 attribute [local instance] NumberField.AdelicHaar.isAddHaarMeasure_adelicAddHaar
 
+/--
+@isnad1 id=lt.0h1v.s7.9a0e155682ad from=translated src=- shape=c28ee282 vocab=754a8560
+-/
 theorem adelicAddHaar_adelicBox_lt_top :
     NumberField.AdelicHaar.adelicAddHaar (𝓞 K) K (adelicBox K) < ⊤ :=
   measure_adelicBox_lt_top K _
 
+/--
+@isnad1 id=lt.0h1v.s7.fb16d32f8871 from=translated src=- shape=02bfeeff vocab=5187d3cd
+-/
 theorem adelicAddHaar_adelicBox_pos :
     0 < NumberField.AdelicHaar.adelicAddHaar (𝓞 K) K (adelicBox K) :=
   measure_adelicBox_pos K _
 
 open scoped ProbabilityTheory in
 
+/--
+@isnad1 id=isprobab.0h1v.s6.42b631cf8053 from=translated src=- shape=31ea9ec7 vocab=8e2a8104
+-/
 theorem isProbabilityMeasure_cond_adelicBox :
     IsProbabilityMeasure ((NumberField.AdelicHaar.adelicAddHaar (𝓞 K) K)[|adelicBox K]) :=
   ProbabilityTheory.cond_isProbabilityMeasure_of_finite (adelicAddHaar_adelicBox_pos K).ne'

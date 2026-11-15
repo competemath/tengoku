@@ -22,12 +22,21 @@ def unipotentGL2 (x : R) : GL (Fin 2) R where
   val_inv := by rw [unipotent_mul_unipotent, add_neg_cancel, Matrix.one_fin_two]
   inv_val := by rw [unipotent_mul_unipotent, neg_add_cancel, Matrix.one_fin_two]
 
+/--
+@isnad1 id=eq.0h2v.s8.821806f5456f from=translated src=- shape=91de8ec8 vocab=dbb8ab54
+-/
 @[simp] theorem unipotentGL2_coe (x : R) :
     (unipotentGL2 x : Matrix (Fin 2) (Fin 2) R) = !![1, x; 0, 1] := rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.b5d6e0bc8122 from=translated src=- shape=82a407f1 vocab=e88a7ab4
+-/
 @[simp] theorem unipotentGL2_zero : unipotentGL2 (0 : R) = 1 := by
   ext i j; simp [unipotentGL2, Matrix.one_fin_two]
 
+/--
+@isnad1 id=eq.0h3v.s7.69f2ca96dd6f from=translated src=- shape=b68454b1 vocab=518c5e49
+-/
 theorem unipotentGL2_add (x y : R) :
     unipotentGL2 (x + y) = unipotentGL2 x * unipotentGL2 y := by
   ext i j; simp only [unipotentGL2, Units.val_mul, unipotent_mul_unipotent]
@@ -49,10 +58,16 @@ def constantTermIntegrand (u : Q → G) (f : G → ℂ) (g : G) : Q → ℂ :=
 noncomputable def constantTerm (μ : Measure Q) (u : Q → G) (f : G → ℂ) (g : G) : ℂ :=
   ∫ q, constantTermIntegrand u f g q ∂μ
 
+/--
+@isnad1 id=eq.0h5v.s5.43936dd641bb from=translated src=- shape=626f1ba8 vocab=c36a5713
+-/
 @[simp] theorem constantTerm_zero (μ : Measure Q) (u : Q → G) (g : G) :
     constantTerm μ u (fun _ => (0 : ℂ)) g = 0 := by
   simp [constantTerm, constantTermIntegrand]
 
+/--
+@isnad1 id=eq.0h6v.s5.af68e2db1f01 from=translated src=- shape=bca6baeb vocab=862e1a57
+-/
 @[simp] theorem constantTerm_const (μ : Measure Q) [IsProbabilityMeasure μ] (u : Q → G)
     (c : ℂ) (g : G) : constantTerm μ u (fun _ => c) g = c := by
   simp [constantTerm, constantTermIntegrand, integral_const, measureReal_def]
