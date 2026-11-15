@@ -139,7 +139,9 @@ class TrustedAndArguments(unittest.TestCase):
         self.assertNotIn(name, after)
         self.assertEqual(len(after), len(lines) - 1)
 
-    @unittest.skipUnless((ROOT / "data" / "trusted").is_dir(), "this checkout has no data/ (the sonar workflow's sparse checkout leaves it out)")
+    @unittest.skipUnless(
+        (ROOT / "data" / "trusted").is_dir(), "this checkout has no data/ (the sonar workflow's sparse checkout leaves it out)"
+    )
     def test_trusted_names_are_read_from_the_real_data_trusted(self):
         names = cs.trusted_names(ROOT)
         self.assertGreater(len(names), 100_000)
