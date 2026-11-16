@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "c90ba3bbaf7d736a938dac1baaf6adfdbe9cd9371f9c4e4eacd1b78b17f913d0",
+ "factory_changes": {
+  "inert lines removed": 6,
+  "modules changed": 4
+ },
+ "gate2_unjudged": [],
+ "library": "ulmstheorem",
+ "lint_mode": "proposed",
+ "modules": 14,
+ "part": 1,
+ "theorems": 19
+}

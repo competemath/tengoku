@@ -87,6 +87,7 @@ import Tengoku.Azurite
 import Tengoku.Compply
 import Tengoku.LeanCharacteristicSet
 import Tengoku.SpherePackingOrig
+import Tengoku.Ulmstheorem
 import Tengoku.ChebotarevDensity
 import Tengoku.Compfiles
 import Tengoku.Pfr
@@ -94,6 +95,7 @@ import Tengoku.Stafford38Formal
 import Tengoku.ChoppedPlanePointIdeals
 import Tengoku.Piirrationalitymeasure
 import Tengoku.LanaEllipticCurves
+import Tengoku.SalemTheorem
 import Tengoku.Apap
 import Tengoku.Sendov
 import Tengoku.DgLean
