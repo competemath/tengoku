@@ -1,0 +1,14 @@
+{
+ "bundle_sha256": "cfe8541b5098c414ced39e729fe19973fa6715421cc86263b9726c665528a883",
+ "factory_changes": {
+  "inert lines removed": 1,
+  "modules changed": 2,
+  "print lines removed": 3
+ },
+ "gate2_unjudged": [],
+ "library": "salem-theorem",
+ "lint_mode": "proposed",
+ "modules": 9,
+ "part": 1,
+ "theorems": 86
+}
