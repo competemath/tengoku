@@ -14,6 +14,9 @@ open scoped TensorProduct
 
 namespace EtaleReducedAux
 
+/--
+@isnad1 id=geometri.0h2v.s5.eb3f49802d56 from=translated src=- shape=1471da2c vocab=40c4c95b
+-/
 theorem geometricallyReduced_specMap (R S : Type u) [CommRing R] [CommRing S] [Algebra R S] [Algebra.Etale R S] :
     GeometricallyReduced (Spec.map (CommRingCat.ofHom (algebraMap R S))) := by
   constructor
@@ -30,6 +33,9 @@ theorem geometricallyReduced_specMap (R S : Type u) [CommRing R] [CommRing S] [A
 
 end EtaleReducedAux
 
+/--
+@isnad1 id=isreduce.0h2v.s6.a75181841958 from=translated src=- shape=4f101e93 vocab=d17d0abb
+-/
 theorem solution
     (R S : Type u) [CommRing R] [CommRing S] [Algebra R S]
     [IsNoetherianRing R] [_root_.IsReduced R] [Algebra.Etale R S] :

@@ -17,6 +17,9 @@ namespace AlgFAC
 
 noncomputable def tors (G : Type) [AddCommGroup G] (N : ℕ) : ℕ := Nat.card {x : G // N • x = 0}
 
+/--
+@isnad1 id=eq.0h3v.s5.f14d15f09d1b from=translated src=- shape=8b4fc486 vocab=8bdc9b7e
+-/
 theorem tors_pi {ι : Type} [Fintype ι] (G : ι → Type) [∀ i, AddCommGroup (G i)] (N : ℕ) :
     tors (∀ i, G i) N = ∏ i, tors (G i) N := by
   unfold tors
@@ -24,6 +27,9 @@ theorem tors_pi {ι : Type} [Fintype ι] (G : ι → Type) [∀ i, AddCommGroup 
   refine Nat.card_congr ⟨fun x i => ⟨x.1 i, congrFun x.2 i⟩, fun y => ⟨fun i => (y i).1, funext fun i => (y i).2⟩,
     fun x => rfl, fun y => rfl⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.c180c310e73a from=translated src=- shape=60328b97 vocab=b75b2336
+-/
 theorem tors_zmod (n : ℕ) [NeZero n] (N : ℕ) : tors (ZMod n) N = Nat.gcd N n := by
   classical
   unfold tors
@@ -52,6 +58,9 @@ theorem tors_zmod (n : ℕ) [NeZero n] (N : ℕ) : tors (ZMod n) N = Nat.gcd N n
 
   nlinarith [this, hdiv]
 
+/--
+@isnad1 id=eq.0h3v.s6.0bd44dcb71b0 from=translated src=- shape=a2e0723f vocab=a8e089de
+-/
 theorem tors_pi_zmod {ι : Type} [Fintype ι] (n : ι → ℕ) [∀ i, NeZero (n i)] (N : ℕ) :
     tors (∀ i, ZMod (n i)) N = ∏ i, Nat.gcd N (n i) := by
   rw [tors_pi]
@@ -61,6 +70,9 @@ end AlgFAC
 
 namespace AlgFAC
 
+/--
+@isnad1 id=eq.0h2v.s6.415a8da17897 from=translated src=- shape=a6acc474 vocab=e4968804
+-/
 theorem card_torsionBy_eq_tors (A : Type u) [AddCommGroup A] (N : ℕ) :
     Nat.card (Submodule.torsionBy ℤ A N) = Nat.card {x : A // N • x = 0} := by
   refine Nat.card_congr (Equiv.subtypeEquivRight fun x => ?_)
@@ -68,6 +80,9 @@ theorem card_torsionBy_eq_tors (A : Type u) [AddCommGroup A] (N : ℕ) :
 
 noncomputable def torsU (G : Type u) [AddCommGroup G] (N : ℕ) : ℕ := Nat.card {x : G // N • x = 0}
 
+/--
+@isnad1 id=eq.0h4v.s5.a3521cf0f454 from=translated src=- shape=1ef42939 vocab=0d3777d7
+-/
 theorem torsU_congr {G : Type u} {G' : Type} [AddCommGroup G] [AddCommGroup G'] (e : G ≃+ G') (N : ℕ) :
     torsU G N = tors G' N := by
   unfold tors torsU
@@ -76,6 +91,9 @@ theorem torsU_congr {G : Type u} {G' : Type} [AddCommGroup G] [AddCommGroup G'] 
   · apply Subtype.ext; simp
   · apply Subtype.ext; simp
 
+/--
+@isnad1 id=ex.0h1v.s7.9210add6e788 from=translated src=- shape=1c54b398 vocab=d6fefaf2
+-/
 theorem exists_pi_zmod (G : Type u) [AddCommGroup G] [Finite G] :
     ∃ (ι : Type) (_ : Fintype ι) (p : ι → ℕ) (_ : ∀ i, (p i).Prime) (e : ι → ℕ),
       Nonempty (G ≃+ ∀ i, ZMod (p i ^ e i)) := by
@@ -93,6 +111,9 @@ def cge (r k : ℕ) : ℕ := (Finset.univ.filter fun i => p i = r ∧ k ≤ e i)
 
 def ceq (r k : ℕ) : ℕ := (Finset.univ.filter fun i => p i = r ∧ e i = k).card
 
+/--
+@isnad1 id=eq.2h5v.s6.c2b340bb6930 from=translated src=- shape=37e0b09a vocab=b62e897f
+-/
 theorem prod_gcd_prime_pow (hp : ∀ i, (p i).Prime) (r : ℕ) (hr : r.Prime) (k : ℕ) :
     ∏ i, Nat.gcd (r ^ k) (p i ^ e i) = r ^ S p e r k := by
   unfold S
@@ -106,6 +127,9 @@ theorem prod_gcd_prime_pow (hp : ∀ i, (p i).Prime) (r : ℕ) (hr : r.Prime) (k
   · rw [ite_eq_right h, pow_zero]
     exact Nat.Coprime.pow _ _ ((Nat.coprime_primes hr (hp i)).mpr (Ne.symm h))
 
+/--
+@isnad1 id=eq.0h5v.s6.ac9858bdf71b from=translated src=- shape=fd21ddca vocab=8044cb42
+-/
 theorem S_succ (r k : ℕ) : S p e r (k + 1) = S p e r k + cge p e r (k + 1) := by
   unfold S cge
   rw [Finset.card_filter, ← Finset.sum_add_distrib]
@@ -118,6 +142,9 @@ theorem S_succ (r k : ℕ) : S p e r (k + 1) = S p e r k + cge p e r (k + 1) := 
       rw [ite_eq_right hk, add_zero, min_eq_right (Nat.le_succ_of_le hle), min_eq_right hle]
   · simp [h]
 
+/--
+@isnad1 id=eq.0h5v.s5.69af5e8e9e21 from=translated src=- shape=6478c311 vocab=a0fa8e0e
+-/
 theorem cge_eq (r k : ℕ) : cge p e r k = ceq p e r k + cge p e r (k + 1) := by
   unfold cge ceq
   rw [← Finset.card_union_of_disjoint]
@@ -143,6 +170,9 @@ section Match2
 variable {ι κ : Type} [Fintype ι] [DecidableEq ι] [Fintype κ] [DecidableEq κ]
   (p e : ι → ℕ) (q f : κ → ℕ)
 
+/--
+@isnad1 id=eq.2h8v.s6.4008caedb76c from=translated src=- shape=9b3ea827 vocab=10d516db
+-/
 theorem ceq_eq_of_S_eq (r : ℕ) (hS : ∀ k, S p e r k = S q f r k) (k : ℕ) (hk : 1 ≤ k) :
     ceq p e r k = ceq q f r k := by
   have hcge : ∀ k, 1 ≤ k → cge p e r k = cge q f r k := by
@@ -172,6 +202,9 @@ def piSubtypeAddEquiv {ι : Type} (A : ι → Type) [∀ i, AddCommGroup (A i)] 
     simp [i.2]
   map_add' x y := rfl
 
+/--
+@isnad1 id=nonempty.3h6v.s8.df4c9f3adeba from=translated src=- shape=46ccc900 vocab=02e1e8a7
+-/
 theorem nonempty_addEquiv_of_prod_gcd_eq (hp : ∀ i, (p i).Prime) (hq : ∀ j, (q j).Prime)
     (h : ∀ N : ℕ, ∏ i, Nat.gcd N (p i ^ e i) = ∏ j, Nat.gcd N (q j ^ f j)) :
     Nonempty ((∀ i, ZMod (p i ^ e i)) ≃+ (∀ j, ZMod (q j ^ f j))) := by
@@ -253,6 +286,9 @@ end Match2
 end AlgFAC
 
 open AlgFAC in
+/--
+@isnad1 id=nonempty.1h2v.s7.b6a74f1aa6a7 from=translated src=- shape=07845634 vocab=a3ef646e
+-/
 theorem solution
     (A : Type u) (B : Type v) [AddCommGroup A] [AddCommGroup B] [Finite A] [Finite B]
     (h : ∀ N : ℕ, Nat.card (Submodule.torsionBy ℤ A (N : ℤ)) = Nat.card (Submodule.torsionBy ℤ B (N : ℤ))) :

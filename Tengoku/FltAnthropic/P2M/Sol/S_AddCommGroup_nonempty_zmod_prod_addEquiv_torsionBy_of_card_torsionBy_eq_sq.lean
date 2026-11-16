@@ -12,6 +12,9 @@ noncomputable section
 namespace P2MWs13
 namespace TorsionStructure
 
+/--
+@isnad1 id=nonempty.2h2v.s6.ebff11c846fd from=translated src=- shape=7ea81a48 vocab=3d7ba0c5
+-/
 theorem nonempty_zmodSqAddEquiv_of_card_eq_sq {p : ℕ} (hp : p.Prime)
     (M : Type*) [AddCommGroup M] [Module (ZMod p) M]
     (hcard : Nat.card M = p ^ 2) :
@@ -52,6 +55,9 @@ private def pSmulHomKerEquivTorsionBy (M : Type*) [AddCommGroup M] (p : ℕ) :
   left_inv _ := Subtype.ext rfl
   right_inv _ := Subtype.ext rfl
 
+/--
+@isnad1 id=ex.2h6v.s7.0a00e999072b from=translated src=- shape=5add41ef vocab=72136a55
+-/
 theorem forall_exists_zsmul_pair_of_step {M : Type*} [AddCommGroup M] {p k : ℕ} {x y : M}
     (hexp : ∀ t : M, p ^ k • t = 0)
     (hstep : ∀ t : M, ∃ (a b : ℤ) (s : M), t = a • x + b • y + (p : ℤ) • s) :
@@ -87,6 +93,9 @@ theorem forall_exists_zsmul_pair_of_step {M : Type*} [AddCommGroup M] {p k : ℕ
     exact hexp s
   rw [hs, hzero, add_zero]
 
+/--
+@isnad1 id=nonempty.3h4v.s7.483145e1cd81 from=translated src=- shape=460d8dd8 vocab=d729dd21
+-/
 theorem nonempty_zmodPowSqAddEquiv_of_span_pair {n : ℕ} (hn : n ≠ 0)
     (M : Type*) [AddCommGroup M] [Module (ZMod n) M]
     (hcard : Nat.card M = n ^ 2) (x y : M)
@@ -111,6 +120,9 @@ theorem nonempty_zmodPowSqAddEquiv_of_span_pair {n : ℕ} (hn : n ≠ 0)
   exact ⟨AddEquiv.ofBijective f
     ((Nat.bijective_iff_surjective_and_card f).mpr ⟨hfsurj, hcards⟩)⟩
 
+/--
+@isnad1 id=nonempty.4h3v.s8.1bf8e229c2ee from=translated src=- shape=88b47975 vocab=7c4f9294
+-/
 theorem nonempty_zmodPowSqAddEquiv_of_card_pow {p : ℕ} (hp : p.Prime) (k : ℕ)
     (M : Type*) [AddCommGroup M]
     (hexp : ∀ t : M, p ^ k • t = 0)
@@ -224,6 +236,9 @@ def torsionByPowPTorsionEquiv (p k : ℕ) (hk : k ≠ 0) :
   left_inv _ := Subtype.ext (Subtype.ext rfl)
   right_inv _ := Subtype.ext rfl
 
+/--
+@isnad1 id=nonempty.4h3v.s9.8fedde68e7c6 from=translated src=- shape=e87cc23a vocab=189bb2b4
+-/
 theorem nonempty_zmodPowSqAddEquiv_torsionBy_of_card_pow {p : ℕ} (hp : p.Prime) {k : ℕ}
     (hk : k ≠ 0)
     (hcard : Nat.card (Submodule.torsionBy ℤ A ((p ^ k : ℕ) : ℤ)) = p ^ (2 * k))
@@ -317,6 +332,9 @@ def torsionByMulCoprimeSplitAddEquiv (M N : ℕ) (a b : ℤ)
         = ((M : ℤ) * a) • (t : A) + ((M : ℤ) * a) • (s : A)
       rw [smul_add]
 
+/--
+@isnad1 id=nonempty.1h3v.s8.d13996c6975d from=translated src=- shape=ceba60ce vocab=9aadd420
+-/
 theorem nonempty_torsionByMulAddEquiv_prod_of_coprime {M N : ℕ} (hcop : Nat.Coprime M N) :
     Nonempty (Submodule.torsionBy ℤ A ((M * N : ℕ) : ℤ) ≃+
       Submodule.torsionBy ℤ A (M : ℤ) × Submodule.torsionBy ℤ A (N : ℤ)) := by
@@ -332,6 +350,9 @@ def zmodSqCrtAddEquiv {M N : ℕ} (hcop : Nat.Coprime M N) :
     (ZMod.chineseRemainder hcop).toAddEquiv).trans
     (AddEquiv.prodProdProdComm (ZMod M) (ZMod N) (ZMod M) (ZMod N))
 
+/--
+@isnad1 id=nonempty.3h3v.s9.3c048dc32eb1 from=translated src=- shape=717c4de2 vocab=241ba0ad
+-/
 theorem nonempty_zmodSqAddEquiv_torsionBy_mul_of_coprime {M N : ℕ} (hcop : Nat.Coprime M N)
     (hM : Nonempty ((ZMod M × ZMod M) ≃+ Submodule.torsionBy ℤ A (M : ℤ)))
     (hN : Nonempty ((ZMod N × ZMod N) ≃+ Submodule.torsionBy ℤ A (N : ℤ))) :
@@ -343,6 +364,9 @@ theorem nonempty_zmodSqAddEquiv_torsionBy_mul_of_coprime {M N : ℕ} (hcop : Nat
 
 end AbstractEngine
 
+/--
+@isnad1 id=nonempty.0h1v.s7.4831a63c5d6d from=translated src=- shape=8052ef28 vocab=ad0256f7
+-/
 theorem nonempty_zmodSqAddEquiv_torsionBy_one {A : Type*} [AddCommGroup A] :
     Nonempty ((ZMod 1 × ZMod 1) ≃+ Submodule.torsionBy ℤ A ((1 : ℕ) : ℤ)) := by
   haveI : Subsingleton (Submodule.torsionBy ℤ A ((1 : ℕ) : ℤ)) := by
@@ -360,6 +384,9 @@ end P2MWs13.TorsionStructure
 end
 
 open P2MWs13.TorsionStructure in
+/--
+@isnad1 id=nonempty.2h2v.s7.7fb761c667ea from=translated src=- shape=f42523e7 vocab=61af8d61
+-/
 theorem solution
     {A : Type*} [AddCommGroup A] {n : ℕ} (hn : n ≠ 0)
     (hcard : ∀ d : ℕ, d ∣ n → Nat.card (Submodule.torsionBy ℤ A d) = d ^ 2) :

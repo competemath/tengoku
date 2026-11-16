@@ -7,6 +7,9 @@ namespace P2MW.S_AddMonoidHom_exists_comp_self_sub_smul_add_eq_zero_of_dicyclic_
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.4h4v.s10.28b289210f31 from=translated src=- shape=738614c9 vocab=1f6bbced
+-/
 theorem solution
     {V : Type*} [AddCommGroup V] (α β : V →+ V)
     (hα : ∀ T, α (α T) = -T) (hβ : ∀ T, β (β T) + β T + T = 0) (hαβ : ∀ T, α (β T) = β (β (α T)))

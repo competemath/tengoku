@@ -58,6 +58,9 @@ end CuspForm
 
 namespace AutomorphicForm
 
+/--
+@isnad1 id=realizat.2h1v.s4.c9f3eaffa004 from=translated src=- shape=9cb1e653 vocab=8bba34e5
+-/
 theorem realizationDictionary_of_weightOne_of_congruenceLift
     {notion : CuspidalityNotion (ℤ√(-2))}
     (hW1 : WeightOneHolomorphicRealization notion)
@@ -72,6 +75,9 @@ end AutomorphicForm
 
 namespace LanglandsTunnell
 
+/--
+@isnad1 id=notionco.0h1v.s4.f15623271258 from=translated src=- shape=54271976 vocab=ab5717cd
+-/
 theorem notionCompatForAttachedOctahedralData_self
     (notion : AutomorphicForm.CuspidalityNotion (ℤ√(-2))) :
     NotionCompatForAttachedOctahedralData notion notion :=

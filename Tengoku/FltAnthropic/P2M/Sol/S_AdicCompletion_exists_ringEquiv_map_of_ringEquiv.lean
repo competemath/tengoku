@@ -17,6 +17,9 @@ noncomputable def levelMap (I : Ideal R) (J : Ideal S) (f : R →+* S) (hf : ∀
     AdicCompletion I R →+* S ⧸ J ^ n :=
   (Ideal.quotientMap (J ^ n) f (hf n)).comp (AdicCompletion.evalₐ I n : AdicCompletion I R →+* R ⧸ I ^ n)
 
+/--
+@isnad1 id=eq.2h7v.s10.276a9e3ccc58 from=translated src=- shape=5bac4a73 vocab=836e7de0
+-/
 theorem levelMap_compat (I : Ideal R) (J : Ideal S) (f : R →+* S) (hf : ∀ n : ℕ, I ^ n ≤ (J ^ n).comap f)
     {m n : ℕ} (hle : m ≤ n) :
     (Ideal.Quotient.factorPow J hle).comp (levelMap I J f hf n) = levelMap I J f hf m := by
@@ -38,6 +41,9 @@ noncomputable def transportHom (I : Ideal R) (J : Ideal S) (f : R →+* S) (hf :
     AdicCompletion I R →+* AdicCompletion J S :=
   AdicCompletion.liftRingHom J (levelMap I J f hf) (fun hle => levelMap_compat I J f hf hle)
 
+/--
+@isnad1 id=eq.1h7v.s11.d510f7a749b3 from=translated src=- shape=3a131ee9 vocab=0e126fcf
+-/
 theorem evalₐ_transportHom (I : Ideal R) (J : Ideal S) (f : R →+* S) (hf : ∀ n : ℕ, I ^ n ≤ (J ^ n).comap f)
     (n : ℕ) (x : AdicCompletion I R) :
     AdicCompletion.evalₐ J n (transportHom I J f hf x) = Ideal.quotientMap (J ^ n) f (hf n) (AdicCompletion.evalₐ I n x) :=
@@ -45,6 +51,9 @@ theorem evalₐ_transportHom (I : Ideal R) (J : Ideal S) (f : R →+* S) (hf : �
 
 end BDescAdic
 open BDescAdic in
+/--
+@isnad1 id=ex.0h4v.s12.206193a692d0 from=translated src=- shape=f64ffc27 vocab=d72787bb
+-/
 theorem solution
     {R : Type u} {S : Type v} [CommRing R] [CommRing S] (I : Ideal R) (e : R ≃+* S) :
     ∃ ê : AdicCompletion I R ≃+* AdicCompletion (I.map e) S,

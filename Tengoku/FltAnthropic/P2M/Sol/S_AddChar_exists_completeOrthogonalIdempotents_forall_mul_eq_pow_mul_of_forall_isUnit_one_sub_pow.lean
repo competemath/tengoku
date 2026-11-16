@@ -16,6 +16,9 @@ namespace CharDecomp
 
 variable {R : Type u} [CommRing R]
 
+/--
+@isnad1 id=isunit.5h5v.s7.ca532093157e from=translated src=- shape=fb94d414 vocab=04e91e19
+-/
 theorem isUnit_pow_sub_pow {ζ : R} {m : ℕ} (hζ : ζ ^ m = 1)
     (hζu : ∀ j : ℕ, 0 < j → j < m → IsUnit (1 - ζ ^ j)) {i j : ℕ} (hi : i < m) (hj : j < m) (hij : i ≠ j) :
     IsUnit (ζ ^ i - ζ ^ j) := by
@@ -31,6 +34,9 @@ theorem isUnit_pow_sub_pow {ζ : R} {m : ℕ} (hζ : ζ ^ m = 1)
     rw [this]
     exact ((hζU.pow j).mul (hζu (i - j) (Nat.sub_pos_of_lt h) (lt_of_le_of_lt (Nat.sub_le i j) hi))).neg
 
+/--
+@isnad1 id=complete.1h4v.s6.5557bad2eef1 from=translated src=- shape=b4e83d0d vocab=0e752933
+-/
 theorem refine {G : Type} [Fintype G] [DecidableEq G] {m : ℕ}
     (e : G → Fin m → R) (he : ∀ g, CompleteOrthogonalIdempotents (e g)) :
     CompleteOrthogonalIdempotents (fun k : G → Fin m => ∏ g, e g (k g)) := by
@@ -46,6 +52,9 @@ theorem refine {G : Type} [Fintype G] [DecidableEq G] {m : ℕ}
   · rw [← Fintype.prod_sum]
     exact Finset.prod_eq_one fun g _ => (he g).complete
 
+/--
+@isnad1 id=ex.4h5v.s10.3190e32f5910 from=translated src=- shape=51224a43 vocab=c874187b
+-/
 theorem main (N : ℕ) (hd : IsUnit ((N + 1 : ℕ) : R))
     (ζ : R) (hζ : ζ ^ (N + 1) = 1) (hζu : ∀ j : ℕ, 0 < j → j < N + 1 → IsUnit (1 - ζ ^ j))
     {G : Type} [AddCommGroup G] [Fintype G] [DecidableEq G] (hG : ∀ g : G, (N + 1) • g = 0) (χ : AddChar G R) :
@@ -90,6 +99,9 @@ theorem main (N : ℕ) (hd : IsUnit ((N + 1 : ℕ) : R))
 
 end CharDecomp
 
+/--
+@isnad1 id=ex.4h5v.s10.3190e32f5910 from=translated src=- shape=51224a43 vocab=c874187b
+-/
 theorem solution
     (R : Type u) [CommRing R] (N : ℕ) (hd : IsUnit ((N + 1 : ℕ) : R))
     (ζ : R) (hζ : ζ ^ (N + 1) = 1) (hζu : ∀ j : ℕ, 0 < j → j < N + 1 → IsUnit (1 - ζ ^ j))

@@ -22,6 +22,9 @@ variable {M : Type*} [AddCommGroup M] [Module R M]
 variable {N : Type*} [AddCommGroup N] [Module R N]
 variable {P : Type*} [AddCommGroup P] [Module R P]
 
+/--
+@isnad1 id=injectiv.1h5v.s11.af5c1c141ee8 from=translated src=- shape=c1bde061 vocab=4fa09d3e
+-/
 theorem map_injective' [IsNoetherianRing R] [Module.Finite R N] {f : M →ₗ[R] N}
     (hf : Function.Injective f) : Function.Injective (map I f) := by
   obtain ⟨k, hk⟩ := Ideal.exists_pow_inf_eq_pow_smul I (range f)
@@ -108,6 +111,9 @@ end
 
 include hf hfg hg in
 
+/--
+@isnad1 id=exact.3h7v.s12.9e314d86fe17 from=translated src=- shape=681ac579 vocab=1babdf92
+-/
 theorem map_exact' : Function.Exact (map I f) (map I g) := by
   refine LinearMap.exact_of_comp_eq_zero_of_ker_le_range ?_ (fun y ↦ ?_)
   · rw [map_comp, hfg.linearMap_comp_eq_zero, AdicCompletion.map_zero]
@@ -137,6 +143,9 @@ variable {R : Type*} [CommRing R] (I : Ideal R)
 variable {M : Type*} [AddCommGroup M] [Module R M]
 variable {N : Type*} [AddCommGroup N] [Module R N]
 
+/--
+@isnad1 id=eq.0h7v.s13.65fe53e82512 from=translated src=- shape=f54cac82 vocab=f6a5a59a
+-/
 theorem map_sub_apply (f g : M →ₗ[R] N) (x : AdicCompletion I M) :
     map I (f - g) x = map I f x - map I g x := by
   apply AdicCompletion.induction_on I M x (fun a ↦ ?_)
@@ -150,6 +159,9 @@ end InvCompletion
 end AdicCompletion
 
 open _root_.AdicCompletion _root_.P2MW.S_AdicCompletion_map_algebraLinearMap_injective_and_mem_range_iff_of_isInvariant.AdicCompletion AdicCompletion.InvCompletion in
+/--
+@isnad1 id=and.0h4v.s13.a22796cbc009 from=translated src=- shape=299530c2 vocab=4ab0e768
+-/
 theorem solution
     {A : Type*} [CommRing A] [IsNoetherianRing A] (I : Ideal A)
     {S : Type*} [CommRing S] [Algebra A S] [Module.Finite A S] [FaithfulSMul A S]

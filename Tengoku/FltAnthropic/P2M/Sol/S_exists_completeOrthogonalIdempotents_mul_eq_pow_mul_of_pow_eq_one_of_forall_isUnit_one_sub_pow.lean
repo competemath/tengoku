@@ -15,6 +15,9 @@ namespace CycDecomp
 
 variable {R : Type u} [CommRing R]
 
+/--
+@isnad1 id=eq.2h3v.s7.e0f76eb431b8 from=translated src=- shape=8a8395d1 vocab=e315429c
+-/
 theorem geom_sum_eq_zero_of_pow_eq_one_of_isUnit {x : R} {m : ℕ} (hx : x ^ m = 1) (hu : IsUnit (1 - x)) :
     ∑ i ∈ range m, x ^ i = 0 := by
   have h := geom_sum_mul x m
@@ -22,9 +25,15 @@ theorem geom_sum_eq_zero_of_pow_eq_one_of_isUnit {x : R} {m : ℕ} (hx : x ^ m =
   have hu' : IsUnit (x - 1) := by rw [← neg_sub]; exact hu.neg
   exact (hu'.mul_left_eq_zero).mp h
 
+/--
+@isnad1 id=eq.1h4v.s6.f931546f3f21 from=translated src=- shape=2ad31a04 vocab=62e166c5
+-/
 theorem pow_eq_pow_mod {ζ : R} {m : ℕ} (hζ : ζ ^ m = 1) (t : ℕ) : ζ ^ t = ζ ^ (t % m) := by
   conv_lhs => rw [← Nat.mod_add_div t m, pow_add, pow_mul, hζ, one_pow, mul_one]
 
+/--
+@isnad1 id=eq.3h4v.s7.4bf4d0b9df8c from=translated src=- shape=778dfc49 vocab=646fedd1
+-/
 theorem sum_pow_mul_eq_zero {ζ : R} {m : ℕ} (hζ : ζ ^ m = 1)
     (hζu : ∀ j : ℕ, 0 < j → j < m → IsUnit (1 - ζ ^ j)) {t : ℕ} (ht : ¬ m ∣ t) :
     ∑ k ∈ range m, (ζ ^ t) ^ k = 0 := by
@@ -36,6 +45,9 @@ theorem sum_pow_mul_eq_zero {ζ : R} {m : ℕ} (hζ : ζ ^ m = 1)
     refine hζu _ (Nat.pos_of_ne_zero ?_) (Nat.mod_lt _ hm)
     intro h0; exact ht (Nat.dvd_of_mod_eq_zero h0)
 
+/--
+@isnad1 id=isunit.5h5v.s7.ca532093157e from=translated src=- shape=fb94d414 vocab=04e91e19
+-/
 theorem isUnit_pow_sub_pow {ζ : R} {m : ℕ} (hζ : ζ ^ m = 1)
     (hζu : ∀ j : ℕ, 0 < j → j < m → IsUnit (1 - ζ ^ j)) {i j : ℕ} (hi : i < m) (hj : j < m) (hij : i ≠ j) :
     IsUnit (ζ ^ i - ζ ^ j) := by
@@ -51,6 +63,9 @@ theorem isUnit_pow_sub_pow {ζ : R} {m : ℕ} (hζ : ζ ^ m = 1)
     rw [this]
     exact ((hζU.pow j).mul (hζu (i - j) (Nat.sub_pos_of_lt h) (lt_of_le_of_lt (Nat.sub_le i j) hi))).neg
 
+/--
+@isnad1 id=ex.5h4v.s8.f0170499b5dc from=translated src=- shape=64102baa vocab=256d6bca
+-/
 theorem decomp {m : ℕ} (hm : 0 < m) (hmu : IsUnit ((m : ℕ) : R))
     (ζ : R) (hζ : ζ ^ m = 1) (hζu : ∀ j : ℕ, 0 < j → j < m → IsUnit (1 - ζ ^ j))
     (ω : R) (hω : ω ^ m = 1) :
@@ -131,6 +146,9 @@ theorem decomp {m : ℕ} (hm : 0 < m) (hmu : IsUnit ((m : ℕ) : R))
 
 end CycDecomp
 
+/--
+@isnad1 id=ex.4h4v.s8.f5a6231181d0 from=translated src=- shape=a6e1cae7 vocab=e1887b1d
+-/
 theorem solution
     (R : Type u) [CommRing R] (N : ℕ) (hd : IsUnit ((N + 1 : ℕ) : R))
     (ζ : R) (hζ : ζ ^ (N + 1) = 1) (hζu : ∀ j : ℕ, 0 < j → j < N + 1 → IsUnit (1 - ζ ^ j))

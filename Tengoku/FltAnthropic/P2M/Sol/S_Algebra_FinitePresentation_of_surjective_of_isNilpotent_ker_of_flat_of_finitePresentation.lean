@@ -13,6 +13,9 @@ open Module MvPolynomial
 
 namespace FPLift
 
+/--
+@isnad1 id=eq.2h4v.s8.4354abc87d7b from=translated src=- shape=7a4557b5 vocab=213a0368
+-/
 theorem kill {P : Type u} [CommRing P] (I : Ideal P) (hI : IsNilpotent I)
     {X : Type v} [AddCommGroup X] [Module P X] (S : Submodule P X) (hS : S ≤ I • S) : S = ⊥ := by
   obtain ⟨k, hk⟩ := hI
@@ -45,6 +48,9 @@ theorem eq_top_of_le_sup_smul {P : Type u} [CommRing P] (I : Ideal P) (hI : IsNi
   rw [htop, Submodule.mem_bot, Submodule.mkQ_apply, Submodule.Quotient.mk_eq_zero] at this
   exact this
 
+/--
+@isnad1 id=eq.1h5v.s8.6269b5a78e03 from=translated src=- shape=518b9f8f vocab=21e61c3e
+-/
 theorem ker_inf_smul_top {P : Type u} [CommRing P] (I : Ideal P)
     {F : Type v} {A : Type w} [AddCommGroup F] [Module P F] [AddCommGroup A] [Module P A] [Module.Flat P A]
     (f : F →ₗ[P] A) (hf : Function.Surjective f) :
@@ -91,6 +97,9 @@ theorem ker_inf_smul_top {P : Type u} [CommRing P] (I : Ideal P)
 
 end FPLift
 
+/--
+@isnad1 id=finitepr.6h6v.s9.ca30c2cee305 from=translated src=- shape=22904792 vocab=b978f169
+-/
 theorem solution
     {P B' : Type u} [CommRing P] [CommRing B'] (p : P →+* B') (hp : Function.Surjective p)
     (hI : IsNilpotent (RingHom.ker p))

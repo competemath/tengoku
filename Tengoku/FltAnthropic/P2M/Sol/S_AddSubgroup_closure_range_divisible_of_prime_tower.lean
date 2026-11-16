@@ -13,6 +13,9 @@ section Tower
 
 variable {R M : Type*} [Ring R] [AddCommGroup M] [Module R M]
 
+/--
+@isnad1 id=ex.2h4v.s7.2991deb53c51 from=translated src=- shape=75b49259 vocab=04a3eabc
+-/
 theorem tower_exists_smul_eq (p : ℕ) (f : ℕ → M) (htrans : ∀ n, p • f (n + 1) = f n)
     {z : M} (hz : z ∈ AddSubgroup.closure (Set.range f)) :
     ∃ z' ∈ AddSubgroup.closure (Set.range f), p • z' = z := by
@@ -26,6 +29,9 @@ theorem tower_exists_smul_eq (p : ℕ) (f : ℕ → M) (htrans : ∀ n, p • f 
   · rintro x - ⟨x', hx', rfl⟩
     exact ⟨-x', AddSubgroup.neg_mem _ hx', smul_neg _ _⟩
 
+/--
+@isnad1 id=ex.2h5v.s7.14fab28acf53 from=translated src=- shape=5500448c vocab=0345fbe3
+-/
 theorem tower_exists_pow_smul_eq (p : ℕ) (f : ℕ → M) (htrans : ∀ n, p • f (n + 1) = f n)
     (a : ℕ) {z : M} (hz : z ∈ AddSubgroup.closure (Set.range f)) :
     ∃ z' ∈ AddSubgroup.closure (Set.range f), p ^ a • z' = z := by
@@ -36,6 +42,9 @@ theorem tower_exists_pow_smul_eq (p : ℕ) (f : ℕ → M) (htrans : ∀ n, p �
       obtain ⟨w', hw', rfl⟩ := ih hw
       exact ⟨w', hw', by rw [pow_succ', mul_smul]⟩
 
+/--
+@isnad1 id=ex.2h4v.s7.9a3010b1dcb6 from=translated src=- shape=2445437c vocab=de0ddabb
+-/
 theorem tower_exists_pow_smul_eq_zero (p : ℕ) (f : ℕ → M) (htors : ∀ n, p ^ n • f n = 0)
     {z : M} (hz : z ∈ AddSubgroup.closure (Set.range f)) : ∃ K : ℕ, p ^ K • z = 0 := by
   refine AddSubgroup.closure_induction (p := fun z _ => ∃ K : ℕ, p ^ K • z = 0) ?_ ?_ ?_ ?_ hz
@@ -50,6 +59,9 @@ theorem tower_exists_pow_smul_eq_zero (p : ℕ) (f : ℕ → M) (htors : ∀ n, 
   · rintro x - ⟨K, hK⟩
     exact ⟨K, by rw [smul_neg, hK, neg_zero]⟩
 
+/--
+@isnad1 id=eq.3h6v.s7.c54a8e939109 from=translated src=- shape=517e15f1 vocab=4762ccc7
+-/
 theorem tower_smul_eq_zero (f : ℕ → M) (I : Set R) (hkill : ∀ t ∈ I, ∀ n, t • f n = 0)
     {t : R} (ht : t ∈ I) {z : M} (hz : z ∈ AddSubgroup.closure (Set.range f)) : t • z = 0 := by
   refine AddSubgroup.closure_induction (p := fun z _ => t • z = 0) ?_ ?_ ?_ ?_ hz
@@ -61,6 +73,9 @@ theorem tower_smul_eq_zero (f : ℕ → M) (I : Set R) (hkill : ∀ t ∈ I, ∀
   · rintro x - hx
     rw [smul_neg, hx, neg_zero]
 
+/--
+@isnad1 id=ex.5h5v.s7.998d8f312fb8 from=translated src=- shape=894f46dc vocab=9d26b196
+-/
 theorem tower_divisible (p : ℕ) (hp : p.Prime) (f : ℕ → M)
     (htrans : ∀ n, p • f (n + 1) = f n) (htors : ∀ n, p ^ n • f n = 0)
     {z : M} (hz : z ∈ AddSubgroup.closure (Set.range f)) (k : ℕ) (hk : 0 < k) :
@@ -87,6 +102,9 @@ theorem tower_divisible (p : ℕ) (hp : p.Prime) (f : ℕ → M)
       rw [← Nat.div_add_mod' (u * v) (p ^ K), hv, add_smul, mul_smul, hK, smul_zero, zero_add]
     rw [mul_smul, ← mul_smul u v w, huv]
 
+/--
+@isnad1 id=and.5h5v.s8.c5b2eabd1374 from=translated src=- shape=4e8c669c vocab=0a9bb482
+-/
 theorem tower_closure_spec (p : ℕ) (hp : p.Prime) (f : ℕ → M)
     (htrans : ∀ n, p • f (n + 1) = f n) (htors : ∀ n, p ^ n • f n = 0)
     (I : Set R) (hkill : ∀ t ∈ I, ∀ n, t • f n = 0) (hne : ∃ n, f n ≠ 0) :
@@ -107,6 +125,9 @@ end Tower
 
 end RekeyTower
 
+/--
+@isnad1 id=and.5h5v.s8.c5b2eabd1374 from=translated src=- shape=4e8c669c vocab=0a9bb482
+-/
 theorem solution
     {R M : Type*} [Ring R] [AddCommGroup M] [Module R M]
     (p : ℕ) (hp : p.Prime) (f : ℕ → M)

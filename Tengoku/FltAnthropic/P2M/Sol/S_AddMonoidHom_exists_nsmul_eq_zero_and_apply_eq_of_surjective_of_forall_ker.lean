@@ -7,6 +7,9 @@ namespace P2MW.S_AddMonoidHom_exists_nsmul_eq_zero_and_apply_eq_of_surjective_of
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.3h5v.s8.e357577f1bad from=translated src=- shape=9c1d9524 vocab=b75f91c9
+-/
 theorem solution
     {A B : Type*} [AddCommGroup A] [AddCommGroup B] (f : A →+ B)
     (hf : Function.Surjective f)

@@ -14,6 +14,9 @@ universe u v
 
 namespace P2mGenericTrdegBound
 
+/--
+@isnad1 id=isintegr.2h8v.s8.a0fc32d4ea50 from=translated src=- shape=75f34c11 vocab=2ccd1f7e
+-/
 theorem isIntegral_map_of_forall_mem {R R' C C' : Type*} [CommRing R] [CommRing R'] [CommRing C] [CommRing C']
     [Algebra R C] [Algebra R' C'] (f : C →+* C') (D : Subalgebra R C) (D' : Subalgebra R' C')
     (hDD' : ∀ x ∈ D, f x ∈ D') {x : C} (hx : IsIntegral D x) : IsIntegral D' (f x) := by
@@ -25,10 +28,16 @@ theorem isIntegral_map_of_forall_mem {R R' C C' : Type*} [CommRing R] [CommRing 
   refine ⟨p.map φ, hmonic.map φ, ?_⟩
   rw [eval₂_map, hφ, ← hom_eval₂, hp, map_zero]
 
+/--
+@isnad1 id=isalgebr.2h4v.s6.0b5c9597123f from=translated src=- shape=5f669fec vocab=d5754bcc
+-/
 theorem isAlgebraic_of_smul {R A : Type*} [CommRing R] [IsDomain R] [Ring A] [Algebra R A] {z : A} {y : R}
     (hy : y ≠ 0) (h : IsAlgebraic R (y • z)) : IsAlgebraic R z :=
   IsAlgebraic.of_smul (mem_nonZeroDivisors_of_ne_zero hy) h
 
+/--
+@isnad1 id=ex.0h3v.s8.b6efc54c1e81 from=translated src=- shape=ec275e81 vocab=ccbfa2f1
+-/
 theorem main
     {A : Type u} {B : Type v} [CommRing A] [CommRing B] [Algebra A B] [Algebra.FiniteType A B]
     (𝔮 : Ideal B) [𝔮.IsPrime] :
@@ -100,6 +109,9 @@ theorem main
 
 end P2mGenericTrdegBound
 
+/--
+@isnad1 id=ex.0h3v.s8.b6efc54c1e81 from=translated src=- shape=ec275e81 vocab=ccbfa2f1
+-/
 theorem solution
     {A : Type u} {B : Type v} [CommRing A] [CommRing B] [Algebra A B] [Algebra.FiniteType A B]
     (𝔮 : Ideal B) [𝔮.IsPrime] :

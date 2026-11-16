@@ -14,6 +14,9 @@ namespace Tengoku.FltAnthropic.GaloisRepAdic
 
 variable {A : Type} [CommRing A] [IsLocalRing A]
 
+/--
+@isnad1 id=galoisch.1h2v.s11.31c85cfc62f7 from=translated src=- shape=1516e607 vocab=0a7beeae
+-/
 theorem galoisCharIsAdicContinuous_of_finiteLevel
     (χ : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) →* Aˣ)
     (h : ∃ L : IntermediateField ℚ (AlgebraicClosure ℚ), FiniteDimensional ℚ L ∧
@@ -54,20 +57,35 @@ theorem galoisCharIsAdicContinuous_of_finiteLevel
 variable (ρ : GaloisRepAdic A) (χ : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) →* Aˣ)
   (hχ : GaloisCharIsAdicContinuous A χ)
 
+/--
+@isnad1 id=eq.1h3v.s8.f4f42047c82a from=translated src=- shape=df83fac0 vocab=df7e2fd9
+-/
 theorem twist_V : (ρ.twist χ hχ).V = ρ.V := rfl
 
+/--
+@isnad1 id=eq.1h4v.s12.ae3b6dbd9885 from=translated src=- shape=e061b57a vocab=c607bef8
+-/
 theorem twist_ρ_apply (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) :
     (ρ.twist χ hχ).ρ σ = ((χ σ : Aˣ) : A) • ρ.ρ σ := rfl
 
+/--
+@isnad1 id=eq.1h5v.s12.da055c8ebcab from=translated src=- shape=0d316ac0 vocab=c607bef8
+-/
 theorem twist_ρ_apply_apply (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) (v : ρ.V) :
     (ρ.twist χ hχ).ρ σ v = ((χ σ : Aˣ) : A) • ρ.ρ σ v := rfl
 
+/--
+@isnad1 id=eq.1h4v.s10.7e1090b6191e from=translated src=- shape=7a32f29a vocab=518d127c
+-/
 theorem trace_twist (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) :
     (ρ.twist χ hχ).trace σ = ((χ σ : Aˣ) : A) * ρ.trace σ := by
   show LinearMap.trace A ρ.V (((χ σ : Aˣ) : A) • ρ.ρ σ) = _
   rw [map_smul, smul_eq_mul]
   rfl
 
+/--
+@isnad1 id=isunrami.3h4v.s10.a117d2fbc3f5 from=translated src=- shape=65866cbe vocab=492e2e12
+-/
 theorem isUnramifiedAt_twist {q : ℕ}
     (hq : ∀ P : ValuationSubring (AlgebraicClosure ℚ), P.LiesOverPrime q →
       ∀ σ ∈ P.inertiaSubgroupIn ℚ, χ σ = 1)
@@ -76,6 +94,9 @@ theorem isUnramifiedAt_twist {q : ℕ}
   rw [twist_ρ_apply, hq P hP σ hσ, Units.val_one, one_smul]
   exact h P hP σ hσ
 
+/--
+@isnad1 id=isunipot.3h4v.s10.5e82f08c96bb from=translated src=- shape=65866cbe vocab=83161c0c
+-/
 theorem isUnipotentOnInertiaAt_twist {q : ℕ}
     (hq : ∀ P : ValuationSubring (AlgebraicClosure ℚ), P.LiesOverPrime q →
       ∀ σ ∈ P.inertiaSubgroupIn ℚ, χ σ = 1)
@@ -86,6 +107,9 @@ theorem isUnipotentOnInertiaAt_twist {q : ℕ}
   rw [e]
   exact h P hP σ hσ
 
+/--
+@isnad1 id=isstrict.3h4v.s10.aa6873c7f34d from=translated src=- shape=65866cbe vocab=7a30b9db
+-/
 theorem isStrictOrdinaryAt_twist {p : ℕ}
     (hp : ∀ P : ValuationSubring (AlgebraicClosure ℚ), P.LiesOverPrime p →
       ∀ σ ∈ P.inertiaSubgroupIn ℚ, χ σ = 1)

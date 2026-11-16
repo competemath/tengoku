@@ -22,6 +22,9 @@ variable {R : Type r} {S : Type s} {K : Type v} [CommRing R] [CommRing S] [Field
 noncomputable def galoisRepDet (W' : Affine R) (n : ℕ) : (K ≃ₐ[S] K) →* (ZMod n)ˣ :=
   LinearEquiv.det.comp (galoisRep (S := S) (K := K) W' n)
 
+/--
+@isnad1 id=eq.0h6v.s15.b56a5f679611 from=translated src=- shape=3c5d7c01 vocab=e45d750d
+-/
 @[simp]
 lemma galoisRepDet_apply (n : ℕ) (σ : K ≃ₐ[S] K) :
     galoisRepDet (S := S) (K := K) W' n σ = LinearEquiv.det (galoisRep (S := S) W' n σ) :=
@@ -34,6 +37,9 @@ def GaloisRepDetEqCyclotomic (W' : Affine R) (n : ℕ) [NeZero n]
   ∀ σ : K ≃ₐ[S] K, galoisRepDet (S := S) (K := K) W' n σ =
     modularCyclotomicCharacter K hn (σ : K ≃+* K)
 
+/--
+@isnad1 id=galoisre.1h4v.s7.96dc46cf7356 from=translated src=- shape=0379d96b vocab=4ea78d27
+-/
 theorem galoisRepDetEqCyclotomic_two (hn : Nat.card (rootsOfUnity 2 K) = 2) :
     GaloisRepDetEqCyclotomic S W' 2 hn := fun _ => Subsingleton.elim _ _
 
@@ -51,6 +57,9 @@ open scoped WeierstrassCurve.Affine
 noncomputable local instance instDecEqQbarDetCyclotomic : DecidableEq (AlgebraicClosure ℚ) :=
   Classical.decEq _
 
+/--
+@isnad1 id=eq.0h1v.s7.bc1fa9c61f6c from=translated src=- shape=153c68df vocab=9fec3d22
+-/
 theorem card_rootsOfUnity_algebraicClosure (P : FreyPackage) :
     haveI : NeZero P.p := ⟨P.pp.ne_zero⟩
     Nat.card (rootsOfUnity P.p (AlgebraicClosure ℚ)) = P.p :=

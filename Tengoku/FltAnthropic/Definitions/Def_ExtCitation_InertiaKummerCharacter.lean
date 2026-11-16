@@ -12,6 +12,9 @@ section RootsOfUnity
 
 variable (q : Nat.Primes)
 
+/--
+@isnad1 id=iff.0h5v.s7.a3fb00a7f70d from=translated src=- shape=4c39380b vocab=dc9359c5
+-/
 theorem mem_nonunits_comap_iff {K L : Type*} [Field K] [Field L] {B : ValuationSubring L} {f : K →+* L} {x : K} :
     x ∈ (B.comap f).nonunits ↔ f x ∈ B.nonunits := by
   rw [ValuationSubring.mem_nonunits_iff_or, ValuationSubring.mem_nonunits_iff_or, ValuationSubring.mem_comap, map_inv₀]
@@ -25,6 +28,9 @@ theorem mem_nonunits_comap_iff {K L : Type*} [Field K] [Field L] {B : ValuationS
 
 open scoped NNReal in
 
+/--
+@isnad1 id=mem.0h1v.s6.a1859b32c440 from=translated src=- shape=316bf8c7 vocab=1e61304a
+-/
 theorem natCast_mem_nonunits_primeLocalPlace : ((q : ℕ) : AlgebraicClosure ℚ) ∈ (primeLocalPlace q).nonunits := by
   haveI : Fact (q : ℕ).Prime := ⟨q.2⟩
   have hq : Valued.v ((q : ℕ) : PadicAlgCl q) = 1 / ((q : ℕ) : ℝ≥0) := PadicAlgCl.valuation_p q
@@ -36,6 +42,9 @@ theorem natCast_mem_nonunits_primeLocalPlace : ((q : ℕ) : AlgebraicClosure ℚ
   rw [map_natCast, hq, div_lt_one (by exact_mod_cast Nat.lt_of_lt_of_le Nat.zero_lt_two hq2)]
   exact_mod_cast Nat.lt_of_lt_of_le Nat.one_lt_two hq2
 
+/--
+@isnad1 id=charp.0h1v.s8.a5c49ff60375 from=translated src=- shape=82f70cc5 vocab=3d48469e
+-/
 theorem charP_residueField_primeLocalPlace : CharP (IsLocalRing.ResidueField ↥(primeLocalPlace q)) q := by
   haveI : Fact (q : ℕ).Prime := ⟨q.2⟩
   have hq0 : ((q : ℕ) : IsLocalRing.ResidueField ↥(primeLocalPlace q)) = 0 := by
@@ -46,6 +55,9 @@ theorem charP_residueField_primeLocalPlace : CharP (IsLocalRing.ResidueField ↥
     exact natCast_mem_nonunits_primeLocalPlace q
   exact (CharP.charP_iff_prime_eq_zero (Fact.out : (q : ℕ).Prime)).mpr hq0
 
+/--
+@isnad1 id=eq.3h3v.s11.6b403281bed3 from=translated src=- shape=28cc26d2 vocab=171f8002
+-/
 theorem primeLocalPlace_eq_one_of_residue_eq_one {u : ↥(primeLocalPlace q)} {m : ℕ} (hum : u ^ m = 1)
     (hm : ¬ (q : ℕ) ∣ m) (hres : IsLocalRing.residue _ u = 1) : u = 1 := by
   haveI := charP_residueField_primeLocalPlace q
@@ -63,15 +75,24 @@ noncomputable abbrev toDecomp : primeLocalGaloisGroup q →* ↥((primeLocalPlac
   haveI : Fact (q : ℕ).Prime := ⟨q.2⟩
   (primeLocalToGlobal q).codRestrict _ (fun g => localGaloisToGlobal_mem_decompositionSubgroup (q : ℕ) g)
 
+/--
+@isnad1 id=eq.0h3v.s13.06e692624c01 from=translated src=- shape=bc618974 vocab=d4e589ec
+-/
 theorem coe_toDecomp_smul (g : primeLocalGaloisGroup q) (a : ↥(primeLocalPlace q)) :
     ((toDecomp q g • a : ↥(primeLocalPlace q)) : AlgebraicClosure ℚ) = primeLocalToGlobal q g a := rfl
 
+/--
+@isnad1 id=mem.2h3v.s7.482a605aad80 from=translated src=- shape=83368bf9 vocab=ade22adc
+-/
 theorem mem_primeLocalPlace_of_pow_eq_one {ζ : AlgebraicClosure ℚ} {m : ℕ} (hm : m ≠ 0) (hζ : ζ ^ m = 1) :
     ζ ∈ primeLocalPlace q := by
   rw [← ValuationSubring.valuation_le_one_iff]
   have : ((primeLocalPlace q).valuation ζ) ^ m = 1 := by rw [← map_pow, hζ, map_one]
   exact ((pow_eq_one_iff_of_nonneg zero_le hm).mp this).le
 
+/--
+@isnad1 id=eq.3h4v.s10.fe754e4531c6 from=translated src=- shape=d37eafd6 vocab=13759295
+-/
 theorem inertiaPullback_smul_eq_of_pow_eq_one {σ : primeLocalGaloisGroup q}
     (hσ : σ ∈ ((primeLocalPlace q).inertiaSubgroupIn ℚ).comap (primeLocalToGlobal q))
     {ζ : AlgebraicClosure ℚ} {m : ℕ} (hm : ¬ (q : ℕ) ∣ m) (hζ : ζ ^ m = 1) :
@@ -103,6 +124,9 @@ theorem inertiaPullback_smul_eq_of_pow_eq_one {σ : primeLocalGaloisGroup q}
   have := congrArg Subtype.val key
   rwa [coe_toDecomp_smul] at this
 
+/--
+@isnad1 id=eq.3h4v.s10.3dee3ce3259b from=translated src=- shape=4c9ddf11 vocab=60c4fbdb
+-/
 theorem frobenius_smul_eq_pow_of_pow_eq_one {φ : primeLocalGaloisGroup q}
     (hφ : (primeLocalPlace q).IsFrobeniusAt (primeLocalToGlobal q φ) q)
     {ζ : AlgebraicClosure ℚ} {m : ℕ} (hm : ¬ (q : ℕ) ∣ m) (hζ : ζ ^ m = 1) :
@@ -136,9 +160,15 @@ variable (p : ℕ) [Fact p.Prime] (q : Nat.Primes)
 noncomputable def kummerRoot : AlgebraicClosure ℚ :=
   (IsAlgClosed.exists_pow_nat_eq ((q : ℕ) : AlgebraicClosure ℚ) (Fact.out : p.Prime).pos).choose
 
+/--
+@isnad1 id=eq.0h2v.s6.b84b60a3beb3 from=translated src=- shape=53b5d890 vocab=efc988ce
+-/
 theorem kummerRoot_pow : kummerRoot p q ^ p = ((q : ℕ) : AlgebraicClosure ℚ) :=
   (IsAlgClosed.exists_pow_nat_eq ((q : ℕ) : AlgebraicClosure ℚ) (Fact.out : p.Prime).pos).choose_spec
 
+/--
+@isnad1 id=ne.0h2v.s5.3baa732f67e0 from=translated src=- shape=53a31603 vocab=8d260553
+-/
 theorem kummerRoot_ne_zero : kummerRoot p q ≠ 0 := by
   intro h
   have := kummerRoot_pow p q
@@ -149,10 +179,16 @@ noncomputable def primRoot : AlgebraicClosure ℚ :=
   haveI : NeZero ((p : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr (Fact.out : p.Prime).ne_zero⟩
   (HasEnoughRootsOfUnity.exists_primitiveRoot (AlgebraicClosure ℚ) p).choose
 
+/--
+@isnad1 id=isprimit.0h1v.s4.b39a8db5ed22 from=translated src=- shape=025085eb vocab=97a098d6
+-/
 theorem isPrimitiveRoot_primRoot : IsPrimitiveRoot (primRoot p) p := by
   haveI : NeZero ((p : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr (Fact.out : p.Prime).ne_zero⟩
   exact (HasEnoughRootsOfUnity.exists_primitiveRoot (AlgebraicClosure ℚ) p).choose_spec
 
+/--
+@isnad1 id=ex.0h3v.s8.c3f371707ecd from=translated src=- shape=3fabb4e9 vocab=dddd4b53
+-/
 theorem exists_apply_kummerRoot_eq (g : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) :
     ∃ i : ℕ, i < p ∧ g (kummerRoot p q) = primRoot p ^ i * kummerRoot p q := by
   have h1 : (g (kummerRoot p q) * (kummerRoot p q)⁻¹) ^ p = 1 := by
@@ -164,12 +200,18 @@ theorem exists_apply_kummerRoot_eq (g : AlgebraicClosure ℚ ≃ₐ[ℚ] Algebra
 noncomputable def kummerExp (g : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) : ZMod p :=
   ((exists_apply_kummerRoot_eq p q g).choose : ℕ)
 
+/--
+@isnad1 id=eq.0h3v.s8.d9383b859a25 from=translated src=- shape=206f5e9d vocab=4a283dde
+-/
 theorem apply_kummerRoot (g : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) :
     g (kummerRoot p q) = primRoot p ^ (kummerExp p q g).val * kummerRoot p q := by
   have h := (exists_apply_kummerRoot_eq p q g).choose_spec
   rw [kummerExp, ZMod.val_natCast_of_lt h.1]
   exact h.2
 
+/--
+@isnad1 id=eq.1h4v.s8.b87337ec991e from=translated src=- shape=e4520376 vocab=64d71a30
+-/
 theorem kummerExp_eq_of_apply_eq (g : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) {n : ℕ}
     (h : g (kummerRoot p q) = primRoot p ^ n * kummerRoot p q) : kummerExp p q g = n := by
   have h2 := apply_kummerRoot p q g
@@ -183,6 +225,9 @@ theorem kummerExp_eq_of_apply_eq (g : AlgebraicClosure ℚ ≃ₐ[ℚ] Algebraic
   have h4 : n % p = (kummerExp p q g).val := (isPrimitiveRoot_primRoot p).pow_inj (Nat.mod_lt _ hp) hlt h3
   rw [← ZMod.natCast_mod n p, h4, ZMod.natCast_zmod_val]
 
+/--
+@isnad1 id=not.1h2v.s4.3d19006b2b5f from=translated src=- shape=9a7d7795 vocab=e3334dca
+-/
 theorem not_dvd_of_ne (hqp : (q : ℕ) ≠ p) : ¬ (q : ℕ) ∣ p := fun h =>
   hqp (((Nat.prime_dvd_prime_iff_eq q.2 (Fact.out : p.Prime)).mp h))
 
@@ -204,11 +249,17 @@ noncomputable def kummerCharacter (hqp : (q : ℕ) ≠ p) :
           apply_kummerRoot p q (primeLocalToGlobal q (σ : primeLocalGaloisGroup q)), ← mul_assoc, ← pow_add, add_comm]
       rw [kummerExp_eq_of_apply_eq p q _ hrep, Nat.cast_add, ZMod.natCast_zmod_val, ZMod.natCast_zmod_val])
 
+/--
+@isnad1 id=eq.1h3v.s11.6e55aa10814d from=translated src=- shape=41820e68 vocab=ad340f84
+-/
 theorem kummerCharacter_apply (hqp : (q : ℕ) ≠ p)
     (σ : ↥(((primeLocalPlace q).inertiaSubgroupIn ℚ).comap (primeLocalToGlobal q))) :
     kummerCharacter p q hqp σ = Multiplicative.ofAdd (kummerExp p q (primeLocalToGlobal q (σ : primeLocalGaloisGroup q))) :=
   rfl
 
+/--
+@isnad1 id=eq.3h4v.s12.3809a98e76b5 from=translated src=- shape=f08be723 vocab=eadfedd3
+-/
 theorem kummerCharacter_conj (hqp : (q : ℕ) ≠ p) {φ : primeLocalGaloisGroup q}
     (hφ : (primeLocalPlace q).IsFrobeniusAt (primeLocalToGlobal q φ) q)
     (σ : ↥(((primeLocalPlace q).inertiaSubgroupIn ℚ).comap (primeLocalToGlobal q)))

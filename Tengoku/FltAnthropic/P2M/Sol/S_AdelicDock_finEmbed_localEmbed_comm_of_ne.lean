@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IsDedekindDomain AdelicDock
 
+/--
+@isnad1 id=eq.1h6v.s13.2fb3687450df from=translated src=- shape=52bccf60 vocab=578663f8
+-/
 theorem solution {R : Type*} {K : Type*} [CommRing R]
     [IsDedekindDomain R] [Field K] [Algebra R K] [IsFractionRing R K]
     {v w : HeightOneSpectrum R} (hvw : v ≠ w)

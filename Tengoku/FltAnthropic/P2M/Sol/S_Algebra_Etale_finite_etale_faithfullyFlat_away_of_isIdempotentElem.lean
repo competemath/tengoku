@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open scoped TensorProduct
 
+/--
+@isnad1 id=and.2h3v.s9.9eb71d0f27a3 from=translated src=- shape=c079e5b1 vocab=8f5ae889
+-/
 theorem solution
     {S C : Type} [CommRing S] [CommRing C] [Algebra S C] [Module.Finite S C] [Algebra.Etale S C]
     (e : C) (he : IsIdempotentElem e)

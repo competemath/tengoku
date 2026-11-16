@@ -12,6 +12,9 @@ open TensorProduct
 
 universe u
 
+/--
+@isnad1 id=ex.3h6v.s12.66cf21e043b7 from=translated src=- shape=11057284 vocab=72de1da6
+-/
 theorem AffineDilatation.nonempty_algEquiv_tensorProduct_of_flat_of_map_eq
     {P : Type u} [CommRing P] (I : Ideal P) (a : P) (ha : a ∈ I)
     {C : Type u} [CommRing C] [Algebra P C] [Module.Flat P C]

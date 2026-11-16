@@ -17,6 +17,9 @@ noncomputable def modThreeCyclotomicChar :
       (σ : AlgebraicClosure ℚ ≃+* AlgebraicClosure ℚ))
     (fun a b => by rw [← map_mul]; congr 1)
 
+/--
+@isnad1 id=eq.0h1v.s11.ade422256dc1 from=translated src=- shape=75bd9306 vocab=689ac07f
+-/
 @[simp] lemma modThreeCyclotomicChar_apply (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) :
     modThreeCyclotomicChar σ = modularCyclotomicCharacter (AlgebraicClosure ℚ)
       (IsAlgClosed.card_rootsOfUnity_eq (AlgebraicClosure ℚ) 3)

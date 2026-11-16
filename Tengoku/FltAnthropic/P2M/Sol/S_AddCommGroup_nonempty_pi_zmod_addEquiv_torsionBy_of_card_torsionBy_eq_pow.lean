@@ -94,6 +94,9 @@ def torsionByMulCoprimeSplitAddEquiv (M N : ℕ) (a b : ℤ)
         = ((M : ℤ) * a) • (t : A) + ((M : ℤ) * a) • (s : A)
       rw [smul_add]
 
+/--
+@isnad1 id=nonempty.1h3v.s8.d13996c6975d from=translated src=- shape=ceba60ce vocab=9aadd420
+-/
 theorem nonempty_torsionByMulAddEquiv_prod_of_coprime {M N : ℕ} (hcop : Nat.Coprime M N) :
     Nonempty (Submodule.torsionBy ℤ A ((M * N : ℕ) : ℤ) ≃+
       Submodule.torsionBy ℤ A (M : ℤ) × Submodule.torsionBy ℤ A (N : ℤ)) := by
@@ -109,6 +112,9 @@ def piZmodCrtAddEquiv (r : ℕ) {M N : ℕ} (hcop : Nat.Coprime M N) :
     { toEquiv := Equiv.arrowProdEquivProdArrow _ _ _
       map_add' := fun _ _ => rfl }
 
+/--
+@isnad1 id=nonempty.3h4v.s8.0eb82b8fada6 from=translated src=- shape=ce14e186 vocab=ad394793
+-/
 theorem nonempty_piZmodAddEquiv_torsionBy_mul_of_coprime (r : ℕ) {M N : ℕ} (hcop : Nat.Coprime M N)
     (hM : Nonempty ((Fin r → ZMod M) ≃+ Submodule.torsionBy ℤ A (M : ℤ)))
     (hN : Nonempty ((Fin r → ZMod N) ≃+ Submodule.torsionBy ℤ A (N : ℤ))) :
@@ -118,6 +124,9 @@ theorem nonempty_piZmodAddEquiv_torsionBy_mul_of_coprime (r : ℕ) {M N : ℕ} (
   obtain ⟨eT⟩ := nonempty_torsionByMulAddEquiv_prod_of_coprime (A := A) hcop
   exact ⟨((piZmodCrtAddEquiv r hcop).trans (AddEquiv.prodCongr eM eN)).trans eT.symm⟩
 
+/--
+@isnad1 id=nonempty.2h4v.s8.fefe9aaefb34 from=translated src=- shape=d18c845d vocab=5017573e
+-/
 theorem nonempty_piZmodAddEquiv_torsionBy_prime_pow (r : ℕ) {p k : ℕ} (hp : p.Prime)
     (hcard : ∀ j ≤ k, Nat.card (Submodule.torsionBy ℤ A ((p ^ j : ℕ) : ℤ)) = (p ^ j) ^ r) :
     Nonempty ((Fin r → ZMod (p ^ k)) ≃+ Submodule.torsionBy ℤ A ((p ^ k : ℕ) : ℤ)) := by
@@ -146,6 +155,9 @@ theorem nonempty_piZmodAddEquiv_torsionBy_prime_pow (r : ℕ) {p k : ℕ} (hp : 
 
 end AbstractEngine
 
+/--
+@isnad1 id=nonempty.0h2v.s7.333293c711dc from=translated src=- shape=5463dc35 vocab=70d40528
+-/
 theorem nonempty_piZmodAddEquiv_torsionBy_one {A : Type*} [AddCommGroup A] (r : ℕ) :
     Nonempty ((Fin r → ZMod 1) ≃+ Submodule.torsionBy ℤ A ((1 : ℕ) : ℤ)) := by
   haveI : Subsingleton (Submodule.torsionBy ℤ A ((1 : ℕ) : ℤ)) := by
@@ -164,6 +176,9 @@ end P2MWs35.GenRank
 end
 
 open P2MWs35.GenRank in
+/--
+@isnad1 id=nonempty.2h3v.s7.73c4d27febe4 from=translated src=- shape=7563b8ef vocab=da2cc495
+-/
 theorem solution
     {A : Type u} [AddCommGroup A] {n : ℕ} (hn : n ≠ 0) (r : ℕ)
     (hcard : ∀ d : ℕ, d ∣ n → Nat.card (Submodule.torsionBy ℤ A d) = d ^ r) :

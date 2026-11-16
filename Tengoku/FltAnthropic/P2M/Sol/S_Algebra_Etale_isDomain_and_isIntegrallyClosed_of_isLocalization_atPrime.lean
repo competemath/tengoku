@@ -10,6 +10,9 @@ open scoped TensorProduct
 
 namespace EtaleLocNormalAux
 
+/--
+@isnad1 id=isintegr.1h3v.s5.8ceb9bcae50e from=translated src=- shape=7ccb9f92 vocab=08484c48
+-/
 theorem isIntegral_of_isIdempotentElem {T B : Type*} [CommRing T] [CommRing B] [Algebra T B]
     {e : B} (he : IsIdempotentElem e) : IsIntegral T e := by
   refine ⟨Polynomial.X * (Polynomial.X - Polynomial.C 1),
@@ -22,6 +25,9 @@ variable (R K : Type u) [CommRing R] [IsDomain R] [IsIntegrallyClosed R]
   [Field K] [Algebra R K] [IsFractionRing R K]
 variable (S : Type u) [CommRing S] [Algebra R S]
 
+/--
+@isnad1 id=mem.0h4v.s11.8ff383b88a32 from=translated src=- shape=5b373546 vocab=4d3c02f6
+-/
 theorem tensorMap_integralClosure_mem_bot (y : S ⊗[R] (integralClosure R K)) :
     (Algebra.TensorProduct.map (AlgHom.id S S) (integralClosure R K).val) y
       ∈ (⊥ : Subalgebra S (S ⊗[R] K)) := by
@@ -43,6 +49,9 @@ theorem tensorMap_integralClosure_mem_bot (y : S ⊗[R] (integralClosure R K)) :
     rw [map_add]
     exact add_mem ha hb
 
+/--
+@isnad1 id=eq.0h3v.s11.43c3f9809ac2 from=translated src=- shape=9dc899e6 vocab=b9fa9fd6
+-/
 theorem smooth_integrallyClosed_in_genericFibre [Algebra.Smooth R S] :
     integralClosure S (S ⊗[R] K) = ⊥ := by
   refine le_antisymm ?_ bot_le
@@ -55,12 +64,18 @@ theorem smooth_integrallyClosed_in_genericFibre [Algebra.Smooth R S] :
   rw [← hy']
   exact tensorMap_integralClosure_mem_bot R K S y
 
+/--
+@isnad1 id=ex.1h4v.s9.e9088ce4ccd2 from=translated src=- shape=50e661c6 vocab=4dcf77ef
+-/
 theorem exists_algebraMap_eq_of_isIntegral_genericFibre [Algebra.Smooth R S]
     {x : S ⊗[R] K} (hx : IsIntegral S x) : ∃ s : S, algebraMap S (S ⊗[R] K) s = x := by
   have hmem : x ∈ integralClosure S (S ⊗[R] K) := (mem_integralClosure_iff S (S ⊗[R] K)).mpr hx
   rw [smooth_integrallyClosed_in_genericFibre R K S, Algebra.mem_bot] at hmem
   exact hmem
 
+/--
+@isnad1 id=injectiv.0h3v.s9.d2879fb573d1 from=translated src=- shape=890127b3 vocab=a2cca16f
+-/
 theorem algebraMap_genericFibre_injective [Module.Flat R S] :
     Function.Injective (algebraMap S (S ⊗[R] K)) := by
   have h := Algebra.TensorProduct.includeLeft_injective (S := S) (A := S) (B := K)
@@ -71,6 +86,9 @@ theorem algebraMap_genericFibre_injective [Module.Flat R S] :
 
 end Core
 
+/--
+@isnad1 id=isintegr.1h2v.s7.d9e4e61ef1cd from=translated src=- shape=6edf270b vocab=fb88957a
+-/
 theorem isIntegrallyClosed_of_integralClosure_eq_bot (T A : Type*) [CommRing T]
     [IsDomain T] [CommRing A] [IsDomain A] [Algebra T A] [FaithfulSMul T A]
     [IsIntegrallyClosed A] (h : integralClosure T A = ⊥) :
@@ -106,6 +124,9 @@ theorem isIntegrallyClosed_of_integralClosure_eq_bot (T A : Type*) [CommRing T]
 end EtaleLocNormalAux
 
 open EtaleLocNormalAux in
+/--
+@isnad1 id=and.0h4v.s6.ec679de115aa from=translated src=- shape=30482ce7 vocab=fe9fc4b7
+-/
 theorem solution
     (P : Type u) [CommRing P] [IsDomain P] [IsIntegrallyClosed P]
     (A : Type u) [CommRing A] [Algebra P A] [Algebra.Etale P A]

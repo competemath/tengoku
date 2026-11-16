@@ -28,6 +28,9 @@ def coeffMap (P : PeriodDatum D K L ord) (s : L →+* L) : P.TorusPoints →ₗ[
   LinearMap.llcomp ℤ ↥(ribbonKernel D) (Additive Lˣ) (Additive Lˣ)
     (MonoidHom.toAdditive (Units.map (s : L →* L))).toIntLinearMap
 
+/--
+@isnad1 id=eq.0h10v.s12.775097092788 from=translated src=- shape=bda0b707 vocab=3380bbec
+-/
 @[simp] theorem coeffMap_apply (P : PeriodDatum D K L ord) (s : L →+* L) (u : P.TorusPoints)
     (z : ↥(ribbonKernel D)) :
     P.coeffMap s u z = Additive.ofMul (Units.map (s : L →* L) (Additive.toMul (u z))) := rfl
@@ -36,6 +39,9 @@ def precomp (P : PeriodDatum D K L ord) (f : ↥(ribbonKernel D) →ₗ[ℤ] ↥
     P.TorusPoints →ₗ[ℤ] P.TorusPoints :=
   LinearMap.lcomp ℤ (Additive Lˣ) f
 
+/--
+@isnad1 id=eq.0h10v.s12.d3b83c7ade00 from=translated src=- shape=f23299f2 vocab=b2db93b7
+-/
 @[simp] theorem precomp_apply (P : PeriodDatum D K L ord) (f : ↥(ribbonKernel D) →ₗ[ℤ] ↥(ribbonKernel D))
     (u : P.TorusPoints) (z : ↥(ribbonKernel D)) : P.precomp f u z = u (f z) := rfl
 

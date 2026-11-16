@@ -7,6 +7,9 @@ namespace P2MW.S_AbsoluteValue_exists_forall_sub_lt_of_pairwise_not_isEquiv
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.3h5v.s7.cb2e5a555c11 from=translated src=- shape=895ff791 vocab=6349aefa
+-/
 theorem solution {K : Type*} [Field K] {ι : Type*} [Finite ι]
     {v : ι → AbsoluteValue K ℝ} (hv : ∀ i, (v i).IsNontrivial) (hne : Pairwise fun i j => ¬(v i).IsEquiv (v j))
     (a : ι → K) {ε : ℝ} (hε : 0 < ε) : ∃ x : K, ∀ i, v i (x - a i) < ε := by

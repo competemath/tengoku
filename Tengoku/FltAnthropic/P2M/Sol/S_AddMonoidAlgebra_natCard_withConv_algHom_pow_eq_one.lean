@@ -37,6 +37,9 @@ section Count
 
 variable {M : Type v} [AddCommGroup M] {A : Type w} [CommRing A]
 
+/--
+@isnad1 id=eq.1h6v.s8.5ba38e418291 from=translated src=- shape=69e43273 vocab=2f6a5ba7
+-/
 theorem char_ext {ι : Type*} (b : Module.Basis ι ℤ M) (ψ ψ' : Multiplicative M →* A)
     (h : ∀ i, ψ (Multiplicative.ofAdd (b i)) = ψ' (Multiplicative.ofAdd (b i))) : ψ = ψ' := by
 
@@ -57,6 +60,9 @@ theorem char_ext {ι : Type*} (b : Module.Basis ι ℤ M) (ψ ψ' : Multiplicati
 
 variable (M A)
 
+/--
+@isnad1 id=eq.0h3v.s8.3ee229d430b5 from=translated src=- shape=6ed21e81 vocab=34efe3f4
+-/
 theorem natCard_char_pow_eq_one [Module.Free ℤ M] [Module.Finite ℤ M]
     (m : ℕ) [NeZero m] [HasEnoughRootsOfUnity A m] :
     Nat.card {ψ : Multiplicative M →* A // ψ ^ m = 1} = m ^ Module.finrank ℤ M := by
@@ -122,6 +128,9 @@ theorem natCard_char_pow_eq_one [Module.Free ℤ M] [Module.Finite ℤ M]
 
 end Count
 
+/--
+@isnad1 id=eq.0h4v.s9.3ed526787f64 from=translated src=- shape=09977b6e vocab=fbcf8aa1
+-/
 theorem main
     (k : Type u) [CommRing k] (M : Type v) [AddCommGroup M] [Module.Free ℤ M] [Module.Finite ℤ M]
     (A : Type w) [CommRing A] [Algebra k A]
@@ -140,6 +149,9 @@ end SplitTorusTorsionCount
 
 universe u v w
 
+/--
+@isnad1 id=eq.0h4v.s9.3ed526787f64 from=translated src=- shape=09977b6e vocab=fbcf8aa1
+-/
 theorem solution
     (k : Type u) [CommRing k] (M : Type v) [AddCommGroup M] [Module.Free ℤ M] [Module.Finite ℤ M]
     (A : Type w) [CommRing A] [Algebra k A]

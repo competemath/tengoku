@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=ex.4h4v.s8.f5a6231181d0 from=translated src=- shape=a6e1cae7 vocab=e1887b1d
+-/
 theorem _root_.Tengoku.FltAnthropic.exists_completeOrthogonalIdempotents_mul_eq_pow_mul_of_pow_eq_one_of_forall_isUnit_one_sub_pow
     (R : Type u) [CommRing R] (N : ℕ) (hd : IsUnit ((N + 1 : ℕ) : R))
     (ζ : R) (hζ : ζ ^ (N + 1) = 1) (hζu : ∀ j : ℕ, 0 < j → j < N + 1 → IsUnit (1 - ζ ^ j))

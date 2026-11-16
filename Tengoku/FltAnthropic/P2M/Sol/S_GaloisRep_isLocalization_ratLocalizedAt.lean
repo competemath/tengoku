@@ -10,14 +10,23 @@ export _root_.GaloisRep (ratLocalizedAt)
 namespace FlatSol
 open _root_.GaloisRep
 
+/--
+@isnad1 id=iff.0h2v.s5.dac7271e7e36 from=translated src=- shape=c7a4012e vocab=9256c41c
+-/
 theorem mem_ratLocalizedAt_iff_coprime {p : ℕ} (q : ℚ) :
     q ∈ ratLocalizedAt p ↔ q.den.Coprime p :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.1h2v.s5.0bdd73cb1a52 from=translated src=- shape=c36e0ae1 vocab=665e5dc6
+-/
 theorem mem_ratLocalizedAt_iff {p : ℕ} (hp : p.Prime) (q : ℚ) :
     q ∈ ratLocalizedAt p ↔ ¬ p ∣ q.den := by
   rw [mem_ratLocalizedAt_iff_coprime, Nat.coprime_comm, hp.coprime_iff_not_dvd]
 
+/--
+@isnad1 id=iff.1h2v.s7.8de4831a5e5f from=translated src=- shape=edf58b6b vocab=ad4f134a
+-/
 theorem ratLocalizedAt.isUnit_iff {p : ℕ} (hp : p.Prime) (x : ratLocalizedAt p) :
     IsUnit x ↔ ¬ p ∣ (x : ℚ).num.natAbs := by
   constructor
@@ -39,6 +48,9 @@ theorem ratLocalizedAt.isUnit_iff {p : ℕ} (hp : p.Prime) (x : ratLocalizedAt p
       exact hx
     exact IsUnit.of_mul_eq_one ⟨(x : ℚ)⁻¹, hmem⟩ (Subtype.ext (mul_inv_cancel₀ hx0))
 
+/--
+@isnad1 id=atprime.1h1v.s7.1ef829d05ee6 from=translated src=- shape=51bc8d3a vocab=7a910803
+-/
 theorem isLocalization_ratLocalizedAt {p : ℕ} (hp : p.Prime) [(Ideal.span {(p : ℤ)}).IsPrime] :
     IsLocalization.AtPrime (ratLocalizedAt p) (Ideal.span {(p : ℤ)}) := by
   refine (isLocalization_iff _ _).mpr ⟨fun y => ?_, fun z => ?_, fun {x y} hxy => ?_⟩
@@ -62,6 +74,9 @@ theorem isLocalization_ratLocalizedAt {p : ℕ} (hp : p.Prime) [(Ideal.span {(p 
 
 end GaloisRep.FlatSol
 
+/--
+@isnad1 id=atprime.1h1v.s7.1ef829d05ee6 from=translated src=- shape=51bc8d3a vocab=7a910803
+-/
 theorem solution
     {p : ℕ} (hp : p.Prime) [(Ideal.span {(p : ℤ)}).IsPrime] :
     IsLocalization.AtPrime (GaloisRep.ratLocalizedAt p) (Ideal.span {(p : ℤ)}) :=

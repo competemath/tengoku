@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 namespace DualGen
 
+/--
+@isnad1 id=ex.1h2v.s8.e043985942b2 from=translated src=- shape=fe023ab6 vocab=95331e64
+-/
 theorem exists_compl {N : ℕ} [NeZero N] (v : ZMod N × ZMod N) (hv : addOrderOf v = N) :
     ∃ w : ZMod N × ZMod N, (∀ x : ZMod N × ZMod N, ∃ m n : ℤ, x = m • v + n • w) ∧
       ∀ k m : ℤ, k • v = m • w → (m : ZMod N) = 0 := by
@@ -77,6 +80,9 @@ theorem exists_compl {N : ℕ} [NeZero N] (v : ZMod N × ZMod N) (hv : addOrderO
 end DualGen
 
 open DualGen in
+/--
+@isnad1 id=ex.2h6v.s8.b8849ed74875 from=translated src=- shape=985300f8 vocab=bf31c24f
+-/
 theorem solution
     {A B : Type*} [AddCommGroup A] [AddCommGroup B] {N : ℕ} [NeZero N]
     (e : ZMod N × ZMod N ≃+ Submodule.torsionBy ℤ A N)

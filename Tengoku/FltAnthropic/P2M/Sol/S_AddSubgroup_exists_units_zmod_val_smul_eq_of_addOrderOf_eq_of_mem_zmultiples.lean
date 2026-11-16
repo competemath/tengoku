@@ -7,6 +7,9 @@ namespace P2MW.S_AddSubgroup_exists_units_zmod_val_smul_eq_of_addOrderOf_eq_of_m
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.3h4v.s7.9625aef96dfd from=translated src=- shape=647f4133 vocab=d985353f
+-/
 theorem solution {G : Type*} [AddCommGroup G] (ℓ : ℕ) [NeZero ℓ] (P P' : G)
     (hP : addOrderOf P = ℓ) (hP' : addOrderOf P' = ℓ) (h : P' ∈ AddSubgroup.zmultiples P) :
     ∃ d : (ZMod ℓ)ˣ, P' = (d : ZMod ℓ).val • P := by

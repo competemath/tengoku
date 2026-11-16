@@ -49,6 +49,9 @@ def IsModularModelOfConductorLevel (W : WeierstrassCurve ℤ) : Prop :=
   ∃ N : ℕ, 0 < N ∧ W.IsModularModelOfLevel N ∧
     ∀ ℓ : ℕ, ℓ.Prime → (ℓ : ℤ) ∣ W.Δ → ℓ ∣ N
 
+/--
+@isnad1 id=ismodula.1h1v.s3.4518669b736b from=translated src=- shape=4c88451a vocab=1722e369
+-/
 theorem IsModularModelOfConductorLevel.isModularModel {W : WeierstrassCurve ℤ}
     (h : W.IsModularModelOfConductorLevel) : W.IsModularModel := by
   obtain ⟨N, hN, hmod, -⟩ := h
@@ -66,6 +69,9 @@ open ModularFormClass
 
 open UpperHalfPlane in
 
+/--
+@isnad1 id=ne.1h2v.s9.9e3e873d24fd from=translated src=- shape=3338aea9 vocab=e1e840b6
+-/
 theorem IsNormalizedEigenform.ne_zero {N : ℕ}
     {f : CuspForm (CongruenceSubgroup.Gamma0 N) 2} (hf : f.IsNormalizedEigenform) :
     f ≠ 0 := by

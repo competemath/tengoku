@@ -14,6 +14,9 @@ export _root_.AlgHom (ext commutes restrictScalars comp toRingHom)
 namespace CountSplit
 open _root_.AlgHom
 
+/--
+@isnad1 id=ex.0h3v.s7.0944d01a899b from=translated src=- shape=28e75cca vocab=223870c9
+-/
 theorem exists_eq_evalAlgHom {Ω : Type*} [Field Ω] {d : ℕ} (F : (Fin d → Ω) →ₐ[Ω] Ω) :
     ∃ j : Fin d, F = Pi.evalAlgHom Ω (fun _ => Ω) j := by
   classical
@@ -97,6 +100,9 @@ noncomputable def tensorEquivPi {A : Type u} [CommRing A] {R' : Type v} [CommRin
 end AlgHom.CountSplit
 
 open AlgHom.CountSplit in
+/--
+@isnad1 id=nonempty.0h7v.s7.9e66fef29884 from=translated src=- shape=62d0b0b8 vocab=78885c75
+-/
 theorem solution
     {A : Type u} [CommRing A] {R' : Type v} [CommRing R'] [Algebra A R']
     {B : Type w} [CommRing B] [Algebra A B] {d : ℕ}

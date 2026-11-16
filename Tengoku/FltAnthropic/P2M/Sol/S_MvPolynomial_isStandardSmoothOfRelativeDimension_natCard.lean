@@ -25,6 +25,9 @@ noncomputable def polyGenerators : Algebra.Generators S (MvPolynomial ι S) ι w
     · simp
     · simp
 
+/--
+@isnad1 id=eq.0h2v.s9.43d243f0affe from=translated src=- shape=f2647a1c vocab=0eab0fc5
+-/
 theorem polyGenerators_ker : (polyGenerators S ι).ker = ⊥ := by
   rw [Algebra.Generators.ker_eq_ker_aeval_val]
   refine (RingHom.ker_eq_bot_iff_eq_zero _).mpr fun p hp => ?_
@@ -43,6 +46,9 @@ noncomputable def polyPreSubmersive :
   map := PEmpty.elim
   map_inj a := a.elim
 
+/--
+@isnad1 id=eq.0h2v.s6.d41313d26eb4 from=translated src=- shape=d778523f vocab=095924b1
+-/
 theorem polyPreSubmersive_jacobian : (polyPreSubmersive S ι).jacobian = 1 := by
   classical
   rw [Algebra.PreSubmersivePresentation.jacobian_eq_jacobiMatrix_det]
@@ -54,6 +60,9 @@ noncomputable def polySubmersive :
   toPreSubmersivePresentation := polyPreSubmersive S ι
   jacobian_isUnit := by rw [polyPreSubmersive_jacobian]; exact isUnit_one
 
+/--
+@isnad1 id=isstanda.0h2v.s6.8995eef0a9a1 from=translated src=- shape=23624712 vocab=03071e93
+-/
 theorem isStandardSmoothOfRelativeDimension_mvPolynomial [Finite ι] :
     Algebra.IsStandardSmoothOfRelativeDimension (Nat.card ι) S (MvPolynomial ι S) :=
   (polySubmersive S ι).isStandardSmoothOfRelativeDimension (by
@@ -61,6 +70,9 @@ theorem isStandardSmoothOfRelativeDimension_mvPolynomial [Finite ι] :
 
 end MvPolynomialSmoothEngine
 
+/--
+@isnad1 id=isstanda.0h2v.s6.8995eef0a9a1 from=translated src=- shape=23624712 vocab=03071e93
+-/
 theorem solution
     (S : Type u) [CommRing S] (ι : Type v) [Finite ι] :
     Algebra.IsStandardSmoothOfRelativeDimension (Nat.card ι) S (MvPolynomial ι S) :=

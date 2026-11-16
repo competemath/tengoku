@@ -7,6 +7,9 @@ namespace P2MW.S_Ideal_finite_quotient_of_isMaximal_of_finiteType_of_finite_quot
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=finite.1h4v.s7.3ae83732e0aa from=translated src=- shape=56bacac2 vocab=5188a0cc
+-/
 theorem solution
     (A : Type) [CommRing A] (𝔪 : Ideal A) [𝔪.IsMaximal] [Finite (A ⧸ 𝔪)]
     (B : Type) [CommRing B] [Algebra A B] [Algebra.FiniteType A B]

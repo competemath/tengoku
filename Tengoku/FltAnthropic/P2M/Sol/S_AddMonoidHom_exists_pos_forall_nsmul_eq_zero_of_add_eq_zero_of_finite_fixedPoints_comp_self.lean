@@ -11,6 +11,9 @@ universe u
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry
 
+/--
+@isnad1 id=ex.1h2v.s8.2858576a1933 from=translated src=- shape=4d7185d1 vocab=1a1a5bd3
+-/
 theorem solution
     {M : Type u} [AddCommGroup M] (F : M →+ M)
     (hfin : (Function.fixedPoints (F ∘ F)).Finite) :

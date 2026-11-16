@@ -13,6 +13,9 @@ namespace SepIdempotent
 
 variable {S B C : Type} [CommRing S] [CommRing B] [CommRing C] [Algebra S B] [Algebra S C]
 
+/--
+@isnad1 id=eq.0h2v.s8.906af7e964b5 from=translated src=- shape=36d82941 vocab=74f2bd7e
+-/
 theorem elem_mul_elem [Algebra.FormallyUnramified S B] [Algebra.EssFiniteType S B] :
     Algebra.FormallyUnramified.elem S B * Algebra.FormallyUnramified.elem S B = Algebra.FormallyUnramified.elem S B := by
   set t := Algebra.FormallyUnramified.elem S B with ht
@@ -35,6 +38,9 @@ theorem elem_mul_elem [Algebra.FormallyUnramified S B] [Algebra.EssFiniteType S 
 
 end SepIdempotent
 
+/--
+@isnad1 id=ex.0h5v.s9.7c17f4a7b81b from=translated src=- shape=5543ec02 vocab=be08a0fa
+-/
 theorem solution
     {S B C : Type} [CommRing S] [CommRing B] [CommRing C] [Algebra S B] [Algebra S C] [Algebra.Etale S B]
     (x y : B →ₐ[S] C) :

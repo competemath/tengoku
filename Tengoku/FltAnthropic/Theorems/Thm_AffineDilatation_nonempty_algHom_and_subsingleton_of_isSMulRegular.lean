@@ -10,6 +10,9 @@ set_option autoImplicit false
 
 universe u v
 
+/--
+@isnad1 id=and.2h4v.s9.1d9235ad6568 from=translated src=- shape=f8c849dc vocab=205e1cac
+-/
 theorem AffineDilatation.nonempty_algHom_and_subsingleton_of_isSMulRegular
     {A : Type u} [CommRing A] (I : Ideal A) (a : A)
     {C : Type v} [CommRing C] [Algebra A C] (hreg : IsSMulRegular C a)

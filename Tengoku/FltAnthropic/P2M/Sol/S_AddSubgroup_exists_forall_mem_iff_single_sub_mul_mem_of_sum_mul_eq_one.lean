@@ -14,6 +14,9 @@ variable {D : Type*} [Ring D]
 end P2mSplit
 
 open P2mSplit in
+/--
+@isnad1 id=ex.4h7v.s10.065a867b578f from=translated src=- shape=c8c4f6ff vocab=3268d0aa
+-/
 theorem solution
     {D : Type*} [Ring D] (O : Set D) (M : AddSubgroup (Fin 2 → D))
     (hM : ∀ m ∈ M, ∀ o ∈ O, (fun i => m i * o) ∈ M)

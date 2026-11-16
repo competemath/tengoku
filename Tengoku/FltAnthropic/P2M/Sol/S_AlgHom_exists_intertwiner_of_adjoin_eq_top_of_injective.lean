@@ -8,6 +8,9 @@ namespace P2MW.S_AlgHom_exists_intertwiner_of_adjoin_eq_top_of_injective
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=ex.4h8v.s10.4da26eb4687f from=translated src=- shape=8741a0c9 vocab=87f3b9aa
+-/
 theorem solution
     {R : Type} [CommRing R]
     {C₁ C₀ : Type} [CommRing C₁] [CommRing C₀] [Algebra R C₁] [Algebra R C₀]

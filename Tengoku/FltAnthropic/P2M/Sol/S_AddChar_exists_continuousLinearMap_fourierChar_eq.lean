@@ -18,6 +18,9 @@ set_option autoImplicit false
 open scoped FourierTransform
 open Real
 
+/--
+@isnad1 id=ex.1h2v.s8.e6547df13f29 from=translated src=- shape=7e7ae69f vocab=01c16826
+-/
 theorem solution
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (χ : AddChar E Circle) (hχ : Continuous χ) :

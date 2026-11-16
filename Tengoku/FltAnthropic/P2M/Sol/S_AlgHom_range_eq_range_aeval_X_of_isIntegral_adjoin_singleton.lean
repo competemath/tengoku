@@ -10,6 +10,9 @@ universe u v
 set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 3200000
 
+/--
+@isnad1 id=eq.2h4v.s9.5f7e9b58289f from=translated src=- shape=c5605b71 vocab=f3d6fa3c
+-/
 theorem solution
     (k : Type u) [Field k] (B : Type v) [CommRing B] [Algebra k B] (b₀ : B)
     (hint : ∀ b : B, IsIntegral ↥(Algebra.adjoin k ({b₀} : Set B)) b)

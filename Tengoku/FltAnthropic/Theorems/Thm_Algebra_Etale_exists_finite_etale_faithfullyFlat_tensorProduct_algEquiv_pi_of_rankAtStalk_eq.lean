@@ -8,6 +8,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Algebra_Etale_exists_finite_etale_faithful
 open scoped TensorProduct
 
 universe u
+/--
+@isnad1 id=ex.1h3v.s8.220db8176b01 from=translated src=- shape=edf90707 vocab=0e0bb01d
+-/
 theorem Algebra.Etale.exists_finite_etale_faithfullyFlat_tensorProduct_algEquiv_pi_of_rankAtStalk_eq
     (R : Type u) [CommRing R] (B : Type u) [CommRing B] [Algebra R B]
     [Module.Finite R B] [Algebra.Etale R B]

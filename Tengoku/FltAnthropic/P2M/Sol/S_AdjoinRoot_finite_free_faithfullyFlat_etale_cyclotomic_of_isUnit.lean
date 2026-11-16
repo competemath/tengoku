@@ -15,6 +15,9 @@ namespace CycEtale29
 
 variable {R : Type u} [CommRing R]
 
+/--
+@isnad1 id=separabl.1h2v.s5.a3448ab3508f from=translated src=- shape=9e1c9db4 vocab=744e7875
+-/
 theorem separable_cyclotomic (m : ℕ) (hm : IsUnit ((m : ℕ) : R)) : (cyclotomic m R).Separable := by
   have h1 : (X ^ m - C ((1 : Rˣ) : R)).Separable := separable_X_pow_sub_C_unit 1 hm
   rw [Units.val_one, C_1] at h1

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 namespace P2mWs11Concat
 
+/--
+@isnad1 id=ex.3h8v.s8.4ecfa56d75e7 from=translated src=- shape=93c61c29 vocab=3e944ac0
+-/
 theorem aux {α : Type*} (S : α → α → Prop) {b c : α}
     (h₂ : ∃ (n : ℕ) (f : Fin (n + 1) → α), f 0 = b ∧ f (Fin.last n) = c ∧
       ∀ i : Fin n, S (f i.castSucc) (f i.succ)) :
@@ -43,6 +46,9 @@ theorem aux {α : Type*} (S : α → α → Prop) {b c : α}
 
 end P2mWs11Concat
 
+/--
+@isnad1 id=ex.2h5v.s8.e3115c0a1b73 from=translated src=- shape=2d3b7dd0 vocab=3e944ac0
+-/
 theorem solution {α : Type*} (S : α → α → Prop) {a b c : α}
     (h₁ : ∃ (n : ℕ) (f : Fin (n + 1) → α), f 0 = a ∧ f (Fin.last n) = b ∧
       ∀ i : Fin n, S (f i.castSucc) (f i.succ))

@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open TensorProduct
 
+/--
+@isnad1 id=ex.0h3v.s8.765a723e658f from=translated src=- shape=b6518ee1 vocab=09ae3db9
+-/
 theorem solution
     (S B : Type) [CommRing S] [CommRing B] [Algebra S B] [Module.Finite S B] [Algebra.Etale S B] (m : ℕ) :
     ∃ (C : Type) (_ : CommRing C) (_ : Algebra S C) (_ : Module.Finite S C) (_ : Algebra.Etale S C)

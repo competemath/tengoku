@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u v
 
+/--
+@isnad1 id=eq.0h3v.s8.e217218e5e73 from=translated src=- shape=f28c3c2b vocab=6d73fe48
+-/
 theorem solution
     (A : Type u) (B : Type v) [AddCommGroup A] [AddCommGroup B] (N : ℕ) :
     Nat.card (Submodule.torsionBy ℤ (A × B) (N : ℤ)) =

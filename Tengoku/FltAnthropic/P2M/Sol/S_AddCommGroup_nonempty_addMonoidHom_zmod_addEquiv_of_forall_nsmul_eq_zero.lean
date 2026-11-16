@@ -13,6 +13,9 @@ universe u
 
 namespace PoleB1
 
+/--
+@isnad1 id=ex.1h2v.s8.1058c003859b from=translated src=- shape=74796381 vocab=6e7337b4
+-/
 theorem exists_addMonoidHom_injective_forall_nsmul_eq_zero_iff {M n : ℕ} [NeZero M] (hn : n ∣ M) :
     ∃ g : ZMod n →+ ZMod M, Function.Injective g ∧ ∀ y : ZMod M, n • y = 0 ↔ y ∈ Set.range g := by
   obtain ⟨q, hq⟩ := hn
@@ -62,6 +65,9 @@ def torsionSub (n : ℕ) (D : Type*) [AddCommGroup D] : AddSubgroup D where
     simp only [Set.mem_ofPred_eq] at ha ⊢
     rw [neg_nsmul, ha, neg_zero]
 
+/--
+@isnad1 id=iff.0h3v.s6.f53c5b5d54d5 from=translated src=- shape=fa2971e6 vocab=a92757d6
+-/
 theorem mem_torsionSub {n : ℕ} {D : Type*} [AddCommGroup D] (y : D) : y ∈ torsionSub n D ↔ n • y = 0 := Iff.rfl
 
 noncomputable def homZModEquivTorsion (n : ℕ) (D : Type*) [AddCommGroup D] :
@@ -85,6 +91,9 @@ noncomputable def homZModEquivTorsion (n : ℕ) (D : Type*) [AddCommGroup D] :
   map_add' f f' := by
     apply Subtype.ext; rfl
 
+/--
+@isnad1 id=nonempty.1h2v.s6.7412fa498274 from=translated src=- shape=556b5cfe vocab=9914e82c
+-/
 theorem nonempty_addEquiv_hom_zmod_zmod {d n : ℕ} [NeZero d] (hn : n ∣ d) :
     Nonempty ((ZMod n →+ ZMod d) ≃+ ZMod n) := by
   obtain ⟨g, hinj, hrange⟩ := exists_addMonoidHom_injective_forall_nsmul_eq_zero_iff (M := d) hn
@@ -95,6 +104,9 @@ theorem nonempty_addEquiv_hom_zmod_zmod {d n : ℕ} [NeZero d] (hn : n ∣ d) :
     constructor <;> (rintro ⟨x, hx⟩; exact ⟨x, hx⟩)
   exact ⟨(homZModEquivTorsion n (ZMod d)).trans ((AddEquiv.addSubgroupCongr hTR).trans (AddMonoidHom.ofInjective hinj).symm)⟩
 
+/--
+@isnad1 id=nonempty.1h2v.s7.b664340cdf01 from=translated src=- shape=6b5b3124 vocab=a0f05c9e
+-/
 theorem nonempty_addEquiv_addMonoidHom_zmod (L : Type u) [AddCommGroup L] [Finite L] {d : ℕ} [NeZero d]
     (hd : ∀ x : L, d • x = 0) : Nonempty ((L →+ ZMod d) ≃+ L) := by
   classical
@@ -128,6 +140,9 @@ theorem nonempty_addEquiv_addMonoidHom_zmod (L : Type u) [AddCommGroup L] [Finit
 
 end PoleB1
 
+/--
+@isnad1 id=nonempty.1h2v.s7.b664340cdf01 from=translated src=- shape=6b5b3124 vocab=a0f05c9e
+-/
 theorem solution
     (L : Type u) [AddCommGroup L] [Finite L] (d : ℕ) [NeZero d] (hd : ∀ x : L, d • x = 0) :
     Nonempty ((L →+ ZMod d) ≃+ L) := by

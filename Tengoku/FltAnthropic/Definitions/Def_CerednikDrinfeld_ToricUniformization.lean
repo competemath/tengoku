@@ -20,6 +20,9 @@ def ribbonGramModP (p : ℕ) (D : DegeneracyData E V) (x : ↥(ribbonKernel D)) 
   (Int.castAddHom (ZMod p)).toIntLinearMap ∘ₗ (ribbonGram D x)
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h6v.s12.341e5a4e791c from=translated src=- shape=b3a87d06 vocab=265ffdba
+-/
 @[simp] theorem ribbonGramModP_apply (p : ℕ) (D : DegeneracyData E V) (x y : ↥(ribbonKernel D)) :
     ribbonGramModP p D x y = ((ribbonGram D x y : ℤ) : ZMod p) := rfl
 

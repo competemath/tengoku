@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Algebra_FormallySmooth_exists_algHom_baseC
 
 universe u v w w'
 
+/--
+@isnad1 id=ex.2h6v.s9.a8b6ae3a61e5 from=translated src=- shape=047f8525 vocab=e897cdaf
+-/
 theorem Algebra.FormallySmooth.exists_algHom_baseChange_eq_of_isAdicComplete
     {𝓞 : Type u} [CommRing 𝓞] (p : ℕ)
     {k : Type v} [CommRing k] [Algebra 𝓞 k]

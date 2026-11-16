@@ -18,6 +18,9 @@ namespace P2mKcLangSemilinear
 variable {p : ℕ} [hp : Fact p.Prime] {k : Type u} [Field k] [IsAlgClosed k] [CharP k p]
 
 omit [CharP k p] in
+/--
+@isnad1 id=ex.0h3v.s5.33479f185fbe from=translated src=- shape=bdb3141a vocab=c3a71e91
+-/
 theorem exists_pthRoot (c : k) : ∃ d : k, d ^ p = c :=
   IsAlgClosed.exists_pow_nat_eq c hp.out.pos
 
@@ -29,6 +32,9 @@ def iter (φ : V →+ V) : ℕ → (V →+ V)
   | 0 => AddMonoidHom.id V
   | n + 1 => φ.comp (iter φ n)
 
+/--
+@isnad1 id=eq.0h3v.s6.d42ea3bd7a50 from=translated src=- shape=ed0920f5 vocab=24b9492e
+-/
 theorem iter_zero (φ : V →+ V) (x : V) : iter φ 0 x = x := rfl
 
 def pseq (p : ℕ) (a : ℕ → k) : ℕ → k[X]
@@ -36,24 +42,39 @@ def pseq (p : ℕ) (a : ℕ → k) : ℕ → k[X]
   | i + 1 => pseq p a i ^ p + C (a (i + 1)) * X ^ p
 
 omit hp [IsAlgClosed k] [CharP k p] in
+/--
+@isnad1 id=eq.0h3v.s8.85f721d57d8c from=translated src=- shape=ad996f53 vocab=f757cef1
+-/
 @[scoped simp] theorem pseq_zero (a : ℕ → k) : pseq p a 0 = C (a 0) * X ^ p := rfl
 
 omit hp [IsAlgClosed k] [CharP k p] in
+/--
+@isnad1 id=eq.0h4v.s8.f68189143480 from=translated src=- shape=90cdab16 vocab=185473aa
+-/
 @[scoped simp] theorem pseq_succ (a : ℕ → k) (i : ℕ) :
     pseq p a (i + 1) = pseq p a i ^ p + C (a (i + 1)) * X ^ p := rfl
 
 omit [IsAlgClosed k] [CharP k p] in
+/--
+@isnad1 id=dvd.0h4v.s7.84fff478b792 from=translated src=- shape=89d9a9e4 vocab=d2f7969d
+-/
 theorem X_pow_dvd_pseq (a : ℕ → k) (i : ℕ) : X ^ p ∣ pseq p a i := by
   induction i with
   | zero => exact Dvd.intro_left _ rfl
   | succ i ih => exact dvd_add (dvd_pow ih hp.out.ne_zero) (Dvd.intro_left _ rfl)
 
 omit [IsAlgClosed k] [CharP k p] in
+/--
+@isnad1 id=eq.1h5v.s5.0b7c766fea90 from=translated src=- shape=85dcaa92 vocab=43943532
+-/
 theorem coeff_pseq_eq_zero (a : ℕ → k) (i : ℕ) {n : ℕ} (hn : n < p) : (pseq p a i).coeff n = 0 := by
   obtain ⟨q, hq⟩ := X_pow_dvd_pseq (p := p) a i
   rw [hq, coeff_X_pow_mul', ite_eq_right (not_le.mpr hn)]
 
 omit [IsAlgClosed k] [CharP k p] in
+/--
+@isnad1 id=eq.1h4v.s6.b0d73a1de4ed from=translated src=- shape=df609393 vocab=f9a75444
+-/
 theorem natDegree_pseq (a : ℕ → k) (ha : a 0 ≠ 0) (i : ℕ) :
     (pseq p a i).natDegree = p ^ (i + 1) := by
   induction i with
@@ -72,16 +93,25 @@ theorem natDegree_pseq (a : ℕ → k) (ha : a 0 ≠ 0) (i : ℕ) :
 
 omit hp [IsAlgClosed k] [CharP k p] in
 
+/--
+@isnad1 id=eq.0h5v.s7.3875d9da81bb from=translated src=- shape=bcd73a71 vocab=9fe34cc7
+-/
 theorem eval_pseq_succ (a : ℕ → k) (i : ℕ) (s : k) :
     (pseq p a (i + 1)).eval s = ((pseq p a i).eval s) ^ p + a (i + 1) * s ^ p := by
   rw [pseq_succ, eval_add, eval_pow, eval_mul, eval_C, eval_pow, eval_X]
 
 omit hp [IsAlgClosed k] [CharP k p] in
+/--
+@isnad1 id=eq.0h4v.s6.6727a5e1dff1 from=translated src=- shape=d8bc3229 vocab=5ff17911
+-/
 theorem eval_pseq_zero (a : ℕ → k) (s : k) : (pseq p a 0).eval s = a 0 * s ^ p := by
   rw [pseq_zero, eval_mul, eval_C, eval_pow, eval_X]
 
 omit [CharP k p] in
 
+/--
+@isnad1 id=ex.1h4v.s6.bafda4317553 from=translated src=- shape=238d44d3 vocab=ecc9e820
+-/
 theorem exists_ne_zero_eval_pseq_eq (a : ℕ → k) (ha : a 0 ≠ 0) (m : ℕ) :
     ∃ s : k, s ≠ 0 ∧ (pseq p a m).eval s = s := by
   set Q : k[X] := pseq p a m - X with hQ
@@ -126,6 +156,9 @@ def orb (φ : V →+ V) (w : V) (M : ℕ) : Fin M → V := fun i => iter φ i w
 def Dep (φ : V →+ V) (w : V) (m : ℕ) : Prop := iter φ m w ∈ Submodule.span k (Set.range (orb φ w m))
 
 omit [IsAlgClosed k] [CharP k p] [FiniteDimensional k V] in
+/--
+@isnad1 id=eq.0h4v.s7.04076ab55cd8 from=translated src=- shape=e1c0bccc vocab=480ad916
+-/
 theorem orb_succ_eq_snoc (w : V) (M : ℕ) :
     (orb φ w (M + 1) : Fin (M + 1) → V) = Fin.snoc (orb φ w M) (iter φ M w) := by
   funext i
@@ -137,6 +170,9 @@ theorem orb_succ_eq_snoc (w : V) (M : ℕ) :
 
 omit [IsAlgClosed k] [CharP k p] [FiniteDimensional k V] in
 
+/--
+@isnad1 id=linearin.1h5v.s6.07d3efd5fb41 from=translated src=- shape=7972948b vocab=67371754
+-/
 theorem linearIndependent_orb (w : V) (M : ℕ) (h : ∀ m, m < M → ¬ Dep (k := k) φ w m) :
     LinearIndependent k (orb φ w M) := by
   induction M with
@@ -146,6 +182,9 @@ theorem linearIndependent_orb (w : V) (M : ℕ) (h : ∀ m, m < M → ¬ Dep (k 
     exact ⟨ih fun m hm => h m (Nat.lt_succ_of_lt hm), h M (Nat.lt_succ_self M)⟩
 
 omit [IsAlgClosed k] [CharP k p] in
+/--
+@isnad1 id=ex.0h4v.s6.24f72d46c436 from=translated src=- shape=7bf45440 vocab=c521ce4c
+-/
 theorem exists_dep (w : V) : ∃ m, Dep (k := k) φ w m := by
   by_contra hno
   push Not at hno
@@ -157,6 +196,9 @@ theorem exists_dep (w : V) : ∃ m, Dep (k := k) φ w m := by
 omit [CharP k p] in
 include hφ hinj in
 
+/--
+@isnad1 id=ex.3h5v.s9.5c904a82df0a from=translated src=- shape=f9bc8674 vocab=3f3999ae
+-/
 theorem exists_ne_zero_fixed (w : V) (hw : w ≠ 0) : ∃ x : V, x ≠ 0 ∧ φ x = x := by
   classical
 
@@ -249,6 +291,9 @@ end Step1
 
 end General
 
+/--
+@isnad1 id=ex.3h5v.s9.c65cd13a321a from=translated src=- shape=aa259ef3 vocab=525b6574
+-/
 theorem exists_basis_aux (n : ℕ) :
     ∀ (V : Type v) [AddCommGroup V] [Module k V] [FiniteDimensional k V],
       finrank k V = n → ∀ (φ : V →+ V), (∀ (c : k) (x : V), φ (c • x) = c ^ p • φ x) →
@@ -359,6 +404,9 @@ theorem exists_basis_aux (n : ℕ) :
 end P2mKcLangSemilinear
 open scoped _root_.P2MW.S_AddMonoidHom_exists_basis_apply_eq_self_of_map_smul_eq_pow_smul_of_isAlgClosed.P2mKcLangSemilinear
 
+/--
+@isnad1 id=ex.2h4v.s9.a1ccc96d7413 from=translated src=- shape=1db64aad vocab=525b6574
+-/
 theorem solution
     (p : ℕ) [Fact p.Prime] (k : Type u) [Field k] [IsAlgClosed k] [CharP k p]
     (V : Type v) [AddCommGroup V] [Module k V] [FiniteDimensional k V]

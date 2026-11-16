@@ -16,12 +16,18 @@ local notation "Gal" => (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ)
 abbrev inertiaField (A : ValuationSubring ℚ̄) : IntermediateField ℚ ℚ̄ :=
   IntermediateField.fixedField (A.inertiaSubgroupIn ℚ)
 
+/--
+@isnad1 id=iff.0h2v.s9.c6250c591eaa from=translated src=- shape=cdfd2fe7 vocab=436d6d6b
+-/
 theorem mem_inertiaField_iff {A : ValuationSubring ℚ̄} {x : ℚ̄} :
     x ∈ inertiaField A ↔ ∀ σ : Gal, σ ∈ A.inertiaSubgroupIn ℚ → σ x = x := by
   rw [inertiaField, IntermediateField.mem_fixedField_iff]
 
 def inertiaRing (A : ValuationSubring ℚ̄) : Subring ℚ̄ := A.toSubring ⊓ (inertiaField A).toSubring
 
+/--
+@isnad1 id=iff.0h2v.s7.03acf6ced1e1 from=translated src=- shape=cfd1f3e5 vocab=22defca4
+-/
 theorem mem_inertiaRing_iff {A : ValuationSubring ℚ̄} {x : ℚ̄} :
     x ∈ inertiaRing A ↔ x ∈ A ∧ x ∈ inertiaField A := by
   rw [inertiaRing, Subring.mem_inf]
@@ -36,21 +42,39 @@ variable {A} in
 def mkO (x : ℚ̄) (hxA : x ∈ A) (hfix : ∀ σ : Gal, σ ∈ A.inertiaSubgroupIn ℚ → σ x = x) : inertiaRing A :=
   ⟨x, GaloisRep.mem_inertiaRing_iff.mpr ⟨hxA, GaloisRep.mem_inertiaField_iff.mpr hfix⟩⟩
 
+/--
+@isnad1 id=eq.2h2v.s9.cb708926723d from=translated src=- shape=d5f95798 vocab=2dfa97be
+-/
 @[simp] theorem coe_mkO (x : ℚ̄) (hxA : x ∈ A) (hfix : ∀ σ : Gal, σ ∈ A.inertiaSubgroupIn ℚ → σ x = x) :
     ((mkO x hxA hfix : inertiaRing A) : ℚ̄) = x := rfl
 
+/--
+@isnad1 id=mem.0h2v.s7.a38f9abb225c from=translated src=- shape=7201c105 vocab=e02d084d
+-/
 theorem coe_memA (x : inertiaRing A) : (x : ℚ̄) ∈ A := (GaloisRep.mem_inertiaRing_iff.mp x.2).1
 
+/--
+@isnad1 id=mem.0h2v.s7.26314b349626 from=translated src=- shape=ff52366e vocab=08e8cf35
+-/
 theorem coe_mem_inertiaField (x : inertiaRing A) : (x : ℚ̄) ∈ inertiaField A := (GaloisRep.mem_inertiaRing_iff.mp x.2).2
 
+/--
+@isnad1 id=eq.1h3v.s9.873d872c2e54 from=translated src=- shape=f6351f75 vocab=82ce4de4
+-/
 theorem coe_fixed (x : inertiaRing A) (σ : Gal) (hσ : σ ∈ A.inertiaSubgroupIn ℚ) : σ (x : ℚ̄) = x :=
   GaloisRep.mem_inertiaField_iff.mp (coe_mem_inertiaField A x) σ hσ
 
+/--
+@isnad1 id=or.1h2v.s7.0f8359e79765 from=translated src=- shape=f98e30f3 vocab=d7d5b1dc
+-/
 theorem mem_or_inv_mem {x : ℚ̄} (hx : x ∈ inertiaField A) : x ∈ inertiaRing A ∨ x⁻¹ ∈ inertiaRing A := by
   rcases A.mem_or_inv_mem x with h | h
   · exact Or.inl (GaloisRep.mem_inertiaRing_iff.mpr ⟨h, hx⟩)
   · exact Or.inr (GaloisRep.mem_inertiaRing_iff.mpr ⟨h, IntermediateField.inv_mem _ hx⟩)
 
+/--
+@isnad1 id=not.1h2v.s9.84ee2cc271bd from=translated src=- shape=7e518638 vocab=c12bf773
+-/
 theorem not_isUnit_of_valuation_lt_one (x : inertiaRing A) (hx : A.valuation (x : ℚ̄) < 1) : ¬ IsUnit x := by
   rintro ⟨u, rfl⟩
   have h1 : ((u : inertiaRing A) : ℚ̄) * ((↑u⁻¹ : inertiaRing A) : ℚ̄) = 1 := by
@@ -68,8 +92,14 @@ instance instAlgebraField : Algebra (inertiaRing A) (inertiaField A) :=
       map_zero' := rfl
       map_add' := fun _ _ => rfl } : inertiaRing A →+* inertiaField A)).toAlgebra
 
+/--
+@isnad1 id=eq.0h2v.s11.f0579aba117e from=translated src=- shape=e1ec7d07 vocab=7e753f66
+-/
 theorem algebraMap_field_coe (x : inertiaRing A) : ((algebraMap (inertiaRing A) (inertiaField A) x : inertiaField A) : ℚ̄) = x := rfl
 
+/--
+@isnad1 id=isscalar.0h1v.s9.a3469323aec0 from=translated src=- shape=3cd05c7a vocab=b8f9762f
+-/
 instance instTowerField : IsScalarTower (inertiaRing A) (inertiaField A) ℚ̄ :=
   IsScalarTower.of_algebraMap_eq fun _ => rfl
 
@@ -97,14 +127,23 @@ variable {R S L H : Type*} [CommRing R] [CommRing S] [CommRing L] [CommRing H]
 noncomputable def liftPt (φ : WithConv (H →ₐ[R] L)) : WithConv (S ⊗[R] H →ₐ[S] L) :=
   toConv (Algebra.TensorProduct.lift (Algebra.ofId S L) φ.ofConv fun _ _ => .all _ _)
 
+/--
+@isnad1 id=eq.0h7v.s9.3c97e1b647b1 from=translated src=- shape=87d4b6f9 vocab=e5a50c99
+-/
 theorem liftPt_tmul (φ : WithConv (H →ₐ[R] L)) (s : S) (h : H) :
     liftPt (S := S) φ (s ⊗ₜ[R] h) = algebraMap S L s * φ h := by
   show Algebra.TensorProduct.lift (Algebra.ofId S L) φ.ofConv (fun _ _ => .all _ _) (s ⊗ₜ[R] h) = _
   rw [Algebra.TensorProduct.lift_tmul, Algebra.ofId_apply]
 
+/--
+@isnad1 id=eq.0h6v.s9.1605b61fce10 from=translated src=- shape=775b730d vocab=b4568230
+-/
 theorem liftPt_one_tmul (φ : WithConv (H →ₐ[R] L)) (h : H) : liftPt (S := S) φ ((1 : S) ⊗ₜ[R] h) = φ h := by
   rw [liftPt_tmul, map_one, one_mul]
 
+/--
+@isnad1 id=injectiv.0h4v.s7.b8b8a5920a2a from=translated src=- shape=54287d96 vocab=457895cd
+-/
 theorem liftPt_injective : Function.Injective (liftPt (R := R) (S := S) (L := L) (H := H)) := by
   intro φ ψ h
   apply WithConv.ext
@@ -113,6 +152,9 @@ theorem liftPt_injective : Function.Injective (liftPt (R := R) (S := S) (L := L)
   have := congrArg (fun χ : WithConv (S ⊗[R] H →ₐ[S] L) => χ ((1 : S) ⊗ₜ[R] x)) h
   simpa only [liftPt_one_tmul] using this
 
+/--
+@isnad1 id=eq.0h6v.s9.2227cf3a6653 from=translated src=- shape=2e9f71f2 vocab=022227fe
+-/
 theorem comp_liftPt (σ : L →ₐ[S] L) (φ : WithConv (H →ₐ[R] L)) :
     σ.comp (liftPt (S := S) φ).ofConv = (liftPt (S := S) (toConv ((σ.restrictScalars R).comp φ.ofConv))).ofConv := by
   apply AlgHom.ext
@@ -133,6 +175,9 @@ section LiftPtConv
 variable {R S L H : Type*} [CommRing R] [CommRing S] [CommRing L] [CommRing H]
   [Algebra R S] [Algebra S L] [Algebra R L] [IsScalarTower R S L] [Bialgebra R H]
 
+/--
+@isnad1 id=eq.0h6v.s10.f85dceb9075e from=translated src=- shape=7b6060f0 vocab=ba4905bf
+-/
 theorem liftPt_mul (φ ψ : WithConv (H →ₐ[R] L)) :
     liftPt (S := S) (φ * ψ) = liftPt (S := S) φ * liftPt (S := S) ψ := by
   apply WithConv.ext
@@ -158,6 +203,9 @@ theorem liftPt_mul (φ ψ : WithConv (H →ₐ[R] L)) :
     ring
   | add x y hx hy => rw [map_add, map_add, hx, hy]
 
+/--
+@isnad1 id=eq.0h4v.s9.2ebfadc42eb2 from=translated src=- shape=e72b0f89 vocab=a4138a0f
+-/
 theorem liftPt_one : liftPt (S := S) (1 : WithConv (H →ₐ[R] L)) = 1 := by
   apply WithConv.ext
   apply AlgHom.ext
@@ -170,6 +218,9 @@ theorem liftPt_one : liftPt (S := S) (1 : WithConv (H →ₐ[R] L)) = 1 := by
       Algebra.smul_def, map_mul, ← IsScalarTower.algebraMap_apply, mul_comm]
   | add x y hx hy => rw [map_add, map_add, hx, hy]
 
+/--
+@isnad1 id=eq.0h6v.s9.000a5ceafeab from=translated src=- shape=aaa67c12 vocab=f5fe56ea
+-/
 theorem liftPt_pow (φ : WithConv (H →ₐ[R] L)) (n : ℕ) : liftPt (S := S) (φ ^ n) = liftPt (S := S) φ ^ n := by
   induction n with
   | zero => rw [pow_zero, pow_zero, liftPt_one]
@@ -184,6 +235,9 @@ variable (K : Type*) (L : Type*) (B : Type*) [CommRing K] [CommRing L] [CommRing
 variable {K L B}
 variable {S : Type*} [CommRing S] [Algebra K S] [Algebra S L] [IsScalarTower K S L]
 
+/--
+@isnad1 id=surjecti.0h4v.s7.af2e6d917a71 from=translated src=- shape=715e8e99 vocab=4466f687
+-/
 theorem liftPt_surjective : Function.Surjective (liftPt (R := K) (S := S) (L := L) (H := B)) := by
   intro ψ
   refine ⟨toConv (((ψ.ofConv).restrictScalars K).comp Algebra.TensorProduct.includeRight), ?_⟩
@@ -203,8 +257,14 @@ theorem liftPt_surjective : Function.Surjective (liftPt (R := K) (S := S) (L := 
 noncomputable def liftPtEquiv : WithConv (B →ₐ[K] L) ≃ WithConv (S ⊗[K] B →ₐ[S] L) :=
   Equiv.ofBijective (liftPt (S := S)) ⟨liftPt_injective, liftPt_surjective⟩
 
+/--
+@isnad1 id=eq.0h5v.s9.fc3e55c63c5c from=translated src=- shape=505f8514 vocab=d80c3b3c
+-/
 @[simp] theorem liftPtEquiv_apply (φ : WithConv (B →ₐ[K] L)) : liftPtEquiv (S := S) φ = liftPt (S := S) φ := rfl
 
+/--
+@isnad1 id=finite.0h4v.s7.288830d2f4a4 from=translated src=- shape=6ea7219c vocab=644f9c74
+-/
 theorem finite_pts_baseChange [Finite (WithConv (B →ₐ[K] L))] : Finite (WithConv (S ⊗[K] B →ₐ[S] L)) :=
   Finite.of_surjective _ liftPt_surjective
 
@@ -218,9 +278,15 @@ variable {R S L H : Type*} [CommRing R] [CommRing S] [CommRing L] [CommRing H]
 noncomputable def liftPtMulEquiv : WithConv (H →ₐ[R] L) ≃* WithConv (S ⊗[R] H →ₐ[S] L) :=
   { liftPtEquiv (K := R) (L := L) (B := H) (S := S) with map_mul' := liftPt_mul }
 
+/--
+@isnad1 id=eq.0h5v.s10.c54d97e50089 from=translated src=- shape=0084ae21 vocab=d4808ad6
+-/
 @[simp] theorem liftPtMulEquiv_apply (φ : WithConv (H →ₐ[R] L)) :
     liftPtMulEquiv (S := S) φ = liftPt (S := S) φ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.2d1b8db5a245 from=translated src=- shape=7f62474c vocab=86e5fbb0
+-/
 theorem liftPtMulEquiv_symm_apply (ψ : WithConv (S ⊗[R] H →ₐ[S] L)) :
     (liftPtMulEquiv (S := S)).symm ψ = (liftPtEquiv (S := S)).symm ψ := rfl
 
@@ -232,6 +298,9 @@ variable {R S L H : Type*} [CommRing R] [CommRing S] [Field L] [CommRing H]
   [Algebra R S] [Algebra S L] [Algebra R L] [IsScalarTower R S L] [Bialgebra R H]
   {Γ₀ : Type*} [LinearOrderedCommGroupWithZero Γ₀] (v : Valuation L Γ₀)
 
+/--
+@isnad1 id=lt.2h8v.s11.1983b66186a6 from=translated src=- shape=8931e91b vocab=5a5e587c
+-/
 theorem valuation_liftPt_sub_lt_one (hS : ∀ s : S, v (algebraMap S L s) ≤ 1)
     (φ : WithConv (H →ₐ[R] L)) (hφ : ∀ h : H, v (φ h - algebraMap R L (Coalgebra.counit (R := R) h)) < 1)
     (x : S ⊗[R] H) :
@@ -266,22 +335,40 @@ local notation "Gal" => (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ)
 
 variable (A : ValuationSubring ℚ̄)
 
+/--
+@isnad1 id=eq.0h2v.s9.02e5c7b91e66 from=translated src=- shape=c4c8a914 vocab=a586b98f
+-/
 theorem algebraMap_O_apply (z : GaloisRep.inertiaRing A) : algebraMap (GaloisRep.inertiaRing A) ℚ̄ z = (z : ℚ̄) := rfl
 
+/--
+@isnad1 id=injectiv.0h1v.s9.27e9e728d9e5 from=translated src=- shape=47a2c244 vocab=e42a193d
+-/
 theorem algebraMap_O_injective : Function.Injective (algebraMap (GaloisRep.inertiaRing A) ℚ̄) := Subtype.val_injective
 
+/--
+@isnad1 id=le.0h2v.s10.7efd27df8dfe from=translated src=- shape=b747fa40 vocab=22d3dfbf
+-/
 theorem valuation_algebraMap_O_le_one (z : GaloisRep.inertiaRing A) : A.valuation (algebraMap (GaloisRep.inertiaRing A) ℚ̄ z) ≤ 1 :=
   (A.valuation_le_one_iff _).mpr (GaloisRep.InertiaRing.coe_memA A z)
 
 noncomputable def galF {σ : Gal} (hσ : σ ∈ A.inertiaSubgroupIn ℚ) : ℚ̄ ≃ₐ[GaloisRep.inertiaField A] ℚ̄ :=
   { σ with commutes' := fun x => GaloisRep.mem_inertiaField_iff.mp x.2 σ hσ }
 
+/--
+@isnad1 id=eq.1h3v.s10.165655b230fd from=translated src=- shape=0f0b7f39 vocab=02ba30a2
+-/
 @[simp] theorem galF_apply {σ : Gal} (hσ : σ ∈ A.inertiaSubgroupIn ℚ) (x : ℚ̄) : galF A hσ x = σ x := rfl
 
 noncomputable def rhoI (σ : A.inertiaSubgroupIn ℚ) : ℚ̄ ≃ₐ[GaloisRep.inertiaField A] ℚ̄ := galF A σ.2
 
+/--
+@isnad1 id=eq.0h3v.s10.383633148c21 from=translated src=- shape=c0889c06 vocab=bc966155
+-/
 @[simp] theorem rhoI_apply (σ : A.inertiaSubgroupIn ℚ) (x : ℚ̄) : rhoI A σ x = (σ : Gal) x := rfl
 
+/--
+@isnad1 id=mem.1h2v.s11.318c8098de94 from=translated src=- shape=3c762b5e vocab=5a85b306
+-/
 theorem hfix_I (c : ℚ̄) (hc : ∀ σ : A.inertiaSubgroupIn ℚ, rhoI A σ c = c) :
     c ∈ Set.range (algebraMap (GaloisRep.inertiaField A) ℚ̄) :=
   ⟨⟨c, GaloisRep.mem_inertiaField_iff.mpr fun σ hσ => hc ⟨σ, hσ⟩⟩, rfl⟩
@@ -289,23 +376,41 @@ theorem hfix_I (c : ℚ̄) (hc : ∀ σ : A.inertiaSubgroupIn ℚ, rhoI A σ c =
 noncomputable def galO {σ : Gal} (hσ : σ ∈ A.inertiaSubgroupIn ℚ) : ℚ̄ →ₐ[GaloisRep.inertiaRing A] ℚ̄ :=
   { (σ : ℚ̄ →+* ℚ̄) with commutes' := fun z => GaloisRep.InertiaRing.coe_fixed A z σ hσ }
 
+/--
+@isnad1 id=eq.1h3v.s10.d686bfcefbdf from=translated src=- shape=07987078 vocab=c4f64552
+-/
 @[simp] theorem galO_apply {σ : Gal} (hσ : σ ∈ A.inertiaSubgroupIn ℚ) (x : ℚ̄) : galO A hσ x = σ x := rfl
 
+/--
+@isnad1 id=eq.3h5v.s10.f783989b1ee2 from=translated src=- shape=cb57d7f6 vocab=64fc08e1
+-/
 theorem galF_hn {σ : Gal} (hσ : σ ∈ A.inertiaSubgroupIn ℚ) {N n : ℕ}
     (hn : ∀ ζ : ℚ̄, ζ ^ N = 1 → σ ζ = ζ ^ n) : ∀ ζ : ℚ̄, ζ ^ N = 1 → galF A hσ ζ = ζ ^ n := hn
 
+/--
+@isnad1 id=iff.1h4v.s10.92b9c60d51fb from=translated src=- shape=b01126e6 vocab=02ba30a2
+-/
 theorem galF_fix_iff {σ : Gal} (hσ : σ ∈ A.inertiaSubgroupIn ℚ) {X : Type*} (f : X → ℚ̄) :
     (∀ x, galF A hσ (f x) = f x) ↔ ∀ x, σ (f x) = f x := Iff.rfl
 
+/--
+@isnad1 id=iff.1h5v.s10.bca60f42d9c0 from=translated src=- shape=f00c0817 vocab=02ba30a2
+-/
 theorem galF_comp_iff {σ : Gal} (hσ : σ ∈ A.inertiaSubgroupIn ℚ) {X : Type*} (f g : X → ℚ̄) :
     (∀ x, g x = galF A hσ (f x)) ↔ ∀ x, g x = σ (f x) := Iff.rfl
 
+/--
+@isnad1 id=eq.1h2v.s10.692cb3d1319e from=translated src=- shape=51ffacd0 vocab=db21d45c
+-/
 theorem galF_restrictScalars {σ : Gal} (hσ : σ ∈ A.inertiaSubgroupIn ℚ) :
     ((galF A hσ : ℚ̄ →ₐ[GaloisRep.inertiaField A] ℚ̄).restrictScalars (GaloisRep.inertiaRing A)) = galO A hσ :=
   AlgHom.ext fun _ => rfl
 
 variable (q : ℕ) [Fact q.Prime]
 
+/--
+@isnad1 id=mem.2h3v.s7.55ebaebbc765 from=translated src=- shape=e6407e36 vocab=c346e65e
+-/
 theorem ratCast_mem_of_coprime (hA : ((q : ℕ) : ℚ̄) ∈ A.nonunits) {r : ℚ} (hr : r.den.Coprime q) : (r : ℚ̄) ∈ A := by
   have hq : q.Prime := Fact.out
   have hden : A.valuation ((r.den : ℚ̄)) = 1 := by
@@ -339,10 +444,16 @@ theorem ratCast_mem_of_coprime (hA : ((q : ℕ) : ℚ̄) ∈ A.nonunits) {r : �
       map_zero' := Subtype.ext (by simp only [GaloisRep.InertiaRing.coe_mkO, Subring.coe_zero]; push_cast; try rfl)
       map_add' := fun a b => Subtype.ext (by simp only [GaloisRep.InertiaRing.coe_mkO, Subring.coe_add]; push_cast; try rfl) }
 
+/--
+@isnad1 id=eq.1h3v.s10.441d49f324dc from=translated src=- shape=c9bad313 vocab=e59ed468
+-/
 theorem algebraMap_RO_coe (hA : ((q : ℕ) : ℚ̄) ∈ A.nonunits) (r : GaloisRep.ratLocalizedAt q) :
     letI := algebraRO A q hA
     ((algebraMap (GaloisRep.ratLocalizedAt q) (GaloisRep.inertiaRing A) r : GaloisRep.inertiaRing A) : ℚ̄) = ((r : ℚ) : ℚ̄) := rfl
 
+/--
+@isnad1 id=isscalar.1h2v.s9.5c5d53fcd048 from=translated src=- shape=8adf9e1e vocab=938b97bc
+-/
 theorem towerROQbar (hA : ((q : ℕ) : ℚ̄) ∈ A.nonunits) :
     letI := algebraRO A q hA
     IsScalarTower (GaloisRep.ratLocalizedAt q) (GaloisRep.inertiaRing A) ℚ̄ := by
@@ -363,6 +474,9 @@ local notation "Gal" => (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ)
 variable (A : ValuationSubring ℚ̄)
 variable {S : Type*} [CommRing S] [Bialgebra (GaloisRep.inertiaRing A) S] [Module.Finite (GaloisRep.inertiaRing A) S]
 
+/--
+@isnad1 id=mem.0h4v.s10.fd63e8298bd1 from=translated src=- shape=47b77b01 vocab=524bfd76
+-/
 theorem apply_mem_A (ψ : S →ₐ[GaloisRep.inertiaRing A] ℚ̄) (s : S) : ψ s ∈ A := by
   have h1 : IsIntegral (GaloisRep.inertiaRing A) (ψ s) := (Algebra.IsIntegral.isIntegral s).map ψ
   obtain ⟨p, hpm, hpe⟩ := h1
@@ -385,16 +499,25 @@ noncomputable def toQbarPt (x : WithConv (S →ₐ[GaloisRep.inertiaRing A] Galo
   toConv ((Algebra.ofId (GaloisRep.inertiaRing A) ℚ̄).comp x.ofConv)
 
 omit [Module.Finite (GaloisRep.inertiaRing A) S] in
+/--
+@isnad1 id=eq.0h4v.s12.d7918ea0b26b from=translated src=- shape=fe33b72d vocab=51e01c3e
+-/
 theorem toQbarPt_apply (x : WithConv (S →ₐ[GaloisRep.inertiaRing A] GaloisRep.inertiaRing A)) (s : S) :
     toQbarPt A x s = algebraMap (GaloisRep.inertiaRing A) ℚ̄ (x s) := rfl
 
 omit [Module.Finite (GaloisRep.inertiaRing A) S] in
+/--
+@isnad1 id=eq.0h4v.s12.2b8f02eaffe2 from=translated src=- shape=3b601d72 vocab=693df456
+-/
 theorem toQbarPt_mul (x y : WithConv (S →ₐ[GaloisRep.inertiaRing A] GaloisRep.inertiaRing A)) :
     toQbarPt A (x * y) = toQbarPt A x * toQbarPt A y := by
   unfold toQbarPt
   rw [AlgHom.comp_convMul_distrib, WithConv.toConv_ofConv]
 
 omit [Module.Finite (GaloisRep.inertiaRing A) S] in
+/--
+@isnad1 id=eq.0h2v.s11.3d9085b27ca7 from=translated src=- shape=6788532b vocab=300c87b1
+-/
 theorem toQbarPt_one : toQbarPt A (1 : WithConv (S →ₐ[GaloisRep.inertiaRing A] GaloisRep.inertiaRing A)) = 1 := by
   apply WithConv.ext
   apply AlgHom.ext
@@ -405,6 +528,9 @@ theorem toQbarPt_one : toQbarPt A (1 : WithConv (S →ₐ[GaloisRep.inertiaRing 
   rfl
 
 omit [Module.Finite (GaloisRep.inertiaRing A) S] in
+/--
+@isnad1 id=eq.0h4v.s12.b52ce85b852a from=translated src=- shape=63e35400 vocab=ef6215dc
+-/
 theorem toQbarPt_pow (x : WithConv (S →ₐ[GaloisRep.inertiaRing A] GaloisRep.inertiaRing A)) (n : ℕ) :
     toQbarPt A (x ^ n) = toQbarPt A x ^ n := by
   induction n with
@@ -412,6 +538,9 @@ theorem toQbarPt_pow (x : WithConv (S →ₐ[GaloisRep.inertiaRing A] GaloisRep.
   | succ n ih => rw [pow_succ, pow_succ, toQbarPt_mul, ih]
 
 omit [Module.Finite (GaloisRep.inertiaRing A) S] in
+/--
+@isnad1 id=injectiv.0h2v.s9.ad4b9be12746 from=translated src=- shape=dcb0409d vocab=8f91a27f
+-/
 theorem toQbarPt_injective : Function.Injective (toQbarPt A (S := S)) := by
   intro x y h
   apply WithConv.ext
@@ -420,6 +549,9 @@ theorem toQbarPt_injective : Function.Injective (toQbarPt A (S := S)) := by
   apply algebraMap_O_injective A
   rw [← toQbarPt_apply, ← toQbarPt_apply, h]
 
+/--
+@isnad1 id=ex.1h3v.s14.2675477a38c0 from=translated src=- shape=6583b8a4 vocab=d534f47e
+-/
 theorem exists_OPt_of_fixed [IsLocalRing (GaloisRep.inertiaRing A)] (ψ : WithConv (S →ₐ[GaloisRep.inertiaRing A] ℚ̄))
     (hfix : ∀ σ : Gal, σ ∈ A.inertiaSubgroupIn ℚ → ∀ s : S, σ (ψ s) = ψ s) :
     ∃ x : WithConv (S →ₐ[GaloisRep.inertiaRing A] GaloisRep.inertiaRing A),

@@ -35,6 +35,9 @@ namespace IsAbelianPartData
 variable {S : Finset Nat.Primes} {I : Subgroup G} {𝒯 : Submodule HeckeAlg J}
   {δ : Fin 2 → J →+ J₀}
 
+/--
+@isnad1 id=or.5h9v.s9.6378e83fc06e from=translated src=- shape=30322922 vocab=38e8aa06
+-/
 theorem mem_toric_or_exists_ne_zero (h : IsAbelianPartData S I 𝒯 δ)
     {𝔪 : Ideal HeckeAlg} (hmax : 𝔪.IsMaximal) (heis : ¬ IsEventuallyEisenstein 𝔪)
     {x : J} (hx : x ∈ heckeTorsion J 𝔪) (hinv : ∀ σ ∈ I, σ • x = x) :
@@ -43,6 +46,9 @@ theorem mem_toric_or_exists_ne_zero (h : IsAbelianPartData S I 𝒯 δ)
   · exact Or.inl (h.component_eisenstein 𝔪 hmax heis x hx hinv hker)
   · exact Or.inr (not_forall.mp hker)
 
+/--
+@isnad1 id=eq.3h11v.s9.745f9bcc1d7f from=translated src=- shape=3a1f4b00 vocab=51b4ca1c
+-/
 theorem heckeGen_sub_smul_image_eq_zero (h : IsAbelianPartData S I 𝒯 δ) (i : Fin 2)
     {ℓ : Nat.Primes} (hℓ : ℓ ∉ S) (b : ℤ) {x : J}
     (hx : (heckeGen ℓ - C b) • x = 0) :
@@ -54,6 +60,9 @@ theorem heckeGen_sub_smul_image_eq_zero (h : IsAbelianPartData S I 𝒯 δ) (i :
 
 end IsAbelianPartData
 
+/--
+@isnad1 id=eq.1h5v.s8.41f663e3f0e2 from=translated src=- shape=62d35973 vocab=b639e715
+-/
 theorem natCast_smul_addMonoidHom_eq_zero (f : J →+ J₀) (n : ℕ)
     {x : J} (hx : (n : HeckeAlg) • x = 0) : (n : HeckeAlg) • f x = 0 := by
   rw [← map_natCast_smul f HeckeAlg HeckeAlg n x, hx, map_zero]

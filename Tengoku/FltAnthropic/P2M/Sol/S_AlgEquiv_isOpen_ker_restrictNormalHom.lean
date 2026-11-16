@@ -7,6 +7,9 @@ namespace P2MW.S_AlgEquiv_isOpen_ker_restrictNormalHom
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=isopen.0h3v.s8.08c8f08e0277 from=translated src=- shape=9d469e68 vocab=a4438af0
+-/
 theorem solution (K L : Type*) [Field K] [Field L] [Algebra K L]
     (E : Type*) [Field E] [Algebra K E] [Algebra E L] [IsScalarTower K E L] [Normal K E]
     [FiniteDimensional K E] :

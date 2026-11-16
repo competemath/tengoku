@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u v
 
+/--
+@isnad1 id=ex.2h4v.s9.a1ccc96d7413 from=translated src=- shape=1db64aad vocab=525b6574
+-/
 theorem AddMonoidHom.exists_basis_apply_eq_self_of_map_smul_eq_pow_smul_of_isAlgClosed
     (p : ℕ) [Fact p.Prime] (k : Type u) [Field k] [IsAlgClosed k] [CharP k p]
     (V : Type v) [AddCommGroup V] [Module k V] [FiniteDimensional k V]

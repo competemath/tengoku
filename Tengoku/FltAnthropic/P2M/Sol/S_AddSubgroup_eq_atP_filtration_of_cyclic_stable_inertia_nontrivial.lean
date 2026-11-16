@@ -17,6 +17,9 @@ private lemma zsmul_pow_nat_eq_zero {P : Type*} [AddCommGroup P] {p m : ℕ}
   have : ((p : ℤ) ^ m) = ((p ^ m : ℕ) : ℤ) := by push_cast; ring
   rw [this, natCast_zsmul, hx]
 
+/--
+@isnad1 id=le.8h6v.s13.ba10f2d652d6 from=translated src=- shape=433f9791 vocab=e8f22712
+-/
 theorem solution
     (W : WeierstrassCurve ℤ) (p : ℕ) [Fact p.Prime]
     (A : ValuationSubring (AlgebraicClosure ℚ)) (hA : A.LiesOverPrime p)

@@ -7,6 +7,9 @@ namespace P2MW.S_AlgHom_natCard_eq_finrank_of_isReduced_of_isAlgClosed
 
 namespace B9
 
+/--
+@isnad1 id=eq.0h2v.s7.8c4c7f1c3bd1 from=translated src=- shape=b2448160 vocab=06626b49
+-/
 theorem natCard_algHom_eq_finrank (K B : Type*) [Field K] [IsAlgClosed K] [CommRing B] [Algebra K B]
     [Module.Finite K B] [IsReduced B] : Nat.card (B →ₐ[K] K) = Module.finrank K B := by
   classical
@@ -75,5 +78,8 @@ theorem natCard_algHom_eq_finrank (K B : Type*) [Field K] [IsAlgClosed K] [CommR
   exact Fintype.card_of_bijective ⟨hinj, hsurj⟩
 end B9
 
+/--
+@isnad1 id=eq.0h2v.s7.8c4c7f1c3bd1 from=translated src=- shape=b2448160 vocab=06626b49
+-/
 theorem solution (K B : Type*) [Field K] [IsAlgClosed K] [CommRing B] [Algebra K B] [Module.Finite K B] [IsReduced B] : Nat.card (B →ₐ[K] K) = Module.finrank K B :=
   B9.natCard_algHom_eq_finrank K B

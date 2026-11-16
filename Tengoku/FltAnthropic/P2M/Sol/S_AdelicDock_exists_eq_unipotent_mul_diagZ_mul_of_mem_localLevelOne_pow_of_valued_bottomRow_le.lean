@@ -22,19 +22,34 @@ local notation "Kv" => (HeightOneSpectrum.adicCompletion F v)
 local notation "G" => (GL (Fin 2) (HeightOneSpectrum.adicCompletion F v))
 local notation "Mat" => (Matrix (Fin 2) (Fin 2) (HeightOneSpectrum.adicCompletion F v))
 
+/--
+@isnad1 id=eq.0h3v.s10.d5b49ca25ea4 from=translated src=- shape=a94b7997 vocab=1e8f2a58
+-/
 theorem coe_unipotent (y : Kv) : ((unipotent y : G) : Mat) = !![1, y; 0, 1] := rfl
 
+/--
+@isnad1 id=eq.1h4v.s10.b813af67c886 from=translated src=- shape=f03aaff7 vocab=6de9e62a
+-/
 theorem coe_diagZ (ϖ : Kv) (hπ : ϖ ≠ 0) (n : ℤ) : ((diagZ ϖ hπ n : G) : Mat) = !![ϖ ^ n, 0; 0, 1] := rfl
 
+/--
+@isnad1 id=eq.1h4v.s9.20a56ee4547d from=translated src=- shape=6537625f vocab=5e62b16a
+-/
 theorem v_zpow_uniformizer {ϖ : Kv} (hϖ : Valued.v ϖ = WithZero.exp (-1 : ℤ)) (n : ℤ) :
     Valued.v (ϖ ^ n) = WithZero.exp (-n) := by
   rw [map_zpow₀, hϖ, ← WithZero.exp_zsmul]
   congr 1
   simp
 
+/--
+@isnad1 id=iff.0h3v.s8.2b2a092448a2 from=translated src=- shape=b9dcf92e vocab=212903a8
+-/
 theorem mem_integers_iff (x : Kv) : x ∈ v.adicCompletionIntegers F ↔ Valued.v x ≤ 1 :=
   HeightOneSpectrum.mem_adicCompletionIntegers (𝓞 F) F v
 
+/--
+@isnad1 id=eq.0h3v.s7.52e569cd37da from=translated src=- shape=f66fa4d8 vocab=fc7ce88f
+-/
 theorem idealBound_pow (m : ℕ) : AdelicLevel.idealBound (𝓞 F) (v.asIdeal ^ m) v = WithZero.exp (-(m : ℤ)) := by
   classical
   have hN : v.asIdeal ^ m ≠ ⊥ := pow_ne_zero _ v.ne_bot
@@ -43,6 +58,9 @@ theorem idealBound_pow (m : ℕ) : AdelicLevel.idealBound (𝓞 F) (v.asIdeal ^ 
     Associates.count_self (Associates.irreducible_mk.mpr v.irreducible)]
   simp
 
+/--
+@isnad1 id=ex.5h5v.s12.ee8926ff2984 from=translated src=- shape=cac76d74 vocab=d9fd7fad
+-/
 theorem structure_lemma (ϖ : v.adicCompletionIntegers F) (hπ : (ϖ : Kv) ≠ 0)
     (hϖ : Valued.v (ϖ : Kv) = WithZero.exp (-1 : ℤ)) (m : ℕ)
     (hB : AdelicLevel.idealBound (𝓞 F) (v.asIdeal ^ m) v < 1) (g : G)
@@ -140,6 +158,9 @@ theorem structure_lemma (ϖ : v.adicCompletionIntegers F) (hπ : (ϖ : Kv) ≠ 0
 end K1Struct
 
 open K1Struct in
+/--
+@isnad1 id=ex.5h5v.s12.edd8cc3fd746 from=translated src=- shape=0249ce62 vocab=9eeb993e
+-/
 theorem solution
     (F : Type) [Field F] [NumberField F] (v : HeightOneSpectrum (𝓞 F))
     (ϖ : v.adicCompletionIntegers F) (hπ : (ϖ : v.adicCompletion F) ≠ 0)

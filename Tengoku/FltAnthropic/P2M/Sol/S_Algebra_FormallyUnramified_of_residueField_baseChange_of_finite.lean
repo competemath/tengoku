@@ -9,6 +9,9 @@ open scoped TensorProduct
 open IsLocalRing
 
 attribute [local instance] Algebra.TensorProduct.rightAlgebra in
+/--
+@isnad1 id=formally.1h2v.s7.1eac94e217dd from=translated src=- shape=b9474670 vocab=349db73c
+-/
 theorem solution (R S : Type*) [CommRing R] [IsLocalRing R] [CommRing S] [Algebra R S]
     [Module.Finite R S]
     (h : Algebra.FormallyUnramified (IsLocalRing.ResidueField R)

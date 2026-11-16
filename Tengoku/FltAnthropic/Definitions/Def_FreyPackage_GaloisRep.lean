@@ -22,6 +22,9 @@ noncomputable def galoisRep (W' : Affine R) (n : ℕ) :
       (Submodule.torsionBy ℤ (W'⁄K).Point n) ≃ₗ[ZMod n] (Submodule.torsionBy ℤ (W'⁄K).Point n) :=
   DistribMulAction.toModuleAut (ZMod n) (Submodule.torsionBy ℤ (W'⁄K).Point n)
 
+/--
+@isnad1 id=eq.0h7v.s14.18375cdf4965 from=translated src=- shape=4a7d0dd0 vocab=f410edae
+-/
 @[simp]
 lemma galoisRep_apply {n : ℕ} (σ : K ≃ₐ[S] K) (P : Submodule.torsionBy ℤ (W'⁄K).Point n) :
     galoisRep W' n σ P = σ • P :=

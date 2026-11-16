@@ -12,6 +12,9 @@ open scoped TensorProduct
 
 universe u
 
+/--
+@isnad1 id=ex.0h2v.s8.eb98aec54cc9 from=translated src=- shape=51e5cd06 vocab=c93ce0f2
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     (B : Type u) [CommRing B] [Algebra R B] [Module.Finite R B] [Algebra.Etale R B] :

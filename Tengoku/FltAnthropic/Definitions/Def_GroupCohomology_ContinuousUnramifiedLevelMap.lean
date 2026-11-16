@@ -22,12 +22,18 @@ section precomp
 
 include hf
 
+/--
+@isnad1 id=islevelc.2h8v.s11.3c975d7004d6 from=translated src=- shape=f132acb1 vocab=1db0531c
+-/
 lemma IsLevelConstantSr₁.precomp {X : Type*} {x : H → X} (hx : IsLevelConstantSr₁ rH S x) : IsLevelConstantSr₁ rG S (x ∘ f) := by
   obtain ⟨F, hF, h⟩ := hx
   refine ⟨F, hF, fun g s hs => ?_⟩
   simp only [Function.comp_apply, map_mul]
   exact h (f g) (f s) (by rwa [hf])
 
+/--
+@isnad1 id=islevelc.2h8v.s11.36e6334118f6 from=translated src=- shape=593a525b vocab=07a7469a
+-/
 lemma IsLevelConstantSr₂.precomp {X : Type*} {x : H × H → X} (hx : IsLevelConstantSr₂ rH S x) :
     IsLevelConstantSr₂ rG S (x ∘ Prod.map f f) := by
   obtain ⟨F, hF, h⟩ := hx
@@ -42,16 +48,25 @@ section degreeTwo
 variable {A : Rep k H} {B : Rep k G} (φ : A →ₗ[k] B) (hφ : ∀ (g : G) (a : A), φ (A.ρ (f g) a) = B.ρ g (φ a))
 
 include hf in
+/--
+@isnad1 id=mem.2h11v.s12.280f10a2c7f0 from=translated src=- shape=d947e20a vocab=5b97f881
+-/
 lemma cochainsPullPush₂_mem_levelCochainsSr₂ {x : H × H → A} (hx : x ∈ levelCochainsSr₂ rH S A) :
     cochainsPullPush₂ f φ x ∈ levelCochainsSr₂ rG S B :=
   ((IsLevelConstantSr₂.precomp f hf S hx).comp φ :)
 
 include hf hφ in
+/--
+@isnad1 id=mem.3h11v.s12.d74ff78011a3 from=translated src=- shape=2ffe926a vocab=df0be7c0
+-/
 lemma cochainsPullPush₂_mem_levelCocyclesSr₂ {x : H × H → A} (hx : x ∈ levelCocyclesSr₂ rH S A) :
     cochainsPullPush₂ f φ x ∈ levelCocyclesSr₂ rG S B :=
   ⟨cochainsPullPush₂_mem_cocycles₂ f φ hφ hx.1, cochainsPullPush₂_mem_levelCochainsSr₂ f hf S φ hx.2⟩
 
 include hf hφ in
+/--
+@isnad1 id=mem.3h11v.s12.338962ad5d72 from=translated src=- shape=2ffe926a vocab=ddbc05af
+-/
 lemma cochainsPullPush₂_mem_levelCoboundariesSr₂ {x : H × H → A} (hx : x ∈ levelCoboundariesSr₂ rH S A) :
     cochainsPullPush₂ f φ x ∈ levelCoboundariesSr₂ rG S B := by
   obtain ⟨y, hy, rfl⟩ := (mem_levelCoboundariesSr₂_iff rH S A x).1 hx
@@ -61,15 +76,24 @@ lemma cochainsPullPush₂_mem_levelCoboundariesSr₂ {x : H × H → A} (hx : x 
 def levelCocyclesSr₂Map : ↥(levelCocyclesSr₂ rH S A) →ₗ[k] ↥(levelCocyclesSr₂ rG S B) :=
   (cochainsPullPush₂ f φ).restrict fun _ hx => cochainsPullPush₂_mem_levelCocyclesSr₂ f hf S φ hφ hx
 
+/--
+@isnad1 id=eq.2h11v.s13.5211400684d1 from=translated src=- shape=d514cacd vocab=4e24e64c
+-/
 @[simp] lemma coe_levelCocyclesSr₂Map (x : ↥(levelCocyclesSr₂ rH S A)) :
     (levelCocyclesSr₂Map f hf S φ hφ x : G × G → B) = cochainsPullPush₂ f φ x := rfl
 
 def continuousH2SrMap : continuousH2Sr rH S A →ₗ[k] continuousH2Sr rG S B :=
   Submodule.mapQ _ _ (levelCocyclesSr₂Map f hf S φ hφ) fun _ hx => cochainsPullPush₂_mem_levelCoboundariesSr₂ f hf S φ hφ hx
 
+/--
+@isnad1 id=eq.2h11v.s15.1f2d29b14772 from=translated src=- shape=4f30ee22 vocab=027582c4
+-/
 @[simp] lemma continuousH2SrMap_continuousH2Srπ (x : ↥(levelCocyclesSr₂ rH S A)) :
     continuousH2SrMap f hf S φ hφ (continuousH2Srπ rH S A x) = continuousH2Srπ rG S B (levelCocyclesSr₂Map f hf S φ hφ x) := rfl
 
+/--
+@isnad1 id=eq.2h10v.s15.60dd140d43bd from=translated src=- shape=de7ece95 vocab=961daab4
+-/
 lemma continuousH2SrToContinuousH2_comp_continuousH2SrMap :
     continuousH2SrToContinuousH2 rG S B ∘ₗ continuousH2SrMap f hf S φ hφ =
       continuousH2Map f hf φ hφ ∘ₗ continuousH2SrToContinuousH2 rH S A :=
@@ -77,6 +101,9 @@ lemma continuousH2SrToContinuousH2_comp_continuousH2SrMap :
 
 variable {S} in
 
+/--
+@isnad1 id=eq.3h11v.s15.905d130a8b1b from=translated src=- shape=7d72642e vocab=d1741185
+-/
 lemma continuousH2SrOfLE_comp_continuousH2SrMap {S' : Finset Nat.Primes} (h : S ⊆ S') :
     continuousH2SrOfLE rG B h ∘ₗ continuousH2SrMap f hf S φ hφ = continuousH2SrMap f hf S' φ hφ ∘ₗ continuousH2SrOfLE rH A h :=
   Submodule.linearMap_qext _ (LinearMap.ext fun _ => rfl)
@@ -87,6 +114,9 @@ section laws
 
 variable {A : Rep k G}
 
+/--
+@isnad1 id=eq.0h5v.s13.40ddf77c5d2f from=translated src=- shape=fef5fdad vocab=11565f7c
+-/
 lemma continuousH2SrMap_id :
     continuousH2SrMap (rH := rG) (MonoidHom.id G) (fun _ => rfl) S (LinearMap.id : A →ₗ[k] A) (fun _ _ => rfl) = LinearMap.id :=
   Submodule.linearMap_qext _ (LinearMap.ext fun _ => rfl)
@@ -95,6 +125,9 @@ variable {B : Rep k H} {C : Rep k I} (f' : H →* I) (hf' : ∀ h, rI (f' h) = r
   (ψ : C →ₗ[k] B) (hψ : ∀ (h : H) (c : C), ψ (C.ρ (f' h) c) = B.ρ h (ψ c))
   (φ : B →ₗ[k] A) (hφ : ∀ (g : G) (b : B), φ (B.ρ (f g) b) = A.ρ g (φ b))
 
+/--
+@isnad1 id=eq.4h15v.s14.6dd13b7ae719 from=translated src=- shape=e446ef35 vocab=ceccab18
+-/
 lemma continuousH2SrMap_comp :
     continuousH2SrMap (f'.comp f) (fun g => by rw [MonoidHom.comp_apply, hf', hf]) S (φ ∘ₗ ψ)
         (fun g c => by rw [LinearMap.comp_apply, LinearMap.comp_apply, MonoidHom.comp_apply, hψ, hφ]) =
@@ -110,14 +143,23 @@ variable (r : G →* (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ)) {A
 abbrev continuousH2SrMapHom (φ : A ⟶ B) : continuousH2Sr r S A →ₗ[k] continuousH2Sr r S B :=
   continuousH2SrMap (MonoidHom.id G) (fun _ => rfl) S φ.hom.toLinearMap (fun g a => Rep.hom_comm_apply φ g a)
 
+/--
+@isnad1 id=eq.0h8v.s15.6aff6648c19b from=translated src=- shape=9a0ba3d8 vocab=0879201c
+-/
 lemma continuousH2SrMapHom_continuousH2Srπ (φ : A ⟶ B) (x : ↥(levelCocyclesSr₂ r S A)) :
     continuousH2SrMapHom S r φ (continuousH2Srπ r S A x) =
       continuousH2Srπ r S B (levelCocyclesSr₂Map (MonoidHom.id G) (fun _ => rfl) S φ.hom.toLinearMap
         (fun g a => Rep.hom_comm_apply φ g a) x) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s13.71bff58d582d from=translated src=- shape=b31ecac7 vocab=b38e2d34
+-/
 lemma continuousH2SrMapHom_id : continuousH2SrMapHom S r (𝟙 A) = LinearMap.id :=
   Submodule.linearMap_qext _ (LinearMap.ext fun _ => rfl)
 
+/--
+@isnad1 id=eq.0h9v.s14.a91f4ad5649b from=translated src=- shape=4436b26e vocab=1565fabf
+-/
 lemma continuousH2SrMapHom_comp (φ : A ⟶ B) (ψ : B ⟶ C) :
     continuousH2SrMapHom S r (φ ≫ ψ) = continuousH2SrMapHom S r ψ ∘ₗ continuousH2SrMapHom S r φ :=
   Submodule.linearMap_qext _ (LinearMap.ext fun _ => rfl)
@@ -128,8 +170,14 @@ section degreeOne
 
 variable {A : Rep k H} {B : Rep k G} (φ : Rep.res f A ⟶ B)
 
+/--
+@isnad1 id=eq.0h9v.s13.2dc21882098c from=translated src=- shape=0e6574a5 vocab=875426d2
+-/
 lemma coe_mapCocycles₁_apply (c : cocycles₁ A) (g : G) : (mapCocycles₁ f φ c : G → B) g = φ.hom (c (f g)) := rfl
 
+/--
+@isnad1 id=eq.0h8v.s14.81ab354a55fa from=translated src=- shape=c444f721 vocab=f6a34ad4
+-/
 lemma map_hom_H1π (c : cocycles₁ A) :
     (groupCohomology.map f φ 1).hom ((H1π A).hom c) = (H1π B).hom (mapCocycles₁ f φ c) := by
   change (H1π A ≫ groupCohomology.map f φ 1).hom c = (mapCocycles₁ f φ ≫ H1π B).hom c
@@ -137,6 +185,9 @@ lemma map_hom_H1π (c : cocycles₁ A) :
 
 include hf in
 
+/--
+@isnad1 id=le.1h10v.s11.b168c9070164 from=translated src=- shape=0fa6e500 vocab=b02e9a57
+-/
 lemma map_continuousH1Sr_le :
     (continuousH1Sr rH S A).map (groupCohomology.map f φ 1).hom ≤ continuousH1Sr rG S B := by
   rintro _ ⟨x, hx, rfl⟩
@@ -151,6 +202,9 @@ lemma map_continuousH1Sr_le :
 def continuousH1SrMap : ↥(continuousH1Sr rH S A) →ₗ[k] ↥(continuousH1Sr rG S B) :=
   (groupCohomology.map f φ 1).hom.restrict fun x hx => map_continuousH1Sr_le f hf S φ ⟨x, hx, rfl⟩
 
+/--
+@isnad1 id=eq.1h11v.s12.307e41dc74ec from=translated src=- shape=1c2c5214 vocab=cfce7cc9
+-/
 @[simp] lemma coe_continuousH1SrMap_apply (x : ↥(continuousH1Sr rH S A)) :
     (continuousH1SrMap f hf S φ x : H1 B) = (groupCohomology.map f φ 1).hom x := rfl
 

@@ -36,6 +36,9 @@ end FinResBody
 open scoped _root_.P2MW.S_Algebra_FiniteType_exists_isMaximal_and_finite_quotient_of_int.FinResBody
 
 open FinResBody in
+/--
+@isnad1 id=ex.0h1v.s6.b07ca928d6c2 from=translated src=- shape=b5969847 vocab=4e0d4334
+-/
 theorem solution
     (R : Type) [CommRing R] [Algebra ℤ R] [Nontrivial R] [Algebra.FiniteType ℤ R] :
     ∃ 𝔪 : Ideal R, 𝔪.IsMaximal ∧ Finite (R ⧸ 𝔪) := by

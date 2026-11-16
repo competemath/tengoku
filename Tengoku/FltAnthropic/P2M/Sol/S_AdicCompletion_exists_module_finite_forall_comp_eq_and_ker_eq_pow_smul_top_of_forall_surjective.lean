@@ -16,11 +16,17 @@ open AdicCompletion
 
 variable {B : Type u} [CommRing B] (I : Ideal B)
 
+/--
+@isnad1 id=isadicco.1h2v.s8.c6b1350c3371 from=translated src=- shape=e8ad8ef9 vocab=8232daf3
+-/
 theorem isAdicComplete_map (hI : I.FG) :
     IsAdicComplete (I.map (algebraMap B (AdicCompletion I B))) (AdicCompletion I B) := by
   rw [IsAdicComplete.map_algebraMap_iff]
   exact AdicCompletion.isAdicComplete hI
 
+/--
+@isnad1 id=eq.0h6v.s9.15bd1ee00f90 from=translated src=- shape=cdb1650e vocab=cc520a7d
+-/
 theorem restrictScalars_map_pow_smul {S : Type u} [CommRing S] [Algebra B S]
     {M : Type v} [AddCommGroup M] [Module B M] [Module S M] [IsScalarTower B S M] (k : ℕ) (N : Submodule S M) :
     ((I.map (algebraMap B S)) ^ k • N).restrictScalars B = I ^ k • N.restrictScalars B := by
@@ -30,10 +36,16 @@ section killed
 
 variable {M : Type v} [AddCommGroup M] [Module B M]
 
+/--
+@isnad1 id=eq.2h6v.s8.a8e7a0c53a38 from=translated src=- shape=cd036fdb vocab=b447c93a
+-/
 theorem smul_eq_zero_of_killed {k : ℕ} (hM : I ^ k • (⊤ : Submodule B M) = ⊥) {b : B} (hb : b ∈ I ^ k) (m : M) :
     b • m = 0 :=
   (Submodule.eq_bot_iff _).1 hM _ (Submodule.smul_mem_smul hb (Submodule.mem_top : m ∈ ⊤))
 
+/--
+@isnad1 id=istorsio.1h4v.s8.820beb1b18c6 from=translated src=- shape=b5325a40 vocab=1b47c146
+-/
 theorem isTorsionBySet_of_killed {k : ℕ} (hM : I ^ k • (⊤ : Submodule B M) = ⊥) :
     Module.IsTorsionBySet B M ↑(I ^ k) := by
   intro m b
@@ -46,18 +58,30 @@ theorem isTorsionBySet_of_killed {k : ℕ} (hM : I ^ k • (⊤ : Submodule B M)
   letI : Module (B ⧸ I ^ k) M := modQ I hM
   Module.compHom M (evalₐ I k).toRingHom
 
+/--
+@isnad1 id=eq.1h6v.s10.747c6791b554 from=translated src=- shape=d7075517 vocab=a2b741eb
+-/
 theorem modC_smul_def {k : ℕ} (hM : I ^ k • (⊤ : Submodule B M) = ⊥) (x : AdicCompletion I B) (m : M) :
     (letI := modC I hM; x • m) = (letI := modQ I hM; evalₐ I k x • m) := rfl
 
+/--
+@isnad1 id=eq.1h6v.s10.bcae09289705 from=translated src=- shape=c42a6a62 vocab=c607cd6b
+-/
 theorem modQ_mk_smul {k : ℕ} (hM : I ^ k • (⊤ : Submodule B M) = ⊥) (b : B) (m : M) :
     (letI := modQ I hM; Ideal.Quotient.mk (I ^ k) b • m) = b • m :=
   Module.IsTorsionBySet.mk_smul (isTorsionBySet_of_killed I hM) b m
 
+/--
+@isnad1 id=eq.1h6v.s10.720f2ecfff8e from=translated src=- shape=93c56011 vocab=6a3f2784
+-/
 theorem modC_mk_smul {k : ℕ} (hM : I ^ k • (⊤ : Submodule B M) = ⊥) (a : AdicCauchySequence I B) (m : M) :
     (letI := modC I hM; AdicCompletion.mk I B a • m) = a k • m := by
   rw [modC_smul_def, evalₐ_mk]
   exact modQ_mk_smul I hM _ m
 
+/--
+@isnad1 id=isscalar.1h4v.s9.f29969c131f8 from=translated src=- shape=e82dfd50 vocab=226635c1
+-/
 theorem modC_isScalarTower {k : ℕ} (hM : I ^ k • (⊤ : Submodule B M) = ⊥) :
     letI := modC I hM; IsScalarTower B (AdicCompletion I B) M := by
   letI := modC I hM
@@ -65,6 +89,9 @@ theorem modC_isScalarTower {k : ℕ} (hM : I ^ k • (⊤ : Submodule B M) = ⊥
   obtain ⟨a, rfl⟩ := AdicCompletion.mk_surjective I B x
   rw [← LinearMap.map_smul, modC_mk_smul, modC_mk_smul, AdicCauchySequence.smul_apply, smul_eq_mul, mul_smul]
 
+/--
+@isnad1 id=eq.2h7v.s8.33927d062f27 from=translated src=- shape=d6ce43a4 vocab=c1bed760
+-/
 theorem cauchy_smul_eq {k l : ℕ} (hkl : k ≤ l) (hM : I ^ k • (⊤ : Submodule B M) = ⊥)
     (a : AdicCauchySequence I B) (m : M) : a l • m = a k • m := by
   have h : a k - a l ∈ I ^ k := by
@@ -77,6 +104,9 @@ theorem cauchy_smul_eq {k l : ℕ} (hkl : k ≤ l) (hM : I ^ k • (⊤ : Submod
 
 end killed
 
+/--
+@isnad1 id=eq.2h5v.s10.f7b00f712dbc from=translated src=- shape=97e87efb vocab=43ba46d1
+-/
 theorem killed (M : ℕ → Type v) [∀ n, AddCommGroup (M n)] [∀ n, Module B (M n)]
     (t : ∀ n : ℕ, M (n + 1) →ₗ[B] M n) (ht : ∀ n : ℕ, Function.Surjective (t n))
     (hker : ∀ n : ℕ, LinearMap.ker (t n) = I ^ (n + 1) • (⊤ : Submodule B (M (n + 1)))) (n : ℕ) :
@@ -92,6 +122,9 @@ end W1Aux
 
 open W1Aux AdicCompletion
 
+/--
+@isnad1 id=ex.4h4v.s11.ddb1c946c56a from=translated src=- shape=e06664a4 vocab=369f865d
+-/
 theorem solution
     {B : Type u} [CommRing B] (I : Ideal B) (hI : I.FG)
     (M : ℕ → Type v) [∀ n, AddCommGroup (M n)] [∀ n, Module B (M n)]

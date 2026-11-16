@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_Algebra_Etale_isDomain_and_isIntegrallyClo
 
 universe u
 
+/--
+@isnad1 id=and.0h4v.s6.ec679de115aa from=translated src=- shape=30482ce7 vocab=fe9fc4b7
+-/
 theorem Algebra.Etale.isDomain_and_isIntegrallyClosed_of_isLocalization_atPrime
     (P : Type u) [CommRing P] [IsDomain P] [IsIntegrallyClosed P]
     (A : Type u) [CommRing A] [Algebra P A] [Algebra.Etale P A]

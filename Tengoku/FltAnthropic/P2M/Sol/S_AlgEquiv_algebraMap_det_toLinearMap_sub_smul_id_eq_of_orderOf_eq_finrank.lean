@@ -18,12 +18,21 @@ variable {F E : Type} [Field F] [Field E] [Algebra F E] [FiniteDimensional F E] 
 noncomputable def T (c : E) : Module.End F E :=
   (σ.symm : E →ₐ[F] E).toLinearMap ∘ₗ LinearMap.mulLeft F c
 
+/--
+@isnad1 id=eq.0h5v.s8.ed52638e3f88 from=translated src=- shape=9a81e1a6 vocab=613fec0d
+-/
 theorem T_apply (c y : E) : T σ c y = σ.symm (c * y) := rfl
 
 noncomputable def cf (c : E) (i : ℕ) : E := ∏ j ∈ Finset.range i, (σ.symm ^ (j + 1)) c
 
+/--
+@isnad1 id=eq.0h4v.s6.1e5f556e89e7 from=translated src=- shape=b5faba8f vocab=a4c32245
+-/
 theorem cf_zero (c : E) : cf σ c 0 = 1 := by simp [cf]
 
+/--
+@isnad1 id=eq.0h5v.s8.24226bed1b6b from=translated src=- shape=85e1e684 vocab=6d7ecdf7
+-/
 theorem cf_succ (c : E) (i : ℕ) : cf σ c (i + 1) = σ.symm c * σ.symm (cf σ c i) := by
   unfold cf
   rw [Finset.prod_range_succ', zero_add, pow_one, map_prod, mul_comm]
@@ -31,10 +40,16 @@ theorem cf_succ (c : E) (i : ℕ) : cf σ c (i + 1) = σ.symm c * σ.symm (cf σ
   refine Finset.prod_congr rfl fun j _ => ?_
   rw [← AlgEquiv.mul_apply, ← pow_succ']
 
+/--
+@isnad1 id=ne.1h5v.s7.25794fa7248e from=translated src=- shape=9fab4594 vocab=a4c32245
+-/
 theorem cf_ne_zero {c : E} (hc : c ≠ 0) (i : ℕ) : cf σ c i ≠ 0 := by
   unfold cf
   exact Finset.prod_ne_zero_iff.2 fun j _ => (map_ne_zero_iff _ (σ.symm ^ (j + 1)).injective).2 hc
 
+/--
+@isnad1 id=eq.0h6v.s9.17d32ac48b5f from=translated src=- shape=aa63cb4c vocab=1ea7fa57
+-/
 theorem T_pow_apply (c : E) (i : ℕ) (y : E) : (T σ c ^ i) y = cf σ c i * (σ.symm ^ i) y := by
   induction i generalizing y with
   | zero => simp [cf_zero]
@@ -43,6 +58,9 @@ theorem T_pow_apply (c : E) (i : ℕ) (y : E) : (T σ c ^ i) y = cf σ c i * (σ
         AlgEquiv.mul_apply]
       ring
 
+/--
+@isnad1 id=eq.0h4v.s10.04ad115bd1b4 from=translated src=- shape=d8219866 vocab=a78c104e
+-/
 theorem sub_smul_eq_comp (c : E) :
     (σ : E →ₐ[F] E).toLinearMap - c • (LinearMap.id : E →ₗ[F] E) =
       (σ : E →ₐ[F] E).toLinearMap ∘ₗ (1 - T σ c) := by
@@ -52,14 +70,23 @@ theorem sub_smul_eq_comp (c : E) :
 variable (hσ : orderOf σ = finrank F E)
 include hσ
 
+/--
+@isnad1 id=eq.1h3v.s9.f638b14bcc89 from=translated src=- shape=6b4dc2bf vocab=ccf4fb2a
+-/
 theorem symm_pow_finrank : σ.symm ^ finrank F E = 1 := by
   have h : σ.symm = σ⁻¹ := rfl
   rw [h, inv_pow, ← hσ, pow_orderOf_eq_one, inv_one]
 
+/--
+@isnad1 id=eq.1h3v.s8.0b286f7c54d7 from=translated src=- shape=d02e9a50 vocab=a84560c5
+-/
 theorem orderOf_symm : orderOf σ.symm = finrank F E := by
   have h : σ.symm = σ⁻¹ := rfl
   rw [h, orderOf_inv, hσ]
 
+/--
+@isnad1 id=isgalois.1h3v.s7.6757532d1576 from=translated src=- shape=b4ac7144 vocab=bc5e22b2
+-/
 theorem isGalois : IsGalois F E := by
   classical
   apply IsGalois.of_card_aut_eq_finrank
@@ -68,6 +95,9 @@ theorem isGalois : IsGalois F E := by
   rw [← hσ]
   exact orderOf_le_card_univ
 
+/--
+@isnad1 id=eq.1h3v.s9.610a44ecc3e8 from=translated src=- shape=7b192bc5 vocab=b9d4c660
+-/
 theorem image_pow_range_eq_univ [DecidableEq (E ≃ₐ[F] E)] :
     (Finset.range (finrank F E)).image (fun i => σ ^ i) = Finset.univ := by
   classical
@@ -78,6 +108,9 @@ theorem image_pow_range_eq_univ [DecidableEq (E ≃ₐ[F] E)] :
   · intro i hi j hj hij
     exact pow_injOn_Iio_orderOf (by simpa [hσ] using hi) (by simpa [hσ] using hj) hij
 
+/--
+@isnad1 id=eq.1h4v.s9.b79699c269c1 from=translated src=- shape=18e9619c vocab=9fdd1548
+-/
 theorem prod_pow_eq_norm (c : E) :
     ∏ i ∈ Finset.range (finrank F E), (σ ^ i) c = algebraMap F E (Algebra.norm F c) := by
   classical
@@ -86,6 +119,9 @@ theorem prod_pow_eq_norm (c : E) :
   intro i hi j hj hij
   exact pow_injOn_Iio_orderOf (by simpa [hσ] using hi) (by simpa [hσ] using hj) hij
 
+/--
+@isnad1 id=eq.1h4v.s9.bb1d26a5a1fa from=translated src=- shape=6d70bee7 vocab=7a50010f
+-/
 theorem cf_finrank (c : E) : cf σ c (finrank F E) = ∏ i ∈ Finset.range (finrank F E), (σ ^ i) c := by
   unfold cf
   rw [← Finset.prod_range_reflect (fun i => (σ ^ i) c) (finrank F E)]
@@ -96,6 +132,9 @@ theorem cf_finrank (c : E) : cf σ c (finrank F E) = ∏ i ∈ Finset.range (fin
   rw [h, inv_pow, inv_eq_iff_mul_eq_one, ← pow_add,
     show j + 1 + (finrank F E - 1 - j) = finrank F E by omega, ← hσ, pow_orderOf_eq_one]
 
+/--
+@isnad1 id=eq.1h4v.s9.fe164b1c6ef1 from=translated src=- shape=40c1578c vocab=926b4f8b
+-/
 theorem T_pow_finrank (c : E) :
     T σ c ^ finrank F E = algebraMap F (Module.End F E) (Algebra.norm F c) := by
   ext y
@@ -136,6 +175,9 @@ theorem eq_zero_of_aeval_eq_zero {c : E} (hc : c ≠ 0) (p : F[X]) (hp : p.natDe
     · exact absurd h (cf_ne_zero σ hc i)
   · exact coeff_eq_zero_of_natDegree_lt (lt_of_lt_of_le hp (not_lt.1 hi))
 
+/--
+@isnad1 id=eq.1h4v.s9.da5342042579 from=translated src=- shape=3fb0ca2a vocab=eeb15046
+-/
 theorem charpoly_T (c : E) : (T σ c).charpoly = X ^ finrank F E - C (Algebra.norm F c) := by
   set n := finrank F E with hn
   have hn0 : 0 < n := finrank_pos
@@ -164,12 +206,18 @@ theorem charpoly_T (c : E) : (T σ c).charpoly = X ^ finrank F E - C (Algebra.no
     |>.trans hmin_eq
   rw [LinearMap.charpoly_natDegree, hmin_eq, hPdeg]
 
+/--
+@isnad1 id=eq.1h4v.s10.8b641b442076 from=translated src=- shape=fd31d813 vocab=9558f400
+-/
 theorem det_one_sub_T (c : E) : LinearMap.det (1 - T σ c) = 1 - Algebra.norm F c := by
   have h := LinearMap.eval_charpoly (T σ c) 1
   rw [charpoly_T σ hσ, map_one] at h
   rw [← h]
   simp
 
+/--
+@isnad1 id=eq.1h3v.s10.f20f48833792 from=translated src=- shape=0d7ae5fc vocab=54bfb167
+-/
 theorem det_sigma : LinearMap.det ((σ : E →ₐ[F] E).toLinearMap) = (-1) ^ (finrank F E + 1) := by
 
   have hT1 : T σ (1 : E) = (σ.symm : E →ₐ[F] E).toLinearMap := by ext y; simp [T_apply]
@@ -191,6 +239,9 @@ theorem det_sigma : LinearMap.det ((σ : E →ₐ[F] E).toLinearMap) = (-1) ^ (f
         rw [hu, mul_one]
     _ = (-1) ^ (finrank F E + 1) := by rw [← mul_assoc, hprod, one_mul]
 
+/--
+@isnad1 id=eq.1h4v.s11.34b59aedaaa3 from=translated src=- shape=acb7ca9e vocab=09c4f941
+-/
 theorem main (c : E) :
     algebraMap F E (LinearMap.det ((σ : E →ₐ[F] E).toLinearMap - c • (LinearMap.id : E →ₗ[F] E))) =
       (-1) ^ (finrank F E - 1) * (1 - ∏ i ∈ Finset.range (finrank F E), (σ ^ i) c) := by
@@ -203,6 +254,9 @@ theorem main (c : E) :
 
 end P2mDetSigma
 
+/--
+@isnad1 id=eq.1h4v.s11.34b59aedaaa3 from=translated src=- shape=acb7ca9e vocab=09c4f941
+-/
 theorem solution
     (F E : Type) [Field F] [Field E] [Algebra F E] [FiniteDimensional F E]
     (σ : E ≃ₐ[F] E) (hσ : orderOf σ = Module.finrank F E) (c : E) :

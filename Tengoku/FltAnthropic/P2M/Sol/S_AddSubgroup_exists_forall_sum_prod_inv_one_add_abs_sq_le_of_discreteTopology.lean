@@ -11,6 +11,9 @@ open MeasureTheory Set
 
 namespace LatticeProductPoissonBound
 
+/--
+@isnad1 id=integrab.0h0v.s6.e7ee010efef3 from=translated src=- shape=1587e3b3 vocab=c2bf1a22
+-/
 theorem integrable_inv_one_add_abs_sq :
     Integrable (fun t : ℝ => (1 + |t|)⁻¹ ^ 2) := by
   have h := (integrable_one_add_norm (E := ℝ) (μ := volume) (r := 2)
@@ -20,6 +23,9 @@ theorem integrable_inv_one_add_abs_sq :
   simp only [Real.norm_eq_abs]
   rw [Real.rpow_neg ht.le, Real.rpow_two, inv_pow]
 
+/--
+@isnad1 id=integrab.0h1v.s6.b27481533f47 from=translated src=- shape=e6401055 vocab=62bbff84
+-/
 theorem integrable_prod_inv_one_add_abs_sq (r : ℕ) :
     Integrable (fun z : Fin r → ℝ => ∏ k, (1 + |z k|)⁻¹ ^ 2) := by
   have h := Integrable.fintype_prod (ι := Fin r) (𝕜 := ℝ) (μ := fun _ => (volume : Measure ℝ))
@@ -27,10 +33,16 @@ theorem integrable_prod_inv_one_add_abs_sq (r : ℕ) :
   rw [← volume_pi] at h
   exact h
 
+/--
+@isnad1 id=le.0h2v.s6.2b06ce390297 from=translated src=- shape=4d24685a vocab=27c66cbe
+-/
 theorem prod_inv_one_add_abs_sq_nonneg {r : ℕ} (z : Fin r → ℝ) :
     0 ≤ ∏ k, (1 + |z k|)⁻¹ ^ 2 :=
   Finset.prod_nonneg fun k _ => by positivity
 
+/--
+@isnad1 id=le.2h4v.s7.5cc1be7a904f from=translated src=- shape=f5f47458 vocab=2128504c
+-/
 theorem prod_le_pow_mul_prod_of_dist_lt {r : ℕ} {ρ : ℝ} (hρ : 0 ≤ ρ) (a z : Fin r → ℝ)
     (hz : dist z a < ρ) :
     ∏ k, (1 + |a k|)⁻¹ ^ 2 ≤ (1 + ρ) ^ (2 * r) * ∏ k, (1 + |z k|)⁻¹ ^ 2 := by
@@ -62,6 +74,9 @@ theorem prod_le_pow_mul_prod_of_dist_lt {r : ℕ} {ρ : ℝ} (hρ : 0 ≤ ρ) (a
     _ = (1 + ρ) ^ (2 * r) * ∏ k, (1 + |z k|)⁻¹ ^ 2 := by
         rw [Finset.prod_mul_distrib, Finset.prod_const, Finset.card_univ, Fintype.card_fin, ← pow_mul]
 
+/--
+@isnad1 id=le.1h3v.s8.7dc2749eecf4 from=translated src=- shape=4c80a78a vocab=80d3f18c
+-/
 theorem mul_prod_le_pow_mul_setIntegral {r : ℕ} {ρ : ℝ} (hρ : 0 < ρ) (a : Fin r → ℝ) :
     (2 * ρ) ^ r * ∏ k, (1 + |a k|)⁻¹ ^ 2 ≤
       (1 + ρ) ^ (2 * r) * ∫ z in Metric.ball a ρ, ∏ k, (1 + |z k|)⁻¹ ^ 2 := by
@@ -87,6 +102,9 @@ theorem mul_prod_le_pow_mul_setIntegral {r : ℕ} {ρ : ℝ} (hρ : 0 < ρ) (a :
     _ ≤ (1 + ρ) ^ (2 * r) * ∫ z in Metric.ball a ρ, ∏ k, (1 + |z k|)⁻¹ ^ 2 :=
           mul_le_mul_of_nonneg_left hmono hpos.le
 
+/--
+@isnad1 id=ex.0h2v.s8.f9508a3e7d74 from=translated src=- shape=42fe4bc5 vocab=63aebb43
+-/
 theorem exists_pos_forall_norm_le {r : ℕ} (Γ : AddSubgroup (Fin r → ℝ)) [DiscreteTopology Γ] :
     ∃ δ : ℝ, 0 < δ ∧ ∀ x ∈ Γ, x ≠ 0 → δ ≤ ‖x‖ := by
   have hopen : IsOpen ({0} : Set Γ) := isOpen_discrete _
@@ -101,6 +119,9 @@ theorem exists_pos_forall_norm_le {r : ℕ} (Γ : AddSubgroup (Fin r → ℝ)) [
   rw [Set.mem_singleton_iff, Subtype.ext_iff] at this
   exact hx0 this
 
+/--
+@isnad1 id=ex.0h2v.s8.4158a9fc0cfe from=translated src=- shape=6470b061 vocab=799288fb
+-/
 theorem exists_forall_sum_le {r : ℕ} (Γ : AddSubgroup (Fin r → ℝ)) [DiscreteTopology Γ] :
     ∃ K : ℝ, ∀ (y : Fin r → ℝ) (F : Finset (Fin r → ℝ)), (↑F : Set (Fin r → ℝ)) ⊆ Γ →
       ∑ x ∈ F, ∏ k, (1 + |y k + x k|)⁻¹ ^ 2 ≤ K := by
@@ -144,6 +165,9 @@ theorem exists_forall_sum_le {r : ℕ} (Γ : AddSubgroup (Fin r → ℝ)) [Discr
 
 end LatticeProductPoissonBound
 
+/--
+@isnad1 id=ex.0h2v.s8.4158a9fc0cfe from=translated src=- shape=6470b061 vocab=799288fb
+-/
 theorem solution
     {r : ℕ} (Γ : AddSubgroup (Fin r → ℝ)) [DiscreteTopology Γ] :
     ∃ K : ℝ, ∀ (y : Fin r → ℝ) (F : Finset (Fin r → ℝ)), (↑F : Set (Fin r → ℝ)) ⊆ Γ →

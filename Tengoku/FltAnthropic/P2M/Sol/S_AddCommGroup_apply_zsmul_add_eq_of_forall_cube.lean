@@ -11,6 +11,9 @@ namespace P2mQuad
 
 variable {M N : Type*} [AddCommGroup M] [AddCommGroup N]
 
+/--
+@isnad1 id=eq.0h1v.s6.42cd2e5759bd from=translated src=- shape=b754a3cf vocab=38233fc4
+-/
 theorem tri_succ (n : ℤ) : (n + 1) * (n + 1 - 1) / 2 = n * (n - 1) / 2 + n := by
   have h : (n + 1) * (n + 1 - 1) = n * (n - 1) + n * 2 := by ring
   rw [h, Int.add_mul_ediv_right _ _ two_ne_zero]
@@ -64,6 +67,9 @@ theorem eq_of_second_difference (g : ℤ → N) (D : N)
     rw [ht, add_smul, sub_smul, sub_smul, one_smul]
     abel
 
+/--
+@isnad1 id=eq.1h6v.s8.4953ef63c205 from=translated src=- shape=1de3ab07 vocab=721b4d31
+-/
 theorem main (Λ : M → N)
     (hΛ : ∀ x y z : M, Λ (x + y + z) - Λ (x + y) - Λ (x + z) - Λ (y + z) + Λ x + Λ y + Λ z = Λ 0)
     (x y : M) (n : ℤ) :
@@ -94,6 +100,9 @@ theorem main (Λ : M → N)
 
 end P2mQuad
 
+/--
+@isnad1 id=eq.1h6v.s8.4953ef63c205 from=translated src=- shape=1de3ab07 vocab=721b4d31
+-/
 theorem solution
     {M N : Type*} [AddCommGroup M] [AddCommGroup N] (Λ : M → N)
     (hΛ : ∀ x y z : M,

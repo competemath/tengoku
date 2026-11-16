@@ -19,6 +19,9 @@ variable {B : Type*} [CommRing B] (𝔪 : Ideal B)
 variable {S : Type*} [CommRing S] (J : Ideal S) [IsAdicComplete J S]
 variable (ev : B →+* S)
 
+/--
+@isnad1 id=ex.1h5v.s8.40a2a24ccbd5 from=translated src=- shape=4eeb59d5 vocab=3f12d754
+-/
 theorem exists_monotone_modulus (hcont : ∀ k : ℕ, ∃ n : ℕ, 𝔪 ^ n ≤ (J ^ k).comap ev) :
     ∃ N : ℕ → ℕ, Monotone N ∧ ∀ k, 𝔪 ^ N k ≤ (J ^ k).comap ev := by
   choose n hn using hcont
@@ -29,6 +32,9 @@ end AdicCompletion.ValuedLift
 
 open Valued _root_.AdicCompletion _root_.P2MW.S_AdicCompletion_exists_ringHom_comp_algebraMap_eq_of_forall_exists_pow_le_comap.AdicCompletion AdicCompletion.ValuedLift in
 
+/--
+@isnad1 id=ex.1h5v.s9.76971c349f37 from=translated src=- shape=3a2eaadf vocab=c7059a60
+-/
 theorem solution
     {B : Type*} [CommRing B] (𝔪 : Ideal B) {S : Type*} [CommRing S] (J : Ideal S) [IsAdicComplete J S] (ev : B →+* S)
     (hcont : ∀ k : ℕ, ∃ n : ℕ, 𝔪 ^ n ≤ (J ^ k).comap ev) :

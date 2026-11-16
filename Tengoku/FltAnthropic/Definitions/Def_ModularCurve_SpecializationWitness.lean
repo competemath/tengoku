@@ -24,6 +24,9 @@ namespace CommutingHeckeFamily
 
 variable (fam : CommutingHeckeFamily J')
 
+/--
+@isnad1 id=ismulcom.0h2v.s9.dbeb7fb507af from=translated src=- shape=5295c592 vocab=d65f3009
+-/
 theorem isMulCommutative_adjoin :
     IsMulCommutative (Algebra.adjoin ℤ (Set.range fam.T)) := by
   refine Algebra.isMulCommutative_adjoin ℤ ?_
@@ -42,6 +45,9 @@ noncomputable def endHom : HeckeAlg →+* Module.End ℤ J' :=
           Algebra.adjoin ℤ (Set.range fam.T))) :
       HeckeAlg →ₐ[ℤ] Algebra.adjoin ℤ (Set.range fam.T)).toRingHom
 
+/--
+@isnad1 id=eq.0h3v.s7.74cea76027df from=translated src=- shape=a3527815 vocab=266a5d46
+-/
 theorem endHom_heckeGen (q : Nat.Primes) : fam.endHom (heckeGen q) = fam.T q := by
   show ((Algebra.adjoin ℤ (Set.range fam.T)).val)
       ((MvPolynomial.aeval
@@ -55,6 +61,9 @@ theorem endHom_heckeGen (q : Nat.Primes) : fam.endHom (heckeGen q) = fam.T q := 
 @[reducible] noncomputable def module : Module HeckeAlg J' :=
   Module.compHom _ fam.endHom
 
+/--
+@isnad1 id=eq.0h4v.s7.6d1df6c8ff1b from=translated src=- shape=f302f63c vocab=0d217d51
+-/
 theorem module_heckeGen_smul (q : Nat.Primes) (y : J') :
     letI := fam.module
     heckeGen q • y = fam.T q y := by

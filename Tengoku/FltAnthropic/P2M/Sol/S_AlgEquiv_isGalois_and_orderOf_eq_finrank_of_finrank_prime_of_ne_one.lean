@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 open IntermediateField
 
+/--
+@isnad1 id=and.2h3v.s9.3f71f07fc6af from=translated src=- shape=7c9a8765 vocab=90d3b6f0
+-/
 theorem solution (K L : Type*) [Field K] [Field L] [Algebra K L]
     (hdeg : (Module.finrank K L).Prime) (σ : L ≃ₐ[K] L) (hσ : σ ≠ 1) :
     IsGalois K L ∧ orderOf σ = Module.finrank K L ∧ Subgroup.zpowers σ = ⊤ := by

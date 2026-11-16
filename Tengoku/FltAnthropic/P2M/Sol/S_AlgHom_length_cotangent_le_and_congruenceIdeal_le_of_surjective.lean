@@ -6,6 +6,9 @@ import Tengoku.Seed.RingTheory.Length
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/anthropics/fermats-last-theorem@aa2d8b34692b, `P2M/Sol/S_AlgHom_length_cotangent_le_and_congruenceIdeal_le_of_surjective.lean`: removed the import of `P2M.Util`. What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 namespace P2MW.S_AlgHom_length_cotangent_le_and_congruenceIdeal_le_of_surjective
 
+/--
+@isnad1 id=and.2h6v.s9.ae48c3cd1ffa from=translated src=- shape=b0879310 vocab=04cae384
+-/
 theorem solution
     {𝒪 : Type*} {R : Type*} {T : Type*} [CommRing 𝒪]
     [CommRing R] [Algebra 𝒪 R] [CommRing T] [Algebra 𝒪 T]

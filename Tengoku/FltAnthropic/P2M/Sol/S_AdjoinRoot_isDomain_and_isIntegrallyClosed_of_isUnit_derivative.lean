@@ -15,10 +15,16 @@ namespace NormalAdjoinRoot
 
 variable {R : Type u} [CommRing R] [IsDomain R] [IsIntegrallyClosed R]
 
+/--
+@isnad1 id=irreduci.2h2v.s8.ac409c50f61c from=translated src=- shape=2fbd65da vocab=3f64803a
+-/
 theorem irreducible_map (f : R[X]) (hfm : f.Monic) (hfi : Irreducible f) :
     Irreducible (f.map (algebraMap R (FractionRing R))) :=
   (Polynomial.Monic.irreducible_iff_irreducible_map_fraction_map hfm).mp hfi
 
+/--
+@isnad1 id=dvd.2h3v.s9.b21fa6ee0e42 from=translated src=- shape=d2afb644 vocab=e997d91d
+-/
 theorem dvd_of_map_dvd (f : R[X]) (hfm : f.Monic) (p : R[X])
     (h : f.map (algebraMap R (FractionRing R)) ∣ p.map (algebraMap R (FractionRing R))) :
     f ∣ p := by
@@ -31,6 +37,9 @@ theorem dvd_of_map_dvd (f : R[X]) (hfm : f.Monic) (p : R[X])
 end NormalAdjoinRoot
 
 open NormalAdjoinRoot in
+/--
+@isnad1 id=and.3h2v.s8.b23579ca50c7 from=translated src=- shape=08ea34c7 vocab=c2077e46
+-/
 theorem solution
     (R : Type u) [CommRing R] [IsDomain R] [IsIntegrallyClosed R]
     (f : R[X]) (hfm : f.Monic) (hfi : Irreducible f)

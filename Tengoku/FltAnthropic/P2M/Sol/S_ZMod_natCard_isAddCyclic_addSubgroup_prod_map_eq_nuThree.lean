@@ -15,9 +15,15 @@ namespace L3zCore
 
 variable {n : ℕ} [NeZero n]
 
+/--
+@isnad1 id=eq.0h2v.s7.99709cb86c55 from=translated src=- shape=4c26a990 vocab=dcb1548b
+-/
 theorem nsmul_self_eq_zero (v : (ZMod n × ZMod n)) : n • v = 0 := by
   ext <;> simp [nsmul_eq_mul, ZMod.natCast_self]
 
+/--
+@isnad1 id=eq.0h4v.s9.e5837cde7316 from=translated src=- shape=ec0631c2 vocab=73b208bc
+-/
 theorem map_zmod_smul (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (c : ZMod n) (v : (ZMod n × ZMod n)) : τ (c • v) = c • τ v := by
   rw [← ZMod.natCast_zmod_val c, Nat.cast_smul_eq_nsmul, Nat.cast_smul_eq_nsmul, map_nsmul]
 
@@ -36,6 +42,9 @@ def eig (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (k : ZMod n) : AddSubg
   neg_mem' ha := by
     simp only [Set.mem_ofPred_eq] at ha ⊢; rw [map_neg, ha, smul_neg]
 
+/--
+@isnad1 id=iff.0h4v.s9.6f3d892a6cfb from=translated src=- shape=bc707cf0 vocab=4d515b1c
+-/
 theorem mem_eig (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (k : ZMod n) (v : (ZMod n × ZMod n)) : v ∈ eig τ k ↔ τ v = k • v := Iff.rfl
 
 def shift (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (k : ZMod n) : (ZMod n × ZMod n) →+ (ZMod n × ZMod n) where
@@ -43,8 +52,14 @@ def shift (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (k : ZMod n) : (ZMod
   map_zero' := by simp only [map_zero, smul_zero, sub_zero]
   map_add' v w := by simp only [map_add, smul_add]; abel
 
+/--
+@isnad1 id=eq.0h4v.s9.28824496ff6f from=translated src=- shape=aa79f707 vocab=3103357e
+-/
 theorem shift_apply (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (k : ZMod n) (v : (ZMod n × ZMod n)) : shift τ k v = τ v - k • v := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.bbe0314fd725 from=translated src=- shape=8d152c9b vocab=85eae973
+-/
 theorem ker_shift (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (k : ZMod n) : (shift τ k).ker = eig τ k := by
   ext v
   rw [AddMonoidHom.mem_ker, shift_apply, sub_eq_zero, mem_eig]
@@ -54,11 +69,17 @@ section Quadratic
 variable (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (s : ZMod n) (hτ : ∀ v, τ (τ v) = s • τ v - v)
 include hτ
 
+/--
+@isnad1 id=injectiv.1h3v.s10.6cf3ea4b2fa4 from=translated src=- shape=a9b99d29 vocab=3cb4ebda
+-/
 theorem τ_injective : Function.Injective τ := fun a b h => by
   have ha : a = s • τ a - τ (τ a) := by rw [hτ]; abel
   have hb : b = s • τ b - τ (τ b) := by rw [hτ]; abel
   rw [ha, hb, h]
 
+/--
+@isnad1 id=eq.3h5v.s10.57954dd514fb from=translated src=- shape=68dd2dd1 vocab=851b319c
+-/
 theorem root_of_eigen {v : (ZMod n × ZMod n)} (hv : addOrderOf v = n) {k : ZMod n} (hk : τ v = k • v) :
     k * k = s * k - 1 := by
   have h1 : τ (τ v) = (k * k) • v := by rw [hk, map_zmod_smul, hk, smul_smul]
@@ -66,6 +87,9 @@ theorem root_of_eigen {v : (ZMod n × ZMod n)} (hv : addOrderOf v = n) {k : ZMod
   have h3 : (k * k - (s * k - 1)) • v = 0 := by rw [sub_smul, ← h1, ← h2, sub_self]
   exact sub_eq_zero.mp (eq_zero_of_smul_eq_zero hv h3)
 
+/--
+@isnad1 id=le.2h4v.s10.3daf207ed77e from=translated src=- shape=fcaf3c83 vocab=35b84656
+-/
 theorem range_shift_le {k : ZMod n} (hk : k * k = s * k - 1) :
     (shift τ k).range ≤ eig τ (s - k) := by
   rintro w ⟨v, rfl⟩
@@ -73,6 +97,9 @@ theorem range_shift_le {k : ZMod n} (hk : k * k = s * k - 1) :
     show (s - k) * k = 1 by rw [sub_mul, hk]; ring, one_smul, sub_smul]
   abel
 
+/--
+@isnad1 id=le.2h4v.s10.3902ebc96f91 from=translated src=- shape=341fae5c vocab=c7fca704
+-/
 theorem sq_le_card_mul_card {k : ZMod n} (hk : k * k = s * k - 1) :
     n ^ 2 ≤ Nat.card (eig τ k) * Nat.card (eig τ (s - k)) := by
   have hN2 : Nat.card (ZMod n × ZMod n) = n ^ 2 := by rw [Nat.card_prod, Nat.card_zmod, sq]
@@ -83,6 +110,9 @@ theorem sq_le_card_mul_card {k : ZMod n} (hk : k * k = s * k - 1) :
   exact Nat.mul_le_mul_left _ (Nat.card_le_card_of_injective
     (AddSubgroup.inclusion (range_shift_le τ s hτ hk)) (AddSubgroup.inclusion_injective _))
 
+/--
+@isnad1 id=eq.1h4v.s10.335db6ee4662 from=translated src=- shape=088dc993 vocab=6e2d2347
+-/
 theorem map_eig_eq (k : ZMod n) : (eig τ k).map τ = eig τ k := by
   haveI : Finite (eig τ k) := inferInstance
   have hle : (eig τ k).map τ ≤ eig τ k := by
@@ -94,6 +124,9 @@ theorem map_eig_eq (k : ZMod n) : (eig τ k).map τ = eig τ k := by
 
 end Quadratic
 
+/--
+@isnad1 id=le.1h2v.s7.5663bb464ff5 from=translated src=- shape=88b67507 vocab=304f980f
+-/
 theorem card_pTorsion_le {p : ℕ} (hp : p.Prime) :
     Nat.card {v : (ZMod n × ZMod n) // p • v = 0} ≤ p ^ 2 := by
   have key : Nat.card {x : ZMod n // p • x = 0} ≤ p := by
@@ -117,6 +150,9 @@ theorem card_pTorsion_le {p : ℕ} (hp : p.Prime) :
   rw [Nat.card_congr e, Nat.card_prod, sq]
   exact Nat.mul_le_mul key key
 
+/--
+@isnad1 id=isaddcyc.1h1v.s6.c14e715c8d16 from=translated src=- shape=05c7061d vocab=28f9f713
+-/
 theorem isAddCyclic_of_card_pTorsion_le {G : Type*} [AddCommGroup G]
     [Finite G] (h : ∀ p : ℕ, p.Prime → Nat.card {g : G // p • g = 0} ≤ p) :
     IsAddCyclic G := by
@@ -172,6 +208,9 @@ theorem isAddCyclic_of_card_pTorsion_le {G : Type*} [AddCommGroup G]
       _ ≤ (m/p) * p := Nat.mul_le_mul hkerφ himφ
       _ = m := Nat.div_mul_cancel hpm
 
+/--
+@isnad1 id=le.2h4v.s10.c3e577fd48a7 from=translated src=- shape=ef6603ab vocab=8f6d7851
+-/
 theorem card_eig_pTorsion_le (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (k : ZMod n) {p : ℕ} (hp : p.Prime)
     (hns : ∃ v : (ZMod n × ZMod n), addOrderOf v = p ∧ ∀ m : ℕ, τ v ≠ m • v) :
     Nat.card {g : eig τ k // p • g = 0} ≤ p := by
@@ -241,6 +280,9 @@ variable (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (s : ZMod n) (hτ : �
   (hns : ∀ p : ℕ, p.Prime → p ∣ n → ∃ v : (ZMod n × ZMod n), addOrderOf v = p ∧ ∀ m : ℕ, τ v ≠ m • v)
 include hτ hns
 
+/--
+@isnad1 id=and.2h4v.s10.e63bcaaa5847 from=translated src=- shape=d941db4d vocab=747ddfb0
+-/
 theorem eig_cyclic_card_le (k : ZMod n) : IsAddCyclic (eig τ k) ∧ Nat.card (eig τ k) ≤ n := by
   have step1 : ∀ p : ℕ, p.Prime → Nat.card {g : eig τ k // p • g = 0} ≤ p := by
     intro p hp
@@ -268,6 +310,9 @@ theorem eig_cyclic_card_le (k : ZMod n) : IsAddCyclic (eig τ k) ∧ Nat.card (e
   calc Nat.card (eig τ k) = AddMonoid.exponent (eig τ k) := IsAddCyclic.exponent_eq_card.symm
     _ ≤ n := Nat.le_of_dvd (Nat.pos_of_ne_zero (NeZero.ne n)) hexp
 
+/--
+@isnad1 id=and.3h4v.s10.e6d09c010131 from=translated src=- shape=c48f9811 vocab=dd702da3
+-/
 theorem eig_cyclic_card_eq {k : ZMod n} (hk : k * k = s * k - 1) :
     IsAddCyclic (eig τ k) ∧ Nat.card (eig τ k) = n := by
   obtain ⟨hc, hle⟩ := eig_cyclic_card_le τ s hτ hns k
@@ -278,6 +323,9 @@ theorem eig_cyclic_card_eq {k : ZMod n} (hk : k * k = s * k - 1) :
   rw [sq] at hge
   nlinarith [hge, hmul, hle, hle', Nat.one_le_iff_ne_zero.mpr (NeZero.ne n)]
 
+/--
+@isnad1 id=eq.2h3v.s10.c3a6888873d3 from=translated src=- shape=f7d54b63 vocab=251046c2
+-/
 theorem card_stable_eq_card_roots :
     Nat.card {H : AddSubgroup (ZMod n × ZMod n) // IsAddCyclic H ∧ Nat.card H = n ∧ H.map τ = H}
       = Nat.card {k : ZMod n // k * k = s * k - 1} := by
@@ -331,6 +379,9 @@ end Count
 end L3zCore
 
 open L3zCore in
+/--
+@isnad1 id=eq.2h2v.s10.b2ddf0b0c31c from=translated src=- shape=23bf6158 vocab=9524b7f3
+-/
 theorem solution (n : ℕ) [NeZero n]
     (τ : ZMod n × ZMod n →+ ZMod n × ZMod n) (hτ : ∀ v, τ (τ v) + τ v + v = 0)
     (hns : ∀ p : ℕ, p.Prime → p ∣ n → ∃ v : ZMod n × ZMod n, addOrderOf v = p ∧ ∀ k : ℕ, τ v ≠ k • v) :

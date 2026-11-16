@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u v
 
+/--
+@isnad1 id=nonempty.1h2v.s7.b6a74f1aa6a7 from=translated src=- shape=07845634 vocab=a3ef646e
+-/
 theorem AddCommGroup.nonempty_addEquiv_of_forall_natCard_torsionBy_eq
     (A : Type u) (B : Type v) [AddCommGroup A] [AddCommGroup B] [Finite A] [Finite B]
     (h : ∀ N : ℕ, Nat.card (Submodule.torsionBy ℤ A (N : ℤ)) = Nat.card (Submodule.torsionBy ℤ B (N : ℤ))) :

@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 open scoped BigOperators
 
+/--
+@isnad1 id=nonempty.1h5v.s8.5692e2d64666 from=translated src=- shape=94c3825a vocab=07c7c17e
+-/
 theorem solution
     {g d : ℕ} (δ : Fin g → ℕ) [∀ i, NeZero (δ i)] (hδd : ∏ i, δ i = d)
     (L : Type) [AddCommGroup L] [Finite L]

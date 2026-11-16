@@ -17,6 +17,9 @@ open _root_.AffineDilatation
 
 variable {A : Type v} [CommRing A]
 
+/--
+@isnad1 id=fg.1h3v.s6.8e60223f4cd4 from=translated src=- shape=1c5c829a vocab=b5256055
+-/
 theorem fg_of_fg (I : Ideal A) (a : A) (hI : I.FG) : (subalgebra I a).FG := by
   classical
   obtain ⟨T, hT⟩ := hI
@@ -46,11 +49,17 @@ theorem fg_of_fg (I : Ideal A) (a : A) (hI : I.FG) : (subalgebra I a).FG := by
         rw [smul_eq_mul, map_mul, mul_assoc]
         exact Subalgebra.mul_mem _ (Subalgebra.algebraMap_mem _ c) hx
 
+/--
+@isnad1 id=finitety.1h3v.s7.97c94e5ff565 from=translated src=- shape=215ba37c vocab=9cd458ed
+-/
 theorem finiteType (I : Ideal A) (a : A) (hI : I.FG) : Algebra.FiniteType A (Ring I a) :=
   (Subalgebra.fg_iff_finiteType _).mp (fg_of_fg I a hI)
 
 end AffineDilatation.FiniteTypeProof
 
+/--
+@isnad1 id=finitety.1h4v.s8.1498d04168c5 from=translated src=- shape=b3b4ac5c vocab=3fa92882
+-/
 theorem solution
     {R : Type u} [CommRing R] {A : Type v} [CommRing A] [Algebra R A]
     [Algebra.FiniteType R A] (I : Ideal A) (a : A) (hI : I.FG) :

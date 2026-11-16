@@ -10,6 +10,9 @@ namespace Tengoku.FltAnthropic.ResidualGaloisRep
 
 variable {k : Type} [Field k]
 
+/--
+@isnad1 id=eq.0h3v.s10.e0d7f0e2ed03 from=translated src=- shape=a89e87a2 vocab=b53b8f99
+-/
 theorem ker_trace_eq_comap_traceZero (ρbar : ResidualGaloisRep k) (b : Module.Basis (Fin 2) k ρbar.V) :
     LinearMap.ker (LinearMap.trace k ρbar.V)
       = (TaylorWiles.traceZero k).comap (LinearMap.toMatrix b b : Module.End k ρbar.V ≃ₗ[k] Matrix (Fin 2) (Fin 2) k).toLinearMap := by
@@ -23,6 +26,9 @@ noncomputable def adZeroEquivTraceZero (ρbar : ResidualGaloisRep k) (b : Module
     rw [ker_trace_eq_comap_traceZero ρbar b, Submodule.map_comap_eq_of_surjective]
     exact (LinearMap.toMatrix b b).surjective)
 
+/--
+@isnad1 id=eq.0h4v.s13.73429b0602b4 from=translated src=- shape=d699931f vocab=7911168f
+-/
 @[simp]
 theorem adZeroEquivTraceZero_apply_coe (ρbar : ResidualGaloisRep k) (b : Module.Basis (Fin 2) k ρbar.V)
     (f : LinearMap.ker (LinearMap.trace k ρbar.V)) :

@@ -14,6 +14,9 @@ universe u
 
 namespace CSplitAux
 
+/--
+@isnad1 id=nonempty.0h7v.s8.ae43d35e2e6b from=translated src=- shape=4b48bc4f vocab=72db785e
+-/
 theorem nonempty_algEquiv_pi_of_algHom {R : Type u} [CommRing R] (S : Type u) [CommRing S] [Algebra R S]
     {T₁ T : Type u} [CommRing T₁] [CommRing T] [Algebra R T₁] [Algebra R T] (φ : T₁ →ₐ[R] T)
     {n : ℕ} (e : T₁ ⊗[R] S ≃ₐ[T₁] (Fin n → T₁)) : Nonempty (T ⊗[R] S ≃ₐ[T] (Fin n → T)) := by
@@ -32,6 +35,9 @@ def P (ι : Type) : Prop :=
       Module.Finite R R' ∧ Algebra.Etale R R' ∧ Module.FaithfullyFlat R R' ∧
       ∀ i, Nonempty (R' ⊗[R] (B i) ≃ₐ[R'] (Fin (deg i) → R'))
 
+/--
+@isnad1 id=p.1h3v.s3.da023ce21575 from=translated src=- shape=5b07f342 vocab=3e7cf363
+-/
 theorem P_of_equiv {α β : Type} (e : α ≃ β) (h : P.{u} α) : P.{u} β := by
   intro R _ B _ _ _ _ deg hdeg
   obtain ⟨R', _, _, h1, h2, h3, h4⟩ := h R (fun a => B (e a)) (fun a => deg (e a)) (fun a => hdeg (e a))
@@ -39,10 +45,16 @@ theorem P_of_equiv {α β : Type} (e : α ≃ β) (h : P.{u} α) : P.{u} β := b
   obtain ⟨a, rfl⟩ := e.surjective b
   exact h4 a
 
+/--
+@isnad1 id=p.0h0v.s1.bb3da1835295 from=translated src=- shape=49959d42 vocab=a3593add
+-/
 theorem P_empty : P.{u} PEmpty := by
   intro R _ B _ _ _ _ deg hdeg
   exact ⟨R, inferInstance, inferInstance, inferInstance, inferInstance, inferInstance, fun i => i.elim⟩
 
+/--
+@isnad1 id=p.1h1v.s3.e81c00bd3526 from=translated src=- shape=c698efb5 vocab=d4f753f1
+-/
 theorem P_option {α : Type} [Fintype α] (h : P.{u} α) : P.{u} (Option α) := by
   intro R _ B _ _ _ _ deg hdeg
   obtain ⟨R₁, _, _, fin₁, et₁, ff₁, hs₁⟩ :=
@@ -60,6 +72,9 @@ theorem P_option {α : Type} [Fintype α] (h : P.{u} α) : P.{u} (Option α) := 
 
 end CSplitAux
 
+/--
+@isnad1 id=ex.1h4v.s8.eee14e79966d from=translated src=- shape=33bc26a0 vocab=93135aa9
+-/
 theorem solution
     (R : Type u) [CommRing R]
     {ι : Type} [Finite ι] (B : ι → Type u) [∀ i, CommRing (B i)] [∀ i, Algebra R (B i)]

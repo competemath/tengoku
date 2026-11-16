@@ -22,6 +22,9 @@ variable {R : Type u} [CommRing R]
   {M : ℕ → Type v} [∀ n, AddCommGroup (M n)] [∀ n, Module R (M n)]
   (t : ∀ n : ℕ, M (n + 1) →ₗ[R] M n)
 
+/--
+@isnad1 id=ex.0h5v.s8.740bfa8506fc from=translated src=- shape=47e718af vocab=124f5253
+-/
 theorem exists_partial (n : ℕ) (y : M n) :
     ∃ x : ∀ k, M k, (∀ k, k < n → t k (x (k + 1)) = x k) ∧ x n = y := by
   induction n with
@@ -39,6 +42,9 @@ theorem exists_partial (n : ℕ) (y : M n) :
     · have h2 : k ≠ k + 1 := by omega
       rw [Function.update_self, Function.update_of_ne h2, hxn]
 
+/--
+@isnad1 id=eq.3h7v.s9.a1e83eae1909 from=translated src=- shape=fb708713 vocab=b1a08555
+-/
 theorem update_compat {m : ℕ} (s : M m → M (m + 1)) (hs : ∀ z, t m (s z) = z)
     (z : ∀ k, M k) (hz : ∀ k, k < m → t k (z (k + 1)) = z k) :
     ∀ k, k < m + 1 → t k (Function.update z (m + 1) (s (z m)) (k + 1)) =
@@ -52,6 +58,9 @@ theorem update_compat {m : ℕ} (s : M m → M (m + 1)) (hs : ∀ z, t m (s z) =
   · have h2 : k ≠ k + 1 := by omega
     rw [Function.update_self, Function.update_of_ne h2, hs]
 
+/--
+@isnad1 id=ex.1h5v.s9.019bc694d51a from=translated src=- shape=78ca5506 vocab=e9434ca5
+-/
 theorem exists_forall_eq_of_surjective (ht : ∀ n, Surjective (t n)) (n : ℕ) (y : M n) :
     ∃ x : ∀ k, M k, (∀ k, t k (x (k + 1)) = x k) ∧ x n = y := by
   obtain ⟨x, hx, hxn⟩ := exists_partial t n y
@@ -94,6 +103,9 @@ theorem eq_of_eq_of_le {x x' : ∀ k, M k} (hx : ∀ k, t k (x (k + 1)) = x k)
 
 variable (I : Ideal R)
 
+/--
+@isnad1 id=eq.4h7v.s10.d8fd4327c708 from=translated src=- shape=5f54e6b8 vocab=bb7fd3d4
+-/
 theorem span_range_apply_eq_top (hI : ∀ n : ℕ, I ^ (n + 1) • (⊤ : Submodule R (M n)) = ⊥)
     (hker : ∀ n : ℕ, LinearMap.ker (t n) ≤ I ^ (n + 1) • ⊤)
     {ι : Type*} (g : ι → ∀ k, M k) (hg : ∀ i k, t k (g i (k + 1)) = g i k)
@@ -129,6 +141,9 @@ theorem span_range_apply_eq_top (hI : ∀ n : ℕ, I ^ (n + 1) • (⊤ : Submod
         _ = N := sup_bot_eq N
     exact eq_top_iff.mpr (hsup.trans (sup_le le_rfl hJle))
 
+/--
+@isnad1 id=mem.1h5v.s9.442b493f5971 from=translated src=- shape=b387e218 vocab=1136eefa
+-/
 theorem apply_mem_of_mem_smul_top {ι : Type*} (J : Ideal R) {e : ι → R}
     (he : e ∈ J • (⊤ : Submodule R (ι → R))) (i : ι) : e i ∈ J := by
   refine Submodule.smul_induction_on (p := fun e : ι → R => e i ∈ J) he ?_ ?_
@@ -137,6 +152,9 @@ theorem apply_mem_of_mem_smul_top {ι : Type*} (J : Ideal R) {e : ι → R}
   · intro x y hx hy
     simpa using J.add_mem hx hy
 
+/--
+@isnad1 id=mem.1h4v.s9.01d2c0b6049e from=translated src=- shape=cc6dd9fe vocab=103208ec
+-/
 theorem mem_smul_top_of_forall_apply_mem {ι : Type*} [Fintype ι] [DecidableEq ι] (J : Ideal R)
     {e : ι → R} (he : ∀ i, e i ∈ J) : e ∈ J • (⊤ : Submodule R (ι → R)) := by
   have : e = ∑ i, e i • (Pi.single i (1 : R) : ι → R) := by
@@ -145,6 +163,9 @@ theorem mem_smul_top_of_forall_apply_mem {ι : Type*} [Fintype ι] [DecidableEq 
   rw [this]
   exact Submodule.sum_mem _ fun i _ => Submodule.smul_mem_smul (he i) Submodule.mem_top
 
+/--
+@isnad1 id=iff.0h3v.s8.1ad985d631e7 from=translated src=- shape=2621d68d vocab=1136eefa
+-/
 theorem mem_smul_top_self_iff (J : Ideal R) (x : R) : x ∈ (J • ⊤ : Submodule R R) ↔ x ∈ J := by
   rw [Ideal.smul_eq_mul, Ideal.mul_top]
 
@@ -158,15 +179,24 @@ variable [IsAdicComplete I R]
   (hspan : ∀ n, Submodule.span R (Set.range fun i => g i n) = ⊤)
 
 include hg in
+/--
+@isnad1 id=eq.1h7v.s10.0b325cc540f3 from=translated src=- shape=41dcf75e vocab=119dc1f2
+-/
 theorem t_Ψ (k : ℕ) (c : ι → R) : t k (Ψ R g (k + 1) c) = Ψ R g k c := by
   simp [Fintype.linearCombination_apply, map_sum, map_smul, hg]
 
 include hspan in
+/--
+@isnad1 id=surjecti.1h5v.s8.65073b60eab5 from=translated src=- shape=553996eb vocab=e6cfee1c
+-/
 theorem Ψ_surjective (k : ℕ) : Surjective (Ψ R g k) :=
   (span_range_eq_top_iff_surjective_fintypeLinearCombination R _).mp (hspan k)
 
 include hI hspan in
 omit [IsAdicComplete I R] in
+/--
+@isnad1 id=eq.3h7v.s9.4cf115c33ba3 from=translated src=- shape=824a4a19 vocab=63d7d30c
+-/
 theorem Ψ_eq_zero_of_forall_mem [DecidableEq ι] (k : ℕ) {e : ι → R}
     (he : ∀ i, e i ∈ I ^ (k + 1)) : Ψ R g k e = 0 := by
   have hmem : Ψ R g k e ∈ (I ^ (k + 1) • (⊤ : Submodule R (ι → R))).map (Ψ R g k) :=
@@ -178,6 +208,9 @@ theorem Ψ_eq_zero_of_forall_mem [DecidableEq ι] (k : ℕ) {e : ι → R}
 include hker hg hspan in
 omit [IsAdicComplete I R] in
 
+/--
+@isnad1 id=ex.5h9v.s11.f01f977f15e5 from=translated src=- shape=c06bc4ba vocab=ec5a6aac
+-/
 theorem exists_step (x : ∀ k, M k) (hx : ∀ k, t k (x (k + 1)) = x k) (k : ℕ) (c : ι → R)
     (hc : Ψ R g k c = x k) :
     ∃ e : ι → R, (∀ i, e i ∈ I ^ (k + 1)) ∧ Ψ R g (k + 1) (c + e) = x (k + 1) := by
@@ -192,6 +225,9 @@ theorem exists_step (x : ∀ k, M k) (hx : ∀ k, t k (x (k + 1)) = x k) (k : �
 
 include hI hker hg hspan in
 
+/--
+@isnad1 id=ex.6h9v.s11.46d1d017a6b0 from=translated src=- shape=82205916 vocab=12a49bf2
+-/
 theorem exists_forall_Ψ_eq [DecidableEq ι] (x : ∀ k, M k) (hx : ∀ k, t k (x (k + 1)) = x k)
     (n : ℕ) (c₀ : ι → R) (hc₀ : Ψ R g n c₀ = x n) :
     ∃ c : ι → R, (∀ k, Ψ R g k c = x k) ∧ (∀ i, c i - c₀ i ∈ I ^ (n + 1)) := by
@@ -257,6 +293,9 @@ end Engine
 end FormalGAGAFiniteLimitAux
 
 open FormalGAGAFiniteLimitAux in
+/--
+@isnad1 id=and.4h5v.s11.f2989224fa05 from=translated src=- shape=5338ba4d vocab=349a47ed
+-/
 theorem solution
     {R : Type u} [CommRing R] (I : Ideal R) [IsAdicComplete I R]
     (M : ℕ → Type v) [∀ n, AddCommGroup (M n)] [∀ n, Module R (M n)]

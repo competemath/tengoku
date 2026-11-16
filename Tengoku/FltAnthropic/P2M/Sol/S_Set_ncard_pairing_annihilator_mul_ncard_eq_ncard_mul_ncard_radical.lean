@@ -11,6 +11,9 @@ namespace AnnCount2
 
 variable {J : Type} {L : Type} [Field L]
 
+/--
+@isnad1 id=eq.4h6v.s7.a40d228ecfac from=translated src=- shape=0e3fcb31 vocab=6bc6d4cc
+-/
 theorem sum_eq_zero_of_translate [AddCommGroup J] (s : Finset J) (g : J) (hs : ∀ x ∈ s, g + x ∈ s) (hs' : ∀ x ∈ s, -g + x ∈ s)
     (f : J → L) (c : L) (hc : c ≠ 1) (hf : ∀ x ∈ s, f (g + x) = c * f x) :
     ∑ x ∈ s, f x = 0 := by
@@ -29,6 +32,9 @@ theorem sum_eq_zero_of_translate [AddCommGroup J] (s : Finset J) (g : J) (hs : �
   · exact absurd (sub_eq_zero.1 h) hc
   · exact h
 
+/--
+@isnad1 id=eq.1h4v.s6.55b44cd1373e from=translated src=- shape=34285d8b vocab=f4375679
+-/
 theorem sum_eq_card_of_forall_eq_one (s : Finset J) (f : J → L) (hf : ∀ x ∈ s, f x = 1) :
     ∑ x ∈ s, f x = s.card := by
   rw [Finset.sum_congr rfl hf, Finset.sum_const, nsmul_eq_mul, mul_one]
@@ -37,6 +43,9 @@ end AnnCount2
 
 open AnnCount2 in
 
+/--
+@isnad1 id=eq.10h6v.s9.7da80159e68e from=translated src=- shape=8e172208 vocab=baadd0c6
+-/
 theorem solution
     {J J' : Type} [AddCommGroup J] [AddCommGroup J'] {L : Type} [Field L] [CharZero L]
     (A : Set J) (X' : Set J') (hA : A.Finite) (hX' : X'.Finite)

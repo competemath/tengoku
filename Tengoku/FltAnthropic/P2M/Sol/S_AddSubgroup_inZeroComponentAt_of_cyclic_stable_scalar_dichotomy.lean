@@ -51,6 +51,9 @@ private lemma r2_galois_nsmul {R S K : Type*} [CommRing R] [CommRing S] [Field K
 
 end Helpers
 
+/--
+@isnad1 id=and.12h7v.s13.65895d1c05a9 from=translated src=- shape=02161e47 vocab=3955a4a1
+-/
 theorem solution
     (W : WeierstrassCurve ℤ) (A : ValuationSubring (AlgebraicClosure ℚ))
     (p : ℕ) [Fact p.Prime] (m : ℕ) (hm : 1 ≤ m)

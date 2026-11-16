@@ -43,6 +43,9 @@ private theorem pi_of_fintype {ι : Type*} [Fintype ι] [DecidableEq ι] (M : ι
 end IsAdicComplete.FiniteFree
 
 open IsAdicComplete.FiniteFree in
+/--
+@isnad1 id=isadicco.0h3v.s7.e314dd1b84ae from=translated src=- shape=ab021ea6 vocab=fa5915a7
+-/
 theorem solution
     {𝓞 : Type u} [CommRing 𝓞] (I : Ideal 𝓞) [IsAdicComplete I 𝓞]
     (R : Type v) [CommRing R] [Algebra 𝓞 R] [Module.Finite 𝓞 R] [Module.Free 𝓞 R] :

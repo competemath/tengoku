@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u v
 
+/--
+@isnad1 id=and.4h5v.s11.f2989224fa05 from=translated src=- shape=5338ba4d vocab=349a47ed
+-/
 theorem IsAdicComplete.finite_and_surjective_and_apply_eq_zero_iff_of_forall_ker_le_pow_smul_top
     {R : Type u} [CommRing R] (I : Ideal R) [IsAdicComplete I R]
     (M : ℕ → Type v) [∀ n, AddCommGroup (M n)] [∀ n, Module R (M n)]

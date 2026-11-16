@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=nonempty.1h2v.s7.b664340cdf01 from=translated src=- shape=6b5b3124 vocab=a0f05c9e
+-/
 theorem AddCommGroup.nonempty_addMonoidHom_zmod_addEquiv_of_forall_nsmul_eq_zero
     (L : Type u) [AddCommGroup L] [Finite L] (d : ℕ) [NeZero d] (hd : ∀ x : L, d • x = 0) :
     Nonempty ((L →+ ZMod d) ≃+ L) := by exact @_root_.P2MW.S_AddCommGroup_nonempty_addMonoidHom_zmod_addEquiv_of_forall_nsmul_eq_zero.solution L _ _ d _ hd

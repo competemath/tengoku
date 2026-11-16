@@ -8,6 +8,9 @@ set_option maxHeartbeats 8000000
 set_option synthInstance.maxHeartbeats 1600000
 open TensorProduct
 
+/--
+@isnad1 id=eq.0h6v.s12.4037fcd82076 from=translated src=- shape=c247e804 vocab=3159136a
+-/
 theorem solution
     (R : Type*) [CommRing R] (S : Type*) [CommRing S] [Algebra R S]
     (A : Type*) [CommRing A] [Bialgebra R A]

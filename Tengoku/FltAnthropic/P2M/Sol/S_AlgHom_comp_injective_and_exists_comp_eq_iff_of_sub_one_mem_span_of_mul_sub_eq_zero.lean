@@ -12,6 +12,9 @@ set_option autoImplicit false
 
 section POINTS_PROOF
 
+/--
+@isnad1 id=and.5h7v.s10.31bed70c5ca1 from=translated src=- shape=7e77f303 vocab=6a0a41c2
+-/
 theorem solution
     {A K : Type} [CommRing A] [CommRing K] [Algebra ℤ A] [Algebra ℤ K]
     (ι : A →ₐ[ℤ] K) (ε : K →ₐ[ℤ] ℤ) (p : ℕ) (a : K)

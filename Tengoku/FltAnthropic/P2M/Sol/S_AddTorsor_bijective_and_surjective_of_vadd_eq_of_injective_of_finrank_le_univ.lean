@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u v w x y
 
+/--
+@isnad1 id=and.3h8v.s9.1bde3bbf1689 from=translated src=- shape=67bca734 vocab=2b100e50
+-/
 theorem solution
     {k : Type u} [Field k]
     {V : Type v} [AddCommGroup V] [Module k V] {W : Type w} [AddCommGroup W] [Module k W] [FiniteDimensional k W]

@@ -158,6 +158,9 @@ private theorem gtp_main {M : Type*} [AddCommGroup M] {p : ℕ} (hp : p.Prime) (
   have hxH : x ∈ K ⊔ T := (le_sup_right : T ≤ K ⊔ T) hx
   rwa [← hKH] at hxH
 
+/--
+@isnad1 id=mem.8h7v.s12.57185512d0a7 from=translated src=- shape=93aea438 vocab=1cdeff3b
+-/
 theorem solution
     (W : WeierstrassCurve ℤ) (A : ValuationSubring (AlgebraicClosure ℚ))
     (p : ℕ) [Fact p.Prime] (m : ℕ)

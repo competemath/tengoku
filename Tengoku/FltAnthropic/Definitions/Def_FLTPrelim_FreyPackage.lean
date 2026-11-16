@@ -41,13 +41,25 @@ structure _root_.Tengoku.FltAnthropic.FreyPackage where
 
 namespace Tengoku.FltAnthropic.FreyPackage
 
+/--
+@isnad1 id=lt.0h1v.s3.4e8c18dc68a0 from=translated src=- shape=b9369acb vocab=a2103135
+-/
 lemma hppos (P : FreyPackage) : 0 < P.p := lt_of_lt_of_le (by omega) P.hp5
 
+/--
+@isnad1 id=ne.0h1v.s3.4e49c330bcf8 from=translated src=- shape=a311c14d vocab=767779f1
+-/
 lemma hp0 (P : FreyPackage) : P.p ≠ 0 := P.hppos.ne'
 
+/--
+@isnad1 id=odd.0h1v.s2.e7ec1376a839 from=translated src=- shape=1a6c1393 vocab=1204e3ee
+-/
 lemma hp_odd (P : FreyPackage) : Odd P.p :=
   P.pp.odd_of_ne_two (by have := P.hp5; omega)
 
+/--
+@isnad1 id=eq.2h4v.s6.d2e66bed10f2 from=translated src=- shape=bf2e354d vocab=fd5cc21d
+-/
 lemma gcdab_eq_gcdac {a b c : ℤ} {p : ℕ} (hp : 0 < p) (h : a ^ p + b ^ p = c ^ p) :
     gcd a b = gcd a c := by
   have foo : gcd a b ∣ gcd a c := by
@@ -68,16 +80,28 @@ lemma gcdab_eq_gcdac {a b c : ℤ} {p : ℕ} (hp : 0 < p) (h : a ^ p + b ^ p = c
   apply Int.ofNat_dvd.1 at foo
   exact congr_arg ((↑) : ℕ → ℤ) <| Nat.dvd_antisymm foo bar
 
+/--
+@isnad1 id=eq.0h1v.s4.e47d321c866a from=translated src=- shape=ce40f469 vocab=44d8dfde
+-/
 lemma hgcdac (P : FreyPackage) : gcd P.a P.c = 1 := by
   rw [← gcdab_eq_gcdac P.hppos P.hFLT, P.hgcdab]
 
+/--
+@isnad1 id=eq.0h1v.s4.998da339f15b from=translated src=- shape=ce40f469 vocab=9279ec84
+-/
 lemma hgcdbc (P : FreyPackage) : gcd P.b P.c = 1 := by
   rw [← gcdab_eq_gcdac P.hppos, gcd_comm, P.hgcdab]
   rw [add_comm]; exact P.hFLT
 
+/--
+@isnad1 id=ne.0h1v.s4.85e15e5cb0de from=translated src=- shape=0226a5d7 vocab=27352354
+-/
 lemma habc0 (P : FreyPackage) : P.a * P.b * P.c ≠ 0 :=
   mul_ne_zero (mul_ne_zero P.ha0 P.hb0) P.hc0
 
+/--
+@isnad1 id=dvd.0h1v.s4.bfb0fd41bc16 from=translated src=- shape=d82892f1 vocab=86a1decf
+-/
 lemma two_dvd_abc (P : FreyPackage) : (2 : ℤ) ∣ P.a * P.b * P.c :=
   dvd_mul_of_dvd_left (dvd_mul_of_dvd_right
     ((ZMod.intCast_zmod_eq_zero_iff_dvd P.b 2).1 P.hb2) _) _

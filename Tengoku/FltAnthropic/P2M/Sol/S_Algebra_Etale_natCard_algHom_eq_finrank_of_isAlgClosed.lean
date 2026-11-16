@@ -7,6 +7,9 @@ namespace P2MW.S_Algebra_Etale_natCard_algHom_eq_finrank_of_isAlgClosed
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.0h2v.s6.63eb8cd87179 from=translated src=- shape=31007b4a vocab=1bea3fe5
+-/
 theorem solution
     (k : Type*) [Field k] [IsAlgClosed k] (R : Type*) [CommRing R] [Algebra k R] [Algebra.Etale k R] :
     Nat.card (R →ₐ[k] k) = Module.finrank k R := by

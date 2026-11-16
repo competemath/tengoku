@@ -35,6 +35,9 @@ structure _root_.Tengoku.FltAnthropic.ResidualGaloisRep (k : Type) [Field k] : T
 
 attribute [instance] ResidualGaloisRep.instAddCommGroup ResidualGaloisRep.instModule
 
+/--
+@isnad1 id=finite.0h2v.s5.4d52b99ac7b0 from=translated src=- shape=b79de8fe vocab=04203ade
+-/
 instance Tengoku.FltAnthropic.ResidualGaloisRep.instModuleFinite {k : Type} [Field k] (ρ : ResidualGaloisRep k) :
     Module.Finite k ρ.V :=
   Module.finite_of_finrank_eq_succ ρ.finrank_eq

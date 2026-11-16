@@ -9,6 +9,9 @@ set_option autoImplicit false
 set_option maxHeartbeats 1600000
 
 attribute [local instance] Ideal.Quotient.field in
+/--
+@isnad1 id=etale.0h2v.s6.ae0389e2ac87 from=translated src=- shape=fa9ae7f2 vocab=f5228ea1
+-/
 theorem solution
     (K B : Type*) [Field K] [PerfectField K] [CommRing B] [Algebra K B]
     [Module.Finite K B] [IsReduced B] : Algebra.Etale K B := by

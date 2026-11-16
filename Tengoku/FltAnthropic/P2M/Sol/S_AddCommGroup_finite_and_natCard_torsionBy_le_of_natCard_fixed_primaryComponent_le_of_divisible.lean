@@ -13,6 +13,9 @@ namespace P2mTorsionRank
 
 open Function
 
+/--
+@isnad1 id=ex.1h3v.s5.67ed6a66c9ba from=translated src=- shape=65869288 vocab=3f16b8dd
+-/
 theorem exists_linear_lt_pow (q : ℕ) (hq : 2 ≤ q) (r c : ℕ) : ∃ k : ℕ, r * k + c < q ^ k := by
   set m := r + c + 1 with hm
   refine ⟨3 * m, ?_⟩
@@ -42,9 +45,15 @@ section VectorSpace
 
 variable {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
 
+/--
+@isnad1 id=eq.0h6v.s9.f6c56349dce1 from=translated src=- shape=42e74b9b vocab=00540a73
+-/
 theorem pow_add_apply (ν : V →ₗ[K] V) (n m : ℕ) (x : V) : (ν ^ (n + m)) x = (ν ^ m) ((ν ^ n) x) := by
   rw [add_comm, pow_add, Module.End.mul_apply]
 
+/--
+@isnad1 id=le.1h5v.s9.39d934c1c406 from=translated src=- shape=675b964b vocab=a9fccf7d
+-/
 theorem ker_pow_mono (ν : V →ₗ[K] V) {n m : ℕ} (h : n ≤ m) :
     LinearMap.ker (ν ^ n) ≤ LinearMap.ker (ν ^ m) := by
   intro x hx
@@ -52,6 +61,9 @@ theorem ker_pow_mono (ν : V →ₗ[K] V) {n m : ℕ} (h : n ≤ m) :
   rw [LinearMap.mem_ker] at hx ⊢
   rw [pow_add_apply, hx, map_zero]
 
+/--
+@isnad1 id=eq.1h5v.s10.0d6628360b88 from=translated src=- shape=acca950a vocab=8277fb73
+-/
 theorem ker_pow_eq_of_ker_pow_eq (ν : V →ₗ[K] V) {n : ℕ}
     (h : LinearMap.ker (ν ^ n) = LinearMap.ker (ν ^ (n + 1))) (m : ℕ) :
     LinearMap.ker (ν ^ (n + m)) = LinearMap.ker (ν ^ n) := by
@@ -76,6 +88,9 @@ theorem ker_pow_eq_of_ker_pow_eq (ν : V →ₗ[K] V) {n : ℕ}
 
 variable [Finite K]
 
+/--
+@isnad1 id=finite.3h5v.s10.e0e1cd454d66 from=translated src=- shape=e6b5a617 vocab=b6c39a0a
+-/
 theorem finite_of_exhaust_ker_pow (ν : V →ₗ[K] V) (r c : ℕ)
     (hexh : ∀ x : V, ∃ k : ℕ, (ν ^ Nat.card K ^ k) x = 0)
     (hfin : ∀ k : ℕ, Finite (LinearMap.ker (ν ^ Nat.card K ^ k)))
@@ -150,17 +165,29 @@ def L (n : ℕ) : AddSubgroup A where
     rw [smul_neg, ha, neg_zero]
 
 variable {ℓ} in
+/--
+@isnad1 id=iff.0h4v.s6.2ad99274ae4a from=translated src=- shape=f94f009a vocab=3d69eb2f
+-/
 theorem mem_L {n : ℕ} {x : A} : x ∈ L A ℓ n ↔ ℓ ^ n • x = 0 := Iff.rfl
 
+/--
+@isnad1 id=le.0h3v.s5.5a1f67924203 from=translated src=- shape=01c7ac38 vocab=aaa12c7d
+-/
 theorem L_mono (n : ℕ) : L A ℓ n ≤ L A ℓ (n + 1) := by
   intro x hx
   rw [mem_L] at hx ⊢
   rw [pow_succ', mul_smul, hx, smul_zero]
 
+/--
+@isnad1 id=eq.0h2v.s5.9e8616ba836e from=translated src=- shape=e9b764b9 vocab=bb91c6eb
+-/
 theorem L_zero : L A ℓ 0 = ⊥ := by
   ext x
   rw [mem_L, pow_zero, one_smul, AddSubgroup.mem_bot]
 
+/--
+@isnad1 id=mem.1h4v.s6.c6013a695dc0 from=translated src=- shape=bab468b4 vocab=b08752e7
+-/
 theorem mem_primaryComponent_of_mem_L {n : ℕ} {x : A} (hx : x ∈ L A ℓ n) :
     x ∈ AddCommGroup.primaryComponent A ℓ :=
   (AddCommGroup.mem_primaryComponent).mpr ⟨n, hx⟩
@@ -170,6 +197,9 @@ def τL (n : ℕ) : L A ℓ n →+ L A ℓ n where
   map_zero' := Subtype.ext (map_zero τ)
   map_add' a b := Subtype.ext (map_add τ (a : A) (b : A))
 
+/--
+@isnad1 id=eq.0h6v.s9.0afb9cdd2bab from=translated src=- shape=12719f5e vocab=5d9b6f74
+-/
 theorem coe_τL_iterate (n m : ℕ) (x : L A ℓ n) :
     (((⇑(τL ℓ τ n))^[m] x : L A ℓ n) : A) = (⇑τ)^[m] x := by
   induction m generalizing x with
@@ -182,6 +212,9 @@ def iterHom : ℕ → (A →+ A)
   | 0 => AddMonoidHom.id A
   | n + 1 => (iterHom n).comp τ
 
+/--
+@isnad1 id=eq.0h3v.s7.7107b62612de from=translated src=- shape=066b154d vocab=c0bd77c2
+-/
 theorem coe_iterHom (n : ℕ) : ⇑(iterHom τ n) = (⇑τ)^[n] := by
   induction n with
   | zero => rfl
@@ -191,12 +224,18 @@ theorem coe_iterHom (n : ℕ) : ⇑(iterHom τ n) = (⇑τ)^[n] := by
     rw [ih, Function.iterate_succ_apply]
 
 variable {ℓ τ} in
+/--
+@isnad1 id=eq.2h6v.s7.5f7cf94f810e from=translated src=- shape=09b409b3 vocab=7766f2e8
+-/
 theorem iterate_fixed_mono {x : A} {k k' : ℕ} (hk : k ≤ k') (h : (⇑τ)^[ℓ ^ k] x = x) :
     (⇑τ)^[ℓ ^ k'] x = x := by
   obtain ⟨j, rfl⟩ := Nat.exists_eq_add_of_le hk
   rw [pow_add, Function.iterate_mul]
   exact Function.iterate_fixed h _
 
+/--
+@isnad1 id=finite.2h4v.s8.16822ff30754 from=translated src=- shape=b444d46b vocab=8d00c5ec
+-/
 theorem finite_L_one (r : ℕ)
     (hexh : ∀ x ∈ AddCommGroup.primaryComponent A ℓ, ∃ k : ℕ, (⇑τ)^[ℓ ^ k] x = x)
     (hfix : ∃ c : ℕ, ∀ k : ℕ,
@@ -263,6 +302,9 @@ theorem finite_L_one (r : ℕ)
     exact Subtype.ext (Subtype.ext this)
 
 variable {ℓ τ} in
+/--
+@isnad1 id=eq.2h6v.s8.8faa5f9b3cbe from=translated src=- shape=4ed0b6b5 vocab=03c3b943
+-/
 theorem iterate_fixed_of_fixed_L_one {k₁ : ℕ} (hθ : ∀ x ∈ L A ℓ 1, (⇑τ)^[ℓ ^ k₁] x = x)
     (k : ℕ) : ∀ x ∈ L A ℓ (k + 1), (⇑τ)^[ℓ ^ (k₁ + k)] x = x := by
   induction k with
@@ -300,11 +342,17 @@ def layerMap (n : ℕ) : L A ℓ (n + 1) →+ L A ℓ 1 where
   map_zero' := Subtype.ext (by simp)
   map_add' a b := Subtype.ext (by simp [smul_add])
 
+/--
+@isnad1 id=eq.0h3v.s8.4a1ab957344e from=translated src=- shape=9d675d8d vocab=25481af8
+-/
 theorem ker_layerMap (n : ℕ) : (layerMap A ℓ n).ker = (L A ℓ n).addSubgroupOf (L A ℓ (n + 1)) := by
   ext x
   rw [AddMonoidHom.mem_ker, AddSubgroup.mem_addSubgroupOf, mem_L]
   exact ⟨fun h => congrArg Subtype.val h, fun h => Subtype.ext h⟩
 
+/--
+@isnad1 id=surjecti.1h3v.s10.40ea64d3007d from=translated src=- shape=48e77ff7 vocab=8ca2b45e
+-/
 theorem layerMap_surjective
     (hdiv : ∀ x ∈ AddCommGroup.primaryComponent A ℓ, ∃ y : A, ℓ • y = x) (n : ℕ) :
     Function.Surjective (layerMap A ℓ n) := by
@@ -325,6 +373,9 @@ theorem layerMap_surjective
   obtain ⟨y, hy, hyv⟩ := key n v v.2
   exact ⟨⟨y, hy⟩, Subtype.ext hyv⟩
 
+/--
+@isnad1 id=and.2h3v.s7.4a8f5c4dd6d5 from=translated src=- shape=01527e36 vocab=9c631054
+-/
 theorem finite_and_card_L
     (hdiv : ∀ x ∈ AddCommGroup.primaryComponent A ℓ, ∃ y : A, ℓ • y = x)
     (h1 : Finite (L A ℓ 1)) (n : ℕ) :
@@ -350,6 +401,9 @@ theorem finite_and_card_L
     rw [AddSubgroup.card_eq_card_quotient_mul_card_addSubgroup f.ker, Nat.card_congr eQ,
       Nat.card_congr eK, hcard, pow_succ']
 
+/--
+@isnad1 id=and.3h4v.s9.1801fba5aa89 from=translated src=- shape=1eecc335 vocab=b50bdcf8
+-/
 theorem main (r : ℕ)
     (hexh : ∀ x ∈ AddCommGroup.primaryComponent A ℓ, ∃ k : ℕ, (⇑τ)^[ℓ ^ k] x = x)
     (hfix : ∃ c : ℕ, ∀ k : ℕ,
@@ -411,6 +465,9 @@ end Group
 
 end P2mTorsionRank
 
+/--
+@isnad1 id=and.3h4v.s9.25d4212f1b52 from=translated src=- shape=886e9320 vocab=ef468847
+-/
 theorem solution
     {A : Type*} [AddCommGroup A] (ℓ : ℕ) [Fact ℓ.Prime] (r : ℕ) (τ : A →+ A)
     (hexh : ∀ x ∈ AddCommGroup.primaryComponent A ℓ, ∃ k : ℕ, (⇑τ)^[ℓ ^ k] x = x)

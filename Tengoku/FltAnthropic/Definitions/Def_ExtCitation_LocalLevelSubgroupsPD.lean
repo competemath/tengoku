@@ -9,29 +9,47 @@ open ExtCitation
 
 namespace ExtCitation
 
+/--
+@isnad1 id=mem.0h2v.s10.2015d070bc62 from=translated src=- shape=5e6522cb vocab=d2e95237
+-/
 theorem primeLocalToGlobal_mem_decompositionSubgroup (q : Nat.Primes) (g : primeLocalGaloisGroup q) :
     primeLocalToGlobal q g ∈ (primeLocalPlace q).decompositionSubgroup ℚ := by
   haveI : Fact (q : ℕ).Prime := ⟨q.2⟩
   exact localGaloisToGlobal_mem_decompositionSubgroup (q : ℕ) g
 
+/--
+@isnad1 id=eq.0h2v.s13.159db26d14f1 from=translated src=- shape=d31cc3c7 vocab=30a6b390
+-/
 theorem levelSubgroup_eq_ker (q : Nat.Primes) (F : IntermediateField ℚ (AlgebraicClosure ℚ)) [Normal ℚ F] :
     (F.fixingSubgroup).comap (primeLocalToGlobal q)
       = ((AlgEquiv.restrictNormalHom (F := ℚ) (K₁ := AlgebraicClosure ℚ) F).comp (primeLocalToGlobal q)).ker := by
   rw [← @IntermediateField.restrictNormalHom_ker ℚ (AlgebraicClosure ℚ) _ _ _ F ‹Normal ℚ F›, MonoidHom.comap_ker]
   rfl
 
+/--
+@isnad1 id=normal.0h2v.s8.3a8f64bdcc26 from=translated src=- shape=5cd70aa7 vocab=10fa84b3
+-/
 instance levelSubgroup_normal (q : Nat.Primes) (F : IntermediateField ℚ (AlgebraicClosure ℚ)) [Normal ℚ F] :
     ((F.fixingSubgroup).comap (primeLocalToGlobal q)).Normal := by
   rw [levelSubgroup_eq_ker]; exact MonoidHom.normal_ker _
 
+/--
+@isnad1 id=finitein.0h2v.s9.72a23ed128c3 from=translated src=- shape=89dec9b9 vocab=cc9cfe25
+-/
 instance levelSubgroup_finiteIndex (q : Nat.Primes) (F : IntermediateField ℚ (AlgebraicClosure ℚ)) [FiniteDimensional ℚ F] [Normal ℚ F] :
     ((F.fixingSubgroup).comap (primeLocalToGlobal q)).FiniteIndex := by
   rw [levelSubgroup_eq_ker]; exact Subgroup.finiteIndex_ker _
 
+/--
+@isnad1 id=le.1h3v.s8.84e7822806ed from=translated src=- shape=ae109a84 vocab=78bdbdd6
+-/
 theorem levelSubgroup_antitone (q : Nat.Primes) {F F' : IntermediateField ℚ (AlgebraicClosure ℚ)} (h : F ≤ F') :
     (F'.fixingSubgroup).comap (primeLocalToGlobal q) ≤ (F.fixingSubgroup).comap (primeLocalToGlobal q) :=
   Subgroup.comap_mono (IntermediateField.fixingSubgroup_antitone h)
 
+/--
+@isnad1 id=iff.0h2v.s12.696f5250ea48 from=translated src=- shape=f611ab98 vocab=b3a24d4d
+-/
 theorem mem_inertiaPullback_iff (q : Nat.Primes) (g : primeLocalGaloisGroup q) :
     g ∈ ((primeLocalPlace q).inertiaSubgroupIn ℚ).comap (primeLocalToGlobal q) ↔
       ∀ x : IsLocalRing.ResidueField (primeLocalPlace q),
@@ -54,6 +72,9 @@ theorem mem_inertiaPullback_iff (q : Nat.Primes) (g : primeLocalGaloisGroup q) :
     intro x
     simpa using h x
 
+/--
+@isnad1 id=normal.0h1v.s7.6aab32ca691d from=translated src=- shape=1b34d4c8 vocab=ee0a77c5
+-/
 instance inertiaPullback_normal (q : Nat.Primes) :
     (((primeLocalPlace q).inertiaSubgroupIn ℚ).comap (primeLocalToGlobal q)).Normal := by
 

@@ -12,6 +12,9 @@ universe u v w
 set_option autoImplicit false
 open scoped TensorProduct
 
+/--
+@isnad1 id=eq.2h6v.s8.36aa01b1ac64 from=translated src=- shape=fe9d9e54 vocab=1685678e
+-/
 theorem solution
     {R : Type u} [CommRing R] {A : Type v} [CommRing A] [Algebra R A]
     [Algebra.EssFiniteType R A] [Algebra.FormallyUnramified R A]

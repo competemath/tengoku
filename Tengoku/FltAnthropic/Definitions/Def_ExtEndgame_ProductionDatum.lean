@@ -52,7 +52,13 @@ noncomputable def extArithLoc :
   | Sum.inl _ => archimedeanLoc
   | Sum.inr q => primeLocalToGlobal q.1
 
+/--
+@isnad1 id=eq.0h2v.s8.a363999effd9 from=translated src=- shape=70e08958 vocab=6466ac05
+-/
 @[simp] lemma extArithLoc_inl (v : Unit) : extArithLoc S (Sum.inl v) = archimedeanLoc := rfl
+/--
+@isnad1 id=eq.0h2v.s9.d04d9a8906d5 from=translated src=- shape=2fc76c65 vocab=cbc3cee0
+-/
 @[simp] lemma extArithLoc_inr (q : ↥S) : extArithLoc S (Sum.inr q) = primeLocalToGlobal q.1 := rfl
 
 def extArithDistinguished (P₂ : Set ↥S) : Set (extArithIndex S) :=
@@ -64,6 +70,9 @@ variable (p : ℕ) [Fact p.Prime]
 
 def pPrime : Nat.Primes := ⟨p, Fact.out⟩
 
+/--
+@isnad1 id=eq.0h1v.s4.d96b6aa2115d from=translated src=- shape=2ce8a741 vocab=a208e1a9
+-/
 @[simp] lemma pPrime_coe : ((pPrime p : Nat.Primes) : ℕ) = p := rfl
 
 def pSet : Finset Nat.Primes := {pPrime p}

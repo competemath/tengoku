@@ -7,6 +7,9 @@ import Tengoku.FltAnthropic.P2M.Sol.S_AddCommGroup_nonempty_basis_zmod_pow_of_ca
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=nonempty.3h6v.s8.f3f9eaa19481 from=translated src=- shape=a2b2afb1 vocab=dc2f7e85
+-/
 theorem AddCommGroup.nonempty_basis_zmod_pow_of_card_torsionBy (ℓ : ℕ) [Fact ℓ.Prime]
     {M : Type*} [AddCommGroup M] (r m : ℕ)
     (hcard : ∀ j ≤ m, Nat.card (Submodule.torsionBy ℤ M ((ℓ ^ j : ℕ) : ℤ)) = (ℓ ^ j) ^ r)

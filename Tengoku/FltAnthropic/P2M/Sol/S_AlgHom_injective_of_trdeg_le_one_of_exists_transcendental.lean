@@ -14,6 +14,9 @@ namespace E87LD
 variable {k D L E : Type*} [Field k] [CommRing D] [IsDomain D] [Algebra k D]
   [CommRing L] [Algebra k L] [CommRing E] [Algebra k E]
 
+/--
+@isnad1 id=ex.5h8v.s11.2fb064a6623a from=translated src=- shape=e211a3dc vocab=da0d9244
+-/
 theorem exists_mem_ne_zero_map_eq_zero (Ψ : D →ₐ[k] E) (A : Subalgebra k D) (b : D) (hb : Ψ b = 0) (hb0 : b ≠ 0) :
     ∀ (n : ℕ) (P : Polynomial A), P.natDegree = n → P ≠ 0 → Polynomial.aeval b P = 0 →
       ∃ c : A, c ≠ 0 ∧ Ψ c = 0 := by
@@ -46,6 +49,9 @@ theorem exists_mem_ne_zero_map_eq_zero (Ψ : D →ₐ[k] E) (A : Subalgebra k D)
 
       exact this.symm
 
+/--
+@isnad1 id=injectiv.3h7v.s8.81e9e7eddaa0 from=translated src=- shape=6894bdae vocab=ecb0ed47
+-/
 theorem injective_of_trdeg_le_one_of_transcendental [IsDomain L]
     (Θ : D →ₐ[k] L) (hΘ : Function.Injective Θ) (hL : Algebra.trdeg k L ≤ 1)
     (Ψ : D →ₐ[k] E) (d : D) (hd : Transcendental k (Ψ d)) : Function.Injective Ψ := by
@@ -94,6 +100,9 @@ theorem injective_of_trdeg_le_one_of_transcendental [IsDomain L]
 
 end E87LD
 
+/--
+@isnad1 id=injectiv.3h6v.s8.78c234cbbf3a from=translated src=- shape=705c60e8 vocab=ecb0ed47
+-/
 theorem solution
     {k D L E : Type*} [Field k] [CommRing D] [IsDomain D] [Algebra k D]
     [CommRing L] [IsDomain L] [Algebra k L] [CommRing E] [Algebra k E]

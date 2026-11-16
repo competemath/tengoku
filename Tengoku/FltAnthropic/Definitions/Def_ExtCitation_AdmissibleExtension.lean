@@ -6,6 +6,9 @@ import Tengoku.FltAnthropic.Definitions.Def_FLTPrelim_Ramification
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.0h2v.s7.3cb3e66115bd from=translated src=- shape=85f21da0 vocab=7ed7ae67
+-/
 theorem IsAlgClosed.card_rootsOfUnity_eq (K : Type*) [Field K] [IsAlgClosed K] [CharZero K]
     (n : ℕ) [NeZero n] : Nat.card (rootsOfUnity n K) = n :=
   haveI : NeZero (n : K) := ⟨Nat.cast_ne_zero.mpr (NeZero.ne n)⟩
@@ -17,6 +20,9 @@ open ValuationSubring
 
 variable (p : ℕ) [Fact p.Prime]
 
+/--
+@isnad1 id=eq.0h1v.s7.ce807ede16d2 from=translated src=- shape=cc1137d4 vocab=c68a4fb1
+-/
 theorem card_rootsOfUnity_eq_self :
     haveI : NeZero p := ⟨(Fact.out : p.Prime).ne_zero⟩
     Nat.card (rootsOfUnity p (AlgebraicClosure ℚ)) = p :=

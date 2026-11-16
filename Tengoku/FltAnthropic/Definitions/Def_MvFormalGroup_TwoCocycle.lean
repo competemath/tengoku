@@ -61,10 +61,16 @@ structure IsSymmTwoCocycle (F : MvFormalGroup n R) (Γ : MvPowerSeries (Fin n �
           fun l => X (Sum.inr (Sum.inr l)))
         Γ
 
+/--
+@isnad1 id=eq.1h4v.s6.29410a64e58d from=translated src=- shape=537c16ee vocab=ff478025
+-/
 theorem subst_zero_of_hasSubst {σ τ : Type*} {a : σ → MvPowerSeries τ R} (ha : HasSubst a) :
     subst a (0 : MvPowerSeries σ R) = 0 := by
   rw [← coe_substAlgHom ha, map_zero]
 
+/--
+@isnad1 id=issymmtw.0h3v.s5.bb98705bad89 from=translated src=- shape=ee104113 vocab=f0829640
+-/
 theorem IsSymmTwoCocycle.zero (F : MvFormalGroup n R) : F.IsSymmTwoCocycle 0 where
   constantCoeff_eq_zero := map_zero _
   symm := subst_zero_of_hasSubst (hasSubst_of_constantCoeff_zero (by

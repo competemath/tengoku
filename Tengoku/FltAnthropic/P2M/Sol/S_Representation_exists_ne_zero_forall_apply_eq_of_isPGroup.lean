@@ -9,6 +9,9 @@ set_option autoImplicit false
 
 universe u
 
+/--
+@isnad1 id=ex.2h6v.s8.6633b5388657 from=translated src=- shape=8999f415 vocab=e3bb23c7
+-/
 theorem solution
     {k : Type*} [Field k] {p : ℕ} [Fact p.Prime] [CharP k p]
     {G : Type*} [Group G] [Finite G] (hG : IsPGroup p G)

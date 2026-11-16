@@ -20,6 +20,9 @@ open scoped nonZeroDivisors
 variable {A : Type u} [CommRing A]
 variable {C : Type v} [CommRing C] [Algebra A C]
 
+/--
+@isnad1 id=eq.1h6v.s9.150bb3270d29 from=translated src=- shape=7df706f2 vocab=155c38f5
+-/
 theorem algHom_ext (I : Ideal A) (a : A) (hreg : IsSMulRegular C a)
     (φ ψ : Ring I a →ₐ[A] C) : φ = ψ := by
   apply AlgHom.ext
@@ -43,10 +46,16 @@ theorem algHom_ext (I : Ideal A) (a : A) (hreg : IsSMulRegular C a)
       have : (⟨x * y, Subalgebra.mul_mem _ hx hy⟩ : Ring I a) = ⟨x, hx⟩ * ⟨y, hy⟩ := rfl
       rw [this, map_mul, map_mul, ihx, ihy]
 
+/--
+@isnad1 id=subsingl.1h4v.s7.9a1ab2ba2344 from=translated src=- shape=3f09c100 vocab=1223fe81
+-/
 theorem subsingleton_algHom (I : Ideal A) (a : A) (hreg : IsSMulRegular C a) :
     Subsingleton (Ring I a →ₐ[A] C) :=
   ⟨algHom_ext I a hreg⟩
 
+/--
+@isnad1 id=nonempty.2h4v.s8.43395f3abec2 from=translated src=- shape=89566614 vocab=179379da
+-/
 theorem nonempty_algHom (I : Ideal A) (a : A) (hreg : IsSMulRegular C a)
     (hI : I.map (algebraMap A C) ≤ Ideal.span {algebraMap A C a}) :
     Nonempty (Ring I a →ₐ[A] C) := by
@@ -114,6 +123,9 @@ theorem nonempty_algHom (I : Ideal A) (a : A) (hreg : IsSMulRegular C a)
 
 end AffineDilatation.UniversalProperty
 
+/--
+@isnad1 id=and.2h4v.s9.1d9235ad6568 from=translated src=- shape=f8c849dc vocab=205e1cac
+-/
 theorem solution
     {A : Type u} [CommRing A] (I : Ideal A) (a : A)
     {C : Type v} [CommRing C] [Algebra A C] (hreg : IsSMulRegular C a)

@@ -18,6 +18,9 @@ section algebra
 variable {R S T : Type*} [CommRing R] [CommRing S] [CommRing T]
   [Algebra R S] [Algebra R T] [Algebra S T] [IsScalarTower R S T]
 
+/--
+@isnad1 id=subsingl.1h3v.s9.193f3a4ed92e from=translated src=- shape=f87ad115 vocab=09252a7c
+-/
 theorem subsingleton_kaehler_of_surjective
     (h : Function.Surjective (KaehlerDifferential.mapBaseChange R S T)) :
     Subsingleton Ω[T⁄S] := by
@@ -34,6 +37,9 @@ theorem subsingleton_kaehler_of_surjective
     exact hex.apply_apply_eq_zero x
   rw [ha, hb]
 
+/--
+@isnad1 id=formally.1h3v.s9.46e143375364 from=translated src=- shape=c1e35f2c vocab=075dd1bf
+-/
 theorem formallyEtale_of_formallySmooth_of_bijective [Algebra.FormallySmooth R T]
     (h : Function.Bijective (KaehlerDifferential.mapBaseChange R S T)) :
     Algebra.FormallyEtale S T := by
@@ -61,6 +67,9 @@ theorem formallyEtale_of_formallySmooth_of_bijective [Algebra.FormallySmooth R T
   haveI : Algebra.FormallySmooth S T := ⟨inferInstance, hH1⟩
   exact Algebra.FormallyEtale.of_formallyUnramified_and_formallySmooth
 
+/--
+@isnad1 id=surjecti.0h3v.s9.a9b0b885551f from=translated src=- shape=c8e41eeb vocab=86f3214c
+-/
 theorem mapBaseChange_surjective_of_formallyUnramified [Algebra.FormallyUnramified S T] :
     Function.Surjective (KaehlerDifferential.mapBaseChange R S T) := by
   intro y
@@ -68,6 +77,9 @@ theorem mapBaseChange_surjective_of_formallyUnramified [Algebra.FormallyUnramifi
   have hy : KaehlerDifferential.map R S T T y = 0 := Subsingleton.elim _ _
   exact (hex y).mp hy
 
+/--
+@isnad1 id=bijectiv.2h4v.s8.4c0660e55a47 from=translated src=- shape=ebc06139 vocab=0e3ba395
+-/
 theorem bijective_of_surjective_of_finrank_eq {A : Type*} [CommRing A] [Nontrivial A]
     {M N : Type*} [AddCommGroup M] [Module A M] [AddCommGroup N] [Module A N]
     [Module.Free A M] [Module.Finite A M] [Module.Free A N] [Module.Finite A N]
@@ -76,6 +88,9 @@ theorem bijective_of_surjective_of_finrank_eq {A : Type*} [CommRing A] [Nontrivi
   obtain ⟨e⟩ := FiniteDimensional.nonempty_linearEquiv_of_finrank_eq hrank
   exact OrzechProperty.bijective_of_surjective_of_injective e.toLinearMap f e.injective hf
 
+/--
+@isnad1 id=formally.0h4v.s6.ce55d8650285 from=translated src=- shape=4470ed55 vocab=e5e96567
+-/
 theorem formallyEtale_of_formallyUnramified_of_isStandardSmoothOfRelativeDimension (n : ℕ)
     [Algebra.IsStandardSmoothOfRelativeDimension n R S]
     [Algebra.IsStandardSmoothOfRelativeDimension n R T]
@@ -101,6 +116,9 @@ theorem formallyEtale_of_formallyUnramified_of_isStandardSmoothOfRelativeDimensi
       exact bijective_of_surjective_of_finrank_eq _ hsurj
         (by rw [Module.finrank_baseChange, hSf, hTf])
 
+/--
+@isnad1 id=etale.0h4v.s6.6e4e588446d7 from=translated src=- shape=4470ed55 vocab=13d1c9ae
+-/
 theorem etale_of_formallyUnramified_of_isStandardSmoothOfRelativeDimension (n : ℕ)
     [Algebra.IsStandardSmoothOfRelativeDimension n R S]
     [Algebra.IsStandardSmoothOfRelativeDimension n R T]
@@ -120,6 +138,9 @@ end algebra
 
 end R1NeronObjE2
 
+/--
+@isnad1 id=etale.0h4v.s6.6e4e588446d7 from=translated src=- shape=4470ed55 vocab=13d1c9ae
+-/
 theorem solution
     {R S T : Type*} [CommRing R] [CommRing S] [CommRing T]
     [Algebra R S] [Algebra R T] [Algebra S T] [IsScalarTower R S T] (n : ℕ)

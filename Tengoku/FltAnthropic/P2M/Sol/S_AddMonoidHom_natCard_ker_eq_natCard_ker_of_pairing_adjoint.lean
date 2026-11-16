@@ -11,6 +11,9 @@ namespace ADJKERAux
 
 open scoped Classical
 
+/--
+@isnad1 id=finite.0h2v.s5.70d855ba6df4 from=translated src=- shape=a2607682 vocab=7659accc
+-/
 scoped instance finite_monoidHom_units (G : Type*) [CommGroup G] [Finite G] (K : Type*) [Field K] : Finite (G →* Kˣ) := by
   classical
   haveI := Fintype.ofFinite G
@@ -26,6 +29,9 @@ scoped instance finite_monoidHom_units (G : Type*) [CommGroup G] [Finite G] (K :
   have := congrArg (fun f => ((f g : rootsOfUnity n K) : Kˣ)) h
   exact congrArg Units.val this
 
+/--
+@isnad1 id=le.0h2v.s6.365e5c086392 from=translated src=- shape=4892ae5f vocab=6c2202da
+-/
 theorem natCard_monoidHom_units_le (G : Type*) [CommGroup G] [Finite G] (K : Type*) [Field K] :
     Nat.card (G →* Kˣ) ≤ Nat.card G := by
   classical
@@ -50,24 +56,36 @@ variable {P : Type*} [AddCommGroup P] [Finite P] {K : Type*} [Field K]
   (hadd₁ : ∀ x x' y, e (x + x') y = e x y * e x' y) (hadd₂ : ∀ x y y', e x (y + y') = e x y * e x y')
 
 include hadd₁ in
+/--
+@isnad1 id=eq.1h4v.s7.9474f634e1df from=translated src=- shape=b99f9fd7 vocab=717e03c6
+-/
 theorem e_zero_left (y : P) : e 0 y = 1 := by
   have h := hadd₁ 0 0 y
   rw [add_zero] at h
   exact (mul_eq_left.mp h.symm)
 
 include hadd₂ in
+/--
+@isnad1 id=eq.1h4v.s7.735172592eb5 from=translated src=- shape=a8da798a vocab=717e03c6
+-/
 theorem e_zero_right (x : P) : e x 0 = 1 := by
   have h := hadd₂ x 0 0
   rw [add_zero] at h
   exact (mul_eq_left.mp h.symm)
 
 include hadd₁ in
+/--
+@isnad1 id=eq.1h5v.s7.95468a3d4cb9 from=translated src=- shape=33c8de67 vocab=1fb15fb2
+-/
 theorem e_neg_left (x y : P) : e (-x) y = (e x y)⁻¹ := by
   have h := hadd₁ (-x) x y
   rw [neg_add_cancel, e_zero_left e hadd₁] at h
   exact eq_inv_of_mul_eq_one_left h.symm
 
 include hadd₁ in
+/--
+@isnad1 id=eq.1h6v.s8.d87570e64be5 from=translated src=- shape=32b89db2 vocab=3997d933
+-/
 theorem e_sub_left (x x' y : P) : e (x - x') y = e x y * (e x' y)⁻¹ := by
   rw [sub_eq_add_neg, hadd₁, e_neg_left e hadd₁]
 
@@ -76,6 +94,9 @@ def chR (y : P) : Multiplicative P →* Kˣ where
   map_one' := by show e 0 y = 1; exact e_zero_left e hadd₁ y
   map_mul' a b := by show e (Multiplicative.toAdd a + Multiplicative.toAdd b) y = _; exact hadd₁ _ _ _
 
+/--
+@isnad1 id=eq.1h5v.s8.516c009b2f56 from=translated src=- shape=a8566d60 vocab=8a64ed6d
+-/
 @[scoped simp] theorem chR_apply (y : P) (x : Multiplicative P) : chR e hadd₁ y x = e (Multiplicative.toAdd x) y := rfl
 
 def annR (S : AddSubgroup P) : AddSubgroup P where
@@ -92,10 +113,16 @@ def annR (S : AddSubgroup P) : AddSubgroup P where
     rw [neg_add_cancel, e_zero_right e hadd₂, ha s hs, mul_one] at h
     exact h.symm
 
+/--
+@isnad1 id=iff.1h5v.s7.d87f87a3be3e from=translated src=- shape=4f21ebe1 vocab=215ee22c
+-/
 theorem mem_annR {S : AddSubgroup P} {y : P} : y ∈ annR e hadd₂ S ↔ ∀ s ∈ S, e s y = 1 := Iff.rfl
 
 include hadd₁ hadd₂ in
 
+/--
+@isnad1 id=eq.5h4v.s9.d8b18c1fa34d from=translated src=- shape=160b0358 vocab=933193e7
+-/
 theorem natCard_annR_mul_natCard
     (hleft : ∀ x, (∀ y, e x y = 1) → x = 0) (hright : ∀ y, (∀ x, e x y = 1) → y = 0)
     (hsurj : ∀ χ : Multiplicative P →* Kˣ, ∃ y, ∀ x, e x y = χ (Multiplicative.ofAdd x))
@@ -175,6 +202,9 @@ open scoped _root_.P2MW.S_AddMonoidHom_natCard_ker_eq_natCard_ker_of_pairing_adj
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.6h5v.s9.de76e72de064 from=translated src=- shape=232e1d3c vocab=20e5acc4
+-/
 theorem solution
     {P : Type*} [AddCommGroup P] [Finite P] {K : Type*} [Field K]
     (e : P → P → Kˣ)
