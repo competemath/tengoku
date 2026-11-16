@@ -104,6 +104,7 @@ import Tengoku.DgLean
 import Tengoku.LeanEvalPiSuccSphereNMulequivZmodTwo
 import Tengoku.LeanCommutator
 import Tengoku.Leancert
+import Tengoku.QuadraticAlgebras
 import Tengoku.QuotientSubmoduleEquidistribution
 import Tengoku.ChandraFurstLipton
 import Tengoku.LanaIut
