@@ -29,14 +29,23 @@ section MonicCentred
 
 variable {R : Type*} [CommRing R]
 
+/--
+@isnad1 id=eq.0h3v.s8.ba2cb4da3318 from=translated src=- shape=9efc8bc4 vocab=bb23ac6f
+-/
 theorem monicCentred_eq (d : ℕ) (a : Fin (d - 1) → R) :
     monicCentred d a = X ^ d + ∑ i : Fin (d - 1), C (a i) * X ^ (i : ℕ) := rfl
 
+/--
+@isnad1 id=le.0h3v.s8.2b985193a39c from=translated src=- shape=a2e11652 vocab=fec97032
+-/
 theorem natDegree_monicCentred_sum_le (d : ℕ) (a : Fin (d - 1) → R) :
     (∑ i : Fin (d - 1), C (a i) * X ^ (i : ℕ)).natDegree ≤ d - 2 := by
   refine natDegree_sum_le_of_forall_le _ _ fun i _ => ?_
   exact (natDegree_C_mul_X_pow_le _ _).trans (by omega)
 
+/--
+@isnad1 id=monic.1h3v.s5.e4d1d1d547a0 from=translated src=- shape=5b1ae83b vocab=62d678ec
+-/
 theorem monicCentred_monic [Nontrivial R] {d : ℕ} (hd : 2 ≤ d) (a : Fin (d - 1) → R) :
     (monicCentred d a).Monic := by
   rw [monicCentred_eq]
@@ -45,6 +54,9 @@ theorem monicCentred_monic [Nontrivial R] {d : ℕ} (hd : 2 ≤ d) (a : Fin (d -
   rw [← degree_X_pow (R := R) d]
   exact degree_lt_degree (by rw [natDegree_X_pow]; omega)
 
+/--
+@isnad1 id=eq.1h3v.s5.7ae512184c85 from=translated src=- shape=530d005e vocab=e2175684
+-/
 theorem monicCentred_natDegree [Nontrivial R] {d : ℕ} (hd : 2 ≤ d) (a : Fin (d - 1) → R) :
     (monicCentred d a).natDegree = d := by
   rw [monicCentred_eq, natDegree_add_eq_left_of_natDegree_lt, natDegree_X_pow]
@@ -52,6 +64,9 @@ theorem monicCentred_natDegree [Nontrivial R] {d : ℕ} (hd : 2 ≤ d) (a : Fin 
   have := natDegree_monicCentred_sum_le d a
   omega
 
+/--
+@isnad1 id=eq.2h4v.s6.5f9fe84457a3 from=translated src=- shape=0ff090f7 vocab=2b03dcaf
+-/
 theorem monicCentred_coeff_eq_zero {d : ℕ} (a : Fin (d - 1) → R) {k : ℕ} (hk : d - 1 ≤ k)
     (hk' : k < d) : (monicCentred d a).coeff k = 0 := by
   rw [monicCentred_eq, coeff_add, coeff_X_pow, ite_eq_right (by omega), zero_add, finsetSum_coeff]
@@ -60,10 +75,16 @@ theorem monicCentred_coeff_eq_zero {d : ℕ} (a : Fin (d - 1) → R) {k : ℕ} (
   have := i.isLt
   omega
 
+/--
+@isnad1 id=eq.0h4v.s7.e3f10cecab74 from=translated src=- shape=b1c731b1 vocab=86b56efa
+-/
 theorem monicCentred_eval {d : ℕ} (a : Fin (d - 1) → R) (z : R) :
     (monicCentred d a).eval z = z ^ d + ∑ i : Fin (d - 1), a i * z ^ (i : ℕ) := by
   simp [monicCentred_eq, eval_finsetSum]
 
+/--
+@isnad1 id=iff.0h4v.s5.1ad940b5e766 from=translated src=- shape=be7a9e80 vocab=231adc75
+-/
 theorem critProd_isRoot_iff {F : Type*} [Field F] {n : ℕ} (u : Fin n → F) (r : F) :
     (critProd u).IsRoot r ↔ ∃ i, u i = r := by
   unfold critProd
@@ -71,7 +92,9 @@ theorem critProd_isRoot_iff {F : Type*} [Field F] {n : ℕ} (u : Fin n → F) (r
   simp only [Finset.mem_univ, true_and, eval_sub, eval_X, eval_C, sub_eq_zero]
   exact ⟨fun ⟨i, h⟩ => ⟨i, h.symm⟩, fun ⟨i, h⟩ => ⟨i, h.symm⟩⟩
 
-/-- The critical points of a monic centred polynomial sum to zero.-/
+/-- The critical points of a monic centred polynomial sum to zero.
+@isnad1 id=eq.2h4v.s9.f8e8f08bcfcb from=translated src=- shape=8c0f0792 vocab=bfb40d62
+-/
 theorem sum_crit_eq_zero {F : Type*} [Field F] [CharZero F] {d : ℕ} (hd : 2 ≤ d)
     (a : Fin (d - 1) → F) (c : Fin (d - 1) → F)
     (hc : derivative (monicCentred d a) = C (d : F) * critProd c) : ∑ i, c i = 0 := by
@@ -98,6 +121,9 @@ section Bdd
 variable {F : Type*} [Field F] {Γ₀ : Type*} [LinearOrderedCommGroupWithZero Γ₀]
   (v : Valuation F Γ₀)
 
+/--
+@isnad1 id=le.2h6v.s7.86acbdf80ebe from=translated src=- shape=db8ee288 vocab=5d2e9f31
+-/
 theorem vbdd_of_dvd {M M' : ℕ} (h : M ∣ M') {x : F} (hx : v ((M : F) * x) ≤ 1) :
     v ((M' : F) * x) ≤ 1 := by
   obtain ⟨t, rfl⟩ := h
@@ -105,17 +131,29 @@ theorem vbdd_of_dvd {M M' : ℕ} (h : M ∣ M') {x : F} (hx : v ((M : F) * x) �
   calc v (t : F) * v ((M : F) * x) ≤ 1 * 1 := mul_le_mul' (val_natCast_le_one v t) hx
     _ = 1 := mul_one 1
 
+/--
+@isnad1 id=le.2h6v.s8.a0af0f05b249 from=translated src=- shape=5f6d0635 vocab=95ca707e
+-/
 theorem vbdd_add {M : ℕ} {x y : F} (hx : v ((M : F) * x) ≤ 1) (hy : v ((M : F) * y) ≤ 1) :
     v ((M : F) * (x + y)) ≤ 1 := by
   rw [mul_add]; exact v.map_add_le hx hy
 
+/--
+@isnad1 id=le.1h5v.s7.3d3dc4ead181 from=translated src=- shape=fadc2c08 vocab=6eed8848
+-/
 theorem vbdd_neg {M : ℕ} {x : F} (hx : v ((M : F) * x) ≤ 1) : v ((M : F) * (-x)) ≤ 1 := by
   rw [mul_neg, Valuation.map_neg]; exact hx
 
+/--
+@isnad1 id=le.2h6v.s8.6e80a59a0376 from=translated src=- shape=5f6d0635 vocab=9c4a9933
+-/
 theorem vbdd_sub {M : ℕ} {x y : F} (hx : v ((M : F) * x) ≤ 1) (hy : v ((M : F) * y) ≤ 1) :
     v ((M : F) * (x - y)) ≤ 1 := by
   rw [sub_eq_add_neg]; exact vbdd_add v hx (vbdd_neg v hy)
 
+/--
+@isnad1 id=le.2h7v.s8.eef71f45f64a from=translated src=- shape=c70816f8 vocab=765d7f07
+-/
 theorem vbdd_mul {M M' : ℕ} {x y : F} (hx : v ((M : F) * x) ≤ 1) (hy : v ((M' : F) * y) ≤ 1) :
     v (((M * M' : ℕ) : F) * (x * y)) ≤ 1 := by
   rw [Nat.cast_mul, show (M : F) * M' * (x * y) = ((M : F) * x) * ((M' : F) * y) by ring,
@@ -123,24 +161,38 @@ theorem vbdd_mul {M M' : ℕ} {x y : F} (hx : v ((M : F) * x) ≤ 1) (hy : v ((M
   calc v ((M : F) * x) * v ((M' : F) * y) ≤ 1 * 1 := mul_le_mul' hx hy
     _ = 1 := mul_one 1
 
+/--
+@isnad1 id=le.1h6v.s8.1030b8ea4e35 from=translated src=- shape=7da5352d vocab=500a4556
+-/
 theorem vbdd_pow {M : ℕ} {x : F} (hx : v ((M : F) * x) ≤ 1) (n : ℕ) :
     v (((M ^ n : ℕ) : F) * x ^ n) ≤ 1 := by
   rw [Nat.cast_pow, ← mul_pow, Valuation.map_pow]
   exact pow_le_one' hx n
 
+/--
+@isnad1 id=le.1h7v.s8.54b40b5e2c4c from=translated src=- shape=fc8f79c5 vocab=31c4007c
+-/
 theorem vbdd_sum {M : ℕ} {ι : Type*} (s : Finset ι) {x : ι → F}
     (hx : ∀ i ∈ s, v ((M : F) * x i) ≤ 1) : v ((M : F) * ∑ i ∈ s, x i) ≤ 1 := by
   rw [Finset.mul_sum]; exact v.map_sum_le hx
 
+/--
+@isnad1 id=le.0h5v.s7.8d427795c7e5 from=translated src=- shape=7fd0a591 vocab=765d7f07
+-/
 theorem vbdd_natCast {M : ℕ} (n : ℕ) : v ((M : F) * (n : F)) ≤ 1 := by
   rw [← Nat.cast_mul]; exact val_natCast_le_one v _
 
+/--
+@isnad1 id=le.1h5v.s7.d28fae8bfd8f from=translated src=- shape=010301b1 vocab=765d7f07
+-/
 theorem vbdd_one_of_le {M : ℕ} {x : F} (hx : v x ≤ 1) : v ((M : F) * x) ≤ 1 := by
   rw [Valuation.map_mul]
   calc v (M : F) * v x ≤ 1 * 1 := mul_le_mul' (val_natCast_le_one v M) hx
     _ = 1 := mul_one 1
 
-/-- `v (M * x) ≤ 1` means `v x ≤ (v M)⁻¹`.-/
+/-- `v (M * x) ≤ 1` means `v x ≤ (v M)⁻¹`.
+@isnad1 id=le.2h5v.s7.8fe41bb77232 from=translated src=- shape=d036611e vocab=8eae83c1
+-/
 theorem le_inv_of_vbdd [CharZero F] {M : ℕ} (hM : 0 < M) {x : F} (hx : v ((M : F) * x) ≤ 1) :
     v x ≤ (v (M : F))⁻¹ := by
   have hM0 : v (M : F) ≠ 0 := by
@@ -150,6 +202,9 @@ theorem le_inv_of_vbdd [CharZero F] {M : ℕ} (hM : 0 < M) {x : F} (hx : v ((M :
     _ ≤ (v (M : F))⁻¹ * 1 := mul_le_mul_right hx _
     _ = (v (M : F))⁻¹ := mul_one _
 
+/--
+@isnad1 id=le.2h5v.s7.91be44be9f7d from=translated src=- shape=3ee25872 vocab=8eae83c1
+-/
 theorem vbdd_of_le_inv [CharZero F] {M : ℕ} (hM : 0 < M) {x : F} (hx : v x ≤ (v (M : F))⁻¹) :
     v ((M : F) * x) ≤ 1 := by
   have hM0 : v (M : F) ≠ 0 := by
@@ -158,6 +213,9 @@ theorem vbdd_of_le_inv [CharZero F] {M : ℕ} (hM : 0 < M) {x : F} (hx : v x ≤
   calc v (M : F) * v x ≤ v (M : F) * (v (M : F))⁻¹ := mul_le_mul_right hx _
     _ = 1 := mul_inv_cancel₀ hM0
 
+/--
+@isnad1 id=le.1h4v.s7.fc8bfd9033a7 from=translated src=- shape=c3b1c0ee vocab=8e8628e5
+-/
 theorem one_le_inv_val_natCast [CharZero F] {M : ℕ} (hM : 0 < M) : 1 ≤ (v (M : F))⁻¹ := by
   have hM0 : v (M : F) ≠ 0 := by
     rw [Valuation.ne_zero_iff]; exact Nat.cast_ne_zero.mpr hM.ne'
@@ -182,7 +240,9 @@ section Escape
 variable {F : Type*} [Field F] {Γ₀ : Type*} [LinearOrderedCommGroupWithZero Γ₀]
   (v : Valuation F Γ₀)
 
-/-- **Escape lemma.**-/
+/-- **Escape lemma.**
+@isnad1 id=eq.5h6v.s8.6cabc34cea8c from=translated src=- shape=78f58076 vocab=e29bb1d0
+-/
 theorem val_eval_eq_pow {f : F[X]} (hf : f.Monic) (_hd : 2 ≤ f.natDegree) {B : Γ₀} (hB : 1 ≤ B)
     (hcoef : ∀ k < f.natDegree, v (f.coeff k) ≤ B) {z : F} (hz : B < v z) :
     v (f.eval z) = v z ^ f.natDegree := by
@@ -199,6 +259,9 @@ theorem val_eval_eq_pow {f : F[X]} (hf : f.Monic) (_hd : 2 ≤ f.natDegree) {B :
     _ = v z ^ (k + 1) := (pow_succ' _ _).symm
     _ ≤ v z ^ f.natDegree := pow_le_pow_right' h1.le hk
 
+/--
+@isnad1 id=and.5h7v.s8.52eb2f11fbeb from=translated src=- shape=9f589d98 vocab=aea2e057
+-/
 theorem val_iterate_of_escape {f : F[X]} (hf : f.Monic) (hd : 2 ≤ f.natDegree) {B : Γ₀}
     (hB : 1 ≤ B) (hcoef : ∀ k < f.natDegree, v (f.coeff k) ≤ B) {z : F} (hz : B < v z) :
     ∀ n, B < v ((fun w => f.eval w)^[n] z) ∧
@@ -244,9 +307,15 @@ variable {F : Type*} [Field F] [CharZero F]
 /-- `g = f (X + p) - p`: conjugation of `f` by the translation `z ↦ z + p`.-/
 noncomputable def conjFixed (f : F[X]) (p : F) : F[X] := f.comp (X + C p) - C p
 
+/--
+@isnad1 id=eq.0h4v.s6.8a8ed8ce88a4 from=translated src=- shape=900965d6 vocab=af287d43
+-/
 theorem conjFixed_eval (f : F[X]) (p w : F) : (conjFixed f p).eval w = f.eval (w + p) - p := by
   simp [conjFixed, eval_comp]
 
+/--
+@isnad1 id=eq.0h5v.s6.3e448be35006 from=translated src=- shape=82b34fec vocab=5f4e6bd8
+-/
 theorem conjFixed_iterate (f : F[X]) (p z : F) (n : ℕ) :
     (fun w => (conjFixed f p).eval w)^[n] (z - p) = (fun w => f.eval w)^[n] z - p := by
   induction n with
@@ -255,6 +324,9 @@ theorem conjFixed_iterate (f : F[X]) (p z : F) (n : ℕ) :
     rw [Function.iterate_succ_apply', Function.iterate_succ_apply', ih, conjFixed_eval,
       sub_add_cancel]
 
+/--
+@isnad1 id=hasfinit.1h4v.s6.adfadd0d116e from=translated src=- shape=4c2769c8 vocab=04ced24a
+-/
 theorem hasFiniteOrbit_conjFixed (f : F[X]) (p z : F) (hz : HasFiniteOrbit f z) :
     HasFiniteOrbit (conjFixed f p) (z - p) := by
   unfold HasFiniteOrbit at hz ⊢

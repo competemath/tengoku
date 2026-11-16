@@ -21,7 +21,9 @@ open Polynomial Finset IntermediateField
 /-! ### The Fourier identity for a primitive `p`-th root of unity -/
 
 /-- `∑_{m<p} ξ^{m a} = p` if `p ∣ a` and `0` otherwise, for a primitive `p`-th root `ξ`,
-`p` prime.-/
+`p` prime.
+@isnad1 id=eq.2h3v.s6.da246cfc8f58 from=translated src=- shape=9c701607 vocab=b6079511
+-/
 theorem sum_pow_mul_primitiveRoot {p : ℕ} (hp : p.Prime) {ξ : ℂ} (hξ : IsPrimitiveRoot ξ p)
     (a : ℕ) :
     ∑ m ∈ range p, ξ ^ (m * a) = if p ∣ a then (p : ℂ) else 0 := by
@@ -55,7 +57,9 @@ theorem eq_of_dvd_add_sub {p a j j' : ℕ} (hj : j < p) (hj' : j' < p)
 
 /-! ### Mann's theorem -/
 
-/-- A finite family of roots of unity has a common positive exponent.-/
+/-- A finite family of roots of unity has a common positive exponent.
+@isnad1 id=ex.1h2v.s5.fd321c25fd64 from=translated src=- shape=4c33e858 vocab=21db454e
+-/
 theorem exists_common_exponent {k : ℕ} (ζ : Fin k → ℂ) (hζ : ∀ i, IsRootOfUnityC (ζ i)) :
     ∃ n : ℕ, 0 < n ∧ ∀ i, ζ i ^ n = 1 := by
   choose N hN using hζ
@@ -63,12 +67,18 @@ theorem exists_common_exponent {k : ℕ} (ζ : Fin k → ℂ) (hζ : ∀ i, IsRo
   obtain ⟨t, ht⟩ := Finset.dvd_prod_of_mem N (Finset.mem_univ i)
   rw [ht, pow_mul, (hN i).2, one_pow]
 
+/--
+@isnad1 id=ne.1h1v.s3.16cdba658bd7 from=translated src=- shape=4f29f389 vocab=fec7638c
+-/
 theorem IsRootOfUnityC.ne_zero {ζ : ℂ} (h : IsRootOfUnityC ζ) : ζ ≠ 0 := by
   obtain ⟨n, hn, hζ⟩ := h
   rintro rfl
   rw [zero_pow hn.ne'] at hζ
   exact zero_ne_one hζ
 
+/--
+@isnad1 id=isrootof.2h2v.s4.2d23a5122ccf from=translated src=- shape=255dce7b vocab=6f96d468
+-/
 theorem IsRootOfUnityC.mul {ζ₁ ζ₂ : ℂ} (h₁ : IsRootOfUnityC ζ₁) (h₂ : IsRootOfUnityC ζ₂) :
     IsRootOfUnityC (ζ₁ * ζ₂) := by
   obtain ⟨n₁, hn₁, h₁⟩ := h₁
@@ -76,14 +86,23 @@ theorem IsRootOfUnityC.mul {ζ₁ ζ₂ : ℂ} (h₁ : IsRootOfUnityC ζ₁) (h�
   refine ⟨n₁ * n₂, Nat.mul_pos hn₁ hn₂, ?_⟩
   rw [mul_pow, pow_mul, h₁, one_pow, mul_comm n₁, pow_mul, h₂, one_pow, one_mul]
 
+/--
+@isnad1 id=isrootof.1h1v.s3.0cd8c03088aa from=translated src=- shape=23658224 vocab=466a17f2
+-/
 theorem IsRootOfUnityC.inv {ζ : ℂ} (h : IsRootOfUnityC ζ) : IsRootOfUnityC ζ⁻¹ := by
   obtain ⟨n, hn, hζ⟩ := h
   exact ⟨n, hn, by rw [inv_pow, hζ, inv_one]⟩
 
+/--
+@isnad1 id=isrootof.1h2v.s4.0dc0a3f57429 from=translated src=- shape=17957909 vocab=b729923c
+-/
 theorem IsRootOfUnityC.pow {ζ : ℂ} (h : IsRootOfUnityC ζ) (m : ℕ) : IsRootOfUnityC (ζ ^ m) := by
   obtain ⟨n, hn, hζ⟩ := h
   exact ⟨n, hn, by rw [← pow_mul, mul_comm, pow_mul, hζ, one_pow]⟩
 
+/--
+@isnad1 id=isrootof.1h2v.s4.fa5b95a86cce from=translated src=- shape=17957909 vocab=336dc061
+-/
 theorem IsRootOfUnityC.zpow {ζ : ℂ} (h : IsRootOfUnityC ζ) (m : ℤ) : IsRootOfUnityC (ζ ^ m) := by
   rcases Int.natAbs_eq m with hm | hm
   · rw [hm, zpow_natCast]; exact h.pow _
