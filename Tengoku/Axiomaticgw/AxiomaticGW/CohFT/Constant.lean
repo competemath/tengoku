@@ -34,6 +34,9 @@ namespace constantDegree
 
 variable (R : Type*) [CommRing R]
 
+/--
+@isnad1 id=gradedmo.0h1v.s5.28f38a8117cb from=translated src=- shape=679cac9b vocab=a6b5992b
+-/
 instance gradedMonoid : SetLike.GradedMonoid (constantDegree R) where
   one_mem := by simp only [constantDegree, ↓reduceIte, Submodule.mem_top]
   mul_mem := by
@@ -223,7 +226,9 @@ variable {R V : Type*} [CommRing R] [AddCommGroup V] [Module R V]
   [Module.Free R V] [Module.Finite R V]
 
 /-- Over the coefficient ring, tensor-valued separating contraction is the
-canonical image of scalar separating contraction.-/
+canonical image of scalar separating contraction.
+@isnad1 id=eq.0h7v.s9.1274d1fe882f from=translated src=- shape=573302a6 vocab=e08ac133
+-/
 theorem pairContractTarget_eq_includeLeft (P : SymmetricPerfectPairing R V)
     {S T : Type*} (f : MultilinearMap R (fun _ : Option S ↦ V) R)
     (g : MultilinearMap R (fun _ : Option T ↦ V) R) :
@@ -354,7 +359,9 @@ variable {R V : Type*} [CommRing R] [Algebra ℚ R]
   [AddCommGroup V] [Module R V] [Module.Free R V] [Module.Finite R V]
 
 /-- Passing a topological CohFT through the constant full CohFT model preserves
-all correlators definitionally.-/
+all correlators definitionally.
+@isnad1 id=eq.1h5v.s7.f407347b59b3 from=translated src=- shape=bfe06678 vocab=572228ed
+-/
 @[simp]
 theorem toConstantCohFT_toTopologicalCohFT_omega
     (T : TopologicalCohFT R V) (g : ℕ) (S : Type) [Fintype S]

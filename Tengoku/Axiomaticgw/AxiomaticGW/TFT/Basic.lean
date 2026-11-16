@@ -68,7 +68,9 @@ def counit (T : TwoDimensionalTFT R V) : V →ₗ[R] R :=
   (MultilinearMap.ofSubsingletonₗ R R V R (0 : Fin 1)).symm.toLinearMap
     (T.correlator 0 (Fin 1))
 
-/-- Evaluation of the counit extracted from the one-point correlator.-/
+/-- Evaluation of the counit extracted from the one-point correlator.
+@isnad1 id=eq.0h4v.s8.270281bff6c0 from=translated src=- shape=016a8d2f vocab=52b2bf23
+-/
 @[simp]
 theorem counit_apply (T : TwoDimensionalTFT R V) (x : V) :
     T.counit x = T.correlator 0 (Fin 1) (fun _ ↦ x) := by

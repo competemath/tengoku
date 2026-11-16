@@ -24,7 +24,9 @@ namespace AxiomaticGW
 namespace CommFrobeniusAlgebra
 
 /-- The correlators of the base-ring Frobenius algebra are ordinary finite
-products, independently of the genus.-/
+products, independently of the genus.
+@isnad1 id=eq.0h4v.s7.37b6da18d186 from=translated src=- shape=910a53ed vocab=c1d2ffb2
+-/
 theorem baseRing_correlator_apply (R : Type*) [CommRing R] (g : ℕ)
     {S : Type*} [Fintype S] (a : S → R) :
     (baseRing R).correlator g S a = ∏ s, a s := by
@@ -32,7 +34,9 @@ theorem baseRing_correlator_apply (R : Type*) [CommRing R] (g : ℕ)
     baseRing_counit_apply]
 
 /-- The product-algebra correlator is the sum of the products of the two
-coordinate families.-/
+coordinate families.
+@isnad1 id=eq.0h4v.s8.4b009b13af51 from=translated src=- shape=50759c57 vocab=4488a3a1
+-/
 theorem productAlgebra_correlator_apply (R : Type*) [CommRing R] (g : ℕ)
     {S : Type*} [Fintype S] (a : S → R × R) :
     (productAlgebra R).correlator g S a =

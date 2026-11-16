@@ -63,10 +63,16 @@ variable [Semiring R]
 def coeff (beta : B) : NovikovSeries D R →ₗ[R] R :=
   LinearMap.proj beta
 
+/--
+@isnad1 id=eq.0h5v.s7.0f3a01773e66 from=translated src=- shape=8c9a368c vocab=817926c7
+-/
 @[simp]
 theorem coeff_apply (f : NovikovSeries D R) (beta : B) :
     coeff D beta f = f beta := rfl
 
+/--
+@isnad1 id=eq.1h5v.s7.5411e2166c0a from=translated src=- shape=b4f4660c vocab=817926c7
+-/
 @[ext]
 theorem ext {f g : NovikovSeries D R}
     (h : ∀ beta : B, coeff D beta f = coeff D beta g) : f = g :=
@@ -78,6 +84,9 @@ noncomputable def monomial (beta : B) : R →ₗ[R] NovikovSeries D R :=
     classical
     exact LinearMap.single R (fun _ ↦ R) beta
 
+/--
+@isnad1 id=eq.0h5v.s6.bc345b28a3f5 from=translated src=- shape=d0d4a559 vocab=6e34ff3b
+-/
 @[simp]
 theorem coeff_monomial_same (beta : B) (a : R) :
     monomial D beta a beta = a := by
@@ -85,6 +94,9 @@ theorem coeff_monomial_same (beta : B) (a : R) :
   change (Pi.single beta a : B → R) beta = a
   exact Pi.single_eq_same (M := fun _ : B ↦ R) beta a
 
+/--
+@isnad1 id=eq.1h6v.s7.ae90ffa80dac from=translated src=- shape=dd69b13c vocab=2b268d63
+-/
 theorem coeff_monomial_ne {beta gamma : B} (h : beta ≠ gamma) (a : R) :
     coeff D beta (monomial D gamma a) = 0 := by
   classical
@@ -106,10 +118,16 @@ noncomputable instance : Mul (NovikovSeries D R) :=
   ⟨fun f g beta ↦ ∑ split ∈ D.splittings beta,
     coeff D split.1 f * coeff D split.2 g⟩
 
+/--
+@isnad1 id=eq.0h6v.s8.9d4d977acaa3 from=translated src=- shape=c39f45dc vocab=8bbb3afe
+-/
 theorem coeff_mul (f g : NovikovSeries D R) (beta : B) :
     coeff D beta (f * g) = ∑ split ∈ D.splittings beta,
       coeff D split.1 f * coeff D split.2 g := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.05cf241540df from=translated src=- shape=ace27d1d vocab=560295d7
+-/
 protected theorem zero_mul (f : NovikovSeries D R) : 0 * f = 0 := by
   apply NovikovSeries.ext D
   intro beta
@@ -117,6 +135,9 @@ protected theorem zero_mul (f : NovikovSeries D R) : 0 * f = 0 := by
   change (∑ x ∈ D.splittings beta, (0 : R) * f x.2) = 0
   simp only [zero_mul, Finset.sum_const_zero]
 
+/--
+@isnad1 id=eq.0h4v.s6.8cb180c64c8d from=translated src=- shape=95ae0965 vocab=560295d7
+-/
 protected theorem mul_zero (f : NovikovSeries D R) : f * 0 = 0 := by
   apply NovikovSeries.ext D
   intro beta
@@ -124,6 +145,9 @@ protected theorem mul_zero (f : NovikovSeries D R) : f * 0 = 0 := by
   change (∑ x ∈ D.splittings beta, f x.1 * (0 : R)) = 0
   simp only [mul_zero, Finset.sum_const_zero]
 
+/--
+@isnad1 id=eq.0h6v.s8.e0be2009bb0b from=translated src=- shape=ec62ff32 vocab=c57133c0
+-/
 theorem coeff_monomial_zero_mul (a : R) (f : NovikovSeries D R) (beta : B) :
     coeff D beta (monomial D 0 a * f) = a * coeff D beta f := by
   classical
@@ -143,6 +167,9 @@ theorem coeff_monomial_zero_mul (a : R) (f : NovikovSeries D R) (beta : B) :
           coeff_apply, coeff_monomial_same, IsEmpty.forall_iff]
     _ = _ := by simp only [coeff_apply, coeff_monomial_same]
 
+/--
+@isnad1 id=eq.0h6v.s8.db19770633f6 from=translated src=- shape=33cb3ab9 vocab=c57133c0
+-/
 theorem coeff_mul_monomial_zero (f : NovikovSeries D R) (a : R) (beta : B) :
     coeff D beta (f * monomial D 0 a) = coeff D beta f * a := by
   classical
@@ -163,16 +190,25 @@ theorem coeff_mul_monomial_zero (f : NovikovSeries D R) (a : R) (beta : B) :
           coeff_apply, coeff_monomial_same, IsEmpty.forall_iff]
     _ = _ := by simp only [coeff_apply, coeff_monomial_same]
 
+/--
+@isnad1 id=eq.0h4v.s6.35110b85bc8d from=translated src=- shape=3be19cff vocab=560295d7
+-/
 protected theorem one_mul (f : NovikovSeries D R) : 1 * f = f := by
   apply NovikovSeries.ext D
   intro beta
   exact coeff_monomial_zero_mul D 1 f beta |>.trans (one_mul _)
 
+/--
+@isnad1 id=eq.0h4v.s6.ac20423ef460 from=translated src=- shape=385c0cef vocab=560295d7
+-/
 protected theorem mul_one (f : NovikovSeries D R) : f * 1 = f := by
   apply NovikovSeries.ext D
   intro beta
   exact coeff_mul_monomial_zero D f 1 beta |>.trans (mul_one _)
 
+/--
+@isnad1 id=eq.0h6v.s7.6d4afdefd284 from=translated src=- shape=c9f9188f vocab=f6a3ab86
+-/
 protected theorem mul_add (f g h : NovikovSeries D R) :
     f * (g + h) = f * g + f * h := by
   apply NovikovSeries.ext D
@@ -182,6 +218,9 @@ protected theorem mul_add (f g h : NovikovSeries D R) :
       ∑ x ∈ D.splittings beta, f x.1 * h x.2
   simp only [mul_add, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h6v.s7.ae07424747be from=translated src=- shape=d3c40d76 vocab=f6a3ab86
+-/
 protected theorem add_mul (f g h : NovikovSeries D R) :
     (f + g) * h = f * h + g * h := by
   apply NovikovSeries.ext D
@@ -191,6 +230,9 @@ protected theorem add_mul (f g h : NovikovSeries D R) :
       ∑ x ∈ D.splittings beta, g x.1 * h x.2
   simp only [add_mul, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h6v.s7.60a0c7ab6522 from=translated src=- shape=5f8a4544 vocab=560295d7
+-/
 protected theorem mul_assoc (f g h : NovikovSeries D R) :
     f * g * h = f * (g * h) := by
   apply NovikovSeries.ext D
@@ -278,14 +320,23 @@ noncomputable def C : R →+* NovikovSeries D R where
 noncomputable instance : Algebra R (NovikovSeries D R) :=
   (C D).toAlgebra
 
+/--
+@isnad1 id=eq.0h4v.s6.8d4125babe15 from=translated src=- shape=d07c51c4 vocab=d2eeff1e
+-/
 @[simp]
 theorem coeff_C_zero (a : R) : C D a 0 = a := by
   exact coeff_monomial_same D 0 a
 
+/--
+@isnad1 id=eq.1h5v.s8.464fd9229e25 from=translated src=- shape=43a74a92 vocab=14fc16fd
+-/
 theorem coeff_C_ne {beta : B} (hbeta : beta ≠ 0) (a : R) :
     coeff D beta (C D a) = 0 :=
   coeff_monomial_ne D hbeta a
 
+/--
+@isnad1 id=eq.0h7v.s8.b7b86089460c from=translated src=- shape=f917c1cc vocab=05a13d52
+-/
 @[simp]
 theorem monomial_mul_monomial (beta gamma : B) (a b : R) :
     monomial D beta a * monomial D gamma b =

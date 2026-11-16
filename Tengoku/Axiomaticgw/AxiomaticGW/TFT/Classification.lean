@@ -41,7 +41,9 @@ def threePointFunction (T : TwoDimensionalTFT R V) :
     (multilinearCurryLeftEquiv R (fun _ : Fin 3 ↦ V) R).toLinearMap <|
     T.correlator 0 (Fin 3)
 
-/-- Evaluation of the curried three-point function.-/
+/-- Evaluation of the curried three-point function.
+@isnad1 id=eq.0h6v.s11.3a92f806300f from=translated src=- shape=cc57053b vocab=bd57c114
+-/
 @[simp]
 theorem threePointFunction_apply (T : TwoDimensionalTFT R V)
     (x y z : V) :
@@ -65,7 +67,9 @@ noncomputable def product (T : TwoDimensionalTFT R V) :
     T.correlator 0 (Fin 3)
 
 /-- The recovered product is characterized by the original three-point
-correlator.-/
+correlator.
+@isnad1 id=eq.0h6v.s11.1276648a1d43 from=translated src=- shape=82d13221 vocab=401f11cc
+-/
 theorem pairing_product (T : TwoDimensionalTFT R V) (x y z : V) :
     T.pairing.form (T.product x y) z = T.threePointFunction x y z := by
   rw [← T.pairing.toDual_apply]
@@ -112,7 +116,9 @@ variable {R A : Type*} [CommRing R] [CommRing A] [Algebra R A]
   [Module.Free R A] [Module.Finite R A]
 
 /-- The one-point correlator of the theory associated to `F` recovers its
-original counit.-/
+original counit.
+@isnad1 id=eq.0h3v.s7.fa35abe04524 from=translated src=- shape=48e908f6 vocab=43e95c44
+-/
 theorem toTwoDimensionalTFT_counit
     (F : CommFrobeniusAlgebra R A) :
     F.toTwoDimensionalTFT.counit = F.counit := by
@@ -123,7 +129,9 @@ theorem toTwoDimensionalTFT_counit
     Finset.card_singleton, pow_one, pow_zero, mul_one]
 
 /-- The forward two-dimensional TFT satisfies trace compatibility with the
-original algebra.-/
+original algebra.
+@isnad1 id=istracec.0h3v.s6.50fc9603b2f7 from=translated src=- shape=fb129198 vocab=d164c8af
+-/
 theorem toTwoDimensionalTFT_isTraceCompatible
     (F : CommFrobeniusAlgebra R A) :
     F.toTwoDimensionalTFT.IsTraceCompatible := by
@@ -132,7 +140,9 @@ theorem toTwoDimensionalTFT_isTraceCompatible
   exact F.pairing_apply x y
 
 /-- Recovering the Frobenius structure from its associated two-dimensional TFT
-returns the original structure.-/
+returns the original structure.
+@isnad1 id=eq.0h3v.s6.150596ae48f2 from=translated src=- shape=6dd3b2fb vocab=c9a15ab8
+-/
 theorem toCommFrobeniusAlgebra_toTwoDimensionalTFT
     (F : CommFrobeniusAlgebra R A) :
     F.toTwoDimensionalTFT.toCommFrobeniusAlgebra

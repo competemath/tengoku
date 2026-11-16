@@ -30,7 +30,9 @@ variable {R A : Type*} [CommRing R] [CommRing A] [Algebra R A]
   [Module.Free R A] [Module.Finite R A]
 
 /-- The Frobenius sewing identity: contracting the two metric functionals
-associated to `x` and `y` gives the trace pairing of `x` and `y`.-/
+associated to `x` and `y` gives the trace pairing of `x` and `y`.
+@isnad1 id=eq.0h5v.s11.866199135905 from=translated src=- shape=cea0266f vocab=2aca8c23
+-/
 theorem sewing_identity (F : CommFrobeniusAlgebra R A) (x y : A) :
     TensorProduct.lift
         (((LinearMap.mul R R).comp (F.pairing.toDual x)).compl₂
@@ -41,7 +43,9 @@ theorem sewing_identity (F : CommFrobeniusAlgebra R A) (x y : A) :
     F.pairing.contract_toDual_mul_toDual x y
 
 /-- Contracting multiplication against the Casimir tensor inserts the handle
-element. The extra factor `z` is the product of all inputs not being glued.-/
+element. The extra factor `z` is the product of all inputs not being glued.
+@isnad1 id=eq.0h4v.s10.6e74fd11d05b from=translated src=- shape=2bf95a78 vocab=1f11fe89
+-/
 theorem contract_mul_casimir (F : CommFrobeniusAlgebra R A) (z : A) :
     TensorProduct.lift
         ((LinearMap.mul R A).compr₂ (F.counit.comp (LinearMap.mulLeft R z)))
@@ -60,7 +64,9 @@ theorem contract_mul_casimir (F : CommFrobeniusAlgebra R A) (z : A) :
   rfl
 
 /-- Contracting the two node inputs of a genus-`g` correlator attaches one
-handle and produces the genus-`g+1` correlator.-/
+handle and produces the genus-`g+1` correlator.
+@isnad1 id=eq.0h5v.s7.59a2e380bcb9 from=translated src=- shape=690af1c8 vocab=426173fc
+-/
 theorem selfContract_correlator (F : CommFrobeniusAlgebra R A) (g : ℕ)
     (S : Type*) [Fintype S] :
     F.pairing.selfContract (F.correlator g (S ⊕ Fin 2)) =
@@ -100,7 +106,9 @@ theorem selfContract_correlator (F : CommFrobeniusAlgebra R A) (g : ℕ)
   ac_rfl
 
 /-- Contracting one node input from each of two correlators produces the
-correlator of the connected separating gluing.-/
+correlator of the connected separating gluing.
+@isnad1 id=eq.0h7v.s7.578ffc0bacde from=translated src=- shape=407f3810 vocab=8ae94612
+-/
 theorem pairContract_correlator (F : CommFrobeniusAlgebra R A)
     (g₁ g₂ : ℕ) (S T : Type*) [Fintype S] [Fintype T] :
     F.pairing.pairContract (F.correlator g₁ (Option S))

@@ -42,6 +42,9 @@ noncomputable def primaryClass (g : ℕ) (S : Type) [Fintype S]
   (Algebra.linearMap R (C.H g S)).compMultilinearMap
     ((CommFrobeniusAlgebra.baseRing R).correlator g S)
 
+/--
+@isnad1 id=eq.1h5v.s9.8ef94a0e5bd4 from=translated src=- shape=b9558545 vocab=62ddb8df
+-/
 @[simp]
 theorem primaryClass_apply (g : ℕ) (S : Type) [Fintype S]
     (h : StableArity g S) (a : S → R) :
@@ -61,6 +64,9 @@ noncomputable def intersectionNumber (P : PsiClasses C)
     I.integrate g S h (P.monomial g S h k)
   else 0
 
+/--
+@isnad1 id=eq.1h7v.s8.5d1eff4a7f71 from=translated src=- shape=8676ad3c vocab=8f3bc86a
+-/
 @[simp]
 theorem intersectionNumber_of_stable (P : PsiClasses C)
     (I : StableCurveIntegration C) (g : ℕ) (S : Type) [Fintype S]
@@ -69,6 +75,9 @@ theorem intersectionNumber_of_stable (P : PsiClasses C)
       I.integrate g S h (P.monomial g S h k) := by
   simp only [intersectionNumber, h, ↓reduceDIte]
 
+/--
+@isnad1 id=eq.1h7v.s6.e5b49e0ceec0 from=translated src=- shape=d3888462 vocab=2b309946
+-/
 @[simp]
 theorem intersectionNumber_of_unstable (P : PsiClasses C)
     (I : StableCurveIntegration C) (g : ℕ) (S : Type) [Fintype S]
@@ -86,6 +95,9 @@ noncomputable def ancestor (P : PsiClasses C)
     ((CohFT.multiplyPsi P g S h k).compMultilinearMap
       (primaryClass (C := C) g S h))
 
+/--
+@isnad1 id=eq.1h8v.s7.2d8c9a5cf35b from=translated src=- shape=8c271a3e vocab=c8452bc5
+-/
 @[simp]
 theorem ancestor_apply (P : PsiClasses C) (I : StableCurveIntegration C)
     (g : ℕ) (S : Type) [Fintype S] (h : StableArity g S)
@@ -101,7 +113,9 @@ theorem ancestor_apply (P : PsiClasses C) (I : StableCurveIntegration C)
   rfl
 
 /-- Relabelling the marked points does not change a point intersection
-number.-/
+number.
+@isnad1 id=eq.2h9v.s6.eaeac7659dce from=translated src=- shape=9e6ce0cb vocab=a7099e4b
+-/
 theorem intersectionNumber_relabel (P : PsiClasses C)
     (I : StableCurveIntegration C) (g : ℕ) (S T : Type)
     [Fintype S] [Fintype T] (hS : StableArity g S)
@@ -114,7 +128,9 @@ theorem intersectionNumber_relabel (P : PsiClasses C)
   exact I.integrate_rename g S T hS hT e _
 
 /-- A point-target psi-class intersection number vanishes unless the psi codimension
-equals the dimension of `Mbar(g,S)`.-/
+equals the dimension of `Mbar(g,S)`.
+@isnad1 id=eq.2h7v.s6.72daf94809bb from=translated src=- shape=f9751d09 vocab=336ca636
+-/
 theorem intersectionNumber_eq_zero_of_degree_ne (P : PsiClasses C)
     (I : StableCurveIntegration C) (g : ℕ) (S : Type) [Fintype S]
     (h : StableArity g S) (k : S → ℕ)
@@ -125,7 +141,9 @@ theorem intersectionNumber_eq_zero_of_degree_ne (P : PsiClasses C)
     (P.monomial g S h k) (P.monomial_degree g S h k) hne
 
 /-- The normalized zero-dimensional point intersection is
-`<tau_0 tau_0 tau_0>_0 = 1`.-/
+`<tau_0 tau_0 tau_0>_0 = 1`.
+@isnad1 id=eq.1h4v.s9.68c7ba0cb2d0 from=translated src=- shape=2c683705 vocab=d7941fc5
+-/
 theorem intersectionNumber_zero_three (P : PsiClasses C)
     (I : StableCurveIntegration C)
     (hI : I.integrate 0 (Fin 3) StableArity.zero_fin_three 1 = 1) :
@@ -134,14 +152,18 @@ theorem intersectionNumber_zero_three (P : PsiClasses C)
     StableArity.zero_fin_three]
   simpa only [PsiClasses.monomial_zero] using hI
 
-/-- One marked point in genus one is stable.-/
+/-- One marked point in genus one is stable.
+@isnad1 id=stablear.0h0v.s4.201f3f31d5ab from=translated src=- shape=648e8daf vocab=e101b635
+-/
 theorem genusOne_one_stable : StableArity 1 (Fin 1) := by
   simp only [StableArity, mul_one, Fintype.card_unique, Nat.reduceAdd,
     Std.le_refl]
 
 /-- The exceptional initial value needed alongside DVV is
 `<tau_1>_1 = 1/24`. The hypothesis isolates the corresponding geometric
-intersection calculation.-/
+intersection calculation.
+@isnad1 id=eq.1h4v.s9.c3f4a5880732 from=translated src=- shape=30f2b2e2 vocab=3054b7a2
+-/
 theorem intersectionNumber_one_one (P : PsiClasses C)
     (I : StableCurveIntegration C)
     (hI : I.integrate 1 (Fin 1) genusOne_one_stable
@@ -155,7 +177,9 @@ theorem intersectionNumber_one_one (P : PsiClasses C)
     using hI
 
 /-- The point primary class passes the `Mbar(0,4)` WDVV boundary test: both
-boundary restrictions of the unit class agree.-/
+boundary restrictions of the unit class agree.
+@isnad1 id=eq.0h3v.s13.523d559513c3 from=translated src=- shape=27075917 vocab=aecb233a
+-/
 theorem unitClass_wdvv (G : GenusZeroGeometry C) :
     (C.separating 0 0 (Fin 2) (Fin 2)
       StableArity.zero_option_fin_two StableArity.zero_option_fin_two)

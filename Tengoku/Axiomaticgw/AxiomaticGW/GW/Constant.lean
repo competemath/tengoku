@@ -36,6 +36,9 @@ noncomputable def atZero {R V H : Type*} [CommRing R]
   classical
   exact if beta = 0 then f else 0
 
+/--
+@isnad1 id=eq.0h6v.s6.ac630352afdf from=translated src=- shape=72fb8854 vocab=b1a50380
+-/
 @[simp]
 theorem atZero_zero {R V H : Type*} [CommRing R]
     [AddCommGroup V] [Module R V] [AddCommMonoid H] [Module R H]
@@ -44,6 +47,9 @@ theorem atZero_zero {R V H : Type*} [CommRing R]
     atZero f (0 : B) = f := by
   simp only [atZero, ↓reduceIte]
 
+/--
+@isnad1 id=eq.1h7v.s7.6bcf39685893 from=translated src=- shape=96fd434e vocab=b1a50380
+-/
 @[simp]
 theorem atZero_of_ne {R V H : Type*} [CommRing R]
     [AddCommGroup V] [Module R V] [AddCommMonoid H] [Module R H]
@@ -238,6 +244,9 @@ noncomputable def theory (D : EffectiveCurveMonoid B) :
     change ((∑ s, p s : ℕ) : ℤ) + (g : ℤ) * 0 < 0 + 0 at hnegative
     omega
 
+/--
+@isnad1 id=eq.1h5v.s8.460e0e54db35 from=translated src=- shape=d7458f95 vocab=dc87ae2e
+-/
 @[simp]
 theorem theory_omega_zero (D : EffectiveCurveMonoid B)
     (g : ℕ) (S : Type) [Fintype S] (h : StableArity g S) :

@@ -45,7 +45,9 @@ noncomputable def degree (d : ℕ) : Submodule ℚ (StrataModule g S) :=
   Submodule.span ℚ {x | ∃ s : TautologicalStratum g S,
     s.codimension = d ∧ x = basis s}
 
-/-- A basis stratum is homogeneous in its combinatorial codimension.-/
+/-- A basis stratum is homogeneous in its combinatorial codimension.
+@isnad1 id=mem.0h3v.s6.3c0387f349c4 from=translated src=- shape=0e464f67 vocab=cb327c15
+-/
 theorem basis_mem_degree (x : TautologicalStratum g S) :
     basis x ∈ degree x.codimension := by
   apply Submodule.subset_span
@@ -58,7 +60,9 @@ noncomputable def dimensionRelations : Submodule ℚ (StrataModule g S) :=
     StableArity.dimension g S < s.codimension ∧ x = basis s}
 
 /-- Every above-dimension basis stratum belongs to the dimension-relation
-submodule.-/
+submodule.
+@isnad1 id=mem.1h3v.s6.c1f75fa0d734 from=translated src=- shape=2a95e085 vocab=74e75112
+-/
 theorem basis_mem_dimensionRelations (x : TautologicalStratum g S)
     (hx : StableArity.dimension g S < x.codimension) :
     basis x ∈ dimensionRelations := by
@@ -76,7 +80,9 @@ noncomputable def quotientMk (relations : Submodule ℚ (StrataModule g S)) :
     StrataModule g S →ₗ[ℚ] KnownRelationsQuotient relations :=
   relations.mkQ
 
-/-- Every supplied relation vanishes in the corresponding quotient.-/
+/-- Every supplied relation vanishes in the corresponding quotient.
+@isnad1 id=eq.1h4v.s8.e1fa84d3ea9f from=translated src=- shape=aac539ae vocab=8c725b2d
+-/
 theorem quotientMk_eq_zero
     (relations : Submodule ℚ (StrataModule g S))
     {x : StrataModule g S} (hx : x ∈ relations) :

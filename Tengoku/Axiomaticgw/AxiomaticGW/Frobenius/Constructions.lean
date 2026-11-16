@@ -54,7 +54,9 @@ def ofInvariantPairing (form : LinearMap.BilinForm R A)
     rw [hform]
     exact isPerfPair
 
-/-- Evaluation formula for the counit constructed from an invariant pairing.-/
+/-- Evaluation formula for the counit constructed from an invariant pairing.
+@isnad1 id=eq.2h4v.s10.d34ceaa69979 from=translated src=- shape=6eacb527 vocab=9db85fcf
+-/
 @[simp]
 theorem ofInvariantPairing_counit (form : LinearMap.BilinForm R A)
     (isPerfPair : form.IsPerfPair)
@@ -62,7 +64,9 @@ theorem ofInvariantPairing_counit (form : LinearMap.BilinForm R A)
     (ofInvariantPairing form isPerfPair invariant).counit a = form a 1 := rfl
 
 /-- The construction really recovers the supplied pairing, rather than merely
-an isomorphic pairing.-/
+an isomorphic pairing.
+@isnad1 id=eq.2h3v.s10.caf9e5a57519 from=translated src=- shape=b8716704 vocab=c2b2d694
+-/
 @[simp]
 theorem pairing_ofInvariantPairing (form : LinearMap.BilinForm R A)
     (isPerfPair : form.IsPerfPair)
@@ -86,7 +90,9 @@ noncomputable def casimir (F : CommFrobeniusAlgebra R A) : A ⊗[R] A :=
   F.pairing.copairing
 
 /-- Contracting the Casimir tensor with the Frobenius pairing gives the
-identity endomorphism.-/
+identity endomorphism.
+@isnad1 id=eq.0h3v.s10.41e457c2ce81 from=translated src=- shape=4be8dd27 vocab=c96ba2e7
+-/
 @[simp]
 theorem tensorEndEquiv_casimir (F : CommFrobeniusAlgebra R A) :
     F.pairing.tensorEndEquiv F.casimir = LinearMap.id := by

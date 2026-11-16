@@ -43,7 +43,9 @@ def tracePairing {R A : Type*} [CommRing R] [CommRing A] [Algebra R A]
   (LinearMap.mul R A).compr₂ counit
 
 /-- The trace pairing evaluates to its intended mathematical formula. This is
-true by definition, so the proof is `rfl` (reflexivity).-/
+true by definition, so the proof is `rfl` (reflexivity).
+@isnad1 id=eq.0h5v.s9.70eeb4a11bec from=translated src=- shape=cbdeeffe vocab=19beb76f
+-/
 @[simp]
 theorem tracePairing_apply {R A : Type*} [CommRing R] [CommRing A]
     [Algebra R A] (counit : A →ₗ[R] R) (a b : A) :
@@ -70,7 +72,9 @@ variable {R A : Type*} [CommRing R] [CommRing A] [Algebra R A]
 remaining fields are proofs, and Lean's proof irrelevance says that two proofs
 of the same proposition do not create different structures.
 
-`@[ext]` registers this as an extensionality theorem for later proofs.-/
+`@[ext]` registers this as an extensionality theorem for later proofs.
+@isnad1 id=eq.1h4v.s6.41d47f501f9d from=translated src=- shape=9d06797b vocab=be33cb4a
+-/
 @[ext]
 theorem ext {F G : CommFrobeniusAlgebra R A} (h : F.counit = G.counit) : F = G := by
   cases F
@@ -88,18 +92,24 @@ def pairing (F : CommFrobeniusAlgebra R A) : SymmetricPerfectPairing R A where
   isSymm := ⟨fun a b ↦ by simp only [tracePairing_apply, mul_comm]⟩
   isPerfPair := F.isPerfPair
 
-/-- Evaluation formula for the pairing derived from a Frobenius algebra.-/
+/-- Evaluation formula for the pairing derived from a Frobenius algebra.
+@isnad1 id=eq.0h5v.s9.6ff685792f64 from=translated src=- shape=151819e3 vocab=77a688b3
+-/
 @[simp]
 theorem pairing_apply (F : CommFrobeniusAlgebra R A) (a b : A) :
     F.pairing.form a b = F.counit (a * b) := rfl
 
-/-- A named accessor for symmetry of the derived pairing.-/
+/-- A named accessor for symmetry of the derived pairing.
+@isnad1 id=issymm.0h3v.s6.3f0119f22793 from=translated src=- shape=434ac00d vocab=541ef199
+-/
 theorem pairing_isSymm (F : CommFrobeniusAlgebra R A) :
     F.pairing.form.IsSymm := F.pairing.isSymm
 
 /-- Frobenius invariance of the trace pairing:
 `η(a * b, c) = η(a, b * c)`. After expanding `pairing_apply`, the result is
-exactly associativity of multiplication.-/
+exactly associativity of multiplication.
+@isnad1 id=eq.0h6v.s9.e6f855447985 from=translated src=- shape=d93c6768 vocab=23aabe0d
+-/
 theorem pairing_assoc (F : CommFrobeniusAlgebra R A) (a b c : A) :
     F.pairing.form (a * b) c = F.pairing.form a (b * c) := by
   simp only [pairing_apply, mul_assoc]

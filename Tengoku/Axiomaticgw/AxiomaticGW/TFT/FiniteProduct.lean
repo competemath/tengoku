@@ -26,7 +26,9 @@ namespace TFT
 
 variable {R A S : Type*} [CommRing R] [CommRing A] [Algebra R A] [Fintype S]
 
-/-- Finite-labelled multiplication is invariant under relabelling.-/
+/-- Finite-labelled multiplication is invariant under relabelling.
+@isnad1 id=eq.0h5v.s7.836acac6d720 from=translated src=- shape=ffb287ba vocab=d603ed40
+-/
 theorem mkPiAlgebra_domDomCongr {T : Type*} [Fintype T] (e : S ≃ T) :
     (MultilinearMap.mkPiAlgebra R S A).domDomCongr e =
       MultilinearMap.mkPiAlgebra R T A := by

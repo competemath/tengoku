@@ -104,7 +104,9 @@ noncomputable def invariant (U : UnstableDescendantConventions M I)
   extendedDescendantInvariant M I U.unstableInvariant g S beta k a
 
 /-- On stable arities the extension is definitionally governed by the
-existing stabilized descendant invariant.-/
+existing stabilized descendant invariant.
+@isnad1 id=eq.1h14v.s8.dd1b5fa7963d from=translated src=- shape=cd0c660e vocab=afe165e9
+-/
 theorem invariant_of_stable (U : UnstableDescendantConventions M I)
     (g : ℕ) (S : Type) [Fintype S] (h : StableArity g S)
     (beta : B) (k : S → ℕ) (a : S → V) :
@@ -112,7 +114,9 @@ theorem invariant_of_stable (U : UnstableDescendantConventions M I)
   simp only [invariant, extendedDescendantInvariant, h, ↓reduceDIte,
     StableMapDescendants.invariant_apply]
 
-/-- On unstable arities the extension uses exactly the supplied convention.-/
+/-- On unstable arities the extension uses exactly the supplied convention.
+@isnad1 id=eq.1h14v.s8.02ade49b7fb3 from=translated src=- shape=ba93f6cb vocab=a35aa3c8
+-/
 theorem invariant_of_unstable (U : UnstableDescendantConventions M I)
     (g : ℕ) (S : Type) [Fintype S] (h : ¬StableArity g S)
     (beta : B) (k : S → ℕ) (a : S → V) :
@@ -120,7 +124,9 @@ theorem invariant_of_unstable (U : UnstableDescendantConventions M I)
   simp only [invariant, extendedDescendantInvariant, h, ↓reduceDIte]
 
 /-- String equation for every arity, derived by separating the stable law
-from the explicitly supplied exceptional recurrences.-/
+from the explicitly supplied exceptional recurrences.
+@isnad1 id=eq.1h14v.s8.0bfb2eea8ecc from=translated src=- shape=3c64b7a3 vocab=afebb8f9
+-/
 theorem global_string (U : UnstableDescendantConventions M I)
     (L : DescendantStringDilatonLaws M I)
     (g : ℕ) (S : Type) [Fintype S] [DecidableEq S]
@@ -148,7 +154,9 @@ theorem global_string (U : UnstableDescendantConventions M I)
         · rw [U.invariant_of_stable g S h]
   · exact U.string_unstable g S h beta k a
 
-/-- Dilaton equation for every arity.-/
+/-- Dilaton equation for every arity.
+@isnad1 id=eq.1h14v.s8.6e76850bc8fb from=translated src=- shape=8b5d8d09 vocab=10c57f41
+-/
 theorem global_dilaton (U : UnstableDescendantConventions M I)
     (L : DescendantStringDilatonLaws M I)
     (g : ℕ) (S : Type) [Fintype S]
@@ -184,7 +192,9 @@ noncomputable def fullDescendantPotential
       (InsertionLabel.power (n := n)) (InsertionLabel.state (n := n) b)
 
 /-- The full potential agrees with the existing stable potential at every
-stable profile.-/
+stable profile.
+@isnad1 id=eq.1h14v.s8.95310ffb401d from=translated src=- shape=a2cf969c vocab=300a8e8a
+-/
 theorem fullDescendantPotential_coeff_of_stable
     (U : UnstableDescendantConventions M I) (b : Basis ι R V) (g : ℕ)
     (n : DescendantVariable ι →₀ ℕ) (beta : B)
@@ -196,7 +206,9 @@ theorem fullDescendantPotential_coeff_of_stable
   rw [U.invariant_of_stable g (InsertionLabel n) h]
 
 /-- At an unstable profile, the coefficient is exactly the declared
-convention with the standard multiplicity weight.-/
+convention with the standard multiplicity weight.
+@isnad1 id=eq.1h14v.s9.dccc3093bbd5 from=translated src=- shape=d8fde4b2 vocab=a16f9eb0
+-/
 theorem fullDescendantPotential_coeff_of_unstable
     (U : UnstableDescendantConventions M I) (b : Basis ι R V) (g : ℕ)
     (n : DescendantVariable ι →₀ ℕ) (beta : B)

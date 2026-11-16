@@ -84,7 +84,9 @@ def tensorDegree {R : Type u} [CommRing R] (A B : EvenGradedAlgebra R)
   Submodule.span R {t | ∃ (i j : ℕ) (a : A) (b : B),
     i + j = d ∧ a ∈ A.degree i ∧ b ∈ B.degree j ∧ t = a ⊗ₜ[R] b}
 
-/-- A homogeneous pure tensor has the sum of the degrees of its factors.-/
+/-- A homogeneous pure tensor has the sum of the degrees of its factors.
+@isnad1 id=mem.2h7v.s10.27fcd3b5c186 from=translated src=- shape=3096150d vocab=d152ffb8
+-/
 theorem tmul_mem_tensorDegree {R : Type u} [CommRing R]
     (A B : EvenGradedAlgebra R) {i j : ℕ} {a : A} {b : B}
     (ha : a ∈ A.degree i) (hb : b ∈ B.degree j) :

@@ -83,10 +83,16 @@ def mate (G : StableGraph S) : Equiv.Perm G.HalfEdge where
     rcases p with ⟨e, i⟩
     fin_cases i <;> rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.d8f5c0132f4c from=translated src=- shape=00ab78cd vocab=6fcac671
+-/
 @[simp]
 theorem mate_edge (G : StableGraph S) (h : G.HalfEdge) :
     (G.mate h).1 = h.1 := rfl
 
+/--
+@isnad1 id=ne.0h3v.s6.3d5c0b0e0def from=translated src=- shape=9798a24e vocab=2957ed8a
+-/
 @[simp]
 theorem mate_ne (G : StableGraph S) (h : G.HalfEdge) : G.mate h ≠ h := by
   rcases h with ⟨e, i⟩
@@ -96,6 +102,9 @@ theorem mate_ne (G : StableGraph S) (h : G.HalfEdge) : G.mate h ≠ h := by
       Fin.one_eq_zero_iff, Fin.zero_eq_one_iff, OfNat.ofNat_ne_one, and_false,
       not_false_eq_true]
 
+/--
+@isnad1 id=eq.0h3v.s6.2bb8830dd1c3 from=translated src=- shape=7b71c23b vocab=2957ed8a
+-/
 @[simp]
 theorem mate_mate (G : StableGraph S) (h : G.HalfEdge) :
     G.mate (G.mate h) = h := by
@@ -112,11 +121,16 @@ def valence (G : StableGraph S) (v : G.Vertex) : ℕ :=
   Fintype.card {s : S // G.legVertex s = v} +
     Fintype.card {h : G.HalfEdge // G.endpoint h.1 h.2 = v}
 
+/--
+@isnad1 id=eq.0h3v.s7.07c53e00adc4 from=translated src=- shape=d2e46ba3 vocab=2d5a7e4a
+-/
 theorem card_vertexLabel (G : StableGraph S) (v : G.Vertex) :
     Fintype.card (G.VertexLabel v) = G.valence v := by
   simp only [Fintype.card_sum, valence]
 
-/-- Every vertex decoration determines a stable moduli-space factor.-/
+/-- Every vertex decoration determines a stable moduli-space factor.
+@isnad1 id=stablear.0h3v.s7.7af60e17711e from=translated src=- shape=5e454d68 vocab=f0a52244
+-/
 theorem vertex_stable (G : StableGraph S) (v : G.Vertex) :
     StableArity (G.genus v) (G.VertexLabel v) := by
   rw [StableArity, G.card_vertexLabel]
@@ -157,6 +171,9 @@ def relabel {T : Type} [Fintype T] (G : StableGraph S) (e : S ≃ T) :
     rw [Fintype.card_congr legEquiv]
     exact G.stable v
 
+/--
+@isnad1 id=eq.0h4v.s5.aff269e9ec4d from=translated src=- shape=46cf6dd7 vocab=115e39ee
+-/
 @[simp]
 theorem relabel_totalGenus {T : Type} [Fintype T]
     (G : StableGraph S) (e : S ≃ T) :
@@ -177,7 +194,9 @@ noncomputable def canonicalOrder (G : StableGraph S) : G.ContractionOrder where
   nodup := Finset.nodup_toList _
   complete := by simp only [Finset.toList_toFinset]
 
-/-- Any two complete edge orders differ only by a permutation.-/
+/-- Any two complete edge orders differ only by a permutation.
+@isnad1 id=perm.0h4v.s5.a0fc8f23c72c from=translated src=- shape=b3d1521c vocab=d2f4e8c0
+-/
 theorem contractionOrder_perm (G : StableGraph S)
     (o₁ o₂ : G.ContractionOrder) : o₁.edges.Perm o₂.edges := by
   apply List.perm_of_nodup_nodup_toFinset_eq o₁.nodup o₂.nodup
@@ -222,7 +241,9 @@ noncomputable def pullback (P : StableGraphPullbacks C)
     C.H G.totalGenus S →ₐ[R] StableGraphVertexCohomology C G :=
   P.orderedPullback G G.canonicalOrder
 
-/-- Every complete contraction order computes the canonical graph pullback.-/
+/-- Every complete contraction order computes the canonical graph pullback.
+@isnad1 id=eq.0h6v.s11.01edc3bb8d42 from=translated src=- shape=4f867b17 vocab=8dea8b94
+-/
 theorem orderedPullback_eq_pullback (P : StableGraphPullbacks C)
     {S : Type} [Fintype S] (G : StableGraph S)
     (o : G.ContractionOrder) :
@@ -231,7 +252,9 @@ theorem orderedPullback_eq_pullback (P : StableGraphPullbacks C)
   exact G.contractionOrder_perm o G.canonicalOrder
 
 /-- In particular, graph pullback is independent of two chosen complete
-contraction orders.-/
+contraction orders.
+@isnad1 id=eq.0h7v.s11.ad214cb83e1f from=translated src=- shape=a77afa20 vocab=ac792d6e
+-/
 theorem orderedPullback_eq (P : StableGraphPullbacks C)
     {S : Type} [Fintype S] (G : StableGraph S)
     (o₁ o₂ : G.ContractionOrder) :

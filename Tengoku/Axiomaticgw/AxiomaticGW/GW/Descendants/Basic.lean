@@ -38,6 +38,9 @@ def ancestorClass (Omega : GromovWittenTheory R V B D C)
   (CohFT.multiplyPsi P g S h k).compMultilinearMap
     (Omega.omega g S h beta)
 
+/--
+@isnad1 id=eq.1h12v.s9.503525e23c46 from=translated src=- shape=ea799d5c vocab=381d74e4
+-/
 @[simp]
 theorem ancestorClass_apply (Omega : GromovWittenTheory R V B D C)
     (P : PsiClasses C) (g : ℕ) (S : Type) [Fintype S]
@@ -45,6 +48,9 @@ theorem ancestorClass_apply (Omega : GromovWittenTheory R V B D C)
     Omega.ancestorClass P g S h beta k a =
       Omega.omega g S h beta a * P.monomial g S h k := rfl
 
+/--
+@isnad1 id=eq.1h10v.s8.f90483be8c66 from=translated src=- shape=25f0be5c vocab=59fa4296
+-/
 @[simp]
 theorem ancestorClass_zero (Omega : GromovWittenTheory R V B D C)
     (P : PsiClasses C) (g : ℕ) (S : Type) [Fintype S]
@@ -55,7 +61,9 @@ theorem ancestorClass_zero (Omega : GromovWittenTheory R V B D C)
   intro a
   simp only [ancestorClass_apply, PsiClasses.monomial_zero, mul_one]
 
-/-- Relabelling transports markings, ancestor powers, and inputs together.-/
+/-- Relabelling transports markings, ancestor powers, and inputs together.
+@isnad1 id=eq.2h13v.s9.fa2afabacdee from=translated src=- shape=113cce07 vocab=e7137add
+-/
 theorem ancestorClass_relabel (Omega : GromovWittenTheory R V B D C)
     (P : PsiClasses C) (g : ℕ) (S T : Type) [Fintype S] [Fintype T]
     (hS : StableArity g S) (hT : StableArity g T) (e : S ≃ T)
@@ -73,7 +81,9 @@ theorem ancestorClass_relabel (Omega : GromovWittenTheory R V B D C)
     (Omega.relabel g S T hS hT e beta)
   exact homega ▸ rfl
 
-/-- Ancestor powers add their codimension to the primary output degree.-/
+/-- Ancestor powers add their codimension to the primary output degree.
+@isnad1 id=mem.3h14v.s10.937208279cec from=translated src=- shape=4e5529a4 vocab=d746e379
+-/
 theorem ancestorClass_degree (Omega : GromovWittenTheory R V B D C)
     (P : PsiClasses C) (g : ℕ) (S : Type) [Fintype S]
     (h : StableArity g S) (beta : B) (k p : S → ℕ) (a : S → V) (q : ℕ)
@@ -87,7 +97,9 @@ theorem ancestorClass_degree (Omega : GromovWittenTheory R V B D C)
   · exact P.monomial_degree g S h k
 
 /-- Ancestor classes vanish when the primary expected codimension is
-negative; stable-curve psi powers are multiplied only after stabilization.-/
+negative; stable-curve psi powers are multiplied only after stabilization.
+@isnad1 id=eq.3h13v.s9.f39f2423dae2 from=translated src=- shape=87fb5203 vocab=759a8c0b
+-/
 theorem ancestorClass_eq_zero_of_negative (Omega : GromovWittenTheory R V B D C)
     (P : PsiClasses C) (g : ℕ) (S : Type) [Fintype S]
     (h : StableArity g S) (beta : B) (k p : S → ℕ) (a : S → V)
@@ -100,7 +112,9 @@ theorem ancestorClass_eq_zero_of_negative (Omega : GromovWittenTheory R V B D C)
     Omega.omega_eq_zero_of_negative g S h beta p a ha hnegative, zero_mul]
 
 /-- Ancestor classes satisfy the total codimension rule. If the psi
-powers would require a negative primary degree, the primary class vanishes.-/
+powers would require a negative primary degree, the primary class vanishes.
+@isnad1 id=mem.3h14v.s10.8d75589b27c8 from=translated src=- shape=97438159 vocab=d746e379
+-/
 theorem ancestorClass_total_degree (Omega : GromovWittenTheory R V B D C)
     (P : PsiClasses C) (g : ℕ) (S : Type) [Fintype S]
     (h : StableArity g S) (beta : B) (k p : S → ℕ) (a : S → V)
@@ -135,6 +149,9 @@ def ancestorInvariant (Omega : GromovWittenTheory R V B D C)
   (I.integrate g S h).compMultilinearMap
     (Omega.ancestorClass P g S h beta k)
 
+/--
+@isnad1 id=eq.1h13v.s9.63cdcfc925fa from=translated src=- shape=46b99b24 vocab=5f2f65f5
+-/
 @[simp]
 theorem ancestorInvariant_apply (Omega : GromovWittenTheory R V B D C)
     (P : PsiClasses C) (I : StableCurveIntegration C)
@@ -145,7 +162,9 @@ theorem ancestorInvariant_apply (Omega : GromovWittenTheory R V B D C)
         (Omega.omega g S h beta a * P.monomial g S h k) := rfl
 
 /-- Numerical ancestor invariants are invariant under simultaneous
-relabelling of markings, powers, and inputs.-/
+relabelling of markings, powers, and inputs.
+@isnad1 id=eq.2h14v.s8.b2b72da31705 from=translated src=- shape=fadc9dba vocab=a2e5f80f
+-/
 theorem ancestorInvariant_relabel (Omega : GromovWittenTheory R V B D C)
     (P : PsiClasses C) (I : StableCurveIntegration C)
     (g : ℕ) (S T : Type) [Fintype S] [Fintype T]
@@ -164,7 +183,9 @@ theorem ancestorInvariant_relabel (Omega : GromovWittenTheory R V B D C)
   exact homega ▸ rfl
 
 /-- A homogeneous ancestor invariant vanishes unless its total codimension is
-the dimension of the stable-curve space.-/
+the dimension of the stable-curve space.
+@isnad1 id=eq.4h15v.s8.ef6565c25af4 from=translated src=- shape=4ffa4bd0 vocab=97009a86
+-/
 theorem ancestorInvariant_eq_zero_of_degree_ne
     (Omega : GromovWittenTheory R V B D C) (P : PsiClasses C)
     (I : StableCurveIntegration C) (g : ℕ) (S : Type) [Fintype S]
@@ -179,7 +200,9 @@ theorem ancestorInvariant_eq_zero_of_degree_ne
     (Omega.ancestorClass_degree P g S h beta k p a q ha hq) hne
 
 /-- A homogeneous ancestor invariant vanishes unless its total expected
-codimension is the dimension of the stable-curve space.-/
+codimension is the dimension of the stable-curve space.
+@isnad1 id=eq.4h15v.s8.2154283240b7 from=translated src=- shape=f58fd145 vocab=97009a86
+-/
 theorem ancestorInvariant_eq_zero_of_total_degree_ne
     (Omega : GromovWittenTheory R V B D C) (P : PsiClasses C)
     (I : StableCurveIntegration C) (g : ℕ) (S : Type) [Fintype S]
@@ -243,7 +266,9 @@ variable {R V B : Type u} [CommRing R] [Algebra ℚ R]
   {C : StableCurveCohomology R} {Omega : GromovWittenTheory R V B D C}
 
 /-- Compatibility form of the descendant degree law when the primary output
-degree is already a natural number.-/
+degree is already a natural number.
+@isnad1 id=mem.3h14v.s10.f9293d452850 from=translated src=- shape=fc7c0b09 vocab=e07e2a73
+-/
 theorem descendant_degree (M : StableMapDescendants Omega)
     (g : ℕ) (S : Type) [Fintype S] (h : StableArity g S)
     (beta : B) (k p : S → ℕ) (a : S → V) (q : ℕ)
@@ -265,6 +290,9 @@ def invariant (M : StableMapDescendants Omega)
   (I.integrate g S h).compMultilinearMap
     (M.descendantClass g S h beta k)
 
+/--
+@isnad1 id=eq.1h13v.s9.9cd0178eef27 from=translated src=- shape=0a653ea3 vocab=ee7ff6c4
+-/
 @[simp]
 theorem invariant_apply (M : StableMapDescendants Omega)
     (I : StableCurveIntegration C) (g : ℕ) (S : Type) [Fintype S]
@@ -273,7 +301,9 @@ theorem invariant_apply (M : StableMapDescendants Omega)
       I.integrate g S h (M.descendantClass g S h beta k a) := rfl
 
 /-- Numerical stable-map descendant invariants are invariant under
-simultaneous relabelling of markings, powers, and inputs.-/
+simultaneous relabelling of markings, powers, and inputs.
+@isnad1 id=eq.2h14v.s8.fabf1ce14b64 from=translated src=- shape=4b689ac4 vocab=4ef07ee2
+-/
 theorem invariant_relabel (M : StableMapDescendants Omega)
     (I : StableCurveIntegration C) (g : ℕ) (S T : Type)
     [Fintype S] [Fintype T] (hS : StableArity g S)
@@ -288,6 +318,9 @@ theorem invariant_relabel (M : StableMapDescendants Omega)
     (M.relabel g S T hS hT e beta k)
   exact hdescendant ▸ rfl
 
+/--
+@isnad1 id=eq.1h11v.s8.d05235848417 from=translated src=- shape=5946db49 vocab=247f41bf
+-/
 @[simp]
 theorem invariant_zero (M : StableMapDescendants Omega)
     (I : StableCurveIntegration C) (g : ℕ) (S : Type) [Fintype S]

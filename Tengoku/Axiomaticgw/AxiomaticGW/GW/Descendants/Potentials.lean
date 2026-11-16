@@ -118,6 +118,9 @@ noncomputable def insertionDerivative
   (b.repr x).sum fun i r ↦ r •
     MvPowerSeries.pderiv (R := NovikovSeries D R) (k, i) f
 
+/--
+@isnad1 id=eq.0h9v.s9.3231ae665149 from=translated src=- shape=23db3f1a vocab=6c096d55
+-/
 @[simp]
 theorem insertionDerivative_basis
     {R V B : Type*} {ι : Type*} [CommRing R]
@@ -174,6 +177,9 @@ noncomputable def potentials (Omega : GromovWittenTheory R V B D C)
   descendant := Omega.descendantPotential M I b
   ancestor := Omega.ancestorPotential P I b
 
+/--
+@isnad1 id=eq.1h13v.s9.9973e331c45f from=translated src=- shape=91c7816f vocab=b5b2643a
+-/
 theorem descendantPotential_coeff_of_stable
     (Omega : GromovWittenTheory R V B D C)
     (M : StableMapDescendants Omega) (I : StableCurveIntegration C)
@@ -188,6 +194,9 @@ theorem descendantPotential_coeff_of_stable
   simp only [descendantPotential, h, ↓reduceDIte,
     StableMapDescendants.invariant_apply]
 
+/--
+@isnad1 id=eq.1h13v.s8.e3c3fd1d88dd from=translated src=- shape=fabb014a vocab=6ee315f2
+-/
 theorem descendantPotential_coeff_of_unstable
     (Omega : GromovWittenTheory R V B D C)
     (M : StableMapDescendants Omega) (I : StableCurveIntegration C)
@@ -197,6 +206,9 @@ theorem descendantPotential_coeff_of_unstable
   classical
   simp only [descendantPotential, h, ↓reduceDIte]
 
+/--
+@isnad1 id=eq.1h13v.s9.d1f10f1da56e from=translated src=- shape=36f9f8ec vocab=7a8995bc
+-/
 theorem ancestorPotential_coeff_of_stable
     (Omega : GromovWittenTheory R V B D C)
     (P : PsiClasses C) (I : StableCurveIntegration C)
@@ -210,6 +222,9 @@ theorem ancestorPotential_coeff_of_stable
   classical
   simp only [ancestorPotential, h, ↓reduceDIte, ancestorInvariant_apply]
 
+/--
+@isnad1 id=eq.1h13v.s8.41e7d0206661 from=translated src=- shape=04447f3d vocab=c9dbafd4
+-/
 theorem ancestorPotential_coeff_of_unstable
     (Omega : GromovWittenTheory R V B D C)
     (P : PsiClasses C) (I : StableCurveIntegration C)
@@ -243,7 +258,9 @@ noncomputable def boundaryPotential (X : DescendantAncestorComparison P M)
     else 0
 
 /-- Descendant potentials equal ancestor potentials plus their recorded
-residual series. This identity does not establish geometric boundary support.-/
+residual series. This identity does not establish geometric boundary support.
+@isnad1 id=eq.0h13v.s8.1bef7c1baa33 from=translated src=- shape=6c7eff33 vocab=9e7edabf
+-/
 theorem descendantPotential_eq_ancestor_add_boundary
     (X : DescendantAncestorComparison P M) (I : StableCurveIntegration C)
     (b : Basis ι R V) (g : ℕ) :

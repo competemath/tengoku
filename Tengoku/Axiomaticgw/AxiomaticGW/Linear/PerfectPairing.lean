@@ -76,7 +76,9 @@ noncomputable def toDual (P : SymmetricPerfectPairing R V) :
 
 /-- Evaluating the dual functional produced by `toDual` recovers the original
 pairing.  The `@[simp]` attribute lets Lean use this fact automatically during
-simplification.-/
+simplification.
+@isnad1 id=eq.0h5v.s9.696712c9a30f from=translated src=- shape=94c0d00f vocab=628ac8fb
+-/
 @[simp]
 theorem toDual_apply (P : SymmetricPerfectPairing R V) (x y : V) :
     P.toDual x y = P.form x y := by

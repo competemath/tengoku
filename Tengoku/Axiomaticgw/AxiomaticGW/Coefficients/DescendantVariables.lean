@@ -58,15 +58,24 @@ noncomputable def pderiv (v : Vars) :
     simp only [nsmul_eq_mul]
     ring
 
+/--
+@isnad1 id=eq.0h5v.s8.5be1b985e9e0 from=translated src=- shape=4db4752c vocab=12e7e9ce
+-/
 @[simp]
 theorem pderiv_apply (v : Vars) (f : MvPowerSeries Vars R)
     (n : Vars →₀ ℕ) :
     pderiv v f n = (n v + 1) • f (n + Finsupp.single v 1) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.649a4885ee14 from=translated src=- shape=266a0fdb vocab=75086e94
+-/
 @[simp]
 theorem pderiv_zero (v : Vars) : pderiv v (0 : MvPowerSeries Vars R) = 0 :=
   map_zero (pderiv v)
 
+/--
+@isnad1 id=eq.0h5v.s9.df3ac063a59d from=translated src=- shape=ccb270d0 vocab=b19496d8
+-/
 @[simp]
 theorem pderiv_add (v : Vars) (f g : MvPowerSeries Vars R) :
     pderiv v (f + g) = pderiv v f + pderiv v g :=
@@ -153,7 +162,9 @@ private theorem coeff_mul_pderiv_trunc' (v : Vars)
     coeff_pderiv_trunc' v g x.2 _ hright]
   simp only [MvPowerSeries.coeff_apply]
 
-/-- Formal partial differentiation satisfies the Leibniz rule.-/
+/-- Formal partial differentiation satisfies the Leibniz rule.
+@isnad1 id=eq.0h5v.s9.70d09f38be50 from=translated src=- shape=b96fc6b1 vocab=4d8b3478
+-/
 theorem pderiv_mul (v : Vars) (f g : MvPowerSeries Vars R) :
     pderiv v (f * g) = pderiv v f * g + f * pderiv v g := by
   classical
@@ -167,7 +178,9 @@ theorem pderiv_mul (v : Vars) (f g : MvPowerSeries Vars R) :
 
 end PDerivMul
 
-/-- Partial derivatives in distinct formal variables commute.-/
+/-- Partial derivatives in distinct formal variables commute.
+@isnad1 id=eq.1h5v.s9.a7714b8d4c6c from=translated src=- shape=ccc639f4 vocab=75086e94
+-/
 theorem pderiv_comm {v w : Vars} (h : v ≠ w)
     (f : MvPowerSeries Vars R) :
     pderiv v (pderiv w f) = pderiv w (pderiv v f) := by
@@ -187,7 +200,9 @@ theorem pderiv_comm {v w : Vars} (h : v ≠ w)
     Finsupp.single_eq_of_ne (Ne.symm h), add_zero, nsmul_eq_mul]
   ring
 
-/-- Formal partial derivatives commute for all pairs of variables.-/
+/-- Formal partial derivatives commute for all pairs of variables.
+@isnad1 id=eq.0h5v.s9.997af98356e6 from=translated src=- shape=5e5cbc76 vocab=75086e94
+-/
 theorem pderiv_commute (v w : Vars) (f : MvPowerSeries Vars R) :
     pderiv v (pderiv w f) = pderiv w (pderiv v f) := by
   by_cases h : v = w
@@ -201,17 +216,25 @@ noncomputable def iteratedPDeriv :
   | [] => LinearMap.id
   | v :: derivatives => (pderiv v).comp (iteratedPDeriv derivatives)
 
+/--
+@isnad1 id=eq.0h3v.s7.95437f6fab0d from=translated src=- shape=9775b38a vocab=9bfccc80
+-/
 @[simp]
 theorem iteratedPDeriv_nil (f : MvPowerSeries Vars R) :
     iteratedPDeriv ([] : List Vars) f = f := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.86ae3dd8eba9 from=translated src=- shape=566a12df vocab=174503a9
+-/
 @[simp]
 theorem iteratedPDeriv_cons (v : Vars) (derivatives : List Vars)
     (f : MvPowerSeries Vars R) :
     iteratedPDeriv (v :: derivatives) f =
       pderiv v (iteratedPDeriv derivatives f) := rfl
 
-/-- Adjacent formal derivatives may be exchanged.-/
+/-- Adjacent formal derivatives may be exchanged.
+@isnad1 id=eq.0h6v.s8.5c61f3e3a8f0 from=translated src=- shape=6e4d45ca vocab=9c392c00
+-/
 theorem iteratedPDeriv_swap (v w : Vars) (derivatives : List Vars)
     (f : MvPowerSeries Vars R) :
     iteratedPDeriv (v :: w :: derivatives) f =

@@ -31,7 +31,9 @@ noncomputable def totalFreeEnergy {A : Type*} [CommRing A]
   HahnSeries.single (-1) 1 *
     (PowerSeries.mk F : LaurentSeries A)
 
-/-- The coefficient of `hbar^(g-1)` is exactly the genus-`g` potential.-/
+/-- The coefficient of `hbar^(g-1)` is exactly the genus-`g` potential.
+@isnad1 id=eq.0h3v.s5.0ce0c1a7c6d7 from=translated src=- shape=2a2e9c70 vocab=d89f1796
+-/
 @[simp]
 theorem totalFreeEnergy_coeff {A : Type*} [CommRing A]
     (F : GenusPotential A) (g : ℕ) :
@@ -64,11 +66,17 @@ noncomputable def ancestorFreeEnergy (F : GWPotentials D Vars R) :
     LaurentSeries (FormalPotential D Vars R) :=
   totalFreeEnergy F.ancestor
 
+/--
+@isnad1 id=eq.0h6v.s6.b6caa348c190 from=translated src=- shape=ec36ebf9 vocab=c1ab3314
+-/
 @[simp]
 theorem descendantFreeEnergy_coeff (F : GWPotentials D Vars R) (g : ℕ) :
     F.descendantFreeEnergy.coeff ((g : ℤ) - 1) = F.descendant g :=
   totalFreeEnergy_coeff F.descendant g
 
+/--
+@isnad1 id=eq.0h6v.s6.808fd82ab250 from=translated src=- shape=ec36ebf9 vocab=ad3da44a
+-/
 @[simp]
 theorem ancestorFreeEnergy_coeff (F : GWPotentials D Vars R) (g : ℕ) :
     F.ancestorFreeEnergy.coeff ((g : ℤ) - 1) = F.ancestor g :=

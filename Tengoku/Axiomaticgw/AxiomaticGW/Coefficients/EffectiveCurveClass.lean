@@ -38,6 +38,9 @@ variable {B : Type*} [AddCancelCommMonoid B]
 noncomputable def bounded (D : EffectiveCurveMonoid B) (d : ℕ) : Finset B :=
   (D.finite_energy_le d).toFinset
 
+/--
+@isnad1 id=iff.0h4v.s6.ab7088344a8b from=translated src=- shape=45e1cf20 vocab=363d4027
+-/
 @[simp]
 theorem mem_bounded (D : EffectiveCurveMonoid B) (d : ℕ) (beta : B) :
     beta ∈ D.bounded d ↔ D.energy beta ≤ d := by
@@ -50,6 +53,9 @@ noncomputable def splittings (D : EffectiveCurveMonoid B) (beta : B) :
   exact (D.bounded (D.energy beta) ×ˢ D.bounded (D.energy beta)).filter
     (fun pair ↦ pair.1 + pair.2 = beta)
 
+/--
+@isnad1 id=iff.0h5v.s6.bfa0d67726ac from=translated src=- shape=1db62fa6 vocab=3bfe3f8f
+-/
 @[simp]
 theorem mem_splittings (D : EffectiveCurveMonoid B) (beta₁ beta₂ beta : B) :
     (beta₁, beta₂) ∈ D.splittings beta ↔ beta₁ + beta₂ = beta := by
@@ -66,6 +72,9 @@ theorem mem_splittings (D : EffectiveCurveMonoid B) (beta₁ beta₂ beta : B) :
     exact ⟨Finset.mem_product.mpr ⟨(D.mem_bounded _ _).mpr h₁,
       (D.mem_bounded _ _).mpr h₂⟩, hsum⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.c9d2242caccb from=translated src=- shape=7235820a vocab=734ea893
+-/
 @[simp]
 theorem splittings_zero (D : EffectiveCurveMonoid B) :
     D.splittings 0 = {(0, 0)} := by
@@ -105,6 +114,9 @@ def nat : EffectiveCurveMonoid ℕ where
     change n ≤ d at hn
     exact Nat.lt_succ_of_le hn
 
+/--
+@isnad1 id=eq.0h1v.s5.ea6dfa4c9cb9 from=translated src=- shape=4c0d0bb5 vocab=18b3c629
+-/
 @[simp]
 theorem nat_energy (d : ℕ) : nat.energy d = d := rfl
 

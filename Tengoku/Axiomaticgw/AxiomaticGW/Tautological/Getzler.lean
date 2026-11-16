@@ -67,6 +67,9 @@ instance : Fintype GetzlerStratum where
               (Finset.mem_insert_of_mem
                 (Finset.mem_insert_of_mem (Finset.mem_singleton_self _))))))
 
+/--
+@isnad1 id=eq.0h0v.s3.16335a011ae5 from=translated src=- shape=b0ae1d2b vocab=ce3f496e
+-/
 @[simp]
 theorem getzlerStratum_card : Fintype.card GetzlerStratum = 7 := rfl
 
@@ -84,12 +87,33 @@ def coefficient : GetzlerStratum → ℚ
   | .delta04 => 1
   | .deltaBeta => -2
 
+/--
+@isnad1 id=eq.0h0v.s3.b20c8fb1baab from=translated src=- shape=b0ae1d2b vocab=566d9002
+-/
 @[simp] theorem coefficient_delta22 : coefficient .delta22 = 12 := rfl
+/--
+@isnad1 id=eq.0h0v.s3.b0c417cadb6b from=translated src=- shape=f7285ee8 vocab=b26c87de
+-/
 @[simp] theorem coefficient_delta23 : coefficient .delta23 = -4 := rfl
+/--
+@isnad1 id=eq.0h0v.s3.8a3b0c1338be from=translated src=- shape=f7285ee8 vocab=cdce75c7
+-/
 @[simp] theorem coefficient_delta24 : coefficient .delta24 = -2 := rfl
+/--
+@isnad1 id=eq.0h0v.s3.1f39128f269a from=translated src=- shape=b0ae1d2b vocab=9139b8fd
+-/
 @[simp] theorem coefficient_delta34 : coefficient .delta34 = 6 := rfl
+/--
+@isnad1 id=eq.0h0v.s3.4f8e7ea5fef1 from=translated src=- shape=b0ae1d2b vocab=a640dcc1
+-/
 @[simp] theorem coefficient_delta03 : coefficient .delta03 = 1 := rfl
+/--
+@isnad1 id=eq.0h0v.s3.6d959cbd1d38 from=translated src=- shape=b0ae1d2b vocab=9a156f2c
+-/
 @[simp] theorem coefficient_delta04 : coefficient .delta04 = 1 := rfl
+/--
+@isnad1 id=eq.0h0v.s3.3b7404719ab6 from=translated src=- shape=f7285ee8 vocab=9f03ba6f
+-/
 @[simp] theorem coefficient_deltaBeta : coefficient .deltaBeta = -2 := rfl
 
 end GetzlerStratum
@@ -110,7 +134,9 @@ noncomputable def relation (E : GetzlerStrataEncoding) :
     StrataModule 1 (Fin 4) :=
   ∑ x, GetzlerStratum.coefficient x • E.cycle x
 
-/-- Getzler's relation is homogeneous of codimension two.-/
+/-- Getzler's relation is homogeneous of codimension two.
+@isnad1 id=mem.0h1v.s8.1ca1b46b5790 from=translated src=- shape=b2254b7e vocab=8e06345a
+-/
 theorem relation_mem_degree (E : GetzlerStrataEncoding) :
     E.relation ∈ StrataModule.degree 2 := by
   unfold relation
@@ -129,7 +155,9 @@ abbrev KnownQuotient (E : GetzlerStrataEncoding) :=
   StrataModule.KnownRelationsQuotient E.knownRelations
 
 /-- The encoded Getzler combination vanishes in the quotient where it is a
-named relation generator. This does not prove the geometric relation.-/
+named relation generator. This does not prove the geometric relation.
+@isnad1 id=eq.0h1v.s9.4fce68639c16 from=translated src=- shape=2ccc256c vocab=6392f852
+-/
 theorem relation_eq_zero (E : GetzlerStrataEncoding) :
     StrataModule.quotientMk E.knownRelations E.relation = 0 := by
   apply StrataModule.quotientMk_eq_zero
@@ -160,7 +188,9 @@ variable {R : Type*} [CommRing R] [Algebra ℚ R]
 attribute [local instance] strataRealizationModule
 
 /-- If an encoded cycle realizes as the corresponding geometric cycle, the
-encoded Getzler combination lies in the realization kernel.-/
+encoded Getzler combination lies in the realization kernel.
+@isnad1 id=mem.1h5v.s9.7eefa6f510a7 from=translated src=- shape=dea9d655 vocab=5afa7084
+-/
 theorem relation_mem_realization_kernel (E : GetzlerStrataEncoding)
     (A : StrataRealization C 1 (Fin 4)) (G : GetzlerRelationGeometry C)
     (hcycle : ∀ x, A.map (E.cycle x) = G.cycle x) : E.relation ∈ A.kernel := by
@@ -174,7 +204,9 @@ theorem relation_mem_realization_kernel (E : GetzlerStrataEncoding)
   exact G.relation
 
 /-- The dimension and encoded Getzler relations lie in the kernel of every
-compatible geometric realization.-/
+compatible geometric realization.
+@isnad1 id=le.1h5v.s9.c8d098521687 from=translated src=- shape=ec087b9b vocab=022e530e
+-/
 theorem knownRelations_le_realization_kernel (E : GetzlerStrataEncoding)
     (A : StrataRealization C 1 (Fin 4)) (G : GetzlerRelationGeometry C)
     (hcycle : ∀ x, A.map (E.cycle x) = G.cycle x) :

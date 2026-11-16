@@ -55,7 +55,9 @@ variable {R V B : Type u} [CommRing R] [Algebra ℚ R]
 
 /-- The recorded residual is uniquely the descendant class minus the ancestor
 class. This makes explicit that the weak comparison structure alone carries no
-additional boundary-support information.-/
+additional boundary-support information.
+@isnad1 id=eq.1h13v.s10.889e7cb93739 from=translated src=- shape=3aebf6b0 vocab=c41d429a
+-/
 theorem boundaryCorrection_eq_sub
     (X : DescendantAncestorComparison P M) (g : ℕ) (S : Type)
     [Fintype S] (h : StableArity g S) (beta : B) (k : S → ℕ) :
@@ -66,7 +68,9 @@ theorem boundaryCorrection_eq_sub
   rw [add_comm]
   exact (X.comparison g S h beta k).symm
 
-/-- The residual vanishes when every cotangent power is zero.-/
+/-- The residual vanishes when every cotangent power is zero.
+@isnad1 id=eq.1h12v.s9.18d7df8ebafe from=translated src=- shape=9361a27d vocab=e2aac775
+-/
 theorem boundaryCorrection_zero (X : DescendantAncestorComparison P M)
     (g : ℕ) (S : Type) [Fintype S] (h : StableArity g S) (beta : B) :
     X.boundaryCorrection g S h beta (fun _ ↦ 0) = 0 := by
@@ -77,7 +81,9 @@ theorem boundaryCorrection_zero (X : DescendantAncestorComparison P M)
   simpa only [add_sub_cancel_left, sub_self] using hsubtract.symm
 
 /-- The residual is natural under simultaneous relabelling of markings,
-powers, and state-space inputs.-/
+powers, and state-space inputs.
+@isnad1 id=eq.2h15v.s9.78ca94aa8e2f from=translated src=- shape=50394cb4 vocab=b853358f
+-/
 theorem boundaryCorrection_relabel
     (X : DescendantAncestorComparison P M) (g : ℕ) (S T : Type)
     [Fintype S] [Fintype T] (hS : StableArity g S)
@@ -97,7 +103,9 @@ theorem boundaryCorrection_relabel
   exact congrArg₂ (fun x y ↦ x - y) hdescendant hancestor
 
 /-- For homogeneous inputs, the residual has the same total codimension as
-the descendant and ancestor classes it compares.-/
+the descendant and ancestor classes it compares.
+@isnad1 id=mem.3h16v.s10.59e2b4b65477 from=translated src=- shape=590e8bb4 vocab=752fdc42
+-/
 theorem boundaryCorrection_degree
     (X : DescendantAncestorComparison P M) (g : ℕ) (S : Type)
     [Fintype S] (h : StableArity g S) (beta : B) (k p : S → ℕ)
@@ -111,7 +119,9 @@ theorem boundaryCorrection_degree
     (Omega.ancestorClass_total_degree P g S h beta k p a q ha hq)
 
 /-- Integrating the residual decomposition gives the numerical
-descendant--ancestor identity.-/
+descendant--ancestor identity.
+@isnad1 id=eq.1h14v.s9.2c090e3076fd from=translated src=- shape=e2d7749f vocab=ca2f0b6b
+-/
 theorem invariant_eq_ancestor_add_boundary
     (X : DescendantAncestorComparison P M) (I : StableCurveIntegration C)
     (g : ℕ) (S : Type) [Fintype S] (h : StableArity g S)

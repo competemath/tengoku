@@ -59,11 +59,16 @@ attribute [local instance] strataRealizationModule
 noncomputable def kernel (A : StrataRealization C g S) :
     Submodule ℚ (StrataModule g S) := LinearMap.ker A.map
 
+/--
+@isnad1 id=iff.0h6v.s8.f6ede2fc0256 from=translated src=- shape=5d8513b7 vocab=f71cf9b6
+-/
 theorem mem_kernel_iff (A : StrataRealization C g S)
     (x : StrataModule g S) : x ∈ A.kernel ↔ A.map x = 0 := Iff.rfl
 
 /-- Dimension relations vanish under every degree-preserving realization of
-a stable arity.-/
+a stable arity.
+@isnad1 id=le.1h5v.s7.9eb40f87e305 from=translated src=- shape=46216c00 vocab=5b7200f6
+-/
 theorem dimensionRelations_le_kernel (A : StrataRealization C g S)
     (h : StableArity g S) : StrataModule.dimensionRelations ≤ A.kernel := by
   apply Submodule.span_le.mpr
@@ -82,6 +87,9 @@ noncomputable def factor (A : StrataRealization C g S)
     StrataModule.KnownRelationsQuotient relations →ₗ[ℚ] C.H g S :=
   relations.liftQ A.map hrelations
 
+/--
+@isnad1 id=eq.1h6v.s8.70e049c6fa56 from=translated src=- shape=39e40cd4 vocab=b8e0e02f
+-/
 @[simp]
 theorem factor_comp_quotientMk (A : StrataRealization C g S)
     (relations : Submodule ℚ (StrataModule g S))
@@ -90,6 +98,9 @@ theorem factor_comp_quotientMk (A : StrataRealization C g S)
         (StrataModule.quotientMk relations) = A.map := by
   exact Submodule.liftQ_mkQ relations A.map hrelations
 
+/--
+@isnad1 id=eq.1h7v.s9.aa70d1f4f36b from=translated src=- shape=2f0dccaf vocab=46a8f2cf
+-/
 theorem factor_mk (A : StrataRealization C g S)
     (relations : Submodule ℚ (StrataModule g S))
     (hrelations : relations ≤ A.kernel)

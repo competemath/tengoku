@@ -46,6 +46,9 @@ def ancestor (Ω : CohFT R V C) (P : PsiClasses C)
   (I.integrate g S h).compMultilinearMap
     ((multiplyPsi P g S h k).compMultilinearMap (Ω.omega g S h))
 
+/--
+@isnad1 id=eq.1h10v.s9.f85f2cbaa5e0 from=translated src=- shape=c9875b79 vocab=2fa5ccdc
+-/
 @[simp]
 theorem ancestor_apply (Ω : CohFT R V C) (P : PsiClasses C)
     (I : StableCurveIntegration C) (g : ℕ) (S : Type) [Fintype S]
@@ -53,6 +56,9 @@ theorem ancestor_apply (Ω : CohFT R V C) (P : PsiClasses C)
     Ω.ancestor P I g S h k a =
       I.integrate g S h (Ω.omega g S h a * P.monomial g S h k) := rfl
 
+/--
+@isnad1 id=eq.1h9v.s9.ff78b38db978 from=translated src=- shape=035bf9d8 vocab=b682ed8f
+-/
 theorem ancestor_zero_apply (Ω : CohFT R V C) (P : PsiClasses C)
     (I : StableCurveIntegration C) (g : ℕ) (S : Type) [Fintype S]
     (h : StableArity g S) (a : S → V) :
@@ -61,7 +67,9 @@ theorem ancestor_zero_apply (Ω : CohFT R V C) (P : PsiClasses C)
   simp only [ancestor_apply, PsiClasses.monomial_zero, mul_one]
 
 /-- Ancestor correlators are invariant under simultaneous relabelling of
-markings, insertion powers, and state-space inputs.-/
+markings, insertion powers, and state-space inputs.
+@isnad1 id=eq.2h11v.s7.aaa152362a27 from=translated src=- shape=7292ceed vocab=0b478943
+-/
 theorem ancestor_domDomCongr (Ω : CohFT R V C) (P : PsiClasses C)
     (I : StableCurveIntegration C) (g : ℕ) (S T : Type)
     [Fintype S] [Fintype T] (hS : StableArity g S) (hT : StableArity g T)
@@ -102,6 +110,9 @@ def integrate (g : ℕ) (S : Type) [Fintype S] : R →ₗ[R] R :=
   if StableArity.dimension g S = 0 then LinearMap.id else 0
 
 omit [Algebra ℚ R] in
+/--
+@isnad1 id=eq.0h1v.s6.c59e68df6e3b from=translated src=- shape=e56cba4a vocab=dd26f4a9
+-/
 @[simp]
 theorem integrate_zero_fin_three : integrate R 0 (Fin 3) = LinearMap.id := by
   simp only [integrate, StableArity.dimension_zero_fin_three, ↓reduceIte]
@@ -156,6 +167,9 @@ def psiForgetFormula : PsiForgetFormula (psiClasses R) where
     intros
     simp only [psiClasses, AlgHom.coe_id, id_eq, add_zero]
 
+/--
+@isnad1 id=eq.1h4v.s7.724ba81c6abc from=translated src=- shape=4873cdbb vocab=08a54b08
+-/
 @[simp]
 theorem kappa_eq_zero (g : ℕ) (S : Type) [Fintype S]
     (h : StableArity g S) (m : ℕ) :
@@ -170,7 +184,9 @@ variable {R V : Type u} [CommRing R] [Algebra ℚ R]
   [AddCommGroup V] [Module R V] [Module.Free R V] [Module.Finite R V]
 
 /-- In the constant model, the zero-power genus-zero three-point ancestor is
-the original topological correlator.-/
+the original topological correlator.
+@isnad1 id=eq.0h4v.s8.a9538770eaf2 from=translated src=- shape=02120ac6 vocab=c26ecc49
+-/
 theorem toConstantCohFT_ancestor_zero_three (T : TopologicalCohFT R V)
     (a : Fin 3 → V) :
     T.toConstantCohFT.ancestor

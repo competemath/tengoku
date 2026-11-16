@@ -126,6 +126,9 @@ def monomial {R : Type u} [CommRing R] [Algebra ℚ R]
     (k : S → ℕ) : C.H g S :=
   ∏ s, P.psi g S h s ^ k s
 
+/--
+@isnad1 id=eq.1h5v.s7.13d3be29efeb from=translated src=- shape=04e62242 vocab=129c1bca
+-/
 @[simp]
 theorem monomial_zero {R : Type u} [CommRing R] [Algebra ℚ R]
     {C : StableCurveCohomology R} (P : PsiClasses C)
@@ -133,7 +136,9 @@ theorem monomial_zero {R : Type u} [CommRing R] [Algebra ℚ R]
     P.monomial g S h (fun _ ↦ 0) = 1 := by
   simp only [monomial, pow_zero, Finset.prod_const_one]
 
-/-- A psi monomial has codimension equal to the sum of its exponents.-/
+/-- A psi monomial has codimension equal to the sum of its exponents.
+@isnad1 id=mem.1h6v.s8.19a8da8e57af from=translated src=- shape=9118ac8a vocab=c483fc03
+-/
 theorem monomial_degree {R : Type u} [CommRing R] [Algebra ℚ R]
     {C : StableCurveCohomology R} (P : PsiClasses C)
     (g : ℕ) (S : Type) [Fintype S] (h : StableArity g S)
@@ -151,7 +156,9 @@ theorem monomial_degree {R : Type u} [CommRing R] [Algebra ℚ R]
           using SetLike.pow_mem_graded (k s) (P.psi_degree g S h s)
       · exact ih
 
-/-- Relabelling transports a `psi` monomial by reindexing its powers.-/
+/-- Relabelling transports a `psi` monomial by reindexing its powers.
+@isnad1 id=eq.2h8v.s8.fa7607b3f6e0 from=translated src=- shape=5dc0cbbf vocab=0995d854
+-/
 theorem rename_monomial {R : Type u} [CommRing R] [Algebra ℚ R]
     {C : StableCurveCohomology R} (P : PsiClasses C)
     (g : ℕ) (S T : Type) [Fintype S] [Fintype T]
@@ -172,7 +179,9 @@ def kappa {R : Type u} [CommRing R] [Algebra ℚ R]
     (m : ℕ) : C.H g S :=
   F.push g S h (P.psi g (Option S) (StableArity.option h) none ^ (m + 1))
 
-/-- Kappa classes are natural under relabelling of the original markings.-/
+/-- Kappa classes are natural under relabelling of the original markings.
+@isnad1 id=eq.2h10v.s8.88b92a76f081 from=translated src=- shape=2ec213b9 vocab=510d1d71
+-/
 theorem kappa_rename {R : Type u} [CommRing R] [Algebra ℚ R]
     {C : StableCurveCohomology R} (P : PsiClasses C)
     {I : StableCurveIntegration C} (F : ForgetfulPushforward C I)
@@ -196,7 +205,9 @@ theorem kappa_rename {R : Type u} [CommRing R] [Algebra ℚ R]
   rw [hpsi] at hpush
   exact hpush.symm
 
-/-- The kappa class `kappa_m` has codimension `m`.-/
+/-- The kappa class `kappa_m` has codimension `m`.
+@isnad1 id=mem.1h8v.s8.a93073cec6f9 from=translated src=- shape=bdce31dd vocab=3d0860ed
+-/
 theorem kappa_degree {R : Type u} [CommRing R] [Algebra ℚ R]
     {C : StableCurveCohomology R} (P : PsiClasses C)
     {I : StableCurveIntegration C} (F : ForgetfulPushforward C I)

@@ -42,7 +42,9 @@ def finTwoToBilin :
     (multilinearCurryLeftEquiv R (fun _ : Fin 2 ↦ V) R).toLinearMap
 
 omit [Module.Free R V] [Module.Finite R V] in
-/-- Evaluation of the two-input-to-bilinear-form identification.-/
+/-- Evaluation of the two-input-to-bilinear-form identification.
+@isnad1 id=eq.0h5v.s10.5b39a2d08d46 from=translated src=- shape=1ce619ca vocab=d8744fa9
+-/
 @[simp]
 theorem finTwoToBilin_apply
     (f : MultilinearMap R (fun _ : Fin 2 ↦ V) R) (x y : V) :
@@ -58,7 +60,9 @@ noncomputable def contractTwo (P : SymmetricPerfectPairing R V) :
   (LinearMap.applyₗ P.copairing).comp
     ((TensorProduct.uncurry (RingHom.id R) V V R).comp finTwoToBilin)
 
-/-- Contraction is evaluation of the bilinear form on the copairing tensor.-/
+/-- Contraction is evaluation of the bilinear form on the copairing tensor.
+@isnad1 id=eq.0h4v.s11.9fe11721f4e8 from=translated src=- shape=acb2006e vocab=4e595aeb
+-/
 theorem contractTwo_apply (P : SymmetricPerfectPairing R V)
     (f : MultilinearMap R (fun _ : Fin 2 ↦ V) R) :
     P.contractTwo f = TensorProduct.lift (finTwoToBilin f) P.copairing := rfl
@@ -70,14 +74,18 @@ noncomputable def selfContract (P : SymmetricPerfectPairing R V)
     MultilinearMap R (fun _ : S ↦ V) R :=
   P.contractTwo.compMultilinearMap f.currySum
 
-/-- Pointwise evaluation of self-contraction.-/
+/-- Pointwise evaluation of self-contraction.
+@isnad1 id=eq.0h6v.s10.dde27decf4ea from=translated src=- shape=1a7eedd7 vocab=5b68f545
+-/
 @[simp]
 theorem selfContract_apply (P : SymmetricPerfectPairing R V)
     {S : Type*} (f : MultilinearMap R (fun _ : S ⊕ Fin 2 ↦ V) R)
     (a : S → V) :
     P.selfContract f a = P.contractTwo (f.currySum a) := rfl
 
-/-- Self-contraction is additive in the multilinear map.-/
+/-- Self-contraction is additive in the multilinear map.
+@isnad1 id=eq.0h6v.s9.8b9994480a4a from=translated src=- shape=c0b8479b vocab=960252ab
+-/
 @[simp]
 theorem selfContract_add (P : SymmetricPerfectPairing R V) {S : Type*}
     (f g : MultilinearMap R (fun _ : S ⊕ Fin 2 ↦ V) R) :
@@ -85,7 +93,9 @@ theorem selfContract_add (P : SymmetricPerfectPairing R V) {S : Type*}
   simp only [selfContract, MultilinearMap.currySum_add,
     LinearMap.compMultilinearMap_add]
 
-/-- Self-contraction is compatible with scalar multiplication.-/
+/-- Self-contraction is compatible with scalar multiplication.
+@isnad1 id=eq.0h6v.s9.dcae898708d2 from=translated src=- shape=1526f463 vocab=0c1223bf
+-/
 @[simp]
 theorem selfContract_smul (P : SymmetricPerfectPairing R V) {S : Type*}
     (r : R) (f : MultilinearMap R (fun _ : S ⊕ Fin 2 ↦ V) R) :
@@ -106,7 +116,9 @@ def finTwoToLinearTarget :
     (multilinearCurryLeftEquiv R (fun _ : Fin 2 ↦ V) W).toLinearMap
 
 omit [Module.Free R V] [Module.Finite R V] in
-/-- Evaluation of the target-generic two-input identification.-/
+/-- Evaluation of the target-generic two-input identification.
+@isnad1 id=eq.0h6v.s10.8c8cdf8bde13 from=translated src=- shape=3e26687a vocab=b94e981a
+-/
 @[simp]
 theorem finTwoToLinearTarget_apply
     (f : MultilinearMap R (fun _ : Fin 2 ↦ V) W) (x y : V) :
@@ -124,7 +136,9 @@ noncomputable def contractTwoTarget (P : SymmetricPerfectPairing R V) :
     ((TensorProduct.uncurry (RingHom.id R) V V W).comp finTwoToLinearTarget)
 
 /-- Target-generic contraction evaluates the associated bilinear map on the
-copairing tensor.-/
+copairing tensor.
+@isnad1 id=eq.0h5v.s11.26bb119f7494 from=translated src=- shape=b0392e38 vocab=4fa28265
+-/
 theorem contractTwoTarget_apply (P : SymmetricPerfectPairing R V)
     (f : MultilinearMap R (fun _ : Fin 2 ↦ V) W) :
     P.contractTwoTarget f = TensorProduct.lift (finTwoToLinearTarget f) P.copairing := rfl
@@ -135,7 +149,9 @@ noncomputable def selfContractTarget (P : SymmetricPerfectPairing R V)
     MultilinearMap R (fun _ : S ↦ V) W :=
   P.contractTwoTarget.compMultilinearMap f.currySum
 
-/-- Pointwise evaluation of target-generic self-contraction.-/
+/-- Pointwise evaluation of target-generic self-contraction.
+@isnad1 id=eq.0h7v.s10.6693bd4425e4 from=translated src=- shape=a895f634 vocab=7cda0d3d
+-/
 @[simp]
 theorem selfContractTarget_apply (P : SymmetricPerfectPairing R V)
     {S : Type*} (f : MultilinearMap R (fun _ : S ⊕ Fin 2 ↦ V) W)
@@ -143,14 +159,18 @@ theorem selfContractTarget_apply (P : SymmetricPerfectPairing R V)
     P.selfContractTarget f a = P.contractTwoTarget (f.currySum a) := rfl
 
 /-- For scalar target, target-generic self-contraction is the original
-self-contraction.-/
+self-contraction.
+@isnad1 id=eq.0h5v.s7.7d7e953735f0 from=translated src=- shape=583815db vocab=d5e8d904
+-/
 theorem selfContractTarget_eq_selfContract (P : SymmetricPerfectPairing R V)
     {S : Type*} (f : MultilinearMap R (fun _ : S ⊕ Fin 2 ↦ V) R) :
     P.selfContractTarget f = P.selfContract f := by
   rfl
 
 /-- Relabelling the uncontracted inputs commutes with target-valued
-self-contraction. The two distinguished `Fin 2` inputs retain their order.-/
+self-contraction. The two distinguished `Fin 2` inputs retain their order.
+@isnad1 id=eq.0h8v.s8.e03c8300e934 from=translated src=- shape=0ee24b66 vocab=79547898
+-/
 theorem selfContractTarget_domDomCongr (P : SymmetricPerfectPairing R V)
     {S T : Type*} (f : MultilinearMap R (fun _ : S ⊕ Fin 2 ↦ V) W)
     (e : S ≃ T) :
@@ -170,7 +190,9 @@ theorem selfContractTarget_domDomCongr (P : SymmetricPerfectPairing R V)
 end Target
 
 /-- Relabelling the uncontracted inputs commutes with scalar-valued
-self-contraction. The two distinguished `Fin 2` inputs retain their order.-/
+self-contraction. The two distinguished `Fin 2` inputs retain their order.
+@isnad1 id=eq.0h7v.s8.efe1ef18ac3c from=translated src=- shape=d139bd93 vocab=020bbbf5
+-/
 theorem selfContract_domDomCongr (P : SymmetricPerfectPairing R V)
     {S T : Type*} (f : MultilinearMap R (fun _ : S ⊕ Fin 2 ↦ V) R)
     (e : S ≃ T) :
@@ -185,7 +207,9 @@ def swapFinTwo : Equiv.Perm (Fin 2) := Equiv.swap 0 1
 
 omit [Module.Free R V] [Module.Finite R V] in
 /-- Relabelling a two-input map by the transposition flips its associated
-bilinear form.-/
+bilinear form.
+@isnad1 id=eq.0h5v.s11.d482206d7b7f from=translated src=- shape=c57624ba vocab=30563f1b
+-/
 theorem finTwoToBilin_domDomCongr_swap
     (f : MultilinearMap R (fun _ : Fin 2 ↦ V) R) (x y : V) :
     finTwoToBilin (f.domDomCongr swapFinTwo) x y = finTwoToBilin f y x := by
@@ -229,7 +253,9 @@ noncomputable def pairContractTarget (P : SymmetricPerfectPairing R V)
   P.selfContractTarget
     ((f.domCoprod g).domDomCongr (separatingLabelsEquiv S T))
 
-/-- Pointwise evaluation of target-generic separating contraction.-/
+/-- Pointwise evaluation of target-generic separating contraction.
+@isnad1 id=eq.0h10v.s11.43b414710d7a from=translated src=- shape=1c7eceb4 vocab=7c88f232
+-/
 @[simp]
 theorem pairContractTarget_apply (P : SymmetricPerfectPairing R V)
     {W₁ W₂ : Type*} [AddCommGroup W₁] [Module R W₁]
@@ -251,7 +277,9 @@ noncomputable def pairContract (P : SymmetricPerfectPairing R V)
       (separatingLabelsEquiv S T))
 
 /-- Pointwise evaluation of separating contraction through the common
-two-slot contraction operation.-/
+two-slot contraction operation.
+@isnad1 id=eq.0h8v.s10.a860e35b6124 from=translated src=- shape=72f10df9 vocab=99db9a96
+-/
 @[simp]
 theorem pairContract_apply (P : SymmetricPerfectPairing R V)
     {S T : Type*} (f : MultilinearMap R (fun _ : Option S ↦ V) R)
@@ -262,7 +290,9 @@ theorem pairContract_apply (P : SymmetricPerfectPairing R V)
           (separatingLabelsEquiv S T)).currySum a) := rfl
 
 /-- Applying a linear map after target-valued self-contraction is the same as
-applying it to the target before contraction.-/
+applying it to the target before contraction.
+@isnad1 id=eq.0h7v.s8.55feaa3b75da from=translated src=- shape=a6c48f54 vocab=01f72412
+-/
 theorem selfContractTarget_comp {W : Type*} [AddCommGroup W] [Module R W]
     (P : SymmetricPerfectPairing R V) {S : Type*}
     (f : MultilinearMap R (fun _ : S ⊕ Fin 2 ↦ V) W) (φ : W →ₗ[R] R) :
@@ -280,7 +310,9 @@ theorem selfContractTarget_comp {W : Type*} [AddCommGroup W] [Module R W]
   | add x y hx hy => simp only [map_add, hx, hy]
 
 /-- Scalarizing both targets after separating contraction agrees with first
-scalarizing the two component maps and then using scalar contraction.-/
+scalarizing the two component maps and then using scalar contraction.
+@isnad1 id=eq.0h11v.s9.41ad7fb37c07 from=translated src=- shape=2aaee899 vocab=b5ad226f
+-/
 theorem pairContractTarget_comp_lift
     {W₁ W₂ : Type*} [CommRing W₁] [Algebra R W₁]
     [CommRing W₂] [Algebra R W₂]
@@ -307,7 +339,9 @@ theorem pairContractTarget_comp_lift
   | add x y hx hy => simp only [map_add, hx, hy]
 
 /-- Contracting two metric functionals against the copairing recovers the
-metric. This is the abstract sewing identity used by separating gluing.-/
+metric. This is the abstract sewing identity used by separating gluing.
+@isnad1 id=eq.0h5v.s10.ae4438f33225 from=translated src=- shape=ca18833e vocab=894c2f2b
+-/
 theorem contract_toDual_mul_toDual (P : SymmetricPerfectPairing R V)
     (x y : V) :
     TensorProduct.lift

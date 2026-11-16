@@ -57,26 +57,41 @@ namespace CertifiedStrataProduct
 
 variable {g : ℕ} {S : Type} [Fintype S]
 
+/--
+@isnad1 id=mem.0h5v.s9.14983bd3cca1 from=translated src=- shape=5a7fe539 vocab=a579da27
+-/
 theorem product_degree_basis (P : CertifiedStrataProduct g S)
     (x y : TautologicalStratum g S) :
     P.product (StrataModule.basis x) (StrataModule.basis y) ∈
       StrataModule.degree (x.codimension + y.codimension) :=
   P.product_degree x y
 
+/--
+@isnad1 id=eq.0h5v.s10.18ca8f3eef7b from=translated src=- shape=d7db7fa2 vocab=b428dc3d
+-/
 theorem comm (P : CertifiedStrataProduct g S)
     (a b : StrataModule g S) : P.product a b = P.product b a :=
   P.product_comm a b
 
+/--
+@isnad1 id=eq.0h6v.s11.ccb82dd6b95f from=translated src=- shape=0b823295 vocab=b428dc3d
+-/
 theorem assoc (P : CertifiedStrataProduct g S)
     (a b c : StrataModule g S) :
     P.product (P.product a b) c = P.product a (P.product b c) :=
   P.product_assoc a b c
 
+/--
+@isnad1 id=eq.0h4v.s9.f4ec451f5c67 from=translated src=- shape=2de9b40b vocab=7ee09729
+-/
 @[simp]
 theorem left_unit (P : CertifiedStrataProduct g S) (a : StrataModule g S) :
     P.product (StrataModule.basis P.unit) a = a :=
   P.unit_left a
 
+/--
+@isnad1 id=eq.0h4v.s9.b2ddc7b0f16c from=translated src=- shape=bc1e4587 vocab=7ee09729
+-/
 @[simp]
 theorem right_unit (P : CertifiedStrataProduct g S) (a : StrataModule g S) :
     P.product a (StrataModule.basis P.unit) = a :=

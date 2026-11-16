@@ -76,6 +76,9 @@ def firstBetti (G : StableGraphCode S) : ℕ :=
 def totalGenus (G : StableGraphCode S) : ℕ :=
   (∑ v, G.genus v) + G.firstBetti
 
+/--
+@isnad1 id=eq.0h2v.s4.11efcb7dcf8d from=translated src=- shape=3872b343 vocab=596fe879
+-/
 @[simp]
 theorem toStableGraph_firstBetti (G : StableGraphCode S) :
     G.toStableGraph.firstBetti = G.firstBetti := by
@@ -84,6 +87,9 @@ theorem toStableGraph_firstBetti (G : StableGraphCode S) :
     G.edgeCount + 1 - G.vertexCount
   rw [Fintype.card_fin, Fintype.card_fin]
 
+/--
+@isnad1 id=eq.0h2v.s4.d565fd187694 from=translated src=- shape=3872b343 vocab=fd45c892
+-/
 @[simp]
 theorem toStableGraph_totalGenus (G : StableGraphCode S) :
     G.toStableGraph.totalGenus = G.totalGenus := by
@@ -157,30 +163,40 @@ def trans {G H K : StableGraphCode S} (e : Iso G H) (f : Iso H K) : Iso G K wher
     intro v
     simp only [Equiv.trans_apply, f.genus_comm, e.genus_comm]
 
-/-- Isomorphic graph codes have the same number of vertices.-/
+/-- Isomorphic graph codes have the same number of vertices.
+@isnad1 id=eq.0h4v.s4.752f1a20b90a from=translated src=- shape=06022485 vocab=4d11e4d8
+-/
 theorem vertexCount_eq {G H : StableGraphCode S} (e : Iso G H) :
     G.vertexCount = H.vertexCount := by
   simpa only [Fintype.card_fin] using Fintype.card_congr e.vertexEquiv
 
-/-- Isomorphic graph codes have the same number of edges.-/
+/-- Isomorphic graph codes have the same number of edges.
+@isnad1 id=eq.0h4v.s4.4b57b1f08cd1 from=translated src=- shape=06022485 vocab=99f66e61
+-/
 theorem edgeCount_eq {G H : StableGraphCode S} (e : Iso G H) :
     G.edgeCount = H.edgeCount := by
   simpa only [Fintype.card_fin] using Fintype.card_congr e.edgeEquiv
 
-/-- Isomorphic graph codes have the same sum of vertex genera.-/
+/-- Isomorphic graph codes have the same sum of vertex genera.
+@isnad1 id=eq.0h4v.s6.5e1db6133cd6 from=translated src=- shape=b3ddaef6 vocab=6080e209
+-/
 theorem genus_sum_eq {G H : StableGraphCode S} (e : Iso G H) :
     (∑ v, G.genus v) = ∑ v, H.genus v := by
   apply Fintype.sum_equiv e.vertexEquiv
   intro v
   exact (e.genus_comm v).symm
 
-/-- Isomorphic graph codes have the same first Betti number.-/
+/-- Isomorphic graph codes have the same first Betti number.
+@isnad1 id=eq.0h4v.s4.7f656e131fb5 from=translated src=- shape=06022485 vocab=8252c8d0
+-/
 theorem firstBetti_eq {G H : StableGraphCode S} (e : Iso G H) :
     G.firstBetti = H.firstBetti := by
   unfold StableGraphCode.firstBetti
   rw [e.edgeCount_eq, e.vertexCount_eq]
 
-/-- Isomorphic graph codes have the same arithmetic genus.-/
+/-- Isomorphic graph codes have the same arithmetic genus.
+@isnad1 id=eq.0h4v.s4.d302654227bb from=translated src=- shape=06022485 vocab=ace0328e
+-/
 theorem totalGenus_eq {G H : StableGraphCode S} (e : Iso G H) :
     G.totalGenus = H.totalGenus := by
   unfold StableGraphCode.totalGenus
@@ -192,14 +208,23 @@ end Iso
 exists.-/
 def Isomorphic (G H : StableGraphCode S) : Prop := Nonempty (Iso G H)
 
+/--
+@isnad1 id=isomorph.0h2v.s3.072df5d36805 from=translated src=- shape=53c84fe7 vocab=18b0e68c
+-/
 theorem isomorphic_refl (G : StableGraphCode S) : Isomorphic G G :=
   ⟨Iso.refl G⟩
 
+/--
+@isnad1 id=isomorph.1h3v.s4.e09f2c26bddf from=translated src=- shape=34baef30 vocab=18b0e68c
+-/
 theorem isomorphic_symm {G H : StableGraphCode S} :
     Isomorphic G H → Isomorphic H G := by
   rintro ⟨e⟩
   exact ⟨e.symm⟩
 
+/--
+@isnad1 id=isomorph.2h4v.s5.cb40d3c86a10 from=translated src=- shape=46b34526 vocab=18b0e68c
+-/
 theorem isomorphic_trans {G H K : StableGraphCode S} :
     Isomorphic G H → Isomorphic H K → Isomorphic G K := by
   rintro ⟨e⟩ ⟨f⟩
@@ -305,7 +330,9 @@ def trans {G H K : DecoratedStableGraph S} (e : Iso G H) (f : Iso H K) : Iso G K
     simp only [StableGraphCode.Iso.trans, Equiv.trans_apply,
       f.halfEdgePsiPower_comm, e.halfEdgePsiPower_comm]
 
-/-- Isomorphic decorations have equal kappa codimension.-/
+/-- Isomorphic decorations have equal kappa codimension.
+@isnad1 id=eq.0h4v.s4.5e1da93fe172 from=translated src=- shape=06022485 vocab=d52684b0
+-/
 theorem kappaCodimension_eq {G H : DecoratedStableGraph S} (e : Iso G H) :
     G.kappaCodimension = H.kappaCodimension := by
   unfold DecoratedStableGraph.kappaCodimension
@@ -316,7 +343,9 @@ theorem kappaCodimension_eq {G H : DecoratedStableGraph S} (e : Iso G H) :
     exact e.kappaPower_comm v i
   rw [hk]
 
-/-- Isomorphic decorations have equal external psi codimension.-/
+/-- Isomorphic decorations have equal external psi codimension.
+@isnad1 id=eq.0h4v.s4.b597b208a241 from=translated src=- shape=06022485 vocab=d4952079
+-/
 theorem legPsiCodimension_eq {G H : DecoratedStableGraph S} (e : Iso G H) :
     G.legPsiCodimension = H.legPsiCodimension := by
   unfold DecoratedStableGraph.legPsiCodimension
@@ -324,7 +353,9 @@ theorem legPsiCodimension_eq {G H : DecoratedStableGraph S} (e : Iso G H) :
   intro s
   exact (e.legPsiPower_comm s).symm
 
-/-- Isomorphic decorations have equal internal psi codimension.-/
+/-- Isomorphic decorations have equal internal psi codimension.
+@isnad1 id=eq.0h4v.s4.eefaed4807e9 from=translated src=- shape=06022485 vocab=05d3046e
+-/
 theorem halfEdgePsiCodimension_eq {G H : DecoratedStableGraph S} (e : Iso G H) :
     G.halfEdgePsiCodimension = H.halfEdgePsiCodimension := by
   unfold DecoratedStableGraph.halfEdgePsiCodimension
@@ -334,7 +365,9 @@ theorem halfEdgePsiCodimension_eq {G H : DecoratedStableGraph S} (e : Iso G H) :
   intro i
   exact (e.halfEdgePsiPower_comm edge i).symm
 
-/-- Codimension is independent of the finite graph presentation.-/
+/-- Codimension is independent of the finite graph presentation.
+@isnad1 id=eq.0h4v.s4.5e14502487ee from=translated src=- shape=06022485 vocab=4594e6a6
+-/
 theorem codimension_eq {G H : DecoratedStableGraph S} (e : Iso G H) :
     G.codimension = H.codimension := by
   unfold DecoratedStableGraph.codimension
@@ -346,14 +379,23 @@ end Iso
 /-- Isomorphism relation on decorated stable graphs.-/
 def Isomorphic (G H : DecoratedStableGraph S) : Prop := Nonempty (Iso G H)
 
+/--
+@isnad1 id=isomorph.0h2v.s3.c60246dfbf2e from=translated src=- shape=53c84fe7 vocab=7b96f7e8
+-/
 theorem isomorphic_refl (G : DecoratedStableGraph S) : Isomorphic G G :=
   ⟨Iso.refl G⟩
 
+/--
+@isnad1 id=isomorph.1h3v.s4.b6bca5c8116f from=translated src=- shape=34baef30 vocab=7b96f7e8
+-/
 theorem isomorphic_symm {G H : DecoratedStableGraph S} :
     Isomorphic G H → Isomorphic H G := by
   rintro ⟨e⟩
   exact ⟨e.symm⟩
 
+/--
+@isnad1 id=isomorph.2h4v.s5.ca2e401f670a from=translated src=- shape=46b34526 vocab=7b96f7e8
+-/
 theorem isomorphic_trans {G H K : DecoratedStableGraph S} :
     Isomorphic G H → Isomorphic H K → Isomorphic G K := by
   rintro ⟨e⟩ ⟨f⟩
@@ -394,12 +436,17 @@ def codimension (x : TautologicalStratum g S) : ℕ :=
     rcases h with ⟨e⟩
     exact e.codimension_eq
 
+/--
+@isnad1 id=eq.1h3v.s5.2842ed90b167 from=translated src=- shape=e4e6de22 vocab=983fa4a7
+-/
 @[simp]
 theorem codimension_mk (G : DecoratedStableGraph S)
     (hG : G.graph.totalGenus = g) :
     codimension (mk G hG) = G.codimension := rfl
 
-/-- Isomorphic presentations define the same tautological stratum.-/
+/-- Isomorphic presentations define the same tautological stratum.
+@isnad1 id=eq.3h4v.s5.aaa0738d63f6 from=translated src=- shape=1e8df62d vocab=26eafdc8
+-/
 theorem mk_eq_mk {G H : DecoratedStableGraph S}
     (hG : G.graph.totalGenus = g) (hH : H.graph.totalGenus = g)
     (e : DecoratedStableGraph.Isomorphic G H) :

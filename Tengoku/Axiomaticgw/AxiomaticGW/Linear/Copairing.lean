@@ -53,7 +53,9 @@ noncomputable def tensorEndEquiv (P : SymmetricPerfectPairing R V) :
 
 /-- On a pure tensor, the associated endomorphism sends `z` to
 `P.form x z • y`.  This formula fixes our convention for which tensor leg is
-contracted.-/
+contracted.
+@isnad1 id=eq.0h6v.s10.3e345dacb7f2 from=translated src=- shape=bdaf8897 vocab=df670d1c
+-/
 @[simp]
 theorem tensorEndEquiv_tmul (P : SymmetricPerfectPairing R V) (x y z : V) :
     P.tensorEndEquiv (x ⊗ₜ[R] y) z = P.form x z • y := by
@@ -78,7 +80,9 @@ noncomputable def copairing (P : SymmetricPerfectPairing R V) : V ⊗[R] V :=
   P.tensorEndEquiv.symm LinearMap.id
 
 /-- The defining universal property of the copairing: mapping it forward gives
-the identity endomorphism.-/
+the identity endomorphism.
+@isnad1 id=eq.0h3v.s9.0b34c1000d0a from=translated src=- shape=aa3ae712 vocab=36c43786
+-/
 @[simp]
 theorem tensorEndEquiv_copairing (P : SymmetricPerfectPairing R V) :
     P.tensorEndEquiv P.copairing = LinearMap.id := by
@@ -86,7 +90,9 @@ theorem tensorEndEquiv_copairing (P : SymmetricPerfectPairing R V) :
 
 /-- The preceding endomorphism equality evaluated at a vector `x`.  In basis
 notation, if `copairing = ∑ᵢ uᵢ ⊗ vᵢ`, this says
-`∑ᵢ P.form uᵢ x • vᵢ = x`.-/
+`∑ᵢ P.form uᵢ x • vᵢ = x`.
+@isnad1 id=eq.0h4v.s9.843fb8494484 from=translated src=- shape=c84f2a31 vocab=54ab548f
+-/
 theorem copairing_contract (P : SymmetricPerfectPairing R V) (x : V) :
     P.tensorEndEquiv P.copairing x = x := by
   simp only [tensorEndEquiv_copairing, LinearMap.id_coe, id_eq]
@@ -96,7 +102,9 @@ the pairing.
 
 This technical lemma lets us prove symmetry of the copairing without choosing
 a basis.  On a pure tensor `u ⊗ v`, both sides reduce to a product of the two
-scalars `P.form u y` and `P.form v x`; the general result follows by linearity.-/
+scalars `P.form u y` and `P.form v x`; the general result follows by linearity.
+@isnad1 id=eq.0h6v.s11.d6f9b1052a60 from=translated src=- shape=4b1310ab vocab=346f5460
+-/
 theorem form_tensorEndEquiv_comm (P : SymmetricPerfectPairing R V)
     (t : V ⊗[R] V) (x y : V) :
     P.form (P.tensorEndEquiv (TensorProduct.comm R V V t) x) y =
@@ -114,7 +122,9 @@ not change it.
 
 This is the basis-free version of the familiar identity
 `ηⁱʲ = ηʲⁱ`.  Later, it says that an internal edge of a TFT or CohFT does not
-depend on an arbitrary orientation of that edge.-/
+depend on an arbitrary orientation of that edge.
+@isnad1 id=eq.0h3v.s9.492e6af604d0 from=translated src=- shape=8eb1908e vocab=955d75b3
+-/
 @[simp]
 theorem copairing_comm (P : SymmetricPerfectPairing R V) :
     TensorProduct.comm R V V P.copairing = P.copairing := by
