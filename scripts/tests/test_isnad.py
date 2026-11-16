@@ -657,5 +657,42 @@ class BatchesInParallel(unittest.TestCase):
         self.assertEqual(self.facts_with(8, batch=100)[2:], (1, 2))
 
 
+class Dependencies(unittest.TestCase):
+    ID_A = "eq.0h2v.s4.0123456789ab"
+    ID_B = "le.1h1v.s5.ba9876543210"
+
+    def test_the_hash_is_of_the_set_of_ids(self):
+        h = isnad.deps_hash([self.ID_A, self.ID_B])
+        self.assertEqual(h, isnad.sha(f"{self.ID_A},{self.ID_B}", 12))
+        self.assertEqual(h, isnad.deps_hash([self.ID_B, self.ID_A, self.ID_A]))  # order and repeats change nothing
+        self.assertNotEqual(h, isnad.deps_hash([self.ID_A]))
+
+    def test_parse_deps_line(self):
+        self.assertEqual(isnad.parse_deps_line("isnad1-deps\tA.t\tMod.X\tB.u\tC.v"), ("A.t", "Mod.X", ["B.u", "C.v"]))
+        self.assertEqual(isnad.parse_deps_line("isnad1-deps\tA.t\tMod.X"), ("A.t", "Mod.X", []))
+        with self.assertRaises(ValueError):
+            isnad.parse_deps_line("isnad1\tA.t\tMod.X")
+
+    def test_rows_hash_by_statement_and_leave_unknown_ids_visible(self):
+        ids = {"B.u": self.ID_A, "C.v": self.ID_B}
+        lines = ["isnad1-deps\tA.t\tM\tB.u\tC.v", "isnad1-deps\tA.s\tM\tC.v\tZ.z", "isnad1-deps\tA.r\tM"]
+        rows = isnad.deps_rows(lines, ids)
+        self.assertEqual(rows[0], ("A.t", isnad.deps_hash([self.ID_A, self.ID_B]), 2, []))
+        self.assertEqual(rows[1], ("A.s", "-", 2, ["Z.z"]))
+        self.assertEqual(rows[2], ("A.r", isnad.deps_hash([]), 0, []))
+
+    def test_a_renamed_lemma_with_the_same_statement_gives_the_same_hash(self):
+        a = isnad.deps_rows(["isnad1-deps\tA.t\tM\tOld.name"], {"Old.name": self.ID_A})[0][1]
+        b = isnad.deps_rows(["isnad1-deps\tA.t\tM\tNew.name"], {"New.name": self.ID_A})[0][1]
+        self.assertEqual(a, b)
+
+    def test_read_ids_keeps_only_id_rows(self):
+        with tempfile.TemporaryDirectory() as d:
+            f = Path(d) / "ids.tsv"
+            f.write_text(f"B.u\t{self.ID_A}\tshape=1\tvocab=2\nnot an id row\nC.v\tnope\n", encoding="utf-8")
+            self.assertEqual(isnad.read_ids(f), {"B.u": self.ID_A})
+        self.assertEqual(isnad.read_ids(None), {})
+
+
 if __name__ == "__main__":
     unittest.main()

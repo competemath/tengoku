@@ -7,6 +7,7 @@ except `id`, `verify` and `selftest`, which run the Lean program.
 
   isnad.py explain <id | tag line>              decode an id or a tag into words (offline)
   isnad.py id --module M [--name N ...]         the id lines of a module's theorems (needs a built tree: lake build tengoku-isnad)
+  isnad.py deps --module M [--ids FILE]         the direct dependencies of each theorem's proof, and the hash of their statement ids (docs/isnad.md, "Dependencies")
   isnad.py verify '<tag line>' --module M --name N      recompute and compare id, shape and vocab of one theorem
   isnad.py tag --module M [--write]             write each theorem's tag into its source file (a dry run without --write; docs/isnad.md, "The tagger")
   isnad.py strip PATH... [--write]              take the tags out again
@@ -544,6 +545,14 @@ def tagtest(exe: str | None = None) -> int:
             problems.append("the tagged file is not the original plus tags")
         compile_fixture(d)
         recs2, ranges2 = fixture_facts(d, exe)
+        got_deps = {
+            n: ds
+            for n, _, ds in map(
+                parse_deps_line, run_exe_lines(["--deps", "--import", FIXTURE_MODULE, "--module", FIXTURE_MODULE], exe, extra_path=d)
+            )
+        }
+        if got_deps.get("Fx.with_where") != ["Fx.with_where.aux"] or got_deps.get("Fx.with_where_nodoc") != ["Fx.with_where_nodoc.aux2"]:
+            problems.append(f"the direct dependencies of the `where` theorems are not their lemmas: {got_deps.get('Fx.with_where')}")
         if identities(recs2) != before:
             problems.append("tagging changed the identity of a theorem")
         tag_of = {r.name: format_tag(r, "seed") for r in recs2}
@@ -675,6 +684,54 @@ def cmd_id(recs: list[Record]) -> int:
     return 0
 
 
+DEPS_TAG = f"isnad{VERSION}-deps"
+
+
+def parse_deps_line(line: str) -> tuple[str, str, list[str]]:
+    """`isnad1-deps <name> <module> <dependency>...` (`tengoku-isnad --deps`) as (name, module, dependency names)."""
+    parts = line.rstrip("\n").split("\t")
+    if len(parts) < 3 or parts[0] != DEPS_TAG:
+        raise ValueError(f"not an {DEPS_TAG} line: {line[:80]!r}")
+    return parts[1], parts[2], parts[3:]
+
+
+def deps_hash(ids: list[str]) -> str:
+    """The hash of a set of statement ids: sha256 of the sorted, distinct ids joined by commas, 12 hex digits. It names what a proof leans on directly, by
+    statement and not by theorem name, so a rename of a lemma changes nothing and a swap to a lemma with another statement changes it. Not part of any id or tag."""
+    return sha(",".join(sorted(set(ids))), 12)
+
+
+def read_ids(path: Path | None) -> dict[str, str]:
+    """`name<TAB>id...` lines (what `isnad.py id` prints) as a table name -> id."""
+    table: dict[str, str] = {}
+    if path is not None:
+        for ln in path.read_text(encoding="utf-8").splitlines():
+            parts = ln.split("\t")
+            if len(parts) >= 2 and ID_RE.fullmatch(parts[1]):
+                table[parts[0]] = parts[1]
+    return table
+
+
+def deps_rows(lines: list[str], ids: dict[str, str]) -> list[tuple[str, str, int, list[str]]]:
+    """(name, hash, number of dependencies, dependencies with no id in the table) per theorem. A dependency whose id is not known leaves the hash `-`: a hash of
+    part of the set would say two proofs differ, or agree, on what the table does not show."""
+    rows = []
+    for ln in lines:
+        name, _, deps = parse_deps_line(ln)
+        missing = [d for d in deps if d not in ids]
+        rows.append((name, "-" if missing else deps_hash([ids[d] for d in deps]), len(deps), missing))
+    return rows
+
+
+def cmd_deps(a: argparse.Namespace) -> int:
+    args = [x for m in a.module for x in ("--module", lean_name(m))]
+    ids = read_ids(Path(a.ids) if a.ids else None)
+    ids.update({r.name: r.id for r in run_exe(args, a.exe)})  # the theorems of these modules name each other too
+    for name, h, n, missing in deps_rows(run_exe_lines(["--deps", *args], a.exe), ids):
+        print(f"{name}\t{h}\t{n}\t{','.join(missing)}")
+    return 0
+
+
 def cmd_verify(tag_line: str, recs: list[Record]) -> int:
     tag = parse_tag(tag_line)
     if len(recs) != 1:
@@ -697,6 +754,10 @@ def build_parser() -> argparse.ArgumentParser:
         s.add_argument("--module", action="append", required=True)
         s.add_argument("--name", action="append", default=[])
         s.add_argument("--exe")
+    s = sub.add_parser("deps")
+    s.add_argument("--module", action="append", required=True)
+    s.add_argument("--ids", help="a table `name<TAB>id` of the theorems outside these modules (`isnad.py id` output)")
+    s.add_argument("--exe")
     s = sub.add_parser("tag")
     s.add_argument("--module", action="append", required=True)
     s.add_argument("--name", action="append", default=[])
@@ -727,6 +788,8 @@ def main(argv: list[str]) -> int:
     if a.cmd == "explain":
         print(explain_tag(a.what) if a.what.lstrip().startswith(TAG_PREFIX) else explain_id(a.what))
         return 0
+    if a.cmd == "deps":
+        return cmd_deps(a)
     if a.cmd == "tag":
         return cmd_tag(a)
     if a.cmd == "strip":
