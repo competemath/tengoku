@@ -70,7 +70,9 @@ namespace XiLab
 
 /-! ### `F` restricted to the real axis -/
 
-/-- The odd-channel integrand at a **real** argument is the coercion of a real function.-/
+/-- The odd-channel integrand at a **real** argument is the coercion of a real function.
+@isnad1 id=eq.0h2v.s5.1dcc9090546a from=translated src=- shape=ff6a0751 vocab=7cc22716
+-/
 lemma integrand_ofReal (x u : ℝ) :
     (Phi u : ℂ) * Complex.sinh ((x : ℂ) * (u : ℂ))
       = ((Phi u * Real.sinh (x * u) : ℝ) : ℂ) := by
@@ -78,7 +80,9 @@ lemma integrand_ofReal (x u : ℝ) :
   rw [hxu, ← Complex.ofReal_sinh, ← Complex.ofReal_mul]
 
 /-- **`F` is real on the real axis.**  `F(x) = 2 ∫₀^∞ Φ(u) sinh(xu) du`, an honest real
-number, coerced into `ℂ`.-/
+number, coerced into `ℂ`.
+@isnad1 id=eq.0h1v.s6.84d85d73aeff from=translated src=- shape=4050d475 vocab=bd1dcccd
+-/
 theorem F_ofReal (x : ℝ) :
     F (x : ℂ) = ((2 * ∫ u in Ioi (0:ℝ), Phi u * Real.sinh (x * u) : ℝ) : ℂ) := by
   simp only [F, integrand_ofReal]
@@ -90,7 +94,9 @@ theorem F_ofReal (x : ℝ) :
 
 Both factors are strictly positive on `(0,∞)`: `Φ(u) > 0` is `Kernel.Phi_pos` and
 `sinh(xu) > 0` is `Real.sinh_pos_iff`.  Hence the support of the integrand contains all
-of `(0,∞)`, which has infinite Lebesgue measure.-/
+of `(0,∞)`, which has infinite Lebesgue measure.
+@isnad1 id=lt.1h1v.s6.356e1d8c2eb5 from=translated src=- shape=a47a1ef2 vocab=d7e04e5e
+-/
 theorem setIntegral_Phi_mul_rsinh_pos {x : ℝ} (hx : 0 < x) :
     0 < ∫ u in Ioi (0:ℝ), Phi u * Real.sinh (x * u) := by
   have hpos : ∀ u ∈ Ioi (0:ℝ), 0 < Phi u * Real.sinh (x * u) := by
@@ -107,13 +113,17 @@ theorem setIntegral_Phi_mul_rsinh_pos {x : ℝ} (hx : 0 < x) :
   rw [hsupp, Real.volume_Ioi]
   exact ENNReal.zero_lt_top
 
-/-- **Strict positivity of `F` on the positive real axis.**-/
+/-- **Strict positivity of `F` on the positive real axis.**
+@isnad1 id=lt.1h1v.s4.15d10aebe1cc from=translated src=- shape=35dab86f vocab=d8886d15
+-/
 theorem F_pos_of_pos {x : ℝ} (hx : 0 < x) : 0 < (F (x : ℂ)).re := by
   rw [F_ofReal, Complex.ofReal_re]
   have := setIntegral_Phi_mul_rsinh_pos hx
   linarith
 
-/-- `F` does not vanish anywhere on the positive real axis.-/
+/-- `F` does not vanish anywhere on the positive real axis.
+@isnad1 id=ne.1h1v.s4.b341771be78a from=translated src=- shape=ac540e28 vocab=b0f3c6ae
+-/
 theorem F_ne_zero_of_pos {x : ℝ} (hx : 0 < x) : F (x : ℂ) ≠ 0 := by
   intro h
   have := F_pos_of_pos hx
@@ -122,7 +132,9 @@ theorem F_ne_zero_of_pos {x : ℝ} (hx : 0 < x) : F (x : ℂ) ≠ 0 := by
 
 /-- **Theorem 3.3, real-axis half.**  `F` has no zero on `ℝ \ {0}`; equivalently, every
 nonzero zero of `F` has nonzero imaginary part.  For `x < 0` this is oddness
-(`FGrowth.F_neg`) applied to `-x > 0`.-/
+(`FGrowth.F_neg`) applied to `-x > 0`.
+@isnad1 id=ne.1h1v.s4.61c4f114f091 from=translated src=- shape=f3035aa9 vocab=2abebef8
+-/
 theorem F_ne_zero_of_real_ne_zero {x : ℝ} (hx : x ≠ 0) : F (x : ℂ) ≠ 0 := by
   rcases hx.lt_or_gt with h | h
   · have hneg : F ((-x : ℝ) : ℂ) = -F (x : ℂ) := by
@@ -136,7 +148,9 @@ theorem F_ne_zero_of_real_ne_zero {x : ℝ} (hx : x ≠ 0) : F (x : ℂ) ≠ 0 :
 /-! ### Conjugate symmetry -/
 
 /-- Pointwise conjugate symmetry of the integrand: `Φ` is real, and `sinh` commutes with
-conjugation (`Complex.sinh_conj`).-/
+conjugation (`Complex.sinh_conj`).
+@isnad1 id=eq.0h2v.s6.5b4bc0690bee from=translated src=- shape=e6ce7279 vocab=a7d926f5
+-/
 lemma conj_integrand (w : ℂ) (u : ℝ) :
     conj ((Phi u : ℂ) * Complex.sinh (w * u))
       = (Phi u : ℂ) * Complex.sinh ((conj w) * u) := by
@@ -145,7 +159,9 @@ lemma conj_integrand (w : ℂ) (u : ℝ) :
 /-- **Conjugate symmetry of the odd channel.**  `F(w̄) = conj (F w)`.
 
 The kernel `Φ` is real-valued, so `conj` passes through the Bochner integral
-(`integral_conj`) and lands on `sinh` alone.-/
+(`integral_conj`) and lands on `sinh` alone.
+@isnad1 id=eq.0h1v.s6.d2450d8e44ae from=translated src=- shape=808f42d9 vocab=a7d29ac3
+-/
 theorem F_conj (w : ℂ) : F (conj w) = conj (F w) := by
   have hint : conj (∫ u in Ioi (0:ℝ), (Phi u : ℂ) * Complex.sinh (w * u))
       = ∫ u in Ioi (0:ℝ), (Phi u : ℂ) * Complex.sinh ((conj w) * u) := by
@@ -155,12 +171,16 @@ theorem F_conj (w : ℂ) : F (conj w) = conj (F w) := by
   rw [map_mul, hint, map_ofNat]
 
 /-- Restatement of `F_conj` with `starRingEnd` written out, matching the target
-signature requested for this file.-/
+signature requested for this file.
+@isnad1 id=eq.0h1v.s6.d2450d8e44ae from=translated src=- shape=808f42d9 vocab=a7d29ac3
+-/
 theorem F_starRingEnd (w : ℂ) : F (starRingEnd ℂ w) = starRingEnd ℂ (F w) := F_conj w
 
 /-! ### The zero at the origin -/
 
-/-- `F 0 = 0`: the odd channel kills the constant mode.-/
+/-- `F 0 = 0`: the odd channel kills the constant mode.
+@isnad1 id=eq.0h0v.s3.38b8d23a004d from=translated src=- shape=3c26ae4f vocab=6ddee84b
+-/
 @[simp] theorem F_zero_eq_zero : F 0 = 0 := by
   simp [F]
 
@@ -173,7 +193,9 @@ that file does not expose.  Left undone rather than sketched. -/
 
 /-! ### The quartet structure -/
 
-/-- **Theorem 3.3, symmetry half.**  The zeros of `F` come in quartets `±w, ±w̄`.-/
+/-- **Theorem 3.3, symmetry half.**  The zeros of `F` come in quartets `±w, ±w̄`.
+@isnad1 id=and.1h1v.s6.45c4209dfa72 from=translated src=- shape=f10c310d vocab=22828cf7
+-/
 theorem zero_quartet {w : ℂ} (hw : F w = 0) :
     F (-w) = 0 ∧ F (starRingEnd ℂ w) = 0 ∧ F (-(starRingEnd ℂ w)) = 0 := by
   refine ⟨?_, ?_, ?_⟩
@@ -183,7 +205,9 @@ theorem zero_quartet {w : ℂ} (hw : F w = 0) :
 
 /-- Every nonzero zero of `F` has **nonzero imaginary part**.  (The companion statement
 for the real part needs `XiLab/Wintner.lean` + `XiLab/Evenness.lean`; see
-`re_ne_zero_and_im_ne_zero_of_zero`.)-/
+`re_ne_zero_and_im_ne_zero_of_zero`.)
+@isnad1 id=ne.2h1v.s5.3cc1b9b3139d from=translated src=- shape=592b62fc vocab=6d0cbc93
+-/
 theorem im_ne_zero_of_zero {w : ℂ} (hw : F w = 0) (hne : w ≠ 0) : w.im ≠ 0 := by
   intro him
   have hre : w = ((w.re : ℝ) : ℂ) := by
@@ -203,7 +227,9 @@ strict monotone decrease of `Φ` on `[0,∞)`, which is `XiLab/Wintner.lean`'s
 `F (↑t * I)` while the natural normal form here is `F (I * ↑t)`; `hw'` below is written in
 the `↑t * I` orientation so the two match without a `mul_comm` rewrite. -/
 
-/-- **Theorem 3.3, packaged.**  Every nonzero zero of `F` has both coordinates nonzero.-/
+/-- **Theorem 3.3, packaged.**  Every nonzero zero of `F` has both coordinates nonzero.
+@isnad1 id=and.2h1v.s5.b6c21dc1c8b9 from=translated src=- shape=3e2a8625 vocab=3d7e93ae
+-/
 theorem re_ne_zero_and_im_ne_zero_of_zero {w : ℂ} (hw : F w = 0) (hne : w ≠ 0) :
     w.re ≠ 0 ∧ w.im ≠ 0 := by
   refine ⟨?_, im_ne_zero_of_zero hw hne⟩

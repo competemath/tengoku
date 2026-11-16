@@ -109,12 +109,17 @@ noncomputable def thTerm (k n : ℕ) (u : ℝ) : ℝ :=
 /-- `T k u = ∑_{n ≥ 1} (π n²)^k e^{−π n² e^{2u}}`.-/
 noncomputable def T (k : ℕ) (u : ℝ) : ℝ := ∑' n : ℕ, thTerm k (n + 1) u
 
+/--
+@isnad1 id=le.0h3v.s4.e6e12a370568 from=translated src=- shape=242e3cc5 vocab=51887fba
+-/
 lemma thTerm_nonneg (k n : ℕ) (u : ℝ) : 0 ≤ thTerm k n u := by
   unfold thTerm
   have : (0:ℝ) ≤ π * (n : ℝ) ^ 2 := by positivity
   positivity
 
-/-- Differentiating in `u` moves `k` up by one.-/
+/-- Differentiating in `u` moves `k` up by one.
+@isnad1 id=hasderiv.0h3v.s6.73be194a4d47 from=translated src=- shape=d9c3d374 vocab=d55c05c6
+-/
 lemma hasDerivAt_thTerm (k n : ℕ) (u : ℝ) :
     HasDerivAt (thTerm k n) (-2 * Real.exp (2 * u) * thTerm (k + 1) n u) u := by
   have h2 : HasDerivAt (fun v : ℝ => 2 * v) (2 : ℝ) u := by
@@ -140,10 +145,16 @@ lemma hasDerivAt_thTerm (k n : ℕ) (u : ℝ) :
 noncomputable def thBound (k : ℕ) (a : ℝ) (n : ℕ) : ℝ :=
   π ^ k * ((n : ℝ) ^ (2 * k) * Real.exp (-(π * Real.exp (2 * a))) ^ n)
 
+/--
+@isnad1 id=summable.0h2v.s4.512158a837ef from=translated src=- shape=27343aff vocab=a30b6487
+-/
 theorem summable_thBound (k : ℕ) (a : ℝ) : Summable (thBound k a) :=
   (summable_pow_mul_geometric_of_norm_lt_one (2 * k)
     (norm_exp_neg_pi_exp_lt_one a)).mul_left _
 
+/--
+@isnad1 id=le.1h4v.s4.fb601babd220 from=translated src=- shape=a3c357cb vocab=667c8602
+-/
 lemma abs_thTerm_le (k n : ℕ) {a u : ℝ} (hau : a ≤ u) :
     |thTerm k n u| ≤ thBound k a n := by
   have hpi := Real.pi_pos
@@ -167,6 +178,9 @@ lemma abs_thTerm_le (k n : ℕ) {a u : ℝ} (hau : a ≤ u) :
         mul_le_mul_of_nonneg_left hE (by positivity)
     _ = π ^ k * ((n : ℝ) ^ (2 * k) * Real.exp (-(π * Real.exp (2 * a))) ^ n) := by ring
 
+/--
+@isnad1 id=le.2h5v.s7.f2a410c1e64a from=translated src=- shape=c3ae0a9b vocab=c6dd24dd
+-/
 lemma abs_thTermDeriv_le (k n : ℕ) {a b u : ℝ} (hau : a ≤ u) (hub : u ≤ b) :
     |(-2 : ℝ) * Real.exp (2 * u) * thTerm (k + 1) n u| ≤
       2 * Real.exp (2 * b) * thBound (k + 1) a n := by
@@ -179,15 +193,24 @@ lemma abs_thTermDeriv_le (k n : ℕ) {a b u : ℝ} (hau : a ≤ u) (hub : u ≤ 
   rw [heq]
   refine mul_le_mul (by linarith) h1 (abs_nonneg _) (by positivity)
 
+/--
+@isnad1 id=summable.0h2v.s4.1640e0bbf17e from=translated src=- shape=d666ff15 vocab=c8595f10
+-/
 theorem summable_thTerm (k : ℕ) (u : ℝ) : Summable (fun n : ℕ => thTerm k n u) := by
   refine Summable.of_norm_bounded (summable_thBound k u) (fun n => ?_)
   simpa [Real.norm_eq_abs] using abs_thTerm_le k n (le_refl u)
 
+/--
+@isnad1 id=summable.0h2v.s5.026f7a375ff9 from=translated src=- shape=71282564 vocab=79001caf
+-/
 theorem summable_thTerm_succ (k : ℕ) (u : ℝ) : Summable (fun n : ℕ => thTerm k (n + 1) u) :=
   (summable_nat_add_iff 1).mpr (summable_thTerm k u)
 
 /-! ### Termwise differentiation of `T k` -/
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.63c0d9c88188 from=translated src=- shape=321480a6 vocab=2bf14a81
+-/
 theorem hasDerivAt_T (k : ℕ) (x : ℝ) :
     HasDerivAt (T k) (-2 * Real.exp (2 * x) * T (k + 1) x) x := by
   have hmem : x ∈ Ioo (x - 1) (x + 1) := ⟨by linarith, by linarith⟩
@@ -210,11 +233,17 @@ theorem hasDerivAt_T (k : ℕ) (x : ℝ) :
   rw [hrw]
   exact key
 
+/--
+@isnad1 id=differen.0h1v.s5.7e6595837ebc from=translated src=- shape=e86db131 vocab=0b5fe795
+-/
 theorem differentiable_T (k : ℕ) : Differentiable ℝ (T k) :=
   fun x => (hasDerivAt_T k x).differentiableAt
 
 /-! ### The Jacobi functional equation, in `T 0` form -/
 
+/--
+@isnad1 id=eq.0h1v.s6.c8a3c3185e2d from=translated src=- shape=b4f46c6b vocab=eee7ef37
+-/
 lemma tsum_int_thTerm (u : ℝ) :
     (∑' m : ℤ, Real.exp (-(π * (m : ℝ) ^ 2 * Real.exp (2 * u)))) = 1 + 2 * T 0 u := by
   set g : ℤ → ℝ := fun m => Real.exp (-(π * (m : ℝ) ^ 2 * Real.exp (2 * u))) with hg
@@ -235,12 +264,17 @@ lemma tsum_int_thTerm (u : ℝ) :
   rw [tsum_of_add_one_of_neg_add_one hs1 hs2, h1, h2, hz, T]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s5.db64baff8b4f from=translated src=- shape=14888f0a vocab=f0848b38
+-/
 lemma rpow_half_exp (u : ℝ) : (Real.exp (2 * u)) ^ (1 / 2 : ℝ) = Real.exp u := by
   rw [Real.rpow_def_of_pos (Real.exp_pos _), Real.log_exp]
   ring_nf
 
 /-- **Jacobi's functional equation**, in the form needed here:
-`1 + 2 T₀(−u) = e^u (1 + 2 T₀(u))`, i.e. `θ(e^{−2u}) = e^u θ(e^{2u})`.-/
+`1 + 2 T₀(−u) = e^u (1 + 2 T₀(u))`, i.e. `θ(e^{−2u}) = e^u θ(e^{2u})`.
+@isnad1 id=eq.0h1v.s6.03dce26ec376 from=translated src=- shape=b16ead60 vocab=0590a783
+-/
 theorem theta_FE (u : ℝ) : 1 + 2 * T 0 (-u) = Real.exp u * (1 + 2 * T 0 u) := by
   have ha : (0 : ℝ) < Real.exp (2 * u) := Real.exp_pos _
   have key := Real.tsum_exp_neg_mul_int_sq ha
@@ -259,12 +293,18 @@ theorem theta_FE (u : ℝ) : 1 + 2 * T 0 (-u) = Real.exp u * (1 + 2 * T 0 u) := 
 
 /-! ### `Φ` in terms of the theta family -/
 
+/--
+@isnad1 id=eq.0h2v.s7.82b182e583df from=translated src=- shape=8af31ea2 vocab=d7e9d5bd
+-/
 lemma phiTerm_eq (n : ℕ) (u : ℝ) :
     phiTerm n u = 4 * Real.exp (9 * u / 2) * thTerm 2 n u -
       6 * Real.exp (5 * u / 2) * thTerm 1 n u := by
   simp only [phiTerm, thTerm]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s7.ad3158a04684 from=translated src=- shape=5642a913 vocab=f9defe7a
+-/
 theorem Phi_eq_T (u : ℝ) :
     Phi u = 4 * Real.exp (9 * u / 2) * T 2 u - 6 * Real.exp (5 * u / 2) * T 1 u := by
   have h1 : Summable (fun n : ℕ => 4 * Real.exp (9 * u / 2) * thTerm 2 (n + 1) u) :=
@@ -291,12 +331,18 @@ noncomputable def thQ (u : ℝ) : ℝ := -4 * Real.exp (2 * u) * T 1 u
 noncomputable def thR (u : ℝ) : ℝ :=
   -8 * Real.exp (2 * u) * T 1 u + 8 * Real.exp (2 * u) * Real.exp (2 * u) * T 2 u
 
+/--
+@isnad1 id=hasderiv.0h1v.s5.7400962402a1 from=translated src=- shape=475e04ea vocab=7ad5d15f
+-/
 lemma hasDerivAt_thP (u : ℝ) : HasDerivAt thP (thQ u) u := by
   have h := ((hasDerivAt_T 0 u).const_mul (2 : ℝ)).const_add (1 : ℝ)
   have heq : thQ u = 2 * (-2 * Real.exp (2 * u) * T 1 u) := by unfold thQ; ring
   rw [heq]
   exact h
 
+/--
+@isnad1 id=hasderiv.0h1v.s5.9d31f06a70ae from=translated src=- shape=475e04ea vocab=5f07a04c
+-/
 lemma hasDerivAt_thQ (u : ℝ) : HasDerivAt thQ (thR u) u := by
   have h2 : HasDerivAt (fun v : ℝ => 2 * v) (2 : ℝ) u := by
     simpa using (hasDerivAt_id u).const_mul (2 : ℝ)
@@ -309,9 +355,15 @@ lemma hasDerivAt_thQ (u : ℝ) : HasDerivAt thQ (thR u) u := by
   rw [heq]
   exact h
 
+/--
+@isnad1 id=hasderiv.0h1v.s5.d36486257357 from=translated src=- shape=bda15752 vocab=1ef76832
+-/
 lemma hasDerivAt_neg_self (u : ℝ) : HasDerivAt (fun v : ℝ => -v) (-1 : ℝ) u :=
   hasDerivAt_neg' u
 
+/--
+@isnad1 id=hasderiv.0h1v.s5.d368acbb28f2 from=translated src=- shape=8f07d889 vocab=b7352cae
+-/
 lemma hasDerivAt_thP_neg (u : ℝ) :
     HasDerivAt (fun v : ℝ => thP (-v)) (-(thQ (-u))) u := by
   have h := (hasDerivAt_thP (-u)).comp u (hasDerivAt_neg_self u)
@@ -319,6 +371,9 @@ lemma hasDerivAt_thP_neg (u : ℝ) :
   rw [heq]
   exact h
 
+/--
+@isnad1 id=hasderiv.0h1v.s5.c376dea800fe from=translated src=- shape=8f07d889 vocab=593cd501
+-/
 lemma hasDerivAt_thQ_neg (u : ℝ) :
     HasDerivAt (fun v : ℝ => thQ (-v)) (-(thR (-u))) u := by
   have h := (hasDerivAt_thQ (-u)).comp u (hasDerivAt_neg_self u)
@@ -326,6 +381,9 @@ lemma hasDerivAt_thQ_neg (u : ℝ) :
   rw [heq]
   exact h
 
+/--
+@isnad1 id=hasderiv.0h1v.s5.3a879eacb2cf from=translated src=- shape=da260941 vocab=593cd501
+-/
 lemma hasDerivAt_negThQneg (u : ℝ) :
     HasDerivAt (fun v : ℝ => -(thQ (-v))) (thR (-u)) u := by
   have h := (hasDerivAt_thQ_neg u).neg
@@ -333,21 +391,31 @@ lemma hasDerivAt_negThQneg (u : ℝ) :
   rw [heq]
   exact h
 
+/--
+@isnad1 id=hasderiv.0h1v.s6.ee7e61b8f74c from=translated src=- shape=d7b9d9aa vocab=c7bac9cf
+-/
 lemma hasDerivAt_expThP (u : ℝ) :
     HasDerivAt (fun v : ℝ => Real.exp v * thP v)
       (Real.exp u * thP u + Real.exp u * thQ u) u :=
   (Real.hasDerivAt_exp u).mul (hasDerivAt_thP u)
 
+/--
+@isnad1 id=hasderiv.0h1v.s6.32d021cb867d from=translated src=- shape=1a45545e vocab=af224a7d
+-/
 lemma hasDerivAt_expThPQ (u : ℝ) :
     HasDerivAt (fun v : ℝ => Real.exp v * thP v + Real.exp v * thQ v)
       ((Real.exp u * thP u + Real.exp u * thQ u)
         + (Real.exp u * thQ u + Real.exp u * thR u)) u :=
   (hasDerivAt_expThP u).add ((Real.hasDerivAt_exp u).mul (hasDerivAt_thQ u))
 
-/-- The functional equation, restated in `thP`.-/
+/-- The functional equation, restated in `thP`.
+@isnad1 id=eq.0h1v.s4.eecda2cb3686 from=translated src=- shape=110d0495 vocab=42ffd099
+-/
 theorem theta_FE_P (u : ℝ) : thP (-u) = Real.exp u * thP u := theta_FE u
 
-/-- **First `u`-derivative of the functional equation.**-/
+/-- **First `u`-derivative of the functional equation.**
+@isnad1 id=eq.0h1v.s5.743ed72ac3ef from=translated src=- shape=1fa7057c vocab=17dc375c
+-/
 theorem theta_FE_I (u : ℝ) :
     -(thQ (-u)) = Real.exp u * thP u + Real.exp u * thQ u := by
   have hfun : (fun v : ℝ => thP (-v)) = fun v : ℝ => Real.exp v * thP v := funext theta_FE_P
@@ -355,7 +423,9 @@ theorem theta_FE_I (u : ℝ) :
   rw [hfun] at h1
   exact h1.unique (hasDerivAt_expThP u)
 
-/-- **Second `u`-derivative of the functional equation.**-/
+/-- **Second `u`-derivative of the functional equation.**
+@isnad1 id=eq.0h1v.s6.0c4031b5e368 from=translated src=- shape=25d6a1cd vocab=0bcf283a
+-/
 theorem theta_FE_II (u : ℝ) :
     thR (-u) = (Real.exp u * thP u + Real.exp u * thQ u)
       + (Real.exp u * thQ u + Real.exp u * thR u) := by
@@ -365,7 +435,9 @@ theorem theta_FE_II (u : ℝ) :
   rw [hfun] at h1
   exact h1.unique (hasDerivAt_expThPQ u)
 
-/-- `Φ = ½ e^{u/2} (θ'' + θ')`, in the packaged form `½ e^{u/2} (thQ + thR)`.-/
+/-- `Φ = ½ e^{u/2} (θ'' + θ')`, in the packaged form `½ e^{u/2} (thQ + thR)`.
+@isnad1 id=eq.0h1v.s6.0252f16ba85a from=translated src=- shape=94f7e66b vocab=45a4a0a3
+-/
 theorem Phi_eq_thQR (u : ℝ) : Phi u = 1 / 2 * Real.exp (u / 2) * (thQ u + thR u) := by
   have p1 : Real.exp (u / 2) * Real.exp (2 * u) = Real.exp (5 * u / 2) := by
     rw [← Real.exp_add]; congr 1; ring
@@ -376,7 +448,9 @@ theorem Phi_eq_thQR (u : ℝ) : Phi u = 1 / 2 * Real.exp (u / 2) * (thQ u + thR 
   linear_combination (-4 * T 2 u) * p2 + (6 * T 1 u) * p1
 
 /-- **`Φ` is even.**  This is the Jacobi theta functional equation
-`θ(1/x) = √x · θ(x)` differentiated twice in `x`.-/
+`θ(1/x) = √x · θ(x)` differentiated twice in `x`.
+@isnad1 id=eq.0h1v.s3.5ca2c1ad6815 from=translated src=- shape=cd419dad vocab=ac9c5fc9
+-/
 theorem Phi_even (u : ℝ) : Phi (-u) = Phi u := by
   have hI := theta_FE_I u
   have hII := theta_FE_II u
@@ -388,7 +462,9 @@ theorem Phi_even (u : ℝ) : Phi (-u) = Phi u := by
   linear_combination (1 / 2 * (thQ u + thR u)) * hp
 
 /-- `Φ'` is odd, so it vanishes at the origin.  This is the whole point of `Phi_even`:
-no truncation of the defining series has this property.-/
+no truncation of the defining series has this property.
+@isnad1 id=eq.0h0v.s5.8de4f4ca2ad4 from=translated src=- shape=874afe33 vocab=61406803
+-/
 theorem deriv_Phi_zero : deriv Phi 0 = 0 := by
   have hfun : (fun v : ℝ => Phi (-v)) = Phi := funext Phi_even
   have h0 : HasDerivAt Phi (deriv Phi (-(0 : ℝ))) (-(0 : ℝ)) :=
@@ -413,6 +489,9 @@ noncomputable def phiTerm'' (n : ℕ) (u : ℝ) : ℝ :=
       112 * (π * (n : ℝ) ^ 2 * Real.exp (2 * u)) ^ 2 +
       165 * (π * (n : ℝ) ^ 2 * Real.exp (2 * u)) - 75 / 2)
 
+/--
+@isnad1 id=hasderiv.0h2v.s5.347c438b3519 from=translated src=- shape=f4cbe5c8 vocab=7bfafec0
+-/
 lemma hasDerivAt_phiTerm' (n : ℕ) (u : ℝ) : HasDerivAt (phiTerm' n) (phiTerm'' n u) u := by
   have h2 : HasDerivAt (fun v : ℝ => 2 * v) (2 : ℝ) u := by
     simpa using (hasDerivAt_id u).const_mul (2 : ℝ)
@@ -463,6 +542,9 @@ lemma hasDerivAt_phiTerm' (n : ℕ) (u : ℝ) : HasDerivAt (phiTerm' n) (phiTerm
 
 /-! ### A locally uniform majorant for the twice-differentiated series -/
 
+/--
+@isnad1 id=le.2h2v.s6.df04cf7823e3 from=translated src=- shape=1b9d0e8c vocab=ef525443
+-/
 lemma cast_pow_le_pow_eight (n : ℕ) {i : ℕ} (h1 : 1 ≤ i) (h2 : i ≤ 8) :
     (n : ℝ) ^ i ≤ (n : ℝ) ^ 8 := by
   rcases Nat.eq_zero_or_pos n with rfl | h
@@ -476,9 +558,15 @@ noncomputable def deriv2Bound (a b : ℝ) (n : ℕ) : ℝ :=
         165 * π ^ 2 * Real.exp (2 * b) + 75 / 2 * π)) *
     ((n : ℝ) ^ 8 * Real.exp (-(π * Real.exp (2 * a))) ^ n)
 
+/--
+@isnad1 id=summable.0h2v.s4.fb2a572d4811 from=translated src=- shape=ddf3513c vocab=5101c246
+-/
 theorem summable_deriv2Bound (a b : ℝ) : Summable (deriv2Bound a b) :=
   (summable_pow_mul_geometric_of_norm_lt_one 8 (norm_exp_neg_pi_exp_lt_one a)).mul_left _
 
+/--
+@isnad1 id=le.2h4v.s5.276cf8d076f1 from=translated src=- shape=569bf207 vocab=b66c46a3
+-/
 lemma abs_phiTerm''_le {a b : ℝ} (n : ℕ) {u : ℝ} (hau : a ≤ u) (hub : u ≤ b) :
     |phiTerm'' n u| ≤ deriv2Bound a b n := by
   have hpi := Real.pi_pos
@@ -605,11 +693,17 @@ lemma abs_phiTerm''_le {a b : ℝ} (n : ℕ) {u : ℝ} (hau : a ≤ u) (hub : u 
                   165 * π ^ 2 * Real.exp (2 * b) + 75 / 2 * π)) *
                 ((n : ℝ) ^ 8 * Real.exp (-(π * Real.exp (2 * a))) ^ n) := by ring
 
+/--
+@isnad1 id=summable.0h1v.s4.51e637e509b9 from=translated src=- shape=0b46e227 vocab=a5107c4d
+-/
 theorem summable_phiTerm'' (x : ℝ) : Summable (fun n : ℕ => phiTerm'' n x) := by
   refine Summable.of_norm_bounded (summable_deriv2Bound (x - 1) (x + 1)) (fun n => ?_)
   simpa [Real.norm_eq_abs] using
     abs_phiTerm''_le n (by linarith : x - 1 ≤ x) (by linarith : x ≤ x + 1)
 
+/--
+@isnad1 id=summable.0h1v.s4.365e500054ac from=translated src=- shape=7f8378ff vocab=1f74bc36
+-/
 theorem summable_phiTerm''_succ (x : ℝ) : Summable (fun n : ℕ => phiTerm'' (n + 1) x) :=
   (summable_nat_add_iff 1).mpr (summable_phiTerm'' x)
 
@@ -619,10 +713,15 @@ noncomputable def PhiD (x : ℝ) : ℝ := ∑' n : ℕ, phiTerm' (n + 1) x
 /-- `Φ''`, as the termwise sum.-/
 noncomputable def PhiDD (x : ℝ) : ℝ := ∑' n : ℕ, phiTerm'' (n + 1) x
 
+/--
+@isnad1 id=eq.0h0v.s5.b52cf44dd5ab from=translated src=- shape=0cc26a1b vocab=bf0fdf21
+-/
 theorem PhiD_eq_deriv : PhiD = deriv Phi := by
   funext x; rw [PhiD, deriv_Phi]
 
-/-- **`Φ'` may be differentiated term by term.**-/
+/-- **`Φ'` may be differentiated term by term.**
+@isnad1 id=hasderiv.0h1v.s5.5ebe017b3a7b from=translated src=- shape=475e04ea vocab=2cc5dc9f
+-/
 theorem hasDerivAt_PhiD (x : ℝ) : HasDerivAt PhiD (PhiDD x) x := by
   have hmem : x ∈ Ioo (x - 1) (x + 1) := ⟨by linarith, by linarith⟩
   have hsum : Summable (fun n : ℕ => deriv2Bound (x - 1) (x + 1) (n + 1)) :=
@@ -642,6 +741,9 @@ theorem hasDerivAt_PhiD (x : ℝ) : HasDerivAt PhiD (PhiDD x) x := by
 Every constant below is proved from `Real.pi_gt_d6`, `Real.pi_lt_d20`, `Real.exp_one_gt_d9`,
 `Real.exp_one_lt_d9` and `Real.add_one_le_exp`.  Nothing is `norm_num`-on-`Real.exp`. -/
 
+/--
+@isnad1 id=le.1h1v.s5.9b6154ced78a from=translated src=- shape=71e15312 vocab=e030a0d9
+-/
 lemma exp_le_of_le_inv_160 {x : ℝ} (hx : x ≤ 1 / 160) : Real.exp x ≤ 101 / 100 := by
   have h1 : Real.exp x ≤ Real.exp (1 / 160) := Real.exp_le_exp.mpr hx
   have hp : (0 : ℝ) < Real.exp (1 / 160 : ℝ) := Real.exp_pos _
@@ -653,6 +755,9 @@ lemma exp_le_of_le_inv_160 {x : ℝ} (hx : x ≤ 1 / 160) : Real.exp x ≤ 101 /
   rw [inv_mul_cancel₀ hp.ne'] at h3
   linarith
 
+/--
+@isnad1 id=lt.0h0v.s4.a858fe2299ed from=translated src=- shape=3c26ae4f vocab=0dda0365
+-/
 lemma exp_four_lt : Real.exp 4 < 55 := by
   have h : Real.exp 1 < 2.7182818286 := Real.exp_one_lt_d9
   have hp : (0 : ℝ) < Real.exp 1 := Real.exp_pos 1
@@ -662,6 +767,9 @@ lemma exp_four_lt : Real.exp 4 < 55 := by
   rw [h4]
   nlinarith [hs, sq_nonneg (Real.exp 1)]
 
+/--
+@isnad1 id=lt.0h0v.s4.cf0ae955a4f4 from=translated src=- shape=cf0a9d99 vocab=0dda0365
+-/
 lemma exp_four_gt : (54 : ℝ) < Real.exp 4 := by
   have h : (2.7182818283 : ℝ) < Real.exp 1 := Real.exp_one_gt_d9
   have hp : (0 : ℝ) < Real.exp 1 := Real.exp_pos 1
@@ -671,6 +779,9 @@ lemma exp_four_gt : (54 : ℝ) < Real.exp 4 := by
   rw [h4]
   nlinarith [hs, sq_nonneg (Real.exp 1)]
 
+/--
+@isnad1 id=lt.0h0v.s4.6cdb596128cc from=translated src=- shape=cf0a9d99 vocab=0dda0365
+-/
 lemma exp_twelve_gt : (157000 : ℝ) < Real.exp 12 := by
   have h12 : Real.exp 12 = Real.exp 4 ^ 3 := by
     rw [← Real.exp_nat_mul]; congr 1; push_cast; ring
@@ -680,6 +791,9 @@ lemma exp_twelve_gt : (157000 : ℝ) < Real.exp 12 := by
   rw [h12]
   nlinarith [mul_pos (sub_pos.mpr h) hfac]
 
+/--
+@isnad1 id=le.0h0v.s5.351b559ea1a5 from=translated src=- shape=df5507f0 vocab=ff3fd5be
+-/
 lemma exp_neg_four_ge : (1 / 55 : ℝ) ≤ Real.exp (-4) := by
   have h3 : Real.exp 4 < 55 := exp_four_lt
   have h4 : (0 : ℝ) < Real.exp 4 := Real.exp_pos 4
@@ -688,6 +802,9 @@ lemma exp_neg_four_ge : (1 / 55 : ℝ) ≤ Real.exp (-4) := by
     rw [← Real.exp_add]; norm_num
   nlinarith [hmul, h3, hp, h4]
 
+/--
+@isnad1 id=le.0h0v.s5.9a18ecb874ff from=translated src=- shape=a644ce02 vocab=ff3fd5be
+-/
 lemma exp_neg_four_le : Real.exp (-4) ≤ 1 / 54 := by
   have h3 : (54 : ℝ) < Real.exp 4 := exp_four_gt
   have h4 : (0 : ℝ) < Real.exp 4 := Real.exp_pos 4
@@ -696,6 +813,9 @@ lemma exp_neg_four_le : Real.exp (-4) ≤ 1 / 54 := by
     rw [← Real.exp_add]; norm_num
   nlinarith [hmul, h3, hp, h4]
 
+/--
+@isnad1 id=le.0h0v.s5.d808a296e3be from=translated src=- shape=a644ce02 vocab=ff3fd5be
+-/
 lemma exp_neg_twelve_le : Real.exp (-12) ≤ 1 / 157000 := by
   have h3 : (157000 : ℝ) < Real.exp 12 := exp_twelve_gt
   have h4 : (0 : ℝ) < Real.exp 12 := Real.exp_pos 12
@@ -709,6 +829,9 @@ lemma exp_neg_twelve_le : Real.exp (-12) ≤ 1 / 157000 := by
 Written with the prefactor `q = π n²` and `X = q e^{2u}` abstracted, so that each block is a
 statement about real numbers only. -/
 
+/--
+@isnad1 id=eq.0h2v.s8.b9ac74c7b7ee from=translated src=- shape=772bd955 vocab=e8e48d68
+-/
 lemma phiTerm''_eq (n : ℕ) (u : ℝ) :
     phiTerm'' n u = π * (n : ℝ) ^ 2 * Real.exp (5 * u / 2) *
       Real.exp (-(π * (n : ℝ) ^ 2 * Real.exp (2 * u))) *
@@ -716,7 +839,9 @@ lemma phiTerm''_eq (n : ℕ) (u : ℝ) :
         112 * (π * (n : ℝ) ^ 2 * Real.exp (2 * u)) ^ 2 +
         165 * (π * (n : ℝ) ^ 2 * Real.exp (2 * u)) - 75 / 2) := rfl
 
-/-- `n = 1`: the dominant, strongly negative block.-/
+/-- `n = 1`: the dominant, strongly negative block.
+@isnad1 id=le.4h3v.s7.363d01bdd188 from=translated src=- shape=b4d2136b vocab=f60428bd
+-/
 lemma term_one_bound {q E5 X : ℝ} (hq : (3.14 : ℝ) ≤ q) (hE5 : (1 : ℝ) ≤ E5)
     (hXlo : (3.14 : ℝ) ≤ X) (hXhi : X ≤ 3.19) :
     q * E5 * Real.exp (-X) * (16 * X ^ 3 - 112 * X ^ 2 + 165 * X - 75 / 2) ≤ -5.7 := by
@@ -736,7 +861,9 @@ lemma term_one_bound {q E5 X : ℝ} (hq : (3.14 : ℝ) ≤ q) (hE5 : (1 : ℝ) �
       ≤ q * E5 * Real.exp (-X) * (-100) := mul_le_mul_of_nonneg_left hB hApos
   nlinarith [s1, hA]
 
-/-- `n = 2`: the only positive block, and it is small.-/
+/-- `n = 2`: the only positive block, and it is small.
+@isnad1 id=le.6h3v.s8.5b1609b27cff from=translated src=- shape=1e35ab3b vocab=f60428bd
+-/
 lemma term_two_bound {q E5 X : ℝ} (hq0 : (0 : ℝ) ≤ q) (hq : q ≤ 12.6) (hE50 : (0 : ℝ) ≤ E5)
     (hE5 : E5 ≤ 101 / 100) (hXlo : (12 : ℝ) ≤ X) (hXhi : X ≤ 12.726) :
     q * E5 * Real.exp (-X) * (16 * X ^ 3 - 112 * X ^ 2 + 165 * X - 75 / 2) ≤ 2.9 := by
@@ -759,7 +886,9 @@ lemma term_two_bound {q E5 X : ℝ} (hq0 : (0 : ℝ) ≤ q) (hq : q ≤ 12.6) (h
     _ ≤ 2.9 := by norm_num
 
 /-- `n ≥ 3`: a geometric tail.  The polynomial is killed by `X⁴ ≤ 4096 e^{X/2}`, which is just
-`X/8 ≤ e^{X/8}` raised to the fourth power.-/
+`X/8 ≤ e^{X/8}` raised to the fourth power.
+@isnad1 id=le.5h3v.s8.37b6133fc65a from=translated src=- shape=41f41dca vocab=cfdef964
+-/
 lemma term_tail_bound {q E5 X : ℝ} (hq0 : (0 : ℝ) ≤ q) (hqX : q ≤ X) (hX : (28 : ℝ) ≤ X)
     (hE50 : (0 : ℝ) ≤ E5) (hE5 : E5 ≤ 101 / 100) :
     |q * E5 * Real.exp (-X) * (16 * X ^ 3 - 112 * X ^ 2 + 165 * X - 75 / 2)|
@@ -803,9 +932,15 @@ lemma term_tail_bound {q E5 X : ℝ} (hq0 : (0 : ℝ) ≤ q) (hqX : q ≤ X) (hX
 
 /-! ### The three blocks, instantiated -/
 
+/--
+@isnad1 id=and.0h0v.s4.4aae796b7092 from=translated src=- shape=fc8ed4a3 vocab=489aaca7
+-/
 lemma pi_bounds : (3.14 : ℝ) < π ∧ π < 3.15 :=
   ⟨lt_trans (by norm_num) Real.pi_gt_d6, lt_trans Real.pi_lt_d20 (by norm_num)⟩
 
+/--
+@isnad1 id=le.2h1v.s5.8bdaa0116174 from=translated src=- shape=242c7870 vocab=6277261f
+-/
 lemma phiTerm''_one_le {u : ℝ} (hu0 : 0 ≤ u) (hu1 : u ≤ 1 / 400) : phiTerm'' 1 u ≤ -5.7 := by
   obtain ⟨hpi1, hpi2⟩ := pi_bounds
   have hE2lo : (1 : ℝ) ≤ Real.exp (2 * u) := Real.one_le_exp (by linarith)
@@ -818,6 +953,9 @@ lemma phiTerm''_one_le {u : ℝ} (hu0 : 0 ≤ u) (hu1 : u ≤ 1 / 400) : phiTerm
   · nlinarith [hE2lo, hpi1]
   · nlinarith [hE2hi, hpi2, Real.exp_pos (2 * u)]
 
+/--
+@isnad1 id=le.2h1v.s5.a7fbf6b11012 from=translated src=- shape=f68fea93 vocab=77e229f2
+-/
 lemma phiTerm''_two_le {u : ℝ} (hu0 : 0 ≤ u) (hu1 : u ≤ 1 / 400) : phiTerm'' 2 u ≤ 2.9 := by
   obtain ⟨hpi1, hpi2⟩ := pi_bounds
   have hE2lo : (1 : ℝ) ≤ Real.exp (2 * u) := Real.one_le_exp (by linarith)
@@ -831,6 +969,9 @@ lemma phiTerm''_two_le {u : ℝ} (hu0 : 0 ≤ u) (hu1 : u ≤ 1 / 400) : phiTerm
   · nlinarith [hE2lo, hpi1]
   · nlinarith [hE2hi, hpi2, Real.exp_pos (2 * u)]
 
+/--
+@isnad1 id=le.3h2v.s6.45f3bbe93f78 from=translated src=- shape=5dcc0290 vocab=4c523b9d
+-/
 lemma phiTerm''_tail_le {u : ℝ} (hu0 : 0 ≤ u) (hu1 : u ≤ 1 / 400) {m : ℕ} (hm : 3 ≤ m) :
     |phiTerm'' m u| ≤ 94208 * Real.exp (-4) ^ m := by
   obtain ⟨hpi1, hpi2⟩ := pi_bounds
@@ -857,16 +998,28 @@ lemma phiTerm''_tail_le {u : ℝ} (hu0 : 0 ≤ u) (hu1 : u ≤ 1 / 400) {m : ℕ
 
 /-! ### `Φ'' < 0` on `[0, 1/400]` -/
 
+/--
+@isnad1 id=eq.0h1v.s4.53b9a6ed45d8 from=translated src=- shape=a0dd47fb vocab=df794492
+-/
 @[simp] lemma phiTerm''_zero_index (u : ℝ) : phiTerm'' 0 u = 0 := by simp [phiTerm'']
 
+/--
+@isnad1 id=eq.0h1v.s4.ef90e9152a3d from=translated src=- shape=53cec0e6 vocab=9ae3519d
+-/
 theorem PhiDD_eq_tsum (u : ℝ) : PhiDD u = ∑' n : ℕ, phiTerm'' n u := by
   rw [PhiDD, (summable_phiTerm'' u).tsum_eq_zero_add, phiTerm''_zero_index, zero_add]
 
+/--
+@isnad1 id=eq.0h1v.s5.948f9a701b80 from=translated src=- shape=02d6fbc4 vocab=5b97a4a2
+-/
 theorem PhiDD_split (u : ℝ) :
     PhiDD u = phiTerm'' 1 u + phiTerm'' 2 u + ∑' n : ℕ, phiTerm'' (n + 3) u := by
   rw [PhiDD_eq_tsum, ← Summable.sum_add_tsum_nat_add 3 (summable_phiTerm'' u)]
   simp [Finset.sum_range_succ]
 
+/--
+@isnad1 id=le.2h1v.s6.0a85dcf2b455 from=translated src=- shape=2c91d3bc vocab=4d5c7bf9
+-/
 theorem tail_tsum_le {u : ℝ} (hu0 : 0 ≤ u) (hu1 : u ≤ 1 / 400) :
     |∑' n : ℕ, phiTerm'' (n + 3) u| ≤ 1.2 := by
   have hr0 : (0 : ℝ) ≤ Real.exp (-4) := (Real.exp_pos _).le
@@ -897,6 +1050,9 @@ theorem tail_tsum_le {u : ℝ} (hu0 : 0 ≤ u) (hu1 : u ≤ 1 / 400) :
     mul_le_mul hr3 hinv2 hinvpos.le (by norm_num)
   nlinarith [hstep]
 
+/--
+@isnad1 id=lt.2h1v.s5.ca280079c6fe from=translated src=- shape=3b8719b6 vocab=572064c2
+-/
 theorem PhiDD_neg {u : ℝ} (hu0 : 0 ≤ u) (hu1 : u ≤ 1 / 400) : PhiDD u < 0 := by
   have h1 := phiTerm''_one_le hu0 hu1
   have h2 := phiTerm''_two_le hu0 hu1
@@ -907,9 +1063,15 @@ theorem PhiDD_neg {u : ℝ} (hu0 : 0 ≤ u) (hu1 : u ≤ 1 / 400) : PhiDD u < 0 
 
 /-! ### Wintner's theorem down to the origin -/
 
+/--
+@isnad1 id=differen.0h0v.s5.46a421c69df5 from=translated src=- shape=aa9fb30a vocab=42a46360
+-/
 theorem differentiable_PhiD : Differentiable ℝ PhiD :=
   fun x => (hasDerivAt_PhiD x).differentiableAt
 
+/--
+@isnad1 id=strictan.0h0v.s5.7acb96fe5bc9 from=translated src=- shape=121de418 vocab=cb60145b
+-/
 theorem PhiD_strictAntiOn_Icc : StrictAntiOn PhiD (Icc 0 (1 / 400 : ℝ)) := by
   refine strictAntiOn_of_deriv_neg (convex_Icc _ _)
     differentiable_PhiD.continuous.continuousOn (fun x hx => ?_)
@@ -917,9 +1079,15 @@ theorem PhiD_strictAntiOn_Icc : StrictAntiOn PhiD (Icc 0 (1 / 400 : ℝ)) := by
   rw [(hasDerivAt_PhiD x).deriv]
   exact PhiDD_neg hx.1.le hx.2.le
 
+/--
+@isnad1 id=eq.0h0v.s3.ac83a8437bd4 from=translated src=- shape=3c26ae4f vocab=18a27210
+-/
 theorem PhiD_zero : PhiD 0 = 0 := by
   rw [PhiD_eq_deriv]; exact deriv_Phi_zero
 
+/--
+@isnad1 id=lt.1h1v.s4.a4f4bdf44957 from=translated src=- shape=3965f485 vocab=aa4671d7
+-/
 theorem PhiD_neg_of_pos {u : ℝ} (hu : 0 < u) : PhiD u < 0 := by
   rcases le_or_gt u (1 / 400 : ℝ) with h | h
   · have hmem0 : (0 : ℝ) ∈ Icc (0 : ℝ) (1 / 400) := ⟨le_refl 0, by norm_num⟩
@@ -935,7 +1103,9 @@ theorem PhiD_neg_of_pos {u : ℝ} (hu : 0 < u) : PhiD u < 0 := by
 `Φ` is strictly decreasing on `[0, ∞)`.  `Wintner.lean` gets `[1/400, ∞)` termwise; the gap
 `[0, 1/400]` is closed here by `Phi_even` (so `Φ'(0) = 0` exactly) together with `Φ'' < 0` on
 that interval, which *is* a termwise estimate because the `n = 1` block of `Φ''` beats the rest
-by a factor of six.-/
+by a factor of six.
+@isnad1 id=strictan.0h0v.s3.8f941b99c113 from=translated src=- shape=f2a09be3 vocab=18e0c317
+-/
 theorem Phi_strictAntiOn_Ici_zero : StrictAntiOn Phi (Ici (0 : ℝ)) := by
   refine strictAntiOn_of_deriv_neg (convex_Ici 0) continuous_Phi.continuousOn (fun x hx => ?_)
   rw [interior_Ici] at hx

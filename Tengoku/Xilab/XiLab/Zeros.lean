@@ -76,7 +76,9 @@ namespace XiLab
 Hadamard's factorization for order `≤ 1` supplies `F z = P(z) exp(a z + b)`; multiplying
 the value at `z` by the value at `−z` cancels the `a z` term in the exponent, and oddness
 of `F` turns the left side into `−F(z)²`.  The parameter `a` disappears entirely, so no
-case analysis on it is required.-/
+case analysis on it is required.
+@isnad1 id=ex.1h0v.s5.83f35dd35581 from=translated src=- shape=ce8b06c9 vocab=fa4e9bc5
+-/
 theorem exists_poly_sq_of_finite_zeros (hfin : {z : ℂ | F z = 0}.Finite) :
     ∃ Q : Polynomial ℂ, ∀ z : ℂ, F z ^ 2 = Q.eval z := by
   obtain ⟨P, a, b, hP⟩ :=
@@ -101,7 +103,9 @@ theorem exists_poly_sq_of_finite_zeros (hfin : {z : ℂ | F z = 0}.Finite) :
 /-- `Φ` has a strictly positive lower bound on the compact interval `[1,2]`.
 
 The value of the bound is astronomically small (`Φ(2) ≈ 1e-69`); only its positivity is
-used.  Extreme value theorem + `Kernel.Phi_pos`.-/
+used.  Extreme value theorem + `Kernel.Phi_pos`.
+@isnad1 id=ex.0h0v.s5.3ddf3c6f7653 from=translated src=- shape=3ec52be7 vocab=8ba79539
+-/
 theorem exists_pos_lower_bound_Phi_Icc :
     ∃ m : ℝ, 0 < m ∧ ∀ u ∈ Icc (1 : ℝ) 2, m ≤ Phi u := by
   obtain ⟨x₀, hx₀, hmin⟩ :=
@@ -113,7 +117,9 @@ theorem exists_pos_lower_bound_Phi_Icc :
 
 The integrand is nonnegative on `(0,∞)`, so the integral only grows when the domain is
 enlarged from `(1,2]` to `(0,∞)`.  On `(1,2]` one has `Φ(u) ≥ m` and, since `u ≥ 1` and
-`x > 0`, `sinh(xu) ≥ sinh(x)`; the interval has length `1`.-/
+`x > 0`, `sinh(xu) ≥ sinh(x)`; the interval has length `1`.
+@isnad1 id=le.3h2v.s7.46c40ace41fd from=translated src=- shape=1117710e vocab=09661a7b
+-/
 theorem lower_bound_setIntegral {m x : ℝ} (hm0 : 0 < m)
     (hm : ∀ u ∈ Icc (1 : ℝ) 2, m ≤ Phi u) (hx : 1 ≤ x) :
     m * Real.sinh x ≤ ∫ u in Ioi (0 : ℝ), Phi u * Real.sinh (x * u) := by
@@ -152,7 +158,9 @@ theorem lower_bound_setIntegral {m x : ℝ} (hm0 : 0 < m)
 /-! ### Step 3 — polynomials are `O(xⁿ)` -/
 
 /-- A crude but sufficient polynomial bound on the real axis: for `x ≥ 1`,
-`‖Q(x)‖ ≤ (∑ ‖coeff i‖) · x^{natDegree Q}`.-/
+`‖Q(x)‖ ≤ (∑ ‖coeff i‖) · x^{natDegree Q}`.
+@isnad1 id=le.1h2v.s6.6d862651bb46 from=translated src=- shape=6650fd57 vocab=f3ba26ed
+-/
 theorem norm_eval_le_pow {Q : Polynomial ℂ} {x : ℝ} (hx : 1 ≤ x) :
     ‖Q.eval (x : ℂ)‖
       ≤ (∑ i ∈ Finset.range (Q.natDegree + 1), ‖Q.coeff i‖) * x ^ Q.natDegree := by
@@ -169,7 +177,9 @@ theorem norm_eval_le_pow {Q : Polynomial ℂ} {x : ℝ} (hx : 1 ≤ x) :
 
 Contradiction.  A finite zero set forces `F² = Q` for a polynomial `Q`
 (`exists_poly_sq_of_finite_zeros`), while `F(x)² ≥ (m²/4) e^x` on `[1,∞)`
-(`lower_bound_setIntegral`) outgrows every polynomial.-/
+(`lower_bound_setIntegral`) outgrows every polynomial.
+@isnad1 id=infinite.0h0v.s4.852b8417691b from=translated src=- shape=50446660 vocab=0966574a
+-/
 theorem F_zeros_infinite : {z : ℂ | F z = 0}.Infinite := by
   by_contra hcon
   rw [Set.not_infinite] at hcon
@@ -219,7 +229,9 @@ theorem F_zeros_infinite : {z : ℂ | F z = 0}.Infinite := by
   linarith [key x hx1]
 
 /-- **Theorem 3.3, packaged.**  `F` has infinitely many zeros; every nonzero zero has both
-coordinates nonzero; and the zeros come in quartets `±w, ±w̄`.-/
+coordinates nonzero; and the zeros come in quartets `±w, ±w̄`.
+@isnad1 id=and.0h0v.s7.6e0bdda8e487 from=translated src=- shape=2da985dc vocab=ae0eaff4
+-/
 theorem theorem_3_3 :
     {z : ℂ | F z = 0}.Infinite ∧
     (∀ w : ℂ, F w = 0 → w ≠ 0 → w.re ≠ 0 ∧ w.im ≠ 0) ∧

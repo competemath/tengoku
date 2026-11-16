@@ -83,10 +83,16 @@ noncomputable def phiTerm' (n : ℕ) (u : ℝ) : ℝ :=
     (8 * (π * (n : ℝ) ^ 2 * Real.exp (2 * u)) ^ 2 -
       30 * (π * (n : ℝ) ^ 2 * Real.exp (2 * u)) + 15)
 
+/--
+@isnad1 id=eq.0h1v.s6.4fb07995e759 from=translated src=- shape=4129802a vocab=03df6730
+-/
 lemma exp_nine_halves (u : ℝ) :
     Real.exp (9 * u / 2) = Real.exp (2 * u) * Real.exp (5 * u / 2) := by
   rw [← Real.exp_add]; ring_nf
 
+/--
+@isnad1 id=hasderiv.0h2v.s5.c764e610ae3e from=translated src=- shape=f4cbe5c8 vocab=0f86bc6d
+-/
 lemma hasDerivAt_phiTerm (n : ℕ) (u : ℝ) : HasDerivAt (phiTerm n) (phiTerm' n u) u := by
   have h2 : HasDerivAt (fun v : ℝ => 2 * v) (2 : ℝ) u := by
     simpa using (hasDerivAt_id u).const_mul (2 : ℝ)
@@ -128,11 +134,17 @@ lemma hasDerivAt_phiTerm (n : ℕ) (u : ℝ) : HasDerivAt (phiTerm n) (phiTerm' 
 
 /-! ### A locally uniform majorant for the differentiated series -/
 
+/--
+@isnad1 id=le.0h1v.s5.5b3da48a1d63 from=translated src=- shape=00a8e044 vocab=ef525443
+-/
 lemma sq_le_pow_six (n : ℕ) : (n : ℝ) ^ 2 ≤ (n : ℝ) ^ 6 := by
   rcases Nat.eq_zero_or_pos n with rfl | h
   · norm_num
   · exact pow_le_pow_right₀ (by exact_mod_cast h) (by norm_num)
 
+/--
+@isnad1 id=le.0h1v.s5.2d13fd6aa9b3 from=translated src=- shape=00a8e044 vocab=ef525443
+-/
 lemma pow_four_le_pow_six (n : ℕ) : (n : ℝ) ^ 4 ≤ (n : ℝ) ^ 6 := by
   rcases Nat.eq_zero_or_pos n with rfl | h
   · norm_num
@@ -147,9 +159,15 @@ noncomputable def derivBound (a b : ℝ) (n : ℕ) : ℝ :=
       (8 * π ^ 3 * Real.exp (4 * b) + 30 * π ^ 2 * Real.exp (2 * b) + 15 * π)) *
     ((n : ℝ) ^ 6 * Real.exp (-(π * Real.exp (2 * a))) ^ n)
 
+/--
+@isnad1 id=summable.0h2v.s4.90cb162dfad0 from=translated src=- shape=ddf3513c vocab=43887d5e
+-/
 theorem summable_derivBound (a b : ℝ) : Summable (derivBound a b) :=
   (summable_pow_mul_geometric_of_norm_lt_one 6 (norm_exp_neg_pi_exp_lt_one a)).mul_left _
 
+/--
+@isnad1 id=le.2h4v.s5.3fa55342b45a from=translated src=- shape=569bf207 vocab=0d59207b
+-/
 lemma abs_phiTerm'_le {a b : ℝ} (n : ℕ) {u : ℝ} (hau : a ≤ u) (hub : u ≤ b) :
     |phiTerm' n u| ≤ derivBound a b n := by
   have hpi := Real.pi_pos
@@ -253,11 +271,17 @@ lemma abs_phiTerm'_le {a b : ℝ} (n : ℕ) {u : ℝ} (hau : a ≤ u) (hub : u �
                 (8 * π ^ 3 * Real.exp (4 * b) + 30 * π ^ 2 * Real.exp (2 * b) + 15 * π)) *
                 ((n : ℝ) ^ 6 * Real.exp (-(π * Real.exp (2 * a))) ^ n) := by ring
 
+/--
+@isnad1 id=summable.0h1v.s4.dd8d7536c29c from=translated src=- shape=0b46e227 vocab=8c7c9af6
+-/
 theorem summable_phiTerm' (x : ℝ) : Summable (fun n : ℕ => phiTerm' n x) := by
   refine Summable.of_norm_bounded (summable_derivBound (x - 1) (x + 1)) (fun n => ?_)
   simpa [Real.norm_eq_abs] using
     abs_phiTerm'_le n (by linarith : x - 1 ≤ x) (by linarith : x ≤ x + 1)
 
+/--
+@isnad1 id=summable.0h1v.s4.7e48b312c8fc from=translated src=- shape=7f8378ff vocab=ee6d9a11
+-/
 theorem summable_phiTerm'_succ (x : ℝ) : Summable (fun n : ℕ => phiTerm' (n + 1) x) :=
   (summable_nat_add_iff 1).mpr (summable_phiTerm' x)
 
@@ -269,7 +293,9 @@ theorem summable_phiTerm'_succ (x : ℝ) : Summable (fun n : ℕ => phiTerm' (n 
 termwise majorant is `u`-dependent (the geometric ratio `e^{−π e^{2u}}` degenerates as
 `u → −∞`).  The same restriction applies here, so the differentiation theorem used is
 `hasDerivAt_tsum_of_isPreconnected` applied on the *bounded open* interval
-`Ioo (x−1) (x+1)`, where `derivBound (x−1) (x+1)` is a genuine uniform majorant.-/
+`Ioo (x−1) (x+1)`, where `derivBound (x−1) (x+1)` is a genuine uniform majorant.
+@isnad1 id=hasderiv.0h1v.s5.1e7e0ce6921a from=translated src=- shape=2df59643 vocab=9d41482d
+-/
 theorem hasDerivAt_Phi (x : ℝ) : HasDerivAt Phi (∑' n : ℕ, phiTerm' (n + 1) x) x := by
   have hmem : x ∈ Ioo (x - 1) (x + 1) := ⟨by linarith, by linarith⟩
   have hsum : Summable (fun n : ℕ => derivBound (x - 1) (x + 1) (n + 1)) :=
@@ -283,15 +309,23 @@ theorem hasDerivAt_Phi (x : ℝ) : HasDerivAt Phi (∑' n : ℕ, phiTerm' (n + 1
       exact abs_phiTerm'_le (n + 1) hy.1.le hy.2.le)
     hmem (summable_phiTerm_succ x) hmem
 
+/--
+@isnad1 id=differen.0h0v.s5.f900d2477ae1 from=translated src=- shape=aa9fb30a vocab=e4664f0a
+-/
 theorem differentiable_Phi : Differentiable ℝ Phi := fun x => (hasDerivAt_Phi x).differentiableAt
 
+/--
+@isnad1 id=eq.0h1v.s5.711dfc2b0098 from=translated src=- shape=06839e22 vocab=c4ff57b4
+-/
 theorem deriv_Phi (x : ℝ) : deriv Phi x = ∑' n : ℕ, phiTerm' (n + 1) x := (hasDerivAt_Phi x).deriv
 
 /-! ### Sign of the derivative -/
 
 /-- The `n`-th summand of `Φ` (`n ≥ 1`) is strictly decreasing as soon as
 `π n² e^{2u} > (30+√420)/16 = 3.155874…`.  The threshold `3.156` used here is a rational
-upper bound for that root.-/
+upper bound for that root.
+@isnad1 id=lt.3h3v.s6.b7c26022814b from=translated src=- shape=3eeed8d9 vocab=4fd82039
+-/
 lemma phiTerm'_neg {n : ℕ} (hn : 1 ≤ n) {c u : ℝ} (hc : (3.156 : ℝ) ≤ π * Real.exp (2 * c))
     (hu : c ≤ u) : phiTerm' n u < 0 := by
   have hpi := Real.pi_pos
@@ -316,7 +350,9 @@ lemma phiTerm'_neg {n : ℕ} (hn : 1 ≤ n) {c u : ℝ} (hc : (3.156 : ℝ) ≤ 
   rw [phiTerm']
   nlinarith [hpos]
 
-/-- `Φ' < 0` on `[c, ∞)` whenever `π e^{2c} ≥ 3.156`.-/
+/-- `Φ' < 0` on `[c, ∞)` whenever `π e^{2c} ≥ 3.156`.
+@isnad1 id=lt.2h2v.s6.11f0280017cb from=translated src=- shape=39d79f4a vocab=3cd245aa
+-/
 theorem deriv_Phi_neg {c : ℝ} (hc : (3.156 : ℝ) ≤ π * Real.exp (2 * c)) {x : ℝ} (hx : c ≤ x) :
     deriv Phi x < 0 := by
   rw [deriv_Phi]
@@ -343,13 +379,18 @@ holds for every `c > c₀ := ½ log((30+√420)/(16π)) = 0.00226697…` and for
 and `c₀` is exactly where the *termwise* argument stops: for `0 ≤ u < c₀` the `n = 1`
 summand of `Φ` is strictly **increasing**, and the sum is decreasing only because the
 `n = 2` summand's decrease outweighs it.  See the module-level note at the bottom of this
-file for why that last step cannot be recovered by any finite truncation.-/
+file for why that last step cannot be recovered by any finite truncation.
+@isnad1 id=strictan.1h1v.s5.892dd0c46430 from=translated src=- shape=77697cd0 vocab=fbdf9e4a
+-/
 theorem Phi_strictAntiOn_Ici {c : ℝ} (hc : (3.156 : ℝ) ≤ π * Real.exp (2 * c)) :
     StrictAntiOn Phi (Ici c) := by
   refine strictAntiOn_of_deriv_neg (convex_Ici c) continuous_Phi.continuousOn (fun x hx => ?_)
   rw [interior_Ici] at hx
   exact deriv_Phi_neg hc (le_of_lt hx)
 
+/--
+@isnad1 id=le.0h0v.s5.089111bc6ed4 from=translated src=- shape=7f255601 vocab=6f40d6b3
+-/
 lemma le_pi_mul_exp_inv_four_hundred :
     (3.156 : ℝ) ≤ π * Real.exp (2 * (1 / 400 : ℝ)) := by
   have h1 : (201 / 200 : ℝ) ≤ Real.exp (2 * (1 / 400 : ℝ)) := by
@@ -362,11 +403,15 @@ lemma le_pi_mul_exp_inv_four_hundred :
 
 /-- **Wintner monotonicity, concrete form:** `Φ` is strictly decreasing on `[1/400, ∞)`.
 
-`1/400 = 0.0025`, against a true threshold of `0.00226697…` for this method.-/
+`1/400 = 0.0025`, against a true threshold of `0.00226697…` for this method.
+@isnad1 id=strictan.0h0v.s5.31d431810762 from=translated src=- shape=987ab001 vocab=b46f4bba
+-/
 theorem Phi_strictAntiOn_Ici_inv_four_hundred : StrictAntiOn Phi (Ici (1 / 400 : ℝ)) :=
   Phi_strictAntiOn_Ici le_pi_mul_exp_inv_four_hundred
 
-/-- Non-strict corollary.-/
+/-- Non-strict corollary.
+@isnad1 id=antitone.0h0v.s5.f79ca86bb750 from=translated src=- shape=987ab001 vocab=172d03ae
+-/
 theorem Phi_antitoneOn_Ici_inv_four_hundred : AntitoneOn Phi (Ici (1 / 400 : ℝ)) :=
   Phi_strictAntiOn_Ici_inv_four_hundred.antitoneOn
 
@@ -392,13 +437,18 @@ open intervalIntegral
 
 variable {g : ℝ → ℝ}
 
+/--
+@isnad1 id=antitone.2h2v.s5.7a8d35ecc1ad from=translated src=- shape=ecef4d18 vocab=1ec4a4e2
+-/
 lemma antitoneOn_shift (hanti : AntitoneOn g (Ici (0 : ℝ))) {c : ℝ} (hc : 0 ≤ c) :
     AntitoneOn (fun s => g (s + c)) (Ici (0 : ℝ)) := by
   intro x hx y hy hxy
   exact hanti (mem_Ici.mpr (by have := mem_Ici.mp hx; linarith))
     (mem_Ici.mpr (by have := mem_Ici.mp hy; linarith)) (by linarith)
 
-/-- A monotone function is integrable on every compact subinterval of its domain.-/
+/-- A monotone function is integrable on every compact subinterval of its domain.
+@isnad1 id=integrab.2h3v.s6.614ca9b92e9c from=translated src=- shape=00d78eda vocab=30e3e62c
+-/
 lemma integrableOn_Icc_of_antitoneOn (hanti : AntitoneOn g (Ici (0 : ℝ))) {a b : ℝ}
     (ha : 0 ≤ a) : IntegrableOn g (Icc a b) volume := by
   rcases le_or_gt a b with hab | hab
@@ -406,6 +456,9 @@ lemma integrableOn_Icc_of_antitoneOn (hanti : AntitoneOn g (Ici (0 : ℝ))) {a b
   · rw [Icc_eq_empty (not_le.mpr hab)]
     exact integrableOn_empty
 
+/--
+@isnad1 id=integrab.1h3v.s6.97cc587e4ae2 from=translated src=- shape=3d8d95ec vocab=481a04c1
+-/
 lemma integrableOn_mul_sin {h : ℝ → ℝ} {S : Set ℝ} (hh : IntegrableOn h S volume) (t : ℝ) :
     IntegrableOn (fun u => h u * Real.sin (t * u)) S volume := by
   refine Integrable.mono' hh.abs
@@ -414,18 +467,27 @@ lemma integrableOn_mul_sin {h : ℝ → ℝ} {S : Set ℝ} (hh : IntegrableOn h 
   rw [Real.norm_eq_abs, abs_mul]
   exact mul_le_of_le_one_right (abs_nonneg _) (Real.abs_sin_le_one _)
 
+/--
+@isnad1 id=interval.4h5v.s6.a9c32654868d from=translated src=- shape=3a51427a vocab=bd2562a0
+-/
 lemma intervalIntegrable_shift_mul_sin (hanti : AntitoneOn g (Ici (0 : ℝ))) (t : ℝ)
     {c a b : ℝ} (hc : 0 ≤ c) (ha : 0 ≤ a) (hab : a ≤ b) :
     IntervalIntegrable (fun s => g (s + c) * Real.sin (t * s)) volume a b := by
   rw [intervalIntegrable_iff_integrableOn_Icc_of_le hab]
   exact integrableOn_mul_sin (integrableOn_Icc_of_antitoneOn (antitoneOn_shift hanti hc) ha) t
 
+/--
+@isnad1 id=interval.3h4v.s6.8c7241b3cda4 from=translated src=- shape=9d360d06 vocab=d0788302
+-/
 lemma intervalIntegrable_mul_sin (hanti : AntitoneOn g (Ici (0 : ℝ))) (t : ℝ)
     {a b : ℝ} (ha : 0 ≤ a) (hab : a ≤ b) :
     IntervalIntegrable (fun u => g u * Real.sin (t * u)) volume a b := by
   rw [intervalIntegrable_iff_integrableOn_Icc_of_le hab]
   exact integrableOn_mul_sin (integrableOn_Icc_of_antitoneOn hanti ha) t
 
+/--
+@isnad1 id=interval.3h3v.s7.7cd385d5a867 from=translated src=- shape=921da38d vocab=e2c5909b
+-/
 lemma intervalIntegrable_diff (hanti : AntitoneOn g (Ici (0 : ℝ))) {t : ℝ} (ht : 0 < t)
     {c : ℝ} (hc : 0 ≤ c) :
     IntervalIntegrable
@@ -445,7 +507,9 @@ lemma intervalIntegrable_diff (hanti : AntitoneOn g (Ici (0 : ℝ))) {t : ℝ} (
 
 /-- **Folding a full period.**  If `sin (t(s+c)) = sin (ts)` — i.e. `c` is a whole number of
 periods — then the integral of `g(u) sin(tu)` over the period starting at `c` collapses to a
-single half-period integral of the nonnegative difference `g(s+c) − g(s+L+c)`.-/
+single half-period integral of the nonnegative difference `g(s+c) − g(s+L+c)`.
+@isnad1 id=eq.4h3v.s8.da5a40d5de11 from=translated src=- shape=85486e4c vocab=6742a6a7
+-/
 lemma block_eq (hanti : AntitoneOn g (Ici (0 : ℝ))) {t : ℝ} (ht : 0 < t)
     {c : ℝ} (hc : 0 ≤ c) (hsin : ∀ s : ℝ, Real.sin (t * (s + c)) = Real.sin (t * s)) :
     (∫ u in c..(c + (π / t + π / t)), g u * Real.sin (t * u))
@@ -501,18 +565,27 @@ lemma block_eq (hanti : AntitoneOn g (Ici (0 : ℝ))) {t : ℝ} (ht : 0 < t)
     ring
   rw [hA, hB, hC, hD]
 
+/--
+@isnad1 id=le.3h2v.s5.550f281088e9 from=translated src=- shape=94163f49 vocab=92814301
+-/
 lemma sin_nonneg_on (ht : 0 < t) {s : ℝ} (hs0 : 0 ≤ s) (hsL : s ≤ π / t) :
     0 ≤ Real.sin (t * s) := by
   refine Real.sin_nonneg_of_nonneg_of_le_pi (by positivity) ?_
   have : t * s ≤ t * (π / t) := by nlinarith
   rwa [mul_div_cancel₀ _ (ne_of_gt ht)] at this
 
+/--
+@isnad1 id=lt.3h2v.s5.6f9d4795f2be from=translated src=- shape=6be2ea80 vocab=f701fdc0
+-/
 lemma sin_pos_on (ht : 0 < t) {s : ℝ} (hs0 : 0 < s) (hsL : s < π / t) :
     0 < Real.sin (t * s) := by
   refine Real.sin_pos_of_pos_of_lt_pi (by positivity) ?_
   have : t * s < t * (π / t) := by nlinarith
   rwa [mul_div_cancel₀ _ (ne_of_gt ht)] at this
 
+/--
+@isnad1 id=le.4h3v.s7.6139edef1301 from=translated src=- shape=30289c55 vocab=74a57002
+-/
 lemma block_nonneg (hanti : AntitoneOn g (Ici (0 : ℝ))) {t : ℝ} (ht : 0 < t)
     {c : ℝ} (hc : 0 ≤ c) (hsin : ∀ s : ℝ, Real.sin (t * (s + c)) = Real.sin (t * s)) :
     0 ≤ ∫ u in c..(c + (π / t + π / t)), g u * Real.sin (t * u) := by
@@ -526,6 +599,9 @@ lemma block_nonneg (hanti : AntitoneOn g (Ici (0 : ℝ))) {t : ℝ} (ht : 0 < t)
   have : 0 ≤ g (s + c) - g (s + π / t + c) := by linarith
   exact mul_nonneg this h2
 
+/--
+@isnad1 id=lt.2h2v.s7.8e705ebaf37e from=translated src=- shape=e037c516 vocab=dea4316c
+-/
 lemma block_zero_pos (hstrict : StrictAntiOn g (Ici (0 : ℝ))) {t : ℝ} (ht : 0 < t) :
     0 < ∫ u in (0 : ℝ)..(0 + (π / t + π / t)), g u * Real.sin (t * u) := by
   have hanti := hstrict.antitoneOn
@@ -540,7 +616,9 @@ lemma block_zero_pos (hstrict : StrictAntiOn g (Ici (0 : ℝ))) {t : ℝ} (ht : 
   have : 0 < g (s + 0) - g (s + π / t + 0) := by linarith
   exact mul_pos this h2
 
-/-- Every period-block of `g(u) sin(tu)` starting at `k` full periods is nonnegative.-/
+/-- Every period-block of `g(u) sin(tu)` starting at `k` full periods is nonnegative.
+@isnad1 id=le.2h3v.s7.78bbc37d7caa from=translated src=- shape=9d4fb7aa vocab=92c7c0b6
+-/
 lemma block_k_nonneg (hanti : AntitoneOn g (Ici (0 : ℝ))) {t : ℝ} (ht : 0 < t) (k : ℕ) :
     0 ≤ ∫ u in ((k : ℝ) * (π / t + π / t))..(((k : ℝ) + 1) * (π / t + π / t)),
           g u * Real.sin (t * u) := by
@@ -558,7 +636,9 @@ lemma block_k_nonneg (hanti : AntitoneOn g (Ici (0 : ℝ))) {t : ℝ} (ht : 0 < 
   rwa [show (k : ℝ) * (π / t + π / t) + (π / t + π / t)
       = ((k : ℝ) + 1) * (π / t + π / t) by ring] at this
 
-/-- The partial integral over `n` full periods dominates the very first block.-/
+/-- The partial integral over `n` full periods dominates the very first block.
+@isnad1 id=le.3h3v.s7.75f65c4be011 from=translated src=- shape=e1d6b1cc vocab=92c7c0b6
+-/
 lemma first_block_le_partial (hanti : AntitoneOn g (Ici (0 : ℝ))) {t : ℝ} (ht : 0 < t)
     {n : ℕ} (hn : 1 ≤ n) :
     (∫ u in (0 : ℝ)..(0 + (π / t + π / t)), g u * Real.sin (t * u))
@@ -587,7 +667,9 @@ lemma first_block_le_partial (hanti : AntitoneOn g (Ici (0 : ℝ))) {t : ℝ} (h
   simpa using this
 
 /-- **Sine-transform nonnegativity.**  For `g` nonincreasing on `[0,∞)` and integrable on
-`(0,∞)`, and every `t > 0`, `∫₀^∞ g(u) sin(tu) du ≥ 0`.  Positivity of `g` is not needed.-/
+`(0,∞)`, and every `t > 0`, `∫₀^∞ g(u) sin(tu) du ≥ 0`.  Positivity of `g` is not needed.
+@isnad1 id=le.3h2v.s7.0408655909b4 from=translated src=- shape=5b185062 vocab=6a8a5fcc
+-/
 theorem sin_transform_nonneg (hanti : AntitoneOn g (Ici (0 : ℝ)))
     (hint : IntegrableOn g (Ioi (0 : ℝ)) volume) {t : ℝ} (ht : 0 < t) :
     0 ≤ ∫ u in Ioi (0 : ℝ), g u * Real.sin (t * u) := by
@@ -608,7 +690,9 @@ theorem sin_transform_nonneg (hanti : AntitoneOn g (Ici (0 : ℝ)))
 The half-period pairing: on `[2kL, (2k+1)L]` and `[(2k+1)L, (2k+2)L]` (with `L = π/t`) the
 sine lobes are mirror images, so the block integral equals
 `∫₀^L (g(s+2kL) − g(s+(2k+1)L)) sin(ts) ds`, which is nonnegative because `g` decreases —
-and strictly positive for `k = 0` because `g` decreases *strictly*.-/
+and strictly positive for `k = 0` because `g` decreases *strictly*.
+@isnad1 id=lt.3h2v.s7.f6981725e803 from=translated src=- shape=a7b32f40 vocab=1a628efa
+-/
 theorem sin_transform_pos (hstrict : StrictAntiOn g (Ici (0 : ℝ)))
     (hint : IntegrableOn g (Ioi (0 : ℝ)) volume) {t : ℝ} (ht : 0 < t) :
     0 < ∫ u in Ioi (0 : ℝ), g u * Real.sin (t * u) := by
@@ -634,6 +718,9 @@ anchored at `0`, where the sine's zeros are, so no shifted version of the argume
 The theorem is therefore stated with `StrictAntiOn Phi (Ici 0)` as an explicit hypothesis —
 it is fully proved, with no `sorry`, from that hypothesis. -/
 
+/--
+@isnad1 id=integrab.0h0v.s5.6ba255143568 from=translated src=- shape=a0299261 vocab=129d3236
+-/
 theorem integrableOn_Phi : IntegrableOn Phi (Ioi (0 : ℝ)) volume := by
   refine integrableOn_of_le_envelope Phi (9 / 2) phiConst
     continuous_Phi.aestronglyMeasurable (fun u hu => ?_)
@@ -641,7 +728,9 @@ theorem integrableOn_Phi : IntegrableOn Phi (Ioi (0 : ℝ)) volume := by
   exact abs_Phi_le hu.le
 
 /-- On the imaginary axis the odd channel is `2i` times the sine transform of `Φ`:
-`sinh(itu) = i sin(tu)`.-/
+`sinh(itu) = i sin(tu)`.
+@isnad1 id=eq.0h1v.s6.5fdaa4710dfb from=translated src=- shape=0ce566d4 vocab=9f8fdcd8
+-/
 theorem F_ofReal_mul_I (t : ℝ) :
     F ((t : ℂ) * Complex.I)
       = 2 * Complex.I * ((∫ u in Ioi (0 : ℝ), Phi u * Real.sin (t * u) : ℝ) : ℂ) := by
@@ -659,6 +748,9 @@ theorem F_ofReal_mul_I (t : ℝ) :
   rw [MeasureTheory.integral_const_mul, hcast]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s6.6f78c812b350 from=translated src=- shape=154992ba vocab=4e38a540
+-/
 lemma sin_transform_neg (t : ℝ) :
     (∫ u in Ioi (0 : ℝ), Phi u * Real.sin (-t * u))
       = -∫ u in Ioi (0 : ℝ), Phi u * Real.sin (t * u) := by
@@ -668,7 +760,9 @@ lemma sin_transform_neg (t : ℝ) :
   ring
 
 /-- **No zero of `F` is purely imaginary** — conditional on Wintner's theorem holding all the
-way down to `0`.  Everything except that hypothesis is proved here.-/
+way down to `0`.  Everything except that hypothesis is proved here.
+@isnad1 id=ne.2h1v.s5.0f2f83f61a0b from=translated src=- shape=b4f19441 vocab=8352fde3
+-/
 theorem F_ne_zero_of_imag_of_strictAntiOn (h : StrictAntiOn Phi (Ici (0 : ℝ)))
     {t : ℝ} (ht : t ≠ 0) : F ((t : ℂ) * Complex.I) ≠ 0 := by
   have hJ : (∫ u in Ioi (0 : ℝ), Phi u * Real.sin (t * u)) ≠ 0 := by

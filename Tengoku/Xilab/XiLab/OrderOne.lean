@@ -65,7 +65,9 @@ with `B ≥ 0`, then `‖g‖` itself grows at most linearly.
 
 Applying `Complex.borelCaratheodory` on `ball 0 (2‖z‖ + 2)` at the point `z`, where the
 majorant of `Re g` on that ball is `M = |L| + B * (2‖z‖+2) + 1`, gives
-`‖g z‖ ≤ 2M + 3‖g 0‖`, which is exactly the stated affine function of `‖z‖`.-/
+`‖g z‖ ≤ 2M + 3‖g 0‖`, which is exactly the stated affine function of `‖z‖`.
+@isnad1 id=le.3h4v.s7.19be20df5da6 from=translated src=- shape=842e0e1e vocab=f2442e92
+-/
 theorem norm_le_linear_of_re_le_linear {g : ℂ → ℂ} (hg : Differentiable ℂ g) {L B : ℝ}
     (hB : 0 ≤ B) (hre : ∀ z, (g z).re ≤ L + B * ‖z‖) (z : ℂ) :
     ‖g z‖ ≤ (2 * |L| + 4 * B + 2 + 3 * ‖g 0‖) + 4 * B * ‖z‖ := by
@@ -98,7 +100,9 @@ theorem norm_le_linear_of_re_le_linear {g : ℂ → ℂ} (hg : Differentiable �
 
 /-- **Cauchy estimate, letting the radius run to infinity.** If `g` is entire with
 `‖g z‖ ≤ a + b * ‖z‖` then `‖deriv g w‖ ≤ b` for every `w` — the slope of the bound, with
-no dependence on `w` at all.-/
+no dependence on `w` at all.
+@isnad1 id=le.4h4v.s7.2ca1a8362e20 from=translated src=- shape=556a4bee vocab=50c52884
+-/
 theorem norm_deriv_le_of_linear_growth {g : ℂ → ℂ} (hg : Differentiable ℂ g) {a b : ℝ}
     (ha : 0 ≤ a) (hb : 0 ≤ b) (hgrow : ∀ z, ‖g z‖ ≤ a + b * ‖z‖) (w : ℂ) :
     ‖deriv g w‖ ≤ b := by
@@ -205,7 +209,9 @@ shape (same `B`, a possibly larger constant).
 `g` is `dslope f z₀`; entirety is the removable-singularity theorem
 `Complex.differentiableOn_dslope`, and the growth bound splits into `‖z - z₀‖ ≥ 1`, where
 `‖g z‖ ≤ ‖f z‖`, and the compact disc `closedBall z₀ 1`, where `g` is bounded by
-continuity.-/
+continuity.
+@isnad1 id=ex.5h4v.s8.99d8ffd57359 from=translated src=- shape=ec2879b3 vocab=557bafeb
+-/
 theorem exists_entire_div_of_zero {f : ℂ → ℂ} (hf : Differentiable ℂ f) {A B : ℝ}
     (hA : 0 < A) (hB : 0 ≤ B) (hgrowth : ∀ z : ℂ, ‖f z‖ ≤ A * Real.exp (B * ‖z‖))
     {z₀ : ℂ} (hz₀ : f z₀ = 0) :
@@ -250,7 +256,9 @@ theorem exists_entire_div_of_zero {f : ℂ → ℂ} (hf : Differentiable ℂ f) 
 of order at most one with the same exponential rate `B`.
 
 The induction is on `m`; the vanishing order drops by exactly one at each division because
-`analyticOrderAt (· - z₀) z₀ = 1` and the order is additive on products.-/
+`analyticOrderAt (· - z₀) z₀ = 1` and the order is additive on products.
+@isnad1 id=ex.5h5v.s8.ac318845d848 from=translated src=- shape=c3a3fb28 vocab=2032d6fa
+-/
 theorem exists_pow_mul_of_order_le {B : ℝ} (hB : 0 ≤ B) (z₀ : ℂ) :
     ∀ (m : ℕ) (f : ℂ → ℂ) (A : ℝ), Differentiable ℂ f → 0 < A →
       (∀ z : ℂ, ‖f z‖ ≤ A * Real.exp (B * ‖z‖)) →
@@ -287,7 +295,9 @@ theorem exists_pow_mul_of_order_le {B : ℝ} (hB : 0 ≤ B) (z₀ : ℂ) :
 
 /-! ## Hadamard factorization at order `≤ 1`, finitely many zeros -/
 
-/-- Induction on the number of distinct zeros.-/
+/-- Induction on the number of distinct zeros.
+@isnad1 id=ex.6h4v.s7.cfd4d2009634 from=translated src=- shape=92055424 vocab=cf8b80a9
+-/
 theorem exists_poly_mul_exp_aux {B : ℝ} (hB : 0 ≤ B) :
     ∀ (k : ℕ) (f : ℂ → ℂ) (A : ℝ), Differentiable ℂ f → 0 < A →
       (∀ z : ℂ, ‖f z‖ ≤ A * Real.exp (B * ‖z‖)) →
@@ -355,7 +365,9 @@ theorem exists_poly_mul_exp_aux {B : ℝ} (hB : 0 ≤ B) :
 
 /-- **Hadamard factorization at order `≤ 1`, finitely many zeros.** An entire function of
 order at most one with only finitely many zeros equals `P(z) * exp (a * z + b)` for a
-polynomial `P`.-/
+polynomial `P`.
+@isnad1 id=ex.4h3v.s7.fa0236f54cef from=translated src=- shape=fdaca666 vocab=1f9c22ee
+-/
 theorem exists_poly_mul_exp_of_finite_zeros {f : ℂ → ℂ} (hf : Differentiable ℂ f) {A B : ℝ}
     (hA : 0 < A) (hgrowth : ∀ z : ℂ, ‖f z‖ ≤ A * Real.exp (B * ‖z‖))
     (hfin : {z : ℂ | f z = 0}.Finite) :
@@ -370,7 +382,9 @@ theorem exists_poly_mul_exp_of_finite_zeros {f : ℂ → ℂ} (hf : Differentiab
   exact exists_poly_mul_exp_aux hB _ f A hf hA hgrowth' hfin rfl
 
 /-- Contrapositive form: an entire function of order at most one that is *not* `exp` of an
-affine function must have a zero. This is the shape the application consumes.-/
+affine function must have a zero. This is the shape the application consumes.
+@isnad1 id=ex.4h3v.s7.894c30a30224 from=translated src=- shape=ace25d68 vocab=164d2c06
+-/
 theorem exists_zero_of_not_eq_exp_affine {f : ℂ → ℂ} (hf : Differentiable ℂ f) {A B : ℝ}
     (hA : 0 < A) (hgrowth : ∀ z : ℂ, ‖f z‖ ≤ A * Real.exp (B * ‖z‖))
     (hne : ¬ ∃ a b : ℂ, ∀ z, f z = Complex.exp (a * z + b)) :

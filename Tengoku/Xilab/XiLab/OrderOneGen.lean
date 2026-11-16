@@ -72,33 +72,50 @@ open Metric Set Bornology
 /-- `phi32 r = (1 + r) * √(1 + r)`, i.e. `(1 + r) ^ (3/2)` written without `rpow`.-/
 noncomputable def phi32 (r : ℝ) : ℝ := (1 + r) * Real.sqrt (1 + r)
 
+/--
+@isnad1 id=le.1h1v.s5.ae8a0b304554 from=translated src=- shape=a7df263e vocab=c24bb1bf
+-/
 theorem one_le_sqrt_one_add {r : ℝ} (hr : 0 ≤ r) : (1 : ℝ) ≤ Real.sqrt (1 + r) :=
   (Real.le_sqrt (by norm_num) (by linarith)).mpr (by nlinarith)
 
+/--
+@isnad1 id=le.1h1v.s4.20e3f83b03fa from=translated src=- shape=35bd48ee vocab=29bd9b80
+-/
 theorem one_le_phi32 {r : ℝ} (hr : 0 ≤ r) : 1 ≤ phi32 r := by
   have h2 : (1 : ℝ) ≤ Real.sqrt (1 + r) := one_le_sqrt_one_add hr
   unfold phi32
   nlinarith
 
+/--
+@isnad1 id=le.1h1v.s4.3a6227a16ffc from=translated src=- shape=35bd48ee vocab=29bd9b80
+-/
 theorem phi32_nonneg {r : ℝ} (hr : 0 ≤ r) : 0 ≤ phi32 r := le_trans zero_le_one (one_le_phi32 hr)
 
-/-- Monotonicity of the profile.-/
+/-- Monotonicity of the profile.
+@isnad1 id=le.2h2v.s4.3608c9da8326 from=translated src=- shape=994278ac vocab=29bd9b80
+-/
 theorem phi32_mono {r s : ℝ} (hr : 0 ≤ r) (h : r ≤ s) : phi32 r ≤ phi32 s := by
   have h3 : Real.sqrt (1 + r) ≤ Real.sqrt (1 + s) := Real.sqrt_le_sqrt (by linarith)
   have h4 : (0 : ℝ) ≤ Real.sqrt (1 + r) := Real.sqrt_nonneg _
   unfold phi32
   nlinarith
 
-/-- `√3 ≤ 2`.-/
+/-- `√3 ≤ 2`.
+@isnad1 id=le.0h0v.s4.1e57a589f8a2 from=translated src=- shape=3c26ae4f vocab=75e1f5d6
+-/
 theorem sqrt_three_le_two : Real.sqrt 3 ≤ 2 := by
   nlinarith [Real.sq_sqrt (show (0:ℝ) ≤ 3 by norm_num), Real.sqrt_nonneg 3]
 
-/-- `√2 ≤ 3/2`.-/
+/-- `√2 ≤ 3/2`.
+@isnad1 id=le.0h0v.s5.5b0f4a912ebd from=translated src=- shape=d4f6e56f vocab=461ca6a7
+-/
 theorem sqrt_two_le : Real.sqrt 2 ≤ 3 / 2 := by
   nlinarith [Real.sq_sqrt (show (0:ℝ) ≤ 2 by norm_num), Real.sqrt_nonneg 2]
 
 /-- The scaling estimate: enlarging the argument so that `1 + x ≤ 3 * (1 + r)` costs at
-most a factor `6` in the profile (`3 * √3 ≤ 6`).-/
+most a factor `6` in the profile (`3 * √3 ≤ 6`).
+@isnad1 id=le.2h2v.s6.4e1a173b0ae8 from=translated src=- shape=54c265ea vocab=5ea88521
+-/
 theorem phi32_le_six_mul {x r : ℝ} (hr : 0 ≤ r) (h : 1 + x ≤ 3 * (1 + r)) :
     phi32 x ≤ 6 * phi32 r := by
   have hr1 : (0 : ℝ) < 1 + r := by linarith
@@ -112,7 +129,9 @@ theorem phi32_le_six_mul {x r : ℝ} (hr : 0 ≤ r) (h : 1 + x ≤ 3 * (1 + r)) 
   unfold phi32
   nlinarith [Real.sqrt_nonneg (1 + r)]
 
-/-- `r ^ (3/2 : ℝ) ≤ Φ r`.-/
+/-- `r ^ (3/2 : ℝ) ≤ Φ r`.
+@isnad1 id=le.1h1v.s5.49e9970eb8bb from=translated src=- shape=4948d77b vocab=655c580a
+-/
 theorem rpow_three_halves_le_phi32 {r : ℝ} (hr : 0 ≤ r) : r ^ ((3 : ℝ) / 2) ≤ phi32 r := by
   have h1 : (0 : ℝ) < 1 + r := by linarith
   have h2 : r ^ ((3 : ℝ) / 2) ≤ (1 + r) ^ ((3 : ℝ) / 2) :=
@@ -125,7 +144,9 @@ theorem rpow_three_halves_le_phi32 {r : ℝ} (hr : 0 ≤ r) : r ^ ((3 : ℝ) / 2
 /-! ## Borel–Carathéodory at the `3/2` profile -/
 
 /-- **Borel–Carathéodory, global form at profile `Φ`.** If `g` is entire and
-`Re (g z) ≤ L + B * Φ ‖z‖` with `B ≥ 0`, then `‖g‖` itself is `O(Φ)`.-/
+`Re (g z) ≤ L + B * Φ ‖z‖` with `B ≥ 0`, then `‖g‖` itself is `O(Φ)`.
+@isnad1 id=le.3h4v.s7.8efd0095c881 from=translated src=- shape=db0411cf vocab=5d66aa0a
+-/
 theorem norm_le_phi32_of_re_le_phi32 {g : ℂ → ℂ} (hg : Differentiable ℂ g) {L B : ℝ}
     (hB : 0 ≤ B) (hre : ∀ z, (g z).re ≤ L + B * phi32 ‖z‖) (z : ℂ) :
     ‖g z‖ ≤ (2 * |L| + 12 * B + 2 + 3 * ‖g 0‖) * phi32 ‖z‖ := by
@@ -157,7 +178,9 @@ theorem norm_le_phi32_of_re_le_phi32 {g : ℂ → ℂ} (hg : Differentiable ℂ 
 /-! ## First Cauchy estimate: `‖g'‖ = O(√(1 + ‖w‖))` -/
 
 /-- Cauchy's estimate on the circle of radius `1 + ‖w‖` about `w`: a `Φ`-bound on `g`
-gives a `√`-bound on `deriv g`.-/
+gives a `√`-bound on `deriv g`.
+@isnad1 id=le.3h3v.s7.861a074b2692 from=translated src=- shape=721bf7e0 vocab=b8942e03
+-/
 theorem norm_deriv_le_sqrt_of_phi32_growth {g : ℂ → ℂ} (hg : Differentiable ℂ g) {K : ℝ}
     (hK : 0 ≤ K) (hgrow : ∀ z, ‖g z‖ ≤ K * phi32 ‖z‖) (w : ℂ) :
     ‖deriv g w‖ ≤ 6 * K * Real.sqrt (1 + ‖w‖) := by
@@ -185,7 +208,9 @@ theorem norm_deriv_le_sqrt_of_phi32_growth {g : ℂ → ℂ} (hg : Differentiabl
 *second* derivative vanishes identically. Cauchy's estimate for `deriv g` on the circle of
 radius `R` about `w` bounds `‖deriv (deriv g) w‖` by `(3/2) K √R / R = (3/2) K / √R`, which
 tends to `0` as `R → ∞`; the sublinear exponent `1/2 < 1` is exactly what makes this work,
-and it is why maximal type still forces an affine logarithm.-/
+and it is why maximal type still forces an affine logarithm.
+@isnad1 id=eq.3h3v.s7.8aaa91969a60 from=translated src=- shape=be0049cb vocab=32e9fc5b
+-/
 theorem deriv_deriv_eq_zero_of_sqrt_growth {g : ℂ → ℂ} (hg : Differentiable ℂ g) {K : ℝ}
     (hK : 0 ≤ K) (hgrow : ∀ w, ‖deriv g w‖ ≤ K * Real.sqrt (1 + ‖w‖)) (w : ℂ) :
     deriv (deriv g) w = 0 := by
@@ -289,7 +314,9 @@ then `f z = (z - z₀) * g z` with `g = dslope f z₀` entire and again of order
 
 `ε` is threaded through unchanged: for each `ε` the constant `C` supplied by
 `HasOrderLeOne f` is enlarged to `max C (max C₀ 1)`, where `C₀` bounds `dslope f z₀` on the
-compact disc `closedBall z₀ 1`. Outside that disc `‖dslope f z₀ z‖ ≤ ‖f z‖`.-/
+compact disc `closedBall z₀ 1`. Outside that disc `‖dslope f z₀ z‖ ≤ ‖f z‖`.
+@isnad1 id=ex.3h2v.s7.1e0f56ecc3de from=translated src=- shape=9b0590bf vocab=d521e3eb
+-/
 theorem exists_entire_div_of_zero_gen {f : ℂ → ℂ} (hf : Differentiable ℂ f)
     (hord : HasOrderLeOne f) {z₀ : ℂ} (hz₀ : f z₀ = 0) :
     ∃ g : ℂ → ℂ, Differentiable ℂ g ∧ HasOrderLeOne g ∧ (∀ z, f z = (z - z₀) * g z) := by
@@ -330,7 +357,9 @@ theorem exists_entire_div_of_zero_gen {f : ℂ → ℂ} (hf : Differentiable ℂ
 /-! ## Stripping a zero to its full multiplicity -/
 
 /-- Iterating the division step: if the vanishing order of `f` at `z₀` is at most `m` then
-`f z = (z - z₀) ^ j * g z` globally, with `g` entire of order `≤ 1` and `g z₀ ≠ 0`.-/
+`f z = (z - z₀) ^ j * g z` globally, with `g` entire of order `≤ 1` and `g z₀ ≠ 0`.
+@isnad1 id=ex.3h3v.s7.1d08517191a9 from=translated src=- shape=cfd4f5e5 vocab=3c7356fc
+-/
 theorem exists_pow_mul_of_hasOrderLeOne (z₀ : ℂ) :
     ∀ (m : ℕ) (f : ℂ → ℂ), Differentiable ℂ f → HasOrderLeOne f →
       analyticOrderAt f z₀ ≤ (m : ℕ∞) →
@@ -365,7 +394,9 @@ theorem exists_pow_mul_of_hasOrderLeOne (z₀ : ℂ) :
 
 /-! ## Hadamard factorization at order `≤ 1`, finitely many zeros -/
 
-/-- Induction on the number of distinct zeros.-/
+/-- Induction on the number of distinct zeros.
+@isnad1 id=ex.4h2v.s7.178c20f0f59a from=translated src=- shape=e258bd29 vocab=7fa157a8
+-/
 theorem exists_poly_mul_exp_aux_gen :
     ∀ (k : ℕ) (f : ℂ → ℂ), Differentiable ℂ f → HasOrderLeOne f →
       {z : ℂ | f z = 0}.Finite → {z : ℂ | f z = 0}.ncard = k →
@@ -430,14 +461,18 @@ theorem exists_poly_mul_exp_aux_gen :
       Polynomial.eval_X, Polynomial.eval_C]
     ring
 
-/-- **Hadamard factorization at order `≤ 1`, finitely many zeros, arbitrary type.**-/
+/-- **Hadamard factorization at order `≤ 1`, finitely many zeros, arbitrary type.**
+@isnad1 id=ex.3h1v.s7.0b00bf87ca5b from=translated src=- shape=0936718b vocab=0d3b3960
+-/
 theorem exists_poly_mul_exp_of_finite_zeros_of_hasOrderLeOne {f : ℂ → ℂ}
     (hf : Differentiable ℂ f) (hord : HasOrderLeOne f) (hfin : {z : ℂ | f z = 0}.Finite) :
     ∃ (P : Polynomial ℂ) (a b : ℂ), ∀ z, f z = P.eval z * Complex.exp (a * z + b) :=
   exists_poly_mul_exp_aux_gen _ f hf hord hfin rfl
 
 /-- Contrapositive form: an entire function of order at most one that is *not* `exp` of an
-affine function must have a zero. This is the shape the application consumes.-/
+affine function must have a zero. This is the shape the application consumes.
+@isnad1 id=ex.3h1v.s6.6510f4fc0f3c from=translated src=- shape=e359b793 vocab=073b81dc
+-/
 theorem exists_zero_of_not_eq_exp_affine_of_hasOrderLeOne {f : ℂ → ℂ}
     (hf : Differentiable ℂ f) (hord : HasOrderLeOne f)
     (hne : ¬ ∃ a b : ℂ, ∀ z, f z = Complex.exp (a * z + b)) :
@@ -454,7 +489,9 @@ finite-type situation.
 The analytic content is a Young-type inequality `B r ≤ B T + r ^ (1 + ε)` valid for all
 `r ≥ 0`, with the threshold `T = (max B 1) ^ (1/ε)` chosen so that `T ^ ε = max B 1`: below
 `T` the left side is at most `B T`, and above `T` one has
-`r ^ (1 + ε) = r * r ^ ε ≥ r * T ^ ε ≥ B r`.-/
+`r ^ (1 + ε) = r * r ^ ε ≥ r * T ^ ε ≥ B r`.
+@isnad1 id=hasorder.2h3v.s5.53f6b56f8395 from=translated src=- shape=2f6c9e2d vocab=8283e839
+-/
 theorem hasOrderLeOne_of_exp_type {f : ℂ → ℂ} {A B : ℝ} (hA : 0 < A)
     (hgrowth : ∀ z : ℂ, ‖f z‖ ≤ A * Real.exp (B * ‖z‖)) : HasOrderLeOne f := by
   intro ε hε
@@ -511,7 +548,9 @@ theorem eq_exp_affine_of_exp_type {f : ℂ → ℂ} (hf : Differentiable ℂ f)
     ∃ a b : ℂ, ∀ z, f z = Complex.exp (a * z + b) :=
   eq_exp_affine_of_hasOrderLeOne hf hnz (hasOrderLeOne_of_exp_type hA hgrowth)
 
-/-- `XiLab.exists_poly_mul_exp_of_finite_zeros` recovered from the maximal-type theorem.-/
+/-- `XiLab.exists_poly_mul_exp_of_finite_zeros` recovered from the maximal-type theorem.
+@isnad1 id=ex.4h3v.s7.fa0236f54cef from=translated src=- shape=fdaca666 vocab=1f9c22ee
+-/
 theorem exists_poly_mul_exp_of_finite_zeros_of_exp_type {f : ℂ → ℂ} (hf : Differentiable ℂ f)
     {A B : ℝ} (hA : 0 < A) (hgrowth : ∀ z : ℂ, ‖f z‖ ≤ A * Real.exp (B * ‖z‖))
     (hfin : {z : ℂ | f z = 0}.Finite) :

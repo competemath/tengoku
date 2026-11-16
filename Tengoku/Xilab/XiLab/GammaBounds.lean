@@ -18,7 +18,9 @@ open Real
 
 /-! ### Elementary logarithm inequalities -/
 
-/-- `u/(1+u) ≤ log (1+u)` for `u ≥ 0`.-/
+/-- `u/(1+u) ≤ log (1+u)` for `u ≥ 0`.
+@isnad1 id=le.1h1v.s5.904bfaee367d from=translated src=- shape=a73fd231 vocab=5579e697
+-/
 theorem self_div_add_one_le_log_add_one {u : ℝ} (hu : 0 ≤ u) :
     u / (1 + u) ≤ Real.log (1 + u) := by
   have h1 : (0 : ℝ) < 1 + u := by linarith
@@ -29,7 +31,9 @@ theorem self_div_add_one_le_log_add_one {u : ℝ} (hu : 0 ≤ u) :
   linarith
 
 /-- The key "gap" inequality: `t ≤ (a+t) * (log (a+t) - log a)` for `a > 0`, `t ≥ 0`.
-This is exactly the amount by which `x ↦ x log x - x` outruns the chord of `log Γ`.-/
+This is exactly the amount by which `x ↦ x log x - x` outruns the chord of `log Γ`.
+@isnad1 id=le.2h2v.s6.2622952c54d9 from=translated src=- shape=f277187b vocab=18e879e3
+-/
 theorem le_mul_log_sub_log {a t : ℝ} (ha : 0 < a) (ht : 0 ≤ t) :
     t ≤ (a + t) * (Real.log (a + t) - Real.log a) := by
   have hat : (0 : ℝ) < a + t := by linarith
@@ -48,7 +52,9 @@ theorem le_mul_log_sub_log {a t : ℝ} (ha : 0 < a) (ht : 0 ≤ t) :
 
 /-- `log (n !) = log Γ(n+1) ≤ (n+1) log (n+1) - (n+1) + 1`.
 Proved by induction; the inductive step is exactly `le_mul_log_sub_log` with `t = 1`,
-i.e. the fact that `(1 + 1/n)^(n+1) ≥ e`.-/
+i.e. the fact that `(1 + 1/n)^(n+1) ≥ e`.
+@isnad1 id=le.0h1v.s6.a11658a354bf from=translated src=- shape=f8e98153 vocab=c2e495e0
+-/
 theorem log_Gamma_natCast_add_one_le (n : ℕ) :
     Real.log (Real.Gamma ((n : ℝ) + 1)) ≤ ((n : ℝ) + 1) * Real.log ((n : ℝ) + 1) - (n + 1) + 1 := by
   induction n with
@@ -64,7 +70,9 @@ theorem log_Gamma_natCast_add_one_le (n : ℕ) :
     rw [hlog]
     linarith
 
-/-- `log Γ(n) ≤ n log n - n + 1` for a positive natural `n`.-/
+/-- `log Γ(n) ≤ n log n - n + 1` for a positive natural `n`.
+@isnad1 id=le.1h1v.s5.7e59a439e817 from=translated src=- shape=9a908e25 vocab=c2e495e0
+-/
 theorem log_Gamma_natCast_le {n : ℕ} (hn : 1 ≤ n) :
     Real.log (Real.Gamma (n : ℝ)) ≤ (n : ℝ) * Real.log (n : ℝ) - n + 1 := by
   obtain ⟨m, rfl⟩ : ∃ m, n = m + 1 := ⟨n - 1, by omega⟩
@@ -87,7 +95,9 @@ below goes through log-convexity instead.)
 
 Proof: the bound holds at integers by induction, and log-convexity of `Γ`
 (`Real.convexOn_log_Gamma`) interpolates it between consecutive integers, with the slack
-supplied by `le_mul_log_sub_log`.-/
+supplied by `le_mul_log_sub_log`.
+@isnad1 id=le.1h1v.s5.6aeb24638bb3 from=translated src=- shape=58fa3688 vocab=0e554af4
+-/
 theorem log_Gamma_le {x : ℝ} (hx : 1 ≤ x) :
     Real.log (Real.Gamma x) ≤ x * Real.log x - x + 1 := by
   have hx0 : (0 : ℝ) < x := by linarith
@@ -121,7 +131,9 @@ theorem log_Gamma_le {x : ℝ} (hx : 1 ≤ x) :
 
 /-- Multiplicative form of `log_Gamma_le`: `Γ(x) ≤ e · x^x · e^(-x)` for `x ≥ 1`
 (`x ^ x` is `Real.rpow`).  This is the "Stirling without the `√x`" envelope; the missing
-`√(2π/x)` factor is exactly the slack that makes the constant `e` instead of `√(2π)`.-/
+`√(2π/x)` factor is exactly the slack that makes the constant `e` instead of `√(2π)`.
+@isnad1 id=le.1h1v.s5.e5916aaac1f4 from=translated src=- shape=f634c84a vocab=19746fc3
+-/
 theorem Gamma_le {x : ℝ} (hx : 1 ≤ x) :
     Real.Gamma x ≤ Real.exp 1 * x ^ x * Real.exp (-x) := by
   have hx0 : (0 : ℝ) < x := by linarith
@@ -133,13 +145,17 @@ theorem Gamma_le {x : ℝ} (hx : 1 ≤ x) :
         congr 1
         ring
 
-/-- The crude form that is all the order computation actually needs: `log Γ(x) ≤ x log x`.-/
+/-- The crude form that is all the order computation actually needs: `log Γ(x) ≤ x log x`.
+@isnad1 id=le.1h1v.s4.bce32f88f3d8 from=translated src=- shape=2bbd6dc0 vocab=2ea73d51
+-/
 theorem log_Gamma_le_mul_log {x : ℝ} (hx : 1 ≤ x) :
     Real.log (Real.Gamma x) ≤ x * Real.log x := by
   have := log_Gamma_le hx
   linarith
 
-/-- `Γ(x) ≤ exp (x log x)` for `x ≥ 1`.-/
+/-- `Γ(x) ≤ exp (x log x)` for `x ≥ 1`.
+@isnad1 id=le.1h1v.s4.88620a61d708 from=translated src=- shape=7ac037a9 vocab=bae84954
+-/
 theorem Gamma_le_exp_mul_log {x : ℝ} (hx : 1 ≤ x) :
     Real.Gamma x ≤ Real.exp (x * Real.log x) := by
   have hx0 : (0 : ℝ) < x := by linarith
@@ -152,7 +168,9 @@ theorem Gamma_le_exp_mul_log {x : ℝ} (hx : 1 ≤ x) :
 
 This is the statement Proposition 3.2 of the tempered-`ξ` paper needs: the envelope
 `|F(w)| ≤ (C₁/2) Γ(r/2 + 9/4) / π^(r/2+9/4)` combined with this gives
-`log max_{|w|=r} |F| = O(r^(1+ε))` for every `ε > 0`, i.e. order at most one.-/
+`log max_{|w|=r} |F| = O(r^(1+ε))` for every `ε > 0`, i.e. order at most one.
+@isnad1 id=le.2h2v.s6.8c8bae0af655 from=translated src=- shape=0c3f4f6c vocab=4fe7f3b7
+-/
 theorem log_Gamma_le_rpow {ε : ℝ} (hε : 0 < ε) {x : ℝ} (hx : 1 ≤ x) :
     Real.log (Real.Gamma x) ≤ x ^ (1 + ε) / ε := by
   have hx0 : (0 : ℝ) < x := by linarith
@@ -167,7 +185,9 @@ theorem log_Gamma_le_rpow {ε : ℝ} (hε : 0 < ε) {x : ℝ} (hx : 1 ≤ x) :
   calc x * Real.log x ≤ x * (x ^ ε / ε) := mul_le_mul_of_nonneg_left hlog hx0.le
     _ = x * x ^ ε / ε := by ring
 
-/-- Multiplicative form of `log_Gamma_le_rpow`.-/
+/-- Multiplicative form of `log_Gamma_le_rpow`.
+@isnad1 id=le.2h2v.s6.a639f14a1a2f from=translated src=- shape=a7c7a5da vocab=5e1dc50e
+-/
 theorem Gamma_le_exp_rpow {ε : ℝ} (hε : 0 < ε) {x : ℝ} (hx : 1 ≤ x) :
     Real.Gamma x ≤ Real.exp (x ^ (1 + ε) / ε) := by
   have hx0 : (0 : ℝ) < x := by linarith
@@ -177,7 +197,9 @@ theorem Gamma_le_exp_rpow {ε : ℝ} (hε : 0 < ε) {x : ℝ} (hx : 1 ≤ x) :
 
 /-- A variant valid on all of `(0, ∞)`, obtained from `Γ(x) = Γ(x+1)/x`.
 Needed only if a downstream argument hits an argument in `(0,1)`; the paper's
-`Γ(r/2 + 9/4)` never does.-/
+`Γ(r/2 + 9/4)` never does.
+@isnad1 id=le.1h1v.s6.c27f41c76ea5 from=translated src=- shape=73a4f1ce vocab=5e6e90eb
+-/
 theorem log_Gamma_le_of_pos {x : ℝ} (hx : 0 < x) :
     Real.log (Real.Gamma x) ≤ (x + 1) * Real.log (x + 1) - x - Real.log x := by
   have h := log_Gamma_le (x := x + 1) (by linarith)
@@ -193,13 +215,17 @@ The paper's envelope is `|F(w)| ≤ (C₁/2) · Γ(r/2 + 9/4) / π^(r/2 + 9/4)` 
 These two lemmas are that `Γ` factor, already specialised, so `XiLab/Kernel.lean` can use
 them without redoing the `1 ≤ x` side condition. -/
 
-/-- The envelope at the paper's argument `r/2 + 9/4`, `r ≥ 0`.-/
+/-- The envelope at the paper's argument `r/2 + 9/4`, `r ≥ 0`.
+@isnad1 id=le.1h1v.s7.9c7691e08ab2 from=translated src=- shape=1611017c vocab=af50d1ec
+-/
 theorem log_Gamma_shift_le {r : ℝ} (hr : 0 ≤ r) :
     Real.log (Real.Gamma (r / 2 + 9 / 4))
       ≤ (r / 2 + 9 / 4) * Real.log (r / 2 + 9 / 4) - (r / 2 + 9 / 4) + 1 :=
   log_Gamma_le (by linarith)
 
-/-- The order-`≤ 1` form at the paper's argument `r/2 + 9/4`, `r ≥ 0`.-/
+/-- The order-`≤ 1` form at the paper's argument `r/2 + 9/4`, `r ≥ 0`.
+@isnad1 id=le.2h2v.s7.b3b359b5712d from=translated src=- shape=eabb7fab vocab=ab9e8fe6
+-/
 theorem log_Gamma_shift_le_rpow {ε : ℝ} (hε : 0 < ε) {r : ℝ} (hr : 0 ≤ r) :
     Real.log (Real.Gamma (r / 2 + 9 / 4)) ≤ (r / 2 + 9 / 4) ^ (1 + ε) / ε :=
   log_Gamma_le_rpow hε (by linarith)

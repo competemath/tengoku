@@ -72,7 +72,9 @@ claim into `log s ≤ s − 1`. -/
 
 Only `Real.log_le_sub_one_of_pos` is used; the slack discarded at the end is
 `(b/2) log (2π) + b/2 ≥ 0`, i.e. the difference between `(b/2) log b` and the exact
-supremum `(b/2) log (b/(2π)) − b/2`.-/
+supremum `(b/2) log (b/(2π)) − b/2`.
+@isnad1 id=le.1h2v.s6.7e773808dc90 from=translated src=- shape=87b8fb43 vocab=9676c3d5
+-/
 theorem exp_envelope_sharp {b : ℝ} (hb : 1 ≤ b) (u : ℝ) :
     Real.exp ((b - 1) * u) * Real.exp (-(π * Real.exp (2 * u))) ≤
       Real.exp (b / 2 * Real.log b) * Real.exp (-u) := by
@@ -100,7 +102,9 @@ theorem exp_envelope_sharp {b : ℝ} (hb : 1 ≤ b) (u : ℝ) :
 This is the inner content of `GammaBounds.log_Gamma_le_rpow`, restated for a bare real
 argument. -/
 
-/-- `x log x ≤ x^{1+ε} / ε` for `x ≥ 1` and `ε > 0`.-/
+/-- `x log x ≤ x^{1+ε} / ε` for `x ≥ 1` and `ε > 0`.
+@isnad1 id=le.2h2v.s6.8512d808586c from=translated src=- shape=ad782f3d vocab=f2333ff0
+-/
 theorem mul_log_le_rpow {ε : ℝ} (hε : 0 < ε) {x : ℝ} (hx : 1 ≤ x) :
     x * Real.log x ≤ x ^ (1 + ε) / ε := by
   have hx0 : (0 : ℝ) < x := by linarith
@@ -123,7 +127,9 @@ theorem mul_log_le_rpow {ε : ℝ} (hε : 0 < ε) {x : ℝ} (hx : 1 ≤ x) :
 Since `(b/2) log b = (r/2) log r + O(r)`, this is exactly the paper's
 `log max_{‖w‖ = r} ‖F‖ ≤ (r/2) log r + O(r)`.  The `9/2` in the exponent of the kernel
 envelope and the `+1` absorbed to leave an integrable `e^{−u}` are what turn `r` into
-`11/2 + r`; the paper's `Γ(r/2 + 9/4)` has the same leading behaviour.-/
+`11/2 + r`; the paper's `Γ(r/2 + 9/4)` has the same leading behaviour.
+@isnad1 id=le.0h1v.s7.4e8d9e66ad5c from=translated src=- shape=3f298c3f vocab=6a997627
+-/
 theorem norm_F_le (w : ℂ) :
     ‖F w‖ ≤ 2 * phiConst *
       Real.exp ((11 / 2 + ‖w‖) / 2 * Real.log (11 / 2 + ‖w‖)) := by
@@ -167,7 +173,9 @@ theorem norm_F_le (w : ℂ) :
 
 /-- Elementary splitting bound: `(c + r)^p ≤ (2c)^p + 2^p r^p` for `c, r ≥ 0`, `p ≥ 0`.
 Split at `r = c`: below it `c + r ≤ 2c`, above it `c + r ≤ 2r`.  This is what turns a
-bound in `‖w‖ + const` into a bound in `‖w‖` with an `ε`-dependent constant.-/
+bound in `‖w‖ + const` into a bound in `‖w‖` with an `ε`-dependent constant.
+@isnad1 id=le.3h3v.s6.bdf455ca9b89 from=translated src=- shape=dbd29cd6 vocab=cef4cf1d
+-/
 theorem rpow_add_const_le {c p r : ℝ} (hc : 0 ≤ c) (hp : 0 ≤ p) (hr : 0 ≤ r) :
     (c + r) ^ p ≤ (2 * c) ^ p + 2 ^ p * r ^ p := by
   have h2p : (0 : ℝ) ≤ (2 : ℝ) ^ p := Real.rpow_nonneg (by norm_num) p
@@ -182,14 +190,18 @@ theorem rpow_add_const_le {c p r : ℝ} (hc : 0 ≤ c) (hp : 0 ≤ p) (hr : 0 �
     rw [Real.mul_rpow (by norm_num) hr] at hmul
     linarith
 
-/-- The specialisation used below: `(11/2 + r)^p ≤ 11^p + 2^p r^p`.-/
+/-- The specialisation used below: `(11/2 + r)^p ≤ 11^p + 2^p r^p`.
+@isnad1 id=le.2h2v.s7.39a2fba43fc0 from=translated src=- shape=b6160783 vocab=e624faf6
+-/
 theorem rpow_shift_le {p r : ℝ} (hp : 0 ≤ p) (hr : 0 ≤ r) :
     (11 / 2 + r) ^ p ≤ (11 : ℝ) ^ p + 2 ^ p * r ^ p := by
   have := rpow_add_const_le (c := 11 / 2) (p := p) (r := r) (by norm_num) hp hr
   rw [show (2 : ℝ) * (11 / 2) = 11 by norm_num] at this
   exact this
 
-/-- **Theorem 3.3 (growth half).**  `F` has order at most one.-/
+/-- **Theorem 3.3 (growth half).**  `F` has order at most one.
+@isnad1 id=hasorder.0h0v.s1.51a8d210840f from=translated src=- shape=49959d42 vocab=de0c255a
+-/
 theorem hasOrderLeOne_F : HasOrderLeOne F := by
   intro ε hε
   set p : ℝ := 1 + ε with hpdef
@@ -260,7 +272,9 @@ is one change-of-variables lemma away from `hasOrderLeOne_F`, and this is where
 `XiLab/GammaBounds.lean` is consumed. -/
 
 /-- **The Gamma envelope implies order ≤ 1.**  If `‖f w‖ ≤ M Γ(‖w‖/2 + 9/4) / π^{‖w‖/2+9/4}`
-for every `w`, then `f` has order at most one.  Uses `GammaBounds.Gamma_le_exp_rpow`.-/
+for every `w`, then `f` has order at most one.  Uses `GammaBounds.Gamma_le_exp_rpow`.
+@isnad1 id=hasorder.2h2v.s7.11f8cadc7630 from=translated src=- shape=48378129 vocab=4189dc4d
+-/
 theorem hasOrderLeOne_of_gamma_bound {f : ℂ → ℂ} {M : ℝ} (hM : 0 < M)
     (h : ∀ w : ℂ, ‖f w‖ ≤ M * (Real.Gamma (‖w‖ / 2 + 9 / 4) / π ^ (‖w‖ / 2 + 9 / 4))) :
     HasOrderLeOne f := by
@@ -319,7 +333,9 @@ theorem hasOrderLeOne_of_gamma_bound {f : ℂ → ℂ} {M : ℝ} (hM : 0 < M)
 
 Cheap, and the downstream quartet-symmetry argument wants it. -/
 
-/-- `F` is odd: `F (-w) = -F w`.  Immediate from `sinh (-z) = -sinh z`.-/
+/-- `F` is odd: `F (-w) = -F w`.  Immediate from `sinh (-z) = -sinh z`.
+@isnad1 id=eq.0h1v.s3.946861aefa03 from=translated src=- shape=c7188113 vocab=8fa2132e
+-/
 theorem F_neg (w : ℂ) : F (-w) = -F w := by
   have hpt : ∀ u : ℝ,
       (Phi u : ℂ) * Complex.sinh (-w * u) = -((Phi u : ℂ) * Complex.sinh (w * u)) := by

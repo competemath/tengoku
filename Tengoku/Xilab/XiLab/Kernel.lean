@@ -82,24 +82,38 @@ noncomputable def phiTerm (n : ℕ) (u : ℝ) : ℝ :=
       6 * π * (n : ℝ) ^ 2 * Real.exp (5 * u / 2)) *
     Real.exp (-(π * (n : ℝ) ^ 2 * Real.exp (2 * u)))
 
+/--
+@isnad1 id=eq.0h1v.s4.99ae5907bd70 from=translated src=- shape=a0dd47fb vocab=10e4e59c
+-/
 @[simp] lemma phiTerm_zero (u : ℝ) : phiTerm 0 u = 0 := by simp [phiTerm]
 
+/--
+@isnad1 id=continuo.0h1v.s4.90ba27f7af28 from=translated src=- shape=8735051e vocab=1e01c515
+-/
 lemma continuous_phiTerm (n : ℕ) : Continuous (phiTerm n) := by
   unfold phiTerm; fun_prop
 
+/--
+@isnad1 id=le.0h1v.s5.804a20e5adaa from=translated src=- shape=00a8e044 vocab=ef525443
+-/
 lemma cast_sq_le_pow_four (n : ℕ) : (n : ℝ) ^ 2 ≤ (n : ℝ) ^ 4 := by
   rcases Nat.eq_zero_or_pos n with h | h
   · simp [h]
   · have : (1:ℝ) ≤ (n : ℝ) := by exact_mod_cast h
     nlinarith [sq_nonneg ((n:ℝ)^2 - 1), sq_nonneg ((n:ℝ) - 1)]
 
+/--
+@isnad1 id=le.0h1v.s4.198a9fe3ed27 from=translated src=- shape=c03bf12e vocab=ef525443
+-/
 lemma cast_le_sq (n : ℕ) : (n : ℝ) ≤ (n : ℝ) ^ 2 := by
   rcases Nat.eq_zero_or_pos n with h | h
   · simp [h]
   · have : (1:ℝ) ≤ (n : ℝ) := by exact_mod_cast h
     nlinarith
 
-/-- Crude termwise bound: replace the difference of the two positive pieces by their sum.-/
+/-- Crude termwise bound: replace the difference of the two positive pieces by their sum.
+@isnad1 id=le.0h2v.s8.66116abeba05 from=translated src=- shape=f159e038 vocab=e3910967
+-/
 lemma abs_phiTerm_le_aux (n : ℕ) (u : ℝ) :
     |phiTerm n u| ≤
       (4 * π ^ 2 * (n : ℝ) ^ 4 * Real.exp (9 * u / 2) +
@@ -121,7 +135,9 @@ lemma abs_phiTerm_le_aux (n : ℕ) (u : ℝ) :
     _ ≤ _ := mul_le_mul_of_nonneg_right habs (Real.exp_pos _).le
 
 /-- Master termwise bound, valid for every real `u`: the `n`-th term is dominated by
-`C(u) * n^4 * r(u)^n` with `r(u) = exp (-π e^{2u}) ∈ (0,1)`.-/
+`C(u) * n^4 * r(u)^n` with `r(u) = exp (-π e^{2u}) ∈ (0,1)`.
+@isnad1 id=le.0h2v.s7.2a73d4eede71 from=translated src=- shape=960742ff vocab=e3910967
+-/
 lemma abs_phiTerm_le (n : ℕ) (u : ℝ) :
     |phiTerm n u| ≤
       (4 * π ^ 2 * Real.exp (9 * u / 2) + 6 * π * Real.exp (5 * u / 2)) *
@@ -152,6 +168,9 @@ lemma abs_phiTerm_le (n : ℕ) (u : ℝ) :
         nlinarith [mul_le_mul_of_nonneg_left hsq
           (by positivity : (0:ℝ) ≤ 6 * π * Real.exp (5 * u / 2))]
 
+/--
+@isnad1 id=lt.0h1v.s5.7b3a3ed6a969 from=translated src=- shape=368bd6bf vocab=92d2f1ee
+-/
 lemma norm_exp_neg_pi_exp_lt_one (u : ℝ) :
     ‖Real.exp (-(π * Real.exp (2 * u)))‖ < 1 := by
   rw [Real.norm_eq_abs, abs_of_pos (Real.exp_pos _)]
@@ -159,7 +178,9 @@ lemma norm_exp_neg_pi_exp_lt_one (u : ℝ) :
   have : (0:ℝ) < π * Real.exp (2 * u) := mul_pos Real.pi_pos (Real.exp_pos _)
   linarith
 
-/-- **Summability of the defining series of `Φ`**, for every real `u`.-/
+/-- **Summability of the defining series of `Φ`**, for every real `u`.
+@isnad1 id=summable.0h1v.s4.305d40ae9d27 from=translated src=- shape=0b46e227 vocab=9d84262b
+-/
 theorem summable_phiTerm (u : ℝ) : Summable (fun n : ℕ => phiTerm n u) := by
   have hs :=
     (summable_pow_mul_geometric_of_norm_lt_one 4 (norm_exp_neg_pi_exp_lt_one u)).mul_left
@@ -187,18 +208,25 @@ in particular `2 ∫_0^∞ Φ = ξ(½) = 0.4971207781883141099…`.  The compani
 The sum is over the *positive* integers; the summand is written `phiTerm (n+1) u`.-/
 noncomputable def Phi (u : ℝ) : ℝ := ∑' n : ℕ, phiTerm (n + 1) u
 
+/--
+@isnad1 id=summable.0h1v.s4.a3d1de756b92 from=translated src=- shape=7f8378ff vocab=c971c625
+-/
 lemma summable_phiTerm_succ (u : ℝ) : Summable (fun n : ℕ => phiTerm (n + 1) u) :=
   (summable_nat_add_iff 1).mpr (summable_phiTerm u)
 
 /-- The `n = 0` summand vanishes identically, so summing over all of `ℕ` gives the same
-value as summing over `n ≥ 1`.  This is the convenient form for estimates.-/
+value as summing over `n ≥ 1`.  This is the convenient form for estimates.
+@isnad1 id=eq.0h1v.s4.7af0e3117d54 from=translated src=- shape=53cec0e6 vocab=f206c33b
+-/
 lemma Phi_eq_tsum (u : ℝ) : Phi u = ∑' n : ℕ, phiTerm n u := by
   rw [(summable_phiTerm u).tsum_eq_zero_add, phiTerm_zero, zero_add]
   rfl
 
 /-! ### Continuity -/
 
-/-- Uniform termwise bound on a compact interval `[a, b]`.-/
+/-- Uniform termwise bound on a compact interval `[a, b]`.
+@isnad1 id=le.1h4v.s7.b2342a383efe from=translated src=- shape=e15a9ca2 vocab=138e31ec
+-/
 lemma abs_phiTerm_le_of_mem_Icc {a b : ℝ} (n : ℕ) {x : ℝ} (hx : x ∈ Icc a b) :
     |phiTerm n x| ≤
       (4 * π ^ 2 * Real.exp (9 * b / 2) + 6 * π * Real.exp (5 * b / 2)) *
@@ -230,6 +258,9 @@ lemma abs_phiTerm_le_of_mem_Icc {a b : ℝ} (n : ℕ) {x : ℝ} (hx : x ∈ Icc 
         refine mul_le_mul_of_nonneg_right ?_ (by positivity)
         nlinarith
 
+/--
+@isnad1 id=continuo.0h2v.s4.f14bc494c887 from=translated src=- shape=384c6439 vocab=fba3ebf4
+-/
 theorem continuousOn_Phi_Icc (a b : ℝ) : ContinuousOn Phi (Icc a b) := by
   have hr : ‖Real.exp (-(π * Real.exp (2 * a)))‖ < 1 := norm_exp_neg_pi_exp_lt_one a
   have hgeo : Summable
@@ -247,7 +278,9 @@ theorem continuousOn_Phi_Icc (a b : ℝ) : ContinuousOn Phi (Icc a b) := by
         simpa [Real.norm_eq_abs] using abs_phiTerm_le_of_mem_Icc (n + 1) hx)
   exact main
 
-/-- `Φ` is continuous on all of `ℝ`.-/
+/-- `Φ` is continuous on all of `ℝ`.
+@isnad1 id=continuo.0h0v.s3.3d8ca295975b from=translated src=- shape=e3d48bcb vocab=99c18247
+-/
 theorem continuous_Phi : Continuous Phi := by
   rw [continuous_iff_continuousAt]
   intro u₀
@@ -257,7 +290,9 @@ theorem continuous_Phi : Continuous Phi := by
 /-! ### Positivity on `[0, ∞)` -/
 
 /-- Every summand of `Φ` is strictly positive for `u ≥ 0` and `n ≥ 1`: the factor
-`4π²n⁴e^{2u} − 6πn²` is positive because `4π² > 6π` and `n²e^{2u} ≥ 1`.-/
+`4π²n⁴e^{2u} − 6πn²` is positive because `4π² > 6π` and `n²e^{2u} ≥ 1`.
+@isnad1 id=lt.2h2v.s5.52bef21e52e7 from=translated src=- shape=6d285e58 vocab=518b922c
+-/
 theorem phiTerm_pos {n : ℕ} (hn : 1 ≤ n) {u : ℝ} (hu : 0 ≤ u) : 0 < phiTerm n u := by
   have hpi3 : (3:ℝ) < π := Real.pi_gt_three
   have hn1 : (1:ℝ) ≤ (n : ℝ) := by exact_mod_cast hn
@@ -286,13 +321,18 @@ theorem phiTerm_pos {n : ℕ} (hn : 1 ≤ n) {u : ℝ} (hu : 0 ≤ u) : 0 < phiT
   rw [hfac]
   exact mul_pos h5 (by linarith)
 
-/-- **Positivity of `Φ` on the half line.**-/
+/-- **Positivity of `Φ` on the half line.**
+@isnad1 id=lt.1h1v.s4.fac8a6435291 from=translated src=- shape=a8dc2df9 vocab=acc932ab
+-/
 theorem Phi_pos {u : ℝ} (hu : 0 ≤ u) : 0 < Phi u := by
   have hterm : ∀ n : ℕ, 0 < phiTerm (n + 1) u := fun n =>
     phiTerm_pos (Nat.le_add_left 1 n) hu
   have := (summable_phiTerm_succ u).le_tsum 0 (fun j _ => (hterm j).le)
   exact lt_of_lt_of_le (hterm 0) this
 
+/--
+@isnad1 id=le.1h1v.s4.692b3e0f3e8a from=translated src=- shape=35bd48ee vocab=18273a3d
+-/
 theorem Phi_nonneg {u : ℝ} (hu : 0 ≤ u) : 0 ≤ Phi u := (Phi_pos hu).le
 
 /-! ### The decay envelope on `[0, ∞)`
@@ -313,9 +353,15 @@ which is exactly `(n²−1)(e^{2u}−1) ≥ 0`. -/
 noncomputable def envTerm (n : ℕ) : ℝ :=
   (4 * π ^ 2 * (n : ℝ) ^ 4 + 6 * π * (n : ℝ) ^ 2) * Real.exp (-(π * ((n : ℝ) ^ 2 - 1)))
 
+/--
+@isnad1 id=le.0h1v.s3.3ac355ee02dc from=translated src=- shape=b9369acb vocab=694c495d
+-/
 lemma envTerm_nonneg (n : ℕ) : 0 ≤ envTerm n := by
   have := Real.pi_pos; unfold envTerm; positivity
 
+/--
+@isnad1 id=summable.0h0v.s3.959e01107376 from=translated src=- shape=ef4b497d vocab=30d41dd8
+-/
 theorem summable_envTerm : Summable envTerm := by
   have hpi := Real.pi_pos
   have hr : ‖Real.exp (-π)‖ < 1 := by
@@ -340,10 +386,15 @@ theorem summable_envTerm : Summable envTerm := by
 the `n = 0` term of the sum vanishes, so summing over all of `ℕ` is the same thing.-/
 noncomputable def phiConst : ℝ := ∑' n : ℕ, envTerm n
 
+/--
+@isnad1 id=le.0h0v.s3.0b3a61e8f0c3 from=translated src=- shape=ff3a10fc vocab=e6deb665
+-/
 theorem phiConst_nonneg : 0 ≤ phiConst :=
   tsum_nonneg envTerm_nonneg
 
-/-- Termwise form of the envelope bound.-/
+/-- Termwise form of the envelope bound.
+@isnad1 id=le.1h2v.s6.1df09d372ed1 from=translated src=- shape=ab660646 vocab=2fb1e34c
+-/
 lemma abs_phiTerm_le_envTerm (n : ℕ) {u : ℝ} (hu : 0 ≤ u) :
     |phiTerm n u| ≤
       envTerm n * (Real.exp (9 * u / 2) * Real.exp (-(π * Real.exp (2 * u)))) := by
@@ -375,7 +426,9 @@ lemma abs_phiTerm_le_envTerm (n : ℕ) {u : ℝ} (hu : 0 ≤ u) :
         unfold envTerm; ring
 
 /-- **Superexponential decay of `Φ`.**  For `u ≥ 0`,
-`Φ(u) ≤ C · e^{9u/2} · e^{−π e^{2u}}` with `C = phiConst`.-/
+`Φ(u) ≤ C · e^{9u/2} · e^{−π e^{2u}}` with `C = phiConst`.
+@isnad1 id=le.1h1v.s6.9c9830ad2800 from=translated src=- shape=b601d6cd vocab=e36c51c4
+-/
 theorem abs_Phi_le {u : ℝ} (hu : 0 ≤ u) :
     |Phi u| ≤ phiConst * (Real.exp (9 * u / 2) * Real.exp (-(π * Real.exp (2 * u)))) := by
   have hsum : Summable (fun n : ℕ => phiTerm n u) := summable_phiTerm u
@@ -393,12 +446,18 @@ theorem abs_Phi_le {u : ℝ} (hu : 0 ≤ u) :
     _ = phiConst * (Real.exp (9 * u / 2) * Real.exp (-(π * Real.exp (2 * u)))) :=
         tsum_mul_right
 
+/--
+@isnad1 id=le.1h1v.s6.312a5b5323c2 from=translated src=- shape=c823d203 vocab=c488ed9b
+-/
 theorem Phi_le {u : ℝ} (hu : 0 ≤ u) :
     Phi u ≤ phiConst * (Real.exp (9 * u / 2) * Real.exp (-(π * Real.exp (2 * u)))) :=
   (le_abs_self _).trans (abs_Phi_le hu)
 
 /-! ### Integrability of `Φ(u) · (anything of exponential type)` on `(0, ∞)` -/
 
+/--
+@isnad1 id=le.1h1v.s6.b8892dbaeb32 from=translated src=- shape=d9816f30 vocab=fc917557
+-/
 lemma two_sq_le_exp_two_mul {u : ℝ} (hu : 0 ≤ u) : 2 * u ^ 2 ≤ Real.exp (2 * u) := by
   have h : (1:ℝ) + 2 * u + (2 * u) ^ 2 / 2 ≤ Real.exp (2 * u) := by
     have := Real.sum_le_exp_of_nonneg (show (0:ℝ) ≤ 2 * u by linarith) 3
@@ -409,7 +468,9 @@ lemma two_sq_le_exp_two_mul {u : ℝ} (hu : 0 ≤ u) : 2 * u ^ 2 ≤ Real.exp (2
 `e^{a u} e^{−π e^{2u}} ≤ e^{(a+1)²/(8π)} · e^{−u}`.
 
 The mechanism: `π e^{2u} ≥ 2π u²`, and then `(a+1)u − 2πu² ≤ (a+1)²/(8π)` by completing
-the square (`2π(u − (a+1)/(4π))² ≥ 0`).-/
+the square (`2π(u − (a+1)/(4π))² ≥ 0`).
+@isnad1 id=le.1h2v.s7.c3f450d887cb from=translated src=- shape=21b4f62a vocab=03fd11bb
+-/
 theorem exp_envelope_le (a : ℝ) {u : ℝ} (hu : 0 ≤ u) :
     Real.exp (a * u) * Real.exp (-(π * Real.exp (2 * u))) ≤
       Real.exp ((a + 1) ^ 2 / (8 * π)) * Real.exp (-u) := by
@@ -426,7 +487,9 @@ theorem exp_envelope_le (a : ℝ) {u : ℝ} (hu : 0 ≤ u) :
   linarith
 
 /-- The scalar envelope `e^{a u} e^{−π e^{2u}}` is integrable on `(0, ∞)` for **every**
-real exponent `a`: this is the superexponential decay doing its job.-/
+real exponent `a`: this is the superexponential decay doing its job.
+@isnad1 id=integrab.0h1v.s6.c27bcc16d1d5 from=translated src=- shape=e76bdb11 vocab=f0963662
+-/
 theorem integrableOn_exp_envelope (a : ℝ) :
     IntegrableOn
       (fun u : ℝ => Real.exp (a * u) * Real.exp (-(π * Real.exp (2 * u)))) (Ioi (0:ℝ)) := by
@@ -439,7 +502,9 @@ theorem integrableOn_exp_envelope (a : ℝ) :
   simpa [neg_one_mul] using exp_envelope_le a (le_of_lt hu)
 
 /-- Comparison criterion: anything dominated on `(0, ∞)` by `C e^{a u} e^{−π e^{2u}}` is
-integrable there.-/
+integrable there.
+@isnad1 id=integrab.2h4v.s7.f01165829623 from=translated src=- shape=48f1a9e0 vocab=8b29ca83
+-/
 theorem integrableOn_of_le_envelope {E : Type*} [NormedAddCommGroup E]
     (f : ℝ → E) (a C : ℝ)
     (hf : AEStronglyMeasurable f (volume.restrict (Ioi (0:ℝ))))
@@ -451,7 +516,9 @@ theorem integrableOn_of_le_envelope {E : Type*} [NormedAddCommGroup E]
 
 /-- **The decay envelope in explicit `e^{−u}` form.**  For `u ≥ 0` and every real `a`,
 `|Φ(u)| e^{a u} ≤ (C · e^{(11/2+a)²/(8π)}) · e^{−u}`.  Combining the superexponential
-envelope with `exp_envelope_le`.-/
+envelope with `exp_envelope_le`.
+@isnad1 id=le.1h2v.s7.138023688dab from=translated src=- shape=a0b95982 vocab=0d164f7d
+-/
 theorem abs_Phi_mul_exp_le (a : ℝ) {u : ℝ} (hu : 0 ≤ u) :
     |Phi u| * Real.exp (a * u) ≤
       phiConst * Real.exp ((9 / 2 + a + 1) ^ 2 / (8 * π)) * Real.exp (-u) := by
@@ -470,7 +537,9 @@ theorem abs_Phi_mul_exp_le (a : ℝ) {u : ℝ} (hu : 0 ≤ u) :
     _ = phiConst * Real.exp ((9 / 2 + a + 1) ^ 2 / (8 * π)) * Real.exp (-u) := by ring
 
 /-- **`Φ(u) e^{au} → 0` as `u → ∞`, for every real `a`** — the superexponential decay
-outruns every exponential.-/
+outruns every exponential.
+@isnad1 id=tendsto.0h1v.s5.afa51ab25db5 from=translated src=- shape=dfa5335b vocab=91b0c8db
+-/
 theorem tendsto_Phi_mul_exp_atTop (a : ℝ) :
     Tendsto (fun u : ℝ => Phi u * Real.exp (a * u)) atTop (𝓝 0) := by
   have hupper : Tendsto
@@ -484,12 +553,17 @@ theorem tendsto_Phi_mul_exp_atTop (a : ℝ) :
   · exact le_trans (mul_le_mul_of_nonneg_right (le_abs_self _) (Real.exp_pos _).le)
       (abs_Phi_mul_exp_le a hu)
 
-/-- In particular `Φ(u) → 0` as `u → ∞`.-/
+/-- In particular `Φ(u) → 0` as `u → ∞`.
+@isnad1 id=tendsto.0h0v.s4.adba9a9df2d0 from=translated src=- shape=95bb6042 vocab=2c906f69
+-/
 theorem tendsto_Phi_atTop : Tendsto Phi atTop (𝓝 0) := by
   simpa using tendsto_Phi_mul_exp_atTop 0
 
 /-! ### The odd channel `F(w) = 2 ∫₀^∞ Φ(u) sinh(wu) du` -/
 
+/--
+@isnad1 id=le.0h1v.s3.c8222a081966 from=translated src=- shape=a5850310 vocab=16332d8d
+-/
 lemma norm_complex_sinh_le (z : ℂ) : ‖Complex.sinh z‖ ≤ Real.exp ‖z‖ := by
   have hre : |z.re| ≤ ‖z‖ := Complex.abs_re_le_norm z
   have e1 : Real.exp z.re ≤ Real.exp ‖z‖ := Real.exp_le_exp.mpr ((le_abs_self _).trans hre)
@@ -502,6 +576,9 @@ lemma norm_complex_sinh_le (z : ℂ) : ‖Complex.sinh z‖ ≤ Real.exp ‖z‖
   rw [hdef, norm_div, show ‖(2:ℂ)‖ = 2 by norm_num]
   linarith
 
+/--
+@isnad1 id=le.0h1v.s3.df4e5ef9fb2f from=translated src=- shape=a5850310 vocab=44af43b6
+-/
 lemma norm_complex_cosh_le (z : ℂ) : ‖Complex.cosh z‖ ≤ Real.exp ‖z‖ := by
   have hre : |z.re| ≤ ‖z‖ := Complex.abs_re_le_norm z
   have e1 : Real.exp z.re ≤ Real.exp ‖z‖ := Real.exp_le_exp.mpr ((le_abs_self _).trans hre)
@@ -514,10 +591,15 @@ lemma norm_complex_cosh_le (z : ℂ) : ‖Complex.cosh z‖ ≤ Real.exp ‖z‖
   rw [hdef, norm_div, show ‖(2:ℂ)‖ = 2 by norm_num]
   linarith
 
+/--
+@isnad1 id=eq.1h2v.s5.db1e13f5a1ae from=translated src=- shape=6e57ac6c vocab=3b209a6d
+-/
 lemma norm_mul_ofReal (w : ℂ) {u : ℝ} (hu : 0 ≤ u) : ‖w * (u : ℂ)‖ = ‖w‖ * u := by
   rw [norm_mul, Complex.norm_real, Real.norm_eq_abs, abs_of_nonneg hu]
 
-/-- If `‖v‖ ≤ e^{r u}` then `Φ(u) v` obeys the integrable envelope with exponent `9/2 + r`.-/
+/-- If `‖v‖ ≤ e^{r u}` then `Φ(u) v` obeys the integrable envelope with exponent `9/2 + r`.
+@isnad1 id=le.2h3v.s7.c074b15edfe5 from=translated src=- shape=afb2f345 vocab=1a3671d8
+-/
 lemma norm_Phi_mul_le {u : ℝ} (hu : 0 < u) (r : ℝ) (v : ℂ) (hv : ‖v‖ ≤ Real.exp (r * u)) :
     ‖(Phi u : ℂ) * v‖ ≤
       phiConst * (Real.exp ((9 / 2 + r) * u) * Real.exp (-(π * Real.exp (2 * u)))) := by
@@ -531,6 +613,9 @@ lemma norm_Phi_mul_le {u : ℝ} (hu : 0 < u) (r : ℝ) (v : ℂ) (hv : ‖v‖ �
     _ = phiConst * (Real.exp ((9 / 2 + r) * u) * Real.exp (-(π * Real.exp (2 * u)))) := by
         rw [show (9 / 2 + r) * u = 9 * u / 2 + r * u by ring, Real.exp_add]; ring
 
+/--
+@isnad1 id=continuo.0h1v.s5.502d29ac1b35 from=translated src=- shape=c0804c4d vocab=a26dea61
+-/
 lemma continuous_Phi_mul_sinh (w : ℂ) :
     Continuous (fun u : ℝ => (Phi u : ℂ) * Complex.sinh (w * u)) := by
   have h1 : Continuous (fun u : ℝ => ((Phi u : ℝ) : ℂ)) :=
@@ -540,6 +625,9 @@ lemma continuous_Phi_mul_sinh (w : ℂ) :
       (continuous_const.mul Complex.continuous_ofReal)
   exact h1.mul h2
 
+/--
+@isnad1 id=continuo.0h1v.s5.6ce36db22b0f from=translated src=- shape=ab3e6c76 vocab=f6b0f3ab
+-/
 lemma continuous_Phi_mul_cosh_mul (w : ℂ) :
     Continuous (fun u : ℝ => (Phi u : ℂ) * (Complex.cosh (w * u) * (u : ℂ))) := by
   have h1 : Continuous (fun u : ℝ => ((Phi u : ℝ) : ℂ)) :=
@@ -550,7 +638,9 @@ lemma continuous_Phi_mul_cosh_mul (w : ℂ) :
   exact h1.mul (h2.mul Complex.continuous_ofReal)
 
 /-- **Integrability of the odd-channel integrand**, for every complex `w`.  This is what
-makes `F(w) = 2∫₀^∞ Φ(u) sinh(wu) du` converge.-/
+makes `F(w) = 2∫₀^∞ Φ(u) sinh(wu) du` converge.
+@isnad1 id=integrab.0h1v.s6.4309071c3591 from=translated src=- shape=ee480d7b vocab=deb3f44f
+-/
 theorem integrableOn_Phi_mul_sinh (w : ℂ) :
     IntegrableOn (fun u : ℝ => (Phi u : ℂ) * Complex.sinh (w * u)) (Ioi (0:ℝ)) := by
   refine integrableOn_of_le_envelope _ (9 / 2 + ‖w‖) phiConst
@@ -560,7 +650,9 @@ theorem integrableOn_Phi_mul_sinh (w : ℂ) :
   rw [norm_mul_ofReal w hu.le]
 
 /-- The real-variable version: `u ↦ Φ(u) sinh(a u)` is integrable on `(0, ∞)` for real `a`
-(the special case `w = a` of `integrableOn_Phi_mul_sinh`, recorded for convenience).-/
+(the special case `w = a` of `integrableOn_Phi_mul_sinh`, recorded for convenience).
+@isnad1 id=integrab.0h1v.s5.018295a58c60 from=translated src=- shape=cf72b6df vocab=8ab72ea6
+-/
 theorem integrableOn_Phi_mul_rsinh (a : ℝ) :
     IntegrableOn (fun u : ℝ => Phi u * Real.sinh (a * u)) (Ioi (0:ℝ)) := by
   have hcont : Continuous (fun u : ℝ => Phi u * Real.sinh (a * u)) := by
@@ -585,7 +677,9 @@ recentred at the critical point; the integral converges for every `w ∈ ℂ` by
 noncomputable def F (w : ℂ) : ℂ :=
   2 * ∫ u in Ioi (0:ℝ), (Phi u : ℂ) * Complex.sinh (w * u)
 
-/-- The parametric integral defining `F` is complex-differentiable at every point.-/
+/-- The parametric integral defining `F` is complex-differentiable at every point.
+@isnad1 id=differen.0h1v.s6.60d6e946e15f from=translated src=- shape=bdf93391 vocab=7ee45d18
+-/
 theorem differentiableAt_integral_Phi_sinh (w₀ : ℂ) :
     DifferentiableAt ℂ
       (fun w : ℂ => ∫ u in Ioi (0:ℝ), (Phi u : ℂ) * Complex.sinh (w * u)) w₀ := by
@@ -633,7 +727,9 @@ theorem differentiableAt_integral_Phi_sinh (w₀ : ℂ) :
     h_bound hbnd_int h_diff
   exact key.2.differentiableAt
 
-/-- **`F` is entire.**-/
+/-- **`F` is entire.**
+@isnad1 id=differen.0h0v.s6.bbe11de42f6e from=translated src=- shape=aa9fb30a vocab=19048c1c
+-/
 theorem differentiable_F : Differentiable ℂ F := by
   intro w
   exact ((differentiableAt_integral_Phi_sinh w).const_mul 2)

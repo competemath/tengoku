@@ -37,7 +37,9 @@ namespace XiLab
 
 open Complex Set
 
-/-- The logarithmic derivative of a nowhere-vanishing entire function is entire.-/
+/-- The logarithmic derivative of a nowhere-vanishing entire function is entire.
+@isnad1 id=differen.2h1v.s7.70483d38463f from=translated src=- shape=c852af3e vocab=6eb1c82f
+-/
 theorem differentiable_logDeriv {f : ℂ → ℂ} (hf : Differentiable ℂ f) (hnz : ∀ z, f z ≠ 0) :
     Differentiable ℂ fun z => deriv f z / f z :=
   fun z => (hf.deriv z).div (hf z) (hnz z)
@@ -46,7 +48,9 @@ theorem differentiable_logDeriv {f : ℂ → ℂ} (hf : Differentiable ℂ f) (h
 
 This is Mathlib's `Differentiable.isExactOn_univ` (Morera on `ℂ`, from
 `Mathlib/Analysis/Complex/HasPrimitives.lean`) restated in the `HasDerivAt`-everywhere
-form that the rest of this file uses.-/
+form that the rest of this file uses.
+@isnad1 id=ex.1h1v.s7.8ba9d7e5d517 from=translated src=- shape=64099442 vocab=949f966c
+-/
 theorem exists_entire_primitive {h : ℂ → ℂ} (hh : Differentiable ℂ h) :
     ∃ H : ℂ → ℂ, Differentiable ℂ H ∧ ∀ z, HasDerivAt H (h z) z := by
   obtain ⟨H, hH⟩ := hh.isExactOn_univ
@@ -54,7 +58,9 @@ theorem exists_entire_primitive {h : ℂ → ℂ} (hh : Differentiable ℂ h) :
   exact ⟨H, fun z => (hH' z).differentiableAt, hH'⟩
 
 /-- Auxiliary step: if `G` is a primitive of the logarithmic derivative of a
-nowhere-vanishing entire `f`, then `f · exp (-G)` is constant.-/
+nowhere-vanishing entire `f`, then `f · exp (-G)` is constant.
+@isnad1 id=eq.3h4v.s7.9516bec66f8f from=translated src=- shape=d2a93a7d vocab=639f7298
+-/
 theorem const_mul_exp_neg_primitive {f G : ℂ → ℂ} (hf : Differentiable ℂ f)
     (hnz : ∀ z, f z ≠ 0) (hG : ∀ z, HasDerivAt G (deriv f z / f z) z) (z w : ℂ) :
     f z * Complex.exp (-G z) = f w * Complex.exp (-G w) := by
@@ -74,7 +80,9 @@ theorem const_mul_exp_neg_primitive {f G : ℂ → ℂ} (hf : Differentiable ℂ
     (fun x => (key x).deriv) z w
 
 /-- **Holomorphic logarithm.** A nowhere-vanishing entire function on `ℂ` is the
-exponential of an entire function.-/
+exponential of an entire function.
+@isnad1 id=ex.2h1v.s7.19ada60ee86c from=translated src=- shape=a08e02d7 vocab=0225faae
+-/
 theorem exists_entire_log {f : ℂ → ℂ} (hf : Differentiable ℂ f) (hnz : ∀ z, f z ≠ 0) :
     ∃ g : ℂ → ℂ, Differentiable ℂ g ∧ ∀ z, f z = Complex.exp (g z) := by
   obtain ⟨G, hGd, hG⟩ := exists_entire_primitive (differentiable_logDeriv hf hnz)
@@ -85,7 +93,9 @@ theorem exists_entire_log {f : ℂ → ℂ} (hf : Differentiable ℂ f) (hnz : �
   simp
 
 /-- **Holomorphic logarithm, normalized at `0`.** The branch can be chosen so that
-`g 0 = Complex.log (f 0)`; in particular `Complex.exp (g 0) = f 0`.-/
+`g 0 = Complex.log (f 0)`; in particular `Complex.exp (g 0) = f 0`.
+@isnad1 id=ex.2h1v.s7.04cc45e64deb from=translated src=- shape=2fc493d7 vocab=b086b9ed
+-/
 theorem exists_entire_log_normalized {f : ℂ → ℂ} (hf : Differentiable ℂ f)
     (hnz : ∀ z, f z ≠ 0) :
     ∃ g : ℂ → ℂ, Differentiable ℂ g ∧ g 0 = Complex.log (f 0) ∧
@@ -96,7 +106,9 @@ theorem exists_entire_log_normalized {f : ℂ → ℂ} (hf : Differentiable ℂ 
   rw [Complex.exp_add, Complex.exp_sub, Complex.exp_log h0, ← hg₀ z, ← hg₀ 0]
   field_simp
 
-/-- The normalization at `0` in the form asked for by the consumer: `exp (g 0) = f 0`.-/
+/-- The normalization at `0` in the form asked for by the consumer: `exp (g 0) = f 0`.
+@isnad1 id=ex.2h1v.s7.9f6ad902aa31 from=translated src=- shape=561eb25c vocab=0225faae
+-/
 theorem exists_entire_log_exp_zero {f : ℂ → ℂ} (hf : Differentiable ℂ f)
     (hnz : ∀ z, f z ≠ 0) :
     ∃ g : ℂ → ℂ, Differentiable ℂ g ∧ Complex.exp (g 0) = f 0 ∧
@@ -106,7 +118,9 @@ theorem exists_entire_log_exp_zero {f : ℂ → ℂ} (hf : Differentiable ℂ f)
 
 /-- **Holomorphic logarithm with a prescribed value at an arbitrary base point.**
 Given any `w` with `Complex.exp w = f z₀`, there is an entire branch `g` of `log ∘ f`
-with `g z₀ = w`.-/
+with `g z₀ = w`.
+@isnad1 id=ex.3h3v.s7.882b498f679b from=translated src=- shape=63818681 vocab=0225faae
+-/
 theorem exists_entire_log_with_val_at {f : ℂ → ℂ} (hf : Differentiable ℂ f)
     (hnz : ∀ z, f z ≠ 0) (z₀ w : ℂ) (hw : Complex.exp w = f z₀) :
     ∃ g : ℂ → ℂ, Differentiable ℂ g ∧ g z₀ = w ∧ ∀ z, f z = Complex.exp (g z) := by
