@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "890302ead766d80da4270defccc846ef2cf0f39259c04b38c030b8b3be70c200",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "rank-two-poisson-counterexample",
+ "lint_mode": "proposed",
+ "modules": 18,
+ "part": 1,
+ "theorems": 132
+}

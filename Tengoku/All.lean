@@ -121,6 +121,7 @@ import Tengoku.Etingofrepresentationtheory
 import Tengoku.NpcompletenessLean4
 import Tengoku.MeanFourier
 import Tengoku.LanaOka
+import Tengoku.RankTwoPoissonCounterexample
 import Tengoku.Nlalib
 import Tengoku.DeletionCodesLean
 import Tengoku.QuadraticNumberFields
