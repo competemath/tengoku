@@ -29,7 +29,9 @@ introducing no term containing `2 * n` as a factor (the omega-nonlinearity
 trap from correction002). -/
 
 /-- `Jn`'s vanishing diagonal: `J_{uu} = 0`. Both of `Jn`'s branch
-conditions reduce, at `v = u`, to the impossible `u = u + 1`.-/
+conditions reduce, at `v = u`, to the impossible `u = u + 1`.
+@isnad1 id=eq.0h2v.s6.cfbfe72f6c14 from=translated src=- shape=4c89630d vocab=2e733330
+-/
 theorem Jn_diag (n : ℕ) (u : Fin (2 * n)) : Jn n u u = 0 := by
   have h : (u : ℕ) ≠ (u : ℕ) + 1 := by omega
   simp [Jn]
@@ -51,12 +53,24 @@ there, not in the `n=1`-only `Coeff`. -/
 noncomputable def gsignN (n : ℕ) (p q : ZMod 2) : Pn n :=
   if p = 1 ∧ q = 1 then cratN n (-1) else cratN n 1
 
+/--
+@isnad1 id=eq.0h1v.s7.966a9a61291a from=translated src=- shape=f171efca vocab=b6e59459
+-/
 theorem gsignN_00 (n : ℕ) : gsignN n (0 : ZMod 2) (0 : ZMod 2) = 1 := by
   unfold gsignN; rw [ite_eq_right (by decide), cratN_one]
+/--
+@isnad1 id=eq.0h1v.s7.2fcddcf1f555 from=translated src=- shape=f171efca vocab=b6e59459
+-/
 theorem gsignN_01 (n : ℕ) : gsignN n (0 : ZMod 2) (1 : ZMod 2) = 1 := by
   unfold gsignN; rw [ite_eq_right (by decide), cratN_one]
+/--
+@isnad1 id=eq.0h1v.s7.87cfc3edbe8c from=translated src=- shape=f171efca vocab=b6e59459
+-/
 theorem gsignN_10 (n : ℕ) : gsignN n (1 : ZMod 2) (0 : ZMod 2) = 1 := by
   unfold gsignN; rw [ite_eq_right (by decide), cratN_one]
+/--
+@isnad1 id=eq.0h1v.s7.b3cc079a81ee from=translated src=- shape=94e74a40 vocab=fa1e45a7
+-/
 theorem gsignN_11 (n : ℕ) : gsignN n (1 : ZMod 2) (1 : ZMod 2) = -1 := by
   unfold gsignN
   rw [ite_eq_left (by decide)]

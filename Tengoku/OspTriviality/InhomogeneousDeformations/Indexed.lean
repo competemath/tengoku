@@ -31,12 +31,27 @@ abbrev Pn (n : ℕ) : Type := MvPolynomial (Fin (2 * n)) ℚ
 
 noncomputable def cratN (n : ℕ) (q : ℚ) : Pn n := MvPolynomial.C q
 
+/--
+@isnad1 id=eq.0h1v.s6.fb69fb30b913 from=translated src=- shape=0af8b8af vocab=9474a1e6
+-/
 @[simp] lemma cratN_zero (n : ℕ) : cratN n (0 : ℚ) = 0 := by simp [cratN]
+/--
+@isnad1 id=eq.0h1v.s5.2368de9bebeb from=translated src=- shape=0af8b8af vocab=9474a1e6
+-/
 @[simp] lemma cratN_one (n : ℕ) : cratN n (1 : ℚ) = 1 := by simp [cratN]
+/--
+@isnad1 id=eq.0h3v.s6.e90673e0375e from=translated src=- shape=1aad4037 vocab=8bcb9198
+-/
 @[simp] lemma cratN_add (n : ℕ) (a b : ℚ) : cratN n a + cratN n b = cratN n (a + b) := by
   simp [cratN]
+/--
+@isnad1 id=eq.0h3v.s6.0b5c2ecf280d from=translated src=- shape=1aad4037 vocab=9474a1e6
+-/
 @[simp] lemma cratN_mul (n : ℕ) (a b : ℚ) : cratN n a * cratN n b = cratN n (a * b) := by
   simp [cratN]
+/--
+@isnad1 id=eq.0h2v.s5.5ceffacfc707 from=translated src=- shape=7bc3f3a8 vocab=3a11dc4f
+-/
 @[simp] lemma cratN_neg (n : ℕ) (a : ℚ) : -cratN n a = cratN n (-a) := by simp [cratN]
 
 /-- The genuinely rank-indexed basis: the disjoint union of even sorted pairs
@@ -72,12 +87,24 @@ noncomputable def Jn (n : ℕ) (u v : Fin (2 * n)) : Pn n :=
 
 abbrev IndexedMod (n : ℕ) : Type := IndexedBasis n → Pn n
 
+/--
+@isnad1 id=eq.0h2v.s7.7db85979bd95 from=translated src=- shape=8540b0cc vocab=dc2f94fd
+-/
 @[simp] lemma indexedMod_zero_apply {n : ℕ} (k : IndexedBasis n) :
     (0 : IndexedMod n) k = 0 := rfl
+/--
+@isnad1 id=eq.0h4v.s7.e7449f27364b from=translated src=- shape=f672e01d vocab=71bf4596
+-/
 @[simp] lemma indexedMod_add_apply {n : ℕ} (x y : IndexedMod n) (k : IndexedBasis n) :
     (x + y) k = x k + y k := rfl
+/--
+@isnad1 id=eq.0h4v.s7.4f69d183299d from=translated src=- shape=3f7c90a2 vocab=0bdd74b3
+-/
 @[simp] lemma indexedMod_smul_apply {n : ℕ} (c : Pn n) (x : IndexedMod n) (k : IndexedBasis n) :
     (c • x) k = c * x k := rfl
+/--
+@isnad1 id=eq.0h3v.s6.d425674de12b from=translated src=- shape=6d41ab76 vocab=abf1667a
+-/
 @[simp] lemma indexedMod_neg_apply {n : ℕ} (x : IndexedMod n) (k : IndexedBasis n) :
     (-x) k = -x k := rfl
 
@@ -130,6 +157,9 @@ def orderKey {n : ℕ} (p : IndexedBasis n) : ℕ ×ₗ ℕ ×ₗ ℕ :=
   | .inl ⟨(u, v), _⟩ => toLex (0, toLex (u.val, v.val))
   | .inr u => toLex (1, toLex (u.val, 0))
 
+/--
+@isnad1 id=injectiv.0h1v.s3.4e06fabadb86 from=translated src=- shape=32339f45 vocab=541d1420
+-/
 theorem orderKey_injective {n : ℕ} : Function.Injective (orderKey (n := n)) := by
   intro p q hpq
   match p, q with
@@ -156,7 +186,9 @@ above.-/
 noncomputable instance instLinearOrderIndexedBasis {n : ℕ} : LinearOrder (IndexedBasis n) :=
   LinearOrder.lift' orderKey orderKey_injective
 
-/-- `C1`: every even pair precedes every odd index.-/
+/-- `C1`: every even pair precedes every odd index.
+@isnad1 id=lt.0h3v.s9.658e6c886ff5 from=translated src=- shape=2799b0ab vocab=7d0ab0cf
+-/
 theorem orderKey_even_lt_odd {n : ℕ} (p : {pr : Fin (2 * n) × Fin (2 * n) // pr.1 ≤ pr.2})
     (w : Fin (2 * n)) : orderKey (n := n) (Sum.inl p) < orderKey (n := n) (Sum.inr w) := by
   obtain ⟨⟨u, v⟩, h⟩ := p
@@ -164,13 +196,17 @@ theorem orderKey_even_lt_odd {n : ℕ} (p : {pr : Fin (2 * n) × Fin (2 * n) // 
   omega
 
 /-- `C1`: even pairs are ordered lexicographically by `(u.val, v.val)`
-(disjunctive form: first by `u.val`, then, when equal, by `v.val`).-/
+(disjunctive form: first by `u.val`, then, when equal, by `v.val`).
+@isnad1 id=iff.2h5v.s9.1bf5e3c83798 from=translated src=- shape=b975fe34 vocab=f08ebf0d
+-/
 theorem orderKey_even_lex {n : ℕ} (u1 v1 u2 v2 : Fin (2 * n)) (h1 : u1 ≤ v1) (h2 : u2 ≤ v2) :
     orderKey (n := n) (Sum.inl ⟨(u1, v1), h1⟩) < orderKey (n := n) (Sum.inl ⟨(u2, v2), h2⟩)
       ↔ u1.val < u2.val ∨ (u1.val = u2.val ∧ v1.val < v2.val) := by
   simp [orderKey, Prod.Lex.toLex_lt_toLex]
 
-/-- `C1`: odd indices are ordered increasingly by `u.val`.-/
+/-- `C1`: odd indices are ordered increasingly by `u.val`.
+@isnad1 id=iff.0h3v.s8.685e229ed293 from=translated src=- shape=41b12e84 vocab=2ce629a0
+-/
 theorem orderKey_odd_lt {n : ℕ} (u1 u2 : Fin (2 * n)) :
     orderKey (n := n) (Sum.inr u1) < orderKey (n := n) (Sum.inr u2) ↔ u1.val < u2.val := by
   simp [orderKey, Prod.Lex.toLex_lt_toLex]

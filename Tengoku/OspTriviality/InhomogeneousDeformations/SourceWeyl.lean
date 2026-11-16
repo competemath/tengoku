@@ -35,11 +35,17 @@ redefined.-/
 noncomputable def wIndex (n : ℕ) (u : Fin (2 * n)) : Fin n :=
   ⟨(u : ℕ) / 2, by have := u.isLt; omega⟩
 
+/--
+@isnad1 id=eq.0h2v.s3.cd4ab471370d from=translated src=- shape=6ddf6d3e vocab=8701cb88
+-/
 theorem wIndex_evenIdx (n : ℕ) (j : Fin n) : wIndex n (Indexed.evenIdx n j) = j := by
   apply Fin.ext
   unfold wIndex Indexed.evenIdx
   simp
 
+/--
+@isnad1 id=eq.0h2v.s3.08b8fa3b3a3b from=translated src=- shape=6ddf6d3e vocab=db29e43a
+-/
 theorem wIndex_oddIdx (n : ℕ) (j : Fin n) : wIndex n (Indexed.oddIdx n j) = j := by
   apply Fin.ext
   unfold wIndex Indexed.oddIdx
@@ -58,10 +64,16 @@ noncomputable def B (n : ℕ) (u : Fin (2 * n)) : Module.End ℚ (WPoly n) :=
 (a `Ring`, composition as multiplication).-/
 noncomputable def opComm (f g : Module.End ℚ (WPoly n)) : Module.End ℚ (WPoly n) := f * g - g * f
 
+/--
+@isnad1 id=eq.1h2v.s6.959d0b02060f from=translated src=- shape=4675a587 vocab=719c7309
+-/
 theorem u_eq_evenIdx_of_even (n : ℕ) (u : Fin (2 * n)) (h : (u : ℕ) % 2 = 0) :
     u = Indexed.evenIdx n (wIndex n u) := by
   apply Fin.ext; unfold Indexed.evenIdx wIndex; dsimp only; omega
 
+/--
+@isnad1 id=eq.1h2v.s6.e3e761b870d3 from=translated src=- shape=9dc46bfa vocab=114a33c3
+-/
 theorem u_eq_oddIdx_of_odd (n : ℕ) (u : Fin (2 * n)) (h : ¬ (u : ℕ) % 2 = 0) :
     u = Indexed.oddIdx n (wIndex n u) := by
   apply Fin.ext; unfold Indexed.oddIdx wIndex; dsimp only; omega
@@ -72,12 +84,18 @@ itself appears literally as the argument, not redefined.-/
 noncomputable def JnQ (n : ℕ) (u v : Fin (2 * n)) : ℚ :=
   MvPolynomial.constantCoeff (Indexed.Jn n u v)
 
+/--
+@isnad1 id=eq.1h3v.s6.e75e22f8de1a from=translated src=- shape=cbc242db vocab=a232f6fa
+-/
 theorem JnQ_eq_zero_of_same_parity (n : ℕ) (u v : Fin (2 * n))
     (h : (u : ℕ) % 2 = (v : ℕ) % 2) : JnQ n u v = 0 := by
   unfold JnQ Indexed.Jn
   rw [ite_eq_right (by omega), ite_eq_right (by omega)]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s5.4735cc411bd1 from=translated src=- shape=363870a9 vocab=26bff314
+-/
 theorem JnQ_evenIdx_oddIdx (n : ℕ) (i j : Fin n) :
     JnQ n (Indexed.evenIdx n i) (Indexed.oddIdx n j) = if i = j then 1 else 0 := by
   unfold JnQ Indexed.Jn Indexed.evenIdx Indexed.oddIdx
@@ -87,6 +105,9 @@ theorem JnQ_evenIdx_oddIdx (n : ℕ) (i j : Fin n) :
   · rw [ite_eq_right (by omega), ite_eq_right (by omega)]
     simp [hij]
 
+/--
+@isnad1 id=eq.0h3v.s5.1dc00367a8ec from=translated src=- shape=e000b6e7 vocab=df66f580
+-/
 theorem JnQ_oddIdx_evenIdx (n : ℕ) (i j : Fin n) :
     JnQ n (Indexed.oddIdx n i) (Indexed.evenIdx n j) = if i = j then (-1 : ℚ) else 0 := by
   unfold JnQ Indexed.Jn Indexed.evenIdx Indexed.oddIdx

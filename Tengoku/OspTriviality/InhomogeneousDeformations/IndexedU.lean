@@ -32,6 +32,9 @@ noncomputable def hBasis (n : ℕ) : IndexedBasis n → IndexedMod n
   | .inl ⟨(u, v), _⟩ => betaN n u • eN (Fof v) + betaN n v • eN (Fof u)
   | .inr _ => 0
 
+/--
+@isnad1 id=eq.0h2v.s6.4b136bc75d01 from=translated src=- shape=abd97e17 vocab=38b72260
+-/
 theorem hBasis_Fof (n : ℕ) (u : Fin (2 * n)) : hBasis n (Fof u) = 0 := rfl
 
 /-- `h` extended `P`-linearly to all of `IndexedMod n`, exactly as `fBetaN` extends
@@ -58,10 +61,16 @@ noncomputable def UMap (n : ℕ) (r : RMod n) : RMod n := r + kappaMulR (hR n r)
 sign).-/
 noncomputable def UMapInv (n : ℕ) (r : RMod n) : RMod n := r - kappaMulR (hR n r)
 
+/--
+@isnad1 id=eq.0h2v.s6.f8f3503a9bc5 from=translated src=- shape=516a9646 vocab=f40bd7f0
+-/
 theorem UMapInv_eq (n : ℕ) (r : RMod n) : UMapInv n r = r - kappaEmbed (hMap n (falsePart r)) := by
   unfold UMapInv hR
   rw [kappaMulR_add, kappaMulR_iotaR, kappaMulR_kappaEmbed, add_zero]
 
+/--
+@isnad1 id=eq.0h2v.s4.587102e3bfb1 from=translated src=- shape=dc061f59 vocab=fbcb0df0
+-/
 theorem falsePart_UMapInv (n : ℕ) (r : RMod n) : falsePart (UMapInv n r) = falsePart r := by
   rw [UMapInv_eq, sub_eq_add_neg, falsePart_add, falsePart_neg, falsePart_kappaEmbed, neg_zero,
     add_zero]
@@ -78,6 +87,9 @@ every `F_u` (shown below). This is shorter than redoing `G4`'s method for `hMap`
 it connects to P2 rather than re-deriving beside it, exactly as the scope document
 recommends. -/
 
+/--
+@isnad1 id=ishomogn.0h2v.s3.3817e2489b10 from=translated src=- shape=a0164760 vocab=188a3929
+-/
 theorem eN_isHomogN {n : ℕ} (i : IndexedBasis n) : IsHomogN (eN i) (parity i) := by
   intro k hk
   by_contra hne
@@ -87,6 +99,9 @@ theorem eN_isHomogN {n : ℕ} (i : IndexedBasis n) : IsHomogN (eN i) (parity i) 
   intro heq
   exact hne (by rw [heq])
 
+/--
+@isnad1 id=eq.0h1v.s7.7419377a0431 from=translated src=- shape=920bcaad vocab=ef80ea80
+-/
 theorem cratN_two_half (n : ℕ) : cratN n 2 * cratN n (1 / 2 : ℚ) = 1 := by
   rw [cratN_mul]; norm_num
 

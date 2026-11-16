@@ -115,10 +115,22 @@ def parityR {n : ℕ} (p : RBasis n) : ZMod 2 := parity p.1 + (if p.2 then 1 els
 
 abbrev RMod (n : ℕ) : Type := RBasis n → Pn n
 
+/--
+@isnad1 id=eq.0h2v.s7.ca60f2c8353e from=translated src=- shape=8540b0cc vocab=d9c00853
+-/
 @[simp] lemma rMod_zero_apply {n : ℕ} (k : RBasis n) : (0 : RMod n) k = 0 := rfl
+/--
+@isnad1 id=eq.0h4v.s7.c23640ba29e4 from=translated src=- shape=f672e01d vocab=9b393222
+-/
 @[simp] lemma rMod_add_apply {n : ℕ} (x y : RMod n) (k : RBasis n) : (x + y) k = x k + y k := rfl
+/--
+@isnad1 id=eq.0h4v.s7.1e6b8b213b2f from=translated src=- shape=3f7c90a2 vocab=892d67e1
+-/
 @[simp] lemma rMod_smul_apply {n : ℕ} (c : Pn n) (x : RMod n) (k : RBasis n) :
     (c • x) k = c * x k := rfl
+/--
+@isnad1 id=eq.0h3v.s6.a27ae0f27ae4 from=translated src=- shape=6d41ab76 vocab=18f80983
+-/
 @[simp] lemma rMod_neg_apply {n : ℕ} (x : RMod n) (k : RBasis n) : (-x) k = -x k := rfl
 
 noncomputable def eR {n : ℕ} (b : RBasis n) : RMod n := fun k => if k = b then 1 else 0
@@ -136,51 +148,86 @@ def falsePart {n : ℕ} (r : RMod n) : IndexedMod n := fun i => r (i, false)
 /-- The `true`-slot coordinate function of an `R`-module element.-/
 def truePart {n : ℕ} (r : RMod n) : IndexedMod n := fun i => r (i, true)
 
+/--
+@isnad1 id=eq.0h2v.s3.07675c676d18 from=translated src=- shape=6ddf6d3e vocab=7aedae50
+-/
 @[simp] theorem falsePart_iotaR {n : ℕ} (x : IndexedMod n) : falsePart (iotaR x) = x := by
   funext i; simp [falsePart, iotaR]
 
+/--
+@isnad1 id=eq.0h2v.s6.d5dcfeaf6f48 from=translated src=- shape=75a20f26 vocab=78f47c70
+-/
 @[simp] theorem truePart_iotaR {n : ℕ} (x : IndexedMod n) : truePart (iotaR x) = 0 := by
   funext i; simp [truePart, iotaR]
 
+/--
+@isnad1 id=eq.0h2v.s6.ce3f7bffe4b1 from=translated src=- shape=75a20f26 vocab=bc3f4fb3
+-/
 @[simp] theorem falsePart_kappaEmbed {n : ℕ} (x : IndexedMod n) : falsePart (kappaEmbed x) = 0 := by
   funext i; simp [falsePart, kappaEmbed]
 
+/--
+@isnad1 id=eq.0h2v.s3.854fcb60cbf9 from=translated src=- shape=6ddf6d3e vocab=8bed4b12
+-/
 @[simp] theorem truePart_kappaEmbed {n : ℕ} (x : IndexedMod n) : truePart (kappaEmbed x) = x := by
   funext i; simp [truePart, kappaEmbed]
 
 /-- Every `r : RMod n` decomposes exactly as its `false` part plus `kappa`
-times its `true` part.-/
+times its `true` part.
+@isnad1 id=eq.0h2v.s6.49a2372e7e43 from=translated src=- shape=f43f91c9 vocab=13c7f08f
+-/
 theorem decompose {n : ℕ} (r : RMod n) : r = iotaR (falsePart r) + kappaEmbed (truePart r) := by
   funext p
   rcases p with ⟨i, b⟩
   cases b <;> simp [iotaR, kappaEmbed, falsePart, truePart]
 
+/--
+@isnad1 id=eq.0h3v.s7.db9e70243247 from=translated src=- shape=f0f972c8 vocab=15507c30
+-/
 theorem iotaR_add {n : ℕ} (x y : IndexedMod n) : iotaR (x + y) = iotaR x + iotaR y := by
   funext p; rcases p with ⟨i, b⟩; cases b <;> simp [iotaR]
 
+/--
+@isnad1 id=eq.0h3v.s7.2e719be60b18 from=translated src=- shape=dd71b015 vocab=f35566b9
+-/
 theorem iotaR_smul {n : ℕ} (c : Pn n) (x : IndexedMod n) : iotaR (c • x) = c • iotaR x := by
   funext p; rcases p with ⟨i, b⟩; cases b <;> simp [iotaR]
 
+/--
+@isnad1 id=eq.0h3v.s7.25a8dd06d7b2 from=translated src=- shape=f0f972c8 vocab=6f4f8b86
+-/
 theorem kappaEmbed_add {n : ℕ} (x y : IndexedMod n) :
     kappaEmbed (x + y) = kappaEmbed x + kappaEmbed y := by
   funext p; rcases p with ⟨i, b⟩; cases b <;> simp [kappaEmbed]
 
+/--
+@isnad1 id=eq.0h3v.s7.f69163528918 from=translated src=- shape=dd71b015 vocab=c0f401ed
+-/
 theorem kappaEmbed_smul {n : ℕ} (c : Pn n) (x : IndexedMod n) :
     kappaEmbed (c • x) = c • kappaEmbed x := by
   funext p; rcases p with ⟨i, b⟩; cases b <;> simp [kappaEmbed]
 
+/--
+@isnad1 id=injectiv.0h1v.s3.69c4cc02823f from=translated src=- shape=ca92e646 vocab=be2f1f84
+-/
 theorem iotaR_injective {n : ℕ} : Function.Injective (iotaR (n := n)) := by
   intro x y hxy
   funext i
   have := congrFun hxy (i, false)
   simpa [iotaR] using this
 
+/--
+@isnad1 id=injectiv.0h1v.s3.407efca27555 from=translated src=- shape=ca92e646 vocab=99c4beba
+-/
 theorem kappaEmbed_injective {n : ℕ} : Function.Injective (kappaEmbed (n := n)) := by
   intro x y hxy
   funext i
   have := congrFun hxy (i, true)
   simpa [kappaEmbed] using this
 
+/--
+@isnad1 id=iff.0h2v.s7.27812fd43377 from=translated src=- shape=365e7cd8 vocab=3a124dd3
+-/
 theorem iotaR_ne_zero_iff {n : ℕ} (x : IndexedMod n) : iotaR x ≠ 0 ↔ x ≠ 0 := by
   constructor
   · intro h heq; apply h; rw [heq]; funext p; rcases p with ⟨i, b⟩; cases b <;> simp [iotaR]
@@ -194,10 +241,15 @@ theorem iotaR_ne_zero_iff {n : ℕ} (x : IndexedMod n) : iotaR x ≠ 0 ↔ x ≠
 noncomputable def kappaMulR {n : ℕ} (r : RMod n) : RMod n := fun p => if p.2 then r
   (p.1, false) else 0
 
+/--
+@isnad1 id=eq.0h2v.s4.c98b6889f207 from=translated src=- shape=42e1a9d0 vocab=86328c29
+-/
 theorem kappaMulR_eq {n : ℕ} (r : RMod n) : kappaMulR r = kappaEmbed (falsePart r) := by
   funext p; rcases p with ⟨i, b⟩; cases b <;> simp [kappaMulR, kappaEmbed, falsePart]
 
-/-- **K0c**: `kappa^2 = 0` on `g_R`, as a stated theorem.-/
+/-- **K0c**: `kappa^2 = 0` on `g_R`, as a stated theorem.
+@isnad1 id=eq.0h2v.s6.d63a8245eb61 from=translated src=- shape=c1e57397 vocab=6e62933f
+-/
 theorem kappaMulR_sq (n : ℕ) (r : RMod n) : kappaMulR (kappaMulR r) = 0 := by
   funext p; rcases p with ⟨i, b⟩
   cases b <;> simp [kappaMulR]
@@ -205,7 +257,9 @@ theorem kappaMulR_sq (n : ℕ) (r : RMod n) : kappaMulR (kappaMulR r) = 0 := by
 /-- **K0c**: multiplication by `kappa` is not claimed, and is not, injective
 on `g_R` -- the manuscript's own explicit disclaimer (lines 270-272),
 witnessed concretely: `0` and `kappa e_i` (for any fixed even-pair basis
-element, hence nonzero) have the same image `0`.-/
+element, hence nonzero) have the same image `0`.
+@isnad1 id=not.1h1v.s4.ce2ac6af0a83 from=translated src=- shape=64ad049d vocab=8b77448c
+-/
 theorem kappaMulR_not_injective (n : ℕ) (hn : 0 < n) :
     ¬ Function.Injective (kappaMulR (n := n)) := by
   intro hinj
@@ -244,20 +298,35 @@ noncomputable def bracketRBasis (n : ℕ) : RBasis n → RBasis n → RMod n
 noncomputable def bracketR (n : ℕ) (x y : RMod n) : RMod n :=
   ∑ p : RBasis n, ∑ q : RBasis n, (x p * y q) • bracketRBasis n p q
 
+/--
+@isnad1 id=eq.0h2v.s5.fc8c4eca2d62 from=translated src=- shape=9d51bff9 vocab=f9924c36
+-/
 theorem sum_bool_eq {M : Type*} [AddCommMonoid M] (f : Bool → M) :
     ∑ b : Bool, f b = f true + f false := by
   rw [Fintype.univ_bool, Finset.sum_insert (by decide), Finset.sum_singleton]
 
+/--
+@isnad1 id=eq.0h1v.s7.c0fbd83d0fd0 from=translated src=- shape=771c46e9 vocab=3a124dd3
+-/
 theorem iotaR_zero (n : ℕ) : iotaR (0 : IndexedMod n) = 0 := by
   funext p; rcases p with ⟨i, b⟩; cases b <;> simp [iotaR]
 
 /-! ## K1c -- super-skew symmetry on `g_R`, the convention-pinning check -/
 
+/--
+@isnad1 id=or.0h1v.s6.1da7024d097e from=translated src=- shape=a99d14a3 vocab=c87b9854
+-/
 theorem zmod2_cases : ∀ q : ZMod 2, q = 0 ∨ q = 1 := by decide
 
+/--
+@isnad1 id=eq.0h3v.s4.0e3709af97db from=translated src=- shape=fd3216e6 vocab=2c2a96f7
+-/
 theorem gsignN_comm (n : ℕ) (a b : ZMod 2) : gsignN n a b = gsignN n b a := by
   unfold gsignN; congr 1; rw [and_comm]
 
+/--
+@isnad1 id=eq.0h3v.s7.3bf4376e351e from=translated src=- shape=63a91017 vocab=ba993eb0
+-/
 theorem gsignN_mul_one_left (n : ℕ) (p q : ZMod 2) :
     gsignN n p 1 * gsignN n p q = gsignN n p (q + 1) := by
   have e01 : (0 : ZMod 2) + 1 = 1 := by decide
@@ -266,6 +335,9 @@ theorem gsignN_mul_one_left (n : ℕ) (p q : ZMod 2) :
     subst hp <;> subst hq <;>
     simp [e01, e11, gsignN_00, gsignN_01, gsignN_10, gsignN_11]
 
+/--
+@isnad1 id=eq.0h3v.s7.46250d1d17c0 from=translated src=- shape=848d5369 vocab=ba993eb0
+-/
 theorem gsignN_succ_left_mul (n : ℕ) (p q : ZMod 2) :
     gsignN n (p + 1) q * gsignN n q 1 = gsignN n p q := by
   have e01 : (0 : ZMod 2) + 1 = 1 := by decide
@@ -274,28 +346,46 @@ theorem gsignN_succ_left_mul (n : ℕ) (p q : ZMod 2) :
     subst hp <;> subst hq <;>
     simp [e01, e11, gsignN_00, gsignN_01, gsignN_10, gsignN_11]
 
+/--
+@isnad1 id=eq.0h2v.s4.4881fb589e73 from=translated src=- shape=3648cb73 vocab=ed6ac8b2
+-/
 @[simp] theorem parityR_false {n : ℕ} (i : IndexedBasis n) : parityR ((i, false) : RBasis n)
   = parity i := by
   unfold parityR; simp
 
+/--
+@isnad1 id=eq.0h2v.s7.6f1274f3812d from=translated src=- shape=50a64ebc vocab=e3b1a049
+-/
 @[simp] theorem parityR_true {n : ℕ} (i : IndexedBasis n) : parityR ((i, true) : RBasis n) =
   parity i + 1 := by
   unfold parityR; simp
 
 /-! ## K2 -- the odd extension `(f_beta)_R` -/
 
+/--
+@isnad1 id=eq.0h3v.s7.ba71d638aacb from=translated src=- shape=f0f972c8 vocab=e8605ba3
+-/
 theorem falsePart_add {n : ℕ} (r1 r2 : RMod n) :
     falsePart (r1 + r2) = falsePart r1 + falsePart r2 := by
   funext i; simp [falsePart]
 
+/--
+@isnad1 id=eq.0h3v.s7.82db25e7ebcf from=translated src=- shape=f0f972c8 vocab=1973f433
+-/
 theorem truePart_add {n : ℕ} (r1 r2 : RMod n) :
     truePart (r1 + r2) = truePart r1 + truePart r2 := by
   funext i; simp [truePart]
 
+/--
+@isnad1 id=eq.0h3v.s7.965dbc62c46d from=translated src=- shape=dd71b015 vocab=704465cc
+-/
 theorem falsePart_smul {n : ℕ} (c : Pn n) (r : RMod n) :
     falsePart (c • r) = c • falsePart r := by
   funext i; simp [falsePart]
 
+/--
+@isnad1 id=eq.0h3v.s7.a3479163ef85 from=translated src=- shape=dd71b015 vocab=c5f1aec2
+-/
 theorem truePart_smul {n : ℕ} (c : Pn n) (r : RMod n) :
     truePart (c • r) = c • truePart r := by
   funext i; simp [truePart]
@@ -309,16 +399,28 @@ noncomputable def fBetaR (n : ℕ) (r : RMod n) : RMod n :=
 
 /-! ## K3 -- `TBeta` and its inverse, `eq:splitting` -/
 
+/--
+@isnad1 id=eq.0h2v.s6.2127b4175a3d from=translated src=- shape=772b7836 vocab=d400e1bc
+-/
 theorem falsePart_neg {n : ℕ} (r : RMod n) : falsePart (-r) = -falsePart r := by
   funext i; simp [falsePart]
 
+/--
+@isnad1 id=eq.0h3v.s7.a56813fd0d5f from=translated src=- shape=5b842ceb vocab=f98bf597
+-/
 theorem kappaMulR_add (n : ℕ) (r1 r2 : RMod n) :
     kappaMulR (r1 + r2) = kappaMulR r1 + kappaMulR r2 := by
   funext p; rcases p with ⟨i, b⟩; cases b <;> simp [kappaMulR]
 
+/--
+@isnad1 id=eq.0h2v.s4.d0c318e2a718 from=translated src=- shape=d6576abc vocab=f0b40b61
+-/
 theorem kappaMulR_iotaR (n : ℕ) (x : IndexedMod n) : kappaMulR (iotaR x) = kappaEmbed x := by
   funext p; rcases p with ⟨i, b⟩; cases b <;> simp [kappaMulR, iotaR, kappaEmbed]
 
+/--
+@isnad1 id=eq.0h2v.s6.cd9f3fe8fb6a from=translated src=- shape=69eaf491 vocab=6f32d683
+-/
 theorem kappaMulR_kappaEmbed (n : ℕ) (x : IndexedMod n) : kappaMulR (kappaEmbed x) = 0 := by
   funext p; rcases p with ⟨i, b⟩; cases b <;> simp [kappaMulR, kappaEmbed]
 
@@ -328,15 +430,24 @@ noncomputable def TBeta (n : ℕ) (r : RMod n) : RMod n := r + kappaMulR (fBetaR
 /-- `T_beta^{-1} = id - kappa (f_beta)_R` -- `eq:splitting`, literal.-/
 noncomputable def TBetaInv (n : ℕ) (r : RMod n) : RMod n := r - kappaMulR (fBetaR n r)
 
+/--
+@isnad1 id=eq.0h2v.s6.148c7b8664ce from=translated src=- shape=516a9646 vocab=3b1a6221
+-/
 theorem TBetaInv_eq (n : ℕ) (r : RMod n) : TBetaInv n r = r - kappaEmbed
   (fBetaN n (falsePart r)) := by
   unfold TBetaInv fBetaR
   rw [kappaMulR_add, kappaMulR_iotaR, kappaMulR_kappaEmbed, add_zero]
 
+/--
+@isnad1 id=eq.0h2v.s4.a76593631b3e from=translated src=- shape=dc061f59 vocab=73846d75
+-/
 theorem falsePart_TBetaInv (n : ℕ) (r : RMod n) : falsePart (TBetaInv n r) = falsePart r := by
   rw [TBetaInv_eq, sub_eq_add_neg, falsePart_add, falsePart_neg, falsePart_kappaEmbed,
     neg_zero, add_zero]
 
+/--
+@isnad1 id=ishomogn.1h3v.s4.c9910700d31a from=translated src=- shape=0d762085 vocab=4c418555
+-/
 theorem IsHomogR_falsePart {n : ℕ} {r : RMod n} {d : ZMod 2} (hr : IsHomogR r d) :
     IsHomogN (falsePart r) d := by
   intro i hi
@@ -357,17 +468,26 @@ noncomputable def bracketRBetaBasis (n : ℕ) : RBasis n → RBasis n → RMod n
 noncomputable def bracketRBeta (n : ℕ) (x y : RMod n) : RMod n :=
   ∑ p : RBasis n, ∑ q : RBasis n, (x p * y q) • bracketRBetaBasis n p q
 
+/--
+@isnad1 id=eq.0h1v.s7.8d99149c1c92 from=translated src=- shape=771c46e9 vocab=f416b80a
+-/
 theorem kappaEmbed_zero (n : ℕ) : kappaEmbed (0 : IndexedMod n) = 0 := by
   funext p; rcases p with ⟨i, b⟩; cases b <;> simp [kappaEmbed]
 
 /-! ## K5 -- the intertwining, `eq:intertwining` -/
 
+/--
+@isnad1 id=eq.0h2v.s4.c717e00202bc from=translated src=- shape=16203681 vocab=80ea42a1
+-/
 theorem falsePart_eR_false (n : ℕ) (i : IndexedBasis n) :
     falsePart ((eR ((i, false) : RBasis n))) = eN i := by
   funext k
   unfold falsePart eR eN
   simp [Prod.ext_iff]
 
+/--
+@isnad1 id=eq.0h2v.s6.6ca539ec70e8 from=translated src=- shape=078d84e9 vocab=0787ef0f
+-/
 theorem falsePart_eR_true (n : ℕ) (i : IndexedBasis n) :
     falsePart ((eR ((i, true) : RBasis n))) = 0 := by
   funext k

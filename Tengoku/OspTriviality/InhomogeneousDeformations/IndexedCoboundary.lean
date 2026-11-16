@@ -103,6 +103,9 @@ noncomputable def evenIdx (n : ℕ) (j : Fin n) : Fin (2 * n) :=
 noncomputable def oddIdx (n : ℕ) (j : Fin n) : Fin (2 * n) :=
   ⟨2 * (j : ℕ) + 1, by have := j.isLt; omega⟩
 
+/--
+@isnad1 id=eq.1h3v.s6.119fb9a144f9 from=translated src=- shape=fbbd275f vocab=d1e47ceb
+-/
 theorem Jn_ne_zero_iff_partner (n : ℕ) (t u : Fin (2 * n)) (h : Jn n t u ≠ 0) :
     t = partnerN n u := by
   unfold Jn at h
@@ -126,6 +129,9 @@ theorem Jn_ne_zero_iff_partner (n : ℕ) (t u : Fin (2 * n)) (h : Jn n t u ≠ 0
 noncomputable def pairEquivN (n : ℕ) : Fin n × Fin 2 ≃ Fin (2 * n) :=
   finProdFinEquiv.trans (finCongr (Nat.mul_comm n 2))
 
+/--
+@isnad1 id=eq.0h3v.s6.171f5da8b1dd from=translated src=- shape=22e69733 vocab=d560d069
+-/
 theorem sum_split_even_odd {M : Type*} [AddCommMonoid M] (n : ℕ) (g : Fin (2 * n) → M) :
     ∑ t : Fin (2 * n), g t
       = ∑ j : Fin n, (g (evenIdx n j) + g (oddIdx n j)) := by

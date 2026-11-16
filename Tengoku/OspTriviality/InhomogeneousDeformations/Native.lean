@@ -45,16 +45,37 @@ def Fof : Fin 2 → Basis5
   | 0 => .F1
   | 1 => .F2
 
+/--
+@isnad1 id=ne.0h2v.s4.1d67a2fbb612 from=translated src=- shape=5f99d536 vocab=1c9056a3
+-/
 lemma Lof_ne_F1 : ∀ u v : Fin 2, Lof u v ≠ Basis5.F1 := by decide
+/--
+@isnad1 id=ne.0h2v.s4.ed51a14184f9 from=translated src=- shape=5f99d536 vocab=7832b32b
+-/
 lemma Lof_ne_F2 : ∀ u v : Fin 2, Lof u v ≠ Basis5.F2 := by decide
+/--
+@isnad1 id=ne.0h1v.s3.7afea6a7624d from=translated src=- shape=1b7cfd8e vocab=81c403c2
+-/
 lemma Fof_ne_L11 : ∀ u : Fin 2, Fof u ≠ Basis5.L11 := by decide
+/--
+@isnad1 id=ne.0h1v.s3.3b6b88240886 from=translated src=- shape=1b7cfd8e vocab=aeafc089
+-/
 lemma Fof_ne_L12 : ∀ u : Fin 2, Fof u ≠ Basis5.L12 := by decide
+/--
+@isnad1 id=ne.0h1v.s3.9543800a1d1d from=translated src=- shape=1b7cfd8e vocab=6f0cef80
+-/
 lemma Fof_ne_L22 : ∀ u : Fin 2, Fof u ≠ Basis5.L22 := by decide
 
 /-- Indicator (single basis) vector.-/
 noncomputable def e (b : Basis5) : Mod := fun k => if k = b then 1 else 0
 
+/--
+@isnad1 id=eq.0h1v.s5.fd7f233ada91 from=translated src=- shape=34c957ae vocab=d793554f
+-/
 @[simp] lemma e_apply_self (b : Basis5) : e b b = 1 := ite_eq_left rfl
+/--
+@isnad1 id=eq.1h2v.s5.77588d644bd7 from=translated src=- shape=24220606 vocab=d793554f
+-/
 @[simp] lemma e_apply_ne {b k : Basis5} (h : k ≠ b) : e b k = 0 := ite_eq_right h
 
 noncomputable def bracketFF (u v : Fin 2) : Mod := (crat (1 / 2)) • e (Lof u v)
@@ -102,6 +123,9 @@ noncomputable def bracket (x y : Mod) : Mod :=
 /-- `T0`: homogeneity by basis support with the stated parity.-/
 def IsHomog (x : Mod) (d : ZMod 2) : Prop := ∀ i : Basis5, x i ≠ 0 → Basis5.parity i = d
 
+/--
+@isnad1 id=ishomog.0h1v.s2.c4562ff53b22 from=translated src=- shape=fc2c1e2b vocab=c98f8c58
+-/
 @[simp] theorem e_isHomog (b : Basis5) : IsHomog (e b) (Basis5.parity b) := by
   intro i hi
   by_cases h : i = b

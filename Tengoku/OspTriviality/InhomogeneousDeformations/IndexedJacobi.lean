@@ -64,14 +64,26 @@ directly, resolving `Lof`'s internal `dite` explicitly via `dif_pos`/
 decide an abstract `u ≤ v`). U4's proofs rewrite through these rather than
 unfolding `bracketBasisN` blindly. -/
 
+/--
+@isnad1 id=eq.0h2v.s6.8316862bf1dc from=translated src=- shape=76b24472 vocab=0c6317de
+-/
 theorem parity_Fof {n : ℕ} (u : Fin (2 * n)) : parity (Fof u : IndexedBasis n) = 1 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.0c3e51d04120 from=translated src=- shape=dc0c9e63 vocab=d96a89b9
+-/
 theorem bracketLFn_comm {n : ℕ} (u v w : Fin (2 * n)) :
     bracketLFn n u v w = bracketLFn n v u w := by unfold bracketLFn; abel
 
+/--
+@isnad1 id=eq.0h5v.s6.3b69ec633958 from=translated src=- shape=a259e016 vocab=9c86d31a
+-/
 theorem bracketLLn_comm12 {n : ℕ} (u v w z : Fin (2 * n)) :
     bracketLLn n v u w z = bracketLLn n u v w z := by unfold bracketLLn; abel
 
+/--
+@isnad1 id=eq.0h5v.s6.bfbed6f0ccf7 from=translated src=- shape=eab19d3f vocab=9c86d31a
+-/
 theorem bracketLLn_comm34 {n : ℕ} (u v w z : Fin (2 * n)) :
     bracketLLn n u v z w = bracketLLn n u v w z := by unfold bracketLLn; abel
 
