@@ -7,7 +7,7 @@ except `id`, `verify` and `selftest`, which run the Lean program.
 
   isnad.py explain <id | tag line>              decode an id or a tag into words (offline)
   isnad.py id --module M [--name N ...]         the id lines of a module's theorems (needs a built tree: lake build tengoku-isnad)
-  isnad.py deps --module M [--ids FILE]         the direct dependencies of each theorem's proof, and the hash of their statement ids (docs/isnad.md, "Dependencies")
+  isnad.py deps --module M [--ids-stdin]         the direct dependencies of each theorem's proof, and the hash of their statement ids (docs/isnad.md, "Dependencies")
   isnad.py verify '<tag line>' --module M --name N      recompute and compare id, shape and vocab of one theorem
   isnad.py tag --module M [--write]             write each theorem's tag into its source file (a dry run without --write; docs/isnad.md, "The tagger")
   isnad.py strip PATH... [--write]              take the tags out again
@@ -708,14 +708,13 @@ def deps_hash(ids: list[str]) -> str:
     return sha(",".join(sorted(set(ids))), 12)
 
 
-def read_ids(path: Path | None) -> dict[str, str]:
+def read_ids(lines) -> dict[str, str]:
     """`name<TAB>id...` lines (what `isnad.py id` prints) as a table name -> id."""
     table: dict[str, str] = {}
-    if path is not None:
-        for ln in path.read_text(encoding="utf-8").splitlines():
-            parts = ln.split("\t")
-            if len(parts) >= 2 and ID_RE.fullmatch(parts[1]):
-                table[parts[0]] = parts[1]
+    for ln in lines:
+        parts = ln.rstrip("\n").split("\t")
+        if len(parts) >= 2 and ID_RE.fullmatch(parts[1]):
+            table[parts[0]] = parts[1]
     return table
 
 
@@ -732,7 +731,7 @@ def deps_rows(lines: list[str], ids: dict[str, str]) -> list[tuple[str, str, int
 
 def cmd_deps(a: argparse.Namespace) -> int:
     args = [x for m in a.module for x in ("--module", lean_name(m))]
-    ids = read_ids(Path(a.ids) if a.ids else None)
+    ids = read_ids(sys.stdin if a.ids_stdin else [])
     ids.update({r.name: r.id for r in run_exe(args, a.exe)})  # the theorems of these modules name each other too
     for name, h, n, missing in deps_rows(run_exe_lines(["--deps", *args], a.exe), ids):
         print(f"{name}\t{h}\t{n}\t{','.join(missing)}")
@@ -763,7 +762,11 @@ def build_parser() -> argparse.ArgumentParser:
         s.add_argument("--exe")
     s = sub.add_parser("deps")
     s.add_argument("--module", action="append", required=True)
-    s.add_argument("--ids", help="a table `name<TAB>id` of the theorems outside these modules (`isnad.py id` output)")
+    s.add_argument(
+        "--ids-stdin",
+        action="store_true",
+        help="read a table `name<TAB>id` of the theorems outside these modules from stdin (`isnad.py id` output)",
+    )
     s.add_argument("--exe")
     s = sub.add_parser("tag")
     s.add_argument("--module", action="append", required=True)

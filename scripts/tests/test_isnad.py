@@ -687,11 +687,9 @@ class Dependencies(unittest.TestCase):
         self.assertEqual(a, b)
 
     def test_read_ids_keeps_only_id_rows(self):
-        with tempfile.TemporaryDirectory() as d:
-            f = Path(d) / "ids.tsv"
-            f.write_text(f"B.u\t{self.ID_A}\tshape=1\tvocab=2\nnot an id row\nC.v\tnope\n", encoding="utf-8")
-            self.assertEqual(isnad.read_ids(f), {"B.u": self.ID_A})
-        self.assertEqual(isnad.read_ids(None), {})
+        lines = [f"B.u\t{self.ID_A}\tshape=1\tvocab=2\n", "not an id row\n", "C.v\tnope\n"]
+        self.assertEqual(isnad.read_ids(lines), {"B.u": self.ID_A})
+        self.assertEqual(isnad.read_ids([]), {})
 
 
 if __name__ == "__main__":
