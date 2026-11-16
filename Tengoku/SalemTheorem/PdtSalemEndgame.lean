@@ -67,28 +67,36 @@ def IsSalem (tau : ℝ) : Prop :=
 
 /-! ### Cast bridges -/
 
-/-- The ℤ-cast triangle through ℝ: ring homs out of ℤ are unique.-/
+/-- The ℤ-cast triangle through ℝ: ring homs out of ℤ are unique.
+@isnad1 id=eq.0h1v.s6.97efdf7d36fe from=translated src=- shape=aca44ee0 vocab=24a89c17
+-/
 lemma map_int_real_complex (W : Polynomial ℤ) :
     (W.map (Int.castRingHom ℝ)).map (algebraMap ℝ ℂ) = W.map (Int.castRingHom ℂ) := by
   rw [Polynomial.map_map,
     show (algebraMap ℝ ℂ).comp (Int.castRingHom ℝ) = Int.castRingHom ℂ from
       RingHom.ext_int _ _]
 
-/-- Evaluation of a mapped real polynomial at a real point, over ℂ.-/
+/-- Evaluation of a mapped real polynomial at a real point, over ℂ.
+@isnad1 id=eq.0h2v.s5.b81e2a655a7b from=translated src=- shape=3a700467 vocab=e8924088
+-/
 lemma eval_map_ofReal (W : Polynomial ℝ) (x : ℝ) :
     (W.map (algebraMap ℝ ℂ)).eval ((x : ℂ)) = ((W.eval x : ℝ) : ℂ) := by
   rw [Polynomial.eval_map, show ((x : ℂ)) = algebraMap ℝ ℂ x from rfl,
     Polynomial.eval₂_at_apply]
   rfl
 
-/-- The real-to-complex evaluation transfer for integer polynomials.-/
+/-- The real-to-complex evaluation transfer for integer polynomials.
+@isnad1 id=eq.0h2v.s5.95f314f121de from=translated src=- shape=55b978ae vocab=5fe3fca2
+-/
 lemma eval_int_transfer (W : Polynomial ℤ) (x : ℝ) :
     (W.map (Int.castRingHom ℂ)).eval ((x : ℂ))
       = (((W.map (Int.castRingHom ℝ)).eval x : ℝ) : ℂ) := by
   rw [← map_int_real_complex W, eval_map_ofReal]
 
 /-- The reflect-evaluation identity over ℝ:
-`(reflect p W)(α) = α^p·W(1/α)` for `α ≠ 0`.-/
+`(reflect p W)(α) = α^p·W(1/α)` for `α ≠ 0`.
+@isnad1 id=eq.2h3v.s6.5434409c2f96 from=translated src=- shape=a7630885 vocab=d894d5e4
+-/
 lemma reflect_eval_eq (W : Polynomial ℝ) {alpha : ℝ} (ha : alpha ≠ 0) (p : ℕ)
     (hdeg : W.natDegree ≤ p) :
     (W.reflect p).eval alpha = alpha ^ p * W.eval alpha⁻¹ := by
@@ -110,7 +118,9 @@ lemma reflect_eval_eq (W : Polynomial ℝ) {alpha : ℝ} (ha : alpha ≠ 0) (p :
 /-- Positivity of the quotient on `[1, ∞)`: its complex image is the
 product of the inside factors, so it cannot vanish at any real
 `x ≥ 1`; a monic polynomial positive at infinity and nonvanishing on
-the connected set `[1, ∞)` is positive there.-/
+the connected set `[1, ∞)` is positive there.
+@isnad1 id=lt.4h3v.s7.4a7b0af0bd4c from=translated src=- shape=456ed1d9 vocab=05adf9d4
+-/
 lemma G_pos (G : Polynomial ℝ) (hGmonic : G.Monic)
     (inside : Multiset ℂ) (hin : ∀ r ∈ inside, ‖r‖ < 1)
     (hGmapC : G.map (algebraMap ℝ ℂ) = (inside.map fun r => X - Polynomial.C r).prod) :
@@ -150,7 +160,9 @@ lemma G_pos (G : Polynomial ℝ) (hGmonic : G.Monic)
     exact hne z (le_trans hx hz.1) hfz
 
 /-- The window below `α`: positivity of `W` at `α` extends to a closed
-window `[c, α]` with `1 < c < α`.-/
+window `[c, α]` with `1 < c < α`.
+@isnad1 id=ex.2h2v.s6.86ce823ee7f2 from=translated src=- shape=4968218a vocab=7abee8dc
+-/
 lemma window_below (W : Polynomial ℝ) {alpha : ℝ} (halpha : 1 < alpha)
     (hWa : 0 < W.eval alpha) :
     ∃ c : ℝ, 1 < c ∧ c < alpha ∧ ∀ x : ℝ, c ≤ x → x ≤ alpha → 0 < W.eval x := by
@@ -169,7 +181,9 @@ lemma window_below (W : Polynomial ℝ) {alpha : ℝ} (halpha : 1 < alpha)
     exact hball hxball
 
 /-- The window above `α`: negativity of `W` at `α` extends to a closed
-window `[α, w]` with `α < w ≤ α + 1/2`.-/
+window `[α, w]` with `α < w ≤ α + 1/2`.
+@isnad1 id=ex.1h2v.s6.b0665cb1cf21 from=translated src=- shape=e4db8127 vocab=3d3a7095
+-/
 lemma window_above (W : Polynomial ℝ) (alpha : ℝ) (hWa : W.eval alpha < 0) :
     ∃ w : ℝ, alpha < w ∧ w ≤ alpha + 1 / 2 ∧
       ∀ x : ℝ, alpha ≤ x → x ≤ w → W.eval x < 0 := by
@@ -191,7 +205,9 @@ lemma window_above (W : Polynomial ℝ) (alpha : ℝ) (hWa : W.eval alpha < 0) :
 /-! ### The above-ladder — the `sInf` mirror of `PdtPisotLadder` -/
 
 /-- At any point `t > α` (hence `t > 1`) the family is eventually
-positive in `m`: `t^m·P(t)` blows up past the fixed value `Q(t)`.-/
+positive in `m`: `t^m·P(t)` blows up past the fixed value `Q(t)`.
+@isnad1 id=ex.4h5v.s7.aeb9f250890c from=translated src=- shape=fbd35d64 vocab=0b239418
+-/
 lemma exists_eval_pos_above (P G Q : Polynomial ℝ) (alpha t : ℝ)
     (ht1 : 1 < t) (hat : alpha < t)
     (hfac : P = (X - Polynomial.C alpha) * G)
@@ -218,6 +234,9 @@ def rootSetA (P Q : Polynomial ℝ) (alpha w : ℝ) (m : ℕ) : Set ℝ :=
 def muA (P Q : Polynomial ℝ) (alpha w : ℝ) (m : ℕ) : ℝ :=
   sInf (rootSetA P Q alpha w m)
 
+/--
+@isnad1 id=iscompac.0h5v.s4.bb0eeaa64b2d from=translated src=- shape=78dade4f vocab=c1cb3a55
+-/
 lemma rootSetA_isCompact (P Q : Polynomial ℝ) (alpha w : ℝ) (m : ℕ) :
     IsCompact (rootSetA P Q alpha w m) := by
   apply IsCompact.of_isClosed_subset (isCompact_Icc (a := alpha) (b := w))
@@ -229,6 +248,9 @@ lemma rootSetA_isCompact (P Q : Polynomial ℝ) (alpha w : ℝ) (m : ℕ) :
   · intro x hx
     exact hx.1
 
+/--
+@isnad1 id=nonempty.3h5v.s7.ac6ea6a600df from=translated src=- shape=83bec000 vocab=857c9fe9
+-/
 lemma rootSetA_nonempty (P Q : Polynomial ℝ) (alpha w : ℝ)
     (haw : alpha ≤ w) (m : ℕ)
     (hneg : (X ^ m * P + Q).eval alpha < 0)
@@ -242,11 +264,17 @@ lemma rootSetA_nonempty (P Q : Polynomial ℝ) (alpha w : ℝ)
   obtain ⟨x, hx, hfx⟩ := hsub h0
   exact ⟨x, hx, hfx⟩
 
+/--
+@isnad1 id=mem.1h5v.s5.eb407a087ef1 from=translated src=- shape=da1de044 vocab=8f168077
+-/
 lemma muA_mem (P Q : Polynomial ℝ) (alpha w : ℝ) (m : ℕ)
     (hne : (rootSetA P Q alpha w m).Nonempty) :
     muA P Q alpha w m ∈ rootSetA P Q alpha w m :=
   (rootSetA_isCompact P Q alpha w m).sInf_mem hne
 
+/--
+@isnad1 id=lt.2h5v.s6.e88891a832f9 from=translated src=- shape=6899205d vocab=e0c2f4a0
+-/
 lemma muA_gt_alpha (P Q : Polynomial ℝ) (alpha w : ℝ) (m : ℕ)
     (hne : (rootSetA P Q alpha w m).Nonempty)
     (hneg : (X ^ m * P + Q).eval alpha < 0) :
@@ -258,6 +286,9 @@ lemma muA_gt_alpha (P Q : Polynomial ℝ) (alpha w : ℝ) (m : ℕ)
     exact lt_irrefl 0 hneg
   · exact h
 
+/--
+@isnad1 id=lt.2h5v.s6.0cf2f663b434 from=translated src=- shape=dfc48fd7 vocab=e0c2f4a0
+-/
 lemma muA_lt_w (P Q : Polynomial ℝ) (alpha w : ℝ) (m : ℕ)
     (hne : (rootSetA P Q alpha w m).Nonempty)
     (hpos : 0 < (X ^ m * P + Q).eval w) :
@@ -269,7 +300,9 @@ lemma muA_lt_w (P Q : Polynomial ℝ) (alpha w : ℝ) (m : ℕ)
     exact lt_irrefl 0 hpos
   · exact h
 
-/-- Minimality: no roots of `R_m` strictly between `α` and `muA m`.-/
+/-- Minimality: no roots of `R_m` strictly between `α` and `muA m`.
+@isnad1 id=ne.3h6v.s6.401820eae767 from=translated src=- shape=784d994f vocab=e0c2f4a0
+-/
 lemma muA_min (P Q : Polynomial ℝ) (alpha w : ℝ) (m : ℕ)
     (hne : (rootSetA P Q alpha w m).Nonempty)
     {y : ℝ} (h1 : alpha < y) (h2 : y < muA P Q alpha w m) :
@@ -283,7 +316,9 @@ lemma muA_min (P Q : Polynomial ℝ) (alpha w : ℝ) (m : ℕ)
 
 /-- The heart of the strict decrease: at the root `muA m`, the next
 member is positive — `R_{m+1}(y) = (1 − y)·Q(y) > 0` when `y > 1` and
-`Q(y) < 0` — so the IVT plants a smaller root of `R_{m+1}`.-/
+`Q(y) < 0` — so the IVT plants a smaller root of `R_{m+1}`.
+@isnad1 id=lt.5h6v.s8.7703f03d5761 from=translated src=- shape=a8eea230 vocab=c163d1f8
+-/
 lemma muA_strictAnti (P G Q : Polynomial ℝ) (alpha w : ℝ)
     (halpha : 1 < alpha) (haw : alpha < w)
     (hfac : P = (X - Polynomial.C alpha) * G)
@@ -331,7 +366,9 @@ lemma muA_strictAnti (P G Q : Polynomial ℝ) (alpha w : ℝ)
       ≤ z := csInf_le (rootSetA_isCompact P Q alpha w (m + 1)).bddBelow hzmem
     _ < muA P Q alpha w m := hzy
 
-/-- The canonical roots above tend to `α`.-/
+/-- The canonical roots above tend to `α`.
+@isnad1 id=tendsto.6h6v.s8.47d8b2e3bdb5 from=translated src=- shape=3d3bee02 vocab=161b686e
+-/
 lemma muA_tendsto (P G Q : Polynomial ℝ) (alpha w : ℝ)
     (halpha : 1 < alpha) (haw : alpha < w)
     (hfac : P = (X - Polynomial.C alpha) * G)
@@ -383,7 +420,9 @@ lemma muA_tendsto (P G Q : Polynomial ℝ) (alpha w : ℝ)
 the family `R_m = X^m·P + Q` has a canonical root `mu m ∈ (α, α + 1)`,
 the smallest root above `α`; the sequence is strictly decreasing; and
 it tends to `α`.  The `sInf` mirror of
-`PDT.PisotLadder.pisot_ladder_family`.-/
+`PDT.PisotLadder.pisot_ladder_family`.
+@isnad1 id=ex.4h4v.s8.235e51eee1cb from=translated src=- shape=914e4508 vocab=608ce95b
+-/
 theorem pisot_ladder_above (P G Q : Polynomial ℝ) (alpha : ℝ)
     (halpha : 1 < alpha)
     (hfac : P = (X - Polynomial.C alpha) * G)
@@ -422,6 +461,9 @@ def badSet (B : ℝ) : Set ℝ :=
   {x : ℝ | 1 < x ∧ x < B ∧
     ((∃ n : ℤ, x = (n : ℝ)) ∨ (∃ n : ℤ, x + x⁻¹ = (n : ℝ)))}
 
+/--
+@isnad1 id=iff.0h2v.s6.efe2369ea38a from=translated src=- shape=13557f69 vocab=b006d619
+-/
 lemma mem_badSet {B x : ℝ} :
     x ∈ badSet B ↔ 1 < x ∧ x < B ∧
       ((∃ n : ℤ, x = (n : ℝ)) ∨ (∃ n : ℤ, x + x⁻¹ = (n : ℝ))) :=
@@ -430,7 +472,9 @@ lemma mem_badSet {B x : ℝ} :
 /-- The degeneracy set is finite: the integer branch lies in the cast
 of `[1, ⌈B⌉]`; the trace branch lies in the (finite) root sets of the
 quadratics `X² − n·X + 1` for the finitely many integers
-`n ∈ [2, ⌈B+1⌉]`.-/
+`n ∈ [2, ⌈B+1⌉]`.
+@isnad1 id=finite.0h1v.s2.3b56a1a40c87 from=translated src=- shape=6da4ece3 vocab=aa7b1cd2
+-/
 lemma badSet_finite (B : ℝ) : (badSet B).Finite := by
   have hint : {x : ℝ | 1 < x ∧ x < B ∧ ∃ n : ℤ, x = (n : ℝ)}.Finite := by
     apply Set.Finite.subset ((Set.finite_Icc (1 : ℤ) ⌈B⌉).image fun n : ℤ => (n : ℝ))
@@ -475,7 +519,9 @@ lemma badSet_finite (B : ℝ) : (badSet B).Finite := by
   · exact Set.mem_union_left _ ⟨hx1, hxB, h⟩
   · exact Set.mem_union_right _ ⟨hx1, hxB, h⟩
 
-/-- Injectivity on a tail from a strictly increasing step.-/
+/-- Injectivity on a tail from a strictly increasing step.
+@isnad1 id=injon.1h2v.s5.3d76d9f3df09 from=translated src=- shape=fb8e08b9 vocab=d04a844f
+-/
 lemma injOn_of_strict_mono_step (lam : ℕ → ℝ) (M : ℕ)
     (hstep : ∀ m, M ≤ m → lam m < lam (m + 1)) :
     Set.InjOn lam (Set.Ici M) := by
@@ -493,7 +539,9 @@ lemma injOn_of_strict_mono_step (lam : ℕ → ℝ) (M : ℕ)
   · exact h
   · exact absurd hab (ne_of_gt (hmono b a (Set.mem_Ici.mp hb) h))
 
-/-- Injectivity on a tail from a strictly decreasing step.-/
+/-- Injectivity on a tail from a strictly decreasing step.
+@isnad1 id=injon.1h2v.s5.ca5423275c20 from=translated src=- shape=b0d8dbb2 vocab=d04a844f
+-/
 lemma injOn_of_strict_anti_step (mu : ℕ → ℝ) (M : ℕ)
     (hstep : ∀ m, M ≤ m → mu (m + 1) < mu m) :
     Set.InjOn mu (Set.Ici M) := by
@@ -514,7 +562,9 @@ lemma injOn_of_strict_anti_step (mu : ℕ → ℝ) (M : ℕ)
 /-- **The finiteness discharge.**  Along any injective tail of a ladder
 bounded in `(1, B)`, the two integer degeneracies eventually fail:
 past some index, `lam m` is not an integer and `lam m + (lam m)⁻¹` is
-not an integer.-/
+not an integer.
+@isnad1 id=ex.2h3v.s6.c1d28d50b153 from=translated src=- shape=387ded35 vocab=5fe5954e
+-/
 lemma eventually_nondegenerate (lam : ℕ → ℝ) (M : ℕ) (B : ℝ)
     (hinj : Set.InjOn lam (Set.Ici M))
     (hbounds : ∀ m, M ≤ m → 1 < lam m ∧ lam m < B) :
@@ -549,7 +599,9 @@ lemma eventually_nondegenerate (lam : ℕ → ℝ) (M : ℕ) (B : ℝ)
 /-! ### The certificates and the assembly -/
 
 /-- The PLUS-family certificate, packaged: a nondegenerate root
-`tau > 1` of `X^m·Pz + Pz.reverse` (over ℝ) is a Salem number.-/
+`tau > 1` of `X^m·Pz + Pz.reverse` (over ℝ) is a Salem number.
+@isnad1 id=issalem.10h5v.s8.e56cc6acddcd from=translated src=- shape=bcb47493 vocab=f3f74c40
+-/
 lemma isSalem_of_plus_root
     (Pz : Polynomial ℤ) (hmonic : Pz.Monic)
     (alpha : ℝ) (halpha : 1 < alpha)
@@ -574,7 +626,9 @@ lemma isSalem_of_plus_root
   exact ⟨htau, hint, hdisk, hcirc, hinv⟩
 
 /-- The MINUS-family certificate, packaged: a nondegenerate root
-`tau > 1` of `X^m·Pz − Pz.reverse` (over ℝ) is a Salem number.-/
+`tau > 1` of `X^m·Pz − Pz.reverse` (over ℝ) is a Salem number.
+@isnad1 id=issalem.10h5v.s8.e67873379eeb from=translated src=- shape=d0de375e vocab=5fb2855d
+-/
 lemma isSalem_of_minus_root
     (Pz : Polynomial ℤ) (hmonic : Pz.Monic)
     (alpha : ℝ) (halpha : 1 < alpha)
@@ -600,7 +654,9 @@ lemma isSalem_of_minus_root
 
 /-- The BELOW half, abstract in the companion: the below-ladder plus
 the finiteness discharge plus a certificate deliver a Salem number in
-`(α − ε, α)`.-/
+`(α − ε, α)`.
+@isnad1 id=ex.6h5v.s8.8008272c7b05 from=translated src=- shape=a52766ac vocab=1091f8d8
+-/
 lemma exists_salem_below (alpha : ℝ) (halpha : 1 < alpha)
     (Pr G Qc : Polynomial ℝ)
     (hfacR : Pr = (X - Polynomial.C alpha) * G)
@@ -631,7 +687,9 @@ lemma exists_salem_below (alpha : ℝ) (halpha : 1 < alpha)
 
 /-- The ABOVE half, abstract in the companion: the above-ladder plus
 the finiteness discharge plus a certificate deliver a Salem number in
-`(α, α + ε)`.-/
+`(α, α + ε)`.
+@isnad1 id=ex.6h5v.s8.55359f712d03 from=translated src=- shape=66f35203 vocab=1091f8d8
+-/
 lemma exists_salem_above (alpha : ℝ) (halpha : 1 < alpha)
     (Pr G Qc : Polynomial ℝ)
     (hfacR : Pr = (X - Polynomial.C alpha) * G)
@@ -669,7 +727,9 @@ The sign of `Q(α) = α^p·P(1/α)` (the reverse polynomial at `α`) routes
 the plus family `X^m·P + Q` to one side and the minus family
 `X^m·P − Q` to the other; each ladder's roots are nondegenerate
 eventually (the finiteness discharge), and the certificates of
-`PdtSalemArith` and `PdtSalemMinus` promote them to Salem numbers.-/
+`PdtSalemArith` and `PdtSalemMinus` promote them to Salem numbers.
+@isnad1 id=and.7h4v.s7.97ac32b37fe9 from=translated src=- shape=10aa36cf vocab=aa738d8c
+-/
 theorem salem_two_sided
     (Pz : Polynomial ℤ) (hmonic : Pz.Monic)
     (alpha : ℝ) (halpha : 1 < alpha)

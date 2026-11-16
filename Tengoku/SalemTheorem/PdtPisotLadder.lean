@@ -47,11 +47,16 @@ open Filter Set Polynomial
 
 /-! ### Eval basics — the family at scalar level -/
 
+/--
+@isnad1 id=eq.0h4v.s6.ae4ea88b73c2 from=translated src=- shape=6c851ee9 vocab=6e09ebc2
+-/
 lemma eval_family (P Q : Polynomial ℝ) (m : ℕ) (x : ℝ) :
     (X ^ m * P + Q).eval x = x ^ m * P.eval x + Q.eval x := by
   simp [eval_add, eval_mul, eval_pow, eval_X]
 
-/-- The scalar recurrence `R_{m+1}(y) = y·R_m(y) + (1 − y)·Q(y)`.-/
+/-- The scalar recurrence `R_{m+1}(y) = y·R_m(y) + (1 − y)·Q(y)`.
+@isnad1 id=eq.0h4v.s7.a74ed274c782 from=translated src=- shape=43b7a98a vocab=06bb05fa
+-/
 lemma family_rec (P Q : Polynomial ℝ) (m : ℕ) (y : ℝ) :
     (X ^ (m + 1) * P + Q).eval y
       = y * ((X ^ m * P + Q).eval y) + (1 - y) * Q.eval y := by
@@ -60,19 +65,27 @@ lemma family_rec (P Q : Polynomial ℝ) (m : ℕ) (y : ℝ) :
 
 /-! ### Sign facts from the factorization `P = (X − C α)·G` -/
 
+/--
+@isnad1 id=eq.1h4v.s6.0ab3230d797d from=translated src=- shape=6efcd6fd vocab=90de70a2
+-/
 lemma eval_P_eq (P G : Polynomial ℝ) (alpha : ℝ)
     (hfac : P = (X - C alpha) * G) (x : ℝ) :
     P.eval x = (x - alpha) * G.eval x := by
   rw [hfac]
   simp [eval_mul, eval_sub, eval_X, eval_C]
 
+/--
+@isnad1 id=eq.1h3v.s6.0f3d63f26bfb from=translated src=- shape=4d1c605c vocab=90de70a2
+-/
 lemma eval_P_alpha (P G : Polynomial ℝ) (alpha : ℝ)
     (hfac : P = (X - C alpha) * G) :
     P.eval alpha = 0 := by
   rw [eval_P_eq P G alpha hfac]
   ring
 
-/-- Below `α` (and at least 1), `P` is strictly negative.-/
+/-- Below `α` (and at least 1), `P` is strictly negative.
+@isnad1 id=lt.4h4v.s7.fc9614cb348f from=translated src=- shape=0ca21074 vocab=e555db03
+-/
 lemma eval_P_neg (P G : Polynomial ℝ) (alpha : ℝ)
     (hfac : P = (X - C alpha) * G)
     (hG : ∀ x : ℝ, 1 ≤ x → 0 < G.eval x)
@@ -81,12 +94,17 @@ lemma eval_P_neg (P G : Polynomial ℝ) (alpha : ℝ)
   rw [eval_P_eq P G alpha hfac]
   exact mul_neg_of_neg_of_pos (by linarith) (hG x hx1)
 
-/-- The endpoint identity: `R_m(α) = Q(α)` for every `m`.-/
+/-- The endpoint identity: `R_m(α) = Q(α)` for every `m`.
+@isnad1 id=eq.1h5v.s7.7f6ea83e13f2 from=translated src=- shape=0da91881 vocab=e87dd56a
+-/
 lemma family_at_alpha (P G Q : Polynomial ℝ) (alpha : ℝ)
     (hfac : P = (X - C alpha) * G) (m : ℕ) :
     (X ^ m * P + Q).eval alpha = Q.eval alpha := by
   rw [eval_family, eval_P_alpha P G alpha hfac, mul_zero, zero_add]
 
+/--
+@isnad1 id=lt.2h5v.s7.2490047853ad from=translated src=- shape=0dbde0fa vocab=8ed6c44d
+-/
 lemma family_at_alpha_pos (P G Q : Polynomial ℝ) (alpha : ℝ)
     (hfac : P = (X - C alpha) * G) (hQa : 0 < Q.eval alpha) (m : ℕ) :
     0 < (X ^ m * P + Q).eval alpha := by
@@ -96,7 +114,9 @@ lemma family_at_alpha_pos (P G Q : Polynomial ℝ) (alpha : ℝ)
 /-! ### Base negativity below `α`, for `m` large (power blow-up) -/
 
 /-- At any point `t ∈ (1, α)` the family is eventually negative in `m`:
-`t^m·P(t)` blows down past the fixed value `Q(t)`.-/
+`t^m·P(t)` blows down past the fixed value `Q(t)`.
+@isnad1 id=ex.4h5v.s7.7cea010b043b from=translated src=- shape=7a367ce2 vocab=0b239418
+-/
 lemma exists_eval_neg (P G Q : Polynomial ℝ) (alpha t : ℝ)
     (ht1 : 1 < t) (hta : t < alpha)
     (hfac : P = (X - C alpha) * G)
@@ -124,6 +144,9 @@ def rootSet (P Q : Polynomial ℝ) (alpha c : ℝ) (m : ℕ) : Set ℝ :=
 def lam (P Q : Polynomial ℝ) (alpha c : ℝ) (m : ℕ) : ℝ :=
   sSup (rootSet P Q alpha c m)
 
+/--
+@isnad1 id=iscompac.0h5v.s4.2026c8a21400 from=translated src=- shape=78dade4f vocab=d2f680b9
+-/
 lemma rootSet_isCompact (P Q : Polynomial ℝ) (alpha c : ℝ) (m : ℕ) :
     IsCompact (rootSet P Q alpha c m) := by
   apply IsCompact.of_isClosed_subset (isCompact_Icc (a := c) (b := alpha))
@@ -135,6 +158,9 @@ lemma rootSet_isCompact (P Q : Polynomial ℝ) (alpha c : ℝ) (m : ℕ) :
   · intro x hx
     exact hx.1
 
+/--
+@isnad1 id=nonempty.3h5v.s7.80e3999bcbed from=translated src=- shape=e325a76b vocab=961ed1e9
+-/
 lemma rootSet_nonempty (P Q : Polynomial ℝ) (alpha c : ℝ)
     (hca : c ≤ alpha) (m : ℕ)
     (hbase : (X ^ m * P + Q).eval c < 0)
@@ -148,11 +174,17 @@ lemma rootSet_nonempty (P Q : Polynomial ℝ) (alpha c : ℝ)
   obtain ⟨x, hx, hfx⟩ := hsub h0
   exact ⟨x, hx, hfx⟩
 
+/--
+@isnad1 id=mem.1h5v.s5.7843b974d918 from=translated src=- shape=da1de044 vocab=9bf1cfee
+-/
 lemma lam_mem (P Q : Polynomial ℝ) (alpha c : ℝ) (m : ℕ)
     (hne : (rootSet P Q alpha c m).Nonempty) :
     lam P Q alpha c m ∈ rootSet P Q alpha c m :=
   (rootSet_isCompact P Q alpha c m).sSup_mem hne
 
+/--
+@isnad1 id=lt.2h5v.s6.2bb3b2afb778 from=translated src=- shape=dc889b9d vocab=9636ac3f
+-/
 lemma lam_gt_c (P Q : Polynomial ℝ) (alpha c : ℝ) (m : ℕ)
     (hne : (rootSet P Q alpha c m).Nonempty)
     (hbase : (X ^ m * P + Q).eval c < 0) :
@@ -164,6 +196,9 @@ lemma lam_gt_c (P Q : Polynomial ℝ) (alpha c : ℝ) (m : ℕ)
     exact lt_irrefl 0 hbase
   · exact h
 
+/--
+@isnad1 id=lt.2h5v.s6.ae93361f07e7 from=translated src=- shape=dae5c311 vocab=9636ac3f
+-/
 lemma lam_lt_alpha (P Q : Polynomial ℝ) (alpha c : ℝ) (m : ℕ)
     (hne : (rootSet P Q alpha c m).Nonempty)
     (hpos : 0 < (X ^ m * P + Q).eval alpha) :
@@ -175,7 +210,9 @@ lemma lam_lt_alpha (P Q : Polynomial ℝ) (alpha c : ℝ) (m : ℕ)
     exact lt_irrefl 0 hpos
   · exact h
 
-/-- Maximality: no roots of `R_m` strictly between `lam m` and `α`.-/
+/-- Maximality: no roots of `R_m` strictly between `lam m` and `α`.
+@isnad1 id=ne.3h6v.s6.97a1e02a7d9c from=translated src=- shape=98d1fd43 vocab=9636ac3f
+-/
 lemma lam_max (P Q : Polynomial ℝ) (alpha c : ℝ) (m : ℕ)
     (hne : (rootSet P Q alpha c m).Nonempty)
     {y : ℝ} (h1 : lam P Q alpha c m < y) (h2 : y < alpha) :
@@ -190,7 +227,9 @@ lemma lam_max (P Q : Polynomial ℝ) (alpha c : ℝ) (m : ℕ)
 /-! ### Strict monotonicity -/
 
 /-- The heart: at a root of `R_m`, the next member is negative —
-`R_{m+1}(y) = (1 − y)·Q(y) < 0` when `y > 1` and `Q(y) > 0`.-/
+`R_{m+1}(y) = (1 − y)·Q(y) < 0` when `y > 1` and `Q(y) > 0`.
+@isnad1 id=lt.3h4v.s7.c62468ffaaf3 from=translated src=- shape=b7c7b0c6 vocab=cdd5f9b3
+-/
 lemma family_succ_at_root (P Q : Polynomial ℝ) (m : ℕ) {y : ℝ}
     (h1 : 1 < y) (hQy : 0 < Q.eval y)
     (hy : (X ^ m * P + Q).eval y = 0) :
@@ -198,6 +237,9 @@ lemma family_succ_at_root (P Q : Polynomial ℝ) (m : ℕ) {y : ℝ}
   rw [family_rec P Q m y, hy, mul_zero, zero_add]
   nlinarith [mul_pos (sub_pos.mpr h1) hQy]
 
+/--
+@isnad1 id=lt.5h6v.s8.7e01192a19c6 from=translated src=- shape=76d44013 vocab=34beb56c
+-/
 lemma lam_strictMono (P G Q : Polynomial ℝ) (alpha c : ℝ)
     (hc : 1 < c) (hca : c < alpha)
     (hfac : P = (X - C alpha) * G)
@@ -235,7 +277,9 @@ lemma lam_strictMono (P G Q : Polynomial ℝ) (alpha c : ℝ)
 
 /-- The canonical roots tend to `α`: below any `y < α` the base
 negativity plus the intermediate value theorem plants a root above `y`
-eventually, and `lam m < α` always (for `m` past the base index).-/
+eventually, and `lam m < α` always (for `m` past the base index).
+@isnad1 id=tendsto.5h5v.s7.6b4ccef027f7 from=translated src=- shape=0201dc03 vocab=99fd76fa
+-/
 lemma lam_tendsto (P G Q : Polynomial ℝ) (alpha c : ℝ)
     (hc : 1 < c) (hca : c < alpha)
     (hfac : P = (X - C alpha) * G)
@@ -291,7 +335,9 @@ large the family `R_m = X^m·P + Q` has a canonical root
 increasing; and it tends to `α`.
 
 `halpha` is derivable from `hc` and `hca` (see the module docstring);
-the unused-variable linter is silenced for that one binder.-/
+the unused-variable linter is silenced for that one binder.
+@isnad1 id=ex.6h5v.s8.7967806eefea from=translated src=- shape=cbe5cd37 vocab=608ce95b
+-/
 theorem pisot_ladder_family
     (P G Q : Polynomial ℝ) (alpha c : ℝ)
     (halpha : 1 < alpha) (hc : 1 < c) (hca : c < alpha)
@@ -321,7 +367,9 @@ theorem pisot_ladder_family
 /-! ### Eventual uniform positivity on `[α, ∞)` -/
 
 /-- The `δ`-window: `Q(α) > 0` extends to a closed window
-`[α, s]` with `α < s` by continuity.-/
+`[α, s]` with `α < s` by continuity.
+@isnad1 id=ex.1h2v.s5.37761d678b27 from=translated src=- shape=9f07ea35 vocab=abb2b9b7
+-/
 lemma exists_window (Q : Polynomial ℝ) (alpha : ℝ) (hQa : 0 < Q.eval alpha) :
     ∃ s : ℝ, alpha < s ∧ ∀ x ∈ Icc alpha s, 0 < Q.eval x := by
   have hopen : IsOpen {x : ℝ | 0 < Q.eval x} :=
@@ -336,6 +384,9 @@ lemma exists_window (Q : Polynomial ℝ) (alpha : ℝ) (hQa : 0 < Q.eval alpha) 
     linarith
   exact hball hxball
 
+/--
+@isnad1 id=eq.2h3v.s7.7c386f77335c from=translated src=- shape=8d0f8a02 vocab=8da779b6
+-/
 lemma P_natDegree_eq (P G : Polynomial ℝ) (alpha : ℝ)
     (hfac : P = (X - C alpha) * G) (hGne : G ≠ 0) :
     P.natDegree = 1 + G.natDegree := by
@@ -343,7 +394,9 @@ lemma P_natDegree_eq (P G : Polynomial ℝ) (alpha : ℝ)
 
 /-- The uniform positive lower bound for `P` on `[s, ∞)`, `s > α`:
 `P → ∞` at infinity, and `P` is continuous and positive on the
-compact remainder.-/
+compact remainder.
+@isnad1 id=ex.5h4v.s7.c71552d06006 from=translated src=- shape=83a8188c vocab=fde0fc55
+-/
 lemma exists_eta (P G : Polynomial ℝ) (alpha : ℝ)
     (halpha : 1 < alpha) (hmonic : P.Monic)
     (hfac : P = (X - C alpha) * G)

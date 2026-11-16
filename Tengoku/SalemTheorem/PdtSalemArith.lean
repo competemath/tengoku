@@ -46,7 +46,9 @@ open Polynomial Complex
 
 /-! ### Small helpers -/
 
-/-- A multiset of unimodular numbers has unimodular product.-/
+/-- A multiset of unimodular numbers has unimodular product.
+@isnad1 id=eq.1h1v.s5.241c5abe8e50 from=translated src=- shape=49d4550a vocab=aa2d0bcc
+-/
 lemma norm_multiset_prod_eq_one (s : Multiset ℂ) :
     (∀ w ∈ s, ‖w‖ = 1) → ‖s.prod‖ = 1 := by
   induction s using Multiset.induction_on with
@@ -56,18 +58,24 @@ lemma norm_multiset_prod_eq_one (s : Multiset ℂ) :
     rw [Multiset.prod_cons, norm_mul, h a (Multiset.mem_cons_self a t), one_mul]
     exact ih fun w hw => h w (Multiset.mem_cons_of_mem hw)
 
-/-- The ℤ-cast triangle through ℚ: ring homs out of ℤ are unique.-/
+/-- The ℤ-cast triangle through ℚ: ring homs out of ℤ are unique.
+@isnad1 id=eq.0h0v.s6.d99969d5c0b3 from=translated src=- shape=d1fe4314 vocab=bbcf737f
+-/
 lemma castQC_triangle :
     (algebraMap ℚ ℂ).comp (Int.castRingHom ℚ) = Int.castRingHom ℂ :=
   RingHom.ext_int _ _
 
-/-- `aeval` as evaluation of the mapped polynomial.-/
+/-- `aeval` as evaluation of the mapped polynomial.
+@isnad1 id=eq.0h4v.s7.2cea4f2d8016 from=translated src=- shape=44999bbd vocab=95248abd
+-/
 lemma aeval_eq_eval_map {R S : Type*} [CommSemiring R] [CommSemiring S]
     [Algebra R S] (p : Polynomial R) (x : S) :
     Polynomial.aeval x p = (p.map (algebraMap R S)).eval x := by
   rw [Polynomial.aeval_def, Polynomial.eval₂_eq_eval_map]
 
-/-- Transport of scalar `aeval` along `ℝ → ℂ`.-/
+/-- Transport of scalar `aeval` along `ℝ → ℂ`.
+@isnad1 id=eq.0h3v.s8.844c460b75d7 from=translated src=- shape=1cc6ac94 vocab=75280549
+-/
 lemma aeval_ofReal {R : Type*} [CommRing R] [Algebra R ℝ] [Algebra R ℂ]
     [IsScalarTower R ℝ ℂ] (p : Polynomial R) (x : ℝ) :
     Polynomial.aeval ((x : ℂ)) p = ((Polynomial.aeval x p : ℝ) : ℂ) :=
@@ -76,7 +84,9 @@ lemma aeval_ofReal {R : Type*} [CommRing R] [Algebra R ℝ] [Algebra R ℂ]
 /-! ### The family is monic over ℤ, and its complex image is `R` -/
 
 /-- Degree transfer from the complex factorization: `Pz` has degree
-`inside.card + 1`.-/
+`inside.card + 1`.
+@isnad1 id=eq.2h3v.s5.0c1d9c46a8ac from=translated src=- shape=ef60612d vocab=ad11aeb4
+-/
 lemma Pz_natDegree (Pz : Polynomial ℤ) (hmonic : Pz.Monic) (alpha : ℝ)
     (inside : Multiset ℂ)
     (hfacC : Pz.map (Int.castRingHom ℂ) = SalemCircle.P alpha inside) :
@@ -86,7 +96,9 @@ lemma Pz_natDegree (Pz : Polynomial ℤ) (hmonic : Pz.Monic) (alpha : ℝ)
   exact h1.symm
 
 /-- Degree transfer for the companion: `Qz` has degree at most
-`inside.card + 1`.-/
+`inside.card + 1`.
+@isnad1 id=le.1h3v.s5.58b4921b2d72 from=translated src=- shape=6050c08f vocab=514a5f91
+-/
 lemma Qz_natDegree_le (alpha : ℝ) (inside : Multiset ℂ) (Qz : Polynomial ℤ)
     (hQmap : Qz.map (Int.castRingHom ℂ) = SalemCircle.Q alpha inside) :
     Qz.natDegree ≤ inside.card + 1 := by
@@ -96,7 +108,9 @@ lemma Qz_natDegree_le (alpha : ℝ) (inside : Multiset ℂ) (Qz : Polynomial ℤ
   rw [← h1]
   exact SalemCircle.Q_natDegree_le alpha inside
 
-/-- The integer family `X^m·Pz + Qz` is monic (for `m ≥ 1`).-/
+/-- The integer family `X^m·Pz + Qz` is monic (for `m ≥ 1`).
+@isnad1 id=monic.4h5v.s7.545cdcddf963 from=translated src=- shape=0f571dfb vocab=f0ccf776
+-/
 lemma family_monic (Pz : Polynomial ℤ) (hmonic : Pz.Monic) (alpha : ℝ)
     (inside : Multiset ℂ)
     (hfacC : Pz.map (Int.castRingHom ℂ) = SalemCircle.P alpha inside)
@@ -111,7 +125,9 @@ lemma family_monic (Pz : Polynomial ℤ) (hmonic : Pz.Monic) (alpha : ℝ)
   rw [(monic_X_pow m).natDegree_mul hmonic, natDegree_X_pow, hPdeg]
   omega
 
-/-- The complex image of the integer family is the family `R` of `PdtSalemCircle`.-/
+/-- The complex image of the integer family is the family `R` of `PdtSalemCircle`.
+@isnad1 id=eq.2h5v.s7.5a6f53cc7184 from=translated src=- shape=f1e1c7a6 vocab=1083df44
+-/
 lemma family_map_C (Pz : Polynomial ℤ) (alpha : ℝ) (inside : Multiset ℂ)
     (hfacC : Pz.map (Int.castRingHom ℂ) = SalemCircle.P alpha inside)
     (Qz : Polynomial ℤ)
@@ -131,7 +147,9 @@ degeneracies `tau ∈ ℤ` and `tau + 1/tau ∈ ℤ`: it is an algebraic
 integer, its conjugates lie in the closed unit disk, at least one lies
 ON the circle, and `1/tau` is among them.  All degenerate exclusions run
 through the Gauss step (`minpoly ℚ tau` is the mapped `minpoly ℤ tau`,
-since ℤ is integrally closed).-/
+since ℤ is integrally closed).
+@isnad1 id=and.12h6v.s9.5f78201fbc33 from=translated src=- shape=61f5746d vocab=2130f247
+-/
 theorem salem_certificate
     (Pz : Polynomial ℤ) (hmonic : Pz.Monic)
     (alpha : ℝ) (halpha : 1 < alpha)
@@ -351,7 +369,9 @@ theorem salem_certificate
 
 /-- The reflect of the product `P` at its degree is the mirrored
 product `Q`: they agree at every `z ≠ 0` (`mirror_P`), and a cofinite
-agreement set forces polynomial equality.-/
+agreement set forces polynomial equality.
+@isnad1 id=eq.0h2v.s5.1cb2107a55ae from=translated src=- shape=db15f645 vocab=f9836495
+-/
 lemma reflect_P_eq_Q (alpha : ℝ) (inside : Multiset ℂ) :
     (SalemCircle.P alpha inside).reflect (inside.card + 1)
       = SalemCircle.Q alpha inside := by
@@ -386,7 +406,9 @@ lemma reflect_P_eq_Q (alpha : ℝ) (inside : Multiset ℂ) :
 /-- **The reverse bridge**: the actual Salem companion — the
 reverse polynomial of `Pz` — has complex image the mirrored product `Q`,
 discharging the hypothesis `hQmap` of `salem_certificate` for
-`Qz = Pz.reverse`.-/
+`Qz = Pz.reverse`.
+@isnad1 id=eq.2h3v.s5.a7457c8c9e8b from=translated src=- shape=98880a92 vocab=8673f6aa
+-/
 theorem reverse_bridge (Pz : Polynomial ℤ) (hmonic : Pz.Monic) (alpha : ℝ)
     (inside : Multiset ℂ)
     (hfacC : Pz.map (Int.castRingHom ℂ) = SalemCircle.P alpha inside) :

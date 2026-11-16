@@ -93,24 +93,35 @@ def psi (alpha : ℝ) (roots : Multiset ℂ) (m : ℕ) (t : ℝ) : ℝ :=
 
 /-! ### Scalar evaluations and the self-inversive pairing -/
 
+/--
+@isnad1 id=eq.0h3v.s5.ef8ddd33ecff from=translated src=- shape=bf16c833 vocab=e34e9e2d
+-/
 lemma eval_P (alpha : ℝ) (roots : Multiset ℂ) (z : ℂ) :
     (P alpha roots).eval z = (z - (alpha : ℂ)) * (roots.map fun r => z - r).prod := by
   simp only [P, eval_mul, eval_sub, eval_X, eval_C, eval_multiset_prod,
     Multiset.map_map, Function.comp_def]
 
+/--
+@isnad1 id=eq.0h3v.s6.dd30fa0fdaea from=translated src=- shape=35b145a8 vocab=1bc13831
+-/
 lemma eval_Q (alpha : ℝ) (roots : Multiset ℂ) (z : ℂ) :
     (Q alpha roots).eval z
       = (1 - (alpha : ℂ) * z) * (roots.map fun r => 1 - r * z).prod := by
   simp only [Q, eval_mul, eval_sub, eval_one, eval_X, eval_C, eval_multiset_prod,
     Multiset.map_map, Function.comp_def]
 
+/--
+@isnad1 id=eq.0h4v.s5.44804d18a8e9 from=translated src=- shape=1fa96232 vocab=36c72ada
+-/
 lemma eval_R (alpha : ℝ) (roots : Multiset ℂ) (m : ℕ) (z : ℂ) :
     (R alpha roots m).eval z
       = z ^ m * (P alpha roots).eval z + (Q alpha roots).eval z := by
   simp only [R, eval_add, eval_mul, eval_pow, eval_X]
 
 /-- Collecting one copy of `z` into each factor:
-`z^card·∏ (1/z − r) = ∏ (1 − r·z)`.-/
+`z^card·∏ (1/z − r) = ∏ (1 − r·z)`.
+@isnad1 id=eq.1h2v.s6.09732c2a7100 from=translated src=- shape=a494466d vocab=e034086f
+-/
 lemma prod_shift (s : Multiset ℂ) {z : ℂ} (hz : z ≠ 0) :
     z ^ s.card * (s.map fun r => z⁻¹ - r).prod = (s.map fun r => 1 - r * z).prod := by
   induction s using Multiset.induction_on with
@@ -124,7 +135,9 @@ lemma prod_shift (s : Multiset ℂ) {z : ℂ} (hz : z ≠ 0) :
           ring
       _ = (1 - a * z) * (s.map fun r => 1 - r * z).prod := by rw [ha, ih]
 
-/-- The mirror of `prod_shift`: `z^card·∏ (1 − r/z) = ∏ (z − r)`.-/
+/-- The mirror of `prod_shift`: `z^card·∏ (1 − r/z) = ∏ (z − r)`.
+@isnad1 id=eq.1h2v.s6.d42aa3c28e25 from=translated src=- shape=4615f82a vocab=e034086f
+-/
 lemma prod_shift' (s : Multiset ℂ) {z : ℂ} (hz : z ≠ 0) :
     z ^ s.card * (s.map fun r => 1 - r * z⁻¹).prod = (s.map fun r => z - r).prod := by
   induction s using Multiset.induction_on with
@@ -138,7 +151,9 @@ lemma prod_shift' (s : Multiset ℂ) {z : ℂ} (hz : z ≠ 0) :
           ring
       _ = (z - a) * (s.map fun r => z - r).prod := by rw [ha, ih]
 
-/-- The first mirror identity: `z^p·P(1/z) = Q(z)` for `z ≠ 0`.-/
+/-- The first mirror identity: `z^p·P(1/z) = Q(z)` for `z ≠ 0`.
+@isnad1 id=eq.1h3v.s6.f65438e2f5c8 from=translated src=- shape=00010690 vocab=0eee003d
+-/
 lemma mirror_P (alpha : ℝ) (roots : Multiset ℂ) {z : ℂ} (hz : z ≠ 0) :
     z ^ (roots.card + 1) * (P alpha roots).eval z⁻¹ = (Q alpha roots).eval z := by
   rw [eval_P, eval_Q, pow_succ]
@@ -151,7 +166,9 @@ lemma mirror_P (alpha : ℝ) (roots : Multiset ℂ) {z : ℂ} (hz : z ≠ 0) :
     _ = (1 - (alpha : ℂ) * z) * (roots.map fun r => 1 - r * z).prod := by
         rw [h1, prod_shift roots hz]
 
-/-- The second mirror identity: `z^p·Q(1/z) = P(z)` for `z ≠ 0`.-/
+/-- The second mirror identity: `z^p·Q(1/z) = P(z)` for `z ≠ 0`.
+@isnad1 id=eq.1h3v.s6.c17046a4170e from=translated src=- shape=00010690 vocab=0eee003d
+-/
 lemma mirror_Q (alpha : ℝ) (roots : Multiset ℂ) {z : ℂ} (hz : z ≠ 0) :
     z ^ (roots.card + 1) * (Q alpha roots).eval z⁻¹ = (P alpha roots).eval z := by
   rw [eval_P, eval_Q, pow_succ]
@@ -165,7 +182,9 @@ lemma mirror_Q (alpha : ℝ) (roots : Multiset ℂ) {z : ℂ} (hz : z ≠ 0) :
         rw [h1, prod_shift' roots hz]
 
 /-- The self-inversive functional equation:
-`z^(m+p)·R_m(1/z) = R_m(z)` for `z ≠ 0`.-/
+`z^(m+p)·R_m(1/z) = R_m(z)` for `z ≠ 0`.
+@isnad1 id=eq.1h4v.s6.0f250b702e69 from=translated src=- shape=be6e5f10 vocab=9401ab0c
+-/
 lemma R_eval_inv (alpha : ℝ) (roots : Multiset ℂ) (m : ℕ) {z : ℂ} (hz : z ≠ 0) :
     z ^ (m + (roots.card + 1)) * (R alpha roots m).eval z⁻¹
       = (R alpha roots m).eval z := by
@@ -180,7 +199,9 @@ lemma R_eval_inv (alpha : ℝ) (roots : Multiset ℂ) (m : ℕ) {z : ℂ} (hz : 
         rw [hzm, mirror_P alpha roots hz, mirror_Q alpha roots hz]; ring
 
 /-- **The self-inversive pairing**: a nonzero root of `R_m` pairs
-with its inverse.  (Stated without the redundant `1 ≤ m`.)-/
+with its inverse.  (Stated without the redundant `1 ≤ m`.)
+@isnad1 id=eq.2h4v.s5.a717f9a0ec8c from=translated src=- shape=8c3e7da0 vocab=c9137491
+-/
 theorem salem_root_inv (alpha : ℝ) (roots : Multiset ℂ) (m : ℕ) {z : ℂ} (hz : z ≠ 0)
     (hroot : (R alpha roots m).eval z = 0) : (R alpha roots m).eval z⁻¹ = 0 := by
   have key := R_eval_inv alpha roots m hz
@@ -191,67 +212,111 @@ theorem salem_root_inv (alpha : ℝ) (roots : Multiset ℂ) (m : ℕ) {z : ℂ} 
 
 /-! ### The `E`-calculus -/
 
+/--
+@isnad1 id=eq.0h0v.s3.9d9189ae6bd6 from=translated src=- shape=1ac31801 vocab=25a85eea
+-/
 lemma E_zero : E 0 = 1 := by simp [E]
 
+/--
+@isnad1 id=eq.0h2v.s4.88b64b19e7a2 from=translated src=- shape=0438c7a3 vocab=580e36a4
+-/
 lemma E_add (s t : ℝ) : E (s + t) = E s * E t := by
   simp only [E, ← Complex.exp_add]
   congr 1
   push_cast
   ring
 
+/--
+@isnad1 id=eq.1h2v.s3.01b31e20f91c from=translated src=- shape=d7721dd6 vocab=25a85eea
+-/
 lemma E_congr {s t : ℝ} (h : s = t) : E s = E t := by rw [h]
 
+/--
+@isnad1 id=eq.0h1v.s4.c735ab721b21 from=translated src=- shape=a0b99f43 vocab=82a23700
+-/
 lemma E_mul_E_neg (t : ℝ) : E t * E (-t) = 1 := by
   rw [← E_add, add_neg_cancel, E_zero]
 
+/--
+@isnad1 id=ne.0h1v.s3.13dbb0f4cbbb from=translated src=- shape=a311c14d vocab=25a85eea
+-/
 lemma E_ne_zero (t : ℝ) : E t ≠ 0 := by
   simp only [E]; exact Complex.exp_ne_zero _
 
+/--
+@isnad1 id=eq.0h1v.s3.12ca943ccc2a from=translated src=- shape=0cfb200e vocab=b5d20b79
+-/
 lemma norm_E (t : ℝ) : ‖E t‖ = 1 := by
   simp only [E]; exact Complex.norm_exp_ofReal_mul_I t
 
+/--
+@isnad1 id=eq.0h1v.s5.44eb8db1dfcf from=translated src=- shape=c7368a4d vocab=86ac818a
+-/
 lemma conj_E (t : ℝ) : (starRingEnd ℂ) (E t) = E (-t) := by
   simp only [E, ← Complex.exp_conj, map_mul, Complex.conj_ofReal, Complex.conj_I]
   congr 1
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h2v.s5.a512170d1f71 from=translated src=- shape=11a729fe vocab=ca9a4667
+-/
 lemma E_pow (n : ℕ) (t : ℝ) : E t ^ n = E ((n : ℝ) * t) := by
   simp only [E, ← Complex.exp_nat_mul]
   congr 1
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h0v.s3.745cf6002844 from=translated src=- shape=f7285ee8 vocab=8eee470a
+-/
 lemma E_pi : E Real.pi = -1 := by
   simp only [E]; exact Complex.exp_pi_mul_I
 
+/--
+@isnad1 id=eq.0h0v.s4.ec5b95d3056c from=translated src=- shape=ad454fee vocab=d80caba2
+-/
 lemma E_two_pi : E (2 * Real.pi) = 1 := by
   simp only [E]
   rw [show ((2 * Real.pi : ℝ) : ℂ) * Complex.I = 2 * (Real.pi : ℂ) * Complex.I by
     push_cast; ring]
   exact Complex.exp_two_pi_mul_I
 
+/--
+@isnad1 id=eq.0h1v.s3.4a25523a5735 from=translated src=- shape=c52356c6 vocab=955a0345
+-/
 lemma E_re (t : ℝ) : (E t).re = Real.cos t := by
   simp only [E]; exact Complex.exp_ofReal_mul_I_re t
 
-/-- `exp(iψ) + exp(−iψ) = 2·cos ψ`, over the reals.-/
+/-- `exp(iψ) + exp(−iψ) = 2·cos ψ`, over the reals.
+@isnad1 id=eq.0h1v.s5.48bab3ff6f96 from=translated src=- shape=7e50dcda vocab=3a552bb6
+-/
 lemma E_add_E_neg (x : ℝ) : E x + E (-x) = 2 * ((Real.cos x : ℝ) : ℂ) := by
   simp only [E, Complex.exp_mul_I]
   push_cast
   simp only [Complex.cos_neg, Complex.sin_neg]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s4.41e31e3a235a from=translated src=- shape=2c168df1 vocab=243542c1
+-/
 lemma norm_mul_E (w : ℂ) (t : ℝ) : ‖w * E t‖ = ‖w‖ := by
   rw [norm_mul, norm_E, mul_one]
 
 /-! ### Nonvanishing and the half-plane locations -/
 
+/--
+@isnad1 id=ne.1h1v.s5.8223f7922227 from=translated src=- shape=b4852dea vocab=3e3563f5
+-/
 lemma one_sub_ne_zero_of_norm_ne_one {w : ℂ} (hw : ‖w‖ ≠ 1) : 1 - w ≠ 0 := by
   intro h
   have hw1 : w = 1 := (sub_eq_zero.mp h).symm
   rw [hw1, norm_one] at hw
   exact hw rfl
 
+/--
+@isnad1 id=ne.1h2v.s5.7fab107cea21 from=translated src=- shape=8190fb84 vocab=5e0c2a3b
+-/
 lemma alpha_factor_ne_zero {alpha : ℝ} (halpha : 1 < alpha) (t : ℝ) :
     1 - (alpha : ℂ) * E (-t) ≠ 0 := by
   apply one_sub_ne_zero_of_norm_ne_one
@@ -259,11 +324,17 @@ lemma alpha_factor_ne_zero {alpha : ℝ} (halpha : 1 < alpha) (t : ℝ) :
     abs_of_pos (by linarith : (0 : ℝ) < alpha)]
   exact ne_of_gt halpha
 
+/--
+@isnad1 id=ne.1h2v.s5.2a565569ff1a from=translated src=- shape=4e3f1479 vocab=64de3dcf
+-/
 lemma root_factor_ne_zero {r : ℂ} (hr : ‖r‖ < 1) (t : ℝ) : 1 - r * E (-t) ≠ 0 := by
   apply one_sub_ne_zero_of_norm_ne_one
   rw [norm_mul_E]
   exact ne_of_lt hr
 
+/--
+@isnad1 id=ne.1h2v.s5.59749e91d3f4 from=translated src=- shape=d2d6e3a9 vocab=c7135c58
+-/
 lemma alpha_sub_E_ne_zero {alpha : ℝ} (halpha : 1 < alpha) (t : ℝ) :
     (alpha : ℂ) - E t ≠ 0 := by
   intro h
@@ -273,6 +344,9 @@ lemma alpha_sub_E_ne_zero {alpha : ℝ} (halpha : 1 < alpha) (t : ℝ) :
     abs_of_pos (by linarith : (0 : ℝ) < alpha)] at hn
   linarith
 
+/--
+@isnad1 id=lt.2h3v.s5.f1cc5454ee1a from=translated src=- shape=0172b24d vocab=933234c9
+-/
 lemma N_pos (alpha : ℝ) (roots : Multiset ℂ) (halpha : 1 < alpha)
     (hroots : ∀ r ∈ roots, ‖r‖ < 1) (t : ℝ) : 0 < N alpha roots t := by
   unfold N
@@ -283,12 +357,18 @@ lemma N_pos (alpha : ℝ) (roots : Multiset ℂ) (halpha : 1 < alpha)
     obtain ⟨r, hr, rfl⟩ := Multiset.mem_map.mp hx
     exact norm_pos_iff.mpr (root_factor_ne_zero (hroots r hr) t)
 
+/--
+@isnad1 id=lt.1h1v.s5.91ca983c798c from=translated src=- shape=d50b0177 vocab=41cd6a7e
+-/
 lemma re_pos_of_norm_lt_one {w : ℂ} (hw : ‖w‖ < 1) : 0 < (1 - w).re := by
   have h1 : w.re ≤ |w.re| := le_abs_self _
   have h2 : |w.re| ≤ ‖w‖ := Complex.abs_re_le_norm w
   simp only [Complex.sub_re, Complex.one_re]
   linarith
 
+/--
+@isnad1 id=mem.1h2v.s5.dbdcc8d49127 from=translated src=- shape=f4688422 vocab=0ad92383
+-/
 lemma alpha_sub_E_mem_slitPlane {alpha : ℝ} (halpha : 1 < alpha) (t : ℝ) :
     (alpha : ℂ) - E t ∈ Complex.slitPlane := by
   rw [Complex.mem_slitPlane_iff]
@@ -297,6 +377,9 @@ lemma alpha_sub_E_mem_slitPlane {alpha : ℝ} (halpha : 1 < alpha) (t : ℝ) :
   have := Real.cos_le_one t
   linarith
 
+/--
+@isnad1 id=mem.1h2v.s5.5bc029f14cf2 from=translated src=- shape=37914337 vocab=6e8ede64
+-/
 lemma root_factor_mem_slitPlane {r : ℂ} (hr : ‖r‖ < 1) (t : ℝ) :
     1 - r * E (-t) ∈ Complex.slitPlane := by
   rw [Complex.mem_slitPlane_iff]
@@ -307,13 +390,17 @@ lemma root_factor_mem_slitPlane {r : ℂ} (hr : ‖r‖ < 1) (t : ℝ) :
 
 /-! ### The polar form and the key identity -/
 
-/-- The polar form, phrased through `E`.-/
+/-- The polar form, phrased through `E`.
+@isnad1 id=eq.0h1v.s4.b76a3c979c52 from=translated src=- shape=2b19142d vocab=99856905
+-/
 lemma polar (w : ℂ) : w = (‖w‖ : ℂ) * E (Complex.arg w) := by
   simp only [E]
   exact (Complex.norm_mul_exp_arg_mul_I w).symm
 
 /-- A multiset product of polar forms is the polar form of the product:
-norms multiply, phases add.-/
+norms multiply, phases add.
+@isnad1 id=eq.0h3v.s6.9f5a9d3adfdf from=translated src=- shape=a7ed4127 vocab=1420a226
+-/
 lemma prod_norm_mul_E (s : Multiset ℂ) (nf af : ℂ → ℝ) :
     (s.map fun r => ((nf r : ℝ) : ℂ) * E (af r)).prod
       = (((s.map nf).prod : ℝ) : ℂ) * E ((s.map af).sum) := by
@@ -324,7 +411,9 @@ lemma prod_norm_mul_E (s : Multiset ℂ) (nf af : ℂ → ℝ) :
     push_cast
     ring
 
-/-- Pulling a constant out of every factor.-/
+/-- Pulling a constant out of every factor.
+@isnad1 id=eq.0h3v.s6.f71a1fd5e46f from=translated src=- shape=0d739df1 vocab=d7e229e0
+-/
 lemma prod_map_const_mul (c : ℂ) (s : Multiset ℂ) (f : ℂ → ℂ) :
     (s.map fun r => c * f r).prod = c ^ s.card * (s.map f).prod := by
   induction s using Multiset.induction_on with
@@ -333,7 +422,9 @@ lemma prod_map_const_mul (c : ℂ) (s : Multiset ℂ) (f : ℂ → ℂ) :
     simp only [Multiset.map_cons, Multiset.prod_cons, Multiset.card_cons, pow_succ, ih]
     ring
 
-/-- Two polar forms multiply to a polar form.-/
+/-- Two polar forms multiply to a polar form.
+@isnad1 id=eq.0h4v.s6.2d802ac7a167 from=translated src=- shape=29d1714f vocab=6c283f66
+-/
 lemma polar_mul (a b x y : ℝ) :
     ((a : ℂ) * E x) * ((b : ℂ) * E y) = ((a * b : ℝ) : ℂ) * E (x + y) := by
   rw [E_add]
@@ -341,7 +432,9 @@ lemma polar_mul (a b x y : ℝ) :
   ring
 
 /-- The rotated polar form of the leading factor of `V`:
-`1 − α·E(−t) = ‖α − E t‖·E(−t + π + arg(α − E t))`.-/
+`1 − α·E(−t) = ‖α − E t‖·E(−t + π + arg(α − E t))`.
+@isnad1 id=eq.0h2v.s6.3ec147e85646 from=translated src=- shape=36fd25d0 vocab=71aa2a67
+-/
 lemma first_factor_polar (alpha : ℝ) (t : ℝ) :
     1 - (alpha : ℂ) * E (-t)
       = (‖(alpha : ℂ) - E t‖ : ℂ)
@@ -358,7 +451,9 @@ lemma first_factor_polar (alpha : ℝ) (t : ℝ) :
       _ = (‖w‖ : ℂ) * (E (-t) * -1 * E (Complex.arg w)) := by ring
   exact key _ rfl
 
-/-- The polar decomposition of `V`: modulus `N`, phase `A`.-/
+/-- The polar decomposition of `V`: modulus `N`, phase `A`.
+@isnad1 id=eq.0h3v.s4.a5d754477d8b from=translated src=- shape=f6421807 vocab=1a73c82e
+-/
 lemma V_polar (alpha : ℝ) (roots : Multiset ℂ) (t : ℝ) :
     V alpha roots t = ((N alpha roots t : ℝ) : ℂ) * E (A alpha roots t) := by
   unfold V N A
@@ -374,7 +469,9 @@ lemma V_polar (alpha : ℝ) (roots : Multiset ℂ) (t : ℝ) :
   rw [hprod]
   exact polar_mul _ _ _ _
 
-/-- `P` on the circle: `P(E t) = E(p·t)·V t`.-/
+/-- `P` on the circle: `P(E t) = E(p·t)·V t`.
+@isnad1 id=eq.0h3v.s5.f1b92c6b397f from=translated src=- shape=b8ea83fa vocab=d524b33e
+-/
 lemma eval_P_E (alpha : ℝ) (roots : Multiset ℂ) (t : ℝ) :
     (P alpha roots).eval (E t)
       = E (((roots.card + 1 : ℕ) : ℝ) * t) * V alpha roots t := by
@@ -391,7 +488,9 @@ lemma eval_P_E (alpha : ℝ) (roots : Multiset ℂ) (t : ℝ) :
   ring
 
 /-- `Q` on the circle: `Q(E t) = conj (V t)` — this is where
-conjugation-closure of the root multiset enters.-/
+conjugation-closure of the root multiset enters.
+@isnad1 id=eq.1h3v.s6.c2abadf616a7 from=translated src=- shape=2b2183ea vocab=eeb244a1
+-/
 lemma eval_Q_E (alpha : ℝ) (roots : Multiset ℂ)
     (hconj : roots.map (starRingEnd ℂ) = roots) (t : ℝ) :
     (Q alpha roots).eval (E t) = (starRingEnd ℂ) (V alpha roots t) := by
@@ -410,7 +509,9 @@ lemma eval_Q_E (alpha : ℝ) (roots : Multiset ℂ)
 
 /-- **The key identity**: on the circle,
 `R_m(E t) = 2·N t·cos(ψ t)·E((m+p)·t/2)` — the explicit phase that
-replaces the argument principle.-/
+replaces the argument principle.
+@isnad1 id=eq.1h4v.s7.8dafbfaafb30 from=translated src=- shape=9710263a vocab=8c487387
+-/
 lemma R_eval_E (alpha : ℝ) (roots : Multiset ℂ)
     (hconj : roots.map (starRingEnd ℂ) = roots) (m : ℕ) (t : ℝ) :
     (R alpha roots m).eval (E t)
@@ -451,7 +552,9 @@ lemma R_eval_E (alpha : ℝ) (roots : Multiset ℂ)
     _ = (n : ℂ) * E c2 * (2 * ((Real.cos ψ : ℝ) : ℂ)) := by rw [e3]
     _ = ((2 * n * Real.cos ψ : ℝ) : ℂ) * E c2 := by push_cast; ring
 
-/-- The zero test on the circle: `R_m(E t) = 0 ↔ cos(ψ t) = 0`.-/
+/-- The zero test on the circle: `R_m(E t) = 0 ↔ cos(ψ t) = 0`.
+@isnad1 id=iff.3h4v.s6.2a0cb2a153c4 from=translated src=- shape=88a932bf vocab=bd24b02d
+-/
 lemma R_eval_E_eq_zero_iff (alpha : ℝ) (roots : Multiset ℂ) (halpha : 1 < alpha)
     (hroots : ∀ r ∈ roots, ‖r‖ < 1)
     (hconj : roots.map (starRingEnd ℂ) = roots) (m : ℕ) (t : ℝ) :
@@ -473,10 +576,16 @@ lemma R_eval_E_eq_zero_iff (alpha : ℝ) (roots : Multiset ℂ) (halpha : 1 < al
 
 /-! ### Continuity of the phase -/
 
+/--
+@isnad1 id=continuo.0h0v.s4.b7f6fc190e59 from=translated src=- shape=54c8eceb vocab=e804ec75
+-/
 lemma continuous_E : Continuous E := by
   show Continuous fun t : ℝ => Complex.exp ((t : ℂ) * Complex.I)
   fun_prop
 
+/--
+@isnad1 id=continuo.1h1v.s5.bb904b9fe154 from=translated src=- shape=88e67d98 vocab=8e8e89ea
+-/
 lemma continuous_arg_alpha {alpha : ℝ} (halpha : 1 < alpha) :
     Continuous fun t : ℝ => Complex.arg ((alpha : ℂ) - E t) := by
   rw [continuous_iff_continuousAt]
@@ -489,6 +598,9 @@ lemma continuous_arg_alpha {alpha : ℝ} (halpha : 1 < alpha) :
     · exact hcont.continuousAt
   exact hcomp
 
+/--
+@isnad1 id=continuo.1h1v.s5.8959915dafc3 from=translated src=- shape=a01c7f01 vocab=f719d6f2
+-/
 lemma continuous_arg_root {r : ℂ} (hr : ‖r‖ < 1) :
     Continuous fun t : ℝ => Complex.arg (1 - r * E (-t)) := by
   rw [continuous_iff_continuousAt]
@@ -501,6 +613,9 @@ lemma continuous_arg_root {r : ℂ} (hr : ‖r‖ < 1) :
     · exact hcont.continuousAt
   exact hcomp
 
+/--
+@isnad1 id=continuo.1h1v.s6.19c7026c7595 from=translated src=- shape=3f509c14 vocab=b99e960f
+-/
 lemma continuous_arg_sum (roots : Multiset ℂ) (hroots : ∀ r ∈ roots, ‖r‖ < 1) :
     Continuous fun t : ℝ =>
       (roots.map fun r => Complex.arg (1 - r * E (-t))).sum := by
@@ -517,6 +632,9 @@ lemma continuous_arg_sum (roots : Multiset ℂ) (hroots : ∀ r ∈ roots, ‖r�
     simp only [Multiset.map_cons, Multiset.sum_cons]
     exact (continuous_arg_root ha).add hs
 
+/--
+@isnad1 id=continuo.2h2v.s5.aed56d549946 from=translated src=- shape=28bce87e vocab=7800e97d
+-/
 lemma continuous_A (alpha : ℝ) (roots : Multiset ℂ) (halpha : 1 < alpha)
     (hroots : ∀ r ∈ roots, ‖r‖ < 1) :
     Continuous fun t : ℝ => A alpha roots t := by
@@ -524,6 +642,9 @@ lemma continuous_A (alpha : ℝ) (roots : Multiset ℂ) (halpha : 1 < alpha)
   exact ((continuous_neg.add continuous_const).add
     (continuous_arg_alpha halpha)).add (continuous_arg_sum roots hroots)
 
+/--
+@isnad1 id=continuo.2h3v.s5.19022a32ed34 from=translated src=- shape=7d496f0f vocab=03912790
+-/
 lemma continuous_psi (alpha : ℝ) (roots : Multiset ℂ) (halpha : 1 < alpha)
     (hroots : ∀ r ∈ roots, ‖r‖ < 1) (m : ℕ) :
     Continuous fun t : ℝ => psi alpha roots m t := by
@@ -534,7 +655,9 @@ lemma continuous_psi (alpha : ℝ) (roots : Multiset ℂ) (halpha : 1 < alpha)
 /-! ### The endpoints -/
 
 /-- Across `[0, 2π]` every `arg`-term returns to its start; only the
-linear `−t` part moves: `A(2π) = A(0) − 2π`.-/
+linear `−t` part moves: `A(2π) = A(0) − 2π`.
+@isnad1 id=eq.0h2v.s5.626c87434209 from=translated src=- shape=b484834a vocab=ac71df66
+-/
 lemma A_two_pi (alpha : ℝ) (roots : Multiset ℂ) :
     A alpha roots (2 * Real.pi) = A alpha roots 0 - 2 * Real.pi := by
   unfold A
@@ -548,7 +671,9 @@ lemma A_two_pi (alpha : ℝ) (roots : Multiset ℂ) :
   rw [h1, h2, h3, h4]
   ring
 
-/-- The total climb of the phase: `ψ(2π) = ψ(0) + (m+p)·π − 2π`.-/
+/-- The total climb of the phase: `ψ(2π) = ψ(0) + (m+p)·π − 2π`.
+@isnad1 id=eq.0h3v.s6.357d081e85a1 from=translated src=- shape=6bd17596 vocab=3335a697
+-/
 lemma psi_two_pi (alpha : ℝ) (roots : Multiset ℂ) (m : ℕ) :
     psi alpha roots m (2 * Real.pi)
       = psi alpha roots m 0 + ((m + roots.card + 1 : ℕ) : ℝ) * Real.pi
@@ -557,7 +682,9 @@ lemma psi_two_pi (alpha : ℝ) (roots : Multiset ℂ) (m : ℕ) :
   rw [A_two_pi]
   ring
 
-/-- `R_m(1) = 2·P(1) ≠ 0`: the phase starts off the cosine grid.-/
+/-- `R_m(1) = 2·P(1) ≠ 0`: the phase starts off the cosine grid.
+@isnad1 id=ne.2h3v.s6.87e3b4ff6264 from=translated src=- shape=eb79c4d3 vocab=88ceb057
+-/
 lemma eval_R_one_ne_zero (alpha : ℝ) (roots : Multiset ℂ) (halpha : 1 < alpha)
     (hroots : ∀ r ∈ roots, ‖r‖ < 1) (m : ℕ) :
     (R alpha roots m).eval 1 ≠ 0 := by
@@ -586,6 +713,9 @@ lemma eval_R_one_ne_zero (alpha : ℝ) (roots : Multiset ℂ) (halpha : 1 < alph
   · norm_num at h3
   · exact h3
 
+/--
+@isnad1 id=ne.3h3v.s6.429eceeee005 from=translated src=- shape=3c594e18 vocab=50c79fff
+-/
 lemma cos_psi_zero_ne_zero (alpha : ℝ) (roots : Multiset ℂ) (halpha : 1 < alpha)
     (hroots : ∀ r ∈ roots, ‖r‖ < 1)
     (hconj : roots.map (starRingEnd ℂ) = roots) (m : ℕ) :
@@ -600,7 +730,9 @@ lemma cos_psi_zero_ne_zero (alpha : ℝ) (roots : Multiset ℂ) (halpha : 1 < al
 /-- **The grid-count workhorse.**  A continuous phase `f` on `[0, 2π]`
 that climbs by exactly `L·π` and starts off the cosine grid attains `L`
 distinct interior grid values, planting `L` distinct zeros of
-`cos ∘ f` in `(0, 2π)`.-/
+`cos ∘ f` in `(0, 2π)`.
+@isnad1 id=ex.3h2v.s7.af7bb6653725 from=translated src=- shape=7b5663fa vocab=58301ae5
+-/
 lemma exists_interior_grid (f : ℝ → ℝ) (hf : Continuous f) (L : ℕ)
     (hclimb : f (2 * Real.pi) = f 0 + (L : ℝ) * Real.pi)
     (hcos0 : Real.cos (f 0) ≠ 0) :
@@ -685,7 +817,9 @@ lemma exists_interior_grid (f : ℝ → ℝ) (hf : Continuous f) (L : ℕ)
 /-- **The circle count**: with `p = roots.card + 1` and
 `3 ≤ m + p`, the polynomial `R_m` has `m + p − 2` distinct roots
 `exp(t·I)`, `t ∈ (0, 2π)`, on the unit circle.
-(Stated without the redundant `1 ≤ m`.)-/
+(Stated without the redundant `1 ≤ m`.)
+@isnad1 id=ex.4h3v.s7.764ebdf94764 from=translated src=- shape=ddaa789c vocab=23a2398d
+-/
 theorem salem_circle_count (alpha : ℝ) (roots : Multiset ℂ) (halpha : 1 < alpha)
     (hroots : ∀ r ∈ roots, ‖r‖ < 1)
     (hconj : roots.map (starRingEnd ℂ) = roots) (m : ℕ)
@@ -709,10 +843,16 @@ theorem salem_circle_count (alpha : ℝ) (roots : Multiset ℂ) (halpha : 1 < al
 
 /-! ### Degree bookkeeping — `R_m` is monic of degree `m + p` -/
 
+/--
+@isnad1 id=monic.0h2v.s3.db7c718a753a from=translated src=- shape=fcfe4792 vocab=c5571649
+-/
 lemma P_monic (alpha : ℝ) (roots : Multiset ℂ) : (P alpha roots).Monic :=
   (monic_X_sub_C _).mul
     (monic_multiset_prod_of_monic roots _ fun r _ => monic_X_sub_C r)
 
+/--
+@isnad1 id=eq.0h1v.s6.fe1342a1a5ee from=translated src=- shape=8507811f vocab=9853aac8
+-/
 lemma prod_X_sub_C_natDegree (roots : Multiset ℂ) :
     ((roots.map fun r => X - C r).prod).natDegree = roots.card := by
   rw [natDegree_multiset_prod_of_monic]
@@ -725,6 +865,9 @@ lemma prod_X_sub_C_natDegree (roots : Multiset ℂ) :
     obtain ⟨r, hr, rfl⟩ := Multiset.mem_map.mp hf
     exact monic_X_sub_C r
 
+/--
+@isnad1 id=eq.0h2v.s4.b140c463b653 from=translated src=- shape=b184a545 vocab=4c573c93
+-/
 lemma P_natDegree (alpha : ℝ) (roots : Multiset ℂ) :
     (P alpha roots).natDegree = roots.card + 1 := by
   unfold P
@@ -733,21 +876,33 @@ lemma P_natDegree (alpha : ℝ) (roots : Multiset ℂ) :
     natDegree_X_sub_C, prod_X_sub_C_natDegree]
   omega
 
+/--
+@isnad1 id=monic.0h3v.s5.6f1d4d8b42b7 from=translated src=- shape=b1631ce3 vocab=d062fc30
+-/
 lemma XmP_monic (alpha : ℝ) (roots : Multiset ℂ) (m : ℕ) :
     (X ^ m * P alpha roots).Monic :=
   (monic_X_pow m).mul (P_monic alpha roots)
 
+/--
+@isnad1 id=eq.0h3v.s6.af23a38c6d75 from=translated src=- shape=4747f7ae vocab=c22de426
+-/
 lemma XmP_natDegree (alpha : ℝ) (roots : Multiset ℂ) (m : ℕ) :
     (X ^ m * P alpha roots).natDegree = m + (roots.card + 1) := by
   rw [(monic_X_pow m).natDegree_mul (P_monic alpha roots), natDegree_X_pow,
     P_natDegree]
 
+/--
+@isnad1 id=le.0h1v.s6.77d40e6a84bd from=translated src=- shape=95670daa vocab=2bd9a577
+-/
 lemma factor_natDegree_le (r : ℂ) : (1 - C r * X : Polynomial ℂ).natDegree ≤ 1 := by
   refine le_trans (natDegree_sub_le _ _) ?_
   rw [natDegree_one]
   simp only [max_le_iff]
   exact ⟨Nat.zero_le 1, le_trans (natDegree_C_mul_le _ _) (le_of_eq natDegree_X)⟩
 
+/--
+@isnad1 id=le.0h2v.s4.bf1cf0fc81a5 from=translated src=- shape=b184a545 vocab=0dd69ae3
+-/
 lemma Q_natDegree_le (alpha : ℝ) (roots : Multiset ℂ) :
     (Q alpha roots).natDegree ≤ roots.card + 1 := by
   unfold Q
@@ -763,6 +918,9 @@ lemma Q_natDegree_le (alpha : ℝ) (roots : Multiset ℂ) :
     · rw [Multiset.card_map, smul_eq_mul, mul_one]
   omega
 
+/--
+@isnad1 id=lt.1h3v.s6.901e3972961b from=translated src=- shape=a525c62c vocab=faf0335e
+-/
 lemma degree_Q_lt (alpha : ℝ) (roots : Multiset ℂ) (m : ℕ) (hm : 1 ≤ m) :
     (Q alpha roots).degree < (X ^ m * P alpha roots).degree := by
   apply degree_lt_degree
@@ -770,10 +928,16 @@ lemma degree_Q_lt (alpha : ℝ) (roots : Multiset ℂ) (m : ℕ) (hm : 1 ≤ m) 
   have hQle := Q_natDegree_le alpha roots
   omega
 
+/--
+@isnad1 id=monic.1h3v.s4.d8c0f67f3153 from=translated src=- shape=67841222 vocab=adf11e86
+-/
 lemma R_monic (alpha : ℝ) (roots : Multiset ℂ) (m : ℕ) (hm : 1 ≤ m) :
     (R alpha roots m).Monic :=
   (XmP_monic alpha roots m).add_of_left (degree_Q_lt alpha roots m hm)
 
+/--
+@isnad1 id=eq.1h3v.s5.48352346cc79 from=translated src=- shape=c8a7a3ac vocab=11cbbd43
+-/
 lemma R_natDegree (alpha : ℝ) (roots : Multiset ℂ) (m : ℕ) (hm : 1 ≤ m) :
     (R alpha roots m).natDegree = m + (roots.card + 1) := by
   unfold R
@@ -783,6 +947,9 @@ lemma R_natDegree (alpha : ℝ) (roots : Multiset ℂ) (m : ℕ) (hm : 1 ≤ m) 
 
 /-! ### Injectivity of the circle parametrization -/
 
+/--
+@isnad1 id=eq.5h2v.s6.29e850cb07e3 from=translated src=- shape=d2108e58 vocab=e6354f69
+-/
 lemma E_inj {t s : ℝ} (ht : 0 < t) (ht2 : t < 2 * Real.pi) (hs : 0 < s)
     (hs2 : s < 2 * Real.pi) (heq : E t = E s) : t = s := by
   simp only [E] at heq
@@ -814,7 +981,9 @@ lemma E_inj {t s : ℝ} (ht : 0 < t) (ht2 : t < 2 * Real.pi) (hs : 0 < s)
 `1 ≤ m` and `3 ≤ m + p`), then EVERY root of `R_m` is unimodular or
 lies in `{τ, 1/τ}` — the `m + p − 2` circle points of the circle count together with
 `τ` and `1/τ` already exhaust the degree `m + p` of the monic `R_m`,
-by the multiset squeeze `S.val ≤ (R_m).roots`.-/
+by the multiset squeeze `S.val ≤ (R_m).roots`.
+@isnad1 id=or.8h5v.s7.6a47e2f57b90 from=translated src=- shape=4778da3e vocab=46617b84
+-/
 theorem salem_root_trichotomy (alpha : ℝ) (roots : Multiset ℂ) (halpha : 1 < alpha)
     (hroots : ∀ r ∈ roots, ‖r‖ < 1)
     (hconj : roots.map (starRingEnd ℂ) = roots) (m : ℕ) (hm : 1 ≤ m)

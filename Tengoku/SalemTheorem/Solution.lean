@@ -20,7 +20,9 @@ namespace SalemTheorem
 open Polynomial
 
 /-- **Salem's theorem** for Pisot numbers: transported through the
-pattern data of `minpoly ℤ α`.-/
+pattern data of `minpoly ℤ α`.
+@isnad1 id=and.4h2v.s9.0ce81c01e042 from=translated src=- shape=cd58c8dd vocab=a1e3b901
+-/
 theorem salem_theorem
     (alpha : ℝ) (halpha : 1 < alpha) (hint : IsIntegral ℤ alpha)
     (hpisot : ∀ z ∈ (minpoly ℚ alpha).aroots ℂ, z ≠ (alpha : ℂ) → ‖z‖ < 1)
@@ -41,7 +43,9 @@ theorem salem_theorem
       alpha < tau ∧ tau < alpha + eps) :=
   PDT.SalemPisot.salem_theorem alpha halpha hint hpisot eps heps
 
-/-- **The main construction, with its family root.**-/
+/-- **The main construction, with its family root.**
+@isnad1 id=ex.7h4v.s10.75e2b382abeb from=translated src=- shape=4eb7620f vocab=fa8b2b1e
+-/
 theorem salem_construction_two_sided
     (P : Polynomial ℤ) (hmonic : P.Monic)
     (alpha : ℝ) (halpha : 1 < alpha)
@@ -72,7 +76,9 @@ theorem salem_construction_two_sided
   PDT.SalemPisot.salem_construction_two_sided P hmonic alpha halpha inside hin hconj
     hfac hnd eps heps
 
-/-- **The reciprocal quadratic case, with its family root.**-/
+/-- **The reciprocal quadratic case, with its family root.**
+@isnad1 id=and.4h3v.s10.f3995e376da9 from=translated src=- shape=3d2016b1 vocab=7231ae15
+-/
 theorem salem_quadratic_unit
     (r : ℤ) (hr : 3 ≤ r)
     (alpha : ℝ) (halpha : 1 < alpha)

@@ -48,6 +48,9 @@ open SalemCircle SalemArith
 def Rm (alpha : ℝ) (roots : Multiset ℂ) (m : ℕ) : Polynomial ℂ :=
   X ^ m * SalemCircle.P alpha roots - SalemCircle.Q alpha roots
 
+/--
+@isnad1 id=eq.0h4v.s5.4c123075c52b from=translated src=- shape=1fa96232 vocab=170fc0f5
+-/
 lemma eval_Rm (alpha : ℝ) (roots : Multiset ℂ) (m : ℕ) (z : ℂ) :
     (Rm alpha roots m).eval z
       = z ^ m * (P alpha roots).eval z - (Q alpha roots).eval z := by
@@ -57,7 +60,9 @@ lemma eval_Rm (alpha : ℝ) (roots : Multiset ℂ) (m : ℕ) (z : ℂ) :
 
 /-- **The anti-self-inversive functional equation**:
 `z^(m+p)·Rm(1/z) = −Rm(z)` for `z ≠ 0` — the sign flip against the
-plus family.-/
+plus family.
+@isnad1 id=eq.1h4v.s6.e0f94a059a38 from=translated src=- shape=7b196229 vocab=f10fbc79
+-/
 lemma Rm_eval_inv (alpha : ℝ) (roots : Multiset ℂ) (m : ℕ) {z : ℂ} (hz : z ≠ 0) :
     z ^ (m + (roots.card + 1)) * (Rm alpha roots m).eval z⁻¹
       = -((Rm alpha roots m).eval z) := by
@@ -72,7 +77,9 @@ lemma Rm_eval_inv (alpha : ℝ) (roots : Multiset ℂ) (m : ℕ) {z : ℂ} (hz :
         rw [hzm, mirror_P alpha roots hz, mirror_Q alpha roots hz]; ring
 
 /-- **The pairing**: a nonzero root of `Rm_m` pairs with its
-inverse — a zero of a negation is a zero.-/
+inverse — a zero of a negation is a zero.
+@isnad1 id=eq.2h4v.s5.dff863849391 from=translated src=- shape=8c3e7da0 vocab=43c9917d
+-/
 theorem salem_root_inv_minus (alpha : ℝ) (roots : Multiset ℂ) (m : ℕ) {z : ℂ}
     (hz : z ≠ 0) (hroot : (Rm alpha roots m).eval z = 0) :
     (Rm alpha roots m).eval z⁻¹ = 0 := by
@@ -83,7 +90,9 @@ theorem salem_root_inv_minus (alpha : ℝ) (roots : Multiset ℂ) (m : ℕ) {z :
   · exact h
 
 /-- **The anchor**: `z = 1` is ALWAYS a root of the minus family —
-`P(1)` and `Q(1)` are literally the same product.-/
+`P(1)` and `Q(1)` are literally the same product.
+@isnad1 id=eq.0h3v.s4.95bdd88133a3 from=translated src=- shape=3816b2e5 vocab=1580206e
+-/
 theorem Rm_one_root (alpha : ℝ) (roots : Multiset ℂ) (m : ℕ) :
     (Rm alpha roots m).eval 1 = 0 := by
   rw [eval_Rm, eval_P, eval_Q]
@@ -93,7 +102,9 @@ theorem Rm_one_root (alpha : ℝ) (roots : Multiset ℂ) (m : ℕ) :
 /-! ### The sine key identity on the circle -/
 
 /-- `exp(iψ) − exp(−iψ) = 2i·sin ψ`, over the reals — the sine mirror
-of `SalemCircle.E_add_E_neg`.-/
+of `SalemCircle.E_add_E_neg`.
+@isnad1 id=eq.0h1v.s5.26e7fe47e29d from=translated src=- shape=a607da19 vocab=d5f7de1f
+-/
 lemma E_sub_E_neg (x : ℝ) :
     E x - E (-x) = 2 * Complex.I * ((Real.sin x : ℝ) : ℂ) := by
   simp only [E, Complex.exp_mul_I]
@@ -103,7 +114,9 @@ lemma E_sub_E_neg (x : ℝ) :
 
 /-- **The key identity**: on the circle,
 `Rm_m(E t) = 2·N t·sin(ψ t)·(i·E((m+p)·t/2))` — the sine phase that
-replaces the plus family's cosine.-/
+replaces the plus family's cosine.
+@isnad1 id=eq.1h4v.s7.ff2d7eaa3a04 from=translated src=- shape=85f19107 vocab=5aed6fe4
+-/
 lemma Rm_eval_E (alpha : ℝ) (roots : Multiset ℂ)
     (hconj : roots.map (starRingEnd ℂ) = roots) (m : ℕ) (t : ℝ) :
     (Rm alpha roots m).eval (E t)
@@ -144,7 +157,9 @@ lemma Rm_eval_E (alpha : ℝ) (roots : Multiset ℂ)
     _ = (n : ℂ) * E c2 * (2 * Complex.I * ((Real.sin ψ : ℝ) : ℂ)) := by rw [e3]
     _ = ((2 * n * Real.sin ψ : ℝ) : ℂ) * (Complex.I * E c2) := by push_cast; ring
 
-/-- The zero test on the circle: `Rm_m(E t) = 0 ↔ sin(ψ t) = 0`.-/
+/-- The zero test on the circle: `Rm_m(E t) = 0 ↔ sin(ψ t) = 0`.
+@isnad1 id=iff.3h4v.s6.95e323c7ed40 from=translated src=- shape=88a932bf vocab=d8354a91
+-/
 lemma Rm_eval_E_eq_zero_iff (alpha : ℝ) (roots : Multiset ℂ) (halpha : 1 < alpha)
     (hroots : ∀ r ∈ roots, ‖r‖ < 1)
     (hconj : roots.map (starRingEnd ℂ) = roots) (m : ℕ) (t : ℝ) :
@@ -167,7 +182,9 @@ lemma Rm_eval_E_eq_zero_iff (alpha : ℝ) (roots : Multiset ℂ) (halpha : 1 < a
     simp
 
 /-- **The anchor on the grid**: `Rm(1) = 0` at `t = 0` puts the phase
-ON the sine grid — `sin(ψ 0) = 0`.-/
+ON the sine grid — `sin(ψ 0) = 0`.
+@isnad1 id=eq.3h3v.s6.f4d2f71f2a3c from=translated src=- shape=da3bb2b0 vocab=0b91605e
+-/
 lemma sin_psi_zero_eq_zero (alpha : ℝ) (roots : Multiset ℂ) (halpha : 1 < alpha)
     (hroots : ∀ r ∈ roots, ‖r‖ < 1)
     (hconj : roots.map (starRingEnd ℂ) = roots) (m : ℕ) :
@@ -182,7 +199,9 @@ lemma sin_psi_zero_eq_zero (alpha : ℝ) (roots : Multiset ℂ) (halpha : 1 < al
 `[0, 2π]` that climbs by exactly `L·π` and starts ON the sine grid
 (`sin (f 0) = 0`) attains `L − 1` distinct interior grid values,
 planting `L − 1` distinct zeros of `sin ∘ f` in `(0, 2π)` — simpler
-than the plus workhorse: the anchor kills the floor function.-/
+than the plus workhorse: the anchor kills the floor function.
+@isnad1 id=ex.3h2v.s7.5b55b19bc216 from=translated src=- shape=c9f90d79 vocab=a7086489
+-/
 lemma exists_interior_grid_anchored (f : ℝ → ℝ) (hf : Continuous f) (L : ℕ)
     (hclimb : f (2 * Real.pi) = f 0 + (L : ℝ) * Real.pi)
     (hsin0 : Real.sin (f 0) = 0) :
@@ -254,7 +273,9 @@ lemma exists_interior_grid_anchored (f : ℝ → ℝ) (hf : Continuous f) (L : �
 roots `exp(t·I)`, `t ∈ (0, 2π)`, on the unit circle — `z = 1` (i.e.
 `t = 0`) is the `(m+p−2)`nd circle root, always present
 (`Rm_one_root`), and it anchors the phase on the grid.
-(Stated without the redundant `1 ≤ m`, as in the plus count.)-/
+(Stated without the redundant `1 ≤ m`, as in the plus count.)
+@isnad1 id=ex.4h3v.s7.6c997e5b30b3 from=translated src=- shape=ddaa789c vocab=38dd6395
+-/
 theorem salem_circle_count_minus (alpha : ℝ) (roots : Multiset ℂ)
     (halpha : 1 < alpha) (hroots : ∀ r ∈ roots, ‖r‖ < 1)
     (hconj : roots.map (starRingEnd ℂ) = roots) (m : ℕ)
@@ -281,21 +302,33 @@ theorem salem_circle_count_minus (alpha : ℝ) (roots : Multiset ℂ)
 
 /-! ### Degree bookkeeping — `Rm_m` is monic of degree `m + p` -/
 
+/--
+@isnad1 id=eq.0h3v.s6.8012fbfa1790 from=translated src=- shape=07476bac vocab=2870ee8a
+-/
 lemma Rm_eq_add_neg (alpha : ℝ) (roots : Multiset ℂ) (m : ℕ) :
     Rm alpha roots m = X ^ m * P alpha roots + -(Q alpha roots) := by
   unfold Rm
   rw [sub_eq_add_neg]
 
+/--
+@isnad1 id=lt.1h3v.s6.7a6f845ec318 from=translated src=- shape=448ba1ba vocab=03e381a6
+-/
 lemma degree_neg_Q_lt (alpha : ℝ) (roots : Multiset ℂ) (m : ℕ) (hm : 1 ≤ m) :
     (-(Q alpha roots)).degree < (X ^ m * P alpha roots).degree := by
   rw [Polynomial.degree_neg]
   exact degree_Q_lt alpha roots m hm
 
+/--
+@isnad1 id=monic.1h3v.s4.2d2d04e58fd5 from=translated src=- shape=67841222 vocab=b9dbcd7b
+-/
 lemma Rm_monic (alpha : ℝ) (roots : Multiset ℂ) (m : ℕ) (hm : 1 ≤ m) :
     (Rm alpha roots m).Monic := by
   rw [Rm_eq_add_neg]
   exact (XmP_monic alpha roots m).add_of_left (degree_neg_Q_lt alpha roots m hm)
 
+/--
+@isnad1 id=eq.1h3v.s5.06ac62a76d4d from=translated src=- shape=c8a7a3ac vocab=97ddc64f
+-/
 lemma Rm_natDegree (alpha : ℝ) (roots : Multiset ℂ) (m : ℕ) (hm : 1 ≤ m) :
     (Rm alpha roots m).natDegree = m + (roots.card + 1) := by
   rw [Rm_eq_add_neg, natDegree_eq_of_degree_eq
@@ -306,7 +339,9 @@ lemma Rm_natDegree (alpha : ℝ) (roots : Multiset ℂ) (m : ℕ) (hm : 1 ≤ m)
 
 /-- On the open interval `(0, 2π)` the circle parametrization avoids
 `1` — so inserting the anchor root `z = 1` genuinely grows the root
-set.-/
+set.
+@isnad1 id=ne.2h1v.s5.f825d25a9a54 from=translated src=- shape=22eaf5d6 vocab=e6354f69
+-/
 lemma E_ne_one {t : ℝ} (ht : 0 < t) (ht2 : t < 2 * Real.pi) : E t ≠ 1 := by
   intro heq
   have heq' : E t = E 0 := by rw [E_zero]; exact heq
@@ -337,7 +372,9 @@ lemma E_ne_one {t : ℝ} (ht : 0 < t) (ht2 : t < 2 * Real.pi) : E t ≠ 1 := by
 `1 ≤ m` and `3 ≤ m + p`), then EVERY root of `Rm_m` is unimodular or
 lies in `{τ, 1/τ}` — the `m + p − 3` interior circle points of the anchored count, the
 anchor root `1`, and `τ`, `1/τ` already exhaust the degree `m + p` of
-the monic `Rm_m`, by the multiset squeeze `S.val ≤ (Rm_m).roots`.-/
+the monic `Rm_m`, by the multiset squeeze `S.val ≤ (Rm_m).roots`.
+@isnad1 id=or.8h5v.s7.2ff8ef709686 from=translated src=- shape=4778da3e vocab=4ac4cc23
+-/
 theorem salem_root_trichotomy_minus (alpha : ℝ) (roots : Multiset ℂ)
     (halpha : 1 < alpha) (hroots : ∀ r ∈ roots, ‖r‖ < 1)
     (hconj : roots.map (starRingEnd ℂ) = roots) (m : ℕ) (hm : 1 ≤ m)
@@ -441,7 +478,9 @@ theorem salem_root_trichotomy_minus (alpha : ℝ) (roots : Multiset ℂ)
 
 /-! ### The arithmetic certificate for the minus family -/
 
-/-- The integer minus family `X^m·Pz − Qz` is monic (for `m ≥ 1`).-/
+/-- The integer minus family `X^m·Pz − Qz` is monic (for `m ≥ 1`).
+@isnad1 id=monic.4h5v.s7.9496ec308f15 from=translated src=- shape=0f571dfb vocab=e580e206
+-/
 lemma family_monic_minus (Pz : Polynomial ℤ) (hmonic : Pz.Monic) (alpha : ℝ)
     (inside : Multiset ℂ)
     (hfacC : Pz.map (Int.castRingHom ℂ) = SalemCircle.P alpha inside)
@@ -458,7 +497,9 @@ lemma family_monic_minus (Pz : Polynomial ℤ) (hmonic : Pz.Monic) (alpha : ℝ)
   rw [(monic_X_pow m).natDegree_mul hmonic, natDegree_X_pow, hPdeg]
   omega
 
-/-- The complex image of the integer minus family is `Rm`.-/
+/-- The complex image of the integer minus family is `Rm`.
+@isnad1 id=eq.2h5v.s7.62d17cfbcf7d from=translated src=- shape=f1e1c7a6 vocab=f8af520e
+-/
 lemma family_map_C_minus (Pz : Polynomial ℤ) (alpha : ℝ) (inside : Multiset ℂ)
     (hfacC : Pz.map (Int.castRingHom ℂ) = SalemCircle.P alpha inside)
     (Qz : Polynomial ℤ)
@@ -476,7 +517,9 @@ complex image is the minus family `Rm` — is a Salem number, provided
 `tau + 1/tau ∈ ℤ`: it is an algebraic integer, its conjugates lie in
 the closed unit disk, at least one lies ON the circle, and `1/tau` is
 among them.  Verbatim port of `PdtSalemArith.salem_certificate`; all
-degenerate exclusions run through the same Gauss step.-/
+degenerate exclusions run through the same Gauss step.
+@isnad1 id=and.12h6v.s9.cbde5b7eae2f from=translated src=- shape=1e4d4b9d vocab=0e7f55db
+-/
 theorem salem_certificate_minus
     (Pz : Polynomial ℤ) (hmonic : Pz.Monic)
     (alpha : ℝ) (halpha : 1 < alpha)

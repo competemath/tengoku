@@ -65,14 +65,18 @@ open SalemCircle
 
 /-! ### Scalar facts about the reciprocal quadratic unit -/
 
-/-- The trace identity: `alpha + 1/alpha = r`.-/
+/-- The trace identity: `alpha + 1/alpha = r`.
+@isnad1 id=eq.2h2v.s6.b154aad2c432 from=translated src=- shape=d104100e vocab=a906aaa9
+-/
 lemma trace_eq {r : ℤ} {alpha : ℝ} (halpha : 1 < alpha)
     (hmin : alpha ^ 2 = (r : ℝ) * alpha - 1) : alpha + alpha⁻¹ = (r : ℝ) := by
   have h0 : alpha ≠ 0 := ne_of_gt (by linarith)
   field_simp
   linear_combination hmin
 
-/-- The unit is larger than `2` (indeed larger than `r − 1 ≥ 2`).-/
+/-- The unit is larger than `2` (indeed larger than `r − 1 ≥ 2`).
+@isnad1 id=lt.3h2v.s6.88ebee9547cc from=translated src=- shape=e6e2adba vocab=46855b01
+-/
 lemma alpha_gt_two {r : ℤ} {alpha : ℝ} (hr : 3 ≤ r) (halpha : 1 < alpha)
     (hmin : alpha ^ 2 = (r : ℝ) * alpha - 1) : 2 < alpha := by
   by_contra hle
@@ -84,7 +88,9 @@ lemma alpha_gt_two {r : ℤ} {alpha : ℝ} (hr : 3 ≤ r) (halpha : 1 < alpha)
     mul_le_mul_of_nonneg_right hrR (by linarith)
   nlinarith [hmin, hprod, h3a]
 
-/-- The real quadratic factors through the two conjugates.-/
+/-- The real quadratic factors through the two conjugates.
+@isnad1 id=eq.2h3v.s7.18beb2324b89 from=translated src=- shape=7e56b850 vocab=a906aaa9
+-/
 lemma quad_factor {r : ℤ} {alpha : ℝ} (halpha : 1 < alpha)
     (hmin : alpha ^ 2 = (r : ℝ) * alpha - 1) (y : ℝ) :
     y ^ 2 - (r : ℝ) * y + 1 = (y - alpha) * (y - alpha⁻¹) := by
@@ -93,21 +99,27 @@ lemma quad_factor {r : ℤ} {alpha : ℝ} (halpha : 1 < alpha)
   have hprod : alpha * alpha⁻¹ = 1 := mul_inv_cancel₀ h0
   linear_combination y * htr - hprod
 
-/-- The window `(r − 1, r)` around `alpha`: upper part.-/
+/-- The window `(r − 1, r)` around `alpha`: upper part.
+@isnad1 id=lt.2h2v.s6.f364626b95e7 from=translated src=- shape=a2fb05e3 vocab=e8e6add1
+-/
 lemma alpha_lt_r {r : ℤ} {alpha : ℝ} (halpha : 1 < alpha)
     (hmin : alpha ^ 2 = (r : ℝ) * alpha - 1) : alpha < (r : ℝ) := by
   have htr := trace_eq halpha hmin
   have hpos : 0 < alpha⁻¹ := inv_pos.mpr (by linarith)
   linarith
 
-/-- The window `(r − 1, r)` around `alpha`: lower part.-/
+/-- The window `(r − 1, r)` around `alpha`: lower part.
+@isnad1 id=lt.2h2v.s6.cab1e12dc1b3 from=translated src=- shape=9100db09 vocab=e8e6add1
+-/
 lemma r_sub_one_lt_alpha {r : ℤ} {alpha : ℝ} (halpha : 1 < alpha)
     (hmin : alpha ^ 2 = (r : ℝ) * alpha - 1) : (r : ℝ) - 1 < alpha := by
   have htr := trace_eq halpha hmin
   have h1 : alpha⁻¹ < 1 := inv_lt_one_of_one_lt₀ halpha
   linarith
 
-/-- No integer lies in the open interval `(r − 1, r)`.-/
+/-- No integer lies in the open interval `(r − 1, r)`.
+@isnad1 id=ne.2h3v.s5.a37b907d512f from=translated src=- shape=47311199 vocab=5020da4c
+-/
 lemma no_int_in_window {r : ℤ} {x : ℝ} (h1 : (r : ℝ) - 1 < x) (h2 : x < (r : ℝ)) :
     ∀ n : ℤ, x ≠ (n : ℝ) := by
   intro n hn
@@ -119,7 +131,9 @@ lemma no_int_in_window {r : ℤ} {x : ℝ} (h1 : (r : ℝ) - 1 < x) (h2 : x < (r
 /-! ### The IVT helper -/
 
 /-- A sign change of a continuous function plants a root strictly
-between the endpoints.-/
+between the endpoints.
+@isnad1 id=ex.3h3v.s6.087e63cb1173 from=translated src=- shape=1e8f719c vocab=6bbdc42e
+-/
 lemma exists_root_between (f : ℝ → ℝ) (a b : ℝ) (hab : a < b)
     (hf : ContinuousOn f (Icc a b)) (hsign : f a * f b < 0) :
     ∃ x : ℝ, a < x ∧ x < b ∧ f x = 0 := by
@@ -153,31 +167,52 @@ lemma exists_root_between (f : ℝ → ℝ) (a b : ℝ) (hab : a < b)
 def Bfam (r eps : ℤ) (m : ℕ) : Polynomial ℤ :=
   (X ^ 2 - C r * X + 1) * (X ^ (2 * m) + 1) + C eps * X ^ (m + 1)
 
+/--
+@isnad1 id=monic.0h1v.s7.59a2c45d6ac4 from=translated src=- shape=90637d60 vocab=358dbc2c
+-/
 lemma quad_monic (r : ℤ) : (X ^ 2 - C r * X + 1 : Polynomial ℤ).Monic := by
   unfold Polynomial.Monic
   monicity!
 
+/--
+@isnad1 id=eq.0h1v.s7.b3224a66a2e6 from=translated src=- shape=0e2c96cc vocab=e319d45a
+-/
 lemma quad_natDegree (r : ℤ) : (X ^ 2 - C r * X + 1 : Polynomial ℤ).natDegree = 2 := by
   compute_degree!
 
+/--
+@isnad1 id=monic.1h1v.s6.d60060bce612 from=translated src=- shape=332f7abf vocab=87ff195f
+-/
 lemma cyc_monic (m : ℕ) (hm : 1 ≤ m) : (X ^ (2 * m) + 1 : Polynomial ℤ).Monic := by
   rw [show (1 : Polynomial ℤ) = C 1 from (Polynomial.C_1).symm]
   exact monic_X_pow_add_C _ (by omega)
 
+/--
+@isnad1 id=eq.0h1v.s6.544081d77ae5 from=translated src=- shape=86685d45 vocab=4f665817
+-/
 lemma cyc_natDegree (m : ℕ) : (X ^ (2 * m) + 1 : Polynomial ℤ).natDegree = 2 * m := by
   rw [show (1 : Polynomial ℤ) = C 1 from (Polynomial.C_1).symm]
   exact natDegree_X_pow_add_C
 
+/--
+@isnad1 id=monic.1h2v.s7.360081594560 from=translated src=- shape=3654b13e vocab=2c52446c
+-/
 lemma lead_monic (r : ℤ) (m : ℕ) (hm : 1 ≤ m) :
     ((X ^ 2 - C r * X + 1) * (X ^ (2 * m) + 1) : Polynomial ℤ).Monic :=
   (quad_monic r).mul (cyc_monic m hm)
 
+/--
+@isnad1 id=eq.1h2v.s8.3a03d9af152e from=translated src=- shape=786c7b82 vocab=c037b925
+-/
 lemma lead_natDegree (r : ℤ) (m : ℕ) (hm : 1 ≤ m) :
     ((X ^ 2 - C r * X + 1) * (X ^ (2 * m) + 1) : Polynomial ℤ).natDegree
       = 2 * m + 2 := by
   rw [(quad_monic r).natDegree_mul (cyc_monic m hm), quad_natDegree, cyc_natDegree]
   omega
 
+/--
+@isnad1 id=lt.1h3v.s8.c6e7d6053b5b from=translated src=- shape=46500524 vocab=ff1d6ffd
+-/
 lemma pert_degree_lt (r eps : ℤ) (m : ℕ) (hm : 1 ≤ m) :
     (C eps * X ^ (m + 1) : Polynomial ℤ).degree
       < ((X ^ 2 - C r * X + 1) * (X ^ (2 * m) + 1) : Polynomial ℤ).degree := by
@@ -187,9 +222,15 @@ lemma pert_degree_lt (r eps : ℤ) (m : ℕ) (hm : 1 ≤ m) :
     le_trans (natDegree_C_mul_le _ _) (le_of_eq (natDegree_X_pow _))
   omega
 
+/--
+@isnad1 id=monic.1h3v.s4.33c702ea5dd6 from=translated src=- shape=db85abe7 vocab=726974dd
+-/
 lemma Bfam_monic (r eps : ℤ) {m : ℕ} (hm : 1 ≤ m) : (Bfam r eps m).Monic :=
   (lead_monic r m hm).add_of_left (pert_degree_lt r eps m hm)
 
+/--
+@isnad1 id=eq.1h3v.s5.f954a06b6e5b from=translated src=- shape=7dc6e294 vocab=01f8fd61
+-/
 lemma Bfam_natDegree (r eps : ℤ) {m : ℕ} (hm : 1 ≤ m) :
     (Bfam r eps m).natDegree = 2 * m + 2 := by
   unfold Bfam
@@ -197,7 +238,9 @@ lemma Bfam_natDegree (r eps : ℤ) {m : ℕ} (hm : 1 ≤ m) :
     (degree_add_eq_left_of_degree_lt (pert_degree_lt r eps m hm))]
   exact lead_natDegree r m hm
 
-/-- The real evaluation form.-/
+/-- The real evaluation form.
+@isnad1 id=eq.0h4v.s7.63ce3b2e30bd from=translated src=- shape=237a49d2 vocab=d5a5c126
+-/
 lemma Bfam_eval_R (r eps : ℤ) (m : ℕ) (y : ℝ) :
     ((Bfam r eps m).map (Int.castRingHom ℝ)).eval y
       = (y ^ 2 - (r : ℝ) * y + 1) * (y ^ (2 * m) + 1) + (eps : ℝ) * y ^ (m + 1) := by
@@ -206,7 +249,9 @@ lemma Bfam_eval_R (r eps : ℤ) (m : ℕ) (y : ℝ) :
     eval_add, eval_mul, eval_sub, eval_pow, eval_one, eval_X, eval_C,
     Int.coe_castRingHom]
 
-/-- The complex evaluation form.-/
+/-- The complex evaluation form.
+@isnad1 id=eq.0h4v.s7.096da8e9e59d from=translated src=- shape=237a49d2 vocab=ed67865f
+-/
 lemma Bfam_eval_C (r eps : ℤ) (m : ℕ) (z : ℂ) :
     ((Bfam r eps m).map (Int.castRingHom ℂ)).eval z
       = (z ^ 2 - (r : ℂ) * z + 1) * (z ^ (2 * m) + 1) + (eps : ℂ) * z ^ (m + 1) := by
@@ -217,7 +262,9 @@ lemma Bfam_eval_C (r eps : ℤ) (m : ℕ) (z : ℂ) :
 
 /-- **The key algebraic identity** (the whole "Chebyshev" content): for
 `u ≠ 0`, `(u² − au + 1)(u^{2m} + 1) + b·u^{m+1}
-= u^{m+1}·((u + u⁻¹ − a)(u^m + u^{−m}) + b)`.-/
+= u^{m+1}·((u + u⁻¹ − a)(u^m + u^{−m}) + b)`.
+@isnad1 id=eq.1h5v.s8.5cf8c5ed514a from=translated src=- shape=69080846 vocab=a0d94600
+-/
 lemma key_identity {K : Type*} [Field K] (a b : K) (m : ℕ) {u : K} (hu : u ≠ 0) :
     (u ^ 2 - a * u + 1) * (u ^ (2 * m) + 1) + b * u ^ (m + 1)
       = u ^ (m + 1) * ((u + u⁻¹ - a) * (u ^ m + (u⁻¹) ^ m) + b) := by
@@ -235,7 +282,9 @@ lemma key_identity {K : Type*} [Field K] (a b : K) (m : ℕ) {u : K} (hu : u ≠
     _ = u ^ (m + 1) * ((u + u⁻¹ - a) * (u ^ m + (u⁻¹) ^ m) + b) := by ring
 
 /-- **Self-inversive, both signs**: `z^{2m+2}·B(1/z) = B(z)` for `z ≠ 0`
-— the middle monomial `X^{m+1}` is its own reverse.-/
+— the middle monomial `X^{m+1}` is its own reverse.
+@isnad1 id=eq.1h4v.s6.8b3ef1d77684 from=translated src=- shape=daa0a1e3 vocab=ec3348de
+-/
 lemma Bfam_self_inversive (r eps : ℤ) (m : ℕ) {z : ℂ} (hz : z ≠ 0) :
     z ^ (2 * m + 2) * ((Bfam r eps m).map (Int.castRingHom ℂ)).eval z⁻¹
       = ((Bfam r eps m).map (Int.castRingHom ℂ)).eval z := by
@@ -266,7 +315,9 @@ lemma Bfam_self_inversive (r eps : ℤ) (m : ℕ) {z : ℂ} (hz : z ≠ 0) :
     _ = (z ^ 2 - (r : ℂ) * z + 1) * (z ^ (2 * m) + 1) + (eps : ℂ) * z ^ (m + 1) := by
         ring
 
-/-- The pairing: a nonzero root of `B` pairs with its inverse.-/
+/-- The pairing: a nonzero root of `B` pairs with its inverse.
+@isnad1 id=eq.2h4v.s6.1a9f6d92bd72 from=translated src=- shape=a514f51c vocab=1abf2a68
+-/
 lemma Bfam_root_inv (r eps : ℤ) (m : ℕ) {z : ℂ} (hz : z ≠ 0)
     (hroot : ((Bfam r eps m).map (Int.castRingHom ℂ)).eval z = 0) :
     ((Bfam r eps m).map (Int.castRingHom ℂ)).eval z⁻¹ = 0 := by
@@ -283,12 +334,17 @@ lemma Bfam_root_inv (r eps : ℤ) (m : ℕ) {z : ℂ} (hz : z ≠ 0)
 def hfun (r eps : ℤ) (m : ℕ) (t : ℝ) : ℝ :=
   (2 * Real.cos t - (r : ℝ)) * (2 * Real.cos ((m : ℝ) * t)) + (eps : ℝ)
 
+/--
+@isnad1 id=continuo.0h3v.s4.ebafef42077c from=translated src=- shape=3307a087 vocab=553bf928
+-/
 lemma continuous_hfun (r eps : ℤ) (m : ℕ) : Continuous (hfun r eps m) := by
   unfold hfun
   fun_prop
 
 /-- **The key identity on the circle** (no phase, no `arg`):
-`B(E t) = E((m+1)t)·h(t)`.-/
+`B(E t) = E((m+1)t)·h(t)`.
+@isnad1 id=eq.0h4v.s6.ae5a3dbb4b6d from=translated src=- shape=cada4d37 vocab=518c7200
+-/
 lemma Bfam_eval_E (r eps : ℤ) (m : ℕ) (t : ℝ) :
     ((Bfam r eps m).map (Int.castRingHom ℂ)).eval (E t)
       = E (((m : ℝ) + 1) * t) * ((hfun r eps m t : ℝ) : ℂ) := by
@@ -307,7 +363,9 @@ lemma Bfam_eval_E (r eps : ℤ) (m : ℕ) (t : ℝ) :
   push_cast
   ring
 
-/-- The zero test on the circle: `B(E t) = 0 ↔ h(t) = 0`.-/
+/-- The zero test on the circle: `B(E t) = 0 ↔ h(t) = 0`.
+@isnad1 id=iff.0h4v.s5.f960da47dd06 from=translated src=- shape=1a0ed466 vocab=fd7bdd45
+-/
 lemma Bfam_eval_E_eq_zero_iff (r eps : ℤ) (m : ℕ) (t : ℝ) :
     ((Bfam r eps m).map (Int.castRingHom ℂ)).eval (E t) = 0 ↔ hfun r eps m t = 0 := by
   rw [Bfam_eval_E]
@@ -321,7 +379,9 @@ lemma Bfam_eval_E_eq_zero_iff (r eps : ℤ) (m : ℕ) (t : ℝ) :
     simp
 
 /-- `h` on the grid `t_k = kπ/m`: the second cosine collapses to
-`(−1)^k`.-/
+`(−1)^k`.
+@isnad1 id=eq.1h4v.s7.cc828fb64eea from=translated src=- shape=40cbc77d vocab=7da1f9b0
+-/
 lemma hfun_at_grid (r eps : ℤ) {m : ℕ} (hm : 1 ≤ m) (k : ℕ) :
     hfun r eps m ((k : ℝ) * Real.pi / (m : ℝ))
       = (2 * Real.cos ((k : ℝ) * Real.pi / (m : ℝ)) - (r : ℝ)) * (2 * (-1 : ℝ) ^ k)
@@ -333,7 +393,9 @@ lemma hfun_at_grid (r eps : ℤ) {m : ℕ} (hm : 1 ≤ m) (k : ℕ) :
   rw [harg, Real.cos_nat_mul_pi]
 
 /-- The alternation, even leg: `h(t_k) < 0` for `k` even — REGARDLESS
-of the sign `eps = ±1` (`|eps| = 1 < 2 ≤ |product|`).-/
+of the sign `eps = ±1` (`|eps| = 1 < 2 ≤ |product|`).
+@isnad1 id=lt.4h4v.s6.6f1ff5dc1b54 from=translated src=- shape=61485b6e vocab=3404663d
+-/
 lemma hfun_grid_neg (r eps : ℤ) (hr : 3 ≤ r) (heps : eps = 1 ∨ eps = -1)
     {m : ℕ} (hm : 1 ≤ m) (k : ℕ) (hk : Even k) :
     hfun r eps m ((k : ℝ) * Real.pi / (m : ℝ)) < 0 := by
@@ -342,7 +404,9 @@ lemma hfun_grid_neg (r eps : ℤ) (hr : 3 ≤ r) (heps : eps = 1 ∨ eps = -1)
   have hrR : (3 : ℝ) ≤ (r : ℝ) := by exact_mod_cast hr
   rcases heps with h | h <;> rw [h] <;> push_cast <;> nlinarith
 
-/-- The alternation, odd leg: `0 < h(t_k)` for `k` odd.-/
+/-- The alternation, odd leg: `0 < h(t_k)` for `k` odd.
+@isnad1 id=lt.4h4v.s6.a010dff63f9a from=translated src=- shape=a696059a vocab=d762dbc0
+-/
 lemma hfun_grid_pos (r eps : ℤ) (hr : 3 ≤ r) (heps : eps = 1 ∨ eps = -1)
     {m : ℕ} (hm : 1 ≤ m) (k : ℕ) (hk : Odd k) :
     0 < hfun r eps m ((k : ℝ) * Real.pi / (m : ℝ)) := by
@@ -353,7 +417,9 @@ lemma hfun_grid_pos (r eps : ℤ) (hr : 3 ≤ r) (heps : eps = 1 ∨ eps = -1)
 
 /-- **The circle count**: `B` has `2m` distinct roots
 `E t`, `t ∈ (0, 2π)` — one in each open grid interval
-`(kπ/m, (k+1)π/m)`, `k = 0, …, 2m − 1`, by sign alternation.-/
+`(kπ/m, (k+1)π/m)`, `k = 0, …, 2m − 1`, by sign alternation.
+@isnad1 id=ex.3h3v.s7.a4632bce09a5 from=translated src=- shape=452e74bb vocab=f4210ef7
+-/
 theorem circle_count (r eps : ℤ) (hr : 3 ≤ r) (heps : eps = 1 ∨ eps = -1)
     {m : ℕ} (hm : 1 ≤ m) :
     ∃ T : Finset ℝ, T.card = 2 * m ∧ ∀ t ∈ T, (0 < t ∧ t < 2 * Real.pi) ∧
@@ -418,7 +484,9 @@ theorem circle_count (r eps : ℤ) (hr : 3 ≤ r) (heps : eps = 1 ∨ eps = -1)
 
 /-! ### The ladder roots — direct endpoint signs -/
 
-/-- At `alpha` the leading factor vanishes: `B(alpha) = eps·alpha^{m+1}`.-/
+/-- At `alpha` the leading factor vanishes: `B(alpha) = eps·alpha^{m+1}`.
+@isnad1 id=eq.1h4v.s6.7487f864bb45 from=translated src=- shape=8558d086 vocab=d5a5c126
+-/
 lemma eval_at_alpha (r eps : ℤ) {alpha : ℝ}
     (hmin : alpha ^ 2 = (r : ℝ) * alpha - 1) (m : ℕ) :
     ((Bfam r eps m).map (Int.castRingHom ℝ)).eval alpha
@@ -430,7 +498,9 @@ lemma eval_at_alpha (r eps : ℤ) {alpha : ℝ}
 /-- Above sign: with `y = alpha + d`, `0 < d ≤ 1` and
 `alpha + 1 < d·(alpha − 1/alpha)·2^m`, the `eps = −1` member is
 positive at `y` — the second factor `y^m ≥ alpha^m > 2^m` cancels the
-`2^{−m}` displacement.-/
+`2^{−m}` displacement.
+@isnad1 id=lt.5h4v.s7.432cf0709cf8 from=translated src=- shape=a9b34d5f vocab=be3066b2
+-/
 lemma eval_above_pos (r : ℤ) {alpha : ℝ} (halpha2 : 2 < alpha)
     (hmin : alpha ^ 2 = (r : ℝ) * alpha - 1)
     (m : ℕ) {d : ℝ} (hd0 : 0 < d) (hd1 : d ≤ 1)
@@ -473,7 +543,9 @@ lemma eval_above_pos (r : ℤ) {alpha : ℝ} (halpha2 : 2 < alpha)
   nlinarith [hgoal]
 
 /-- Below sign: with `y = alpha − d ≥ 2`, `0 < d` and `alpha < d·2^m`,
-the `eps = +1` member is negative at `y`.-/
+the `eps = +1` member is negative at `y`.
+@isnad1 id=lt.5h4v.s7.ab49df344247 from=translated src=- shape=eafe8c26 vocab=dce3b328
+-/
 lemma eval_below_neg (r : ℤ) {alpha : ℝ} (halpha2 : 2 < alpha)
     (hmin : alpha ^ 2 = (r : ℝ) * alpha - 1)
     (m : ℕ) {d : ℝ} (hd0 : 0 < d) (hd2 : d ≤ alpha - 2)
@@ -512,7 +584,9 @@ lemma eval_below_neg (r : ℤ) {alpha : ℝ} (halpha2 : 2 < alpha)
   nlinarith [hgoal]
 
 /-- The exact trace displacement at a root:
-`(tau + 1/tau − r)·(tau^m + tau^{−m}) = −eps`.-/
+`(tau + 1/tau − r)·(tau^m + tau^{−m}) = −eps`.
+@isnad1 id=eq.2h4v.s6.b67cc764e536 from=translated src=- shape=fbf6e496 vocab=771b701e
+-/
 lemma trace_displacement (r eps : ℤ) (m : ℕ) {tau : ℝ} (htau0 : 0 < tau)
     (hroot : ((Bfam r eps m).map (Int.castRingHom ℝ)).eval tau = 0) :
     (tau + tau⁻¹ - (r : ℝ)) * (tau ^ m + (tau⁻¹) ^ m) = -(eps : ℝ) := by
@@ -524,7 +598,9 @@ lemma trace_displacement (r eps : ℤ) (m : ℕ) {tau : ℝ} (htau0 : 0 < tau)
 
 /-- Direct exclusion of the trace degeneracy: at a root `tau > 2` the
 trace `tau + 1/tau` differs from `r` by `0 < |·| < 1/2`, so it is not
-an integer.-/
+an integer.
+@isnad1 id=ne.4h5v.s6.0aeee92d6ef9 from=translated src=- shape=6fd81fd4 vocab=d2efcd9b
+-/
 lemma trace_not_int (r eps : ℤ) (heps : eps = 1 ∨ eps = -1) {m : ℕ} (hm : 1 ≤ m)
     {tau : ℝ} (htau2 : 2 < tau)
     (hroot : ((Bfam r eps m).map (Int.castRingHom ℝ)).eval tau = 0) :
@@ -558,7 +634,9 @@ lemma trace_not_int (r eps : ℤ) (heps : eps = 1 ∨ eps = -1) {m : ℕ} (hm : 
 /-- **The trichotomy for the quadratic-unit family**: if `tau > 1` is a
 root of `B`, then EVERY complex root is unimodular or lies in
 `{tau, 1/tau}` — the `2m` circle points, `tau`, and `1/tau` already
-exhaust the degree `2m + 2`.-/
+exhaust the degree `2m + 2`.
+@isnad1 id=or.6h5v.s7.e9ccd576ae5d from=translated src=- shape=bfe4db51 vocab=5607b20f
+-/
 theorem Bfam_trichotomy (r eps : ℤ) (hr : 3 ≤ r) (heps : eps = 1 ∨ eps = -1)
     {m : ℕ} (hm : 1 ≤ m) (tau : ℝ) (htau : 1 < tau)
     (hroot : ((Bfam r eps m).map (Int.castRingHom ℂ)).eval ((tau : ℂ)) = 0) :
@@ -657,7 +735,9 @@ third certificate, the second verbatim port of
 `PdtSalemArith.salem_certificate`: a real root
 `tau > 1` of `B`, excluded from the two integer degeneracies, is an
 algebraic integer whose conjugates fill the closed unit disk, one ON
-the circle, with `1/tau` among them.-/
+the circle, with `1/tau` among them.
+@isnad1 id=and.7h4v.s8.70eba1d854cf from=translated src=- shape=cae5dde2 vocab=36918283
+-/
 theorem salem_certificate_quad (r eps : ℤ) (hr : 3 ≤ r) (heps : eps = 1 ∨ eps = -1)
     {m : ℕ} (hm : 1 ≤ m) (tau : ℝ) (htau : 1 < tau)
     (hroot : ((Bfam r eps m).map (Int.castRingHom ℝ)).eval tau = 0)
@@ -858,7 +938,9 @@ theorem salem_certificate_quad (r eps : ℤ) (hr : 3 ≤ r) (heps : eps = 1 ∨ 
   exact ⟨hint, hdisk, hcircle, hinvroot⟩
 
 /-- The packaged certificate: a nondegenerate root `tau > 1` of the
-quadratic-unit family is a Salem number.-/
+quadratic-unit family is a Salem number.
+@isnad1 id=issalem.7h4v.s6.68877be39fd6 from=translated src=- shape=267cc419 vocab=a6aa5d59
+-/
 lemma isSalem_of_quad_root (r eps : ℤ) (hr : 3 ≤ r) (heps : eps = 1 ∨ eps = -1)
     {m : ℕ} (hm : 1 ≤ m) (tau : ℝ) (htau : 1 < tau)
     (hroot : ((Bfam r eps m).map (Int.castRingHom ℝ)).eval tau = 0)
@@ -876,7 +958,9 @@ reciprocal quadratic Pisot unit `alpha` (`alpha² = r·alpha − 1`,
 `3 ≤ r`) from BOTH sides — the `eps = +1` member of the family plants a
 root in `(alpha − δ, alpha)`, the `eps = −1` member in
 `(alpha, alpha + δ)`, both inside the integer-free window `(r − 1, r)`,
-and the certificate promotes them to Salem numbers.-/
+and the certificate promotes them to Salem numbers.
+@isnad1 id=and.4h3v.s7.91d381b58307 from=translated src=- shape=4c3fecf9 vocab=81466a6e
+-/
 theorem salem_two_sided_quad_unit (r : ℤ) (hr : 3 ≤ r)
     (alpha : ℝ) (halpha : 1 < alpha) (hmin : alpha ^ 2 = (r : ℝ) * alpha - 1)
     (eps : ℝ) (heps : 0 < eps) :
@@ -958,7 +1042,9 @@ theorem salem_two_sided_quad_unit (r : ℤ) (hr : 3 ≤ r)
 
 /-- The reflect-evaluation identity over ℂ (the verbatim complex twin
 of `SalemEndgame.reflect_eval_eq`): `(reflect p W)(z) = z^p·W(1/z)` for
-`z ≠ 0`.-/
+`z ≠ 0`.
+@isnad1 id=eq.2h3v.s6.f6a2a8974433 from=translated src=- shape=a7630885 vocab=ad1e6d67
+-/
 lemma reflect_eval_eq_C (W : Polynomial ℂ) {z : ℂ} (hz : z ≠ 0) (p : ℕ)
     (hdeg : W.natDegree ≤ p) :
     (W.reflect p).eval z = z ^ p * W.eval z⁻¹ := by
@@ -977,7 +1063,9 @@ lemma reflect_eval_eq_C (W : Polynomial ℂ) {z : ℂ} (hz : z ≠ 0) (p : ℕ)
 /-- **The reduction**: a Pisot-pattern polynomial vanishing at
 `1/alpha` forces `alpha` to be a reciprocal quadratic Pisot unit —
 `alpha² = r·alpha − 1` with `3 ≤ r : ℤ`.  (No conjugation-closure is
-needed.)-/
+needed.)
+@isnad1 id=ex.5h3v.s7.2678a3bc405d from=translated src=- shape=13f8c73e vocab=7e564571
+-/
 theorem reciprocal_quadratic_of_inv_root
     (Pz : Polynomial ℤ) (hmonic : Pz.Monic) (alpha : ℝ) (halpha : 1 < alpha)
     (inside : Multiset ℂ) (hin : ∀ z ∈ inside, ‖z‖ < 1)
@@ -1242,7 +1330,9 @@ Salem numbers approaching `alpha` from both sides; the statement
 unifies Salem's two cases in one.
 If `P(1/alpha) ≠ 0` this is `PdtSalemEndgame.salem_two_sided`; if
 `P(1/alpha) = 0` the reduction forces `alpha` reciprocal quadratic and
-the explicit family closes the case.-/
+the explicit family closes the case.
+@isnad1 id=and.6h4v.s7.523824bdc8ff from=translated src=- shape=849fdb1b vocab=699e4c20
+-/
 theorem salem_theorem_full
     (Pz : Polynomial ℤ) (hmonic : Pz.Monic)
     (alpha : ℝ) (halpha : 1 < alpha)

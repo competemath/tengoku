@@ -67,7 +67,9 @@ polynomial whose complex image has `α` as a root of multiplicity exactly
 one and every other complex root strictly inside the unit circle, the
 multiset `inside = roots.erase α` satisfies the three pattern
 hypotheses: strict interiority, conjugation closure, and the
-factorization `Pz = SalemCircle.P α inside`.-/
+factorization `Pz = SalemCircle.P α inside`.
+@isnad1 id=ex.3h2v.s7.e1ca42fb3468 from=translated src=- shape=69192d2a vocab=88935f26
+-/
 theorem pattern_of_simple_root (Pz : Polynomial ℤ) (hmonic : Pz.Monic) (alpha : ℝ)
     (hsimple : Polynomial.rootMultiplicity ((alpha : ℂ)) (Pz.map (Int.castRingHom ℂ)) = 1)
     (hsmall : ∀ z : ℂ, (Pz.map (Int.castRingHom ℂ)).eval z = 0 → z ≠ ((alpha : ℂ)) → ‖z‖ < 1) :
@@ -128,7 +130,9 @@ minimal polynomial over `ℚ` lies strictly inside the unit circle,
 `(X − α)·∏ (X − z)` over an interior, conjugation-closed multiset.  The
 Gauss step identifies `minpoly ℚ α` with the rational image of
 `minpoly ℤ α`; irreducibility gives separability in characteristic
-zero, so `α` is a simple root of the complex image.-/
+zero, so `α` is a simple root of the complex image.
+@isnad1 id=ex.2h1v.s7.7f834351b126 from=translated src=- shape=5af402f2 vocab=c5d2c3f8
+-/
 theorem pattern_of_pisot (alpha : ℝ) (hint : IsIntegral ℤ alpha)
     (hsmall : ∀ z ∈ (minpoly ℚ alpha).aroots ℂ, z ≠ (alpha : ℂ) → ‖z‖ < 1) :
     ∃ inside : Multiset ℂ,
@@ -181,7 +185,9 @@ integer `α > 1` whose other complex conjugates lie strictly inside the
 unit circle — is a limit of Salem numbers from both sides: for every
 `ε > 0` there is a Salem number in `(α − ε, α)` and one in
 `(α, α + ε)`.  Transported through `salem_theorem_full` along the
-pattern data of `minpoly ℤ α`.-/
+pattern data of `minpoly ℤ α`.
+@isnad1 id=and.4h2v.s7.ac07feab49ef from=translated src=- shape=44d824e8 vocab=2e4ea578
+-/
 theorem salem_theorem (alpha : ℝ) (halpha : 1 < alpha) (hint : IsIntegral ℤ alpha)
     (hsmall : ∀ z ∈ (minpoly ℚ alpha).aroots ℂ, z ≠ (alpha : ℂ) → ‖z‖ < 1)
     (eps : ℝ) (heps : 0 < eps) :
@@ -201,7 +207,9 @@ same assemblies keeping both, so that each construction can be compared
 as a construction. -/
 
 /-- `PdtSalemEndgame.exists_salem_below` with the index `m ≥ 2` and the
-root equation `(X^m·Pr + Qc)(τ) = 0` kept in the conclusion.-/
+root equation `(X^m·Pr + Qc)(τ) = 0` kept in the conclusion.
+@isnad1 id=ex.6h5v.s8.560f520e0fa3 from=translated src=- shape=9fd0e75c vocab=1091f8d8
+-/
 lemma exists_salem_below_root (alpha : ℝ) (halpha : 1 < alpha)
     (Pr G Qc : Polynomial ℝ)
     (hfacR : Pr = (X - Polynomial.C alpha) * G)
@@ -237,7 +245,9 @@ lemma exists_salem_below_root (alpha : ℝ) (halpha : 1 < alpha)
     hroot, hm1, hlta⟩
 
 /-- `PdtSalemEndgame.exists_salem_above` with the index `m ≥ 2` and the
-root equation `(X^m·Pr + Qc)(τ) = 0` kept in the conclusion.-/
+root equation `(X^m·Pr + Qc)(τ) = 0` kept in the conclusion.
+@isnad1 id=ex.6h5v.s8.3a4071711bf7 from=translated src=- shape=eced6c08 vocab=1091f8d8
+-/
 lemma exists_salem_above_root (alpha : ℝ) (halpha : 1 < alpha)
     (Pr G Qc : Polynomial ℝ)
     (hfacR : Pr = (X - Polynomial.C alpha) * G)
@@ -271,7 +281,9 @@ lemma exists_salem_above_root (alpha : ℝ) (halpha : 1 < alpha)
   exact ⟨m, hm2', mu m, cert m hm2' (mu m) (lt_trans halpha hgta) hroot hτZ hτtr,
     hroot, hgta, hm1⟩
 
-/-- Evaluation of the mapped signed family `X^m·Pz + e·Pz.reverse`.-/
+/-- Evaluation of the mapped signed family `X^m·Pz + e·Pz.reverse`.
+@isnad1 id=eq.0h4v.s7.0ff494791cf6 from=translated src=- shape=85aefed0 vocab=55382d78
+-/
 lemma eval_signed_family (Pz : Polynomial ℤ) (e : ℤ) (m : ℕ) (tau : ℝ) :
     ((X ^ m * Pz + C e * Pz.reverse).map (Int.castRingHom ℝ)).eval tau
       = tau ^ m * (Pz.map (Int.castRingHom ℝ)).eval tau
@@ -280,7 +292,9 @@ lemma eval_signed_family (Pz : Polynomial ℤ) (e : ℤ) (m : ℕ) (tau : ℝ) :
     Polynomial.map_X, Polynomial.map_C, Polynomial.eval_add, Polynomial.eval_mul,
     Polynomial.eval_pow, Polynomial.eval_X, Polynomial.eval_C, Int.coe_castRingHom]
 
-/-- Evaluation of the mapped signed family `X^m·Pz − e·Pz.reverse`.-/
+/-- Evaluation of the mapped signed family `X^m·Pz − e·Pz.reverse`.
+@isnad1 id=eq.0h4v.s7.b0d0887a60ba from=translated src=- shape=85aefed0 vocab=77b0e66b
+-/
 lemma eval_signed_family_sub (Pz : Polynomial ℤ) (e : ℤ) (m : ℕ) (tau : ℝ) :
     ((X ^ m * Pz - C e * Pz.reverse).map (Int.castRingHom ℝ)).eval tau
       = tau ^ m * (Pz.map (Int.castRingHom ℝ)).eval tau
@@ -297,7 +311,9 @@ Salem root in `(α − ε, α)` and some member `X^m·Pz − e·Pz.reverse`
 (`m ≥ 2`) has a Salem root in `(α, α + ε)`.  The same assembly as
 `salem_two_sided`, keeping the index and the root equation: the sign of
 `Q(α) = α^p·P(1/α)` routes the plus family below and the minus family
-above when `P(1/α) > 0`, and the reverse when `P(1/α) < 0`.-/
+above when `P(1/α) > 0`, and the reverse when `P(1/α) < 0`.
+@isnad1 id=ex.7h4v.s9.8d0d37e3f3ff from=translated src=- shape=c5e9424d vocab=24aa24c6
+-/
 theorem salem_construction_two_sided
     (Pz : Polynomial ℤ) (hmonic : Pz.Monic)
     (alpha : ℝ) (halpha : 1 < alpha)
@@ -450,7 +466,9 @@ exposed.**  `PdtSalemQuadUnit.salem_two_sided_quad_unit` re-run keeping
 the index `m ≥ 1` and the root equation: below `α` a Salem root of
 `(X² − rX + 1)(X^{2m} + 1) + X^{m+1}`, above `α` a Salem root of
 `(X² − rX + 1)(X^{2m} + 1) − X^{m+1}` — the members `eps = +1` and
-`eps = −1` of `PdtSalemQuadUnit.Bfam`, spelled out.-/
+`eps = −1` of `PdtSalemQuadUnit.Bfam`, spelled out.
+@isnad1 id=and.4h3v.s9.d5d326fc10d2 from=translated src=- shape=36001185 vocab=e1b06d2d
+-/
 theorem salem_quadratic_unit (r : ℤ) (hr : 3 ≤ r)
     (alpha : ℝ) (halpha : 1 < alpha) (hmin : alpha ^ 2 = (r : ℝ) * alpha - 1)
     (eps : ℝ) (heps : 0 < eps) :
