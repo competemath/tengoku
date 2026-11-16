@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "1ce7457c65de5358d781cdf4993358b307d40b25033259dafa3197516da9a2fa",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "pcf-cyclotomic-lean",
+ "lint_mode": "proposed",
+ "modules": 5,
+ "part": 1,
+ "theorems": 40
+}
