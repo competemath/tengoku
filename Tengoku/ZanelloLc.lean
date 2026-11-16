@@ -1,0 +1,9 @@
+import Tengoku.ZanelloLc.FormalDeps.Port.Mathlib.Algebra.Category.ModuleCat.Baer
+import Tengoku.ZanelloLc.FormalDeps.Port.Mathlib.RingTheory.CohenMacaulay.Basic
+import Tengoku.ZanelloLc.FormalDeps.Port.Mathlib.RingTheory.CohenMacaulay.Maximal
+import Tengoku.ZanelloLc.FormalDeps.Port.Mathlib.RingTheory.GlobalDimension
+import Tengoku.ZanelloLc.FormalDeps.Port.Mathlib.RingTheory.Regular.AuslanderBuchsbaum
+import Tengoku.ZanelloLc.FormalDeps.Port.Mathlib.RingTheory.Regular.Category
+import Tengoku.ZanelloLc.FormalDeps.Port.Mathlib.RingTheory.Regular.Depth
+import Tengoku.ZanelloLc.FormalDeps.Port.Mathlib.RingTheory.Regular.Ischebeck
+import Tengoku.ZanelloLc.FormalDeps.Port.Mathlib.RingTheory.RegularLocalRing.Basic
