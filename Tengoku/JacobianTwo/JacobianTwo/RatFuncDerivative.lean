@@ -38,6 +38,9 @@ def rationalDerivative (x : RatFunc K) : RatFunc K :=
       simp only [derivative_mul]
       ring)
 
+/--
+@isnad1 id=eq.0h3v.s9.64813bdba105 from=translated src=- shape=4207cfe6 vocab=7e2197b5
+-/
 theorem rationalDerivative_mk (p q : K[X]) :
     rationalDerivative (RatFunc.mk p q) =
       RatFunc.mk (derivative p * q - p * derivative q) (q ^ 2) := by
@@ -45,6 +48,9 @@ theorem rationalDerivative_mk (p q : K[X]) :
   · intro r
     simp
 
+/--
+@isnad1 id=eq.0h2v.s9.b5b81a654e19 from=translated src=- shape=4b3cd0a3 vocab=97d55347
+-/
 @[simp]
 theorem rationalDerivative_algebraMap (p : K[X]) :
     rationalDerivative (algebraMap K[X] (RatFunc K) p) =
@@ -52,17 +58,26 @@ theorem rationalDerivative_algebraMap (p : K[X]) :
   rw [← RatFunc.mk_one, rationalDerivative_mk]
   simp
 
+/--
+@isnad1 id=eq.2h5v.s8.601e735638fd from=translated src=- shape=6b005ff2 vocab=2c8a63bd
+-/
 theorem mk_add_mk (p r : K[X]) {q s : K[X]} (hq : q ≠ 0) (hs : s ≠ 0) :
     RatFunc.mk p q + RatFunc.mk r s =
       RatFunc.mk (p * s + q * r) (q * s) := by
   simp only [RatFunc.mk_eq_div, map_add, map_mul]
   field_simp [RatFunc.algebraMap_ne_zero hq, RatFunc.algebraMap_ne_zero hs]
 
+/--
+@isnad1 id=eq.2h5v.s8.6f356e78f551 from=translated src=- shape=088ef8d3 vocab=50779245
+-/
 theorem mk_mul_mk (p r : K[X]) {q s : K[X]} (hq : q ≠ 0) (hs : s ≠ 0) :
     RatFunc.mk p q * RatFunc.mk r s = RatFunc.mk (p * r) (q * s) := by
   simp only [RatFunc.mk_eq_div, map_mul]
   field_simp [RatFunc.algebraMap_ne_zero hq, RatFunc.algebraMap_ne_zero hs]
 
+/--
+@isnad1 id=eq.0h3v.s6.028c547d4ca9 from=translated src=- shape=667c5061 vocab=3e6d110d
+-/
 theorem rationalDerivative_add (x y : RatFunc K) :
     rationalDerivative (x + y) = rationalDerivative x + rationalDerivative y := by
   induction x using RatFunc.induction_on' with
@@ -78,11 +93,17 @@ theorem rationalDerivative_add (x y : RatFunc K) :
       simp only [derivative_add, derivative_mul]
       ring
 
+/--
+@isnad1 id=eq.0h1v.s5.d6421a8a18a3 from=translated src=- shape=e9d7c1c6 vocab=b9fd0f5e
+-/
 @[simp]
 theorem rationalDerivative_zero : rationalDerivative (0 : RatFunc K) = 0 := by
   rw [← map_zero (algebraMap K[X] (RatFunc K)), rationalDerivative_algebraMap,
     derivative_zero, map_zero]
 
+/--
+@isnad1 id=eq.0h3v.s7.c14cf838fe77 from=translated src=- shape=896086f0 vocab=b231fd61
+-/
 theorem rationalDerivative_mul (x y : RatFunc K) :
     rationalDerivative (x * y) =
       x * rationalDerivative y + y * rationalDerivative x := by
@@ -105,11 +126,17 @@ theorem rationalDerivative_mul (x y : RatFunc K) :
       simp only [derivative_mul]
       ring
 
+/--
+@isnad1 id=eq.0h1v.s5.73870ede5b47 from=translated src=- shape=e9d7c1c6 vocab=b9fd0f5e
+-/
 @[simp]
 theorem rationalDerivative_one : rationalDerivative (1 : RatFunc K) = 0 := by
   rw [← map_one (algebraMap K[X] (RatFunc K)), rationalDerivative_algebraMap,
     derivative_one, map_zero]
 
+/--
+@isnad1 id=eq.0h2v.s7.f0d3000af0c4 from=translated src=- shape=ffa96d6b vocab=e8c86618
+-/
 @[simp]
 theorem rationalDerivative_algebraMap_base (c : K) :
     rationalDerivative (algebraMap K (RatFunc K) c) = 0 := by
@@ -117,13 +144,18 @@ theorem rationalDerivative_algebraMap_base (c : K) :
     rationalDerivative_algebraMap]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s9.d8a0416e345b from=translated src=- shape=a18a8119 vocab=05535911
+-/
 theorem rationalDerivative_smul (c : K) (x : RatFunc K) :
     rationalDerivative (c • x) = c • rationalDerivative x := by
   rw [Algebra.smul_def, Algebra.smul_def, rationalDerivative_mul,
     rationalDerivative_algebraMap_base, mul_zero, add_zero]
 
 /-- In characteristic zero, the constants of the quotient-rule derivative on
-`K(X)` are exactly the scalar rational functions.-/
+`K(X)` are exactly the scalar rational functions.
+@isnad1 id=iff.0h2v.s7.cacc4e6b3693 from=translated src=- shape=e0f6f476 vocab=fc0b9b7a
+-/
 theorem rationalDerivative_eq_zero_iff [CharZero K] (x : RatFunc K) :
     rationalDerivative x = 0 ↔ ∃ c : K, x = RatFunc.C c := by
   constructor
@@ -172,10 +204,16 @@ def rationalDerivativeDerivation : Derivation K (RatFunc K) (RatFunc K) where
   leibniz' := rationalDerivative_mul
   map_one_eq_zero' := rationalDerivative_one
 
+/--
+@isnad1 id=eq.0h2v.s8.e2d77ab6fbb0 from=translated src=- shape=9a05b684 vocab=d5fafc00
+-/
 @[simp]
 theorem rationalDerivativeDerivation_apply (x : RatFunc K) :
     rationalDerivativeDerivation x = rationalDerivative x := rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.e0943b0df056 from=translated src=- shape=cd2b8dba vocab=73b590a5
+-/
 @[simp]
 theorem rationalDerivativeDerivation_algebraMap (p : K[X]) :
     rationalDerivativeDerivation (algebraMap K[X] (RatFunc K) p) =

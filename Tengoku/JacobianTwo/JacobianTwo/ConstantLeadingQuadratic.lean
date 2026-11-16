@@ -30,47 +30,74 @@ open JacobianTwo.AffineCoordinate
 
 variable {K : Type*} [Field K]
 
+/--
+@isnad1 id=eq.0h3v.s7.ff6afd74f423 from=translated src=- shape=0123a576 vocab=82e4b565
+-/
 @[simp]
 theorem CC_mul_scalar (a b : K) : CC (a * b) = CC a * CC b := by
   change C (C (a * b)) = C (C a) * C (C b)
   rw [C_mul, C_mul]
 
+/--
+@isnad1 id=eq.0h3v.s7.1d676870d99e from=translated src=- shape=0123a576 vocab=7b190578
+-/
 @[simp]
 theorem CC_add_scalar (a b : K) : CC (a + b) = CC a + CC b := by
   change C (C (a + b)) = C (C a) + C (C b)
   rw [C_add, C_add]
 
+/--
+@isnad1 id=eq.0h3v.s7.80c14736e8bb from=translated src=- shape=0123a576 vocab=32c27414
+-/
 @[simp]
 theorem CC_sub_scalar (a b : K) : CC (a - b) = CC a - CC b := by
   change C (C (a - b)) = C (C a) - C (C b)
   rw [map_sub, map_sub]
 
+/--
+@isnad1 id=eq.0h3v.s7.1b7fe2de69c7 from=translated src=- shape=47321926 vocab=5f1d819c
+-/
 @[simp]
 theorem CC_pow_scalar (a : K) (n : ℕ) : CC (a ^ n) = CC a ^ n := by
   change C (C (a ^ n)) = C (C a) ^ n
   rw [map_pow, map_pow]
 
+/--
+@isnad1 id=eq.0h1v.s6.f0ea61fad785 from=translated src=- shape=38cecfa6 vocab=e59fbe3f
+-/
 @[simp]
 theorem CC_zero_scalar : CC (0 : K) = (0 : K[X][Y]) := by
   change C (C (0 : K)) = (0 : K[X][Y])
   rw [map_zero, map_zero]
 
+/--
+@isnad1 id=eq.0h1v.s6.bf9ba1b72c34 from=translated src=- shape=38cecfa6 vocab=e59fbe3f
+-/
 @[simp]
 theorem CC_one_scalar : CC (1 : K) = (1 : K[X][Y]) := by
   change C (C (1 : K)) = (1 : K[X][Y])
   rw [map_one, map_one]
 
+/--
+@isnad1 id=eq.0h2v.s6.84d8e86a4125 from=translated src=- shape=65887eed vocab=1f2801e6
+-/
 @[simp]
 theorem CC_natCast (n : ℕ) : CC (n : K) = (n : K[X][Y]) := by
   change C (C (n : K)) = (n : K[X][Y])
   rw [map_natCast, map_natCast]
 
+/--
+@isnad1 id=eq.0h2v.s6.e0bd054bf012 from=translated src=- shape=a2343caf vocab=5a639600
+-/
 @[simp]
 theorem CC_ofNat_scalar (n : ℕ) [n.AtLeastTwo] :
     CC (ofNat(n) : K) = (ofNat(n) : K[X][Y]) := by
   change C (C (ofNat(n) : K)) = (ofNat(n) : K[X][Y])
   rw [C_ofNat, C_ofNat]
 
+/--
+@isnad1 id=eq.0h2v.s8.96e665a5e698 from=translated src=- shape=398f0fa9 vocab=60a2ee86
+-/
 @[simp]
 theorem C_natCast_inner (n : ℕ) : C (n : K[X]) = (n : K[X][Y]) := by
   rw [map_natCast]
@@ -92,23 +119,35 @@ coordinate with respect to `y` vanishes.-/
 def criticalSection (eps : K) (g : K[X]) : K[X] :=
   -(C ((2 * eps)⁻¹) * g)
 
+/--
+@isnad1 id=eq.0h4v.s9.5f69bb406f71 from=translated src=- shape=1ed1ebbe vocab=a7c1a974
+-/
 @[simp]
 theorem yDerivative_quadraticCoordinate (eps : K) (g f : K[X]) :
     yDerivative (quadraticCoordinate eps g f) = criticalLinear eps g := by
   simp [quadraticCoordinate, criticalLinear, yDerivative_apply, derivative_pow, C_ofNat]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s10.46d34c5cebd9 from=translated src=- shape=e0ff5415 vocab=ee35118d
+-/
 @[simp]
 theorem xDerivative_quadraticCoordinate (eps : K) (g f : K[X]) :
     xDerivative (quadraticCoordinate eps g f) =
       C (derivative g) * Y + C (derivative f) := by
   simp [quadraticCoordinate, Derivation.leibniz]
 
+/--
+@isnad1 id=eq.0h3v.s9.33f6d9305d0a from=translated src=- shape=67fbec41 vocab=68013057
+-/
 @[simp]
 theorem yDerivative_criticalLinear (eps : K) (g : K[X]) :
     yDerivative (criticalLinear eps g) = CC (2 * eps) := by
   simp [criticalLinear]
 
+/--
+@isnad1 id=eq.0h3v.s10.0c74488c1e8a from=translated src=- shape=d0123977 vocab=6aab02be
+-/
 @[simp]
 theorem xDerivative_criticalLinear (eps : K) (g : K[X]) :
     xDerivative (criticalLinear eps g) = C (derivative g) := by
@@ -116,7 +155,9 @@ theorem xDerivative_criticalLinear (eps : K) (g : K[X]) :
     xDerivative_Y, xDerivative_C]
   simp
 
-/-- Completing the square without introducing denominators.-/
+/-- Completing the square without introducing denominators.
+@isnad1 id=eq.0h4v.s9.5323addff63b from=translated src=- shape=ae0e1f0d vocab=43e38d64
+-/
 theorem criticalLinear_sq_sub (eps : K) (g f : K[X]) :
     criticalLinear eps g ^ 2 -
         CC (4 * eps) * quadraticCoordinate eps g f =
@@ -126,7 +167,9 @@ theorem criticalLinear_sq_sub (eps : K) (g f : K[X]) :
 
 /-- The Jacobian of the critical linear form and the quadratic coordinate is
 half the derivative of the discriminant.  This denominator-free form remains
-valid before assuming characteristic zero.-/
+valid before assuming characteristic zero.
+@isnad1 id=eq.0h4v.s9.df3547d2b36c from=translated src=- shape=24dd38d0 vocab=c7c2aa4d
+-/
 theorem two_mul_jacobian_criticalLinear (eps : K) (g f : K[X]) :
     CC 2 * jacobian (criticalLinear eps g) (quadraticCoordinate eps g f) =
       C (derivative (discriminant eps g f)) := by
@@ -135,11 +178,17 @@ theorem two_mul_jacobian_criticalLinear (eps : K) (g f : K[X]) :
   simp [discriminant, derivative_sub, derivative_pow, criticalLinear, C_ofNat]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s10.3ebc4a5b5eea from=translated src=- shape=098eeed3 vocab=0d10cb6c
+-/
 theorem derivative_discriminant (eps : K) (g f : K[X]) :
     derivative (discriminant eps g f) =
       C 2 * g * derivative g - C (4 * eps) * derivative f := by
   simp [discriminant, derivative_sub, derivative_pow, C_ofNat]
 
+/--
+@isnad1 id=eq.1h3v.s6.5583260fda88 from=translated src=- shape=7fa49316 vocab=34e74d16
+-/
 theorem eval_criticalLinear_at_criticalSection [CharZero K]
     {eps : K} (g : K[X])
     (heps : eps ≠ 0) :
@@ -159,6 +208,9 @@ theorem eval_criticalLinear_at_criticalSection [CharZero K]
         -(C (2 * eps) * C ((2 * eps)⁻¹)) * g + g := by ring
     _ = 0 := by rw [hcoeff]; ring
 
+/--
+@isnad1 id=eq.1h4v.s10.25e109d854f3 from=translated src=- shape=e41c2596 vocab=b5c4c55a
+-/
 theorem four_eps_mul_eval_xDerivative_at_criticalSection [CharZero K]
     {eps : K}
     (g f : K[X]) (heps : eps ≠ 0) :
@@ -189,7 +241,9 @@ theorem four_eps_mul_eval_xDerivative_at_criticalSection [CharZero K]
       ring
 
 /-- Evaluating the actual bivariate Jacobian on the critical section turns
-the Keller equation into a product equation in `K[x]`.-/
+the Keller equation into a product equation in `K[x]`.
+@isnad1 id=eq.2h6v.s10.f7a8a2993abb from=translated src=- shape=c5e4b87a vocab=55bc870d
+-/
 theorem eval_yDerivative_mul_derivative_discriminant [CharZero K]
     {P : K[X][Y]} {eps k : K} {g f : K[X]}
     (heps : eps ≠ 0)
@@ -222,7 +276,9 @@ theorem eval_yDerivative_mul_derivative_discriminant [CharZero K]
     _ = C (4 * eps * k) := C_mul.symm
 
 /-- A nonzero constant Jacobian forces the quadratic discriminant to be
-affine.  The scalar `rho` is the value of `P_y` on the critical section.-/
+affine.  The scalar `rho` is the value of `P_y` on the critical section.
+@isnad1 id=ex.3h6v.s10.c5cafec05dda from=translated src=- shape=516691d1 vocab=0f033da6
+-/
 theorem affine_discriminant [CharZero K]
     {P : K[X][Y]} {eps k : K} {g f : K[X]}
     (heps : eps ≠ 0) (hk : k ≠ 0)
@@ -289,23 +345,35 @@ def coordinatePairInverse (eps A B : K) (g : K[X]) (p : K × K) : K × K :=
   let x := (p.1 ^ 2 - 4 * eps * p.2 - B) / A
   (x, (p.1 - g.eval x) / (2 * eps))
 
+/--
+@isnad1 id=eq.0h5v.s6.b798acf6c11f from=translated src=- shape=3cc4eddb vocab=2de439ee
+-/
 @[simp]
 theorem evalEval_criticalLinear (eps x y : K) (g : K[X]) :
     (criticalLinear eps g).evalEval x y = 2 * eps * y + g.eval x := by
   simp [criticalLinear, evalEval]
 
+/--
+@isnad1 id=eq.0h6v.s7.519c989fde8d from=translated src=- shape=5a71d6af vocab=03d0f945
+-/
 @[simp]
 theorem evalEval_quadraticCoordinate (eps x y : K) (g f : K[X]) :
     (quadraticCoordinate eps g f).evalEval x y =
       eps * y ^ 2 + g.eval x * y + f.eval x := by
   simp [quadraticCoordinate, evalEval]
 
+/--
+@isnad1 id=eq.1h7v.s8.7058658d282b from=translated src=- shape=e0cc3a3a vocab=dbee1656
+-/
 theorem eval_discriminant_of_eq_affine {eps A B x : K} {g f : K[X]}
     (hDelta : discriminant eps g f = C A * X + C B) :
     (discriminant eps g f).eval x = A * x + B := by
   rw [hDelta]
   simp
 
+/--
+@isnad1 id=leftinve.3h6v.s8.fb40142084ac from=translated src=- shape=cf9f9d44 vocab=fc97c16d
+-/
 theorem coordinatePairInverse_left [CharZero K]
     {eps A B : K} {g f : K[X]}
     (heps : eps ≠ 0) (hA : A ≠ 0)
@@ -340,6 +408,9 @@ theorem coordinatePairInverse_left [CharZero K]
     field_simp
     ring
 
+/--
+@isnad1 id=rightinv.3h6v.s8.9e4ef8233935 from=translated src=- shape=cf9f9d44 vocab=66ec75ba
+-/
 theorem coordinatePairInverse_right [CharZero K]
     {eps A B : K} {g f : K[X]}
     (heps : eps ≠ 0) (hA : A ≠ 0)
@@ -378,7 +449,9 @@ theorem coordinatePairInverse_right [CharZero K]
   · simpa [coordinatePairMap, q] using hq
 
 /-- The pair `(s,Q)` is a polynomial coordinate system whenever the
-discriminant is affine with nonzero slope.-/
+discriminant is affine with nonzero slope.
+@isnad1 id=bijectiv.3h6v.s8.00f30b03cb2e from=translated src=- shape=1d00cf30 vocab=eaa24af8
+-/
 theorem coordinatePair_bijective [CharZero K]
     {eps A B : K} {g f : K[X]}
     (heps : eps ≠ 0) (hA : A ≠ 0)
@@ -390,7 +463,9 @@ theorem coordinatePair_bijective [CharZero K]
 /-! ### Polynomial source changes -/
 
 /-- Chain rule for the coefficientwise `x`-derivative after substituting the
-outer variable.-/
+outer variable.
+@isnad1 id=eq.0h3v.s11.ee106f5b7b26 from=translated src=- shape=20a359e9 vocab=67615b0b
+-/
 theorem xDerivative_comp (P T : K[X][Y]) :
     xDerivative (P.comp T) =
       (xDerivative P).comp T +
@@ -404,7 +479,9 @@ theorem xDerivative_comp (P T : K[X][Y]) :
       simp [Derivation.leibniz, yDerivative_apply]
       ring
 
-/-- Chain rule for the formal `y`-derivative after polynomial composition.-/
+/-- Chain rule for the formal `y`-derivative after polynomial composition.
+@isnad1 id=eq.0h3v.s10.2a4f5e4314a3 from=translated src=- shape=9ed35862 vocab=9a5ff028
+-/
 theorem yDerivative_comp (P T : K[X][Y]) :
     yDerivative (P.comp T) =
       (yDerivative P).comp T * yDerivative T := by
@@ -412,7 +489,9 @@ theorem yDerivative_comp (P T : K[X][Y]) :
   ring
 
 /-- Substitution in `y` multiplies a Jacobian by the derivative of the
-substituted polynomial.-/
+substituted polynomial.
+@isnad1 id=eq.0h4v.s9.a3a43acf4438 from=translated src=- shape=a3726384 vocab=74d593f1
+-/
 theorem jacobian_comp (P Q T : K[X][Y]) :
     jacobian (P.comp T) (Q.comp T) =
       (jacobian P Q).comp T * yDerivative T := by
@@ -434,16 +513,25 @@ def centerSubstitution (eps : K) (g : K[X]) : K[X][Y] :=
 def centeredResidual (eps : K) (g f : K[X]) : K[X] :=
   f - C ((4 * eps)⁻¹) * g ^ 2
 
+/--
+@isnad1 id=eq.0h3v.s9.b2c52f96f187 from=translated src=- shape=d1d6f711 vocab=1843c81d
+-/
 theorem yDerivative_centerSubstitution (eps : K) (g : K[X]) :
     yDerivative (centerSubstitution eps g) = 1 := by
   simp [centerSubstitution]
 
+/--
+@isnad1 id=eq.0h5v.s7.3a3229d7ad42 from=translated src=- shape=5fa20c12 vocab=754c0b09
+-/
 theorem jacobian_comp_centerSubstitution (P Q : K[X][Y]) (eps : K) (g : K[X]) :
     jacobian (P.comp (centerSubstitution eps g))
         (Q.comp (centerSubstitution eps g)) =
       (jacobian P Q).comp (centerSubstitution eps g) := by
   rw [jacobian_comp, yDerivative_centerSubstitution, mul_one]
 
+/--
+@isnad1 id=eq.1h4v.s9.dc95835e84f8 from=translated src=- shape=96415be0 vocab=4b2a7429
+-/
 theorem quadraticCoordinate_comp_centerSubstitution [CharZero K]
     {eps : K} (g f : K[X]) (heps : eps ≠ 0) :
     (quadraticCoordinate eps g f).comp (centerSubstitution eps g) =
@@ -464,6 +552,9 @@ theorem quadraticCoordinate_comp_centerSubstitution [CharZero K]
   simp [quadraticCoordinate, centerSubstitution, halfLinear, centeredResidual]
   linear_combination -(Y * C g) * hcross + (C g) ^ 2 * hconstant
 
+/--
+@isnad1 id=eq.2h6v.s9.e79d375570bd from=translated src=- shape=253cb236 vocab=5fb2ebf2
+-/
 theorem centeredResidual_eq_affine [CharZero K]
     {eps A B : K} {g f : K[X]}
     (heps : eps ≠ 0)
@@ -495,6 +586,9 @@ theorem centeredResidual_eq_affine [CharZero K]
 
 /-! ### Swapping the two source variables -/
 
+/--
+@isnad1 id=eq.0h2v.s10.7964b1dafb7c from=translated src=- shape=7782e282 vocab=36a03f3e
+-/
 theorem xDerivative_swap (P : K[X][Y]) :
     xDerivative (Bivariate.swap P) = Bivariate.swap (yDerivative P) := by
   induction P using Polynomial.induction_on' with
@@ -508,6 +602,9 @@ theorem xDerivative_swap (P : K[X][Y]) :
           simp [Bivariate.swap_C_C, Bivariate.swap_X, Bivariate.swap_Y,
             Derivation.leibniz, yDerivative_apply]
 
+/--
+@isnad1 id=eq.0h2v.s10.010520924a6f from=translated src=- shape=7782e282 vocab=36a03f3e
+-/
 theorem yDerivative_swap (P : K[X][Y]) :
     yDerivative (Bivariate.swap P) = Bivariate.swap (xDerivative P) := by
   have h := xDerivative_swap (Bivariate.swap P)
@@ -516,6 +613,9 @@ theorem yDerivative_swap (P : K[X][Y]) :
   rw [Bivariate.swap_swap_apply] at hs
   exact hs.symm
 
+/--
+@isnad1 id=eq.0h3v.s10.dd0af466153e from=translated src=- shape=143f9f88 vocab=67f823f8
+-/
 theorem jacobian_swap (P Q : K[X][Y]) :
     jacobian (Bivariate.swap P) (Bivariate.swap Q) =
       -(Bivariate.swap (jacobian P Q)) := by
@@ -525,7 +625,9 @@ theorem jacobian_swap (P Q : K[X][Y]) :
   ring
 
 /-- After completing the square and exchanging the source variables, the
-quadratic coordinate becomes affine in the new `y` variable.-/
+quadratic coordinate becomes affine in the new `y` variable.
+@isnad1 id=eq.2h6v.s10.1c9db91878ff from=translated src=- shape=44fd4ad8 vocab=dc73107a
+-/
 theorem swap_quadraticCoordinate_comp_centerSubstitution [CharZero K]
     {eps A B : K} {g f : K[X]}
     (heps : eps ≠ 0)
@@ -540,7 +642,9 @@ theorem swap_quadraticCoordinate_comp_centerSubstitution [CharZero K]
   simp [affineCoordinate]
   ring
 
-/-- The centered-and-swapped map has the negated constant Jacobian.-/
+/-- The centered-and-swapped map has the negated constant Jacobian.
+@isnad1 id=eq.1h6v.s10.27fa670d53d2 from=translated src=- shape=6f405453 vocab=7f22efdc
+-/
 theorem jacobian_swap_comp_centerSubstitution
     {P Q : K[X][Y]} {eps k : K} (g : K[X])
     (hjac : jacobian P Q = CC k) :
@@ -553,6 +657,9 @@ theorem jacobian_swap_comp_centerSubstitution
 
 /-! ### Evaluation and transport back to the original coordinates -/
 
+/--
+@isnad1 id=eq.0h4v.s8.1ccf5df96df4 from=translated src=- shape=f4aca7c2 vocab=4b973c67
+-/
 theorem evalEval_swap (P : K[X][Y]) (x y : K) :
     (Bivariate.swap P).evalEval x y = P.evalEval y x := by
   have hxy := coe_aevalAeval_eq_evalEval (A := K) x y
@@ -560,6 +667,9 @@ theorem evalEval_swap (P : K[X][Y]) (x y : K) :
   rw [← hxy, ← hyx]
   exact Bivariate.aevalAeval_swap x y P
 
+/--
+@isnad1 id=eq.0h5v.s6.17afc02baac6 from=translated src=- shape=9ae77291 vocab=9fdad44b
+-/
 theorem evalEval_comp (P T : K[X][Y]) (x y : K) :
     (P.comp T).evalEval x y = P.evalEval x (T.evalEval x y) := by
   induction P using Polynomial.induction_on' with
@@ -569,7 +679,9 @@ theorem evalEval_comp (P T : K[X][Y]) (x y : K) :
       simp [evalEval]
 
 /-- Swapping commutes with substituting into a polynomial whose coefficients
-are scalars.-/
+are scalars.
+@isnad1 id=eq.0h3v.s9.086d7ebd4ef3 from=translated src=- shape=7b19e0e4 vocab=23d5a482
+-/
 theorem swap_map_comp (G : K[X]) (R : K[X][Y]) :
     Bivariate.swap ((G.map C).comp R) =
       (G.map C).comp (Bivariate.swap R) := by
@@ -579,6 +691,9 @@ theorem swap_map_comp (G : K[X]) (R : K[X][Y]) :
       simp_rw [← C_mul_X_pow_eq_monomial]
       simp [Bivariate.swap_C_C]
 
+/--
+@isnad1 id=eq.0h5v.s6.b6fba6167451 from=translated src=- shape=12cd1964 vocab=46ceddeb
+-/
 @[simp]
 theorem evalEval_centerSubstitution (eps x y : K) (g : K[X]) :
     (centerSubstitution eps g).evalEval x y =
@@ -594,18 +709,27 @@ def centerSwapSource (eps : K) (g : K[X]) (p : K × K) : K × K :=
 def centerSwapSourceInverse (eps : K) (g : K[X]) (p : K × K) : K × K :=
   (p.2 + (halfLinear eps g).eval p.1, p.1)
 
+/--
+@isnad1 id=leftinve.0h3v.s5.f673cbfb7dcd from=translated src=- shape=756f53a5 vocab=969dcad9
+-/
 theorem centerSwapSourceInverse_left (eps : K) (g : K[X]) :
     Function.LeftInverse (centerSwapSourceInverse eps g)
       (centerSwapSource eps g) := by
   rintro ⟨x, y⟩
   simp [centerSwapSource, centerSwapSourceInverse]
 
+/--
+@isnad1 id=rightinv.0h3v.s5.d5f5af3fdb4f from=translated src=- shape=756f53a5 vocab=9cac8a28
+-/
 theorem centerSwapSourceInverse_right (eps : K) (g : K[X]) :
     Function.RightInverse (centerSwapSourceInverse eps g)
       (centerSwapSource eps g) := by
   rintro ⟨x, y⟩
   simp [centerSwapSource, centerSwapSourceInverse]
 
+/--
+@isnad1 id=bijectiv.0h3v.s4.25bd247effec from=translated src=- shape=1c2fabbe vocab=1a9ebeae
+-/
 theorem centerSwapSource_bijective (eps : K) (g : K[X]) :
     Function.Bijective (centerSwapSource eps g) :=
   ⟨(centerSwapSourceInverse_left eps g).injective,
@@ -615,10 +739,16 @@ theorem centerSwapSource_bijective (eps : K) (g : K[X]) :
 def uncenterSubstitution (eps : K) (g : K[X]) : K[X][Y] :=
   Y + C (halfLinear eps g)
 
+/--
+@isnad1 id=eq.0h3v.s6.3cb954ce2c9c from=translated src=- shape=1aab0a05 vocab=760ae131
+-/
 theorem centerSubstitution_comp_uncenterSubstitution (eps : K) (g : K[X]) :
     (centerSubstitution eps g).comp (uncenterSubstitution eps g) = Y := by
   simp [centerSubstitution, uncenterSubstitution]
 
+/--
+@isnad1 id=eq.0h3v.s6.ea27ef77fdd4 from=translated src=- shape=1aab0a05 vocab=760ae131
+-/
 theorem uncenterSubstitution_comp_centerSubstitution (eps : K) (g : K[X]) :
     (uncenterSubstitution eps g).comp (centerSubstitution eps g) = Y := by
   simp [centerSubstitution, uncenterSubstitution]
@@ -637,6 +767,9 @@ def normalFormTargetInverse (G : K[X]) (lambda : K)
     (p : K × K) : K × K :=
   ((p.1 - G.eval p.2) / lambda, p.2)
 
+/--
+@isnad1 id=leftinve.1h3v.s5.e9935de6b47d from=translated src=- shape=1df4f210 vocab=60f50110
+-/
 theorem normalFormTargetInverse_left {G : K[X]} {lambda : K}
     (hlambda : lambda ≠ 0) :
     Function.LeftInverse (normalFormTargetInverse G lambda)
@@ -645,6 +778,9 @@ theorem normalFormTargetInverse_left {G : K[X]} {lambda : K}
   simp [normalFormTargetInverse, normalFormTargetMap]
   field_simp
 
+/--
+@isnad1 id=rightinv.1h3v.s5.a042062359f2 from=translated src=- shape=1df4f210 vocab=a0869be6
+-/
 theorem normalFormTargetInverse_right {G : K[X]} {lambda : K}
     (hlambda : lambda ≠ 0) :
     Function.RightInverse (normalFormTargetInverse G lambda)
@@ -654,6 +790,9 @@ theorem normalFormTargetInverse_right {G : K[X]} {lambda : K}
   field_simp
   ring
 
+/--
+@isnad1 id=eq.1h7v.s8.7cdc876ae80a from=translated src=- shape=48637254 vocab=6f17a305
+-/
 theorem quadraticCoordinateMap_eq_normalFormTargetMap
     {P : K[X][Y]} {eps lambda : K} {g f G : K[X]}
     (hP : P = (G.map C).comp (quadraticCoordinate eps g f) +
@@ -672,6 +811,9 @@ def constantLeadingQuadraticInverse (eps A B lambda : K) (g G : K[X])
     (p : K × K) : K × K :=
   coordinatePairInverse eps A B g (normalFormTargetInverse G lambda p)
 
+/--
+@isnad1 id=leftinve.5h9v.s9.7e7782bbc261 from=translated src=- shape=7931eb60 vocab=c837378d
+-/
 theorem constantLeadingQuadraticInverse_left [CharZero K]
     {P : K[X][Y]} {eps A B lambda : K} {g f G : K[X]}
     (heps : eps ≠ 0) (hA : A ≠ 0) (hlambda : lambda ≠ 0)
@@ -689,6 +831,9 @@ theorem constantLeadingQuadraticInverse_left [CharZero K]
   rw [normalFormTargetInverse_left hlambda]
   exact coordinatePairInverse_left heps hA hDelta p
 
+/--
+@isnad1 id=rightinv.5h9v.s9.5adfcc7704ba from=translated src=- shape=7931eb60 vocab=741a003f
+-/
 theorem constantLeadingQuadraticInverse_right [CharZero K]
     {P : K[X][Y]} {eps A B lambda : K} {g f G : K[X]}
     (heps : eps ≠ 0) (hA : A ≠ 0) (hlambda : lambda ≠ 0)
@@ -708,6 +853,9 @@ theorem constantLeadingQuadraticInverse_right [CharZero K]
   rw [coordinatePairInverse_right heps hA hDelta]
   exact normalFormTargetInverse_right hlambda p
 
+/--
+@isnad1 id=eq.2h7v.s10.f89ce1b893aa from=translated src=- shape=a7e36f06 vocab=0df567eb
+-/
 theorem transformedMap_eq [CharZero K]
     {P : K[X][Y]} {eps A B : K} {g f : K[X]}
     (heps : eps ≠ 0)
@@ -734,7 +882,9 @@ theorem transformedMap_eq [CharZero K]
 
 /-- A plane Keller map is bijective when one coordinate is quadratic in `y`
 with nonzero constant leading coefficient.  There is no degree restriction on
-the other coordinate.-/
+the other coordinate.
+@isnad1 id=bijectiv.3h6v.s7.af00ca87f988 from=translated src=- shape=39dc9de4 vocab=e730bec1
+-/
 theorem quadraticCoordinate_bijective [CharZero K]
     {P : K[X][Y]} {eps k : K} {g f : K[X]}
     (heps : eps ≠ 0) (hk : k ≠ 0)
@@ -778,7 +928,9 @@ theorem quadraticCoordinate_bijective [CharZero K]
     exact ⟨centerSwapSource eps g u, hu⟩
 
 /-- Structural normal form in the centered-and-swapped chart used in the
-bijectivity proof.-/
+bijectivity proof.
+@isnad1 id=ex.3h6v.s11.6ae1889b43c9 from=translated src=- shape=e5b4651f vocab=d84e1b6b
+-/
 theorem constantLeadingQuadratic_normal_form [CharZero K]
     {P : K[X][Y]} {eps k : K} {g f : K[X]}
     (heps : eps ≠ 0) (hk : k ≠ 0)
@@ -822,7 +974,9 @@ theorem constantLeadingQuadratic_normal_form [CharZero K]
     exact hP
 
 /-- Original-coordinate normal form.  The additive constant from the affine
-chart has been absorbed into `G`.-/
+chart has been absorbed into `G`.
+@isnad1 id=ex.3h6v.s9.cb03c17d379a from=translated src=- shape=42306ca1 vocab=d2fce708
+-/
 theorem constantLeadingQuadratic_original_normal_form [CharZero K]
     {P : K[X][Y]} {eps k : K} {g f : K[X]}
     (heps : eps ≠ 0) (hk : k ≠ 0)
@@ -897,7 +1051,9 @@ theorem constantLeadingQuadratic_original_normal_form [CharZero K]
       rw [hlambdaLinear]
 
 /-- Alias emphasizing the geometric hypothesis rather than the chosen
-polynomial notation.-/
+polynomial notation.
+@isnad1 id=bijectiv.3h6v.s7.af00ca87f988 from=translated src=- shape=39dc9de4 vocab=e730bec1
+-/
 theorem constantLeadingQuadratic_bijective [CharZero K]
     {P : K[X][Y]} {eps k : K} {g f : K[X]}
     (heps : eps ≠ 0) (hk : k ≠ 0)
@@ -905,6 +1061,9 @@ theorem constantLeadingQuadratic_bijective [CharZero K]
     Function.Bijective (quadraticCoordinateMap P eps g f) :=
   quadraticCoordinate_bijective heps hk hjac
 
+/--
+@isnad1 id=injectiv.3h6v.s7.1b59c460561a from=translated src=- shape=39dc9de4 vocab=ab197a22
+-/
 theorem constantLeadingQuadratic_injective [CharZero K]
     {P : K[X][Y]} {eps k : K} {g f : K[X]}
     (heps : eps ≠ 0) (hk : k ≠ 0)

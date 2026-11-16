@@ -56,18 +56,26 @@ def affineInYJacobian (a b c d : K[X]) : (K[X])[X] :=
 def affineInYMap (a b c d : K[X]) (p : K × K) : K × K :=
   (a.eval p.1 * p.2 + b.eval p.1, c.eval p.1 * p.2 + d.eval p.1)
 
+/--
+@isnad1 id=eq.0h5v.s9.0fa05d6e6795 from=translated src=- shape=5a81282e vocab=ab0cea3f
+-/
 @[simp]
 theorem coeff_one_affineInYJacobian (a b c d : K[X]) :
     (affineInYJacobian a b c d).coeff 1 = derivative a * c - a * derivative c := by
   simp [affineInYJacobian]
 
+/--
+@isnad1 id=eq.0h5v.s9.872479d46bd0 from=translated src=- shape=4d681dba vocab=ab0cea3f
+-/
 @[simp]
 theorem coeff_zero_affineInYJacobian (a b c d : K[X]) :
     (affineInYJacobian a b c d).coeff 0 = derivative b * c - a * derivative d := by
   simp [affineInYJacobian]
 
 /-- If an affine-in-`y` plane map has nonzero constant Jacobian determinant,
-then the derivatives of both `y`-slope polynomials vanish.-/
+then the derivatives of both `y`-slope polynomials vanish.
+@isnad1 id=and.2h6v.s10.1d7733c61616 from=translated src=- shape=e177a547 vocab=169f1280
+-/
 theorem affineInY_slopes_derivative_eq_zero {a b c d : K[X]} {k : K}
     (hk : k ≠ 0)
     (hdet : affineInYJacobian a b c d = C (C k)) :
@@ -93,7 +101,9 @@ theorem affineInY_slopes_derivative_eq_zero {a b c d : K[X]} {k : K}
     _ = 0 := by rw [hy, neg_zero]
 
 /-- Over a characteristic-zero field, the two `y`-slope polynomials in a
-constant-Jacobian affine-in-`y` map are constant.-/
+constant-Jacobian affine-in-`y` map are constant.
+@isnad1 id=and.2h6v.s9.a98b114754fe from=translated src=- shape=c86bbc97 vocab=7b813310
+-/
 theorem affineInY_slopes_constant [CharZero K] {a b c d : K[X]} {k : K}
     (hk : k ≠ 0)
     (hdet : affineInYJacobian a b c d = C (C k)) :
@@ -103,7 +113,9 @@ theorem affineInY_slopes_constant [CharZero K] {a b c d : K[X]} {k : K}
 
 /-- A plane map that is affine in one variable and has nonzero constant
 Jacobian determinant is injective over every characteristic-zero field. This
-rules out a noninjective Keller map within the entire ansatz.-/
+rules out a noninjective Keller map within the entire ansatz.
+@isnad1 id=injectiv.2h6v.s8.04316766bbf9 from=translated src=- shape=4f7fc65e vocab=0bbbe56a
+-/
 theorem affineInY_injective [CharZero K] {a b c d : K[X]} {k : K}
     (hk : k ≠ 0)
     (hdet : affineInYJacobian a b c d = C (C k)) :

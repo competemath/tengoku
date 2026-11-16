@@ -43,6 +43,9 @@ def fractionRingDerivative :
       subst x
       simp)
 
+/--
+@isnad1 id=eq.0h2v.s11.1850a647ec62 from=translated src=- shape=2d95dfb7 vocab=1c4f7dbe
+-/
 @[simp]
 theorem fractionRingDerivative_apply (x : FractionRing K[X]) :
     fractionRingDerivative x = ratFuncFractionRingEquiv
@@ -53,6 +56,9 @@ theorem fractionRingDerivative_apply (x : FractionRing K[X]) :
   rw [Derivation.liftOfRightInverse_apply]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.08ab61961df7 from=translated src=- shape=1717393e vocab=40a3e5de
+-/
 @[simp]
 theorem ratFuncFractionRingEquiv_algebraMap (p : K[X]) :
     ratFuncFractionRingEquiv (algebraMap K[X] (RatFunc K) p) =
@@ -63,7 +69,9 @@ theorem ratFuncFractionRingEquiv_algebraMap (p : K[X]) :
   exact (RatFunc.toFractionRingAlgEquiv K K[X]).commutes p
 
 /-- The transported derivation agrees with the ordinary derivative on the
-embedded polynomial ring.-/
+embedded polynomial ring.
+@isnad1 id=eq.0h2v.s11.7afbddbdee63 from=translated src=- shape=fc92be1c vocab=b0892e3e
+-/
 @[simp]
 theorem fractionRingDerivative_algebraMap (p : K[X]) :
     fractionRingDerivative (algebraMap K[X] (FractionRing K[X]) p) =
@@ -73,7 +81,9 @@ theorem fractionRingDerivative_algebraMap (p : K[X]) :
     rationalDerivative_algebraMap, ratFuncFractionRingEquiv_algebraMap]
 
 /-- In characteristic zero, the constants of the transported derivation are
-exactly the embedded elements of `K`.-/
+exactly the embedded elements of `K`.
+@isnad1 id=iff.0h2v.s11.dd926276e854 from=translated src=- shape=4b0d68c5 vocab=1648a646
+-/
 theorem fractionRingDerivative_eq_zero_iff [CharZero K]
     (x : FractionRing K[X]) :
     fractionRingDerivative x = 0 ↔

@@ -36,6 +36,9 @@ indeterminate constant.-/
 def coefficientwiseDerivative (D : Derivation R L L) : Derivation R L[X] L[X] :=
   PolynomialModule.equivPolynomialSelf.compDer D.mapCoeffs
 
+/--
+@isnad1 id=eq.0h5v.s8.53ee3f578bf9 from=translated src=- shape=53a4f2c5 vocab=c452647a
+-/
 @[simp]
 theorem coeff_coefficientwiseDerivative (D : Derivation R L L) (B : L[X]) (j : ℕ) :
     (coefficientwiseDerivative D B).coeff j = D (B.coeff j) :=
@@ -46,6 +49,9 @@ recurrence.  Its indeterminate represents the outer variable `Q`.-/
 def recurrencePolynomial (D : Derivation R L L) (F : L) (B : L[X]) : L[X] :=
   C 2 * ((X - C F) * coefficientwiseDerivative D B) - C (D F) * B
 
+/--
+@isnad1 id=eq.0h6v.s9.da1a2441008c from=translated src=- shape=0ac34804 vocab=5029dff2
+-/
 theorem coeff_succ_recurrencePolynomial (D : Derivation R L L) (F : L)
     (B : L[X]) (j : ℕ) :
     (recurrencePolynomial D F B).coeff (j + 1) =
@@ -53,6 +59,9 @@ theorem coeff_succ_recurrencePolynomial (D : Derivation R L L) (F : L)
         D F * B.coeff (j + 1) := by
   simp [recurrencePolynomial, sub_mul]
 
+/--
+@isnad1 id=eq.0h5v.s8.83e558a49db6 from=translated src=- shape=a762d7aa vocab=ff034a51
+-/
 theorem coeff_zero_recurrencePolynomial (D : Derivation R L L) (F : L)
     (B : L[X]) :
     (recurrencePolynomial D F B).coeff 0 =
@@ -63,7 +72,9 @@ theorem coeff_zero_recurrencePolynomial (D : Derivation R L L) (F : L)
 /-- The coefficient of highest degree in `B` is constant for `D`.
 
 This statement remains meaningful when `B = 0`: then `natDegree B = 0` and
-the asserted coefficient is zero.-/
+the asserted coefficient is zero.
+@isnad1 id=eq.1h6v.s8.6bd98140279a from=translated src=- shape=d6e8d456 vocab=5666026e
+-/
 theorem top_coefficient_derivative_eq_zero [CharZero L]
     (D : Derivation R L L) (F C₀ : L)
     (B : L[X]) (h : recurrencePolynomial D F B = C C₀) :
@@ -79,7 +90,9 @@ theorem top_coefficient_derivative_eq_zero [CharZero L]
 `D(b_j) = F * D(b_(j+1)) + (D(F) / 2) * b_(j+1)`.
 
 Writing the positive index as `j + 1` makes the formula total: coefficients
-above the degree of `B` are automatically zero.-/
+above the degree of `B` are automatically zero.
+@isnad1 id=eq.1h7v.s9.99bfadb67940 from=translated src=- shape=cd815882 vocab=35c2be2d
+-/
 theorem coefficient_recurrence [CharZero L]
     (D : Derivation R L L) (F C₀ : L) (B : L[X])
     (h : recurrencePolynomial D F B = C C₀) (j : ℕ) :
@@ -91,7 +104,9 @@ theorem coefficient_recurrence [CharZero L]
   linear_combination (1 / 2 : L) * hj
 
 /-- The same recurrence with the indexing convention `b_(j-1)` used in the
-quadratic-reduction argument.-/
+quadratic-reduction argument.
+@isnad1 id=eq.2h7v.s9.bef4996ea26f from=translated src=- shape=c4081ad5 vocab=65f7af91
+-/
 theorem coefficient_recurrence_of_pos [CharZero L]
     (D : Derivation R L L) (F C₀ : L) (B : L[X])
     (h : recurrencePolynomial D F B = C C₀) (j : ℕ) (hj : 0 < j) :
@@ -100,7 +115,9 @@ theorem coefficient_recurrence_of_pos [CharZero L]
   simpa using coefficient_recurrence D F C₀ B h i
 
 /-- The constant coefficient is the only coefficient that sees the constant
-right-hand side.-/
+right-hand side.
+@isnad1 id=eq.1h6v.s9.ce6a877c5beb from=translated src=- shape=b5b84253 vocab=0852455f
+-/
 theorem constant_coefficient_equation (D : Derivation R L L) (F C₀ : L)
     (B : L[X]) (h : recurrencePolynomial D F B = C C₀) :
     -2 * F * D (B.coeff 0) - D F * B.coeff 0 = C₀ := by
@@ -109,7 +126,9 @@ theorem constant_coefficient_equation (D : Derivation R L L) (F C₀ : L)
   simpa using hzero
 
 /-- The complete coefficient package extracted from the centered quadratic
-identity.-/
+identity.
+@isnad1 id=and.1h6v.s10.2f8369b55c5b from=translated src=- shape=e113c441 vocab=133bbf07
+-/
 theorem recurrence_package [CharZero L]
     (D : Derivation R L L) (F C₀ : L) (B : L[X])
     (h : recurrencePolynomial D F B = C C₀) :

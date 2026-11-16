@@ -50,15 +50,24 @@ def jacobianDerivation (Q : K[X][Y]) : Derivation K K[X][Y] K[X][Y] :=
 /-- A second coordinate affine in `y`.-/
 def affineCoordinate (e f : K[X]) : K[X][Y] := C e * Y + C f
 
+/--
+@isnad1 id=eq.0h3v.s9.e47465be8c0d from=translated src=- shape=383ba258 vocab=dec5fdcd
+-/
 @[simp]
 theorem coeff_xDerivative (P : K[X][Y]) (n : ℕ) :
     (xDerivative P).coeff n = derivative (P.coeff n) := by
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.1afe337aa396 from=translated src=- shape=b436d870 vocab=01d31a52
+-/
 @[simp]
 theorem yDerivative_apply (P : K[X][Y]) : yDerivative P = derivative P := by
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.8f90584831cc from=translated src=- shape=bffca410 vocab=2655c9e2
+-/
 @[simp]
 theorem xDerivative_C (p : K[X]) : xDerivative (C p) = C (derivative p) := by
   apply Polynomial.ext
@@ -68,6 +77,9 @@ theorem xDerivative_C (p : K[X]) : xDerivative (C p) = C (derivative p) := by
     simp
   · simp [coeff_xDerivative, coeff_C, hn]
 
+/--
+@isnad1 id=eq.0h1v.s9.a7a2c922b558 from=translated src=- shape=d1dffaa7 vocab=5614c0b1
+-/
 @[simp]
 theorem xDerivative_Y : xDerivative (Y : K[X][Y]) = 0 := by
   apply Polynomial.ext
@@ -77,28 +89,46 @@ theorem xDerivative_Y : xDerivative (Y : K[X][Y]) = 0 := by
     simp
   · simp [coeff_xDerivative, coeff_X, Ne.symm hn]
 
+/--
+@isnad1 id=eq.0h2v.s9.b471952539b5 from=translated src=- shape=8805de39 vocab=ddac39ad
+-/
 @[simp]
 theorem xDerivative_CC (a : K) : xDerivative (CC a : K[X][Y]) = 0 := by
   simp
 
+/--
+@isnad1 id=eq.0h3v.s10.19f65bbecfec from=translated src=- shape=c13540c0 vocab=df53e0f7
+-/
 @[simp]
 theorem xDerivative_affineCoordinate (e f : K[X]) :
     xDerivative (affineCoordinate e f) = C (derivative e) * Y + C (derivative f) := by
   simp [affineCoordinate, Derivation.leibniz]
 
+/--
+@isnad1 id=eq.0h3v.s9.b0a38dbbf9cc from=translated src=- shape=07ad69a2 vocab=9e9eeeb1
+-/
 @[simp]
 theorem yDerivative_affineCoordinate (e f : K[X]) :
     yDerivative (affineCoordinate e f) = C e := by
   simp [affineCoordinate]
 
+/--
+@isnad1 id=eq.1h3v.s6.b6514b4253a5 from=translated src=- shape=da19abb5 vocab=b2c7a5c5
+-/
 theorem natDegree_affineCoordinate {e f : K[X]} (he : e ≠ 0) :
     (affineCoordinate e f).natDegree = 1 := by
   exact natDegree_linear he
 
+/--
+@isnad1 id=eq.1h3v.s6.4d9e118fa034 from=translated src=- shape=c7776bae vocab=cd158f2b
+-/
 theorem leadingCoeff_affineCoordinate {e f : K[X]} (he : e ≠ 0) :
     (affineCoordinate e f).leadingCoeff = e := by
   exact leadingCoeff_linear he
 
+/--
+@isnad1 id=eq.0h3v.s9.70bf7c88513f from=translated src=- shape=de4c61b6 vocab=054a0f13
+-/
 @[simp]
 theorem jacobianDerivation_apply (P Q : K[X][Y]) :
     jacobianDerivation Q P = jacobian P Q := by
@@ -106,45 +136,68 @@ theorem jacobianDerivation_apply (P Q : K[X][Y]) :
     yDerivative_apply, jacobian]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s6.2b2419abf4f6 from=translated src=- shape=9b2ed43d vocab=7f42db7d
+-/
 @[simp]
 theorem jacobian_self (Q : K[X][Y]) : jacobian Q Q = 0 := by
   simp [jacobian]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s7.1c898a328c8c from=translated src=- shape=63475bfa vocab=fbc6d978
+-/
 @[simp]
 theorem jacobian_pow_left (Q : K[X][Y]) (n : ℕ) : jacobian (Q ^ n) Q = 0 := by
   rw [← jacobianDerivation_apply]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s6.8080170b8a99 from=translated src=- shape=2bb6dff1 vocab=cce17b2f
+-/
 @[simp]
 theorem jacobian_CC_left (a : K) (Q : K[X][Y]) : jacobian (CC a) Q = 0 := by
   simp [jacobian]
 
+/--
+@isnad1 id=eq.0h4v.s8.694a57b49ba8 from=translated src=- shape=da835ec5 vocab=ca9e61b5
+-/
 theorem jacobian_sub_left (P R Q : K[X][Y]) :
     jacobian (P - R) Q = jacobian P Q - jacobian R Q := by
   rw [← jacobianDerivation_apply, ← jacobianDerivation_apply,
     ← jacobianDerivation_apply]
   exact map_sub (jacobianDerivation Q) P R
 
+/--
+@isnad1 id=eq.0h4v.s8.e6303a597af2 from=translated src=- shape=da835ec5 vocab=9eeaab21
+-/
 theorem jacobian_add_left (P R Q : K[X][Y]) :
     jacobian (P + R) Q = jacobian P Q + jacobian R Q := by
   rw [← jacobianDerivation_apply, ← jacobianDerivation_apply,
     ← jacobianDerivation_apply]
   exact map_add (jacobianDerivation Q) P R
 
+/--
+@isnad1 id=eq.0h4v.s8.fdbd2b0f6a79 from=translated src=- shape=68556bbe vocab=a8bf8412
+-/
 @[simp]
 theorem jacobian_CC_mul_pow_left (a : K) (Q : K[X][Y]) (n : ℕ) :
     jacobian (CC a * Q ^ n) Q = 0 := by
   rw [← jacobianDerivation_apply]
   simp
 
+/--
+@isnad1 id=eq.0h4v.s9.7a9e2090e90f from=translated src=- shape=4a7b468e vocab=c3406076
+-/
 theorem jacobian_C_left (h : K[X]) (e f : K[X]) :
     jacobian (C h) (affineCoordinate e f) = C (derivative h * e) := by
   rw [jacobian, xDerivative_C, yDerivative_affineCoordinate, yDerivative_apply,
     derivative_C, zero_mul, sub_zero, ← C_mul]
 
 /-- The leading `y`-coefficient of the Jacobian with an affine second
-coordinate.  This is the differential equation used by degree descent.-/
+coordinate.  This is the differential equation used by degree descent.
+@isnad1 id=eq.1h4v.s10.db4f9ff91fe9 from=translated src=- shape=408204fe vocab=0294b556
+-/
 theorem coeff_natDegree_jacobian_affineCoordinate (P : K[X][Y]) (e f : K[X])
     (hn : P.natDegree ≠ 0) :
     (jacobian P (affineCoordinate e f)).coeff P.natDegree =
@@ -262,7 +315,9 @@ theorem eq_C_mul_pow_of_differential_eq [CharZero K] {p e : K[X]} {n : ℕ}
 
 /-- Degree descent for an arbitrary first coordinate.  A constant Jacobian
 against `e(x)y + f(x)` with `e ≠ 0` writes the first coordinate as a scalar
-polynomial in the second coordinate, plus a polynomial in `x` alone.-/
+polynomial in the second coordinate, plus a polynomial in `x` alone.
+@isnad1 id=ex.2h5v.s10.7acaee5c72a0 from=translated src=- shape=f89f0573 vocab=a8e268e5
+-/
 theorem exists_comp_add_C_of_jacobian_eq [CharZero K]
     {P : K[X][Y]} {e f : K[X]} {k : K}
     (he : e ≠ 0)
@@ -359,7 +414,9 @@ theorem exists_comp_add_C_of_jacobian_eq [CharZero K]
   exact descend P.natDegree P rfl hjac
 
 /-- With nonzero affine `y`-slope and nonzero constant Jacobian, the degree
-descent normal form has constant `y`-slope and an affine residual in `x`.-/
+descent normal form has constant `y`-slope and an affine residual in `x`.
+@isnad1 id=ex.3h5v.s10.9c23eae6a4b0 from=translated src=- shape=d0119b90 vocab=a3a23721
+-/
 theorem nonzeroSlope_normal_form [CharZero K]
     {P : K[X][Y]} {e f : K[X]} {k : K}
     (hk : k ≠ 0) (he : e ≠ 0)
@@ -424,6 +481,9 @@ def nonzeroSlopeNormalFormInverse (G : K[X]) (alpha beta eps : K) (f : K[X])
   let x := (p.1 - G.eval p.2 - beta) / alpha
   (x, (p.2 - f.eval x) / eps)
 
+/--
+@isnad1 id=eq.2h8v.s9.df4c9ee9f410 from=translated src=- shape=22bcfc1e vocab=8bbbe94a
+-/
 theorem affineCoordinateMap_eq_nonzeroSlopeNormalFormMap
     {P : K[X][Y]} {e f G : K[X]} {alpha beta eps : K}
     (he : e = C eps)
@@ -448,6 +508,9 @@ theorem affineCoordinateMap_eq_nonzeroSlopeNormalFormMap
   · simp [affineCoordinateMap, nonzeroSlopeNormalFormMap, affineCoordinate, he,
       evalEval]
 
+/--
+@isnad1 id=leftinve.2h6v.s6.f7dc2e508629 from=translated src=- shape=52b04c00 vocab=f54fdc64
+-/
 theorem nonzeroSlopeNormalFormInverse_left
     {G : K[X]} {alpha beta eps : K} {f : K[X]}
     (halpha : alpha ≠ 0) (heps : eps ≠ 0) :
@@ -468,6 +531,9 @@ theorem nonzeroSlopeNormalFormInverse_left
     field_simp
     ring
 
+/--
+@isnad1 id=rightinv.2h6v.s6.abc379259ac6 from=translated src=- shape=52b04c00 vocab=fa64044c
+-/
 theorem nonzeroSlopeNormalFormInverse_right
     {G : K[X]} {alpha beta eps : K} {f : K[X]}
     (halpha : alpha ≠ 0) (heps : eps ≠ 0) :
@@ -490,7 +556,9 @@ theorem nonzeroSlopeNormalFormInverse_right
   · rfl
 
 /-- Arbitrary-degree Keller maps with a nonzero affine second-coordinate
-slope are bijective, with an explicit polynomial inverse after normalization.-/
+slope are bijective, with an explicit polynomial inverse after normalization.
+@isnad1 id=bijectiv.3h5v.s7.d17cbcb15788 from=translated src=- shape=0928b5f3 vocab=8c3b1545
+-/
 theorem nonzeroSlope_bijective [CharZero K]
     {P : K[X][Y]} {e f : K[X]} {k : K}
     (hk : k ≠ 0) (he : e ≠ 0)
@@ -502,13 +570,18 @@ theorem nonzeroSlope_bijective [CharZero K]
   exact ⟨(nonzeroSlopeNormalFormInverse_left halpha heps).injective,
     (nonzeroSlopeNormalFormInverse_right halpha heps).surjective⟩
 
+/--
+@isnad1 id=eq.0h3v.s10.1eaeebf7060f from=translated src=- shape=1adf1b7b vocab=bbbbe65f
+-/
 theorem jacobian_zeroSlope (P : K[X][Y]) (f : K[X]) :
     jacobian P (affineCoordinate 0 f) = -(derivative P * C (derivative f)) := by
   simp [jacobian, affineCoordinate]
 
 /-- In the complementary chart, the actual Jacobian equality forces a
 triangular map: the first coordinate is affine in `y` and the second is affine
-in `x`.-/
+in `x`.
+@isnad1 id=ex.2h4v.s10.bf4ffa8aafc6 from=translated src=- shape=14933072 vocab=f629125d
+-/
 theorem zeroSlope_normal_form [CharZero K]
     {P : K[X][Y]} {f : K[X]} {k : K}
     (hk : k ≠ 0)
@@ -605,6 +678,9 @@ def zeroSlopeNormalFormInverse (eta delta gamma : K) (c : K[X])
   let x := (p.2 - gamma) / delta
   (x, (p.1 - c.eval x) / eta)
 
+/--
+@isnad1 id=eq.2h7v.s9.5a2eba897b9c from=translated src=- shape=81ae5e5d vocab=dbec543d
+-/
 theorem affineCoordinateMap_eq_zeroSlopeNormalFormMap
     {P : K[X][Y]} {f c : K[X]} {eta delta gamma : K}
     (hP : P = CC eta * Y + C c)
@@ -617,6 +693,9 @@ theorem affineCoordinateMap_eq_zeroSlopeNormalFormMap
   · simp [affineCoordinateMap, zeroSlopeNormalFormMap, affineCoordinate, hf,
       evalEval]
 
+/--
+@isnad1 id=leftinve.2h5v.s6.cc6fc4ec0980 from=translated src=- shape=efb0300c vocab=5670d17e
+-/
 theorem zeroSlopeNormalFormInverse_left
     {eta delta gamma : K} {c : K[X]}
     (heta : eta ≠ 0) (hdelta : delta ≠ 0) :
@@ -635,6 +714,9 @@ theorem zeroSlopeNormalFormInverse_left
     field_simp
     ring
 
+/--
+@isnad1 id=rightinv.2h5v.s6.5465baea78be from=translated src=- shape=efb0300c vocab=5d696475
+-/
 theorem zeroSlopeNormalFormInverse_right
     {eta delta gamma : K} {c : K[X]}
     (heta : eta ≠ 0) (hdelta : delta ≠ 0) :
@@ -656,7 +738,9 @@ theorem zeroSlopeNormalFormInverse_right
 
 /-- Every plane map whose second coordinate is affine in `y` and whose actual
 formal Jacobian is a nonzero constant is bijective, with no degree bound on
-the first coordinate.-/
+the first coordinate.
+@isnad1 id=bijectiv.2h5v.s7.298371fc5b98 from=translated src=- shape=f09004f3 vocab=8c3b1545
+-/
 theorem affineCoordinate_bijective [CharZero K]
     {P : K[X][Y]} {e f : K[X]} {k : K}
     (hk : k ≠ 0)
@@ -671,6 +755,9 @@ theorem affineCoordinate_bijective [CharZero K]
       (zeroSlopeNormalFormInverse_right heta hdelta).surjective⟩
   · exact nonzeroSlope_bijective hk he hjac
 
+/--
+@isnad1 id=injectiv.2h5v.s7.76785ee68c7d from=translated src=- shape=f09004f3 vocab=0f5cb93b
+-/
 theorem affineCoordinate_injective [CharZero K]
     {P : K[X][Y]} {e f : K[X]} {k : K}
     (hk : k ≠ 0)

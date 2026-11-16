@@ -36,7 +36,9 @@ open JacobianTwo.VariableLeadingQuadratic
 variable {K : Type*} [Field K] [CharZero K]
 
 /-- An odd-degree Keller mate with the UFD square-root shape forces the square
-root `h` of the quadratic leading coefficient to be a unit.-/
+root `h` of the quadratic leading coefficient to be a unit.
+@isnad1 id=isunit.7h9v.s9.aa05787ec58c from=translated src=- shape=24e12269 vocab=80318ffc
+-/
 theorem odd_residual_squareRoot_isUnit
     {eps k lam : K} {h g f : K[X]} {m : ℕ} (P : K[X][Y])
     (heps : eps ≠ 0) (hk : k ≠ 0) (hlam : lam ≠ 0) (hh : h ≠ 0)
@@ -60,7 +62,9 @@ theorem odd_residual_squareRoot_isUnit
 
 /-- In every Keller pair whose second coordinate is quadratic in `y`, the
 quadratic leading coefficient is a unit of `K[X]`, hence cannot genuinely
-depend on `x`.-/
+depend on `x`.
+@isnad1 id=isunit.3h6v.s7.22f4b1cb5472 from=translated src=- shape=a0315d19 vocab=6178ceae
+-/
 theorem quadratic_leadingCoefficient_isUnit
     {P : K[X][Y]} {a g f : K[X]} {k : K}
     (ha : a ≠ 0) (hk : k ≠ 0)
@@ -98,7 +102,9 @@ def variableQuadraticCoordinateMap
 
 omit [CharZero K] in
 /-- A scalar specialization of the variable-leading coordinate is the
-constant-leading coordinate definitionally.-/
+constant-leading coordinate definitionally.
+@isnad1 id=eq.0h4v.s7.904b609c52c5 from=translated src=- shape=685195c5 vocab=b6a352e9
+-/
 theorem variableQuadraticCoordinate_C_eq
     (eps : K) (g f : K[X]) :
     variableQuadraticCoordinate (C eps) g f =
@@ -107,7 +113,9 @@ theorem variableQuadraticCoordinate_C_eq
 
 omit [CharZero K] in
 /-- The corresponding evaluation maps agree under the scalar
-specialization.-/
+specialization.
+@isnad1 id=eq.0h5v.s7.ba82a3da41bc from=translated src=- shape=c9533cec vocab=593c1297
+-/
 theorem variableQuadraticCoordinateMap_C_eq
     (P : K[X][Y]) (eps : K) (g f : K[X]) :
     variableQuadraticCoordinateMap P (C eps) g f =
@@ -115,7 +123,9 @@ theorem variableQuadraticCoordinateMap_C_eq
   rfl
 
 /-- Therefore every Keller map whose second coordinate is quadratic in `y`
-is bijective.-/
+is bijective.
+@isnad1 id=bijectiv.3h6v.s7.ca55252c63cb from=translated src=- shape=a43b46f0 vocab=8bde1e3e
+-/
 theorem variableLeadingQuadratic_bijective
     {P : K[X][Y]} {a g f : K[X]} {k : K}
     (ha : a ≠ 0) (hk : k ≠ 0)
@@ -134,14 +144,18 @@ theorem variableLeadingQuadratic_bijective
 
 omit [CharZero K] in
 /-- With zero quadratic coefficient, `variableQuadraticCoordinate` is exactly
-the affine coordinate.-/
+the affine coordinate.
+@isnad1 id=eq.0h3v.s6.da397491a4dd from=translated src=- shape=b2996637 vocab=79efd45d
+-/
 theorem variableQuadraticCoordinate_zero_eq (g f : K[X]) :
     variableQuadraticCoordinate 0 g f = affineCoordinate g f := by
   simp [variableQuadraticCoordinate, affineCoordinate]
 
 omit [CharZero K] in
 /-- The corresponding evaluation map also reduces to the affine-coordinate
-map.-/
+map.
+@isnad1 id=eq.0h4v.s6.6043000690af from=translated src=- shape=745ebfd0 vocab=f482c113
+-/
 theorem variableQuadraticCoordinateMap_zero_eq
     (P : K[X][Y]) (g f : K[X]) :
     variableQuadraticCoordinateMap P 0 g f =
@@ -152,7 +166,9 @@ theorem variableQuadraticCoordinateMap_zero_eq
 
 /-- Full at-most-quadratic wrapper.  The nonzero branch is the
 variable-leading theorem, while the zero branch is the affine-coordinate
-theorem.-/
+theorem.
+@isnad1 id=bijectiv.2h6v.s7.e6aad1721b56 from=translated src=- shape=f3a63253 vocab=8bde1e3e
+-/
 theorem variableLeadingQuadratic_bijective_full
     {P : K[X][Y]} {a g f : K[X]} {k : K}
     (hk : k ≠ 0)

@@ -56,7 +56,9 @@ structure ReducedCenterData (eps : K) (h g f : K[X]) where
         algebraMap K[X] (FractionRing K[X]) q ^ 2
 
 /-- If `h` does not divide `g`, gcd reduction produces a noncancelling
-denominator for both the center and the centered residual.-/
+denominator for both the center and the centered residual.
+@isnad1 id=nonempty.3h5v.s7.d2d12a9f145c from=translated src=- shape=798432f3 vocab=1bf9524c
+-/
 theorem exists_reducedCenterData_of_not_dvd
     {eps : K} {h g f : K[X]}
     (heps : eps ≠ 0) (hh : h ≠ 0) (hnot : ¬ h ∣ g) :
@@ -142,7 +144,9 @@ theorem exists_reducedCenterData_of_not_dvd
       residual_eq := hresidual }⟩
 
 /-- The direct fraction-field certificate forces the square root `h` of the
-quadratic leading coefficient to divide the linear coefficient `g`.-/
+quadratic leading coefficient to divide the linear coefficient `g`.
+@isnad1 id=dvd.3h11v.s9.a6424c5e7b75 from=translated src=- shape=d2c60f43 vocab=c00fc556
+-/
 theorem h_dvd_g_of_certificate
     {eps k lam : K} {h g f : K[X]} {P : K[X][Y]}
     {H B : (FractionRing K[X])[X]} {m : ℕ}

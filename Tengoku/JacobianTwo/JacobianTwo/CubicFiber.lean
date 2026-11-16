@@ -49,18 +49,24 @@ def derivativePolynomial (b c : R) : Polynomial R :=
     Polynomial.C b
 
 /-- Evaluation of the polynomial fiber equation is the scalar expression
-`p`.-/
+`p`.
+@isnad1 id=eq.0h5v.s5.bbde5f943716 from=translated src=- shape=f3c3982f vocab=15f6fd6e
+-/
 theorem eval_fiberPolynomial (a b c T : R) :
     (fiberPolynomial a b c).eval T = p a b c T := by
   simp [fiberPolynomial, p]
 
-/-- Formal differentiation of the cubic gives `derivativePolynomial`.-/
+/-- Formal differentiation of the cubic gives `derivativePolynomial`.
+@isnad1 id=eq.0h4v.s8.40e01e4f5386 from=translated src=- shape=6ec6ab86 vocab=024b8008
+-/
 theorem derivative_fiberPolynomial (a b c : R) :
     (fiberPolynomial a b c).derivative = derivativePolynomial b c := by
   simp [fiberPolynomial, derivativePolynomial, Polynomial.C_ofNat]
   ring
 
-/-- Evaluation of the formal derivative is the scalar expression `r`.-/
+/-- Evaluation of the formal derivative is the scalar expression `r`.
+@isnad1 id=eq.0h4v.s5.e9d19d0d8bb0 from=translated src=- shape=f9f88988 vocab=391930c8
+-/
 theorem eval_derivativePolynomial (b c T : R) :
     (derivativePolynomial b c).eval T = r b c T := by
   simp [derivativePolynomial, r]
@@ -80,7 +86,9 @@ def cubicDiscriminant (a b c : R) : R :=
     27 * c ^ 2 * (-2 * a) ^ 2
 
 /-- The universal cubic discriminant coefficient expression is exactly `-4`
-times the nonproper-set polynomial.-/
+times the nonproper-set polynomial.
+@isnad1 id=eq.0h4v.s6.772961e0f444 from=translated src=- shape=01fbafc6 vocab=1bdecf0d
+-/
 theorem cubicDiscriminant_eq (a b c : R) :
     cubicDiscriminant a b c = -4 * nonproperPolynomial a b c := by
   simp [cubicDiscriminant, nonproperPolynomial]
@@ -88,7 +96,9 @@ theorem cubicDiscriminant_eq (a b c : R) :
 
 /-- Viewed as a quadratic in `a`, the polynomial cutting out the discriminant
 hypersurface has discriminant `-4 * (3*b*c - 4)^3`.  The identity is the
-finite algebraic input to the generic nonsquare-discriminant argument.-/
+finite algebraic input to the generic nonsquare-discriminant argument.
+@isnad1 id=eq.0h3v.s8.30216a200b29 from=translated src=- shape=d7e18ccd vocab=a5ba8fc6
+-/
 theorem nonproperPolynomial_discriminantInA (b c : R) :
     (16 - 18 * b * c) ^ 2 -
         4 * (27 * c ^ 2) * (b ^ 3 * c - b ^ 2) =
@@ -97,7 +107,9 @@ theorem nonproperPolynomial_discriminantInA (b c : R) :
 
 /-- An integral-coefficient Bezout certificate for the common-root
 condition.  Specializing both `p` and `r` to zero leaves
-`2 * nonproperPolynomial = 0`.-/
+`2 * nonproperPolynomial = 0`.
+@isnad1 id=eq.0h5v.s10.7db85f0cbaf9 from=translated src=- shape=f1da0f76 vocab=60166b9f
+-/
 theorem resultant_certificate (a b c T : R) :
     ((-27 * a * c ^ 2 + 15 * b * c - 16) +
         (-9 * b * c ^ 2 + 12 * c) * T) * p a b c T +
@@ -109,7 +121,9 @@ theorem resultant_certificate (a b c T : R) :
   ring
 
 /-- A common root of the fiber cubic and its derivative lies on the proposed
-nonproper-value hypersurface.-/
+nonproper-value hypersurface.
+@isnad1 id=eq.2h5v.s6.db6824f7f6c3 from=translated src=- shape=f460f5b7 vocab=f4014a7a
+-/
 theorem common_root_forces_nonproperPolynomial_zero
     {K : Type*} [Field K] [CharZero K] (a b c T : K)
     (hp : p a b c T = 0) (hr : r b c T = 0) :
@@ -123,7 +137,9 @@ theorem common_root_forces_nonproperPolynomial_zero
 /-- The quadratic expression that controls the large-`T` chart.-/
 def escapeDenominator (a b T : R) : R := T ^ 2 - b * T + 3 * a
 
-/-- A denominator-free elimination identity.-/
+/-- A denominator-free elimination identity.
+@isnad1 id=eq.0h5v.s6.2c06df657172 from=translated src=- shape=835207e9 vocab=4d8875d1
+-/
 theorem derivative_mul_eq (a b c T : R) :
     T * r b c T = 3 * p a b c T + 2 * escapeDenominator a b T := by
   simp [p, r, escapeDenominator]
@@ -156,7 +172,9 @@ def announcedMap (q : Fin 3 → K) : Fin 3 → K :=
 
 omit [CharZero K] in
 /-- The simple projective root at infinity, present when the target's third
-coordinate is zero, reconstructs to this finite source point.-/
+coordinate is zero, reconstructs to this finite source point.
+@isnad1 id=eq.0h3v.s7.c7f7eaf0c93d from=translated src=- shape=06438b6c vocab=cab6898a
+-/
 theorem announcedMap_at_x_zero (a b : K) :
     announcedMap ![0, b, a - 4 * b ^ 2] = ![a, b, 0] := by
   funext i
@@ -167,7 +185,9 @@ theorem announcedMap_at_x_zero (a b : K) :
   · simp [announcedMap, announcedThird]
 
 /-- Over `ℂ`, the scalar definition is the map certified in
-`Counterexample`.-/
+`Counterexample`.
+@isnad1 id=eq.0h1v.s4.b7fe7fa2bbf9 from=translated src=- shape=951f9ef5 vocab=3c8c1574
+-/
 theorem announcedMap_eq_complexMap (q : Fin 3 → ℂ) :
     announcedMap q = Counterexample.complexMap q := by
   rw [Counterexample.complexMap_formula]
@@ -194,7 +214,9 @@ def repeatedRootTarget (T c : K) : Fin 3 → K :=
 
 omit [CharZero K] in
 /-- The repeated-root parametrization lies on the discriminant
-hypersurface.-/
+hypersurface.
+@isnad1 id=eq.0h3v.s6.4f980c940a7b from=translated src=- shape=04661831 vocab=e67a4541
+-/
 theorem repeatedRootTarget_nonproperPolynomial (T c : K) :
     nonproperPolynomial (repeatedRootTarget T c 0)
         (repeatedRootTarget T c 1) (repeatedRootTarget T c 2) = 0 := by
@@ -206,13 +228,17 @@ def tripleRootTarget (T : K) : Fin 3 → K :=
   ![T ^ 2 / 3, 2 * T, 2 / (3 * T)]
 
 /-- The triple-root targets are exactly on the two displayed equations for
-the omitted curve.-/
+the omitted curve.
+@isnad1 id=and.1h2v.s7.e6abd52a8c7a from=translated src=- shape=cf6592b1 vocab=9c8906b8
+-/
 theorem tripleRootTarget_on_omittedCurve (T : K) (hT : T ≠ 0) :
     3 * tripleRootTarget T 1 * tripleRootTarget T 2 = 4 ∧
       (tripleRootTarget T 1) ^ 2 = 12 * tripleRootTarget T 0 := by
   constructor <;> simp [tripleRootTarget] <;> field_simp [hT] <;> ring
 
-/-- At a target on the omitted curve, the fiber polynomial is an exact cube.-/
+/-- At a target on the omitted curve, the fiber polynomial is an exact cube.
+@isnad1 id=eq.1h3v.s7.d9a24d146beb from=translated src=- shape=fc184841 vocab=0188c893
+-/
 theorem p_tripleRootTarget (T U : K) (hT : T ≠ 0) :
     p (tripleRootTarget T 0) (tripleRootTarget T 1)
         (tripleRootTarget T 2) U =
@@ -228,7 +254,9 @@ def escapingSource (T c epsilon : K) : Fin 3 → K :=
     reconstructedZ c T epsilon]
 
 /-- Raw first-coordinate reconstruction, before imposing the cubic equation
-or substituting the derivative formula.-/
+or substituting the derivative formula.
+@isnad1 id=eq.1h4v.s8.eda50381f082 from=translated src=- shape=ff92438b vocab=2919264e
+-/
 theorem announcedFirst_reconstructed_raw (c T rho : K) (hrho : rho ≠ 0) :
     announcedFirst (reconstructedX rho) (reconstructedY T rho)
         (reconstructedZ c T rho) =
@@ -237,7 +265,9 @@ theorem announcedFirst_reconstructed_raw (c T rho : K) (hrho : rho ≠ 0) :
   field_simp [hrho]
   ring
 
-/-- Raw second-coordinate reconstruction.-/
+/-- Raw second-coordinate reconstruction.
+@isnad1 id=eq.1h4v.s7.7bf0cd68b7c0 from=translated src=- shape=e9d95039 vocab=cfd5e193
+-/
 theorem announcedSecond_reconstructed_raw (c T rho : K) (hrho : rho ≠ 0) :
     announcedSecond (reconstructedX rho) (reconstructedY T rho)
         (reconstructedZ c T rho) =
@@ -246,7 +276,9 @@ theorem announcedSecond_reconstructed_raw (c T rho : K) (hrho : rho ≠ 0) :
   field_simp [hrho]
   ring
 
-/-- Raw third-coordinate reconstruction.-/
+/-- Raw third-coordinate reconstruction.
+@isnad1 id=eq.1h4v.s6.42f761d3d107 from=translated src=- shape=d17f6d08 vocab=b607931d
+-/
 theorem announcedThird_reconstructed_raw (c T rho : K) (hrho : rho ≠ 0) :
     announcedThird (reconstructedX rho) (reconstructedY T rho)
         (reconstructedZ c T rho) = c := by
@@ -257,7 +289,9 @@ theorem announcedThird_reconstructed_raw (c T rho : K) (hrho : rho ≠ 0) :
 /-- Exact image of the escaping family.  As `epsilon` tends to zero, the
 first source coordinate is `2/epsilon` while the image tends to
 `repeatedRootTarget T c`.  This theorem certifies the algebraic identity; the
-limit statement itself is kept in the accompanying mathematical note.-/
+limit statement itself is kept in the accompanying mathematical note.
+@isnad1 id=eq.1h4v.s8.7a81cd3fd0b2 from=translated src=- shape=7c2bbec9 vocab=a37b7b22
+-/
 theorem announcedMap_escapingSource (T c epsilon : K) (hepsilon : epsilon ≠ 0) :
     announcedMap (escapingSource T c epsilon) =
       ![T ^ 2 - c * T ^ 3 + epsilon * T / 2,
@@ -271,7 +305,9 @@ theorem announcedMap_escapingSource (T c epsilon : K) (hepsilon : epsilon ≠ 0)
     ring
 
 /-- If `T` lies on the fiber cubic and `r(T)` is nonzero, reconstruction sends
-the source to the target `(a, b, c)`.-/
+the source to the target `(a, b, c)`.
+@isnad1 id=eq.2h5v.s6.072e2e6232e7 from=translated src=- shape=32def388 vocab=1f0ef034
+-/
 theorem announcedMap_reconstructed (a b c T : K)
     (hp : p a b c T = 0) (hr : r b c T ≠ 0) :
     announcedMap (reconstructedSource b c T) = ![a, b, c] := by
@@ -297,7 +333,9 @@ theorem announcedMap_reconstructed (a b c T : K)
     simp [announcedMap, reconstructedSource, hfirst, hsecond, hthird]
 
 omit [CharZero K] in
-/-- Solving the cubic equation for `c`, valid away from `T = 0`.-/
+/-- Solving the cubic equation for `c`, valid away from `T = 0`.
+@isnad1 id=eq.2h5v.s7.e1013b8b125e from=translated src=- shape=5b4fef29 vocab=ec106a73
+-/
 theorem eliminate_c (a b c T : K) (hp : p a b c T = 0) (hT : T ≠ 0) :
     c = (2 * T ^ 2 - b * T + 2 * a) / T ^ 3 := by
   field_simp [hT]
@@ -306,7 +344,9 @@ theorem eliminate_c (a b c T : K) (hp : p a b c T = 0) (hT : T ≠ 0) :
 
 omit [CharZero K] in
 /-- The exact cancellation behind
-`x = T / (T^2 - b*T + 3*a)` after eliminating `c`.-/
+`x = T / (T^2 - b*T + 3*a)` after eliminating `c`.
+@isnad1 id=eq.3h5v.s6.6dc969aa33d0 from=translated src=- shape=d8245bbc vocab=3e9dcea9
+-/
 theorem largeT_x_cancellation (a b c T : K)
     (hp : p a b c T = 0) (hT : T ≠ 0) (hr : r b c T ≠ 0) :
     reconstructedX (r b c T) = T / escapeDenominator a b T := by
@@ -320,7 +360,9 @@ theorem largeT_x_cancellation (a b c T : K)
   field_simp [hr, hden]
   simpa [mul_comm] using hder.symm
 
-/-- The exact cancellation behind `y = b - 3*a/T` after eliminating `c`.-/
+/-- The exact cancellation behind `y = b - 3*a/T` after eliminating `c`.
+@isnad1 id=eq.2h5v.s7.630386864def from=translated src=- shape=2955973f vocab=2785113b
+-/
 theorem largeT_y_cancellation (a b c T : K)
     (hp : p a b c T = 0) (hT : T ≠ 0) :
     reconstructedY T (r b c T) = b - 3 * a / T := by
@@ -342,7 +384,9 @@ def zInfinityExpansion (a b u : K) : K :=
 
 /-- After eliminating `c` with the cubic equation, the reconstructed `z`
 coordinate is exactly a polynomial in `1/T`, with constant term
-`a - 4*b^2`.-/
+`a - 4*b^2`.
+@isnad1 id=eq.2h5v.s6.21980046ced2 from=translated src=- shape=167a97af vocab=e76c5408
+-/
 theorem largeT_z_cancellation (a b c T : K)
     (hp : p a b c T = 0) (hT : T ≠ 0) :
     reconstructedZ c T (r b c T) = zInfinityExpansion a b (1 / T) := by

@@ -34,7 +34,9 @@ open JacobianTwo.VariableLeadingQuadratic
 variable {K : Type*} [Field K] [CharZero K]
 
 omit [CharZero K] in
-/-- The two routes for embedding a scalar into `Frac(K[X])` agree.-/
+/-- The two routes for embedding a scalar into `Frac(K[X])` agree.
+@isnad1 id=eq.0h2v.s9.3e5d8dd3b7c2 from=translated src=- shape=abbd2878 vocab=e5feb544
+-/
 theorem toPolynomialFractionField_C (a : K) :
     toPolynomialFractionField (C a) =
       algebraMap K (FractionRing K[X]) a := by
@@ -46,7 +48,9 @@ theorem toPolynomialFractionField_C (a : K) :
       IsScalarTower.algebraMap_apply K K[X] (FractionRing K[X]) a
 
 /-- If `g = h*s`, cancellation in the fraction field makes the quadratic
-center an embedded polynomial.-/
+center an embedded polynomial.
+@isnad1 id=eq.2h4v.s8.03d408a31442 from=translated src=- shape=6ee2184c vocab=2ac71f17
+-/
 theorem fractionQuadraticCenter_eq_of_eq_mul
     {eps : K} {h s : K[X]} (heps : eps ≠ 0) (hh : h ≠ 0) :
     fractionQuadraticCenter eps h (h * s) =
@@ -77,7 +81,9 @@ theorem fractionQuadraticCenter_eq_of_eq_mul
   field_simp [hhFraction, hepsFraction]
 
 /-- After `g = h*s`, the centered residual is also the image of an explicit
-polynomial in `K[X]`.-/
+polynomial in `K[X]`.
+@isnad1 id=eq.2h5v.s9.43e106e1ee68 from=translated src=- shape=146ad1fd vocab=ae1dc1f7
+-/
 theorem fractionQuadraticCenteredResidual_eq_of_eq_mul
     {eps : K} {h s f : K[X]} (heps : eps ≠ 0) (hh : h ≠ 0) :
     fractionQuadraticCenteredResidual eps h (h * s) f =
@@ -89,7 +95,9 @@ theorem fractionQuadraticCenteredResidual_eq_of_eq_mul
 
 omit [CharZero K] in
 /-- Evaluating a constant-field polynomial at an embedded polynomial remains
-in the embedded polynomial ring, with composition as an explicit witness.-/
+in the embedded polynomial ring, with composition as an explicit witness.
+@isnad1 id=eq.0h3v.s10.92a52e2461ae from=translated src=- shape=618b4b14 vocab=7a5a4afb
+-/
 theorem aeval_toPolynomialFractionField
     (F₀ S : K[X]) :
     aeval (toPolynomialFractionField F₀) S =
@@ -98,7 +106,9 @@ theorem aeval_toPolynomialFractionField
     eval_map_algebraMap_at_toPolynomialFractionField S F₀
 
 omit [CharZero K] in
-/-- Fraction-field differentiation preserves the embedded polynomial ring.-/
+/-- Fraction-field differentiation preserves the embedded polynomial ring.
+@isnad1 id=eq.0h2v.s11.de4e1234dbd8 from=translated src=- shape=17eed951 vocab=86f0c566
+-/
 theorem fractionRingDerivative_toPolynomialFractionField (p : K[X]) :
     fractionRingDerivative (toPolynomialFractionField p) =
       toPolynomialFractionField (derivative p) := by
@@ -106,7 +116,9 @@ theorem fractionRingDerivative_toPolynomialFractionField (p : K[X]) :
 
 /-- Once `h ∣ g`, the direct certificate's constant-coefficient recurrence
 shows that the transformed Jacobian constant `k/h` belongs to the embedded
-polynomial ring.-/
+polynomial ring.
+@isnad1 id=mem.4h11v.s10.fc0242a3023c from=translated src=- shape=2dd31ab8 vocab=180b07d8
+-/
 theorem fractionCenteredJacobianConstant_mem_base_of_certificate_of_dvd
     {eps k lam : K} {h g f : K[X]} {m : ℕ} {P : K[X][Y]}
     {H B : (FractionRing K[X])[X]}
@@ -146,7 +158,9 @@ theorem fractionCenteredJacobianConstant_mem_base_of_certificate_of_dvd
   simp only [toPolynomialFractionField, map_sub, map_mul, map_neg, map_ofNat]
 
 /-- Step 6: if the denominator descent has established `h ∣ g`, the direct
-certificate forces the leading polynomial `h` to be a unit.-/
+certificate forces the leading polynomial `h` to be a unit.
+@isnad1 id=isunit.5h11v.s9.c8cd66cc9533 from=translated src=- shape=7e62f279 vocab=d61721f4
+-/
 theorem isUnit_of_certificate_of_dvd
     {eps k lam : K} {h g f : K[X]} {m : ℕ} {P : K[X][Y]}
     {H B : (FractionRing K[X])[X]}

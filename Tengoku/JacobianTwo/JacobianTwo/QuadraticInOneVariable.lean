@@ -154,7 +154,9 @@ def zeroSlopeNormalFormInverse (eta delta gamma : K) (c : K[X])
   (x, (p.1 - c.eval x) / eta)
 
 /-- Substituting the coefficient normal form turns the original presentation
-of the map into `normalFormMap`.-/
+of the map into `normalFormMap`.
+@isnad1 id=eq.4h11v.s10.2b36cf54e80d from=translated src=- shape=4e09a3f9 vocab=b7e42108
+-/
 theorem quadraticInYMap_eq_normalFormMap {a b c e f : K[X]}
     {lam mu alpha beta eps : K}
     (he : e = C eps)
@@ -170,7 +172,9 @@ theorem quadraticInYMap_eq_normalFormMap {a b c e f : K[X]}
   ring
 
 /-- The displayed inverse is a left inverse whenever the two triangular
-slopes are nonzero.-/
+slopes are nonzero.
+@isnad1 id=leftinve.2h7v.s6.918f88e454b7 from=translated src=- shape=99c6ae8b vocab=ae55e2f4
+-/
 theorem normalFormInverse_left {lam mu alpha beta eps : K} {f : K[X]}
     (halpha : alpha ≠ 0) (heps : eps ≠ 0) :
     Function.LeftInverse (normalFormInverse lam mu alpha beta eps f)
@@ -191,7 +195,9 @@ theorem normalFormInverse_left {lam mu alpha beta eps : K} {f : K[X]}
     field_simp
     ring
 
-/-- The displayed inverse is also a right inverse.-/
+/-- The displayed inverse is also a right inverse.
+@isnad1 id=rightinv.2h7v.s6.4017cdc70259 from=translated src=- shape=99c6ae8b vocab=d2cfc24b
+-/
 theorem normalFormInverse_right {lam mu alpha beta eps : K} {f : K[X]}
     (halpha : alpha ≠ 0) (heps : eps ≠ 0) :
     Function.RightInverse (normalFormInverse lam mu alpha beta eps f)
@@ -213,7 +219,9 @@ theorem normalFormInverse_right {lam mu alpha beta eps : K} {f : K[X]}
   · rfl
 
 /-- Substituting the `e = 0` coefficient normal form gives the complementary
-triangular map.-/
+triangular map.
+@isnad1 id=eq.4h9v.s9.bd72033a4749 from=translated src=- shape=0f21685a vocab=129fb831
+-/
 theorem quadraticInYMap_eq_zeroSlopeNormalFormMap {a b c e f : K[X]}
     {eta delta gamma : K}
     (ha : a = 0) (hb : b = C eta) (he : e = 0)
@@ -224,7 +232,9 @@ theorem quadraticInYMap_eq_zeroSlopeNormalFormMap {a b c e f : K[X]}
   simp only [quadraticInYMap, zeroSlopeNormalFormMap, ha, hb, he, hf, eval_add,
     eval_mul, eval_C, eval_X, eval_zero, zero_mul, zero_add]
 
-/-- The displayed complementary-chart inverse is a left inverse.-/
+/-- The displayed complementary-chart inverse is a left inverse.
+@isnad1 id=leftinve.2h5v.s6.ebb93f5ec7b6 from=translated src=- shape=efb0300c vocab=e7d07cae
+-/
 theorem zeroSlopeNormalFormInverse_left {eta delta gamma : K} {c : K[X]}
     (heta : eta ≠ 0) (hdelta : delta ≠ 0) :
     Function.LeftInverse (zeroSlopeNormalFormInverse eta delta gamma c)
@@ -242,7 +252,9 @@ theorem zeroSlopeNormalFormInverse_left {eta delta gamma : K} {c : K[X]}
     field_simp
     ring
 
-/-- The displayed complementary-chart inverse is a right inverse.-/
+/-- The displayed complementary-chart inverse is a right inverse.
+@isnad1 id=rightinv.2h5v.s6.42bed309e4c6 from=translated src=- shape=efb0300c vocab=b0ae2704
+-/
 theorem zeroSlopeNormalFormInverse_right {eta delta gamma : K} {c : K[X]}
     (heta : eta ≠ 0) (hdelta : delta ≠ 0) :
     Function.RightInverse (zeroSlopeNormalFormInverse eta delta gamma c)
@@ -268,7 +280,9 @@ all five scalar parameters explicitly; in particular `alpha * eps = k`.
 The hypotheses are exactly the coefficients of `y²`, `y`, and `1` in the
 Jacobian determinant, together with `k ≠ 0` and the choice of the target chart
 in which `e ≠ 0`.  The complementary chart `e = 0` is handled separately in
-`quadraticInY_bijective_full`.-/
+`quadraticInY_bijective_full`.
+@isnad1 id=ex.5h7v.s12.48db5792b166 from=translated src=- shape=b301397e vocab=7f34478b
+-/
 theorem quadraticInY_normal_form [CharZero K] {a b c e f : K[X]} {k : K}
     (hk : k ≠ 0) (he : e ≠ 0)
     (hquad : derivative a * e - C (2 : K) * a * derivative e = 0)
@@ -348,7 +362,9 @@ theorem quadraticInY_normal_form [CharZero K] {a b c e f : K[X]} {k : K}
 
 /-- In the complementary chart `e = 0`, the coefficient equations force the
 map into the triangular form `(eta * y + c(x), delta * x + gamma)`, with both
-slopes nonzero.-/
+slopes nonzero.
+@isnad1 id=ex.4h7v.s11.569eba5f0ee6 from=translated src=- shape=1b396477 vocab=391891cc
+-/
 theorem quadraticInY_zeroSlope_normal_form [CharZero K]
     {a b c e f : K[X]} {k : K}
     (hk : k ≠ 0) (he : e = 0)
@@ -420,7 +436,9 @@ theorem quadraticInY_zeroSlope_normal_form [CharZero K]
 /-- In the target chart `e ≠ 0`, a quadratic-in-one-variable plane map
 satisfying the three nonzero constant-Jacobian coefficient identities is
 bijective, with the explicit polynomial inverse `normalFormInverse` after
-normalization.-/
+normalization.
+@isnad1 id=bijectiv.5h7v.s11.0ab5bfbdb8dd from=translated src=- shape=5b87750d vocab=7753eeff
+-/
 theorem quadraticInY_bijective [CharZero K] {a b c e f : K[X]} {k : K}
     (hk : k ≠ 0) (he : e ≠ 0)
     (hquad : derivative a * e - C (2 : K) * a * derivative e = 0)
@@ -440,7 +458,9 @@ theorem quadraticInY_bijective [CharZero K] {a b c e f : K[X]} {k : K}
 
 /-- Every quadratic-in-one-variable plane map satisfying the three nonzero
 constant-Jacobian coefficient identities is bijective.  The proof covers both
-target charts and supplies an explicit polynomial inverse in each chart.-/
+target charts and supplies an explicit polynomial inverse in each chart.
+@isnad1 id=bijectiv.4h7v.s11.b2d1bb592663 from=translated src=- shape=daeccccc vocab=7753eeff
+-/
 theorem quadraticInY_bijective_full [CharZero K] {a b c e f : K[X]} {k : K}
     (hk : k ≠ 0)
     (hquad : derivative a * e - C (2 : K) * a * derivative e = 0)
@@ -458,7 +478,9 @@ theorem quadraticInY_bijective_full [CharZero K] {a b c e f : K[X]} {k : K}
 
 /-- No noninjective Keller map occurs in the full quadratic-in-one-variable
 ansatz.  Both target charts have explicit normal forms and two-sided inverses
-in `quadraticInY_bijective_full`.-/
+in `quadraticInY_bijective_full`.
+@isnad1 id=injectiv.4h7v.s11.adebe42a9707 from=translated src=- shape=daeccccc vocab=93495be4
+-/
 theorem quadraticInY_injective [CharZero K] {a b c e f : K[X]} {k : K}
     (hk : k ≠ 0)
     (hquad : derivative a * e - C (2 : K) * a * derivative e = 0)

@@ -29,7 +29,9 @@ open JacobianTwo.VariableLeadingQuadratic
 variable {R L : Type*} [CommRing R] [Field L] [Algebra R L]
 
 /-- A constant has no odd part in the decomposition relative to
-`eps * X ^ 2 + F`.-/
+`eps * X ^ 2 + F`.
+@isnad1 id=and.2h6v.s8.310f831bf89e from=translated src=- shape=c93f835f vocab=e1d82084
+-/
 theorem parityComponents_eq_constant
     {E A : L[X]} {eps F C₀ : L} (heps : eps ≠ 0)
     (h : E.comp (parityQuadratic eps F) +
@@ -39,7 +41,9 @@ theorem parityComponents_eq_constant
   simpa using h
 
 /-- If the centered quadratic Jacobian is constant, its odd coefficient is
-zero and its even coefficient is exactly the recurrence polynomial.-/
+zero and its even coefficient is exactly the recurrence polynomial.
+@isnad1 id=and.3h8v.s9.61257e3f5f47 from=translated src=- shape=73e9d33b vocab=0c9cc530
+-/
 theorem coefficientwiseDerivative_eq_zero_and_recurrence_of_centeredJacobian_eq_C
     [CharZero L]
     (D : Derivation R L L) (H B : L[X]) (eps F C₀ : L)
@@ -76,7 +80,9 @@ theorem coefficientwiseDerivative_eq_zero_and_recurrence_of_centeredJacobian_eq_
   exact (mul_eq_zero.mp hodd).resolve_left hCscalar
 
 /-- The recurrence package follows directly from a constant centered
-quadratic Jacobian.-/
+quadratic Jacobian.
+@isnad1 id=and.3h8v.s10.4e0fec5e7c64 from=translated src=- shape=a8d2054f vocab=cee758a2
+-/
 theorem recurrence_package_of_centeredJacobian_eq_C
     [CharZero L]
     (D : Derivation R L L) (H B : L[X]) (eps F C₀ : L)

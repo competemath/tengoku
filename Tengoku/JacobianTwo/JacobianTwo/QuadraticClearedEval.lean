@@ -40,7 +40,9 @@ def clearedEval
     algebraMap K R (C.coeff i) * N ^ i * q ^ (2 * (n - i))
 
 /-- Mapping a cleared evaluation to a fraction field and dividing by the
-common denominator recovers evaluation at `N / q^2`.-/
+common denominator recovers evaluation at `N / q^2`.
+@isnad1 id=eq.2h7v.s9.2d15c760de49 from=translated src=- shape=1b58820f vocab=963dcd92
+-/
 theorem map_clearedEval_div_pow
     {K R L : Type*} [Field K] [CommRing R] [IsDomain R] [Field L]
     [Algebra K R] [Algebra R L] [Algebra K L] [IsScalarTower K R L]
@@ -68,7 +70,9 @@ theorem map_clearedEval_div_pow
 
 /-- The leading summand of a cleared evaluation cannot cancel modulo a
 nonunit denominator.  The hypotheses say that both the external factor `z`
-and the residual numerator `N` are coprime to `q`.-/
+and the residual numerator `N` are coprime to `q`.
+@isnad1 id=not.5h7v.s7.61f11804c382 from=translated src=- shape=9b541fb8 vocab=35906a1b
+-/
 theorem not_dvd_mul_clearedEval
     {K R : Type*} [Field K] [CommRing R] [IsDomain R] [Algebra K R]
     (C : K[X]) (N q z : R) (m : ℕ)

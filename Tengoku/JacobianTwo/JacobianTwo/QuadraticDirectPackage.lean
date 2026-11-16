@@ -37,7 +37,9 @@ variable {K : Type*} [Field K] [CharZero K]
 
 omit [CharZero K] in
 /-- A nonzero scalar numerator and a nonzero polynomial denominator give a
-nonzero transformed Jacobian constant.-/
+nonzero transformed Jacobian constant.
+@isnad1 id=ne.2h3v.s8.9ea8725f05c0 from=translated src=- shape=3b465ace vocab=16ea6267
+-/
 theorem fractionCenteredJacobianConstant_ne_zero
     {k : K} {h : K[X]} (hk : k ≠ 0) (hh : h ≠ 0) :
     fractionCenteredJacobianConstant k h ≠ 0 := by
@@ -51,7 +53,9 @@ theorem fractionCenteredJacobianConstant_ne_zero
 
 /-- The Keller equation and a parity representation imply the constant-field
 condition for the even part and the exact quadratic recurrence for the odd
-part.-/
+part.
+@isnad1 id=and.4h9v.s12.11ceb2d826b7 from=translated src=- shape=f16010a9 vocab=3f69908a
+-/
 theorem recurrence_of_keller_parityRepresentation
     {eps k : K} {h g f : K[X]} (P : K[X][Y])
     (H B : (FractionRing K[X])[X])
@@ -86,7 +90,9 @@ theorem recurrence_of_keller_parityRepresentation
 
 omit [CharZero K] in
 /-- Odd degree and the prescribed leading-coefficient shape determine the
-degree, nonvanishing, and leading coefficient of the odd parity component.-/
+degree, nonvanishing, and leading coefficient of the odd parity component.
+@isnad1 id=and.6h10v.s12.34592e8f36a1 from=translated src=- shape=93da547e vocab=f13a82dd
+-/
 theorem odd_part_control_of_parityRepresentation
     {eps lam : K} {h g f : K[X]} {m : ℕ} (P : K[X][Y])
     (H B : (FractionRing K[X])[X])
@@ -127,7 +133,9 @@ theorem odd_part_control_of_parityRepresentation
 
 /-- Degree-normalized form of the recurrence descent: after identifying the
 odd-part degree with `m`, coefficient `j ≤ m` has a nonzero witness of exact
-degree `m-j` in `K[F]`.-/
+degree `m-j` in `K[F]`.
+@isnad1 id=ex.4h6v.s12.9da28298c00f from=translated src=- shape=af5b6f0a vocab=54a2f9cf
+-/
 theorem coefficient_witnesses_of_recurrence
     (F C₀ : FractionRing K[X]) (B : (FractionRing K[X])[X])
     {m : ℕ} (hBdegree : B.natDegree = m) (hB : B ≠ 0)
@@ -175,7 +183,9 @@ structure Certificate
 
 /-- An odd-degree Keller mate against
 `eps*h^2*y^2 + g*y + f`, together with any parity representation of its
-fraction-field affine transport, produces the complete direct certificate.-/
+fraction-field affine transport, produces the complete direct certificate.
+@isnad1 id=certific.8h11v.s11.87142ecde04b from=translated src=- shape=6c29172b vocab=0f88d5fb
+-/
 theorem certificate_of_odd_degree_keller_parityRepresentation
     {eps k lam : K} {h g f : K[X]} {m : ℕ} (P : K[X][Y])
     (H B : (FractionRing K[X])[X])

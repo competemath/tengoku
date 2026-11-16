@@ -38,6 +38,9 @@ def centeredJacobian (D : Derivation R L L) (P Q : L[X]) : L[X] :=
   coefficientwiseDerivative D P * derivative Q -
     derivative P * coefficientwiseDerivative D Q
 
+/--
+@isnad1 id=eq.0h3v.s8.d9ec9f1360a7 from=translated src=- shape=4a1ec60e vocab=68d79581
+-/
 @[simp]
 theorem coefficientwiseDerivative_X (D : Derivation R L L) :
     coefficientwiseDerivative D (X : L[X]) = 0 := by
@@ -45,6 +48,9 @@ theorem coefficientwiseDerivative_X (D : Derivation R L L) :
   simp only [coeff_coefficientwiseDerivative, coeff_X, coeff_zero]
   split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h4v.s9.79f570c854f1 from=translated src=- shape=9f9ec0f8 vocab=92a08547
+-/
 @[simp]
 theorem coefficientwiseDerivative_C (D : Derivation R L L) (a : L) :
     coefficientwiseDerivative D (C a) = C (D a) := by
@@ -53,7 +59,9 @@ theorem coefficientwiseDerivative_C (D : Derivation R L L) (a : L) :
   split_ifs <;> simp
 
 /-- Coefficientwise differentiation obeys the expected chain rule for
-polynomial composition.-/
+polynomial composition.
+@isnad1 id=eq.0h5v.s10.4b77429f41e0 from=translated src=- shape=4dd33424 vocab=b7c70d04
+-/
 theorem coefficientwiseDerivative_comp (D : Derivation R L L) (H Q : L[X]) :
     coefficientwiseDerivative D (H.comp Q) =
       (coefficientwiseDerivative D H).comp Q +
@@ -69,14 +77,18 @@ theorem coefficientwiseDerivative_comp (D : Derivation R L L) (H Q : L[X]) :
       ring
 
 /-- Composing the first entry with the second removes the ordinary chain-rule
-part from the Jacobian.-/
+part from the Jacobian.
+@isnad1 id=eq.0h5v.s9.dc12bae41571 from=translated src=- shape=b199333b vocab=c09f7905
+-/
 theorem centeredJacobian_comp_left (D : Derivation R L L) (H Q : L[X]) :
     centeredJacobian D (H.comp Q) Q =
       (coefficientwiseDerivative D H).comp Q * derivative Q := by
   rw [centeredJacobian, coefficientwiseDerivative_comp, derivative_comp]
   ring
 
-/-- The corresponding cancellation for the odd term `X * B(Q)`.-/
+/-- The corresponding cancellation for the odd term `X * B(Q)`.
+@isnad1 id=eq.0h5v.s10.71ca257ce10a from=translated src=- shape=0f9e0fee vocab=c35ea6dc
+-/
 theorem centeredJacobian_X_mul_comp_left
     (D : Derivation R L L) (B Q : L[X]) :
     centeredJacobian D (X * (B.comp Q)) Q =
@@ -88,7 +100,9 @@ theorem centeredJacobian_X_mul_comp_left
   ring
 
 /-- The full parity decomposition identity before specializing the centered
-quadratic.-/
+quadratic.
+@isnad1 id=eq.0h6v.s10.07bfc2cbe6ef from=translated src=- shape=a93ecc1d vocab=7ad106cd
+-/
 theorem centeredJacobian_parity_decomposition
     (D : Derivation R L L) (H B Q : L[X]) :
     centeredJacobian D (H.comp Q + X * (B.comp Q)) Q =
@@ -104,7 +118,9 @@ theorem centeredJacobian_parity_decomposition
 
 /-- For `Q = eps*U^2+F`, the parity identity has one odd summand and one even
 summand.  This is the exact algebraic equation used before coefficient
-extraction.-/
+extraction.
+@isnad1 id=eq.1h7v.s10.a53459b8252d from=translated src=- shape=12a43fb5 vocab=f254a98c
+-/
 theorem centeredJacobian_parityQuadratic
     (D : Derivation R L L) (H B : L[X]) (eps F : L)
     (hepsConstant : D eps = 0) :

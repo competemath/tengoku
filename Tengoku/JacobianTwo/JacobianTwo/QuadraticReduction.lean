@@ -57,7 +57,9 @@ def fractionCenteredJacobianConstant (k : K) (h : K[X]) :
   toPolynomialFractionField (C k) * (toPolynomialFractionField h)⁻¹
 
 /-- A parity decomposition of the affine transport of an actual Keller pair
-satisfies the centered Jacobian equation with right-hand side `k / h`.-/
+satisfies the centered Jacobian equation with right-hand side `k / h`.
+@isnad1 id=eq.4h9v.s12.fcd33c393f38 from=translated src=- shape=8382bd1c vocab=47fdfc58
+-/
 theorem centeredJacobian_eq_of_jacobian_eq_of_fractionAffineTransport_eq
     {eps k : K} {h g f : K[X]} (P : K[X][Y])
     (H B : (FractionRing K[X])[X])
@@ -87,7 +89,9 @@ theorem centeredJacobian_eq_of_jacobian_eq_of_fractionAffineTransport_eq
     fractionCenteredJacobianConstant] using htransport
 
 /-- If the coefficientwise derivative of a polynomial over `Frac(K[x])`
-vanishes, then each coefficient belongs to the constant field `K`.-/
+vanishes, then each coefficient belongs to the constant field `K`.
+@isnad1 id=ex.1h3v.s12.0be1109eda94 from=translated src=- shape=7be63cae vocab=1f002522
+-/
 theorem coeff_mem_base_of_coefficientwiseDerivative_eq_zero
     (H : (FractionRing K[X])[X])
     (hH : coefficientwiseDerivative fractionRingDerivative H = 0)
@@ -100,7 +104,9 @@ theorem coeff_mem_base_of_coefficientwiseDerivative_eq_zero
   simpa only [coeff_coefficientwiseDerivative, coeff_zero] using hcoeff
 
 /-- Vanishing coefficientwise derivative assembles to a single polynomial
-over the constant field, not merely a coefficient-by-coefficient statement.-/
+over the constant field, not merely a coefficient-by-coefficient statement.
+@isnad1 id=ex.1h2v.s11.86352b95e827 from=translated src=- shape=41750efc vocab=4bb13746
+-/
 theorem exists_map_eq_of_coefficientwiseDerivative_eq_zero
     (H : (FractionRing K[X])[X])
     (hH : coefficientwiseDerivative fractionRingDerivative H = 0) :

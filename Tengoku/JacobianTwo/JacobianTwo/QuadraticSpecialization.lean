@@ -31,7 +31,9 @@ open JacobianTwo.VariableLeadingQuadratic
 
 variable {K : Type*} [Field K]
 
-/-- The inverse affine substitution vanishes at the center of the quadratic.-/
+/-- The inverse affine substitution vanishes at the center of the quadratic.
+@isnad1 id=eq.0h4v.s8.af06182c6d20 from=translated src=- shape=fae49729 vocab=7ca0d557
+-/
 @[simp]
 theorem eval_fractionCenteredAffineSubstitution_at_center
     (eps : K) (h g : K[X]) :
@@ -40,7 +42,9 @@ theorem eval_fractionCenteredAffineSubstitution_at_center
   simp [fractionCenteredAffineSubstitution, centeredAffineSubstitution]
 
 /-- Specializing an affine transport at the center recovers the embedded
-constant coefficient in the original source variable.-/
+constant coefficient in the original source variable.
+@isnad1 id=eq.0h5v.s7.c6b48d75351b from=translated src=- shape=e4e1968b vocab=84d9246e
+-/
 theorem eval_fractionAffineTransport_at_center
     (eps : K) (h g : K[X]) (P : K[X][Y]) :
     (fractionAffineTransport eps h g P).eval
@@ -50,7 +54,9 @@ theorem eval_fractionAffineTransport_at_center
     toPolynomialFractionField, coeff_zero_eq_aeval_zero']
 
 /-- The centered quadratic specializes at its center to the embedded original
-constant coefficient `f`.-/
+constant coefficient `f`.
+@isnad1 id=eq.0h5v.s7.e552196850b2 from=translated src=- shape=4b4c268b vocab=834dc6a6
+-/
 theorem eval_fractionCenteredQuadratic_at_center
     (eps : K) (h g f : K[X]) :
     (fractionCenteredQuadratic eps h g f).eval
@@ -62,7 +68,9 @@ theorem eval_fractionCenteredQuadratic_at_center
   ring
 
 /-- Evaluating a polynomial with constant-field coefficients at an embedded
-polynomial agrees with embedding its polynomial composition.-/
+polynomial agrees with embedding its polynomial composition.
+@isnad1 id=eq.0h3v.s9.92cc2169a20e from=translated src=- shape=a76a753b vocab=aee8dc31
+-/
 theorem eval_map_algebraMap_at_toPolynomialFractionField
     (H₀ f : K[X]) :
     (H₀.map (algebraMap K (FractionRing K[X]))).eval
@@ -91,7 +99,9 @@ theorem eval_map_algebraMap_at_toPolynomialFractionField
 
 /-- If the even part of a parity representation has descended to the constant
 field, specializing at the center expresses the odd contribution as an
-embedded polynomial exactly.-/
+embedded polynomial exactly.
+@isnad1 id=eq.1h8v.s11.466ec1159a07 from=translated src=- shape=cf6a9eed vocab=10a960be
+-/
 theorem center_mul_eval_eq_of_fractionAffineTransport_eq
     (eps : K) (h g f : K[X]) (P : K[X][Y])
     (H₀ : K[X]) (B : (FractionRing K[X])[X])
@@ -118,7 +128,9 @@ theorem center_mul_eval_eq_of_fractionAffineTransport_eq
       simp [toPolynomialFractionField]
 
 /-- Set-membership form of
-`center_mul_eval_eq_of_fractionAffineTransport_eq`.-/
+`center_mul_eval_eq_of_fractionAffineTransport_eq`.
+@isnad1 id=mem.1h8v.s11.8a0792eac25c from=translated src=- shape=7a8ee202 vocab=cf3bd270
+-/
 theorem center_mul_eval_mem_base_of_fractionAffineTransport_eq
     (eps : K) (h g f : K[X]) (P : K[X][Y])
     (H₀ : K[X]) (B : (FractionRing K[X])[X])
@@ -136,7 +148,9 @@ theorem center_mul_eval_mem_base_of_fractionAffineTransport_eq
 
 /-- Vanishing of the coefficientwise fraction-field derivative makes the even
 part constant-field valued, so specialization forces the odd contribution
-back into the embedded polynomial ring.-/
+back into the embedded polynomial ring.
+@isnad1 id=mem.2h8v.s12.b0665fd4c577 from=translated src=- shape=77b4a691 vocab=7c7d2afb
+-/
 theorem center_mul_eval_mem_base_of_fractionAffineTransport_eq_of_derivative_eq_zero
     [CharZero K]
     (eps : K) (h g f : K[X]) (P : K[X][Y])

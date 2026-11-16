@@ -36,7 +36,9 @@ not, then the whole finite sum is not divisible by `p`.
 
 This is the divisibility form of the unique-lowest-valuation principle: after
 clearing a common denominator, the lowest-order term is precisely the unique
-term which survives modulo `p`.-/
+term which survives modulo `p`.
+@isnad1 id=not.3h6v.s7.f44a37593461 from=translated src=- shape=6ca18a6f vocab=e62fa70b
+-/
 theorem not_dvd_sum_of_unique_survivor
     {R ι : Type*} [CommRing R] [DecidableEq ι]
     {s : Finset ι} {i₀ : ι} {p : R} {a : ι → R}
@@ -56,7 +58,9 @@ theorem not_dvd_sum_of_unique_survivor
 /-- A fraction represented by `numerator / denominator` can come from the base
 ring only if `denominator` divides `numerator` in the base ring.
 
-The statement is independent of the chosen model of the fraction field.-/
+The statement is independent of the chosen model of the fraction field.
+@isnad1 id=dvd.2h4v.s8.52da68a45657 from=translated src=- shape=18199775 vocab=cad5a0e4
+-/
 theorem denominator_dvd_of_div_mem_base
     {R K : Type*} [CommRing R] [IsDomain R] [Field K]
     [Algebra R K] [IsFractionRing R K]
@@ -76,7 +80,9 @@ theorem denominator_dvd_of_div_mem_base
   simpa only [mul_comm] using (div_eq_iff hdenominatorMap).mp hr.symm
 
 /-- A non-cancelling denominator prevents a fraction from belonging to the
-embedded base ring.-/
+embedded base ring.
+@isnad1 id=not.2h4v.s8.bff4f3aa6daa from=translated src=- shape=8c8d0468 vocab=cad5a0e4
+-/
 theorem div_not_mem_base_of_not_dvd
     {R K : Type*} [CommRing R] [IsDomain R] [Field K]
     [Algebra R K] [IsFractionRing R K]
@@ -90,7 +96,9 @@ theorem div_not_mem_base_of_not_dvd
 
 /-- Flexible common-denominator form of the unique-lowest-valuation
 obstruction.  The denominator may contain factors besides `p`; it is enough
-that `p` divides it.-/
+that `p` divides it.
+@isnad1 id=not.5h8v.s8.ae4365fdfc3e from=translated src=- shape=5603f991 vocab=c4b0cf7a
+-/
 theorem unique_survivor_fraction_not_mem_base_of_dvd_denominator
     {R K ι : Type*} [CommRing R] [IsDomain R] [Field K]
     [Algebra R K] [IsFractionRing R K] [DecidableEq ι]
@@ -113,7 +121,9 @@ Suppose the common denominator is the positive power `p ^ exponent`.  If one
 numerator summand is not divisible by `p` and every other summand is, then the
 fraction is not an element of the base ring.  Primality of `p` is deliberately
 not required: it belongs in the preceding valuation/order calculation, not in
-this final denominator certificate.-/
+this final denominator certificate.
+@isnad1 id=not.5h8v.s8.7f2d384e65be from=translated src=- shape=ec1c4582 vocab=7935f4a7
+-/
 theorem unique_survivor_fraction_not_mem_base
     {R K ι : Type*} [CommRing R] [IsDomain R] [Field K]
     [Algebra R K] [IsFractionRing R K] [DecidableEq ι]
@@ -132,7 +142,9 @@ theorem unique_survivor_fraction_not_mem_base
 /-- If a fraction with unit numerator belongs to the base ring, then its
 denominator is a unit.  For Step 6, the numerator is the nonzero scalar
 polynomial `C k`, so this turns polynomiality of `k / h` directly into the
-conclusion that `h` is constant and nonzero.-/
+conclusion that `h` is constant and nonzero.
+@isnad1 id=isunit.3h4v.s8.d75f040b4820 from=translated src=- shape=1288e638 vocab=941de2fa
+-/
 theorem isUnit_denominator_of_unit_fraction_mem_base
     {R K : Type*} [CommRing R] [IsDomain R] [Field K]
     [Algebra R K] [IsFractionRing R K]
@@ -146,7 +158,9 @@ theorem isUnit_denominator_of_unit_fraction_mem_base
     (denominator_dvd_of_div_mem_base hdenominator hmem) hnumerator
 
 /-- Polynomial specialization of the Step 6 endpoint: if `k ≠ 0` and `k / h`
-is a polynomial, then the polynomial denominator `h` is a unit.-/
+is a polynomial, then the polynomial denominator `h` is a unit.
+@isnad1 id=isunit.3h3v.s11.0ab11aa00f3f from=translated src=- shape=f0ef5abd vocab=79e3046e
+-/
 theorem isUnit_polynomial_denominator_of_scalar_fraction_mem_base
     {F : Type*} [Field F] {k : F} {h : Polynomial F}
     (hh : h ≠ 0)

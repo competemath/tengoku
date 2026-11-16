@@ -39,7 +39,9 @@ def denominatorDescentTerm
 
 /-- Assemble the coefficientwise cleared evaluations into one common
 fraction.  This is the exact algebraic identity behind the denominator
-descent.-/
+descent.
+@isnad1 id=eq.4h10v.s9.ce1d27720510 from=translated src=- shape=5f3c3e88 vocab=8fa31362
+-/
 theorem mul_eval_eq_common_denominator
     {K R L : Type*} [Field K] [CommRing R] [IsDomain R] [Field L]
     [Algebra K R] [Algebra R L] [Algebra K L] [IsScalarTower K R L]
@@ -89,7 +91,9 @@ Each coefficient of `B` is represented by a polynomial in `N / q^2` whose
 degree is exactly the amount needed for the common-denominator calculation.
 The `j = 0` summand has a numerator coprime to the nonunit `q`; every positive
 `j` summand contains `q^(2*j)`.  Hence `(z/q) * B(f)` is not in the embedded
-base ring.-/
+base ring.
+@isnad1 id=not.8h10v.s9.c78cfb0e3cbb from=translated src=- shape=320c2247 vocab=b0683ca1
+-/
 theorem mul_eval_not_mem_base
     {K R L : Type*} [Field K] [CommRing R] [IsDomain R] [Field L]
     [Algebra K R] [Algebra R L] [Algebra K L] [IsScalarTower K R L]
@@ -125,7 +129,9 @@ theorem mul_eval_not_mem_base
 
 /-- Existential-witness form of `mul_eval_not_mem_base`.  This matches the
 output shape of the coefficient recurrence: a witness polynomial may be
-chosen independently for each coefficient.-/
+chosen independently for each coefficient.
+@isnad1 id=not.6h9v.s9.70b04fce7673 from=translated src=- shape=57dd2271 vocab=b0683ca1
+-/
 theorem mul_eval_not_mem_base_of_exists
     {K R L : Type*} [Field K] [CommRing R] [IsDomain R] [Field L]
     [Algebra K R] [Algebra R L] [Algebra K L] [IsScalarTower K R L]

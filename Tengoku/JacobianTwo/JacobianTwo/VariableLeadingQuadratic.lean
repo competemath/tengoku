@@ -36,15 +36,24 @@ open JacobianTwo.AffineCoordinate
 
 variable {K : Type*} [Field K]
 
+/--
+@isnad1 id=eq.0h2v.s8.96e665a5e698 from=translated src=- shape=398f0fa9 vocab=60a2ee86
+-/
 @[simp]
 theorem C_natCast_inner (n : ℕ) : C (n : K[X]) = (n : K[X][Y]) := by
   rw [map_natCast]
 
+/--
+@isnad1 id=eq.0h2v.s8.0c3a6c5ebb42 from=translated src=- shape=c5becd24 vocab=f855fa8c
+-/
 @[simp]
 theorem C_ofNat_inner (n : ℕ) [n.AtLeastTwo] :
     C (ofNat(n) : K[X]) = (ofNat(n) : K[X][Y]) := by
   rw [C_ofNat]
 
+/--
+@isnad1 id=eq.0h2v.s8.be646e9dca93 from=translated src=- shape=5e9ad255 vocab=f855fa8c
+-/
 @[simp]
 theorem CC_ofNat_scalar (n : ℕ) [n.AtLeastTwo] :
     C (C (ofNat(n) : K)) = (ofNat(n) : K[X][Y]) := by
@@ -63,7 +72,9 @@ def IsNonzeroScalarTimesSquare (a : K[X]) : Prop :=
 
 /-- In `K[x]`, if a square is a nonzero scalar times an odd power, then the
 base is a nonzero scalar times a square.  The same square root also describes
-the original square root up to a nonzero scalar.-/
+the original square root up to a nonzero scalar.
+@isnad1 id=ex.4h5v.s9.724211bed89e from=translated src=- shape=4f8347c0 vocab=1e8364ea
+-/
 theorem scalar_times_square_and_odd_root_of_sq_eq_scalar_mul_pow
     {p a : K[X]} {c : K} {n : ℕ}
     (hc : c ≠ 0) (ha : a ≠ 0) (hodd : Odd n)
@@ -121,7 +132,9 @@ theorem scalar_times_square_and_odd_root_of_sq_eq_scalar_mul_pow
   exact ⟨eps, h, lam, heps, hlam, haSquare, hpRoot⟩
 
 /-- The square-shape projection of
-`scalar_times_square_and_odd_root_of_sq_eq_scalar_mul_pow`.-/
+`scalar_times_square_and_odd_root_of_sq_eq_scalar_mul_pow`.
+@isnad1 id=isnonzer.4h5v.s8.20db8cbc9512 from=translated src=- shape=4325e83e vocab=6bf75197
+-/
 theorem isNonzeroScalarTimesSquare_of_sq_eq_scalar_mul_odd_pow
     {p a : K[X]} {c : K} {n : ℕ}
     (hc : c ≠ 0) (ha : a ≠ 0) (hodd : Odd n)
@@ -139,18 +152,26 @@ variable {L : Type*} [Field L]
 def parityQuadratic (eps F : L) : L[X] :=
   C eps * X ^ 2 + C F
 
+/--
+@isnad1 id=eq.1h3v.s5.0565df1d7d59 from=translated src=- shape=778a159d vocab=15d9a7ef
+-/
 theorem natDegree_parityQuadratic {eps F : L} (heps : eps ≠ 0) :
     (parityQuadratic eps F).natDegree = 2 := by
   simpa [parityQuadratic] using
     (natDegree_quadratic (b := (0 : L)) (c := F) heps)
 
+/--
+@isnad1 id=eq.1h3v.s5.28cb766005b8 from=translated src=- shape=0a498743 vocab=c6bd9a4c
+-/
 theorem leadingCoeff_parityQuadratic {eps F : L} (heps : eps ≠ 0) :
     (parityQuadratic eps F).leadingCoeff = eps := by
   simpa [parityQuadratic] using
     (leadingCoeff_quadratic (b := (0 : L)) (c := F) heps)
 
 /-- Every polynomial is the sum of a polynomial in `eps*X^2+F` and `X`
-times another polynomial in that quadratic.-/
+times another polynomial in that quadratic.
+@isnad1 id=ex.1h4v.s7.ec2b1eb1f6bf from=translated src=- shape=86b40622 vocab=dc5ccabf
+-/
 theorem exists_comp_parityQuadratic_add_X_mul_comp
     (R : L[X]) {eps F : L} (heps : eps ≠ 0) :
     ∃ H B : L[X],
@@ -283,7 +304,9 @@ theorem exists_comp_parityQuadratic_add_X_mul_comp
 
 /-- In any parity decomposition of a polynomial of odd degree `2*m+1`, the
 odd coefficient has degree `m`; its leading coefficient is determined by the
-leading coefficient of the original polynomial.-/
+leading coefficient of the original polynomial.
+@isnad1 id=and.4h8v.s8.7ebd83e0298a from=translated src=- shape=39c320ca vocab=106f95b5
+-/
 theorem odd_degree_parityDecomposition_control
     {R H B : L[X]} {eps F lam : L} {m : ℕ}
     (heps : eps ≠ 0)
@@ -352,7 +375,9 @@ theorem odd_degree_parityDecomposition_control
     omega
 
 /-- Existence together with the exact odd-part degree and leading
-coefficient for an input of degree `2*m+1`.-/
+coefficient for an input of degree `2*m+1`.
+@isnad1 id=ex.3h6v.s8.6c7c177bc81d from=translated src=- shape=518d683c vocab=106f95b5
+-/
 theorem exists_comp_parityQuadratic_add_X_mul_comp_of_odd_degree
     (R : L[X]) {eps F lam : L} {m : ℕ}
     (heps : eps ≠ 0)
@@ -368,7 +393,9 @@ theorem exists_comp_parityQuadratic_add_X_mul_comp_of_odd_degree
     odd_degree_parityDecomposition_control heps hrepr hdegree hlead
   exact ⟨H, B, hrepr, hBdegree, hBlead⟩
 
-/-- The even/odd decomposition relative to `eps*X^2+F` is unique.-/
+/-- The even/odd decomposition relative to `eps*X^2+F` is unique.
+@isnad1 id=and.2h7v.s8.64ad3da43b9c from=translated src=- shape=0d5f4c58 vocab=dc5ccabf
+-/
 theorem parityDecomposition_unique
     {H B H' B' : L[X]} {eps F : L} (heps : eps ≠ 0)
     (heq : H.comp (parityQuadratic eps F) +
@@ -438,6 +465,9 @@ def quadraticCenter (eps h g : L) : L :=
 def centeredAffineSubstitution (h rho : L) : L[X] :=
   C h⁻¹ * (X - C rho)
 
+/--
+@isnad1 id=eq.1h3v.s5.f2fa3274c8c8 from=translated src=- shape=778a159d vocab=44a3dba1
+-/
 theorem natDegree_centeredAffineSubstitution
     {h rho : L} (hh : h ≠ 0) :
     (centeredAffineSubstitution h rho).natDegree = 1 := by
@@ -448,6 +478,9 @@ theorem natDegree_centeredAffineSubstitution
   rw [hnormal]
   exact natDegree_linear (inv_ne_zero hh)
 
+/--
+@isnad1 id=eq.1h3v.s5.6d129ac9decc from=translated src=- shape=47f872a8 vocab=9c00d922
+-/
 theorem leadingCoeff_centeredAffineSubstitution
     {h rho : L} (hh : h ≠ 0) :
     (centeredAffineSubstitution h rho).leadingCoeff = h⁻¹ := by
@@ -462,12 +495,17 @@ theorem leadingCoeff_centeredAffineSubstitution
 def quadraticCenteredResidual (eps rho f : L) : L :=
   f - eps * rho ^ 2
 
+/--
+@isnad1 id=eq.0h3v.s8.95380da87946 from=translated src=- shape=56431324 vocab=aacaaaef
+-/
 @[simp]
 theorem derivative_centeredAffineSubstitution (h rho : L) :
     derivative (centeredAffineSubstitution h rho) = C h⁻¹ := by
   simp [centeredAffineSubstitution]
 
-/-- Chain rule for the inverse affine substitution.-/
+/-- Chain rule for the inverse affine substitution.
+@isnad1 id=eq.0h4v.s9.af8bf9033484 from=translated src=- shape=f9727432 vocab=5b2ecc72
+-/
 theorem derivative_comp_centeredAffineSubstitution
     (R : L[X]) (h rho : L) :
     derivative (R.comp (centeredAffineSubstitution h rho)) =
@@ -475,7 +513,9 @@ theorem derivative_comp_centeredAffineSubstitution
   rw [derivative_comp, derivative_centeredAffineSubstitution]
 
 /-- Completion of the square after the invertible affine substitution
-`y = (U-rho)/h`.-/
+`y = (U-rho)/h`.
+@isnad1 id=eq.3h5v.s9.727068256bce from=translated src=- shape=4a1aa903 vocab=1bd09138
+-/
 theorem quadratic_comp_centeredAffineSubstitution
     {eps h : L} (g f : L) (htwo : (2 : L) ≠ 0)
     (heps : eps ≠ 0) (hh : h ≠ 0) :
@@ -560,7 +600,9 @@ def fractionAffineTransport
 
 /-- After mapping coefficients into `Frac(K[x])` and applying
 `y = (U-rho)/h`, a quadratic with leading coefficient `eps*h^2` becomes
-`eps*U^2+F`.-/
+`eps*U^2+F`.
+@isnad1 id=eq.2h5v.s9.ac3f656b1ecc from=translated src=- shape=53f80663 vocab=436b5a78
+-/
 theorem map_variableQuadraticCoordinate_comp_fractionCenteredAffineSubstitution
     [CharZero K] {eps : K} {h g f : K[X]}
     (heps : eps ≠ 0) (hh : h ≠ 0) :
@@ -593,7 +635,9 @@ theorem map_variableQuadraticCoordinate_comp_fractionCenteredAffineSubstitution
       htwoFraction hepsFraction hhFraction)
 
 /-- The parity decomposition instantiated over `Frac(K[x])` for the affine
-transport of an arbitrary first coordinate.-/
+transport of an arbitrary first coordinate.
+@isnad1 id=ex.1h6v.s11.95040ec3813b from=translated src=- shape=c2ac4a29 vocab=61e14d73
+-/
 theorem exists_fractionAffineTransport_parityDecomposition
     [CharZero K] {eps : K} {h g f : K[X]}
     (P : K[X][Y]) (heps : eps ≠ 0) :
@@ -614,7 +658,9 @@ theorem exists_fractionAffineTransport_parityDecomposition
     (fractionAffineTransport eps h g P) hepsFraction
 
 /-- Re-express the parity decomposition using the transported quadratic
-coordinate itself as the generator.-/
+coordinate itself as the generator.
+@isnad1 id=ex.2h6v.s11.1cecc0d2f00f from=translated src=- shape=5d16b8aa vocab=e46c7caa
+-/
 theorem exists_fractionAffineTransport_comp_transformedQuadratic
     [CharZero K] {eps : K} {h g f : K[X]}
     (P : K[X][Y]) (heps : eps ≠ 0) (hh : h ≠ 0) :
@@ -637,7 +683,9 @@ theorem exists_fractionAffineTransport_comp_transformedQuadratic
 
 /-- Transport of formal differentiation in the source variable.  This is the
 `U`-derivative part of the transformed Jacobian; differentiating the
-`Frac(K[x])` coefficients with respect to `x` is a separate derivation.-/
+`Frac(K[x])` coefficients with respect to `x` is a separate derivation.
+@isnad1 id=eq.0h5v.s13.b8423eff8cee from=translated src=- shape=7006ed71 vocab=d103f725
+-/
 theorem derivative_fractionAffineTransport
     (eps : K) (h g : K[X]) (P : K[X][Y]) :
     derivative (fractionAffineTransport eps h g P) =
@@ -651,7 +699,9 @@ theorem derivative_fractionAffineTransport
   rfl
 
 /-- The invertible affine source substitution preserves `y`-degree after
-passing to `Frac(K[x])`.-/
+passing to `Frac(K[x])`.
+@isnad1 id=eq.1h5v.s8.83ad37f4e7e2 from=translated src=- shape=50c5cb16 vocab=20fcb195
+-/
 theorem natDegree_fractionAffineTransport
     (eps : K) {h g : K[X]} (P : K[X][Y]) (hh : h ≠ 0) :
     (fractionAffineTransport eps h g P).natDegree = P.natDegree := by
@@ -665,7 +715,9 @@ theorem natDegree_fractionAffineTransport
   · simpa [toPolynomialFractionField] using hh
 
 /-- Exact leading-coefficient scaling under the inverse affine source
-substitution.-/
+substitution.
+@isnad1 id=eq.1h5v.s9.d7ac0c97a0b5 from=translated src=- shape=ecffd329 vocab=0882758d
+-/
 theorem leadingCoeff_fractionAffineTransport
     (eps : K) {h g : K[X]} (P : K[X][Y]) (hh : h ≠ 0) :
     (fractionAffineTransport eps h g P).leadingCoeff =
@@ -687,7 +739,9 @@ theorem leadingCoeff_fractionAffineTransport
   rfl
 
 /-- A leading coefficient of the form `lam*h^n` becomes the scalar `lam`
-after the inverse affine substitution.-/
+after the inverse affine substitution.
+@isnad1 id=eq.2h6v.s9.c59ce6a9e68c from=translated src=- shape=8f320d9d vocab=ab38c2a4
+-/
 theorem leadingCoeff_fractionAffineTransport_of_shape
     (eps : K) {h g : K[X]} (P : K[X][Y]) {lam : K}
     (hh : h ≠ 0)
@@ -713,6 +767,9 @@ theorem leadingCoeff_fractionAffineTransport_of_shape
 
 end FractionRingTransport
 
+/--
+@isnad1 id=eq.0h4v.s10.344cb6fcff5d from=translated src=- shape=65926667 vocab=43d5878e
+-/
 @[simp]
 theorem yDerivative_variableQuadraticCoordinate (a g f : K[X]) :
     yDerivative (variableQuadraticCoordinate a g f) =
@@ -720,22 +777,33 @@ theorem yDerivative_variableQuadraticCoordinate (a g f : K[X]) :
   simp [variableQuadraticCoordinate, yDerivative_apply, derivative_pow]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s11.7926bce0f7fc from=translated src=- shape=6f0c8050 vocab=4850d81a
+-/
 @[simp]
 theorem xDerivative_variableQuadraticCoordinate (a g f : K[X]) :
     xDerivative (variableQuadraticCoordinate a g f) =
       C (derivative a) * Y ^ 2 + C (derivative g) * Y + C (derivative f) := by
   simp [variableQuadraticCoordinate, Derivation.leibniz]
 
+/--
+@isnad1 id=eq.1h4v.s6.4ee85f9053ad from=translated src=- shape=a4cd6c29 vocab=7f79288d
+-/
 theorem natDegree_variableQuadraticCoordinate {a g f : K[X]} (ha : a ≠ 0) :
     (variableQuadraticCoordinate a g f).natDegree = 2 := by
   exact natDegree_quadratic ha
 
+/--
+@isnad1 id=eq.1h4v.s6.e8c9859d51aa from=translated src=- shape=fc71aacf vocab=233f984a
+-/
 theorem leadingCoeff_variableQuadraticCoordinate {a g f : K[X]} (ha : a ≠ 0) :
     (variableQuadraticCoordinate a g f).leadingCoeff = a := by
   exact leadingCoeff_quadratic ha
 
 /-- The coefficient of the Jacobian one step above the `y`-degree of `P`.
-Only the leading coefficient of `P` and the quadratic coefficient `a` occur.-/
+Only the leading coefficient of `P` and the quadratic coefficient `a` occur.
+@isnad1 id=eq.0h5v.s10.2ee90c9597ec from=translated src=- shape=81fedb6f vocab=1d9bacf4
+-/
 theorem coeff_natDegree_succ_jacobian_variableQuadraticCoordinate
     (P : K[X][Y]) (a g f : K[X]) :
     (jacobian P (variableQuadraticCoordinate a g f)).coeff
@@ -780,7 +848,9 @@ theorem coeff_natDegree_succ_jacobian_variableQuadraticCoordinate
     simp only [map_one, map_natCast]
     ring
 
-/-- A constant Jacobian makes the top coefficient identity vanish.-/
+/-- A constant Jacobian makes the top coefficient identity vanish.
+@isnad1 id=eq.1h6v.s10.f5a97d9ca388 from=translated src=- shape=3f16129b vocab=a267baad
+-/
 theorem leadingCoeff_differential_eq_of_constant_jacobian
     (P : K[X][Y]) (a g f : K[X]) (k : K)
     (hjac : jacobian P (variableQuadraticCoordinate a g f) = CC k) :
@@ -795,7 +865,9 @@ theorem leadingCoeff_differential_eq_of_constant_jacobian
 
 /-- If the `y`-degree of `P` is a positive even number `2*r`, its leading
 coefficient is a scalar multiple of `a^r`.  This is the algebraic input for
-subtracting a scalar multiple of `Q^r` in the even-degree descent.-/
+subtracting a scalar multiple of `Q^r` in the even-degree descent.
+@isnad1 id=ex.4h7v.s8.00be755ddfe7 from=translated src=- shape=5878bc81 vocab=6b2a3ced
+-/
 theorem leadingCoeff_eq_C_mul_pow_of_even_natDegree [CharZero K]
     {P : K[X][Y]} {a g f : K[X]} {k : K} {r : ℕ}
     (ha : a ≠ 0) (hr : r ≠ 0)
@@ -828,7 +900,9 @@ theorem leadingCoeff_eq_C_mul_pow_of_even_natDegree [CharZero K]
 /-- At odd `y`-degree, the square of the leading coefficient is a nonzero
 scalar multiple of the corresponding power of the quadratic coefficient.
 This is the differential identity whose UFD factorization should imply
-`IsNonzeroScalarTimesSquare a`.-/
+`IsNonzeroScalarTimesSquare a`.
+@isnad1 id=ex.3h6v.s9.5d5e03b9e2bc from=translated src=- shape=b2a1d421 vocab=3f64ecc9
+-/
 theorem leadingCoeff_sq_eq_C_mul_pow_of_odd_natDegree [CharZero K]
     {P : K[X][Y]} {a g f : K[X]} {k : K}
     (ha : a ≠ 0) (hodd : Odd P.natDegree)
@@ -869,7 +943,9 @@ theorem leadingCoeff_sq_eq_C_mul_pow_of_odd_natDegree [CharZero K]
 /-- The UFD consequence of the odd-degree leading-coefficient identity.  The
 quadratic coefficient is a nonzero scalar times a square, and the leading
 coefficient of `P` is a nonzero scalar times the matching odd power of the
-same square root.-/
+same square root.
+@isnad1 id=ex.3h6v.s9.c9da4bedf4c7 from=translated src=- shape=6d5379fc vocab=3f64ecc9
+-/
 theorem odd_natDegree_quadraticCoeff_and_leadingCoeff_shape [CharZero K]
     {P : K[X][Y]} {a g f : K[X]} {k : K}
     (ha : a ≠ 0) (hodd : Odd P.natDegree)
@@ -885,7 +961,9 @@ theorem odd_natDegree_quadraticCoeff_and_leadingCoeff_shape [CharZero K]
 
 /-- Repeated target shears remove every positive even `y`-degree from the
 first coordinate.  A nonzero constant Jacobian excludes degree zero, so the
-terminal residual has odd `y`-degree.-/
+terminal residual has odd `y`-degree.
+@isnad1 id=ex.3h6v.s8.fe259a3cd1f5 from=translated src=- shape=1f7375d1 vocab=a9f84a5c
+-/
 theorem exists_target_shear_add_odd_residual [CharZero K]
     {P : K[X][Y]} {a g f : K[X]} {k : K}
     (ha : a ≠ 0) (hk : k ≠ 0)
