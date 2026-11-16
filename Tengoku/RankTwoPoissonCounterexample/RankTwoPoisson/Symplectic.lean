@@ -35,6 +35,9 @@ noncomputable def jacobian (F : Var → MvPolynomial Var K) : Matrix Var Var (Mv
   fun i j => MvPolynomial.pderiv j (F i)
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h2v.s6.3c14bb7bf59b from=translated src=- shape=cdfe4209 vocab=d373d7d6
+-/
 @[simp] theorem bracket_selfK (f : MvPolynomial Var K) : bracketK K f f = 0 := by
   dsimp [bracketK]
   ring

@@ -32,16 +32,23 @@ def coreOutputK (K : Type*) [Field K] [CharZero K] (i : CoreVar) :
 def residualForm : Matrix CoreVar CoreVar CoreP :=
   !![0,A1,A2; -A1,0,A3; -A2,-A3,0]
 
-/-- Swapping coordinate indices changes the wedge coefficient sign.-/
+/-- Swapping coordinate indices changes the wedge coefficient sign.
+@isnad1 id=eq.0h4v.s5.f6d5e7a3fc5f from=translated src=- shape=dc673b66 vocab=b6b5d9aa
+-/
 theorem wedge_skew (f g : CoreP) (i j : CoreVar) :
     wedgeCoeff f g i j = -wedgeCoeff f g j i := by
   dsimp [wedgeCoeff]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s5.d1e4433d926c from=translated src=- shape=706e8392 vocab=ed48ffee
+-/
 @[simp] theorem wedge_self (f g : CoreP) (i : CoreVar) : wedgeCoeff f g i i = 0 := by
   simp [wedgeCoeff]
 
-/-- All coefficients of dr∧dh+dt∧ds equal the coefficients of Θ.-/
+/-- All coefficients of dr∧dh+dt∧ds equal the coefficients of Θ.
+@isnad1 id=eq.0h2v.s5.e9ab51b44b09 from=translated src=- shape=878682ef vocab=02bc7b9d
+-/
 theorem coefficient_identity_matrix (i j : CoreVar) :
     wedgeCoeff r h i j + wedgeCoeff t s i j = residualForm i j := by
   obtain ⟨h01,h02,h12⟩ := coefficient_identity

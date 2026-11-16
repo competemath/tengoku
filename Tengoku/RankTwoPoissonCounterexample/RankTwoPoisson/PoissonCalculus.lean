@@ -16,7 +16,9 @@ noncomputable section
 
 variable {K σ : Type*} [CommRing K] [DecidableEq σ]
 
-/-- Formal mixed partial derivatives commute.-/
+/-- Formal mixed partial derivatives commute.
+@isnad1 id=eq.0h5v.s10.8e2fa70b520d from=translated src=- shape=55b98e4f vocab=5274be99
+-/
 theorem pderiv_comm (i j : σ) (f : MvPolynomial σ K) :
     MvPolynomial.pderiv i (MvPolynomial.pderiv j f) =
     MvPolynomial.pderiv j (MvPolynomial.pderiv i f) := by

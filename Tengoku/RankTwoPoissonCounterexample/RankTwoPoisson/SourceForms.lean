@@ -35,6 +35,9 @@ variable (K : Type*) [Field K] [CharZero K]
 def wedgeK (f g : MvPolynomial Var K) (i j : Var) :=
   pderiv i f * pderiv j g - pderiv j f * pderiv i g
 
+/--
+@isnad1 id=eq.0h5v.s8.0077e4e511fe from=translated src=- shape=901c808e vocab=6f5c0df0
+-/
 theorem wedge_map (f g : P) (i j : Var) :
     wedgeK K (mapK K f) (mapK K g) i j = mapK K (wedge f g i j) := by
   simp only [wedgeK,wedge,mapK,pderiv_map,map_sub,map_mul]

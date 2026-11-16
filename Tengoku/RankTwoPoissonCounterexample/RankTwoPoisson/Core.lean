@@ -100,7 +100,9 @@ private theorem coeff_YW :
     MvPolynomial.pderiv_C, MvPolynomial.pderiv_mul, MvPolynomial.pderiv_pow] <;>
     ring_nf
 
-/-- The three coefficient identities constituting the manuscript's two-form certificate.-/
+/-- The three coefficient identities constituting the manuscript's two-form certificate.
+@isnad1 id=and.0h0v.s7.5930da5e6c43 from=translated src=- shape=c1bcf73d vocab=fc7a8ef0
+-/
 theorem coefficient_identity :
     (wedgeCoeff r h 0 1 + wedgeCoeff t s 0 1 = A1) ∧
     (wedgeCoeff r h 0 2 + wedgeCoeff t s 0 2 = A2) ∧
@@ -124,21 +126,27 @@ def coreTarget : CoreVar → ℚ := ![0, 1 / 8, 0]
 def coreMap (v : CoreVar → ℚ) : CoreVar → ℚ :=
   ![MvPolynomial.eval v r, MvPolynomial.eval v t, MvPolynomial.eval v s]
 
-/-- First point in the core collision.-/
+/-- First point in the core collision.
+@isnad1 id=eq.0h0v.s2.4d6b18476c40 from=translated src=- shape=fbd2708e vocab=32d4f7e4
+-/
 theorem corePoint0_image : coreMap corePoint0 = coreTarget := by
   funext i
   fin_cases i <;>
     simp [coreMap, corePoint0, coreTarget, r, t, s, U, crat, Xc, Yc, Wc] <;>
     norm_num
 
-/-- Second point in the core collision.-/
+/-- Second point in the core collision.
+@isnad1 id=eq.0h0v.s2.2080fd51ee48 from=translated src=- shape=fbd2708e vocab=35bcb9f4
+-/
 theorem corePoint1_image : coreMap corePoint1 = coreTarget := by
   funext i
   fin_cases i <;>
     simp [coreMap, corePoint1, coreTarget, r, t, s, U, crat, Xc, Yc, Wc] <;>
     norm_num
 
-/-- Third point in the core collision.-/
+/-- Third point in the core collision.
+@isnad1 id=eq.0h0v.s2.9992e6260db1 from=translated src=- shape=fbd2708e vocab=8a1b186d
+-/
 theorem corePoint2_image : coreMap corePoint2 = coreTarget := by
   funext i
   fin_cases i <;>

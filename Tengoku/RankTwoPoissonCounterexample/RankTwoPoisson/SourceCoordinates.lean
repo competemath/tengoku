@@ -50,20 +50,26 @@ def yBack : P := Qs - rat (1 / 3) * x * betaBack
 def D0Back : P :=
   rat (1 / 2) * (1 + 3 * x * Qs) * pInv - 3 * Qs ^ 2 * zInv
 
-/-- The inverse formulas recover the independent coordinate `W`.-/
+/-- The inverse formulas recover the independent coordinate `W`.
+@isnad1 id=eq.0h0v.s2.e0f3c6156b68 from=translated src=- shape=54c8eceb vocab=088fbdb6
+-/
 theorem betaBack_eq : betaBack = p := by
   apply MvPolynomial.funext
   intro v
   simp [betaBack, pInv, zInv, Qs, As, Cs, Ms, rat, x, q, p, z] <;> ring
 
-/-- The inverse formulas recover the independent coordinate `Y`.-/
+/-- The inverse formulas recover the independent coordinate `Y`.
+@isnad1 id=eq.0h0v.s2.15413475e6e9 from=translated src=- shape=54c8eceb vocab=9c7bcf2e
+-/
 theorem yBack_eq : yBack = q := by
   rw [yBack, betaBack_eq]
   apply MvPolynomial.funext
   intro v
   simp [Qs, rat, x, q, p] <;> ring
 
-/-- The inverse formulas recover the independent coordinate `E₀`.-/
+/-- The inverse formulas recover the independent coordinate `E₀`.
+@isnad1 id=eq.0h0v.s2.1e7f0ec9d633 from=translated src=- shape=54c8eceb vocab=79464735
+-/
 theorem D0Back_eq : D0Back = z := by
   apply MvPolynomial.funext
   intro v
@@ -89,20 +95,26 @@ def pRecovered : P :=
 def zRecovered : P :=
   rat (1 / 2) * (1 + 3 * x * Qorig) * Morig - 3 * x ^ 2 * D0
 
-/-- The reconstructed coordinate `Q` is the original `q`.-/
+/-- The reconstructed coordinate `Q` is the original `q`.
+@isnad1 id=eq.0h0v.s2.4ec28dded516 from=translated src=- shape=54c8eceb vocab=022751f4
+-/
 theorem Qorig_eq : Qorig = q := by
   apply MvPolynomial.funext
   intro v
   simp [Qorig, y, rat, x, q] <;> ring
 
-/-- The opposite composite recovers the original `p`.-/
+/-- The opposite composite recovers the original `p`.
+@isnad1 id=eq.0h0v.s2.22a7ecb6a3e0 from=translated src=- shape=54c8eceb vocab=33ffb1f4
+-/
 theorem pRecovered_eq : pRecovered = p := by
   apply MvPolynomial.funext
   intro v
   simp [pRecovered, Morig, Qorig, D0, y, beta, B, a,
     rat, x, q, p, z] <;> ring
 
-/-- The opposite composite recovers the original `z`.-/
+/-- The opposite composite recovers the original `z`.
+@isnad1 id=eq.0h0v.s2.ef6d82430229 from=translated src=- shape=54c8eceb vocab=d176be1f
+-/
 theorem zRecovered_eq : zRecovered = z := by
   apply MvPolynomial.funext
   intro v
